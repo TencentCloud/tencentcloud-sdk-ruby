@@ -3491,7 +3491,7 @@ module TencentCloud
 
       # MobileNetworkTimeVerification返回参数结构体
       class MobileNetworkTimeVerificationResponse < TencentCloud::Common::AbstractModel
-        # @param Result: <p>认证结果码，收费情况如下。- 收费结果码：0: 成功。-2: 手机号不存在。-3: 手机号存在，但无法查询到在网时长。- 不收费结果码：-1: 手机号格式不正确。-4: 验证中心服务繁忙。-5：认证次数超过当日限制，请次日重试。-13：该号段不支持验证</p>
+        # @param Result: <p>认证结果码，收费情况如下。</p><ul><li><p>收费结果码：<br>-0: 成功。<br>-2: 手机号不存在<br>-3: 手机号存在，但无法查询到在网时长。</p></li><li><p>不收费结果码：<br>-1: 手机号格式不正确。<br>-4: 验证中心服务繁忙。<br>-5：认证次数超过当日限制，请次日重试。<br>-13：该号段不支持验证</p></li></ul>
         # @type Result: String
         # @param Description: <p>业务结果描述。</p>
         # @type Description: String
@@ -3542,7 +3542,7 @@ module TencentCloud
 
       # MobileStatus返回参数结构体
       class MobileStatusResponse < TencentCloud::Common::AbstractModel
-        # @param Result: <p>认证结果码，收费情况如下。- 收费结果码：0：成功。- 不收费结果码：-1：未查询到结果。-2：手机号格式不正确。-3：验证中心服务繁忙。-4：认证次数超过当日限制，请次日重试。-13：该号段不支持验证</p>
+        # @param Result: <p>认证结果码，收费情况如下。</p><ul><li>收费结果码：<br>0：成功。</li><li>不收费结果码：<br>-1：未查询到结果。<br>-2：手机号格式不正确。<br>-3：验证中心服务繁忙。<br>-4：认证次数超过当日限制，请次日重试。<br>-13：该号段不支持验证</li></ul>
         # @type Result: String
         # @param Description: <p>业务结果描述。</p>
         # @type Description: String
@@ -3754,7 +3754,7 @@ module TencentCloud
 
       # PhoneVerificationCMCC返回参数结构体
       class PhoneVerificationCMCCResponse < TencentCloud::Common::AbstractModel
-        # @param Result: <p>认证结果码，收费情况如下。- 收费结果码：0: 认证通过。-4: 信息不一致（手机号已实名，但姓名和身份证号与实名信息不一致）。- 不收费结果码：-6: 手机号码不合法。-7: 身份证号码有误。-8: 姓名校验不通过。-9: 没有记录。-11: 验证中心服务繁忙。-13：该号段不支持验证</p>
+        # @param Result: <p>认证结果码，收费情况如下。</p><ul><li>收费结果码：</li><li>0: 认证通过。</li><li>-4: 信息不一致（手机号已实名，但姓名和身份证号与实名信息不一致）。</li><li>不收费结果码：</li><li>-6: 手机号码不合法。</li><li>-7: 身份证号码有误。</li><li>-8: 姓名校验不通过。</li><li>-9: 没有记录。</li><li>-11: 验证中心服务繁忙。</li><li>-13：该号段不支持验证</li></ul>
         # @type Result: String
         # @param Isp: <p>运营商名称。</p><ul><li>取值范围为[&quot;移动&quot;,&quot;联通&quot;,&quot;电信&quot;,&quot;&quot;]。</li></ul>
         # @type Isp: String
@@ -3813,7 +3813,7 @@ module TencentCloud
 
       # PhoneVerificationCTCC返回参数结构体
       class PhoneVerificationCTCCResponse < TencentCloud::Common::AbstractModel
-        # @param Result: <p>认证结果码，收费情况如下。- 收费结果码：0: 认证通过。-4: 信息不一致（手机号已实名，但姓名和身份证号与实名信息不一致）。- 不收费结果码：-6: 手机号码不合法。-7: 身份证号码有误。-8: 姓名校验不通过。-9: 没有记录。-11: 验证中心服务繁忙。-13：该号段不支持验证</p>
+        # @param Result: <p>认证结果码，收费情况如下。</p><ul><li>收费结果码：</li><li>0: 认证通过。</li><li>-4: 信息不一致（手机号已实名，但姓名和身份证号与实名信息不一致）。</li><li>不收费结果码：</li><li>-6: 手机号码不合法。</li><li>-7: 身份证号码有误。</li><li>-8: 姓名校验不通过。</li><li>-9: 没有记录。</li><li>-11: 验证中心服务繁忙。</li><li>-13：该号段不支持验证</li></ul>
         # @type Result: String
         # @param Isp: <p>运营商名称。</p><ul><li>取值范围为[&quot;移动&quot;,&quot;联通&quot;,&quot;电信&quot;,&quot;&quot;]。</li></ul>
         # @type Isp: String
@@ -3872,7 +3872,7 @@ module TencentCloud
 
       # PhoneVerificationCUCC返回参数结构体
       class PhoneVerificationCUCCResponse < TencentCloud::Common::AbstractModel
-        # @param Result: <p>认证结果码，收费情况如下。- 收费结果码：0: 认证通过。-4: 信息不一致（手机号已实名，但姓名和身份证号与实名信息不一致）。- 不收费结果码：-6: 手机号码不合法。-7: 身份证号码有误。-8: 姓名校验不通过。-9: 没有记录。-11: 验证中心服务繁忙。-13：该号段不支持验证</p>
+        # @param Result: <p>认证结果码，收费情况如下。</p><ul><li>收费结果码：</li><li>0: 认证通过。</li><li>-4: 信息不一致（手机号已实名，但姓名和身份证号与实名信息不一致）。</li><li>-不收费结果码：</li><li>-6: 手机号码不合法。</li><li>-7: 身份证号码有误。</li><li>-8: 姓名校验不通过。</li><li>-9: 没有记录。</li><li>-11: 验证中心服务繁忙。</li><li>-13：该号段不支持验证</li></ul>
         # @type Result: String
         # @param Isp: <p>运营商名称。</p><ul><li>取值范围为[&quot;移动&quot;,&quot;联通&quot;,&quot;电信&quot;,&quot;&quot;]。</li></ul>
         # @type Isp: String

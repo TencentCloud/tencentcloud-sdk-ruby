@@ -678,10 +678,12 @@ module TencentCloud
         # @type KeyPTSList: Array
         # @param AddOnAudios: <p>外挂音频功能，指定要插入的音频文件。</p>
         # @type AddOnAudios: Array
+        # @param StdExtStreamInfos: <p>非空时直接替换模板的 StreamInfos 字段，字段格式与创建自适应模板时的 StreamInfos 完全一致</p>
+        # @type StdExtStreamInfos: Array
 
-        attr_accessor :Definition, :WatermarkSet, :BlindWatermark, :OutputStorage, :OutputObjectPath, :SubStreamObjectName, :SegmentObjectName, :AddOnSubtitles, :DrmInfo, :DefinitionType, :SubtitleTemplate, :StdExtInfo, :KeyPTSList, :AddOnAudios
+        attr_accessor :Definition, :WatermarkSet, :BlindWatermark, :OutputStorage, :OutputObjectPath, :SubStreamObjectName, :SegmentObjectName, :AddOnSubtitles, :DrmInfo, :DefinitionType, :SubtitleTemplate, :StdExtInfo, :KeyPTSList, :AddOnAudios, :StdExtStreamInfos
 
-        def initialize(definition=nil, watermarkset=nil, blindwatermark=nil, outputstorage=nil, outputobjectpath=nil, substreamobjectname=nil, segmentobjectname=nil, addonsubtitles=nil, drminfo=nil, definitiontype=nil, subtitletemplate=nil, stdextinfo=nil, keyptslist=nil, addonaudios=nil)
+        def initialize(definition=nil, watermarkset=nil, blindwatermark=nil, outputstorage=nil, outputobjectpath=nil, substreamobjectname=nil, segmentobjectname=nil, addonsubtitles=nil, drminfo=nil, definitiontype=nil, subtitletemplate=nil, stdextinfo=nil, keyptslist=nil, addonaudios=nil, stdextstreaminfos=nil)
           @Definition = definition
           @WatermarkSet = watermarkset
           @BlindWatermark = blindwatermark
@@ -696,6 +698,7 @@ module TencentCloud
           @StdExtInfo = stdextinfo
           @KeyPTSList = keyptslist
           @AddOnAudios = addonaudios
+          @StdExtStreamInfos = stdextstreaminfos
         end
 
         def deserialize(params)
@@ -744,6 +747,14 @@ module TencentCloud
               addonaudio_tmp = AddOnAudio.new
               addonaudio_tmp.deserialize(i)
               @AddOnAudios << addonaudio_tmp
+            end
+          end
+          unless params['StdExtStreamInfos'].nil?
+            @StdExtStreamInfos = []
+            params['StdExtStreamInfos'].each do |i|
+              adaptivestreamtemplate_tmp = AdaptiveStreamTemplate.new
+              adaptivestreamtemplate_tmp.deserialize(i)
+              @StdExtStreamInfos << adaptivestreamtemplate_tmp
             end
           end
         end
@@ -2797,6 +2808,34 @@ module TencentCloud
 
         def deserialize(params)
           @Definition = params['Definition']
+        end
+      end
+
+      # Ai自动生成漫剧的输入
+      class AiDramaInput < TencentCloud::Common::AbstractModel
+        # @param Script: <p>ai漫剧剧本</p><p>参数格式：无</p><p>入参限制：无</p>
+        # @type Script: String
+        # @param Style: <p>ai漫剧风格</p><p>枚举值：</p><ul><li>chinese_ink_wash： 国风水墨</li><li>fantasy_cyberpunk： 奇幻赛博朋克</li><li>japanese_anime_2d： 日漫二次元</li></ul><p>默认值：chinese_ink_wash</p><p>枚举值：</p><ul><li>realistic_live_action： 真人写实</li><li>chinese_ink_wash： 国风水墨</li><li>fantasy_cyberpunk： 奇幻赛博朋克</li><li>japanese_anime_2d： 日漫二次元</li></ul><p>默认值：chinese_ink_wash</p>
+        # @type Style: String
+        # @param Ratio: <p>宽高比</p><p>枚举值：</p><ul><li>16:9： 16:9</li><li>9:16： 9:16</li></ul><p>默认值：16:9</p>
+        # @type Ratio: String
+        # @param Resolution: <p>输出视频分辨率</p><p>枚举值：</p><ul><li>720p： 720p</li><li>1080p： 1080p</li></ul><p>默认值：720p</p>
+        # @type Resolution: String
+
+        attr_accessor :Script, :Style, :Ratio, :Resolution
+
+        def initialize(script=nil, style=nil, ratio=nil, resolution=nil)
+          @Script = script
+          @Style = style
+          @Ratio = ratio
+          @Resolution = resolution
+        end
+
+        def deserialize(params)
+          @Script = params['Script']
+          @Style = params['Style']
+          @Ratio = params['Ratio']
+          @Resolution = params['Resolution']
         end
       end
 
@@ -8279,6 +8318,52 @@ module TencentCloud
         end
       end
 
+      # CreateAiDramaTask请求参数结构体
+      class CreateAiDramaTaskRequest < TencentCloud::Common::AbstractModel
+        # @param Input: <p>ai漫剧输入</p>
+        # @type Input: :class:`Tencentcloud::Mps.v20190612.models.AiDramaInput`
+        # @param CosInfo: <p>用户cos信息</p>
+        # @type CosInfo: :class:`Tencentcloud::Mps.v20190612.models.VideoDramaCosInfo`
+
+        attr_accessor :Input, :CosInfo
+
+        def initialize(input=nil, cosinfo=nil)
+          @Input = input
+          @CosInfo = cosinfo
+        end
+
+        def deserialize(params)
+          unless params['Input'].nil?
+            @Input = AiDramaInput.new
+            @Input.deserialize(params['Input'])
+          end
+          unless params['CosInfo'].nil?
+            @CosInfo = VideoDramaCosInfo.new
+            @CosInfo.deserialize(params['CosInfo'])
+          end
+        end
+      end
+
+      # CreateAiDramaTask返回参数结构体
+      class CreateAiDramaTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务id</p>
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateAigcAudioTask请求参数结构体
       class CreateAigcAudioTaskRequest < TencentCloud::Common::AbstractModel
         # @param ModelName: <p>模型名称。生音乐当前支持的模型: GL、MiniMaxMusic。</p>
@@ -11048,6 +11133,52 @@ module TencentCloud
       class CreateVideoDatabaseEntryTaskResponse < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务ID
         # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateVideoRedrawTask请求参数结构体
+      class CreateVideoRedrawTaskRequest < TencentCloud::Common::AbstractModel
+        # @param Input: <p>输入待转绘视频url信息</p>
+        # @type Input: :class:`Tencentcloud::Mps.v20190612.models.VideoRedrawInput`
+        # @param CosInfo: <p>用户cos信息，用于保存生成结果</p>
+        # @type CosInfo: :class:`Tencentcloud::Mps.v20190612.models.VideoRedrawCosInfo`
+
+        attr_accessor :Input, :CosInfo
+
+        def initialize(input=nil, cosinfo=nil)
+          @Input = input
+          @CosInfo = cosinfo
+        end
+
+        def deserialize(params)
+          unless params['Input'].nil?
+            @Input = VideoRedrawInput.new
+            @Input.deserialize(params['Input'])
+          end
+          unless params['CosInfo'].nil?
+            @CosInfo = VideoRedrawCosInfo.new
+            @CosInfo.deserialize(params['CosInfo'])
+          end
+        end
+      end
+
+      # CreateVideoRedrawTask返回参数结构体
+      class CreateVideoRedrawTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务id</p>
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -35718,6 +35849,30 @@ module TencentCloud
         end
       end
 
+      # aigc cos信息，存储用户请求时填写的cos信息，存放结果
+      class VideoDramaCosInfo < TencentCloud::Common::AbstractModel
+        # @param CosBucketRegion: <p>cos通地域</p>
+        # @type CosBucketRegion: String
+        # @param CosBucketName: <p>cos桶名称</p>
+        # @type CosBucketName: String
+        # @param CosBucketPath: <p>cos桶路径</p>
+        # @type CosBucketPath: String
+
+        attr_accessor :CosBucketRegion, :CosBucketName, :CosBucketPath
+
+        def initialize(cosbucketregion=nil, cosbucketname=nil, cosbucketpath=nil)
+          @CosBucketRegion = cosbucketregion
+          @CosBucketName = cosbucketname
+          @CosBucketPath = cosbucketpath
+        end
+
+        def deserialize(params)
+          @CosBucketRegion = params['CosBucketRegion']
+          @CosBucketName = params['CosBucketName']
+          @CosBucketPath = params['CosBucketPath']
+        end
+      end
+
       # 视频增强配置
       class VideoEnhanceConfig < TencentCloud::Common::AbstractModel
         # @param FrameRate: 插帧帧率配置（旧）。新用户建议使用FrameRateWithDen配置插帧帧率，支持分数，且效果更好。注意，FrameRate 与FrameRateWithDen 只能二选一，同时配置可能导致任务失败。源帧率大于等于目标帧率时能力不会生效。
@@ -35834,6 +35989,46 @@ module TencentCloud
             @FrameRateWithDen = FrameRateWithDenConfig.new
             @FrameRateWithDen.deserialize(params['FrameRateWithDen'])
           end
+        end
+      end
+
+      # aigc cos信息，存储用户请求时填写的cos信息，存放结果
+      class VideoRedrawCosInfo < TencentCloud::Common::AbstractModel
+        # @param CosBucketRegion: <p>cos桶地域</p>
+        # @type CosBucketRegion: String
+        # @param CosBucketName: <p>cos桶名称</p>
+        # @type CosBucketName: String
+        # @param CosBucketPath: <p>cos桶路径</p>
+        # @type CosBucketPath: String
+
+        attr_accessor :CosBucketRegion, :CosBucketName, :CosBucketPath
+
+        def initialize(cosbucketregion=nil, cosbucketname=nil, cosbucketpath=nil)
+          @CosBucketRegion = cosbucketregion
+          @CosBucketName = cosbucketname
+          @CosBucketPath = cosbucketpath
+        end
+
+        def deserialize(params)
+          @CosBucketRegion = params['CosBucketRegion']
+          @CosBucketName = params['CosBucketName']
+          @CosBucketPath = params['CosBucketPath']
+        end
+      end
+
+      # 视频转绘的输入源
+      class VideoRedrawInput < TencentCloud::Common::AbstractModel
+        # @param Url: <p>输入待转绘的视频URL</p>
+        # @type Url: String
+
+        attr_accessor :Url
+
+        def initialize(url=nil)
+          @Url = url
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
         end
       end
 

@@ -777,6 +777,54 @@ module TencentCloud
         end
       end
 
+      # BindTWeTalkAgent请求参数结构体
+      class BindTWeTalkAgentRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: <p>产品 ID</p>
+        # @type ProductId: String
+        # @param AgentId: <p>智能体 ID</p>
+        # @type AgentId: String
+        # @param BindingScope: <p>绑定维度：product 或 device</p>
+        # @type BindingScope: String
+        # @param DeviceName: <p>设备名称；<code>BindingScope=device</code> 时必填</p>
+        # @type DeviceName: String
+        # @param Priority: <p>绑定优先级，数值越小优先级越高</p>
+        # @type Priority: Integer
+
+        attr_accessor :ProductId, :AgentId, :BindingScope, :DeviceName, :Priority
+
+        def initialize(productid=nil, agentid=nil, bindingscope=nil, devicename=nil, priority=nil)
+          @ProductId = productid
+          @AgentId = agentid
+          @BindingScope = bindingscope
+          @DeviceName = devicename
+          @Priority = priority
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @AgentId = params['AgentId']
+          @BindingScope = params['BindingScope']
+          @DeviceName = params['DeviceName']
+          @Priority = params['Priority']
+        end
+      end
+
+      # BindTWeTalkAgent返回参数结构体
+      class BindTWeTalkAgentResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CallDeviceActionAsync请求参数结构体
       class CallDeviceActionAsyncRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品Id
@@ -3226,6 +3274,111 @@ module TencentCloud
         end
       end
 
+      # CreateTWeTalkAgent请求参数结构体
+      class CreateTWeTalkAgentRequest < TencentCloud::Common::AbstractModel
+        # @param STTConfig: <p>语音识别配置</p>
+        # @type STTConfig: :class:`Tencentcloud::Iotexplorer.v20190423.models.TalkSTTConfig`
+        # @param LLMConfig: <p>大模型配置</p>
+        # @type LLMConfig: :class:`Tencentcloud::Iotexplorer.v20190423.models.TalkLLMConfig`
+        # @param TTSConfig: <p>语音合成配置</p>
+        # @type TTSConfig: :class:`Tencentcloud::Iotexplorer.v20190423.models.TalkTTSConfig`
+        # @param Name: <p>智能体名称；为空时使用默认智能体名称</p>
+        # @type Name: String
+        # @param InstanceId: <p>实例ID</p>
+        # @type InstanceId: String
+        # @param Description: <p>智能体描述，最长1024字符</p>
+        # @type Description: String
+        # @param ConversationConfig: <p>对话行为配置</p>
+        # @type ConversationConfig: :class:`Tencentcloud::Iotexplorer.v20190423.models.TalkConversationConfig`
+        # @param MemoryConfig: <p>长期记忆配置</p>
+        # @type MemoryConfig: :class:`Tencentcloud::Iotexplorer.v20190423.models.TalkMemoryConfig`
+        # @param IOTTools: <p>IoT工具配置列表</p>
+        # @type IOTTools: Array
+        # @param WebhookTools: <p>Webhook工具配置列表</p>
+        # @type WebhookTools: Array
+        # @param Metadata: <p>元信息扩展JSON对象字符串</p>
+        # @type Metadata: String
+
+        attr_accessor :STTConfig, :LLMConfig, :TTSConfig, :Name, :InstanceId, :Description, :ConversationConfig, :MemoryConfig, :IOTTools, :WebhookTools, :Metadata
+
+        def initialize(sttconfig=nil, llmconfig=nil, ttsconfig=nil, name=nil, instanceid=nil, description=nil, conversationconfig=nil, memoryconfig=nil, iottools=nil, webhooktools=nil, metadata=nil)
+          @STTConfig = sttconfig
+          @LLMConfig = llmconfig
+          @TTSConfig = ttsconfig
+          @Name = name
+          @InstanceId = instanceid
+          @Description = description
+          @ConversationConfig = conversationconfig
+          @MemoryConfig = memoryconfig
+          @IOTTools = iottools
+          @WebhookTools = webhooktools
+          @Metadata = metadata
+        end
+
+        def deserialize(params)
+          unless params['STTConfig'].nil?
+            @STTConfig = TalkSTTConfig.new
+            @STTConfig.deserialize(params['STTConfig'])
+          end
+          unless params['LLMConfig'].nil?
+            @LLMConfig = TalkLLMConfig.new
+            @LLMConfig.deserialize(params['LLMConfig'])
+          end
+          unless params['TTSConfig'].nil?
+            @TTSConfig = TalkTTSConfig.new
+            @TTSConfig.deserialize(params['TTSConfig'])
+          end
+          @Name = params['Name']
+          @InstanceId = params['InstanceId']
+          @Description = params['Description']
+          unless params['ConversationConfig'].nil?
+            @ConversationConfig = TalkConversationConfig.new
+            @ConversationConfig.deserialize(params['ConversationConfig'])
+          end
+          unless params['MemoryConfig'].nil?
+            @MemoryConfig = TalkMemoryConfig.new
+            @MemoryConfig.deserialize(params['MemoryConfig'])
+          end
+          unless params['IOTTools'].nil?
+            @IOTTools = []
+            params['IOTTools'].each do |i|
+              talkiottool_tmp = TalkIOTTool.new
+              talkiottool_tmp.deserialize(i)
+              @IOTTools << talkiottool_tmp
+            end
+          end
+          unless params['WebhookTools'].nil?
+            @WebhookTools = []
+            params['WebhookTools'].each do |i|
+              talkwebhooktool_tmp = TalkWebhookTool.new
+              talkwebhooktool_tmp.deserialize(i)
+              @WebhookTools << talkwebhooktool_tmp
+            end
+          end
+          @Metadata = params['Metadata']
+        end
+      end
+
+      # CreateTWeTalkAgent返回参数结构体
+      class CreateTWeTalkAgentResponse < TencentCloud::Common::AbstractModel
+        # @param AgentId: <p>智能体ID</p>
+        # @type AgentId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AgentId, :RequestId
+
+        def initialize(agentid=nil, requestid=nil)
+          @AgentId = agentid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AgentId = params['AgentId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateTWeTalkProductConfig请求参数结构体
       class CreateTWeTalkProductConfigRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品ID
@@ -4066,6 +4219,38 @@ module TencentCloud
 
       # DeleteTWeTalkAIBot返回参数结构体
       class DeleteTWeTalkAIBotResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteTWeTalkAgent请求参数结构体
+      class DeleteTWeTalkAgentRequest < TencentCloud::Common::AbstractModel
+        # @param AgentId: <p>智能体ID</p>
+        # @type AgentId: String
+
+        attr_accessor :AgentId
+
+        def initialize(agentid=nil)
+          @AgentId = agentid
+        end
+
+        def deserialize(params)
+          @AgentId = params['AgentId']
+        end
+      end
+
+      # DeleteTWeTalkAgent返回参数结构体
+      class DeleteTWeTalkAgentResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -7804,6 +7989,187 @@ module TencentCloud
         def deserialize(params)
           unless params['Data'].nil?
             @Data = TalkAIBotInfo.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeTWeTalkAgentBinding请求参数结构体
+      class DescribeTWeTalkAgentBindingRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: <p>产品 ID</p>
+        # @type ProductId: String
+        # @param DeviceName: <p>设备名称</p>
+        # @type DeviceName: String
+        # @param BindingScope: <p>绑定维度：product 或 device</p>
+        # @type BindingScope: String
+        # @param AgentId: <p>智能体 ID</p>
+        # @type AgentId: String
+        # @param Offset: <p>偏移量</p>
+        # @type Offset: Integer
+        # @param Limit: <p>返回数量，最大 100</p>
+        # @type Limit: Integer
+
+        attr_accessor :ProductId, :DeviceName, :BindingScope, :AgentId, :Offset, :Limit
+
+        def initialize(productid=nil, devicename=nil, bindingscope=nil, agentid=nil, offset=nil, limit=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @BindingScope = bindingscope
+          @AgentId = agentid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @BindingScope = params['BindingScope']
+          @AgentId = params['AgentId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeTWeTalkAgentBinding返回参数结构体
+      class DescribeTWeTalkAgentBindingResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>总数</p>
+        # @type TotalCount: Integer
+        # @param Bindings: <p>绑定关系列表</p>
+        # @type Bindings: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Bindings, :RequestId
+
+        def initialize(totalcount=nil, bindings=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Bindings = bindings
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Bindings'].nil?
+            @Bindings = []
+            params['Bindings'].each do |i|
+              talkagentbinding_tmp = TalkAgentBinding.new
+              talkagentbinding_tmp.deserialize(i)
+              @Bindings << talkagentbinding_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeTWeTalkAgentList请求参数结构体
+      class DescribeTWeTalkAgentListRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: <p>产品 ID</p>
+        # @type ProductId: String
+        # @param DeviceName: <p>设备名称，设备级绑定查询时使用</p>
+        # @type DeviceName: String
+        # @param BindingScope: <p>绑定维度：product 或 device</p>
+        # @type BindingScope: String
+        # @param AgentId: <p>智能体 ID</p>
+        # @type AgentId: String
+        # @param InstanceId: <p>实例 ID</p>
+        # @type InstanceId: String
+        # @param Name: <p>智能体名称筛选</p>
+        # @type Name: String
+        # @param Offset: <p>偏移量</p>
+        # @type Offset: Integer
+        # @param Limit: <p>返回数量，最大 100</p>
+        # @type Limit: Integer
+
+        attr_accessor :ProductId, :DeviceName, :BindingScope, :AgentId, :InstanceId, :Name, :Offset, :Limit
+
+        def initialize(productid=nil, devicename=nil, bindingscope=nil, agentid=nil, instanceid=nil, name=nil, offset=nil, limit=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @BindingScope = bindingscope
+          @AgentId = agentid
+          @InstanceId = instanceid
+          @Name = name
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @BindingScope = params['BindingScope']
+          @AgentId = params['AgentId']
+          @InstanceId = params['InstanceId']
+          @Name = params['Name']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeTWeTalkAgentList返回参数结构体
+      class DescribeTWeTalkAgentListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>总数</p>
+        # @type TotalCount: Integer
+        # @param Data: <p>智能体列</p>
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Data, :RequestId
+
+        def initialize(totalcount=nil, data=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              talkagentinfo_tmp = TalkAgentInfo.new
+              talkagentinfo_tmp.deserialize(i)
+              @Data << talkagentinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeTWeTalkAgent请求参数结构体
+      class DescribeTWeTalkAgentRequest < TencentCloud::Common::AbstractModel
+        # @param AgentId: <p>智能体ID</p>
+        # @type AgentId: String
+
+        attr_accessor :AgentId
+
+        def initialize(agentid=nil)
+          @AgentId = agentid
+        end
+
+        def deserialize(params)
+          @AgentId = params['AgentId']
+        end
+      end
+
+      # DescribeTWeTalkAgent返回参数结构体
+      class DescribeTWeTalkAgentResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>智能体详情</p>
+        # @type Data: :class:`Tencentcloud::Iotexplorer.v20190423.models.TalkAgentInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = TalkAgentInfo.new
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
@@ -13172,6 +13538,107 @@ module TencentCloud
         end
       end
 
+      # ModifyTWeTalkAgent请求参数结构体
+      class ModifyTWeTalkAgentRequest < TencentCloud::Common::AbstractModel
+        # @param AgentId: <p>智能体ID</p>
+        # @type AgentId: String
+        # @param Name: <p>智能体名称</p>
+        # @type Name: String
+        # @param Description: <p>智能体描述</p>
+        # @type Description: String
+        # @param STTConfig: <p>语音识别配置</p>
+        # @type STTConfig: :class:`Tencentcloud::Iotexplorer.v20190423.models.TalkSTTConfig`
+        # @param LLMConfig: <p>大模型配置</p>
+        # @type LLMConfig: :class:`Tencentcloud::Iotexplorer.v20190423.models.TalkLLMConfig`
+        # @param TTSConfig: <p>语音合成配置</p>
+        # @type TTSConfig: :class:`Tencentcloud::Iotexplorer.v20190423.models.TalkTTSConfig`
+        # @param ConversationConfig: <p>对话行为配置</p>
+        # @type ConversationConfig: :class:`Tencentcloud::Iotexplorer.v20190423.models.TalkConversationConfig`
+        # @param MemoryConfig: <p>长期记忆配置</p>
+        # @type MemoryConfig: :class:`Tencentcloud::Iotexplorer.v20190423.models.TalkMemoryConfig`
+        # @param IOTTools: <p>IoT工具配置列表</p>
+        # @type IOTTools: Array
+        # @param WebhookTools: <p>Webhook工具配置列表</p>
+        # @type WebhookTools: Array
+        # @param Metadata: <p>元信息扩展JSON对象字符串</p>
+        # @type Metadata: String
+
+        attr_accessor :AgentId, :Name, :Description, :STTConfig, :LLMConfig, :TTSConfig, :ConversationConfig, :MemoryConfig, :IOTTools, :WebhookTools, :Metadata
+
+        def initialize(agentid=nil, name=nil, description=nil, sttconfig=nil, llmconfig=nil, ttsconfig=nil, conversationconfig=nil, memoryconfig=nil, iottools=nil, webhooktools=nil, metadata=nil)
+          @AgentId = agentid
+          @Name = name
+          @Description = description
+          @STTConfig = sttconfig
+          @LLMConfig = llmconfig
+          @TTSConfig = ttsconfig
+          @ConversationConfig = conversationconfig
+          @MemoryConfig = memoryconfig
+          @IOTTools = iottools
+          @WebhookTools = webhooktools
+          @Metadata = metadata
+        end
+
+        def deserialize(params)
+          @AgentId = params['AgentId']
+          @Name = params['Name']
+          @Description = params['Description']
+          unless params['STTConfig'].nil?
+            @STTConfig = TalkSTTConfig.new
+            @STTConfig.deserialize(params['STTConfig'])
+          end
+          unless params['LLMConfig'].nil?
+            @LLMConfig = TalkLLMConfig.new
+            @LLMConfig.deserialize(params['LLMConfig'])
+          end
+          unless params['TTSConfig'].nil?
+            @TTSConfig = TalkTTSConfig.new
+            @TTSConfig.deserialize(params['TTSConfig'])
+          end
+          unless params['ConversationConfig'].nil?
+            @ConversationConfig = TalkConversationConfig.new
+            @ConversationConfig.deserialize(params['ConversationConfig'])
+          end
+          unless params['MemoryConfig'].nil?
+            @MemoryConfig = TalkMemoryConfig.new
+            @MemoryConfig.deserialize(params['MemoryConfig'])
+          end
+          unless params['IOTTools'].nil?
+            @IOTTools = []
+            params['IOTTools'].each do |i|
+              talkiottool_tmp = TalkIOTTool.new
+              talkiottool_tmp.deserialize(i)
+              @IOTTools << talkiottool_tmp
+            end
+          end
+          unless params['WebhookTools'].nil?
+            @WebhookTools = []
+            params['WebhookTools'].each do |i|
+              talkwebhooktool_tmp = TalkWebhookTool.new
+              talkwebhooktool_tmp.deserialize(i)
+              @WebhookTools << talkwebhooktool_tmp
+            end
+          end
+          @Metadata = params['Metadata']
+        end
+      end
+
+      # ModifyTWeTalkAgent返回参数结构体
+      class ModifyTWeTalkAgentResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyTWeTalkProductConfig请求参数结构体
       class ModifyTWeTalkProductConfigRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品ID
@@ -15539,6 +16006,46 @@ module TencentCloud
         end
       end
 
+      # 智能体绑定配置
+      class TalkAgentBinding < TencentCloud::Common::AbstractModel
+        # @param BindingScope: product 或 device
+        # @type BindingScope: String
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param AgentId: 智能体ID
+        # @type AgentId: String
+        # @param Priority: 绑定优先级
+        # @type Priority: Integer
+        # @param CreateTime: 创建时间，Unix 秒
+        # @type CreateTime: Integer
+        # @param UpdateTime: 更新时间，Unix 秒
+        # @type UpdateTime: Integer
+
+        attr_accessor :BindingScope, :ProductId, :DeviceName, :AgentId, :Priority, :CreateTime, :UpdateTime
+
+        def initialize(bindingscope=nil, productid=nil, devicename=nil, agentid=nil, priority=nil, createtime=nil, updatetime=nil)
+          @BindingScope = bindingscope
+          @ProductId = productid
+          @DeviceName = devicename
+          @AgentId = agentid
+          @Priority = priority
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @BindingScope = params['BindingScope']
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @AgentId = params['AgentId']
+          @Priority = params['Priority']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
       # 智能体配置信息。
       class TalkAgentConfigInfo < TencentCloud::Common::AbstractModel
         # @param SessionTimeout: 会话超时（秒），指连接会话的时间，例如30秒是指会话在30秒后断开
@@ -15622,6 +16129,122 @@ module TencentCloud
         end
       end
 
+      # TWeTalk智能体配置信息描述
+      class TalkAgentInfo < TencentCloud::Common::AbstractModel
+        # @param Uin: 主账号UIN
+        # @type Uin: Integer
+        # @param AppId: 账号AppId
+        # @type AppId: Integer
+        # @param InstanceId: 实例 ID
+        # @type InstanceId: String
+        # @param AgentId: 智能体ID
+        # @type AgentId: String
+        # @param Name: 智能体名称
+        # @type Name: String
+        # @param Description: 智能体描述
+        # @type Description: String
+        # @param STTConfig: 语音识别配置
+        # @type STTConfig: :class:`Tencentcloud::Iotexplorer.v20190423.models.TalkSTTConfig`
+        # @param LLMConfig: 大模型配置
+        # @type LLMConfig: :class:`Tencentcloud::Iotexplorer.v20190423.models.TalkLLMConfig`
+        # @param TTSConfig: 语音合成配置
+        # @type TTSConfig: :class:`Tencentcloud::Iotexplorer.v20190423.models.TalkTTSConfig`
+        # @param ConversationConfig: 对话行为配置
+        # @type ConversationConfig: :class:`Tencentcloud::Iotexplorer.v20190423.models.TalkConversationConfig`
+        # @param MemoryConfig: 长期记忆配置
+        # @type MemoryConfig: :class:`Tencentcloud::Iotexplorer.v20190423.models.TalkMemoryConfig`
+        # @param IOTTools: IoT 工具列表
+        # @type IOTTools: Array
+        # @param WebhookTools: Webhook 工具列表
+        # @type WebhookTools: Array
+        # @param Metadata: 元信息JSON object 字符串
+        # @type Metadata: String
+        # @param Bindings: 绑定关系列表
+        # @type Bindings: Array
+        # @param CreateTime: 创建时间，Unix 秒
+        # @type CreateTime: Integer
+        # @param UpdateTime: 更新时间，Unix 秒
+        # @type UpdateTime: Integer
+
+        attr_accessor :Uin, :AppId, :InstanceId, :AgentId, :Name, :Description, :STTConfig, :LLMConfig, :TTSConfig, :ConversationConfig, :MemoryConfig, :IOTTools, :WebhookTools, :Metadata, :Bindings, :CreateTime, :UpdateTime
+
+        def initialize(uin=nil, appid=nil, instanceid=nil, agentid=nil, name=nil, description=nil, sttconfig=nil, llmconfig=nil, ttsconfig=nil, conversationconfig=nil, memoryconfig=nil, iottools=nil, webhooktools=nil, metadata=nil, bindings=nil, createtime=nil, updatetime=nil)
+          @Uin = uin
+          @AppId = appid
+          @InstanceId = instanceid
+          @AgentId = agentid
+          @Name = name
+          @Description = description
+          @STTConfig = sttconfig
+          @LLMConfig = llmconfig
+          @TTSConfig = ttsconfig
+          @ConversationConfig = conversationconfig
+          @MemoryConfig = memoryconfig
+          @IOTTools = iottools
+          @WebhookTools = webhooktools
+          @Metadata = metadata
+          @Bindings = bindings
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @Uin = params['Uin']
+          @AppId = params['AppId']
+          @InstanceId = params['InstanceId']
+          @AgentId = params['AgentId']
+          @Name = params['Name']
+          @Description = params['Description']
+          unless params['STTConfig'].nil?
+            @STTConfig = TalkSTTConfig.new
+            @STTConfig.deserialize(params['STTConfig'])
+          end
+          unless params['LLMConfig'].nil?
+            @LLMConfig = TalkLLMConfig.new
+            @LLMConfig.deserialize(params['LLMConfig'])
+          end
+          unless params['TTSConfig'].nil?
+            @TTSConfig = TalkTTSConfig.new
+            @TTSConfig.deserialize(params['TTSConfig'])
+          end
+          unless params['ConversationConfig'].nil?
+            @ConversationConfig = TalkConversationConfig.new
+            @ConversationConfig.deserialize(params['ConversationConfig'])
+          end
+          unless params['MemoryConfig'].nil?
+            @MemoryConfig = TalkMemoryConfig.new
+            @MemoryConfig.deserialize(params['MemoryConfig'])
+          end
+          unless params['IOTTools'].nil?
+            @IOTTools = []
+            params['IOTTools'].each do |i|
+              talkiottool_tmp = TalkIOTTool.new
+              talkiottool_tmp.deserialize(i)
+              @IOTTools << talkiottool_tmp
+            end
+          end
+          unless params['WebhookTools'].nil?
+            @WebhookTools = []
+            params['WebhookTools'].each do |i|
+              talkwebhooktool_tmp = TalkWebhookTool.new
+              talkwebhooktool_tmp.deserialize(i)
+              @WebhookTools << talkwebhooktool_tmp
+            end
+          end
+          @Metadata = params['Metadata']
+          unless params['Bindings'].nil?
+            @Bindings = []
+            params['Bindings'].each do |i|
+              talkagentbinding_tmp = TalkAgentBinding.new
+              talkagentbinding_tmp.deserialize(i)
+              @Bindings << talkagentbinding_tmp
+            end
+          end
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
       # 基础配置信息。
       class TalkBasicConfigInfo < TencentCloud::Common::AbstractModel
         # @param SystemPrompt: 系统提示词
@@ -15647,6 +16270,34 @@ module TencentCloud
           @GreetingMessage = params['GreetingMessage']
           @DefaultVoiceType = params['DefaultVoiceType']
           @FastVoiceType = params['FastVoiceType']
+        end
+      end
+
+      # 对话行为配置
+      class TalkConversationConfig < TencentCloud::Common::AbstractModel
+        # @param WelcomeMessage: 欢迎语
+        # @type WelcomeMessage: String
+        # @param WelcomeMessagePriority: 欢迎语优先级。`0`=默认，`1`=高优不可打断
+        # @type WelcomeMessagePriority: Integer
+        # @param InterruptMode: 智能打断模式。`0`=服务端自动打断，`1`=端上发送打断信令
+        # @type InterruptMode: Integer
+        # @param InterruptWordList: 打断词列表。AI 说话期间，仅当用户说出列表中的词才打断 AI；不会触发新的回复
+        # @type InterruptWordList: Array
+
+        attr_accessor :WelcomeMessage, :WelcomeMessagePriority, :InterruptMode, :InterruptWordList
+
+        def initialize(welcomemessage=nil, welcomemessagepriority=nil, interruptmode=nil, interruptwordlist=nil)
+          @WelcomeMessage = welcomemessage
+          @WelcomeMessagePriority = welcomemessagepriority
+          @InterruptMode = interruptmode
+          @InterruptWordList = interruptwordlist
+        end
+
+        def deserialize(params)
+          @WelcomeMessage = params['WelcomeMessage']
+          @WelcomeMessagePriority = params['WelcomeMessagePriority']
+          @InterruptMode = params['InterruptMode']
+          @InterruptWordList = params['InterruptWordList']
         end
       end
 
@@ -15693,6 +16344,34 @@ module TencentCloud
         end
       end
 
+      # IoT工具配置列表
+      class TalkIOTTool < TencentCloud::Common::AbstractModel
+        # @param Name: 工具名称，同时作为IoT ActionId
+        # @type Name: String
+        # @param Description: 工具描述，用于模型判断何时调用
+        # @type Description: String
+        # @param Parameters: 工具参数JSON Schema，JSON对象字符串，必须为type=object
+        # @type Parameters: String
+        # @param Required: 必填参数名列表，必须存在于Parameters.properties中
+        # @type Required: Array
+
+        attr_accessor :Name, :Description, :Parameters, :Required
+
+        def initialize(name=nil, description=nil, parameters=nil, required=nil)
+          @Name = name
+          @Description = description
+          @Parameters = parameters
+          @Required = required
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Description = params['Description']
+          @Parameters = params['Parameters']
+          @Required = params['Required']
+        end
+      end
+
       # 空闲检测信息。
       class TalkIdleDetectionConfigInfo < TencentCloud::Common::AbstractModel
         # @param Enabled: 是否启用
@@ -15725,6 +16404,54 @@ module TencentCloud
               @IdleResponses << idleresponseinfo_tmp
             end
           end
+        end
+      end
+
+      # 大模型配置。基础对话必填；如使用平台默认能力，请显式设置 Type=default。
+      class TalkLLMConfig < TencentCloud::Common::AbstractModel
+        # @param Type: <p>LLM类型：default-平台默认；openai-OpenAI兼容模型</p>
+        # @type Type: String
+        # @param SystemPrompt: <p>系统提示词</p>
+        # @type SystemPrompt: String
+        # @param Temperature: <p>采样温度，建议范围0-2</p>
+        # @type Temperature: Float
+        # @param History: <p>上下文历史轮数，建议范围0-50</p>
+        # @type History: Integer
+        # @param Timeout: <p>超时时间，秒</p>
+        # @type Timeout: Integer
+        # @param BaseUrl: <p>OpenAI兼容模型Base URL，仅支持 80 和 443 端口，Type=openai时必填</p>
+        # @type BaseUrl: String
+        # @param Model: <p>模型名称，Type=openai时必填</p>
+        # @type Model: String
+        # @param ApiKey: <p>模型API Key，Type=openai时必填</p>
+        # @type ApiKey: String
+        # @param ExtraBody: <p>额外模型请求体参数，JSON对象字符串，只允许JSON object，不允许普通字符串</p>
+        # @type ExtraBody: String
+
+        attr_accessor :Type, :SystemPrompt, :Temperature, :History, :Timeout, :BaseUrl, :Model, :ApiKey, :ExtraBody
+
+        def initialize(type=nil, systemprompt=nil, temperature=nil, history=nil, timeout=nil, baseurl=nil, model=nil, apikey=nil, extrabody=nil)
+          @Type = type
+          @SystemPrompt = systemprompt
+          @Temperature = temperature
+          @History = history
+          @Timeout = timeout
+          @BaseUrl = baseurl
+          @Model = model
+          @ApiKey = apikey
+          @ExtraBody = extrabody
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @SystemPrompt = params['SystemPrompt']
+          @Temperature = params['Temperature']
+          @History = params['History']
+          @Timeout = params['Timeout']
+          @BaseUrl = params['BaseUrl']
+          @Model = params['Model']
+          @ApiKey = params['ApiKey']
+          @ExtraBody = params['ExtraBody']
         end
       end
 
@@ -15785,6 +16512,22 @@ module TencentCloud
           @MaxTokens = params['MaxTokens']
           @TopP = params['TopP']
           @Tools = params['Tools']
+        end
+      end
+
+      # 长期记忆配置。
+      class TalkMemoryConfig < TencentCloud::Common::AbstractModel
+        # @param Enabled: 是否启用长期记忆；启用时需满足产品和运行时能力要求
+        # @type Enabled: Boolean
+
+        attr_accessor :Enabled
+
+        def initialize(enabled=nil)
+          @Enabled = enabled
+        end
+
+        def deserialize(params)
+          @Enabled = params['Enabled']
         end
       end
 
@@ -15931,6 +16674,29 @@ module TencentCloud
         end
       end
 
+      # 语音识别配置
+      class TalkSTTConfig < TencentCloud::Common::AbstractModel
+        # @param Type: 当前仅支持 `trtc`（使用 TRTC 内置语音识别）。
+        # @type Type: String
+        # @param TRTC: `Type=trtc` 时生效。整体省略表示全部使用 TRTC 默认值。
+        # @type TRTC: :class:`Tencentcloud::Iotexplorer.v20190423.models.TalkSTTTRTC`
+
+        attr_accessor :Type, :TRTC
+
+        def initialize(type=nil, trtc=nil)
+          @Type = type
+          @TRTC = trtc
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          unless params['TRTC'].nil?
+            @TRTC = TalkSTTTRTC.new
+            @TRTC.deserialize(params['TRTC'])
+          end
+        end
+      end
+
       # STT配置信息。
       class TalkSTTConfigInfo < TencentCloud::Common::AbstractModel
         # @param STTType: 支持的STT类型，tencent-腾讯；azure-亚马逊；deepgram-Deepgram;系统默认-tencent。
@@ -15982,6 +16748,53 @@ module TencentCloud
           @STTType = params['STTType']
           @Enabled = params['Enabled']
           @Config = params['Config']
+        end
+      end
+
+      # TRTC STT配置
+      class TalkSTTTRTC < TencentCloud::Common::AbstractModel
+        # @param Language: <p>识别语言，只支持 <code>zh</code>、<code>16k_zh_large</code></p>
+        # @type Language: String
+        # @param VADSilenceTime: <p>VAD 静默检测时间，单位 ms，范围 240–2000</p>
+        # @type VADSilenceTime: Integer
+        # @param VADLevel: <p>远场人声抑制等级，范围 0–5</p>
+        # @type VADLevel: Integer
+
+        attr_accessor :Language, :VADSilenceTime, :VADLevel
+
+        def initialize(language=nil, vadsilencetime=nil, vadlevel=nil)
+          @Language = language
+          @VADSilenceTime = vadsilencetime
+          @VADLevel = vadlevel
+        end
+
+        def deserialize(params)
+          @Language = params['Language']
+          @VADSilenceTime = params['VADSilenceTime']
+          @VADLevel = params['VADLevel']
+        end
+      end
+
+      # 当前仅支持 `flow`（TRTC Flow TTS）
+      class TalkTTSConfig < TencentCloud::Common::AbstractModel
+        # @param Type: TTS的类型
+        # @type Type: String
+        # @param Flow: Flow TTS 的具体配置
+        # @type Flow: :class:`Tencentcloud::Iotexplorer.v20190423.models.TalkTTSFlow`
+
+        attr_accessor :Type, :Flow
+
+        def initialize(type=nil, flow=nil)
+          @Type = type
+          @Flow = flow
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          unless params['Flow'].nil?
+            @Flow = TalkTTSFlow.new
+            @Flow.deserialize(params['Flow'])
+          end
         end
       end
 
@@ -16081,6 +16894,116 @@ module TencentCloud
           @Speed = params['Speed']
           @Volume = params['Volume']
           @Pitch = params['Pitch']
+        end
+      end
+
+      # Flow TTS 的具体配置
+      class TalkTTSFlow < TencentCloud::Common::AbstractModel
+        # @param VoiceId: <p>精品音色 ID 或克隆音色 ID：具体可参考https://cloud.tencent.com/document/product/647/115414</p>
+        # @type VoiceId: String
+        # @param Speed: <p>语速，范围 0.5–2.0；为 0 表示采用默认值</p>
+        # @type Speed: Float
+
+        attr_accessor :VoiceId, :Speed
+
+        def initialize(voiceid=nil, speed=nil)
+          @VoiceId = voiceid
+          @Speed = speed
+        end
+
+        def deserialize(params)
+          @VoiceId = params['VoiceId']
+          @Speed = params['Speed']
+        end
+      end
+
+      # Webhook鉴权配置
+      class TalkWebhookAuth < TencentCloud::Common::AbstractModel
+        # @param Type: 鉴权类型：none、hmac、static_headers、bearer
+        # @type Type: String
+        # @param SignKey: HMAC签名密钥，Type=hmac时必填
+        # @type SignKey: String
+        # @param Headers: 静态鉴权请求头，JSON对象字符串，仅允许白名单header名
+        # @type Headers: String
+        # @param BearerToken: Bearer Token，Type=bearer时用于生成Authorization请求头
+        # @type BearerToken: String
+
+        attr_accessor :Type, :SignKey, :Headers, :BearerToken
+
+        def initialize(type=nil, signkey=nil, headers=nil, bearertoken=nil)
+          @Type = type
+          @SignKey = signkey
+          @Headers = headers
+          @BearerToken = bearertoken
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @SignKey = params['SignKey']
+          @Headers = params['Headers']
+          @BearerToken = params['BearerToken']
+        end
+      end
+
+      # Webhook工具配置列表
+      class TalkWebhookEndpoint < TencentCloud::Common::AbstractModel
+        # @param Url: <p>Webhook地址，仅支持 80 和 443 端口</p>
+        # @type Url: String
+        # @param Timeout: <p>超时时间，0~30 秒</p><p>取值范围：[0, 30]</p>
+        # @type Timeout: Integer
+
+        attr_accessor :Url, :Timeout
+
+        def initialize(url=nil, timeout=nil)
+          @Url = url
+          @Timeout = timeout
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
+          @Timeout = params['Timeout']
+        end
+      end
+
+      # Webhook工具配置列表
+      class TalkWebhookTool < TencentCloud::Common::AbstractModel
+        # @param Name: Webhook工具名称
+        # @type Name: String
+        # @param Description: Webhook工具描述
+        # @type Description: String
+        # @param Parameters: 工具参数JSON Schema，JSON对象字符串，必须为type=object
+        # @type Parameters: String
+        # @param Endpoint: Webhook HTTP端点配置
+        # @type Endpoint: :class:`Tencentcloud::Iotexplorer.v20190423.models.TalkWebhookEndpoint`
+        # @param Required: 必填参数名列表，必须存在于Parameters.properties中
+        # @type Required: Array
+        # @param Auth: Webhook鉴权配置
+        # @type Auth: :class:`Tencentcloud::Iotexplorer.v20190423.models.TalkWebhookAuth`
+
+        attr_accessor :Name, :Description, :Parameters, :Endpoint, :Required, :Auth
+
+        def initialize(name=nil, description=nil, parameters=nil, endpoint=nil, required=nil, auth=nil)
+          @Name = name
+          @Description = description
+          @Parameters = parameters
+          @Endpoint = endpoint
+          @Required = required
+          @Auth = auth
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Description = params['Description']
+          @Parameters = params['Parameters']
+          unless params['Endpoint'].nil?
+            @Endpoint = TalkWebhookEndpoint.new
+            @Endpoint.deserialize(params['Endpoint'])
+          end
+          @Required = params['Required']
+          unless params['Auth'].nil?
+            @Auth = TalkWebhookAuth.new
+            @Auth.deserialize(params['Auth'])
+          end
         end
       end
 
@@ -16556,6 +17479,50 @@ module TencentCloud
 
       # UnbindTWeTalkAIBot返回参数结构体
       class UnbindTWeTalkAIBotResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UnbindTWeTalkAgent请求参数结构体
+      class UnbindTWeTalkAgentRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: <p>产品 ID</p>
+        # @type ProductId: String
+        # @param AgentId: <p>智能体 ID</p>
+        # @type AgentId: String
+        # @param DeviceName: <p>设备名称；BindingScope=device 时必填</p>
+        # @type DeviceName: String
+        # @param BindingScope: <p>绑定维度：product 或 device</p>
+        # @type BindingScope: String
+
+        attr_accessor :ProductId, :AgentId, :DeviceName, :BindingScope
+
+        def initialize(productid=nil, agentid=nil, devicename=nil, bindingscope=nil)
+          @ProductId = productid
+          @AgentId = agentid
+          @DeviceName = devicename
+          @BindingScope = bindingscope
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @AgentId = params['AgentId']
+          @DeviceName = params['DeviceName']
+          @BindingScope = params['BindingScope']
+        end
+      end
+
+      # UnbindTWeTalkAgent返回参数结构体
+      class UnbindTWeTalkAgentResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

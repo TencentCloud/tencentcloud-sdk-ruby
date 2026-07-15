@@ -437,6 +437,50 @@ module TencentCloud
         end
       end
 
+      # CreateListenerAdditionalCert请求参数结构体
+      class CreateListenerAdditionalCertRequest < TencentCloud::Common::AbstractModel
+        # @param GlobalAcceleratorId: <p>全球加速实例ID。</p>
+        # @type GlobalAcceleratorId: String
+        # @param ListenerId: <p>监听器ID。</p>
+        # @type ListenerId: String
+        # @param AdditionalCertificates: <p>证书ID。</p><p>当前只能添加服务器证书。</p>
+        # @type AdditionalCertificates: Array
+
+        attr_accessor :GlobalAcceleratorId, :ListenerId, :AdditionalCertificates
+
+        def initialize(globalacceleratorid=nil, listenerid=nil, additionalcertificates=nil)
+          @GlobalAcceleratorId = globalacceleratorid
+          @ListenerId = listenerid
+          @AdditionalCertificates = additionalcertificates
+        end
+
+        def deserialize(params)
+          @GlobalAcceleratorId = params['GlobalAcceleratorId']
+          @ListenerId = params['ListenerId']
+          @AdditionalCertificates = params['AdditionalCertificates']
+        end
+      end
+
+      # CreateListenerAdditionalCert返回参数结构体
+      class CreateListenerAdditionalCertResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务ID。</p>
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateListener请求参数结构体
       class CreateListenerRequest < TencentCloud::Common::AbstractModel
         # @param GlobalAcceleratorId: <p>全球加速实例ID。</p>
@@ -734,6 +778,50 @@ module TencentCloud
 
       # DeleteGlobalAccelerator返回参数结构体
       class DeleteGlobalAcceleratorResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID。
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteListenerAdditionalCert请求参数结构体
+      class DeleteListenerAdditionalCertRequest < TencentCloud::Common::AbstractModel
+        # @param GlobalAcceleratorId: 全球加速实例ID。
+        # @type GlobalAcceleratorId: String
+        # @param ListenerId: 监听器ID。
+        # @type ListenerId: String
+        # @param AdditionalCertificates: 证书ID。
+        # @type AdditionalCertificates: Array
+
+        attr_accessor :GlobalAcceleratorId, :ListenerId, :AdditionalCertificates
+
+        def initialize(globalacceleratorid=nil, listenerid=nil, additionalcertificates=nil)
+          @GlobalAcceleratorId = globalacceleratorid
+          @ListenerId = listenerid
+          @AdditionalCertificates = additionalcertificates
+        end
+
+        def deserialize(params)
+          @GlobalAcceleratorId = params['GlobalAcceleratorId']
+          @ListenerId = params['ListenerId']
+          @AdditionalCertificates = params['AdditionalCertificates']
+        end
+      end
+
+      # DeleteListenerAdditionalCert返回参数结构体
+      class DeleteListenerAdditionalCertResponse < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务ID。
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -2479,6 +2567,54 @@ module TencentCloud
         def deserialize(params)
           @FromPort = params['FromPort']
           @ToPort = params['ToPort']
+        end
+      end
+
+      # ReplaceListenerAdditionalCert请求参数结构体
+      class ReplaceListenerAdditionalCertRequest < TencentCloud::Common::AbstractModel
+        # @param GlobalAcceleratorId: 全球加速实例ID。
+        # @type GlobalAcceleratorId: String
+        # @param ListenerId: 监听器ID。
+        # @type ListenerId: String
+        # @param AdditionalCertificate: 证书ID。
+        # @type AdditionalCertificate: String
+        # @param OldCertificate: 旧的证书ID。
+        # @type OldCertificate: String
+
+        attr_accessor :GlobalAcceleratorId, :ListenerId, :AdditionalCertificate, :OldCertificate
+
+        def initialize(globalacceleratorid=nil, listenerid=nil, additionalcertificate=nil, oldcertificate=nil)
+          @GlobalAcceleratorId = globalacceleratorid
+          @ListenerId = listenerid
+          @AdditionalCertificate = additionalcertificate
+          @OldCertificate = oldcertificate
+        end
+
+        def deserialize(params)
+          @GlobalAcceleratorId = params['GlobalAcceleratorId']
+          @ListenerId = params['ListenerId']
+          @AdditionalCertificate = params['AdditionalCertificate']
+          @OldCertificate = params['OldCertificate']
+        end
+      end
+
+      # ReplaceListenerAdditionalCert返回参数结构体
+      class ReplaceListenerAdditionalCertResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID。
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
         end
       end
 

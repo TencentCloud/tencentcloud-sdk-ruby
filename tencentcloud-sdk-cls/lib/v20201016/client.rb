@@ -223,6 +223,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口用于创建Agent应用
+
+        # @param request: Request instance for CreateAgentApplication.
+        # @type request: :class:`Tencentcloud::cls::V20201016::CreateAgentApplicationRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::CreateAgentApplicationResponse`
+        def CreateAgentApplication(request)
+          body = send_request('CreateAgentApplication', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAgentApplicationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于创建告警策略。
 
         # @param request: Request instance for CreateAlarm.
@@ -956,6 +980,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建remote write投递任务
+
+        # @param request: Request instance for CreateRemoteWriteTask.
+        # @type request: :class:`Tencentcloud::cls::V20201016::CreateRemoteWriteTaskRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::CreateRemoteWriteTaskResponse`
+        def CreateRemoteWriteTask(request)
+          body = send_request('CreateRemoteWriteTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateRemoteWriteTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口用于创建aws导入任务
+
+        # @param request: Request instance for CreateS3Recharge.
+        # @type request: :class:`Tencentcloud::cls::V20201016::CreateS3RechargeRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::CreateS3RechargeResponse`
+        def CreateS3Recharge(request)
+          body = send_request('CreateS3Recharge', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateS3RechargeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于创建定时SQL分析任务
 
         # @param request: Request instance for CreateScheduledSql.
@@ -1086,6 +1158,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateWebCallbackResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口用于删除Agent应用
+
+        # @param request: Request instance for DeleteAgentApplication.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DeleteAgentApplicationRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DeleteAgentApplicationResponse`
+        def DeleteAgentApplication(request)
+          body = send_request('DeleteAgentApplication', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAgentApplicationResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1820,6 +1916,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除RemoteWrite任务
+
+        # @param request: Request instance for DeleteRemoteWriteTask.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DeleteRemoteWriteTaskRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DeleteRemoteWriteTaskResponse`
+        def DeleteRemoteWriteTask(request)
+          body = send_request('DeleteRemoteWriteTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteRemoteWriteTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口用于删除aws导入任务
+
+        # @param request: Request instance for DeleteS3Recharge.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DeleteS3RechargeRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DeleteS3RechargeResponse`
+        def DeleteS3Recharge(request)
+          body = send_request('DeleteS3Recharge', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteS3RechargeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于删除定时SQL分析任务
 
         # @param request: Request instance for DeleteScheduledSql.
@@ -1950,6 +2094,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteWebCallbackResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取Agent应用列表
+
+        # @param request: Request instance for DescribeAgentApplications.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DescribeAgentApplicationsRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DescribeAgentApplicationsResponse`
+        def DescribeAgentApplications(request)
+          body = send_request('DescribeAgentApplications', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAgentApplicationsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取agent对应的采集配置
+
+        # @param request: Request instance for DescribeAgentConfigs.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DescribeAgentConfigsRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DescribeAgentConfigsResponse`
+        def DescribeAgentConfigs(request)
+          body = send_request('DescribeAgentConfigs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAgentConfigsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -3141,6 +3333,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口获取RemoteWrite投递任务列表
+
+        # @param request: Request instance for DescribeRemoteWriteTasks.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DescribeRemoteWriteTasksRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DescribeRemoteWriteTasksResponse`
+        def DescribeRemoteWriteTasks(request)
+          body = send_request('DescribeRemoteWriteTasks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRemoteWriteTasksResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口用于获取cos导入配置
+
+        # @param request: Request instance for DescribeS3Recharges.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DescribeS3RechargesRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DescribeS3RechargesResponse`
+        def DescribeS3Recharges(request)
+          body = send_request('DescribeS3Recharges', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeS3RechargesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于获取定时SQL分析任务列表
 
         # @param request: Request instance for DescribeScheduledSqlInfo.
@@ -3488,6 +3728,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = MergePartitionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口用于修改Agent应用
+
+        # @param request: Request instance for ModifyAgentApplication.
+        # @type request: :class:`Tencentcloud::cls::V20201016::ModifyAgentApplicationRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::ModifyAgentApplicationResponse`
+        def ModifyAgentApplication(request)
+          body = send_request('ModifyAgentApplication', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAgentApplicationResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -4199,6 +4463,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改RemoteWrite任务
+
+        # @param request: Request instance for ModifyRemoteWriteTask.
+        # @type request: :class:`Tencentcloud::cls::V20201016::ModifyRemoteWriteTaskRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::ModifyRemoteWriteTaskResponse`
+        def ModifyRemoteWriteTask(request)
+          body = send_request('ModifyRemoteWriteTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyRemoteWriteTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口用于修改aws导入任务
+
+        # @param request: Request instance for ModifyS3Recharge.
+        # @type request: :class:`Tencentcloud::cls::V20201016::ModifyS3RechargeRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::ModifyS3RechargeResponse`
+        def ModifyS3Recharge(request)
+          body = send_request('ModifyS3Recharge', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyS3RechargeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于修改定时SQL分析任务
 
         # @param request: Request instance for ModifyScheduledSql.
@@ -4573,6 +4885,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SearchLogResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口用于预览aws导入信息
+
+        # @param request: Request instance for SearchS3RechargeInfo.
+        # @type request: :class:`Tencentcloud::cls::V20201016::SearchS3RechargeInfoRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::SearchS3RechargeInfoResponse`
+        def SearchS3RechargeInfo(request)
+          body = send_request('SearchS3RechargeInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SearchS3RechargeInfoResponse.new
             model.deserialize(response['Response'])
             model
           else

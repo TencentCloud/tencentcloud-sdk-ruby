@@ -15709,16 +15709,16 @@ module TencentCloud
 
       # 单个有序数据点
       class SingleOrderedDataPoint < TencentCloud::Common::AbstractModel
-        # @param Dimensions: 实例对象维度组合
+        # @param Dimensions: <p>实例对象维度组合</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Dimensions: Array
-        # @param Value: 监控数据值
+        # @param Value: <p>监控数据值</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: Float
-        # @param Timestamp: 监控数据时间戳
+        # @param Timestamp: <p>监控数据时间戳</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Timestamp: Integer
-        # @param Order: 排序序号
+        # @param Order: <p>排序序号</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Order: Integer
 

@@ -3131,15 +3131,15 @@ module TencentCloud
 
       # DescribeDataReportCountV2请求参数结构体
       class DescribeDataReportCountV2Request < TencentCloud::Common::AbstractModel
-        # @param StartTime: 开始时间
+        # @param StartTime: <p>开始时间</p>
         # @type StartTime: Integer
-        # @param EndTime: 结束时间
+        # @param EndTime: <p>结束时间</p>
         # @type EndTime: Integer
-        # @param ID: 项目ID
+        # @param ID: <p>项目ID</p>
         # @type ID: Integer
-        # @param ReportType: 上报类型（custom，event，log，miniProgramData，performance，pv，speed，webvitals）
+        # @param ReportType: <p>上报类型（custom，event，log，miniProgramData，performance，pv，speed，webvitals）</p>
         # @type ReportType: String
-        # @param InstanceID: 实例ID
+        # @param InstanceID: <p>实例ID</p>
         # @type InstanceID: String
 
         attr_accessor :StartTime, :EndTime, :ID, :ReportType, :InstanceID
@@ -3163,7 +3163,7 @@ module TencentCloud
 
       # DescribeDataReportCountV2返回参数结构体
       class DescribeDataReportCountV2Response < TencentCloud::Common::AbstractModel
-        # @param Result: 返回值
+        # @param Result: <p>返回值</p>
         # @type Result: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6049,21 +6049,21 @@ module TencentCloud
 
       # DescribeRumGroupLog请求参数结构体
       class DescribeRumGroupLogRequest < TencentCloud::Common::AbstractModel
-        # @param OrderBy: 排序方式  desc  asc（必填）
+        # @param OrderBy: <p>排序方式  desc  asc（必填）</p>
         # @type OrderBy: String
-        # @param StartTime: 开始时间（必填）
+        # @param StartTime: <p>开始时间（必填）</p>
         # @type StartTime: String
-        # @param Limit: 单次查询返回的原始日志条数，最大值为100（必填）
+        # @param Limit: <p>单次查询返回的原始日志条数，最大值为100（必填）</p>
         # @type Limit: Integer
-        # @param Page: 页数，第几页
+        # @param Page: <p>页数，第几页（注意：该字段已废弃！）</p>
         # @type Page: Integer
-        # @param Query: 查询语句，参考控制台请求参数，语句长度最大为4096（必填）
+        # @param Query: <p>查询语句，参考控制台请求参数，语句长度最大为4096（必填）</p>
         # @type Query: String
-        # @param EndTime: 结束时间（必填）
+        # @param EndTime: <p>结束时间（必填）</p>
         # @type EndTime: String
-        # @param ID: 项目ID（必填）
+        # @param ID: <p>项目ID（必填）</p>
         # @type ID: Integer
-        # @param GroupField: 聚合字段
+        # @param GroupField: <p>聚合字段</p>
         # @type GroupField: String
 
         attr_accessor :OrderBy, :StartTime, :Limit, :Page, :Query, :EndTime, :ID, :GroupField
@@ -6093,7 +6093,7 @@ module TencentCloud
 
       # DescribeRumGroupLog返回参数结构体
       class DescribeRumGroupLogResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 返回字符串
+        # @param Result: <p>返回字符串</p>
         # @type Result: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6113,21 +6113,21 @@ module TencentCloud
 
       # DescribeRumGroupLogV2请求参数结构体
       class DescribeRumGroupLogV2Request < TencentCloud::Common::AbstractModel
-        # @param OrderBy: 排序方式 desc asc（必填）
+        # @param OrderBy: <p>排序方式 desc asc（必填）</p>
         # @type OrderBy: String
-        # @param StartTime: 开始时间（必填）
+        # @param StartTime: <p>开始时间（必填）</p>
         # @type StartTime: Integer
-        # @param Limit: 单次查询返回的原始日志条数，最大值为100（必填）
+        # @param Limit: <p>单次查询返回的原始日志条数，最大值为100（必填）</p>
         # @type Limit: Integer
-        # @param Filter: 过滤条件
+        # @param Filter: <p>过滤条件</p>
         # @type Filter: String
-        # @param EndTime: 结束时间（必填）
+        # @param EndTime: <p>结束时间（必填）</p>
         # @type EndTime: Integer
-        # @param ID: 项目ID（必填）
+        # @param ID: <p>项目ID（必填）</p>
         # @type ID: Integer
-        # @param Label: 聚合字段
+        # @param Label: <p>聚合字段</p>
         # @type Label: String
-        # @param Last: 页数，第几页
+        # @param Last: <p>页数，第几页（注意：该字段已废弃！）</p>
         # @type Last: Integer
 
         attr_accessor :OrderBy, :StartTime, :Limit, :Filter, :EndTime, :ID, :Label, :Last
@@ -6157,7 +6157,7 @@ module TencentCloud
 
       # DescribeRumGroupLogV2返回参数结构体
       class DescribeRumGroupLogV2Response < TencentCloud::Common::AbstractModel
-        # @param Result: Query result in JSON string format
+        # @param Result: <p>Query result in JSON string format</p>
         # @type Result: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6731,15 +6731,15 @@ module TencentCloud
 
       # DescribeScoresV2请求参数结构体
       class DescribeScoresV2Request < TencentCloud::Common::AbstractModel
-        # @param StartTime: 开始时间
+        # @param StartTime: <p>开始时间</p>
         # @type StartTime: String
-        # @param EndTime: 结束时间
+        # @param EndTime: <p>结束时间</p>
         # @type EndTime: String
-        # @param IDList: 项目 ID 列表
+        # @param IDList: <p>项目 ID 列表</p>
         # @type IDList: Array
-        # @param Type: 查询粒度，hour 或 day
+        # @param Type: <p>查询粒度，hour 或 day</p>
         # @type Type: String
-        # @param Env: 环境
+        # @param Env: <p>环境</p>
         # @type Env: String
 
         attr_accessor :StartTime, :EndTime, :IDList, :Type, :Env
@@ -6763,7 +6763,7 @@ module TencentCloud
 
       # DescribeScoresV2返回参数结构体
       class DescribeScoresV2Response < TencentCloud::Common::AbstractModel
-        # @param ScoreSet: 项目得分数组
+        # @param ScoreSet: <p>项目得分数组</p>
         # @type ScoreSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

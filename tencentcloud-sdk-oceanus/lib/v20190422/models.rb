@@ -1484,6 +1484,112 @@ module TencentCloud
         end
       end
 
+      # CreateOceanusCluster请求参数结构体
+      class CreateOceanusClusterRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterName: <p>集群名称</p><p>入参限制：支持1-50个英文、汉字、数字、连接线-或下划线_</p>
+        # @type ClusterName: String
+        # @param RegionId: <p>地域Id，可通过地域管理系统<a href="https://cloud.tencent.com/document/api/1596/77930"> DescribeRegions</a>查询Product参数设置 oceanus</p>
+        # @type RegionId: Integer
+        # @param ZoneId: <p>可用区Id，可通过地域管理系统<a href="https://cloud.tencent.com/document/api/1596/77929"> DescribeZones</a>查询<br>Product参数设置 oceanus</p>
+        # @type ZoneId: Integer
+        # @param LoginPassword: <p>FlinkUI访问密码</p><p>用户名与密码将用于登录查看作业的 Flink UI 界面，集群用户名:admin</p>
+        # @type LoginPassword: String
+        # @param VpcDescriptions: <p>流计算通过 VPC 和弹性网卡来访问同地域中的其他云产品资源，并需要占用一定的子网 IP 数量，请确保所选子网的可用 IP 数量充足 如现有网络不符合您的要求，请前往 VPC 控制台<a href="https://console.cloud.tencent.com/vpc/vpc?rid=undefined">新建私有网络</a> 或 <a href="https://console.cloud.tencent.com/vpc/subnet?rid=undefined">新建子网</a></p>
+        # @type VpcDescriptions: Array
+        # @param DefaultCOSBucket: <p>流计算使用对象存储 COS 来保存作业的 checkpoint、jar 包、或投递日志等，如本地域无可用存储桶，请前往<a href="https://console.cloud.tencent.com/cos5">对象存储控制台</a>新建 为了保证您的正常使用，对应COS的生命周期配置请参考<a href="https://cloud.tencent.com/document/product/436/33417?from=console_document_search">文档</a></p>
+        # @type DefaultCOSBucket: String
+        # @param CU: <p>集群CU数， 12 CU 是流计算的最小计算资源和计费单位，1CU 包含1个 CPU 和 4GB 内存。 当CU数大于等于 48 时，减免管理节点费用。</p>
+        # @type CU: Integer
+        # @param Remark: <p>集群描述</p><p>入参限制：支持1-50个英文、汉字、数字、连接线-或下划线_</p>
+        # @type Remark: String
+        # @param Period: <p>购买时长，以月为单位</p><p>取值范围：[1, 48]</p>
+        # @type Period: Integer
+        # @param InstanceChargeType: <p>集群计费类型</p><p>枚举值：</p><ul><li>PREPAID： 包年包月</li><li>POSTPAID_BY_SECOND： 按量计费</li></ul><p>默认值：POSTPAID_BY_SECOND</p>
+        # @type InstanceChargeType: String
+        # @param ClusterType: <p>集群类型</p><p>枚举值：</p><ul><li>MULTI_AZ_CLUSTER： 多可用区集群</li></ul>
+        # @type ClusterType: String
+        # @param RenewFlag: <p>自动续费标识</p><p>枚举值：</p><ul><li>NOTIFY_AND_MANUAL_RENEW： 通知并手动续费</li><li>NOTIFY_AND_AUTO_RENEW： 通知并自动续费</li><li>DISABLE_NOTIFY_AND_MANUAL_RENEW： 不通知并不自动续费</li></ul><p>默认值：NOTIFY_AND_MANUAL_RENEW</p><p>InstanceChargeType设置PREPAID时，对应包年包月集群，需要设置自动续费标识，按量计费集群不需要设置</p>
+        # @type RenewFlag: String
+        # @param FlinkWebUINetworkAccessType: <p>Flink UI访问类型设置</p><p>枚举值：</p><ul><li>NetworkAccess_INTERNAL： 内网访问</li><li>NetworkAccess_EXTERNAL： 公网访问</li></ul><p>默认值：NetworkAccess_EXTERNAL</p>
+        # @type FlinkWebUINetworkAccessType: String
+        # @param SlaveVpcDescriptions: <p>多可用区VPC</p>
+        # @type SlaveVpcDescriptions: Array
+        # @param CUMemory: <p>核心内存比值，只支持 [0，2，4，8]</p>
+        # @type CUMemory: Integer
+
+        attr_accessor :ClusterName, :RegionId, :ZoneId, :LoginPassword, :VpcDescriptions, :DefaultCOSBucket, :CU, :Remark, :Period, :InstanceChargeType, :ClusterType, :RenewFlag, :FlinkWebUINetworkAccessType, :SlaveVpcDescriptions, :CUMemory
+
+        def initialize(clustername=nil, regionid=nil, zoneid=nil, loginpassword=nil, vpcdescriptions=nil, defaultcosbucket=nil, cu=nil, remark=nil, period=nil, instancechargetype=nil, clustertype=nil, renewflag=nil, flinkwebuinetworkaccesstype=nil, slavevpcdescriptions=nil, cumemory=nil)
+          @ClusterName = clustername
+          @RegionId = regionid
+          @ZoneId = zoneid
+          @LoginPassword = loginpassword
+          @VpcDescriptions = vpcdescriptions
+          @DefaultCOSBucket = defaultcosbucket
+          @CU = cu
+          @Remark = remark
+          @Period = period
+          @InstanceChargeType = instancechargetype
+          @ClusterType = clustertype
+          @RenewFlag = renewflag
+          @FlinkWebUINetworkAccessType = flinkwebuinetworkaccesstype
+          @SlaveVpcDescriptions = slavevpcdescriptions
+          @CUMemory = cumemory
+        end
+
+        def deserialize(params)
+          @ClusterName = params['ClusterName']
+          @RegionId = params['RegionId']
+          @ZoneId = params['ZoneId']
+          @LoginPassword = params['LoginPassword']
+          unless params['VpcDescriptions'].nil?
+            @VpcDescriptions = []
+            params['VpcDescriptions'].each do |i|
+              vpcdescription_tmp = VPCDescription.new
+              vpcdescription_tmp.deserialize(i)
+              @VpcDescriptions << vpcdescription_tmp
+            end
+          end
+          @DefaultCOSBucket = params['DefaultCOSBucket']
+          @CU = params['CU']
+          @Remark = params['Remark']
+          @Period = params['Period']
+          @InstanceChargeType = params['InstanceChargeType']
+          @ClusterType = params['ClusterType']
+          @RenewFlag = params['RenewFlag']
+          @FlinkWebUINetworkAccessType = params['FlinkWebUINetworkAccessType']
+          unless params['SlaveVpcDescriptions'].nil?
+            @SlaveVpcDescriptions = []
+            params['SlaveVpcDescriptions'].each do |i|
+              slavevpcdescriptions_tmp = SlaveVpcDescriptions.new
+              slavevpcdescriptions_tmp.deserialize(i)
+              @SlaveVpcDescriptions << slavevpcdescriptions_tmp
+            end
+          end
+          @CUMemory = params['CUMemory']
+        end
+      end
+
+      # CreateOceanusCluster返回参数结构体
+      class CreateOceanusClusterResponse < TencentCloud::Common::AbstractModel
+        # @param ClusterId: <p>创建的集群ID</p><p>参数格式：cluster-xxx</p>
+        # @type ClusterId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ClusterId, :RequestId
+
+        def initialize(clusterid=nil, requestid=nil)
+          @ClusterId = clusterid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateResourceConfig请求参数结构体
       class CreateResourceConfigRequest < TencentCloud::Common::AbstractModel
         # @param ResourceId: 资源ID
@@ -1838,6 +1944,42 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteOceanusCluster请求参数结构体
+      class DeleteOceanusClusterRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: <p>集群ID</p><p>参数格式：cluster-xxxx</p>
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DeleteOceanusCluster返回参数结构体
+      class DeleteOceanusClusterResponse < TencentCloud::Common::AbstractModel
+        # @param TaskExecResult: <p>参数值success代表操作执行成功</p>
+        # @type TaskExecResult: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskExecResult, :RequestId
+
+        def initialize(taskexecresult=nil, requestid=nil)
+          @TaskExecResult = taskexecresult
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskExecResult = params['TaskExecResult']
           @RequestId = params['RequestId']
         end
       end
@@ -4913,6 +5055,46 @@ module TencentCloud
         end
       end
 
+      # RenewOceanusCluster请求参数结构体
+      class RenewOceanusClusterRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: <p>集群ID</p><p>参数格式：cluster-xxx</p>
+        # @type ClusterId: String
+        # @param Period: <p>续费的时长，单位为月，只支持包年包月集群</p><p>取值范围：[1, 36]</p>
+        # @type Period: Integer
+
+        attr_accessor :ClusterId, :Period
+
+        def initialize(clusterid=nil, period=nil)
+          @ClusterId = clusterid
+          @Period = period
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Period = params['Period']
+        end
+      end
+
+      # RenewOceanusCluster返回参数结构体
+      class RenewOceanusClusterResponse < TencentCloud::Common::AbstractModel
+        # @param TaskExecResult: <p>参数值success代表操作执行成功</p>
+        # @type TaskExecResult: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskExecResult, :RequestId
+
+        def initialize(taskexecresult=nil, requestid=nil)
+          @TaskExecResult = taskexecresult
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskExecResult = params['TaskExecResult']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 描述资源配置的返回参数
       class ResourceConfigItem < TencentCloud::Common::AbstractModel
         # @param ResourceId: 资源ID
@@ -5653,6 +5835,50 @@ module TencentCloud
         end
       end
 
+      # ScaleOceanusCluster请求参数结构体
+      class ScaleOceanusClusterRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: <p>集群ID</p>
+        # @type ClusterId: String
+        # @param NewCU: <p>集群的目标CU，需大于12CU，并且集群CU需要满足 12 + 7*n (n&gt;=0)</p>
+        # @type NewCU: Integer
+        # @param ScaleMode: <p>扩容集群或者缩容集群</p><p>枚举值：</p><ul><li>ScaleDown： 缩容集群</li><li>ScaleUp： 扩容集群</li></ul><p>默认值：ScaleUp</p>
+        # @type ScaleMode: String
+
+        attr_accessor :ClusterId, :NewCU, :ScaleMode
+
+        def initialize(clusterid=nil, newcu=nil, scalemode=nil)
+          @ClusterId = clusterid
+          @NewCU = newcu
+          @ScaleMode = scalemode
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @NewCU = params['NewCU']
+          @ScaleMode = params['ScaleMode']
+        end
+      end
+
+      # ScaleOceanusCluster返回参数结构体
+      class ScaleOceanusClusterResponse < TencentCloud::Common::AbstractModel
+        # @param TaskExecResult: <p>参数值success代表操作执行成功</p>
+        # @type TaskExecResult: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskExecResult, :RequestId
+
+        def initialize(taskexecresult=nil, requestid=nil)
+          @TaskExecResult = taskexecresult
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskExecResult = params['TaskExecResult']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # session集群引用资源信息
       class SessionClusterRefItem < TencentCloud::Common::AbstractModel
         # @param WorkspaceId: 空间唯一标识
@@ -5859,6 +6085,34 @@ module TencentCloud
         def deserialize(params)
           @DiskType = params['DiskType']
           @DiskSize = params['DiskSize']
+        end
+      end
+
+      # 多可用区VPC
+      class SlaveVpcDescriptions < TencentCloud::Common::AbstractModel
+        # @param VpcId: <p>私有网络ID</p>
+        # @type VpcId: String
+        # @param SubnetId: <p>子网ID</p>
+        # @type SubnetId: String
+        # @param AppId: <p>用户AppId</p>
+        # @type AppId: Integer
+        # @param OwnerUin: <p>用户UIN</p>
+        # @type OwnerUin: String
+
+        attr_accessor :VpcId, :SubnetId, :AppId, :OwnerUin
+
+        def initialize(vpcid=nil, subnetid=nil, appid=nil, owneruin=nil)
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @AppId = appid
+          @OwnerUin = owneruin
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @AppId = params['AppId']
+          @OwnerUin = params['OwnerUin']
         end
       end
 
@@ -6485,6 +6739,36 @@ module TencentCloud
           @FinalSavepointPath = params['FinalSavepointPath']
           @SavepointId = params['SavepointId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 客户VPC描述信息，包含VpcId和SubnetId参数
+      class VPCDescription < TencentCloud::Common::AbstractModel
+        # @param VpcId: 私有网络ID
+        # @type VpcId: String
+        # @param SubnetId: 子网ID
+        # @type SubnetId: String
+        # @param AppId: 用户AppId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppId: Integer
+        # @param OwnerUin: 用户UIN
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OwnerUin: String
+
+        attr_accessor :VpcId, :SubnetId, :AppId, :OwnerUin
+
+        def initialize(vpcid=nil, subnetid=nil, appid=nil, owneruin=nil)
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @AppId = appid
+          @OwnerUin = owneruin
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @AppId = params['AppId']
+          @OwnerUin = params['OwnerUin']
         end
       end
 

@@ -13602,7 +13602,7 @@ module TencentCloud
 
       # DescribeAigcApiTokens请求参数结构体
       class DescribeAigcApiTokensRequest < TencentCloud::Common::AbstractModel
-        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
+        # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b></p>
         # @type SubAppId: Integer
 
         attr_accessor :SubAppId
@@ -13618,20 +13618,24 @@ module TencentCloud
 
       # DescribeAigcApiTokens返回参数结构体
       class DescribeAigcApiTokensResponse < TencentCloud::Common::AbstractModel
-        # @param ApiTokens: API Token 列表
+        # @param ApiTokens: <p>API Token 列表</p>
         # @type ApiTokens: Array
+        # @param ExtInfos: <p>ExtInfo信息，和API Token列表一一对应</p>
+        # @type ExtInfos: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ApiTokens, :RequestId
+        attr_accessor :ApiTokens, :ExtInfos, :RequestId
 
-        def initialize(apitokens=nil, requestid=nil)
+        def initialize(apitokens=nil, extinfos=nil, requestid=nil)
           @ApiTokens = apitokens
+          @ExtInfos = extinfos
           @RequestId = requestid
         end
 
         def deserialize(params)
           @ApiTokens = params['ApiTokens']
+          @ExtInfos = params['ExtInfos']
           @RequestId = params['RequestId']
         end
       end
@@ -36919,6 +36923,50 @@ module TencentCloud
           @RoomId = params['RoomId']
           @TaskId = params['TaskId']
           @UserIds = params['UserIds']
+        end
+      end
+
+      # UpdateAigcApiToken请求参数结构体
+      class UpdateAigcApiTokenRequest < TencentCloud::Common::AbstractModel
+        # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b></p>
+        # @type SubAppId: Integer
+        # @param ApiToken: <p>要更新Api Key</p>
+        # @type ApiToken: String
+        # @param ActionType: <p>Merge（默认，对 ExtInfo JSON 按顶层 key 合并）、Overwrite（直接覆盖）</p>
+        # @type ActionType: String
+        # @param ExtInfo: <p>token 的扩展信息</p>
+        # @type ExtInfo: String
+
+        attr_accessor :SubAppId, :ApiToken, :ActionType, :ExtInfo
+
+        def initialize(subappid=nil, apitoken=nil, actiontype=nil, extinfo=nil)
+          @SubAppId = subappid
+          @ApiToken = apitoken
+          @ActionType = actiontype
+          @ExtInfo = extinfo
+        end
+
+        def deserialize(params)
+          @SubAppId = params['SubAppId']
+          @ApiToken = params['ApiToken']
+          @ActionType = params['ActionType']
+          @ExtInfo = params['ExtInfo']
+        end
+      end
+
+      # UpdateAigcApiToken返回参数结构体
+      class UpdateAigcApiTokenResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

@@ -844,6 +844,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取课堂的所有编辑版本（含源版本）
+
+        # @param request: Request instance for DescribeEditVersions.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::DescribeEditVersionsRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::DescribeEditVersionsResponse`
+        def DescribeEditVersions(request)
+          body = send_request('DescribeEditVersions', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeEditVersionsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 此接口用于获取群组详情
 
         # @param request: Request instance for DescribeGroup.
@@ -1400,6 +1424,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取剪辑信令回放token
+
+        # @param request: Request instance for GetEditVersionToken.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::GetEditVersionTokenRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::GetEditVersionTokenResponse`
+        def GetEditVersionToken(request)
+          body = send_request('GetEditVersionToken', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetEditVersionTokenResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取信令录制回放token，用于回放指定课堂时鉴权
 
         # @param request: Request instance for GetPlaybackToken.
@@ -1842,6 +1890,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SetAppCustomContentResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 切换课堂的主编辑版本
+
+        # @param request: Request instance for SetMainEditVersion.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::SetMainEditVersionRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::SetMainEditVersionResponse`
+        def SetMainEditVersion(request)
+          body = send_request('SetMainEditVersion', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SetMainEditVersionResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -3838,9 +3838,9 @@ module TencentCloud
 
       # DescribeDBInstanceSecurityGroups请求参数结构体
       class DescribeDBInstanceSecurityGroupsRequest < TencentCloud::Common::AbstractModel
-        # @param DBInstanceId: 实例ID，可通过[DescribeDBInstances](https://cloud.tencent.com/document/api/409/16773)接口获取。DBInstanceId和ReadOnlyGroupId至少传一个；如果都传，忽略ReadOnlyGroupId。
+        # @param DBInstanceId: <p>实例ID，可通过<a href="https://cloud.tencent.com/document/api/409/16773">DescribeDBInstances</a>接口获取。DBInstanceId、ReadOnlyGroupId、ProxyAddressId至少传一个；如果要查询实例关联的安全组，只传DBInstanceId字段。</p>
         # @type DBInstanceId: String
-        # @param ReadOnlyGroupId: 只读组ID，可通过[DescribeReadOnlyGroups](https://cloud.tencent.com/document/api/409/52599)接口获取。DBInstanceId和ReadOnlyGroupId至少传一个；如果要查询只读组关联的安全组，只传ReadOnlyGroupId。
+        # @param ReadOnlyGroupId: <p>只读组ID，可通过<a href="https://cloud.tencent.com/document/api/409/52599">DescribeReadOnlyGroups</a>接口获取。DBInstanceId、ReadOnlyGroupId、ProxyAddressId至少传一个；如果要查询只读组关联的安全组，只传ReadOnlyGroupId。</p>
         # @type ReadOnlyGroupId: String
 
         attr_accessor :DBInstanceId, :ReadOnlyGroupId
@@ -3858,7 +3858,7 @@ module TencentCloud
 
       # DescribeDBInstanceSecurityGroups返回参数结构体
       class DescribeDBInstanceSecurityGroupsResponse < TencentCloud::Common::AbstractModel
-        # @param SecurityGroupSet: 安全组信息数组
+        # @param SecurityGroupSet: <p>安全组信息数组</p>
         # @type SecurityGroupSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6570,13 +6570,11 @@ module TencentCloud
 
       # ModifyDBInstanceSecurityGroups请求参数结构体
       class ModifyDBInstanceSecurityGroupsRequest < TencentCloud::Common::AbstractModel
-        # @param SecurityGroupIdSet: 实例或只读组要绑定的安全组列表。
-        # 安全组信息可以通过调用 [DescribeSecurityGroups](https://cloud.tencent.com/document/api/215/15808) 的返回值中的sgId字段来查询。
-        # **注意：**该入参会全量替换存量已有集合，非增量更新。修改需传入预期的全量集合。
+        # @param SecurityGroupIdSet: <p>实例或只读组要绑定的安全组列表。<br>安全组信息可以通过调用 <a href="https://cloud.tencent.com/document/api/215/15808">DescribeSecurityGroups</a> 的返回值中的sgId字段来查询。<br><strong>注意：</strong>该入参会全量替换存量已有集合，非增量更新。修改需传入预期的全量集合。</p>
         # @type SecurityGroupIdSet: Array
-        # @param DBInstanceId: 实例ID，可通过[DescribeDBInstances](https://cloud.tencent.com/document/api/409/16773)接口获取。DBInstanceId和ReadOnlyGroupId至少传一个；如果都传，忽略ReadOnlyGroupId。
+        # @param DBInstanceId: <p>实例ID，可通过<a href="https://cloud.tencent.com/document/api/409/16773">DescribeDBInstances</a>接口获取。DBInstanceId、ReadOnlyGroupId、ProxyAddressId至少传一个；如果要查询实例关联的安全组，只传DBInstanceId字段。</p>
         # @type DBInstanceId: String
-        # @param ReadOnlyGroupId: 只读组ID，可通过[DescribeReadOnlyGroups](https://cloud.tencent.com/document/api/409/52599)接口获取。DBInstanceId和ReadOnlyGroupId至少传一个；如果要修改只读组关联的安全组，只传ReadOnlyGroupId
+        # @param ReadOnlyGroupId: <p>只读组ID，可通过<a href="https://cloud.tencent.com/document/api/409/52599">DescribeReadOnlyGroups</a>接口获取。DBInstanceId、ReadOnlyGroupId、ProxyAddressId至少传一个；如果要查询只读组关联的安全组，只传ReadOnlyGroupId。</p>
         # @type ReadOnlyGroupId: String
 
         attr_accessor :SecurityGroupIdSet, :DBInstanceId, :ReadOnlyGroupId

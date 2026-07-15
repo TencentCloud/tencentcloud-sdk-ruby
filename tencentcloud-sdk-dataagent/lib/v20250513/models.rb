@@ -229,10 +229,12 @@ module TencentCloud
         # @type OldRecordId: String
         # @param KnowledgeBaseIds: <p>知识库id列表</p>
         # @type KnowledgeBaseIds: Array
+        # @param ArchVersion: <p>版本信息</p>
+        # @type ArchVersion: String
 
-        attr_accessor :SessionId, :InstanceId, :Question, :Context, :Model, :DeepThinking, :DataSourceIds, :AgentType, :OldRecordId, :KnowledgeBaseIds
+        attr_accessor :SessionId, :InstanceId, :Question, :Context, :Model, :DeepThinking, :DataSourceIds, :AgentType, :OldRecordId, :KnowledgeBaseIds, :ArchVersion
 
-        def initialize(sessionid=nil, instanceid=nil, question=nil, context=nil, model=nil, deepthinking=nil, datasourceids=nil, agenttype=nil, oldrecordid=nil, knowledgebaseids=nil)
+        def initialize(sessionid=nil, instanceid=nil, question=nil, context=nil, model=nil, deepthinking=nil, datasourceids=nil, agenttype=nil, oldrecordid=nil, knowledgebaseids=nil, archversion=nil)
           @SessionId = sessionid
           @InstanceId = instanceid
           @Question = question
@@ -243,6 +245,7 @@ module TencentCloud
           @AgentType = agenttype
           @OldRecordId = oldrecordid
           @KnowledgeBaseIds = knowledgebaseids
+          @ArchVersion = archversion
         end
 
         def deserialize(params)
@@ -256,6 +259,7 @@ module TencentCloud
           @AgentType = params['AgentType']
           @OldRecordId = params['OldRecordId']
           @KnowledgeBaseIds = params['KnowledgeBaseIds']
+          @ArchVersion = params['ArchVersion']
         end
       end
 

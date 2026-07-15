@@ -197,6 +197,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建Oceanus集群
+
+        # @param request: Request instance for CreateOceanusCluster.
+        # @type request: :class:`Tencentcloud::oceanus::V20190422::CreateOceanusClusterRequest`
+        # @rtype: :class:`Tencentcloud::oceanus::V20190422::CreateOceanusClusterResponse`
+        def CreateOceanusCluster(request)
+          body = send_request('CreateOceanusCluster', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateOceanusClusterResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建资源接口
 
         # @param request: Request instance for CreateResource.
@@ -351,6 +375,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteJobsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 销毁Oceanus集群
+
+        # @param request: Request instance for DeleteOceanusCluster.
+        # @type request: :class:`Tencentcloud::oceanus::V20190422::DeleteOceanusClusterRequest`
+        # @rtype: :class:`Tencentcloud::oceanus::V20190422::DeleteOceanusClusterResponse`
+        def DeleteOceanusCluster(request)
+          body = send_request('DeleteOceanusCluster', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteOceanusClusterResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1045,6 +1093,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 续费Oceanus集群
+
+        # @param request: Request instance for RenewOceanusCluster.
+        # @type request: :class:`Tencentcloud::oceanus::V20190422::RenewOceanusClusterRequest`
+        # @rtype: :class:`Tencentcloud::oceanus::V20190422::RenewOceanusClusterResponse`
+        def RenewOceanusCluster(request)
+          body = send_request('RenewOceanusCluster', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RenewOceanusClusterResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 批量启动或者恢复作业，批量操作数量上限20
 
         # @param request: Request instance for RunJobs.
@@ -1079,6 +1151,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = RunSqlGatewayStatementResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 扩缩容Oceanus集群
+
+        # @param request: Request instance for ScaleOceanusCluster.
+        # @type request: :class:`Tencentcloud::oceanus::V20190422::ScaleOceanusClusterRequest`
+        # @rtype: :class:`Tencentcloud::oceanus::V20190422::ScaleOceanusClusterResponse`
+        def ScaleOceanusCluster(request)
+          body = send_request('ScaleOceanusCluster', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ScaleOceanusClusterResponse.new
             model.deserialize(response['Response'])
             model
           else

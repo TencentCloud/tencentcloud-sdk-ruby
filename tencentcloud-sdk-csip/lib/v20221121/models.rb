@@ -41,7 +41,7 @@ module TencentCloud
         # @type ExposureStatus: String
         # @param MetadataRiskURL: <p>metadata 有风险时对应路径</p>
         # @type MetadataRiskURL: String
-        # @param SkillState: <p>无</p>
+        # @param SkillState: <p>凭据 Skill 安装状态</p>
         # @type SkillState: :class:`Tencentcloud::Csip.v20221121.models.SkillState`
         # @param TrafficPluginState: <p>流量沙箱插件状态</p>
         # @type TrafficPluginState: :class:`Tencentcloud::Csip.v20221121.models.TrafficPluginState`
@@ -4492,11 +4492,11 @@ module TencentCloud
 
       # 存储桶id
       class CosBucketId < TencentCloud::Common::AbstractModel
-        # @param AppId: appid
+        # @param AppId: <p>appid</p>
         # @type AppId: String
-        # @param IsAutoMonitor: 
+        # @param IsAutoMonitor: <p>是否自动监测</p>
         # @type IsAutoMonitor: Integer
-        # @param BucketIdSet: bucket id集合
+        # @param BucketIdSet: <p>bucket id集合</p>
         # @type BucketIdSet: Array
 
         attr_accessor :AppId, :IsAutoMonitor, :BucketIdSet
@@ -22019,7 +22019,7 @@ module TencentCloud
         # @type Type: Integer
         # @param UpdateTime: <p>更新时间</p>
         # @type UpdateTime: String
-        # @param ComplianceRelations: <p>无</p>
+        # @param ComplianceRelations: <p>关联的识别模板信息</p>
         # @type ComplianceRelations: Array
 
         attr_accessor :Id, :Name, :Type, :UpdateTime, :ComplianceRelations
@@ -22118,9 +22118,9 @@ module TencentCloud
         # @type CategoryType: Integer
         # @param CategoryGrade: <p>分类层级</p><p>单位：层</p>
         # @type CategoryGrade: Integer
-        # @param RuleRelations: <p>无</p>
+        # @param RuleRelations: <p>关联的数据项信息</p>
         # @type RuleRelations: Array
-        # @param Children: <p>无</p>
+        # @param Children: <p>子节点信息</p>
         # @type Children: Array
 
         attr_accessor :CategoryId, :CategoryName, :CategoryParentId, :IsLeaf, :CategoryType, :CategoryGrade, :RuleRelations, :Children
@@ -22424,7 +22424,7 @@ module TencentCloud
         # @type LevelItems: Array
         # @param UpdateTime: <p>更新时间</p><p>参数格式：YYYY-MM-DD hh:mm:ss</p>
         # @type UpdateTime: String
-        # @param ComplianceRelations: <p>无</p>
+        # @param ComplianceRelations: <p>关联的识别模板信息</p>
         # @type ComplianceRelations: Array
 
         attr_accessor :Id, :Name, :Description, :Type, :LevelItems, :UpdateTime, :ComplianceRelations
@@ -22562,7 +22562,7 @@ module TencentCloud
         # @type StructuredStatus: Boolean
         # @param UnStructuredStatus: <p>非结构化规则配置状态</p>
         # @type UnStructuredStatus: Boolean
-        # @param ComplianceRelations: <p>无</p>
+        # @param ComplianceRelations: <p>关联的识别模板信息</p>
         # @type ComplianceRelations: Array
 
         attr_accessor :Id, :Name, :Description, :Status, :Type, :UpdateTime, :StructuredStatus, :UnStructuredStatus, :ComplianceRelations

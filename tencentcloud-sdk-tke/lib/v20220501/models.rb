@@ -348,25 +348,25 @@ module TencentCloud
 
       # CreateNodePool请求参数结构体
       class CreateNodePoolRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群 ID
+        # @param ClusterId: <p>集群 ID</p>
         # @type ClusterId: String
-        # @param Name: 节点池名称
+        # @param Name: <p>节点池名称</p>
         # @type Name: String
-        # @param Type: 节点池类型
+        # @param Type: <p>节点池类型</p>
         # @type Type: String
-        # @param Labels: 节点  Labels
+        # @param Labels: <p>节点  Labels</p>
         # @type Labels: Array
-        # @param Taints: 节点污点
+        # @param Taints: <p>节点污点</p>
         # @type Taints: Array
-        # @param Tags: 节点标签
+        # @param Tags: <p>节点标签</p>
         # @type Tags: Array
-        # @param DeletionProtection: 是否开启删除保护
+        # @param DeletionProtection: <p>是否开启删除保护</p>
         # @type DeletionProtection: Boolean
-        # @param Unschedulable: 节点是否默认不可调度
+        # @param Unschedulable: <p>节点是否默认不可调度</p>
         # @type Unschedulable: Boolean
-        # @param Native: 原生节点池创建参数（Type字段设置为Native时需填写）
+        # @param Native: <p>原生节点池创建参数（Type字段设置为Native时需填写）</p>
         # @type Native: :class:`Tencentcloud::Tke.v20220501.models.CreateNativeNodePoolParam`
-        # @param Annotations: 节点 Annotation 列表
+        # @param Annotations: <p>节点 Annotation 列表</p>
         # @type Annotations: Array
 
         attr_accessor :ClusterId, :Name, :Type, :Labels, :Taints, :Tags, :DeletionProtection, :Unschedulable, :Native, :Annotations
@@ -431,7 +431,7 @@ module TencentCloud
 
       # CreateNodePool返回参数结构体
       class CreateNodePoolResponse < TencentCloud::Common::AbstractModel
-        # @param NodePoolId: 节点池 ID
+        # @param NodePoolId: <p>节点池 ID</p>
         # @type NodePoolId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3266,25 +3266,25 @@ module TencentCloud
 
       # kubernetes Taint
       class Taint < TencentCloud::Common::AbstractModel
+        # @param Effect: Taint的Effect
+        # @type Effect: String
         # @param Key: Taint的Key
         # @type Key: String
         # @param Value: Taint的Value
         # @type Value: String
-        # @param Effect: Taint的Effect
-        # @type Effect: String
 
-        attr_accessor :Key, :Value, :Effect
+        attr_accessor :Effect, :Key, :Value
 
-        def initialize(key=nil, value=nil, effect=nil)
+        def initialize(effect=nil, key=nil, value=nil)
+          @Effect = effect
           @Key = key
           @Value = value
-          @Effect = effect
         end
 
         def deserialize(params)
+          @Effect = params['Effect']
           @Key = params['Key']
           @Value = params['Value']
-          @Effect = params['Effect']
         end
       end
 

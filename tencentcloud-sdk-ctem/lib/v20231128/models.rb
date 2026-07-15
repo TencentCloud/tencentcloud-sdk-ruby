@@ -201,10 +201,12 @@ module TencentCloud
         # @type HighRiskAck: Boolean
         # @param ScanRateAckChecklist: <p>知情同意勾选清单，用于审计回放</p>
         # @type ScanRateAckChecklist: Array
+        # @param ScanPriority: <p>扫描优先级配置</p>
+        # @type ScanPriority: :class:`Tencentcloud::Ctem.v20231128.models.ScanPriorityReq`
 
-        attr_accessor :Name, :ScanType, :Percent, :ScanCron, :IsScanNow, :EnableCron, :EnableScanSubEnterprise, :EnableAuth, :AuthStartAt, :AuthEndAt, :AuthFile, :ScanTime, :Keywords, :Icon, :Qps, :SubCompanyLevel, :IsIncludeFullScan, :PortScanQps, :SingleIPTaskLimit, :HighRiskAck, :ScanRateAckChecklist
+        attr_accessor :Name, :ScanType, :Percent, :ScanCron, :IsScanNow, :EnableCron, :EnableScanSubEnterprise, :EnableAuth, :AuthStartAt, :AuthEndAt, :AuthFile, :ScanTime, :Keywords, :Icon, :Qps, :SubCompanyLevel, :IsIncludeFullScan, :PortScanQps, :SingleIPTaskLimit, :HighRiskAck, :ScanRateAckChecklist, :ScanPriority
 
-        def initialize(name=nil, scantype=nil, percent=nil, scancron=nil, isscannow=nil, enablecron=nil, enablescansubenterprise=nil, enableauth=nil, authstartat=nil, authendat=nil, authfile=nil, scantime=nil, keywords=nil, icon=nil, qps=nil, subcompanylevel=nil, isincludefullscan=nil, portscanqps=nil, singleiptasklimit=nil, highriskack=nil, scanrateackchecklist=nil)
+        def initialize(name=nil, scantype=nil, percent=nil, scancron=nil, isscannow=nil, enablecron=nil, enablescansubenterprise=nil, enableauth=nil, authstartat=nil, authendat=nil, authfile=nil, scantime=nil, keywords=nil, icon=nil, qps=nil, subcompanylevel=nil, isincludefullscan=nil, portscanqps=nil, singleiptasklimit=nil, highriskack=nil, scanrateackchecklist=nil, scanpriority=nil)
           @Name = name
           @ScanType = scantype
           @Percent = percent
@@ -226,6 +228,7 @@ module TencentCloud
           @SingleIPTaskLimit = singleiptasklimit
           @HighRiskAck = highriskack
           @ScanRateAckChecklist = scanrateackchecklist
+          @ScanPriority = scanpriority
         end
 
         def deserialize(params)
@@ -250,6 +253,10 @@ module TencentCloud
           @SingleIPTaskLimit = params['SingleIPTaskLimit']
           @HighRiskAck = params['HighRiskAck']
           @ScanRateAckChecklist = params['ScanRateAckChecklist']
+          unless params['ScanPriority'].nil?
+            @ScanPriority = ScanPriorityReq.new
+            @ScanPriority.deserialize(params['ScanPriority'])
+          end
         end
       end
 
@@ -505,10 +512,12 @@ module TencentCloud
         # @type HighRiskAck: Boolean
         # @param ScanRateAckChecklist: <p>知情同意勾选清单，用于审计回放</p>
         # @type ScanRateAckChecklist: Array
+        # @param ScanPriority: <p>扫描优先级配置</p>
+        # @type ScanPriority: :class:`Tencentcloud::Ctem.v20231128.models.ScanPriorityReq`
 
-        attr_accessor :CustomerId, :TaskType, :ScanType, :Qps, :IsIncludeFullScan, :PortScanQps, :SingleIPTaskLimit, :HighRiskAck, :ScanRateAckChecklist
+        attr_accessor :CustomerId, :TaskType, :ScanType, :Qps, :IsIncludeFullScan, :PortScanQps, :SingleIPTaskLimit, :HighRiskAck, :ScanRateAckChecklist, :ScanPriority
 
-        def initialize(customerid=nil, tasktype=nil, scantype=nil, qps=nil, isincludefullscan=nil, portscanqps=nil, singleiptasklimit=nil, highriskack=nil, scanrateackchecklist=nil)
+        def initialize(customerid=nil, tasktype=nil, scantype=nil, qps=nil, isincludefullscan=nil, portscanqps=nil, singleiptasklimit=nil, highriskack=nil, scanrateackchecklist=nil, scanpriority=nil)
           @CustomerId = customerid
           @TaskType = tasktype
           @ScanType = scantype
@@ -518,6 +527,7 @@ module TencentCloud
           @SingleIPTaskLimit = singleiptasklimit
           @HighRiskAck = highriskack
           @ScanRateAckChecklist = scanrateackchecklist
+          @ScanPriority = scanpriority
         end
 
         def deserialize(params)
@@ -530,6 +540,10 @@ module TencentCloud
           @SingleIPTaskLimit = params['SingleIPTaskLimit']
           @HighRiskAck = params['HighRiskAck']
           @ScanRateAckChecklist = params['ScanRateAckChecklist']
+          unless params['ScanPriority'].nil?
+            @ScanPriority = ScanPriorityReq.new
+            @ScanPriority.deserialize(params['ScanPriority'])
+          end
         end
       end
 
@@ -1062,10 +1076,13 @@ module TencentCloud
         # @type SingleIPTaskLimit: Integer
         # @param PortScanQps: <p>端口扫描 QPS，默认 100，下限 10，保守值 200，上限 5000</p>
         # @type PortScanQps: Integer
+        # @param ScanPriority: <p>扫描优先级配置</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScanPriority: :class:`Tencentcloud::Ctem.v20231128.models.ScanPriorityDisplay`
 
-        attr_accessor :Id, :Name, :Percent, :ScanType, :Creator, :AppId, :Uin, :CreateAt, :UpdateAt, :ScanCron, :EnableCron, :EnableScanSubEnterprise, :EnableAuth, :AuthStartAt, :AuthEndAt, :AuthFile, :ScanTime, :Icon, :Keywords, :Qps, :SubCompanyLevel, :IsIncludeFullScan, :EnableGroupMemberDiscovered, :SingleIPTaskLimit, :PortScanQps
+        attr_accessor :Id, :Name, :Percent, :ScanType, :Creator, :AppId, :Uin, :CreateAt, :UpdateAt, :ScanCron, :EnableCron, :EnableScanSubEnterprise, :EnableAuth, :AuthStartAt, :AuthEndAt, :AuthFile, :ScanTime, :Icon, :Keywords, :Qps, :SubCompanyLevel, :IsIncludeFullScan, :EnableGroupMemberDiscovered, :SingleIPTaskLimit, :PortScanQps, :ScanPriority
 
-        def initialize(id=nil, name=nil, percent=nil, scantype=nil, creator=nil, appid=nil, uin=nil, createat=nil, updateat=nil, scancron=nil, enablecron=nil, enablescansubenterprise=nil, enableauth=nil, authstartat=nil, authendat=nil, authfile=nil, scantime=nil, icon=nil, keywords=nil, qps=nil, subcompanylevel=nil, isincludefullscan=nil, enablegroupmemberdiscovered=nil, singleiptasklimit=nil, portscanqps=nil)
+        def initialize(id=nil, name=nil, percent=nil, scantype=nil, creator=nil, appid=nil, uin=nil, createat=nil, updateat=nil, scancron=nil, enablecron=nil, enablescansubenterprise=nil, enableauth=nil, authstartat=nil, authendat=nil, authfile=nil, scantime=nil, icon=nil, keywords=nil, qps=nil, subcompanylevel=nil, isincludefullscan=nil, enablegroupmemberdiscovered=nil, singleiptasklimit=nil, portscanqps=nil, scanpriority=nil)
           @Id = id
           @Name = name
           @Percent = percent
@@ -1091,6 +1108,7 @@ module TencentCloud
           @EnableGroupMemberDiscovered = enablegroupmemberdiscovered
           @SingleIPTaskLimit = singleiptasklimit
           @PortScanQps = portscanqps
+          @ScanPriority = scanpriority
         end
 
         def deserialize(params)
@@ -1119,6 +1137,10 @@ module TencentCloud
           @EnableGroupMemberDiscovered = params['EnableGroupMemberDiscovered']
           @SingleIPTaskLimit = params['SingleIPTaskLimit']
           @PortScanQps = params['PortScanQps']
+          unless params['ScanPriority'].nil?
+            @ScanPriority = ScanPriorityDisplay.new
+            @ScanPriority.deserialize(params['ScanPriority'])
+          end
         end
       end
 
@@ -1986,7 +2008,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param Filters: 查询数组
         # @type Filters: Array
-        # @param Keyword: 企业名称模糊搜索
+        # @param Keyword: <p>企业名称模糊搜索</p>
         # @type Keyword: String
 
         attr_accessor :Limit, :Offset, :Filters, :Keyword
@@ -2015,9 +2037,9 @@ module TencentCloud
 
       # DescribeCustomers返回参数结构体
       class DescribeCustomersResponse < TencentCloud::Common::AbstractModel
-        # @param Total: 总数
+        # @param Total: <p>总数</p>
         # @type Total: Integer
-        # @param List: 企业列表
+        # @param List: <p>企业列表</p>
         # @type List: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5438,36 +5460,42 @@ module TencentCloud
 
       # 代码泄露详情
       class DisplayLeakageCode < TencentCloud::Common::AbstractModel
-        # @param Id: 主键ID
+        # @param Id: <p>主键ID</p>
         # @type Id: Integer
-        # @param DisplayToolCommon: 公共字段
+        # @param DisplayToolCommon: <p>公共字段</p>
         # @type DisplayToolCommon: :class:`Tencentcloud::Ctem.v20231128.models.DisplayToolCommon`
-        # @param Name: 事件名称
+        # @param Name: <p>事件名称</p>
         # @type Name: String
-        # @param Description: 事件描述
+        # @param Description: <p>事件描述</p>
         # @type Description: String
-        # @param Source: 数据源
+        # @param Source: <p>数据源</p>
         # @type Source: String
-        # @param RiskLevel: 风险等级：1-低危 2-中危 3-高危 4-严重 5-误报
+        # @param RiskLevel: <p>风险等级：1-低危 2-中危 3-高危 4-严重 5-误报</p>
         # @type RiskLevel: Integer
-        # @param HubName: 仓库名称
+        # @param HubName: <p>仓库名称</p>
         # @type HubName: String
-        # @param Url: 链接
+        # @param Url: <p>链接</p>
         # @type Url: String
-        # @param Screenshot: 截图
+        # @param Screenshot: <p>截图</p>
         # @type Screenshot: String
-        # @param Suggestion: 建议
+        # @param Suggestion: <p>建议</p>
         # @type Suggestion: String
-        # @param Keyword: 关键词
+        # @param Keyword: <p>关键词</p>
         # @type Keyword: String
-        # @param HandlingStatus: 处置状态：0-待处理 1-处理中 2-已处理
+        # @param HandlingStatus: <p>处置状态</p><p>枚举值：</p><ul><li>0： 待处理</li><li>1： 处理中</li><li>2： 已处理</li><li>3： 误报</li></ul>
         # @type HandlingStatus: Integer
-        # @param Remark: 备注
+        # @param Remark: <p>备注</p>
         # @type Remark: String
+        # @param RepoNamespace: <p>仓库命名空间</p>
+        # @type RepoNamespace: String
+        # @param RepoName: <p>仓库名称</p>
+        # @type RepoName: String
+        # @param AuthorName: <p>作者名称</p>
+        # @type AuthorName: String
 
-        attr_accessor :Id, :DisplayToolCommon, :Name, :Description, :Source, :RiskLevel, :HubName, :Url, :Screenshot, :Suggestion, :Keyword, :HandlingStatus, :Remark
+        attr_accessor :Id, :DisplayToolCommon, :Name, :Description, :Source, :RiskLevel, :HubName, :Url, :Screenshot, :Suggestion, :Keyword, :HandlingStatus, :Remark, :RepoNamespace, :RepoName, :AuthorName
 
-        def initialize(id=nil, displaytoolcommon=nil, name=nil, description=nil, source=nil, risklevel=nil, hubname=nil, url=nil, screenshot=nil, suggestion=nil, keyword=nil, handlingstatus=nil, remark=nil)
+        def initialize(id=nil, displaytoolcommon=nil, name=nil, description=nil, source=nil, risklevel=nil, hubname=nil, url=nil, screenshot=nil, suggestion=nil, keyword=nil, handlingstatus=nil, remark=nil, reponamespace=nil, reponame=nil, authorname=nil)
           @Id = id
           @DisplayToolCommon = displaytoolcommon
           @Name = name
@@ -5481,6 +5509,9 @@ module TencentCloud
           @Keyword = keyword
           @HandlingStatus = handlingstatus
           @Remark = remark
+          @RepoNamespace = reponamespace
+          @RepoName = reponame
+          @AuthorName = authorname
         end
 
         def deserialize(params)
@@ -5500,6 +5531,9 @@ module TencentCloud
           @Keyword = params['Keyword']
           @HandlingStatus = params['HandlingStatus']
           @Remark = params['Remark']
+          @RepoNamespace = params['RepoNamespace']
+          @RepoName = params['RepoName']
+          @AuthorName = params['AuthorName']
         end
       end
 
@@ -6586,10 +6620,12 @@ module TencentCloud
         # @type HighRiskAck: Boolean
         # @param ScanRateAckChecklist: <p>知情同意勾选清单，用于审计回放</p>
         # @type ScanRateAckChecklist: Array
+        # @param ScanPriority: <p>扫描优先级配置</p>
+        # @type ScanPriority: :class:`Tencentcloud::Ctem.v20231128.models.ScanPriorityReq`
 
-        attr_accessor :Name, :Percent, :ScanType, :Id, :ScanCron, :IsScanNow, :EnableCron, :EnableScanSubEnterprise, :EnableAuth, :AuthStartAt, :AuthEndAt, :AuthFile, :ScanTime, :Icon, :Qps, :SubCompanyLevel, :IsIncludeFullScan, :PortScanQps, :SingleIPTaskLimit, :HighRiskAck, :ScanRateAckChecklist
+        attr_accessor :Name, :Percent, :ScanType, :Id, :ScanCron, :IsScanNow, :EnableCron, :EnableScanSubEnterprise, :EnableAuth, :AuthStartAt, :AuthEndAt, :AuthFile, :ScanTime, :Icon, :Qps, :SubCompanyLevel, :IsIncludeFullScan, :PortScanQps, :SingleIPTaskLimit, :HighRiskAck, :ScanRateAckChecklist, :ScanPriority
 
-        def initialize(name=nil, percent=nil, scantype=nil, id=nil, scancron=nil, isscannow=nil, enablecron=nil, enablescansubenterprise=nil, enableauth=nil, authstartat=nil, authendat=nil, authfile=nil, scantime=nil, icon=nil, qps=nil, subcompanylevel=nil, isincludefullscan=nil, portscanqps=nil, singleiptasklimit=nil, highriskack=nil, scanrateackchecklist=nil)
+        def initialize(name=nil, percent=nil, scantype=nil, id=nil, scancron=nil, isscannow=nil, enablecron=nil, enablescansubenterprise=nil, enableauth=nil, authstartat=nil, authendat=nil, authfile=nil, scantime=nil, icon=nil, qps=nil, subcompanylevel=nil, isincludefullscan=nil, portscanqps=nil, singleiptasklimit=nil, highriskack=nil, scanrateackchecklist=nil, scanpriority=nil)
           @Name = name
           @Percent = percent
           @ScanType = scantype
@@ -6611,6 +6647,7 @@ module TencentCloud
           @SingleIPTaskLimit = singleiptasklimit
           @HighRiskAck = highriskack
           @ScanRateAckChecklist = scanrateackchecklist
+          @ScanPriority = scanpriority
         end
 
         def deserialize(params)
@@ -6635,6 +6672,10 @@ module TencentCloud
           @SingleIPTaskLimit = params['SingleIPTaskLimit']
           @HighRiskAck = params['HighRiskAck']
           @ScanRateAckChecklist = params['ScanRateAckChecklist']
+          unless params['ScanPriority'].nil?
+            @ScanPriority = ScanPriorityReq.new
+            @ScanPriority.deserialize(params['ScanPriority'])
+          end
         end
       end
 
@@ -6747,6 +6788,48 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 优先级出参
+      class ScanPriorityDisplay < TencentCloud::Common::AbstractModel
+        # @param OnlyScanNewAsset: <p>只对新增资产进行漏洞扫描</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OnlyScanNewAsset: Boolean
+        # @param PriorityRules: <p>启用的优先级规则(有序):new_asset,high_risk_port,admin_panel,high_risk_fingerprint</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PriorityRules: Array
+
+        attr_accessor :OnlyScanNewAsset, :PriorityRules
+
+        def initialize(onlyscannewasset=nil, priorityrules=nil)
+          @OnlyScanNewAsset = onlyscannewasset
+          @PriorityRules = priorityrules
+        end
+
+        def deserialize(params)
+          @OnlyScanNewAsset = params['OnlyScanNewAsset']
+          @PriorityRules = params['PriorityRules']
+        end
+      end
+
+      # 优先级入参
+      class ScanPriorityReq < TencentCloud::Common::AbstractModel
+        # @param OnlyScanNewAsset: <p>只对新增资产进行漏洞扫描</p>
+        # @type OnlyScanNewAsset: Boolean
+        # @param PriorityRules: <p>启用的优先级规则(有序):new_asset,high_risk_port,admin_panel,high_risk_fingerprint</p>
+        # @type PriorityRules: Array
+
+        attr_accessor :OnlyScanNewAsset, :PriorityRules
+
+        def initialize(onlyscannewasset=nil, priorityrules=nil)
+          @OnlyScanNewAsset = onlyscannewasset
+          @PriorityRules = priorityrules
+        end
+
+        def deserialize(params)
+          @OnlyScanNewAsset = params['OnlyScanNewAsset']
+          @PriorityRules = params['PriorityRules']
         end
       end
 

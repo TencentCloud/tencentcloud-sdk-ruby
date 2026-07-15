@@ -1030,10 +1030,10 @@ module TencentCloud
 
         attr_accessor :Name, :StartTime, :EndTime, :SdkAppId, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :Guests, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordBackground, :RecordScene, :RecordLang, :RecordStream, :WhiteBoardSnapshotMode, :SubtitlesTranscription, :RecordMerge, :EnableLiveRelay
         extend Gem::Deprecate
-        deprecate :RTCAudienceNumber, :none, 2026, 5
-        deprecate :RTCAudienceNumber=, :none, 2026, 5
-        deprecate :RecordLang, :none, 2026, 5
-        deprecate :RecordLang=, :none, 2026, 5
+        deprecate :RTCAudienceNumber, :none, 2026, 7
+        deprecate :RTCAudienceNumber=, :none, 2026, 7
+        deprecate :RecordLang, :none, 2026, 7
+        deprecate :RecordLang=, :none, 2026, 7
 
         def initialize(name=nil, starttime=nil, endtime=nil, sdkappid=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, turnoffmic=nil, audioquality=nil, disablerecord=nil, assistants=nil, rtcaudiencenumber=nil, audiencetype=nil, recordlayout=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, guests=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordbackground=nil, recordscene=nil, recordlang=nil, recordstream=nil, whiteboardsnapshotmode=nil, subtitlestranscription=nil, recordmerge=nil, enableliverelay=nil)
           @Name = name
@@ -2034,6 +2034,65 @@ module TencentCloud
               documentinfo_tmp = DocumentInfo.new
               documentinfo_tmp.deserialize(i)
               @Documents << documentinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeEditVersions请求参数结构体
+      class DescribeEditVersionsRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: <p>应用ID</p>
+        # @type SdkAppId: Integer
+        # @param RoomId: <p>课堂ID</p>
+        # @type RoomId: Integer
+
+        attr_accessor :SdkAppId, :RoomId
+
+        def initialize(sdkappid=nil, roomid=nil)
+          @SdkAppId = sdkappid
+          @RoomId = roomid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @RoomId = params['RoomId']
+        end
+      end
+
+      # DescribeEditVersions返回参数结构体
+      class DescribeEditVersionsResponse < TencentCloud::Common::AbstractModel
+        # @param ClassId: <p>课堂ID</p>
+        # @type ClassId: Integer
+        # @param LatestVersionNo: <p>当前课堂最新的版本号</p>
+        # @type LatestVersionNo: Integer
+        # @param MainVersion: <p>当前课堂设置的主版本号</p>
+        # @type MainVersion: Integer
+        # @param Versions: <p>当前课堂所有版本信息</p>
+        # @type Versions: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ClassId, :LatestVersionNo, :MainVersion, :Versions, :RequestId
+
+        def initialize(classid=nil, latestversionno=nil, mainversion=nil, versions=nil, requestid=nil)
+          @ClassId = classid
+          @LatestVersionNo = latestversionno
+          @MainVersion = mainversion
+          @Versions = versions
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ClassId = params['ClassId']
+          @LatestVersionNo = params['LatestVersionNo']
+          @MainVersion = params['MainVersion']
+          unless params['Versions'].nil?
+            @Versions = []
+            params['Versions'].each do |i|
+              editversions_tmp = EditVersions.new
+              editversions_tmp.deserialize(i)
+              @Versions << editversions_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -3448,6 +3507,58 @@ module TencentCloud
         end
       end
 
+      # 编辑版本信息
+      class EditVersions < TencentCloud::Common::AbstractModel
+        # @param Version: <p>版本号</p><p>取值范围：[0, 100]</p><p>默认值：0</p>
+        # @type Version: Integer
+        # @param Status: <p>版本状态</p><p>枚举值：</p><ul><li>READY： 已完成</li><li>FAILED： 失败</li><li>PROCESSING： 进行中</li></ul>
+        # @type Status: String
+        # @param IsMain: <p>是否是主版本</p><p>枚举值：</p><ul><li>true： 是</li><li>false： 否</li></ul>
+        # @type IsMain: Boolean
+        # @param IsSource: <p>是否源头版本</p><p>枚举值：</p><ul><li>true： 是</li><li>false： 否</li></ul>
+        # @type IsSource: Boolean
+        # @param KeepDurationSec: <p>版本时长</p><p>取值范围：[0, 1000000]</p><p>单位：秒</p>
+        # @type KeepDurationSec: Integer
+        # @param CreatedAtMs: <p>创建时间</p><p>取值范围：[0, 10000000]</p>
+        # @type CreatedAtMs: Integer
+        # @param CreatorUserId: <p>创建用户id</p>
+        # @type CreatorUserId: String
+        # @param FailReason: <p>失败原因</p><p>默认值：空</p><p>仅失败才会有原因</p>
+        # @type FailReason: String
+        # @param UpdatedAtMs: <p>更新时间</p><p>取值范围：[0, 100000]</p>
+        # @type UpdatedAtMs: Integer
+        # @param VersionName: <p>版本名字</p>
+        # @type VersionName: String
+
+        attr_accessor :Version, :Status, :IsMain, :IsSource, :KeepDurationSec, :CreatedAtMs, :CreatorUserId, :FailReason, :UpdatedAtMs, :VersionName
+
+        def initialize(version=nil, status=nil, ismain=nil, issource=nil, keepdurationsec=nil, createdatms=nil, creatoruserid=nil, failreason=nil, updatedatms=nil, versionname=nil)
+          @Version = version
+          @Status = status
+          @IsMain = ismain
+          @IsSource = issource
+          @KeepDurationSec = keepdurationsec
+          @CreatedAtMs = createdatms
+          @CreatorUserId = creatoruserid
+          @FailReason = failreason
+          @UpdatedAtMs = updatedatms
+          @VersionName = versionname
+        end
+
+        def deserialize(params)
+          @Version = params['Version']
+          @Status = params['Status']
+          @IsMain = params['IsMain']
+          @IsSource = params['IsSource']
+          @KeepDurationSec = params['KeepDurationSec']
+          @CreatedAtMs = params['CreatedAtMs']
+          @CreatorUserId = params['CreatorUserId']
+          @FailReason = params['FailReason']
+          @UpdatedAtMs = params['UpdatedAtMs']
+          @VersionName = params['VersionName']
+        end
+      end
+
       # EndRoom请求参数结构体
       class EndRoomRequest < TencentCloud::Common::AbstractModel
         # @param RoomId: 课堂ID
@@ -3620,6 +3731,66 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetEditVersionToken请求参数结构体
+      class GetEditVersionTokenRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: <p>实时互动-教育版的SdkAppId。</p>
+        # @type SdkAppId: Integer
+        # @param RoomId: <p>课堂ID</p>
+        # @type RoomId: Integer
+        # @param UserId: <p>用户ID</p>
+        # @type UserId: String
+        # @param ExpireSeconds: <p>token过期时间，0代表无过期时间，单位毫秒。</p>
+        # @type ExpireSeconds: Integer
+
+        attr_accessor :SdkAppId, :RoomId, :UserId, :ExpireSeconds
+
+        def initialize(sdkappid=nil, roomid=nil, userid=nil, expireseconds=nil)
+          @SdkAppId = sdkappid
+          @RoomId = roomid
+          @UserId = userid
+          @ExpireSeconds = expireseconds
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @RoomId = params['RoomId']
+          @UserId = params['UserId']
+          @ExpireSeconds = params['ExpireSeconds']
+        end
+      end
+
+      # GetEditVersionToken返回参数结构体
+      class GetEditVersionTokenResponse < TencentCloud::Common::AbstractModel
+        # @param Token: <p>信令回放剪辑页面token</p>
+        # @type Token: String
+        # @param RoomId: <p>课堂ID</p>
+        # @type RoomId: Integer
+        # @param UserId: <p>用户ID</p>
+        # @type UserId: String
+        # @param VersionNo: <p>版本号，预留</p><p>默认值：0</p>
+        # @type VersionNo: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Token, :RoomId, :UserId, :VersionNo, :RequestId
+
+        def initialize(token=nil, roomid=nil, userid=nil, versionno=nil, requestid=nil)
+          @Token = token
+          @RoomId = roomid
+          @UserId = userid
+          @VersionNo = versionno
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Token = params['Token']
+          @RoomId = params['RoomId']
+          @UserId = params['UserId']
+          @VersionNo = params['VersionNo']
           @RequestId = params['RequestId']
         end
       end
@@ -4664,8 +4835,8 @@ module TencentCloud
 
         attr_accessor :RoomId, :SdkAppId, :StartTime, :EndTime, :TeacherId, :Name, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :RecordLayout, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordScene, :RecordLang, :WhiteBoardSnapshotMode, :SubtitlesTranscription, :Guests, :RecordMerge, :EnableLiveRelay
         extend Gem::Deprecate
-        deprecate :RecordLang, :none, 2026, 5
-        deprecate :RecordLang=, :none, 2026, 5
+        deprecate :RecordLang, :none, 2026, 7
+        deprecate :RecordLang=, :none, 2026, 7
 
         def initialize(roomid=nil, sdkappid=nil, starttime=nil, endtime=nil, teacherid=nil, name=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, recordlayout=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordscene=nil, recordlang=nil, whiteboardsnapshotmode=nil, subtitlestranscription=nil, guests=nil, recordmerge=nil, enableliverelay=nil)
           @RoomId = roomid
@@ -5092,10 +5263,10 @@ module TencentCloud
 
         attr_accessor :Name, :StartTime, :EndTime, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordBackground, :RecordScene, :RecordLang, :RecordStream, :WhiteBoardSnapshotMode, :SubtitlesTranscription, :Guests, :RecordMerge, :EnableLiveRelay
         extend Gem::Deprecate
-        deprecate :RTCAudienceNumber, :none, 2026, 5
-        deprecate :RTCAudienceNumber=, :none, 2026, 5
-        deprecate :RecordLang, :none, 2026, 5
-        deprecate :RecordLang=, :none, 2026, 5
+        deprecate :RTCAudienceNumber, :none, 2026, 7
+        deprecate :RTCAudienceNumber=, :none, 2026, 7
+        deprecate :RecordLang, :none, 2026, 7
+        deprecate :RecordLang=, :none, 2026, 7
 
         def initialize(name=nil, starttime=nil, endtime=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, turnoffmic=nil, audioquality=nil, disablerecord=nil, assistants=nil, rtcaudiencenumber=nil, audiencetype=nil, recordlayout=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordbackground=nil, recordscene=nil, recordlang=nil, recordstream=nil, whiteboardsnapshotmode=nil, subtitlestranscription=nil, guests=nil, recordmerge=nil, enableliverelay=nil)
           @Name = name
@@ -5467,6 +5638,62 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # SetMainEditVersion请求参数结构体
+      class SetMainEditVersionRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: <p>应用ID</p>
+        # @type SdkAppId: Integer
+        # @param RoomId: <p>课堂ID</p>
+        # @type RoomId: Integer
+        # @param VersionNo: <p>版本号，可通过DescribeEditVersion接口获取当前课堂全部版本，来查看到版本号。</p>
+        # @type VersionNo: Integer
+        # @param Operator: <p>操作者ID</p>
+        # @type Operator: String
+
+        attr_accessor :SdkAppId, :RoomId, :VersionNo, :Operator
+
+        def initialize(sdkappid=nil, roomid=nil, versionno=nil, operator=nil)
+          @SdkAppId = sdkappid
+          @RoomId = roomid
+          @VersionNo = versionno
+          @Operator = operator
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @RoomId = params['RoomId']
+          @VersionNo = params['VersionNo']
+          @Operator = params['Operator']
+        end
+      end
+
+      # SetMainEditVersion返回参数结构体
+      class SetMainEditVersionResponse < TencentCloud::Common::AbstractModel
+        # @param ClassId: <p>课堂ID</p>
+        # @type ClassId: Integer
+        # @param PreviousMainVersion: <p>上一个主版本的版本号</p>
+        # @type PreviousMainVersion: Integer
+        # @param MainVersion: <p>当前生效中的主版本号</p>
+        # @type MainVersion: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ClassId, :PreviousMainVersion, :MainVersion, :RequestId
+
+        def initialize(classid=nil, previousmainversion=nil, mainversion=nil, requestid=nil)
+          @ClassId = classid
+          @PreviousMainVersion = previousmainversion
+          @MainVersion = mainversion
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ClassId = params['ClassId']
+          @PreviousMainVersion = params['PreviousMainVersion']
+          @MainVersion = params['MainVersion']
           @RequestId = params['RequestId']
         end
       end

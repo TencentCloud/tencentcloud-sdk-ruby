@@ -173,6 +173,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 添加扩展证书
+
+        # @param request: Request instance for CreateListenerAdditionalCert.
+        # @type request: :class:`Tencentcloud::ga2::V20250115::CreateListenerAdditionalCertRequest`
+        # @rtype: :class:`Tencentcloud::ga2::V20250115::CreateListenerAdditionalCertResponse`
+        def CreateListenerAdditionalCert(request)
+          body = send_request('CreateListenerAdditionalCert', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateListenerAdditionalCertResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除加速地域
 
         # @param request: Request instance for DeleteAccelerateAreas.
@@ -303,6 +327,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteListenerResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除扩展证书
+
+        # @param request: Request instance for DeleteListenerAdditionalCert.
+        # @type request: :class:`Tencentcloud::ga2::V20250115::DeleteListenerAdditionalCertRequest`
+        # @rtype: :class:`Tencentcloud::ga2::V20250115::DeleteListenerAdditionalCertResponse`
+        def DeleteListenerAdditionalCert(request)
+          body = send_request('DeleteListenerAdditionalCert', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteListenerAdditionalCertResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -663,6 +711,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyListenerResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 替换扩展证书
+
+        # @param request: Request instance for ReplaceListenerAdditionalCert.
+        # @type request: :class:`Tencentcloud::ga2::V20250115::ReplaceListenerAdditionalCertRequest`
+        # @rtype: :class:`Tencentcloud::ga2::V20250115::ReplaceListenerAdditionalCertResponse`
+        def ReplaceListenerAdditionalCert(request)
+          body = send_request('ReplaceListenerAdditionalCert', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ReplaceListenerAdditionalCertResponse.new
             model.deserialize(response['Response'])
             model
           else

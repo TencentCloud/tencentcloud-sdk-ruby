@@ -10768,16 +10768,19 @@ module TencentCloud
         # @type OrganizationType: String
         # @param LegalName: <p>变更后的最新工商登记法人姓名。<br>仅当法人发生变更时传入，未变更则不传（系统自动沿用当前法人姓名）。</p>
         # @type LegalName: String
+        # @param NewLegalMobile: <p>新法人的手机号。<br>仅当法人发生变更时传入，用于向新法人发送短信通知。<br>需为合法的手机号或固定电话格式。</p>
+        # @type NewLegalMobile: String
 
-        attr_accessor :Agent, :BizLicenseResourceId, :OrganizationName, :Address, :OrganizationType, :LegalName
+        attr_accessor :Agent, :BizLicenseResourceId, :OrganizationName, :Address, :OrganizationType, :LegalName, :NewLegalMobile
 
-        def initialize(agent=nil, bizlicenseresourceid=nil, organizationname=nil, address=nil, organizationtype=nil, legalname=nil)
+        def initialize(agent=nil, bizlicenseresourceid=nil, organizationname=nil, address=nil, organizationtype=nil, legalname=nil, newlegalmobile=nil)
           @Agent = agent
           @BizLicenseResourceId = bizlicenseresourceid
           @OrganizationName = organizationname
           @Address = address
           @OrganizationType = organizationtype
           @LegalName = legalname
+          @NewLegalMobile = newlegalmobile
         end
 
         def deserialize(params)
@@ -10790,6 +10793,7 @@ module TencentCloud
           @Address = params['Address']
           @OrganizationType = params['OrganizationType']
           @LegalName = params['LegalName']
+          @NewLegalMobile = params['NewLegalMobile']
         end
       end
 
@@ -10801,9 +10805,9 @@ module TencentCloud
         # @type ErrorMessage: String
         # @param UnfinishedCount: <p>未完结合同总数。<br>仅当企业名称变更且存在未完结合同时有值。</p>
         # @type UnfinishedCount: Integer
-        # @param FlowIds: <p>SaaS 企业下未完结合同的 flowId 列表。</p>
+        # @param FlowIds: <p>SaaS 企业下未完结合同的 flowId 列表。注:<code>SaaS企业下的合同ID可能无法查询，可通知子客企业去处理相应的合同</code></p>
         # @type FlowIds: Array
-        # @param ChannelFlowIds: <p>渠道子客企业下未完结合同的 flowId 列表。</p>
+        # @param ChannelFlowIds: <p>渠道子客企业下未完结合同的 flowId 列表。注：<code>子客企业在其他渠道下的合同ID可能无法查询，可通知子客企业去处理其他渠道下相应的合同</code></p>
         # @type ChannelFlowIds: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

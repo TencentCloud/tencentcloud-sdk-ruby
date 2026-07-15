@@ -246,6 +246,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # Ai漫剧工作流，输入剧本，自动拆分分镜，生成Ai漫剧
+
+        # @param request: Request instance for CreateAiDramaTask.
+        # @type request: :class:`Tencentcloud::mps::V20190612::CreateAiDramaTaskRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::CreateAiDramaTaskResponse`
+        def CreateAiDramaTask(request)
+          body = send_request('CreateAiDramaTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAiDramaTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 调用该接口，用于创建AI生音频任务。
 
         # @param request: Request instance for CreateAigcAudioTask.
@@ -1018,6 +1042,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateVideoDatabaseEntryTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建AIGC转绘任务
+
+        # @param request: Request instance for CreateVideoRedrawTask.
+        # @type request: :class:`Tencentcloud::mps::V20190612::CreateVideoRedrawTaskRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::CreateVideoRedrawTaskResponse`
+        def CreateVideoRedrawTask(request)
+          body = send_request('CreateVideoRedrawTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateVideoRedrawTaskResponse.new
             model.deserialize(response['Response'])
             model
           else

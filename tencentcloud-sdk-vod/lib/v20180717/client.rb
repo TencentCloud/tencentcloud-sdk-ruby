@@ -5764,6 +5764,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建AIGC调用API的Token。创建后数据同步有延时，约30秒后可查询或删除。
+
+        # @param request: Request instance for UpdateAigcApiToken.
+        # @type request: :class:`Tencentcloud::vod::V20180717::UpdateAigcApiTokenRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::UpdateAigcApiTokenResponse`
+        def UpdateAigcApiToken(request)
+          body = send_request('UpdateAigcApiToken', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateAigcApiTokenResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口用于验证域名解析值。
 
         # @param request: Request instance for VerifyDomainRecord.
