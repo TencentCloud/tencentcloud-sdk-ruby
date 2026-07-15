@@ -5201,6 +5201,8 @@ module TencentCloud
         # @type ProcessDelay: Integer
         # @param SrcTopicRegion: <p>源topicId的地域信息,支持地域见 <a href="https://cloud.tencent.com/document/api/614/56474#.E5.9C.B0.E5.9F.9F.E5.88.97.E8.A1.A8">地域列表</a> 文档</p>
         # @type SrcTopicRegion: String
+        # @param ProcessPeriodUnit: <p>调度时间单位</p><p>取值范围：[1, 2]</p><p>默认值：1</p><p>默认值为1（分钟），其他值2（秒）</p>
+        # @type ProcessPeriodUnit: Integer
         # @param ProcessEndTime: <p>调度结束时间，当ProcessType=2时为必传字段, Unix时间戳，单位ms</p>
         # @type ProcessEndTime: Integer
         # @param SyntaxRule: <p>查询语法规则。 默认值为0。0：Lucene语法，1：CQL语法</p>
@@ -5210,9 +5212,9 @@ module TencentCloud
         # @param FullQuery: <p>全文检索标记。1：关闭，2：打开。默认：1</p>
         # @type FullQuery: Integer
 
-        attr_accessor :SrcTopicId, :Name, :EnableFlag, :DstResource, :ScheduledSqlContent, :ProcessStartTime, :ProcessType, :ProcessPeriod, :ProcessTimeWindow, :ProcessDelay, :SrcTopicRegion, :ProcessEndTime, :SyntaxRule, :HasServicesLog, :FullQuery
+        attr_accessor :SrcTopicId, :Name, :EnableFlag, :DstResource, :ScheduledSqlContent, :ProcessStartTime, :ProcessType, :ProcessPeriod, :ProcessTimeWindow, :ProcessDelay, :SrcTopicRegion, :ProcessPeriodUnit, :ProcessEndTime, :SyntaxRule, :HasServicesLog, :FullQuery
 
-        def initialize(srctopicid=nil, name=nil, enableflag=nil, dstresource=nil, scheduledsqlcontent=nil, processstarttime=nil, processtype=nil, processperiod=nil, processtimewindow=nil, processdelay=nil, srctopicregion=nil, processendtime=nil, syntaxrule=nil, hasserviceslog=nil, fullquery=nil)
+        def initialize(srctopicid=nil, name=nil, enableflag=nil, dstresource=nil, scheduledsqlcontent=nil, processstarttime=nil, processtype=nil, processperiod=nil, processtimewindow=nil, processdelay=nil, srctopicregion=nil, processperiodunit=nil, processendtime=nil, syntaxrule=nil, hasserviceslog=nil, fullquery=nil)
           @SrcTopicId = srctopicid
           @Name = name
           @EnableFlag = enableflag
@@ -5224,6 +5226,7 @@ module TencentCloud
           @ProcessTimeWindow = processtimewindow
           @ProcessDelay = processdelay
           @SrcTopicRegion = srctopicregion
+          @ProcessPeriodUnit = processperiodunit
           @ProcessEndTime = processendtime
           @SyntaxRule = syntaxrule
           @HasServicesLog = hasserviceslog
@@ -5245,6 +5248,7 @@ module TencentCloud
           @ProcessTimeWindow = params['ProcessTimeWindow']
           @ProcessDelay = params['ProcessDelay']
           @SrcTopicRegion = params['SrcTopicRegion']
+          @ProcessPeriodUnit = params['ProcessPeriodUnit']
           @ProcessEndTime = params['ProcessEndTime']
           @SyntaxRule = params['SyntaxRule']
           @HasServicesLog = params['HasServicesLog']
@@ -16824,10 +16828,12 @@ module TencentCloud
         # @type HasServicesLog: Integer
         # @param FullQuery: <p>全文检索查询标记。1：关闭，2：打开。</p>
         # @type FullQuery: Integer
+        # @param ProcessPeriodUnit: <p>调度周期单位</p><p>取值范围：[1, 2]</p><p>默认值：1</p><p>默认值1（分钟），其他值2（秒）</p>
+        # @type ProcessPeriodUnit: Integer
 
-        attr_accessor :TaskId, :SrcTopicId, :EnableFlag, :DstResource, :ScheduledSqlContent, :ProcessPeriod, :ProcessTimeWindow, :ProcessDelay, :SrcTopicRegion, :Name, :SyntaxRule, :HasServicesLog, :FullQuery
+        attr_accessor :TaskId, :SrcTopicId, :EnableFlag, :DstResource, :ScheduledSqlContent, :ProcessPeriod, :ProcessTimeWindow, :ProcessDelay, :SrcTopicRegion, :Name, :SyntaxRule, :HasServicesLog, :FullQuery, :ProcessPeriodUnit
 
-        def initialize(taskid=nil, srctopicid=nil, enableflag=nil, dstresource=nil, scheduledsqlcontent=nil, processperiod=nil, processtimewindow=nil, processdelay=nil, srctopicregion=nil, name=nil, syntaxrule=nil, hasserviceslog=nil, fullquery=nil)
+        def initialize(taskid=nil, srctopicid=nil, enableflag=nil, dstresource=nil, scheduledsqlcontent=nil, processperiod=nil, processtimewindow=nil, processdelay=nil, srctopicregion=nil, name=nil, syntaxrule=nil, hasserviceslog=nil, fullquery=nil, processperiodunit=nil)
           @TaskId = taskid
           @SrcTopicId = srctopicid
           @EnableFlag = enableflag
@@ -16841,6 +16847,7 @@ module TencentCloud
           @SyntaxRule = syntaxrule
           @HasServicesLog = hasserviceslog
           @FullQuery = fullquery
+          @ProcessPeriodUnit = processperiodunit
         end
 
         def deserialize(params)
@@ -16860,6 +16867,7 @@ module TencentCloud
           @SyntaxRule = params['SyntaxRule']
           @HasServicesLog = params['HasServicesLog']
           @FullQuery = params['FullQuery']
+          @ProcessPeriodUnit = params['ProcessPeriodUnit']
         end
       end
 
@@ -18845,52 +18853,52 @@ module TencentCloud
 
       # ScheduledSql任务详情
       class ScheduledSqlTaskInfo < TencentCloud::Common::AbstractModel
-        # @param TaskId: ScheduledSql任务id
+        # @param TaskId: <p>ScheduledSql任务id</p>
         # @type TaskId: String
-        # @param Name: ScheduledSql任务名称
+        # @param Name: <p>ScheduledSql任务名称</p>
         # @type Name: String
-        # @param SrcTopicId: 源日志主题id
+        # @param SrcTopicId: <p>源日志主题id</p>
         # @type SrcTopicId: String
-        # @param SrcTopicName: 源日志主题名称
+        # @param SrcTopicName: <p>源日志主题名称</p>
         # @type SrcTopicName: String
-        # @param DstResource: 定时SQL分析目标主题
+        # @param DstResource: <p>定时SQL分析目标主题</p>
         # @type DstResource: :class:`Tencentcloud::Cls.v20201016.models.ScheduledSqlResouceInfo`
-        # @param CreateTime: 任务创建时间。格式：yyyy-MM-dd HH:mm:ss
+        # @param CreateTime: <p>任务创建时间。格式：yyyy-MM-dd HH:mm:ss</p>
         # @type CreateTime: String
-        # @param UpdateTime: 任务更新时间，格式：yyyy-MM-dd HH:mm:ss
+        # @param UpdateTime: <p>任务更新时间，格式：yyyy-MM-dd HH:mm:ss</p>
         # @type UpdateTime: String
-        # @param Status: 任务状态，1:运行 2:停止 3:异常-找不到源日志主题 4:异常-找不到目标主题
-
-        # 5: 访问权限问题 6:内部故障 7:其他故障
+        # @param Status: <p>任务状态，1:运行 2:停止 3:异常-找不到源日志主题 4:异常-找不到目标主题</p><p>5: 访问权限问题 6:内部故障 7:其他故障</p>
         # @type Status: Integer
-        # @param EnableFlag: 任务启用状态，1开启,  2关闭
+        # @param EnableFlag: <p>任务启用状态，1开启,  2关闭</p>
         # @type EnableFlag: Integer
-        # @param ScheduledSqlContent: 查询语句
+        # @param ScheduledSqlContent: <p>查询语句</p>
         # @type ScheduledSqlContent: String
-        # @param ProcessStartTime: 调度开始时间，格式：yyyy-MM-dd HH:mm:ss
+        # @param ProcessStartTime: <p>调度开始时间，格式：yyyy-MM-dd HH:mm:ss</p>
         # @type ProcessStartTime: String
-        # @param ProcessType: 调度类型，1:持续运行 2:指定时间范围
+        # @param ProcessType: <p>调度类型，1:持续运行 2:指定时间范围</p>
         # @type ProcessType: Integer
-        # @param ProcessEndTime: 调度结束时间，格式：yyyy-MM-dd HH:mm:ss，当process_type=2时为必传字段
+        # @param ProcessEndTime: <p>调度结束时间，格式：yyyy-MM-dd HH:mm:ss，当process_type=2时为必传字段</p>
         # @type ProcessEndTime: String
-        # @param ProcessPeriod: 调度周期(分钟)，1~1440分钟
+        # @param ProcessPeriod: <p>调度周期(分钟)，1~1440分钟</p>
         # @type ProcessPeriod: Integer
-        # @param ProcessTimeWindow: 查询的时间窗口. @m-15m, @m，意为近15分钟
+        # @param ProcessTimeWindow: <p>查询的时间窗口. @m-15m, @m，意为近15分钟</p>
         # @type ProcessTimeWindow: String
-        # @param ProcessDelay: 执行延迟(秒)，0~120秒，默认60秒
+        # @param ProcessDelay: <p>执行延迟(秒)，0~120秒，默认60秒</p>
         # @type ProcessDelay: Integer
-        # @param SrcTopicRegion: 源topicId的地域信息，支持地域见 [地域列表](https://cloud.tencent.com/document/api/614/56474#.E5.9C.B0.E5.9F.9F.E5.88.97.E8.A1.A8) 文档。
+        # @param SrcTopicRegion: <p>源topicId的地域信息，支持地域见 <a href="https://cloud.tencent.com/document/api/614/56474#.E5.9C.B0.E5.9F.9F.E5.88.97.E8.A1.A8">地域列表</a> 文档。</p>
         # @type SrcTopicRegion: String
-        # @param SyntaxRule: 语法规则，0：Lucene语法，1：CQL语法
+        # @param SyntaxRule: <p>语法规则，0：Lucene语法，1：CQL语法</p>
         # @type SyntaxRule: Integer
-        # @param HasServicesLog: 是否开启投递服务日志。1：关闭，2：开启。
+        # @param HasServicesLog: <p>是否开启投递服务日志。1：关闭，2：开启。</p>
         # @type HasServicesLog: Integer
-        # @param FullQuery: 全文检索标记。1：关闭，2：打开。
+        # @param FullQuery: <p>全文检索标记。1：关闭，2：打开。</p>
         # @type FullQuery: Integer
+        # @param ProcessPeriodUnit: <p>调度周期时间单位</p><p>取值范围：[1, 2]</p><p>默认值：1</p><p>默认值1（分钟），其他值2（秒）</p>
+        # @type ProcessPeriodUnit: Integer
 
-        attr_accessor :TaskId, :Name, :SrcTopicId, :SrcTopicName, :DstResource, :CreateTime, :UpdateTime, :Status, :EnableFlag, :ScheduledSqlContent, :ProcessStartTime, :ProcessType, :ProcessEndTime, :ProcessPeriod, :ProcessTimeWindow, :ProcessDelay, :SrcTopicRegion, :SyntaxRule, :HasServicesLog, :FullQuery
+        attr_accessor :TaskId, :Name, :SrcTopicId, :SrcTopicName, :DstResource, :CreateTime, :UpdateTime, :Status, :EnableFlag, :ScheduledSqlContent, :ProcessStartTime, :ProcessType, :ProcessEndTime, :ProcessPeriod, :ProcessTimeWindow, :ProcessDelay, :SrcTopicRegion, :SyntaxRule, :HasServicesLog, :FullQuery, :ProcessPeriodUnit
 
-        def initialize(taskid=nil, name=nil, srctopicid=nil, srctopicname=nil, dstresource=nil, createtime=nil, updatetime=nil, status=nil, enableflag=nil, scheduledsqlcontent=nil, processstarttime=nil, processtype=nil, processendtime=nil, processperiod=nil, processtimewindow=nil, processdelay=nil, srctopicregion=nil, syntaxrule=nil, hasserviceslog=nil, fullquery=nil)
+        def initialize(taskid=nil, name=nil, srctopicid=nil, srctopicname=nil, dstresource=nil, createtime=nil, updatetime=nil, status=nil, enableflag=nil, scheduledsqlcontent=nil, processstarttime=nil, processtype=nil, processendtime=nil, processperiod=nil, processtimewindow=nil, processdelay=nil, srctopicregion=nil, syntaxrule=nil, hasserviceslog=nil, fullquery=nil, processperiodunit=nil)
           @TaskId = taskid
           @Name = name
           @SrcTopicId = srctopicid
@@ -18911,6 +18919,7 @@ module TencentCloud
           @SyntaxRule = syntaxrule
           @HasServicesLog = hasserviceslog
           @FullQuery = fullquery
+          @ProcessPeriodUnit = processperiodunit
         end
 
         def deserialize(params)
@@ -18937,6 +18946,7 @@ module TencentCloud
           @SyntaxRule = params['SyntaxRule']
           @HasServicesLog = params['HasServicesLog']
           @FullQuery = params['FullQuery']
+          @ProcessPeriodUnit = params['ProcessPeriodUnit']
         end
       end
 

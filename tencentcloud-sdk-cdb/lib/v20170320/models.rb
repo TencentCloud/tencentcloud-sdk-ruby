@@ -216,7 +216,7 @@ module TencentCloud
         # @type ProxyAllocation: Array
         # @param AutoLoadBalance: <p>是否开启自适应负载均衡。默认关闭。</p>
         # @type AutoLoadBalance: Boolean
-        # @param AccessMode: <p>访问模式：nearby - 就近访问，balance - 均衡分配，默认就近访问。</p>
+        # @param AccessMode: <p>访问模式。</p><p>枚举值：</p><ul><li>nearby： 就近访问</li><li>balance： 均衡分配</li><li>direct_nearby： 纯网络转发就近访问</li><li>direct_balance： 纯网络转发均衡分配</li></ul>
         # @type AccessMode: String
         # @param ApNodeAsRoNode: <p>是否将libra节点当作普通RO节点</p>
         # @type ApNodeAsRoNode: Boolean
@@ -2701,7 +2701,7 @@ module TencentCloud
         # @type ConnectionPoolType: String
         # @param AutoLoadBalance: <p>是否开启自适应负载均衡。默认关闭。</p>
         # @type AutoLoadBalance: Boolean
-        # @param AccessMode: <p>接入模式。nearBy - 就近访问，balance - 均衡分配，默认值：nearBy。</p>
+        # @param AccessMode: <p>接入模式。</p><p>枚举值：</p><ul><li>nearBy： 就近访问</li><li>balance： 均衡分配</li><li>direct_nearby： 纯网络转发就近访问</li><li>direct_balance： 纯网络转发均衡分配</li></ul><p>默认值：nearBy</p>
         # @type AccessMode: String
 
         attr_accessor :ProxyGroupId, :WeightMode, :IsKickOut, :MinCount, :MaxDelay, :FailOver, :AutoAddRo, :ReadOnly, :TransSplit, :ProxyAllocation, :UniqVpcId, :UniqSubnetId, :ConnectionPool, :Desc, :Vip, :VPort, :SecurityGroup, :ConnectionPoolType, :AutoLoadBalance, :AccessMode
@@ -4514,7 +4514,7 @@ module TencentCloud
 
       # DescribeAsyncRequestInfo请求参数结构体
       class DescribeAsyncRequestInfoRequest < TencentCloud::Common::AbstractModel
-        # @param AsyncRequestId: 异步任务的请求 ID。
+        # @param AsyncRequestId: <p>异步任务的请求 ID。</p>
         # @type AsyncRequestId: String
 
         attr_accessor :AsyncRequestId
@@ -4530,9 +4530,9 @@ module TencentCloud
 
       # DescribeAsyncRequestInfo返回参数结构体
       class DescribeAsyncRequestInfoResponse < TencentCloud::Common::AbstractModel
-        # @param Status: 任务执行结果。可能的取值：INITIAL - 初始化，RUNNING - 运行中，SUCCESS - 执行成功，FAILED - 执行失败，KILLED - 已终止，REMOVED - 已删除，PAUSED - 终止中。
+        # @param Status: <p>任务执行结果。</p><p>枚举值：</p><ul><li>INITIAL： 初始化。</li><li>RUNNING： 运行中。</li><li>SUCCESS： 执行成功。</li><li>FAILED： 执行失败。</li><li>KILLED： 已终止。</li><li>REMOVED： 已删除。</li><li>PAUSED： 终止中。</li><li>UNDEFINED： 任务已创建但未开始执行，在 WaitSwitch = true 场景下，表示任务正在等待维护时间窗到来。</li></ul>
         # @type Status: String
-        # @param Info: 任务执行信息描述。
+        # @param Info: <p>任务执行信息描述。</p>
         # @type Info: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -12473,51 +12473,52 @@ module TencentCloud
 
       # 数据库代理地址信息
       class ProxyAddress < TencentCloud::Common::AbstractModel
-        # @param ProxyAddressId: 代理组地址ID
+        # @param ProxyAddressId: <p>代理组地址ID</p>
         # @type ProxyAddressId: String
-        # @param UniqVpcId: 私有网络ID
+        # @param UniqVpcId: <p>私有网络ID</p>
         # @type UniqVpcId: String
-        # @param UniqSubnetId: 私有子网ID
+        # @param UniqSubnetId: <p>私有子网ID</p>
         # @type UniqSubnetId: String
-        # @param Vip: IP地址
+        # @param Vip: <p>IP地址</p>
         # @type Vip: String
-        # @param VPort: 端口
+        # @param VPort: <p>端口</p>
         # @type VPort: Integer
-        # @param WeightMode: 权重分配模式；
-        # 系统自动分配："system"， 自定义："custom"
+        # @param WeightMode: <p>权重分配模式；<br>系统自动分配：&quot;system&quot;， 自定义：&quot;custom&quot;</p>
         # @type WeightMode: String
-        # @param IsKickOut: 是否开启延迟剔除，取值："true" | "false"
+        # @param IsKickOut: <p>是否开启延迟剔除，取值：&quot;true&quot; | &quot;false&quot;</p>
         # @type IsKickOut: Boolean
-        # @param MinCount: 最小保留数量，最小取值：0
+        # @param MinCount: <p>最小保留数量，最小取值：0</p>
         # @type MinCount: Integer
-        # @param MaxDelay: 延迟剔除阈值，最小取值：0
+        # @param MaxDelay: <p>延迟剔除阈值，最小取值：0</p>
         # @type MaxDelay: Integer
-        # @param AutoAddRo: 是否自动添加RO，取值："true" | "false"
+        # @param AutoAddRo: <p>是否自动添加RO，取值：&quot;true&quot; | &quot;false&quot;</p>
         # @type AutoAddRo: Boolean
-        # @param ReadOnly: 是否是只读，取值："true" | "false"
+        # @param ReadOnly: <p>是否是只读，取值：&quot;true&quot; | &quot;false&quot;</p>
         # @type ReadOnly: Boolean
-        # @param TransSplit: 是否开启事务分离
+        # @param TransSplit: <p>是否开启事务分离</p>
         # @type TransSplit: Boolean
-        # @param FailOver: 是否开启故障转移
+        # @param FailOver: <p>是否开启故障转移</p>
         # @type FailOver: Boolean
-        # @param ConnectionPool: 是否开启连接池
+        # @param ConnectionPool: <p>是否开启连接池</p>
         # @type ConnectionPool: Boolean
-        # @param Desc: 描述
+        # @param Desc: <p>描述</p>
         # @type Desc: String
-        # @param ProxyAllocation: 实例读权重分配
+        # @param ProxyAllocation: <p>实例读权重分配</p>
         # @type ProxyAllocation: Array
-        # @param AccessMode: 接入模式
+        # @param AccessMode: <p>接入模式</p><p>枚举值：</p><ul><li>nearby： 就近访问</li><li>balance： 均衡分配</li><li>direct_nearby： 纯网络转发就近访问</li><li>direct_balance： 纯网络转发均衡分配</li></ul>
         # @type AccessMode: String
-        # @param AutoLoadBalance: 是否开启自动负载均衡
+        # @param AutoLoadBalance: <p>是否开启自动负载均衡</p>
         # @type AutoLoadBalance: Boolean
-        # @param ApNodeAsRoNode: 是否把libra当作ro节点
+        # @param ApNodeAsRoNode: <p>是否把libra当作ro节点</p>
         # @type ApNodeAsRoNode: Boolean
-        # @param ApQueryToOtherNode: libra节点故障，是否转发给其他节点
+        # @param ApQueryToOtherNode: <p>libra节点故障，是否转发给其他节点</p>
         # @type ApQueryToOtherNode: Boolean
+        # @param Region: <p>地址所在地域名</p>
+        # @type Region: String
 
-        attr_accessor :ProxyAddressId, :UniqVpcId, :UniqSubnetId, :Vip, :VPort, :WeightMode, :IsKickOut, :MinCount, :MaxDelay, :AutoAddRo, :ReadOnly, :TransSplit, :FailOver, :ConnectionPool, :Desc, :ProxyAllocation, :AccessMode, :AutoLoadBalance, :ApNodeAsRoNode, :ApQueryToOtherNode
+        attr_accessor :ProxyAddressId, :UniqVpcId, :UniqSubnetId, :Vip, :VPort, :WeightMode, :IsKickOut, :MinCount, :MaxDelay, :AutoAddRo, :ReadOnly, :TransSplit, :FailOver, :ConnectionPool, :Desc, :ProxyAllocation, :AccessMode, :AutoLoadBalance, :ApNodeAsRoNode, :ApQueryToOtherNode, :Region
 
-        def initialize(proxyaddressid=nil, uniqvpcid=nil, uniqsubnetid=nil, vip=nil, vport=nil, weightmode=nil, iskickout=nil, mincount=nil, maxdelay=nil, autoaddro=nil, readonly=nil, transsplit=nil, failover=nil, connectionpool=nil, desc=nil, proxyallocation=nil, accessmode=nil, autoloadbalance=nil, apnodeasronode=nil, apquerytoothernode=nil)
+        def initialize(proxyaddressid=nil, uniqvpcid=nil, uniqsubnetid=nil, vip=nil, vport=nil, weightmode=nil, iskickout=nil, mincount=nil, maxdelay=nil, autoaddro=nil, readonly=nil, transsplit=nil, failover=nil, connectionpool=nil, desc=nil, proxyallocation=nil, accessmode=nil, autoloadbalance=nil, apnodeasronode=nil, apquerytoothernode=nil, region=nil)
           @ProxyAddressId = proxyaddressid
           @UniqVpcId = uniqvpcid
           @UniqSubnetId = uniqsubnetid
@@ -12538,6 +12539,7 @@ module TencentCloud
           @AutoLoadBalance = autoloadbalance
           @ApNodeAsRoNode = apnodeasronode
           @ApQueryToOtherNode = apquerytoothernode
+          @Region = region
         end
 
         def deserialize(params)
@@ -12568,6 +12570,7 @@ module TencentCloud
           @AutoLoadBalance = params['AutoLoadBalance']
           @ApNodeAsRoNode = params['ApNodeAsRoNode']
           @ApQueryToOtherNode = params['ApQueryToOtherNode']
+          @Region = params['Region']
         end
       end
 
@@ -14359,6 +14362,9 @@ module TencentCloud
         # @type DstNodeId: String
 
         attr_accessor :InstanceId, :DstSlave, :ForceSwitch, :WaitSwitch, :DstNodeId
+        extend Gem::Deprecate
+        deprecate :ForceSwitch, :none, 2026, 7
+        deprecate :ForceSwitch=, :none, 2026, 7
 
         def initialize(instanceid=nil, dstslave=nil, forceswitch=nil, waitswitch=nil, dstnodeid=nil)
           @InstanceId = instanceid

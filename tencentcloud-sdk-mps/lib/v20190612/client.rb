@@ -2389,6 +2389,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 图片处理任务查询接口。
+
+        # @param request: Request instance for DescribeImageTasks.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DescribeImageTasksRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DescribeImageTasksResponse`
+        def DescribeImageTasks(request)
+          body = send_request('DescribeImageTasks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeImageTasksResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取直播录制模板
 
         # @param request: Request instance for DescribeLiveRecordTemplates.

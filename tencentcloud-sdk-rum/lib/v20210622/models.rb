@@ -6397,11 +6397,11 @@ module TencentCloud
 
       # DescribeRumLogExportsV2请求参数结构体
       class DescribeRumLogExportsV2Request < TencentCloud::Common::AbstractModel
-        # @param PageSize: Page size
+        # @param PageSize: <p>Page size</p>
         # @type PageSize: Integer
-        # @param PageNum: Page number
+        # @param PageNum: <p>Page number</p>
         # @type PageNum: Integer
-        # @param ID: Project ID
+        # @param ID: <p>Project ID</p>
         # @type ID: Integer
 
         attr_accessor :PageSize, :PageNum, :ID
@@ -6421,7 +6421,7 @@ module TencentCloud
 
       # DescribeRumLogExportsV2返回参数结构体
       class DescribeRumLogExportsV2Response < TencentCloud::Common::AbstractModel
-        # @param Result: Query result in JSON string format
+        # @param Result: <p>日志导出列表</p>
         # @type Result: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

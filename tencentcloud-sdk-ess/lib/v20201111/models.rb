@@ -6327,10 +6327,12 @@ module TencentCloud
         # @type AuthorizationMethod: Array
         # @param HideBizLicense: <p>企业认证页面隐藏上传营业执照<br><img src="https://qcloudimg.tencent-cloud.cn/raw/cf827ce0e2043d8cc85e0735c9cfa3fc.png" alt="image"><br><img src="https://qcloudimg.tencent-cloud.cn/raw/f908cabe71238c78ee8fafc70888a344.png" alt="image"></p>
         # @type HideBizLicense: Boolean
+        # @param AddressSame: <p>对方打开链接认证时，公司地址是否要与接口传递上来的保持一致。</p><ul><li><b>false（默认值）</b>：关闭状态，实际认证时允许与接口传递的信息存在不一致。</li><li><b>true</b>：启用状态，实际认证时必须与接口传递的信息完全相符。</li></ul><p></p><p>p.s. 仅在公司地址（OrganizationAddress）不为空时有效</p>
+        # @type AddressSame: Boolean
 
-        attr_accessor :Operator, :AuthorizationTypes, :OrganizationName, :UniformSocialCreditCode, :LegalName, :AutoJumpUrl, :OrganizationAddress, :AdminName, :AdminMobile, :AdminIdCardNumber, :AdminIdCardType, :UniformSocialCreditCodeSame, :LegalNameSame, :AdminNameSame, :AdminIdCardNumberSame, :AdminMobileSame, :OrganizationNameSame, :BusinessLicense, :Endpoint, :Initialization, :PowerOfAttorneys, :UserData, :BankAccountNumber, :BankAccountNumberSame, :JumpEvents, :OrganizationIdCardType, :OrganizationIdCardTypeSame, :AuthorizationMethod, :HideBizLicense
+        attr_accessor :Operator, :AuthorizationTypes, :OrganizationName, :UniformSocialCreditCode, :LegalName, :AutoJumpUrl, :OrganizationAddress, :AdminName, :AdminMobile, :AdminIdCardNumber, :AdminIdCardType, :UniformSocialCreditCodeSame, :LegalNameSame, :AdminNameSame, :AdminIdCardNumberSame, :AdminMobileSame, :OrganizationNameSame, :BusinessLicense, :Endpoint, :Initialization, :PowerOfAttorneys, :UserData, :BankAccountNumber, :BankAccountNumberSame, :JumpEvents, :OrganizationIdCardType, :OrganizationIdCardTypeSame, :AuthorizationMethod, :HideBizLicense, :AddressSame
 
-        def initialize(operator=nil, authorizationtypes=nil, organizationname=nil, uniformsocialcreditcode=nil, legalname=nil, autojumpurl=nil, organizationaddress=nil, adminname=nil, adminmobile=nil, adminidcardnumber=nil, adminidcardtype=nil, uniformsocialcreditcodesame=nil, legalnamesame=nil, adminnamesame=nil, adminidcardnumbersame=nil, adminmobilesame=nil, organizationnamesame=nil, businesslicense=nil, endpoint=nil, initialization=nil, powerofattorneys=nil, userdata=nil, bankaccountnumber=nil, bankaccountnumbersame=nil, jumpevents=nil, organizationidcardtype=nil, organizationidcardtypesame=nil, authorizationmethod=nil, hidebizlicense=nil)
+        def initialize(operator=nil, authorizationtypes=nil, organizationname=nil, uniformsocialcreditcode=nil, legalname=nil, autojumpurl=nil, organizationaddress=nil, adminname=nil, adminmobile=nil, adminidcardnumber=nil, adminidcardtype=nil, uniformsocialcreditcodesame=nil, legalnamesame=nil, adminnamesame=nil, adminidcardnumbersame=nil, adminmobilesame=nil, organizationnamesame=nil, businesslicense=nil, endpoint=nil, initialization=nil, powerofattorneys=nil, userdata=nil, bankaccountnumber=nil, bankaccountnumbersame=nil, jumpevents=nil, organizationidcardtype=nil, organizationidcardtypesame=nil, authorizationmethod=nil, hidebizlicense=nil, addresssame=nil)
           @Operator = operator
           @AuthorizationTypes = authorizationtypes
           @OrganizationName = organizationname
@@ -6360,6 +6362,7 @@ module TencentCloud
           @OrganizationIdCardTypeSame = organizationidcardtypesame
           @AuthorizationMethod = authorizationmethod
           @HideBizLicense = hidebizlicense
+          @AddressSame = addresssame
         end
 
         def deserialize(params)
@@ -6402,6 +6405,7 @@ module TencentCloud
           @OrganizationIdCardTypeSame = params['OrganizationIdCardTypeSame']
           @AuthorizationMethod = params['AuthorizationMethod']
           @HideBizLicense = params['HideBizLicense']
+          @AddressSame = params['AddressSame']
         end
       end
 

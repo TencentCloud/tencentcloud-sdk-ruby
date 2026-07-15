@@ -13831,6 +13831,77 @@ module TencentCloud
         end
       end
 
+      # DescribeImageTasks请求参数结构体
+      class DescribeImageTasksRequest < TencentCloud::Common::AbstractModel
+        # @param Status: <p>任务状态过滤条件。</p>
+        # @type Status: String
+        # @param Limit: <p>返回记录条数。</p>
+        # @type Limit: Integer
+        # @param ScrollToken: <p>翻页标识，分批拉取时使用：当单次请求无法拉取所有数据，接口将会返回 ScrollToken，下一次请求携带该 Token，将会从下一条记录开始获取。</p>
+        # @type ScrollToken: String
+        # @param StartTime: <p>任务开始时间。</p><p>参数格式：YYYY-MM-DDThh:mm:ssZ</p>
+        # @type StartTime: String
+        # @param EndTime: <p>任务结束时间。</p><p>参数格式：YYYY-MM-DDThh:mm:ssZ</p>
+        # @type EndTime: String
+        # @param SubTaskHasFailed: <p>筛选子任务状态。</p>
+        # @type SubTaskHasFailed: Boolean
+
+        attr_accessor :Status, :Limit, :ScrollToken, :StartTime, :EndTime, :SubTaskHasFailed
+
+        def initialize(status=nil, limit=nil, scrolltoken=nil, starttime=nil, endtime=nil, subtaskhasfailed=nil)
+          @Status = status
+          @Limit = limit
+          @ScrollToken = scrolltoken
+          @StartTime = starttime
+          @EndTime = endtime
+          @SubTaskHasFailed = subtaskhasfailed
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @Limit = params['Limit']
+          @ScrollToken = params['ScrollToken']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @SubTaskHasFailed = params['SubTaskHasFailed']
+        end
+      end
+
+      # DescribeImageTasks返回参数结构体
+      class DescribeImageTasksResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>符合过滤条件的记录总数。</p><p>单位：条</p>
+        # @type TotalCount: Integer
+        # @param ScrollToken: <p>翻页标识，当请求未返回所有数据，该字段表示下一条记录的 ID。当该字段为空字符串，说明已无更多数据。</p>
+        # @type ScrollToken: String
+        # @param TaskSet: <p>图片任务概要列表。</p>
+        # @type TaskSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :ScrollToken, :TaskSet, :RequestId
+
+        def initialize(totalcount=nil, scrolltoken=nil, taskset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @ScrollToken = scrolltoken
+          @TaskSet = taskset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @ScrollToken = params['ScrollToken']
+          unless params['TaskSet'].nil?
+            @TaskSet = []
+            params['TaskSet'].each do |i|
+              imagetaskinfo_tmp = ImageTaskInfo.new
+              imagetaskinfo_tmp.deserialize(i)
+              @TaskSet << imagetaskinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 查询输入配置信息。
       class DescribeInput < TencentCloud::Common::AbstractModel
         # @param InputId: 输入Id。
@@ -20659,6 +20730,46 @@ module TencentCloud
           @FillType = params['FillType']
           @Comment = params['Comment']
           @Format = params['Format']
+        end
+      end
+
+      # 图片处理任务概览。
+      class ImageTaskInfo < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>图片处理任务TaskId。</p>
+        # @type TaskId: String
+        # @param Status: <p>任务状态。</p><p>枚举值：</p><ul><li>FINISH： 任务结束</li><li>PROCESSING： 任务处理中</li></ul>
+        # @type Status: String
+        # @param Input: <p>输入文件。</p>
+        # @type Input: String
+        # @param CreateTime: <p>创建时间。</p><p>参数格式：YYYY-MM-DDThh:mm:ssZ</p>
+        # @type CreateTime: String
+        # @param BeginProcessTime: <p>开始处理时间。</p><p>参数格式：YYYY-MM-DDThh:mm:ssZ</p>
+        # @type BeginProcessTime: String
+        # @param FinishTime: <p>结束时间。</p><p>参数格式：YYYY-MM-DDThh:mm:ssZ</p>
+        # @type FinishTime: String
+        # @param SubTaskHasFailed: <p>子任务失败标识。</p>
+        # @type SubTaskHasFailed: Boolean
+
+        attr_accessor :TaskId, :Status, :Input, :CreateTime, :BeginProcessTime, :FinishTime, :SubTaskHasFailed
+
+        def initialize(taskid=nil, status=nil, input=nil, createtime=nil, beginprocesstime=nil, finishtime=nil, subtaskhasfailed=nil)
+          @TaskId = taskid
+          @Status = status
+          @Input = input
+          @CreateTime = createtime
+          @BeginProcessTime = beginprocesstime
+          @FinishTime = finishtime
+          @SubTaskHasFailed = subtaskhasfailed
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Status = params['Status']
+          @Input = params['Input']
+          @CreateTime = params['CreateTime']
+          @BeginProcessTime = params['BeginProcessTime']
+          @FinishTime = params['FinishTime']
+          @SubTaskHasFailed = params['SubTaskHasFailed']
         end
       end
 

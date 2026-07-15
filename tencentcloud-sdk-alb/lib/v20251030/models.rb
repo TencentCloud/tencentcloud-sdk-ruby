@@ -3382,71 +3382,38 @@ module TencentCloud
 
       # ModifyHealthCheckTemplate请求参数结构体
       class ModifyHealthCheckTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param HealthCheckTemplateId: 健康检查模板 ID，格式为 hct- 后接字母数字。
+        # @param HealthCheckTemplateId: <p>健康检查模板 ID，格式为 hct- 后接字母数字。</p>
         # @type HealthCheckTemplateId: String
-        # @param DryRun: 是否预览此次请求。
-        # - **false**（默认）：发送普通请求，直接修改健康检查模板。
-        # - **true**：发送预览请求，检查修改健康检查模板的参数、格式、业务限制等是否符合要求。
+        # @param DryRun: <p>是否预览此次请求。</p><ul><li><strong>false</strong>（默认）：发送普通请求，直接修改健康检查模板。</li><li><strong>true</strong>：发送预览请求，检查修改健康检查模板的参数、格式、业务限制等是否符合要求。</li></ul>
         # @type DryRun: Boolean
-        # @param HealthCheckCodes: 健康检查状态码。取值：
-        # - 当健康检查协议为**HTTP/HTTPS**时：
-        # 	- **http_1xx**
-        # 	- **http_2xx**（默认值）
-        # 	-  **http_3xx**
-        # 	-  **http_4xx**
-        # 	-  **http_5xx**
-        # - 当健康检查协议为**GRPC/GRPCS**时：默认值为**12**，数值范围为**0-99**，输入值可为数值、多个数值或者范围以及相互组合，如：
-        # 	- **"20"**
-        # 	- **"0-99"**
+        # @param HealthCheckCodes: <p>健康检查状态码。取值：</p><ul><li>当健康检查协议为<strong>HTTP/HTTPS</strong>时：<ul><li><strong>http_1xx</strong></li><li><strong>http_2xx</strong>（默认值）</li><li><strong>http_3xx</strong></li><li><strong>http_4xx</strong></li><li><strong>http_5xx</strong></li></ul></li><li>当健康检查协议为<strong>GRPC/GRPCS</strong>时：默认值为<strong>12</strong>，数值范围为<strong>0-99</strong>，输入值可为数值、多个数值或者范围以及相互组合，如：<ul><li><strong>&quot;20&quot;</strong></li><li><strong>&quot;0-99&quot;</strong></li></ul></li></ul>
         # @type HealthCheckCodes: Array
-        # @param HealthCheckHealthyThreshold: 判定后端服务健康的阈值，当健康检查连续成功多少次后，后端服务的状态由**不健康**变为**健康**。
-        # 取值范围：**2**-**10**。
-        # 默认值：**2**。
+        # @param HealthCheckHealthyThreshold: <p>判定后端服务健康的阈值，当健康检查连续成功多少次后，后端服务的状态由<strong>不健康</strong>变为<strong>健康</strong>。<br>取值范围：<strong>2</strong>-<strong>10</strong>。<br>默认值：<strong>2</strong>。</p>
         # @type HealthCheckHealthyThreshold: Integer
-        # @param HealthCheckHost: 健康检查域名。
-        # 长度限制为 **1-255** 个字符。
-        # 可包含小写字母、数字、短划线（-）和半角句号（.）。
-
-        # > 仅当 **HealthCheckProtocol** 设置为 **HTTP/HTTPS/GRPC/GRPCS** 时，该参数生效。
+        # @param HealthCheckHost: <p>健康检查域名。<br>长度限制为 <strong>1-255</strong> 个字符。<br>可包含小写字母、数字、短划线（-）和半角句号（.）。</p><blockquote><p>仅当 <strong>HealthCheckProtocol</strong> 设置为 <strong>HTTP/HTTPS/GRPC/GRPCS</strong> 时，该参数生效。</p></blockquote>
         # @type HealthCheckHost: String
-        # @param HealthCheckHttpVersion: 健康检查 HTTP 协议版本，取值：
-        # - **HTTP1.1**（默认）
-        # - **HTTP1.0**
-        # > 仅当**HealthCheckProtocol**设置为**HTTP** 或 **HTTPS** 时，该参数生效。
+        # @param HealthCheckHttpVersion: <p>健康检查 HTTP 协议版本，取值：</p><ul><li><strong>HTTP1.1</strong>（默认）</li><li><strong>HTTP1.0</strong> <blockquote><p>仅当<strong>HealthCheckProtocol</strong>设置为<strong>HTTP</strong> 或 <strong>HTTPS</strong> 时，该参数生效。</p></blockquote></li></ul>
         # @type HealthCheckHttpVersion: String
-        # @param HealthCheckInterval: 健康检查的时间间隔。单位：秒。 取值范围：**2**-**300**。 默认值：**5**。
+        # @param HealthCheckInterval: <p>健康检查的时间间隔。单位：秒。 取值范围：<strong>2</strong>-<strong>300</strong>。 默认值：<strong>5</strong>。</p>
         # @type HealthCheckInterval: Integer
-        # @param HealthCheckMethod: 健康检查方法，取值： - **GET** - **HEAD**（默认值）
-        # > 仅当**HealthCheckProtocol**设置为**HTTP** 或 **HTTPS** 时，该参数生效。
+        # @param HealthCheckMethod: <p>健康检查方法，取值： - <strong>GET</strong> - <strong>HEAD</strong>（默认值） </p><blockquote><p>仅当<strong>HealthCheckProtocol</strong>设置为<strong>HTTP</strong> 或 <strong>HTTPS</strong> 时，该参数生效。</p></blockquote>
         # @type HealthCheckMethod: String
-        # @param HealthCheckPath: 健康检查的转发规则路径。 长度为 **1-80** 个字符，只能使用字母、数字、字符`-/.%?#&=`以及扩展字符`_;~!（)*[]@$^:',+`。 URL 必须以正斜线（/）开头。
-        # > 仅当**HealthCheckProtocol**为**HTTP/HTTPS/GRPC/GRPCS**时，转发规则路径参数生效。
+        # @param HealthCheckPath: <p>健康检查的转发规则路径。 长度为 <strong>1-80</strong> 个字符，只能使用字母、数字、字符<code>-/.%?#&amp;=</code>以及扩展字符<code>_;~!（)*[]@$^:&#39;,+</code>。 URL 必须以正斜线（/）开头。 </p><blockquote><p>仅当<strong>HealthCheckProtocol</strong>为<strong>HTTP/HTTPS/GRPC/GRPCS</strong>时，转发规则路径参数生效。</p></blockquote>
         # @type HealthCheckPath: String
-        # @param HealthCheckPort: 健康检查访问后端服务器的端口。  取值范围：**0-65535**。  默认值：**0**，表示后端服务器的端口。
+        # @param HealthCheckPort: <p>健康检查访问后端服务器的端口。  取值范围：<strong>0-65535</strong>。  默认值：<strong>0</strong>，表示后端服务器的端口。</p>
         # @type HealthCheckPort: Integer
-        # @param HealthCheckProtocol: 健康检查协议。取值：
-        # - **HTTP**（默认）：通过发送 HEAD 或 GET 请求模拟浏览器的访问行为来检查服务器应用是否健康。
-        # - **HTTPS**：通过发送 HEAD 或 GET 请求模拟浏览器的访问行为来检查服务器应用是否健康。（数据加密，相比 HTTP 更安全。）
-        # - **TCP**：通过发送 SYN 握手报文来检测服务器端口是否存活。
-        # - **GRPC**：通过发送 POST 或 GET 请求来检查服务器应用是否健康。
-        # - **GRPCS**：通过发送 POST 或 GET 请求来检查服务器应用是否健康。
+        # @param HealthCheckProtocol: <p>健康检查协议。取值：</p><ul><li><strong>HTTP</strong>（默认）：通过发送 HEAD 或 GET 请求模拟浏览器的访问行为来检查服务器应用是否健康。</li><li><strong>HTTPS</strong>：通过发送 HEAD 或 GET 请求模拟浏览器的访问行为来检查服务器应用是否健康。（数据加密，相比 HTTP 更安全。）</li><li><strong>TCP</strong>：通过发送 SYN 握手报文来检测服务器端口是否存活。</li><li><strong>GRPC</strong>：通过发送 POST 或 GET 请求来检查服务器应用是否健康。</li><li><strong>GRPCS</strong>：通过发送 POST 或 GET 请求来检查服务器应用是否健康。</li></ul>
         # @type HealthCheckProtocol: String
-        # @param HealthCheckTemplateName: 健康检查模板名称。长度为 **1-255** 个字符，可包含数字、大小写字母、中文、半角句号（.）、下划线（_）和短划线（-）。
+        # @param HealthCheckTemplateName: <p>健康检查模板名称。长度为 <strong>1-255</strong> 个字符，可包含数字、大小写字母、中文、半角句号（.）、下划线（_）和短划线（-）。</p>
         # @type HealthCheckTemplateName: String
-        # @param HealthCheckTimeout: 健康检查的响应超时时间。单位：秒。
-        # 取值范围：**2**-**60**。
-        # 默认值：**2**。
+        # @param HealthCheckTimeout: <p>健康检查的响应超时时间。单位：秒。<br>取值范围：<strong>2</strong>-<strong>60</strong>。<br>默认值：<strong>2</strong>。</p>
         # @type HealthCheckTimeout: Integer
-        # @param HealthCheckUnhealthyThreshold: 判定后端服务不健康的阈值，当健康检查连续失败多少次后，后端服务的状态由**健康**变为**不健康**。
-        # 取值范围：**2**-**10**。
-        # 默认值：**2**。
+        # @param HealthCheckUnhealthyThreshold: <p>判定后端服务不健康的阈值，当健康检查连续失败多少次后，后端服务的状态由<strong>健康</strong>变为<strong>不健康</strong>。<br>取值范围：<strong>2</strong>-<strong>10</strong>。<br>默认值：<strong>2</strong>。</p>
         # @type HealthCheckUnhealthyThreshold: Integer
-        # @param Tags: 标签。
-        # @type Tags: Array
 
-        attr_accessor :HealthCheckTemplateId, :DryRun, :HealthCheckCodes, :HealthCheckHealthyThreshold, :HealthCheckHost, :HealthCheckHttpVersion, :HealthCheckInterval, :HealthCheckMethod, :HealthCheckPath, :HealthCheckPort, :HealthCheckProtocol, :HealthCheckTemplateName, :HealthCheckTimeout, :HealthCheckUnhealthyThreshold, :Tags
+        attr_accessor :HealthCheckTemplateId, :DryRun, :HealthCheckCodes, :HealthCheckHealthyThreshold, :HealthCheckHost, :HealthCheckHttpVersion, :HealthCheckInterval, :HealthCheckMethod, :HealthCheckPath, :HealthCheckPort, :HealthCheckProtocol, :HealthCheckTemplateName, :HealthCheckTimeout, :HealthCheckUnhealthyThreshold
 
-        def initialize(healthchecktemplateid=nil, dryrun=nil, healthcheckcodes=nil, healthcheckhealthythreshold=nil, healthcheckhost=nil, healthcheckhttpversion=nil, healthcheckinterval=nil, healthcheckmethod=nil, healthcheckpath=nil, healthcheckport=nil, healthcheckprotocol=nil, healthchecktemplatename=nil, healthchecktimeout=nil, healthcheckunhealthythreshold=nil, tags=nil)
+        def initialize(healthchecktemplateid=nil, dryrun=nil, healthcheckcodes=nil, healthcheckhealthythreshold=nil, healthcheckhost=nil, healthcheckhttpversion=nil, healthcheckinterval=nil, healthcheckmethod=nil, healthcheckpath=nil, healthcheckport=nil, healthcheckprotocol=nil, healthchecktemplatename=nil, healthchecktimeout=nil, healthcheckunhealthythreshold=nil)
           @HealthCheckTemplateId = healthchecktemplateid
           @DryRun = dryrun
           @HealthCheckCodes = healthcheckcodes
@@ -3461,7 +3428,6 @@ module TencentCloud
           @HealthCheckTemplateName = healthchecktemplatename
           @HealthCheckTimeout = healthchecktimeout
           @HealthCheckUnhealthyThreshold = healthcheckunhealthythreshold
-          @Tags = tags
         end
 
         def deserialize(params)
@@ -3479,14 +3445,6 @@ module TencentCloud
           @HealthCheckTemplateName = params['HealthCheckTemplateName']
           @HealthCheckTimeout = params['HealthCheckTimeout']
           @HealthCheckUnhealthyThreshold = params['HealthCheckUnhealthyThreshold']
-          unless params['Tags'].nil?
-            @Tags = []
-            params['Tags'].each do |i|
-              taginfo_tmp = TagInfo.new
-              taginfo_tmp.deserialize(i)
-              @Tags << taginfo_tmp
-            end
-          end
         end
       end
 

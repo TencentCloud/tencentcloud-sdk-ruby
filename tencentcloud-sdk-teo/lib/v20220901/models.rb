@@ -4806,6 +4806,70 @@ module TencentCloud
         end
       end
 
+      # CreateLogAnalysisDownloadTask请求参数结构体
+      class CreateLogAnalysisDownloadTaskRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: <p>站点 ID。</p>
+        # @type ZoneId: String
+        # @param Area: <p>数据归属地区，可选值：<ul><li>mainland：中国大陆境内；</li><li>overseas：全球（不含中国大陆）。</li></ul>注意：若站点服务区域为“全球可用区”，获取全部数据需要分别查询 mainland 和 overseas 的数据。</p>
+        # @type Area: String
+        # @param StartTime: <p>开始时间，示例值：2020-04-29T00:00:00Z。套餐版本不同，支持的可查询开始时间至今的最大时间跨度不同，详情请见 <a href="https://cloud.tencent.com/document/product/1552/94165#45435466-9103-4ff6-be22-e31717044fb2">套餐选型对比</a>。</p>
+        # @type StartTime: String
+        # @param EndTime: <p>结束时间，示例值：2020-04-30T00:00:00Z。单次查询的开始时间到结束时间跨度最大为 31 天。</p>
+        # @type EndTime: String
+        # @param LogType: <p>日志类型，可选值：<ul><li> l7-access-logs：七层访问日志；</li><li>web-attack：托管规则日志。</li></ul>默认为 l7-access-logs 。</p>
+        # @type LogType: String
+        # @param Condition: <p><a href="https://cloud.tencent.com/document/product/1552/124662">日志匹配条件</a>，最大长度 12KB。</p>
+        # @type Condition: String
+        # @param Format: <p>文件格式，可选值：<ul><li>csv</li></ul>默认为 csv。</p>
+        # @type Format: String
+        # @param Sort: <p>原始日志的时间排序，可选值：  <ul><li>asc：升序；</li>  <li>desc：降序。</li></ul>  默认为 desc。</p>
+        # @type Sort: String
+
+        attr_accessor :ZoneId, :Area, :StartTime, :EndTime, :LogType, :Condition, :Format, :Sort
+
+        def initialize(zoneid=nil, area=nil, starttime=nil, endtime=nil, logtype=nil, condition=nil, format=nil, sort=nil)
+          @ZoneId = zoneid
+          @Area = area
+          @StartTime = starttime
+          @EndTime = endtime
+          @LogType = logtype
+          @Condition = condition
+          @Format = format
+          @Sort = sort
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @Area = params['Area']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @LogType = params['LogType']
+          @Condition = params['Condition']
+          @Format = params['Format']
+          @Sort = params['Sort']
+        end
+      end
+
+      # CreateLogAnalysisDownloadTask返回参数结构体
+      class CreateLogAnalysisDownloadTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>日志分析下载任务 ID。</p>
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateMultiPathGatewayLine请求参数结构体
       class CreateMultiPathGatewayLineRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点 ID 。
@@ -9893,6 +9957,159 @@ module TencentCloud
               loadbalancer_tmp = LoadBalancer.new
               loadbalancer_tmp.deserialize(i)
               @LoadBalancerList << loadbalancer_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLogAnalysisDetail请求参数结构体
+      class DescribeLogAnalysisDetailRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: <p>站点 ID。</p>
+        # @type ZoneId: String
+        # @param Area: <p>数据归属地区，可选值：<ul><li>mainland：中国大陆境内；</li><li>overseas：全球（不含中国大陆）。</li></ul>注意：若站点服务区域为“全球可用区”，获取全部数据需要分别查询 mainland 和 overseas 的数据。</p>
+        # @type Area: String
+        # @param StartTime: <p>开始时间，示例值：2020-04-29T00:00:00Z。套餐版本不同，支持的可查询开始时间至今的最大时间跨度不同，详情请见 <a href="https://cloud.tencent.com/document/product/1552/94165#45435466-9103-4ff6-be22-e31717044fb2">套餐选型对比</a>。</p>
+        # @type StartTime: String
+        # @param EndTime: <p>结束时间，示例值：2020-04-30T00:00:00Z。单次查询的开始时间到结束时间跨度最大为 31 天。</p>
+        # @type EndTime: String
+        # @param LogType: <p>日志类型，可选值：<ul><li> l7-access-logs：七层访问日志；</li><li>web-attack：托管规则日志。</li></ul>默认为 l7-access-logs 。</p>
+        # @type LogType: String
+        # @param Condition: <p><a href="https://cloud.tencent.com/document/product/1552/124662">日志匹配条件</a>，最大长度 12KB。</p>
+        # @type Condition: String
+        # @param Limit: <p>分页查询限制数目，默认值：20，最大值 100。</p>
+        # @type Limit: Integer
+        # @param Offset: <p>分页查询偏移量，默认为 0。</p>
+        # @type Offset: Integer
+        # @param Sort: <p>原始日志是否按时间排序返回；可选值：<ul><li>asc：升序；</li><li>desc：降序。</li></ul>默认为 desc。</p>
+        # @type Sort: String
+
+        attr_accessor :ZoneId, :Area, :StartTime, :EndTime, :LogType, :Condition, :Limit, :Offset, :Sort
+
+        def initialize(zoneid=nil, area=nil, starttime=nil, endtime=nil, logtype=nil, condition=nil, limit=nil, offset=nil, sort=nil)
+          @ZoneId = zoneid
+          @Area = area
+          @StartTime = starttime
+          @EndTime = endtime
+          @LogType = logtype
+          @Condition = condition
+          @Limit = limit
+          @Offset = offset
+          @Sort = sort
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @Area = params['Area']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @LogType = params['LogType']
+          @Condition = params['Condition']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Sort = params['Sort']
+        end
+      end
+
+      # DescribeLogAnalysisDetail返回参数结构体
+      class DescribeLogAnalysisDetailResponse < TencentCloud::Common::AbstractModel
+        # @param LogDetail: <p>符合日志匹配条件的日志详情列表。</p>
+        # @type LogDetail: Array
+        # @param TotalCount: <p>符合日志匹配条件的日志总数。</p>
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LogDetail, :TotalCount, :RequestId
+
+        def initialize(logdetail=nil, totalcount=nil, requestid=nil)
+          @LogDetail = logdetail
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['LogDetail'].nil?
+            @LogDetail = []
+            params['LogDetail'].each do |i|
+              logitem_tmp = LogItem.new
+              logitem_tmp.deserialize(i)
+              @LogDetail << logitem_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLogAnalysisDownloadTasks请求参数结构体
+      class DescribeLogAnalysisDownloadTasksRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: <p>站点 ID。</p>
+        # @type ZoneId: String
+        # @param Area: <p>数据归属地区，可选值： <ul><li>mainland：中国大陆境内；</li> <li>overseas：全球（不含中国大陆）。</li></ul> 注意：若站点服务区域为“全球可用区”，获取全部数据需要分别查询 mainland 和 overseas 的数据。</p>
+        # @type Area: String
+        # @param LogType: <p>日志类型，可选值：<ul><li> l7-access-logs：七层访问日志；</li><li>web-attack：托管规则日志。</li></ul>默认为 l7-access-logs 。</p>
+        # @type LogType: String
+        # @param Filters: <p>过滤条件，Filters.Values 的上限为 20。详细的过滤条件如下：<ul><li>task-id：按照日志下载任务 ID进行过滤，可选值参考 CreateLogAnalysisDownloadTask 接口返回的 TaskId。</li></ul></p><p>取值参考：CreateLogAnalysisDownloadTask</p>
+        # @type Filters: Array
+        # @param Limit: <p>分页查询限制数目，默认值：20，最大值 100。</p>
+        # @type Limit: Integer
+        # @param Offset: <p>分页查询偏移量，默认为 0。</p>
+        # @type Offset: Integer
+
+        attr_accessor :ZoneId, :Area, :LogType, :Filters, :Limit, :Offset
+
+        def initialize(zoneid=nil, area=nil, logtype=nil, filters=nil, limit=nil, offset=nil)
+          @ZoneId = zoneid
+          @Area = area
+          @LogType = logtype
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @Area = params['Area']
+          @LogType = params['LogType']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              advancedfilter_tmp = AdvancedFilter.new
+              advancedfilter_tmp.deserialize(i)
+              @Filters << advancedfilter_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeLogAnalysisDownloadTasks返回参数结构体
+      class DescribeLogAnalysisDownloadTasksResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>符合日志匹配条件的日志分析下载任务总条数。</p>
+        # @type TotalCount: Integer
+        # @param Tasks: <p>符合日志匹配条件的日志分析下载任务列表。</p>
+        # @type Tasks: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Tasks, :RequestId
+
+        def initialize(totalcount=nil, tasks=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Tasks = tasks
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Tasks'].nil?
+            @Tasks = []
+            params['Tasks'].each do |i|
+              loganalysisdownloadtask_tmp = LogAnalysisDownloadTask.new
+              loganalysisdownloadtask_tmp.deserialize(i)
+              @Tasks << loganalysisdownloadtask_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -16094,6 +16311,70 @@ module TencentCloud
         end
       end
 
+      # 日志分析日志下载任务。
+      class LogAnalysisDownloadTask < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务 ID。</p>
+        # @type TaskId: String
+        # @param ZoneId: <p>站点 ID。</p>
+        # @type ZoneId: String
+        # @param Area: <p>数据归属地区，取值有：<ul><li>mainland：中国大陆境内；</li><li>overseas：全球（不含中国大陆）。</li></ul></p>
+        # @type Area: String
+        # @param StartTime: <p>开始时间，示例值：2020-04-29T00:00:00Z。</p>
+        # @type StartTime: String
+        # @param EndTime: <p>结束时间，示例值：2020-04-30T00:00:00Z。</p>
+        # @type EndTime: String
+        # @param LogType: <p>日志类型，取值有：<ul><li> l7-access-logs：七层访问日志；</li><li>web-attack：托管规则日志。</li></ul></p>
+        # @type LogType: String
+        # @param Condition: <p><a href="https://cloud.tencent.com/document/product/1552/124662">日志匹配条件</a>，长度上限 12KB。</p>
+        # @type Condition: String
+        # @param Format: <p>文件格式，取值有：</p><ul><li>csv 。</li></ul>
+        # @type Format: String
+        # @param Sort: <p>原始日志是否按时间排序返回，取值有：<ul><li>asc：升序；</li><li>desc：降序。</li></ul></p>
+        # @type Sort: String
+        # @param Status: <p>任务状态，取值有：<ul><li>loading：处理中，等待生成下载链接；</li><li> failed: 处理失败，当前任务无法下载;</li><li>completed：已完成打包，可以下载。</li></ul></p>
+        # @type Status: String
+        # @param CreateTime: <p>任务创建时间，任务创建成功后将保留3天。</p>
+        # @type CreateTime: String
+        # @param Url: <p>下载地址，仅当 Status = completed 时有返回值。</p>
+        # @type Url: String
+        # @param ExpireTime: <p>下载任务过期时间，过期后下载地址将不可用，请通过本接口获取新的下载地址。</p>
+        # @type ExpireTime: String
+
+        attr_accessor :TaskId, :ZoneId, :Area, :StartTime, :EndTime, :LogType, :Condition, :Format, :Sort, :Status, :CreateTime, :Url, :ExpireTime
+
+        def initialize(taskid=nil, zoneid=nil, area=nil, starttime=nil, endtime=nil, logtype=nil, condition=nil, format=nil, sort=nil, status=nil, createtime=nil, url=nil, expiretime=nil)
+          @TaskId = taskid
+          @ZoneId = zoneid
+          @Area = area
+          @StartTime = starttime
+          @EndTime = endtime
+          @LogType = logtype
+          @Condition = condition
+          @Format = format
+          @Sort = sort
+          @Status = status
+          @CreateTime = createtime
+          @Url = url
+          @ExpireTime = expiretime
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @ZoneId = params['ZoneId']
+          @Area = params['Area']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @LogType = params['LogType']
+          @Condition = params['Condition']
+          @Format = params['Format']
+          @Sort = params['Sort']
+          @Status = params['Status']
+          @CreateTime = params['CreateTime']
+          @Url = params['Url']
+          @ExpireTime = params['ExpireTime']
+        end
+      end
+
       # 实时日志投递的输出格式。您可以直接通过 FormatType 参数使用指定预设日志输出格式（JSON Lines / csv），也可以在预设日志输出格式基础上，通过其他参数来自定义变体输出格式。
       class LogFormat < TencentCloud::Common::AbstractModel
         # @param FormatType: 日志投递的预设输出格式类型，取值有：
@@ -16139,6 +16420,26 @@ module TencentCloud
           @RecordSuffix = params['RecordSuffix']
           @RecordDelimiter = params['RecordDelimiter']
           @FieldDelimiter = params['FieldDelimiter']
+        end
+      end
+
+      # 日志分析的日志信息
+      class LogItem < TencentCloud::Common::AbstractModel
+        # @param Timestamp: 日志产生的时间点，采用 unix 毫秒级时间戳。
+        # @type Timestamp: Integer
+        # @param LogJson: 日志的具体内容，采用JSON字符串格式。
+        # @type LogJson: String
+
+        attr_accessor :Timestamp, :LogJson
+
+        def initialize(timestamp=nil, logjson=nil)
+          @Timestamp = timestamp
+          @LogJson = logjson
+        end
+
+        def deserialize(params)
+          @Timestamp = params['Timestamp']
+          @LogJson = params['LogJson']
         end
       end
 

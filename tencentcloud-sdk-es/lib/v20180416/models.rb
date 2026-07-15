@@ -1507,6 +1507,93 @@ module TencentCloud
         end
       end
 
+      # forcemerge任务信息
+      class CrontabTaskInfo < TencentCloud::Common::AbstractModel
+        # @param TaskId: forcemerge任务id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: Integer
+        # @param RegionId: 集群地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionId: Integer
+        # @param InstanceId: 集群id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: Integer
+        # @param TaskName: forcemerge任务名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskName: String
+        # @param TaskType: 任务类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskType: String
+        # @param TaskTime: 任务执行时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskTime: String
+        # @param Target: 执行forcemerge的索引
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Target: String
+        # @param LastExecTime: 上次执行时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastExecTime: String
+        # @param State: 状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type State: String
+        # @param TaskStatus: 任务状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskStatus: Integer
+        # @param CreateTime: 创建任务时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param UpdateTime: 任务更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param TaskDetail: 任务详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskDetail: String
+        # @param OnlyExpungeDeletes: 是否只合并有deleted标记的索引，对应ES _forcemerge API中的only_expunge_deletes参数,默认值false
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OnlyExpungeDeletes: Boolean
+        # @param MaxMumSegments: 最大合并Segment数量，对应ES _forcemerge API中的max_num_segments参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxMumSegments: Integer
+
+        attr_accessor :TaskId, :RegionId, :InstanceId, :TaskName, :TaskType, :TaskTime, :Target, :LastExecTime, :State, :TaskStatus, :CreateTime, :UpdateTime, :TaskDetail, :OnlyExpungeDeletes, :MaxMumSegments
+
+        def initialize(taskid=nil, regionid=nil, instanceid=nil, taskname=nil, tasktype=nil, tasktime=nil, target=nil, lastexectime=nil, state=nil, taskstatus=nil, createtime=nil, updatetime=nil, taskdetail=nil, onlyexpungedeletes=nil, maxmumsegments=nil)
+          @TaskId = taskid
+          @RegionId = regionid
+          @InstanceId = instanceid
+          @TaskName = taskname
+          @TaskType = tasktype
+          @TaskTime = tasktime
+          @Target = target
+          @LastExecTime = lastexectime
+          @State = state
+          @TaskStatus = taskstatus
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @TaskDetail = taskdetail
+          @OnlyExpungeDeletes = onlyexpungedeletes
+          @MaxMumSegments = maxmumsegments
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RegionId = params['RegionId']
+          @InstanceId = params['InstanceId']
+          @TaskName = params['TaskName']
+          @TaskType = params['TaskType']
+          @TaskTime = params['TaskTime']
+          @Target = params['Target']
+          @LastExecTime = params['LastExecTime']
+          @State = params['State']
+          @TaskStatus = params['TaskStatus']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @TaskDetail = params['TaskDetail']
+          @OnlyExpungeDeletes = params['OnlyExpungeDeletes']
+          @MaxMumSegments = params['MaxMumSegments']
+        end
+      end
+
       # 自治索引信息
       class DataStreamInfo < TencentCloud::Common::AbstractModel
         # @param DataStreamName: 自治索引名
@@ -1888,6 +1975,96 @@ module TencentCloud
         end
       end
 
+      # DescribeAutoScaleDiskInfo请求参数结构体
+      class DescribeAutoScaleDiskInfoRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例名称
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeAutoScaleDiskInfo返回参数结构体
+      class DescribeAutoScaleDiskInfoResponse < TencentCloud::Common::AbstractModel
+        # @param AutoScaleDiskInfoList: 自动扩盘参数列表
+        # @type AutoScaleDiskInfoList: Array
+        # @param Status: 0 修改中; 1 正常
+        # @type Status: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AutoScaleDiskInfoList, :Status, :RequestId
+
+        def initialize(autoscalediskinfolist=nil, status=nil, requestid=nil)
+          @AutoScaleDiskInfoList = autoscalediskinfolist
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['AutoScaleDiskInfoList'].nil?
+            @AutoScaleDiskInfoList = []
+            params['AutoScaleDiskInfoList'].each do |i|
+              autoscalediskinfo_tmp = AutoScaleDiskInfo.new
+              autoscalediskinfo_tmp.deserialize(i)
+              @AutoScaleDiskInfoList << autoscalediskinfo_tmp
+            end
+          end
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeClusterDiskRange请求参数结构体
+      class DescribeClusterDiskRangeRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例名称
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeClusterDiskRange返回参数结构体
+      class DescribeClusterDiskRangeResponse < TencentCloud::Common::AbstractModel
+        # @param NodeTypeDiskSizeRangeList: 节点磁盘大小上下限
+        # @type NodeTypeDiskSizeRangeList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NodeTypeDiskSizeRangeList, :RequestId
+
+        def initialize(nodetypedisksizerangelist=nil, requestid=nil)
+          @NodeTypeDiskSizeRangeList = nodetypedisksizerangelist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['NodeTypeDiskSizeRangeList'].nil?
+            @NodeTypeDiskSizeRangeList = []
+            params['NodeTypeDiskSizeRangeList'].each do |i|
+              nodetypedisksizerange_tmp = NodeTypeDiskSizeRange.new
+              nodetypedisksizerange_tmp.deserialize(i)
+              @NodeTypeDiskSizeRangeList << nodetypedisksizerange_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeClusterSnapshot请求参数结构体
       class DescribeClusterSnapshotRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群实例Id，格式：es-xxxx
@@ -1947,6 +2124,49 @@ module TencentCloud
         end
       end
 
+      # DescribeCosBackupStrategyViews请求参数结构体
+      class DescribeCosBackupStrategyViewsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>集群实例ID</p>
+        # @type InstanceId: Array
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeCosBackupStrategyViews返回参数结构体
+      class DescribeCosBackupStrategyViewsResponse < TencentCloud::Common::AbstractModel
+        # @param CosBackupList: <p>自动备份策略列表</p>
+        # @type CosBackupList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CosBackupList, :RequestId
+
+        def initialize(cosbackuplist=nil, requestid=nil)
+          @CosBackupList = cosbackuplist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CosBackupList'].nil?
+            @CosBackupList = []
+            params['CosBackupList'].each do |i|
+              cosbackup_tmp = CosBackup.new
+              cosbackup_tmp.deserialize(i)
+              @CosBackupList << cosbackup_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDiagnose请求参数结构体
       class DescribeDiagnoseRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: ES实例ID
@@ -1998,6 +2218,219 @@ module TencentCloud
               @DiagnoseResults << diagnoseresult_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeEsInstanceEventLists请求参数结构体
+      class DescribeEsInstanceEventListsRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 返回数量，默认为20，最大值为100。
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param StartTime: 起始时间, e.g. "2019-03-07 16:30:39"
+        # @type StartTime: String
+        # @param EndTime: 结束时间, e.g. "2019-03-30 20:18:03"
+        # @type EndTime: String
+        # @param InstanceIds: 集群id，非必填，查询集群相关的事件
+        # @type InstanceIds: Array
+        # @param EventTypes: 查询的类型，包括：硬件异常、用户变更和智能运维等，默认查询所有。1：硬件异常；2：用户变更；3：智能运维
+        # @type EventTypes: Array
+        # @param EventStatus: 事件状态
+        # @type EventStatus: Array
+
+        attr_accessor :Limit, :Offset, :StartTime, :EndTime, :InstanceIds, :EventTypes, :EventStatus
+
+        def initialize(limit=nil, offset=nil, starttime=nil, endtime=nil, instanceids=nil, eventtypes=nil, eventstatus=nil)
+          @Limit = limit
+          @Offset = offset
+          @StartTime = starttime
+          @EndTime = endtime
+          @InstanceIds = instanceids
+          @EventTypes = eventtypes
+          @EventStatus = eventstatus
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @InstanceIds = params['InstanceIds']
+          @EventTypes = params['EventTypes']
+          @EventStatus = params['EventStatus']
+        end
+      end
+
+      # DescribeEsInstanceEventLists返回参数结构体
+      class DescribeEsInstanceEventListsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 事件中心记录总数
+        # @type TotalCount: Integer
+        # @param EventDataInfoList: 事件中心记录信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EventDataInfoList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :EventDataInfoList, :RequestId
+
+        def initialize(totalcount=nil, eventdatainfolist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @EventDataInfoList = eventdatainfolist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['EventDataInfoList'].nil?
+            @EventDataInfoList = []
+            params['EventDataInfoList'].each do |i|
+              eventdatainfooverview_tmp = EventDataInfoOverview.new
+              eventdatainfooverview_tmp.deserialize(i)
+              @EventDataInfoList << eventdatainfooverview_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeEventDataDetail请求参数结构体
+      class DescribeEventDataDetailRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: ES集群Id
+        # @type InstanceId: String
+        # @param EventType: 事件类型,1：硬件异常；2：用户变更；3：智能运维
+        # @type EventType: Integer
+        # @param EventTaskId: 异常事件任务id
+        # @type EventTaskId: Integer
+
+        attr_accessor :InstanceId, :EventType, :EventTaskId
+
+        def initialize(instanceid=nil, eventtype=nil, eventtaskid=nil)
+          @InstanceId = instanceid
+          @EventType = eventtype
+          @EventTaskId = eventtaskid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @EventType = params['EventType']
+          @EventTaskId = params['EventTaskId']
+        end
+      end
+
+      # DescribeEventDataDetail返回参数结构体
+      class DescribeEventDataDetailResponse < TencentCloud::Common::AbstractModel
+        # @param EventDataDetail: 异常事件详情
+        # @type EventDataDetail: :class:`Tencentcloud::Es.v20180416.models.EventDataDetail`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :EventDataDetail, :RequestId
+
+        def initialize(eventdatadetail=nil, requestid=nil)
+          @EventDataDetail = eventdatadetail
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['EventDataDetail'].nil?
+            @EventDataDetail = EventDataDetail.new
+            @EventDataDetail.deserialize(params['EventDataDetail'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeEventInfoList请求参数结构体
+      class DescribeEventInfoListRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeEventInfoList返回参数结构体
+      class DescribeEventInfoListResponse < TencentCloud::Common::AbstractModel
+        # @param EventTypeInfoList: <p>事件类型详情</p>
+        # @type EventTypeInfoList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :EventTypeInfoList, :RequestId
+
+        def initialize(eventtypeinfolist=nil, requestid=nil)
+          @EventTypeInfoList = eventtypeinfolist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['EventTypeInfoList'].nil?
+            @EventTypeInfoList = []
+            params['EventTypeInfoList'].each do |i|
+              eventtypeinfo_tmp = EventTypeInfo.new
+              eventtypeinfo_tmp.deserialize(i)
+              @EventTypeInfoList << eventtypeinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeForceMergeTask请求参数结构体
+      class DescribeForceMergeTaskRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群实例ID
+        # @type InstanceId: String
+        # @param Offset: 分页页数
+        # @type Offset: Integer
+        # @param Limit: 每页展示记录条数
+        # @type Limit: Integer
+
+        attr_accessor :InstanceId, :Offset, :Limit
+
+        def initialize(instanceid=nil, offset=nil, limit=nil)
+          @InstanceId = instanceid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeForceMergeTask返回参数结构体
+      class DescribeForceMergeTaskResponse < TencentCloud::Common::AbstractModel
+        # @param CrontabTaskInfo: 新增的forcemerge任务列表
+        # Uin
+        # @type CrontabTaskInfo: Array
+        # @param TotalCount: 记录总条数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CrontabTaskInfo, :TotalCount, :RequestId
+
+        def initialize(crontabtaskinfo=nil, totalcount=nil, requestid=nil)
+          @CrontabTaskInfo = crontabtaskinfo
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CrontabTaskInfo'].nil?
+            @CrontabTaskInfo = []
+            params['CrontabTaskInfo'].each do |i|
+              crontabtaskinfo_tmp = CrontabTaskInfo.new
+              crontabtaskinfo_tmp.deserialize(i)
+              @CrontabTaskInfo << crontabtaskinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -2792,6 +3225,147 @@ module TencentCloud
         end
       end
 
+      # DescribeLogstashViews请求参数结构体
+      class DescribeLogstashViewsRequest < TencentCloud::Common::AbstractModel
+        # @param LogstashInstanceId: longstash集群ID
+        # @type LogstashInstanceId: String
+
+        attr_accessor :LogstashInstanceId
+
+        def initialize(logstashinstanceid=nil)
+          @LogstashInstanceId = logstashinstanceid
+        end
+
+        def deserialize(params)
+          @LogstashInstanceId = params['LogstashInstanceId']
+        end
+      end
+
+      # DescribeLogstashViews返回参数结构体
+      class DescribeLogstashViewsResponse < TencentCloud::Common::AbstractModel
+        # @param NodesView: Logstash节点维度视图
+        # @type NodesView: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NodesView, :RequestId
+
+        def initialize(nodesview=nil, requestid=nil)
+          @NodesView = nodesview
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['NodesView'].nil?
+            @NodesView = []
+            params['NodesView'].each do |i|
+              logstashnodeview_tmp = LogstashNodeView.new
+              logstashnodeview_tmp.deserialize(i)
+              @NodesView << logstashnodeview_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRegions请求参数结构体
+      class DescribeRegionsRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeRegions返回参数结构体
+      class DescribeRegionsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 地域总数
+        # @type TotalCount: Integer
+        # @param RegionSet: 地域详细信息
+        # @type RegionSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :RegionSet, :RequestId
+
+        def initialize(totalcount=nil, regionset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @RegionSet = regionset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['RegionSet'].nil?
+            @RegionSet = []
+            params['RegionSet'].each do |i|
+              regionsdata_tmp = RegionsData.new
+              regionsdata_tmp.deserialize(i)
+              @RegionSet << regionsdata_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRequestInstancePolicy请求参数结构体
+      class DescribeRequestInstancePolicyRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>集群id</p>
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeRequestInstancePolicy返回参数结构体
+      class DescribeRequestInstancePolicyResponse < TencentCloud::Common::AbstractModel
+        # @param GetPaths: <p>GET路径可请求的命令合集</p>
+        # @type GetPaths: Array
+        # @param PostPaths: <p>POST路径可请求的命令合集</p>
+        # @type PostPaths: Array
+        # @param PutPaths: <p>PUT路径可请求的命令合集</p>
+        # @type PutPaths: Array
+        # @param IsDefault: <p>是否是默认的参数</p>
+        # @type IsDefault: Boolean
+        # @param UpdateTime: <p>变更时间</p>
+        # @type UpdateTime: String
+        # @param Operator: <p>变更人</p>
+        # @type Operator: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :GetPaths, :PostPaths, :PutPaths, :IsDefault, :UpdateTime, :Operator, :RequestId
+
+        def initialize(getpaths=nil, postpaths=nil, putpaths=nil, isdefault=nil, updatetime=nil, operator=nil, requestid=nil)
+          @GetPaths = getpaths
+          @PostPaths = postpaths
+          @PutPaths = putpaths
+          @IsDefault = isdefault
+          @UpdateTime = updatetime
+          @Operator = operator
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @GetPaths = params['GetPaths']
+          @PostPaths = params['PostPaths']
+          @PutPaths = params['PutPaths']
+          @IsDefault = params['IsDefault']
+          @UpdateTime = params['UpdateTime']
+          @Operator = params['Operator']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeServerlessInstances请求参数结构体
       class DescribeServerlessInstancesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceIds: 索引集群ID
@@ -3115,6 +3689,67 @@ module TencentCloud
         end
       end
 
+      # DescribeSnapshotViews请求参数结构体
+      class DescribeSnapshotViewsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>集群实例ID</p>
+        # @type InstanceId: Array
+        # @param State: <p>快照状态，IN_PROGRESS,SUCCESS,FAILED,PARTIAL</p>
+        # @type State: Array
+        # @param UserBackUp: <p>创建方式: true(手动备份); false(自动备份); 空字符串表示全部</p>
+        # @type UserBackUp: String
+        # @param Duration: <p>时间范围, 最近多少天, 0表示查询所有时间范围</p>
+        # @type Duration: Integer
+
+        attr_accessor :InstanceId, :State, :UserBackUp, :Duration
+
+        def initialize(instanceid=nil, state=nil, userbackup=nil, duration=nil)
+          @InstanceId = instanceid
+          @State = state
+          @UserBackUp = userbackup
+          @Duration = duration
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @State = params['State']
+          @UserBackUp = params['UserBackUp']
+          @Duration = params['Duration']
+        end
+      end
+
+      # DescribeSnapshotViews返回参数结构体
+      class DescribeSnapshotViewsResponse < TencentCloud::Common::AbstractModel
+        # @param Snapshots: <p>快照信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Snapshots: Array
+        # @param FailedMsgs: <p>集群快照获取失败信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailedMsgs: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Snapshots, :FailedMsgs, :RequestId
+
+        def initialize(snapshots=nil, failedmsgs=nil, requestid=nil)
+          @Snapshots = snapshots
+          @FailedMsgs = failedmsgs
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Snapshots'].nil?
+            @Snapshots = []
+            params['Snapshots'].each do |i|
+              snapshots_tmp = Snapshots.new
+              snapshots_tmp.deserialize(i)
+              @Snapshots << snapshots_tmp
+            end
+          end
+          @FailedMsgs = params['FailedMsgs']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSpaceKibanaTools请求参数结构体
       class DescribeSpaceKibanaToolsRequest < TencentCloud::Common::AbstractModel
         # @param SpaceId: space的ID
@@ -3151,6 +3786,56 @@ module TencentCloud
         def deserialize(params)
           @KibanaToken = params['KibanaToken']
           @ExpireTime = params['ExpireTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeUpgrade请求参数结构体
+      class DescribeUpgradeRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>需要升级的实例ID</p>
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeUpgrade返回参数结构体
+      class DescribeUpgradeResponse < TencentCloud::Common::AbstractModel
+        # @param EsVersions: <p>可以升级到的大版本</p>
+        # @type EsVersions: Array
+        # @param EsLicenses: <p>可以升级到的商业特性</p>
+        # @type EsLicenses: Array
+        # @param EsSubProducts: <p>可以升级到的子产品</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EsSubProducts: Array
+        # @param EsRealLicenses: <p>可以升级到的商业特性</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EsRealLicenses: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :EsVersions, :EsLicenses, :EsSubProducts, :EsRealLicenses, :RequestId
+
+        def initialize(esversions=nil, eslicenses=nil, essubproducts=nil, esreallicenses=nil, requestid=nil)
+          @EsVersions = esversions
+          @EsLicenses = eslicenses
+          @EsSubProducts = essubproducts
+          @EsRealLicenses = esreallicenses
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @EsVersions = params['EsVersions']
+          @EsLicenses = params['EsLicenses']
+          @EsSubProducts = params['EsSubProducts']
+          @EsRealLicenses = params['EsRealLicenses']
           @RequestId = params['RequestId']
         end
       end
@@ -3839,6 +4524,64 @@ module TencentCloud
         end
       end
 
+      # 多盘的取值范围
+      class DiskCountRange < TencentCloud::Common::AbstractModel
+        # @param Min: 云盘块数下限
+        # @type Min: Integer
+        # @param Max: 云盘块数上限
+        # @type Max: Integer
+
+        attr_accessor :Min, :Max
+
+        def initialize(min=nil, max=nil)
+          @Min = min
+          @Max = max
+        end
+
+        def deserialize(params)
+          @Min = params['Min']
+          @Max = params['Max']
+        end
+      end
+
+      # 磁盘大小范围
+      class DiskSizeRange < TencentCloud::Common::AbstractModel
+        # @param Min: 最小值
+        # @type Min: Integer
+        # @param Sml: 小刻度值
+        # @type Sml: Integer
+        # @param Med: 中刻度值
+        # @type Med: Integer
+        # @param Max: 最大值
+        # @type Max: Integer
+        # @param DiskCountMin: 磁盘块数最小值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiskCountMin: Integer
+        # @param DiskCountMax: 磁盘块数最大值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiskCountMax: Integer
+
+        attr_accessor :Min, :Sml, :Med, :Max, :DiskCountMin, :DiskCountMax
+
+        def initialize(min=nil, sml=nil, med=nil, max=nil, diskcountmin=nil, diskcountmax=nil)
+          @Min = min
+          @Sml = sml
+          @Med = med
+          @Max = max
+          @DiskCountMin = diskcountmin
+          @DiskCountMax = diskcountmax
+        end
+
+        def deserialize(params)
+          @Min = params['Min']
+          @Sml = params['Sml']
+          @Med = params['Med']
+          @Max = params['Max']
+          @DiskCountMin = params['DiskCountMin']
+          @DiskCountMax = params['DiskCountMax']
+        end
+      end
+
       # 置放群组异步任务维护的时间段
       class EnableScheduleOperationDuration < TencentCloud::Common::AbstractModel
         # @param Periods: 支持开启异步任务的日期
@@ -4036,6 +4779,174 @@ module TencentCloud
         def deserialize(params)
           @BlackIpList = params['BlackIpList']
           @WhiteIpList = params['WhiteIpList']
+        end
+      end
+
+      # 事件详情
+      class EventDataDetail < TencentCloud::Common::AbstractModel
+        # @param EventName: <p>事件名称</p>
+        # @type EventName: String
+        # @param EventImportance: <p>事件重要程度;0: 一般  1: 重要</p>
+        # @type EventImportance: Integer
+        # @param EventContent: <p>事件内容</p>
+        # @type EventContent: String
+        # @param InstanceId: <p>ES集群id</p>
+        # @type InstanceId: String
+        # @param InstanceName: <p>集群名称</p>
+        # @type InstanceName: String
+        # @param NodeId: <p>节点Id</p>
+        # @type NodeId: String
+        # @param NodeRole: <p>节点类型</p>
+        # @type NodeRole: String
+        # @param EventStatus: <p>事件状态,0:待处理，1:处理中，2:处理完成</p>
+        # @type EventStatus: Integer
+        # @param EventType: <p>事件类型;1：硬件异常；2：用户变更；3：智能运维</p>
+        # @type EventType: Integer
+        # @param EventTaskId: <p>事件任务id</p>
+        # @type EventTaskId: Integer
+        # @param EventIsolationStatus: <p>节点隔离状态，0:未隔离；1:已隔离</p>
+        # @type EventIsolationStatus: Integer
+        # @param StartTime: <p>开始时间</p>
+        # @type StartTime: String
+        # @param EndTime: <p>结束时间</p>
+        # @type EndTime: String
+        # @param SubEventType: <p>子事件异常类型</p>
+        # @type SubEventType: Integer
+        # @param CvmRepairId: <p>cvm维修任务Id</p>
+        # @type CvmRepairId: String
+        # @param ProcessType: <p>处理类型</p>
+        # @type ProcessType: String
+        # @param SubEventName: <p>子事件名称</p>
+        # @type SubEventName: String
+
+        attr_accessor :EventName, :EventImportance, :EventContent, :InstanceId, :InstanceName, :NodeId, :NodeRole, :EventStatus, :EventType, :EventTaskId, :EventIsolationStatus, :StartTime, :EndTime, :SubEventType, :CvmRepairId, :ProcessType, :SubEventName
+
+        def initialize(eventname=nil, eventimportance=nil, eventcontent=nil, instanceid=nil, instancename=nil, nodeid=nil, noderole=nil, eventstatus=nil, eventtype=nil, eventtaskid=nil, eventisolationstatus=nil, starttime=nil, endtime=nil, subeventtype=nil, cvmrepairid=nil, processtype=nil, subeventname=nil)
+          @EventName = eventname
+          @EventImportance = eventimportance
+          @EventContent = eventcontent
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @NodeId = nodeid
+          @NodeRole = noderole
+          @EventStatus = eventstatus
+          @EventType = eventtype
+          @EventTaskId = eventtaskid
+          @EventIsolationStatus = eventisolationstatus
+          @StartTime = starttime
+          @EndTime = endtime
+          @SubEventType = subeventtype
+          @CvmRepairId = cvmrepairid
+          @ProcessType = processtype
+          @SubEventName = subeventname
+        end
+
+        def deserialize(params)
+          @EventName = params['EventName']
+          @EventImportance = params['EventImportance']
+          @EventContent = params['EventContent']
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @NodeId = params['NodeId']
+          @NodeRole = params['NodeRole']
+          @EventStatus = params['EventStatus']
+          @EventType = params['EventType']
+          @EventTaskId = params['EventTaskId']
+          @EventIsolationStatus = params['EventIsolationStatus']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @SubEventType = params['SubEventType']
+          @CvmRepairId = params['CvmRepairId']
+          @ProcessType = params['ProcessType']
+          @SubEventName = params['SubEventName']
+        end
+      end
+
+      # 事件中心记录信息
+      class EventDataInfoOverview < TencentCloud::Common::AbstractModel
+        # @param EventType: <p>1：硬件异常；2：用户变更；3：智能运维</p>
+        # @type EventType: Integer
+        # @param EventTaskId: <p>事件任务Id</p>
+        # @type EventTaskId: Integer
+        # @param EventName: <p>事件名称</p>
+        # @type EventName: String
+        # @param EventImportance: <p>事件重要程度;0: 一般  1: 重要</p>
+        # @type EventImportance: Integer
+        # @param EventContent: <p>事件内容</p>
+        # @type EventContent: String
+        # @param InstanceId: <p>ES集群Id</p>
+        # @type InstanceId: String
+        # @param InstanceName: <p>集群名称</p>
+        # @type InstanceName: String
+        # @param NodeId: <p>ES集群节点id</p>
+        # @type NodeId: String
+        # @param NodeRole: <p>节点类型</p>
+        # @type NodeRole: String
+        # @param EventStatus: <p>事件状态：0:待处理，1:处理中，2:处理完成</p>
+        # @type EventStatus: Integer
+        # @param StartTime: <p>事件发生时间</p>
+        # @type StartTime: String
+        # @param EndTime: <p>事件结束时间</p>
+        # @type EndTime: String
+        # @param SubEventType: <p>子事件类型</p>
+        # @type SubEventType: Integer
+        # @param SubEventName: <p>子事件名称</p>
+        # @type SubEventName: String
+
+        attr_accessor :EventType, :EventTaskId, :EventName, :EventImportance, :EventContent, :InstanceId, :InstanceName, :NodeId, :NodeRole, :EventStatus, :StartTime, :EndTime, :SubEventType, :SubEventName
+
+        def initialize(eventtype=nil, eventtaskid=nil, eventname=nil, eventimportance=nil, eventcontent=nil, instanceid=nil, instancename=nil, nodeid=nil, noderole=nil, eventstatus=nil, starttime=nil, endtime=nil, subeventtype=nil, subeventname=nil)
+          @EventType = eventtype
+          @EventTaskId = eventtaskid
+          @EventName = eventname
+          @EventImportance = eventimportance
+          @EventContent = eventcontent
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @NodeId = nodeid
+          @NodeRole = noderole
+          @EventStatus = eventstatus
+          @StartTime = starttime
+          @EndTime = endtime
+          @SubEventType = subeventtype
+          @SubEventName = subeventname
+        end
+
+        def deserialize(params)
+          @EventType = params['EventType']
+          @EventTaskId = params['EventTaskId']
+          @EventName = params['EventName']
+          @EventImportance = params['EventImportance']
+          @EventContent = params['EventContent']
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @NodeId = params['NodeId']
+          @NodeRole = params['NodeRole']
+          @EventStatus = params['EventStatus']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @SubEventType = params['SubEventType']
+          @SubEventName = params['SubEventName']
+        end
+      end
+
+      # 事件类型详情结构
+      class EventTypeInfo < TencentCloud::Common::AbstractModel
+        # @param EventType: <p>事件类型</p>
+        # @type EventType: Integer
+        # @param EventTypeName: <p>事件名称</p>
+        # @type EventTypeName: String
+
+        attr_accessor :EventType, :EventTypeName
+
+        def initialize(eventtype=nil, eventtypename=nil)
+          @EventType = eventtype
+          @EventTypeName = eventtypename
+        end
+
+        def deserialize(params)
+          @EventType = params['EventType']
+          @EventTypeName = params['EventTypeName']
         end
       end
 
@@ -5852,6 +6763,244 @@ module TencentCloud
         end
       end
 
+      # Logstash节点规格资源描述
+      class LogstashNodeTypeResource < TencentCloud::Common::AbstractModel
+        # @param NodeTypeName: 规格名称
+        # @type NodeTypeName: String
+        # @param Available: 是否可售
+        # @type Available: Boolean
+        # @param NodeTypeInfo: 规格信息
+        # @type NodeTypeInfo: :class:`Tencentcloud::Es.v20180416.models.NodeTypeInfo`
+        # @param SsdAvailable: SSD盘是否可售
+        # @type SsdAvailable: Boolean
+        # @param SsdDiskSizeRange: SSD磁盘取值范围
+        # @type SsdDiskSizeRange: :class:`Tencentcloud::Es.v20180416.models.DiskSizeRange`
+        # @param SataAvailable: SATA盘是否可售
+        # @type SataAvailable: Boolean
+        # @param SataDiskSizeRange: SATA磁盘取值范围
+        # @type SataDiskSizeRange: :class:`Tencentcloud::Es.v20180416.models.DiskSizeRange`
+        # @param SsdSoldOutReason: SSD机型售罄原因
+        # @type SsdSoldOutReason: String
+        # @param SataSoldOutReason: SATA机型售罄原因
+        # @type SataSoldOutReason: String
+        # @param LocalDiskInfo: 本地盘信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LocalDiskInfo: :class:`Tencentcloud::Es.v20180416.models.LocalDiskInfo`
+        # @param DiskCountRange: 云盘块数取值范围
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiskCountRange: :class:`Tencentcloud::Es.v20180416.models.DiskCountRange`
+        # @param HSsdAvailable: 增强型SSD是否可用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HSsdAvailable: Boolean
+        # @param HSsdSoldOutReason: 增强型SSD机型售罄原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HSsdSoldOutReason: String
+        # @param HSsdDiskSizeRange: 增强型SSD磁盘取值范围
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HSsdDiskSizeRange: :class:`Tencentcloud::Es.v20180416.models.DiskSizeRange`
+        # @param ThroughputAvailable: 吞吐型云盘是否可用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ThroughputAvailable: Boolean
+        # @param ThroughputSoldOutReason: 吞吐型云盘售罄原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ThroughputSoldOutReason: String
+        # @param ThroughputDiskSizeRange: 吞吐型云盘取值范围
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ThroughputDiskSizeRange: :class:`Tencentcloud::Es.v20180416.models.DiskSizeRange`
+        # @param BigDataAvailable: BigData盘是否可售
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BigDataAvailable: Boolean
+        # @param BigDataSoldOutReason: BigData盘售罄原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BigDataSoldOutReason: String
+        # @param BigDataDiskSizeRange: BigData磁盘取值范围
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BigDataDiskSizeRange: :class:`Tencentcloud::Es.v20180416.models.DiskSizeRange`
+        # @param HighIOAvailable: HighIO盘是否可售
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HighIOAvailable: Boolean
+        # @param HighIOSoldOutReason: HighIO盘售罄原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HighIOSoldOutReason: String
+        # @param HighIODiskSizeRange: HighIO磁盘取值范围
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HighIODiskSizeRange: :class:`Tencentcloud::Es.v20180416.models.DiskSizeRange`
+        # @param BssdAvailable: Bssd盘是否可售
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BssdAvailable: Boolean
+        # @param BssdSoldOutReason: Bssd盘售罄原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BssdSoldOutReason: String
+        # @param BssdDiskSizeRange: Bssd盘取值范围
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BssdDiskSizeRange: :class:`Tencentcloud::Es.v20180416.models.DiskSizeRange`
+        # @param GpuInfo: GpuInfo
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GpuInfo: :class:`Tencentcloud::Es.v20180416.models.GpuInfo`
+
+        attr_accessor :NodeTypeName, :Available, :NodeTypeInfo, :SsdAvailable, :SsdDiskSizeRange, :SataAvailable, :SataDiskSizeRange, :SsdSoldOutReason, :SataSoldOutReason, :LocalDiskInfo, :DiskCountRange, :HSsdAvailable, :HSsdSoldOutReason, :HSsdDiskSizeRange, :ThroughputAvailable, :ThroughputSoldOutReason, :ThroughputDiskSizeRange, :BigDataAvailable, :BigDataSoldOutReason, :BigDataDiskSizeRange, :HighIOAvailable, :HighIOSoldOutReason, :HighIODiskSizeRange, :BssdAvailable, :BssdSoldOutReason, :BssdDiskSizeRange, :GpuInfo
+
+        def initialize(nodetypename=nil, available=nil, nodetypeinfo=nil, ssdavailable=nil, ssddisksizerange=nil, sataavailable=nil, satadisksizerange=nil, ssdsoldoutreason=nil, satasoldoutreason=nil, localdiskinfo=nil, diskcountrange=nil, hssdavailable=nil, hssdsoldoutreason=nil, hssddisksizerange=nil, throughputavailable=nil, throughputsoldoutreason=nil, throughputdisksizerange=nil, bigdataavailable=nil, bigdatasoldoutreason=nil, bigdatadisksizerange=nil, highioavailable=nil, highiosoldoutreason=nil, highiodisksizerange=nil, bssdavailable=nil, bssdsoldoutreason=nil, bssddisksizerange=nil, gpuinfo=nil)
+          @NodeTypeName = nodetypename
+          @Available = available
+          @NodeTypeInfo = nodetypeinfo
+          @SsdAvailable = ssdavailable
+          @SsdDiskSizeRange = ssddisksizerange
+          @SataAvailable = sataavailable
+          @SataDiskSizeRange = satadisksizerange
+          @SsdSoldOutReason = ssdsoldoutreason
+          @SataSoldOutReason = satasoldoutreason
+          @LocalDiskInfo = localdiskinfo
+          @DiskCountRange = diskcountrange
+          @HSsdAvailable = hssdavailable
+          @HSsdSoldOutReason = hssdsoldoutreason
+          @HSsdDiskSizeRange = hssddisksizerange
+          @ThroughputAvailable = throughputavailable
+          @ThroughputSoldOutReason = throughputsoldoutreason
+          @ThroughputDiskSizeRange = throughputdisksizerange
+          @BigDataAvailable = bigdataavailable
+          @BigDataSoldOutReason = bigdatasoldoutreason
+          @BigDataDiskSizeRange = bigdatadisksizerange
+          @HighIOAvailable = highioavailable
+          @HighIOSoldOutReason = highiosoldoutreason
+          @HighIODiskSizeRange = highiodisksizerange
+          @BssdAvailable = bssdavailable
+          @BssdSoldOutReason = bssdsoldoutreason
+          @BssdDiskSizeRange = bssddisksizerange
+          @GpuInfo = gpuinfo
+        end
+
+        def deserialize(params)
+          @NodeTypeName = params['NodeTypeName']
+          @Available = params['Available']
+          unless params['NodeTypeInfo'].nil?
+            @NodeTypeInfo = NodeTypeInfo.new
+            @NodeTypeInfo.deserialize(params['NodeTypeInfo'])
+          end
+          @SsdAvailable = params['SsdAvailable']
+          unless params['SsdDiskSizeRange'].nil?
+            @SsdDiskSizeRange = DiskSizeRange.new
+            @SsdDiskSizeRange.deserialize(params['SsdDiskSizeRange'])
+          end
+          @SataAvailable = params['SataAvailable']
+          unless params['SataDiskSizeRange'].nil?
+            @SataDiskSizeRange = DiskSizeRange.new
+            @SataDiskSizeRange.deserialize(params['SataDiskSizeRange'])
+          end
+          @SsdSoldOutReason = params['SsdSoldOutReason']
+          @SataSoldOutReason = params['SataSoldOutReason']
+          unless params['LocalDiskInfo'].nil?
+            @LocalDiskInfo = LocalDiskInfo.new
+            @LocalDiskInfo.deserialize(params['LocalDiskInfo'])
+          end
+          unless params['DiskCountRange'].nil?
+            @DiskCountRange = DiskCountRange.new
+            @DiskCountRange.deserialize(params['DiskCountRange'])
+          end
+          @HSsdAvailable = params['HSsdAvailable']
+          @HSsdSoldOutReason = params['HSsdSoldOutReason']
+          unless params['HSsdDiskSizeRange'].nil?
+            @HSsdDiskSizeRange = DiskSizeRange.new
+            @HSsdDiskSizeRange.deserialize(params['HSsdDiskSizeRange'])
+          end
+          @ThroughputAvailable = params['ThroughputAvailable']
+          @ThroughputSoldOutReason = params['ThroughputSoldOutReason']
+          unless params['ThroughputDiskSizeRange'].nil?
+            @ThroughputDiskSizeRange = DiskSizeRange.new
+            @ThroughputDiskSizeRange.deserialize(params['ThroughputDiskSizeRange'])
+          end
+          @BigDataAvailable = params['BigDataAvailable']
+          @BigDataSoldOutReason = params['BigDataSoldOutReason']
+          unless params['BigDataDiskSizeRange'].nil?
+            @BigDataDiskSizeRange = DiskSizeRange.new
+            @BigDataDiskSizeRange.deserialize(params['BigDataDiskSizeRange'])
+          end
+          @HighIOAvailable = params['HighIOAvailable']
+          @HighIOSoldOutReason = params['HighIOSoldOutReason']
+          unless params['HighIODiskSizeRange'].nil?
+            @HighIODiskSizeRange = DiskSizeRange.new
+            @HighIODiskSizeRange.deserialize(params['HighIODiskSizeRange'])
+          end
+          @BssdAvailable = params['BssdAvailable']
+          @BssdSoldOutReason = params['BssdSoldOutReason']
+          unless params['BssdDiskSizeRange'].nil?
+            @BssdDiskSizeRange = DiskSizeRange.new
+            @BssdDiskSizeRange.deserialize(params['BssdDiskSizeRange'])
+          end
+          unless params['GpuInfo'].nil?
+            @GpuInfo = GpuInfo.new
+            @GpuInfo.deserialize(params['GpuInfo'])
+          end
+        end
+      end
+
+      # Logstash节点维度视图数据
+      class LogstashNodeView < TencentCloud::Common::AbstractModel
+        # @param NodeId: 节点ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeId: String
+        # @param NodeIp: 节点IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeIp: String
+        # @param NodeHttpIp: 节点HTTP IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeHttpIp: String
+        # @param Zone: 可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Zone: String
+        # @param DiskSize: 节点总磁盘大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiskSize: Integer
+        # @param DiskUsage: 磁盘使用率
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiskUsage: Float
+        # @param MemSize: 节点内存大小，单位GB
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MemSize: Integer
+        # @param MemUsage: 内存使用率
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MemUsage: Float
+        # @param JvmMemUsage: JVM内存使用率
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JvmMemUsage: Float
+        # @param CpuNum: 节点cpu个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CpuNum: Integer
+        # @param CpuUsage: cpu使用率
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CpuUsage: Float
+
+        attr_accessor :NodeId, :NodeIp, :NodeHttpIp, :Zone, :DiskSize, :DiskUsage, :MemSize, :MemUsage, :JvmMemUsage, :CpuNum, :CpuUsage
+
+        def initialize(nodeid=nil, nodeip=nil, nodehttpip=nil, zone=nil, disksize=nil, diskusage=nil, memsize=nil, memusage=nil, jvmmemusage=nil, cpunum=nil, cpuusage=nil)
+          @NodeId = nodeid
+          @NodeIp = nodeip
+          @NodeHttpIp = nodehttpip
+          @Zone = zone
+          @DiskSize = disksize
+          @DiskUsage = diskusage
+          @MemSize = memsize
+          @MemUsage = memusage
+          @JvmMemUsage = jvmmemusage
+          @CpuNum = cpunum
+          @CpuUsage = cpuusage
+        end
+
+        def deserialize(params)
+          @NodeId = params['NodeId']
+          @NodeIp = params['NodeIp']
+          @NodeHttpIp = params['NodeHttpIp']
+          @Zone = params['Zone']
+          @DiskSize = params['DiskSize']
+          @DiskUsage = params['DiskUsage']
+          @MemSize = params['MemSize']
+          @MemUsage = params['MemUsage']
+          @JvmMemUsage = params['JvmMemUsage']
+          @CpuNum = params['CpuNum']
+          @CpuUsage = params['CpuUsage']
+        end
+      end
+
       # Logstash管道信息
       class LogstashPipeline < TencentCloud::Common::AbstractModel
         # @param PipelineId: 管道ID
@@ -5974,6 +7123,41 @@ module TencentCloud
           @QueueCheckPointWrites = params['QueueCheckPointWrites']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # Logstash可用区资源描述
+      class LogstashZoneResource < TencentCloud::Common::AbstractModel
+        # @param ZoneName: 可用区名称
+        # @type ZoneName: String
+        # @param Available: 是否可售
+        # @type Available: Boolean
+        # @param NodeTypeList: 节点规格资源列表
+        # @type NodeTypeList: Array
+        # @param AvailNodeFamilies: 可用节点机型族列表
+        # @type AvailNodeFamilies: Array
+
+        attr_accessor :ZoneName, :Available, :NodeTypeList, :AvailNodeFamilies
+
+        def initialize(zonename=nil, available=nil, nodetypelist=nil, availnodefamilies=nil)
+          @ZoneName = zonename
+          @Available = available
+          @NodeTypeList = nodetypelist
+          @AvailNodeFamilies = availnodefamilies
+        end
+
+        def deserialize(params)
+          @ZoneName = params['ZoneName']
+          @Available = params['Available']
+          unless params['NodeTypeList'].nil?
+            @NodeTypeList = []
+            params['NodeTypeList'].each do |i|
+              logstashnodetyperesource_tmp = LogstashNodeTypeResource.new
+              logstashnodetyperesource_tmp.deserialize(i)
+              @NodeTypeList << logstashnodetyperesource_tmp
+            end
+          end
+          @AvailNodeFamilies = params['AvailNodeFamilies']
         end
       end
 
@@ -6330,6 +7514,248 @@ module TencentCloud
           @CpuNum = params['CpuNum']
           @MemSize = params['MemSize']
           @DiskEnhance = params['DiskEnhance']
+          unless params['GpuInfo'].nil?
+            @GpuInfo = GpuInfo.new
+            @GpuInfo.deserialize(params['GpuInfo'])
+          end
+        end
+      end
+
+      # 磁盘上下限
+      class NodeTypeDiskSizeRange < TencentCloud::Common::AbstractModel
+        # @param NodeType: 机器类型
+        # @type NodeType: String
+        # @param Type: 节点类型
+        # @type Type: String
+        # @param DiskType: 磁盘类型
+        # @type DiskType: String
+        # @param Min: 磁盘最小值
+        # @type Min: Integer
+        # @param Med: 中刻度值
+        # @type Med: Integer
+        # @param Max: 磁盘最大值
+        # @type Max: Integer
+        # @param DiskCountMin: 磁盘最小个数
+        # @type DiskCountMin: Integer
+        # @param DiskCountMax: 磁盘最大个数
+        # @type DiskCountMax: Integer
+        # @param DiskEncrypt: 是否加密盘
+        # @type DiskEncrypt: Integer
+        # @param DiskEnhance: 是否增强
+        # @type DiskEnhance: Integer
+        # @param IsLvm: 是否lvm
+        # @type IsLvm: Integer
+        # @param IsLocalDiskType: 是否本地盘
+        # @type IsLocalDiskType: Boolean
+
+        attr_accessor :NodeType, :Type, :DiskType, :Min, :Med, :Max, :DiskCountMin, :DiskCountMax, :DiskEncrypt, :DiskEnhance, :IsLvm, :IsLocalDiskType
+
+        def initialize(nodetype=nil, type=nil, disktype=nil, min=nil, med=nil, max=nil, diskcountmin=nil, diskcountmax=nil, diskencrypt=nil, diskenhance=nil, islvm=nil, islocaldisktype=nil)
+          @NodeType = nodetype
+          @Type = type
+          @DiskType = disktype
+          @Min = min
+          @Med = med
+          @Max = max
+          @DiskCountMin = diskcountmin
+          @DiskCountMax = diskcountmax
+          @DiskEncrypt = diskencrypt
+          @DiskEnhance = diskenhance
+          @IsLvm = islvm
+          @IsLocalDiskType = islocaldisktype
+        end
+
+        def deserialize(params)
+          @NodeType = params['NodeType']
+          @Type = params['Type']
+          @DiskType = params['DiskType']
+          @Min = params['Min']
+          @Med = params['Med']
+          @Max = params['Max']
+          @DiskCountMin = params['DiskCountMin']
+          @DiskCountMax = params['DiskCountMax']
+          @DiskEncrypt = params['DiskEncrypt']
+          @DiskEnhance = params['DiskEnhance']
+          @IsLvm = params['IsLvm']
+          @IsLocalDiskType = params['IsLocalDiskType']
+        end
+      end
+
+      # 节点规格信息
+      class NodeTypeInfo < TencentCloud::Common::AbstractModel
+        # @param Cpu: CPU核数
+        # @type Cpu: Integer
+        # @param Mem: 内存大小，单位GB
+        # @type Mem: Integer
+        # @param Desc: 规格描述
+        # @type Desc: String
+
+        attr_accessor :Cpu, :Mem, :Desc
+
+        def initialize(cpu=nil, mem=nil, desc=nil)
+          @Cpu = cpu
+          @Mem = mem
+          @Desc = desc
+        end
+
+        def deserialize(params)
+          @Cpu = params['Cpu']
+          @Mem = params['Mem']
+          @Desc = params['Desc']
+        end
+      end
+
+      # 节点规格资源描述
+      class NodeTypeResource < TencentCloud::Common::AbstractModel
+        # @param NodeTypeName: 规格名称
+        # @type NodeTypeName: String
+        # @param Available: 是否可售
+        # @type Available: Boolean
+        # @param NodeTypeInfo: 规格信息
+        # @type NodeTypeInfo: :class:`Tencentcloud::Es.v20180416.models.NodeTypeInfo`
+        # @param SsdAvailable: SSD盘是否可售
+        # @type SsdAvailable: Boolean
+        # @param SsdDiskSizeRange: SSD磁盘取值范围
+        # @type SsdDiskSizeRange: :class:`Tencentcloud::Es.v20180416.models.DiskSizeRange`
+        # @param SataAvailable: SATA盘是否可售
+        # @type SataAvailable: Boolean
+        # @param SataDiskSizeRange: SATA磁盘取值范围
+        # @type SataDiskSizeRange: :class:`Tencentcloud::Es.v20180416.models.DiskSizeRange`
+        # @param SsdSoldOutReason: SSD机型售罄原因
+        # @type SsdSoldOutReason: String
+        # @param SataSoldOutReason: SATA机型售罄原因
+        # @type SataSoldOutReason: String
+        # @param LocalDiskInfo: 本地盘信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LocalDiskInfo: :class:`Tencentcloud::Es.v20180416.models.LocalDiskInfo`
+        # @param DiskCountRange: 云盘块数取值范围
+        # @type DiskCountRange: :class:`Tencentcloud::Es.v20180416.models.DiskCountRange`
+        # @param HSsdAvailable: HSSD盘是否可售
+        # @type HSsdAvailable: Boolean
+        # @param HSsdSoldOutReason: HSSD机型售罄原因
+        # @type HSsdSoldOutReason: String
+        # @param HSsdDiskSizeRange: HSSD磁盘取值范围
+        # @type HSsdDiskSizeRange: :class:`Tencentcloud::Es.v20180416.models.DiskSizeRange`
+        # @param ThroughputAvailable: Throughput盘是否可售
+        # @type ThroughputAvailable: Boolean
+        # @param ThroughputSoldOutReason: Throughput机型售罄原因
+        # @type ThroughputSoldOutReason: String
+        # @param ThroughputDiskSizeRange: Throughput磁盘取值范围
+        # @type ThroughputDiskSizeRange: :class:`Tencentcloud::Es.v20180416.models.DiskSizeRange`
+        # @param BigDataAvailable: BigData盘是否可售
+        # @type BigDataAvailable: Boolean
+        # @param BigDataSoldOutReason: BigData盘售罄原因
+        # @type BigDataSoldOutReason: String
+        # @param BigDataDiskSizeRange: BigData磁盘取值范围
+        # @type BigDataDiskSizeRange: :class:`Tencentcloud::Es.v20180416.models.DiskSizeRange`
+        # @param HighIOAvailable: HighIO盘是否可售
+        # @type HighIOAvailable: Boolean
+        # @param HighIOSoldOutReason: HighIO盘售罄原因
+        # @type HighIOSoldOutReason: String
+        # @param HighIODiskSizeRange: HighIO磁盘取值范围
+        # @type HighIODiskSizeRange: :class:`Tencentcloud::Es.v20180416.models.DiskSizeRange`
+        # @param BssdAvailable: Bssd盘是否可售
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BssdAvailable: Boolean
+        # @param BssdSoldOutReason: Bssd盘售罄原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BssdSoldOutReason: String
+        # @param BssdDiskSizeRange: Bssd盘取值范围
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BssdDiskSizeRange: :class:`Tencentcloud::Es.v20180416.models.DiskSizeRange`
+        # @param GpuInfo: 节点Gpu信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GpuInfo: :class:`Tencentcloud::Es.v20180416.models.GpuInfo`
+
+        attr_accessor :NodeTypeName, :Available, :NodeTypeInfo, :SsdAvailable, :SsdDiskSizeRange, :SataAvailable, :SataDiskSizeRange, :SsdSoldOutReason, :SataSoldOutReason, :LocalDiskInfo, :DiskCountRange, :HSsdAvailable, :HSsdSoldOutReason, :HSsdDiskSizeRange, :ThroughputAvailable, :ThroughputSoldOutReason, :ThroughputDiskSizeRange, :BigDataAvailable, :BigDataSoldOutReason, :BigDataDiskSizeRange, :HighIOAvailable, :HighIOSoldOutReason, :HighIODiskSizeRange, :BssdAvailable, :BssdSoldOutReason, :BssdDiskSizeRange, :GpuInfo
+
+        def initialize(nodetypename=nil, available=nil, nodetypeinfo=nil, ssdavailable=nil, ssddisksizerange=nil, sataavailable=nil, satadisksizerange=nil, ssdsoldoutreason=nil, satasoldoutreason=nil, localdiskinfo=nil, diskcountrange=nil, hssdavailable=nil, hssdsoldoutreason=nil, hssddisksizerange=nil, throughputavailable=nil, throughputsoldoutreason=nil, throughputdisksizerange=nil, bigdataavailable=nil, bigdatasoldoutreason=nil, bigdatadisksizerange=nil, highioavailable=nil, highiosoldoutreason=nil, highiodisksizerange=nil, bssdavailable=nil, bssdsoldoutreason=nil, bssddisksizerange=nil, gpuinfo=nil)
+          @NodeTypeName = nodetypename
+          @Available = available
+          @NodeTypeInfo = nodetypeinfo
+          @SsdAvailable = ssdavailable
+          @SsdDiskSizeRange = ssddisksizerange
+          @SataAvailable = sataavailable
+          @SataDiskSizeRange = satadisksizerange
+          @SsdSoldOutReason = ssdsoldoutreason
+          @SataSoldOutReason = satasoldoutreason
+          @LocalDiskInfo = localdiskinfo
+          @DiskCountRange = diskcountrange
+          @HSsdAvailable = hssdavailable
+          @HSsdSoldOutReason = hssdsoldoutreason
+          @HSsdDiskSizeRange = hssddisksizerange
+          @ThroughputAvailable = throughputavailable
+          @ThroughputSoldOutReason = throughputsoldoutreason
+          @ThroughputDiskSizeRange = throughputdisksizerange
+          @BigDataAvailable = bigdataavailable
+          @BigDataSoldOutReason = bigdatasoldoutreason
+          @BigDataDiskSizeRange = bigdatadisksizerange
+          @HighIOAvailable = highioavailable
+          @HighIOSoldOutReason = highiosoldoutreason
+          @HighIODiskSizeRange = highiodisksizerange
+          @BssdAvailable = bssdavailable
+          @BssdSoldOutReason = bssdsoldoutreason
+          @BssdDiskSizeRange = bssddisksizerange
+          @GpuInfo = gpuinfo
+        end
+
+        def deserialize(params)
+          @NodeTypeName = params['NodeTypeName']
+          @Available = params['Available']
+          unless params['NodeTypeInfo'].nil?
+            @NodeTypeInfo = NodeTypeInfo.new
+            @NodeTypeInfo.deserialize(params['NodeTypeInfo'])
+          end
+          @SsdAvailable = params['SsdAvailable']
+          unless params['SsdDiskSizeRange'].nil?
+            @SsdDiskSizeRange = DiskSizeRange.new
+            @SsdDiskSizeRange.deserialize(params['SsdDiskSizeRange'])
+          end
+          @SataAvailable = params['SataAvailable']
+          unless params['SataDiskSizeRange'].nil?
+            @SataDiskSizeRange = DiskSizeRange.new
+            @SataDiskSizeRange.deserialize(params['SataDiskSizeRange'])
+          end
+          @SsdSoldOutReason = params['SsdSoldOutReason']
+          @SataSoldOutReason = params['SataSoldOutReason']
+          unless params['LocalDiskInfo'].nil?
+            @LocalDiskInfo = LocalDiskInfo.new
+            @LocalDiskInfo.deserialize(params['LocalDiskInfo'])
+          end
+          unless params['DiskCountRange'].nil?
+            @DiskCountRange = DiskCountRange.new
+            @DiskCountRange.deserialize(params['DiskCountRange'])
+          end
+          @HSsdAvailable = params['HSsdAvailable']
+          @HSsdSoldOutReason = params['HSsdSoldOutReason']
+          unless params['HSsdDiskSizeRange'].nil?
+            @HSsdDiskSizeRange = DiskSizeRange.new
+            @HSsdDiskSizeRange.deserialize(params['HSsdDiskSizeRange'])
+          end
+          @ThroughputAvailable = params['ThroughputAvailable']
+          @ThroughputSoldOutReason = params['ThroughputSoldOutReason']
+          unless params['ThroughputDiskSizeRange'].nil?
+            @ThroughputDiskSizeRange = DiskSizeRange.new
+            @ThroughputDiskSizeRange.deserialize(params['ThroughputDiskSizeRange'])
+          end
+          @BigDataAvailable = params['BigDataAvailable']
+          @BigDataSoldOutReason = params['BigDataSoldOutReason']
+          unless params['BigDataDiskSizeRange'].nil?
+            @BigDataDiskSizeRange = DiskSizeRange.new
+            @BigDataDiskSizeRange.deserialize(params['BigDataDiskSizeRange'])
+          end
+          @HighIOAvailable = params['HighIOAvailable']
+          @HighIOSoldOutReason = params['HighIOSoldOutReason']
+          unless params['HighIODiskSizeRange'].nil?
+            @HighIODiskSizeRange = DiskSizeRange.new
+            @HighIODiskSizeRange.deserialize(params['HighIODiskSizeRange'])
+          end
+          @BssdAvailable = params['BssdAvailable']
+          @BssdSoldOutReason = params['BssdSoldOutReason']
+          unless params['BssdDiskSizeRange'].nil?
+            @BssdDiskSizeRange = DiskSizeRange.new
+            @BssdDiskSizeRange.deserialize(params['BssdDiskSizeRange'])
+          end
           unless params['GpuInfo'].nil?
             @GpuInfo = GpuInfo.new
             @GpuInfo.deserialize(params['GpuInfo'])
@@ -6843,29 +8269,182 @@ module TencentCloud
         end
       end
 
-      # RequestInstancesByGet请求参数结构体
-      class RequestInstancesByGetRequest < TencentCloud::Common::AbstractModel
+      # QueryZoneResourceForLogstash请求参数结构体
+      class QueryZoneResourceForLogstashRequest < TencentCloud::Common::AbstractModel
+        # @param Zones: 要检查的可用区
+        # @type Zones: Array
+        # @param ChargeType: 计费类型<li>PREPAID：预付费，即包年包月</li><li>POSTPAID_BY_HOUR：按小时后付费</li>
+        # @type ChargeType: String
 
+        attr_accessor :Zones, :ChargeType
 
-        def initialize()
+        def initialize(zones=nil, chargetype=nil)
+          @Zones = zones
+          @ChargeType = chargetype
         end
 
         def deserialize(params)
+          @Zones = params['Zones']
+          @ChargeType = params['ChargeType']
+        end
+      end
+
+      # QueryZoneResourceForLogstash返回参数结构体
+      class QueryZoneResourceForLogstashResponse < TencentCloud::Common::AbstractModel
+        # @param ZoneResources: 可用区资源描述列表
+        # @type ZoneResources: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ZoneResources, :RequestId
+
+        def initialize(zoneresources=nil, requestid=nil)
+          @ZoneResources = zoneresources
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ZoneResources'].nil?
+            @ZoneResources = []
+            params['ZoneResources'].each do |i|
+              logstashzoneresource_tmp = LogstashZoneResource.new
+              logstashzoneresource_tmp.deserialize(i)
+              @ZoneResources << logstashzoneresource_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # QueryZoneResource请求参数结构体
+      class QueryZoneResourceRequest < TencentCloud::Common::AbstractModel
+        # @param Zones: 要检查的可用区
+        # @type Zones: Array
+        # @param OptType: 操作类型（create数据节点创建，masterCreate专用主节点创建，scaleUp数据节点纵向扩容，masterAdd添加专用主节点，masterScaleUp专用主节点纵向扩容）
+        # @type OptType: String
+        # @param InstanceId: 实例ID(变配检查需要传递)
+        # @type InstanceId: String
+        # @param DeployMode: 集群部署方式
+        # <li>0, 单可用区部署</li>
+        # <li>1, 多可用区部署</li>
+        # @type DeployMode: Integer
+        # @param ChargeType: 计费类型<li>PREPAID：预付费，即包年包月</li><li>POSTPAID_BY_HOUR：按小时后付费</li>
+        # @type ChargeType: String
+        # @param EsVersion: ES版本号如5.6.4，6.4.3，6.8.2，7.5.1
+        # @type EsVersion: String
+        # @param CdcId: cdcId，使用cdc子网时传递
+        # @type CdcId: String
+
+        attr_accessor :Zones, :OptType, :InstanceId, :DeployMode, :ChargeType, :EsVersion, :CdcId
+
+        def initialize(zones=nil, opttype=nil, instanceid=nil, deploymode=nil, chargetype=nil, esversion=nil, cdcid=nil)
+          @Zones = zones
+          @OptType = opttype
+          @InstanceId = instanceid
+          @DeployMode = deploymode
+          @ChargeType = chargetype
+          @EsVersion = esversion
+          @CdcId = cdcid
+        end
+
+        def deserialize(params)
+          @Zones = params['Zones']
+          @OptType = params['OptType']
+          @InstanceId = params['InstanceId']
+          @DeployMode = params['DeployMode']
+          @ChargeType = params['ChargeType']
+          @EsVersion = params['EsVersion']
+          @CdcId = params['CdcId']
+        end
+      end
+
+      # QueryZoneResource返回参数结构体
+      class QueryZoneResourceResponse < TencentCloud::Common::AbstractModel
+        # @param ZoneResources: 可用区资源描述列表
+        # @type ZoneResources: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ZoneResources, :RequestId
+
+        def initialize(zoneresources=nil, requestid=nil)
+          @ZoneResources = zoneresources
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ZoneResources'].nil?
+            @ZoneResources = []
+            params['ZoneResources'].each do |i|
+              zoneresource_tmp = ZoneResource.new
+              zoneresource_tmp.deserialize(i)
+              @ZoneResources << zoneresource_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 支持的地域名
+      class RegionsData < TencentCloud::Common::AbstractModel
+        # @param Region: 地域英文名
+        # @type Region: String
+        # @param RegionName: 地域中文名
+        # @type RegionName: String
+
+        attr_accessor :Region, :RegionName
+
+        def initialize(region=nil, regionname=nil)
+          @Region = region
+          @RegionName = regionname
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          @RegionName = params['RegionName']
+        end
+      end
+
+      # RequestInstancesByGet请求参数结构体
+      class RequestInstancesByGetRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>集群id</p>
+        # @type InstanceId: String
+        # @param Uri: <p>请求路径</p>
+        # @type Uri: String
+        # @param Caller: <p>调用方</p>
+        # @type Caller: String
+
+        attr_accessor :InstanceId, :Uri, :Caller
+
+        def initialize(instanceid=nil, uri=nil, caller=nil)
+          @InstanceId = instanceid
+          @Uri = uri
+          @Caller = caller
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Uri = params['Uri']
+          @Caller = params['Caller']
         end
       end
 
       # RequestInstancesByGet返回参数结构体
       class RequestInstancesByGetResponse < TencentCloud::Common::AbstractModel
+        # @param Detail: <p>集群返回信息</p>
+        # @type Detail: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Detail, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(detail=nil, requestid=nil)
+          @Detail = detail
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @Detail = params['Detail']
           @RequestId = params['RequestId']
         end
       end
@@ -9111,6 +10690,41 @@ module TencentCloud
           @Zone = params['Zone']
           @SubnetId = params['SubnetId']
           @Hidden = params['Hidden']
+        end
+      end
+
+      # 可用区资源描述
+      class ZoneResource < TencentCloud::Common::AbstractModel
+        # @param ZoneName: 可用区名称
+        # @type ZoneName: String
+        # @param Available: 是否可售
+        # @type Available: Boolean
+        # @param NodeTypeList: 节点规格资源列表
+        # @type NodeTypeList: Array
+        # @param AvailNodeFamilies: 可用节点机型族列表
+        # @type AvailNodeFamilies: Array
+
+        attr_accessor :ZoneName, :Available, :NodeTypeList, :AvailNodeFamilies
+
+        def initialize(zonename=nil, available=nil, nodetypelist=nil, availnodefamilies=nil)
+          @ZoneName = zonename
+          @Available = available
+          @NodeTypeList = nodetypelist
+          @AvailNodeFamilies = availnodefamilies
+        end
+
+        def deserialize(params)
+          @ZoneName = params['ZoneName']
+          @Available = params['Available']
+          unless params['NodeTypeList'].nil?
+            @NodeTypeList = []
+            params['NodeTypeList'].each do |i|
+              nodetyperesource_tmp = NodeTypeResource.new
+              nodetyperesource_tmp.deserialize(i)
+              @NodeTypeList << nodetyperesource_tmp
+            end
+          end
+          @AvailNodeFamilies = params['AvailNodeFamilies']
         end
       end
 

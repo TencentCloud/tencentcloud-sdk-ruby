@@ -6572,50 +6572,25 @@ module TencentCloud
 
       # 音频流配置参数
       class AudioTemplateInfoForUpdate < TencentCloud::Common::AbstractModel
-        # @param Codec: 音频流的编码格式。
-        # 当外层参数 Container 为 mp3 时，可选值为：
-        # <li>libmp3lame。</li>
-        # 当外层参数 Container 为 ogg 或 flac 时，可选值为：
-        # <li>flac。</li>
-        # 当外层参数 Container 为 m4a 时，可选值为：
-        # <li>libfdk_aac；</li>
-        # <li>libmp3lame；</li>
-        # <li>ac3。</li>
-        # 当外层参数 Container 为 mp4 或 flv 时，可选值为：
-        # <li>libfdk_aac：更适合 mp4；</li>
-        # <li>libmp3lame：更适合 flv；</li>
-        # <li>mp2。</li>
-        # 当外层参数 Container 为 hls 时，可选值为：
-        # <li>libfdk_aac。</li>
-        # 当外层参数 Format 为 HLS 或 MPEG-DASH 时，可选值为：
-        # <li>libfdk_aac。</li>
-        # 当外层参数 Container 为 wav 时，可选值为：
-        # <li>pcm16。</li>
+        # @param Codec: <p>音频流的编码格式。<br>当外层参数 Container 为 mp3 时，可选值为：</p><li>libmp3lame。</li>当外层参数 Container 为 ogg 或 flac 时，可选值为：<li>flac。</li>当外层参数 Container 为 m4a 时，可选值为：<li>libfdk_aac；</li><li>libmp3lame；</li><li>ac3。</li>当外层参数 Container 为 mp4 或 flv 时，可选值为：<li>libfdk_aac：更适合 mp4；</li><li>libmp3lame：更适合 flv；</li><li>mp2。</li>当外层参数 Container 为 hls 时，可选值为：<li>libfdk_aac。</li>当外层参数 Format 为 HLS 或 MPEG-DASH 时，可选值为：<li>libfdk_aac。</li>当外层参数 Container 为 wav 时，可选值为：<li>pcm16。</li>
         # @type Codec: String
-        # @param Bitrate: 音频流的码率，取值范围：0 和 [26, 256]，单位：kbps。 当取值为 0，表示由云点播自动设置码率。
+        # @param Bitrate: <p>音频流的码率，取值范围：0 和 [26, 256]，单位：kbps。 当取值为 0，表示由云点播自动设置码率。</p>
         # @type Bitrate: Integer
-        # @param SampleRate: 音频流的采样率，可选值：
-        # <li>16000，仅当 Codec 为 pcm16 时可选。</li>
-        # <li>32000</li>
-        # <li>44100</li>
-        # <li>48000</li>
-        # 单位：Hz。
+        # @param SampleRate: <p>音频流的采样率，可选值：</p><li>16000，仅当 Codec 为 pcm16 时可选。</li><li>32000</li><li>44100</li><li>48000</li>单位：Hz。
         # @type SampleRate: Integer
-        # @param AudioChannel: 音频通道，可选值：
-        # <li>1：单通道</li>
-        # <li>2：双通道</li>
-        # <li>6：立体声</li>
-        # <li>0：音频声道数和原始音频保持一致</li>
-        # 当媒体的封装格式是音频格式时（flac，ogg，mp3，m4a）时，声道数不允许设为立体声。
+        # @param AudioChannel: <p>音频通道，可选值：</p><li>1：单通道</li><li>2：双通道</li><li>6：立体声</li><li>0：音频声道数和原始音频保持一致</li>当媒体的封装格式是音频格式时（flac，ogg，mp3，m4a）时，声道数不允许设为立体声。
         # @type AudioChannel: Integer
+        # @param StreamSelects: <p>指定输出要保留的音频轨道。默认是全部保留源的。</p><p>仅当在参数 OverrideParameter 中指定时生效，其他情况下不生效。</p>
+        # @type StreamSelects: Array
 
-        attr_accessor :Codec, :Bitrate, :SampleRate, :AudioChannel
+        attr_accessor :Codec, :Bitrate, :SampleRate, :AudioChannel, :StreamSelects
 
-        def initialize(codec=nil, bitrate=nil, samplerate=nil, audiochannel=nil)
+        def initialize(codec=nil, bitrate=nil, samplerate=nil, audiochannel=nil, streamselects=nil)
           @Codec = codec
           @Bitrate = bitrate
           @SampleRate = samplerate
           @AudioChannel = audiochannel
+          @StreamSelects = streamselects
         end
 
         def deserialize(params)
@@ -6623,6 +6598,7 @@ module TencentCloud
           @Bitrate = params['Bitrate']
           @SampleRate = params['SampleRate']
           @AudioChannel = params['AudioChannel']
+          @StreamSelects = params['StreamSelects']
         end
       end
 
@@ -28422,6 +28398,58 @@ module TencentCloud
         end
       end
 
+      # 自定义视频转码参数。
+      class OverrideTranscodeParameter < TencentCloud::Common::AbstractModel
+        # @param Container: 封装格式，可选值：mp4、flv、hls、mp3、flac、ogg、m4a、wav。其中，mp3、flac、ogg、m4a、wav 为纯音频文件。
+        # @type Container: String
+        # @param RemoveVideo: 是否去除视频数据，取值：
+        # <li>0：保留；<\li>
+        # <li>1：去除。<\li>
+        # @type RemoveVideo: Integer
+        # @param RemoveAudio: 是否去除音频数据，取值：
+        # <li>0：保留；<\li>
+        # <li>1：去除。<\li>
+        # @type RemoveAudio: Integer
+        # @param VideoTemplate: 视频流配置参数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VideoTemplate: :class:`Tencentcloud::Vod.v20180717.models.VideoTemplateInfoForUpdate`
+        # @param AudioTemplate: 音频流配置参数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AudioTemplate: :class:`Tencentcloud::Vod.v20180717.models.AudioTemplateInfoForUpdate`
+        # @param TEHDConfig: 极速高清转码配置参数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TEHDConfig: :class:`Tencentcloud::Vod.v20180717.models.TEHDConfigForUpdate`
+
+        attr_accessor :Container, :RemoveVideo, :RemoveAudio, :VideoTemplate, :AudioTemplate, :TEHDConfig
+
+        def initialize(container=nil, removevideo=nil, removeaudio=nil, videotemplate=nil, audiotemplate=nil, tehdconfig=nil)
+          @Container = container
+          @RemoveVideo = removevideo
+          @RemoveAudio = removeaudio
+          @VideoTemplate = videotemplate
+          @AudioTemplate = audiotemplate
+          @TEHDConfig = tehdconfig
+        end
+
+        def deserialize(params)
+          @Container = params['Container']
+          @RemoveVideo = params['RemoveVideo']
+          @RemoveAudio = params['RemoveAudio']
+          unless params['VideoTemplate'].nil?
+            @VideoTemplate = VideoTemplateInfoForUpdate.new
+            @VideoTemplate.deserialize(params['VideoTemplate'])
+          end
+          unless params['AudioTemplate'].nil?
+            @AudioTemplate = AudioTemplateInfoForUpdate.new
+            @AudioTemplate.deserialize(params['AudioTemplate'])
+          end
+          unless params['TEHDConfig'].nil?
+            @TEHDConfig = TEHDConfigForUpdate.new
+            @TEHDConfig.deserialize(params['TEHDConfig'])
+          end
+        end
+      end
+
       # ParseStreamingManifest请求参数结构体
       class ParseStreamingManifestRequest < TencentCloud::Common::AbstractModel
         # @param MediaManifestContent: 待解析的索引文件内容。
@@ -36576,12 +36604,14 @@ module TencentCloud
         # @type StartTimeOffset: Float
         # @param EndTimeOffset: <p>转码后视频的终止时间偏移，单位：秒。</p><li>不填或填0，表示转码后的视频持续到原始视频的末尾终止；</li><li>当数值大于0时（假设为 n），表示转码后的视频持续到原始视频第 n 秒时终止；</li><li>当数值小于0时（假设为 -n），表示转码后的视频持续到原始视频结束 n 秒前终止。</li>
         # @type EndTimeOffset: Float
+        # @param OverrideParameter: <p>自定义视频转码参数。</p>
+        # @type OverrideParameter: :class:`Tencentcloud::Vod.v20180717.models.OverrideTranscodeParameter`
         # @param SubtitleInfoSet: <p>字幕压制信息列表。最大可支持 2 个。</p>
         # @type SubtitleInfoSet: Array
 
-        attr_accessor :Definition, :WatermarkSet, :TraceWatermark, :CopyRightWatermark, :BlindWatermark, :MosaicSet, :HeadTailSet, :StartTimeOffset, :EndTimeOffset, :SubtitleInfoSet
+        attr_accessor :Definition, :WatermarkSet, :TraceWatermark, :CopyRightWatermark, :BlindWatermark, :MosaicSet, :HeadTailSet, :StartTimeOffset, :EndTimeOffset, :OverrideParameter, :SubtitleInfoSet
 
-        def initialize(definition=nil, watermarkset=nil, tracewatermark=nil, copyrightwatermark=nil, blindwatermark=nil, mosaicset=nil, headtailset=nil, starttimeoffset=nil, endtimeoffset=nil, subtitleinfoset=nil)
+        def initialize(definition=nil, watermarkset=nil, tracewatermark=nil, copyrightwatermark=nil, blindwatermark=nil, mosaicset=nil, headtailset=nil, starttimeoffset=nil, endtimeoffset=nil, overrideparameter=nil, subtitleinfoset=nil)
           @Definition = definition
           @WatermarkSet = watermarkset
           @TraceWatermark = tracewatermark
@@ -36591,6 +36621,7 @@ module TencentCloud
           @HeadTailSet = headtailset
           @StartTimeOffset = starttimeoffset
           @EndTimeOffset = endtimeoffset
+          @OverrideParameter = overrideparameter
           @SubtitleInfoSet = subtitleinfoset
         end
 
@@ -36634,6 +36665,10 @@ module TencentCloud
           end
           @StartTimeOffset = params['StartTimeOffset']
           @EndTimeOffset = params['EndTimeOffset']
+          unless params['OverrideParameter'].nil?
+            @OverrideParameter = OverrideTranscodeParameter.new
+            @OverrideParameter.deserialize(params['OverrideParameter'])
+          end
           unless params['SubtitleInfoSet'].nil?
             @SubtitleInfoSet = []
             params['SubtitleInfoSet'].each do |i|

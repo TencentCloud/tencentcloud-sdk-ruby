@@ -671,6 +671,34 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口用以创建日志分析下载任务，创建完成后可通过 DescribeLogAnalysisDownloadTasks 接口查询下载任务。
+        # 注意：
+        # 1.单次最多支持下载 5000万条日志。
+        # 2.日志文件将保留 3 天。
+        # 3.同时存在多个任务时将按照任务创建时间依次处理。
+
+        # @param request: Request instance for CreateLogAnalysisDownloadTask.
+        # @type request: :class:`Tencentcloud::teo::V20220901::CreateLogAnalysisDownloadTaskRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::CreateLogAnalysisDownloadTaskResponse`
+        def CreateLogAnalysisDownloadTask(request)
+          body = send_request('CreateLogAnalysisDownloadTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateLogAnalysisDownloadTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 通过本接口创建多通道安全加速网关，包括云上网关（腾讯云创建和管理的网关）和自有网关（用户部署的私有网关），需要通过接口 DescribeMultiPathGateway，查询状态为 online 即创建成功。
 
         # @param request: Request instance for CreateMultiPathGateway.
@@ -2618,6 +2646,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeLoadBalancerListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口用以查询日志分析日志详情，数据来自站点下实时日志推送任务目的地为 "log-analysis" 的任务推送的日志数据。
+
+        # @param request: Request instance for DescribeLogAnalysisDetail.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeLogAnalysisDetailRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeLogAnalysisDetailResponse`
+        def DescribeLogAnalysisDetail(request)
+          body = send_request('DescribeLogAnalysisDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLogAnalysisDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口用以查询日志分析日志下载任务列表。注意：只保留最近三天的下载任务记录。
+
+        # @param request: Request instance for DescribeLogAnalysisDownloadTasks.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeLogAnalysisDownloadTasksRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeLogAnalysisDownloadTasksResponse`
+        def DescribeLogAnalysisDownloadTasks(request)
+          body = send_request('DescribeLogAnalysisDownloadTasks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLogAnalysisDownloadTasksResponse.new
             model.deserialize(response['Response'])
             model
           else

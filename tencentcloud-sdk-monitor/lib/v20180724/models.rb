@@ -19,13 +19,13 @@ module TencentCloud
     module V20180724
       # 策略过滤条件
       class AlarmConditionFilter < TencentCloud::Common::AbstractModel
-        # @param Type: 类型
+        # @param Type: <p>类型</p><p>枚举值：</p><ul><li>EXPRESSION： 用表达式过滤</li><li>DIMENSION： 用维度条件过滤</li><li>BIND_ALL： 绑定全部实例</li><li>LOG_ALARM： 日志告警专用过滤</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
-        # @param Expression: 表达式
+        # @param Expression: <p>表达式</p><p>Type为Expression有值</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Expression: String
-        # @param Dimensions: 过滤条件
+        # @param Dimensions: <p>过滤条件</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Dimensions: String
 
@@ -70,10 +70,10 @@ module TencentCloud
 
       # 聚合条件
       class AlarmGroupByItem < TencentCloud::Common::AbstractModel
-        # @param Id: Item Id
+        # @param Id: <p>Item Id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: String
-        # @param Name: 名称
+        # @param Name: <p>名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
 
@@ -92,13 +92,13 @@ module TencentCloud
 
       # 通知模板ID及通知等级列表，["Remind","Serious"]表示该通知模板仅接收提醒和严重类别的告警
       class AlarmHierarchicalNotice < TencentCloud::Common::AbstractModel
-        # @param NoticeId: 通知模板ID
+        # @param NoticeId: <p>通知模板ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NoticeId: String
-        # @param Classification: 通知等级列表，["Remind","Serious"]表示该通知模板仅接收提醒和严重类别的告警
+        # @param Classification: <p>通知等级列表，[&quot;Remind&quot;,&quot;Serious&quot;]表示该通知模板仅接收提醒和严重类别的告警</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Classification: Array
-        # @param PolicyId: 模板对应的策略id
+        # @param PolicyId: <p>模板对应的策略id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolicyId: String
 
@@ -119,13 +119,13 @@ module TencentCloud
 
       # 告警分级阈值配置
       class AlarmHierarchicalValue < TencentCloud::Common::AbstractModel
-        # @param Remind: 提醒等级阈值
+        # @param Remind: <p>提醒等级阈值</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remind: String
-        # @param Warn: 警告等级阈值
+        # @param Warn: <p>警告等级阈值</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Warn: String
-        # @param Serious: 严重等级阈值
+        # @param Serious: <p>严重等级阈值</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Serious: String
 
@@ -465,135 +465,132 @@ module TencentCloud
 
       # 告警策略详情
       class AlarmPolicy < TencentCloud::Common::AbstractModel
-        # @param PolicyId: 告警策略 ID
+        # @param PolicyId: <p>告警策略 ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolicyId: String
-        # @param PolicyName: 告警策略名称
+        # @param PolicyName: <p>告警策略名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolicyName: String
-        # @param Remark: 备注信息
+        # @param Remark: <p>备注信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
-        # @param MonitorType: 监控类型 MT_QCE=云产品监控
+        # @param MonitorType: <p>监控类型 MT_QCE=云产品监控</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MonitorType: String
-        # @param Enable: 启停状态 0=停用 1=启用
+        # @param Enable: <p>启停状态 0=停用 1=启用</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Enable: Integer
-        # @param UseSum: 策略组绑定的实例数
+        # @param UseSum: <p>策略组绑定的实例数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UseSum: Integer
-        # @param ProjectId: 项目 Id -1=无项目 0=默认项目
+        # @param ProjectId: <p>项目 Id -1=无项目 0=默认项目</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectId: Integer
-        # @param ProjectName: 项目名
+        # @param ProjectName: <p>项目名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectName: String
-        # @param Namespace: 告警策略类型
+        # @param Namespace: <p>告警策略类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Namespace: String
-        # @param ConditionTemplateId: 触发条件模板 Id
+        # @param ConditionTemplateId: <p>触发条件模板 Id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConditionTemplateId: String
-        # @param Condition: 指标触发条件
+        # @param Condition: <p>指标触发条件</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Condition: :class:`Tencentcloud::Monitor.v20180724.models.AlarmPolicyCondition`
-        # @param EventCondition: 事件触发条件
+        # @param EventCondition: <p>事件触发条件</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EventCondition: :class:`Tencentcloud::Monitor.v20180724.models.AlarmPolicyEventCondition`
-        # @param NoticeIds: 通知规则 id 列表
+        # @param NoticeIds: <p>通知规则 id 列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NoticeIds: Array
-        # @param Notices: 通知规则 列表
+        # @param Notices: <p>通知规则 列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Notices: Array
-        # @param TriggerTasks: 触发任务列表
+        # @param TriggerTasks: <p>触发任务列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TriggerTasks: Array
-        # @param ConditionsTemp: 模板策略组
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param ConditionsTemp: <p>模板策略组<br>注意：此字段可能返回 null，表示取不到有效值。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConditionsTemp: :class:`Tencentcloud::Monitor.v20180724.models.ConditionsTemp`
-        # @param LastEditUin: 最后编辑的用户uin
+        # @param LastEditUin: <p>最后编辑的用户uin</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastEditUin: String
-        # @param UpdateTime: 更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param UpdateTime: <p>更新时间<br>注意：此字段可能返回 null，表示取不到有效值。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: Integer
-        # @param InsertTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param InsertTime: <p>创建时间<br>注意：此字段可能返回 null，表示取不到有效值。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InsertTime: Integer
-        # @param Region: 地域
+        # @param Region: <p>地域</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: Array
-        # @param NamespaceShowName: namespace显示名字
+        # @param NamespaceShowName: <p>namespace显示名字</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NamespaceShowName: String
-        # @param IsDefault: 是否默认策略，1是，0否
+        # @param IsDefault: <p>是否默认策略，1是，0否</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsDefault: Integer
-        # @param CanSetDefault: 能否设置默认策略，1是，0否
+        # @param CanSetDefault: <p>能否设置默认策略，1是，0否</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CanSetDefault: Integer
-        # @param InstanceGroupId: 实例分组ID
+        # @param InstanceGroupId: <p>实例分组ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceGroupId: Integer
-        # @param InstanceSum: 实例分组总实例数
+        # @param InstanceSum: <p>实例分组总实例数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceSum: Integer
-        # @param InstanceGroupName: 实例分组名称
+        # @param InstanceGroupName: <p>实例分组名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceGroupName: String
-        # @param RuleType: 触发条件类型 STATIC=静态阈值 DYNAMIC=动态类型
+        # @param RuleType: <p>触发条件类型 STATIC=静态阈值 DYNAMIC=动态类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleType: String
-        # @param OriginId: 用于实例、实例组绑定和解绑接口（BindingPolicyObject、UnBindingAllPolicyObject、UnBindingPolicyObject）的策略 ID
+        # @param OriginId: <p>用于实例、实例组绑定和解绑接口（BindingPolicyObject、UnBindingAllPolicyObject、UnBindingPolicyObject）的策略 ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OriginId: String
-        # @param TagInstances: 标签
+        # @param TagInstances: <p>标签</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagInstances: Array
-        # @param Filter: 过滤条件
+        # @param Filter: <p>过滤条件</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Filter: :class:`Tencentcloud::Monitor.v20180724.models.AlarmConditionFilter`
-        # @param GroupBy: 聚合条件
+        # @param GroupBy: <p>聚合条件</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupBy: Array
-        # @param FilterDimensionsParam: 策略关联的过滤维度信息
+        # @param FilterDimensionsParam: <p>策略关联的过滤维度信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FilterDimensionsParam: String
-        # @param IsOneClick: 是否为一键告警策略
+        # @param IsOneClick: <p>是否为一键告警策略</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsOneClick: Integer
-        # @param OneClickStatus: 一键告警策略是否开启
+        # @param OneClickStatus: <p>一键告警策略是否开启</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OneClickStatus: Integer
-        # @param AdvancedMetricNumber: 高级指标数量
+        # @param AdvancedMetricNumber: <p>高级指标数量</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdvancedMetricNumber: Integer
-        # @param IsBindAll: 策略是否是全部对象策略
+        # @param IsBindAll: <p>策略是否是全部对象策略</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsBindAll: Integer
-        # @param Tags: 策略标签
+        # @param Tags: <p>策略标签</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
-        # @param IsSupportAlarmTag: 是否支持告警标签
+        # @param IsSupportAlarmTag: <p>是否支持告警标签</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsSupportAlarmTag: Integer
-        # @param TagOperation: 多标签交/并集关系
+        # @param TagOperation: <p>多标签交/并集关系</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagOperation: String
-        # @param NoticeTmplBindInfos: 通知模板绑定内容模板信息
+        # @param NoticeTmplBindInfos: <p>通知模板绑定内容模板信息</p>
         # @type NoticeTmplBindInfos: Array
-        # @param HierarchicalNotices: 模板通知的等级
+        # @param HierarchicalNotices: <p>模板通知的等级</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HierarchicalNotices: Array
-        # @param NoticeContentTmplBindInfos: 通知模板绑定内容模板信息，同NoticeTmplBindInfos
+        # @param NoticeContentTmplBindInfos: <p>通知模板绑定内容模板信息，同NoticeTmplBindInfos</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NoticeContentTmplBindInfos: Array
-        # @param PredefinedConfigID: 预设配置id
+        # @param PredefinedConfigID: <p>预设配置id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PredefinedConfigID: String
 
@@ -842,76 +839,58 @@ module TencentCloud
 
       # 告警策略触发条件
       class AlarmPolicyRule < TencentCloud::Common::AbstractModel
-        # @param MetricName: 指标名或事件名，支持的指标可以从 [DescribeAlarmMetrics](https://cloud.tencent.com/document/product/248/51283) 查询，支持的事件可以从 [DescribeAlarmEvents](https://cloud.tencent.com/document/product/248/51284) 查询 。
+        # @param MetricName: <p>指标名或事件名，支持的指标可以从 <a href="https://cloud.tencent.com/document/product/248/51283">DescribeAlarmMetrics</a> 查询，支持的事件可以从 <a href="https://cloud.tencent.com/document/product/248/51284">DescribeAlarmEvents</a> 查询 。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MetricName: String
-        # @param Period: 秒数 统计周期，支持的值可以从 [DescribeAlarmMetrics](https://cloud.tencent.com/document/product/248/51283) 查询。
+        # @param Period: <p>秒数 统计周期，支持的值可以从 <a href="https://cloud.tencent.com/document/product/248/51283">DescribeAlarmMetrics</a> 查询。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Period: Integer
-        # @param Operator: 英文运算符
-        # intelligent=无阈值智能检测
-        # eq=等于
-        # ge=大于等于
-        # gt=大于
-        # le=小于等于
-        # lt=小于
-        # ne=不等于
-        # day_increase=天同比增长
-        # day_decrease=天同比下降
-        # day_wave=天同比波动
-        # week_increase=周同比增长
-        # week_decrease=周同比下降
-        # week_wave=周同比波动
-        # cycle_increase=环比增长
-        # cycle_decrease=环比下降
-        # cycle_wave=环比波动
-        # re=正则匹配
-        # 支持的值可以从 [DescribeAlarmMetrics](https://cloud.tencent.com/document/product/248/51283) 查询。
+        # @param Operator: <p>英文运算符<br>intelligent=无阈值智能检测<br>eq=等于<br>ge=大于等于<br>gt=大于<br>le=小于等于<br>lt=小于<br>ne=不等于<br>day_increase=天同比增长<br>day_decrease=天同比下降<br>day_wave=天同比波动<br>week_increase=周同比增长<br>week_decrease=周同比下降<br>week_wave=周同比波动<br>cycle_increase=环比增长<br>cycle_decrease=环比下降<br>cycle_wave=环比波动<br>re=正则匹配<br>支持的值可以从 <a href="https://cloud.tencent.com/document/product/248/51283">DescribeAlarmMetrics</a> 查询。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Operator: String
-        # @param Value: 阈值，支持的范围可以从 [DescribeAlarmMetrics](https://cloud.tencent.com/document/product/248/51283) 查询。
+        # @param Value: <p>阈值，支持的范围可以从 <a href="https://cloud.tencent.com/document/product/248/51283">DescribeAlarmMetrics</a> 查询。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
-        # @param ContinuePeriod: 周期数 持续通知周期 1=持续1个周期 2=持续2个周期...，支持的值可以从 [DescribeAlarmMetrics](https://cloud.tencent.com/document/product/248/51283) 查询
+        # @param ContinuePeriod: <p>周期数 持续通知周期 1=持续1个周期 2=持续2个周期...，支持的值可以从 <a href="https://cloud.tencent.com/document/product/248/51283">DescribeAlarmMetrics</a> 查询</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContinuePeriod: Integer
-        # @param NoticeFrequency: 秒数 告警间隔  0=不重复 300=每5分钟告警一次 600=每10分钟告警一次 900=每15分钟告警一次 1800=每30分钟告警一次 3600=每1小时告警一次 7200=每2小时告警一次 10800=每3小时告警一次 21600=每6小时告警一次 43200=每12小时告警一次 86400=每1天告警一次
+        # @param NoticeFrequency: <p>秒数 告警间隔  0=不重复 300=每5分钟告警一次 600=每10分钟告警一次 900=每15分钟告警一次 1800=每30分钟告警一次 3600=每1小时告警一次 7200=每2小时告警一次 10800=每3小时告警一次 21600=每6小时告警一次 43200=每12小时告警一次 86400=每1天告警一次</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NoticeFrequency: Integer
-        # @param IsPowerNotice: 告警频率是否指数增长 0=否 1=是
+        # @param IsPowerNotice: <p>告警频率是否指数增长 0=否 1=是</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsPowerNotice: Integer
-        # @param Filter: 对于单个触发规则的过滤条件
+        # @param Filter: <p>对于单个触发规则的过滤条件</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Filter: :class:`Tencentcloud::Monitor.v20180724.models.AlarmPolicyFilter`
-        # @param Description: 指标展示名，用于出参
+        # @param Description: <p>指标展示名，用于出参</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
-        # @param Unit: 单位，用于出参
+        # @param Unit: <p>单位，用于出参</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Unit: String
-        # @param RuleType: 触发条件类型 STATIC=静态阈值 DYNAMIC=动态阈值。创建或编辑策略时，如不填则默认为 STATIC。
+        # @param RuleType: <p>触发条件类型 STATIC=静态阈值 DYNAMIC=动态阈值。创建或编辑策略时，如不填则默认为 STATIC。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleType: String
-        # @param IsAdvanced: 是否为高级指标，0否，1是
+        # @param IsAdvanced: <p>是否为高级指标，0否，1是</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsAdvanced: Integer
-        # @param IsOpen: 高级指标是否开通，0否，1是
+        # @param IsOpen: <p>高级指标是否开通，0否，1是</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsOpen: Integer
-        # @param ProductId: 集成中心产品ID
+        # @param ProductId: <p>集成中心产品ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductId: String
-        # @param ValueMax: 最大值
+        # @param ValueMax: <p>最大值</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ValueMax: Float
-        # @param ValueMin: 最小值
+        # @param ValueMin: <p>最小值</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ValueMin: Float
-        # @param HierarchicalValue: 告警分级阈值配置
+        # @param HierarchicalValue: <p>告警分级阈值配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HierarchicalValue: :class:`Tencentcloud::Monitor.v20180724.models.AlarmHierarchicalValue`
-        # @param IsLatenessMetric: 是否延迟指标
+        # @param IsLatenessMetric: <p>是否延迟指标</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsLatenessMetric: Integer
 
@@ -1407,21 +1386,21 @@ module TencentCloud
 
       # 统一的命名空间信息
       class CommonNamespace < TencentCloud::Common::AbstractModel
-        # @param Id: 命名空间标示
+        # @param Id: <p>命名空间标示</p>
         # @type Id: String
-        # @param Name: 命名空间名称
+        # @param Name: <p>命名空间名称</p>
         # @type Name: String
-        # @param Value: 命名空间值
+        # @param Value: <p>命名空间值</p>
         # @type Value: String
-        # @param ProductName: 产品名称
+        # @param ProductName: <p>产品名称</p>
         # @type ProductName: String
-        # @param Config: 配置信息
+        # @param Config: <p>配置信息</p>
         # @type Config: String
-        # @param AvailableRegions: 支持地域列表
+        # @param AvailableRegions: <p>支持地域列表</p>
         # @type AvailableRegions: Array
-        # @param SortId: 排序Id
+        # @param SortId: <p>排序Id</p>
         # @type SortId: Integer
-        # @param DashboardId: Dashboard中的唯一表示
+        # @param DashboardId: <p>Dashboard中的唯一表示</p>
         # @type DashboardId: String
 
         attr_accessor :Id, :Name, :Value, :ProductName, :Config, :AvailableRegions, :SortId, :DashboardId
@@ -1486,40 +1465,40 @@ module TencentCloud
 
       # 告警条件
       class Condition < TencentCloud::Common::AbstractModel
-        # @param AlarmNotifyPeriod: 告警通知频率
+        # @param AlarmNotifyPeriod: <p>告警通知频率</p>
         # @type AlarmNotifyPeriod: Integer
-        # @param AlarmNotifyType: 重复通知策略预定义（0 - 只告警一次， 1 - 指数告警，2 - 连接告警）
+        # @param AlarmNotifyType: <p>重复通知策略预定义（0 - 只告警一次， 1 - 指数告警，2 - 连接告警）</p>
         # @type AlarmNotifyType: Integer
-        # @param CalcType: 检测方式
+        # @param CalcType: <p>检测方式</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CalcType: String
-        # @param CalcValue: 检测值
+        # @param CalcValue: <p>检测值</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CalcValue: String
-        # @param ContinueTime: 持续时间，单位秒
+        # @param ContinueTime: <p>持续时间，单位秒</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContinueTime: String
-        # @param MetricID: 指标ID
+        # @param MetricID: <p>指标ID</p>
         # @type MetricID: Integer
-        # @param MetricDisplayName: 指标展示名称（对外）
+        # @param MetricDisplayName: <p>指标展示名称（对外）</p>
         # @type MetricDisplayName: String
-        # @param Period: 周期
+        # @param Period: <p>周期</p>
         # @type Period: Integer
-        # @param RuleID: 规则ID
+        # @param RuleID: <p>规则ID</p>
         # @type RuleID: Integer
-        # @param Unit: 指标单位
+        # @param Unit: <p>指标单位</p>
         # @type Unit: String
-        # @param IsAdvanced: 是否为高级指标，0：否；1：是
+        # @param IsAdvanced: <p>是否为高级指标，0：否；1：是</p>
         # @type IsAdvanced: Integer
-        # @param IsOpen: 是否开通高级指标，0：否；1：是
+        # @param IsOpen: <p>是否开通高级指标，0：否；1：是</p>
         # @type IsOpen: Integer
-        # @param ProductId: 产品ID
+        # @param ProductId: <p>产品ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductId: String
-        # @param HierarchicalValue: 告警分级阈值配置
+        # @param HierarchicalValue: <p>告警分级阈值配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HierarchicalValue: :class:`Tencentcloud::Monitor.v20180724.models.AlarmHierarchicalValue`
-        # @param RuleType: 指标类型，用于区分动态指标
+        # @param RuleType: <p>指标类型，用于区分动态指标</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleType: String
 
@@ -1567,13 +1546,13 @@ module TencentCloud
 
       # 告警条件模板
       class ConditionsTemp < TencentCloud::Common::AbstractModel
-        # @param TemplateName: 模板名称
+        # @param TemplateName: <p>模板名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateName: String
-        # @param Condition: 指标触发条件
+        # @param Condition: <p>指标触发条件</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Condition: :class:`Tencentcloud::Monitor.v20180724.models.AlarmPolicyCondition`
-        # @param EventCondition: 事件触发条件
+        # @param EventCondition: <p>事件触发条件</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EventCondition: :class:`Tencentcloud::Monitor.v20180724.models.AlarmPolicyEventCondition`
 
@@ -2557,21 +2536,21 @@ module TencentCloud
 
       # 创建策略传入的阈值告警条件
       class CreatePolicyGroupCondition < TencentCloud::Common::AbstractModel
-        # @param MetricId: 指标Id
+        # @param MetricId: <p>指标Id</p>
         # @type MetricId: Integer
-        # @param AlarmNotifyType: 告警发送收敛类型。0连续告警，1指数告警
+        # @param AlarmNotifyType: <p>告警发送收敛类型。0连续告警，1指数告警</p>
         # @type AlarmNotifyType: Integer
-        # @param AlarmNotifyPeriod: 告警发送周期单位秒。<0 不触发, 0 只触发一次, >0 每隔triggerTime秒触发一次
+        # @param AlarmNotifyPeriod: <p>告警发送周期单位秒。&lt;0 不触发, 0 只触发一次, &gt;0 每隔triggerTime秒触发一次</p>
         # @type AlarmNotifyPeriod: Integer
-        # @param CalcType: 比较类型，1表示大于，2表示大于等于，3表示小于，4表示小于等于，5表示相等，6表示不相等。如果指标有配置默认比较类型值可以不填。
+        # @param CalcType: <p>比较类型，1表示大于，2表示大于等于，3表示小于，4表示小于等于，5表示相等，6表示不相等。如果指标有配置默认比较类型值可以不填。</p>
         # @type CalcType: Integer
-        # @param CalcValue: 比较的值，如果指标不必须CalcValue可不填
+        # @param CalcValue: <p>比较的值，如果指标不必须CalcValue可不填</p>
         # @type CalcValue: Float
-        # @param CalcPeriod: 数据聚合周期(单位秒)，若指标有默认值可不填
+        # @param CalcPeriod: <p>数据聚合周期(单位秒)，若指标有默认值可不填</p>
         # @type CalcPeriod: Integer
-        # @param ContinuePeriod: 持续几个检测周期触发规则会告警
+        # @param ContinuePeriod: <p>持续几个检测周期触发规则会告警</p>
         # @type ContinuePeriod: Integer
-        # @param RuleId: 如果通过模板创建，需要传入模板中该指标的对应RuleId
+        # @param RuleId: <p>如果通过模板创建，需要传入模板中该指标的对应RuleId</p>
         # @type RuleId: Integer
 
         attr_accessor :MetricId, :AlarmNotifyType, :AlarmNotifyPeriod, :CalcType, :CalcValue, :CalcPeriod, :ContinuePeriod, :RuleId
@@ -2601,13 +2580,13 @@ module TencentCloud
 
       # 创建策略传入的事件告警条件
       class CreatePolicyGroupEventCondition < TencentCloud::Common::AbstractModel
-        # @param EventId: 告警事件的Id
+        # @param EventId: <p>告警事件的Id</p>
         # @type EventId: Integer
-        # @param AlarmNotifyType: 告警发送收敛类型。0连续告警，1指数告警
+        # @param AlarmNotifyType: <p>告警发送收敛类型。0连续告警，1指数告警</p>
         # @type AlarmNotifyType: Integer
-        # @param AlarmNotifyPeriod: 告警发送周期单位秒。<0 不触发, 0 只触发一次, >0 每隔triggerTime秒触发一次
+        # @param AlarmNotifyPeriod: <p>告警发送周期单位秒。&lt;0 不触发, 0 只触发一次, &gt;0 每隔triggerTime秒触发一次</p>
         # @type AlarmNotifyPeriod: Integer
-        # @param RuleId: 如果通过模板创建，需要传入模板中该指标的对应RuleId
+        # @param RuleId: <p>如果通过模板创建，需要传入模板中该指标的对应RuleId</p>
         # @type RuleId: Integer
 
         attr_accessor :EventId, :AlarmNotifyType, :AlarmNotifyPeriod, :RuleId
@@ -7909,9 +7888,9 @@ module TencentCloud
 
       # DescribeProductEventList的入参Dimensions
       class DescribeProductEventListDimensions < TencentCloud::Common::AbstractModel
-        # @param Name: 维度名
+        # @param Name: <p>维度名</p>
         # @type Name: String
-        # @param Value: 维度值
+        # @param Value: <p>维度值</p>
         # @type Value: String
 
         attr_accessor :Name, :Value
@@ -8067,13 +8046,13 @@ module TencentCloud
 
       # DescribeProductEventList返回的Events的Dimensions
       class DescribeProductEventListEventsDimensions < TencentCloud::Common::AbstractModel
-        # @param Key: 维度名（英文）
+        # @param Key: <p>维度名（英文）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Key: String
-        # @param Name: 维度名（中文）
+        # @param Name: <p>维度名（中文）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
-        # @param Value: 维度值
+        # @param Value: <p>维度值</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
@@ -8094,10 +8073,10 @@ module TencentCloud
 
       # DescribeProductEventList返回的Events里的GroupInfo
       class DescribeProductEventListEventsGroupInfo < TencentCloud::Common::AbstractModel
-        # @param GroupId: 策略ID
+        # @param GroupId: <p>策略ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupId: Integer
-        # @param GroupName: 策略名
+        # @param GroupName: <p>策略名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupName: String
 
@@ -8116,16 +8095,16 @@ module TencentCloud
 
       # DescribeProductEventList返回的OverView对象
       class DescribeProductEventListOverView < TencentCloud::Common::AbstractModel
-        # @param StatusChangeAmount: 状态变更的事件数量
+        # @param StatusChangeAmount: <p>状态变更的事件数量</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StatusChangeAmount: Integer
-        # @param UnConfigAlarmAmount: 告警状态未配置的事件数量
+        # @param UnConfigAlarmAmount: <p>告警状态未配置的事件数量</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnConfigAlarmAmount: Integer
-        # @param UnNormalEventAmount: 异常事件数量
+        # @param UnNormalEventAmount: <p>异常事件数量</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnNormalEventAmount: Integer
-        # @param UnRecoverAmount: 未恢复的事件数量
+        # @param UnRecoverAmount: <p>未恢复的事件数量</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnRecoverAmount: Integer
 

@@ -3468,10 +3468,9 @@ module TencentCloud
 
       # MobileNetworkTimeVerification请求参数结构体
       class MobileNetworkTimeVerificationRequest < TencentCloud::Common::AbstractModel
-        # @param Mobile: 手机号码。
+        # @param Mobile: <p>手机号码。</p>
         # @type Mobile: String
-        # @param Encryption: 敏感数据加密信息。
-        # - 对传入信息（手机号）有加密需求的用户可使用此参数，详情请点击左侧链接。
+        # @param Encryption: <p>敏感数据加密信息。</p><ul><li>对传入信息（手机号）有加密需求的用户可使用此参数，详情请点击左侧链接。</li></ul>
         # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
 
         attr_accessor :Mobile, :Encryption
@@ -3492,22 +3491,11 @@ module TencentCloud
 
       # MobileNetworkTimeVerification返回参数结构体
       class MobileNetworkTimeVerificationResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 认证结果码，收费情况如下。
-        # - 收费结果码：
-        # 0: 成功。
-        # -2: 手机号不存在。
-        # -3: 手机号存在，但无法查询到在网时长。
-
-        # - 不收费结果码：
-        # -1: 手机号格式不正确。
-        # -4: 验证中心服务繁忙。
-        # -5：认证次数超过当日限制，请次日重试。
+        # @param Result: <p>认证结果码，收费情况如下。- 收费结果码：0: 成功。-2: 手机号不存在。-3: 手机号存在，但无法查询到在网时长。- 不收费结果码：-1: 手机号格式不正确。-4: 验证中心服务繁忙。-5：认证次数超过当日限制，请次日重试。-13：该号段不支持验证</p>
         # @type Result: String
-        # @param Description: 业务结果描述。
+        # @param Description: <p>业务结果描述。</p>
         # @type Description: String
-        # @param Range: 在网时长区间。
-        # - 格式为[a,b)，表示在网时长在a个月以上，b个月以下。
-        # - 若b为+时表示没有上限。
+        # @param Range: <p>在网时长区间。</p><ul><li>格式为[a,b)，表示在网时长在a个月以上，b个月以下。</li><li>若b为+时表示没有上限。</li></ul>
         # @type Range: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3554,7 +3542,7 @@ module TencentCloud
 
       # MobileStatus返回参数结构体
       class MobileStatusResponse < TencentCloud::Common::AbstractModel
-        # @param Result: <p>认证结果码，收费情况如下。</p><ul><li><p>收费结果码：<br>0：成功。</p></li><li><p>不收费结果码：<br>-1：未查询到结果。<br>-2：手机号格式不正确。<br>-3：验证中心服务繁忙。<br>-4：认证次数超过当日限制，请次日重试。</p></li></ul>
+        # @param Result: <p>认证结果码，收费情况如下。- 收费结果码：0：成功。- 不收费结果码：-1：未查询到结果。-2：手机号格式不正确。-3：验证中心服务繁忙。-4：认证次数超过当日限制，请次日重试。-13：该号段不支持验证</p>
         # @type Result: String
         # @param Description: <p>业务结果描述。</p>
         # @type Description: String
@@ -3735,14 +3723,13 @@ module TencentCloud
 
       # PhoneVerificationCMCC请求参数结构体
       class PhoneVerificationCMCCRequest < TencentCloud::Common::AbstractModel
-        # @param IdCard: 身份证号。
+        # @param IdCard: <p>身份证号。</p>
         # @type IdCard: String
-        # @param Name: 姓名。
+        # @param Name: <p>姓名。</p>
         # @type Name: String
-        # @param Phone: 手机号。
+        # @param Phone: <p>手机号。</p>
         # @type Phone: String
-        # @param Encryption: 敏感数据加密信息。
-        # - 对传入信息（姓名、身份证号、手机号）有加密需求的用户可使用此参数，详情请点击左侧链接。
+        # @param Encryption: <p>敏感数据加密信息。</p><ul><li>对传入信息（姓名、身份证号、手机号）有加密需求的用户可使用此参数，详情请点击左侧链接。</li></ul>
         # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
 
         attr_accessor :IdCard, :Name, :Phone, :Encryption
@@ -3767,22 +3754,11 @@ module TencentCloud
 
       # PhoneVerificationCMCC返回参数结构体
       class PhoneVerificationCMCCResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 认证结果码，收费情况如下。
-        # - 收费结果码：
-        # 0: 认证通过。
-        # -4: 信息不一致（手机号已实名，但姓名和身份证号与实名信息不一致）。
-
-        # - 不收费结果码：
-        # -6: 手机号码不合法。
-        # -7: 身份证号码有误。
-        # -8: 姓名校验不通过。
-        # -9: 没有记录。
-        # -11: 验证中心服务繁忙。
+        # @param Result: <p>认证结果码，收费情况如下。- 收费结果码：0: 认证通过。-4: 信息不一致（手机号已实名，但姓名和身份证号与实名信息不一致）。- 不收费结果码：-6: 手机号码不合法。-7: 身份证号码有误。-8: 姓名校验不通过。-9: 没有记录。-11: 验证中心服务繁忙。-13：该号段不支持验证</p>
         # @type Result: String
-        # @param Isp: 运营商名称。
-        # - 取值范围为["移动","联通","电信",""]。
+        # @param Isp: <p>运营商名称。</p><ul><li>取值范围为[&quot;移动&quot;,&quot;联通&quot;,&quot;电信&quot;,&quot;&quot;]。</li></ul>
         # @type Isp: String
-        # @param Description: 业务结果描述。
+        # @param Description: <p>业务结果描述。</p>
         # @type Description: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3806,14 +3782,13 @@ module TencentCloud
 
       # PhoneVerificationCTCC请求参数结构体
       class PhoneVerificationCTCCRequest < TencentCloud::Common::AbstractModel
-        # @param IdCard: 身份证号。
+        # @param IdCard: <p>身份证号。</p>
         # @type IdCard: String
-        # @param Name: 姓名。
+        # @param Name: <p>姓名。</p>
         # @type Name: String
-        # @param Phone: 手机号。
+        # @param Phone: <p>手机号。</p>
         # @type Phone: String
-        # @param Encryption: 敏感数据加密信息。
-        # - 对传入信息（姓名、身份证号、手机号）有加密需求的用户可使用此参数，详情请点击左侧链接。
+        # @param Encryption: <p>敏感数据加密信息。</p><ul><li>对传入信息（姓名、身份证号、手机号）有加密需求的用户可使用此参数，详情请点击左侧链接。</li></ul>
         # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
 
         attr_accessor :IdCard, :Name, :Phone, :Encryption
@@ -3838,22 +3813,11 @@ module TencentCloud
 
       # PhoneVerificationCTCC返回参数结构体
       class PhoneVerificationCTCCResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 认证结果码，收费情况如下。
-        # - 收费结果码：
-        # 0: 认证通过。
-        # -4: 信息不一致（手机号已实名，但姓名和身份证号与实名信息不一致）。
-
-        # - 不收费结果码：
-        # -6: 手机号码不合法。
-        # -7: 身份证号码有误。
-        # -8: 姓名校验不通过。
-        # -9: 没有记录。
-        # -11: 验证中心服务繁忙。
+        # @param Result: <p>认证结果码，收费情况如下。- 收费结果码：0: 认证通过。-4: 信息不一致（手机号已实名，但姓名和身份证号与实名信息不一致）。- 不收费结果码：-6: 手机号码不合法。-7: 身份证号码有误。-8: 姓名校验不通过。-9: 没有记录。-11: 验证中心服务繁忙。-13：该号段不支持验证</p>
         # @type Result: String
-        # @param Isp: 运营商名称。
-        # - 取值范围为["移动","联通","电信",""]。
+        # @param Isp: <p>运营商名称。</p><ul><li>取值范围为[&quot;移动&quot;,&quot;联通&quot;,&quot;电信&quot;,&quot;&quot;]。</li></ul>
         # @type Isp: String
-        # @param Description: 业务结果描述。
+        # @param Description: <p>业务结果描述。</p>
         # @type Description: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3877,14 +3841,13 @@ module TencentCloud
 
       # PhoneVerificationCUCC请求参数结构体
       class PhoneVerificationCUCCRequest < TencentCloud::Common::AbstractModel
-        # @param IdCard: 身份证号。
+        # @param IdCard: <p>身份证号。</p>
         # @type IdCard: String
-        # @param Name: 姓名。
+        # @param Name: <p>姓名。</p>
         # @type Name: String
-        # @param Phone: 手机号。
+        # @param Phone: <p>手机号。</p>
         # @type Phone: String
-        # @param Encryption: 敏感数据加密信息。
-        # - 对传入信息（姓名、身份证号、手机号）有加密需求的用户可使用此参数，详情请点击左侧链接。
+        # @param Encryption: <p>敏感数据加密信息。</p><ul><li>对传入信息（姓名、身份证号、手机号）有加密需求的用户可使用此参数，详情请点击左侧链接。</li></ul>
         # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
 
         attr_accessor :IdCard, :Name, :Phone, :Encryption
@@ -3909,22 +3872,11 @@ module TencentCloud
 
       # PhoneVerificationCUCC返回参数结构体
       class PhoneVerificationCUCCResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 认证结果码，收费情况如下。
-        # - 收费结果码：
-        # 0: 认证通过。
-        # -4: 信息不一致（手机号已实名，但姓名和身份证号与实名信息不一致）。
-
-        # - 不收费结果码：
-        # -6: 手机号码不合法。
-        # -7: 身份证号码有误。
-        # -8: 姓名校验不通过。
-        # -9: 没有记录。
-        # -11: 验证中心服务繁忙。
+        # @param Result: <p>认证结果码，收费情况如下。- 收费结果码：0: 认证通过。-4: 信息不一致（手机号已实名，但姓名和身份证号与实名信息不一致）。- 不收费结果码：-6: 手机号码不合法。-7: 身份证号码有误。-8: 姓名校验不通过。-9: 没有记录。-11: 验证中心服务繁忙。-13：该号段不支持验证</p>
         # @type Result: String
-        # @param Isp: 运营商名称。
-        # - 取值范围为["移动","联通","电信",""]。
+        # @param Isp: <p>运营商名称。</p><ul><li>取值范围为[&quot;移动&quot;,&quot;联通&quot;,&quot;电信&quot;,&quot;&quot;]。</li></ul>
         # @type Isp: String
-        # @param Description: 业务结果描述。
+        # @param Description: <p>业务结果描述。</p>
         # @type Description: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

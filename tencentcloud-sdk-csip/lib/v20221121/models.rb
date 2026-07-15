@@ -26113,6 +26113,42 @@ module TencentCloud
         end
       end
 
+      # ModifyCosAuditBucketMonitorStatus请求参数结构体
+      class ModifyCosAuditBucketMonitorStatusRequest < TencentCloud::Common::AbstractModel
+        # @param BucketNameSet: 存储桶集合
+        # @type BucketNameSet: Array
+        # @param MonitorStatus: 0 关闭 1 开启
+        # @type MonitorStatus: Integer
+
+        attr_accessor :BucketNameSet, :MonitorStatus
+
+        def initialize(bucketnameset=nil, monitorstatus=nil)
+          @BucketNameSet = bucketnameset
+          @MonitorStatus = monitorstatus
+        end
+
+        def deserialize(params)
+          @BucketNameSet = params['BucketNameSet']
+          @MonitorStatus = params['MonitorStatus']
+        end
+      end
+
+      # ModifyCosAuditBucketMonitorStatus返回参数结构体
+      class ModifyCosAuditBucketMonitorStatusResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyCosAuditMonitorAccount请求参数结构体
       class ModifyCosAuditMonitorAccountRequest < TencentCloud::Common::AbstractModel
         # @param ResourceId: 资源id
@@ -30094,7 +30130,7 @@ module TencentCloud
 
       # Skill 能力标签
       class SkillCapabilityTag < TencentCloud::Common::AbstractModel
-        # @param ID: 能力标签标识，适合程序判定、过滤或聚合使用
+        # @param ID: 能力标签标识
         # @type ID: String
         # @param Name: 能力标签展示名称
         # @type Name: String
@@ -30114,7 +30150,8 @@ module TencentCloud
 
       # 融合规则目录项
       class SkillRuleCatalogItem < TencentCloud::Common::AbstractModel
-        # @param RuleID: 融合规则 ID（9xxxx）
+        # @param RuleID: 融合规则 ID
+        # 参数格式：形如 9xxxx
         # @type RuleID: String
         # @param RuleName: 风险类别名称
         # @type RuleName: String
@@ -30139,7 +30176,7 @@ module TencentCloud
         # AI：AI 引擎
         # STATIC：静态分析引擎
         # @type ScanType: String
-        # @param RuleList: 该引擎命中的规则列表
+        # @param RuleList: 命中规则列表
         # @type RuleList: Array
 
         attr_accessor :ScanType, :RuleList
@@ -30269,9 +30306,10 @@ module TencentCloud
 
       # 命中规则项
       class SkillScanRuleHit < TencentCloud::Common::AbstractModel
-        # @param RuleID: 融合规则编号（9xxxx），可与 RuleCatalog 交叉引用
+        # @param RuleID: 融合规则编号
+        # 参数格式：形如 9xxxx
         # @type RuleID: String
-        # @param Description: 当前命中规则的具体发现描述，包含文件位置、行为特征、风险点等信息
+        # @param Description: 风险发现描述
         # @type Description: String
 
         attr_accessor :RuleID, :Description
