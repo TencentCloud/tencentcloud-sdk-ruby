@@ -451,7 +451,7 @@ module TencentCloud
         # @type ExceptionFilter: String
         # @param ErrorCodeFilter: <p>HTTP 状态码过滤</p>
         # @type ErrorCodeFilter: String
-        # @param EventEnable: <p>应用诊断开关（已废弃）</p>
+        # @param EventEnable: <p>应用诊断开关</p>
         # @type EventEnable: Boolean
         # @param UrlConvergenceSwitch: <p>URL 收敛开关 0 关 1 开</p>
         # @type UrlConvergenceSwitch: Integer
@@ -475,9 +475,9 @@ module TencentCloud
         # @type SnapshotTimeout: Integer
         # @param AgentEnable: <p>探针总开关</p>
         # @type AgentEnable: Boolean
-        # @param InstrumentList: <p>组件列表开关（已废弃）</p>
+        # @param InstrumentList: <p>组件列表开关</p>
         # @type InstrumentList: Array
-        # @param TraceSquash: <p>链路压缩开关（已废弃）</p>
+        # @param TraceSquash: <p>链路压缩开关</p>
         # @type TraceSquash: Boolean
         # @param AgentIgnoreOperation: <p>链路过滤配置</p>
         # @type AgentIgnoreOperation: String
@@ -1344,6 +1344,9 @@ module TencentCloud
         # @type Free: Integer
 
         attr_accessor :Name, :Description, :TraceDuration, :Tags, :SpanDailyCounters, :PayMode, :Free
+        extend Gem::Deprecate
+        deprecate :SpanDailyCounters, :none, 2026, 7
+        deprecate :SpanDailyCounters=, :none, 2026, 7
 
         def initialize(name=nil, description=nil, traceduration=nil, tags=nil, spandailycounters=nil, paymode=nil, free=nil)
           @Name = name
@@ -1633,6 +1636,9 @@ module TencentCloud
         # @type ReportMethod: String
 
         attr_accessor :InstanceId, :AgentType, :NetworkMode, :LanguageEnvironment, :ReportMethod
+        extend Gem::Deprecate
+        deprecate :ReportMethod, :none, 2026, 7
+        deprecate :ReportMethod=, :none, 2026, 7
 
         def initialize(instanceid=nil, agenttype=nil, networkmode=nil, languageenvironment=nil, reportmethod=nil)
           @InstanceId = instanceid
@@ -3162,7 +3168,7 @@ module TencentCloud
         # @type Nodes: Array
         # @param Edges: <p>边集合</p>
         # @type Edges: Array
-        # @param TopologyModifyFlag: <p>拓扑图是否有修改</p>
+        # @param TopologyModifyFlag: <p>拓扑图是否有修改</p><p>枚举值：</p><ul><li>0： 拓扑图未修改</li><li>1： 拓扑图已修改</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopologyModifyFlag: Integer
         # @param Selectors: <p>节点数量</p>
@@ -4022,11 +4028,11 @@ module TencentCloud
 
       # ModifyApmService请求参数结构体
       class ModifyApmServiceRequest < TencentCloud::Common::AbstractModel
-        # @param ServiceID: 应用ID
+        # @param ServiceID: <p>应用ID</p>
         # @type ServiceID: String
-        # @param ServiceDescription: 应用描述
+        # @param ServiceDescription: <p>应用描述</p>
         # @type ServiceDescription: String
-        # @param Tags: 标签列表
+        # @param Tags: <p>标签列表</p>
         # @type Tags: Array
 
         attr_accessor :ServiceID, :ServiceDescription, :Tags

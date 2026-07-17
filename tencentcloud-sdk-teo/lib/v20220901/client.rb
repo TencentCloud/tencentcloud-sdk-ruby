@@ -549,6 +549,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建推理 API Token，用于访问推理服务时进行鉴权，Token 内容仅在创建时返回一次，每个站点最多创建 100 个。
+
+        # @param request: Request instance for CreateInferenceAPIToken.
+        # @type request: :class:`Tencentcloud::teo::V20220901::CreateInferenceAPITokenRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::CreateInferenceAPITokenResponse`
+        def CreateInferenceAPIToken(request)
+          body = send_request('CreateInferenceAPIToken', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateInferenceAPITokenResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建推理服务，支持设置服务名称、监听端口、容器镜像配置和资源配置，创建成功后提供推理访问地址。
+
+        # @param request: Request instance for CreateInferenceService.
+        # @type request: :class:`Tencentcloud::teo::V20220901::CreateInferenceServiceRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::CreateInferenceServiceResponse`
+        def CreateInferenceService(request)
+          body = send_request('CreateInferenceService', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateInferenceServiceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 即时转码已经提供了预置转码模板，满足大部分的需求。如果有个性化的转码需求，可以通过本接口创建自定义的转码模板，最多可创建100个自定义转码模板。
         # 为了确保即时转码效果的一致性，避免因 EO 缓存或 M3U8 分片处理过程中的模板变更导致视频输出异常，模板在创建后不可进行修改。
         # 即时转码详细能力了解：[EdgeOne视频即时处理功能介绍](https://cloud.tencent.com/document/product/1552/111927)。
@@ -1396,6 +1444,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteFunctionRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除推理 API Token，删除后该 Token 立即失效，使用其访问推理服务的请求将无法通过鉴权。
+
+        # @param request: Request instance for DeleteInferenceAPIToken.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DeleteInferenceAPITokenRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DeleteInferenceAPITokenResponse`
+        def DeleteInferenceAPIToken(request)
+          body = send_request('DeleteInferenceAPIToken', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteInferenceAPITokenResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2502,6 +2574,150 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeIdentificationsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询推理 API Token 列表，返回 Token 的 ID、名称、内容和创建时间，支持分页查询。
+
+        # @param request: Request instance for DescribeInferenceAPITokens.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeInferenceAPITokensRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeInferenceAPITokensResponse`
+        def DescribeInferenceAPITokens(request)
+          body = send_request('DescribeInferenceAPITokens', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInferenceAPITokensResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询推理硬件规格列表，返回各规格的 CPU、内存、GPU 和显存等配置，创建服务时可从中选择所需规格。
+
+        # @param request: Request instance for DescribeInferenceHardwareSpecifications.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeInferenceHardwareSpecificationsRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeInferenceHardwareSpecificationsResponse`
+        def DescribeInferenceHardwareSpecifications(request)
+          body = send_request('DescribeInferenceHardwareSpecifications', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInferenceHardwareSpecificationsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询推理服务指定一次部署的日志，返回日志内容和产生时间，支持按时间范围检索、分页和排序。
+
+        # @param request: Request instance for DescribeInferenceServiceDeploymentLogs.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeInferenceServiceDeploymentLogsRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeInferenceServiceDeploymentLogsResponse`
+        def DescribeInferenceServiceDeploymentLogs(request)
+          body = send_request('DescribeInferenceServiceDeploymentLogs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInferenceServiceDeploymentLogsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询推理服务部署历史列表，返回每次部署的操作类型、状态、耗时、配置快照和是否为当前生效配置，支持分页和排序。
+
+        # @param request: Request instance for DescribeInferenceServiceDeploymentRecords.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeInferenceServiceDeploymentRecordsRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeInferenceServiceDeploymentRecordsResponse`
+        def DescribeInferenceServiceDeploymentRecords(request)
+          body = send_request('DescribeInferenceServiceDeploymentRecords', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInferenceServiceDeploymentRecordsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询推理服务监控数据，支持 CPU、内存、GPU、显存使用率和实例数量等指标，可指定时间范围和聚合粒度，最多查询最近 30 天的数据。
+
+        # @param request: Request instance for DescribeInferenceServiceMonitorData.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeInferenceServiceMonitorDataRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeInferenceServiceMonitorDataResponse`
+        def DescribeInferenceServiceMonitorData(request)
+          body = send_request('DescribeInferenceServiceMonitorData', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInferenceServiceMonitorDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询推理服务列表，支持按服务名称、服务 ID、状态过滤，返回服务的配置、运行状态、实例数和推理访问地址等信息。
+
+        # @param request: Request instance for DescribeInferenceServices.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeInferenceServicesRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeInferenceServicesResponse`
+        def DescribeInferenceServices(request)
+          body = send_request('DescribeInferenceServices', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInferenceServicesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -4493,6 +4709,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改推理服务，支持更新监听端口、请求路径、容器镜像、资源配置和描述信息，仅传入的参数会被修改，未传入的参数保持不变。
+
+        # @param request: Request instance for ModifyInferenceService.
+        # @type request: :class:`Tencentcloud::teo::V20220901::ModifyInferenceServiceRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::ModifyInferenceServiceResponse`
+        def ModifyInferenceService(request)
+          body = send_request('ModifyInferenceService', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyInferenceServiceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用于修改四层代理实例的配置。
 
         # @param request: Request instance for ModifyL4Proxy.
@@ -5201,6 +5441,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyZoneWorkModeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 操作推理服务，支持停止、启动和删除推理服务，删除后资源不可恢复。
+
+        # @param request: Request instance for OperateInferenceService.
+        # @type request: :class:`Tencentcloud::teo::V20220901::OperateInferenceServiceRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::OperateInferenceServiceResponse`
+        def OperateInferenceService(request)
+          body = send_request('OperateInferenceService', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = OperateInferenceServiceResponse.new
             model.deserialize(response['Response'])
             model
           else

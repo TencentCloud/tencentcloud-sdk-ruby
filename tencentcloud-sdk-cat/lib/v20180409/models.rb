@@ -176,62 +176,35 @@ module TencentCloud
 
       # DescribeDetailedSingleProbeData请求参数结构体
       class DescribeDetailedSingleProbeDataRequest < TencentCloud::Common::AbstractModel
-        # @param BeginTime: 开始时间戳（毫秒级）
+        # @param BeginTime: <p>开始时间戳（毫秒级）</p>
         # @type BeginTime: Integer
-        # @param EndTime: 结束时间戳（毫秒级）
+        # @param EndTime: <p>结束时间戳（毫秒级）</p>
         # @type EndTime: Integer
-        # @param TaskType: 任务类型
-        # AnalyzeTaskType_Network：网络质量
-        # AnalyzeTaskType_Browse：页面性能
-        # AnalyzeTaskType_UploadDownload：文件传输（含文件上传、文件下载）
-        # AnalyzeTaskType_Transport：端口性能
-        # AnalyzeTaskType_MediaStream：音视频体验
+        # @param TaskType: <p>任务类型<br>AnalyzeTaskType_Network：网络质量<br>AnalyzeTaskType_Browse：页面性能<br>AnalyzeTaskType_UploadDownload：文件传输（含文件上传、文件下载）<br>AnalyzeTaskType_Transport：端口性能<br>AnalyzeTaskType_MediaStream：音视频体验</p>
         # @type TaskType: String
-        # @param SortField: 待排序字段
-        # 可以填写 ProbeTime 拨测时间排序
-        # 也可填写SelectedFields 中的选中字段
+        # @param SortField: <p>待排序字段<br>可以填写 ProbeTime 拨测时间排序<br>也可填写SelectedFields 中的选中字段</p>
         # @type SortField: String
-        # @param Ascending: true表示升序
+        # @param Ascending: <p>true表示升序</p>
         # @type Ascending: Boolean
-        # @param SelectedFields: 选中字段，如ProbeTime、TransferTime、TransferSize等。
+        # @param SelectedFields: <p>选中字段，如ProbeTime、TransferTime、TransferSize等。</p>
         # @type SelectedFields: Array
-        # @param Offset: 起始取数位置
+        # @param Offset: <p>起始取数位置</p>
         # @type Offset: Integer
-        # @param Limit: 取数数量
+        # @param Limit: <p>取数数量</p>
         # @type Limit: Integer
-        # @param TaskID: 任务ID
+        # @param TaskID: <p>任务ID</p>
         # @type TaskID: Array
-        # @param Operators: 拨测点运营商
-
-        # 这里实际按拨测结果中的运营商来填写即可
-
-        # 电信：中国电信
-        # 移动：中国移动
-        # 联通：中国联通
+        # @param Operators: <p>拨测点运营商</p><p>这里实际按拨测结果中的运营商来填写即可</p><p>电信：中国电信<br>移动：中国移动<br>联通：中国联通</p>
         # @type Operators: Array
-        # @param Districts: 拨测点地区
-
-        # 这里实际按拨测结果中的地区来填写即可
-
-        # 国内一般是省级单位，如广东、广西、中国香港；直辖市则填北京、上海
-
-        # 境外一般是国家名，如澳大利亚、新加坡
+        # @param Districts: <p>拨测点地区</p><p>这里实际按拨测结果中的地区来填写即可</p><p>国内一般是省级单位，如广东、广西、中国香港；直辖市则填北京、上海</p><p>境外一般是国家名，如澳大利亚、新加坡</p>
         # @type Districts: Array
-        # @param ErrorTypes: 错误类型
+        # @param ErrorTypes: <p>错误类型</p>
         # @type ErrorTypes: Array
-        # @param City: 城市
-        # 这里实际按拨测结果中的城市来填写即可
-
-        # 示例：
-
-        # 深圳市
-        # 武汉市
-        # 首尔
-        # 多伦多
+        # @param City: <p>城市<br>这里实际按拨测结果中的城市来填写即可</p><p>示例：</p><p>深圳市<br>武汉市<br>首尔<br>多伦多</p>
         # @type City: Array
-        # @param ScrollID: es scroll查询id
+        # @param ScrollID: <p>es scroll查询id</p>
         # @type ScrollID: String
-        # @param QueryFlag: 详情数据下载
+        # @param QueryFlag: <p>详情数据下载</p>
         # @type QueryFlag: String
 
         attr_accessor :BeginTime, :EndTime, :TaskType, :SortField, :Ascending, :SelectedFields, :Offset, :Limit, :TaskID, :Operators, :Districts, :ErrorTypes, :City, :ScrollID, :QueryFlag
@@ -275,11 +248,11 @@ module TencentCloud
 
       # DescribeDetailedSingleProbeData返回参数结构体
       class DescribeDetailedSingleProbeDataResponse < TencentCloud::Common::AbstractModel
-        # @param DataSet: 单次详情数据
+        # @param DataSet: <p>单次详情数据</p>
         # @type DataSet: Array
-        # @param TotalNumber: 符合条件的数据总数
+        # @param TotalNumber: <p>符合条件的数据总数</p>
         # @type TotalNumber: Integer
-        # @param ScrollID: es scroll查询的id
+        # @param ScrollID: <p>es scroll查询的id</p>
         # @type ScrollID: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

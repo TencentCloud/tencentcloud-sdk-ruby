@@ -4486,6 +4486,120 @@ module TencentCloud
         end
       end
 
+      # CreateInferenceAPIToken请求参数结构体
+      class CreateInferenceAPITokenRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param Name: 推理 API Token 的名称，长度限制不超过 30 个字符。
+        # @type Name: String
+
+        attr_accessor :ZoneId, :Name
+
+        def initialize(zoneid=nil, name=nil)
+          @ZoneId = zoneid
+          @Name = name
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @Name = params['Name']
+        end
+      end
+
+      # CreateInferenceAPIToken返回参数结构体
+      class CreateInferenceAPITokenResponse < TencentCloud::Common::AbstractModel
+        # @param TokenId: 推理 API Token ID。
+        # @type TokenId: String
+        # @param Content: 推理 API Token 内容。
+        # @type Content: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TokenId, :Content, :RequestId
+
+        def initialize(tokenid=nil, content=nil, requestid=nil)
+          @TokenId = tokenid
+          @Content = content
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TokenId = params['TokenId']
+          @Content = params['Content']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateInferenceService请求参数结构体
+      class CreateInferenceServiceRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: <p>站点 ID。</p>
+        # @type ZoneId: String
+        # @param Name: <p>推理服务的名称。长度限制不超过 30 个字符，仅支持小写字母、数字、连字符，以字母开头，数字或字母结尾，不支持重复。</p>
+        # @type Name: String
+        # @param ListenPort: <p>模型服务需要监听的端口。仅支持 1-65535 之间的整数。</p>
+        # @type ListenPort: Integer
+        # @param Containers: <p>推理服务的容器配置。当前仅支持设置 1 个容器。</p>
+        # @type Containers: Array
+        # @param ResourceConfig: <p>推理服务的资源配置。</p>
+        # @type ResourceConfig: :class:`Tencentcloud::Teo.v20220901.models.InferenceResourceConfig`
+        # @param RequestPaths: <p>推理服务的请求路径列表。最多支持 20 个路径。</p>
+        # @type RequestPaths: Array
+        # @param Description: <p>描述信息。长度限制不超过 60 个字符。</p>
+        # @type Description: String
+
+        attr_accessor :ZoneId, :Name, :ListenPort, :Containers, :ResourceConfig, :RequestPaths, :Description
+
+        def initialize(zoneid=nil, name=nil, listenport=nil, containers=nil, resourceconfig=nil, requestpaths=nil, description=nil)
+          @ZoneId = zoneid
+          @Name = name
+          @ListenPort = listenport
+          @Containers = containers
+          @ResourceConfig = resourceconfig
+          @RequestPaths = requestpaths
+          @Description = description
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @Name = params['Name']
+          @ListenPort = params['ListenPort']
+          unless params['Containers'].nil?
+            @Containers = []
+            params['Containers'].each do |i|
+              inferencecontainerconfig_tmp = InferenceContainerConfig.new
+              inferencecontainerconfig_tmp.deserialize(i)
+              @Containers << inferencecontainerconfig_tmp
+            end
+          end
+          unless params['ResourceConfig'].nil?
+            @ResourceConfig = InferenceResourceConfig.new
+            @ResourceConfig.deserialize(params['ResourceConfig'])
+          end
+          @RequestPaths = params['RequestPaths']
+          @Description = params['Description']
+        end
+      end
+
+      # CreateInferenceService返回参数结构体
+      class CreateInferenceServiceResponse < TencentCloud::Common::AbstractModel
+        # @param ServiceId: <p>服务 ID。</p>
+        # @type ServiceId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ServiceId, :RequestId
+
+        def initialize(serviceid=nil, requestid=nil)
+          @ServiceId = serviceid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateJustInTimeTranscodeTemplate请求参数结构体
       class CreateJustInTimeTranscodeTemplateRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点ID。
@@ -6932,6 +7046,42 @@ module TencentCloud
 
       # DeleteFunctionRules返回参数结构体
       class DeleteFunctionRulesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteInferenceAPIToken请求参数结构体
+      class DeleteInferenceAPITokenRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param TokenId: 推理 API Token 的 ID。
+        # @type TokenId: String
+
+        attr_accessor :ZoneId, :TokenId
+
+        def initialize(zoneid=nil, tokenid=nil)
+          @ZoneId = zoneid
+          @TokenId = tokenid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @TokenId = params['TokenId']
+        end
+      end
+
+      # DeleteInferenceAPIToken返回参数结构体
+      class DeleteInferenceAPITokenResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -9568,6 +9718,391 @@ module TencentCloud
               identification_tmp = Identification.new
               identification_tmp.deserialize(i)
               @Identifications << identification_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeInferenceAPITokens请求参数结构体
+      class DescribeInferenceAPITokensRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: <p>站点 ID。</p>
+        # @type ZoneId: String
+        # @param Offset: <p>分页查询偏移量。默认值：0。</p>
+        # @type Offset: Integer
+        # @param Limit: <p>分页查询限制数目。默认值：20，最大值：100。</p>
+        # @type Limit: Integer
+
+        attr_accessor :ZoneId, :Offset, :Limit
+
+        def initialize(zoneid=nil, offset=nil, limit=nil)
+          @ZoneId = zoneid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeInferenceAPITokens返回参数结构体
+      class DescribeInferenceAPITokensResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>Token 的总数。</p>
+        # @type TotalCount: Integer
+        # @param Tokens: <p>Token 列表。</p>
+        # @type Tokens: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Tokens, :RequestId
+
+        def initialize(totalcount=nil, tokens=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Tokens = tokens
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Tokens'].nil?
+            @Tokens = []
+            params['Tokens'].each do |i|
+              inferenceapitoken_tmp = InferenceAPIToken.new
+              inferenceapitoken_tmp.deserialize(i)
+              @Tokens << inferenceapitoken_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeInferenceHardwareSpecifications请求参数结构体
+      class DescribeInferenceHardwareSpecificationsRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: <p>站点 ID。</p>
+        # @type ZoneId: String
+
+        attr_accessor :ZoneId
+
+        def initialize(zoneid=nil)
+          @ZoneId = zoneid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+        end
+      end
+
+      # DescribeInferenceHardwareSpecifications返回参数结构体
+      class DescribeInferenceHardwareSpecificationsResponse < TencentCloud::Common::AbstractModel
+        # @param HardwareSpecifications: <p>硬件规格列表。</p>
+        # @type HardwareSpecifications: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :HardwareSpecifications, :RequestId
+
+        def initialize(hardwarespecifications=nil, requestid=nil)
+          @HardwareSpecifications = hardwarespecifications
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['HardwareSpecifications'].nil?
+            @HardwareSpecifications = []
+            params['HardwareSpecifications'].each do |i|
+              inferencehardwarespecification_tmp = InferenceHardwareSpecification.new
+              inferencehardwarespecification_tmp.deserialize(i)
+              @HardwareSpecifications << inferencehardwarespecification_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeInferenceServiceDeploymentLogs请求参数结构体
+      class DescribeInferenceServiceDeploymentLogsRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点ID。
+        # @type ZoneId: String
+        # @param ServiceId: 推理服务 ID。
+        # @type ServiceId: String
+        # @param RecordId: 部署记录 ID。
+        # @type RecordId: String
+        # @param StartTime: 需检索日志的开始时间。
+        # @type StartTime: String
+        # @param EndTime: 需检索日志的结束时间。默认查询时间范围（EndTime - StartTime）为最近 7 天。
+        # @type EndTime: String
+        # @param SortBy: 排序字段，取值有：<li>timestamp：日志生成时间。</li>默认值为：timestamp。
+        # @type SortBy: String
+        # @param SortOrder: 排序方式，取值有：<li>asc：升序方式；</li><li>desc：降序方式。</li>默认值为：desc。
+        # @type SortOrder: String
+        # @param Offset: 分页偏移量，默认值：0。
+        # @type Offset: Integer
+        # @param Limit: 返回记录条数，默认值：20，最大值：1000。
+        # @type Limit: Integer
+
+        attr_accessor :ZoneId, :ServiceId, :RecordId, :StartTime, :EndTime, :SortBy, :SortOrder, :Offset, :Limit
+
+        def initialize(zoneid=nil, serviceid=nil, recordid=nil, starttime=nil, endtime=nil, sortby=nil, sortorder=nil, offset=nil, limit=nil)
+          @ZoneId = zoneid
+          @ServiceId = serviceid
+          @RecordId = recordid
+          @StartTime = starttime
+          @EndTime = endtime
+          @SortBy = sortby
+          @SortOrder = sortorder
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @ServiceId = params['ServiceId']
+          @RecordId = params['RecordId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @SortBy = params['SortBy']
+          @SortOrder = params['SortOrder']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeInferenceServiceDeploymentLogs返回参数结构体
+      class DescribeInferenceServiceDeploymentLogsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合条件的部署日志总数。
+        # @type TotalCount: Integer
+        # @param DeploymentLogInfoSet: 部署日志列表。
+        # @type DeploymentLogInfoSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :DeploymentLogInfoSet, :RequestId
+
+        def initialize(totalcount=nil, deploymentloginfoset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @DeploymentLogInfoSet = deploymentloginfoset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['DeploymentLogInfoSet'].nil?
+            @DeploymentLogInfoSet = []
+            params['DeploymentLogInfoSet'].each do |i|
+              inferenceservicedeploymentloginfo_tmp = InferenceServiceDeploymentLogInfo.new
+              inferenceservicedeploymentloginfo_tmp.deserialize(i)
+              @DeploymentLogInfoSet << inferenceservicedeploymentloginfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeInferenceServiceDeploymentRecords请求参数结构体
+      class DescribeInferenceServiceDeploymentRecordsRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: <p>站点 ID。</p>
+        # @type ZoneId: String
+        # @param ServiceId: <p>推理服务 ID。</p>
+        # @type ServiceId: String
+        # @param SortBy: <p>排序字段，取值有：<li>create-time：部署创建时间。</li>默认值为：create-time。</p>
+        # @type SortBy: String
+        # @param SortOrder: <p>排序方式，取值有：<li>asc：升序方式；</li><li>desc：降序方式。</li>默认值为：desc。</p>
+        # @type SortOrder: String
+        # @param Offset: <p>分页偏移量，默认值：0。</p>
+        # @type Offset: Integer
+        # @param Limit: <p>返回记录条数，默认值：20，最大值：100。</p>
+        # @type Limit: Integer
+
+        attr_accessor :ZoneId, :ServiceId, :SortBy, :SortOrder, :Offset, :Limit
+
+        def initialize(zoneid=nil, serviceid=nil, sortby=nil, sortorder=nil, offset=nil, limit=nil)
+          @ZoneId = zoneid
+          @ServiceId = serviceid
+          @SortBy = sortby
+          @SortOrder = sortorder
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @ServiceId = params['ServiceId']
+          @SortBy = params['SortBy']
+          @SortOrder = params['SortOrder']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeInferenceServiceDeploymentRecords返回参数结构体
+      class DescribeInferenceServiceDeploymentRecordsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>部署历史总数。</p>
+        # @type TotalCount: Integer
+        # @param RecordSet: <p>推理服务部署历史列表。</p>
+        # @type RecordSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :RecordSet, :RequestId
+
+        def initialize(totalcount=nil, recordset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @RecordSet = recordset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['RecordSet'].nil?
+            @RecordSet = []
+            params['RecordSet'].each do |i|
+              inferenceservicedeploymentrecord_tmp = InferenceServiceDeploymentRecord.new
+              inferenceservicedeploymentrecord_tmp.deserialize(i)
+              @RecordSet << inferenceservicedeploymentrecord_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeInferenceServiceMonitorData请求参数结构体
+      class DescribeInferenceServiceMonitorDataRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: <p>站点 ID。</p>
+        # @type ZoneId: String
+        # @param ServiceIds: <p>推理服务 ID。最多传入10个推理服务 ID。</p>
+        # @type ServiceIds: Array
+        # @param MetricNames: <p>指标列表，最多支持 10 个指标。取值有：<li>cpu_usage_average: CPU 平均使用率，单位：%，指标类型：Float；</li><li>cpu_usage_max: CPU 最大使用率，单位：%，指标类型：Float；</li><li>gpu_usage_average: GPU 平均使用率，单位：%，指标类型：Float；</li><li>gpu_usage_max: GPU 最大使用率，单位：%，指标类型：Float；</li><li>instance_num_average: 实例平均数量，单位：个，指标类型：Float；</li><li>instance_num_max: 实例最大数量，单位：个，指标类型：Float；</li><li>gpu_memory_usage_max: 显存最大使用率，单位：%，指标类型：Float；</li><li>memory_usage_average: 内存平均使用率，单位：%，指标类型：Float；</li><li>memory_usage_max: 内存最大使用率，单位：%，指标类型：Float；</li></p>
+        # @type MetricNames: Array
+        # @param StartTime: <p>开始时间。</p>
+        # @type StartTime: String
+        # @param EndTime: <p>结束时间。查询时间范围（<code>EndTime - StartTime</code>）需小于等于 30 天。</p>
+        # @type EndTime: String
+        # @param Interval: <p>查询时间粒度，取值有：</p><li>min: 1分钟，支持1天范围内的查询；</li><li>5min: 5分钟，支持7天范围内的查询；</li><li>hour: 1小时，支持30天范围内的查询；</li><li>day: 1天，支持30天范围内的查询；</li>不填将根据开始时间跟结束时间的间距自动推算粒度，具体为：2小时范围内以 min 粒度查询，2天范围内以 5min 粒度查询，7天范围内以 hour 粒度查询，超过7天以 day 粒度查询。
+        # @type Interval: String
+
+        attr_accessor :ZoneId, :ServiceIds, :MetricNames, :StartTime, :EndTime, :Interval
+
+        def initialize(zoneid=nil, serviceids=nil, metricnames=nil, starttime=nil, endtime=nil, interval=nil)
+          @ZoneId = zoneid
+          @ServiceIds = serviceids
+          @MetricNames = metricnames
+          @StartTime = starttime
+          @EndTime = endtime
+          @Interval = interval
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @ServiceIds = params['ServiceIds']
+          @MetricNames = params['MetricNames']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Interval = params['Interval']
+        end
+      end
+
+      # DescribeInferenceServiceMonitorData返回参数结构体
+      class DescribeInferenceServiceMonitorDataResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>查询结果的总条数。</p>
+        # @type TotalCount: Integer
+        # @param InferenceServiceMonitorRecords: <p>推理服务监控数据。</p>
+        # @type InferenceServiceMonitorRecords: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :InferenceServiceMonitorRecords, :RequestId
+
+        def initialize(totalcount=nil, inferenceservicemonitorrecords=nil, requestid=nil)
+          @TotalCount = totalcount
+          @InferenceServiceMonitorRecords = inferenceservicemonitorrecords
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['InferenceServiceMonitorRecords'].nil?
+            @InferenceServiceMonitorRecords = []
+            params['InferenceServiceMonitorRecords'].each do |i|
+              inferenceservicemonitorrecord_tmp = InferenceServiceMonitorRecord.new
+              inferenceservicemonitorrecord_tmp.deserialize(i)
+              @InferenceServiceMonitorRecords << inferenceservicemonitorrecord_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeInferenceServices请求参数结构体
+      class DescribeInferenceServicesRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: <p>站点ID。</p>
+        # @type ZoneId: String
+        # @param Filters: <p>过滤条件，上限 20 个，多个条件为且关系，Filters.Values 的上限为 20。详细的过滤条件如下：<li>service-name：按照服务名称进行过滤；</li><li>service-id：按照服务 ID 过滤；</li><li>status：按照服务状态过滤。</li>模糊查询时仅支持过滤字段名为 service-name。</p>
+        # @type Filters: Array
+        # @param Offset: <p>分页查询偏移量。默认值：0。</p>
+        # @type Offset: Integer
+        # @param Limit: <p>分页查询限制数目。默认值：20，最大值：200。</p>
+        # @type Limit: Integer
+        # @param Order: <p>可根据该字段对返回结果进行排序，取值有：<li>create-time：创建时间。</li>不填写时默认按照 create-time 排序。</p>
+        # @type Order: String
+        # @param Direction: <p>排序方向，如果是字段值为数字，则根据数字大小排序；如果字段值为文本，则根据 ASCII 码的大小排序。取值有：<li>asc：从小到大排序；</li><li>desc：从大到小排序。</li>不填写使用默认值 desc。</p>
+        # @type Direction: String
+
+        attr_accessor :ZoneId, :Filters, :Offset, :Limit, :Order, :Direction
+
+        def initialize(zoneid=nil, filters=nil, offset=nil, limit=nil, order=nil, direction=nil)
+          @ZoneId = zoneid
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+          @Order = order
+          @Direction = direction
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              advancedfilter_tmp = AdvancedFilter.new
+              advancedfilter_tmp.deserialize(i)
+              @Filters << advancedfilter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Order = params['Order']
+          @Direction = params['Direction']
+        end
+      end
+
+      # DescribeInferenceServices返回参数结构体
+      class DescribeInferenceServicesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>满足条件的服务总数。</p>
+        # @type TotalCount: Integer
+        # @param Services: <p>推理服务列表。</p>
+        # @type Services: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Services, :RequestId
+
+        def initialize(totalcount=nil, services=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Services = services
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Services'].nil?
+            @Services = []
+            params['Services'].each do |i|
+              inferenceservice_tmp = InferenceService.new
+              inferenceservice_tmp.deserialize(i)
+              @Services << inferenceservice_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -15514,6 +16049,656 @@ module TencentCloud
         end
       end
 
+      # 推理 API Token 信息。
+      class InferenceAPIToken < TencentCloud::Common::AbstractModel
+        # @param TokenId: 推理 API Token ID。
+        # @type TokenId: String
+        # @param Name: 推理 API Token 名称。
+        # @type Name: String
+        # @param Content: 推理 API Token 内容。
+        # @type Content: String
+        # @param CreateTime: 创建时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type CreateTime: String
+
+        attr_accessor :TokenId, :Name, :Content, :CreateTime
+
+        def initialize(tokenid=nil, name=nil, content=nil, createtime=nil)
+          @TokenId = tokenid
+          @Name = name
+          @Content = content
+          @CreateTime = createtime
+        end
+
+        def deserialize(params)
+          @TokenId = params['TokenId']
+          @Name = params['Name']
+          @Content = params['Content']
+          @CreateTime = params['CreateTime']
+        end
+      end
+
+      # 推理服务自动伸缩配置。
+      class InferenceAutoScalingConfig < TencentCloud::Common::AbstractModel
+        # @param MinInstanceCount: <p>最小实例数量。当配置了伸缩策略并且策略处于有效期时，将不会生效。</p>
+        # @type MinInstanceCount: Integer
+        # @param ScalingPolicies: <p>伸缩策略列表。最多支持 5 个策略。</p>
+        # @type ScalingPolicies: Array
+
+        attr_accessor :MinInstanceCount, :ScalingPolicies
+
+        def initialize(mininstancecount=nil, scalingpolicies=nil)
+          @MinInstanceCount = mininstancecount
+          @ScalingPolicies = scalingpolicies
+        end
+
+        def deserialize(params)
+          @MinInstanceCount = params['MinInstanceCount']
+          unless params['ScalingPolicies'].nil?
+            @ScalingPolicies = []
+            params['ScalingPolicies'].each do |i|
+              inferencescalingpolicy_tmp = InferenceScalingPolicy.new
+              inferencescalingpolicy_tmp.deserialize(i)
+              @ScalingPolicies << inferencescalingpolicy_tmp
+            end
+          end
+        end
+      end
+
+      # 推理服务的容器配置。
+      class InferenceContainerConfig < TencentCloud::Common::AbstractModel
+        # @param ImageType: 镜像类型。取值有：<li>TCR：腾讯云容器镜像服务的镜像。</li>
+        # @type ImageType: String
+        # @param TcrRepositoryConfig: TCR 镜像仓库信息。当 ImageType 为 TCR 时必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TcrRepositoryConfig: :class:`Tencentcloud::Teo.v20220901.models.InferenceTCRRepositoryConfig`
+        # @param StartupCommand: 容器启动时执行的命令，未填写时默认使用镜像的 Entrypoint/CMD。最长支持 1024 字符。
+        # @type StartupCommand: String
+        # @param EnvironmentVariables: 容器运行时的环境变量。最多支持 10 个变量。
+        # @type EnvironmentVariables: Array
+
+        attr_accessor :ImageType, :TcrRepositoryConfig, :StartupCommand, :EnvironmentVariables
+
+        def initialize(imagetype=nil, tcrrepositoryconfig=nil, startupcommand=nil, environmentvariables=nil)
+          @ImageType = imagetype
+          @TcrRepositoryConfig = tcrrepositoryconfig
+          @StartupCommand = startupcommand
+          @EnvironmentVariables = environmentvariables
+        end
+
+        def deserialize(params)
+          @ImageType = params['ImageType']
+          unless params['TcrRepositoryConfig'].nil?
+            @TcrRepositoryConfig = InferenceTCRRepositoryConfig.new
+            @TcrRepositoryConfig.deserialize(params['TcrRepositoryConfig'])
+          end
+          @StartupCommand = params['StartupCommand']
+          unless params['EnvironmentVariables'].nil?
+            @EnvironmentVariables = []
+            params['EnvironmentVariables'].each do |i|
+              inferenceenvironmentvariable_tmp = InferenceEnvironmentVariable.new
+              inferenceenvironmentvariable_tmp.deserialize(i)
+              @EnvironmentVariables << inferenceenvironmentvariable_tmp
+            end
+          end
+        end
+      end
+
+      # 推理服务容器配置的修改参数。
+      class InferenceContainerConfigForModify < TencentCloud::Common::AbstractModel
+        # @param ImageType: 镜像类型。取值有：<li>TCR：腾讯云容器镜像服务的镜像。</li>
+        # @type ImageType: String
+        # @param TcrRepositoryConfig: TCR 镜像仓库信息。当 ImageType 为 TCR 时必填。
+        # @type TcrRepositoryConfig: :class:`Tencentcloud::Teo.v20220901.models.InferenceTCRRepositoryConfig`
+        # @param StartupCommand: 容器启动时执行的命令，未填写时默认使用镜像的 Entrypoint/CMD。最长支持 1024 字符。
+        # @type StartupCommand: String
+        # @param EnvironmentVariables: 容器运行时的环境变量。最多支持 10 个变量。
+        # @type EnvironmentVariables: Array
+
+        attr_accessor :ImageType, :TcrRepositoryConfig, :StartupCommand, :EnvironmentVariables
+
+        def initialize(imagetype=nil, tcrrepositoryconfig=nil, startupcommand=nil, environmentvariables=nil)
+          @ImageType = imagetype
+          @TcrRepositoryConfig = tcrrepositoryconfig
+          @StartupCommand = startupcommand
+          @EnvironmentVariables = environmentvariables
+        end
+
+        def deserialize(params)
+          @ImageType = params['ImageType']
+          unless params['TcrRepositoryConfig'].nil?
+            @TcrRepositoryConfig = InferenceTCRRepositoryConfig.new
+            @TcrRepositoryConfig.deserialize(params['TcrRepositoryConfig'])
+          end
+          @StartupCommand = params['StartupCommand']
+          unless params['EnvironmentVariables'].nil?
+            @EnvironmentVariables = []
+            params['EnvironmentVariables'].each do |i|
+              inferenceenvironmentvariable_tmp = InferenceEnvironmentVariable.new
+              inferenceenvironmentvariable_tmp.deserialize(i)
+              @EnvironmentVariables << inferenceenvironmentvariable_tmp
+            end
+          end
+        end
+      end
+
+      # 推理容器运行时的环境变量。
+      class InferenceEnvironmentVariable < TencentCloud::Common::AbstractModel
+        # @param Key: 变量名。仅允许包含大小写字母、数字、下划线，且必须以字母或下划线开头。长度限制不超过 64 个字符。
+        # @type Key: String
+        # @param Value: 变量值。支持任意可见字符如字母、数字、符号等。长度限制不超过 2048 个字符。
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
+      # 推理硬件规格信息。
+      class InferenceHardwareSpecification < TencentCloud::Common::AbstractModel
+        # @param Spec: 规格标识。
+        # @type Spec: String
+        # @param Name: 规格名称。
+        # @type Name: String
+        # @param CPUNum: CPU 核数。
+        # @type CPUNum: Float
+        # @param MemSize: 内存大小。单位为 MB。
+        # @type MemSize: Integer
+        # @param GPUNum: GPU 卡数。
+        # @type GPUNum: Float
+        # @param GPUMemSize: 显存大小。单位为 MB。
+        # @type GPUMemSize: Integer
+
+        attr_accessor :Spec, :Name, :CPUNum, :MemSize, :GPUNum, :GPUMemSize
+
+        def initialize(spec=nil, name=nil, cpunum=nil, memsize=nil, gpunum=nil, gpumemsize=nil)
+          @Spec = spec
+          @Name = name
+          @CPUNum = cpunum
+          @MemSize = memsize
+          @GPUNum = gpunum
+          @GPUMemSize = gpumemsize
+        end
+
+        def deserialize(params)
+          @Spec = params['Spec']
+          @Name = params['Name']
+          @CPUNum = params['CPUNum']
+          @MemSize = params['MemSize']
+          @GPUNum = params['GPUNum']
+          @GPUMemSize = params['GPUMemSize']
+        end
+      end
+
+      # 推理服务人工设置实例配置。
+      class InferenceManualInstanceConfig < TencentCloud::Common::AbstractModel
+        # @param FixedInstanceCount: 固定实例数量。
+        # @type FixedInstanceCount: Integer
+
+        attr_accessor :FixedInstanceCount
+
+        def initialize(fixedinstancecount=nil)
+          @FixedInstanceCount = fixedinstancecount
+        end
+
+        def deserialize(params)
+          @FixedInstanceCount = params['FixedInstanceCount']
+        end
+      end
+
+      # 推理服务的资源配置。
+      class InferenceResourceConfig < TencentCloud::Common::AbstractModel
+        # @param ScalingMode: 扩容缩容的方式。取值有：<li>Auto：根据请求量自动调整实例数量；</li><li>Manual：人工设置固定的实例数量。</li>
+        # @type ScalingMode: String
+        # @param HardwareSpec: 硬件规格。
+        # @type HardwareSpec: String
+        # @param AutoScalingConfig: 推理服务自动伸缩配置。当 ScalingMode 为 Auto 时必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoScalingConfig: :class:`Tencentcloud::Teo.v20220901.models.InferenceAutoScalingConfig`
+        # @param ManualInstanceConfig: 推理服务人工设置实例配置。当 ScalingMode 为 Manual 时必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ManualInstanceConfig: :class:`Tencentcloud::Teo.v20220901.models.InferenceManualInstanceConfig`
+        # @param Concurrency: 单实例的并发数。默认值为 1。
+        # @type Concurrency: Integer
+
+        attr_accessor :ScalingMode, :HardwareSpec, :AutoScalingConfig, :ManualInstanceConfig, :Concurrency
+
+        def initialize(scalingmode=nil, hardwarespec=nil, autoscalingconfig=nil, manualinstanceconfig=nil, concurrency=nil)
+          @ScalingMode = scalingmode
+          @HardwareSpec = hardwarespec
+          @AutoScalingConfig = autoscalingconfig
+          @ManualInstanceConfig = manualinstanceconfig
+          @Concurrency = concurrency
+        end
+
+        def deserialize(params)
+          @ScalingMode = params['ScalingMode']
+          @HardwareSpec = params['HardwareSpec']
+          unless params['AutoScalingConfig'].nil?
+            @AutoScalingConfig = InferenceAutoScalingConfig.new
+            @AutoScalingConfig.deserialize(params['AutoScalingConfig'])
+          end
+          unless params['ManualInstanceConfig'].nil?
+            @ManualInstanceConfig = InferenceManualInstanceConfig.new
+            @ManualInstanceConfig.deserialize(params['ManualInstanceConfig'])
+          end
+          @Concurrency = params['Concurrency']
+        end
+      end
+
+      # 推理服务资源配置的修改参数。
+      class InferenceResourceConfigForModify < TencentCloud::Common::AbstractModel
+        # @param ScalingMode: 扩容缩容的方式。取值有：<li>Auto：根据请求量自动调整实例数量；</li><li>Manual：人工设置固定的实例数量。</li>
+        # @type ScalingMode: String
+        # @param AutoScalingConfig: 推理服务自动伸缩配置。当 ScalingMode 为 Auto 时必填。
+        # @type AutoScalingConfig: :class:`Tencentcloud::Teo.v20220901.models.InferenceAutoScalingConfig`
+        # @param ManualInstanceConfig: 推理服务人工设置实例配置。当 ScalingMode 为 Manual 时必填。
+        # @type ManualInstanceConfig: :class:`Tencentcloud::Teo.v20220901.models.InferenceManualInstanceConfig`
+        # @param Concurrency: 单实例的并发数。默认值为 1。
+        # @type Concurrency: Integer
+
+        attr_accessor :ScalingMode, :AutoScalingConfig, :ManualInstanceConfig, :Concurrency
+
+        def initialize(scalingmode=nil, autoscalingconfig=nil, manualinstanceconfig=nil, concurrency=nil)
+          @ScalingMode = scalingmode
+          @AutoScalingConfig = autoscalingconfig
+          @ManualInstanceConfig = manualinstanceconfig
+          @Concurrency = concurrency
+        end
+
+        def deserialize(params)
+          @ScalingMode = params['ScalingMode']
+          unless params['AutoScalingConfig'].nil?
+            @AutoScalingConfig = InferenceAutoScalingConfig.new
+            @AutoScalingConfig.deserialize(params['AutoScalingConfig'])
+          end
+          unless params['ManualInstanceConfig'].nil?
+            @ManualInstanceConfig = InferenceManualInstanceConfig.new
+            @ManualInstanceConfig.deserialize(params['ManualInstanceConfig'])
+          end
+          @Concurrency = params['Concurrency']
+        end
+      end
+
+      # 边缘推理弹性伸缩策略。
+      class InferenceScalingPolicy < TencentCloud::Common::AbstractModel
+        # @param PolicyName: 策略名称。长度限制为 1~30 个字符。同一服务内策略名称需唯一。
+        # @type PolicyName: String
+        # @param PolicyType: 策略类型，创建后不可修改。取值：<li>ScheduledScaling：定时伸缩。</li>
+        # @type PolicyType: String
+        # @param ScheduledScalingPolicy: 定时伸缩配置。当 PolicyType 取值为 ScheduledScaling 时，该字段必填。
+        # @type ScheduledScalingPolicy: :class:`Tencentcloud::Teo.v20220901.models.InferenceScheduledScalingPolicy`
+
+        attr_accessor :PolicyName, :PolicyType, :ScheduledScalingPolicy
+
+        def initialize(policyname=nil, policytype=nil, scheduledscalingpolicy=nil)
+          @PolicyName = policyname
+          @PolicyType = policytype
+          @ScheduledScalingPolicy = scheduledscalingpolicy
+        end
+
+        def deserialize(params)
+          @PolicyName = params['PolicyName']
+          @PolicyType = params['PolicyType']
+          unless params['ScheduledScalingPolicy'].nil?
+            @ScheduledScalingPolicy = InferenceScheduledScalingPolicy.new
+            @ScheduledScalingPolicy.deserialize(params['ScheduledScalingPolicy'])
+          end
+        end
+      end
+
+      # 边缘推理定时伸缩动作配置，用于描述一条具体的定时伸缩动作。
+      class InferenceScheduledScalingAction < TencentCloud::Common::AbstractModel
+        # @param CronExpression: Cron 表达式，用于描述定时伸缩动作的触发时间。采用 5 字段标准 Cron 格式：分钟 小时 日期 月份 星期。不支持秒字段和年份字段。
+        # @type CronExpression: String
+        # @param MinInstanceCount: 命中该定时伸缩动作后，推理服务需要调整到的最小实例数。若同一评估窗口内多个定时伸缩动作同时命中，则使用其中最大的 MinInstanceCount。
+        # @type MinInstanceCount: Integer
+
+        attr_accessor :CronExpression, :MinInstanceCount
+
+        def initialize(cronexpression=nil, mininstancecount=nil)
+          @CronExpression = cronexpression
+          @MinInstanceCount = mininstancecount
+        end
+
+        def deserialize(params)
+          @CronExpression = params['CronExpression']
+          @MinInstanceCount = params['MinInstanceCount']
+        end
+      end
+
+      # 边缘推理定时伸缩有效期范围配置。
+      class InferenceScheduledScalingEffectiveRange < TencentCloud::Common::AbstractModel
+        # @param EffectiveType: <p>有效期类型。取值有：<li>LongTerm：长期有效；</li><li>Custom：自定义起止日期。</li></p>
+        # @type EffectiveType: String
+        # @param StartDate: <p>有效期起始日期。当 EffectiveType 为 Custom 时必填；当 EffectiveType 为 LongTerm 时不传该字段。</p>
+        # @type StartDate: String
+        # @param EndDate: <p>有效期终止日期。当 EffectiveType 为 Custom 时必填，且不得早于 StartDate；当 EffectiveType 为 LongTerm 时不传该字段。</p>
+        # @type EndDate: String
+
+        attr_accessor :EffectiveType, :StartDate, :EndDate
+
+        def initialize(effectivetype=nil, startdate=nil, enddate=nil)
+          @EffectiveType = effectivetype
+          @StartDate = startdate
+          @EndDate = enddate
+        end
+
+        def deserialize(params)
+          @EffectiveType = params['EffectiveType']
+          @StartDate = params['StartDate']
+          @EndDate = params['EndDate']
+        end
+      end
+
+      # 边缘推理定时伸缩策略配置。
+      class InferenceScheduledScalingPolicy < TencentCloud::Common::AbstractModel
+        # @param ScheduledActions: 定时伸缩动作列表。至少填写 1 个，最多支持 10 个。
+        # @type ScheduledActions: Array
+        # @param EffectiveRange: 有效期范围，用于描述该定时伸缩策略长期有效或仅在指定日期范围内有效。
+        # @type EffectiveRange: :class:`Tencentcloud::Teo.v20220901.models.InferenceScheduledScalingEffectiveRange`
+        # @param TimeZone: 时区，使用 [IANA 时区](https://www.iana.org/time-zones) 标识 ScheduledActions 中的触发时间，例如 UTC、Asia/Shanghai、America/New_York、Europe/London、Asia/Kolkata。不传时默认使用 UTC。
+
+
+
+
+        # @type TimeZone: String
+
+        attr_accessor :ScheduledActions, :EffectiveRange, :TimeZone
+
+        def initialize(scheduledactions=nil, effectiverange=nil, timezone=nil)
+          @ScheduledActions = scheduledactions
+          @EffectiveRange = effectiverange
+          @TimeZone = timezone
+        end
+
+        def deserialize(params)
+          unless params['ScheduledActions'].nil?
+            @ScheduledActions = []
+            params['ScheduledActions'].each do |i|
+              inferencescheduledscalingaction_tmp = InferenceScheduledScalingAction.new
+              inferencescheduledscalingaction_tmp.deserialize(i)
+              @ScheduledActions << inferencescheduledscalingaction_tmp
+            end
+          end
+          unless params['EffectiveRange'].nil?
+            @EffectiveRange = InferenceScheduledScalingEffectiveRange.new
+            @EffectiveRange.deserialize(params['EffectiveRange'])
+          end
+          @TimeZone = params['TimeZone']
+        end
+      end
+
+      # 推理服务信息。
+      class InferenceService < TencentCloud::Common::AbstractModel
+        # @param ServiceId: 推理服务 ID。
+        # @type ServiceId: String
+        # @param Name: 推理服务的名称。
+        # @type Name: String
+        # @param Description: 描述信息。
+        # @type Description: String
+        # @param ListenPort: 模型服务需要监听的端口。仅支持 1-65535 之间的整数。
+        # @type ListenPort: Integer
+        # @param RequestPaths: 推理服务的请求路径列表。最多支持 20 个路径。
+        # @type RequestPaths: Array
+        # @param Containers: 推理服务的容器配置。
+        # @type Containers: Array
+        # @param ResourceConfig: 推理服务的资源配置。
+        # @type ResourceConfig: :class:`Tencentcloud::Teo.v20220901.models.InferenceResourceConfig`
+        # @param Status: 推理服务状态，包含以下几种状态：<li>Deploying：部署中；</li><li>Running：运行中；</li><li>Stopping：停止中；</li><li>Stopped：已停止；</li><li>Exception：异常；</li><li>Banned：被封禁。</li>
+        # @type Status: String
+        # @param ScalingStatus: 伸缩状态。取值有：<li>Normal：稳定运行，无进行中的伸缩操作；</li><li>ScalingOut：扩容中；</li><li>ScalingIn：缩容中。</li>
+        # @type ScalingStatus: String
+        # @param CurrentInstanceCount: 当前运行中的实例数量。
+        # @type CurrentInstanceCount: Integer
+        # @param InferenceURL: 推理访问地址，可通过链接访问底层模型进行推理。
+        # @type InferenceURL: String
+        # @param CreateTime: 创建时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type CreateTime: String
+        # @param UpdateTime: 最后修改时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type UpdateTime: String
+
+        attr_accessor :ServiceId, :Name, :Description, :ListenPort, :RequestPaths, :Containers, :ResourceConfig, :Status, :ScalingStatus, :CurrentInstanceCount, :InferenceURL, :CreateTime, :UpdateTime
+
+        def initialize(serviceid=nil, name=nil, description=nil, listenport=nil, requestpaths=nil, containers=nil, resourceconfig=nil, status=nil, scalingstatus=nil, currentinstancecount=nil, inferenceurl=nil, createtime=nil, updatetime=nil)
+          @ServiceId = serviceid
+          @Name = name
+          @Description = description
+          @ListenPort = listenport
+          @RequestPaths = requestpaths
+          @Containers = containers
+          @ResourceConfig = resourceconfig
+          @Status = status
+          @ScalingStatus = scalingstatus
+          @CurrentInstanceCount = currentinstancecount
+          @InferenceURL = inferenceurl
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+          @Name = params['Name']
+          @Description = params['Description']
+          @ListenPort = params['ListenPort']
+          @RequestPaths = params['RequestPaths']
+          unless params['Containers'].nil?
+            @Containers = []
+            params['Containers'].each do |i|
+              inferencecontainerconfig_tmp = InferenceContainerConfig.new
+              inferencecontainerconfig_tmp.deserialize(i)
+              @Containers << inferencecontainerconfig_tmp
+            end
+          end
+          unless params['ResourceConfig'].nil?
+            @ResourceConfig = InferenceResourceConfig.new
+            @ResourceConfig.deserialize(params['ResourceConfig'])
+          end
+          @Status = params['Status']
+          @ScalingStatus = params['ScalingStatus']
+          @CurrentInstanceCount = params['CurrentInstanceCount']
+          @InferenceURL = params['InferenceURL']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 推理服务单次部署配置。
+      class InferenceServiceConfig < TencentCloud::Common::AbstractModel
+        # @param ListenPort: 模型服务需要监听的端口。
+        # @type ListenPort: Integer
+        # @param RequestPaths: 推理服务的请求路径列表。
+        # @type RequestPaths: Array
+        # @param Containers: 推理服务的容器配置。
+        # @type Containers: Array
+        # @param ResourceConfig: 推理服务的资源配置。
+        # @type ResourceConfig: :class:`Tencentcloud::Teo.v20220901.models.InferenceResourceConfig`
+
+        attr_accessor :ListenPort, :RequestPaths, :Containers, :ResourceConfig
+
+        def initialize(listenport=nil, requestpaths=nil, containers=nil, resourceconfig=nil)
+          @ListenPort = listenport
+          @RequestPaths = requestpaths
+          @Containers = containers
+          @ResourceConfig = resourceconfig
+        end
+
+        def deserialize(params)
+          @ListenPort = params['ListenPort']
+          @RequestPaths = params['RequestPaths']
+          unless params['Containers'].nil?
+            @Containers = []
+            params['Containers'].each do |i|
+              inferencecontainerconfig_tmp = InferenceContainerConfig.new
+              inferencecontainerconfig_tmp.deserialize(i)
+              @Containers << inferencecontainerconfig_tmp
+            end
+          end
+          unless params['ResourceConfig'].nil?
+            @ResourceConfig = InferenceResourceConfig.new
+            @ResourceConfig.deserialize(params['ResourceConfig'])
+          end
+        end
+      end
+
+      # 推理服务部署日志信息。
+      class InferenceServiceDeploymentLogInfo < TencentCloud::Common::AbstractModel
+        # @param LogMessage: 日志消息内容。
+        # @type LogMessage: String
+        # @param Timestamp: 日志产生时间。
+        # @type Timestamp: String
+
+        attr_accessor :LogMessage, :Timestamp
+
+        def initialize(logmessage=nil, timestamp=nil)
+          @LogMessage = logmessage
+          @Timestamp = timestamp
+        end
+
+        def deserialize(params)
+          @LogMessage = params['LogMessage']
+          @Timestamp = params['Timestamp']
+        end
+      end
+
+      # 推理服务部署历史记录。
+      class InferenceServiceDeploymentRecord < TencentCloud::Common::AbstractModel
+        # @param RecordId: 部署记录 ID。
+        # @type RecordId: String
+        # @param Operation: 部署操作类型，取值：
+        # <li>create：创建；</li>
+        # <li>update：更新；</li>
+        # <li>resume：启用；</li>
+        # <li>stop：停用。</li>
+        # @type Operation: String
+        # @param Status: 部署状态，取值：
+        # <li>processing：部署中；</li>
+        # <li>succeeded：部署成功；</li>
+        # <li>failed：部署失败。</li>
+        # @type Status: String
+        # @param Duration: 部署时长，单位：秒。
+        # @type Duration: Integer
+        # @param InferenceServiceConfig: 本次推理服务部署的配置。
+        # @type InferenceServiceConfig: :class:`Tencentcloud::Teo.v20220901.models.InferenceServiceConfig`
+        # @param CreateTime: 部署发起时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type CreateTime: String
+        # @param ActiveStatus: 该部署配置是否是当前生效配置，取值：
+        # <li> active：当前生效配置；</li>
+        # <li> inactive：历史版本或异常版本配置。</li>
+        # @type ActiveStatus: String
+
+        attr_accessor :RecordId, :Operation, :Status, :Duration, :InferenceServiceConfig, :CreateTime, :ActiveStatus
+
+        def initialize(recordid=nil, operation=nil, status=nil, duration=nil, inferenceserviceconfig=nil, createtime=nil, activestatus=nil)
+          @RecordId = recordid
+          @Operation = operation
+          @Status = status
+          @Duration = duration
+          @InferenceServiceConfig = inferenceserviceconfig
+          @CreateTime = createtime
+          @ActiveStatus = activestatus
+        end
+
+        def deserialize(params)
+          @RecordId = params['RecordId']
+          @Operation = params['Operation']
+          @Status = params['Status']
+          @Duration = params['Duration']
+          unless params['InferenceServiceConfig'].nil?
+            @InferenceServiceConfig = InferenceServiceConfig.new
+            @InferenceServiceConfig.deserialize(params['InferenceServiceConfig'])
+          end
+          @CreateTime = params['CreateTime']
+          @ActiveStatus = params['ActiveStatus']
+        end
+      end
+
+      # 推理服务监控数据项。
+      class InferenceServiceMonitorItem < TencentCloud::Common::AbstractModel
+        # @param Timestamp: 监控数据对应时间点。
+        # @type Timestamp: String
+        # @param Value: 具体数值。
+        # @type Value: Float
+
+        attr_accessor :Timestamp, :Value
+
+        def initialize(timestamp=nil, value=nil)
+          @Timestamp = timestamp
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Timestamp = params['Timestamp']
+          @Value = params['Value']
+        end
+      end
+
+      # 推理服务监控数据记录。
+      class InferenceServiceMonitorRecord < TencentCloud::Common::AbstractModel
+        # @param ServiceId: 推理服务 ID。
+        # @type ServiceId: String
+        # @param MetricName: 指标名称。
+        # @type MetricName: String
+        # @param InferenceServiceMonitorItems: 详细推理服务监控数据。
+        # @type InferenceServiceMonitorItems: Array
+
+        attr_accessor :ServiceId, :MetricName, :InferenceServiceMonitorItems
+
+        def initialize(serviceid=nil, metricname=nil, inferenceservicemonitoritems=nil)
+          @ServiceId = serviceid
+          @MetricName = metricname
+          @InferenceServiceMonitorItems = inferenceservicemonitoritems
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+          @MetricName = params['MetricName']
+          unless params['InferenceServiceMonitorItems'].nil?
+            @InferenceServiceMonitorItems = []
+            params['InferenceServiceMonitorItems'].each do |i|
+              inferenceservicemonitoritem_tmp = InferenceServiceMonitorItem.new
+              inferenceservicemonitoritem_tmp.deserialize(i)
+              @InferenceServiceMonitorItems << inferenceservicemonitoritem_tmp
+            end
+          end
+        end
+      end
+
+      # 推理的 TCR 镜像仓库配置。
+      class InferenceTCRRepositoryConfig < TencentCloud::Common::AbstractModel
+        # @param TCRType: <p>TCR 服务类型。取值有：<li>Personal：个人版；</li><li>Enterprise：企业版。</li></p>
+        # @type TCRType: String
+        # @param Image: <p>镜像地址。</p>
+        # @type Image: String
+        # @param RegistryId: <p>镜像仓库实例 ID。当 TCRType = Enterprise 时必填。</p>
+        # @type RegistryId: String
+        # @param RegionName: <p>地域名称。</p>
+        # @type RegionName: String
+
+        attr_accessor :TCRType, :Image, :RegistryId, :RegionName
+
+        def initialize(tcrtype=nil, image=nil, registryid=nil, regionname=nil)
+          @TCRType = tcrtype
+          @Image = image
+          @RegistryId = registryid
+          @RegionName = regionname
+        end
+
+        def deserialize(params)
+          @TCRType = params['TCRType']
+          @Image = params['Image']
+          @RegistryId = params['RegistryId']
+          @RegionName = params['RegionName']
+        end
+      end
+
       # 智能分析规则
       class IntelligenceRule < TencentCloud::Common::AbstractModel
         # @param Switch: 开关，取值有：
@@ -17788,6 +18973,72 @@ module TencentCloud
         end
       end
 
+      # ModifyInferenceService请求参数结构体
+      class ModifyInferenceServiceRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: <p>站点 ID。</p>
+        # @type ZoneId: String
+        # @param ServiceId: <p>推理服务 ID。</p>
+        # @type ServiceId: String
+        # @param ListenPort: <p>模型服务需要监听的端口。仅支持 1-65535 之间的整数。</p>
+        # @type ListenPort: Integer
+        # @param RequestPaths: <p>推理服务的请求路径列表。最多支持 20 个路径。</p>
+        # @type RequestPaths: Array
+        # @param Containers: <p>推理服务的容器配置。当前仅支持设置 1 个容器。</p>
+        # @type Containers: Array
+        # @param ResourceConfig: <p>推理服务的资源配置。</p>
+        # @type ResourceConfig: :class:`Tencentcloud::Teo.v20220901.models.InferenceResourceConfigForModify`
+        # @param Description: <p>描述信息。长度限制不超过 60 个字符。</p>
+        # @type Description: String
+
+        attr_accessor :ZoneId, :ServiceId, :ListenPort, :RequestPaths, :Containers, :ResourceConfig, :Description
+
+        def initialize(zoneid=nil, serviceid=nil, listenport=nil, requestpaths=nil, containers=nil, resourceconfig=nil, description=nil)
+          @ZoneId = zoneid
+          @ServiceId = serviceid
+          @ListenPort = listenport
+          @RequestPaths = requestpaths
+          @Containers = containers
+          @ResourceConfig = resourceconfig
+          @Description = description
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @ServiceId = params['ServiceId']
+          @ListenPort = params['ListenPort']
+          @RequestPaths = params['RequestPaths']
+          unless params['Containers'].nil?
+            @Containers = []
+            params['Containers'].each do |i|
+              inferencecontainerconfigformodify_tmp = InferenceContainerConfigForModify.new
+              inferencecontainerconfigformodify_tmp.deserialize(i)
+              @Containers << inferencecontainerconfigformodify_tmp
+            end
+          end
+          unless params['ResourceConfig'].nil?
+            @ResourceConfig = InferenceResourceConfigForModify.new
+            @ResourceConfig.deserialize(params['ResourceConfig'])
+          end
+          @Description = params['Description']
+        end
+      end
+
+      # ModifyInferenceService返回参数结构体
+      class ModifyInferenceServiceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyL4Proxy请求参数结构体
       class ModifyL4ProxyRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点 ID。
@@ -20022,6 +21273,46 @@ module TencentCloud
 
         def deserialize(params)
           @Switch = params['Switch']
+        end
+      end
+
+      # OperateInferenceService请求参数结构体
+      class OperateInferenceServiceRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点ID。
+        # @type ZoneId: String
+        # @param ServiceId: 推理服务 ID。
+        # @type ServiceId: String
+        # @param Operation: 操作类型，包含以下几种：<li>Stop：停止；</li><li>Resume：启动；</li><li>Delete：删除。</li>
+        # @type Operation: String
+
+        attr_accessor :ZoneId, :ServiceId, :Operation
+
+        def initialize(zoneid=nil, serviceid=nil, operation=nil)
+          @ZoneId = zoneid
+          @ServiceId = serviceid
+          @Operation = operation
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @ServiceId = params['ServiceId']
+          @Operation = params['Operation']
+        end
+      end
+
+      # OperateInferenceService返回参数结构体
+      class OperateInferenceServiceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

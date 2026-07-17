@@ -161,15 +161,18 @@ module TencentCloud
 
       # AddAclRule请求参数结构体
       class AddAclRuleRequest < TencentCloud::Common::AbstractModel
-        # @param Rules: 需要添加的访问控制规则列表
+        # @param Rules: <p>需要添加的访问控制规则列表</p>
         # @type Rules: Array
-        # @param From: 添加规则的来源，一般不需要使用，值insert_rule 表示插入指定位置的规则；值batch_import 表示批量导入规则；为空时表示添加规则
+        # @param CfwAiAgentOperationSource: <p>AI操作来源</p><p>枚举值：</p><ul><li>console： 控制台来源值</li><li>wechat： 微信</li></ul>
+        # @type CfwAiAgentOperationSource: String
+        # @param From: <p>添加规则的来源，一般不需要使用，值insert_rule 表示插入指定位置的规则；值batch_import 表示批量导入规则；为空时表示添加规则</p>
         # @type From: String
 
-        attr_accessor :Rules, :From
+        attr_accessor :Rules, :CfwAiAgentOperationSource, :From
 
-        def initialize(rules=nil, from=nil)
+        def initialize(rules=nil, cfwaiagentoperationsource=nil, from=nil)
           @Rules = rules
+          @CfwAiAgentOperationSource = cfwaiagentoperationsource
           @From = from
         end
 
@@ -182,13 +185,14 @@ module TencentCloud
               @Rules << createruleitem_tmp
             end
           end
+          @CfwAiAgentOperationSource = params['CfwAiAgentOperationSource']
           @From = params['From']
         end
       end
 
       # AddAclRule返回参数结构体
       class AddAclRuleResponse < TencentCloud::Common::AbstractModel
-        # @param RuleUuid: 创建成功后返回新策略ID列表
+        # @param RuleUuid: <p>创建成功后返回新策略ID列表</p>
         # @type RuleUuid: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -210,6 +214,8 @@ module TencentCloud
       class AddEnterpriseSecurityGroupRulesRequest < TencentCloud::Common::AbstractModel
         # @param Data: <p>创建规则数据</p>
         # @type Data: Array
+        # @param CfwAiAgentOperationSource: <p>AI操作来源</p><p>枚举值：</p><ul><li>console： 控制台来源值</li><li>wechat： 微信</li></ul>
+        # @type CfwAiAgentOperationSource: String
         # @param Type: <p>添加类型，0：添加到最后，1：添加到最前；2：中间插入；默认0添加到最后</p>
         # @type Type: Integer
         # @param ClientToken: <p>保证请求幂等性。从您的客户端生成一个参数值，确保不同请求间该参数值唯一。ClientToken只支持ASCII字符，且不能超过64个字符。</p>
@@ -221,10 +227,11 @@ module TencentCloud
         # @param IsUseId: <p>是否复用rule id，1为是，默认不需要</p>
         # @type IsUseId: Integer
 
-        attr_accessor :Data, :Type, :ClientToken, :IsDelay, :From, :IsUseId
+        attr_accessor :Data, :CfwAiAgentOperationSource, :Type, :ClientToken, :IsDelay, :From, :IsUseId
 
-        def initialize(data=nil, type=nil, clienttoken=nil, isdelay=nil, from=nil, isuseid=nil)
+        def initialize(data=nil, cfwaiagentoperationsource=nil, type=nil, clienttoken=nil, isdelay=nil, from=nil, isuseid=nil)
           @Data = data
+          @CfwAiAgentOperationSource = cfwaiagentoperationsource
           @Type = type
           @ClientToken = clienttoken
           @IsDelay = isdelay
@@ -241,6 +248,7 @@ module TencentCloud
               @Data << securitygrouprule_tmp
             end
           end
+          @CfwAiAgentOperationSource = params['CfwAiAgentOperationSource']
           @Type = params['Type']
           @ClientToken = params['ClientToken']
           @IsDelay = params['IsDelay']
@@ -282,15 +290,18 @@ module TencentCloud
 
       # AddNatAcRule请求参数结构体
       class AddNatAcRuleRequest < TencentCloud::Common::AbstractModel
-        # @param Rules: 需要添加的nat访问控制规则列表
+        # @param Rules: <p>需要添加的nat访问控制规则列表</p>
         # @type Rules: Array
-        # @param From: 添加规则的来源，一般不需要使用，值insert_rule 表示插入指定位置的规则；值batch_import 表示批量导入规则；为空时表示添加规则
+        # @param CfwAiAgentOperationSource: <p>AI操作来源</p><p>枚举值：</p><ul><li>console： 控制台来源值</li><li>wechat： 微信</li></ul>
+        # @type CfwAiAgentOperationSource: String
+        # @param From: <p>添加规则的来源，一般不需要使用，值insert_rule 表示插入指定位置的规则；值batch_import 表示批量导入规则；为空时表示添加规则</p>
         # @type From: String
 
-        attr_accessor :Rules, :From
+        attr_accessor :Rules, :CfwAiAgentOperationSource, :From
 
-        def initialize(rules=nil, from=nil)
+        def initialize(rules=nil, cfwaiagentoperationsource=nil, from=nil)
           @Rules = rules
+          @CfwAiAgentOperationSource = cfwaiagentoperationsource
           @From = from
         end
 
@@ -303,13 +314,14 @@ module TencentCloud
               @Rules << createnatruleitem_tmp
             end
           end
+          @CfwAiAgentOperationSource = params['CfwAiAgentOperationSource']
           @From = params['From']
         end
       end
 
       # AddNatAcRule返回参数结构体
       class AddNatAcRuleResponse < TencentCloud::Common::AbstractModel
-        # @param RuleUuid: 创建成功后返回新策略ID列表
+        # @param RuleUuid: <p>创建成功后返回新策略ID列表</p>
         # @type RuleUuid: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -329,15 +341,18 @@ module TencentCloud
 
       # AddVpcAcRule请求参数结构体
       class AddVpcAcRuleRequest < TencentCloud::Common::AbstractModel
-        # @param Rules: 需要添加的vpc内网间规则列表
+        # @param Rules: <p>需要添加的vpc内网间规则列表</p>
         # @type Rules: Array
-        # @param From: 添加规则的来源，一般不需要使用，值insert_rule 表示插入指定位置的规则；值batch_import 表示批量导入规则；为空时表示添加规则
+        # @param CfwAiAgentOperationSource: <p>AI操作来源</p><p>枚举值：</p><ul><li>console： 控制台来源值</li><li>wechat： 微信</li></ul>
+        # @type CfwAiAgentOperationSource: String
+        # @param From: <p>添加规则的来源，一般不需要使用，值insert_rule 表示插入指定位置的规则；值batch_import 表示批量导入规则；为空时表示添加规则</p>
         # @type From: String
 
-        attr_accessor :Rules, :From
+        attr_accessor :Rules, :CfwAiAgentOperationSource, :From
 
-        def initialize(rules=nil, from=nil)
+        def initialize(rules=nil, cfwaiagentoperationsource=nil, from=nil)
           @Rules = rules
+          @CfwAiAgentOperationSource = cfwaiagentoperationsource
           @From = from
         end
 
@@ -350,13 +365,14 @@ module TencentCloud
               @Rules << vpcruleitem_tmp
             end
           end
+          @CfwAiAgentOperationSource = params['CfwAiAgentOperationSource']
           @From = params['From']
         end
       end
 
       # AddVpcAcRule返回参数结构体
       class AddVpcAcRuleResponse < TencentCloud::Common::AbstractModel
-        # @param RuleUuids: 创建成功后返回新策略ID列表
+        # @param RuleUuids: <p>创建成功后返回新策略ID列表</p>
         # @type RuleUuids: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -840,6 +856,33 @@ module TencentCloud
           @PrivateIpAddress = params['PrivateIpAddress']
           @PrivatePort = params['PrivatePort']
           @Description = params['Description']
+        end
+      end
+
+      # 状态监控过滤条件。
+      class CfwStatusMonitorFilter < TencentCloud::Common::AbstractModel
+        # @param Name: <p>过滤字段名。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Values: <p>过滤值列表，最多 10 个。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Values: Array
+        # @param OperatorType: <p>操作符类型，可选；仅支持后端允许的类型。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OperatorType: Integer
+
+        attr_accessor :Name, :Values, :OperatorType
+
+        def initialize(name=nil, values=nil, operatortype=nil)
+          @Name = name
+          @Values = values
+          @OperatorType = operatortype
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Values = params['Values']
+          @OperatorType = params['OperatorType']
         end
       end
 
@@ -1390,44 +1433,39 @@ module TencentCloud
 
       # CreateAlertCenterOmit请求参数结构体
       class CreateAlertCenterOmitRequest < TencentCloud::Common::AbstractModel
-        # @param HandleIdList: 处置对象,ID列表，  IdLists和IpList二选一
+        # @param HandleIdList: <p>处置对象,ID列表，  IdLists和IpList二选一</p>
         # @type HandleIdList: Array
-        # @param TableType: 忽略数据来源：
-        # AlertTable 告警中心  InterceptionTable拦截列表
+        # @param TableType: <p>忽略数据来源：<br>AlertTable 告警中心  InterceptionTable拦截列表</p>
         # @type TableType: String
-        # @param HandleEventIdList: 处置对象,事件ID列表
+        # @param CfwAiAgentOperationSource: <p>AI操作来源</p><p>枚举值：</p><ul><li>console： 控制台来源值</li><li>wechat： 微信</li></ul>
+        # @type CfwAiAgentOperationSource: String
+        # @param HandleEventIdList: <p>处置对象,事件ID列表</p>
         # @type HandleEventIdList: Array
 
-        attr_accessor :HandleIdList, :TableType, :HandleEventIdList
+        attr_accessor :HandleIdList, :TableType, :CfwAiAgentOperationSource, :HandleEventIdList
 
-        def initialize(handleidlist=nil, tabletype=nil, handleeventidlist=nil)
+        def initialize(handleidlist=nil, tabletype=nil, cfwaiagentoperationsource=nil, handleeventidlist=nil)
           @HandleIdList = handleidlist
           @TableType = tabletype
+          @CfwAiAgentOperationSource = cfwaiagentoperationsource
           @HandleEventIdList = handleeventidlist
         end
 
         def deserialize(params)
           @HandleIdList = params['HandleIdList']
           @TableType = params['TableType']
+          @CfwAiAgentOperationSource = params['CfwAiAgentOperationSource']
           @HandleEventIdList = params['HandleEventIdList']
         end
       end
 
       # CreateAlertCenterOmit返回参数结构体
       class CreateAlertCenterOmitResponse < TencentCloud::Common::AbstractModel
-        # @param ReturnCode: 返回状态码：
-        # 0 成功
-        # 非0 失败
+        # @param ReturnCode: <p>返回状态码：<br>0 成功<br>非0 失败</p>
         # @type ReturnCode: Integer
-        # @param ReturnMsg: 返回信息：
-        # success 成功
-        # 其他
+        # @param ReturnMsg: <p>返回信息：<br>success 成功<br>其他</p>
         # @type ReturnMsg: String
-        # @param Status: 处置状态码：
-        # 0  处置成功
-        # -1 通用错误，不用处理
-        # -3 表示重复，需重新刷新列表
-        # 其他
+        # @param Status: <p>处置状态码：<br>0  处置成功<br>-1 通用错误，不用处理<br>-3 表示重复，需重新刷新列表<br>其他</p>
         # @type Status: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1599,18 +1637,21 @@ module TencentCloud
 
       # CreateBlockIgnoreRuleNew请求参数结构体
       class CreateBlockIgnoreRuleNewRequest < TencentCloud::Common::AbstractModel
-        # @param Rules: 非自定义类型规则列表
+        # @param Rules: <p>非自定义类型规则列表</p>
         # @type Rules: Array
-        # @param RuleType: RuleType: 1黑名单 2外部IP 3域名 4情报 5资产 6自定义规则  7入侵防御规则
+        # @param RuleType: <p>RuleType: 1黑名单 2外部IP 3域名 4情报 5资产 6自定义规则  7入侵防御规则</p>
         # @type RuleType: Integer
-        # @param CoverDuplicate: 删除白名单冲突地址并继续添加/删除封禁列表冲突地址并继续添加；表示是否覆盖重复数据，1为覆盖，非1不覆盖，跳过重复数据
+        # @param CfwAiAgentOperationSource: <p>AI操作来源</p><p>枚举值：</p><ul><li>console： 控制台来源值</li><li>wechat： 微信</li></ul>
+        # @type CfwAiAgentOperationSource: String
+        # @param CoverDuplicate: <p>删除白名单冲突地址并继续添加/删除封禁列表冲突地址并继续添加；表示是否覆盖重复数据，1为覆盖，非1不覆盖，跳过重复数据</p>
         # @type CoverDuplicate: Integer
 
-        attr_accessor :Rules, :RuleType, :CoverDuplicate
+        attr_accessor :Rules, :RuleType, :CfwAiAgentOperationSource, :CoverDuplicate
 
-        def initialize(rules=nil, ruletype=nil, coverduplicate=nil)
+        def initialize(rules=nil, ruletype=nil, cfwaiagentoperationsource=nil, coverduplicate=nil)
           @Rules = rules
           @RuleType = ruletype
+          @CfwAiAgentOperationSource = cfwaiagentoperationsource
           @CoverDuplicate = coverduplicate
         end
 
@@ -1624,6 +1665,7 @@ module TencentCloud
             end
           end
           @RuleType = params['RuleType']
+          @CfwAiAgentOperationSource = params['CfwAiAgentOperationSource']
           @CoverDuplicate = params['CoverDuplicate']
         end
       end
@@ -2445,21 +2487,23 @@ module TencentCloud
 
       # DeleteBlockIgnoreRuleNew请求参数结构体
       class DeleteBlockIgnoreRuleNewRequest < TencentCloud::Common::AbstractModel
-        # @param DeleteAll: 是否删除全部
+        # @param DeleteAll: <p>是否删除全部</p>
         # @type DeleteAll: Integer
-        # @param ShowType: blocklist 封禁列表 whitelist 白名单列表
+        # @param ShowType: <p>blocklist 封禁列表 whitelist 白名单列表</p>
         # @type ShowType: String
-        # @param Rules: 规则列表
+        # @param CfwAiAgentOperationSource: <p>AI操作来源</p><p>枚举值：</p><ul><li>console： 控制台来源值</li><li>wechat： 微信</li></ul>
+        # @type CfwAiAgentOperationSource: String
+        # @param Rules: <p>规则列表</p>
         # @type Rules: Array
-        # @param RuleType: 封禁：1，放通：100，
-        # 主要用于全部删除时区分列表类型
+        # @param RuleType: <p>封禁：1，放通：100，<br>主要用于全部删除时区分列表类型</p>
         # @type RuleType: Integer
 
-        attr_accessor :DeleteAll, :ShowType, :Rules, :RuleType
+        attr_accessor :DeleteAll, :ShowType, :CfwAiAgentOperationSource, :Rules, :RuleType
 
-        def initialize(deleteall=nil, showtype=nil, rules=nil, ruletype=nil)
+        def initialize(deleteall=nil, showtype=nil, cfwaiagentoperationsource=nil, rules=nil, ruletype=nil)
           @DeleteAll = deleteall
           @ShowType = showtype
+          @CfwAiAgentOperationSource = cfwaiagentoperationsource
           @Rules = rules
           @RuleType = ruletype
         end
@@ -2467,6 +2511,7 @@ module TencentCloud
         def deserialize(params)
           @DeleteAll = params['DeleteAll']
           @ShowType = params['ShowType']
+          @CfwAiAgentOperationSource = params['CfwAiAgentOperationSource']
           unless params['Rules'].nil?
             @Rules = []
             params['Rules'].each do |i|
@@ -3771,6 +3816,142 @@ module TencentCloud
         end
       end
 
+      # DescribeCfwAlerts请求参数结构体
+      class DescribeCfwAlertsRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: <p>单页返回告警数。可选，默认 10，最大 50。</p>
+        # @type Limit: Integer
+        # @param Offset: <p>分页偏移。可选，默认 0。</p>
+        # @type Offset: Integer
+
+        attr_accessor :Limit, :Offset
+
+        def initialize(limit=nil, offset=nil)
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeCfwAlerts返回参数结构体
+      class DescribeCfwAlertsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>查询结果。UTF-8 JSON object 字符串；调用方需解析 Response.Data。</p>
+        # @type Data: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCfwAnalysisData请求参数结构体
+      class DescribeCfwAnalysisDataRequest < TencentCloud::Common::AbstractModel
+        # @param Scenario: <p>分析场景。必填。full_traffic 表示全流量深度分析；east_west 表示东西向流量分析；alert_comprehensive 表示告警综合分析；asset_exposure 表示资产暴露面分析；access_troubleshoot 表示访问阻断排障分析。</p>
+        # @type Scenario: String
+        # @param StartTime: <p>查询开始时间。可选，格式 YYYY-MM-DD HH:MM:SS；不传时默认查询最近 7 天。</p>
+        # @type StartTime: String
+        # @param EndTime: <p>查询结束时间。可选，格式 YYYY-MM-DD HH:MM:SS；不传时默认当前时间。</p>
+        # @type EndTime: String
+        # @param ObjectType: <p>分析对象类型。可选，默认 user；user 表示租户全局，asset 表示单个资产，vpc 表示 VPC，domain 表示域名。</p>
+        # @type ObjectType: String
+        # @param ObjectId: <p>分析对象标识。ObjectType 为 asset、vpc 或 domain 时按需传入，可填写 IP、实例 ID、VPC ID 或域名。</p>
+        # @type ObjectId: String
+        # @param Target: <p>排障目标。可选，主要用于 access_troubleshoot 场景，可填写 IP 或域名。</p>
+        # @type Target: String
+        # @param SkipSections: <p>需要跳过的分析段名称列表。可选；不传时执行该场景全部分析段。</p>
+        # @type SkipSections: Array
+
+        attr_accessor :Scenario, :StartTime, :EndTime, :ObjectType, :ObjectId, :Target, :SkipSections
+
+        def initialize(scenario=nil, starttime=nil, endtime=nil, objecttype=nil, objectid=nil, target=nil, skipsections=nil)
+          @Scenario = scenario
+          @StartTime = starttime
+          @EndTime = endtime
+          @ObjectType = objecttype
+          @ObjectId = objectid
+          @Target = target
+          @SkipSections = skipsections
+        end
+
+        def deserialize(params)
+          @Scenario = params['Scenario']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @ObjectType = params['ObjectType']
+          @ObjectId = params['ObjectId']
+          @Target = params['Target']
+          @SkipSections = params['SkipSections']
+        end
+      end
+
+      # DescribeCfwAnalysisData返回参数结构体
+      class DescribeCfwAnalysisDataResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>查询结果。UTF-8 JSON object 字符串；调用方需解析 Response.Data。</p>
+        # @type Data: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCfwAssets请求参数结构体
+      class DescribeCfwAssetsRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 最大返回资产数。可选，默认 100；取值 1 至 1000。
+        # @type Limit: Integer
+
+        attr_accessor :Limit
+
+        def initialize(limit=nil)
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeCfwAssets返回参数结构体
+      class DescribeCfwAssetsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 查询结果。UTF-8 JSON object 字符串；调用方需解析 Response.Data。
+        # @type Data: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCfwEips请求参数结构体
       class DescribeCfwEipsRequest < TencentCloud::Common::AbstractModel
         # @param Mode: 1：cfw接入模式，目前仅支持接入模式实例
@@ -3861,6 +4042,339 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCfwLogs请求参数结构体
+      class DescribeCfwLogsRequest < TencentCloud::Common::AbstractModel
+        # @param LogType: <p>日志类型。首次查询必填；使用 NextToken 续查时不能传。枚举值包括 cfw_netflow_border、cfw_netflow_vpc、cfw_netflow_nat、cfw_netflow_nta、cfw_netflow_dns、cfw_rule_threatinfo、cfw_rule_acl、cfw_rule_vpc_acl、cfw_rule_nat_acl、cfw_ndr_subject_risk、cfw_ndr_dataleak_entry、cfw_ndr_ai_audit、cfw_feature_collect、cfw_behavior_collect、operate_log_all。</p>
+        # @type LogType: String
+        # @param Query: <p>CLS CQL 查询语句。默认 *；使用 NextToken 续查时不能传。</p>
+        # @type Query: String
+        # @param StartTime: <p>查询起始时间。支持 RFC3339、YYYY-MM-DD HH:MM:SS、YYYY-MM-DD 或 Unix 时间戳；传入后从该时间向后查询 TimeRange；使用 NextToken 续查时不能传。</p>
+        # @type StartTime: String
+        # @param TimeRange: <p>查询时间范围。默认 1h；格式为正整数加单位 m/h/d，例如 5m、1h、24h、7d；使用 NextToken 续查时不能传。</p>
+        # @type TimeRange: String
+        # @param Limit: <p>单页返回条数。默认 100，最大 1000；使用 NextToken 续查时不能传。</p>
+        # @type Limit: Integer
+        # @param NextToken: <p>上一页 Response.Data 返回的不透明续查 token。首次查询不传；续查时只传 NextToken。无效、篡改、过期或租户不匹配会被拒绝。</p>
+        # @type NextToken: String
+
+        attr_accessor :LogType, :Query, :StartTime, :TimeRange, :Limit, :NextToken
+
+        def initialize(logtype=nil, query=nil, starttime=nil, timerange=nil, limit=nil, nexttoken=nil)
+          @LogType = logtype
+          @Query = query
+          @StartTime = starttime
+          @TimeRange = timerange
+          @Limit = limit
+          @NextToken = nexttoken
+        end
+
+        def deserialize(params)
+          @LogType = params['LogType']
+          @Query = params['Query']
+          @StartTime = params['StartTime']
+          @TimeRange = params['TimeRange']
+          @Limit = params['Limit']
+          @NextToken = params['NextToken']
+        end
+      end
+
+      # DescribeCfwLogs返回参数结构体
+      class DescribeCfwLogsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>查询结果。UTF-8 JSON object 字符串；调用方需解析 Response.Data。</p>
+        # @type Data: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCfwRiskOverview请求参数结构体
+      class DescribeCfwRiskOverviewRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeCfwRiskOverview返回参数结构体
+      class DescribeCfwRiskOverviewResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 查询结果。UTF-8 JSON object 字符串；调用方需解析 Response.Data。
+        # @type Data: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCfwRuleOptimization请求参数结构体
+      class DescribeCfwRuleOptimizationRequest < TencentCloud::Common::AbstractModel
+        # @param IdleDays: 长期零命中规则阈值天数。可选，必须为正整数，默认 180。
+        # @type IdleDays: Integer
+        # @param IpAggMin: 单 IP 离散过多聚合建议的最小数量。可选，最小为 2，默认 10。
+        # @type IpAggMin: Integer
+        # @param IocSample: 可迁移 IOC 建议中返回的样例 IOC 数量上限。可选，必须为正整数，默认 50。
+        # @type IocSample: Integer
+
+        attr_accessor :IdleDays, :IpAggMin, :IocSample
+
+        def initialize(idledays=nil, ipaggmin=nil, iocsample=nil)
+          @IdleDays = idledays
+          @IpAggMin = ipaggmin
+          @IocSample = iocsample
+        end
+
+        def deserialize(params)
+          @IdleDays = params['IdleDays']
+          @IpAggMin = params['IpAggMin']
+          @IocSample = params['IocSample']
+        end
+      end
+
+      # DescribeCfwRuleOptimization返回参数结构体
+      class DescribeCfwRuleOptimizationResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 查询结果。UTF-8 JSON object 字符串；调用方需解析 Response.Data。示例仅展示代表性字段；完整结果还包含 rule_type_name、rule_total、rule_active、rule_skipped_geo_or_cloud、dimension_skipped、thresholds 和 generated_at，finding 还包含 risk_level、affected_rule_uuids、affected_rule_seqs、recommendation_action、reason 和 evidence。结果过大时返回摘要，不返回 findings，并增加 truncated 和 truncated_reason。
+        # @type Data: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCfwRules请求参数结构体
+      class DescribeCfwRulesRequest < TencentCloud::Common::AbstractModel
+        # @param RuleType: <p>规则域。必填。枚举：border 互联网边界；nat NAT 边界；vpc VPC 间；enterprise_sg 企业安全组；intrusion_prevention 入侵防御。RuleType=intrusion_prevention 时还必须传 ListType。</p>
+        # @type RuleType: String
+        # @param ListType: <p>入侵防御列表类型。仅 RuleType=intrusion_prevention 时使用并必填。blocklist 表示封禁列表，whitelist 表示白名单策略，isolate 表示隔离列表。</p>
+        # @type ListType: String
+        # @param Direction: <p>访问方向过滤。可选。0 表示出站，1 表示入站；不传则不过滤。RuleType=intrusion_prevention 时不支持。</p>
+        # @type Direction: Integer
+        # @param RuleAction: <p>规则动作过滤。可选。0 表示观察，1 表示阻断，2 表示放行；不传则不过滤。</p>
+        # @type RuleAction: Integer
+        # @param RuleId: <p>精确规则 ID 过滤。可选。用于按数值规则标识定位单条规则。</p>
+        # @type RuleId: Integer
+        # @param Limit: <p>单页返回规则数。可选，默认 100，最大 1000。</p>
+        # @type Limit: Integer
+        # @param Offset: <p>分页偏移。可选，默认 0。</p>
+        # @type Offset: Integer
+
+        attr_accessor :RuleType, :ListType, :Direction, :RuleAction, :RuleId, :Limit, :Offset
+
+        def initialize(ruletype=nil, listtype=nil, direction=nil, ruleaction=nil, ruleid=nil, limit=nil, offset=nil)
+          @RuleType = ruletype
+          @ListType = listtype
+          @Direction = direction
+          @RuleAction = ruleaction
+          @RuleId = ruleid
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @RuleType = params['RuleType']
+          @ListType = params['ListType']
+          @Direction = params['Direction']
+          @RuleAction = params['RuleAction']
+          @RuleId = params['RuleId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeCfwRules返回参数结构体
+      class DescribeCfwRulesResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>查询结果。UTF-8 JSON object 字符串；调用方需解析 Response.Data。</p>
+        # @type Data: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCfwStatusMonitor请求参数结构体
+      class DescribeCfwStatusMonitorRequest < TencentCloud::Common::AbstractModel
+        # @param Op: <p>操作类型。describe_scene 表示发现场景和二级下拉选项；fetch_scene 表示获取具体场景快照。必填。</p>
+        # @type Op: String
+        # @param FirewallType: <p>防火墙场景类型。支持 internet_edge（互联网边界防火墙）、nat_cluster（NAT边界防火墙-集群）、nat_ha（NAT边界防火墙-主备）、vpc_cluster（VPC边界防火墙-集群）、vpc_ha（VPC边界防火墙-主备）。必填。</p>
+        # @type FirewallType: String
+        # @param SelectionId: <p>二级下拉选项 ID。fetch_scene 按需传入；internet_edge 为地域，NAT 为实例 ID，VPC 带宽场景为防火墙组 ID；vpc_cluster 的 connections 汇总场景会忽略该参数。</p>
+        # @type SelectionId: String
+        # @param SelectionName: <p>二级下拉显示名称。可替代 SelectionId 按名称匹配。</p>
+        # @type SelectionName: String
+        # @param SelectionInstanceId: <p>引擎实例 ID。主要用于 vpc_ha 下一个防火墙组对应多个实例的场景。</p>
+        # @type SelectionInstanceId: String
+        # @param Metric: <p>指标页签。fetch_scene 可传；不传时使用该场景默认值。支持 bandwidth、connections。</p>
+        # @type Metric: String
+        # @param Perspective: <p>指标下的视角。fetch_scene 可传；不传时使用该场景默认值。支持 ip、subnet、session、switch、vpc，实际可用组合以 describe_scene 返回为准。</p>
+        # @type Perspective: String
+        # @param IpScope: <p>NAT 主备连接数 IP 视角范围。external 表示外部 IP，asset 表示资产 IP；仅 nat_ha + connections + ip 使用。</p>
+        # @type IpScope: String
+        # @param TimePreset: <p>预设时间范围。默认 24h；fetch_scene 使用。支持 5m、15m、30m、1h、6h、24h、3d、7d、30d、today、yesterday、day_before_yesterday、this_week、last_week、this_month。</p>
+        # @type TimePreset: String
+        # @param StartTime: <p>自定义开始时间。格式 YYYY-MM-DD HH:MM:SS；必须与 EndTime 同时传，最大跨度 30 天。</p>
+        # @type StartTime: String
+        # @param EndTime: <p>自定义结束时间。格式 YYYY-MM-DD HH:MM:SS；必须与 StartTime 同时传，最大跨度 30 天。</p>
+        # @type EndTime: String
+        # @param Page: <p>页码，从 1 开始。默认 1；fetch_scene 列表视角使用。</p>
+        # @type Page: Integer
+        # @param Limit: <p>每页条数。默认 10，最大 100；fetch_scene 列表视角使用。</p>
+        # @type Limit: Integer
+        # @param OverviewOnly: <p>是否只获取概览数据。true 时 fetch_scene 只请求 overview，跳过 table/detail，适合只看场景快照汇总。</p>
+        # @type OverviewOnly: Boolean
+        # @param Offset: <p>原始偏移量覆盖。可选，传入后覆盖 Page 计算结果；必须大于等于 0 且不超过安全上限。</p>
+        # @type Offset: Integer
+        # @param SortBy: <p>排序字段。可选，只接受当前场景后端允许的安全字段。</p>
+        # @type SortBy: String
+        # @param SortOrder: <p>排序方向。默认 desc；支持 asc、desc。</p>
+        # @type SortOrder: String
+        # @param Filters: <p>过滤条件列表。可选，最多 5 个；是否支持以及字段名以具体 fetch_scene 场景为准。</p>
+        # @type Filters: Array
+
+        attr_accessor :Op, :FirewallType, :SelectionId, :SelectionName, :SelectionInstanceId, :Metric, :Perspective, :IpScope, :TimePreset, :StartTime, :EndTime, :Page, :Limit, :OverviewOnly, :Offset, :SortBy, :SortOrder, :Filters
+
+        def initialize(op=nil, firewalltype=nil, selectionid=nil, selectionname=nil, selectioninstanceid=nil, metric=nil, perspective=nil, ipscope=nil, timepreset=nil, starttime=nil, endtime=nil, page=nil, limit=nil, overviewonly=nil, offset=nil, sortby=nil, sortorder=nil, filters=nil)
+          @Op = op
+          @FirewallType = firewalltype
+          @SelectionId = selectionid
+          @SelectionName = selectionname
+          @SelectionInstanceId = selectioninstanceid
+          @Metric = metric
+          @Perspective = perspective
+          @IpScope = ipscope
+          @TimePreset = timepreset
+          @StartTime = starttime
+          @EndTime = endtime
+          @Page = page
+          @Limit = limit
+          @OverviewOnly = overviewonly
+          @Offset = offset
+          @SortBy = sortby
+          @SortOrder = sortorder
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Op = params['Op']
+          @FirewallType = params['FirewallType']
+          @SelectionId = params['SelectionId']
+          @SelectionName = params['SelectionName']
+          @SelectionInstanceId = params['SelectionInstanceId']
+          @Metric = params['Metric']
+          @Perspective = params['Perspective']
+          @IpScope = params['IpScope']
+          @TimePreset = params['TimePreset']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Page = params['Page']
+          @Limit = params['Limit']
+          @OverviewOnly = params['OverviewOnly']
+          @Offset = params['Offset']
+          @SortBy = params['SortBy']
+          @SortOrder = params['SortOrder']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              cfwstatusmonitorfilter_tmp = CfwStatusMonitorFilter.new
+              cfwstatusmonitorfilter_tmp.deserialize(i)
+              @Filters << cfwstatusmonitorfilter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeCfwStatusMonitor返回参数结构体
+      class DescribeCfwStatusMonitorResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>查询结果。UTF-8 JSON object 字符串；调用方需解析 Response.Data。describe_scene 返回 scene 与 selection.available_options；fetch_scene 返回选中场景的 data 快照。</p>
+        # @type Data: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCfwSwitches请求参数结构体
+      class DescribeCfwSwitchesRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeCfwSwitches返回参数结构体
+      class DescribeCfwSwitchesResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 查询结果。UTF-8 JSON object 字符串；调用方需解析 Response.Data。
+        # @type Data: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
           @RequestId = params['RequestId']
         end
       end
@@ -8217,13 +8731,16 @@ module TencentCloud
 
       # ModifyAclRule请求参数结构体
       class ModifyAclRuleRequest < TencentCloud::Common::AbstractModel
-        # @param Rules: 需要编辑的规则数组，基于Uuid唯一id修改该规则
+        # @param Rules: <p>需要编辑的规则数组，基于Uuid唯一id修改该规则</p>
         # @type Rules: Array
+        # @param CfwAiAgentOperationSource: <p>AI操作来源</p><p>枚举值：</p><ul><li>console： 控制台来源值</li><li>wechat： 微信</li></ul>
+        # @type CfwAiAgentOperationSource: String
 
-        attr_accessor :Rules
+        attr_accessor :Rules, :CfwAiAgentOperationSource
 
-        def initialize(rules=nil)
+        def initialize(rules=nil, cfwaiagentoperationsource=nil)
           @Rules = rules
+          @CfwAiAgentOperationSource = cfwaiagentoperationsource
         end
 
         def deserialize(params)
@@ -8235,12 +8752,13 @@ module TencentCloud
               @Rules << createruleitem_tmp
             end
           end
+          @CfwAiAgentOperationSource = params['CfwAiAgentOperationSource']
         end
       end
 
       # ModifyAclRule返回参数结构体
       class ModifyAclRuleResponse < TencentCloud::Common::AbstractModel
-        # @param RuleUuid: 编辑成功后返回新策略ID列表
+        # @param RuleUuid: <p>编辑成功后返回新策略ID列表</p>
         # @type RuleUuid: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -8984,20 +9502,23 @@ module TencentCloud
 
       # ModifyEnterpriseSecurityGroupRule请求参数结构体
       class ModifyEnterpriseSecurityGroupRuleRequest < TencentCloud::Common::AbstractModel
-        # @param RuleUuid: 规则的uuid，可通过查询规则列表获取
+        # @param RuleUuid: <p>规则的uuid，可通过查询规则列表获取</p>
         # @type RuleUuid: Integer
-        # @param ModifyType: 修改类型，0：修改规则内容；1：修改单条规则开关状态；2：修改所有规则开关状态
+        # @param ModifyType: <p>修改类型，0：修改规则内容；1：修改单条规则开关状态；2：修改所有规则开关状态</p>
         # @type ModifyType: Integer
-        # @param Data: 编辑后的企业安全组规则数据；修改规则状态不用填该字段
+        # @param CfwAiAgentOperationSource: <p>AI操作来源</p><p>枚举值：</p><ul><li>console： 控制台来源值</li><li>wechat： 微信</li></ul>
+        # @type CfwAiAgentOperationSource: String
+        # @param Data: <p>编辑后的企业安全组规则数据；修改规则状态不用填该字段</p>
         # @type Data: :class:`Tencentcloud::Cfw.v20190904.models.SecurityGroupRule`
-        # @param Enable: 0是关闭,1是开启
+        # @param Enable: <p>0是关闭,1是开启</p>
         # @type Enable: Integer
 
-        attr_accessor :RuleUuid, :ModifyType, :Data, :Enable
+        attr_accessor :RuleUuid, :ModifyType, :CfwAiAgentOperationSource, :Data, :Enable
 
-        def initialize(ruleuuid=nil, modifytype=nil, data=nil, enable=nil)
+        def initialize(ruleuuid=nil, modifytype=nil, cfwaiagentoperationsource=nil, data=nil, enable=nil)
           @RuleUuid = ruleuuid
           @ModifyType = modifytype
+          @CfwAiAgentOperationSource = cfwaiagentoperationsource
           @Data = data
           @Enable = enable
         end
@@ -9005,6 +9526,7 @@ module TencentCloud
         def deserialize(params)
           @RuleUuid = params['RuleUuid']
           @ModifyType = params['ModifyType']
+          @CfwAiAgentOperationSource = params['CfwAiAgentOperationSource']
           unless params['Data'].nil?
             @Data = SecurityGroupRule.new
             @Data.deserialize(params['Data'])
@@ -9015,9 +9537,9 @@ module TencentCloud
 
       # ModifyEnterpriseSecurityGroupRule返回参数结构体
       class ModifyEnterpriseSecurityGroupRuleResponse < TencentCloud::Common::AbstractModel
-        # @param Status: 状态值，0：编辑成功，非0：编辑失败
+        # @param Status: <p>状态值，0：编辑成功，非0：编辑失败</p>
         # @type Status: Integer
-        # @param NewRuleUuid: 编辑后新生成规则的Id
+        # @param NewRuleUuid: <p>编辑后新生成规则的Id</p>
         # @type NewRuleUuid: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -9120,13 +9642,16 @@ module TencentCloud
 
       # ModifyNatAcRule请求参数结构体
       class ModifyNatAcRuleRequest < TencentCloud::Common::AbstractModel
-        # @param Rules: 需要编辑的规则数组,基于Uuid唯一id来修改该规则
+        # @param Rules: <p>需要编辑的规则数组,基于Uuid唯一id来修改该规则</p>
         # @type Rules: Array
+        # @param CfwAiAgentOperationSource: <p>AI操作来源</p><p>枚举值：</p><ul><li>console： 控制台来源值</li><li>wechat： 微信</li></ul>
+        # @type CfwAiAgentOperationSource: String
 
-        attr_accessor :Rules
+        attr_accessor :Rules, :CfwAiAgentOperationSource
 
-        def initialize(rules=nil)
+        def initialize(rules=nil, cfwaiagentoperationsource=nil)
           @Rules = rules
+          @CfwAiAgentOperationSource = cfwaiagentoperationsource
         end
 
         def deserialize(params)
@@ -9138,12 +9663,13 @@ module TencentCloud
               @Rules << createnatruleitem_tmp
             end
           end
+          @CfwAiAgentOperationSource = params['CfwAiAgentOperationSource']
         end
       end
 
       # ModifyNatAcRule返回参数结构体
       class ModifyNatAcRuleResponse < TencentCloud::Common::AbstractModel
-        # @param RuleUuid: 编辑成功后返回新策略ID列表
+        # @param RuleUuid: <p>编辑成功后返回新策略ID列表</p>
         # @type RuleUuid: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -9792,13 +10318,16 @@ module TencentCloud
 
       # ModifyVpcAcRule请求参数结构体
       class ModifyVpcAcRuleRequest < TencentCloud::Common::AbstractModel
-        # @param Rules: 需要编辑的规则数组
+        # @param Rules: <p>需要编辑的规则数组</p>
         # @type Rules: Array
+        # @param CfwAiAgentOperationSource: <p>AI操作来源</p><p>枚举值：</p><ul><li>console： 控制台来源值</li><li>wechat： 微信</li></ul>
+        # @type CfwAiAgentOperationSource: String
 
-        attr_accessor :Rules
+        attr_accessor :Rules, :CfwAiAgentOperationSource
 
-        def initialize(rules=nil)
+        def initialize(rules=nil, cfwaiagentoperationsource=nil)
           @Rules = rules
+          @CfwAiAgentOperationSource = cfwaiagentoperationsource
         end
 
         def deserialize(params)
@@ -9810,12 +10339,13 @@ module TencentCloud
               @Rules << vpcruleitem_tmp
             end
           end
+          @CfwAiAgentOperationSource = params['CfwAiAgentOperationSource']
         end
       end
 
       # ModifyVpcAcRule返回参数结构体
       class ModifyVpcAcRuleResponse < TencentCloud::Common::AbstractModel
-        # @param RuleUuids: 编辑成功后返回新策略ID列表
+        # @param RuleUuids: <p>编辑成功后返回新策略ID列表</p>
         # @type RuleUuids: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -10967,27 +11497,31 @@ module TencentCloud
 
       # RemoveAclRule请求参数结构体
       class RemoveAclRuleRequest < TencentCloud::Common::AbstractModel
-        # @param RuleUuid: 规则的uuid列表，可通过查询规则列表获取，注意：如果传入的是[-1]将删除所有规则
+        # @param RuleUuid: <p>规则的uuid列表，可通过查询规则列表获取，注意：如果传入的是[-1]将删除所有规则</p>
         # @type RuleUuid: Array
-        # @param Direction: 规则方向：1，入站；0，出站
+        # @param CfwAiAgentOperationSource: <p>AI操作来源</p><p>枚举值：</p><ul><li>console： 控制台来源值</li><li>wechat： 微信</li></ul>
+        # @type CfwAiAgentOperationSource: String
+        # @param Direction: <p>规则方向：1，入站；0，出站</p>
         # @type Direction: Integer
 
-        attr_accessor :RuleUuid, :Direction
+        attr_accessor :RuleUuid, :CfwAiAgentOperationSource, :Direction
 
-        def initialize(ruleuuid=nil, direction=nil)
+        def initialize(ruleuuid=nil, cfwaiagentoperationsource=nil, direction=nil)
           @RuleUuid = ruleuuid
+          @CfwAiAgentOperationSource = cfwaiagentoperationsource
           @Direction = direction
         end
 
         def deserialize(params)
           @RuleUuid = params['RuleUuid']
+          @CfwAiAgentOperationSource = params['CfwAiAgentOperationSource']
           @Direction = params['Direction']
         end
       end
 
       # RemoveAclRule返回参数结构体
       class RemoveAclRuleResponse < TencentCloud::Common::AbstractModel
-        # @param RuleUuid: 删除成功后返回被删除策略的uuid列表
+        # @param RuleUuid: <p>删除成功后返回被删除策略的uuid列表</p>
         # @type RuleUuid: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -11007,29 +11541,33 @@ module TencentCloud
 
       # RemoveEnterpriseSecurityGroupRule请求参数结构体
       class RemoveEnterpriseSecurityGroupRuleRequest < TencentCloud::Common::AbstractModel
-        # @param RuleUuid: 规则的uuid，可通过查询规则列表获取
+        # @param RuleUuid: <p>规则的uuid，可通过查询规则列表获取</p>
         # @type RuleUuid: Integer
-        # @param RemoveType: 删除类型，0是单条删除，RuleUuid填写删除规则id，1为全部删除，RuleUuid填0即可
+        # @param RemoveType: <p>删除类型，0是单条删除，RuleUuid填写删除规则id，1为全部删除，RuleUuid填0即可</p>
         # @type RemoveType: Integer
+        # @param CfwAiAgentOperationSource: <p>AI操作来源</p><p>枚举值：</p><ul><li>console： 控制台来源值</li><li>wechat： 微信</li></ul>
+        # @type CfwAiAgentOperationSource: String
 
-        attr_accessor :RuleUuid, :RemoveType
+        attr_accessor :RuleUuid, :RemoveType, :CfwAiAgentOperationSource
 
-        def initialize(ruleuuid=nil, removetype=nil)
+        def initialize(ruleuuid=nil, removetype=nil, cfwaiagentoperationsource=nil)
           @RuleUuid = ruleuuid
           @RemoveType = removetype
+          @CfwAiAgentOperationSource = cfwaiagentoperationsource
         end
 
         def deserialize(params)
           @RuleUuid = params['RuleUuid']
           @RemoveType = params['RemoveType']
+          @CfwAiAgentOperationSource = params['CfwAiAgentOperationSource']
         end
       end
 
       # RemoveEnterpriseSecurityGroupRule返回参数结构体
       class RemoveEnterpriseSecurityGroupRuleResponse < TencentCloud::Common::AbstractModel
-        # @param RuleUuid: 删除成功后返回被删除策略的uuid
+        # @param RuleUuid: <p>删除成功后返回被删除策略的uuid</p>
         # @type RuleUuid: Integer
-        # @param Status: 0代表成功，-1代表失败
+        # @param Status: <p>0代表成功，-1代表失败</p>
         # @type Status: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -11051,27 +11589,31 @@ module TencentCloud
 
       # RemoveNatAcRule请求参数结构体
       class RemoveNatAcRuleRequest < TencentCloud::Common::AbstractModel
-        # @param RuleUuid: 规则的uuid列表，可通过查询规则列表获取，注意：如果传入的是[-1]将删除所有规则
+        # @param RuleUuid: <p>规则的uuid列表，可通过查询规则列表获取，注意：如果传入的是[-1]将删除所有规则</p>
         # @type RuleUuid: Array
-        # @param Direction: 规则方向：1，入站；0，出站
+        # @param CfwAiAgentOperationSource: <p>AI操作来源</p><p>枚举值：</p><ul><li>console： 控制台来源值</li><li>wechat： 微信</li></ul>
+        # @type CfwAiAgentOperationSource: String
+        # @param Direction: <p>规则方向：1，入站；0，出站</p>
         # @type Direction: Integer
 
-        attr_accessor :RuleUuid, :Direction
+        attr_accessor :RuleUuid, :CfwAiAgentOperationSource, :Direction
 
-        def initialize(ruleuuid=nil, direction=nil)
+        def initialize(ruleuuid=nil, cfwaiagentoperationsource=nil, direction=nil)
           @RuleUuid = ruleuuid
+          @CfwAiAgentOperationSource = cfwaiagentoperationsource
           @Direction = direction
         end
 
         def deserialize(params)
           @RuleUuid = params['RuleUuid']
+          @CfwAiAgentOperationSource = params['CfwAiAgentOperationSource']
           @Direction = params['Direction']
         end
       end
 
       # RemoveNatAcRule返回参数结构体
       class RemoveNatAcRuleResponse < TencentCloud::Common::AbstractModel
-        # @param RuleUuid: 删除成功后返回被删除策略的uuid列表
+        # @param RuleUuid: <p>删除成功后返回被删除策略的uuid列表</p>
         # @type RuleUuid: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -11135,27 +11677,31 @@ module TencentCloud
 
       # RemoveVpcAcRule请求参数结构体
       class RemoveVpcAcRuleRequest < TencentCloud::Common::AbstractModel
-        # @param RuleUuids: 规则的uuid列表，可通过查询规则列表获取，注意：如果传入的是[-1]将删除所有规则
+        # @param RuleUuids: <p>规则的uuid列表，可通过查询规则列表获取，注意：如果传入的是[-1]将删除所有规则</p>
         # @type RuleUuids: Array
-        # @param IpVersion: 仅当RuleUuids为-1时有效；0：删除Ipv4规则，1：删除Ipv6规则；默认为Ipv4类型规则
+        # @param CfwAiAgentOperationSource: <p>AI操作来源</p><p>枚举值：</p><ul><li>console： 控制台来源值</li><li>wechat： 微信</li></ul>
+        # @type CfwAiAgentOperationSource: String
+        # @param IpVersion: <p>仅当RuleUuids为-1时有效；0：删除Ipv4规则，1：删除Ipv6规则；默认为Ipv4类型规则</p>
         # @type IpVersion: Integer
 
-        attr_accessor :RuleUuids, :IpVersion
+        attr_accessor :RuleUuids, :CfwAiAgentOperationSource, :IpVersion
 
-        def initialize(ruleuuids=nil, ipversion=nil)
+        def initialize(ruleuuids=nil, cfwaiagentoperationsource=nil, ipversion=nil)
           @RuleUuids = ruleuuids
+          @CfwAiAgentOperationSource = cfwaiagentoperationsource
           @IpVersion = ipversion
         end
 
         def deserialize(params)
           @RuleUuids = params['RuleUuids']
+          @CfwAiAgentOperationSource = params['CfwAiAgentOperationSource']
           @IpVersion = params['IpVersion']
         end
       end
 
       # RemoveVpcAcRule返回参数结构体
       class RemoveVpcAcRuleResponse < TencentCloud::Common::AbstractModel
-        # @param RuleUuids: 删除成功后返回被删除策略的uuid列表
+        # @param RuleUuids: <p>删除成功后返回被删除策略的uuid列表</p>
         # @type RuleUuids: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

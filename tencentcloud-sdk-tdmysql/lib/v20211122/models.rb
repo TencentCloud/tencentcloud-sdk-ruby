@@ -1157,6 +1157,54 @@ module TencentCloud
         end
       end
 
+      # 数据库引擎信息
+      class DBEngineInfo < TencentCloud::Common::AbstractModel
+        # @param Type: <p>引擎类型</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Version: <p>引擎版本</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Version: String
+        # @param Name: <p>引擎名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Description: <p>引擎描述</p>
+        # @type Description: String
+        # @param New: <p>是否最新版本</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type New: Boolean
+        # @param SQLMode: <p>支持的兼容的模式，以,分隔</p>
+        # @type SQLMode: Array
+        # @param IsSupportParamTemplate: <p>是否支持参数模板</p>
+        # @type IsSupportParamTemplate: Boolean
+        # @param IsSupportServerless: <p>是否支持Serverless模式</p>
+        # @type IsSupportServerless: Boolean
+
+        attr_accessor :Type, :Version, :Name, :Description, :New, :SQLMode, :IsSupportParamTemplate, :IsSupportServerless
+
+        def initialize(type=nil, version=nil, name=nil, description=nil, new=nil, sqlmode=nil, issupportparamtemplate=nil, issupportserverless=nil)
+          @Type = type
+          @Version = version
+          @Name = name
+          @Description = description
+          @New = new
+          @SQLMode = sqlmode
+          @IsSupportParamTemplate = issupportparamtemplate
+          @IsSupportServerless = issupportserverless
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Version = params['Version']
+          @Name = params['Name']
+          @Description = params['Description']
+          @New = params['New']
+          @SQLMode = params['SQLMode']
+          @IsSupportParamTemplate = params['IsSupportParamTemplate']
+          @IsSupportServerless = params['IsSupportServerless']
+        end
+      end
+
       # 云数据库参数信息。
       class DBParamValue < TencentCloud::Common::AbstractModel
         # @param Param: 参数名称
@@ -1420,6 +1468,48 @@ module TencentCloud
 
         def deserialize(params)
           @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDBEngines请求参数结构体
+      class DescribeDBEnginesRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeDBEngines返回参数结构体
+      class DescribeDBEnginesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: items总数
+        # @type TotalCount: Integer
+        # @param Items: DB引擎信息
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Items, :RequestId
+
+        def initialize(totalcount=nil, items=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              dbengineinfo_tmp = DBEngineInfo.new
+              dbengineinfo_tmp.deserialize(i)
+              @Items << dbengineinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

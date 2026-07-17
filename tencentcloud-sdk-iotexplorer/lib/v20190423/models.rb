@@ -825,6 +825,70 @@ module TencentCloud
         end
       end
 
+      # BindUserDevice请求参数结构体
+      class BindUserDeviceRequest < TencentCloud::Common::AbstractModel
+        # @param AppKey: <p>应用 AppKey，用于解析 IotAppID 并完成签名校验</p>
+        # @type AppKey: String
+        # @param ProductId: <p>产品 ID</p>
+        # @type ProductId: String
+        # @param DeviceName: <p>设备名（禁止使用虚拟设备名 ~virtualDev）</p>
+        # @type DeviceName: String
+        # @param OpenID: <p>用户 OpenID，用于定位 / 兜底创建 App 用户</p>
+        # @type OpenID: String
+        # @param FamilyName: <p>家庭名，默认 default</p>
+        # @type FamilyName: String
+        # @param RoomId: <p>房间 ID，默认 &quot;0&quot;</p>
+        # @type RoomId: String
+        # @param NickName: <p>用户昵称（仅首次创建用户时使用）</p>
+        # @type NickName: String
+
+        attr_accessor :AppKey, :ProductId, :DeviceName, :OpenID, :FamilyName, :RoomId, :NickName
+
+        def initialize(appkey=nil, productid=nil, devicename=nil, openid=nil, familyname=nil, roomid=nil, nickname=nil)
+          @AppKey = appkey
+          @ProductId = productid
+          @DeviceName = devicename
+          @OpenID = openid
+          @FamilyName = familyname
+          @RoomId = roomid
+          @NickName = nickname
+        end
+
+        def deserialize(params)
+          @AppKey = params['AppKey']
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @OpenID = params['OpenID']
+          @FamilyName = params['FamilyName']
+          @RoomId = params['RoomId']
+          @NickName = params['NickName']
+        end
+      end
+
+      # BindUserDevice返回参数结构体
+      class BindUserDeviceResponse < TencentCloud::Common::AbstractModel
+        # @param UserID: <p>用户 UserID（已存在则复用）</p>
+        # @type UserID: String
+        # @param FamilyId: <p>家庭 ID（已存在则复用）</p>
+        # @type FamilyId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :UserID, :FamilyId, :RequestId
+
+        def initialize(userid=nil, familyid=nil, requestid=nil)
+          @UserID = userid
+          @FamilyId = familyid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @UserID = params['UserID']
+          @FamilyId = params['FamilyId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CallDeviceActionAsync请求参数结构体
       class CallDeviceActionAsyncRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品Id
@@ -929,6 +993,78 @@ module TencentCloud
           @ClientToken = params['ClientToken']
           @OutputParams = params['OutputParams']
           @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CallDeviceRRPCSync请求参数结构体
+      class CallDeviceRRPCSyncRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: <p>产品 ID</p>
+        # @type ProductId: String
+        # @param DeviceName: <p>设备名</p>
+        # @type DeviceName: String
+        # @param Payload: <p>业务原始 payload，透传给设备</p>
+        # @type Payload: String
+        # @param Encoding: <p>下行传输层编码标识；base64 时下发到 broker 的 payload 会做一次 base64 编码</p>
+        # @type Encoding: String
+        # @param Topic: <p>自定义下行 topic；为空则用 <code>$iotrrpc/down/{ProductId}/{DeviceName}/{mid}</code></p>
+        # @type Topic: String
+        # @param ReplyTopic: <p>自定义上行 topic 模板（支持通配符）；可留空，留空时仅依赖 clientToken 关联 ack</p>
+        # @type ReplyTopic: String
+
+        attr_accessor :ProductId, :DeviceName, :Payload, :Encoding, :Topic, :ReplyTopic
+
+        def initialize(productid=nil, devicename=nil, payload=nil, encoding=nil, topic=nil, replytopic=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @Payload = payload
+          @Encoding = encoding
+          @Topic = topic
+          @ReplyTopic = replytopic
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @Payload = params['Payload']
+          @Encoding = params['Encoding']
+          @Topic = params['Topic']
+          @ReplyTopic = params['ReplyTopic']
+        end
+      end
+
+      # CallDeviceRRPCSync返回参数结构体
+      class CallDeviceRRPCSyncResponse < TencentCloud::Common::AbstractModel
+        # @param ClientToken: <p>平台为本次调用分配的关联 token（v2{instanceId}::{reqId} 形式）</p>
+        # @type ClientToken: String
+        # @param Status: <p>调用状态</p>
+        # @type Status: String
+        # @param MessageId: <p>平台分配的 messageID</p>
+        # @type MessageId: Integer
+        # @param PayloadBase64: <p>设备回包原始字节的 base64 编码（仅 Status=Replied 有值）</p>
+        # @type PayloadBase64: String
+        # @param ReplyTopic: <p>实际生效的 reply topic 模板（默认模式由平台生成，自定义模式为入参原值）</p>
+        # @type ReplyTopic: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ClientToken, :Status, :MessageId, :PayloadBase64, :ReplyTopic, :RequestId
+
+        def initialize(clienttoken=nil, status=nil, messageid=nil, payloadbase64=nil, replytopic=nil, requestid=nil)
+          @ClientToken = clienttoken
+          @Status = status
+          @MessageId = messageid
+          @PayloadBase64 = payloadbase64
+          @ReplyTopic = replytopic
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ClientToken = params['ClientToken']
+          @Status = params['Status']
+          @MessageId = params['MessageId']
+          @PayloadBase64 = params['PayloadBase64']
+          @ReplyTopic = params['ReplyTopic']
           @RequestId = params['RequestId']
         end
       end
@@ -15038,6 +15174,54 @@ module TencentCloud
 
       # ResumeWeCallDevice返回参数结构体
       class ResumeWeCallDeviceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # RevokeBindUserDevice请求参数结构体
+      class RevokeBindUserDeviceRequest < TencentCloud::Common::AbstractModel
+        # @param AppKey: <p>应用 AppKey，用于解析 IotAppID 并完成签名校验</p>
+        # @type AppKey: String
+        # @param ProductId: <p>产品 ID</p>
+        # @type ProductId: String
+        # @param DeviceName: <p>设备名</p>
+        # @type DeviceName: String
+        # @param OpenID: <p>用户 OpenID（仅只读定位，不会创建）</p>
+        # @type OpenID: String
+        # @param FamilyName: <p>家庭名，默认 default</p>
+        # @type FamilyName: String
+
+        attr_accessor :AppKey, :ProductId, :DeviceName, :OpenID, :FamilyName
+
+        def initialize(appkey=nil, productid=nil, devicename=nil, openid=nil, familyname=nil)
+          @AppKey = appkey
+          @ProductId = productid
+          @DeviceName = devicename
+          @OpenID = openid
+          @FamilyName = familyname
+        end
+
+        def deserialize(params)
+          @AppKey = params['AppKey']
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @OpenID = params['OpenID']
+          @FamilyName = params['FamilyName']
+        end
+      end
+
+      # RevokeBindUserDevice返回参数结构体
+      class RevokeBindUserDeviceResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

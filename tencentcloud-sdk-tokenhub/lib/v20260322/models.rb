@@ -522,25 +522,28 @@ module TencentCloud
 
       # CreateTokenPlanTeamOrderAndBuy请求参数结构体
       class CreateTokenPlanTeamOrderAndBuyRequest < TencentCloud::Common::AbstractModel
-        # @param ProductType: 套餐类型。取值：enterprise（企业版专业套餐）、enterprise-auto（企业版轻享套餐）。
+        # @param ProductType: <p>套餐类型。取值：enterprise（企业版专业套餐）、enterprise-auto（企业版轻享套餐）。</p>
         # @type ProductType: String
-        # @param TeamName: 套餐名称。只能包含中文、字母、数字、下划线、连字符，以中文或者字母开头，以中文或字母或数字结尾，2~50个字符
+        # @param TeamName: <p>套餐名称。只能包含中文、字母、数字、下划线、连字符，以中文或者字母开头，以中文或字母或数字结尾，2~50个字符</p>
         # @type TeamName: String
-        # @param TimeSpan: 购买时长。单位：月。必须大于 0。
+        # @param TimeSpan: <p>购买时长。单位：月。必须大于 0，支持1个月～12个月。</p>
         # @type TimeSpan: Integer
-        # @param CreditOrToken: 购买的套餐规格。套餐类型为专业套餐（enterprise），单位取值为积分；轻享套餐（enterprise-auto），单位取值为 tokens。
+        # @param CreditOrToken: <p>购买的套餐规格。套餐类型为专业套餐（enterprise），单位取值为积分；轻享套餐（enterprise-auto），单位取值为 tokens。</p>
         # @type CreditOrToken: Integer
-        # @param EnableAutoRenew: 是否开启自动续费。默认不开启。
+        # @param EnableAutoRenew: <p>是否开启自动续费。默认不开启。</p>
         # @type EnableAutoRenew: Boolean
+        # @param TeamId: <p>已有套餐 ID（非空时走过期续费，空时走新购）</p>
+        # @type TeamId: String
 
-        attr_accessor :ProductType, :TeamName, :TimeSpan, :CreditOrToken, :EnableAutoRenew
+        attr_accessor :ProductType, :TeamName, :TimeSpan, :CreditOrToken, :EnableAutoRenew, :TeamId
 
-        def initialize(producttype=nil, teamname=nil, timespan=nil, creditortoken=nil, enableautorenew=nil)
+        def initialize(producttype=nil, teamname=nil, timespan=nil, creditortoken=nil, enableautorenew=nil, teamid=nil)
           @ProductType = producttype
           @TeamName = teamname
           @TimeSpan = timespan
           @CreditOrToken = creditortoken
           @EnableAutoRenew = enableautorenew
+          @TeamId = teamid
         end
 
         def deserialize(params)
@@ -549,12 +552,13 @@ module TencentCloud
           @TimeSpan = params['TimeSpan']
           @CreditOrToken = params['CreditOrToken']
           @EnableAutoRenew = params['EnableAutoRenew']
+          @TeamId = params['TeamId']
         end
       end
 
       # CreateTokenPlanTeamOrderAndBuy返回参数结构体
       class CreateTokenPlanTeamOrderAndBuyResponse < TencentCloud::Common::AbstractModel
-        # @param BigOrderId: 腾讯云订单 ID。用于关联一次购买操作下的所有子订单。
+        # @param BigOrderId: <p>腾讯云订单 ID。用于关联一次购买操作下的所有子订单。</p>
         # @type BigOrderId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

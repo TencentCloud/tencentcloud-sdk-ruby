@@ -197,6 +197,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeDBEngines）用于获取DB引擎版本列表
+
+        # @param request: Request instance for DescribeDBEngines.
+        # @type request: :class:`Tencentcloud::tdmysql::V20211122::DescribeDBEnginesRequest`
+        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::DescribeDBEnginesResponse`
+        def DescribeDBEngines(request)
+          body = send_request('DescribeDBEngines', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDBEnginesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeDBInstanceDetail）提供查询实例详情功能
 
         # @param request: Request instance for DescribeDBInstanceDetail.

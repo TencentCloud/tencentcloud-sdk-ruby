@@ -8409,27 +8409,28 @@ module TencentCloud
 
       # DescribePrometheusAlertGroups请求参数结构体
       class DescribePrometheusAlertGroupsRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: Prometheus 实例 ID
+        # @param InstanceId: <p>Prometheus 实例 ID</p>
         # @type InstanceId: String
-        # @param Limit: 返回数量，默认为 20，最大值为 100
+        # @param Limit: <p>返回数量，默认为 20，最大值为 100</p>
         # @type Limit: Integer
-        # @param Offset: 偏移量，默认为 0
+        # @param Offset: <p>偏移量，默认为 0</p>
         # @type Offset: Integer
-        # @param GroupId: 告警分组ID，形如alert-xxxx。
-        # 查询给定ID的告警分组
+        # @param GroupId: <p>告警分组ID，形如alert-xxxx。<br>查询给定ID的告警分组</p>
         # @type GroupId: String
-        # @param GroupName: 告警分组名称。
-        # 查询名称中包含给定字符串的告警分组
+        # @param GroupName: <p>告警分组名称。<br>查询名称中包含给定字符串的告警分组</p>
         # @type GroupName: String
+        # @param Labels: <p>通过自定义label查询告警规则：<br>返回包含符合过滤条件告警规则的整个分组</p><p>多个label过滤条件取交集</p>
+        # @type Labels: Array
 
-        attr_accessor :InstanceId, :Limit, :Offset, :GroupId, :GroupName
+        attr_accessor :InstanceId, :Limit, :Offset, :GroupId, :GroupName, :Labels
 
-        def initialize(instanceid=nil, limit=nil, offset=nil, groupid=nil, groupname=nil)
+        def initialize(instanceid=nil, limit=nil, offset=nil, groupid=nil, groupname=nil, labels=nil)
           @InstanceId = instanceid
           @Limit = limit
           @Offset = offset
           @GroupId = groupid
           @GroupName = groupname
+          @Labels = labels
         end
 
         def deserialize(params)
@@ -8438,15 +8439,23 @@ module TencentCloud
           @Offset = params['Offset']
           @GroupId = params['GroupId']
           @GroupName = params['GroupName']
+          unless params['Labels'].nil?
+            @Labels = []
+            params['Labels'].each do |i|
+              prometheusrulekv_tmp = PrometheusRuleKV.new
+              prometheusrulekv_tmp.deserialize(i)
+              @Labels << prometheusrulekv_tmp
+            end
+          end
         end
       end
 
       # DescribePrometheusAlertGroups返回参数结构体
       class DescribePrometheusAlertGroupsResponse < TencentCloud::Common::AbstractModel
-        # @param AlertGroupSet: 告警分组信息
+        # @param AlertGroupSet: <p>告警分组信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlertGroupSet: Array
-        # @param TotalCount: 告警分组总数
+        # @param TotalCount: <p>告警分组总数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。

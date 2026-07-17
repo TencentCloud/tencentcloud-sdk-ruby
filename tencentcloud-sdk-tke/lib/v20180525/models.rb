@@ -2474,35 +2474,35 @@ module TencentCloud
 
       # CreateClusterNodePool请求参数结构体
       class CreateClusterNodePoolRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: cluster id
+        # @param ClusterId: <p>cluster id</p>
         # @type ClusterId: String
-        # @param AutoScalingGroupPara: AutoScalingGroupPara AS组参数，参考 https://cloud.tencent.com/document/product/377/20440
+        # @param AutoScalingGroupPara: <p>AutoScalingGroupPara AS组参数，参考 https://cloud.tencent.com/document/product/377/20440</p>
         # @type AutoScalingGroupPara: String
-        # @param LaunchConfigurePara: LaunchConfigurePara 运行参数，参考 https://cloud.tencent.com/document/product/377/20447
+        # @param LaunchConfigurePara: <p>LaunchConfigurePara 运行参数，参考 https://cloud.tencent.com/document/product/377/20447</p>
         # @type LaunchConfigurePara: String
-        # @param InstanceAdvancedSettings: InstanceAdvancedSettings
+        # @param InstanceAdvancedSettings: <p>InstanceAdvancedSettings</p>
         # @type InstanceAdvancedSettings: :class:`Tencentcloud::Tke.v20180525.models.InstanceAdvancedSettings`
-        # @param EnableAutoscale: 是否启用自动伸缩
+        # @param EnableAutoscale: <p>是否启用自动伸缩</p>
         # @type EnableAutoscale: Boolean
-        # @param Name: 节点池名称
+        # @param Name: <p>节点池名称</p>
         # @type Name: String
-        # @param Labels: Labels标签
+        # @param Labels: <p>Labels标签</p>
         # @type Labels: Array
-        # @param Taints: Taints互斥
+        # @param Taints: <p>Taints互斥</p>
         # @type Taints: Array
-        # @param Annotations: 节点Annotation 列表
+        # @param Annotations: <p>节点Annotation 列表</p>
         # @type Annotations: Array
-        # @param ContainerRuntime: 节点池纬度运行时类型及版本
+        # @param ContainerRuntime: <p>节点池纬度运行时类型及版本</p>
         # @type ContainerRuntime: String
-        # @param RuntimeVersion: 运行时版本
+        # @param RuntimeVersion: <p>运行时版本</p>
         # @type RuntimeVersion: String
-        # @param NodePoolOs: 节点池os，当为自定义镜像时，传镜像id；否则为公共镜像的osName
+        # @param NodePoolOs: <p>节点池os，当为自定义镜像时，传镜像id；否则为公共镜像的osName</p>
         # @type NodePoolOs: String
-        # @param OsCustomizeType: 容器的镜像版本，"DOCKER_CUSTOMIZE"(容器定制版),"GENERAL"(普通版本，默认值)
+        # @param OsCustomizeType: <p>容器的镜像版本，&quot;DOCKER_CUSTOMIZE&quot;(容器定制版),&quot;GENERAL&quot;(普通版本，默认值)</p>
         # @type OsCustomizeType: String
-        # @param Tags: 资源标签
+        # @param Tags: <p>资源标签</p>
         # @type Tags: Array
-        # @param DeletionProtection: 删除保护开关
+        # @param DeletionProtection: <p>删除保护开关</p>
         # @type DeletionProtection: Boolean
 
         attr_accessor :ClusterId, :AutoScalingGroupPara, :LaunchConfigurePara, :InstanceAdvancedSettings, :EnableAutoscale, :Name, :Labels, :Taints, :Annotations, :ContainerRuntime, :RuntimeVersion, :NodePoolOs, :OsCustomizeType, :Tags, :DeletionProtection
@@ -2577,7 +2577,7 @@ module TencentCloud
 
       # CreateClusterNodePool返回参数结构体
       class CreateClusterNodePoolResponse < TencentCloud::Common::AbstractModel
-        # @param NodePoolId: 节点池id
+        # @param NodePoolId: <p>节点池id</p>
         # @type NodePoolId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -16346,45 +16346,45 @@ module TencentCloud
 
       # ModifyClusterNodePool请求参数结构体
       class ModifyClusterNodePoolRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: <p>集群ID</p>
         # @type ClusterId: String
-        # @param NodePoolId: 节点池ID
+        # @param NodePoolId: <p>节点池ID</p>
         # @type NodePoolId: String
-        # @param Name: 名称，最长63个字符，只能包含小写字母、数字及分隔符“_”，且必须以小写字母开头，数字或小写字母结尾
+        # @param Name: <p>名称，最长63个字符，只能包含小写字母、数字及分隔符“_”，且必须以小写字母开头，数字或小写字母结尾</p>
         # @type Name: String
-        # @param MaxNodesNum: 最大节点数
+        # @param MaxNodesNum: <p>最大节点数</p>
         # @type MaxNodesNum: Integer
-        # @param MinNodesNum: 最小节点数
+        # @param MinNodesNum: <p>最小节点数</p>
         # @type MinNodesNum: Integer
-        # @param Labels: 标签
+        # @param Labels: <p>标签</p>
         # @type Labels: Array
-        # @param Taints: 污点
+        # @param Taints: <p>污点</p>
         # @type Taints: Array
-        # @param Annotations: 节点 Annotation 列表
+        # @param Annotations: <p>节点 Annotation 列表</p>
         # @type Annotations: Array
-        # @param EnableAutoscale: 是否开启伸缩
+        # @param EnableAutoscale: <p>是否开启伸缩</p>
         # @type EnableAutoscale: Boolean
-        # @param OsName: 操作系统名称
+        # @param OsName: <p>操作系统名称</p>
         # @type OsName: String
-        # @param OsCustomizeType: 镜像版本，"DOCKER_CUSTOMIZE"(容器定制版),"GENERAL"(普通版本，默认值)
+        # @param OsCustomizeType: <p>镜像版本，&quot;DOCKER_CUSTOMIZE&quot;(容器定制版),&quot;GENERAL&quot;(普通版本，默认值)</p>
         # @type OsCustomizeType: String
-        # @param GPUArgs: GPU驱动版本，CUDA版本，cuDNN版本以及是否启用MIG特性
+        # @param GPUArgs: <p>GPU驱动版本，CUDA版本，cuDNN版本以及是否启用MIG特性</p>
         # @type GPUArgs: :class:`Tencentcloud::Tke.v20180525.models.GPUArgs`
-        # @param UserScript: base64编码后的自定义脚本
+        # @param UserScript: <p>base64编码后的自定义脚本</p>
         # @type UserScript: String
-        # @param IgnoreExistedNode: 更新label和taint时忽略存量节点
+        # @param IgnoreExistedNode: <p>更新label和taint时忽略存量节点</p>
         # @type IgnoreExistedNode: Boolean
-        # @param ExtraArgs: 节点自定义参数
+        # @param ExtraArgs: <p>节点自定义参数</p>
         # @type ExtraArgs: :class:`Tencentcloud::Tke.v20180525.models.InstanceExtraArgs`
-        # @param Tags: 资源标签
+        # @param Tags: <p>资源标签</p>
         # @type Tags: Array
-        # @param Unschedulable: 设置加入的节点是否参与调度，默认值为0，表示参与调度；非0表示不参与调度, 待节点初始化完成之后, 可执行kubectl uncordon nodename使node加入调度.
+        # @param Unschedulable: <p>设置加入的节点是否参与调度，默认值为0，表示参与调度；非0表示不参与调度, 待节点初始化完成之后, 可执行kubectl uncordon nodename使node加入调度.</p>
         # @type Unschedulable: Integer
-        # @param DeletionProtection: 删除保护开关
+        # @param DeletionProtection: <p>删除保护开关</p>
         # @type DeletionProtection: Boolean
-        # @param DockerGraphPath: dockerd --graph 指定值, 默认为 /var/lib/docker
+        # @param DockerGraphPath: <p>dockerd --graph 指定值, 默认为 /var/lib/docker</p>
         # @type DockerGraphPath: String
-        # @param PreStartUserScript: base64编码后的自定义脚本
+        # @param PreStartUserScript: <p>base64编码后的自定义脚本</p>
         # @type PreStartUserScript: String
 
         attr_accessor :ClusterId, :NodePoolId, :Name, :MaxNodesNum, :MinNodesNum, :Labels, :Taints, :Annotations, :EnableAutoscale, :OsName, :OsCustomizeType, :GPUArgs, :UserScript, :IgnoreExistedNode, :ExtraArgs, :Tags, :Unschedulable, :DeletionProtection, :DockerGraphPath, :PreStartUserScript
@@ -16792,19 +16792,19 @@ module TencentCloud
 
       # ModifyExternalNodePool请求参数结构体
       class ModifyExternalNodePoolRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: <p>集群ID</p>
         # @type ClusterId: String
-        # @param NodePoolId: 节点池ID
+        # @param NodePoolId: <p>节点池ID</p>
         # @type NodePoolId: String
-        # @param Name: 节点池名称
+        # @param Name: <p>节点池名称</p>
         # @type Name: String
-        # @param Labels: 注册节点标签
+        # @param Labels: <p>注册节点标签</p>
         # @type Labels: Array
-        # @param Taints: 注册节点污点
+        # @param Taints: <p>注册节点污点</p>
         # @type Taints: Array
-        # @param DeletionProtection: 删除保护开关
+        # @param DeletionProtection: <p>删除保护开关</p>
         # @type DeletionProtection: Boolean
-        # @param UserScript: base64 编码的用户脚本, 此脚本会在 k8s 组件运行后执行, 需要用户保证脚本的可重入及重试逻辑, 脚本及其生成的日志文件可在节点的 /data/ccs_userscript/ 路径查看
+        # @param UserScript: <p>base64 编码的用户脚本, 此脚本会在 k8s 组件运行后执行, 需要用户保证脚本的可重入及重试逻辑, 脚本及其生成的日志文件可在节点的 /data/ccs_userscript/ 路径查看</p>
         # @type UserScript: String
 
         attr_accessor :ClusterId, :NodePoolId, :Name, :Labels, :Taints, :DeletionProtection, :UserScript
@@ -22617,30 +22617,23 @@ module TencentCloud
 
       # UpgradeClusterInstances请求参数结构体
       class UpgradeClusterInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID（请登录 [TKE 控制台](https://console.cloud.tencent.com/tke2) 获取集群 ID ）
+        # @param ClusterId: <p>集群ID（请登录 <a href="https://console.cloud.tencent.com/tke2">TKE 控制台</a> 获取集群 ID ）</p>
         # @type ClusterId: String
-        # @param Operation: create 表示开始一次升级任务
-        # pause 表示停止任务
-        # resume表示继续任务
-        # abort表示终止任务
+        # @param Operation: <p>create 表示开始一次升级任务<br>pause 表示停止任务<br>resume表示继续任务<br>abort表示终止任务</p>
         # @type Operation: String
-        # @param UpgradeType: 升级类型，只有Operation是create需要设置
-        # reset 大版本重装升级
-        # hot 小版本热升级
-        # major 大版本原地升级
+        # @param UpgradeType: <p>升级类型，只有Operation是create需要设置<br>reset 大版本重装升级<br>hot 小版本热升级<br>major 大版本原地升级</p>
         # @type UpgradeType: String
-        # @param InstanceIds: 需要升级的节点列表，可以通过控制台或 [查询待升级节点接口
-        # ](https://cloud.tencent.com/document/api/457/50366) 获取
+        # @param InstanceIds: <p>需要升级的节点列表，可以通过控制台或 <a href="https://cloud.tencent.com/document/api/457/50366">查询待升级节点接口</a> 获取</p>
         # @type InstanceIds: Array
-        # @param ResetParam: 当节点重新加入集群时候所使用的参数，参考添加已有节点接口
+        # @param ResetParam: <p>当节点重新加入集群时候所使用的参数，参考添加已有节点接口</p>
         # @type ResetParam: :class:`Tencentcloud::Tke.v20180525.models.UpgradeNodeResetParam`
-        # @param SkipPreCheck: 是否忽略节点升级前检查，默认值 false
+        # @param SkipPreCheck: <p>是否忽略节点升级前检查，默认值 false</p>
         # @type SkipPreCheck: Boolean
-        # @param MaxNotReadyPercent: 最大可容忍的不可用Pod比例，如果设置 0 表示不做校验
+        # @param MaxNotReadyPercent: <p>最大可容忍的不可用Pod百分比，如果设置 0 表示不做校验</p><p>取值范围：[0, 100]</p><p>默认值：20</p>
         # @type MaxNotReadyPercent: Float
-        # @param UpgradeRunTime: 是否升级节点运行时，默认false不升级
+        # @param UpgradeRunTime: <p>是否升级节点运行时，默认false不升级</p>
         # @type UpgradeRunTime: Boolean
-        # @param Concurrent: 支持多个节点并行升级，默认值为 1，最大并行数为15
+        # @param Concurrent: <p>支持多个节点并行升级，默认值为 1，最大并行数为15</p>
         # @type Concurrent: Integer
 
         attr_accessor :ClusterId, :Operation, :UpgradeType, :InstanceIds, :ResetParam, :SkipPreCheck, :MaxNotReadyPercent, :UpgradeRunTime, :Concurrent

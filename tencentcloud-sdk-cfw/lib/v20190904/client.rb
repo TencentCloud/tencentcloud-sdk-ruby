@@ -1015,6 +1015,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询当前租户防火墙聚合告警事件。Response.Data 内 total 表示聚合告警事件数；alerts[].occurrence_count 表示单个聚合告警事件的告警发生次数/命中次数。
+
+        # @param request: Request instance for DescribeCfwAlerts.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::DescribeCfwAlertsRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::DescribeCfwAlertsResponse`
+        def DescribeCfwAlerts(request)
+          body = send_request('DescribeCfwAlerts', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCfwAlertsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询当前租户防火墙分析报告数据。按分析场景返回整组分析结果，结果在 Response.Data 的 JSON 字符串中。
+
+        # @param request: Request instance for DescribeCfwAnalysisData.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::DescribeCfwAnalysisDataRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::DescribeCfwAnalysisDataResponse`
+        def DescribeCfwAnalysisData(request)
+          body = send_request('DescribeCfwAnalysisData', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCfwAnalysisDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询当前租户防火墙纳管资产。默认查询主机资产；仅明确需要 VPC 或子网时传 AssetType。结果在 Response.Data 的 JSON 字符串中。
+
+        # @param request: Request instance for DescribeCfwAssets.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::DescribeCfwAssetsRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::DescribeCfwAssetsResponse`
+        def DescribeCfwAssets(request)
+          body = send_request('DescribeCfwAssets', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCfwAssetsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询防火墙弹性公网IP
 
         # @param request: Request instance for DescribeCfwEips.
@@ -1049,6 +1121,150 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeCfwInsStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询当前租户防火墙日志。分页只使用 Response.Data 内的 HasMore / NextToken。
+
+        # @param request: Request instance for DescribeCfwLogs.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::DescribeCfwLogsRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::DescribeCfwLogsResponse`
+        def DescribeCfwLogs(request)
+          body = send_request('DescribeCfwLogs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCfwLogsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询当前租户风险中心未处理风险概览。默认查询最近 7 天；自定义时间范围需同时传 StartTime 和 EndTime。结果在 Response.Data 的 JSON 字符串中。
+
+        # @param request: Request instance for DescribeCfwRiskOverview.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::DescribeCfwRiskOverviewRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::DescribeCfwRiskOverviewResponse`
+        def DescribeCfwRiskOverview(request)
+          body = send_request('DescribeCfwRiskOverview', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCfwRiskOverviewResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询当前租户防火墙规则优化建议。只读分析，不修改规则；Action 名保持单数 RuleOptimization。结果在 Response.Data 的 JSON 字符串中。
+
+        # @param request: Request instance for DescribeCfwRuleOptimization.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::DescribeCfwRuleOptimizationRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::DescribeCfwRuleOptimizationResponse`
+        def DescribeCfwRuleOptimization(request)
+          body = send_request('DescribeCfwRuleOptimization', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCfwRuleOptimizationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询当前租户防火墙规则配置。覆盖互联网边界、NAT、VPC、企业安全组，以及入侵防御 intrusion_prevention 的 blocklist、whitelist、isolate 三类有效列表。结果在 Response.Data 的 JSON 字符串中。
+
+        # @param request: Request instance for DescribeCfwRules.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::DescribeCfwRulesRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::DescribeCfwRulesResponse`
+        def DescribeCfwRules(request)
+          body = send_request('DescribeCfwRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCfwRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询状态监控场景。Op=describe_scene 用于发现可用场景、指标、视角和二级下拉 available_options；Op=fetch_scene 用于拉取具体场景快照，结果在 Response.Data 的 JSON 字符串中。
+
+        # @param request: Request instance for DescribeCfwStatusMonitor.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::DescribeCfwStatusMonitorRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::DescribeCfwStatusMonitorResponse`
+        def DescribeCfwStatusMonitor(request)
+          body = send_request('DescribeCfwStatusMonitor', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCfwStatusMonitorResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询当前租户防火墙防护开关总览。结果在 Response.Data 的 JSON 字符串中。本接口没有自定义业务入参，不支持过滤、排序或分页。
+
+        # @param request: Request instance for DescribeCfwSwitches.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::DescribeCfwSwitchesRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::DescribeCfwSwitchesResponse`
+        def DescribeCfwSwitches(request)
+          body = send_request('DescribeCfwSwitches', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCfwSwitchesResponse.new
             model.deserialize(response['Response'])
             model
           else

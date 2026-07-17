@@ -1769,14 +1769,17 @@ module TencentCloud
         # @type VoiceId: String
         # @param OutputStorage: <p>译制视频存储位置。</p>
         # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
+        # @param ExtraOutput: <p>额外结果，目前包含字幕文件结果 Url</p>
+        # @type ExtraOutput: String
 
-        attr_accessor :VideoPath, :SpeakerPath, :VoiceId, :OutputStorage
+        attr_accessor :VideoPath, :SpeakerPath, :VoiceId, :OutputStorage, :ExtraOutput
 
-        def initialize(videopath=nil, speakerpath=nil, voiceid=nil, outputstorage=nil)
+        def initialize(videopath=nil, speakerpath=nil, voiceid=nil, outputstorage=nil, extraoutput=nil)
           @VideoPath = videopath
           @SpeakerPath = speakerpath
           @VoiceId = voiceid
           @OutputStorage = outputstorage
+          @ExtraOutput = extraoutput
         end
 
         def deserialize(params)
@@ -1787,6 +1790,7 @@ module TencentCloud
             @OutputStorage = TaskOutputStorage.new
             @OutputStorage.deserialize(params['OutputStorage'])
           end
+          @ExtraOutput = params['ExtraOutput']
         end
       end
 
@@ -35751,11 +35755,11 @@ module TencentCloud
 
       # 媒体处理 VOD（点播专业版） 输出对象信息。
       class VODOutputStorage < TencentCloud::Common::AbstractModel
-        # @param Bucket: 媒体处理生成的文件输出的目标 *Bucket ID*
+        # @param Bucket: <p>媒体处理生成的文件输出的目标 <em>Bucket ID</em></p>
         # @type Bucket: String
-        # @param Region: 媒体处理生成的文件输出的目标 Bucket 的园区
+        # @param Region: <p>媒体处理生成的文件输出的目标 Bucket 的园区</p>
         # @type Region: String
-        # @param SubAppId: 点播专业版应用Id
+        # @param SubAppId: <p>点播专业版应用Id</p>
         # @type SubAppId: Integer
 
         attr_accessor :Bucket, :Region, :SubAppId

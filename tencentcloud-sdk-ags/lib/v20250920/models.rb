@@ -1684,9 +1684,9 @@ module TencentCloud
 
       # 沙箱工具VPC相关配置
       class VPCConfig < TencentCloud::Common::AbstractModel
-        # @param SubnetIds: VPC子网ID列表
+        # @param SubnetIds: <p>VPC子网ID列表</p>
         # @type SubnetIds: Array
-        # @param SecurityGroupIds: 安全组ID列表
+        # @param SecurityGroupIds: <p>安全组ID列表</p>
         # @type SecurityGroupIds: Array
 
         attr_accessor :SubnetIds, :SecurityGroupIds
