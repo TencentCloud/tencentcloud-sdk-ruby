@@ -438,6 +438,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建 AiGC 文档生成视频任务
+
+        # @param request: Request instance for CreateDocToVideoTask.
+        # @type request: :class:`Tencentcloud::mps::V20190612::CreateDocToVideoTaskRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::CreateDocToVideoTaskResponse`
+        def CreateDocToVideoTask(request)
+          body = send_request('CreateDocToVideoTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDocToVideoTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建用户自定义雪碧图模板，数量上限：16。
 
         # @param request: Request instance for CreateImageSpriteTemplate.
@@ -3903,6 +3927,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = EditMediaResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 模型embedding 接口
+
+        # @param request: Request instance for EmbeddingData.
+        # @type request: :class:`Tencentcloud::mps::V20190612::EmbeddingDataRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::EmbeddingDataResponse`
+        def EmbeddingData(request)
+          body = send_request('EmbeddingData', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = EmbeddingDataResponse.new
             model.deserialize(response['Response'])
             model
           else

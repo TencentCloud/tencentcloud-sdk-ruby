@@ -5451,6 +5451,34 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # Owner 取消对指定用户的设备分享：
+        # 1. 校验产品 ACL / 子产品禁止 / 设备真实存在；
+        # 2. 只读定位 Owner（必须已存在），并校验 Owner 持有该设备；
+        # 3. 只读定位被取消分享用户（不存在视为已取消，幂等成功）；
+        # 4. 删除分享关系记录（不存在视为已取消，幂等成功）。
+
+        # @param request: Request instance for RevokeShareDeviceFromUser.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::RevokeShareDeviceFromUserRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::RevokeShareDeviceFromUserResponse`
+        def RevokeShareDeviceFromUser(request)
+          body = send_request('RevokeShareDeviceFromUser', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RevokeShareDeviceFromUserResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 搜索位置空间
 
         # @param request: Request instance for SearchPositionSpace.
@@ -5509,6 +5537,34 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SearchTopicRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # Owner 将其名下的设备分享给指定 App 用户：
+        # 1. 校验产品 ACL / 子产品禁止 / 设备真实存在；
+        # 2. 只读定位 Owner（必须已存在），并校验 Owner 确实持有该设备；
+        # 3. 兜底创建被分享用户（已存在则复用，昵称不覆盖）；
+        # 4. 写入分享关系（重复分享幂等成功，不修改原 CreateTime）。
+
+        # @param request: Request instance for ShareDeviceToUser.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::ShareDeviceToUserRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::ShareDeviceToUserResponse`
+        def ShareDeviceToUser(request)
+          body = send_request('ShareDeviceToUser', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ShareDeviceToUserResponse.new
             model.deserialize(response['Response'])
             model
           else

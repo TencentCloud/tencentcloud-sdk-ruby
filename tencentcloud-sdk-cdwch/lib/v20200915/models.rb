@@ -595,8 +595,8 @@ module TencentCloud
 
         attr_accessor :Zone, :HaFlag, :UserVPCId, :UserSubnetId, :ProductVersion, :ChargeProperties, :InstanceName, :DataSpec, :Tags, :ClsLogSetId, :CosBucketName, :MountDiskType, :HAZk, :CommonSpec, :TagItems, :SecondaryZoneInfo, :CkDefaultUserPwd, :ClusterType
         extend Gem::Deprecate
-        deprecate :Tags, :none, 2026, 6
-        deprecate :Tags=, :none, 2026, 6
+        deprecate :Tags, :none, 2026, 7
+        deprecate :Tags=, :none, 2026, 7
 
         def initialize(zone=nil, haflag=nil, uservpcid=nil, usersubnetid=nil, productversion=nil, chargeproperties=nil, instancename=nil, dataspec=nil, tags=nil, clslogsetid=nil, cosbucketname=nil, mountdisktype=nil, hazk=nil, commonspec=nil, tagitems=nil, secondaryzoneinfo=nil, ckdefaultuserpwd=nil, clustertype=nil)
           @Zone = zone
@@ -1784,6 +1784,34 @@ module TencentCloud
         end
       end
 
+      # 群磁盘加密信息。用于 DescribeInstances / DescribeInstance 返回实例的当前加密配置，供控制台、SDK、运维侧识别该集群是否启用磁盘加密、使用的是哪一把 KMS 根密钥
+      class DiskEncryptInfo < TencentCloud::Common::AbstractModel
+        # @param EncryptType: <p>加密类型</p><p>枚举值：</p><ul><li>CUSTOMER_KMS： 客户自定义的KMS密钥信息</li><li>TENCENT_KEY： 使用腾讯云自动创建的KMS密钥信息</li></ul>
+        # @type EncryptType: String
+        # @param KmsKeyId: <p>KMS 根密钥ID</p>
+        # @type KmsKeyId: String
+        # @param KmsRegion: <p>KMS密钥地域</p>
+        # @type KmsRegion: String
+        # @param KmsKeyName: <p>KMS 根密钥 key 名</p>
+        # @type KmsKeyName: String
+
+        attr_accessor :EncryptType, :KmsKeyId, :KmsRegion, :KmsKeyName
+
+        def initialize(encrypttype=nil, kmskeyid=nil, kmsregion=nil, kmskeyname=nil)
+          @EncryptType = encrypttype
+          @KmsKeyId = kmskeyid
+          @KmsRegion = kmsregion
+          @KmsKeyName = kmskeyname
+        end
+
+        def deserialize(params)
+          @EncryptType = params['EncryptType']
+          @KmsKeyId = params['KmsKeyId']
+          @KmsRegion = params['KmsRegion']
+          @KmsKeyName = params['KmsKeyName']
+        end
+      end
+
       # 磁盘规格描述
       class DiskSpec < TencentCloud::Common::AbstractModel
         # @param DiskType: 磁盘类型，例如“CLOUD_SSD", "LOCAL_SSD"等
@@ -2150,10 +2178,12 @@ module TencentCloud
         # @type EnableConfigKeyValue: String
         # @param HttpsEnabled: <p>实例是否开启HTTPS</p><p>枚举值：</p><ul><li>true： 已开启HTTPS</li><li>false： 未开启HTTPS</li></ul>
         # @type HttpsEnabled: Boolean
+        # @param DiskEncryptInfo: <p>集群磁盘加密配置</p>
+        # @type DiskEncryptInfo: :class:`Tencentcloud::Cdwch.v20200915.models.DiskEncryptInfo`
 
-        attr_accessor :InstanceId, :InstanceName, :Status, :Version, :Region, :Zone, :VpcId, :SubnetId, :PayMode, :CreateTime, :ExpireTime, :MasterSummary, :CommonSummary, :HA, :AccessInfo, :Id, :RegionId, :ZoneDesc, :FlowMsg, :StatusDesc, :RenewFlag, :Tags, :Monitor, :HasClsTopic, :ClsTopicId, :ClsLogSetId, :EnableXMLConfig, :RegionDesc, :Eip, :CosMoveFactor, :Kind, :IsElastic, :InstanceStateInfo, :HAZk, :MountDiskType, :CHProxyVip, :CosBucketName, :CanAttachCbs, :CanAttachCbsLvm, :CanAttachCos, :Components, :UpgradeVersions, :EsIndexId, :EsIndexUsername, :EsIndexPassword, :HasEsIndex, :IsSecondaryZone, :SecondaryZoneInfo, :ClickHouseKeeper, :Details, :IsWhiteSGs, :BindSGs, :HasPublicCloudClb, :UpgradeZkVersions, :ShowRip, :InstanceType, :EnableConfigKeyValue, :HttpsEnabled
+        attr_accessor :InstanceId, :InstanceName, :Status, :Version, :Region, :Zone, :VpcId, :SubnetId, :PayMode, :CreateTime, :ExpireTime, :MasterSummary, :CommonSummary, :HA, :AccessInfo, :Id, :RegionId, :ZoneDesc, :FlowMsg, :StatusDesc, :RenewFlag, :Tags, :Monitor, :HasClsTopic, :ClsTopicId, :ClsLogSetId, :EnableXMLConfig, :RegionDesc, :Eip, :CosMoveFactor, :Kind, :IsElastic, :InstanceStateInfo, :HAZk, :MountDiskType, :CHProxyVip, :CosBucketName, :CanAttachCbs, :CanAttachCbsLvm, :CanAttachCos, :Components, :UpgradeVersions, :EsIndexId, :EsIndexUsername, :EsIndexPassword, :HasEsIndex, :IsSecondaryZone, :SecondaryZoneInfo, :ClickHouseKeeper, :Details, :IsWhiteSGs, :BindSGs, :HasPublicCloudClb, :UpgradeZkVersions, :ShowRip, :InstanceType, :EnableConfigKeyValue, :HttpsEnabled, :DiskEncryptInfo
 
-        def initialize(instanceid=nil, instancename=nil, status=nil, version=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, paymode=nil, createtime=nil, expiretime=nil, mastersummary=nil, commonsummary=nil, ha=nil, accessinfo=nil, id=nil, regionid=nil, zonedesc=nil, flowmsg=nil, statusdesc=nil, renewflag=nil, tags=nil, monitor=nil, hasclstopic=nil, clstopicid=nil, clslogsetid=nil, enablexmlconfig=nil, regiondesc=nil, eip=nil, cosmovefactor=nil, kind=nil, iselastic=nil, instancestateinfo=nil, hazk=nil, mountdisktype=nil, chproxyvip=nil, cosbucketname=nil, canattachcbs=nil, canattachcbslvm=nil, canattachcos=nil, components=nil, upgradeversions=nil, esindexid=nil, esindexusername=nil, esindexpassword=nil, hasesindex=nil, issecondaryzone=nil, secondaryzoneinfo=nil, clickhousekeeper=nil, details=nil, iswhitesgs=nil, bindsgs=nil, haspubliccloudclb=nil, upgradezkversions=nil, showrip=nil, instancetype=nil, enableconfigkeyvalue=nil, httpsenabled=nil)
+        def initialize(instanceid=nil, instancename=nil, status=nil, version=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, paymode=nil, createtime=nil, expiretime=nil, mastersummary=nil, commonsummary=nil, ha=nil, accessinfo=nil, id=nil, regionid=nil, zonedesc=nil, flowmsg=nil, statusdesc=nil, renewflag=nil, tags=nil, monitor=nil, hasclstopic=nil, clstopicid=nil, clslogsetid=nil, enablexmlconfig=nil, regiondesc=nil, eip=nil, cosmovefactor=nil, kind=nil, iselastic=nil, instancestateinfo=nil, hazk=nil, mountdisktype=nil, chproxyvip=nil, cosbucketname=nil, canattachcbs=nil, canattachcbslvm=nil, canattachcos=nil, components=nil, upgradeversions=nil, esindexid=nil, esindexusername=nil, esindexpassword=nil, hasesindex=nil, issecondaryzone=nil, secondaryzoneinfo=nil, clickhousekeeper=nil, details=nil, iswhitesgs=nil, bindsgs=nil, haspubliccloudclb=nil, upgradezkversions=nil, showrip=nil, instancetype=nil, enableconfigkeyvalue=nil, httpsenabled=nil, diskencryptinfo=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Status = status
@@ -2212,6 +2242,7 @@ module TencentCloud
           @InstanceType = instancetype
           @EnableConfigKeyValue = enableconfigkeyvalue
           @HttpsEnabled = httpsenabled
+          @DiskEncryptInfo = diskencryptinfo
         end
 
         def deserialize(params)
@@ -2299,6 +2330,10 @@ module TencentCloud
           @InstanceType = params['InstanceType']
           @EnableConfigKeyValue = params['EnableConfigKeyValue']
           @HttpsEnabled = params['HttpsEnabled']
+          unless params['DiskEncryptInfo'].nil?
+            @DiskEncryptInfo = DiskEncryptInfo.new
+            @DiskEncryptInfo.deserialize(params['DiskEncryptInfo'])
+          end
         end
       end
 

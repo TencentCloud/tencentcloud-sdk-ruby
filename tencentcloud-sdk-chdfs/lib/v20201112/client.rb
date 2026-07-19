@@ -197,6 +197,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建回收站配置。
+
+        # @param request: Request instance for CreateTrashConfig.
+        # @type request: :class:`Tencentcloud::chdfs::V20201112::CreateTrashConfigRequest`
+        # @rtype: :class:`Tencentcloud::chdfs::V20201112::CreateTrashConfigResponse`
+        def CreateTrashConfig(request)
+          body = send_request('CreateTrashConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateTrashConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除权限组。
 
         # @param request: Request instance for DeleteAccessGroup.
@@ -303,6 +327,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteMountPointResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除回收站配置。
+
+        # @param request: Request instance for DeleteTrashConfig.
+        # @type request: :class:`Tencentcloud::chdfs::V20201112::DeleteTrashConfigRequest`
+        # @rtype: :class:`Tencentcloud::chdfs::V20201112::DeleteTrashConfigResponse`
+        def DeleteTrashConfig(request)
+          body = send_request('DeleteTrashConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteTrashConfigResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -557,6 +605,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 通过文件系统ID查看回收站配置。
+
+        # @param request: Request instance for DescribeTrashConfig.
+        # @type request: :class:`Tencentcloud::chdfs::V20201112::DescribeTrashConfigRequest`
+        # @rtype: :class:`Tencentcloud::chdfs::V20201112::DescribeTrashConfigResponse`
+        def DescribeTrashConfig(request)
+          body = send_request('DescribeTrashConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTrashConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 给挂载点解绑多个权限组。
 
         # @param request: Request instance for DisassociateAccessGroups.
@@ -711,6 +783,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyResourceTagsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改回收站配置，需要指定回收站路径，数据保留时间、和状态。
+
+        # @param request: Request instance for ModifyTrashConfig.
+        # @type request: :class:`Tencentcloud::chdfs::V20201112::ModifyTrashConfigRequest`
+        # @rtype: :class:`Tencentcloud::chdfs::V20201112::ModifyTrashConfigResponse`
+        def ModifyTrashConfig(request)
+          body = send_request('ModifyTrashConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyTrashConfigResponse.new
             model.deserialize(response['Response'])
             model
           else

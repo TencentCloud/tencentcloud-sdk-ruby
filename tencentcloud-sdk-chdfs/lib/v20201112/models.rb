@@ -441,6 +441,50 @@ module TencentCloud
         end
       end
 
+      # CreateTrashConfig请求参数结构体
+      class CreateTrashConfigRequest < TencentCloud::Common::AbstractModel
+        # @param FileSystemId: <p>文件系统ID</p>
+        # @type FileSystemId: String
+        # @param ReservedDays: <p>数据保留时间（天）</p>
+        # @type ReservedDays: Integer
+        # @param Status: <p>规则状态（1：打开；2：关闭）</p>
+        # @type Status: Integer
+        # @param Path: <ol><li>字段为空表示开启普通用户回收站 </li><li>字段不为空表示开启HDFS原生回收站，且值必须为/user/*/.Trash</li></ol>
+        # @type Path: String
+
+        attr_accessor :FileSystemId, :ReservedDays, :Status, :Path
+
+        def initialize(filesystemid=nil, reserveddays=nil, status=nil, path=nil)
+          @FileSystemId = filesystemid
+          @ReservedDays = reserveddays
+          @Status = status
+          @Path = path
+        end
+
+        def deserialize(params)
+          @FileSystemId = params['FileSystemId']
+          @ReservedDays = params['ReservedDays']
+          @Status = params['Status']
+          @Path = params['Path']
+        end
+      end
+
+      # CreateTrashConfig返回参数结构体
+      class CreateTrashConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteAccessGroup请求参数结构体
       class DeleteAccessGroupRequest < TencentCloud::Common::AbstractModel
         # @param AccessGroupId: 权限组ID
@@ -587,6 +631,38 @@ module TencentCloud
 
       # DeleteMountPoint返回参数结构体
       class DeleteMountPointResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteTrashConfig请求参数结构体
+      class DeleteTrashConfigRequest < TencentCloud::Common::AbstractModel
+        # @param FileSystemId: 文件系统ID
+        # @type FileSystemId: String
+
+        attr_accessor :FileSystemId
+
+        def initialize(filesystemid=nil)
+          @FileSystemId = filesystemid
+        end
+
+        def deserialize(params)
+          @FileSystemId = params['FileSystemId']
+        end
+      end
+
+      # DeleteTrashConfig返回参数结构体
+      class DeleteTrashConfigResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -1089,6 +1165,45 @@ module TencentCloud
         end
       end
 
+      # DescribeTrashConfig请求参数结构体
+      class DescribeTrashConfigRequest < TencentCloud::Common::AbstractModel
+        # @param FileSystemId: <p>文件系统ID</p>
+        # @type FileSystemId: String
+
+        attr_accessor :FileSystemId
+
+        def initialize(filesystemid=nil)
+          @FileSystemId = filesystemid
+        end
+
+        def deserialize(params)
+          @FileSystemId = params['FileSystemId']
+        end
+      end
+
+      # DescribeTrashConfig返回参数结构体
+      class DescribeTrashConfigResponse < TencentCloud::Common::AbstractModel
+        # @param TrashConfig: <p>回收站配置</p>
+        # @type TrashConfig: :class:`Tencentcloud::Chdfs.v20201112.models.TrashConfig`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TrashConfig, :RequestId
+
+        def initialize(trashconfig=nil, requestid=nil)
+          @TrashConfig = trashconfig
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TrashConfig'].nil?
+            @TrashConfig = TrashConfig.new
+            @TrashConfig.deserialize(params['TrashConfig'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DisassociateAccessGroups请求参数结构体
       class DisassociateAccessGroupsRequest < TencentCloud::Common::AbstractModel
         # @param MountPointId: 挂载点ID
@@ -1505,6 +1620,46 @@ module TencentCloud
         end
       end
 
+      # ModifyTrashConfig请求参数结构体
+      class ModifyTrashConfigRequest < TencentCloud::Common::AbstractModel
+        # @param FileSystemId: 文件系统ID
+        # @type FileSystemId: String
+        # @param ReservedDays: 数据保留时间（天）
+        # @type ReservedDays: Integer
+        # @param Status: 规则状态（1：打开；2：关闭）
+        # @type Status: Integer
+
+        attr_accessor :FileSystemId, :ReservedDays, :Status
+
+        def initialize(filesystemid=nil, reserveddays=nil, status=nil)
+          @FileSystemId = filesystemid
+          @ReservedDays = reserveddays
+          @Status = status
+        end
+
+        def deserialize(params)
+          @FileSystemId = params['FileSystemId']
+          @ReservedDays = params['ReservedDays']
+          @Status = params['Status']
+        end
+      end
+
+      # ModifyTrashConfig返回参数结构体
+      class ModifyTrashConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 挂载点
       class MountPoint < TencentCloud::Common::AbstractModel
         # @param MountPointId: 挂载点ID
@@ -1650,6 +1805,34 @@ module TencentCloud
         def deserialize(params)
           @Days = params['Days']
           @Type = params['Type']
+        end
+      end
+
+      # 回收站配置
+      class TrashConfig < TencentCloud::Common::AbstractModel
+        # @param FileSystemId: 文件系统ID
+        # @type FileSystemId: String
+        # @param ReservedDays: 数据保留时间（天）
+        # @type ReservedDays: Integer
+        # @param Status: 回收站配置状态（1：打开；2：关闭）
+        # @type Status: Integer
+        # @param Path: 回收站路径
+        # @type Path: String
+
+        attr_accessor :FileSystemId, :ReservedDays, :Status, :Path
+
+        def initialize(filesystemid=nil, reserveddays=nil, status=nil, path=nil)
+          @FileSystemId = filesystemid
+          @ReservedDays = reserveddays
+          @Status = status
+          @Path = path
+        end
+
+        def deserialize(params)
+          @FileSystemId = params['FileSystemId']
+          @ReservedDays = params['ReservedDays']
+          @Status = params['Status']
+          @Path = params['Path']
         end
       end
 

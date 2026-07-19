@@ -8943,6 +8943,52 @@ module TencentCloud
         end
       end
 
+      # CreateDocToVideoTask请求参数结构体
+      class CreateDocToVideoTaskRequest < TencentCloud::Common::AbstractModel
+        # @param Input: <p>AIGC文档生成视频的输入信息</p>
+        # @type Input: :class:`Tencentcloud::Mps.v20190612.models.DocToVideoInput`
+        # @param CosInfo: <p>用户cos信息，用于保存生成结果</p>
+        # @type CosInfo: :class:`Tencentcloud::Mps.v20190612.models.DocToVideoCosInfo`
+
+        attr_accessor :Input, :CosInfo
+
+        def initialize(input=nil, cosinfo=nil)
+          @Input = input
+          @CosInfo = cosinfo
+        end
+
+        def deserialize(params)
+          unless params['Input'].nil?
+            @Input = DocToVideoInput.new
+            @Input.deserialize(params['Input'])
+          end
+          unless params['CosInfo'].nil?
+            @CosInfo = DocToVideoCosInfo.new
+            @CosInfo.deserialize(params['CosInfo'])
+          end
+        end
+      end
+
+      # CreateDocToVideoTask返回参数结构体
+      class CreateDocToVideoTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务id</p>
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateImageSpriteTemplate请求参数结构体
       class CreateImageSpriteTemplateRequest < TencentCloud::Common::AbstractModel
         # @param SampleType: 采样类型，取值：
@@ -18482,6 +18528,78 @@ module TencentCloud
         end
       end
 
+      # cos信息，存储用户请求时填写的cos信息，用于存放结果
+      class DocToVideoCosInfo < TencentCloud::Common::AbstractModel
+        # @param CosBucketRegion: <p>cos桶地域</p>
+        # @type CosBucketRegion: String
+        # @param CosBucketName: <p>cos桶名称</p>
+        # @type CosBucketName: String
+        # @param CosBucketPath: <p>cos桶路径</p>
+        # @type CosBucketPath: String
+
+        attr_accessor :CosBucketRegion, :CosBucketName, :CosBucketPath
+
+        def initialize(cosbucketregion=nil, cosbucketname=nil, cosbucketpath=nil)
+          @CosBucketRegion = cosbucketregion
+          @CosBucketName = cosbucketname
+          @CosBucketPath = cosbucketpath
+        end
+
+        def deserialize(params)
+          @CosBucketRegion = params['CosBucketRegion']
+          @CosBucketName = params['CosBucketName']
+          @CosBucketPath = params['CosBucketPath']
+        end
+      end
+
+      # AIGC 文档生成视频输入
+      class DocToVideoInput < TencentCloud::Common::AbstractModel
+        # @param FileUrl: <p>用于生成视频的文档链接。</p><p>支持的文档类型：pdf、pptx、docx、png、jpg<br>文档数量限制：3个<br>文档大小限制：10MB<br>文档页数限制：100页</p>
+        # @type FileUrl: Array
+        # @param Prompt: <p>用于生成视频的prompt信息。</p><p>prompt长度限制：2000字符。</p>
+        # @type Prompt: String
+        # @param ModelName: <p>文档生成视频模型名称</p><p>默认值：Wand</p>
+        # @type ModelName: String
+        # @param ModelVersion: <p>文档生成视频模型版本号</p><p>默认值：1.0</p>
+        # @type ModelVersion: String
+        # @param Ratio: <p>生成视频的宽高比。</p><p>枚举值：</p><ul><li>16:9： 16:9</li><li>9:16： 9:16</li><li>1:1： 1:1</li></ul><p>默认值：16:9</p>
+        # @type Ratio: String
+        # @param Language: <p>生成视频的语言。</p><p>枚举值：</p><ul><li>zh： 中文</li><li>en： 英文</li><li>ja： 日语</li><li>ko： 韩语</li><li>ru： 俄语</li><li>fr： 法语</li><li>es： 西班牙语</li><li>de： 德语</li></ul><p>默认值：zh</p>
+        # @type Language: String
+        # @param ReferenceDuration: <p>生成视频的时长参考。</p><p>非准确的视频时长，仅供大模型参考生成。</p><p>取值范围：[15, 1200]</p><p>单位：秒</p>
+        # @type ReferenceDuration: Integer
+        # @param EnableTTS: <p>是否开启AI配音功能。</p><p>默认值：false</p>
+        # @type EnableTTS: Boolean
+        # @param VoiceId: <p>音色ID。仅开启AI配音功能时有效。</p>
+        # @type VoiceId: String
+
+        attr_accessor :FileUrl, :Prompt, :ModelName, :ModelVersion, :Ratio, :Language, :ReferenceDuration, :EnableTTS, :VoiceId
+
+        def initialize(fileurl=nil, prompt=nil, modelname=nil, modelversion=nil, ratio=nil, language=nil, referenceduration=nil, enabletts=nil, voiceid=nil)
+          @FileUrl = fileurl
+          @Prompt = prompt
+          @ModelName = modelname
+          @ModelVersion = modelversion
+          @Ratio = ratio
+          @Language = language
+          @ReferenceDuration = referenceduration
+          @EnableTTS = enabletts
+          @VoiceId = voiceid
+        end
+
+        def deserialize(params)
+          @FileUrl = params['FileUrl']
+          @Prompt = params['Prompt']
+          @ModelName = params['ModelName']
+          @ModelVersion = params['ModelVersion']
+          @Ratio = params['Ratio']
+          @Language = params['Language']
+          @ReferenceDuration = params['ReferenceDuration']
+          @EnableTTS = params['EnableTTS']
+          @VoiceId = params['VoiceId']
+        end
+      end
+
       # Drm 加密信息。
       class DrmInfo < TencentCloud::Common::AbstractModel
         # @param Type: 加密类型：
@@ -18788,6 +18906,109 @@ module TencentCloud
             @MetaData = MediaMetaData.new
             @MetaData.deserialize(params['MetaData'])
           end
+        end
+      end
+
+      # embedding 接口的输入:
+      # Type   数据类型,现在只支持text
+      # Data  数据内容，当前只支持为文本
+      class EmbeddingData < TencentCloud::Common::AbstractModel
+        # @param Type: <p>数据类型</p><p>枚举值：</p><ul><li>text： 文本</li></ul>
+        # @type Type: String
+        # @param Data: <p>数据内容，当Type 为text时，为文本字符串</p>
+        # @type Data: String
+
+        attr_accessor :Type, :Data
+
+        def initialize(type=nil, data=nil)
+          @Type = type
+          @Data = data
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Data = params['Data']
+        end
+      end
+
+      # EmbeddingData请求参数结构体
+      class EmbeddingDataRequest < TencentCloud::Common::AbstractModel
+        # @param Model: <p>embedding 的模型，现在只支持 text_embedding_v1</p><p>枚举值：</p><ul><li>text_embedding_v1： 文本embedding的模型，可以填写Prompt</li></ul>
+        # @type Model: String
+        # @param Files: <p>embedding的输入</p>
+        # @type Files: Array
+        # @param Prompt: <p>embedding 的输入prompt</p>
+        # @type Prompt: String
+
+        attr_accessor :Model, :Files, :Prompt
+
+        def initialize(model=nil, files=nil, prompt=nil)
+          @Model = model
+          @Files = files
+          @Prompt = prompt
+        end
+
+        def deserialize(params)
+          @Model = params['Model']
+          unless params['Files'].nil?
+            @Files = []
+            params['Files'].each do |i|
+              embeddingdata_tmp = EmbeddingData.new
+              embeddingdata_tmp.deserialize(i)
+              @Files << embeddingdata_tmp
+            end
+          end
+          @Prompt = params['Prompt']
+        end
+      end
+
+      # EmbeddingData返回参数结构体
+      class EmbeddingDataResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>embedding 的结果</p>
+        # @type Data: Array
+        # @param Usage: <p>embedding 的 token 用量</p>
+        # @type Usage: :class:`Tencentcloud::Mps.v20190612.models.TokensUsage`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Usage, :RequestId
+
+        def initialize(data=nil, usage=nil, requestid=nil)
+          @Data = data
+          @Usage = usage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              embeddingresultitem_tmp = EmbeddingResultItem.new
+              embeddingresultitem_tmp.deserialize(i)
+              @Data << embeddingresultitem_tmp
+            end
+          end
+          unless params['Usage'].nil?
+            @Usage = TokensUsage.new
+            @Usage.deserialize(params['Usage'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # embedding 的结果
+      class EmbeddingResultItem < TencentCloud::Common::AbstractModel
+        # @param Result: <p>向量</p>
+        # @type Result: Array
+
+        attr_accessor :Result
+
+        def initialize(result=nil)
+          @Result = result
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
         end
       end
 
@@ -34662,6 +34883,30 @@ module TencentCloud
           @CheckInterval = params['CheckInterval']
           @SkipDuration = params['SkipDuration']
           @CirclesNumber = params['CirclesNumber']
+        end
+      end
+
+      # token 的用量
+      class TokensUsage < TencentCloud::Common::AbstractModel
+        # @param InputTokens: <p>输入token量</p>
+        # @type InputTokens: Integer
+        # @param OutputTokens: <p>输出token量</p>
+        # @type OutputTokens: Integer
+        # @param TotalTokens: <p>总token量，一般是输入+输出</p>
+        # @type TotalTokens: Integer
+
+        attr_accessor :InputTokens, :OutputTokens, :TotalTokens
+
+        def initialize(inputtokens=nil, outputtokens=nil, totaltokens=nil)
+          @InputTokens = inputtokens
+          @OutputTokens = outputtokens
+          @TotalTokens = totaltokens
+        end
+
+        def deserialize(params)
+          @InputTokens = params['InputTokens']
+          @OutputTokens = params['OutputTokens']
+          @TotalTokens = params['TotalTokens']
         end
       end
 

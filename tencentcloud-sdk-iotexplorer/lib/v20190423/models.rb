@@ -15236,6 +15236,54 @@ module TencentCloud
         end
       end
 
+      # RevokeShareDeviceFromUser请求参数结构体
+      class RevokeShareDeviceFromUserRequest < TencentCloud::Common::AbstractModel
+        # @param AppKey: <p>应用 AppKey，用于解析 IotAppID 并完成签名校验</p>
+        # @type AppKey: String
+        # @param ProductId: <p>产品 ID</p>
+        # @type ProductId: String
+        # @param DeviceName: <p>设备名</p>
+        # @type DeviceName: String
+        # @param OwnerOpenID: <p>设备所有者 OpenID（必须已存在）</p>
+        # @type OwnerOpenID: String
+        # @param ToOpenID: <p>被取消分享用户 OpenID（不存在视为已取消，幂等成功）</p>
+        # @type ToOpenID: String
+
+        attr_accessor :AppKey, :ProductId, :DeviceName, :OwnerOpenID, :ToOpenID
+
+        def initialize(appkey=nil, productid=nil, devicename=nil, owneropenid=nil, toopenid=nil)
+          @AppKey = appkey
+          @ProductId = productid
+          @DeviceName = devicename
+          @OwnerOpenID = owneropenid
+          @ToOpenID = toopenid
+        end
+
+        def deserialize(params)
+          @AppKey = params['AppKey']
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @OwnerOpenID = params['OwnerOpenID']
+          @ToOpenID = params['ToOpenID']
+        end
+      end
+
+      # RevokeShareDeviceFromUser返回参数结构体
+      class RevokeShareDeviceFromUserResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 搜索关键词
       class SearchKeyword < TencentCloud::Common::AbstractModel
         # @param Key: 搜索条件的Key
@@ -15847,6 +15895,66 @@ module TencentCloud
           @StartTimeMs = params['StartTimeMs']
           @EndTimeMs = params['EndTimeMs']
           @CustomId = params['CustomId']
+        end
+      end
+
+      # ShareDeviceToUser请求参数结构体
+      class ShareDeviceToUserRequest < TencentCloud::Common::AbstractModel
+        # @param AppKey: <p>应用 AppKey，用于解析 IotAppID 并完成签名校验</p>
+        # @type AppKey: String
+        # @param ProductId: <p>产品 ID</p>
+        # @type ProductId: String
+        # @param DeviceName: <p>设备名</p>
+        # @type DeviceName: String
+        # @param OwnerOpenID: <p>设备所有者 OpenID（必须已存在）</p>
+        # @type OwnerOpenID: String
+        # @param ToOpenID: <p>被分享用户 OpenID（不存在则自动创建）</p>
+        # @type ToOpenID: String
+        # @param ToNickName: <p>被分享用户昵称（仅自动创建时使用）</p>
+        # @type ToNickName: String
+
+        attr_accessor :AppKey, :ProductId, :DeviceName, :OwnerOpenID, :ToOpenID, :ToNickName
+
+        def initialize(appkey=nil, productid=nil, devicename=nil, owneropenid=nil, toopenid=nil, tonickname=nil)
+          @AppKey = appkey
+          @ProductId = productid
+          @DeviceName = devicename
+          @OwnerOpenID = owneropenid
+          @ToOpenID = toopenid
+          @ToNickName = tonickname
+        end
+
+        def deserialize(params)
+          @AppKey = params['AppKey']
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @OwnerOpenID = params['OwnerOpenID']
+          @ToOpenID = params['ToOpenID']
+          @ToNickName = params['ToNickName']
+        end
+      end
+
+      # ShareDeviceToUser返回参数结构体
+      class ShareDeviceToUserResponse < TencentCloud::Common::AbstractModel
+        # @param OwnerUserID: <p>Owner 的 UserID</p>
+        # @type OwnerUserID: String
+        # @param ToUserID: <p>被分享用户的 UserID</p>
+        # @type ToUserID: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :OwnerUserID, :ToUserID, :RequestId
+
+        def initialize(owneruserid=nil, touserid=nil, requestid=nil)
+          @OwnerUserID = owneruserid
+          @ToUserID = touserid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @OwnerUserID = params['OwnerUserID']
+          @ToUserID = params['ToUserID']
+          @RequestId = params['RequestId']
         end
       end
 
