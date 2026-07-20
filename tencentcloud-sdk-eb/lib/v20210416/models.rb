@@ -1373,15 +1373,15 @@ module TencentCloud
 
       # ListConnections请求参数结构体
       class ListConnectionsRequest < TencentCloud::Common::AbstractModel
-        # @param EventBusId: 事件集ID
+        # @param EventBusId: <p>事件集ID</p>
         # @type EventBusId: String
-        # @param OrderBy: 根据哪个字段进行返回结果排序，目前支持如下以下字段：AddTime, ModTime
+        # @param OrderBy: <p>根据哪个字段进行返回结果排序</p><p>枚举值：</p><ul><li>created_at： 创建时间</li><li>updated_at： 更新时间</li><li>name： 连接器名称</li></ul><p>默认值：updated_at</p>
         # @type OrderBy: String
-        # @param Limit: 返回数量，默认为20，最大值为100。
+        # @param Limit: <p>返回数量，默认为20，最大值为100。</p>
         # @type Limit: Integer
-        # @param Order: 以升序还是降序的方式返回结果，可选值 ASC 和 DESC
+        # @param Order: <p>以升序还是降序的方式返回结果，可选值 ASC 和 DESC</p>
         # @type Order: String
-        # @param Offset: 偏移量，默认为0。
+        # @param Offset: <p>偏移量，默认为0。</p>
         # @type Offset: Integer
 
         attr_accessor :EventBusId, :OrderBy, :Limit, :Order, :Offset
@@ -1405,9 +1405,9 @@ module TencentCloud
 
       # ListConnections返回参数结构体
       class ListConnectionsResponse < TencentCloud::Common::AbstractModel
-        # @param Connections: 连接器信息
+        # @param Connections: <p>连接器信息</p>
         # @type Connections: Array
-        # @param TotalCount: 连接器总数
+        # @param TotalCount: <p>连接器总数</p>
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1436,15 +1436,15 @@ module TencentCloud
 
       # ListEventBuses请求参数结构体
       class ListEventBusesRequest < TencentCloud::Common::AbstractModel
-        # @param OrderBy: 根据哪个字段进行返回结果排序,支持以下字段：created_at（创建时间）, updated_at（修改时间）
+        # @param OrderBy: <p>根据哪个字段进行返回结果排序</p><p>枚举值：</p><ul><li>created_at： 创建时间</li><li>updated_at： 修改时间</li><li>name： 事件集名称</li></ul><p>默认值：updated_at</p>
         # @type OrderBy: String
-        # @param Limit: 返回数量，默认为20，最大值为100。
+        # @param Limit: <p>返回数量，默认为20，最大值为100。</p>
         # @type Limit: Integer
-        # @param Order: 以升序还是降序的方式返回结果，可选值 ASC（升序） 和 DESC（降序）
+        # @param Order: <p>以升序还是降序的方式返回结果，可选值 ASC（升序） 和 DESC（降序）</p>
         # @type Order: String
-        # @param Filters: 过滤字段范围: EventBusName(事件集名称)/EventBusId(事件集Id)/Type(事件集类型:Cloud(云服务);Platform(平台型);Custom(自定义))/TagKey(标签键)。每次请求的Filters的上限为10，Filter.Values的上限为5。[{"Name":"Type","Values":["Cloud","Platform"]}]
+        # @param Filters: <p>过滤字段范围: EventBusName(事件集名称)/EventBusId(事件集Id)/Type(事件集类型:Cloud(云服务);Platform(平台型);Custom(自定义))/TagKey(标签键)。每次请求的Filters的上限为10，Filter.Values的上限为5。[{&quot;Name&quot;:&quot;Type&quot;,&quot;Values&quot;:[&quot;Cloud&quot;,&quot;Platform&quot;]}]</p>
         # @type Filters: Array
-        # @param Offset: 分页偏移量，默认为0。
+        # @param Offset: <p>分页偏移量，默认为0。</p>
         # @type Offset: Integer
 
         attr_accessor :OrderBy, :Limit, :Order, :Filters, :Offset
@@ -1475,9 +1475,9 @@ module TencentCloud
 
       # ListEventBuses返回参数结构体
       class ListEventBusesResponse < TencentCloud::Common::AbstractModel
-        # @param EventBuses: 事件集信息
+        # @param EventBuses: <p>事件集信息</p>
         # @type EventBuses: Array
-        # @param TotalCount: 事件集总数
+        # @param TotalCount: <p>事件集总数</p>
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1630,15 +1630,15 @@ module TencentCloud
 
       # ListRules请求参数结构体
       class ListRulesRequest < TencentCloud::Common::AbstractModel
-        # @param EventBusId: 事件集ID
+        # @param EventBusId: <p>事件集ID</p>
         # @type EventBusId: String
-        # @param OrderBy: 根据哪个字段进行返回结果排序,支持以下字段：AddTime（创建时间）, ModTime（修改时间）,name（规则名称）
+        # @param OrderBy: <p>根据哪个字段进行返回结果排序</p><p>枚举值：</p><ul><li>created_at： 创建时间</li><li>updated_at： 修改时间</li><li>name： 规则名称</li></ul><p>默认值：updated_at</p>
         # @type OrderBy: String
-        # @param Limit: 返回数量，默认为20，最大值为100。
+        # @param Limit: <p>返回数量，默认为20，最大值为100。</p>
         # @type Limit: Integer
-        # @param Offset: 分页偏移量，默认为0。
+        # @param Offset: <p>分页偏移量，默认为0。</p>
         # @type Offset: Integer
-        # @param Order: 以升序还是降序的方式返回结果，可选值 ASC（升序） 和 DESC（降序）
+        # @param Order: <p>以升序还是降序的方式返回结果，可选值 ASC（升序） 和 DESC（降序）</p>
         # @type Order: String
 
         attr_accessor :EventBusId, :OrderBy, :Limit, :Offset, :Order
@@ -1662,9 +1662,9 @@ module TencentCloud
 
       # ListRules返回参数结构体
       class ListRulesResponse < TencentCloud::Common::AbstractModel
-        # @param Rules: 事件规则信息
+        # @param Rules: <p>事件规则信息</p>
         # @type Rules: Array
-        # @param TotalCount: 事件规则总数
+        # @param TotalCount: <p>事件规则总数</p>
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1697,7 +1697,7 @@ module TencentCloud
         # @type EventBusId: String
         # @param RuleId: <p>事件规则ID</p>
         # @type RuleId: String
-        # @param OrderBy: <p>根据哪个字段进行返回结果排序,支持以下字段：AddTime（创建时间）, ModTime（修改时间）</p>
+        # @param OrderBy: <p>根据哪个字段进行返回结果排序</p><p>枚举值：</p><ul><li>created_at： 创建时间</li><li>updated_at： 修改时间</li></ul><p>默认值：updated_at</p>
         # @type OrderBy: String
         # @param Limit: <p>返回数量，默认为20，最大值为100。</p>
         # @type Limit: Integer
@@ -2017,26 +2017,26 @@ module TencentCloud
 
       # 规则信息
       class Rule < TencentCloud::Common::AbstractModel
-        # @param Status: 状态
+        # @param Status: <p>状态</p>
         # @type Status: String
-        # @param ModTime: 修改时间
+        # @param ModTime: <p>修改时间</p>
         # @type ModTime: String
-        # @param Enable: 使能开关
+        # @param Enable: <p>使能开关</p>
         # @type Enable: Boolean
-        # @param Description: 描述
+        # @param Description: <p>描述</p>
         # @type Description: String
-        # @param RuleId: 规则ID
+        # @param RuleId: <p>规则ID</p>
         # @type RuleId: String
-        # @param AddTime: 创建时间
+        # @param AddTime: <p>创建时间</p>
         # @type AddTime: String
-        # @param EventBusId: 事件集ID
+        # @param EventBusId: <p>事件集ID</p>
         # @type EventBusId: String
-        # @param RuleName: 规则名称
+        # @param RuleName: <p>规则名称</p>
         # @type RuleName: String
-        # @param Targets: Target 简要信息
+        # @param Targets: <p>Target 简要信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Targets: Array
-        # @param DeadLetterConfig: rule设置的dlq规则. 可能为null
+        # @param DeadLetterConfig: <p>rule设置的dlq规则. 可能为null</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeadLetterConfig: :class:`Tencentcloud::Eb.v20210416.models.DeadLetterConfig`
 
@@ -2116,13 +2116,13 @@ module TencentCloud
         # @type EventBusId: String
         # @param Page: <p>页码</p>
         # @type Page: Integer
-        # @param Limit: <p>每页数据大小</p>
+        # @param Limit: <p>每页数据大小</p><p>取值范围：[1, 1000]</p><p>默认值：10</p>
         # @type Limit: Integer
         # @param Filter: <p>事件查询筛选条件；示例如下：[{&quot;key&quot;:&quot;host&quot;,&quot;operator&quot;:&quot;eq&quot;,&quot;value&quot;:&quot;106.53.106.243&quot;},{&quot;type&quot;:&quot;AND&quot;,&quot;filters&quot;:[{&quot;key&quot;:&quot;region&quot;,&quot;operator&quot;:&quot;like&quot;,&quot;value&quot;:&quot;<em>guangzhou</em>&quot;},{&quot;key&quot;:&quot;type&quot;,&quot;operator&quot;:&quot;eq&quot;,&quot;value&quot;:&quot;cvm:ErrorEvent:GuestReboot&quot;}]},{&quot;type&quot;:&quot;OR&quot;,&quot;filters&quot;:[{&quot;key&quot;:&quot;field1&quot;,&quot;operator&quot;:&quot;like&quot;,&quot;value&quot;:&quot;<em>access</em>&quot;},{&quot;key&quot;:&quot;field2&quot;,&quot;operator&quot;:&quot;eq&quot;,&quot;value&quot;:&quot;custom&quot;}]}]</p>
         # @type Filter: Array
-        # @param OrderFields: <p>事件查询结果排序，[&quot;timestamp&quot;,&quot;subject&quot;]</p>
+        # @param OrderFields: <p>事件查询结果排序</p><p>枚举值：</p><ul><li>Timestamp： 事件触发时间</li><li>Source： 事件源</li><li>Type： 事件类型</li><li>RuleIds： 事件规则</li><li>Subject： 事件对象</li><li>Region： 事件地域</li><li>Status： 事件状态</li></ul>
         # @type OrderFields: Array
-        # @param OrderBy: <p>排序方式，asc 从旧到新，desc 从新到旧</p>
+        # @param OrderBy: <p>排序方式，asc 从旧到新，desc 从新到旧</p><p>枚举值：</p><ul><li>asc： 从旧到新</li><li>desc： 从新到旧</li></ul><p>默认值：desc</p>
         # @type OrderBy: String
 
         attr_accessor :StartTime, :EndTime, :EventBusId, :Page, :Limit, :Filter, :OrderFields, :OrderBy

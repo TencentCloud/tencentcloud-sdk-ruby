@@ -149,6 +149,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建访问控制策略
+
+        # @param request: Request instance for CreateGlobalAcceleratorAclPolicy.
+        # @type request: :class:`Tencentcloud::ga2::V20250115::CreateGlobalAcceleratorAclPolicyRequest`
+        # @rtype: :class:`Tencentcloud::ga2::V20250115::CreateGlobalAcceleratorAclPolicyResponse`
+        def CreateGlobalAcceleratorAclPolicy(request)
+          body = send_request('CreateGlobalAcceleratorAclPolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateGlobalAcceleratorAclPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建ACL规则
+
+        # @param request: Request instance for CreateGlobalAcceleratorAclRule.
+        # @type request: :class:`Tencentcloud::ga2::V20250115::CreateGlobalAcceleratorAclRuleRequest`
+        # @rtype: :class:`Tencentcloud::ga2::V20250115::CreateGlobalAcceleratorAclRuleResponse`
+        def CreateGlobalAcceleratorAclRule(request)
+          body = send_request('CreateGlobalAcceleratorAclRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateGlobalAcceleratorAclRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建监听器
 
         # @param request: Request instance for CreateListener.
@@ -303,6 +351,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteGlobalAcceleratorResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除访问控制策略
+
+        # @param request: Request instance for DeleteGlobalAcceleratorAclPolicy.
+        # @type request: :class:`Tencentcloud::ga2::V20250115::DeleteGlobalAcceleratorAclPolicyRequest`
+        # @rtype: :class:`Tencentcloud::ga2::V20250115::DeleteGlobalAcceleratorAclPolicyResponse`
+        def DeleteGlobalAcceleratorAclPolicy(request)
+          body = send_request('DeleteGlobalAcceleratorAclPolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteGlobalAcceleratorAclPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除ACL规则
+
+        # @param request: Request instance for DeleteGlobalAcceleratorAclRule.
+        # @type request: :class:`Tencentcloud::ga2::V20250115::DeleteGlobalAcceleratorAclRuleRequest`
+        # @rtype: :class:`Tencentcloud::ga2::V20250115::DeleteGlobalAcceleratorAclRuleResponse`
+        def DeleteGlobalAcceleratorAclRule(request)
+          body = send_request('DeleteGlobalAcceleratorAclRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteGlobalAcceleratorAclRuleResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -687,6 +783,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyGlobalAcceleratorResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改访问控制策略状态
+
+        # @param request: Request instance for ModifyGlobalAcceleratorAclPolicy.
+        # @type request: :class:`Tencentcloud::ga2::V20250115::ModifyGlobalAcceleratorAclPolicyRequest`
+        # @rtype: :class:`Tencentcloud::ga2::V20250115::ModifyGlobalAcceleratorAclPolicyResponse`
+        def ModifyGlobalAcceleratorAclPolicy(request)
+          body = send_request('ModifyGlobalAcceleratorAclPolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyGlobalAcceleratorAclPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改ACL规则
+
+        # @param request: Request instance for ModifyGlobalAcceleratorAclRule.
+        # @type request: :class:`Tencentcloud::ga2::V20250115::ModifyGlobalAcceleratorAclRuleRequest`
+        # @rtype: :class:`Tencentcloud::ga2::V20250115::ModifyGlobalAcceleratorAclRuleResponse`
+        def ModifyGlobalAcceleratorAclRule(request)
+          body = send_request('ModifyGlobalAcceleratorAclRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyGlobalAcceleratorAclRuleResponse.new
             model.deserialize(response['Response'])
             model
           else

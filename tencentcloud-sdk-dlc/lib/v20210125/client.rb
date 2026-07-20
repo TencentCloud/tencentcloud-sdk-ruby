@@ -2167,6 +2167,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口（DescribeTasks）用于查询任务列表
+
+        # @param request: Request instance for DescribeMCPTask.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeMCPTaskRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DescribeMCPTaskResponse`
+        def DescribeMCPTask(request)
+          body = send_request('DescribeMCPTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeMCPTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取任务结果查询
+
+        # @param request: Request instance for DescribeMCPTaskResult.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeMCPTaskResultRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DescribeMCPTaskResultResponse`
+        def DescribeMCPTaskResult(request)
+          body = send_request('DescribeMCPTaskResult', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeMCPTaskResultResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 根据资源组获取spark session列表
 
         # @param request: Request instance for DescribeNativeSparkSessions.

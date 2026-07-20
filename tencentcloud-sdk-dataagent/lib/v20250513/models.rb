@@ -1139,6 +1139,26 @@ module TencentCloud
         end
       end
 
+      # 模型详情
+      class ModelList < TencentCloud::Common::AbstractModel
+        # @param Model: <p>模型版本名称</p>
+        # @type Model: String
+        # @param Vendor: <p>模型厂商</p>
+        # @type Vendor: String
+
+        attr_accessor :Model, :Vendor
+
+        def initialize(model=nil, vendor=nil)
+          @Model = model
+          @Vendor = vendor
+        end
+
+        def deserialize(params)
+          @Model = params['Model']
+          @Vendor = params['Vendor']
+        end
+      end
+
       # 用户对象的权限
       class ModelUserAuthority < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例id
@@ -1460,6 +1480,53 @@ module TencentCloud
               @FileList << filetaskstatus_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # QueryModels请求参数结构体
+      class QueryModelsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例id</p>
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # QueryModels返回参数结构体
+      class QueryModelsResponse < TencentCloud::Common::AbstractModel
+        # @param Models: <p>模型列表</p>
+        # @type Models: Array
+        # @param Status: <p>200成功，500失败</p>
+        # @type Status: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Models, :Status, :RequestId
+
+        def initialize(models=nil, status=nil, requestid=nil)
+          @Models = models
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Models'].nil?
+            @Models = []
+            params['Models'].each do |i|
+              modellist_tmp = ModelList.new
+              modellist_tmp.deserialize(i)
+              @Models << modellist_tmp
+            end
+          end
+          @Status = params['Status']
           @RequestId = params['RequestId']
         end
       end

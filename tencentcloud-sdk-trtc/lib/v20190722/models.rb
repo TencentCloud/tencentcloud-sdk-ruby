@@ -8072,7 +8072,7 @@ module TencentCloud
         # @type VoiceId: String
         # @param Speed: <p>语速调节，0.5 为半速慢放，2.0 为两倍速快放，1.0 为正常语速，区间：[0.5, 2.0]，默认1.0</p>
         # @type Speed: Float
-        # @param Volume: <p>音量调节，0 为静音，10 为最大音量，建议保持默认值 1.0，区间：[0, 10]，默认1.0</p>
+        # @param Volume: <p>音量调节，默认1.0，10 为最大音量，建议保持默认值 1.0，区间：(0, 10]</p>
         # @type Volume: Float
         # @param Pitch: <p>音高调节，负值声音更低沉，正值声音更尖锐，0 为原始音高，区间 [-12, 12],  默认0</p>
         # @type Pitch: Integer

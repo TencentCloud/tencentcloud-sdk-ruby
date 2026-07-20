@@ -11206,12 +11206,15 @@ module TencentCloud
         # @type Input: :class:`Tencentcloud::Mps.v20190612.models.VideoRedrawInput`
         # @param CosInfo: <p>用户cos信息，用于保存生成结果</p>
         # @type CosInfo: :class:`Tencentcloud::Mps.v20190612.models.VideoRedrawCosInfo`
+        # @param TaskInfo: <p>ai转绘任务信息</p>
+        # @type TaskInfo: :class:`Tencentcloud::Mps.v20190612.models.VideoRedrawTaskInfo`
 
-        attr_accessor :Input, :CosInfo
+        attr_accessor :Input, :CosInfo, :TaskInfo
 
-        def initialize(input=nil, cosinfo=nil)
+        def initialize(input=nil, cosinfo=nil, taskinfo=nil)
           @Input = input
           @CosInfo = cosinfo
+          @TaskInfo = taskinfo
         end
 
         def deserialize(params)
@@ -11222,6 +11225,10 @@ module TencentCloud
           unless params['CosInfo'].nil?
             @CosInfo = VideoRedrawCosInfo.new
             @CosInfo.deserialize(params['CosInfo'])
+          end
+          unless params['TaskInfo'].nil?
+            @TaskInfo = VideoRedrawTaskInfo.new
+            @TaskInfo.deserialize(params['TaskInfo'])
           end
         end
       end
@@ -36278,6 +36285,22 @@ module TencentCloud
 
         def deserialize(params)
           @Url = params['Url']
+        end
+      end
+
+      # Aigc 转绘、替换等任务参数
+      class VideoRedrawTaskInfo < TencentCloud::Common::AbstractModel
+        # @param Style: <p>转绘视频风格，如动漫、赛博朋克、水墨等</p>
+        # @type Style: String
+
+        attr_accessor :Style
+
+        def initialize(style=nil)
+          @Style = style
+        end
+
+        def deserialize(params)
+          @Style = params['Style']
         end
       end
 

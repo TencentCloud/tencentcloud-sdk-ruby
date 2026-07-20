@@ -533,6 +533,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询聊天支持模型信息
+
+        # @param request: Request instance for QueryModels.
+        # @type request: :class:`Tencentcloud::dataagent::V20250513::QueryModelsRequest`
+        # @rtype: :class:`Tencentcloud::dataagent::V20250513::QueryModelsResponse`
+        def QueryModels(request)
+          body = send_request('QueryModels', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryModelsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询场景列表
 
         # @param request: Request instance for QuerySceneList.

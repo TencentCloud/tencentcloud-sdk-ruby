@@ -695,8 +695,8 @@ module TencentCloud
 
         attr_accessor :ComputeGroupId, :FileName, :FileConf, :KeyConf, :OriParam, :NeedRestart, :FilePath, :FileKeyValues, :FileKeyValuesNew
         extend Gem::Deprecate
-        deprecate :FileKeyValues, :none, 2026, 5
-        deprecate :FileKeyValues=, :none, 2026, 5
+        deprecate :FileKeyValues, :none, 2026, 7
+        deprecate :FileKeyValues=, :none, 2026, 7
 
         def initialize(computegroupid=nil, filename=nil, fileconf=nil, keyconf=nil, oriparam=nil, needrestart=nil, filepath=nil, filekeyvalues=nil, filekeyvaluesnew=nil)
           @ComputeGroupId = computegroupid
@@ -946,20 +946,20 @@ module TencentCloud
 
         attr_accessor :InstanceId, :OperationType, :ScheduleId, :WeekDays, :ExecuteHour, :BackUpTables, :BackupType, :DorisSourceInfo, :BackupTimeType, :RestoreType, :AuthType, :CosSourceInfo, :ScheduleName, :ScheduleInfo, :UpdateStatus, :CosBucket, :SnapshotRemainPolicy, :DataRemoteRegion, :BucketType, :EnableSecurityLock, :GracePeriod
         extend Gem::Deprecate
-        deprecate :WeekDays, :none, 2026, 5
-        deprecate :WeekDays=, :none, 2026, 5
-        deprecate :ExecuteHour, :none, 2026, 5
-        deprecate :ExecuteHour=, :none, 2026, 5
-        deprecate :BackupType, :none, 2026, 5
-        deprecate :BackupType=, :none, 2026, 5
-        deprecate :DorisSourceInfo, :none, 2026, 5
-        deprecate :DorisSourceInfo=, :none, 2026, 5
-        deprecate :RestoreType, :none, 2026, 5
-        deprecate :RestoreType=, :none, 2026, 5
-        deprecate :AuthType, :none, 2026, 5
-        deprecate :AuthType=, :none, 2026, 5
-        deprecate :CosSourceInfo, :none, 2026, 5
-        deprecate :CosSourceInfo=, :none, 2026, 5
+        deprecate :WeekDays, :none, 2026, 7
+        deprecate :WeekDays=, :none, 2026, 7
+        deprecate :ExecuteHour, :none, 2026, 7
+        deprecate :ExecuteHour=, :none, 2026, 7
+        deprecate :BackupType, :none, 2026, 7
+        deprecate :BackupType=, :none, 2026, 7
+        deprecate :DorisSourceInfo, :none, 2026, 7
+        deprecate :DorisSourceInfo=, :none, 2026, 7
+        deprecate :RestoreType, :none, 2026, 7
+        deprecate :RestoreType=, :none, 2026, 7
+        deprecate :AuthType, :none, 2026, 7
+        deprecate :AuthType=, :none, 2026, 7
+        deprecate :CosSourceInfo, :none, 2026, 7
+        deprecate :CosSourceInfo=, :none, 2026, 7
 
         def initialize(instanceid=nil, operationtype=nil, scheduleid=nil, weekdays=nil, executehour=nil, backuptables=nil, backuptype=nil, dorissourceinfo=nil, backuptimetype=nil, restoretype=nil, authtype=nil, cossourceinfo=nil, schedulename=nil, scheduleinfo=nil, updatestatus=nil, cosbucket=nil, snapshotremainpolicy=nil, dataremoteregion=nil, buckettype=nil, enablesecuritylock=nil, graceperiod=nil)
           @InstanceId = instanceid
@@ -1145,10 +1145,10 @@ module TencentCloud
 
         attr_accessor :Zone, :FeSpec, :BeSpec, :HaFlag, :UserVPCId, :UserSubnetId, :ProductVersion, :ChargeProperties, :InstanceName, :DorisUserPwd, :Tags, :HaType, :CaseSensitive, :EnableMultiZones, :UserMultiZoneInfos, :UserMultiZoneInfoArr, :IsSSC, :SSCCU, :CacheDiskSize, :CacheDataDiskSize
         extend Gem::Deprecate
-        deprecate :UserMultiZoneInfos, :none, 2026, 5
-        deprecate :UserMultiZoneInfos=, :none, 2026, 5
-        deprecate :CacheDiskSize, :none, 2026, 5
-        deprecate :CacheDiskSize=, :none, 2026, 5
+        deprecate :UserMultiZoneInfos, :none, 2026, 7
+        deprecate :UserMultiZoneInfos=, :none, 2026, 7
+        deprecate :CacheDiskSize, :none, 2026, 7
+        deprecate :CacheDiskSize=, :none, 2026, 7
 
         def initialize(zone=nil, fespec=nil, bespec=nil, haflag=nil, uservpcid=nil, usersubnetid=nil, productversion=nil, chargeproperties=nil, instancename=nil, dorisuserpwd=nil, tags=nil, hatype=nil, casesensitive=nil, enablemultizones=nil, usermultizoneinfos=nil, usermultizoneinfoarr=nil, isssc=nil, ssccu=nil, cachedisksize=nil, cachedatadisksize=nil)
           @Zone = zone
@@ -2860,8 +2860,8 @@ module TencentCloud
 
         attr_accessor :InstanceID, :Input
         extend Gem::Deprecate
-        deprecate :InstanceID, :none, 2026, 5
-        deprecate :InstanceID=, :none, 2026, 5
+        deprecate :InstanceID, :none, 2026, 7
+        deprecate :InstanceID=, :none, 2026, 7
 
         def initialize(instanceid=nil, input=nil)
           @InstanceID = instanceid
@@ -3869,8 +3869,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :InstanceName, :Status, :Version, :Region, :Zone, :VpcId, :SubnetId, :PayMode, :CreateTime, :ExpireTime, :MasterSummary, :CoreSummary, :HA, :HaType, :AccessInfo, :Id, :RegionId, :ZoneDesc, :FlowMsg, :StatusDesc, :RenewFlag, :Tags, :Monitor, :HasClsTopic, :ClsTopicId, :ClsLogSetId, :EnableXMLConfig, :RegionDesc, :Eip, :CosMoveFactor, :Kind, :CosBucketName, :CanAttachCbs, :BuildVersion, :Components, :IfExistCatalog, :Characteristic, :RestartTimeout, :GraceShutdownWaitSeconds, :CaseSensitive, :IsWhiteSGs, :BindSGs, :EnableMultiZones, :UserNetworkInfos, :EnableCoolDown, :CoolDownBucket, :Details, :EnableDlc, :AccountType, :MonitorMode, :CNSummary, :ComputeGroupCount, :CosStorageSize, :IsMasterNonVM, :CosPkgCapacity, :UseManagedBucket, :InstanceType, :MasterInstance, :SlaveInstances, :SyncerIp, :EnableSqlConv, :TimeZone
         extend Gem::Deprecate
-        deprecate :IfExistCatalog, :none, 2026, 5
-        deprecate :IfExistCatalog=, :none, 2026, 5
+        deprecate :IfExistCatalog, :none, 2026, 7
+        deprecate :IfExistCatalog=, :none, 2026, 7
 
         def initialize(instanceid=nil, instancename=nil, status=nil, version=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, paymode=nil, createtime=nil, expiretime=nil, mastersummary=nil, coresummary=nil, ha=nil, hatype=nil, accessinfo=nil, id=nil, regionid=nil, zonedesc=nil, flowmsg=nil, statusdesc=nil, renewflag=nil, tags=nil, monitor=nil, hasclstopic=nil, clstopicid=nil, clslogsetid=nil, enablexmlconfig=nil, regiondesc=nil, eip=nil, cosmovefactor=nil, kind=nil, cosbucketname=nil, canattachcbs=nil, buildversion=nil, components=nil, ifexistcatalog=nil, characteristic=nil, restarttimeout=nil, graceshutdownwaitseconds=nil, casesensitive=nil, iswhitesgs=nil, bindsgs=nil, enablemultizones=nil, usernetworkinfos=nil, enablecooldown=nil, cooldownbucket=nil, details=nil, enabledlc=nil, accounttype=nil, monitormode=nil, cnsummary=nil, computegroupcount=nil, cosstoragesize=nil, ismasternonvm=nil, cospkgcapacity=nil, usemanagedbucket=nil, instancetype=nil, masterinstance=nil, slaveinstances=nil, syncerip=nil, enablesqlconv=nil, timezone=nil)
           @InstanceId = instanceid
@@ -5066,18 +5066,18 @@ module TencentCloud
 
         attr_accessor :InstanceId, :BackUpJobId, :ReplicationNum, :ReserveSourceConfig, :RecoverType, :CosSourceInfo, :ScheduleType, :NextTime, :ScheduleName, :OperationType, :RecoverScope, :RecoverDatabase, :ReserveStoragePolicy
         extend Gem::Deprecate
-        deprecate :RecoverType, :none, 2026, 5
-        deprecate :RecoverType=, :none, 2026, 5
-        deprecate :CosSourceInfo, :none, 2026, 5
-        deprecate :CosSourceInfo=, :none, 2026, 5
-        deprecate :ScheduleType, :none, 2026, 5
-        deprecate :ScheduleType=, :none, 2026, 5
-        deprecate :NextTime, :none, 2026, 5
-        deprecate :NextTime=, :none, 2026, 5
-        deprecate :ScheduleName, :none, 2026, 5
-        deprecate :ScheduleName=, :none, 2026, 5
-        deprecate :OperationType, :none, 2026, 5
-        deprecate :OperationType=, :none, 2026, 5
+        deprecate :RecoverType, :none, 2026, 7
+        deprecate :RecoverType=, :none, 2026, 7
+        deprecate :CosSourceInfo, :none, 2026, 7
+        deprecate :CosSourceInfo=, :none, 2026, 7
+        deprecate :ScheduleType, :none, 2026, 7
+        deprecate :ScheduleType=, :none, 2026, 7
+        deprecate :NextTime, :none, 2026, 7
+        deprecate :NextTime=, :none, 2026, 7
+        deprecate :ScheduleName, :none, 2026, 7
+        deprecate :ScheduleName=, :none, 2026, 7
+        deprecate :OperationType, :none, 2026, 7
+        deprecate :OperationType=, :none, 2026, 7
 
         def initialize(instanceid=nil, backupjobid=nil, replicationnum=nil, reservesourceconfig=nil, recovertype=nil, cossourceinfo=nil, scheduletype=nil, nexttime=nil, schedulename=nil, operationtype=nil, recoverscope=nil, recoverdatabase=nil, reservestoragepolicy=nil)
           @InstanceId = instanceid
@@ -6078,25 +6078,40 @@ module TencentCloud
 
       # 资源组相关配置
       class WorkloadGroupConfig < TencentCloud::Common::AbstractModel
-        # @param WorkloadGroupName: 资源组名称
+        # @param WorkloadGroupName: <p>资源组名称</p>
         # @type WorkloadGroupName: String
-        # @param CpuShare: CPU权重
+        # @param CpuShare: <p>CPU权重</p>
         # @type CpuShare: Integer
-        # @param MemoryLimit: 内存限制，所有资源组的内存限制值之和应该小于等于100
+        # @param MemoryLimit: <p>内存限制，所有资源组的内存限制值之和应该小于等于100</p>
         # @type MemoryLimit: Integer
-        # @param EnableMemoryOverCommit: 是否允许超配分配
+        # @param EnableMemoryOverCommit: <p>是否允许超配分配</p>
         # @type EnableMemoryOverCommit: Boolean
-        # @param CpuHardLimit: cpu硬限制
+        # @param CpuHardLimit: <p>cpu硬限制</p>
         # @type CpuHardLimit: String
+        # @param MinCpuPercent: <p>4.1+ 新增；默认值为 0（不预留），根据业务可设为 5/10</p>
+        # @type MinCpuPercent: Integer
+        # @param MinMemoryPercent: <p>4.1+ 新增；默认值为 0（不预留），根据业务可设为 5/10</p>
+        # @type MinMemoryPercent: Integer
+        # @param MaxConcurrencyNum: <p>2.1+ 新增；不传走内核默认（Integer.MAX_VALUE=2147483647），建议按业务并发量配置</p>
+        # @type MaxConcurrencyNum: Integer
+        # @param MaxQueueSize: <p>2.1+ 新增；0=不排队，建议为 MaxConcurrencyNum 的 50%</p>
+        # @type MaxQueueSize: Integer
+        # @param QueueTimeout: <p>2.1+ 新增；单位 ms，建议 5000（5s）</p>
+        # @type QueueTimeout: Integer
 
-        attr_accessor :WorkloadGroupName, :CpuShare, :MemoryLimit, :EnableMemoryOverCommit, :CpuHardLimit
+        attr_accessor :WorkloadGroupName, :CpuShare, :MemoryLimit, :EnableMemoryOverCommit, :CpuHardLimit, :MinCpuPercent, :MinMemoryPercent, :MaxConcurrencyNum, :MaxQueueSize, :QueueTimeout
 
-        def initialize(workloadgroupname=nil, cpushare=nil, memorylimit=nil, enablememoryovercommit=nil, cpuhardlimit=nil)
+        def initialize(workloadgroupname=nil, cpushare=nil, memorylimit=nil, enablememoryovercommit=nil, cpuhardlimit=nil, mincpupercent=nil, minmemorypercent=nil, maxconcurrencynum=nil, maxqueuesize=nil, queuetimeout=nil)
           @WorkloadGroupName = workloadgroupname
           @CpuShare = cpushare
           @MemoryLimit = memorylimit
           @EnableMemoryOverCommit = enablememoryovercommit
           @CpuHardLimit = cpuhardlimit
+          @MinCpuPercent = mincpupercent
+          @MinMemoryPercent = minmemorypercent
+          @MaxConcurrencyNum = maxconcurrencynum
+          @MaxQueueSize = maxqueuesize
+          @QueueTimeout = queuetimeout
         end
 
         def deserialize(params)
@@ -6105,6 +6120,11 @@ module TencentCloud
           @MemoryLimit = params['MemoryLimit']
           @EnableMemoryOverCommit = params['EnableMemoryOverCommit']
           @CpuHardLimit = params['CpuHardLimit']
+          @MinCpuPercent = params['MinCpuPercent']
+          @MinMemoryPercent = params['MinMemoryPercent']
+          @MaxConcurrencyNum = params['MaxConcurrencyNum']
+          @MaxQueueSize = params['MaxQueueSize']
+          @QueueTimeout = params['QueueTimeout']
         end
       end
 

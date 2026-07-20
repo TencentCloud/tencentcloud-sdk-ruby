@@ -17,6 +17,22 @@
 module TencentCloud
   module Iotexplorer
     module V20190423
+      # ADP 平台配置
+      class ADPConfig < TencentCloud::Common::AbstractModel
+        # @param AppKey: <p>ADP 平台 AppKey</p>
+        # @type AppKey: String
+
+        attr_accessor :AppKey
+
+        def initialize(appkey=nil)
+          @AppKey = appkey
+        end
+
+        def deserialize(params)
+          @AppKey = params['AppKey']
+        end
+      end
+
       # AI视频搜索结果结构体。
       class AISearchInfo < TencentCloud::Common::AbstractModel
         # @param Summary: 基于搜索结果的总结
@@ -16711,7 +16727,7 @@ module TencentCloud
         # @type History: Integer
         # @param Timeout: <p>超时时间，秒</p>
         # @type Timeout: Integer
-        # @param BaseUrl: <p>OpenAI兼容模型Base URL，仅支持 80 和 443 端口，Type=openai时必填</p>
+        # @param BaseUrl: <p>OpenAI兼容模型的Base URL，Type=openai时必填</p>
         # @type BaseUrl: String
         # @param Model: <p>模型名称，Type=openai时必填</p>
         # @type Model: String
@@ -16719,10 +16735,12 @@ module TencentCloud
         # @type ApiKey: String
         # @param ExtraBody: <p>额外模型请求体参数，JSON对象字符串，只允许JSON object，不允许普通字符串</p>
         # @type ExtraBody: String
+        # @param ADP: <p>ADP 平台配置</p>
+        # @type ADP: :class:`Tencentcloud::Iotexplorer.v20190423.models.ADPConfig`
 
-        attr_accessor :Type, :SystemPrompt, :Temperature, :History, :Timeout, :BaseUrl, :Model, :ApiKey, :ExtraBody
+        attr_accessor :Type, :SystemPrompt, :Temperature, :History, :Timeout, :BaseUrl, :Model, :ApiKey, :ExtraBody, :ADP
 
-        def initialize(type=nil, systemprompt=nil, temperature=nil, history=nil, timeout=nil, baseurl=nil, model=nil, apikey=nil, extrabody=nil)
+        def initialize(type=nil, systemprompt=nil, temperature=nil, history=nil, timeout=nil, baseurl=nil, model=nil, apikey=nil, extrabody=nil, adp=nil)
           @Type = type
           @SystemPrompt = systemprompt
           @Temperature = temperature
@@ -16732,6 +16750,7 @@ module TencentCloud
           @Model = model
           @ApiKey = apikey
           @ExtraBody = extrabody
+          @ADP = adp
         end
 
         def deserialize(params)
@@ -16744,6 +16763,10 @@ module TencentCloud
           @Model = params['Model']
           @ApiKey = params['ApiKey']
           @ExtraBody = params['ExtraBody']
+          unless params['ADP'].nil?
+            @ADP = ADPConfig.new
+            @ADP.deserialize(params['ADP'])
+          end
         end
       end
 

@@ -3476,31 +3476,31 @@ module TencentCloud
 
       # 配置组版本信息。
       class ConfigGroupVersionInfo < TencentCloud::Common::AbstractModel
-        # @param VersionId: 版本 ID。
+        # @param VersionId: <p>配置组版本 ID，创建配置组版本时 EdgeOne 分配的唯一资源 ID。</p><p>参数格式：ver-2kplomhisdcb</p><p>取值参考：</p><ul><li><a href="https://cloud.tencent.com/document/api/1552/101867">CreateConfigGroupVersion</a> 返回值 <code>VersionId</code></li><li><a href="https://cloud.tencent.com/document/api/1552/101864">DescribeConfigGroupVersions</a> 返回值 <code>ConfigGroupVersionInfos</code></li></ul>
         # @type VersionId: String
-        # @param VersionNumber: 版本号。
+        # @param VersionNumber: <p>配置组版本号。该参数仅作展示使用，配置组每创建一次新版本，该版本号自增加一，初始版本的版本号为 &quot;0&quot;。</p><p>取值参考：<a href="https://cloud.tencent.com/document/api/1552/101864">DescribeConfigGroupVersions</a> 返回值 <code>ConfigGroupVersionInfos</code></p>
         # @type VersionNumber: String
-        # @param GroupId: 配置组 ID。
-        # @type GroupId: String
-        # @param GroupType: 配置组类型，可选项如下：<li>l7_acceleration: 七层加速配置组；</li><li>edge_functions: 边缘函数配置组；</li><li>web_security: Web 防护配置组。</li>
+        # @param SourceVersion: <p>配置组版本所基于的来源版本 ID，在创建配置组版本时进行指定来源版本 ID，新版本将在该来源版本的配置基础上派生创建。</p><p>参数格式：ver-2kplomhisdcb</p><p>取值参考：</p><ul><li><a href="https://cloud.tencent.com/document/api/1552/101867">CreateConfigGroupVersion</a> 返回值 <code>VersionId</code></li><li><a href="https://cloud.tencent.com/document/api/1552/101864">DescribeConfigGroupVersions</a> 返回值 <code>ConfigGroupVersionInfos</code></li></ul>
+        # @type SourceVersion: String
+        # @param GroupType: <p>版本归属的配置组类型。</p><p>枚举值：</p><ul><li>l7_acceleration： 七层加速配置组</li><li>edge_functions： 边缘函数配置组</li><li>web_security： Web 防护配置组</li></ul>
         # @type GroupType: String
-        # @param Description: 版本描述。
+        # @param GroupId: <p>版本归属的配置组 ID。</p><p>参数格式：cg-2kplomhisdcb</p>
+        # @type GroupId: String
+        # @param Description: <p>版本描述。</p>
         # @type Description: String
-        # @param Status: 版本状态，取值有：
-        # <li>creating：创建中；</li>
-        # <li>inactive：未生效；</li>
-        # <li>active：已生效。</li>
+        # @param Status: <p>版本生效状态。</p><p>枚举值：</p><ul><li>creating： 版本创建中</li><li>inactive： 版本未生效</li><li>active： 版本已生效</li></ul>
         # @type Status: String
-        # @param CreateTime: 版本创建时间。时间为世界标准时间（UTC）， 遵循 ISO 8601 标准的日期和时间格式。
+        # @param CreateTime: <p>版本创建时间。时间为世界标准时间（UTC）， 遵循 ISO 8601 标准的日期和时间格式。</p>
         # @type CreateTime: String
 
-        attr_accessor :VersionId, :VersionNumber, :GroupId, :GroupType, :Description, :Status, :CreateTime
+        attr_accessor :VersionId, :VersionNumber, :SourceVersion, :GroupType, :GroupId, :Description, :Status, :CreateTime
 
-        def initialize(versionid=nil, versionnumber=nil, groupid=nil, grouptype=nil, description=nil, status=nil, createtime=nil)
+        def initialize(versionid=nil, versionnumber=nil, sourceversion=nil, grouptype=nil, groupid=nil, description=nil, status=nil, createtime=nil)
           @VersionId = versionid
           @VersionNumber = versionnumber
-          @GroupId = groupid
+          @SourceVersion = sourceversion
           @GroupType = grouptype
+          @GroupId = groupid
           @Description = description
           @Status = status
           @CreateTime = createtime
@@ -3509,8 +3509,9 @@ module TencentCloud
         def deserialize(params)
           @VersionId = params['VersionId']
           @VersionNumber = params['VersionNumber']
-          @GroupId = params['GroupId']
+          @SourceVersion = params['SourceVersion']
           @GroupType = params['GroupType']
+          @GroupId = params['GroupId']
           @Description = params['Description']
           @Status = params['Status']
           @CreateTime = params['CreateTime']
@@ -4048,22 +4049,25 @@ module TencentCloud
 
       # CreateConfigGroupVersion请求参数结构体
       class CreateConfigGroupVersionRequest < TencentCloud::Common::AbstractModel
-        # @param ZoneId: 站点 ID。
+        # @param ZoneId: <p>站点 ID。</p>
         # @type ZoneId: String
-        # @param GroupId: 待新建版本的配置组 ID。
+        # @param GroupId: <p>待新建版本的配置组 ID。您可以通过查询环境信息接口（DescribeEnvironments）获取完整的环境信息，环境信息中包含了每个配置组类型的配置组 ID。</p><p>取值参考：<a href="https://cloud.tencent.com/document/api/1552/101862">DescribeEnvironments</a> 返回值 <code>EnvInfos</code></p>
         # @type GroupId: String
-        # @param Content: 待导入的配置内容。要求采用 JSON 格式，按照 UTF-8 方式进行编码。配置文件内容可参考下方示例。
+        # @param Content: <p>待导入的配置内容。要求采用 JSON 格式，按照 UTF-8 方式进行编码。配置文件内容可参考下方示例和 <a href="https://cloud.tencent.com/document/product/1552/125342">配置组语法说明</a>。</p>
         # @type Content: String
-        # @param Description: 版本描述，可输入最大长度为 50 个字符，可以通过本字段填写该版本的使用场景等。
+        # @param Description: <p>版本描述，可输入最大长度为 50 个字符，可以通过本字段填写该版本的使用场景等。</p>
         # @type Description: String
+        # @param SourceVersion: <p>新版本所基于的来源版本 ID。新版本将在该来源版本的配置基础上派生创建。该字段可选，未传入时默认采用当前生产环境正在生效的版本作为来源版本。</p><p>取值参考：</p><ul><li><a href="https://cloud.tencent.com/document/api/1552/101867">CreateConfigGroupVersion</a> 返回值 <code>VersionId</code></li><li><a href="https://cloud.tencent.com/document/api/1552/101864">DescribeConfigGroupVersions</a> 返回值 <code>ConfigGroupVersionInfos</code></li></ul>
+        # @type SourceVersion: String
 
-        attr_accessor :ZoneId, :GroupId, :Content, :Description
+        attr_accessor :ZoneId, :GroupId, :Content, :Description, :SourceVersion
 
-        def initialize(zoneid=nil, groupid=nil, content=nil, description=nil)
+        def initialize(zoneid=nil, groupid=nil, content=nil, description=nil, sourceversion=nil)
           @ZoneId = zoneid
           @GroupId = groupid
           @Content = content
           @Description = description
+          @SourceVersion = sourceversion
         end
 
         def deserialize(params)
@@ -4071,12 +4075,13 @@ module TencentCloud
           @GroupId = params['GroupId']
           @Content = params['Content']
           @Description = params['Description']
+          @SourceVersion = params['SourceVersion']
         end
       end
 
       # CreateConfigGroupVersion返回参数结构体
       class CreateConfigGroupVersionResponse < TencentCloud::Common::AbstractModel
-        # @param VersionId: 版本 ID。
+        # @param VersionId: <p>版本 ID。</p>
         # @type VersionId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

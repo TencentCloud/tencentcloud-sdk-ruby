@@ -533,6 +533,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查看企业下的员工列表
+
+        # @param request: Request instance for DescribeAccountList.
+        # @type request: :class:`Tencentcloud::adp::V20260520::DescribeAccountListRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::DescribeAccountListResponse`
+        def DescribeAccountList(request)
+          body = send_request('DescribeAccountList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAccountListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询 Agent 详情
 
         # @param request: Request instance for DescribeAgentDetail.
@@ -639,6 +663,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAppSummaryListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查看操作日志列表
+
+        # @param request: Request instance for DescribeAuditLogList.
+        # @type request: :class:`Tencentcloud::adp::V20260520::DescribeAuditLogListRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::DescribeAuditLogListResponse`
+        def DescribeAuditLogList(request)
+          body = send_request('DescribeAuditLogList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAuditLogListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取审计日志元信息
+
+        # @param request: Request instance for DescribeAuditLogMeta.
+        # @type request: :class:`Tencentcloud::adp::V20260520::DescribeAuditLogMetaRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::DescribeAuditLogMetaResponse`
+        def DescribeAuditLogMeta(request)
+          body = send_request('DescribeAuditLogMeta', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAuditLogMetaResponse.new
             model.deserialize(response['Response'])
             model
           else

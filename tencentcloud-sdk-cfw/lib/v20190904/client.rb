@@ -269,6 +269,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用户告警中心-封禁、放通处置按钮
+
+        # @param request: Request instance for CreateAlertCenterRuleAsync.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::CreateAlertCenterRuleAsyncRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::CreateAlertCenterRuleAsyncResponse`
+        def CreateAlertCenterRuleAsync(request)
+          body = send_request('CreateAlertCenterRuleAsync', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAlertCenterRuleAsyncResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 批量添加入侵防御封禁列表、放通列表规则
 
         # @param request: Request instance for CreateBlockIgnoreRuleList.
@@ -1063,7 +1087,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询当前租户防火墙纳管资产。默认查询主机资产；仅明确需要 VPC 或子网时传 AssetType。结果在 Response.Data 的 JSON 字符串中。
+        # 查询当前租户防火墙纳管资产。首次查询传 AssetType、过滤条件和 Limit；Response.Data.HasMore=true 时，续查只传 NextToken。默认查询 host；broad 查询分页返回资产，exact InstanceId 查询分页返回该实例 fingerprints 且每页重复基础资产。仅明确需要 VPC 或子网时传 AssetType。
 
         # @param request: Request instance for DescribeCfwAssets.
         # @type request: :class:`Tencentcloud::cfw::V20190904::DescribeCfwAssetsRequest`
@@ -1255,7 +1279,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询当前租户防火墙防护开关总览。结果在 Response.Data 的 JSON 字符串中。本接口没有自定义业务入参，不支持过滤、排序或分页。
+        # 查询当前租户防火墙防护开关总览。结果在 Response.Data 的 JSON 字符串中。本接口没有自定义业务入参，不支持过滤、排序或分页。border_firewall、nat_firewall、vpc_firewall、ndr 的 available 表示至少一个对应防护开关实际开启，不表示仅已购买或已创建；ips.mode 可能为跟随全局、观察、拦截、严格、关闭或未知。
 
         # @param request: Request instance for DescribeCfwSwitches.
         # @type request: :class:`Tencentcloud::cfw::V20190904::DescribeCfwSwitchesRequest`
@@ -2853,6 +2877,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyIpsModeSwitchResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # ModifyIsolateTable 隔离列表编辑和删除操作
+
+        # @param request: Request instance for ModifyIsolateTable.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::ModifyIsolateTableRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::ModifyIsolateTableResponse`
+        def ModifyIsolateTable(request)
+          body = send_request('ModifyIsolateTable', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyIsolateTableResponse.new
             model.deserialize(response['Response'])
             model
           else

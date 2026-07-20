@@ -24364,9 +24364,9 @@ module TencentCloud
         end
       end
 
-      # 过滤条件。同一 Name 下多个 Values 为或关系；不同 Name 之间为且关系
+      # 过滤条件。同一 Name 下多个 Values 为或关系；不同 Name 之间为且关系。支持的 Name：TaskID（任务ID精确）、TaskStatus（任务状态）、TaskType（任务类型）
       class Filters < TencentCloud::Common::AbstractModel
-        # @param Name: 过滤条件名称
+        # @param Name: 过滤条件名称。取值：TaskID（任务ID，精确匹配）、TaskStatus（任务状态，Values: INIT/SCANNING/SUCCESS/FAILED）、TaskType（任务类型，Values: PERIODIC/MANUAL）
         # @type Name: String
         # @param Values: 过滤条件值列表
         # @type Values: Array
@@ -25615,10 +25615,16 @@ module TencentCloud
         # @type ContainerCount: Integer
         # @param CpuCoreCount: <p>核数</p>
         # @type CpuCoreCount: Integer
+        # @param MigrationRequired: <p>是否支持迁移</p>
+        # @type MigrationRequired: Boolean
+        # @param IsSupportXSPM: <p>是否支持暴露面扫描</p>
+        # @type IsSupportXSPM: Boolean
+        # @param CanUnbind: <p>是否能解绑</p>
+        # @type CanUnbind: Boolean
 
-        attr_accessor :AgentStatus, :AgentVersion, :AppId, :CloudFromEnum, :CloudTags, :CsipProtectType, :ExposedStatus, :InstanceID, :InstanceStatus, :IpList, :IsNew, :KernelVersion, :LatestOfflineTime, :MachineIp, :MachineName, :MachineOs, :MachineWanIp, :PayMode, :ProjectId, :ProtectType, :Quuid, :RegionInfo, :Remark, :TagItems, :TagModifyInfo, :TatStatus, :Uuid, :VpcId, :NodeType, :ContainerDefendStatus, :ContainerCount, :CpuCoreCount
+        attr_accessor :AgentStatus, :AgentVersion, :AppId, :CloudFromEnum, :CloudTags, :CsipProtectType, :ExposedStatus, :InstanceID, :InstanceStatus, :IpList, :IsNew, :KernelVersion, :LatestOfflineTime, :MachineIp, :MachineName, :MachineOs, :MachineWanIp, :PayMode, :ProjectId, :ProtectType, :Quuid, :RegionInfo, :Remark, :TagItems, :TagModifyInfo, :TatStatus, :Uuid, :VpcId, :NodeType, :ContainerDefendStatus, :ContainerCount, :CpuCoreCount, :MigrationRequired, :IsSupportXSPM, :CanUnbind
 
-        def initialize(agentstatus=nil, agentversion=nil, appid=nil, cloudfromenum=nil, cloudtags=nil, csipprotecttype=nil, exposedstatus=nil, instanceid=nil, instancestatus=nil, iplist=nil, isnew=nil, kernelversion=nil, latestofflinetime=nil, machineip=nil, machinename=nil, machineos=nil, machinewanip=nil, paymode=nil, projectid=nil, protecttype=nil, quuid=nil, regioninfo=nil, remark=nil, tagitems=nil, tagmodifyinfo=nil, tatstatus=nil, uuid=nil, vpcid=nil, nodetype=nil, containerdefendstatus=nil, containercount=nil, cpucorecount=nil)
+        def initialize(agentstatus=nil, agentversion=nil, appid=nil, cloudfromenum=nil, cloudtags=nil, csipprotecttype=nil, exposedstatus=nil, instanceid=nil, instancestatus=nil, iplist=nil, isnew=nil, kernelversion=nil, latestofflinetime=nil, machineip=nil, machinename=nil, machineos=nil, machinewanip=nil, paymode=nil, projectid=nil, protecttype=nil, quuid=nil, regioninfo=nil, remark=nil, tagitems=nil, tagmodifyinfo=nil, tatstatus=nil, uuid=nil, vpcid=nil, nodetype=nil, containerdefendstatus=nil, containercount=nil, cpucorecount=nil, migrationrequired=nil, issupportxspm=nil, canunbind=nil)
           @AgentStatus = agentstatus
           @AgentVersion = agentversion
           @AppId = appid
@@ -25651,6 +25657,9 @@ module TencentCloud
           @ContainerDefendStatus = containerdefendstatus
           @ContainerCount = containercount
           @CpuCoreCount = cpucorecount
+          @MigrationRequired = migrationrequired
+          @IsSupportXSPM = issupportxspm
+          @CanUnbind = canunbind
         end
 
         def deserialize(params)
@@ -25706,6 +25715,9 @@ module TencentCloud
           @ContainerDefendStatus = params['ContainerDefendStatus']
           @ContainerCount = params['ContainerCount']
           @CpuCoreCount = params['CpuCoreCount']
+          @MigrationRequired = params['MigrationRequired']
+          @IsSupportXSPM = params['IsSupportXSPM']
+          @CanUnbind = params['CanUnbind']
         end
       end
 

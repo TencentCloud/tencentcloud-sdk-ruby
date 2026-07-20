@@ -558,40 +558,42 @@ module TencentCloud
 
       # AddBatchCustomRule请求参数结构体
       class AddBatchCustomRuleRequest < TencentCloud::Common::AbstractModel
-        # @param Name: 规则名称
+        # @param Name: <p>规则名称</p>
         # @type Name: String
-        # @param ExpireTime: 如果没有设置JobDateTime字段则用此字段，0表示永久生效，其它表示定时生效的截止时间（单位为秒）
+        # @param ExpireTime: <p>如果没有设置JobDateTime字段则用此字段，0表示永久生效，其它表示定时生效的截止时间（单位为秒）</p>
         # @type ExpireTime: Integer
-        # @param SortId: 优先级
+        # @param SortId: <p>优先级</p>
         # @type SortId: Integer
-        # @param ActionType: 动作类型，1代表阻断，2代表人机识别，3代表观察，4代表重定向
+        # @param ActionType: <p>动作类型，1代表阻断，2代表人机识别，3代表观察，4代表重定向</p>
         # @type ActionType: Integer
-        # @param Redirect: 重定向地址
+        # @param Redirect: <p>重定向地址</p>
         # @type Redirect: String
-        # @param Bypass: 加白模块
+        # @param Bypass: <p>加白模块</p>
         # @type Bypass: String
-        # @param Remark: 备注
+        # @param Remark: <p>备注</p>
         # @type Remark: String
-        # @param EventId: 事件Id
+        # @param EventId: <p>事件Id</p>
         # @type EventId: String
-        # @param Domains: 域名列表
+        # @param Domains: <p>域名列表</p>
         # @type Domains: Array
-        # @param Strategies: 策略详情列表
+        # @param Strategies: <p>策略详情列表</p>
         # @type Strategies: Array
-        # @param JobType: 规则执行的方式，TimedJob为定时执行，CronJob为周期执行
+        # @param JobType: <p>规则执行的方式，TimedJob为定时执行，CronJob为周期执行</p>
         # @type JobType: String
-        # @param JobDateTime: 定时任务配置
+        # @param JobDateTime: <p>定时任务配置</p>
         # @type JobDateTime: :class:`Tencentcloud::Waf.v20180125.models.JobDateTime`
-        # @param LogicalOp: 匹配条件的逻辑关系，支持and、or，分别表示多个逻辑匹配条件是与、或的关系
+        # @param LogicalOp: <p>匹配条件的逻辑关系，支持and、or，分别表示多个逻辑匹配条件是与、或的关系</p>
         # @type LogicalOp: String
-        # @param PageId: 页面ID
+        # @param PageId: <p>页面ID</p>
         # @type PageId: String
-        # @param ActionRatio: 动作灰度比例
+        # @param ActionRatio: <p>动作灰度比例</p>
         # @type ActionRatio: Integer
+        # @param GroupIds: <p>绑定的防护组ID</p>
+        # @type GroupIds: Array
 
-        attr_accessor :Name, :ExpireTime, :SortId, :ActionType, :Redirect, :Bypass, :Remark, :EventId, :Domains, :Strategies, :JobType, :JobDateTime, :LogicalOp, :PageId, :ActionRatio
+        attr_accessor :Name, :ExpireTime, :SortId, :ActionType, :Redirect, :Bypass, :Remark, :EventId, :Domains, :Strategies, :JobType, :JobDateTime, :LogicalOp, :PageId, :ActionRatio, :GroupIds
 
-        def initialize(name=nil, expiretime=nil, sortid=nil, actiontype=nil, redirect=nil, bypass=nil, remark=nil, eventid=nil, domains=nil, strategies=nil, jobtype=nil, jobdatetime=nil, logicalop=nil, pageid=nil, actionratio=nil)
+        def initialize(name=nil, expiretime=nil, sortid=nil, actiontype=nil, redirect=nil, bypass=nil, remark=nil, eventid=nil, domains=nil, strategies=nil, jobtype=nil, jobdatetime=nil, logicalop=nil, pageid=nil, actionratio=nil, groupids=nil)
           @Name = name
           @ExpireTime = expiretime
           @SortId = sortid
@@ -607,6 +609,7 @@ module TencentCloud
           @LogicalOp = logicalop
           @PageId = pageid
           @ActionRatio = actionratio
+          @GroupIds = groupids
         end
 
         def deserialize(params)
@@ -635,12 +638,13 @@ module TencentCloud
           @LogicalOp = params['LogicalOp']
           @PageId = params['PageId']
           @ActionRatio = params['ActionRatio']
+          @GroupIds = params['GroupIds']
         end
       end
 
       # AddBatchCustomRule返回参数结构体
       class AddBatchCustomRuleResponse < TencentCloud::Common::AbstractModel
-        # @param Res: 操作成功
+        # @param Res: <p>操作成功</p>
         # @type Res: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1501,6 +1505,30 @@ module TencentCloud
         end
       end
 
+      # API 安全事件样本
+      class ApiEventSample < TencentCloud::Common::AbstractModel
+        # @param Request: <p>攻击样本的请求部分</p>
+        # @type Request: String
+        # @param Response: <p>攻击样本的响应</p>
+        # @type Response: String
+        # @param Status: <p>攻击样本状态码</p>
+        # @type Status: String
+
+        attr_accessor :Request, :Response, :Status
+
+        def initialize(request=nil, response=nil, status=nil)
+          @Request = request
+          @Response = response
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Request = params['Request']
+          @Response = params['Response']
+          @Status = params['Status']
+        end
+      end
+
       # guard content
       class ApiGuardContent < TencentCloud::Common::AbstractModel
         # @param Prompt: <p>prompt</p>
@@ -1678,32 +1706,38 @@ module TencentCloud
 
       # api安全攻击源详情
       class ApiSecAttackSource < TencentCloud::Common::AbstractModel
-        # @param SrcIp: 攻击来源ip
+        # @param SrcIp: <p>攻击来源ip</p>
         # @type SrcIp: String
-        # @param EventLevel: 威胁等级
+        # @param EventLevel: <p>威胁等级</p>
         # @type EventLevel: String
-        # @param BotLabel: BOT标签
+        # @param BotLabel: <p>BOT标签</p>
         # @type BotLabel: String
-        # @param Timestamp: 变更时间
+        # @param Timestamp: <p>变更时间</p>
         # @type Timestamp: Integer
-        # @param City: 地理位置
+        # @param City: <p>地理位置</p>
         # @type City: String
-        # @param StartTime: 开始时间
+        # @param StartTime: <p>开始时间</p>
         # @type StartTime: Integer
-        # @param EventCount: 关联事件数量
+        # @param EventCount: <p>关联事件数量</p>
         # @type EventCount: Integer
-        # @param AttackCount: 攻击数量
+        # @param AttackCount: <p>攻击数量</p>
         # @type AttackCount: Integer
-        # @param MissUserName: 缺失参数名，当事件类型是缺失参数名，缺失参数名和密码时，返回此字段
+        # @param MissUserName: <p>缺失参数名，当事件类型是缺失参数名，缺失参数名和密码时，返回此字段</p>
         # @type MissUserName: String
-        # @param AttackDetail: 当是水平越权和垂直越权时，返回此字段
+        # @param AttackDetail: <p>当是水平越权和垂直越权时，返回此字段</p>
         # @type AttackDetail: Array
-        # @param MissPassword: 缺失密码参数，当事件类型是缺失参数名，缺失参数名和密码时，返回此字段
+        # @param MissPassword: <p>缺失密码参数，当事件类型是缺失参数名，缺失参数名和密码时，返回此字段</p>
         # @type MissPassword: String
+        # @param EventDescription: <p>事件描述</p>
+        # @type EventDescription: String
+        # @param EventDescriptionEng: <p>事件描述(英文)</p>
+        # @type EventDescriptionEng: String
+        # @param Sample: <p>攻击样本</p>
+        # @type Sample: :class:`Tencentcloud::Waf.v20180125.models.ApiEventSample`
 
-        attr_accessor :SrcIp, :EventLevel, :BotLabel, :Timestamp, :City, :StartTime, :EventCount, :AttackCount, :MissUserName, :AttackDetail, :MissPassword
+        attr_accessor :SrcIp, :EventLevel, :BotLabel, :Timestamp, :City, :StartTime, :EventCount, :AttackCount, :MissUserName, :AttackDetail, :MissPassword, :EventDescription, :EventDescriptionEng, :Sample
 
-        def initialize(srcip=nil, eventlevel=nil, botlabel=nil, timestamp=nil, city=nil, starttime=nil, eventcount=nil, attackcount=nil, missusername=nil, attackdetail=nil, misspassword=nil)
+        def initialize(srcip=nil, eventlevel=nil, botlabel=nil, timestamp=nil, city=nil, starttime=nil, eventcount=nil, attackcount=nil, missusername=nil, attackdetail=nil, misspassword=nil, eventdescription=nil, eventdescriptioneng=nil, sample=nil)
           @SrcIp = srcip
           @EventLevel = eventlevel
           @BotLabel = botlabel
@@ -1715,6 +1749,9 @@ module TencentCloud
           @MissUserName = missusername
           @AttackDetail = attackdetail
           @MissPassword = misspassword
+          @EventDescription = eventdescription
+          @EventDescriptionEng = eventdescriptioneng
+          @Sample = sample
         end
 
         def deserialize(params)
@@ -1729,6 +1766,12 @@ module TencentCloud
           @MissUserName = params['MissUserName']
           @AttackDetail = params['AttackDetail']
           @MissPassword = params['MissPassword']
+          @EventDescription = params['EventDescription']
+          @EventDescriptionEng = params['EventDescriptionEng']
+          unless params['Sample'].nil?
+            @Sample = ApiEventSample.new
+            @Sample.deserialize(params['Sample'])
+          end
         end
       end
 
@@ -2372,54 +2415,56 @@ module TencentCloud
 
       # 批量自定义规则列表信息Item
       class BatchCustomRuleListItem < TencentCloud::Common::AbstractModel
-        # @param Id: 规则Id
+        # @param Id: <p>规则Id</p>
         # @type Id: Integer
-        # @param ActionType: 动作类型，1代表阻断，2代表人机识别，3代表观察，4代表重定向，5代表JS校验
+        # @param ActionType: <p>动作类型，1代表阻断，2代表人机识别，3代表观察，4代表重定向，5代表JS校验</p>
         # @type ActionType: Integer
-        # @param Bypass: 加白模块
+        # @param Bypass: <p>加白模块</p>
         # @type Bypass: String
-        # @param ExpireTime: 有效期
+        # @param ExpireTime: <p>有效期</p>
         # @type ExpireTime: Integer
-        # @param Name: 规则名称
+        # @param Name: <p>规则名称</p>
         # @type Name: String
-        # @param Redirect: 重定向地址
+        # @param Redirect: <p>重定向地址</p>
         # @type Redirect: String
-        # @param SortId: 优先级
+        # @param SortId: <p>优先级</p>
         # @type SortId: Integer
-        # @param Status: 开关状态
+        # @param Status: <p>开关状态</p>
         # @type Status: Integer
-        # @param Domains: 域名列表
+        # @param Domains: <p>域名列表</p>
         # @type Domains: Array
-        # @param Remark: 备注
+        # @param Remark: <p>备注</p>
         # @type Remark: String
-        # @param Strategies: 策略列表
+        # @param Strategies: <p>策略列表</p>
         # @type Strategies: Array
-        # @param EventId: 事件Id
+        # @param EventId: <p>事件Id</p>
         # @type EventId: String
-        # @param ValidStatus: 生效状态
+        # @param ValidStatus: <p>生效状态</p>
         # @type ValidStatus: Integer
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # @type CreateTime: String
-        # @param UpdateTime: 更新时间
+        # @param UpdateTime: <p>更新时间</p>
         # @type UpdateTime: String
-        # @param JobType: 规则执行的方式，TimedJob为定时执行，CronJob为周期执行
+        # @param JobType: <p>规则执行的方式，TimedJob为定时执行，CronJob为周期执行</p>
         # @type JobType: String
-        # @param JobDateTime: 定时任务配置
+        # @param JobDateTime: <p>定时任务配置</p>
         # @type JobDateTime: :class:`Tencentcloud::Waf.v20180125.models.JobDateTime`
-        # @param CronType: 周期任务粒度
+        # @param CronType: <p>周期任务粒度</p>
         # @type CronType: String
-        # @param Label: 标签
+        # @param Label: <p>标签</p>
         # @type Label: String
-        # @param PageId: 页面ID
+        # @param PageId: <p>页面ID</p>
         # @type PageId: String
-        # @param LogicalOp: 匹配条件的逻辑关系，支持and、or，分别表示多个逻辑匹配条件是与、或的关系
+        # @param LogicalOp: <p>匹配条件的逻辑关系，支持and、or，分别表示多个逻辑匹配条件是与、或的关系</p>
         # @type LogicalOp: String
-        # @param ActionRatio: 动作灰度的比例
+        # @param ActionRatio: <p>动作灰度的比例</p>
         # @type ActionRatio: Integer
+        # @param GroupIds: <p>防护对象组ID</p>
+        # @type GroupIds: Array
 
-        attr_accessor :Id, :ActionType, :Bypass, :ExpireTime, :Name, :Redirect, :SortId, :Status, :Domains, :Remark, :Strategies, :EventId, :ValidStatus, :CreateTime, :UpdateTime, :JobType, :JobDateTime, :CronType, :Label, :PageId, :LogicalOp, :ActionRatio
+        attr_accessor :Id, :ActionType, :Bypass, :ExpireTime, :Name, :Redirect, :SortId, :Status, :Domains, :Remark, :Strategies, :EventId, :ValidStatus, :CreateTime, :UpdateTime, :JobType, :JobDateTime, :CronType, :Label, :PageId, :LogicalOp, :ActionRatio, :GroupIds
 
-        def initialize(id=nil, actiontype=nil, bypass=nil, expiretime=nil, name=nil, redirect=nil, sortid=nil, status=nil, domains=nil, remark=nil, strategies=nil, eventid=nil, validstatus=nil, createtime=nil, updatetime=nil, jobtype=nil, jobdatetime=nil, crontype=nil, label=nil, pageid=nil, logicalop=nil, actionratio=nil)
+        def initialize(id=nil, actiontype=nil, bypass=nil, expiretime=nil, name=nil, redirect=nil, sortid=nil, status=nil, domains=nil, remark=nil, strategies=nil, eventid=nil, validstatus=nil, createtime=nil, updatetime=nil, jobtype=nil, jobdatetime=nil, crontype=nil, label=nil, pageid=nil, logicalop=nil, actionratio=nil, groupids=nil)
           @Id = id
           @ActionType = actiontype
           @Bypass = bypass
@@ -2442,6 +2487,7 @@ module TencentCloud
           @PageId = pageid
           @LogicalOp = logicalop
           @ActionRatio = actionratio
+          @GroupIds = groupids
         end
 
         def deserialize(params)
@@ -2477,6 +2523,7 @@ module TencentCloud
           @PageId = params['PageId']
           @LogicalOp = params['LogicalOp']
           @ActionRatio = params['ActionRatio']
+          @GroupIds = params['GroupIds']
         end
       end
 
@@ -4115,10 +4162,12 @@ module TencentCloud
         # @type PreciseDomainDetails: Array
         # @param WafAccessStatus: <p>waf接入状态</p>
         # @type WafAccessStatus: Integer
+        # @param Note: <p>备注</p>
+        # @type Note: String
 
-        attr_accessor :ObjectId, :InstanceId, :InstanceName, :PreciseDomains, :Status, :ClsStatus, :VirtualDomain, :ObjectName, :PublicIp, :PrivateIp, :VpcName, :Vpc, :InstanceLevel, :PostCLSStatus, :PostCKafkaStatus, :Type, :Region, :Proxy, :IpHeaders, :BotStatus, :ApiStatus, :ObjectFlowMode, :NumericalVpcId, :ModifyTime, :AddTime, :MemberAppId, :MemberUin, :MemberNickName, :TagInfos, :PreciseDomainDetails, :WafAccessStatus
+        attr_accessor :ObjectId, :InstanceId, :InstanceName, :PreciseDomains, :Status, :ClsStatus, :VirtualDomain, :ObjectName, :PublicIp, :PrivateIp, :VpcName, :Vpc, :InstanceLevel, :PostCLSStatus, :PostCKafkaStatus, :Type, :Region, :Proxy, :IpHeaders, :BotStatus, :ApiStatus, :ObjectFlowMode, :NumericalVpcId, :ModifyTime, :AddTime, :MemberAppId, :MemberUin, :MemberNickName, :TagInfos, :PreciseDomainDetails, :WafAccessStatus, :Note
 
-        def initialize(objectid=nil, instanceid=nil, instancename=nil, precisedomains=nil, status=nil, clsstatus=nil, virtualdomain=nil, objectname=nil, publicip=nil, privateip=nil, vpcname=nil, vpc=nil, instancelevel=nil, postclsstatus=nil, postckafkastatus=nil, type=nil, region=nil, proxy=nil, ipheaders=nil, botstatus=nil, apistatus=nil, objectflowmode=nil, numericalvpcid=nil, modifytime=nil, addtime=nil, memberappid=nil, memberuin=nil, membernickname=nil, taginfos=nil, precisedomaindetails=nil, wafaccessstatus=nil)
+        def initialize(objectid=nil, instanceid=nil, instancename=nil, precisedomains=nil, status=nil, clsstatus=nil, virtualdomain=nil, objectname=nil, publicip=nil, privateip=nil, vpcname=nil, vpc=nil, instancelevel=nil, postclsstatus=nil, postckafkastatus=nil, type=nil, region=nil, proxy=nil, ipheaders=nil, botstatus=nil, apistatus=nil, objectflowmode=nil, numericalvpcid=nil, modifytime=nil, addtime=nil, memberappid=nil, memberuin=nil, membernickname=nil, taginfos=nil, precisedomaindetails=nil, wafaccessstatus=nil, note=nil)
           @ObjectId = objectid
           @InstanceId = instanceid
           @InstanceName = instancename
@@ -4150,6 +4199,7 @@ module TencentCloud
           @TagInfos = taginfos
           @PreciseDomainDetails = precisedomaindetails
           @WafAccessStatus = wafaccessstatus
+          @Note = note
         end
 
         def deserialize(params)
@@ -4198,6 +4248,7 @@ module TencentCloud
             end
           end
           @WafAccessStatus = params['WafAccessStatus']
+          @Note = params['Note']
         end
       end
 
@@ -14841,15 +14892,19 @@ module TencentCloud
       class IntentDetectResult < TencentCloud::Common::AbstractModel
         # @param IsUnSafe: <p>是否恶意意图</p><p>枚举值：</p><ul><li>1： 恶意</li><li>0： 正常</li></ul>
         # @type IsUnSafe: Integer
+        # @param Category: <p>检出分类</p>
+        # @type Category: String
 
-        attr_accessor :IsUnSafe
+        attr_accessor :IsUnSafe, :Category
 
-        def initialize(isunsafe=nil)
+        def initialize(isunsafe=nil, category=nil)
           @IsUnSafe = isunsafe
+          @Category = category
         end
 
         def deserialize(params)
           @IsUnSafe = params['IsUnSafe']
+          @Category = params['Category']
         end
       end
 
@@ -21660,12 +21715,153 @@ module TencentCloud
 
       # 规则的匹配条件结构体
       class Strategy < TencentCloud::Common::AbstractModel
-        # @param Field: 匹配字段
-
-        #     匹配字段不同，相应的匹配参数、逻辑符号、匹配内容有所不同
-        # 具体如下所示：
-        # <table><thead><tr><th>匹配字段</th><th>匹配参数</th><th>逻辑符号</th><th>匹配内容</th></tr></thead><tbody><tr><td>IP（来源IP）</td><td>不支持参数</td><td>ipmatch（匹配）<br/>ipnmatch（不匹配）</td><td>多个IP以英文逗号隔开,最多20个</td></tr><tr><td>IPV6（来源IPv6）</td><td>不支持参数</td><td>ipmatch（匹配）<br/>ipnmatch（不匹配）</td><td>支持单个IPV6地址</td></tr><tr><td>Referer（Referer）</td><td>不支持参数</td><td>empty（内容为空）<br/>null（不存在）<br/>eq（等于）<br/>neq（不等于）<br/>contains（包含）<br/>ncontains（不包含）<br/>len_eq（长度等于）<br/>len_gt（长度大于）<br/>len_lt（长度小于）<br/>strprefix（前缀匹配）<br/>strsuffix（后缀匹配）<br/>rematch（正则匹配）</td><td>请输入内容,512个字符以内</td></tr><tr><td>URL（请求路径）</td><td>不支持参数</td><td>eq（等于）<br/>neq（不等于）<br/>contains（包含）<br/>ncontains（不包含）<br/>len_eq（长度等于）<br/>len_gt（长度大于）<br/>len_lt（长度小于）<br/>strprefix（前缀匹配）<br/>strsuffix（后缀匹配）<br/>rematch（正则匹配）<br/></td><td>请以/开头,512个字符以内</td></tr><tr><td>UserAgent（UserAgent）</td><td>不支持参数</td><td>同匹配字段<font color="Red">Referer</font>逻辑符号</td><td>请输入内容,512个字符以内</td></tr><tr><td>HTTP_METHOD（HTTP请求方法）</td><td>不支持参数</td><td>eq（等于）<br/>neq（不等于）</td><td>请输入方法名称,建议大写</td></tr><tr><td>QUERY_STRING（请求字符串）</td><td>不支持参数</td><td>同匹配字段<font color="Red">请求路径</font>逻辑符号</td><td>请输入内容,512个字符以内</td></tr><tr><td>GET（GET参数值）</td><td>支持参数录入</td><td>contains（包含）<br/>ncontains（不包含）<br/>len_eq（长度等于）<br/>len_gt（长度大于）<br/>len_lt（长度小于）<br/>strprefix（前缀匹配）<br/>strsuffix（后缀匹配）</td><td>请输入内容,512个字符以内</td></tr><tr><td>GET_PARAMS_NAMES（GET参数名）</td><td>不支持参数</td><td>exsit（存在参数）<br/>nexsit（不存在参数）<br/>len_eq（长度等于）<br/>len_gt（长度大于）<br/>len_lt（长度小于）<br/>strprefix（前缀匹配）<br/>strsuffix（后缀匹配）</td><td>请输入内容,512个字符以内</td></tr><tr><td>POST（POST参数值）</td><td>支持参数录入</td><td>同匹配字段<font color="Red">GET参数值</font>逻辑符号</td><td>请输入内容,512个字符以内</td></tr><tr><td>GET_POST_NAMES（POST参数名）</td><td>不支持参数</td><td>同匹配字段<font color="Red">GET参数名</font>逻辑符号</td><td>请输入内容,512个字符以内</td></tr><tr><td>POST_BODY（完整BODY）</td><td>不支持参数</td><td>同匹配字段<font color="Red">请求路径</font>逻辑符号</td><td>请输入BODY内容,512个字符以内</td></tr><tr><td>COOKIE（Cookie）</td><td>不支持参数</td><td>empty（内容为空）<br/>null（不存在）<br/>rematch（正则匹配）</td><td><font color="Red">暂不支持</font></td></tr><tr><td>GET_COOKIES_NAMES（Cookie参数名）</td><td>不支持参数</td><td>同匹配字段<font color="Red">GET参数名</font>逻辑符号</td><td>请输入内容,512个字符以内</td></tr><tr><td>ARGS_COOKIE（Cookie参数值）</td><td>支持参数录入</td><td>同匹配字段<font color="Red">GET参数值</font>逻辑符号</td><td>请输入内容,512个字符以内</td></tr><tr><td>GET_HEADERS_NAMES（Header参数名）</td><td>不支持参数</td><td>exsit（存在参数）<br/>nexsit（不存在参数）<br/>len_eq（长度等于）<br/>len_gt（长度大于）<br/>len_lt（长度小于）<br/>strprefix（前缀匹配）<br/>strsuffix（后缀匹配）<br/>rematch（正则匹配）</td><td>请输入内容,建议小写,512个字符以内</td></tr><tr><td>ARGS_HEADER（Header参数值）</td><td>支持参数录入</td><td>contains（包含）<br/>ncontains（不包含）<br/>len_eq（长度等于）<br/>len_gt（长度大于）<br/>len_lt（长度小于）<br/>strprefix（前缀匹配）<br/>strsuffix（后缀匹配）<br/>rematch（正则匹配）</td><td>请输入内容,512个字符以内</td></tr><tr><td>CONTENT_LENGTH（Content-length）</td><td>支持参数录入</td><td>numgt（数值大于）<br/>numlt（数值小于）<br/>numeq（数值等于）<br/></td><td>请输入0-9999999999999之间的整数</td></tr><tr><td>IP_GEO（来源IP归属地）</td><td>支持参数录入</td><td>geo_in（属于）<br/>geo_not_in（不属于）<br/></td><td>请输入内容,10240字符以内，格式为序列化的JSON，格式为：[{"Country":"中国","Region":"广东","City":"深圳"}]</td></tr><tr><td>CAPTCHA_RISK（验证码风险）</td><td>不支持参数</td><td>eq（等于）<br/>neq（不等于）<br/>belong（属于）<br/>not_belong（不属于）<br/>null（不存在）<br/>exist（存在）</td><td>请输入风险等级值,支持数值范围0-255</td></tr><tr><td>CAPTCHA_DEVICE_RISK（验证码设备风险）</td><td>不支持参数</td><td>eq（等于）<br/>neq（不等于）<br/>belong（属于）<br/>not_belong（不属于）<br/>null（不存在）<br/>exist（存在）</td><td>请输入设备风险代码,支持取值：101、201、301、401、501、601、701</td></tr><tr><td>CAPTCHAR_SCORE（验证码风险评估分）</td><td>不支持参数</td><td>numeq（数值等于）<br/>numgt（数值大于）<br/>numlt（数值小于）<br/>numle（数值小于等于）<br/>numge（数值大于等于）<br/>null（不存在）<br/>exist（存在）</td><td>请输入评估分数,支持数值范围0-100</td></tr>
-        # </tbody></table>
+        # @param Field: 匹配字段 匹配字段不同，相应的匹配参数、逻辑符号、匹配内容有所不同
+        # 具体如下所示： <table>
+        # 	<thead>
+        # 		<tr>
+        # 			<th>匹配字段</th>
+        # 			<th>匹配参数</th>
+        # 			<th>逻辑符号</th>
+        # 			<th>匹配内容</th>
+        # 		</tr>
+        # 	</thead>
+        # 	<tbody>
+        # 		<tr>
+        # 			<td>IP（来源IP）</td>
+        # 			<td>不支持参数</td>
+        # 			<td>ipmatch（匹配）<br />ipnmatch（不匹配）</td>
+        # 			<td>多个IP以英文逗号隔开,最多20个</td>
+        # 		</tr>
+        # 		<tr>
+        # 			<td>IPV6（来源IPv6）</td>
+        # 			<td>不支持参数</td>
+        # 			<td>ipmatch（匹配）<br />ipnmatch（不匹配）</td>
+        # 			<td>支持单个IPV6地址</td>
+        # 		</tr>
+        # 		<tr>
+        # 			<td>Referer（Referer）</td>
+        # 			<td>不支持参数</td>
+        # 			<td>empty（内容为空）<br />null（不存在）<br />eq（等于）<br />neq（不等于）<br />contains（包含）<br />ncontains（不包含）<br/>belong_to（属于）<br/>not_belong_to（不属于）<br />len_eq（长度等于）<br />len_gt（长度大于）<br />len_lt（长度小于）<br />strprefix（前缀匹配）<br />strsuffix（后缀匹配）<br />rematch（正则匹配）</td>
+        # 			<td>请输入内容,512个字符以内</td>
+        # 		</tr>
+        # 		<tr>
+        # 			<td>URL（请求路径）</td>
+        # 			<td>不支持参数</td>
+        # 			<td>eq（等于）<br />neq（不等于）<br />contains（包含）<br />ncontains（不包含）<br />len_eq（长度等于）<br />belong_to（属于）<br />not_belong_to（不属于）<br />len_gt（长度大于）<br />len_lt（长度小于）<br />strprefix（前缀匹配）<br />strsuffix（后缀匹配）<br />rematch（正则匹配）<br /></td>
+        # 			<td>请以/开头,512个字符以内</td>
+        # 		</tr>
+        # 		<tr>
+        # 			<td>UserAgent（UserAgent）</td>
+        # 			<td>不支持参数</td>
+        # 			<td>同匹配字段<font color="Red">Referer</font>逻辑符号</td>
+        # 			<td>请输入内容,512个字符以内</td>
+        # 		</tr>
+        # 		<tr>
+        # 			<td>HTTP_METHOD（HTTP请求方法）</td>
+        # 			<td>不支持参数</td>
+        # 			<td>eq（等于）<br />neq（不等于）<br/>belong_to（属于）<br/>not_belong_to（不属于）</td>
+        # 			<td>请输入方法名称,建议大写</td>
+        # 		</tr>
+        # 		<tr>
+        # 			<td>QUERY_STRING（请求字符串）</td>
+        # 			<td>不支持参数</td>
+        # 			<td>同匹配字段<font color="Red">请求路径</font>逻辑符号</td>
+        # 			<td>请输入内容,512个字符以内</td>
+        # 		</tr>
+        # 		<tr>
+        # 			<td>GET（GET参数值）</td>
+        # 			<td>支持参数录入</td>
+        # 			<td>contains（包含）<br />ncontains（不包含）<br/>belong_to（属于）<br/>not_belong_to（不属于）<br />len_eq（长度等于）<br />len_gt（长度大于）<br />len_lt（长度小于）<br />strprefix（前缀匹配）<br />strsuffix（后缀匹配）</td>
+        # 			<td>请输入内容,512个字符以内</td>
+        # 		</tr>
+        # 		<tr>
+        # 			<td>GET_PARAMS_NAMES（GET参数名）</td>
+        # 			<td>不支持参数</td>
+        # 			<td>exsit（存在参数）<br />nexsit（不存在参数）<br/>belong_to（属于）<br/>not_belong_to（不属于）<br />len_eq（长度等于）<br />len_gt（长度大于）<br />len_lt（长度小于）<br />strprefix（前缀匹配）<br />strsuffix（后缀匹配）</td>
+        # 			<td>请输入内容,512个字符以内</td>
+        # 		</tr>
+        # 		<tr>
+        # 			<td>POST（POST参数值）</td>
+        # 			<td>支持参数录入</td>
+        # 			<td>同匹配字段<font color="Red">GET参数值</font>逻辑符号</td>
+        # 			<td>请输入内容,512个字符以内</td>
+        # 		</tr>
+        # 		<tr>
+        # 			<td>GET_POST_NAMES（POST参数名）</td>
+        # 			<td>不支持参数</td>
+        # 			<td>同匹配字段<font color="Red">GET参数名</font>逻辑符号</td>
+        # 			<td>请输入内容,512个字符以内</td>
+        # 		</tr>
+        # 		<tr>
+        # 			<td>POST_BODY（完整BODY）</td>
+        # 			<td>不支持参数</td>
+        # 			<td>同匹配字段<font color="Red">请求路径</font>逻辑符号</td>
+        # 			<td>请输入BODY内容,512个字符以内</td>
+        # 		</tr>
+        # 		<tr>
+        # 			<td>COOKIE（Cookie）</td>
+        # 			<td>不支持参数</td>
+        # 			<td>empty（内容为空）<br />null（不存在）<br />rematch（正则匹配）</td>
+        # 			<td>
+        # 				<font color="Red">暂不支持</font>
+        # 			</td>
+        # 		</tr>
+        # 		<tr>
+        # 			<td>GET_COOKIES_NAMES（Cookie参数名）</td>
+        # 			<td>不支持参数</td>
+        # 			<td>同匹配字段<font color="Red">GET参数名</font>逻辑符号</td>
+        # 			<td>请输入内容,512个字符以内</td>
+        # 		</tr>
+        # 		<tr>
+        # 			<td>ARGS_COOKIE（Cookie参数值）</td>
+        # 			<td>支持参数录入</td>
+        # 			<td>同匹配字段<font color="Red">GET参数值</font>逻辑符号</td>
+        # 			<td>请输入内容,512个字符以内</td>
+        # 		</tr>
+        # 		<tr>
+        # 			<td>GET_HEADERS_NAMES（Header参数名）</td>
+        # 			<td>不支持参数</td>
+        # 			<td>exsit（存在参数）<br />nexsit（不存在参数）<br />len_eq（长度等于）<br />len_gt（长度大于）<br />len_lt（长度小于）<br />strprefix（前缀匹配）<br />strsuffix（后缀匹配）<br />rematch（正则匹配）</td>
+        # 			<td>请输入内容,建议小写,512个字符以内</td>
+        # 		</tr>
+        # 		<tr>
+        # 			<td>ARGS_HEADER（Header参数值）</td>
+        # 			<td>支持参数录入</td>
+        # 			<td>contains（包含）<br />ncontains（不包含）<br />len_eq（长度等于）<br />len_gt（长度大于）<br />len_lt（长度小于）<br />strprefix（前缀匹配）<br />strsuffix（后缀匹配）<br />rematch（正则匹配）</td>
+        # 			<td>请输入内容,512个字符以内</td>
+        # 		</tr>
+        # 		<tr>
+        # 			<td>CONTENT_LENGTH（Content-length）</td>
+        # 			<td>支持参数录入</td>
+        # 			<td>numgt（数值大于）<br />numlt（数值小于）<br />numeq（数值等于）<br /></td>
+        # 			<td>请输入0-9999999999999之间的整数</td>
+        # 		</tr>
+        # 		<tr>
+        # 			<td>IP_GEO（来源IP归属地）</td>
+        # 			<td>支持参数录入</td>
+        # 			<td>geo_in（属于）<br />geo_not_in（不属于）<br /></td>
+        # 			<td>请输入内容,10240字符以内，格式为序列化的JSON，格式为：[{"Country":"中国","Region":"广东","City":"深圳"}]</td>
+        # 		</tr>
+        # 		<tr>
+        # 			<td>CAPTCHA_RISK（验证码风险）</td>
+        # 			<td>不支持参数</td>
+        # 			<td>eq（等于）<br />neq（不等于）<br />belong（属于）<br />not_belong（不属于）<br />null（不存在）<br />exist（存在）</td>
+        # 			<td>请输入风险等级值,支持数值范围0-255</td>
+        # 		</tr>
+        # 		<tr>
+        # 			<td>CAPTCHA_DEVICE_RISK（验证码设备风险）</td>
+        # 			<td>不支持参数</td>
+        # 			<td>eq（等于）<br />neq（不等于）<br />belong（属于）<br />not_belong（不属于）<br />null（不存在）<br />exist（存在）</td>
+        # 			<td>请输入设备风险代码,支持取值：101、201、301、401、501、601、701</td>
+        # 		</tr>
+        # 		<tr>
+        # 			<td>CAPTCHAR_SCORE（验证码风险评估分）</td>
+        # 			<td>不支持参数</td>
+        # 			<td>numeq（数值等于）<br />numgt（数值大于）<br />numlt（数值小于）<br />numle（数值小于等于）<br />numge（数值大于等于）<br />null（不存在）<br />exist（存在）</td>
+        # 			<td>请输入评估分数,支持数值范围0-100</td>
+        # 		</tr>
+        # 	</tbody>
+        # </table>
         # @type Field: String
         # @param CompareFunc: 逻辑符号
 
@@ -21689,6 +21885,8 @@ module TencentCloud
         #         numneq （ 数值不等于）
         #         numle （ 数值小于等于）
         #         numge （ 数值大于等于）
+        # 		belong_to（属于）
+        # 		not_belong_to（不属于）
         #         geo_in （ IP地理属于）
         #         geo_not_in （ IP地理不属于）
         #     各匹配字段对应的逻辑符号不同，详见上述匹配字段表格

@@ -861,13 +861,13 @@ module TencentCloud
 
       # 状态监控过滤条件。
       class CfwStatusMonitorFilter < TencentCloud::Common::AbstractModel
-        # @param Name: <p>过滤字段名。</p>
+        # @param Name: 过滤字段名。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
-        # @param Values: <p>过滤值列表，最多 10 个。</p>
+        # @param Values: 过滤值列表，最多 10 个。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Values: Array
-        # @param OperatorType: <p>操作符类型，可选；仅支持后端允许的类型。</p>
+        # @param OperatorType: 操作符类型，可选；仅支持后端允许的类型。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OperatorType: Integer
 
@@ -888,9 +888,9 @@ module TencentCloud
 
       # CloseClusterNatFwSwitch请求参数结构体
       class CloseClusterNatFwSwitchRequest < TencentCloud::Common::AbstractModel
-        # @param NatInsId: NAT防火墙实例ID
+        # @param NatInsId: <p>NAT防火墙实例ID</p>
         # @type NatInsId: String
-        # @param CcnId: 云联网实例ID
+        # @param CcnId: <p>云联网实例ID</p>
         # @type CcnId: String
 
         attr_accessor :NatInsId, :CcnId
@@ -1487,6 +1487,106 @@ module TencentCloud
         end
       end
 
+      # CreateAlertCenterRuleAsync请求参数结构体
+      class CreateAlertCenterRuleAsyncRequest < TencentCloud::Common::AbstractModel
+        # @param HandleTime: <p>处置时间<br>1  1天<br>7   7天<br>-2 永久</p>
+        # @type HandleTime: Integer
+        # @param HandleType: <p>处置类型<br>当HandleIdList 不为空时：1封禁 2放通<br>当HandleIpList 不为空时：3放通 4封禁</p>
+        # @type HandleType: Integer
+        # @param AlertDirection: <p>当前日志方向： 0 出向 1 入向</p>
+        # @type AlertDirection: Integer
+        # @param HandleDirection: <p>处置方向： 0出向 1入向 0,1出入向 3内网</p>
+        # @type HandleDirection: String
+        # @param CfwAiAgentOperationSource: <p>AI操作来源</p><p>枚举值：</p><ul><li>console： 控制台来源值</li><li>wechat： 微信</li></ul>
+        # @type CfwAiAgentOperationSource: String
+        # @param HandleIdList: <p>处置对象,ID列表，  IdLists,IpList,EventIdList三选一</p>
+        # @type HandleIdList: Array
+        # @param HandleIpList: <p>处置对象,IP列表，  IdLists,IpList,EventIdList三选一</p>
+        # @type HandleIpList: Array
+        # @param HandleComment: <p>处置描述</p>
+        # @type HandleComment: String
+        # @param IgnoreReason: <p>放通原因:<br>0默认 1重复 2误报 3紧急放通</p>
+        # @type IgnoreReason: Integer
+        # @param BlockDomain: <p>封禁域名-保留字段</p>
+        # @type BlockDomain: String
+        # @param HandleEventIdList: <p>处置对象,事件ID列表，  IdLists,IpList,EventIdList三选一</p>
+        # @type HandleEventIdList: Array
+        # @param WhiteIpList: <p>加白IP列表 隔离时放通的ip列表</p>
+        # @type WhiteIpList: Array
+        # @param IsolateType: <p>隔离类型 1 互联网入站 2 互联网出站 4 内网访问</p>
+        # @type IsolateType: Array
+        # @param AssetIdList: <p>隔离资产列表</p>
+        # @type AssetIdList: Array
+        # @param TargetEventIdList: <p>处置HandleIpList，属于的告警事件ID</p>
+        # @type TargetEventIdList: Array
+
+        attr_accessor :HandleTime, :HandleType, :AlertDirection, :HandleDirection, :CfwAiAgentOperationSource, :HandleIdList, :HandleIpList, :HandleComment, :IgnoreReason, :BlockDomain, :HandleEventIdList, :WhiteIpList, :IsolateType, :AssetIdList, :TargetEventIdList
+
+        def initialize(handletime=nil, handletype=nil, alertdirection=nil, handledirection=nil, cfwaiagentoperationsource=nil, handleidlist=nil, handleiplist=nil, handlecomment=nil, ignorereason=nil, blockdomain=nil, handleeventidlist=nil, whiteiplist=nil, isolatetype=nil, assetidlist=nil, targeteventidlist=nil)
+          @HandleTime = handletime
+          @HandleType = handletype
+          @AlertDirection = alertdirection
+          @HandleDirection = handledirection
+          @CfwAiAgentOperationSource = cfwaiagentoperationsource
+          @HandleIdList = handleidlist
+          @HandleIpList = handleiplist
+          @HandleComment = handlecomment
+          @IgnoreReason = ignorereason
+          @BlockDomain = blockdomain
+          @HandleEventIdList = handleeventidlist
+          @WhiteIpList = whiteiplist
+          @IsolateType = isolatetype
+          @AssetIdList = assetidlist
+          @TargetEventIdList = targeteventidlist
+        end
+
+        def deserialize(params)
+          @HandleTime = params['HandleTime']
+          @HandleType = params['HandleType']
+          @AlertDirection = params['AlertDirection']
+          @HandleDirection = params['HandleDirection']
+          @CfwAiAgentOperationSource = params['CfwAiAgentOperationSource']
+          @HandleIdList = params['HandleIdList']
+          @HandleIpList = params['HandleIpList']
+          @HandleComment = params['HandleComment']
+          @IgnoreReason = params['IgnoreReason']
+          @BlockDomain = params['BlockDomain']
+          @HandleEventIdList = params['HandleEventIdList']
+          @WhiteIpList = params['WhiteIpList']
+          @IsolateType = params['IsolateType']
+          @AssetIdList = params['AssetIdList']
+          @TargetEventIdList = params['TargetEventIdList']
+        end
+      end
+
+      # CreateAlertCenterRuleAsync返回参数结构体
+      class CreateAlertCenterRuleAsyncResponse < TencentCloud::Common::AbstractModel
+        # @param ReturnCode: <p>返回状态码：<br>0 成功<br>非0 失败</p>
+        # @type ReturnCode: Integer
+        # @param ReturnMsg: <p>返回信息：<br>success 成功<br>其他</p>
+        # @type ReturnMsg: String
+        # @param Status: <p>处置状态码：0  处置成功 1处置中  -1 通用错误，不用处理-3 表示重复，需重新刷新列表其他</p>
+        # @type Status: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ReturnCode, :ReturnMsg, :Status, :RequestId
+
+        def initialize(returncode=nil, returnmsg=nil, status=nil, requestid=nil)
+          @ReturnCode = returncode
+          @ReturnMsg = returnmsg
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ReturnCode = params['ReturnCode']
+          @ReturnMsg = params['ReturnMsg']
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateAlertCenterRule请求参数结构体
       class CreateAlertCenterRuleRequest < TencentCloud::Common::AbstractModel
         # @param HandleTime: 处置时间
@@ -1774,11 +1874,11 @@ module TencentCloud
 
       # CreateNatFwDnatRule请求参数结构体
       class CreateNatFwDnatRuleRequest < TencentCloud::Common::AbstractModel
-        # @param Mode: 0：cfw新增模式，1：cfw接入模式。
+        # @param Mode: <p>0：cfw新增模式，1：cfw接入模式。</p>
         # @type Mode: Integer
-        # @param CfwInstance: 防火墙实例id，该字段必须传递。
+        # @param CfwInstance: <p>防火墙实例id，该字段必须传递。</p>
         # @type CfwInstance: String
-        # @param DnatRules: 添加或删除操作的Dnat规则列表。
+        # @param DnatRules: <p>添加或删除操作的Dnat规则列表。</p>
         # @type DnatRules: Array
 
         attr_accessor :Mode, :CfwInstance, :DnatRules
@@ -1895,27 +1995,27 @@ module TencentCloud
 
       # CreateNatFwInstanceWithDomain请求参数结构体
       class CreateNatFwInstanceWithDomainRequest < TencentCloud::Common::AbstractModel
-        # @param Name: 防火墙实例名称
+        # @param Name: <p>防火墙实例名称</p>
         # @type Name: String
-        # @param Width: 带宽
+        # @param Width: <p>带宽</p>
         # @type Width: Integer
-        # @param Mode: 模式 1：接入模式；0：新增模式
+        # @param Mode: <p>模式 1：接入模式；0：新增模式</p>
         # @type Mode: Integer
-        # @param NewModeItems: 新增模式传递参数，其中NewModeItems和NatgwList至少传递一种。
+        # @param NewModeItems: <p>新增模式传递参数，其中NewModeItems和NatgwList至少传递一种。</p>
         # @type NewModeItems: :class:`Tencentcloud::Cfw.v20190904.models.NewModeItems`
-        # @param NatGwList: 接入模式接入的nat网关列表，其中NewModeItems和NatgwList至少传递一种。
+        # @param NatGwList: <p>接入模式接入的nat网关列表，其中NewModeItems和NatgwList至少传递一种。</p>
         # @type NatGwList: Array
-        # @param Zone: 主可用区，为空则选择默认可用区
+        # @param Zone: <p>主可用区，为空则选择默认可用区</p>
         # @type Zone: String
-        # @param ZoneBak: 备可用区，为空则选择默认可用区
+        # @param ZoneBak: <p>备可用区，为空则选择默认可用区</p>
         # @type ZoneBak: String
-        # @param CrossAZone: 异地灾备 1：使用异地灾备；0：不使用异地灾备；为空则默认不使用异地灾备
+        # @param CrossAZone: <p>异地灾备 1：使用异地灾备；0：不使用异地灾备；为空则默认不使用异地灾备</p>
         # @type CrossAZone: Integer
-        # @param IsCreateDomain: 0不创建域名,1创建域名
+        # @param IsCreateDomain: <p>0不创建域名,1创建域名</p>
         # @type IsCreateDomain: Integer
-        # @param Domain: 如果要创建域名则必填
+        # @param Domain: <p>如果要创建域名则必填</p>
         # @type Domain: String
-        # @param FwCidrInfo: 指定防火墙使用网段信息
+        # @param FwCidrInfo: <p>指定防火墙使用网段信息</p>
         # @type FwCidrInfo: :class:`Tencentcloud::Cfw.v20190904.models.FwCidrInfo`
 
         attr_accessor :Name, :Width, :Mode, :NewModeItems, :NatGwList, :Zone, :ZoneBak, :CrossAZone, :IsCreateDomain, :Domain, :FwCidrInfo
@@ -1957,7 +2057,7 @@ module TencentCloud
 
       # CreateNatFwInstanceWithDomain返回参数结构体
       class CreateNatFwInstanceWithDomainResponse < TencentCloud::Common::AbstractModel
-        # @param CfwInsId: nat实例信息
+        # @param CfwInsId: <p>nat实例信息</p>
         # @type CfwInsId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2185,26 +2285,21 @@ module TencentCloud
 
       # CreateVpcFwGroup请求参数结构体
       class CreateVpcFwGroupRequest < TencentCloud::Common::AbstractModel
-        # @param Name: VPC防火墙(组)名称
+        # @param Name: <p>VPC防火墙(组)名称</p>
         # @type Name: String
-        # @param Mode: 模式 1：CCN云联网模式；0：私有网络模式 2: sase 模式 3：ccn 高级模式 4: 私有网络(跨租户单边模式)
+        # @param Mode: <p>模式 1：CCN云联网模式；0：私有网络模式 2: sase 模式 3：ccn 高级模式 4: 私有网络(跨租户单边模式)</p>
         # @type Mode: Integer
-        # @param VpcFwInstances: 防火墙(组)下的防火墙实例列表
+        # @param VpcFwInstances: <p>防火墙(组)下的防火墙实例列表</p>
         # @type VpcFwInstances: Array
-        # @param SwitchMode: 防火墙实例的开关模式
-        # 1: 单点互通
-        # 2: 多点互通
-        # 3: 全互通
-        # 4: 自定义路由
+        # @param SwitchMode: <p>防火墙实例的开关模式<br>1: 单点互通<br>2: 多点互通<br>3: 全互通<br>4: 自定义路由</p>
         # @type SwitchMode: Integer
-        # @param FwVpcCidr: auto 自动选择防火墙网段
-        # 10.10.10.0/24 用户输入的防火墙网段
+        # @param FwVpcCidr: <p>auto 自动选择防火墙网段<br>10.10.10.0/24 用户输入的防火墙网段</p>
         # @type FwVpcCidr: String
-        # @param CcnId: 云联网id ，适用于云联网模式
+        # @param CcnId: <p>云联网id ，适用于云联网模式</p>
         # @type CcnId: String
-        # @param FwCidrInfo: 指定防火墙使用网段信息
+        # @param FwCidrInfo: <p>指定防火墙使用网段信息</p>
         # @type FwCidrInfo: :class:`Tencentcloud::Cfw.v20190904.models.FwCidrInfo`
-        # @param CrossUserMode: 跨租户管理员模式  1管理员 2多账号
+        # @param CrossUserMode: <p>跨租户管理员模式  1管理员 2多账号</p>
         # @type CrossUserMode: String
 
         attr_accessor :Name, :Mode, :VpcFwInstances, :SwitchMode, :FwVpcCidr, :CcnId, :FwCidrInfo, :CrossUserMode
@@ -2244,7 +2339,7 @@ module TencentCloud
 
       # CreateVpcFwGroup返回参数结构体
       class CreateVpcFwGroupResponse < TencentCloud::Common::AbstractModel
-        # @param FwGroupId: 防火墙组ID
+        # @param FwGroupId: <p>防火墙组ID</p>
         # @type FwGroupId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2542,11 +2637,11 @@ module TencentCloud
 
       # DeleteNatFwDnatRule请求参数结构体
       class DeleteNatFwDnatRuleRequest < TencentCloud::Common::AbstractModel
-        # @param Mode: 0：cfw新增模式，1：cfw接入模式。
+        # @param Mode: <p>0：cfw新增模式，1：cfw接入模式。</p>
         # @type Mode: Integer
-        # @param CfwInstance: 防火墙实例id，该字段必须传递。
+        # @param CfwInstance: <p>防火墙实例id，该字段必须传递。</p>
         # @type CfwInstance: String
-        # @param DnatRules: 添加或删除操作的Dnat规则列表。
+        # @param DnatRules: <p>添加或删除操作的Dnat规则列表。</p>
         # @type DnatRules: Array
 
         attr_accessor :Mode, :CfwInstance, :DnatRules
@@ -2589,7 +2684,7 @@ module TencentCloud
 
       # DeleteNatFwInstance请求参数结构体
       class DeleteNatFwInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param CfwInstance: 防火墙实例id
+        # @param CfwInstance: <p>防火墙实例id</p>
         # @type CfwInstance: String
 
         attr_accessor :CfwInstance
@@ -2741,13 +2836,11 @@ module TencentCloud
 
       # DeleteVpcFwGroup请求参数结构体
       class DeleteVpcFwGroupRequest < TencentCloud::Common::AbstractModel
-        # @param FwGroupId: 防火墙(组)Id
+        # @param FwGroupId: <p>防火墙(组)Id</p>
         # @type FwGroupId: String
-        # @param DeleteFwGroup: 是否删除整个防火墙(组)
-        # 0：不删除防火墙(组)，只删除单独实例
-        # 1：删除整个防火墙(组)
+        # @param DeleteFwGroup: <p>是否删除整个防火墙(组)<br>0：不删除防火墙(组)，只删除单独实例<br>1：删除整个防火墙(组)</p>
         # @type DeleteFwGroup: Integer
-        # @param VpcFwInsList: 待删除的防火墙实例数组
+        # @param VpcFwInsList: <p>待删除的防火墙实例数组</p>
         # @type VpcFwInsList: Array
 
         attr_accessor :FwGroupId, :DeleteFwGroup, :VpcFwInsList
@@ -3298,27 +3391,24 @@ module TencentCloud
 
       # DescribeAssetSync返回参数结构体
       class DescribeAssetSyncResponse < TencentCloud::Common::AbstractModel
-        # @param Status: 返回状态
-        # 1 更新中
-        # 2 更新完成
-        # 3 更新失败
-        # 4 更新失败
+        # @param Status: <p>返回状态<br>1 更新中<br>2 更新完成<br>3 更新失败<br>4 更新失败</p>
         # @type Status: Integer
-        # @param ReturnMsg: success 成功
-        # 其他失败
+        # @param ReturnMsg: <p>success 成功<br>其他失败</p>
         # @type ReturnMsg: String
-        # @param ReturnCode: 0 成功
-        # 非0 失败
+        # @param ReturnCode: <p>0 成功<br>非0 失败</p>
         # @type ReturnCode: Integer
+        # @param CVMCount: <p>已有CVM数量</p>
+        # @type CVMCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Status, :ReturnMsg, :ReturnCode, :RequestId
+        attr_accessor :Status, :ReturnMsg, :ReturnCode, :CVMCount, :RequestId
 
-        def initialize(status=nil, returnmsg=nil, returncode=nil, requestid=nil)
+        def initialize(status=nil, returnmsg=nil, returncode=nil, cvmcount=nil, requestid=nil)
           @Status = status
           @ReturnMsg = returnmsg
           @ReturnCode = returncode
+          @CVMCount = cvmcount
           @RequestId = requestid
         end
 
@@ -3326,6 +3416,7 @@ module TencentCloud
           @Status = params['Status']
           @ReturnMsg = params['ReturnMsg']
           @ReturnCode = params['ReturnCode']
+          @CVMCount = params['CVMCount']
           @RequestId = params['RequestId']
         end
       end
@@ -3633,7 +3724,7 @@ module TencentCloud
 
       # DescribeCcnAssociatedInstances请求参数结构体
       class DescribeCcnAssociatedInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param CcnId: 云联网ID
+        # @param CcnId: <p>云联网ID</p>
         # @type CcnId: String
 
         attr_accessor :CcnId
@@ -3649,9 +3740,9 @@ module TencentCloud
 
       # DescribeCcnAssociatedInstances返回参数结构体
       class DescribeCcnAssociatedInstancesResponse < TencentCloud::Common::AbstractModel
-        # @param Total: 实例总数
+        # @param Total: <p>实例总数</p>
         # @type Total: Integer
-        # @param CcnAssociatedInstances: 云联网关联的实例信息
+        # @param CcnAssociatedInstances: <p>云联网关联的实例信息</p>
         # @type CcnAssociatedInstances: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3680,11 +3771,11 @@ module TencentCloud
 
       # DescribeCcnInstanceRegionStatus请求参数结构体
       class DescribeCcnInstanceRegionStatusRequest < TencentCloud::Common::AbstractModel
-        # @param CcnId: 云联网ID
+        # @param CcnId: <p>云联网ID</p>
         # @type CcnId: String
-        # @param InstanceIds: 要查询引流网络部署状态的云联网关联的实例ID列表
+        # @param InstanceIds: <p>要查询引流网络部署状态的云联网关联的实例ID列表</p>
         # @type InstanceIds: Array
-        # @param RoutingMode: 引流路由方法 0:多路由表, 1:策略路由
+        # @param RoutingMode: <p>引流路由方法 0:多路由表, 1:策略路由</p>
         # @type RoutingMode: Integer
 
         attr_accessor :CcnId, :InstanceIds, :RoutingMode
@@ -3704,9 +3795,9 @@ module TencentCloud
 
       # DescribeCcnInstanceRegionStatus返回参数结构体
       class DescribeCcnInstanceRegionStatusResponse < TencentCloud::Common::AbstractModel
-        # @param Total: 地域总数量
+        # @param Total: <p>地域总数量</p>
         # @type Total: Integer
-        # @param RegionFwStatus: 地域防火墙引流网络状态列表
+        # @param RegionFwStatus: <p>地域防火墙引流网络状态列表</p>
         # @type RegionFwStatus: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3746,11 +3837,11 @@ module TencentCloud
 
       # DescribeCcnVpcFwPolicyLimit返回参数结构体
       class DescribeCcnVpcFwPolicyLimitResponse < TencentCloud::Common::AbstractModel
-        # @param CcnPolicyInterconnectPairLenLimit: 支持的引流策略数量（最外层总条数）
+        # @param CcnPolicyInterconnectPairLenLimit: <p>支持的引流策略数量（最外层总条数）</p>
         # @type CcnPolicyInterconnectPairLenLimit: Integer
-        # @param CcnPolicyGroupLenLimit: 单条引流策略中单组的最大配置数量（内层单组总条数）
+        # @param CcnPolicyGroupLenLimit: <p>单条引流策略中单组的最大配置数量（内层单组总条数）</p>
         # @type CcnPolicyGroupLenLimit: Integer
-        # @param CcnPolicyCidrLenLimit: 接入的实例网段长度（网段数量）限制
+        # @param CcnPolicyCidrLenLimit: <p>接入的实例网段长度（网段数量）限制</p>
         # @type CcnPolicyCidrLenLimit: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3774,7 +3865,7 @@ module TencentCloud
 
       # DescribeCcnVpcFwSwitch请求参数结构体
       class DescribeCcnVpcFwSwitchRequest < TencentCloud::Common::AbstractModel
-        # @param CcnId: 云联网ID
+        # @param CcnId: <p>云联网ID</p>
         # @type CcnId: String
 
         attr_accessor :CcnId
@@ -3790,7 +3881,7 @@ module TencentCloud
 
       # DescribeCcnVpcFwSwitch返回参数结构体
       class DescribeCcnVpcFwSwitchResponse < TencentCloud::Common::AbstractModel
-        # @param InterconnectPairs: 互联对配置
+        # @param InterconnectPairs: <p>互联对配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InterconnectPairs: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -3818,21 +3909,81 @@ module TencentCloud
 
       # DescribeCfwAlerts请求参数结构体
       class DescribeCfwAlertsRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: <p>告警开始时间。可选，格式 YYYY-MM-DD HH:MM:SS；默认查询最近 1 小时。</p>
+        # @type StartTime: String
+        # @param EndTime: <p>告警结束时间。可选，格式 YYYY-MM-DD HH:MM:SS；默认当前时间。</p>
+        # @type EndTime: String
+        # @param Level: <p>告警严重级别过滤。可选；枚举 low、middle、high。</p>
+        # @type Level: String
+        # @param Direction: <p>流量方向过滤。可选；枚举 outbound 出站、inbound 入站、lateral 横向。</p>
+        # @type Direction: String
+        # @param ActionStatus: <p>处置状态过滤。可选；枚举 unhandled、handled、blocked、passed、isolated、ignored。</p>
+        # @type ActionStatus: String
+        # @param KillChain: <p>攻击链阶段过滤。可选；枚举 recon、brute_force、delivery、exploit、c2、lateral_movement、exfiltration。</p>
+        # @type KillChain: String
+        # @param AttackResult: <p>攻击结果过滤。可选；枚举 attempt、success、fail、unknown。</p>
+        # @type AttackResult: String
+        # @param Strategy: <p>IPS 策略动作过滤。可选；枚举 observe、block。</p>
+        # @type Strategy: String
+        # @param EventName: <p>攻击事件名称关键字过滤。可选，例如 SQL注入、暴力破解、恶意域名访问。</p>
+        # @type EventName: String
+        # @param EventId: <p>精确告警事件 ID 过滤。用于指定事件的写操作前检查和写操作后核验；事件重新聚合时返回原请求 ID 和当前事件 ID。无匹配返回空结果，多匹配或定位过程异常时失败，不退化为宽查询。</p>
+        # @type EventId: String
+        # @param SrcIp: <p>源 IP 过滤。可选。</p>
+        # @type SrcIp: String
+        # @param DstIp: <p>目的 IP 过滤。可选。</p>
+        # @type DstIp: String
+        # @param InstanceId: <p>云资源实例 ID 过滤。可选，例如 ins-xxxxxxxx。</p>
+        # @type InstanceId: String
         # @param Limit: <p>单页返回告警数。可选，默认 10，最大 50。</p>
         # @type Limit: Integer
         # @param Offset: <p>分页偏移。可选，默认 0。</p>
         # @type Offset: Integer
+        # @param OrderBy: <p>排序字段。可选，默认 EndTime；枚举 EndTime、StartTime、Count。排序字段。可选，默认 EndTime；枚举 EndTime、StartTime、Count；Count 表示按单个聚合告警事件的告警发生次数/命中次数排序，对应返回中的 occurrence_count</p>
+        # @type OrderBy: String
+        # @param Order: <p>排序方向。可选，默认 desc；枚举 desc、asc。</p>
+        # @type Order: String
 
-        attr_accessor :Limit, :Offset
+        attr_accessor :StartTime, :EndTime, :Level, :Direction, :ActionStatus, :KillChain, :AttackResult, :Strategy, :EventName, :EventId, :SrcIp, :DstIp, :InstanceId, :Limit, :Offset, :OrderBy, :Order
 
-        def initialize(limit=nil, offset=nil)
+        def initialize(starttime=nil, endtime=nil, level=nil, direction=nil, actionstatus=nil, killchain=nil, attackresult=nil, strategy=nil, eventname=nil, eventid=nil, srcip=nil, dstip=nil, instanceid=nil, limit=nil, offset=nil, orderby=nil, order=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @Level = level
+          @Direction = direction
+          @ActionStatus = actionstatus
+          @KillChain = killchain
+          @AttackResult = attackresult
+          @Strategy = strategy
+          @EventName = eventname
+          @EventId = eventid
+          @SrcIp = srcip
+          @DstIp = dstip
+          @InstanceId = instanceid
           @Limit = limit
           @Offset = offset
+          @OrderBy = orderby
+          @Order = order
         end
 
         def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Level = params['Level']
+          @Direction = params['Direction']
+          @ActionStatus = params['ActionStatus']
+          @KillChain = params['KillChain']
+          @AttackResult = params['AttackResult']
+          @Strategy = params['Strategy']
+          @EventName = params['EventName']
+          @EventId = params['EventId']
+          @SrcIp = params['SrcIp']
+          @DstIp = params['DstIp']
+          @InstanceId = params['InstanceId']
           @Limit = params['Limit']
           @Offset = params['Offset']
+          @OrderBy = params['OrderBy']
+          @Order = params['Order']
         end
       end
 
@@ -3858,19 +4009,19 @@ module TencentCloud
 
       # DescribeCfwAnalysisData请求参数结构体
       class DescribeCfwAnalysisDataRequest < TencentCloud::Common::AbstractModel
-        # @param Scenario: <p>分析场景。必填。full_traffic 表示全流量深度分析；east_west 表示东西向流量分析；alert_comprehensive 表示告警综合分析；asset_exposure 表示资产暴露面分析；access_troubleshoot 表示访问阻断排障分析。</p>
+        # @param Scenario: 分析场景。必填。full_traffic 表示全流量深度分析；east_west 表示东西向流量分析；alert_comprehensive 表示告警综合分析；asset_exposure 表示资产暴露面分析；access_troubleshoot 表示访问阻断排障分析。
         # @type Scenario: String
-        # @param StartTime: <p>查询开始时间。可选，格式 YYYY-MM-DD HH:MM:SS；不传时默认查询最近 7 天。</p>
+        # @param StartTime: 查询开始时间。可选，格式 YYYY-MM-DD HH:MM:SS；不传时默认查询最近 7 天。
         # @type StartTime: String
-        # @param EndTime: <p>查询结束时间。可选，格式 YYYY-MM-DD HH:MM:SS；不传时默认当前时间。</p>
+        # @param EndTime: 查询结束时间。可选，格式 YYYY-MM-DD HH:MM:SS；不传时默认当前时间。
         # @type EndTime: String
-        # @param ObjectType: <p>分析对象类型。可选，默认 user；user 表示租户全局，asset 表示单个资产，vpc 表示 VPC，domain 表示域名。</p>
+        # @param ObjectType: 分析对象类型。可选，默认 user；user 表示租户全局，asset 表示资产上下文，vpc 表示 VPC 上下文，domain 表示域名上下文。选择非 user 时建议同时传 ObjectId 以限定具体对象；当前未传 ObjectId 时仍按该对象类型执行宽查询。
         # @type ObjectType: String
-        # @param ObjectId: <p>分析对象标识。ObjectType 为 asset、vpc 或 domain 时按需传入，可填写 IP、实例 ID、VPC ID 或域名。</p>
+        # @param ObjectId: 分析对象标识。ObjectType 为 asset、vpc 或 domain 时可传，用于限定具体 IP、实例 ID、VPC ID 或域名；当前为可选参数，省略时不会按具体对象过滤。
         # @type ObjectId: String
-        # @param Target: <p>排障目标。可选，主要用于 access_troubleshoot 场景，可填写 IP 或域名。</p>
+        # @param Target: 目标 IP 或域名过滤。可选，常用于 access_troubleshoot，也可用于其他 Scenario；传入后优先于 ObjectType/ObjectId，并对该场景全部分析段追加源 IP、目的 IP 或目的域名过滤。
         # @type Target: String
-        # @param SkipSections: <p>需要跳过的分析段名称列表。可选；不传时执行该场景全部分析段。</p>
+        # @param SkipSections: 需要跳过的分析段名称列表。可选；不传或传空数组时执行该场景全部分析段。full_traffic 支持 beacon、dns_large、dns_dga、dns_dga_fine、dns_tunnel、icmp_tunnel、mining、p2p、remote_tool、file_transfer、high_risk_outbound、lateral_baseline、vpc_sensitive、smb_write、outbound_baseline、inbound_high_risk、tls_expired、tls_self_signed、first_seen_ip、first_seen_country、first_seen_port；east_west 支持 vpc_inter_vpc、subnet_inter、service_port、lateral_baseline、vpc_sensitive、smb_write、database_lateral；alert_comprehensive 支持 outbound_baseline、lateral_baseline、beacon、inbound_high_risk、first_seen_ip、first_seen_country、first_seen_port；asset_exposure 支持 inbound_high_risk、tls_expired、tls_self_signed、high_risk_outbound；access_troubleshoot 支持 acl_border_block、acl_nat_block、acl_vpc_block、ips_block。传入当前 Scenario 不支持的名称会返回 InvalidParameter。
         # @type SkipSections: Array
 
         attr_accessor :Scenario, :StartTime, :EndTime, :ObjectType, :ObjectId, :Target, :SkipSections
@@ -3898,7 +4049,7 @@ module TencentCloud
 
       # DescribeCfwAnalysisData返回参数结构体
       class DescribeCfwAnalysisDataResponse < TencentCloud::Common::AbstractModel
-        # @param Data: <p>查询结果。UTF-8 JSON object 字符串；调用方需解析 Response.Data。</p>
+        # @param Data: 查询结果。Response.Data 是 UTF-8 JSON object 字符串，调用方需要二次 JSON 解析。status 取值为 success、partial 或 error。section 查询失败时，error 只返回固定安全摘要，不包含底层服务内部信息。示例仅展示一个代表性 section；实际返回包含当前场景全部未跳过的 section；summary 包含 total_findings、high_risk_count 和 data_coverage，metadata 包含 scenario、time_range、object 和 query_stats，query_stats 包含 total_queries、successful 和 failed。
         # @type Data: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3918,23 +4069,51 @@ module TencentCloud
 
       # DescribeCfwAssets请求参数结构体
       class DescribeCfwAssetsRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 最大返回资产数。可选，默认 100；取值 1 至 1000。
+        # @param AssetType: <p>资产类型。可选，默认 host；枚举 host 主机资产、vpc VPC 网络、subnet 子网。</p>
+        # @type AssetType: String
+        # @param Ip: <p>IP 地址过滤。可选，支持部分匹配；适用于 host。</p>
+        # @type Ip: String
+        # @param InstanceId: <p>实例 ID 过滤。可选，适用于 host。</p>
+        # @type InstanceId: String
+        # @param VpcId: <p>VPC ID 过滤。可选，适用于 host、vpc、subnet。</p>
+        # @type VpcId: String
+        # @param SubnetId: <p>子网 ID 过滤。可选，适用于 host、subnet。</p>
+        # @type SubnetId: String
+        # @param InstanceType: <p>实例类型过滤。可选，适用于 host；常见值包括 CVM、CLB、ENI、POD、MYSQL、REDIS、MARIADB、NAT、VPN、HAVIP、NATFW、GAAP、DC。</p>
+        # @type InstanceType: String
+        # @param Limit: <p>最大返回资产数。可选，默认 100，最大 1000。</p>
         # @type Limit: Integer
+        # @param NextToken: <p>上一页 Response.Data 返回的不透明资产或指纹续查 token。首次查询不传；续查时只传 NextToken，不能同时传 AssetType、过滤条件或 Limit。调用方无需区分 token 类型；无效、篡改或租户不匹配会被拒绝。</p>
+        # @type NextToken: String
 
-        attr_accessor :Limit
+        attr_accessor :AssetType, :Ip, :InstanceId, :VpcId, :SubnetId, :InstanceType, :Limit, :NextToken
 
-        def initialize(limit=nil)
+        def initialize(assettype=nil, ip=nil, instanceid=nil, vpcid=nil, subnetid=nil, instancetype=nil, limit=nil, nexttoken=nil)
+          @AssetType = assettype
+          @Ip = ip
+          @InstanceId = instanceid
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @InstanceType = instancetype
           @Limit = limit
+          @NextToken = nexttoken
         end
 
         def deserialize(params)
+          @AssetType = params['AssetType']
+          @Ip = params['Ip']
+          @InstanceId = params['InstanceId']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @InstanceType = params['InstanceType']
           @Limit = params['Limit']
+          @NextToken = params['NextToken']
         end
       end
 
       # DescribeCfwAssets返回参数结构体
       class DescribeCfwAssetsResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 查询结果。UTF-8 JSON object 字符串；调用方需解析 Response.Data。
+        # @param Data: <p>查询结果。UTF-8 JSON object 字符串；调用方需解析 Response.Data。</p>
         # @type Data: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3954,11 +4133,11 @@ module TencentCloud
 
       # DescribeCfwEips请求参数结构体
       class DescribeCfwEipsRequest < TencentCloud::Common::AbstractModel
-        # @param Mode: 1：cfw接入模式，目前仅支持接入模式实例
+        # @param Mode: <p>1：cfw接入模式，目前仅支持接入模式实例</p>
         # @type Mode: Integer
-        # @param NatGatewayId: ALL：查询所有弹性公网ip; nat-xxxxx：接入模式场景指定网关的弹性公网ip
+        # @param NatGatewayId: <p>ALL：查询所有弹性公网ip; nat-xxxxx：接入模式场景指定网关的弹性公网ip</p>
         # @type NatGatewayId: String
-        # @param CfwInstance: 防火墙实例id，当前仅支持接入模式的实例，该字段必填
+        # @param CfwInstance: <p>防火墙实例id，当前仅支持接入模式的实例，该字段必填</p>
         # @type CfwInstance: String
 
         attr_accessor :Mode, :NatGatewayId, :CfwInstance
@@ -3978,7 +4157,7 @@ module TencentCloud
 
       # DescribeCfwEips返回参数结构体
       class DescribeCfwEipsResponse < TencentCloud::Common::AbstractModel
-        # @param NatFwEipList: 返回值信息
+        # @param NatFwEipList: <p>返回值信息</p>
         # @type NatFwEipList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4016,10 +4195,10 @@ module TencentCloud
 
       # DescribeCfwInsStatus返回参数结构体
       class DescribeCfwInsStatusResponse < TencentCloud::Common::AbstractModel
-        # @param CfwInsStatus: 防火墙实例运行状态
+        # @param CfwInsStatus: <p>防火墙实例运行状态</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CfwInsStatus: Array
-        # @param TotalCount: 0
+        # @param TotalCount: <p>0</p>
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4048,17 +4227,17 @@ module TencentCloud
 
       # DescribeCfwLogs请求参数结构体
       class DescribeCfwLogsRequest < TencentCloud::Common::AbstractModel
-        # @param LogType: <p>日志类型。首次查询必填；使用 NextToken 续查时不能传。枚举值包括 cfw_netflow_border、cfw_netflow_vpc、cfw_netflow_nat、cfw_netflow_nta、cfw_netflow_dns、cfw_rule_threatinfo、cfw_rule_acl、cfw_rule_vpc_acl、cfw_rule_nat_acl、cfw_ndr_subject_risk、cfw_ndr_dataleak_entry、cfw_ndr_ai_audit、cfw_feature_collect、cfw_behavior_collect、operate_log_all。</p>
+        # @param LogType: 日志类型。首次查询必填；使用 NextToken 续查时不能传。cfw_netflow_border=互联网边界流量，cfw_netflow_vpc=VPC 东西向流量，cfw_netflow_nat=NAT 防火墙流量，cfw_netflow_nta=NDR/NTA 流量，cfw_netflow_dns=DNS 防火墙日志，cfw_rule_threatinfo=入侵防御/威胁情报告警，cfw_rule_acl=互联网边界访问控制日志，cfw_rule_vpc_acl=VPC 访问控制日志，cfw_rule_nat_acl=NAT 访问控制日志，cfw_ndr_subject_risk=NDR 专题风险，cfw_ndr_dataleak_entry=NDR 敏感数据泄露，cfw_ndr_ai_audit=NDR AI 应用识别与大模型调用审计，cfw_feature_collect=统计特征与基线异常，cfw_behavior_collect=Beacon/DNS/端口/证书/VPC 互访行为，operate_log_all=操作审计日志。
         # @type LogType: String
-        # @param Query: <p>CLS CQL 查询语句。默认 *；使用 NextToken 续查时不能传。</p>
+        # @param Query: 日志过滤表达式。默认 * 表示不过滤；例如 src_ip:1.1.1.1。可查询字段随 LogType 变化，应优先使用对应 Items 中已返回的字段名，不要猜测不存在的字段；使用 NextToken 续查时不能传。
         # @type Query: String
-        # @param StartTime: <p>查询起始时间。支持 RFC3339、YYYY-MM-DD HH:MM:SS、YYYY-MM-DD 或 Unix 时间戳；传入后从该时间向后查询 TimeRange；使用 NextToken 续查时不能传。</p>
+        # @param StartTime: 查询起始时间。支持 RFC3339、YYYY-MM-DD HH:MM:SS、YYYY-MM-DD 或 Unix 时间戳；传入后从该时间向后查询 TimeRange；使用 NextToken 续查时不能传。
         # @type StartTime: String
-        # @param TimeRange: <p>查询时间范围。默认 1h；格式为正整数加单位 m/h/d，例如 5m、1h、24h、7d；使用 NextToken 续查时不能传。</p>
+        # @param TimeRange: 查询时间范围。默认 1h；格式为正整数加单位 m/h/d，例如 5m、1h、24h、7d；使用 NextToken 续查时不能传。
         # @type TimeRange: String
-        # @param Limit: <p>单页返回条数。默认 100，最大 1000；使用 NextToken 续查时不能传。</p>
+        # @param Limit: 单页返回条数。首次查询可选，默认 100；取值 1 至 1000；使用 NextToken 续查时不能传。
         # @type Limit: Integer
-        # @param NextToken: <p>上一页 Response.Data 返回的不透明续查 token。首次查询不传；续查时只传 NextToken。无效、篡改、过期或租户不匹配会被拒绝。</p>
+        # @param NextToken: 上一页 Response.Data 返回的不透明续查 token。首次查询不传；续查时只传 NextToken。无效、篡改或租户不匹配会被拒绝。
         # @type NextToken: String
 
         attr_accessor :LogType, :Query, :StartTime, :TimeRange, :Limit, :NextToken
@@ -4084,7 +4263,7 @@ module TencentCloud
 
       # DescribeCfwLogs返回参数结构体
       class DescribeCfwLogsResponse < TencentCloud::Common::AbstractModel
-        # @param Data: <p>查询结果。UTF-8 JSON object 字符串；调用方需解析 Response.Data。</p>
+        # @param Data: 查询结果。UTF-8 JSON object 字符串；调用方需解析 Response.Data。Items 是当前页日志数组，字段随 LogType 变化；TotalCount 是当前页返回条数，Limit 是页大小，LogType 和 TimeWindow 回显查询范围。HasMore=true 时必须保存并原样使用 NextToken 续查；HasMore=false 时分页结束。
         # @type Data: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4104,18 +4283,27 @@ module TencentCloud
 
       # DescribeCfwRiskOverview请求参数结构体
       class DescribeCfwRiskOverviewRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: <p>自定义开始时间。可选，格式 YYYY-MM-DD HH:MM:SS；必须和 EndTime 同时传。</p>
+        # @type StartTime: String
+        # @param EndTime: <p>自定义结束时间。可选，格式 YYYY-MM-DD HH:MM:SS；必须和 StartTime 同时传。</p>
+        # @type EndTime: String
 
+        attr_accessor :StartTime, :EndTime
 
-        def initialize()
+        def initialize(starttime=nil, endtime=nil)
+          @StartTime = starttime
+          @EndTime = endtime
         end
 
         def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
         end
       end
 
       # DescribeCfwRiskOverview返回参数结构体
       class DescribeCfwRiskOverviewResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 查询结果。UTF-8 JSON object 字符串；调用方需解析 Response.Data。
+        # @param Data: <p>查询结果。UTF-8 JSON object 字符串；调用方需解析 Response.Data。</p>
         # @type Data: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4135,22 +4323,30 @@ module TencentCloud
 
       # DescribeCfwRuleOptimization请求参数结构体
       class DescribeCfwRuleOptimizationRequest < TencentCloud::Common::AbstractModel
-        # @param IdleDays: 长期零命中规则阈值天数。可选，必须为正整数，默认 180。
+        # @param RuleType: <p>防火墙规则类型。必填。枚举：border 互联网边界；nat NAT 边界；vpc VPC 间；enterprise_sg 企业安全组。</p>
+        # @type RuleType: String
+        # @param Dimensions: <p>要执行的优化维度白名单。可选，例如 D1、D2、D8；不传默认执行全部支持维度。</p>
+        # @type Dimensions: Array
+        # @param IdleDays: <p>长期零命中规则阈值天数。可选，默认 180。</p>
         # @type IdleDays: Integer
-        # @param IpAggMin: 单 IP 离散过多聚合建议的最小数量。可选，最小为 2，默认 10。
+        # @param IpAggMin: <p>单 IP 离散过多聚合建议的最小数量。可选，默认 10。</p>
         # @type IpAggMin: Integer
-        # @param IocSample: 可迁移 IOC 建议中返回的样例 IOC 数量上限。可选，必须为正整数，默认 50。
+        # @param IocSample: <p>可迁移 IOC 建议中返回的样例 IOC 数量上限。可选，默认 50。</p>
         # @type IocSample: Integer
 
-        attr_accessor :IdleDays, :IpAggMin, :IocSample
+        attr_accessor :RuleType, :Dimensions, :IdleDays, :IpAggMin, :IocSample
 
-        def initialize(idledays=nil, ipaggmin=nil, iocsample=nil)
+        def initialize(ruletype=nil, dimensions=nil, idledays=nil, ipaggmin=nil, iocsample=nil)
+          @RuleType = ruletype
+          @Dimensions = dimensions
           @IdleDays = idledays
           @IpAggMin = ipaggmin
           @IocSample = iocsample
         end
 
         def deserialize(params)
+          @RuleType = params['RuleType']
+          @Dimensions = params['Dimensions']
           @IdleDays = params['IdleDays']
           @IpAggMin = params['IpAggMin']
           @IocSample = params['IocSample']
@@ -4159,7 +4355,7 @@ module TencentCloud
 
       # DescribeCfwRuleOptimization返回参数结构体
       class DescribeCfwRuleOptimizationResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 查询结果。UTF-8 JSON object 字符串；调用方需解析 Response.Data。示例仅展示代表性字段；完整结果还包含 rule_type_name、rule_total、rule_active、rule_skipped_geo_or_cloud、dimension_skipped、thresholds 和 generated_at，finding 还包含 risk_level、affected_rule_uuids、affected_rule_seqs、recommendation_action、reason 和 evidence。结果过大时返回摘要，不返回 findings，并增加 truncated 和 truncated_reason。
+        # @param Data: <p>查询结果。UTF-8 JSON object 字符串；调用方需解析 Response.Data。</p>
         # @type Data: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4187,21 +4383,51 @@ module TencentCloud
         # @type Direction: Integer
         # @param RuleAction: <p>规则动作过滤。可选。0 表示观察，1 表示阻断，2 表示放行；不传则不过滤。</p>
         # @type RuleAction: Integer
+        # @param Enabled: <p>启用状态过滤。可选。默认只返回启用规则；传 false 只查询禁用规则。</p>
+        # @type Enabled: Boolean
+        # @param IncludeDisabled: <p>是否同时包含启用和禁用规则。可选。true 表示包含两类；不能和 Enabled 同时使用。</p>
+        # @type IncludeDisabled: Boolean
         # @param RuleId: <p>精确规则 ID 过滤。可选。用于按数值规则标识定位单条规则。</p>
         # @type RuleId: Integer
+        # @param RuleUuid: <p>精确公开规则标识过滤。可选。推荐在用户提供规则标识时使用。</p>
+        # @type RuleUuid: String
+        # @param Protocol: <p>协议过滤。可选。例如 TCP、UDP、ICMP、HTTP、HTTPS、ANY；不传则不过滤。</p>
+        # @type Protocol: String
+        # @param SrcIp: <p>源地址或源内容关键字过滤。可选，支持模糊匹配。</p>
+        # @type SrcIp: String
+        # @param DstIp: <p>目的地址、目的域名或目的内容关键字过滤。可选，支持模糊匹配。</p>
+        # @type DstIp: String
+        # @param Description: <p>规则描述关键字过滤。可选。</p>
+        # @type Description: String
+        # @param Keyword: <p>入侵防御列表关键字搜索。可选，最大 100 字符。blocklist 搜索 ioc/address/comment/rule_source；whitelist 搜索 rule_name/ioc/comment/src_ip/dst_ip；isolate 搜索实例、公网 IP、内网 IP、VPC、地域。</p>
+        # @type Keyword: String
+        # @param InstanceId: <p>精确实例 ID 过滤。仅 RuleType=intrusion_prevention 且 ListType=isolate 时使用；写操作前后核验应使用该参数而不是 Keyword。</p>
+        # @type InstanceId: String
+        # @param ExpandNames: <p>是否展开模板、资产组、实例等名称。可选，默认 true；传 false 返回原始标识。</p>
+        # @type ExpandNames: Boolean
         # @param Limit: <p>单页返回规则数。可选，默认 100，最大 1000。</p>
         # @type Limit: Integer
         # @param Offset: <p>分页偏移。可选，默认 0。</p>
         # @type Offset: Integer
 
-        attr_accessor :RuleType, :ListType, :Direction, :RuleAction, :RuleId, :Limit, :Offset
+        attr_accessor :RuleType, :ListType, :Direction, :RuleAction, :Enabled, :IncludeDisabled, :RuleId, :RuleUuid, :Protocol, :SrcIp, :DstIp, :Description, :Keyword, :InstanceId, :ExpandNames, :Limit, :Offset
 
-        def initialize(ruletype=nil, listtype=nil, direction=nil, ruleaction=nil, ruleid=nil, limit=nil, offset=nil)
+        def initialize(ruletype=nil, listtype=nil, direction=nil, ruleaction=nil, enabled=nil, includedisabled=nil, ruleid=nil, ruleuuid=nil, protocol=nil, srcip=nil, dstip=nil, description=nil, keyword=nil, instanceid=nil, expandnames=nil, limit=nil, offset=nil)
           @RuleType = ruletype
           @ListType = listtype
           @Direction = direction
           @RuleAction = ruleaction
+          @Enabled = enabled
+          @IncludeDisabled = includedisabled
           @RuleId = ruleid
+          @RuleUuid = ruleuuid
+          @Protocol = protocol
+          @SrcIp = srcip
+          @DstIp = dstip
+          @Description = description
+          @Keyword = keyword
+          @InstanceId = instanceid
+          @ExpandNames = expandnames
           @Limit = limit
           @Offset = offset
         end
@@ -4211,7 +4437,17 @@ module TencentCloud
           @ListType = params['ListType']
           @Direction = params['Direction']
           @RuleAction = params['RuleAction']
+          @Enabled = params['Enabled']
+          @IncludeDisabled = params['IncludeDisabled']
           @RuleId = params['RuleId']
+          @RuleUuid = params['RuleUuid']
+          @Protocol = params['Protocol']
+          @SrcIp = params['SrcIp']
+          @DstIp = params['DstIp']
+          @Description = params['Description']
+          @Keyword = params['Keyword']
+          @InstanceId = params['InstanceId']
+          @ExpandNames = params['ExpandNames']
           @Limit = params['Limit']
           @Offset = params['Offset']
         end
@@ -4239,41 +4475,41 @@ module TencentCloud
 
       # DescribeCfwStatusMonitor请求参数结构体
       class DescribeCfwStatusMonitorRequest < TencentCloud::Common::AbstractModel
-        # @param Op: <p>操作类型。describe_scene 表示发现场景和二级下拉选项；fetch_scene 表示获取具体场景快照。必填。</p>
+        # @param Op: 操作类型。describe_scene 表示发现场景和二级下拉选项；fetch_scene 表示获取具体场景快照。必填。
         # @type Op: String
-        # @param FirewallType: <p>防火墙场景类型。支持 internet_edge（互联网边界防火墙）、nat_cluster（NAT边界防火墙-集群）、nat_ha（NAT边界防火墙-主备）、vpc_cluster（VPC边界防火墙-集群）、vpc_ha（VPC边界防火墙-主备）。必填。</p>
+        # @param FirewallType: 防火墙场景类型。支持 internet_edge（互联网边界防火墙）、nat_cluster（NAT边界防火墙-集群）、nat_ha（NAT边界防火墙-主备）、vpc_cluster（VPC边界防火墙-集群）、vpc_ha（VPC边界防火墙-主备）。必填。
         # @type FirewallType: String
-        # @param SelectionId: <p>二级下拉选项 ID。fetch_scene 按需传入；internet_edge 为地域，NAT 为实例 ID，VPC 带宽场景为防火墙组 ID；vpc_cluster 的 connections 汇总场景会忽略该参数。</p>
+        # @param SelectionId: 二级下拉选项 ID。fetch_scene 按需传入，值来自 describe_scene 返回的 selection.available_options[].id；internet_edge 为地域，NAT 为实例 ID，VPC 带宽场景为防火墙组 ID；vpc_cluster 的 connections 汇总场景会忽略该参数。
         # @type SelectionId: String
-        # @param SelectionName: <p>二级下拉显示名称。可替代 SelectionId 按名称匹配。</p>
+        # @param SelectionName: 二级下拉显示名称。可替代 SelectionId 按名称匹配，值来自 describe_scene 返回的 selection.available_options[].name。
         # @type SelectionName: String
-        # @param SelectionInstanceId: <p>引擎实例 ID。主要用于 vpc_ha 下一个防火墙组对应多个实例的场景。</p>
+        # @param SelectionInstanceId: 引擎实例 ID。主要用于 vpc_ha 下一个防火墙组对应多个实例的场景，优先使用 describe_scene 返回的 selection.available_options[].instance_id；如只有 instance_ids，则从数组中选择一个字符串值。
         # @type SelectionInstanceId: String
-        # @param Metric: <p>指标页签。fetch_scene 可传；不传时使用该场景默认值。支持 bandwidth、connections。</p>
+        # @param Metric: 指标页签。fetch_scene 可传；不传时使用该场景默认值。支持 bandwidth、connections。
         # @type Metric: String
-        # @param Perspective: <p>指标下的视角。fetch_scene 可传；不传时使用该场景默认值。支持 ip、subnet、session、switch、vpc，实际可用组合以 describe_scene 返回为准。</p>
+        # @param Perspective: 指标下的视角。fetch_scene 可传；不传时使用该场景默认值。支持 ip、subnet、session、switch、vpc，实际可用组合以 describe_scene 返回为准。
         # @type Perspective: String
-        # @param IpScope: <p>NAT 主备连接数 IP 视角范围。external 表示外部 IP，asset 表示资产 IP；仅 nat_ha + connections + ip 使用。</p>
+        # @param IpScope: NAT 主备连接数 IP 视角范围。external 表示外部 IP，asset 表示资产 IP；仅 nat_ha + connections + ip 使用，其他组合传入将返回 InvalidParameter。
         # @type IpScope: String
-        # @param TimePreset: <p>预设时间范围。默认 24h；fetch_scene 使用。支持 5m、15m、30m、1h、6h、24h、3d、7d、30d、today、yesterday、day_before_yesterday、this_week、last_week、this_month。</p>
+        # @param TimePreset: 预设时间范围。默认 24h；fetch_scene 使用。支持 5m、15m、30m、1h、6h、24h、3d、7d、30d、today、yesterday、day_before_yesterday、this_week、last_week、this_month。
         # @type TimePreset: String
-        # @param StartTime: <p>自定义开始时间。格式 YYYY-MM-DD HH:MM:SS；必须与 EndTime 同时传，最大跨度 30 天。</p>
+        # @param StartTime: 自定义开始时间。格式 YYYY-MM-DD HH:MM:SS；必须与 EndTime 同时传，最大跨度 30 天。
         # @type StartTime: String
-        # @param EndTime: <p>自定义结束时间。格式 YYYY-MM-DD HH:MM:SS；必须与 StartTime 同时传，最大跨度 30 天。</p>
+        # @param EndTime: 自定义结束时间。格式 YYYY-MM-DD HH:MM:SS；必须与 StartTime 同时传，最大跨度 30 天。
         # @type EndTime: String
-        # @param Page: <p>页码，从 1 开始。默认 1；fetch_scene 列表视角使用。</p>
+        # @param Page: 页码，从 1 开始。默认 1；fetch_scene 列表视角使用。
         # @type Page: Integer
-        # @param Limit: <p>每页条数。默认 10，最大 100；fetch_scene 列表视角使用。</p>
+        # @param Limit: 每页条数。默认 10，取值 1 至 100；fetch_scene 列表视角使用。
         # @type Limit: Integer
-        # @param OverviewOnly: <p>是否只获取概览数据。true 时 fetch_scene 只请求 overview，跳过 table/detail，适合只看场景快照汇总。</p>
+        # @param OverviewOnly: 是否只获取概览数据。true 时 fetch_scene 只请求 overview，跳过 table/detail，适合只看场景快照汇总。
         # @type OverviewOnly: Boolean
-        # @param Offset: <p>原始偏移量覆盖。可选，传入后覆盖 Page 计算结果；必须大于等于 0 且不超过安全上限。</p>
+        # @param Offset: 原始偏移量覆盖。可选，传入后覆盖 Page 计算结果；取值 0 至 10000。
         # @type Offset: Integer
-        # @param SortBy: <p>排序字段。可选，只接受当前场景后端允许的安全字段。</p>
+        # @param SortBy: 排序字段。可选。互联网边界 IP、NAT IP/子网视角支持 InputMax、OutputMax；VPC switch 视角支持 SwitchName；VPC ip/vpc 视角支持 FlowMax；其他组合不要传。
         # @type SortBy: String
-        # @param SortOrder: <p>排序方向。默认 desc；支持 asc、desc。</p>
+        # @param SortOrder: 排序方向。默认 desc；支持 asc、desc。
         # @type SortOrder: String
-        # @param Filters: <p>过滤条件列表。可选，最多 5 个；是否支持以及字段名以具体 fetch_scene 场景为准。</p>
+        # @param Filters: 过滤条件列表。保留字段；当前公开 fetch_scene 场景均不支持，调用方不要传。
         # @type Filters: Array
 
         attr_accessor :Op, :FirewallType, :SelectionId, :SelectionName, :SelectionInstanceId, :Metric, :Perspective, :IpScope, :TimePreset, :StartTime, :EndTime, :Page, :Limit, :OverviewOnly, :Offset, :SortBy, :SortOrder, :Filters
@@ -4330,7 +4566,7 @@ module TencentCloud
 
       # DescribeCfwStatusMonitor返回参数结构体
       class DescribeCfwStatusMonitorResponse < TencentCloud::Common::AbstractModel
-        # @param Data: <p>查询结果。UTF-8 JSON object 字符串；调用方需解析 Response.Data。describe_scene 返回 scene 与 selection.available_options；fetch_scene 返回选中场景的 data 快照。</p>
+        # @param Data: 查询结果。UTF-8 JSON object 字符串；调用方需解析 Response.Data。describe_scene 的 scene 返回 metric_options、perspective_options、default_metric、default_perspective、selection_required_by_metric、selection_kind_by_metric 和 time_preset_options；selection.available_options 返回可用于 SelectionId/SelectionName/SelectionInstanceId 的选项。fetch_scene 返回选中场景的 data 快照，可能包含 overview、table 或 detail。下方示例是字段结构节选，数组仅展示代表值。
         # @type Data: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4361,7 +4597,7 @@ module TencentCloud
 
       # DescribeCfwSwitches返回参数结构体
       class DescribeCfwSwitchesResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 查询结果。UTF-8 JSON object 字符串；调用方需解析 Response.Data。
+        # @param Data: 查询结果。UTF-8 JSON object 字符串；调用方需解析 Response.Data。border_firewall 返回公网 IP 总数、已防护数、未防护数、操作中数量和防护率；nat_firewall、vpc_firewall 按 cluster/ha 返回实例及子开关汇总；ndr 返回已开启开关数；ips 返回当前防护模式。
         # @type Data: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4458,21 +4694,21 @@ module TencentCloud
 
       # DescribeClusterVpcFwSwitchs请求参数结构体
       class DescribeClusterVpcFwSwitchsRequest < TencentCloud::Common::AbstractModel
-        # @param Index: 需要查询的索引，特定场景使用，可不填
+        # @param Index: <p>需要查询的索引，特定场景使用，可不填</p>
         # @type Index: String
-        # @param Filters: 过滤条件组合
+        # @param Filters: <p>过滤条件组合</p>
         # @type Filters: Array
-        # @param Limit: 每页条数
+        # @param Limit: <p>每页条数</p>
         # @type Limit: Integer
-        # @param Offset: 偏移值
+        # @param Offset: <p>偏移值</p>
         # @type Offset: Integer
-        # @param StartTime: 检索的起始时间，可不传
+        # @param StartTime: <p>检索的起始时间，可不传</p>
         # @type StartTime: String
-        # @param EndTime: 检索的截止时间，可不传
+        # @param EndTime: <p>检索的截止时间，可不传</p>
         # @type EndTime: String
-        # @param Order: desc：降序；asc：升序。根据By字段的值进行排序，这里传参的话则By也必须有值
+        # @param Order: <p>desc：降序；asc：升序。根据By字段的值进行排序，这里传参的话则By也必须有值</p>
         # @type Order: String
-        # @param By: 排序所用到的字段
+        # @param By: <p>排序所用到的字段</p>
         # @type By: String
 
         attr_accessor :Index, :Filters, :Limit, :Offset, :StartTime, :EndTime, :Order, :By
@@ -4509,12 +4745,12 @@ module TencentCloud
 
       # DescribeClusterVpcFwSwitchs返回参数结构体
       class DescribeClusterVpcFwSwitchsResponse < TencentCloud::Common::AbstractModel
-        # @param Total: 总条数
+        # @param Total: <p>总条数</p>
         # @type Total: Integer
-        # @param Data: 防火墙开关列表
+        # @param Data: <p>防火墙开关列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
-        # @param FailData: 开关开启失败列表
+        # @param FailData: <p>开关开启失败列表</p>
         # @type FailData: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4563,19 +4799,19 @@ module TencentCloud
 
       # DescribeDefenseSwitch返回参数结构体
       class DescribeDefenseSwitchResponse < TencentCloud::Common::AbstractModel
-        # @param BasicRuleSwitch: 基础防御开关
+        # @param BasicRuleSwitch: <p>基础防御开关</p>
         # @type BasicRuleSwitch: Integer
-        # @param BaselineAllSwitch: 安全基线开关
+        # @param BaselineAllSwitch: <p>安全基线开关</p>
         # @type BaselineAllSwitch: Integer
-        # @param TiSwitch: 威胁情报开关
+        # @param TiSwitch: <p>威胁情报开关</p>
         # @type TiSwitch: Integer
-        # @param VirtualPatchSwitch: 虚拟补丁开关
+        # @param VirtualPatchSwitch: <p>虚拟补丁开关</p>
         # @type VirtualPatchSwitch: Integer
-        # @param HistoryOpen: 是否历史开启
+        # @param HistoryOpen: <p>是否历史开启</p>
         # @type HistoryOpen: Integer
-        # @param ReturnCode: 状态值，0：查询成功，非0：查询失败
+        # @param ReturnCode: <p>状态值，0：查询成功，非0：查询失败</p>
         # @type ReturnCode: Integer
-        # @param ReturnMsg: 状态信息，success：查询成功，fail：查询失败
+        # @param ReturnMsg: <p>状态信息，success：查询成功，fail：查询失败</p>
         # @type ReturnMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4920,19 +5156,19 @@ module TencentCloud
 
       # DescribeFwEdgeIps请求参数结构体
       class DescribeFwEdgeIpsRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: 过滤条件组合
+        # @param Filters: <p>过滤条件组合</p>
         # @type Filters: Array
-        # @param Limit: 每页条数
+        # @param Limit: <p>每页条数</p>
         # @type Limit: Integer
-        # @param Offset: 偏移值
+        # @param Offset: <p>偏移值</p>
         # @type Offset: Integer
-        # @param StartTime: 检索的起始时间，可不传
+        # @param StartTime: <p>检索的起始时间，可不传</p>
         # @type StartTime: String
-        # @param EndTime: 检索的截止时间，可不传
+        # @param EndTime: <p>检索的截止时间，可不传</p>
         # @type EndTime: String
-        # @param Order: desc：降序；asc：升序。根据By字段的值进行排序，这里传参的话则By也必须有值
+        # @param Order: <p>desc：降序；asc：升序。根据By字段的值进行排序，这里传参的话则By也必须有值</p>
         # @type Order: String
-        # @param By: 排序所用到的字段
+        # @param By: <p>排序所用到的字段</p>
         # @type By: String
 
         attr_accessor :Filters, :Limit, :Offset, :StartTime, :EndTime, :Order, :By
@@ -4967,15 +5203,15 @@ module TencentCloud
 
       # DescribeFwEdgeIps返回参数结构体
       class DescribeFwEdgeIpsResponse < TencentCloud::Common::AbstractModel
-        # @param Data: ip 开关列表
+        # @param Data: <p>ip 开关列表</p>
         # @type Data: Array
-        # @param Total: ip 开关列表个数
+        # @param Total: <p>ip 开关列表个数</p>
         # @type Total: Integer
-        # @param RegionLst: 地域列表
+        # @param RegionLst: <p>地域列表</p>
         # @type RegionLst: Array
-        # @param InstanceTypeLst: 实例类型列表
+        # @param InstanceTypeLst: <p>实例类型列表</p>
         # @type InstanceTypeLst: Array
-        # @param SerilCount: 串行模式开关个数
+        # @param SerilCount: <p>串行模式开关个数</p>
         # @type SerilCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5088,7 +5324,7 @@ module TencentCloud
 
       # DescribeFwSyncStatus请求参数结构体
       class DescribeFwSyncStatusRequest < TencentCloud::Common::AbstractModel
-        # @param SyncType: 查询的同步状态类型：Route,同步路由状态
+        # @param SyncType: <p>查询的同步状态类型：Route,同步路由状态</p>
         # @type SyncType: String
 
         attr_accessor :SyncType
@@ -5104,7 +5340,7 @@ module TencentCloud
 
       # DescribeFwSyncStatus返回参数结构体
       class DescribeFwSyncStatusResponse < TencentCloud::Common::AbstractModel
-        # @param SyncStatus: 同步状态：1，同步中；0，同步完成
+        # @param SyncStatus: <p>同步状态：1，同步中；0，同步完成</p>
         # @type SyncStatus: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5135,7 +5371,7 @@ module TencentCloud
 
       # DescribeGuideScanInfo返回参数结构体
       class DescribeGuideScanInfoResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 扫描信息
+        # @param Data: <p>扫描信息</p>
         # @type Data: :class:`Tencentcloud::Cfw.v20190904.models.ScanInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5876,21 +6112,21 @@ module TencentCloud
 
       # DescribeNatFwDnatRule请求参数结构体
       class DescribeNatFwDnatRuleRequest < TencentCloud::Common::AbstractModel
-        # @param Index: 需要查询的索引，特定场景使用，可不填
+        # @param Index: <p>需要查询的索引，特定场景使用，可不填</p>
         # @type Index: String
-        # @param Filters: 过滤条件组合
+        # @param Filters: <p>过滤条件组合</p>
         # @type Filters: Array
-        # @param Limit: 每页条数
+        # @param Limit: <p>每页条数</p>
         # @type Limit: Integer
-        # @param Offset: 偏移值
+        # @param Offset: <p>偏移值</p>
         # @type Offset: Integer
-        # @param StartTime: 检索的起始时间，可不传
+        # @param StartTime: <p>检索的起始时间，可不传</p>
         # @type StartTime: String
-        # @param EndTime: 检索的截止时间，可不传
+        # @param EndTime: <p>检索的截止时间，可不传</p>
         # @type EndTime: String
-        # @param Order: desc：降序；asc：升序。根据By字段的值进行排序，这里传参的话则By也必须有值，可不传
+        # @param Order: <p>desc：降序；asc：升序。根据By字段的值进行排序，这里传参的话则By也必须有值，可不传</p>
         # @type Order: String
-        # @param By: 排序所用到的字段，可不传
+        # @param By: <p>排序所用到的字段，可不传</p>
         # @type By: String
 
         attr_accessor :Index, :Filters, :Limit, :Offset, :StartTime, :EndTime, :Order, :By
@@ -5927,9 +6163,9 @@ module TencentCloud
 
       # DescribeNatFwDnatRule返回参数结构体
       class DescribeNatFwDnatRuleResponse < TencentCloud::Common::AbstractModel
-        # @param Data: Dnat规则列表
+        # @param Data: <p>Dnat规则列表</p>
         # @type Data: Array
-        # @param Total: 列表总数
+        # @param Total: <p>列表总数</p>
         # @type Total: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5969,13 +6205,13 @@ module TencentCloud
 
       # DescribeNatFwInfoCount返回参数结构体
       class DescribeNatFwInfoCountResponse < TencentCloud::Common::AbstractModel
-        # @param ReturnMsg: 返回参数 success 成功 failed 失败
+        # @param ReturnMsg: <p>返回参数 success 成功 failed 失败</p>
         # @type ReturnMsg: String
-        # @param NatFwInsCount: 当前租户的nat防火墙实例个数
+        # @param NatFwInsCount: <p>当前租户的nat防火墙实例个数</p>
         # @type NatFwInsCount: Integer
-        # @param SubnetCount: 当前租户接入防火墙的子网个数
+        # @param SubnetCount: <p>当前租户接入防火墙的子网个数</p>
         # @type SubnetCount: Integer
-        # @param OpenSwitchCount: 打开NAT防火墙开关个数
+        # @param OpenSwitchCount: <p>打开NAT防火墙开关个数</p>
         # @type OpenSwitchCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6061,7 +6297,7 @@ module TencentCloud
 
       # DescribeNatFwInstanceWithRegion返回参数结构体
       class DescribeNatFwInstanceWithRegionResponse < TencentCloud::Common::AbstractModel
-        # @param NatinsLst: 实例数组
+        # @param NatinsLst: <p>实例数组</p>
         # @type NatinsLst: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6088,11 +6324,11 @@ module TencentCloud
 
       # DescribeNatFwInstancesInfo请求参数结构体
       class DescribeNatFwInstancesInfoRequest < TencentCloud::Common::AbstractModel
-        # @param Filter: 获取实例列表过滤字段
+        # @param Filter: <p>获取实例列表过滤字段</p>
         # @type Filter: Array
-        # @param Offset: 第几页
+        # @param Offset: <p>第几页</p>
         # @type Offset: Integer
-        # @param Limit: 每页长度
+        # @param Limit: <p>每页长度</p>
         # @type Limit: Integer
 
         attr_accessor :Filter, :Offset, :Limit
@@ -6119,9 +6355,9 @@ module TencentCloud
 
       # DescribeNatFwInstancesInfo返回参数结构体
       class DescribeNatFwInstancesInfoResponse < TencentCloud::Common::AbstractModel
-        # @param NatinsLst: 实例卡片信息数组
+        # @param NatinsLst: <p>实例卡片信息数组</p>
         # @type NatinsLst: Array
-        # @param Total: nat 防火墙个数
+        # @param Total: <p>nat 防火墙个数</p>
         # @type Total: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6150,15 +6386,15 @@ module TencentCloud
 
       # DescribeNatFwSwitch请求参数结构体
       class DescribeNatFwSwitchRequest < TencentCloud::Common::AbstractModel
-        # @param Offset: 偏移量，分页用
+        # @param Offset: <p>偏移量，分页用</p>
         # @type Offset: Integer
-        # @param Limit: 条数，分页用
+        # @param Limit: <p>条数，分页用</p>
         # @type Limit: Integer
-        # @param Filters: 过滤条件组合
+        # @param Filters: <p>过滤条件组合</p>
         # @type Filters: Array
-        # @param Order: desc：降序；asc：升序。根据By字段的值进行排序，这里传参的话则By也必须有值
+        # @param Order: <p>desc：降序；asc：升序。根据By字段的值进行排序，这里传参的话则By也必须有值</p>
         # @type Order: String
-        # @param By: 排序所用到的字段
+        # @param By: <p>排序所用到的字段</p>
         # @type By: String
 
         attr_accessor :Offset, :Limit, :Filters, :Order, :By
@@ -6189,28 +6425,28 @@ module TencentCloud
 
       # DescribeNatFwSwitch返回参数结构体
       class DescribeNatFwSwitchResponse < TencentCloud::Common::AbstractModel
-        # @param Total: 总数
+        # @param Total: <p>总数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
-        # @param Data: NAT边界防火墙开关列表数据
+        # @param Data: <p>NAT边界防火墙开关列表数据</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
-        # @param VpcList: 开关相关VPC列表
+        # @param VpcList: <p>开关相关VPC列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcList: Array
-        # @param NatList: 开关相关NAT列表
+        # @param NatList: <p>开关相关NAT列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NatList: Array
-        # @param RouteList: 开关相关ROUTE列表
+        # @param RouteList: <p>开关相关ROUTE列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RouteList: Array
-        # @param OnNum: 开启开关个数
+        # @param OnNum: <p>开启开关个数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OnNum: Integer
-        # @param OffNum: 关闭开关个数
+        # @param OffNum: <p>关闭开关个数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OffNum: Integer
-        # @param FailData: 失败开关状态
+        # @param FailData: <p>失败开关状态</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailData: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -6280,13 +6516,13 @@ module TencentCloud
 
       # DescribeNatFwVpcDnsLst请求参数结构体
       class DescribeNatFwVpcDnsLstRequest < TencentCloud::Common::AbstractModel
-        # @param NatFwInsId: natfw 防火墙实例id
+        # @param NatFwInsId: <p>natfw 防火墙实例id</p>
         # @type NatFwInsId: String
-        # @param NatInsIdFilter: natfw 过滤，以','分隔
+        # @param NatInsIdFilter: <p>natfw 过滤，以&#39;,&#39;分隔</p>
         # @type NatInsIdFilter: String
-        # @param Offset: 分页页数
+        # @param Offset: <p>分页页数</p>
         # @type Offset: Integer
-        # @param Limit: 每页最多个数
+        # @param Limit: <p>每页最多个数</p>
         # @type Limit: Integer
 
         attr_accessor :NatFwInsId, :NatInsIdFilter, :Offset, :Limit
@@ -6308,11 +6544,11 @@ module TencentCloud
 
       # DescribeNatFwVpcDnsLst返回参数结构体
       class DescribeNatFwVpcDnsLstResponse < TencentCloud::Common::AbstractModel
-        # @param VpcDnsSwitchLst: nat防火墙vpc dns 信息数组
+        # @param VpcDnsSwitchLst: <p>nat防火墙vpc dns 信息数组</p>
         # @type VpcDnsSwitchLst: Array
-        # @param ReturnMsg: 返回参数 success成功 failed 失败
+        # @param ReturnMsg: <p>返回参数 success成功 failed 失败</p>
         # @type ReturnMsg: String
-        # @param Total: 开关总条数
+        # @param Total: <p>开关总条数</p>
         # @type Total: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6850,7 +7086,7 @@ module TencentCloud
 
       # DescribeSwitchError请求参数结构体
       class DescribeSwitchErrorRequest < TencentCloud::Common::AbstractModel
-        # @param FwType: EDGE_FW : 互联网边界防火墙 , NDR: 流量分析，VPC_FW：VPC边界防火墙
+        # @param FwType: <p>EDGE_FW : 互联网边界防火墙 , NDR: 流量分析，VPC_FW：VPC边界防火墙</p>
         # @type FwType: String
 
         attr_accessor :FwType
@@ -6866,7 +7102,7 @@ module TencentCloud
 
       # DescribeSwitchError返回参数结构体
       class DescribeSwitchErrorResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 错误信息列表
+        # @param Data: <p>错误信息列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -7292,10 +7528,10 @@ module TencentCloud
 
       # DescribeVpcFwCcnPolicyWhiteList返回参数结构体
       class DescribeVpcFwCcnPolicyWhiteListResponse < TencentCloud::Common::AbstractModel
-        # @param SupportCcnPolicy: 支持自动接入和策略路由的CCN列表
+        # @param SupportCcnPolicy: <p>支持自动接入和策略路由的CCN列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SupportCcnPolicy: Array
-        # @param SupportCcnPolicyCidr: 自动接入中支持自定义cidr的CCN列表
+        # @param SupportCcnPolicyCidr: <p>自动接入中支持自定义cidr的CCN列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SupportCcnPolicyCidr: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -7318,19 +7554,19 @@ module TencentCloud
 
       # DescribeVpcFwGroupSwitch请求参数结构体
       class DescribeVpcFwGroupSwitchRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 每页条数
+        # @param Limit: <p>每页条数</p>
         # @type Limit: Integer
-        # @param Offset: 偏移值
+        # @param Offset: <p>偏移值</p>
         # @type Offset: Integer
-        # @param Filters: 过滤条件组合
+        # @param Filters: <p>过滤条件组合</p>
         # @type Filters: Array
-        # @param StartTime: 检索的起始时间，可不传
+        # @param StartTime: <p>检索的起始时间，可不传</p>
         # @type StartTime: String
-        # @param EndTime: 检索的截止时间，可不传
+        # @param EndTime: <p>检索的截止时间，可不传</p>
         # @type EndTime: String
-        # @param Order: desc：降序；asc：升序。根据By字段的值进行排序，这里传参的话则By也必须有值
+        # @param Order: <p>desc：降序；asc：升序。根据By字段的值进行排序，这里传参的话则By也必须有值</p>
         # @type Order: String
-        # @param By: 排序所用到的字段
+        # @param By: <p>排序所用到的字段</p>
         # @type By: String
 
         attr_accessor :Limit, :Offset, :Filters, :StartTime, :EndTime, :Order, :By
@@ -7365,9 +7601,9 @@ module TencentCloud
 
       # DescribeVpcFwGroupSwitch返回参数结构体
       class DescribeVpcFwGroupSwitchResponse < TencentCloud::Common::AbstractModel
-        # @param SwitchList: 开关列表
+        # @param SwitchList: <p>开关列表</p>
         # @type SwitchList: Array
-        # @param Total: 开关总个数
+        # @param Total: <p>开关总个数</p>
         # @type Total: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -9014,16 +9250,11 @@ module TencentCloud
 
       # ModifyAssetSync返回参数结构体
       class ModifyAssetSyncResponse < TencentCloud::Common::AbstractModel
-        # @param Status: 返回状态
-        # 0 请求成功
-        # 2 请求失败
-        # 3 请求失败-频率限制
+        # @param Status: <p>返回状态<br>0 请求成功<br>2 请求失败<br>3 请求失败-频率限制</p>
         # @type Status: Integer
-        # @param ReturnMsg: success 成功
-        # 其他失败
+        # @param ReturnMsg: <p>success 成功<br>其他失败</p>
         # @type ReturnMsg: String
-        # @param ReturnCode: 0 成功
-        # 非0 失败
+        # @param ReturnCode: <p>0 成功<br>非0 失败</p>
         # @type ReturnCode: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -9228,13 +9459,13 @@ module TencentCloud
 
       # ModifyClusterFwBypass请求参数结构体
       class ModifyClusterFwBypassRequest < TencentCloud::Common::AbstractModel
-        # @param FwType: 防火墙类型，"VPC_FW"-VPC防火墙，"NAT_FW"-NAT防火墙
+        # @param FwType: <p>防火墙类型，&quot;VPC_FW&quot;-VPC防火墙，&quot;NAT_FW&quot;-NAT防火墙</p>
         # @type FwType: String
-        # @param CcnId: 云联网实例ID
+        # @param CcnId: <p>云联网实例ID</p>
         # @type CcnId: String
-        # @param Enable: Bypass开关，true-开启Bypass（禁用正常下一跳，流量绕过防火墙），false-关闭Bypass（启用正常下一跳，流量经过防火墙）
+        # @param Enable: <p>Bypass开关，true-开启Bypass（禁用正常下一跳，流量绕过防火墙），false-关闭Bypass（启用正常下一跳，流量经过防火墙）</p>
         # @type Enable: Boolean
-        # @param NatInsId: NAT防火墙实例ID，FwType为nat时必填
+        # @param NatInsId: <p>NAT防火墙实例ID，FwType为nat时必填</p>
         # @type NatInsId: String
 
         attr_accessor :FwType, :CcnId, :Enable, :NatInsId
@@ -9307,9 +9538,9 @@ module TencentCloud
 
       # ModifyClusterVpcFwSwitch请求参数结构体
       class ModifyClusterVpcFwSwitchRequest < TencentCloud::Common::AbstractModel
-        # @param Enable: 开关，0：关闭，1：开启
+        # @param Enable: <p>开关，0：关闭，1：开启</p>
         # @type Enable: Integer
-        # @param CcnSwitch: 集群模式vpc间防火墙ccn开关信息
+        # @param CcnSwitch: <p>集群模式vpc间防火墙ccn开关信息</p>
         # @type CcnSwitch: Array
 
         attr_accessor :Enable, :CcnSwitch
@@ -9406,18 +9637,13 @@ module TencentCloud
 
       # ModifyEdgeIpSwitch请求参数结构体
       class ModifyEdgeIpSwitchRequest < TencentCloud::Common::AbstractModel
-        # @param Enable: 0 关闭开关
-        # 1 打开开关
-        # 2 不操作开关，此次切换模式
+        # @param Enable: <p>0 关闭开关<br>1 打开开关<br>2 不操作开关，此次切换模式</p>
         # @type Enable: Integer
-        # @param EdgeIpSwitchLst: 操作开关详情
+        # @param EdgeIpSwitchLst: <p>操作开关详情</p>
         # @type EdgeIpSwitchLst: Array
-        # @param AutoChooseSubnet: 0 不自动选择子网
-        # 1 自动选择子网创建私有连接
+        # @param AutoChooseSubnet: <p>0 不自动选择子网<br>1 自动选择子网创建私有连接</p>
         # @type AutoChooseSubnet: Integer
-        # @param SwitchMode: 0 切换为旁路
-        # 1 切换为串行
-        # 2 不切换模式，此次操作开关
+        # @param SwitchMode: <p>0 切换为旁路<br>1 切换为串行<br>2 不切换模式，此次操作开关</p>
         # @type SwitchMode: Integer
 
         attr_accessor :Enable, :EdgeIpSwitchLst, :AutoChooseSubnet, :SwitchMode
@@ -9561,13 +9787,11 @@ module TencentCloud
 
       # ModifyFwGroupSwitch请求参数结构体
       class ModifyFwGroupSwitchRequest < TencentCloud::Common::AbstractModel
-        # @param Enable: 打开或关闭开关
-        # 0：关闭开关
-        # 1：打开开关
+        # @param Enable: <p>打开或关闭开关<br>0：关闭开关<br>1：打开开关</p>
         # @type Enable: Integer
-        # @param AllSwitch: 是否操作全部开关 0 不操作全部开关，1 操作全部开关
+        # @param AllSwitch: <p>是否操作全部开关 0 不操作全部开关，1 操作全部开关</p>
         # @type AllSwitch: Integer
-        # @param SwitchList: 开关列表
+        # @param SwitchList: <p>开关列表</p>
         # @type SwitchList: Array
 
         attr_accessor :Enable, :AllSwitch, :SwitchList
@@ -9640,6 +9864,62 @@ module TencentCloud
         end
       end
 
+      # ModifyIsolateTable请求参数结构体
+      class ModifyIsolateTableRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceID: <p>资产唯一id</p>
+        # @type InstanceID: String
+        # @param ButtonAction: <p>操作动作：编辑、删除</p>
+        # @type ButtonAction: String
+        # @param CfwAiAgentOperationSource: <p>AI操作来源</p><p>枚举值：</p><ul><li>console： 控制台来源值</li><li>wechat： 微信</li></ul>
+        # @type CfwAiAgentOperationSource: String
+        # @param StartTime: <p>起始时间</p>
+        # @type StartTime: String
+        # @param EndTime: <p>结束时间</p>
+        # @type EndTime: String
+
+        attr_accessor :InstanceID, :ButtonAction, :CfwAiAgentOperationSource, :StartTime, :EndTime
+
+        def initialize(instanceid=nil, buttonaction=nil, cfwaiagentoperationsource=nil, starttime=nil, endtime=nil)
+          @InstanceID = instanceid
+          @ButtonAction = buttonaction
+          @CfwAiAgentOperationSource = cfwaiagentoperationsource
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @InstanceID = params['InstanceID']
+          @ButtonAction = params['ButtonAction']
+          @CfwAiAgentOperationSource = params['CfwAiAgentOperationSource']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # ModifyIsolateTable返回参数结构体
+      class ModifyIsolateTableResponse < TencentCloud::Common::AbstractModel
+        # @param ReturnCode: <p>0 成功  非0失败</p>
+        # @type ReturnCode: Integer
+        # @param ReturnMsg: <p>success 成功 其他失败</p>
+        # @type ReturnMsg: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ReturnCode, :ReturnMsg, :RequestId
+
+        def initialize(returncode=nil, returnmsg=nil, requestid=nil)
+          @ReturnCode = returncode
+          @ReturnMsg = returnmsg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ReturnCode = params['ReturnCode']
+          @ReturnMsg = params['ReturnMsg']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyNatAcRule请求参数结构体
       class ModifyNatAcRuleRequest < TencentCloud::Common::AbstractModel
         # @param Rules: <p>需要编辑的规则数组,基于Uuid唯一id来修改该规则</p>
@@ -9689,15 +9969,15 @@ module TencentCloud
 
       # ModifyNatFwReSelect请求参数结构体
       class ModifyNatFwReSelectRequest < TencentCloud::Common::AbstractModel
-        # @param Mode: 模式 1：接入模式；0：新增模式
+        # @param Mode: <p>模式 1：接入模式；0：新增模式</p>
         # @type Mode: Integer
-        # @param CfwInstance: 防火墙实例id
+        # @param CfwInstance: <p>防火墙实例id</p>
         # @type CfwInstance: String
-        # @param NatGwList: 接入模式重新接入的nat网关列表，其中NatGwList和VpcList只能传递一个。
+        # @param NatGwList: <p>接入模式重新接入的nat网关列表，其中NatGwList和VpcList只能传递一个。</p>
         # @type NatGwList: Array
-        # @param VpcList: 新增模式重新接入的vpc列表，其中NatGwList和NatgwList只能传递一个。
+        # @param VpcList: <p>新增模式重新接入的vpc列表，其中NatGwList和NatgwList只能传递一个。</p>
         # @type VpcList: Array
-        # @param FwCidrInfo: 指定防火墙使用网段信息
+        # @param FwCidrInfo: <p>指定防火墙使用网段信息</p>
         # @type FwCidrInfo: :class:`Tencentcloud::Cfw.v20190904.models.FwCidrInfo`
 
         attr_accessor :Mode, :CfwInstance, :NatGwList, :VpcList, :FwCidrInfo
@@ -9740,13 +10020,13 @@ module TencentCloud
 
       # ModifyNatFwSwitch请求参数结构体
       class ModifyNatFwSwitchRequest < TencentCloud::Common::AbstractModel
-        # @param Enable: 开关，0：关闭，1：开启
+        # @param Enable: <p>开关，0：关闭，1：开启</p>
         # @type Enable: Integer
-        # @param CfwInsIdList: 防火墙实例id列表，其中CfwInsIdList，SubnetIdList和RouteTableIdList只能传递一种。
+        # @param CfwInsIdList: <p>防火墙实例id列表，其中CfwInsIdList，SubnetIdList和RouteTableIdList只能传递一种。</p>
         # @type CfwInsIdList: Array
-        # @param SubnetIdList: 子网id列表，其中CfwInsIdList，SubnetIdList和RouteTableIdList只能传递一种。
+        # @param SubnetIdList: <p>子网id列表，其中CfwInsIdList，SubnetIdList和RouteTableIdList只能传递一种。</p>
         # @type SubnetIdList: Array
-        # @param RouteTableIdList: 路由表id列表，其中CfwInsIdList，SubnetIdList和RouteTableIdList只能传递一种。
+        # @param RouteTableIdList: <p>路由表id列表，其中CfwInsIdList，SubnetIdList和RouteTableIdList只能传递一种。</p>
         # @type RouteTableIdList: Array
 
         attr_accessor :Enable, :CfwInsIdList, :SubnetIdList, :RouteTableIdList
@@ -9784,9 +10064,9 @@ module TencentCloud
 
       # ModifyNatFwVpcDnsSwitch请求参数结构体
       class ModifyNatFwVpcDnsSwitchRequest < TencentCloud::Common::AbstractModel
-        # @param NatFwInsId: nat 防火墙 id
+        # @param NatFwInsId: <p>nat 防火墙 id</p>
         # @type NatFwInsId: String
-        # @param DnsVpcSwitchLst: DNS 开关切换列表
+        # @param DnsVpcSwitchLst: <p>DNS 开关切换列表</p>
         # @type DnsVpcSwitchLst: Array
 
         attr_accessor :NatFwInsId, :DnsVpcSwitchLst
@@ -9811,7 +10091,7 @@ module TencentCloud
 
       # ModifyNatFwVpcDnsSwitch返回参数结构体
       class ModifyNatFwVpcDnsSwitchResponse < TencentCloud::Common::AbstractModel
-        # @param ReturnMsg: 修改成功
+        # @param ReturnMsg: <p>修改成功</p>
         # @type ReturnMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -9831,9 +10111,9 @@ module TencentCloud
 
       # ModifyNatInstance请求参数结构体
       class ModifyNatInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceName: NAT防火墙实例名称
+        # @param InstanceName: <p>NAT防火墙实例名称</p>
         # @type InstanceName: String
-        # @param NatInstanceId: NAT防火墙实例ID
+        # @param NatInstanceId: <p>NAT防火墙实例ID</p>
         # @type NatInstanceId: String
 
         attr_accessor :InstanceName, :NatInstanceId
@@ -9851,10 +10131,9 @@ module TencentCloud
 
       # ModifyNatInstance返回参数结构体
       class ModifyNatInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param Status: 0 正常
-        # -1 异常
+        # @param Status: <p>0 正常<br>-1 异常</p>
         # @type Status: Integer
-        # @param NatInstanceId: nat实例唯一ID
+        # @param NatInstanceId: <p>nat实例唯一ID</p>
         # @type NatInstanceId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -10365,13 +10644,13 @@ module TencentCloud
 
       # ModifyVpcFwGroup请求参数结构体
       class ModifyVpcFwGroupRequest < TencentCloud::Common::AbstractModel
-        # @param FwGroupId: 编辑的防火墙(组)ID
+        # @param FwGroupId: <p>编辑的防火墙(组)ID</p>
         # @type FwGroupId: String
-        # @param Name: 修改防火墙(组)名称
+        # @param Name: <p>修改防火墙(组)名称</p>
         # @type Name: String
-        # @param VpcFwInstances: 编辑的防火墙实例列表
+        # @param VpcFwInstances: <p>编辑的防火墙实例列表</p>
         # @type VpcFwInstances: Array
-        # @param FwCidrInfo: 指定防火墙使用网段信息
+        # @param FwCidrInfo: <p>指定防火墙使用网段信息</p>
         # @type FwCidrInfo: :class:`Tencentcloud::Cfw.v20190904.models.FwCidrInfo`
 
         attr_accessor :FwGroupId, :Name, :VpcFwInstances, :FwCidrInfo
@@ -11287,7 +11566,7 @@ module TencentCloud
 
       # OpenClusterNatFwSwitch请求参数结构体
       class OpenClusterNatFwSwitchRequest < TencentCloud::Common::AbstractModel
-        # @param NatCcnSwitch: NAT CCN防火墙开关配置
+        # @param NatCcnSwitch: <p>NAT CCN防火墙开关配置</p>
         # @type NatCcnSwitch: :class:`Tencentcloud::Cfw.v20190904.models.NatCcnSwitchConfig`
 
         attr_accessor :NatCcnSwitch
@@ -12667,11 +12946,11 @@ module TencentCloud
 
       # SetNatFwEip请求参数结构体
       class SetNatFwEipRequest < TencentCloud::Common::AbstractModel
-        # @param OperationType: bind：绑定eip；unbind：解绑eip；newAdd：新增防火墙弹性公网ip
+        # @param OperationType: <p>bind：绑定eip；unbind：解绑eip；newAdd：新增防火墙弹性公网ip</p>
         # @type OperationType: String
-        # @param CfwInstance: 防火墙实例id
+        # @param CfwInstance: <p>防火墙实例id</p>
         # @type CfwInstance: String
-        # @param EipList: 当OperationType 为bind或unbind操作时，使用该字段。
+        # @param EipList: <p>当OperationType 为bind或unbind操作时，使用该字段。</p>
         # @type EipList: Array
 
         attr_accessor :OperationType, :CfwInstance, :EipList
@@ -12998,9 +13277,9 @@ module TencentCloud
 
       # SyncFwOperate请求参数结构体
       class SyncFwOperateRequest < TencentCloud::Common::AbstractModel
-        # @param SyncType: 同步操作类型：Route，同步防火墙路由
+        # @param SyncType: <p>同步操作类型：Route，同步防火墙路由</p>
         # @type SyncType: String
-        # @param FwType: 防火墙类型；nat,nat防火墙;ew,vpc间防火墙
+        # @param FwType: <p>防火墙类型；nat,nat防火墙;ew,vpc间防火墙</p>
         # @type FwType: String
 
         attr_accessor :SyncType, :FwType
