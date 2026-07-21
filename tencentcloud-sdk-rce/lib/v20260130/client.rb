@@ -29,6 +29,54 @@ module TencentCloud
         end
 
 
+        # 设备风险评估-高级版
+
+        # @param request: Request instance for AssessDeviceRiskPremiumPro.
+        # @type request: :class:`Tencentcloud::rce::V20260130::AssessDeviceRiskPremiumProRequest`
+        # @rtype: :class:`Tencentcloud::rce::V20260130::AssessDeviceRiskPremiumProResponse`
+        def AssessDeviceRiskPremiumPro(request)
+          body = send_request('AssessDeviceRiskPremiumPro', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AssessDeviceRiskPremiumProResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 设备风险评估-基础版
+
+        # @param request: Request instance for AssessDeviceRiskPro.
+        # @type request: :class:`Tencentcloud::rce::V20260130::AssessDeviceRiskProRequest`
+        # @rtype: :class:`Tencentcloud::rce::V20260130::AssessDeviceRiskProResponse`
+        def AssessDeviceRiskPro(request)
+          body = send_request('AssessDeviceRiskPro', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AssessDeviceRiskProResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 环境风险评估
 
         # @param request: Request instance for AssessEnvironmentRisk.

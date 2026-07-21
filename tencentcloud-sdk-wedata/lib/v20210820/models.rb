@@ -38433,19 +38433,19 @@ module TencentCloud
 
       # 表血缘节点
       class TableLineage < TencentCloud::Common::AbstractModel
-        # @param DatasourceId: 数据源id
+        # @param DatasourceId: <p>数据源id</p>
         # @type DatasourceId: String
-        # @param DatabaseName: 库名称
+        # @param DatabaseName: <p>库名称</p>
         # @type DatabaseName: String
-        # @param TableName: 表名称
+        # @param TableName: <p>表名称</p>
         # @type TableName: String
-        # @param CatalogName: catalog值
+        # @param CatalogName: <p>catalog值,仅使用DLC且开启TcLake的支持,其他类型传空即可</p>
         # @type CatalogName: String
-        # @param SchemaName: schema名称
+        # @param SchemaName: <p>schema名称</p>
         # @type SchemaName: String
-        # @param ExtParams: 扩展参数
+        # @param ExtParams: <p>扩展参数</p>
         # @type ExtParams: Array
-        # @param TableType: table类型 TABLE｜VIEW
+        # @param TableType: <p>table类型 TABLE｜VIEW</p>
         # @type TableType: String
 
         attr_accessor :DatasourceId, :DatabaseName, :TableName, :CatalogName, :SchemaName, :ExtParams, :TableType

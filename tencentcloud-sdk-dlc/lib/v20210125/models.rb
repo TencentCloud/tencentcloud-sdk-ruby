@@ -7746,54 +7746,78 @@ module TencentCloud
 
       # DescribeMCPTask请求参数结构体
       class DescribeMCPTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务 ID</p>
+        # @type TaskId: String
 
+        attr_accessor :TaskId
 
-        def initialize()
+        def initialize(taskid=nil)
+          @TaskId = taskid
         end
 
         def deserialize(params)
+          @TaskId = params['TaskId']
         end
       end
 
       # DescribeMCPTask返回参数结构体
       class DescribeMCPTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskInfo: <p>任务详细信息</p>
+        # @type TaskInfo: :class:`Tencentcloud::Dlc.v20210125.models.MCPTaskInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :TaskInfo, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(taskinfo=nil, requestid=nil)
+          @TaskInfo = taskinfo
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['TaskInfo'].nil?
+            @TaskInfo = MCPTaskInfo.new
+            @TaskInfo.deserialize(params['TaskInfo'])
+          end
           @RequestId = params['RequestId']
         end
       end
 
       # DescribeMCPTaskResult请求参数结构体
       class DescribeMCPTaskResultRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务ID</p>
+        # @type TaskId: String
 
+        attr_accessor :TaskId
 
-        def initialize()
+        def initialize(taskid=nil)
+          @TaskId = taskid
         end
 
         def deserialize(params)
+          @TaskId = params['TaskId']
         end
       end
 
       # DescribeMCPTaskResult返回参数结构体
       class DescribeMCPTaskResultResponse < TencentCloud::Common::AbstractModel
+        # @param TaskResult: <p>任务结果信息</p>
+        # @type TaskResult: :class:`Tencentcloud::Dlc.v20210125.models.MCPTaskResultInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :TaskResult, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(taskresult=nil, requestid=nil)
+          @TaskResult = taskresult
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['TaskResult'].nil?
+            @TaskResult = MCPTaskResultInfo.new
+            @TaskResult.deserialize(params['TaskResult'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -12512,6 +12536,177 @@ module TencentCloud
           @LockId = params['LockId']
           @LockState = params['LockState']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # mcp 请求任务详情的返回
+      class MCPTaskInfo < TencentCloud::Common::AbstractModel
+        # @param Id: <p>任务 ID</p>
+        # @type Id: String
+        # @param BatchId: <p>BatchId</p>
+        # @type BatchId: String
+        # @param State: <p>状态</p>
+        # @type State: Integer
+        # @param TaskType: <p>任务类型</p>
+        # @type TaskType: String
+        # @param TaskKind: <p>任务类型</p>
+        # @type TaskKind: String
+        # @param EngineTypeDetail: <p>引擎详情</p>
+        # @type EngineTypeDetail: String
+        # @param SQLType: <p>SQL 类型</p>
+        # @type SQLType: String
+        # @param SQL: <p>SQL</p>
+        # @type SQL: String
+        # @param IsSQLCutOff: <p>是否截断</p>
+        # @type IsSQLCutOff: Boolean
+        # @param DatabaseName: <p>数据库名称</p>
+        # @type DatabaseName: String
+        # @param DataEngineId: <p>引擎 ID</p>
+        # @type DataEngineId: String
+        # @param ResourceGroupName: <p>资源组名称</p>
+        # @type ResourceGroupName: String
+        # @param SparkJobId: <p>JobId</p>
+        # @type SparkJobId: String
+        # @param SparkJobName: <p>Job 名称</p>
+        # @type SparkJobName: String
+        # @param OperateUin: <p>操作人 Uin</p>
+        # @type OperateUin: String
+        # @param CreateTime: <p>创建时间</p>
+        # @type CreateTime: String
+        # @param StartTime: <p>开始时间</p>
+        # @type StartTime: String
+        # @param EndTime: <p>结束时间</p>
+        # @type EndTime: String
+        # @param UpdateTime: <p>更新时间</p>
+        # @type UpdateTime: String
+        # @param UsedTime: <p>引擎耗时</p><p>单位：毫秒</p>
+        # @type UsedTime: Integer
+        # @param TotalTime: <p>执行总耗时</p><p>单位：毫秒</p>
+        # @type TotalTime: Integer
+        # @param Progress: <p>进度</p>
+        # @type Progress: Integer
+        # @param OutputMessage: <p>输出信息</p>
+        # @type OutputMessage: String
+        # @param DataSet: <p>结果集</p>
+        # @type DataSet: String
+
+        attr_accessor :Id, :BatchId, :State, :TaskType, :TaskKind, :EngineTypeDetail, :SQLType, :SQL, :IsSQLCutOff, :DatabaseName, :DataEngineId, :ResourceGroupName, :SparkJobId, :SparkJobName, :OperateUin, :CreateTime, :StartTime, :EndTime, :UpdateTime, :UsedTime, :TotalTime, :Progress, :OutputMessage, :DataSet
+
+        def initialize(id=nil, batchid=nil, state=nil, tasktype=nil, taskkind=nil, enginetypedetail=nil, sqltype=nil, sql=nil, issqlcutoff=nil, databasename=nil, dataengineid=nil, resourcegroupname=nil, sparkjobid=nil, sparkjobname=nil, operateuin=nil, createtime=nil, starttime=nil, endtime=nil, updatetime=nil, usedtime=nil, totaltime=nil, progress=nil, outputmessage=nil, dataset=nil)
+          @Id = id
+          @BatchId = batchid
+          @State = state
+          @TaskType = tasktype
+          @TaskKind = taskkind
+          @EngineTypeDetail = enginetypedetail
+          @SQLType = sqltype
+          @SQL = sql
+          @IsSQLCutOff = issqlcutoff
+          @DatabaseName = databasename
+          @DataEngineId = dataengineid
+          @ResourceGroupName = resourcegroupname
+          @SparkJobId = sparkjobid
+          @SparkJobName = sparkjobname
+          @OperateUin = operateuin
+          @CreateTime = createtime
+          @StartTime = starttime
+          @EndTime = endtime
+          @UpdateTime = updatetime
+          @UsedTime = usedtime
+          @TotalTime = totaltime
+          @Progress = progress
+          @OutputMessage = outputmessage
+          @DataSet = dataset
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @BatchId = params['BatchId']
+          @State = params['State']
+          @TaskType = params['TaskType']
+          @TaskKind = params['TaskKind']
+          @EngineTypeDetail = params['EngineTypeDetail']
+          @SQLType = params['SQLType']
+          @SQL = params['SQL']
+          @IsSQLCutOff = params['IsSQLCutOff']
+          @DatabaseName = params['DatabaseName']
+          @DataEngineId = params['DataEngineId']
+          @ResourceGroupName = params['ResourceGroupName']
+          @SparkJobId = params['SparkJobId']
+          @SparkJobName = params['SparkJobName']
+          @OperateUin = params['OperateUin']
+          @CreateTime = params['CreateTime']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @UpdateTime = params['UpdateTime']
+          @UsedTime = params['UsedTime']
+          @TotalTime = params['TotalTime']
+          @Progress = params['Progress']
+          @OutputMessage = params['OutputMessage']
+          @DataSet = params['DataSet']
+        end
+      end
+
+      # MCP 任务结果返回
+      class MCPTaskResultInfo < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务 ID</p>
+        # @type TaskId: String
+        # @param State: <p>状态</p>
+        # @type State: Integer
+        # @param ResultSchema: <p>结果集 Schema</p>
+        # @type ResultSchema: Array
+        # @param ResultSet: <p>结果集</p>
+        # @type ResultSet: String
+        # @param NextToken: <p>是否还有其他结果</p>
+        # @type NextToken: String
+        # @param RowAffectInfo: <p>影响行数</p>
+        # @type RowAffectInfo: String
+        # @param OutputMessage: <p>输出信息</p>
+        # @type OutputMessage: String
+        # @param DisplayFormat: <p>展示 format</p>
+        # @type DisplayFormat: String
+        # @param CanDownload: <p>能否下载</p>
+        # @type CanDownload: Boolean
+        # @param QueryResultTime: <p>结果花费时间</p><p>单位：毫秒</p>
+        # @type QueryResultTime: Float
+        # @param IsResultOversize: <p>是否超大</p>
+        # @type IsResultOversize: Boolean
+
+        attr_accessor :TaskId, :State, :ResultSchema, :ResultSet, :NextToken, :RowAffectInfo, :OutputMessage, :DisplayFormat, :CanDownload, :QueryResultTime, :IsResultOversize
+
+        def initialize(taskid=nil, state=nil, resultschema=nil, resultset=nil, nexttoken=nil, rowaffectinfo=nil, outputmessage=nil, displayformat=nil, candownload=nil, queryresulttime=nil, isresultoversize=nil)
+          @TaskId = taskid
+          @State = state
+          @ResultSchema = resultschema
+          @ResultSet = resultset
+          @NextToken = nexttoken
+          @RowAffectInfo = rowaffectinfo
+          @OutputMessage = outputmessage
+          @DisplayFormat = displayformat
+          @CanDownload = candownload
+          @QueryResultTime = queryresulttime
+          @IsResultOversize = isresultoversize
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @State = params['State']
+          unless params['ResultSchema'].nil?
+            @ResultSchema = []
+            params['ResultSchema'].each do |i|
+              column_tmp = Column.new
+              column_tmp.deserialize(i)
+              @ResultSchema << column_tmp
+            end
+          end
+          @ResultSet = params['ResultSet']
+          @NextToken = params['NextToken']
+          @RowAffectInfo = params['RowAffectInfo']
+          @OutputMessage = params['OutputMessage']
+          @DisplayFormat = params['DisplayFormat']
+          @CanDownload = params['CanDownload']
+          @QueryResultTime = params['QueryResultTime']
+          @IsResultOversize = params['IsResultOversize']
         end
       end
 

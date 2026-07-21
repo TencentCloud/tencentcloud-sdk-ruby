@@ -749,10 +749,12 @@ module TencentCloud
         # @type CreateTime: String
         # @param UpdateTime: <p>话术最后更新时间，UTC时间。<br>注意：UTC时间和北京时间相差八小时。</p>
         # @type UpdateTime: String
+        # @param MediaUrl: <p>已完成状态的视频URL</p>
+        # @type MediaUrl: String
 
-        attr_accessor :ScriptId, :ProductId, :Title, :Content, :Status, :Duration, :Position, :CreateTime, :UpdateTime
+        attr_accessor :ScriptId, :ProductId, :Title, :Content, :Status, :Duration, :Position, :CreateTime, :UpdateTime, :MediaUrl
 
-        def initialize(scriptid=nil, productid=nil, title=nil, content=nil, status=nil, duration=nil, position=nil, createtime=nil, updatetime=nil)
+        def initialize(scriptid=nil, productid=nil, title=nil, content=nil, status=nil, duration=nil, position=nil, createtime=nil, updatetime=nil, mediaurl=nil)
           @ScriptId = scriptid
           @ProductId = productid
           @Title = title
@@ -762,6 +764,7 @@ module TencentCloud
           @Position = position
           @CreateTime = createtime
           @UpdateTime = updatetime
+          @MediaUrl = mediaurl
         end
 
         def deserialize(params)
@@ -774,6 +777,7 @@ module TencentCloud
           @Position = params['Position']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+          @MediaUrl = params['MediaUrl']
         end
       end
 

@@ -2740,6 +2740,26 @@ module TencentCloud
         end
       end
 
+      # 会话重置信息
+      class ConversationResetInfo < TencentCloud::Common::AbstractModel
+        # @param ResetTime: <p>最近一次重置的毫秒级时间戳</p>
+        # @type ResetTime: String
+        # @param ResetThroughRecordId: <p>最近一次重置边界；该记录及更早的记录不再作为对话上下文</p>
+        # @type ResetThroughRecordId: String
+
+        attr_accessor :ResetTime, :ResetThroughRecordId
+
+        def initialize(resettime=nil, resetthroughrecordid=nil)
+          @ResetTime = resettime
+          @ResetThroughRecordId = resetthroughrecordid
+        end
+
+        def deserialize(params)
+          @ResetTime = params['ResetTime']
+          @ResetThroughRecordId = params['ResetThroughRecordId']
+        end
+      end
+
       # Workspace 工作空间信息
       class ConversationWorkspace < TencentCloud::Common::AbstractModel
         # @param WorkspaceId: <p>工作空间 ID</p>
@@ -4479,18 +4499,25 @@ module TencentCloud
         # @type MessageList: Array
         # @param Messages: <p>消息列表</p>
         # @type Messages: Array
+        # @param ResetInfo: <p>最近一次重置信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResetInfo: :class:`Tencentcloud::Adp.v20260520.models.ConversationResetInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :FirstRecordId, :HasMoreAfter, :HasMoreBefore, :LastRecordId, :MessageList, :Messages, :RequestId
+        attr_accessor :FirstRecordId, :HasMoreAfter, :HasMoreBefore, :LastRecordId, :MessageList, :Messages, :ResetInfo, :RequestId
+        extend Gem::Deprecate
+        deprecate :Messages, :none, 2026, 7
+        deprecate :Messages=, :none, 2026, 7
 
-        def initialize(firstrecordid=nil, hasmoreafter=nil, hasmorebefore=nil, lastrecordid=nil, messagelist=nil, messages=nil, requestid=nil)
+        def initialize(firstrecordid=nil, hasmoreafter=nil, hasmorebefore=nil, lastrecordid=nil, messagelist=nil, messages=nil, resetinfo=nil, requestid=nil)
           @FirstRecordId = firstrecordid
           @HasMoreAfter = hasmoreafter
           @HasMoreBefore = hasmorebefore
           @LastRecordId = lastrecordid
           @MessageList = messagelist
           @Messages = messages
+          @ResetInfo = resetinfo
           @RequestId = requestid
         end
 
@@ -4514,6 +4541,10 @@ module TencentCloud
               conversationmessage_tmp.deserialize(i)
               @Messages << conversationmessage_tmp
             end
+          end
+          unless params['ResetInfo'].nil?
+            @ResetInfo = ConversationResetInfo.new
+            @ResetInfo.deserialize(params['ResetInfo'])
           end
           @RequestId = params['RequestId']
         end
@@ -4736,13 +4767,16 @@ module TencentCloud
         # @type SpaceId: String
         # @param FieldMask: <p>获取指定字段</p>
         # @type FieldMask: :class:`Tencentcloud::Adp.v20260520.models.FieldMask`
+        # @param Module: <p>插件展示场景。不传或取 0 时不限定场景。</p><p>枚举值：</p><ul><li>0：不限定场景</li><li>1：Agent 模式</li><li>2：工作流</li><li>3：智能工作台</li></ul>
+        # @type Module: Integer
 
-        attr_accessor :PluginId, :SpaceId, :FieldMask
+        attr_accessor :PluginId, :SpaceId, :FieldMask, :Module
 
-        def initialize(pluginid=nil, spaceid=nil, fieldmask=nil)
+        def initialize(pluginid=nil, spaceid=nil, fieldmask=nil, _module=nil)
           @PluginId = pluginid
           @SpaceId = spaceid
           @FieldMask = fieldmask
+          @Module = _module
         end
 
         def deserialize(params)
@@ -4752,6 +4786,7 @@ module TencentCloud
             @FieldMask = FieldMask.new
             @FieldMask.deserialize(params['FieldMask'])
           end
+          @Module = params['Module']
         end
       end
 
@@ -5609,11 +5644,11 @@ module TencentCloud
         end
       end
 
-      # 列表通用过滤条件（多个Filter之间为AND关系，同一Filter的多个value_list为OR关系）
+      # 列表通用过滤条件（多个 Filter 之间为 AND 关系，同一 Filter 的多个 value_list 为 OR 关系）
       class Filter < TencentCloud::Common::AbstractModel
         # @param Name: 过滤字段名
         # @type Name: String
-        # @param Operator: 操作符：0-属于，1-不属于
+        # @param Operator: 操作符，默认 IN（向后兼容）<table><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>FILTER_OPERATOR_IN</td><td>0</td><td>属于 value_list（默认值，向后兼容；value_list 不可为空）</td></tr><tr><td>FILTER_OPERATOR_NOT_IN</td><td>1</td><td>不属于 value_list（value_list 不可为空）</td></tr></table>
         # @type Operator: Integer
         # @param ValueList: 过滤值数组
         # @type ValueList: Array
@@ -6933,10 +6968,12 @@ module TencentCloud
         # @type UserState: :class:`Tencentcloud::Adp.v20260520.models.PluginUserState`
         # @param Config: <p>插件配置信息</p>
         # @type Config: :class:`Tencentcloud::Adp.v20260520.models.PluginConfig`
+        # @param ToolList: <p>工具信息</p>
+        # @type ToolList: Array
 
-        attr_accessor :Operation, :PluginId, :Profile, :Statistics, :Status, :UserState, :Config
+        attr_accessor :Operation, :PluginId, :Profile, :Statistics, :Status, :UserState, :Config, :ToolList
 
-        def initialize(operation=nil, pluginid=nil, profile=nil, statistics=nil, status=nil, userstate=nil, config=nil)
+        def initialize(operation=nil, pluginid=nil, profile=nil, statistics=nil, status=nil, userstate=nil, config=nil, toollist=nil)
           @Operation = operation
           @PluginId = pluginid
           @Profile = profile
@@ -6944,6 +6981,7 @@ module TencentCloud
           @Status = status
           @UserState = userstate
           @Config = config
+          @ToolList = toollist
         end
 
         def deserialize(params)
@@ -6968,6 +7006,14 @@ module TencentCloud
           unless params['Config'].nil?
             @Config = PluginConfig.new
             @Config.deserialize(params['Config'])
+          end
+          unless params['ToolList'].nil?
+            @ToolList = []
+            params['ToolList'].each do |i|
+              toolsummary_tmp = ToolSummary.new
+              toolsummary_tmp.deserialize(i)
+              @ToolList << toolsummary_tmp
+            end
           end
         end
       end
@@ -8238,6 +8284,22 @@ module TencentCloud
         def deserialize(params)
           @Request = params['Request']
           @Response = params['Response']
+        end
+      end
+
+      # 工具信息
+      class ToolSummary < TencentCloud::Common::AbstractModel
+        # @param ToolId: <p>工具Id</p>
+        # @type ToolId: String
+
+        attr_accessor :ToolId
+
+        def initialize(toolid=nil)
+          @ToolId = toolid
+        end
+
+        def deserialize(params)
+          @ToolId = params['ToolId']
         end
       end
 

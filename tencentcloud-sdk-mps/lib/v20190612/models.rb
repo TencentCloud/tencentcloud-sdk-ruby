@@ -1588,10 +1588,16 @@ module TencentCloud
         # @param VoiceClonedMarkFile: <p>音色克隆的标注文件地址</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VoiceClonedMarkFile: String
+        # @param FileId: <p>擦除后文件的FileId。</p>
+        # @type FileId: String
+        # @param OriginSubtitleFileId: <p>基于画面提取的字幕文件FileId。</p>
+        # @type OriginSubtitleFileId: String
+        # @param TranslateSubtitleFileId: <p>基于画面提取的字幕翻译文件FileId    。</p>
+        # @type TranslateSubtitleFileId: String
 
-        attr_accessor :Path, :OutputStorage, :OriginSubtitlePath, :TranslateSubtitlePath, :SubtitlePos, :VoiceClonedVideo, :VoiceClonedMarkFile
+        attr_accessor :Path, :OutputStorage, :OriginSubtitlePath, :TranslateSubtitlePath, :SubtitlePos, :VoiceClonedVideo, :VoiceClonedMarkFile, :FileId, :OriginSubtitleFileId, :TranslateSubtitleFileId
 
-        def initialize(path=nil, outputstorage=nil, originsubtitlepath=nil, translatesubtitlepath=nil, subtitlepos=nil, voiceclonedvideo=nil, voiceclonedmarkfile=nil)
+        def initialize(path=nil, outputstorage=nil, originsubtitlepath=nil, translatesubtitlepath=nil, subtitlepos=nil, voiceclonedvideo=nil, voiceclonedmarkfile=nil, fileid=nil, originsubtitlefileid=nil, translatesubtitlefileid=nil)
           @Path = path
           @OutputStorage = outputstorage
           @OriginSubtitlePath = originsubtitlepath
@@ -1599,6 +1605,9 @@ module TencentCloud
           @SubtitlePos = subtitlepos
           @VoiceClonedVideo = voiceclonedvideo
           @VoiceClonedMarkFile = voiceclonedmarkfile
+          @FileId = fileid
+          @OriginSubtitleFileId = originsubtitlefileid
+          @TranslateSubtitleFileId = translatesubtitlefileid
         end
 
         def deserialize(params)
@@ -1615,6 +1624,9 @@ module TencentCloud
           end
           @VoiceClonedVideo = params['VoiceClonedVideo']
           @VoiceClonedMarkFile = params['VoiceClonedMarkFile']
+          @FileId = params['FileId']
+          @OriginSubtitleFileId = params['OriginSubtitleFileId']
+          @TranslateSubtitleFileId = params['TranslateSubtitleFileId']
         end
       end
 
@@ -1771,15 +1783,21 @@ module TencentCloud
         # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
         # @param ExtraOutput: <p>额外结果，目前包含字幕文件结果 Url</p>
         # @type ExtraOutput: String
+        # @param VideoFileId: <p>译制视频FileId。</p>
+        # @type VideoFileId: String
+        # @param SpeakerFileId: <p>标记文件FileId。</p>
+        # @type SpeakerFileId: String
 
-        attr_accessor :VideoPath, :SpeakerPath, :VoiceId, :OutputStorage, :ExtraOutput
+        attr_accessor :VideoPath, :SpeakerPath, :VoiceId, :OutputStorage, :ExtraOutput, :VideoFileId, :SpeakerFileId
 
-        def initialize(videopath=nil, speakerpath=nil, voiceid=nil, outputstorage=nil, extraoutput=nil)
+        def initialize(videopath=nil, speakerpath=nil, voiceid=nil, outputstorage=nil, extraoutput=nil, videofileid=nil, speakerfileid=nil)
           @VideoPath = videopath
           @SpeakerPath = speakerpath
           @VoiceId = voiceid
           @OutputStorage = outputstorage
           @ExtraOutput = extraoutput
+          @VideoFileId = videofileid
+          @SpeakerFileId = speakerfileid
         end
 
         def deserialize(params)
@@ -1791,6 +1809,8 @@ module TencentCloud
             @OutputStorage.deserialize(params['OutputStorage'])
           end
           @ExtraOutput = params['ExtraOutput']
+          @VideoFileId = params['VideoFileId']
+          @SpeakerFileId = params['SpeakerFileId']
         end
       end
 
@@ -4070,6 +4090,27 @@ module TencentCloud
               @Wordlist << wordresult_tmp
             end
           end
+        end
+      end
+
+      # 大模型修复
+      class AiRestorationConfig < TencentCloud::Common::AbstractModel
+        # @param Switch: <p>能力配置开关</p><p>枚举值：</p><ul><li>ON： 开启</li><li>OFF： 关闭</li></ul><p>默认值：OFF</p>
+        # @type Switch: String
+        # @param Type: <p>强度类型</p><p>枚举值：</p><ul><li>weak： 弱</li><li>normal： 中</li><li>strong： 强</li></ul><p>默认值：normal</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+
+        attr_accessor :Switch, :Type
+
+        def initialize(switch=nil, type=nil)
+          @Switch = switch
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @Type = params['Type']
         end
       end
 
@@ -8388,7 +8429,7 @@ module TencentCloud
         # @type StoreCosParam: :class:`Tencentcloud::Mps.v20190612.models.AigcStoreCosParam`
         # @param ExtraParameters: <p>用于传入要求的额外参数。</p>
         # @type ExtraParameters: :class:`Tencentcloud::Mps.v20190612.models.AigcAudioExtraParam`
-        # @param AdditionalParameters: <p>用于传入一些模型需要的特殊场景参数，Json格式序列化成字符串。<br>示例MinimaxMusic模型传入歌词时：<br>{"lyric":{"小马在快乐奔跑，花儿在开放"}}</p>
+        # @param AdditionalParameters: <p>用于传入一些模型需要的特殊场景参数，Json格式序列化成字符串。<br>示例MinimaxMusic模型传入歌词时：<br>{"lyric":{"小马在快乐奔跑，花儿在开放"}}</p><ol><li>MiniMaxMusic生纯音乐参数使用示例: &quot;AdditionalParameters&quot;:&quot;{"is_instrumental":true}&quot;</li></ol>
         # @type AdditionalParameters: String
         # @param Operator: <p>接口操作者名称。</p>
         # @type Operator: String
@@ -20793,24 +20834,27 @@ module TencentCloud
 
       # 图片处理结果信息
       class ImageProcessTaskOutput < TencentCloud::Common::AbstractModel
-        # @param Path: 输出文件的路径。
+        # @param Path: <p>输出文件的路径。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Path: String
-        # @param OutputStorage: 输出文件的存储位置。
+        # @param OutputStorage: <p>输出文件的存储位置。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
-        # @param SignedUrl: 输出文件的URL。
+        # @param SignedUrl: <p>输出文件的URL。</p>
         # @type SignedUrl: String
-        # @param Content: 图生文任务的处理结果。
+        # @param Content: <p>图生文任务的处理结果。</p>
         # @type Content: String
+        # @param FileId: <p>VOD标准版FileId</p>
+        # @type FileId: String
 
-        attr_accessor :Path, :OutputStorage, :SignedUrl, :Content
+        attr_accessor :Path, :OutputStorage, :SignedUrl, :Content, :FileId
 
-        def initialize(path=nil, outputstorage=nil, signedurl=nil, content=nil)
+        def initialize(path=nil, outputstorage=nil, signedurl=nil, content=nil, fileid=nil)
           @Path = path
           @OutputStorage = outputstorage
           @SignedUrl = signedurl
           @Content = content
+          @FileId = fileid
         end
 
         def deserialize(params)
@@ -20821,6 +20865,7 @@ module TencentCloud
           end
           @SignedUrl = params['SignedUrl']
           @Content = params['Content']
+          @FileId = params['FileId']
         end
       end
 
@@ -33503,14 +33548,17 @@ module TencentCloud
         # @type Path: String
         # @param SubtitleEmbedPath: <p>字幕压制视频路径。</p>
         # @type SubtitleEmbedPath: String
+        # @param SubtitleFileId: <p>字幕文件FileId。</p>
+        # @type SubtitleFileId: String
 
-        attr_accessor :Language, :Status, :Path, :SubtitleEmbedPath
+        attr_accessor :Language, :Status, :Path, :SubtitleEmbedPath, :SubtitleFileId
 
-        def initialize(language=nil, status=nil, path=nil, subtitleembedpath=nil)
+        def initialize(language=nil, status=nil, path=nil, subtitleembedpath=nil, subtitlefileid=nil)
           @Language = language
           @Status = status
           @Path = path
           @SubtitleEmbedPath = subtitleembedpath
+          @SubtitleFileId = subtitlefileid
         end
 
         def deserialize(params)
@@ -33518,6 +33566,7 @@ module TencentCloud
           @Status = params['Status']
           @Path = params['Path']
           @SubtitleEmbedPath = params['SubtitleEmbedPath']
+          @SubtitleFileId = params['SubtitleFileId']
         end
       end
 
@@ -33790,15 +33839,18 @@ module TencentCloud
         # @type Path: String
         # @param SubtitleEmbedPath: <p>翻译字幕压制视频路径。</p>
         # @type SubtitleEmbedPath: String
+        # @param SubtitleFileId: <p>字幕文件FileId。</p>
+        # @type SubtitleFileId: String
 
-        attr_accessor :Status, :TransSrc, :TransDst, :Path, :SubtitleEmbedPath
+        attr_accessor :Status, :TransSrc, :TransDst, :Path, :SubtitleEmbedPath, :SubtitleFileId
 
-        def initialize(status=nil, transsrc=nil, transdst=nil, path=nil, subtitleembedpath=nil)
+        def initialize(status=nil, transsrc=nil, transdst=nil, path=nil, subtitleembedpath=nil, subtitlefileid=nil)
           @Status = status
           @TransSrc = transsrc
           @TransDst = transdst
           @Path = path
           @SubtitleEmbedPath = subtitleembedpath
+          @SubtitleFileId = subtitlefileid
         end
 
         def deserialize(params)
@@ -33807,6 +33859,7 @@ module TencentCloud
           @TransDst = params['TransDst']
           @Path = params['Path']
           @SubtitleEmbedPath = params['SubtitleEmbedPath']
+          @SubtitleFileId = params['SubtitleFileId']
         end
       end
 
@@ -35977,24 +36030,30 @@ module TencentCloud
         end
       end
 
-      # 媒体处理 VOD （点播专业版）对象信息。
+      # 媒体处理 VOD 对象信息。
       class VODInputInfo < TencentCloud::Common::AbstractModel
-        # @param Bucket: 媒体处理对象文件所在的 *Bucket ID*
+        # @param Bucket: <p>媒体处理对象文件所在的 <em>Bucket ID</em></p>
         # @type Bucket: String
-        # @param Region: 媒体处理对象文件所在的 Bucket 所属园区
+        # @param Region: <p>媒体处理对象文件所在的 Bucket 所属园区</p>
         # @type Region: String
-        # @param Object: 媒体处理对象文件的输入路径
+        # @param Object: <p>媒体处理对象文件的输入路径</p>
         # @type Object: String
-        # @param SubAppId: 点播专业版应用Id
+        # @param SubAppId: <p>点播应用Id。</p>
         # @type SubAppId: Integer
+        # @param VodBasic: <p>是否使用VOD标准版。<br>注意：不填表示使用VOD专业版。</p><p>枚举值：</p><ul><li>0： 使用VOD专业版</li><li>1： 使用VOD标准版，可使用FileId发起任务</li></ul><p>默认值：0</p>
+        # @type VodBasic: Integer
+        # @param FileId: <p>VOD标准版FileId</p>
+        # @type FileId: String
 
-        attr_accessor :Bucket, :Region, :Object, :SubAppId
+        attr_accessor :Bucket, :Region, :Object, :SubAppId, :VodBasic, :FileId
 
-        def initialize(bucket=nil, region=nil, object=nil, subappid=nil)
+        def initialize(bucket=nil, region=nil, object=nil, subappid=nil, vodbasic=nil, fileid=nil)
           @Bucket = bucket
           @Region = region
           @Object = object
           @SubAppId = subappid
+          @VodBasic = vodbasic
+          @FileId = fileid
         end
 
         def deserialize(params)
@@ -36002,30 +36061,36 @@ module TencentCloud
           @Region = params['Region']
           @Object = params['Object']
           @SubAppId = params['SubAppId']
+          @VodBasic = params['VodBasic']
+          @FileId = params['FileId']
         end
       end
 
-      # 媒体处理 VOD（点播专业版） 输出对象信息。
+      # 媒体处理 VOD输出对象信息。
       class VODOutputStorage < TencentCloud::Common::AbstractModel
         # @param Bucket: <p>媒体处理生成的文件输出的目标 <em>Bucket ID</em></p>
         # @type Bucket: String
         # @param Region: <p>媒体处理生成的文件输出的目标 Bucket 的园区</p>
         # @type Region: String
-        # @param SubAppId: <p>点播专业版应用Id</p>
+        # @param SubAppId: <p>点播应用Id</p>
         # @type SubAppId: Integer
+        # @param VodBasic: <p>任务输出是否使用VOD标准版。<br>注意：不填表示使用VOD专业版。</p><p>枚举值：</p><ul><li>0： 不使用VOD标准版</li><li>1： 使用VOD标准版</li></ul>
+        # @type VodBasic: Integer
 
-        attr_accessor :Bucket, :Region, :SubAppId
+        attr_accessor :Bucket, :Region, :SubAppId, :VodBasic
 
-        def initialize(bucket=nil, region=nil, subappid=nil)
+        def initialize(bucket=nil, region=nil, subappid=nil, vodbasic=nil)
           @Bucket = bucket
           @Region = region
           @SubAppId = subappid
+          @VodBasic = vodbasic
         end
 
         def deserialize(params)
           @Bucket = params['Bucket']
           @Region = params['Region']
           @SubAppId = params['SubAppId']
+          @VodBasic = params['VodBasic']
         end
       end
 
@@ -36131,60 +36196,49 @@ module TencentCloud
 
       # 视频增强配置
       class VideoEnhanceConfig < TencentCloud::Common::AbstractModel
-        # @param FrameRate: 插帧帧率配置（旧）。新用户建议使用FrameRateWithDen配置插帧帧率，支持分数，且效果更好。注意，FrameRate 与FrameRateWithDen 只能二选一，同时配置可能导致任务失败。源帧率大于等于目标帧率时能力不会生效。
-
+        # @param FrameRate: <p>插帧帧率配置（旧）。新用户建议使用FrameRateWithDen配置插帧帧率，支持分数，且效果更好。注意，FrameRate 与FrameRateWithDen 只能二选一，同时配置可能导致任务失败。源帧率大于等于目标帧率时能力不会生效。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FrameRate: :class:`Tencentcloud::Mps.v20190612.models.FrameRateConfig`
-        # @param SuperResolution: 超分配置。源分辨率高于目标分辨率时不对视频做处理。注意与大模型增强不可同时开启。
-
+        # @param SuperResolution: <p>超分配置。源分辨率高于目标分辨率时不对视频做处理。注意与大模型增强不可同时开启。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SuperResolution: :class:`Tencentcloud::Mps.v20190612.models.SuperResolutionConfig`
-        # @param Hdr: HDR配置。
+        # @param Hdr: <p>HDR配置。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Hdr: :class:`Tencentcloud::Mps.v20190612.models.HdrConfig`
-        # @param Denoise: 视频降噪配置。注意与大模型增强不可同时开启。
-
+        # @param Denoise: <p>视频降噪配置。注意与大模型增强不可同时开启。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Denoise: :class:`Tencentcloud::Mps.v20190612.models.VideoDenoiseConfig`
-        # @param ImageQualityEnhance: 综合增强配置。注意大模型、综合增强、去毛刺三项里最多配置一项
+        # @param ImageQualityEnhance: <p>综合增强配置。注意大模型、综合增强、去毛刺三项里最多配置一项</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageQualityEnhance: :class:`Tencentcloud::Mps.v20190612.models.ImageQualityEnhanceConfig`
-        # @param ColorEnhance: 色彩增强配置。
+        # @param ColorEnhance: <p>色彩增强配置。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ColorEnhance: :class:`Tencentcloud::Mps.v20190612.models.ColorEnhanceConfig`
-        # @param LowLightEnhance: 低光照增强配置。
+        # @param LowLightEnhance: <p>低光照增强配置。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LowLightEnhance: :class:`Tencentcloud::Mps.v20190612.models.LowLightEnhanceConfig`
-        # @param ScratchRepair: 去划痕配置。
+        # @param ScratchRepair: <p>去划痕配置。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScratchRepair: :class:`Tencentcloud::Mps.v20190612.models.ScratchRepairConfig`
-        # @param ArtifactRepair: 去伪影（毛刺）配置。注意大模型、综合增强、去毛刺三项里最多配置一项
+        # @param ArtifactRepair: <p>去伪影（毛刺）配置。注意大模型、综合增强、去毛刺三项里最多配置一项</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ArtifactRepair: :class:`Tencentcloud::Mps.v20190612.models.ArtifactRepairConfig`
-        # @param EnhanceSceneType: 增强场景配置，可选值：
-        # <li>common（通用），通用增强参数，适用于各种视频类型的基础优化参数，提升整体画质。</li>
-        # <li>AIGC，整体分辨率提升，利用AI技术提升视频整体分辨率，增强画面清晰度。</li>
-        # <li>short_play（短剧），增强面部与字幕细节，突出人物面部表情细节和字幕清晰度，提升观剧体验。</li>
-        # <li>short_video（短视频），优化复杂多样的画质问题，针对短视频的复杂场景，优化画质，解决多种视觉问题。</li>
-        # <li>game（游戏视频），修复运动模糊，提升细节，重点提升游戏细节清晰度，恢复运动模糊区域，使游戏画面内容更清晰，更丰富。</li>
-        # <li>HD_movie_series（超高清影视剧），获得超高清流畅效果，针对广电/OTT超高清视频的诉求，生成4K 60fps HDR的超高清标准视频。支持广电场景格式标准要求。</li>
-        # <li>LQ_material（低清素材/老片修复），整体分辨率提升，针对老旧视频由于拍摄年代较久存在的分辨率不足、模糊失真、划痕损伤和色温等问题进行专门优化。</li>
-        # <li>lecture（秀场/电商/大会/讲座），美化提升面部效果，针对秀场/电商/大会/讲座等存在人物进行讲解的场景，进行人脸区域、噪声消除、毛刺处理的专门优化。</li>
-        # <li>填空字符串代表不使用增强场景</li>
+        # @param EnhanceSceneType: <p>增强场景配置，可选值：</p><li>common（通用），通用增强参数，适用于各种视频类型的基础优化参数，提升整体画质。</li><li>AIGC，整体分辨率提升，利用AI技术提升视频整体分辨率，增强画面清晰度。</li><li>short_play（短剧 &amp; AI 仿真人剧），增强面部与字幕细节，突出人物面部表情细节和字幕清晰度，提升观剧体验。</li><li>ai_comic（AI漫剧），增强漫画风格画面细节。</li><li>short_video（短视频），优化复杂多样的画质问题，针对短视频的复杂场景，优化画质，解决多种视觉问题。</li><li>game（游戏视频），修复运动模糊，提升细节，重点提升游戏细节清晰度，恢复运动模糊区域，使游戏画面内容更清晰，更丰富。</li><li>HD_movie_series（超高清影视剧），获得超高清流畅效果，针对广电/OTT超高清视频的诉求，生成4K 60fps HDR的超高清标准视频。支持广电场景格式标准要求。</li><li>LQ_material（低清素材/老片修复），整体分辨率提升，针对老旧视频由于拍摄年代较久存在的分辨率不足、模糊失真、划痕损伤和色温等问题进行专门优化。</li><li>lecture（秀场/电商/大会/讲座），美化提升面部效果，针对秀场/电商/大会/讲座等存在人物进行讲解的场景，进行人脸区域、噪声消除、毛刺处理的专门优化。</li><li>填空字符串代表不使用增强场景</li>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnhanceSceneType: String
-        # @param DiffusionEnhance: 大模型增强配置。注意大模型、综合增强、去毛刺三项里最多配置一项。且不可与超分、降噪同时开启。
-
+        # @param DiffusionEnhance: <p>大模型增强配置。注意大模型、综合增强、去毛刺三项里最多配置一项。且不可与超分、降噪同时开启。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiffusionEnhance: :class:`Tencentcloud::Mps.v20190612.models.DiffusionEnhanceConfig`
-        # @param FrameRateWithDen: 新插帧帧率配置，支持分数。注意与FrameRate二选一。源帧率大于等于目标帧率时能力不会生效。
-
+        # @param FrameRateWithDen: <p>新插帧帧率配置，支持分数。注意与FrameRate二选一。源帧率大于等于目标帧率时能力不会生效。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FrameRateWithDen: :class:`Tencentcloud::Mps.v20190612.models.FrameRateWithDenConfig`
+        # @param AiRestoration: <p>大模型修复配置。注意大模型、综合增强、去毛刺三项里最多配置一项。且不可与超分、降噪同时开启。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AiRestoration: :class:`Tencentcloud::Mps.v20190612.models.AiRestorationConfig`
 
-        attr_accessor :FrameRate, :SuperResolution, :Hdr, :Denoise, :ImageQualityEnhance, :ColorEnhance, :LowLightEnhance, :ScratchRepair, :ArtifactRepair, :EnhanceSceneType, :DiffusionEnhance, :FrameRateWithDen
+        attr_accessor :FrameRate, :SuperResolution, :Hdr, :Denoise, :ImageQualityEnhance, :ColorEnhance, :LowLightEnhance, :ScratchRepair, :ArtifactRepair, :EnhanceSceneType, :DiffusionEnhance, :FrameRateWithDen, :AiRestoration
 
-        def initialize(framerate=nil, superresolution=nil, hdr=nil, denoise=nil, imagequalityenhance=nil, colorenhance=nil, lowlightenhance=nil, scratchrepair=nil, artifactrepair=nil, enhancescenetype=nil, diffusionenhance=nil, frameratewithden=nil)
+        def initialize(framerate=nil, superresolution=nil, hdr=nil, denoise=nil, imagequalityenhance=nil, colorenhance=nil, lowlightenhance=nil, scratchrepair=nil, artifactrepair=nil, enhancescenetype=nil, diffusionenhance=nil, frameratewithden=nil, airestoration=nil)
           @FrameRate = framerate
           @SuperResolution = superresolution
           @Hdr = hdr
@@ -36197,6 +36251,7 @@ module TencentCloud
           @EnhanceSceneType = enhancescenetype
           @DiffusionEnhance = diffusionenhance
           @FrameRateWithDen = frameratewithden
+          @AiRestoration = airestoration
         end
 
         def deserialize(params)
@@ -36244,6 +36299,10 @@ module TencentCloud
           unless params['FrameRateWithDen'].nil?
             @FrameRateWithDen = FrameRateWithDenConfig.new
             @FrameRateWithDen.deserialize(params['FrameRateWithDen'])
+          end
+          unless params['AiRestoration'].nil?
+            @AiRestoration = AiRestorationConfig.new
+            @AiRestoration.deserialize(params['AiRestoration'])
           end
         end
       end

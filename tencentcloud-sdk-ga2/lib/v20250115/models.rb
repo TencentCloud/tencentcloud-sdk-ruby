@@ -402,6 +402,70 @@ module TencentCloud
         end
       end
 
+      # CreateGlobalAcceleratorAccessLog请求参数结构体
+      class CreateGlobalAcceleratorAccessLogRequest < TencentCloud::Common::AbstractModel
+        # @param GlobalAcceleratorId: <p>GA示例唯一Id</p>
+        # @type GlobalAcceleratorId: String
+        # @param ListenerId: <p>监听器Id</p>
+        # @type ListenerId: String
+        # @param EndpointGroupId: <p>终端节点组Id</p>
+        # @type EndpointGroupId: String
+        # @param CloudRegion: <p>日志集所在地域</p>
+        # @type CloudRegion: String
+        # @param CloudLogId: <p>日志主题Id</p>
+        # @type CloudLogId: String
+        # @param CloudLogSetId: <p>日志集Id</p>
+        # @type CloudLogSetId: String
+        # @param FieldKeys: <p>指定采集字段</p><p>枚举值：</p><ul><li>session_time： 四层，会话持续时间</li><li>upstream_bytes_received： 四层、七层，从终端节点接收的字节数</li><li>upstream_bytes_sent： 四层、七层，发送给终端节点的字节数</li><li>request_method： 七层，GET/POST</li><li>scheme： 七层，http/https</li><li>request_uri： 七层，客户端原始请求的URI</li><li>uri： 七层，当前请求的URI</li><li>host： 七层，客户端访问域名（七层）</li><li>remote_user： 七层，基本认证时的用户名（未认证时为&quot;-&quot;）</li><li>http_user_agent： 七层，客户端浏览器标识</li><li>http_referer： 七层，请求来源URL（直接从地址栏访问时为&quot;-&quot;）</li><li>http_x_forwarded_for： 七层，记录客户端原始IP及经过的代理服务器IP链</li><li>content_type： 七层，content_type</li><li>body_bytes_sent： 七层，发送给客户端的http body大小，不包含header</li><li>request_time： 七层，从接收到客户端请求的第一个字节到发送完响应最后一个字节之间的总时间（单位：秒）</li><li>sent_http_content_type： 七层，响应内容类型</li><li>upstream_header_time： 七层，终端节点的响应头到达时间</li><li>upstream_response_length： 七层，终端节点返回的响应体长度</li><li>upstream_response_time： 七层，终端节点完整响应时间</li><li>upstream_status： 七层，终端节点返回的HTTP状态码</li></ul>
+        # @type FieldKeys: Array
+        # @param FlowLogDescription: <p>日志描述</p>
+        # @type FlowLogDescription: String
+
+        attr_accessor :GlobalAcceleratorId, :ListenerId, :EndpointGroupId, :CloudRegion, :CloudLogId, :CloudLogSetId, :FieldKeys, :FlowLogDescription
+
+        def initialize(globalacceleratorid=nil, listenerid=nil, endpointgroupid=nil, cloudregion=nil, cloudlogid=nil, cloudlogsetid=nil, fieldkeys=nil, flowlogdescription=nil)
+          @GlobalAcceleratorId = globalacceleratorid
+          @ListenerId = listenerid
+          @EndpointGroupId = endpointgroupid
+          @CloudRegion = cloudregion
+          @CloudLogId = cloudlogid
+          @CloudLogSetId = cloudlogsetid
+          @FieldKeys = fieldkeys
+          @FlowLogDescription = flowlogdescription
+        end
+
+        def deserialize(params)
+          @GlobalAcceleratorId = params['GlobalAcceleratorId']
+          @ListenerId = params['ListenerId']
+          @EndpointGroupId = params['EndpointGroupId']
+          @CloudRegion = params['CloudRegion']
+          @CloudLogId = params['CloudLogId']
+          @CloudLogSetId = params['CloudLogSetId']
+          @FieldKeys = params['FieldKeys']
+          @FlowLogDescription = params['FlowLogDescription']
+        end
+      end
+
+      # CreateGlobalAcceleratorAccessLog返回参数结构体
+      class CreateGlobalAcceleratorAccessLogResponse < TencentCloud::Common::AbstractModel
+        # @param LogPushTaskId: <p>日志任务唯一Id</p>
+        # @type LogPushTaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LogPushTaskId, :RequestId
+
+        def initialize(logpushtaskid=nil, requestid=nil)
+          @LogPushTaskId = logpushtaskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @LogPushTaskId = params['LogPushTaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateGlobalAcceleratorAclPolicy请求参数结构体
       class CreateGlobalAcceleratorAclPolicyRequest < TencentCloud::Common::AbstractModel
         # @param GlobalAcceleratorId: <p>全球加速实例ID。</p>
@@ -891,6 +955,42 @@ module TencentCloud
         end
       end
 
+      # DeleteGlobalAcceleratorAccessLog请求参数结构体
+      class DeleteGlobalAcceleratorAccessLogRequest < TencentCloud::Common::AbstractModel
+        # @param LogPushTaskId: <p>日志唯一Id</p>
+        # @type LogPushTaskId: String
+        # @param GlobalAcceleratorId: <p>GA实例唯一Id</p>
+        # @type GlobalAcceleratorId: String
+
+        attr_accessor :LogPushTaskId, :GlobalAcceleratorId
+
+        def initialize(logpushtaskid=nil, globalacceleratorid=nil)
+          @LogPushTaskId = logpushtaskid
+          @GlobalAcceleratorId = globalacceleratorid
+        end
+
+        def deserialize(params)
+          @LogPushTaskId = params['LogPushTaskId']
+          @GlobalAcceleratorId = params['GlobalAcceleratorId']
+        end
+      end
+
+      # DeleteGlobalAcceleratorAccessLog返回参数结构体
+      class DeleteGlobalAcceleratorAccessLogResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteGlobalAcceleratorAclPolicy请求参数结构体
       class DeleteGlobalAcceleratorAclPolicyRequest < TencentCloud::Common::AbstractModel
         # @param GlobalAcceleratorId: 全球加速实例ID。
@@ -1199,6 +1299,41 @@ module TencentCloud
         end
       end
 
+      # DescribeAccessLogParam请求参数结构体
+      class DescribeAccessLogParamRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeAccessLogParam返回参数结构体
+      class DescribeAccessLogParamResponse < TencentCloud::Common::AbstractModel
+        # @param L7Param: <p>七层可选参数</p>
+        # @type L7Param: Array
+        # @param L4Param: <p>四层可选参数</p>
+        # @type L4Param: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :L7Param, :L4Param, :RequestId
+
+        def initialize(l7param=nil, l4param=nil, requestid=nil)
+          @L7Param = l7param
+          @L4Param = l4param
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @L7Param = params['L7Param']
+          @L4Param = params['L4Param']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCrossBorderSettlement请求参数结构体
       class DescribeCrossBorderSettlementRequest < TencentCloud::Common::AbstractModel
         # @param GlobalAcceleratorId: 全球加速实例ID。
@@ -1428,6 +1563,182 @@ module TencentCloud
               forwardingruleset_tmp = ForwardingRuleSet.new
               forwardingruleset_tmp.deserialize(i)
               @ForwardingRuleSet << forwardingruleset_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeGlobalAcceleratorAccessLog请求参数结构体
+      class DescribeGlobalAcceleratorAccessLogRequest < TencentCloud::Common::AbstractModel
+        # @param GlobalAcceleratorId: <p>ga实例唯一Id</p>
+        # @type GlobalAcceleratorId: String
+        # @param Filters: <p>查询过滤参数。{ &quot;Name&quot;: &quot;listener-id&quot;, &quot;Values&quot;: [&quot;监听器唯一Id&quot;] },{ &quot;Name&quot;: &quot;endpoint-group-id&quot;, &quot;Values&quot;: [&quot;终端节点组唯一Id&quot;] },{ &quot;Name&quot;: &quot;access_log_id&quot;, &quot;Values&quot;: [&quot;日志唯一Id&quot;] }</p>
+        # @type Filters: Array
+        # @param Offset: <p>偏移量，默认为0。</p>
+        # @type Offset: Integer
+        # @param Limit: <p>返回数量。</p><p>取值范围：[0, 200]</p>
+        # @type Limit: Integer
+
+        attr_accessor :GlobalAcceleratorId, :Filters, :Offset, :Limit
+
+        def initialize(globalacceleratorid=nil, filters=nil, offset=nil, limit=nil)
+          @GlobalAcceleratorId = globalacceleratorid
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @GlobalAcceleratorId = params['GlobalAcceleratorId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeGlobalAcceleratorAccessLog返回参数结构体
+      class DescribeGlobalAcceleratorAccessLogResponse < TencentCloud::Common::AbstractModel
+        # @param GlobalAcceleratorAccessLog: <p>返回日志任务详情</p>
+        # @type GlobalAcceleratorAccessLog: Array
+        # @param TotalCount: <p>日志任务条数。</p>
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :GlobalAcceleratorAccessLog, :TotalCount, :RequestId
+
+        def initialize(globalacceleratoraccesslog=nil, totalcount=nil, requestid=nil)
+          @GlobalAcceleratorAccessLog = globalacceleratoraccesslog
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['GlobalAcceleratorAccessLog'].nil?
+            @GlobalAcceleratorAccessLog = []
+            params['GlobalAcceleratorAccessLog'].each do |i|
+              globalacceleratoraccesslog_tmp = GlobalAcceleratorAccessLog.new
+              globalacceleratoraccesslog_tmp.deserialize(i)
+              @GlobalAcceleratorAccessLog << globalacceleratoraccesslog_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeGlobalAcceleratorAclPolicies请求参数结构体
+      class DescribeGlobalAcceleratorAclPoliciesRequest < TencentCloud::Common::AbstractModel
+        # @param GlobalAcceleratorId: <p>全球加速实例ID。</p>
+        # @type GlobalAcceleratorId: String
+        # @param Offset: <p>偏移量。默认值为0。</p>
+        # @type Offset: Integer
+        # @param Limit: <p>返回数量，默认值为20，最大值为200。</p>
+        # @type Limit: String
+
+        attr_accessor :GlobalAcceleratorId, :Offset, :Limit
+
+        def initialize(globalacceleratorid=nil, offset=nil, limit=nil)
+          @GlobalAcceleratorId = globalacceleratorid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @GlobalAcceleratorId = params['GlobalAcceleratorId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeGlobalAcceleratorAclPolicies返回参数结构体
+      class DescribeGlobalAcceleratorAclPoliciesResponse < TencentCloud::Common::AbstractModel
+        # @param GlobalAcceleratorAclPolicySet: <p>访问控制策略信息。</p>
+        # @type GlobalAcceleratorAclPolicySet: Array
+        # @param TotalCount: <p>符合条件实例总个数。</p>
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :GlobalAcceleratorAclPolicySet, :TotalCount, :RequestId
+
+        def initialize(globalacceleratoraclpolicyset=nil, totalcount=nil, requestid=nil)
+          @GlobalAcceleratorAclPolicySet = globalacceleratoraclpolicyset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['GlobalAcceleratorAclPolicySet'].nil?
+            @GlobalAcceleratorAclPolicySet = []
+            params['GlobalAcceleratorAclPolicySet'].each do |i|
+              globalacceleratoraclpolicies_tmp = GlobalAcceleratorAclPolicies.new
+              globalacceleratoraclpolicies_tmp.deserialize(i)
+              @GlobalAcceleratorAclPolicySet << globalacceleratoraclpolicies_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeGlobalAcceleratorAclRules请求参数结构体
+      class DescribeGlobalAcceleratorAclRulesRequest < TencentCloud::Common::AbstractModel
+        # @param GlobalAcceleratorAclPolicyId: <p>访问控制策略ID。</p>
+        # @type GlobalAcceleratorAclPolicyId: String
+        # @param Offset: <p>偏移量，默认为0。</p>
+        # @type Offset: Integer
+        # @param Limit: <p>返回数量。</p><p>取值范围：[1, 200]</p><p>默认值：20</p>
+        # @type Limit: Integer
+
+        attr_accessor :GlobalAcceleratorAclPolicyId, :Offset, :Limit
+
+        def initialize(globalacceleratoraclpolicyid=nil, offset=nil, limit=nil)
+          @GlobalAcceleratorAclPolicyId = globalacceleratoraclpolicyid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @GlobalAcceleratorAclPolicyId = params['GlobalAcceleratorAclPolicyId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeGlobalAcceleratorAclRules返回参数结构体
+      class DescribeGlobalAcceleratorAclRulesResponse < TencentCloud::Common::AbstractModel
+        # @param GlobalAcceleratorAclRuleSet: <p>符合条件的Acl规则实例。</p>
+        # @type GlobalAcceleratorAclRuleSet: Array
+        # @param TotalCount: <p>符合条件的实例个数。</p>
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :GlobalAcceleratorAclRuleSet, :TotalCount, :RequestId
+
+        def initialize(globalacceleratoraclruleset=nil, totalcount=nil, requestid=nil)
+          @GlobalAcceleratorAclRuleSet = globalacceleratoraclruleset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['GlobalAcceleratorAclRuleSet'].nil?
+            @GlobalAcceleratorAclRuleSet = []
+            params['GlobalAcceleratorAclRuleSet'].each do |i|
+              globalacceleratoraclruleset_tmp = GlobalAcceleratorAclRuleSet.new
+              globalacceleratoraclruleset_tmp.deserialize(i)
+              @GlobalAcceleratorAclRuleSet << globalacceleratoraclruleset_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -1941,30 +2252,34 @@ module TencentCloud
 
       # 七层转发规则信息
       class ForwardingRuleSet < TencentCloud::Common::AbstractModel
-        # @param RuleCondition: 七层转发规则条件信息。
+        # @param RuleCondition: <p>七层转发规则条件信息。</p>
         # @type RuleCondition: Array
-        # @param RuleAction: 七层转发规则行为信息。
+        # @param RuleAction: <p>七层转发规则行为信息。</p>
         # @type RuleAction: Array
-        # @param EnableOriginSni: 是否开启回源Sni。
+        # @param EnableOriginSni: <p>是否开启回源Sni。</p>
         # @type EnableOriginSni: Boolean
-        # @param OriginSni: 回源Sni。
+        # @param OriginSni: <p>回源Sni。</p>
         # @type OriginSni: String
-        # @param OriginHeaders: 回源Herder信息。
+        # @param OriginHeaders: <p>回源Herder信息。</p>
         # @type OriginHeaders: Array
-        # @param OriginHost: 回源Host。
+        # @param OriginHost: <p>回源Host。</p>
         # @type OriginHost: String
-        # @param GlobalAcceleratorId: 全球加速实例ID。
+        # @param GlobalAcceleratorId: <p>全球加速实例ID。</p>
         # @type GlobalAcceleratorId: String
-        # @param ListenerId: 监听器ID。
+        # @param ListenerId: <p>监听器ID。</p>
         # @type ListenerId: String
-        # @param ForwardingPolicyId: 七层转发策略ID。
+        # @param ForwardingPolicyId: <p>七层转发策略ID。</p>
         # @type ForwardingPolicyId: String
-        # @param ForwardingRuleId: 七层转发规则ID。
+        # @param ForwardingRuleId: <p>七层转发规则ID。</p>
         # @type ForwardingRuleId: String
+        # @param HideResponseHeaders: <p>源站响应头</p>
+        # @type HideResponseHeaders: Array
+        # @param ResponseHeaders: <p>删除源站响应头</p>
+        # @type ResponseHeaders: Array
 
-        attr_accessor :RuleCondition, :RuleAction, :EnableOriginSni, :OriginSni, :OriginHeaders, :OriginHost, :GlobalAcceleratorId, :ListenerId, :ForwardingPolicyId, :ForwardingRuleId
+        attr_accessor :RuleCondition, :RuleAction, :EnableOriginSni, :OriginSni, :OriginHeaders, :OriginHost, :GlobalAcceleratorId, :ListenerId, :ForwardingPolicyId, :ForwardingRuleId, :HideResponseHeaders, :ResponseHeaders
 
-        def initialize(rulecondition=nil, ruleaction=nil, enableoriginsni=nil, originsni=nil, originheaders=nil, originhost=nil, globalacceleratorid=nil, listenerid=nil, forwardingpolicyid=nil, forwardingruleid=nil)
+        def initialize(rulecondition=nil, ruleaction=nil, enableoriginsni=nil, originsni=nil, originheaders=nil, originhost=nil, globalacceleratorid=nil, listenerid=nil, forwardingpolicyid=nil, forwardingruleid=nil, hideresponseheaders=nil, responseheaders=nil)
           @RuleCondition = rulecondition
           @RuleAction = ruleaction
           @EnableOriginSni = enableoriginsni
@@ -1975,6 +2290,8 @@ module TencentCloud
           @ListenerId = listenerid
           @ForwardingPolicyId = forwardingpolicyid
           @ForwardingRuleId = forwardingruleid
+          @HideResponseHeaders = hideresponseheaders
+          @ResponseHeaders = responseheaders
         end
 
         def deserialize(params)
@@ -2009,6 +2326,97 @@ module TencentCloud
           @ListenerId = params['ListenerId']
           @ForwardingPolicyId = params['ForwardingPolicyId']
           @ForwardingRuleId = params['ForwardingRuleId']
+          unless params['HideResponseHeaders'].nil?
+            @HideResponseHeaders = []
+            params['HideResponseHeaders'].each do |i|
+              hideresponseheaders_tmp = HideResponseHeaders.new
+              hideresponseheaders_tmp.deserialize(i)
+              @HideResponseHeaders << hideresponseheaders_tmp
+            end
+          end
+          unless params['ResponseHeaders'].nil?
+            @ResponseHeaders = []
+            params['ResponseHeaders'].each do |i|
+              responseheaders_tmp = ResponseHeaders.new
+              responseheaders_tmp.deserialize(i)
+              @ResponseHeaders << responseheaders_tmp
+            end
+          end
+        end
+      end
+
+      # GA访问日志
+      class GlobalAcceleratorAccessLog < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # 访问控制策略
+      class GlobalAcceleratorAclPolicies < TencentCloud::Common::AbstractModel
+        # @param GlobalAcceleratorAclPolicyId: 访问控制策略ID。
+        # @type GlobalAcceleratorAclPolicyId: String
+        # @param DefaultAction: 默认动作。
+        # @type DefaultAction: String
+        # @param Status: 状态。
+        # @type Status: String
+
+        attr_accessor :GlobalAcceleratorAclPolicyId, :DefaultAction, :Status
+
+        def initialize(globalacceleratoraclpolicyid=nil, defaultaction=nil, status=nil)
+          @GlobalAcceleratorAclPolicyId = globalacceleratoraclpolicyid
+          @DefaultAction = defaultaction
+          @Status = status
+        end
+
+        def deserialize(params)
+          @GlobalAcceleratorAclPolicyId = params['GlobalAcceleratorAclPolicyId']
+          @DefaultAction = params['DefaultAction']
+          @Status = params['Status']
+        end
+      end
+
+      # Acl规则信息
+      class GlobalAcceleratorAclRuleSet < TencentCloud::Common::AbstractModel
+        # @param GlobalAcceleratorPolicyId: 访问控制策略ID。
+        # @type GlobalAcceleratorPolicyId: String
+        # @param GlobalAcceleratorAclRuleId: Acl规则ID。
+        # @type GlobalAcceleratorAclRuleId: String
+        # @param Protocol: 协议。
+        # @type Protocol: String
+        # @param Port: 端口。
+        # @type Port: String
+        # @param SourceCidrBlock: 网段。
+        # @type SourceCidrBlock: String
+        # @param Policy: 动作。
+        # @type Policy: String
+        # @param Description: 描述。
+        # @type Description: String
+
+        attr_accessor :GlobalAcceleratorPolicyId, :GlobalAcceleratorAclRuleId, :Protocol, :Port, :SourceCidrBlock, :Policy, :Description
+
+        def initialize(globalacceleratorpolicyid=nil, globalacceleratoraclruleid=nil, protocol=nil, port=nil, sourcecidrblock=nil, policy=nil, description=nil)
+          @GlobalAcceleratorPolicyId = globalacceleratorpolicyid
+          @GlobalAcceleratorAclRuleId = globalacceleratoraclruleid
+          @Protocol = protocol
+          @Port = port
+          @SourceCidrBlock = sourcecidrblock
+          @Policy = policy
+          @Description = description
+        end
+
+        def deserialize(params)
+          @GlobalAcceleratorPolicyId = params['GlobalAcceleratorPolicyId']
+          @GlobalAcceleratorAclRuleId = params['GlobalAcceleratorAclRuleId']
+          @Protocol = params['Protocol']
+          @Port = params['Port']
+          @SourceCidrBlock = params['SourceCidrBlock']
+          @Policy = params['Policy']
+          @Description = params['Description']
         end
       end
 
@@ -2270,6 +2678,46 @@ module TencentCloud
 
         def deserialize(params)
           @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyAccessLogStatus请求参数结构体
+      class ModifyAccessLogStatusRequest < TencentCloud::Common::AbstractModel
+        # @param LogPushTaskId: <p>日志唯一Id</p>
+        # @type LogPushTaskId: String
+        # @param Status: <p>状态（启动START， 停止STOP）</p><p>枚举值：</p><ul><li>START： 启动</li><li>STOP： 停止</li></ul>
+        # @type Status: String
+        # @param GlobalAcceleratorId: <p>GA实例唯一Id</p>
+        # @type GlobalAcceleratorId: String
+
+        attr_accessor :LogPushTaskId, :Status, :GlobalAcceleratorId
+
+        def initialize(logpushtaskid=nil, status=nil, globalacceleratorid=nil)
+          @LogPushTaskId = logpushtaskid
+          @Status = status
+          @GlobalAcceleratorId = globalacceleratorid
+        end
+
+        def deserialize(params)
+          @LogPushTaskId = params['LogPushTaskId']
+          @Status = params['Status']
+          @GlobalAcceleratorId = params['GlobalAcceleratorId']
+        end
+      end
+
+      # ModifyAccessLogStatus返回参数结构体
+      class ModifyAccessLogStatusResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -2575,6 +3023,58 @@ module TencentCloud
 
         def deserialize(params)
           @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyGlobalAcceleratorAccessLog请求参数结构体
+      class ModifyGlobalAcceleratorAccessLogRequest < TencentCloud::Common::AbstractModel
+        # @param LogPushTaskId: <p>日志唯一Id</p>
+        # @type LogPushTaskId: String
+        # @param GlobalAcceleratorId: <p>GA实例唯一Id</p>
+        # @type GlobalAcceleratorId: String
+        # @param CloudLogId: <p>日志主题Id</p>
+        # @type CloudLogId: String
+        # @param CloudLogSetId: <p>日志集Id</p>
+        # @type CloudLogSetId: String
+        # @param FieldKeys: <p>用户可选日志监听字段</p><p>枚举值：</p><ul><li>session_time： 四层，会话持续时间</li><li>upstream_bytes_received： 四层、七层，从终端节点接收的字节数</li><li>upstream_bytes_sent： 四层、七层，发送给终端节点的字节数</li><li>request_method： 七层，GET/POST</li><li>scheme： 七层，http/https</li><li>request_uri： 七层，客户端原始请求的URI</li><li>uri： 七层，当前请求的URI</li><li>host： 七层，客户端访问域名（七层）</li><li>remote_user： 七层，基本认证时的用户名（未认证时为&quot;-&quot;）</li><li>http_user_agent： 七层，客户端浏览器标识</li><li>http_referer： 七层，请求来源URL（直接从地址栏访问时为&quot;-&quot;）</li><li>http_x_forwarded_for： 七层，记录客户端原始IP及经过的代理服务器IP链</li><li>content_type： 七层，content_type</li><li>body_bytes_sent： 七层，发送给客户端的http body大小，不包含header</li><li>request_time： 七层，从接收到客户端请求的第一个字节到发送完响应最后一个字节之间的总时间（单位：秒）</li><li>sent_http_content_type： 七层，响应内容类型</li><li>upstream_header_time： 七层，终端节点的响应头到达时间</li><li>upstream_response_length： 七层，终端节点返回的响应体长度</li><li>upstream_response_time： 七层，终端节点完整响应时间</li><li>upstream_status： 七层，终端节点返回的HTTP状态码</li></ul>
+        # @type FieldKeys: Array
+        # @param FlowLogDescription: <p>日志描述</p>
+        # @type FlowLogDescription: String
+
+        attr_accessor :LogPushTaskId, :GlobalAcceleratorId, :CloudLogId, :CloudLogSetId, :FieldKeys, :FlowLogDescription
+
+        def initialize(logpushtaskid=nil, globalacceleratorid=nil, cloudlogid=nil, cloudlogsetid=nil, fieldkeys=nil, flowlogdescription=nil)
+          @LogPushTaskId = logpushtaskid
+          @GlobalAcceleratorId = globalacceleratorid
+          @CloudLogId = cloudlogid
+          @CloudLogSetId = cloudlogsetid
+          @FieldKeys = fieldkeys
+          @FlowLogDescription = flowlogdescription
+        end
+
+        def deserialize(params)
+          @LogPushTaskId = params['LogPushTaskId']
+          @GlobalAcceleratorId = params['GlobalAcceleratorId']
+          @CloudLogId = params['CloudLogId']
+          @CloudLogSetId = params['CloudLogSetId']
+          @FieldKeys = params['FieldKeys']
+          @FlowLogDescription = params['FlowLogDescription']
+        end
+      end
+
+      # ModifyGlobalAcceleratorAccessLog返回参数结构体
+      class ModifyGlobalAcceleratorAccessLogResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

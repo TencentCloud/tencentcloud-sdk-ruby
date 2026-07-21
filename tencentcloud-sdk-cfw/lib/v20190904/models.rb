@@ -159,6 +159,62 @@ module TencentCloud
         end
       end
 
+      # ACL 地理位置支持地域数据
+      class AclRegInfo < TencentCloud::Common::AbstractModel
+        # @param RegionCode: 地域KEY
+        # @type RegionCode: String
+        # @param RegionName: 地域名称
+        # @type RegionName: String
+        # @param Parent: 上级地域信息
+        # @type Parent: String
+        # @param ZhKey: 中文拼音首字母
+        # @type ZhKey: String
+        # @param EnKey: 英文首字母
+        # @type EnKey: String
+        # @param Area: 是否为地区
+        # @type Area: Integer
+        # @param IsCity: 是否为省份、城市
+        # @type IsCity: Integer
+        # @param Num: 序号
+        # @type Num: Integer
+        # @param ForBypass: 是否支持旁路
+        # @type ForBypass: Integer
+        # @param ForSerial: 是否支持串行
+        # @type ForSerial: Integer
+        # @param ForNat: 是否支持NAT
+        # @type ForNat: Integer
+
+        attr_accessor :RegionCode, :RegionName, :Parent, :ZhKey, :EnKey, :Area, :IsCity, :Num, :ForBypass, :ForSerial, :ForNat
+
+        def initialize(regioncode=nil, regionname=nil, parent=nil, zhkey=nil, enkey=nil, area=nil, iscity=nil, num=nil, forbypass=nil, forserial=nil, fornat=nil)
+          @RegionCode = regioncode
+          @RegionName = regionname
+          @Parent = parent
+          @ZhKey = zhkey
+          @EnKey = enkey
+          @Area = area
+          @IsCity = iscity
+          @Num = num
+          @ForBypass = forbypass
+          @ForSerial = forserial
+          @ForNat = fornat
+        end
+
+        def deserialize(params)
+          @RegionCode = params['RegionCode']
+          @RegionName = params['RegionName']
+          @Parent = params['Parent']
+          @ZhKey = params['ZhKey']
+          @EnKey = params['EnKey']
+          @Area = params['Area']
+          @IsCity = params['IsCity']
+          @Num = params['Num']
+          @ForBypass = params['ForBypass']
+          @ForSerial = params['ForSerial']
+          @ForNat = params['ForNat']
+        end
+      end
+
       # AddAclRule请求参数结构体
       class AddAclRuleRequest < TencentCloud::Common::AbstractModel
         # @param Rules: <p>需要添加的访问控制规则列表</p>
@@ -1921,23 +1977,23 @@ module TencentCloud
 
       # CreateNatFwInstance请求参数结构体
       class CreateNatFwInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param Name: 防火墙实例名称
+        # @param Name: <p>防火墙实例名称</p>
         # @type Name: String
-        # @param Width: 带宽
+        # @param Width: <p>带宽</p>
         # @type Width: Integer
-        # @param Mode: 模式 1：接入模式；0：新增模式
+        # @param Mode: <p>模式 1：接入模式；0：新增模式</p>
         # @type Mode: Integer
-        # @param NewModeItems: 新增模式传递参数，其中NewModeItems和NatgwList至少传递一种。
+        # @param NewModeItems: <p>新增模式传递参数，其中NewModeItems和NatgwList至少传递一种。</p>
         # @type NewModeItems: :class:`Tencentcloud::Cfw.v20190904.models.NewModeItems`
-        # @param NatGwList: 接入模式接入的nat网关列表，其中NewModeItems和NatgwList至少传递一种。
+        # @param NatGwList: <p>接入模式接入的nat网关列表，其中NewModeItems和NatgwList至少传递一种。</p>
         # @type NatGwList: Array
-        # @param Zone: 主可用区，为空则选择默认可用区
+        # @param Zone: <p>主可用区，为空则选择默认可用区</p>
         # @type Zone: String
-        # @param ZoneBak: 备可用区，为空则选择默认可用区
+        # @param ZoneBak: <p>备可用区，为空则选择默认可用区</p>
         # @type ZoneBak: String
-        # @param CrossAZone: 异地灾备 1：使用异地灾备；0：不使用异地灾备；为空则默认不使用异地灾备
+        # @param CrossAZone: <p>异地灾备 1：使用异地灾备；0：不使用异地灾备；为空则默认不使用异地灾备</p>
         # @type CrossAZone: Integer
-        # @param FwCidrInfo: 指定防火墙使用网段信息
+        # @param FwCidrInfo: <p>指定防火墙使用网段信息</p>
         # @type FwCidrInfo: :class:`Tencentcloud::Cfw.v20190904.models.FwCidrInfo`
 
         attr_accessor :Name, :Width, :Mode, :NewModeItems, :NatGwList, :Zone, :ZoneBak, :CrossAZone, :FwCidrInfo
@@ -1975,7 +2031,7 @@ module TencentCloud
 
       # CreateNatFwInstance返回参数结构体
       class CreateNatFwInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param CfwInsId: 防火墙实例id
+        # @param CfwInsId: <p>防火墙实例id</p>
         # @type CfwInsId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3189,6 +3245,49 @@ module TencentCloud
           end
           @AllTotal = params['AllTotal']
           @Enable = params['Enable']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAclRegInfo请求参数结构体
+      class DescribeAclRegInfoRequest < TencentCloud::Common::AbstractModel
+        # @param FwType: 防火墙类型 SERIAL：串行、NAT：NAT防火墙，BYPASS：旁路防火墙
+        # @type FwType: Array
+
+        attr_accessor :FwType
+
+        def initialize(fwtype=nil)
+          @FwType = fwtype
+        end
+
+        def deserialize(params)
+          @FwType = params['FwType']
+        end
+      end
+
+      # DescribeAclRegInfo返回参数结构体
+      class DescribeAclRegInfoResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 规则支持的地域列表
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              aclreginfo_tmp = AclRegInfo.new
+              aclreginfo_tmp.deserialize(i)
+              @Data << aclreginfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -10238,7 +10337,7 @@ module TencentCloud
 
       # ModifyRunSyncAsset请求参数结构体
       class ModifyRunSyncAssetRequest < TencentCloud::Common::AbstractModel
-        # @param Type: 0: 互联网防火墙开关，1：vpc 防火墙开关
+        # @param Type: <p>0: 互联网防火墙开关，1：vpc 防火墙开关</p>
         # @type Type: Integer
 
         attr_accessor :Type
@@ -10254,7 +10353,7 @@ module TencentCloud
 
       # ModifyRunSyncAsset返回参数结构体
       class ModifyRunSyncAssetResponse < TencentCloud::Common::AbstractModel
-        # @param Status: 0：同步成功，1：资产更新中，2：后台同步调用失败
+        # @param Status: <p>0：同步成功，1：资产更新中，2：后台同步调用失败</p>
         # @type Status: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

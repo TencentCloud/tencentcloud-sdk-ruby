@@ -2678,15 +2678,19 @@ module TencentCloud
       class DeleteModelServiceGroupRequest < TencentCloud::Common::AbstractModel
         # @param ServiceGroupId: 服务id
         # @type ServiceGroupId: String
+        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @type TiProjectId: String
 
-        attr_accessor :ServiceGroupId
+        attr_accessor :ServiceGroupId, :TiProjectId
 
-        def initialize(servicegroupid=nil)
+        def initialize(servicegroupid=nil, tiprojectid=nil)
           @ServiceGroupId = servicegroupid
+          @TiProjectId = tiprojectid
         end
 
         def deserialize(params)
           @ServiceGroupId = params['ServiceGroupId']
+          @TiProjectId = params['TiProjectId']
         end
       end
 
@@ -2710,21 +2714,25 @@ module TencentCloud
       class DeleteModelServiceRequest < TencentCloud::Common::AbstractModel
         # @param ServiceId: 服务id
         # @type ServiceId: String
+        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @type TiProjectId: String
         # @param ServiceCategory: 服务分类
         # @type ServiceCategory: String
 
-        attr_accessor :ServiceId, :ServiceCategory
+        attr_accessor :ServiceId, :TiProjectId, :ServiceCategory
         extend Gem::Deprecate
         deprecate :ServiceCategory, :none, 2026, 7
         deprecate :ServiceCategory=, :none, 2026, 7
 
-        def initialize(serviceid=nil, servicecategory=nil)
+        def initialize(serviceid=nil, tiprojectid=nil, servicecategory=nil)
           @ServiceId = serviceid
+          @TiProjectId = tiprojectid
           @ServiceCategory = servicecategory
         end
 
         def deserialize(params)
           @ServiceId = params['ServiceId']
+          @TiProjectId = params['TiProjectId']
           @ServiceCategory = params['ServiceCategory']
         end
       end
@@ -4110,21 +4118,25 @@ module TencentCloud
       class DescribeModelServiceCallInfoRequest < TencentCloud::Common::AbstractModel
         # @param ServiceGroupId: 服务组id
         # @type ServiceGroupId: String
+        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @type TiProjectId: String
         # @param ServiceCategory: 服务分类
         # @type ServiceCategory: String
 
-        attr_accessor :ServiceGroupId, :ServiceCategory
+        attr_accessor :ServiceGroupId, :TiProjectId, :ServiceCategory
         extend Gem::Deprecate
         deprecate :ServiceCategory, :none, 2026, 7
         deprecate :ServiceCategory=, :none, 2026, 7
 
-        def initialize(servicegroupid=nil, servicecategory=nil)
+        def initialize(servicegroupid=nil, tiprojectid=nil, servicecategory=nil)
           @ServiceGroupId = servicegroupid
+          @TiProjectId = tiprojectid
           @ServiceCategory = servicecategory
         end
 
         def deserialize(params)
           @ServiceGroupId = params['ServiceGroupId']
+          @TiProjectId = params['TiProjectId']
           @ServiceCategory = params['ServiceCategory']
         end
       end
@@ -4132,16 +4144,12 @@ module TencentCloud
       # DescribeModelServiceCallInfo返回参数结构体
       class DescribeModelServiceCallInfoResponse < TencentCloud::Common::AbstractModel
         # @param ServiceCallInfo: 服务调用信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceCallInfo: :class:`Tencentcloud::Tione.v20211111.models.ServiceCallInfo`
         # @param InferGatewayCallInfo: 升级网关调用信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InferGatewayCallInfo: :class:`Tencentcloud::Tione.v20211111.models.InferGatewayCallInfo`
         # @param DefaultNginxGatewayCallInfo: 默认nginx网关的调用信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DefaultNginxGatewayCallInfo: :class:`Tencentcloud::Tione.v20211111.models.DefaultNginxGatewayCallInfo`
         # @param TJCallInfo: 太极服务的调用信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TJCallInfo: :class:`Tencentcloud::Tione.v20211111.models.TJCallInfo`
         # @param IntranetCallInfo: 内网调用信息
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -7208,106 +7216,86 @@ module TencentCloud
 
       # ModifyModelService请求参数结构体
       class ModifyModelServiceRequest < TencentCloud::Common::AbstractModel
-        # @param ServiceId: 服务id
+        # @param ServiceId: <p>服务id</p>
         # @type ServiceId: String
-        # @param ModelInfo: 模型信息，需要挂载模型时填写
+        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @type TiProjectId: String
+        # @param ModelInfo: <p>模型信息，需要挂载模型时填写</p>
         # @type ModelInfo: :class:`Tencentcloud::Tione.v20211111.models.ModelInfo`
-        # @param ImageInfo: 镜像信息，配置服务运行所需的镜像地址等信息
+        # @param ImageInfo: <p>镜像信息，配置服务运行所需的镜像地址等信息</p>
         # @type ImageInfo: :class:`Tencentcloud::Tione.v20211111.models.ImageInfo`
-        # @param Env: 环境变量，可选参数，用于配置容器中的环境变量
+        # @param Env: <p>环境变量，可选参数，用于配置容器中的环境变量</p>
         # @type Env: Array
-        # @param Resources: 资源描述，指定预付费模式下的cpu,mem,gpu等信息，后付费无需填写
+        # @param Resources: <p>资源描述，指定预付费模式下的cpu,mem,gpu等信息，后付费无需填写</p>
         # @type Resources: :class:`Tencentcloud::Tione.v20211111.models.ResourceInfo`
-        # @param InstanceType: 使用DescribeBillingSpecs接口返回的规格列表中的值，或者参考实例列表:
-        # TI.S.MEDIUM.POST	2C4G
-        # TI.S.LARGE.POST	4C8G
-        # TI.S.2XLARGE16.POST	8C16G
-        # TI.S.2XLARGE32.POST	8C32G
-        # TI.S.4XLARGE32.POST	16C32G
-        # TI.S.4XLARGE64.POST	16C64G
-        # TI.S.6XLARGE48.POST	24C48G
-        # TI.S.6XLARGE96.POST	24C96G
-        # TI.S.8XLARGE64.POST	32C64G
-        # TI.S.8XLARGE128.POST 32C128G
-        # TI.GN7.LARGE20.POST	4C20G T4*1/4
-        # TI.GN7.2XLARGE40.POST	10C40G T4*1/2
-        # TI.GN7.2XLARGE32.POST	8C32G T4*1
-        # TI.GN7.5XLARGE80.POST	20C80G T4*1
-        # TI.GN7.8XLARGE128.POST	32C128G T4*1
-        # TI.GN7.10XLARGE160.POST	40C160G T4*2
-        # TI.GN7.20XLARGE320.POST	80C320G T4*4
+        # @param InstanceType: <p>使用DescribeBillingSpecs接口返回的规格列表中的值，或者参考实例列表:<br>TI.S.MEDIUM.POST    2C4G<br>TI.S.LARGE.POST    4C8G<br>TI.S.2XLARGE16.POST    8C16G<br>TI.S.2XLARGE32.POST    8C32G<br>TI.S.4XLARGE32.POST    16C32G<br>TI.S.4XLARGE64.POST    16C64G<br>TI.S.6XLARGE48.POST    24C48G<br>TI.S.6XLARGE96.POST    24C96G<br>TI.S.8XLARGE64.POST    32C64G<br>TI.S.8XLARGE128.POST 32C128G<br>TI.GN7.LARGE20.POST    4C20G T4<em>1/4<br>TI.GN7.2XLARGE40.POST    10C40G T4</em>1/2<br>TI.GN7.2XLARGE32.POST    8C32G T4<em>1<br>TI.GN7.5XLARGE80.POST    20C80G T4</em>1<br>TI.GN7.8XLARGE128.POST    32C128G T4<em>1<br>TI.GN7.10XLARGE160.POST    40C160G T4</em>2<br>TI.GN7.20XLARGE320.POST    80C320G T4*4</p>
         # @type InstanceType: String
-        # @param ScaleMode: 扩缩容类型 支持：自动 - "AUTO", 手动 - "MANUAL"
+        # @param ScaleMode: <p>扩缩容类型 支持：自动 - &quot;AUTO&quot;, 手动 - &quot;MANUAL&quot;</p>
         # @type ScaleMode: String
-        # @param Replicas: 实例数量, 不同计费模式和调节模式下对应关系如下
-        # PREPAID 和 POSTPAID_BY_HOUR:
-        # 手动调节模式下对应 实例数量
-        # 自动调节模式下对应 基于时间的默认策略的实例数量
-        # HYBRID_PAID:
-        # 后付费实例手动调节模式下对应 实例数量
-        # 后付费实例自动调节模式下对应 时间策略的默认策略的实例数量
+        # @param Replicas: <p>实例数量, 不同计费模式和调节模式下对应关系如下<br>PREPAID 和 POSTPAID_BY_HOUR:<br>手动调节模式下对应 实例数量<br>自动调节模式下对应 基于时间的默认策略的实例数量<br>HYBRID_PAID:<br>后付费实例手动调节模式下对应 实例数量<br>后付费实例自动调节模式下对应 时间策略的默认策略的实例数量</p>
         # @type Replicas: Integer
-        # @param HorizontalPodAutoscaler: 自动伸缩信息
+        # @param HorizontalPodAutoscaler: <p>自动伸缩信息</p>
         # @type HorizontalPodAutoscaler: :class:`Tencentcloud::Tione.v20211111.models.HorizontalPodAutoscaler`
-        # @param LogEnable: 是否开启日志投递，开启后需填写配置投递到指定cls
+        # @param LogEnable: <p>是否开启日志投递，开启后需填写配置投递到指定cls</p>
         # @type LogEnable: Boolean
-        # @param LogConfig: 日志配置，需要投递服务日志到指定cls时填写
+        # @param LogConfig: <p>日志配置，需要投递服务日志到指定cls时填写</p>
         # @type LogConfig: :class:`Tencentcloud::Tione.v20211111.models.LogConfig`
-        # @param ServiceAction: 特殊更新行为： "STOP": 停止, "RESUME": 重启, "SCALE": 扩缩容, 存在这些特殊更新行为时，会忽略其他更新字段
+        # @param ServiceAction: <p>特殊更新行为： &quot;STOP&quot;: 停止, &quot;RESUME&quot;: 重启, &quot;SCALE&quot;: 扩缩容, 存在这些特殊更新行为时，会忽略其他更新字段</p>
         # @type ServiceAction: String
-        # @param ServiceDescription: 服务的描述
+        # @param ServiceDescription: <p>服务的描述</p>
         # @type ServiceDescription: String
-        # @param ScaleStrategy: 自动伸缩策略
+        # @param ScaleStrategy: <p>自动伸缩策略</p>
         # @type ScaleStrategy: String
-        # @param CronScaleJobs: 自动伸缩策略配置 HPA : 通过HPA进行弹性伸缩 CRON 通过定时任务进行伸缩
+        # @param CronScaleJobs: <p>自动伸缩策略配置 HPA : 通过HPA进行弹性伸缩 CRON 通过定时任务进行伸缩</p>
         # @type CronScaleJobs: Array
-        # @param HybridBillingPrepaidReplicas: 计费模式[HYBRID_PAID]时生效, 用于标识混合计费模式下的预付费实例数, 若不填则默认为1
+        # @param HybridBillingPrepaidReplicas: <p>计费模式[HYBRID_PAID]时生效, 用于标识混合计费模式下的预付费实例数, 若不填则默认为1</p>
         # @type HybridBillingPrepaidReplicas: Integer
-        # @param ModelHotUpdateEnable: 是否开启模型的热更新。默认不开启
+        # @param ModelHotUpdateEnable: <p>是否开启模型的热更新。默认不开启</p>
         # @type ModelHotUpdateEnable: Boolean
-        # @param ScheduledAction: 定时停止配置
+        # @param ScheduledAction: <p>定时停止配置</p>
         # @type ScheduledAction: :class:`Tencentcloud::Tione.v20211111.models.ScheduledAction`
-        # @param ServiceLimit: 服务限速限流相关配置
+        # @param ServiceLimit: <p>服务限速限流相关配置</p>
         # @type ServiceLimit: :class:`Tencentcloud::Tione.v20211111.models.ServiceLimit`
-        # @param VolumeMount: 挂载配置，目前只支持CFS
+        # @param VolumeMount: <p>挂载配置，目前只支持CFS</p>
         # @type VolumeMount: :class:`Tencentcloud::Tione.v20211111.models.VolumeMount`
-        # @param ModelTurboEnable: 是否开启模型的加速, 仅对StableDiffusion(动态加速)格式的模型有效。默认不开启
+        # @param ModelTurboEnable: <p>是否开启模型的加速, 仅对StableDiffusion(动态加速)格式的模型有效。默认不开启</p>
         # @type ModelTurboEnable: Boolean
-        # @param Command: 服务的启动命令，如遇特殊字符导致配置失败，可使用CommandBase64参数
+        # @param Command: <p>服务的启动命令，如遇特殊字符导致配置失败，可使用CommandBase64参数</p>
         # @type Command: String
-        # @param ServiceEIP: 是否开启TIONE内网访问外部，此功能仅支持后付费机型与从TIONE平台购买的预付费机型；使用从CVM选择资源组时此配置不生效。
+        # @param ServiceEIP: <p>是否开启TIONE内网访问外部，此功能仅支持后付费机型与从TIONE平台购买的预付费机型；使用从CVM选择资源组时此配置不生效。</p>
         # @type ServiceEIP: :class:`Tencentcloud::Tione.v20211111.models.ServiceEIP`
-        # @param CommandBase64: 服务的启动命令，以base64格式进行输入，与Command同时配置时，仅当前参数生效
+        # @param CommandBase64: <p>服务的启动命令，以base64格式进行输入，与Command同时配置时，仅当前参数生效</p>
         # @type CommandBase64: String
-        # @param ServicePort: 服务端口，仅在非内置镜像时生效，默认8501。不支持输入8501-8510,6006,9092
+        # @param ServicePort: <p>服务端口，仅在非内置镜像时生效，默认8501。不支持输入8501-8510,6006,9092</p>
         # @type ServicePort: Integer
-        # @param InstancePerReplicas: 单副本下的实例数，仅在部署类型为DIST时生效，默认1
+        # @param InstancePerReplicas: <p>单副本下的实例数，仅在部署类型为DIST时生效，默认1</p>
         # @type InstancePerReplicas: Integer
-        # @param TerminationGracePeriodSeconds: 服务的优雅退出时限。单位为秒，默认值为30，最小为1
+        # @param TerminationGracePeriodSeconds: <p>服务的优雅退出时限。单位为秒，默认值为30，最小为1</p>
         # @type TerminationGracePeriodSeconds: Integer
-        # @param PreStopCommand: 服务实例停止前执行的命令，执行完毕或执行时间超过优雅退出时限后实例结束
+        # @param PreStopCommand: <p>服务实例停止前执行的命令，执行完毕或执行时间超过优雅退出时限后实例结束</p>
         # @type PreStopCommand: Array
-        # @param GrpcEnable: 是否启动grpc端口
+        # @param GrpcEnable: <p>是否启动grpc端口</p>
         # @type GrpcEnable: Boolean
-        # @param HealthProbe: 健康探针
+        # @param HealthProbe: <p>健康探针</p>
         # @type HealthProbe: :class:`Tencentcloud::Tione.v20211111.models.HealthProbe`
-        # @param RollingUpdate: 滚动更新策略
+        # @param RollingUpdate: <p>滚动更新策略</p>
         # @type RollingUpdate: :class:`Tencentcloud::Tione.v20211111.models.RollingUpdate`
-        # @param Sidecar: sidecar配置
+        # @param Sidecar: <p>sidecar配置</p>
         # @type Sidecar: :class:`Tencentcloud::Tione.v20211111.models.SidecarSpec`
-        # @param ResourceGroupId: 资源组 id
+        # @param ResourceGroupId: <p>资源组 id</p>
         # @type ResourceGroupId: String
-        # @param VolumeMounts: 数据盘批量挂载配置，当前仅支持CFS，仅针对“模型来源-腾讯云存储、模型来源-腾讯云容器镜像、模型来源-资源组、模型来源-数据源”。
+        # @param VolumeMounts: <p>数据盘批量挂载配置，当前仅支持CFS，仅针对“模型来源-腾讯云存储、模型来源-腾讯云容器镜像、模型来源-资源组、模型来源-数据源”。</p>
         # @type VolumeMounts: Array
-        # @param SchedulingStrategy: 调度策略 [binpack] 优先占满整机，尽量避免碎卡（默认值）[spread] 优先分散在各个节点，确保服务高可用
+        # @param SchedulingStrategy: <p>调度策略 [binpack] 优先占满整机，尽量避免碎卡（默认值）[spread] 优先分散在各个节点，确保服务高可用</p>
         # @type SchedulingStrategy: String
-        # @param TargetProjectId: 目标工作空间，不为0则进行迁移，源服务只允许在默认空间
+        # @param TargetProjectId: <p>目标工作空间，不为0则进行迁移，源服务只允许在默认空间</p>
         # @type TargetProjectId: Integer
 
-        attr_accessor :ServiceId, :ModelInfo, :ImageInfo, :Env, :Resources, :InstanceType, :ScaleMode, :Replicas, :HorizontalPodAutoscaler, :LogEnable, :LogConfig, :ServiceAction, :ServiceDescription, :ScaleStrategy, :CronScaleJobs, :HybridBillingPrepaidReplicas, :ModelHotUpdateEnable, :ScheduledAction, :ServiceLimit, :VolumeMount, :ModelTurboEnable, :Command, :ServiceEIP, :CommandBase64, :ServicePort, :InstancePerReplicas, :TerminationGracePeriodSeconds, :PreStopCommand, :GrpcEnable, :HealthProbe, :RollingUpdate, :Sidecar, :ResourceGroupId, :VolumeMounts, :SchedulingStrategy, :TargetProjectId
+        attr_accessor :ServiceId, :TiProjectId, :ModelInfo, :ImageInfo, :Env, :Resources, :InstanceType, :ScaleMode, :Replicas, :HorizontalPodAutoscaler, :LogEnable, :LogConfig, :ServiceAction, :ServiceDescription, :ScaleStrategy, :CronScaleJobs, :HybridBillingPrepaidReplicas, :ModelHotUpdateEnable, :ScheduledAction, :ServiceLimit, :VolumeMount, :ModelTurboEnable, :Command, :ServiceEIP, :CommandBase64, :ServicePort, :InstancePerReplicas, :TerminationGracePeriodSeconds, :PreStopCommand, :GrpcEnable, :HealthProbe, :RollingUpdate, :Sidecar, :ResourceGroupId, :VolumeMounts, :SchedulingStrategy, :TargetProjectId
 
-        def initialize(serviceid=nil, modelinfo=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, scalemode=nil, replicas=nil, horizontalpodautoscaler=nil, logenable=nil, logconfig=nil, serviceaction=nil, servicedescription=nil, scalestrategy=nil, cronscalejobs=nil, hybridbillingprepaidreplicas=nil, modelhotupdateenable=nil, scheduledaction=nil, servicelimit=nil, volumemount=nil, modelturboenable=nil, command=nil, serviceeip=nil, commandbase64=nil, serviceport=nil, instanceperreplicas=nil, terminationgraceperiodseconds=nil, prestopcommand=nil, grpcenable=nil, healthprobe=nil, rollingupdate=nil, sidecar=nil, resourcegroupid=nil, volumemounts=nil, schedulingstrategy=nil, targetprojectid=nil)
+        def initialize(serviceid=nil, tiprojectid=nil, modelinfo=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, scalemode=nil, replicas=nil, horizontalpodautoscaler=nil, logenable=nil, logconfig=nil, serviceaction=nil, servicedescription=nil, scalestrategy=nil, cronscalejobs=nil, hybridbillingprepaidreplicas=nil, modelhotupdateenable=nil, scheduledaction=nil, servicelimit=nil, volumemount=nil, modelturboenable=nil, command=nil, serviceeip=nil, commandbase64=nil, serviceport=nil, instanceperreplicas=nil, terminationgraceperiodseconds=nil, prestopcommand=nil, grpcenable=nil, healthprobe=nil, rollingupdate=nil, sidecar=nil, resourcegroupid=nil, volumemounts=nil, schedulingstrategy=nil, targetprojectid=nil)
           @ServiceId = serviceid
+          @TiProjectId = tiprojectid
           @ModelInfo = modelinfo
           @ImageInfo = imageinfo
           @Env = env
@@ -7347,6 +7335,7 @@ module TencentCloud
 
         def deserialize(params)
           @ServiceId = params['ServiceId']
+          @TiProjectId = params['TiProjectId']
           unless params['ModelInfo'].nil?
             @ModelInfo = ModelInfo.new
             @ModelInfo.deserialize(params['ModelInfo'])
@@ -7444,7 +7433,7 @@ module TencentCloud
 
       # ModifyModelService返回参数结构体
       class ModifyModelServiceResponse < TencentCloud::Common::AbstractModel
-        # @param Service: 生成的模型服务
+        # @param Service: <p>生成的模型服务</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Service: :class:`Tencentcloud::Tione.v20211111.models.Service`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -9827,19 +9816,21 @@ module TencentCloud
         # @type SchedulingPolicy: :class:`Tencentcloud::Tione.v20211111.models.SchedulingPolicy`
         # @param ExternalResourceGroups: <p>外部的资源组信息，表示借调了哪些资源组的资源</p>
         # @type ExternalResourceGroups: Array
+        # @param ProjectId: <p>服务所属的项目 id,0表示默认空间</p>
+        # @type ProjectId: String
         # @param Changer: <p>变更服务的子账户</p>
         # @type Changer: String
         # @param ChangerName: <p>变更服务的子账户名称</p>
         # @type ChangerName: String
 
-        attr_accessor :ServiceGroupId, :ServiceId, :ServiceGroupName, :ServiceDescription, :ServiceInfo, :ClusterId, :Region, :Namespace, :ChargeType, :ResourceGroupId, :ResourceGroupName, :Tags, :IngressName, :CreatedBy, :CreateTime, :UpdateTime, :Uin, :SubUin, :AppId, :BusinessStatus, :ServiceLimit, :ScheduledAction, :CreateFailedReason, :Status, :BillingInfo, :Weight, :CreateSource, :Version, :LatestVersion, :ResourceGroupSWType, :ArchiveStatus, :DeployType, :InstancePerReplicas, :MonitorSource, :SubUinName, :SchedulingPolicy, :ExternalResourceGroups, :Changer, :ChangerName
+        attr_accessor :ServiceGroupId, :ServiceId, :ServiceGroupName, :ServiceDescription, :ServiceInfo, :ClusterId, :Region, :Namespace, :ChargeType, :ResourceGroupId, :ResourceGroupName, :Tags, :IngressName, :CreatedBy, :CreateTime, :UpdateTime, :Uin, :SubUin, :AppId, :BusinessStatus, :ServiceLimit, :ScheduledAction, :CreateFailedReason, :Status, :BillingInfo, :Weight, :CreateSource, :Version, :LatestVersion, :ResourceGroupSWType, :ArchiveStatus, :DeployType, :InstancePerReplicas, :MonitorSource, :SubUinName, :SchedulingPolicy, :ExternalResourceGroups, :ProjectId, :Changer, :ChangerName
         extend Gem::Deprecate
         deprecate :ServiceLimit, :none, 2026, 7
         deprecate :ServiceLimit=, :none, 2026, 7
         deprecate :ScheduledAction, :none, 2026, 7
         deprecate :ScheduledAction=, :none, 2026, 7
 
-        def initialize(servicegroupid=nil, serviceid=nil, servicegroupname=nil, servicedescription=nil, serviceinfo=nil, clusterid=nil, region=nil, namespace=nil, chargetype=nil, resourcegroupid=nil, resourcegroupname=nil, tags=nil, ingressname=nil, createdby=nil, createtime=nil, updatetime=nil, uin=nil, subuin=nil, appid=nil, businessstatus=nil, servicelimit=nil, scheduledaction=nil, createfailedreason=nil, status=nil, billinginfo=nil, weight=nil, createsource=nil, version=nil, latestversion=nil, resourcegroupswtype=nil, archivestatus=nil, deploytype=nil, instanceperreplicas=nil, monitorsource=nil, subuinname=nil, schedulingpolicy=nil, externalresourcegroups=nil, changer=nil, changername=nil)
+        def initialize(servicegroupid=nil, serviceid=nil, servicegroupname=nil, servicedescription=nil, serviceinfo=nil, clusterid=nil, region=nil, namespace=nil, chargetype=nil, resourcegroupid=nil, resourcegroupname=nil, tags=nil, ingressname=nil, createdby=nil, createtime=nil, updatetime=nil, uin=nil, subuin=nil, appid=nil, businessstatus=nil, servicelimit=nil, scheduledaction=nil, createfailedreason=nil, status=nil, billinginfo=nil, weight=nil, createsource=nil, version=nil, latestversion=nil, resourcegroupswtype=nil, archivestatus=nil, deploytype=nil, instanceperreplicas=nil, monitorsource=nil, subuinname=nil, schedulingpolicy=nil, externalresourcegroups=nil, projectid=nil, changer=nil, changername=nil)
           @ServiceGroupId = servicegroupid
           @ServiceId = serviceid
           @ServiceGroupName = servicegroupname
@@ -9877,6 +9868,7 @@ module TencentCloud
           @SubUinName = subuinname
           @SchedulingPolicy = schedulingpolicy
           @ExternalResourceGroups = externalresourcegroups
+          @ProjectId = projectid
           @Changer = changer
           @ChangerName = changername
         end
@@ -9945,6 +9937,7 @@ module TencentCloud
               @ExternalResourceGroups << resourcegroupinfo_tmp
             end
           end
+          @ProjectId = params['ProjectId']
           @Changer = params['Changer']
           @ChangerName = params['ChangerName']
         end

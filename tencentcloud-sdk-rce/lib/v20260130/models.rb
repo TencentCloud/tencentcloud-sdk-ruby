@@ -17,6 +17,159 @@
 module TencentCloud
   module Rce
     module V20260130
+      # AssessDeviceRiskPremiumPro请求参数结构体
+      class AssessDeviceRiskPremiumProRequest < TencentCloud::Common::AbstractModel
+        # @param DeviceToken: <p>用户设备指纹token标识，在您的网站或者应用程序中集成设备指纹的SDK后获取</p>
+        # @type DeviceToken: String
+        # @param UserIp: <p>客户端 IP 地址</p>
+        # @type UserIp: String
+
+        attr_accessor :DeviceToken, :UserIp
+
+        def initialize(devicetoken=nil, userip=nil)
+          @DeviceToken = devicetoken
+          @UserIp = userip
+        end
+
+        def deserialize(params)
+          @DeviceToken = params['DeviceToken']
+          @UserIp = params['UserIp']
+        end
+      end
+
+      # AssessDeviceRiskPremiumPro返回参数结构体
+      class AssessDeviceRiskPremiumProResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>设备风险评估高级版返回结果</p>
+        # @type Data: :class:`Tencentcloud::Rce.v20260130.models.AssessDeviceRiskPremiumRsp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = AssessDeviceRiskPremiumRsp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 设备风险评估高级版返回结果
+      class AssessDeviceRiskPremiumRsp < TencentCloud::Common::AbstractModel
+        # @param Decision: <p>决策信息</p>
+        # @type Decision: :class:`Tencentcloud::Rce.v20260130.models.Decision`
+        # @param Score: <p>设备风险分信息</p>
+        # @type Score: :class:`Tencentcloud::Rce.v20260130.models.DataScore`
+        # @param Device: <p>设备基础信息</p>
+        # @type Device: :class:`Tencentcloud::Rce.v20260130.models.Device`
+        # @param Environment: <p>IP环境基础信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Environment: :class:`Tencentcloud::Rce.v20260130.models.Environment`
+
+        attr_accessor :Decision, :Score, :Device, :Environment
+
+        def initialize(decision=nil, score=nil, device=nil, environment=nil)
+          @Decision = decision
+          @Score = score
+          @Device = device
+          @Environment = environment
+        end
+
+        def deserialize(params)
+          unless params['Decision'].nil?
+            @Decision = Decision.new
+            @Decision.deserialize(params['Decision'])
+          end
+          unless params['Score'].nil?
+            @Score = DataScore.new
+            @Score.deserialize(params['Score'])
+          end
+          unless params['Device'].nil?
+            @Device = Device.new
+            @Device.deserialize(params['Device'])
+          end
+          unless params['Environment'].nil?
+            @Environment = Environment.new
+            @Environment.deserialize(params['Environment'])
+          end
+        end
+      end
+
+      # AssessDeviceRiskPro请求参数结构体
+      class AssessDeviceRiskProRequest < TencentCloud::Common::AbstractModel
+        # @param DeviceToken: <p>用户设备指纹token标识，在您的网站或者应用程序中集成设备指纹的SDK后获取</p>
+        # @type DeviceToken: String
+        # @param UserIp: <p>客户端 IP 地址</p>
+        # @type UserIp: String
+
+        attr_accessor :DeviceToken, :UserIp
+
+        def initialize(devicetoken=nil, userip=nil)
+          @DeviceToken = devicetoken
+          @UserIp = userip
+        end
+
+        def deserialize(params)
+          @DeviceToken = params['DeviceToken']
+          @UserIp = params['UserIp']
+        end
+      end
+
+      # AssessDeviceRiskPro返回参数结构体
+      class AssessDeviceRiskProResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>设备风险评估基础版返回结果</p>
+        # @type Data: :class:`Tencentcloud::Rce.v20260130.models.AssessDeviceRiskRsp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = AssessDeviceRiskRsp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 设备风险评估基础版返回结果
+      class AssessDeviceRiskRsp < TencentCloud::Common::AbstractModel
+        # @param Score: <p>设备风险分信息</p>
+        # @type Score: :class:`Tencentcloud::Rce.v20260130.models.DataScore`
+        # @param Device: <p>设备基础信息</p>
+        # @type Device: :class:`Tencentcloud::Rce.v20260130.models.Device`
+
+        attr_accessor :Score, :Device
+
+        def initialize(score=nil, device=nil)
+          @Score = score
+          @Device = device
+        end
+
+        def deserialize(params)
+          unless params['Score'].nil?
+            @Score = DataScore.new
+            @Score.deserialize(params['Score'])
+          end
+          unless params['Device'].nil?
+            @Device = Device.new
+            @Device.deserialize(params['Device'])
+          end
+        end
+      end
+
       # AssessEnvironmentRisk请求参数结构体
       class AssessEnvironmentRiskRequest < TencentCloud::Common::AbstractModel
         # @param UserIp: <p>客户端 IP 地址</p>
@@ -58,9 +211,9 @@ module TencentCloud
 
       # 环境风险评估返回结果
       class AssessEnvironmentRiskRsp < TencentCloud::Common::AbstractModel
-        # @param Score: <p>环境风险分信息</p>
+        # @param Score: <p>IP环境风险分信息</p>
         # @type Score: :class:`Tencentcloud::Rce.v20260130.models.DataScore`
-        # @param Environment: <p>环境基础信息</p>
+        # @param Environment: <p>IP环境基础信息</p>
         # @type Environment: :class:`Tencentcloud::Rce.v20260130.models.Environment`
 
         attr_accessor :Score, :Environment
@@ -106,6 +259,74 @@ module TencentCloud
               @RiskLabels << risklabel_tmp
             end
           end
+        end
+      end
+
+      # 决策信息
+      class Decision < TencentCloud::Common::AbstractModel
+        # @param DecisionResult: <p>决策结果</p><ul><li>pass：通过</li><li>review：复审</li><li>reject：拒绝</li></ul>
+        # @type DecisionResult: String
+
+        attr_accessor :DecisionResult
+
+        def initialize(decisionresult=nil)
+          @DecisionResult = decisionresult
+        end
+
+        def deserialize(params)
+          @DecisionResult = params['DecisionResult']
+        end
+      end
+
+      # 设备基础信息
+      class Device < TencentCloud::Common::AbstractModel
+        # @param DeviceId: <p>设备ID</p>
+        # @type DeviceId: String
+        # @param AppVersion: <p>App版本信息</p>
+        # @type AppVersion: String
+        # @param Brand: <p>品牌</p>
+        # @type Brand: String
+        # @param ClientIp: <p>客户端IP</p>
+        # @type ClientIp: String
+        # @param Model: <p>机型</p>
+        # @type Model: String
+        # @param NetworkType: <p>网络类型</p>
+        # @type NetworkType: String
+        # @param PackageName: <p>应用包名</p>
+        # @type PackageName: String
+        # @param Platform: <p>平台</p><p>枚举值：</p><ul><li>2： Android</li><li>3： IOS</li><li>4： H5</li><li>5： 微信小程序</li></ul>
+        # @type Platform: String
+        # @param SystemVersion: <p>系统版本</p>
+        # @type SystemVersion: String
+        # @param SdkBuildVersion: <p>SDK版本</p>
+        # @type SdkBuildVersion: String
+
+        attr_accessor :DeviceId, :AppVersion, :Brand, :ClientIp, :Model, :NetworkType, :PackageName, :Platform, :SystemVersion, :SdkBuildVersion
+
+        def initialize(deviceid=nil, appversion=nil, brand=nil, clientip=nil, model=nil, networktype=nil, packagename=nil, platform=nil, systemversion=nil, sdkbuildversion=nil)
+          @DeviceId = deviceid
+          @AppVersion = appversion
+          @Brand = brand
+          @ClientIp = clientip
+          @Model = model
+          @NetworkType = networktype
+          @PackageName = packagename
+          @Platform = platform
+          @SystemVersion = systemversion
+          @SdkBuildVersion = sdkbuildversion
+        end
+
+        def deserialize(params)
+          @DeviceId = params['DeviceId']
+          @AppVersion = params['AppVersion']
+          @Brand = params['Brand']
+          @ClientIp = params['ClientIp']
+          @Model = params['Model']
+          @NetworkType = params['NetworkType']
+          @PackageName = params['PackageName']
+          @Platform = params['Platform']
+          @SystemVersion = params['SystemVersion']
+          @SdkBuildVersion = params['SdkBuildVersion']
         end
       end
 

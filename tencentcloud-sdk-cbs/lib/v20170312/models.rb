@@ -3261,19 +3261,23 @@ module TencentCloud
         # @type DiskName: String
         # @param ProjectId: <p>新的单副本SSD硬盘项目ID。</p>
         # @type ProjectId: Integer
+        # @param AutoRenewFlag: <p>云硬盘的自动续费标识</p><p>枚举值：</p><ul><li>NOTIFY_AND_AUTO_RENEW： 通知过期且自动续费</li><li>NOTIFY_AND_MANUAL_RENEW： 通知过期不自动续费</li><li>DISABLE_NOTIFY_AND_MANUAL_RENEW： 不通知过期不自动续费</li></ul>
+        # @type AutoRenewFlag: String
 
-        attr_accessor :RemoteDiskIds, :DiskName, :ProjectId
+        attr_accessor :RemoteDiskIds, :DiskName, :ProjectId, :AutoRenewFlag
 
-        def initialize(remotediskids=nil, diskname=nil, projectid=nil)
+        def initialize(remotediskids=nil, diskname=nil, projectid=nil, autorenewflag=nil)
           @RemoteDiskIds = remotediskids
           @DiskName = diskname
           @ProjectId = projectid
+          @AutoRenewFlag = autorenewflag
         end
 
         def deserialize(params)
           @RemoteDiskIds = params['RemoteDiskIds']
           @DiskName = params['DiskName']
           @ProjectId = params['ProjectId']
+          @AutoRenewFlag = params['AutoRenewFlag']
         end
       end
 
@@ -3786,10 +3790,12 @@ module TencentCloud
         # @type LatestModifyTime: String
         # @param AutoSnapshotPolicyId: <p>自动快照策略ID，仅当该快照由自动快照策略方式创建时才会返回。</p>
         # @type AutoSnapshotPolicyId: String
+        # @param SnapshotMode: <p>快照模式。取值为 INSTANT_SNAPSHOT 表示极速快照，STANDARD_SNAPSHOT 表示普通快照。</p><p>枚举值：</p><ul><li>INSTANT_SNAPSHOT： 极速快照</li><li>STANDARD_SNAPSHOT： 普通快照</li></ul>
+        # @type SnapshotMode: String
 
-        attr_accessor :Placement, :CopyFromRemote, :SnapshotState, :IsPermanent, :SnapshotName, :DeadlineTime, :Percent, :Images, :ShareReference, :SnapshotType, :DiskSize, :DiskId, :CopyingToRegions, :Encrypt, :CreateTime, :ImageCount, :DiskUsage, :SnapshotId, :TimeStartShare, :Tags, :IsLocked, :LatestModifyTime, :AutoSnapshotPolicyId
+        attr_accessor :Placement, :CopyFromRemote, :SnapshotState, :IsPermanent, :SnapshotName, :DeadlineTime, :Percent, :Images, :ShareReference, :SnapshotType, :DiskSize, :DiskId, :CopyingToRegions, :Encrypt, :CreateTime, :ImageCount, :DiskUsage, :SnapshotId, :TimeStartShare, :Tags, :IsLocked, :LatestModifyTime, :AutoSnapshotPolicyId, :SnapshotMode
 
-        def initialize(placement=nil, copyfromremote=nil, snapshotstate=nil, ispermanent=nil, snapshotname=nil, deadlinetime=nil, percent=nil, images=nil, sharereference=nil, snapshottype=nil, disksize=nil, diskid=nil, copyingtoregions=nil, encrypt=nil, createtime=nil, imagecount=nil, diskusage=nil, snapshotid=nil, timestartshare=nil, tags=nil, islocked=nil, latestmodifytime=nil, autosnapshotpolicyid=nil)
+        def initialize(placement=nil, copyfromremote=nil, snapshotstate=nil, ispermanent=nil, snapshotname=nil, deadlinetime=nil, percent=nil, images=nil, sharereference=nil, snapshottype=nil, disksize=nil, diskid=nil, copyingtoregions=nil, encrypt=nil, createtime=nil, imagecount=nil, diskusage=nil, snapshotid=nil, timestartshare=nil, tags=nil, islocked=nil, latestmodifytime=nil, autosnapshotpolicyid=nil, snapshotmode=nil)
           @Placement = placement
           @CopyFromRemote = copyfromremote
           @SnapshotState = snapshotstate
@@ -3813,6 +3819,7 @@ module TencentCloud
           @IsLocked = islocked
           @LatestModifyTime = latestmodifytime
           @AutoSnapshotPolicyId = autosnapshotpolicyid
+          @SnapshotMode = snapshotmode
         end
 
         def deserialize(params)
@@ -3856,6 +3863,7 @@ module TencentCloud
           @IsLocked = params['IsLocked']
           @LatestModifyTime = params['LatestModifyTime']
           @AutoSnapshotPolicyId = params['AutoSnapshotPolicyId']
+          @SnapshotMode = params['SnapshotMode']
         end
       end
 

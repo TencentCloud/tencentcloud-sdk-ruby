@@ -6217,45 +6217,82 @@ module TencentCloud
         end
       end
 
+      # 对外接口访问信息
+      class SqlGatewayEndpoint < TencentCloud::Common::AbstractModel
+        # @param Type: <p>类型</p><p>枚举值：</p><ul><li>rest： rest</li><li>hiveserver2： hiveserver2</li><li>pg： pg</li></ul>
+        # @type Type: String
+        # @param Address: <p>地址</p>
+        # @type Address: String
+        # @param Enabled: <p>是否开启</p>
+        # @type Enabled: Boolean
+        # @param Extra: <p>其他信息</p>
+        # @type Extra: String
+
+        attr_accessor :Type, :Address, :Enabled, :Extra
+
+        def initialize(type=nil, address=nil, enabled=nil, extra=nil)
+          @Type = type
+          @Address = address
+          @Enabled = enabled
+          @Extra = extra
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Address = params['Address']
+          @Enabled = params['Enabled']
+          @Extra = params['Extra']
+        end
+      end
+
       # SqlGateway配置信息
       class SqlGatewayItem < TencentCloud::Common::AbstractModel
-        # @param SerialId: 唯一标识
+        # @param SerialId: <p>唯一标识</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SerialId: String
-        # @param FlinkVersion: Flink内核版本
+        # @param FlinkVersion: <p>Flink内核版本</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlinkVersion: String
-        # @param Status: 状态，1.停止 2. 开启中 3. 开启 4. 开启失败 5. 停止中
+        # @param Status: <p>状态，1.停止 2. 开启中 3. 开启 4. 开启失败 5. 停止中</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
-        # @param CreatorUin: 创建人
+        # @param CreatorUin: <p>创建人</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatorUin: String
-        # @param ResourceRefs: 引用资源
+        # @param ResourceRefs: <p>引用资源</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceRefs: Array
-        # @param CuSpec: Cu规格
+        # @param CuSpec: <p>Cu规格</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CuSpec: Float
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
-        # @param UpdateTime: 更新时间
+        # @param UpdateTime: <p>更新时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
-        # @param Properties: 配置参数
+        # @param Properties: <p>配置参数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Properties: Array
-        # @param Cpu: Cpu
+        # @param Cpu: <p>Cpu</p>
         # @type Cpu: Float
-        # @param Mem: Mem
+        # @param Mem: <p>Mem</p>
         # @type Mem: Float
-        # @param JdkVersion: jdk版本
+        # @param JdkVersion: <p>jdk版本</p>
         # @type JdkVersion: String
+        # @param SessionClusterId: <p>session id</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SessionClusterId: String
+        # @param PgUser: <p>pg用户名</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PgUser: String
+        # @param Endpoints: <p>协议</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Endpoints: Array
 
-        attr_accessor :SerialId, :FlinkVersion, :Status, :CreatorUin, :ResourceRefs, :CuSpec, :CreateTime, :UpdateTime, :Properties, :Cpu, :Mem, :JdkVersion
+        attr_accessor :SerialId, :FlinkVersion, :Status, :CreatorUin, :ResourceRefs, :CuSpec, :CreateTime, :UpdateTime, :Properties, :Cpu, :Mem, :JdkVersion, :SessionClusterId, :PgUser, :Endpoints
 
-        def initialize(serialid=nil, flinkversion=nil, status=nil, creatoruin=nil, resourcerefs=nil, cuspec=nil, createtime=nil, updatetime=nil, properties=nil, cpu=nil, mem=nil, jdkversion=nil)
+        def initialize(serialid=nil, flinkversion=nil, status=nil, creatoruin=nil, resourcerefs=nil, cuspec=nil, createtime=nil, updatetime=nil, properties=nil, cpu=nil, mem=nil, jdkversion=nil, sessionclusterid=nil, pguser=nil, endpoints=nil)
           @SerialId = serialid
           @FlinkVersion = flinkversion
           @Status = status
@@ -6268,6 +6305,9 @@ module TencentCloud
           @Cpu = cpu
           @Mem = mem
           @JdkVersion = jdkversion
+          @SessionClusterId = sessionclusterid
+          @PgUser = pguser
+          @Endpoints = endpoints
         end
 
         def deserialize(params)
@@ -6297,6 +6337,16 @@ module TencentCloud
           @Cpu = params['Cpu']
           @Mem = params['Mem']
           @JdkVersion = params['JdkVersion']
+          @SessionClusterId = params['SessionClusterId']
+          @PgUser = params['PgUser']
+          unless params['Endpoints'].nil?
+            @Endpoints = []
+            params['Endpoints'].each do |i|
+              sqlgatewayendpoint_tmp = SqlGatewayEndpoint.new
+              sqlgatewayendpoint_tmp.deserialize(i)
+              @Endpoints << sqlgatewayendpoint_tmp
+            end
+          end
         end
       end
 
