@@ -5222,17 +5222,36 @@ module TencentCloud
         end
       end
 
+      # AIGC 视频转绘人物参数信息。
+      class AigcVideoRedrawTaskInfo < TencentCloud::Common::AbstractModel
+        # @param Style: <p>用于描述转绘风格。限制50字符。</p>
+        # @type Style: String
+
+        attr_accessor :Style
+
+        def initialize(style=nil)
+          @Style = style
+        end
+
+        def deserialize(params)
+          @Style = params['Style']
+        end
+      end
+
       # AIGC 视频转绘任务的输入。
       class AigcVideoRedrawTaskInput < TencentCloud::Common::AbstractModel
         # @param FileInfo: <p>AIGC 视频转绘任务输入文件信息。</p>
         # @type FileInfo: :class:`Tencentcloud::Vod.v20180717.models.AigcVideoRedrawTaskInputFileInfo`
+        # @param TaskInfo: <p>AIGC 视频转绘任务参数信息。</p>
+        # @type TaskInfo: :class:`Tencentcloud::Vod.v20180717.models.AigcVideoRedrawTaskInfo`
         # @param OutputConfig: <p>AIGC 视频转绘输出配置。</p>
         # @type OutputConfig: :class:`Tencentcloud::Vod.v20180717.models.AigcVideoRedrawOutputConfig`
 
-        attr_accessor :FileInfo, :OutputConfig
+        attr_accessor :FileInfo, :TaskInfo, :OutputConfig
 
-        def initialize(fileinfo=nil, outputconfig=nil)
+        def initialize(fileinfo=nil, taskinfo=nil, outputconfig=nil)
           @FileInfo = fileinfo
+          @TaskInfo = taskinfo
           @OutputConfig = outputconfig
         end
 
@@ -5240,6 +5259,10 @@ module TencentCloud
           unless params['FileInfo'].nil?
             @FileInfo = AigcVideoRedrawTaskInputFileInfo.new
             @FileInfo.deserialize(params['FileInfo'])
+          end
+          unless params['TaskInfo'].nil?
+            @TaskInfo = AigcVideoRedrawTaskInfo.new
+            @TaskInfo.deserialize(params['TaskInfo'])
           end
           unless params['OutputConfig'].nil?
             @OutputConfig = AigcVideoRedrawOutputConfig.new

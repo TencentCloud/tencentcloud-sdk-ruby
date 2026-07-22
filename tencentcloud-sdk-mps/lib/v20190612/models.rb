@@ -9030,6 +9030,34 @@ module TencentCloud
         end
       end
 
+      # 生图任务。
+      class CreateImageConfig < TencentCloud::Common::AbstractModel
+        # @param Model: <p>生图模型</p><p>枚举值：</p><ul><li>WAND-create-1.0-lite： 轻量生图模型</li><li>WAND-create-1.0-flash： 质量-速度平衡生图模型</li><li>WAND-create-1.0-pro： 高质量生图模型</li></ul>
+        # @type Model: String
+        # @param Prompt: <p>生图指令</p>
+        # @type Prompt: String
+        # @param Resolution: <p>输出图片的分辨率</p><p>枚举值：</p><ul><li>1K： 短边分辨率 1080</li><li>2K： 短边分辨率 1440</li><li>4K： 短边分辨率 2160</li></ul><p>默认值：1K</p>
+        # @type Resolution: String
+        # @param AspectRatio: <p>输出图片的宽高比</p><p>枚举值：</p><ul><li>1:1： 宽高比 1:1</li><li>2:3： 宽高比 2:3</li><li>3:2： 宽高比 3:2</li><li>3:4： 宽高比 3:4</li><li>4:3： 宽高比 4:3</li><li>9:16： 宽高比 9:16</li><li>16:9： 宽高比 16:9</li></ul><p>默认值：1:1</p>
+        # @type AspectRatio: String
+
+        attr_accessor :Model, :Prompt, :Resolution, :AspectRatio
+
+        def initialize(model=nil, prompt=nil, resolution=nil, aspectratio=nil)
+          @Model = model
+          @Prompt = prompt
+          @Resolution = resolution
+          @AspectRatio = aspectratio
+        end
+
+        def deserialize(params)
+          @Model = params['Model']
+          @Prompt = params['Prompt']
+          @Resolution = params['Resolution']
+          @AspectRatio = params['AspectRatio']
+        end
+      end
+
       # CreateImageSpriteTemplate请求参数结构体
       class CreateImageSpriteTemplateRequest < TencentCloud::Common::AbstractModel
         # @param SampleType: 采样类型，取值：
@@ -13107,6 +13135,79 @@ module TencentCloud
           @Status = params['Status']
           @ImageUrls = params['ImageUrls']
           @Message = params['Message']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAigcTaskStatus请求参数结构体
+      class DescribeAigcTaskStatusRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务ID</p>
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeAigcTaskStatus返回参数结构体
+      class DescribeAigcTaskStatusResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务ID</p>
+        # @type TaskId: String
+        # @param TaskStatus: <p>任务状态描述</p><p>枚举值：</p><ul><li>PENDING： 任务等待调度</li><li>RUNNING： 任务运行中</li><li>FINISHED： 任务执行成功</li><li>STOP： 任务被中止</li><li>FAILED： 任务失败</li><li>TIMEOUT： 任务超时</li></ul>
+        # @type TaskStatus: String
+        # @param OutputUrl: <p>输出url</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutputUrl: String
+        # @param CreateTime: <p>任务创建时间</p>
+        # @type CreateTime: String
+        # @param ScheduledTime: <p>任务调度时间</p>
+        # @type ScheduledTime: String
+        # @param FinishedTime: <p>任务完成时间</p>
+        # @type FinishedTime: String
+        # @param TaskResultCode: <p>任务错误码</p>
+        # @type TaskResultCode: Integer
+        # @param TaskResultMsg: <p>任务返回错误信息</p>
+        # @type TaskResultMsg: String
+        # @param RequestBody: <p>请求结构体</p>
+        # @type RequestBody: String
+        # @param TaskType: <p>任务类型</p>
+        # @type TaskType: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :TaskStatus, :OutputUrl, :CreateTime, :ScheduledTime, :FinishedTime, :TaskResultCode, :TaskResultMsg, :RequestBody, :TaskType, :RequestId
+
+        def initialize(taskid=nil, taskstatus=nil, outputurl=nil, createtime=nil, scheduledtime=nil, finishedtime=nil, taskresultcode=nil, taskresultmsg=nil, requestbody=nil, tasktype=nil, requestid=nil)
+          @TaskId = taskid
+          @TaskStatus = taskstatus
+          @OutputUrl = outputurl
+          @CreateTime = createtime
+          @ScheduledTime = scheduledtime
+          @FinishedTime = finishedtime
+          @TaskResultCode = taskresultcode
+          @TaskResultMsg = taskresultmsg
+          @RequestBody = requestbody
+          @TaskType = tasktype
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @TaskStatus = params['TaskStatus']
+          @OutputUrl = params['OutputUrl']
+          @CreateTime = params['CreateTime']
+          @ScheduledTime = params['ScheduledTime']
+          @FinishedTime = params['FinishedTime']
+          @TaskResultCode = params['TaskResultCode']
+          @TaskResultMsg = params['TaskResultMsg']
+          @RequestBody = params['RequestBody']
+          @TaskType = params['TaskType']
           @RequestId = params['RequestId']
         end
       end
@@ -21203,10 +21304,12 @@ module TencentCloud
         # @type AiTryOnConfig: :class:`Tencentcloud::Mps.v20190612.models.AiTryOnConfig`
         # @param AiPosterSuiteConfig: <p>Ai套图配置。</p>
         # @type AiPosterSuiteConfig: :class:`Tencentcloud::Mps.v20190612.models.AiPosterSuiteConfig`
+        # @param CreateImageConfig: <p>生图任务配置</p>
+        # @type CreateImageConfig: :class:`Tencentcloud::Mps.v20190612.models.CreateImageConfig`
 
-        attr_accessor :EncodeConfig, :EnhanceConfig, :EraseConfig, :BlindWatermarkConfig, :BeautyConfig, :TransformConfig, :AiTryOnConfig, :AiPosterSuiteConfig
+        attr_accessor :EncodeConfig, :EnhanceConfig, :EraseConfig, :BlindWatermarkConfig, :BeautyConfig, :TransformConfig, :AiTryOnConfig, :AiPosterSuiteConfig, :CreateImageConfig
 
-        def initialize(encodeconfig=nil, enhanceconfig=nil, eraseconfig=nil, blindwatermarkconfig=nil, beautyconfig=nil, transformconfig=nil, aitryonconfig=nil, aipostersuiteconfig=nil)
+        def initialize(encodeconfig=nil, enhanceconfig=nil, eraseconfig=nil, blindwatermarkconfig=nil, beautyconfig=nil, transformconfig=nil, aitryonconfig=nil, aipostersuiteconfig=nil, createimageconfig=nil)
           @EncodeConfig = encodeconfig
           @EnhanceConfig = enhanceconfig
           @EraseConfig = eraseconfig
@@ -21215,6 +21318,7 @@ module TencentCloud
           @TransformConfig = transformconfig
           @AiTryOnConfig = aitryonconfig
           @AiPosterSuiteConfig = aipostersuiteconfig
+          @CreateImageConfig = createimageconfig
         end
 
         def deserialize(params)
@@ -21249,6 +21353,10 @@ module TencentCloud
           unless params['AiPosterSuiteConfig'].nil?
             @AiPosterSuiteConfig = AiPosterSuiteConfig.new
             @AiPosterSuiteConfig.deserialize(params['AiPosterSuiteConfig'])
+          end
+          unless params['CreateImageConfig'].nil?
+            @CreateImageConfig = CreateImageConfig.new
+            @CreateImageConfig.deserialize(params['CreateImageConfig'])
           end
         end
       end

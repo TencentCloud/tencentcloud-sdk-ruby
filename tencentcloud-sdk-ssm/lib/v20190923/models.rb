@@ -323,51 +323,56 @@ module TencentCloud
 
       # DeleteSecret请求参数结构体
       class DeleteSecretRequest < TencentCloud::Common::AbstractModel
-        # @param SecretName: 指定需要删除的凭据名称。
+        # @param SecretName: <p>指定需要删除的凭据名称。</p>
         # @type SecretName: String
-        # @param RecoveryWindowInDays: 指定计划删除日期，单位（天），0（默认）表示立即删除， 1-30 表示预留的天数，超出该日期之后彻底删除。
-        # 当凭据类型为SSH密钥对凭据时，此字段只能取值只能为0。
+        # @param RecoveryWindowInDays: <p>指定计划删除日期，单位（天），0（默认）表示立即删除， 1-30 表示预留的天数，超出该日期之后彻底删除。<br>当凭据类型为SSH密钥对凭据时，此字段只能取值只能为0。</p>
         # @type RecoveryWindowInDays: Integer
-        # @param CleanSSHKey: 当凭据类型为SSH密钥对凭据时，此字段有效，取值：
-        # True -- 表示不仅仅清理此凭据中存储的SSH密钥信息，还会将SSH密钥对从CVM侧进行清理。注意，如果SSH密钥此时绑定了CVM实例，那么会清理失败。
-        # False --  表示仅仅清理此凭据中存储的SSH密钥信息，不在CVM进侧进行清理。
+        # @param CleanSSHKey: <p>当凭据类型为SSH密钥对凭据时，此字段有效，取值：<br>True -- 表示不仅仅清理此凭据中存储的SSH密钥信息，还会将SSH密钥对从CVM侧进行清理。注意，如果SSH密钥此时绑定了CVM实例，那么会清理失败。<br>False --  表示仅仅清理此凭据中存储的SSH密钥信息，不在CVM进侧进行清理。</p>
         # @type CleanSSHKey: Boolean
+        # @param DeleteMode: <p>删除模式</p><p>枚举值：</p><ul><li>0： 仅删除凭据</li><li>1： 删除凭据和账号</li></ul>
+        # @type DeleteMode: Integer
 
-        attr_accessor :SecretName, :RecoveryWindowInDays, :CleanSSHKey
+        attr_accessor :SecretName, :RecoveryWindowInDays, :CleanSSHKey, :DeleteMode
 
-        def initialize(secretname=nil, recoverywindowindays=nil, cleansshkey=nil)
+        def initialize(secretname=nil, recoverywindowindays=nil, cleansshkey=nil, deletemode=nil)
           @SecretName = secretname
           @RecoveryWindowInDays = recoverywindowindays
           @CleanSSHKey = cleansshkey
+          @DeleteMode = deletemode
         end
 
         def deserialize(params)
           @SecretName = params['SecretName']
           @RecoveryWindowInDays = params['RecoveryWindowInDays']
           @CleanSSHKey = params['CleanSSHKey']
+          @DeleteMode = params['DeleteMode']
         end
       end
 
       # DeleteSecret返回参数结构体
       class DeleteSecretResponse < TencentCloud::Common::AbstractModel
-        # @param SecretName: 指定删除的凭据名称。
+        # @param SecretName: <p>指定删除的凭据名称。</p>
         # @type SecretName: String
-        # @param DeleteTime: 凭据删除的日期，unix时间戳。
+        # @param DeleteTime: <p>凭据删除的日期，unix时间戳。</p>
         # @type DeleteTime: Integer
+        # @param FlowID: <p>异步删除任务 ID</p>
+        # @type FlowID: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :SecretName, :DeleteTime, :RequestId
+        attr_accessor :SecretName, :DeleteTime, :FlowID, :RequestId
 
-        def initialize(secretname=nil, deletetime=nil, requestid=nil)
+        def initialize(secretname=nil, deletetime=nil, flowid=nil, requestid=nil)
           @SecretName = secretname
           @DeleteTime = deletetime
+          @FlowID = flowid
           @RequestId = requestid
         end
 
         def deserialize(params)
           @SecretName = params['SecretName']
           @DeleteTime = params['DeleteTime']
+          @FlowID = params['FlowID']
           @RequestId = params['RequestId']
         end
       end
@@ -506,7 +511,7 @@ module TencentCloud
 
       # DescribeRotationHistory请求参数结构体
       class DescribeRotationHistoryRequest < TencentCloud::Common::AbstractModel
-        # @param SecretName: 指定需要获取凭据轮转历史的凭据名称。
+        # @param SecretName: <p>指定需要获取凭据轮转历史的凭据名称。</p>
         # @type SecretName: String
 
         attr_accessor :SecretName
@@ -522,24 +527,35 @@ module TencentCloud
 
       # DescribeRotationHistory返回参数结构体
       class DescribeRotationHistoryResponse < TencentCloud::Common::AbstractModel
-        # @param VersionIDs: 版本号列表
+        # @param VersionIDs: <p>版本号列表</p>
         # @type VersionIDs: Array
-        # @param TotalCount: 版本号个数，可以给用户展示的版本号个数上限为10个。
+        # @param TotalCount: <p>版本号个数，可以给用户展示的版本号个数上限为10个。</p>
         # @type TotalCount: Integer
+        # @param AccountInfoList: <p>凭据对应账号相关信息</p>
+        # @type AccountInfoList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :VersionIDs, :TotalCount, :RequestId
+        attr_accessor :VersionIDs, :TotalCount, :AccountInfoList, :RequestId
 
-        def initialize(versionids=nil, totalcount=nil, requestid=nil)
+        def initialize(versionids=nil, totalcount=nil, accountinfolist=nil, requestid=nil)
           @VersionIDs = versionids
           @TotalCount = totalcount
+          @AccountInfoList = accountinfolist
           @RequestId = requestid
         end
 
         def deserialize(params)
           @VersionIDs = params['VersionIDs']
           @TotalCount = params['TotalCount']
+          unless params['AccountInfoList'].nil?
+            @AccountInfoList = []
+            params['AccountInfoList'].each do |i|
+              secretaccountinfo_tmp = SecretAccountInfo.new
+              secretaccountinfo_tmp.deserialize(i)
+              @AccountInfoList << secretaccountinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -604,12 +620,14 @@ module TencentCloud
         # @type CreateUinString: String
         # @param TargetUinString: <p>所属用户UIN 字符串</p>
         # @type TargetUinString: String
+        # @param AccountInfoList: <p>对应云产品的账号信息</p>
+        # @type AccountInfoList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :SecretName, :Description, :KmsKeyId, :CreateUin, :Status, :DeleteTime, :CreateTime, :SecretType, :ProductName, :ResourceID, :RotationStatus, :RotationFrequency, :ResourceName, :ProjectID, :AssociatedInstanceIDs, :TargetUin, :AdditionalConfig, :EncryptType, :EncryptSwitching, :CreateUinString, :TargetUinString, :RequestId
+        attr_accessor :SecretName, :Description, :KmsKeyId, :CreateUin, :Status, :DeleteTime, :CreateTime, :SecretType, :ProductName, :ResourceID, :RotationStatus, :RotationFrequency, :ResourceName, :ProjectID, :AssociatedInstanceIDs, :TargetUin, :AdditionalConfig, :EncryptType, :EncryptSwitching, :CreateUinString, :TargetUinString, :AccountInfoList, :RequestId
 
-        def initialize(secretname=nil, description=nil, kmskeyid=nil, createuin=nil, status=nil, deletetime=nil, createtime=nil, secrettype=nil, productname=nil, resourceid=nil, rotationstatus=nil, rotationfrequency=nil, resourcename=nil, projectid=nil, associatedinstanceids=nil, targetuin=nil, additionalconfig=nil, encrypttype=nil, encryptswitching=nil, createuinstring=nil, targetuinstring=nil, requestid=nil)
+        def initialize(secretname=nil, description=nil, kmskeyid=nil, createuin=nil, status=nil, deletetime=nil, createtime=nil, secrettype=nil, productname=nil, resourceid=nil, rotationstatus=nil, rotationfrequency=nil, resourcename=nil, projectid=nil, associatedinstanceids=nil, targetuin=nil, additionalconfig=nil, encrypttype=nil, encryptswitching=nil, createuinstring=nil, targetuinstring=nil, accountinfolist=nil, requestid=nil)
           @SecretName = secretname
           @Description = description
           @KmsKeyId = kmskeyid
@@ -631,6 +649,7 @@ module TencentCloud
           @EncryptSwitching = encryptswitching
           @CreateUinString = createuinstring
           @TargetUinString = targetuinstring
+          @AccountInfoList = accountinfolist
           @RequestId = requestid
         end
 
@@ -656,6 +675,14 @@ module TencentCloud
           @EncryptSwitching = params['EncryptSwitching']
           @CreateUinString = params['CreateUinString']
           @TargetUinString = params['TargetUinString']
+          unless params['AccountInfoList'].nil?
+            @AccountInfoList = []
+            params['AccountInfoList'].each do |i|
+              secretaccountinfo_tmp = SecretAccountInfo.new
+              secretaccountinfo_tmp.deserialize(i)
+              @AccountInfoList << secretaccountinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1338,6 +1365,34 @@ module TencentCloud
         def deserialize(params)
           @FlowID = params['FlowID']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 凭据对应的账户信息(用户名、主机、版本号、轮转时间)
+      class SecretAccountInfo < TencentCloud::Common::AbstractModel
+        # @param AccountName: <p>账户名称</p>
+        # @type AccountName: String
+        # @param Host: <p>账户登录主机</p>
+        # @type Host: Array
+        # @param Version: <p>账号状态（生效中/待轮转）</p>
+        # @type Version: String
+        # @param RotatedTime: <p>账号轮转时间</p>
+        # @type RotatedTime: String
+
+        attr_accessor :AccountName, :Host, :Version, :RotatedTime
+
+        def initialize(accountname=nil, host=nil, version=nil, rotatedtime=nil)
+          @AccountName = accountname
+          @Host = host
+          @Version = version
+          @RotatedTime = rotatedtime
+        end
+
+        def deserialize(params)
+          @AccountName = params['AccountName']
+          @Host = params['Host']
+          @Version = params['Version']
+          @RotatedTime = params['RotatedTime']
         end
       end
 

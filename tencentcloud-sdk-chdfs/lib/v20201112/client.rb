@@ -173,6 +173,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建路径保护规则。
+
+        # @param request: Request instance for CreatePathProtectionRule.
+        # @type request: :class:`Tencentcloud::chdfs::V20201112::CreatePathProtectionRuleRequest`
+        # @rtype: :class:`Tencentcloud::chdfs::V20201112::CreatePathProtectionRuleResponse`
+        def CreatePathProtectionRule(request)
+          body = send_request('CreatePathProtectionRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreatePathProtectionRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 批量创建回热任务，回热任务ID、状态和创建时间无需填写。
 
         # @param request: Request instance for CreateRestoreTasks.
@@ -327,6 +351,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteMountPointResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除路径保护规则。
+
+        # @param request: Request instance for DeletePathProtectionRule.
+        # @type request: :class:`Tencentcloud::chdfs::V20201112::DeletePathProtectionRuleRequest`
+        # @rtype: :class:`Tencentcloud::chdfs::V20201112::DeletePathProtectionRuleResponse`
+        def DeletePathProtectionRule(request)
+          body = send_request('DeletePathProtectionRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeletePathProtectionRuleResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -557,6 +605,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 通过文件系统ID查看路径保护规则列表。
+
+        # @param request: Request instance for DescribePathProtectionRules.
+        # @type request: :class:`Tencentcloud::chdfs::V20201112::DescribePathProtectionRulesRequest`
+        # @rtype: :class:`Tencentcloud::chdfs::V20201112::DescribePathProtectionRulesResponse`
+        def DescribePathProtectionRules(request)
+          body = send_request('DescribePathProtectionRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePathProtectionRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 通过文件系统ID查看资源标签列表。
 
         # @param request: Request instance for DescribeResourceTags.
@@ -759,6 +831,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyMountPointResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改路径保护规则属性，需要指定路径保护规则ID，支持修改规则名称、路径和状态。
+
+        # @param request: Request instance for ModifyPathProtectionRule.
+        # @type request: :class:`Tencentcloud::chdfs::V20201112::ModifyPathProtectionRuleRequest`
+        # @rtype: :class:`Tencentcloud::chdfs::V20201112::ModifyPathProtectionRuleResponse`
+        def ModifyPathProtectionRule(request)
+          body = send_request('ModifyPathProtectionRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyPathProtectionRuleResponse.new
             model.deserialize(response['Response'])
             model
           else

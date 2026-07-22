@@ -173,6 +173,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改表备注
+
+        # @param request: Request instance for AlterTableComment.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::AlterTableCommentRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::AlterTableCommentResponse`
+        def AlterTableComment(request)
+          body = send_request('AlterTableComment', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AlterTableCommentResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 分配原生表表属性
 
         # @param request: Request instance for AssignMangedTableProperties.
@@ -773,6 +797,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（CreateMetaDatabase）用于创建元数据库
+
+        # @param request: Request instance for CreateMetaDatabase.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::CreateMetaDatabaseRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::CreateMetaDatabaseResponse`
+        def CreateMetaDatabase(request)
+          body = send_request('CreateMetaDatabase', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateMetaDatabaseResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（CreateNotebookSession）用于创建交互式session（notebook）
 
         # @param request: Request instance for CreateNotebookSession.
@@ -1313,6 +1361,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteDataMaskStrategyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DeleteMetaDatabase）用于一键删除元数据库
+
+        # @param request: Request instance for DeleteMetaDatabase.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DeleteMetaDatabaseRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DeleteMetaDatabaseResponse`
+        def DeleteMetaDatabase(request)
+          body = send_request('DeleteMetaDatabase', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteMetaDatabaseResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1937,6 +2009,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDataMaskStrategiesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeDatabase）,查询数据库详细信息
+
+        # @param request: Request instance for DescribeDatabase.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeDatabaseRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DescribeDatabaseResponse`
+        def DescribeDatabase(request)
+          body = send_request('DescribeDatabase', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDatabaseResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -3569,6 +3665,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = GenerateCreateMangedTableSqlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 建表
+
+        # @param request: Request instance for GenerateInternalTable.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::GenerateInternalTableRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::GenerateInternalTableResponse`
+        def GenerateInternalTable(request)
+          body = send_request('GenerateInternalTable', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GenerateInternalTableResponse.new
             model.deserialize(response['Response'])
             model
           else

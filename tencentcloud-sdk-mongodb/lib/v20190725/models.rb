@@ -3236,7 +3236,7 @@ module TencentCloud
 
       # DescribeInstanceSSL请求参数结构体
       class DescribeInstanceSSLRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同
+        # @param InstanceId: <p>实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同</p>
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -3252,13 +3252,13 @@ module TencentCloud
 
       # DescribeInstanceSSL返回参数结构体
       class DescribeInstanceSSLResponse < TencentCloud::Common::AbstractModel
-        # @param Status: SSL开启状态。0为关闭，1为开启
+        # @param Status: <p>SSL开启状态。0为关闭，1为开启</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
-        # @param ExpiredTime: 证书过期时间，格式为2023-05-01 12:00:00
+        # @param ExpiredTime: <p>证书过期时间，格式为2023-05-01 12:00:00</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpiredTime: String
-        # @param CertUrl: 证书下载链接
+        # @param CertUrl: <p>证书下载链接</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CertUrl: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -4741,11 +4741,9 @@ module TencentCloud
 
       # InstanceEnableSSL请求参数结构体
       class InstanceEnableSSLRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: <p>实例ID</p>
         # @type InstanceId: String
-        # @param Enable: 配置是否要开启SSL访问。
-        # - true：开启。
-        # - false：关闭。
+        # @param Enable: <p>配置是否要开启SSL访问。</p><ul><li>true：开启。</li><li>false：关闭。</li></ul>
         # @type Enable: Boolean
 
         attr_accessor :InstanceId, :Enable
@@ -4763,18 +4761,16 @@ module TencentCloud
 
       # InstanceEnableSSL返回参数结构体
       class InstanceEnableSSLResponse < TencentCloud::Common::AbstractModel
-        # @param Status: SSL开启状态。
-        # - 0：关闭。
-        # - 1：开启。
+        # @param Status: <p>SSL开启状态。</p><ul><li>0：关闭。</li><li>1：开启。</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
-        # @param ExpiredTime: 证书文件过期时间，格式为：2023-05-01 12:00:00。
+        # @param ExpiredTime: <p>证书文件过期时间，格式为：2023-05-01 12:00:00。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpiredTime: String
-        # @param CertUrl: 证书文件的下载链接。
+        # @param CertUrl: <p>证书文件的下载链接。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CertUrl: String
-        # @param FlowId: 流程id
+        # @param FlowId: <p>流程id</p>
         # @type FlowId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

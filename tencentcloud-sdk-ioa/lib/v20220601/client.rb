@@ -509,6 +509,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 不使用了
+
         # 基于软件查看终端详情列表,私有化调用path为：capi/Software/DescribeDeviceDetailList
 
         # @param request: Request instance for DescribeDeviceDetailList.

@@ -16125,7 +16125,7 @@ module TencentCloud
 
       # DescribeSubnetResourceDashboard请求参数结构体
       class DescribeSubnetResourceDashboardRequest < TencentCloud::Common::AbstractModel
-        # @param SubnetIds: Subnet实例ID，例如：subnet-f1xjkw1b。
+        # @param SubnetIds: <p>Subnet实例ID，例如：subnet-f1xjkw1b。</p>
         # @type SubnetIds: Array
 
         attr_accessor :SubnetIds
@@ -16141,7 +16141,7 @@ module TencentCloud
 
       # DescribeSubnetResourceDashboard返回参数结构体
       class DescribeSubnetResourceDashboardResponse < TencentCloud::Common::AbstractModel
-        # @param ResourceStatisticsSet: 资源统计结果。
+        # @param ResourceStatisticsSet: <p>资源统计结果。</p>
         # @type ResourceStatisticsSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -17296,7 +17296,7 @@ module TencentCloud
 
       # DescribeVpcResourceDashboard请求参数结构体
       class DescribeVpcResourceDashboardRequest < TencentCloud::Common::AbstractModel
-        # @param VpcIds: Vpc实例ID，例如：vpc-f1xjkw1b。
+        # @param VpcIds: <p>Vpc实例ID，例如：vpc-f1xjkw1b。</p>
         # @type VpcIds: Array
 
         attr_accessor :VpcIds
@@ -17312,7 +17312,7 @@ module TencentCloud
 
       # DescribeVpcResourceDashboard返回参数结构体
       class DescribeVpcResourceDashboardResponse < TencentCloud::Common::AbstractModel
-        # @param ResourceDashboardSet: 资源对象列表。
+        # @param ResourceDashboardSet: <p>资源对象列表。</p>
         # @type ResourceDashboardSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

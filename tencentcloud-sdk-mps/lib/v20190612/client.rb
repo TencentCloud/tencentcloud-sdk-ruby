@@ -2197,6 +2197,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询AIGC场景任务接口
+
+        # @param request: Request instance for DescribeAigcTaskStatus.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DescribeAigcTaskStatusRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DescribeAigcTaskStatusResponse`
+        def DescribeAigcTaskStatus(request)
+          body = send_request('DescribeAigcTaskStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAigcTaskStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 调用该接口，用于查询AIGC生视频任务的进度以及获取生成结果。
 
         # @param request: Request instance for DescribeAigcVideoTask.
@@ -4885,6 +4909,8 @@ module TencentCloud
         # 1. 格式转换；
         # 2. 图像增强；
         # 3. 图像擦除;
+        # 4. 数字水印；
+        # 5. 美颜滤镜；
 
         # @param request: Request instance for ProcessImage.
         # @type request: :class:`Tencentcloud::mps::V20190612::ProcessImageRequest`

@@ -398,6 +398,50 @@ module TencentCloud
         end
       end
 
+      # CreatePathProtectionRule请求参数结构体
+      class CreatePathProtectionRuleRequest < TencentCloud::Common::AbstractModel
+        # @param FileSystemId: 文件系统ID
+        # @type FileSystemId: String
+        # @param Name: 规则名称
+        # @type Name: String
+        # @param Path: 指定保护路径
+        # @type Path: String
+        # @param Status: 规则状态（1：打开；2：关闭）
+        # @type Status: Integer
+
+        attr_accessor :FileSystemId, :Name, :Path, :Status
+
+        def initialize(filesystemid=nil, name=nil, path=nil, status=nil)
+          @FileSystemId = filesystemid
+          @Name = name
+          @Path = path
+          @Status = status
+        end
+
+        def deserialize(params)
+          @FileSystemId = params['FileSystemId']
+          @Name = params['Name']
+          @Path = params['Path']
+          @Status = params['Status']
+        end
+      end
+
+      # CreatePathProtectionRule返回参数结构体
+      class CreatePathProtectionRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateRestoreTasks请求参数结构体
       class CreateRestoreTasksRequest < TencentCloud::Common::AbstractModel
         # @param FileSystemId: 文件系统ID
@@ -631,6 +675,38 @@ module TencentCloud
 
       # DeleteMountPoint返回参数结构体
       class DeleteMountPointResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeletePathProtectionRule请求参数结构体
+      class DeletePathProtectionRuleRequest < TencentCloud::Common::AbstractModel
+        # @param PathProtectionRuleId: 路径保护规则ID
+        # @type PathProtectionRuleId: Integer
+
+        attr_accessor :PathProtectionRuleId
+
+        def initialize(pathprotectionruleid=nil)
+          @PathProtectionRuleId = pathprotectionruleid
+        end
+
+        def deserialize(params)
+          @PathProtectionRuleId = params['PathProtectionRuleId']
+        end
+      end
+
+      # DeletePathProtectionRule返回参数结构体
+      class DeletePathProtectionRuleResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -1061,6 +1137,49 @@ module TencentCloud
               mountpoint_tmp = MountPoint.new
               mountpoint_tmp.deserialize(i)
               @MountPoints << mountpoint_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePathProtectionRules请求参数结构体
+      class DescribePathProtectionRulesRequest < TencentCloud::Common::AbstractModel
+        # @param FileSystemId: 文件系统ID
+        # @type FileSystemId: String
+
+        attr_accessor :FileSystemId
+
+        def initialize(filesystemid=nil)
+          @FileSystemId = filesystemid
+        end
+
+        def deserialize(params)
+          @FileSystemId = params['FileSystemId']
+        end
+      end
+
+      # DescribePathProtectionRules返回参数结构体
+      class DescribePathProtectionRulesResponse < TencentCloud::Common::AbstractModel
+        # @param PathProtectionRules: 路径保护规则列表
+        # @type PathProtectionRules: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PathProtectionRules, :RequestId
+
+        def initialize(pathprotectionrules=nil, requestid=nil)
+          @PathProtectionRules = pathprotectionrules
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['PathProtectionRules'].nil?
+            @PathProtectionRules = []
+            params['PathProtectionRules'].each do |i|
+              pathprotectionrule_tmp = PathProtectionRule.new
+              pathprotectionrule_tmp.deserialize(i)
+              @PathProtectionRules << pathprotectionrule_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1577,6 +1696,50 @@ module TencentCloud
         end
       end
 
+      # ModifyPathProtectionRule请求参数结构体
+      class ModifyPathProtectionRuleRequest < TencentCloud::Common::AbstractModel
+        # @param PathProtectionRuleId: 路径保护规则ID
+        # @type PathProtectionRuleId: Integer
+        # @param Name: 规则名称
+        # @type Name: String
+        # @param Path: 指定保护路径
+        # @type Path: String
+        # @param Status: 规则状态（1：打开；2：关闭）
+        # @type Status: Integer
+
+        attr_accessor :PathProtectionRuleId, :Name, :Path, :Status
+
+        def initialize(pathprotectionruleid=nil, name=nil, path=nil, status=nil)
+          @PathProtectionRuleId = pathprotectionruleid
+          @Name = name
+          @Path = path
+          @Status = status
+        end
+
+        def deserialize(params)
+          @PathProtectionRuleId = params['PathProtectionRuleId']
+          @Name = params['Name']
+          @Path = params['Path']
+          @Status = params['Status']
+        end
+      end
+
+      # ModifyPathProtectionRule返回参数结构体
+      class ModifyPathProtectionRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyResourceTags请求参数结构体
       class ModifyResourceTagsRequest < TencentCloud::Common::AbstractModel
         # @param FileSystemId: 文件系统ID
@@ -1693,6 +1856,38 @@ module TencentCloud
           @Status = params['Status']
           @CreateTime = params['CreateTime']
           @AccessGroupIds = params['AccessGroupIds']
+        end
+      end
+
+      # 路径保护规则
+      class PathProtectionRule < TencentCloud::Common::AbstractModel
+        # @param PathProtectionRuleId: 路径保护规则ID
+        # @type PathProtectionRuleId: Integer
+        # @param Name: 规则名称
+        # @type Name: String
+        # @param Path: 指定保护路径
+        # @type Path: String
+        # @param Status: 规则状态（1：打开；2：关闭）
+        # @type Status: Integer
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+
+        attr_accessor :PathProtectionRuleId, :Name, :Path, :Status, :CreateTime
+
+        def initialize(pathprotectionruleid=nil, name=nil, path=nil, status=nil, createtime=nil)
+          @PathProtectionRuleId = pathprotectionruleid
+          @Name = name
+          @Path = path
+          @Status = status
+          @CreateTime = createtime
+        end
+
+        def deserialize(params)
+          @PathProtectionRuleId = params['PathProtectionRuleId']
+          @Name = params['Name']
+          @Path = params['Path']
+          @Status = params['Status']
+          @CreateTime = params['CreateTime']
         end
       end
 

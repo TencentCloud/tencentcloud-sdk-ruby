@@ -4205,21 +4205,25 @@ module TencentCloud
       class DescribeModelServiceGroupRequest < TencentCloud::Common::AbstractModel
         # @param ServiceGroupId: 服务组ID
         # @type ServiceGroupId: String
+        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @type TiProjectId: String
         # @param ServiceCategory: 服务分类
         # @type ServiceCategory: String
 
-        attr_accessor :ServiceGroupId, :ServiceCategory
+        attr_accessor :ServiceGroupId, :TiProjectId, :ServiceCategory
         extend Gem::Deprecate
         deprecate :ServiceCategory, :none, 2026, 7
         deprecate :ServiceCategory=, :none, 2026, 7
 
-        def initialize(servicegroupid=nil, servicecategory=nil)
+        def initialize(servicegroupid=nil, tiprojectid=nil, servicecategory=nil)
           @ServiceGroupId = servicegroupid
+          @TiProjectId = tiprojectid
           @ServiceCategory = servicecategory
         end
 
         def deserialize(params)
           @ServiceGroupId = params['ServiceGroupId']
+          @TiProjectId = params['TiProjectId']
           @ServiceCategory = params['ServiceCategory']
         end
       end
@@ -4403,21 +4407,25 @@ module TencentCloud
       class DescribeModelServiceRequest < TencentCloud::Common::AbstractModel
         # @param ServiceId: 服务id
         # @type ServiceId: String
+        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @type TiProjectId: String
         # @param ServiceCategory: 服务分类
         # @type ServiceCategory: String
 
-        attr_accessor :ServiceId, :ServiceCategory
+        attr_accessor :ServiceId, :TiProjectId, :ServiceCategory
         extend Gem::Deprecate
         deprecate :ServiceCategory, :none, 2026, 7
         deprecate :ServiceCategory=, :none, 2026, 7
 
-        def initialize(serviceid=nil, servicecategory=nil)
+        def initialize(serviceid=nil, tiprojectid=nil, servicecategory=nil)
           @ServiceId = serviceid
+          @TiProjectId = tiprojectid
           @ServiceCategory = servicecategory
         end
 
         def deserialize(params)
           @ServiceId = params['ServiceId']
+          @TiProjectId = params['TiProjectId']
           @ServiceCategory = params['ServiceCategory']
         end
       end

@@ -412,6 +412,41 @@ module TencentCloud
         end
       end
 
+      # AlterTableComment请求参数结构体
+      class AlterTableCommentRequest < TencentCloud::Common::AbstractModel
+        # @param TableBaseInfo: 修改表的基本信息
+        # @type TableBaseInfo: :class:`Tencentcloud::Dlc.v20210125.models.TableBaseInfo`
+
+        attr_accessor :TableBaseInfo
+
+        def initialize(tablebaseinfo=nil)
+          @TableBaseInfo = tablebaseinfo
+        end
+
+        def deserialize(params)
+          unless params['TableBaseInfo'].nil?
+            @TableBaseInfo = TableBaseInfo.new
+            @TableBaseInfo.deserialize(params['TableBaseInfo'])
+          end
+        end
+      end
+
+      # AlterTableComment返回参数结构体
+      class AlterTableCommentResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 洞察分析结果返回体
       class AnalysisTaskResults < TencentCloud::Common::AbstractModel
         # @param Id: <p>任务Id</p>
@@ -2401,6 +2436,67 @@ module TencentCloud
 
         def deserialize(params)
           @Execution = params['Execution']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateMetaDatabase请求参数结构体
+      class CreateMetaDatabaseRequest < TencentCloud::Common::AbstractModel
+        # @param DatasourceConnectionName: 数据源名称，默认DataLakeCatalog
+        # @type DatasourceConnectionName: String
+        # @param MetaDatabaseInfo: 元数据库基本信息
+        # @type MetaDatabaseInfo: :class:`Tencentcloud::Dlc.v20210125.models.MetaDatabaseInfo`
+        # @param GovernPolicy: 数据治理配置项
+        # @type GovernPolicy: :class:`Tencentcloud::Dlc.v20210125.models.DataGovernPolicy`
+        # @param SmartPolicy: 智能数据治理配置
+        # @type SmartPolicy: :class:`Tencentcloud::Dlc.v20210125.models.SmartPolicy`
+
+        attr_accessor :DatasourceConnectionName, :MetaDatabaseInfo, :GovernPolicy, :SmartPolicy
+
+        def initialize(datasourceconnectionname=nil, metadatabaseinfo=nil, governpolicy=nil, smartpolicy=nil)
+          @DatasourceConnectionName = datasourceconnectionname
+          @MetaDatabaseInfo = metadatabaseinfo
+          @GovernPolicy = governpolicy
+          @SmartPolicy = smartpolicy
+        end
+
+        def deserialize(params)
+          @DatasourceConnectionName = params['DatasourceConnectionName']
+          unless params['MetaDatabaseInfo'].nil?
+            @MetaDatabaseInfo = MetaDatabaseInfo.new
+            @MetaDatabaseInfo.deserialize(params['MetaDatabaseInfo'])
+          end
+          unless params['GovernPolicy'].nil?
+            @GovernPolicy = DataGovernPolicy.new
+            @GovernPolicy.deserialize(params['GovernPolicy'])
+          end
+          unless params['SmartPolicy'].nil?
+            @SmartPolicy = SmartPolicy.new
+            @SmartPolicy.deserialize(params['SmartPolicy'])
+          end
+        end
+      end
+
+      # CreateMetaDatabase返回参数结构体
+      class CreateMetaDatabaseResponse < TencentCloud::Common::AbstractModel
+        # @param BatchId: 本批次提交的任务的批次Id
+        # @type BatchId: String
+        # @param TaskIdSet: 任务Id集合，按照执行顺序排列
+        # @type TaskIdSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BatchId, :TaskIdSet, :RequestId
+
+        def initialize(batchid=nil, taskidset=nil, requestid=nil)
+          @BatchId = batchid
+          @TaskIdSet = taskidset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @BatchId = params['BatchId']
+          @TaskIdSet = params['TaskIdSet']
           @RequestId = params['RequestId']
         end
       end
@@ -5788,6 +5884,50 @@ module TencentCloud
         end
       end
 
+      # DeleteMetaDatabase请求参数结构体
+      class DeleteMetaDatabaseRequest < TencentCloud::Common::AbstractModel
+        # @param DatabaseName: 数据库名称
+        # @type DatabaseName: String
+        # @param DatasourceConnectionName: 数据源名称，默认DataLakeCatalog
+        # @type DatasourceConnectionName: String
+
+        attr_accessor :DatabaseName, :DatasourceConnectionName
+
+        def initialize(databasename=nil, datasourceconnectionname=nil)
+          @DatabaseName = databasename
+          @DatasourceConnectionName = datasourceconnectionname
+        end
+
+        def deserialize(params)
+          @DatabaseName = params['DatabaseName']
+          @DatasourceConnectionName = params['DatasourceConnectionName']
+        end
+      end
+
+      # DeleteMetaDatabase返回参数结构体
+      class DeleteMetaDatabaseResponse < TencentCloud::Common::AbstractModel
+        # @param BatchId: 本批次提交的任务的批次Id
+        # @type BatchId: String
+        # @param TaskIdSet: 任务Id集合，按照执行顺序排列
+        # @type TaskIdSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BatchId, :TaskIdSet, :RequestId
+
+        def initialize(batchid=nil, taskidset=nil, requestid=nil)
+          @BatchId = batchid
+          @TaskIdSet = taskidset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @BatchId = params['BatchId']
+          @TaskIdSet = params['TaskIdSet']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteNativeSparkSession请求参数结构体
       class DeleteNativeSparkSessionRequest < TencentCloud::Common::AbstractModel
         # @param DataEngineId: 引擎id
@@ -7266,6 +7406,49 @@ module TencentCloud
               datamaskstrategy_tmp.deserialize(i)
               @Strategies << datamaskstrategy_tmp
             end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDatabase请求参数结构体
+      class DescribeDatabaseRequest < TencentCloud::Common::AbstractModel
+        # @param DatabaseName: 数据库名称
+        # @type DatabaseName: String
+        # @param DatasourceConnectionName: 数据连接名称，不填默认为DataLakeCatalog
+        # @type DatasourceConnectionName: String
+
+        attr_accessor :DatabaseName, :DatasourceConnectionName
+
+        def initialize(databasename=nil, datasourceconnectionname=nil)
+          @DatabaseName = databasename
+          @DatasourceConnectionName = datasourceconnectionname
+        end
+
+        def deserialize(params)
+          @DatabaseName = params['DatabaseName']
+          @DatasourceConnectionName = params['DatasourceConnectionName']
+        end
+      end
+
+      # DescribeDatabase返回参数结构体
+      class DescribeDatabaseResponse < TencentCloud::Common::AbstractModel
+        # @param DatabaseInfo: 数据库信息
+        # @type DatabaseInfo: :class:`Tencentcloud::Dlc.v20210125.models.DatabaseResponseInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DatabaseInfo, :RequestId
+
+        def initialize(databaseinfo=nil, requestid=nil)
+          @DatabaseInfo = databaseinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DatabaseInfo'].nil?
+            @DatabaseInfo = DatabaseResponseInfo.new
+            @DatabaseInfo.deserialize(params['DatabaseInfo'])
           end
           @RequestId = params['RequestId']
         end
@@ -11684,6 +11867,89 @@ module TencentCloud
         end
       end
 
+      # GenerateInternalTable请求参数结构体
+      class GenerateInternalTableRequest < TencentCloud::Common::AbstractModel
+        # @param TableBaseInfo: 表基本信息
+        # @type TableBaseInfo: :class:`Tencentcloud::Dlc.v20210125.models.TableBaseInfo`
+        # @param Columns: 字段信息
+        # @type Columns: Array
+        # @param Partitions: 分区信息
+        # @type Partitions: Array
+        # @param Properties: 属性
+        # @type Properties: Array
+        # @param UpsertKeys: V2 upsert表 upsert键
+        # @type UpsertKeys: Array
+
+        attr_accessor :TableBaseInfo, :Columns, :Partitions, :Properties, :UpsertKeys
+
+        def initialize(tablebaseinfo=nil, columns=nil, partitions=nil, properties=nil, upsertkeys=nil)
+          @TableBaseInfo = tablebaseinfo
+          @Columns = columns
+          @Partitions = partitions
+          @Properties = properties
+          @UpsertKeys = upsertkeys
+        end
+
+        def deserialize(params)
+          unless params['TableBaseInfo'].nil?
+            @TableBaseInfo = TableBaseInfo.new
+            @TableBaseInfo.deserialize(params['TableBaseInfo'])
+          end
+          unless params['Columns'].nil?
+            @Columns = []
+            params['Columns'].each do |i|
+              tcolumn_tmp = TColumn.new
+              tcolumn_tmp.deserialize(i)
+              @Columns << tcolumn_tmp
+            end
+          end
+          unless params['Partitions'].nil?
+            @Partitions = []
+            params['Partitions'].each do |i|
+              tpartition_tmp = TPartition.new
+              tpartition_tmp.deserialize(i)
+              @Partitions << tpartition_tmp
+            end
+          end
+          unless params['Properties'].nil?
+            @Properties = []
+            params['Properties'].each do |i|
+              property_tmp = Property.new
+              property_tmp.deserialize(i)
+              @Properties << property_tmp
+            end
+          end
+          @UpsertKeys = params['UpsertKeys']
+        end
+      end
+
+      # GenerateInternalTable返回参数结构体
+      class GenerateInternalTableResponse < TencentCloud::Common::AbstractModel
+        # @param Execution: 返回sql
+        # @type Execution: :class:`Tencentcloud::Dlc.v20210125.models.Execution`
+        # @param IsTIcebergSql: 是否tciceberg
+        # @type IsTIcebergSql: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Execution, :IsTIcebergSql, :RequestId
+
+        def initialize(execution=nil, isticebergsql=nil, requestid=nil)
+          @Execution = execution
+          @IsTIcebergSql = isticebergsql
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Execution'].nil?
+            @Execution = Execution.new
+            @Execution.deserialize(params['Execution'])
+          end
+          @IsTIcebergSql = params['IsTIcebergSql']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GetOptimizerPolicy请求参数结构体
       class GetOptimizerPolicyRequest < TencentCloud::Common::AbstractModel
         # @param SmartPolicy: 策略描述
@@ -12707,6 +12973,27 @@ module TencentCloud
           @CanDownload = params['CanDownload']
           @QueryResultTime = params['QueryResultTime']
           @IsResultOversize = params['IsResultOversize']
+        end
+      end
+
+      # 元数据库基本信息
+      class MetaDatabaseInfo < TencentCloud::Common::AbstractModel
+        # @param DatabaseName: 数据库名称。
+        # @type DatabaseName: String
+        # @param Comment: 数据库描述信息，长度 0~2048。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Comment: String
+
+        attr_accessor :DatabaseName, :Comment
+
+        def initialize(databasename=nil, comment=nil)
+          @DatabaseName = databasename
+          @Comment = comment
+        end
+
+        def deserialize(params)
+          @DatabaseName = params['DatabaseName']
+          @Comment = params['Comment']
         end
       end
 
