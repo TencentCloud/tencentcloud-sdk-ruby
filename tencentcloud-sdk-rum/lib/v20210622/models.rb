@@ -6397,11 +6397,11 @@ module TencentCloud
 
       # DescribeRumLogExportsV2请求参数结构体
       class DescribeRumLogExportsV2Request < TencentCloud::Common::AbstractModel
-        # @param PageSize: <p>Page size</p>
+        # @param PageSize: <p>每页返回任务数</p>
         # @type PageSize: Integer
-        # @param PageNum: <p>Page number</p>
+        # @param PageNum: <p>当前页码</p>
         # @type PageNum: Integer
-        # @param ID: <p>Project ID</p>
+        # @param ID: <p>项目ID</p>
         # @type ID: Integer
 
         attr_accessor :PageSize, :PageNum, :ID

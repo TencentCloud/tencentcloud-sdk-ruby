@@ -18035,17 +18035,20 @@ module TencentCloud
         # @type ErrorCode: Integer
         # @param Msg: <p>错误信息，成功时返回success</p>
         # @type Msg: String
+        # @param TotalCount: <p>符合查询条件的音色总数</p>
+        # @type TotalCount: Integer
         # @param Voices: <p>可用音色列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Voices: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ErrorCode, :Msg, :Voices, :RequestId
+        attr_accessor :ErrorCode, :Msg, :TotalCount, :Voices, :RequestId
 
-        def initialize(errorcode=nil, msg=nil, voices=nil, requestid=nil)
+        def initialize(errorcode=nil, msg=nil, totalcount=nil, voices=nil, requestid=nil)
           @ErrorCode = errorcode
           @Msg = msg
+          @TotalCount = totalcount
           @Voices = voices
           @RequestId = requestid
         end
@@ -18053,6 +18056,7 @@ module TencentCloud
         def deserialize(params)
           @ErrorCode = params['ErrorCode']
           @Msg = params['Msg']
+          @TotalCount = params['TotalCount']
           unless params['Voices'].nil?
             @Voices = []
             params['Voices'].each do |i|

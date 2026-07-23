@@ -9492,6 +9492,8 @@ module TencentCloud
         # @type SubAppId: Integer
         # @param FileInfo: <p>AIGC 视频转绘任务的输入视频的文件信息。输入视频时长需短于 90 秒，大小在2GB内。</p>
         # @type FileInfo: :class:`Tencentcloud::Vod.v20180717.models.AigcVideoRedrawTaskInputFileInfo`
+        # @param TaskInfo: <p>AIGC 视频转绘任务参数信息。</p>
+        # @type TaskInfo: :class:`Tencentcloud::Vod.v20180717.models.AigcVideoRedrawTaskInfo`
         # @param OutputConfig: <p>AIGC 视频转绘任务的输出媒体文件配置。</p>
         # @type OutputConfig: :class:`Tencentcloud::Vod.v20180717.models.AigcVideoRedrawOutputConfig`
         # @param SessionId: <p>用于去重的识别码，如果三天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。</p>
@@ -9503,11 +9505,12 @@ module TencentCloud
         # @param ExtInfo: <p>保留字段，特殊用途时使用。</p>
         # @type ExtInfo: String
 
-        attr_accessor :SubAppId, :FileInfo, :OutputConfig, :SessionId, :SessionContext, :TasksPriority, :ExtInfo
+        attr_accessor :SubAppId, :FileInfo, :TaskInfo, :OutputConfig, :SessionId, :SessionContext, :TasksPriority, :ExtInfo
 
-        def initialize(subappid=nil, fileinfo=nil, outputconfig=nil, sessionid=nil, sessioncontext=nil, taskspriority=nil, extinfo=nil)
+        def initialize(subappid=nil, fileinfo=nil, taskinfo=nil, outputconfig=nil, sessionid=nil, sessioncontext=nil, taskspriority=nil, extinfo=nil)
           @SubAppId = subappid
           @FileInfo = fileinfo
+          @TaskInfo = taskinfo
           @OutputConfig = outputconfig
           @SessionId = sessionid
           @SessionContext = sessioncontext
@@ -9520,6 +9523,10 @@ module TencentCloud
           unless params['FileInfo'].nil?
             @FileInfo = AigcVideoRedrawTaskInputFileInfo.new
             @FileInfo.deserialize(params['FileInfo'])
+          end
+          unless params['TaskInfo'].nil?
+            @TaskInfo = AigcVideoRedrawTaskInfo.new
+            @TaskInfo.deserialize(params['TaskInfo'])
           end
           unless params['OutputConfig'].nil?
             @OutputConfig = AigcVideoRedrawOutputConfig.new
@@ -10918,41 +10925,47 @@ module TencentCloud
 
       # CreateQualityInspectTemplate请求参数结构体
       class CreateQualityInspectTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
+        # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b></p>
         # @type SubAppId: Integer
-        # @param Name: 音画质检测模板名称。
+        # @param Name: <p>音画质检测模板名称。</p>
         # @type Name: String
-        # @param Comment: 音画质检测模板描述。
+        # @param Comment: <p>音画质检测模板描述。</p>
         # @type Comment: String
-        # @param ScreenshotInterval: 截帧间隔，单位为秒，最小值为 1。当不填时，默认截帧间隔为 1 秒。
+        # @param Configs: <p>音画质检测配置参数。</p>
+        # @type Configs: Array
+        # @param Strategy: <p>音画质检测的抽检策略参数。</p>
+        # @type Strategy: :class:`Tencentcloud::Vod.v20180717.models.QualityInspectStrategy`
+        # @param ScreenshotInterval: <p>（不推荐，使用 Configs 替代）截帧间隔，单位为秒，最小值为 1。当不填时，默认截帧间隔为 1 秒。</p>
         # @type ScreenshotInterval: Float
-        # @param JitterConfigure: 视频画面抖动重影检测的控制参数。
+        # @param JitterConfigure: <p>（不推荐，使用 Configs 替代）视频画面抖动重影检测的控制参数。</p>
         # @type JitterConfigure: :class:`Tencentcloud::Vod.v20180717.models.JitterConfigureInfo`
-        # @param BlurConfigure: 视频画面模糊检测的控制参数。
+        # @param BlurConfigure: <p>（不推荐，使用 Configs 替代）视频画面模糊检测的控制参数。</p>
         # @type BlurConfigure: :class:`Tencentcloud::Vod.v20180717.models.BlurConfigureInfo`
-        # @param AbnormalLightingConfigure: 视频画面低光、过曝检测的控制参数。
+        # @param AbnormalLightingConfigure: <p>（不推荐，使用 Configs 替代）视频画面低光、过曝检测的控制参数。</p>
         # @type AbnormalLightingConfigure: :class:`Tencentcloud::Vod.v20180717.models.AbnormalLightingConfigureInfo`
-        # @param CrashScreenConfigure: 视频画面花屏检测的控制参数。
+        # @param CrashScreenConfigure: <p>（不推荐，使用 Configs 替代）视频画面花屏检测的控制参数。</p>
         # @type CrashScreenConfigure: :class:`Tencentcloud::Vod.v20180717.models.CrashScreenConfigureInfo`
-        # @param BlackWhiteEdgeConfigure: 视频画面黑边、白边、黑屏、白屏检测的控制参数。
+        # @param BlackWhiteEdgeConfigure: <p>（不推荐，使用 Configs 替代）视频画面黑边、白边、黑屏、白屏检测的控制参数。</p>
         # @type BlackWhiteEdgeConfigure: :class:`Tencentcloud::Vod.v20180717.models.BlackWhiteEdgeConfigureInfo`
-        # @param NoiseConfigure: 视频画面噪点检测的控制参数。
+        # @param NoiseConfigure: <p>（不推荐，使用 Configs 替代）视频画面噪点检测的控制参数。</p>
         # @type NoiseConfigure: :class:`Tencentcloud::Vod.v20180717.models.NoiseConfigureInfo`
-        # @param MosaicConfigure: 视频画面马赛克检测的控制参数。
+        # @param MosaicConfigure: <p>（不推荐，使用 Configs 替代）视频画面马赛克检测的控制参数。</p>
         # @type MosaicConfigure: :class:`Tencentcloud::Vod.v20180717.models.MosaicConfigureInfo`
-        # @param QRCodeConfigure: 视频画面二维码检测的控制参数。
+        # @param QRCodeConfigure: <p>（不推荐，使用 Configs 替代）视频画面二维码检测的控制参数。</p>
         # @type QRCodeConfigure: :class:`Tencentcloud::Vod.v20180717.models.QRCodeConfigureInfo`
-        # @param VoiceConfigure: 音频（静音、低音、爆音）检测的控制参数。
+        # @param VoiceConfigure: <p>（不推荐，使用 Configs 替代）音频（静音、低音、爆音）检测的控制参数。</p>
         # @type VoiceConfigure: :class:`Tencentcloud::Vod.v20180717.models.VoiceConfigureInfo`
-        # @param QualityEvaluationConfigure: 视频画面质量评价的控制参数。
+        # @param QualityEvaluationConfigure: <p>（不推荐，使用 Configs 替代）视频画面质量评价的控制参数。</p>
         # @type QualityEvaluationConfigure: :class:`Tencentcloud::Vod.v20180717.models.QualityEvaluationConfigureInfo`
 
-        attr_accessor :SubAppId, :Name, :Comment, :ScreenshotInterval, :JitterConfigure, :BlurConfigure, :AbnormalLightingConfigure, :CrashScreenConfigure, :BlackWhiteEdgeConfigure, :NoiseConfigure, :MosaicConfigure, :QRCodeConfigure, :VoiceConfigure, :QualityEvaluationConfigure
+        attr_accessor :SubAppId, :Name, :Comment, :Configs, :Strategy, :ScreenshotInterval, :JitterConfigure, :BlurConfigure, :AbnormalLightingConfigure, :CrashScreenConfigure, :BlackWhiteEdgeConfigure, :NoiseConfigure, :MosaicConfigure, :QRCodeConfigure, :VoiceConfigure, :QualityEvaluationConfigure
 
-        def initialize(subappid=nil, name=nil, comment=nil, screenshotinterval=nil, jitterconfigure=nil, blurconfigure=nil, abnormallightingconfigure=nil, crashscreenconfigure=nil, blackwhiteedgeconfigure=nil, noiseconfigure=nil, mosaicconfigure=nil, qrcodeconfigure=nil, voiceconfigure=nil, qualityevaluationconfigure=nil)
+        def initialize(subappid=nil, name=nil, comment=nil, configs=nil, strategy=nil, screenshotinterval=nil, jitterconfigure=nil, blurconfigure=nil, abnormallightingconfigure=nil, crashscreenconfigure=nil, blackwhiteedgeconfigure=nil, noiseconfigure=nil, mosaicconfigure=nil, qrcodeconfigure=nil, voiceconfigure=nil, qualityevaluationconfigure=nil)
           @SubAppId = subappid
           @Name = name
           @Comment = comment
+          @Configs = configs
+          @Strategy = strategy
           @ScreenshotInterval = screenshotinterval
           @JitterConfigure = jitterconfigure
           @BlurConfigure = blurconfigure
@@ -10970,6 +10983,18 @@ module TencentCloud
           @SubAppId = params['SubAppId']
           @Name = params['Name']
           @Comment = params['Comment']
+          unless params['Configs'].nil?
+            @Configs = []
+            params['Configs'].each do |i|
+              qualityinspectconfig_tmp = QualityInspectConfig.new
+              qualityinspectconfig_tmp.deserialize(i)
+              @Configs << qualityinspectconfig_tmp
+            end
+          end
+          unless params['Strategy'].nil?
+            @Strategy = QualityInspectStrategy.new
+            @Strategy.deserialize(params['Strategy'])
+          end
           @ScreenshotInterval = params['ScreenshotInterval']
           unless params['JitterConfigure'].nil?
             @JitterConfigure = JitterConfigureInfo.new
@@ -11016,7 +11041,7 @@ module TencentCloud
 
       # CreateQualityInspectTemplate返回参数结构体
       class CreateQualityInspectTemplateResponse < TencentCloud::Common::AbstractModel
-        # @param Definition: 音画质检测模板 ID。
+        # @param Definition: <p>音画质检测模板 ID。</p>
         # @type Definition: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -27082,44 +27107,50 @@ module TencentCloud
 
       # ModifyQualityInspectTemplate请求参数结构体
       class ModifyQualityInspectTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param Definition: 模板 ID。
+        # @param Definition: <p>模板 ID。</p>
         # @type Definition: Integer
-        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
+        # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b></p>
         # @type SubAppId: Integer
-        # @param Name: 模板名称，长度限制：64 个字符。
+        # @param Name: <p>模板名称，长度限制：64 个字符。</p>
         # @type Name: String
-        # @param Comment: 模板描述信息，长度限制：256 个字符。
+        # @param Comment: <p>模板描述信息，长度限制：256 个字符。</p>
         # @type Comment: String
-        # @param ScreenshotInterval: 截帧间隔，单位为秒，最小值为 1。
+        # @param Configs: <p>音画质检测的配置参数。</p>
+        # @type Configs: Array
+        # @param Strategy: <p>音画质检测的抽检策略。</p>
+        # @type Strategy: :class:`Tencentcloud::Vod.v20180717.models.QualityInspectStrategy`
+        # @param ScreenshotInterval: <p>（不推荐，使用 Configs 替代）截帧间隔，单位为秒，最小值为 1。</p>
         # @type ScreenshotInterval: Float
-        # @param JitterConfigure: 视频画面抖动重影检测的控制参数。
+        # @param JitterConfigure: <p>（不推荐，使用 Configs 替代）视频画面抖动重影检测的控制参数。</p>
         # @type JitterConfigure: :class:`Tencentcloud::Vod.v20180717.models.JitterConfigureInfoForUpdate`
-        # @param BlurConfigure: 视频画面模糊检测的控制参数。
+        # @param BlurConfigure: <p>（不推荐，使用 Configs 替代）视频画面模糊检测的控制参数。</p>
         # @type BlurConfigure: :class:`Tencentcloud::Vod.v20180717.models.BlurConfigureInfoForUpdate`
-        # @param AbnormalLightingConfigure: 视频画面低光、过曝检测的控制参数。
+        # @param AbnormalLightingConfigure: <p>（不推荐，使用 Configs 替代）视频画面低光、过曝检测的控制参数。</p>
         # @type AbnormalLightingConfigure: :class:`Tencentcloud::Vod.v20180717.models.AbnormalLightingConfigureInfoForUpdate`
-        # @param CrashScreenConfigure: 视频画面花屏检测的控制参数。
+        # @param CrashScreenConfigure: <p>（不推荐，使用 Configs 替代）视频画面花屏检测的控制参数。</p>
         # @type CrashScreenConfigure: :class:`Tencentcloud::Vod.v20180717.models.CrashScreenConfigureInfoForUpdate`
-        # @param BlackWhiteEdgeConfigure: 视频画面黑边、白边、黑屏、白屏检测的控制参数。
+        # @param BlackWhiteEdgeConfigure: <p>（不推荐，使用 Configs 替代）视频画面黑边、白边、黑屏、白屏检测的控制参数。</p>
         # @type BlackWhiteEdgeConfigure: :class:`Tencentcloud::Vod.v20180717.models.BlackWhiteEdgeConfigureInfoForUpdate`
-        # @param NoiseConfigure: 视频画面噪点检测的控制参数。
+        # @param NoiseConfigure: <p>（不推荐，使用 Configs 替代）视频画面噪点检测的控制参数。</p>
         # @type NoiseConfigure: :class:`Tencentcloud::Vod.v20180717.models.NoiseConfigureInfoForUpdate`
-        # @param MosaicConfigure: 视频画面马赛克检测的控制参数。
+        # @param MosaicConfigure: <p>（不推荐，使用 Configs 替代）视频画面马赛克检测的控制参数。</p>
         # @type MosaicConfigure: :class:`Tencentcloud::Vod.v20180717.models.MosaicConfigureInfoForUpdate`
-        # @param QRCodeConfigure: 视频画面二维码检测的控制参数。
+        # @param QRCodeConfigure: <p>（不推荐，使用 Configs 替代）视频画面二维码检测的控制参数。</p>
         # @type QRCodeConfigure: :class:`Tencentcloud::Vod.v20180717.models.QRCodeConfigureInfoForUpdate`
-        # @param VoiceConfigure: 音频（静音、低音、爆音）检测的控制参数。
+        # @param VoiceConfigure: <p>（不推荐，使用 Configs 替代）音频（静音、低音、爆音）检测的控制参数。</p>
         # @type VoiceConfigure: :class:`Tencentcloud::Vod.v20180717.models.VoiceConfigureInfoForUpdate`
-        # @param QualityEvaluationConfigure: 视频画面质量评价的控制参数。
+        # @param QualityEvaluationConfigure: <p>（不推荐，使用 Configs 替代）视频画面质量评价的控制参数。</p>
         # @type QualityEvaluationConfigure: :class:`Tencentcloud::Vod.v20180717.models.QualityEvaluationConfigureInfoForUpdate`
 
-        attr_accessor :Definition, :SubAppId, :Name, :Comment, :ScreenshotInterval, :JitterConfigure, :BlurConfigure, :AbnormalLightingConfigure, :CrashScreenConfigure, :BlackWhiteEdgeConfigure, :NoiseConfigure, :MosaicConfigure, :QRCodeConfigure, :VoiceConfigure, :QualityEvaluationConfigure
+        attr_accessor :Definition, :SubAppId, :Name, :Comment, :Configs, :Strategy, :ScreenshotInterval, :JitterConfigure, :BlurConfigure, :AbnormalLightingConfigure, :CrashScreenConfigure, :BlackWhiteEdgeConfigure, :NoiseConfigure, :MosaicConfigure, :QRCodeConfigure, :VoiceConfigure, :QualityEvaluationConfigure
 
-        def initialize(definition=nil, subappid=nil, name=nil, comment=nil, screenshotinterval=nil, jitterconfigure=nil, blurconfigure=nil, abnormallightingconfigure=nil, crashscreenconfigure=nil, blackwhiteedgeconfigure=nil, noiseconfigure=nil, mosaicconfigure=nil, qrcodeconfigure=nil, voiceconfigure=nil, qualityevaluationconfigure=nil)
+        def initialize(definition=nil, subappid=nil, name=nil, comment=nil, configs=nil, strategy=nil, screenshotinterval=nil, jitterconfigure=nil, blurconfigure=nil, abnormallightingconfigure=nil, crashscreenconfigure=nil, blackwhiteedgeconfigure=nil, noiseconfigure=nil, mosaicconfigure=nil, qrcodeconfigure=nil, voiceconfigure=nil, qualityevaluationconfigure=nil)
           @Definition = definition
           @SubAppId = subappid
           @Name = name
           @Comment = comment
+          @Configs = configs
+          @Strategy = strategy
           @ScreenshotInterval = screenshotinterval
           @JitterConfigure = jitterconfigure
           @BlurConfigure = blurconfigure
@@ -27138,6 +27169,18 @@ module TencentCloud
           @SubAppId = params['SubAppId']
           @Name = params['Name']
           @Comment = params['Comment']
+          unless params['Configs'].nil?
+            @Configs = []
+            params['Configs'].each do |i|
+              qualityinspectconfig_tmp = QualityInspectConfig.new
+              qualityinspectconfig_tmp.deserialize(i)
+              @Configs << qualityinspectconfig_tmp
+            end
+          end
+          unless params['Strategy'].nil?
+            @Strategy = QualityInspectStrategy.new
+            @Strategy.deserialize(params['Strategy'])
+          end
           @ScreenshotInterval = params['ScreenshotInterval']
           unless params['JitterConfigure'].nil?
             @JitterConfigure = JitterConfigureInfoForUpdate.new
@@ -31104,6 +31147,70 @@ module TencentCloud
         end
       end
 
+      # 音画质检测的控制参数配置。
+      class QualityInspectConfig < TencentCloud::Common::AbstractModel
+        # @param Type: <p>检测项名称。</p><p>枚举值：</p><ul><li>LowEvaluation： 视频无参考评分（MOS）</li><li>AudioEvaluation： 音频无参考评分（MOS）</li><li>Mosaic： 马赛克检测</li><li>CrashScreen： 花屏检测</li><li>Blur： 模糊检测</li><li>Jitter： 抖动检测</li><li>Noise： 噪点检测</li><li>QRCode： 二维码检测</li><li>BarCode： 条形码检测</li><li>AppletCode： 小程序码检测</li><li>BlackWhiteEdge： 黑白边检测</li><li>SolidColorScreen： 纯色屏检测</li><li>LowLighting： 低光照</li><li>HighLighting： 过曝</li><li>NoVoice： 静音检测</li><li>LowVoice： 低音检测</li><li>HighVoice： 爆音检测</li><li>AudioNoise： 音频噪声检测</li><li>VideoResolutionChanged： 视频分辨率变化</li><li>AudioSampleRateChanged： 音频采样率变化</li><li>AudioChannelsChanged： 音频通道数变化</li><li>ParameterSetsChanged： 流参数集信息发生变化</li><li>DarOrSarInvalid： 视频的宽高比异常</li><li>TimestampFallback： DTS时间戳回退</li><li>DtsJitter： DTS抖动过大</li><li>PtsJitter： PTS抖动过大</li><li>AACDurationDeviation： AAC帧时间戳间隔不合理</li><li>AudioDroppingFrames： 音频丢帧</li><li>VideoDroppingFrames： 视频丢帧</li><li>AVTimestampInterleave： 音视频交织不合理</li><li>PtsLessThanDts： 媒体流的 pts 小于 dts</li><li>ReceiveFpsJitter： 网络接收帧率抖动过大</li><li>ReceiveFpsTooSmall： 网络接收视频帧率过小</li><li>FpsJitter： 通过PTS计算得到的流帧率抖动过大</li><li>StreamOpenFailed： 流打开失败</li><li>StreamEnd： 流结束</li><li>StreamParseFailed： 流解析失败</li><li>VideoFirstFrameNotIdr： 首帧不是IDR帧</li><li>StreamNALUError： NALU起始码错误</li><li>TsStreamNoAud： mpegts的H26x流缺失 AUD NALU</li><li>AudioStreamLack： 无音频流</li><li>VideoStreamLack： 无视频流</li><li>LackAudioRecover： 缺失音频流恢复</li><li>LackVideoRecover： 缺失视频流恢复</li><li>VideoBitrateOutofRange： 视频流码率(kbps)超出范围</li><li>AudioBitrateOutofRange： 音频流码率(kbps)超出范围</li><li>VideoDecodeFailed： 视频解码错误</li><li>AudioDecodeFailed： 音频解码错误</li><li>AudioOutOfPhase： 双通道音频相位相反</li><li>VideoDuplicatedFrame： 视频流中存在重复帧</li><li>AudioDuplicatedFrame： 音频流中存在重复帧</li><li>VideoRotation： 视频画面旋转</li><li>TsMultiPrograms： MPEG2-TS流有多个program</li><li>Mp4InvalidCodecFourcc： MP4中codec fourcc不符合Apple HLS要求</li><li>HLSBadM3u8Format： 无效的m3u8文件</li><li>HLSInvalidMasterM3u8： 无效的main m3u8文件</li><li>HLSInvalidMediaM3u8： 无效的media m3u8文件</li><li>HLSMasterM3u8Recommended： main m3u8缺少标准推荐的参数</li><li>HLSMediaM3u8Recommended： media m3u8缺少标准推荐的参数</li><li>HLSMediaM3u8DiscontinuityExist： media m3u8存在EXT-X-DISCONTINUITY</li><li>HLSMediaSegmentsStreamNumChange： 切片的流数目发生变化</li><li>HLSMediaSegmentsPTSJitterDeviation： 切片间PTS跳变且没有EXT-X-DISCONTINUITY</li><li>HLSMediaSegmentsDTSJitterDeviation： 切片间DTS跳变且没有EXT-X-DISCONTINUITY</li><li>TimecodeTrackExist： MP4存在tmcd轨道</li><li>BodyPoseCheck： 人体姿态异常</li><li>BodyDetailCheck： 人体细节异常</li><li>PhysicRulesCheck： 物理规律违反</li><li>ObjectConsistencyCheck： 物体一致性异常</li><li>FormatCheck： 格式异常</li><li>AudioReverb： 混响程度</li><li>AudioDiscontinuity： 音频不连续</li><li>AudioSpeechQuality： 语音清晰度</li><li>AudioHighLoudness： 响度失真</li><li>AudioLoudnessJitter： 音量变化剧烈</li><li>BackgroundMusic： 存在背景音乐</li><li>NoBackgroundMusic： 不存在背景音乐</li><li>VideoAesthetic： 视频美学评分</li><li>AudioVideoAsync： 音画不同步</li><li>AudioSubtitleAsync： 音频与字幕不同步</li></ul>
+        # @type Type: String
+        # @param Switch: <p>能力配置开关。</p><p>枚举值：</p><ul><li>ON： 开启。</li><li>OFF： 关闭。</li></ul><p>默认值：ON</p>
+        # @type Switch: String
+        # @param Sampling: <p>采样方式</p><p>枚举值：</p><ul><li>Time： 根据时间间隔采样。</li></ul>
+        # @type Sampling: String
+        # @param IntervalTime: <p>采样间隔时间</p><p>单位：毫秒。</p>
+        # @type IntervalTime: Integer
+        # @param Duration: <p>异常持续时间。</p><p>单位：毫秒。</p>
+        # @type Duration: Integer
+        # @param Threshold: <p>检测项对应的阈值，不同检测项对应阈值不同。</p>
+        # @type Threshold: String
+
+        attr_accessor :Type, :Switch, :Sampling, :IntervalTime, :Duration, :Threshold
+
+        def initialize(type=nil, switch=nil, sampling=nil, intervaltime=nil, duration=nil, threshold=nil)
+          @Type = type
+          @Switch = switch
+          @Sampling = sampling
+          @IntervalTime = intervaltime
+          @Duration = duration
+          @Threshold = threshold
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Switch = params['Switch']
+          @Sampling = params['Sampling']
+          @IntervalTime = params['IntervalTime']
+          @Duration = params['Duration']
+          @Threshold = params['Threshold']
+        end
+      end
+
+      # 音画质检测的格式诊断检出异常项。
+      class QualityInspectContainerDiagnoseResultItem < TencentCloud::Common::AbstractModel
+        # @param Category: <p>诊断出的异常类别</p><p>枚举值：</p><ul><li>DecodeParamException： 解码参数异常。</li><li>TimeStampException： 时间戳异常。</li><li>FrameException： 帧率异常。</li><li>StreamStatusException： 流状态异常。</li><li>StreamInfo： 流信息异常。</li><li>StreamAbnormalCharacteristics： 流特征异常。</li><li>DecodeException： 解码异常。</li><li>HLSRequirements： HLS 格式异常。</li></ul>
+        # @type Category: String
+        # @param Type: <p>诊断出的具体异常类型。</p><p>枚举值：</p><ul><li>VideoResolutionChanged： 视频分辨率变化。</li><li>AudioSampleRateChanged： 音频采样率变化。</li><li>AudioChannelsChanged： 音频通道数变化。</li><li>ParameterSetsChanged： 流参数集信息发生变化。</li><li>DarOrSarInvalid： 视频的宽高比异常。</li><li>TimestampFallback： DTS时间戳回退。</li><li>DtsJitter： DTS抖动过大。</li><li>PtsJitter： PTS抖动过大。</li><li>AACDurationDeviation： AAC帧时间戳间隔不合理。</li><li>AudioDroppingFrames： 音频丢帧。</li><li>VideoDroppingFrames： 视频丢帧。</li><li>AVTimestampInterleave： 音视频交织不合理。</li><li>PtsLessThanDts： 媒体流的 pts 小于 dts。</li><li>ReceiveFpsJitter： 网络接收帧率抖动过大。</li><li>ReceiveFpsTooSmall： 网络接收视频帧率过小。</li><li>FpsJitter： 通过PTS计算得到的流帧率抖动过大。</li><li>StreamOpenFailed： 流打开失败。</li><li>StreamEnd： 流结束。</li><li>StreamParseFailed： 流解析失败。</li><li>VideoFirstFrameNotIdr： 首帧不是IDR帧。</li><li>StreamNALUError： NALU起始码错误。</li><li>TsStreamNoAud： mpegts 的 H26x 流缺失 AUD NALU。</li><li>AudioStreamLack： 无音频流。</li><li>VideoStreamLack： 无视频流。</li><li>LackAudioRecover： 缺失音频流恢复。</li><li>LackVideoRecover： 缺失视频流恢复。</li><li>VideoBitrateOutofRange： 视频流码率(kbps)超出范围。</li><li>AudioBitrateOutofRange： 音频流码率(kbps)超出范围。</li><li>VideoDecodeFailed： 视频解码错误。</li><li>AudioDecodeFailed： 音频解码错误。</li><li>AudioOutOfPhase： 双通道音频相位相反。</li><li>VideoDuplicatedFrame： 视频流中存在重复帧。</li><li>AudioDuplicatedFrame： 音频流中存在重复帧。</li><li>VideoRotation： 视频画面旋转。</li><li>TsMultiPrograms： MPEG2-TS流有多个program。</li><li>Mp4InvalidCodecFourcc： MP4中codec fourcc不符合Apple HLS要求。</li><li>HLSBadM3u8Format： 无效的m3u8文件。</li><li>HLSInvalidMasterM3u8： 无效的main m3u8文件。</li><li>HLSInvalidMediaM3u8： 无效的media m3u8文件。</li><li>HLSMasterM3u8Recommended： main m3u8缺少标准推荐的参数。</li><li>HLSMediaM3u8Recommended： media m3u8缺少标准推荐的参数。</li><li>HLSMediaM3u8DiscontinuityExist： media m3u8存在 EXT-X-DISCONTINUITY。</li><li>HLSMediaSegmentsStreamNumChange： 切片的流数目发生变化。</li><li>HLSMediaSegmentsPTSJitterDeviation： 切片间 PTS 跳变且没有 EXT-X-DISCONTINUITY。</li><li>HLSMediaSegmentsDTSJitterDeviation： 切片间 DTS 跳变且没有 EXT-X-DISCONTINUITY。</li><li>TimecodeTrackExist： MP4存在tmcd轨道</li></ul>
+        # @type Type: String
+        # @param SeverityLevel: <p>诊断出的异常级别。</p><p>枚举值：</p><ul><li>Fatal： 影响后续播放和解析。</li><li>Error： 可能会影响播放。</li><li>Warning： 可能会有潜在风险，但不一定会影响播放。</li><li>Notice： 比较重要的流信息。</li><li>Info： 一般性的流信息。</li></ul>
+        # @type SeverityLevel: String
+        # @param TimestampSet: <p>时间戳。</p>
+        # @type TimestampSet: Array
+
+        attr_accessor :Category, :Type, :SeverityLevel, :TimestampSet
+
+        def initialize(category=nil, type=nil, severitylevel=nil, timestampset=nil)
+          @Category = category
+          @Type = type
+          @SeverityLevel = severitylevel
+          @TimestampSet = timestampset
+        end
+
+        def deserialize(params)
+          @Category = params['Category']
+          @Type = params['Type']
+          @SeverityLevel = params['SeverityLevel']
+          @TimestampSet = params['TimestampSet']
+        end
+      end
+
       # 音画质检测异常片段信息。
       class QualityInspectItem < TencentCloud::Common::AbstractModel
         # @param StartTimeOffset: 异常片段起始的偏移时间，单位：秒。
@@ -31143,32 +31250,125 @@ module TencentCloud
         end
       end
 
+      # 音画质检测的LLM 大模型检测发现的单条问题。
+      class QualityInspectLLMDetectionIssue < TencentCloud::Common::AbstractModel
+        # @param Tag: <p>问题分类标签。</p>
+        # @type Tag: String
+        # @param Description: <p>问题描述。</p>
+        # @type Description: String
+        # @param Score: <p>该问题的质量得分</p><p>取值范围：[0, 100]</p>
+        # @type Score: Float
+        # @param Confidence: <p>该问题的判断置信度</p><p>取值范围：[0, 100]</p>
+        # @type Confidence: Float
+        # @param StartTimeMs: <p>问题起始时间。</p><p>单位：毫秒。</p>
+        # @type StartTimeMs: Integer
+        # @param EndTimeMs: <p>问题结束时间。</p><p>单位：毫秒。</p>
+        # @type EndTimeMs: Integer
+        # @param ExtraData: <p>附加数据（JSON 格式），如严重程度等补充信息。</p>
+        # @type ExtraData: String
+
+        attr_accessor :Tag, :Description, :Score, :Confidence, :StartTimeMs, :EndTimeMs, :ExtraData
+
+        def initialize(tag=nil, description=nil, score=nil, confidence=nil, starttimems=nil, endtimems=nil, extradata=nil)
+          @Tag = tag
+          @Description = description
+          @Score = score
+          @Confidence = confidence
+          @StartTimeMs = starttimems
+          @EndTimeMs = endtimems
+          @ExtraData = extradata
+        end
+
+        def deserialize(params)
+          @Tag = params['Tag']
+          @Description = params['Description']
+          @Score = params['Score']
+          @Confidence = params['Confidence']
+          @StartTimeMs = params['StartTimeMs']
+          @EndTimeMs = params['EndTimeMs']
+          @ExtraData = params['ExtraData']
+        end
+      end
+
+      # 音画质检测的LLM大模型AIGC质量检测结果。
+      class QualityInspectLLMDetectionReport < TencentCloud::Common::AbstractModel
+        # @param ResultCount: <p>检测结果数量。</p>
+        # @type ResultCount: Integer
+        # @param ResultSet: <p>各检测项结果列表。</p>
+        # @type ResultSet: Array
+
+        attr_accessor :ResultCount, :ResultSet
+
+        def initialize(resultcount=nil, resultset=nil)
+          @ResultCount = resultcount
+          @ResultSet = resultset
+        end
+
+        def deserialize(params)
+          @ResultCount = params['ResultCount']
+          unless params['ResultSet'].nil?
+            @ResultSet = []
+            params['ResultSet'].each do |i|
+              qualityinspectllmdetectionresultitem_tmp = QualityInspectLLMDetectionResultItem.new
+              qualityinspectllmdetectionresultitem_tmp.deserialize(i)
+              @ResultSet << qualityinspectllmdetectionresultitem_tmp
+            end
+          end
+        end
+      end
+
+      # 音画质检测的LLM 大模型单个检测项的聚合结果。
+      class QualityInspectLLMDetectionResultItem < TencentCloud::Common::AbstractModel
+        # @param Category: <p>检测分类。</p><p>枚举值：</p><ul><li>AIGCQualityCharacteristics： AIGC 质量特征。</li></ul>
+        # @type Category: String
+        # @param Group: <p>检测分组。</p><p>枚举值：</p><ul><li>AIGCAuthenticity： AIGC 真实性，包括人体合理性、物理合理性、跨帧一致性等。</li><li>AIGCTechQuality： AIGC 技术质量，包括画幅、黑边、强行竖屏等。</li></ul>
+        # @type Group: String
+        # @param Type: <p>检测类型名称。</p><p>枚举值：</p><ul><li>BodyPoseCheck： 人体姿态合理性，属于 AIGCAuthenticity。</li><li>BodyDetailCheck： 人体细节合理性，包括手指数、五官对称等，属于 AIGCAuthenticity。</li><li>PhysicRulesCheck： 物理规律合理性，包括透视、光影、重力等，属于 AIGCAuthenticity。</li><li>ObjectConsistencyCheck： 跨帧物体一致性，属于 AIGCAuthenticity。</li><li>FormatCheck： 画幅、黑边、强行竖屏等格式问题，属于 AIGCTechQuality。</li></ul>
+        # @type Type: String
+        # @param Score: <p>整体质量得分，范围 [0, 100]，越高表示越好。</p>
+        # @type Score: Float
+        # @param Confidence: <p>判断置信度，范围 [0, 100]，越高表示越确定。</p>
+        # @type Confidence: Float
+        # @param IssueSet: <p>检测发现的问题列表，无问题时为空。</p>
+        # @type IssueSet: Array
+
+        attr_accessor :Category, :Group, :Type, :Score, :Confidence, :IssueSet
+
+        def initialize(category=nil, group=nil, type=nil, score=nil, confidence=nil, issueset=nil)
+          @Category = category
+          @Group = group
+          @Type = type
+          @Score = score
+          @Confidence = confidence
+          @IssueSet = issueset
+        end
+
+        def deserialize(params)
+          @Category = params['Category']
+          @Group = params['Group']
+          @Type = params['Type']
+          @Score = params['Score']
+          @Confidence = params['Confidence']
+          unless params['IssueSet'].nil?
+            @IssueSet = []
+            params['IssueSet'].each do |i|
+              qualityinspectllmdetectionissue_tmp = QualityInspectLLMDetectionIssue.new
+              qualityinspectllmdetectionissue_tmp.deserialize(i)
+              @IssueSet << qualityinspectllmdetectionissue_tmp
+            end
+          end
+        end
+      end
+
       # 音画质检测异常结果信息。
       class QualityInspectResultItem < TencentCloud::Common::AbstractModel
-        # @param Type: 异常类型，取值范围：
-        # <li>Jitter：抖动；</li>
-        # <li>Blur：模糊；</li>
-        # <li>LowLighting：低光照；</li>
-        # <li>HighLighting：过曝；</li>
-        # <li>CrashScreen：花屏；</li>
-        # <li>BlackWhiteEdge：黑白边；</li>
-        # <li>SolidColorScreen：纯色屏；</li>
-        # <li>Noise：噪点；</li>
-        # <li>Mosaic：马赛克；</li>
-        # <li>QRCode：二维码；</li>
-        # <li>AppletCode：小程序码；</li>
-        # <li>BarCode：条形码；</li>
-        # <li>LowVoice：低音；</li>
-        # <li>HighVoice：爆音；</li>
-        # <li>NoVoice：静音；</li>
-        # <li>LowEvaluation：无参考打分低于阈值。</li>
+        # @param Type: <p>异常类型，取值范围：</p><li>Jitter：抖动；</li><li>Blur：模糊；</li><li>LowLighting：低光照；</li><li>HighLighting：过曝；</li><li>CrashScreen：花屏；</li><li>BlackWhiteEdge：黑白边；</li><li>SolidColorScreen：纯色屏；</li><li>Noise：噪点；</li><li>Mosaic：马赛克；</li><li>QRCode：二维码；</li><li>AppletCode：小程序码；</li><li>BarCode：条形码；</li><li>LowVoice：低音；</li><li>HighVoice：爆音；</li><li>NoVoice：静音；</li><li>LowEvaluation：无参考打分低于阈值。</li><li> LowColorfulness：色彩丰富度信息。</li><li> AudioVideoAsync：音画不同步。</li><li> AudioSubtitleAsync：音频与字幕不同步。</li><li> VideoAesthetic：视频美学评分低。</li><li> AudioDiscontinuity：音频不连续。</li><li> AudioVolume：音量信息。</li><li> AudioLoudnessJitter：音量变化剧烈。</li><li> BackgroundMusic：存在背景音乐。</li><li> AudioEvaluation：低音质。</li><li> AudioNoise：噪声。</li><li> AudioSpeechQuality：语音清晰度低。</li><li> AudioReverb：混响程度高。</li><li> AudioHighLoudness：响度失真。</li>
         # @type Type: String
-        # @param SegmentSet: 异常片段列表。
-        # <font color=red>注意：</font> 该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 SegmentSetFileUrl 对应的文件中获取。
+        # @param SegmentSet: <p>异常片段列表。<br><font color="red">注意：</font> 该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 SegmentSetFileUrl 对应的文件中获取。</p>
         # @type SegmentSet: Array
-        # @param SegmentSetFileUrl: 异常片段列表文件 URL。文件 内容 为  JSON，数据结构与 SegmentSet 字段一致。（文件不会永久存储，到达SegmentSetFileUrlExpireTime 时间点后文件将被删除）。
+        # @param SegmentSetFileUrl: <p>异常片段列表文件 URL。文件 内容 为  JSON，数据结构与 SegmentSet 字段一致。（文件不会永久存储，到达SegmentSetFileUrlExpireTime 时间点后文件将被删除）。</p>
         # @type SegmentSetFileUrl: String
-        # @param SegmentSetFileUrlExpireTime: 异常片段列表文件 URL 失效时间，使用  [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @param SegmentSetFileUrlExpireTime: <p>异常片段列表文件 URL 失效时间，使用  <a href="https://cloud.tencent.com/document/product/266/11732#I">ISO 日期格式</a>。</p>
         # @type SegmentSetFileUrlExpireTime: String
 
         attr_accessor :Type, :SegmentSet, :SegmentSetFileUrl, :SegmentSetFileUrlExpireTime
@@ -31192,6 +31392,29 @@ module TencentCloud
           end
           @SegmentSetFileUrl = params['SegmentSetFileUrl']
           @SegmentSetFileUrlExpireTime = params['SegmentSetFileUrlExpireTime']
+        end
+      end
+
+      # 音画质检测策略信息。
+      class QualityInspectStrategy < TencentCloud::Common::AbstractModel
+        # @param StrategyType: <p>策略类型。</p><p>枚举值：</p><ul><li>TimeSpotCheck： 根据时间的抽检策略。</li></ul>
+        # @type StrategyType: String
+        # @param TimeSpotCheck: <p>根据时间的抽检策略参数，当 StrategyType 为 TimeSpotCheck 时有效。</p>
+        # @type TimeSpotCheck: :class:`Tencentcloud::Vod.v20180717.models.QualityInspectTimeSpotCheck`
+
+        attr_accessor :StrategyType, :TimeSpotCheck
+
+        def initialize(strategytype=nil, timespotcheck=nil)
+          @StrategyType = strategytype
+          @TimeSpotCheck = timespotcheck
+        end
+
+        def deserialize(params)
+          @StrategyType = params['StrategyType']
+          unless params['TimeSpotCheck'].nil?
+            @TimeSpotCheck = QualityInspectTimeSpotCheck.new
+            @TimeSpotCheck.deserialize(params['TimeSpotCheck'])
+          end
         end
       end
 
@@ -31277,26 +31500,34 @@ module TencentCloud
 
       # 音画质检测任务的输出。
       class QualityInspectTaskOutput < TencentCloud::Common::AbstractModel
-        # @param NoAudio: 媒体文件是否无音频轨，取值范围：
-        # <li>0：否，即有音频轨；</li>
-        # <li>1：是，即无音频轨。</li>
+        # @param NoAudio: <p>媒体文件是否无音频轨，取值范围：</p><li>0：否，即有音频轨；</li><li>1：是，即无音频轨。</li>
         # @type NoAudio: Integer
-        # @param NoVideo: 媒体文件是否无视频轨，取值范围：
-        # <li>0：否，即有视频轨；</li>
-        # <li>1：是，即无视频轨。</li>
+        # @param NoVideo: <p>媒体文件是否无视频轨，取值范围：</p><li>0：否，即有视频轨；</li><li>1：是，即无视频轨。</li>
         # @type NoVideo: Integer
-        # @param QualityEvaluationScore: 视频画面质量评分，取值范围：[0, 100]。
+        # @param QualityEvaluationScore: <p>视频画面质量评分，取值范围：[0, 100]。</p>
         # @type QualityEvaluationScore: Integer
-        # @param QualityInspectResultSet: 音画质检测出的异常项列表。
+        # @param QualityInspectResultSet: <p>音画质检测出的异常项列表。</p>
         # @type QualityInspectResultSet: Array
+        # @param QualityEvaluationMeanOpinionScore: <p>视频无参考质量评分，MOS分数。</p>
+        # @type QualityEvaluationMeanOpinionScore: Float
+        # @param AestheticEvaluationScore: <p>视频美学评分，范围：[0,100]。</p>
+        # @type AestheticEvaluationScore: Integer
+        # @param ContainerDiagnoseResultSet: <p>格式诊断检出异常项。</p>
+        # @type ContainerDiagnoseResultSet: Array
+        # @param LLMDetectionReport: <p>LLM 大模型 AIGC 质量检测结果。</p>
+        # @type LLMDetectionReport: :class:`Tencentcloud::Vod.v20180717.models.QualityInspectLLMDetectionReport`
 
-        attr_accessor :NoAudio, :NoVideo, :QualityEvaluationScore, :QualityInspectResultSet
+        attr_accessor :NoAudio, :NoVideo, :QualityEvaluationScore, :QualityInspectResultSet, :QualityEvaluationMeanOpinionScore, :AestheticEvaluationScore, :ContainerDiagnoseResultSet, :LLMDetectionReport
 
-        def initialize(noaudio=nil, novideo=nil, qualityevaluationscore=nil, qualityinspectresultset=nil)
+        def initialize(noaudio=nil, novideo=nil, qualityevaluationscore=nil, qualityinspectresultset=nil, qualityevaluationmeanopinionscore=nil, aestheticevaluationscore=nil, containerdiagnoseresultset=nil, llmdetectionreport=nil)
           @NoAudio = noaudio
           @NoVideo = novideo
           @QualityEvaluationScore = qualityevaluationscore
           @QualityInspectResultSet = qualityinspectresultset
+          @QualityEvaluationMeanOpinionScore = qualityevaluationmeanopinionscore
+          @AestheticEvaluationScore = aestheticevaluationscore
+          @ContainerDiagnoseResultSet = containerdiagnoseresultset
+          @LLMDetectionReport = llmdetectionreport
         end
 
         def deserialize(params)
@@ -31311,55 +31542,75 @@ module TencentCloud
               @QualityInspectResultSet << qualityinspectresultitem_tmp
             end
           end
+          @QualityEvaluationMeanOpinionScore = params['QualityEvaluationMeanOpinionScore']
+          @AestheticEvaluationScore = params['AestheticEvaluationScore']
+          unless params['ContainerDiagnoseResultSet'].nil?
+            @ContainerDiagnoseResultSet = []
+            params['ContainerDiagnoseResultSet'].each do |i|
+              qualityinspectcontainerdiagnoseresultitem_tmp = QualityInspectContainerDiagnoseResultItem.new
+              qualityinspectcontainerdiagnoseresultitem_tmp.deserialize(i)
+              @ContainerDiagnoseResultSet << qualityinspectcontainerdiagnoseresultitem_tmp
+            end
+          end
+          unless params['LLMDetectionReport'].nil?
+            @LLMDetectionReport = QualityInspectLLMDetectionReport.new
+            @LLMDetectionReport.deserialize(params['LLMDetectionReport'])
+          end
         end
       end
 
       # 音画质检测模板详情。
       class QualityInspectTemplateItem < TencentCloud::Common::AbstractModel
-        # @param Definition: 模板 ID。
+        # @param Definition: <p>模板 ID。</p>
         # @type Definition: Integer
-        # @param Type: 模板类型，可选值：
-        # <li>Preset：系统预置模板；</li>
-        # <li>Custom：用户自定义模板。</li>
+        # @param Type: <p>模板类型，可选值：</p><li>Preset：系统预置模板；</li><li>Custom：用户自定义模板。</li>
         # @type Type: String
-        # @param Name: 模板名称。
+        # @param Name: <p>模板名称。</p>
         # @type Name: String
-        # @param Comment: 模板描述。
+        # @param Comment: <p>模板描述。</p>
         # @type Comment: String
-        # @param ScreenshotInterval: 截帧间隔，单位为秒。
-        # @type ScreenshotInterval: Float
-        # @param JitterConfigure: 视频画面抖动重影检测的控制参数。
-        # @type JitterConfigure: :class:`Tencentcloud::Vod.v20180717.models.JitterConfigureInfo`
-        # @param BlurConfigure: 视频画面模糊检测的控制参数。
-        # @type BlurConfigure: :class:`Tencentcloud::Vod.v20180717.models.BlurConfigureInfo`
-        # @param AbnormalLightingConfigure: 视频画面低光、过曝检测的控制参数。
-        # @type AbnormalLightingConfigure: :class:`Tencentcloud::Vod.v20180717.models.AbnormalLightingConfigureInfo`
-        # @param CrashScreenConfigure: 视频画面花屏检测的控制参数。
-        # @type CrashScreenConfigure: :class:`Tencentcloud::Vod.v20180717.models.CrashScreenConfigureInfo`
-        # @param BlackWhiteEdgeConfigure: 视频画面黑边、白边、黑屏、白屏检测的控制参数。
-        # @type BlackWhiteEdgeConfigure: :class:`Tencentcloud::Vod.v20180717.models.BlackWhiteEdgeConfigureInfo`
-        # @param NoiseConfigure: 视频画面噪点检测的控制参数。
-        # @type NoiseConfigure: :class:`Tencentcloud::Vod.v20180717.models.NoiseConfigureInfo`
-        # @param MosaicConfigure: 视频画面马赛克检测的控制参数。
-        # @type MosaicConfigure: :class:`Tencentcloud::Vod.v20180717.models.MosaicConfigureInfo`
-        # @param QRCodeConfigure: 视频画面二维码检测的控制参数。
-        # @type QRCodeConfigure: :class:`Tencentcloud::Vod.v20180717.models.QRCodeConfigureInfo`
-        # @param QualityEvaluationConfigure: 视频画面质量评价的控制参数。
-        # @type QualityEvaluationConfigure: :class:`Tencentcloud::Vod.v20180717.models.QualityEvaluationConfigureInfo`
-        # @param VoiceConfigure: 音频（静音、低音、爆音）检测的控制参数。
-        # @type VoiceConfigure: :class:`Tencentcloud::Vod.v20180717.models.VoiceConfigureInfo`
-        # @param CreateTime: 模板创建时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @param Configs: <p>音画质检测的配置参数。</p>
+        # @type Configs: Array
+        # @param Strategy: <p>音画质检测的抽检策略。</p>
+        # @type Strategy: :class:`Tencentcloud::Vod.v20180717.models.QualityInspectStrategy`
+        # @param CreateTime: <p>模板创建时间，使用 <a href="https://cloud.tencent.com/document/product/266/11732#I">ISO 日期格式</a>。</p>
         # @type CreateTime: String
-        # @param UpdateTime: 模板最后修改时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @param UpdateTime: <p>模板最后修改时间，使用 <a href="https://cloud.tencent.com/document/product/266/11732#I">ISO 日期格式</a>。</p>
         # @type UpdateTime: String
+        # @param ScreenshotInterval: <p>（不推荐，使用 Configs 替代）截帧间隔，单位为秒。</p>
+        # @type ScreenshotInterval: Float
+        # @param JitterConfigure: <p>（不推荐，使用 Configs 替代）视频画面抖动重影检测的控制参数。</p>
+        # @type JitterConfigure: :class:`Tencentcloud::Vod.v20180717.models.JitterConfigureInfo`
+        # @param BlurConfigure: <p>（不推荐，使用 Configs 替代）视频画面模糊检测的控制参数。</p>
+        # @type BlurConfigure: :class:`Tencentcloud::Vod.v20180717.models.BlurConfigureInfo`
+        # @param AbnormalLightingConfigure: <p>（不推荐，使用 Configs 替代）视频画面低光、过曝检测的控制参数。</p>
+        # @type AbnormalLightingConfigure: :class:`Tencentcloud::Vod.v20180717.models.AbnormalLightingConfigureInfo`
+        # @param CrashScreenConfigure: <p>（不推荐，使用 Configs 替代）视频画面花屏检测的控制参数。</p>
+        # @type CrashScreenConfigure: :class:`Tencentcloud::Vod.v20180717.models.CrashScreenConfigureInfo`
+        # @param BlackWhiteEdgeConfigure: <p>视频画面黑边、白边、黑屏、白屏检测的控制参数。</p>
+        # @type BlackWhiteEdgeConfigure: :class:`Tencentcloud::Vod.v20180717.models.BlackWhiteEdgeConfigureInfo`
+        # @param NoiseConfigure: <p>（不推荐，使用 Configs 替代）视频画面噪点检测的控制参数。</p>
+        # @type NoiseConfigure: :class:`Tencentcloud::Vod.v20180717.models.NoiseConfigureInfo`
+        # @param MosaicConfigure: <p>（不推荐，使用 Configs 替代）视频画面马赛克检测的控制参数。</p>
+        # @type MosaicConfigure: :class:`Tencentcloud::Vod.v20180717.models.MosaicConfigureInfo`
+        # @param QRCodeConfigure: <p>（不推荐，使用 Configs 替代）视频画面二维码检测的控制参数。</p>
+        # @type QRCodeConfigure: :class:`Tencentcloud::Vod.v20180717.models.QRCodeConfigureInfo`
+        # @param QualityEvaluationConfigure: <p>（不推荐，使用 Configs 替代）视频画面质量评价的控制参数。</p>
+        # @type QualityEvaluationConfigure: :class:`Tencentcloud::Vod.v20180717.models.QualityEvaluationConfigureInfo`
+        # @param VoiceConfigure: <p>（不推荐，使用 Configs 替代）音频（静音、低音、爆音）检测的控制参数。</p>
+        # @type VoiceConfigure: :class:`Tencentcloud::Vod.v20180717.models.VoiceConfigureInfo`
 
-        attr_accessor :Definition, :Type, :Name, :Comment, :ScreenshotInterval, :JitterConfigure, :BlurConfigure, :AbnormalLightingConfigure, :CrashScreenConfigure, :BlackWhiteEdgeConfigure, :NoiseConfigure, :MosaicConfigure, :QRCodeConfigure, :QualityEvaluationConfigure, :VoiceConfigure, :CreateTime, :UpdateTime
+        attr_accessor :Definition, :Type, :Name, :Comment, :Configs, :Strategy, :CreateTime, :UpdateTime, :ScreenshotInterval, :JitterConfigure, :BlurConfigure, :AbnormalLightingConfigure, :CrashScreenConfigure, :BlackWhiteEdgeConfigure, :NoiseConfigure, :MosaicConfigure, :QRCodeConfigure, :QualityEvaluationConfigure, :VoiceConfigure
 
-        def initialize(definition=nil, type=nil, name=nil, comment=nil, screenshotinterval=nil, jitterconfigure=nil, blurconfigure=nil, abnormallightingconfigure=nil, crashscreenconfigure=nil, blackwhiteedgeconfigure=nil, noiseconfigure=nil, mosaicconfigure=nil, qrcodeconfigure=nil, qualityevaluationconfigure=nil, voiceconfigure=nil, createtime=nil, updatetime=nil)
+        def initialize(definition=nil, type=nil, name=nil, comment=nil, configs=nil, strategy=nil, createtime=nil, updatetime=nil, screenshotinterval=nil, jitterconfigure=nil, blurconfigure=nil, abnormallightingconfigure=nil, crashscreenconfigure=nil, blackwhiteedgeconfigure=nil, noiseconfigure=nil, mosaicconfigure=nil, qrcodeconfigure=nil, qualityevaluationconfigure=nil, voiceconfigure=nil)
           @Definition = definition
           @Type = type
           @Name = name
           @Comment = comment
+          @Configs = configs
+          @Strategy = strategy
+          @CreateTime = createtime
+          @UpdateTime = updatetime
           @ScreenshotInterval = screenshotinterval
           @JitterConfigure = jitterconfigure
           @BlurConfigure = blurconfigure
@@ -31371,8 +31622,6 @@ module TencentCloud
           @QRCodeConfigure = qrcodeconfigure
           @QualityEvaluationConfigure = qualityevaluationconfigure
           @VoiceConfigure = voiceconfigure
-          @CreateTime = createtime
-          @UpdateTime = updatetime
         end
 
         def deserialize(params)
@@ -31380,6 +31629,20 @@ module TencentCloud
           @Type = params['Type']
           @Name = params['Name']
           @Comment = params['Comment']
+          unless params['Configs'].nil?
+            @Configs = []
+            params['Configs'].each do |i|
+              qualityinspectconfig_tmp = QualityInspectConfig.new
+              qualityinspectconfig_tmp.deserialize(i)
+              @Configs << qualityinspectconfig_tmp
+            end
+          end
+          unless params['Strategy'].nil?
+            @Strategy = QualityInspectStrategy.new
+            @Strategy.deserialize(params['Strategy'])
+          end
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
           @ScreenshotInterval = params['ScreenshotInterval']
           unless params['JitterConfigure'].nil?
             @JitterConfigure = JitterConfigureInfo.new
@@ -31421,8 +31684,34 @@ module TencentCloud
             @VoiceConfigure = VoiceConfigureInfo.new
             @VoiceConfigure.deserialize(params['VoiceConfigure'])
           end
-          @CreateTime = params['CreateTime']
-          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 音画质检测的时间抽检策略。
+      class QualityInspectTimeSpotCheck < TencentCloud::Common::AbstractModel
+        # @param CheckDuration: <p>每次循环检测的时长。</p><p>取值范围：[10, 86400]</p><p>单位：秒。</p>
+        # @type CheckDuration: Integer
+        # @param CheckInterval: <p>抽检间隔，表示在一次检测结束后，等待多长时间后，再次检测</p><p>取值范围：[10, 3600]</p><p>单位：秒。</p>
+        # @type CheckInterval: Integer
+        # @param SkipDuration: <p>片头跳过时长。</p><p>取值范围：[1, 1800]</p><p>单位：秒。</p>
+        # @type SkipDuration: Integer
+        # @param CirclesNumber: <p>循环次数。</p><p>取值范围：[0, 1000]</p>
+        # @type CirclesNumber: Integer
+
+        attr_accessor :CheckDuration, :CheckInterval, :SkipDuration, :CirclesNumber
+
+        def initialize(checkduration=nil, checkinterval=nil, skipduration=nil, circlesnumber=nil)
+          @CheckDuration = checkduration
+          @CheckInterval = checkinterval
+          @SkipDuration = skipduration
+          @CirclesNumber = circlesnumber
+        end
+
+        def deserialize(params)
+          @CheckDuration = params['CheckDuration']
+          @CheckInterval = params['CheckInterval']
+          @SkipDuration = params['SkipDuration']
+          @CirclesNumber = params['CirclesNumber']
         end
       end
 

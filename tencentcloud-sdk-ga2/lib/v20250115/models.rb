@@ -680,11 +680,11 @@ module TencentCloud
       class CreateListenerRequest < TencentCloud::Common::AbstractModel
         # @param GlobalAcceleratorId: <p>全球加速实例ID。</p>
         # @type GlobalAcceleratorId: String
-        # @param Name: <p>名称，最大长度不能超过60个字节。</p>
+        # @param Name: <p>名称，最大长度不能超过128个字符。</p>
         # @type Name: String
         # @param PortRanges: <p>端口范围。</p>
         # @type PortRanges: :class:`Tencentcloud::Ga2.v20250115.models.PortRanges`
-        # @param Description: <p>描述信息，最大长度不能超过100个字节。</p>
+        # @param Description: <p>描述信息，最大长度不能超过100个字符。</p>
         # @type Description: String
         # @param ListenerType: <p>监听类型，默认为智能路由。</p><p>枚举值：</p><ul><li>Standard： 智能路由。</li></ul>
         # @type ListenerType: String

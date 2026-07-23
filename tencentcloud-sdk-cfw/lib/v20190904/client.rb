@@ -125,6 +125,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 发起 NAT CCN 集群模式防火墙预接入检查（仅支持自动接入模式）。入参与 OpenClusterNatFwSwitch 完全相同，传入相同的 NatCcnSwitch 配置 JSON 即可发起检查。检查为异步执行：接口立即返回 CheckItems 检查项清单，前端轮询 DescribeClusterNatCcnFwSwitchList 接口读取 CheckResult 获取各阶段的通过/失败状态。
+
+        # @param request: Request instance for CheckClusterNatFwPreAccess.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::CheckClusterNatFwPreAccessRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::CheckClusterNatFwPreAccessResponse`
+        def CheckClusterNatFwPreAccess(request)
+          body = send_request('CheckClusterNatFwPreAccess', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CheckClusterNatFwPreAccessResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 发起 VPC 集群防火墙预接入检查（仅支持自动接入模式）。入参与 ModifyClusterVpcFwSwitch 完全相同，传入相同的 CcnSwitch 配置 JSON 即可发起检查。检查为异步执行：接口立即返回 CheckItems 检查项清单，前端轮询 DescribeClusterVpcFwSwitchs 接口读取 CheckResult 获取各阶段的通过/失败状态。
+
+        # @param request: Request instance for CheckClusterVpcFwPreAccess.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::CheckClusterVpcFwPreAccessRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::CheckClusterVpcFwPreAccessResponse`
+        def CheckClusterVpcFwPreAccess(request)
+          body = send_request('CheckClusterVpcFwPreAccess', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CheckClusterVpcFwPreAccessResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 关闭NAT CCN集群模式防火墙开关
 
         # @param request: Request instance for CloseClusterNatFwSwitch.
@@ -941,6 +989,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # DescribeBlockList 告警中心阻断资产视图列表
+
+        # @param request: Request instance for DescribeBlockList.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::DescribeBlockListRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::DescribeBlockListResponse`
+        def DescribeBlockList(request)
+          body = send_request('DescribeBlockList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBlockListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # DescribeBlockStaticList 告警中心柱形图
 
         # @param request: Request instance for DescribeBlockStaticList.
@@ -1519,6 +1591,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取用户防火墙(组)的ID名称列表
+
+        # @param request: Request instance for DescribeFwGroupIdNames.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::DescribeFwGroupIdNamesRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::DescribeFwGroupIdNamesResponse`
+        def DescribeFwGroupIdNames(request)
+          body = send_request('DescribeFwGroupIdNames', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeFwGroupIdNamesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取租户所有VPC防火墙(组)及VPC防火墙实例卡片信息
 
         # @param request: Request instance for DescribeFwGroupInstanceInfo.
@@ -1625,6 +1721,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeIpsModeSwitchResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # IPS规则查询接口新
+
+        # @param request: Request instance for DescribeIpsRuleListNew.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::DescribeIpsRuleListNewRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::DescribeIpsRuleListNewResponse`
+        def DescribeIpsRuleListNew(request)
+          body = send_request('DescribeIpsRuleListNew', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeIpsRuleListNewResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1975,6 +2095,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询nat规则的配额和使用情况
+
+        # @param request: Request instance for DescribeNatRuleScopes.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::DescribeNatRuleScopesRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::DescribeNatRuleScopesResponse`
+        def DescribeNatRuleScopes(request)
+          body = send_request('DescribeNatRuleScopes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeNatRuleScopesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取日志离线导出任务列表
 
         # @param request: Request instance for DescribeOfflineExportTask.
@@ -2105,6 +2249,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeSecurityGroupListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询地域配置信息-DescribeAllRegionList
+
+        # @param request: Request instance for DescribeSecurityGroupRegionList.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::DescribeSecurityGroupRegionListRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::DescribeSecurityGroupRegionListResponse`
+        def DescribeSecurityGroupRegionList(request)
+          body = send_request('DescribeSecurityGroupRegionList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSecurityGroupRegionListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2321,6 +2489,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeVpcAcRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询内网间访问控制规则的生效范围
+
+        # @param request: Request instance for DescribeVpcAclEdgeRange.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::DescribeVpcAclEdgeRangeRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::DescribeVpcAclEdgeRangeResponse`
+        def DescribeVpcAclEdgeRange(request)
+          body = send_request('DescribeVpcAclEdgeRange', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeVpcAclEdgeRangeResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -21,7 +21,7 @@ module TencentCloud
       class AssessDeviceRiskPremiumProRequest < TencentCloud::Common::AbstractModel
         # @param DeviceToken: <p>用户设备指纹token标识，在您的网站或者应用程序中集成设备指纹的SDK后获取</p>
         # @type DeviceToken: String
-        # @param UserIp: <p>客户端 IP 地址</p>
+        # @param UserIp: <p>客户端 IP 地址（IPv4或IPv6）</p>
         # @type UserIp: String
 
         attr_accessor :DeviceToken, :UserIp
@@ -105,7 +105,7 @@ module TencentCloud
       class AssessDeviceRiskProRequest < TencentCloud::Common::AbstractModel
         # @param DeviceToken: <p>用户设备指纹token标识，在您的网站或者应用程序中集成设备指纹的SDK后获取</p>
         # @type DeviceToken: String
-        # @param UserIp: <p>客户端 IP 地址</p>
+        # @param UserIp: <p>客户端 IP 地址（IPv4或IPv6）</p>
         # @type UserIp: String
 
         attr_accessor :DeviceToken, :UserIp
@@ -172,7 +172,7 @@ module TencentCloud
 
       # AssessEnvironmentRisk请求参数结构体
       class AssessEnvironmentRiskRequest < TencentCloud::Common::AbstractModel
-        # @param UserIp: <p>客户端 IP 地址</p>
+        # @param UserIp: <p>客户端 IP 地址（IPv4或IPv6）</p>
         # @type UserIp: String
 
         attr_accessor :UserIp

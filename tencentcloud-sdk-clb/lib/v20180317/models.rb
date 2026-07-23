@@ -14627,6 +14627,12 @@ module TencentCloud
         # @param BudgetName: <p>关联的Budget名称。</p><p>未关联时为空；「未分组」虚拟分组恒为空。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BudgetName: String
+        # @param PromptId: <p>关联的提示词 ID。</p><p>未关联时为空；「未分组」虚拟分组恒为空。</p><p>参数格式：pmt-1a2b3c4d</p>
+        # @type PromptId: String
+        # @param PromptVersion: <p>关联的提示词版本。</p><p>未关联时为空；「未分组」虚拟分组恒为空。</p>
+        # @type PromptVersion: String
+        # @param PromptName: <p>关联的提示词名称。</p><p>未关联时为空；「未分组」虚拟分组恒为空。</p>
+        # @type PromptName: String
         # @param CreditUsageSet: <p>用户组多刷新周期 Credit 使用情况。</p><p>无多周期预算时为空数组。</p>
         # @type CreditUsageSet: Array
         # @param KeyCount: <p>用户组当前包含的 Key 数量。「未分组」虚拟分组（ugrp-ungrouped）返回该模型路由实例下未归属任何用户组的 Key 数量。</p>
@@ -14638,9 +14644,9 @@ module TencentCloud
         # @param ModifiedTime: <p>修改时间。「未分组」虚拟分组不返回此字段。</p>
         # @type ModifiedTime: String
 
-        attr_accessor :UserGroupId, :UserGroupName, :ModelRouterId, :Status, :Models, :IntentRouters, :BudgetId, :BudgetName, :CreditUsageSet, :KeyCount, :Tags, :CreatedTime, :ModifiedTime
+        attr_accessor :UserGroupId, :UserGroupName, :ModelRouterId, :Status, :Models, :IntentRouters, :BudgetId, :BudgetName, :PromptId, :PromptVersion, :PromptName, :CreditUsageSet, :KeyCount, :Tags, :CreatedTime, :ModifiedTime
 
-        def initialize(usergroupid=nil, usergroupname=nil, modelrouterid=nil, status=nil, models=nil, intentrouters=nil, budgetid=nil, budgetname=nil, creditusageset=nil, keycount=nil, tags=nil, createdtime=nil, modifiedtime=nil)
+        def initialize(usergroupid=nil, usergroupname=nil, modelrouterid=nil, status=nil, models=nil, intentrouters=nil, budgetid=nil, budgetname=nil, promptid=nil, promptversion=nil, promptname=nil, creditusageset=nil, keycount=nil, tags=nil, createdtime=nil, modifiedtime=nil)
           @UserGroupId = usergroupid
           @UserGroupName = usergroupname
           @ModelRouterId = modelrouterid
@@ -14649,6 +14655,9 @@ module TencentCloud
           @IntentRouters = intentrouters
           @BudgetId = budgetid
           @BudgetName = budgetname
+          @PromptId = promptid
+          @PromptVersion = promptversion
+          @PromptName = promptname
           @CreditUsageSet = creditusageset
           @KeyCount = keycount
           @Tags = tags
@@ -14665,6 +14674,9 @@ module TencentCloud
           @IntentRouters = params['IntentRouters']
           @BudgetId = params['BudgetId']
           @BudgetName = params['BudgetName']
+          @PromptId = params['PromptId']
+          @PromptVersion = params['PromptVersion']
+          @PromptName = params['PromptName']
           unless params['CreditUsageSet'].nil?
             @CreditUsageSet = []
             params['CreditUsageSet'].each do |i|

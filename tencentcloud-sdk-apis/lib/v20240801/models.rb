@@ -699,58 +699,60 @@ module TencentCloud
 
       # CreateMcpServer请求参数结构体
       class CreateMcpServerRequest < TencentCloud::Common::AbstractModel
-        # @param Mode: 模式：proxy代理模式； wrap封装模式；
+        # @param Mode: <p>模式：proxy代理模式； wrap封装模式；</p>
         # @type Mode: String
-        # @param McpVersion: 版本号：2024-11-05 2025-03-26
+        # @param McpVersion: <p>版本号：2024-11-05 2025-03-26</p>
         # @type McpVersion: String
-        # @param InstanceID: 实例ID
+        # @param InstanceID: <p>实例ID</p>
         # @type InstanceID: String
-        # @param Name: 名称
+        # @param Name: <p>名称</p>
         # @type Name: String
-        # @param Description: 描述
+        # @param Description: <p>描述</p>
         # @type Description: String
-        # @param WrapServices: 封装服务列表
+        # @param WrapServices: <p>封装服务列表</p>
         # @type WrapServices: Array
-        # @param TargetSelect: 负载方式，robin random consistentHash
+        # @param TargetSelect: <p>负载方式，robin random consistentHash</p>
         # @type TargetSelect: String
-        # @param TargetHosts: 目标服务器
+        # @param TargetHosts: <p>目标服务器</p>
         # @type TargetHosts: Array
-        # @param HttpProtocolType: 后端协议：http https
+        # @param HttpProtocolType: <p>后端协议：http https</p>
         # @type HttpProtocolType: String
-        # @param CheckTargetCertsError: 证书检查
+        # @param CheckTargetCertsError: <p>证书检查</p>
         # @type CheckTargetCertsError: Boolean
-        # @param TargetPath: 目标路径
+        # @param TargetPath: <p>目标路径</p>
         # @type TargetPath: String
-        # @param InvokeLimitConfigStatus: 流量控制开启状态
+        # @param InvokeLimitConfigStatus: <p>流量控制开启状态</p>
         # @type InvokeLimitConfigStatus: Boolean
-        # @param InvokeLimitConfig: 流量控制配置
+        # @param InvokeLimitConfig: <p>流量控制配置</p>
         # @type InvokeLimitConfig: :class:`Tencentcloud::Apis.v20240801.models.InvokeLimitConfigDTO`
-        # @param IpWhiteStatus: IP白名单开启状态
+        # @param IpWhiteStatus: <p>IP白名单开启状态</p>
         # @type IpWhiteStatus: Boolean
-        # @param IpWhiteConfig: IP白名单配置
+        # @param IpWhiteConfig: <p>IP白名单配置</p>
         # @type IpWhiteConfig: :class:`Tencentcloud::Apis.v20240801.models.IpConfig`
-        # @param IpBlackStatus: IP黑名单开启状态
+        # @param IpBlackStatus: <p>IP黑名单开启状态</p>
         # @type IpBlackStatus: Boolean
-        # @param IpBlackConfig: IP黑名单配置
+        # @param IpBlackConfig: <p>IP黑名单配置</p>
         # @type IpBlackConfig: :class:`Tencentcloud::Apis.v20240801.models.IpConfig`
-        # @param CustomHttpHost: 自定义host
+        # @param CustomHttpHost: <p>自定义host</p>
         # @type CustomHttpHost: String
-        # @param HttpHostType: Http 请求host类型：useRequestHost 保持源请求；host targetHost 修正为源站host；  customHost 自定义host
+        # @param HttpHostType: <p>Http 请求host类型：useRequestHost 保持源请求；host targetHost 修正为源站host；  customHost 自定义host</p>
         # @type HttpHostType: String
-        # @param Timeout: 请求的超时时间
+        # @param Timeout: <p>请求的超时时间</p>
         # @type Timeout: Integer
-        # @param McpSecurityRules: 安全规则集
+        # @param McpSecurityRules: <p>安全规则集</p>
         # @type McpSecurityRules: Array
-        # @param ToolConfigs: 工具集配置（openapi时或许用的是）
+        # @param ToolConfigs: <p>工具集配置（openapi时或许用的是）</p>
         # @type ToolConfigs: Array
-        # @param WrapPaasID: 封装的API分组ID
+        # @param WrapPaasID: <p>封装的API分组ID</p>
         # @type WrapPaasID: String
-        # @param PluginConfigs: 插件配置
+        # @param PluginConfigs: <p>插件配置</p>
         # @type PluginConfigs: Array
+        # @param IgnoreHealthCheck: <p>是否忽略健康检查</p>
+        # @type IgnoreHealthCheck: Boolean
 
-        attr_accessor :Mode, :McpVersion, :InstanceID, :Name, :Description, :WrapServices, :TargetSelect, :TargetHosts, :HttpProtocolType, :CheckTargetCertsError, :TargetPath, :InvokeLimitConfigStatus, :InvokeLimitConfig, :IpWhiteStatus, :IpWhiteConfig, :IpBlackStatus, :IpBlackConfig, :CustomHttpHost, :HttpHostType, :Timeout, :McpSecurityRules, :ToolConfigs, :WrapPaasID, :PluginConfigs
+        attr_accessor :Mode, :McpVersion, :InstanceID, :Name, :Description, :WrapServices, :TargetSelect, :TargetHosts, :HttpProtocolType, :CheckTargetCertsError, :TargetPath, :InvokeLimitConfigStatus, :InvokeLimitConfig, :IpWhiteStatus, :IpWhiteConfig, :IpBlackStatus, :IpBlackConfig, :CustomHttpHost, :HttpHostType, :Timeout, :McpSecurityRules, :ToolConfigs, :WrapPaasID, :PluginConfigs, :IgnoreHealthCheck
 
-        def initialize(mode=nil, mcpversion=nil, instanceid=nil, name=nil, description=nil, wrapservices=nil, targetselect=nil, targethosts=nil, httpprotocoltype=nil, checktargetcertserror=nil, targetpath=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, ipwhitestatus=nil, ipwhiteconfig=nil, ipblackstatus=nil, ipblackconfig=nil, customhttphost=nil, httphosttype=nil, timeout=nil, mcpsecurityrules=nil, toolconfigs=nil, wrappaasid=nil, pluginconfigs=nil)
+        def initialize(mode=nil, mcpversion=nil, instanceid=nil, name=nil, description=nil, wrapservices=nil, targetselect=nil, targethosts=nil, httpprotocoltype=nil, checktargetcertserror=nil, targetpath=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, ipwhitestatus=nil, ipwhiteconfig=nil, ipblackstatus=nil, ipblackconfig=nil, customhttphost=nil, httphosttype=nil, timeout=nil, mcpsecurityrules=nil, toolconfigs=nil, wrappaasid=nil, pluginconfigs=nil, ignorehealthcheck=nil)
           @Mode = mode
           @McpVersion = mcpversion
           @InstanceID = instanceid
@@ -775,6 +777,7 @@ module TencentCloud
           @ToolConfigs = toolconfigs
           @WrapPaasID = wrappaasid
           @PluginConfigs = pluginconfigs
+          @IgnoreHealthCheck = ignorehealthcheck
         end
 
         def deserialize(params)
@@ -839,12 +842,13 @@ module TencentCloud
               @PluginConfigs << pluginconfigdto_tmp
             end
           end
+          @IgnoreHealthCheck = params['IgnoreHealthCheck']
         end
       end
 
       # CreateMcpServer返回参数结构体
       class CreateMcpServerResponse < TencentCloud::Common::AbstractModel
-        # @param Data: mcp server ID
+        # @param Data: <p>mcp server ID</p>
         # @type Data: :class:`Tencentcloud::Apis.v20240801.models.ResultIDVO`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2216,124 +2220,126 @@ module TencentCloud
 
       # DescribeMcpServerResponseVO
       class DescribeMcpServerResponseVO < TencentCloud::Common::AbstractModel
-        # @param InstanceID: 实例ID
+        # @param InstanceID: <p>实例ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceID: String
-        # @param Name: 名称
+        # @param Name: <p>名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
-        # @param Description: 描述
+        # @param Description: <p>描述</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
-        # @param LabelIDs: 标签ID数组
+        # @param LabelIDs: <p>标签ID数组</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LabelIDs: Array
-        # @param CategoryIDs: 目录ID数组
+        # @param CategoryIDs: <p>目录ID数组</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CategoryIDs: Array
-        # @param TargetSelect: 负载方式，robin random consistentHash
+        # @param TargetSelect: <p>负载方式，robin random consistentHash</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetSelect: String
-        # @param TargetHosts: 目标服务器
+        # @param TargetHosts: <p>目标服务器</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetHosts: Array
-        # @param HttpProtocolType: 后端协议：http https
+        # @param HttpProtocolType: <p>后端协议：http https</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HttpProtocolType: String
-        # @param CheckTargetCertsError: 证书检查
+        # @param CheckTargetCertsError: <p>证书检查</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CheckTargetCertsError: Boolean
-        # @param TargetPath: 目标路径
+        # @param TargetPath: <p>目标路径</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetPath: String
-        # @param InvokeLimitConfigStatus: 流量控制状态
+        # @param InvokeLimitConfigStatus: <p>流量控制状态</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InvokeLimitConfigStatus: Boolean
-        # @param InvokeLimitConfig: 流量控制配置
+        # @param InvokeLimitConfig: <p>流量控制配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InvokeLimitConfig: :class:`Tencentcloud::Apis.v20240801.models.InvokeLimitConfigDTO`
-        # @param IpWhiteStatus: IP白名单开启状态
+        # @param IpWhiteStatus: <p>IP白名单开启状态</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IpWhiteStatus: Boolean
-        # @param IpWhiteConfig: IP白名单配置
+        # @param IpWhiteConfig: <p>IP白名单配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IpWhiteConfig: :class:`Tencentcloud::Apis.v20240801.models.IpConfig`
-        # @param IpBlackStatus: IP黑名单开启状态
+        # @param IpBlackStatus: <p>IP黑名单开启状态</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IpBlackStatus: Boolean
-        # @param IpBlackConfig: IP黑名单配置
+        # @param IpBlackConfig: <p>IP黑名单配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IpBlackConfig: :class:`Tencentcloud::Apis.v20240801.models.IpConfig`
-        # @param ID: mcp server ID
+        # @param ID: <p>mcp server ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ID: String
-        # @param Status: 状态
+        # @param Status: <p>状态</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
-        # @param Url: 预览地址
+        # @param Url: <p>预览地址</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Url: String
-        # @param App: 应用
+        # @param App: <p>应用</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type App: :class:`Tencentcloud::Apis.v20240801.models.IDNameVO`
-        # @param Catalogs: 目录
+        # @param Catalogs: <p>目录</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Catalogs: Array
-        # @param Labels: 标签
+        # @param Labels: <p>标签</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Labels: Array
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
-        # @param LastUpdateTime: 最后修改时间
+        # @param LastUpdateTime: <p>最后修改时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastUpdateTime: String
-        # @param AppID: 用户appID
+        # @param AppID: <p>用户appID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppID: Integer
-        # @param Uin: 用户ID
+        # @param Uin: <p>用户ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uin: String
-        # @param CustomHttpHost: 自定义host
+        # @param CustomHttpHost: <p>自定义host</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CustomHttpHost: String
-        # @param HttpHostType:  Http 请求host类型 useRequestHost 保持源请求host targetHost 修正为源站host  customHost 自定义host
+        # @param HttpHostType: <p>Http 请求host类型 useRequestHost 保持源请求host targetHost 修正为源站host  customHost 自定义host</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HttpHostType: String
-        # @param Timeout: 请求的超时时间
+        # @param Timeout: <p>请求的超时时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Timeout: Integer
-        # @param Mode: mcp server模式
+        # @param Mode: <p>mcp server模式</p>
         # @type Mode: String
-        # @param McpVersion: mcp version
+        # @param McpVersion: <p>mcp version</p>
         # @type McpVersion: String
-        # @param WrapServices: 封装模式下绑定的服务ID列表
+        # @param WrapServices: <p>封装模式下绑定的服务ID列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WrapServices: Array
-        # @param ToolNum: 工具数量
+        # @param ToolNum: <p>工具数量</p>
         # @type ToolNum: Integer
-        # @param McpSecurityRulesVO: 安全规则集响应
+        # @param McpSecurityRulesVO: <p>安全规则集响应</p>
         # @type McpSecurityRulesVO: Array
-        # @param ToolConfigs: 真实工具级别配置，实时拉取了tool/list做渲染的，如果tool/list不通，就拉不到。
+        # @param ToolConfigs: <p>真实工具级别配置，实时拉取了tool/list做渲染的，如果tool/list不通，就拉不到。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ToolConfigs: Array
-        # @param UrlObj: 访问URL
+        # @param UrlObj: <p>访问URL</p>
         # @type UrlObj: :class:`Tencentcloud::Apis.v20240801.models.McpUrlObj`
-        # @param ToolMessage: 后端mcp服务是否正常
+        # @param ToolMessage: <p>后端mcp服务是否正常</p>
         # @type ToolMessage: String
-        # @param Tools: 后端mcp服务的工具列表
+        # @param Tools: <p>后端mcp服务的工具列表</p>
         # @type Tools: Array
-        # @param WrapPaasID: 封装的API分组ID
+        # @param WrapPaasID: <p>封装的API分组ID</p>
         # @type WrapPaasID: String
-        # @param RelateAgentAppNum: 关联的agentApp数量
+        # @param RelateAgentAppNum: <p>关联的agentApp数量</p>
         # @type RelateAgentAppNum: Integer
-        # @param PluginConfigs: 插件配置
+        # @param PluginConfigs: <p>插件配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PluginConfigs: Array
+        # @param IgnoreHealthCheck: <p>是否忽略健康检查</p>
+        # @type IgnoreHealthCheck: Boolean
 
-        attr_accessor :InstanceID, :Name, :Description, :LabelIDs, :CategoryIDs, :TargetSelect, :TargetHosts, :HttpProtocolType, :CheckTargetCertsError, :TargetPath, :InvokeLimitConfigStatus, :InvokeLimitConfig, :IpWhiteStatus, :IpWhiteConfig, :IpBlackStatus, :IpBlackConfig, :ID, :Status, :Url, :App, :Catalogs, :Labels, :CreateTime, :LastUpdateTime, :AppID, :Uin, :CustomHttpHost, :HttpHostType, :Timeout, :Mode, :McpVersion, :WrapServices, :ToolNum, :McpSecurityRulesVO, :ToolConfigs, :UrlObj, :ToolMessage, :Tools, :WrapPaasID, :RelateAgentAppNum, :PluginConfigs
+        attr_accessor :InstanceID, :Name, :Description, :LabelIDs, :CategoryIDs, :TargetSelect, :TargetHosts, :HttpProtocolType, :CheckTargetCertsError, :TargetPath, :InvokeLimitConfigStatus, :InvokeLimitConfig, :IpWhiteStatus, :IpWhiteConfig, :IpBlackStatus, :IpBlackConfig, :ID, :Status, :Url, :App, :Catalogs, :Labels, :CreateTime, :LastUpdateTime, :AppID, :Uin, :CustomHttpHost, :HttpHostType, :Timeout, :Mode, :McpVersion, :WrapServices, :ToolNum, :McpSecurityRulesVO, :ToolConfigs, :UrlObj, :ToolMessage, :Tools, :WrapPaasID, :RelateAgentAppNum, :PluginConfigs, :IgnoreHealthCheck
 
-        def initialize(instanceid=nil, name=nil, description=nil, labelids=nil, categoryids=nil, targetselect=nil, targethosts=nil, httpprotocoltype=nil, checktargetcertserror=nil, targetpath=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, ipwhitestatus=nil, ipwhiteconfig=nil, ipblackstatus=nil, ipblackconfig=nil, id=nil, status=nil, url=nil, app=nil, catalogs=nil, labels=nil, createtime=nil, lastupdatetime=nil, appid=nil, uin=nil, customhttphost=nil, httphosttype=nil, timeout=nil, mode=nil, mcpversion=nil, wrapservices=nil, toolnum=nil, mcpsecurityrulesvo=nil, toolconfigs=nil, urlobj=nil, toolmessage=nil, tools=nil, wrappaasid=nil, relateagentappnum=nil, pluginconfigs=nil)
+        def initialize(instanceid=nil, name=nil, description=nil, labelids=nil, categoryids=nil, targetselect=nil, targethosts=nil, httpprotocoltype=nil, checktargetcertserror=nil, targetpath=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, ipwhitestatus=nil, ipwhiteconfig=nil, ipblackstatus=nil, ipblackconfig=nil, id=nil, status=nil, url=nil, app=nil, catalogs=nil, labels=nil, createtime=nil, lastupdatetime=nil, appid=nil, uin=nil, customhttphost=nil, httphosttype=nil, timeout=nil, mode=nil, mcpversion=nil, wrapservices=nil, toolnum=nil, mcpsecurityrulesvo=nil, toolconfigs=nil, urlobj=nil, toolmessage=nil, tools=nil, wrappaasid=nil, relateagentappnum=nil, pluginconfigs=nil, ignorehealthcheck=nil)
           @InstanceID = instanceid
           @Name = name
           @Description = description
@@ -2375,6 +2381,7 @@ module TencentCloud
           @WrapPaasID = wrappaasid
           @RelateAgentAppNum = relateagentappnum
           @PluginConfigs = pluginconfigs
+          @IgnoreHealthCheck = ignorehealthcheck
         end
 
         def deserialize(params)
@@ -2483,6 +2490,7 @@ module TencentCloud
               @PluginConfigs << pluginconfigdto_tmp
             end
           end
+          @IgnoreHealthCheck = params['IgnoreHealthCheck']
         end
       end
 
@@ -3845,62 +3853,64 @@ module TencentCloud
 
       # ModifyMcpServer请求参数结构体
       class ModifyMcpServerRequest < TencentCloud::Common::AbstractModel
-        # @param ID: mcp server ID
+        # @param ID: <p>mcp server ID</p>
         # @type ID: String
-        # @param Mode: 模式：proxy代理模式； wrap封装模式；
+        # @param Mode: <p>模式：proxy代理模式； wrap封装模式；</p>
         # @type Mode: String
-        # @param McpVersion: 版本号：2024-11-05 2025-03-26
+        # @param McpVersion: <p>版本号：2024-11-05 2025-03-26</p>
         # @type McpVersion: String
-        # @param InstanceID: 实例ID
+        # @param InstanceID: <p>实例ID</p>
         # @type InstanceID: String
-        # @param Name: 名称
+        # @param Name: <p>名称</p>
         # @type Name: String
-        # @param Description: 描述
+        # @param Description: <p>描述</p>
         # @type Description: String
-        # @param WrapServices: 封装服务列表
+        # @param WrapServices: <p>封装服务列表</p>
         # @type WrapServices: Array
-        # @param TargetSelect: 负载方式，robin random consistentHash
+        # @param TargetSelect: <p>负载方式，robin random consistentHash</p>
         # @type TargetSelect: String
-        # @param TargetHosts: 目标服务器
+        # @param TargetHosts: <p>目标服务器</p>
         # @type TargetHosts: Array
-        # @param HttpProtocolType: 后端协议：http https
+        # @param HttpProtocolType: <p>后端协议：http https</p>
         # @type HttpProtocolType: String
-        # @param CheckTargetCertsError: 证书检查
+        # @param CheckTargetCertsError: <p>证书检查</p>
         # @type CheckTargetCertsError: Boolean
-        # @param TargetPath: 目标路径
+        # @param TargetPath: <p>目标路径</p>
         # @type TargetPath: String
-        # @param InvokeLimitConfigStatus: 流量控制开启状态
+        # @param InvokeLimitConfigStatus: <p>流量控制开启状态</p>
         # @type InvokeLimitConfigStatus: Boolean
-        # @param InvokeLimitConfig: 流量控制配置
+        # @param InvokeLimitConfig: <p>流量控制配置</p>
         # @type InvokeLimitConfig: :class:`Tencentcloud::Apis.v20240801.models.InvokeLimitConfigDTO`
-        # @param IpWhiteStatus: IP白名单开启状态
+        # @param IpWhiteStatus: <p>IP白名单开启状态</p>
         # @type IpWhiteStatus: Boolean
-        # @param IpWhiteConfig: IP白名单配置
+        # @param IpWhiteConfig: <p>IP白名单配置</p>
         # @type IpWhiteConfig: :class:`Tencentcloud::Apis.v20240801.models.IpConfig`
-        # @param IpBlackStatus: IP黑名单开启状态
+        # @param IpBlackStatus: <p>IP黑名单开启状态</p>
         # @type IpBlackStatus: Boolean
-        # @param IpBlackConfig: IP黑名单配置
+        # @param IpBlackConfig: <p>IP黑名单配置</p>
         # @type IpBlackConfig: :class:`Tencentcloud::Apis.v20240801.models.IpConfig`
-        # @param TargetHostType: 目标Host类型 0 默认 1 vpc
+        # @param TargetHostType: <p>目标Host类型 0 默认 1 vpc</p>
         # @type TargetHostType: Integer
-        # @param CustomHttpHost: 自定义host
+        # @param CustomHttpHost: <p>自定义host</p>
         # @type CustomHttpHost: String
-        # @param HttpHostType: Http 请求host类型：useRequestHost 保持源请求；host targetHost 修正为源站host； customHost 自定义host
+        # @param HttpHostType: <p>Http 请求host类型：useRequestHost 保持源请求；host targetHost 修正为源站host； customHost 自定义host</p>
         # @type HttpHostType: String
-        # @param Timeout: 请求的超时时间
+        # @param Timeout: <p>请求的超时时间</p>
         # @type Timeout: Integer
-        # @param McpSecurityRules: 安全规则集
+        # @param McpSecurityRules: <p>安全规则集</p>
         # @type McpSecurityRules: Array
-        # @param ToolConfigs: 工具集配置（openapi可能会用到）
+        # @param ToolConfigs: <p>工具集配置（openapi可能会用到）</p>
         # @type ToolConfigs: Array
-        # @param WrapPaasID: 封装的API分组ID
+        # @param WrapPaasID: <p>封装的API分组ID</p>
         # @type WrapPaasID: String
-        # @param PluginConfigs: 插件配置
+        # @param PluginConfigs: <p>插件配置</p>
         # @type PluginConfigs: Array
+        # @param IgnoreHealthCheck: <p>是否忽略健康检查</p>
+        # @type IgnoreHealthCheck: Boolean
 
-        attr_accessor :ID, :Mode, :McpVersion, :InstanceID, :Name, :Description, :WrapServices, :TargetSelect, :TargetHosts, :HttpProtocolType, :CheckTargetCertsError, :TargetPath, :InvokeLimitConfigStatus, :InvokeLimitConfig, :IpWhiteStatus, :IpWhiteConfig, :IpBlackStatus, :IpBlackConfig, :TargetHostType, :CustomHttpHost, :HttpHostType, :Timeout, :McpSecurityRules, :ToolConfigs, :WrapPaasID, :PluginConfigs
+        attr_accessor :ID, :Mode, :McpVersion, :InstanceID, :Name, :Description, :WrapServices, :TargetSelect, :TargetHosts, :HttpProtocolType, :CheckTargetCertsError, :TargetPath, :InvokeLimitConfigStatus, :InvokeLimitConfig, :IpWhiteStatus, :IpWhiteConfig, :IpBlackStatus, :IpBlackConfig, :TargetHostType, :CustomHttpHost, :HttpHostType, :Timeout, :McpSecurityRules, :ToolConfigs, :WrapPaasID, :PluginConfigs, :IgnoreHealthCheck
 
-        def initialize(id=nil, mode=nil, mcpversion=nil, instanceid=nil, name=nil, description=nil, wrapservices=nil, targetselect=nil, targethosts=nil, httpprotocoltype=nil, checktargetcertserror=nil, targetpath=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, ipwhitestatus=nil, ipwhiteconfig=nil, ipblackstatus=nil, ipblackconfig=nil, targethosttype=nil, customhttphost=nil, httphosttype=nil, timeout=nil, mcpsecurityrules=nil, toolconfigs=nil, wrappaasid=nil, pluginconfigs=nil)
+        def initialize(id=nil, mode=nil, mcpversion=nil, instanceid=nil, name=nil, description=nil, wrapservices=nil, targetselect=nil, targethosts=nil, httpprotocoltype=nil, checktargetcertserror=nil, targetpath=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, ipwhitestatus=nil, ipwhiteconfig=nil, ipblackstatus=nil, ipblackconfig=nil, targethosttype=nil, customhttphost=nil, httphosttype=nil, timeout=nil, mcpsecurityrules=nil, toolconfigs=nil, wrappaasid=nil, pluginconfigs=nil, ignorehealthcheck=nil)
           @ID = id
           @Mode = mode
           @McpVersion = mcpversion
@@ -3927,6 +3937,7 @@ module TencentCloud
           @ToolConfigs = toolconfigs
           @WrapPaasID = wrappaasid
           @PluginConfigs = pluginconfigs
+          @IgnoreHealthCheck = ignorehealthcheck
         end
 
         def deserialize(params)
@@ -3993,12 +4004,13 @@ module TencentCloud
               @PluginConfigs << pluginconfigdto_tmp
             end
           end
+          @IgnoreHealthCheck = params['IgnoreHealthCheck']
         end
       end
 
       # ModifyMcpServer返回参数结构体
       class ModifyMcpServerResponse < TencentCloud::Common::AbstractModel
-        # @param Data: mcp server ID
+        # @param Data: <p>mcp server ID</p>
         # @type Data: :class:`Tencentcloud::Apis.v20240801.models.ResultIDVO`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

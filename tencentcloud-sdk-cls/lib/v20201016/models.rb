@@ -5877,6 +5877,8 @@ module TencentCloud
         # @type HotPeriod: Integer
         # @param Encryption: <p>加密相关参数。 支持加密地域并且开白用户可以传此参数，其他场景不能传递该参数。<br>0或者不传： 不加密<br>1：kms-cls 云产品密钥加密</p><p>支持地域：ap-beijing,ap-guangzhou,ap-shanghai,ap-singapore,ap-bangkok,ap-jakarta,eu-frankfurt,ap-seoul,ap-tokyo</p>
         # @type Encryption: Integer
+        # @param CustomKmsInfo: <p>用户自定义 KMS 密钥信息；为空则使用默认密钥（别名 KMS-CLS）</p><p>当参数 Encryption为 1 时有效。</p>
+        # @type CustomKmsInfo: :class:`Tencentcloud::Cls.v20201016.models.CustomKmsInfo`
         # @param BizType: <p>主题类型</p><ul><li>0:日志主题，默认值</li><li>1:指标主题</li></ul>
         # @type BizType: Integer
         # @param TopicId: <p>主题自定义ID，格式为：用户自定义部分-用户APPID。未填写该参数时将自动生成ID。</p><ul><li>用户自定义部分仅支持小写字母、数字和-，且不能以-开头和结尾，长度为3至40字符</li><li>尾部需要使用-拼接用户APPID，APPID可在https://console.cloud.tencent.com/developer页面查询。</li><li>如果指定该字段，需保证全地域唯一</li></ul>
@@ -5890,9 +5892,9 @@ module TencentCloud
         # @param BillingMode: <p>计费模式</p><p>枚举值：</p><ul><li>0： 按使用功能计费</li><li>1： 按原始日志量计费（目前仅面向少部分客户支持）</li></ul><p>默认值：0</p>
         # @type BillingMode: Integer
 
-        attr_accessor :LogsetId, :TopicName, :PartitionCount, :Tags, :AutoSplit, :MaxSplitPartitions, :StorageType, :Period, :Describes, :HotPeriod, :Encryption, :BizType, :TopicId, :IsWebTracking, :Extends, :IsSourceFrom, :BillingMode
+        attr_accessor :LogsetId, :TopicName, :PartitionCount, :Tags, :AutoSplit, :MaxSplitPartitions, :StorageType, :Period, :Describes, :HotPeriod, :Encryption, :CustomKmsInfo, :BizType, :TopicId, :IsWebTracking, :Extends, :IsSourceFrom, :BillingMode
 
-        def initialize(logsetid=nil, topicname=nil, partitioncount=nil, tags=nil, autosplit=nil, maxsplitpartitions=nil, storagetype=nil, period=nil, describes=nil, hotperiod=nil, encryption=nil, biztype=nil, topicid=nil, iswebtracking=nil, extends=nil, issourcefrom=nil, billingmode=nil)
+        def initialize(logsetid=nil, topicname=nil, partitioncount=nil, tags=nil, autosplit=nil, maxsplitpartitions=nil, storagetype=nil, period=nil, describes=nil, hotperiod=nil, encryption=nil, customkmsinfo=nil, biztype=nil, topicid=nil, iswebtracking=nil, extends=nil, issourcefrom=nil, billingmode=nil)
           @LogsetId = logsetid
           @TopicName = topicname
           @PartitionCount = partitioncount
@@ -5904,6 +5906,7 @@ module TencentCloud
           @Describes = describes
           @HotPeriod = hotperiod
           @Encryption = encryption
+          @CustomKmsInfo = customkmsinfo
           @BizType = biztype
           @TopicId = topicid
           @IsWebTracking = iswebtracking
@@ -5931,6 +5934,10 @@ module TencentCloud
           @Describes = params['Describes']
           @HotPeriod = params['HotPeriod']
           @Encryption = params['Encryption']
+          unless params['CustomKmsInfo'].nil?
+            @CustomKmsInfo = CustomKmsInfo.new
+            @CustomKmsInfo.deserialize(params['CustomKmsInfo'])
+          end
           @BizType = params['BizType']
           @TopicId = params['TopicId']
           @IsWebTracking = params['IsWebTracking']
@@ -6049,6 +6056,26 @@ module TencentCloud
           @Delimiter = params['Delimiter']
           @EscapeChar = params['EscapeChar']
           @NonExistingField = params['NonExistingField']
+        end
+      end
+
+      # 自定义 KMS 密钥
+      class CustomKmsInfo < TencentCloud::Common::AbstractModel
+        # @param KmsRegion: <p>KMS支持的地域，详见 腾讯云-密钥管理系统 官方文档</p><p>参数格式：ap-guangzhou</p>
+        # @type KmsRegion: String
+        # @param KmsKeyId: <p>KMS秘钥ID</p>
+        # @type KmsKeyId: String
+
+        attr_accessor :KmsRegion, :KmsKeyId
+
+        def initialize(kmsregion=nil, kmskeyid=nil)
+          @KmsRegion = kmsregion
+          @KmsKeyId = kmskeyid
+        end
+
+        def deserialize(params)
+          @KmsRegion = params['KmsRegion']
+          @KmsKeyId = params['KmsKeyId']
         end
       end
 
@@ -12221,28 +12248,15 @@ module TencentCloud
 
       # DescribeTopics请求参数结构体
       class DescribeTopicsRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: <ul><li>topicName 按照【主题名称】进行过滤，默认为模糊匹配，可使用 PreciseSearch 参数设置为精确匹配。类型：String。必选：否</li>
-        # <li>logsetName 按照【日志集名称】进行过滤，默认为模糊匹配，可使用 PreciseSearch 参数设置为精确匹配。类型：String。必选：否</li>
-        # <li>topicId 按照【主题ID】进行过滤。类型：String。必选：否</li>
-        # <li>logsetId 按照【日志集ID】进行过滤，可通过调用 <a href="https://cloud.tencent.com/document/product/614/58624">DescribeLogsets</a> 查询已创建的日志集列表或登录控制台进行查看；也可以调用<a href="https://cloud.tencent.com/document/product/614/58626">CreateLogset</a> 创建新的日志集。类型：String。必选：否</li>
-        # <li>tagKey 按照【标签键】进行过滤。类型：String。必选：否</li>
-        # <li>tag:tagKey 按照【标签键值对】进行过滤。tagKey 使用具体的标签键进行替换，例如 tag:exampleKey。类型：String。必选：否</li>
-        # <li>storageType 按照【主题的存储类型】进行过滤。可选值 hot（标准存储），cold（低频存储）类型：String。必选：否</li></ul>
-        # 注意：每次请求的 Filters 的上限为10，Filter.Values 的上限为100。
+        # @param Filters: <ul><li>topicName 按照【主题名称】进行过滤，默认为模糊匹配，可使用 PreciseSearch 参数设置为精确匹配。类型：String。必选：否</li><li>logsetName 按照【日志集名称】进行过滤，默认为模糊匹配，可使用 PreciseSearch 参数设置为精确匹配。类型：String。必选：否</li><li>topicId 按照【主题ID】进行过滤。类型：String。必选：否</li><li>logsetId 按照【日志集ID】进行过滤，可通过调用 <a href="https://cloud.tencent.com/document/product/614/58624">DescribeLogsets</a> 查询已创建的日志集列表或登录控制台进行查看；也可以调用<a href="https://cloud.tencent.com/document/product/614/58626">CreateLogset</a> 创建新的日志集。类型：String。必选：否</li><li>tagKey 按照【标签键】进行过滤。类型：String。必选：否</li><li>tag:tagKey 按照【标签键值对】进行过滤。tagKey 使用具体的标签键进行替换，例如 tag:exampleKey。类型：String。必选：否</li><li>storageType 按照【主题的存储类型】进行过滤。可选值 hot（标准存储），cold（低频存储）类型：String。必选：否</li></ul>注意：每次请求的 Filters 的上限为10，Filter.Values 的上限为100。
         # @type Filters: Array
-        # @param Offset: 分页的偏移量，默认值为0。
+        # @param Offset: <p>分页的偏移量，默认值为0。</p>
         # @type Offset: Integer
-        # @param Limit: 分页单页限制数目，默认值为20，最大值100。
+        # @param Limit: <p>分页单页限制数目，默认值为20，最大值100。</p>
         # @type Limit: Integer
-        # @param PreciseSearch: 控制Filters相关字段是否为精确匹配。
-        # <ul><li>0: 默认值，topicName 和 logsetName 模糊匹配</li>
-        # <li>1: topicName   精确匹配</li>
-        # <li>2: logsetName精确匹配</li>
-        # <li>3: topicName 和logsetName 都精确匹配</li></ul>
+        # @param PreciseSearch: <p>控制Filters相关字段是否为精确匹配。</p><ul><li>0: 默认值，topicName 和 logsetName 模糊匹配</li><li>1: topicName   精确匹配</li><li>2: logsetName精确匹配</li><li>3: topicName 和logsetName 都精确匹配</li></ul>
         # @type PreciseSearch: Integer
-        # @param BizType: 主题类型
-        # - 0:日志主题，默认值
-        # - 1:指标主题
+        # @param BizType: <p>主题类型</p><ul><li>0:日志主题，默认值</li><li>1:指标主题</li></ul>
         # @type BizType: Integer
 
         attr_accessor :Filters, :Offset, :Limit, :PreciseSearch, :BizType
@@ -12273,9 +12287,9 @@ module TencentCloud
 
       # DescribeTopics返回参数结构体
       class DescribeTopicsResponse < TencentCloud::Common::AbstractModel
-        # @param Topics: 主题列表
+        # @param Topics: <p>主题列表</p>
         # @type Topics: Array
-        # @param TotalCount: 总数目
+        # @param TotalCount: <p>总数目</p>
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -18156,14 +18170,16 @@ module TencentCloud
         # @type CancelTopicAsyncTaskID: String
         # @param Encryption: <p>加密相关参数。 支持加密地域并且开白用户可以传此参数，其他场景不能传递该参数。<br>只支持传入1：kms-cls 云产品秘钥加密</p>
         # @type Encryption: Integer
+        # @param CustomKmsInfo: <p>用户自定义 KMS 密钥信息；为空则使用默认密钥（别名 KMS-CLS）</p><p>当参数 Encryption为 1 时生效</p>
+        # @type CustomKmsInfo: :class:`Tencentcloud::Cls.v20201016.models.CustomKmsInfo`
         # @param IsSourceFrom: <p>开启记录公网来源ip和服务端接收时间</p>
         # @type IsSourceFrom: Boolean
         # @param BillingMode: <p>计费模式</p><p>枚举值：</p><ul><li>0： 按使用功能计费</li><li>1： 按原始日志量计费（目前仅面向少部分客户支持）</li></ul><p>默认值：0</p>
         # @type BillingMode: Integer
 
-        attr_accessor :TopicId, :TopicName, :Tags, :Status, :AutoSplit, :MaxSplitPartitions, :Period, :StorageType, :Describes, :HotPeriod, :IsWebTracking, :Extends, :PartitionCount, :CancelTopicAsyncTaskID, :Encryption, :IsSourceFrom, :BillingMode
+        attr_accessor :TopicId, :TopicName, :Tags, :Status, :AutoSplit, :MaxSplitPartitions, :Period, :StorageType, :Describes, :HotPeriod, :IsWebTracking, :Extends, :PartitionCount, :CancelTopicAsyncTaskID, :Encryption, :CustomKmsInfo, :IsSourceFrom, :BillingMode
 
-        def initialize(topicid=nil, topicname=nil, tags=nil, status=nil, autosplit=nil, maxsplitpartitions=nil, period=nil, storagetype=nil, describes=nil, hotperiod=nil, iswebtracking=nil, extends=nil, partitioncount=nil, canceltopicasynctaskid=nil, encryption=nil, issourcefrom=nil, billingmode=nil)
+        def initialize(topicid=nil, topicname=nil, tags=nil, status=nil, autosplit=nil, maxsplitpartitions=nil, period=nil, storagetype=nil, describes=nil, hotperiod=nil, iswebtracking=nil, extends=nil, partitioncount=nil, canceltopicasynctaskid=nil, encryption=nil, customkmsinfo=nil, issourcefrom=nil, billingmode=nil)
           @TopicId = topicid
           @TopicName = topicname
           @Tags = tags
@@ -18179,6 +18195,7 @@ module TencentCloud
           @PartitionCount = partitioncount
           @CancelTopicAsyncTaskID = canceltopicasynctaskid
           @Encryption = encryption
+          @CustomKmsInfo = customkmsinfo
           @IsSourceFrom = issourcefrom
           @BillingMode = billingmode
         end
@@ -18209,6 +18226,10 @@ module TencentCloud
           @PartitionCount = params['PartitionCount']
           @CancelTopicAsyncTaskID = params['CancelTopicAsyncTaskID']
           @Encryption = params['Encryption']
+          unless params['CustomKmsInfo'].nil?
+            @CustomKmsInfo = CustomKmsInfo.new
+            @CustomKmsInfo.deserialize(params['CustomKmsInfo'])
+          end
           @IsSourceFrom = params['IsSourceFrom']
           @BillingMode = params['BillingMode']
         end
@@ -21247,8 +21268,10 @@ module TencentCloud
         # @type Describes: String
         # @param HotPeriod: <p>开启日志沉降，标准存储的生命周期， hotPeriod &lt; Period。<br>标准存储为 hotPeriod, 低频存储则为 Period-hotPeriod。（主题类型需为日志主题）<br>HotPeriod=0为没有开启日志沉降。</p>
         # @type HotPeriod: Integer
-        # @param KeyId: <p>kms-cls服务秘钥id</p>
+        # @param KeyId: <p>kms-cls服务秘钥id</p><p>CustomKmsInfo为空时为系统默认密钥，CustomKmsInfo不为空时为用户自定义密钥</p>
         # @type KeyId: String
+        # @param CustomKmsInfo: <p>用户自定义 KMS 密钥信息</p>
+        # @type CustomKmsInfo: :class:`Tencentcloud::Cls.v20201016.models.CustomKmsInfo`
         # @param BizType: <p>主题类型。</p><ul><li>0: 日志主题 </li><li>1: 指标主题</li></ul>
         # @type BizType: Integer
         # @param IsWebTracking: <p>免鉴权开关。 false：关闭； true：开启。<br>开启后将支持指定操作匿名访问该日志主题。详情请参见<a href="https://cloud.tencent.com/document/product/614/41035">日志主题</a>。</p>
@@ -21268,9 +21291,9 @@ module TencentCloud
         # @param NewBillingMode: <p>如果有异步任务，任务成功后的新计费模式</p><p>枚举值：</p><ul><li>0： 按使用功能计费</li><li>1： 按原始日志量计费（目前仅面向少部分客户支持）</li></ul>
         # @type NewBillingMode: Integer
 
-        attr_accessor :LogsetId, :TopicId, :TopicName, :PartitionCount, :Index, :AssumerUin, :AssumerName, :CreateTime, :Status, :Tags, :RoleName, :AutoSplit, :MaxSplitPartitions, :StorageType, :Period, :SubAssumerName, :Describes, :HotPeriod, :KeyId, :BizType, :IsWebTracking, :Extends, :TopicAsyncTaskID, :MigrationStatus, :EffectiveDate, :IsSourceFrom, :BillingMode, :NewBillingMode
+        attr_accessor :LogsetId, :TopicId, :TopicName, :PartitionCount, :Index, :AssumerUin, :AssumerName, :CreateTime, :Status, :Tags, :RoleName, :AutoSplit, :MaxSplitPartitions, :StorageType, :Period, :SubAssumerName, :Describes, :HotPeriod, :KeyId, :CustomKmsInfo, :BizType, :IsWebTracking, :Extends, :TopicAsyncTaskID, :MigrationStatus, :EffectiveDate, :IsSourceFrom, :BillingMode, :NewBillingMode
 
-        def initialize(logsetid=nil, topicid=nil, topicname=nil, partitioncount=nil, index=nil, assumeruin=nil, assumername=nil, createtime=nil, status=nil, tags=nil, rolename=nil, autosplit=nil, maxsplitpartitions=nil, storagetype=nil, period=nil, subassumername=nil, describes=nil, hotperiod=nil, keyid=nil, biztype=nil, iswebtracking=nil, extends=nil, topicasynctaskid=nil, migrationstatus=nil, effectivedate=nil, issourcefrom=nil, billingmode=nil, newbillingmode=nil)
+        def initialize(logsetid=nil, topicid=nil, topicname=nil, partitioncount=nil, index=nil, assumeruin=nil, assumername=nil, createtime=nil, status=nil, tags=nil, rolename=nil, autosplit=nil, maxsplitpartitions=nil, storagetype=nil, period=nil, subassumername=nil, describes=nil, hotperiod=nil, keyid=nil, customkmsinfo=nil, biztype=nil, iswebtracking=nil, extends=nil, topicasynctaskid=nil, migrationstatus=nil, effectivedate=nil, issourcefrom=nil, billingmode=nil, newbillingmode=nil)
           @LogsetId = logsetid
           @TopicId = topicid
           @TopicName = topicname
@@ -21290,6 +21313,7 @@ module TencentCloud
           @Describes = describes
           @HotPeriod = hotperiod
           @KeyId = keyid
+          @CustomKmsInfo = customkmsinfo
           @BizType = biztype
           @IsWebTracking = iswebtracking
           @Extends = extends
@@ -21328,6 +21352,10 @@ module TencentCloud
           @Describes = params['Describes']
           @HotPeriod = params['HotPeriod']
           @KeyId = params['KeyId']
+          unless params['CustomKmsInfo'].nil?
+            @CustomKmsInfo = CustomKmsInfo.new
+            @CustomKmsInfo.deserialize(params['CustomKmsInfo'])
+          end
           @BizType = params['BizType']
           @IsWebTracking = params['IsWebTracking']
           unless params['Extends'].nil?

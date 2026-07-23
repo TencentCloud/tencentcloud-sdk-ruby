@@ -2962,11 +2962,11 @@ module TencentCloud
 
       # CreateSparkAppTask请求参数结构体
       class CreateSparkAppTaskRequest < TencentCloud::Common::AbstractModel
-        # @param JobName: spark作业名
+        # @param JobName: <p>spark作业名</p>
         # @type JobName: String
-        # @param CmdArgs: spark作业程序入参，以空格分隔；一般用于周期性调用使用
+        # @param CmdArgs: <p>spark作业程序入参，以空格分隔；一般用于周期性调用使用</p>
         # @type CmdArgs: String
-        # @param SourceInfo: 任务来源信息
+        # @param SourceInfo: <p>任务来源信息</p>
         # @type SourceInfo: Array
 
         attr_accessor :JobName, :CmdArgs, :SourceInfo
@@ -2993,9 +2993,9 @@ module TencentCloud
 
       # CreateSparkAppTask返回参数结构体
       class CreateSparkAppTaskResponse < TencentCloud::Common::AbstractModel
-        # @param BatchId: 批Id
+        # @param BatchId: <p>批Id</p>
         # @type BatchId: String
-        # @param TaskId: 任务Id
+        # @param TaskId: <p>任务Id</p>
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

@@ -725,6 +725,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改数据流动任务状态，目前支持任务暂停/恢复
+
+        # @param request: Request instance for ModifyDataRepositoryTaskStatus.
+        # @type request: :class:`Tencentcloud::goosefs::V20220519::ModifyDataRepositoryTaskStatusRequest`
+        # @rtype: :class:`Tencentcloud::goosefs::V20220519::ModifyDataRepositoryTaskStatusResponse`
+        def ModifyDataRepositoryTaskStatus(request)
+          body = send_request('ModifyDataRepositoryTaskStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDataRepositoryTaskStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 客户端集群挂载存储集群
 
         # @param request: Request instance for MountMultipleStorageFileSystem.

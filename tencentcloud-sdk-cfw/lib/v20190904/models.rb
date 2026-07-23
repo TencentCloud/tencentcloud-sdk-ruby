@@ -744,6 +744,157 @@ module TencentCloud
         end
       end
 
+      # 告警中心-阻断事件结构体
+      class BlockInfo < TencentCloud::Common::AbstractModel
+        # @param SrcIP: 源IP
+        # @type SrcIP: String
+        # @param DstIP: 目的ip
+        # @type DstIP: String
+        # @param DstPort: 端口
+        # @type DstPort: String
+        # @param AppID: appid信息
+        # @type AppID: String
+        # @param AssetId: 资产id
+        # @type AssetId: String
+        # @param AssetName: 资产名称
+        # @type AssetName: String
+        # @param Zone: 地域
+        # @type Zone: String
+        # @param MaxDate: 最晚时间
+        # @type MaxDate: String
+        # @param MinDate: 最近时间
+        # @type MinDate: String
+        # @param Direction: 方向  1入站 0出战
+        # @type Direction: Integer
+        # @param BlockSource: 来源  1拦截列表，2虚拟补丁，3威胁情报，4基础防御
+        # @type BlockSource: Integer
+        # @param Country: 国加
+        # @type Country: String
+        # @param Count: 次数
+        # @type Count: Integer
+        # @param AvgCount: 拦截频率
+        # @type AvgCount: Float
+        # @param IsTop: 置顶位
+        # @type IsTop: Integer
+        # @param UniqueId: 记录唯一标识
+        # @type UniqueId: String
+        # @param ByPass: 1是 0不是
+        # @type ByPass: Integer
+        # @param Block: 1是 0不是
+        # @type Block: Integer
+        # @param Ignore: 1是 0不是
+        # @type Ignore: Integer
+        # @param WhiteTag: WhiteTag信息
+        # @type WhiteTag: String
+        # @param DstAssetId: vpc间防火墙日志，目的资产id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DstAssetId: String
+        # @param DstAssetName: vpc间防火墙日志，目的资产名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DstAssetName: String
+        # @param SrcVpc: vpc间防火墙日志，源VPC id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SrcVpc: String
+        # @param SrcVpcName: vpc间防火墙日志，源VPC名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SrcVpcName: String
+        # @param DstVpc: vpc间防火墙日志，目的VPC id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DstVpc: String
+        # @param DstVpcName: vpc间防火墙日志，目的VPC名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DstVpcName: String
+        # @param EdgeId: vpc间防火墙开关边id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EdgeId: String
+        # @param EdgeName: vpc间防火墙开关边名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EdgeName: String
+        # @param LogSource: 日志来源 move：vpc间防火墙
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogSource: String
+        # @param Isolate: 是否加入隔离列表，1是 0不是
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Isolate: Integer
+        # @param Hide: 是否加入隔离列表，1是 0不是
+        # @type Hide: Integer
+        # @param Domain: 域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Domain: String
+
+        attr_accessor :SrcIP, :DstIP, :DstPort, :AppID, :AssetId, :AssetName, :Zone, :MaxDate, :MinDate, :Direction, :BlockSource, :Country, :Count, :AvgCount, :IsTop, :UniqueId, :ByPass, :Block, :Ignore, :WhiteTag, :DstAssetId, :DstAssetName, :SrcVpc, :SrcVpcName, :DstVpc, :DstVpcName, :EdgeId, :EdgeName, :LogSource, :Isolate, :Hide, :Domain
+
+        def initialize(srcip=nil, dstip=nil, dstport=nil, appid=nil, assetid=nil, assetname=nil, zone=nil, maxdate=nil, mindate=nil, direction=nil, blocksource=nil, country=nil, count=nil, avgcount=nil, istop=nil, uniqueid=nil, bypass=nil, block=nil, ignore=nil, whitetag=nil, dstassetid=nil, dstassetname=nil, srcvpc=nil, srcvpcname=nil, dstvpc=nil, dstvpcname=nil, edgeid=nil, edgename=nil, logsource=nil, isolate=nil, hide=nil, domain=nil)
+          @SrcIP = srcip
+          @DstIP = dstip
+          @DstPort = dstport
+          @AppID = appid
+          @AssetId = assetid
+          @AssetName = assetname
+          @Zone = zone
+          @MaxDate = maxdate
+          @MinDate = mindate
+          @Direction = direction
+          @BlockSource = blocksource
+          @Country = country
+          @Count = count
+          @AvgCount = avgcount
+          @IsTop = istop
+          @UniqueId = uniqueid
+          @ByPass = bypass
+          @Block = block
+          @Ignore = ignore
+          @WhiteTag = whitetag
+          @DstAssetId = dstassetid
+          @DstAssetName = dstassetname
+          @SrcVpc = srcvpc
+          @SrcVpcName = srcvpcname
+          @DstVpc = dstvpc
+          @DstVpcName = dstvpcname
+          @EdgeId = edgeid
+          @EdgeName = edgename
+          @LogSource = logsource
+          @Isolate = isolate
+          @Hide = hide
+          @Domain = domain
+        end
+
+        def deserialize(params)
+          @SrcIP = params['SrcIP']
+          @DstIP = params['DstIP']
+          @DstPort = params['DstPort']
+          @AppID = params['AppID']
+          @AssetId = params['AssetId']
+          @AssetName = params['AssetName']
+          @Zone = params['Zone']
+          @MaxDate = params['MaxDate']
+          @MinDate = params['MinDate']
+          @Direction = params['Direction']
+          @BlockSource = params['BlockSource']
+          @Country = params['Country']
+          @Count = params['Count']
+          @AvgCount = params['AvgCount']
+          @IsTop = params['IsTop']
+          @UniqueId = params['UniqueId']
+          @ByPass = params['ByPass']
+          @Block = params['Block']
+          @Ignore = params['Ignore']
+          @WhiteTag = params['WhiteTag']
+          @DstAssetId = params['DstAssetId']
+          @DstAssetName = params['DstAssetName']
+          @SrcVpc = params['SrcVpc']
+          @SrcVpcName = params['SrcVpcName']
+          @DstVpc = params['DstVpc']
+          @DstVpcName = params['DstVpcName']
+          @EdgeId = params['EdgeId']
+          @EdgeName = params['EdgeName']
+          @LogSource = params['LogSource']
+          @Isolate = params['Isolate']
+          @Hide = params['Hide']
+          @Domain = params['Domain']
+        end
+      end
+
       # CCN关联的实例信息
       class CcnAssociatedInstance < TencentCloud::Common::AbstractModel
         # @param InstanceId: <p>实例ID</p>
@@ -941,6 +1092,110 @@ module TencentCloud
         end
       end
 
+      # CheckClusterNatFwPreAccess请求参数结构体
+      class CheckClusterNatFwPreAccessRequest < TencentCloud::Common::AbstractModel
+        # @param NatCcnSwitch: <p>NAT CCN 开关配置 JSON 字符串，与 OpenClusterNatFwSwitch 的 NatCcnSwitch 完全一致。SwitchMode 必须为 1（自动接入），RoutingMode 必须为 1（策略路由）。</p>
+        # @type NatCcnSwitch: :class:`Tencentcloud::Cfw.v20190904.models.NatCcnSwitchConfig`
+        # @param CheckMode: <p>预接入模式</p><p>枚举值：</p><ul><li>open： 开启防火墙前预接入检查</li><li>modify： 编辑修改防火墙开关时预接入检查</li></ul>
+        # @type CheckMode: String
+
+        attr_accessor :NatCcnSwitch, :CheckMode
+
+        def initialize(natccnswitch=nil, checkmode=nil)
+          @NatCcnSwitch = natccnswitch
+          @CheckMode = checkmode
+        end
+
+        def deserialize(params)
+          unless params['NatCcnSwitch'].nil?
+            @NatCcnSwitch = NatCcnSwitchConfig.new
+            @NatCcnSwitch.deserialize(params['NatCcnSwitch'])
+          end
+          @CheckMode = params['CheckMode']
+        end
+      end
+
+      # CheckClusterNatFwPreAccess返回参数结构体
+      class CheckClusterNatFwPreAccessResponse < TencentCloud::Common::AbstractModel
+        # @param CheckItems: <p>检查项清单，按执行顺序返回。前端据此渲染检查项骨架，描述文案已按请求的 Language 返回对应语言（中文/英文）。检查通过轮询 DescribeClusterNatCcnFwSwitchList 接口读取 CheckResult 获取每个阶段的通过/失败状态。</p>
+        # @type CheckItems: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CheckItems, :RequestId
+
+        def initialize(checkitems=nil, requestid=nil)
+          @CheckItems = checkitems
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CheckItems'].nil?
+            @CheckItems = []
+            params['CheckItems'].each do |i|
+              clusterfwpreaccesscheckitem_tmp = ClusterFwPreAccessCheckItem.new
+              clusterfwpreaccesscheckitem_tmp.deserialize(i)
+              @CheckItems << clusterfwpreaccesscheckitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CheckClusterVpcFwPreAccess请求参数结构体
+      class CheckClusterVpcFwPreAccessRequest < TencentCloud::Common::AbstractModel
+        # @param CcnSwitch: <p>CCN 开关配置，长度为 1 的数组 JSON 字符串，结构与 ModifyClusterVpcFwSwitch 的 CcnSwitch 完全一致。SwitchMode 必须为 1（自动接入），RoutingMode 必须为 1（策略路由）。</p>
+        # @type CcnSwitch: Array
+        # @param CheckMode: <p>预接入检查模式</p><p>枚举值：</p><ul><li>open： 开启开关时预接入检查</li><li>modify： 编辑变更开关时预接入检查</li></ul>
+        # @type CheckMode: String
+
+        attr_accessor :CcnSwitch, :CheckMode
+
+        def initialize(ccnswitch=nil, checkmode=nil)
+          @CcnSwitch = ccnswitch
+          @CheckMode = checkmode
+        end
+
+        def deserialize(params)
+          unless params['CcnSwitch'].nil?
+            @CcnSwitch = []
+            params['CcnSwitch'].each do |i|
+              ccnswitchinfo_tmp = CcnSwitchInfo.new
+              ccnswitchinfo_tmp.deserialize(i)
+              @CcnSwitch << ccnswitchinfo_tmp
+            end
+          end
+          @CheckMode = params['CheckMode']
+        end
+      end
+
+      # CheckClusterVpcFwPreAccess返回参数结构体
+      class CheckClusterVpcFwPreAccessResponse < TencentCloud::Common::AbstractModel
+        # @param CheckItems: <p>检查项清单，按执行顺序返回。前端据此渲染检查项骨架，描述文案已按请求的 Language 返回对应语言（中文/英文）。检查通过轮询 DescribeClusterVpcFwSwitchs 接口读取 CheckResult 获取每个阶段的通过/失败状态。</p>
+        # @type CheckItems: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CheckItems, :RequestId
+
+        def initialize(checkitems=nil, requestid=nil)
+          @CheckItems = checkitems
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CheckItems'].nil?
+            @CheckItems = []
+            params['CheckItems'].each do |i|
+              clusterfwpreaccesscheckitem_tmp = ClusterFwPreAccessCheckItem.new
+              clusterfwpreaccesscheckitem_tmp.deserialize(i)
+              @CheckItems << clusterfwpreaccesscheckitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CloseClusterNatFwSwitch请求参数结构体
       class CloseClusterNatFwSwitchRequest < TencentCloud::Common::AbstractModel
         # @param NatInsId: <p>NAT防火墙实例ID</p>
@@ -974,6 +1229,26 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 预接入检查项定义
+      class ClusterFwPreAccessCheckItem < TencentCloud::Common::AbstractModel
+        # @param Stage: 检查项 key，与查询接口 CheckResult.Stages[].Stage 一一对应
+        # @type Stage: String
+        # @param Description: 该检查项的展示文案，已按请求的 Language 返回中文或英文
+        # @type Description: String
+
+        attr_accessor :Stage, :Description
+
+        def initialize(stage=nil, description=nil)
+          @Stage = stage
+          @Description = description
+        end
+
+        def deserialize(params)
+          @Stage = params['Stage']
+          @Description = params['Description']
         end
       end
 
@@ -3752,6 +4027,120 @@ module TencentCloud
         end
       end
 
+      # DescribeBlockList请求参数结构体
+      class DescribeBlockListRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 长度
+        # @type Limit: Integer
+        # @param StatTimeSpan: 频率类型
+        # @type StatTimeSpan: Integer
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param SearchValue: 查询条件
+        # @type SearchValue: String
+        # @param Order: 升序降序
+        # @type Order: String
+        # @param By: 排序字段
+        # @type By: String
+        # @param Direction: 方向 1 入 0出
+        # @type Direction: String
+        # @param ByPass: 是否处置 1处置 0不是
+        # @type ByPass: String
+        # @param Source: 来源
+        # @type Source: String
+        # @param Country: 国家 1国内
+        # @type Country: String
+        # @param AssetId: 资产id
+        # @type AssetId: String
+        # @param LogSource: 日志来源 move：vpc间防火墙
+        # @type LogSource: String
+
+        attr_accessor :Offset, :Limit, :StatTimeSpan, :StartTime, :EndTime, :SearchValue, :Order, :By, :Direction, :ByPass, :Source, :Country, :AssetId, :LogSource
+
+        def initialize(offset=nil, limit=nil, stattimespan=nil, starttime=nil, endtime=nil, searchvalue=nil, order=nil, by=nil, direction=nil, bypass=nil, source=nil, country=nil, assetid=nil, logsource=nil)
+          @Offset = offset
+          @Limit = limit
+          @StatTimeSpan = stattimespan
+          @StartTime = starttime
+          @EndTime = endtime
+          @SearchValue = searchvalue
+          @Order = order
+          @By = by
+          @Direction = direction
+          @ByPass = bypass
+          @Source = source
+          @Country = country
+          @AssetId = assetid
+          @LogSource = logsource
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @StatTimeSpan = params['StatTimeSpan']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @SearchValue = params['SearchValue']
+          @Order = params['Order']
+          @By = params['By']
+          @Direction = params['Direction']
+          @ByPass = params['ByPass']
+          @Source = params['Source']
+          @Country = params['Country']
+          @AssetId = params['AssetId']
+          @LogSource = params['LogSource']
+        end
+      end
+
+      # DescribeBlockList返回参数结构体
+      class DescribeBlockListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 阻断记录集合
+        # @type Data: Array
+        # @param TopData: 置顶阻断记录集合
+        # @type TopData: Array
+        # @param Total: 数量
+        # @type Total: Integer
+        # @param TopCount: 置顶数量
+        # @type TopCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :TopData, :Total, :TopCount, :RequestId
+
+        def initialize(data=nil, topdata=nil, total=nil, topcount=nil, requestid=nil)
+          @Data = data
+          @TopData = topdata
+          @Total = total
+          @TopCount = topcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              blockinfo_tmp = BlockInfo.new
+              blockinfo_tmp.deserialize(i)
+              @Data << blockinfo_tmp
+            end
+          end
+          unless params['TopData'].nil?
+            @TopData = []
+            params['TopData'].each do |i|
+              blockinfo_tmp = BlockInfo.new
+              blockinfo_tmp.deserialize(i)
+              @TopData << blockinfo_tmp
+            end
+          end
+          @Total = params['Total']
+          @TopCount = params['TopCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeBlockStaticList请求参数结构体
       class DescribeBlockStaticListRequest < TencentCloud::Common::AbstractModel
         # @param EndTime: 结束时间
@@ -5337,6 +5726,50 @@ module TencentCloud
         end
       end
 
+      # DescribeFwGroupIdNames请求参数结构体
+      class DescribeFwGroupIdNamesRequest < TencentCloud::Common::AbstractModel
+        # @param IpVersion: <p>Ip版本，0：IPv4，1：IPv6，默认为IPv4</p>
+        # @type IpVersion: Integer
+
+        attr_accessor :IpVersion
+
+        def initialize(ipversion=nil)
+          @IpVersion = ipversion
+        end
+
+        def deserialize(params)
+          @IpVersion = params['IpVersion']
+        end
+      end
+
+      # DescribeFwGroupIdNames返回参数结构体
+      class DescribeFwGroupIdNamesResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>防火墙(组列表)</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              fwgroupidname_tmp = FwGroupIdName.new
+              fwgroupidname_tmp.deserialize(i)
+              @Data << fwgroupidname_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeFwGroupInstanceInfo请求参数结构体
       class DescribeFwGroupInstanceInfoRequest < TencentCloud::Common::AbstractModel
         # @param Limit: <p>每页条数</p>
@@ -5574,6 +6007,93 @@ module TencentCloud
           end
           @ReturnCode = params['ReturnCode']
           @ReturnMsg = params['ReturnMsg']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeIpsRuleListNew请求参数结构体
+      class DescribeIpsRuleListNewRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 每页条数
+        # @type Limit: Integer
+        # @param Offset: 偏移值
+        # @type Offset: Integer
+        # @param Index: 需要查询的索引，特定场景使用，可不填
+        # @type Index: String
+        # @param Filters: 过滤条件组合
+        # @type Filters: Array
+        # @param Order: desc：降序；asc：升序。根据By字段的值进行排序，这里传参的话则By也必须有值
+        # @type Order: String
+        # @param By: 排序所用到的字段
+        # @type By: String
+
+        attr_accessor :Limit, :Offset, :Index, :Filters, :Order, :By
+
+        def initialize(limit=nil, offset=nil, index=nil, filters=nil, order=nil, by=nil)
+          @Limit = limit
+          @Offset = offset
+          @Index = index
+          @Filters = filters
+          @Order = order
+          @By = by
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Index = params['Index']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              commonfilter_tmp = CommonFilter.new
+              commonfilter_tmp.deserialize(i)
+              @Filters << commonfilter_tmp
+            end
+          end
+          @Order = params['Order']
+          @By = params['By']
+        end
+      end
+
+      # DescribeIpsRuleListNew返回参数结构体
+      class DescribeIpsRuleListNewResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总条数
+        # @type Total: Integer
+        # @param Data: 规则详情
+        # @type Data: Array
+        # @param ReturnCode: 返回状态码 0 成功 非0不成功
+        # @type ReturnCode: Integer
+        # @param ReturnMsg: 返回信息  success 成功 其他 不成功
+        # @type ReturnMsg: String
+        # @param Category: 字段类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Category: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Data, :ReturnCode, :ReturnMsg, :Category, :RequestId
+
+        def initialize(total=nil, data=nil, returncode=nil, returnmsg=nil, category=nil, requestid=nil)
+          @Total = total
+          @Data = data
+          @ReturnCode = returncode
+          @ReturnMsg = returnmsg
+          @Category = category
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              ipsruledetailnew_tmp = IpsRuleDetailNew.new
+              ipsruledetailnew_tmp.deserialize(i)
+              @Data << ipsruledetailnew_tmp
+            end
+          end
+          @ReturnCode = params['ReturnCode']
+          @ReturnMsg = params['ReturnMsg']
+          @Category = params['Category']
           @RequestId = params['RequestId']
         end
       end
@@ -6670,6 +7190,49 @@ module TencentCloud
         end
       end
 
+      # DescribeNatRuleScopes请求参数结构体
+      class DescribeNatRuleScopesRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeNatRuleScopes返回参数结构体
+      class DescribeNatRuleScopesResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 可选生效范围总数
+        # @type Total: Integer
+        # @param ScopeItems: 生效范围列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScopeItems: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :ScopeItems, :RequestId
+
+        def initialize(total=nil, scopeitems=nil, requestid=nil)
+          @Total = total
+          @ScopeItems = scopeitems
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['ScopeItems'].nil?
+            @ScopeItems = []
+            params['ScopeItems'].each do |i|
+              rulescopeinfo_tmp = RuleScopeInfo.new
+              rulescopeinfo_tmp.deserialize(i)
+              @ScopeItems << rulescopeinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeOfflineExportTask请求参数结构体
       class DescribeOfflineExportTaskRequest < TencentCloud::Common::AbstractModel
         # @param Limit: <p>分页参数</p>
@@ -7016,6 +7579,48 @@ module TencentCloud
           end
           @AllTotal = params['AllTotal']
           @Enable = params['Enable']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSecurityGroupRegionList请求参数结构体
+      class DescribeSecurityGroupRegionListRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeSecurityGroupRegionList返回参数结构体
+      class DescribeSecurityGroupRegionListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>配置信息</p>
+        # @type Data: Array
+        # @param Total: <p>总数</p>
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Total, :RequestId
+
+        def initialize(data=nil, total=nil, requestid=nil)
+          @Data = data
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              securitygroupregion_tmp = SecurityGroupRegion.new
+              securitygroupregion_tmp.deserialize(i)
+              @Data << securitygroupregion_tmp
+            end
+          end
+          @Total = params['Total']
           @RequestId = params['RequestId']
         end
       end
@@ -7608,6 +8213,92 @@ module TencentCloud
         end
       end
 
+      # DescribeVpcAclEdgeRange请求参数结构体
+      class DescribeVpcAclEdgeRangeRequest < TencentCloud::Common::AbstractModel
+        # @param FromList: 规则列表来源：rules，来源于当前已配置的规则；switchs，来源于开关列表
+        # @type FromList: String
+        # @param Index: 需要查询的索引，特定场景使用，可不填
+        # @type Index: String
+        # @param Filters: 过滤条件组合
+        # @type Filters: Array
+        # @param Limit: 每页条数
+        # @type Limit: Integer
+        # @param Offset: 偏移值
+        # @type Offset: Integer
+        # @param StartTime: 检索的起始时间，可不传
+        # @type StartTime: String
+        # @param EndTime: 检索的截止时间，可不传
+        # @type EndTime: String
+        # @param Order: desc：降序；asc：升序。根据By字段的值进行排序，这里传参的话则By也必须有值
+        # @type Order: String
+        # @param By: 排序所用到的字段
+        # @type By: String
+
+        attr_accessor :FromList, :Index, :Filters, :Limit, :Offset, :StartTime, :EndTime, :Order, :By
+
+        def initialize(fromlist=nil, index=nil, filters=nil, limit=nil, offset=nil, starttime=nil, endtime=nil, order=nil, by=nil)
+          @FromList = fromlist
+          @Index = index
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+          @StartTime = starttime
+          @EndTime = endtime
+          @Order = order
+          @By = by
+        end
+
+        def deserialize(params)
+          @FromList = params['FromList']
+          @Index = params['Index']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              commonfilter_tmp = CommonFilter.new
+              commonfilter_tmp.deserialize(i)
+              @Filters << commonfilter_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Order = params['Order']
+          @By = params['By']
+        end
+      end
+
+      # DescribeVpcAclEdgeRange返回参数结构体
+      class DescribeVpcAclEdgeRangeResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总条数
+        # @type TotalCount: Integer
+        # @param EdgeRanges: 内网间访问控制规则的生效范围列表
+        # @type EdgeRanges: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :EdgeRanges, :RequestId
+
+        def initialize(totalcount=nil, edgeranges=nil, requestid=nil)
+          @TotalCount = totalcount
+          @EdgeRanges = edgeranges
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['EdgeRanges'].nil?
+            @EdgeRanges = []
+            params['EdgeRanges'].each do |i|
+              edgerange_tmp = EdgeRange.new
+              edgerange_tmp.deserialize(i)
+              @EdgeRanges << edgerange_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeVpcFwCcnPolicyWhiteList请求参数结构体
       class DescribeVpcFwCcnPolicyWhiteListRequest < TencentCloud::Common::AbstractModel
 
@@ -7943,6 +8634,58 @@ module TencentCloud
           @SubnetId = params['SubnetId']
           @EndpointIp = params['EndpointIp']
           @SwitchMode = params['SwitchMode']
+        end
+      end
+
+      # vpc间防火墙规则生效范围列表
+      class EdgeRange < TencentCloud::Common::AbstractModel
+        # @param EdgeId: 规则生效的范围id，是在哪对vpc之间还是针对所有vpc间生效
+        # @type EdgeId: String
+        # @param EdgeName: EdgeId对应的名称
+        # @type EdgeName: String
+        # @param SrcId: 本端网络实例Id
+        # @type SrcId: String
+        # @param SrcRegion: 本端网络实例所属地域
+        # @type SrcRegion: String
+        # @param SrcName: 本端网络实例名称
+        # @type SrcName: String
+        # @param SrcCidr: 本端网络实例cidr，多个以逗号分隔
+        # @type SrcCidr: String
+        # @param DstId: 对端网络实例Id
+        # @type DstId: String
+        # @param DstRegion: 对端网络实例所属地域
+        # @type DstRegion: String
+        # @param DstName: 对端网络实例名称
+        # @type DstName: String
+        # @param DstCidr: 对端网络实例cidr，多个以逗号分隔
+        # @type DstCidr: String
+
+        attr_accessor :EdgeId, :EdgeName, :SrcId, :SrcRegion, :SrcName, :SrcCidr, :DstId, :DstRegion, :DstName, :DstCidr
+
+        def initialize(edgeid=nil, edgename=nil, srcid=nil, srcregion=nil, srcname=nil, srccidr=nil, dstid=nil, dstregion=nil, dstname=nil, dstcidr=nil)
+          @EdgeId = edgeid
+          @EdgeName = edgename
+          @SrcId = srcid
+          @SrcRegion = srcregion
+          @SrcName = srcname
+          @SrcCidr = srccidr
+          @DstId = dstid
+          @DstRegion = dstregion
+          @DstName = dstname
+          @DstCidr = dstcidr
+        end
+
+        def deserialize(params)
+          @EdgeId = params['EdgeId']
+          @EdgeName = params['EdgeName']
+          @SrcId = params['SrcId']
+          @SrcRegion = params['SrcRegion']
+          @SrcName = params['SrcName']
+          @SrcCidr = params['SrcCidr']
+          @DstId = params['DstId']
+          @DstRegion = params['DstRegion']
+          @DstName = params['DstName']
+          @DstCidr = params['DstCidr']
         end
       end
 
@@ -8492,6 +9235,28 @@ module TencentCloud
         end
       end
 
+      # 防火墙(组)ID 和 名称
+      class FwGroupIdName < TencentCloud::Common::AbstractModel
+        # @param FwGroupId: 防火墙(组)ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FwGroupId: String
+        # @param FwGroupName: 防火墙(组)名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FwGroupName: String
+
+        attr_accessor :FwGroupId, :FwGroupName
+
+        def initialize(fwgroupid=nil, fwgroupname=nil)
+          @FwGroupId = fwgroupid
+          @FwGroupName = fwgroupname
+        end
+
+        def deserialize(params)
+          @FwGroupId = params['FwGroupId']
+          @FwGroupName = params['FwGroupName']
+        end
+      end
+
       # 多种VPC墙模式开关结构
       class FwGroupSwitch < TencentCloud::Common::AbstractModel
         # @param SwitchMode: 防火墙实例的开关模式 1: 单点互通 2: 多点互通 3: 全互通 4: 自定义路由
@@ -8877,6 +9642,17 @@ module TencentCloud
         def deserialize(params)
           @Num = params['Num']
           @StatTime = params['StatTime']
+        end
+      end
+
+      # IPS规则展示字段相关结构
+      class IpsRuleDetailNew < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
         end
       end
 
@@ -12203,6 +12979,28 @@ module TencentCloud
         end
       end
 
+      # 规则生效范围信息
+      class RuleScopeInfo < TencentCloud::Common::AbstractModel
+        # @param Scope: NAT边界防火墙：ALL，全局生效；ap-guangzhou，生效的地域；cfwnat-xxx，生效基于实例维度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Scope: String
+        # @param ScopeDesc: 生效范围描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScopeDesc: String
+
+        attr_accessor :Scope, :ScopeDesc
+
+        def initialize(scope=nil, scopedesc=nil)
+          @Scope = scope
+          @ScopeDesc = scopedesc
+        end
+
+        def deserialize(params)
+          @Scope = params['Scope']
+          @ScopeDesc = params['ScopeDesc']
+        end
+      end
+
       # 新手引导扫描信息
       class ScanInfo < TencentCloud::Common::AbstractModel
         # @param ScanPercent: 进度
@@ -12764,6 +13562,30 @@ module TencentCloud
         def deserialize(params)
           @OrderIndex = params['OrderIndex']
           @NewOrderIndex = params['NewOrderIndex']
+        end
+      end
+
+      # 安全组地域配置
+      class SecurityGroupRegion < TencentCloud::Common::AbstractModel
+        # @param Region: <p>地域</p>
+        # @type Region: String
+        # @param RegionId: <p>地域Id</p>
+        # @type RegionId: String
+        # @param RegionName: <p>地域中文</p>
+        # @type RegionName: String
+
+        attr_accessor :Region, :RegionId, :RegionName
+
+        def initialize(region=nil, regionid=nil, regionname=nil)
+          @Region = region
+          @RegionId = regionid
+          @RegionName = regionname
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          @RegionId = params['RegionId']
+          @RegionName = params['RegionName']
         end
       end
 
