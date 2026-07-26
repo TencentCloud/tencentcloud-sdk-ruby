@@ -1887,6 +1887,556 @@ module TencentCloud
         end
       end
 
+      # AppTrigger
+      class AppTrigger < TencentCloud::Common::AbstractModel
+        # @param TriggerId: 
+        # @type TriggerId: String
+        # @param AppId: 
+        # @type AppId: String
+        # @param TriggerName: 
+        # @type TriggerName: String
+        # @param TriggerType: <table><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>APP_TRIGGER_TYPE_UNSPECIFIED</td><td>0</td><td>未指定</td></tr><tr><td>APP_TRIGGER_TYPE_SCHEDULED</td><td>1</td><td>定时触发</td></tr><tr><td>APP_TRIGGER_TYPE_WEBHOOK</td><td>2</td><td>Webhook 触发</td></tr></table>
+        # @type TriggerType: Integer
+        # @param ExecuteType: <table><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>APP_TRIGGER_EXECUTE_TYPE_UNSPECIFIED</td><td>0</td><td>未指定</td></tr><tr><td>APP_TRIGGER_EXECUTE_TYPE_PROMPT</td><td>1</td><td>指令执行</td></tr><tr><td>APP_TRIGGER_EXECUTE_TYPE_WORKFLOW</td><td>2</td><td>工作流执行</td></tr></table>
+        # @type ExecuteType: Integer
+        # @param PushConfig: 
+        # @type PushConfig: :class:`Tencentcloud::Adp.v20260520.models.TimerPushConfig`
+        # @param Status: <table><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>APP_TRIGGER_STATUS_UNSPECIFIED</td><td>0</td><td>未指定</td></tr><tr><td>APP_TRIGGER_STATUS_ENABLED</td><td>1</td><td>启用</td></tr><tr><td>APP_TRIGGER_STATUS_PAUSED</td><td>2</td><td>暂停</td></tr><tr><td>APP_TRIGGER_STATUS_DELETED</td><td>3</td><td>已删除</td></tr></table>
+        # @type Status: Integer
+        # @param SuccessCount: 
+        # @type SuccessCount: String
+        # @param FailedCount: 
+        # @type FailedCount: String
+        # @param TriggerConfig: 
+        # @type TriggerConfig: :class:`Tencentcloud::Adp.v20260520.models.TriggerConfig`
+        # @param ExecuteConfig: 
+        # @type ExecuteConfig: :class:`Tencentcloud::Adp.v20260520.models.ExecuteConfig`
+        # @param TriggerStatus: 
+        # @type TriggerStatus: :class:`Tencentcloud::Adp.v20260520.models.TriggerStatus`
+
+        attr_accessor :TriggerId, :AppId, :TriggerName, :TriggerType, :ExecuteType, :PushConfig, :Status, :SuccessCount, :FailedCount, :TriggerConfig, :ExecuteConfig, :TriggerStatus
+
+        def initialize(triggerid=nil, appid=nil, triggername=nil, triggertype=nil, executetype=nil, pushconfig=nil, status=nil, successcount=nil, failedcount=nil, triggerconfig=nil, executeconfig=nil, triggerstatus=nil)
+          @TriggerId = triggerid
+          @AppId = appid
+          @TriggerName = triggername
+          @TriggerType = triggertype
+          @ExecuteType = executetype
+          @PushConfig = pushconfig
+          @Status = status
+          @SuccessCount = successcount
+          @FailedCount = failedcount
+          @TriggerConfig = triggerconfig
+          @ExecuteConfig = executeconfig
+          @TriggerStatus = triggerstatus
+        end
+
+        def deserialize(params)
+          @TriggerId = params['TriggerId']
+          @AppId = params['AppId']
+          @TriggerName = params['TriggerName']
+          @TriggerType = params['TriggerType']
+          @ExecuteType = params['ExecuteType']
+          unless params['PushConfig'].nil?
+            @PushConfig = TimerPushConfig.new
+            @PushConfig.deserialize(params['PushConfig'])
+          end
+          @Status = params['Status']
+          @SuccessCount = params['SuccessCount']
+          @FailedCount = params['FailedCount']
+          unless params['TriggerConfig'].nil?
+            @TriggerConfig = TriggerConfig.new
+            @TriggerConfig.deserialize(params['TriggerConfig'])
+          end
+          unless params['ExecuteConfig'].nil?
+            @ExecuteConfig = ExecuteConfig.new
+            @ExecuteConfig.deserialize(params['ExecuteConfig'])
+          end
+          unless params['TriggerStatus'].nil?
+            @TriggerStatus = TriggerStatus.new
+            @TriggerStatus.deserialize(params['TriggerStatus'])
+          end
+        end
+      end
+
+      # AppTriggerInstance
+      class AppTriggerInstance < TencentCloud::Common::AbstractModel
+        # @param AppId: 
+        # @type AppId: String
+        # @param ConversationId: 
+        # @type ConversationId: String
+        # @param CreatedAt: 
+        # @type CreatedAt: String
+        # @param FinishedAt: 
+        # @type FinishedAt: String
+        # @param InstanceId: 
+        # @type InstanceId: String
+        # @param RequestId: 
+        # @type RequestId: String
+        # @param ResultCode: 
+        # @type ResultCode: String
+        # @param ResultSummary: 
+        # @type ResultSummary: String
+        # @param RunId: 
+        # @type RunId: String
+        # @param Source: <table><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>APP_TRIGGER_INSTANCE_SOURCE_UNSPECIFIED</td><td>0</td><td>未指定</td></tr><tr><td>APP_TRIGGER_INSTANCE_SOURCE_APP_TRIGGER</td><td>1</td><td>来源于应用触发器</td></tr></table>
+        # @type Source: Integer
+        # @param StartedAt: 
+        # @type StartedAt: String
+        # @param Status: <table><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>TIMER_RUN_STATUS_UNSPECIFIED</td><td>0</td><td>未指定</td></tr><tr><td>TIMER_RUN_STATUS_PENDING</td><td>1</td><td>等待执行</td></tr><tr><td>TIMER_RUN_STATUS_RUNNING</td><td>2</td><td>执行中</td></tr><tr><td>TIMER_RUN_STATUS_RETRY_WAIT</td><td>3</td><td>等待重试</td></tr><tr><td>TIMER_RUN_STATUS_SUCCESS</td><td>4</td><td>成功</td></tr><tr><td>TIMER_RUN_STATUS_DEAD</td><td>5</td><td>失败终态 (重试耗尽 / 不可重试)</td></tr><tr><td>TIMER_RUN_STATUS_CANCELLED</td><td>6</td><td>被任务暂停/删除/修改取消</td></tr></table>
+        # @type Status: Integer
+        # @param TraceId: 
+        # @type TraceId: String
+        # @param TriggerId: 
+        # @type TriggerId: String
+        # @param WorkflowRunId: 
+        # @type WorkflowRunId: String
+
+        attr_accessor :AppId, :ConversationId, :CreatedAt, :FinishedAt, :InstanceId, :RequestId, :ResultCode, :ResultSummary, :RunId, :Source, :StartedAt, :Status, :TraceId, :TriggerId, :WorkflowRunId
+
+        def initialize(appid=nil, conversationid=nil, createdat=nil, finishedat=nil, instanceid=nil, requestid=nil, resultcode=nil, resultsummary=nil, runid=nil, source=nil, startedat=nil, status=nil, traceid=nil, triggerid=nil, workflowrunid=nil)
+          @AppId = appid
+          @ConversationId = conversationid
+          @CreatedAt = createdat
+          @FinishedAt = finishedat
+          @InstanceId = instanceid
+          @RequestId = requestid
+          @ResultCode = resultcode
+          @ResultSummary = resultsummary
+          @RunId = runid
+          @Source = source
+          @StartedAt = startedat
+          @Status = status
+          @TraceId = traceid
+          @TriggerId = triggerid
+          @WorkflowRunId = workflowrunid
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @ConversationId = params['ConversationId']
+          @CreatedAt = params['CreatedAt']
+          @FinishedAt = params['FinishedAt']
+          @InstanceId = params['InstanceId']
+          @RequestId = params['RequestId']
+          @ResultCode = params['ResultCode']
+          @ResultSummary = params['ResultSummary']
+          @RunId = params['RunId']
+          @Source = params['Source']
+          @StartedAt = params['StartedAt']
+          @Status = params['Status']
+          @TraceId = params['TraceId']
+          @TriggerId = params['TriggerId']
+          @WorkflowRunId = params['WorkflowRunId']
+        end
+      end
+
+      # AppTriggerParamBinding
+      class AppTriggerParamBinding < TencentCloud::Common::AbstractModel
+        # @param ParamName: <p>参数名字</p>
+        # @type ParamName: String
+        # @param ParamType: <p>参数类型</p><p>枚举值：</p><ul><li>0： 字符串</li><li>1： 整数</li><li>2： 浮点数</li><li>4： 对象</li><li>5： 字符串数组</li><li>6： 整数数组</li><li>7： 浮点数数组</li><li>8： 布尔值数组</li><li>3： 布尔值</li><li>9： 对象数组</li><li>10： 文件</li><li>11： 文档</li><li>12： 图片</li><li>13： 音频</li><li>14： 视频</li><li>15： 文件数组</li><li>16： 文档数组</li><li>17： 图片数组</li><li>18： 音频数组</li><li>19： 视频数组</li><li>20： 数组嵌套</li><li>22： 密钥</li><li>99： 空值</li><li>100： 未指定类型，用于OneOf和AnyOf场景</li></ul>
+        # @type ParamType: Integer
+        # @param Value: <p>参数值</p>
+        # @type Value: :class:`Tencentcloud::Adp.v20260520.models.AppTriggerParamBindingValue`
+
+        attr_accessor :ParamName, :ParamType, :Value
+
+        def initialize(paramname=nil, paramtype=nil, value=nil)
+          @ParamName = paramname
+          @ParamType = paramtype
+          @Value = value
+        end
+
+        def deserialize(params)
+          @ParamName = params['ParamName']
+          @ParamType = params['ParamType']
+          unless params['Value'].nil?
+            @Value = AppTriggerParamBindingValue.new
+            @Value.deserialize(params['Value'])
+          end
+        end
+      end
+
+      # AppTriggerParamBindingConfig
+      class AppTriggerParamBindingConfig < TencentCloud::Common::AbstractModel
+        # @param ParamList: 
+        # @type ParamList: Array
+
+        attr_accessor :ParamList
+
+        def initialize(paramlist=nil)
+          @ParamList = paramlist
+        end
+
+        def deserialize(params)
+          unless params['ParamList'].nil?
+            @ParamList = []
+            params['ParamList'].each do |i|
+              apptriggerparambinding_tmp = AppTriggerParamBinding.new
+              apptriggerparambinding_tmp.deserialize(i)
+              @ParamList << apptriggerparambinding_tmp
+            end
+          end
+        end
+      end
+
+      # AppTriggerParamBindingValue
+      class AppTriggerParamBindingValue < TencentCloud::Common::AbstractModel
+        # @param ParamValue: <p>参数值</p>
+        # @type ParamValue: String
+        # @param VariableName: <p>应用变量名</p>
+        # @type VariableName: String
+
+        attr_accessor :ParamValue, :VariableName
+
+        def initialize(paramvalue=nil, variablename=nil)
+          @ParamValue = paramvalue
+          @VariableName = variablename
+        end
+
+        def deserialize(params)
+          @ParamValue = params['ParamValue']
+          @VariableName = params['VariableName']
+        end
+      end
+
+      # AppTriggerParamSchema
+      class AppTriggerParamSchema < TencentCloud::Common::AbstractModel
+        # @param ParamName: 
+        # @type ParamName: String
+        # @param ParamType: <table><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>PARAM_TYPE_STRING</td><td>0</td><td>字符串</td></tr><tr><td>PARAM_TYPE_INT</td><td>1</td><td>整数</td></tr><tr><td>PARAM_TYPE_FLOAT</td><td>2</td><td>浮点数</td></tr><tr><td>PARAM_TYPE_BOOL</td><td>3</td><td>布尔值</td></tr><tr><td>PARAM_TYPE_OBJECT</td><td>4</td><td>对象</td></tr><tr><td>PARAM_TYPE_ARRAY_STRING</td><td>5</td><td>字符串数组</td></tr><tr><td>PARAM_TYPE_ARRAY_INT</td><td>6</td><td>整数数组</td></tr><tr><td>PARAM_TYPE_ARRAY_FLOAT</td><td>7</td><td>浮点数数组</td></tr><tr><td>PARAM_TYPE_ARRAY_BOOL</td><td>8</td><td>布尔值数组</td></tr><tr><td>PARAM_TYPE_ARRAY_OBJECT</td><td>9</td><td>对象数组</td></tr><tr><td>PARAM_TYPE_ARRAY_ARRAY</td><td>20</td><td>数组嵌套</td></tr><tr><td>PARAM_TYPE_NULL</td><td>99</td><td>空值</td></tr><tr><td>PARAM_TYPE_UNSPECIFIED</td><td>100</td><td>未指定类型，用于OneOf和AnyOf场景</td></tr></table>
+        # @type ParamType: Integer
+        # @param Required: 
+        # @type Required: Boolean
+        # @param SubParamList: 
+        # @type SubParamList: Array
+
+        attr_accessor :ParamName, :ParamType, :Required, :SubParamList
+
+        def initialize(paramname=nil, paramtype=nil, required=nil, subparamlist=nil)
+          @ParamName = paramname
+          @ParamType = paramtype
+          @Required = required
+          @SubParamList = subparamlist
+        end
+
+        def deserialize(params)
+          @ParamName = params['ParamName']
+          @ParamType = params['ParamType']
+          @Required = params['Required']
+          unless params['SubParamList'].nil?
+            @SubParamList = []
+            params['SubParamList'].each do |i|
+              apptriggerparamschema_tmp = AppTriggerParamSchema.new
+              apptriggerparamschema_tmp.deserialize(i)
+              @SubParamList << apptriggerparamschema_tmp
+            end
+          end
+        end
+      end
+
+      # AppTriggerPromptExecuteConfig
+      class AppTriggerPromptExecuteConfig < TencentCloud::Common::AbstractModel
+        # @param ExecutePrompt: 
+        # @type ExecutePrompt: String
+        # @param ParamBindingsApi: 
+        # @type ParamBindingsApi: :class:`Tencentcloud::Adp.v20260520.models.AppTriggerParamBindingConfig`
+
+        attr_accessor :ExecutePrompt, :ParamBindingsApi
+
+        def initialize(executeprompt=nil, parambindingsapi=nil)
+          @ExecutePrompt = executeprompt
+          @ParamBindingsApi = parambindingsapi
+        end
+
+        def deserialize(params)
+          @ExecutePrompt = params['ExecutePrompt']
+          unless params['ParamBindingsApi'].nil?
+            @ParamBindingsApi = AppTriggerParamBindingConfig.new
+            @ParamBindingsApi.deserialize(params['ParamBindingsApi'])
+          end
+        end
+      end
+
+      # AppTriggerRunLog
+      class AppTriggerRunLog < TencentCloud::Common::AbstractModel
+        # @param ConversationId: 
+        # @type ConversationId: String
+        # @param DurationMs: 
+        # @type DurationMs: String
+        # @param EndTime: 
+        # @type EndTime: String
+        # @param FireType: <table><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>APP_TRIGGER_FIRE_TYPE_UNSPECIFIED</td><td>0</td><td>未指定</td></tr><tr><td>APP_TRIGGER_FIRE_TYPE_SCHEDULED</td><td>1</td><td>定时触发</td></tr><tr><td>APP_TRIGGER_FIRE_TYPE_WEBHOOK</td><td>2</td><td>Webhook 触发</td></tr><tr><td>APP_TRIGGER_FIRE_TYPE_MANUAL_RUN</td><td>3</td><td>手动立即执行</td></tr><tr><td>APP_TRIGGER_FIRE_TYPE_TEST_RUN</td><td>4</td><td>测试执行</td></tr></table>
+        # @type FireType: Integer
+        # @param InstanceId: 
+        # @type InstanceId: String
+        # @param PushStatus: <table><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>TIMER_RUN_PUSH_STATUS_UNSPECIFIED</td><td>0</td><td>未指定</td></tr><tr><td>TIMER_RUN_PUSH_STATUS_NONE</td><td>1</td><td>未配置推送</td></tr><tr><td>TIMER_RUN_PUSH_STATUS_WAITING</td><td>2</td><td>等待推送</td></tr><tr><td>TIMER_RUN_PUSH_STATUS_SUCCESS</td><td>3</td><td>推送成功</td></tr><tr><td>TIMER_RUN_PUSH_STATUS_FAILED</td><td>4</td><td>推送失败</td></tr></table>
+        # @type PushStatus: Integer
+        # @param ResultCode: 
+        # @type ResultCode: String
+        # @param ResultSummary: 
+        # @type ResultSummary: String
+        # @param RunId: 
+        # @type RunId: String
+        # @param ScheduledFireTime: 
+        # @type ScheduledFireTime: String
+        # @param StartTime: 
+        # @type StartTime: String
+        # @param Status: <table><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>TIMER_RUN_STATUS_UNSPECIFIED</td><td>0</td><td>未指定</td></tr><tr><td>TIMER_RUN_STATUS_PENDING</td><td>1</td><td>等待执行</td></tr><tr><td>TIMER_RUN_STATUS_RUNNING</td><td>2</td><td>执行中</td></tr><tr><td>TIMER_RUN_STATUS_RETRY_WAIT</td><td>3</td><td>等待重试</td></tr><tr><td>TIMER_RUN_STATUS_SUCCESS</td><td>4</td><td>成功</td></tr><tr><td>TIMER_RUN_STATUS_DEAD</td><td>5</td><td>失败终态 (重试耗尽 / 不可重试)</td></tr><tr><td>TIMER_RUN_STATUS_CANCELLED</td><td>6</td><td>被任务暂停/删除/修改取消</td></tr></table>
+        # @type Status: Integer
+        # @param TriggerId: 
+        # @type TriggerId: String
+        # @param Unread: 
+        # @type Unread: Boolean
+        # @param WorkflowRunId: 
+        # @type WorkflowRunId: String
+
+        attr_accessor :ConversationId, :DurationMs, :EndTime, :FireType, :InstanceId, :PushStatus, :ResultCode, :ResultSummary, :RunId, :ScheduledFireTime, :StartTime, :Status, :TriggerId, :Unread, :WorkflowRunId
+
+        def initialize(conversationid=nil, durationms=nil, endtime=nil, firetype=nil, instanceid=nil, pushstatus=nil, resultcode=nil, resultsummary=nil, runid=nil, scheduledfiretime=nil, starttime=nil, status=nil, triggerid=nil, unread=nil, workflowrunid=nil)
+          @ConversationId = conversationid
+          @DurationMs = durationms
+          @EndTime = endtime
+          @FireType = firetype
+          @InstanceId = instanceid
+          @PushStatus = pushstatus
+          @ResultCode = resultcode
+          @ResultSummary = resultsummary
+          @RunId = runid
+          @ScheduledFireTime = scheduledfiretime
+          @StartTime = starttime
+          @Status = status
+          @TriggerId = triggerid
+          @Unread = unread
+          @WorkflowRunId = workflowrunid
+        end
+
+        def deserialize(params)
+          @ConversationId = params['ConversationId']
+          @DurationMs = params['DurationMs']
+          @EndTime = params['EndTime']
+          @FireType = params['FireType']
+          @InstanceId = params['InstanceId']
+          @PushStatus = params['PushStatus']
+          @ResultCode = params['ResultCode']
+          @ResultSummary = params['ResultSummary']
+          @RunId = params['RunId']
+          @ScheduledFireTime = params['ScheduledFireTime']
+          @StartTime = params['StartTime']
+          @Status = params['Status']
+          @TriggerId = params['TriggerId']
+          @Unread = params['Unread']
+          @WorkflowRunId = params['WorkflowRunId']
+        end
+      end
+
+      # AppTriggerScheduleConfig
+      class AppTriggerScheduleConfig < TencentCloud::Common::AbstractModel
+        # @param Schedule: 
+        # @type Schedule: :class:`Tencentcloud::Adp.v20260520.models.TimerScheduleConfig`
+
+        attr_accessor :Schedule
+
+        def initialize(schedule=nil)
+          @Schedule = schedule
+        end
+
+        def deserialize(params)
+          unless params['Schedule'].nil?
+            @Schedule = TimerScheduleConfig.new
+            @Schedule.deserialize(params['Schedule'])
+          end
+        end
+      end
+
+      # AppTriggerScheduleStatus
+      class AppTriggerScheduleStatus < TencentCloud::Common::AbstractModel
+        # @param LastFireTime: 
+        # @type LastFireTime: String
+        # @param NextFireTime: 
+        # @type NextFireTime: String
+        # @param PolicySummary: 
+        # @type PolicySummary: String
+
+        attr_accessor :LastFireTime, :NextFireTime, :PolicySummary
+
+        def initialize(lastfiretime=nil, nextfiretime=nil, policysummary=nil)
+          @LastFireTime = lastfiretime
+          @NextFireTime = nextfiretime
+          @PolicySummary = policysummary
+        end
+
+        def deserialize(params)
+          @LastFireTime = params['LastFireTime']
+          @NextFireTime = params['NextFireTime']
+          @PolicySummary = params['PolicySummary']
+        end
+      end
+
+      # AppTriggerSummary
+      class AppTriggerSummary < TencentCloud::Common::AbstractModel
+        # @param AppId: 
+        # @type AppId: String
+        # @param ExecuteType: <table><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>APP_TRIGGER_EXECUTE_TYPE_UNSPECIFIED</td><td>0</td><td>未指定</td></tr><tr><td>APP_TRIGGER_EXECUTE_TYPE_PROMPT</td><td>1</td><td>指令执行</td></tr><tr><td>APP_TRIGGER_EXECUTE_TYPE_WORKFLOW</td><td>2</td><td>工作流执行</td></tr></table>
+        # @type ExecuteType: Integer
+        # @param FailedCount: 
+        # @type FailedCount: String
+        # @param LastSessionId: 
+        # @type LastSessionId: String
+        # @param Status: <table><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>APP_TRIGGER_STATUS_UNSPECIFIED</td><td>0</td><td>未指定</td></tr><tr><td>APP_TRIGGER_STATUS_ENABLED</td><td>1</td><td>启用</td></tr><tr><td>APP_TRIGGER_STATUS_PAUSED</td><td>2</td><td>暂停</td></tr><tr><td>APP_TRIGGER_STATUS_DELETED</td><td>3</td><td>已删除</td></tr></table>
+        # @type Status: Integer
+        # @param SuccessCount: 
+        # @type SuccessCount: String
+        # @param TriggerId: 
+        # @type TriggerId: String
+        # @param TriggerName: 
+        # @type TriggerName: String
+        # @param TriggerStatus: 
+        # @type TriggerStatus: :class:`Tencentcloud::Adp.v20260520.models.TriggerStatus`
+        # @param TriggerType: <table><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>APP_TRIGGER_TYPE_UNSPECIFIED</td><td>0</td><td>未指定</td></tr><tr><td>APP_TRIGGER_TYPE_SCHEDULED</td><td>1</td><td>定时触发</td></tr><tr><td>APP_TRIGGER_TYPE_WEBHOOK</td><td>2</td><td>Webhook 触发</td></tr></table>
+        # @type TriggerType: Integer
+        # @param UnreadRunLogCount: 
+        # @type UnreadRunLogCount: String
+
+        attr_accessor :AppId, :ExecuteType, :FailedCount, :LastSessionId, :Status, :SuccessCount, :TriggerId, :TriggerName, :TriggerStatus, :TriggerType, :UnreadRunLogCount
+
+        def initialize(appid=nil, executetype=nil, failedcount=nil, lastsessionid=nil, status=nil, successcount=nil, triggerid=nil, triggername=nil, triggerstatus=nil, triggertype=nil, unreadrunlogcount=nil)
+          @AppId = appid
+          @ExecuteType = executetype
+          @FailedCount = failedcount
+          @LastSessionId = lastsessionid
+          @Status = status
+          @SuccessCount = successcount
+          @TriggerId = triggerid
+          @TriggerName = triggername
+          @TriggerStatus = triggerstatus
+          @TriggerType = triggertype
+          @UnreadRunLogCount = unreadrunlogcount
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @ExecuteType = params['ExecuteType']
+          @FailedCount = params['FailedCount']
+          @LastSessionId = params['LastSessionId']
+          @Status = params['Status']
+          @SuccessCount = params['SuccessCount']
+          @TriggerId = params['TriggerId']
+          @TriggerName = params['TriggerName']
+          unless params['TriggerStatus'].nil?
+            @TriggerStatus = TriggerStatus.new
+            @TriggerStatus.deserialize(params['TriggerStatus'])
+          end
+          @TriggerType = params['TriggerType']
+          @UnreadRunLogCount = params['UnreadRunLogCount']
+        end
+      end
+
+      # AppTriggerWebhookConfig
+      class AppTriggerWebhookConfig < TencentCloud::Common::AbstractModel
+        # @param ParamSchemaConfig: 
+        # @type ParamSchemaConfig: :class:`Tencentcloud::Adp.v20260520.models.AppTriggerWebhookParamSchemaConfig`
+        # @param WebhookKey: 
+        # @type WebhookKey: String
+        # @param WebhookToken: 
+        # @type WebhookToken: String
+        # @param WebhookUrl: 
+        # @type WebhookUrl: String
+
+        attr_accessor :ParamSchemaConfig, :WebhookKey, :WebhookToken, :WebhookUrl
+
+        def initialize(paramschemaconfig=nil, webhookkey=nil, webhooktoken=nil, webhookurl=nil)
+          @ParamSchemaConfig = paramschemaconfig
+          @WebhookKey = webhookkey
+          @WebhookToken = webhooktoken
+          @WebhookUrl = webhookurl
+        end
+
+        def deserialize(params)
+          unless params['ParamSchemaConfig'].nil?
+            @ParamSchemaConfig = AppTriggerWebhookParamSchemaConfig.new
+            @ParamSchemaConfig.deserialize(params['ParamSchemaConfig'])
+          end
+          @WebhookKey = params['WebhookKey']
+          @WebhookToken = params['WebhookToken']
+          @WebhookUrl = params['WebhookUrl']
+        end
+      end
+
+      # AppTriggerWebhookParamSchemaConfig
+      class AppTriggerWebhookParamSchemaConfig < TencentCloud::Common::AbstractModel
+        # @param SchemaList: 
+        # @type SchemaList: Array
+
+        attr_accessor :SchemaList
+
+        def initialize(schemalist=nil)
+          @SchemaList = schemalist
+        end
+
+        def deserialize(params)
+          unless params['SchemaList'].nil?
+            @SchemaList = []
+            params['SchemaList'].each do |i|
+              apptriggerparamschema_tmp = AppTriggerParamSchema.new
+              apptriggerparamschema_tmp.deserialize(i)
+              @SchemaList << apptriggerparamschema_tmp
+            end
+          end
+        end
+      end
+
+      # AppTriggerWebhookStatus
+      class AppTriggerWebhookStatus < TencentCloud::Common::AbstractModel
+        # @param WebhookUrl: 
+        # @type WebhookUrl: String
+
+        attr_accessor :WebhookUrl
+
+        def initialize(webhookurl=nil)
+          @WebhookUrl = webhookurl
+        end
+
+        def deserialize(params)
+          @WebhookUrl = params['WebhookUrl']
+        end
+      end
+
+      # AppTriggerWorkflowExecuteConfig
+      class AppTriggerWorkflowExecuteConfig < TencentCloud::Common::AbstractModel
+        # @param ParamBindingsApi: <p>工作流API参数绑定</p>
+        # @type ParamBindingsApi: :class:`Tencentcloud::Adp.v20260520.models.AppTriggerParamBindingConfig`
+        # @param ParamBindingsWorkflow: <p>工作流参数绑定</p>
+        # @type ParamBindingsWorkflow: :class:`Tencentcloud::Adp.v20260520.models.AppTriggerParamBindingConfig`
+        # @param WorkflowId: <p>工作流ID</p>
+        # @type WorkflowId: String
+        # @param WorkflowName: <p>工作流名字</p>
+        # @type WorkflowName: String
+
+        attr_accessor :ParamBindingsApi, :ParamBindingsWorkflow, :WorkflowId, :WorkflowName
+
+        def initialize(parambindingsapi=nil, parambindingsworkflow=nil, workflowid=nil, workflowname=nil)
+          @ParamBindingsApi = parambindingsapi
+          @ParamBindingsWorkflow = parambindingsworkflow
+          @WorkflowId = workflowid
+          @WorkflowName = workflowname
+        end
+
+        def deserialize(params)
+          unless params['ParamBindingsApi'].nil?
+            @ParamBindingsApi = AppTriggerParamBindingConfig.new
+            @ParamBindingsApi.deserialize(params['ParamBindingsApi'])
+          end
+          unless params['ParamBindingsWorkflow'].nil?
+            @ParamBindingsWorkflow = AppTriggerParamBindingConfig.new
+            @ParamBindingsWorkflow.deserialize(params['ParamBindingsWorkflow'])
+          end
+          @WorkflowId = params['WorkflowId']
+          @WorkflowName = params['WorkflowName']
+        end
+      end
+
       # 联网搜索配置(国际版使用)
       class AppWebSearchConfig < TencentCloud::Common::AbstractModel
         # @param ApiKey: API密钥
@@ -2988,6 +3538,75 @@ module TencentCloud
         end
       end
 
+      # CreateAppTrigger请求参数结构体
+      class CreateAppTriggerRequest < TencentCloud::Common::AbstractModel
+        # @param AppId: <p>应用ID</p>
+        # @type AppId: String
+        # @param ExecuteConfig: <p>应用触发器执行配置</p>
+        # @type ExecuteConfig: :class:`Tencentcloud::Adp.v20260520.models.ExecuteConfig`
+        # @param ExecuteType: <table><tbody><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>APP_TRIGGER_EXECUTE_TYPE_UNSPECIFIED</td><td>0</td><td>未指定</td></tr><tr><td>APP_TRIGGER_EXECUTE_TYPE_PROMPT</td><td>1</td><td>指令执行</td></tr><tr><td>APP_TRIGGER_EXECUTE_TYPE_WORKFLOW</td><td>2</td><td>工作流执行</td></tr></tbody></table>
+        # @type ExecuteType: Integer
+        # @param PushConfig: <p>第三方推送配置</p>
+        # @type PushConfig: :class:`Tencentcloud::Adp.v20260520.models.TimerPushConfig`
+        # @param TriggerConfig: <p>触发器配置</p>
+        # @type TriggerConfig: :class:`Tencentcloud::Adp.v20260520.models.TriggerConfig`
+        # @param TriggerName: <p>触发器名字</p>
+        # @type TriggerName: String
+        # @param TriggerType: <table><tbody><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>APP_TRIGGER_TYPE_UNSPECIFIED</td><td>0</td><td>未指定</td></tr><tr><td>APP_TRIGGER_TYPE_SCHEDULED</td><td>1</td><td>定时触发</td></tr><tr><td>APP_TRIGGER_TYPE_WEBHOOK</td><td>2</td><td>Webhook 触发</td></tr></tbody></table>
+        # @type TriggerType: Integer
+
+        attr_accessor :AppId, :ExecuteConfig, :ExecuteType, :PushConfig, :TriggerConfig, :TriggerName, :TriggerType
+
+        def initialize(appid=nil, executeconfig=nil, executetype=nil, pushconfig=nil, triggerconfig=nil, triggername=nil, triggertype=nil)
+          @AppId = appid
+          @ExecuteConfig = executeconfig
+          @ExecuteType = executetype
+          @PushConfig = pushconfig
+          @TriggerConfig = triggerconfig
+          @TriggerName = triggername
+          @TriggerType = triggertype
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          unless params['ExecuteConfig'].nil?
+            @ExecuteConfig = ExecuteConfig.new
+            @ExecuteConfig.deserialize(params['ExecuteConfig'])
+          end
+          @ExecuteType = params['ExecuteType']
+          unless params['PushConfig'].nil?
+            @PushConfig = TimerPushConfig.new
+            @PushConfig.deserialize(params['PushConfig'])
+          end
+          unless params['TriggerConfig'].nil?
+            @TriggerConfig = TriggerConfig.new
+            @TriggerConfig.deserialize(params['TriggerConfig'])
+          end
+          @TriggerName = params['TriggerName']
+          @TriggerType = params['TriggerType']
+        end
+      end
+
+      # CreateAppTrigger返回参数结构体
+      class CreateAppTriggerResponse < TencentCloud::Common::AbstractModel
+        # @param TriggerId: <p>应用触发器ID</p>
+        # @type TriggerId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TriggerId, :RequestId
+
+        def initialize(triggerid=nil, requestid=nil)
+          @TriggerId = triggerid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TriggerId = params['TriggerId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateConversation请求参数结构体
       class CreateConversationRequest < TencentCloud::Common::AbstractModel
         # @param Type: <p>会话类型 枚举值: 0-CONVERSATION_TYPE_UNSPECIFIED(未指定；列表查询时表示全部), 1-CONVERSATION_TYPE_VISITOR(访客端体验), 2-CONVERSATION_TYPE_EVALUATION(评测), 5-CONVERSATION_TYPE_API(API 接入), 10-CONVERSATION_TYPE_WORKFLOW(工作流调试), 20-CONVERSATION_TYPE_SHARE(分享链接)</p>
@@ -3351,6 +3970,101 @@ module TencentCloud
         end
       end
 
+      # CreateTimerTask请求参数结构体
+      class CreateTimerTaskRequest < TencentCloud::Common::AbstractModel
+        # @param CreateSource: 枚举值:
+        # | uint | 描述 |
+        # | --- | --- |
+        # | 0 |  |
+        # | 1 | 页面手动创建 |
+        # | 2 | 自然语言对话创建 |
+        # @type CreateSource: Integer
+        # @param InputContextSnapshot: 输入上下文
+        # @type InputContextSnapshot: String
+        # @param ModelId: 模型
+        # @type ModelId: String
+        # @param Prompt: 提示词
+        # @type Prompt: String
+        # @param PushConfig: 推送配置
+        # @type PushConfig: :class:`Tencentcloud::Adp.v20260520.models.TimerPushConfig`
+        # @param Schedule: 定时配置
+        # @type Schedule: :class:`Tencentcloud::Adp.v20260520.models.TimerScheduleConfig`
+        # @param SkillSnapshot: skill
+        # @type SkillSnapshot: String
+        # @param SpaceId: 空间
+        # @type SpaceId: String
+        # @param TaskName: 任务名称
+        # @type TaskName: String
+        # @param ToolSnapshot: 工具
+        # @type ToolSnapshot: String
+        # @param WorkspaceId: 工作空间
+        # @type WorkspaceId: String
+        # @param LoginUin: 主用户
+        # @type LoginUin: String
+        # @param LoginSubAccountUin: 子用户
+        # @type LoginSubAccountUin: String
+
+        attr_accessor :CreateSource, :InputContextSnapshot, :ModelId, :Prompt, :PushConfig, :Schedule, :SkillSnapshot, :SpaceId, :TaskName, :ToolSnapshot, :WorkspaceId, :LoginUin, :LoginSubAccountUin
+
+        def initialize(createsource=nil, inputcontextsnapshot=nil, modelid=nil, prompt=nil, pushconfig=nil, schedule=nil, skillsnapshot=nil, spaceid=nil, taskname=nil, toolsnapshot=nil, workspaceid=nil, loginuin=nil, loginsubaccountuin=nil)
+          @CreateSource = createsource
+          @InputContextSnapshot = inputcontextsnapshot
+          @ModelId = modelid
+          @Prompt = prompt
+          @PushConfig = pushconfig
+          @Schedule = schedule
+          @SkillSnapshot = skillsnapshot
+          @SpaceId = spaceid
+          @TaskName = taskname
+          @ToolSnapshot = toolsnapshot
+          @WorkspaceId = workspaceid
+          @LoginUin = loginuin
+          @LoginSubAccountUin = loginsubaccountuin
+        end
+
+        def deserialize(params)
+          @CreateSource = params['CreateSource']
+          @InputContextSnapshot = params['InputContextSnapshot']
+          @ModelId = params['ModelId']
+          @Prompt = params['Prompt']
+          unless params['PushConfig'].nil?
+            @PushConfig = TimerPushConfig.new
+            @PushConfig.deserialize(params['PushConfig'])
+          end
+          unless params['Schedule'].nil?
+            @Schedule = TimerScheduleConfig.new
+            @Schedule.deserialize(params['Schedule'])
+          end
+          @SkillSnapshot = params['SkillSnapshot']
+          @SpaceId = params['SpaceId']
+          @TaskName = params['TaskName']
+          @ToolSnapshot = params['ToolSnapshot']
+          @WorkspaceId = params['WorkspaceId']
+          @LoginUin = params['LoginUin']
+          @LoginSubAccountUin = params['LoginSubAccountUin']
+        end
+      end
+
+      # CreateTimerTask返回参数结构体
+      class CreateTimerTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TimerId: 任务ID
+        # @type TimerId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TimerId, :RequestId
+
+        def initialize(timerid=nil, requestid=nil)
+          @TimerId = timerid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TimerId = params['TimerId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateVariable请求参数结构体
       class CreateVariableRequest < TencentCloud::Common::AbstractModel
         # @param AppId: app_id
@@ -3527,6 +4241,38 @@ module TencentCloud
         end
       end
 
+      # CronSchedule
+      class CronSchedule < TencentCloud::Common::AbstractModel
+        # @param Expression: cron表达式
+        # @type Expression: String
+
+        attr_accessor :Expression
+
+        def initialize(expression=nil)
+          @Expression = expression
+        end
+
+        def deserialize(params)
+          @Expression = params['Expression']
+        end
+      end
+
+      # DailySchedule
+      class DailySchedule < TencentCloud::Common::AbstractModel
+        # @param TimeOfDay: 时间
+        # @type TimeOfDay: String
+
+        attr_accessor :TimeOfDay
+
+        def initialize(timeofday=nil)
+          @TimeOfDay = timeofday
+        end
+
+        def deserialize(params)
+          @TimeOfDay = params['TimeOfDay']
+        end
+      end
+
       # DeleteAgent请求参数结构体
       class DeleteAgentRequest < TencentCloud::Common::AbstractModel
         # @param AppId: <p>应用Id</p>
@@ -3589,6 +4335,42 @@ module TencentCloud
 
       # DeleteApp返回参数结构体
       class DeleteAppResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteAppTrigger请求参数结构体
+      class DeleteAppTriggerRequest < TencentCloud::Common::AbstractModel
+        # @param AppId: <p>应用ID</p>
+        # @type AppId: String
+        # @param TriggerId: <p>触发器ID</p>
+        # @type TriggerId: String
+
+        attr_accessor :AppId, :TriggerId
+
+        def initialize(appid=nil, triggerid=nil)
+          @AppId = appid
+          @TriggerId = triggerid
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @TriggerId = params['TriggerId']
+        end
+      end
+
+      # DeleteAppTrigger返回参数结构体
+      class DeleteAppTriggerResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -3797,6 +4579,50 @@ module TencentCloud
 
       # DeleteSpace返回参数结构体
       class DeleteSpaceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteTimerTask请求参数结构体
+      class DeleteTimerTaskRequest < TencentCloud::Common::AbstractModel
+        # @param SpaceId: 空间ID
+        # @type SpaceId: String
+        # @param TimerId: 任务ID
+        # @type TimerId: String
+        # @param LoginUin: 主用户
+        # @type LoginUin: String
+        # @param LoginSubAccountUin: 子用户
+        # @type LoginSubAccountUin: String
+
+        attr_accessor :SpaceId, :TimerId, :LoginUin, :LoginSubAccountUin
+
+        def initialize(spaceid=nil, timerid=nil, loginuin=nil, loginsubaccountuin=nil)
+          @SpaceId = spaceid
+          @TimerId = timerid
+          @LoginUin = loginuin
+          @LoginSubAccountUin = loginsubaccountuin
+        end
+
+        def deserialize(params)
+          @SpaceId = params['SpaceId']
+          @TimerId = params['TimerId']
+          @LoginUin = params['LoginUin']
+          @LoginSubAccountUin = params['LoginSubAccountUin']
+        end
+      end
+
+      # DeleteTimerTask返回参数结构体
+      class DeleteTimerTaskResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -4216,6 +5042,232 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAppTriggerInstance请求参数结构体
+      class DescribeAppTriggerInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param AppId: <p>应用ID</p>
+        # @type AppId: String
+        # @param InstanceId: <p>触发器运行实例ID</p>
+        # @type InstanceId: String
+
+        attr_accessor :AppId, :InstanceId
+
+        def initialize(appid=nil, instanceid=nil)
+          @AppId = appid
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeAppTriggerInstance返回参数结构体
+      class DescribeAppTriggerInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param Instance: <p>应用触发器实例</p>
+        # @type Instance: :class:`Tencentcloud::Adp.v20260520.models.AppTriggerInstance`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Instance, :RequestId
+
+        def initialize(instance=nil, requestid=nil)
+          @Instance = instance
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Instance'].nil?
+            @Instance = AppTriggerInstance.new
+            @Instance.deserialize(params['Instance'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAppTrigger请求参数结构体
+      class DescribeAppTriggerRequest < TencentCloud::Common::AbstractModel
+        # @param AppId: <p>应用ID</p>
+        # @type AppId: String
+        # @param TriggerId: <p>应用触发器ID</p>
+        # @type TriggerId: String
+
+        attr_accessor :AppId, :TriggerId
+
+        def initialize(appid=nil, triggerid=nil)
+          @AppId = appid
+          @TriggerId = triggerid
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @TriggerId = params['TriggerId']
+        end
+      end
+
+      # DescribeAppTrigger返回参数结构体
+      class DescribeAppTriggerResponse < TencentCloud::Common::AbstractModel
+        # @param Trigger: <p>应用触发器信息</p>
+        # @type Trigger: :class:`Tencentcloud::Adp.v20260520.models.AppTrigger`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Trigger, :RequestId
+
+        def initialize(trigger=nil, requestid=nil)
+          @Trigger = trigger
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Trigger'].nil?
+            @Trigger = AppTrigger.new
+            @Trigger.deserialize(params['Trigger'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAppTriggerRunLogList请求参数结构体
+      class DescribeAppTriggerRunLogListRequest < TencentCloud::Common::AbstractModel
+        # @param AppId: <p>应用ID</p>
+        # @type AppId: String
+        # @param FilterList: <p>过滤参数</p>
+        # @type FilterList: Array
+        # @param PageNumber: <p>页码</p><p>取值范围：[1, 1000000]</p>
+        # @type PageNumber: Integer
+        # @param PageSize: <p>每页数据量</p><p>取值范围：[1, 100]</p>
+        # @type PageSize: Integer
+        # @param TriggerId: <p>应用触发器ID</p>
+        # @type TriggerId: String
+
+        attr_accessor :AppId, :FilterList, :PageNumber, :PageSize, :TriggerId
+
+        def initialize(appid=nil, filterlist=nil, pagenumber=nil, pagesize=nil, triggerid=nil)
+          @AppId = appid
+          @FilterList = filterlist
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @TriggerId = triggerid
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          unless params['FilterList'].nil?
+            @FilterList = []
+            params['FilterList'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @FilterList << filter_tmp
+            end
+          end
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @TriggerId = params['TriggerId']
+        end
+      end
+
+      # DescribeAppTriggerRunLogList返回参数结构体
+      class DescribeAppTriggerRunLogListResponse < TencentCloud::Common::AbstractModel
+        # @param RunLogList: <p>日志列表</p>
+        # @type RunLogList: Array
+        # @param TotalCount: <p>日志列表数量</p>
+        # @type TotalCount: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RunLogList, :TotalCount, :RequestId
+
+        def initialize(runloglist=nil, totalcount=nil, requestid=nil)
+          @RunLogList = runloglist
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['RunLogList'].nil?
+            @RunLogList = []
+            params['RunLogList'].each do |i|
+              apptriggerrunlog_tmp = AppTriggerRunLog.new
+              apptriggerrunlog_tmp.deserialize(i)
+              @RunLogList << apptriggerrunlog_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAppTriggerSummaryList请求参数结构体
+      class DescribeAppTriggerSummaryListRequest < TencentCloud::Common::AbstractModel
+        # @param AppId: <p>应用ID</p>
+        # @type AppId: String
+        # @param FilterList: <p>参数过滤列表</p>
+        # @type FilterList: Array
+        # @param PageNumber: <p>页码</p><p>取值范围：[1, 1000000]</p>
+        # @type PageNumber: Integer
+        # @param PageSize: <p>每页大小</p><p>取值范围：[1, 100]</p>
+        # @type PageSize: Integer
+        # @param Query: <p>模糊查询字符串</p>
+        # @type Query: String
+
+        attr_accessor :AppId, :FilterList, :PageNumber, :PageSize, :Query
+
+        def initialize(appid=nil, filterlist=nil, pagenumber=nil, pagesize=nil, query=nil)
+          @AppId = appid
+          @FilterList = filterlist
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @Query = query
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          unless params['FilterList'].nil?
+            @FilterList = []
+            params['FilterList'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @FilterList << filter_tmp
+            end
+          end
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @Query = params['Query']
+        end
+      end
+
+      # DescribeAppTriggerSummaryList返回参数结构体
+      class DescribeAppTriggerSummaryListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>应用触发器数量</p>
+        # @type TotalCount: String
+        # @param TriggerList: <p>应用触发器列表</p>
+        # @type TriggerList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :TriggerList, :RequestId
+
+        def initialize(totalcount=nil, triggerlist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @TriggerList = triggerlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['TriggerList'].nil?
+            @TriggerList = []
+            params['TriggerList'].each do |i|
+              apptriggersummary_tmp = AppTriggerSummary.new
+              apptriggersummary_tmp.deserialize(i)
+              @TriggerList << apptriggersummary_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -5313,6 +6365,198 @@ module TencentCloud
         end
       end
 
+      # DescribeTimerTask请求参数结构体
+      class DescribeTimerTaskRequest < TencentCloud::Common::AbstractModel
+        # @param SpaceId: 空间id
+        # @type SpaceId: String
+        # @param TimerId: 任务id
+        # @type TimerId: String
+        # @param LoginUin: <p>主用户Uin</p>
+        # @type LoginUin: String
+        # @param LoginSubAccountUin: <p>子用户Uin</p>
+        # @type LoginSubAccountUin: String
+
+        attr_accessor :SpaceId, :TimerId, :LoginUin, :LoginSubAccountUin
+
+        def initialize(spaceid=nil, timerid=nil, loginuin=nil, loginsubaccountuin=nil)
+          @SpaceId = spaceid
+          @TimerId = timerid
+          @LoginUin = loginuin
+          @LoginSubAccountUin = loginsubaccountuin
+        end
+
+        def deserialize(params)
+          @SpaceId = params['SpaceId']
+          @TimerId = params['TimerId']
+          @LoginUin = params['LoginUin']
+          @LoginSubAccountUin = params['LoginSubAccountUin']
+        end
+      end
+
+      # DescribeTimerTask返回参数结构体
+      class DescribeTimerTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Task: 任务
+        # @type Task: :class:`Tencentcloud::Adp.v20260520.models.TimerTask`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Task, :RequestId
+
+        def initialize(task=nil, requestid=nil)
+          @Task = task
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Task'].nil?
+            @Task = TimerTask.new
+            @Task.deserialize(params['Task'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeTimerTaskRunLogList请求参数结构体
+      class DescribeTimerTaskRunLogListRequest < TencentCloud::Common::AbstractModel
+        # @param SpaceId: 工作空间ID
+        # @type SpaceId: String
+        # @param TimerId: 定时任务ID，必须按任务维度查询
+        # @type TimerId: String
+        # @param FilterList: 过滤条件，支持: Status(执行状态，值为枚举int); Unread(仅未读，值为"true"/"false")
+        # @type FilterList: Array
+        # @param LoginSubAccountUin: <p>子用户Uin</p>
+        # @type LoginSubAccountUin: String
+        # @param LoginUin: <p>主用户Uin</p>
+        # @type LoginUin: String
+        # @param PageNumber: 页码，从0开始
+        # @type PageNumber: Integer
+        # @param PageSize: 每页数目，最大100
+        # @type PageSize: Integer
+
+        attr_accessor :SpaceId, :TimerId, :FilterList, :LoginSubAccountUin, :LoginUin, :PageNumber, :PageSize
+
+        def initialize(spaceid=nil, timerid=nil, filterlist=nil, loginsubaccountuin=nil, loginuin=nil, pagenumber=nil, pagesize=nil)
+          @SpaceId = spaceid
+          @TimerId = timerid
+          @FilterList = filterlist
+          @LoginSubAccountUin = loginsubaccountuin
+          @LoginUin = loginuin
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          @SpaceId = params['SpaceId']
+          @TimerId = params['TimerId']
+          unless params['FilterList'].nil?
+            @FilterList = []
+            params['FilterList'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @FilterList << filter_tmp
+            end
+          end
+          @LoginSubAccountUin = params['LoginSubAccountUin']
+          @LoginUin = params['LoginUin']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+        end
+      end
+
+      # DescribeTimerTaskRunLogList返回参数结构体
+      class DescribeTimerTaskRunLogListResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeTimerTaskSummaryList请求参数结构体
+      class DescribeTimerTaskSummaryListRequest < TencentCloud::Common::AbstractModel
+        # @param FilterList: 查询条件
+        # @type FilterList: Array
+        # @param PageNumber: 页码
+        # @type PageNumber: Integer
+        # @param PageSize: 页大小
+        # @type PageSize: Integer
+        # @param Query: 查询关键字
+        # @type Query: String
+        # @param SpaceId: 空间ID
+        # @type SpaceId: String
+        # @param LoginSubAccountUin: <p>子用户Uin</p>
+        # @type LoginSubAccountUin: String
+        # @param LoginUin: <p>主用户Uin</p>
+        # @type LoginUin: String
+
+        attr_accessor :FilterList, :PageNumber, :PageSize, :Query, :SpaceId, :LoginSubAccountUin, :LoginUin
+
+        def initialize(filterlist=nil, pagenumber=nil, pagesize=nil, query=nil, spaceid=nil, loginsubaccountuin=nil, loginuin=nil)
+          @FilterList = filterlist
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @Query = query
+          @SpaceId = spaceid
+          @LoginSubAccountUin = loginsubaccountuin
+          @LoginUin = loginuin
+        end
+
+        def deserialize(params)
+          unless params['FilterList'].nil?
+            @FilterList = []
+            params['FilterList'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @FilterList << filter_tmp
+            end
+          end
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @Query = params['Query']
+          @SpaceId = params['SpaceId']
+          @LoginSubAccountUin = params['LoginSubAccountUin']
+          @LoginUin = params['LoginUin']
+        end
+      end
+
+      # DescribeTimerTaskSummaryList返回参数结构体
+      class DescribeTimerTaskSummaryListResponse < TencentCloud::Common::AbstractModel
+        # @param TaskList: 任务列表
+        # @type TaskList: Array
+        # @param TotalCount: 总数量
+        # @type TotalCount: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskList, :TotalCount, :RequestId
+
+        def initialize(tasklist=nil, totalcount=nil, requestid=nil)
+          @TaskList = tasklist
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TaskList'].nil?
+            @TaskList = []
+            params['TaskList'].each do |i|
+              timertasksummary_tmp = TimerTaskSummary.new
+              timertasksummary_tmp.deserialize(i)
+              @TaskList << timertasksummary_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeVariableList请求参数结构体
       class DescribeVariableListRequest < TencentCloud::Common::AbstractModel
         # @param AppId: 应用ID
@@ -5495,6 +6739,32 @@ module TencentCloud
           @InputPuPrice = params['InputPuPrice']
           @OutputCashPrice = params['OutputCashPrice']
           @OutputPuPrice = params['OutputPuPrice']
+        end
+      end
+
+      # ExecuteConfig
+      class ExecuteConfig < TencentCloud::Common::AbstractModel
+        # @param PromptConfig: <p>Prompt配置</p>
+        # @type PromptConfig: :class:`Tencentcloud::Adp.v20260520.models.AppTriggerPromptExecuteConfig`
+        # @param WorkflowConfig: <p>工作流配置</p>
+        # @type WorkflowConfig: :class:`Tencentcloud::Adp.v20260520.models.AppTriggerWorkflowExecuteConfig`
+
+        attr_accessor :PromptConfig, :WorkflowConfig
+
+        def initialize(promptconfig=nil, workflowconfig=nil)
+          @PromptConfig = promptconfig
+          @WorkflowConfig = workflowconfig
+        end
+
+        def deserialize(params)
+          unless params['PromptConfig'].nil?
+            @PromptConfig = AppTriggerPromptExecuteConfig.new
+            @PromptConfig.deserialize(params['PromptConfig'])
+          end
+          unless params['WorkflowConfig'].nil?
+            @WorkflowConfig = AppTriggerWorkflowExecuteConfig.new
+            @WorkflowConfig.deserialize(params['WorkflowConfig'])
+          end
         end
       end
 
@@ -5724,6 +6994,35 @@ module TencentCloud
         end
       end
 
+      # IntervalSchedule
+      class IntervalSchedule < TencentCloud::Common::AbstractModel
+        # @param StartAt: 开始时间
+        # @type StartAt: String
+        # @param Unit: 枚举值:
+        # | 枚举值 | uint |
+        # | --- | --- |
+        # | INTERVAL_UNIT_UNSPECIFIED | 0 |
+        # | INTERVAL_UNIT_HOUR | 1 |
+        # | INTERVAL_UNIT_DAY | 2 |
+        # @type Unit: Integer
+        # @param Value: 值
+        # @type Value: Integer
+
+        attr_accessor :StartAt, :Unit, :Value
+
+        def initialize(startat=nil, unit=nil, value=nil)
+          @StartAt = startat
+          @Unit = unit
+          @Value = value
+        end
+
+        def deserialize(params)
+          @StartAt = params['StartAt']
+          @Unit = params['Unit']
+          @Value = params['Value']
+        end
+      end
+
       # MCP插件配置信息
       class MCPPluginConfig < TencentCloud::Common::AbstractModel
         # @param ExternalMCPServerUrl: <p>MCP插件外部访问地址</p>
@@ -5816,6 +7115,118 @@ module TencentCloud
               @Outputs << responseparam_tmp
             end
           end
+        end
+      end
+
+      # ManualOnlySchedule
+      class ManualOnlySchedule < TencentCloud::Common::AbstractModel
+        # @param Enabled: 启用
+        # @type Enabled: Boolean
+
+        attr_accessor :Enabled
+
+        def initialize(enabled=nil)
+          @Enabled = enabled
+        end
+
+        def deserialize(params)
+          @Enabled = params['Enabled']
+        end
+      end
+
+      # MarkAppTriggerRunLogRead请求参数结构体
+      class MarkAppTriggerRunLogReadRequest < TencentCloud::Common::AbstractModel
+        # @param AppId: <p>应用ID</p>
+        # @type AppId: String
+        # @param InstanceIdList: <p>应用触发器运行实例ID列表</p>
+        # @type InstanceIdList: Array
+        # @param TriggerId: <p>应用触发器ID</p>
+        # @type TriggerId: String
+
+        attr_accessor :AppId, :InstanceIdList, :TriggerId
+
+        def initialize(appid=nil, instanceidlist=nil, triggerid=nil)
+          @AppId = appid
+          @InstanceIdList = instanceidlist
+          @TriggerId = triggerid
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @InstanceIdList = params['InstanceIdList']
+          @TriggerId = params['TriggerId']
+        end
+      end
+
+      # MarkAppTriggerRunLogRead返回参数结构体
+      class MarkAppTriggerRunLogReadResponse < TencentCloud::Common::AbstractModel
+        # @param MarkedCount: <p>成功标记个数</p>
+        # @type MarkedCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MarkedCount, :RequestId
+
+        def initialize(markedcount=nil, requestid=nil)
+          @MarkedCount = markedcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @MarkedCount = params['MarkedCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # MarkTimerTaskRunLogRead请求参数结构体
+      class MarkTimerTaskRunLogReadRequest < TencentCloud::Common::AbstractModel
+        # @param FireInstanceIdList: 实例列表
+        # @type FireInstanceIdList: Array
+        # @param SpaceId: 空间ID
+        # @type SpaceId: String
+        # @param TimerId: 任务ID
+        # @type TimerId: String
+        # @param LoginUin: 主用户
+        # @type LoginUin: String
+        # @param LoginSubAccountUin: 子用户
+        # @type LoginSubAccountUin: String
+
+        attr_accessor :FireInstanceIdList, :SpaceId, :TimerId, :LoginUin, :LoginSubAccountUin
+
+        def initialize(fireinstanceidlist=nil, spaceid=nil, timerid=nil, loginuin=nil, loginsubaccountuin=nil)
+          @FireInstanceIdList = fireinstanceidlist
+          @SpaceId = spaceid
+          @TimerId = timerid
+          @LoginUin = loginuin
+          @LoginSubAccountUin = loginsubaccountuin
+        end
+
+        def deserialize(params)
+          @FireInstanceIdList = params['FireInstanceIdList']
+          @SpaceId = params['SpaceId']
+          @TimerId = params['TimerId']
+          @LoginUin = params['LoginUin']
+          @LoginSubAccountUin = params['LoginSubAccountUin']
+        end
+      end
+
+      # MarkTimerTaskRunLogRead返回参数结构体
+      class MarkTimerTaskRunLogReadResponse < TencentCloud::Common::AbstractModel
+        # @param MarkedCount: 标记为已读的数量
+        # @type MarkedCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MarkedCount, :RequestId
+
+        def initialize(markedcount=nil, requestid=nil)
+          @MarkedCount = markedcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @MarkedCount = params['MarkedCount']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -6334,6 +7745,56 @@ module TencentCloud
         end
       end
 
+      # ModifyAppTrigger请求参数结构体
+      class ModifyAppTriggerRequest < TencentCloud::Common::AbstractModel
+        # @param AppId: <p>应用ID</p>
+        # @type AppId: String
+        # @param Trigger: <p>触发器信息</p>
+        # @type Trigger: :class:`Tencentcloud::Adp.v20260520.models.AppTrigger`
+        # @param TriggerId: <p>触发器唯一ID</p>
+        # @type TriggerId: String
+        # @param UpdateMask: <p>修改字段</p>
+        # @type UpdateMask: :class:`Tencentcloud::Adp.v20260520.models.FieldMask`
+
+        attr_accessor :AppId, :Trigger, :TriggerId, :UpdateMask
+
+        def initialize(appid=nil, trigger=nil, triggerid=nil, updatemask=nil)
+          @AppId = appid
+          @Trigger = trigger
+          @TriggerId = triggerid
+          @UpdateMask = updatemask
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          unless params['Trigger'].nil?
+            @Trigger = AppTrigger.new
+            @Trigger.deserialize(params['Trigger'])
+          end
+          @TriggerId = params['TriggerId']
+          unless params['UpdateMask'].nil?
+            @UpdateMask = FieldMask.new
+            @UpdateMask.deserialize(params['UpdateMask'])
+          end
+        end
+      end
+
+      # ModifyAppTrigger返回参数结构体
+      class ModifyAppTriggerResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyConversation请求参数结构体
       class ModifyConversationRequest < TencentCloud::Common::AbstractModel
         # @param Type: <p>会话类型 枚举值: 0-CONVERSATION_TYPE_UNSPECIFIED(未指定；列表查询时表示全部), 1-CONVERSATION_TYPE_VISITOR(访客端体验), 2-CONVERSATION_TYPE_EVALUATION(评测), 5-CONVERSATION_TYPE_API(API 接入), 10-CONVERSATION_TYPE_WORKFLOW(工作流调试), 20-CONVERSATION_TYPE_SHARE(分享链接)</p>
@@ -6581,6 +8042,68 @@ module TencentCloud
         end
       end
 
+      # ModifyTimerTask请求参数结构体
+      class ModifyTimerTaskRequest < TencentCloud::Common::AbstractModel
+        # @param SpaceId: 空间ID
+        # @type SpaceId: String
+        # @param TimerId: 任务ID
+        # @type TimerId: String
+        # @param TimerTask: 任务
+        # @type TimerTask: :class:`Tencentcloud::Adp.v20260520.models.TimerTask`
+        # @param UpdateMask: 修改的内容
+        # @type UpdateMask: :class:`Tencentcloud::Adp.v20260520.models.FieldMask`
+        # @param LoginUin: <p>主用户Uin</p>
+        # @type LoginUin: String
+        # @param LoginSubAccountUin: <p>子用户Uin</p>
+        # @type LoginSubAccountUin: String
+
+        attr_accessor :SpaceId, :TimerId, :TimerTask, :UpdateMask, :LoginUin, :LoginSubAccountUin
+
+        def initialize(spaceid=nil, timerid=nil, timertask=nil, updatemask=nil, loginuin=nil, loginsubaccountuin=nil)
+          @SpaceId = spaceid
+          @TimerId = timerid
+          @TimerTask = timertask
+          @UpdateMask = updatemask
+          @LoginUin = loginuin
+          @LoginSubAccountUin = loginsubaccountuin
+        end
+
+        def deserialize(params)
+          @SpaceId = params['SpaceId']
+          @TimerId = params['TimerId']
+          unless params['TimerTask'].nil?
+            @TimerTask = TimerTask.new
+            @TimerTask.deserialize(params['TimerTask'])
+          end
+          unless params['UpdateMask'].nil?
+            @UpdateMask = FieldMask.new
+            @UpdateMask.deserialize(params['UpdateMask'])
+          end
+          @LoginUin = params['LoginUin']
+          @LoginSubAccountUin = params['LoginSubAccountUin']
+        end
+      end
+
+      # ModifyTimerTask返回参数结构体
+      class ModifyTimerTaskResponse < TencentCloud::Common::AbstractModel
+        # @param NextFireTime: 下次触发时间
+        # @type NextFireTime: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NextFireTime, :RequestId
+
+        def initialize(nextfiretime=nil, requestid=nil)
+          @NextFireTime = nextfiretime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @NextFireTime = params['NextFireTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyVariable请求参数结构体
       class ModifyVariableRequest < TencentCloud::Common::AbstractModel
         # @param AppId: app_id
@@ -6709,6 +8232,102 @@ module TencentCloud
           @ClientSecret = params['ClientSecret']
           @ScopeList = params['ScopeList']
           @TokenUrl = params['TokenUrl']
+        end
+      end
+
+      # OnceSchedule
+      class OnceSchedule < TencentCloud::Common::AbstractModel
+        # @param FireTime: 触发时间
+        # @type FireTime: String
+
+        attr_accessor :FireTime
+
+        def initialize(firetime=nil)
+          @FireTime = firetime
+        end
+
+        def deserialize(params)
+          @FireTime = params['FireTime']
+        end
+      end
+
+      # PauseAppTrigger请求参数结构体
+      class PauseAppTriggerRequest < TencentCloud::Common::AbstractModel
+        # @param AppId: <p>应用ID</p>
+        # @type AppId: String
+        # @param TriggerId: <p>应用触发器ID</p>
+        # @type TriggerId: String
+
+        attr_accessor :AppId, :TriggerId
+
+        def initialize(appid=nil, triggerid=nil)
+          @AppId = appid
+          @TriggerId = triggerid
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @TriggerId = params['TriggerId']
+        end
+      end
+
+      # PauseAppTrigger返回参数结构体
+      class PauseAppTriggerResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # PauseTimerTask请求参数结构体
+      class PauseTimerTaskRequest < TencentCloud::Common::AbstractModel
+        # @param SpaceId: 空间ID
+        # @type SpaceId: String
+        # @param TimerId: 任务ID
+        # @type TimerId: String
+        # @param LoginUin: 主用户
+        # @type LoginUin: String
+        # @param LoginSubAccountUin: 子用户
+        # @type LoginSubAccountUin: String
+
+        attr_accessor :SpaceId, :TimerId, :LoginUin, :LoginSubAccountUin
+
+        def initialize(spaceid=nil, timerid=nil, loginuin=nil, loginsubaccountuin=nil)
+          @SpaceId = spaceid
+          @TimerId = timerid
+          @LoginUin = loginuin
+          @LoginSubAccountUin = loginsubaccountuin
+        end
+
+        def deserialize(params)
+          @SpaceId = params['SpaceId']
+          @TimerId = params['TimerId']
+          @LoginUin = params['LoginUin']
+          @LoginSubAccountUin = params['LoginSubAccountUin']
+        end
+      end
+
+      # PauseTimerTask返回参数结构体
+      class PauseTimerTaskResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -7378,6 +8997,86 @@ module TencentCloud
         end
       end
 
+      # ResumeAppTrigger请求参数结构体
+      class ResumeAppTriggerRequest < TencentCloud::Common::AbstractModel
+        # @param AppId: <p>应用ID</p>
+        # @type AppId: String
+        # @param TriggerId: <p>应用触发器ID</p>
+        # @type TriggerId: String
+
+        attr_accessor :AppId, :TriggerId
+
+        def initialize(appid=nil, triggerid=nil)
+          @AppId = appid
+          @TriggerId = triggerid
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @TriggerId = params['TriggerId']
+        end
+      end
+
+      # ResumeAppTrigger返回参数结构体
+      class ResumeAppTriggerResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ResumeTimerTask请求参数结构体
+      class ResumeTimerTaskRequest < TencentCloud::Common::AbstractModel
+        # @param SpaceId: 空间ID
+        # @type SpaceId: String
+        # @param TimerId: 任务ID
+        # @type TimerId: String
+        # @param LoginUin: 主用户
+        # @type LoginUin: String
+        # @param LoginSubAccountUin: 子用户
+        # @type LoginSubAccountUin: String
+
+        attr_accessor :SpaceId, :TimerId, :LoginUin, :LoginSubAccountUin
+
+        def initialize(spaceid=nil, timerid=nil, loginuin=nil, loginsubaccountuin=nil)
+          @SpaceId = spaceid
+          @TimerId = timerid
+          @LoginUin = loginuin
+          @LoginSubAccountUin = loginsubaccountuin
+        end
+
+        def deserialize(params)
+          @SpaceId = params['SpaceId']
+          @TimerId = params['TimerId']
+          @LoginUin = params['LoginUin']
+          @LoginSubAccountUin = params['LoginSubAccountUin']
+        end
+      end
+
+      # ResumeTimerTask返回参数结构体
+      class ResumeTimerTaskResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # RetryRelease请求参数结构体
       class RetryReleaseRequest < TencentCloud::Common::AbstractModel
         # @param AppId: 应用ID
@@ -7462,6 +9161,94 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # RunAppTriggerNow请求参数结构体
+      class RunAppTriggerNowRequest < TencentCloud::Common::AbstractModel
+        # @param AppId: <p>应用ID</p>
+        # @type AppId: String
+        # @param TriggerId: <p>应用触发器ID</p>
+        # @type TriggerId: String
+
+        attr_accessor :AppId, :TriggerId
+
+        def initialize(appid=nil, triggerid=nil)
+          @AppId = appid
+          @TriggerId = triggerid
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @TriggerId = params['TriggerId']
+        end
+      end
+
+      # RunAppTriggerNow返回参数结构体
+      class RunAppTriggerNowResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>应用触发器实例ID</p>
+        # @type InstanceId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceId, :RequestId
+
+        def initialize(instanceid=nil, requestid=nil)
+          @InstanceId = instanceid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # RunTimerTaskNow请求参数结构体
+      class RunTimerTaskNowRequest < TencentCloud::Common::AbstractModel
+        # @param SpaceId: 空间ID
+        # @type SpaceId: String
+        # @param TimerId: 任务ID
+        # @type TimerId: String
+        # @param LoginUin: 主用户
+        # @type LoginUin: String
+        # @param LoginSubAccountUin: 子用户
+        # @type LoginSubAccountUin: String
+
+        attr_accessor :SpaceId, :TimerId, :LoginUin, :LoginSubAccountUin
+
+        def initialize(spaceid=nil, timerid=nil, loginuin=nil, loginsubaccountuin=nil)
+          @SpaceId = spaceid
+          @TimerId = timerid
+          @LoginUin = loginuin
+          @LoginSubAccountUin = loginsubaccountuin
+        end
+
+        def deserialize(params)
+          @SpaceId = params['SpaceId']
+          @TimerId = params['TimerId']
+          @LoginUin = params['LoginUin']
+          @LoginSubAccountUin = params['LoginSubAccountUin']
+        end
+      end
+
+      # RunTimerTaskNow返回参数结构体
+      class RunTimerTaskNowResponse < TencentCloud::Common::AbstractModel
+        # @param FireInstanceId: 实例ID
+        # @type FireInstanceId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FireInstanceId, :RequestId
+
+        def initialize(fireinstanceid=nil, requestid=nil)
+          @FireInstanceId = fireinstanceid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FireInstanceId = params['FireInstanceId']
           @RequestId = params['RequestId']
         end
       end
@@ -8138,6 +9925,325 @@ module TencentCloud
         end
       end
 
+      # TimerConfig
+      class TimerConfig < TencentCloud::Common::AbstractModel
+        # @param PushConfig: 推送配置
+        # @type PushConfig: :class:`Tencentcloud::Adp.v20260520.models.TimerPushConfig`
+        # @param Schedule: 定时配置
+        # @type Schedule: :class:`Tencentcloud::Adp.v20260520.models.TimerScheduleConfig`
+
+        attr_accessor :PushConfig, :Schedule
+
+        def initialize(pushconfig=nil, schedule=nil)
+          @PushConfig = pushconfig
+          @Schedule = schedule
+        end
+
+        def deserialize(params)
+          unless params['PushConfig'].nil?
+            @PushConfig = TimerPushConfig.new
+            @PushConfig.deserialize(params['PushConfig'])
+          end
+          unless params['Schedule'].nil?
+            @Schedule = TimerScheduleConfig.new
+            @Schedule.deserialize(params['Schedule'])
+          end
+        end
+      end
+
+      # TimerProfile
+      class TimerProfile < TencentCloud::Common::AbstractModel
+        # @param CreateSource: 枚举值:
+        # | uint | 描述 |
+        # | --- | --- |
+        # | 0 |  |
+        # | 1 | 页面手动创建 |
+        # | 2 | 自然语言对话创建 |
+        # @type CreateSource: Integer
+        # @param InputContextSnapshot: 输入上下文快照
+        # @type InputContextSnapshot: String
+        # @param ModelId: 模型
+        # @type ModelId: String
+        # @param Prompt: 提示词
+        # @type Prompt: String
+        # @param SkillSnapshot: skill快照
+        # @type SkillSnapshot: String
+        # @param TaskName: 任务名称
+        # @type TaskName: String
+        # @param ToolSnapshot: 工具快照
+        # @type ToolSnapshot: String
+        # @param WorkspaceId: 工作目录
+        # @type WorkspaceId: String
+
+        attr_accessor :CreateSource, :InputContextSnapshot, :ModelId, :Prompt, :SkillSnapshot, :TaskName, :ToolSnapshot, :WorkspaceId
+
+        def initialize(createsource=nil, inputcontextsnapshot=nil, modelid=nil, prompt=nil, skillsnapshot=nil, taskname=nil, toolsnapshot=nil, workspaceid=nil)
+          @CreateSource = createsource
+          @InputContextSnapshot = inputcontextsnapshot
+          @ModelId = modelid
+          @Prompt = prompt
+          @SkillSnapshot = skillsnapshot
+          @TaskName = taskname
+          @ToolSnapshot = toolsnapshot
+          @WorkspaceId = workspaceid
+        end
+
+        def deserialize(params)
+          @CreateSource = params['CreateSource']
+          @InputContextSnapshot = params['InputContextSnapshot']
+          @ModelId = params['ModelId']
+          @Prompt = params['Prompt']
+          @SkillSnapshot = params['SkillSnapshot']
+          @TaskName = params['TaskName']
+          @ToolSnapshot = params['ToolSnapshot']
+          @WorkspaceId = params['WorkspaceId']
+        end
+      end
+
+      # TimerPushConfig
+      class TimerPushConfig < TencentCloud::Common::AbstractModel
+        # @param PushChannel: 枚举值:
+        # | uint | 描述 |
+        # | --- | --- |
+        # | 0 |  |
+        # | 1 | 不推送 |
+        # | 2 | 微信公众号 |
+        # | 3 | 企业微信 AI 机器人 |
+        # @type PushChannel: Integer
+        # @param PushTargetId: 推送会话ID
+        # @type PushTargetId: String
+        # @param PushTargetType: 枚举值:
+        # | uint | 描述 |
+        # | --- | --- |
+        # | 0 |  |
+        # | 1 | 用户 (微信公众号 openid) |
+        # | 2 | 群聊 (企微机器人 chat_id) |
+        # @type PushTargetType: Integer
+        # @param PushWebhookUrl: 
+        # @type PushWebhookUrl: String
+
+        attr_accessor :PushChannel, :PushTargetId, :PushTargetType, :PushWebhookUrl
+
+        def initialize(pushchannel=nil, pushtargetid=nil, pushtargettype=nil, pushwebhookurl=nil)
+          @PushChannel = pushchannel
+          @PushTargetId = pushtargetid
+          @PushTargetType = pushtargettype
+          @PushWebhookUrl = pushwebhookurl
+        end
+
+        def deserialize(params)
+          @PushChannel = params['PushChannel']
+          @PushTargetId = params['PushTargetId']
+          @PushTargetType = params['PushTargetType']
+          @PushWebhookUrl = params['PushWebhookUrl']
+        end
+      end
+
+      # TimerScheduleConfig
+      class TimerScheduleConfig < TencentCloud::Common::AbstractModel
+        # @param Cron: cron配置
+        # @type Cron: :class:`Tencentcloud::Adp.v20260520.models.CronSchedule`
+        # @param Daily: 每日触发
+        # @type Daily: :class:`Tencentcloud::Adp.v20260520.models.DailySchedule`
+        # @param Interval: 固定间隔
+        # @type Interval: :class:`Tencentcloud::Adp.v20260520.models.IntervalSchedule`
+        # @param ManualOnly: 仅手动
+        # @type ManualOnly: :class:`Tencentcloud::Adp.v20260520.models.ManualOnlySchedule`
+        # @param Once: 单次
+        # @type Once: :class:`Tencentcloud::Adp.v20260520.models.OnceSchedule`
+        # @param ScheduleType: 枚举值:
+        # | uint | 描述 |
+        # | --- | --- |
+        # | 0 |  |
+        # | 1 | 仅手动 |
+        # | 2 | 每天 |
+        # | 3 | 每周 |
+        # | 4 | 按间隔 |
+        # | 5 | 一次性 |
+        # | 6 | Cron |
+        # @type ScheduleType: Integer
+        # @param Timezone: 时区
+        # @type Timezone: String
+        # @param Weekly: 每周固定时间触发
+        # @type Weekly: :class:`Tencentcloud::Adp.v20260520.models.WeeklySchedule`
+
+        attr_accessor :Cron, :Daily, :Interval, :ManualOnly, :Once, :ScheduleType, :Timezone, :Weekly
+
+        def initialize(cron=nil, daily=nil, interval=nil, manualonly=nil, once=nil, scheduletype=nil, timezone=nil, weekly=nil)
+          @Cron = cron
+          @Daily = daily
+          @Interval = interval
+          @ManualOnly = manualonly
+          @Once = once
+          @ScheduleType = scheduletype
+          @Timezone = timezone
+          @Weekly = weekly
+        end
+
+        def deserialize(params)
+          unless params['Cron'].nil?
+            @Cron = CronSchedule.new
+            @Cron.deserialize(params['Cron'])
+          end
+          unless params['Daily'].nil?
+            @Daily = DailySchedule.new
+            @Daily.deserialize(params['Daily'])
+          end
+          unless params['Interval'].nil?
+            @Interval = IntervalSchedule.new
+            @Interval.deserialize(params['Interval'])
+          end
+          unless params['ManualOnly'].nil?
+            @ManualOnly = ManualOnlySchedule.new
+            @ManualOnly.deserialize(params['ManualOnly'])
+          end
+          unless params['Once'].nil?
+            @Once = OnceSchedule.new
+            @Once.deserialize(params['Once'])
+          end
+          @ScheduleType = params['ScheduleType']
+          @Timezone = params['Timezone']
+          unless params['Weekly'].nil?
+            @Weekly = WeeklySchedule.new
+            @Weekly.deserialize(params['Weekly'])
+          end
+        end
+      end
+
+      # TimerStatus
+      class TimerStatus < TencentCloud::Common::AbstractModel
+        # @param FailedCount: 失败次数
+        # @type FailedCount: String
+        # @param LastFireTime: 上次触发时间
+        # @type LastFireTime: String
+        # @param LastSessionId: 最近一次会话ID
+        # @type LastSessionId: String
+        # @param NextFireTime: 下次触发时间
+        # @type NextFireTime: String
+        # @param Status: 枚举值:
+        # | uint | 描述 |
+        # | --- | --- |
+        # | 0 |  |
+        # | 1 | 启用 |
+        # | 2 | 暂停 |
+        # | 3 | 一次性任务已完成 |
+        # @type Status: Integer
+        # @param SuccessCount: 成功次数
+        # @type SuccessCount: String
+        # @param UnreadRunLogCount: 未读数量
+        # @type UnreadRunLogCount: String
+
+        attr_accessor :FailedCount, :LastFireTime, :LastSessionId, :NextFireTime, :Status, :SuccessCount, :UnreadRunLogCount
+
+        def initialize(failedcount=nil, lastfiretime=nil, lastsessionid=nil, nextfiretime=nil, status=nil, successcount=nil, unreadrunlogcount=nil)
+          @FailedCount = failedcount
+          @LastFireTime = lastfiretime
+          @LastSessionId = lastsessionid
+          @NextFireTime = nextfiretime
+          @Status = status
+          @SuccessCount = successcount
+          @UnreadRunLogCount = unreadrunlogcount
+        end
+
+        def deserialize(params)
+          @FailedCount = params['FailedCount']
+          @LastFireTime = params['LastFireTime']
+          @LastSessionId = params['LastSessionId']
+          @NextFireTime = params['NextFireTime']
+          @Status = params['Status']
+          @SuccessCount = params['SuccessCount']
+          @UnreadRunLogCount = params['UnreadRunLogCount']
+        end
+      end
+
+      # TimerTask
+      class TimerTask < TencentCloud::Common::AbstractModel
+        # @param Config: 任务配置
+        # @type Config: :class:`Tencentcloud::Adp.v20260520.models.TimerConfig`
+        # @param OwnerUserId: staffBizId
+        # @type OwnerUserId: String
+        # @param PolicySummary: 定时配置概要
+        # @type PolicySummary: String
+        # @param Profile: 概要信息
+        # @type Profile: :class:`Tencentcloud::Adp.v20260520.models.TimerProfile`
+        # @param SpaceId: 空间ID
+        # @type SpaceId: String
+        # @param Status: 任务状态
+        # @type Status: :class:`Tencentcloud::Adp.v20260520.models.TimerStatus`
+        # @param TimerId: 任务ID
+        # @type TimerId: String
+
+        attr_accessor :Config, :OwnerUserId, :PolicySummary, :Profile, :SpaceId, :Status, :TimerId
+
+        def initialize(config=nil, owneruserid=nil, policysummary=nil, profile=nil, spaceid=nil, status=nil, timerid=nil)
+          @Config = config
+          @OwnerUserId = owneruserid
+          @PolicySummary = policysummary
+          @Profile = profile
+          @SpaceId = spaceid
+          @Status = status
+          @TimerId = timerid
+        end
+
+        def deserialize(params)
+          unless params['Config'].nil?
+            @Config = TimerConfig.new
+            @Config.deserialize(params['Config'])
+          end
+          @OwnerUserId = params['OwnerUserId']
+          @PolicySummary = params['PolicySummary']
+          unless params['Profile'].nil?
+            @Profile = TimerProfile.new
+            @Profile.deserialize(params['Profile'])
+          end
+          @SpaceId = params['SpaceId']
+          unless params['Status'].nil?
+            @Status = TimerStatus.new
+            @Status.deserialize(params['Status'])
+          end
+          @TimerId = params['TimerId']
+        end
+      end
+
+      # TimerTaskSummary
+      class TimerTaskSummary < TencentCloud::Common::AbstractModel
+        # @param OwnerUserId: OwnerUserId
+        # @type OwnerUserId: String
+        # @param PolicySummary: 定时配置概要
+        # @type PolicySummary: String
+        # @param SpaceId: 空间ID
+        # @type SpaceId: String
+        # @param Status: 任务相关状态
+        # @type Status: :class:`Tencentcloud::Adp.v20260520.models.TimerStatus`
+        # @param TaskName: 任务名称
+        # @type TaskName: String
+        # @param TimerId: 任务ID
+        # @type TimerId: String
+
+        attr_accessor :OwnerUserId, :PolicySummary, :SpaceId, :Status, :TaskName, :TimerId
+
+        def initialize(owneruserid=nil, policysummary=nil, spaceid=nil, status=nil, taskname=nil, timerid=nil)
+          @OwnerUserId = owneruserid
+          @PolicySummary = policysummary
+          @SpaceId = spaceid
+          @Status = status
+          @TaskName = taskname
+          @TimerId = timerid
+        end
+
+        def deserialize(params)
+          @OwnerUserId = params['OwnerUserId']
+          @PolicySummary = params['PolicySummary']
+          @SpaceId = params['SpaceId']
+          unless params['Status'].nil?
+            @Status = TimerStatus.new
+            @Status.deserialize(params['Status'])
+          end
+          @TaskName = params['TaskName']
+          @TimerId = params['TimerId']
+        end
+      end
+
       # Tool
       class Tool < TencentCloud::Common::AbstractModel
         # @param Billing: <p>工具计费信息</p>
@@ -8303,6 +10409,58 @@ module TencentCloud
         end
       end
 
+      # TriggerConfig
+      class TriggerConfig < TencentCloud::Common::AbstractModel
+        # @param ScheduledConfig: <p>定时器配置</p>
+        # @type ScheduledConfig: :class:`Tencentcloud::Adp.v20260520.models.AppTriggerScheduleConfig`
+        # @param WebhookConfig: <p>Webhook配置</p>
+        # @type WebhookConfig: :class:`Tencentcloud::Adp.v20260520.models.AppTriggerWebhookConfig`
+
+        attr_accessor :ScheduledConfig, :WebhookConfig
+
+        def initialize(scheduledconfig=nil, webhookconfig=nil)
+          @ScheduledConfig = scheduledconfig
+          @WebhookConfig = webhookconfig
+        end
+
+        def deserialize(params)
+          unless params['ScheduledConfig'].nil?
+            @ScheduledConfig = AppTriggerScheduleConfig.new
+            @ScheduledConfig.deserialize(params['ScheduledConfig'])
+          end
+          unless params['WebhookConfig'].nil?
+            @WebhookConfig = AppTriggerWebhookConfig.new
+            @WebhookConfig.deserialize(params['WebhookConfig'])
+          end
+        end
+      end
+
+      # TriggerStatus
+      class TriggerStatus < TencentCloud::Common::AbstractModel
+        # @param ScheduledStatus: <p>定时器状态</p>
+        # @type ScheduledStatus: :class:`Tencentcloud::Adp.v20260520.models.AppTriggerScheduleStatus`
+        # @param WebhookStatus: <p>Webhook状态</p>
+        # @type WebhookStatus: :class:`Tencentcloud::Adp.v20260520.models.AppTriggerWebhookStatus`
+
+        attr_accessor :ScheduledStatus, :WebhookStatus
+
+        def initialize(scheduledstatus=nil, webhookstatus=nil)
+          @ScheduledStatus = scheduledstatus
+          @WebhookStatus = webhookstatus
+        end
+
+        def deserialize(params)
+          unless params['ScheduledStatus'].nil?
+            @ScheduledStatus = AppTriggerScheduleStatus.new
+            @ScheduledStatus.deserialize(params['ScheduledStatus'])
+          end
+          unless params['WebhookStatus'].nil?
+            @WebhookStatus = AppTriggerWebhookStatus.new
+            @WebhookStatus.deserialize(params['WebhookStatus'])
+          end
+        end
+      end
+
       # UnfavoritePlugin请求参数结构体
       class UnfavoritePluginRequest < TencentCloud::Common::AbstractModel
         # @param PluginId: <p>插件id</p>
@@ -8444,6 +10602,49 @@ module TencentCloud
           @TimbreKey = params['TimbreKey']
           @VoiceName = params['VoiceName']
           @VoiceType = params['VoiceType']
+        end
+      end
+
+      # WeeklySchedule
+      class WeeklySchedule < TencentCloud::Common::AbstractModel
+        # @param Times: 定时配置（星期）
+        # @type Times: Array
+
+        attr_accessor :Times
+
+        def initialize(times=nil)
+          @Times = times
+        end
+
+        def deserialize(params)
+          unless params['Times'].nil?
+            @Times = []
+            params['Times'].each do |i|
+              weeklytime_tmp = WeeklyTime.new
+              weeklytime_tmp.deserialize(i)
+              @Times << weeklytime_tmp
+            end
+          end
+        end
+      end
+
+      # WeeklyTime
+      class WeeklyTime < TencentCloud::Common::AbstractModel
+        # @param TimeOfDay: 时间
+        # @type TimeOfDay: String
+        # @param Weekday: 周几
+        # @type Weekday: Integer
+
+        attr_accessor :TimeOfDay, :Weekday
+
+        def initialize(timeofday=nil, weekday=nil)
+          @TimeOfDay = timeofday
+          @Weekday = weekday
+        end
+
+        def deserialize(params)
+          @TimeOfDay = params['TimeOfDay']
+          @Weekday = params['Weekday']
         end
       end
 

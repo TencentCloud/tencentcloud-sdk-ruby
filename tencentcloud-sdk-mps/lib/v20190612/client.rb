@@ -174,6 +174,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 爆款复刻。输入爆款参考视频+商品图，生成风格/节奏对齐的视频
+
+        # @param request: Request instance for CloneViral.
+        # @type request: :class:`Tencentcloud::mps::V20190612::CloneViralRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::CloneViralResponse`
+        def CloneViral(request)
+          body = send_request('CloneViral', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CloneViralResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建用户自定义内容分析模板，数量上限：50。
 
         # @param request: Request instance for CreateAIAnalysisTemplate.
@@ -2351,6 +2375,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeBlindWatermarkTemplatesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询爆款复刻任务结果
+
+        # @param request: Request instance for DescribeCloneViralTask.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DescribeCloneViralTaskRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DescribeCloneViralTaskResponse`
+        def DescribeCloneViralTask(request)
+          body = send_request('DescribeCloneViralTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloneViralTaskResponse.new
             model.deserialize(response['Response'])
             model
           else

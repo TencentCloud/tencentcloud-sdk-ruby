@@ -6934,6 +6934,186 @@ module TencentCloud
         end
       end
 
+      # 爆款复刻 AIGC 生视频相关参数
+      class CloneViralAIGC < TencentCloud::Common::AbstractModel
+        # @param Duration: <p>视频时长</p><p>取值范围：[4, 15]</p>
+        # @type Duration: Integer
+        # @param AspectRatio: <p>宽高比。可选 16:9/4:3/1:1/3:4/9:16/21:9/adaptive</p>
+        # @type AspectRatio: String
+        # @param Resolution: <p>分辨率。支持720p（默认）/1080p/2k/4k</p>
+        # @type Resolution: String
+        # @param ModelTier: <p>模型等级。flagship（VS2.0，默认）、standard（Kling3.0-Omni）</p>
+        # @type ModelTier: String
+
+        attr_accessor :Duration, :AspectRatio, :Resolution, :ModelTier
+
+        def initialize(duration=nil, aspectratio=nil, resolution=nil, modeltier=nil)
+          @Duration = duration
+          @AspectRatio = aspectratio
+          @Resolution = resolution
+          @ModelTier = modeltier
+        end
+
+        def deserialize(params)
+          @Duration = params['Duration']
+          @AspectRatio = params['AspectRatio']
+          @Resolution = params['Resolution']
+          @ModelTier = params['ModelTier']
+        end
+      end
+
+      # 爆款复刻内容/风格参数
+      class CloneViralContent < TencentCloud::Common::AbstractModel
+        # @param UserPrompt: <p>自定义提示词，对生成视频的要求</p>
+        # @type UserPrompt: String
+        # @param Language: <p>生成视频的目标语言，默认不指定，支持zh / en / ja / ko / es / pt / instrumental（纯音乐无口播）</p>
+        # @type Language: String
+        # @param Market: <p>目标市场，默认不指定。可选north_america / europe / china / japan / korea / sea / brazil</p>
+        # @type Market: String
+        # @param FissionLevel: <p>裂变程度。exact/low/medium/high，默认exact 1:1复刻</p>
+        # @type FissionLevel: String
+
+        attr_accessor :UserPrompt, :Language, :Market, :FissionLevel
+
+        def initialize(userprompt=nil, language=nil, market=nil, fissionlevel=nil)
+          @UserPrompt = userprompt
+          @Language = language
+          @Market = market
+          @FissionLevel = fissionlevel
+        end
+
+        def deserialize(params)
+          @UserPrompt = params['UserPrompt']
+          @Language = params['Language']
+          @Market = params['Market']
+          @FissionLevel = params['FissionLevel']
+        end
+      end
+
+      # 爆款复刻模特形象
+      class CloneViralPersona < TencentCloud::Common::AbstractModel
+        # @param Gender: <p>模特性别。male/female/any</p>
+        # @type Gender: String
+        # @param Age: <p>年龄段。teenager/youth/middle_aged/senior</p>
+        # @type Age: String
+        # @param Ethnicity: <p>外观特征。caucasian/asian/latino/african/middle_eastern</p>
+        # @type Ethnicity: String
+        # @param BodyType: <p>体型。slim / standard / athletic / chubby</p>
+        # @type BodyType: String
+
+        attr_accessor :Gender, :Age, :Ethnicity, :BodyType
+
+        def initialize(gender=nil, age=nil, ethnicity=nil, bodytype=nil)
+          @Gender = gender
+          @Age = age
+          @Ethnicity = ethnicity
+          @BodyType = bodytype
+        end
+
+        def deserialize(params)
+          @Gender = params['Gender']
+          @Age = params['Age']
+          @Ethnicity = params['Ethnicity']
+          @BodyType = params['BodyType']
+        end
+      end
+
+      # 爆款复刻产品信息
+      class CloneViralProduct < TencentCloud::Common::AbstractModel
+        # @param Images: <p>产品图</p>
+        # @type Images: Array
+        # @param Name: <p>产品名</p>
+        # @type Name: String
+        # @param Description: <p>产品描述</p>
+        # @type Description: String
+
+        attr_accessor :Images, :Name, :Description
+
+        def initialize(images=nil, name=nil, description=nil)
+          @Images = images
+          @Name = name
+          @Description = description
+        end
+
+        def deserialize(params)
+          @Images = params['Images']
+          @Name = params['Name']
+          @Description = params['Description']
+        end
+      end
+
+      # CloneViral请求参数结构体
+      class CloneViralRequest < TencentCloud::Common::AbstractModel
+        # @param VideoUrl: <p>爆款视频Url</p>
+        # @type VideoUrl: String
+        # @param Product: <p>产品信息</p>
+        # @type Product: :class:`Tencentcloud::Mps.v20190612.models.CloneViralProduct`
+        # @param AIGCParam: <p>AIGC生视频相关参数</p>
+        # @type AIGCParam: :class:`Tencentcloud::Mps.v20190612.models.CloneViralAIGC`
+        # @param ContentParam: <p>内容/风格相关参数</p>
+        # @type ContentParam: :class:`Tencentcloud::Mps.v20190612.models.CloneViralContent`
+        # @param Persona: <p>模特形象</p>
+        # @type Persona: :class:`Tencentcloud::Mps.v20190612.models.CloneViralPersona`
+
+        attr_accessor :VideoUrl, :Product, :AIGCParam, :ContentParam, :Persona
+
+        def initialize(videourl=nil, product=nil, aigcparam=nil, contentparam=nil, persona=nil)
+          @VideoUrl = videourl
+          @Product = product
+          @AIGCParam = aigcparam
+          @ContentParam = contentparam
+          @Persona = persona
+        end
+
+        def deserialize(params)
+          @VideoUrl = params['VideoUrl']
+          unless params['Product'].nil?
+            @Product = CloneViralProduct.new
+            @Product.deserialize(params['Product'])
+          end
+          unless params['AIGCParam'].nil?
+            @AIGCParam = CloneViralAIGC.new
+            @AIGCParam.deserialize(params['AIGCParam'])
+          end
+          unless params['ContentParam'].nil?
+            @ContentParam = CloneViralContent.new
+            @ContentParam.deserialize(params['ContentParam'])
+          end
+          unless params['Persona'].nil?
+            @Persona = CloneViralPersona.new
+            @Persona.deserialize(params['Persona'])
+          end
+        end
+      end
+
+      # CloneViral返回参数结构体
+      class CloneViralResponse < TencentCloud::Common::AbstractModel
+        # @param Status: <p>任务状态，失败时返回FAIL</p>
+        # @type Status: String
+        # @param Message: <p>失败时返回错误信息</p>
+        # @type Message: String
+        # @param TaskId: <p>任务创建成功后，返回的任务ID。 调用查询接口，轮询获取任务进度及生成结果。</p>
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :Message, :TaskId, :RequestId
+
+        def initialize(status=nil, message=nil, taskid=nil, requestid=nil)
+          @Status = status
+          @Message = message
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @Message = params['Message']
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 色彩增强配置
       class ColorEnhanceConfig < TencentCloud::Common::AbstractModel
         # @param Switch: 能力配置开关，可选值：
@@ -13682,6 +13862,50 @@ module TencentCloud
               @BlindWatermarkTemplateSet << blindwatermarktemplate_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCloneViralTask请求参数结构体
+      class DescribeCloneViralTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>创建爆款复刻任务返回的任务ID</p>
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeCloneViralTask返回参数结构体
+      class DescribeCloneViralTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Status: <p>任务状态</p><p>枚举值：</p><ul><li>WAIT： 等待中</li><li>RUN： 执行中</li><li>FAIL： 任务失败</li><li>DONE： 任务成功</li></ul>
+        # @type Status: String
+        # @param Message: <p>失败时返回错误信息</p>
+        # @type Message: String
+        # @param VideoUrls: <p>当任务状态为 DONE时，返回视频Url列表，视频存储24小时</p>
+        # @type VideoUrls: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :Message, :VideoUrls, :RequestId
+
+        def initialize(status=nil, message=nil, videourls=nil, requestid=nil)
+          @Status = status
+          @Message = message
+          @VideoUrls = videourls
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @Message = params['Message']
+          @VideoUrls = params['VideoUrls']
           @RequestId = params['RequestId']
         end
       end

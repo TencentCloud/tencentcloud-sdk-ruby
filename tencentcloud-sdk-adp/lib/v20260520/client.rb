@@ -125,6 +125,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # CreateAppTrigger
+
+        # @param request: Request instance for CreateAppTrigger.
+        # @type request: :class:`Tencentcloud::adp::V20260520::CreateAppTriggerRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::CreateAppTriggerResponse`
+        def CreateAppTrigger(request)
+          body = send_request('CreateAppTrigger', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAppTriggerResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 新建会话
 
         # @param request: Request instance for CreateConversation.
@@ -269,6 +293,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # CreateTimerTask
+
+        # @param request: Request instance for CreateTimerTask.
+        # @type request: :class:`Tencentcloud::adp::V20260520::CreateTimerTaskRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::CreateTimerTaskResponse`
+        def CreateTimerTask(request)
+          body = send_request('CreateTimerTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateTimerTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建参数变量
 
         # @param request: Request instance for CreateVariable.
@@ -389,6 +437,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # DeleteAppTrigger
+
+        # @param request: Request instance for DeleteAppTrigger.
+        # @type request: :class:`Tencentcloud::adp::V20260520::DeleteAppTriggerRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::DeleteAppTriggerResponse`
+        def DeleteAppTrigger(request)
+          body = send_request('DeleteAppTrigger', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAppTriggerResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除会话
 
         # @param request: Request instance for DeleteConversation.
@@ -495,6 +567,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteSpaceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # DeleteTimerTask
+
+        # @param request: Request instance for DeleteTimerTask.
+        # @type request: :class:`Tencentcloud::adp::V20260520::DeleteTimerTaskRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::DeleteTimerTaskResponse`
+        def DeleteTimerTask(request)
+          body = send_request('DeleteTimerTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteTimerTaskResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -663,6 +759,102 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAppSummaryListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # DescribeAppTrigger
+
+        # @param request: Request instance for DescribeAppTrigger.
+        # @type request: :class:`Tencentcloud::adp::V20260520::DescribeAppTriggerRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::DescribeAppTriggerResponse`
+        def DescribeAppTrigger(request)
+          body = send_request('DescribeAppTrigger', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAppTriggerResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # DescribeAppTriggerInstance
+
+        # @param request: Request instance for DescribeAppTriggerInstance.
+        # @type request: :class:`Tencentcloud::adp::V20260520::DescribeAppTriggerInstanceRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::DescribeAppTriggerInstanceResponse`
+        def DescribeAppTriggerInstance(request)
+          body = send_request('DescribeAppTriggerInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAppTriggerInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # DescribeAppTriggerRunLogList
+
+        # @param request: Request instance for DescribeAppTriggerRunLogList.
+        # @type request: :class:`Tencentcloud::adp::V20260520::DescribeAppTriggerRunLogListRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::DescribeAppTriggerRunLogListResponse`
+        def DescribeAppTriggerRunLogList(request)
+          body = send_request('DescribeAppTriggerRunLogList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAppTriggerRunLogListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # DescribeAppTriggerSummaryList
+
+        # @param request: Request instance for DescribeAppTriggerSummaryList.
+        # @type request: :class:`Tencentcloud::adp::V20260520::DescribeAppTriggerSummaryListRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::DescribeAppTriggerSummaryListResponse`
+        def DescribeAppTriggerSummaryList(request)
+          body = send_request('DescribeAppTriggerSummaryList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAppTriggerSummaryListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1085,6 +1277,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # DescribeTimerTask
+
+        # @param request: Request instance for DescribeTimerTask.
+        # @type request: :class:`Tencentcloud::adp::V20260520::DescribeTimerTaskRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::DescribeTimerTaskResponse`
+        def DescribeTimerTask(request)
+          body = send_request('DescribeTimerTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTimerTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询定时任务执行记录列表
+
+        # @param request: Request instance for DescribeTimerTaskRunLogList.
+        # @type request: :class:`Tencentcloud::adp::V20260520::DescribeTimerTaskRunLogListRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::DescribeTimerTaskRunLogListResponse`
+        def DescribeTimerTaskRunLogList(request)
+          body = send_request('DescribeTimerTaskRunLogList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTimerTaskRunLogListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询定时任务列表
+
+        # @param request: Request instance for DescribeTimerTaskSummaryList.
+        # @type request: :class:`Tencentcloud::adp::V20260520::DescribeTimerTaskSummaryListRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::DescribeTimerTaskSummaryListResponse`
+        def DescribeTimerTaskSummaryList(request)
+          body = send_request('DescribeTimerTaskSummaryList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTimerTaskSummaryListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取参数变量
 
         # @param request: Request instance for DescribeVariable.
@@ -1181,6 +1445,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # MarkAppTriggerRunLogRead
+
+        # @param request: Request instance for MarkAppTriggerRunLogRead.
+        # @type request: :class:`Tencentcloud::adp::V20260520::MarkAppTriggerRunLogReadRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::MarkAppTriggerRunLogReadResponse`
+        def MarkAppTriggerRunLogRead(request)
+          body = send_request('MarkAppTriggerRunLogRead', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = MarkAppTriggerRunLogReadResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # MarkTimerTaskRunLogRead
+
+        # @param request: Request instance for MarkTimerTaskRunLogRead.
+        # @type request: :class:`Tencentcloud::adp::V20260520::MarkTimerTaskRunLogReadRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::MarkTimerTaskRunLogReadResponse`
+        def MarkTimerTaskRunLogRead(request)
+          body = send_request('MarkTimerTaskRunLogRead', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = MarkTimerTaskRunLogReadResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改Agent配置信息
 
         # @param request: Request instance for ModifyAgent.
@@ -1215,6 +1527,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyAppResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # ModifyAppTrigger
+
+        # @param request: Request instance for ModifyAppTrigger.
+        # @type request: :class:`Tencentcloud::adp::V20260520::ModifyAppTriggerRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::ModifyAppTriggerResponse`
+        def ModifyAppTrigger(request)
+          body = send_request('ModifyAppTrigger', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAppTriggerResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1325,6 +1661,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # ModifyTimerTask
+
+        # @param request: Request instance for ModifyTimerTask.
+        # @type request: :class:`Tencentcloud::adp::V20260520::ModifyTimerTaskRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::ModifyTimerTaskResponse`
+        def ModifyTimerTask(request)
+          body = send_request('ModifyTimerTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyTimerTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 更新参数变量
 
         # @param request: Request instance for ModifyVariable.
@@ -1335,6 +1695,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyVariableResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # PauseAppTrigger
+
+        # @param request: Request instance for PauseAppTrigger.
+        # @type request: :class:`Tencentcloud::adp::V20260520::PauseAppTriggerRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::PauseAppTriggerResponse`
+        def PauseAppTrigger(request)
+          body = send_request('PauseAppTrigger', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = PauseAppTriggerResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # PauseTimerTask
+
+        # @param request: Request instance for PauseTimerTask.
+        # @type request: :class:`Tencentcloud::adp::V20260520::PauseTimerTaskRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::PauseTimerTaskResponse`
+        def PauseTimerTask(request)
+          body = send_request('PauseTimerTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = PauseTimerTaskResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1397,6 +1805,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # ResumeAppTrigger
+
+        # @param request: Request instance for ResumeAppTrigger.
+        # @type request: :class:`Tencentcloud::adp::V20260520::ResumeAppTriggerRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::ResumeAppTriggerResponse`
+        def ResumeAppTrigger(request)
+          body = send_request('ResumeAppTrigger', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ResumeAppTriggerResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # ResumeTimerTask
+
+        # @param request: Request instance for ResumeTimerTask.
+        # @type request: :class:`Tencentcloud::adp::V20260520::ResumeTimerTaskRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::ResumeTimerTaskResponse`
+        def ResumeTimerTask(request)
+          body = send_request('ResumeTimerTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ResumeTimerTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 重试发布(发布暂停之后再次重新发布)
 
         # @param request: Request instance for RetryRelease.
@@ -1431,6 +1887,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = RollbackReleaseResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # RunAppTriggerNow
+
+        # @param request: Request instance for RunAppTriggerNow.
+        # @type request: :class:`Tencentcloud::adp::V20260520::RunAppTriggerNowRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::RunAppTriggerNowResponse`
+        def RunAppTriggerNow(request)
+          body = send_request('RunAppTriggerNow', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RunAppTriggerNowResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # RunTimerTaskNow
+
+        # @param request: Request instance for RunTimerTaskNow.
+        # @type request: :class:`Tencentcloud::adp::V20260520::RunTimerTaskNowRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::RunTimerTaskNowResponse`
+        def RunTimerTaskNow(request)
+          body = send_request('RunTimerTaskNow', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RunTimerTaskNowResponse.new
             model.deserialize(response['Response'])
             model
           else
