@@ -13199,14 +13199,13 @@ module TencentCloud
 
       # 设置哪些字段是否存储或转发
       class FieldWriteConfig < TencentCloud::Common::AbstractModel
-        # @param EnableHeaders: 1:开启 0:不开启
+        # @param EnableHeaders: <p>1:开启 0:不开启</p>
         # @type EnableHeaders: Integer
-        # @param EnableBody: 1:开启 0:不开启
+        # @param EnableBody: <p>1:开启 0:不开启</p>
         # @type EnableBody: Integer
-        # @param EnableBot: 1:开启 0:不开启
+        # @param EnableBot: <p>1:开启 0:不开启</p>
         # @type EnableBot: Integer
-        # @param EnableResponse: 响应方向body
-        # 1:开启 0:不开启
+        # @param EnableResponse: <p>响应方向body<br>1:开启 0:不开启</p>
         # @type EnableResponse: Integer
 
         attr_accessor :EnableHeaders, :EnableBody, :EnableBot, :EnableResponse

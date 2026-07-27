@@ -1151,37 +1151,37 @@ module TencentCloud
 
       # CreateMigrationTask请求参数结构体
       class CreateMigrationTaskRequest < TencentCloud::Common::AbstractModel
-        # @param TaskName: 迁移任务名称
+        # @param TaskName: <p>迁移任务名称</p>
         # @type TaskName: String
-        # @param MigrationType: 迁移方式标志位，默认为0。0：桶迁移；1：清单迁移
+        # @param MigrationType: <p>迁移方式标志位，默认为0。0：桶迁移；1：清单迁移</p>
         # @type MigrationType: Integer
-        # @param MigrationMode: 迁移模式，默认为0。0: 全量迁移
+        # @param MigrationMode: <p>迁移模式，默认为0。0: 全量迁移</p>
         # @type MigrationMode: Integer
-        # @param SrcSecretId: 数据源账号的 SecretId
+        # @param SrcSecretId: <p>数据源账号的 SecretId</p>
         # @type SrcSecretId: String
-        # @param SrcSecretKey: 数据源账号的 SecretKey
+        # @param SrcSecretKey: <p>数据源账号的 SecretKey</p>
         # @type SrcSecretKey: String
-        # @param FileSystemId: 文件系统实例 ID，通过查询文件系统 [DescribeCfsFileSystems](https://cloud.tencent.com/document/product/582/38170) 获取
+        # @param FileSystemId: <p>文件系统实例 ID，通过查询文件系统 <a href="https://cloud.tencent.com/document/product/582/38170">DescribeCfsFileSystems</a> 获取</p>
         # @type FileSystemId: String
-        # @param FsPath: 文件系统路径
+        # @param FsPath: <p>文件系统路径</p>
         # @type FsPath: String
-        # @param CoverType: 同名文件迁移时覆盖策略，默认为0。0: 最后修改时间优先；1: 全覆盖；2: 不覆盖
+        # @param CoverType: <p>同名文件迁移时覆盖策略，默认为0。0: 最后修改时间优先；1: 全覆盖；2: 不覆盖</p>
         # @type CoverType: Integer
-        # @param SrcService: 数据源服务商。COS：腾讯云COS，OSS：阿里云OSS，OBS：华为云OBS
+        # @param SrcService: <p>数据源服务商</p><p>枚举值：</p><ul><li>COS： 腾讯云COS</li><li>OSS： 阿里云OSS</li><li>OBS： 华为云OBS</li><li>BOS： 百度云BOS</li><li>TOS： 火山引擎TOS</li></ul>
         # @type SrcService: String
-        # @param BucketName: 数据源桶名称；桶迁移时，BucketName 和 BucketAddress 必填其一，清单迁移时无需填写此参数
+        # @param BucketName: <p>数据源桶名称；桶迁移时，BucketName 和 BucketAddress 必填其一，清单迁移时无需填写此参数</p>
         # @type BucketName: String
-        # @param BucketRegion: 数据源桶地域
+        # @param BucketRegion: <p>数据源桶地域</p>
         # @type BucketRegion: String
-        # @param BucketAddress: 数据源桶地址；桶迁移时，BucketName 和 BucketAddress 必填其一，清单迁移时无需填写此参数
+        # @param BucketAddress: <p>数据源桶地址；桶迁移时，BucketName 和 BucketAddress 必填其一，清单迁移时无需填写此参数</p>
         # @type BucketAddress: String
-        # @param ListAddress: 清单地址，迁移方式为清单迁移时必填
+        # @param ListAddress: <p>清单地址，迁移方式为清单迁移时必填</p>
         # @type ListAddress: String
-        # @param FsName: 目标文件系统名称
+        # @param FsName: <p>目标文件系统名称</p>
         # @type FsName: String
-        # @param BucketPath: 源桶路径，默认为 /
+        # @param BucketPath: <p>源桶路径，默认为 /</p>
         # @type BucketPath: String
-        # @param Direction: 迁移方向；0：对象存储迁移至文件系统，1：文件系统迁移至对象存储。默认为0
+        # @param Direction: <p>迁移方向；0：对象存储迁移至文件系统，1：文件系统迁移至对象存储。默认为0</p>
         # @type Direction: Integer
 
         attr_accessor :TaskName, :MigrationType, :MigrationMode, :SrcSecretId, :SrcSecretKey, :FileSystemId, :FsPath, :CoverType, :SrcService, :BucketName, :BucketRegion, :BucketAddress, :ListAddress, :FsName, :BucketPath, :Direction
@@ -1227,7 +1227,7 @@ module TencentCloud
 
       # CreateMigrationTask返回参数结构体
       class CreateMigrationTaskResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 迁移任务 ID
+        # @param TaskId: <p>迁移任务 ID</p>
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3479,62 +3479,64 @@ module TencentCloud
 
       # CFS数据迁移任务信息
       class MigrationTaskInfo < TencentCloud::Common::AbstractModel
-        # @param TaskName: 迁移任务名称
+        # @param TaskName: <p>迁移任务名称</p>
         # @type TaskName: String
-        # @param TaskId: 迁移任务id
+        # @param TaskId: <p>迁移任务id</p>
         # @type TaskId: String
-        # @param MigrationType: 迁移方式标志位，默认为0。0: 桶迁移；1: 清单迁移
+        # @param MigrationType: <p>迁移方式标志位，默认为0。0: 桶迁移；1: 清单迁移</p>
         # @type MigrationType: Integer
-        # @param MigrationMode: 迁移模式，默认为0。0: 全量迁移
+        # @param MigrationMode: <p>迁移模式，默认为0。0: 全量迁移</p>
         # @type MigrationMode: Integer
-        # @param BucketName: 数据源桶名称
+        # @param BucketName: <p>数据源桶名称</p>
         # @type BucketName: String
-        # @param BucketRegion: 数据源桶地域
+        # @param BucketRegion: <p>数据源桶地域</p>
         # @type BucketRegion: String
-        # @param BucketAddress: 数据源桶地址
+        # @param BucketAddress: <p>数据源桶地址</p>
         # @type BucketAddress: String
-        # @param ListAddress: 清单地址
+        # @param ListAddress: <p>清单地址</p>
         # @type ListAddress: String
-        # @param FsName: 文件系统实例名称
+        # @param FsName: <p>文件系统实例名称</p>
         # @type FsName: String
-        # @param FileSystemId: 文件系统实例Id
+        # @param FileSystemId: <p>文件系统实例Id</p>
         # @type FileSystemId: String
-        # @param FsPath: 文件系统路径
+        # @param FsPath: <p>文件系统路径</p>
         # @type FsPath: String
-        # @param CoverType: 同名文件迁移时覆盖策略，默认为0。0: 最后修改时间优先；1: 全覆盖；2: 不覆盖
+        # @param CoverType: <p>同名文件迁移时覆盖策略，默认为0。0: 最后修改时间优先；1: 全覆盖；2: 不覆盖</p>
         # @type CoverType: Integer
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # @type CreateTime: Integer
-        # @param EndTime: 完成/终止时间
+        # @param EndTime: <p>完成/终止时间</p>
         # @type EndTime: Integer
-        # @param Status: 迁移状态。0: 已完成；1: 创建中；2: 运行中；3: 终止中；4: 已终止；5: 创建失败；6: 运行失败；7: 结束中；8: 删除中；9: 等待中
+        # @param Status: <p>迁移状态。0: 已完成；1: 创建中；2: 运行中；3: 终止中；4: 已终止；5: 创建失败；6: 运行失败；7: 结束中；8: 删除中；9: 等待中</p>
         # @type Status: Integer
-        # @param FileTotalCount: 文件数量
+        # @param FileTotalCount: <p>文件数量</p>
         # @type FileTotalCount: Integer
-        # @param FileMigratedCount: 已迁移文件数量
+        # @param FileMigratedCount: <p>已迁移文件数量</p>
         # @type FileMigratedCount: Integer
-        # @param FileFailedCount: 迁移失败文件数量
+        # @param FileFailedCount: <p>迁移失败文件数量</p>
         # @type FileFailedCount: Integer
-        # @param FileTotalSize: 文件容量，单位Byte
+        # @param FileTotalSize: <p>文件容量，单位Byte</p>
         # @type FileTotalSize: Integer
-        # @param FileMigratedSize: 已迁移文件容量，单位Byte
+        # @param FileMigratedSize: <p>已迁移文件容量，单位Byte</p>
         # @type FileMigratedSize: Integer
-        # @param FileFailedSize: 迁移失败文件容量，单位Byte
+        # @param FileFailedSize: <p>迁移失败文件容量，单位Byte</p>
         # @type FileFailedSize: Integer
-        # @param FileTotalList: 全部清单
+        # @param FileTotalList: <p>全部清单</p>
         # @type FileTotalList: String
-        # @param FileCompletedList: 已完成文件清单
+        # @param FileCompletedList: <p>已完成文件清单</p>
         # @type FileCompletedList: String
-        # @param FileFailedList: 失败文件清单
+        # @param FileFailedList: <p>失败文件清单</p>
         # @type FileFailedList: String
-        # @param BucketPath: 源桶路径
+        # @param BucketPath: <p>源桶路径</p>
         # @type BucketPath: String
-        # @param Direction: 迁移方向。0: 对象存储迁移至文件系统，1: 文件系统迁移至对象存储。默认 0
+        # @param Direction: <p>迁移方向。0: 对象存储迁移至文件系统，1: 文件系统迁移至对象存储。默认 0</p>
         # @type Direction: Integer
+        # @param SrcService: <p>数据源服务商</p><p>枚举值：</p><ul><li>COS： 腾讯云COS</li><li>OSS： 阿里云OSS</li><li>OBS： 华为云OBS</li><li>BOS： 百度云BOS</li><li>TOS： 火山引擎TOS</li></ul>
+        # @type SrcService: String
 
-        attr_accessor :TaskName, :TaskId, :MigrationType, :MigrationMode, :BucketName, :BucketRegion, :BucketAddress, :ListAddress, :FsName, :FileSystemId, :FsPath, :CoverType, :CreateTime, :EndTime, :Status, :FileTotalCount, :FileMigratedCount, :FileFailedCount, :FileTotalSize, :FileMigratedSize, :FileFailedSize, :FileTotalList, :FileCompletedList, :FileFailedList, :BucketPath, :Direction
+        attr_accessor :TaskName, :TaskId, :MigrationType, :MigrationMode, :BucketName, :BucketRegion, :BucketAddress, :ListAddress, :FsName, :FileSystemId, :FsPath, :CoverType, :CreateTime, :EndTime, :Status, :FileTotalCount, :FileMigratedCount, :FileFailedCount, :FileTotalSize, :FileMigratedSize, :FileFailedSize, :FileTotalList, :FileCompletedList, :FileFailedList, :BucketPath, :Direction, :SrcService
 
-        def initialize(taskname=nil, taskid=nil, migrationtype=nil, migrationmode=nil, bucketname=nil, bucketregion=nil, bucketaddress=nil, listaddress=nil, fsname=nil, filesystemid=nil, fspath=nil, covertype=nil, createtime=nil, endtime=nil, status=nil, filetotalcount=nil, filemigratedcount=nil, filefailedcount=nil, filetotalsize=nil, filemigratedsize=nil, filefailedsize=nil, filetotallist=nil, filecompletedlist=nil, filefailedlist=nil, bucketpath=nil, direction=nil)
+        def initialize(taskname=nil, taskid=nil, migrationtype=nil, migrationmode=nil, bucketname=nil, bucketregion=nil, bucketaddress=nil, listaddress=nil, fsname=nil, filesystemid=nil, fspath=nil, covertype=nil, createtime=nil, endtime=nil, status=nil, filetotalcount=nil, filemigratedcount=nil, filefailedcount=nil, filetotalsize=nil, filemigratedsize=nil, filefailedsize=nil, filetotallist=nil, filecompletedlist=nil, filefailedlist=nil, bucketpath=nil, direction=nil, srcservice=nil)
           @TaskName = taskname
           @TaskId = taskid
           @MigrationType = migrationtype
@@ -3561,6 +3563,7 @@ module TencentCloud
           @FileFailedList = filefailedlist
           @BucketPath = bucketpath
           @Direction = direction
+          @SrcService = srcservice
         end
 
         def deserialize(params)
@@ -3590,6 +3593,7 @@ module TencentCloud
           @FileFailedList = params['FileFailedList']
           @BucketPath = params['BucketPath']
           @Direction = params['Direction']
+          @SrcService = params['SrcService']
         end
       end
 

@@ -1150,9 +1150,9 @@ module TencentCloud
 
       # CreateHTTPServiceRoute请求参数结构体
       class CreateHTTPServiceRouteRequest < TencentCloud::Common::AbstractModel
-        # @param EnvId: 环境ID
+        # @param EnvId: <p>环境ID</p>
         # @type EnvId: String
-        # @param Domain: 域名路由信息
+        # @param Domain: <p>域名路由信息</p>
         # @type Domain: :class:`Tencentcloud::Tcb.v20180608.models.HTTPServiceDomainParam`
 
         attr_accessor :EnvId, :Domain
@@ -1173,16 +1173,23 @@ module TencentCloud
 
       # CreateHTTPServiceRoute返回参数结构体
       class CreateHTTPServiceRouteResponse < TencentCloud::Common::AbstractModel
+        # @param OwnershipVerification: <p>归属权校验不通过返回信息，根据校验信息配置dns或者文件验证，可通过VerifyHTTPServiceRoute接口验证归属权是否通过</p>
+        # @type OwnershipVerification: :class:`Tencentcloud::Tcb.v20180608.models.OwnershipVerificationInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :OwnershipVerification, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(ownershipverification=nil, requestid=nil)
+          @OwnershipVerification = ownershipverification
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['OwnershipVerification'].nil?
+            @OwnershipVerification = OwnershipVerificationInfo.new
+            @OwnershipVerification.deserialize(params['OwnershipVerification'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -5177,7 +5184,7 @@ module TencentCloud
       class HTTPServiceDomainParam < TencentCloud::Common::AbstractModel
         # @param Domain: <p>域名。全局唯一。如果域名在其他环境下占用或者腾讯云CDN占用，可能会导致创建失败</p>
         # @type Domain: String
-        # @param AccessType: <p>绑定类型</p><p>枚举值：</p><ul><li>DIRECT： 直连到HTTP访问服务</li><li>CDN： 接入云开发CDN</li><li>CUSTOM： 自定义接入类型（CDN、EO、WAF等接入）</li></ul><p>默认值：DIRECT</p>
+        # @param AccessType: <p>绑定类型</p><p>枚举值：</p><ul><li>DIRECT： 直连到HTTP访问服务</li><li>CDN： 接入云开发CDN（即将下线）</li><li>CUSTOM： 自定义接入类型（CDN、EO、WAF等接入）</li><li>EO： 接入云开发EdgeOne</li></ul><p>默认值：DIRECT</p>
         # @type AccessType: String
         # @param CertId: <p>证书ID。当前账户下SSL平台的证书ID，无证书无法使用https访问</p>
         # @type CertId: String
@@ -5421,9 +5428,9 @@ module TencentCloud
       class HTTPServiceRouteParam < TencentCloud::Common::AbstractModel
         # @param Path: <p>路径</p>
         # @type Path: String
-        # @param UpstreamResourceType: <p>上游服务类型。创建时必填，修改时可选填</p><p>枚举值：</p><ul><li>SCF： 云函数</li><li>CBR： 云托管</li><li>STATIC_STORE： 静态托管</li><li>WEB_SCF： web云函数</li><li>LH： Lighthouse</li></ul>
+        # @param UpstreamResourceType: <p>上游服务类型。创建时必填，修改时可选填</p><p>枚举值：</p><ul><li>SCF： 云函数</li><li>CBR： 云托管</li><li>STATIC_STORE： 静态托管</li><li>WEB_SCF： web云函数</li><li>LH： Lighthouse</li><li>STORAGE： 云存储</li></ul>
         # @type UpstreamResourceType: String
-        # @param UpstreamResourceName: <p>上游服务名。创建时必填，修改时可选填</p>
+        # @param UpstreamResourceName: <p>上游服务名。创建时必填，修改时可选填。HTTPServiceRouteServiceType类型为STATIC_STORE时，可不填，默认staticstore；HTTPServiceRouteServiceType类型为STORAGE时，可不填，默认storage。其他上游类型必须填写准确的服务名</p>
         # @type UpstreamResourceName: String
         # @param PathRewrite: <p>路径重写</p>
         # @type PathRewrite: :class:`Tencentcloud::Tcb.v20180608.models.HTTPServicePathRewrite`
@@ -7332,6 +7339,88 @@ module TencentCloud
           @ResourceReady = params['ResourceReady']
           @Flag = params['Flag']
           @ReqBody = params['ReqBody']
+        end
+      end
+
+      # 域名归属权验证指引DNS验证信息
+      class OwnershipVerificationDnsInfo < TencentCloud::Common::AbstractModel
+        # @param Subdomain: <p>归属权校验dns子域名</p>
+        # @type Subdomain: String
+        # @param RecordType: <p>归属权校验dns记录类型</p>
+        # @type RecordType: String
+        # @param RecordValue: <p>归属权校验dns记录值</p>
+        # @type RecordValue: String
+
+        attr_accessor :Subdomain, :RecordType, :RecordValue
+
+        def initialize(subdomain=nil, recordtype=nil, recordvalue=nil)
+          @Subdomain = subdomain
+          @RecordType = recordtype
+          @RecordValue = recordvalue
+        end
+
+        def deserialize(params)
+          @Subdomain = params['Subdomain']
+          @RecordType = params['RecordType']
+          @RecordValue = params['RecordValue']
+        end
+      end
+
+      # 域名归属权验证指引文件验证信息
+      class OwnershipVerificationFileInfo < TencentCloud::Common::AbstractModel
+        # @param Path: <p>归属权校验文件路径</p>
+        # @type Path: String
+        # @param Content: <p>归属权校验文件内容</p>
+        # @type Content: String
+
+        attr_accessor :Path, :Content
+
+        def initialize(path=nil, content=nil)
+          @Path = path
+          @Content = content
+        end
+
+        def deserialize(params)
+          @Path = params['Path']
+          @Content = params['Content']
+        end
+      end
+
+      # 域名归属权验证指引信息
+      class OwnershipVerificationInfo < TencentCloud::Common::AbstractModel
+        # @param Domain: <p>归属权校验的域名</p>
+        # @type Domain: String
+        # @param DnsVerification: <p>归属权校验dns校验信息</p>
+        # @type DnsVerification: Array
+        # @param FileVerification: <p>归属权校验文件校验信息</p>
+        # @type FileVerification: Array
+
+        attr_accessor :Domain, :DnsVerification, :FileVerification
+
+        def initialize(domain=nil, dnsverification=nil, fileverification=nil)
+          @Domain = domain
+          @DnsVerification = dnsverification
+          @FileVerification = fileverification
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          unless params['DnsVerification'].nil?
+            @DnsVerification = []
+            params['DnsVerification'].each do |i|
+              ownershipverificationdnsinfo_tmp = OwnershipVerificationDnsInfo.new
+              ownershipverificationdnsinfo_tmp.deserialize(i)
+              @DnsVerification << ownershipverificationdnsinfo_tmp
+            end
+          end
+          unless params['FileVerification'].nil?
+            @FileVerification = []
+            params['FileVerification'].each do |i|
+              ownershipverificationfileinfo_tmp = OwnershipVerificationFileInfo.new
+              ownershipverificationfileinfo_tmp.deserialize(i)
+              @FileVerification << ownershipverificationfileinfo_tmp
+            end
+          end
         end
       end
 

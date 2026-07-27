@@ -1007,10 +1007,12 @@ module TencentCloud
         # @type GatewayLogConfig: :class:`Tencentcloud::Tione.v20211111.models.LogConfig`
         # @param GatewayConfig: <p>网关相关配置</p>
         # @type GatewayConfig: :class:`Tencentcloud::Tione.v20211111.models.GatewayConfig`
+        # @param ResourceSupplyAttribute: <p>资源供应属性(潮汐/竞价等供应模式);空表示常规按量后付费</p>
+        # @type ResourceSupplyAttribute: :class:`Tencentcloud::Tione.v20211111.models.ResourceSupplyAttribute`
 
-        attr_accessor :TiProjectId, :ServiceGroupId, :ServiceGroupName, :ServiceDescription, :ChargeType, :ResourceGroupId, :ModelInfo, :ImageInfo, :Env, :Resources, :InstanceType, :ScaleMode, :Replicas, :HorizontalPodAutoscaler, :LogEnable, :LogConfig, :AuthorizationEnable, :Tags, :NewVersion, :CronScaleJobs, :ScaleStrategy, :HybridBillingPrepaidReplicas, :CreateSource, :ModelHotUpdateEnable, :ScheduledAction, :VolumeMount, :ServiceLimit, :CallbackUrl, :ModelTurboEnable, :ServiceCategory, :Command, :ServiceEIP, :CommandBase64, :ServicePort, :DeployType, :InstancePerReplicas, :TerminationGracePeriodSeconds, :PreStopCommand, :GrpcEnable, :HealthProbe, :RollingUpdate, :Sidecar, :VolumeMounts, :SchedulingStrategy, :GatewayLogConfig, :GatewayConfig
+        attr_accessor :TiProjectId, :ServiceGroupId, :ServiceGroupName, :ServiceDescription, :ChargeType, :ResourceGroupId, :ModelInfo, :ImageInfo, :Env, :Resources, :InstanceType, :ScaleMode, :Replicas, :HorizontalPodAutoscaler, :LogEnable, :LogConfig, :AuthorizationEnable, :Tags, :NewVersion, :CronScaleJobs, :ScaleStrategy, :HybridBillingPrepaidReplicas, :CreateSource, :ModelHotUpdateEnable, :ScheduledAction, :VolumeMount, :ServiceLimit, :CallbackUrl, :ModelTurboEnable, :ServiceCategory, :Command, :ServiceEIP, :CommandBase64, :ServicePort, :DeployType, :InstancePerReplicas, :TerminationGracePeriodSeconds, :PreStopCommand, :GrpcEnable, :HealthProbe, :RollingUpdate, :Sidecar, :VolumeMounts, :SchedulingStrategy, :GatewayLogConfig, :GatewayConfig, :ResourceSupplyAttribute
 
-        def initialize(tiprojectid=nil, servicegroupid=nil, servicegroupname=nil, servicedescription=nil, chargetype=nil, resourcegroupid=nil, modelinfo=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, scalemode=nil, replicas=nil, horizontalpodautoscaler=nil, logenable=nil, logconfig=nil, authorizationenable=nil, tags=nil, newversion=nil, cronscalejobs=nil, scalestrategy=nil, hybridbillingprepaidreplicas=nil, createsource=nil, modelhotupdateenable=nil, scheduledaction=nil, volumemount=nil, servicelimit=nil, callbackurl=nil, modelturboenable=nil, servicecategory=nil, command=nil, serviceeip=nil, commandbase64=nil, serviceport=nil, deploytype=nil, instanceperreplicas=nil, terminationgraceperiodseconds=nil, prestopcommand=nil, grpcenable=nil, healthprobe=nil, rollingupdate=nil, sidecar=nil, volumemounts=nil, schedulingstrategy=nil, gatewaylogconfig=nil, gatewayconfig=nil)
+        def initialize(tiprojectid=nil, servicegroupid=nil, servicegroupname=nil, servicedescription=nil, chargetype=nil, resourcegroupid=nil, modelinfo=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, scalemode=nil, replicas=nil, horizontalpodautoscaler=nil, logenable=nil, logconfig=nil, authorizationenable=nil, tags=nil, newversion=nil, cronscalejobs=nil, scalestrategy=nil, hybridbillingprepaidreplicas=nil, createsource=nil, modelhotupdateenable=nil, scheduledaction=nil, volumemount=nil, servicelimit=nil, callbackurl=nil, modelturboenable=nil, servicecategory=nil, command=nil, serviceeip=nil, commandbase64=nil, serviceport=nil, deploytype=nil, instanceperreplicas=nil, terminationgraceperiodseconds=nil, prestopcommand=nil, grpcenable=nil, healthprobe=nil, rollingupdate=nil, sidecar=nil, volumemounts=nil, schedulingstrategy=nil, gatewaylogconfig=nil, gatewayconfig=nil, resourcesupplyattribute=nil)
           @TiProjectId = tiprojectid
           @ServiceGroupId = servicegroupid
           @ServiceGroupName = servicegroupname
@@ -1057,6 +1059,7 @@ module TencentCloud
           @SchedulingStrategy = schedulingstrategy
           @GatewayLogConfig = gatewaylogconfig
           @GatewayConfig = gatewayconfig
+          @ResourceSupplyAttribute = resourcesupplyattribute
         end
 
         def deserialize(params)
@@ -1175,6 +1178,10 @@ module TencentCloud
           unless params['GatewayConfig'].nil?
             @GatewayConfig = GatewayConfig.new
             @GatewayConfig.deserialize(params['GatewayConfig'])
+          end
+          unless params['ResourceSupplyAttribute'].nil?
+            @ResourceSupplyAttribute = ResourceSupplyAttribute.new
+            @ResourceSupplyAttribute.deserialize(params['ResourceSupplyAttribute'])
           end
         end
       end
@@ -9573,6 +9580,22 @@ module TencentCloud
         end
       end
 
+      # 资源供应属性
+      class ResourceSupplyAttribute < TencentCloud::Common::AbstractModel
+        # @param SupplyType: <p>资源供应类型。TIDE:潮汐;SPOT:竞价;空:常规按量后付费</p>
+        # @type SupplyType: String
+
+        attr_accessor :SupplyType
+
+        def initialize(supplytype=nil)
+          @SupplyType = supplytype
+        end
+
+        def deserialize(params)
+          @SupplyType = params['SupplyType']
+        end
+      end
+
       # 滚动更新策略
       class RollingUpdate < TencentCloud::Common::AbstractModel
         # @param MaxUnavailable: 滚动更新的最大不可用
@@ -9830,15 +9853,18 @@ module TencentCloud
         # @type Changer: String
         # @param ChangerName: <p>变更服务的子账户名称</p>
         # @type ChangerName: String
+        # @param ResourceSupplyAttribute: <p>资源供应属性(潮汐/竞价等供应模式);空表示常规按量后付费</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceSupplyAttribute: :class:`Tencentcloud::Tione.v20211111.models.ResourceSupplyAttribute`
 
-        attr_accessor :ServiceGroupId, :ServiceId, :ServiceGroupName, :ServiceDescription, :ServiceInfo, :ClusterId, :Region, :Namespace, :ChargeType, :ResourceGroupId, :ResourceGroupName, :Tags, :IngressName, :CreatedBy, :CreateTime, :UpdateTime, :Uin, :SubUin, :AppId, :BusinessStatus, :ServiceLimit, :ScheduledAction, :CreateFailedReason, :Status, :BillingInfo, :Weight, :CreateSource, :Version, :LatestVersion, :ResourceGroupSWType, :ArchiveStatus, :DeployType, :InstancePerReplicas, :MonitorSource, :SubUinName, :SchedulingPolicy, :ExternalResourceGroups, :ProjectId, :Changer, :ChangerName
+        attr_accessor :ServiceGroupId, :ServiceId, :ServiceGroupName, :ServiceDescription, :ServiceInfo, :ClusterId, :Region, :Namespace, :ChargeType, :ResourceGroupId, :ResourceGroupName, :Tags, :IngressName, :CreatedBy, :CreateTime, :UpdateTime, :Uin, :SubUin, :AppId, :BusinessStatus, :ServiceLimit, :ScheduledAction, :CreateFailedReason, :Status, :BillingInfo, :Weight, :CreateSource, :Version, :LatestVersion, :ResourceGroupSWType, :ArchiveStatus, :DeployType, :InstancePerReplicas, :MonitorSource, :SubUinName, :SchedulingPolicy, :ExternalResourceGroups, :ProjectId, :Changer, :ChangerName, :ResourceSupplyAttribute
         extend Gem::Deprecate
         deprecate :ServiceLimit, :none, 2026, 7
         deprecate :ServiceLimit=, :none, 2026, 7
         deprecate :ScheduledAction, :none, 2026, 7
         deprecate :ScheduledAction=, :none, 2026, 7
 
-        def initialize(servicegroupid=nil, serviceid=nil, servicegroupname=nil, servicedescription=nil, serviceinfo=nil, clusterid=nil, region=nil, namespace=nil, chargetype=nil, resourcegroupid=nil, resourcegroupname=nil, tags=nil, ingressname=nil, createdby=nil, createtime=nil, updatetime=nil, uin=nil, subuin=nil, appid=nil, businessstatus=nil, servicelimit=nil, scheduledaction=nil, createfailedreason=nil, status=nil, billinginfo=nil, weight=nil, createsource=nil, version=nil, latestversion=nil, resourcegroupswtype=nil, archivestatus=nil, deploytype=nil, instanceperreplicas=nil, monitorsource=nil, subuinname=nil, schedulingpolicy=nil, externalresourcegroups=nil, projectid=nil, changer=nil, changername=nil)
+        def initialize(servicegroupid=nil, serviceid=nil, servicegroupname=nil, servicedescription=nil, serviceinfo=nil, clusterid=nil, region=nil, namespace=nil, chargetype=nil, resourcegroupid=nil, resourcegroupname=nil, tags=nil, ingressname=nil, createdby=nil, createtime=nil, updatetime=nil, uin=nil, subuin=nil, appid=nil, businessstatus=nil, servicelimit=nil, scheduledaction=nil, createfailedreason=nil, status=nil, billinginfo=nil, weight=nil, createsource=nil, version=nil, latestversion=nil, resourcegroupswtype=nil, archivestatus=nil, deploytype=nil, instanceperreplicas=nil, monitorsource=nil, subuinname=nil, schedulingpolicy=nil, externalresourcegroups=nil, projectid=nil, changer=nil, changername=nil, resourcesupplyattribute=nil)
           @ServiceGroupId = servicegroupid
           @ServiceId = serviceid
           @ServiceGroupName = servicegroupname
@@ -9879,6 +9905,7 @@ module TencentCloud
           @ProjectId = projectid
           @Changer = changer
           @ChangerName = changername
+          @ResourceSupplyAttribute = resourcesupplyattribute
         end
 
         def deserialize(params)
@@ -9948,6 +9975,10 @@ module TencentCloud
           @ProjectId = params['ProjectId']
           @Changer = params['Changer']
           @ChangerName = params['ChangerName']
+          unless params['ResourceSupplyAttribute'].nil?
+            @ResourceSupplyAttribute = ResourceSupplyAttribute.new
+            @ResourceSupplyAttribute.deserialize(params['ResourceSupplyAttribute'])
+          end
         end
       end
 

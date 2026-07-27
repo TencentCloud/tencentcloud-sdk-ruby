@@ -965,6 +965,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建tdlc spark作业
+
+        # @param request: Request instance for CreateSparkAppForTDLC.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::CreateSparkAppForTDLCRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::CreateSparkAppForTDLCResponse`
+        def CreateSparkAppForTDLC(request)
+          body = send_request('CreateSparkAppForTDLC', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateSparkAppForTDLCResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 启动Spark作业
 
         # @param request: Request instance for CreateSparkAppTask.
@@ -2249,6 +2273,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeLakeFsTaskResultResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取账户子账户信息
+
+        # @param request: Request instance for DescribeMCPSubUin.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeMCPSubUinRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DescribeMCPSubUinResponse`
+        def DescribeMCPSubUin(request)
+          body = send_request('DescribeMCPSubUin', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeMCPSubUinResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -3977,6 +4025,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifySparkAppBatchResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新tdlc spark作业
+
+        # @param request: Request instance for ModifySparkAppForTDLC.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::ModifySparkAppForTDLCRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::ModifySparkAppForTDLCResponse`
+        def ModifySparkAppForTDLC(request)
+          body = send_request('ModifySparkAppForTDLC', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifySparkAppForTDLCResponse.new
             model.deserialize(response['Response'])
             model
           else

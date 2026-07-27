@@ -6115,13 +6115,13 @@ module TencentCloud
       class DescribeRumGroupLogV2Request < TencentCloud::Common::AbstractModel
         # @param OrderBy: <p>排序方式 desc asc（必填）</p>
         # @type OrderBy: String
-        # @param StartTime: <p>开始时间（必填）</p>
+        # @param StartTime: <p>查询日志开始时间（必填）</p>
         # @type StartTime: Integer
         # @param Limit: <p>单次查询返回的原始日志条数，最大值为100（必填）</p>
         # @type Limit: Integer
-        # @param Filter: <p>过滤条件</p>
+        # @param Filter: <p>过滤条件，其中key与运算符(Operator)对应可选字段枚举值与示例查看文档：https://cloud.tencent.com/document/product/248/87223</p>
         # @type Filter: String
-        # @param EndTime: <p>结束时间（必填）</p>
+        # @param EndTime: <p>查询日志结束时间（必填）</p>
         # @type EndTime: Integer
         # @param ID: <p>项目ID（必填）</p>
         # @type ID: Integer
@@ -6157,7 +6157,7 @@ module TencentCloud
 
       # DescribeRumGroupLogV2返回参数结构体
       class DescribeRumGroupLogV2Response < TencentCloud::Common::AbstractModel
-        # @param Result: <p>Query result in JSON string format</p>
+        # @param Result: <p>日志聚合结果</p>
         # @type Result: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6177,21 +6177,21 @@ module TencentCloud
 
       # DescribeRumLogDetailsV2请求参数结构体
       class DescribeRumLogDetailsV2Request < TencentCloud::Common::AbstractModel
-        # @param OrderBy: 排序方式 desc asc
+        # @param OrderBy: <p>排序方式 desc asc</p>
         # @type OrderBy: String
-        # @param StartTime: 开始时间（必填）格式为时间戳 毫秒
+        # @param StartTime: <p>查询日志开始时间（必填）格式为时间戳 毫秒</p>
         # @type StartTime: Integer
-        # @param Limit: 单次查询返回的原始日志条数，最大值为100（必填）
+        # @param Limit: <p>单次查询返回的原始日志条数，最大值为100（必填）</p>
         # @type Limit: Integer
-        # @param Filter: 查询的相关参数
+        # @param Filter: <p>过滤条件，其中key与运算符(Operator)对应可选字段枚举值与示例查看文档：https://cloud.tencent.com/document/product/248/87223</p>
         # @type Filter: String
-        # @param EndTime: 结束时间（必填）格式为时间戳 毫秒
+        # @param EndTime: <p>查询日志结束时间（必填）格式为时间戳 毫秒</p>
         # @type EndTime: Integer
-        # @param ID: 项目ID（必填）
+        # @param ID: <p>项目ID（必填）</p>
         # @type ID: Integer
-        # @param LastTime: 上次查询的最后一个日志的时间戳
+        # @param LastTime: <p>上次查询的最后一个日志的时间戳</p>
         # @type LastTime: Integer
-        # @param LastRowId: 上次查询的最后一个日志的rowId
+        # @param LastRowId: <p>上次查询的最后一个日志的rowId</p>
         # @type LastRowId: Integer
 
         attr_accessor :OrderBy, :StartTime, :Limit, :Filter, :EndTime, :ID, :LastTime, :LastRowId
@@ -6221,7 +6221,7 @@ module TencentCloud
 
       # DescribeRumLogDetailsV2返回参数结构体
       class DescribeRumLogDetailsV2Response < TencentCloud::Common::AbstractModel
-        # @param Result: 日志明细
+        # @param Result: <p>日志明细</p>
         # @type Result: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6297,17 +6297,17 @@ module TencentCloud
 
       # DescribeRumLogExportV2请求参数结构体
       class DescribeRumLogExportV2Request < TencentCloud::Common::AbstractModel
-        # @param Name: Export name
+        # @param Name: <p>Name（string，必填）：导出任务名称标识，需要在使用API创建导出任务时填写。此字段为后续能力扩展预留，不在查询结果中返回。</p>
         # @type Name: String
-        # @param StartTime: Start time
+        # @param StartTime: <p>查询日志开始时间(必填)</p>
         # @type StartTime: Integer
-        # @param Filter: Query statement
+        # @param Filter: <p>过滤条件，其中key与运算符(Operator)对应可选字段枚举值与示例查看文档：https://cloud.tencent.com/document/product/248/87223</p>
         # @type Filter: String
-        # @param EndTime: End time
+        # @param EndTime: <p>查询日志结束时间(必填)</p>
         # @type EndTime: Integer
-        # @param ID: Project ID
+        # @param ID: <p>项目ID</p>
         # @type ID: Integer
-        # @param Fields: c字段
+        # @param Fields: <p>注意：这个字段必选，不能为空！选择要导出哪些字段的参数，对应日志的列，可查看文档：https://cloud.tencent.com/document/product/248/87223</p><p>枚举值：</p><ul><li>level： 日志类型</li><li>url： URL</li><li>ip： 用户终端IP</li><li>version： 版本</li></ul>
         # @type Fields: Array
 
         attr_accessor :Name, :StartTime, :Filter, :EndTime, :ID, :Fields
@@ -6333,7 +6333,7 @@ module TencentCloud
 
       # DescribeRumLogExportV2返回参数结构体
       class DescribeRumLogExportV2Response < TencentCloud::Common::AbstractModel
-        # @param Result: Query result in JSON string format
+        # @param Result: <p>日志导出任务TaskId</p>
         # @type Result: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6501,21 +6501,21 @@ module TencentCloud
 
       # DescribeRumLogTotalV2请求参数结构体
       class DescribeRumLogTotalV2Request < TencentCloud::Common::AbstractModel
-        # @param OrderBy: 排序方式 desc asc
+        # @param OrderBy: <p>排序方式 desc asc</p>
         # @type OrderBy: String
-        # @param StartTime: 开始时间（必填）格式为时间戳 毫秒
+        # @param StartTime: <p>查询日志开始时间（必填）格式为时间戳 毫秒</p>
         # @type StartTime: Integer
-        # @param Limit: 单次查询返回的原始日志条数，最大值为100（必填）
+        # @param Limit: <p>单次查询返回的原始日志条数，最大值为100（必填）</p>
         # @type Limit: Integer
-        # @param Filter: 查询的相关参数
+        # @param Filter: <p>过滤条件，其中key与运算符(Operator)对应可选字段枚举值与示例查看文档：https://cloud.tencent.com/document/product/248/87223</p>
         # @type Filter: String
-        # @param EndTime: 结束时间（必填）格式为时间戳 毫秒
+        # @param EndTime: <p>查询日志结束时间（必填）格式为时间戳 毫秒</p>
         # @type EndTime: Integer
-        # @param ID: 项目ID（必填）
+        # @param ID: <p>项目ID（必填）</p>
         # @type ID: Integer
-        # @param LastTime: 上次查询的最后一个日志的时间戳
+        # @param LastTime: <p>上次查询的最后一个日志的时间戳</p>
         # @type LastTime: Integer
-        # @param LastRowId: 上次查询的最后一个日志的rowId
+        # @param LastRowId: <p>上次查询的最后一个日志的rowId</p>
         # @type LastRowId: Integer
 
         attr_accessor :OrderBy, :StartTime, :Limit, :Filter, :EndTime, :ID, :LastTime, :LastRowId
@@ -6545,7 +6545,7 @@ module TencentCloud
 
       # DescribeRumLogTotalV2返回参数结构体
       class DescribeRumLogTotalV2Response < TencentCloud::Common::AbstractModel
-        # @param Result: 日志总量
+        # @param Result: <p>日志总量</p>
         # @type Result: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6617,15 +6617,15 @@ module TencentCloud
 
       # DescribeRumStatsLogListV2请求参数结构体
       class DescribeRumStatsLogListV2Request < TencentCloud::Common::AbstractModel
-        # @param StartTime: 开始时间（必填）
+        # @param StartTime: <p>查询日志开始时间（必填）</p>
         # @type StartTime: Integer
-        # @param Limit: 单次查询返回的原始日志条数，最大值为100（必填）
+        # @param Limit: <p>单次查询返回的原始日志条数，最大值为100（必填）</p>
         # @type Limit: Integer
-        # @param Filter: 过滤条件
+        # @param Filter: <p>过滤条件，其中key与运算符(Operator)对应可选字段枚举值与示例查看文档：https://cloud.tencent.com/document/product/248/87223</p>
         # @type Filter: String
-        # @param EndTime: 结束时间（必填）
+        # @param EndTime: <p>查询日志结束时间（必填）</p>
         # @type EndTime: Integer
-        # @param ID: 项目ID（必填）
+        # @param ID: <p>项目ID（必填）</p>
         # @type ID: Integer
 
         attr_accessor :StartTime, :Limit, :Filter, :EndTime, :ID
@@ -6649,7 +6649,7 @@ module TencentCloud
 
       # DescribeRumStatsLogListV2返回参数结构体
       class DescribeRumStatsLogListV2Response < TencentCloud::Common::AbstractModel
-        # @param Result: Query result in JSON string format
+        # @param Result: <p>日志时间分布</p>
         # @type Result: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

@@ -2801,6 +2801,37 @@ module TencentCloud
         end
       end
 
+      # CreateSparkAppForTDLC请求参数结构体
+      class CreateSparkAppForTDLCRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # CreateSparkAppForTDLC返回参数结构体
+      class CreateSparkAppForTDLCResponse < TencentCloud::Common::AbstractModel
+        # @param SparkAppId: <p>App唯一标识</p>
+        # @type SparkAppId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SparkAppId, :RequestId
+
+        def initialize(sparkappid=nil, requestid=nil)
+          @SparkAppId = sparkappid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SparkAppId = params['SparkAppId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateSparkApp请求参数结构体
       class CreateSparkAppRequest < TencentCloud::Common::AbstractModel
         # @param AppName: spark作业名
@@ -7923,6 +7954,37 @@ module TencentCloud
             @AccessToken = LakeFileSystemToken.new
             @AccessToken.deserialize(params['AccessToken'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeMCPSubUin请求参数结构体
+      class DescribeMCPSubUinRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeMCPSubUin返回参数结构体
+      class DescribeMCPSubUinResponse < TencentCloud::Common::AbstractModel
+        # @param Subuin: <p>子 Uin</p>
+        # @type Subuin: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Subuin, :RequestId
+
+        def initialize(subuin=nil, requestid=nil)
+          @Subuin = subuin
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Subuin = params['Subuin']
           @RequestId = params['RequestId']
         end
       end
@@ -13184,6 +13246,165 @@ module TencentCloud
 
       # ModifySparkAppBatch返回参数结构体
       class ModifySparkAppBatchResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifySparkAppForTDLC请求参数结构体
+      class ModifySparkAppForTDLCRequest < TencentCloud::Common::AbstractModel
+        # @param AppName: <p>spark作业名</p>
+        # @type AppName: String
+        # @param AppType: <p>spark作业类型，1代表spark jar作业，2代表spark streaming作业</p>
+        # @type AppType: Integer
+        # @param DataEngine: <p>执行spark作业的数据引擎名称</p>
+        # @type DataEngine: String
+        # @param AppFile: <p>spark作业程序包文件路径</p>
+        # @type AppFile: String
+        # @param RoleArn: <p>数据访问策略，CAM Role arn</p>
+        # @type RoleArn: Integer
+        # @param AppDriverSize: <p>指定的Driver规格，当前支持：small（默认，1cu）、medium（2cu）、large（4cu）、xlarge（8cu）</p>
+        # @type AppDriverSize: String
+        # @param AppExecutorSize: <p>指定的Executor规格，当前支持：small（默认，1cu）、medium（2cu）、large（4cu）、xlarge（8cu）</p>
+        # @type AppExecutorSize: String
+        # @param AppExecutorNums: <p>spark作业executor个数</p>
+        # @type AppExecutorNums: Integer
+        # @param SparkAppId: <p>spark作业Id</p>
+        # @type SparkAppId: String
+        # @param Eni: <p>该字段已下线，请使用字段Datasource</p>
+        # @type Eni: String
+        # @param IsLocal: <p>spark作业程序包是否本地上传，cos：存放与cos，lakefs：本地上传（控制台使用，该方式不支持直接接口调用）</p>
+        # @type IsLocal: String
+        # @param MainClass: <p>spark作业主类</p>
+        # @type MainClass: String
+        # @param AppConf: <p>spark配置，以换行符分隔</p>
+        # @type AppConf: String
+        # @param IsLocalJars: <p>spark 作业依赖jar包是否本地上传，cos：存放与cos，lakefs：本地上传（控制台使用，该方式不支持直接接口调用）</p>
+        # @type IsLocalJars: String
+        # @param AppJars: <p>spark 作业依赖jar包（--jars），以逗号分隔</p>
+        # @type AppJars: String
+        # @param IsLocalFiles: <p>spark作业依赖文件资源是否本地上传，cos：存放与cos，lakefs：本地上传（控制台使用，该方式不支持直接接口调用）</p>
+        # @type IsLocalFiles: String
+        # @param AppFiles: <p>spark作业依赖文件资源（--files）（非jar、zip），以逗号分隔</p>
+        # @type AppFiles: String
+        # @param IsLocalPythonFiles: <p>pyspark：依赖上传方式，cos：存放与cos，lakefs：本地上传（控制台使用，该方式不支持直接接口调用）</p>
+        # @type IsLocalPythonFiles: String
+        # @param AppPythonFiles: <p>pyspark作业依赖python资源（--py-files），支持py/zip/egg等归档格式，多文件以逗号分隔</p>
+        # @type AppPythonFiles: String
+        # @param CmdArgs: <p>spark作业程序入参</p>
+        # @type CmdArgs: String
+        # @param MaxRetries: <p>最大重试次数，只对spark流任务生效</p>
+        # @type MaxRetries: Integer
+        # @param DataSource: <p>数据源名</p>
+        # @type DataSource: String
+        # @param IsLocalArchives: <p>spark作业依赖archives资源是否本地上传，cos：存放与cos，lakefs：本地上传（控制台使用，该方式不支持直接接口调用）</p>
+        # @type IsLocalArchives: String
+        # @param AppArchives: <p>spark作业依赖archives资源（--archives），支持tar.gz/tgz/tar等归档格式，以逗号分隔</p>
+        # @type AppArchives: String
+        # @param SparkImage: <p>Spark Image 版本号</p>
+        # @type SparkImage: String
+        # @param SparkImageVersion: <p>Spark Image 版本名称</p>
+        # @type SparkImageVersion: String
+        # @param AppExecutorMaxNumbers: <p>指定的Executor数量（最大值），默认为1，当开启动态分配有效，若未开启，则该值等于AppExecutorNums</p>
+        # @type AppExecutorMaxNumbers: Integer
+        # @param SessionId: <p>关联dlc查询脚本</p>
+        # @type SessionId: String
+        # @param IsInherit: <p>任务资源配置是否继承集群配置模板：0（默认）不继承、1：继承</p>
+        # @type IsInherit: Integer
+        # @param IsSessionStarted: <p>是否使用session脚本的sql运行任务：false：否，true：是</p>
+        # @type IsSessionStarted: Boolean
+        # @param DependencyPackages: <p>标准引擎依赖包</p>
+        # @type DependencyPackages: Array
+
+        attr_accessor :AppName, :AppType, :DataEngine, :AppFile, :RoleArn, :AppDriverSize, :AppExecutorSize, :AppExecutorNums, :SparkAppId, :Eni, :IsLocal, :MainClass, :AppConf, :IsLocalJars, :AppJars, :IsLocalFiles, :AppFiles, :IsLocalPythonFiles, :AppPythonFiles, :CmdArgs, :MaxRetries, :DataSource, :IsLocalArchives, :AppArchives, :SparkImage, :SparkImageVersion, :AppExecutorMaxNumbers, :SessionId, :IsInherit, :IsSessionStarted, :DependencyPackages
+
+        def initialize(appname=nil, apptype=nil, dataengine=nil, appfile=nil, rolearn=nil, appdriversize=nil, appexecutorsize=nil, appexecutornums=nil, sparkappid=nil, eni=nil, islocal=nil, mainclass=nil, appconf=nil, islocaljars=nil, appjars=nil, islocalfiles=nil, appfiles=nil, islocalpythonfiles=nil, apppythonfiles=nil, cmdargs=nil, maxretries=nil, datasource=nil, islocalarchives=nil, apparchives=nil, sparkimage=nil, sparkimageversion=nil, appexecutormaxnumbers=nil, sessionid=nil, isinherit=nil, issessionstarted=nil, dependencypackages=nil)
+          @AppName = appname
+          @AppType = apptype
+          @DataEngine = dataengine
+          @AppFile = appfile
+          @RoleArn = rolearn
+          @AppDriverSize = appdriversize
+          @AppExecutorSize = appexecutorsize
+          @AppExecutorNums = appexecutornums
+          @SparkAppId = sparkappid
+          @Eni = eni
+          @IsLocal = islocal
+          @MainClass = mainclass
+          @AppConf = appconf
+          @IsLocalJars = islocaljars
+          @AppJars = appjars
+          @IsLocalFiles = islocalfiles
+          @AppFiles = appfiles
+          @IsLocalPythonFiles = islocalpythonfiles
+          @AppPythonFiles = apppythonfiles
+          @CmdArgs = cmdargs
+          @MaxRetries = maxretries
+          @DataSource = datasource
+          @IsLocalArchives = islocalarchives
+          @AppArchives = apparchives
+          @SparkImage = sparkimage
+          @SparkImageVersion = sparkimageversion
+          @AppExecutorMaxNumbers = appexecutormaxnumbers
+          @SessionId = sessionid
+          @IsInherit = isinherit
+          @IsSessionStarted = issessionstarted
+          @DependencyPackages = dependencypackages
+        end
+
+        def deserialize(params)
+          @AppName = params['AppName']
+          @AppType = params['AppType']
+          @DataEngine = params['DataEngine']
+          @AppFile = params['AppFile']
+          @RoleArn = params['RoleArn']
+          @AppDriverSize = params['AppDriverSize']
+          @AppExecutorSize = params['AppExecutorSize']
+          @AppExecutorNums = params['AppExecutorNums']
+          @SparkAppId = params['SparkAppId']
+          @Eni = params['Eni']
+          @IsLocal = params['IsLocal']
+          @MainClass = params['MainClass']
+          @AppConf = params['AppConf']
+          @IsLocalJars = params['IsLocalJars']
+          @AppJars = params['AppJars']
+          @IsLocalFiles = params['IsLocalFiles']
+          @AppFiles = params['AppFiles']
+          @IsLocalPythonFiles = params['IsLocalPythonFiles']
+          @AppPythonFiles = params['AppPythonFiles']
+          @CmdArgs = params['CmdArgs']
+          @MaxRetries = params['MaxRetries']
+          @DataSource = params['DataSource']
+          @IsLocalArchives = params['IsLocalArchives']
+          @AppArchives = params['AppArchives']
+          @SparkImage = params['SparkImage']
+          @SparkImageVersion = params['SparkImageVersion']
+          @AppExecutorMaxNumbers = params['AppExecutorMaxNumbers']
+          @SessionId = params['SessionId']
+          @IsInherit = params['IsInherit']
+          @IsSessionStarted = params['IsSessionStarted']
+          unless params['DependencyPackages'].nil?
+            @DependencyPackages = []
+            params['DependencyPackages'].each do |i|
+              dependencypackage_tmp = DependencyPackage.new
+              dependencypackage_tmp.deserialize(i)
+              @DependencyPackages << dependencypackage_tmp
+            end
+          end
+        end
+      end
+
+      # ModifySparkAppForTDLC返回参数结构体
+      class ModifySparkAppForTDLCResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

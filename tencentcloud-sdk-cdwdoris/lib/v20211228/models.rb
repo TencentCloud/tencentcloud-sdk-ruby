@@ -102,70 +102,78 @@ module TencentCloud
 
       # 备份实例详情
       class BackUpJobDisplay < TencentCloud::Common::AbstractModel
-        # @param JobId: 备份实例id
+        # @param JobId: <p>备份实例id</p>
         # @type JobId: Integer
-        # @param Snapshot: 备份实例名
+        # @param Snapshot: <p>备份实例名</p>
         # @type Snapshot: String
-        # @param BackUpSize: 备份数据量
+        # @param BackUpSize: <p>备份数据量</p>
         # @type BackUpSize: Integer
-        # @param BackUpSingleSize: 备份单副本数据量
+        # @param BackUpSingleSize: <p>备份单副本数据量</p>
         # @type BackUpSingleSize: Integer
-        # @param BackUpTime: 实例创建时间
+        # @param BackUpTime: <p>实例创建时间</p>
         # @type BackUpTime: String
-        # @param ExpireTime: 实例过期时间
+        # @param ExpireTime: <p>实例过期时间</p>
         # @type ExpireTime: String
-        # @param JobStatus: 实例状态
+        # @param JobStatus: <p>实例状态</p>
         # @type JobStatus: String
-        # @param BackupType: 0为默认。1时是对远端的doris进行备份，不周期，一次性
+        # @param BackupType: <p>0为默认。1时是对远端的doris进行备份，不周期，一次性</p>
         # @type BackupType: Integer
-        # @param BackupTimeType: 0为默认。1时是立即备份。2时是迁移
+        # @param BackupTimeType: <p>0为默认。1时是立即备份。2时是迁移</p>
         # @type BackupTimeType: Integer
-        # @param DorisSourceInfo: 远端doris的连接信息
+        # @param DorisSourceInfo: <p>远端doris的连接信息</p>
         # @type DorisSourceInfo: :class:`Tencentcloud::Cdwdoris.v20211228.models.DorisSourceInfo`
-        # @param JobStatusNum: 实例状态对应的数值
+        # @param JobStatusNum: <p>实例状态对应的数值</p>
         # @type JobStatusNum: Integer
-        # @param BackupCosInfo: 备份实例中关于cos的信息
+        # @param BackupCosInfo: <p>备份实例中关于cos的信息</p>
         # @type BackupCosInfo: :class:`Tencentcloud::Cdwdoris.v20211228.models.BackupCosInfo`
-        # @param IsUserDefineBucket: 是否使用的自定义桶
+        # @param IsUserDefineBucket: <p>是否使用的自定义桶</p>
         # @type IsUserDefineBucket: Boolean
-        # @param ErrorReason: 错误原因
+        # @param ErrorReason: <p>错误原因</p>
         # @type ErrorReason: String
-        # @param SnapshotRemainPolicy: 快照保留策略
+        # @param SnapshotRemainPolicy: <p>快照保留策略</p>
         # @type SnapshotRemainPolicy: :class:`Tencentcloud::Cdwdoris.v20211228.models.SnapshotRemainPolicy`
-        # @param IsolationCount: 隔离次数
+        # @param IsolationCount: <p>隔离次数</p>
         # @type IsolationCount: Integer
-        # @param EnableSecurityLock: 是否开启安全锁
+        # @param EnableSecurityLock: <p>是否开启安全锁</p>
         # @type EnableSecurityLock: Integer
-        # @param GracePeriod: 宽限期天数
+        # @param GracePeriod: <p>宽限期天数</p>
         # @type GracePeriod: Integer
-        # @param GraceStartTime: 宽限期开始时间
+        # @param GraceStartTime: <p>宽限期开始时间</p>
         # @type GraceStartTime: String
-        # @param IsWithinGracePeriod: 是否在宽限期内
+        # @param IsWithinGracePeriod: <p>是否在宽限期内</p>
         # @type IsWithinGracePeriod: Boolean
-        # @param UseManagedBucket: 是否使用托管桶
+        # @param UseManagedBucket: <p>是否使用托管桶</p>
         # @type UseManagedBucket: Boolean
-        # @param InstanceId: 实例ID
+        # @param InstanceId: <p>实例ID</p>
         # @type InstanceId: String
-        # @param InstanceName: 实例名称
+        # @param InstanceName: <p>实例名称</p>
         # @type InstanceName: String
-        # @param InstanceStatus: 实例状态
+        # @param InstanceStatus: <p>实例状态</p>
         # @type InstanceStatus: String
-        # @param InstanceStatusDesc: 实例状态描述
+        # @param InstanceStatusDesc: <p>实例状态描述</p>
         # @type InstanceStatusDesc: String
-        # @param DataRemoteRegion: 备份远程桶地域
+        # @param DataRemoteRegion: <p>备份远程桶地域</p>
         # @type DataRemoteRegion: String
-        # @param BucketEncryption: 桶加密状态信息
+        # @param BucketEncryption: <p>桶加密状态信息</p>
         # @type BucketEncryption: :class:`Tencentcloud::Cdwdoris.v20211228.models.BucketEncryptionInfo`
-        # @param Encryption: 备份任务创建时记录的加密类型：SSE-COS/SSE-KMS/disabled
+        # @param Encryption: <p>备份任务创建时记录的加密类型：SSE-COS/SSE-KMS/disabled</p>
         # @type Encryption: String
-        # @param EncryptionEnabled: 是否开通加密存储：0-未开通，1-已开通
+        # @param EncryptionEnabled: <p>是否开通加密存储：0-未开通，1-已开通</p>
         # @type EncryptionEnabled: Boolean
-        # @param ScheduleId: 任务调度id
+        # @param ScheduleId: <p>任务调度id</p>
         # @type ScheduleId: Integer
+        # @param TotalTasks: <p>总任务数（库数）</p>
+        # @type TotalTasks: Integer
+        # @param CompletedTasks: <p>已完成任务数</p>
+        # @type CompletedTasks: Integer
+        # @param FailedTasks: <p>失败任务数</p>
+        # @type FailedTasks: Integer
+        # @param BackupProgress: <p>备份进度描述，如 3/5</p>
+        # @type BackupProgress: String
 
-        attr_accessor :JobId, :Snapshot, :BackUpSize, :BackUpSingleSize, :BackUpTime, :ExpireTime, :JobStatus, :BackupType, :BackupTimeType, :DorisSourceInfo, :JobStatusNum, :BackupCosInfo, :IsUserDefineBucket, :ErrorReason, :SnapshotRemainPolicy, :IsolationCount, :EnableSecurityLock, :GracePeriod, :GraceStartTime, :IsWithinGracePeriod, :UseManagedBucket, :InstanceId, :InstanceName, :InstanceStatus, :InstanceStatusDesc, :DataRemoteRegion, :BucketEncryption, :Encryption, :EncryptionEnabled, :ScheduleId
+        attr_accessor :JobId, :Snapshot, :BackUpSize, :BackUpSingleSize, :BackUpTime, :ExpireTime, :JobStatus, :BackupType, :BackupTimeType, :DorisSourceInfo, :JobStatusNum, :BackupCosInfo, :IsUserDefineBucket, :ErrorReason, :SnapshotRemainPolicy, :IsolationCount, :EnableSecurityLock, :GracePeriod, :GraceStartTime, :IsWithinGracePeriod, :UseManagedBucket, :InstanceId, :InstanceName, :InstanceStatus, :InstanceStatusDesc, :DataRemoteRegion, :BucketEncryption, :Encryption, :EncryptionEnabled, :ScheduleId, :TotalTasks, :CompletedTasks, :FailedTasks, :BackupProgress
 
-        def initialize(jobid=nil, snapshot=nil, backupsize=nil, backupsinglesize=nil, backuptime=nil, expiretime=nil, jobstatus=nil, backuptype=nil, backuptimetype=nil, dorissourceinfo=nil, jobstatusnum=nil, backupcosinfo=nil, isuserdefinebucket=nil, errorreason=nil, snapshotremainpolicy=nil, isolationcount=nil, enablesecuritylock=nil, graceperiod=nil, gracestarttime=nil, iswithingraceperiod=nil, usemanagedbucket=nil, instanceid=nil, instancename=nil, instancestatus=nil, instancestatusdesc=nil, dataremoteregion=nil, bucketencryption=nil, encryption=nil, encryptionenabled=nil, scheduleid=nil)
+        def initialize(jobid=nil, snapshot=nil, backupsize=nil, backupsinglesize=nil, backuptime=nil, expiretime=nil, jobstatus=nil, backuptype=nil, backuptimetype=nil, dorissourceinfo=nil, jobstatusnum=nil, backupcosinfo=nil, isuserdefinebucket=nil, errorreason=nil, snapshotremainpolicy=nil, isolationcount=nil, enablesecuritylock=nil, graceperiod=nil, gracestarttime=nil, iswithingraceperiod=nil, usemanagedbucket=nil, instanceid=nil, instancename=nil, instancestatus=nil, instancestatusdesc=nil, dataremoteregion=nil, bucketencryption=nil, encryption=nil, encryptionenabled=nil, scheduleid=nil, totaltasks=nil, completedtasks=nil, failedtasks=nil, backupprogress=nil)
           @JobId = jobid
           @Snapshot = snapshot
           @BackUpSize = backupsize
@@ -196,6 +204,10 @@ module TencentCloud
           @Encryption = encryption
           @EncryptionEnabled = encryptionenabled
           @ScheduleId = scheduleid
+          @TotalTasks = totaltasks
+          @CompletedTasks = completedtasks
+          @FailedTasks = failedtasks
+          @BackupProgress = backupprogress
         end
 
         def deserialize(params)
@@ -241,6 +253,10 @@ module TencentCloud
           @Encryption = params['Encryption']
           @EncryptionEnabled = params['EncryptionEnabled']
           @ScheduleId = params['ScheduleId']
+          @TotalTasks = params['TotalTasks']
+          @CompletedTasks = params['CompletedTasks']
+          @FailedTasks = params['FailedTasks']
+          @BackupProgress = params['BackupProgress']
         end
       end
 
@@ -274,40 +290,39 @@ module TencentCloud
 
       # 备份、迁移任务信息
       class BackupScheduleInfo < TencentCloud::Common::AbstractModel
-        # @param BackupType: 迁移类型：
-        # 1-远端集群迁移；2-COS迁移
+        # @param BackupType: <p>迁移类型：<br>1-远端集群迁移；2-COS迁移</p>
         # @type BackupType: Integer
-        # @param ExistCount: 当前任务现存实例数
+        # @param ExistCount: <p>当前任务现存实例数</p>
         # @type ExistCount: Integer
-        # @param CosSourceInfo: cos信息
+        # @param CosSourceInfo: <p>cos信息</p>
         # @type CosSourceInfo: String
-        # @param DorisSourceInfo: doris信息
+        # @param DorisSourceInfo: <p>doris信息</p>
         # @type DorisSourceInfo: String
-        # @param RestoreType: 恢复类型
+        # @param RestoreType: <p>恢复类型</p>
         # @type RestoreType: Integer
-        # @param SnapshotRemainPolicy: 快照保留策略
+        # @param SnapshotRemainPolicy: <p>快照保留策略</p>
         # @type SnapshotRemainPolicy: :class:`Tencentcloud::Cdwdoris.v20211228.models.SnapshotRemainPolicy`
-        # @param DataRemoteRegion: 远程备份地域
+        # @param DataRemoteRegion: <p>远程备份地域</p>
         # @type DataRemoteRegion: String
-        # @param IsWithinGracePeriod: 是否在宽限期内
+        # @param IsWithinGracePeriod: <p>是否在宽限期内</p>
         # @type IsWithinGracePeriod: Boolean
-        # @param GracePeriod: 宽限期（天数）
+        # @param GracePeriod: <p>宽限期（天数）</p>
         # @type GracePeriod: Integer
-        # @param GraceStartTime: 宽限开始时间
+        # @param GraceStartTime: <p>宽限开始时间</p>
         # @type GraceStartTime: String
-        # @param BucketType: 托管桶类型：standard-标准，多可用区-MAZ
+        # @param BucketType: <p>托管桶类型：standard-标准，多可用区-MAZ</p>
         # @type BucketType: String
-        # @param EnableSecurityLock: 是否开启安全锁：0-未开启，1-已开启
+        # @param EnableSecurityLock: <p>是否开启安全锁：0-未开启，1-已开启</p>
         # @type EnableSecurityLock: Integer
-        # @param InstanceId: 实例ID
+        # @param InstanceId: <p>实例ID</p>
         # @type InstanceId: String
-        # @param InstanceName: 实例名
+        # @param InstanceName: <p>实例名</p>
         # @type InstanceName: String
-        # @param InstanceStatus: 实例状态
+        # @param InstanceStatus: <p>实例状态</p>
         # @type InstanceStatus: String
-        # @param InstanceStatusDesc: 实例状态描述
+        # @param InstanceStatusDesc: <p>实例状态描述</p>
         # @type InstanceStatusDesc: String
-        # @param BucketEncryption: 桶加密状态信息
+        # @param BucketEncryption: <p>桶加密状态信息</p>
         # @type BucketEncryption: :class:`Tencentcloud::Cdwdoris.v20211228.models.BucketEncryptionInfo`
 
         attr_accessor :BackupType, :ExistCount, :CosSourceInfo, :DorisSourceInfo, :RestoreType, :SnapshotRemainPolicy, :DataRemoteRegion, :IsWithinGracePeriod, :GracePeriod, :GraceStartTime, :BucketType, :EnableSecurityLock, :InstanceId, :InstanceName, :InstanceStatus, :InstanceStatusDesc, :BucketEncryption

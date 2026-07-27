@@ -567,7 +567,7 @@ module TencentCloud
 
       # CreateGlobalAccelerator请求参数结构体
       class CreateGlobalAcceleratorRequest < TencentCloud::Common::AbstractModel
-        # @param Name: <p>名称，最大长度不能超过60个字节。</p>
+        # @param Name: <p>名称，最大长度不能超过128个字节，不能为空。</p><p>参数格式：满足正则 ^[a-zA-Z\u4e00-\u9fa5]（首字符是英文字母或汉字），并且不满足正则 ^[\d._-]*$（整串不能只由数字/./_/-组成）。</p>
         # @type Name: String
         # @param InstanceChargeType: <p>计费模式，PREPAID：表示预付费，即包年包月，POSTPAID：表示后付费，即按量计费。默认：POSTPAID。当前仅支持后付费。</p>
         # @type InstanceChargeType: String

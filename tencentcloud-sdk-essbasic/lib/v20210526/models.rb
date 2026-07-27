@@ -4971,43 +4971,31 @@ module TencentCloud
       # 签署人配置信息。
       # 此参数对子客和自动签无效，不允许进行修改。
       class CommonApproverOption < TencentCloud::Common::AbstractModel
-        # @param CanEditApprover: 是否允许修改签署人信息
+        # @param CanEditApprover: <p>是否允许修改签署人信息</p>
         # @type CanEditApprover: Boolean
-        # @param NoRefuse: 是否可以拒签 默认false-可以拒签 true-不可以拒签
+        # @param NoRefuse: <p>是否可以拒签 默认false-可以拒签 true-不可以拒签</p>
         # @type NoRefuse: Boolean
-        # @param NoTransfer: 是否可以转发 默认false-可以转发 true-不可以转发
+        # @param NoTransfer: <p>是否可以转发 默认false-可以转发 true-不可以转发</p>
         # @type NoTransfer: Boolean
-        # @param HideOneKeySign: 当签署方有多个签署区时候，是否隐藏一键所有的签署区
-
-        # false：（默认）不隐藏
-        # true：隐藏，每个签署区要单独选择印章或者签名
+        # @param HideOneKeySign: <p>当签署方有多个签署区时候，是否隐藏一键所有的签署区</p><p>false：（默认）不隐藏<br>true：隐藏，每个签署区要单独选择印章或者签名</p>
         # @type HideOneKeySign: Boolean
-        # @param FlowReadLimit: 签署人阅读合同限制参数
-        #  <br/>取值：
-        # <ul>
-        # <li> LimitReadTimeAndBottom，阅读合同必须限制阅读时长并且必须阅读到底</li>
-        # <li> LimitReadTime，阅读合同仅限制阅读时长</li>
-        # <li> LimitBottom，阅读合同仅限制必须阅读到底</li>
-        # <li> NoReadTimeAndBottom，阅读合同不限制阅读时长且不限制阅读到底（白名单功能，请联系客户经理开白使用）</li>
-        # </ul>
+        # @param FlowReadLimit: <p>签署人阅读合同限制参数<br> <br>取值：</p><ul><li> LimitReadTimeAndBottom，阅读合同必须限制阅读时长并且必须阅读到底</li><li> LimitReadTime，阅读合同仅限制阅读时长</li><li> LimitBottom，阅读合同仅限制必须阅读到底</li><li> NoReadTimeAndBottom，阅读合同不限制阅读时长且不限制阅读到底（白名单功能，请联系客户经理开白使用）</li></ul>
         # @type FlowReadLimit: String
-        # @param ForbidAddSignDate: 禁止在签署过程中添加签署日期控件
-        #  <br/>前置条件：文件发起合同时，指定SignBeanTag=1（可以在签署过程中添加签署控件）：
-        # <ul>
-        # <li> 默认值：false，在开启：签署过程中添加签署控件时，添加签署控件会默认自带签署日期控件</li>
-        # <li> 可选值：true，在开启：签署过程中添加签署控件时，添加签署控件不会自带签署日期控件</li>
-        # </ul>
+        # @param ForbidAddSignDate: <p>禁止在签署过程中添加签署日期控件<br> <br>前置条件：文件发起合同时，指定SignBeanTag=1（可以在签署过程中添加签署控件）：</p><ul><li> 默认值：false，在开启：签署过程中添加签署控件时，添加签署控件会默认自带签署日期控件</li><li> 可选值：true，在开启：签署过程中添加签署控件时，添加签署控件不会自带签署日期控件</li></ul>
         # @type ForbidAddSignDate: Boolean
+        # @param ForbidModifySealInfos: <p>在嵌入式文件发起下,若合同是通过文件,当签署人控件指定了印章类型（或印章Id）,在嵌入页面上是否能修改</p>
+        # @type ForbidModifySealInfos: Boolean
 
-        attr_accessor :CanEditApprover, :NoRefuse, :NoTransfer, :HideOneKeySign, :FlowReadLimit, :ForbidAddSignDate
+        attr_accessor :CanEditApprover, :NoRefuse, :NoTransfer, :HideOneKeySign, :FlowReadLimit, :ForbidAddSignDate, :ForbidModifySealInfos
 
-        def initialize(caneditapprover=nil, norefuse=nil, notransfer=nil, hideonekeysign=nil, flowreadlimit=nil, forbidaddsigndate=nil)
+        def initialize(caneditapprover=nil, norefuse=nil, notransfer=nil, hideonekeysign=nil, flowreadlimit=nil, forbidaddsigndate=nil, forbidmodifysealinfos=nil)
           @CanEditApprover = caneditapprover
           @NoRefuse = norefuse
           @NoTransfer = notransfer
           @HideOneKeySign = hideonekeysign
           @FlowReadLimit = flowreadlimit
           @ForbidAddSignDate = forbidaddsigndate
+          @ForbidModifySealInfos = forbidmodifysealinfos
         end
 
         def deserialize(params)
@@ -5017,6 +5005,7 @@ module TencentCloud
           @HideOneKeySign = params['HideOneKeySign']
           @FlowReadLimit = params['FlowReadLimit']
           @ForbidAddSignDate = params['ForbidAddSignDate']
+          @ForbidModifySealInfos = params['ForbidModifySealInfos']
         end
       end
 
