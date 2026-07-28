@@ -2047,22 +2047,25 @@ module TencentCloud
 
       # CreateDeviceSDPAnswer请求参数结构体
       class CreateDeviceSDPAnswerRequest < TencentCloud::Common::AbstractModel
-        # @param ProductId: 产品ID
+        # @param ProductId: <p>产品ID</p>
         # @type ProductId: String
-        # @param DeviceName: 设备名称
+        # @param DeviceName: <p>设备名称</p>
         # @type DeviceName: String
-        # @param SDPOffer: SDP提议
+        # @param SDPOffer: <p>SDP提议</p>
         # @type SDPOffer: String
-        # @param RequesterTag: 客户自定义拉流标识
+        # @param RequesterTag: <p>客户自定义拉流标识</p>
         # @type RequesterTag: String
+        # @param EnableSubPub: <p>默认值：0，如果需要webrtc推流拉流在同一个SDP中，需要值为1，常用于单PC模式</p><p>枚举值：</p><ul><li>0： 默认值，传统多pc推流模式</li><li>1： 单pc模式，如果需要webrtc单pc推拉流，采用此模式，此模式下注意SDP需要包含推拉流全部信息</li></ul><p>默认值：0</p>
+        # @type EnableSubPub: Integer
 
-        attr_accessor :ProductId, :DeviceName, :SDPOffer, :RequesterTag
+        attr_accessor :ProductId, :DeviceName, :SDPOffer, :RequesterTag, :EnableSubPub
 
-        def initialize(productid=nil, devicename=nil, sdpoffer=nil, requestertag=nil)
+        def initialize(productid=nil, devicename=nil, sdpoffer=nil, requestertag=nil, enablesubpub=nil)
           @ProductId = productid
           @DeviceName = devicename
           @SDPOffer = sdpoffer
           @RequesterTag = requestertag
+          @EnableSubPub = enablesubpub
         end
 
         def deserialize(params)
@@ -2070,12 +2073,13 @@ module TencentCloud
           @DeviceName = params['DeviceName']
           @SDPOffer = params['SDPOffer']
           @RequesterTag = params['RequesterTag']
+          @EnableSubPub = params['EnableSubPub']
         end
       end
 
       # CreateDeviceSDPAnswer返回参数结构体
       class CreateDeviceSDPAnswerResponse < TencentCloud::Common::AbstractModel
-        # @param SDPAnswer: SDP应答
+        # @param SDPAnswer: <p>SDP应答</p>
         # @type SDPAnswer: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

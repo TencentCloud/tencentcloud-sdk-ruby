@@ -59,29 +59,29 @@ module TencentCloud
 
       # 集群支持的功能
       class Ability < TencentCloud::Common::AbstractModel
-        # @param IsSupportSlaveZone: 是否支持从可用区
+        # @param IsSupportSlaveZone: <p>是否支持从可用区</p>
         # @type IsSupportSlaveZone: String
-        # @param NonsupportSlaveZoneReason: 不支持从可用区的原因
+        # @param NonsupportSlaveZoneReason: <p>不支持从可用区的原因</p>
         # @type NonsupportSlaveZoneReason: String
-        # @param IsSupportRo: 是否支持RO实例
+        # @param IsSupportRo: <p>是否支持RO实例</p>
         # @type IsSupportRo: String
-        # @param NonsupportRoReason: 不支持RO实例的原因
+        # @param NonsupportRoReason: <p>不支持RO实例的原因</p>
         # @type NonsupportRoReason: String
-        # @param IsSupportManualSnapshot: 是否支持手动发起快照备份
+        # @param IsSupportManualSnapshot: <p>是否支持手动发起快照备份</p>
         # @type IsSupportManualSnapshot: String
-        # @param IsSupportTransparentDataEncryption: 是否支持透明数据加密
+        # @param IsSupportTransparentDataEncryption: <p>是否支持透明数据加密</p>
         # @type IsSupportTransparentDataEncryption: String
-        # @param NoSupportTransparentDataEncryptionReason: 不支持透明数据加密原因
+        # @param NoSupportTransparentDataEncryptionReason: <p>不支持透明数据加密原因</p>
         # @type NoSupportTransparentDataEncryptionReason: String
-        # @param IsSupportManualLogic: 是否支持手动发起逻辑备份
+        # @param IsSupportManualLogic: <p>是否支持手动发起逻辑备份</p>
         # @type IsSupportManualLogic: String
-        # @param IsSupportGlobalEncryption: 是否支持开启全局加密
+        # @param IsSupportGlobalEncryption: <p>是否支持开启全局加密</p>
         # @type IsSupportGlobalEncryption: String
-        # @param NoSupportGlobalEncryptionReason: 不支持全局加密的原因
+        # @param NoSupportGlobalEncryptionReason: <p>不支持全局加密的原因</p>
         # @type NoSupportGlobalEncryptionReason: String
-        # @param NoSupportTransparentDataEncryptionReasonCode: 不支持透明加密原因状态码
+        # @param NoSupportTransparentDataEncryptionReasonCode: <p>不支持透明加密原因状态码</p>
         # @type NoSupportTransparentDataEncryptionReasonCode: String
-        # @param NoSupportGlobalEncryptionReasonCode: 不支持全局加密原因状态码
+        # @param NoSupportGlobalEncryptionReasonCode: <p>不支持全局加密原因状态码</p>
         # @type NoSupportGlobalEncryptionReasonCode: String
 
         attr_accessor :IsSupportSlaveZone, :NonsupportSlaveZoneReason, :IsSupportRo, :NonsupportRoReason, :IsSupportManualSnapshot, :IsSupportTransparentDataEncryption, :NoSupportTransparentDataEncryptionReason, :IsSupportManualLogic, :IsSupportGlobalEncryption, :NoSupportGlobalEncryptionReason, :NoSupportTransparentDataEncryptionReasonCode, :NoSupportGlobalEncryptionReasonCode
@@ -119,19 +119,19 @@ module TencentCloud
 
       # 数据库账号信息
       class Account < TencentCloud::Common::AbstractModel
-        # @param AccountName: 数据库账号名
+        # @param AccountName: <p>数据库账号名</p>
         # @type AccountName: String
-        # @param Host: 主机
+        # @param Host: <p>主机</p>
         # @type Host: String
-        # @param Description: 数据库账号描述
+        # @param Description: <p>数据库账号描述</p>
         # @type Description: String
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # @type CreateTime: String
-        # @param UpdateTime: 更新时间
+        # @param UpdateTime: <p>更新时间</p>
         # @type UpdateTime: String
-        # @param MaxUserConnections: 用户最大连接数
+        # @param MaxUserConnections: <p>用户最大连接数</p>
         # @type MaxUserConnections: Integer
-        # @param PasswordRotation: 是否开启密码轮转(0:关闭;1:开启)
+        # @param PasswordRotation: <p>是否开启密码轮转(0:关闭;1:开启)</p>
         # @type PasswordRotation: Integer
 
         attr_accessor :AccountName, :Host, :Description, :CreateTime, :UpdateTime, :MaxUserConnections, :PasswordRotation
@@ -3033,9 +3033,9 @@ module TencentCloud
 
       # CreateAccounts请求参数结构体
       class CreateAccountsRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群id
+        # @param ClusterId: <p>集群id</p>
         # @type ClusterId: String
-        # @param Accounts: 新账户列表
+        # @param Accounts: <p>新账户列表</p>
         # @type Accounts: Array
 
         attr_accessor :ClusterId, :Accounts
@@ -5992,9 +5992,9 @@ module TencentCloud
 
       # DeleteAccounts请求参数结构体
       class DeleteAccountsRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: <p>集群ID</p>
         # @type ClusterId: String
-        # @param Accounts: 账号数组，包含account和host
+        # @param Accounts: <p>账号数组，包含account和host</p>
         # @type Accounts: Array
 
         attr_accessor :ClusterId, :Accounts
@@ -17693,17 +17693,17 @@ module TencentCloud
 
       # 新建账号
       class NewAccount < TencentCloud::Common::AbstractModel
-        # @param AccountName: 账户名，包含字母数字_,以字母开头，字母或数字结尾，长度1-30
+        # @param AccountName: <p>账户名，包含字母数字_,以字母开头，字母或数字结尾，长度1-30</p>
         # @type AccountName: String
-        # @param Host: 主机(%或ipv4地址)
+        # @param Host: <p>主机(%或ipv4地址)</p>
         # @type Host: String
-        # @param AccountPassword: 密码，密码长度范围为8到64个字符
+        # @param AccountPassword: <p>密码，密码长度范围为8到64个字符</p>
         # @type AccountPassword: String
-        # @param PasswordRotation: 是否开启密码轮转(0:关闭;1:开启)
+        # @param PasswordRotation: <p>是否开启密码轮转(0:关闭;1:开启)</p>
         # @type PasswordRotation: Integer
-        # @param Description: 描述
+        # @param Description: <p>描述</p>
         # @type Description: String
-        # @param MaxUserConnections: 用户最大连接数，不能大于10240
+        # @param MaxUserConnections: <p>用户最大连接数，不能大于10240</p>
         # @type MaxUserConnections: Integer
 
         attr_accessor :AccountName, :Host, :AccountPassword, :PasswordRotation, :Description, :MaxUserConnections

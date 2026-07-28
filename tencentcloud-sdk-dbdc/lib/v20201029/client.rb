@@ -29,7 +29,7 @@ module TencentCloud
         end
 
 
-        # 该接口（AddNodesToDBCustomCluster）用于为 DB Custom 集群上架节点。
+        # 该接口（AddNodesToDBCustomCluster）用于为 DB Custom 集群添加已存在的节点。
 
         # @param request: Request instance for AddNodesToDBCustomCluster.
         # @type request: :class:`Tencentcloud::dbdc::V20201029::AddNodesToDBCustomClusterRequest`
@@ -197,7 +197,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 该接口（DescribeDBCustomClusters）为DB Custom 集群列表查询接口。
+        # 该接口（DescribeDBCustomClusters）为 DB Custom 集群列表查询接口。
 
         # @param request: Request instance for DescribeDBCustomClusters.
         # @type request: :class:`Tencentcloud::dbdc::V20201029::DescribeDBCustomClustersRequest`
@@ -485,7 +485,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 该接口（ModifyDBCustomClusterTags）用于修改 DB Custom 集群的标签配置。
+        # 该接口（ModifyDBCustomClusterTags）用于修改 DB Custom 集群绑定的标签。
 
         # @param request: Request instance for ModifyDBCustomClusterTags.
         # @type request: :class:`Tencentcloud::dbdc::V20201029::ModifyDBCustomClusterTagsRequest`
@@ -509,7 +509,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 该接口（ModifyDBCustomNodeTags）用于修改 DB Custom 节点的标签配置。
+        # 该接口（ModifyDBCustomNodeTags）用于修改 DB Custom 节点绑定的标签。
 
         # @param request: Request instance for ModifyDBCustomNodeTags.
         # @type request: :class:`Tencentcloud::dbdc::V20201029::ModifyDBCustomNodeTagsRequest`
@@ -557,7 +557,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 该接口（RemoveNodesFromDBCustomCluster）用于从 DB Custom 集群移除节点。
+        # 该接口（RemoveNodesFromDBCustomCluster）用于从 DB Custom 集群移出节点。
 
         # @param request: Request instance for RemoveNodesFromDBCustomCluster.
         # @type request: :class:`Tencentcloud::dbdc::V20201029::RemoveNodesFromDBCustomClusterRequest`
@@ -581,7 +581,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 该接口（RenewDBCustomNode）用于给 DB Custom 节点续费。
+        # 该接口（RenewDBCustomNode）用于给 DB Custom 节点续费，或者给已经隔离的实例解除隔离。
 
         # @param request: Request instance for RenewDBCustomNode.
         # @type request: :class:`Tencentcloud::dbdc::V20201029::RenewDBCustomNodeRequest`

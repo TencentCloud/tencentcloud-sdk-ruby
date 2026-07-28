@@ -5895,30 +5895,32 @@ module TencentCloud
 
       # CreateMalwareWhiteList请求参数结构体
       class CreateMalwareWhiteListRequest < TencentCloud::Common::AbstractModel
-        # @param Mode: 白名单模式； 0 MD5白名单，1自定义
+        # @param Mode: <p>白名单模式； 0 MD5白名单，1自定义</p>
         # @type Mode: Integer
-        # @param QuuidList: quuid 列表
+        # @param QuuidList: <p>quuid 列表</p>
         # @type QuuidList: Array
-        # @param IsGlobal: 是否全部主机； 0否，1是。
+        # @param IsGlobal: <p>是否全部主机； 0否，1是。</p>
         # @type IsGlobal: Integer
-        # @param MatchType: 匹配模式 ；0 精确匹配，1模糊匹配（废弃）
+        # @param MatchType: <p>匹配模式 ；0 精确匹配，1模糊匹配（废弃）</p>
         # @type MatchType: Integer
-        # @param FileName: 文件名称(正则)；长度不超过200个
+        # @param FileName: <p>文件名称(正则)；长度不超过200个</p>
         # @type FileName: Array
-        # @param FileDirectory: 文件目录(正则)；长度不超过200个,内容base64转义
+        # @param FileDirectory: <p>文件目录(正则)；长度不超过200个,内容base64转义</p>
         # @type FileDirectory: Array
-        # @param FileExtension: 文件后缀；长度不超过200个,内容base64转义（废弃）
+        # @param FileExtension: <p>文件后缀；长度不超过200个,内容base64转义（废弃）</p>
         # @type FileExtension: Array
-        # @param Md5List: MD5列表
+        # @param Md5List: <p>MD5列表</p>
         # @type Md5List: Array
-        # @param EventId: 木马事件ID
+        # @param EventId: <p>木马事件ID</p>
         # @type EventId: Integer
-        # @param IsHandleHistoryEvents: 对历史待处理执行加白操作；0是不处理，1是处理
+        # @param IsHandleHistoryEvents: <p>对历史待处理执行加白操作；0是不处理，1是处理</p>
         # @type IsHandleHistoryEvents: Integer
+        # @param ProcessEventID: <p>恶意进程告警id</p>
+        # @type ProcessEventID: Integer
 
-        attr_accessor :Mode, :QuuidList, :IsGlobal, :MatchType, :FileName, :FileDirectory, :FileExtension, :Md5List, :EventId, :IsHandleHistoryEvents
+        attr_accessor :Mode, :QuuidList, :IsGlobal, :MatchType, :FileName, :FileDirectory, :FileExtension, :Md5List, :EventId, :IsHandleHistoryEvents, :ProcessEventID
 
-        def initialize(mode=nil, quuidlist=nil, isglobal=nil, matchtype=nil, filename=nil, filedirectory=nil, fileextension=nil, md5list=nil, eventid=nil, ishandlehistoryevents=nil)
+        def initialize(mode=nil, quuidlist=nil, isglobal=nil, matchtype=nil, filename=nil, filedirectory=nil, fileextension=nil, md5list=nil, eventid=nil, ishandlehistoryevents=nil, processeventid=nil)
           @Mode = mode
           @QuuidList = quuidlist
           @IsGlobal = isglobal
@@ -5929,6 +5931,7 @@ module TencentCloud
           @Md5List = md5list
           @EventId = eventid
           @IsHandleHistoryEvents = ishandlehistoryevents
+          @ProcessEventID = processeventid
         end
 
         def deserialize(params)
@@ -5942,6 +5945,7 @@ module TencentCloud
           @Md5List = params['Md5List']
           @EventId = params['EventId']
           @IsHandleHistoryEvents = params['IsHandleHistoryEvents']
+          @ProcessEventID = params['ProcessEventID']
         end
       end
 
@@ -40537,50 +40541,54 @@ module TencentCloud
 
       # 异常进程事件
       class RiskProcessEvent < TencentCloud::Common::AbstractModel
-        # @param EventId: 事件ID
+        # @param EventId: <p>事件ID</p>
         # @type EventId: Integer
-        # @param HostName: 主机名称
+        # @param HostName: <p>主机名称</p>
         # @type HostName: String
-        # @param HostIp: 主机IP
+        # @param HostIp: <p>主机IP</p>
         # @type HostIp: String
-        # @param WanIp: 外网IP
+        # @param WanIp: <p>外网IP</p>
         # @type WanIp: String
-        # @param ProcessId: 进程ID
+        # @param ProcessId: <p>进程ID</p>
         # @type ProcessId: Integer
-        # @param FilePath: 文件路径
+        # @param FilePath: <p>文件路径</p>
         # @type FilePath: String
-        # @param CmdLine: 执行命令
+        # @param CmdLine: <p>执行命令</p>
         # @type CmdLine: String
-        # @param StartTime: 进程启动时间
+        # @param StartTime: <p>进程启动时间</p>
         # @type StartTime: String
-        # @param DetectTime: 最近检测时间
+        # @param DetectTime: <p>最近检测时间</p>
         # @type DetectTime: String
-        # @param VirusName: 病毒名称
+        # @param VirusName: <p>病毒名称</p>
         # @type VirusName: String
-        # @param CheckPlatform: 木马检测平台 [1:云查杀引擎|2:TAV|3:binaryAi|4:异常行为|5:威胁情报]
+        # @param CheckPlatform: <p>木马检测平台 [1:云查杀引擎|2:TAV|3:binaryAi|4:异常行为|5:威胁情报]</p>
         # @type CheckPlatform: Array
-        # @param VirusTags: 病毒标签
+        # @param VirusTags: <p>病毒标签</p>
         # @type VirusTags: Array
-        # @param ThreatDesc: 威胁描述
+        # @param ThreatDesc: <p>威胁描述</p>
         # @type ThreatDesc: String
-        # @param SuggestSolution: 建议方案
+        # @param SuggestSolution: <p>建议方案</p>
         # @type SuggestSolution: String
-        # @param ReferenceLink: 参考链接
+        # @param ReferenceLink: <p>参考链接</p>
         # @type ReferenceLink: String
-        # @param HandleStatus: 处理状态[0待处理;1已处理;2查杀中;3已查杀;4已退出;5忽略]
+        # @param HandleStatus: <p>处理状态[0待处理;1已处理;2查杀中;3已查杀;4已退出;5忽略]</p>
         # @type HandleStatus: Integer
-        # @param OnlineStatus: 主机在线状态
+        # @param OnlineStatus: <p>主机在线状态</p>
         # @type OnlineStatus: Integer
-        # @param MachineExtraInfo: 附加信息
+        # @param MachineExtraInfo: <p>附加信息</p>
         # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
-        # @param Uuid: 主机uuid
+        # @param Uuid: <p>主机uuid</p>
         # @type Uuid: String
-        # @param FirstDetectionMethod: 首次检出方式 0扫描;1实时监控
+        # @param FirstDetectionMethod: <p>首次检出方式 0扫描;1实时监控</p>
         # @type FirstDetectionMethod: Integer
+        # @param QUUID: <p>quuid</p>
+        # @type QUUID: String
+        # @param ExeMd5: <p>进程md5</p>
+        # @type ExeMd5: String
 
-        attr_accessor :EventId, :HostName, :HostIp, :WanIp, :ProcessId, :FilePath, :CmdLine, :StartTime, :DetectTime, :VirusName, :CheckPlatform, :VirusTags, :ThreatDesc, :SuggestSolution, :ReferenceLink, :HandleStatus, :OnlineStatus, :MachineExtraInfo, :Uuid, :FirstDetectionMethod
+        attr_accessor :EventId, :HostName, :HostIp, :WanIp, :ProcessId, :FilePath, :CmdLine, :StartTime, :DetectTime, :VirusName, :CheckPlatform, :VirusTags, :ThreatDesc, :SuggestSolution, :ReferenceLink, :HandleStatus, :OnlineStatus, :MachineExtraInfo, :Uuid, :FirstDetectionMethod, :QUUID, :ExeMd5
 
-        def initialize(eventid=nil, hostname=nil, hostip=nil, wanip=nil, processid=nil, filepath=nil, cmdline=nil, starttime=nil, detecttime=nil, virusname=nil, checkplatform=nil, virustags=nil, threatdesc=nil, suggestsolution=nil, referencelink=nil, handlestatus=nil, onlinestatus=nil, machineextrainfo=nil, uuid=nil, firstdetectionmethod=nil)
+        def initialize(eventid=nil, hostname=nil, hostip=nil, wanip=nil, processid=nil, filepath=nil, cmdline=nil, starttime=nil, detecttime=nil, virusname=nil, checkplatform=nil, virustags=nil, threatdesc=nil, suggestsolution=nil, referencelink=nil, handlestatus=nil, onlinestatus=nil, machineextrainfo=nil, uuid=nil, firstdetectionmethod=nil, quuid=nil, exemd5=nil)
           @EventId = eventid
           @HostName = hostname
           @HostIp = hostip
@@ -40601,6 +40609,8 @@ module TencentCloud
           @MachineExtraInfo = machineextrainfo
           @Uuid = uuid
           @FirstDetectionMethod = firstdetectionmethod
+          @QUUID = quuid
+          @ExeMd5 = exemd5
         end
 
         def deserialize(params)
@@ -40627,6 +40637,8 @@ module TencentCloud
           end
           @Uuid = params['Uuid']
           @FirstDetectionMethod = params['FirstDetectionMethod']
+          @QUUID = params['QUUID']
+          @ExeMd5 = params['ExeMd5']
         end
       end
 

@@ -821,6 +821,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 跨集群灾备场景下查询设备证书同步记录
+
+        # @param request: Request instance for DescribeDeviceCertificateBackupHistory.
+        # @type request: :class:`Tencentcloud::mqtt::V20240516::DescribeDeviceCertificateBackupHistoryRequest`
+        # @rtype: :class:`Tencentcloud::mqtt::V20240516::DescribeDeviceCertificateBackupHistoryResponse`
+        def DescribeDeviceCertificateBackupHistory(request)
+          body = send_request('DescribeDeviceCertificateBackupHistory', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDeviceCertificateBackupHistoryResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 分页查询设备证书
 
         # @param request: Request instance for DescribeDeviceCertificates.
@@ -879,6 +903,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDeviceIdentityResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 跨集群容灾场景下查询设备标识同步记录
+
+        # @param request: Request instance for DescribeDeviceIdentityBackupHistory.
+        # @type request: :class:`Tencentcloud::mqtt::V20240516::DescribeDeviceIdentityBackupHistoryRequest`
+        # @rtype: :class:`Tencentcloud::mqtt::V20240516::DescribeDeviceIdentityBackupHistoryResponse`
+        def DescribeDeviceIdentityBackupHistory(request)
+          body = send_request('DescribeDeviceIdentityBackupHistory', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDeviceIdentityBackupHistoryResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1297,6 +1345,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeUserListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 遗嘱消息查询
+
+        # @param request: Request instance for DescribeWillMessage.
+        # @type request: :class:`Tencentcloud::mqtt::V20240516::DescribeWillMessageRequest`
+        # @rtype: :class:`Tencentcloud::mqtt::V20240516::DescribeWillMessageResponse`
+        def DescribeWillMessage(request)
+          body = send_request('DescribeWillMessage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeWillMessageResponse.new
             model.deserialize(response['Response'])
             model
           else

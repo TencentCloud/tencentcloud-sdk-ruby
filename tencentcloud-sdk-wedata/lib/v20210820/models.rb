@@ -13005,6 +13005,54 @@ module TencentCloud
         end
       end
 
+      # DescribeInstancesByExecutors请求参数结构体
+      class DescribeInstancesByExecutorsRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: <p>项目ID</p>
+        # @type ProjectId: String
+        # @param ExecutorGroupIdList: <p>执行资源组ID</p>
+        # @type ExecutorGroupIdList: Array
+
+        attr_accessor :ProjectId, :ExecutorGroupIdList
+
+        def initialize(projectid=nil, executorgroupidlist=nil)
+          @ProjectId = projectid
+          @ExecutorGroupIdList = executorgroupidlist
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @ExecutorGroupIdList = params['ExecutorGroupIdList']
+        end
+      end
+
+      # DescribeInstancesByExecutors返回参数结构体
+      class DescribeInstancesByExecutorsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>实例状态统计结果</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              executortaskinstancecount_tmp = ExecutorTaskInstanceCount.new
+              executortaskinstancecount_tmp.deserialize(i)
+              @Data << executortaskinstancecount_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeIntegrationNode请求参数结构体
       class DescribeIntegrationNodeRequest < TencentCloud::Common::AbstractModel
         # @param Id: 节点id
@@ -22124,6 +22172,53 @@ module TencentCloud
               @UsageTrendList << executorusagetrendinfo_tmp
             end
           end
+        end
+      end
+
+      # ExecutorTaskInstanceCount
+      class ExecutorTaskInstanceCount < TencentCloud::Common::AbstractModel
+        # @param ExecutorGroupId: 执行资源组ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecutorGroupId: String
+        # @param SchedulingTaskCount: 数据开发中的任务类型绑定的资源组数量等待调度的任务实例数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SchedulingTaskCount: Integer
+        # @param RunningInstanceCount: 数据开发中的任务类型绑定的资源组数量运行中的人物实例数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RunningInstanceCount: Integer
+        # @param WaitingInstanceCount: 数据开发中的任务类型绑定的资源组数量等待运行的任务实例数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WaitingInstanceCount: Integer
+        # @param OthersTaskTypeSchedulingTaskCount: 非离线开发调度中任务数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OthersTaskTypeSchedulingTaskCount: Integer
+        # @param OthersTaskTypeRunningInstanceCount: 非离线开发运行中实例数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OthersTaskTypeRunningInstanceCount: Integer
+        # @param OthersTaskTypeWaitingInstanceCount: 非离线开发等待运行实例数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OthersTaskTypeWaitingInstanceCount: String
+
+        attr_accessor :ExecutorGroupId, :SchedulingTaskCount, :RunningInstanceCount, :WaitingInstanceCount, :OthersTaskTypeSchedulingTaskCount, :OthersTaskTypeRunningInstanceCount, :OthersTaskTypeWaitingInstanceCount
+
+        def initialize(executorgroupid=nil, schedulingtaskcount=nil, runninginstancecount=nil, waitinginstancecount=nil, otherstasktypeschedulingtaskcount=nil, otherstasktyperunninginstancecount=nil, otherstasktypewaitinginstancecount=nil)
+          @ExecutorGroupId = executorgroupid
+          @SchedulingTaskCount = schedulingtaskcount
+          @RunningInstanceCount = runninginstancecount
+          @WaitingInstanceCount = waitinginstancecount
+          @OthersTaskTypeSchedulingTaskCount = otherstasktypeschedulingtaskcount
+          @OthersTaskTypeRunningInstanceCount = otherstasktyperunninginstancecount
+          @OthersTaskTypeWaitingInstanceCount = otherstasktypewaitinginstancecount
+        end
+
+        def deserialize(params)
+          @ExecutorGroupId = params['ExecutorGroupId']
+          @SchedulingTaskCount = params['SchedulingTaskCount']
+          @RunningInstanceCount = params['RunningInstanceCount']
+          @WaitingInstanceCount = params['WaitingInstanceCount']
+          @OthersTaskTypeSchedulingTaskCount = params['OthersTaskTypeSchedulingTaskCount']
+          @OthersTaskTypeRunningInstanceCount = params['OthersTaskTypeRunningInstanceCount']
+          @OthersTaskTypeWaitingInstanceCount = params['OthersTaskTypeWaitingInstanceCount']
         end
       end
 

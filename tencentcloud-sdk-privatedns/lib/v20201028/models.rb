@@ -404,7 +404,7 @@ module TencentCloud
 
       # CreatePrivateDNSAccount请求参数结构体
       class CreatePrivateDNSAccountRequest < TencentCloud::Common::AbstractModel
-        # @param Account: 私有域解析账号，该账号不能与主账号一致且需要子账号授权
+        # @param Account: <p>被绑定的主账号，不能与本账号一致，且需要完成授权</p>
         # @type Account: :class:`Tencentcloud::Privatedns.v20201028.models.PrivateDNSAccount`
 
         attr_accessor :Account
@@ -597,8 +597,8 @@ module TencentCloud
 
         attr_accessor :Domain, :TagSet, :VpcSet, :Remark, :DnsForwardStatus, :Vpcs, :AccountVpcSet, :CnameSpeedupStatus
         extend Gem::Deprecate
-        deprecate :Vpcs, :none, 2025, 12
-        deprecate :Vpcs=, :none, 2025, 12
+        deprecate :Vpcs, :none, 2026, 7
+        deprecate :Vpcs=, :none, 2026, 7
 
         def initialize(domain=nil, tagset=nil, vpcset=nil, remark=nil, dnsforwardstatus=nil, vpcs=nil, accountvpcset=nil, cnamespeedupstatus=nil)
           @Domain = domain

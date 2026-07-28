@@ -1125,6 +1125,78 @@ module TencentCloud
         end
       end
 
+      # CreateLiveStreamModeration请求参数结构体
+      class CreateLiveStreamModerationRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: <p>TRTC的<a href="https://cloud.tencent.com/document/product/647/46351#sdkappid">SdkAppId</a>。</p>
+        # @type SdkAppId: Integer
+        # @param Input: <p>直播流输入源</p>
+        # @type Input: :class:`Tencentcloud::Trtc.v20190722.models.Input`
+        # @param LiveModerationParams: <p>直播流ai理解审核参数</p>
+        # @type LiveModerationParams: :class:`Tencentcloud::Trtc.v20190722.models.LiveModerationParams`
+        # @param DataId: <p>业务自定义唯一标识，原样透传到回调</p><p>入参限制：长度限制60字符</p>
+        # @type DataId: String
+        # @param SourceInfo: <p>额外信息透传结构体（房间/主播/业务自定义），原样回带到回调</p>
+        # @type SourceInfo: :class:`Tencentcloud::Trtc.v20190722.models.SourceInfo`
+        # @param LiveModerationStorageParams: <p>直播流ai理解转存文件存储参数</p>
+        # @type LiveModerationStorageParams: :class:`Tencentcloud::Trtc.v20190722.models.LiveModerationStorageParams`
+        # @param ResourceExpiredHour: <p>单路任务最大的生命周期</p><p>取值范围：[1, 72]</p><p>单位：小时</p><p>默认值：48</p>
+        # @type ResourceExpiredHour: Integer
+
+        attr_accessor :SdkAppId, :Input, :LiveModerationParams, :DataId, :SourceInfo, :LiveModerationStorageParams, :ResourceExpiredHour
+
+        def initialize(sdkappid=nil, input=nil, livemoderationparams=nil, dataid=nil, sourceinfo=nil, livemoderationstorageparams=nil, resourceexpiredhour=nil)
+          @SdkAppId = sdkappid
+          @Input = input
+          @LiveModerationParams = livemoderationparams
+          @DataId = dataid
+          @SourceInfo = sourceinfo
+          @LiveModerationStorageParams = livemoderationstorageparams
+          @ResourceExpiredHour = resourceexpiredhour
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          unless params['Input'].nil?
+            @Input = Input.new
+            @Input.deserialize(params['Input'])
+          end
+          unless params['LiveModerationParams'].nil?
+            @LiveModerationParams = LiveModerationParams.new
+            @LiveModerationParams.deserialize(params['LiveModerationParams'])
+          end
+          @DataId = params['DataId']
+          unless params['SourceInfo'].nil?
+            @SourceInfo = SourceInfo.new
+            @SourceInfo.deserialize(params['SourceInfo'])
+          end
+          unless params['LiveModerationStorageParams'].nil?
+            @LiveModerationStorageParams = LiveModerationStorageParams.new
+            @LiveModerationStorageParams.deserialize(params['LiveModerationStorageParams'])
+          end
+          @ResourceExpiredHour = params['ResourceExpiredHour']
+        end
+      end
+
+      # CreateLiveStreamModeration返回参数结构体
+      class CreateLiveStreamModerationResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>AI 内容理解服务分配的任务ID。任务ID是对一次切片任务生命周期过程的唯一标识，结束任务时会失去意义。任务ID需要业务保存下来，作为下次针对这个任务操作的参数</p>
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreatePicture请求参数结构体
       class CreatePictureRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 应用id
@@ -1368,6 +1440,46 @@ module TencentCloud
       # DeleteCloudTranscription返回参数结构体
       class DeleteCloudTranscriptionResponse < TencentCloud::Common::AbstractModel
         # @param TaskId: 转录服务分配的任务 ID。任务 ID 是对一次转录生命周期过程的唯一标识，结束转录时会失去意义。
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteLiveStreamModeration请求参数结构体
+      class DeleteLiveStreamModerationRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: <p>TRTC的SDKAppId，和TRTC的房间所对应的SDKAppId相同。</p>
+        # @type SdkAppId: Integer
+        # @param TaskId: <p>AI 内容理解任务的唯一Id，在启动切片任务成功后会返回。</p>
+        # @type TaskId: String
+
+        attr_accessor :SdkAppId, :TaskId
+
+        def initialize(sdkappid=nil, taskid=nil)
+          @SdkAppId = sdkappid
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DeleteLiveStreamModeration返回参数结构体
+      class DeleteLiveStreamModerationResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>AI 内容理解任务的唯一Id，在启动切片任务成功后会返回。</p>
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1939,6 +2051,50 @@ module TencentCloud
           @StartTime = params['StartTime']
           @Status = params['Status']
           @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLiveStreamModeration请求参数结构体
+      class DescribeLiveStreamModerationRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: <p>TRTC的SDKAppId，和录制的房间所对应的SDKAppId相同。</p>
+        # @type SdkAppId: Integer
+        # @param TaskId: <p>AI 内容理解任务的唯一Id，在启动切片任务成功后会返回。</p>
+        # @type TaskId: String
+
+        attr_accessor :SdkAppId, :TaskId
+
+        def initialize(sdkappid=nil, taskid=nil)
+          @SdkAppId = sdkappid
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeLiveStreamModeration返回参数结构体
+      class DescribeLiveStreamModerationResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>AI 内容理解任务的唯一Id，在启动切片任务成功后会返回。</p>
+        # @type TaskId: String
+        # @param Status: <p>AI内容理解任务的状态信息。Idle:表示当前任务空闲中,InProgress:表示当前任务正在进行中,Exited:表示当前任务正在退出的过程中。</p><p>枚举值：</p><ul><li>InProgress： 进行中</li></ul>
+        # @type Status: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :Status, :RequestId
+
+        def initialize(taskid=nil, status=nil, requestid=nil)
+          @TaskId = taskid
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Status = params['Status']
           @RequestId = params['RequestId']
         end
       end
@@ -3548,6 +3704,26 @@ module TencentCloud
         end
       end
 
+      # 拉流输入源
+      class Input < TencentCloud::Common::AbstractModel
+        # @param Url: <p>直播拉流地址</p><p>入参限制：字符长度小于2048</p>
+        # @type Url: String
+        # @param Format: <p>显式协议</p><p>枚举值：</p><ul><li>rtmp： rtmp协议</li></ul>
+        # @type Format: String
+
+        attr_accessor :Url, :Format
+
+        def initialize(url=nil, format=nil)
+          @Url = url
+          @Format = format
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
+          @Format = params['Format']
+        end
+      end
+
       # 调用服务端主动发起请求到LLM
       class InvokeLLM < TencentCloud::Common::AbstractModel
         # @param Content: 请求LLM的内容
@@ -3638,6 +3814,61 @@ module TencentCloud
             @WaterMarkParams.deserialize(params['WaterMarkParams'])
           end
           @RenderMode = params['RenderMode']
+        end
+      end
+
+      # 直播流ai内容理解参数
+      class LiveModerationParams < TencentCloud::Common::AbstractModel
+        # @param ModerationType: <p>AI 内容理解任务类型</p><p>枚举值：</p><ul><li>1： 音频切片理解</li><li>2： 视频截帧理解</li><li>3： 音视切片+视频截帧理解 </li></ul><p>默认值：3</p>
+        # @type ModerationType: Integer
+        # @param MaxIdleTime: <p>持续没有上行推流的状态超过MaxIdleTime的时长，自动停止切片。</p><p>取值范围：[30, 1800]</p><p>单位：秒</p><p>默认值：30</p>
+        # @type MaxIdleTime: Integer
+        # @param SliceVideo: <p>视频截帧间隔</p><p>取值范围：[1, 60]</p><p>单位：秒</p><p>默认值：5</p>
+        # @type SliceVideo: Integer
+        # @param SliceAudio: <p>音频切片时长</p><p>取值范围：[5, 60]</p><p>单位：秒</p><p>默认值：15</p>
+        # @type SliceAudio: Integer
+        # @param SaveModerationFile: <p>是否保存文件</p><p>枚举值：</p><ul><li>0： 0不保存</li><li>1： 1保存所有</li><li>2： 仅命中</li></ul><p>默认值：1</p>
+        # @type SaveModerationFile: Integer
+        # @param CallbackAllResults: <p>是否回调所有内容理解结果</p><p>枚举值：</p><ul><li>0： 回调所有结果</li><li>1： 仅回调命中结果</li></ul><p>默认值：0</p>
+        # @type CallbackAllResults: Integer
+
+        attr_accessor :ModerationType, :MaxIdleTime, :SliceVideo, :SliceAudio, :SaveModerationFile, :CallbackAllResults
+
+        def initialize(moderationtype=nil, maxidletime=nil, slicevideo=nil, sliceaudio=nil, savemoderationfile=nil, callbackallresults=nil)
+          @ModerationType = moderationtype
+          @MaxIdleTime = maxidletime
+          @SliceVideo = slicevideo
+          @SliceAudio = sliceaudio
+          @SaveModerationFile = savemoderationfile
+          @CallbackAllResults = callbackallresults
+        end
+
+        def deserialize(params)
+          @ModerationType = params['ModerationType']
+          @MaxIdleTime = params['MaxIdleTime']
+          @SliceVideo = params['SliceVideo']
+          @SliceAudio = params['SliceAudio']
+          @SaveModerationFile = params['SaveModerationFile']
+          @CallbackAllResults = params['CallbackAllResults']
+        end
+      end
+
+      # 直播流aI理解的转存文件存储参数
+      class LiveModerationStorageParams < TencentCloud::Common::AbstractModel
+        # @param CloudModerationStorage: <p>直播流ai理解文件转存</p>
+        # @type CloudModerationStorage: :class:`Tencentcloud::Trtc.v20190722.models.CloudModerationStorage`
+
+        attr_accessor :CloudModerationStorage
+
+        def initialize(cloudmoderationstorage=nil)
+          @CloudModerationStorage = cloudmoderationstorage
+        end
+
+        def deserialize(params)
+          unless params['CloudModerationStorage'].nil?
+            @CloudModerationStorage = CloudModerationStorage.new
+            @CloudModerationStorage.deserialize(params['CloudModerationStorage'])
+          end
         end
       end
 
@@ -5898,6 +6129,30 @@ module TencentCloud
           @ImageHeight = params['ImageHeight']
           @LocationX = params['LocationX']
           @LocationY = params['LocationY']
+        end
+      end
+
+      # 额外信息透传结构体（房间/主播/业务自定义），原样回带到回调
+      class SourceInfo < TencentCloud::Common::AbstractModel
+        # @param RoomId: <p>直播间 ID（用于结果透传与去重；数字房间号也用 string 传）</p>
+        # @type RoomId: String
+        # @param RoomIdType: <p>房间号类型</p><p>枚举值：</p><ul><li>0： 字符串房间号</li><li>1： 数字房间号</li></ul>
+        # @type RoomIdType: Integer
+        # @param UserId: <p>主播/被审核方 ID</p>
+        # @type UserId: String
+
+        attr_accessor :RoomId, :RoomIdType, :UserId
+
+        def initialize(roomid=nil, roomidtype=nil, userid=nil)
+          @RoomId = roomid
+          @RoomIdType = roomidtype
+          @UserId = userid
+        end
+
+        def deserialize(params)
+          @RoomId = params['RoomId']
+          @RoomIdType = params['RoomIdType']
+          @UserId = params['UserId']
         end
       end
 

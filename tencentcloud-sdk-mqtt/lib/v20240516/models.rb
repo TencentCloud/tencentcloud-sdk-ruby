@@ -1811,6 +1811,73 @@ module TencentCloud
         end
       end
 
+      # DescribeDeviceCertificateBackupHistory请求参数结构体
+      class DescribeDeviceCertificateBackupHistoryRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>腾讯云MQTT实例ID，从 <a href="https://cloud.tencent.com/document/api/1778/111029">DescribeInstanceList</a>接口或控制台获得。</p>
+        # @type InstanceId: String
+        # @param Destination: <p>目标集群的集群ID</p>
+        # @type Destination: String
+        # @param CaSn: <p>CA证书的SN</p>
+        # @type CaSn: String
+        # @param DeviceCertificateSn: <p>设备证书的SN</p>
+        # @type DeviceCertificateSn: String
+        # @param ModificationTimeStart: <p>同步发生开始时间（毫秒级时间戳）</p>
+        # @type ModificationTimeStart: Integer
+        # @param ModificationTimeEnd: <p>同步结束时间（毫秒级时间戳）</p>
+        # @type ModificationTimeEnd: Integer
+        # @param Limit: <p>查询条数，默认20，最大1024</p>
+        # @type Limit: Integer
+
+        attr_accessor :InstanceId, :Destination, :CaSn, :DeviceCertificateSn, :ModificationTimeStart, :ModificationTimeEnd, :Limit
+
+        def initialize(instanceid=nil, destination=nil, casn=nil, devicecertificatesn=nil, modificationtimestart=nil, modificationtimeend=nil, limit=nil)
+          @InstanceId = instanceid
+          @Destination = destination
+          @CaSn = casn
+          @DeviceCertificateSn = devicecertificatesn
+          @ModificationTimeStart = modificationtimestart
+          @ModificationTimeEnd = modificationtimeend
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Destination = params['Destination']
+          @CaSn = params['CaSn']
+          @DeviceCertificateSn = params['DeviceCertificateSn']
+          @ModificationTimeStart = params['ModificationTimeStart']
+          @ModificationTimeEnd = params['ModificationTimeEnd']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeDeviceCertificateBackupHistory返回参数结构体
+      class DescribeDeviceCertificateBackupHistoryResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>设备证书列表</p>
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              devicecertificatebackuphistoryitem_tmp = DeviceCertificateBackupHistoryItem.new
+              devicecertificatebackuphistoryitem_tmp.deserialize(i)
+              @Data << devicecertificatebackuphistoryitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDeviceCertificate请求参数结构体
       class DescribeDeviceCertificateRequest < TencentCloud::Common::AbstractModel
         # @param DeviceCertificateSn: 设备证书的SN序列号，用于唯一标识一个设备证书。
@@ -2040,6 +2107,69 @@ module TencentCloud
               deviceidentityitem_tmp = DeviceIdentityItem.new
               deviceidentityitem_tmp.deserialize(i)
               @Data << deviceidentityitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDeviceIdentityBackupHistory请求参数结构体
+      class DescribeDeviceIdentityBackupHistoryRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>集群id</p>
+        # @type InstanceId: String
+        # @param Destination: <p>灾备集群的集群ID</p>
+        # @type Destination: String
+        # @param DeviceId: <p>设备ID</p>
+        # @type DeviceId: String
+        # @param ModificationTimeStart: <p>同步发生的开始时间</p>
+        # @type ModificationTimeStart: Integer
+        # @param ModificationTimeEnd: <p>同步发生的结束时间</p>
+        # @type ModificationTimeEnd: Integer
+        # @param Limit: <p>查询条数</p>
+        # @type Limit: Integer
+
+        attr_accessor :InstanceId, :Destination, :DeviceId, :ModificationTimeStart, :ModificationTimeEnd, :Limit
+
+        def initialize(instanceid=nil, destination=nil, deviceid=nil, modificationtimestart=nil, modificationtimeend=nil, limit=nil)
+          @InstanceId = instanceid
+          @Destination = destination
+          @DeviceId = deviceid
+          @ModificationTimeStart = modificationtimestart
+          @ModificationTimeEnd = modificationtimeend
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Destination = params['Destination']
+          @DeviceId = params['DeviceId']
+          @ModificationTimeStart = params['ModificationTimeStart']
+          @ModificationTimeEnd = params['ModificationTimeEnd']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeDeviceIdentityBackupHistory返回参数结构体
+      class DescribeDeviceIdentityBackupHistoryResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>返回的设备标识列表</p>
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              deviceidentitybackuphistoryitem_tmp = DeviceIdentityBackupHistoryItem.new
+              deviceidentitybackuphistoryitem_tmp.deserialize(i)
+              @Data << deviceidentitybackuphistoryitem_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -3258,6 +3388,177 @@ module TencentCloud
         end
       end
 
+      # DescribeWillMessage请求参数结构体
+      class DescribeWillMessageRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例ID，从 <a href="https://cloud.tencent.com/document/api/1778/111029">DescribeInstanceList</a>接口或控制台获得。</p>
+        # @type InstanceId: String
+        # @param ClientId: <p>客户端id</p>
+        # @type ClientId: String
+
+        attr_accessor :InstanceId, :ClientId
+
+        def initialize(instanceid=nil, clientid=nil)
+          @InstanceId = instanceid
+          @ClientId = clientid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ClientId = params['ClientId']
+        end
+      end
+
+      # DescribeWillMessage返回参数结构体
+      class DescribeWillMessageResponse < TencentCloud::Common::AbstractModel
+        # @param Topic: <p>保留消息Topic</p>
+        # @type Topic: String
+        # @param Qos: <p>消息服务质量</p>
+        # @type Qos: Integer
+        # @param Retained: <p>是否保留消息</p>
+        # @type Retained: Boolean
+        # @param Payload: <p>消息负载(Base64编码)</p>
+        # @type Payload: String
+        # @param CreateTime: <p>创建时间，毫秒级时间戳 。</p>
+        # @type CreateTime: Integer
+        # @param UpdateTime: <p>更新时间，毫秒级时间戳 。</p>
+        # @type UpdateTime: Integer
+        # @param WillDelayInterval: <p>遗嘱消息延迟时间，单位秒</p>
+        # @type WillDelayInterval: Integer
+        # @param ContentType: <p>响应内容类型</p>
+        # @type ContentType: String
+        # @param ResponseTopic: <p>响应主题</p>
+        # @type ResponseTopic: String
+        # @param CorrelationData: <p>关联数据（Base64编码）</p>
+        # @type CorrelationData: String
+        # @param MessageExpiryInterval: <p>消息过期时间，单位秒</p>
+        # @type MessageExpiryInterval: Integer
+        # @param PayloadFormatIndicator: <p>负载格式指示器 1:UTF-8文本</p>
+        # @type PayloadFormatIndicator: Integer
+        # @param UserProperties: <p>用户属性</p>
+        # @type UserProperties: Array
+        # @param PublishAfter: <p>遗嘱消息发布时间</p>
+        # @type PublishAfter: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Topic, :Qos, :Retained, :Payload, :CreateTime, :UpdateTime, :WillDelayInterval, :ContentType, :ResponseTopic, :CorrelationData, :MessageExpiryInterval, :PayloadFormatIndicator, :UserProperties, :PublishAfter, :RequestId
+
+        def initialize(topic=nil, qos=nil, retained=nil, payload=nil, createtime=nil, updatetime=nil, willdelayinterval=nil, contenttype=nil, responsetopic=nil, correlationdata=nil, messageexpiryinterval=nil, payloadformatindicator=nil, userproperties=nil, publishafter=nil, requestid=nil)
+          @Topic = topic
+          @Qos = qos
+          @Retained = retained
+          @Payload = payload
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @WillDelayInterval = willdelayinterval
+          @ContentType = contenttype
+          @ResponseTopic = responsetopic
+          @CorrelationData = correlationdata
+          @MessageExpiryInterval = messageexpiryinterval
+          @PayloadFormatIndicator = payloadformatindicator
+          @UserProperties = userproperties
+          @PublishAfter = publishafter
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Topic = params['Topic']
+          @Qos = params['Qos']
+          @Retained = params['Retained']
+          @Payload = params['Payload']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @WillDelayInterval = params['WillDelayInterval']
+          @ContentType = params['ContentType']
+          @ResponseTopic = params['ResponseTopic']
+          @CorrelationData = params['CorrelationData']
+          @MessageExpiryInterval = params['MessageExpiryInterval']
+          @PayloadFormatIndicator = params['PayloadFormatIndicator']
+          unless params['UserProperties'].nil?
+            @UserProperties = []
+            params['UserProperties'].each do |i|
+              userproperty_tmp = UserProperty.new
+              userproperty_tmp.deserialize(i)
+              @UserProperties << userproperty_tmp
+            end
+          end
+          @PublishAfter = params['PublishAfter']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 设备证书信息
+      class DeviceCertificateBackupHistoryItem < TencentCloud::Common::AbstractModel
+        # @param ClientId: <p>客户端id</p>
+        # @type ClientId: String
+        # @param DeviceCertificate: <p>设备证书</p>
+        # @type DeviceCertificate: String
+        # @param DeviceCertificateSn: <p>设备证书SN序列号，用于唯一标识一个设备证书</p>
+        # @type DeviceCertificateSn: String
+        # @param DeviceCertificateCn: <p>设备证书Cn</p>
+        # @type DeviceCertificateCn: String
+        # @param CaSn: <p>签发该证书的CA证书的序列号</p>
+        # @type CaSn: String
+        # @param Format: <p>证书格式，当前仅支持PEM</p>
+        # @type Format: String
+        # @param Status: <p>设备证书状态<br>    ACTIVE：激活<br>    INACTIVE：未激活<br>    REVOKED：吊销<br>    PENDING_ACTIVATION：注册待激活</p>
+        # @type Status: String
+        # @param OrganizationalUnit: <p>组织单位</p>
+        # @type OrganizationalUnit: String
+        # @param LastActivationTime: <p>上次激活时间，毫秒级时间戳 。</p>
+        # @type LastActivationTime: Integer
+        # @param LastInactivationTime: <p>上次取消激活时间，毫秒级时间戳 。</p>
+        # @type LastInactivationTime: Integer
+        # @param CertificateSource: <p>证书来源：<br>API, 手动注册<br>JITP 自动注册</p>
+        # @type CertificateSource: String
+        # @param NotAfterTime: <p>证书失效日期，毫秒级时间戳 。</p>
+        # @type NotAfterTime: Integer
+        # @param NotBeforeTime: <p>证书生效开始日期，毫秒级时间戳 。</p>
+        # @type NotBeforeTime: Integer
+        # @param Source: <p>数据来源</p>
+        # @type Source: String
+        # @param ModificationTime: <p>修改时间</p><p>单位：毫秒级时间戳</p>
+        # @type ModificationTime: Integer
+
+        attr_accessor :ClientId, :DeviceCertificate, :DeviceCertificateSn, :DeviceCertificateCn, :CaSn, :Format, :Status, :OrganizationalUnit, :LastActivationTime, :LastInactivationTime, :CertificateSource, :NotAfterTime, :NotBeforeTime, :Source, :ModificationTime
+
+        def initialize(clientid=nil, devicecertificate=nil, devicecertificatesn=nil, devicecertificatecn=nil, casn=nil, format=nil, status=nil, organizationalunit=nil, lastactivationtime=nil, lastinactivationtime=nil, certificatesource=nil, notaftertime=nil, notbeforetime=nil, source=nil, modificationtime=nil)
+          @ClientId = clientid
+          @DeviceCertificate = devicecertificate
+          @DeviceCertificateSn = devicecertificatesn
+          @DeviceCertificateCn = devicecertificatecn
+          @CaSn = casn
+          @Format = format
+          @Status = status
+          @OrganizationalUnit = organizationalunit
+          @LastActivationTime = lastactivationtime
+          @LastInactivationTime = lastinactivationtime
+          @CertificateSource = certificatesource
+          @NotAfterTime = notaftertime
+          @NotBeforeTime = notbeforetime
+          @Source = source
+          @ModificationTime = modificationtime
+        end
+
+        def deserialize(params)
+          @ClientId = params['ClientId']
+          @DeviceCertificate = params['DeviceCertificate']
+          @DeviceCertificateSn = params['DeviceCertificateSn']
+          @DeviceCertificateCn = params['DeviceCertificateCn']
+          @CaSn = params['CaSn']
+          @Format = params['Format']
+          @Status = params['Status']
+          @OrganizationalUnit = params['OrganizationalUnit']
+          @LastActivationTime = params['LastActivationTime']
+          @LastInactivationTime = params['LastInactivationTime']
+          @CertificateSource = params['CertificateSource']
+          @NotAfterTime = params['NotAfterTime']
+          @NotBeforeTime = params['NotBeforeTime']
+          @Source = params['Source']
+          @ModificationTime = params['ModificationTime']
+        end
+      end
+
       # 设备证书信息
       class DeviceCertificateItem < TencentCloud::Common::AbstractModel
         # @param ClientId: 客户端id
@@ -3333,6 +3634,53 @@ module TencentCloud
           @CertificateSource = params['CertificateSource']
           @NotAfterTime = params['NotAfterTime']
           @NotBeforeTime = params['NotBeforeTime']
+        end
+      end
+
+      # 设备标识列表
+      class DeviceIdentityBackupHistoryItem < TencentCloud::Common::AbstractModel
+        # @param DeviceId: <p>设备id</p>
+        # @type DeviceId: String
+        # @param Status: <p>1:ENABLED-可用2:DISABLE-不可用</p>
+        # @type Status: Integer
+        # @param PrimaryKey: <p>主要签名key（Base64编码）</p>
+        # @type PrimaryKey: String
+        # @param SecondaryKey: <p>次要签名key（Base64编码）</p>
+        # @type SecondaryKey: String
+        # @param PropagatingProperties: <p>传播属性列表</p>
+        # @type PropagatingProperties: Array
+        # @param Source: <p>数据来源</p>
+        # @type Source: String
+        # @param ModificationTime: <p>修改时间</p><p>单位：毫秒级时间戳</p>
+        # @type ModificationTime: Integer
+
+        attr_accessor :DeviceId, :Status, :PrimaryKey, :SecondaryKey, :PropagatingProperties, :Source, :ModificationTime
+
+        def initialize(deviceid=nil, status=nil, primarykey=nil, secondarykey=nil, propagatingproperties=nil, source=nil, modificationtime=nil)
+          @DeviceId = deviceid
+          @Status = status
+          @PrimaryKey = primarykey
+          @SecondaryKey = secondarykey
+          @PropagatingProperties = propagatingproperties
+          @Source = source
+          @ModificationTime = modificationtime
+        end
+
+        def deserialize(params)
+          @DeviceId = params['DeviceId']
+          @Status = params['Status']
+          @PrimaryKey = params['PrimaryKey']
+          @SecondaryKey = params['SecondaryKey']
+          unless params['PropagatingProperties'].nil?
+            @PropagatingProperties = []
+            params['PropagatingProperties'].each do |i|
+              propagatingproperty_tmp = PropagatingProperty.new
+              propagatingproperty_tmp.deserialize(i)
+              @PropagatingProperties << propagatingproperty_tmp
+            end
+          end
+          @Source = params['Source']
+          @ModificationTime = params['ModificationTime']
         end
       end
 

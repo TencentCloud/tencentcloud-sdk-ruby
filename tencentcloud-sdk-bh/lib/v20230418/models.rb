@@ -74,10 +74,10 @@ module TencentCloud
 
         attr_accessor :Account, :LoginAccount, :LoginPassword, :DeviceId, :InstanceId, :Password, :PrivateKey, :PrivateKeyPassword, :Exe, :Drivers, :Width, :Height, :IntranetAccess, :AutoManageAccessCredential
         extend Gem::Deprecate
-        deprecate :LoginAccount, :none, 2026, 6
-        deprecate :LoginAccount=, :none, 2026, 6
-        deprecate :LoginPassword, :none, 2026, 6
-        deprecate :LoginPassword=, :none, 2026, 6
+        deprecate :LoginAccount, :none, 2026, 7
+        deprecate :LoginAccount=, :none, 2026, 7
+        deprecate :LoginPassword, :none, 2026, 7
+        deprecate :LoginPassword=, :none, 2026, 7
 
         def initialize(account=nil, loginaccount=nil, loginpassword=nil, deviceid=nil, instanceid=nil, password=nil, privatekey=nil, privatekeypassword=nil, exe=nil, drivers=nil, width=nil, height=nil, intranetaccess=nil, automanageaccesscredential=nil)
           @Account = account
@@ -5425,22 +5425,25 @@ module TencentCloud
 
       # 登录安全设置
       class LoginSetting < TencentCloud::Common::AbstractModel
-        # @param TimeOut: 登录会话超时，10分钟，20分钟，30分钟，默认20分钟
+        # @param TimeOut: <p>登录会话超时，10分钟，20分钟，30分钟，默认20分钟</p>
         # @type TimeOut: Integer
-        # @param LockThreshold: 连续密码错误次数，超过锁定账号，3-5
+        # @param LockThreshold: <p>连续密码错误次数，超过锁定账号，3-5</p>
         # @type LockThreshold: Integer
-        # @param LockTime: 账号锁定时长，10分钟，20分钟，30分钟
+        # @param LockTime: <p>账号锁定时长，10分钟，20分钟，30分钟</p>
         # @type LockTime: Integer
-        # @param InactiveUserLock: 用户多少天不活跃，账号自动锁定
+        # @param InactiveUserLock: <p>用户多少天不活跃，账号自动锁定</p>
         # @type InactiveUserLock: Integer
+        # @param EnableSingleLogin: <p>运维账号单点登录开关：0-关闭，1-开启</p>
+        # @type EnableSingleLogin: Integer
 
-        attr_accessor :TimeOut, :LockThreshold, :LockTime, :InactiveUserLock
+        attr_accessor :TimeOut, :LockThreshold, :LockTime, :InactiveUserLock, :EnableSingleLogin
 
-        def initialize(timeout=nil, lockthreshold=nil, locktime=nil, inactiveuserlock=nil)
+        def initialize(timeout=nil, lockthreshold=nil, locktime=nil, inactiveuserlock=nil, enablesinglelogin=nil)
           @TimeOut = timeout
           @LockThreshold = lockthreshold
           @LockTime = locktime
           @InactiveUserLock = inactiveuserlock
+          @EnableSingleLogin = enablesinglelogin
         end
 
         def deserialize(params)
@@ -5448,6 +5451,7 @@ module TencentCloud
           @LockThreshold = params['LockThreshold']
           @LockTime = params['LockTime']
           @InactiveUserLock = params['InactiveUserLock']
+          @EnableSingleLogin = params['EnableSingleLogin']
         end
       end
 
@@ -6325,8 +6329,8 @@ module TencentCloud
 
         attr_accessor :ResourceId, :Status, :ResourceEdition, :ResourceNode, :AutoRenewFlag, :PackageBandwidth, :PackageNode, :LogDelivery
         extend Gem::Deprecate
-        deprecate :Status, :none, 2026, 6
-        deprecate :Status=, :none, 2026, 6
+        deprecate :Status, :none, 2026, 7
+        deprecate :Status=, :none, 2026, 7
 
         def initialize(resourceid=nil, status=nil, resourceedition=nil, resourcenode=nil, autorenewflag=nil, packagebandwidth=nil, packagenode=nil, logdelivery=nil)
           @ResourceId = resourceid
@@ -8545,8 +8549,8 @@ module TencentCloud
 
         attr_accessor :Id, :InstanceId, :Name, :ApCode, :PublicIp, :PrivateIp, :Status, :Reason, :ExitCode, :StartTime, :EndTime, :StdOut, :StdErr, :DeviceName, :Account
         extend Gem::Deprecate
-        deprecate :Name, :none, 2026, 6
-        deprecate :Name=, :none, 2026, 6
+        deprecate :Name, :none, 2026, 7
+        deprecate :Name=, :none, 2026, 7
 
         def initialize(id=nil, instanceid=nil, name=nil, apcode=nil, publicip=nil, privateip=nil, status=nil, reason=nil, exitcode=nil, starttime=nil, endtime=nil, stdout=nil, stderr=nil, devicename=nil, account=nil)
           @Id = id

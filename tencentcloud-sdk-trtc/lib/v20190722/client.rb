@@ -218,6 +218,32 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 启动一路直播流审核。服务端异步拉流、定频截帧、音频切片、送审，通过回调返回结果。一次一个任务（一路流）。您可以通过此接口实现如下目标：
+        # ●指定内容参数（LiveModerationParams）来指定内容理解需要的详细参数。
+        # ●指定存储参数（LiveModerationStorageParams）将命中的切片文件指定上传到您希望的云存储，目前支持腾讯云（对象存储COS）以及第三方AWS（S3）和阿里云（OSS）
+
+        # @param request: Request instance for CreateLiveStreamModeration.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::CreateLiveStreamModerationRequest`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::CreateLiveStreamModerationResponse`
+        def CreateLiveStreamModeration(request)
+          body = send_request('CreateLiveStreamModeration', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateLiveStreamModerationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 如果您需要在 [云端混流转码](https://cloud.tencent.com/document/product/647/16827) 时频繁新增自定义背景图或水印，可通过此接口上传新的图片素材。无需频繁新增图片的场景，建议直接在 [控制台 > 应用管理 > 素材管理](https://cloud.tencent.com/document/product/647/50769) 中操作。
 
         # @param request: Request instance for CreatePicture.
@@ -348,6 +374,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteCloudTranscriptionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 成功开启直播流AI 内容理解任务后，可以使用此接口来停止进行内容识别。
+
+        # @param request: Request instance for DeleteLiveStreamModeration.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::DeleteLiveStreamModerationRequest`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::DeleteLiveStreamModerationResponse`
+        def DeleteLiveStreamModeration(request)
+          body = send_request('DeleteLiveStreamModeration', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteLiveStreamModerationResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -594,6 +644,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeCloudTranscriptionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 成功开启直播流AI 内容理解任务后，可以使用此接口来查询AI 内容理解任务状态，仅在任务进行时有效，任务退出后查询将会返回错误。
+
+        # @param request: Request instance for DescribeLiveStreamModeration.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::DescribeLiveStreamModerationRequest`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::DescribeLiveStreamModerationResponse`
+        def DescribeLiveStreamModeration(request)
+          body = send_request('DescribeLiveStreamModeration', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLiveStreamModerationResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -13211,58 +13211,47 @@ module TencentCloud
 
       # 签署人详情信息
       class FlowApproverDetail < TencentCloud::Common::AbstractModel
-        # @param ApproveMessage: 签署时的相关信息
+        # @param ApproveMessage: <p>签署时的相关信息</p>
         # @type ApproveMessage: String
-        # @param ApproveName: 签署方姓名
+        # @param ApproveName: <p>签署方姓名</p>
         # @type ApproveName: String
-        # @param ApproveStatus: 签署方的签署状态
-        # 0：还没有发起
-        # 1：流程中 没有开始处理
-        # 2：待签署
-        # 3：已签署
-        # 4：已拒绝
-        # 5：已过期
-        # 6：已撤销
-        # 7：还没有预发起
-        # 8：待填写
-        # 9：因为各种原因而终止
-        # 10：填写完成
-        # 15：已解除
-        # 19：转他人处理
+        # @param ApproveStatus: <p>签署方的签署状态<br>0：还没有发起<br>1：流程中 没有开始处理<br>2：待签署<br>3：已签署<br>4：已拒绝<br>5：已过期<br>6：已撤销<br>7：还没有预发起<br>8：待填写<br>9：因为各种原因而终止<br>10：填写完成<br>15：已解除<br>19：转他人处理</p>
         # @type ApproveStatus: Integer
-        # @param ReceiptId: 模板配置中的参与方ID,与控件绑定
+        # @param ReceiptId: <p>模板配置中的参与方ID,与控件绑定</p>
         # @type ReceiptId: String
-        # @param CustomUserId: 客户自定义的用户ID
+        # @param CustomUserId: <p>客户自定义的用户ID</p>
         # @type CustomUserId: String
-        # @param Mobile: 签署人手机号
+        # @param Mobile: <p>签署人手机号</p>
         # @type Mobile: String
-        # @param SignOrder: 签署顺序，如果是有序签署，签署顺序从小到大
+        # @param SignOrder: <p>签署顺序，如果是有序签署，签署顺序从小到大</p>
         # @type SignOrder: Integer
-        # @param ApproveTime: 签署人签署时间，时间戳，单位秒
+        # @param ApproveTime: <p>签署人签署时间，时间戳，单位秒</p>
         # @type ApproveTime: Integer
-        # @param ApproveType: 签署方类型，ORGANIZATION-企业员工，PERSON-个人，ENTERPRISESERVER-企业静默签
+        # @param ApproveType: <p>签署方类型，ORGANIZATION-企业员工，PERSON-个人，ENTERPRISESERVER-企业静默签</p>
         # @type ApproveType: String
-        # @param ApproverSource: 签署方侧用户来源，如WEWORKAPP-企业微信等
+        # @param ApproverSource: <p>签署方侧用户来源，如WEWORKAPP-企业微信等</p>
         # @type ApproverSource: String
-        # @param CustomApproverTag: 客户自定义签署方标识
+        # @param CustomApproverTag: <p>客户自定义签署方标识</p>
         # @type CustomApproverTag: String
-        # @param OrganizationId: 签署方企业Id
+        # @param OrganizationId: <p>签署方企业Id</p>
         # @type OrganizationId: String
-        # @param OrganizationName: 签署方企业名称
+        # @param OrganizationName: <p>签署方企业名称</p>
         # @type OrganizationName: String
-        # @param SignId: 签署参与人在本流程中的编号ID（每个流程不同），可用此ID来定位签署参与人在本流程的签署节点，也可用于后续创建签署链接等操作。
+        # @param SignId: <p>签署参与人在本流程中的编号ID（每个流程不同），可用此ID来定位签署参与人在本流程的签署节点，也可用于后续创建签署链接等操作。</p>
         # @type SignId: String
-        # @param ApproverRoleName: 自定义签署人角色
+        # @param ApproverRoleName: <p>自定义签署人角色</p>
         # @type ApproverRoleName: String
-        # @param RecipientId: 模板配置中的参与方ID,与控件绑定
+        # @param RecipientId: <p>模板配置中的参与方ID,与控件绑定</p>
         # @type RecipientId: String
+        # @param ForwardRecords: <p>签署方转交记录列表，标识该签署方是由谁转交而来，按转交时间由远到近进行排序</p>
+        # @type ForwardRecords: Array
 
-        attr_accessor :ApproveMessage, :ApproveName, :ApproveStatus, :ReceiptId, :CustomUserId, :Mobile, :SignOrder, :ApproveTime, :ApproveType, :ApproverSource, :CustomApproverTag, :OrganizationId, :OrganizationName, :SignId, :ApproverRoleName, :RecipientId
+        attr_accessor :ApproveMessage, :ApproveName, :ApproveStatus, :ReceiptId, :CustomUserId, :Mobile, :SignOrder, :ApproveTime, :ApproveType, :ApproverSource, :CustomApproverTag, :OrganizationId, :OrganizationName, :SignId, :ApproverRoleName, :RecipientId, :ForwardRecords
         extend Gem::Deprecate
         deprecate :ReceiptId, :none, 2026, 7
         deprecate :ReceiptId=, :none, 2026, 7
 
-        def initialize(approvemessage=nil, approvename=nil, approvestatus=nil, receiptid=nil, customuserid=nil, mobile=nil, signorder=nil, approvetime=nil, approvetype=nil, approversource=nil, customapprovertag=nil, organizationid=nil, organizationname=nil, signid=nil, approverrolename=nil, recipientid=nil)
+        def initialize(approvemessage=nil, approvename=nil, approvestatus=nil, receiptid=nil, customuserid=nil, mobile=nil, signorder=nil, approvetime=nil, approvetype=nil, approversource=nil, customapprovertag=nil, organizationid=nil, organizationname=nil, signid=nil, approverrolename=nil, recipientid=nil, forwardrecords=nil)
           @ApproveMessage = approvemessage
           @ApproveName = approvename
           @ApproveStatus = approvestatus
@@ -13279,6 +13268,7 @@ module TencentCloud
           @SignId = signid
           @ApproverRoleName = approverrolename
           @RecipientId = recipientid
+          @ForwardRecords = forwardrecords
         end
 
         def deserialize(params)
@@ -13298,6 +13288,14 @@ module TencentCloud
           @SignId = params['SignId']
           @ApproverRoleName = params['ApproverRoleName']
           @RecipientId = params['RecipientId']
+          unless params['ForwardRecords'].nil?
+            @ForwardRecords = []
+            params['ForwardRecords'].each do |i|
+              forwardrecord_tmp = ForwardRecord.new
+              forwardrecord_tmp.deserialize(i)
+              @ForwardRecords << forwardrecord_tmp
+            end
+          end
         end
       end
 
@@ -14537,6 +14535,38 @@ module TencentCloud
           @ComponentValue = params['ComponentValue']
           @ComponentId = params['ComponentId']
           @ComponentName = params['ComponentName']
+        end
+      end
+
+      # 签署人的转交记录详情
+      class ForwardRecord < TencentCloud::Common::AbstractModel
+        # @param Name: <p>转交人打码后的姓名</p>
+        # @type Name: String
+        # @param Mobile: <p>转交人打码后的手机号</p>
+        # @type Mobile: String
+        # @param ForwardType: <p>进行转交的原因</p><p>枚举值：</p><ul><li>QUIT_FORWARD： 离职转交</li><li>FORWARD： 员工操作转交</li></ul>
+        # @type ForwardType: String
+        # @param ForwardMessage: <p>转交的详情信息</p>
+        # @type ForwardMessage: String
+        # @param ForwardTime: <p>转交时间</p><p>单位：时间戳（秒级）</p>
+        # @type ForwardTime: Integer
+
+        attr_accessor :Name, :Mobile, :ForwardType, :ForwardMessage, :ForwardTime
+
+        def initialize(name=nil, mobile=nil, forwardtype=nil, forwardmessage=nil, forwardtime=nil)
+          @Name = name
+          @Mobile = mobile
+          @ForwardType = forwardtype
+          @ForwardMessage = forwardmessage
+          @ForwardTime = forwardtime
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Mobile = params['Mobile']
+          @ForwardType = params['ForwardType']
+          @ForwardMessage = params['ForwardMessage']
+          @ForwardTime = params['ForwardTime']
         end
       end
 

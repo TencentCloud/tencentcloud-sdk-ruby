@@ -269,6 +269,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（CreateDBProxy）用于为指定的 PostgreSQL 实例创建数据库代理（Proxy）。走计费下单流程，下单成功后异步发起 Proxy 创建任务，同步返回订单号 DealName 与 Proxy 实例 ID ProxyGroupId。当前仅支持后付费按量计费。
+
+        # @param request: Request instance for CreateDBProxy.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::CreateDBProxyRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::CreateDBProxyResponse`
+        def CreateDBProxy(request)
+          body = send_request('CreateDBProxy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDBProxyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 此接口用于创建数据库，需指定数据库名及所有者。
 
         # @param request: Request instance for CreateDatabase.
@@ -1161,6 +1185,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeDBProxy）用于查询指定 PostgreSQL 实例下的数据库代理（Proxy）信息，包含 Proxy 节点列表与接入地址列表。可选传入 ProxyGroupId 精确查询某一 Proxy；不传则返回该实例下的全部 Proxy。
+
+        # @param request: Request instance for DescribeDBProxy.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::DescribeDBProxyRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::DescribeDBProxyResponse`
+        def DescribeDBProxy(request)
+          body = send_request('DescribeDBProxy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDBProxyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询代理可售规格
+
+        # @param request: Request instance for DescribeDBProxySpecs.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::DescribeDBProxySpecsRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::DescribeDBProxySpecsResponse`
+        def DescribeDBProxySpecs(request)
+          body = send_request('DescribeDBProxySpecs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDBProxySpecsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeDBVersions）用于查询支持的数据库版本。
 
         # @param request: Request instance for DescribeDBVersions.
@@ -1652,6 +1724,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DestroyDBInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DestroyDBProxy）用于销毁指定的数据库代理（Proxy）。接口仅返回 RequestId，销毁动作由计费回调异步触发 ProxyDestroy 任务，内部统一完成「隔离 + 销毁」全部步骤（释放 VIP、解绑安全组、回收资源、上报计费等），用户无需先调用隔离接口。
+
+        # @param request: Request instance for DestroyDBProxy.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::DestroyDBProxyRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::DestroyDBProxyResponse`
+        def DestroyDBProxy(request)
+          body = send_request('DestroyDBProxy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DestroyDBProxyResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2220,6 +2316,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（ModifyDBProxy）用于修改数据库代理（Proxy）。支持两种模式：①仅修改 Description 时同步生效，不下单，DealName 为空；②变更 Proxy 节点规格或数量（ProxyNodeCustom）时走计费下单流程，异步触发变配任务，返回 DealName。可通过 SwitchTag 控制变配执行时机。
+
+        # @param request: Request instance for ModifyDBProxy.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::ModifyDBProxyRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::ModifyDBProxyResponse`
+        def ModifyDBProxy(request)
+          body = send_request('ModifyDBProxy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDBProxyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改代理地址配置
+
+        # @param request: Request instance for ModifyDBProxyAddress.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::ModifyDBProxyAddressRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::ModifyDBProxyAddressResponse`
+        def ModifyDBProxyAddress(request)
+          body = send_request('ModifyDBProxyAddress', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDBProxyAddressResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改数据库所有者
 
         # @param request: Request instance for ModifyDatabaseOwner.
@@ -2470,6 +2614,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = RefreshAccountPasswordResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（ReloadBalanceDBProxyNode）用于重新均衡数据库代理节点
+
+        # @param request: Request instance for ReloadBalanceDBProxyNode.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::ReloadBalanceDBProxyNodeRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::ReloadBalanceDBProxyNodeResponse`
+        def ReloadBalanceDBProxyNode(request)
+          body = send_request('ReloadBalanceDBProxyNode', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ReloadBalanceDBProxyNodeResponse.new
             model.deserialize(response['Response'])
             model
           else

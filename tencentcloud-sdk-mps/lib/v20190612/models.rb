@@ -23543,9 +23543,9 @@ module TencentCloud
 
       # 线性组装频道配置。
       class ManifestInfo < TencentCloud::Common::AbstractModel
-        # @param Windows: 单位秒。
+        # @param Windows: <p>单位秒。</p>
         # @type Windows: Integer
-        # @param AdMarkupType: 打到output广告标签的格式，可选Date Range和Enhanced SCTE-35。
+        # @param AdMarkupType: <p>打到output广告标签的格式，可选Date Range、Enhanced SCTE-35和Standard SCTE-35。</p>
         # @type AdMarkupType: String
 
         attr_accessor :Windows, :AdMarkupType

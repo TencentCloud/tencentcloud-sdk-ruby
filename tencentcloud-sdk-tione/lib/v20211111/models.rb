@@ -1670,10 +1670,14 @@ module TencentCloud
         # @type ExposeNetworkConfig: :class:`Tencentcloud::Tione.v20211111.models.ExposeNetworkConfig`
         # @param Envs: <p>环境变量</p>
         # @type Envs: Array
+        # @param TrainToolConfig: <p>训练诊断工具配置</p>
+        # @type TrainToolConfig: :class:`Tencentcloud::Tione.v20211111.models.TrainToolConfig`
+        # @param ResourceSupplyAttribute: <p>资源供应属性</p>
+        # @type ResourceSupplyAttribute: :class:`Tencentcloud::Tione.v20211111.models.ResourceSupplyAttribute`
 
-        attr_accessor :Name, :ChargeType, :ResourceConfigInfos, :TiProjectId, :FrameworkName, :FrameworkVersion, :FrameworkEnvironment, :ResourceGroupId, :Tags, :ImageInfo, :CodePackagePath, :StartCmdInfo, :TrainingMode, :DataConfigs, :VpcId, :SubnetId, :Output, :LogConfig, :TuningParameters, :LogEnable, :Remark, :DataSource, :CallbackUrl, :EncodedStartCmdInfo, :CodeRepos, :ExposeNetworkConfig, :Envs
+        attr_accessor :Name, :ChargeType, :ResourceConfigInfos, :TiProjectId, :FrameworkName, :FrameworkVersion, :FrameworkEnvironment, :ResourceGroupId, :Tags, :ImageInfo, :CodePackagePath, :StartCmdInfo, :TrainingMode, :DataConfigs, :VpcId, :SubnetId, :Output, :LogConfig, :TuningParameters, :LogEnable, :Remark, :DataSource, :CallbackUrl, :EncodedStartCmdInfo, :CodeRepos, :ExposeNetworkConfig, :Envs, :TrainToolConfig, :ResourceSupplyAttribute
 
-        def initialize(name=nil, chargetype=nil, resourceconfiginfos=nil, tiprojectid=nil, frameworkname=nil, frameworkversion=nil, frameworkenvironment=nil, resourcegroupid=nil, tags=nil, imageinfo=nil, codepackagepath=nil, startcmdinfo=nil, trainingmode=nil, dataconfigs=nil, vpcid=nil, subnetid=nil, output=nil, logconfig=nil, tuningparameters=nil, logenable=nil, remark=nil, datasource=nil, callbackurl=nil, encodedstartcmdinfo=nil, coderepos=nil, exposenetworkconfig=nil, envs=nil)
+        def initialize(name=nil, chargetype=nil, resourceconfiginfos=nil, tiprojectid=nil, frameworkname=nil, frameworkversion=nil, frameworkenvironment=nil, resourcegroupid=nil, tags=nil, imageinfo=nil, codepackagepath=nil, startcmdinfo=nil, trainingmode=nil, dataconfigs=nil, vpcid=nil, subnetid=nil, output=nil, logconfig=nil, tuningparameters=nil, logenable=nil, remark=nil, datasource=nil, callbackurl=nil, encodedstartcmdinfo=nil, coderepos=nil, exposenetworkconfig=nil, envs=nil, traintoolconfig=nil, resourcesupplyattribute=nil)
           @Name = name
           @ChargeType = chargetype
           @ResourceConfigInfos = resourceconfiginfos
@@ -1701,6 +1705,8 @@ module TencentCloud
           @CodeRepos = coderepos
           @ExposeNetworkConfig = exposenetworkconfig
           @Envs = envs
+          @TrainToolConfig = traintoolconfig
+          @ResourceSupplyAttribute = resourcesupplyattribute
         end
 
         def deserialize(params)
@@ -1786,6 +1792,14 @@ module TencentCloud
               envvar_tmp.deserialize(i)
               @Envs << envvar_tmp
             end
+          end
+          unless params['TrainToolConfig'].nil?
+            @TrainToolConfig = TrainToolConfig.new
+            @TrainToolConfig.deserialize(params['TrainToolConfig'])
+          end
+          unless params['ResourceSupplyAttribute'].nil?
+            @ResourceSupplyAttribute = ResourceSupplyAttribute.new
+            @ResourceSupplyAttribute.deserialize(params['ResourceSupplyAttribute'])
           end
         end
       end
@@ -3912,10 +3926,12 @@ module TencentCloud
         # @type Filters: Array
         # @param Offset: <p>使用OFFSET分页查询时，指定返回的数据偏移量，默认为0</p>
         # @type Offset: Integer
+        # @param LogStream: <p>日志类别</p><p>枚举值：</p><ul><li>stdout： stdout</li><li>stderr： stderr</li></ul><p>默认值：&quot;&quot;</p>
+        # @type LogStream: String
 
-        attr_accessor :Service, :TiProjectId, :StartTime, :EndTime, :Limit, :ServiceId, :PodName, :Order, :OrderField, :Context, :Filters, :Offset
+        attr_accessor :Service, :TiProjectId, :StartTime, :EndTime, :Limit, :ServiceId, :PodName, :Order, :OrderField, :Context, :Filters, :Offset, :LogStream
 
-        def initialize(service=nil, tiprojectid=nil, starttime=nil, endtime=nil, limit=nil, serviceid=nil, podname=nil, order=nil, orderfield=nil, context=nil, filters=nil, offset=nil)
+        def initialize(service=nil, tiprojectid=nil, starttime=nil, endtime=nil, limit=nil, serviceid=nil, podname=nil, order=nil, orderfield=nil, context=nil, filters=nil, offset=nil, logstream=nil)
           @Service = service
           @TiProjectId = tiprojectid
           @StartTime = starttime
@@ -3928,6 +3944,7 @@ module TencentCloud
           @Context = context
           @Filters = filters
           @Offset = offset
+          @LogStream = logstream
         end
 
         def deserialize(params)
@@ -3950,6 +3967,7 @@ module TencentCloud
             end
           end
           @Offset = params['Offset']
+          @LogStream = params['LogStream']
         end
       end
 
@@ -6533,26 +6551,32 @@ module TencentCloud
 
       # 单条日志数据结构
       class LogIdentity < TencentCloud::Common::AbstractModel
-        # @param Id: 单条日志的ID
+        # @param Id: <p>单条日志的ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: String
-        # @param Message: 单条日志的内容
+        # @param Message: <p>单条日志的内容</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Message: String
-        # @param PodName: 这条日志对应的Pod名称
+        # @param PodName: <p>这条日志对应的Pod名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PodName: String
-        # @param Timestamp: 日志的时间戳（RFC3339格式的时间字符串）
+        # @param Timestamp: <p>日志的时间戳（RFC3339格式的时间字符串）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Timestamp: String
+        # @param PkgId: <p>日志上报请求包的ID</p>
+        # @type PkgId: String
+        # @param PkgLogId: <p>请求包内日志的ID</p>
+        # @type PkgLogId: String
 
-        attr_accessor :Id, :Message, :PodName, :Timestamp
+        attr_accessor :Id, :Message, :PodName, :Timestamp, :PkgId, :PkgLogId
 
-        def initialize(id=nil, message=nil, podname=nil, timestamp=nil)
+        def initialize(id=nil, message=nil, podname=nil, timestamp=nil, pkgid=nil, pkglogid=nil)
           @Id = id
           @Message = message
           @PodName = podname
           @Timestamp = timestamp
+          @PkgId = pkgid
+          @PkgLogId = pkglogid
         end
 
         def deserialize(params)
@@ -6560,6 +6584,8 @@ module TencentCloud
           @Message = params['Message']
           @PodName = params['PodName']
           @Timestamp = params['Timestamp']
+          @PkgId = params['PkgId']
+          @PkgLogId = params['PkgLogId']
         end
       end
 
@@ -11173,6 +11199,30 @@ module TencentCloud
           @Value = params['Value']
           @Range = params['Range']
           @Enum = params['Enum']
+        end
+      end
+
+      # 训练诊断工具配置
+      class TrainToolConfig < TencentCloud::Common::AbstractModel
+        # @param EnableHangMonitor: <p>是否开启 Hang 检测</p><p>默认值：false</p>
+        # @type EnableHangMonitor: Boolean
+        # @param HangMonitorNodes: <p>Hang 检测的节点列表</p>
+        # @type HangMonitorNodes: Array
+        # @param LogHangTimeoutInMinute: <p>Hang 超时时间</p><p>取值范围：[1, 14400]</p><p>单位：分</p>
+        # @type LogHangTimeoutInMinute: Integer
+
+        attr_accessor :EnableHangMonitor, :HangMonitorNodes, :LogHangTimeoutInMinute
+
+        def initialize(enablehangmonitor=nil, hangmonitornodes=nil, loghangtimeoutinminute=nil)
+          @EnableHangMonitor = enablehangmonitor
+          @HangMonitorNodes = hangmonitornodes
+          @LogHangTimeoutInMinute = loghangtimeoutinminute
+        end
+
+        def deserialize(params)
+          @EnableHangMonitor = params['EnableHangMonitor']
+          @HangMonitorNodes = params['HangMonitorNodes']
+          @LogHangTimeoutInMinute = params['LogHangTimeoutInMinute']
         end
       end
 

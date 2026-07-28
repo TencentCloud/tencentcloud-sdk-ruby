@@ -2861,6 +2861,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 按执行资源组查询任务调度与运行实例数量统计
+
+        # @param request: Request instance for DescribeInstancesByExecutors.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::DescribeInstancesByExecutorsRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::DescribeInstancesByExecutorsResponse`
+        def DescribeInstancesByExecutors(request)
+          body = send_request('DescribeInstancesByExecutors', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInstancesByExecutorsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询集成节点
 
         # @param request: Request instance for DescribeIntegrationNode.
