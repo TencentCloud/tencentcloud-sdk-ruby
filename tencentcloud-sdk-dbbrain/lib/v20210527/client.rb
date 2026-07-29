@@ -245,6 +245,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 批量创建健康报告的PDF下载链接，支持一次获取多个报告的下载地址。
+
+        # @param request: Request instance for CreateDBDiagReportUrls.
+        # @type request: :class:`Tencentcloud::dbbrain::V20210527::CreateDBDiagReportUrlsRequest`
+        # @rtype: :class:`Tencentcloud::dbbrain::V20210527::CreateDBDiagReportUrlsResponse`
+        def CreateDBDiagReportUrls(request)
+          body = send_request('CreateDBDiagReportUrls', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDBDiagReportUrlsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 对实例的某个诊断项设置忽略或取消忽略状态。
 
         # @param request: Request instance for CreateIgnoreDiagRecord.
@@ -927,6 +951,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDBDiagReportTasksResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 根据实例ID列表查询数据库实例基本信息，支持跨产品查询（MySQL、CynosDB、MariaDB、DCDB、MongoDB、PostgreSQL、Redis、TDStore等）。不支持分页，通过InstanceIds限制查询数量（最多100条）。
+
+        # @param request: Request instance for DescribeDBInstances.
+        # @type request: :class:`Tencentcloud::dbbrain::V20210527::DescribeDBInstancesRequest`
+        # @rtype: :class:`Tencentcloud::dbbrain::V20210527::DescribeDBInstancesResponse`
+        def DescribeDBInstances(request)
+          body = send_request('DescribeDBInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDBInstancesResponse.new
             model.deserialize(response['Response'])
             model
           else

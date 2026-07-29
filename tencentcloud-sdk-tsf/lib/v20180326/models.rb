@@ -14041,37 +14041,37 @@ module TencentCloud
 
       # 健康检查配置信息，若不指定该参数，则默认不设置健康检查。
       class HealthCheckSetting < TencentCloud::Common::AbstractModel
-        # @param ActionType: 健康检查方法。HTTP：通过 HTTP 接口检查；CMD：通过执行命令检查；TCP：通过建立 TCP 连接检查。
+        # @param ActionType: <p>健康检查方法。HTTP：通过 HTTP 接口检查；CMD：通过执行命令检查；TCP：通过建立 TCP 连接检查。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActionType: String
-        # @param InitialDelaySeconds: 容器延时启动健康检查的时间，单位秒。
+        # @param InitialDelaySeconds: <p>容器延时启动健康检查的时间，单位秒。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InitialDelaySeconds: Integer
-        # @param TimeoutSeconds: 每次健康检查响应的最大超时时间，单位秒。
+        # @param TimeoutSeconds: <p>每次健康检查响应的最大超时时间，单位秒。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeoutSeconds: Integer
-        # @param PeriodSeconds: 进行健康检查的时间间隔，单位秒。
+        # @param PeriodSeconds: <p>进行健康检查的时间间隔，单位秒。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PeriodSeconds: Integer
-        # @param SuccessThreshold: 表示后端容器从失败到成功的连续健康检查成功次数。
+        # @param SuccessThreshold: <p>表示后端容器从失败到成功的连续健康检查成功次数。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SuccessThreshold: Integer
-        # @param FailureThreshold: 表示后端容器从成功到失败的连续健康检查成功次数。
+        # @param FailureThreshold: <p>表示后端容器从成功到失败的连续健康检查成功次数。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailureThreshold: Integer
-        # @param Scheme: HTTP 健康检查方法使用的检查协议。支持HTTP、HTTPS。
+        # @param Scheme: <p>HTTP 健康检查方法使用的检查协议。支持HTTP、HTTPS。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Scheme: String
-        # @param Port: 健康检查端口，范围 1~65535 。
+        # @param Port: <p>健康检查端口，范围 1~65535 。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: Integer
-        # @param Path: HTTP 健康检查接口的请求路径。
+        # @param Path: <p>HTTP 健康检查接口的请求路径。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Path: String
-        # @param Command: 执行命令检查方式，执行的命令。
+        # @param Command: <p>执行命令检查方式，执行的命令。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Command: Array
-        # @param Type: TSF_DEFAULT：tsf 默认就绪探针。K8S_NATIVE：k8s 原生探针。不填默认为 k8s 原生探针。
+        # @param Type: <p>TSF_DEFAULT：tsf 默认就绪探针。K8S_NATIVE：k8s 原生探针。不填默认为 k8s 原生探针。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
 

@@ -4290,6 +4290,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口（UpgradeRoGroup）用于只读组升级为纯网络转发模式。
+
+        # @param request: Request instance for UpgradeRoGroup.
+        # @type request: :class:`Tencentcloud::cdb::V20170320::UpgradeRoGroupRequest`
+        # @rtype: :class:`Tencentcloud::cdb::V20170320::UpgradeRoGroupResponse`
+        def UpgradeRoGroup(request)
+          body = send_request('UpgradeRoGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpgradeRoGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(VerifyRootAccount)用于校验云数据库实例的 ROOT 账号是否有足够的权限进行授权操作。
 
         # @param request: Request instance for VerifyRootAccount.

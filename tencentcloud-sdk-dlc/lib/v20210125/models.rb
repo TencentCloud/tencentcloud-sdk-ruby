@@ -2803,12 +2803,140 @@ module TencentCloud
 
       # CreateSparkAppForTDLC请求参数结构体
       class CreateSparkAppForTDLCRequest < TencentCloud::Common::AbstractModel
+        # @param AppName: <p>spark作业名</p>
+        # @type AppName: String
+        # @param AppType: <p>spark作业类型，1代表spark jar作业，2代表spark streaming作业</p>
+        # @type AppType: Integer
+        # @param DataEngine: <p>执行spark作业的数据引擎名称</p>
+        # @type DataEngine: String
+        # @param AppFile: <p>spark作业程序包文件路径</p>
+        # @type AppFile: String
+        # @param RoleArn: <p>数据访问策略，CAM Role arn，控制台通过数据作业—&gt;作业配置获取，SDK通过DescribeUserRoles接口获取对应的值；</p>
+        # @type RoleArn: Integer
+        # @param AppDriverSize: <p>指定的Driver规格，当前支持：small（默认，1cu）、medium（2cu）、large（4cu）、xlarge（8cu）</p>
+        # @type AppDriverSize: String
+        # @param AppExecutorSize: <p>指定的Executor规格，当前支持：small（默认，1cu）、medium（2cu）、large（4cu）、xlarge（8cu）</p>
+        # @type AppExecutorSize: String
+        # @param AppExecutorNums: <p>spark作业executor个数</p>
+        # @type AppExecutorNums: Integer
+        # @param Eni: <p>该字段已下线，请使用字段Datasource</p>
+        # @type Eni: String
+        # @param IsLocal: <p>spark作业程序包是否本地上传，cos：存放与cos，lakefs：本地上传（控制台使用，该方式不支持直接接口调用）</p>
+        # @type IsLocal: String
+        # @param MainClass: <p>spark作业主类</p>
+        # @type MainClass: String
+        # @param AppConf: <p>spark配置，以换行符分隔</p>
+        # @type AppConf: String
+        # @param IsLocalJars: <p>spark 作业依赖jar包是否本地上传，cos：存放与cos，lakefs：本地上传（控制台使用，该方式不支持直接接口调用）</p>
+        # @type IsLocalJars: String
+        # @param AppJars: <p>spark 作业依赖jar包（--jars），以逗号分隔</p>
+        # @type AppJars: String
+        # @param IsLocalFiles: <p>spark作业依赖文件资源是否本地上传，cos：存放与cos，lakefs：本地上传（控制台使用，该方式不支持直接接口调用）</p>
+        # @type IsLocalFiles: String
+        # @param AppFiles: <p>spark作业依赖文件资源（--files）（非jar、zip），以逗号分隔</p>
+        # @type AppFiles: String
+        # @param CmdArgs: <p>spark作业程序入参，空格分割</p>
+        # @type CmdArgs: String
+        # @param MaxRetries: <p>最大重试次数，只对spark流任务生效</p>
+        # @type MaxRetries: Integer
+        # @param DataSource: <p>数据源名称</p>
+        # @type DataSource: String
+        # @param IsLocalPythonFiles: <p>pyspark：依赖上传方式，cos：存放与cos，lakefs：本地上传（控制台使用，该方式不支持直接接口调用）</p>
+        # @type IsLocalPythonFiles: String
+        # @param AppPythonFiles: <p>pyspark作业依赖python资源（--py-files），支持py/zip/egg等归档格式，多文件以逗号分隔</p>
+        # @type AppPythonFiles: String
+        # @param IsLocalArchives: <p>spark作业依赖archives资源是否本地上传，cos：存放与cos，lakefs：本地上传（控制台使用，该方式不支持直接接口调用）</p>
+        # @type IsLocalArchives: String
+        # @param AppArchives: <p>spark作业依赖archives资源（--archives），支持tar.gz/tgz/tar等归档格式，以逗号分隔</p>
+        # @type AppArchives: String
+        # @param SparkImage: <p>Spark Image 版本号</p>
+        # @type SparkImage: String
+        # @param SparkImageVersion: <p>Spark Image 版本名称</p>
+        # @type SparkImageVersion: String
+        # @param AppExecutorMaxNumbers: <p>指定的Executor数量（最大值），默认为1，当开启动态分配有效，若未开启，则该值等于AppExecutorNums</p>
+        # @type AppExecutorMaxNumbers: Integer
+        # @param SessionId: <p>关联dlc查询脚本id</p>
+        # @type SessionId: String
+        # @param IsInherit: <p>任务资源配置是否继承集群模板，0（默认）不继承，1：继承</p>
+        # @type IsInherit: Integer
+        # @param IsSessionStarted: <p>是否使用session脚本的sql运行任务：false：否，true：是</p>
+        # @type IsSessionStarted: Boolean
+        # @param DependencyPackages: <p>依赖包信息</p>
+        # @type DependencyPackages: Array
 
+        attr_accessor :AppName, :AppType, :DataEngine, :AppFile, :RoleArn, :AppDriverSize, :AppExecutorSize, :AppExecutorNums, :Eni, :IsLocal, :MainClass, :AppConf, :IsLocalJars, :AppJars, :IsLocalFiles, :AppFiles, :CmdArgs, :MaxRetries, :DataSource, :IsLocalPythonFiles, :AppPythonFiles, :IsLocalArchives, :AppArchives, :SparkImage, :SparkImageVersion, :AppExecutorMaxNumbers, :SessionId, :IsInherit, :IsSessionStarted, :DependencyPackages
 
-        def initialize()
+        def initialize(appname=nil, apptype=nil, dataengine=nil, appfile=nil, rolearn=nil, appdriversize=nil, appexecutorsize=nil, appexecutornums=nil, eni=nil, islocal=nil, mainclass=nil, appconf=nil, islocaljars=nil, appjars=nil, islocalfiles=nil, appfiles=nil, cmdargs=nil, maxretries=nil, datasource=nil, islocalpythonfiles=nil, apppythonfiles=nil, islocalarchives=nil, apparchives=nil, sparkimage=nil, sparkimageversion=nil, appexecutormaxnumbers=nil, sessionid=nil, isinherit=nil, issessionstarted=nil, dependencypackages=nil)
+          @AppName = appname
+          @AppType = apptype
+          @DataEngine = dataengine
+          @AppFile = appfile
+          @RoleArn = rolearn
+          @AppDriverSize = appdriversize
+          @AppExecutorSize = appexecutorsize
+          @AppExecutorNums = appexecutornums
+          @Eni = eni
+          @IsLocal = islocal
+          @MainClass = mainclass
+          @AppConf = appconf
+          @IsLocalJars = islocaljars
+          @AppJars = appjars
+          @IsLocalFiles = islocalfiles
+          @AppFiles = appfiles
+          @CmdArgs = cmdargs
+          @MaxRetries = maxretries
+          @DataSource = datasource
+          @IsLocalPythonFiles = islocalpythonfiles
+          @AppPythonFiles = apppythonfiles
+          @IsLocalArchives = islocalarchives
+          @AppArchives = apparchives
+          @SparkImage = sparkimage
+          @SparkImageVersion = sparkimageversion
+          @AppExecutorMaxNumbers = appexecutormaxnumbers
+          @SessionId = sessionid
+          @IsInherit = isinherit
+          @IsSessionStarted = issessionstarted
+          @DependencyPackages = dependencypackages
         end
 
         def deserialize(params)
+          @AppName = params['AppName']
+          @AppType = params['AppType']
+          @DataEngine = params['DataEngine']
+          @AppFile = params['AppFile']
+          @RoleArn = params['RoleArn']
+          @AppDriverSize = params['AppDriverSize']
+          @AppExecutorSize = params['AppExecutorSize']
+          @AppExecutorNums = params['AppExecutorNums']
+          @Eni = params['Eni']
+          @IsLocal = params['IsLocal']
+          @MainClass = params['MainClass']
+          @AppConf = params['AppConf']
+          @IsLocalJars = params['IsLocalJars']
+          @AppJars = params['AppJars']
+          @IsLocalFiles = params['IsLocalFiles']
+          @AppFiles = params['AppFiles']
+          @CmdArgs = params['CmdArgs']
+          @MaxRetries = params['MaxRetries']
+          @DataSource = params['DataSource']
+          @IsLocalPythonFiles = params['IsLocalPythonFiles']
+          @AppPythonFiles = params['AppPythonFiles']
+          @IsLocalArchives = params['IsLocalArchives']
+          @AppArchives = params['AppArchives']
+          @SparkImage = params['SparkImage']
+          @SparkImageVersion = params['SparkImageVersion']
+          @AppExecutorMaxNumbers = params['AppExecutorMaxNumbers']
+          @SessionId = params['SessionId']
+          @IsInherit = params['IsInherit']
+          @IsSessionStarted = params['IsSessionStarted']
+          unless params['DependencyPackages'].nil?
+            @DependencyPackages = []
+            params['DependencyPackages'].each do |i|
+              dependencypackage_tmp = DependencyPackage.new
+              dependencypackage_tmp.deserialize(i)
+              @DependencyPackages << dependencypackage_tmp
+            end
+          end
         end
       end
 

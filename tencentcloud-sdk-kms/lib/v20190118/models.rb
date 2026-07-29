@@ -517,58 +517,60 @@ module TencentCloud
 
       # 数据密钥属性信息
       class DataKeyMetadata < TencentCloud::Common::AbstractModel
-        # @param DataKeyId: DataKey的全局唯一标识
+        # @param DataKeyId: <p>DataKey的全局唯一标识</p>
         # @type DataKeyId: String
-        # @param KeyId: CMK的全局唯一标识
+        # @param KeyId: <p>CMK的全局唯一标识</p>
         # @type KeyId: String
-        # @param KeyName: CMK的名称
+        # @param KeyName: <p>CMK的名称</p>
         # @type KeyName: String
-        # @param DataKeyName: 作为密钥更容易辨识，更容易被人看懂的数据密钥名称
+        # @param DataKeyName: <p>作为密钥更容易辨识，更容易被人看懂的数据密钥名称</p>
         # @type DataKeyName: String
-        # @param NumberOfBytes: 数据密钥的长度,单位字节
+        # @param NumberOfBytes: <p>数据密钥的长度,单位字节</p>
         # @type NumberOfBytes: Integer
-        # @param CreateTime: 密钥创建时间
+        # @param CreateTime: <p>密钥创建时间</p>
         # @type CreateTime: Integer
-        # @param Description: DataKey的描述
+        # @param Description: <p>DataKey的描述</p>
         # @type Description: String
-        # @param KeyState: DataKey的状态， 取值为：Enabled | Disabled | PendingDelete
+        # @param KeyState: <p>DataKey的状态， 取值为：Enabled | Disabled | PendingDelete</p>
         # @type KeyState: String
-        # @param CreatorUin: 创建者
+        # @param CreatorUin: <p>创建者</p>
         # @type CreatorUin: Integer
-        # @param Owner: 数据密钥的创建者，用户创建的为 user，授权各云产品自动创建的为对应的产品名
+        # @param Owner: <p>数据密钥的创建者，用户创建的为 user，授权各云产品自动创建的为对应的产品名</p>
         # @type Owner: String
-        # @param DeletionDate: 计划删除的时间
+        # @param DeletionDate: <p>计划删除的时间</p>
         # @type DeletionDate: Integer
-        # @param Origin: DataKey 密钥材料类型，由KMS创建的为： TENCENT_KMS， 由用户导入的类型为：EXTERNAL
+        # @param Origin: <p>DataKey 密钥材料类型，由KMS创建的为： TENCENT_KMS， 由用户导入的类型为：EXTERNAL</p>
         # @type Origin: String
-        # @param HsmClusterId: HSM 集群 ID（仅对 KMS 独占版/托管版服务实例有效）
+        # @param HsmClusterId: <p>HSM 集群 ID（仅对 KMS 独占版/托管版服务实例有效）</p>
         # @type HsmClusterId: String
-        # @param ResourceId: 资源ID，格式：creatorUin/$creatorUin/$dataKeyId
+        # @param ResourceId: <p>资源ID，格式：creatorUin/$creatorUin/$dataKeyId</p>
         # @type ResourceId: String
-        # @param IsSyncReplica: 密钥是否是主副本。0:主本，1:同步副本。
+        # @param IsSyncReplica: <p>密钥是否是主副本。0:主本，1:同步副本。</p>
         # @type IsSyncReplica: Integer
-        # @param SourceRegion: 同步的原始地域
+        # @param SourceRegion: <p>同步的原始地域</p>
         # @type SourceRegion: String
-        # @param SyncStatus: 密钥同步的状态，0:未同步，1:同步成功，2:同步失败，3:同步中。
+        # @param SyncStatus: <p>密钥同步的状态，0:未同步，1:同步成功，2:同步失败，3:同步中。</p>
         # @type SyncStatus: Integer
-        # @param SyncMessages: 同步的结果描述
+        # @param SyncMessages: <p>同步的结果描述</p>
         # @type SyncMessages: String
-        # @param SyncStartTime: 同步的开始时间
+        # @param SyncStartTime: <p>同步的开始时间</p>
         # @type SyncStartTime: Integer
-        # @param SyncEndTime: 同步的结束时间
+        # @param SyncEndTime: <p>同步的结束时间</p>
         # @type SyncEndTime: Integer
-        # @param SourceHsmClusterId: 同步的原始集群，如果为空，是公有云公共集群
+        # @param SourceHsmClusterId: <p>同步的原始集群，如果为空，是公有云公共集群</p>
         # @type SourceHsmClusterId: String
-        # @param AccountAppId: 成员账号appId
+        # @param AccountAppId: <p>成员账号appId</p>
         # @type AccountAppId: Integer
-        # @param AccountUin: 成员账号uin
+        # @param AccountUin: <p>成员账号uin</p>
         # @type AccountUin: Integer
-        # @param AccountName: 成员账号名称
+        # @param AccountName: <p>成员账号名称</p>
         # @type AccountName: String
+        # @param CreatorUinString: <p>创建者UIN</p>
+        # @type CreatorUinString: String
 
-        attr_accessor :DataKeyId, :KeyId, :KeyName, :DataKeyName, :NumberOfBytes, :CreateTime, :Description, :KeyState, :CreatorUin, :Owner, :DeletionDate, :Origin, :HsmClusterId, :ResourceId, :IsSyncReplica, :SourceRegion, :SyncStatus, :SyncMessages, :SyncStartTime, :SyncEndTime, :SourceHsmClusterId, :AccountAppId, :AccountUin, :AccountName
+        attr_accessor :DataKeyId, :KeyId, :KeyName, :DataKeyName, :NumberOfBytes, :CreateTime, :Description, :KeyState, :CreatorUin, :Owner, :DeletionDate, :Origin, :HsmClusterId, :ResourceId, :IsSyncReplica, :SourceRegion, :SyncStatus, :SyncMessages, :SyncStartTime, :SyncEndTime, :SourceHsmClusterId, :AccountAppId, :AccountUin, :AccountName, :CreatorUinString
 
-        def initialize(datakeyid=nil, keyid=nil, keyname=nil, datakeyname=nil, numberofbytes=nil, createtime=nil, description=nil, keystate=nil, creatoruin=nil, owner=nil, deletiondate=nil, origin=nil, hsmclusterid=nil, resourceid=nil, issyncreplica=nil, sourceregion=nil, syncstatus=nil, syncmessages=nil, syncstarttime=nil, syncendtime=nil, sourcehsmclusterid=nil, accountappid=nil, accountuin=nil, accountname=nil)
+        def initialize(datakeyid=nil, keyid=nil, keyname=nil, datakeyname=nil, numberofbytes=nil, createtime=nil, description=nil, keystate=nil, creatoruin=nil, owner=nil, deletiondate=nil, origin=nil, hsmclusterid=nil, resourceid=nil, issyncreplica=nil, sourceregion=nil, syncstatus=nil, syncmessages=nil, syncstarttime=nil, syncendtime=nil, sourcehsmclusterid=nil, accountappid=nil, accountuin=nil, accountname=nil, creatoruinstring=nil)
           @DataKeyId = datakeyid
           @KeyId = keyid
           @KeyName = keyname
@@ -593,6 +595,7 @@ module TencentCloud
           @AccountAppId = accountappid
           @AccountUin = accountuin
           @AccountName = accountname
+          @CreatorUinString = creatoruinstring
         end
 
         def deserialize(params)
@@ -620,6 +623,7 @@ module TencentCloud
           @AccountAppId = params['AccountAppId']
           @AccountUin = params['AccountUin']
           @AccountName = params['AccountName']
+          @CreatorUinString = params['CreatorUinString']
         end
       end
 
@@ -2281,12 +2285,16 @@ module TencentCloud
         # @type QpsTotalLimit: Integer
         # @param RegionsQps: <p>地域下的QPS</p>
         # @type RegionsQps: Array
+        # @param ResourceZone: <p>资源的地域信息</p>
+        # @type ResourceZone: Integer
+        # @param ResourceRegion: <p>资源的地域可用区信息</p>
+        # @type ResourceRegion: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ServiceEnabled, :InvalidType, :UserLevel, :ProExpireTime, :ProRenewFlag, :ProResourceId, :ExclusiveVSMEnabled, :ExclusiveHSMEnabled, :SubscriptionInfo, :CmkUserCount, :CmkLimit, :ExclusiveHSMList, :IsAllowedDataKeyHosted, :DataKeyLimit, :FreeDataKeyLimit, :DataKeyUsedCount, :SyncTaskList, :IsAllowedSync, :QpsLimit, :QpsTotalLimit, :RegionsQps, :RequestId
+        attr_accessor :ServiceEnabled, :InvalidType, :UserLevel, :ProExpireTime, :ProRenewFlag, :ProResourceId, :ExclusiveVSMEnabled, :ExclusiveHSMEnabled, :SubscriptionInfo, :CmkUserCount, :CmkLimit, :ExclusiveHSMList, :IsAllowedDataKeyHosted, :DataKeyLimit, :FreeDataKeyLimit, :DataKeyUsedCount, :SyncTaskList, :IsAllowedSync, :QpsLimit, :QpsTotalLimit, :RegionsQps, :ResourceZone, :ResourceRegion, :RequestId
 
-        def initialize(serviceenabled=nil, invalidtype=nil, userlevel=nil, proexpiretime=nil, prorenewflag=nil, proresourceid=nil, exclusivevsmenabled=nil, exclusivehsmenabled=nil, subscriptioninfo=nil, cmkusercount=nil, cmklimit=nil, exclusivehsmlist=nil, isalloweddatakeyhosted=nil, datakeylimit=nil, freedatakeylimit=nil, datakeyusedcount=nil, synctasklist=nil, isallowedsync=nil, qpslimit=nil, qpstotallimit=nil, regionsqps=nil, requestid=nil)
+        def initialize(serviceenabled=nil, invalidtype=nil, userlevel=nil, proexpiretime=nil, prorenewflag=nil, proresourceid=nil, exclusivevsmenabled=nil, exclusivehsmenabled=nil, subscriptioninfo=nil, cmkusercount=nil, cmklimit=nil, exclusivehsmlist=nil, isalloweddatakeyhosted=nil, datakeylimit=nil, freedatakeylimit=nil, datakeyusedcount=nil, synctasklist=nil, isallowedsync=nil, qpslimit=nil, qpstotallimit=nil, regionsqps=nil, resourcezone=nil, resourceregion=nil, requestid=nil)
           @ServiceEnabled = serviceenabled
           @InvalidType = invalidtype
           @UserLevel = userlevel
@@ -2308,6 +2316,8 @@ module TencentCloud
           @QpsLimit = qpslimit
           @QpsTotalLimit = qpstotallimit
           @RegionsQps = regionsqps
+          @ResourceZone = resourcezone
+          @ResourceRegion = resourceregion
           @RequestId = requestid
         end
 
@@ -2354,6 +2364,8 @@ module TencentCloud
               @RegionsQps << regionqps_tmp
             end
           end
+          @ResourceZone = params['ResourceZone']
+          @ResourceRegion = params['ResourceRegion']
           @RequestId = params['RequestId']
         end
       end
@@ -2556,10 +2568,12 @@ module TencentCloud
         # @type AccountUin: Integer
         # @param AccountName: <p>成员账号名称</p>
         # @type AccountName: String
+        # @param CreatorUinString: <p>创建者UIN</p>
+        # @type CreatorUinString: String
 
-        attr_accessor :KeyId, :Alias, :CreateTime, :Description, :KeyState, :KeyUsage, :Type, :CreatorUin, :KeyRotationEnabled, :Owner, :NextRotateTime, :DeletionDate, :Origin, :ValidTo, :ResourceId, :HsmClusterId, :RotateDays, :LastRotateTime, :IsSyncReplica, :SourceRegion, :SyncStatus, :SyncMessages, :SyncStartTime, :SyncEndTime, :SourceHsmClusterId, :AccountAppId, :AccountUin, :AccountName
+        attr_accessor :KeyId, :Alias, :CreateTime, :Description, :KeyState, :KeyUsage, :Type, :CreatorUin, :KeyRotationEnabled, :Owner, :NextRotateTime, :DeletionDate, :Origin, :ValidTo, :ResourceId, :HsmClusterId, :RotateDays, :LastRotateTime, :IsSyncReplica, :SourceRegion, :SyncStatus, :SyncMessages, :SyncStartTime, :SyncEndTime, :SourceHsmClusterId, :AccountAppId, :AccountUin, :AccountName, :CreatorUinString
 
-        def initialize(keyid=nil, _alias=nil, createtime=nil, description=nil, keystate=nil, keyusage=nil, type=nil, creatoruin=nil, keyrotationenabled=nil, owner=nil, nextrotatetime=nil, deletiondate=nil, origin=nil, validto=nil, resourceid=nil, hsmclusterid=nil, rotatedays=nil, lastrotatetime=nil, issyncreplica=nil, sourceregion=nil, syncstatus=nil, syncmessages=nil, syncstarttime=nil, syncendtime=nil, sourcehsmclusterid=nil, accountappid=nil, accountuin=nil, accountname=nil)
+        def initialize(keyid=nil, _alias=nil, createtime=nil, description=nil, keystate=nil, keyusage=nil, type=nil, creatoruin=nil, keyrotationenabled=nil, owner=nil, nextrotatetime=nil, deletiondate=nil, origin=nil, validto=nil, resourceid=nil, hsmclusterid=nil, rotatedays=nil, lastrotatetime=nil, issyncreplica=nil, sourceregion=nil, syncstatus=nil, syncmessages=nil, syncstarttime=nil, syncendtime=nil, sourcehsmclusterid=nil, accountappid=nil, accountuin=nil, accountname=nil, creatoruinstring=nil)
           @KeyId = keyid
           @Alias = _alias
           @CreateTime = createtime
@@ -2588,6 +2602,7 @@ module TencentCloud
           @AccountAppId = accountappid
           @AccountUin = accountuin
           @AccountName = accountname
+          @CreatorUinString = creatoruinstring
         end
 
         def deserialize(params)
@@ -2619,6 +2634,7 @@ module TencentCloud
           @AccountAppId = params['AccountAppId']
           @AccountUin = params['AccountUin']
           @AccountName = params['AccountName']
+          @CreatorUinString = params['CreatorUinString']
         end
       end
 

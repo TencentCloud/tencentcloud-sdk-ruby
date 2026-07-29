@@ -2509,44 +2509,46 @@ module TencentCloud
 
       # 终端硬件信息列表Item数据
       class DescribeDeviceHardwareInfoItem < TencentCloud::Common::AbstractModel
-        # @param Id: 设备ID
+        # @param Id: <p>设备ID</p>
         # @type Id: Integer
-        # @param Mid: 设备唯一标识符
+        # @param Mid: <p>设备唯一标识符</p>
         # @type Mid: String
-        # @param OsType: OS平台 0 Windows 1 Linux 2 macOS 4 Android 5 iOS
+        # @param OsType: <p>OS平台 0 Windows 1 Linux 2 macOS 4 Android 5 iOS</p>
         # @type OsType: Integer
-        # @param Name: 终端名
+        # @param Name: <p>终端名</p>
         # @type Name: String
-        # @param UserName: 终端用户名
+        # @param UserName: <p>终端用户名</p>
         # @type UserName: String
-        # @param Status: 授权状态（ 4未授权 5已授权）
+        # @param Status: <p>授权状态（ 4未授权 5已授权）</p>
         # @type Status: Integer
-        # @param GroupId: 设备所属分组ID
+        # @param GroupId: <p>设备所属分组ID</p>
         # @type GroupId: Integer
-        # @param GroupName: 设备所属分组名
+        # @param GroupName: <p>设备所属分组名</p>
         # @type GroupName: String
-        # @param GroupNamePath: 设备所属分组路径
+        # @param GroupNamePath: <p>设备所属分组路径</p>
         # @type GroupNamePath: String
-        # @param AccountName: 最近登录账户的姓名
+        # @param AccountName: <p>最近登录账户的姓名</p>
         # @type AccountName: String
-        # @param Ip: 出口IP
+        # @param Ip: <p>出口IP</p>
         # @type Ip: String
-        # @param MacAddr: MAC地址
+        # @param MacAddr: <p>MAC地址</p>
         # @type MacAddr: String
-        # @param Cpu: CPU品牌型号
+        # @param Cpu: <p>CPU品牌型号</p>
         # @type Cpu: String
-        # @param Memory: 内存信息
+        # @param Memory: <p>内存信息</p>
         # @type Memory: String
-        # @param HardDiskSize: 硬盘信息
+        # @param HardDiskSize: <p>硬盘信息</p>
         # @type HardDiskSize: String
-        # @param Monitor: 显示器品牌型号
+        # @param Monitor: <p>显示器品牌型号</p>
         # @type Monitor: String
-        # @param RemarkName: 终端备注名
+        # @param RemarkName: <p>终端备注名</p>
         # @type RemarkName: String
+        # @param BiosUuid: <p>BiosUUID（启动盘标识符）</p>
+        # @type BiosUuid: String
 
-        attr_accessor :Id, :Mid, :OsType, :Name, :UserName, :Status, :GroupId, :GroupName, :GroupNamePath, :AccountName, :Ip, :MacAddr, :Cpu, :Memory, :HardDiskSize, :Monitor, :RemarkName
+        attr_accessor :Id, :Mid, :OsType, :Name, :UserName, :Status, :GroupId, :GroupName, :GroupNamePath, :AccountName, :Ip, :MacAddr, :Cpu, :Memory, :HardDiskSize, :Monitor, :RemarkName, :BiosUuid
 
-        def initialize(id=nil, mid=nil, ostype=nil, name=nil, username=nil, status=nil, groupid=nil, groupname=nil, groupnamepath=nil, accountname=nil, ip=nil, macaddr=nil, cpu=nil, memory=nil, harddisksize=nil, monitor=nil, remarkname=nil)
+        def initialize(id=nil, mid=nil, ostype=nil, name=nil, username=nil, status=nil, groupid=nil, groupname=nil, groupnamepath=nil, accountname=nil, ip=nil, macaddr=nil, cpu=nil, memory=nil, harddisksize=nil, monitor=nil, remarkname=nil, biosuuid=nil)
           @Id = id
           @Mid = mid
           @OsType = ostype
@@ -2564,6 +2566,7 @@ module TencentCloud
           @HardDiskSize = harddisksize
           @Monitor = monitor
           @RemarkName = remarkname
+          @BiosUuid = biosuuid
         end
 
         def deserialize(params)
@@ -2584,6 +2587,7 @@ module TencentCloud
           @HardDiskSize = params['HardDiskSize']
           @Monitor = params['Monitor']
           @RemarkName = params['RemarkName']
+          @BiosUuid = params['BiosUuid']
         end
       end
 
@@ -3895,10 +3899,12 @@ module TencentCloud
         # @type DiskAccessPermission: Integer
         # @param RemarkName: <p>终端备注名</p>
         # @type RemarkName: String
+        # @param BiosUuid: <p>BiosUUID（启动盘标识符）</p>
+        # @type BiosUuid: String
 
-        attr_accessor :Id, :Mid, :Name, :GroupId, :OsType, :Ip, :OnlineStatus, :Version, :StrVersion, :Itime, :ConnActiveTime, :Locked, :LocalIpList, :HostId, :GroupName, :GroupNamePath, :CriticalVulListCount, :Os, :OsBits, :OsVersion, :OsLanguage, :OsInstallDate, :ComputerName, :DomainName, :MacAddr, :VulCount, :RiskCount, :VirusVer, :VulVersion, :SysRepVersion, :VulCriticalList, :Tags, :UserName, :FirewallStatus, :SerialNum, :DeviceStrategyVer, :NGNStrategyVer, :IOAUserName, :DeviceNewStrategyVer, :NGNNewStrategyVer, :HostName, :BaseBoardSn, :AccountUsers, :IdentityStrategyVer, :IdentityNewStrategyVer, :AccountGroupName, :AccountName, :AccountGroupId, :ScreenRecordingPermission, :DiskAccessPermission, :RemarkName
+        attr_accessor :Id, :Mid, :Name, :GroupId, :OsType, :Ip, :OnlineStatus, :Version, :StrVersion, :Itime, :ConnActiveTime, :Locked, :LocalIpList, :HostId, :GroupName, :GroupNamePath, :CriticalVulListCount, :Os, :OsBits, :OsVersion, :OsLanguage, :OsInstallDate, :ComputerName, :DomainName, :MacAddr, :VulCount, :RiskCount, :VirusVer, :VulVersion, :SysRepVersion, :VulCriticalList, :Tags, :UserName, :FirewallStatus, :SerialNum, :DeviceStrategyVer, :NGNStrategyVer, :IOAUserName, :DeviceNewStrategyVer, :NGNNewStrategyVer, :HostName, :BaseBoardSn, :AccountUsers, :IdentityStrategyVer, :IdentityNewStrategyVer, :AccountGroupName, :AccountName, :AccountGroupId, :ScreenRecordingPermission, :DiskAccessPermission, :RemarkName, :BiosUuid
 
-        def initialize(id=nil, mid=nil, name=nil, groupid=nil, ostype=nil, ip=nil, onlinestatus=nil, version=nil, strversion=nil, itime=nil, connactivetime=nil, locked=nil, localiplist=nil, hostid=nil, groupname=nil, groupnamepath=nil, criticalvullistcount=nil, os=nil, osbits=nil, osversion=nil, oslanguage=nil, osinstalldate=nil, computername=nil, domainname=nil, macaddr=nil, vulcount=nil, riskcount=nil, virusver=nil, vulversion=nil, sysrepversion=nil, vulcriticallist=nil, tags=nil, username=nil, firewallstatus=nil, serialnum=nil, devicestrategyver=nil, ngnstrategyver=nil, ioausername=nil, devicenewstrategyver=nil, ngnnewstrategyver=nil, hostname=nil, baseboardsn=nil, accountusers=nil, identitystrategyver=nil, identitynewstrategyver=nil, accountgroupname=nil, accountname=nil, accountgroupid=nil, screenrecordingpermission=nil, diskaccesspermission=nil, remarkname=nil)
+        def initialize(id=nil, mid=nil, name=nil, groupid=nil, ostype=nil, ip=nil, onlinestatus=nil, version=nil, strversion=nil, itime=nil, connactivetime=nil, locked=nil, localiplist=nil, hostid=nil, groupname=nil, groupnamepath=nil, criticalvullistcount=nil, os=nil, osbits=nil, osversion=nil, oslanguage=nil, osinstalldate=nil, computername=nil, domainname=nil, macaddr=nil, vulcount=nil, riskcount=nil, virusver=nil, vulversion=nil, sysrepversion=nil, vulcriticallist=nil, tags=nil, username=nil, firewallstatus=nil, serialnum=nil, devicestrategyver=nil, ngnstrategyver=nil, ioausername=nil, devicenewstrategyver=nil, ngnnewstrategyver=nil, hostname=nil, baseboardsn=nil, accountusers=nil, identitystrategyver=nil, identitynewstrategyver=nil, accountgroupname=nil, accountname=nil, accountgroupid=nil, screenrecordingpermission=nil, diskaccesspermission=nil, remarkname=nil, biosuuid=nil)
           @Id = id
           @Mid = mid
           @Name = name
@@ -3950,6 +3956,7 @@ module TencentCloud
           @ScreenRecordingPermission = screenrecordingpermission
           @DiskAccessPermission = diskaccesspermission
           @RemarkName = remarkname
+          @BiosUuid = biosuuid
         end
 
         def deserialize(params)
@@ -4004,6 +4011,7 @@ module TencentCloud
           @ScreenRecordingPermission = params['ScreenRecordingPermission']
           @DiskAccessPermission = params['DiskAccessPermission']
           @RemarkName = params['RemarkName']
+          @BiosUuid = params['BiosUuid']
         end
       end
 

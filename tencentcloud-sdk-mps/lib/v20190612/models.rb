@@ -6950,7 +6950,7 @@ module TencentCloud
         # @type AspectRatio: String
         # @param Resolution: <p>分辨率。支持720p（默认）/1080p/2k/4k</p>
         # @type Resolution: String
-        # @param ModelTier: <p>模型等级。flagship（VS2.0，默认）、standard（Kling3.0-Omni）</p>
+        # @param ModelTier: <p>模型等级。flagship（默认）、standard</p>
         # @type ModelTier: String
 
         attr_accessor :Duration, :AspectRatio, :Resolution, :ModelTier

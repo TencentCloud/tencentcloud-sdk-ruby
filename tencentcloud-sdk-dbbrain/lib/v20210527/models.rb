@@ -1008,6 +1008,59 @@ module TencentCloud
         end
       end
 
+      # CreateDBDiagReportUrls请求参数结构体
+      class CreateDBDiagReportUrlsRequest < TencentCloud::Common::AbstractModel
+        # @param Product: <p>服务产品类型，支持值包括：&quot;mysql&quot; - 云数据库 MySQL，&quot;redis&quot; - 云数据库 Redis，&quot;cynosdb&quot; - 云数据库 TDSQL-C for MySQL，&quot;mongodb&quot; - 云数据库 MongoDB，&quot;postgres&quot; - 云数据库 PostgreSQL。</p>
+        # @type Product: String
+        # @param AsyncRequestIds: <p>异步任务ID列表。</p>
+        # @type AsyncRequestIds: Array
+
+        attr_accessor :Product, :AsyncRequestIds
+
+        def initialize(product=nil, asyncrequestids=nil)
+          @Product = product
+          @AsyncRequestIds = asyncrequestids
+        end
+
+        def deserialize(params)
+          @Product = params['Product']
+          @AsyncRequestIds = params['AsyncRequestIds']
+        end
+      end
+
+      # CreateDBDiagReportUrls返回参数结构体
+      class CreateDBDiagReportUrlsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>URL条目总数。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param Items: <p>报告URL信息列表。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Items, :RequestId
+
+        def initialize(totalcount=nil, items=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              diagreporturlitem_tmp = DiagReportUrlItem.new
+              diagreporturlitem_tmp.deserialize(i)
+              @Items << diagreporturlitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateIgnoreDiagRecord请求参数结构体
       class CreateIgnoreDiagRecordRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: <p>实例ID。</p>
@@ -2634,28 +2687,30 @@ module TencentCloud
 
       # DescribeDBDiagReportTasks请求参数结构体
       class DescribeDBDiagReportTasksRequest < TencentCloud::Common::AbstractModel
-        # @param StartTime: 第一个任务的开始时间，用于范围查询，时间格式如：2019-09-10 12:13:14。
+        # @param StartTime: <p>第一个任务的开始时间，用于范围查询，时间格式如：2019-09-10 12:13:14。</p>
         # @type StartTime: String
-        # @param EndTime: 最后一个任务的开始时间，用于范围查询，时间格式如：2019-09-10 12:13:14。
+        # @param EndTime: <p>最后一个任务的开始时间，用于范围查询，时间格式如：2019-09-10 12:13:14。</p>
         # @type EndTime: String
-        # @param InstanceIds: 实例ID数组，用于筛选指定实例的任务列表。
+        # @param InstanceIds: <p>实例ID数组，用于筛选指定实例的任务列表。。可通过 <a href="https://cloud.tencent.com/document/api/1130/57798">DescribeDiagDBInstances</a> 接口获取。</p>
         # @type InstanceIds: Array
-        # @param Sources: 任务的触发来源，支持的取值包括："DAILY_INSPECTION" - 实例巡检；"SCHEDULED" - 计划任务；"MANUAL" - 手动触发。
+        # @param Sources: <p>任务的触发来源，支持的取值包括：&quot;DAILY_INSPECTION&quot; - 实例巡检；&quot;SCHEDULED&quot; - 计划任务；&quot;MANUAL&quot; - 手动触发。</p>
         # @type Sources: Array
-        # @param HealthLevels: 报告的健康等级，支持的取值包括："HEALTH" - 健康；"SUB_HEALTH" - 亚健康；"RISK" - 危险；"HIGH_RISK" - 高危。
+        # @param HealthLevels: <p>报告的健康等级，支持的取值包括：&quot;HEALTH&quot; - 健康；&quot;SUB_HEALTH&quot; - 亚健康；&quot;RISK&quot; - 危险；&quot;HIGH_RISK&quot; - 高危。</p>
         # @type HealthLevels: String
-        # @param TaskStatuses: 任务的状态，支持的取值包括："created" - 新建；"chosen" - 待执行； "running" - 执行中；"failed" - 失败；"finished" - 已完成。
+        # @param TaskStatuses: <p>任务的状态，支持的取值包括：&quot;created&quot; - 新建；&quot;chosen&quot; - 待执行； &quot;running&quot; - 执行中；&quot;failed&quot; - 失败；&quot;finished&quot; - 已完成。</p>
         # @type TaskStatuses: String
-        # @param Offset: 偏移量，默认0。
+        # @param Offset: <p>偏移量，默认0。</p>
         # @type Offset: Integer
-        # @param Limit: 返回数量，默认20，最大值为100。
+        # @param Limit: <p>返回数量，默认20，最大值为100。</p>
         # @type Limit: Integer
-        # @param Product: 服务产品类型，支持值："mysql" - 云数据库 MySQL；"cynosdb" - 云数据库 TDSQL-C for MySQL，"redis" - 云数据库 Redis，默认为"mysql"。
+        # @param Product: <p>服务产品类型，支持值：&quot;mysql&quot; - 云数据库 MySQL；&quot;cynosdb&quot; - 云数据库 TDSQL-C for MySQL，&quot;redis&quot; - 云数据库 Redis，默认为&quot;mysql&quot;。</p>
         # @type Product: String
+        # @param TagFilters: <p>根据任务所属实例的标签信息进行过滤</p>
+        # @type TagFilters: Array
 
-        attr_accessor :StartTime, :EndTime, :InstanceIds, :Sources, :HealthLevels, :TaskStatuses, :Offset, :Limit, :Product
+        attr_accessor :StartTime, :EndTime, :InstanceIds, :Sources, :HealthLevels, :TaskStatuses, :Offset, :Limit, :Product, :TagFilters
 
-        def initialize(starttime=nil, endtime=nil, instanceids=nil, sources=nil, healthlevels=nil, taskstatuses=nil, offset=nil, limit=nil, product=nil)
+        def initialize(starttime=nil, endtime=nil, instanceids=nil, sources=nil, healthlevels=nil, taskstatuses=nil, offset=nil, limit=nil, product=nil, tagfilters=nil)
           @StartTime = starttime
           @EndTime = endtime
           @InstanceIds = instanceids
@@ -2665,6 +2720,7 @@ module TencentCloud
           @Offset = offset
           @Limit = limit
           @Product = product
+          @TagFilters = tagfilters
         end
 
         def deserialize(params)
@@ -2677,14 +2733,22 @@ module TencentCloud
           @Offset = params['Offset']
           @Limit = params['Limit']
           @Product = params['Product']
+          unless params['TagFilters'].nil?
+            @TagFilters = []
+            params['TagFilters'].each do |i|
+              tagfiltergroup_tmp = TagFilterGroup.new
+              tagfiltergroup_tmp.deserialize(i)
+              @TagFilters << tagfiltergroup_tmp
+            end
+          end
         end
       end
 
       # DescribeDBDiagReportTasks返回参数结构体
       class DescribeDBDiagReportTasksResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 任务总数目。
+        # @param TotalCount: <p>任务总数目。</p>
         # @type TotalCount: Integer
-        # @param Tasks: 任务列表。
+        # @param Tasks: <p>任务列表。</p>
         # @type Tasks: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2705,6 +2769,49 @@ module TencentCloud
               healthreporttask_tmp = HealthReportTask.new
               healthreporttask_tmp.deserialize(i)
               @Tasks << healthreporttask_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDBInstances请求参数结构体
+      class DescribeDBInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceIds: <p>实例ID列表，最多支持100个。支持多种数据库产品的实例ID，系统会根据实例ID前缀自动识别产品类型。</p>
+        # @type InstanceIds: Array
+
+        attr_accessor :InstanceIds
+
+        def initialize(instanceids=nil)
+          @InstanceIds = instanceids
+        end
+
+        def deserialize(params)
+          @InstanceIds = params['InstanceIds']
+        end
+      end
+
+      # DescribeDBInstances返回参数结构体
+      class DescribeDBInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param Items: <p>实例列表。</p>
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Items, :RequestId
+
+        def initialize(items=nil, requestid=nil)
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              instanceitem_tmp = InstanceItem.new
+              instanceitem_tmp.deserialize(i)
+              @Items << instanceitem_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -5488,6 +5595,33 @@ module TencentCloud
         end
       end
 
+      # 健康报告URL信息
+      class DiagReportUrlItem < TencentCloud::Common::AbstractModel
+        # @param AsyncRequestId: 异步任务ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AsyncRequestId: Integer
+        # @param ReportUrl: 报告下载地址。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReportUrl: String
+        # @param ExpireTime: 链接过期时间，Unix时间戳（秒），-1表示永不过期。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpireTime: Integer
+
+        attr_accessor :AsyncRequestId, :ReportUrl, :ExpireTime
+
+        def initialize(asyncrequestid=nil, reporturl=nil, expiretime=nil)
+          @AsyncRequestId = asyncrequestid
+          @ReportUrl = reporturl
+          @ExpireTime = expiretime
+        end
+
+        def deserialize(params)
+          @AsyncRequestId = params['AsyncRequestId']
+          @ReportUrl = params['ReportUrl']
+          @ExpireTime = params['ExpireTime']
+        end
+      end
+
       # 异常事件信息。
       class EventInfo < TencentCloud::Common::AbstractModel
         # @param EventId: 事件 ID 。
@@ -5562,26 +5696,28 @@ module TencentCloud
 
       # 健康报告任务详情。
       class HealthReportTask < TencentCloud::Common::AbstractModel
-        # @param AsyncRequestId: 异步任务请求 ID。
+        # @param AsyncRequestId: <p>异步任务请求 ID。</p>
         # @type AsyncRequestId: Integer
-        # @param Source: 任务的触发来源，支持的取值包括："DAILY_INSPECTION" - 实例巡检；"SCHEDULED" - 定时生成；"MANUAL" - 手动触发。
+        # @param Source: <p>任务的触发来源，支持的取值包括：&quot;DAILY_INSPECTION&quot; - 实例巡检；&quot;SCHEDULED&quot; - 定时生成；&quot;MANUAL&quot; - 手动触发。</p>
         # @type Source: String
-        # @param Progress: 任务完成进度，单位%。
+        # @param Progress: <p>任务完成进度，单位%。</p>
         # @type Progress: Integer
-        # @param CreateTime: 任务创建时间。
+        # @param CreateTime: <p>任务创建时间，如“2025-09-30 12:13:14”。</p>
         # @type CreateTime: String
-        # @param StartTime: 任务开始执行时间。
+        # @param StartTime: <p>任务开始执行时间，如“2025-09-30 13:13:14”。</p>
         # @type StartTime: String
-        # @param EndTime: 任务完成执行时间。
+        # @param EndTime: <p>任务完成执行时间，如“2025-09-30 14:13:14”。</p>
         # @type EndTime: String
-        # @param InstanceInfo: 任务所属实例的基础信息。
+        # @param InstanceInfo: <p>任务所属实例的基础信息。</p>
         # @type InstanceInfo: :class:`Tencentcloud::Dbbrain.v20210527.models.InstanceBasicInfo`
-        # @param HealthStatus: 健康报告中的健康信息。
+        # @param HealthStatus: <p>健康报告中的健康信息。</p>
         # @type HealthStatus: :class:`Tencentcloud::Dbbrain.v20210527.models.HealthStatus`
+        # @param Tags: <p>任务所属实例的标签信息</p>
+        # @type Tags: Array
 
-        attr_accessor :AsyncRequestId, :Source, :Progress, :CreateTime, :StartTime, :EndTime, :InstanceInfo, :HealthStatus
+        attr_accessor :AsyncRequestId, :Source, :Progress, :CreateTime, :StartTime, :EndTime, :InstanceInfo, :HealthStatus, :Tags
 
-        def initialize(asyncrequestid=nil, source=nil, progress=nil, createtime=nil, starttime=nil, endtime=nil, instanceinfo=nil, healthstatus=nil)
+        def initialize(asyncrequestid=nil, source=nil, progress=nil, createtime=nil, starttime=nil, endtime=nil, instanceinfo=nil, healthstatus=nil, tags=nil)
           @AsyncRequestId = asyncrequestid
           @Source = source
           @Progress = progress
@@ -5590,6 +5726,7 @@ module TencentCloud
           @EndTime = endtime
           @InstanceInfo = instanceinfo
           @HealthStatus = healthstatus
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -5606,6 +5743,14 @@ module TencentCloud
           unless params['HealthStatus'].nil?
             @HealthStatus = HealthStatus.new
             @HealthStatus.deserialize(params['HealthStatus'])
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              taginfo_tmp = TagInfo.new
+              taginfo_tmp.deserialize(i)
+              @Tags << taginfo_tmp
+            end
           end
         end
       end
@@ -5816,7 +5961,8 @@ module TencentCloud
         # @type EngineVersion: String
         # @param Cpu: CPU数量，对于Redis为0。
         # @type Cpu: Integer
-        # @param DeployMode: 实例部署模式。
+        # @param DeployMode: 实例部署模式。MySQL 实例类型取值包括"STANDARD"-标准类型,"CUSTOM"-普通类型, "EXCLUSIVE"-独占类型, "CUSTOMER_AGENT"-用户代理类型, "CUSTOMER_DIRECT"-用户直连类型,
+        # "CLOUD_NATIVE_CLUSTER_EXCLUSIVE"-云原生独占集群, "CLOUD_NATIVE_CLUSTER"-云原生集群。
         # @type DeployMode: String
         # @param InstanceConf: 实例内存配置。
         # @type InstanceConf: :class:`Tencentcloud::Dbbrain.v20210527.models.RedisInstanceConf`
@@ -6075,6 +6221,55 @@ module TencentCloud
           @ClusterName = params['ClusterName']
           @AgentStatus = params['AgentStatus']
           @InstanceStatus = params['InstanceStatus']
+        end
+      end
+
+      # 数据库实例基本信息
+      class InstanceItem < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param Product: 数据库类型，如 mysql、cynosdb、mariadb、dcdb、mongodb、postgres、redis、dbbrain-mysql、tdstore。
+        # @type Product: String
+        # @param Region: 地域英文ID。
+        # @type Region: String
+        # @param ClusterId: 集群ID，仅集群类产品返回。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterId: String
+        # @param EngineVersion: 引擎版本。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EngineVersion: String
+        # @param Status: 实例状态，1表示运行中。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param CreateTime: 实例创建时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param DeadlineTime: 实例到期时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeadlineTime: String
+
+        attr_accessor :InstanceId, :Product, :Region, :ClusterId, :EngineVersion, :Status, :CreateTime, :DeadlineTime
+
+        def initialize(instanceid=nil, product=nil, region=nil, clusterid=nil, engineversion=nil, status=nil, createtime=nil, deadlinetime=nil)
+          @InstanceId = instanceid
+          @Product = product
+          @Region = region
+          @ClusterId = clusterid
+          @EngineVersion = engineversion
+          @Status = status
+          @CreateTime = createtime
+          @DeadlineTime = deadlinetime
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Product = params['Product']
+          @Region = params['Region']
+          @ClusterId = params['ClusterId']
+          @EngineVersion = params['EngineVersion']
+          @Status = params['Status']
+          @CreateTime = params['CreateTime']
+          @DeadlineTime = params['DeadlineTime']
         end
       end
 
@@ -8059,6 +8254,69 @@ module TencentCloud
             @SeriesData = MonitorFloatMetricSeriesData.new
             @SeriesData.deserialize(params['SeriesData'])
           end
+        end
+      end
+
+      # 标签过滤组。组内 TagPairs 之间为 OR 关系；不同 TagFilterGroup 之间为 AND 关系。
+      class TagFilterGroup < TencentCloud::Common::AbstractModel
+        # @param TagPairs: <p>过滤条件-标签组</p>
+        # @type TagPairs: Array
+
+        attr_accessor :TagPairs
+
+        def initialize(tagpairs=nil)
+          @TagPairs = tagpairs
+        end
+
+        def deserialize(params)
+          unless params['TagPairs'].nil?
+            @TagPairs = []
+            params['TagPairs'].each do |i|
+              tagpair_tmp = TagPair.new
+              tagpair_tmp.deserialize(i)
+              @TagPairs << tagpair_tmp
+            end
+          end
+        end
+      end
+
+      # 实例标签信息
+      class TagInfo < TencentCloud::Common::AbstractModel
+        # @param TagKey: <p>实例标签key</p>
+        # @type TagKey: String
+        # @param TagValue: <p>实例标签value</p>
+        # @type TagValue: String
+
+        attr_accessor :TagKey, :TagValue
+
+        def initialize(tagkey=nil, tagvalue=nil)
+          @TagKey = tagkey
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
+        end
+      end
+
+      # 标签键值对过滤条件。
+      class TagPair < TencentCloud::Common::AbstractModel
+        # @param TagKey: <p>过滤条件-标签key</p>
+        # @type TagKey: String
+        # @param TagValue: <p>过滤条件标签-value</p>
+        # @type TagValue: Array
+
+        attr_accessor :TagKey, :TagValue
+
+        def initialize(tagkey=nil, tagvalue=nil)
+          @TagKey = tagkey
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
         end
       end
 

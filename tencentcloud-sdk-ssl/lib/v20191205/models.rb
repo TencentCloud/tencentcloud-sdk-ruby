@@ -498,28 +498,32 @@ module TencentCloud
 
       # 获取证书列表（DescribeCertificates）返回参数键为 Certificates 数组下，key为CertificateExtra 的内容。
       class CertificateExtra < TencentCloud::Common::AbstractModel
-        # @param DomainNumber: 证书可配置域名数量。
+        # @param DomainNumber: <p>证书可配置域名数量。</p>
         # @type DomainNumber: String
-        # @param OriginCertificateId: 续费原证书 ID。
+        # @param OriginCertificateId: <p>续费原证书 ID。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OriginCertificateId: String
-        # @param ReplacedBy: 重颁发证书原始 ID。
+        # @param ReplacedBy: <p>重颁发证书原始 ID。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReplacedBy: String
-        # @param ReplacedFor: 重颁发证书ID。
+        # @param ReplacedFor: <p>重颁发证书ID。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReplacedFor: String
-        # @param RenewOrder: 续费证书 ID。
+        # @param RenewOrder: <p>续费证书 ID。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RenewOrder: String
-        # @param SMCert: 是否是国密证书
+        # @param SMCert: <p>是否是国密证书</p>
         # @type SMCert: Integer
-        # @param CompanyType: 公司类型，取值：1（个人）；2（公司）
+        # @param CompanyType: <p>公司类型，取值：1（个人）；2（公司）</p>
         # @type CompanyType: Integer
+        # @param ServiceRenewCertificateId: <p>下一张订阅服务续期证书ID</p>
+        # @type ServiceRenewCertificateId: String
+        # @param ServiceOriginCertificateId: <p>上一张订阅服务来源证书ID</p>
+        # @type ServiceOriginCertificateId: String
 
-        attr_accessor :DomainNumber, :OriginCertificateId, :ReplacedBy, :ReplacedFor, :RenewOrder, :SMCert, :CompanyType
+        attr_accessor :DomainNumber, :OriginCertificateId, :ReplacedBy, :ReplacedFor, :RenewOrder, :SMCert, :CompanyType, :ServiceRenewCertificateId, :ServiceOriginCertificateId
 
-        def initialize(domainnumber=nil, origincertificateid=nil, replacedby=nil, replacedfor=nil, reneworder=nil, smcert=nil, companytype=nil)
+        def initialize(domainnumber=nil, origincertificateid=nil, replacedby=nil, replacedfor=nil, reneworder=nil, smcert=nil, companytype=nil, servicerenewcertificateid=nil, serviceorigincertificateid=nil)
           @DomainNumber = domainnumber
           @OriginCertificateId = origincertificateid
           @ReplacedBy = replacedby
@@ -527,6 +531,8 @@ module TencentCloud
           @RenewOrder = reneworder
           @SMCert = smcert
           @CompanyType = companytype
+          @ServiceRenewCertificateId = servicerenewcertificateid
+          @ServiceOriginCertificateId = serviceorigincertificateid
         end
 
         def deserialize(params)
@@ -537,6 +543,8 @@ module TencentCloud
           @RenewOrder = params['RenewOrder']
           @SMCert = params['SMCert']
           @CompanyType = params['CompanyType']
+          @ServiceRenewCertificateId = params['ServiceRenewCertificateId']
+          @ServiceOriginCertificateId = params['ServiceOriginCertificateId']
         end
       end
 
@@ -818,9 +826,9 @@ module TencentCloud
         # @type OwnerUin: String
         # @param ProjectId: <p>项目 ID。</p>
         # @type ProjectId: String
-        # @param From: <p>证书来源：trustasia：亚洲诚信，upload：用户上传。wosign：沃通sheca：上海CA</p>
+        # @param From: <p>证书来源：<br>trustasia：亚洲诚信，<br>upload：用户上传。<br>wosign：沃通<br>sheca：上海CA</p>
         # @type From: String
-        # @param PackageType: <p>证书套餐类型：null：用户上传证书（没有套餐类型），2：TrustAsia TLS RSA CA， 3：SecureSite 增强型企业版（EV Pro）， 4：SecureSite 增强型（EV）， 5：SecureSite 企业型专业版（OV Pro），6：SecureSite 企业型（OV）， 7：SecureSite 企业型（OV）通配符， 8：Geotrust 增强型（EV）， 9：Geotrust 企业型（OV）， 10：Geotrust 企业型（OV）通配符， 11：TrustAsia 域名型多域名 SSL 证书， 12：TrustAsia 域名型（DV）通配符， 13：TrustAsia 企业型通配符（OV）SSL 证书（D3）， 14：TrustAsia 企业型（OV）SSL 证书（D3）， 15：TrustAsia 企业型多域名 （OV）SSL 证书（D3）， 16：TrustAsia 增强型 （EV）SSL 证书（D3）， 17：TrustAsia 增强型多域名（EV）SSL 证书（D3）， 18：GlobalSign 企业型（OV）SSL 证书， 19：GlobalSign 企业型通配符 （OV）SSL 证书， 20：GlobalSign 增强型 （EV）SSL 证书， 21：TrustAsia 企业型通配符多域名（OV）SSL 证书（D3）， 22：GlobalSign 企业型多域名（OV）SSL 证书， 23：GlobalSign 企业型通配符多域名（OV）SSL 证书，24：GlobalSign 增强型多域名（EV）SSL 证书，25：Wotrus 域名型证书，26：Wotrus 域名型多域名证书，27：Wotrus 域名型通配符证书，28：Wotrus 企业型证书，29：Wotrus 企业型多域名证书，30：Wotrus 企业型通配符证书，31：Wotrus 增强型证书，32：Wotrus 增强型多域名证书，33：WoTrus-国密域名型证书，34：WoTrus-国密域名型证书（多域名），35：WoTrus-国密域名型证书（通配符），37：WoTrus-国密企业型证书，38：WoTrus-国密企业型证书（多域名），39：WoTrus-国密企业型证书（通配符），40：WoTrus-国密增强型证书，41：WoTrus-国密增强型证书（多域名），42：TrustAsia-域名型证书（通配符多域名），43：DNSPod-企业型(OV)SSL证书44：DNSPod-企业型(OV)通配符SSL证书45：DNSPod-企业型(OV)多域名SSL证书46：DNSPod-增强型(EV)SSL证书47：DNSPod-增强型(EV)多域名SSL证书48：DNSPod-域名型(DV)SSL证书49：DNSPod-域名型(DV)通配符SSL证书50：DNSPod-域名型(DV)多域名SSL证书51：DNSPod（国密）-企业型(OV)SSL证书52：DNSPod（国密）-企业型(OV)通配符SSL证书53：DNSPod（国密）-企业型(OV)多域名SSL证书54：DNSPod（国密）-域名型(DV)SSL证书55：DNSPod（国密）-域名型(DV)通配符SSL证书56：DNSPod（国密）-域名型(DV)多域名SSL证书57：SecureSite 企业型专业版多域名(OV Pro)58：SecureSite 企业型多域名(OV)59：SecureSite 增强型专业版多域名(EV Pro)60：SecureSite 增强型多域名(EV)61：Geotrust 增强型多域名(EV)75：SecureSite 企业型(OV)76：SecureSite 企业型(OV)通配符77：SecureSite 增强型(EV)78：Geotrust 企业型(OV)79：Geotrust 企业型(OV)通配符80：Geotrust 增强型(EV)81：GlobalSign 企业型（OV）SSL证书82：GlobalSign 企业型通配符 （OV）SSL证书83：TrustAsia C1 DV Free85：GlobalSign 增强型 （EV）SSL证书88：GlobalSign 企业型通配符多域名 （OV）SSL证书89：GlobalSign 企业型多域名 （OV）SSL证书90：GlobalSign 增强型多域名（EV） SSL证书91：Geotrust 增强型多域名(EV)92：SecureSite 企业型专业版多域名(OV Pro)93：SecureSite 企业型多域名(OV)94：SecureSite 增强型专业版多域名(EV Pro)95：SecureSite 增强型多域名(EV)96：SecureSite 增强型专业版(EV Pro)97：SecureSite 企业型专业版(OV Pro)98：CFCA 企业型(OV)SSL证书99：CFCA 企业型多域名(OV)SSL证书100：CFCA 企业型通配符(OV)SSL证书101：CFCA 增强型(EV)SSL证书</p>
+        # @param PackageType: <p>证书套餐类型：<br>null：用户上传证书（没有套餐类型），<br>2：TrustAsia TLS RSA CA，<br>3：SecureSite 增强型企业版（EV Pro），<br>4：SecureSite 增强型（EV），<br>5：SecureSite 企业型专业版（OV Pro），<br>6：SecureSite 企业型（OV），<br>7：SecureSite 企业型（OV）通配符，<br>8：Geotrust 增强型（EV），<br>9：Geotrust 企业型（OV），<br>10：Geotrust 企业型（OV）通配符，<br>11：TrustAsia 域名型多域名 SSL 证书，<br>12：TrustAsia 域名型（DV）通配符，<br>13：TrustAsia 企业型通配符（OV）SSL 证书（D3），<br>14：TrustAsia 企业型（OV）SSL 证书（D3），<br>15：TrustAsia 企业型多域名 （OV）SSL 证书（D3），<br>16：TrustAsia 增强型 （EV）SSL 证书（D3），<br>17：TrustAsia 增强型多域名（EV）SSL 证书（D3），<br>18：GlobalSign 企业型（OV）SSL 证书，<br>19：GlobalSign 企业型通配符 （OV）SSL 证书，<br>20：GlobalSign 增强型 （EV）SSL 证书，<br>21：TrustAsia 企业型通配符多域名（OV）SSL 证书（D3），<br>22：GlobalSign 企业型多域名（OV）SSL 证书，<br>23：GlobalSign 企业型通配符多域名（OV）SSL 证书，<br>24：GlobalSign 增强型多域名（EV）SSL 证书，<br>25：Wotrus 域名型证书，<br>26：Wotrus 域名型多域名证书，<br>27：Wotrus 域名型通配符证书，<br>28：Wotrus 企业型证书，<br>29：Wotrus 企业型多域名证书，<br>30：Wotrus 企业型通配符证书，<br>31：Wotrus 增强型证书，<br>32：Wotrus 增强型多域名证书，<br>33：WoTrus-国密域名型证书，<br>34：WoTrus-国密域名型证书（多域名），<br>35：WoTrus-国密域名型证书（通配符），<br>37：WoTrus-国密企业型证书，<br>38：WoTrus-国密企业型证书（多域名），<br>39：WoTrus-国密企业型证书（通配符），<br>40：WoTrus-国密增强型证书，<br>41：WoTrus-国密增强型证书（多域名），<br>42：TrustAsia-域名型证书（通配符多域名），<br>43：DNSPod-企业型(OV)SSL证书<br>44：DNSPod-企业型(OV)通配符SSL证书<br>45：DNSPod-企业型(OV)多域名SSL证书<br>46：DNSPod-增强型(EV)SSL证书<br>47：DNSPod-增强型(EV)多域名SSL证书<br>48：DNSPod-域名型(DV)SSL证书<br>49：DNSPod-域名型(DV)通配符SSL证书<br>50：DNSPod-域名型(DV)多域名SSL证书<br>51：DNSPod（国密）-企业型(OV)SSL证书<br>52：DNSPod（国密）-企业型(OV)通配符SSL证书<br>53：DNSPod（国密）-企业型(OV)多域名SSL证书<br>54：DNSPod（国密）-域名型(DV)SSL证书<br>55：DNSPod（国密）-域名型(DV)通配符SSL证书<br>56：DNSPod（国密）-域名型(DV)多域名SSL证书<br>57：SecureSite 企业型专业版多域名(OV Pro)<br>58：SecureSite 企业型多域名(OV)<br>59：SecureSite 增强型专业版多域名(EV Pro)<br>60：SecureSite 增强型多域名(EV)<br>61：Geotrust 增强型多域名(EV)<br>75：SecureSite 企业型(OV)<br>76：SecureSite 企业型(OV)通配符<br>77：SecureSite 增强型(EV)<br>78：Geotrust 企业型(OV)<br>79：Geotrust 企业型(OV)通配符<br>80：Geotrust 增强型(EV)<br>81：GlobalSign 企业型（OV）SSL证书<br>82：GlobalSign 企业型通配符 （OV）SSL证书<br>83：TrustAsia C1 DV Free<br>85：GlobalSign 增强型 （EV）SSL证书<br>88：GlobalSign 企业型通配符多域名 （OV）SSL证书<br>89：GlobalSign 企业型多域名 （OV）SSL证书<br>90：GlobalSign 增强型多域名（EV） SSL证书<br>91：Geotrust 增强型多域名(EV)<br>92：SecureSite 企业型专业版多域名(OV Pro)<br>93：SecureSite 企业型多域名(OV)<br>94：SecureSite 增强型专业版多域名(EV Pro)<br>95：SecureSite 增强型多域名(EV)<br>96：SecureSite 增强型专业版(EV Pro)<br>97：SecureSite 企业型专业版(OV Pro)<br>98：CFCA 企业型(OV)SSL证书<br>99：CFCA 企业型多域名(OV)SSL证书<br>100：CFCA 企业型通配符(OV)SSL证书<br>101：CFCA 增强型(EV)SSL证书</p>
         # @type PackageType: String
         # @param CertificateType: <p>证书类型：CA = 客户端证书，SVR = 服务器证书。</p>
         # @type CertificateType: String
@@ -890,7 +898,7 @@ module TencentCloud
         # @type PreAuditInfo: :class:`Tencentcloud::Ssl.v20191205.models.PreAuditInfo`
         # @param AutoRenewFlag: <p>是否自动续费</p>
         # @type AutoRenewFlag: Integer
-        # @param HostingStatus: <p>托管状态，0，托管中，5，资源替换中， 10， 托管完成， -1未托管 </p>
+        # @param HostingStatus: <p>托管状态，0，托管中，5，资源替换中， 10， 托管完成， -1未托管</p>
         # @type HostingStatus: Integer
         # @param HostingCompleteTime: <p>托管完成时间</p>
         # @type HostingCompleteTime: String
@@ -931,16 +939,20 @@ module TencentCloud
         # @type IsHostingUploadRenewCert: Boolean
         # @param ServiceId: <p>订阅服务ID</p>
         # @type ServiceId: String
-        # @param ServiceStatus: <p>订阅服务状态</p>枚举值：<ul><li> initing： 未激活</li><li> running： 生效中</li><li> expired： 已过期</li><li> refunded： 已退款</li><li> nearExpire： 即将到期</li></ul>
+        # @param ServiceStatus: <p>订阅服务状态</p><p>枚举值：</p><ul><li>initing： 未激活</li><li>running： 生效中</li><li>expired： 已过期</li><li>refunded： 已退款</li><li>nearExpire： 即将到期</li></ul>
         # @type ServiceStatus: String
         # @param CertServiceBeginTime: <p>订阅服务开始时间</p>
         # @type CertServiceBeginTime: String
         # @param CertServiceEndTime: <p>订阅服务结束时间</p>
         # @type CertServiceEndTime: String
+        # @param CertServiceShareEnabled: <p>是否开启订阅服务共享</p>
+        # @type CertServiceShareEnabled: Boolean
+        # @param CertServiceValidCertificateCount: <p>当前订阅服务下已经签发未过期的证书数量</p>
+        # @type CertServiceValidCertificateCount: Integer
 
-        attr_accessor :OwnerUin, :ProjectId, :From, :PackageType, :CertificateType, :ProductZhName, :Domain, :Alias, :Status, :CertificateExtra, :VulnerabilityStatus, :StatusMsg, :VerifyType, :CertBeginTime, :CertEndTime, :ValidityPeriod, :InsertTime, :CertificateId, :SubjectAltName, :PackageTypeName, :StatusName, :IsVip, :IsDv, :IsWildcard, :IsVulnerability, :RenewAble, :ProjectInfo, :BoundResource, :Deployable, :Tags, :IsIgnore, :IsSM, :EncryptAlgorithm, :CAEncryptAlgorithms, :CAEndTimes, :CACommonNames, :PreAuditInfo, :AutoRenewFlag, :HostingStatus, :HostingCompleteTime, :HostingRenewCertId, :HasRenewOrder, :ReplaceOriCertIsDelete, :IsExpiring, :DVAuthDeadline, :ValidationPassedTime, :CertSANs, :AwaitingValidationMsg, :AllowDownload, :IsDNSPODResolve, :IsPackage, :KeyPasswordCustomFlag, :SupportDownloadType, :CertRevokedTime, :HostingResourceTypes, :HostingConfig, :IsHostingUploadRenewCert, :ServiceId, :ServiceStatus, :CertServiceBeginTime, :CertServiceEndTime
+        attr_accessor :OwnerUin, :ProjectId, :From, :PackageType, :CertificateType, :ProductZhName, :Domain, :Alias, :Status, :CertificateExtra, :VulnerabilityStatus, :StatusMsg, :VerifyType, :CertBeginTime, :CertEndTime, :ValidityPeriod, :InsertTime, :CertificateId, :SubjectAltName, :PackageTypeName, :StatusName, :IsVip, :IsDv, :IsWildcard, :IsVulnerability, :RenewAble, :ProjectInfo, :BoundResource, :Deployable, :Tags, :IsIgnore, :IsSM, :EncryptAlgorithm, :CAEncryptAlgorithms, :CAEndTimes, :CACommonNames, :PreAuditInfo, :AutoRenewFlag, :HostingStatus, :HostingCompleteTime, :HostingRenewCertId, :HasRenewOrder, :ReplaceOriCertIsDelete, :IsExpiring, :DVAuthDeadline, :ValidationPassedTime, :CertSANs, :AwaitingValidationMsg, :AllowDownload, :IsDNSPODResolve, :IsPackage, :KeyPasswordCustomFlag, :SupportDownloadType, :CertRevokedTime, :HostingResourceTypes, :HostingConfig, :IsHostingUploadRenewCert, :ServiceId, :ServiceStatus, :CertServiceBeginTime, :CertServiceEndTime, :CertServiceShareEnabled, :CertServiceValidCertificateCount
 
-        def initialize(owneruin=nil, projectid=nil, from=nil, packagetype=nil, certificatetype=nil, productzhname=nil, domain=nil, _alias=nil, status=nil, certificateextra=nil, vulnerabilitystatus=nil, statusmsg=nil, verifytype=nil, certbegintime=nil, certendtime=nil, validityperiod=nil, inserttime=nil, certificateid=nil, subjectaltname=nil, packagetypename=nil, statusname=nil, isvip=nil, isdv=nil, iswildcard=nil, isvulnerability=nil, renewable=nil, projectinfo=nil, boundresource=nil, deployable=nil, tags=nil, isignore=nil, issm=nil, encryptalgorithm=nil, caencryptalgorithms=nil, caendtimes=nil, cacommonnames=nil, preauditinfo=nil, autorenewflag=nil, hostingstatus=nil, hostingcompletetime=nil, hostingrenewcertid=nil, hasreneworder=nil, replaceoricertisdelete=nil, isexpiring=nil, dvauthdeadline=nil, validationpassedtime=nil, certsans=nil, awaitingvalidationmsg=nil, allowdownload=nil, isdnspodresolve=nil, ispackage=nil, keypasswordcustomflag=nil, supportdownloadtype=nil, certrevokedtime=nil, hostingresourcetypes=nil, hostingconfig=nil, ishostinguploadrenewcert=nil, serviceid=nil, servicestatus=nil, certservicebegintime=nil, certserviceendtime=nil)
+        def initialize(owneruin=nil, projectid=nil, from=nil, packagetype=nil, certificatetype=nil, productzhname=nil, domain=nil, _alias=nil, status=nil, certificateextra=nil, vulnerabilitystatus=nil, statusmsg=nil, verifytype=nil, certbegintime=nil, certendtime=nil, validityperiod=nil, inserttime=nil, certificateid=nil, subjectaltname=nil, packagetypename=nil, statusname=nil, isvip=nil, isdv=nil, iswildcard=nil, isvulnerability=nil, renewable=nil, projectinfo=nil, boundresource=nil, deployable=nil, tags=nil, isignore=nil, issm=nil, encryptalgorithm=nil, caencryptalgorithms=nil, caendtimes=nil, cacommonnames=nil, preauditinfo=nil, autorenewflag=nil, hostingstatus=nil, hostingcompletetime=nil, hostingrenewcertid=nil, hasreneworder=nil, replaceoricertisdelete=nil, isexpiring=nil, dvauthdeadline=nil, validationpassedtime=nil, certsans=nil, awaitingvalidationmsg=nil, allowdownload=nil, isdnspodresolve=nil, ispackage=nil, keypasswordcustomflag=nil, supportdownloadtype=nil, certrevokedtime=nil, hostingresourcetypes=nil, hostingconfig=nil, ishostinguploadrenewcert=nil, serviceid=nil, servicestatus=nil, certservicebegintime=nil, certserviceendtime=nil, certserviceshareenabled=nil, certservicevalidcertificatecount=nil)
           @OwnerUin = owneruin
           @ProjectId = projectid
           @From = from
@@ -1002,6 +1014,8 @@ module TencentCloud
           @ServiceStatus = servicestatus
           @CertServiceBeginTime = certservicebegintime
           @CertServiceEndTime = certserviceendtime
+          @CertServiceShareEnabled = certserviceshareenabled
+          @CertServiceValidCertificateCount = certservicevalidcertificatecount
         end
 
         def deserialize(params)
@@ -1088,6 +1102,8 @@ module TencentCloud
           @ServiceStatus = params['ServiceStatus']
           @CertServiceBeginTime = params['CertServiceBeginTime']
           @CertServiceEndTime = params['CertServiceEndTime']
+          @CertServiceShareEnabled = params['CertServiceShareEnabled']
+          @CertServiceValidCertificateCount = params['CertServiceValidCertificateCount']
         end
       end
 
@@ -3948,8 +3964,8 @@ module TencentCloud
 
         attr_accessor :CertificateId, :IsCache, :Filters, :ResourceType, :OldCertificateId, :Limit, :Offset
         extend Gem::Deprecate
-        deprecate :ResourceType, :none, 2026, 6
-        deprecate :ResourceType=, :none, 2026, 6
+        deprecate :ResourceType, :none, 2026, 7
+        deprecate :ResourceType=, :none, 2026, 7
 
         def initialize(certificateid=nil, iscache=nil, filters=nil, resourcetype=nil, oldcertificateid=nil, limit=nil, offset=nil)
           @CertificateId = certificateid
@@ -4031,8 +4047,8 @@ module TencentCloud
 
         attr_accessor :CertificateId, :IsCache, :Filters, :ResourceType, :OldCertificateId, :Offset, :Limit, :AsyncCache
         extend Gem::Deprecate
-        deprecate :ResourceType, :none, 2026, 6
-        deprecate :ResourceType=, :none, 2026, 6
+        deprecate :ResourceType, :none, 2026, 7
+        deprecate :ResourceType=, :none, 2026, 7
 
         def initialize(certificateid=nil, iscache=nil, filters=nil, resourcetype=nil, oldcertificateid=nil, offset=nil, limit=nil, asynccache=nil)
           @CertificateId = certificateid
@@ -4512,8 +4528,8 @@ module TencentCloud
 
         attr_accessor :CertificateId, :IsCache, :Filters, :ResourceType
         extend Gem::Deprecate
-        deprecate :ResourceType, :none, 2026, 6
-        deprecate :ResourceType=, :none, 2026, 6
+        deprecate :ResourceType, :none, 2026, 7
+        deprecate :ResourceType=, :none, 2026, 7
 
         def initialize(certificateid=nil, iscache=nil, filters=nil, resourcetype=nil)
           @CertificateId = certificateid
@@ -4583,8 +4599,8 @@ module TencentCloud
 
         attr_accessor :CertificateId, :IsCache, :Filters, :ResourceType, :OldCertificateId
         extend Gem::Deprecate
-        deprecate :ResourceType, :none, 2026, 6
-        deprecate :ResourceType=, :none, 2026, 6
+        deprecate :ResourceType, :none, 2026, 7
+        deprecate :ResourceType=, :none, 2026, 7
 
         def initialize(certificateid=nil, iscache=nil, filters=nil, resourcetype=nil, oldcertificateid=nil)
           @CertificateId = certificateid
@@ -4658,8 +4674,8 @@ module TencentCloud
 
         attr_accessor :CertificateId, :ResourceType, :IsCache, :Filters, :OldCertificateId, :Offset, :Limit, :AsyncCache
         extend Gem::Deprecate
-        deprecate :ResourceType, :none, 2026, 6
-        deprecate :ResourceType=, :none, 2026, 6
+        deprecate :ResourceType, :none, 2026, 7
+        deprecate :ResourceType=, :none, 2026, 7
 
         def initialize(certificateid=nil, resourcetype=nil, iscache=nil, filters=nil, oldcertificateid=nil, offset=nil, limit=nil, asynccache=nil)
           @CertificateId = certificateid
@@ -5063,8 +5079,8 @@ module TencentCloud
 
         attr_accessor :CertificateId, :IsCache, :Filters, :ResourceType, :OldCertificateId
         extend Gem::Deprecate
-        deprecate :ResourceType, :none, 2026, 6
-        deprecate :ResourceType=, :none, 2026, 6
+        deprecate :ResourceType, :none, 2026, 7
+        deprecate :ResourceType=, :none, 2026, 7
 
         def initialize(certificateid=nil, iscache=nil, filters=nil, resourcetype=nil, oldcertificateid=nil)
           @CertificateId = certificateid
@@ -5136,8 +5152,8 @@ module TencentCloud
 
         attr_accessor :CertificateId, :IsCache, :Filters, :ResourceType, :OldCertificateId
         extend Gem::Deprecate
-        deprecate :ResourceType, :none, 2026, 6
-        deprecate :ResourceType=, :none, 2026, 6
+        deprecate :ResourceType, :none, 2026, 7
+        deprecate :ResourceType=, :none, 2026, 7
 
         def initialize(certificateid=nil, iscache=nil, filters=nil, resourcetype=nil, oldcertificateid=nil)
           @CertificateId = certificateid
@@ -5201,10 +5217,10 @@ module TencentCloud
 
         attr_accessor :ManagerId, :Limit, :Offset
         extend Gem::Deprecate
-        deprecate :Limit, :none, 2026, 6
-        deprecate :Limit=, :none, 2026, 6
-        deprecate :Offset, :none, 2026, 6
-        deprecate :Offset=, :none, 2026, 6
+        deprecate :Limit, :none, 2026, 7
+        deprecate :Limit=, :none, 2026, 7
+        deprecate :Offset, :none, 2026, 7
+        deprecate :Offset=, :none, 2026, 7
 
         def initialize(managerid=nil, limit=nil, offset=nil)
           @ManagerId = managerid
@@ -5274,8 +5290,8 @@ module TencentCloud
 
         attr_accessor :Status, :ManagerFirstName, :ManagerMail, :ContactFirstName, :ManagerLastName, :ContactPosition, :ManagerPosition, :VerifyTime, :CreateTime, :ExpireTime, :ContactLastName, :ManagerPhone, :ContactPhone, :ContactMail, :ManagerDepartment, :CompanyInfo, :CompanyId, :ManagerId, :StatusInfo, :ManagerIdType, :ManagerIdNumber, :ContactIdType, :ContactIdNumber, :RequestId
         extend Gem::Deprecate
-        deprecate :Status, :none, 2026, 6
-        deprecate :Status=, :none, 2026, 6
+        deprecate :Status, :none, 2026, 7
+        deprecate :Status=, :none, 2026, 7
 
         def initialize(status=nil, managerfirstname=nil, managermail=nil, contactfirstname=nil, managerlastname=nil, contactposition=nil, managerposition=nil, verifytime=nil, createtime=nil, expiretime=nil, contactlastname=nil, managerphone=nil, contactphone=nil, contactmail=nil, managerdepartment=nil, companyinfo=nil, companyid=nil, managerid=nil, statusinfo=nil, manageridtype=nil, manageridnumber=nil, contactidtype=nil, contactidnumber=nil, requestid=nil)
           @Status = status
@@ -7875,8 +7891,8 @@ module TencentCloud
 
         attr_accessor :OldCertificateId, :ResourceTypes, :CertificateId, :Regions, :ResourceTypesRegions, :CertificatePublicKey, :CertificatePrivateKey, :ExpiringNotificationSwitch, :Repeatable, :AllowDownload, :Tags, :ProjectId
         extend Gem::Deprecate
-        deprecate :Regions, :none, 2026, 6
-        deprecate :Regions=, :none, 2026, 6
+        deprecate :Regions, :none, 2026, 7
+        deprecate :Regions=, :none, 2026, 7
 
         def initialize(oldcertificateid=nil, resourcetypes=nil, certificateid=nil, regions=nil, resourcetypesregions=nil, certificatepublickey=nil, certificateprivatekey=nil, expiringnotificationswitch=nil, repeatable=nil, allowdownload=nil, tags=nil, projectid=nil)
           @OldCertificateId = oldcertificateid
@@ -8505,25 +8521,28 @@ module TencentCloud
 
       # UploadUpdateCertificateInstance请求参数结构体
       class UploadUpdateCertificateInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param OldCertificateId: 一键更新的旧证书ID。 通过查询该证书ID绑定的云资源，然后使用新证书对这些云资源进行更新
+        # @param OldCertificateId: <p>一键更新的旧证书ID。 通过查询该证书ID绑定的云资源，然后使用新证书对这些云资源进行更新</p>
         # @type OldCertificateId: String
-        # @param ResourceTypes: 需要部署的资源类型，参数值可选（小写）：clb
+        # @param ResourceTypes: <p>需要部署的资源类型，参数值可选（小写）：clb</p>
         # @type ResourceTypes: Array
-        # @param CertificatePublicKey: 公钥证书
+        # @param CertificatePublicKey: <p>公钥证书</p>
         # @type CertificatePublicKey: String
-        # @param CertificatePrivateKey: 私钥证书
+        # @param CertificatePrivateKey: <p>私钥证书</p>
         # @type CertificatePrivateKey: String
-        # @param ResourceTypesRegions: 云资源需要部署的地域列表，支持地域的云资源类型必传，取值：clb
+        # @param ResourceTypesRegions: <p>云资源需要部署的地域列表，支持地域的云资源类型必传，取值：clb</p>
         # @type ResourceTypesRegions: Array
+        # @param CertificateId: <p>证书ID</p>
+        # @type CertificateId: String
 
-        attr_accessor :OldCertificateId, :ResourceTypes, :CertificatePublicKey, :CertificatePrivateKey, :ResourceTypesRegions
+        attr_accessor :OldCertificateId, :ResourceTypes, :CertificatePublicKey, :CertificatePrivateKey, :ResourceTypesRegions, :CertificateId
 
-        def initialize(oldcertificateid=nil, resourcetypes=nil, certificatepublickey=nil, certificateprivatekey=nil, resourcetypesregions=nil)
+        def initialize(oldcertificateid=nil, resourcetypes=nil, certificatepublickey=nil, certificateprivatekey=nil, resourcetypesregions=nil, certificateid=nil)
           @OldCertificateId = oldcertificateid
           @ResourceTypes = resourcetypes
           @CertificatePublicKey = certificatepublickey
           @CertificatePrivateKey = certificateprivatekey
           @ResourceTypesRegions = resourcetypesregions
+          @CertificateId = certificateid
         end
 
         def deserialize(params)
@@ -8539,16 +8558,17 @@ module TencentCloud
               @ResourceTypesRegions << resourcetyperegions_tmp
             end
           end
+          @CertificateId = params['CertificateId']
         end
       end
 
       # UploadUpdateCertificateInstance返回参数结构体
       class UploadUpdateCertificateInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param DeployRecordId: 云资源更新任务ID， DeployRecordId为0表示任务进行中， 重复请求这个接口， 当返回DeployRecordId大于0则表示任务创建成功。 未创建成功则会抛出异常
+        # @param DeployRecordId: <p>云资源更新任务ID， DeployRecordId为0表示任务进行中， 重复请求这个接口， 当返回DeployRecordId大于0则表示任务创建成功。 未创建成功则会抛出异常</p>
         # @type DeployRecordId: Integer
-        # @param DeployStatus: 更新任务创建状态；1表示创建成功； 0表示当前存在更新中的任务，未创建新的更新任务；返回值DeployRecordId为更新中的任务ID
+        # @param DeployStatus: <p>更新任务创建状态；1表示创建成功； 0表示当前存在更新中的任务，未创建新的更新任务；返回值DeployRecordId为更新中的任务ID</p>
         # @type DeployStatus: Integer
-        # @param UpdateSyncProgress: 更新异步创建任务进度详情
+        # @param UpdateSyncProgress: <p>更新异步创建任务进度详情</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateSyncProgress: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。

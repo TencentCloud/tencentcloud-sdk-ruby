@@ -509,6 +509,102 @@ module TencentCloud
         end
       end
 
+      # DB Custom 集群内节点配置信息。
+      class DBCustomClusterNodeConfig < TencentCloud::Common::AbstractModel
+        # @param NodeId: <p>节点ID</p>
+        # @type NodeId: String
+        # @param Labels: <p>节点的标签信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Labels: Array
+        # @param Taints: <p>节点的污点信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Taints: Array
+
+        attr_accessor :NodeId, :Labels, :Taints
+
+        def initialize(nodeid=nil, labels=nil, taints=nil)
+          @NodeId = nodeid
+          @Labels = labels
+          @Taints = taints
+        end
+
+        def deserialize(params)
+          @NodeId = params['NodeId']
+          unless params['Labels'].nil?
+            @Labels = []
+            params['Labels'].each do |i|
+              label_tmp = Label.new
+              label_tmp.deserialize(i)
+              @Labels << label_tmp
+            end
+          end
+          unless params['Taints'].nil?
+            @Taints = []
+            params['Taints'].each do |i|
+              taint_tmp = Taint.new
+              taint_tmp.deserialize(i)
+              @Taints << taint_tmp
+            end
+          end
+        end
+      end
+
+      # DB Custom 集群内节点资源信息。
+      class DBCustomClusterNodeResource < TencentCloud::Common::AbstractModel
+        # @param NodeId: <p>节点ID</p>
+        # @type NodeId: String
+        # @param Capacity: <p>节点物理资源总容量</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Capacity: :class:`Tencentcloud::Dbdc.v20201029.models.MetaResource`
+        # @param Allocatable: <p>节点可分配容量= Capacity - 系统预留</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Allocatable: :class:`Tencentcloud::Dbdc.v20201029.models.MetaResource`
+        # @param Requests: <p>节点上所有非终态 Pod 的 requests 申请量之和（含系统 Pod）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Requests: :class:`Tencentcloud::Dbdc.v20201029.models.MetaResource`
+        # @param Limits: <p>节点上所有非终态 Pod 的 limits 上限之和（含系统 Pod）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Limits: :class:`Tencentcloud::Dbdc.v20201029.models.MetaResource`
+        # @param Available: <p>节点可再调度余量 = max(0, Allocatable - Requests)</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Available: :class:`Tencentcloud::Dbdc.v20201029.models.MetaResource`
+
+        attr_accessor :NodeId, :Capacity, :Allocatable, :Requests, :Limits, :Available
+
+        def initialize(nodeid=nil, capacity=nil, allocatable=nil, requests=nil, limits=nil, available=nil)
+          @NodeId = nodeid
+          @Capacity = capacity
+          @Allocatable = allocatable
+          @Requests = requests
+          @Limits = limits
+          @Available = available
+        end
+
+        def deserialize(params)
+          @NodeId = params['NodeId']
+          unless params['Capacity'].nil?
+            @Capacity = MetaResource.new
+            @Capacity.deserialize(params['Capacity'])
+          end
+          unless params['Allocatable'].nil?
+            @Allocatable = MetaResource.new
+            @Allocatable.deserialize(params['Allocatable'])
+          end
+          unless params['Requests'].nil?
+            @Requests = MetaResource.new
+            @Requests.deserialize(params['Requests'])
+          end
+          unless params['Limits'].nil?
+            @Limits = MetaResource.new
+            @Limits.deserialize(params['Limits'])
+          end
+          unless params['Available'].nil?
+            @Available = MetaResource.new
+            @Available.deserialize(params['Available'])
+          end
+        end
+      end
+
       # DB Custom 可选的镜像信息。
       class DBCustomImage < TencentCloud::Common::AbstractModel
         # @param ImageId: <p>镜像ID</p>
@@ -678,6 +774,50 @@ module TencentCloud
           @HostIp = params['HostIp']
           @NetworkMode = params['NetworkMode']
           @EniIP = params['EniIP']
+        end
+      end
+
+      # DB Custom 节点机型信息。
+      class DBCustomNodeTypeInfo < TencentCloud::Common::AbstractModel
+        # @param Zone: <p>可用区标识，如 ap-guangzhou-6</p>
+        # @type Zone: String
+        # @param NodeType: <p>机型标识</p><p>枚举值：</p><ul><li>DB.SA5.2XLARGE32： DB.SA5机型</li><li>DB.AT5.8XLARGE128： DB.AT5机型</li></ul>
+        # @type NodeType: String
+        # @param NodeFamily: <p>机型系列，如 DB.AT5、DB.SA5</p>
+        # @type NodeFamily: String
+        # @param CPU: <p>CPU 核数</p><p>单位：核</p>
+        # @type CPU: Integer
+        # @param Memory: <p>内存大小</p><p>单位：GiB</p>
+        # @type Memory: Integer
+        # @param Status: <p>机型售卖状态</p><p>枚举值：</p><ul><li>SELL： 正常售卖</li><li>SOLD_OUT： 售罄</li></ul>
+        # @type Status: String
+        # @param SystemDiskTypes: <p>该机型允许的系统盘类型列表（如 CLOUD_BSSD、CLOUD_HSSD）；</p>
+        # @type SystemDiskTypes: Array
+        # @param DataDiskTypes: <p>该机型允许的数据盘类型列表（如 CLOUD_BSSD、CLOUD_HSSD）；</p>
+        # @type DataDiskTypes: Array
+
+        attr_accessor :Zone, :NodeType, :NodeFamily, :CPU, :Memory, :Status, :SystemDiskTypes, :DataDiskTypes
+
+        def initialize(zone=nil, nodetype=nil, nodefamily=nil, cpu=nil, memory=nil, status=nil, systemdisktypes=nil, datadisktypes=nil)
+          @Zone = zone
+          @NodeType = nodetype
+          @NodeFamily = nodefamily
+          @CPU = cpu
+          @Memory = memory
+          @Status = status
+          @SystemDiskTypes = systemdisktypes
+          @DataDiskTypes = datadisktypes
+        end
+
+        def deserialize(params)
+          @Zone = params['Zone']
+          @NodeType = params['NodeType']
+          @NodeFamily = params['NodeFamily']
+          @CPU = params['CPU']
+          @Memory = params['Memory']
+          @Status = params['Status']
+          @SystemDiskTypes = params['SystemDiskTypes']
+          @DataDiskTypes = params['DataDiskTypes']
         end
       end
 
@@ -937,6 +1077,101 @@ module TencentCloud
         end
       end
 
+      # DescribeDBCustomClusterNodeConfig请求参数结构体
+      class DescribeDBCustomClusterNodeConfigRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: <p>集群ID</p>
+        # @type ClusterId: String
+        # @param NodeIds: <p>按照一个或者多个 NodeId 查询。</p><p>入参限制：每次请求的数量上限为100</p>
+        # @type NodeIds: Array
+
+        attr_accessor :ClusterId, :NodeIds
+
+        def initialize(clusterid=nil, nodeids=nil)
+          @ClusterId = clusterid
+          @NodeIds = nodeids
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @NodeIds = params['NodeIds']
+        end
+      end
+
+      # DescribeDBCustomClusterNodeConfig返回参数结构体
+      class DescribeDBCustomClusterNodeConfigResponse < TencentCloud::Common::AbstractModel
+        # @param NodeSet: <p>当前账号下拥有的DB Custom 节点列表信息</p>
+        # @type NodeSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NodeSet, :RequestId
+
+        def initialize(nodeset=nil, requestid=nil)
+          @NodeSet = nodeset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['NodeSet'].nil?
+            @NodeSet = []
+            params['NodeSet'].each do |i|
+              dbcustomclusternodeconfig_tmp = DBCustomClusterNodeConfig.new
+              dbcustomclusternodeconfig_tmp.deserialize(i)
+              @NodeSet << dbcustomclusternodeconfig_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDBCustomClusterNodeResources请求参数结构体
+      class DescribeDBCustomClusterNodeResourcesRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: <p>集群ID</p>
+        # @type ClusterId: String
+        # @param NodeIds: <p>按照一个或者多个 NodeId 查询。</p><p>入参限制：每次请求的数量上限为50</p>
+        # @type NodeIds: Array
+
+        attr_accessor :ClusterId, :NodeIds
+
+        def initialize(clusterid=nil, nodeids=nil)
+          @ClusterId = clusterid
+          @NodeIds = nodeids
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @NodeIds = params['NodeIds']
+        end
+      end
+
+      # DescribeDBCustomClusterNodeResources返回参数结构体
+      class DescribeDBCustomClusterNodeResourcesResponse < TencentCloud::Common::AbstractModel
+        # @param NodeSet: <p>当前账号下拥有的DB Custom 节点列表信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NodeSet, :RequestId
+
+        def initialize(nodeset=nil, requestid=nil)
+          @NodeSet = nodeset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['NodeSet'].nil?
+            @NodeSet = []
+            params['NodeSet'].each do |i|
+              dbcustomclusternoderesource_tmp = DBCustomClusterNodeResource.new
+              dbcustomclusternoderesource_tmp.deserialize(i)
+              @NodeSet << dbcustomclusternoderesource_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDBCustomClusterNodes请求参数结构体
       class DescribeDBCustomClusterNodesRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: <p>DB Custom 集群ID</p>
@@ -998,6 +1233,77 @@ module TencentCloud
               dbcustomclusternode_tmp.deserialize(i)
               @NodeSet << dbcustomclusternode_tmp
             end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDBCustomClusterResources请求参数结构体
+      class DescribeDBCustomClusterResourcesRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: <p>集群ID</p>
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DescribeDBCustomClusterResources返回参数结构体
+      class DescribeDBCustomClusterResourcesResponse < TencentCloud::Common::AbstractModel
+        # @param NodeCount: <p>参与汇总的工作节点总数（不含控制面节点）</p><p>单位：台</p>
+        # @type NodeCount: Integer
+        # @param Capacity: <p>集群所有节点的资源物理总容量之和</p>
+        # @type Capacity: :class:`Tencentcloud::Dbdc.v20201029.models.MetaResource`
+        # @param Allocatable: <p>集群所有节点的可分配容量之和（= Capacity - 系统预留）</p>
+        # @type Allocatable: :class:`Tencentcloud::Dbdc.v20201029.models.MetaResource`
+        # @param Requests: <p>集群所有非终态 Pod 的 requests 申请量之和（含系统 Pod）</p>
+        # @type Requests: :class:`Tencentcloud::Dbdc.v20201029.models.MetaResource`
+        # @param Limits: <p>集群所有非终态 Pod 的 limits 上限之和（含系统 Pod，Pods 字段无语义，固定为 0）</p>
+        # @type Limits: :class:`Tencentcloud::Dbdc.v20201029.models.MetaResource`
+        # @param Available: <p>集群可再调度余量（所有节点 max(0, Allocatable - Requests) 累加求和）</p>
+        # @type Available: :class:`Tencentcloud::Dbdc.v20201029.models.MetaResource`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NodeCount, :Capacity, :Allocatable, :Requests, :Limits, :Available, :RequestId
+
+        def initialize(nodecount=nil, capacity=nil, allocatable=nil, requests=nil, limits=nil, available=nil, requestid=nil)
+          @NodeCount = nodecount
+          @Capacity = capacity
+          @Allocatable = allocatable
+          @Requests = requests
+          @Limits = limits
+          @Available = available
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @NodeCount = params['NodeCount']
+          unless params['Capacity'].nil?
+            @Capacity = MetaResource.new
+            @Capacity.deserialize(params['Capacity'])
+          end
+          unless params['Allocatable'].nil?
+            @Allocatable = MetaResource.new
+            @Allocatable.deserialize(params['Allocatable'])
+          end
+          unless params['Requests'].nil?
+            @Requests = MetaResource.new
+            @Requests.deserialize(params['Requests'])
+          end
+          unless params['Limits'].nil?
+            @Limits = MetaResource.new
+            @Limits.deserialize(params['Limits'])
+          end
+          unless params['Available'].nil?
+            @Available = MetaResource.new
+            @Available.deserialize(params['Available'])
           end
           @RequestId = params['RequestId']
         end
@@ -1142,6 +1448,101 @@ module TencentCloud
         end
       end
 
+      # DescribeDBCustomNodeSecurityGroups请求参数结构体
+      class DescribeDBCustomNodeSecurityGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param NodeId: <p>节点id</p>
+        # @type NodeId: String
+
+        attr_accessor :NodeId
+
+        def initialize(nodeid=nil)
+          @NodeId = nodeid
+        end
+
+        def deserialize(params)
+          @NodeId = params['NodeId']
+        end
+      end
+
+      # DescribeDBCustomNodeSecurityGroups返回参数结构体
+      class DescribeDBCustomNodeSecurityGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param Groups: <p>与节点绑定的安全组id，数组格式，根据内部安全组ID的顺序来确认优先级。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Groups: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Groups, :RequestId
+
+        def initialize(groups=nil, requestid=nil)
+          @Groups = groups
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Groups'].nil?
+            @Groups = []
+            params['Groups'].each do |i|
+              securitygroup_tmp = SecurityGroup.new
+              securitygroup_tmp.deserialize(i)
+              @Groups << securitygroup_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDBCustomNodeTypes请求参数结构体
+      class DescribeDBCustomNodeTypesRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: <p>支持通过地域，可用区，机型系列，机型标识进行过滤</p><p>入参限制：region、zone、node-family、node-type</p>
+        # @type Filters: Array
+
+        attr_accessor :Filters
+
+        def initialize(filters=nil)
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeDBCustomNodeTypes返回参数结构体
+      class DescribeDBCustomNodeTypesResponse < TencentCloud::Common::AbstractModel
+        # @param NodeTypeSet: <p>节点机型详细信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeTypeSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NodeTypeSet, :RequestId
+
+        def initialize(nodetypeset=nil, requestid=nil)
+          @NodeTypeSet = nodetypeset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['NodeTypeSet'].nil?
+            @NodeTypeSet = []
+            params['NodeTypeSet'].each do |i|
+              dbcustomnodetypeinfo_tmp = DBCustomNodeTypeInfo.new
+              dbcustomnodetypeinfo_tmp.deserialize(i)
+              @NodeTypeSet << dbcustomnodetypeinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDBCustomNodes请求参数结构体
       class DescribeDBCustomNodesRequest < TencentCloud::Common::AbstractModel
         # @param NodeIds: <p>按照一个或者多个 NodeId 查询。</p><p>入参限制：每次请求的数量上限为100</p>
@@ -1219,6 +1620,45 @@ module TencentCloud
         end
       end
 
+      # DescribeDBCustomRegions请求参数结构体
+      class DescribeDBCustomRegionsRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeDBCustomRegions返回参数结构体
+      class DescribeDBCustomRegionsResponse < TencentCloud::Common::AbstractModel
+        # @param RegionSet: <p>支持售卖的地域列表信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RegionSet, :RequestId
+
+        def initialize(regionset=nil, requestid=nil)
+          @RegionSet = regionset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['RegionSet'].nil?
+            @RegionSet = []
+            params['RegionSet'].each do |i|
+              regioninfo_tmp = RegionInfo.new
+              regioninfo_tmp.deserialize(i)
+              @RegionSet << regioninfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDBCustomTaskStatus请求参数结构体
       class DescribeDBCustomTaskStatusRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: <p>DB Custom 任务ID</p>
@@ -1251,6 +1691,45 @@ module TencentCloud
 
         def deserialize(params)
           @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDBCustomZones请求参数结构体
+      class DescribeDBCustomZonesRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeDBCustomZones返回参数结构体
+      class DescribeDBCustomZonesResponse < TencentCloud::Common::AbstractModel
+        # @param ZoneSet: <p>查询支持售卖的地域对应的可用区，State字段值如为SELL则代表正常售卖。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ZoneSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ZoneSet, :RequestId
+
+        def initialize(zoneset=nil, requestid=nil)
+          @ZoneSet = zoneset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ZoneSet'].nil?
+            @ZoneSet = []
+            params['ZoneSet'].each do |i|
+              zoneinfo_tmp = ZoneInfo.new
+              zoneinfo_tmp.deserialize(i)
+              @ZoneSet << zoneinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -2336,6 +2815,107 @@ module TencentCloud
         end
       end
 
+      # 资源信息。
+      class MetaResource < TencentCloud::Common::AbstractModel
+        # @param Cpu: <p>CPU核心</p><p>单位：核</p>
+        # @type Cpu: Float
+        # @param Memory: <p>内存</p><p>单位：GiB</p>
+        # @type Memory: Float
+        # @param Pods: <p>POD数量</p><p>单位：个</p>
+        # @type Pods: Integer
+
+        attr_accessor :Cpu, :Memory, :Pods
+
+        def initialize(cpu=nil, memory=nil, pods=nil)
+          @Cpu = cpu
+          @Memory = memory
+          @Pods = pods
+        end
+
+        def deserialize(params)
+          @Cpu = params['Cpu']
+          @Memory = params['Memory']
+          @Pods = params['Pods']
+        end
+      end
+
+      # ModifyDBCustomClusterNodeConfig请求参数结构体
+      class ModifyDBCustomClusterNodeConfigRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: <p>目标集群 ID</p>
+        # @type ClusterId: String
+        # @param NodeIds: <p>要修改的节点 ID 列表</p><p>入参限制：数量范围 1~50 个</p>
+        # @type NodeIds: Array
+        # @param UpsertLabels: <p>新增或覆盖的集群 Label</p><p>入参限制：- 单次 ≤ 20 对；合并后节点总量不超过 20</p><ul><li>Key 格式对齐 K8s 原生（两段式，prefix DNS 子域 ≤ 253 字符，name ≤ 63 字符）</li><li>Value ≤ 63 字符，可为空</li><li>不可操作系统保留前缀</li></ul>
+        # @type UpsertLabels: Array
+        # @param DeleteLabelKeys: <p>要删除的 Label key 列表，按 key 精确匹配，key 不存在时幂等放行。</p><p>入参限制：- Key 格式对齐 K8s 原生（两段式，prefix DNS 子域 ≤ 253 字符，name ≤ 63 字符）</p><ul><li>Value ≤ 63 字符，可为空</li><li>不可操作系统保留前缀</li></ul>
+        # @type DeleteLabelKeys: Array
+        # @param UpsertTaints: <p>新增或覆盖的 Taint。</p><p>入参限制：- 单次 ≤ 5 对；合并后节点总量不超过 5。</p><ul><li>唯一性键为 (Key, Effect)，匹配到已有 (Key, Effect) 时覆盖 Value，否则新增</li><li>Effect 合法值：NoSchedule / PreferNoSchedule / NoExecute</li><li>同一 Key 允许多个不同 Effect 的 Taint 并存</li></ul>
+        # @type UpsertTaints: Array
+        # @param DeleteTaints: <p>要删除的 Taint 过滤器列表</p><p>入参限制：- 唯一性键为 (Key, Effect)，匹配到已有 (Key, Effect) 时覆盖 Value，否则新增</p><ul><li>Effect 合法值：NoSchedule / PreferNoSchedule / NoExecute</li><li>同一 Key 允许多个不同 Effect 的 Taint 并存</li></ul>
+        # @type DeleteTaints: Array
+
+        attr_accessor :ClusterId, :NodeIds, :UpsertLabels, :DeleteLabelKeys, :UpsertTaints, :DeleteTaints
+
+        def initialize(clusterid=nil, nodeids=nil, upsertlabels=nil, deletelabelkeys=nil, upserttaints=nil, deletetaints=nil)
+          @ClusterId = clusterid
+          @NodeIds = nodeids
+          @UpsertLabels = upsertlabels
+          @DeleteLabelKeys = deletelabelkeys
+          @UpsertTaints = upserttaints
+          @DeleteTaints = deletetaints
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @NodeIds = params['NodeIds']
+          unless params['UpsertLabels'].nil?
+            @UpsertLabels = []
+            params['UpsertLabels'].each do |i|
+              label_tmp = Label.new
+              label_tmp.deserialize(i)
+              @UpsertLabels << label_tmp
+            end
+          end
+          @DeleteLabelKeys = params['DeleteLabelKeys']
+          unless params['UpsertTaints'].nil?
+            @UpsertTaints = []
+            params['UpsertTaints'].each do |i|
+              taint_tmp = Taint.new
+              taint_tmp.deserialize(i)
+              @UpsertTaints << taint_tmp
+            end
+          end
+          unless params['DeleteTaints'].nil?
+            @DeleteTaints = []
+            params['DeleteTaints'].each do |i|
+              taint_tmp = Taint.new
+              taint_tmp.deserialize(i)
+              @DeleteTaints << taint_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyDBCustomClusterNodeConfig返回参数结构体
+      class ModifyDBCustomClusterNodeConfigResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务ID</p>
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyDBCustomClusterTags请求参数结构体
       class ModifyDBCustomClusterTagsRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: <p>DB Custom 集群ID</p><p>参数格式：dbcc-xxxxxxxx</p>
@@ -2369,6 +2949,42 @@ module TencentCloud
 
       # ModifyDBCustomClusterTags返回参数结构体
       class ModifyDBCustomClusterTagsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyDBCustomNodeSecurityGroups请求参数结构体
+      class ModifyDBCustomNodeSecurityGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param NodeId: <p>节点id</p>
+        # @type NodeId: String
+        # @param SecurityGroupIds: <p>安全组id，数组格式，根据内部安全组ID的顺序来确认优先级。</p>
+        # @type SecurityGroupIds: Array
+
+        attr_accessor :NodeId, :SecurityGroupIds
+
+        def initialize(nodeid=nil, securitygroupids=nil)
+          @NodeId = nodeid
+          @SecurityGroupIds = securitygroupids
+        end
+
+        def deserialize(params)
+          @NodeId = params['NodeId']
+          @SecurityGroupIds = params['SecurityGroupIds']
+        end
+      end
+
+      # ModifyDBCustomNodeSecurityGroups返回参数结构体
+      class ModifyDBCustomNodeSecurityGroupsResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -2463,6 +3079,70 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 安全组规则
+      class PolicyRule < TencentCloud::Common::AbstractModel
+        # @param Action: <p>规则动作，</p><p>枚举值：</p><ul><li>ACCEPT： 允许</li><li>DROP： 拒绝</li></ul>
+        # @type Action: String
+        # @param CidrIp: <p>来源/目标 IP 或 CIDR，如 0.0.0.0/0</p>
+        # @type CidrIp: String
+        # @param PortRange: <p>端口范围，如 80、8080-8090、ALL</p>
+        # @type PortRange: String
+        # @param IpProtocol: <p>协议类型，如 tcp、udp、icmp、ALL</p>
+        # @type IpProtocol: String
+        # @param ServiceModule: <p>协议端口模板 ID</p>
+        # @type ServiceModule: String
+        # @param AddressModule: <p>IP 地址模板 ID</p>
+        # @type AddressModule: String
+        # @param Id: <p>规则 ID</p>
+        # @type Id: String
+        # @param Desc: <p>规则备注描述</p>
+        # @type Desc: String
+
+        attr_accessor :Action, :CidrIp, :PortRange, :IpProtocol, :ServiceModule, :AddressModule, :Id, :Desc
+
+        def initialize(action=nil, cidrip=nil, portrange=nil, ipprotocol=nil, servicemodule=nil, addressmodule=nil, id=nil, desc=nil)
+          @Action = action
+          @CidrIp = cidrip
+          @PortRange = portrange
+          @IpProtocol = ipprotocol
+          @ServiceModule = servicemodule
+          @AddressModule = addressmodule
+          @Id = id
+          @Desc = desc
+        end
+
+        def deserialize(params)
+          @Action = params['Action']
+          @CidrIp = params['CidrIp']
+          @PortRange = params['PortRange']
+          @IpProtocol = params['IpProtocol']
+          @ServiceModule = params['ServiceModule']
+          @AddressModule = params['AddressModule']
+          @Id = params['Id']
+          @Desc = params['Desc']
+        end
+      end
+
+      # 地域信息。
+      class RegionInfo < TencentCloud::Common::AbstractModel
+        # @param Region: <p>地域</p>
+        # @type Region: String
+        # @param RegionState: <p>售卖状态</p><p>枚举值：</p><ul><li>SELL： 正常售卖</li><li>SOLD_OUT： 售罄</li></ul>
+        # @type RegionState: String
+
+        attr_accessor :Region, :RegionState
+
+        def initialize(region=nil, regionstate=nil)
+          @Region = region
+          @RegionState = regionstate
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          @RegionState = params['RegionState']
         end
       end
 
@@ -2581,6 +3261,60 @@ module TencentCloud
         end
       end
 
+      # 安全组详情
+      class SecurityGroup < TencentCloud::Common::AbstractModel
+        # @param SecurityGroupId: <p>安全组ID</p>
+        # @type SecurityGroupId: String
+        # @param ProjectId: <p>所属项目 ID</p>
+        # @type ProjectId: Integer
+        # @param CreateTime: <p>安全组创建时间</p>
+        # @type CreateTime: String
+        # @param Inbound: <p>安全组入方向规则列表</p>
+        # @type Inbound: Array
+        # @param Outbound: <p>安全组出方向规则列表</p>
+        # @type Outbound: Array
+        # @param SecurityGroupName: <p>安全组名称</p>
+        # @type SecurityGroupName: String
+        # @param SecurityGroupRemark: <p>安全组备注说明</p>
+        # @type SecurityGroupRemark: String
+
+        attr_accessor :SecurityGroupId, :ProjectId, :CreateTime, :Inbound, :Outbound, :SecurityGroupName, :SecurityGroupRemark
+
+        def initialize(securitygroupid=nil, projectid=nil, createtime=nil, inbound=nil, outbound=nil, securitygroupname=nil, securitygroupremark=nil)
+          @SecurityGroupId = securitygroupid
+          @ProjectId = projectid
+          @CreateTime = createtime
+          @Inbound = inbound
+          @Outbound = outbound
+          @SecurityGroupName = securitygroupname
+          @SecurityGroupRemark = securitygroupremark
+        end
+
+        def deserialize(params)
+          @SecurityGroupId = params['SecurityGroupId']
+          @ProjectId = params['ProjectId']
+          @CreateTime = params['CreateTime']
+          unless params['Inbound'].nil?
+            @Inbound = []
+            params['Inbound'].each do |i|
+              policyrule_tmp = PolicyRule.new
+              policyrule_tmp.deserialize(i)
+              @Inbound << policyrule_tmp
+            end
+          end
+          unless params['Outbound'].nil?
+            @Outbound = []
+            params['Outbound'].each do |i|
+              policyrule_tmp = PolicyRule.new
+              policyrule_tmp.deserialize(i)
+              @Outbound << policyrule_tmp
+            end
+          end
+          @SecurityGroupName = params['SecurityGroupName']
+          @SecurityGroupRemark = params['SecurityGroupRemark']
+        end
+      end
+
       # DB Custom 节点系统盘信息。
       class SystemDisk < TencentCloud::Common::AbstractModel
         # @param DiskType: <p>磁盘类型</p><p>枚举值：</p><ul><li>CLOUD_HSSD： 增强型云硬盘</li></ul>
@@ -2642,6 +3376,26 @@ module TencentCloud
           @Key = params['Key']
           @Effect = params['Effect']
           @Value = params['Value']
+        end
+      end
+
+      # 可用区信息。
+      class ZoneInfo < TencentCloud::Common::AbstractModel
+        # @param Zone: <p>支持的可用区</p>
+        # @type Zone: String
+        # @param ZoneState: <p>可用区状态</p><p>枚举值：</p><ul><li>SELL： 正常售卖</li><li>SOLD_OUT： 售罄</li></ul>
+        # @type ZoneState: String
+
+        attr_accessor :Zone, :ZoneState
+
+        def initialize(zone=nil, zonestate=nil)
+          @Zone = zone
+          @ZoneState = zonestate
+        end
+
+        def deserialize(params)
+          @Zone = params['Zone']
+          @ZoneState = params['ZoneState']
         end
       end
 

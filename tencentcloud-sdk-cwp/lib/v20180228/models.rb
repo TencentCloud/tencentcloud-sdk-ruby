@@ -41662,17 +41662,17 @@ module TencentCloud
 
       # SearchLog请求参数结构体
       class SearchLogRequest < TencentCloud::Common::AbstractModel
-        # @param StartTime: 要检索分析的日志的起始时间，Unix时间戳（毫秒）
+        # @param StartTime: <p>要检索分析的日志的起始时间，Unix时间戳（毫秒）</p>
         # @type StartTime: Integer
-        # @param EndTime: 要检索分析的日志的结束时间，Unix时间戳（毫秒）
+        # @param EndTime: <p>要检索分析的日志的结束时间，Unix时间戳（毫秒）</p>
         # @type EndTime: Integer
-        # @param QueryString: 检索分析语句，最大长度为12KB，查询语法可参考文档 https://cloud.tencent.com/document/product/296/50508
+        # @param QueryString: <p>检索分析语句，最大长度为12KB，查询语法可参考文档 https://cloud.tencent.com/document/product/296/50508</p>
         # @type QueryString: String
-        # @param Count: 表示单次查询返回的原始日志条数，最大值为1000，获取后续日志需使用Context参数
+        # @param Count: <p>表示单次查询返回的原始日志条数，最大值为1000，获取后续日志需使用Context参数</p>
         # @type Count: Integer
-        # @param Sort: 原始日志是否按时间排序返回；可选值：asc(升序)、desc(降序)，默认为 desc
+        # @param Sort: <p>原始日志是否按时间排序返回；可选值：asc(升序)、desc(降序)，默认为 desc</p>
         # @type Sort: String
-        # @param Context: 透传上次接口返回的Context值，可获取后续更多日志，总计最多可获取1万条原始日志，过期时间1小时
+        # @param Context: <p>透传上次接口返回的Context值，可获取后续更多日志，总计最多可获取1万条原始日志，过期时间1小时</p>
         # @type Context: String
 
         attr_accessor :StartTime, :EndTime, :QueryString, :Count, :Sort, :Context
@@ -41698,15 +41698,15 @@ module TencentCloud
 
       # SearchLog返回参数结构体
       class SearchLogResponse < TencentCloud::Common::AbstractModel
-        # @param Count: 匹配检索条件的原始日志的数量
+        # @param Count: <p>匹配检索条件的原始日志的数量</p>
         # @type Count: Integer
-        # @param Context: 透传本次接口返回的Context值，可获取后续更多日志，过期时间1小时
+        # @param Context: <p>透传本次接口返回的Context值，可获取后续更多日志，过期时间1小时</p>
         # @type Context: String
-        # @param ListOver: 符合检索条件的日志是否已全部返回，如未全部返回可使用Context参数获取后续更多日志
+        # @param ListOver: <p>符合检索条件的日志是否已全部返回，如未全部返回可使用Context参数获取后续更多日志</p>
         # @type ListOver: Boolean
-        # @param Analysis: 返回的是否为统计分析（即SQL）结果
+        # @param Analysis: <p>返回的是否为统计分析（即SQL）结果</p>
         # @type Analysis: Boolean
-        # @param Data: 匹配检索条件的原始日志
+        # @param Data: <p>匹配检索条件的原始日志</p>
         # @type Data: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

@@ -2540,6 +2540,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取使用 IP 分组的策略配置。
+
+        # @param request: Request instance for DescribeIPGroupReferences.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeIPGroupReferencesRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeIPGroupReferencesResponse`
+        def DescribeIPGroupReferences(request)
+          body = send_request('DescribeIPGroupReferences', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeIPGroupReferencesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口可用于查询 IP 是否为 EdgeOne IP。
 
         # @param request: Request instance for DescribeIPRegion.

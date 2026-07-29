@@ -173,6 +173,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口（DescribeDBCustomClusterNodeConfig）用于查询 DB Custom 集群内节点的配置信息。
+
+        # @param request: Request instance for DescribeDBCustomClusterNodeConfig.
+        # @type request: :class:`Tencentcloud::dbdc::V20201029::DescribeDBCustomClusterNodeConfigRequest`
+        # @rtype: :class:`Tencentcloud::dbdc::V20201029::DescribeDBCustomClusterNodeConfigResponse`
+        def DescribeDBCustomClusterNodeConfig(request)
+          body = send_request('DescribeDBCustomClusterNodeConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDBCustomClusterNodeConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口（DescribeDBCustomClusterNodeResources）用于查询 DB Custom 集群内节点的资源信息。
+
+        # @param request: Request instance for DescribeDBCustomClusterNodeResources.
+        # @type request: :class:`Tencentcloud::dbdc::V20201029::DescribeDBCustomClusterNodeResourcesRequest`
+        # @rtype: :class:`Tencentcloud::dbdc::V20201029::DescribeDBCustomClusterNodeResourcesResponse`
+        def DescribeDBCustomClusterNodeResources(request)
+          body = send_request('DescribeDBCustomClusterNodeResources', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDBCustomClusterNodeResourcesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口（DescribeDBCustomClusterNodes）用于查询 DB Custom 集群中的节点列表。
 
         # @param request: Request instance for DescribeDBCustomClusterNodes.
@@ -183,6 +231,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDBCustomClusterNodesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口（DescribeDBCustomClusterResources）用于查询 DB Custom 集群的资源信息。
+
+        # @param request: Request instance for DescribeDBCustomClusterResources.
+        # @type request: :class:`Tencentcloud::dbdc::V20201029::DescribeDBCustomClusterResourcesRequest`
+        # @rtype: :class:`Tencentcloud::dbdc::V20201029::DescribeDBCustomClusterResourcesResponse`
+        def DescribeDBCustomClusterResources(request)
+          body = send_request('DescribeDBCustomClusterResources', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDBCustomClusterResourcesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -245,6 +317,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口（DescribeDBCustomNodeSecurityGroups）用于查询 DB Custom 节点安全组信息。
+
+        # @param request: Request instance for DescribeDBCustomNodeSecurityGroups.
+        # @type request: :class:`Tencentcloud::dbdc::V20201029::DescribeDBCustomNodeSecurityGroupsRequest`
+        # @rtype: :class:`Tencentcloud::dbdc::V20201029::DescribeDBCustomNodeSecurityGroupsResponse`
+        def DescribeDBCustomNodeSecurityGroups(request)
+          body = send_request('DescribeDBCustomNodeSecurityGroups', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDBCustomNodeSecurityGroupsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口(DescribeDBCustomNodeTypes) 用于查询 DB Custom 节点支持的机型信息。
+
+        # @param request: Request instance for DescribeDBCustomNodeTypes.
+        # @type request: :class:`Tencentcloud::dbdc::V20201029::DescribeDBCustomNodeTypesRequest`
+        # @rtype: :class:`Tencentcloud::dbdc::V20201029::DescribeDBCustomNodeTypesResponse`
+        def DescribeDBCustomNodeTypes(request)
+          body = send_request('DescribeDBCustomNodeTypes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDBCustomNodeTypesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口（DescribeDBCustomNodes）用于查询 DB Custom 节点列表。
 
         # @param request: Request instance for DescribeDBCustomNodes.
@@ -269,6 +389,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口(DescribeDBCustomRegions) 用于查询 DB Custom 支持的地域列表。
+
+        # @param request: Request instance for DescribeDBCustomRegions.
+        # @type request: :class:`Tencentcloud::dbdc::V20201029::DescribeDBCustomRegionsRequest`
+        # @rtype: :class:`Tencentcloud::dbdc::V20201029::DescribeDBCustomRegionsResponse`
+        def DescribeDBCustomRegions(request)
+          body = send_request('DescribeDBCustomRegions', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDBCustomRegionsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口（DescribeDBCustomTaskStatus）用于查询 DB Custom 任务的状态。
 
         # @param request: Request instance for DescribeDBCustomTaskStatus.
@@ -279,6 +423,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDBCustomTaskStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口(DescribeDBCustomZones) 用于查询指定地域的 DB Custom 可用区列表。
+
+        # @param request: Request instance for DescribeDBCustomZones.
+        # @type request: :class:`Tencentcloud::dbdc::V20201029::DescribeDBCustomZonesRequest`
+        # @rtype: :class:`Tencentcloud::dbdc::V20201029::DescribeDBCustomZonesResponse`
+        def DescribeDBCustomZones(request)
+          body = send_request('DescribeDBCustomZones', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDBCustomZonesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -485,6 +653,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口（ModifyDBCustomClusterNodeConfig）用于修改 DB Custom 集群中节点的配置。
+
+        # @param request: Request instance for ModifyDBCustomClusterNodeConfig.
+        # @type request: :class:`Tencentcloud::dbdc::V20201029::ModifyDBCustomClusterNodeConfigRequest`
+        # @rtype: :class:`Tencentcloud::dbdc::V20201029::ModifyDBCustomClusterNodeConfigResponse`
+        def ModifyDBCustomClusterNodeConfig(request)
+          body = send_request('ModifyDBCustomClusterNodeConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDBCustomClusterNodeConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口（ModifyDBCustomClusterTags）用于修改 DB Custom 集群绑定的标签。
 
         # @param request: Request instance for ModifyDBCustomClusterTags.
@@ -495,6 +687,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyDBCustomClusterTagsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口（ModifyDBCustomNodeSecurityGroups）用于修改 DB Custom 节点安全组。
+
+        # @param request: Request instance for ModifyDBCustomNodeSecurityGroups.
+        # @type request: :class:`Tencentcloud::dbdc::V20201029::ModifyDBCustomNodeSecurityGroupsRequest`
+        # @rtype: :class:`Tencentcloud::dbdc::V20201029::ModifyDBCustomNodeSecurityGroupsResponse`
+        def ModifyDBCustomNodeSecurityGroups(request)
+          body = send_request('ModifyDBCustomNodeSecurityGroups', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDBCustomNodeSecurityGroupsResponse.new
             model.deserialize(response['Response'])
             model
           else

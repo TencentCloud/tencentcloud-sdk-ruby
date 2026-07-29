@@ -4640,6 +4640,49 @@ module TencentCloud
         end
       end
 
+      # DescribeAlarmNoticeOnCallUsersFromPrometheusAlertID请求参数结构体
+      class DescribeAlarmNoticeOnCallUsersFromPrometheusAlertIDRequest < TencentCloud::Common::AbstractModel
+        # @param AlertId: <p>prometheus告警分组ID</p><p>参数格式：alert-xxxxxxxx</p>
+        # @type AlertId: String
+
+        attr_accessor :AlertId
+
+        def initialize(alertid=nil)
+          @AlertId = alertid
+        end
+
+        def deserialize(params)
+          @AlertId = params['AlertId']
+        end
+      end
+
+      # DescribeAlarmNoticeOnCallUsersFromPrometheusAlertID返回参数结构体
+      class DescribeAlarmNoticeOnCallUsersFromPrometheusAlertIDResponse < TencentCloud::Common::AbstractModel
+        # @param Notices: <p>告警通知模板列表</p>
+        # @type Notices: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Notices, :RequestId
+
+        def initialize(notices=nil, requestid=nil)
+          @Notices = notices
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Notices'].nil?
+            @Notices = []
+            params['Notices'].each do |i|
+              noticeoncallusersinfo_tmp = NoticeOnCallUsersInfo.new
+              noticeoncallusersinfo_tmp.deserialize(i)
+              @Notices << noticeoncallusersinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeAlarmNotice请求参数结构体
       class DescribeAlarmNoticeRequest < TencentCloud::Common::AbstractModel
         # @param Module: <p>模块名，这里填“monitor”</p>
@@ -12872,6 +12915,80 @@ module TencentCloud
         def deserialize(params)
           @ContentTmplID = params['ContentTmplID']
           @NoticeID = params['NoticeID']
+        end
+      end
+
+      # 通知模板配置的发送用户的信息
+      class NoticeOnCallUsersInfo < TencentCloud::Common::AbstractModel
+        # @param NoticeId: <p>通知模板id</p><p>参数格式：notice-xxxxxxxx</p>
+        # @type NoticeId: String
+        # @param SendGroups: <p>发送组信息，对应通知模板中的每项配置</p>
+        # @type SendGroups: Array
+
+        attr_accessor :NoticeId, :SendGroups
+
+        def initialize(noticeid=nil, sendgroups=nil)
+          @NoticeId = noticeid
+          @SendGroups = sendgroups
+        end
+
+        def deserialize(params)
+          @NoticeId = params['NoticeId']
+          unless params['SendGroups'].nil?
+            @SendGroups = []
+            params['SendGroups'].each do |i|
+              noticesendgroup_tmp = NoticeSendGroup.new
+              noticesendgroup_tmp.deserialize(i)
+              @SendGroups << noticesendgroup_tmp
+            end
+          end
+        end
+      end
+
+      # 通知模板发送组信息
+      class NoticeSendGroup < TencentCloud::Common::AbstractModel
+        # @param ReceiverType: <p>发送组类型</p><p>枚举值：</p><ul><li>USER： 用户</li><li>GROUP： 用户组</li><li>OnCallForm： 值班表</li></ul>
+        # @type ReceiverType: String
+        # @param Users: <p>通知人信息</p>
+        # @type Users: Array
+
+        attr_accessor :ReceiverType, :Users
+
+        def initialize(receivertype=nil, users=nil)
+          @ReceiverType = receivertype
+          @Users = users
+        end
+
+        def deserialize(params)
+          @ReceiverType = params['ReceiverType']
+          unless params['Users'].nil?
+            @Users = []
+            params['Users'].each do |i|
+              noticeuserinfo_tmp = NoticeUserInfo.new
+              noticeuserinfo_tmp.deserialize(i)
+              @Users << noticeuserinfo_tmp
+            end
+          end
+        end
+      end
+
+      # 通知模板中配置的发送用户信息
+      class NoticeUserInfo < TencentCloud::Common::AbstractModel
+        # @param UserId: <p>腾讯云用户id，<strong>不是账号uin</strong></p>
+        # @type UserId: String
+        # @param UserName: <p>用户名</p>
+        # @type UserName: String
+
+        attr_accessor :UserId, :UserName
+
+        def initialize(userid=nil, username=nil)
+          @UserId = userid
+          @UserName = username
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+          @UserName = params['UserName']
         end
       end
 

@@ -488,74 +488,6 @@ module TencentCloud
         end
       end
 
-      # 审核存储参数
-      class AuditStorageParams < TencentCloud::Common::AbstractModel
-        # @param CloudAuditStorage: 腾讯云对象存储COS以及第三方云存储的账号信息
-        # @type CloudAuditStorage: :class:`Tencentcloud::Trtc.v20190722.models.CloudAuditStorage`
-
-        attr_accessor :CloudAuditStorage
-
-        def initialize(cloudauditstorage=nil)
-          @CloudAuditStorage = cloudauditstorage
-        end
-
-        def deserialize(params)
-          unless params['CloudAuditStorage'].nil?
-            @CloudAuditStorage = CloudAuditStorage.new
-            @CloudAuditStorage.deserialize(params['CloudAuditStorage'])
-          end
-        end
-      end
-
-      # 腾讯云对象存储COS以及第三方云存储的账号信息
-      class CloudAuditStorage < TencentCloud::Common::AbstractModel
-        # @param Vendor: 腾讯云对象存储COS以及第三方云存储账号信息
-        # 0：腾讯云对象存储 COS
-        # 1：AWS
-        # 【注意】目前第三方云存储仅支持AWS，更多第三方云存储陆续支持中
-        # 示例值：0
-        # @type Vendor: Integer
-        # @param Region: 腾讯云对象存储的[地域信息]（https://cloud.tencent.com/document/product/436/6224#.E5.9C.B0.E5.9F.9F）。
-        # 示例值：cn-shanghai-1
-
-        # AWS S3[地域信息]（https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-regions）
-        # 示例值：ap-southeast-3
-        # @type Region: String
-        # @param Bucket: 云存储桶名称。
-        # @type Bucket: String
-        # @param AccessKey: 云存储的access_key账号信息。
-        # 若存储至腾讯云对象存储COS，请前往https://console.cloud.tencent.com/cam/capi 查看或创建，对应链接中密钥字段的SecretId值。
-        # 示例值：test-accesskey
-        # @type AccessKey: String
-        # @param SecretKey: 云存储的secret_key账号信息。
-        # 若存储至腾讯云对象存储COS，请前往https://console.cloud.tencent.com/cam/capi 查看或创建，对应链接中密钥字段的SecretKey值。
-        # 示例值：test-secretkey
-        # @type SecretKey: String
-        # @param FileNamePrefix: 云存储bucket 的指定位置，由字符串数组组成。合法的字符串范围az,AZ,0~9,'_'和'-'，举个例子，录制文件xxx.m3u8在 ["prefix1", "prefix2"]作用下，会变成prefix1/prefix2/TaskId/xxx.m3u8。
-        # 示例值：["prefix1", "prefix2"]
-        # @type FileNamePrefix: Array
-
-        attr_accessor :Vendor, :Region, :Bucket, :AccessKey, :SecretKey, :FileNamePrefix
-
-        def initialize(vendor=nil, region=nil, bucket=nil, accesskey=nil, secretkey=nil, filenameprefix=nil)
-          @Vendor = vendor
-          @Region = region
-          @Bucket = bucket
-          @AccessKey = accesskey
-          @SecretKey = secretkey
-          @FileNamePrefix = filenameprefix
-        end
-
-        def deserialize(params)
-          @Vendor = params['Vendor']
-          @Region = params['Region']
-          @Bucket = params['Bucket']
-          @AccessKey = params['AccessKey']
-          @SecretKey = params['SecretKey']
-          @FileNamePrefix = params['FileNamePrefix']
-        end
-      end
-
       # 腾讯云对象存储COS以及第三方云存储的账号信息
       class CloudModerationStorage < TencentCloud::Common::AbstractModel
         # @param Vendor: 腾讯云对象存储COS以及第三方云存储账号信息
@@ -753,61 +685,6 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # CreateBasicModeration请求参数结构体
-      class CreateBasicModerationRequest < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: TRTC的[SdkAppId](https://cloud.tencent.com/document/product/647/46351#sdkappid)，和TRTC的房间所对应的SdkAppId相同。
-        # @type SdkAppId: Integer
-        # @param RoomId: TRTC的[RoomId](https://cloud.tencent.com/document/product/647/46351#roomid)，为TRTC房间所对应的RoomId。
-        # @type RoomId: String
-        # @param UserId: 目标审核用户id
-        # @type UserId: String
-        # @param RoomIdType: TRTC房间号的类型。【*注意】必须和TRTC的房间所对应的RoomId类型相同:0: 字符串类型的RoomId1: 32位整型的RoomId（默认）
-        # @type RoomIdType: Integer
-        # @param AuditStorageParams: 音频文件上传到云存储的参数
-        # @type AuditStorageParams: :class:`Tencentcloud::Trtc.v20190722.models.AuditStorageParams`
-
-        attr_accessor :SdkAppId, :RoomId, :UserId, :RoomIdType, :AuditStorageParams
-
-        def initialize(sdkappid=nil, roomid=nil, userid=nil, roomidtype=nil, auditstorageparams=nil)
-          @SdkAppId = sdkappid
-          @RoomId = roomid
-          @UserId = userid
-          @RoomIdType = roomidtype
-          @AuditStorageParams = auditstorageparams
-        end
-
-        def deserialize(params)
-          @SdkAppId = params['SdkAppId']
-          @RoomId = params['RoomId']
-          @UserId = params['UserId']
-          @RoomIdType = params['RoomIdType']
-          unless params['AuditStorageParams'].nil?
-            @AuditStorageParams = AuditStorageParams.new
-            @AuditStorageParams.deserialize(params['AuditStorageParams'])
-          end
-        end
-      end
-
-      # CreateBasicModeration返回参数结构体
-      class CreateBasicModerationResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 审核服务分配的任务ID。任务ID是对一次审核任务生命周期过程的唯一标识，结束任务时会失去意义。任务ID需要业务保存下来，作为下次针对这个任务操作的参数
-        # @type TaskId: String
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :TaskId, :RequestId
-
-        def initialize(taskid=nil, requestid=nil)
-          @TaskId = taskid
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end
       end
@@ -1253,46 +1130,6 @@ module TencentCloud
 
         def deserialize(params)
           @PictureId = params['PictureId']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DeleteBasicModeration请求参数结构体
-      class DeleteBasicModerationRequest < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: TRTC的SDKAppId，和TRTC的房间所使用的SDKAppId相同。
-        # @type SdkAppId: Integer
-        # @param TaskId: 审核任务的唯一Id，在启动审核任务成功后会返回。
-        # @type TaskId: String
-
-        attr_accessor :SdkAppId, :TaskId
-
-        def initialize(sdkappid=nil, taskid=nil)
-          @SdkAppId = sdkappid
-          @TaskId = taskid
-        end
-
-        def deserialize(params)
-          @SdkAppId = params['SdkAppId']
-          @TaskId = params['TaskId']
-        end
-      end
-
-      # DeleteBasicModeration返回参数结构体
-      class DeleteBasicModerationResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 审核任务的唯一Id。
-        # @type TaskId: String
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :TaskId, :RequestId
-
-        def initialize(taskid=nil, requestid=nil)
-          @TaskId = taskid
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end
       end

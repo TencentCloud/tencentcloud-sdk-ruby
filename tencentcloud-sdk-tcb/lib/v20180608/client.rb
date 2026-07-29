@@ -271,6 +271,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建云应用
+
+        # @param request: Request instance for CreateCloudApp.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::CreateCloudAppRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::CreateCloudAppResponse`
+        def CreateCloudApp(request)
+          body = send_request('CreateCloudApp', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCloudAppResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建自定义登录密钥。在指定云开发环境下生成一对 RSA 1024 位非对称密钥对，系统仅存储公钥，私钥仅在创建时返回一次且不可恢复，请妥善保存。创建新密钥后，该环境下原有未设置过期时间的旧密钥将被自动标记为 2 小时后过期，请确保客户端及时更新密钥配置。
         # 返回的 KeyID 和 PrivateKey 需与环境 ID 一起组装为 JSON 配置文件，供客户端 Admin SDK 初始化时使用，文件格式如下：
         # {
@@ -617,6 +641,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除云应用服务
+
+        # @param request: Request instance for DeleteCloudApp.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::DeleteCloudAppRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::DeleteCloudAppResponse`
+        def DeleteCloudApp(request)
+          body = send_request('DeleteCloudApp', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteCloudAppResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除云应用服务版本
+
+        # @param request: Request instance for DeleteCloudAppVersion.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::DeleteCloudAppVersionRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::DeleteCloudAppVersionResponse`
+        def DeleteCloudAppVersion(request)
+          body = send_request('DeleteCloudAppVersion', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteCloudAppVersionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口DeleteHTTPServiceRoute用于删除HTTP访问服务域名或者路由。可批量删除多条path路由、删除域名及所有path路由，如果Paths字段为空则删除域名及所有path路由，如果Paths不为空则仅删除path路由。
 
         # @param request: Request instance for DeleteHTTPServiceRoute.
@@ -894,6 +966,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取云应用cos信息
+
+        # @param request: Request instance for DescribeCloudAppCosInfo.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeCloudAppCosInfoRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribeCloudAppCosInfoResponse`
+        def DescribeCloudAppCosInfo(request)
+          body = send_request('DescribeCloudAppCosInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloudAppCosInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询应用服务信息
+
+        # @param request: Request instance for DescribeCloudAppInfo.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeCloudAppInfoRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribeCloudAppInfoResponse`
+        def DescribeCloudAppInfo(request)
+          body = send_request('DescribeCloudAppInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloudAppInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询云应用服务列表信息
 
         # @param request: Request instance for DescribeCloudAppList.
@@ -904,6 +1024,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeCloudAppListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询云应用服务版本信息
+
+        # @param request: Request instance for DescribeCloudAppVersion.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeCloudAppVersionRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribeCloudAppVersionResponse`
+        def DescribeCloudAppVersion(request)
+          body = send_request('DescribeCloudAppVersion', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloudAppVersionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询云应用服务版本列表信息
+
+        # @param request: Request instance for DescribeCloudAppVersionList.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeCloudAppVersionListRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribeCloudAppVersionListResponse`
+        def DescribeCloudAppVersionList(request)
+          body = send_request('DescribeCloudAppVersionList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloudAppVersionListResponse.new
             model.deserialize(response['Response'])
             model
           else

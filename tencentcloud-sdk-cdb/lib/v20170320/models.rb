@@ -15099,6 +15099,46 @@ module TencentCloud
         end
       end
 
+      # UpgradeRoGroup请求参数结构体
+      class UpgradeRoGroupRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id。
+        # @type InstanceId: String
+        # @param UniqRoGroupId: RO组的ID。
+        # @type UniqRoGroupId: String
+
+        attr_accessor :InstanceId, :UniqRoGroupId
+
+        def initialize(instanceid=nil, uniqrogroupid=nil)
+          @InstanceId = instanceid
+          @UniqRoGroupId = uniqrogroupid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @UniqRoGroupId = params['UniqRoGroupId']
+        end
+      end
+
+      # UpgradeRoGroup返回参数结构体
+      class UpgradeRoGroupResponse < TencentCloud::Common::AbstractModel
+        # @param AsyncRequestId: 异步任务ID。
+        # @type AsyncRequestId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AsyncRequestId, :RequestId
+
+        def initialize(asyncrequestid=nil, requestid=nil)
+          @AsyncRequestId = asyncrequestid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AsyncRequestId = params['AsyncRequestId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 文件上传描述
       class UploadInfo < TencentCloud::Common::AbstractModel
         # @param AllSliceNum: 文件所有分片数

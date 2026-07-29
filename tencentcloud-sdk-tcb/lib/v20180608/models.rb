@@ -535,6 +535,138 @@ module TencentCloud
         end
       end
 
+      # 构建命令
+      class BuildCommands < TencentCloud::Common::AbstractModel
+        # @param InstallCmd: <p>平台生成默认 install step 时执行</p>
+        # @type InstallCmd: String
+        # @param BuildCmd: <p>平台生成默认build step 时执行</p>
+        # @type BuildCmd: String
+        # @param DeployCmd: <p>平台生成默认deploy step 时执行</p>
+        # @type DeployCmd: String
+
+        attr_accessor :InstallCmd, :BuildCmd, :DeployCmd
+
+        def initialize(installcmd=nil, buildcmd=nil, deploycmd=nil)
+          @InstallCmd = installcmd
+          @BuildCmd = buildcmd
+          @DeployCmd = deploycmd
+        end
+
+        def deserialize(params)
+          @InstallCmd = params['InstallCmd']
+          @BuildCmd = params['BuildCmd']
+          @DeployCmd = params['DeployCmd']
+        end
+      end
+
+      # 构建密钥
+      class BuildSecret < TencentCloud::Common::AbstractModel
+        # @param Name: <p>标准化为 DNS Label 风格；构建时注入为 $SECRET_&lt;NAME&gt;（同时也提供原大写形式 $SECRET_&lt;NAME_UPPERCASE&gt;）</p>
+        # @type Name: String
+        # @param Value: <p>平台 AES 加密落库；DescribeVersion 永不回显明文</p>
+        # @type Value: String
+
+        attr_accessor :Name, :Value
+
+        def initialize(name=nil, value=nil)
+          @Name = name
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
+        end
+      end
+
+      # 构建触发的源码来源: git,cos,inline
+      class BuildSource < TencentCloud::Common::AbstractModel
+        # @param Type: <p>源码来源类型，取值：&quot;git&quot; &quot;zip&quot;</p>
+        # @type Type: String
+        # @param Repo: <p>Git 仓库 HTTPS URL；或 COS 下载完整 URL；与 CodeUrlWithAuth / CosTimestamp 之一非空（zip 二阶段上传时可留空）</p>
+        # @type Repo: String
+        # @param Ref: <p>分支 tag commit；Git 默认 main，zip 模式下忽略</p>
+        # @type Ref: String
+        # @param Channel: <p>&quot;git&quot; &quot;github&quot; &quot;gitlab&quot; &quot;gitee&quot; &quot;coding&quot;；私有仓必填，平台据此走 OAuth 鉴权</p>
+        # @type Channel: String
+        # @param IsPrivate: <p>是否私有仓；true 时平台自动注入 CodeUrlWithAuth</p>
+        # @type IsPrivate: Boolean
+        # @param CodeUrlWithAuth: <p>调用方显式传入的带鉴权 clone URL 或带签名的 zip 下载直链（优先级最高，会覆盖平台 OAuth / 自动签名）</p>
+        # @type CodeUrlWithAuth: String
+        # @param CosTimestamp: <p>仅 Type=zip/cos 时使用。配合 zip 二阶段上传：填 DescribeCloudAppCosInfo 返回的 UnixTimestamp，平台据此自动签名出 ZIP_FILE_URL</p>
+        # @type CosTimestamp: String
+        # @param CosSuffix: <p>仅 Type=zip/cos 时使用。zip 文件后缀，默认 .zip；与 CosTimestamp 配合定位 COS 对象</p>
+        # @type CosSuffix: String
+
+        attr_accessor :Type, :Repo, :Ref, :Channel, :IsPrivate, :CodeUrlWithAuth, :CosTimestamp, :CosSuffix
+
+        def initialize(type=nil, repo=nil, ref=nil, channel=nil, isprivate=nil, codeurlwithauth=nil, costimestamp=nil, cossuffix=nil)
+          @Type = type
+          @Repo = repo
+          @Ref = ref
+          @Channel = channel
+          @IsPrivate = isprivate
+          @CodeUrlWithAuth = codeurlwithauth
+          @CosTimestamp = costimestamp
+          @CosSuffix = cossuffix
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Repo = params['Repo']
+          @Ref = params['Ref']
+          @Channel = params['Channel']
+          @IsPrivate = params['IsPrivate']
+          @CodeUrlWithAuth = params['CodeUrlWithAuth']
+          @CosTimestamp = params['CosTimestamp']
+          @CosSuffix = params['CosSuffix']
+        end
+      end
+
+      # 构建步骤
+      class BuildStep < TencentCloud::Common::AbstractModel
+        # @param Name: <p>步骤名（建议 kebab-case，如 build-image），出现在 DescribeCloudAppVersion.Steps[].Name</p>
+        # @type Name: String
+        # @param Command: <p>shell 脚本，支持单行或多行</p>
+        # @type Command: String
+
+        attr_accessor :Name, :Command
+
+        def initialize(name=nil, command=nil)
+          @Name = name
+          @Command = command
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Command = params['Command']
+        end
+      end
+
+      # 步骤构建执行状态
+      class BuildStepStatus < TencentCloud::Common::AbstractModel
+        # @param Name: <p>构建步骤名称</p>
+        # @type Name: String
+        # @param Status: <p>构建状态</p>
+        # @type Status: String
+        # @param Duration: <p>构建耗时</p>
+        # @type Duration: String
+
+        attr_accessor :Name, :Status, :Duration
+
+        def initialize(name=nil, status=nil, duration=nil)
+          @Name = name
+          @Status = status
+          @Duration = duration
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Status = params['Status']
+          @Duration = params['Duration']
+        end
+      end
+
       # CheckTcbService请求参数结构体
       class CheckTcbServiceRequest < TencentCloud::Common::AbstractModel
 
@@ -611,6 +743,61 @@ module TencentCloud
           @LatestStatus = params['LatestStatus']
           @LatestBuildTime = params['LatestBuildTime']
           @DeployType = params['DeployType']
+        end
+      end
+
+      # 服务版本信息
+      class CloudAppVersionItem < TencentCloud::Common::AbstractModel
+        # @param VersionName: <p>版本名</p>
+        # @type VersionName: String
+        # @param BuildType: <p>构建方式</p>
+        # @type BuildType: String
+        # @param BuildId: <p>构建Id</p>
+        # @type BuildId: String
+        # @param Status: <p>构建状态</p>
+        # @type Status: String
+        # @param Framework: <p>框架名</p>
+        # @type Framework: String
+        # @param StaticConfig: <p>构建配置</p>
+        # @type StaticConfig: :class:`Tencentcloud::Tcb.v20180608.models.StaticConfig`
+        # @param BuildTime: <p>构建时间</p>
+        # @type BuildTime: String
+        # @param Steps: <p>构建步骤</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Steps: Array
+
+        attr_accessor :VersionName, :BuildType, :BuildId, :Status, :Framework, :StaticConfig, :BuildTime, :Steps
+
+        def initialize(versionname=nil, buildtype=nil, buildid=nil, status=nil, framework=nil, staticconfig=nil, buildtime=nil, steps=nil)
+          @VersionName = versionname
+          @BuildType = buildtype
+          @BuildId = buildid
+          @Status = status
+          @Framework = framework
+          @StaticConfig = staticconfig
+          @BuildTime = buildtime
+          @Steps = steps
+        end
+
+        def deserialize(params)
+          @VersionName = params['VersionName']
+          @BuildType = params['BuildType']
+          @BuildId = params['BuildId']
+          @Status = params['Status']
+          @Framework = params['Framework']
+          unless params['StaticConfig'].nil?
+            @StaticConfig = StaticConfig.new
+            @StaticConfig.deserialize(params['StaticConfig'])
+          end
+          @BuildTime = params['BuildTime']
+          unless params['Steps'].nil?
+            @Steps = []
+            params['Steps'].each do |i|
+              buildstepstatus_tmp = BuildStepStatus.new
+              buildstepstatus_tmp.deserialize(i)
+              @Steps << buildstepstatus_tmp
+            end
+          end
         end
       end
 
@@ -990,6 +1177,116 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateCloudApp请求参数结构体
+      class CreateCloudAppRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: <p>环境ID</p>
+        # @type EnvId: String
+        # @param ServiceName: <p>服务名</p>
+        # @type ServiceName: String
+        # @param DeployType: <p>部署类型</p>
+        # @type DeployType: String
+        # @param BuildType: <p>构建类型</p>
+        # @type BuildType: String
+        # @param StaticConfig: <p>静态应用创建配置信息</p>
+        # @type StaticConfig: :class:`Tencentcloud::Tcb.v20180608.models.StaticConfig`
+        # @param Source: <p>源码定义</p>
+        # @type Source: :class:`Tencentcloud::Tcb.v20180608.models.BuildSource`
+        # @param Commands: <p>Commands 与 CustomSteps 至少填一个</p>
+        # @type Commands: :class:`Tencentcloud::Tcb.v20180608.models.BuildCommands`
+        # @param Env: <p>Commands 与 CustomSteps 至少填一个，docker 镜像构建场景强烈建议用 CustomSteps</p>
+        # @type Env: Array
+        # @param CustomSteps: <p>非敏感环境变量，构建容器中以 $KEY 引用</p>
+        # @type CustomSteps: Array
+        # @param Secrets: <p>敏感凭证（AES 加密落库），构建容器中以 $SECRET_NAME 引用</p>
+        # @type Secrets: Array
+
+        attr_accessor :EnvId, :ServiceName, :DeployType, :BuildType, :StaticConfig, :Source, :Commands, :Env, :CustomSteps, :Secrets
+
+        def initialize(envid=nil, servicename=nil, deploytype=nil, buildtype=nil, staticconfig=nil, source=nil, commands=nil, env=nil, customsteps=nil, secrets=nil)
+          @EnvId = envid
+          @ServiceName = servicename
+          @DeployType = deploytype
+          @BuildType = buildtype
+          @StaticConfig = staticconfig
+          @Source = source
+          @Commands = commands
+          @Env = env
+          @CustomSteps = customsteps
+          @Secrets = secrets
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @ServiceName = params['ServiceName']
+          @DeployType = params['DeployType']
+          @BuildType = params['BuildType']
+          unless params['StaticConfig'].nil?
+            @StaticConfig = StaticConfig.new
+            @StaticConfig.deserialize(params['StaticConfig'])
+          end
+          unless params['Source'].nil?
+            @Source = BuildSource.new
+            @Source.deserialize(params['Source'])
+          end
+          unless params['Commands'].nil?
+            @Commands = BuildCommands.new
+            @Commands.deserialize(params['Commands'])
+          end
+          unless params['Env'].nil?
+            @Env = []
+            params['Env'].each do |i|
+              variable_tmp = Variable.new
+              variable_tmp.deserialize(i)
+              @Env << variable_tmp
+            end
+          end
+          unless params['CustomSteps'].nil?
+            @CustomSteps = []
+            params['CustomSteps'].each do |i|
+              buildstep_tmp = BuildStep.new
+              buildstep_tmp.deserialize(i)
+              @CustomSteps << buildstep_tmp
+            end
+          end
+          unless params['Secrets'].nil?
+            @Secrets = []
+            params['Secrets'].each do |i|
+              buildsecret_tmp = BuildSecret.new
+              buildsecret_tmp.deserialize(i)
+              @Secrets << buildsecret_tmp
+            end
+          end
+        end
+      end
+
+      # CreateCloudApp返回参数结构体
+      class CreateCloudAppResponse < TencentCloud::Common::AbstractModel
+        # @param BuildId: <p>构建Id</p>
+        # @type BuildId: String
+        # @param VersionName: <p>版本名称</p>
+        # @type VersionName: String
+        # @param ServiceName: <p>服务名称</p>
+        # @type ServiceName: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BuildId, :VersionName, :ServiceName, :RequestId
+
+        def initialize(buildid=nil, versionname=nil, servicename=nil, requestid=nil)
+          @BuildId = buildid
+          @VersionName = versionname
+          @ServiceName = servicename
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @BuildId = params['BuildId']
+          @VersionName = params['VersionName']
+          @ServiceName = params['ServiceName']
           @RequestId = params['RequestId']
         end
       end
@@ -1794,6 +2091,98 @@ module TencentCloud
         end
       end
 
+      # DeleteCloudApp请求参数结构体
+      class DeleteCloudAppRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境ID
+        # @type EnvId: String
+        # @param DeployType: 部署类型
+        # @type DeployType: String
+        # @param ServiceName: 服务名
+        # @type ServiceName: String
+
+        attr_accessor :EnvId, :DeployType, :ServiceName
+
+        def initialize(envid=nil, deploytype=nil, servicename=nil)
+          @EnvId = envid
+          @DeployType = deploytype
+          @ServiceName = servicename
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @DeployType = params['DeployType']
+          @ServiceName = params['ServiceName']
+        end
+      end
+
+      # DeleteCloudApp返回参数结构体
+      class DeleteCloudAppResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 是否删除成功
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteCloudAppVersion请求参数结构体
+      class DeleteCloudAppVersionRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境ID
+        # @type EnvId: String
+        # @param DeployType: 部署类型
+        # @type DeployType: String
+        # @param ServiceName: 服务名
+        # @type ServiceName: String
+        # @param VersionName: 版本名
+        # @type VersionName: String
+
+        attr_accessor :EnvId, :DeployType, :ServiceName, :VersionName
+
+        def initialize(envid=nil, deploytype=nil, servicename=nil, versionname=nil)
+          @EnvId = envid
+          @DeployType = deploytype
+          @ServiceName = servicename
+          @VersionName = versionname
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @DeployType = params['DeployType']
+          @ServiceName = params['ServiceName']
+          @VersionName = params['VersionName']
+        end
+      end
+
+      # DeleteCloudAppVersion返回参数结构体
+      class DeleteCloudAppVersionResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 是否删除成功
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteHTTPServiceRoute请求参数结构体
       class DeleteHTTPServiceRouteRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: 环境ID
@@ -2363,6 +2752,155 @@ module TencentCloud
         end
       end
 
+      # DescribeCloudAppCosInfo请求参数结构体
+      class DescribeCloudAppCosInfoRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境id
+        # @type EnvId: String
+        # @param ServiceName: 服务名
+        # @type ServiceName: String
+        # @param DeployType: 部署类型
+        # @type DeployType: String
+        # @param UnixTimestamp: 时间戳
+        # @type UnixTimestamp: String
+        # @param Suffix: 文件后缀
+        # @type Suffix: String
+        # @param NeedDownload: 是否需要下载
+        # @type NeedDownload: Boolean
+
+        attr_accessor :EnvId, :ServiceName, :DeployType, :UnixTimestamp, :Suffix, :NeedDownload
+
+        def initialize(envid=nil, servicename=nil, deploytype=nil, unixtimestamp=nil, suffix=nil, needdownload=nil)
+          @EnvId = envid
+          @ServiceName = servicename
+          @DeployType = deploytype
+          @UnixTimestamp = unixtimestamp
+          @Suffix = suffix
+          @NeedDownload = needdownload
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @ServiceName = params['ServiceName']
+          @DeployType = params['DeployType']
+          @UnixTimestamp = params['UnixTimestamp']
+          @Suffix = params['Suffix']
+          @NeedDownload = params['NeedDownload']
+        end
+      end
+
+      # DescribeCloudAppCosInfo返回参数结构体
+      class DescribeCloudAppCosInfoResponse < TencentCloud::Common::AbstractModel
+        # @param UploadUrl: 上传url
+        # @type UploadUrl: String
+        # @param UploadHeaders: 上传header
+        # @type UploadHeaders: Array
+        # @param DownloadUrl: 下载链接
+        # @type DownloadUrl: String
+        # @param DownloadHeaders: 下载Httpheader
+        # @type DownloadHeaders: Array
+        # @param UnixTimestamp: 时间戳
+        # @type UnixTimestamp: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :UploadUrl, :UploadHeaders, :DownloadUrl, :DownloadHeaders, :UnixTimestamp, :RequestId
+
+        def initialize(uploadurl=nil, uploadheaders=nil, downloadurl=nil, downloadheaders=nil, unixtimestamp=nil, requestid=nil)
+          @UploadUrl = uploadurl
+          @UploadHeaders = uploadheaders
+          @DownloadUrl = downloadurl
+          @DownloadHeaders = downloadheaders
+          @UnixTimestamp = unixtimestamp
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @UploadUrl = params['UploadUrl']
+          unless params['UploadHeaders'].nil?
+            @UploadHeaders = []
+            params['UploadHeaders'].each do |i|
+              kvpair_tmp = KVPair.new
+              kvpair_tmp.deserialize(i)
+              @UploadHeaders << kvpair_tmp
+            end
+          end
+          @DownloadUrl = params['DownloadUrl']
+          unless params['DownloadHeaders'].nil?
+            @DownloadHeaders = []
+            params['DownloadHeaders'].each do |i|
+              kvpair_tmp = KVPair.new
+              kvpair_tmp.deserialize(i)
+              @DownloadHeaders << kvpair_tmp
+            end
+          end
+          @UnixTimestamp = params['UnixTimestamp']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCloudAppInfo请求参数结构体
+      class DescribeCloudAppInfoRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeCloudAppInfo返回参数结构体
+      class DescribeCloudAppInfoResponse < TencentCloud::Common::AbstractModel
+        # @param ServiceName: <p>服务名称</p>
+        # @type ServiceName: String
+        # @param Framework: <p>框架名称</p>
+        # @type Framework: String
+        # @param Domain: <p>域名</p>
+        # @type Domain: String
+        # @param AppPath: <p>构建路径</p>
+        # @type AppPath: String
+        # @param CreateTime: <p>服务创建时间</p>
+        # @type CreateTime: String
+        # @param LatestVersionName: <p>最新版本名</p>
+        # @type LatestVersionName: String
+        # @param LatestStatus: <p>最新版本状态</p>
+        # @type LatestStatus: String
+        # @param LatestBuildTime: <p>最新版本构建时间</p>
+        # @type LatestBuildTime: String
+        # @param DeployType: <p>部署类型</p>
+        # @type DeployType: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ServiceName, :Framework, :Domain, :AppPath, :CreateTime, :LatestVersionName, :LatestStatus, :LatestBuildTime, :DeployType, :RequestId
+
+        def initialize(servicename=nil, framework=nil, domain=nil, apppath=nil, createtime=nil, latestversionname=nil, lateststatus=nil, latestbuildtime=nil, deploytype=nil, requestid=nil)
+          @ServiceName = servicename
+          @Framework = framework
+          @Domain = domain
+          @AppPath = apppath
+          @CreateTime = createtime
+          @LatestVersionName = latestversionname
+          @LatestStatus = lateststatus
+          @LatestBuildTime = latestbuildtime
+          @DeployType = deploytype
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ServiceName = params['ServiceName']
+          @Framework = params['Framework']
+          @Domain = params['Domain']
+          @AppPath = params['AppPath']
+          @CreateTime = params['CreateTime']
+          @LatestVersionName = params['LatestVersionName']
+          @LatestStatus = params['LatestStatus']
+          @LatestBuildTime = params['LatestBuildTime']
+          @DeployType = params['DeployType']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCloudAppList请求参数结构体
       class DescribeCloudAppListRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: <p>环境ID</p>
@@ -2422,6 +2960,155 @@ module TencentCloud
             end
           end
           @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCloudAppVersionList请求参数结构体
+      class DescribeCloudAppVersionListRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: <p>环境ID</p>
+        # @type EnvId: String
+        # @param DeployType: <p>部署类型</p>
+        # @type DeployType: String
+        # @param ServiceName: <p>服务名</p>
+        # @type ServiceName: String
+        # @param PageSize: <p>页大小</p>
+        # @type PageSize: Integer
+        # @param PageNo: <p>页号</p>
+        # @type PageNo: Integer
+
+        attr_accessor :EnvId, :DeployType, :ServiceName, :PageSize, :PageNo
+
+        def initialize(envid=nil, deploytype=nil, servicename=nil, pagesize=nil, pageno=nil)
+          @EnvId = envid
+          @DeployType = deploytype
+          @ServiceName = servicename
+          @PageSize = pagesize
+          @PageNo = pageno
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @DeployType = params['DeployType']
+          @ServiceName = params['ServiceName']
+          @PageSize = params['PageSize']
+          @PageNo = params['PageNo']
+        end
+      end
+
+      # DescribeCloudAppVersionList返回参数结构体
+      class DescribeCloudAppVersionListResponse < TencentCloud::Common::AbstractModel
+        # @param VersionList: <p>版本列表</p>
+        # @type VersionList: Array
+        # @param Total: <p>总数</p>
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :VersionList, :Total, :RequestId
+
+        def initialize(versionlist=nil, total=nil, requestid=nil)
+          @VersionList = versionlist
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['VersionList'].nil?
+            @VersionList = []
+            params['VersionList'].each do |i|
+              cloudappversionitem_tmp = CloudAppVersionItem.new
+              cloudappversionitem_tmp.deserialize(i)
+              @VersionList << cloudappversionitem_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCloudAppVersion请求参数结构体
+      class DescribeCloudAppVersionRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: <p>环境ID</p>
+        # @type EnvId: String
+        # @param ServiceName: <p>服务名</p>
+        # @type ServiceName: String
+        # @param DeployType: <p>部署类型</p>
+        # @type DeployType: String
+        # @param VersionName: <p>版本名</p>
+        # @type VersionName: String
+        # @param BuildId: <p>构建id</p>
+        # @type BuildId: String
+
+        attr_accessor :EnvId, :ServiceName, :DeployType, :VersionName, :BuildId
+
+        def initialize(envid=nil, servicename=nil, deploytype=nil, versionname=nil, buildid=nil)
+          @EnvId = envid
+          @ServiceName = servicename
+          @DeployType = deploytype
+          @VersionName = versionname
+          @BuildId = buildid
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @ServiceName = params['ServiceName']
+          @DeployType = params['DeployType']
+          @VersionName = params['VersionName']
+          @BuildId = params['BuildId']
+        end
+      end
+
+      # DescribeCloudAppVersion返回参数结构体
+      class DescribeCloudAppVersionResponse < TencentCloud::Common::AbstractModel
+        # @param BuildType: <p>构建类型</p>
+        # @type BuildType: String
+        # @param BuildId: <p>构建Id</p>
+        # @type BuildId: String
+        # @param Status: <p>构建状态</p>
+        # @type Status: String
+        # @param Framework: <p>框架</p>
+        # @type Framework: String
+        # @param StaticConfig: <p>静态托管配置信息</p>
+        # @type StaticConfig: :class:`Tencentcloud::Tcb.v20180608.models.StaticConfig`
+        # @param BuildTime: <p>构建时间</p>
+        # @type BuildTime: String
+        # @param Steps: <p>[]BuildStepStatus 的 JSON 序列化</p>
+        # @type Steps: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BuildType, :BuildId, :Status, :Framework, :StaticConfig, :BuildTime, :Steps, :RequestId
+
+        def initialize(buildtype=nil, buildid=nil, status=nil, framework=nil, staticconfig=nil, buildtime=nil, steps=nil, requestid=nil)
+          @BuildType = buildtype
+          @BuildId = buildid
+          @Status = status
+          @Framework = framework
+          @StaticConfig = staticconfig
+          @BuildTime = buildtime
+          @Steps = steps
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @BuildType = params['BuildType']
+          @BuildId = params['BuildId']
+          @Status = params['Status']
+          @Framework = params['Framework']
+          unless params['StaticConfig'].nil?
+            @StaticConfig = StaticConfig.new
+            @StaticConfig.deserialize(params['StaticConfig'])
+          end
+          @BuildTime = params['BuildTime']
+          unless params['Steps'].nil?
+            @Steps = []
+            params['Steps'].each do |i|
+              buildstepstatus_tmp = BuildStepStatus.new
+              buildstepstatus_tmp.deserialize(i)
+              @Steps << buildstepstatus_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -8447,6 +9134,132 @@ module TencentCloud
         end
       end
 
+      # 静态托管的执行命令
+      class StaticCmd < TencentCloud::Common::AbstractModel
+        # @param BuildCmd: 构建命令
+        # @type BuildCmd: String
+        # @param InstallCmd: 安装命令
+        # @type InstallCmd: String
+        # @param DeployCmd: 部署命令
+        # @type DeployCmd: String
+
+        attr_accessor :BuildCmd, :InstallCmd, :DeployCmd
+
+        def initialize(buildcmd=nil, installcmd=nil, deploycmd=nil)
+          @BuildCmd = buildcmd
+          @InstallCmd = installcmd
+          @DeployCmd = deploycmd
+        end
+
+        def deserialize(params)
+          @BuildCmd = params['BuildCmd']
+          @InstallCmd = params['InstallCmd']
+          @DeployCmd = params['DeployCmd']
+        end
+      end
+
+      # 云应用静态托管配置
+      class StaticConfig < TencentCloud::Common::AbstractModel
+        # @param Framework: 框架类型：vue、react、nextjs 等
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Framework: String
+        # @param NodeJsVersion: Node.js 版本，默认 20
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeJsVersion: String
+        # @param AppPath: 访问路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppPath: String
+        # @param BuildPath: 构建目录
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BuildPath: String
+        # @param ZipFileUrl: ZIP 文件地址（BuildType=ZIP/TEMPLATE 时使用）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ZipFileUrl: String
+        # @param CosTimestamp: COS 时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CosTimestamp: String
+        # @param CosSuffix: COS 文件后缀
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CosSuffix: String
+        # @param CodeSource: 代码源平台：github、gitlab、gitee
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CodeSource: String
+        # @param CodeRepo: 代码仓库
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CodeRepo: String
+        # @param CodeBranch: 代码分支
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CodeBranch: String
+        # @param StaticCmd: 构建参数 JSON 字符串
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StaticCmd: :class:`Tencentcloud::Tcb.v20180608.models.StaticCmd`
+        # @param StaticEnv: 构建环境变量 JSON 字符串
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StaticEnv: :class:`Tencentcloud::Tcb.v20180608.models.StaticEnvironment`
+
+        attr_accessor :Framework, :NodeJsVersion, :AppPath, :BuildPath, :ZipFileUrl, :CosTimestamp, :CosSuffix, :CodeSource, :CodeRepo, :CodeBranch, :StaticCmd, :StaticEnv
+
+        def initialize(framework=nil, nodejsversion=nil, apppath=nil, buildpath=nil, zipfileurl=nil, costimestamp=nil, cossuffix=nil, codesource=nil, coderepo=nil, codebranch=nil, staticcmd=nil, staticenv=nil)
+          @Framework = framework
+          @NodeJsVersion = nodejsversion
+          @AppPath = apppath
+          @BuildPath = buildpath
+          @ZipFileUrl = zipfileurl
+          @CosTimestamp = costimestamp
+          @CosSuffix = cossuffix
+          @CodeSource = codesource
+          @CodeRepo = coderepo
+          @CodeBranch = codebranch
+          @StaticCmd = staticcmd
+          @StaticEnv = staticenv
+        end
+
+        def deserialize(params)
+          @Framework = params['Framework']
+          @NodeJsVersion = params['NodeJsVersion']
+          @AppPath = params['AppPath']
+          @BuildPath = params['BuildPath']
+          @ZipFileUrl = params['ZipFileUrl']
+          @CosTimestamp = params['CosTimestamp']
+          @CosSuffix = params['CosSuffix']
+          @CodeSource = params['CodeSource']
+          @CodeRepo = params['CodeRepo']
+          @CodeBranch = params['CodeBranch']
+          unless params['StaticCmd'].nil?
+            @StaticCmd = StaticCmd.new
+            @StaticCmd.deserialize(params['StaticCmd'])
+          end
+          unless params['StaticEnv'].nil?
+            @StaticEnv = StaticEnvironment.new
+            @StaticEnv.deserialize(params['StaticEnv'])
+          end
+        end
+      end
+
+      # 静态托管的环境变量参数
+      class StaticEnvironment < TencentCloud::Common::AbstractModel
+        # @param Variables: 环境变量数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Variables: Array
+
+        attr_accessor :Variables
+
+        def initialize(variables=nil)
+          @Variables = variables
+        end
+
+        def deserialize(params)
+          unless params['Variables'].nil?
+            @Variables = []
+            params['Variables'].each do |i|
+              variable_tmp = Variable.new
+              variable_tmp.deserialize(i)
+              @Variables << variable_tmp
+            end
+          end
+        end
+      end
+
       # 静态CDN资源信息
       class StaticStorageInfo < TencentCloud::Common::AbstractModel
         # @param StaticDomain: <p>静态CDN域名</p>
@@ -9019,6 +9832,26 @@ module TencentCloud
           @DeductValue = params['DeductValue']
           @PackageDeductValue = params['PackageDeductValue']
           @ReportValue = params['ReportValue']
+        end
+      end
+
+      # 对象变量
+      class Variable < TencentCloud::Common::AbstractModel
+        # @param Key: 变量的名称
+        # @type Key: String
+        # @param Value: 变量的值
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
         end
       end
 

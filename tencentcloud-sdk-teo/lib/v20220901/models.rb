@@ -9620,6 +9620,65 @@ module TencentCloud
         end
       end
 
+      # DescribeIPGroupReferences请求参数结构体
+      class DescribeIPGroupReferencesRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: <p>站点 ID。</p>
+        # @type ZoneId: String
+        # @param GroupId: <p>IP 组 ID。</p>
+        # @type GroupId: Integer
+        # @param Offset: <p>分页偏移量。</p><p>默认值：0</p>
+        # @type Offset: Integer
+        # @param Limit: <p>分页查询引用 IP 组的配置条数。</p><p>取值范围：[1, 200]</p><p>默认值：20</p>
+        # @type Limit: Integer
+
+        attr_accessor :ZoneId, :GroupId, :Offset, :Limit
+
+        def initialize(zoneid=nil, groupid=nil, offset=nil, limit=nil)
+          @ZoneId = zoneid
+          @GroupId = groupid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @GroupId = params['GroupId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeIPGroupReferences返回参数结构体
+      class DescribeIPGroupReferencesResponse < TencentCloud::Common::AbstractModel
+        # @param References: <p>引用对应 IP 组的配置信息。</p>
+        # @type References: Array
+        # @param TotalCount: <p>查询结果总数。</p>
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :References, :TotalCount, :RequestId
+
+        def initialize(references=nil, totalcount=nil, requestid=nil)
+          @References = references
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['References'].nil?
+            @References = []
+            params['References'].each do |i|
+              ipgroupreference_tmp = IPGroupReference.new
+              ipgroupreference_tmp.deserialize(i)
+              @References << ipgroupreference_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeIPRegion请求参数结构体
       class DescribeIPRegionRequest < TencentCloud::Common::AbstractModel
         # @param IPs: 待查询的 IP 列表，支持 IPV4 和 IPV6，最大可查询 100 条。
@@ -15656,29 +15715,28 @@ module TencentCloud
 
       # IP 网段组
       class IPGroup < TencentCloud::Common::AbstractModel
-        # @param GroupId: 组 Id，创建时填 0 即可。
+        # @param GroupId: <p>IP 组 Id，创建时填 0 即可。</p>
         # @type GroupId: Integer
-        # @param Name: 组名称。
+        # @param Name: <p>IP 组名称。</p>
         # @type Name: String
-        # @param Content: IP 组内容，仅支持 IP 及 IP 网段。
+        # @param Content: <p>IP 组内容，仅支持 IP 及 IP 网段。</p>
         # @type Content: Array
-        # @param IPTotalCount: IP 组中正在生效的 IP 或网段个数。作为出参时有效，作为入参时无需填写该字段。
+        # @param IPTotalCount: <p>IP 组中正在生效的 IP 或网段个数。作为出参时有效，作为入参时无需填写该字段。</p>
         # @type IPTotalCount: Integer
-        # @param IPExpireInfo: IP 定时过期信息。
-        # 作为入参，用于为指定的 IP 地址或网段配置定时过期时间。
-        # 作为出参，包含以下两类信息：
-        # <li>当前未到期的定时过期信息：尚未触发的过期配置。</li>
-        # <li>一周内已到期的定时过期信息：已触发的过期配置。</li>
+        # @param IPExpireInfo: <p>IP 定时过期信息。<br>作为入参，用于为指定的 IP 地址或网段配置定时过期时间。<br>作为出参，包含以下两类信息：</p><li>当前未到期的定时过期信息：尚未触发的过期配置。</li><li>一周内已到期的定时过期信息：已触发的过期配置。</li>
         # @type IPExpireInfo: Array
+        # @param RefCount: <p>IP 组被引用的数量。</p>
+        # @type RefCount: Integer
 
-        attr_accessor :GroupId, :Name, :Content, :IPTotalCount, :IPExpireInfo
+        attr_accessor :GroupId, :Name, :Content, :IPTotalCount, :IPExpireInfo, :RefCount
 
-        def initialize(groupid=nil, name=nil, content=nil, iptotalcount=nil, ipexpireinfo=nil)
+        def initialize(groupid=nil, name=nil, content=nil, iptotalcount=nil, ipexpireinfo=nil, refcount=nil)
           @GroupId = groupid
           @Name = name
           @Content = content
           @IPTotalCount = iptotalcount
           @IPExpireInfo = ipexpireinfo
+          @RefCount = refcount
         end
 
         def deserialize(params)
@@ -15694,6 +15752,47 @@ module TencentCloud
               @IPExpireInfo << ipexpireinfo_tmp
             end
           end
+          @RefCount = params['RefCount']
+        end
+      end
+
+      # 引用 IP 组的安全模块
+      class IPGroupReference < TencentCloud::Common::AbstractModel
+        # @param ZoneId: <p>站点 ID。</p>
+        # @type ZoneId: String
+        # @param EntityType: <p>实体类型。</p><p>枚举值：</p><ul><li>WebSec.ZonePolicy： 站点级防护策略</li><li>WebSec.HostPolicy： 域名级防护策略</li><li>WebSec.Template： 策略模板</li><li>DDoS.L4Proxy： 四层代理 DDoS 防护</li><li>DDoS.L3Transit： 三层代播 DDoS 防护</li></ul>
+        # @type EntityType: String
+        # @param EntityId: <p>实体标识，根据 EntityType 不同代表不同的含义：</p><ul><li>WebSec.ZonePolicy：站点 ID；</li><li>WebSec.HostPolicy：域名；</li><li>WebSec.Template：模板 ID；</li><li>DDoS.L4Proxy：实例 ID；</li><li>DDoS.L3Transit：实例 ID。</li></ul>
+        # @type EntityId: String
+        # @param EntityName: <p>实体标识，根据 EntityType 不同代表不同的含义：</p><ul><li>WebSec.ZonePolicy：空；</li><li>WebSec.HostPolicy：空；</li><li>WebSec.Template：模板名称；</li><li>DDoS.L4Proxy：空；</li><li>DDoS.L3Transit：空。</li></ul>
+        # @type EntityName: String
+        # @param SubEntityType: <p>子实体类型。</p><p>枚举值：</p><ul><li>WebSec.ExceptionRule： 防护例外规则</li><li>WebSec.BasicAccessRule： 基础访问管控</li><li>WebSec.PreciseMatchRule： 精确匹配规则</li><li>WebSec.RateLimitRule： 精准速率限制</li><li>WebSec.BotCustomRule： 高级 Bot 管理 - 自定义规则</li><li>DDoS.L4Proxy.IpAccessControl： 四层代理 DDoS 防护 - IP 黑白名单</li><li>DDoS.L3Transit.IpAccessControl： 三层代播 DDoS 防护 - IP 黑白名单</li></ul>
+        # @type SubEntityType: String
+        # @param SubEntityId: <p>子实体标识，根据 SubEntityType 不同代表不同的含义：</p><ul><li>WebSec.ExceptionRule：规则 ID；</li><li>WebSec.BasicAccessRule：规则 ID；</li><li>WebSec.PreciseMatchRule：规则 ID；</li><li>WebSec.RateLimitRule：规则 ID；</li><li>WebSec.BotCustomRule：规则 ID；</li><li>DDoS.L4Proxy.IpAccessControl：空；</li><li>DDoS.L3Transit.IpAccessControl：空。</li></ul><p>EntityType 与 SubEntityType 为对应关系，不同的 EntityType 支持不同的 SubEntityType。<br>WebSec.ZonePolicy，WebSec.HostPolicy 和 WebSec.Template 支持如下 SubEntityType：</p><ul><li>WebSec.ExceptionRule；</li><li>WebSec.BasicAccessRule；</li><li>WebSec.PreciseMatchRule；</li><li>WebSec.RateLimitRule；</li><li>WebSec.BotCustomRule。</li></ul>DDoS.L4Proxy 支持如下 SubEntityType：<ul><li>DDoS.L4Proxy.IpAccessControl；</li></ul>DDoS.L3Transit 支持如下 SubEntityType：<ul><li>DDoS.L3Transit.IpAccessControl。</li></ul>
+        # @type SubEntityId: String
+        # @param SubEntityName: <p>子实体名称，根据 SubEntityType 不同代表不同的含义：</p><ul><li>WebSec.ExceptionRule：规则名称；</li><li>WebSec.BasicAccessRule：规则名称；</li><li>WebSec.PreciseMatchRule：规则名称；</li><li>WebSec.RateLimitRule：规则名称；</li><li>WebSec.BotCustomRule：规则名称；</li><li>DDoS.L4Proxy.IpAccessControl：规则名称，block 表示黑名单，allow 表示白名单；</li><li>DDoS.L3Transit.IpAccessControl：规则名称，block 表示黑名单，allow 表示白名单。</li></ul>
+        # @type SubEntityName: String
+
+        attr_accessor :ZoneId, :EntityType, :EntityId, :EntityName, :SubEntityType, :SubEntityId, :SubEntityName
+
+        def initialize(zoneid=nil, entitytype=nil, entityid=nil, entityname=nil, subentitytype=nil, subentityid=nil, subentityname=nil)
+          @ZoneId = zoneid
+          @EntityType = entitytype
+          @EntityId = entityid
+          @EntityName = entityname
+          @SubEntityType = subentitytype
+          @SubEntityId = subentityid
+          @SubEntityName = subentityname
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @EntityType = params['EntityType']
+          @EntityId = params['EntityId']
+          @EntityName = params['EntityName']
+          @SubEntityType = params['SubEntityType']
+          @SubEntityId = params['SubEntityId']
+          @SubEntityName = params['SubEntityName']
         end
       end
 
