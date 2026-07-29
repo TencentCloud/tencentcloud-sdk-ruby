@@ -1588,6 +1588,10 @@ module TencentCloud
         # @param VoiceClonedMarkFile: <p>音色克隆的标注文件地址</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VoiceClonedMarkFile: String
+        # @param ErasedVideoPath: <p>仅做擦除的视频结果路径</p>
+        # @type ErasedVideoPath: String
+        # @param DubbingEditInfoUrl: <p>音色克隆编辑信息</p><p>用于音色克隆二次修改的编辑信息</p>
+        # @type DubbingEditInfoUrl: String
         # @param FileId: <p>擦除后文件的FileId。</p>
         # @type FileId: String
         # @param OriginSubtitleFileId: <p>基于画面提取的字幕文件FileId。</p>
@@ -1595,9 +1599,9 @@ module TencentCloud
         # @param TranslateSubtitleFileId: <p>基于画面提取的字幕翻译文件FileId    。</p>
         # @type TranslateSubtitleFileId: String
 
-        attr_accessor :Path, :OutputStorage, :OriginSubtitlePath, :TranslateSubtitlePath, :SubtitlePos, :VoiceClonedVideo, :VoiceClonedMarkFile, :FileId, :OriginSubtitleFileId, :TranslateSubtitleFileId
+        attr_accessor :Path, :OutputStorage, :OriginSubtitlePath, :TranslateSubtitlePath, :SubtitlePos, :VoiceClonedVideo, :VoiceClonedMarkFile, :ErasedVideoPath, :DubbingEditInfoUrl, :FileId, :OriginSubtitleFileId, :TranslateSubtitleFileId
 
-        def initialize(path=nil, outputstorage=nil, originsubtitlepath=nil, translatesubtitlepath=nil, subtitlepos=nil, voiceclonedvideo=nil, voiceclonedmarkfile=nil, fileid=nil, originsubtitlefileid=nil, translatesubtitlefileid=nil)
+        def initialize(path=nil, outputstorage=nil, originsubtitlepath=nil, translatesubtitlepath=nil, subtitlepos=nil, voiceclonedvideo=nil, voiceclonedmarkfile=nil, erasedvideopath=nil, dubbingeditinfourl=nil, fileid=nil, originsubtitlefileid=nil, translatesubtitlefileid=nil)
           @Path = path
           @OutputStorage = outputstorage
           @OriginSubtitlePath = originsubtitlepath
@@ -1605,6 +1609,8 @@ module TencentCloud
           @SubtitlePos = subtitlepos
           @VoiceClonedVideo = voiceclonedvideo
           @VoiceClonedMarkFile = voiceclonedmarkfile
+          @ErasedVideoPath = erasedvideopath
+          @DubbingEditInfoUrl = dubbingeditinfourl
           @FileId = fileid
           @OriginSubtitleFileId = originsubtitlefileid
           @TranslateSubtitleFileId = translatesubtitlefileid
@@ -1624,6 +1630,8 @@ module TencentCloud
           end
           @VoiceClonedVideo = params['VoiceClonedVideo']
           @VoiceClonedMarkFile = params['VoiceClonedMarkFile']
+          @ErasedVideoPath = params['ErasedVideoPath']
+          @DubbingEditInfoUrl = params['DubbingEditInfoUrl']
           @FileId = params['FileId']
           @OriginSubtitleFileId = params['OriginSubtitleFileId']
           @TranslateSubtitleFileId = params['TranslateSubtitleFileId']
