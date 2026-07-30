@@ -2843,6 +2843,33 @@ module TencentCloud
         end
       end
 
+      # 智能抠图配置。
+      class AiCutoutConfig < TencentCloud::Common::AbstractModel
+        # @param Switch: <p>能力配置开关，可选值：  ON：开启； OFF：关闭。 默认值：ON。</p>
+        # @type Switch: String
+        # @param Type: <p>抠图目标类型指定：&quot;foreground&quot;（默认）/ &quot;pattern&quot;</p>
+        # @type Type: String
+        # @param PatternConfig: <p>图案抠图配置。仅在Type为pattern时生效。</p>
+        # @type PatternConfig: :class:`Tencentcloud::Mps.v20190612.models.PatternConfig`
+
+        attr_accessor :Switch, :Type, :PatternConfig
+
+        def initialize(switch=nil, type=nil, patternconfig=nil)
+          @Switch = switch
+          @Type = type
+          @PatternConfig = patternconfig
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @Type = params['Type']
+          unless params['PatternConfig'].nil?
+            @PatternConfig = PatternConfig.new
+            @PatternConfig.deserialize(params['PatternConfig'])
+          end
+        end
+      end
+
       # Ai自动生成漫剧的输入
       class AiDramaInput < TencentCloud::Common::AbstractModel
         # @param Script: <p>ai漫剧剧本</p><p>参数格式：无</p><p>入参限制：无</p>
@@ -2868,6 +2895,34 @@ module TencentCloud
           @Style = params['Style']
           @Ratio = params['Ratio']
           @Resolution = params['Resolution']
+        end
+      end
+
+      # 智能扩图配置。
+      class AiExpansionConfig < TencentCloud::Common::AbstractModel
+        # @param Switch: <p>能力配置开关，可选值：  ON：开启； OFF：关闭。 默认值：ON。</p>
+        # @type Switch: String
+        # @param AspectRatio: <p>目标比例，如 &quot;16:9&quot;</p>
+        # @type AspectRatio: String
+        # @param Width: <p>目标宽度（像素）</p><p>取值范围：[0, 2048]</p>
+        # @type Width: Integer
+        # @param Height: <p>目标高度（像素）</p><p>取值范围：[0, 2048]</p>
+        # @type Height: Integer
+
+        attr_accessor :Switch, :AspectRatio, :Width, :Height
+
+        def initialize(switch=nil, aspectratio=nil, width=nil, height=nil)
+          @Switch = switch
+          @AspectRatio = aspectratio
+          @Width = width
+          @Height = height
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @AspectRatio = params['AspectRatio']
+          @Width = params['Width']
+          @Height = params['Height']
         end
       end
 
@@ -5277,6 +5332,26 @@ module TencentCloud
         def deserialize(params)
           @Keyword = params['Keyword']
           @Tags = params['Tags']
+        end
+      end
+
+      # 智能分镜拆解配置。
+      class AiStoryboardConfig < TencentCloud::Common::AbstractModel
+        # @param Switch: <p>能力配置开关，可选值：  ON：开启； OFF：关闭。 默认值：ON。</p>
+        # @type Switch: String
+        # @param ProcessIndex: <p>指定提取的分镜图的序号，从0开始计数，不填写则返回所有分镜图。</p>
+        # @type ProcessIndex: Integer
+
+        attr_accessor :Switch, :ProcessIndex
+
+        def initialize(switch=nil, processindex=nil)
+          @Switch = switch
+          @ProcessIndex = processindex
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @ProcessIndex = params['ProcessIndex']
         end
       end
 
@@ -21542,10 +21617,16 @@ module TencentCloud
         # @type AiPosterSuiteConfig: :class:`Tencentcloud::Mps.v20190612.models.AiPosterSuiteConfig`
         # @param CreateImageConfig: <p>生图任务配置</p>
         # @type CreateImageConfig: :class:`Tencentcloud::Mps.v20190612.models.CreateImageConfig`
+        # @param AiCutoutConfig: <p>Ai抠图配置</p>
+        # @type AiCutoutConfig: :class:`Tencentcloud::Mps.v20190612.models.AiCutoutConfig`
+        # @param AiExpansionConfig: <p>Ai扩图配置</p>
+        # @type AiExpansionConfig: :class:`Tencentcloud::Mps.v20190612.models.AiExpansionConfig`
+        # @param AiStoryboardConfig: <p>Ai分镜拆解配置</p>
+        # @type AiStoryboardConfig: :class:`Tencentcloud::Mps.v20190612.models.AiStoryboardConfig`
 
-        attr_accessor :EncodeConfig, :EnhanceConfig, :EraseConfig, :BlindWatermarkConfig, :BeautyConfig, :TransformConfig, :AiTryOnConfig, :AiPosterSuiteConfig, :CreateImageConfig
+        attr_accessor :EncodeConfig, :EnhanceConfig, :EraseConfig, :BlindWatermarkConfig, :BeautyConfig, :TransformConfig, :AiTryOnConfig, :AiPosterSuiteConfig, :CreateImageConfig, :AiCutoutConfig, :AiExpansionConfig, :AiStoryboardConfig
 
-        def initialize(encodeconfig=nil, enhanceconfig=nil, eraseconfig=nil, blindwatermarkconfig=nil, beautyconfig=nil, transformconfig=nil, aitryonconfig=nil, aipostersuiteconfig=nil, createimageconfig=nil)
+        def initialize(encodeconfig=nil, enhanceconfig=nil, eraseconfig=nil, blindwatermarkconfig=nil, beautyconfig=nil, transformconfig=nil, aitryonconfig=nil, aipostersuiteconfig=nil, createimageconfig=nil, aicutoutconfig=nil, aiexpansionconfig=nil, aistoryboardconfig=nil)
           @EncodeConfig = encodeconfig
           @EnhanceConfig = enhanceconfig
           @EraseConfig = eraseconfig
@@ -21555,6 +21636,9 @@ module TencentCloud
           @AiTryOnConfig = aitryonconfig
           @AiPosterSuiteConfig = aipostersuiteconfig
           @CreateImageConfig = createimageconfig
+          @AiCutoutConfig = aicutoutconfig
+          @AiExpansionConfig = aiexpansionconfig
+          @AiStoryboardConfig = aistoryboardconfig
         end
 
         def deserialize(params)
@@ -21593,6 +21677,18 @@ module TencentCloud
           unless params['CreateImageConfig'].nil?
             @CreateImageConfig = CreateImageConfig.new
             @CreateImageConfig.deserialize(params['CreateImageConfig'])
+          end
+          unless params['AiCutoutConfig'].nil?
+            @AiCutoutConfig = AiCutoutConfig.new
+            @AiCutoutConfig.deserialize(params['AiCutoutConfig'])
+          end
+          unless params['AiExpansionConfig'].nil?
+            @AiExpansionConfig = AiExpansionConfig.new
+            @AiExpansionConfig.deserialize(params['AiExpansionConfig'])
+          end
+          unless params['AiStoryboardConfig'].nil?
+            @AiStoryboardConfig = AiStoryboardConfig.new
+            @AiStoryboardConfig.deserialize(params['AiStoryboardConfig'])
           end
         end
       end
@@ -27882,6 +27978,38 @@ module TencentCloud
             @ExtractBlindWatermarkTask.deserialize(params['ExtractBlindWatermarkTask'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 印花提取配置。
+      class PatternConfig < TencentCloud::Common::AbstractModel
+        # @param TransparencyThreshold: <p>透明度阈值</p><p>取值范围：[0, 255]</p><p>默认值：30</p>
+        # @type TransparencyThreshold: Integer
+        # @param OpaqueThreshold: <p>不透明阈值，必须大于TransparencyThreshold</p><p>取值范围：[0, 255]</p><p>默认值：127</p>
+        # @type OpaqueThreshold: Integer
+        # @param EdgeSamplingStep: <p>边缘采样步数，默认5</p><p>取值范围：[1, 10]</p>
+        # @type EdgeSamplingStep: Integer
+        # @param EdgeExpansionStep: <p>边缘扩展步数，默认5</p>
+        # @type EdgeExpansionStep: Integer
+        # @param EdgeBlendingIntensity: <p>边缘融合强度，默认0.5</p><p>取值范围：[0, 1.0]</p>
+        # @type EdgeBlendingIntensity: Float
+
+        attr_accessor :TransparencyThreshold, :OpaqueThreshold, :EdgeSamplingStep, :EdgeExpansionStep, :EdgeBlendingIntensity
+
+        def initialize(transparencythreshold=nil, opaquethreshold=nil, edgesamplingstep=nil, edgeexpansionstep=nil, edgeblendingintensity=nil)
+          @TransparencyThreshold = transparencythreshold
+          @OpaqueThreshold = opaquethreshold
+          @EdgeSamplingStep = edgesamplingstep
+          @EdgeExpansionStep = edgeexpansionstep
+          @EdgeBlendingIntensity = edgeblendingintensity
+        end
+
+        def deserialize(params)
+          @TransparencyThreshold = params['TransparencyThreshold']
+          @OpaqueThreshold = params['OpaqueThreshold']
+          @EdgeSamplingStep = params['EdgeSamplingStep']
+          @EdgeExpansionStep = params['EdgeExpansionStep']
+          @EdgeBlendingIntensity = params['EdgeBlendingIntensity']
         end
       end
 

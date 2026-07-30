@@ -1885,6 +1885,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 更新ES集群实例的Kibana、cerebro公网开关
+
+        # @param request: Request instance for UpdateInstancePublicAccess.
+        # @type request: :class:`Tencentcloud::es::V20180416::UpdateInstancePublicAccessRequest`
+        # @rtype: :class:`Tencentcloud::es::V20180416::UpdateInstancePublicAccessResponse`
+        def UpdateInstancePublicAccess(request)
+          body = send_request('UpdateInstancePublicAccess', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateInstancePublicAccessResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 更新ES集群IP溯源状态
 
         # @param request: Request instance for UpdateIpTraceStatus.

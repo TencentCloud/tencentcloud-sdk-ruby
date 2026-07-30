@@ -9758,6 +9758,205 @@ module TencentCloud
         end
       end
 
+      # UpdateInstancePublicAccess请求参数结构体
+      class UpdateInstancePublicAccessRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param InstanceName: 实例名称（1-50 个英文、汉字、数字、连接线-或下划线_）
+        # @type InstanceName: String
+        # @param NodeNum: 已废弃请使用NodeInfoList
+        # 节点个数（2-50个）
+        # @type NodeNum: Integer
+        # @param EsConfig: ES配置项（JSON格式字符串）
+        # @type EsConfig: String
+        # @param Password: 默认用户elastic的密码（8到16位，至少包括两项（[a-z,A-Z],[0-9]和[-!@#$%&^*+=_:;,.?]的特殊符号）
+        # @type Password: String
+        # @param EsAcl: 访问控制列表
+        # @type EsAcl: :class:`Tencentcloud::Es.v20180416.models.EsAcl`
+        # @param DiskSize: 已废弃请使用NodeInfoList
+        # 磁盘大小（单位GB）
+        # @type DiskSize: Integer
+        # @param NodeType: 已废弃请使用NodeInfoList
+        # 节点规格<li>ES.S1.SMALL2：1核2G</li><li>ES.S1.MEDIUM4：2核4G</li><li>ES.S1.MEDIUM8：2核8G</li><li>ES.S1.LARGE16：4核16G</li><li>ES.S1.2XLARGE32：8核32G</li><li>ES.S1.4XLARGE32：16核32G</li><li>ES.S1.4XLARGE64：16核64G</li>
+        # @type NodeType: String
+        # @param MasterNodeNum: 已废弃请使用NodeInfoList
+        # 专用主节点个数（只支持3个或5个）
+        # @type MasterNodeNum: Integer
+        # @param MasterNodeType: 已废弃请使用NodeInfoList
+        # 专用主节点规格<li>ES.S1.SMALL2：1核2G</li><li>ES.S1.MEDIUM4：2核4G</li><li>ES.S1.MEDIUM8：2核8G</li><li>ES.S1.LARGE16：4核16G</li><li>ES.S1.2XLARGE32：8核32G</li><li>ES.S1.4XLARGE32：16核32G</li><li>ES.S1.4XLARGE64：16核64G</li>
+        # @type MasterNodeType: String
+        # @param MasterNodeDiskSize: 已废弃请使用NodeInfoList
+        # 专用主节点磁盘大小（单位GB系统默认配置为50GB,暂不支持自定义）
+        # @type MasterNodeDiskSize: Integer
+        # @param ForceRestart: 更新配置时是否强制重启<li>true强制重启</li><li>false不强制重启</li>当前仅更新EsConfig时需要设置，默认值为false
+        # @type ForceRestart: Boolean
+        # @param CosBackup: COS自动备份信息
+        # @type CosBackup: :class:`Tencentcloud::Es.v20180416.models.CosBackup`
+        # @param NodeInfoList: 节点信息列表，可以只传递要更新的节点及其对应的规格信息。支持的操作包括<li>修改一种节点的个数</li><li>修改一种节点的节点规格及磁盘大小</li><li>增加一种节点类型（需要同时指定该节点的类型，个数，规格，磁盘等信息）</li>上述操作一次只能进行一种，且磁盘类型不支持修改
+        # @type NodeInfoList: Array
+        # @param PublicAccess: 公网访问状态
+        # @type PublicAccess: String
+        # @param EsPublicAcl: 公网访问控制列表
+        # @type EsPublicAcl: :class:`Tencentcloud::Es.v20180416.models.EsPublicAcl`
+        # @param KibanaPublicAccess: Kibana公网访问状态
+        # @type KibanaPublicAccess: String
+        # @param KibanaPrivateAccess: Kibana内网访问状态
+        # @type KibanaPrivateAccess: String
+        # @param BasicSecurityType: ES 6.8及以上版本基础版开启或关闭用户认证
+        # @type BasicSecurityType: Integer
+        # @param KibanaPrivatePort: Kibana内网端口
+        # @type KibanaPrivatePort: Integer
+        # @param ScaleType: 0: 蓝绿变更方式扩容，集群不重启 （默认） 1: 磁盘解挂载扩容，集群滚动重启
+        # @type ScaleType: Integer
+        # @param MultiZoneInfo: 多可用区部署
+        # @type MultiZoneInfo: Array
+        # @param SceneType: 场景化模板类型 -1：不启用 1：通用 2：日志 3：搜索
+        # @type SceneType: Integer
+        # @param KibanaConfig: Kibana配置项（JSON格式字符串）
+        # @type KibanaConfig: String
+        # @param WebNodeTypeInfo: 可视化节点配置
+        # @type WebNodeTypeInfo: :class:`Tencentcloud::Es.v20180416.models.WebNodeTypeInfo`
+        # @param SwitchPrivateLink: 切换到新网络架构
+        # @type SwitchPrivateLink: String
+        # @param EnableCerebro: 启用Cerebro
+        # @type EnableCerebro: Boolean
+        # @param CerebroPublicAccess: Cerebro公网访问状态
+        # @type CerebroPublicAccess: String
+        # @param CerebroPrivateAccess: Cerebro内网访问状态
+        # @type CerebroPrivateAccess: String
+        # @param EsConfigSet: 新增或修改的配置组信息
+        # @type EsConfigSet: :class:`Tencentcloud::Es.v20180416.models.EsConfigSetInfo`
+        # @param OperationDuration: 可维护时间段
+        # @type OperationDuration: :class:`Tencentcloud::Es.v20180416.models.OperationDurationUpdated`
+        # @param KibanaAlteringPublicAccess: 是否开启Altering 外网告警输出
+        # @type KibanaAlteringPublicAccess: Array
+
+        attr_accessor :InstanceId, :InstanceName, :NodeNum, :EsConfig, :Password, :EsAcl, :DiskSize, :NodeType, :MasterNodeNum, :MasterNodeType, :MasterNodeDiskSize, :ForceRestart, :CosBackup, :NodeInfoList, :PublicAccess, :EsPublicAcl, :KibanaPublicAccess, :KibanaPrivateAccess, :BasicSecurityType, :KibanaPrivatePort, :ScaleType, :MultiZoneInfo, :SceneType, :KibanaConfig, :WebNodeTypeInfo, :SwitchPrivateLink, :EnableCerebro, :CerebroPublicAccess, :CerebroPrivateAccess, :EsConfigSet, :OperationDuration, :KibanaAlteringPublicAccess
+
+        def initialize(instanceid=nil, instancename=nil, nodenum=nil, esconfig=nil, password=nil, esacl=nil, disksize=nil, nodetype=nil, masternodenum=nil, masternodetype=nil, masternodedisksize=nil, forcerestart=nil, cosbackup=nil, nodeinfolist=nil, publicaccess=nil, espublicacl=nil, kibanapublicaccess=nil, kibanaprivateaccess=nil, basicsecuritytype=nil, kibanaprivateport=nil, scaletype=nil, multizoneinfo=nil, scenetype=nil, kibanaconfig=nil, webnodetypeinfo=nil, switchprivatelink=nil, enablecerebro=nil, cerebropublicaccess=nil, cerebroprivateaccess=nil, esconfigset=nil, operationduration=nil, kibanaalteringpublicaccess=nil)
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @NodeNum = nodenum
+          @EsConfig = esconfig
+          @Password = password
+          @EsAcl = esacl
+          @DiskSize = disksize
+          @NodeType = nodetype
+          @MasterNodeNum = masternodenum
+          @MasterNodeType = masternodetype
+          @MasterNodeDiskSize = masternodedisksize
+          @ForceRestart = forcerestart
+          @CosBackup = cosbackup
+          @NodeInfoList = nodeinfolist
+          @PublicAccess = publicaccess
+          @EsPublicAcl = espublicacl
+          @KibanaPublicAccess = kibanapublicaccess
+          @KibanaPrivateAccess = kibanaprivateaccess
+          @BasicSecurityType = basicsecuritytype
+          @KibanaPrivatePort = kibanaprivateport
+          @ScaleType = scaletype
+          @MultiZoneInfo = multizoneinfo
+          @SceneType = scenetype
+          @KibanaConfig = kibanaconfig
+          @WebNodeTypeInfo = webnodetypeinfo
+          @SwitchPrivateLink = switchprivatelink
+          @EnableCerebro = enablecerebro
+          @CerebroPublicAccess = cerebropublicaccess
+          @CerebroPrivateAccess = cerebroprivateaccess
+          @EsConfigSet = esconfigset
+          @OperationDuration = operationduration
+          @KibanaAlteringPublicAccess = kibanaalteringpublicaccess
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @NodeNum = params['NodeNum']
+          @EsConfig = params['EsConfig']
+          @Password = params['Password']
+          unless params['EsAcl'].nil?
+            @EsAcl = EsAcl.new
+            @EsAcl.deserialize(params['EsAcl'])
+          end
+          @DiskSize = params['DiskSize']
+          @NodeType = params['NodeType']
+          @MasterNodeNum = params['MasterNodeNum']
+          @MasterNodeType = params['MasterNodeType']
+          @MasterNodeDiskSize = params['MasterNodeDiskSize']
+          @ForceRestart = params['ForceRestart']
+          unless params['CosBackup'].nil?
+            @CosBackup = CosBackup.new
+            @CosBackup.deserialize(params['CosBackup'])
+          end
+          unless params['NodeInfoList'].nil?
+            @NodeInfoList = []
+            params['NodeInfoList'].each do |i|
+              nodeinfo_tmp = NodeInfo.new
+              nodeinfo_tmp.deserialize(i)
+              @NodeInfoList << nodeinfo_tmp
+            end
+          end
+          @PublicAccess = params['PublicAccess']
+          unless params['EsPublicAcl'].nil?
+            @EsPublicAcl = EsPublicAcl.new
+            @EsPublicAcl.deserialize(params['EsPublicAcl'])
+          end
+          @KibanaPublicAccess = params['KibanaPublicAccess']
+          @KibanaPrivateAccess = params['KibanaPrivateAccess']
+          @BasicSecurityType = params['BasicSecurityType']
+          @KibanaPrivatePort = params['KibanaPrivatePort']
+          @ScaleType = params['ScaleType']
+          unless params['MultiZoneInfo'].nil?
+            @MultiZoneInfo = []
+            params['MultiZoneInfo'].each do |i|
+              zonedetail_tmp = ZoneDetail.new
+              zonedetail_tmp.deserialize(i)
+              @MultiZoneInfo << zonedetail_tmp
+            end
+          end
+          @SceneType = params['SceneType']
+          @KibanaConfig = params['KibanaConfig']
+          unless params['WebNodeTypeInfo'].nil?
+            @WebNodeTypeInfo = WebNodeTypeInfo.new
+            @WebNodeTypeInfo.deserialize(params['WebNodeTypeInfo'])
+          end
+          @SwitchPrivateLink = params['SwitchPrivateLink']
+          @EnableCerebro = params['EnableCerebro']
+          @CerebroPublicAccess = params['CerebroPublicAccess']
+          @CerebroPrivateAccess = params['CerebroPrivateAccess']
+          unless params['EsConfigSet'].nil?
+            @EsConfigSet = EsConfigSetInfo.new
+            @EsConfigSet.deserialize(params['EsConfigSet'])
+          end
+          unless params['OperationDuration'].nil?
+            @OperationDuration = OperationDurationUpdated.new
+            @OperationDuration.deserialize(params['OperationDuration'])
+          end
+          @KibanaAlteringPublicAccess = params['KibanaAlteringPublicAccess']
+        end
+      end
+
+      # UpdateInstancePublicAccess返回参数结构体
+      class UpdateInstancePublicAccessResponse < TencentCloud::Common::AbstractModel
+        # @param DealName: 订单号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DealName: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DealName, :RequestId
+
+        def initialize(dealname=nil, requestid=nil)
+          @DealName = dealname
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DealName = params['DealName']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # UpdateInstance请求参数结构体
       class UpdateInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID

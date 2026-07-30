@@ -7223,21 +7223,25 @@ module TencentCloud
 
       # 创建路由添加的指向此通道的路由
       class CreateVpnConnRoute < TencentCloud::Common::AbstractModel
-        # @param DestinationCidrBlock: 目的端IDC网段
+        # @param DestinationCidrBlock: <p>目的端IDC网段</p>
         # @type DestinationCidrBlock: String
-        # @param Priority: 优先级；可选值0，100。
+        # @param Priority: <p>优先级；可选值0，100。</p>
         # @type Priority: Integer
+        # @param Description: <p>路由备注；可选值</p>
+        # @type Description: String
 
-        attr_accessor :DestinationCidrBlock, :Priority
+        attr_accessor :DestinationCidrBlock, :Priority, :Description
 
-        def initialize(destinationcidrblock=nil, priority=nil)
+        def initialize(destinationcidrblock=nil, priority=nil, description=nil)
           @DestinationCidrBlock = destinationcidrblock
           @Priority = priority
+          @Description = description
         end
 
         def deserialize(params)
           @DestinationCidrBlock = params['DestinationCidrBlock']
           @Priority = params['Priority']
+          @Description = params['Description']
         end
       end
 
@@ -7388,27 +7392,27 @@ module TencentCloud
 
       # CreateVpnGateway请求参数结构体
       class CreateVpnGatewayRequest < TencentCloud::Common::AbstractModel
-        # @param VpcId: VPC实例ID。可通过[DescribeVpcs](https://cloud.tencent.com/document/product/215/15778)接口返回值中的VpcId获取。
+        # @param VpcId: <p>VPC实例ID。可通过<a href="https://cloud.tencent.com/document/product/215/15778">DescribeVpcs</a>。接口返回值中的VpcId获取</p><p>入参限制：当Type为CCN/SSL_CCN 类型时传 &quot;&quot;，IPSEC/SSL 类型必须传对应VPC实例ID。</p>
         # @type VpcId: String
-        # @param VpnGatewayName: VPN网关名称，最大长度不能超过60个字节。
+        # @param VpnGatewayName: <p>VPN网关名称，最大长度不能超过60个字节。</p>
         # @type VpnGatewayName: String
-        # @param InternetMaxBandwidthOut: 公网带宽设置。可选带宽规格：5, 10, 20, 50, 100, 200, 500, 1000, 3000；单位：Mbps。
+        # @param InternetMaxBandwidthOut: <p>公网带宽设置。可选带宽规格：5, 10, 20, 50, 100, 200, 500, 1000, 3000；单位：Mbps。</p>
         # @type InternetMaxBandwidthOut: Integer
-        # @param InstanceChargeType: VPN网关计费模式，PREPAID：表示预付费，即包年包月，POSTPAID_BY_HOUR：表示后付费，即按量计费。默认：POSTPAID_BY_HOUR，如果指定预付费模式，参数InstanceChargePrepaid必填。
+        # @param InstanceChargeType: <p>VPN网关计费模式，PREPAID：表示预付费，即包年包月，POSTPAID_BY_HOUR：表示后付费，即按量计费。默认：POSTPAID_BY_HOUR，如果指定预付费模式，参数InstanceChargePrepaid必填。</p>
         # @type InstanceChargeType: String
-        # @param InstanceChargePrepaid: 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。若指定实例的付费模式为预付费则该参数必传。
+        # @param InstanceChargePrepaid: <p>预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。若指定实例的付费模式为预付费则该参数必传。</p>
         # @type InstanceChargePrepaid: :class:`Tencentcloud::Vpc.v20170312.models.InstanceChargePrepaid`
-        # @param Zone: 可用区，如：ap-guangzhou-2。
+        # @param Zone: <p>可用区，如：ap-guangzhou-2。</p>
         # @type Zone: String
-        # @param Type: VPN网关类型，默认为IPSEC。值“IPSEC”为VPC型IPSEC VPN网关，值“SSL”为VPC型SSL VPN网关，值“CCN”为云联网型IPSEC VPN网关，值“SSL_CCN”为云联网型SSL VPN网关。
+        # @param Type: <p>VPN网关类型，默认为IPSEC。值“IPSEC”为VPC型IPSEC VPN网关，值“SSL”为VPC型SSL VPN网关，值“CCN”为云联网型IPSEC VPN网关，值“SSL_CCN”为云联网型SSL VPN网关。</p>
         # @type Type: String
-        # @param Tags: 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]。
+        # @param Tags: <p>指定绑定的标签列表，例如：[{&quot;Key&quot;: &quot;city&quot;, &quot;Value&quot;: &quot;shanghai&quot;}]。</p>
         # @type Tags: Array
-        # @param CdcId: CDC实例ID。
+        # @param CdcId: <p>CDC实例ID。</p>
         # @type CdcId: String
-        # @param MaxConnection: SSL VPN连接数设置，可选规格：5, 10, 20, 50, 100, 200, 500, 1000；单位：个。仅 SSL / SSL_CCN 类型需要选这个参数。
+        # @param MaxConnection: <p>SSL VPN连接数设置，可选规格：5, 10, 20, 50, 100, 200, 500, 1000；</p><p>单位：个</p><p>默认值：5</p><p>仅 SSL / SSL_CCN 类型需要填这个参数。</p>
         # @type MaxConnection: Integer
-        # @param BgpAsn: BGP ASN。
+        # @param BgpAsn: <p>BGP ASN。</p>
         # @type BgpAsn: Integer
 
         attr_accessor :VpcId, :VpnGatewayName, :InternetMaxBandwidthOut, :InstanceChargeType, :InstanceChargePrepaid, :Zone, :Type, :Tags, :CdcId, :MaxConnection, :BgpAsn
@@ -7454,7 +7458,7 @@ module TencentCloud
 
       # CreateVpnGateway返回参数结构体
       class CreateVpnGatewayResponse < TencentCloud::Common::AbstractModel
-        # @param VpnGateway: VPN网关对象
+        # @param VpnGateway: <p>VPN网关对象</p>
         # @type VpnGateway: :class:`Tencentcloud::Vpc.v20170312.models.VpnGateway`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -20150,9 +20154,9 @@ module TencentCloud
         # @type RemoteFqdnName: String
         # @param DhGroupName: <p>DH group，指定IKE交换密钥时使用的DH组，可选值：&#39;GROUP1&#39;, &#39;GROUP2&#39;, &#39;GROUP5&#39;, &#39;GROUP14&#39;, &#39;GROUP15&#39;, &#39;GROUP16&#39;, &#39;GROUP19&#39;, &#39;GROUP20&#39;, &#39;GROUP21&#39;, &#39;GROUP24&#39;，默认是GROUP1。</p>
         # @type DhGroupName: String
-        # @param IKESaLifetimeSeconds: <p>IKE SA Lifetime，单位：秒，设置IKE SA的生存周期，取值范围：60-604800</p>
+        # @param IKESaLifetimeSeconds: <p>IKE SA Lifetime，单位：秒，设置IKE SA的生存周期</p><p>取值范围：[60, 604800]</p><p>默认值：86400</p>
         # @type IKESaLifetimeSeconds: Integer
-        # @param IKEVersion: <p>IKE版本</p>
+        # @param IKEVersion: <p>IKE版本</p><p>枚举值：</p><ul><li>IKEV1： IKEV1版本</li><li>IKEV2： IKEV2版本</li></ul><p>默认值：IKEV1</p>
         # @type IKEVersion: String
 
         attr_accessor :PropoEncryAlgorithm, :PropoAuthenAlgorithm, :ExchangeMode, :LocalIdentity, :RemoteIdentity, :LocalAddress, :RemoteAddress, :LocalFqdnName, :RemoteFqdnName, :DhGroupName, :IKESaLifetimeSeconds, :IKEVersion
@@ -20190,9 +20194,9 @@ module TencentCloud
 
       # IPSec配置，腾讯云提供IPSec安全会话设置
       class IPSECOptionsSpecification < TencentCloud::Common::AbstractModel
-        # @param EncryptAlgorithm: <p>加密算法，可选值：&#39;3DES-CBC&#39;, &#39;AES-CBC-128&#39;, &#39;AES-CBC-192&#39;, &#39;AES-CBC-256&#39;, &#39;DES-CBC&#39;, &#39;SM4&#39;, &#39;NULL&#39;， 默认为AES-CBC-128</p>
+        # @param EncryptAlgorithm: <p>加密算法，可选值：&#39;3DES-CBC&#39;, &#39;AES-CBC-128&#39;, &#39;AES-CBC-192&#39;, &#39;AES-CBC-256&#39;, &#39;DES-CBC&#39;, &#39;SM4&#39;, &#39;NULL&#39;</p><p>默认值：AES-CBC-128</p>
         # @type EncryptAlgorithm: String
-        # @param IntegrityAlgorith: <p>认证算法：可选值：&#39;MD5&#39;, &#39;SHA1&#39;，&#39;SHA-256&#39; 默认为</p>
+        # @param IntegrityAlgorith: <p>认证算法：可选值：&#39;MD5&#39;, &#39;SHA1&#39;, &#39;SHA-256&#39;, &#39;SHA-512&#39;, &#39;SHA-384&#39;, &#39;SM3&#39;</p><p>默认值：SHA1</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IntegrityAlgorith: String
         # @param IPSECSaLifetimeSeconds: <p>IPsec SA lifetime(s)</p><p>取值范围：[180, 604800]</p><p>单位：秒</p><p>默认值：14400</p>
@@ -24435,37 +24439,37 @@ module TencentCloud
 
       # ModifyVpnConnectionAttribute请求参数结构体
       class ModifyVpnConnectionAttributeRequest < TencentCloud::Common::AbstractModel
-        # @param VpnConnectionId: VPN通道实例ID。形如：vpnx-f49l6u0z。
+        # @param VpnConnectionId: <p>VPN通道实例ID。形如：vpnx-f49l6u0z。</p>
         # @type VpnConnectionId: String
-        # @param VpnConnectionName: VPN通道名称，可任意命名，但不得超过60个字符。
+        # @param VpnConnectionName: <p>VPN通道名称，可任意命名，但不得超过60个字符。</p>
         # @type VpnConnectionName: String
-        # @param PreShareKey: 预共享密钥。
+        # @param PreShareKey: <p>预共享密钥。</p>
         # @type PreShareKey: String
-        # @param SecurityPolicyDatabases: SPD策略组，例如：{"10.0.0.5/24":["172.123.10.5/16"]}，10.0.0.5/24是vpc内网段，172.123.10.5/16是IDC网段。用户指定VPC内哪些网段可以和您IDC中哪些网段通信。
+        # @param SecurityPolicyDatabases: <p>SPD策略组，例如：{&quot;10.0.0.5/24&quot;:[&quot;172.123.10.5/16&quot;]}，10.0.0.5/24是vpc内网段，172.123.10.5/16是IDC网段。用户指定VPC内哪些网段可以和您IDC中哪些网段通信。</p>
         # @type SecurityPolicyDatabases: Array
-        # @param IKEOptionsSpecification: IKE配置（Internet Key Exchange，因特网密钥交换），IKE具有一套自我保护机制，用户配置网络安全协议。
+        # @param IKEOptionsSpecification: <p>IKE配置（Internet Key Exchange，因特网密钥交换），IKE具有一套自我保护机制，用户配置网络安全协议。</p>
         # @type IKEOptionsSpecification: :class:`Tencentcloud::Vpc.v20170312.models.IKEOptionsSpecification`
-        # @param IPSECOptionsSpecification: IPSec配置，腾讯云提供IPSec安全会话设置。
+        # @param IPSECOptionsSpecification: <p>IPSec配置，腾讯云提供IPSec安全会话设置。</p>
         # @type IPSECOptionsSpecification: :class:`Tencentcloud::Vpc.v20170312.models.IPSECOptionsSpecification`
-        # @param EnableHealthCheck: 是否启用通道健康检查，默认为False。
+        # @param EnableHealthCheck: <p>是否启用通道健康检查，默认为False。</p>
         # @type EnableHealthCheck: Boolean
-        # @param HealthCheckLocalIp: 本端通道探测IP。
+        # @param HealthCheckLocalIp: <p>本端通道探测IP。</p>
         # @type HealthCheckLocalIp: String
-        # @param HealthCheckRemoteIp: 对端通道探测IP。
+        # @param HealthCheckRemoteIp: <p>对端通道探测IP。</p>
         # @type HealthCheckRemoteIp: String
-        # @param NegotiationType: 协商类型，默认为active（主动协商）。可选值：active（主动协商），passive（被动协商），flowTrigger（流量协商）
+        # @param NegotiationType: <p>协商类型，默认为active（主动协商）。可选值：active（主动协商），passive（被动协商），flowTrigger（流量协商）</p>
         # @type NegotiationType: String
-        # @param DpdEnable: DPD探测开关。默认为0，表示关闭DPD探测。可选值：0（关闭），1（开启）
+        # @param DpdEnable: <p>DPD探测开关。默认为0，表示关闭DPD探测。可选值：0（关闭），1（开启）</p>
         # @type DpdEnable: Integer
-        # @param DpdTimeout: DPD超时时间。即探测确认对端不存在需要的时间。dpdEnable为1（开启）时有效。默认30，单位为秒
+        # @param DpdTimeout: <p>DPD超时时间。即探测确认对端不存在需要的时间。dpdEnable为1（开启）时有效。默认30，单位为秒</p>
         # @type DpdTimeout: String
-        # @param DpdAction: DPD超时后的动作。默认为clear。dpdEnable为1（开启）时有效。可取值为clear（断开）和restart（重试）
+        # @param DpdAction: <p>DPD超时后的动作。默认为clear。dpdEnable为1（开启）时有效。可取值为clear（断开）和restart（重试）</p><p>默认值：restart</p>
         # @type DpdAction: String
-        # @param CustomerGatewayId: 对端网关ID，4.0及以上网关下的通道支持更新。
+        # @param CustomerGatewayId: <p>对端网关ID，4.0及以上网关下的通道支持更新。</p>
         # @type CustomerGatewayId: String
-        # @param HealthCheckConfig: 健康检查配置
+        # @param HealthCheckConfig: <p>健康检查配置</p>
         # @type HealthCheckConfig: :class:`Tencentcloud::Vpc.v20170312.models.HealthCheckConfig`
-        # @param BgpConfig: BGP隧道配置
+        # @param BgpConfig: <p>BGP隧道配置</p>
         # @type BgpConfig: :class:`Tencentcloud::Vpc.v20170312.models.BgpConfig`
 
         attr_accessor :VpnConnectionId, :VpnConnectionName, :PreShareKey, :SecurityPolicyDatabases, :IKEOptionsSpecification, :IPSECOptionsSpecification, :EnableHealthCheck, :HealthCheckLocalIp, :HealthCheckRemoteIp, :NegotiationType, :DpdEnable, :DpdTimeout, :DpdAction, :CustomerGatewayId, :HealthCheckConfig, :BgpConfig

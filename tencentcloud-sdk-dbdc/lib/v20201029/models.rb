@@ -3096,7 +3096,7 @@ module TencentCloud
         # @type ServiceModule: String
         # @param AddressModule: <p>IP 地址模板 ID</p>
         # @type AddressModule: String
-        # @param Id: <p>规则 ID</p>
+        # @param Id: <p>安全组 ID</p>
         # @type Id: String
         # @param Desc: <p>规则备注描述</p>
         # @type Desc: String

@@ -3076,38 +3076,40 @@ module TencentCloud
 
       # Token Plan 套餐列表项
       class TokenPlanListItem < TencentCloud::Common::AbstractModel
-        # @param TeamId: 套餐 ID。
+        # @param TeamId: <p>套餐 ID。</p>
         # @type TeamId: String
-        # @param ProductType: 套餐类型。取值：enterprise（企业版专业套餐）、enterprise-auto（企业版轻享套餐）
+        # @param ProductType: <p>套餐类型。取值：enterprise（企业版专业套餐）、enterprise-auto（企业版轻享套餐）</p>
         # @type ProductType: String
-        # @param Name: 套餐名称。最大 128 字符。
+        # @param Name: <p>套餐名称。最大 128 字符。</p>
         # @type Name: String
-        # @param AppId: 账号 APP ID。
+        # @param AppId: <p>账号 APP ID。</p>
         # @type AppId: String
-        # @param Uin: 主账号 UIN。
+        # @param Uin: <p>主账号 UIN。</p>
         # @type Uin: String
-        # @param Status: 套餐状态。取值：enable（启用）、disable（停用）。
+        # @param Status: <p>套餐状态。取值：enable（启用）、disable（停用）。</p>
         # @type Status: String
-        # @param StopReason: 套餐关停原因。取值：NORMAL（正常）、ISOLATED（隔离/欠费）、FROZEN（冻结）、EXHAUSTED（额度耗尽）、DESTROYED（已销毁）
+        # @param StopReason: <p>套餐关停原因。取值：NORMAL（正常）、ISOLATED（隔离/欠费）、FROZEN（冻结）、EXHAUSTED（额度耗尽）、DESTROYED（已销毁）</p>
         # @type StopReason: String
-        # @param ApiKeyMax: 可创建 API Key 上限。
+        # @param ApiKeyMax: <p>可创建 API Key 上限。</p>
         # @type ApiKeyMax: Integer
-        # @param PrepayResourceID: 云计费预付费资源包 ID。
+        # @param ApiKeyCount: <p>当前已创建的 APIKey 数量</p>
+        # @type ApiKeyCount: Integer
+        # @param PrepayResourceID: <p>云计费预付费资源包 ID。</p>
         # @type PrepayResourceID: String
-        # @param Creator: 创建人。若为子账号创建的套餐，则该值为子账号UIN。
+        # @param Creator: <p>创建人。若为子账号创建的套餐，则该值为子账号UIN。</p>
         # @type Creator: String
-        # @param CreatedAt: 创建时间。
+        # @param CreatedAt: <p>创建时间。</p>
         # @type CreatedAt: String
-        # @param UpdatedAt: 更新时间。
+        # @param UpdatedAt: <p>更新时间。</p>
         # @type UpdatedAt: String
-        # @param PackageInfo: 套餐包基本信息。
+        # @param PackageInfo: <p>套餐包基本信息。</p>
         # @type PackageInfo: :class:`Tencentcloud::Tokenhub.v20260322.models.TokenPlanPackageInfo`
-        # @param AutoRenewFlag: 是否开启自动续费。取值：0（未开启），1（开启）
+        # @param AutoRenewFlag: <p>是否开启自动续费。取值：0（未开启），1（开启）</p>
         # @type AutoRenewFlag: Integer
 
-        attr_accessor :TeamId, :ProductType, :Name, :AppId, :Uin, :Status, :StopReason, :ApiKeyMax, :PrepayResourceID, :Creator, :CreatedAt, :UpdatedAt, :PackageInfo, :AutoRenewFlag
+        attr_accessor :TeamId, :ProductType, :Name, :AppId, :Uin, :Status, :StopReason, :ApiKeyMax, :ApiKeyCount, :PrepayResourceID, :Creator, :CreatedAt, :UpdatedAt, :PackageInfo, :AutoRenewFlag
 
-        def initialize(teamid=nil, producttype=nil, name=nil, appid=nil, uin=nil, status=nil, stopreason=nil, apikeymax=nil, prepayresourceid=nil, creator=nil, createdat=nil, updatedat=nil, packageinfo=nil, autorenewflag=nil)
+        def initialize(teamid=nil, producttype=nil, name=nil, appid=nil, uin=nil, status=nil, stopreason=nil, apikeymax=nil, apikeycount=nil, prepayresourceid=nil, creator=nil, createdat=nil, updatedat=nil, packageinfo=nil, autorenewflag=nil)
           @TeamId = teamid
           @ProductType = producttype
           @Name = name
@@ -3116,6 +3118,7 @@ module TencentCloud
           @Status = status
           @StopReason = stopreason
           @ApiKeyMax = apikeymax
+          @ApiKeyCount = apikeycount
           @PrepayResourceID = prepayresourceid
           @Creator = creator
           @CreatedAt = createdat
@@ -3133,6 +3136,7 @@ module TencentCloud
           @Status = params['Status']
           @StopReason = params['StopReason']
           @ApiKeyMax = params['ApiKeyMax']
+          @ApiKeyCount = params['ApiKeyCount']
           @PrepayResourceID = params['PrepayResourceID']
           @Creator = params['Creator']
           @CreatedAt = params['CreatedAt']

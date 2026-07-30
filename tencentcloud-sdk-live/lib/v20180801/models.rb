@@ -342,24 +342,21 @@ module TencentCloud
 
       # AddLiveWatermark请求参数结构体
       class AddLiveWatermarkRequest < TencentCloud::Common::AbstractModel
-        # @param PictureUrl: 水印图片 URL。
-        # URL中禁止包含的字符：
-        #  ;(){}$>`#"\'|
+        # @param PictureUrl: <p>水印图片 URL。<br>URL中禁止包含的字符：<br> ;(){}$&gt;`#&quot;'|</p>
         # @type PictureUrl: String
-        # @param WatermarkName: 水印名称。
-        # 最长30字节。
+        # @param WatermarkName: <p>水印名称。<br>最长30字节。</p>
         # @type WatermarkName: String
-        # @param XPosition: 显示位置，X轴偏移，单位是百分比，默认 0。
+        # @param XPosition: <p>显示位置，X轴偏移，单位是百分比，默认 0。</p>
         # @type XPosition: Integer
-        # @param YPosition: 显示位置，Y轴偏移，单位是百分比，默认 0。
+        # @param YPosition: <p>显示位置，Y轴偏移，单位是百分比，默认 0。</p>
         # @type YPosition: Integer
-        # @param Width: 水印宽度，占直播原始画面宽度百分比，建议高宽只设置一项，另外一项会自适应缩放，避免变形。默认原始宽度。
+        # @param Width: <p>水印宽度，占直播原始画面宽度百分比，建议高宽只设置一项，另外一项会自适应缩放，避免变形。默认原始宽度。</p>
         # @type Width: Integer
-        # @param Height: 水印高度，占直播原始画面高度百分比，建议高宽只设置一项，另外一项会自适应缩放，避免变形。默认原始高度。
+        # @param Height: <p>水印高度，占直播原始画面高度百分比，建议高宽只设置一项，另外一项会自适应缩放，避免变形。默认原始高度。</p>
         # @type Height: Integer
-        # @param BackgroundWidth: 背景水印宽度。默认宽度1920。
+        # @param BackgroundWidth: <p>背景水印宽度。默认宽度1920。</p><p>取值范围：[360, 4096]</p><p>单位：px</p>
         # @type BackgroundWidth: Integer
-        # @param BackgroundHeight: 背景水印高度。默认高度1080。
+        # @param BackgroundHeight: <p>背景水印高度。默认高度1080。</p><p>取值范围：[360, 4096]</p><p>单位：px</p>
         # @type BackgroundHeight: Integer
 
         attr_accessor :PictureUrl, :WatermarkName, :XPosition, :YPosition, :Width, :Height, :BackgroundWidth, :BackgroundHeight
@@ -389,7 +386,7 @@ module TencentCloud
 
       # AddLiveWatermark返回参数结构体
       class AddLiveWatermarkResponse < TencentCloud::Common::AbstractModel
-        # @param WatermarkId: 水印ID。
+        # @param WatermarkId: <p>水印ID。</p>
         # @type WatermarkId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

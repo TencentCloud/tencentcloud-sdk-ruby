@@ -3611,10 +3611,14 @@ module TencentCloud
         # @type ClusterLevel: String
         # @param CynosVersion: <p>内核小版本号</p>
         # @type CynosVersion: String
+        # @param SyncWay: <p>同步方式。可选值：async、semisync、sync。</p>
+        # @type SyncWay: String
+        # @param SemiSyncTimeout: <p>半同步超时时间，单位ms。为保证业务稳定性，半同步复制存在退化逻辑，当主可用区集群在等待备可用区集群确认事务时若超过该超时时间，复制方式将降为异步复制。</p><p>取值范围：[1000, 4294967295]</p><p>单位：毫秒</p><p>默认值：10000</p>
+        # @type SemiSyncTimeout: Integer
 
-        attr_accessor :Zone, :VpcId, :SubnetId, :DbType, :DbVersion, :ProjectId, :Cpu, :Memory, :InstanceCount, :Storage, :ClusterName, :AdminPassword, :Port, :PayMode, :Count, :RollbackStrategy, :RollbackId, :OriginalClusterId, :ExpectTime, :ExpectTimeThresh, :StorageLimit, :TimeSpan, :TimeUnit, :AutoRenewFlag, :AutoVoucher, :HaCount, :OrderSource, :ResourceTags, :DbMode, :MinCpu, :MaxCpu, :AutoPause, :AutoPauseDelay, :StoragePayMode, :SecurityGroupIds, :AlarmPolicyIds, :ClusterParams, :DealMode, :ParamTemplateId, :SlaveZone, :InstanceInitInfos, :GdnId, :ProxyConfig, :AutoArchive, :AutoArchiveDelayHours, :ClusterLevel, :CynosVersion
+        attr_accessor :Zone, :VpcId, :SubnetId, :DbType, :DbVersion, :ProjectId, :Cpu, :Memory, :InstanceCount, :Storage, :ClusterName, :AdminPassword, :Port, :PayMode, :Count, :RollbackStrategy, :RollbackId, :OriginalClusterId, :ExpectTime, :ExpectTimeThresh, :StorageLimit, :TimeSpan, :TimeUnit, :AutoRenewFlag, :AutoVoucher, :HaCount, :OrderSource, :ResourceTags, :DbMode, :MinCpu, :MaxCpu, :AutoPause, :AutoPauseDelay, :StoragePayMode, :SecurityGroupIds, :AlarmPolicyIds, :ClusterParams, :DealMode, :ParamTemplateId, :SlaveZone, :InstanceInitInfos, :GdnId, :ProxyConfig, :AutoArchive, :AutoArchiveDelayHours, :ClusterLevel, :CynosVersion, :SyncWay, :SemiSyncTimeout
 
-        def initialize(zone=nil, vpcid=nil, subnetid=nil, dbtype=nil, dbversion=nil, projectid=nil, cpu=nil, memory=nil, instancecount=nil, storage=nil, clustername=nil, adminpassword=nil, port=nil, paymode=nil, count=nil, rollbackstrategy=nil, rollbackid=nil, originalclusterid=nil, expecttime=nil, expecttimethresh=nil, storagelimit=nil, timespan=nil, timeunit=nil, autorenewflag=nil, autovoucher=nil, hacount=nil, ordersource=nil, resourcetags=nil, dbmode=nil, mincpu=nil, maxcpu=nil, autopause=nil, autopausedelay=nil, storagepaymode=nil, securitygroupids=nil, alarmpolicyids=nil, clusterparams=nil, dealmode=nil, paramtemplateid=nil, slavezone=nil, instanceinitinfos=nil, gdnid=nil, proxyconfig=nil, autoarchive=nil, autoarchivedelayhours=nil, clusterlevel=nil, cynosversion=nil)
+        def initialize(zone=nil, vpcid=nil, subnetid=nil, dbtype=nil, dbversion=nil, projectid=nil, cpu=nil, memory=nil, instancecount=nil, storage=nil, clustername=nil, adminpassword=nil, port=nil, paymode=nil, count=nil, rollbackstrategy=nil, rollbackid=nil, originalclusterid=nil, expecttime=nil, expecttimethresh=nil, storagelimit=nil, timespan=nil, timeunit=nil, autorenewflag=nil, autovoucher=nil, hacount=nil, ordersource=nil, resourcetags=nil, dbmode=nil, mincpu=nil, maxcpu=nil, autopause=nil, autopausedelay=nil, storagepaymode=nil, securitygroupids=nil, alarmpolicyids=nil, clusterparams=nil, dealmode=nil, paramtemplateid=nil, slavezone=nil, instanceinitinfos=nil, gdnid=nil, proxyconfig=nil, autoarchive=nil, autoarchivedelayhours=nil, clusterlevel=nil, cynosversion=nil, syncway=nil, semisynctimeout=nil)
           @Zone = zone
           @VpcId = vpcid
           @SubnetId = subnetid
@@ -3662,6 +3666,8 @@ module TencentCloud
           @AutoArchiveDelayHours = autoarchivedelayhours
           @ClusterLevel = clusterlevel
           @CynosVersion = cynosversion
+          @SyncWay = syncway
+          @SemiSyncTimeout = semisynctimeout
         end
 
         def deserialize(params)
@@ -3736,6 +3742,8 @@ module TencentCloud
           @AutoArchiveDelayHours = params['AutoArchiveDelayHours']
           @ClusterLevel = params['ClusterLevel']
           @CynosVersion = params['CynosVersion']
+          @SyncWay = params['SyncWay']
+          @SemiSyncTimeout = params['SemiSyncTimeout']
         end
       end
 
@@ -20776,10 +20784,16 @@ module TencentCloud
         # @type AutoArchive: String
         # @param FromSaveBackup: <p>是否从保存备份中恢复</p>
         # @type FromSaveBackup: Boolean
+        # @param SyncWay: <p>同步方式。可选值：async、semisync、sync，默认异步。</p>
+        # @type SyncWay: String
+        # @param SemiSyncTimeout: <p>半同步超时时间，单位ms。为保证业务稳定性，半同步复制存在退化逻辑，当主可用区集群在等待备可用区集群确认事务时若超过该超时时间，复制方式将降为异步复制。</p><p>取值范围：[1000, 4294967295]</p><p>单位：毫秒</p><p>默认值：10000</p>
+        # @type SemiSyncTimeout: Integer
+        # @param SlaveZone: <p>备可用区</p>
+        # @type SlaveZone: String
 
-        attr_accessor :Zone, :OriginalClusterId, :UniqVpcId, :UniqSubnetId, :ClusterName, :RollbackId, :ExpectTime, :AutoVoucher, :ResourceTags, :DbMode, :MinCpu, :MaxCpu, :AutoPause, :AutoPauseDelay, :SecurityGroupIds, :AlarmPolicyIds, :ClusterParams, :ParamTemplateId, :InstanceInitInfos, :DealMode, :PayMode, :TimeSpan, :TimeUnit, :RollbackDatabases, :RollbackTables, :OriginalROInstanceList, :ProjectId, :AutoArchive, :FromSaveBackup
+        attr_accessor :Zone, :OriginalClusterId, :UniqVpcId, :UniqSubnetId, :ClusterName, :RollbackId, :ExpectTime, :AutoVoucher, :ResourceTags, :DbMode, :MinCpu, :MaxCpu, :AutoPause, :AutoPauseDelay, :SecurityGroupIds, :AlarmPolicyIds, :ClusterParams, :ParamTemplateId, :InstanceInitInfos, :DealMode, :PayMode, :TimeSpan, :TimeUnit, :RollbackDatabases, :RollbackTables, :OriginalROInstanceList, :ProjectId, :AutoArchive, :FromSaveBackup, :SyncWay, :SemiSyncTimeout, :SlaveZone
 
-        def initialize(zone=nil, originalclusterid=nil, uniqvpcid=nil, uniqsubnetid=nil, clustername=nil, rollbackid=nil, expecttime=nil, autovoucher=nil, resourcetags=nil, dbmode=nil, mincpu=nil, maxcpu=nil, autopause=nil, autopausedelay=nil, securitygroupids=nil, alarmpolicyids=nil, clusterparams=nil, paramtemplateid=nil, instanceinitinfos=nil, dealmode=nil, paymode=nil, timespan=nil, timeunit=nil, rollbackdatabases=nil, rollbacktables=nil, originalroinstancelist=nil, projectid=nil, autoarchive=nil, fromsavebackup=nil)
+        def initialize(zone=nil, originalclusterid=nil, uniqvpcid=nil, uniqsubnetid=nil, clustername=nil, rollbackid=nil, expecttime=nil, autovoucher=nil, resourcetags=nil, dbmode=nil, mincpu=nil, maxcpu=nil, autopause=nil, autopausedelay=nil, securitygroupids=nil, alarmpolicyids=nil, clusterparams=nil, paramtemplateid=nil, instanceinitinfos=nil, dealmode=nil, paymode=nil, timespan=nil, timeunit=nil, rollbackdatabases=nil, rollbacktables=nil, originalroinstancelist=nil, projectid=nil, autoarchive=nil, fromsavebackup=nil, syncway=nil, semisynctimeout=nil, slavezone=nil)
           @Zone = zone
           @OriginalClusterId = originalclusterid
           @UniqVpcId = uniqvpcid
@@ -20809,6 +20823,9 @@ module TencentCloud
           @ProjectId = projectid
           @AutoArchive = autoarchive
           @FromSaveBackup = fromsavebackup
+          @SyncWay = syncway
+          @SemiSyncTimeout = semisynctimeout
+          @SlaveZone = slavezone
         end
 
         def deserialize(params)
@@ -20876,6 +20893,9 @@ module TencentCloud
           @ProjectId = params['ProjectId']
           @AutoArchive = params['AutoArchive']
           @FromSaveBackup = params['FromSaveBackup']
+          @SyncWay = params['SyncWay']
+          @SemiSyncTimeout = params['SemiSyncTimeout']
+          @SlaveZone = params['SlaveZone']
         end
       end
 

@@ -643,12 +643,11 @@ module TencentCloud
 
       # CheckPhoneAndName请求参数结构体
       class CheckPhoneAndNameRequest < TencentCloud::Common::AbstractModel
-        # @param Mobile: ⼿机号。
+        # @param Mobile: <p>⼿机号。</p>
         # @type Mobile: String
-        # @param Name: 姓名。
+        # @param Name: <p>姓名。</p>
         # @type Name: String
-        # @param Encryption: 敏感数据加密信息。
-        # - 对传入信息（姓名、手机号）有加密需求的用户可使用此参数，详情请点击左侧链接。
+        # @param Encryption: <p>敏感数据加密信息。</p><ul><li>对传入信息（姓名、手机号）有加密需求的用户可使用此参数，详情请点击左侧链接。</li></ul>
         # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
 
         attr_accessor :Mobile, :Name, :Encryption
@@ -671,20 +670,9 @@ module TencentCloud
 
       # CheckPhoneAndName返回参数结构体
       class CheckPhoneAndNameResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 认证结果码，收费情况如下。
-        # - 收费结果码：
-        # 0: 验证结果一致。
-        # 1: 验证结果不一致。
-
-        # - 不收费结果码：
-        # -1:查无记录。
-        # -2:引擎未知错误。
-        # -3:引擎服务异常。
-        # -4:姓名校验不通过。
-        # -5:手机号码不合法。
-        # -6: 认证次数超过当日限制，请次日重试。
+        # @param Result: <p>认证结果码，收费情况如下。</p><ul><li><p>收费结果码：<br>0: 验证结果一致。<br>1: 验证结果不一致。</p></li><li><p>不收费结果码：<br>-1:查无记录。<br>-2:引擎未知错误。<br>-3:引擎服务异常。<br>-4:姓名校验不通过。<br>-5:手机号码不合法。<br>-6: 认证次数超过当日限制，请次日重试。<br>-13：该号段不支持验证</p></li></ul>
         # @type Result: String
-        # @param Description: 业务结果描述。
+        # @param Description: <p>业务结果描述。</p>
         # @type Description: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

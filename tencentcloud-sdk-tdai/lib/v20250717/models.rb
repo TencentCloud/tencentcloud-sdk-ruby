@@ -1765,12 +1765,18 @@ module TencentCloud
         # @type Status: Integer
         # @param Region: <p>地域</p>
         # @type Region: String
+        # @param PayMode: <p>计费模式</p><p>枚举值：</p><ul><li>-1： 免费版</li><li>0： 按量付费</li><li>1： 包年包月</li></ul>
+        # @type PayMode: Integer
+        # @param AutoRenew: <p>是否自动续费</p><p>枚举值：</p><ul><li>0： 不自动续费</li><li>1： 自动续费</li></ul>
+        # @type AutoRenew: Integer
         # @param MemoryUsage: <p>记忆条数</p>
         # @type MemoryUsage: Integer
         # @param CreditUsage: <p>当月积分数</p>
         # @type CreditUsage: Float
         # @param ResourceTags: <p>资源标签</p>
         # @type ResourceTags: Array
+        # @param Version: <p>版本号</p>
+        # @type Version: String
         # @param CreatedAt: <p>创建时间</p>
         # @type CreatedAt: String
         # @param IsolatedAt: <p>隔离时间</p>
@@ -1780,17 +1786,20 @@ module TencentCloud
         # @param DestroyAt: <p>到期销毁时间</p>
         # @type DestroyAt: String
 
-        attr_accessor :SpaceId, :Name, :Description, :Status, :Region, :MemoryUsage, :CreditUsage, :ResourceTags, :CreatedAt, :IsolatedAt, :ExpiredAt, :DestroyAt
+        attr_accessor :SpaceId, :Name, :Description, :Status, :Region, :PayMode, :AutoRenew, :MemoryUsage, :CreditUsage, :ResourceTags, :Version, :CreatedAt, :IsolatedAt, :ExpiredAt, :DestroyAt
 
-        def initialize(spaceid=nil, name=nil, description=nil, status=nil, region=nil, memoryusage=nil, creditusage=nil, resourcetags=nil, createdat=nil, isolatedat=nil, expiredat=nil, destroyat=nil)
+        def initialize(spaceid=nil, name=nil, description=nil, status=nil, region=nil, paymode=nil, autorenew=nil, memoryusage=nil, creditusage=nil, resourcetags=nil, version=nil, createdat=nil, isolatedat=nil, expiredat=nil, destroyat=nil)
           @SpaceId = spaceid
           @Name = name
           @Description = description
           @Status = status
           @Region = region
+          @PayMode = paymode
+          @AutoRenew = autorenew
           @MemoryUsage = memoryusage
           @CreditUsage = creditusage
           @ResourceTags = resourcetags
+          @Version = version
           @CreatedAt = createdat
           @IsolatedAt = isolatedat
           @ExpiredAt = expiredat
@@ -1803,6 +1812,8 @@ module TencentCloud
           @Description = params['Description']
           @Status = params['Status']
           @Region = params['Region']
+          @PayMode = params['PayMode']
+          @AutoRenew = params['AutoRenew']
           @MemoryUsage = params['MemoryUsage']
           @CreditUsage = params['CreditUsage']
           unless params['ResourceTags'].nil?
@@ -1813,6 +1824,7 @@ module TencentCloud
               @ResourceTags << resourcetag_tmp
             end
           end
+          @Version = params['Version']
           @CreatedAt = params['CreatedAt']
           @IsolatedAt = params['IsolatedAt']
           @ExpiredAt = params['ExpiredAt']

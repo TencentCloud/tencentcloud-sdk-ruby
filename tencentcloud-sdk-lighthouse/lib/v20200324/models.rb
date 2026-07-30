@@ -439,6 +439,95 @@ module TencentCloud
         end
       end
 
+      # 镜像套餐详细信息。
+      class BlueprintBundle < TencentCloud::Common::AbstractModel
+        # @param BundleId: 套餐ID。可以通过[DescribeBundles](https://cloud.tencent.com/document/product/1207/47575)接口返回的BundleId获取。
+        # @type BundleId: String
+        # @param SupportLinuxUnixPlatform: 是否支持 Linux/Unix 平台。
+        # @type SupportLinuxUnixPlatform: Boolean
+        # @param SupportWindowsPlatform: 是否支持 Windows 平台。
+        # @type SupportWindowsPlatform: Boolean
+        # @param Price: 套餐当前单位价格信息。
+        # @type Price: :class:`Tencentcloud::Lighthouse.v20200324.models.Price`
+        # @param BundleSalesState: 套餐售卖状态,取值:‘AVAILABLE’(可用) , ‘SOLD_OUT’(售罄)。
+        # @type BundleSalesState: String
+        # @param BundleType: 套餐类型。
+        # @type BundleType: String
+        # @param BundleTypeDescription: 套餐类型描述信息。
+        # @type BundleTypeDescription: String
+        # @param BundleTypePriority: 套餐类型权重。取值越小排序越靠前。
+        # @type BundleTypePriority: Integer
+        # @param BundleDisplayLabel: 套餐展示标签。
+        # @type BundleDisplayLabel: String
+        # @param SupportSlot: 支持人数。
+        # @type SupportSlot: Integer
+        # @param Memory: 内存大小，单位 GB。
+        # @type Memory: Integer
+        # @param SystemDiskType: 系统盘类型。
+        # 取值范围：
+        # <li> CLOUD_SSD：SSD 云硬盘</li><li> CLOUD_PREMIUM：高性能云硬盘</li>
+        # @type SystemDiskType: String
+        # @param SystemDiskSize: 系统盘大小。单位GB。
+        # @type SystemDiskSize: Integer
+        # @param MonthlyTraffic: 每月网络流量，单位 GB。
+        # @type MonthlyTraffic: Integer
+        # @param CPU: CPU 核数。
+        # @type CPU: Integer
+        # @param InternetMaxBandwidthOut: 峰值带宽，单位 Mbps。
+        # @type InternetMaxBandwidthOut: Integer
+        # @param InternetChargeType: 网络计费类型。
+        # @type InternetChargeType: String
+        # @param TrafficUnlimited: 流量是否无上限。
+        # @type TrafficUnlimited: Boolean
+
+        attr_accessor :BundleId, :SupportLinuxUnixPlatform, :SupportWindowsPlatform, :Price, :BundleSalesState, :BundleType, :BundleTypeDescription, :BundleTypePriority, :BundleDisplayLabel, :SupportSlot, :Memory, :SystemDiskType, :SystemDiskSize, :MonthlyTraffic, :CPU, :InternetMaxBandwidthOut, :InternetChargeType, :TrafficUnlimited
+
+        def initialize(bundleid=nil, supportlinuxunixplatform=nil, supportwindowsplatform=nil, price=nil, bundlesalesstate=nil, bundletype=nil, bundletypedescription=nil, bundletypepriority=nil, bundledisplaylabel=nil, supportslot=nil, memory=nil, systemdisktype=nil, systemdisksize=nil, monthlytraffic=nil, cpu=nil, internetmaxbandwidthout=nil, internetchargetype=nil, trafficunlimited=nil)
+          @BundleId = bundleid
+          @SupportLinuxUnixPlatform = supportlinuxunixplatform
+          @SupportWindowsPlatform = supportwindowsplatform
+          @Price = price
+          @BundleSalesState = bundlesalesstate
+          @BundleType = bundletype
+          @BundleTypeDescription = bundletypedescription
+          @BundleTypePriority = bundletypepriority
+          @BundleDisplayLabel = bundledisplaylabel
+          @SupportSlot = supportslot
+          @Memory = memory
+          @SystemDiskType = systemdisktype
+          @SystemDiskSize = systemdisksize
+          @MonthlyTraffic = monthlytraffic
+          @CPU = cpu
+          @InternetMaxBandwidthOut = internetmaxbandwidthout
+          @InternetChargeType = internetchargetype
+          @TrafficUnlimited = trafficunlimited
+        end
+
+        def deserialize(params)
+          @BundleId = params['BundleId']
+          @SupportLinuxUnixPlatform = params['SupportLinuxUnixPlatform']
+          @SupportWindowsPlatform = params['SupportWindowsPlatform']
+          unless params['Price'].nil?
+            @Price = Price.new
+            @Price.deserialize(params['Price'])
+          end
+          @BundleSalesState = params['BundleSalesState']
+          @BundleType = params['BundleType']
+          @BundleTypeDescription = params['BundleTypeDescription']
+          @BundleTypePriority = params['BundleTypePriority']
+          @BundleDisplayLabel = params['BundleDisplayLabel']
+          @SupportSlot = params['SupportSlot']
+          @Memory = params['Memory']
+          @SystemDiskType = params['SystemDiskType']
+          @SystemDiskSize = params['SystemDiskSize']
+          @MonthlyTraffic = params['MonthlyTraffic']
+          @CPU = params['CPU']
+          @InternetMaxBandwidthOut = params['InternetMaxBandwidthOut']
+          @InternetChargeType = params['InternetChargeType']
+          @TrafficUnlimited = params['TrafficUnlimited']
+        end
+      end
+
       # 描述镜像实例信息。
       class BlueprintInstance < TencentCloud::Common::AbstractModel
         # @param Blueprint: 镜像信息。
@@ -1743,6 +1832,65 @@ module TencentCloud
               sceneinfo_tmp = SceneInfo.new
               sceneinfo_tmp.deserialize(i)
               @SceneInfoSet << sceneinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBlueprintBundles请求参数结构体
+      class DescribeBlueprintBundlesRequest < TencentCloud::Common::AbstractModel
+        # @param BlueprintId: 镜像ID。可以通过[DescribeBlueprints](https://cloud.tencent.com/document/product/1207/47689)接口返回的BlueprintId获取。当前仅支持传入镜像类型为游戏专区(“GAME_PORTAL”)的镜像Id。
+        # @type BlueprintId: String
+        # @param BundleIds: 套餐ID列表。可以通过DescribeBlueprintBundles接口返回的BundleId获取。
+        # @type BundleIds: Array
+        # @param Limit: 返回数量，默认为 20，最大值为 100。关于Limit的更进一步介绍请参考 API 简介中的相关小节。
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为 0。关于Offset的更进一步介绍请参考 API 简介中的相关小节。
+        # @type Offset: Integer
+
+        attr_accessor :BlueprintId, :BundleIds, :Limit, :Offset
+
+        def initialize(blueprintid=nil, bundleids=nil, limit=nil, offset=nil)
+          @BlueprintId = blueprintid
+          @BundleIds = bundleids
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @BlueprintId = params['BlueprintId']
+          @BundleIds = params['BundleIds']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeBlueprintBundles返回参数结构体
+      class DescribeBlueprintBundlesResponse < TencentCloud::Common::AbstractModel
+        # @param BlueprintBundleSet: 镜像套餐详细信息列表。
+        # @type BlueprintBundleSet: Array
+        # @param TotalCount: 符合要求的套餐总数，用于分页展示。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BlueprintBundleSet, :TotalCount, :RequestId
+
+        def initialize(blueprintbundleset=nil, totalcount=nil, requestid=nil)
+          @BlueprintBundleSet = blueprintbundleset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['BlueprintBundleSet'].nil?
+            @BlueprintBundleSet = []
+            params['BlueprintBundleSet'].each do |i|
+              blueprintbundle_tmp = BlueprintBundle.new
+              blueprintbundle_tmp.deserialize(i)
+              @BlueprintBundleSet << blueprintbundle_tmp
             end
           end
           @TotalCount = params['TotalCount']
