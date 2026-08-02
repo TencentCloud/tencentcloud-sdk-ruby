@@ -2246,8 +2246,8 @@ module TencentCloud
 
         attr_accessor :Name, :SegmentSet, :RecognitionSegmentSet
         extend Gem::Deprecate
-        deprecate :SegmentSet, :none, 2026, 7
-        deprecate :SegmentSet=, :none, 2026, 7
+        deprecate :SegmentSet, :none, 2026, 8
+        deprecate :SegmentSet=, :none, 2026, 8
 
         def initialize(name=nil, segmentset=nil, recognitionsegmentset=nil)
           @Name = name
@@ -5489,7 +5489,7 @@ module TencentCloud
       class AigcVideoTaskInputFileInfo < TencentCloud::Common::AbstractModel
         # @param Type: <p>输入的视频文件类型。取值有： <li>File：点播媒体文件；</li> <li>Url：可访问的 Url；</li> <li>Base64：图片或视频转换的Base64字符串；</li></p>
         # @type Type: String
-        # @param Category: <p>文件分类。取值为：</p><ul><li>Image: 图片；<strong>注意，要使用Usage字段定义图片类型</strong>。</li><li>Video: 视频。</li></ul>
+        # @param Category: <p>文件分类。取值为：</p><ul><li>Image: 图片；</li><li>Video: 视频；</li><li>Audio: 音频；</li></ul>
         # @type Category: String
         # @param FileId: <p>媒体文件 ID，即该文件在云点播上的全局唯一标识符，在上传成功后由云点播后台分配。可以在 <a href="/document/product/266/7830">视频上传完成事件通知</a> 或 <a href="https://console.cloud.tencent.com/vod/media">云点播控制台</a> 获取该字段。当 Type 取值为 File 时，本参数有效。说明：</p><ol><li>推荐使用小于10M的图片；</li><li>图片格式的取值为：jpeg，jpg, png。</li></ol>
         # @type FileId: String
@@ -5981,8 +5981,8 @@ module TencentCloud
 
         attr_accessor :Switch, :SubtitleFormats, :SubtitleFormat, :SrcLanguage, :SubtitleName
         extend Gem::Deprecate
-        deprecate :SubtitleFormat, :none, 2026, 7
-        deprecate :SubtitleFormat=, :none, 2026, 7
+        deprecate :SubtitleFormat, :none, 2026, 8
+        deprecate :SubtitleFormat=, :none, 2026, 8
 
         def initialize(switch=nil, subtitleformats=nil, subtitleformat=nil, srclanguage=nil, subtitlename=nil)
           @Switch = switch
@@ -6025,8 +6025,8 @@ module TencentCloud
 
         attr_accessor :Switch, :SubtitleFormatsOperation, :SubtitleFormat, :SrcLanguage, :SubtitleName
         extend Gem::Deprecate
-        deprecate :SubtitleFormat, :none, 2026, 7
-        deprecate :SubtitleFormat=, :none, 2026, 7
+        deprecate :SubtitleFormat, :none, 2026, 8
+        deprecate :SubtitleFormat=, :none, 2026, 8
 
         def initialize(switch=nil, subtitleformatsoperation=nil, subtitleformat=nil, srclanguage=nil, subtitlename=nil)
           @Switch = switch
@@ -9573,9 +9573,9 @@ module TencentCloud
         # @type SubAppId: Integer
         # @param ModelName: <p>模型名称。取值：<br>Kling：可灵；<br>Vidu；<br>Hailuo：海螺；<br>Hunyuan：混元；<br>Mingmou：明眸；<br>GV；<br>OS；<br>PixVerse;</p>
         # @type ModelName: String
-        # @param ModelVersion: <p>模型版本。取值：<br>当 ModelName 是 Hailuo，可选值为 02、2.3、2.3-fast；<br>当 ModelName 是 Kling，可选值为 1.6、2.0、2.1、2.5、2.6、O1、3.0、3.0-Omni；<br>当 ModelName 是 Vidu，可选值为 q2、q2-pro、q2-turbo、q3、q3-pro、q3-turbo；<br>当 ModelName 是 GV，可选值为 3.1、3.1-fast；<br>当 ModelName 是 OS，可选值为 2.0；<br>当 ModelName 是 Hunyuan，可选值为 1.5；<br>当 ModelName 是 Mingmou，可选值为 1.0；<br>当 ModelName 是 PixVerse，可选值为 v5.6、v6、c1；</p>
+        # @param ModelVersion: <p>模型版本。取值：<br>当 ModelName 是 Hailuo，可选值为 02、2.3、2.3-fast、H3；<br>当 ModelName 是 Kling，可选值为 1.6、2.0、2.1、2.5、2.6、O1、3.0、3.0-Omni；<br>当 ModelName 是 Vidu，可选值为 q2、q2-pro、q2-turbo、q3、q3-pro、q3-turbo；<br>当 ModelName 是 GV，可选值为 3.1、3.1-fast；<br>当 ModelName 是 OS，可选值为 2.0；<br>当 ModelName 是 Hunyuan，可选值为 1.5；<br>当 ModelName 是 Mingmou，可选值为 1.0；<br>当 ModelName 是 PixVerse，可选值为 v5.6、v6、c1；</p>
         # @type ModelVersion: String
-        # @param FileInfos: <p>用于描述模型在生成视频时要使用的资源文件，分为<strong>首尾帧模式、参考图、视频参考、视频编辑等模式</strong>。</p><p><strong>首尾帧视频生成</strong>：首帧图片只支持<strong>一张</strong>图片，<strong>图片的Usage字段为FirstFrame</strong>，LastFrameFileId 或者 LastFrameUrl 表示尾帧。可以单独传首帧，不能单独传尾帧。<strong>首尾帧生成会参考图片比例</strong>。<br><strong>参考图片生成</strong>：可传入单张图片或者多张，<strong>图片的Usage字段为Reference</strong>；参考图片，可以调整生成视频的宽高比例。<br><strong>视频编辑、视频参考</strong>：Vidu、Kling可输入视频作为参考或者进行编辑。传入视频的同时也可以传入图片，<strong>图片的Usage字段为Reference</strong>。</p><p>注意：</p><ol><li>图片大小不超过10M。</li><li>支持的图片格式：jpeg、jpg、png。x0b</li><li>关于模型某个版本是否支持参考图、首尾帧、视频编辑等功能，可向我们索取文档或者参考原厂文档信息。</li></ol>
+        # @param FileInfos: <p>用于描述模型在生成视频时要使用的资源文件，分为<strong>首尾帧模式、参考图片/视频/声音生成、视频编辑等模式</strong>。</p><p><strong>首尾帧视频生成</strong>：<strong>首帧图片的Usage字段为FirstFrame，尾帧图片的Usage字段为LastFrame</strong>，支持各一张，可以单独传首帧，不能单独传尾帧。<strong>首尾帧生成会参考图片比例</strong>。<br><strong>参考图片/视频/声音生成</strong>：可传入单个或者多个图片/视频/声音作为参考，<strong>Usage字段为Reference</strong>；<strong>参考模式，可以调整生成视频的宽高比例</strong>。<br><strong>视频编辑</strong>：Vidu、Kling可输入视频进行编辑。传入视频的同时也可以传入图片，<strong>图片的Usage字段为Reference</strong>。</p><p>注意：</p><ol><li>图片大小不超过10M。</li><li>支持的图片格式：jpeg、jpg、png。x0b</li><li>关于模型某个版本是否支持参考图片/视频/声音、首尾帧、视频编辑等功能，可向我们索取文档或者参考原厂文档信息。</li></ol>
         # @type FileInfos: Array
         # @param SubjectInfos: <p>主体输入信息。</p>
         # @type SubjectInfos: Array
@@ -10580,6 +10580,46 @@ module TencentCloud
         end
       end
 
+      # CreateKnowledgeBase请求参数结构体
+      class CreateKnowledgeBaseRequest < TencentCloud::Common::AbstractModel
+        # @param SubAppId: <p>点播<a href="/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</p>
+        # @type SubAppId: Integer
+        # @param Name: <p>知识库名称。长度限制：1-64个字符。</p>
+        # @type Name: String
+        # @param Description: <p>知识库描述。长度限制：最多256个字符。</p>
+        # @type Description: String
+
+        attr_accessor :SubAppId, :Name, :Description
+
+        def initialize(subappid=nil, name=nil, description=nil)
+          @SubAppId = subappid
+          @Name = name
+          @Description = description
+        end
+
+        def deserialize(params)
+          @SubAppId = params['SubAppId']
+          @Name = params['Name']
+          @Description = params['Description']
+        end
+      end
+
+      # CreateKnowledgeBase返回参数结构体
+      class CreateKnowledgeBaseResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateLLMComprehendTemplate请求参数结构体
       class CreateLLMComprehendTemplateRequest < TencentCloud::Common::AbstractModel
         # @param Level: <p>解析级别，可选值为：</p><ul><li>Audio: 音频级解析</li><li>Video: 视频级解析</li></ul>
@@ -10590,7 +10630,7 @@ module TencentCloud
         # @type Name: String
         # @param Comment: <p>大模型解析模板描述信息，长度限制：256 个字符。</p>
         # @type Comment: String
-        # @param Summary: <p>分段摘要解析配置</p>
+        # @param Summary: <p>分段摘要解析配置<br>注意：当前版本必须要打开分段摘要，才可以正常进行解析</p>
         # @type Summary: :class:`Tencentcloud::Vod.v20180717.models.LLMComprehendSummary`
         # @param Asr: <p>文本转录解析配置</p>
         # @type Asr: :class:`Tencentcloud::Vod.v20180717.models.LLMComprehendAsr`
@@ -10653,7 +10693,7 @@ module TencentCloud
       class CreateMPSTemplateRequest < TencentCloud::Common::AbstractModel
         # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。</b></p>
         # @type SubAppId: Integer
-        # @param TemplateType: <p>需要创建的 MPS 模板的类型。取值：</p><li>AIAnalysis: 创建智能分析模板。</li><li>SmartSubtitle: 创建智能字幕模板。</li><li>SmartErase: 创建智能擦除模板。</li>
+        # @param TemplateType: <p>需要创建的 MPS 模板的类型。取值：</p><li>AIAnalysis: 创建智能分析模板。</li><li>SmartSubtitle: 创建智能字幕模板。</li><li>SmartErase: 创建智能擦除模板。</li><li>EmbedSubtitle: 创建字幕压制模板。</li>
         # @type TemplateType: String
         # @param MPSCreateTemplateParams: <p>MPS 创建模板参数。该参数用于透传至媒体处理服务（MPS），从云点播侧创建用户自定义的 MPS 任务模板。<br>目前仅支持通过此方式创建以下任务类型的模板：</p><ol><li>智能分析：仅支持填写“<a href="https://cloud.tencent.com/document/api/862/40249">创建内容分析模板</a>”接口中的Name、Comment、ClassificationConfigure、TagConfigure、CoverConfigure、FrameTagConfigure几个参数的内容。目前仅支持在模板中配置以上参数，其他参数无需填写，若包含其它参数，系统将自动忽略。</li><li>智能字幕：仅支持填写“<a href="https://cloud.tencent.com/document/api/862/117004">创建智能字幕模板</a>”接口中的Name、Comment、TranslateSwitch、VideoSrcLanguage、SubtitleFormat、SubtitleType、AsrHotWordsConfigure、TranslateDstLanguage、ProcessType几个参数的内容。目前仅支持在模板中配置以上参数，其他参数无需填写，若包含其它参数，系统将自动忽略。</li><li>智能擦除：仅支持填写“<a href="https://cloud.tencent.com/document/api/862/123735">创建智能擦除模板</a>”接口中的Name、Comment、EraseType、EraseSubtitleConfig、EraseWatermarkConfig、ErasePrivacyConfig几个参数的内容。目前仅支持在模板中配置以上参数，其他参数无需填写，若包含其它参数，系统将自动忽略。</li></ol><p>目前模板中仅支持配置以上参数，其他参数无需填写。若包含其它参数，系统将自动忽略。以上透传参数以JSON形式表示。</p>
         # @type MPSCreateTemplateParams: String
@@ -10663,16 +10703,19 @@ module TencentCloud
         # @type SmartSubtitleTemplate: :class:`Tencentcloud::Vod.v20180717.models.MPSSmartSubtitleTemplate`
         # @param SmartEraseTemplate: <p>智能擦除模板参数，MPSCreateTemplateParams为空时有效。</p>
         # @type SmartEraseTemplate: :class:`Tencentcloud::Vod.v20180717.models.MPSSmartEraseTemplate`
+        # @param EmbedSubtitleTemplate: <p>字幕压制模板参数，MPSCreateTemplateParams为空时有效。</p>
+        # @type EmbedSubtitleTemplate: :class:`Tencentcloud::Vod.v20180717.models.MPSEmbedSubtitleTemplate`
 
-        attr_accessor :SubAppId, :TemplateType, :MPSCreateTemplateParams, :AIAnalysisTemplate, :SmartSubtitleTemplate, :SmartEraseTemplate
+        attr_accessor :SubAppId, :TemplateType, :MPSCreateTemplateParams, :AIAnalysisTemplate, :SmartSubtitleTemplate, :SmartEraseTemplate, :EmbedSubtitleTemplate
 
-        def initialize(subappid=nil, templatetype=nil, mpscreatetemplateparams=nil, aianalysistemplate=nil, smartsubtitletemplate=nil, smarterasetemplate=nil)
+        def initialize(subappid=nil, templatetype=nil, mpscreatetemplateparams=nil, aianalysistemplate=nil, smartsubtitletemplate=nil, smarterasetemplate=nil, embedsubtitletemplate=nil)
           @SubAppId = subappid
           @TemplateType = templatetype
           @MPSCreateTemplateParams = mpscreatetemplateparams
           @AIAnalysisTemplate = aianalysistemplate
           @SmartSubtitleTemplate = smartsubtitletemplate
           @SmartEraseTemplate = smarterasetemplate
+          @EmbedSubtitleTemplate = embedsubtitletemplate
         end
 
         def deserialize(params)
@@ -10690,6 +10733,10 @@ module TencentCloud
           unless params['SmartEraseTemplate'].nil?
             @SmartEraseTemplate = MPSSmartEraseTemplate.new
             @SmartEraseTemplate.deserialize(params['SmartEraseTemplate'])
+          end
+          unless params['EmbedSubtitleTemplate'].nil?
+            @EmbedSubtitleTemplate = MPSEmbedSubtitleTemplate.new
+            @EmbedSubtitleTemplate.deserialize(params['EmbedSubtitleTemplate'])
           end
         end
       end
@@ -10792,32 +10839,33 @@ module TencentCloud
 
       # CreateProcedureTemplate请求参数结构体
       class CreateProcedureTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param Name: 任务流名字（支持中文，不超过20个字）。
+        # @param Name: <p>任务流名字（支持中文，不超过20个字）。</p>
         # @type Name: String
-        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
+        # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b></p>
         # @type SubAppId: Integer
-        # @param Comment: 模板描述信息，长度限制：256 个字符。
+        # @param Comment: <p>模板描述信息，长度限制：256 个字符。</p>
         # @type Comment: String
-        # @param MediaProcessTask: 视频处理类型任务参数。
+        # @param MediaProcessTask: <p>视频处理类型任务参数。</p>
         # @type MediaProcessTask: :class:`Tencentcloud::Vod.v20180717.models.MediaProcessTaskInput`
-        # @param AiContentReviewTask: AI 内容审核类型任务参数 \*。
-        # <font color=red>\*：该参数用于发起旧版审核，不建议使用。推荐使用 ReviewAudioVideoTask 参数发起审核。</font>
+        # @param AiContentReviewTask: <p>AI 内容审核类型任务参数 *。<br><font color="red">*：该参数用于发起旧版审核，不建议使用。推荐使用 ReviewAudioVideoTask 参数发起审核。</font></p>
         # @type AiContentReviewTask: :class:`Tencentcloud::Vod.v20180717.models.AiContentReviewTaskInput`
-        # @param AiAnalysisTask: AI 内容分析类型任务参数。
+        # @param AiAnalysisTask: <p>AI 内容分析类型任务参数。</p>
         # @type AiAnalysisTask: :class:`Tencentcloud::Vod.v20180717.models.AiAnalysisTaskInput`
-        # @param AiRecognitionTaskSet: AI 内容识别类型任务参数。
+        # @param AiRecognitionTaskSet: <p>AI 内容识别类型任务参数。</p>
         # @type AiRecognitionTaskSet: Array
-        # @param AiRecognitionTask: 该参数已不推荐使用，建议使用 AiRecognitionTaskSet。
+        # @param AiRecognitionTask: <p>该参数已不推荐使用，建议使用 AiRecognitionTaskSet。</p>
         # @type AiRecognitionTask: :class:`Tencentcloud::Vod.v20180717.models.AiRecognitionTaskInput`
-        # @param ReviewAudioVideoTask: 音视频审核类型任务参数。
+        # @param ReviewAudioVideoTask: <p>音视频审核类型任务参数。</p>
         # @type ReviewAudioVideoTask: :class:`Tencentcloud::Vod.v20180717.models.ProcedureReviewAudioVideoTaskInput`
+        # @param ImportMediaKnowledgeTaskSet: <p>导入智能媒资知识库任务参数。</p>
+        # @type ImportMediaKnowledgeTaskSet: Array
 
-        attr_accessor :Name, :SubAppId, :Comment, :MediaProcessTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTaskSet, :AiRecognitionTask, :ReviewAudioVideoTask
+        attr_accessor :Name, :SubAppId, :Comment, :MediaProcessTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTaskSet, :AiRecognitionTask, :ReviewAudioVideoTask, :ImportMediaKnowledgeTaskSet
         extend Gem::Deprecate
-        deprecate :AiRecognitionTask, :none, 2026, 7
-        deprecate :AiRecognitionTask=, :none, 2026, 7
+        deprecate :AiRecognitionTask, :none, 2026, 8
+        deprecate :AiRecognitionTask=, :none, 2026, 8
 
-        def initialize(name=nil, subappid=nil, comment=nil, mediaprocesstask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontaskset=nil, airecognitiontask=nil, reviewaudiovideotask=nil)
+        def initialize(name=nil, subappid=nil, comment=nil, mediaprocesstask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontaskset=nil, airecognitiontask=nil, reviewaudiovideotask=nil, importmediaknowledgetaskset=nil)
           @Name = name
           @SubAppId = subappid
           @Comment = comment
@@ -10827,6 +10875,7 @@ module TencentCloud
           @AiRecognitionTaskSet = airecognitiontaskset
           @AiRecognitionTask = airecognitiontask
           @ReviewAudioVideoTask = reviewaudiovideotask
+          @ImportMediaKnowledgeTaskSet = importmediaknowledgetaskset
         end
 
         def deserialize(params)
@@ -10860,6 +10909,14 @@ module TencentCloud
           unless params['ReviewAudioVideoTask'].nil?
             @ReviewAudioVideoTask = ProcedureReviewAudioVideoTaskInput.new
             @ReviewAudioVideoTask.deserialize(params['ReviewAudioVideoTask'])
+          end
+          unless params['ImportMediaKnowledgeTaskSet'].nil?
+            @ImportMediaKnowledgeTaskSet = []
+            params['ImportMediaKnowledgeTaskSet'].each do |i|
+              importmediaknowledgetaskinput_tmp = ImportMediaKnowledgeTaskInput.new
+              importmediaknowledgetaskinput_tmp.deserialize(i)
+              @ImportMediaKnowledgeTaskSet << importmediaknowledgetaskinput_tmp
+            end
           end
         end
       end
@@ -12783,6 +12840,42 @@ module TencentCloud
         end
       end
 
+      # DeleteKnowledgeBase请求参数结构体
+      class DeleteKnowledgeBaseRequest < TencentCloud::Common::AbstractModel
+        # @param SubAppId: <p>点播<a href="/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</p>
+        # @type SubAppId: Integer
+        # @param KnowledgeBaseId: <p>要删除的知识库ID。</p>
+        # @type KnowledgeBaseId: String
+
+        attr_accessor :SubAppId, :KnowledgeBaseId
+
+        def initialize(subappid=nil, knowledgebaseid=nil)
+          @SubAppId = subappid
+          @KnowledgeBaseId = knowledgebaseid
+        end
+
+        def deserialize(params)
+          @SubAppId = params['SubAppId']
+          @KnowledgeBaseId = params['KnowledgeBaseId']
+        end
+      end
+
+      # DeleteKnowledgeBase返回参数结构体
+      class DeleteKnowledgeBaseResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteLLMComprehendTemplate请求参数结构体
       class DeleteLLMComprehendTemplateRequest < TencentCloud::Common::AbstractModel
         # @param Definition: 大模型理解模板的唯一标识
@@ -12821,15 +12914,11 @@ module TencentCloud
 
       # DeleteMPSTemplate请求参数结构体
       class DeleteMPSTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。</b>
+        # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。</b></p>
         # @type SubAppId: Integer
-        # @param TemplateType: 需要删除的 MPS 模板的类型。取值：
-        # <li>Transcode: 删除转码模板。</li>
-        # <li>AIAnalysis: 创建智能分析模板。</li>
-        # <li>SmartSubtitle: 创建智能字幕模板。</li>
-        # <li>SmartErase: 创建智能擦除模板。</li>
+        # @param TemplateType: <p>需要删除的 MPS 模板的类型。取值：</p><li>AIAnalysis: 创建智能分析模板。</li><li>SmartSubtitle: 创建智能字幕模板。</li><li>SmartErase: 创建智能擦除模板。</li><li>EmbedSubtitle: 字幕压制模板。</li>
         # @type TemplateType: String
-        # @param Definition: MPS 任务模板唯一标识。
+        # @param Definition: <p>MPS 任务模板唯一标识。</p>
         # @type Definition: Integer
 
         attr_accessor :SubAppId, :TemplateType, :Definition
@@ -15042,8 +15131,8 @@ module TencentCloud
 
         attr_accessor :DomainName, :Domain, :Scheme, :PlayKey, :RequestId
         extend Gem::Deprecate
-        deprecate :DomainName, :none, 2026, 7
-        deprecate :DomainName=, :none, 2026, 7
+        deprecate :DomainName, :none, 2026, 8
+        deprecate :DomainName=, :none, 2026, 8
 
         def initialize(domainname=nil, domain=nil, scheme=nil, playkey=nil, requestid=nil)
           @DomainName = domainname
@@ -15741,22 +15830,69 @@ module TencentCloud
         end
       end
 
+      # DescribeKnowledgeBases请求参数结构体
+      class DescribeKnowledgeBasesRequest < TencentCloud::Common::AbstractModel
+        # @param SubAppId: <p>点播<a href="/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</p>
+        # @type SubAppId: Integer
+        # @param Offset: <p>分页偏移量，默认值：0。</p>
+        # @type Offset: Integer
+        # @param Limit: <p>返回记录条数，默认值：100，最大值：100。</p>
+        # @type Limit: Integer
+        # @param Name: <p>按知识库名称精确匹配筛选，不填则返回所有知识库。</p>
+        # @type Name: String
+
+        attr_accessor :SubAppId, :Offset, :Limit, :Name
+
+        def initialize(subappid=nil, offset=nil, limit=nil, name=nil)
+          @SubAppId = subappid
+          @Offset = offset
+          @Limit = limit
+          @Name = name
+        end
+
+        def deserialize(params)
+          @SubAppId = params['SubAppId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Name = params['Name']
+        end
+      end
+
+      # DescribeKnowledgeBases返回参数结构体
+      class DescribeKnowledgeBasesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeLLMComprehendTemplates请求参数结构体
       class DescribeLLMComprehendTemplatesRequest < TencentCloud::Common::AbstractModel
         # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b></p>
         # @type SubAppId: Integer
         # @param Definitions: <p>大模型解析模板唯一标识过滤条件，数组长度最大值：100。</p>
         # @type Definitions: Array
+        # @param Sort: <p>排序方式。<br>Sort.Field 可选 Definition、CreateTime、UpdateTime。</p>
+        # @type Sort: :class:`Tencentcloud::Vod.v20180717.models.SortBy`
         # @param Offset: <p>分页偏移量，默认值：0。</p>
         # @type Offset: Integer
         # @param Limit: <p>返回记录条数，默认值：10，最大值：100。</p>
         # @type Limit: Integer
 
-        attr_accessor :SubAppId, :Definitions, :Offset, :Limit
+        attr_accessor :SubAppId, :Definitions, :Sort, :Offset, :Limit
 
-        def initialize(subappid=nil, definitions=nil, offset=nil, limit=nil)
+        def initialize(subappid=nil, definitions=nil, sort=nil, offset=nil, limit=nil)
           @SubAppId = subappid
           @Definitions = definitions
+          @Sort = sort
           @Offset = offset
           @Limit = limit
         end
@@ -15764,6 +15900,10 @@ module TencentCloud
         def deserialize(params)
           @SubAppId = params['SubAppId']
           @Definitions = params['Definitions']
+          unless params['Sort'].nil?
+            @Sort = SortBy.new
+            @Sort.deserialize(params['Sort'])
+          end
           @Offset = params['Offset']
           @Limit = params['Limit']
         end
@@ -15858,19 +15998,11 @@ module TencentCloud
 
       # DescribeMPSTemplates请求参数结构体
       class DescribeMPSTemplatesRequest < TencentCloud::Common::AbstractModel
-        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。</b>
+        # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。</b></p>
         # @type SubAppId: Integer
-        # @param TemplateType: MPS 模板类型。根据需要查询的 MPS 模板的类型对结果进行过滤。取值：
-        # <li>Transcode: 查询转码模板列表。</li>
-        # <li>AIAnalysis: 创建智能分析模板。</li>
-        # <li>SmartSubtitle: 创建智能字幕模板。</li>
-        # <li>SmartErase: 创建智能擦除模板。</li>
+        # @param TemplateType: <p>MPS 模板类型。根据需要查询的 MPS 模板的类型对结果进行过滤。取值：</p><li>AIAnalysis: 智能分析模板。</li><li>SmartSubtitle: 智能字幕模板。</li><li>SmartErase: 智能擦除模板。</li><li>EmbedSubtitle: 字幕压制模板。</li>
         # @type TemplateType: String
-        # @param MPSDescribeTemplateParams: MPS 查询模板参数。该参数用于透传至媒体处理服务（MPS），从云点播侧查询 MPS 任务模板列表。目前仅支持通过此方式查询以下任务类型的模板：
-        # 1. 音视频增强：仅支持填写“[获取转码模板列表](https://cloud.tencent.com/document/product/862/37593)”接口中的 Definitions、Type、Name、Offset 和 Limit 几个参数的内容。目前仅支持在模板中配置以上参数，其他参数无需填写，若包含其它参数，系统将自动忽略。
-        # 2. 智能分析：仅支持填写“[获取智能分析模板列表](https://cloud.tencent.com/document/product/862/40247)”接口中的 Definitions、Type、Name、Offset 和 Limit 几个参数的内容。目前仅支持在模板中配置以上参数，其他参数无需填写，若包含其它参数，系统将自动忽略。
-        # 3. 智能字幕：仅支持填写“[获取智能字幕模板列表](https://cloud.tencent.com/document/product/862/117002)”接口中的 Definitions、Type、Name、Offset 和 Limit 几个参数的内容。目前仅支持在模板中配置以上参数，其他参数无需填写，若包含其它参数，系统将自动忽略。
-        # 4. 智能擦除：仅支持填写“[获取智能擦除模板列表](https://cloud.tencent.com/document/product/862/123733)”接口中的 Definitions、Type、Name、Offset 和 Limit 几个参数的内容。目前仅支持在模板中配置以上参数，其他参数无需填写，若包含其它参数，系统将自动忽略。
+        # @param MPSDescribeTemplateParams: <p>MPS 查询模板参数。该参数用于透传至媒体处理服务（MPS），从云点播侧查询 MPS 任务模板列表。目前仅支持通过此方式查询以下任务类型的模板：</p><ol><li>音视频增强：仅支持填写“<a href="https://cloud.tencent.com/document/product/862/37593">获取转码模板列表</a>”接口中的 Definitions、Type、Name、Offset 和 Limit 几个参数的内容。目前仅支持在模板中配置以上参数，其他参数无需填写，若包含其它参数，系统将自动忽略。</li><li>智能分析：仅支持填写“<a href="https://cloud.tencent.com/document/product/862/40247">获取智能分析模板列表</a>”接口中的 Definitions、Type、Name、Offset 和 Limit 几个参数的内容。目前仅支持在模板中配置以上参数，其他参数无需填写，若包含其它参数，系统将自动忽略。</li><li>智能字幕：仅支持填写“<a href="https://cloud.tencent.com/document/product/862/117002">获取智能字幕模板列表</a>”接口中的 Definitions、Type、Name、Offset 和 Limit 几个参数的内容。目前仅支持在模板中配置以上参数，其他参数无需填写，若包含其它参数，系统将自动忽略。</li><li>智能擦除：仅支持填写“<a href="https://cloud.tencent.com/document/product/862/123733">获取智能擦除模板列表</a>”接口中的 Definitions、Type、Name、Offset 和 Limit 几个参数的内容。目前仅支持在模板中配置以上参数，其他参数无需填写，若包含其它参数，系统将自动忽略。</li></ol>
         # @type MPSDescribeTemplateParams: String
 
         attr_accessor :SubAppId, :TemplateType, :MPSDescribeTemplateParams
@@ -15890,9 +16022,9 @@ module TencentCloud
 
       # DescribeMPSTemplates返回参数结构体
       class DescribeMPSTemplatesResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 符合过滤条件的记录总数。
+        # @param TotalCount: <p>符合过滤条件的记录总数。</p>
         # @type TotalCount: Integer
-        # @param MPSTemplateSet: MPS 任务模板详情列表。
+        # @param MPSTemplateSet: <p>MPS 任务模板详情列表。</p>
         # @type MPSTemplateSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -15925,7 +16057,7 @@ module TencentCloud
         # @type FileIds: Array
         # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b></p>
         # @type SubAppId: Integer
-        # @param Filters: <p>指定所有媒体文件需要返回的信息，可同时指定多个信息，N 从 0 开始递增。如果未填写该字段，默认返回所有信息。选项有：</p><li>basicInfo（视频基础信息）。</li><li>metaData（视频元信息）。</li><li>transcodeInfo（视频转码结果信息）。</li><li>animatedGraphicsInfo（视频转动图结果信息）。</li><li>imageSpriteInfo（视频雪碧图信息）。</li><li>snapshotByTimeOffsetInfo（视频指定时间点截图信息）。</li><li>sampleSnapshotInfo（采样截图信息）。</li><li>keyFrameDescInfo（打点信息）。</li><li>adaptiveDynamicStreamingInfo（转自适应码流信息）。</li><li>miniProgramReviewInfo（小程序审核信息）。</li><li>subtitleInfo（字幕信息）。</li><li>reviewInfo（审核信息）。</li><li>mpsAiMediaInfo（mps智能媒资信息）。</li>
+        # @param Filters: <p>指定所有媒体文件需要返回的信息，可同时指定多个信息，N 从 0 开始递增。如果未填写该字段，默认返回所有信息。选项有：</p><li>basicInfo（视频基础信息）。</li><li>metaData（视频元信息）。</li><li>transcodeInfo（视频转码结果信息）。</li><li>animatedGraphicsInfo（视频转动图结果信息）。</li><li>imageSpriteInfo（视频雪碧图信息）。</li><li>snapshotByTimeOffsetInfo（视频指定时间点截图信息）。</li><li>sampleSnapshotInfo（采样截图信息）。</li><li>keyFrameDescInfo（打点信息）。</li><li>adaptiveDynamicStreamingInfo（转自适应码流信息）。</li><li>miniProgramReviewInfo（小程序审核信息）。</li><li>subtitleInfo（字幕信息）。</li><li>reviewInfo（审核信息）。</li><li>mpsAiMediaInfo（mps智能媒资信息）。</li><li>knowledgeBasesInfo（智能媒资知识库信息）。</li>
         # @type Filters: Array
 
         attr_accessor :FileIds, :SubAppId, :Filters
@@ -16649,8 +16781,8 @@ module TencentCloud
 
         attr_accessor :SubAppId, :RoundPlayIds, :Status, :CreateTime, :UpdateTime, :ScrollToken, :Offset, :Limit
         extend Gem::Deprecate
-        deprecate :Offset, :none, 2026, 7
-        deprecate :Offset=, :none, 2026, 7
+        deprecate :Offset, :none, 2026, 8
+        deprecate :Offset=, :none, 2026, 8
 
         def initialize(subappid=nil, roundplayids=nil, status=nil, createtime=nil, updatetime=nil, scrolltoken=nil, offset=nil, limit=nil)
           @SubAppId = subappid
@@ -16694,8 +16826,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :RoundPlaySet, :ScrollToken, :RequestId
         extend Gem::Deprecate
-        deprecate :TotalCount, :none, 2026, 7
-        deprecate :TotalCount=, :none, 2026, 7
+        deprecate :TotalCount, :none, 2026, 8
+        deprecate :TotalCount=, :none, 2026, 8
 
         def initialize(totalcount=nil, roundplayset=nil, scrolltoken=nil, requestid=nil)
           @TotalCount = totalcount
@@ -19633,8 +19765,8 @@ module TencentCloud
 
         attr_accessor :Uv, :Uid
         extend Gem::Deprecate
-        deprecate :Uid, :none, 2026, 7
-        deprecate :Uid=, :none, 2026, 7
+        deprecate :Uid, :none, 2026, 8
+        deprecate :Uid=, :none, 2026, 8
 
         def initialize(uv=nil, uid=nil)
           @Uv = uv
@@ -21253,26 +21385,27 @@ module TencentCloud
 
       # ImportMediaKnowledge请求参数结构体
       class ImportMediaKnowledgeRequest < TencentCloud::Common::AbstractModel
-        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。</b>
+        # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。</b></p>
         # @type SubAppId: Integer
-        # @param FileId: 媒体文件 ID，即该文件在云点播上的全局唯一标识符，在上传成功后由云点播后台分配。可以在 [视频上传完成事件通知](/document/product/266/7830) 或 [云点播控制台](https://console.cloud.tencent.com/vod/media) 获取该字段。
+        # @param FileId: <p>媒体文件 ID，即该文件在云点播上的全局唯一标识符，在上传成功后由云点播后台分配。可以在 <a href="/document/product/266/7830">视频上传完成事件通知</a> 或 <a href="https://console.cloud.tencent.com/vod/media">云点播控制台</a> 获取该字段。</p>
         # @type FileId: String
-        # @param Definition: 大模型理解模板的唯一标识
+        # @param Definition: <p>大模型理解模板的唯一标识</p>
         # @type Definition: Integer
-        # @param ImportTasks: 需要导入知识库任务类型，可选值有：
-        # - AiAnalysis.DescriptionTask
-        # - SmartSubtitle.AsrFullTextTask
+        # @param KnowledgeBaseIds: <p>知识库ID列表，留空时将使用默认知识库</p>
+        # @type KnowledgeBaseIds: Array
+        # @param ImportTasks: <p>需要导入知识库任务类型，可选值有：</p><ul><li>AiAnalysis.DescriptionTask</li><li>SmartSubtitle.AsrFullTextTask</li></ul>
         # @type ImportTasks: Array
 
-        attr_accessor :SubAppId, :FileId, :Definition, :ImportTasks
+        attr_accessor :SubAppId, :FileId, :Definition, :KnowledgeBaseIds, :ImportTasks
         extend Gem::Deprecate
-        deprecate :ImportTasks, :none, 2026, 7
-        deprecate :ImportTasks=, :none, 2026, 7
+        deprecate :ImportTasks, :none, 2026, 8
+        deprecate :ImportTasks=, :none, 2026, 8
 
-        def initialize(subappid=nil, fileid=nil, definition=nil, importtasks=nil)
+        def initialize(subappid=nil, fileid=nil, definition=nil, knowledgebaseids=nil, importtasks=nil)
           @SubAppId = subappid
           @FileId = fileid
           @Definition = definition
+          @KnowledgeBaseIds = knowledgebaseids
           @ImportTasks = importtasks
         end
 
@@ -21280,13 +21413,14 @@ module TencentCloud
           @SubAppId = params['SubAppId']
           @FileId = params['FileId']
           @Definition = params['Definition']
+          @KnowledgeBaseIds = params['KnowledgeBaseIds']
           @ImportTasks = params['ImportTasks']
         end
       end
 
       # ImportMediaKnowledge返回参数结构体
       class ImportMediaKnowledgeResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务 ID。
+        # @param TaskId: <p>任务 ID。</p>
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -21306,19 +21440,25 @@ module TencentCloud
 
       # 媒体导入知识库任务
       class ImportMediaKnowledgeTask < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务 ID。
+        # @param TaskId: <p>任务 ID。</p>
         # @type TaskId: String
-        # @param Status: 任务状态，取值：<li>PROCESSING：处理中；</li><li>FINISH：已完成。</li>
+        # @param FileId: <p>媒体文件 ID</p>
+        # @type FileId: String
+        # @param Input: <p>导入知识库任务的输入。</p>
+        # @type Input: :class:`Tencentcloud::Vod.v20180717.models.ImportMediaKnowledgeTaskInput`
+        # @param Status: <p>任务状态，取值：<li>PROCESSING：处理中；</li><li>FINISH：已完成。</li></p>
         # @type Status: String
-        # @param ErrCode: 错误码，0 表示成功，其他值表示失败
+        # @param ErrCode: <p>错误码，0 表示成功，其他值表示失败</p>
         # @type ErrCode: Integer
-        # @param Message: 错误信息。
+        # @param Message: <p>错误信息。</p>
         # @type Message: String
 
-        attr_accessor :TaskId, :Status, :ErrCode, :Message
+        attr_accessor :TaskId, :FileId, :Input, :Status, :ErrCode, :Message
 
-        def initialize(taskid=nil, status=nil, errcode=nil, message=nil)
+        def initialize(taskid=nil, fileid=nil, input=nil, status=nil, errcode=nil, message=nil)
           @TaskId = taskid
+          @FileId = fileid
+          @Input = input
           @Status = status
           @ErrCode = errcode
           @Message = message
@@ -21326,9 +21466,34 @@ module TencentCloud
 
         def deserialize(params)
           @TaskId = params['TaskId']
+          @FileId = params['FileId']
+          unless params['Input'].nil?
+            @Input = ImportMediaKnowledgeTaskInput.new
+            @Input.deserialize(params['Input'])
+          end
           @Status = params['Status']
           @ErrCode = params['ErrCode']
           @Message = params['Message']
+        end
+      end
+
+      # 任务流模板导入智能媒资知识库输入参数类型。
+      class ImportMediaKnowledgeTaskInput < TencentCloud::Common::AbstractModel
+        # @param Definition: <p>大模型理解模板</p>
+        # @type Definition: Integer
+        # @param KnowledgeBaseIds: <p>知识库ID列表，留空时将使用默认知识库</p>
+        # @type KnowledgeBaseIds: Array
+
+        attr_accessor :Definition, :KnowledgeBaseIds
+
+        def initialize(definition=nil, knowledgebaseids=nil)
+          @Definition = definition
+          @KnowledgeBaseIds = knowledgebaseids
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          @KnowledgeBaseIds = params['KnowledgeBaseIds']
         end
       end
 
@@ -21516,18 +21681,45 @@ module TencentCloud
         end
       end
 
+      # 媒资当导入的知识库列表，以及使用的解析模板等详细信息
+      class KnowledgeBaseDetail < TencentCloud::Common::AbstractModel
+        # @param KnowledgeBaseId: <p>知识库ID</p>
+        # @type KnowledgeBaseId: String
+        # @param Definition: <p>关联的大模型解析模板</p>
+        # @type Definition: Integer
+        # @param ImportTime: <p>入库时间</p>
+        # @type ImportTime: String
+
+        attr_accessor :KnowledgeBaseId, :Definition, :ImportTime
+
+        def initialize(knowledgebaseid=nil, definition=nil, importtime=nil)
+          @KnowledgeBaseId = knowledgebaseid
+          @Definition = definition
+          @ImportTime = importtime
+        end
+
+        def deserialize(params)
+          @KnowledgeBaseId = params['KnowledgeBaseId']
+          @Definition = params['Definition']
+          @ImportTime = params['ImportTime']
+        end
+      end
+
       # 媒资智能知识库信息
       class KnowledgeBasesInfo < TencentCloud::Common::AbstractModel
         # @param Bases: <p>当前媒资当导入的知识库列表</p>
         # @type Bases: Array
         # @param KnowledgeAnalysisInfos: <p>知识库中媒体分析信息</p>
         # @type KnowledgeAnalysisInfos: Array
+        # @param KnowledgeBaseDetails: <p>当前媒资当导入的知识库列表，以及使用的解析模板等详细信息</p>
+        # @type KnowledgeBaseDetails: Array
 
-        attr_accessor :Bases, :KnowledgeAnalysisInfos
+        attr_accessor :Bases, :KnowledgeAnalysisInfos, :KnowledgeBaseDetails
 
-        def initialize(bases=nil, knowledgeanalysisinfos=nil)
+        def initialize(bases=nil, knowledgeanalysisinfos=nil, knowledgebasedetails=nil)
           @Bases = bases
           @KnowledgeAnalysisInfos = knowledgeanalysisinfos
+          @KnowledgeBaseDetails = knowledgebasedetails
         end
 
         def deserialize(params)
@@ -21538,6 +21730,14 @@ module TencentCloud
               knowledgeanalysisinfo_tmp = KnowledgeAnalysisInfo.new
               knowledgeanalysisinfo_tmp.deserialize(i)
               @KnowledgeAnalysisInfos << knowledgeanalysisinfo_tmp
+            end
+          end
+          unless params['KnowledgeBaseDetails'].nil?
+            @KnowledgeBaseDetails = []
+            params['KnowledgeBaseDetails'].each do |i|
+              knowledgebasedetail_tmp = KnowledgeBaseDetail.new
+              knowledgebasedetail_tmp.deserialize(i)
+              @KnowledgeBaseDetails << knowledgebasedetail_tmp
             end
           end
         end
@@ -21695,6 +21895,8 @@ module TencentCloud
         # @type Name: String
         # @param Comment: <p>图片异步处理模板描述信息。</p>
         # @type Comment: String
+        # @param Type: <p>模板类型</p><p>枚举值：</p><ul><li>Preset： 系统预置模板</li><li>Custom： 用户自定义模板</li></ul>
+        # @type Type: String
         # @param Level: <p>解析级别，可选值为：</p><ul><li>Audio: 音频级解析</li><li>Video: 视频级解析</li></ul>
         # @type Level: String
         # @param Summary: <p>分段摘要解析配置</p>
@@ -21708,12 +21910,13 @@ module TencentCloud
         # @param UpdateTime: <p>模板最后修改时间，使用 <a href="https://cloud.tencent.com/document/product/266/11732#I">ISO 日期格式</a>。</p>
         # @type UpdateTime: String
 
-        attr_accessor :Definition, :Name, :Comment, :Level, :Summary, :Asr, :FaceRecognition, :CreateTime, :UpdateTime
+        attr_accessor :Definition, :Name, :Comment, :Type, :Level, :Summary, :Asr, :FaceRecognition, :CreateTime, :UpdateTime
 
-        def initialize(definition=nil, name=nil, comment=nil, level=nil, summary=nil, asr=nil, facerecognition=nil, createtime=nil, updatetime=nil)
+        def initialize(definition=nil, name=nil, comment=nil, type=nil, level=nil, summary=nil, asr=nil, facerecognition=nil, createtime=nil, updatetime=nil)
           @Definition = definition
           @Name = name
           @Comment = comment
+          @Type = type
           @Level = level
           @Summary = summary
           @Asr = asr
@@ -21726,6 +21929,7 @@ module TencentCloud
           @Definition = params['Definition']
           @Name = params['Name']
           @Comment = params['Comment']
+          @Type = params['Type']
           @Level = params['Level']
           unless params['Summary'].nil?
             @Summary = LLMComprehendSummary.new
@@ -22348,6 +22552,64 @@ module TencentCloud
         end
       end
 
+      # MPS压制字幕模板
+      class MPSEmbedSubtitleTemplate < TencentCloud::Common::AbstractModel
+        # @param Name: <p>字幕压制模板名称<br>长度限制：64 个字符。</p>
+        # @type Name: String
+        # @param Comment: <p>字幕压制模板描述信息<br>长度限制：256 个字符。</p>
+        # @type Comment: String
+        # @param SubtitleEmbedConfig: <p>字幕压制相关配置</p>
+        # @type SubtitleEmbedConfig: :class:`Tencentcloud::Vod.v20180717.models.MPSSubtitleEmbedConfig`
+
+        attr_accessor :Name, :Comment, :SubtitleEmbedConfig
+
+        def initialize(name=nil, comment=nil, subtitleembedconfig=nil)
+          @Name = name
+          @Comment = comment
+          @SubtitleEmbedConfig = subtitleembedconfig
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Comment = params['Comment']
+          unless params['SubtitleEmbedConfig'].nil?
+            @SubtitleEmbedConfig = MPSSubtitleEmbedConfig.new
+            @SubtitleEmbedConfig.deserialize(params['SubtitleEmbedConfig'])
+          end
+        end
+      end
+
+      # MPS压制字幕模板
+      class MPSEmbedSubtitleTemplateForUpdate < TencentCloud::Common::AbstractModel
+        # @param Definition: <p>字幕压制模板唯一标识</p>
+        # @type Definition: Integer
+        # @param Name: <p>字幕压制名称<br>长度限制：64 个字符。</p>
+        # @type Name: String
+        # @param Comment: <p>字幕压制模板描述信息<br>长度限制：256 个字符。</p>
+        # @type Comment: String
+        # @param SubtitleEmbedConfig: <p>字幕压制相关配置</p>
+        # @type SubtitleEmbedConfig: :class:`Tencentcloud::Vod.v20180717.models.MPSSubtitleEmbedConfig`
+
+        attr_accessor :Definition, :Name, :Comment, :SubtitleEmbedConfig
+
+        def initialize(definition=nil, name=nil, comment=nil, subtitleembedconfig=nil)
+          @Definition = definition
+          @Name = name
+          @Comment = comment
+          @SubtitleEmbedConfig = subtitleembedconfig
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          @Name = params['Name']
+          @Comment = params['Comment']
+          unless params['SubtitleEmbedConfig'].nil?
+            @SubtitleEmbedConfig = MPSSubtitleEmbedConfig.new
+            @SubtitleEmbedConfig.deserialize(params['SubtitleEmbedConfig'])
+          end
+        end
+      end
+
       # 智能擦除，擦除区域坐标配置。
       # 区域由左上角与右下角点的坐标确定。
       # 坐标原点为画面左上角，坐标点可使用像素值或百分比单位指定。
@@ -22609,10 +22871,18 @@ module TencentCloud
         # @type ExtInfo: String
         # @param ProcessType: <p>字幕处理类型：</p><ul><li>0：ASR识别字幕</li><li>1：纯字幕翻译</li><li>2：OCR识别字幕</li></ul><p><strong>注意</strong>：不传的情况下默认类型为 ASR识别字幕</p>
         # @type ProcessType: Integer
+        # @param SelectingSubtitleAreasConfig: <p>字幕OCR提取框选区域配置</p>
+        # @type SelectingSubtitleAreasConfig: :class:`Tencentcloud::Vod.v20180717.models.MPSSelectingSubtitleAreasConfig`
+        # @param SubtitleEmbedId: <p>压制模板id，只有ProcessType为0或2（任务类型为ASR或OCR）时才允许填写</p>
+        # @type SubtitleEmbedId: Integer
+        # @param SpeakerMode: <p>说话人识别模式，可选值：<br>0：表示不开启说话人识别；<br>1：表示开启说话人识别；<br>默认值：0</p>
+        # @type SpeakerMode: Integer
+        # @param SpeakerLabel: <p>说话人识别输出到字幕文件，可选值：<br>0：表示不输出到字幕文件；<br>1：表示输出到vtt字幕文件<br>注意：使用此参数SpeakerMode的值不能为0；<br>默认值：0</p>
+        # @type SpeakerLabel: Integer
 
-        attr_accessor :SubtitleType, :VideoSrcLanguage, :SubtitleFormat, :TranslateSwitch, :TranslateDstLanguage, :ExtInfo, :ProcessType
+        attr_accessor :SubtitleType, :VideoSrcLanguage, :SubtitleFormat, :TranslateSwitch, :TranslateDstLanguage, :ExtInfo, :ProcessType, :SelectingSubtitleAreasConfig, :SubtitleEmbedId, :SpeakerMode, :SpeakerLabel
 
-        def initialize(subtitletype=nil, videosrclanguage=nil, subtitleformat=nil, translateswitch=nil, translatedstlanguage=nil, extinfo=nil, processtype=nil)
+        def initialize(subtitletype=nil, videosrclanguage=nil, subtitleformat=nil, translateswitch=nil, translatedstlanguage=nil, extinfo=nil, processtype=nil, selectingsubtitleareasconfig=nil, subtitleembedid=nil, speakermode=nil, speakerlabel=nil)
           @SubtitleType = subtitletype
           @VideoSrcLanguage = videosrclanguage
           @SubtitleFormat = subtitleformat
@@ -22620,6 +22890,10 @@ module TencentCloud
           @TranslateDstLanguage = translatedstlanguage
           @ExtInfo = extinfo
           @ProcessType = processtype
+          @SelectingSubtitleAreasConfig = selectingsubtitleareasconfig
+          @SubtitleEmbedId = subtitleembedid
+          @SpeakerMode = speakermode
+          @SpeakerLabel = speakerlabel
         end
 
         def deserialize(params)
@@ -22630,6 +22904,13 @@ module TencentCloud
           @TranslateDstLanguage = params['TranslateDstLanguage']
           @ExtInfo = params['ExtInfo']
           @ProcessType = params['ProcessType']
+          unless params['SelectingSubtitleAreasConfig'].nil?
+            @SelectingSubtitleAreasConfig = MPSSelectingSubtitleAreasConfig.new
+            @SelectingSubtitleAreasConfig.deserialize(params['SelectingSubtitleAreasConfig'])
+          end
+          @SubtitleEmbedId = params['SubtitleEmbedId']
+          @SpeakerMode = params['SpeakerMode']
+          @SpeakerLabel = params['SpeakerLabel']
         end
       end
 
@@ -22704,14 +22985,16 @@ module TencentCloud
         # @type AutoAreas: Array
         # @param CustomAreas: <p>指定擦除自定义区域。<br>对选定区域，在选定时间段内不进行检测识别直接进行擦除。<br>注意：修改模板时，清除区域请传入[]，不传时将保持模板区域信息不变。</p>
         # @type CustomAreas: Array
+        # @param SubtitleEmbedId: <p>字幕压制模板id，只有开启OCR翻译时可以填写</p>
+        # @type SubtitleEmbedId: Integer
         # @param UseOriginalPos: <p>压制配置，默认开启1, 把字幕压制回原字幕位置。只有开启OCR翻译时可以填写，取0时表示不开启压回原位</p>
         # @type UseOriginalPos: Integer
         # @param UseOriginalSize: <p>压制配置，默认开启1, 开启后使用原字幕字号。只有开启OCR翻译时可以填写，取0时表示不使用原字号</p>
         # @type UseOriginalSize: Integer
 
-        attr_accessor :SubtitleEraseMethod, :SubtitleModel, :OcrSwitch, :SubtitleLang, :SubtitleFormat, :TransSwitch, :TransDstLang, :AutoAreas, :CustomAreas, :UseOriginalPos, :UseOriginalSize
+        attr_accessor :SubtitleEraseMethod, :SubtitleModel, :OcrSwitch, :SubtitleLang, :SubtitleFormat, :TransSwitch, :TransDstLang, :AutoAreas, :CustomAreas, :SubtitleEmbedId, :UseOriginalPos, :UseOriginalSize
 
-        def initialize(subtitleerasemethod=nil, subtitlemodel=nil, ocrswitch=nil, subtitlelang=nil, subtitleformat=nil, transswitch=nil, transdstlang=nil, autoareas=nil, customareas=nil, useoriginalpos=nil, useoriginalsize=nil)
+        def initialize(subtitleerasemethod=nil, subtitlemodel=nil, ocrswitch=nil, subtitlelang=nil, subtitleformat=nil, transswitch=nil, transdstlang=nil, autoareas=nil, customareas=nil, subtitleembedid=nil, useoriginalpos=nil, useoriginalsize=nil)
           @SubtitleEraseMethod = subtitleerasemethod
           @SubtitleModel = subtitlemodel
           @OcrSwitch = ocrswitch
@@ -22721,6 +23004,7 @@ module TencentCloud
           @TransDstLang = transdstlang
           @AutoAreas = autoareas
           @CustomAreas = customareas
+          @SubtitleEmbedId = subtitleembedid
           @UseOriginalPos = useoriginalpos
           @UseOriginalSize = useoriginalsize
         end
@@ -22749,6 +23033,7 @@ module TencentCloud
               @CustomAreas << mpserasetimearea_tmp
             end
           end
+          @SubtitleEmbedId = params['SubtitleEmbedId']
           @UseOriginalPos = params['UseOriginalPos']
           @UseOriginalSize = params['UseOriginalSize']
         end
@@ -22956,14 +23241,16 @@ module TencentCloud
         # @type ProcessType: Integer
         # @param SelectingSubtitleAreasConfig: <p>字幕OCR提取框选区域配置</p>
         # @type SelectingSubtitleAreasConfig: :class:`Tencentcloud::Vod.v20180717.models.MPSSelectingSubtitleAreasConfig`
+        # @param SubtitleEmbedId: <p>压制模板id，只有ProcessType为0或2（任务类型为ASR或OCR）时才允许填写。开启多个翻译语言时，不允许填写。</p>
+        # @type SubtitleEmbedId: Integer
         # @param SpeakerMode: <p>说话人识别开关，可选值：<br>0：表示不开启说话人识别；<br>1：表示开启说话人识别；<br>默认不开启说话人识别。</p>
         # @type SpeakerMode: Integer
         # @param SpeakerLabel: <p>说话人识别输出到字幕文件，可选值：<br>0：表示不输出到字幕文件；<br>1：表示输出到vtt字幕文件<br>注意：使用此参数SpeakerMode的值不能为0；<br>默认不输出到字幕文件。</p>
         # @type SpeakerLabel: Integer
 
-        attr_accessor :Name, :Comment, :SubtitleType, :VideoSrcLanguage, :SubtitleFormat, :TranslateSwitch, :TranslateDstLanguage, :ProcessType, :SelectingSubtitleAreasConfig, :SpeakerMode, :SpeakerLabel
+        attr_accessor :Name, :Comment, :SubtitleType, :VideoSrcLanguage, :SubtitleFormat, :TranslateSwitch, :TranslateDstLanguage, :ProcessType, :SelectingSubtitleAreasConfig, :SubtitleEmbedId, :SpeakerMode, :SpeakerLabel
 
-        def initialize(name=nil, comment=nil, subtitletype=nil, videosrclanguage=nil, subtitleformat=nil, translateswitch=nil, translatedstlanguage=nil, processtype=nil, selectingsubtitleareasconfig=nil, speakermode=nil, speakerlabel=nil)
+        def initialize(name=nil, comment=nil, subtitletype=nil, videosrclanguage=nil, subtitleformat=nil, translateswitch=nil, translatedstlanguage=nil, processtype=nil, selectingsubtitleareasconfig=nil, subtitleembedid=nil, speakermode=nil, speakerlabel=nil)
           @Name = name
           @Comment = comment
           @SubtitleType = subtitletype
@@ -22973,6 +23260,7 @@ module TencentCloud
           @TranslateDstLanguage = translatedstlanguage
           @ProcessType = processtype
           @SelectingSubtitleAreasConfig = selectingsubtitleareasconfig
+          @SubtitleEmbedId = subtitleembedid
           @SpeakerMode = speakermode
           @SpeakerLabel = speakerlabel
         end
@@ -22990,6 +23278,7 @@ module TencentCloud
             @SelectingSubtitleAreasConfig = MPSSelectingSubtitleAreasConfig.new
             @SelectingSubtitleAreasConfig.deserialize(params['SelectingSubtitleAreasConfig'])
           end
+          @SubtitleEmbedId = params['SubtitleEmbedId']
           @SpeakerMode = params['SpeakerMode']
           @SpeakerLabel = params['SpeakerLabel']
         end
@@ -23017,14 +23306,16 @@ module TencentCloud
         # @type ProcessType: Integer
         # @param SelectingSubtitleAreasConfig: <p>字幕OCR提取框选区域配置</p>
         # @type SelectingSubtitleAreasConfig: :class:`Tencentcloud::Vod.v20180717.models.MPSSelectingSubtitleAreasConfig`
+        # @param SubtitleEmbedId: <p>压制模板id，只有ProcessType为0或2（任务类型为ASR或OCR）时才允许填写。开启多个翻译语言时，不允许填写。</p>
+        # @type SubtitleEmbedId: Integer
         # @param SpeakerMode: <p>说话人识别开关，可选值：<br>0：表示不开启说话人识别；<br>1：表示开启说话人识别。</p>
         # @type SpeakerMode: Integer
         # @param SpeakerLabel: <p>说话人识别输出到字幕文件，可选值：<br>0：表示不输出到字幕文件；<br>1：表示输出到vtt字幕文件<br>注意：使用此参数SpeakerMode的值不能为0。</p>
         # @type SpeakerLabel: Integer
 
-        attr_accessor :Definition, :Name, :Comment, :SubtitleType, :VideoSrcLanguage, :SubtitleFormat, :TranslateSwitch, :TranslateDstLanguage, :ProcessType, :SelectingSubtitleAreasConfig, :SpeakerMode, :SpeakerLabel
+        attr_accessor :Definition, :Name, :Comment, :SubtitleType, :VideoSrcLanguage, :SubtitleFormat, :TranslateSwitch, :TranslateDstLanguage, :ProcessType, :SelectingSubtitleAreasConfig, :SubtitleEmbedId, :SpeakerMode, :SpeakerLabel
 
-        def initialize(definition=nil, name=nil, comment=nil, subtitletype=nil, videosrclanguage=nil, subtitleformat=nil, translateswitch=nil, translatedstlanguage=nil, processtype=nil, selectingsubtitleareasconfig=nil, speakermode=nil, speakerlabel=nil)
+        def initialize(definition=nil, name=nil, comment=nil, subtitletype=nil, videosrclanguage=nil, subtitleformat=nil, translateswitch=nil, translatedstlanguage=nil, processtype=nil, selectingsubtitleareasconfig=nil, subtitleembedid=nil, speakermode=nil, speakerlabel=nil)
           @Definition = definition
           @Name = name
           @Comment = comment
@@ -23035,6 +23326,7 @@ module TencentCloud
           @TranslateDstLanguage = translatedstlanguage
           @ProcessType = processtype
           @SelectingSubtitleAreasConfig = selectingsubtitleareasconfig
+          @SubtitleEmbedId = subtitleembedid
           @SpeakerMode = speakermode
           @SpeakerLabel = speakerlabel
         end
@@ -23053,6 +23345,7 @@ module TencentCloud
             @SelectingSubtitleAreasConfig = MPSSelectingSubtitleAreasConfig.new
             @SelectingSubtitleAreasConfig.deserialize(params['SelectingSubtitleAreasConfig'])
           end
+          @SubtitleEmbedId = params['SubtitleEmbedId']
           @SpeakerMode = params['SpeakerMode']
           @SpeakerLabel = params['SpeakerLabel']
         end
@@ -23136,6 +23429,242 @@ module TencentCloud
             @Output = MPSTaskOutput.new
             @Output.deserialize(params['Output'])
           end
+        end
+      end
+
+      # MPS字幕压制模块背景配置
+      class MPSSubtitleBoardConfig < TencentCloud::Common::AbstractModel
+        # @param SubtitleBoardConfigSwitch: <p>字幕压制模块背景配置开关，0关闭，1开启，默认0</p>
+        # @type SubtitleBoardConfigSwitch: Integer
+        # @param BoardX: <p>字幕背景底板的x轴坐标位置；支持像素和百分比格式： - 像素：Npx，N范围：[-4096,4096]。 - 百分百：N%，N范围：[-100,100]；例如10%表示字幕背景底板x坐标=10%*源视频宽度。 默认值：0px。 注意：坐标轴原点位于源视频的中轴线底部，字幕底板的基准点在其中轴线底部，参考下图： <img src="https://ie-mps-1258344699.cos.ap-nanjing.tencentcos.cn/common/cloud/mps-demo/102_ai_subtitle/subtitle_style.png" alt="image"></p>
+        # @type BoardX: Integer
+        # @param BoardXUnit: <p>BoardX单位, 0 像素，1百分比，默认为0，像素</p>
+        # @type BoardXUnit: Integer
+        # @param BoardY: <p>字幕背景底板的y轴坐标位置；支持像素和百分比格式： - 像素：Npx，N范围：[0,4096]。 - 百分百：N%，N范围：[0,100]；例如10%表示字幕背景底板y坐标=10%*源视频高度。 不传表示不开启字幕背景底板。 注意：坐标轴原点位于源视频的中轴线底部，字幕背景底板的基准点在其中轴线底部，参考下图： <img src="https://ie-mps-1258344699.cos.ap-nanjing.tencentcos.cn/common/cloud/mps-demo/102_ai_subtitle/subtitle_style.png" alt="image"></p>
+        # @type BoardY: Integer
+        # @param BoardYUnit: <p>BoardY单位, 0 像素，1百分比，默认为0，像素</p>
+        # @type BoardYUnit: Integer
+        # @param BoardWidth: <p>底板的宽度，正整数。 - 代表像素时，取值范围：[0,4096]。 - 代表百分数时，[0, 100]。 开启底板且不填此值时，默认源视频宽像素的90%。</p>
+        # @type BoardWidth: Integer
+        # @param BoardWidthUnit: <p>底板的宽度单位，0 像素，1百分比，默认为0，像素</p>
+        # @type BoardWidthUnit: Integer
+        # @param BoardHeight: <p>底板的高度，正整数。 - 代表像素时，取值范围：[0,4096]。 - 代表百分数时，[0, 100]。 开启底板且不填此值时，默认为源视频高像素的15%。</p>
+        # @type BoardHeight: Integer
+        # @param BoardHeightUnit: <p>底板的高度单位，0 像素，1百分比，默认为0，像素</p>
+        # @type BoardHeightUnit: Integer
+        # @param BoardColor: <p>底板颜色。格式：0xRRGGBB， 默认值：0x000000（黑色）。</p>
+        # @type BoardColor: String
+        # @param BoardAlpha: <p>字幕背景板透明度，取值范围：[0, 1] <li>0：完全透明</li> <li>1：完全不透明</li> 默认值：0.8。</p>
+        # @type BoardAlpha: Float
+
+        attr_accessor :SubtitleBoardConfigSwitch, :BoardX, :BoardXUnit, :BoardY, :BoardYUnit, :BoardWidth, :BoardWidthUnit, :BoardHeight, :BoardHeightUnit, :BoardColor, :BoardAlpha
+
+        def initialize(subtitleboardconfigswitch=nil, boardx=nil, boardxunit=nil, boardy=nil, boardyunit=nil, boardwidth=nil, boardwidthunit=nil, boardheight=nil, boardheightunit=nil, boardcolor=nil, boardalpha=nil)
+          @SubtitleBoardConfigSwitch = subtitleboardconfigswitch
+          @BoardX = boardx
+          @BoardXUnit = boardxunit
+          @BoardY = boardy
+          @BoardYUnit = boardyunit
+          @BoardWidth = boardwidth
+          @BoardWidthUnit = boardwidthunit
+          @BoardHeight = boardheight
+          @BoardHeightUnit = boardheightunit
+          @BoardColor = boardcolor
+          @BoardAlpha = boardalpha
+        end
+
+        def deserialize(params)
+          @SubtitleBoardConfigSwitch = params['SubtitleBoardConfigSwitch']
+          @BoardX = params['BoardX']
+          @BoardXUnit = params['BoardXUnit']
+          @BoardY = params['BoardY']
+          @BoardYUnit = params['BoardYUnit']
+          @BoardWidth = params['BoardWidth']
+          @BoardWidthUnit = params['BoardWidthUnit']
+          @BoardHeight = params['BoardHeight']
+          @BoardHeightUnit = params['BoardHeightUnit']
+          @BoardColor = params['BoardColor']
+          @BoardAlpha = params['BoardAlpha']
+        end
+      end
+
+      # MPS字幕压制模块配置
+      class MPSSubtitleEmbedConfig < TencentCloud::Common::AbstractModel
+        # @param FontType: <p>字体类型，支持：</p><li>hei.ttf：黑体</li><li>song.ttf：宋体</li><li>kai.ttf（推荐）或 simkai.ttf：楷体</li><li>msyh.ttf：微软雅黑</li><li>msyhbd.ttf：微软雅黑加粗</li><li>hkjgt.ttf：华康金刚体</li><li>dhttx.ttf：典黑体特细</li><li>xqgdzt.ttf：喜鹊古字典体</li><li>qpcyt.ttf：巧拼超圆体</li><li>arial.ttf：仅支持英文</li><li>dinalternate.ttf：DIN Alternate Bold</li><li>helveticalt.ttf：Helvetica</li><li>helveticains.ttf：Helvetica Inserat</li><li>trajanpro.ttf：TrajanPro-Bold</li><li>korean.ttf：韩语</li><li>japanese.ttf：日语</li><li>thai.ttf：泰语</li><li>roboto.ttf：Roboto</li><li>notosans.ttf：NotoSans</li><li>notosansthai.ttf：泰语NotoSansThai</li><li>sarabun.ttf：泰语Sarabun</li><li>kanit.ttf：泰语Kanit</li><li>charmonman.ttf：泰语Charmonman</li><li>notonaskharabic.ttf：阿拉伯语NotoNaskhArabic</li><li>notosansdevanagari.ttf：印度语NotoSansDevanagari</li><li>notosanstc.ttf：粤语思源黑体NotoSansTC</li><li>notosanskr.ttf：韩语NotoSansKR</li><li>gothica1.ttf：韩语GothicA1</li><li>nanummyeongjo.ttf：韩语NanumMyeongjo</li><li>notosansjp.ttf：日语NotoSansJP</li><li>notoserifjp.ttf：日语NotoSerifJP</li><li>shipporimincho.ttf：日语ShipporiMincho</li>默认：hei.ttf 黑体。<br>注意：<li>楷体推荐使用kai.ttf</li><li>填了FontPath时FontPath优先</li>
+        # @type FontType: String
+        # @param FontPath: <p>自定义字体文件url地址</p>
+        # @type FontPath: String
+        # @param FontSize: <p>字体大小，不指定则以字幕文件中为准。支持像素和百分比格式：</p><ul><li>像素：Npx，N范围：(0,4096]。</li><li>百分百：N%，N范围：(0,100]；例如10%表示字幕字体大小=10%*源视频高度。</li></ul><p>不填且字幕文件无设置时，默认源视频高度的5%。</p>
+        # @type FontSize: Integer
+        # @param FontSizeUnit: <p>FontSize单位, 0 像素，1百分比，默认为0，像素</p>
+        # @type FontSizeUnit: Integer
+        # @param FontColor: <p>字体颜色，格式：0xRRGGBB，默认值：0xFFFFFF（白色）。</p>
+        # @type FontColor: String
+        # @param FontAlpha: <p>文字透明度，取值范围：(0, 1]</p><li>0：完全透明</li><li>1：完全不透明</li>默认值：1。
+        # @type FontAlpha: Float
+        # @param PosX: <p>字幕x轴坐标位置，指定此参数会忽略字幕文件自带坐标；支持像素和百分比格式：</p><ul><li>像素：Npx，N范围：[-4096,4096]。</li><li>百分百：N%，N范围：[-100,100]；例如10%表示字幕x坐标=10%*源视频宽度。</li></ul><p>默认值：0px。<br>注意：坐标轴原点在源视频中轴线底部，字幕基准点在字幕中轴线底部，参考下图：<br><img src="https://ie-mps-1258344699.cos.ap-nanjing.tencentcos.cn/common/cloud/mps-demo/102_ai_subtitle/subtitle_style.png" alt="image"></p>
+        # @type PosX: Integer
+        # @param PosXUnit: <p>PosX单位, 0 像素，1百分比，默认为0，像素</p>
+        # @type PosXUnit: Integer
+        # @param PosY: <p>字幕y轴坐标位置，指定此参数会忽略字幕文件自带坐标；支持像素和百分比格式：</p><ul><li>像素：Npx，N范围：[0,4096]。</li><li>百分百：N%，N范围：[0,100]；例如10%表示字幕y坐标=10%*源视频高度。</li></ul><p>默认值：源视频高度*4%。<br>注意：坐标轴原点在源视频中轴线底部，字幕基准点在字幕中轴线底部，参考下图：<br><img src="https://ie-mps-1258344699.cos.ap-nanjing.tencentcos.cn/common/cloud/mps-demo/102_ai_subtitle/subtitle_style.png" alt="image"></p>
+        # @type PosY: Integer
+        # @param PosYUnit: <p>PosY单位, 0 像素，1百分比，默认为0，像素</p>
+        # @type PosYUnit: Integer
+        # @param SubtitleBoardConfig: <p>背景配置</p>
+        # @type SubtitleBoardConfig: :class:`Tencentcloud::Vod.v20180717.models.MPSSubtitleBoardConfig`
+        # @param SubtitleLayoutConfig: <p>排列配置</p>
+        # @type SubtitleLayoutConfig: :class:`Tencentcloud::Vod.v20180717.models.MPSSubtitleLayoutConfig`
+        # @param SubtitleOutlineConfig: <p>文字描边配置</p>
+        # @type SubtitleOutlineConfig: :class:`Tencentcloud::Vod.v20180717.models.MPSSubtitleOutlineConfig`
+        # @param SubtitleShadowConfig: <p>文字阴影配置</p>
+        # @type SubtitleShadowConfig: :class:`Tencentcloud::Vod.v20180717.models.MPSSubtitleShadowConfig`
+        # @param SampleWidth: <p>源视频尺寸的宽，单位像素值</p>
+        # @type SampleWidth: Integer
+        # @param SampleHeight: <p>源视频尺寸的高，单位像素值</p>
+        # @type SampleHeight: Integer
+
+        attr_accessor :FontType, :FontPath, :FontSize, :FontSizeUnit, :FontColor, :FontAlpha, :PosX, :PosXUnit, :PosY, :PosYUnit, :SubtitleBoardConfig, :SubtitleLayoutConfig, :SubtitleOutlineConfig, :SubtitleShadowConfig, :SampleWidth, :SampleHeight
+
+        def initialize(fonttype=nil, fontpath=nil, fontsize=nil, fontsizeunit=nil, fontcolor=nil, fontalpha=nil, posx=nil, posxunit=nil, posy=nil, posyunit=nil, subtitleboardconfig=nil, subtitlelayoutconfig=nil, subtitleoutlineconfig=nil, subtitleshadowconfig=nil, samplewidth=nil, sampleheight=nil)
+          @FontType = fonttype
+          @FontPath = fontpath
+          @FontSize = fontsize
+          @FontSizeUnit = fontsizeunit
+          @FontColor = fontcolor
+          @FontAlpha = fontalpha
+          @PosX = posx
+          @PosXUnit = posxunit
+          @PosY = posy
+          @PosYUnit = posyunit
+          @SubtitleBoardConfig = subtitleboardconfig
+          @SubtitleLayoutConfig = subtitlelayoutconfig
+          @SubtitleOutlineConfig = subtitleoutlineconfig
+          @SubtitleShadowConfig = subtitleshadowconfig
+          @SampleWidth = samplewidth
+          @SampleHeight = sampleheight
+        end
+
+        def deserialize(params)
+          @FontType = params['FontType']
+          @FontPath = params['FontPath']
+          @FontSize = params['FontSize']
+          @FontSizeUnit = params['FontSizeUnit']
+          @FontColor = params['FontColor']
+          @FontAlpha = params['FontAlpha']
+          @PosX = params['PosX']
+          @PosXUnit = params['PosXUnit']
+          @PosY = params['PosY']
+          @PosYUnit = params['PosYUnit']
+          unless params['SubtitleBoardConfig'].nil?
+            @SubtitleBoardConfig = MPSSubtitleBoardConfig.new
+            @SubtitleBoardConfig.deserialize(params['SubtitleBoardConfig'])
+          end
+          unless params['SubtitleLayoutConfig'].nil?
+            @SubtitleLayoutConfig = MPSSubtitleLayoutConfig.new
+            @SubtitleLayoutConfig.deserialize(params['SubtitleLayoutConfig'])
+          end
+          unless params['SubtitleOutlineConfig'].nil?
+            @SubtitleOutlineConfig = MPSSubtitleOutlineConfig.new
+            @SubtitleOutlineConfig.deserialize(params['SubtitleOutlineConfig'])
+          end
+          unless params['SubtitleShadowConfig'].nil?
+            @SubtitleShadowConfig = MPSSubtitleShadowConfig.new
+            @SubtitleShadowConfig.deserialize(params['SubtitleShadowConfig'])
+          end
+          @SampleWidth = params['SampleWidth']
+          @SampleHeight = params['SampleHeight']
+        end
+      end
+
+      # MPS字幕压制模块字幕排列配置
+      class MPSSubtitleLayoutConfig < TencentCloud::Common::AbstractModel
+        # @param SubtitleLayoutConfigSwitch: <p>字幕排列配置开关，0关闭，1开启，默认0</p>
+        # @type SubtitleLayoutConfigSwitch: Integer
+        # @param LineSpacing: <p>行间距。正整数。 - 代表像素值时， [0, 1000]。 - 代表百分数时，[0, 100]。不填默认0。</p>
+        # @type LineSpacing: Integer
+        # @param LineSpacingUnit: <p>LineSpacing单位，0 像素，1百分比，默认为0，像素</p>
+        # @type LineSpacingUnit: Integer
+        # @param Alignment: <p>对齐方式，取值：top: 顶部对齐，字幕顶部按位置固定，底部随行数变化。bottom: 底部对齐，字幕底部按位置固定，顶部随行数变化。不填默认底部对齐。</p>
+        # @type Alignment: String
+
+        attr_accessor :SubtitleLayoutConfigSwitch, :LineSpacing, :LineSpacingUnit, :Alignment
+
+        def initialize(subtitlelayoutconfigswitch=nil, linespacing=nil, linespacingunit=nil, alignment=nil)
+          @SubtitleLayoutConfigSwitch = subtitlelayoutconfigswitch
+          @LineSpacing = linespacing
+          @LineSpacingUnit = linespacingunit
+          @Alignment = alignment
+        end
+
+        def deserialize(params)
+          @SubtitleLayoutConfigSwitch = params['SubtitleLayoutConfigSwitch']
+          @LineSpacing = params['LineSpacing']
+          @LineSpacingUnit = params['LineSpacingUnit']
+          @Alignment = params['Alignment']
+        end
+      end
+
+      # MPS字幕压制模块文字描边配置
+      class MPSSubtitleOutlineConfig < TencentCloud::Common::AbstractModel
+        # @param SubtitleOutlineConfigSwitch: <p>文字描边配置开关，0关闭，1开启，默认0</p>
+        # @type SubtitleOutlineConfigSwitch: Integer
+        # @param OutlineWidth: <p>描边宽度，默认单位像素，底层默认值为源视频高度的0.3%</p>
+        # @type OutlineWidth: Float
+        # @param OutlineWidthUnit: <p>描边宽度单位，0 像素，1百分比，默认为0，像素</p>
+        # @type OutlineWidthUnit: Integer
+        # @param OutlineColor: <p>描边颜色。6位16进制RGB。不填默认黑色。</p>
+        # @type OutlineColor: String
+        # @param OutlineAlpha: <p>描边透明度。(0，1] 正浮点数。不填默认1，完全不透明</p>
+        # @type OutlineAlpha: Float
+
+        attr_accessor :SubtitleOutlineConfigSwitch, :OutlineWidth, :OutlineWidthUnit, :OutlineColor, :OutlineAlpha
+
+        def initialize(subtitleoutlineconfigswitch=nil, outlinewidth=nil, outlinewidthunit=nil, outlinecolor=nil, outlinealpha=nil)
+          @SubtitleOutlineConfigSwitch = subtitleoutlineconfigswitch
+          @OutlineWidth = outlinewidth
+          @OutlineWidthUnit = outlinewidthunit
+          @OutlineColor = outlinecolor
+          @OutlineAlpha = outlinealpha
+        end
+
+        def deserialize(params)
+          @SubtitleOutlineConfigSwitch = params['SubtitleOutlineConfigSwitch']
+          @OutlineWidth = params['OutlineWidth']
+          @OutlineWidthUnit = params['OutlineWidthUnit']
+          @OutlineColor = params['OutlineColor']
+          @OutlineAlpha = params['OutlineAlpha']
+        end
+      end
+
+      # MPS字幕压制模块文字阴影配置
+      class MPSSubtitleShadowConfig < TencentCloud::Common::AbstractModel
+        # @param SubtitleShadowConfigSwitch: <p>文字阴影配置开关，0关闭，1开启，默认0</p>
+        # @type SubtitleShadowConfigSwitch: Integer
+        # @param ShadowWidth: <p>阴影宽度，默认单位像素，底层默认值为0，无阴影</p>
+        # @type ShadowWidth: Float
+        # @param ShadowWidthUnit: <p>阴影宽度单位， 0 像素，1百分比，默认为0，像素</p>
+        # @type ShadowWidthUnit: Integer
+        # @param ShadowColor: <p>阴影颜色。6位16进制RGB。不填默认黑色（有设置阴影的情况下）</p>
+        # @type ShadowColor: String
+        # @param ShadowAlpha: <p>阴影透明度。(0，1] 正浮点数。不填默认1，完全不透明（有设置阴影的情况下）</p>
+        # @type ShadowAlpha: Float
+
+        attr_accessor :SubtitleShadowConfigSwitch, :ShadowWidth, :ShadowWidthUnit, :ShadowColor, :ShadowAlpha
+
+        def initialize(subtitleshadowconfigswitch=nil, shadowwidth=nil, shadowwidthunit=nil, shadowcolor=nil, shadowalpha=nil)
+          @SubtitleShadowConfigSwitch = subtitleshadowconfigswitch
+          @ShadowWidth = shadowwidth
+          @ShadowWidthUnit = shadowwidthunit
+          @ShadowColor = shadowcolor
+          @ShadowAlpha = shadowalpha
+        end
+
+        def deserialize(params)
+          @SubtitleShadowConfigSwitch = params['SubtitleShadowConfigSwitch']
+          @ShadowWidth = params['ShadowWidth']
+          @ShadowWidthUnit = params['ShadowWidthUnit']
+          @ShadowColor = params['ShadowColor']
+          @ShadowAlpha = params['ShadowAlpha']
         end
       end
 
@@ -23920,8 +24449,8 @@ module TencentCloud
 
         attr_accessor :StartTimeOffset, :EndTimeOffset, :Confidence, :Suggestion, :Name, :Label, :Url, :AreaCoordSet, :PicUrlExpireTimeStamp, :PicUrlExpireTime
         extend Gem::Deprecate
-        deprecate :PicUrlExpireTimeStamp, :none, 2026, 7
-        deprecate :PicUrlExpireTimeStamp=, :none, 2026, 7
+        deprecate :PicUrlExpireTimeStamp, :none, 2026, 8
+        deprecate :PicUrlExpireTimeStamp=, :none, 2026, 8
 
         def initialize(starttimeoffset=nil, endtimeoffset=nil, confidence=nil, suggestion=nil, name=nil, label=nil, url=nil, areacoordset=nil, picurlexpiretimestamp=nil, picurlexpiretime=nil)
           @StartTimeOffset = starttimeoffset
@@ -23975,8 +24504,8 @@ module TencentCloud
 
         attr_accessor :StartTimeOffset, :EndTimeOffset, :Confidence, :Label, :Suggestion, :Url, :PicUrlExpireTimeStamp, :PicUrlExpireTime
         extend Gem::Deprecate
-        deprecate :PicUrlExpireTimeStamp, :none, 2026, 7
-        deprecate :PicUrlExpireTimeStamp=, :none, 2026, 7
+        deprecate :PicUrlExpireTimeStamp, :none, 2026, 8
+        deprecate :PicUrlExpireTimeStamp=, :none, 2026, 8
 
         def initialize(starttimeoffset=nil, endtimeoffset=nil, confidence=nil, label=nil, suggestion=nil, url=nil, picurlexpiretimestamp=nil, picurlexpiretime=nil)
           @StartTimeOffset = starttimeoffset
@@ -25598,8 +26127,8 @@ module TencentCloud
 
         attr_accessor :Duration, :Transitions, :MediaTransitions
         extend Gem::Deprecate
-        deprecate :Transitions, :none, 2026, 7
-        deprecate :Transitions=, :none, 2026, 7
+        deprecate :Transitions, :none, 2026, 8
+        deprecate :Transitions=, :none, 2026, 8
 
         def initialize(duration=nil, transitions=nil, mediatransitions=nil)
           @Duration = duration
@@ -26663,6 +27192,50 @@ module TencentCloud
         end
       end
 
+      # ModifyKnowledgeBase请求参数结构体
+      class ModifyKnowledgeBaseRequest < TencentCloud::Common::AbstractModel
+        # @param SubAppId: <p>点播<a href="/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</p>
+        # @type SubAppId: Integer
+        # @param KnowledgeBaseId: <p>要修改的知识库ID。</p>
+        # @type KnowledgeBaseId: String
+        # @param Name: <p>新的知识库名称。长度限制：1-64个字符。</p>
+        # @type Name: String
+        # @param Description: <p>新的知识库描述。长度限制：最多256个字符。</p>
+        # @type Description: String
+
+        attr_accessor :SubAppId, :KnowledgeBaseId, :Name, :Description
+
+        def initialize(subappid=nil, knowledgebaseid=nil, name=nil, description=nil)
+          @SubAppId = subappid
+          @KnowledgeBaseId = knowledgebaseid
+          @Name = name
+          @Description = description
+        end
+
+        def deserialize(params)
+          @SubAppId = params['SubAppId']
+          @KnowledgeBaseId = params['KnowledgeBaseId']
+          @Name = params['Name']
+          @Description = params['Description']
+        end
+      end
+
+      # ModifyKnowledgeBase返回参数结构体
+      class ModifyKnowledgeBaseResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyLLMComprehendTemplate请求参数结构体
       class ModifyLLMComprehendTemplateRequest < TencentCloud::Common::AbstractModel
         # @param Definition: <p>大模型理解模板的唯一标识</p>
@@ -26736,7 +27309,7 @@ module TencentCloud
       class ModifyMPSTemplateRequest < TencentCloud::Common::AbstractModel
         # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。</b></p>
         # @type SubAppId: Integer
-        # @param TemplateType: <p>需要修改的 MPS 模板的类型。</p><p>枚举值：</p><ul><li>AIAnalysis： 智能分析模板</li><li>SmartSubtitle： 智能字幕模板</li><li>SmartErase： 智能擦除模板</li></ul>
+        # @param TemplateType: <p>需要修改的 MPS 模板的类型。</p><p>枚举值：</p><ul><li>AIAnalysis： 智能分析模板</li><li>SmartSubtitle： 智能字幕模板</li><li>SmartErase： 智能擦除模板</li><li>EmbedSubtitle： 字幕压制模板</li></ul>
         # @type TemplateType: String
         # @param MPSModifyTemplateParams: <p>MPS 修改模板参数。该参数用于透传至媒体处理服务（MPS），从云点播侧修改用户自定义的 MPS 任务模板。<br> 目前仅支持通过此方式修改以下任务类型的模板：</p><ol><li>音视频增强：仅支持填写“<a href="https://cloud.tencent.com/document/api/862/37578">修改转码模板</a>”接口中的 Name、Comment、RemoveVideo、RemoveAudio、VideoTemplate、AudioTemplate 和 EnhanceConfig 几个参数的内容。目前仅支持在模板中配置以上参数，其他参数无需填写，若包含其它参数，系统将自动忽略。</li><li>智能分析：仅支持填写“<a href="https://cloud.tencent.com/document/api/862/40246">修改内容分析模板</a>”接口中的Name、Comment、ClassificationConfigure、TagConfigure、CoverConfigure、FrameTagConfigure几个参数的内容。目前仅支持在模板中配置以上参数，其他参数无需填写，若包含其它参数，系统将自动忽略。</li><li>智能字幕：仅支持填写“<a href="https://cloud.tencent.com/document/api/862/117001">修改智能字幕模板</a>”接口中的Name、Comment、TranslateSwitch、VideoSrcLanguage、SubtitleFormat、SubtitleType、AsrHotWordsConfigure、TranslateDstLanguage、ProcessType几个参数的内容。目前仅支持在模板中配置以上参数，其他参数无需填写，若包含其它参数，系统将自动忽略。</li><li>智能擦除：仅支持填写“<a href="https://cloud.tencent.com/document/api/862/123732">修改智能擦除模板</a>”接口中的Name、Comment、EraseType、EraseSubtitleConfig、EraseWatermarkConfig、ErasePrivacyConfig几个参数的内容。目前仅支持在模板中配置以上参数，其他参数无需填写，若包含其它参数，系统将自动忽略。</li></ol>
         # @type MPSModifyTemplateParams: String
@@ -26746,16 +27319,19 @@ module TencentCloud
         # @type SmartSubtitleTemplate: :class:`Tencentcloud::Vod.v20180717.models.MPSSmartSubtitleTemplateForUpdate`
         # @param SmartEraseTemplate: <p>智能擦除模板参数，MPSModifyTemplateParams为空时有效。</p>
         # @type SmartEraseTemplate: :class:`Tencentcloud::Vod.v20180717.models.MPSSmartEraseTemplateForUpdate`
+        # @param EmbedSubtitleTemplate: <p>字幕压制模板参数，MPSModifyTemplateParams为空时有效。</p>
+        # @type EmbedSubtitleTemplate: :class:`Tencentcloud::Vod.v20180717.models.MPSEmbedSubtitleTemplateForUpdate`
 
-        attr_accessor :SubAppId, :TemplateType, :MPSModifyTemplateParams, :AIAnalysisTemplate, :SmartSubtitleTemplate, :SmartEraseTemplate
+        attr_accessor :SubAppId, :TemplateType, :MPSModifyTemplateParams, :AIAnalysisTemplate, :SmartSubtitleTemplate, :SmartEraseTemplate, :EmbedSubtitleTemplate
 
-        def initialize(subappid=nil, templatetype=nil, mpsmodifytemplateparams=nil, aianalysistemplate=nil, smartsubtitletemplate=nil, smarterasetemplate=nil)
+        def initialize(subappid=nil, templatetype=nil, mpsmodifytemplateparams=nil, aianalysistemplate=nil, smartsubtitletemplate=nil, smarterasetemplate=nil, embedsubtitletemplate=nil)
           @SubAppId = subappid
           @TemplateType = templatetype
           @MPSModifyTemplateParams = mpsmodifytemplateparams
           @AIAnalysisTemplate = aianalysistemplate
           @SmartSubtitleTemplate = smartsubtitletemplate
           @SmartEraseTemplate = smarterasetemplate
+          @EmbedSubtitleTemplate = embedsubtitletemplate
         end
 
         def deserialize(params)
@@ -26773,6 +27349,10 @@ module TencentCloud
           unless params['SmartEraseTemplate'].nil?
             @SmartEraseTemplate = MPSSmartEraseTemplateForUpdate.new
             @SmartEraseTemplate.deserialize(params['SmartEraseTemplate'])
+          end
+          unless params['EmbedSubtitleTemplate'].nil?
+            @EmbedSubtitleTemplate = MPSEmbedSubtitleTemplateForUpdate.new
+            @EmbedSubtitleTemplate.deserialize(params['EmbedSubtitleTemplate'])
           end
         end
       end
@@ -26795,45 +27375,46 @@ module TencentCloud
 
       # ModifyMediaInfo请求参数结构体
       class ModifyMediaInfoRequest < TencentCloud::Common::AbstractModel
-        # @param FileId: 媒体文件唯一标识。
+        # @param FileId: <p>媒体文件唯一标识。</p>
         # @type FileId: String
-        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
+        # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b></p>
         # @type SubAppId: Integer
-        # @param Name: 媒体文件名称，最长 64 个字符。
+        # @param Name: <p>媒体文件名称，最长 64 个字符。</p>
         # @type Name: String
-        # @param Description: 媒体文件描述，最长 128 个字符。
+        # @param Description: <p>媒体文件描述，最长 128 个字符。</p>
         # @type Description: String
-        # @param ClassId: 媒体文件分类 ID。
+        # @param ClassId: <p>媒体文件分类 ID。</p>
         # @type ClassId: Integer
-        # @param ExpireTime: 媒体文件过期时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。填“9999-12-31T23:59:59Z”表示永不过期。过期后该媒体文件及其相关资源（转码结果、雪碧图等）将被永久删除。
+        # @param ExpireTime: <p>媒体文件过期时间，采用 <a href="https://cloud.tencent.com/document/product/266/11732#I">ISO 日期格式</a>。填“9999-12-31T23:59:59Z”表示永不过期。过期后该媒体文件及其相关资源（转码结果、雪碧图等）将被永久删除。</p>
         # @type ExpireTime: String
-        # @param CoverData: 视频封面图片文件（如 jpeg, png 等）进行 [Base64](https://tools.ietf.org/html/rfc4648) 编码后的字符串，仅支持 gif、jpeg、png 三种图片格式。
+        # @param CoverData: <p>视频封面图片文件（如 jpeg, png 等）进行 <a href="https://tools.ietf.org/html/rfc4648">Base64</a> 编码后的字符串，仅支持 gif、jpeg、png 三种图片格式。</p>
         # @type CoverData: String
-        # @param AddKeyFrameDescs: 新增的一组视频打点信息，如果某个偏移时间已存在打点，则会进行覆盖操作，单个媒体文件最多 100 个打点信息。同一个请求里，AddKeyFrameDescs 的时间偏移参数必须与 DeleteKeyFrameDescs 都不同。
+        # @param AddKeyFrameDescs: <p>新增的一组视频打点信息，如果某个偏移时间已存在打点，则会进行覆盖操作，单个媒体文件最多 100 个打点信息。同一个请求里，AddKeyFrameDescs 的时间偏移参数必须与 DeleteKeyFrameDescs 都不同。</p>
         # @type AddKeyFrameDescs: Array
-        # @param DeleteKeyFrameDescs: 要删除的一组视频打点信息的时间偏移，单位：秒。同一个请求里，AddKeyFrameDescs 的时间偏移参数必须与 DeleteKeyFrameDescs 都不同。
+        # @param DeleteKeyFrameDescs: <p>要删除的一组视频打点信息的时间偏移，单位：秒。同一个请求里，AddKeyFrameDescs 的时间偏移参数必须与 DeleteKeyFrameDescs 都不同。</p>
         # @type DeleteKeyFrameDescs: Array
-        # @param ClearKeyFrameDescs: 取值 1 表示清空视频打点信息，其他值无意义。
-        # 同一个请求里，ClearKeyFrameDescs 与 AddKeyFrameDescs 不能同时出现。
+        # @param ClearKeyFrameDescs: <p>取值 1 表示清空视频打点信息，其他值无意义。<br>同一个请求里，ClearKeyFrameDescs 与 AddKeyFrameDescs 不能同时出现。</p>
         # @type ClearKeyFrameDescs: Integer
-        # @param AddTags: 新增的一组标签，单个媒体文件最多 16 个标签，单个标签最多 32 个字符。同一个请求里，AddTags 参数必须与 DeleteTags 都不同。
+        # @param AddTags: <p>新增的一组标签，单个媒体文件最多 16 个标签，单个标签最多 32 个字符。同一个请求里，AddTags 参数必须与 DeleteTags 都不同。</p>
         # @type AddTags: Array
-        # @param DeleteTags: 要删除的一组标签。同一个请求里，AddTags 参数必须与 DeleteTags 都不同。
+        # @param DeleteTags: <p>要删除的一组标签。同一个请求里，AddTags 参数必须与 DeleteTags 都不同。</p>
         # @type DeleteTags: Array
-        # @param ClearTags: 取值 1 表示清空媒体文件所有标签，其他值无意义。
-        # 同一个请求里，ClearTags 与 AddTags 不能同时出现。
+        # @param ClearTags: <p>取值 1 表示清空媒体文件所有标签，其他值无意义。<br>同一个请求里，ClearTags 与 AddTags 不能同时出现。</p>
         # @type ClearTags: Integer
-        # @param AddSubtitles: 新增一组字幕。单个媒体文件最多 16 个字幕。同一个请求中，AddSubtitles 中指定的字幕 Id 必须与 DeleteSubtitleIds 都不相同。
+        # @param AddSubtitles: <p>新增一组字幕。单个媒体文件最多 16 个字幕。同一个请求中，AddSubtitles 中指定的字幕 Id 必须与 DeleteSubtitleIds 都不相同。</p>
         # @type AddSubtitles: Array
-        # @param DeleteSubtitleIds: 待删除字幕的唯一标识。同一个请求中，AddSubtitles 中指定的字幕 Id 必须与 DeleteSubtitleIds 都不相同。
+        # @param DeleteSubtitleIds: <p>待删除字幕的唯一标识。同一个请求中，AddSubtitles 中指定的字幕 Id 必须与 DeleteSubtitleIds 都不相同。</p>
         # @type DeleteSubtitleIds: Array
-        # @param ClearSubtitles: 取值 1 表示清空媒体文件所有的字幕信息，其他值无意义。
-        # 同一个请求里，ClearSubtitles 与 AddSubtitles不能同时出现。
+        # @param ClearSubtitles: <p>取值 1 表示清空媒体文件所有的字幕信息，其他值无意义。<br>同一个请求里，ClearSubtitles 与 AddSubtitles不能同时出现。</p>
         # @type ClearSubtitles: Integer
+        # @param DeleteKnowledgeBases: <p>待出库的知识库ID。</p>
+        # @type DeleteKnowledgeBases: Array
+        # @param ClearKnowledgeBases: <p>取值 1 表示从所有知识库中移除此媒体文件，其他值无意义。</p><p><br>同一个请求里，ClearKnowledgeBases 与 DeleteKnowledgeBases 不能同时出现。<p></p></p>
+        # @type ClearKnowledgeBases: Integer
 
-        attr_accessor :FileId, :SubAppId, :Name, :Description, :ClassId, :ExpireTime, :CoverData, :AddKeyFrameDescs, :DeleteKeyFrameDescs, :ClearKeyFrameDescs, :AddTags, :DeleteTags, :ClearTags, :AddSubtitles, :DeleteSubtitleIds, :ClearSubtitles
+        attr_accessor :FileId, :SubAppId, :Name, :Description, :ClassId, :ExpireTime, :CoverData, :AddKeyFrameDescs, :DeleteKeyFrameDescs, :ClearKeyFrameDescs, :AddTags, :DeleteTags, :ClearTags, :AddSubtitles, :DeleteSubtitleIds, :ClearSubtitles, :DeleteKnowledgeBases, :ClearKnowledgeBases
 
-        def initialize(fileid=nil, subappid=nil, name=nil, description=nil, classid=nil, expiretime=nil, coverdata=nil, addkeyframedescs=nil, deletekeyframedescs=nil, clearkeyframedescs=nil, addtags=nil, deletetags=nil, cleartags=nil, addsubtitles=nil, deletesubtitleids=nil, clearsubtitles=nil)
+        def initialize(fileid=nil, subappid=nil, name=nil, description=nil, classid=nil, expiretime=nil, coverdata=nil, addkeyframedescs=nil, deletekeyframedescs=nil, clearkeyframedescs=nil, addtags=nil, deletetags=nil, cleartags=nil, addsubtitles=nil, deletesubtitleids=nil, clearsubtitles=nil, deleteknowledgebases=nil, clearknowledgebases=nil)
           @FileId = fileid
           @SubAppId = subappid
           @Name = name
@@ -26850,6 +27431,8 @@ module TencentCloud
           @AddSubtitles = addsubtitles
           @DeleteSubtitleIds = deletesubtitleids
           @ClearSubtitles = clearsubtitles
+          @DeleteKnowledgeBases = deleteknowledgebases
+          @ClearKnowledgeBases = clearknowledgebases
         end
 
         def deserialize(params)
@@ -26883,15 +27466,16 @@ module TencentCloud
           end
           @DeleteSubtitleIds = params['DeleteSubtitleIds']
           @ClearSubtitles = params['ClearSubtitles']
+          @DeleteKnowledgeBases = params['DeleteKnowledgeBases']
+          @ClearKnowledgeBases = params['ClearKnowledgeBases']
         end
       end
 
       # ModifyMediaInfo返回参数结构体
       class ModifyMediaInfoResponse < TencentCloud::Common::AbstractModel
-        # @param CoverUrl: 新的视频封面 URL。
-        # * 注意：仅当请求携带 CoverData 时此返回值有效。 *
+        # @param CoverUrl: <p>新的视频封面 URL。</p><ul><li>注意：仅当请求携带 CoverData 时此返回值有效。 *</li></ul>
         # @type CoverUrl: String
-        # @param AddedSubtitleSet: 新增的字幕信息。
+        # @param AddedSubtitleSet: <p>新增的字幕信息。</p>
         # @type AddedSubtitleSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -29351,10 +29935,10 @@ module TencentCloud
 
         attr_accessor :TaskId, :Status, :ErrCode, :Message, :FileId, :FileName, :FileUrl, :MetaData, :MediaProcessResultSet, :AiContentReviewResultSet, :AiAnalysisResultSet, :AiRecognitionResultSet, :TasksPriority, :TasksNotifyMode, :SessionContext, :SessionId, :Operator, :OperationType
         extend Gem::Deprecate
-        deprecate :ErrCode, :none, 2026, 7
-        deprecate :ErrCode=, :none, 2026, 7
-        deprecate :Message, :none, 2026, 7
-        deprecate :Message=, :none, 2026, 7
+        deprecate :ErrCode, :none, 2026, 8
+        deprecate :ErrCode=, :none, 2026, 8
+        deprecate :Message, :none, 2026, 8
+        deprecate :Message=, :none, 2026, 8
 
         def initialize(taskid=nil, status=nil, errcode=nil, message=nil, fileid=nil, filename=nil, fileurl=nil, metadata=nil, mediaprocessresultset=nil, aicontentreviewresultset=nil, aianalysisresultset=nil, airecognitionresultset=nil, taskspriority=nil, tasksnotifymode=nil, sessioncontext=nil, sessionid=nil, operator=nil, operationtype=nil)
           @TaskId = taskid
@@ -29432,46 +30016,45 @@ module TencentCloud
 
       # 任务流模板详情
       class ProcedureTemplate < TencentCloud::Common::AbstractModel
-        # @param Name: 任务流名字。
+        # @param Name: <p>任务流名字。</p>
         # @type Name: String
-        # @param Type: 任务流模板类型，取值范围：
-        # <li>Preset：系统预置任务流模板；</li>
-        # <li>Custom：用户自定义任务流模板。</li>
+        # @param Type: <p>任务流模板类型，取值范围：</p><li>Preset：系统预置任务流模板；</li><li>Custom：用户自定义任务流模板。</li>
         # @type Type: String
-        # @param Comment: 模板描述信息，长度限制：256 个字符。
+        # @param Comment: <p>模板描述信息，长度限制：256 个字符。</p>
         # @type Comment: String
-        # @param MediaProcessTask: 视频处理类型任务参数。
+        # @param MediaProcessTask: <p>视频处理类型任务参数。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MediaProcessTask: :class:`Tencentcloud::Vod.v20180717.models.MediaProcessTaskInput`
-        # @param AiContentReviewTask: AI 智能审核类型任务参数 \*。
-        # <font color=red>\*：该参数用于发起旧版审核，不建议使用。推荐使用 ReviewAudioVideoTask 参数发起审核。</font>
+        # @param AiContentReviewTask: <p>AI 智能审核类型任务参数 *。<br><font color="red">*：该参数用于发起旧版审核，不建议使用。推荐使用 ReviewAudioVideoTask 参数发起审核。</font></p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AiContentReviewTask: :class:`Tencentcloud::Vod.v20180717.models.AiContentReviewTaskInput`
-        # @param AiAnalysisTask: AI 智能内容分析类型任务参数。
+        # @param AiAnalysisTask: <p>AI 智能内容分析类型任务参数。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AiAnalysisTask: :class:`Tencentcloud::Vod.v20180717.models.AiAnalysisTaskInput`
-        # @param AiRecognitionTaskSet: AI 内容识别类型任务参数。
+        # @param AiRecognitionTaskSet: <p>AI 内容识别类型任务参数。</p>
         # @type AiRecognitionTaskSet: Array
-        # @param AiRecognitionTask: 该参数已不推荐使用，建议使用 AiRecognitionTaskSet。
+        # @param AiRecognitionTask: <p>该参数已不推荐使用，建议使用 AiRecognitionTaskSet。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AiRecognitionTask: :class:`Tencentcloud::Vod.v20180717.models.AiRecognitionTaskInput`
-        # @param MiniProgramPublishTask: 微信小程序发布任务参数。
+        # @param MiniProgramPublishTask: <p>微信小程序发布任务参数。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MiniProgramPublishTask: :class:`Tencentcloud::Vod.v20180717.models.WechatMiniProgramPublishTaskInput`
-        # @param ReviewAudioVideoTask: 音视频审核类型任务参数。
+        # @param ReviewAudioVideoTask: <p>音视频审核类型任务参数。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReviewAudioVideoTask: :class:`Tencentcloud::Vod.v20180717.models.ProcedureReviewAudioVideoTaskInput`
-        # @param CreateTime: 模板创建时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @param ImportMediaKnowledgeTaskSet: <p>导入智能媒资知识库任务参数。</p>
+        # @type ImportMediaKnowledgeTaskSet: Array
+        # @param CreateTime: <p>模板创建时间，使用 <a href="https://cloud.tencent.com/document/product/266/11732#I">ISO 日期格式</a>。</p>
         # @type CreateTime: String
-        # @param UpdateTime: 模板最后修改时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @param UpdateTime: <p>模板最后修改时间，使用 <a href="https://cloud.tencent.com/document/product/266/11732#I">ISO 日期格式</a>。</p>
         # @type UpdateTime: String
 
-        attr_accessor :Name, :Type, :Comment, :MediaProcessTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTaskSet, :AiRecognitionTask, :MiniProgramPublishTask, :ReviewAudioVideoTask, :CreateTime, :UpdateTime
+        attr_accessor :Name, :Type, :Comment, :MediaProcessTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTaskSet, :AiRecognitionTask, :MiniProgramPublishTask, :ReviewAudioVideoTask, :ImportMediaKnowledgeTaskSet, :CreateTime, :UpdateTime
         extend Gem::Deprecate
-        deprecate :AiRecognitionTask, :none, 2026, 7
-        deprecate :AiRecognitionTask=, :none, 2026, 7
+        deprecate :AiRecognitionTask, :none, 2026, 8
+        deprecate :AiRecognitionTask=, :none, 2026, 8
 
-        def initialize(name=nil, type=nil, comment=nil, mediaprocesstask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontaskset=nil, airecognitiontask=nil, miniprogrampublishtask=nil, reviewaudiovideotask=nil, createtime=nil, updatetime=nil)
+        def initialize(name=nil, type=nil, comment=nil, mediaprocesstask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontaskset=nil, airecognitiontask=nil, miniprogrampublishtask=nil, reviewaudiovideotask=nil, importmediaknowledgetaskset=nil, createtime=nil, updatetime=nil)
           @Name = name
           @Type = type
           @Comment = comment
@@ -29482,6 +30065,7 @@ module TencentCloud
           @AiRecognitionTask = airecognitiontask
           @MiniProgramPublishTask = miniprogrampublishtask
           @ReviewAudioVideoTask = reviewaudiovideotask
+          @ImportMediaKnowledgeTaskSet = importmediaknowledgetaskset
           @CreateTime = createtime
           @UpdateTime = updatetime
         end
@@ -29521,6 +30105,14 @@ module TencentCloud
           unless params['ReviewAudioVideoTask'].nil?
             @ReviewAudioVideoTask = ProcedureReviewAudioVideoTaskInput.new
             @ReviewAudioVideoTask.deserialize(params['ReviewAudioVideoTask'])
+          end
+          unless params['ImportMediaKnowledgeTaskSet'].nil?
+            @ImportMediaKnowledgeTaskSet = []
+            params['ImportMediaKnowledgeTaskSet'].each do |i|
+              importmediaknowledgetaskinput_tmp = ImportMediaKnowledgeTaskInput.new
+              importmediaknowledgetaskinput_tmp.deserialize(i)
+              @ImportMediaKnowledgeTaskSet << importmediaknowledgetaskinput_tmp
+            end
           end
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
@@ -30070,26 +30662,23 @@ module TencentCloud
 
       # ProcessMediaByProcedure请求参数结构体
       class ProcessMediaByProcedureRequest < TencentCloud::Common::AbstractModel
-        # @param ProcedureName: [任务流](https://cloud.tencent.com/document/product/266/33475#.E4.BB.BB.E5.8A.A1.E6.B5.81)名称。
+        # @param ProcedureName: <p><a href="https://cloud.tencent.com/document/product/266/33475#.E4.BB.BB.E5.8A.A1.E6.B5.81">任务流</a>名称。</p>
         # @type ProcedureName: String
-        # @param FileId: 媒体文件 ID。
-        # FileId和MediaStoragePath必须提供其中一个。
+        # @param FileId: <p>媒体文件 ID。<br>FileId和MediaStoragePath必须提供其中一个。</p>
         # @type FileId: String
-        # @param MediaStoragePath: 媒体的存储路径。
-        # 只有[FileID + Path 模式](https://cloud.tencent.com/document/product/266/126825)的子应用可以通过MediaStoragePath发起任务。
-        # FileId和MediaStoragePath必须提供其中一个。
+        # @param MediaStoragePath: <p>媒体的存储路径。<br>只有<a href="https://cloud.tencent.com/document/product/266/126825">FileID + Path 模式</a>的子应用可以通过MediaStoragePath发起任务。<br>FileId和MediaStoragePath必须提供其中一个。</p>
         # @type MediaStoragePath: String
-        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
+        # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b></p>
         # @type SubAppId: Integer
-        # @param TasksPriority: 任务流的优先级，数值越大优先级越高，取值范围是-10到10，不填代表0。
+        # @param TasksPriority: <p>任务流的优先级，数值越大优先级越高，取值范围是-10到10，不填代表0。</p>
         # @type TasksPriority: Integer
-        # @param TasksNotifyMode: 任务流状态变更通知模式，可取值有 Finish，Change 和 None，不填代表 Finish。
+        # @param TasksNotifyMode: <p>任务流状态变更通知模式，可取值有 Finish，Change 和 None，不填代表 Finish。</p>
         # @type TasksNotifyMode: String
-        # @param SessionContext: 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。
+        # @param SessionContext: <p>来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。</p>
         # @type SessionContext: String
-        # @param SessionId: 用于去重的识别码，如果 7 天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
+        # @param SessionId: <p>用于去重的识别码，如果 7 天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。</p>
         # @type SessionId: String
-        # @param ExtInfo: 保留字段，特殊用途时使用。
+        # @param ExtInfo: <p>保留字段，特殊用途时使用。</p>
         # @type ExtInfo: String
 
         attr_accessor :ProcedureName, :FileId, :MediaStoragePath, :SubAppId, :TasksPriority, :TasksNotifyMode, :SessionContext, :SessionId, :ExtInfo
@@ -30121,24 +30710,28 @@ module TencentCloud
 
       # ProcessMediaByProcedure返回参数结构体
       class ProcessMediaByProcedureResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务类型为 Procedure 的任务 ID，当入参 ProcedureName 对应的任务流模板指定了 MediaProcessTask、AiAnalysisTask、AiRecognitionTask 中的一个或多个时发起该任务。
+        # @param TaskId: <p>任务类型为 Procedure 的任务 ID，当入参 ProcedureName 对应的任务流模板指定了 MediaProcessTask、AiAnalysisTask、AiRecognitionTask 中的一个或多个时发起该任务。</p>
         # @type TaskId: String
-        # @param ReviewAudioVideoTaskId: 任务类型为 ReviewAudioVideo 的任务 ID，当入参 ProcedureName 对应的任务流模板指定了 ReviewAudioVideoTask 时，发起该任务。
+        # @param ReviewAudioVideoTaskId: <p>任务类型为 ReviewAudioVideo 的任务 ID，当入参 ProcedureName 对应的任务流模板指定了 ReviewAudioVideoTask 时，发起该任务。</p>
         # @type ReviewAudioVideoTaskId: String
+        # @param ImportMediaKnowledgeTaskIdSet: <p>任务类型为 ImportMediaKnowledge 的任务 ID，当入参 ProcedureName 对应的任务流模板指定了 ImportMediaKnowledgeTaskSet 时，发起该任务。</p>
+        # @type ImportMediaKnowledgeTaskIdSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskId, :ReviewAudioVideoTaskId, :RequestId
+        attr_accessor :TaskId, :ReviewAudioVideoTaskId, :ImportMediaKnowledgeTaskIdSet, :RequestId
 
-        def initialize(taskid=nil, reviewaudiovideotaskid=nil, requestid=nil)
+        def initialize(taskid=nil, reviewaudiovideotaskid=nil, importmediaknowledgetaskidset=nil, requestid=nil)
           @TaskId = taskid
           @ReviewAudioVideoTaskId = reviewaudiovideotaskid
+          @ImportMediaKnowledgeTaskIdSet = importmediaknowledgetaskidset
           @RequestId = requestid
         end
 
         def deserialize(params)
           @TaskId = params['TaskId']
           @ReviewAudioVideoTaskId = params['ReviewAudioVideoTaskId']
+          @ImportMediaKnowledgeTaskIdSet = params['ImportMediaKnowledgeTaskIdSet']
           @RequestId = params['RequestId']
         end
       end
@@ -30389,8 +30982,8 @@ module TencentCloud
 
         attr_accessor :ProductType, :StartTime, :ExpireTime, :ProductInstanceId, :LastConsumeDate, :BindStatus, :ProductInstanceResourceSet, :ResourceSet, :ProductInstanceStatus, :RefundStatus, :RenewStatus
         extend Gem::Deprecate
-        deprecate :ProductInstanceResourceSet, :none, 2026, 7
-        deprecate :ProductInstanceResourceSet=, :none, 2026, 7
+        deprecate :ProductInstanceResourceSet, :none, 2026, 8
+        deprecate :ProductInstanceResourceSet=, :none, 2026, 8
 
         def initialize(producttype=nil, starttime=nil, expiretime=nil, productinstanceid=nil, lastconsumedate=nil, bindstatus=nil, productinstanceresourceset=nil, resourceset=nil, productinstancestatus=nil, refundstatus=nil, renewstatus=nil)
           @ProductType = producttype
@@ -32919,8 +33512,8 @@ module TencentCloud
 
         attr_accessor :FileId, :SubAppId, :SessionId, :SessionContext, :TasksPriority, :TasksNotifyMode
         extend Gem::Deprecate
-        deprecate :TasksNotifyMode, :none, 2026, 7
-        deprecate :TasksNotifyMode=, :none, 2026, 7
+        deprecate :TasksNotifyMode, :none, 2026, 8
+        deprecate :TasksNotifyMode=, :none, 2026, 8
 
         def initialize(fileid=nil, subappid=nil, sessionid=nil, sessioncontext=nil, taskspriority=nil, tasksnotifymode=nil)
           @FileId = fileid
@@ -33049,32 +33642,33 @@ module TencentCloud
 
       # ResetProcedureTemplate请求参数结构体
       class ResetProcedureTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param Name: 任务流名字
+        # @param Name: <p>任务流名字</p>
         # @type Name: String
-        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
+        # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b></p>
         # @type SubAppId: Integer
-        # @param Comment: 模板描述信息，长度限制：256 个字符。
+        # @param Comment: <p>模板描述信息，长度限制：256 个字符。</p>
         # @type Comment: String
-        # @param MediaProcessTask: 视频处理类型任务参数。
+        # @param MediaProcessTask: <p>视频处理类型任务参数。</p>
         # @type MediaProcessTask: :class:`Tencentcloud::Vod.v20180717.models.MediaProcessTaskInput`
-        # @param AiContentReviewTask: AI 智能内容审核类型任务参数 \*。
-        # <font color=red>\*：该参数用于发起旧版审核，不建议使用。推荐使用 ReviewAudioVideoTask 参数发起审核。</font>
+        # @param AiContentReviewTask: <p>AI 智能内容审核类型任务参数 *。<br><font color="red">*：该参数用于发起旧版审核，不建议使用。推荐使用 ReviewAudioVideoTask 参数发起审核。</font></p>
         # @type AiContentReviewTask: :class:`Tencentcloud::Vod.v20180717.models.AiContentReviewTaskInput`
-        # @param AiAnalysisTask: AI 智能内容分析类型任务参数。
+        # @param AiAnalysisTask: <p>AI 智能内容分析类型任务参数。</p>
         # @type AiAnalysisTask: :class:`Tencentcloud::Vod.v20180717.models.AiAnalysisTaskInput`
-        # @param AiRecognitionTaskSet: AI 内容识别类型任务参数。
+        # @param AiRecognitionTaskSet: <p>AI 内容识别类型任务参数。</p>
         # @type AiRecognitionTaskSet: Array
-        # @param AiRecognitionTask: 该参数已不推荐使用，建议使用 AiRecognitionTaskSet。
+        # @param AiRecognitionTask: <p>该参数已不推荐使用，建议使用 AiRecognitionTaskSet。</p>
         # @type AiRecognitionTask: :class:`Tencentcloud::Vod.v20180717.models.AiRecognitionTaskInput`
-        # @param ReviewAudioVideoTask: 音视频审核类型任务参数。
+        # @param ReviewAudioVideoTask: <p>音视频审核类型任务参数。</p>
         # @type ReviewAudioVideoTask: :class:`Tencentcloud::Vod.v20180717.models.ProcedureReviewAudioVideoTaskInput`
+        # @param ImportMediaKnowledgeTaskSet: <p>导入智能媒资知识库任务参数。</p>
+        # @type ImportMediaKnowledgeTaskSet: Array
 
-        attr_accessor :Name, :SubAppId, :Comment, :MediaProcessTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTaskSet, :AiRecognitionTask, :ReviewAudioVideoTask
+        attr_accessor :Name, :SubAppId, :Comment, :MediaProcessTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTaskSet, :AiRecognitionTask, :ReviewAudioVideoTask, :ImportMediaKnowledgeTaskSet
         extend Gem::Deprecate
-        deprecate :AiRecognitionTask, :none, 2026, 7
-        deprecate :AiRecognitionTask=, :none, 2026, 7
+        deprecate :AiRecognitionTask, :none, 2026, 8
+        deprecate :AiRecognitionTask=, :none, 2026, 8
 
-        def initialize(name=nil, subappid=nil, comment=nil, mediaprocesstask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontaskset=nil, airecognitiontask=nil, reviewaudiovideotask=nil)
+        def initialize(name=nil, subappid=nil, comment=nil, mediaprocesstask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontaskset=nil, airecognitiontask=nil, reviewaudiovideotask=nil, importmediaknowledgetaskset=nil)
           @Name = name
           @SubAppId = subappid
           @Comment = comment
@@ -33084,6 +33678,7 @@ module TencentCloud
           @AiRecognitionTaskSet = airecognitiontaskset
           @AiRecognitionTask = airecognitiontask
           @ReviewAudioVideoTask = reviewaudiovideotask
+          @ImportMediaKnowledgeTaskSet = importmediaknowledgetaskset
         end
 
         def deserialize(params)
@@ -33117,6 +33712,14 @@ module TencentCloud
           unless params['ReviewAudioVideoTask'].nil?
             @ReviewAudioVideoTask = ProcedureReviewAudioVideoTaskInput.new
             @ReviewAudioVideoTask.deserialize(params['ReviewAudioVideoTask'])
+          end
+          unless params['ImportMediaKnowledgeTaskSet'].nil?
+            @ImportMediaKnowledgeTaskSet = []
+            params['ImportMediaKnowledgeTaskSet'].each do |i|
+              importmediaknowledgetaskinput_tmp = ImportMediaKnowledgeTaskInput.new
+              importmediaknowledgetaskinput_tmp.deserialize(i)
+              @ImportMediaKnowledgeTaskSet << importmediaknowledgetaskinput_tmp
+            end
           end
         end
       end
@@ -33249,10 +33852,10 @@ module TencentCloud
 
         attr_accessor :FileId, :OriginalStorageClass, :TargetStorageClass, :RestoreTier, :RestoreDay, :Status, :Message
         extend Gem::Deprecate
-        deprecate :Status, :none, 2026, 7
-        deprecate :Status=, :none, 2026, 7
-        deprecate :Message, :none, 2026, 7
-        deprecate :Message=, :none, 2026, 7
+        deprecate :Status, :none, 2026, 8
+        deprecate :Status=, :none, 2026, 8
+        deprecate :Message, :none, 2026, 8
+        deprecate :Message=, :none, 2026, 8
 
         def initialize(fileid=nil, originalstorageclass=nil, targetstorageclass=nil, restoretier=nil, restoreday=nil, status=nil, message=nil)
           @FileId = fileid
@@ -33612,8 +34215,8 @@ module TencentCloud
 
         attr_accessor :ReviewResultSet, :MediaReviewResult, :RequestId
         extend Gem::Deprecate
-        deprecate :ReviewResultSet, :none, 2026, 7
-        deprecate :ReviewResultSet=, :none, 2026, 7
+        deprecate :ReviewResultSet, :none, 2026, 8
+        deprecate :ReviewResultSet=, :none, 2026, 8
 
         def initialize(reviewresultset=nil, mediareviewresult=nil, requestid=nil)
           @ReviewResultSet = reviewresultset
@@ -34599,6 +35202,8 @@ module TencentCloud
         # @type SubAppId: Integer
         # @param Text: <p>需要进行搜索的内容</p>
         # @type Text: String
+        # @param KnowledgeBaseId: <p>知识库ID，留空时将使用默认知识库</p>
+        # @type KnowledgeBaseId: String
         # @param Limit: <p>返回的记录条数，默认值：20。</p><p>取值范围：[1, 100]</p>
         # @type Limit: Integer
         # @param Categories: <p>文件类型。匹配集合中的任意元素： <li>Video: 视频文件</li> <li>Audio: 音频文件</li> <li>Image: 图片文件</li></p>
@@ -34610,11 +35215,12 @@ module TencentCloud
         # @param TaskTypes: <p>搜索的任务类型，可选值有： </p><ul><li>AiAnalysis.DescriptionTask </li><li>SmartSubtitle.AsrFullTextTask</li></ul>
         # @type TaskTypes: Array
 
-        attr_accessor :SubAppId, :Text, :Limit, :Categories, :Tags, :Persons, :TaskTypes
+        attr_accessor :SubAppId, :Text, :KnowledgeBaseId, :Limit, :Categories, :Tags, :Persons, :TaskTypes
 
-        def initialize(subappid=nil, text=nil, limit=nil, categories=nil, tags=nil, persons=nil, tasktypes=nil)
+        def initialize(subappid=nil, text=nil, knowledgebaseid=nil, limit=nil, categories=nil, tags=nil, persons=nil, tasktypes=nil)
           @SubAppId = subappid
           @Text = text
+          @KnowledgeBaseId = knowledgebaseid
           @Limit = limit
           @Categories = categories
           @Tags = tags
@@ -34625,6 +35231,7 @@ module TencentCloud
         def deserialize(params)
           @SubAppId = params['SubAppId']
           @Text = params['Text']
+          @KnowledgeBaseId = params['KnowledgeBaseId']
           @Limit = params['Limit']
           @Categories = params['Categories']
           @Tags = params['Tags']
@@ -34878,19 +35485,22 @@ module TencentCloud
 
       # 语义搜索结果。
       class SemanticsSearchResult < TencentCloud::Common::AbstractModel
-        # @param FileId: 媒体文件唯一标识 ID。
+        # @param FileId: <p>媒体文件唯一标识 ID。</p>
         # @type FileId: String
-        # @param Score: 视频在本次检索中的得分，得分越高和检索值越相似，取值范围[0,1]
+        # @param Title: <p>智能媒资为当前片段生成的标题</p>
+        # @type Title: String
+        # @param Score: <p>视频在本次检索中的得分，得分越高和检索值越相似，取值范围[0,1]</p>
         # @type Score: Float
-        # @param StartTimeOffset: 视频片段的开始时间，单位：秒
+        # @param StartTimeOffset: <p>视频片段的开始时间，单位：秒</p>
         # @type StartTimeOffset: Float
-        # @param EndTimeOffset: 视频片段的结束时间，单位：秒
+        # @param EndTimeOffset: <p>视频片段的结束时间，单位：秒</p>
         # @type EndTimeOffset: Float
 
-        attr_accessor :FileId, :Score, :StartTimeOffset, :EndTimeOffset
+        attr_accessor :FileId, :Title, :Score, :StartTimeOffset, :EndTimeOffset
 
-        def initialize(fileid=nil, score=nil, starttimeoffset=nil, endtimeoffset=nil)
+        def initialize(fileid=nil, title=nil, score=nil, starttimeoffset=nil, endtimeoffset=nil)
           @FileId = fileid
+          @Title = title
           @Score = score
           @StartTimeOffset = starttimeoffset
           @EndTimeOffset = endtimeoffset
@@ -34898,6 +35508,7 @@ module TencentCloud
 
         def deserialize(params)
           @FileId = params['FileId']
+          @Title = params['Title']
           @Score = params['Score']
           @StartTimeOffset = params['StartTimeOffset']
           @EndTimeOffset = params['EndTimeOffset']
@@ -35113,8 +35724,8 @@ module TencentCloud
 
         attr_accessor :Url, :SubAppId, :StartTimeOffset, :EndTimeOffset, :IsPersistence, :ExpireTime, :Procedure, :ClassId, :SourceContext, :SessionContext, :Precision, :OutputMediaType, :ExtInfo
         extend Gem::Deprecate
-        deprecate :Precision, :none, 2026, 7
-        deprecate :Precision=, :none, 2026, 7
+        deprecate :Precision, :none, 2026, 8
+        deprecate :Precision=, :none, 2026, 8
 
         def initialize(url=nil, subappid=nil, starttimeoffset=nil, endtimeoffset=nil, ispersistence=nil, expiretime=nil, procedure=nil, classid=nil, sourcecontext=nil, sessioncontext=nil, precision=nil, outputmediatype=nil, extinfo=nil)
           @Url = url
@@ -36119,8 +36730,8 @@ module TencentCloud
 
         attr_accessor :Width, :Height, :CycleConfig
         extend Gem::Deprecate
-        deprecate :CycleConfig, :none, 2026, 7
-        deprecate :CycleConfig=, :none, 2026, 7
+        deprecate :CycleConfig, :none, 2026, 8
+        deprecate :CycleConfig=, :none, 2026, 8
 
         def initialize(width=nil, height=nil, cycleconfig=nil)
           @Width = width
@@ -36804,8 +37415,8 @@ module TencentCloud
 
         attr_accessor :Switch, :Definition
         extend Gem::Deprecate
-        deprecate :Definition, :none, 2026, 7
-        deprecate :Definition=, :none, 2026, 7
+        deprecate :Definition, :none, 2026, 8
+        deprecate :Definition=, :none, 2026, 8
 
         def initialize(switch=nil, definition=nil)
           @Switch = switch

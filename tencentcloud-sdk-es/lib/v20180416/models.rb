@@ -173,6 +173,128 @@ module TencentCloud
         end
       end
 
+      # CheckUpdateInstance请求参数结构体
+      class CheckUpdateInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param NodeNum: 已废弃，请使用NodeInfoList
+        # 变配后的节点个数（2-50个）
+        # @type NodeNum: Integer
+        # @param NodeType: 已废弃，请使用NodeInfoList
+        # 变配后的节点规格<li>ES.S1.SMALL2：1核2G</li><li>ES.S1.MEDIUM4：2核4G</li><li>ES.S1.MEDIUM8：2核8G</li><li>ES.S1.LARGE16：4核16G</li><li>ES.S1.2XLARGE32：8核32G</li><li>ES.S1.4XLARGE64：16核64G</li>
+        # @type NodeType: String
+        # @param DiskSize: 已废弃，请使用NodeInfoList
+        # 变配后的磁盘大小（单位GB）
+        # @type DiskSize: Integer
+        # @param MasterNodeNum: 已废弃，请使用NodeInfoList
+        # 变配后的专用主节点个数（仅支持3个和5个）
+        # @type MasterNodeNum: Integer
+        # @param MasterNodeType: 已废弃，请使用NodeInfoList
+        # 变配后的专用主节点规格<li>ES.S1.SMALL2：1核2G</li><li>ES.S1.MEDIUM4：2核4G</li><li>ES.S1.MEDIUM8：2核8G</li><li>ES.S1.LARGE16：4核16G</li><li>ES.S1.2XLARGE32：8核32G</li><li>ES.S1.4XLARGE64：16核64G</li>
+        # @type MasterNodeType: String
+        # @param NodeInfoList: 节点信息列表，可以只传递要更新的节点及其对应的规格信息。支持的操作包括<li>修改一种节点的个数</li><li>修改一种节点的节点规格及磁盘大小</li><li>增加一种节点类型（需要同时指定该节点的类型，个数，规格，磁盘等信息）</li>上述操作一次只能进行一种，且磁盘类型不支持修改
+        # @type NodeInfoList: Array
+        # @param ForceRestart: 更新配置时是否强制重启<li>true强制重启</li><li>false不强制重启</li>默认值为false
+        # @type ForceRestart: Boolean
+        # @param ScaleType: 0: 蓝绿变更方式扩容，集群不重启 （默认） 1: 磁盘解挂载扩容，集群滚动重启
+        # @type ScaleType: Integer
+        # @param MultiZoneInfo: 多可用区部署
+        # @type MultiZoneInfo: Array
+        # @param WebNodeTypeInfo: 可视化节点配置
+        # @type WebNodeTypeInfo: :class:`Tencentcloud::Es.v20180416.models.WebNodeTypeInfo`
+        # @param CosBackup: COS自动备份信息
+        # @type CosBackup: :class:`Tencentcloud::Es.v20180416.models.CosBackup`
+        # @param ReadWriteMode: 读写分离模式：-1-不开启，1-本地读写分离，2-远端读写分离
+        # @type ReadWriteMode: Integer
+
+        attr_accessor :InstanceId, :NodeNum, :NodeType, :DiskSize, :MasterNodeNum, :MasterNodeType, :NodeInfoList, :ForceRestart, :ScaleType, :MultiZoneInfo, :WebNodeTypeInfo, :CosBackup, :ReadWriteMode
+
+        def initialize(instanceid=nil, nodenum=nil, nodetype=nil, disksize=nil, masternodenum=nil, masternodetype=nil, nodeinfolist=nil, forcerestart=nil, scaletype=nil, multizoneinfo=nil, webnodetypeinfo=nil, cosbackup=nil, readwritemode=nil)
+          @InstanceId = instanceid
+          @NodeNum = nodenum
+          @NodeType = nodetype
+          @DiskSize = disksize
+          @MasterNodeNum = masternodenum
+          @MasterNodeType = masternodetype
+          @NodeInfoList = nodeinfolist
+          @ForceRestart = forcerestart
+          @ScaleType = scaletype
+          @MultiZoneInfo = multizoneinfo
+          @WebNodeTypeInfo = webnodetypeinfo
+          @CosBackup = cosbackup
+          @ReadWriteMode = readwritemode
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @NodeNum = params['NodeNum']
+          @NodeType = params['NodeType']
+          @DiskSize = params['DiskSize']
+          @MasterNodeNum = params['MasterNodeNum']
+          @MasterNodeType = params['MasterNodeType']
+          unless params['NodeInfoList'].nil?
+            @NodeInfoList = []
+            params['NodeInfoList'].each do |i|
+              nodeinfo_tmp = NodeInfo.new
+              nodeinfo_tmp.deserialize(i)
+              @NodeInfoList << nodeinfo_tmp
+            end
+          end
+          @ForceRestart = params['ForceRestart']
+          @ScaleType = params['ScaleType']
+          unless params['MultiZoneInfo'].nil?
+            @MultiZoneInfo = []
+            params['MultiZoneInfo'].each do |i|
+              zonedetail_tmp = ZoneDetail.new
+              zonedetail_tmp.deserialize(i)
+              @MultiZoneInfo << zonedetail_tmp
+            end
+          end
+          unless params['WebNodeTypeInfo'].nil?
+            @WebNodeTypeInfo = WebNodeTypeInfo.new
+            @WebNodeTypeInfo.deserialize(params['WebNodeTypeInfo'])
+          end
+          unless params['CosBackup'].nil?
+            @CosBackup = CosBackup.new
+            @CosBackup.deserialize(params['CosBackup'])
+          end
+          @ReadWriteMode = params['ReadWriteMode']
+        end
+      end
+
+      # CheckUpdateInstance返回参数结构体
+      class CheckUpdateInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param AllowUpdate: 是否允许变配操作
+        # @type AllowUpdate: Boolean
+        # @param ErrMsg: 不允许变配的原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrMsg: String
+        # @param NeedSetShards: 是否需要设置分片迁移并发相关参数
+        # @type NeedSetShards: Boolean
+        # @param EnableScheduleRecoverGroupTask: 是否需要开启置放群组异步任务
+        # @type EnableScheduleRecoverGroupTask: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AllowUpdate, :ErrMsg, :NeedSetShards, :EnableScheduleRecoverGroupTask, :RequestId
+
+        def initialize(allowupdate=nil, errmsg=nil, needsetshards=nil, enableschedulerecovergrouptask=nil, requestid=nil)
+          @AllowUpdate = allowupdate
+          @ErrMsg = errmsg
+          @NeedSetShards = needsetshards
+          @EnableScheduleRecoverGroupTask = enableschedulerecovergrouptask
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AllowUpdate = params['AllowUpdate']
+          @ErrMsg = params['ErrMsg']
+          @NeedSetShards = params['NeedSetShards']
+          @EnableScheduleRecoverGroupTask = params['EnableScheduleRecoverGroupTask']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 集群维度视图数据
       class ClusterView < TencentCloud::Common::AbstractModel
         # @param Health: 集群健康状态
@@ -7366,6 +7488,57 @@ module TencentCloud
 
       # ModifyAutoBackUpStrategy返回参数结构体
       class ModifyAutoBackUpStrategyResponse < TencentCloud::Common::AbstractModel
+        # @param Status: true 成功; false 失败
+        # @type Status: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :RequestId
+
+        def initialize(status=nil, requestid=nil)
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyAutoScaleDiskInfo请求参数结构体
+      class ModifyAutoScaleDiskInfoRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例名称
+        # @type InstanceId: String
+        # @param AutoScaleDiskInfoList: 自动扩盘参数列表
+        # @type AutoScaleDiskInfoList: Array
+        # @param DeleteNodeTypeList: 需要删除的自动扩盘节点类型
+        # @type DeleteNodeTypeList: Array
+
+        attr_accessor :InstanceId, :AutoScaleDiskInfoList, :DeleteNodeTypeList
+
+        def initialize(instanceid=nil, autoscalediskinfolist=nil, deletenodetypelist=nil)
+          @InstanceId = instanceid
+          @AutoScaleDiskInfoList = autoscalediskinfolist
+          @DeleteNodeTypeList = deletenodetypelist
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['AutoScaleDiskInfoList'].nil?
+            @AutoScaleDiskInfoList = []
+            params['AutoScaleDiskInfoList'].each do |i|
+              autoscalediskinfo_tmp = AutoScaleDiskInfo.new
+              autoscalediskinfo_tmp.deserialize(i)
+              @AutoScaleDiskInfoList << autoscalediskinfo_tmp
+            end
+          end
+          @DeleteNodeTypeList = params['DeleteNodeTypeList']
+        end
+      end
+
+      # ModifyAutoScaleDiskInfo返回参数结构体
+      class ModifyAutoScaleDiskInfoResponse < TencentCloud::Common::AbstractModel
         # @param Status: true 成功; false 失败
         # @type Status: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。

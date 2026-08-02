@@ -116,8 +116,8 @@ module TencentCloud
 
         attr_accessor :PkgType, :MiniProgramAppId, :DeviceList
         extend Gem::Deprecate
-        deprecate :MiniProgramAppId, :none, 2026, 7
-        deprecate :MiniProgramAppId=, :none, 2026, 7
+        deprecate :MiniProgramAppId, :none, 2026, 8
+        deprecate :MiniProgramAppId=, :none, 2026, 8
 
         def initialize(pkgtype=nil, miniprogramappid=nil, devicelist=nil)
           @PkgType = pkgtype
@@ -152,8 +152,8 @@ module TencentCloud
 
         attr_accessor :DeviceList, :FailureList, :SuccessList, :RequestId
         extend Gem::Deprecate
-        deprecate :DeviceList, :none, 2026, 7
-        deprecate :DeviceList=, :none, 2026, 7
+        deprecate :DeviceList, :none, 2026, 8
+        deprecate :DeviceList=, :none, 2026, 8
 
         def initialize(devicelist=nil, failurelist=nil, successlist=nil, requestid=nil)
           @DeviceList = devicelist
@@ -246,6 +246,34 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 激活码统计信息。
+      class ActivationLicense < TencentCloud::Common::AbstractModel
+        # @param ServiceType: <p>激活码类型</p>
+        # @type ServiceType: String
+        # @param TotalLicenseNum: <p>支付模式</p>
+        # @type TotalLicenseNum: Integer
+        # @param UsedLicenseNum: <p>计费标签项</p>
+        # @type UsedLicenseNum: Integer
+        # @param Period: <p>计费标识</p>
+        # @type Period: String
+
+        attr_accessor :ServiceType, :TotalLicenseNum, :UsedLicenseNum, :Period
+
+        def initialize(servicetype=nil, totallicensenum=nil, usedlicensenum=nil, period=nil)
+          @ServiceType = servicetype
+          @TotalLicenseNum = totallicensenum
+          @UsedLicenseNum = usedlicensenum
+          @Period = period
+        end
+
+        def deserialize(params)
+          @ServiceType = params['ServiceType']
+          @TotalLicenseNum = params['TotalLicenseNum']
+          @UsedLicenseNum = params['UsedLicenseNum']
+          @Period = params['Period']
         end
       end
 
@@ -3454,10 +3482,12 @@ module TencentCloud
         # @type WebhookTools: Array
         # @param Metadata: <p>元信息扩展JSON对象字符串</p>
         # @type Metadata: String
+        # @param EventCallbackConfig: <p>回调配置</p>
+        # @type EventCallbackConfig: :class:`Tencentcloud::Iotexplorer.v20190423.models.TalkEventCallbackConfig`
 
-        attr_accessor :STTConfig, :LLMConfig, :TTSConfig, :Name, :InstanceId, :Description, :ConversationConfig, :MemoryConfig, :IOTTools, :WebhookTools, :Metadata
+        attr_accessor :STTConfig, :LLMConfig, :TTSConfig, :Name, :InstanceId, :Description, :ConversationConfig, :MemoryConfig, :IOTTools, :WebhookTools, :Metadata, :EventCallbackConfig
 
-        def initialize(sttconfig=nil, llmconfig=nil, ttsconfig=nil, name=nil, instanceid=nil, description=nil, conversationconfig=nil, memoryconfig=nil, iottools=nil, webhooktools=nil, metadata=nil)
+        def initialize(sttconfig=nil, llmconfig=nil, ttsconfig=nil, name=nil, instanceid=nil, description=nil, conversationconfig=nil, memoryconfig=nil, iottools=nil, webhooktools=nil, metadata=nil, eventcallbackconfig=nil)
           @STTConfig = sttconfig
           @LLMConfig = llmconfig
           @TTSConfig = ttsconfig
@@ -3469,6 +3499,7 @@ module TencentCloud
           @IOTTools = iottools
           @WebhookTools = webhooktools
           @Metadata = metadata
+          @EventCallbackConfig = eventcallbackconfig
         end
 
         def deserialize(params)
@@ -3512,6 +3543,10 @@ module TencentCloud
             end
           end
           @Metadata = params['Metadata']
+          unless params['EventCallbackConfig'].nil?
+            @EventCallbackConfig = TalkEventCallbackConfig.new
+            @EventCallbackConfig.deserialize(params['EventCallbackConfig'])
+          end
         end
       end
 
@@ -7134,7 +7169,7 @@ module TencentCloud
 
       # DescribeLicenseOverview请求参数结构体
       class DescribeLicenseOverviewRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: <p>实例ID</p>
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -7150,16 +7185,28 @@ module TencentCloud
 
       # DescribeLicenseOverview返回参数结构体
       class DescribeLicenseOverviewResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>实例概览</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Data, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(data=nil, requestid=nil)
+          @Data = data
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              licenseoverview_tmp = LicenseOverview.new
+              licenseoverview_tmp.deserialize(i)
+              @Data << licenseoverview_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -8728,8 +8775,8 @@ module TencentCloud
 
         attr_accessor :ModelId, :Sn, :ErrCode, :ErrMessage, :ExpireTime
         extend Gem::Deprecate
-        deprecate :ModelId, :none, 2026, 7
-        deprecate :ModelId=, :none, 2026, 7
+        deprecate :ModelId, :none, 2026, 8
+        deprecate :ModelId=, :none, 2026, 8
 
         def initialize(modelid=nil, sn=nil, errcode=nil, errmessage=nil, expiretime=nil)
           @ModelId = modelid
@@ -10447,8 +10494,8 @@ module TencentCloud
 
         attr_accessor :MiniProgramAppId, :DeviceList
         extend Gem::Deprecate
-        deprecate :MiniProgramAppId, :none, 2026, 7
-        deprecate :MiniProgramAppId=, :none, 2026, 7
+        deprecate :MiniProgramAppId, :none, 2026, 8
+        deprecate :MiniProgramAppId=, :none, 2026, 8
 
         def initialize(miniprogramappid=nil, devicelist=nil)
           @MiniProgramAppId = miniprogramappid
@@ -12007,6 +12054,33 @@ module TencentCloud
           @SelfSmsTemplateId = params['SelfSmsTemplateId']
           @WechatNotifyStatus = params['WechatNotifyStatus']
           @InterconnectionProducts = params['InterconnectionProducts']
+        end
+      end
+
+      # 激活码统计信息。
+      class LicenseOverview < TencentCloud::Common::AbstractModel
+        # @param ActivationLicense: <p>激活码统计信息</p>
+        # @type ActivationLicense: Array
+        # @param LicenseType: <p>激活码类型</p>
+        # @type LicenseType: String
+
+        attr_accessor :ActivationLicense, :LicenseType
+
+        def initialize(activationlicense=nil, licensetype=nil)
+          @ActivationLicense = activationlicense
+          @LicenseType = licensetype
+        end
+
+        def deserialize(params)
+          unless params['ActivationLicense'].nil?
+            @ActivationLicense = []
+            params['ActivationLicense'].each do |i|
+              activationlicense_tmp = ActivationLicense.new
+              activationlicense_tmp.deserialize(i)
+              @ActivationLicense << activationlicense_tmp
+            end
+          end
+          @LicenseType = params['LicenseType']
         end
       end
 
@@ -13718,10 +13792,12 @@ module TencentCloud
         # @type WebhookTools: Array
         # @param Metadata: <p>元信息扩展JSON对象字符串</p>
         # @type Metadata: String
+        # @param EventCallbackConfig: <p>回调配置</p>
+        # @type EventCallbackConfig: :class:`Tencentcloud::Iotexplorer.v20190423.models.TalkEventCallbackConfig`
 
-        attr_accessor :AgentId, :Name, :Description, :STTConfig, :LLMConfig, :TTSConfig, :ConversationConfig, :MemoryConfig, :IOTTools, :WebhookTools, :Metadata
+        attr_accessor :AgentId, :Name, :Description, :STTConfig, :LLMConfig, :TTSConfig, :ConversationConfig, :MemoryConfig, :IOTTools, :WebhookTools, :Metadata, :EventCallbackConfig
 
-        def initialize(agentid=nil, name=nil, description=nil, sttconfig=nil, llmconfig=nil, ttsconfig=nil, conversationconfig=nil, memoryconfig=nil, iottools=nil, webhooktools=nil, metadata=nil)
+        def initialize(agentid=nil, name=nil, description=nil, sttconfig=nil, llmconfig=nil, ttsconfig=nil, conversationconfig=nil, memoryconfig=nil, iottools=nil, webhooktools=nil, metadata=nil, eventcallbackconfig=nil)
           @AgentId = agentid
           @Name = name
           @Description = description
@@ -13733,6 +13809,7 @@ module TencentCloud
           @IOTTools = iottools
           @WebhookTools = webhooktools
           @Metadata = metadata
+          @EventCallbackConfig = eventcallbackconfig
         end
 
         def deserialize(params)
@@ -13776,6 +13853,10 @@ module TencentCloud
             end
           end
           @Metadata = params['Metadata']
+          unless params['EventCallbackConfig'].nil?
+            @EventCallbackConfig = TalkEventCallbackConfig.new
+            @EventCallbackConfig.deserialize(params['EventCallbackConfig'])
+          end
         end
       end
 
@@ -16040,8 +16121,8 @@ module TencentCloud
 
         attr_accessor :ModelId, :Sn, :ExpireTime, :PkgType
         extend Gem::Deprecate
-        deprecate :ModelId, :none, 2026, 7
-        deprecate :ModelId=, :none, 2026, 7
+        deprecate :ModelId, :none, 2026, 8
+        deprecate :ModelId=, :none, 2026, 8
 
         def initialize(modelid=nil, sn=nil, expiretime=nil, pkgtype=nil)
           @ModelId = modelid
@@ -16071,10 +16152,10 @@ module TencentCloud
 
         attr_accessor :Sn, :ModelId, :ActiveNum
         extend Gem::Deprecate
-        deprecate :ModelId, :none, 2026, 7
-        deprecate :ModelId=, :none, 2026, 7
-        deprecate :ActiveNum, :none, 2026, 7
-        deprecate :ActiveNum=, :none, 2026, 7
+        deprecate :ModelId, :none, 2026, 8
+        deprecate :ModelId=, :none, 2026, 8
+        deprecate :ActiveNum, :none, 2026, 8
+        deprecate :ActiveNum=, :none, 2026, 8
 
         def initialize(sn=nil, modelid=nil, activenum=nil)
           @Sn = sn
@@ -16156,8 +16237,8 @@ module TencentCloud
 
         attr_accessor :Uin, :AppId, :InstanceId, :BotId, :Name, :Description, :TargetLanguage, :STTConfig, :LLMConfig, :TTSConfig, :AgentConfig, :ProductList, :CreateTime, :UpdateTime, :BoundProducts, :CustomTools, :WebhookTools, :BotType, :RAGConfig
         extend Gem::Deprecate
-        deprecate :ProductList, :none, 2026, 7
-        deprecate :ProductList=, :none, 2026, 7
+        deprecate :ProductList, :none, 2026, 8
+        deprecate :ProductList=, :none, 2026, 8
 
         def initialize(uin=nil, appid=nil, instanceid=nil, botid=nil, name=nil, description=nil, targetlanguage=nil, sttconfig=nil, llmconfig=nil, ttsconfig=nil, agentconfig=nil, productlist=nil, createtime=nil, updatetime=nil, boundproducts=nil, customtools=nil, webhooktools=nil, bottype=nil, ragconfig=nil)
           @Uin = uin
@@ -16443,44 +16524,46 @@ module TencentCloud
 
       # TWeTalk智能体配置信息描述
       class TalkAgentInfo < TencentCloud::Common::AbstractModel
-        # @param Uin: 主账号UIN
+        # @param Uin: <p>主账号UIN</p>
         # @type Uin: Integer
-        # @param AppId: 账号AppId
+        # @param AppId: <p>账号AppId</p>
         # @type AppId: Integer
-        # @param InstanceId: 实例 ID
+        # @param InstanceId: <p>实例 ID</p>
         # @type InstanceId: String
-        # @param AgentId: 智能体ID
+        # @param AgentId: <p>智能体ID</p>
         # @type AgentId: String
-        # @param Name: 智能体名称
+        # @param Name: <p>智能体名称</p>
         # @type Name: String
-        # @param Description: 智能体描述
+        # @param Description: <p>智能体描述</p>
         # @type Description: String
-        # @param STTConfig: 语音识别配置
+        # @param STTConfig: <p>语音识别配置</p>
         # @type STTConfig: :class:`Tencentcloud::Iotexplorer.v20190423.models.TalkSTTConfig`
-        # @param LLMConfig: 大模型配置
+        # @param LLMConfig: <p>大模型配置</p>
         # @type LLMConfig: :class:`Tencentcloud::Iotexplorer.v20190423.models.TalkLLMConfig`
-        # @param TTSConfig: 语音合成配置
+        # @param TTSConfig: <p>语音合成配置</p>
         # @type TTSConfig: :class:`Tencentcloud::Iotexplorer.v20190423.models.TalkTTSConfig`
-        # @param ConversationConfig: 对话行为配置
+        # @param ConversationConfig: <p>对话行为配置</p>
         # @type ConversationConfig: :class:`Tencentcloud::Iotexplorer.v20190423.models.TalkConversationConfig`
-        # @param MemoryConfig: 长期记忆配置
+        # @param MemoryConfig: <p>长期记忆配置</p>
         # @type MemoryConfig: :class:`Tencentcloud::Iotexplorer.v20190423.models.TalkMemoryConfig`
-        # @param IOTTools: IoT 工具列表
+        # @param IOTTools: <p>IoT 工具列表</p>
         # @type IOTTools: Array
-        # @param WebhookTools: Webhook 工具列表
+        # @param WebhookTools: <p>Webhook 工具列表</p>
         # @type WebhookTools: Array
-        # @param Metadata: 元信息JSON object 字符串
+        # @param Metadata: <p>元信息JSON object 字符串</p>
         # @type Metadata: String
-        # @param Bindings: 绑定关系列表
+        # @param Bindings: <p>绑定关系列表</p>
         # @type Bindings: Array
-        # @param CreateTime: 创建时间，Unix 秒
+        # @param CreateTime: <p>创建时间，Unix 秒</p>
         # @type CreateTime: Integer
-        # @param UpdateTime: 更新时间，Unix 秒
+        # @param UpdateTime: <p>更新时间，Unix 秒</p>
         # @type UpdateTime: Integer
+        # @param EventCallbackConfig: <p>事件回调配置</p>
+        # @type EventCallbackConfig: :class:`Tencentcloud::Iotexplorer.v20190423.models.TalkEventCallbackConfig`
 
-        attr_accessor :Uin, :AppId, :InstanceId, :AgentId, :Name, :Description, :STTConfig, :LLMConfig, :TTSConfig, :ConversationConfig, :MemoryConfig, :IOTTools, :WebhookTools, :Metadata, :Bindings, :CreateTime, :UpdateTime
+        attr_accessor :Uin, :AppId, :InstanceId, :AgentId, :Name, :Description, :STTConfig, :LLMConfig, :TTSConfig, :ConversationConfig, :MemoryConfig, :IOTTools, :WebhookTools, :Metadata, :Bindings, :CreateTime, :UpdateTime, :EventCallbackConfig
 
-        def initialize(uin=nil, appid=nil, instanceid=nil, agentid=nil, name=nil, description=nil, sttconfig=nil, llmconfig=nil, ttsconfig=nil, conversationconfig=nil, memoryconfig=nil, iottools=nil, webhooktools=nil, metadata=nil, bindings=nil, createtime=nil, updatetime=nil)
+        def initialize(uin=nil, appid=nil, instanceid=nil, agentid=nil, name=nil, description=nil, sttconfig=nil, llmconfig=nil, ttsconfig=nil, conversationconfig=nil, memoryconfig=nil, iottools=nil, webhooktools=nil, metadata=nil, bindings=nil, createtime=nil, updatetime=nil, eventcallbackconfig=nil)
           @Uin = uin
           @AppId = appid
           @InstanceId = instanceid
@@ -16498,6 +16581,7 @@ module TencentCloud
           @Bindings = bindings
           @CreateTime = createtime
           @UpdateTime = updatetime
+          @EventCallbackConfig = eventcallbackconfig
         end
 
         def deserialize(params)
@@ -16554,6 +16638,10 @@ module TencentCloud
           end
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+          unless params['EventCallbackConfig'].nil?
+            @EventCallbackConfig = TalkEventCallbackConfig.new
+            @EventCallbackConfig.deserialize(params['EventCallbackConfig'])
+          end
         end
       end
 
@@ -16653,6 +16741,26 @@ module TencentCloud
           @EmotionEnabled = params['EmotionEnabled']
           @SemanticVADEnabled = params['SemanticVADEnabled']
           @NoiseFilterEnabled = params['NoiseFilterEnabled']
+        end
+      end
+
+      # 事件回调配置
+      class TalkEventCallbackConfig < TencentCloud::Common::AbstractModel
+        # @param Enabled: <p>是否开启</p>
+        # @type Enabled: Boolean
+        # @param Topic: <p>Topic 名称</p>
+        # @type Topic: String
+
+        attr_accessor :Enabled, :Topic
+
+        def initialize(enabled=nil, topic=nil)
+          @Enabled = enabled
+          @Topic = topic
+        end
+
+        def deserialize(params)
+          @Enabled = params['Enabled']
+          @Topic = params['Topic']
         end
       end
 
@@ -17266,7 +17374,7 @@ module TencentCloud
 
       # Webhook工具配置列表
       class TalkWebhookEndpoint < TencentCloud::Common::AbstractModel
-        # @param Url: <p>Webhook地址，仅支持 80 和 443 端口</p>
+        # @param Url: <p>Webhook地址</p>
         # @type Url: String
         # @param Timeout: <p>超时时间，0~30 秒</p><p>取值范围：[0, 30]</p>
         # @type Timeout: Integer

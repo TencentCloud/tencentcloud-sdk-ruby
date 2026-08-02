@@ -2963,6 +2963,55 @@ module TencentCloud
         end
       end
 
+      # ModifyDBCustomNodeAttributes请求参数结构体
+      class ModifyDBCustomNodeAttributesRequest < TencentCloud::Common::AbstractModel
+        # @param NodeId: <p>节点ID</p><p>参数格式：dbcn-hq98qjym</p>
+        # @type NodeId: String
+        # @param HostName: <p>主机 HostName</p><p>入参限制：参数设置规则参见：<a href="https://cloud.tencent.com/document/api/1322/132929">创建 DB Custom 节点接口</a>的 HostName 参数说明。</p><p>注意：节点在没有加入到集群之前才支持修改主机 HostName。</p>
+        # @type HostName: String
+        # @param NodeName: <p>节点名称</p><p>入参限制：参数设置规则参见：<a href="https://cloud.tencent.com/document/api/1322/132929">创建 DB Custom 节点接口</a>的 NodeName 参数说明。</p>
+        # @type NodeName: String
+        # @param AutoReboot: <p>修改实例 HostName 是否自动重启实例，不传默认自动重启。</p><p>枚举值：</p><ul><li>true： 修改主机 HostName，并自动重启主机</li><li>false： 修改主机 HostName，不自动重启主机，需要手动重启使新主机 HostName 生效</li></ul><p>默认值：true</p>
+        # @type AutoReboot: Boolean
+
+        attr_accessor :NodeId, :HostName, :NodeName, :AutoReboot
+
+        def initialize(nodeid=nil, hostname=nil, nodename=nil, autoreboot=nil)
+          @NodeId = nodeid
+          @HostName = hostname
+          @NodeName = nodename
+          @AutoReboot = autoreboot
+        end
+
+        def deserialize(params)
+          @NodeId = params['NodeId']
+          @HostName = params['HostName']
+          @NodeName = params['NodeName']
+          @AutoReboot = params['AutoReboot']
+        end
+      end
+
+      # ModifyDBCustomNodeAttributes返回参数结构体
+      class ModifyDBCustomNodeAttributesResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>上架节点的任务ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyDBCustomNodeSecurityGroups请求参数结构体
       class ModifyDBCustomNodeSecurityGroupsRequest < TencentCloud::Common::AbstractModel
         # @param NodeId: <p>节点id</p>

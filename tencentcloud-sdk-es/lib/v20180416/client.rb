@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 检查实例变配操作是否可以发起
+
+        # @param request: Request instance for CheckUpdateInstance.
+        # @type request: :class:`Tencentcloud::es::V20180416::CheckUpdateInstanceRequest`
+        # @rtype: :class:`Tencentcloud::es::V20180416::CheckUpdateInstanceResponse`
+        def CheckUpdateInstance(request)
+          body = send_request('CheckUpdateInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CheckUpdateInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 新建自动备份快照策略
 
         # @param request: Request instance for CreateAutoBackUpStrategy.
@@ -1432,6 +1456,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyAutoBackUpStrategyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改自动扩盘参数
+
+        # @param request: Request instance for ModifyAutoScaleDiskInfo.
+        # @type request: :class:`Tencentcloud::es::V20180416::ModifyAutoScaleDiskInfoRequest`
+        # @rtype: :class:`Tencentcloud::es::V20180416::ModifyAutoScaleDiskInfoResponse`
+        def ModifyAutoScaleDiskInfo(request)
+          body = send_request('ModifyAutoScaleDiskInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAutoScaleDiskInfoResponse.new
             model.deserialize(response['Response'])
             model
           else

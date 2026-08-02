@@ -5288,10 +5288,12 @@ module TencentCloud
         # @type AnalysisState: Integer
         # @param AggregationCount: <p>聚合视角下该组真实子项总数；非聚合视角为 0</p>
         # @type AggregationCount: Integer
+        # @param AvailabilityTag: <p>可用性标签：解析已失效/端口连接超时/网站请求超时/服务错误（5xx）/高延迟（非宕机）</p>
+        # @type AvailabilityTag: String
 
-        attr_accessor :Id, :DisplayToolCommon, :Url, :Title, :ContentLength, :Content, :ScreenshotThumbUrl, :ScreenshotUrl, :Code, :Api, :Ip, :Ssl, :SslExpiredTime, :IsChange, :IsCloudAsset, :CloudAssetStatus, :AvailabilityRate, :AvailabilityState, :ResponseTime, :AnalysisState, :AggregationCount
+        attr_accessor :Id, :DisplayToolCommon, :Url, :Title, :ContentLength, :Content, :ScreenshotThumbUrl, :ScreenshotUrl, :Code, :Api, :Ip, :Ssl, :SslExpiredTime, :IsChange, :IsCloudAsset, :CloudAssetStatus, :AvailabilityRate, :AvailabilityState, :ResponseTime, :AnalysisState, :AggregationCount, :AvailabilityTag
 
-        def initialize(id=nil, displaytoolcommon=nil, url=nil, title=nil, contentlength=nil, content=nil, screenshotthumburl=nil, screenshoturl=nil, code=nil, api=nil, ip=nil, ssl=nil, sslexpiredtime=nil, ischange=nil, iscloudasset=nil, cloudassetstatus=nil, availabilityrate=nil, availabilitystate=nil, responsetime=nil, analysisstate=nil, aggregationcount=nil)
+        def initialize(id=nil, displaytoolcommon=nil, url=nil, title=nil, contentlength=nil, content=nil, screenshotthumburl=nil, screenshoturl=nil, code=nil, api=nil, ip=nil, ssl=nil, sslexpiredtime=nil, ischange=nil, iscloudasset=nil, cloudassetstatus=nil, availabilityrate=nil, availabilitystate=nil, responsetime=nil, analysisstate=nil, aggregationcount=nil, availabilitytag=nil)
           @Id = id
           @DisplayToolCommon = displaytoolcommon
           @Url = url
@@ -5313,6 +5315,7 @@ module TencentCloud
           @ResponseTime = responsetime
           @AnalysisState = analysisstate
           @AggregationCount = aggregationcount
+          @AvailabilityTag = availabilitytag
         end
 
         def deserialize(params)
@@ -5340,6 +5343,7 @@ module TencentCloud
           @ResponseTime = params['ResponseTime']
           @AnalysisState = params['AnalysisState']
           @AggregationCount = params['AggregationCount']
+          @AvailabilityTag = params['AvailabilityTag']
         end
       end
 
@@ -5966,10 +5970,12 @@ module TencentCloud
         # @type DnsValue: String
         # @param AggregationCount: <p>聚合视角下该组真实子项总数；非聚合视角为 0</p>
         # @type AggregationCount: Integer
+        # @param AvailabilityTag: <p>可用性标签：解析已失效/端口连接超时/网站请求超时/服务错误（5xx）/高延迟（非宕机）</p>
+        # @type AvailabilityTag: String
 
-        attr_accessor :Id, :SubDomain, :Ip, :Country, :Province, :City, :Isp, :DisplayToolCommon, :IsCloudAsset, :CloudAssetStatus, :AvailabilityRate, :AvailabilityState, :AnalysisState, :AverageDelay, :LossRate, :DnsType, :DnsValue, :AggregationCount
+        attr_accessor :Id, :SubDomain, :Ip, :Country, :Province, :City, :Isp, :DisplayToolCommon, :IsCloudAsset, :CloudAssetStatus, :AvailabilityRate, :AvailabilityState, :AnalysisState, :AverageDelay, :LossRate, :DnsType, :DnsValue, :AggregationCount, :AvailabilityTag
 
-        def initialize(id=nil, subdomain=nil, ip=nil, country=nil, province=nil, city=nil, isp=nil, displaytoolcommon=nil, iscloudasset=nil, cloudassetstatus=nil, availabilityrate=nil, availabilitystate=nil, analysisstate=nil, averagedelay=nil, lossrate=nil, dnstype=nil, dnsvalue=nil, aggregationcount=nil)
+        def initialize(id=nil, subdomain=nil, ip=nil, country=nil, province=nil, city=nil, isp=nil, displaytoolcommon=nil, iscloudasset=nil, cloudassetstatus=nil, availabilityrate=nil, availabilitystate=nil, analysisstate=nil, averagedelay=nil, lossrate=nil, dnstype=nil, dnsvalue=nil, aggregationcount=nil, availabilitytag=nil)
           @Id = id
           @SubDomain = subdomain
           @Ip = ip
@@ -5988,6 +5994,7 @@ module TencentCloud
           @DnsType = dnstype
           @DnsValue = dnsvalue
           @AggregationCount = aggregationcount
+          @AvailabilityTag = availabilitytag
         end
 
         def deserialize(params)
@@ -6012,6 +6019,7 @@ module TencentCloud
           @DnsType = params['DnsType']
           @DnsValue = params['DnsValue']
           @AggregationCount = params['AggregationCount']
+          @AvailabilityTag = params['AvailabilityTag']
         end
       end
 

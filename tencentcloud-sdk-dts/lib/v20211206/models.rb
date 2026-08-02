@@ -1925,49 +1925,52 @@ module TencentCloud
 
       # 需要同步的库表对象
       class Database < TencentCloud::Common::AbstractModel
-        # @param DbName: 需要迁移或同步的库名，当ObjectMode为Partial时，此项必填
+        # @param DbName: <p>需要迁移或同步的库名，当ObjectMode为Partial时，此项必填</p>
         # @type DbName: String
-        # @param NewDbName: 迁移或同步后的库名，默认与源库相同
+        # @param NewDbName: <p>迁移或同步后的库名，默认与源库相同</p>
         # @type NewDbName: String
-        # @param DbMode: DB选择模式: All(为当前对象下的所有对象)，Partial(部分对象)，当Mode为Partial时，此项必填。注意，高级对象的同步不依赖此值，如果整库同步此处应该为All。
+        # @param DbMode: <p>DB选择模式: All(为当前对象下的所有对象)，Partial(部分对象)，当Mode为Partial时，此项必填。注意，高级对象的同步不依赖此值，如果整库同步此处应该为All。</p>
         # @type DbMode: String
-        # @param SchemaName: 迁移或同步的 schema
+        # @param SchemaName: <p>迁移或同步的 schema</p>
         # @type SchemaName: String
-        # @param NewSchemaName: 迁移或同步后的 schema name
+        # @param NewSchemaName: <p>迁移或同步后的 schema name</p>
         # @type NewSchemaName: String
-        # @param TableMode: 表选择模式: All(为当前对象下的所有对象)，Partial(部分对象)，当DBMode为Partial时此项必填，如果整库同步此处应该为All。
+        # @param SchemaMode: <p>schema选择模式，pg和sqlserver需要使用</p><p>枚举值：</p><ul><li>All： 当前对象下的所有对象</li><li>Partial： 部分对象</li></ul>
+        # @type SchemaMode: String
+        # @param TableMode: <p>表选择模式: All(为当前对象下的所有对象)，Partial(部分对象)，当DBMode为Partial时此项必填，如果整库同步此处应该为All。</p>
         # @type TableMode: String
-        # @param Tables: 表图对象集合，当 TableMode 为 Partial 时，此项需要填写
+        # @param Tables: <p>表图对象集合，当 TableMode 为 Partial 时，此项需要填写</p>
         # @type Tables: Array
-        # @param ViewMode: 视图选择模式: All 为当前对象下的所有视图对象,Partial 为部分视图对象，如果整库同步此处应该为All。
+        # @param ViewMode: <p>视图选择模式: All 为当前对象下的所有视图对象,Partial 为部分视图对象，如果整库同步此处应该为All。</p>
         # @type ViewMode: String
-        # @param Views: 视图对象集合，当 ViewMode 为 Partial 时， 此项需要填写
+        # @param Views: <p>视图对象集合，当 ViewMode 为 Partial 时， 此项需要填写</p>
         # @type Views: Array
-        # @param FunctionMode: 选择要同步的模式，Partial为部分，All为整选，如果整库同步此处应该为All。
+        # @param FunctionMode: <p>选择要同步的模式，Partial为部分，All为整选，如果整库同步此处应该为All。</p>
         # @type FunctionMode: String
-        # @param Functions: FunctionMode取值为Partial时需要填写
+        # @param Functions: <p>FunctionMode取值为Partial时需要填写</p>
         # @type Functions: Array
-        # @param ProcedureMode: 选择要同步的模式，Partial为部分，All为整选，如果整库同步此处应该为All。
+        # @param ProcedureMode: <p>选择要同步的模式，Partial为部分，All为整选，如果整库同步此处应该为All。</p>
         # @type ProcedureMode: String
-        # @param Procedures: ProcedureMode取值为Partial时需要填写
+        # @param Procedures: <p>ProcedureMode取值为Partial时需要填写</p>
         # @type Procedures: Array
-        # @param TriggerMode: 触发器迁移模式，All(为当前对象下的所有对象)，Partial(部分对象)，如果整库同步此处应该为All。数据同步暂不支持此高级对象。
+        # @param TriggerMode: <p>触发器迁移模式，All(为当前对象下的所有对象)，Partial(部分对象)，如果整库同步此处应该为All。数据同步暂不支持此高级对象。</p>
         # @type TriggerMode: String
-        # @param Triggers: 当TriggerMode为partial，指定要迁移的触发器名称
+        # @param Triggers: <p>当TriggerMode为partial，指定要迁移的触发器名称</p>
         # @type Triggers: Array
-        # @param EventMode: 事件迁移模式，All(为当前对象下的所有对象)，Partial(部分对象)，如果整库同步此处应该为All。数据同步暂不支持此高级对象。
+        # @param EventMode: <p>事件迁移模式，All(为当前对象下的所有对象)，Partial(部分对象)，如果整库同步此处应该为All。数据同步暂不支持此高级对象。</p>
         # @type EventMode: String
-        # @param Events: 当EventMode为partial，指定要迁移的事件名称
+        # @param Events: <p>当EventMode为partial，指定要迁移的事件名称</p>
         # @type Events: Array
 
-        attr_accessor :DbName, :NewDbName, :DbMode, :SchemaName, :NewSchemaName, :TableMode, :Tables, :ViewMode, :Views, :FunctionMode, :Functions, :ProcedureMode, :Procedures, :TriggerMode, :Triggers, :EventMode, :Events
+        attr_accessor :DbName, :NewDbName, :DbMode, :SchemaName, :NewSchemaName, :SchemaMode, :TableMode, :Tables, :ViewMode, :Views, :FunctionMode, :Functions, :ProcedureMode, :Procedures, :TriggerMode, :Triggers, :EventMode, :Events
 
-        def initialize(dbname=nil, newdbname=nil, dbmode=nil, schemaname=nil, newschemaname=nil, tablemode=nil, tables=nil, viewmode=nil, views=nil, functionmode=nil, functions=nil, proceduremode=nil, procedures=nil, triggermode=nil, triggers=nil, eventmode=nil, events=nil)
+        def initialize(dbname=nil, newdbname=nil, dbmode=nil, schemaname=nil, newschemaname=nil, schemamode=nil, tablemode=nil, tables=nil, viewmode=nil, views=nil, functionmode=nil, functions=nil, proceduremode=nil, procedures=nil, triggermode=nil, triggers=nil, eventmode=nil, events=nil)
           @DbName = dbname
           @NewDbName = newdbname
           @DbMode = dbmode
           @SchemaName = schemaname
           @NewSchemaName = newschemaname
+          @SchemaMode = schemamode
           @TableMode = tablemode
           @Tables = tables
           @ViewMode = viewmode
@@ -1988,6 +1991,7 @@ module TencentCloud
           @DbMode = params['DbMode']
           @SchemaName = params['SchemaName']
           @NewSchemaName = params['NewSchemaName']
+          @SchemaMode = params['SchemaMode']
           @TableMode = params['TableMode']
           unless params['Tables'].nil?
             @Tables = []

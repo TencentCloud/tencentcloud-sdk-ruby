@@ -198,6 +198,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 同步接口，使用该接口从参考音频克隆一个音色
+
+        # @param request: Request instance for CloneVoice.
+        # @type request: :class:`Tencentcloud::mps::V20190612::CloneVoiceRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::CloneVoiceResponse`
+        def CloneVoice(request)
+          body = send_request('CloneVoice', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CloneVoiceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建用户自定义内容分析模板，数量上限：50。
 
         # @param request: Request instance for CreateAIAnalysisTemplate.
@@ -280,6 +304,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateAiDramaTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建ai视频裂变任务
+
+        # @param request: Request instance for CreateAiFissionTask.
+        # @type request: :class:`Tencentcloud::mps::V20190612::CreateAiFissionTaskRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::CreateAiFissionTaskResponse`
+        def CreateAiFissionTask(request)
+          body = send_request('CreateAiFissionTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAiFissionTaskResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -5252,6 +5300,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SyncDubbingResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 同步语音合成，根据输入文本和指定音色生成语音
+
+        # @param request: Request instance for TextToSpeech.
+        # @type request: :class:`Tencentcloud::mps::V20190612::TextToSpeechRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::TextToSpeechResponse`
+        def TextToSpeech(request)
+          body = send_request('TextToSpeech', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = TextToSpeechResponse.new
             model.deserialize(response['Response'])
             model
           else

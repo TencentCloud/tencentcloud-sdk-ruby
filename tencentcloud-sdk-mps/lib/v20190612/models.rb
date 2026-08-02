@@ -2926,6 +2926,26 @@ module TencentCloud
         end
       end
 
+      # 视频裂变输入
+      class AiFissionInput < TencentCloud::Common::AbstractModel
+        # @param ImageUrls: <p>视频裂变参考图url</p>
+        # @type ImageUrls: Array
+        # @param Text: <p>视频裂变商品信息参考文案</p>
+        # @type Text: String
+
+        attr_accessor :ImageUrls, :Text
+
+        def initialize(imageurls=nil, text=nil)
+          @ImageUrls = imageurls
+          @Text = text
+        end
+
+        def deserialize(params)
+          @ImageUrls = params['ImageUrls']
+          @Text = params['Text']
+        end
+      end
+
       # 分段信息。
       class AiParagraphInfo < TencentCloud::Common::AbstractModel
         # @param Summary: 分段摘要
@@ -7197,6 +7217,92 @@ module TencentCloud
         end
       end
 
+      # CloneVoice请求参数结构体
+      class CloneVoiceRequest < TencentCloud::Common::AbstractModel
+        # @param AudioData: <p>克隆音频base64编码</p>
+        # @type AudioData: String
+        # @param AudioUrl: <p>克隆音频Url，AudioData为空时有效</p>
+        # @type AudioUrl: String
+        # @param AudioLang: <p>克隆音频语言，默认中文。 当前支持语言同语音合成TextLang</p>
+        # @type AudioLang: String
+        # @param VoiceProfile: <p>音色属性。音色查询和匹配使用</p>
+        # @type VoiceProfile: :class:`Tencentcloud::Mps.v20190612.models.VoiceProfile`
+        # @param Text: <p>试听文本</p>
+        # @type Text: String
+        # @param TextLang: <p>试听文本语言，不填默认自动检测。当前支持语言同语音合成</p>
+        # @type TextLang: String
+        # @param Output: <p>输出相关参数，可以指定输出音频形式等。默认输出音频base64。</p>
+        # @type Output: :class:`Tencentcloud::Mps.v20190612.models.SyncDubbingOutputOption`
+        # @param ExtParam: <p>扩展参数，json字符串</p>
+        # @type ExtParam: String
+
+        attr_accessor :AudioData, :AudioUrl, :AudioLang, :VoiceProfile, :Text, :TextLang, :Output, :ExtParam
+
+        def initialize(audiodata=nil, audiourl=nil, audiolang=nil, voiceprofile=nil, text=nil, textlang=nil, output=nil, extparam=nil)
+          @AudioData = audiodata
+          @AudioUrl = audiourl
+          @AudioLang = audiolang
+          @VoiceProfile = voiceprofile
+          @Text = text
+          @TextLang = textlang
+          @Output = output
+          @ExtParam = extparam
+        end
+
+        def deserialize(params)
+          @AudioData = params['AudioData']
+          @AudioUrl = params['AudioUrl']
+          @AudioLang = params['AudioLang']
+          unless params['VoiceProfile'].nil?
+            @VoiceProfile = VoiceProfile.new
+            @VoiceProfile.deserialize(params['VoiceProfile'])
+          end
+          @Text = params['Text']
+          @TextLang = params['TextLang']
+          unless params['Output'].nil?
+            @Output = SyncDubbingOutputOption.new
+            @Output.deserialize(params['Output'])
+          end
+          @ExtParam = params['ExtParam']
+        end
+      end
+
+      # CloneVoice返回参数结构体
+      class CloneVoiceResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorCode: <p>错误码，成功时返回0</p>
+        # @type ErrorCode: Integer
+        # @param Msg: <p>错误信息，成功时返回success</p>
+        # @type Msg: String
+        # @param VoiceId: <p>克隆生成的音色ID</p>
+        # @type VoiceId: String
+        # @param AudioData: <p>合成音频的base64编码</p>
+        # @type AudioData: String
+        # @param AudioUrl: <p>合成音频Url，有效期24小时</p>
+        # @type AudioUrl: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrorCode, :Msg, :VoiceId, :AudioData, :AudioUrl, :RequestId
+
+        def initialize(errorcode=nil, msg=nil, voiceid=nil, audiodata=nil, audiourl=nil, requestid=nil)
+          @ErrorCode = errorcode
+          @Msg = msg
+          @VoiceId = voiceid
+          @AudioData = audiodata
+          @AudioUrl = audiourl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrorCode = params['ErrorCode']
+          @Msg = params['Msg']
+          @VoiceId = params['VoiceId']
+          @AudioData = params['AudioData']
+          @AudioUrl = params['AudioUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 色彩增强配置
       class ColorEnhanceConfig < TencentCloud::Common::AbstractModel
         # @param Switch: 能力配置开关，可选值：
@@ -8654,6 +8760,59 @@ module TencentCloud
 
       # CreateAiDramaTask返回参数结构体
       class CreateAiDramaTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务id</p>
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateAiFissionTask请求参数结构体
+      class CreateAiFissionTaskRequest < TencentCloud::Common::AbstractModel
+        # @param Input: <p>ai视频裂变输入信息</p>
+        # @type Input: :class:`Tencentcloud::Mps.v20190612.models.AiFissionInput`
+        # @param CosInfo: <p>用户cos信息</p>
+        # @type CosInfo: :class:`Tencentcloud::Mps.v20190612.models.VideoDramaCosInfo`
+        # @param TaskInfo: <p>ai视频裂变任务信息</p>
+        # @type TaskInfo: :class:`Tencentcloud::Mps.v20190612.models.FissionTaskInfo`
+
+        attr_accessor :Input, :CosInfo, :TaskInfo
+
+        def initialize(input=nil, cosinfo=nil, taskinfo=nil)
+          @Input = input
+          @CosInfo = cosinfo
+          @TaskInfo = taskinfo
+        end
+
+        def deserialize(params)
+          unless params['Input'].nil?
+            @Input = AiFissionInput.new
+            @Input.deserialize(params['Input'])
+          end
+          unless params['CosInfo'].nil?
+            @CosInfo = VideoDramaCosInfo.new
+            @CosInfo.deserialize(params['CosInfo'])
+          end
+          unless params['TaskInfo'].nil?
+            @TaskInfo = FissionTaskInfo.new
+            @TaskInfo.deserialize(params['TaskInfo'])
+          end
+        end
+      end
+
+      # CreateAiFissionTask返回参数结构体
+      class CreateAiFissionTaskResponse < TencentCloud::Common::AbstractModel
         # @param TaskId: <p>任务id</p>
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -11873,6 +12032,34 @@ module TencentCloud
         def deserialize(params)
           @WorkflowId = params['WorkflowId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 商品裂变模特信息
+      class CustomModel < TencentCloud::Common::AbstractModel
+        # @param Gender: <p>性别</p><p>枚举值：</p><ul><li>male： 男性</li><li>female： 女性</li><li>any： 不限</li></ul>
+        # @type Gender: String
+        # @param Age: <p>年龄范围</p><p>枚举值：</p><ul><li>teen： 青年</li><li>young_adult： 成年</li><li>middle_aged： 中年</li><li>mature： 成熟</li></ul>
+        # @type Age: String
+        # @param Appearance: <p>外貌</p><p>枚举值：</p><ul><li>caucasian： 白人</li><li>asian： 亚裔</li><li>latino： 拉丁裔</li><li>african： 非裔</li><li>middle_eastern： 中东</li></ul>
+        # @type Appearance: String
+        # @param BodyType: <p>身材</p><p>枚举值：</p><ul><li>slim： 苗条</li><li>standard： 标准</li><li>athletic： 健壮</li><li>chubby： 丰满</li></ul>
+        # @type BodyType: String
+
+        attr_accessor :Gender, :Age, :Appearance, :BodyType
+
+        def initialize(gender=nil, age=nil, appearance=nil, bodytype=nil)
+          @Gender = gender
+          @Age = age
+          @Appearance = appearance
+          @BodyType = bodytype
+        end
+
+        def deserialize(params)
+          @Gender = params['Gender']
+          @Age = params['Age']
+          @Appearance = params['Appearance']
+          @BodyType = params['BodyType']
         end
       end
 
@@ -20150,6 +20337,57 @@ module TencentCloud
 
         def deserialize(params)
           @FailOverType = params['FailOverType']
+        end
+      end
+
+      # 商品裂变任务信息
+      class FissionTaskInfo < TencentCloud::Common::AbstractModel
+        # @param Duration: <p>视频输出时长</p><p>取值范围：[1, 15]</p><p>单位：秒</p><p>默认值：15</p>
+        # @type Duration: Integer
+        # @param ModelTier: <p>模型档位</p><p>枚举值：</p><ul><li>standard： 标准版</li><li>flagship： 旗舰版</li></ul>
+        # @type ModelTier: String
+        # @param Ratio: <p>视频画面比例</p><p>枚举值：</p><ul><li>9:16： 9:16</li><li>16:9： 16:9</li><li>1:1： 1:1</li><li>3:4： 3:4</li><li>4:3： 4:3</li></ul>
+        # @type Ratio: String
+        # @param Resolution: <p>输出分辨率</p><p>枚举值：</p><ul><li>720p： 720p</li><li>1080p： 1080p</li><li>2k： 2k</li><li>4k： 4k</li></ul>
+        # @type Resolution: String
+        # @param Market: <p>目标市场</p><p>枚举值：</p><ul><li>north_america： 北美</li><li>europe： 欧洲</li><li>china： 中国</li><li>japan： 日本</li><li>korea： 韩国</li><li>southeast_asia： 东南亚</li><li>brazil： 巴西</li><li>global： 全球</li><li>other： 其他</li></ul><p>影响默认出镜模特族裔与本地化风格；未指定 CustomModel 时按市场自动决定人种</p>
+        # @type Market: String
+        # @param Language: <p>口播/字幕语言</p><p>枚举值：</p><ul><li>english： 英文</li><li>chinese： 中文</li><li>japanese： 日语</li><li>korean： 汉语</li><li>spanish： 西班牙语</li><li>portuguese： 葡萄牙语</li><li>music_only： 纯音乐无口播</li></ul>
+        # @type Language: String
+        # @param VideoType: <p>视频类型</p><p>枚举值：</p><ul><li>ugc： UGC种草</li><li>talk： 产品口播</li><li>display： 产品展示（纯商品、无人声）</li><li>unboxing： 开箱分享</li><li>reaction： 反应展示</li></ul>
+        # @type VideoType: String
+        # @param SplitCount: <p>裂变数量</p><p>取值范围：[0, 1]</p><p>单位：个</p>
+        # @type SplitCount: Integer
+        # @param CustomModel: <p>定制出镜模特</p>
+        # @type CustomModel: :class:`Tencentcloud::Mps.v20190612.models.CustomModel`
+
+        attr_accessor :Duration, :ModelTier, :Ratio, :Resolution, :Market, :Language, :VideoType, :SplitCount, :CustomModel
+
+        def initialize(duration=nil, modeltier=nil, ratio=nil, resolution=nil, market=nil, language=nil, videotype=nil, splitcount=nil, custommodel=nil)
+          @Duration = duration
+          @ModelTier = modeltier
+          @Ratio = ratio
+          @Resolution = resolution
+          @Market = market
+          @Language = language
+          @VideoType = videotype
+          @SplitCount = splitcount
+          @CustomModel = custommodel
+        end
+
+        def deserialize(params)
+          @Duration = params['Duration']
+          @ModelTier = params['ModelTier']
+          @Ratio = params['Ratio']
+          @Resolution = params['Resolution']
+          @Market = params['Market']
+          @Language = params['Language']
+          @VideoType = params['VideoType']
+          @SplitCount = params['SplitCount']
+          unless params['CustomModel'].nil?
+            @CustomModel = CustomModel.new
+            @CustomModel.deserialize(params['CustomModel'])
+          end
         end
       end
 
@@ -35185,6 +35423,77 @@ module TencentCloud
           @ErrorCode = params['ErrorCode']
           @Msg = params['Msg']
           @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # TextToSpeech请求参数结构体
+      class TextToSpeechRequest < TencentCloud::Common::AbstractModel
+        # @param Text: <p>语音合成文本</p>
+        # @type Text: String
+        # @param VoiceId: <p>音色ID</p>
+        # @type VoiceId: String
+        # @param TextLang: <p>文本语言。不填默认自动识别<br>当前支持语言：<br>zh 中文 (Chinese)<br>en 英语 (English)<br>ja 日语 (Japanese)<br>de 德语 (German)<br>fr 法语 (French)<br>ko 韩语 (Korean)<br>ru 俄语 (Russian)<br>uk 乌克兰语 (Ukrainian)<br>pt 葡萄牙语 (Portuguese)<br>it 意大利语 (Italian)<br>es 西班牙语 (Spanish)<br>id 印度尼西亚语 (Indonesian)<br>nl 荷兰语 (Dutch)<br>tr 土耳其语 (Turkish)<br>fil 菲律宾语 (Filipino)<br>ms 马来语 (Malay)<br>el 希腊语 (Greek)<br>fi 芬兰语 (Finnish)<br>hr 克罗地亚语 (Croatian)<br>sk 斯洛伐克语 (Slovak)<br>pl 波兰语 (Polish)<br>sv 瑞典语 (Swedish)<br>hi 印地语 (Hindi)<br>bg 保加利亚语 (Bulgarian)<br>ro 罗马尼亚语 (Romanian)<br>ar 阿拉伯语 (Arabic)<br>cs 捷克语 (Czech)<br>da 丹麦语 (Danish)<br>ta 泰米尔语 (Tamil)<br>hun 匈牙利语（Hungarian）<br>vi 越南语（Vietnamese）<br>no 挪威语（Norwegian）<br>yue 粤语（Cantonese）<br>th 泰语（Thai）<br>he 希伯来语（Hebrew）<br>ca 加泰罗尼亚语（Catalan）<br>nn 尼诺斯克语（Nynorsk）<br>af 阿非利卡语（Afrikaans）<br>fa 波斯语（Persian）<br>sl 斯洛文尼亚语（Slovenian）</p>
+        # @type TextLang: String
+        # @param Output: <p>输出相关参数</p>
+        # @type Output: :class:`Tencentcloud::Mps.v20190612.models.SyncDubbingOutputOption`
+        # @param ExtParam: <p>扩展参数，json字符串</p><p><strong>synExt</strong> Object 语音合成扩展参数<br>   <strong>duration</strong> Float 合成音频时长（单位秒），默认不控制时长。示例：5.2<br>   <strong>format</strong> String 输出音频格式，默认wav，支持wav、mp3<br>   <strong>sampleRate</strong> Integer 合成音频采样率，默认16000，支持[8000,16000,22050,24000,32000,44100]</p>
+        # @type ExtParam: String
+
+        attr_accessor :Text, :VoiceId, :TextLang, :Output, :ExtParam
+
+        def initialize(text=nil, voiceid=nil, textlang=nil, output=nil, extparam=nil)
+          @Text = text
+          @VoiceId = voiceid
+          @TextLang = textlang
+          @Output = output
+          @ExtParam = extparam
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+          @VoiceId = params['VoiceId']
+          @TextLang = params['TextLang']
+          unless params['Output'].nil?
+            @Output = SyncDubbingOutputOption.new
+            @Output.deserialize(params['Output'])
+          end
+          @ExtParam = params['ExtParam']
+        end
+      end
+
+      # TextToSpeech返回参数结构体
+      class TextToSpeechResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorCode: <p>错误码，成功时返回0</p>
+        # @type ErrorCode: Integer
+        # @param Msg: <p>错误信息，成功时返回success</p>
+        # @type Msg: String
+        # @param AudioData: <p>合成音频的base64编码，默认wav格式</p>
+        # @type AudioData: String
+        # @param AudioUrl: <p>合成音频url，有效期24小时</p>
+        # @type AudioUrl: String
+        # @param ExtInfo: <p>扩展信息，json字符串  duration: 结果音频时长，单位秒</p>
+        # @type ExtInfo: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrorCode, :Msg, :AudioData, :AudioUrl, :ExtInfo, :RequestId
+
+        def initialize(errorcode=nil, msg=nil, audiodata=nil, audiourl=nil, extinfo=nil, requestid=nil)
+          @ErrorCode = errorcode
+          @Msg = msg
+          @AudioData = audiodata
+          @AudioUrl = audiourl
+          @ExtInfo = extinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrorCode = params['ErrorCode']
+          @Msg = params['Msg']
+          @AudioData = params['AudioData']
+          @AudioUrl = params['AudioUrl']
+          @ExtInfo = params['ExtInfo']
           @RequestId = params['RequestId']
         end
       end

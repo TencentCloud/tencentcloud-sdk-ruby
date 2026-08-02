@@ -368,10 +368,12 @@ module TencentCloud
         # @type Native: :class:`Tencentcloud::Tke.v20220501.models.CreateNativeNodePoolParam`
         # @param Annotations: <p>节点 Annotation 列表</p>
         # @type Annotations: Array
+        # @param SkipValidateOptions: <p>跳过校验选项，支持 &quot;VpcDnsCheck&quot;</p>
+        # @type SkipValidateOptions: Array
 
-        attr_accessor :ClusterId, :Name, :Type, :Labels, :Taints, :Tags, :DeletionProtection, :Unschedulable, :Native, :Annotations
+        attr_accessor :ClusterId, :Name, :Type, :Labels, :Taints, :Tags, :DeletionProtection, :Unschedulable, :Native, :Annotations, :SkipValidateOptions
 
-        def initialize(clusterid=nil, name=nil, type=nil, labels=nil, taints=nil, tags=nil, deletionprotection=nil, unschedulable=nil, native=nil, annotations=nil)
+        def initialize(clusterid=nil, name=nil, type=nil, labels=nil, taints=nil, tags=nil, deletionprotection=nil, unschedulable=nil, native=nil, annotations=nil, skipvalidateoptions=nil)
           @ClusterId = clusterid
           @Name = name
           @Type = type
@@ -382,6 +384,7 @@ module TencentCloud
           @Unschedulable = unschedulable
           @Native = native
           @Annotations = annotations
+          @SkipValidateOptions = skipvalidateoptions
         end
 
         def deserialize(params)
@@ -426,6 +429,7 @@ module TencentCloud
               @Annotations << annotation_tmp
             end
           end
+          @SkipValidateOptions = params['SkipValidateOptions']
         end
       end
 

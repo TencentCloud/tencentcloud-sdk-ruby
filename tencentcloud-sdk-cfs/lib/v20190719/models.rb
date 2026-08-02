@@ -3838,36 +3838,38 @@ module TencentCloud
 
       # 挂载点信息
       class MountInfo < TencentCloud::Common::AbstractModel
-        # @param FileSystemId: 文件系统 ID
+        # @param FileSystemId: <p>文件系统 ID</p>
         # @type FileSystemId: String
-        # @param MountTargetId: 挂载点 ID
+        # @param MountTargetId: <p>挂载点 ID</p>
         # @type MountTargetId: String
-        # @param IpAddress: 挂载点 IP
+        # @param IpAddress: <p>挂载点 IP</p>
         # @type IpAddress: String
-        # @param FSID: 挂载根目录
+        # @param FSID: <p>挂载根目录</p>
         # @type FSID: String
-        # @param LifeCycleState: 挂载点状态，包括creating：创建中；available：运行中；
-        # deleting：删除中；
-        # create_failed： 创建失败
+        # @param LifeCycleState: <p>挂载点状态，包括creating：创建中；available：运行中；<br>deleting：删除中；<br>create_failed： 创建失败</p>
         # @type LifeCycleState: String
-        # @param NetworkInterface: 网络类型，包括VPC,CCN
+        # @param NetworkInterface: <p>网络类型，包括VPC,CCN</p>
         # @type NetworkInterface: String
-        # @param VpcId: 私有网络 ID
+        # @param VpcId: <p>私有网络 ID</p>
         # @type VpcId: String
-        # @param VpcName: 私有网络名称
+        # @param VpcName: <p>私有网络名称</p>
         # @type VpcName: String
-        # @param SubnetId: 子网 Id
+        # @param SubnetId: <p>子网 Id</p>
         # @type SubnetId: String
-        # @param SubnetName: 子网名称
+        # @param SubnetName: <p>子网名称</p>
         # @type SubnetName: String
-        # @param CcnID: CFS Turbo使用的云联网ID
+        # @param CcnID: <p>CFS Turbo使用的云联网ID</p>
         # @type CcnID: String
-        # @param CidrBlock: 云联网中CFS Turbo使用的网段
+        # @param CidrBlock: <p>云联网中CFS Turbo使用的网段</p>
         # @type CidrBlock: String
+        # @param ServerList: <p>占用用户ip列表</p>
+        # @type ServerList: Array
+        # @param ServerListTruncated: <p>是否占用超过200个ip</p>
+        # @type ServerListTruncated: Boolean
 
-        attr_accessor :FileSystemId, :MountTargetId, :IpAddress, :FSID, :LifeCycleState, :NetworkInterface, :VpcId, :VpcName, :SubnetId, :SubnetName, :CcnID, :CidrBlock
+        attr_accessor :FileSystemId, :MountTargetId, :IpAddress, :FSID, :LifeCycleState, :NetworkInterface, :VpcId, :VpcName, :SubnetId, :SubnetName, :CcnID, :CidrBlock, :ServerList, :ServerListTruncated
 
-        def initialize(filesystemid=nil, mounttargetid=nil, ipaddress=nil, fsid=nil, lifecyclestate=nil, networkinterface=nil, vpcid=nil, vpcname=nil, subnetid=nil, subnetname=nil, ccnid=nil, cidrblock=nil)
+        def initialize(filesystemid=nil, mounttargetid=nil, ipaddress=nil, fsid=nil, lifecyclestate=nil, networkinterface=nil, vpcid=nil, vpcname=nil, subnetid=nil, subnetname=nil, ccnid=nil, cidrblock=nil, serverlist=nil, serverlisttruncated=nil)
           @FileSystemId = filesystemid
           @MountTargetId = mounttargetid
           @IpAddress = ipaddress
@@ -3880,6 +3882,8 @@ module TencentCloud
           @SubnetName = subnetname
           @CcnID = ccnid
           @CidrBlock = cidrblock
+          @ServerList = serverlist
+          @ServerListTruncated = serverlisttruncated
         end
 
         def deserialize(params)
@@ -3895,6 +3899,8 @@ module TencentCloud
           @SubnetName = params['SubnetName']
           @CcnID = params['CcnID']
           @CidrBlock = params['CidrBlock']
+          @ServerList = params['ServerList']
+          @ServerListTruncated = params['ServerListTruncated']
         end
       end
 

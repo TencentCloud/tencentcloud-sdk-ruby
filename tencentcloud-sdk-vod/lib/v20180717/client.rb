@@ -833,6 +833,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建知识库。用于为智能媒资功能创建一个新的知识库，每个用户最多可创建的20个知识库。
+
+        # @param request: Request instance for CreateKnowledgeBase.
+        # @type request: :class:`Tencentcloud::vod::V20180717::CreateKnowledgeBaseRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::CreateKnowledgeBaseResponse`
+        def CreateKnowledgeBase(request)
+          body = send_request('CreateKnowledgeBase', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateKnowledgeBaseResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建大模型解析模板
 
         # @param request: Request instance for CreateLLMComprehendTemplate.
@@ -1706,6 +1730,31 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteJustInTimeTranscodeTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除知识库。
+        # 调用接口后，知识库会处于“删除中”状态，并在后台执行删除操作。
+
+        # @param request: Request instance for DeleteKnowledgeBase.
+        # @type request: :class:`Tencentcloud::vod::V20180717::DeleteKnowledgeBaseRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::DeleteKnowledgeBaseResponse`
+        def DeleteKnowledgeBase(request)
+          body = send_request('DeleteKnowledgeBase', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteKnowledgeBaseResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -3040,6 +3089,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeJustInTimeTranscodeTemplatesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询知识库列表。返回指定用户下的所有知识库信息。
+
+        # @param request: Request instance for DescribeKnowledgeBases.
+        # @type request: :class:`Tencentcloud::vod::V20180717::DescribeKnowledgeBasesRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::DescribeKnowledgeBasesResponse`
+        def DescribeKnowledgeBases(request)
+          body = send_request('DescribeKnowledgeBases', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeKnowledgeBasesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -4533,6 +4606,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyJustInTimeTranscodeTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改知识库。可以修改知识库的名称和/或描述。至少需要提供 Name 或 Description 中的一个字段。
+
+        # @param request: Request instance for ModifyKnowledgeBase.
+        # @type request: :class:`Tencentcloud::vod::V20180717::ModifyKnowledgeBaseRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::ModifyKnowledgeBaseResponse`
+        def ModifyKnowledgeBase(request)
+          body = send_request('ModifyKnowledgeBase', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyKnowledgeBaseResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -1301,22 +1301,19 @@ module TencentCloud
 
       # 目标组健康检查详情
       class TargetGroupHealthCheck < TencentCloud::Common::AbstractModel
-        # @param HealthSwitch: 是否开启健康检查。
+        # @param HealthSwitch: <p>是否开启健康检查。</p>
         # @type HealthSwitch: Boolean
-        # @param Protocol: 健康检查使用的协议。支持PING和TCP两种方式，默认为PING。
-
-        # - icmp: 使用PING的方式进行健康检查
-        # - tcp: 使用TCP连接的方式进行健康检查
+        # @param Protocol: <p>健康检查使用的协议。支持PING和TCP两种方式，默认为PING。</p><ul><li>icmp: 使用PING的方式进行健康检查</li><li>tcp: 使用TCP连接的方式进行健康检查</li></ul>
         # @type Protocol: String
-        # @param Port: 健康检查端口，探测协议为tcp时，该参数必填。
+        # @param Port: <p>健康检查端口，探测协议为tcp时，该参数必填。</p>
         # @type Port: Integer
-        # @param Timeout: 健康检查超时时间。 默认为2秒。 可配置范围：2 - 30秒。
+        # @param Timeout: <p>健康检查超时时间。 默认为2秒。 可配置范围：2 - 30秒。</p>
         # @type Timeout: Integer
-        # @param IntervalTime: 检测间隔时间。 默认为5秒。 可配置范围：2 - 300秒。
+        # @param IntervalTime: <p>检测间隔时间。 默认为5秒。 可配置范围：2 - 300秒。</p>
         # @type IntervalTime: Integer
-        # @param HealthNum: 检测健康阈值。 默认为3次。 可配置范围：2 - 10次。
+        # @param HealthNum: <p>检测健康阈值。 默认为3次。 可配置范围：2 - 10次。</p>
         # @type HealthNum: Integer
-        # @param UnHealthNum: 检测不健康阈值。 默认为3次。 可配置范围：2 - 10次。
+        # @param UnHealthNum: <p>检测不健康阈值。 默认为3次。 可配置范围：2 - 10次。</p>
         # @type UnHealthNum: Integer
 
         attr_accessor :HealthSwitch, :Protocol, :Port, :Timeout, :IntervalTime, :HealthNum, :UnHealthNum

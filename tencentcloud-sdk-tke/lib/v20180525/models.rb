@@ -2504,10 +2504,12 @@ module TencentCloud
         # @type Tags: Array
         # @param DeletionProtection: <p>删除保护开关</p>
         # @type DeletionProtection: Boolean
+        # @param SkipValidateOptions: <p>跳过校验选项，目前支持 &quot;VpcDnsCheck&quot;</p>
+        # @type SkipValidateOptions: Array
 
-        attr_accessor :ClusterId, :AutoScalingGroupPara, :LaunchConfigurePara, :InstanceAdvancedSettings, :EnableAutoscale, :Name, :Labels, :Taints, :Annotations, :ContainerRuntime, :RuntimeVersion, :NodePoolOs, :OsCustomizeType, :Tags, :DeletionProtection
+        attr_accessor :ClusterId, :AutoScalingGroupPara, :LaunchConfigurePara, :InstanceAdvancedSettings, :EnableAutoscale, :Name, :Labels, :Taints, :Annotations, :ContainerRuntime, :RuntimeVersion, :NodePoolOs, :OsCustomizeType, :Tags, :DeletionProtection, :SkipValidateOptions
 
-        def initialize(clusterid=nil, autoscalinggrouppara=nil, launchconfigurepara=nil, instanceadvancedsettings=nil, enableautoscale=nil, name=nil, labels=nil, taints=nil, annotations=nil, containerruntime=nil, runtimeversion=nil, nodepoolos=nil, oscustomizetype=nil, tags=nil, deletionprotection=nil)
+        def initialize(clusterid=nil, autoscalinggrouppara=nil, launchconfigurepara=nil, instanceadvancedsettings=nil, enableautoscale=nil, name=nil, labels=nil, taints=nil, annotations=nil, containerruntime=nil, runtimeversion=nil, nodepoolos=nil, oscustomizetype=nil, tags=nil, deletionprotection=nil, skipvalidateoptions=nil)
           @ClusterId = clusterid
           @AutoScalingGroupPara = autoscalinggrouppara
           @LaunchConfigurePara = launchconfigurepara
@@ -2523,6 +2525,7 @@ module TencentCloud
           @OsCustomizeType = oscustomizetype
           @Tags = tags
           @DeletionProtection = deletionprotection
+          @SkipValidateOptions = skipvalidateoptions
         end
 
         def deserialize(params)
@@ -2572,6 +2575,7 @@ module TencentCloud
             end
           end
           @DeletionProtection = params['DeletionProtection']
+          @SkipValidateOptions = params['SkipValidateOptions']
         end
       end
 

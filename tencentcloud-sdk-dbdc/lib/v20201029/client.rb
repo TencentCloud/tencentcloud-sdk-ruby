@@ -701,6 +701,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口（ModifyDBCustomNodeAttributes）用于修改 DB Custom 节点的属性。
+
+        # @param request: Request instance for ModifyDBCustomNodeAttributes.
+        # @type request: :class:`Tencentcloud::dbdc::V20201029::ModifyDBCustomNodeAttributesRequest`
+        # @rtype: :class:`Tencentcloud::dbdc::V20201029::ModifyDBCustomNodeAttributesResponse`
+        def ModifyDBCustomNodeAttributes(request)
+          body = send_request('ModifyDBCustomNodeAttributes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDBCustomNodeAttributesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口（ModifyDBCustomNodeSecurityGroups）用于修改 DB Custom 节点安全组。
 
         # @param request: Request instance for ModifyDBCustomNodeSecurityGroups.

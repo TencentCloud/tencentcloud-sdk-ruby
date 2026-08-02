@@ -5597,6 +5597,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（TransferClusterPrepayToPostpay）用于将预付费集群转为后付费集群
+
+        # @param request: Request instance for TransferClusterPrepayToPostpay.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::TransferClusterPrepayToPostpayRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::TransferClusterPrepayToPostpayResponse`
+        def TransferClusterPrepayToPostpay(request)
+          body = send_request('TransferClusterPrepayToPostpay', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = TransferClusterPrepayToPostpayResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（TransferClusterZone）用于发起跨可用区迁移。
 
         # @param request: Request instance for TransferClusterZone.
@@ -5607,6 +5631,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = TransferClusterZoneResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（TransferStoragePrepayToPostpay）用于将预付费存储转为后付费存储
+
+        # @param request: Request instance for TransferStoragePrepayToPostpay.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::TransferStoragePrepayToPostpayRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::TransferStoragePrepayToPostpayResponse`
+        def TransferStoragePrepayToPostpay(request)
+          body = send_request('TransferStoragePrepayToPostpay', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = TransferStoragePrepayToPostpayResponse.new
             model.deserialize(response['Response'])
             model
           else
