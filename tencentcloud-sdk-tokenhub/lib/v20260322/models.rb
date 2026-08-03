@@ -2476,7 +2476,7 @@ module TencentCloud
 
       # ModifyEndpoint请求参数结构体
       class ModifyEndpointRequest < TencentCloud::Common::AbstractModel
-        # @param AutoAdjustQuota: 自动调整配额
+        # @param AutoAdjustQuota: <p>自动调整配额</p>
         # @type AutoAdjustQuota: Integer
 
         attr_accessor :AutoAdjustQuota

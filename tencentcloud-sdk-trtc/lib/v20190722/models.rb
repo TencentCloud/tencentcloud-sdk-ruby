@@ -3845,13 +3845,13 @@ module TencentCloud
 
       # 回推房间参数。
       class McuFeedBackRoomParams < TencentCloud::Common::AbstractModel
-        # @param RoomId: 回推房间的RoomId。
+        # @param RoomId: <p>回推房间的RoomId。</p>
         # @type RoomId: String
-        # @param RoomIdType: 房间类型，必须和回推房间所对应的RoomId类型相同，0为整形房间号，1为字符串房间号。
+        # @param RoomIdType: <p>房间类型，必须和回推房间所对应的RoomId类型相同，0为整形房间号，1为字符串房间号。</p>
         # @type RoomIdType: Integer
-        # @param UserId: 回推房间使用的UserId(https://cloud.tencent.com/document/product/647/46351#userid)，注意这个userId不能与其他TRTC或者转推服务等已经使用的UserId重复，建议可以把房间ID作为userId的标识的一部分。
+        # @param UserId: <p>回推房间使用的UserId(https://cloud.tencent.com/document/product/647/46351#userid)，注意这个userId不能与其他TRTC或者转推服务等已经使用的UserId重复，建议可以把房间ID作为userId的标识的一部分。</p>
         # @type UserId: String
-        # @param UserSig: 回推房间UserId对应的用户签名，相当于登录密码，具体计算方法请参考TRTC计算[UserSig](https://cloud.tencent.com/document/product/647/45910#UserSig)的方案。
+        # @param UserSig: <p>回推房间UserId对应的用户签名，相当于登录密码，具体计算方法请参考TRTC计算<a href="https://cloud.tencent.com/document/product/647/45910#UserSig">UserSig</a>的方案。</p>
         # @type UserSig: String
 
         attr_accessor :RoomId, :RoomIdType, :UserId, :UserSig
@@ -5257,10 +5257,10 @@ module TencentCloud
 
         attr_accessor :Language, :AlternativeLanguage, :Model, :TranslationLanguage, :HotWordList, :VadSilenceTime, :VadLevel
         extend Gem::Deprecate
-        deprecate :Model, :none, 2026, 7
-        deprecate :Model=, :none, 2026, 7
-        deprecate :TranslationLanguage, :none, 2026, 7
-        deprecate :TranslationLanguage=, :none, 2026, 7
+        deprecate :Model, :none, 2026, 8
+        deprecate :Model=, :none, 2026, 8
+        deprecate :TranslationLanguage, :none, 2026, 8
+        deprecate :TranslationLanguage=, :none, 2026, 8
 
         def initialize(language=nil, alternativelanguage=nil, model=nil, translationlanguage=nil, hotwordlist=nil, vadsilencetime=nil, vadlevel=nil)
           @Language = language
@@ -6444,12 +6444,12 @@ module TencentCloud
 
         attr_accessor :SdkAppId, :RoomId, :RoomIdType, :UserId, :UserSig, :StreamUrl, :PrivateMapKey, :VideoEncodeParams, :AudioEncodeParams, :SourceUrl, :SeekSecond, :AutoPush, :RepeatNum, :MaxDuration, :Volume, :EnableProgress, :Tempo, :IdleTimeout
         extend Gem::Deprecate
-        deprecate :VideoEncodeParams, :none, 2026, 7
-        deprecate :VideoEncodeParams=, :none, 2026, 7
-        deprecate :AudioEncodeParams, :none, 2026, 7
-        deprecate :AudioEncodeParams=, :none, 2026, 7
-        deprecate :SourceUrl, :none, 2026, 7
-        deprecate :SourceUrl=, :none, 2026, 7
+        deprecate :VideoEncodeParams, :none, 2026, 8
+        deprecate :VideoEncodeParams=, :none, 2026, 8
+        deprecate :AudioEncodeParams, :none, 2026, 8
+        deprecate :AudioEncodeParams=, :none, 2026, 8
+        deprecate :SourceUrl, :none, 2026, 8
+        deprecate :SourceUrl=, :none, 2026, 8
 
         def initialize(sdkappid=nil, roomid=nil, roomidtype=nil, userid=nil, usersig=nil, streamurl=nil, privatemapkey=nil, videoencodeparams=nil, audioencodeparams=nil, sourceurl=nil, seeksecond=nil, autopush=nil, repeatnum=nil, maxduration=nil, volume=nil, enableprogress=nil, tempo=nil, idletimeout=nil)
           @SdkAppId = sdkappid
@@ -7280,8 +7280,8 @@ module TencentCloud
 
         attr_accessor :Text, :Voice, :SdkAppId, :AudioFormat, :APIKey, :Model, :Language, :PronunciationDict, :AlignmentMode, :ExtraParams
         extend Gem::Deprecate
-        deprecate :APIKey, :none, 2026, 7
-        deprecate :APIKey=, :none, 2026, 7
+        deprecate :APIKey, :none, 2026, 8
+        deprecate :APIKey=, :none, 2026, 8
 
         def initialize(text=nil, voice=nil, sdkappid=nil, audioformat=nil, apikey=nil, model=nil, language=nil, pronunciationdict=nil, alignmentmode=nil, extraparams=nil)
           @Text = text
@@ -7383,8 +7383,8 @@ module TencentCloud
 
         attr_accessor :Text, :Voice, :SdkAppId, :AudioFormat, :APIKey, :Model, :Language, :PronunciationDict, :AlignmentMode, :ExtraParams
         extend Gem::Deprecate
-        deprecate :APIKey, :none, 2026, 7
-        deprecate :APIKey=, :none, 2026, 7
+        deprecate :APIKey, :none, 2026, 8
+        deprecate :APIKey=, :none, 2026, 8
 
         def initialize(text=nil, voice=nil, sdkappid=nil, audioformat=nil, apikey=nil, model=nil, language=nil, pronunciationdict=nil, alignmentmode=nil, extraparams=nil)
           @Text = text
@@ -7542,10 +7542,10 @@ module TencentCloud
 
         attr_accessor :UserId, :UserSig, :IMAdminUserId, :IMAdminUserSig, :MaxIdleTime, :TranscriptionMode, :TargetUserId, :TargetUserIdList, :VoicePrint, :TurnDetection
         extend Gem::Deprecate
-        deprecate :IMAdminUserId, :none, 2026, 7
-        deprecate :IMAdminUserId=, :none, 2026, 7
-        deprecate :IMAdminUserSig, :none, 2026, 7
-        deprecate :IMAdminUserSig=, :none, 2026, 7
+        deprecate :IMAdminUserId, :none, 2026, 8
+        deprecate :IMAdminUserId=, :none, 2026, 8
+        deprecate :IMAdminUserSig, :none, 2026, 8
+        deprecate :IMAdminUserSig=, :none, 2026, 8
 
         def initialize(userid=nil, usersig=nil, imadminuserid=nil, imadminusersig=nil, maxidletime=nil, transcriptionmode=nil, targetuserid=nil, targetuseridlist=nil, voiceprint=nil, turndetection=nil)
           @UserId = userid
@@ -8209,8 +8209,8 @@ module TencentCloud
 
         attr_accessor :SdkAppId, :VoiceName, :PromptAudio, :APIKey, :PromptText, :Model, :Language
         extend Gem::Deprecate
-        deprecate :APIKey, :none, 2026, 7
-        deprecate :APIKey=, :none, 2026, 7
+        deprecate :APIKey, :none, 2026, 8
+        deprecate :APIKey=, :none, 2026, 8
 
         def initialize(sdkappid=nil, voicename=nil, promptaudio=nil, apikey=nil, prompttext=nil, model=nil, language=nil)
           @SdkAppId = sdkappid

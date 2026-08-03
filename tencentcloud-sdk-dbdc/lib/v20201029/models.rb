@@ -692,7 +692,7 @@ module TencentCloud
         # @type RackId: String
         # @param HostIp: <p>底层物理机IP（已加密）</p>
         # @type HostIp: String
-        # @param NetworkMode: <p>网络模式</p><p>枚举值：</p><ul><li>NetworkModePrivateLink： 四层 SSH 服务联通模式</li><li>NetworkModeCrossTenantENI：  三层双网卡访问方式</li></ul>
+        # @param NetworkMode: <p>网络模式</p><p>枚举值：</p><ul><li>privatelink： 四层 SSH 服务联通模式</li><li>cross_tenant_eni：  三层双网卡访问方式</li></ul>
         # @type NetworkMode: String
         # @param EniIP: <p>当选择NetworkModeCrossTenantENI模式时，节点的访问IP地址</p>
         # @type EniIP: String

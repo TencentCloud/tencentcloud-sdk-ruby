@@ -3009,9 +3009,9 @@ module TencentCloud
 
       # ModifyPackageRenewFlag请求参数结构体
       class ModifyPackageRenewFlagRequest < TencentCloud::Common::AbstractModel
-        # @param ResourceId: 流量包的唯一资源ID
+        # @param ResourceId: <p>流量包的唯一资源ID</p>
         # @type ResourceId: String
-        # @param RenewFlag: 自动续费标识。true代表自动续费，false代表不自动续费
+        # @param RenewFlag: <p>自动续费标识。true代表自动续费，false代表不自动续费</p>
         # @type RenewFlag: Boolean
 
         attr_accessor :ResourceId, :RenewFlag
@@ -3610,15 +3610,15 @@ module TencentCloud
 
       # UpdateL3Cidr请求参数结构体
       class UpdateL3CidrRequest < TencentCloud::Common::AbstractModel
-        # @param L3ConnId: 互通规则ID
+        # @param L3ConnId: <p>互通规则ID</p>
         # @type L3ConnId: String
-        # @param Cidr1: 互通规则CIDR
+        # @param Cidr1: <p>互通规则CIDR</p>
         # @type Cidr1: String
-        # @param DeviceId1: 互通设备ID
+        # @param DeviceId1: <p>互通设备ID</p>
         # @type DeviceId1: String
-        # @param DeviceId2: 互通设备ID
+        # @param DeviceId2: <p>互通设备ID</p>
         # @type DeviceId2: String
-        # @param Cidr2: 互通规则CIDR
+        # @param Cidr2: <p>互通规则CIDR</p>
         # @type Cidr2: String
 
         attr_accessor :L3ConnId, :Cidr1, :DeviceId1, :DeviceId2, :Cidr2
@@ -3694,9 +3694,9 @@ module TencentCloud
 
       # UpdateL3Switch请求参数结构体
       class UpdateL3SwitchRequest < TencentCloud::Common::AbstractModel
-        # @param L3ConnId: 互通规则ID
+        # @param L3ConnId: <p>互通规则ID</p>
         # @type L3ConnId: String
-        # @param Enable: 互通规则开关
+        # @param Enable: <p>互通规则开关</p>
         # @type Enable: Boolean
 
         attr_accessor :L3ConnId, :Enable

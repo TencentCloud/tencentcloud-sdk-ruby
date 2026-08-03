@@ -362,29 +362,29 @@ module TencentCloud
 
       # AI网关 JWT 凭证物料配置
       class AIGWJWTCredentialConfig < TencentCloud::Common::AbstractModel
-        # @param Key: <p>JWT 消费者标识，iss claim</p>
-        # @type Key: String
         # @param Algorithm: <p>签名算法，取值：HS256 HS384 HS512 RS256 RS384 RS512 ES256 ES384 ES512</p>
         # @type Algorithm: String
-        # @param Secret: <p>HS 对称密钥，仅 Algorithm 为 HS256/HS384/HS512 时必填；RS/ES* 时留空</p>
-        # @type Secret: String
+        # @param Key: <p>JWT 消费者标识，iss claim</p>
+        # @type Key: String
         # @param RSAPublicKey: <p>RS/ES PEM 格式公钥，仅 Algorithm 为 RS256/RS384/RS512/ES256/ES384/ES512 时必填；HS* 时留空</p>
         # @type RSAPublicKey: String
+        # @param Secret: <p>HS 对称密钥，仅 Algorithm 为 HS256/HS384/HS512 时必填；RS/ES* 时留空</p>
+        # @type Secret: String
 
-        attr_accessor :Key, :Algorithm, :Secret, :RSAPublicKey
+        attr_accessor :Algorithm, :Key, :RSAPublicKey, :Secret
 
-        def initialize(key=nil, algorithm=nil, secret=nil, rsapublickey=nil)
-          @Key = key
+        def initialize(algorithm=nil, key=nil, rsapublickey=nil, secret=nil)
           @Algorithm = algorithm
-          @Secret = secret
+          @Key = key
           @RSAPublicKey = rsapublickey
+          @Secret = secret
         end
 
         def deserialize(params)
-          @Key = params['Key']
           @Algorithm = params['Algorithm']
-          @Secret = params['Secret']
+          @Key = params['Key']
           @RSAPublicKey = params['RSAPublicKey']
+          @Secret = params['Secret']
         end
       end
 
@@ -479,17 +479,21 @@ module TencentCloud
         # @type RPMLimit: Integer
         # @param TPMLimit: <p>该模型服务每分钟 Token 数上限，0 表示该维度不限</p>
         # @type TPMLimit: Integer
+        # @param ConcurrentCountLimit: <p>并发数限流</p>
+        # @type ConcurrentCountLimit: Integer
 
-        attr_accessor :RPMLimit, :TPMLimit
+        attr_accessor :RPMLimit, :TPMLimit, :ConcurrentCountLimit
 
-        def initialize(rpmlimit=nil, tpmlimit=nil)
+        def initialize(rpmlimit=nil, tpmlimit=nil, concurrentcountlimit=nil)
           @RPMLimit = rpmlimit
           @TPMLimit = tpmlimit
+          @ConcurrentCountLimit = concurrentcountlimit
         end
 
         def deserialize(params)
           @RPMLimit = params['RPMLimit']
           @TPMLimit = params['TPMLimit']
+          @ConcurrentCountLimit = params['ConcurrentCountLimit']
         end
       end
 
@@ -1225,21 +1229,25 @@ module TencentCloud
 
       # OAuth2 凭证物料配置
       class AIGWOAuthCredentialConfig < TencentCloud::Common::AbstractModel
-        # @param ClientId: <p>客户端ID</p>
+        # @param ClientId: <p>OAuth2 client_id</p>
         # @type ClientId: String
-        # @param ClientSecret: <p>客户端密钥</p>
+        # @param ClientSecret: <p>OAuth2 client_secret</p>
         # @type ClientSecret: String
+        # @param RedirectURIs: <p>OAuth2 授权回调地址</p>
+        # @type RedirectURIs: String
 
-        attr_accessor :ClientId, :ClientSecret
+        attr_accessor :ClientId, :ClientSecret, :RedirectURIs
 
-        def initialize(clientid=nil, clientsecret=nil)
+        def initialize(clientid=nil, clientsecret=nil, redirecturis=nil)
           @ClientId = clientid
           @ClientSecret = clientsecret
+          @RedirectURIs = redirecturis
         end
 
         def deserialize(params)
           @ClientId = params['ClientId']
           @ClientSecret = params['ClientSecret']
+          @RedirectURIs = params['RedirectURIs']
         end
       end
 
@@ -1307,7 +1315,7 @@ module TencentCloud
       class AIGWOIDCCredentialConfig < TencentCloud::Common::AbstractModel
         # @param ClientId: <p>IdP 注册的 client_id</p>
         # @type ClientId: String
-        # @param ClientSecret: <p>客户端密钥</p><p>参数格式：IdP 注册的 client_secret</p>
+        # @param ClientSecret: <p>IdP 注册的 client_secret</p>
         # @type ClientSecret: String
         # @param IssuerURL: <p>IdP Issuer URL</p>
         # @type IssuerURL: String
@@ -1341,14 +1349,20 @@ module TencentCloud
         # @type Username: String
         # @param Password: <p>密码</p>
         # @type Password: String
+        # @param RedisConfigId: <p>Redis配置ID</p>
+        # @type RedisConfigId: String
+        # @param Type: <p>Redis部署类型，如standalone（单机）、cluster（集群）</p>
+        # @type Type: String
 
-        attr_accessor :Host, :Port, :Username, :Password
+        attr_accessor :Host, :Port, :Username, :Password, :RedisConfigId, :Type
 
-        def initialize(host=nil, port=nil, username=nil, password=nil)
+        def initialize(host=nil, port=nil, username=nil, password=nil, redisconfigid=nil, type=nil)
           @Host = host
           @Port = port
           @Username = username
           @Password = password
+          @RedisConfigId = redisconfigid
+          @Type = type
         end
 
         def deserialize(params)
@@ -1356,6 +1370,8 @@ module TencentCloud
           @Port = params['Port']
           @Username = params['Username']
           @Password = params['Password']
+          @RedisConfigId = params['RedisConfigId']
+          @Type = params['Type']
         end
       end
 
@@ -1704,21 +1720,21 @@ module TencentCloud
 
       # 创建资源通用结果
       class CNAPIGwCreateCommonResult < TencentCloud::Common::AbstractModel
-        # @param Success: 是否成功
-        # @type Success: Boolean
         # @param ID: 对应的id 值
         # @type ID: String
+        # @param Success: 是否成功
+        # @type Success: Boolean
 
-        attr_accessor :Success, :ID
+        attr_accessor :ID, :Success
 
-        def initialize(success=nil, id=nil)
-          @Success = success
+        def initialize(id=nil, success=nil)
           @ID = id
+          @Success = success
         end
 
         def deserialize(params)
-          @Success = params['Success']
           @ID = params['ID']
+          @Success = params['Success']
         end
       end
 
@@ -1879,91 +1895,171 @@ module TencentCloud
         end
       end
 
+      # 通过OpenAPI文件导入MCP tools的预览内容
+      class CNAPIGwMCPToolPreview < TencentCloud::Common::AbstractModel
+        # @param ContentType: <p>MCP Tool入参的ContentType</p><p>枚举值：</p><ul><li>application/json： json格式</li><li>application/x-www-form-urlencoded： 表单格式</li></ul>
+        # @type ContentType: String
+        # @param Description: <p>MCP Tool的描述</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param InputParams: <p>MCP Tool的参数</p>
+        # @type InputParams: Array
+        # @param Method: <p>MCP Tool的请求方法</p>
+        # @type Method: String
+        # @param Name: <p>MCP Tool名字</p>
+        # @type Name: String
+        # @param Path: <p>MCP Tool的请求路径</p>
+        # @type Path: String
+        # @param Status: <p>MCP Tool的状态</p><p>枚举值：</p><ul><li>Valid： 可导入</li><li>Invalid： 不可导入</li></ul>
+        # @type Status: String
+        # @param StatusMessage: <p>不可导入的原因</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StatusMessage: String
+        # @param UpstreamUrl: <p>虚拟MCP Server的tools的完整url路径</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpstreamUrl: String
+
+        attr_accessor :ContentType, :Description, :InputParams, :Method, :Name, :Path, :Status, :StatusMessage, :UpstreamUrl
+
+        def initialize(contenttype=nil, description=nil, inputparams=nil, method=nil, name=nil, path=nil, status=nil, statusmessage=nil, upstreamurl=nil)
+          @ContentType = contenttype
+          @Description = description
+          @InputParams = inputparams
+          @Method = method
+          @Name = name
+          @Path = path
+          @Status = status
+          @StatusMessage = statusmessage
+          @UpstreamUrl = upstreamurl
+        end
+
+        def deserialize(params)
+          @ContentType = params['ContentType']
+          @Description = params['Description']
+          unless params['InputParams'].nil?
+            @InputParams = []
+            params['InputParams'].each do |i|
+              cnapigwmcptoolparam_tmp = CNAPIGwMCPToolParam.new
+              cnapigwmcptoolparam_tmp.deserialize(i)
+              @InputParams << cnapigwmcptoolparam_tmp
+            end
+          end
+          @Method = params['Method']
+          @Name = params['Name']
+          @Path = params['Path']
+          @Status = params['Status']
+          @StatusMessage = params['StatusMessage']
+          @UpstreamUrl = params['UpstreamUrl']
+        end
+      end
+
+      # DescribeCloudNativeAPIGatewayMCPToolsFromFile接口的出参
+      class CNAPIGwParseMCPToolsResult < TencentCloud::Common::AbstractModel
+        # @param DataList: <p>MCP Tools列表</p>
+        # @type DataList: Array
+        # @param TotalCount: <p>MCP tools的数量</p>
+        # @type TotalCount: Integer
+
+        attr_accessor :DataList, :TotalCount
+
+        def initialize(datalist=nil, totalcount=nil)
+          @DataList = datalist
+          @TotalCount = totalcount
+        end
+
+        def deserialize(params)
+          unless params['DataList'].nil?
+            @DataList = []
+            params['DataList'].each do |i|
+              cnapigwmcptoolpreview_tmp = CNAPIGwMCPToolPreview.new
+              cnapigwmcptoolpreview_tmp.deserialize(i)
+              @DataList << cnapigwmcptoolpreview_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+        end
+      end
+
       # 密钥信息
       class CNAPIGwSecretKey < TencentCloud::Common::AbstractModel
-        # @param SecretKeyId: <p>密钥id</p>
-        # @type SecretKeyId: String
-        # @param Name: <p>密钥名字</p>
-        # @type Name: String
-        # @param SecretType: <p>密钥协议类型。</p>
-        # @type SecretType: String
-        # @param Status: <p>状态。</p><p>枚举值：</p><ul><li>Enable： 启用</li><li>Disable： 禁用</li></ul>
-        # @type Status: String
+        # @param BindCount: <p>绑定数</p>
+        # @type BindCount: Integer
+        # @param CanBind: <p>是否可以绑定</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CanBind: Boolean
+        # @param CreateTime: <p>创建时间</p>
+        # @type CreateTime: String
+        # @param Description: <p>描述</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
         # @param GenerateType: <p>密钥生成方式。</p><p>枚举值：</p><ul><li>System： 系统自动生成</li><li>Custom： 用户自定义</li><li>KMS： 使用 KMS 密钥</li></ul>
         # @type GenerateType: String
-        # @param SecretValue: <p>密钥明文</p>
-        # @type SecretValue: String
+        # @param JWTCredentialConfig: <p>JWT凭证配置</p>
+        # @type JWTCredentialConfig: :class:`Tencentcloud::Cngw.v20230418.models.AIGWJWTCredentialConfig`
         # @param KmsKeyName: <p>KMS凭证名字</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KmsKeyName: String
         # @param KmsKeyVersion: <p>KMS凭证版本</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KmsKeyVersion: String
-        # @param Description: <p>描述</p>
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Description: String
-        # @param CanBind: <p>是否可以绑定</p>
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CanBind: Boolean
-        # @param CreateTime: <p>创建时间</p>
-        # @type CreateTime: String
         # @param ModifyTime: <p>修改时间</p>
         # @type ModifyTime: String
-        # @param BindCount: <p>绑定数</p>
-        # @type BindCount: Integer
-        # @param ResourceType: <p>密钥归属资源类型。</p><p>枚举值：</p><ul><li>Consumer： 消费者</li><li>ModelService： 模型服务</li></ul>
-        # @type ResourceType: String
-        # @param JWTCredentialConfig: <p>JWT凭证配置</p>
-        # @type JWTCredentialConfig: :class:`Tencentcloud::Cngw.v20230418.models.AIGWJWTCredentialConfig`
-        # @param OAuthCredentialConfig: <p>OAuth2凭证配置</p>
+        # @param Name: <p>密钥名字</p>
+        # @type Name: String
+        # @param OAuthCredentialConfig: <p>OAuth凭证配置</p>
         # @type OAuthCredentialConfig: :class:`Tencentcloud::Cngw.v20230418.models.AIGWOAuthCredentialConfig`
         # @param OIDCCredentialConfig: <p>OIDC凭证配置</p>
         # @type OIDCCredentialConfig: :class:`Tencentcloud::Cngw.v20230418.models.AIGWOIDCCredentialConfig`
-        # @param Provider: <p>Agent 密钥类型</p>
+        # @param Provider: <p>secret key provider方</p><p>枚举值：</p><ul><li>Dify： Dify</li></ul>
         # @type Provider: String
+        # @param ResourceType: <p>密钥归属资源类型。</p><p>枚举值：</p><ul><li>Consumer： 消费者</li><li>ModelService： 模型服务</li></ul>
+        # @type ResourceType: String
+        # @param SecretKeyId: <p>密钥id</p>
+        # @type SecretKeyId: String
+        # @param SecretType: <p>密钥协议类型。</p>
+        # @type SecretType: String
+        # @param SecretValue: <p>密钥明文</p>
+        # @type SecretValue: String
+        # @param Status: <p>状态。</p><p>枚举值：</p><ul><li>Enable： 启用</li><li>Disable： 禁用</li></ul>
+        # @type Status: String
 
-        attr_accessor :SecretKeyId, :Name, :SecretType, :Status, :GenerateType, :SecretValue, :KmsKeyName, :KmsKeyVersion, :Description, :CanBind, :CreateTime, :ModifyTime, :BindCount, :ResourceType, :JWTCredentialConfig, :OAuthCredentialConfig, :OIDCCredentialConfig, :Provider
+        attr_accessor :BindCount, :CanBind, :CreateTime, :Description, :GenerateType, :JWTCredentialConfig, :KmsKeyName, :KmsKeyVersion, :ModifyTime, :Name, :OAuthCredentialConfig, :OIDCCredentialConfig, :Provider, :ResourceType, :SecretKeyId, :SecretType, :SecretValue, :Status
 
-        def initialize(secretkeyid=nil, name=nil, secrettype=nil, status=nil, generatetype=nil, secretvalue=nil, kmskeyname=nil, kmskeyversion=nil, description=nil, canbind=nil, createtime=nil, modifytime=nil, bindcount=nil, resourcetype=nil, jwtcredentialconfig=nil, oauthcredentialconfig=nil, oidccredentialconfig=nil, provider=nil)
-          @SecretKeyId = secretkeyid
-          @Name = name
-          @SecretType = secrettype
-          @Status = status
-          @GenerateType = generatetype
-          @SecretValue = secretvalue
-          @KmsKeyName = kmskeyname
-          @KmsKeyVersion = kmskeyversion
-          @Description = description
+        def initialize(bindcount=nil, canbind=nil, createtime=nil, description=nil, generatetype=nil, jwtcredentialconfig=nil, kmskeyname=nil, kmskeyversion=nil, modifytime=nil, name=nil, oauthcredentialconfig=nil, oidccredentialconfig=nil, provider=nil, resourcetype=nil, secretkeyid=nil, secrettype=nil, secretvalue=nil, status=nil)
+          @BindCount = bindcount
           @CanBind = canbind
           @CreateTime = createtime
-          @ModifyTime = modifytime
-          @BindCount = bindcount
-          @ResourceType = resourcetype
+          @Description = description
+          @GenerateType = generatetype
           @JWTCredentialConfig = jwtcredentialconfig
+          @KmsKeyName = kmskeyname
+          @KmsKeyVersion = kmskeyversion
+          @ModifyTime = modifytime
+          @Name = name
           @OAuthCredentialConfig = oauthcredentialconfig
           @OIDCCredentialConfig = oidccredentialconfig
           @Provider = provider
+          @ResourceType = resourcetype
+          @SecretKeyId = secretkeyid
+          @SecretType = secrettype
+          @SecretValue = secretvalue
+          @Status = status
         end
 
         def deserialize(params)
-          @SecretKeyId = params['SecretKeyId']
-          @Name = params['Name']
-          @SecretType = params['SecretType']
-          @Status = params['Status']
-          @GenerateType = params['GenerateType']
-          @SecretValue = params['SecretValue']
-          @KmsKeyName = params['KmsKeyName']
-          @KmsKeyVersion = params['KmsKeyVersion']
-          @Description = params['Description']
+          @BindCount = params['BindCount']
           @CanBind = params['CanBind']
           @CreateTime = params['CreateTime']
-          @ModifyTime = params['ModifyTime']
-          @BindCount = params['BindCount']
-          @ResourceType = params['ResourceType']
+          @Description = params['Description']
+          @GenerateType = params['GenerateType']
           unless params['JWTCredentialConfig'].nil?
             @JWTCredentialConfig = AIGWJWTCredentialConfig.new
             @JWTCredentialConfig.deserialize(params['JWTCredentialConfig'])
           end
+          @KmsKeyName = params['KmsKeyName']
+          @KmsKeyVersion = params['KmsKeyVersion']
+          @ModifyTime = params['ModifyTime']
+          @Name = params['Name']
           unless params['OAuthCredentialConfig'].nil?
             @OAuthCredentialConfig = AIGWOAuthCredentialConfig.new
             @OAuthCredentialConfig.deserialize(params['OAuthCredentialConfig'])
@@ -1973,6 +2069,11 @@ module TencentCloud
             @OIDCCredentialConfig.deserialize(params['OIDCCredentialConfig'])
           end
           @Provider = params['Provider']
+          @ResourceType = params['ResourceType']
+          @SecretKeyId = params['SecretKeyId']
+          @SecretType = params['SecretType']
+          @SecretValue = params['SecretValue']
+          @Status = params['Status']
         end
       end
 
@@ -2004,7 +2105,7 @@ module TencentCloud
         # @type ModelServiceName: String
         # @param ModelServiceRoute: <p>模型服务路由策略（是指如何路由到模型服务）</p>
         # @type ModelServiceRoute: :class:`Tencentcloud::Cngw.v20230418.models.CloudNativeAPIGatewayLLMModelServiceRoute`
-        # @param MatchHeaders: <p>无</p>
+        # @param MatchHeaders: <p>HTTP 请求头匹配规则，用于按请求头路由到不同模型服务。</p>
         # @type MatchHeaders: Array
         # @param EnableCrossServiceFallback: <p>是否开启跨服务fallback</p>
         # @type EnableCrossServiceFallback: Boolean
@@ -2695,10 +2796,18 @@ module TencentCloud
         # @type KeyRotationEnabled: Boolean
         # @param KeyRotationPeriodDays: <p>密钥轮转周期</p><p>单位：天数</p>
         # @type KeyRotationPeriodDays: Integer
+        # @param SourceId: <p>来源服务 ID。</p>
+        # @type SourceId: String
+        # @param Namespace: <p>命名空间。</p>
+        # @type Namespace: String
+        # @param ServiceName: <p>服务名称。</p>
+        # @type ServiceName: String
+        # @param Protocol: <p>协议类型，如 OpenAI、Custom。</p>
+        # @type Protocol: String
 
-        attr_accessor :GatewayId, :Name, :ServiceType, :ModelProvider, :ModelProtocol, :ModelSelector, :SecretKeyIds, :DefaultModel, :EnableModelFallback, :ModelFallbackRule, :EnableModelParamCheck, :ModelParamCheckRule, :Description, :UpstreamURL, :ConnectTimeout, :WriteTimeout, :ReadTimeout, :Retries, :UpstreamUrlMode, :SNI, :QuotaLimit, :Tags, :ModelRewriteRules, :CustomProviderName, :ExternalInstanceId, :ExtParams, :KeyRotationEnabled, :KeyRotationPeriodDays
+        attr_accessor :GatewayId, :Name, :ServiceType, :ModelProvider, :ModelProtocol, :ModelSelector, :SecretKeyIds, :DefaultModel, :EnableModelFallback, :ModelFallbackRule, :EnableModelParamCheck, :ModelParamCheckRule, :Description, :UpstreamURL, :ConnectTimeout, :WriteTimeout, :ReadTimeout, :Retries, :UpstreamUrlMode, :SNI, :QuotaLimit, :Tags, :ModelRewriteRules, :CustomProviderName, :ExternalInstanceId, :ExtParams, :KeyRotationEnabled, :KeyRotationPeriodDays, :SourceId, :Namespace, :ServiceName, :Protocol
 
-        def initialize(gatewayid=nil, name=nil, servicetype=nil, modelprovider=nil, modelprotocol=nil, modelselector=nil, secretkeyids=nil, defaultmodel=nil, enablemodelfallback=nil, modelfallbackrule=nil, enablemodelparamcheck=nil, modelparamcheckrule=nil, description=nil, upstreamurl=nil, connecttimeout=nil, writetimeout=nil, readtimeout=nil, retries=nil, upstreamurlmode=nil, sni=nil, quotalimit=nil, tags=nil, modelrewriterules=nil, customprovidername=nil, externalinstanceid=nil, extparams=nil, keyrotationenabled=nil, keyrotationperioddays=nil)
+        def initialize(gatewayid=nil, name=nil, servicetype=nil, modelprovider=nil, modelprotocol=nil, modelselector=nil, secretkeyids=nil, defaultmodel=nil, enablemodelfallback=nil, modelfallbackrule=nil, enablemodelparamcheck=nil, modelparamcheckrule=nil, description=nil, upstreamurl=nil, connecttimeout=nil, writetimeout=nil, readtimeout=nil, retries=nil, upstreamurlmode=nil, sni=nil, quotalimit=nil, tags=nil, modelrewriterules=nil, customprovidername=nil, externalinstanceid=nil, extparams=nil, keyrotationenabled=nil, keyrotationperioddays=nil, sourceid=nil, namespace=nil, servicename=nil, protocol=nil)
           @GatewayId = gatewayid
           @Name = name
           @ServiceType = servicetype
@@ -2727,6 +2836,10 @@ module TencentCloud
           @ExtParams = extparams
           @KeyRotationEnabled = keyrotationenabled
           @KeyRotationPeriodDays = keyrotationperioddays
+          @SourceId = sourceid
+          @Namespace = namespace
+          @ServiceName = servicename
+          @Protocol = protocol
         end
 
         def deserialize(params)
@@ -2781,6 +2894,10 @@ module TencentCloud
           end
           @KeyRotationEnabled = params['KeyRotationEnabled']
           @KeyRotationPeriodDays = params['KeyRotationPeriodDays']
+          @SourceId = params['SourceId']
+          @Namespace = params['Namespace']
+          @ServiceName = params['ServiceName']
+          @Protocol = params['Protocol']
         end
       end
 
@@ -2955,60 +3072,62 @@ module TencentCloud
       class CreateCloudNativeAPIGatewaySecretKeyRequest < TencentCloud::Common::AbstractModel
         # @param GatewayId: <p>实例 ID</p>
         # @type GatewayId: String
-        # @param SecretType: <p>密钥协议类型。</p><p>枚举值：</p><ul><li>ApiKey</li><li>Basic</li><li>Hmac</li><li>OAuth2</li><li>JWT</li></ul>
-        # @type SecretType: String
-        # @param Name: <p>密钥名称，2-60 字符。</p>
-        # @type Name: String
         # @param GenerateType: <p>密钥生成方式。</p><p>枚举值：</p><ul><li>System：系统自动生成</li><li>Custom：用户自定义（需传 SecretValue）</li><li>KMS：使用 KMS 密钥（需传 KmsKeyName 与 KmsKeyVersion）</li></ul>
         # @type GenerateType: String
+        # @param Name: <p>密钥名称，2-60 字符。</p>
+        # @type Name: String
         # @param ResourceType: <p>密钥归属资源类型。</p><p>枚举值：</p><ul><li>Consumer：消费者</li><li>ModelService：模型服务</li></ul>
         # @type ResourceType: String
-        # @param KmsKeyName: <p>KMS 密钥名称。GenerateType=KMS 时必填。</p>
-        # @type KmsKeyName: String
-        # @param KmsKeyVersion: <p>KMS 密钥版本。GenerateType=KMS 时必填。</p>
-        # @type KmsKeyVersion: String
-        # @param SecretValue: <p>密钥值，长度 8-256。GenerateType=Custom 时必填。</p>
-        # @type SecretValue: String
+        # @param SecretType: <p>密钥协议类型。</p><p>枚举值：</p><ul><li>ApiKey</li><li>Basic</li><li>Hmac</li><li>OAuth2</li><li>JWT</li></ul>
+        # @type SecretType: String
         # @param Description: <p>密钥描述。最长 200 字符。</p>
         # @type Description: String
         # @param JWTCredentialConfig: <p>JWT凭证配置</p>
         # @type JWTCredentialConfig: :class:`Tencentcloud::Cngw.v20230418.models.AIGWJWTCredentialConfig`
-        # @param OAuthCredentialConfig: <p>Oauth2凭证配置</p>
+        # @param KmsKeyName: <p>KMS 密钥名称。GenerateType=KMS 时必填。</p>
+        # @type KmsKeyName: String
+        # @param KmsKeyVersion: <p>KMS 密钥版本。GenerateType=KMS 时必填。</p>
+        # @type KmsKeyVersion: String
+        # @param OAuthCredentialConfig: <p>OAuth2.0凭证配置</p>
         # @type OAuthCredentialConfig: :class:`Tencentcloud::Cngw.v20230418.models.AIGWOAuthCredentialConfig`
         # @param OIDCCredentialConfig: <p>OIDC凭证配置</p>
         # @type OIDCCredentialConfig: :class:`Tencentcloud::Cngw.v20230418.models.AIGWOIDCCredentialConfig`
+        # @param Provider: <p>第三方平台类型</p><p>枚举值：</p><ul><li>Dify： Dify平台</li></ul>
+        # @type Provider: String
+        # @param SecretValue: <p>密钥值，长度 8-256。GenerateType=Custom 时必填。</p>
+        # @type SecretValue: String
 
-        attr_accessor :GatewayId, :SecretType, :Name, :GenerateType, :ResourceType, :KmsKeyName, :KmsKeyVersion, :SecretValue, :Description, :JWTCredentialConfig, :OAuthCredentialConfig, :OIDCCredentialConfig
+        attr_accessor :GatewayId, :GenerateType, :Name, :ResourceType, :SecretType, :Description, :JWTCredentialConfig, :KmsKeyName, :KmsKeyVersion, :OAuthCredentialConfig, :OIDCCredentialConfig, :Provider, :SecretValue
 
-        def initialize(gatewayid=nil, secrettype=nil, name=nil, generatetype=nil, resourcetype=nil, kmskeyname=nil, kmskeyversion=nil, secretvalue=nil, description=nil, jwtcredentialconfig=nil, oauthcredentialconfig=nil, oidccredentialconfig=nil)
+        def initialize(gatewayid=nil, generatetype=nil, name=nil, resourcetype=nil, secrettype=nil, description=nil, jwtcredentialconfig=nil, kmskeyname=nil, kmskeyversion=nil, oauthcredentialconfig=nil, oidccredentialconfig=nil, provider=nil, secretvalue=nil)
           @GatewayId = gatewayid
-          @SecretType = secrettype
-          @Name = name
           @GenerateType = generatetype
+          @Name = name
           @ResourceType = resourcetype
-          @KmsKeyName = kmskeyname
-          @KmsKeyVersion = kmskeyversion
-          @SecretValue = secretvalue
+          @SecretType = secrettype
           @Description = description
           @JWTCredentialConfig = jwtcredentialconfig
+          @KmsKeyName = kmskeyname
+          @KmsKeyVersion = kmskeyversion
           @OAuthCredentialConfig = oauthcredentialconfig
           @OIDCCredentialConfig = oidccredentialconfig
+          @Provider = provider
+          @SecretValue = secretvalue
         end
 
         def deserialize(params)
           @GatewayId = params['GatewayId']
-          @SecretType = params['SecretType']
-          @Name = params['Name']
           @GenerateType = params['GenerateType']
+          @Name = params['Name']
           @ResourceType = params['ResourceType']
-          @KmsKeyName = params['KmsKeyName']
-          @KmsKeyVersion = params['KmsKeyVersion']
-          @SecretValue = params['SecretValue']
+          @SecretType = params['SecretType']
           @Description = params['Description']
           unless params['JWTCredentialConfig'].nil?
             @JWTCredentialConfig = AIGWJWTCredentialConfig.new
             @JWTCredentialConfig.deserialize(params['JWTCredentialConfig'])
           end
+          @KmsKeyName = params['KmsKeyName']
+          @KmsKeyVersion = params['KmsKeyVersion']
           unless params['OAuthCredentialConfig'].nil?
             @OAuthCredentialConfig = AIGWOAuthCredentialConfig.new
             @OAuthCredentialConfig.deserialize(params['OAuthCredentialConfig'])
@@ -3017,6 +3136,8 @@ module TencentCloud
             @OIDCCredentialConfig = AIGWOIDCCredentialConfig.new
             @OIDCCredentialConfig.deserialize(params['OIDCCredentialConfig'])
           end
+          @Provider = params['Provider']
+          @SecretValue = params['SecretValue']
         end
       end
 
@@ -3480,10 +3601,12 @@ module TencentCloud
         # @type ConsumerGroupId: String
         # @param UseToBind: <p>是否用于绑定场景。true 时仅返回可被绑定到指定消费者组的模型 API。</p>
         # @type UseToBind: Boolean
+        # @param ConsumerId: <p>消费者 ID（以 consumer- 开头）。</p>
+        # @type ConsumerId: String
 
-        attr_accessor :GatewayId, :Limit, :Offset, :Filters, :Keyword, :ConsumerGroupId, :UseToBind
+        attr_accessor :GatewayId, :Limit, :Offset, :Filters, :Keyword, :ConsumerGroupId, :UseToBind, :ConsumerId
 
-        def initialize(gatewayid=nil, limit=nil, offset=nil, filters=nil, keyword=nil, consumergroupid=nil, usetobind=nil)
+        def initialize(gatewayid=nil, limit=nil, offset=nil, filters=nil, keyword=nil, consumergroupid=nil, usetobind=nil, consumerid=nil)
           @GatewayId = gatewayid
           @Limit = limit
           @Offset = offset
@@ -3491,6 +3614,7 @@ module TencentCloud
           @Keyword = keyword
           @ConsumerGroupId = consumergroupid
           @UseToBind = usetobind
+          @ConsumerId = consumerid
         end
 
         def deserialize(params)
@@ -3508,6 +3632,7 @@ module TencentCloud
           @Keyword = params['Keyword']
           @ConsumerGroupId = params['ConsumerGroupId']
           @UseToBind = params['UseToBind']
+          @ConsumerId = params['ConsumerId']
         end
       end
 
@@ -4093,6 +4218,57 @@ module TencentCloud
         end
       end
 
+      # DescribeCloudNativeAPIGatewayMCPToolsFromFile请求参数结构体
+      class DescribeCloudNativeAPIGatewayMCPToolsFromFileRequest < TencentCloud::Common::AbstractModel
+        # @param Content: <p>OpenAPI文件内容</p>
+        # @type Content: String
+        # @param Format: <p>文件内容格式</p>
+        # @type Format: String
+        # @param GatewayId: <p>网关实例ID</p>
+        # @type GatewayId: String
+        # @param MCPServerId: <p>MCP Server ID</p>
+        # @type MCPServerId: String
+
+        attr_accessor :Content, :Format, :GatewayId, :MCPServerId
+
+        def initialize(content=nil, format=nil, gatewayid=nil, mcpserverid=nil)
+          @Content = content
+          @Format = format
+          @GatewayId = gatewayid
+          @MCPServerId = mcpserverid
+        end
+
+        def deserialize(params)
+          @Content = params['Content']
+          @Format = params['Format']
+          @GatewayId = params['GatewayId']
+          @MCPServerId = params['MCPServerId']
+        end
+      end
+
+      # DescribeCloudNativeAPIGatewayMCPToolsFromFile返回参数结构体
+      class DescribeCloudNativeAPIGatewayMCPToolsFromFileResponse < TencentCloud::Common::AbstractModel
+        # @param Result: <p>解析结果</p>
+        # @type Result: :class:`Tencentcloud::Cngw.v20230418.models.CNAPIGwParseMCPToolsResult`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = CNAPIGwParseMCPToolsResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCloudNativeAPIGatewaySecretKey请求参数结构体
       class DescribeCloudNativeAPIGatewaySecretKeyRequest < TencentCloud::Common::AbstractModel
         # @param GatewayId: <p>实例 ID</p>
@@ -4178,9 +4354,9 @@ module TencentCloud
 
       # 查询过滤通用对象
       class Filter < TencentCloud::Common::AbstractModel
-        # @param Name: 过滤参数名
+        # @param Name: <p>过滤参数名</p>
         # @type Name: String
-        # @param Values: 过滤参数值
+        # @param Values: <p>过滤参数值</p>
         # @type Values: Array
 
         attr_accessor :Name, :Values
@@ -4511,10 +4687,18 @@ module TencentCloud
         # @type KeyRotationEnabled: Boolean
         # @param KeyRotationPeriodDays: <p>密钥轮转周期</p><p>单位：天数</p>
         # @type KeyRotationPeriodDays: Integer
+        # @param SourceId: <p>来源服务 ID。</p>
+        # @type SourceId: String
+        # @param Namespace: <p>命名空间。</p>
+        # @type Namespace: String
+        # @param ServiceName: <p>服务名称。</p>
+        # @type ServiceName: String
+        # @param Protocol: <p>协议类型，如 OpenAI、Custom。</p>
+        # @type Protocol: String
 
-        attr_accessor :GatewayId, :ModelServiceId, :Name, :DefaultModel, :ModelSelector, :EnableModelFallback, :ModelFallbackRule, :EnableModelParamCheck, :ModelParamCheckRule, :Description, :UpstreamURL, :ConnectTimeout, :WriteTimeout, :ReadTimeout, :Retries, :UpstreamUrlMode, :SNI, :QuotaLimit, :Tags, :ModelRewriteRules, :ExternalInstanceId, :ExtParams, :KeyRotationEnabled, :KeyRotationPeriodDays
+        attr_accessor :GatewayId, :ModelServiceId, :Name, :DefaultModel, :ModelSelector, :EnableModelFallback, :ModelFallbackRule, :EnableModelParamCheck, :ModelParamCheckRule, :Description, :UpstreamURL, :ConnectTimeout, :WriteTimeout, :ReadTimeout, :Retries, :UpstreamUrlMode, :SNI, :QuotaLimit, :Tags, :ModelRewriteRules, :ExternalInstanceId, :ExtParams, :KeyRotationEnabled, :KeyRotationPeriodDays, :SourceId, :Namespace, :ServiceName, :Protocol
 
-        def initialize(gatewayid=nil, modelserviceid=nil, name=nil, defaultmodel=nil, modelselector=nil, enablemodelfallback=nil, modelfallbackrule=nil, enablemodelparamcheck=nil, modelparamcheckrule=nil, description=nil, upstreamurl=nil, connecttimeout=nil, writetimeout=nil, readtimeout=nil, retries=nil, upstreamurlmode=nil, sni=nil, quotalimit=nil, tags=nil, modelrewriterules=nil, externalinstanceid=nil, extparams=nil, keyrotationenabled=nil, keyrotationperioddays=nil)
+        def initialize(gatewayid=nil, modelserviceid=nil, name=nil, defaultmodel=nil, modelselector=nil, enablemodelfallback=nil, modelfallbackrule=nil, enablemodelparamcheck=nil, modelparamcheckrule=nil, description=nil, upstreamurl=nil, connecttimeout=nil, writetimeout=nil, readtimeout=nil, retries=nil, upstreamurlmode=nil, sni=nil, quotalimit=nil, tags=nil, modelrewriterules=nil, externalinstanceid=nil, extparams=nil, keyrotationenabled=nil, keyrotationperioddays=nil, sourceid=nil, namespace=nil, servicename=nil, protocol=nil)
           @GatewayId = gatewayid
           @ModelServiceId = modelserviceid
           @Name = name
@@ -4539,6 +4723,10 @@ module TencentCloud
           @ExtParams = extparams
           @KeyRotationEnabled = keyrotationenabled
           @KeyRotationPeriodDays = keyrotationperioddays
+          @SourceId = sourceid
+          @Namespace = namespace
+          @ServiceName = servicename
+          @Protocol = protocol
         end
 
         def deserialize(params)
@@ -4589,6 +4777,10 @@ module TencentCloud
           end
           @KeyRotationEnabled = params['KeyRotationEnabled']
           @KeyRotationPeriodDays = params['KeyRotationPeriodDays']
+          @SourceId = params['SourceId']
+          @Namespace = params['Namespace']
+          @ServiceName = params['ServiceName']
+          @Protocol = params['Protocol']
         end
       end
 
@@ -5193,6 +5385,57 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateCloudNativeAPIGatewayMCPTools请求参数结构体
+      class UpdateCloudNativeAPIGatewayMCPToolsRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: <p>网关实例ID</p>
+        # @type GatewayId: String
+        # @param MCPServerId: <p>MCP Server ID</p>
+        # @type MCPServerId: String
+        # @param Tools: <p>待导入的MCP Tools列表</p>
+        # @type Tools: Array
+
+        attr_accessor :GatewayId, :MCPServerId, :Tools
+
+        def initialize(gatewayid=nil, mcpserverid=nil, tools=nil)
+          @GatewayId = gatewayid
+          @MCPServerId = mcpserverid
+          @Tools = tools
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @MCPServerId = params['MCPServerId']
+          unless params['Tools'].nil?
+            @Tools = []
+            params['Tools'].each do |i|
+              cnapigwmcptool_tmp = CNAPIGwMCPTool.new
+              cnapigwmcptool_tmp.deserialize(i)
+              @Tools << cnapigwmcptool_tmp
+            end
+          end
+        end
+      end
+
+      # UpdateCloudNativeAPIGatewayMCPTools返回参数结构体
+      class UpdateCloudNativeAPIGatewayMCPToolsResponse < TencentCloud::Common::AbstractModel
+        # @param Result: <p>导入任务的ID</p>
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
           @RequestId = params['RequestId']
         end
       end

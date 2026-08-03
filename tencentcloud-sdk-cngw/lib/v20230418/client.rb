@@ -509,7 +509,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询 LLM 模型 API 列表。
+        # 查询指定网关实例下的所有 LLM 模型 API 列表。支持按名称关键词模糊搜索、按过滤器筛选，以及分页查询。用于绑定场景时，可通过 ConsumerGroupId 和 UseToBind 参数筛选可绑定的模型 API。
 
         # @param request: Request instance for DescribeCloudNativeAPIGatewayLLMModelAPIs.
         # @type request: :class:`Tencentcloud::cngw::V20230418::DescribeCloudNativeAPIGatewayLLMModelAPIsRequest`
@@ -783,6 +783,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeCloudNativeAPIGatewayMCPToolListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 从OpenAPI文件中解析出可导入的MCP tools
+
+        # @param request: Request instance for DescribeCloudNativeAPIGatewayMCPToolsFromFile.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::DescribeCloudNativeAPIGatewayMCPToolsFromFileRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::DescribeCloudNativeAPIGatewayMCPToolsFromFileResponse`
+        def DescribeCloudNativeAPIGatewayMCPToolsFromFile(request)
+          body = send_request('DescribeCloudNativeAPIGatewayMCPToolsFromFile', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloudNativeAPIGatewayMCPToolsFromFileResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1191,6 +1215,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UnbindCloudNativeAPIGatewaySecretKeyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量导入从OpenAPI文件中解析的MCP Tools
+
+        # @param request: Request instance for UpdateCloudNativeAPIGatewayMCPTools.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::UpdateCloudNativeAPIGatewayMCPToolsRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::UpdateCloudNativeAPIGatewayMCPToolsResponse`
+        def UpdateCloudNativeAPIGatewayMCPTools(request)
+          body = send_request('UpdateCloudNativeAPIGatewayMCPTools', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateCloudNativeAPIGatewayMCPToolsResponse.new
             model.deserialize(response['Response'])
             model
           else

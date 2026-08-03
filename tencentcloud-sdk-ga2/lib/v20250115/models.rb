@@ -567,11 +567,11 @@ module TencentCloud
 
       # CreateGlobalAccelerator请求参数结构体
       class CreateGlobalAcceleratorRequest < TencentCloud::Common::AbstractModel
-        # @param Name: <p>名称，最大长度不能超过128个字节，不能为空。</p><p>参数格式：满足正则 ^[a-zA-Z\u4e00-\u9fa5]（首字符是英文字母或汉字），并且不满足正则 ^[\d._-]*$（整串不能只由数字/./_/-组成）。</p>
+        # @param Name: <p>名称。</p><p>参数格式：以字母或中文开头，长度 2–128 个字符，支持字母、数字、中文、. - _</p>
         # @type Name: String
         # @param InstanceChargeType: <p>计费模式，PREPAID：表示预付费，即包年包月，POSTPAID：表示后付费，即按量计费。默认：POSTPAID。当前仅支持后付费。</p>
         # @type InstanceChargeType: String
-        # @param Description: <p>描述信息，最大长度不能超过100个字节。</p>
+        # @param Description: <p>描述信息。</p><p>参数格式：最大长度不超过100 个字符。</p>
         # @type Description: String
         # @param CrossBorderType: <p>跨境类型；HighQuality：精品BGP-IP跨境；Unicom：联通专线跨境。</p>
         # @type CrossBorderType: String
@@ -680,7 +680,7 @@ module TencentCloud
       class CreateListenerRequest < TencentCloud::Common::AbstractModel
         # @param GlobalAcceleratorId: <p>全球加速实例ID。</p>
         # @type GlobalAcceleratorId: String
-        # @param Name: <p>名称，最大长度不能超过128个字符。</p>
+        # @param Name: <p>名称。</p><p>参数格式：以字母或中文开头，长度 2–128 个字符，支持字母、数字、中文、. - _</p>
         # @type Name: String
         # @param PortRanges: <p>端口范围。</p>
         # @type PortRanges: :class:`Tencentcloud::Ga2.v20250115.models.PortRanges`
@@ -694,7 +694,7 @@ module TencentCloud
         # @type IdleTimeout: Integer
         # @param GetRealIpType: <p>四层获取源IP方式，支持&#39;TOA&#39;, &#39;ProxyProtocol&#39;, &#39;ProxyProtocolV2&#39;。</p><p>需要开启四层获取源IP方式，才填写此参数。</p>
         # @type GetRealIpType: String
-        # @param ClientAffinity: <p>是否开启会话保持。支持配置&#39;Open&#39;, &#39;Close&#39;。</p><p>枚举值：</p><ul><li>Open： 开启。</li><li>Close： 关闭。</li></ul>
+        # @param ClientAffinity: <p>是否开启会话保持。支持配置&#39;Open&#39;, &#39;Close&#39;。</p><p>枚举值：</p><ul><li>Open： 开启。</li><li>Close： 关闭。</li></ul><p>仅支持4层监听器 ，7层不支持修改</p>
         # @type ClientAffinity: String
         # @param RequestTimeout: <p>请求超时时间。</p><p>取值范围：[1, 180]</p><p>默认值：60</p><p>当HTTPS监听器时才可配置此参数。</p>
         # @type RequestTimeout: Integer
@@ -704,9 +704,9 @@ module TencentCloud
         # @type CertificationType: String
         # @param CipherPolicyId: <p>加密算法套件。支持配置&#39;tls_policy_1.0-2&#39;, &#39;tls_policy_1.1-2&#39;, &#39;tls_policy_1.2&#39;, &#39;tls_policy_1.2_strict&#39;, &#39;tls_policy_1.2_strict-1.3&#39;。</p>
         # @type CipherPolicyId: String
-        # @param ServerCertificates: <p>服务器证书。</p><p>当是HTTPS监听器时，此字段必传。</p>
+        # @param ServerCertificates: <p>服务器证书。</p><p>入参限制：当前仅支持传入一本证书；如果要使用多本证书，使用证书接口CreateListenerAdditionalCert来加其他证书。</p><p>当是HTTPS监听器时，此字段必传。</p>
         # @type ServerCertificates: Array
-        # @param ClientCaCertificates: <p>客户端证书。</p><p>当时HTTPS监听器且开启双向认证时，此字段必传。</p>
+        # @param ClientCaCertificates: <p>客户端证书。</p><p>入参限制：1、当前仅支持传入一本证书；如果要使用多本证书，使用证书接口CreateListenerAdditionalCert来加其他证书。2、证书必须为CA证书。</p><p>当时HTTPS监听器且开启双向认证时，此字段必传。</p>
         # @type ClientCaCertificates: Array
         # @param HttpVersion: <p>HTTPS监听器支持选择版本</p><p>枚举值：</p><ul><li>HTTP/1.1： HTTP/1.1</li><li>HTTP/2： HTTP/2</li></ul>
         # @type HttpVersion: String
@@ -1940,7 +1940,7 @@ module TencentCloud
 
       # 终端节点组配置
       class EndpointGroupConfiguration < TencentCloud::Common::AbstractModel
-        # @param Name: <p>终端节点组名称。</p><p>最大长度不能超过128个字节。必须以字母（a-z, A-Z）或中文字符开头。</p>
+        # @param Name: <p>终端节点组名称。</p><p>参数格式：以字母或中文开头，长度 2–128 个字符，支持字母、数字、中文、. - _</p>
         # @type Name: String
         # @param EndpointGroupRegion: <p>终端节点组所在地域。</p>
         # @type EndpointGroupRegion: String
@@ -2732,7 +2732,7 @@ module TencentCloud
         # @type EndpointGroupId: String
         # @param EndpointConfigurations: <p>终端节点配置。</p>
         # @type EndpointConfigurations: Array
-        # @param Name: <p>名称。</p><p>入参限制：最大长度不能超过128个字节。</p><p>以大小写字母或中文开头。</p>
+        # @param Name: <p>名称。</p><p>参数格式：以字母或中文开头，长度 2–128 个字符，支持字母、数字、中文、. - _</p>
         # @type Name: String
         # @param Description: <p>描述信息。</p><p>入参限制：最大长度不能超过100个字节。</p>
         # @type Description: String
@@ -3131,7 +3131,7 @@ module TencentCloud
         # @type GlobalAcceleratorAclPolicyId: String
         # @param GlobalAcceleratorAclRuleId: <p>Acl规则ID。</p>
         # @type GlobalAcceleratorAclRuleId: String
-        # @param Protocol: <p>协议。</p><p>入参限制：支持选择&#39;TCP&#39;, &#39;UDP&#39;, &#39;ALL&#39;。</p>
+        # @param Protocol: <p>协议。</p><p>入参限制：支持选择&#39;TCP&#39;, &#39;UDP&#39;。</p>
         # @type Protocol: String
         # @param Port: <p>端口。</p>
         # @type Port: String
@@ -3191,9 +3191,9 @@ module TencentCloud
       class ModifyGlobalAcceleratorRequest < TencentCloud::Common::AbstractModel
         # @param GlobalAcceleratorId: <p>全球加速实例ID。</p>
         # @type GlobalAcceleratorId: String
-        # @param Name: <p>名称，最大长度不能超过60个字节。</p>
+        # @param Name: <p>名称。</p><p>参数格式：以字母或中文开头，长度 2–128 个字符，支持字母、数字、中文、. - _</p>
         # @type Name: String
-        # @param Description: <p>描述信息，最大长度不能超过100个字节。</p>
+        # @param Description: <p>描述信息。</p><p>参数格式：最大长度不超过100 个字符。</p>
         # @type Description: String
         # @param CrossBorderType: <p>跨境类型。</p><p>枚举值：</p><ul><li>HighQuality： 精品跨境。</li><li>Unicom： 联通跨境。</li></ul>
         # @type CrossBorderType: String
@@ -3245,7 +3245,7 @@ module TencentCloud
         # @type GlobalAcceleratorId: String
         # @param ListenerId: <p>监听器ID。</p>
         # @type ListenerId: String
-        # @param Name: <p>名称，最大长度不能超过60个字节。</p>
+        # @param Name: <p>名称。</p><p>参数格式：以字母或中文开头，长度 2–128 个字符，支持字母、数字、中文、. - _</p>
         # @type Name: String
         # @param Description: <p>描述信息，最大长度不能超过100个字节。</p>
         # @type Description: String
@@ -3263,9 +3263,9 @@ module TencentCloud
         # @type CertificationType: String
         # @param CipherPolicyId: <p>加密算法套件。</p><p>入参限制：支持选择tls_policy_1.0-2&#39;, &#39;tls_policy_1.1-2&#39;, &#39;tls_policy_1.2&#39;, &#39;tls_policy_1.2_strict&#39;, &#39;tls_policy_1.2_strict-1.3&#39;。</p><p>HTTPS监听器才支持此参数修改。</p>
         # @type CipherPolicyId: String
-        # @param ServerCertificates: <p>服务器证书。</p><p>HTTPS监听器才支持此参数修改。</p>
+        # @param ServerCertificates: <p>服务器证书。</p><p>入参限制：当前仅支持传入一本证书；如果要使用多本证书，使用证书接口CreateListenerAdditionalCert来加其他证书。</p><p>HTTPS监听器才支持此参数修改。</p>
         # @type ServerCertificates: Array
-        # @param ClientCaCertificates: <p>客户端证书。</p><p>HTTPS监听器才支持此参数修改，并且开启双向认证。</p>
+        # @param ClientCaCertificates: <p>客户端证书。</p><p>入参限制：1、当前仅支持传入一本证书；如果要使用多本证书，使用证书接口CreateListenerAdditionalCert来加其他证书。2、证书必须为CA证书。</p><p>HTTPS监听器才支持此参数修改，并且开启双向认证。</p>
         # @type ClientCaCertificates: Array
         # @param GetRealIpType: <p>获取源IP方式。</p><p>入参限制：支持选择&#39;ProxyProtocol&#39;, &#39;Close&#39;, &#39;ProxyProtocolV2&#39;, &#39;TOA&#39;。</p><p>TCP监听器才支持此参数修改。</p>
         # @type GetRealIpType: String

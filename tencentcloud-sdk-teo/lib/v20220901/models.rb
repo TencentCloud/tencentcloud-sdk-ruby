@@ -162,54 +162,41 @@ module TencentCloud
 
       # 加速域名
       class AccelerationDomain < TencentCloud::Common::AbstractModel
-        # @param ZoneId: 站点 ID。
+        # @param ZoneId: <p>站点 ID。</p>
         # @type ZoneId: String
-        # @param DomainName: 加速域名名称。
+        # @param DomainName: <p>加速域名名称。</p>
         # @type DomainName: String
-        # @param DomainStatus: 加速域名状态，取值有：
-        # <li>online：已生效；</li>
-        # <li>process：部署中；</li>
-        # <li>offline：已停用；</li>
-        # <li>forbidden：已封禁；</li>
-        # <li>init：未生效，待激活站点。</li>
+        # @param DomainStatus: <p>加速域名状态</p><p>枚举值：</p><ul><li>online： 已生效</li><li>process： 部署中</li><li>offline： 已停用</li><li>init： 未生效，待激活站点</li></ul>
         # @type DomainStatus: String
-        # @param Cname: CNAME 地址。
+        # @param Cname: <p>CNAME 地址。</p>
         # @type Cname: String
-        # @param IPv6Status: IPv6 状态，取值有：
-        # <li>follow：遵循站点IPv6配置；</li>
-        # <li>on：开启状态；</li>
-        # <li>off：关闭状态。</li>
+        # @param IPv6Status: <p>IPv6 状态，取值有：</p><li>follow：遵循站点IPv6配置；</li><li>on：开启状态；</li><li>off：关闭状态。</li>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IPv6Status: String
-        # @param IdentificationStatus: 加速域名归属权验证状态，取值有：
-        # <li>pending：待验证；</li>
-        # <li>finished：已完成验证。</li>
+        # @param IdentificationStatus: <p>加速域名归属权验证状态，取值有： </p><li>pending：待验证；</li><li>finished：已完成验证。</li>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdentificationStatus: String
-        # @param OwnershipVerification: 加速域名需进行归属权验证才能继续提供服务时，该对象会携带对应验证方式所需要的信息。
+        # @param OwnershipVerification: <p>加速域名需进行归属权验证才能继续提供服务时，该对象会携带对应验证方式所需要的信息。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OwnershipVerification: :class:`Tencentcloud::Teo.v20220901.models.OwnershipVerification`
-        # @param OriginDetail: 源站信息。
+        # @param OriginDetail: <p>源站信息。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OriginDetail: :class:`Tencentcloud::Teo.v20220901.models.OriginDetail`
-        # @param OriginProtocol: 回源协议，取值有：
-        # <li>FOLLOW：协议跟随；</li>
-        # <li>HTTP：HTTP协议回源；</li>
-        # <li>HTTPS：HTTPS协议回源。</li>
+        # @param OriginProtocol: <p>回源协议，取值有：</p><li>FOLLOW：协议跟随；</li><li>HTTP：HTTP协议回源；</li><li>HTTPS：HTTPS协议回源。</li>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OriginProtocol: String
-        # @param HttpOriginPort: HTTP 回源端口。
+        # @param HttpOriginPort: <p>HTTP 回源端口。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HttpOriginPort: Integer
-        # @param HttpsOriginPort: HTTPS 回源端口。
+        # @param HttpsOriginPort: <p>HTTPS 回源端口。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HttpsOriginPort: Integer
-        # @param Certificate: 加速域名证书信息。
+        # @param Certificate: <p>加速域名证书信息。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Certificate: :class:`Tencentcloud::Teo.v20220901.models.AccelerationDomainCertificate`
-        # @param CreatedOn: 创建时间。
+        # @param CreatedOn: <p>创建时间。</p>
         # @type CreatedOn: String
-        # @param ModifiedOn: 修改时间。
+        # @param ModifiedOn: <p>修改时间。</p>
         # @type ModifiedOn: String
 
         attr_accessor :ZoneId, :DomainName, :DomainStatus, :Cname, :IPv6Status, :IdentificationStatus, :OwnershipVerification, :OriginDetail, :OriginProtocol, :HttpOriginPort, :HttpsOriginPort, :Certificate, :CreatedOn, :ModifiedOn
@@ -2422,8 +2409,8 @@ module TencentCloud
 
         attr_accessor :Switch, :CacheTime, :IgnoreCacheControl
         extend Gem::Deprecate
-        deprecate :IgnoreCacheControl, :none, 2026, 7
-        deprecate :IgnoreCacheControl=, :none, 2026, 7
+        deprecate :IgnoreCacheControl, :none, 2026, 8
+        deprecate :IgnoreCacheControl=, :none, 2026, 8
 
         def initialize(switch=nil, cachetime=nil, ignorecachecontrol=nil)
           @Switch = switch
@@ -4701,8 +4688,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :ProxyName, :Area, :Ipv6, :StaticIp, :AccelerateMainland, :DDosProtectionConfig
         extend Gem::Deprecate
-        deprecate :DDosProtectionConfig, :none, 2026, 7
-        deprecate :DDosProtectionConfig=, :none, 2026, 7
+        deprecate :DDosProtectionConfig, :none, 2026, 8
+        deprecate :DDosProtectionConfig=, :none, 2026, 8
 
         def initialize(zoneid=nil, proxyname=nil, area=nil, ipv6=nil, staticip=nil, acceleratemainland=nil, ddosprotectionconfig=nil)
           @ZoneId = zoneid
@@ -5347,8 +5334,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :Targets, :Mode, :EncodeUrl, :Headers, :PrefetchMediaSegments
         extend Gem::Deprecate
-        deprecate :EncodeUrl, :none, 2026, 7
-        deprecate :EncodeUrl=, :none, 2026, 7
+        deprecate :EncodeUrl, :none, 2026, 8
+        deprecate :EncodeUrl=, :none, 2026, 8
 
         def initialize(zoneid=nil, targets=nil, mode=nil, encodeurl=nil, headers=nil, prefetchmediasegments=nil)
           @ZoneId = zoneid
@@ -5432,8 +5419,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :Type, :Method, :Targets, :EncodeUrl, :CacheTag
         extend Gem::Deprecate
-        deprecate :EncodeUrl, :none, 2026, 7
-        deprecate :EncodeUrl=, :none, 2026, 7
+        deprecate :EncodeUrl, :none, 2026, 8
+        deprecate :EncodeUrl=, :none, 2026, 8
 
         def initialize(zoneid=nil, type=nil, method=nil, targets=nil, encodeurl=nil, cachetag=nil)
           @ZoneId = zoneid
@@ -6023,10 +6010,10 @@ module TencentCloud
 
         attr_accessor :Type, :ZoneName, :Area, :PlanId, :AliasZoneName, :Tags, :AllowDuplicates, :JumpStart
         extend Gem::Deprecate
-        deprecate :AllowDuplicates, :none, 2026, 7
-        deprecate :AllowDuplicates=, :none, 2026, 7
-        deprecate :JumpStart, :none, 2026, 7
-        deprecate :JumpStart=, :none, 2026, 7
+        deprecate :AllowDuplicates, :none, 2026, 8
+        deprecate :AllowDuplicates=, :none, 2026, 8
+        deprecate :JumpStart, :none, 2026, 8
+        deprecate :JumpStart=, :none, 2026, 8
 
         def initialize(type=nil, zonename=nil, area=nil, planid=nil, aliaszonename=nil, tags=nil, allowduplicates=nil, jumpstart=nil)
           @Type = type
@@ -12388,8 +12375,8 @@ module TencentCloud
 
         attr_accessor :StartTime, :EndTime, :MetricNames, :ZoneIds, :ProxyIds, :Interval, :Filters, :Area
         extend Gem::Deprecate
-        deprecate :Area, :none, 2026, 7
-        deprecate :Area=, :none, 2026, 7
+        deprecate :Area, :none, 2026, 8
+        deprecate :Area=, :none, 2026, 8
 
         def initialize(starttime=nil, endtime=nil, metricnames=nil, zoneids=nil, proxyids=nil, interval=nil, filters=nil, area=nil)
           @StartTime = starttime
@@ -14495,30 +14482,33 @@ module TencentCloud
         # @type Name: String
         # @param Condition: 例外规则的具体内容，需符合表达式语法，详细规范参见产品文档。
         # @type Condition: String
-        # @param SkipScope: 例外规则执行选项，取值有：<li>WebSecurityModules: 指定例外规则的安全防护模块。</li><li>ManagedRules：指定托管规则。</li>
+        # @param SkipScope: 例外规则执行选项，取值有：<li>WebSecurityModules: 指定例外规则的安全防护模块，需配合  ⁠WebSecurityModulesForException⁠  使用；</li><li>WebSecuritySubmodules: 指定例外规则的安全防护子模块，需配合  ⁠WebSecuritySubmodulesForException⁠  使用；</li><li>ManagedRules：指定例外规则的具体托管规则，需配合  ⁠ManagedRulesForException⁠  使用；</li><li>ManagedRuleGroups：指定例外规则的托管规则组，需配合  ⁠ManagedRuleGroupsForException⁠  使用。</li>
         # @type SkipScope: String
-        # @param SkipOption: 跳过请求的具体类型，取值有：<li>SkipOnAllRequestFields: 跳过所有请求；</li><li>SkipOnSpecifiedRequestFields: 跳过指定请求字段。</li>仅当 SkipScope 为 ManagedRules 时有效。
+        # @param SkipOption: 跳过请求的具体类型，取值有：<li>SkipOnAllRequestFields: 跳过所有请求；</li><li>SkipOnSpecifiedRequestFields: 跳过指定请求字段。</li>仅当 SkipScope 为 ManagedRules 或 ManagedRuleGroups 时有效。
         # @type SkipOption: String
-        # @param WebSecurityModulesForException: 指定例外规则的安全防护模块，仅当 SkipScope 为 WebSecurityModules 时有效。取值有：<li>websec-mod-managed-rules：托管规则；</li><li>websec-mod-rate-limiting：速率限制；</li><li>websec-mod-custom-rules：自定义规则；</li><li>websec-mod-adaptive-control：自适应频控、智能客户端过滤、慢速攻击防护、流量盗刷防护；</li><li>websec-mod-bot：Bot管理。</li>
+        # @param WebSecurityModulesForException: 指定例外规则的安全防护模块，仅当 SkipScope 为 WebSecurityModules 时有效，取值有：<li>websec-mod-managed-rules：托管规则；</li><li>websec-mod-rate-limiting：速率限制；</li><li>websec-mod-custom-rules：自定义规则；</li><li>websec-mod-adaptive-control：自适应频控、智能客户端过滤、慢速攻击防护、流量盗刷防护；</li><li>websec-mod-bot：Bot管理。</li>
         # @type WebSecurityModulesForException: Array
-        # @param ManagedRulesForException: 指定例外规则的具体托管规则，仅当 SkipScope 为 ManagedRules 时有效，且此时不能指定 ManagedRuleGroupsForException 。
+        # @param WebSecuritySubmodulesForException: 指定例外规则的安全防护子模块，仅当 SkipScope 为 WebSecuritySubmodules 时有效，取值有：<ul><li>托管规则（ManagedRules）模块功能：<ul><li>websec-mod-managed-rules/managed-rule-groups：规则集；</li><li>websec-mod-managed-rules/frequent-scanning-protection：高频扫描防护；</li></ul></li><li>速率限制（RateLimitingRules）模块功能：<ul><li>websec-mod-rate-limiting-rules：速率限制规则；</li></ul></li><li>自定义规则（CustomRules）模块功能：<ul><li>websec-mod-custom-rules：自定义规则；</li></ul></li><li>HTTP DDoS 防护（HttpDDoSProtection）模块功能：<ul><li>websec-mod-http-ddos-protection/adaptive-frequency-control：自适应频控；</li><li>websec-mod-http-ddos-protection/client-filtering：智能客户端过滤；</li><li>websec-mod-http-ddos-protection/bandwidth-abuse-defense：流量盗刷防护；</li></ul></li><li>高级 Bot 管理（BotManagement）模块功能：<ul><li>websec-mod-bot-management/basic-feature：基础特征管理；</li><li>websec-mod-bot-management/ip-reputation：客户端画像分析；</li><li>websec-mod-bot-management/bot-intelligence：智能 Bot 分析；</li><li>websec-mod-bot-management/custom-rules：自定义规则；</li><li>websec-mod-bot-management/browser-impersonation-detection：主动特征识别；</li><li>websec-mod-bot-management/client-attestation-rules：客户端认证；</li></ul></li><li>基础 Bot 管理（BotManagementLite）模块功能：<ul><li>websec-mod-bot-management-lite/ai-crawler-detection：AI 爬虫处置；</li><li>websec-mod-bot-management-lite/captcha-page-challenge：人机校验页。</li></ul></li></ul>
+        # @type WebSecuritySubmodulesForException: Array
+        # @param ManagedRulesForException: 指定例外规则的具体托管规则，仅当 SkipScope 为 ManagedRules 时有效。
         # @type ManagedRulesForException: Array
-        # @param ManagedRuleGroupsForException: 指定例外规则的托管规则组，仅当 SkipScope 为 ManagedRules 时有效，且此时不能指定 ManagedRulesForException 。
+        # @param ManagedRuleGroupsForException: 指定例外规则的托管规则组，仅当 SkipScope 为 ManagedRuleGroups 时有效。
         # @type ManagedRuleGroupsForException: Array
-        # @param RequestFieldsForException: 指定例外规则跳过指定请求字段的具体配置，仅当 SkipScope 为 ManagedRules 并且 SkipOption 为 SkipOnSpecifiedRequestFields 时有效。
+        # @param RequestFieldsForException: 指定例外规则跳过指定请求字段的具体配置，仅当 SkipScope 为 ManagedRules 或 ManagedRuleGroups 并且 SkipOption 为 SkipOnSpecifiedRequestFields 时有效。
         # @type RequestFieldsForException: Array
         # @param Enabled: 例外规则是否开启。取值有：<li>on：开启</li><li>off：关闭</li>
         # @type Enabled: String
 
-        attr_accessor :Id, :Name, :Condition, :SkipScope, :SkipOption, :WebSecurityModulesForException, :ManagedRulesForException, :ManagedRuleGroupsForException, :RequestFieldsForException, :Enabled
+        attr_accessor :Id, :Name, :Condition, :SkipScope, :SkipOption, :WebSecurityModulesForException, :WebSecuritySubmodulesForException, :ManagedRulesForException, :ManagedRuleGroupsForException, :RequestFieldsForException, :Enabled
 
-        def initialize(id=nil, name=nil, condition=nil, skipscope=nil, skipoption=nil, websecuritymodulesforexception=nil, managedrulesforexception=nil, managedrulegroupsforexception=nil, requestfieldsforexception=nil, enabled=nil)
+        def initialize(id=nil, name=nil, condition=nil, skipscope=nil, skipoption=nil, websecuritymodulesforexception=nil, websecuritysubmodulesforexception=nil, managedrulesforexception=nil, managedrulegroupsforexception=nil, requestfieldsforexception=nil, enabled=nil)
           @Id = id
           @Name = name
           @Condition = condition
           @SkipScope = skipscope
           @SkipOption = skipoption
           @WebSecurityModulesForException = websecuritymodulesforexception
+          @WebSecuritySubmodulesForException = websecuritysubmodulesforexception
           @ManagedRulesForException = managedrulesforexception
           @ManagedRuleGroupsForException = managedrulegroupsforexception
           @RequestFieldsForException = requestfieldsforexception
@@ -14532,6 +14522,7 @@ module TencentCloud
           @SkipScope = params['SkipScope']
           @SkipOption = params['SkipOption']
           @WebSecurityModulesForException = params['WebSecurityModulesForException']
+          @WebSecuritySubmodulesForException = params['WebSecuritySubmodulesForException']
           @ManagedRulesForException = params['ManagedRulesForException']
           @ManagedRuleGroupsForException = params['ManagedRuleGroupsForException']
           unless params['RequestFieldsForException'].nil?
@@ -15873,24 +15864,25 @@ module TencentCloud
 
       # IP SSL相关信息
       class IPSSLConfig < TencentCloud::Common::AbstractModel
-        # @param AssociatedDomain: IP SSL关联的域名。如果Status值为 unbound 时，该字段为空值。
+        # @param ZoneId: <p>IP SSL 关联域名所属站点ID。如果Status值为 unbound 时，该字段为空值。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ZoneId: String
+        # @param AssociatedDomain: <p>IP SSL关联的域名。如果Status值为 unbound 时，该字段为空值。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssociatedDomain: String
-        # @param Status: 关联状态， 取值如下：
-        # <li>bound：IP SSL配置已绑定</li>
-        # <li>binding：IP SSL配置绑定中</li>
-        # <li>unbinding：IP SSL配置解绑中</li>
-        # <li>unbound：IP SSL配置未绑定</li>
+        # @param Status: <p>关联状态， 取值如下：</p><li>bound：IP SSL配置已绑定</li><li>binding：IP SSL配置绑定中</li><li>unbinding：IP SSL配置解绑中</li><li>unbound：IP SSL配置未绑定</li>
         # @type Status: String
 
-        attr_accessor :AssociatedDomain, :Status
+        attr_accessor :ZoneId, :AssociatedDomain, :Status
 
-        def initialize(associateddomain=nil, status=nil)
+        def initialize(zoneid=nil, associateddomain=nil, status=nil)
+          @ZoneId = zoneid
           @AssociatedDomain = associateddomain
           @Status = status
         end
 
         def deserialize(params)
+          @ZoneId = params['ZoneId']
           @AssociatedDomain = params['AssociatedDomain']
           @Status = params['Status']
         end
@@ -17299,8 +17291,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :ProxyId, :ProxyName, :Area, :Cname, :Ips, :Status, :Ipv6, :StaticIp, :AccelerateMainland, :DDosProtectionConfig, :L4ProxyRuleCount, :UpdateTime
         extend Gem::Deprecate
-        deprecate :DDosProtectionConfig, :none, 2026, 7
-        deprecate :DDosProtectionConfig=, :none, 2026, 7
+        deprecate :DDosProtectionConfig, :none, 2026, 8
+        deprecate :DDosProtectionConfig=, :none, 2026, 8
 
         def initialize(zoneid=nil, proxyid=nil, proxyname=nil, area=nil, cname=nil, ips=nil, status=nil, ipv6=nil, staticip=nil, acceleratemainland=nil, ddosprotectionconfig=nil, l4proxyrulecount=nil, updatetime=nil)
           @ZoneId = zoneid
@@ -19021,8 +19013,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :Hosts, :Mode, :ServerCertInfo, :ApplyType, :ClientCertInfo, :UpstreamCertInfo
         extend Gem::Deprecate
-        deprecate :ApplyType, :none, 2026, 7
-        deprecate :ApplyType=, :none, 2026, 7
+        deprecate :ApplyType, :none, 2026, 8
+        deprecate :ApplyType=, :none, 2026, 8
 
         def initialize(zoneid=nil, hosts=nil, mode=nil, servercertinfo=nil, applytype=nil, clientcertinfo=nil, upstreamcertinfo=nil)
           @ZoneId = zoneid
@@ -21617,8 +21609,10 @@ module TencentCloud
         # <li>当 OriginType = IP_DOMAIN 时，该参数为 IPv4、IPv6 地址或域名；</li>
         # <li>当 OriginType = COS 时，该参数为 COS 桶的访问域名；</li>
         # <li>当 OriginType = AWS_S3，该参数为 S3 桶的访问域名；</li>
-        # <li>当 OriginType = ORIGIN_GROUP 时，该参数为源站组 ID；</li>
+        # <li>当 OriginType = ORIGIN_GROUP 时，该参数为源站组 ID；如果引用了其它站点的源站组，格式为{源站组 ID}@{ZoneID}。例如：og-testorigin@zone-38moq1z10wwwy</li>
         # <li>当 OriginType = VOD 时，该参数请填写云点播应用 ID ；</li>
+        # <li>当 OriginType = LB 时，该参数请填写负载均衡实例 ID，该功能当前仅白名单开放；如果引用了其它站点的负载均衡，格式为{负载均衡 ID}@{ZoneID}。例如：lb-2rxpamcyqfzg@zone-38moq1z10wwwy</li>
+        # <li>当 OriginType = SPACE 时，该参数请填写源站卸载空间 ID，该功能当前仅白名单开放。</li>
         # @type Origin: String
         # @param BackupOrigin: 备用源站组 ID，该参数仅在 OriginType = ORIGIN_GROUP 且配置了备源站组时会生效。
         # @type BackupOrigin: String
@@ -21650,12 +21644,12 @@ module TencentCloud
 
         attr_accessor :OriginType, :Origin, :BackupOrigin, :OriginGroupName, :BackOriginGroupName, :PrivateAccess, :PrivateParameters, :HostHeader, :VodeoSubAppId, :VodeoDistributionRange, :VodeoBucketId, :VodOriginScope, :VodBucketId
         extend Gem::Deprecate
-        deprecate :VodeoSubAppId, :none, 2026, 7
-        deprecate :VodeoSubAppId=, :none, 2026, 7
-        deprecate :VodeoDistributionRange, :none, 2026, 7
-        deprecate :VodeoDistributionRange=, :none, 2026, 7
-        deprecate :VodeoBucketId, :none, 2026, 7
-        deprecate :VodeoBucketId=, :none, 2026, 7
+        deprecate :VodeoSubAppId, :none, 2026, 8
+        deprecate :VodeoSubAppId=, :none, 2026, 8
+        deprecate :VodeoDistributionRange, :none, 2026, 8
+        deprecate :VodeoDistributionRange=, :none, 2026, 8
+        deprecate :VodeoBucketId, :none, 2026, 8
+        deprecate :VodeoBucketId=, :none, 2026, 8
 
         def initialize(origintype=nil, origin=nil, backuporigin=nil, origingroupname=nil, backorigingroupname=nil, privateaccess=nil, privateparameters=nil, hostheader=nil, vodeosubappid=nil, vodeodistributionrange=nil, vodeobucketid=nil, vodoriginscope=nil, vodbucketid=nil)
           @OriginType = origintype
@@ -21970,12 +21964,12 @@ module TencentCloud
 
         attr_accessor :OriginType, :Origin, :BackupOrigin, :PrivateAccess, :PrivateParameters, :HostHeader, :VodeoSubAppId, :VodeoDistributionRange, :VodeoBucketId, :VodOriginScope, :VodBucketId
         extend Gem::Deprecate
-        deprecate :VodeoSubAppId, :none, 2026, 7
-        deprecate :VodeoSubAppId=, :none, 2026, 7
-        deprecate :VodeoDistributionRange, :none, 2026, 7
-        deprecate :VodeoDistributionRange=, :none, 2026, 7
-        deprecate :VodeoBucketId, :none, 2026, 7
-        deprecate :VodeoBucketId=, :none, 2026, 7
+        deprecate :VodeoSubAppId, :none, 2026, 8
+        deprecate :VodeoSubAppId=, :none, 2026, 8
+        deprecate :VodeoDistributionRange, :none, 2026, 8
+        deprecate :VodeoDistributionRange=, :none, 2026, 8
+        deprecate :VodeoBucketId, :none, 2026, 8
+        deprecate :VodeoBucketId=, :none, 2026, 8
 
         def initialize(origintype=nil, origin=nil, backuporigin=nil, privateaccess=nil, privateparameters=nil, hostheader=nil, vodeosubappid=nil, vodeodistributionrange=nil, vodeobucketid=nil, vodoriginscope=nil, vodbucketid=nil)
           @OriginType = origintype
@@ -23731,8 +23725,8 @@ module TencentCloud
 
         attr_accessor :Operator, :Target, :Values, :IgnoreCase, :Name, :IgnoreNameCase
         extend Gem::Deprecate
-        deprecate :IgnoreNameCase, :none, 2026, 7
-        deprecate :IgnoreNameCase=, :none, 2026, 7
+        deprecate :IgnoreNameCase, :none, 2026, 8
+        deprecate :IgnoreNameCase=, :none, 2026, 8
 
         def initialize(operator=nil, target=nil, values=nil, ignorecase=nil, name=nil, ignorenamecase=nil)
           @Operator = operator

@@ -629,12 +629,12 @@ module TencentCloud
 
         attr_accessor :AddressTemplateId, :AddressTemplateName, :From, :To, :Description, :UpdatedTime
         extend Gem::Deprecate
-        deprecate :AddressTemplateName, :none, 2026, 7
-        deprecate :AddressTemplateName=, :none, 2026, 7
-        deprecate :From, :none, 2026, 7
-        deprecate :From=, :none, 2026, 7
-        deprecate :To, :none, 2026, 7
-        deprecate :To=, :none, 2026, 7
+        deprecate :AddressTemplateName, :none, 2026, 8
+        deprecate :AddressTemplateName=, :none, 2026, 8
+        deprecate :From, :none, 2026, 8
+        deprecate :From=, :none, 2026, 8
+        deprecate :To, :none, 2026, 8
+        deprecate :To=, :none, 2026, 8
 
         def initialize(addresstemplateid=nil, addresstemplatename=nil, from=nil, to=nil, description=nil, updatedtime=nil)
           @AddressTemplateId = addresstemplateid
@@ -809,8 +809,8 @@ module TencentCloud
 
         attr_accessor :AddressCount, :InternetServiceProvider, :InternetChargeType, :IPChargeType, :InternetMaxBandwidthOut, :AddressChargePrepaid, :AddressType, :AnycastZone, :VipCluster, :ApplicableForCLB, :Tags, :BandwidthPackageId, :AddressName, :DedicatedClusterId, :IsDedicatedAddressPool, :Egress, :AntiDDoSPackageId, :ClientToken
         extend Gem::Deprecate
-        deprecate :ApplicableForCLB, :none, 2026, 7
-        deprecate :ApplicableForCLB=, :none, 2026, 7
+        deprecate :ApplicableForCLB, :none, 2026, 8
+        deprecate :ApplicableForCLB=, :none, 2026, 8
 
         def initialize(addresscount=nil, internetserviceprovider=nil, internetchargetype=nil, ipchargetype=nil, internetmaxbandwidthout=nil, addresschargeprepaid=nil, addresstype=nil, anycastzone=nil, vipcluster=nil, applicableforclb=nil, tags=nil, bandwidthpackageid=nil, addressname=nil, dedicatedclusterid=nil, isdedicatedaddresspool=nil, egress=nil, antiddospackageid=nil, clienttoken=nil)
           @AddressCount = addresscount
@@ -3549,8 +3549,8 @@ module TencentCloud
 
         attr_accessor :ConfilctId, :DestinationItem, :ConflictId
         extend Gem::Deprecate
-        deprecate :ConfilctId, :none, 2026, 7
-        deprecate :ConfilctId=, :none, 2026, 7
+        deprecate :ConfilctId, :none, 2026, 8
+        deprecate :ConfilctId=, :none, 2026, 8
 
         def initialize(confilctid=nil, destinationitem=nil, conflictid=nil)
           @ConfilctId = confilctid
@@ -5128,8 +5128,8 @@ module TencentCloud
 
         attr_accessor :NatGatewayName, :VpcId, :InternetMaxBandwidthOut, :MaxConcurrentConnection, :AddressCount, :PublicIpAddresses, :Zone, :Tags, :SubnetId, :StockPublicIpAddressesBandwidthOut, :PublicIpAddressesBandwidthOut, :PublicIpFromSameZone, :NatProductVersion, :DeletionProtectionEnabled, :ExclusiveType
         extend Gem::Deprecate
-        deprecate :SubnetId, :none, 2026, 7
-        deprecate :SubnetId=, :none, 2026, 7
+        deprecate :SubnetId, :none, 2026, 8
+        deprecate :SubnetId=, :none, 2026, 8
 
         def initialize(natgatewayname=nil, vpcid=nil, internetmaxbandwidthout=nil, maxconcurrentconnection=nil, addresscount=nil, publicipaddresses=nil, zone=nil, tags=nil, subnetid=nil, stockpublicipaddressesbandwidthout=nil, publicipaddressesbandwidthout=nil, publicipfromsamezone=nil, natproductversion=nil, deletionprotectionenabled=nil, exclusivetype=nil)
           @NatGatewayName = natgatewayname
@@ -6972,8 +6972,8 @@ module TencentCloud
 
         attr_accessor :VpcId, :EndPointServiceName, :AutoAcceptFlag, :ServiceInstanceId, :IsPassService, :ServiceType, :Tags, :IpAddressType
         extend Gem::Deprecate
-        deprecate :IsPassService, :none, 2026, 7
-        deprecate :IsPassService=, :none, 2026, 7
+        deprecate :IsPassService, :none, 2026, 8
+        deprecate :IsPassService=, :none, 2026, 8
 
         def initialize(vpcid=nil, endpointservicename=nil, autoacceptflag=nil, serviceinstanceid=nil, ispassservice=nil, servicetype=nil, tags=nil, ipaddresstype=nil)
           @VpcId = vpcid
@@ -16913,8 +16913,8 @@ module TencentCloud
 
         attr_accessor :VpcEndpointServiceUserSet, :VpcEndPointServiceUserSet, :TotalCount, :RequestId
         extend Gem::Deprecate
-        deprecate :VpcEndpointServiceUserSet, :none, 2026, 7
-        deprecate :VpcEndpointServiceUserSet=, :none, 2026, 7
+        deprecate :VpcEndpointServiceUserSet, :none, 2026, 8
+        deprecate :VpcEndpointServiceUserSet=, :none, 2026, 8
 
         def initialize(vpcendpointserviceuserset=nil, totalcount=nil, requestid=nil)
           @VpcEndPointServiceUserSet = vpcendpointserviceuserset
@@ -20134,7 +20134,7 @@ module TencentCloud
 
       # IKE配置（Internet Key Exchange，因特网密钥交换），IKE具有一套自我保护机制，用户配置网络安全协议
       class IKEOptionsSpecification < TencentCloud::Common::AbstractModel
-        # @param PropoEncryAlgorithm: <p>加密算法，可选值：&#39;3DES-CBC&#39;, &#39;AES-CBC-128&#39;, &#39;AES-CBC-192&#39;, &#39;AES-CBC-256&#39;, &#39;DES-CBC&#39;，&#39;SM4&#39;, 默认为3DES-CBC</p>
+        # @param PropoEncryAlgorithm: <p>加密算法，可选值：&#39;3DES-CBC&#39;, &#39;AES-CBC-128&#39;, &#39;AES-CBC-192&#39;, &#39;AES-CBC-256&#39;, &#39;DES-CBC&#39;, &#39;SM4&#39;,  &#39;AES128GCM128&#39;, &#39;AES192GCM128&#39;, &#39;AES256GCM128&#39;</p><p>默认值：3DES-CBC</p><p>仅4.0VPN网关支持 &#39;AES128GCM128&#39;, &#39;AES192GCM128&#39;, &#39;AES256GCM128&#39;</p>
         # @type PropoEncryAlgorithm: String
         # @param PropoAuthenAlgorithm: <p>认证算法：可选值：&#39;MD5&#39;，&#39;SHA&#39;，&#39;SHA-256&#39;，&#39;SHA-512&#39;， 默认为SHA。</p>
         # @type PropoAuthenAlgorithm: String
@@ -20194,7 +20194,7 @@ module TencentCloud
 
       # IPSec配置，腾讯云提供IPSec安全会话设置
       class IPSECOptionsSpecification < TencentCloud::Common::AbstractModel
-        # @param EncryptAlgorithm: <p>加密算法，可选值：&#39;3DES-CBC&#39;, &#39;AES-CBC-128&#39;, &#39;AES-CBC-192&#39;, &#39;AES-CBC-256&#39;, &#39;DES-CBC&#39;, &#39;SM4&#39;, &#39;NULL&#39;</p><p>默认值：AES-CBC-128</p>
+        # @param EncryptAlgorithm: <p>加密算法，可选值：&#39;3DES-CBC&#39;, &#39;AES-CBC-128&#39;, &#39;AES-CBC-192&#39;, &#39;AES-CBC-256&#39;, &#39;DES-CBC&#39;, &#39;SM4&#39;, &#39;NULL&#39;, &#39;AES128GCM128&#39;, &#39;AES192GCM128&#39;, &#39;AES256GCM128&#39;</p><p>默认值：AES-CBC-128</p><p>仅4.0VPN网关支持 &#39;AES128GCM128&#39;, &#39;AES192GCM128&#39;, &#39;AES256GCM128&#39;</p>
         # @type EncryptAlgorithm: String
         # @param IntegrityAlgorith: <p>认证算法：可选值：&#39;MD5&#39;, &#39;SHA1&#39;, &#39;SHA-256&#39;, &#39;SHA-512&#39;, &#39;SHA-384&#39;, &#39;SM3&#39;</p><p>默认值：SHA1</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -20210,8 +20210,8 @@ module TencentCloud
 
         attr_accessor :EncryptAlgorithm, :IntegrityAlgorith, :IPSECSaLifetimeSeconds, :PfsDhGroup, :IPSECSaLifetimeTraffic, :IntegrityAlgorithm
         extend Gem::Deprecate
-        deprecate :IntegrityAlgorith, :none, 2026, 7
-        deprecate :IntegrityAlgorith=, :none, 2026, 7
+        deprecate :IntegrityAlgorith, :none, 2026, 8
+        deprecate :IntegrityAlgorith=, :none, 2026, 8
 
         def initialize(encryptalgorithm=nil, integrityalgorith=nil, ipsecsalifetimeseconds=nil, pfsdhgroup=nil, ipsecsalifetimetraffic=nil, integrityalgorithm=nil)
           @EncryptAlgorithm = encryptalgorithm
@@ -21622,10 +21622,10 @@ module TencentCloud
 
         attr_accessor :AddressIds, :InternetMaxBandwidthOut, :StartTime, :EndTime
         extend Gem::Deprecate
-        deprecate :StartTime, :none, 2026, 7
-        deprecate :StartTime=, :none, 2026, 7
-        deprecate :EndTime, :none, 2026, 7
-        deprecate :EndTime=, :none, 2026, 7
+        deprecate :StartTime, :none, 2026, 8
+        deprecate :StartTime=, :none, 2026, 8
+        deprecate :EndTime, :none, 2026, 8
+        deprecate :EndTime=, :none, 2026, 8
 
         def initialize(addressids=nil, internetmaxbandwidthout=nil, starttime=nil, endtime=nil)
           @AddressIds = addressids

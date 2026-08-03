@@ -93,6 +93,30 @@ module TencentCloud
         end
       end
 
+      # 用于记录 Agent Bucket 的 Storage Source
+      class AgentBucketStorageSource < TencentCloud::Common::AbstractModel
+        # @param LibraryId: <p>用于传入 AgentBucket 的 LibraryID</p>
+        # @type LibraryId: String
+        # @param SpaceId: <p>用于传入 AgentBucket 的 spaceId</p>
+        # @type SpaceId: String
+        # @param AccessDomain: <p>用于传入 AgentBucket 的 AccessDomain</p>
+        # @type AccessDomain: String
+
+        attr_accessor :LibraryId, :SpaceId, :AccessDomain
+
+        def initialize(libraryid=nil, spaceid=nil, accessdomain=nil)
+          @LibraryId = libraryid
+          @SpaceId = spaceid
+          @AccessDomain = accessdomain
+        end
+
+        def deserialize(params)
+          @LibraryId = params['LibraryId']
+          @SpaceId = params['SpaceId']
+          @AccessDomain = params['AccessDomain']
+        end
+      end
+
       # 沙箱工具日志推送CLS相关配置
       class CLSConfig < TencentCloud::Common::AbstractModel
         # @param TopicId: 沙箱工具日志推送所使用的CLS日志主题ID
@@ -203,21 +227,17 @@ module TencentCloud
         # @type Image: String
         # @param ImageRegistryType: <p>镜像仓库类型：<code>enterprise</code>、<code>personal</code>、<code>custom</code></p><p>枚举值：</p><ul><li>enterprise： tcr 企业容器镜像服务</li><li>personal： ccr 个人容器镜像服务</li></ul>
         # @type ImageRegistryType: String
-        # @param TimeoutMinutes: <p>预热超时时长</p>
-        # @type TimeoutMinutes: Integer
 
-        attr_accessor :Image, :ImageRegistryType, :TimeoutMinutes
+        attr_accessor :Image, :ImageRegistryType
 
-        def initialize(image=nil, imageregistrytype=nil, timeoutminutes=nil)
+        def initialize(image=nil, imageregistrytype=nil)
           @Image = image
           @ImageRegistryType = imageregistrytype
-          @TimeoutMinutes = timeoutminutes
         end
 
         def deserialize(params)
           @Image = params['Image']
           @ImageRegistryType = params['ImageRegistryType']
-          @TimeoutMinutes = params['TimeoutMinutes']
         end
       end
 
@@ -356,7 +376,7 @@ module TencentCloud
       class CustomConfiguration < TencentCloud::Common::AbstractModel
         # @param Image: <p>镜像地址</p>
         # @type Image: String
-        # @param ImageRegistryType: <p>镜像仓库类型：<code>enterprise</code>、<code>personal</code>。</p>
+        # @param ImageRegistryType: <p>镜像仓库类型：<code>enterprise</code>、<code>personal</code>、<code>custom</code></p><p>枚举值：</p><ul><li>enterprise： tcr 企业容器镜像服务</li><li>personal： ccr 个人容器镜像服务</li></ul>
         # @type ImageRegistryType: String
         # @param Command: <p>启动命令</p>
         # @type Command: Array
@@ -427,7 +447,7 @@ module TencentCloud
       class CustomConfigurationDetail < TencentCloud::Common::AbstractModel
         # @param Image: <p>镜像地址</p>
         # @type Image: String
-        # @param ImageRegistryType: <p>镜像仓库类型：<code>TCR</code>、<code>CCR</code>。</p>
+        # @param ImageRegistryType: <p>镜像仓库类型：<code>enterprise</code>、<code>personal</code>、<code>custom</code>。</p><p>枚举值：</p><ul><li>enterprise： TCR 企业容器镜像服务</li><li>personal： CCR 个人容器镜像服务</li></ul>
         # @type ImageRegistryType: String
         # @param ImageDigest: <p>镜像 Digest</p>
         # @type ImageDigest: String
@@ -630,11 +650,11 @@ module TencentCloud
 
       # DescribePreCacheImageTask请求参数结构体
       class DescribePreCacheImageTaskRequest < TencentCloud::Common::AbstractModel
-        # @param Image: 镜像地址
+        # @param Image: <p>镜像地址</p>
         # @type Image: String
-        # @param ImageDigest: 镜像 Digest
+        # @param ImageDigest: <p>镜像 Digest</p>
         # @type ImageDigest: String
-        # @param ImageRegistryType: 镜像仓库类型：`enterprise`、`personal`。
+        # @param ImageRegistryType: <p>镜像仓库类型：<code>enterprise</code>、<code>personal</code>、<code>custom</code> 。</p><p>枚举值：</p><ul><li>enterprise： tcr 企业容器镜像服务</li><li>personal： ccr 个人容器镜像服务</li></ul>
         # @type ImageRegistryType: String
 
         attr_accessor :Image, :ImageDigest, :ImageRegistryType
@@ -654,15 +674,15 @@ module TencentCloud
 
       # DescribePreCacheImageTask返回参数结构体
       class DescribePreCacheImageTaskResponse < TencentCloud::Common::AbstractModel
-        # @param Image: 镜像地址
+        # @param Image: <p>镜像地址</p>
         # @type Image: String
-        # @param ImageDigest: 镜像 Digest
+        # @param ImageDigest: <p>镜像 Digest</p>
         # @type ImageDigest: String
-        # @param ImageRegistryType: 镜像仓库类型：`enterprise`、`personal`。
+        # @param ImageRegistryType: <p>镜像仓库类型：<code>enterprise</code>、<code>personal</code>。</p>
         # @type ImageRegistryType: String
-        # @param Status: 镜像预热状态
+        # @param Status: <p>镜像预热状态</p>
         # @type Status: String
-        # @param Message: 镜像预热状态描述
+        # @param Message: <p>镜像预热状态描述</p>
         # @type Message: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -890,13 +910,13 @@ module TencentCloud
 
       # 镜像卷挂载源配置
       class ImageStorageSource < TencentCloud::Common::AbstractModel
-        # @param Reference: 镜像地址
+        # @param Reference: <p>镜像地址</p>
         # @type Reference: String
-        # @param ImageRegistryType: 镜像仓库类型：`enterprise`、`personal`。
+        # @param ImageRegistryType: <p>镜像仓库类型：<code>enterprise</code>、<code>personal</code>。</p>
         # @type ImageRegistryType: String
-        # @param SubPath: 镜像内部的路径
+        # @param SubPath: <p>镜像内部的路径</p>
         # @type SubPath: String
-        # @param Digest: 镜像 Digest，请求时无需传入
+        # @param Digest: <p>镜像 Digest，请求时无需传入</p>
         # @type Digest: String
 
         attr_accessor :Reference, :ImageRegistryType, :SubPath, :Digest
@@ -1034,15 +1054,19 @@ module TencentCloud
       class PauseSandboxInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: <p>沙箱实例ID</p>
         # @type InstanceId: String
+        # @param Memory: <p>可选。带内存暂停，恢复后保留进程和内存状态。true=带内存；false=仅磁盘；不传=系统默认（当前默认 true，带内存）。</p>
+        # @type Memory: Boolean
 
-        attr_accessor :InstanceId
+        attr_accessor :InstanceId, :Memory
 
-        def initialize(instanceid=nil)
+        def initialize(instanceid=nil, memory=nil)
           @InstanceId = instanceid
+          @Memory = memory
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
+          @Memory = params['Memory']
         end
       end
 
@@ -1156,17 +1180,21 @@ module TencentCloud
 
       # ResumeSandboxInstance请求参数结构体
       class ResumeSandboxInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 沙箱实例ID
+        # @param InstanceId: <p>沙箱实例ID</p>
         # @type InstanceId: String
+        # @param Timeout: <p>超时时间，超过这个时间就自动回收实例。支持格式：5m、300s、1h 等，默认 5m。最小 30s，最大 24h</p>
+        # @type Timeout: String
 
-        attr_accessor :InstanceId
+        attr_accessor :InstanceId, :Timeout
 
-        def initialize(instanceid=nil)
+        def initialize(instanceid=nil, timeout=nil)
           @InstanceId = instanceid
+          @Timeout = timeout
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
+          @Timeout = params['Timeout']
         end
       end
 
@@ -1388,7 +1416,7 @@ module TencentCloud
         # @type MountOptions: Array
         # @param CustomConfiguration: <p>沙箱实例自定义配置</p>
         # @type CustomConfiguration: :class:`Tencentcloud::Ags.v20250920.models.CustomConfiguration`
-        # @param AuthMode: <p>沙箱访问认证模式</p><p>枚举值：</p><ul><li>DEFAULT： 默认，即 TOKEN 认证</li><li>TOKEN： Token认证，即所有端口访问都需携带TOKEN</li><li>NONE： 免认证，即所有端口访问无需携带TOKEN</li><li>PUBLIC： 公开模式，即ENVD管理端口（49983）访问需携带TOKEN，其他端口无需携带TOKEN</li></ul><p>默认值：DEFAULT</p>
+        # @param AuthMode: <p>沙箱访问认证模式</p><p>枚举值：</p><ul><li>DEFAULT： 默认，即TOKEN认证</li><li>TOKEN： Token认证，即所有端口访问都需携带Token</li><li>NONE： 免认证，即所有端口访问无需携带Token</li><li>PUBLIC： 公开模式，即ENVD管理端口（49983）访问需携带Token，其他端口无需携带Token</li></ul><p>默认值：DEFAULT</p>
         # @type AuthMode: String
         # @param Metadata: <p>沙箱元数据</p>
         # @type Metadata: Array
@@ -1492,13 +1520,14 @@ module TencentCloud
 
       # 沙箱工具中实例存储挂载配置
       class StorageMount < TencentCloud::Common::AbstractModel
-        # @param Name: 存储挂载配置名称
+        # @param Name: <p>存储挂载配置名称</p>
         # @type Name: String
-        # @param StorageSource: 存储配置
+        # @param StorageSource: <p>存储配置</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StorageSource: :class:`Tencentcloud::Ags.v20250920.models.StorageSource`
-        # @param MountPath: 沙箱实例本地挂载路径
+        # @param MountPath: <p>沙箱实例本地挂载路径</p>
         # @type MountPath: String
-        # @param ReadOnly: 存储挂载读写权限配置，默认为false
+        # @param ReadOnly: <p>存储挂载读写权限配置，默认为false</p>
         # @type ReadOnly: Boolean
 
         attr_accessor :Name, :StorageSource, :MountPath, :ReadOnly
@@ -1529,13 +1558,16 @@ module TencentCloud
         # @type Image: :class:`Tencentcloud::Ags.v20250920.models.ImageStorageSource`
         # @param Cfs: <p>文件存储配置</p>
         # @type Cfs: :class:`Tencentcloud::Ags.v20250920.models.CfsStorageSource`
+        # @param AgentBucket: <p>AgentBucket 存储配置</p>
+        # @type AgentBucket: :class:`Tencentcloud::Ags.v20250920.models.AgentBucketStorageSource`
 
-        attr_accessor :Cos, :Image, :Cfs
+        attr_accessor :Cos, :Image, :Cfs, :AgentBucket
 
-        def initialize(cos=nil, image=nil, cfs=nil)
+        def initialize(cos=nil, image=nil, cfs=nil, agentbucket=nil)
           @Cos = cos
           @Image = image
           @Cfs = cfs
+          @AgentBucket = agentbucket
         end
 
         def deserialize(params)
@@ -1550,6 +1582,10 @@ module TencentCloud
           unless params['Cfs'].nil?
             @Cfs = CfsStorageSource.new
             @Cfs.deserialize(params['Cfs'])
+          end
+          unless params['AgentBucket'].nil?
+            @AgentBucket = AgentBucketStorageSource.new
+            @AgentBucket.deserialize(params['AgentBucket'])
           end
         end
       end

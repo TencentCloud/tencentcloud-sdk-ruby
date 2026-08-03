@@ -11350,47 +11350,25 @@ module TencentCloud
 
       # CreateSampleSnapshotTemplate请求参数结构体
       class CreateSampleSnapshotTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param SampleType: 采样截图类型，取值：
-        # <li>Percent：按百分比。</li>
-        # <li>Time：按时间间隔。</li>
+        # @param SampleType: <p>采样截图类型，取值：</p><li>Percent：按百分比。</li><li>Time：按时间间隔。</li>
         # @type SampleType: String
-        # @param SampleInterval: 采样间隔。
-        # <li>当 SampleType 为 Percent 时，指定采样间隔的百分比。</li>
-        # <li>当 SampleType 为 Time 时，指定采样间隔的时间，单位为秒。</li>
+        # @param SampleInterval: <p>采样间隔。</p><li>当 SampleType 为 Percent 时，指定采样间隔的百分比。</li><li>当 SampleType 为 Time 时，指定采样间隔的时间，单位为秒。</li>
         # @type SampleInterval: Integer
-        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
+        # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b></p>
         # @type SubAppId: Integer
-        # @param Name: 采样截图模板名称，长度限制：64 个字符。
+        # @param Name: <p>采样截图模板名称，长度限制：64 个字符。</p>
         # @type Name: String
-        # @param Width: 截图宽度（或长边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
-        # <li>当 Width、Height 均为 0，则分辨率同源；</li>
-        # <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
-        # <li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li>
-        # <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
-        # 默认值：0。
+        # @param Width: <p>截图宽度（或长边）的最大值，取值范围：0 和 [32, 4096]，单位：px。<li>当 Width、Height 均为 0，则分辨率同源；</li><li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li><li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li><li>当 Width、Height 均非 0，则分辨率按用户指定。</li>默认值：0。</p>
         # @type Width: Integer
-        # @param Height: 截图高度（或短边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
-        # <li>当 Width、Height 均为 0，则分辨率同源；</li>
-        # <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
-        # <li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li>
-        # <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
-        # 默认值：0。
+        # @param Height: <p>截图高度（或短边）的最大值，取值范围：0 和 [32, 4096]，单位：px。<li>当 Width、Height 均为 0，则分辨率同源；</li><li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li><li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li><li>当 Width、Height 均非 0，则分辨率按用户指定。</li>默认值：0。</p>
         # @type Height: Integer
-        # @param ResolutionAdaptive: 分辨率自适应，可选值：
-        # <li>open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；</li>
-        # <li>close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。</li>
-        # 默认值：open。
+        # @param ResolutionAdaptive: <p>分辨率自适应，可选值：</p><li>open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；</li><li>close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。</li>默认值：open。
         # @type ResolutionAdaptive: String
-        # @param Format: 图片格式，取值为 jpg 和 png。默认为 jpg。
+        # @param Format: <p>图片格式，取值为 jpg、png 和 webp。默认为 jpg。</p>
         # @type Format: String
-        # @param Comment: 模板描述信息，长度限制：256 个字符。
+        # @param Comment: <p>模板描述信息，长度限制：256 个字符。</p>
         # @type Comment: String
-        # @param FillType: 填充方式，当视频流配置宽高参数与原始视频的宽高比不一致时，对转码的处理方式，即为“填充”。可选填充方式：
-        # <li> stretch：拉伸，对每一帧进行拉伸，填满整个画面，可能导致转码后的视频被“压扁“或者“拉长“；</li>
-        # <li>black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。</li>
-        # <li>white：留白，保持视频宽高比不变，边缘剩余部分使用白色填充。</li>
-        # <li>gauss：高斯模糊，保持视频宽高比不变，边缘剩余部分使用高斯模糊。</li>
-        # 默认值：black 。
+        # @param FillType: <p>填充方式，当视频流配置宽高参数与原始视频的宽高比不一致时，对转码的处理方式，即为“填充”。可选填充方式：</p><li> stretch：拉伸，对每一帧进行拉伸，填满整个画面，可能导致转码后的视频被“压扁“或者“拉长“；</li><li>black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。</li><li>white：留白，保持视频宽高比不变，边缘剩余部分使用白色填充。</li><li>gauss：高斯模糊，保持视频宽高比不变，边缘剩余部分使用高斯模糊。</li>默认值：black 。
         # @type FillType: String
 
         attr_accessor :SampleType, :SampleInterval, :SubAppId, :Name, :Width, :Height, :ResolutionAdaptive, :Format, :Comment, :FillType
@@ -11424,7 +11402,7 @@ module TencentCloud
 
       # CreateSampleSnapshotTemplate返回参数结构体
       class CreateSampleSnapshotTemplateResponse < TencentCloud::Common::AbstractModel
-        # @param Definition: 采样截图模板唯一标识。
+        # @param Definition: <p>采样截图模板唯一标识。</p>
         # @type Definition: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -11606,39 +11584,21 @@ module TencentCloud
 
       # CreateSnapshotByTimeOffsetTemplate请求参数结构体
       class CreateSnapshotByTimeOffsetTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
+        # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b></p>
         # @type SubAppId: Integer
-        # @param Name: 指定时间点截图模板名称，长度限制：64 个字符。
+        # @param Name: <p>指定时间点截图模板名称，长度限制：64 个字符。</p>
         # @type Name: String
-        # @param Width: 截图宽度（或长边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
-        # <li>当 Width、Height 均为 0，则分辨率同源；</li>
-        # <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
-        # <li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li>
-        # <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
-        # 默认值：0。
+        # @param Width: <p>截图宽度（或长边）的最大值，取值范围：0 和 [32, 4096]，单位：px。<li>当 Width、Height 均为 0，则分辨率同源；</li><li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li><li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li><li>当 Width、Height 均非 0，则分辨率按用户指定。</li>默认值：0。</p>
         # @type Width: Integer
-        # @param Height: 截图高度（或短边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
-        # <li>当 Width、Height 均为 0，则分辨率同源；</li>
-        # <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
-        # <li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li>
-        # <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
-        # 默认值：0。
+        # @param Height: <p>截图高度（或短边）的最大值，取值范围：0 和 [32, 4096]，单位：px。<li>当 Width、Height 均为 0，则分辨率同源；</li><li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li><li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li><li>当 Width、Height 均非 0，则分辨率按用户指定。</li>默认值：0。</p>
         # @type Height: Integer
-        # @param ResolutionAdaptive: 分辨率自适应，可选值：
-        # <li>open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；</li>
-        # <li>close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。</li>
-        # 默认值：open。
+        # @param ResolutionAdaptive: <p>分辨率自适应，可选值：</p><li>open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；</li><li>close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。</li>默认值：open。
         # @type ResolutionAdaptive: String
-        # @param Format: 图片格式，取值可以为 jpg 和 png。默认为 jpg。
+        # @param Format: <p>图片格式，取值为 jpg、png 和 webp。默认为 jpg。</p>
         # @type Format: String
-        # @param Comment: 模板描述信息，长度限制：256 个字符。
+        # @param Comment: <p>模板描述信息，长度限制：256 个字符。</p>
         # @type Comment: String
-        # @param FillType: 填充方式，当视频流配置宽高参数与原始视频的宽高比不一致时，对转码的处理方式，即为“填充”。可选填充方式：
-        # <li> stretch：拉伸，对每一帧进行拉伸，填满整个画面，可能导致转码后的视频被“压扁“或者“拉长“；</li>
-        # <li>black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。</li>
-        # <li>white：留白，保持视频宽高比不变，边缘剩余部分使用白色填充。</li>
-        # <li>gauss：高斯模糊，保持视频宽高比不变，边缘剩余部分使用高斯模糊。</li>
-        # 默认值：black 。
+        # @param FillType: <p>填充方式，当视频流配置宽高参数与原始视频的宽高比不一致时，对转码的处理方式，即为“填充”。可选填充方式：</p><li> stretch：拉伸，对每一帧进行拉伸，填满整个画面，可能导致转码后的视频被“压扁“或者“拉长“；</li><li>black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。</li><li>white：留白，保持视频宽高比不变，边缘剩余部分使用白色填充。</li><li>gauss：高斯模糊，保持视频宽高比不变，边缘剩余部分使用高斯模糊。</li>默认值：black 。
         # @type FillType: String
 
         attr_accessor :SubAppId, :Name, :Width, :Height, :ResolutionAdaptive, :Format, :Comment, :FillType
@@ -11668,7 +11628,7 @@ module TencentCloud
 
       # CreateSnapshotByTimeOffsetTemplate返回参数结构体
       class CreateSnapshotByTimeOffsetTemplateResponse < TencentCloud::Common::AbstractModel
-        # @param Definition: 时间点截图模板唯一标识。
+        # @param Definition: <p>时间点截图模板唯一标识。</p>
         # @type Definition: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -28049,39 +28009,27 @@ module TencentCloud
 
       # ModifySampleSnapshotTemplate请求参数结构体
       class ModifySampleSnapshotTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param Definition: 采样截图模板唯一标识。
+        # @param Definition: <p>采样截图模板唯一标识。</p>
         # @type Definition: Integer
-        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
+        # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b></p>
         # @type SubAppId: Integer
-        # @param Name: 采样截图模板名称，长度限制：64 个字符。
+        # @param Name: <p>采样截图模板名称，长度限制：64 个字符。</p>
         # @type Name: String
-        # @param Width: 截图宽度（或长边）的最大值，取值范围：0 和 [32, 4096]，单位：px。<li>当 Width、Height 均为 0，则分辨率同源；</li><li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li><li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li><li>当 Width、Height 均非 0，则分辨率按用户指定。</li>默认值：0。
+        # @param Width: <p>截图宽度（或长边）的最大值，取值范围：0 和 [32, 4096]，单位：px。<li>当 Width、Height 均为 0，则分辨率同源；</li><li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li><li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li><li>当 Width、Height 均非 0，则分辨率按用户指定。</li>默认值：0。</p>
         # @type Width: Integer
-        # @param Height: 截图高度（或短边）的最大值，取值范围：0 和 [32, 4096]，单位：px。<li>当 Width、Height 均为 0，则分辨率同源；</li><li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li><li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li><li>当 Width、Height 均非 0，则分辨率按用户指定。</li>默认值：0。
+        # @param Height: <p>截图高度（或短边）的最大值，取值范围：0 和 [32, 4096]，单位：px。<li>当 Width、Height 均为 0，则分辨率同源；</li><li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li><li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li><li>当 Width、Height 均非 0，则分辨率按用户指定。</li>默认值：0。</p>
         # @type Height: Integer
-        # @param ResolutionAdaptive: 分辨率自适应，可选值：
-        # <li>open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；</li>
-        # <li>close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。</li>
-        # 默认值：open。
+        # @param ResolutionAdaptive: <p>分辨率自适应，可选值：</p><li>open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；</li><li>close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。</li>默认值：open。
         # @type ResolutionAdaptive: String
-        # @param SampleType: 采样截图类型，取值：
-        # <li>Percent：按百分比。</li>
-        # <li>Time：按时间间隔。</li>
+        # @param SampleType: <p>采样截图类型，取值：</p><li>Percent：按百分比。</li><li>Time：按时间间隔。</li>
         # @type SampleType: String
-        # @param SampleInterval: 采样间隔。
-        # <li>当 SampleType 为 Percent 时，指定采样间隔的百分比。</li>
-        # <li>当 SampleType 为 Time 时，指定采样间隔的时间，单位为秒。</li>
+        # @param SampleInterval: <p>采样间隔。</p><li>当 SampleType 为 Percent 时，指定采样间隔的百分比。</li><li>当 SampleType 为 Time 时，指定采样间隔的时间，单位为秒。</li>
         # @type SampleInterval: Integer
-        # @param Format: 图片格式，取值为 jpg 和 png。
+        # @param Format: <p>图片格式，取值为 jpg、png 和 webp。默认为 jpg。</p>
         # @type Format: String
-        # @param Comment: 模板描述信息，长度限制：256 个字符。
+        # @param Comment: <p>模板描述信息，长度限制：256 个字符。</p>
         # @type Comment: String
-        # @param FillType: 填充方式，当视频流配置宽高参数与原始视频的宽高比不一致时，对转码的处理方式，即为“填充”。可选填充方式：
-        # <li> stretch：拉伸，对每一帧进行拉伸，填满整个画面，可能导致转码后的视频被“压扁“或者“拉长“；</li>
-        # <li>black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。</li>
-        # <li>white：留白，保持视频宽高比不变，边缘剩余部分使用白色填充。</li>
-        # <li>gauss：高斯模糊，保持视频宽高比不变，边缘剩余部分使用高斯模糊。</li>
-        # 默认值：black 。
+        # @param FillType: <p>填充方式，当视频流配置宽高参数与原始视频的宽高比不一致时，对转码的处理方式，即为“填充”。可选填充方式：</p><li> stretch：拉伸，对每一帧进行拉伸，填满整个画面，可能导致转码后的视频被“压扁“或者“拉长“；</li><li>black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。</li><li>white：留白，保持视频宽高比不变，边缘剩余部分使用白色填充。</li><li>gauss：高斯模糊，保持视频宽高比不变，边缘剩余部分使用高斯模糊。</li>默认值：black 。
         # @type FillType: String
 
         attr_accessor :Definition, :SubAppId, :Name, :Width, :Height, :ResolutionAdaptive, :SampleType, :SampleInterval, :Format, :Comment, :FillType
@@ -28133,31 +28081,23 @@ module TencentCloud
 
       # ModifySnapshotByTimeOffsetTemplate请求参数结构体
       class ModifySnapshotByTimeOffsetTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param Definition: 指定时间点截图模板唯一标识。
+        # @param Definition: <p>指定时间点截图模板唯一标识。</p>
         # @type Definition: Integer
-        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
+        # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b></p>
         # @type SubAppId: Integer
-        # @param Name: 指定时间点截图模板名称，长度限制：64 个字符。
+        # @param Name: <p>指定时间点截图模板名称，长度限制：64 个字符。</p>
         # @type Name: String
-        # @param Width: 截图宽度（或长边）的最大值，取值范围：0 和 [32, 4096]，单位：px。<li>当 Width、Height 均为 0，则分辨率同源；</li><li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li><li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li><li>当 Width、Height 均非 0，则分辨率按用户指定。</li>默认值：0。
+        # @param Width: <p>截图宽度（或长边）的最大值，取值范围：0 和 [32, 4096]，单位：px。<li>当 Width、Height 均为 0，则分辨率同源；</li><li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li><li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li><li>当 Width、Height 均非 0，则分辨率按用户指定。</li>默认值：0。</p>
         # @type Width: Integer
-        # @param Height: 截图高度（或短边）的最大值，取值范围：0 和 [32, 4096]，单位：px。<li>当 Width、Height 均为 0，则分辨率同源；</li><li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li><li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li><li>当 Width、Height 均非 0，则分辨率按用户指定。</li>默认值：0。
+        # @param Height: <p>截图高度（或短边）的最大值，取值范围：0 和 [32, 4096]，单位：px。<li>当 Width、Height 均为 0，则分辨率同源；</li><li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li><li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li><li>当 Width、Height 均非 0，则分辨率按用户指定。</li>默认值：0。</p>
         # @type Height: Integer
-        # @param ResolutionAdaptive: 分辨率自适应，可选值：
-        # <li>open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；</li>
-        # <li>close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。</li>
-        # 默认值：open。
+        # @param ResolutionAdaptive: <p>分辨率自适应，可选值：</p><li>open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；</li><li>close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。</li>默认值：open。
         # @type ResolutionAdaptive: String
-        # @param Format: 图片格式，取值可以为 jpg 和 png。
+        # @param Format: <p>图片格式，取值为 jpg、png 和 webp。默认为 jpg。</p>
         # @type Format: String
-        # @param Comment: 模板描述信息，长度限制：256 个字符。
+        # @param Comment: <p>模板描述信息，长度限制：256 个字符。</p>
         # @type Comment: String
-        # @param FillType: 填充方式，当视频流配置宽高参数与原始视频的宽高比不一致时，对转码的处理方式，即为“填充”。可选填充方式：
-        # <li> stretch：拉伸，对每一帧进行拉伸，填满整个画面，可能导致转码后的视频被“压扁“或者“拉长“；</li>
-        # <li>black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。</li>
-        # <li>white：留白，保持视频宽高比不变，边缘剩余部分使用白色填充。</li>
-        # <li>gauss：高斯模糊，保持视频宽高比不变，边缘剩余部分使用高斯模糊。</li>
-        # 默认值：black 。
+        # @param FillType: <p>填充方式，当视频流配置宽高参数与原始视频的宽高比不一致时，对转码的处理方式，即为“填充”。可选填充方式：</p><li> stretch：拉伸，对每一帧进行拉伸，填满整个画面，可能导致转码后的视频被“压扁“或者“拉长“；</li><li>black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。</li><li>white：留白，保持视频宽高比不变，边缘剩余部分使用白色填充。</li><li>gauss：高斯模糊，保持视频宽高比不变，边缘剩余部分使用高斯模糊。</li>默认值：black 。
         # @type FillType: String
 
         attr_accessor :Definition, :SubAppId, :Name, :Width, :Height, :ResolutionAdaptive, :Format, :Comment, :FillType
@@ -35333,10 +35273,12 @@ module TencentCloud
         # @type StreamDomains: Array
         # @param StreamPaths: <p>直播推流Path，当媒资来源是直播录制时有效。</p>
         # @type StreamPaths: Array
+        # @param KnowledgeBases: <p>知识库ID，匹配集合中任意元素。</p>
+        # @type KnowledgeBases: Array
 
-        attr_accessor :SubAppId, :FileIds, :Names, :NamePrefixes, :Descriptions, :ClassIds, :Tags, :Categories, :SourceTypes, :StreamIds, :CreateTime, :ExpireTime, :StorageRegions, :StorageClasses, :MediaTypes, :Status, :ReviewResults, :TrtcSdkAppIds, :TrtcRoomIds, :Filters, :Sort, :Offset, :Limit, :Text, :SourceType, :StreamId, :StartTime, :EndTime, :Vids, :Vid, :StreamDomains, :StreamPaths
+        attr_accessor :SubAppId, :FileIds, :Names, :NamePrefixes, :Descriptions, :ClassIds, :Tags, :Categories, :SourceTypes, :StreamIds, :CreateTime, :ExpireTime, :StorageRegions, :StorageClasses, :MediaTypes, :Status, :ReviewResults, :TrtcSdkAppIds, :TrtcRoomIds, :Filters, :Sort, :Offset, :Limit, :Text, :SourceType, :StreamId, :StartTime, :EndTime, :Vids, :Vid, :StreamDomains, :StreamPaths, :KnowledgeBases
 
-        def initialize(subappid=nil, fileids=nil, names=nil, nameprefixes=nil, descriptions=nil, classids=nil, tags=nil, categories=nil, sourcetypes=nil, streamids=nil, createtime=nil, expiretime=nil, storageregions=nil, storageclasses=nil, mediatypes=nil, status=nil, reviewresults=nil, trtcsdkappids=nil, trtcroomids=nil, filters=nil, sort=nil, offset=nil, limit=nil, text=nil, sourcetype=nil, streamid=nil, starttime=nil, endtime=nil, vids=nil, vid=nil, streamdomains=nil, streampaths=nil)
+        def initialize(subappid=nil, fileids=nil, names=nil, nameprefixes=nil, descriptions=nil, classids=nil, tags=nil, categories=nil, sourcetypes=nil, streamids=nil, createtime=nil, expiretime=nil, storageregions=nil, storageclasses=nil, mediatypes=nil, status=nil, reviewresults=nil, trtcsdkappids=nil, trtcroomids=nil, filters=nil, sort=nil, offset=nil, limit=nil, text=nil, sourcetype=nil, streamid=nil, starttime=nil, endtime=nil, vids=nil, vid=nil, streamdomains=nil, streampaths=nil, knowledgebases=nil)
           @SubAppId = subappid
           @FileIds = fileids
           @Names = names
@@ -35369,6 +35311,7 @@ module TencentCloud
           @Vid = vid
           @StreamDomains = streamdomains
           @StreamPaths = streampaths
+          @KnowledgeBases = knowledgebases
         end
 
         def deserialize(params)
@@ -35413,6 +35356,7 @@ module TencentCloud
           @Vid = params['Vid']
           @StreamDomains = params['StreamDomains']
           @StreamPaths = params['StreamPaths']
+          @KnowledgeBases = params['KnowledgeBases']
         end
       end
 
