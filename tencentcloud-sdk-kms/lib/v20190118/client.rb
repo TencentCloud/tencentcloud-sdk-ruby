@@ -1446,6 +1446,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 对指定的CMK（用户主密钥）执行立即轮转操作。可以通过调用DescribeKey，返回上次轮转时间和下次轮转时间，判断是否轮转成功。
+
+        # @param request: Request instance for RotateKey.
+        # @type request: :class:`Tencentcloud::kms::V20190118::RotateKeyRequest`
+        # @rtype: :class:`Tencentcloud::kms::V20190118::RotateKeyResponse`
+        def RotateKey(request)
+          body = send_request('RotateKey', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RotateKeyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 计划删除数据密钥
 
         # @param request: Request instance for ScheduleDataKeyDeletion.

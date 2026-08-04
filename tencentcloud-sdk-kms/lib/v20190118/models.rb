@@ -3342,6 +3342,49 @@ module TencentCloud
         end
       end
 
+      # RotateKey请求参数结构体
+      class RotateKeyRequest < TencentCloud::Common::AbstractModel
+        # @param KeyId: <p>CMK的全局唯一标识符</p>
+        # @type KeyId: String
+        # @param MemberAccount: <p>成员账号信息，用于多账号场景</p>
+        # @type MemberAccount: :class:`Tencentcloud::Kms.v20190118.models.MemberAccount`
+
+        attr_accessor :KeyId, :MemberAccount
+
+        def initialize(keyid=nil, memberaccount=nil)
+          @KeyId = keyid
+          @MemberAccount = memberaccount
+        end
+
+        def deserialize(params)
+          @KeyId = params['KeyId']
+          unless params['MemberAccount'].nil?
+            @MemberAccount = MemberAccount.new
+            @MemberAccount.deserialize(params['MemberAccount'])
+          end
+        end
+      end
+
+      # RotateKey返回参数结构体
+      class RotateKeyResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>轮转任务ID，用于标识本次轮转任务。可以通过调用DescribeKey，返回上次轮转时间和下次轮转时间，判断是否轮转成功。</p>
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ScheduleDataKeyDeletion请求参数结构体
       class ScheduleDataKeyDeletionRequest < TencentCloud::Common::AbstractModel
         # @param DataKeyId: 数据密钥的唯一标志符

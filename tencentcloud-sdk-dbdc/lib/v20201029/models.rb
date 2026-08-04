@@ -198,10 +198,12 @@ module TencentCloud
         # @type ClientToken: String
         # @param DryRun: <p>试运行开关，true 时只执行参数校验，不发起创建流程，默认 false</p>
         # @type DryRun: Boolean
+        # @param DeletionProtection: <p>是否启用集群删除保护</p><p>枚举值：</p><ul><li>true： 启用</li><li>false： 不启用</li></ul><p>默认值：true</p>
+        # @type DeletionProtection: Boolean
 
-        attr_accessor :ContainerNetwork, :ClusterName, :ApiServerNetwork, :ClusterDescription, :Tags, :ClientToken, :DryRun
+        attr_accessor :ContainerNetwork, :ClusterName, :ApiServerNetwork, :ClusterDescription, :Tags, :ClientToken, :DryRun, :DeletionProtection
 
-        def initialize(containernetwork=nil, clustername=nil, apiservernetwork=nil, clusterdescription=nil, tags=nil, clienttoken=nil, dryrun=nil)
+        def initialize(containernetwork=nil, clustername=nil, apiservernetwork=nil, clusterdescription=nil, tags=nil, clienttoken=nil, dryrun=nil, deletionprotection=nil)
           @ContainerNetwork = containernetwork
           @ClusterName = clustername
           @ApiServerNetwork = apiservernetwork
@@ -209,6 +211,7 @@ module TencentCloud
           @Tags = tags
           @ClientToken = clienttoken
           @DryRun = dryrun
+          @DeletionProtection = deletionprotection
         end
 
         def deserialize(params)
@@ -232,6 +235,7 @@ module TencentCloud
           end
           @ClientToken = params['ClientToken']
           @DryRun = params['DryRun']
+          @DeletionProtection = params['DeletionProtection']
         end
       end
 
@@ -422,10 +426,12 @@ module TencentCloud
         # @param Tags: <p>集群的标签信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
+        # @param DeletionProtection: <p>是否启用集群删除保护</p><p>枚举值：</p><ul><li>true： 启用</li><li>false： 不启用</li></ul>
+        # @type DeletionProtection: Boolean
 
-        attr_accessor :ClusterId, :ClusterName, :Region, :ClusterLevel, :ClusterStatus, :ClusterVersion, :ClusterNodeNum, :ClusterDescription, :CreatedTime, :Tags
+        attr_accessor :ClusterId, :ClusterName, :Region, :ClusterLevel, :ClusterStatus, :ClusterVersion, :ClusterNodeNum, :ClusterDescription, :CreatedTime, :Tags, :DeletionProtection
 
-        def initialize(clusterid=nil, clustername=nil, region=nil, clusterlevel=nil, clusterstatus=nil, clusterversion=nil, clusternodenum=nil, clusterdescription=nil, createdtime=nil, tags=nil)
+        def initialize(clusterid=nil, clustername=nil, region=nil, clusterlevel=nil, clusterstatus=nil, clusterversion=nil, clusternodenum=nil, clusterdescription=nil, createdtime=nil, tags=nil, deletionprotection=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @Region = region
@@ -436,6 +442,7 @@ module TencentCloud
           @ClusterDescription = clusterdescription
           @CreatedTime = createdtime
           @Tags = tags
+          @DeletionProtection = deletionprotection
         end
 
         def deserialize(params)
@@ -456,6 +463,7 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @DeletionProtection = params['DeletionProtection']
         end
       end
 
@@ -990,12 +998,14 @@ module TencentCloud
         # @param ContainerNetwork: <p>容器网络，在此集群中的所有Pod将与此网络连通</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContainerNetwork: :class:`Tencentcloud::Dbdc.v20201029.models.ContainerNetwork`
+        # @param DeletionProtection: <p>是否启用集群删除保护</p><p>枚举值：</p><ul><li>true： 启用</li><li>false： 不启用</li></ul>
+        # @type DeletionProtection: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ClusterId, :ClusterName, :ClusterDescription, :Region, :ClusterStatus, :ClusterVersion, :ClusterNodeNum, :ClusterLevel, :CreatedTime, :Tags, :ApiServerNetwork, :ContainerNetwork, :RequestId
+        attr_accessor :ClusterId, :ClusterName, :ClusterDescription, :Region, :ClusterStatus, :ClusterVersion, :ClusterNodeNum, :ClusterLevel, :CreatedTime, :Tags, :ApiServerNetwork, :ContainerNetwork, :DeletionProtection, :RequestId
 
-        def initialize(clusterid=nil, clustername=nil, clusterdescription=nil, region=nil, clusterstatus=nil, clusterversion=nil, clusternodenum=nil, clusterlevel=nil, createdtime=nil, tags=nil, apiservernetwork=nil, containernetwork=nil, requestid=nil)
+        def initialize(clusterid=nil, clustername=nil, clusterdescription=nil, region=nil, clusterstatus=nil, clusterversion=nil, clusternodenum=nil, clusterlevel=nil, createdtime=nil, tags=nil, apiservernetwork=nil, containernetwork=nil, deletionprotection=nil, requestid=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @ClusterDescription = clusterdescription
@@ -1008,6 +1018,7 @@ module TencentCloud
           @Tags = tags
           @ApiServerNetwork = apiservernetwork
           @ContainerNetwork = containernetwork
+          @DeletionProtection = deletionprotection
           @RequestId = requestid
         end
 
@@ -1037,6 +1048,7 @@ module TencentCloud
             @ContainerNetwork = ContainerNetwork.new
             @ContainerNetwork.deserialize(params['ContainerNetwork'])
           end
+          @DeletionProtection = params['DeletionProtection']
           @RequestId = params['RequestId']
         end
       end

@@ -581,6 +581,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 变配校验：判断用户的目标配置是否可以执行变配。校验逻辑：对于缩容场景（目标值 < 当前值），检查 default 队列的 min 值是否足够承受缩容差值。
+
+        # @param request: Request instance for CheckModifyPartition.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::CheckModifyPartitionRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::CheckModifyPartitionResponse`
+        def CheckModifyPartition(request)
+          body = send_request('CheckModifyPartition', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CheckModifyPartitionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 资源队列名称合法性检测：校验队列名称是否合法，包括非空校验、格式校验（以小写字母开头，只允许小写字母、数字和连字符，长度1~11）和同分区下重名校验。
+
+        # @param request: Request instance for CheckQueueName.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::CheckQueueNameRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::CheckQueueNameResponse`
+        def CheckQueueName(request)
+          body = send_request('CheckQueueName', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CheckQueueNameResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 校验资源名称合法性
+
+        # @param request: Request instance for CheckResourceName.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::CheckResourceNameRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::CheckResourceNameResponse`
+        def CheckResourceName(request)
+          body = send_request('CheckResourceName', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CheckResourceNameResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 复制一份已有的作业配置
 
         # @param request: Request instance for CopyJobSpec.
@@ -845,6 +917,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建推理模型（模型上传）
+
+        # @param request: Request instance for CreateInferenceModel.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::CreateInferenceModelRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::CreateInferenceModelResponse`
+        def CreateInferenceModel(request)
+          body = send_request('CreateInferenceModel', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateInferenceModelResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建托管存储内表（该接口已废弃）
 
         # @param request: Request instance for CreateInternalTable.
@@ -999,6 +1095,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateNotebookSessionStatementSupportBatchSQLResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 新增资源包
+
+        # @param request: Request instance for CreatePartition.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::CreatePartitionRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::CreatePartitionResponse`
+        def CreatePartition(request)
+          body = send_request('CreatePartition', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreatePartitionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 新增资源队列：在指定分区下创建一个新的资源队列，支持设置队列名称、描述、资源规格列表和队列类型。
+
+        # @param request: Request instance for CreatePartitionQueue.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::CreatePartitionQueueRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::CreatePartitionQueueResponse`
+        def CreatePartitionQueue(request)
+          body = send_request('CreatePartitionQueue', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreatePartitionQueueResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1697,6 +1841,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteNotebookSessionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除资源队列
+
+        # @param request: Request instance for DeletePartitionQueue.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DeletePartitionQueueRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DeletePartitionQueueResponse`
+        def DeletePartitionQueue(request)
+          body = send_request('DeletePartitionQueue', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeletePartitionQueueResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2551,6 +2719,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 分页查询指定分区的流程详情列表，包含每个流程的基本信息和活动列表
+
+        # @param request: Request instance for DescribeFlowDetailList.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeFlowDetailListRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DescribeFlowDetailListResponse`
+        def DescribeFlowDetailList(request)
+          body = send_request('DescribeFlowDetailList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeFlowDetailListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询指定分区的流程列表
+
+        # @param request: Request instance for DescribeFlowList.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeFlowListRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DescribeFlowListResponse`
+        def DescribeFlowList(request)
+          body = send_request('DescribeFlowList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeFlowListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeForbiddenTablePro）用于查询被禁用的表属性列表（新）
 
         # @param request: Request instance for DescribeForbiddenTablePro.
@@ -2935,6 +3151,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取指定资源分区详情
+
+        # @param request: Request instance for DescribePartitionDetail.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DescribePartitionDetailRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DescribePartitionDetailResponse`
+        def DescribePartitionDetail(request)
+          body = send_request('DescribePartitionDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePartitionDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询指定分区的所有队列列表
+
+        # @param request: Request instance for DescribePartitionQueues.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DescribePartitionQueuesRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DescribePartitionQueuesResponse`
+        def DescribePartitionQueues(request)
+          body = send_request('DescribePartitionQueues', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePartitionQueuesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取分区列表信息
+
+        # @param request: Request instance for DescribePartitions.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DescribePartitionsRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DescribePartitionsResponse`
+        def DescribePartitions(request)
+          body = send_request('DescribePartitions', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePartitionsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口根据资源组ID查询资源组CU使用情况
 
         # @param request: Request instance for DescribeResourceGroupUsageInfo.
@@ -2969,6 +3257,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeResultDownloadResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询可售卖的地域列表，仅返回状态为AVAILABLE的地域
+
+        # @param request: Request instance for DescribeSaleRegions.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeSaleRegionsRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DescribeSaleRegionsResponse`
+        def DescribeSaleRegions(request)
+          body = send_request('DescribeSaleRegions', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSaleRegionsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询当前地域可售卖的资源规格和最大配额
+
+        # @param request: Request instance for DescribeSaleResourceInfo.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeSaleResourceInfoRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DescribeSaleResourceInfoResponse`
+        def DescribeSaleResourceInfo(request)
+          body = send_request('DescribeSaleResourceInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSaleResourceInfoResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -4135,6 +4471,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取单个模型详情
+
+        # @param request: Request instance for GetInferenceModel.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::GetInferenceModelRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::GetInferenceModelResponse`
+        def GetInferenceModel(request)
+          body = send_request('GetInferenceModel', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetInferenceModelResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 根据配置ID获取作业配置详情
 
         # @param request: Request instance for GetJobSpec.
@@ -4879,6 +5239,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 列出推理模型（支持关键词过滤 + 分页）
+
+        # @param request: Request instance for ListInferenceModels.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::ListInferenceModelsRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::ListInferenceModelsResponse`
+        def ListInferenceModels(request)
+          body = send_request('ListInferenceModels', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListInferenceModelsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 分页查询作业配置列表
 
         # @param request: Request instance for ListJobSpecs.
@@ -5225,6 +5609,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyLabPriorityResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改分区描述
+
+        # @param request: Request instance for ModifyPartitionDescription.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::ModifyPartitionDescriptionRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::ModifyPartitionDescriptionResponse`
+        def ModifyPartitionDescription(request)
+          body = send_request('ModifyPartitionDescription', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyPartitionDescriptionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 编辑资源队列：根据队列ID修改指定资源队列的名称、描述、资源规格列表和队列类型等信息。
+
+        # @param request: Request instance for ModifyPartitionQueue.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::ModifyPartitionQueueRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::ModifyPartitionQueueResponse`
+        def ModifyPartitionQueue(request)
+          body = send_request('ModifyPartitionQueue', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyPartitionQueueResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -6017,6 +6449,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpdateEngineResourceGroupNetworkConfigInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新推理模型（编辑标签、描述、参数量）
+
+        # @param request: Request instance for UpdateInferenceModel.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::UpdateInferenceModelRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::UpdateInferenceModelResponse`
+        def UpdateInferenceModel(request)
+          body = send_request('UpdateInferenceModel', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateInferenceModelResponse.new
             model.deserialize(response['Response'])
             model
           else

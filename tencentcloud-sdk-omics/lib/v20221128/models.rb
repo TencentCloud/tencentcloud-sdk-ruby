@@ -136,8 +136,8 @@ module TencentCloud
 
         attr_accessor :Type, :ApplicationVersionId, :Name, :Description, :Entrypoint, :CreateTime, :CreatorName, :CreatorId, :GitInfo, :GitSource, :CosSource
         extend Gem::Deprecate
-        deprecate :GitInfo, :none, 2026, 6
-        deprecate :GitInfo=, :none, 2026, 6
+        deprecate :GitInfo, :none, 2026, 8
+        deprecate :GitInfo=, :none, 2026, 8
 
         def initialize(type=nil, applicationversionid=nil, name=nil, description=nil, entrypoint=nil, createtime=nil, creatorname=nil, creatorid=nil, gitinfo=nil, gitsource=nil, cossource=nil)
           @Type = type
@@ -450,6 +450,50 @@ module TencentCloud
 
         def deserialize(params)
           @Zone = params['Zone']
+        end
+      end
+
+      # DeleteEnvironmentCache请求参数结构体
+      class DeleteEnvironmentCacheRequest < TencentCloud::Common::AbstractModel
+        # @param EnvironmentId: <p>环境ID。</p>
+        # @type EnvironmentId: String
+        # @param CacheType: <p>缓存类型</p><p>枚举值：</p><ul><li>RUNTIME： 清理默认缓存卷的运行缓存目录</li><li>INPUT： 清理默认缓存卷的输入缓存目录</li><li>ALL： 清空环境下全部有效缓存卷</li><li>PATH： 指定缓存卷下指定路径，需要在Path中填入实际绝对路径</li></ul>
+        # @type CacheType: String
+        # @param Path: <p>指定路径删除</p><p>入参限制：以盘符开头的绝对路径地址</p>
+        # @type Path: String
+
+        attr_accessor :EnvironmentId, :CacheType, :Path
+
+        def initialize(environmentid=nil, cachetype=nil, path=nil)
+          @EnvironmentId = environmentid
+          @CacheType = cachetype
+          @Path = path
+        end
+
+        def deserialize(params)
+          @EnvironmentId = params['EnvironmentId']
+          @CacheType = params['CacheType']
+          @Path = params['Path']
+        end
+      end
+
+      # DeleteEnvironmentCache返回参数结构体
+      class DeleteEnvironmentCacheResponse < TencentCloud::Common::AbstractModel
+        # @param WorkflowUuid: <p>工作流UUID。</p>
+        # @type WorkflowUuid: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :WorkflowUuid, :RequestId
+
+        def initialize(workflowuuid=nil, requestid=nil)
+          @WorkflowUuid = workflowuuid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @WorkflowUuid = params['WorkflowUuid']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -2860,8 +2904,8 @@ module TencentCloud
 
         attr_accessor :RunUuid, :ProjectId, :ApplicationId, :RunGroupId, :EnvironmentId, :UserDefinedId, :TableId, :TableRowUuid, :Status, :Input, :Option, :ExecutionTime, :Cache, :ErrorMessage, :CreateTime, :UpdateTime
         extend Gem::Deprecate
-        deprecate :Option, :none, 2026, 6
-        deprecate :Option=, :none, 2026, 6
+        deprecate :Option, :none, 2026, 8
+        deprecate :Option=, :none, 2026, 8
 
         def initialize(runuuid=nil, projectid=nil, applicationid=nil, rungroupid=nil, environmentid=nil, userdefinedid=nil, tableid=nil, tablerowuuid=nil, status=nil, input=nil, option=nil, executiontime=nil, cache=nil, errormessage=nil, createtime=nil, updatetime=nil)
           @RunUuid = runuuid

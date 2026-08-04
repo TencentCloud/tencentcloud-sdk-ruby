@@ -279,6 +279,50 @@ module TencentCloud
         end
       end
 
+      # MQTT集群用户信息
+      class BlockRuleItem < TencentCloud::Common::AbstractModel
+        # @param Name: <p>封禁策略名</p>
+        # @type Name: String
+        # @param Type: <p>封禁策略类型</p>
+        # @type Type: Integer
+        # @param Remark: <p>备注信息</p>
+        # @type Remark: String
+        # @param Include: <p>包含规则</p>
+        # @type Include: String
+        # @param Excludes: <p>排除规则</p>
+        # @type Excludes: Array
+        # @param ExpireTime: <p>过期时间，毫秒级时间戳 。</p>
+        # @type ExpireTime: Integer
+        # @param UpdateTime: <p>修改时间，毫秒级时间戳 。</p>
+        # @type UpdateTime: Integer
+        # @param CreateTime: <p>创建时间，毫秒级时间戳 。</p>
+        # @type CreateTime: Integer
+
+        attr_accessor :Name, :Type, :Remark, :Include, :Excludes, :ExpireTime, :UpdateTime, :CreateTime
+
+        def initialize(name=nil, type=nil, remark=nil, include=nil, excludes=nil, expiretime=nil, updatetime=nil, createtime=nil)
+          @Name = name
+          @Type = type
+          @Remark = remark
+          @Include = include
+          @Excludes = excludes
+          @ExpireTime = expiretime
+          @UpdateTime = updatetime
+          @CreateTime = createtime
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Type = params['Type']
+          @Remark = params['Remark']
+          @Include = params['Include']
+          @Excludes = params['Excludes']
+          @ExpireTime = params['ExpireTime']
+          @UpdateTime = params['UpdateTime']
+          @CreateTime = params['CreateTime']
+        end
+      end
+
       # HTTP 认证器body
       class BodyItem < TencentCloud::Common::AbstractModel
         # @param Key: body key
@@ -464,6 +508,73 @@ module TencentCloud
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @Id = params['Id']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateBlockRule请求参数结构体
+      class CreateBlockRuleRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
+        # @type InstanceId: String
+        # @param Name: 封禁规则名，不可重复，只支持数字字母中划线
+        # @type Name: String
+        # @param Type: 封禁规则类型
+        #     CLIENT_ID(1), 默认值
+        #     USERNAME(2),
+        #     IP_ADDRESS(3);
+        # @type Type: Integer
+        # @param Include: 包含表达式支持*（多个字符）和？（一个字符）
+        # @type Include: String
+        # @param Excludes: 排除表达式支持*（多个字符）和？（一个字符），最多三条。
+        # @type Excludes: Array
+        # @param ExpireTime: 过期时间，毫秒级时间戳
+        # @type ExpireTime: Integer
+        # @param Remark: 备注，最长 128 字符
+        # @type Remark: String
+
+        attr_accessor :InstanceId, :Name, :Type, :Include, :Excludes, :ExpireTime, :Remark
+
+        def initialize(instanceid=nil, name=nil, type=nil, include=nil, excludes=nil, expiretime=nil, remark=nil)
+          @InstanceId = instanceid
+          @Name = name
+          @Type = type
+          @Include = include
+          @Excludes = excludes
+          @ExpireTime = expiretime
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Name = params['Name']
+          @Type = params['Type']
+          @Include = params['Include']
+          @Excludes = params['Excludes']
+          @ExpireTime = params['ExpireTime']
+          @Remark = params['Remark']
+        end
+      end
+
+      # CreateBlockRule返回参数结构体
+      class CreateBlockRuleResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Name: 封禁规则名
+        # @type Name: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceId, :Name, :RequestId
+
+        def initialize(instanceid=nil, name=nil, requestid=nil)
+          @InstanceId = instanceid
+          @Name = name
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Name = params['Name']
           @RequestId = params['RequestId']
         end
       end
@@ -1207,6 +1318,42 @@ module TencentCloud
         end
       end
 
+      # DeleteBlockRule请求参数结构体
+      class DeleteBlockRuleRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param BlockRuleName: 封禁规则名
+        # @type BlockRuleName: String
+
+        attr_accessor :InstanceId, :BlockRuleName
+
+        def initialize(instanceid=nil, blockrulename=nil)
+          @InstanceId = instanceid
+          @BlockRuleName = blockrulename
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @BlockRuleName = params['BlockRuleName']
+        end
+      end
+
+      # DeleteBlockRule返回参数结构体
+      class DeleteBlockRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteCaCertificate请求参数结构体
       class DeleteCaCertificateRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
@@ -1614,6 +1761,53 @@ module TencentCloud
               authorizationpolicyitem_tmp = AuthorizationPolicyItem.new
               authorizationpolicyitem_tmp.deserialize(i)
               @Data << authorizationpolicyitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBlockRuleList请求参数结构体
+      class DescribeBlockRuleListRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeBlockRuleList返回参数结构体
+      class DescribeBlockRuleListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+        # @param Data: 封禁规则列表
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Data, :RequestId
+
+        def initialize(totalcount=nil, data=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              blockruleitem_tmp = BlockRuleItem.new
+              blockruleitem_tmp.deserialize(i)
+              @Data << blockruleitem_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -2536,8 +2730,8 @@ module TencentCloud
 
         attr_accessor :InstanceType, :InstanceId, :InstanceName, :TopicNum, :TopicNumLimit, :TpsLimit, :CreatedTime, :Remark, :InstanceStatus, :SkuCode, :MaxSubscriptionPerClient, :AuthorizationPolicyLimit, :ClientNumLimit, :DeviceCertificateProvisionType, :AutomaticActivation, :RenewFlag, :PayMode, :ExpiryTime, :DestroyTime, :X509Mode, :MaxCaNum, :RegistrationCode, :MaxSubscription, :AuthorizationPolicy, :SharedSubscriptionGroupLimit, :MaxTopicFilterPerSharedSubscriptionGroup, :AutoSubscriptionPolicyLimit, :MaxTopicFilterPerAutoSubscriptionPolicy, :UseDefaultServerCert, :TrustedCaLimit, :ServerCertLimit, :TopicPrefixSlashLimit, :MessageRate, :TransportLayerSecurity, :MessageEnrichmentRuleLimit, :BlockRuleLimit, :DeleteProtect, :EventDialect, :HashMessagePolicy, :RequestId
         extend Gem::Deprecate
-        deprecate :MaxTopicFilterPerSharedSubscriptionGroup, :none, 2026, 7
-        deprecate :MaxTopicFilterPerSharedSubscriptionGroup=, :none, 2026, 7
+        deprecate :MaxTopicFilterPerSharedSubscriptionGroup, :none, 2026, 8
+        deprecate :MaxTopicFilterPerSharedSubscriptionGroup=, :none, 2026, 8
 
         def initialize(instancetype=nil, instanceid=nil, instancename=nil, topicnum=nil, topicnumlimit=nil, tpslimit=nil, createdtime=nil, remark=nil, instancestatus=nil, skucode=nil, maxsubscriptionperclient=nil, authorizationpolicylimit=nil, clientnumlimit=nil, devicecertificateprovisiontype=nil, automaticactivation=nil, renewflag=nil, paymode=nil, expirytime=nil, destroytime=nil, x509mode=nil, maxcanum=nil, registrationcode=nil, maxsubscription=nil, authorizationpolicy=nil, sharedsubscriptiongrouplimit=nil, maxtopicfilterpersharedsubscriptiongroup=nil, autosubscriptionpolicylimit=nil, maxtopicfilterperautosubscriptionpolicy=nil, usedefaultservercert=nil, trustedcalimit=nil, servercertlimit=nil, topicprefixslashlimit=nil, messagerate=nil, transportlayersecurity=nil, messageenrichmentrulelimit=nil, blockrulelimit=nil, deleteprotect=nil, eventdialect=nil, hashmessagepolicy=nil, requestid=nil)
           @InstanceType = instancetype
@@ -4118,8 +4312,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :InstanceName, :Version, :InstanceType, :InstanceStatus, :TopicNumLimit, :Remark, :TopicNum, :SkuCode, :TpsLimit, :CreateTime, :MaxSubscriptionPerClient, :ClientNumLimit, :RenewFlag, :PayMode, :ExpiryTime, :DestroyTime, :AuthorizationPolicyLimit, :MaxCaNum, :MaxSubscription, :SharedSubscriptionGroupLimit, :MaxTopicFilterPerSharedSubscriptionGroup, :AutoSubscriptionPolicyLimit, :MaxTopicFilterPerAutoSubscriptionPolicy, :DeleteProtect
         extend Gem::Deprecate
-        deprecate :MaxTopicFilterPerSharedSubscriptionGroup, :none, 2026, 7
-        deprecate :MaxTopicFilterPerSharedSubscriptionGroup=, :none, 2026, 7
+        deprecate :MaxTopicFilterPerSharedSubscriptionGroup, :none, 2026, 8
+        deprecate :MaxTopicFilterPerSharedSubscriptionGroup=, :none, 2026, 8
 
         def initialize(instanceid=nil, instancename=nil, version=nil, instancetype=nil, instancestatus=nil, topicnumlimit=nil, remark=nil, topicnum=nil, skucode=nil, tpslimit=nil, createtime=nil, maxsubscriptionperclient=nil, clientnumlimit=nil, renewflag=nil, paymode=nil, expirytime=nil, destroytime=nil, authorizationpolicylimit=nil, maxcanum=nil, maxsubscription=nil, sharedsubscriptiongrouplimit=nil, maxtopicfilterpersharedsubscriptiongroup=nil, autosubscriptionpolicylimit=nil, maxtopicfilterperautosubscriptionpolicy=nil, deleteprotect=nil)
           @InstanceId = instanceid
@@ -4236,12 +4430,12 @@ module TencentCloud
 
         attr_accessor :MsgId, :Tags, :Keys, :ProducerAddr, :ProduceTime, :DeadLetterResendTimes, :DeadLetterResendSuccessTimes, :SubTopic, :Qos
         extend Gem::Deprecate
-        deprecate :DeadLetterResendTimes, :none, 2026, 7
-        deprecate :DeadLetterResendTimes=, :none, 2026, 7
-        deprecate :DeadLetterResendSuccessTimes, :none, 2026, 7
-        deprecate :DeadLetterResendSuccessTimes=, :none, 2026, 7
-        deprecate :SubTopic, :none, 2026, 7
-        deprecate :SubTopic=, :none, 2026, 7
+        deprecate :DeadLetterResendTimes, :none, 2026, 8
+        deprecate :DeadLetterResendTimes=, :none, 2026, 8
+        deprecate :DeadLetterResendSuccessTimes, :none, 2026, 8
+        deprecate :DeadLetterResendSuccessTimes=, :none, 2026, 8
+        deprecate :SubTopic, :none, 2026, 8
+        deprecate :SubTopic=, :none, 2026, 8
 
         def initialize(msgid=nil, tags=nil, keys=nil, produceraddr=nil, producetime=nil, deadletterresendtimes=nil, deadletterresendsuccesstimes=nil, subtopic=nil, qos=nil)
           @MsgId = msgid
@@ -4482,6 +4676,58 @@ module TencentCloud
 
       # ModifyAuthorizationPolicy返回参数结构体
       class ModifyAuthorizationPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyBlockRule请求参数结构体
+      class ModifyBlockRuleRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
+        # @type InstanceId: String
+        # @param Name: 待修改的封禁规则名
+        # @type Name: String
+        # @param Include: 包含表达式支持*（多个字符）和？（一个字符）
+        # @type Include: String
+        # @param Excludes: 排除表达式支持*（多个字符）和？（一个字符），最多三条。
+        # @type Excludes: Array
+        # @param ExpireTime: 过期时间，毫秒级时间戳
+        # @type ExpireTime: Integer
+        # @param Remark: 备注，最长 128 字符
+        # @type Remark: String
+
+        attr_accessor :InstanceId, :Name, :Include, :Excludes, :ExpireTime, :Remark
+
+        def initialize(instanceid=nil, name=nil, include=nil, excludes=nil, expiretime=nil, remark=nil)
+          @InstanceId = instanceid
+          @Name = name
+          @Include = include
+          @Excludes = excludes
+          @ExpireTime = expiretime
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Name = params['Name']
+          @Include = params['Include']
+          @Excludes = params['Excludes']
+          @ExpireTime = params['ExpireTime']
+          @Remark = params['Remark']
+        end
+      end
+
+      # ModifyBlockRule返回参数结构体
+      class ModifyBlockRuleResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -4901,8 +5147,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :Algorithm, :From, :Secret, :PublicKey, :Status, :Remark, :Text
         extend Gem::Deprecate
-        deprecate :Text, :none, 2026, 7
-        deprecate :Text=, :none, 2026, 7
+        deprecate :Text, :none, 2026, 8
+        deprecate :Text=, :none, 2026, 8
 
         def initialize(instanceid=nil, algorithm=nil, from=nil, secret=nil, publickey=nil, status=nil, remark=nil, text=nil)
           @InstanceId = instanceid

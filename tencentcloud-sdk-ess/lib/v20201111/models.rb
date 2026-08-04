@@ -6841,30 +6841,34 @@ module TencentCloud
 
       # CreatePrepareFlowGroup请求参数结构体
       class CreatePrepareFlowGroupRequest < TencentCloud::Common::AbstractModel
-        # @param Operator: 执行本接口操作的员工信息。
-        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @param Operator: <p>执行本接口操作的员工信息。<br>注: <code>在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。</code></p>
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param FlowGroupName: 合同（流程）组名称（可自定义此名称），长度不能超过200，只能由中文、字母、数字和下划线组成。
+        # @param FlowGroupName: <p>合同（流程）组名称（可自定义此名称），长度不能超过200，只能由中文、字母、数字和下划线组成。</p>
         # @type FlowGroupName: String
-        # @param FlowGroupInfos: 合同（流程）组的子合同信息，支持2-50个子合同
+        # @param FlowGroupInfos: <p>合同（流程）组的子合同信息，支持2-50个子合同</p>
         # @type FlowGroupInfos: Array
-        # @param ResourceType: 资源类型，取值有： <ul><li> **1**：模板</li> <li> **2**：文件</li></ul>
+        # @param ResourceType: <p>资源类型，取值有： <ul><li> <strong>1</strong>：模板</li> <li> <strong>2</strong>：文件</li></ul></p>
         # @type ResourceType: Integer
-        # @param Agent: 代理企业和员工的信息。
-        # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        # @param Agent: <p>代理企业和员工的信息。<br>在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。</p>
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
-        # @param FlowGroupOptions: 合同组发起控制参数，当前仅支持FlowGroupNeedWorkflow，表示开启嵌入式合同组发起审批
+        # @param FlowGroupOptions: <p>合同组发起控制参数，例如FlowGroupNeedWorkflow，表示开启嵌入式合同组发起审批</p>
         # @type FlowGroupOptions: :class:`Tencentcloud::Ess.v20201111.models.FlowGroupOptions`
+        # @param FlowGroupType: <p>合同组类型，发起合同组后会应用到所有子合同</p>
+        # @type FlowGroupType: String
+        # @param FlowGroupDeadline: <p>合同组过期时间，发起合同组后会应用到所有子合同</p>
+        # @type FlowGroupDeadline: Integer
 
-        attr_accessor :Operator, :FlowGroupName, :FlowGroupInfos, :ResourceType, :Agent, :FlowGroupOptions
+        attr_accessor :Operator, :FlowGroupName, :FlowGroupInfos, :ResourceType, :Agent, :FlowGroupOptions, :FlowGroupType, :FlowGroupDeadline
 
-        def initialize(operator=nil, flowgroupname=nil, flowgroupinfos=nil, resourcetype=nil, agent=nil, flowgroupoptions=nil)
+        def initialize(operator=nil, flowgroupname=nil, flowgroupinfos=nil, resourcetype=nil, agent=nil, flowgroupoptions=nil, flowgrouptype=nil, flowgroupdeadline=nil)
           @Operator = operator
           @FlowGroupName = flowgroupname
           @FlowGroupInfos = flowgroupinfos
           @ResourceType = resourcetype
           @Agent = agent
           @FlowGroupOptions = flowgroupoptions
+          @FlowGroupType = flowgrouptype
+          @FlowGroupDeadline = flowgroupdeadline
         end
 
         def deserialize(params)
@@ -6890,14 +6894,16 @@ module TencentCloud
             @FlowGroupOptions = FlowGroupOptions.new
             @FlowGroupOptions.deserialize(params['FlowGroupOptions'])
           end
+          @FlowGroupType = params['FlowGroupType']
+          @FlowGroupDeadline = params['FlowGroupDeadline']
         end
       end
 
       # CreatePrepareFlowGroup返回参数结构体
       class CreatePrepareFlowGroupResponse < TencentCloud::Common::AbstractModel
-        # @param FlowGroupId: 合同(流程)组的合同组Id
+        # @param FlowGroupId: <p>合同(流程)组的合同组Id</p>
         # @type FlowGroupId: String
-        # @param PrepareUrl: 嵌入式合同组发起链接
+        # @param PrepareUrl: <p>嵌入式合同组发起链接</p>
         # @type PrepareUrl: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -13837,29 +13843,46 @@ module TencentCloud
 
       # 此结构体(FlowGroupOptions)描述的是合同组的个性化配置，支持控制是否发送短信、未实名个人签署方查看合同组时是否需要实名认证（仅在合同组文件发起配置时生效）
       class FlowGroupOptions < TencentCloud::Common::AbstractModel
-        # @param ApproverVerifyType: 签署人校验方式,支持以下类型
-        # <ul><li>VerifyCheck : 人脸识别 (默认值)</li>
-        # <li>MobileCheck : 手机号验证</li></ul>
-        # 参数说明：此参数仅在合同组文件发起有效，可选人脸识别或手机号验证两种方式，若选择后者，未实名个人签署方在签署合同时，无需经过实名认证和意愿确认两次人脸识别，该能力仅适用于个人签署方。
+        # @param ApproverVerifyType: <p>签署人校验方式,支持以下类型</p><ul><li>VerifyCheck : 人脸识别 (默认值)</li><li>MobileCheck : 手机号验证</li></ul>参数说明：此参数仅在合同组文件发起有效，可选人脸识别或手机号验证两种方式，若选择后者，未实名个人签署方在签署合同时，无需经过实名认证和意愿确认两次人脸识别，该能力仅适用于个人签署方。
         # @type ApproverVerifyType: String
-        # @param SelfOrganizationApproverNotifyType: 发起合同（流程）组本方企业经办人通知方式
-        # 签署通知类型，支持以下类型
-        # <ul><li>sms : 短信 (默认值)</li><li>none : 不通知</li></ul>
+        # @param SelfOrganizationApproverNotifyType: <p>发起合同（流程）组本方企业经办人通知方式<br>签署通知类型，支持以下类型</p><ul><li>sms : 短信 (默认值)</li><li>none : 不通知</li></ul>
         # @type SelfOrganizationApproverNotifyType: String
-        # @param OtherApproverNotifyType: 发起合同（流程）组他方经办人通知方式
-        # 签署通知类型，支持以下类型
-        # <ul><li>sms : 短信 (默认值)</li><li>none : 不通知</li></ul>
+        # @param OtherApproverNotifyType: <p>发起合同（流程）组他方经办人通知方式<br>签署通知类型，支持以下类型</p><ul><li>sms : 短信 (默认值)</li><li>none : 不通知</li></ul>
         # @type OtherApproverNotifyType: String
-        # @param FlowGroupNeedWorkflow: 是否开启发起合同组的发起审批，默认：false(不开启)，开启后，发起合同组会提交电子签内置审批流
+        # @param FlowGroupNeedWorkflow: <p>是否开启发起合同组的发起审批，默认：false(不开启)，开启后，发起合同组会提交电子签内置审批流</p>
         # @type FlowGroupNeedWorkflow: Boolean
+        # @param NoEditFlowName: <p>是否不可编辑合同名称 true-不可编辑 false-可编辑(默认)</p>
+        # @type NoEditFlowName: Boolean
+        # @param NoEditFlowType: <p>是否不可编辑合同类型 true-不可编辑 false-可编辑(默认)</p>
+        # @type NoEditFlowType: Boolean
+        # @param NoEditDeadline: <p>是否不可编辑合同截止日期 true-不可编辑 false-可编辑(默认)</p>
+        # @type NoEditDeadline: Boolean
+        # @param SignComponentConfig: <p>签署控件配置(如是否默认展示日期)，用于嵌入式发起页面配置</p>
+        # @type SignComponentConfig: :class:`Tencentcloud::Ess.v20201111.models.SignComponentConfig`
+        # @param ForbidEditWatermark: <p>是否禁止编辑水印控件属性 true-禁止 false-否(默认)</p>
+        # @type ForbidEditWatermark: Boolean
+        # @param HideSignCodeAfterStart: <p>发起成功后是否隐藏签署码 true-隐藏 false-否(默认)</p>
+        # @type HideSignCodeAfterStart: Boolean
+        # @param SignAfterStart: <p>发起成功后是否签署合同,仅当前经办人为签署人时生效 true-展示签署 false-否(默认)</p>
+        # @type SignAfterStart: Boolean
+        # @param PreviewAfterStart: <p>发起成功后是否预览合同 true-展示预览按钮 false-否(默认)</p>
+        # @type PreviewAfterStart: Boolean
 
-        attr_accessor :ApproverVerifyType, :SelfOrganizationApproverNotifyType, :OtherApproverNotifyType, :FlowGroupNeedWorkflow
+        attr_accessor :ApproverVerifyType, :SelfOrganizationApproverNotifyType, :OtherApproverNotifyType, :FlowGroupNeedWorkflow, :NoEditFlowName, :NoEditFlowType, :NoEditDeadline, :SignComponentConfig, :ForbidEditWatermark, :HideSignCodeAfterStart, :SignAfterStart, :PreviewAfterStart
 
-        def initialize(approververifytype=nil, selforganizationapprovernotifytype=nil, otherapprovernotifytype=nil, flowgroupneedworkflow=nil)
+        def initialize(approververifytype=nil, selforganizationapprovernotifytype=nil, otherapprovernotifytype=nil, flowgroupneedworkflow=nil, noeditflowname=nil, noeditflowtype=nil, noeditdeadline=nil, signcomponentconfig=nil, forbideditwatermark=nil, hidesigncodeafterstart=nil, signafterstart=nil, previewafterstart=nil)
           @ApproverVerifyType = approververifytype
           @SelfOrganizationApproverNotifyType = selforganizationapprovernotifytype
           @OtherApproverNotifyType = otherapprovernotifytype
           @FlowGroupNeedWorkflow = flowgroupneedworkflow
+          @NoEditFlowName = noeditflowname
+          @NoEditFlowType = noeditflowtype
+          @NoEditDeadline = noeditdeadline
+          @SignComponentConfig = signcomponentconfig
+          @ForbidEditWatermark = forbideditwatermark
+          @HideSignCodeAfterStart = hidesigncodeafterstart
+          @SignAfterStart = signafterstart
+          @PreviewAfterStart = previewafterstart
         end
 
         def deserialize(params)
@@ -13867,6 +13890,17 @@ module TencentCloud
           @SelfOrganizationApproverNotifyType = params['SelfOrganizationApproverNotifyType']
           @OtherApproverNotifyType = params['OtherApproverNotifyType']
           @FlowGroupNeedWorkflow = params['FlowGroupNeedWorkflow']
+          @NoEditFlowName = params['NoEditFlowName']
+          @NoEditFlowType = params['NoEditFlowType']
+          @NoEditDeadline = params['NoEditDeadline']
+          unless params['SignComponentConfig'].nil?
+            @SignComponentConfig = SignComponentConfig.new
+            @SignComponentConfig.deserialize(params['SignComponentConfig'])
+          end
+          @ForbidEditWatermark = params['ForbidEditWatermark']
+          @HideSignCodeAfterStart = params['HideSignCodeAfterStart']
+          @SignAfterStart = params['SignAfterStart']
+          @PreviewAfterStart = params['PreviewAfterStart']
         end
       end
 

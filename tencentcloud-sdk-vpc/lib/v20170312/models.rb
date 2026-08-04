@@ -7247,49 +7247,51 @@ module TencentCloud
 
       # CreateVpnConnection请求参数结构体
       class CreateVpnConnectionRequest < TencentCloud::Common::AbstractModel
-        # @param VpnGatewayId: VPN网关实例ID。
+        # @param VpnGatewayId: <p>VPN网关实例ID。</p>
         # @type VpnGatewayId: String
-        # @param CustomerGatewayId: 对端网关ID。例如：cgw-2wqq41m9，可通过[DescribeCustomerGateways](https://cloud.tencent.com/document/product/215/17516)接口查询对端网关。
+        # @param CustomerGatewayId: <p>对端网关ID。例如：cgw-2wqq41m9，可通过<a href="https://cloud.tencent.com/document/product/215/17516">DescribeCustomerGateways</a>接口查询对端网关。</p>
         # @type CustomerGatewayId: String
-        # @param VpnConnectionName: 通道名称，可任意命名，但不得超过60个字符。
+        # @param VpnConnectionName: <p>通道名称，可任意命名，但不得超过60个字符。</p>
         # @type VpnConnectionName: String
-        # @param PreShareKey: 预共享密钥。
+        # @param PreShareKey: <p>预共享密钥。</p>
         # @type PreShareKey: String
-        # @param VpcId: VPC实例ID。可通过[DescribeVpcs](https://cloud.tencent.com/document/product/215/15778)接口返回值中的VpcId获取。
-        # CCN VPN 形的通道 可以不传VPCID
+        # @param VpcId: <p>VPC实例ID。VPC类型网关可通过<a href="https://cloud.tencent.com/document/product/215/15778">DescribeVpcs</a>接口返回值中的VpcId获取，CCN类型网关传空值即可。</p>
         # @type VpcId: String
-        # @param SecurityPolicyDatabases: SPD策略组，例如：{"10.0.0.5/24":["172.123.10.5/16"]}，10.0.0.5/24是vpc内网段172.123.10.5/16是IDC网段。用户指定VPC内哪些网段可以和您IDC中哪些网段通信。
+        # @param SecurityPolicyDatabases: <p>SPD策略组，例如：{&quot;10.0.0.5/24&quot;:[&quot;172.123.10.5/16&quot;]}，10.0.0.5/24是vpc内网段172.123.10.5/16是IDC网段。用户指定VPC内哪些网段可以和您IDC中哪些网段通信。</p>
         # @type SecurityPolicyDatabases: Array
-        # @param IKEOptionsSpecification: IKE配置（Internet Key Exchange，因特网密钥交换），IKE具有一套自我保护机制，用户配置网络安全协议
+        # @param IKEOptionsSpecification: <p>IKE配置（Internet Key Exchange，因特网密钥交换），IKE具有一套自我保护机制，用户配置网络安全协议</p>
         # @type IKEOptionsSpecification: :class:`Tencentcloud::Vpc.v20170312.models.IKEOptionsSpecification`
-        # @param IPSECOptionsSpecification: IPSec配置，腾讯云提供IPSec安全会话设置
+        # @param IPSECOptionsSpecification: <p>IPSec配置，腾讯云提供IPSec安全会话设置</p>
         # @type IPSECOptionsSpecification: :class:`Tencentcloud::Vpc.v20170312.models.IPSECOptionsSpecification`
-        # @param Tags: 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]
+        # @param Tags: <p>指定绑定的标签列表，例如：[{&quot;Key&quot;: &quot;city&quot;, &quot;Value&quot;: &quot;shanghai&quot;}]</p>
         # @type Tags: Array
-        # @param EnableHealthCheck: 是否支持隧道内健康检查，默认为False。
+        # @param EnableHealthCheck: <p>是否支持隧道内健康检查，默认为False。</p>
         # @type EnableHealthCheck: Boolean
-        # @param HealthCheckLocalIp: 健康检查本端地址，默认值为随机在169.254.128.0/17分配一个IP。
+        # @param HealthCheckLocalIp: <p>健康检查本端地址，默认值为随机在169.254.128.0/17分配一个IP。</p>
         # @type HealthCheckLocalIp: String
-        # @param HealthCheckRemoteIp: 健康检查对端地址，默认值为随机在169.254.128.0/17分配一个IP。
+        # @param HealthCheckRemoteIp: <p>健康检查对端地址，默认值为随机在169.254.128.0/17分配一个IP。</p>
         # @type HealthCheckRemoteIp: String
-        # @param RouteType: 通道类型, 例如:["STATIC", "StaticRoute", "Policy"]
+        # @param RouteType: <p>通道类型, 例如:[&quot;STATIC&quot;, &quot;StaticRoute&quot;, &quot;Policy&quot;, &quot;Bgp&quot;]</p><p>枚举值：</p><ul><li>StaticRoute： 目的路由类型</li><li>Policy： SPD策略类型</li><li>Bgp： BGP类型</li></ul><p>默认值：STATIC</p>
         # @type RouteType: String
-        # @param NegotiationType: 协商类型，默认为active（主动协商）。可选值：active（主动协商），passive（被动协商），flowTrigger（流量协商）
+        # @param NegotiationType: <p>协商类型，默认为active（主动协商）。可选值：active（主动协商），passive（被动协商），flowTrigger（流量协商）</p>
         # @type NegotiationType: String
-        # @param DpdEnable: DPD探测开关。默认为0，表示关闭DPD探测。可选值：0（关闭），1（开启）
+        # @param DpdEnable: <p>DPD探测开关。默认为0，表示关闭DPD探测。可选值：0（关闭），1（开启）</p>
         # @type DpdEnable: Integer
-        # @param DpdTimeout: DPD超时时间。即探测确认对端不存在需要的时间。dpdEnable为1（开启）时有效。默认30，单位为秒
+        # @param DpdTimeout: <p>DPD超时时间。即探测确认对端不存在需要的时间。dpdEnable为1（开启）时有效。默认30，单位为秒</p>
         # @type DpdTimeout: String
-        # @param DpdAction: DPD超时后的动作。默认为clear。dpdEnable为1（开启）时有效。可取值为clear（断开）和restart（重试）
+        # @param DpdAction: <p>DPD超时后的动作。</p><p>入参限制：dpdEnable为1（开启）时有效。</p><p>枚举值：</p><ul><li>clear： 断开</li><li>restart： 重试</li></ul><p>默认值：restart</p>
         # @type DpdAction: String
-        # @param Route: 创建通道路由信息。
+        # @param Route: <p>创建通道路由信息。</p>
         # @type Route: :class:`Tencentcloud::Vpc.v20170312.models.CreateVpnConnRoute`
-        # @param BgpConfig: BGP配置。
+        # @param BgpConfig: <p>BGP配置。</p>
         # @type BgpConfig: :class:`Tencentcloud::Vpc.v20170312.models.BgpConfig`
-        # @param HealthCheckConfig: 健康检查NQA配置。
+        # @param HealthCheckConfig: <p>健康检查NQA配置。</p>
         # @type HealthCheckConfig: :class:`Tencentcloud::Vpc.v20170312.models.HealthCheckConfig`
 
         attr_accessor :VpnGatewayId, :CustomerGatewayId, :VpnConnectionName, :PreShareKey, :VpcId, :SecurityPolicyDatabases, :IKEOptionsSpecification, :IPSECOptionsSpecification, :Tags, :EnableHealthCheck, :HealthCheckLocalIp, :HealthCheckRemoteIp, :RouteType, :NegotiationType, :DpdEnable, :DpdTimeout, :DpdAction, :Route, :BgpConfig, :HealthCheckConfig
+        extend Gem::Deprecate
+        deprecate :Route, :none, 2026, 8
+        deprecate :Route=, :none, 2026, 8
 
         def initialize(vpngatewayid=nil, customergatewayid=nil, vpnconnectionname=nil, presharekey=nil, vpcid=nil, securitypolicydatabases=nil, ikeoptionsspecification=nil, ipsecoptionsspecification=nil, tags=nil, enablehealthcheck=nil, healthchecklocalip=nil, healthcheckremoteip=nil, routetype=nil, negotiationtype=nil, dpdenable=nil, dpdtimeout=nil, dpdaction=nil, route=nil, bgpconfig=nil, healthcheckconfig=nil)
           @VpnGatewayId = vpngatewayid
@@ -7369,7 +7371,7 @@ module TencentCloud
 
       # CreateVpnConnection返回参数结构体
       class CreateVpnConnectionResponse < TencentCloud::Common::AbstractModel
-        # @param VpnConnection: 通道实例对象。
+        # @param VpnConnection: <p>通道实例对象。</p>
         # @type VpnConnection: :class:`Tencentcloud::Vpc.v20170312.models.VpnConnection`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

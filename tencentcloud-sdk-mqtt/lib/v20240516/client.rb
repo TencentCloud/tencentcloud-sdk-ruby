@@ -149,6 +149,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建封禁规则
+
+        # @param request: Request instance for CreateBlockRule.
+        # @type request: :class:`Tencentcloud::mqtt::V20240516::CreateBlockRuleRequest`
+        # @rtype: :class:`Tencentcloud::mqtt::V20240516::CreateBlockRuleResponse`
+        def CreateBlockRule(request)
+          body = send_request('CreateBlockRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateBlockRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建一机一密设备签名
 
         # @param request: Request instance for CreateDeviceIdentity.
@@ -461,6 +485,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除封禁规则
+
+        # @param request: Request instance for DeleteBlockRule.
+        # @type request: :class:`Tencentcloud::mqtt::V20240516::DeleteBlockRuleRequest`
+        # @rtype: :class:`Tencentcloud::mqtt::V20240516::DeleteBlockRuleResponse`
+        def DeleteBlockRule(request)
+          body = send_request('DeleteBlockRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteBlockRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除Ca证书
 
         # @param request: Request instance for DeleteCaCertificate.
@@ -711,6 +759,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAuthorizationPoliciesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 封禁规则列表
+
+        # @param request: Request instance for DescribeBlockRuleList.
+        # @type request: :class:`Tencentcloud::mqtt::V20240516::DescribeBlockRuleListRequest`
+        # @rtype: :class:`Tencentcloud::mqtt::V20240516::DescribeBlockRuleListResponse`
+        def DescribeBlockRuleList(request)
+          body = send_request('DescribeBlockRuleList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBlockRuleListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1417,6 +1489,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyAuthorizationPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改封禁规则
+
+        # @param request: Request instance for ModifyBlockRule.
+        # @type request: :class:`Tencentcloud::mqtt::V20240516::ModifyBlockRuleRequest`
+        # @rtype: :class:`Tencentcloud::mqtt::V20240516::ModifyBlockRuleResponse`
+        def ModifyBlockRule(request)
+          body = send_request('ModifyBlockRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyBlockRuleResponse.new
             model.deserialize(response['Response'])
             model
           else

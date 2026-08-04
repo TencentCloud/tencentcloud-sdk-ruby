@@ -1508,6 +1508,146 @@ module TencentCloud
         end
       end
 
+      # CheckModifyPartition请求参数结构体
+      class CheckModifyPartitionRequest < TencentCloud::Common::AbstractModel
+        # @param PartitionCode: <p>分区编码</p>
+        # @type PartitionCode: String
+        # @param TargetResourceQuotaList: <p>目标资源配额列表（计费项+目标数量）</p>
+        # @type TargetResourceQuotaList: Array
+
+        attr_accessor :PartitionCode, :TargetResourceQuotaList
+
+        def initialize(partitioncode=nil, targetresourcequotalist=nil)
+          @PartitionCode = partitioncode
+          @TargetResourceQuotaList = targetresourcequotalist
+        end
+
+        def deserialize(params)
+          @PartitionCode = params['PartitionCode']
+          unless params['TargetResourceQuotaList'].nil?
+            @TargetResourceQuotaList = []
+            params['TargetResourceQuotaList'].each do |i|
+              resourcequota_tmp = ResourceQuota.new
+              resourcequota_tmp.deserialize(i)
+              @TargetResourceQuotaList << resourcequota_tmp
+            end
+          end
+        end
+      end
+
+      # CheckModifyPartition返回参数结构体
+      class CheckModifyPartitionResponse < TencentCloud::Common::AbstractModel
+        # @param CanModify: <p>是否允许变配：true-允许，false-不允许</p>
+        # @type CanModify: Boolean
+        # @param MessageList: <p>校验失败时的不足资源描述信息列表，校验通过时为null</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MessageList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CanModify, :MessageList, :RequestId
+
+        def initialize(canmodify=nil, messagelist=nil, requestid=nil)
+          @CanModify = canmodify
+          @MessageList = messagelist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CanModify = params['CanModify']
+          unless params['MessageList'].nil?
+            @MessageList = []
+            params['MessageList'].each do |i|
+              messageitem_tmp = MessageItem.new
+              messageitem_tmp.deserialize(i)
+              @MessageList << messageitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CheckQueueName请求参数结构体
+      class CheckQueueNameRequest < TencentCloud::Common::AbstractModel
+        # @param QueueName: 队列名称
+        # @type QueueName: String
+        # @param PartitionCode: 分区编码，用于校验同分区下队列名称是否重复
+        # @type PartitionCode: String
+
+        attr_accessor :QueueName, :PartitionCode
+
+        def initialize(queuename=nil, partitioncode=nil)
+          @QueueName = queuename
+          @PartitionCode = partitioncode
+        end
+
+        def deserialize(params)
+          @QueueName = params['QueueName']
+          @PartitionCode = params['PartitionCode']
+        end
+      end
+
+      # CheckQueueName返回参数结构体
+      class CheckQueueNameResponse < TencentCloud::Common::AbstractModel
+        # @param IsValid: 校验是否通过：true-通过，false-不通过
+        # @type IsValid: String
+        # @param Message: 校验失败原因，校验通过时为空
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :IsValid, :Message, :RequestId
+
+        def initialize(isvalid=nil, message=nil, requestid=nil)
+          @IsValid = isvalid
+          @Message = message
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @IsValid = params['IsValid']
+          @Message = params['Message']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CheckResourceName请求参数结构体
+      class CheckResourceNameRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceName: 资源名称
+        # @type ResourceName: String
+
+        attr_accessor :ResourceName
+
+        def initialize(resourcename=nil)
+          @ResourceName = resourcename
+        end
+
+        def deserialize(params)
+          @ResourceName = params['ResourceName']
+        end
+      end
+
+      # CheckResourceName返回参数结构体
+      class CheckResourceNameResponse < TencentCloud::Common::AbstractModel
+        # @param IsValid: 校验是否通过
+        # @type IsValid: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :IsValid, :RequestId
+
+        def initialize(isvalid=nil, requestid=nil)
+          @IsValid = isvalid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @IsValid = params['IsValid']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 集群组响应
       class ClusterGroup < TencentCloud::Common::AbstractModel
         # @param Id: 集群组 ID（系统生成）
@@ -2808,6 +2948,159 @@ module TencentCloud
         end
       end
 
+      # CreateInferenceModel请求参数结构体
+      class CreateInferenceModelRequest < TencentCloud::Common::AbstractModel
+        # @param Name: <p>模型名称（最长 256）</p>
+        # @type Name: String
+        # @param ModelType: <p>模型类型（如 LLM、Embedding、Reranker、ASR、TTS 等）</p>
+        # @type ModelType: String
+        # @param InitialVersion: <p>初始版本号（必填，如 v1、v1.5）</p>
+        # @type InitialVersion: String
+        # @param Provider: <p>模型提供方</p>
+        # @type Provider: String
+        # @param Description: <p>模型描述</p>
+        # @type Description: String
+        # @param ParameterSize: <p>模型参数量（如 7B、1.5B）</p>
+        # @type ParameterSize: String
+        # @param Tags: <p>模型标签列表</p>
+        # @type Tags: Array
+        # @param StorageUri: <p>模型存储 URI（可选，如 cos://bucket-name/models/name/）</p>
+        # @type StorageUri: String
+        # @param UseCustomStorage: <p>是否使用用户自带存储桶（默认 false 表示平台托管）</p>
+        # @type UseCustomStorage: Boolean
+        # @param Tasks: <p>任务类型列表（如 [&quot;Text Generation&quot;, &quot;Embedding&quot;]）</p>
+        # @type Tasks: Array
+        # @param ModelUid: <p>模型 UID（可选，前端预先生成的 UID，不传则后端自动生成）</p>
+        # @type ModelUid: String
+
+        attr_accessor :Name, :ModelType, :InitialVersion, :Provider, :Description, :ParameterSize, :Tags, :StorageUri, :UseCustomStorage, :Tasks, :ModelUid
+
+        def initialize(name=nil, modeltype=nil, initialversion=nil, provider=nil, description=nil, parametersize=nil, tags=nil, storageuri=nil, usecustomstorage=nil, tasks=nil, modeluid=nil)
+          @Name = name
+          @ModelType = modeltype
+          @InitialVersion = initialversion
+          @Provider = provider
+          @Description = description
+          @ParameterSize = parametersize
+          @Tags = tags
+          @StorageUri = storageuri
+          @UseCustomStorage = usecustomstorage
+          @Tasks = tasks
+          @ModelUid = modeluid
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @ModelType = params['ModelType']
+          @InitialVersion = params['InitialVersion']
+          @Provider = params['Provider']
+          @Description = params['Description']
+          @ParameterSize = params['ParameterSize']
+          @Tags = params['Tags']
+          @StorageUri = params['StorageUri']
+          @UseCustomStorage = params['UseCustomStorage']
+          @Tasks = params['Tasks']
+          @ModelUid = params['ModelUid']
+        end
+      end
+
+      # CreateInferenceModel返回参数结构体
+      class CreateInferenceModelResponse < TencentCloud::Common::AbstractModel
+        # @param ModelId: <p>模型ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelId: String
+        # @param ModelUid: <p>模型UID</p>
+        # @type ModelUid: String
+        # @param Name: <p>模型名称</p>
+        # @type Name: String
+        # @param Provider: <p>模型提供方</p>
+        # @type Provider: String
+        # @param Description: <p>模型描述</p>
+        # @type Description: String
+        # @param ModelType: <p>模型类型</p>
+        # @type ModelType: String
+        # @param ParameterSize: <p>参数大小</p>
+        # @type ParameterSize: String
+        # @param Tags: <p>模型标签</p>
+        # @type Tags: Array
+        # @param LatestVersion: <p>最新版本</p>
+        # @type LatestVersion: String
+        # @param VersionCount: <p>版本总数</p>
+        # @type VersionCount: Integer
+        # @param ServiceCount: <p>关联的推理服务数量</p>
+        # @type ServiceCount: Integer
+        # @param HasStorage: <p>是否有存储</p>
+        # @type HasStorage: Boolean
+        # @param HasCustomStorage: <p>是否使用用户自带存储桶</p>
+        # @type HasCustomStorage: Boolean
+        # @param StorageType: <p>存储后端类型</p>
+        # @type StorageType: String
+        # @param BuiltIn: <p>是否内置模型</p>
+        # @type BuiltIn: Boolean
+        # @param Tasks: <p>任务类型列表</p>
+        # @type Tasks: Array
+        # @param AppId: <p>APPID</p>
+        # @type AppId: Integer
+        # @param CreateTime: <p>创建时间</p>
+        # @type CreateTime: Integer
+        # @param UpdateTime: <p>更新时间</p>
+        # @type UpdateTime: Integer
+        # @param SubAccountUin: <p>Sub UIN</p>
+        # @type SubAccountUin: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ModelId, :ModelUid, :Name, :Provider, :Description, :ModelType, :ParameterSize, :Tags, :LatestVersion, :VersionCount, :ServiceCount, :HasStorage, :HasCustomStorage, :StorageType, :BuiltIn, :Tasks, :AppId, :CreateTime, :UpdateTime, :SubAccountUin, :RequestId
+
+        def initialize(modelid=nil, modeluid=nil, name=nil, provider=nil, description=nil, modeltype=nil, parametersize=nil, tags=nil, latestversion=nil, versioncount=nil, servicecount=nil, hasstorage=nil, hascustomstorage=nil, storagetype=nil, builtin=nil, tasks=nil, appid=nil, createtime=nil, updatetime=nil, subaccountuin=nil, requestid=nil)
+          @ModelId = modelid
+          @ModelUid = modeluid
+          @Name = name
+          @Provider = provider
+          @Description = description
+          @ModelType = modeltype
+          @ParameterSize = parametersize
+          @Tags = tags
+          @LatestVersion = latestversion
+          @VersionCount = versioncount
+          @ServiceCount = servicecount
+          @HasStorage = hasstorage
+          @HasCustomStorage = hascustomstorage
+          @StorageType = storagetype
+          @BuiltIn = builtin
+          @Tasks = tasks
+          @AppId = appid
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @SubAccountUin = subaccountuin
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ModelId = params['ModelId']
+          @ModelUid = params['ModelUid']
+          @Name = params['Name']
+          @Provider = params['Provider']
+          @Description = params['Description']
+          @ModelType = params['ModelType']
+          @ParameterSize = params['ParameterSize']
+          @Tags = params['Tags']
+          @LatestVersion = params['LatestVersion']
+          @VersionCount = params['VersionCount']
+          @ServiceCount = params['ServiceCount']
+          @HasStorage = params['HasStorage']
+          @HasCustomStorage = params['HasCustomStorage']
+          @StorageType = params['StorageType']
+          @BuiltIn = params['BuiltIn']
+          @Tasks = params['Tasks']
+          @AppId = params['AppId']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @SubAccountUin = params['SubAccountUin']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateInternalTable请求参数结构体
       class CreateInternalTableRequest < TencentCloud::Common::AbstractModel
         # @param TableBaseInfo: 表基本信息
@@ -3685,6 +3978,140 @@ module TencentCloud
             @NotebookSessionStatementBatches = NotebookSessionStatementBatchInformation.new
             @NotebookSessionStatementBatches.deserialize(params['NotebookSessionStatementBatches'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreatePartitionQueue请求参数结构体
+      class CreatePartitionQueueRequest < TencentCloud::Common::AbstractModel
+        # @param PartitionCode: <p>分区编码</p>
+        # @type PartitionCode: String
+        # @param QueueName: <p>队列名称</p>
+        # @type QueueName: String
+        # @param ResourceUsages: <p>资源规格列表，定义队列的资源类型及大小范围</p>
+        # @type ResourceUsages: Array
+        # @param QueueType: <p>队列类型：1-独占型，2-共享型</p>
+        # @type QueueType: Integer
+        # @param Description: <p>队列描述</p>
+        # @type Description: String
+
+        attr_accessor :PartitionCode, :QueueName, :ResourceUsages, :QueueType, :Description
+
+        def initialize(partitioncode=nil, queuename=nil, resourceusages=nil, queuetype=nil, description=nil)
+          @PartitionCode = partitioncode
+          @QueueName = queuename
+          @ResourceUsages = resourceusages
+          @QueueType = queuetype
+          @Description = description
+        end
+
+        def deserialize(params)
+          @PartitionCode = params['PartitionCode']
+          @QueueName = params['QueueName']
+          unless params['ResourceUsages'].nil?
+            @ResourceUsages = []
+            params['ResourceUsages'].each do |i|
+              resourceusage_tmp = ResourceUsage.new
+              resourceusage_tmp.deserialize(i)
+              @ResourceUsages << resourceusage_tmp
+            end
+          end
+          @QueueType = params['QueueType']
+          @Description = params['Description']
+        end
+      end
+
+      # CreatePartitionQueue返回参数结构体
+      class CreatePartitionQueueResponse < TencentCloud::Common::AbstractModel
+        # @param Id: <p>新创建的资源队列ID</p>
+        # @type Id: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Id, :RequestId
+
+        def initialize(id=nil, requestid=nil)
+          @Id = id
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreatePartition请求参数结构体
+      class CreatePartitionRequest < TencentCloud::Common::AbstractModel
+        # @param ActionType: <p>交易类型：purchase-新购，renew-续费，modify-变配</p>
+        # @type ActionType: String
+        # @param PayMode: <p>付费模式：0-后付费，1-预付费</p>
+        # @type PayMode: Integer
+        # @param ResourceQuotaList: <p>资源配额列表（计费项+数量）</p>
+        # @type ResourceQuotaList: Array
+        # @param TimeSpan: <p>时间大小，预付费时为购买月数，后付费时为3600</p>
+        # @type TimeSpan: Integer
+        # @param TimeUnit: <p>时间单位，预付费为m（月），后付费为s（秒）</p>
+        # @type TimeUnit: String
+        # @param AutoRenewFlag: <p>自动续费标志：0-默认，1-自动续费，2-不自动续费（仅预付费有效）</p>
+        # @type AutoRenewFlag: Integer
+        # @param Name: <p>弹性资源池名称，用于订单页展示</p>
+        # @type Name: String
+        # @param Description: <p>队列描述</p>
+        # @type Description: String
+
+        attr_accessor :ActionType, :PayMode, :ResourceQuotaList, :TimeSpan, :TimeUnit, :AutoRenewFlag, :Name, :Description
+
+        def initialize(actiontype=nil, paymode=nil, resourcequotalist=nil, timespan=nil, timeunit=nil, autorenewflag=nil, name=nil, description=nil)
+          @ActionType = actiontype
+          @PayMode = paymode
+          @ResourceQuotaList = resourcequotalist
+          @TimeSpan = timespan
+          @TimeUnit = timeunit
+          @AutoRenewFlag = autorenewflag
+          @Name = name
+          @Description = description
+        end
+
+        def deserialize(params)
+          @ActionType = params['ActionType']
+          @PayMode = params['PayMode']
+          unless params['ResourceQuotaList'].nil?
+            @ResourceQuotaList = []
+            params['ResourceQuotaList'].each do |i|
+              resourcequota_tmp = ResourceQuota.new
+              resourcequota_tmp.deserialize(i)
+              @ResourceQuotaList << resourcequota_tmp
+            end
+          end
+          @TimeSpan = params['TimeSpan']
+          @TimeUnit = params['TimeUnit']
+          @AutoRenewFlag = params['AutoRenewFlag']
+          @Name = params['Name']
+          @Description = params['Description']
+        end
+      end
+
+      # CreatePartition返回参数结构体
+      class CreatePartitionResponse < TencentCloud::Common::AbstractModel
+        # @param DealName: <p>子订单号</p>
+        # @type DealName: String
+        # @param BigDealId: <p>大订单号</p>
+        # @type BigDealId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DealName, :BigDealId, :RequestId
+
+        def initialize(dealname=nil, bigdealid=nil, requestid=nil)
+          @DealName = dealname
+          @BigDealId = bigdealid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DealName = params['DealName']
+          @BigDealId = params['BigDealId']
           @RequestId = params['RequestId']
         end
       end
@@ -7584,6 +8011,46 @@ module TencentCloud
         end
       end
 
+      # DeletePartitionQueue请求参数结构体
+      class DeletePartitionQueueRequest < TencentCloud::Common::AbstractModel
+        # @param PartitionCode: 分区编码
+        # @type PartitionCode: String
+        # @param QueueName: 队列名称
+        # @type QueueName: String
+        # @param Id: 队列ID
+        # @type Id: Integer
+
+        attr_accessor :PartitionCode, :QueueName, :Id
+
+        def initialize(partitioncode=nil, queuename=nil, id=nil)
+          @PartitionCode = partitioncode
+          @QueueName = queuename
+          @Id = id
+        end
+
+        def deserialize(params)
+          @PartitionCode = params['PartitionCode']
+          @QueueName = params['QueueName']
+          @Id = params['Id']
+        end
+      end
+
+      # DeletePartitionQueue返回参数结构体
+      class DeletePartitionQueueResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteRayCluster请求参数结构体
       class DeleteRayClusterRequest < TencentCloud::Common::AbstractModel
         # @param Id: <p>集群ID</p>
@@ -9610,6 +10077,116 @@ module TencentCloud
         end
       end
 
+      # DescribeFlowDetailList请求参数结构体
+      class DescribeFlowDetailListRequest < TencentCloud::Common::AbstractModel
+        # @param PartitionCode: 分区编码
+        # @type PartitionCode: String
+        # @param Page: 页码，从1开始，默认为1
+        # @type Page: Integer
+        # @param PageSize: 每页返回数量，默认为10
+        # @type PageSize: Integer
+
+        attr_accessor :PartitionCode, :Page, :PageSize
+
+        def initialize(partitioncode=nil, page=nil, pagesize=nil)
+          @PartitionCode = partitioncode
+          @Page = page
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          @PartitionCode = params['PartitionCode']
+          @Page = params['Page']
+          @PageSize = params['PageSize']
+        end
+      end
+
+      # DescribeFlowDetailList返回参数结构体
+      class DescribeFlowDetailListResponse < TencentCloud::Common::AbstractModel
+        # @param FlowDetailList: 流程详情列表
+        # @type FlowDetailList: Array
+        # @param Total: 总记录数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowDetailList, :Total, :RequestId
+
+        def initialize(flowdetaillist=nil, total=nil, requestid=nil)
+          @FlowDetailList = flowdetaillist
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['FlowDetailList'].nil?
+            @FlowDetailList = []
+            params['FlowDetailList'].each do |i|
+              flowdetail_tmp = FlowDetail.new
+              flowdetail_tmp.deserialize(i)
+              @FlowDetailList << flowdetail_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeFlowList请求参数结构体
+      class DescribeFlowListRequest < TencentCloud::Common::AbstractModel
+        # @param PartitionCode: 分区编码
+        # @type PartitionCode: String
+        # @param Page: 页码，从1开始，默认为1
+        # @type Page: Integer
+        # @param PageSize: 每页返回数量，默认为10
+        # @type PageSize: Integer
+
+        attr_accessor :PartitionCode, :Page, :PageSize
+
+        def initialize(partitioncode=nil, page=nil, pagesize=nil)
+          @PartitionCode = partitioncode
+          @Page = page
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          @PartitionCode = params['PartitionCode']
+          @Page = params['Page']
+          @PageSize = params['PageSize']
+        end
+      end
+
+      # DescribeFlowList返回参数结构体
+      class DescribeFlowListResponse < TencentCloud::Common::AbstractModel
+        # @param FlowInfoList: 流程列表
+        # @type FlowInfoList: Array
+        # @param Total: 总记录数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowInfoList, :Total, :RequestId
+
+        def initialize(flowinfolist=nil, total=nil, requestid=nil)
+          @FlowInfoList = flowinfolist
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['FlowInfoList'].nil?
+            @FlowInfoList = []
+            params['FlowInfoList'].each do |i|
+              flowinfo_tmp = FlowInfo.new
+              flowinfo_tmp.deserialize(i)
+              @FlowInfoList << flowinfo_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeForbiddenTablePro请求参数结构体
       class DescribeForbiddenTableProRequest < TencentCloud::Common::AbstractModel
 
@@ -10390,6 +10967,202 @@ module TencentCloud
         end
       end
 
+      # DescribePartitionDetail请求参数结构体
+      class DescribePartitionDetailRequest < TencentCloud::Common::AbstractModel
+        # @param PartitionCode: 分区编码
+        # @type PartitionCode: String
+
+        attr_accessor :PartitionCode
+
+        def initialize(partitioncode=nil)
+          @PartitionCode = partitioncode
+        end
+
+        def deserialize(params)
+          @PartitionCode = params['PartitionCode']
+        end
+      end
+
+      # DescribePartitionDetail返回参数结构体
+      class DescribePartitionDetailResponse < TencentCloud::Common::AbstractModel
+        # @param PartitionDetail: 分区详情
+        # @type PartitionDetail: :class:`Tencentcloud::Dlc.v20210125.models.PartitionDetail`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PartitionDetail, :RequestId
+
+        def initialize(partitiondetail=nil, requestid=nil)
+          @PartitionDetail = partitiondetail
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['PartitionDetail'].nil?
+            @PartitionDetail = PartitionDetail.new
+            @PartitionDetail.deserialize(params['PartitionDetail'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePartitionQueues请求参数结构体
+      class DescribePartitionQueuesRequest < TencentCloud::Common::AbstractModel
+        # @param PartitionCode: 分区编码
+        # @type PartitionCode: String
+        # @param SortFields: 排序字段列表
+        # @type SortFields: Array
+        # @param Filters: 筛选条件列表
+        # @type Filters: Array
+        # @param Page: 页码
+        # @type Page: Integer
+        # @param PageSize: 每页返回数量
+        # @type PageSize: Integer
+
+        attr_accessor :PartitionCode, :SortFields, :Filters, :Page, :PageSize
+
+        def initialize(partitioncode=nil, sortfields=nil, filters=nil, page=nil, pagesize=nil)
+          @PartitionCode = partitioncode
+          @SortFields = sortfields
+          @Filters = filters
+          @Page = page
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          @PartitionCode = params['PartitionCode']
+          unless params['SortFields'].nil?
+            @SortFields = []
+            params['SortFields'].each do |i|
+              sortfield_tmp = SortField.new
+              sortfield_tmp.deserialize(i)
+              @SortFields << sortfield_tmp
+            end
+          end
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Page = params['Page']
+          @PageSize = params['PageSize']
+        end
+      end
+
+      # DescribePartitionQueues返回参数结构体
+      class DescribePartitionQueuesResponse < TencentCloud::Common::AbstractModel
+        # @param QueueList: 队列列表
+        # @type QueueList: Array
+        # @param DefaultQueue: 默认队列信息
+        # @type DefaultQueue: :class:`Tencentcloud::Dlc.v20210125.models.QueueInfo`
+        # @param Total: 总记录数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :QueueList, :DefaultQueue, :Total, :RequestId
+
+        def initialize(queuelist=nil, defaultqueue=nil, total=nil, requestid=nil)
+          @QueueList = queuelist
+          @DefaultQueue = defaultqueue
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['QueueList'].nil?
+            @QueueList = []
+            params['QueueList'].each do |i|
+              queueinfo_tmp = QueueInfo.new
+              queueinfo_tmp.deserialize(i)
+              @QueueList << queueinfo_tmp
+            end
+          end
+          unless params['DefaultQueue'].nil?
+            @DefaultQueue = QueueInfo.new
+            @DefaultQueue.deserialize(params['DefaultQueue'])
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePartitions请求参数结构体
+      class DescribePartitionsRequest < TencentCloud::Common::AbstractModel
+        # @param Page: 页码，从1开始，默认为1
+        # @type Page: Integer
+        # @param PageSize: 每页返回数量，默认为10
+        # @type PageSize: Integer
+        # @param SortFields: 排序字段列表，按数组顺序依次应用，可选
+        # @type SortFields: Array
+        # @param Filters: 筛选条件列表，多个条件之间为AND关系，可选
+        # @type Filters: Array
+
+        attr_accessor :Page, :PageSize, :SortFields, :Filters
+
+        def initialize(page=nil, pagesize=nil, sortfields=nil, filters=nil)
+          @Page = page
+          @PageSize = pagesize
+          @SortFields = sortfields
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Page = params['Page']
+          @PageSize = params['PageSize']
+          unless params['SortFields'].nil?
+            @SortFields = []
+            params['SortFields'].each do |i|
+              sortfield_tmp = SortField.new
+              sortfield_tmp.deserialize(i)
+              @SortFields << sortfield_tmp
+            end
+          end
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribePartitions返回参数结构体
+      class DescribePartitionsResponse < TencentCloud::Common::AbstractModel
+        # @param Partitions: 资源包列表
+        # @type Partitions: Array
+        # @param Total: 总记录数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Partitions, :Total, :RequestId
+
+        def initialize(partitions=nil, total=nil, requestid=nil)
+          @Partitions = partitions
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Partitions'].nil?
+            @Partitions = []
+            params['Partitions'].each do |i|
+              partitioninfo_tmp = PartitionInfo.new
+              partitioninfo_tmp.deserialize(i)
+              @Partitions << partitioninfo_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeResourceGroupUsageInfo请求参数结构体
       class DescribeResourceGroupUsageInfoRequest < TencentCloud::Common::AbstractModel
         # @param SessionId: 资源组ID
@@ -10486,6 +11259,82 @@ module TencentCloud
           @SecretId = params['SecretId']
           @SecretKey = params['SecretKey']
           @Token = params['Token']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSaleRegions请求参数结构体
+      class DescribeSaleRegionsRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeSaleRegions返回参数结构体
+      class DescribeSaleRegionsResponse < TencentCloud::Common::AbstractModel
+        # @param RegionList: 可售卖地域列表
+        # @type RegionList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RegionList, :RequestId
+
+        def initialize(regionlist=nil, requestid=nil)
+          @RegionList = regionlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['RegionList'].nil?
+            @RegionList = []
+            params['RegionList'].each do |i|
+              regioninfo_tmp = RegionInfo.new
+              regioninfo_tmp.deserialize(i)
+              @RegionList << regioninfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSaleResourceInfo请求参数结构体
+      class DescribeSaleResourceInfoRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeSaleResourceInfo返回参数结构体
+      class DescribeSaleResourceInfoResponse < TencentCloud::Common::AbstractModel
+        # @param SaleResourceInfoList: 可售卖资源规格列表
+        # @type SaleResourceInfoList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SaleResourceInfoList, :RequestId
+
+        def initialize(saleresourceinfolist=nil, requestid=nil)
+          @SaleResourceInfoList = saleresourceinfolist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['SaleResourceInfoList'].nil?
+            @SaleResourceInfoList = []
+            params['SaleResourceInfoList'].each do |i|
+              resourcesaleinfo_tmp = ResourceSaleInfo.new
+              resourcesaleinfo_tmp.deserialize(i)
+              @SaleResourceInfoList << resourcesaleinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -13776,6 +14625,110 @@ module TencentCloud
         end
       end
 
+      # 流程活动详情
+      class FlowActivityDetail < TencentCloud::Common::AbstractModel
+        # @param ActivityCode: <p>活动编码</p>
+        # @type ActivityCode: String
+        # @param Status: <p>活动状态</p>
+        # @type Status: Integer
+        # @param CreateTime: <p>创建时间</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param Duration: <p>耗时（秒）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Duration: Integer
+
+        attr_accessor :ActivityCode, :Status, :CreateTime, :Duration
+
+        def initialize(activitycode=nil, status=nil, createtime=nil, duration=nil)
+          @ActivityCode = activitycode
+          @Status = status
+          @CreateTime = createtime
+          @Duration = duration
+        end
+
+        def deserialize(params)
+          @ActivityCode = params['ActivityCode']
+          @Status = params['Status']
+          @CreateTime = params['CreateTime']
+          @Duration = params['Duration']
+        end
+      end
+
+      # 流程详情
+      class FlowDetail < TencentCloud::Common::AbstractModel
+        # @param FlowId: <p>流程ID（数据库主键）</p>
+        # @type FlowId: Integer
+        # @param WorkFlowId: <p>Temporal Workflow ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WorkFlowId: String
+        # @param WorkFlowCode: <p>流程编码</p>
+        # @type WorkFlowCode: String
+        # @param Progress: <p>流程进度，0~100</p>
+        # @type Progress: Integer
+        # @param Status: <p>流程状态</p>
+        # @type Status: Integer
+        # @param CreateTime: <p>创建时间</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param Activities: <p>流程活动列表</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Activities: Array
+
+        attr_accessor :FlowId, :WorkFlowId, :WorkFlowCode, :Progress, :Status, :CreateTime, :Activities
+
+        def initialize(flowid=nil, workflowid=nil, workflowcode=nil, progress=nil, status=nil, createtime=nil, activities=nil)
+          @FlowId = flowid
+          @WorkFlowId = workflowid
+          @WorkFlowCode = workflowcode
+          @Progress = progress
+          @Status = status
+          @CreateTime = createtime
+          @Activities = activities
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @WorkFlowId = params['WorkFlowId']
+          @WorkFlowCode = params['WorkFlowCode']
+          @Progress = params['Progress']
+          @Status = params['Status']
+          @CreateTime = params['CreateTime']
+          unless params['Activities'].nil?
+            @Activities = []
+            params['Activities'].each do |i|
+              flowactivitydetail_tmp = FlowActivityDetail.new
+              flowactivitydetail_tmp.deserialize(i)
+              @Activities << flowactivitydetail_tmp
+            end
+          end
+        end
+      end
+
+      # 流程简要信息
+      class FlowInfo < TencentCloud::Common::AbstractModel
+        # @param FlowId: <p>流程ID</p>
+        # @type FlowId: Integer
+        # @param WorkFlowCode: <p>流程编码</p>
+        # @type WorkFlowCode: String
+        # @param Status: <p>流程状态</p>
+        # @type Status: Integer
+
+        attr_accessor :FlowId, :WorkFlowCode, :Status
+
+        def initialize(flowid=nil, workflowcode=nil, status=nil)
+          @FlowId = flowid
+          @WorkFlowCode = workflowcode
+          @Status = status
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @WorkFlowCode = params['WorkFlowCode']
+          @Status = params['Status']
+        end
+      end
+
       # GPU 机型
       class GPUInfo < TencentCloud::Common::AbstractModel
         # @param BillingItem: 计费项
@@ -14128,6 +15081,130 @@ module TencentCloud
           @UpdateTime = params['UpdateTime']
           @Deleted = params['Deleted']
           @Popularity = params['Popularity']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetInferenceModel请求参数结构体
+      class GetInferenceModelRequest < TencentCloud::Common::AbstractModel
+        # @param ModelUid: <p>模型UID</p>
+        # @type ModelUid: String
+
+        attr_accessor :ModelUid
+
+        def initialize(modeluid=nil)
+          @ModelUid = modeluid
+        end
+
+        def deserialize(params)
+          @ModelUid = params['ModelUid']
+        end
+      end
+
+      # GetInferenceModel返回参数结构体
+      class GetInferenceModelResponse < TencentCloud::Common::AbstractModel
+        # @param ModelId: <p>模型ID</p>
+        # @type ModelId: String
+        # @param ModelUid: <p>模型UID</p>
+        # @type ModelUid: String
+        # @param Name: <p>模型名称</p>
+        # @type Name: String
+        # @param Provider: <p>模型提供方</p>
+        # @type Provider: String
+        # @param Description: <p>模型描述</p>
+        # @type Description: String
+        # @param ModelType: <p>模型类型</p>
+        # @type ModelType: String
+        # @param ParameterSize: <p>模型参数量</p>
+        # @type ParameterSize: String
+        # @param Tags: <p>模型标签列表</p>
+        # @type Tags: Array
+        # @param LatestVersion: <p>最新版本号</p>
+        # @type LatestVersion: String
+        # @param VersionCount: <p>版本总数</p>
+        # @type VersionCount: Integer
+        # @param ServiceCount: <p>关联的推理服务数量</p>
+        # @type ServiceCount: Integer
+        # @param HasStorage: <p>是否有存储</p>
+        # @type HasStorage: Boolean
+        # @param StorageRegion: <p>存储地域</p>
+        # @type StorageRegion: String
+        # @param HasCustomStorage: <p>是否使用用户自带存储桶</p>
+        # @type HasCustomStorage: Boolean
+        # @param StorageType: <p>存储后端类型</p>
+        # @type StorageType: String
+        # @param BuiltIn: <p>是否内置模型</p>
+        # @type BuiltIn: Boolean
+        # @param Tasks: <p>任务类型列表</p>
+        # @type Tasks: Array
+        # @param SupportedEngines: <p>模型支持的推理引擎列表</p>
+        # @type SupportedEngines: Array
+        # @param Uin: <p>UIN</p>
+        # @type Uin: String
+        # @param AppId: <p>APPID</p>
+        # @type AppId: Integer
+        # @param CreateTime: <p>创建时间</p>
+        # @type CreateTime: Integer
+        # @param UpdateTime: <p>更新时间</p>
+        # @type UpdateTime: Integer
+        # @param SubAccountUin: <p>Sub UIN</p>
+        # @type SubAccountUin: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ModelId, :ModelUid, :Name, :Provider, :Description, :ModelType, :ParameterSize, :Tags, :LatestVersion, :VersionCount, :ServiceCount, :HasStorage, :StorageRegion, :HasCustomStorage, :StorageType, :BuiltIn, :Tasks, :SupportedEngines, :Uin, :AppId, :CreateTime, :UpdateTime, :SubAccountUin, :RequestId
+
+        def initialize(modelid=nil, modeluid=nil, name=nil, provider=nil, description=nil, modeltype=nil, parametersize=nil, tags=nil, latestversion=nil, versioncount=nil, servicecount=nil, hasstorage=nil, storageregion=nil, hascustomstorage=nil, storagetype=nil, builtin=nil, tasks=nil, supportedengines=nil, uin=nil, appid=nil, createtime=nil, updatetime=nil, subaccountuin=nil, requestid=nil)
+          @ModelId = modelid
+          @ModelUid = modeluid
+          @Name = name
+          @Provider = provider
+          @Description = description
+          @ModelType = modeltype
+          @ParameterSize = parametersize
+          @Tags = tags
+          @LatestVersion = latestversion
+          @VersionCount = versioncount
+          @ServiceCount = servicecount
+          @HasStorage = hasstorage
+          @StorageRegion = storageregion
+          @HasCustomStorage = hascustomstorage
+          @StorageType = storagetype
+          @BuiltIn = builtin
+          @Tasks = tasks
+          @SupportedEngines = supportedengines
+          @Uin = uin
+          @AppId = appid
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @SubAccountUin = subaccountuin
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ModelId = params['ModelId']
+          @ModelUid = params['ModelUid']
+          @Name = params['Name']
+          @Provider = params['Provider']
+          @Description = params['Description']
+          @ModelType = params['ModelType']
+          @ParameterSize = params['ParameterSize']
+          @Tags = params['Tags']
+          @LatestVersion = params['LatestVersion']
+          @VersionCount = params['VersionCount']
+          @ServiceCount = params['ServiceCount']
+          @HasStorage = params['HasStorage']
+          @StorageRegion = params['StorageRegion']
+          @HasCustomStorage = params['HasCustomStorage']
+          @StorageType = params['StorageType']
+          @BuiltIn = params['BuiltIn']
+          @Tasks = params['Tasks']
+          @SupportedEngines = params['SupportedEngines']
+          @Uin = params['Uin']
+          @AppId = params['AppId']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @SubAccountUin = params['SubAccountUin']
           @RequestId = params['RequestId']
         end
       end
@@ -16379,6 +17456,131 @@ module TencentCloud
         end
       end
 
+      # 推理模型信息
+      class InferenceModelInfo < TencentCloud::Common::AbstractModel
+        # @param ModelId: <p>Model ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelId: String
+        # @param ModelUid: <p>模型业务唯一标识</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelUid: String
+        # @param Name: <p>模型名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Provider: <p>模型提供方</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Provider: String
+        # @param Description: <p>模型描述</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param ModelType: <p>模型类型</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelType: String
+        # @param SupportedEngines: <p>支持的引擎</p>
+        # @type SupportedEngines: Array
+        # @param ParameterSize: <p>参数量</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParameterSize: String
+        # @param Tags: <p>模型标签</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param LatestVersion: <p>最新版本号</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LatestVersion: String
+        # @param VersionCount: <p>版本总数</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VersionCount: Integer
+        # @param ServiceCount: <p>关联的推理服务数量</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceCount: Integer
+        # @param HasStorage: <p>是否有存储（内置模型和用户上传模型均为 true）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HasStorage: Boolean
+        # @param StorageRegion: <p>存储地域</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StorageRegion: String
+        # @param HasCustomStorage: <p>是否使用用户自带存储桶</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HasCustomStorage: Boolean
+        # @param StorageType: <p>存储后端类型（如 COS、GOOSEFS、CFSTURBO）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StorageType: String
+        # @param BuiltIn: <p>是否是内置模型</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BuiltIn: Boolean
+        # @param Tasks: <p>任务类型列表</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tasks: Array
+        # @param AppId: <p>云账户的 APP ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppId: Integer
+        # @param Uin: <p>云账户的 UIN</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uin: String
+        # @param CreateTime: <p>创建时间（毫秒时间戳）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: Integer
+        # @param UpdateTime: <p>更新时间（毫秒时间戳）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: Integer
+        # @param SubAccountUin: <p>云账户的 Sub UIN</p>
+        # @type SubAccountUin: String
+
+        attr_accessor :ModelId, :ModelUid, :Name, :Provider, :Description, :ModelType, :SupportedEngines, :ParameterSize, :Tags, :LatestVersion, :VersionCount, :ServiceCount, :HasStorage, :StorageRegion, :HasCustomStorage, :StorageType, :BuiltIn, :Tasks, :AppId, :Uin, :CreateTime, :UpdateTime, :SubAccountUin
+
+        def initialize(modelid=nil, modeluid=nil, name=nil, provider=nil, description=nil, modeltype=nil, supportedengines=nil, parametersize=nil, tags=nil, latestversion=nil, versioncount=nil, servicecount=nil, hasstorage=nil, storageregion=nil, hascustomstorage=nil, storagetype=nil, builtin=nil, tasks=nil, appid=nil, uin=nil, createtime=nil, updatetime=nil, subaccountuin=nil)
+          @ModelId = modelid
+          @ModelUid = modeluid
+          @Name = name
+          @Provider = provider
+          @Description = description
+          @ModelType = modeltype
+          @SupportedEngines = supportedengines
+          @ParameterSize = parametersize
+          @Tags = tags
+          @LatestVersion = latestversion
+          @VersionCount = versioncount
+          @ServiceCount = servicecount
+          @HasStorage = hasstorage
+          @StorageRegion = storageregion
+          @HasCustomStorage = hascustomstorage
+          @StorageType = storagetype
+          @BuiltIn = builtin
+          @Tasks = tasks
+          @AppId = appid
+          @Uin = uin
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @SubAccountUin = subaccountuin
+        end
+
+        def deserialize(params)
+          @ModelId = params['ModelId']
+          @ModelUid = params['ModelUid']
+          @Name = params['Name']
+          @Provider = params['Provider']
+          @Description = params['Description']
+          @ModelType = params['ModelType']
+          @SupportedEngines = params['SupportedEngines']
+          @ParameterSize = params['ParameterSize']
+          @Tags = params['Tags']
+          @LatestVersion = params['LatestVersion']
+          @VersionCount = params['VersionCount']
+          @ServiceCount = params['ServiceCount']
+          @HasStorage = params['HasStorage']
+          @StorageRegion = params['StorageRegion']
+          @HasCustomStorage = params['HasCustomStorage']
+          @StorageType = params['StorageType']
+          @BuiltIn = params['BuiltIn']
+          @Tasks = params['Tasks']
+          @AppId = params['AppId']
+          @Uin = params['Uin']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @SubAccountUin = params['SubAccountUin']
+        end
+      end
+
       # InitializeTCLake请求参数结构体
       class InitializeTCLakeRequest < TencentCloud::Common::AbstractModel
 
@@ -17513,6 +18715,112 @@ module TencentCloud
         end
       end
 
+      # ListInferenceModels请求参数结构体
+      class ListInferenceModelsRequest < TencentCloud::Common::AbstractModel
+        # @param Page: <p>页码（从1开始）</p>
+        # @type Page: Integer
+        # @param PageSize: <p>每页数量（最大 200）</p>
+        # @type PageSize: Integer
+        # @param StartTime: <p>开始时间</p>
+        # @type StartTime: Integer
+        # @param EndTime: <p>结束时间</p>
+        # @type EndTime: Integer
+        # @param Filters: <p>过滤器</p>
+        # @type Filters: Array
+        # @param SortFields: <p>排序字段</p>
+        # @type SortFields: Array
+        # @param ParameterSizeMin: <p>模型参数最小值</p>
+        # @type ParameterSizeMin: Float
+        # @param ParameterSizeMax: <p>模型参数最大值</p>
+        # @type ParameterSizeMax: Float
+
+        attr_accessor :Page, :PageSize, :StartTime, :EndTime, :Filters, :SortFields, :ParameterSizeMin, :ParameterSizeMax
+
+        def initialize(page=nil, pagesize=nil, starttime=nil, endtime=nil, filters=nil, sortfields=nil, parametersizemin=nil, parametersizemax=nil)
+          @Page = page
+          @PageSize = pagesize
+          @StartTime = starttime
+          @EndTime = endtime
+          @Filters = filters
+          @SortFields = sortfields
+          @ParameterSizeMin = parametersizemin
+          @ParameterSizeMax = parametersizemax
+        end
+
+        def deserialize(params)
+          @Page = params['Page']
+          @PageSize = params['PageSize']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          unless params['SortFields'].nil?
+            @SortFields = []
+            params['SortFields'].each do |i|
+              sortfield_tmp = SortField.new
+              sortfield_tmp.deserialize(i)
+              @SortFields << sortfield_tmp
+            end
+          end
+          @ParameterSizeMin = params['ParameterSizeMin']
+          @ParameterSizeMax = params['ParameterSizeMax']
+        end
+      end
+
+      # ListInferenceModels返回参数结构体
+      class ListInferenceModelsResponse < TencentCloud::Common::AbstractModel
+        # @param Items: <p>推理模型列表</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+        # @param Total: <p>总记录数</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param Page: <p>当前页码</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Page: Integer
+        # @param PageSize: <p>每页数量</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageSize: Integer
+        # @param TotalPages: <p>总页数</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalPages: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Items, :Total, :Page, :PageSize, :TotalPages, :RequestId
+
+        def initialize(items=nil, total=nil, page=nil, pagesize=nil, totalpages=nil, requestid=nil)
+          @Items = items
+          @Total = total
+          @Page = page
+          @PageSize = pagesize
+          @TotalPages = totalpages
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              inferencemodelinfo_tmp = InferenceModelInfo.new
+              inferencemodelinfo_tmp.deserialize(i)
+              @Items << inferencemodelinfo_tmp
+            end
+          end
+          @Total = params['Total']
+          @Page = params['Page']
+          @PageSize = params['PageSize']
+          @TotalPages = params['TotalPages']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ListJobSpecs请求参数结构体
       class ListJobSpecsRequest < TencentCloud::Common::AbstractModel
         # @param Page: <p>页数</p>
@@ -18600,6 +19908,26 @@ module TencentCloud
         end
       end
 
+      # 校验消息项
+      class MessageItem < TencentCloud::Common::AbstractModel
+        # @param BillingItem: <p>计费项标识</p>
+        # @type BillingItem: String
+        # @param Message: <p>校验失败描述信息</p>
+        # @type Message: String
+
+        attr_accessor :BillingItem, :Message
+
+        def initialize(billingitem=nil, message=nil)
+          @BillingItem = billingitem
+          @Message = message
+        end
+
+        def deserialize(params)
+          @BillingItem = params['BillingItem']
+          @Message = params['Message']
+        end
+      end
+
       # 元数据库基本信息
       class MetaDatabaseInfo < TencentCloud::Common::AbstractModel
         # @param DatabaseName: 数据库名称。
@@ -19090,6 +20418,101 @@ module TencentCloud
           @LabImagePullType = params['LabImagePullType']
           @SubAccountName = params['SubAccountName']
           @ImagePullType = params['ImagePullType']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyPartitionDescription请求参数结构体
+      class ModifyPartitionDescriptionRequest < TencentCloud::Common::AbstractModel
+        # @param PartitionCode: 分区编码
+        # @type PartitionCode: String
+        # @param Description: 分区描述
+        # @type Description: String
+
+        attr_accessor :PartitionCode, :Description
+
+        def initialize(partitioncode=nil, description=nil)
+          @PartitionCode = partitioncode
+          @Description = description
+        end
+
+        def deserialize(params)
+          @PartitionCode = params['PartitionCode']
+          @Description = params['Description']
+        end
+      end
+
+      # ModifyPartitionDescription返回参数结构体
+      class ModifyPartitionDescriptionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyPartitionQueue请求参数结构体
+      class ModifyPartitionQueueRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 资源队列ID
+        # @type Id: Integer
+        # @param PartitionCode: 分区编码
+        # @type PartitionCode: String
+        # @param QueueName: 队列名称
+        # @type QueueName: String
+        # @param Description: 队列描述
+        # @type Description: String
+        # @param ResourceUsages: 资源规格列表，定义队列的资源类型及大小范围
+        # @type ResourceUsages: Array
+        # @param QueueType: 队列类型：1-独占型，2-共享型
+        # @type QueueType: Integer
+
+        attr_accessor :Id, :PartitionCode, :QueueName, :Description, :ResourceUsages, :QueueType
+
+        def initialize(id=nil, partitioncode=nil, queuename=nil, description=nil, resourceusages=nil, queuetype=nil)
+          @Id = id
+          @PartitionCode = partitioncode
+          @QueueName = queuename
+          @Description = description
+          @ResourceUsages = resourceusages
+          @QueueType = queuetype
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @PartitionCode = params['PartitionCode']
+          @QueueName = params['QueueName']
+          @Description = params['Description']
+          unless params['ResourceUsages'].nil?
+            @ResourceUsages = []
+            params['ResourceUsages'].each do |i|
+              resourceusage_tmp = ResourceUsage.new
+              resourceusage_tmp.deserialize(i)
+              @ResourceUsages << resourceusage_tmp
+            end
+          end
+          @QueueType = params['QueueType']
+        end
+      end
+
+      # ModifyPartitionQueue返回参数结构体
+      class ModifyPartitionQueueResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -20309,6 +21732,138 @@ module TencentCloud
         end
       end
 
+      # 资源分区详情
+      class PartitionDetail < TencentCloud::Common::AbstractModel
+        # @param PartitionCode: <p>分区编码</p>
+        # @type PartitionCode: String
+        # @param PartitionName: <p>分区名称</p>
+        # @type PartitionName: String
+        # @param Description: <p>分区描述</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param Region: <p>地域</p>
+        # @type Region: Integer
+        # @param ProductInfo: <p>产品信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProductInfo: String
+        # @param ResourcePoolCode: <p>资源池编码</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourcePoolCode: String
+        # @param ResourceQuota: <p>资源配额列表</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceQuota: Array
+        # @param PayMode: <p>付费模式</p>
+        # @type PayMode: Integer
+        # @param RenewFlag: <p>续费标志</p>
+        # @type RenewFlag: Integer
+        # @param Scheduler: <p>调度器类型</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Scheduler: String
+        # @param Status: <p>状态</p>
+        # @type Status: Integer
+
+        attr_accessor :PartitionCode, :PartitionName, :Description, :Region, :ProductInfo, :ResourcePoolCode, :ResourceQuota, :PayMode, :RenewFlag, :Scheduler, :Status
+
+        def initialize(partitioncode=nil, partitionname=nil, description=nil, region=nil, productinfo=nil, resourcepoolcode=nil, resourcequota=nil, paymode=nil, renewflag=nil, scheduler=nil, status=nil)
+          @PartitionCode = partitioncode
+          @PartitionName = partitionname
+          @Description = description
+          @Region = region
+          @ProductInfo = productinfo
+          @ResourcePoolCode = resourcepoolcode
+          @ResourceQuota = resourcequota
+          @PayMode = paymode
+          @RenewFlag = renewflag
+          @Scheduler = scheduler
+          @Status = status
+        end
+
+        def deserialize(params)
+          @PartitionCode = params['PartitionCode']
+          @PartitionName = params['PartitionName']
+          @Description = params['Description']
+          @Region = params['Region']
+          @ProductInfo = params['ProductInfo']
+          @ResourcePoolCode = params['ResourcePoolCode']
+          unless params['ResourceQuota'].nil?
+            @ResourceQuota = []
+            params['ResourceQuota'].each do |i|
+              resourcequota_tmp = ResourceQuota.new
+              resourcequota_tmp.deserialize(i)
+              @ResourceQuota << resourcequota_tmp
+            end
+          end
+          @PayMode = params['PayMode']
+          @RenewFlag = params['RenewFlag']
+          @Scheduler = params['Scheduler']
+          @Status = params['Status']
+        end
+      end
+
+      # 资源分区信息
+      class PartitionInfo < TencentCloud::Common::AbstractModel
+        # @param Name: <p>分区名称</p>
+        # @type Name: String
+        # @param PartitionCode: <p>分区编码</p>
+        # @type PartitionCode: String
+        # @param Description: <p>描述</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param Status: <p>状态：11-发货中，1-运行中，2-隔离中，3-已销毁</p>
+        # @type Status: Integer
+        # @param QueueCount: <p>队列数量</p>
+        # @type QueueCount: Integer
+        # @param ResourceQuota: <p>资源配置（配额）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceQuota: Array
+        # @param PayMode: <p>计费类型：1-包年包月，0-按量计费</p>
+        # @type PayMode: Integer
+        # @param CreateTime: <p>创建时间</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param UpdateTime: <p>更新时间</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param ExpireTime: <p>过期时间</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpireTime: String
+
+        attr_accessor :Name, :PartitionCode, :Description, :Status, :QueueCount, :ResourceQuota, :PayMode, :CreateTime, :UpdateTime, :ExpireTime
+
+        def initialize(name=nil, partitioncode=nil, description=nil, status=nil, queuecount=nil, resourcequota=nil, paymode=nil, createtime=nil, updatetime=nil, expiretime=nil)
+          @Name = name
+          @PartitionCode = partitioncode
+          @Description = description
+          @Status = status
+          @QueueCount = queuecount
+          @ResourceQuota = resourcequota
+          @PayMode = paymode
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @ExpireTime = expiretime
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @PartitionCode = params['PartitionCode']
+          @Description = params['Description']
+          @Status = params['Status']
+          @QueueCount = params['QueueCount']
+          unless params['ResourceQuota'].nil?
+            @ResourceQuota = []
+            params['ResourceQuota'].each do |i|
+              resourcequota_tmp = ResourceQuota.new
+              resourcequota_tmp.deserialize(i)
+              @ResourceQuota << resourcequota_tmp
+            end
+          end
+          @PayMode = params['PayMode']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @ExpireTime = params['ExpireTime']
+        end
+      end
+
       # PauseStandardEngineResourceGroups请求参数结构体
       class PauseStandardEngineResourceGroupsRequest < TencentCloud::Common::AbstractModel
         # @param EngineResourceGroupNames: 标准引擎资源组名称
@@ -20773,6 +22328,51 @@ module TencentCloud
         end
       end
 
+      # 队列信息
+      class QueueInfo < TencentCloud::Common::AbstractModel
+        # @param Id: <p>队列ID</p>
+        # @type Id: Integer
+        # @param QueueName: <p>队列名称</p>
+        # @type QueueName: String
+        # @param ResourceUsage: <p>资源用量列表</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceUsage: Array
+        # @param Description: <p>队列描述</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param IsDefault: <p>是否为默认队列</p>
+        # @type IsDefault: Integer
+        # @param QueueType: <p>队列类型：1-独占型，2-共享型</p>
+        # @type QueueType: Integer
+
+        attr_accessor :Id, :QueueName, :ResourceUsage, :Description, :IsDefault, :QueueType
+
+        def initialize(id=nil, queuename=nil, resourceusage=nil, description=nil, isdefault=nil, queuetype=nil)
+          @Id = id
+          @QueueName = queuename
+          @ResourceUsage = resourceusage
+          @Description = description
+          @IsDefault = isdefault
+          @QueueType = queuetype
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @QueueName = params['QueueName']
+          unless params['ResourceUsage'].nil?
+            @ResourceUsage = []
+            params['ResourceUsage'].each do |i|
+              resourceusage_tmp = ResourceUsage.new
+              resourceusage_tmp.deserialize(i)
+              @ResourceUsage << resourceusage_tmp
+            end
+          end
+          @Description = params['Description']
+          @IsDefault = params['IsDefault']
+          @QueueType = params['QueueType']
+        end
+      end
+
       # Ray集群实体
       class RayClusterEntity < TencentCloud::Common::AbstractModel
         # @param Id: <p>集群ID</p>
@@ -21115,6 +22715,30 @@ module TencentCloud
         end
       end
 
+      # 可售卖地域信息
+      class RegionInfo < TencentCloud::Common::AbstractModel
+        # @param RegionCode: <p>地域编码，如 ap-chongqing</p>
+        # @type RegionCode: String
+        # @param RegionName: <p>地域名称，如 重庆</p>
+        # @type RegionName: String
+        # @param Status: <p>地域状态：AVAILABLE-可用，UNAVAILABLE-不可用</p>
+        # @type Status: String
+
+        attr_accessor :RegionCode, :RegionName, :Status
+
+        def initialize(regioncode=nil, regionname=nil, status=nil)
+          @RegionCode = regioncode
+          @RegionName = regionname
+          @Status = status
+        end
+
+        def deserialize(params)
+          @RegionCode = params['RegionCode']
+          @RegionName = params['RegionName']
+          @Status = params['Status']
+        end
+      end
+
       # RegisterThirdPartyAccessUser请求参数结构体
       class RegisterThirdPartyAccessUserRequest < TencentCloud::Common::AbstractModel
 
@@ -21364,6 +22988,127 @@ module TencentCloud
             @ResourceConf = ResourceConf.new
             @ResourceConf.deserialize(params['ResourceConf'])
           end
+        end
+      end
+
+      # 资源配额
+      class ResourceQuota < TencentCloud::Common::AbstractModel
+        # @param ResourceSpec: <p>可售卖资源规格</p>
+        # @type ResourceSpec: :class:`Tencentcloud::Dlc.v20210125.models.ResourceSpec`
+        # @param Quota: <p>配额数量</p>
+        # @type Quota: Integer
+
+        attr_accessor :ResourceSpec, :Quota
+
+        def initialize(resourcespec=nil, quota=nil)
+          @ResourceSpec = resourcespec
+          @Quota = quota
+        end
+
+        def deserialize(params)
+          unless params['ResourceSpec'].nil?
+            @ResourceSpec = ResourceSpec.new
+            @ResourceSpec.deserialize(params['ResourceSpec'])
+          end
+          @Quota = params['Quota']
+        end
+      end
+
+      # 可售卖资源规格信息
+      class ResourceSaleInfo < TencentCloud::Common::AbstractModel
+        # @param ResourceSpec: <p>可售卖资源规格</p>
+        # @type ResourceSpec: :class:`Tencentcloud::Dlc.v20210125.models.ResourceSpec`
+        # @param Step: <p>规格步长</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Step: Integer
+        # @param MaxSpec: <p>最大资源数量，仅GU有值</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxSpec: Integer
+
+        attr_accessor :ResourceSpec, :Step, :MaxSpec
+
+        def initialize(resourcespec=nil, step=nil, maxspec=nil)
+          @ResourceSpec = resourcespec
+          @Step = step
+          @MaxSpec = maxspec
+        end
+
+        def deserialize(params)
+          unless params['ResourceSpec'].nil?
+            @ResourceSpec = ResourceSpec.new
+            @ResourceSpec.deserialize(params['ResourceSpec'])
+          end
+          @Step = params['Step']
+          @MaxSpec = params['MaxSpec']
+        end
+      end
+
+      # 资源规格
+      class ResourceSpec < TencentCloud::Common::AbstractModel
+        # @param ResourceType: <p>资源包类型</p>
+        # @type ResourceType: String
+        # @param InstanceType: <p>机型，例如X40/T20，仅GU有值</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceType: String
+        # @param BillingItem: <p>四层计费项</p>
+        # @type BillingItem: String
+        # @param SpecDesc: <p>规格描述</p>
+        # @type SpecDesc: String
+        # @param Spec: <p>规格，格式为 {gpu}:{cpu}:{mem}:{vram}</p>
+        # @type Spec: String
+        # @param GpuType: <p>GPU类型，仅GU有值</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GpuType: String
+        # @param MaxCardPerNode: <p>单个物理节点上该计费项对应的最大 GPU 卡数，CPU / HM_CPU 恒为 0</p>
+        # @type MaxCardPerNode: Integer
+
+        attr_accessor :ResourceType, :InstanceType, :BillingItem, :SpecDesc, :Spec, :GpuType, :MaxCardPerNode
+
+        def initialize(resourcetype=nil, instancetype=nil, billingitem=nil, specdesc=nil, spec=nil, gputype=nil, maxcardpernode=nil)
+          @ResourceType = resourcetype
+          @InstanceType = instancetype
+          @BillingItem = billingitem
+          @SpecDesc = specdesc
+          @Spec = spec
+          @GpuType = gputype
+          @MaxCardPerNode = maxcardpernode
+        end
+
+        def deserialize(params)
+          @ResourceType = params['ResourceType']
+          @InstanceType = params['InstanceType']
+          @BillingItem = params['BillingItem']
+          @SpecDesc = params['SpecDesc']
+          @Spec = params['Spec']
+          @GpuType = params['GpuType']
+          @MaxCardPerNode = params['MaxCardPerNode']
+        end
+      end
+
+      # 资源用量信息，描述某种资源类型的用量范围
+      class ResourceUsage < TencentCloud::Common::AbstractModel
+        # @param ResourceSpec: <p>资源规格</p>
+        # @type ResourceSpec: :class:`Tencentcloud::Dlc.v20210125.models.ResourceSpec`
+        # @param Min: <p>最小用量</p>
+        # @type Min: Integer
+        # @param Max: <p>最大用量</p>
+        # @type Max: Integer
+
+        attr_accessor :ResourceSpec, :Min, :Max
+
+        def initialize(resourcespec=nil, min=nil, max=nil)
+          @ResourceSpec = resourcespec
+          @Min = min
+          @Max = max
+        end
+
+        def deserialize(params)
+          unless params['ResourceSpec'].nil?
+            @ResourceSpec = ResourceSpec.new
+            @ResourceSpec.deserialize(params['ResourceSpec'])
+          end
+          @Min = params['Min']
+          @Max = params['Max']
         end
       end
 
@@ -25305,6 +27050,134 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateInferenceModel请求参数结构体
+      class UpdateInferenceModelRequest < TencentCloud::Common::AbstractModel
+        # @param ModelUid: <p>推理模型UID</p>
+        # @type ModelUid: String
+        # @param Name: <p>模型名称（可选，不传则不修改）</p>
+        # @type Name: String
+        # @param Description: <p>模型描述（可选）</p>
+        # @type Description: String
+        # @param ParameterSize: <p>模型参数量（可选，如 7B、1.5B）</p>
+        # @type ParameterSize: String
+        # @param Tags: <p>模型标签列表（可选）</p>
+        # @type Tags: Array
+
+        attr_accessor :ModelUid, :Name, :Description, :ParameterSize, :Tags
+
+        def initialize(modeluid=nil, name=nil, description=nil, parametersize=nil, tags=nil)
+          @ModelUid = modeluid
+          @Name = name
+          @Description = description
+          @ParameterSize = parametersize
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @ModelUid = params['ModelUid']
+          @Name = params['Name']
+          @Description = params['Description']
+          @ParameterSize = params['ParameterSize']
+          @Tags = params['Tags']
+        end
+      end
+
+      # UpdateInferenceModel返回参数结构体
+      class UpdateInferenceModelResponse < TencentCloud::Common::AbstractModel
+        # @param ModelId: <p>推理模型ID</p>
+        # @type ModelId: String
+        # @param ModelUid: <p>推理模型UID</p>
+        # @type ModelUid: String
+        # @param Name: <p>模型名称</p>
+        # @type Name: String
+        # @param Provider: <p>模型提供方</p>
+        # @type Provider: String
+        # @param Description: <p>模型描述</p>
+        # @type Description: String
+        # @param ModelType: <p>模型类型</p>
+        # @type ModelType: String
+        # @param ParameterSize: <p>模型参数量</p>
+        # @type ParameterSize: String
+        # @param Tags: <p>标签</p>
+        # @type Tags: Array
+        # @param LatestVersion: <p>最新版本号</p>
+        # @type LatestVersion: String
+        # @param VersionCount: <p>版本总数</p>
+        # @type VersionCount: Integer
+        # @param ServiceCount: <p>关联的推理服务数量</p>
+        # @type ServiceCount: Integer
+        # @param HasStorage: <p>是否有存储</p>
+        # @type HasStorage: Boolean
+        # @param HasCustomStorage: <p>是否使用用户自带存储桶</p>
+        # @type HasCustomStorage: Boolean
+        # @param StorageType: <p>存储后端类型</p>
+        # @type StorageType: String
+        # @param BuiltIn: <p>是否内置模型</p>
+        # @type BuiltIn: Boolean
+        # @param Tasks: <p>任务类型列表</p>
+        # @type Tasks: Array
+        # @param AppId: <p>APPID</p>
+        # @type AppId: Integer
+        # @param CreateTime: <p>创建时间</p>
+        # @type CreateTime: Integer
+        # @param UpdateTime: <p>更新时间</p>
+        # @type UpdateTime: Integer
+        # @param SubAccountUin: <p>SUB UIN</p>
+        # @type SubAccountUin: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ModelId, :ModelUid, :Name, :Provider, :Description, :ModelType, :ParameterSize, :Tags, :LatestVersion, :VersionCount, :ServiceCount, :HasStorage, :HasCustomStorage, :StorageType, :BuiltIn, :Tasks, :AppId, :CreateTime, :UpdateTime, :SubAccountUin, :RequestId
+
+        def initialize(modelid=nil, modeluid=nil, name=nil, provider=nil, description=nil, modeltype=nil, parametersize=nil, tags=nil, latestversion=nil, versioncount=nil, servicecount=nil, hasstorage=nil, hascustomstorage=nil, storagetype=nil, builtin=nil, tasks=nil, appid=nil, createtime=nil, updatetime=nil, subaccountuin=nil, requestid=nil)
+          @ModelId = modelid
+          @ModelUid = modeluid
+          @Name = name
+          @Provider = provider
+          @Description = description
+          @ModelType = modeltype
+          @ParameterSize = parametersize
+          @Tags = tags
+          @LatestVersion = latestversion
+          @VersionCount = versioncount
+          @ServiceCount = servicecount
+          @HasStorage = hasstorage
+          @HasCustomStorage = hascustomstorage
+          @StorageType = storagetype
+          @BuiltIn = builtin
+          @Tasks = tasks
+          @AppId = appid
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @SubAccountUin = subaccountuin
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ModelId = params['ModelId']
+          @ModelUid = params['ModelUid']
+          @Name = params['Name']
+          @Provider = params['Provider']
+          @Description = params['Description']
+          @ModelType = params['ModelType']
+          @ParameterSize = params['ParameterSize']
+          @Tags = params['Tags']
+          @LatestVersion = params['LatestVersion']
+          @VersionCount = params['VersionCount']
+          @ServiceCount = params['ServiceCount']
+          @HasStorage = params['HasStorage']
+          @HasCustomStorage = params['HasCustomStorage']
+          @StorageType = params['StorageType']
+          @BuiltIn = params['BuiltIn']
+          @Tasks = params['Tasks']
+          @AppId = params['AppId']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @SubAccountUin = params['SubAccountUin']
           @RequestId = params['RequestId']
         end
       end

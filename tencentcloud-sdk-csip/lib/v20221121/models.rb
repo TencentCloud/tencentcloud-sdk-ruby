@@ -2602,7 +2602,7 @@ module TencentCloud
         # @type DbUser: String
         # @param EffectRow: 影响行数
         # @type EffectRow: Integer
-        # @param ExecTime: 执行时间
+        # @param ExecTime: 执行时间,单位：毫秒
         # @type ExecTime: Integer
         # @param HitRule: 命中规则
         # @type HitRule: String
@@ -6491,28 +6491,30 @@ module TencentCloud
 
       # CreateDspmWhitelistStrategy请求参数结构体
       class CreateDspmWhitelistStrategyRequest < TencentCloud::Common::AbstractModel
-        # @param StrategyType: 策略类型
+        # @param StrategyType: <p>策略类型</p>
         # @type StrategyType: String
-        # @param MemberId: 集团账号的成员id
+        # @param MemberId: <p>集团账号的成员id</p>
         # @type MemberId: Array
-        # @param Name: 白名单
+        # @param Name: <p>白名单</p>
         # @type Name: String
-        # @param Rule: 规则
+        # @param Rule: <p>规则</p>
         # @type Rule: String
-        # @param AssetId: 资产id
+        # @param AssetId: <p>资产id</p>
         # @type AssetId: String
-        # @param Account: 账号
+        # @param Account: <p>账号</p>
         # @type Account: String
-        # @param Host: 主机
+        # @param Host: <p>主机</p>
         # @type Host: String
-        # @param RiskId: 风险id
+        # @param RiskId: <p>风险id</p>
         # @type RiskId: String
-        # @param Remark: 备注
+        # @param Remark: <p>备注</p>
         # @type Remark: String
+        # @param WhitelistType: <p>白名单的类型</p><p>枚举值：</p><ul><li>static_risk： 静态配置扫描的白名单规则</li><li>audit： 审计白名单规则</li><li>ueba： ueba相关的白名单规则</li></ul>
+        # @type WhitelistType: String
 
-        attr_accessor :StrategyType, :MemberId, :Name, :Rule, :AssetId, :Account, :Host, :RiskId, :Remark
+        attr_accessor :StrategyType, :MemberId, :Name, :Rule, :AssetId, :Account, :Host, :RiskId, :Remark, :WhitelistType
 
-        def initialize(strategytype=nil, memberid=nil, name=nil, rule=nil, assetid=nil, account=nil, host=nil, riskid=nil, remark=nil)
+        def initialize(strategytype=nil, memberid=nil, name=nil, rule=nil, assetid=nil, account=nil, host=nil, riskid=nil, remark=nil, whitelisttype=nil)
           @StrategyType = strategytype
           @MemberId = memberid
           @Name = name
@@ -6522,6 +6524,7 @@ module TencentCloud
           @Host = host
           @RiskId = riskid
           @Remark = remark
+          @WhitelistType = whitelisttype
         end
 
         def deserialize(params)
@@ -6534,12 +6537,13 @@ module TencentCloud
           @Host = params['Host']
           @RiskId = params['RiskId']
           @Remark = params['Remark']
+          @WhitelistType = params['WhitelistType']
         end
       end
 
       # CreateDspmWhitelistStrategy返回参数结构体
       class CreateDspmWhitelistStrategyResponse < TencentCloud::Common::AbstractModel
-        # @param WhitelistStrategyId: 白名单id
+        # @param WhitelistStrategyId: <p>白名单id</p>
         # @type WhitelistStrategyId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7780,7 +7784,7 @@ module TencentCloud
 
       # DeleteDspmWhitelistStrategy请求参数结构体
       class DeleteDspmWhitelistStrategyRequest < TencentCloud::Common::AbstractModel
-        # @param MemberId: 集团账号的成员id
+        # @param MemberId: <p>集团账号的成员id</p>
         # @type MemberId: Array
         # @param WhitelistStrategyId: 白名单id
         # @type WhitelistStrategyId: Array
@@ -11206,8 +11210,8 @@ module TencentCloud
 
         attr_accessor :Total, :Data, :DataSet, :RequestId
         extend Gem::Deprecate
-        deprecate :Data, :none, 2026, 7
-        deprecate :Data=, :none, 2026, 7
+        deprecate :Data, :none, 2026, 8
+        deprecate :Data=, :none, 2026, 8
 
         def initialize(total=nil, data=nil, dataset=nil, requestid=nil)
           @Total = total
@@ -14263,7 +14267,7 @@ module TencentCloud
 
       # DescribeDspmLogList请求参数结构体
       class DescribeDspmLogListRequest < TencentCloud::Common::AbstractModel
-        # @param MemberId: 集团账号的成员id
+        # @param MemberId: <p>集团账号的成员id</p>
         # @type MemberId: Array
         # @param Limit: 限制数目
         # @type Limit: Integer
@@ -14315,7 +14319,7 @@ module TencentCloud
         # @type RowNumMin: Integer
         # @param RowNumMax: 影响行数最大值
         # @type RowNumMax: Integer
-        # @param DbTypes: 数据库类型
+        # @param DbTypes: 数据库类型, 支持的值：cdb，mariadb
         # @type DbTypes: Array
         # @param RetNo: 返回码
         # @type RetNo: Integer
@@ -14892,7 +14896,7 @@ module TencentCloud
 
       # DescribeDspmRiskStrategyGroup请求参数结构体
       class DescribeDspmRiskStrategyGroupRequest < TencentCloud::Common::AbstractModel
-        # @param MemberId: 集团账号的成员id
+        # @param MemberId: <p>集团账号的成员id</p>
         # @type MemberId: Array
         # @param Filter: 过滤器
         # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
@@ -14946,7 +14950,7 @@ module TencentCloud
 
       # DescribeDspmRiskStrategy请求参数结构体
       class DescribeDspmRiskStrategyRequest < TencentCloud::Common::AbstractModel
-        # @param MemberId: 集团账号的成员id
+        # @param MemberId: <p>集团账号的成员id</p>
         # @type MemberId: Array
         # @param Filter: 过滤器
         # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
@@ -15227,7 +15231,7 @@ module TencentCloud
 
       # DescribeDspmWhitelistStrategy请求参数结构体
       class DescribeDspmWhitelistStrategyRequest < TencentCloud::Common::AbstractModel
-        # @param MemberId: 集团账号的成员id
+        # @param MemberId: <p>集团账号的成员id</p>
         # @type MemberId: Array
         # @param Filter: 过滤器
         # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
@@ -22944,12 +22948,12 @@ module TencentCloud
 
         attr_accessor :UnprocessedRisk, :ConfigurationRisk, :BaselineDeviation, :LeakDetection, :SQLBehaviorAnomaly, :PermissionAnomaly, :LoginBehaviorAnomaly, :AttackSurfaceRisk, :AccountSensitiveOperation, :UnprocessedAlarm, :NumOfNewAlarmEvent, :NumOfNewConfigRisk
         extend Gem::Deprecate
-        deprecate :ConfigurationRisk, :none, 2026, 7
-        deprecate :ConfigurationRisk=, :none, 2026, 7
-        deprecate :BaselineDeviation, :none, 2026, 7
-        deprecate :BaselineDeviation=, :none, 2026, 7
-        deprecate :LeakDetection, :none, 2026, 7
-        deprecate :LeakDetection=, :none, 2026, 7
+        deprecate :ConfigurationRisk, :none, 2026, 8
+        deprecate :ConfigurationRisk=, :none, 2026, 8
+        deprecate :BaselineDeviation, :none, 2026, 8
+        deprecate :BaselineDeviation=, :none, 2026, 8
+        deprecate :LeakDetection, :none, 2026, 8
+        deprecate :LeakDetection=, :none, 2026, 8
 
         def initialize(unprocessedrisk=nil, configurationrisk=nil, baselinedeviation=nil, leakdetection=nil, sqlbehavioranomaly=nil, permissionanomaly=nil, loginbehavioranomaly=nil, attacksurfacerisk=nil, accountsensitiveoperation=nil, unprocessedalarm=nil, numofnewalarmevent=nil, numofnewconfigrisk=nil)
           @UnprocessedRisk = unprocessedrisk
@@ -22984,38 +22988,45 @@ module TencentCloud
 
       # Dspm 风险策略
       class DspmRiskStrategy < TencentCloud::Common::AbstractModel
-        # @param StrategyType: 策略类型
+        # @param StrategyType: <p>策略类型</p>
         # @type StrategyType: String
-        # @param Name: 策略名
+        # @param Name: <p>策略名</p>
         # @type Name: String
-        # @param StrategyCategory: 策略类型
+        # @param StrategyCategory: <p>策略类型</p>
         # @type StrategyCategory: String
-        # @param IsEnabled: 是否启用。0-禁用 1-启用
+        # @param IsEnabled: <p>是否启用。0-禁用 1-启用</p>
         # @type IsEnabled: Integer
-        # @param RiskLevel: 风险等级。
+        # @param RiskLevel: <p>风险等级。</p>
         # @type RiskLevel: String
-        # @param Rule: 策略规则
+        # @param Rule: <p>策略规则</p>
         # @type Rule: String
-        # @param Remark: 备注
+        # @param Remark: <p>备注</p>
         # @type Remark: String
-        # @param Description: 策略内容
+        # @param Description: <p>策略内容</p>
         # @type Description: String
-        # @param HitCount: 命中次数
+        # @param HitCount: <p>命中次数</p>
         # @type HitCount: Integer
-        # @param RiskType: 风险类型。risk-风险；alarm-告警。
+        # @param RiskType: <p>风险类型。risk-风险；alarm-告警。</p>
         # @type RiskType: String
-        # @param AppId: 资产所属账号app id
+        # @param AppId: <p>资产所属账号app id</p>
         # @type AppId: Integer
-        # @param NickName: 账号昵称
+        # @param NickName: <p>账号昵称</p>
         # @type NickName: String
-        # @param Uin: 资产所属账号uin
+        # @param Uin: <p>资产所属账号uin</p>
         # @type Uin: String
-        # @param StrategyId: 策略id
+        # @param StrategyId: <p>策略id</p>
         # @type StrategyId: Integer
+        # @param RuleSource: <p>规则来源</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleSource: String
+        # @param AssetTypes: <p>支持的资产类型</p>
+        # @type AssetTypes: Array
+        # @param RiskDescription: <p>风险描述</p>
+        # @type RiskDescription: String
 
-        attr_accessor :StrategyType, :Name, :StrategyCategory, :IsEnabled, :RiskLevel, :Rule, :Remark, :Description, :HitCount, :RiskType, :AppId, :NickName, :Uin, :StrategyId
+        attr_accessor :StrategyType, :Name, :StrategyCategory, :IsEnabled, :RiskLevel, :Rule, :Remark, :Description, :HitCount, :RiskType, :AppId, :NickName, :Uin, :StrategyId, :RuleSource, :AssetTypes, :RiskDescription
 
-        def initialize(strategytype=nil, name=nil, strategycategory=nil, isenabled=nil, risklevel=nil, rule=nil, remark=nil, description=nil, hitcount=nil, risktype=nil, appid=nil, nickname=nil, uin=nil, strategyid=nil)
+        def initialize(strategytype=nil, name=nil, strategycategory=nil, isenabled=nil, risklevel=nil, rule=nil, remark=nil, description=nil, hitcount=nil, risktype=nil, appid=nil, nickname=nil, uin=nil, strategyid=nil, rulesource=nil, assettypes=nil, riskdescription=nil)
           @StrategyType = strategytype
           @Name = name
           @StrategyCategory = strategycategory
@@ -23030,6 +23041,9 @@ module TencentCloud
           @NickName = nickname
           @Uin = uin
           @StrategyId = strategyid
+          @RuleSource = rulesource
+          @AssetTypes = assettypes
+          @RiskDescription = riskdescription
         end
 
         def deserialize(params)
@@ -23047,29 +23061,35 @@ module TencentCloud
           @NickName = params['NickName']
           @Uin = params['Uin']
           @StrategyId = params['StrategyId']
+          @RuleSource = params['RuleSource']
+          @AssetTypes = params['AssetTypes']
+          @RiskDescription = params['RiskDescription']
         end
       end
 
       # Dspm 风险分组策略
       class DspmRiskStrategyGroup < TencentCloud::Common::AbstractModel
-        # @param StrategyType: 策略类型
+        # @param StrategyType: <p>策略类型</p>
         # @type StrategyType: String
-        # @param Name: 策略名
+        # @param Name: <p>策略名</p>
         # @type Name: String
-        # @param StrategyCategory: 策略类型
+        # @param StrategyCategory: <p>策略类型</p>
         # @type StrategyCategory: String
-        # @param IsEnabled: 是否启用。0-禁用 1-启用
+        # @param IsEnabled: <p>是否启用。0-禁用 1-启用</p>
         # @type IsEnabled: Integer
-        # @param HitCount: 命中次数
+        # @param HitCount: <p>命中次数</p>
         # @type HitCount: Integer
-        # @param RiskType: 风险类型。risk-风险；alarm-告警。
+        # @param RiskType: <p>风险类型。risk-风险；alarm-告警。</p>
         # @type RiskType: String
-        # @param StrategyList: 策略列表
+        # @param StrategyList: <p>策略列表</p>
         # @type StrategyList: Array
+        # @param RuleSource: <p>规则来源</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleSource: String
 
-        attr_accessor :StrategyType, :Name, :StrategyCategory, :IsEnabled, :HitCount, :RiskType, :StrategyList
+        attr_accessor :StrategyType, :Name, :StrategyCategory, :IsEnabled, :HitCount, :RiskType, :StrategyList, :RuleSource
 
-        def initialize(strategytype=nil, name=nil, strategycategory=nil, isenabled=nil, hitcount=nil, risktype=nil, strategylist=nil)
+        def initialize(strategytype=nil, name=nil, strategycategory=nil, isenabled=nil, hitcount=nil, risktype=nil, strategylist=nil, rulesource=nil)
           @StrategyType = strategytype
           @Name = name
           @StrategyCategory = strategycategory
@@ -23077,6 +23097,7 @@ module TencentCloud
           @HitCount = hitcount
           @RiskType = risktype
           @StrategyList = strategylist
+          @RuleSource = rulesource
         end
 
         def deserialize(params)
@@ -23094,6 +23115,7 @@ module TencentCloud
               @StrategyList << dspmriskstrategy_tmp
             end
           end
+          @RuleSource = params['RuleSource']
         end
       end
 
@@ -23122,12 +23144,12 @@ module TencentCloud
 
         attr_accessor :Date, :UncontrolledAccount, :ConfigurationRisk, :BaselineRisk, :LeakDetectionRisk, :SQLBehaviorAnomaly, :PermissionAnomaly, :LoginBehaviorAnomaly, :AttackSurfaceRisk, :AccountSensitiveOperation
         extend Gem::Deprecate
-        deprecate :ConfigurationRisk, :none, 2026, 7
-        deprecate :ConfigurationRisk=, :none, 2026, 7
-        deprecate :BaselineRisk, :none, 2026, 7
-        deprecate :BaselineRisk=, :none, 2026, 7
-        deprecate :LeakDetectionRisk, :none, 2026, 7
-        deprecate :LeakDetectionRisk=, :none, 2026, 7
+        deprecate :ConfigurationRisk, :none, 2026, 8
+        deprecate :ConfigurationRisk=, :none, 2026, 8
+        deprecate :BaselineRisk, :none, 2026, 8
+        deprecate :BaselineRisk=, :none, 2026, 8
+        deprecate :LeakDetectionRisk, :none, 2026, 8
+        deprecate :LeakDetectionRisk=, :none, 2026, 8
 
         def initialize(date=nil, uncontrolledaccount=nil, configurationrisk=nil, baselinerisk=nil, leakdetectionrisk=nil, sqlbehavioranomaly=nil, permissionanomaly=nil, loginbehavioranomaly=nil, attacksurfacerisk=nil, accountsensitiveoperation=nil)
           @Date = date
@@ -23365,40 +23387,42 @@ module TencentCloud
 
       # Dspm 白名单策略
       class DspmWhitelistStrategy < TencentCloud::Common::AbstractModel
-        # @param WhitelistStrategyId: 白名单策略id
+        # @param WhitelistStrategyId: <p>白名单策略id</p>
         # @type WhitelistStrategyId: String
-        # @param StrategyType: 策略类型
+        # @param StrategyType: <p>策略类型</p>
         # @type StrategyType: String
-        # @param Name: 白名单策略名
+        # @param Name: <p>白名单策略名</p>
         # @type Name: String
-        # @param StrategyCategory: 策略类型
+        # @param StrategyCategory: <p>策略类型</p>
         # @type StrategyCategory: String
-        # @param Rule: 策略规则
+        # @param Rule: <p>策略规则</p>
         # @type Rule: String
-        # @param Remark: 备注
+        # @param Remark: <p>备注</p>
         # @type Remark: String
-        # @param ModifyTime: 修改时间
+        # @param ModifyTime: <p>修改时间</p>
         # @type ModifyTime: String
-        # @param AssetId: 资产id
+        # @param AssetId: <p>资产id</p>
         # @type AssetId: String
-        # @param Account: 账号
+        # @param Account: <p>账号</p>
         # @type Account: String
-        # @param Host: 主机
+        # @param Host: <p>主机</p>
         # @type Host: String
-        # @param Description: 策略规则内容描述
+        # @param Description: <p>策略规则内容描述</p>
         # @type Description: String
-        # @param RiskType: 白名单类型。risk-风险白名单；alarm-告警白名单。
+        # @param RiskType: <p>白名单类型。risk-风险白名单；alarm-告警白名单。</p>
         # @type RiskType: String
-        # @param AppId: 资产所属账号app id
+        # @param AppId: <p>资产所属账号app id</p>
         # @type AppId: Integer
-        # @param NickName: 账号昵称
+        # @param NickName: <p>账号昵称</p>
         # @type NickName: String
-        # @param Uin: 资产所属账号uin
+        # @param Uin: <p>资产所属账号uin</p>
         # @type Uin: String
+        # @param WhitelistType: <p>白名单类型</p>
+        # @type WhitelistType: String
 
-        attr_accessor :WhitelistStrategyId, :StrategyType, :Name, :StrategyCategory, :Rule, :Remark, :ModifyTime, :AssetId, :Account, :Host, :Description, :RiskType, :AppId, :NickName, :Uin
+        attr_accessor :WhitelistStrategyId, :StrategyType, :Name, :StrategyCategory, :Rule, :Remark, :ModifyTime, :AssetId, :Account, :Host, :Description, :RiskType, :AppId, :NickName, :Uin, :WhitelistType
 
-        def initialize(whiteliststrategyid=nil, strategytype=nil, name=nil, strategycategory=nil, rule=nil, remark=nil, modifytime=nil, assetid=nil, account=nil, host=nil, description=nil, risktype=nil, appid=nil, nickname=nil, uin=nil)
+        def initialize(whiteliststrategyid=nil, strategytype=nil, name=nil, strategycategory=nil, rule=nil, remark=nil, modifytime=nil, assetid=nil, account=nil, host=nil, description=nil, risktype=nil, appid=nil, nickname=nil, uin=nil, whitelisttype=nil)
           @WhitelistStrategyId = whiteliststrategyid
           @StrategyType = strategytype
           @Name = name
@@ -23414,6 +23438,7 @@ module TencentCloud
           @AppId = appid
           @NickName = nickname
           @Uin = uin
+          @WhitelistType = whitelisttype
         end
 
         def deserialize(params)
@@ -23432,6 +23457,7 @@ module TencentCloud
           @AppId = params['AppId']
           @NickName = params['NickName']
           @Uin = params['Uin']
+          @WhitelistType = params['WhitelistType']
         end
       end
 
@@ -27367,28 +27393,37 @@ module TencentCloud
 
       # ModifyDspmRiskStrategy请求参数结构体
       class ModifyDspmRiskStrategyRequest < TencentCloud::Common::AbstractModel
-        # @param MemberId: 集团账号的成员id
+        # @param MemberId: <p>集团账号的成员id</p>
         # @type MemberId: Array
-        # @param StrategyType: 风险策略类型
+        # @param StrategyType: <p>风险策略类型</p>
         # @type StrategyType: String
-        # @param IsEnabled: 是否启用
+        # @param IsEnabled: <p>是否启用</p>
         # @type IsEnabled: Integer
-        # @param Rule: 策略内容，如：{     ThresholdValue: "100" }
+        # @param Rule: <p>策略内容，如：{     ThresholdValue: &quot;100&quot; }</p>
         # @type Rule: String
-        # @param RiskLevel: 可选值：Info/Low/Medium/High
+        # @param RiskLevel: <p>可选值：Info/Low/Medium/High</p>
         # @type RiskLevel: String
-        # @param StrategyId: 策略id
+        # @param StrategyId: <p>策略id</p>
         # @type StrategyId: Array
+        # @param Name: <p>策略名</p>
+        # @type Name: String
+        # @param Description: <p>策略描述</p>
+        # @type Description: String
+        # @param DbTypes: <p>支持的数据库类型</p>
+        # @type DbTypes: String
 
-        attr_accessor :MemberId, :StrategyType, :IsEnabled, :Rule, :RiskLevel, :StrategyId
+        attr_accessor :MemberId, :StrategyType, :IsEnabled, :Rule, :RiskLevel, :StrategyId, :Name, :Description, :DbTypes
 
-        def initialize(memberid=nil, strategytype=nil, isenabled=nil, rule=nil, risklevel=nil, strategyid=nil)
+        def initialize(memberid=nil, strategytype=nil, isenabled=nil, rule=nil, risklevel=nil, strategyid=nil, name=nil, description=nil, dbtypes=nil)
           @MemberId = memberid
           @StrategyType = strategytype
           @IsEnabled = isenabled
           @Rule = rule
           @RiskLevel = risklevel
           @StrategyId = strategyid
+          @Name = name
+          @Description = description
+          @DbTypes = dbtypes
         end
 
         def deserialize(params)
@@ -27398,6 +27433,9 @@ module TencentCloud
           @Rule = params['Rule']
           @RiskLevel = params['RiskLevel']
           @StrategyId = params['StrategyId']
+          @Name = params['Name']
+          @Description = params['Description']
+          @DbTypes = params['DbTypes']
         end
       end
 
@@ -27419,7 +27457,7 @@ module TencentCloud
 
       # ModifyDspmWhitelistStrategy请求参数结构体
       class ModifyDspmWhitelistStrategyRequest < TencentCloud::Common::AbstractModel
-        # @param MemberId: 集团账号的成员id
+        # @param MemberId: <p>集团账号的成员id</p>
         # @type MemberId: Array
         # @param WhitelistStrategyId: 白名单id
         # @type WhitelistStrategyId: String

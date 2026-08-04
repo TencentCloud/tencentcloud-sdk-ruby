@@ -1471,7 +1471,7 @@ module TencentCloud
 
       # DescribeDeviceWorkOrderDetail请求参数结构体
       class DescribeDeviceWorkOrderDetailRequest < TencentCloud::Common::AbstractModel
-        # @param OrderId: 工单ID
+        # @param OrderId: <p>工单ID</p>
         # @type OrderId: String
 
         attr_accessor :OrderId
@@ -1487,28 +1487,32 @@ module TencentCloud
 
       # DescribeDeviceWorkOrderDetail返回参数结构体
       class DescribeDeviceWorkOrderDetailResponse < TencentCloud::Common::AbstractModel
-        # @param OrderId: 工单ID
+        # @param OrderId: <p>工单ID</p>
         # @type OrderId: String
-        # @param ServiceType: 服务类型
+        # @param ServiceType: <p>服务类型</p>
         # @type ServiceType: String
-        # @param OrderType: 工单类型
+        # @param OrderType: <p>工单类型</p>
         # @type OrderType: String
-        # @param OrderStatus: 工单状态
+        # @param OrderStatus: <p>工单状态</p>
         # @type OrderStatus: String
-        # @param StepSet: 工单流程状态
+        # @param StepSet: <p>工单流程状态</p>
         # @type StepSet: Array
-        # @param DeviceSet: 工单设备信息
+        # @param DeviceSet: <p>工单设备信息</p>
         # @type DeviceSet: Array
-        # @param BaseInfo: 工单的入参信息
+        # @param BaseInfo: <p>工单的入参信息</p>
         # @type BaseInfo: :class:`Tencentcloud::Chc.v20230418.models.DeviceOrderBaseInfo`
-        # @param RejectReason: 工单的拒绝原因，工单状态为reject的时候返回
+        # @param RejectReason: <p>工单的拒绝原因，工单状态为reject的时候返回</p>
         # @type RejectReason: String
+        # @param SLAInfo: <p>工单 SLA 信息</p>
+        # @type SLAInfo: :class:`Tencentcloud::Chc.v20230418.models.SLAInfo`
+        # @param PreOrderSet: <p>前序未完成的工单号</p>
+        # @type PreOrderSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :OrderId, :ServiceType, :OrderType, :OrderStatus, :StepSet, :DeviceSet, :BaseInfo, :RejectReason, :RequestId
+        attr_accessor :OrderId, :ServiceType, :OrderType, :OrderStatus, :StepSet, :DeviceSet, :BaseInfo, :RejectReason, :SLAInfo, :PreOrderSet, :RequestId
 
-        def initialize(orderid=nil, servicetype=nil, ordertype=nil, orderstatus=nil, stepset=nil, deviceset=nil, baseinfo=nil, rejectreason=nil, requestid=nil)
+        def initialize(orderid=nil, servicetype=nil, ordertype=nil, orderstatus=nil, stepset=nil, deviceset=nil, baseinfo=nil, rejectreason=nil, slainfo=nil, preorderset=nil, requestid=nil)
           @OrderId = orderid
           @ServiceType = servicetype
           @OrderType = ordertype
@@ -1517,6 +1521,8 @@ module TencentCloud
           @DeviceSet = deviceset
           @BaseInfo = baseinfo
           @RejectReason = rejectreason
+          @SLAInfo = slainfo
+          @PreOrderSet = preorderset
           @RequestId = requestid
         end
 
@@ -1546,6 +1552,11 @@ module TencentCloud
             @BaseInfo.deserialize(params['BaseInfo'])
           end
           @RejectReason = params['RejectReason']
+          unless params['SLAInfo'].nil?
+            @SLAInfo = SLAInfo.new
+            @SLAInfo.deserialize(params['SLAInfo'])
+          end
+          @PreOrderSet = params['PreOrderSet']
           @RequestId = params['RequestId']
         end
       end
@@ -3956,6 +3967,38 @@ module TencentCloud
         end
       end
 
+      # SLA 信息
+      class SLAInfo < TencentCloud::Common::AbstractModel
+        # @param SLAStatus: <p>SLA 状态</p><p>枚举值：</p><ul><li>InSLA： SLA 内</li><li>Overdue： 已超时</li><li>Completed： 已完成</li></ul>
+        # @type SLAStatus: String
+        # @param DueTime: <p>到期时间</p>
+        # @type DueTime: String
+        # @param RemainingHours: <p>剩余时长</p><p>单位：小时</p>
+        # @type RemainingHours: Float
+        # @param OverdueHours: <p>超时时长</p><p>单位：小时</p>
+        # @type OverdueHours: Float
+        # @param SLADays: <p>SLA 工作日天数</p><p>单位：天</p>
+        # @type SLADays: Integer
+
+        attr_accessor :SLAStatus, :DueTime, :RemainingHours, :OverdueHours, :SLADays
+
+        def initialize(slastatus=nil, duetime=nil, remaininghours=nil, overduehours=nil, sladays=nil)
+          @SLAStatus = slastatus
+          @DueTime = duetime
+          @RemainingHours = remaininghours
+          @OverdueHours = overduehours
+          @SLADays = sladays
+        end
+
+        def deserialize(params)
+          @SLAStatus = params['SLAStatus']
+          @DueTime = params['DueTime']
+          @RemainingHours = params['RemainingHours']
+          @OverdueHours = params['OverdueHours']
+          @SLADays = params['SLADays']
+        end
+      end
+
       # 客户自行上门信息
       class SelfOperation < TencentCloud::Common::AbstractModel
         # @param StuffContact: 联系人员电话
@@ -4218,26 +4261,28 @@ module TencentCloud
 
       # 工单的常用信息返回
       class WorkOrderData < TencentCloud::Common::AbstractModel
-        # @param WorkOrderId: 工单号
+        # @param WorkOrderId: <p>工单号</p>
         # @type WorkOrderId: String
-        # @param ServiceType: 服务类型，一个服务可能会产生多个工单
+        # @param ServiceType: <p>服务类型，一个服务可能会产生多个工单</p>
         # @type ServiceType: String
-        # @param OrderType: 工单类型
+        # @param OrderType: <p>工单类型</p>
         # @type OrderType: String
-        # @param OrderStatus: 工单状态
+        # @param OrderStatus: <p>工单状态</p>
         # @type OrderStatus: String
-        # @param Creator: 工单创建人
+        # @param Creator: <p>工单创建人</p>
         # @type Creator: String
-        # @param CreateTime: 工单创建时间
+        # @param CreateTime: <p>工单创建时间</p>
         # @type CreateTime: String
-        # @param FinishTime: 工单完成时间
+        # @param FinishTime: <p>工单完成时间</p>
         # @type FinishTime: String
-        # @param TicketId: 工单关联的dcops单号
+        # @param TicketId: <p>工单关联的dcops单号</p>
         # @type TicketId: String
+        # @param SLAInfo: <p>SLA</p>
+        # @type SLAInfo: :class:`Tencentcloud::Chc.v20230418.models.SLAInfo`
 
-        attr_accessor :WorkOrderId, :ServiceType, :OrderType, :OrderStatus, :Creator, :CreateTime, :FinishTime, :TicketId
+        attr_accessor :WorkOrderId, :ServiceType, :OrderType, :OrderStatus, :Creator, :CreateTime, :FinishTime, :TicketId, :SLAInfo
 
-        def initialize(workorderid=nil, servicetype=nil, ordertype=nil, orderstatus=nil, creator=nil, createtime=nil, finishtime=nil, ticketid=nil)
+        def initialize(workorderid=nil, servicetype=nil, ordertype=nil, orderstatus=nil, creator=nil, createtime=nil, finishtime=nil, ticketid=nil, slainfo=nil)
           @WorkOrderId = workorderid
           @ServiceType = servicetype
           @OrderType = ordertype
@@ -4246,6 +4291,7 @@ module TencentCloud
           @CreateTime = createtime
           @FinishTime = finishtime
           @TicketId = ticketid
+          @SLAInfo = slainfo
         end
 
         def deserialize(params)
@@ -4257,6 +4303,10 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @FinishTime = params['FinishTime']
           @TicketId = params['TicketId']
+          unless params['SLAInfo'].nil?
+            @SLAInfo = SLAInfo.new
+            @SLAInfo.deserialize(params['SLAInfo'])
+          end
         end
       end
 

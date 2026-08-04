@@ -6183,22 +6183,25 @@ module TencentCloud
 
       # 同步的数据库对对象描述
       class Objects < TencentCloud::Common::AbstractModel
-        # @param Mode: 同步对象类型 Partial(部分对象)
+        # @param Mode: <p>同步对象类型 Partial(部分对象)</p>
         # @type Mode: String
-        # @param Databases: 同步对象，当 Mode 为 Partial 时，不为空
+        # @param Databases: <p>同步对象，当 Mode 为 Partial 时，不为空</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Databases: Array
-        # @param AdvancedObjects: 高级对象类型，如function、procedure。注意：如果要迁移同步高级对象，此配置中应该包含对应的高级对象类型。当需要同步高级对象时，初始化类型必须包含结构初始化类型，即任务的Options.InitType字段值为Structure或Full
+        # @param AdvancedObjects: <p>高级对象类型，如function、procedure。注意：如果要迁移同步高级对象，此配置中应该包含对应的高级对象类型。当需要同步高级对象时，初始化类型必须包含结构初始化类型，即任务的Options.InitType字段值为Structure或Full</p>
         # @type AdvancedObjects: Array
-        # @param DatabasesOpFilter: 库/表/视图级 DML/DDL 白名单
+        # @param OnlineDDL: <p>此字段已废弃。对于临时表的同步应该使用Objects.Databases[n].Tables[n].TmpTables传入。</p>
+        # @type OnlineDDL: :class:`Tencentcloud::Dts.v20211206.models.OnlineDDL`
+        # @param DatabasesOpFilter: <p>库/表/视图级 DML/DDL 白名单</p>
         # @type DatabasesOpFilter: Array
 
-        attr_accessor :Mode, :Databases, :AdvancedObjects, :DatabasesOpFilter
+        attr_accessor :Mode, :Databases, :AdvancedObjects, :OnlineDDL, :DatabasesOpFilter
 
-        def initialize(mode=nil, databases=nil, advancedobjects=nil, databasesopfilter=nil)
+        def initialize(mode=nil, databases=nil, advancedobjects=nil, onlineddl=nil, databasesopfilter=nil)
           @Mode = mode
           @Databases = databases
           @AdvancedObjects = advancedobjects
+          @OnlineDDL = onlineddl
           @DatabasesOpFilter = databasesopfilter
         end
 
@@ -6213,6 +6216,10 @@ module TencentCloud
             end
           end
           @AdvancedObjects = params['AdvancedObjects']
+          unless params['OnlineDDL'].nil?
+            @OnlineDDL = OnlineDDL.new
+            @OnlineDDL.deserialize(params['OnlineDDL'])
+          end
           unless params['DatabasesOpFilter'].nil?
             @DatabasesOpFilter = []
             params['DatabasesOpFilter'].each do |i|
@@ -6241,6 +6248,22 @@ module TencentCloud
         def deserialize(params)
           @PartitionNo = params['PartitionNo']
           @Offset = params['Offset']
+        end
+      end
+
+      # OnlineDDL类型
+      class OnlineDDL < TencentCloud::Common::AbstractModel
+        # @param Status: 状态，ON-启用，OFF-不启用。
+        # @type Status: String
+
+        attr_accessor :Status
+
+        def initialize(status=nil)
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
         end
       end
 

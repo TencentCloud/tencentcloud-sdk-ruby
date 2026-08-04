@@ -477,19 +477,22 @@ module TencentCloud
         # @type ErrorMessage: String
         # @param ResultFile3Ds: <p>生成文件的URL地址，有效期1天。</p>
         # @type ResultFile3Ds: Array
-        # @param PartSegmentationInfo: <p>是否分步骤进行组件生成；<br>开启后，输入原始模型后，可生成带分割信息的模型以及分割数据，可对此信息编辑后再传入带有分割信息的模型和分割数据进行编辑后的组件生成；<br>此参数默认关闭。</p>
+        # @param PartSegmentationInfo: <p>是否分步骤进行组件生成；<br>开启后，输入原始模型后，可生成带分割信息的模型以及分割数据，可对此信息编辑后再传入带有分割信息的模型和分割数据进行编辑后的组件生成；<br>此参数默认关闭。</p><p>该参数废弃， 超过 9MB 不返回， 请使用 PartSegmentationInfoUrl 下载</p>
         # @type PartSegmentationInfo: String
+        # @param PartSegmentationInfoUrl: <p>PartSegmentationInfo 下载地址</p>
+        # @type PartSegmentationInfoUrl: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Status, :ErrorCode, :ErrorMessage, :ResultFile3Ds, :PartSegmentationInfo, :RequestId
+        attr_accessor :Status, :ErrorCode, :ErrorMessage, :ResultFile3Ds, :PartSegmentationInfo, :PartSegmentationInfoUrl, :RequestId
 
-        def initialize(status=nil, errorcode=nil, errormessage=nil, resultfile3ds=nil, partsegmentationinfo=nil, requestid=nil)
+        def initialize(status=nil, errorcode=nil, errormessage=nil, resultfile3ds=nil, partsegmentationinfo=nil, partsegmentationinfourl=nil, requestid=nil)
           @Status = status
           @ErrorCode = errorcode
           @ErrorMessage = errormessage
           @ResultFile3Ds = resultfile3ds
           @PartSegmentationInfo = partsegmentationinfo
+          @PartSegmentationInfoUrl = partsegmentationinfourl
           @RequestId = requestid
         end
 
@@ -506,6 +509,7 @@ module TencentCloud
             end
           end
           @PartSegmentationInfo = params['PartSegmentationInfo']
+          @PartSegmentationInfoUrl = params['PartSegmentationInfoUrl']
           @RequestId = params['RequestId']
         end
       end
@@ -679,16 +683,19 @@ module TencentCloud
         # @type Model: String
         # @param PartSegmentationInfo: <p>是否分步骤进行组件生成；<br>开启后，输入原始模型后，可生成带分割信息的模型以及分割数据，可对此信息编辑后再传入带有分割信息的模型和分割数据进行编辑后的组件生成；<br>此参数默认关闭。</p>
         # @type PartSegmentationInfo: String
-        # @param EnableStagedGeneration: <p>是否开启后处理，开启后将只输出一个模型链接，默认关闭。 （开启此接口后，需额外增加20积分）</p>
+        # @param EnableStagedGeneration: <p>是否分步骤进行组件生成；<br>开启后，输入原始模型后，可生成带分割信息的模型以及分割数据，可对此信息编辑后再传入带有分割信息的模型和分割数据进行编辑后的组件生成；<br>此参数默认关闭。</p>
         # @type EnableStagedGeneration: Boolean
+        # @param EnablePostProcess: <p>是否开启后处理，开启后将只输出一个模型链接，默认关闭。 （开启此接口后，需额外增加20积分）</p>
+        # @type EnablePostProcess: Boolean
 
-        attr_accessor :File, :Model, :PartSegmentationInfo, :EnableStagedGeneration
+        attr_accessor :File, :Model, :PartSegmentationInfo, :EnableStagedGeneration, :EnablePostProcess
 
-        def initialize(file=nil, model=nil, partsegmentationinfo=nil, enablestagedgeneration=nil)
+        def initialize(file=nil, model=nil, partsegmentationinfo=nil, enablestagedgeneration=nil, enablepostprocess=nil)
           @File = file
           @Model = model
           @PartSegmentationInfo = partsegmentationinfo
           @EnableStagedGeneration = enablestagedgeneration
+          @EnablePostProcess = enablepostprocess
         end
 
         def deserialize(params)
@@ -699,6 +706,7 @@ module TencentCloud
           @Model = params['Model']
           @PartSegmentationInfo = params['PartSegmentationInfo']
           @EnableStagedGeneration = params['EnableStagedGeneration']
+          @EnablePostProcess = params['EnablePostProcess']
         end
       end
 
