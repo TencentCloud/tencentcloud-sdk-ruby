@@ -6226,25 +6226,25 @@ module TencentCloud
 
       # 数据库实例基本信息
       class InstanceItem < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID。
+        # @param InstanceId: <p>实例ID。</p>
         # @type InstanceId: String
-        # @param Product: 数据库类型，如 mysql、cynosdb、mariadb、dcdb、mongodb、postgres、redis、dbbrain-mysql、tdstore。
+        # @param Product: <p>数据库类型，如 mysql、cynosdb、mariadb、dcdb、mongodb、postgres、redis、dbbrain-mysql、tdstore。</p>
         # @type Product: String
-        # @param Region: 地域英文ID。
+        # @param Region: <p>地域英文ID。</p>
         # @type Region: String
-        # @param ClusterId: 集群ID，仅集群类产品返回。
+        # @param ClusterId: <p>集群ID，仅集群类产品返回。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterId: String
-        # @param EngineVersion: 引擎版本。
+        # @param EngineVersion: <p>引擎版本。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EngineVersion: String
-        # @param Status: 实例状态，1表示运行中。
+        # @param Status: <p>实例状态，1表示运行中。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
-        # @param CreateTime: 实例创建时间。
+        # @param CreateTime: <p>实例创建时间。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
-        # @param DeadlineTime: 实例到期时间。
+        # @param DeadlineTime: <p>实例到期时间。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeadlineTime: String
 

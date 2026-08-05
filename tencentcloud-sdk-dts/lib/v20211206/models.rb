@@ -2122,19 +2122,23 @@ module TencentCloud
         # @param AccountName: 账号名称。实际的账户全称形如：account-#{SubscribeId}-#{AccountName}。
         # 请务必保证账户名称正确。可通过[DescribeConsumerGroups](https://cloud.tencent.com/document/product/571/102947)接口获取。
         # @type AccountName: String
+        # @param BackendJobId: 
+        # @type BackendJobId: String
 
-        attr_accessor :SubscribeId, :ConsumerGroupName, :AccountName
+        attr_accessor :SubscribeId, :ConsumerGroupName, :AccountName, :BackendJobId
 
-        def initialize(subscribeid=nil, consumergroupname=nil, accountname=nil)
+        def initialize(subscribeid=nil, consumergroupname=nil, accountname=nil, backendjobid=nil)
           @SubscribeId = subscribeid
           @ConsumerGroupName = consumergroupname
           @AccountName = accountname
+          @BackendJobId = backendjobid
         end
 
         def deserialize(params)
           @SubscribeId = params['SubscribeId']
           @ConsumerGroupName = params['ConsumerGroupName']
           @AccountName = params['AccountName']
+          @BackendJobId = params['BackendJobId']
         end
       end
 
@@ -2473,11 +2477,11 @@ module TencentCloud
 
       # DescribeConsumerGroups请求参数结构体
       class DescribeConsumerGroupsRequest < TencentCloud::Common::AbstractModel
-        # @param SubscribeId: 订阅实例id，可通过[DescribeSubscribeJobs](https://cloud.tencent.com/document/product/571/102943)接口获取。
+        # @param SubscribeId: <p>订阅实例id，可通过<a href="https://cloud.tencent.com/document/product/571/102943">DescribeSubscribeJobs</a>接口获取。</p>
         # @type SubscribeId: String
-        # @param Offset: 返回记录的起始偏移量。默认0
+        # @param Offset: <p>返回记录的起始偏移量。默认0</p>
         # @type Offset: Integer
-        # @param Limit: 单次返回的记录数量。默认10
+        # @param Limit: <p>单次返回的记录数量。默认10</p>
         # @type Limit: Integer
 
         attr_accessor :SubscribeId, :Offset, :Limit
@@ -2497,9 +2501,9 @@ module TencentCloud
 
       # DescribeConsumerGroups返回参数结构体
       class DescribeConsumerGroupsResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 指定实例下的消费者组总数
+        # @param TotalCount: <p>指定实例下的消费者组总数</p>
         # @type TotalCount: Integer
-        # @param Items: 消费者组列表
+        # @param Items: <p>消费者组列表</p>
         # @type Items: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3180,7 +3184,7 @@ module TencentCloud
 
       # DescribeSubscribeDetail请求参数结构体
       class DescribeSubscribeDetailRequest < TencentCloud::Common::AbstractModel
-        # @param SubscribeId: 订阅实例ID，可通过[DescribeSubscribeJobs](https://cloud.tencent.com/document/product/571/102943)接口获取。
+        # @param SubscribeId: <p>订阅实例ID，可通过<a href="https://cloud.tencent.com/document/product/571/102943">DescribeSubscribeJobs</a>接口获取。</p>
         # @type SubscribeId: String
 
         attr_accessor :SubscribeId
@@ -3196,72 +3200,70 @@ module TencentCloud
 
       # DescribeSubscribeDetail返回参数结构体
       class DescribeSubscribeDetailResponse < TencentCloud::Common::AbstractModel
-        # @param SubscribeId: 数据订阅的ID，形如subs-b6x64o31tm
+        # @param SubscribeId: <p>数据订阅的ID，形如subs-b6x64o31tm</p>
         # @type SubscribeId: String
-        # @param SubscribeName: 数据订阅实例的名称
+        # @param SubscribeName: <p>数据订阅实例的名称</p>
         # @type SubscribeName: String
-        # @param Product: 订阅的数据库类型，目前支持 cynosdbmysql(tdsql-c mysql版),mariadb,mongodb,mysql,percona,tdpg(tdsql postgresql版),tdsqlpercona(tdsql mysql版)
+        # @param Product: <p>订阅的数据库类型，目前支持 cynosdbmysql(tdsql-c mysql版),mariadb,mongodb,mysql,percona,tdpg(tdsql postgresql版),tdsqlpercona(tdsql mysql版)</p>
         # @type Product: String
-        # @param InstanceId: 订阅的云数据库实例ID，只有订阅云数据库该值才有意义
+        # @param InstanceId: <p>订阅的云数据库实例ID，只有订阅云数据库该值才有意义</p>
         # @type InstanceId: String
-        # @param InstanceStatus: 订阅的云数据库实例状态，只有订阅云数据库该值才有意义。可能值为：running, isolated, offline
+        # @param InstanceStatus: <p>订阅的云数据库实例状态，只有订阅云数据库该值才有意义。可能值为：running, isolated, offline</p>
         # @type InstanceStatus: String
-        # @param Status: 订阅任务计费状态，可能值为：正常normal, 隔离中isolating, 已隔离isolated, 下线中offlining, 按量转包年包月中 post2PrePayIng
+        # @param Status: <p>订阅任务计费状态，可能值为：正常normal, 隔离中isolating, 已隔离isolated, 下线中offlining, 按量转包年包月中 post2PrePayIng</p>
         # @type Status: String
-        # @param SubsStatus: 订阅任务状态，可能值为：未启动notStarted, 校验中checking, 校验不通过checkNotPass, 校验通过checkPass, 启动中starting, 运行中running, 异常出错error
+        # @param SubsStatus: <p>订阅任务状态，可能值为：未启动notStarted, 校验中checking, 校验不通过checkNotPass, 校验通过checkPass, 启动中starting, 运行中running, 异常出错error</p>
         # @type SubsStatus: String
-        # @param ModifyTime: 修改时间，时间格式如：Y-m-d h:m:s
+        # @param ModifyTime: <p>修改时间。</p>
         # @type ModifyTime: String
-        # @param CreateTime: 创建时间，时间格式如：Y-m-d h:m:s
+        # @param CreateTime: <p>创建时间。</p>
         # @type CreateTime: String
-        # @param IsolateTime: 隔离时间，时间格式如：Y-m-d h:m:s。默认：0000-00-00 00:00:00
+        # @param IsolateTime: <p>隔离时间。</p>
         # @type IsolateTime: String
-        # @param ExpireTime: 包年包月任务的到期时间，时间格式如：Y-m-d h:m:s。默认：0000-00-00 00:00:00
+        # @param ExpireTime: <p>包年包月任务的到期时间。</p>
         # @type ExpireTime: String
-        # @param OfflineTime: 下线时间，时间格式如：Y-m-d h:m:s。默认：0000-00-00 00:00:00
+        # @param OfflineTime: <p>下线时间。</p>
         # @type OfflineTime: String
-        # @param PayType: 付费方式，可能值为：0-包年包月，1-按量计费
+        # @param PayType: <p>付费方式，可能值为：0-包年包月，1-按量计费</p>
         # @type PayType: Integer
-        # @param AutoRenewFlag: 自动续费标识。只有当 PayType=0，该值才有意义。枚举值：0-不自动续费，1-自动续费
+        # @param AutoRenewFlag: <p>自动续费标识。只有当 PayType=0，该值才有意义。枚举值：0-不自动续费，1-自动续费</p>
         # @type AutoRenewFlag: Integer
-        # @param Region: 任务所在地域
+        # @param Region: <p>任务所在地域</p>
         # @type Region: String
-        # @param Topic: Kafka topic
+        # @param Topic: <p>Kafka topic</p>
         # @type Topic: String
-        # @param Broker: Kafka服务Broker地址
+        # @param Broker: <p>Kafka服务Broker地址</p>
         # @type Broker: String
-        # @param SubscribeMode: 数据订阅的类型，当 Product 不为 mongodb 时，可能值为：all-全实例更新；dml-数据更新；ddl-结构更新；dmlAndDdl-数据更新+结构更新。当 Product 为 mongodb 时，可能值为 all-全实例更新；database-订阅单库；collection-订阅单集合
+        # @param SubscribeMode: <p>数据订阅的类型，当 Product 不为 mongodb 时，可能值为：all-全实例更新；dml-数据更新；ddl-结构更新；dmlAndDdl-数据更新+结构更新。当 Product 为 mongodb 时，可能值为 all-全实例更新；database-订阅单库；collection-订阅单集合</p>
         # @type SubscribeMode: String
-        # @param Protocol: 订阅数据格式。如果为空则用的默认格式: mysql\cynosdbmysql\mariadb\percona\tdsqlpercona\tdpg是protobuf，mongo是json。当 DatabaseType 为 mysql和cynosdbmysql 时有三种可选协议：protobuf\avro\json。数据格式详情参考官网的消费demo文档
+        # @param Protocol: <p>订阅数据格式。如果为空则用的默认格式: mysql\cynosdbmysql\mariadb\percona\tdsqlpercona\tdpg是protobuf，mongo是json。当 DatabaseType 为 mysql和cynosdbmysql 时有三种可选协议：protobuf\avro\json。数据格式详情参考官网的消费demo文档</p>
         # @type Protocol: String
-        # @param SubscribeObjects: 订阅的数据库表信息
+        # @param SubscribeObjects: <p>订阅的数据库表信息</p>
         # @type SubscribeObjects: Array
-        # @param KafkaConfig: kafka配置信息
+        # @param KafkaConfig: <p>kafka配置信息</p>
         # @type KafkaConfig: :class:`Tencentcloud::Dts.v20211206.models.SubscribeKafkaConfig`
-        # @param KafkaVersion: 订阅内置kafka的版本信息
+        # @param KafkaVersion: <p>订阅内置kafka的版本信息</p>
         # @type KafkaVersion: String
-        # @param AccessType: 源数据库接入类型，如：extranet(公网)、vpncloud(vpn接入)、dcg(专线接入)、ccn(云联网)、cdb(云数据库)、cvm(云服务器自建)、intranet(自研上云)、vpc(私有网络vpc)。注意具体可选值依赖当前链路支持能力
+        # @param AccessType: <p>源数据库接入类型，如：extranet(公网)、vpncloud(vpn接入)、dcg(专线接入)、ccn(云联网)、cdb(云数据库)、cvm(云服务器自建)、intranet(自研上云)、vpc(私有网络vpc)。注意具体可选值依赖当前链路支持能力</p>
         # @type AccessType: String
-        # @param Endpoints: 接入类型信息
+        # @param Endpoints: <p>接入类型信息</p>
         # @type Endpoints: Array
-        # @param PipelineInfo: mongo输出聚合设置
+        # @param PipelineInfo: <p>mongo输出聚合设置</p>
         # @type PipelineInfo: Array
-        # @param Tags: 标签
+        # @param Tags: <p>标签</p>
         # @type Tags: Array
-        # @param Errors: 订阅任务报错信息
+        # @param Errors: <p>订阅任务报错信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Errors: Array
-        # @param ExtraAttr: 为业务添加的额外信息。参数名作key，参数值作value。
-        # mysql选填参数：ProcessXA-是否处理XA事务，为true处理，其他不处理。
-        # mongo选填参数：SubscribeType-订阅类型，目前只支持changeStream。
+        # @param ExtraAttr: <p>为业务添加的额外信息。参数名作key，参数值作value。<br>mysql选填参数：ProcessXA-是否处理XA事务，为true处理，其他不处理。<br>mongo选填参数：SubscribeType-订阅类型，目前只支持changeStream。</p>
         # @type ExtraAttr: Array
-        # @param SubscribeVersion: 数据订阅版本, 当前支持kafka和kafkaPro（专业版）
+        # @param SubscribeVersion: <p>数据订阅版本, 当前支持kafka和kafkaPro（专业版）</p>
         # @type SubscribeVersion: String
-        # @param ConsumerVpcId: 消费端地址所在vpc
+        # @param ConsumerVpcId: <p>消费端地址所在vpc</p>
         # @type ConsumerVpcId: String
-        # @param ConsumerSubnetId: 消费端地址所在子网
+        # @param ConsumerSubnetId: <p>消费端地址所在子网</p>
         # @type ConsumerSubnetId: String
-        # @param InstanceClass: 订阅实例规格
+        # @param InstanceClass: <p>订阅实例规格</p>
         # @type InstanceClass: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4815,27 +4817,27 @@ module TencentCloud
 
       # kafka消费者组详情
       class GroupInfo < TencentCloud::Common::AbstractModel
-        # @param Account: 消费者组账号
+        # @param Account: <p>消费者组账号</p>
         # @type Account: String
-        # @param ConsumerGroupName: 消费者组名称
+        # @param ConsumerGroupName: <p>消费者组名称</p>
         # @type ConsumerGroupName: String
-        # @param Description: 消费者组备注
+        # @param Description: <p>消费者组备注</p>
         # @type Description: String
-        # @param ConsumerGroupOffset: 消费组偏移量。该字段是为了兼容以前单Partition的情况，取值为最后一个分区的偏移量。各分区的偏移量详见StateOfPartition字段
+        # @param ConsumerGroupOffset: <p>消费组偏移量。该字段是为了兼容以前单Partition的情况，取值为最后一个分区的偏移量。各分区的偏移量详见StateOfPartition字段</p>
         # @type ConsumerGroupOffset: Integer
-        # @param ConsumerGroupLag: 消费组未消费的数据量。该字段是为了兼容以前单Partition的情况，取值为最后一个分区未消费的数据量。各分区未消费数据量详见StateOfPartition字段
+        # @param ConsumerGroupLag: <p>消费组未消费的数据量。该字段是为了兼容以前单Partition的情况，取值为最后一个分区未消费的数据量。各分区未消费数据量详见StateOfPartition字段</p>
         # @type ConsumerGroupLag: Integer
-        # @param Latency: 消费延迟(单位为秒)
+        # @param Latency: <p>消费延迟(单位为秒)</p>
         # @type Latency: Integer
-        # @param StateOfPartition: 各分区的消费状态
+        # @param StateOfPartition: <p>各分区的消费状态</p>
         # @type StateOfPartition: Array
-        # @param CreatedAt: 消费者组创建时间，格式为YYYY-MM-DD hh:mm:ss
+        # @param CreatedAt: <p>消费者组创建时间。</p>
         # @type CreatedAt: String
-        # @param UpdatedAt: 消费者组修改时间，格式为YYYY-MM-DD hh:mm:ss
+        # @param UpdatedAt: <p>消费者组修改时间。</p>
         # @type UpdatedAt: String
-        # @param ConsumerGroupState: 消费者组状态，包括Dead、Empty、Stable等，只有Dead和Empty两种状态可以执行reset操作
+        # @param ConsumerGroupState: <p>消费者组状态，包括Dead、Empty、Stable等，只有Dead和Empty两种状态可以执行reset操作</p>
         # @type ConsumerGroupState: String
-        # @param PartitionAssignment: 每个消费者正在消费的分区
+        # @param PartitionAssignment: <p>每个消费者正在消费的分区</p>
         # @type PartitionAssignment: Array
 
         attr_accessor :Account, :ConsumerGroupName, :Description, :ConsumerGroupOffset, :ConsumerGroupLag, :Latency, :StateOfPartition, :CreatedAt, :UpdatedAt, :ConsumerGroupState, :PartitionAssignment
@@ -7809,56 +7811,58 @@ module TencentCloud
 
       # 订阅实例信息
       class SubscribeInfo < TencentCloud::Common::AbstractModel
-        # @param SubscribeId: 数据订阅的实例ID
+        # @param SubscribeId: <p>数据订阅的实例ID</p>
         # @type SubscribeId: String
-        # @param SubscribeName: 数据订阅实例的名称
+        # @param SubscribeName: <p>数据订阅实例的名称</p>
         # @type SubscribeName: String
-        # @param Topic: 订阅实例发送数据的kafka topic
+        # @param Topic: <p>订阅实例发送数据的kafka topic</p>
         # @type Topic: String
-        # @param Product: 订阅实例的类型，目前支持 cynosdbmysql,mariadb,mongodb,mysql,percona,tdpg,tdsqlpercona(tdsqlmysql)
+        # @param Product: <p>订阅实例的类型，目前支持 cynosdbmysql,mariadb,mongodb,mysql,percona,tdpg,tdsqlpercona(tdsqlmysql)</p>
         # @type Product: String
-        # @param InstanceId: 订阅的数据库实例ID（如果订阅的是云数据库）如果实例不是腾讯云上的，此值为空。
+        # @param InstanceId: <p>订阅的数据库实例ID（如果订阅的是云数据库）如果实例不是腾讯云上的，此值为空。</p>
         # @type InstanceId: String
-        # @param InstanceStatus: 云数据库状态：running 运行中，isolated 已隔离，offline 已下线。如果不是云上，此值为空
+        # @param InstanceStatus: <p>云数据库状态：running 运行中，isolated 已隔离，offline 已下线。如果不是云上，此值为空</p>
         # @type InstanceStatus: String
-        # @param Status: 数据订阅生命周期状态，可能的值为：正常 normal, 隔离中 isolating, 已隔离 isolated, 下线中 offlining, 按量转包年包月中 post2PrePayIng
+        # @param Status: <p>数据订阅生命周期状态，可能的值为：正常 normal, 隔离中 isolating, 已隔离 isolated, 下线中 offlining, 按量转包年包月中 post2PrePayIng</p>
         # @type Status: String
-        # @param SubsStatus: 数据订阅状态，可能的值为：未启动 notStarted, 校验中 checking, 校验不通过 checkNotPass, 校验通过 checkPass, 启动中 starting, 运行中 running, 异常出错 error
+        # @param SubsStatus: <p>数据订阅状态，可能的值为：未启动 notStarted, 校验中 checking, 校验不通过 checkNotPass, 校验通过 checkPass, 启动中 starting, 运行中 running, 异常出错 error</p>
         # @type SubsStatus: String
-        # @param ModifyTime: 上次修改时间，时间格式如：Y-m-d h:m:s
+        # @param ModifyTime: <p>上次修改时间，时间格式如：Y-m-d h:m:s</p>
         # @type ModifyTime: String
-        # @param CreateTime: 创建时间，时间格式如：Y-m-d h:m:s
+        # @param CreateTime: <p>创建时间，时间格式如：Y-m-d h:m:s</p>
         # @type CreateTime: String
-        # @param IsolateTime: 隔离时间，时间格式如：Y-m-d h:m:s。默认：0000-00-00 00:00:00
+        # @param IsolateTime: <p>隔离时间，时间格式如：Y-m-d h:m:s。默认：0000-00-00 00:00:00</p>
         # @type IsolateTime: String
-        # @param ExpireTime: 包年包月任务的到期时间，时间格式如：Y-m-d h:m:s。默认：0000-00-00 00:00:00
+        # @param ExpireTime: <p>包年包月任务的到期时间，时间格式如：Y-m-d h:m:s。默认：0000-00-00 00:00:00</p>
         # @type ExpireTime: String
-        # @param OfflineTime: 下线时间，时间格式如：Y-m-d h:m:s。默认：0000-00-00 00:00:00
+        # @param OfflineTime: <p>下线时间，时间格式如：Y-m-d h:m:s。默认：0000-00-00 00:00:00</p>
         # @type OfflineTime: String
-        # @param PayType: 计费方式，0 - 包年包月，1 - 按量计费
+        # @param PayType: <p>计费方式，0 - 包年包月，1 - 按量计费</p>
         # @type PayType: Integer
-        # @param AutoRenewFlag: 自动续费标识。只有当 PayType=0，该值才有意义。枚举值：0-不自动续费，1-自动续费
+        # @param AutoRenewFlag: <p>自动续费标识。只有当 PayType=0，该值才有意义。枚举值：0-不自动续费，1-自动续费</p>
         # @type AutoRenewFlag: Integer
-        # @param Region: 数据订阅实例所属地域
+        # @param Region: <p>数据订阅实例所属地域</p>
         # @type Region: String
-        # @param AccessType: 接入方式。枚举值：extranet(公网) vpncloud(vpn接入) dcg(专线接入) ccn(云联网) cdb(云数据库) cvm(云主机自建) intranet(自研上云) vpc(私有网络vpc)
+        # @param AccessType: <p>接入方式。枚举值：extranet(公网) vpncloud(vpn接入) dcg(专线接入) ccn(云联网) cdb(云数据库) cvm(云主机自建) intranet(自研上云) vpc(私有网络vpc)</p>
         # @type AccessType: String
-        # @param Endpoints: 数据库节点信息
+        # @param Endpoints: <p>数据库节点信息</p>
         # @type Endpoints: Array
-        # @param SubscribeVersion: 数据订阅版本, 当前支持kafka和kafkaPro（专业版）
+        # @param SubscribeVersion: <p>数据订阅版本, 当前支持kafka和kafkaPro（专业版）</p>
         # @type SubscribeVersion: String
-        # @param Tags: 标签
+        # @param Tags: <p>标签</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
-        # @param Errors: 任务报错信息，如果有的话。
+        # @param Errors: <p>任务报错信息，如果有的话。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Errors: Array
-        # @param InstanceClass: 订阅实例规格
+        # @param InstanceClass: <p>订阅实例规格</p>
         # @type InstanceClass: String
+        # @param ConsumerRoutePhase: <p>新版订阅消费端路由阶段</p>
+        # @type ConsumerRoutePhase: String
 
-        attr_accessor :SubscribeId, :SubscribeName, :Topic, :Product, :InstanceId, :InstanceStatus, :Status, :SubsStatus, :ModifyTime, :CreateTime, :IsolateTime, :ExpireTime, :OfflineTime, :PayType, :AutoRenewFlag, :Region, :AccessType, :Endpoints, :SubscribeVersion, :Tags, :Errors, :InstanceClass
+        attr_accessor :SubscribeId, :SubscribeName, :Topic, :Product, :InstanceId, :InstanceStatus, :Status, :SubsStatus, :ModifyTime, :CreateTime, :IsolateTime, :ExpireTime, :OfflineTime, :PayType, :AutoRenewFlag, :Region, :AccessType, :Endpoints, :SubscribeVersion, :Tags, :Errors, :InstanceClass, :ConsumerRoutePhase
 
-        def initialize(subscribeid=nil, subscribename=nil, topic=nil, product=nil, instanceid=nil, instancestatus=nil, status=nil, subsstatus=nil, modifytime=nil, createtime=nil, isolatetime=nil, expiretime=nil, offlinetime=nil, paytype=nil, autorenewflag=nil, region=nil, accesstype=nil, endpoints=nil, subscribeversion=nil, tags=nil, errors=nil, instanceclass=nil)
+        def initialize(subscribeid=nil, subscribename=nil, topic=nil, product=nil, instanceid=nil, instancestatus=nil, status=nil, subsstatus=nil, modifytime=nil, createtime=nil, isolatetime=nil, expiretime=nil, offlinetime=nil, paytype=nil, autorenewflag=nil, region=nil, accesstype=nil, endpoints=nil, subscribeversion=nil, tags=nil, errors=nil, instanceclass=nil, consumerroutephase=nil)
           @SubscribeId = subscribeid
           @SubscribeName = subscribename
           @Topic = topic
@@ -7881,6 +7885,7 @@ module TencentCloud
           @Tags = tags
           @Errors = errors
           @InstanceClass = instanceclass
+          @ConsumerRoutePhase = consumerroutephase
         end
 
         def deserialize(params)
@@ -7927,6 +7932,7 @@ module TencentCloud
             end
           end
           @InstanceClass = params['InstanceClass']
+          @ConsumerRoutePhase = params['ConsumerRoutePhase']
         end
       end
 

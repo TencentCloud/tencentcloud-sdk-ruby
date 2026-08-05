@@ -9326,8 +9326,8 @@ module TencentCloud
 
         attr_accessor :EnvId, :CdnDomain, :Bucket, :Regoin, :Status, :Region
         extend Gem::Deprecate
-        deprecate :Regoin, :none, 2026, 7
-        deprecate :Regoin=, :none, 2026, 7
+        deprecate :Regoin, :none, 2026, 8
+        deprecate :Regoin=, :none, 2026, 8
 
         def initialize(envid=nil, cdndomain=nil, bucket=nil, regoin=nil, status=nil, region=nil)
           @EnvId = envid
@@ -9902,6 +9902,143 @@ module TencentCloud
             @TemplateProvider = SMSProviderTemplateConfig.new
             @TemplateProvider.deserialize(params['TemplateProvider'])
           end
+        end
+      end
+
+      # VerifyHTTPServiceRoute单项前置校验结果
+      class VerifyHTTPServiceRouteCheckItem < TencentCloud::Common::AbstractModel
+        # @param Status: <p>检查状态</p><p>枚举值：</p><ul><li>PASS： 通过</li><li>SKIPPED： 跳过（无需校验，视为通过）</li><li>FAIL： 失败</li></ul><p>默认值：SKIPPED</p>
+        # @type Status: String
+        # @param Code: <p>前置校验子项失败原因枚举，仅在 Status=FAIL 时有值，供前端根据 Code 精确渲染提示与操作指引</p><p>枚举值：</p><ul><li>INTERNAL_CHECK_ERROR： 预检过程中依赖服务/内部资源异常</li><li>OWNERSHIP_DNS_LOOKUP_FAILED： DNS解析失败</li><li>OWNERSHIP_VERIFY_FAILED： DNS记录内容与预期dns记录值不匹配</li><li>CERT_VERIFY_FAILED： 证书校验失败：不匹配当前域名 / 已过期 / 不属于当前 uin 等</li><li>QUOTA_EXCEEDED： 域名或路径数量超出配额限制</li><li>ROUTE_CONFLICT： 存在同域名下已被占用的路径，前端应提示用户修改路径</li><li>DOMAIN_IN_USE： 域名已被其他环境占用，无法在当前环境接入</li><li>NON_INTERNAL_ACCOUNT： 使用了内部域名但当前账号不是内部账号</li><li>DOMAIN_IN_BLACKLIST： 域名被列入黑名单，禁止接入</li><li>CDN_RESOURCE_PROCESSING： CDN 资源正处于变更中，需稍后重试</li><li>CDN_RESOURCE_OFFLINE： CDN 资源已下线，需重新上线后才能绑定</li><li>EO_OWNERSHIP_VERIFY_FAILED： EdgeOne 侧归属权未通过，响应体中 OwnershipVerification 会给出，EdgeOne要求配置的 DNS/文件 verification 指引</li><li>EO_DOMAIN_NOT_ICP： EdgeOne 检测到域名未备案</li><li>EO_DOMAIN_IN_USE： EdgeOne 检测到域名已被其他账号接入 EdgeOne</li></ul>
+        # @type Code: String
+        # @param Message: <p>详细描述；Skipped 时给出跳过原因；Pass 时可为空</p>
+        # @type Message: String
+        # @param OwnershipVerification: <p>域名归属权验证指引信息，仅在所有权校验未通过时有值</p>
+        # @type OwnershipVerification: :class:`Tencentcloud::Tcb.v20180608.models.OwnershipVerificationInfo`
+
+        attr_accessor :Status, :Code, :Message, :OwnershipVerification
+
+        def initialize(status=nil, code=nil, message=nil, ownershipverification=nil)
+          @Status = status
+          @Code = code
+          @Message = message
+          @OwnershipVerification = ownershipverification
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @Code = params['Code']
+          @Message = params['Message']
+          unless params['OwnershipVerification'].nil?
+            @OwnershipVerification = OwnershipVerificationInfo.new
+            @OwnershipVerification.deserialize(params['OwnershipVerification'])
+          end
+        end
+      end
+
+      # VerifyHTTPServiceRoute请求参数结构体
+      class VerifyHTTPServiceRouteRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: <p>环境ID</p>
+        # @type EnvId: String
+        # @param Domain: <p>域名路由信息</p>
+        # @type Domain: :class:`Tencentcloud::Tcb.v20180608.models.HTTPServiceDomainParam`
+
+        attr_accessor :EnvId, :Domain
+
+        def initialize(envid=nil, domain=nil)
+          @EnvId = envid
+          @Domain = domain
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          unless params['Domain'].nil?
+            @Domain = HTTPServiceDomainParam.new
+            @Domain.deserialize(params['Domain'])
+          end
+        end
+      end
+
+      # VerifyHTTPServiceRoute返回参数结构体
+      class VerifyHTTPServiceRouteResponse < TencentCloud::Common::AbstractModel
+        # @param Passed: <p>前置校验总开关。所有启用的检查项均为 PASS 或 SKIPPED 时为 true，任一检查项为 FAIL 时为 false。当为 false 时，前端应根据各 CheckItem 的 Code 精确渲染错误提示和操作指引；当为 true 时可继续调用 CreateHTTPServiceRoute 完成创建。 示例值：false</p>
+        # @type Passed: Boolean
+        # @param Ownership: <p>域名归属权校验结果</p>
+        # @type Ownership: :class:`Tencentcloud::Tcb.v20180608.models.VerifyHTTPServiceRouteCheckItem`
+        # @param Cert: <p>证书校验结果；CertId 为空时 Status=SKIPPED</p>
+        # @type Cert: :class:`Tencentcloud::Tcb.v20180608.models.VerifyHTTPServiceRouteCheckItem`
+        # @param Quota: <p>域名/路径数量配额校验结果</p>
+        # @type Quota: :class:`Tencentcloud::Tcb.v20180608.models.VerifyHTTPServiceRouteCheckItem`
+        # @param RouteConflict: <p>同域名下路由路径冲突校验结果</p>
+        # @type RouteConflict: :class:`Tencentcloud::Tcb.v20180608.models.VerifyHTTPServiceRouteCheckItem`
+        # @param DomainConflict: <p>域名被其他环境占用校验结果</p>
+        # @type DomainConflict: :class:`Tencentcloud::Tcb.v20180608.models.VerifyHTTPServiceRouteCheckItem`
+        # @param InternalAccount: <p>内部域名且非内部账号校验结果</p>
+        # @type InternalAccount: :class:`Tencentcloud::Tcb.v20180608.models.VerifyHTTPServiceRouteCheckItem`
+        # @param Blacklist: <p>域名黑名单校验结果</p>
+        # @type Blacklist: :class:`Tencentcloud::Tcb.v20180608.models.VerifyHTTPServiceRouteCheckItem`
+        # @param CDNResource: <p>AccessType=CDN 时 CDN 资源存在性 / 状态校验结果（含 ICP 未备案的提示）</p>
+        # @type CDNResource: :class:`Tencentcloud::Tcb.v20180608.models.VerifyHTTPServiceRouteCheckItem`
+        # @param EO: <p>AccessType=EO 时的 EdgeOne 预检结果（域名冲突/备案/归属权）</p>
+        # @type EO: :class:`Tencentcloud::Tcb.v20180608.models.VerifyHTTPServiceRouteCheckItem`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Passed, :Ownership, :Cert, :Quota, :RouteConflict, :DomainConflict, :InternalAccount, :Blacklist, :CDNResource, :EO, :RequestId
+
+        def initialize(passed=nil, ownership=nil, cert=nil, quota=nil, routeconflict=nil, domainconflict=nil, internalaccount=nil, blacklist=nil, cdnresource=nil, eo=nil, requestid=nil)
+          @Passed = passed
+          @Ownership = ownership
+          @Cert = cert
+          @Quota = quota
+          @RouteConflict = routeconflict
+          @DomainConflict = domainconflict
+          @InternalAccount = internalaccount
+          @Blacklist = blacklist
+          @CDNResource = cdnresource
+          @EO = eo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Passed = params['Passed']
+          unless params['Ownership'].nil?
+            @Ownership = VerifyHTTPServiceRouteCheckItem.new
+            @Ownership.deserialize(params['Ownership'])
+          end
+          unless params['Cert'].nil?
+            @Cert = VerifyHTTPServiceRouteCheckItem.new
+            @Cert.deserialize(params['Cert'])
+          end
+          unless params['Quota'].nil?
+            @Quota = VerifyHTTPServiceRouteCheckItem.new
+            @Quota.deserialize(params['Quota'])
+          end
+          unless params['RouteConflict'].nil?
+            @RouteConflict = VerifyHTTPServiceRouteCheckItem.new
+            @RouteConflict.deserialize(params['RouteConflict'])
+          end
+          unless params['DomainConflict'].nil?
+            @DomainConflict = VerifyHTTPServiceRouteCheckItem.new
+            @DomainConflict.deserialize(params['DomainConflict'])
+          end
+          unless params['InternalAccount'].nil?
+            @InternalAccount = VerifyHTTPServiceRouteCheckItem.new
+            @InternalAccount.deserialize(params['InternalAccount'])
+          end
+          unless params['Blacklist'].nil?
+            @Blacklist = VerifyHTTPServiceRouteCheckItem.new
+            @Blacklist.deserialize(params['Blacklist'])
+          end
+          unless params['CDNResource'].nil?
+            @CDNResource = VerifyHTTPServiceRouteCheckItem.new
+            @CDNResource.deserialize(params['CDNResource'])
+          end
+          unless params['EO'].nil?
+            @EO = VerifyHTTPServiceRouteCheckItem.new
+            @EO.deserialize(params['EO'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 

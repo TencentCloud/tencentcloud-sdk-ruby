@@ -196,6 +196,46 @@ module TencentCloud
         end
       end
 
+      # 声网拉流参数
+      class AgoraParam < TencentCloud::Common::AbstractModel
+        # @param AppId: <p>声网提供的应用标识</p>
+        # @type AppId: String
+        # @param Channel: <p>声网提供的频道名</p>
+        # @type Channel: String
+        # @param ChannelProfile: <p>声网录制的频道模式， 可选值如下：（默认值为0） 0: 通信（默认）,即常见的 1 对 1 单聊或群聊， 频道内任何用户可以自由说话； 1: 直播，有两种用户角色: 主播和观众。</p><p>枚举值：</p><ul><li>0:： 通信（默认）</li><li>1： 直播</li></ul>
+        # @type ChannelProfile: Integer
+        # @param Token: <p>绑定频道生成的临时Token</p>
+        # @type Token: String
+        # @param Uid: <p>用户ID</p>
+        # @type Uid: Integer
+        # @param TrustedUserIdList: <p>信任用户的列表</p>
+        # @type TrustedUserIdList: Array
+        # @param UntrustedUserIdList: <p>非信任用户的列表</p>
+        # @type UntrustedUserIdList: Array
+
+        attr_accessor :AppId, :Channel, :ChannelProfile, :Token, :Uid, :TrustedUserIdList, :UntrustedUserIdList
+
+        def initialize(appid=nil, channel=nil, channelprofile=nil, token=nil, uid=nil, trusteduseridlist=nil, untrusteduseridlist=nil)
+          @AppId = appid
+          @Channel = channel
+          @ChannelProfile = channelprofile
+          @Token = token
+          @Uid = uid
+          @TrustedUserIdList = trusteduseridlist
+          @UntrustedUserIdList = untrusteduseridlist
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @Channel = params['Channel']
+          @ChannelProfile = params['ChannelProfile']
+          @Token = params['Token']
+          @Uid = params['Uid']
+          @TrustedUserIdList = params['TrustedUserIdList']
+          @UntrustedUserIdList = params['UntrustedUserIdList']
+        end
+      end
+
       # 字幕对齐
       class AlignmentItem < TencentCloud::Common::AbstractModel
         # @param Text: <p>字幕文本</p>
@@ -3547,17 +3587,24 @@ module TencentCloud
         # @type Url: String
         # @param Format: <p>显式协议</p><p>枚举值：</p><ul><li>rtmp： rtmp协议</li></ul>
         # @type Format: String
+        # @param AgoraParam: <p>声网拉流进房参数</p>
+        # @type AgoraParam: :class:`Tencentcloud::Trtc.v20190722.models.AgoraParam`
 
-        attr_accessor :Url, :Format
+        attr_accessor :Url, :Format, :AgoraParam
 
-        def initialize(url=nil, format=nil)
+        def initialize(url=nil, format=nil, agoraparam=nil)
           @Url = url
           @Format = format
+          @AgoraParam = agoraparam
         end
 
         def deserialize(params)
           @Url = params['Url']
           @Format = params['Format']
+          unless params['AgoraParam'].nil?
+            @AgoraParam = AgoraParam.new
+            @AgoraParam.deserialize(params['AgoraParam'])
+          end
         end
       end
 

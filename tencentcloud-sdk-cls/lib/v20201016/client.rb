@@ -1700,6 +1700,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改日志信息
+
+        # @param request: Request instance for DeleteLog.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DeleteLogRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DeleteLogResponse`
+        def DeleteLog(request)
+          body = send_request('DeleteLog', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteLogResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于删除日志集。
 
         # @param request: Request instance for DeleteLogset.
@@ -4256,6 +4280,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyKafkaRechargeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改日志信息
+
+        # @param request: Request instance for ModifyLog.
+        # @type request: :class:`Tencentcloud::cls::V20201016::ModifyLogRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::ModifyLogResponse`
+        def ModifyLog(request)
+          body = send_request('ModifyLog', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyLogResponse.new
             model.deserialize(response['Response'])
             model
           else

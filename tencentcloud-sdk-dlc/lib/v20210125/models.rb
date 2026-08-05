@@ -2143,6 +2143,30 @@ module TencentCloud
         end
       end
 
+      # CPU resource summary item aggregated from all running deployments.
+      class CpuSummaryItem < TencentCloud::Common::AbstractModel
+        # @param TotalCpuCores: <p>CPU 总核数（headCpu + cpu × replicas 的总和）</p>
+        # @type TotalCpuCores: Integer
+        # @param TotalMemoryGB: <p>内存总量（headMem + mem × replicas 的总和，单位 GB）</p>
+        # @type TotalMemoryGB: Integer
+        # @param Replicas: <p>运行中的副本总数</p>
+        # @type Replicas: Integer
+
+        attr_accessor :TotalCpuCores, :TotalMemoryGB, :Replicas
+
+        def initialize(totalcpucores=nil, totalmemorygb=nil, replicas=nil)
+          @TotalCpuCores = totalcpucores
+          @TotalMemoryGB = totalmemorygb
+          @Replicas = replicas
+        end
+
+        def deserialize(params)
+          @TotalCpuCores = params['TotalCpuCores']
+          @TotalMemoryGB = params['TotalMemoryGB']
+          @Replicas = params['Replicas']
+        end
+      end
+
       # CreateCHDFSBindingProduct请求参数结构体
       class CreateCHDFSBindingProductRequest < TencentCloud::Common::AbstractModel
         # @param MountPoint: 需要绑定的元数据加速桶名
@@ -3101,6 +3125,234 @@ module TencentCloud
         end
       end
 
+      # CreateInferenceService请求参数结构体
+      class CreateInferenceServiceRequest < TencentCloud::Common::AbstractModel
+        # @param Name: <p>推理服务名称</p>
+        # @type Name: String
+        # @param ModelUid: <p>模型 UID（业务级唯一标识）</p>
+        # @type ModelUid: String
+        # @param Engine: <p>推理引擎（vllm / xgboost）</p>
+        # @type Engine: String
+        # @param Replicas: <p>副本数</p>
+        # @type Replicas: Integer
+        # @param ResourcePartitionId: <p>资源分区 ID（目标 K8s 集群分区）</p>
+        # @type ResourcePartitionId: String
+        # @param Image: <p>Ray Serve 部署镜像</p>
+        # @type Image: String
+        # @param ModelIdentifier: <p>模型标识符（OpenAI 兼容 API 中的 model 字段）</p>
+        # @type ModelIdentifier: String
+        # @param Queue: <p>队列名（K8s namespace）</p>
+        # @type Queue: String
+        # @param DeploymentName: <p>部署名称（可选，未提供时自动生成）</p>
+        # @type DeploymentName: String
+        # @param ModelVersion: <p>模型版本（如 v1, v2），未提供时使用最新版本</p>
+        # @type ModelVersion: String
+        # @param HeadHighAvailabilityEnabled: <p>ray head 是否开始高可用（是否申请 redis 实例用于 head 连接）</p>
+        # @type HeadHighAvailabilityEnabled: Boolean
+        # @param AdvancedParams: <p>高级参数（JSON 字符串，可选）</p>
+        # @type AdvancedParams: String
+        # @param ImagePullPolicy: <p>镜像拉取策略（默认 IfNotPresent）</p>
+        # @type ImagePullPolicy: String
+        # @param AutoscalingEnabled: <p>是否启用弹性伸缩</p>
+        # @type AutoscalingEnabled: Boolean
+        # @param MinReplicas: <p>最小副本数（启用弹性伸缩时生效，0 表示缩容到 0）</p>
+        # @type MinReplicas: Integer
+        # @param MaxReplicas: <p>最大副本数（启用弹性伸缩时生效）</p>
+        # @type MaxReplicas: Integer
+        # @param AutoscalerOptions: <p>Autoscaler 配置（JSON 字符串）</p>
+        # @type AutoscalerOptions: String
+        # @param ApiKeyIds: <p>ApiKeyIds</p>
+        # @type ApiKeyIds: Array
+
+        attr_accessor :Name, :ModelUid, :Engine, :Replicas, :ResourcePartitionId, :Image, :ModelIdentifier, :Queue, :DeploymentName, :ModelVersion, :HeadHighAvailabilityEnabled, :AdvancedParams, :ImagePullPolicy, :AutoscalingEnabled, :MinReplicas, :MaxReplicas, :AutoscalerOptions, :ApiKeyIds
+
+        def initialize(name=nil, modeluid=nil, engine=nil, replicas=nil, resourcepartitionid=nil, image=nil, modelidentifier=nil, queue=nil, deploymentname=nil, modelversion=nil, headhighavailabilityenabled=nil, advancedparams=nil, imagepullpolicy=nil, autoscalingenabled=nil, minreplicas=nil, maxreplicas=nil, autoscaleroptions=nil, apikeyids=nil)
+          @Name = name
+          @ModelUid = modeluid
+          @Engine = engine
+          @Replicas = replicas
+          @ResourcePartitionId = resourcepartitionid
+          @Image = image
+          @ModelIdentifier = modelidentifier
+          @Queue = queue
+          @DeploymentName = deploymentname
+          @ModelVersion = modelversion
+          @HeadHighAvailabilityEnabled = headhighavailabilityenabled
+          @AdvancedParams = advancedparams
+          @ImagePullPolicy = imagepullpolicy
+          @AutoscalingEnabled = autoscalingenabled
+          @MinReplicas = minreplicas
+          @MaxReplicas = maxreplicas
+          @AutoscalerOptions = autoscaleroptions
+          @ApiKeyIds = apikeyids
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @ModelUid = params['ModelUid']
+          @Engine = params['Engine']
+          @Replicas = params['Replicas']
+          @ResourcePartitionId = params['ResourcePartitionId']
+          @Image = params['Image']
+          @ModelIdentifier = params['ModelIdentifier']
+          @Queue = params['Queue']
+          @DeploymentName = params['DeploymentName']
+          @ModelVersion = params['ModelVersion']
+          @HeadHighAvailabilityEnabled = params['HeadHighAvailabilityEnabled']
+          @AdvancedParams = params['AdvancedParams']
+          @ImagePullPolicy = params['ImagePullPolicy']
+          @AutoscalingEnabled = params['AutoscalingEnabled']
+          @MinReplicas = params['MinReplicas']
+          @MaxReplicas = params['MaxReplicas']
+          @AutoscalerOptions = params['AutoscalerOptions']
+          @ApiKeyIds = params['ApiKeyIds']
+        end
+      end
+
+      # CreateInferenceService返回参数结构体
+      class CreateInferenceServiceResponse < TencentCloud::Common::AbstractModel
+        # @param ServiceId: <p>服务ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceId: String
+        # @param Name: <p>服务名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param ModelId: <p>关联的模型ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelId: Integer
+        # @param ModelUid: <p>关联的模型UID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelUid: String
+        # @param ModelName: <p>关联的模型名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelName: String
+        # @param ModelVersion: <p>关联的模型版本号</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelVersion: String
+        # @param ModelIdentifier: <p>模型标识符（OpenAI 兼容 API 中的 model 字段）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelIdentifier: String
+        # @param ModelType: <p>关联模型的类型（LLM / VLM / Embedding / Reranker / TTS / ASR / CV / NLP / ML）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelType: String
+        # @param Status: <p>服务状态（Running/Stopped/Deploying/Failed）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param EndpointUrl: <p>服务端点URL</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndpointUrl: String
+        # @param UnifiedEndpointUrl: <p>OpenAI 兼容统一入口 URL（通过 API-Key 路由，适用于 LLM/Embedding/Reranker）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnifiedEndpointUrl: String
+        # @param UnifiedV2EndpointUrl: <p>KServe V2 协议统一入口 URL（通过 API-Key + model name 路由，适用于 XGBoost 等传统 ML 模型）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnifiedV2EndpointUrl: String
+        # @param HeadHighAvailabilityEnabled: <p>ray head 是否开启高可用</p>
+        # @type HeadHighAvailabilityEnabled: Boolean
+        # @param AppId: <p>应用ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppId: Integer
+        # @param Uin: <p>主账号UIN</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uin: String
+        # @param CreateTime: <p>创建时间（Unix 时间戳，毫秒）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: Integer
+        # @param UpdateTime: <p>更新时间（Unix 时间戳，毫秒）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: Integer
+        # @param DeploymentCount: <p>部署数量</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeploymentCount: Integer
+        # @param HasRunningDeployment: <p>是否存在至少一个运行中的部署</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HasRunningDeployment: Boolean
+        # @param ApiKeyAuthEnabled: <p>是否启用 API-Key 鉴权</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApiKeyAuthEnabled: Boolean
+        # @param ApiKeyAuthForceEnabled: <p>是否强制开启 API-Key 鉴权（生产环境为 true，不允许关闭）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApiKeyAuthForceEnabled: Boolean
+        # @param SkipTlsVerify: <p>是否跳过 TLS 证书验证（自签证书场景，前端 curl 命令需加 -k 参数）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SkipTlsVerify: Boolean
+        # @param ApiKeyBindMessage: <p>API Key 绑定结果（success 表示成功，其他为错误信息）</p>
+        # @type ApiKeyBindMessage: String
+        # @param SubAccountUin: <p>子账号UIN（实际操作者）</p>
+        # @type SubAccountUin: String
+        # @param CpuResourceSummary: <p>运行中部署的 CPU 资源汇总</p>
+        # @type CpuResourceSummary: :class:`Tencentcloud::Dlc.v20210125.models.CpuSummaryItem`
+        # @param ResourceConfig: <p>资源配置（JSON 字符串，取自第一个部署）</p>
+        # @type ResourceConfig: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ServiceId, :Name, :ModelId, :ModelUid, :ModelName, :ModelVersion, :ModelIdentifier, :ModelType, :Status, :EndpointUrl, :UnifiedEndpointUrl, :UnifiedV2EndpointUrl, :HeadHighAvailabilityEnabled, :AppId, :Uin, :CreateTime, :UpdateTime, :DeploymentCount, :HasRunningDeployment, :ApiKeyAuthEnabled, :ApiKeyAuthForceEnabled, :SkipTlsVerify, :ApiKeyBindMessage, :SubAccountUin, :CpuResourceSummary, :ResourceConfig, :RequestId
+
+        def initialize(serviceid=nil, name=nil, modelid=nil, modeluid=nil, modelname=nil, modelversion=nil, modelidentifier=nil, modeltype=nil, status=nil, endpointurl=nil, unifiedendpointurl=nil, unifiedv2endpointurl=nil, headhighavailabilityenabled=nil, appid=nil, uin=nil, createtime=nil, updatetime=nil, deploymentcount=nil, hasrunningdeployment=nil, apikeyauthenabled=nil, apikeyauthforceenabled=nil, skiptlsverify=nil, apikeybindmessage=nil, subaccountuin=nil, cpuresourcesummary=nil, resourceconfig=nil, requestid=nil)
+          @ServiceId = serviceid
+          @Name = name
+          @ModelId = modelid
+          @ModelUid = modeluid
+          @ModelName = modelname
+          @ModelVersion = modelversion
+          @ModelIdentifier = modelidentifier
+          @ModelType = modeltype
+          @Status = status
+          @EndpointUrl = endpointurl
+          @UnifiedEndpointUrl = unifiedendpointurl
+          @UnifiedV2EndpointUrl = unifiedv2endpointurl
+          @HeadHighAvailabilityEnabled = headhighavailabilityenabled
+          @AppId = appid
+          @Uin = uin
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @DeploymentCount = deploymentcount
+          @HasRunningDeployment = hasrunningdeployment
+          @ApiKeyAuthEnabled = apikeyauthenabled
+          @ApiKeyAuthForceEnabled = apikeyauthforceenabled
+          @SkipTlsVerify = skiptlsverify
+          @ApiKeyBindMessage = apikeybindmessage
+          @SubAccountUin = subaccountuin
+          @CpuResourceSummary = cpuresourcesummary
+          @ResourceConfig = resourceconfig
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+          @Name = params['Name']
+          @ModelId = params['ModelId']
+          @ModelUid = params['ModelUid']
+          @ModelName = params['ModelName']
+          @ModelVersion = params['ModelVersion']
+          @ModelIdentifier = params['ModelIdentifier']
+          @ModelType = params['ModelType']
+          @Status = params['Status']
+          @EndpointUrl = params['EndpointUrl']
+          @UnifiedEndpointUrl = params['UnifiedEndpointUrl']
+          @UnifiedV2EndpointUrl = params['UnifiedV2EndpointUrl']
+          @HeadHighAvailabilityEnabled = params['HeadHighAvailabilityEnabled']
+          @AppId = params['AppId']
+          @Uin = params['Uin']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @DeploymentCount = params['DeploymentCount']
+          @HasRunningDeployment = params['HasRunningDeployment']
+          @ApiKeyAuthEnabled = params['ApiKeyAuthEnabled']
+          @ApiKeyAuthForceEnabled = params['ApiKeyAuthForceEnabled']
+          @SkipTlsVerify = params['SkipTlsVerify']
+          @ApiKeyBindMessage = params['ApiKeyBindMessage']
+          @SubAccountUin = params['SubAccountUin']
+          unless params['CpuResourceSummary'].nil?
+            @CpuResourceSummary = CpuSummaryItem.new
+            @CpuResourceSummary.deserialize(params['CpuResourceSummary'])
+          end
+          @ResourceConfig = params['ResourceConfig']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateInternalTable请求参数结构体
       class CreateInternalTableRequest < TencentCloud::Common::AbstractModel
         # @param TableBaseInfo: 表基本信息
@@ -3766,6 +4018,104 @@ module TencentCloud
         def deserialize(params)
           @BatchId = params['BatchId']
           @TaskIdSet = params['TaskIdSet']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateModelVersion请求参数结构体
+      class CreateModelVersionRequest < TencentCloud::Common::AbstractModel
+        # @param ModelUid: <p>模型UID</p>
+        # @type ModelUid: String
+        # @param ModelVersion: <p>模型版本号</p>
+        # @type ModelVersion: String
+        # @param Description: <p>版本说明</p>
+        # @type Description: String
+        # @param StorageUri: <p>该版本的存储 URI（可选，如 cos://bucket-name/models/name/v2/）</p>
+        # @type StorageUri: String
+        # @param UseCustomStorage: <p>是否使用用户自带存储桶（默认 false 表示平台托管）</p>
+        # @type UseCustomStorage: Boolean
+
+        attr_accessor :ModelUid, :ModelVersion, :Description, :StorageUri, :UseCustomStorage
+
+        def initialize(modeluid=nil, modelversion=nil, description=nil, storageuri=nil, usecustomstorage=nil)
+          @ModelUid = modeluid
+          @ModelVersion = modelversion
+          @Description = description
+          @StorageUri = storageuri
+          @UseCustomStorage = usecustomstorage
+        end
+
+        def deserialize(params)
+          @ModelUid = params['ModelUid']
+          @ModelVersion = params['ModelVersion']
+          @Description = params['Description']
+          @StorageUri = params['StorageUri']
+          @UseCustomStorage = params['UseCustomStorage']
+        end
+      end
+
+      # CreateModelVersion返回参数结构体
+      class CreateModelVersionResponse < TencentCloud::Common::AbstractModel
+        # @param VersionId: <p>版本ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VersionId: String
+        # @param ModelId: <p>关联的模型ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelId: String
+        # @param StorageUri: <p>该版本的存储 URI</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StorageUri: String
+        # @param Description: <p>版本说明</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param CreateTime: <p>创建时间（毫秒时间戳）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: Integer
+        # @param UpdateTime: <p>更新时间（毫秒时间戳）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: Integer
+        # @param LinkedServices: <p>关联的推理服务列表</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LinkedServices: Array
+        # @param Version: <p>模型版本号</p>
+        # @type Version: String
+        # @param UseCustomStorage: <p>是否使用用户自带存储桶（true=用户自带桶，false=平台托管）</p>
+        # @type UseCustomStorage: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :VersionId, :ModelId, :StorageUri, :Description, :CreateTime, :UpdateTime, :LinkedServices, :Version, :UseCustomStorage, :RequestId
+
+        def initialize(versionid=nil, modelid=nil, storageuri=nil, description=nil, createtime=nil, updatetime=nil, linkedservices=nil, version=nil, usecustomstorage=nil, requestid=nil)
+          @VersionId = versionid
+          @ModelId = modelid
+          @StorageUri = storageuri
+          @Description = description
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @LinkedServices = linkedservices
+          @Version = version
+          @UseCustomStorage = usecustomstorage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @VersionId = params['VersionId']
+          @ModelId = params['ModelId']
+          @StorageUri = params['StorageUri']
+          @Description = params['Description']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          unless params['LinkedServices'].nil?
+            @LinkedServices = []
+            params['LinkedServices'].each do |i|
+              linkedserviceinfo_tmp = LinkedServiceInfo.new
+              linkedserviceinfo_tmp.deserialize(i)
+              @LinkedServices << linkedserviceinfo_tmp
+            end
+          end
+          @Version = params['Version']
+          @UseCustomStorage = params['UseCustomStorage']
           @RequestId = params['RequestId']
         end
       end
@@ -14210,6 +14560,45 @@ module TencentCloud
         end
       end
 
+      # 描述一个推理引擎的能力
+      class EngineCapabilities < TencentCloud::Common::AbstractModel
+        # @param GpuOptional: <p>GPU 是否可选</p>
+        # @type GpuOptional: Boolean
+        # @param SupportsParallelConfig: <p>是否支持并行配置</p>
+        # @type SupportsParallelConfig: Boolean
+        # @param SupportsRemoteCode: <p>是否支持远程代码</p>
+        # @type SupportsRemoteCode: Boolean
+        # @param GpuMemoryKey: <p>GPU 显存配置键名</p>
+        # @type GpuMemoryKey: String
+        # @param ParallelKeys: <p>并行配置键名列表</p>
+        # @type ParallelKeys: Array
+
+        attr_accessor :GpuOptional, :SupportsParallelConfig, :SupportsRemoteCode, :GpuMemoryKey, :ParallelKeys
+
+        def initialize(gpuoptional=nil, supportsparallelconfig=nil, supportsremotecode=nil, gpumemorykey=nil, parallelkeys=nil)
+          @GpuOptional = gpuoptional
+          @SupportsParallelConfig = supportsparallelconfig
+          @SupportsRemoteCode = supportsremotecode
+          @GpuMemoryKey = gpumemorykey
+          @ParallelKeys = parallelkeys
+        end
+
+        def deserialize(params)
+          @GpuOptional = params['GpuOptional']
+          @SupportsParallelConfig = params['SupportsParallelConfig']
+          @SupportsRemoteCode = params['SupportsRemoteCode']
+          @GpuMemoryKey = params['GpuMemoryKey']
+          unless params['ParallelKeys'].nil?
+            @ParallelKeys = []
+            params['ParallelKeys'].each do |i|
+              parallelkeymapping_tmp = ParallelKeyMapping.new
+              parallelkeymapping_tmp.deserialize(i)
+              @ParallelKeys << parallelkeymapping_tmp
+            end
+          end
+        end
+      end
+
       # 引擎网络信息
       class EngineNetworkInfo < TencentCloud::Common::AbstractModel
         # @param EngineNetworkName: 引擎网络名字
@@ -14598,6 +14987,49 @@ module TencentCloud
           @Catalog = params['Catalog']
           @DataBase = params['DataBase']
           @Table = params['Table']
+        end
+      end
+
+      # 文件/目录节点
+      class FileNode < TencentCloud::Common::AbstractModel
+        # @param Name: <p>文件/目录名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Type: <p>节点类型：file 或 directory</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Size: <p>文件大小（字节），目录为 null</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Size: Integer
+        # @param Children: <p>子节点列表（仅目录有效）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Children: Array
+        # @param LastModifyTime: <p>文件最后修改时间（毫秒时间戳）</p><p>单位：ms</p>
+        # @type LastModifyTime: Integer
+
+        attr_accessor :Name, :Type, :Size, :Children, :LastModifyTime
+
+        def initialize(name=nil, type=nil, size=nil, children=nil, lastmodifytime=nil)
+          @Name = name
+          @Type = type
+          @Size = size
+          @Children = children
+          @LastModifyTime = lastmodifytime
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Type = params['Type']
+          @Size = params['Size']
+          unless params['Children'].nil?
+            @Children = []
+            params['Children'].each do |i|
+              filenode_tmp = FileNode.new
+              filenode_tmp.deserialize(i)
+              @Children << filenode_tmp
+            end
+          end
+          @LastModifyTime = params['LastModifyTime']
         end
       end
 
@@ -15205,6 +15637,170 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
           @SubAccountUin = params['SubAccountUin']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetInferenceService请求参数结构体
+      class GetInferenceServiceRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceId: <p>ServiceId</p>
+        # @type ServiceId: String
+
+        attr_accessor :ServiceId
+
+        def initialize(serviceid=nil)
+          @ServiceId = serviceid
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+        end
+      end
+
+      # GetInferenceService返回参数结构体
+      class GetInferenceServiceResponse < TencentCloud::Common::AbstractModel
+        # @param ServiceId: <p>ServiceId</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceId: String
+        # @param Name: <p>服务名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param ModelUid: <p>关联的模型UID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelUid: String
+        # @param ModelName: <p>关联的模型名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelName: String
+        # @param ModelVersion: <p>关联的模型版本号</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelVersion: String
+        # @param ModelIdentifier: <p>模型标识符（OpenAI 兼容 API 中的 model 字段）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelIdentifier: String
+        # @param ModelType: <p>关联模型的类型（LLM / VLM / Embedding / Reranker / TTS / ASR / CV / NLP / ML）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelType: String
+        # @param Status: <p>服务状态（Running/Stopped/Deploying/Failed）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param EndpointUrl: <p>服务端点URL</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndpointUrl: String
+        # @param UnifiedEndpointUrl: <p>OpenAI 兼容统一入口 URL（通过 API-Key 路由，适用于 LLM/Embedding/Reranker）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnifiedEndpointUrl: String
+        # @param UnifiedV2EndpointUrl: <p>KServe V2 协议统一入口 URL（通过 API-Key + model name 路由，适用于 XGBoost 等传统 ML 模型）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnifiedV2EndpointUrl: String
+        # @param AppId: <p>应用ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppId: Integer
+        # @param Uin: <p>主账号UIN</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uin: String
+        # @param CreateTime: <p>创建时间（Unix 时间戳，毫秒）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: Integer
+        # @param UpdateTime: <p>更新时间（Unix 时间戳，毫秒）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: Integer
+        # @param DeploymentCount: <p>部署数量</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeploymentCount: Integer
+        # @param HasRunningDeployment: <p>是否存在至少一个运行中的部署</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HasRunningDeployment: Boolean
+        # @param RayDashboardUrl: <p>Ray Dashboard 访问地址（通过 Ingress 代理）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RayDashboardUrl: String
+        # @param ApiKeyAuthEnabled: <p>是否启用 API-Key 鉴权</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApiKeyAuthEnabled: Boolean
+        # @param ApiKeyAuthForceEnabled: <p>是否强制开启 API-Key 鉴权（生产环境为 true，不允许关闭）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApiKeyAuthForceEnabled: Boolean
+        # @param SkipTlsVerify: <p>是否跳过 TLS 证书验证（自签证书场景，前端 curl 命令需加 -k 参数）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SkipTlsVerify: Boolean
+        # @param GpuResourceSummary: <p>运行中部署的 GPU 资源汇总</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GpuResourceSummary: Array
+        # @param SubAccountUin: <p>子账号UIN（实际操作者）</p>
+        # @type SubAccountUin: String
+        # @param CpuResourceSummary: <p>运行中部署的 CPU 资源汇总</p>
+        # @type CpuResourceSummary: :class:`Tencentcloud::Dlc.v20210125.models.CpuSummaryItem`
+        # @param ResourceConfig: <p>资源配置（JSON 字符串，取自第一个部署）</p>
+        # @type ResourceConfig: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ServiceId, :Name, :ModelUid, :ModelName, :ModelVersion, :ModelIdentifier, :ModelType, :Status, :EndpointUrl, :UnifiedEndpointUrl, :UnifiedV2EndpointUrl, :AppId, :Uin, :CreateTime, :UpdateTime, :DeploymentCount, :HasRunningDeployment, :RayDashboardUrl, :ApiKeyAuthEnabled, :ApiKeyAuthForceEnabled, :SkipTlsVerify, :GpuResourceSummary, :SubAccountUin, :CpuResourceSummary, :ResourceConfig, :RequestId
+
+        def initialize(serviceid=nil, name=nil, modeluid=nil, modelname=nil, modelversion=nil, modelidentifier=nil, modeltype=nil, status=nil, endpointurl=nil, unifiedendpointurl=nil, unifiedv2endpointurl=nil, appid=nil, uin=nil, createtime=nil, updatetime=nil, deploymentcount=nil, hasrunningdeployment=nil, raydashboardurl=nil, apikeyauthenabled=nil, apikeyauthforceenabled=nil, skiptlsverify=nil, gpuresourcesummary=nil, subaccountuin=nil, cpuresourcesummary=nil, resourceconfig=nil, requestid=nil)
+          @ServiceId = serviceid
+          @Name = name
+          @ModelUid = modeluid
+          @ModelName = modelname
+          @ModelVersion = modelversion
+          @ModelIdentifier = modelidentifier
+          @ModelType = modeltype
+          @Status = status
+          @EndpointUrl = endpointurl
+          @UnifiedEndpointUrl = unifiedendpointurl
+          @UnifiedV2EndpointUrl = unifiedv2endpointurl
+          @AppId = appid
+          @Uin = uin
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @DeploymentCount = deploymentcount
+          @HasRunningDeployment = hasrunningdeployment
+          @RayDashboardUrl = raydashboardurl
+          @ApiKeyAuthEnabled = apikeyauthenabled
+          @ApiKeyAuthForceEnabled = apikeyauthforceenabled
+          @SkipTlsVerify = skiptlsverify
+          @GpuResourceSummary = gpuresourcesummary
+          @SubAccountUin = subaccountuin
+          @CpuResourceSummary = cpuresourcesummary
+          @ResourceConfig = resourceconfig
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+          @Name = params['Name']
+          @ModelUid = params['ModelUid']
+          @ModelName = params['ModelName']
+          @ModelVersion = params['ModelVersion']
+          @ModelIdentifier = params['ModelIdentifier']
+          @ModelType = params['ModelType']
+          @Status = params['Status']
+          @EndpointUrl = params['EndpointUrl']
+          @UnifiedEndpointUrl = params['UnifiedEndpointUrl']
+          @UnifiedV2EndpointUrl = params['UnifiedV2EndpointUrl']
+          @AppId = params['AppId']
+          @Uin = params['Uin']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @DeploymentCount = params['DeploymentCount']
+          @HasRunningDeployment = params['HasRunningDeployment']
+          @RayDashboardUrl = params['RayDashboardUrl']
+          @ApiKeyAuthEnabled = params['ApiKeyAuthEnabled']
+          @ApiKeyAuthForceEnabled = params['ApiKeyAuthForceEnabled']
+          @SkipTlsVerify = params['SkipTlsVerify']
+          unless params['GpuResourceSummary'].nil?
+            @GpuResourceSummary = []
+            params['GpuResourceSummary'].each do |i|
+              gpusummaryitem_tmp = GpuSummaryItem.new
+              gpusummaryitem_tmp.deserialize(i)
+              @GpuResourceSummary << gpusummaryitem_tmp
+            end
+          end
+          @SubAccountUin = params['SubAccountUin']
+          unless params['CpuResourceSummary'].nil?
+            @CpuResourceSummary = CpuSummaryItem.new
+            @CpuResourceSummary.deserialize(params['CpuResourceSummary'])
+          end
+          @ResourceConfig = params['ResourceConfig']
           @RequestId = params['RequestId']
         end
       end
@@ -15931,6 +16527,176 @@ module TencentCloud
 
         def deserialize(params)
           @Yaml = params['Yaml']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetModelConfig请求参数结构体
+      class GetModelConfigRequest < TencentCloud::Common::AbstractModel
+        # @param ModelUid: <p>模型UID</p>
+        # @type ModelUid: String
+        # @param ModelVersion: <p>模型版本</p>
+        # @type ModelVersion: String
+
+        attr_accessor :ModelUid, :ModelVersion
+
+        def initialize(modeluid=nil, modelversion=nil)
+          @ModelUid = modeluid
+          @ModelVersion = modelversion
+        end
+
+        def deserialize(params)
+          @ModelUid = params['ModelUid']
+          @ModelVersion = params['ModelVersion']
+        end
+      end
+
+      # GetModelConfig返回参数结构体
+      class GetModelConfigResponse < TencentCloud::Common::AbstractModel
+        # @param ModelName: <p>模型名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelName: String
+        # @param ConfigJson: <p>config.json 原始内容（JSON 字符串）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigJson: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ModelName, :ConfigJson, :RequestId
+
+        def initialize(modelname=nil, configjson=nil, requestid=nil)
+          @ModelName = modelname
+          @ConfigJson = configjson
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ModelName = params['ModelName']
+          @ConfigJson = params['ConfigJson']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetModelFiles请求参数结构体
+      class GetModelFilesRequest < TencentCloud::Common::AbstractModel
+        # @param ModelUid: <p>模型UID</p>
+        # @type ModelUid: String
+        # @param ModelVersion: <p>模型版本</p>
+        # @type ModelVersion: String
+
+        attr_accessor :ModelUid, :ModelVersion
+
+        def initialize(modeluid=nil, modelversion=nil)
+          @ModelUid = modeluid
+          @ModelVersion = modelversion
+        end
+
+        def deserialize(params)
+          @ModelUid = params['ModelUid']
+          @ModelVersion = params['ModelVersion']
+        end
+      end
+
+      # GetModelFiles返回参数结构体
+      class GetModelFilesResponse < TencentCloud::Common::AbstractModel
+        # @param ModelId: <p>模型ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelId: Integer
+        # @param ModelName: <p>模型名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelName: String
+        # @param Files: <p>文件树根节点列表</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Files: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ModelId, :ModelName, :Files, :RequestId
+
+        def initialize(modelid=nil, modelname=nil, files=nil, requestid=nil)
+          @ModelId = modelid
+          @ModelName = modelname
+          @Files = files
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ModelId = params['ModelId']
+          @ModelName = params['ModelName']
+          unless params['Files'].nil?
+            @Files = []
+            params['Files'].each do |i|
+              filenode_tmp = FileNode.new
+              filenode_tmp.deserialize(i)
+              @Files << filenode_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetModelReadme请求参数结构体
+      class GetModelReadmeRequest < TencentCloud::Common::AbstractModel
+        # @param ModelUid: <p>模型UID</p>
+        # @type ModelUid: String
+        # @param ModelVersion: <p>模型版本</p>
+        # @type ModelVersion: String
+
+        attr_accessor :ModelUid, :ModelVersion
+
+        def initialize(modeluid=nil, modelversion=nil)
+          @ModelUid = modeluid
+          @ModelVersion = modelversion
+        end
+
+        def deserialize(params)
+          @ModelUid = params['ModelUid']
+          @ModelVersion = params['ModelVersion']
+        end
+      end
+
+      # GetModelReadme返回参数结构体
+      class GetModelReadmeResponse < TencentCloud::Common::AbstractModel
+        # @param ModelName: <p>模型名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelName: String
+        # @param Provider: <p>模型提供方</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Provider: String
+        # @param ModelType: <p>模型类型</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelType: String
+        # @param ParameterSize: <p>参数量</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParameterSize: String
+        # @param BuiltIn: <p>是否是内置模型</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BuiltIn: Boolean
+        # @param Readme: <p>README 内容（Markdown 格式）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Readme: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ModelName, :Provider, :ModelType, :ParameterSize, :BuiltIn, :Readme, :RequestId
+
+        def initialize(modelname=nil, provider=nil, modeltype=nil, parametersize=nil, builtin=nil, readme=nil, requestid=nil)
+          @ModelName = modelname
+          @Provider = provider
+          @ModelType = modeltype
+          @ParameterSize = parametersize
+          @BuiltIn = builtin
+          @Readme = readme
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ModelName = params['ModelName']
+          @Provider = params['Provider']
+          @ModelType = params['ModelType']
+          @ParameterSize = params['ParameterSize']
+          @BuiltIn = params['BuiltIn']
+          @Readme = params['Readme']
           @RequestId = params['RequestId']
         end
       end
@@ -17111,6 +17877,17 @@ module TencentCloud
         end
       end
 
+      # 运行中部署的 GPU 资源汇总
+      class GpuSummaryItem < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
       # GrantDLCCatalogAccess请求参数结构体
       class GrantDLCCatalogAccessRequest < TencentCloud::Common::AbstractModel
         # @param VpcId: 授权VpcId
@@ -17456,6 +18233,57 @@ module TencentCloud
         end
       end
 
+      # 推理引擎具体信息
+      class InferenceEngineInfo < TencentCloud::Common::AbstractModel
+        # @param EngineId: <p>引擎标识符</p>
+        # @type EngineId: String
+        # @param Name: <p>引擎名称</p>
+        # @type Name: String
+        # @param Version: <p>引擎版本</p>
+        # @type Version: String
+        # @param Description: <p>引擎描述</p>
+        # @type Description: String
+        # @param Tags: <p>标签列表</p>
+        # @type Tags: Array
+        # @param ModelTypes: <p>支持的模型类型</p>
+        # @type ModelTypes: Array
+        # @param Exclusive: <p>是否独占，如果为 true，表示自定义模型看不到这个推理引擎，通常用于自研内置模型</p>
+        # @type Exclusive: Boolean
+        # @param Enabled: <p>是否启用</p>
+        # @type Enabled: Boolean
+        # @param Capabilities: <p>引擎能力声明</p>
+        # @type Capabilities: :class:`Tencentcloud::Dlc.v20210125.models.EngineCapabilities`
+
+        attr_accessor :EngineId, :Name, :Version, :Description, :Tags, :ModelTypes, :Exclusive, :Enabled, :Capabilities
+
+        def initialize(engineid=nil, name=nil, version=nil, description=nil, tags=nil, modeltypes=nil, exclusive=nil, enabled=nil, capabilities=nil)
+          @EngineId = engineid
+          @Name = name
+          @Version = version
+          @Description = description
+          @Tags = tags
+          @ModelTypes = modeltypes
+          @Exclusive = exclusive
+          @Enabled = enabled
+          @Capabilities = capabilities
+        end
+
+        def deserialize(params)
+          @EngineId = params['EngineId']
+          @Name = params['Name']
+          @Version = params['Version']
+          @Description = params['Description']
+          @Tags = params['Tags']
+          @ModelTypes = params['ModelTypes']
+          @Exclusive = params['Exclusive']
+          @Enabled = params['Enabled']
+          unless params['Capabilities'].nil?
+            @Capabilities = EngineCapabilities.new
+            @Capabilities.deserialize(params['Capabilities'])
+          end
+        end
+      end
+
       # 推理模型信息
       class InferenceModelInfo < TencentCloud::Common::AbstractModel
         # @param ModelId: <p>Model ID</p>
@@ -17578,6 +18406,155 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
           @SubAccountUin = params['SubAccountUin']
+        end
+      end
+
+      # 推理服务信息
+      class InferenceServiceInfo < TencentCloud::Common::AbstractModel
+        # @param ServiceId: <p>服务ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceId: String
+        # @param Name: <p>服务名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param ModelId: <p>关联的模型ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelId: Integer
+        # @param ModelUid: <p>关联的模型UID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelUid: String
+        # @param ModelName: <p>关联的模型名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelName: String
+        # @param ModelVersion: <p>关联的模型版本号</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelVersion: String
+        # @param ModelIdentifier: <p>模型标识符（OpenAI 兼容 API 中的 model 字段）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelIdentifier: String
+        # @param ModelType: <p>关联模型的类型（LLM / VLM / Embedding / Reranker / TTS / ASR / CV / NLP / ML）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelType: String
+        # @param Status: <p>服务状态（Running/Stopped/Deploying/Failed）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param EndpointUrl: <p>服务端点URL</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndpointUrl: String
+        # @param UnifiedEndpointUrl: <p>OpenAI 兼容统一入口 URL（通过 API-Key 路由，适用于 LLM/Embedding/Reranker）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnifiedEndpointUrl: String
+        # @param UnifiedV2EndpointUrl: <p>KServe V2 协议统一入口 URL（通过 API-Key + model name 路由，适用于 XGBoost 等传统 ML 模型）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnifiedV2EndpointUrl: String
+        # @param AppId: <p>应用ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppId: Integer
+        # @param Uin: <p>主账号UIN</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uin: String
+        # @param CreateTime: <p>创建时间（Unix 时间戳，毫秒）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: Integer
+        # @param UpdateTime: <p>更新时间（Unix 时间戳，毫秒）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: Integer
+        # @param DeploymentCount: <p>部署数量</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeploymentCount: Integer
+        # @param HasRunningDeployment: <p>是否存在至少一个运行中的部署</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HasRunningDeployment: Boolean
+        # @param RayDashboardUrl: <p>Ray Dashboard 访问地址（通过 Ingress 代理）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RayDashboardUrl: String
+        # @param ApiKeyAuthEnabled: <p>是否启用 API-Key 鉴权</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApiKeyAuthEnabled: Boolean
+        # @param ApiKeyAuthForceEnabled: <p>是否强制开启 API-Key 鉴权（生产环境为 true，不允许关闭）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApiKeyAuthForceEnabled: Boolean
+        # @param SkipTlsVerify: <p>是否跳过 TLS 证书验证（自签证书场景，前端 curl 命令需加 -k 参数）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SkipTlsVerify: Boolean
+        # @param GpuResourceSummary: <p>运行中部署的 GPU 资源汇总</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GpuResourceSummary: Array
+        # @param SubAccountUin: <p>子账号UIN（实际操作者）</p>
+        # @type SubAccountUin: String
+        # @param CpuResourceSummary: <p>运行中部署的 CPU 资源汇总</p>
+        # @type CpuResourceSummary: :class:`Tencentcloud::Dlc.v20210125.models.CpuSummaryItem`
+        # @param ResourceConfig: <p>资源配置（JSON 字符串，取自第一个部署）</p>
+        # @type ResourceConfig: String
+
+        attr_accessor :ServiceId, :Name, :ModelId, :ModelUid, :ModelName, :ModelVersion, :ModelIdentifier, :ModelType, :Status, :EndpointUrl, :UnifiedEndpointUrl, :UnifiedV2EndpointUrl, :AppId, :Uin, :CreateTime, :UpdateTime, :DeploymentCount, :HasRunningDeployment, :RayDashboardUrl, :ApiKeyAuthEnabled, :ApiKeyAuthForceEnabled, :SkipTlsVerify, :GpuResourceSummary, :SubAccountUin, :CpuResourceSummary, :ResourceConfig
+
+        def initialize(serviceid=nil, name=nil, modelid=nil, modeluid=nil, modelname=nil, modelversion=nil, modelidentifier=nil, modeltype=nil, status=nil, endpointurl=nil, unifiedendpointurl=nil, unifiedv2endpointurl=nil, appid=nil, uin=nil, createtime=nil, updatetime=nil, deploymentcount=nil, hasrunningdeployment=nil, raydashboardurl=nil, apikeyauthenabled=nil, apikeyauthforceenabled=nil, skiptlsverify=nil, gpuresourcesummary=nil, subaccountuin=nil, cpuresourcesummary=nil, resourceconfig=nil)
+          @ServiceId = serviceid
+          @Name = name
+          @ModelId = modelid
+          @ModelUid = modeluid
+          @ModelName = modelname
+          @ModelVersion = modelversion
+          @ModelIdentifier = modelidentifier
+          @ModelType = modeltype
+          @Status = status
+          @EndpointUrl = endpointurl
+          @UnifiedEndpointUrl = unifiedendpointurl
+          @UnifiedV2EndpointUrl = unifiedv2endpointurl
+          @AppId = appid
+          @Uin = uin
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @DeploymentCount = deploymentcount
+          @HasRunningDeployment = hasrunningdeployment
+          @RayDashboardUrl = raydashboardurl
+          @ApiKeyAuthEnabled = apikeyauthenabled
+          @ApiKeyAuthForceEnabled = apikeyauthforceenabled
+          @SkipTlsVerify = skiptlsverify
+          @GpuResourceSummary = gpuresourcesummary
+          @SubAccountUin = subaccountuin
+          @CpuResourceSummary = cpuresourcesummary
+          @ResourceConfig = resourceconfig
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+          @Name = params['Name']
+          @ModelId = params['ModelId']
+          @ModelUid = params['ModelUid']
+          @ModelName = params['ModelName']
+          @ModelVersion = params['ModelVersion']
+          @ModelIdentifier = params['ModelIdentifier']
+          @ModelType = params['ModelType']
+          @Status = params['Status']
+          @EndpointUrl = params['EndpointUrl']
+          @UnifiedEndpointUrl = params['UnifiedEndpointUrl']
+          @UnifiedV2EndpointUrl = params['UnifiedV2EndpointUrl']
+          @AppId = params['AppId']
+          @Uin = params['Uin']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @DeploymentCount = params['DeploymentCount']
+          @HasRunningDeployment = params['HasRunningDeployment']
+          @RayDashboardUrl = params['RayDashboardUrl']
+          @ApiKeyAuthEnabled = params['ApiKeyAuthEnabled']
+          @ApiKeyAuthForceEnabled = params['ApiKeyAuthForceEnabled']
+          @SkipTlsVerify = params['SkipTlsVerify']
+          unless params['GpuResourceSummary'].nil?
+            @GpuResourceSummary = []
+            params['GpuResourceSummary'].each do |i|
+              gpusummaryitem_tmp = GpuSummaryItem.new
+              gpusummaryitem_tmp.deserialize(i)
+              @GpuResourceSummary << gpusummaryitem_tmp
+            end
+          end
+          @SubAccountUin = params['SubAccountUin']
+          unless params['CpuResourceSummary'].nil?
+            @CpuResourceSummary = CpuSummaryItem.new
+            @CpuResourceSummary.deserialize(params['CpuResourceSummary'])
+          end
+          @ResourceConfig = params['ResourceConfig']
         end
       end
 
@@ -18358,6 +19335,27 @@ module TencentCloud
         end
       end
 
+      # 关联的推理服务信息
+      class LinkedServiceInfo < TencentCloud::Common::AbstractModel
+        # @param ServiceId: <p>服务 UID</p>
+        # @type ServiceId: String
+        # @param ServiceName: <p>服务名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceName: String
+
+        attr_accessor :ServiceId, :ServiceName
+
+        def initialize(serviceid=nil, servicename=nil)
+          @ServiceId = serviceid
+          @ServiceName = servicename
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+          @ServiceName = params['ServiceName']
+        end
+      end
+
       # ListClusterGroups请求参数结构体
       class ListClusterGroupsRequest < TencentCloud::Common::AbstractModel
         # @param Page: <p>当前页码（从1开始）</p>
@@ -18715,6 +19713,99 @@ module TencentCloud
         end
       end
 
+      # ListInferenceEngines请求参数结构体
+      class ListInferenceEnginesRequest < TencentCloud::Common::AbstractModel
+        # @param Page: <p>当前页码</p>
+        # @type Page: Integer
+        # @param PageSize: <p>每页的数量</p>
+        # @type PageSize: Integer
+        # @param StartTime: <p>创建时间起始过滤-时间戳（毫秒，可选）</p><p>单位：ms</p>
+        # @type StartTime: Integer
+        # @param EndTime: <p>创建时间截止过滤-时间戳（毫秒，可选）</p><p>单位：ms</p>
+        # @type EndTime: Integer
+        # @param Filters: <p>过滤条件</p>
+        # @type Filters: Array
+        # @param SortFields: <p>排序字段列表</p>
+        # @type SortFields: Array
+
+        attr_accessor :Page, :PageSize, :StartTime, :EndTime, :Filters, :SortFields
+
+        def initialize(page=nil, pagesize=nil, starttime=nil, endtime=nil, filters=nil, sortfields=nil)
+          @Page = page
+          @PageSize = pagesize
+          @StartTime = starttime
+          @EndTime = endtime
+          @Filters = filters
+          @SortFields = sortfields
+        end
+
+        def deserialize(params)
+          @Page = params['Page']
+          @PageSize = params['PageSize']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          unless params['SortFields'].nil?
+            @SortFields = []
+            params['SortFields'].each do |i|
+              sortfield_tmp = SortField.new
+              sortfield_tmp.deserialize(i)
+              @SortFields << sortfield_tmp
+            end
+          end
+        end
+      end
+
+      # ListInferenceEngines返回参数结构体
+      class ListInferenceEnginesResponse < TencentCloud::Common::AbstractModel
+        # @param Items: <p>数据列表</p>
+        # @type Items: Array
+        # @param Total: <p>总记录数</p>
+        # @type Total: Integer
+        # @param Page: <p>当前页码</p>
+        # @type Page: Integer
+        # @param PageSize: <p>每页的数量</p>
+        # @type PageSize: Integer
+        # @param TotalPages: <p>总的页数</p>
+        # @type TotalPages: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Items, :Total, :Page, :PageSize, :TotalPages, :RequestId
+
+        def initialize(items=nil, total=nil, page=nil, pagesize=nil, totalpages=nil, requestid=nil)
+          @Items = items
+          @Total = total
+          @Page = page
+          @PageSize = pagesize
+          @TotalPages = totalpages
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              inferenceengineinfo_tmp = InferenceEngineInfo.new
+              inferenceengineinfo_tmp.deserialize(i)
+              @Items << inferenceengineinfo_tmp
+            end
+          end
+          @Total = params['Total']
+          @Page = params['Page']
+          @PageSize = params['PageSize']
+          @TotalPages = params['TotalPages']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ListInferenceModels请求参数结构体
       class ListInferenceModelsRequest < TencentCloud::Common::AbstractModel
         # @param Page: <p>页码（从1开始）</p>
@@ -18811,6 +19902,104 @@ module TencentCloud
               inferencemodelinfo_tmp = InferenceModelInfo.new
               inferencemodelinfo_tmp.deserialize(i)
               @Items << inferencemodelinfo_tmp
+            end
+          end
+          @Total = params['Total']
+          @Page = params['Page']
+          @PageSize = params['PageSize']
+          @TotalPages = params['TotalPages']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ListInferenceServices请求参数结构体
+      class ListInferenceServicesRequest < TencentCloud::Common::AbstractModel
+        # @param Page: <p>页码（从1开始）</p>
+        # @type Page: Integer
+        # @param PageSize: <p>每页数量（最大 200）</p>
+        # @type PageSize: Integer
+        # @param StartTime: <p>创建时间起始过滤-时间戳（毫秒，可选）</p><p>单位：ms</p>
+        # @type StartTime: Integer
+        # @param EndTime: <p>创建时间截止过滤-时间戳（毫秒，可选）</p><p>单位：ms</p>
+        # @type EndTime: Integer
+        # @param Filters: <p>过滤条件</p>
+        # @type Filters: Array
+        # @param SortFields: <p>排序字段列表</p>
+        # @type SortFields: Array
+
+        attr_accessor :Page, :PageSize, :StartTime, :EndTime, :Filters, :SortFields
+
+        def initialize(page=nil, pagesize=nil, starttime=nil, endtime=nil, filters=nil, sortfields=nil)
+          @Page = page
+          @PageSize = pagesize
+          @StartTime = starttime
+          @EndTime = endtime
+          @Filters = filters
+          @SortFields = sortfields
+        end
+
+        def deserialize(params)
+          @Page = params['Page']
+          @PageSize = params['PageSize']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          unless params['SortFields'].nil?
+            @SortFields = []
+            params['SortFields'].each do |i|
+              sortfield_tmp = SortField.new
+              sortfield_tmp.deserialize(i)
+              @SortFields << sortfield_tmp
+            end
+          end
+        end
+      end
+
+      # ListInferenceServices返回参数结构体
+      class ListInferenceServicesResponse < TencentCloud::Common::AbstractModel
+        # @param Items: <p>推理服务列表</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+        # @param Total: <p>总记录数</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param Page: <p>当前页码</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Page: Integer
+        # @param PageSize: <p>每页数量</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageSize: Integer
+        # @param TotalPages: <p>总页数</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalPages: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Items, :Total, :Page, :PageSize, :TotalPages, :RequestId
+
+        def initialize(items=nil, total=nil, page=nil, pagesize=nil, totalpages=nil, requestid=nil)
+          @Items = items
+          @Total = total
+          @Page = page
+          @PageSize = pagesize
+          @TotalPages = totalpages
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              inferenceserviceinfo_tmp = InferenceServiceInfo.new
+              inferenceserviceinfo_tmp.deserialize(i)
+              @Items << inferenceserviceinfo_tmp
             end
           end
           @Total = params['Total']
@@ -19100,6 +20289,104 @@ module TencentCloud
               @Items << labresponse_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ListModelVersions请求参数结构体
+      class ListModelVersionsRequest < TencentCloud::Common::AbstractModel
+        # @param ModelUid: <p>模型UID</p>
+        # @type ModelUid: String
+        # @param StartTime: <p>创建时间起始过滤-毫秒时间戳</p><p>单位：ms</p>
+        # @type StartTime: Integer
+        # @param EndTime: <p>创建时间截止过滤-毫秒时间戳</p><p>单位：ms</p>
+        # @type EndTime: Integer
+        # @param Filters: <p>额外过滤条件</p>
+        # @type Filters: Array
+        # @param SortFields: <p>排序字段列表</p>
+        # @type SortFields: Array
+        # @param Page: <p>页码（默认1）</p><p>取值范围：[1, 2147483647]</p>
+        # @type Page: Integer
+        # @param PageSize: <p>每页数量（默认200）</p><p>取值范围：[1, 2147483647]</p>
+        # @type PageSize: Integer
+
+        attr_accessor :ModelUid, :StartTime, :EndTime, :Filters, :SortFields, :Page, :PageSize
+
+        def initialize(modeluid=nil, starttime=nil, endtime=nil, filters=nil, sortfields=nil, page=nil, pagesize=nil)
+          @ModelUid = modeluid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Filters = filters
+          @SortFields = sortfields
+          @Page = page
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          @ModelUid = params['ModelUid']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          unless params['SortFields'].nil?
+            @SortFields = []
+            params['SortFields'].each do |i|
+              sortfield_tmp = SortField.new
+              sortfield_tmp.deserialize(i)
+              @SortFields << sortfield_tmp
+            end
+          end
+          @Page = params['Page']
+          @PageSize = params['PageSize']
+        end
+      end
+
+      # ListModelVersions返回参数结构体
+      class ListModelVersionsResponse < TencentCloud::Common::AbstractModel
+        # @param Items: <p>模型版本列表</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+        # @param Total: <p>模型总数量</p>
+        # @type Total: Integer
+        # @param Page: <p>当前多少页</p>
+        # @type Page: Integer
+        # @param PageSize: <p>当前页模型数量</p>
+        # @type PageSize: Integer
+        # @param TotalPages: <p>结果总页数</p>
+        # @type TotalPages: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Items, :Total, :Page, :PageSize, :TotalPages, :RequestId
+
+        def initialize(items=nil, total=nil, page=nil, pagesize=nil, totalpages=nil, requestid=nil)
+          @Items = items
+          @Total = total
+          @Page = page
+          @PageSize = pagesize
+          @TotalPages = totalpages
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              modelversioninfo_tmp = ModelVersionInfo.new
+              modelversioninfo_tmp.deserialize(i)
+              @Items << modelversioninfo_tmp
+            end
+          end
+          @Total = params['Total']
+          @Page = params['Page']
+          @PageSize = params['PageSize']
+          @TotalPages = params['TotalPages']
           @RequestId = params['RequestId']
         end
       end
@@ -19949,6 +21236,82 @@ module TencentCloud
         end
       end
 
+      # 监控指标数据
+      class MetricsData < TencentCloud::Common::AbstractModel
+        # @param RequestsPerSecond: <p>每秒请求数（QPS）</p>
+        # @type RequestsPerSecond: Float
+        # @param ErrorRate: <p>错误率（0~1）</p>
+        # @type ErrorRate: Float
+        # @param P95LatencyMs: <p>P95 延迟（毫秒）</p>
+        # @type P95LatencyMs: Float
+        # @param P99LatencyMs: <p>P99 延迟（毫秒）</p>
+        # @type P99LatencyMs: Float
+        # @param QueueDepth: <p>队列深度（排队中的请求数）</p>
+        # @type QueueDepth: Float
+        # @param TimeToFirstTokenP99Ms: <p>TTFT P99 延迟（毫秒，仅 vLLM）</p>
+        # @type TimeToFirstTokenP99Ms: Float
+        # @param TimePerOutputTokenP99Ms: <p>TPOT P99 延迟（毫秒，仅 vLLM）</p>
+        # @type TimePerOutputTokenP99Ms: Float
+        # @param TokenThroughput: <p>Token 吞吐量（tokens/s，仅 vLLM）</p>
+        # @type TokenThroughput: Float
+        # @param GpuUtilization: <p>GPU 利用率（0~100，百分比）</p>
+        # @type GpuUtilization: Float
+        # @param GpuMemoryUsedMB: <p>GPU 显存已用（MB）</p>
+        # @type GpuMemoryUsedMB: Float
+        # @param GpuMemoryTotalMB: <p>GPU 显存总量（MB）</p>
+        # @type GpuMemoryTotalMB: Float
+        # @param CpuUtilization: <p>CPU 利用率（0~100，百分比）</p>
+        # @type CpuUtilization: Float
+        # @param MemoryUsedBytes: <p>内存已用（字节）</p>
+        # @type MemoryUsedBytes: Float
+        # @param MemoryTotalBytes: <p>内存总量（字节）</p>
+        # @type MemoryTotalBytes: Float
+        # @param NetworkReceiveMBPerSecond: <p>网络接收速度（MB/s）</p>
+        # @type NetworkReceiveMBPerSecond: Float
+        # @param NetworkSendMBPerSecond: <p>网络发送速度（MB/s）</p>
+        # @type NetworkSendMBPerSecond: Float
+
+        attr_accessor :RequestsPerSecond, :ErrorRate, :P95LatencyMs, :P99LatencyMs, :QueueDepth, :TimeToFirstTokenP99Ms, :TimePerOutputTokenP99Ms, :TokenThroughput, :GpuUtilization, :GpuMemoryUsedMB, :GpuMemoryTotalMB, :CpuUtilization, :MemoryUsedBytes, :MemoryTotalBytes, :NetworkReceiveMBPerSecond, :NetworkSendMBPerSecond
+
+        def initialize(requestspersecond=nil, errorrate=nil, p95latencyms=nil, p99latencyms=nil, queuedepth=nil, timetofirsttokenp99ms=nil, timeperoutputtokenp99ms=nil, tokenthroughput=nil, gpuutilization=nil, gpumemoryusedmb=nil, gpumemorytotalmb=nil, cpuutilization=nil, memoryusedbytes=nil, memorytotalbytes=nil, networkreceivembpersecond=nil, networksendmbpersecond=nil)
+          @RequestsPerSecond = requestspersecond
+          @ErrorRate = errorrate
+          @P95LatencyMs = p95latencyms
+          @P99LatencyMs = p99latencyms
+          @QueueDepth = queuedepth
+          @TimeToFirstTokenP99Ms = timetofirsttokenp99ms
+          @TimePerOutputTokenP99Ms = timeperoutputtokenp99ms
+          @TokenThroughput = tokenthroughput
+          @GpuUtilization = gpuutilization
+          @GpuMemoryUsedMB = gpumemoryusedmb
+          @GpuMemoryTotalMB = gpumemorytotalmb
+          @CpuUtilization = cpuutilization
+          @MemoryUsedBytes = memoryusedbytes
+          @MemoryTotalBytes = memorytotalbytes
+          @NetworkReceiveMBPerSecond = networkreceivembpersecond
+          @NetworkSendMBPerSecond = networksendmbpersecond
+        end
+
+        def deserialize(params)
+          @RequestsPerSecond = params['RequestsPerSecond']
+          @ErrorRate = params['ErrorRate']
+          @P95LatencyMs = params['P95LatencyMs']
+          @P99LatencyMs = params['P99LatencyMs']
+          @QueueDepth = params['QueueDepth']
+          @TimeToFirstTokenP99Ms = params['TimeToFirstTokenP99Ms']
+          @TimePerOutputTokenP99Ms = params['TimePerOutputTokenP99Ms']
+          @TokenThroughput = params['TokenThroughput']
+          @GpuUtilization = params['GpuUtilization']
+          @GpuMemoryUsedMB = params['GpuMemoryUsedMB']
+          @GpuMemoryTotalMB = params['GpuMemoryTotalMB']
+          @CpuUtilization = params['CpuUtilization']
+          @MemoryUsedBytes = params['MemoryUsedBytes']
+          @MemoryTotalBytes = params['MemoryTotalBytes']
+          @NetworkReceiveMBPerSecond = params['NetworkReceiveMBPerSecond']
+          @NetworkSendMBPerSecond = params['NetworkSendMBPerSecond']
+        end
+      end
+
       # DLC分区信息查询返回数据结构
       class MixedTablePartitions < TencentCloud::Common::AbstractModel
         # @param TableFormat: 数据表格式
@@ -19992,6 +21355,69 @@ module TencentCloud
               @HivePartitions << hivetablepartition_tmp
             end
           end
+        end
+      end
+
+      # 模型版本信息
+      class ModelVersionInfo < TencentCloud::Common::AbstractModel
+        # @param VersionId: <p>版本ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VersionId: String
+        # @param ModelId: <p>关联的模型ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelId: String
+        # @param Version: <p>版本号（如 v1, v2）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Version: String
+        # @param StorageUri: <p>该版本的存储 URI</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StorageUri: String
+        # @param Description: <p>版本说明</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param CreateTime: <p>创建时间（毫秒时间戳）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: Integer
+        # @param UpdateTime: <p>更新时间（毫秒时间戳）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: Integer
+        # @param LinkedServices: <p>关联的推理服务列表</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LinkedServices: Array
+        # @param UseCustomStorage: <p>是否使用用户自带存储桶（true=用户自带桶，false=平台托管）</p>
+        # @type UseCustomStorage: Boolean
+
+        attr_accessor :VersionId, :ModelId, :Version, :StorageUri, :Description, :CreateTime, :UpdateTime, :LinkedServices, :UseCustomStorage
+
+        def initialize(versionid=nil, modelid=nil, version=nil, storageuri=nil, description=nil, createtime=nil, updatetime=nil, linkedservices=nil, usecustomstorage=nil)
+          @VersionId = versionid
+          @ModelId = modelid
+          @Version = version
+          @StorageUri = storageuri
+          @Description = description
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @LinkedServices = linkedservices
+          @UseCustomStorage = usecustomstorage
+        end
+
+        def deserialize(params)
+          @VersionId = params['VersionId']
+          @ModelId = params['ModelId']
+          @Version = params['Version']
+          @StorageUri = params['StorageUri']
+          @Description = params['Description']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          unless params['LinkedServices'].nil?
+            @LinkedServices = []
+            params['LinkedServices'].each do |i|
+              linkedserviceinfo_tmp = LinkedServiceInfo.new
+              linkedserviceinfo_tmp.deserialize(i)
+              @LinkedServices << linkedserviceinfo_tmp
+            end
+          end
+          @UseCustomStorage = params['UseCustomStorage']
         end
       end
 
@@ -21671,6 +23097,46 @@ module TencentCloud
         end
       end
 
+      # 概览数据项，用于监控
+      class OverviewItem < TencentCloud::Common::AbstractModel
+        # @param ChartType: <p>图表类型（与请求中的 ChartTypes 对应）</p>
+        # @type ChartType: String
+        # @param Value: <p>当前瞬时值（如 QPS=15.2、延迟=120.5ms、利用率=85.0%）。查询失败或无数据时为 null</p>
+        # @type Value: Float
+
+        attr_accessor :ChartType, :Value
+
+        def initialize(charttype=nil, value=nil)
+          @ChartType = charttype
+          @Value = value
+        end
+
+        def deserialize(params)
+          @ChartType = params['ChartType']
+          @Value = params['Value']
+        end
+      end
+
+      # ParallelKeyMapping 用于 inference engine 并行配置参数 key 映射
+      class ParallelKeyMapping < TencentCloud::Common::AbstractModel
+        # @param Type: <p>并行类型</p>
+        # @type Type: String
+        # @param Keys: <p>该并行类型对应的参数 key 列表</p>
+        # @type Keys: Array
+
+        attr_accessor :Type, :Keys
+
+        def initialize(type=nil, keys=nil)
+          @Type = type
+          @Keys = keys
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Keys = params['Keys']
+        end
+      end
+
       # 对指定参数的更新、增加、删除
       class Param < TencentCloud::Common::AbstractModel
         # @param ConfigItem: 参数key，例如：
@@ -22154,6 +23620,139 @@ module TencentCloud
         end
       end
 
+      # QueryDashboardOverview请求参数结构体
+      class QueryDashboardOverviewRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: <p>时间范围起始（Unix 时间戳，秒）</p>
+        # @type StartTime: String
+        # @param EndTime: <p>时间范围结束（Unix 时间戳，秒）</p>
+        # @type EndTime: String
+
+        attr_accessor :StartTime, :EndTime
+
+        def initialize(starttime=nil, endtime=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # QueryDashboardOverview返回参数结构体
+      class QueryDashboardOverviewResponse < TencentCloud::Common::AbstractModel
+        # @param TotalRequestsPerSecond: <p>时间范围内所有服务的总 QPS（每秒请求数）均值</p><p>单位：请求每秒</p>
+        # @type TotalRequestsPerSecond: Float
+        # @param AverageP99LatencyMs: <p>时间范围内全局 P99 延迟均值（毫秒）</p><p>单位：毫秒</p>
+        # @type AverageP99LatencyMs: Float
+        # @param ErrorRate: <p>时间范围内全局错误率均值（0~1，如 0.02 表示 2%）</p><p>取值范围：[0, 1]</p>
+        # @type ErrorRate: Float
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalRequestsPerSecond, :AverageP99LatencyMs, :ErrorRate, :RequestId
+
+        def initialize(totalrequestspersecond=nil, averagep99latencyms=nil, errorrate=nil, requestid=nil)
+          @TotalRequestsPerSecond = totalrequestspersecond
+          @AverageP99LatencyMs = averagep99latencyms
+          @ErrorRate = errorrate
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalRequestsPerSecond = params['TotalRequestsPerSecond']
+          @AverageP99LatencyMs = params['AverageP99LatencyMs']
+          @ErrorRate = params['ErrorRate']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # QueryDashboardServiceList请求参数结构体
+      class QueryDashboardServiceListRequest < TencentCloud::Common::AbstractModel
+        # @param Page: <p>页码（默认1）</p>
+        # @type Page: Integer
+        # @param PageSize: <p>每页数量（默认20）</p>
+        # @type PageSize: Integer
+        # @param Filters: <p>过滤条件。支持的过滤字段：Keyword（服务名称/模型名称模糊搜索）、Status（服务状态精确匹配，如 Running）、Engine（推理引擎匹配，如 vllm，用于 LLM 推理专项 tab，只要服务有至少一个 deployment 的 engine 匹配即返回）、ResourcePartitionId（资源分区精确匹配）</p>
+        # @type Filters: Array
+        # @param SortFields: <p>排序字段列表（全局排序，支持按指标字段排序）</p>
+        # @type SortFields: Array
+
+        attr_accessor :Page, :PageSize, :Filters, :SortFields
+
+        def initialize(page=nil, pagesize=nil, filters=nil, sortfields=nil)
+          @Page = page
+          @PageSize = pagesize
+          @Filters = filters
+          @SortFields = sortfields
+        end
+
+        def deserialize(params)
+          @Page = params['Page']
+          @PageSize = params['PageSize']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          unless params['SortFields'].nil?
+            @SortFields = []
+            params['SortFields'].each do |i|
+              sortfield_tmp = SortField.new
+              sortfield_tmp.deserialize(i)
+              @SortFields << sortfield_tmp
+            end
+          end
+        end
+      end
+
+      # QueryDashboardServiceList返回参数结构体
+      class QueryDashboardServiceListResponse < TencentCloud::Common::AbstractModel
+        # @param Total: <p>匹配过滤条件的服务总数</p>
+        # @type Total: Integer
+        # @param Page: <p>当前页码</p>
+        # @type Page: Integer
+        # @param PageSize: <p>每页数量</p>
+        # @type PageSize: Integer
+        # @param TotalPages: <p>总页数</p>
+        # @type TotalPages: Integer
+        # @param Items: <p>服务监控指标列表</p>
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Page, :PageSize, :TotalPages, :Items, :RequestId
+
+        def initialize(total=nil, page=nil, pagesize=nil, totalpages=nil, items=nil, requestid=nil)
+          @Total = total
+          @Page = page
+          @PageSize = pagesize
+          @TotalPages = totalpages
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          @Page = params['Page']
+          @PageSize = params['PageSize']
+          @TotalPages = params['TotalPages']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              servicemetricsitem_tmp = ServiceMetricsItem.new
+              servicemetricsitem_tmp.deserialize(i)
+              @Items << servicemetricsitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # QueryInternalTableWarehouse请求参数结构体
       class QueryInternalTableWarehouseRequest < TencentCloud::Common::AbstractModel
         # @param DatabaseName: 库名
@@ -22194,6 +23793,53 @@ module TencentCloud
 
         def deserialize(params)
           @WarehousePath = params['WarehousePath']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # QueryMonitorOverview请求参数结构体
+      class QueryMonitorOverviewRequest < TencentCloud::Common::AbstractModel
+        # @param ChartTypes: <p>图表类型列表（批量查询多个指标的当前值）</p>
+        # @type ChartTypes: Array
+        # @param ServiceId: <p>推理服务 ID（业务唯一标识）</p>
+        # @type ServiceId: String
+
+        attr_accessor :ChartTypes, :ServiceId
+
+        def initialize(charttypes=nil, serviceid=nil)
+          @ChartTypes = charttypes
+          @ServiceId = serviceid
+        end
+
+        def deserialize(params)
+          @ChartTypes = params['ChartTypes']
+          @ServiceId = params['ServiceId']
+        end
+      end
+
+      # QueryMonitorOverview返回参数结构体
+      class QueryMonitorOverviewResponse < TencentCloud::Common::AbstractModel
+        # @param Items: <p>概览数据项列表，每项对应一个请求的 ChartType</p>
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Items, :RequestId
+
+        def initialize(items=nil, requestid=nil)
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              overviewitem_tmp = OverviewItem.new
+              overviewitem_tmp.deserialize(i)
+              @Items << overviewitem_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -22814,6 +24460,26 @@ module TencentCloud
         end
       end
 
+      # 副本信息
+      class ReplicaInfo < TencentCloud::Common::AbstractModel
+        # @param Desired: <p>期望副本数</p>
+        # @type Desired: Integer
+        # @param Available: <p>可用（就绪）副本数</p>
+        # @type Available: Integer
+
+        attr_accessor :Desired, :Available
+
+        def initialize(desired=nil, available=nil)
+          @Desired = desired
+          @Available = available
+        end
+
+        def deserialize(params)
+          @Desired = params['Desired']
+          @Available = params['Available']
+        end
+      end
+
       # ReportHeartbeatMetaData请求参数结构体
       class ReportHeartbeatMetaDataRequest < TencentCloud::Common::AbstractModel
         # @param DatasourceConnectionName: 数据源名称
@@ -22995,7 +24661,7 @@ module TencentCloud
       class ResourceQuota < TencentCloud::Common::AbstractModel
         # @param ResourceSpec: <p>可售卖资源规格</p>
         # @type ResourceSpec: :class:`Tencentcloud::Dlc.v20210125.models.ResourceSpec`
-        # @param Quota: <p>配额数量</p>
+        # @param Quota: <p>配额数量</p><p>请注意，CPU类型计费项为32的整数倍，GPU类型计费项为1的整数倍。</p>
         # @type Quota: Integer
 
         attr_accessor :ResourceSpec, :Quota
@@ -23050,13 +24716,13 @@ module TencentCloud
         # @param InstanceType: <p>机型，例如X40/T20，仅GU有值</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceType: String
-        # @param BillingItem: <p>四层计费项</p>
+        # @param BillingItem: <p>四层计费项</p><p>枚举值：</p><ul><li>sv_dlc_standard_cu_standard_cu： 标准型cpu，最小单位32</li><li>sv_dlc_high_memory_cu_high_memory_cu： 高内存型cpu，最小单位32</li><li>sv_dlc_gn7_gn75xlarge80： T4，最小单位1</li><li>sv_dlc_gn10xp_gn10xp2xlarge40： V100，最小单位1</li></ul><p>若您想要了解更多的计费规格和产品细节，欢迎联系我们。</p>
         # @type BillingItem: String
         # @param SpecDesc: <p>规格描述</p>
         # @type SpecDesc: String
         # @param Spec: <p>规格，格式为 {gpu}:{cpu}:{mem}:{vram}</p>
         # @type Spec: String
-        # @param GpuType: <p>GPU类型，仅GU有值</p>
+        # @param GpuType: <p>GPU类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GpuType: String
         # @param MaxCardPerNode: <p>单个物理节点上该计费项对应的最大 GPU 卡数，CPU / HM_CPU 恒为 0</p>
@@ -23144,6 +24810,153 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # RestartInferenceService请求参数结构体
+      class RestartInferenceServiceRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceId: <p>推理服务ID</p>
+        # @type ServiceId: String
+
+        attr_accessor :ServiceId
+
+        def initialize(serviceid=nil)
+          @ServiceId = serviceid
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+        end
+      end
+
+      # RestartInferenceService返回参数结构体
+      class RestartInferenceServiceResponse < TencentCloud::Common::AbstractModel
+        # @param ServiceId: <p>推理服务ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceId: String
+        # @param Name: <p>服务名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param ModelUid: <p>关联的模型UID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelUid: String
+        # @param ModelName: <p>关联的模型名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelName: String
+        # @param ModelVersion: <p>关联的模型版本号</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelVersion: String
+        # @param ModelIdentifier: <p>模型标识符（OpenAI 兼容 API 中的 model 字段）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelIdentifier: String
+        # @param ModelType: <p>关联模型的类型（LLM / VLM / Embedding / Reranker / TTS / ASR / CV / NLP / ML）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelType: String
+        # @param Status: <p>服务状态（Running/Stopped/Deploying/Failed）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param EndpointUrl: <p>服务端点URL</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndpointUrl: String
+        # @param UnifiedEndpointUrl: <p>OpenAI 兼容统一入口 URL（通过 API-Key 路由，适用于 LLM/Embedding/Reranker）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnifiedEndpointUrl: String
+        # @param UnifiedV2EndpointUrl: <p>KServe V2 协议统一入口 URL（通过 API-Key + model name 路由，适用于 XGBoost 等传统 ML 模型）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnifiedV2EndpointUrl: String
+        # @param AppId: <p>应用ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppId: Integer
+        # @param Uin: <p>主账号UIN</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uin: String
+        # @param CreateTime: <p>创建时间（Unix 时间戳，毫秒）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: Integer
+        # @param UpdateTime: <p>更新时间（Unix 时间戳，毫秒）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: Integer
+        # @param DeploymentCount: <p>部署数量</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeploymentCount: Integer
+        # @param HasRunningDeployment: <p>是否存在至少一个运行中的部署</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HasRunningDeployment: Boolean
+        # @param ApiKeyAuthEnabled: <p>是否启用 API-Key 鉴权</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApiKeyAuthEnabled: Boolean
+        # @param ApiKeyAuthForceEnabled: <p>是否强制开启 API-Key 鉴权（生产环境为 true，不允许关闭）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApiKeyAuthForceEnabled: Boolean
+        # @param SkipTlsVerify: <p>是否跳过 TLS 证书验证（自签证书场景，前端 curl 命令需加 -k 参数）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SkipTlsVerify: Boolean
+        # @param SubAccountUin: <p>子账号UIN（实际操作者）</p>
+        # @type SubAccountUin: String
+        # @param CpuResourceSummary: <p>运行中部署的 CPU 资源汇总</p>
+        # @type CpuResourceSummary: :class:`Tencentcloud::Dlc.v20210125.models.CpuSummaryItem`
+        # @param ResourceConfig: <p>资源配置（JSON 字符串，取自第一个部署）</p>
+        # @type ResourceConfig: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ServiceId, :Name, :ModelUid, :ModelName, :ModelVersion, :ModelIdentifier, :ModelType, :Status, :EndpointUrl, :UnifiedEndpointUrl, :UnifiedV2EndpointUrl, :AppId, :Uin, :CreateTime, :UpdateTime, :DeploymentCount, :HasRunningDeployment, :ApiKeyAuthEnabled, :ApiKeyAuthForceEnabled, :SkipTlsVerify, :SubAccountUin, :CpuResourceSummary, :ResourceConfig, :RequestId
+
+        def initialize(serviceid=nil, name=nil, modeluid=nil, modelname=nil, modelversion=nil, modelidentifier=nil, modeltype=nil, status=nil, endpointurl=nil, unifiedendpointurl=nil, unifiedv2endpointurl=nil, appid=nil, uin=nil, createtime=nil, updatetime=nil, deploymentcount=nil, hasrunningdeployment=nil, apikeyauthenabled=nil, apikeyauthforceenabled=nil, skiptlsverify=nil, subaccountuin=nil, cpuresourcesummary=nil, resourceconfig=nil, requestid=nil)
+          @ServiceId = serviceid
+          @Name = name
+          @ModelUid = modeluid
+          @ModelName = modelname
+          @ModelVersion = modelversion
+          @ModelIdentifier = modelidentifier
+          @ModelType = modeltype
+          @Status = status
+          @EndpointUrl = endpointurl
+          @UnifiedEndpointUrl = unifiedendpointurl
+          @UnifiedV2EndpointUrl = unifiedv2endpointurl
+          @AppId = appid
+          @Uin = uin
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @DeploymentCount = deploymentcount
+          @HasRunningDeployment = hasrunningdeployment
+          @ApiKeyAuthEnabled = apikeyauthenabled
+          @ApiKeyAuthForceEnabled = apikeyauthforceenabled
+          @SkipTlsVerify = skiptlsverify
+          @SubAccountUin = subaccountuin
+          @CpuResourceSummary = cpuresourcesummary
+          @ResourceConfig = resourceconfig
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+          @Name = params['Name']
+          @ModelUid = params['ModelUid']
+          @ModelName = params['ModelName']
+          @ModelVersion = params['ModelVersion']
+          @ModelIdentifier = params['ModelIdentifier']
+          @ModelType = params['ModelType']
+          @Status = params['Status']
+          @EndpointUrl = params['EndpointUrl']
+          @UnifiedEndpointUrl = params['UnifiedEndpointUrl']
+          @UnifiedV2EndpointUrl = params['UnifiedV2EndpointUrl']
+          @AppId = params['AppId']
+          @Uin = params['Uin']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @DeploymentCount = params['DeploymentCount']
+          @HasRunningDeployment = params['HasRunningDeployment']
+          @ApiKeyAuthEnabled = params['ApiKeyAuthEnabled']
+          @ApiKeyAuthForceEnabled = params['ApiKeyAuthForceEnabled']
+          @SkipTlsVerify = params['SkipTlsVerify']
+          @SubAccountUin = params['SubAccountUin']
+          unless params['CpuResourceSummary'].nil?
+            @CpuResourceSummary = CpuSummaryItem.new
+            @CpuResourceSummary.deserialize(params['CpuResourceSummary'])
+          end
+          @ResourceConfig = params['ResourceConfig']
           @RequestId = params['RequestId']
         end
       end
@@ -23464,6 +25277,56 @@ module TencentCloud
           @DatabaseName = params['DatabaseName']
           @SQLStatement = params['SQLStatement']
           @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 服务监控指标
+      class ServiceMetricsItem < TencentCloud::Common::AbstractModel
+        # @param ServiceId: <p>服务 UID，服务唯一标识</p>
+        # @type ServiceId: String
+        # @param ServiceName: <p>服务显示名称</p>
+        # @type ServiceName: String
+        # @param Status: <p>服务状态</p>
+        # @type Status: String
+        # @param Engine: <p>推理引擎</p>
+        # @type Engine: String
+        # @param ModelName: <p>模型名称</p>
+        # @type ModelName: String
+        # @param ModelIdentifier: <p>OpenAI 兼容的模型标识符</p>
+        # @type ModelIdentifier: String
+        # @param Replicas: <p>副本信息</p>
+        # @type Replicas: :class:`Tencentcloud::Dlc.v20210125.models.ReplicaInfo`
+        # @param Metrics: <p>监控指标数据</p>
+        # @type Metrics: :class:`Tencentcloud::Dlc.v20210125.models.MetricsData`
+
+        attr_accessor :ServiceId, :ServiceName, :Status, :Engine, :ModelName, :ModelIdentifier, :Replicas, :Metrics
+
+        def initialize(serviceid=nil, servicename=nil, status=nil, engine=nil, modelname=nil, modelidentifier=nil, replicas=nil, metrics=nil)
+          @ServiceId = serviceid
+          @ServiceName = servicename
+          @Status = status
+          @Engine = engine
+          @ModelName = modelname
+          @ModelIdentifier = modelidentifier
+          @Replicas = replicas
+          @Metrics = metrics
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+          @ServiceName = params['ServiceName']
+          @Status = params['Status']
+          @Engine = params['Engine']
+          @ModelName = params['ModelName']
+          @ModelIdentifier = params['ModelIdentifier']
+          unless params['Replicas'].nil?
+            @Replicas = ReplicaInfo.new
+            @Replicas.deserialize(params['Replicas'])
+          end
+          unless params['Metrics'].nil?
+            @Metrics = MetricsData.new
+            @Metrics.deserialize(params['Metrics'])
+          end
         end
       end
 
@@ -24844,6 +26707,153 @@ module TencentCloud
           @ErrorValue = params['ErrorValue']
           @ErrorMessage = params['ErrorMessage']
           @SQLResult = params['SQLResult']
+        end
+      end
+
+      # StopInferenceService请求参数结构体
+      class StopInferenceServiceRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceId: <p>推理服务ID</p>
+        # @type ServiceId: String
+
+        attr_accessor :ServiceId
+
+        def initialize(serviceid=nil)
+          @ServiceId = serviceid
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+        end
+      end
+
+      # StopInferenceService返回参数结构体
+      class StopInferenceServiceResponse < TencentCloud::Common::AbstractModel
+        # @param ServiceId: <p>推理服务ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceId: String
+        # @param Name: <p>服务名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param ModelUid: <p>关联的模型UID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelUid: String
+        # @param ModelName: <p>关联的模型名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelName: String
+        # @param ModelVersion: <p>关联的模型版本号</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelVersion: String
+        # @param ModelIdentifier: <p>模型标识符（OpenAI 兼容 API 中的 model 字段）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelIdentifier: String
+        # @param ModelType: <p>关联模型的类型（LLM / VLM / Embedding / Reranker / TTS / ASR / CV / NLP / ML）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelType: String
+        # @param Status: <p>服务状态（Running/Stopped/Deploying/Failed）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param EndpointUrl: <p>服务端点URL</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndpointUrl: String
+        # @param UnifiedEndpointUrl: <p>OpenAI 兼容统一入口 URL（通过 API-Key 路由，适用于 LLM/Embedding/Reranker）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnifiedEndpointUrl: String
+        # @param UnifiedV2EndpointUrl: <p>KServe V2 协议统一入口 URL（通过 API-Key + model name 路由，适用于 XGBoost 等传统 ML 模型）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnifiedV2EndpointUrl: String
+        # @param AppId: <p>应用ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppId: Integer
+        # @param Uin: <p>主账号UIN</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uin: String
+        # @param CreateTime: <p>创建时间（Unix 时间戳，毫秒）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: Integer
+        # @param UpdateTime: <p>更新时间（Unix 时间戳，毫秒）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: Integer
+        # @param DeploymentCount: <p>部署数量</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeploymentCount: Integer
+        # @param HasRunningDeployment: <p>是否存在至少一个运行中的部署</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HasRunningDeployment: Boolean
+        # @param ApiKeyAuthEnabled: <p>是否启用 API-Key 鉴权</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApiKeyAuthEnabled: Boolean
+        # @param ApiKeyAuthForceEnabled: <p>是否强制开启 API-Key 鉴权（生产环境为 true，不允许关闭）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApiKeyAuthForceEnabled: Boolean
+        # @param SkipTlsVerify: <p>是否跳过 TLS 证书验证（自签证书场景，前端 curl 命令需加 -k 参数）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SkipTlsVerify: Boolean
+        # @param SubAccountUin: <p>子账号UIN（实际操作者）</p>
+        # @type SubAccountUin: String
+        # @param CpuResourceSummary: <p>运行中部署的 CPU 资源汇总</p>
+        # @type CpuResourceSummary: :class:`Tencentcloud::Dlc.v20210125.models.CpuSummaryItem`
+        # @param ResourceConfig: <p>资源配置（JSON 字符串，取自第一个部署）</p>
+        # @type ResourceConfig: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ServiceId, :Name, :ModelUid, :ModelName, :ModelVersion, :ModelIdentifier, :ModelType, :Status, :EndpointUrl, :UnifiedEndpointUrl, :UnifiedV2EndpointUrl, :AppId, :Uin, :CreateTime, :UpdateTime, :DeploymentCount, :HasRunningDeployment, :ApiKeyAuthEnabled, :ApiKeyAuthForceEnabled, :SkipTlsVerify, :SubAccountUin, :CpuResourceSummary, :ResourceConfig, :RequestId
+
+        def initialize(serviceid=nil, name=nil, modeluid=nil, modelname=nil, modelversion=nil, modelidentifier=nil, modeltype=nil, status=nil, endpointurl=nil, unifiedendpointurl=nil, unifiedv2endpointurl=nil, appid=nil, uin=nil, createtime=nil, updatetime=nil, deploymentcount=nil, hasrunningdeployment=nil, apikeyauthenabled=nil, apikeyauthforceenabled=nil, skiptlsverify=nil, subaccountuin=nil, cpuresourcesummary=nil, resourceconfig=nil, requestid=nil)
+          @ServiceId = serviceid
+          @Name = name
+          @ModelUid = modeluid
+          @ModelName = modelname
+          @ModelVersion = modelversion
+          @ModelIdentifier = modelidentifier
+          @ModelType = modeltype
+          @Status = status
+          @EndpointUrl = endpointurl
+          @UnifiedEndpointUrl = unifiedendpointurl
+          @UnifiedV2EndpointUrl = unifiedv2endpointurl
+          @AppId = appid
+          @Uin = uin
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @DeploymentCount = deploymentcount
+          @HasRunningDeployment = hasrunningdeployment
+          @ApiKeyAuthEnabled = apikeyauthenabled
+          @ApiKeyAuthForceEnabled = apikeyauthforceenabled
+          @SkipTlsVerify = skiptlsverify
+          @SubAccountUin = subaccountuin
+          @CpuResourceSummary = cpuresourcesummary
+          @ResourceConfig = resourceconfig
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+          @Name = params['Name']
+          @ModelUid = params['ModelUid']
+          @ModelName = params['ModelName']
+          @ModelVersion = params['ModelVersion']
+          @ModelIdentifier = params['ModelIdentifier']
+          @ModelType = params['ModelType']
+          @Status = params['Status']
+          @EndpointUrl = params['EndpointUrl']
+          @UnifiedEndpointUrl = params['UnifiedEndpointUrl']
+          @UnifiedV2EndpointUrl = params['UnifiedV2EndpointUrl']
+          @AppId = params['AppId']
+          @Uin = params['Uin']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @DeploymentCount = params['DeploymentCount']
+          @HasRunningDeployment = params['HasRunningDeployment']
+          @ApiKeyAuthEnabled = params['ApiKeyAuthEnabled']
+          @ApiKeyAuthForceEnabled = params['ApiKeyAuthForceEnabled']
+          @SkipTlsVerify = params['SkipTlsVerify']
+          @SubAccountUin = params['SubAccountUin']
+          unless params['CpuResourceSummary'].nil?
+            @CpuResourceSummary = CpuSummaryItem.new
+            @CpuResourceSummary.deserialize(params['CpuResourceSummary'])
+          end
+          @ResourceConfig = params['ResourceConfig']
+          @RequestId = params['RequestId']
         end
       end
 

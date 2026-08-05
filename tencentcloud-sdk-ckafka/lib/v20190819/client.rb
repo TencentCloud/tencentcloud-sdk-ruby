@@ -533,6 +533,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 实例限流规则相关接口
+
+        # @param request: Request instance for CreateThrottleRule.
+        # @type request: :class:`Tencentcloud::ckafka::V20190819::CreateThrottleRuleRequest`
+        # @rtype: :class:`Tencentcloud::ckafka::V20190819::CreateThrottleRuleResponse`
+        def CreateThrottleRule(request)
+          body = send_request('CreateThrottleRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateThrottleRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建最高权限的token
 
         # @param request: Request instance for CreateToken.
@@ -879,6 +903,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteRouteTriggerTimeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除实例限流规则
+
+        # @param request: Request instance for DeleteThrottleRule.
+        # @type request: :class:`Tencentcloud::ckafka::V20190819::DeleteThrottleRuleRequest`
+        # @rtype: :class:`Tencentcloud::ckafka::V20190819::DeleteThrottleRuleResponse`
+        def DeleteThrottleRule(request)
+          body = send_request('DeleteThrottleRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteThrottleRuleResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1565,6 +1613,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取实例限流规则列表
+
+        # @param request: Request instance for DescribeThrottleRules.
+        # @type request: :class:`Tencentcloud::ckafka::V20190819::DescribeThrottleRulesRequest`
+        # @rtype: :class:`Tencentcloud::ckafka::V20190819::DescribeThrottleRulesResponse`
+        def DescribeThrottleRules(request)
+          body = send_request('DescribeThrottleRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeThrottleRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 接口请求域名：https://ckafka.tencentcloudapi.com
         # 本接口（DescribeTopic）用于在用户获取消息队列 CKafka 实例的主题列表
 
@@ -2200,6 +2272,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyRoutineMaintenanceTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改限流规则接口
+
+        # @param request: Request instance for ModifyThrottleRule.
+        # @type request: :class:`Tencentcloud::ckafka::V20190819::ModifyThrottleRuleRequest`
+        # @rtype: :class:`Tencentcloud::ckafka::V20190819::ModifyThrottleRuleResponse`
+        def ModifyThrottleRule(request)
+          body = send_request('ModifyThrottleRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyThrottleRuleResponse.new
             model.deserialize(response['Response'])
             model
           else

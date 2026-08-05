@@ -7442,6 +7442,54 @@ module TencentCloud
         end
       end
 
+      # DeleteLog请求参数结构体
+      class DeleteLogRequest < TencentCloud::Common::AbstractModel
+        # @param TopicId: <p>日志主题id</p>
+        # @type TopicId: String
+        # @param From: <p>检索时间范围-开始时间</p><p>单位：ms</p>
+        # @type From: Integer
+        # @param To: <p>检索时间范围-结束时间</p><p>单位：ms</p>
+        # @type To: Integer
+        # @param QueryString: <p>日志检索条件，仅支持 CQL 语法，不支持 Lucene 语法</p><p>对符合检索条件的日志进行删除</p>
+        # @type QueryString: String
+
+        attr_accessor :TopicId, :From, :To, :QueryString
+
+        def initialize(topicid=nil, from=nil, to=nil, querystring=nil)
+          @TopicId = topicid
+          @From = from
+          @To = to
+          @QueryString = querystring
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          @From = params['From']
+          @To = params['To']
+          @QueryString = params['QueryString']
+        end
+      end
+
+      # DeleteLog返回参数结构体
+      class DeleteLogResponse < TencentCloud::Common::AbstractModel
+        # @param AffectedRows: <p>影响日志条数</p>
+        # @type AffectedRows: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AffectedRows, :RequestId
+
+        def initialize(affectedrows=nil, requestid=nil)
+          @AffectedRows = affectedrows
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AffectedRows = params['AffectedRows']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteLogset请求参数结构体
       class DeleteLogsetRequest < TencentCloud::Common::AbstractModel
         # @param LogsetId: 日志集Id。通过 [获取日志集列表](https://cloud.tencent.com/document/product/614/58624)获取日志集Id。
@@ -17065,6 +17113,62 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyLog请求参数结构体
+      class ModifyLogRequest < TencentCloud::Common::AbstractModel
+        # @param TopicId: <p>日志主题id</p>
+        # @type TopicId: String
+        # @param From: <p>检索时间范围-开始时间</p><p>单位：ms</p>
+        # @type From: Integer
+        # @param To: <p>检索时间范围-结束时间</p><p>单位：ms</p>
+        # @type To: Integer
+        # @param QueryString: <p>日志检索条件，仅支持 CQL 语法，不支持 Lucene 语法</p><p>对符合检索条件的日志进行修改</p>
+        # @type QueryString: String
+        # @param ModifyMode: <p>修改模式</p><p>枚举值：</p><ul><li>PARTIAL： 只修改指定的日志字段</li><li>REPLACE： 整体替换原有日志（不包含预置字段及元数据字段）</li></ul>
+        # @type ModifyMode: String
+        # @param ModifyContent: <p>修改内容</p><p>不支持修改预置字段(__FILENAME__、__SOURCE__等，但不包括__CONTENT__)及元数据字段(__TAG__开头的字段)</p>
+        # @type ModifyContent: String
+
+        attr_accessor :TopicId, :From, :To, :QueryString, :ModifyMode, :ModifyContent
+
+        def initialize(topicid=nil, from=nil, to=nil, querystring=nil, modifymode=nil, modifycontent=nil)
+          @TopicId = topicid
+          @From = from
+          @To = to
+          @QueryString = querystring
+          @ModifyMode = modifymode
+          @ModifyContent = modifycontent
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          @From = params['From']
+          @To = params['To']
+          @QueryString = params['QueryString']
+          @ModifyMode = params['ModifyMode']
+          @ModifyContent = params['ModifyContent']
+        end
+      end
+
+      # ModifyLog返回参数结构体
+      class ModifyLogResponse < TencentCloud::Common::AbstractModel
+        # @param AffectedRows: <p>影响日志条数</p>
+        # @type AffectedRows: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AffectedRows, :RequestId
+
+        def initialize(affectedrows=nil, requestid=nil)
+          @AffectedRows = affectedrows
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AffectedRows = params['AffectedRows']
           @RequestId = params['RequestId']
         end
       end

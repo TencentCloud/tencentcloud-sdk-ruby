@@ -2030,7 +2030,7 @@ module TencentCloud
         # @type ModelImage: :class:`Tencentcloud::Tokenhub.v20260322.models.ModelImage`
         # @param Provider: <p>模型供应商。</p>
         # @type Provider: String
-        # @param Status: <p>模型状态。取值：online（上线）、offline（下线）。</p><p>枚举值：</p><ul><li>online ： 上线</li><li>pre-offline： 预下线</li></ul>
+        # @param Status: <p>模型状态。取值：online（上线）、offline（下线）。</p><p>枚举值：</p><ul><li>online ： 上线</li><li>pre-offline： 预下线</li><li>discontinued： 停止新购</li><li>maintenance： 维护中</li></ul>
         # @type Status: String
         # @param Tags: <p>标签列表。</p>
         # @type Tags: Array
@@ -2048,10 +2048,12 @@ module TencentCloud
         # @type FreeTrialInfo: :class:`Tencentcloud::Tokenhub.v20260322.models.ModelFreeTrialInfo`
         # @param OfflineAt: <p>模型下线时间，Status=pre-offline 时，会配置模型下线时间</p>
         # @type OfflineAt: String
+        # @param DiscontinuedAt: <p>停止新购时间</p>
+        # @type DiscontinuedAt: String
 
-        attr_accessor :ModelName, :ModelId, :DisplayName, :Description, :Summary, :ModelType, :Brand, :ModelImage, :Provider, :Status, :Tags, :ModelChargingInfo, :ModelSpec, :ReleaseAt, :RecommendWeight, :ModelAccessInfo, :FreeTrialInfo, :OfflineAt
+        attr_accessor :ModelName, :ModelId, :DisplayName, :Description, :Summary, :ModelType, :Brand, :ModelImage, :Provider, :Status, :Tags, :ModelChargingInfo, :ModelSpec, :ReleaseAt, :RecommendWeight, :ModelAccessInfo, :FreeTrialInfo, :OfflineAt, :DiscontinuedAt
 
-        def initialize(modelname=nil, modelid=nil, displayname=nil, description=nil, summary=nil, modeltype=nil, brand=nil, modelimage=nil, provider=nil, status=nil, tags=nil, modelcharginginfo=nil, modelspec=nil, releaseat=nil, recommendweight=nil, modelaccessinfo=nil, freetrialinfo=nil, offlineat=nil)
+        def initialize(modelname=nil, modelid=nil, displayname=nil, description=nil, summary=nil, modeltype=nil, brand=nil, modelimage=nil, provider=nil, status=nil, tags=nil, modelcharginginfo=nil, modelspec=nil, releaseat=nil, recommendweight=nil, modelaccessinfo=nil, freetrialinfo=nil, offlineat=nil, discontinuedat=nil)
           @ModelName = modelname
           @ModelId = modelid
           @DisplayName = displayname
@@ -2070,6 +2072,7 @@ module TencentCloud
           @ModelAccessInfo = modelaccessinfo
           @FreeTrialInfo = freetrialinfo
           @OfflineAt = offlineat
+          @DiscontinuedAt = discontinuedat
         end
 
         def deserialize(params)
@@ -2110,6 +2113,7 @@ module TencentCloud
             @FreeTrialInfo.deserialize(params['FreeTrialInfo'])
           end
           @OfflineAt = params['OfflineAt']
+          @DiscontinuedAt = params['DiscontinuedAt']
         end
       end
 

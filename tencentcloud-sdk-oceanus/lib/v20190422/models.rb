@@ -4502,10 +4502,16 @@ module TencentCloud
         # @param NewStateCOSBucketType: <p>新的桶类型</p><p>枚举值：</p><ul><li>0： 普通桶</li><li>1： 加速桶</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NewStateCOSBucketType: Integer
+        # @param HealthScore: <p>健康分数</p>
+        # @type HealthScore: Integer
+        # @param LastDiagnoseTime: <p>最新诊断时间</p><p>参数格式：RFC3339</p>
+        # @type LastDiagnoseTime: String
+        # @param ManagerUin: <p>负责人Uin</p>
+        # @type ManagerUin: String
 
-        attr_accessor :JobId, :Region, :Zone, :AppId, :OwnerUin, :CreatorUin, :Name, :JobType, :Status, :CreateTime, :StartTime, :StopTime, :UpdateTime, :TotalRunMillis, :Remark, :LastOpResult, :ClusterName, :LatestJobConfigVersion, :LatestValidJobConfigVersion, :PublishedJobConfigVersion, :RunningCuNum, :CuMem, :StatusDesc, :CurrentRunMillis, :ClusterId, :WebUIUrl, :SchedulerType, :ClusterStatus, :RunningCu, :FlinkVersion, :WorkSpaceId, :WorkSpaceName, :Tags, :EventInfo, :Description, :ScalingType, :RunningCpu, :RunningMem, :OpenJobDefaultAlarm, :ProgressDesc, :ContinueAlarm, :RestartCount, :ExpectJobDefaultAlarmStatus, :JdkVersion, :StateCOSBucket, :NewStateCOSBucket, :StateCOSBucketType, :NewStateCOSBucketType
+        attr_accessor :JobId, :Region, :Zone, :AppId, :OwnerUin, :CreatorUin, :Name, :JobType, :Status, :CreateTime, :StartTime, :StopTime, :UpdateTime, :TotalRunMillis, :Remark, :LastOpResult, :ClusterName, :LatestJobConfigVersion, :LatestValidJobConfigVersion, :PublishedJobConfigVersion, :RunningCuNum, :CuMem, :StatusDesc, :CurrentRunMillis, :ClusterId, :WebUIUrl, :SchedulerType, :ClusterStatus, :RunningCu, :FlinkVersion, :WorkSpaceId, :WorkSpaceName, :Tags, :EventInfo, :Description, :ScalingType, :RunningCpu, :RunningMem, :OpenJobDefaultAlarm, :ProgressDesc, :ContinueAlarm, :RestartCount, :ExpectJobDefaultAlarmStatus, :JdkVersion, :StateCOSBucket, :NewStateCOSBucket, :StateCOSBucketType, :NewStateCOSBucketType, :HealthScore, :LastDiagnoseTime, :ManagerUin
 
-        def initialize(jobid=nil, region=nil, zone=nil, appid=nil, owneruin=nil, creatoruin=nil, name=nil, jobtype=nil, status=nil, createtime=nil, starttime=nil, stoptime=nil, updatetime=nil, totalrunmillis=nil, remark=nil, lastopresult=nil, clustername=nil, latestjobconfigversion=nil, latestvalidjobconfigversion=nil, publishedjobconfigversion=nil, runningcunum=nil, cumem=nil, statusdesc=nil, currentrunmillis=nil, clusterid=nil, webuiurl=nil, schedulertype=nil, clusterstatus=nil, runningcu=nil, flinkversion=nil, workspaceid=nil, workspacename=nil, tags=nil, eventinfo=nil, description=nil, scalingtype=nil, runningcpu=nil, runningmem=nil, openjobdefaultalarm=nil, progressdesc=nil, continuealarm=nil, restartcount=nil, expectjobdefaultalarmstatus=nil, jdkversion=nil, statecosbucket=nil, newstatecosbucket=nil, statecosbuckettype=nil, newstatecosbuckettype=nil)
+        def initialize(jobid=nil, region=nil, zone=nil, appid=nil, owneruin=nil, creatoruin=nil, name=nil, jobtype=nil, status=nil, createtime=nil, starttime=nil, stoptime=nil, updatetime=nil, totalrunmillis=nil, remark=nil, lastopresult=nil, clustername=nil, latestjobconfigversion=nil, latestvalidjobconfigversion=nil, publishedjobconfigversion=nil, runningcunum=nil, cumem=nil, statusdesc=nil, currentrunmillis=nil, clusterid=nil, webuiurl=nil, schedulertype=nil, clusterstatus=nil, runningcu=nil, flinkversion=nil, workspaceid=nil, workspacename=nil, tags=nil, eventinfo=nil, description=nil, scalingtype=nil, runningcpu=nil, runningmem=nil, openjobdefaultalarm=nil, progressdesc=nil, continuealarm=nil, restartcount=nil, expectjobdefaultalarmstatus=nil, jdkversion=nil, statecosbucket=nil, newstatecosbucket=nil, statecosbuckettype=nil, newstatecosbuckettype=nil, healthscore=nil, lastdiagnosetime=nil, manageruin=nil)
           @JobId = jobid
           @Region = region
           @Zone = zone
@@ -4554,6 +4560,9 @@ module TencentCloud
           @NewStateCOSBucket = newstatecosbucket
           @StateCOSBucketType = statecosbuckettype
           @NewStateCOSBucketType = newstatecosbuckettype
+          @HealthScore = healthscore
+          @LastDiagnoseTime = lastdiagnosetime
+          @ManagerUin = manageruin
         end
 
         def deserialize(params)
@@ -4615,6 +4624,9 @@ module TencentCloud
           @NewStateCOSBucket = params['NewStateCOSBucket']
           @StateCOSBucketType = params['StateCOSBucketType']
           @NewStateCOSBucketType = params['NewStateCOSBucketType']
+          @HealthScore = params['HealthScore']
+          @LastDiagnoseTime = params['LastDiagnoseTime']
+          @ManagerUin = params['ManagerUin']
         end
       end
 

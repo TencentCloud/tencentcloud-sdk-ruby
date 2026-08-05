@@ -1772,8 +1772,8 @@ module TencentCloud
 
         attr_accessor :TaskName, :TaskType, :SourceResource, :TargetResource, :TransformParam, :PrivateLinkParam, :SchemaId, :TransformsParam, :TaskId, :Tags, :Description
         extend Gem::Deprecate
-        deprecate :PrivateLinkParam, :none, 2026, 7
-        deprecate :PrivateLinkParam=, :none, 2026, 7
+        deprecate :PrivateLinkParam, :none, 2026, 8
+        deprecate :PrivateLinkParam=, :none, 2026, 8
 
         def initialize(taskname=nil, tasktype=nil, sourceresource=nil, targetresource=nil, transformparam=nil, privatelinkparam=nil, schemaid=nil, transformsparam=nil, taskid=nil, tags=nil, description=nil)
           @TaskName = taskname
@@ -2165,8 +2165,8 @@ module TencentCloud
 
         attr_accessor :ReturnCode, :ReturnMessage, :Data, :DeleteRouteTimestamp
         extend Gem::Deprecate
-        deprecate :DeleteRouteTimestamp, :none, 2026, 7
-        deprecate :DeleteRouteTimestamp=, :none, 2026, 7
+        deprecate :DeleteRouteTimestamp, :none, 2026, 8
+        deprecate :DeleteRouteTimestamp=, :none, 2026, 8
 
         def initialize(returncode=nil, returnmessage=nil, data=nil, deleteroutetimestamp=nil)
           @ReturnCode = returncode
@@ -2729,6 +2729,73 @@ module TencentCloud
       # CreateRoute返回参数结构体
       class CreateRouteResponse < TencentCloud::Common::AbstractModel
         # @param Result: <p>返回结果</p>
+        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.JgwOperateResponse`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = JgwOperateResponse.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateThrottleRule请求参数结构体
+      class CreateThrottleRuleRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例Id</p>
+        # @type InstanceId: String
+        # @param ThrottleType: <p>限流类型:</p><p>枚举值：</p><ul><li>1： 用户/客户端限流</li><li>2： 消费组维度限流</li><li>3： Topic限流</li></ul>
+        # @type ThrottleType: Integer
+        # @param GroupNameList: <p>消费组名</p>
+        # @type GroupNameList: Array
+        # @param ConsumeThrottle: <p>消费限流值,生产消费限流值,必填一个单位MB/s</p>
+        # @type ConsumeThrottle: Integer
+        # @param ProduceThrottle: <p>生产限流值,生产消费限流值,单位MB/s</p>
+        # @type ProduceThrottle: Integer
+        # @param ClientIdList: <p>用户客户端id</p>
+        # @type ClientIdList: Array
+        # @param UserNameList: <p>用户名</p>
+        # @type UserNameList: Array
+        # @param TopicNameList: <p>topic名称</p>
+        # @type TopicNameList: Array
+
+        attr_accessor :InstanceId, :ThrottleType, :GroupNameList, :ConsumeThrottle, :ProduceThrottle, :ClientIdList, :UserNameList, :TopicNameList
+
+        def initialize(instanceid=nil, throttletype=nil, groupnamelist=nil, consumethrottle=nil, producethrottle=nil, clientidlist=nil, usernamelist=nil, topicnamelist=nil)
+          @InstanceId = instanceid
+          @ThrottleType = throttletype
+          @GroupNameList = groupnamelist
+          @ConsumeThrottle = consumethrottle
+          @ProduceThrottle = producethrottle
+          @ClientIdList = clientidlist
+          @UserNameList = usernamelist
+          @TopicNameList = topicnamelist
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ThrottleType = params['ThrottleType']
+          @GroupNameList = params['GroupNameList']
+          @ConsumeThrottle = params['ConsumeThrottle']
+          @ProduceThrottle = params['ProduceThrottle']
+          @ClientIdList = params['ClientIdList']
+          @UserNameList = params['UserNameList']
+          @TopicNameList = params['TopicNameList']
+        end
+      end
+
+      # CreateThrottleRule返回参数结构体
+      class CreateThrottleRuleResponse < TencentCloud::Common::AbstractModel
+        # @param Result: <p>返回信息</p>
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.JgwOperateResponse`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3986,6 +4053,49 @@ module TencentCloud
         end
       end
 
+      # DeleteThrottleRule请求参数结构体
+      class DeleteThrottleRuleRequest < TencentCloud::Common::AbstractModel
+        # @param ThrottleRuleId: 限流规则Id
+        # @type ThrottleRuleId: String
+        # @param InstanceId: 实例标识
+        # @type InstanceId: String
+
+        attr_accessor :ThrottleRuleId, :InstanceId
+
+        def initialize(throttleruleid=nil, instanceid=nil)
+          @ThrottleRuleId = throttleruleid
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @ThrottleRuleId = params['ThrottleRuleId']
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DeleteThrottleRule返回参数结构体
+      class DeleteThrottleRuleResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回信息
+        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.JgwOperateResponse`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = JgwOperateResponse.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteTopic请求参数结构体
       class DeleteTopicRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: ckafka 实例Id
@@ -4109,8 +4219,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :ResourceType, :ResourceName, :Offset, :Limit, :SearchWord
         extend Gem::Deprecate
-        deprecate :SearchWord, :none, 2026, 7
-        deprecate :SearchWord=, :none, 2026, 7
+        deprecate :SearchWord, :none, 2026, 8
+        deprecate :SearchWord=, :none, 2026, 8
 
         def initialize(instanceid=nil, resourcetype=nil, resourcename=nil, offset=nil, limit=nil, searchword=nil)
           @InstanceId = instanceid
@@ -5619,8 +5729,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :SearchWord, :Status, :Offset, :Limit, :TagKey, :Filters, :InstanceIds, :InstanceIdList, :TagList
         extend Gem::Deprecate
-        deprecate :InstanceIds, :none, 2026, 7
-        deprecate :InstanceIds=, :none, 2026, 7
+        deprecate :InstanceIds, :none, 2026, 8
+        deprecate :InstanceIds=, :none, 2026, 8
 
         def initialize(instanceid=nil, searchword=nil, status=nil, offset=nil, limit=nil, tagkey=nil, filters=nil, instanceids=nil, instanceidlist=nil, taglist=nil)
           @InstanceId = instanceid
@@ -5705,8 +5815,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :SearchWord, :Status, :Offset, :Limit, :TagKey, :VpcId
         extend Gem::Deprecate
-        deprecate :TagKey, :none, 2026, 7
-        deprecate :TagKey=, :none, 2026, 7
+        deprecate :TagKey, :none, 2026, 8
+        deprecate :TagKey=, :none, 2026, 8
 
         def initialize(instanceid=nil, searchword=nil, status=nil, offset=nil, limit=nil, tagkey=nil, vpcid=nil)
           @InstanceId = instanceid
@@ -6066,6 +6176,61 @@ module TencentCloud
         def deserialize(params)
           unless params['Result'].nil?
             @Result = TaskStatusResponse.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeThrottleRules请求参数结构体
+      class DescribeThrottleRulesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例Id</p>
+        # @type InstanceId: String
+        # @param SearchWord: <p>关键字</p>
+        # @type SearchWord: String
+        # @param Limit: <p>返回数量，不填则默认为20，最大值200</p>
+        # @type Limit: Integer
+        # @param Offset: <p>偏移数，默认为0</p>
+        # @type Offset: Integer
+        # @param ThrottleDimension: <p>限流维度</p><p>枚举值：</p><ul><li>1： 实例维度限流</li><li>2： topic维度限流</li></ul><p>默认值：1</p>
+        # @type ThrottleDimension: Integer
+
+        attr_accessor :InstanceId, :SearchWord, :Limit, :Offset, :ThrottleDimension
+
+        def initialize(instanceid=nil, searchword=nil, limit=nil, offset=nil, throttledimension=nil)
+          @InstanceId = instanceid
+          @SearchWord = searchword
+          @Limit = limit
+          @Offset = offset
+          @ThrottleDimension = throttledimension
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @SearchWord = params['SearchWord']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @ThrottleDimension = params['ThrottleDimension']
+        end
+      end
+
+      # DescribeThrottleRules返回参数结构体
+      class DescribeThrottleRulesResponse < TencentCloud::Common::AbstractModel
+        # @param Result: <p>返回信息</p>
+        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.ThrottleRuleResult`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = ThrottleRuleResult.new
             @Result.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
@@ -9834,8 +9999,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :MsgRetentionTime, :InstanceName, :Config, :DynamicRetentionConfig, :RebalanceTime, :PublicNetwork, :DynamicDiskConfig, :MaxMessageByte, :UncleanLeaderElectionEnable, :DeleteProtectionEnable, :RetentionBytes, :AdminSecurity, :TransactionalIdExpirationMs
         extend Gem::Deprecate
-        deprecate :DynamicDiskConfig, :none, 2026, 7
-        deprecate :DynamicDiskConfig=, :none, 2026, 7
+        deprecate :DynamicDiskConfig, :none, 2026, 8
+        deprecate :DynamicDiskConfig=, :none, 2026, 8
 
         def initialize(instanceid=nil, msgretentiontime=nil, instancename=nil, config=nil, dynamicretentionconfig=nil, rebalancetime=nil, publicnetwork=nil, dynamicdiskconfig=nil, maxmessagebyte=nil, uncleanleaderelectionenable=nil, deleteprotectionenable=nil, retentionbytes=nil, adminsecurity=nil, transactionalidexpirationms=nil)
           @InstanceId = instanceid
@@ -10065,6 +10230,53 @@ module TencentCloud
       # ModifyRoutineMaintenanceTask返回参数结构体
       class ModifyRoutineMaintenanceTaskResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回结果
+        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.JgwOperateResponse`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = JgwOperateResponse.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyThrottleRule请求参数结构体
+      class ModifyThrottleRuleRequest < TencentCloud::Common::AbstractModel
+        # @param ThrottleRuleId: 规则标识
+        # @type ThrottleRuleId: Integer
+        # @param InstanceId: 实例Id
+        # @type InstanceId: String
+        # @param ConsumeThrottle: 消费限流值单位MB/s
+        # @type ConsumeThrottle: Integer
+
+        attr_accessor :ThrottleRuleId, :InstanceId, :ConsumeThrottle
+
+        def initialize(throttleruleid=nil, instanceid=nil, consumethrottle=nil)
+          @ThrottleRuleId = throttleruleid
+          @InstanceId = instanceid
+          @ConsumeThrottle = consumethrottle
+        end
+
+        def deserialize(params)
+          @ThrottleRuleId = params['ThrottleRuleId']
+          @InstanceId = params['InstanceId']
+          @ConsumeThrottle = params['ConsumeThrottle']
+        end
+      end
+
+      # ModifyThrottleRule返回参数结构体
+      class ModifyThrottleRuleResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回信息
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.JgwOperateResponse`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -12072,6 +12284,77 @@ module TencentCloud
         end
       end
 
+      # 限流规则详情
+      class ThrottleRuleDetail < TencentCloud::Common::AbstractModel
+        # @param ThrottleRuleId: <p>限流规则标识</p>
+        # @type ThrottleRuleId: Integer
+        # @param ThrottleType: <p>限流类型</p><p>枚举值：</p><ul><li>1： 用户/客户端限流</li><li>2： 消费组限流</li><li>3： topic限流</li></ul>
+        # @type ThrottleType: Integer
+        # @param ClientId: <p>客户端id</p>
+        # @type ClientId: String
+        # @param UserName: <p>用户名</p>
+        # @type UserName: String
+        # @param ConsumeThrottle: <p>消费限流值,单位MB/s</p>
+        # @type ConsumeThrottle: Integer
+        # @param UpdateTime: <p>更新时间</p>
+        # @type UpdateTime: String
+        # @param TopicName: <p>topic名称</p>
+        # @type TopicName: String
+        # @param TopicId: <p>topicId</p>
+        # @type TopicId: String
+
+        attr_accessor :ThrottleRuleId, :ThrottleType, :ClientId, :UserName, :ConsumeThrottle, :UpdateTime, :TopicName, :TopicId
+
+        def initialize(throttleruleid=nil, throttletype=nil, clientid=nil, username=nil, consumethrottle=nil, updatetime=nil, topicname=nil, topicid=nil)
+          @ThrottleRuleId = throttleruleid
+          @ThrottleType = throttletype
+          @ClientId = clientid
+          @UserName = username
+          @ConsumeThrottle = consumethrottle
+          @UpdateTime = updatetime
+          @TopicName = topicname
+          @TopicId = topicid
+        end
+
+        def deserialize(params)
+          @ThrottleRuleId = params['ThrottleRuleId']
+          @ThrottleType = params['ThrottleType']
+          @ClientId = params['ClientId']
+          @UserName = params['UserName']
+          @ConsumeThrottle = params['ConsumeThrottle']
+          @UpdateTime = params['UpdateTime']
+          @TopicName = params['TopicName']
+          @TopicId = params['TopicId']
+        end
+      end
+
+      # 限流规则列表返回
+      class ThrottleRuleResult < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数量
+        # @type TotalCount: Integer
+        # @param ThrottleRuleList: 规则列表
+        # @type ThrottleRuleList: Array
+
+        attr_accessor :TotalCount, :ThrottleRuleList
+
+        def initialize(totalcount=nil, throttlerulelist=nil)
+          @TotalCount = totalcount
+          @ThrottleRuleList = throttlerulelist
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['ThrottleRuleList'].nil?
+            @ThrottleRuleList = []
+            params['ThrottleRuleList'].each do |i|
+              throttleruledetail_tmp = ThrottleRuleDetail.new
+              throttleruledetail_tmp.deserialize(i)
+              @ThrottleRuleList << throttleruledetail_tmp
+            end
+          end
+        end
+      end
+
       # 返回的topic对象
       class Topic < TencentCloud::Common::AbstractModel
         # @param TopicId: 主题的ID
@@ -13079,8 +13362,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :IsInternalApp, :AppId, :Flag, :ZoneName, :ZoneStatus, :Exflag, :SoldOut, :SalesInfo, :ExtraFlag
         extend Gem::Deprecate
-        deprecate :Exflag, :none, 2026, 7
-        deprecate :Exflag=, :none, 2026, 7
+        deprecate :Exflag, :none, 2026, 8
+        deprecate :Exflag=, :none, 2026, 8
 
         def initialize(zoneid=nil, isinternalapp=nil, appid=nil, flag=nil, zonename=nil, zonestatus=nil, exflag=nil, soldout=nil, salesinfo=nil, extraflag=nil)
           @ZoneId = zoneid

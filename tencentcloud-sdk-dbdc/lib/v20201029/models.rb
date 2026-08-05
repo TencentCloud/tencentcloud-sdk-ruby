@@ -489,10 +489,13 @@ module TencentCloud
         # @param EniIP: <p>当选择网络模式为三层网络联通模式时，此处的IP地址则为用户可访问的地址。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EniIP: String
+        # @param SecurityGroupIds: <p>节点绑定的安全组</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecurityGroupIds: Array
 
-        attr_accessor :NodeId, :NodeName, :LanIP, :SSHEndpoint, :Status, :Zone, :NodeType, :NetworkMode, :EniIP
+        attr_accessor :NodeId, :NodeName, :LanIP, :SSHEndpoint, :Status, :Zone, :NodeType, :NetworkMode, :EniIP, :SecurityGroupIds
 
-        def initialize(nodeid=nil, nodename=nil, lanip=nil, sshendpoint=nil, status=nil, zone=nil, nodetype=nil, networkmode=nil, eniip=nil)
+        def initialize(nodeid=nil, nodename=nil, lanip=nil, sshendpoint=nil, status=nil, zone=nil, nodetype=nil, networkmode=nil, eniip=nil, securitygroupids=nil)
           @NodeId = nodeid
           @NodeName = nodename
           @LanIP = lanip
@@ -502,6 +505,7 @@ module TencentCloud
           @NodeType = nodetype
           @NetworkMode = networkmode
           @EniIP = eniip
+          @SecurityGroupIds = securitygroupids
         end
 
         def deserialize(params)
@@ -514,6 +518,7 @@ module TencentCloud
           @NodeType = params['NodeType']
           @NetworkMode = params['NetworkMode']
           @EniIP = params['EniIP']
+          @SecurityGroupIds = params['SecurityGroupIds']
         end
       end
 
@@ -704,10 +709,13 @@ module TencentCloud
         # @type NetworkMode: String
         # @param EniIP: <p>当选择NetworkModeCrossTenantENI模式时，节点的访问IP地址</p>
         # @type EniIP: String
+        # @param SecurityGroupIds: <p>节点绑定的安全组</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecurityGroupIds: Array
 
-        attr_accessor :NodeId, :NodeName, :SSHEndpoint, :LanIP, :ClusterId, :Zone, :NodeType, :CPU, :Memory, :SystemDisk, :DataDisks, :OsName, :ImageId, :VpcId, :SubnetId, :Status, :ChargeType, :ExpireTime, :CreatedTime, :IsolatedTime, :Tags, :AutoRenew, :SwitchId, :RackId, :HostIp, :NetworkMode, :EniIP
+        attr_accessor :NodeId, :NodeName, :SSHEndpoint, :LanIP, :ClusterId, :Zone, :NodeType, :CPU, :Memory, :SystemDisk, :DataDisks, :OsName, :ImageId, :VpcId, :SubnetId, :Status, :ChargeType, :ExpireTime, :CreatedTime, :IsolatedTime, :Tags, :AutoRenew, :SwitchId, :RackId, :HostIp, :NetworkMode, :EniIP, :SecurityGroupIds
 
-        def initialize(nodeid=nil, nodename=nil, sshendpoint=nil, lanip=nil, clusterid=nil, zone=nil, nodetype=nil, cpu=nil, memory=nil, systemdisk=nil, datadisks=nil, osname=nil, imageid=nil, vpcid=nil, subnetid=nil, status=nil, chargetype=nil, expiretime=nil, createdtime=nil, isolatedtime=nil, tags=nil, autorenew=nil, switchid=nil, rackid=nil, hostip=nil, networkmode=nil, eniip=nil)
+        def initialize(nodeid=nil, nodename=nil, sshendpoint=nil, lanip=nil, clusterid=nil, zone=nil, nodetype=nil, cpu=nil, memory=nil, systemdisk=nil, datadisks=nil, osname=nil, imageid=nil, vpcid=nil, subnetid=nil, status=nil, chargetype=nil, expiretime=nil, createdtime=nil, isolatedtime=nil, tags=nil, autorenew=nil, switchid=nil, rackid=nil, hostip=nil, networkmode=nil, eniip=nil, securitygroupids=nil)
           @NodeId = nodeid
           @NodeName = nodename
           @SSHEndpoint = sshendpoint
@@ -735,6 +743,7 @@ module TencentCloud
           @HostIp = hostip
           @NetworkMode = networkmode
           @EniIP = eniip
+          @SecurityGroupIds = securitygroupids
         end
 
         def deserialize(params)
@@ -782,6 +791,7 @@ module TencentCloud
           @HostIp = params['HostIp']
           @NetworkMode = params['NetworkMode']
           @EniIP = params['EniIP']
+          @SecurityGroupIds = params['SecurityGroupIds']
         end
       end
 

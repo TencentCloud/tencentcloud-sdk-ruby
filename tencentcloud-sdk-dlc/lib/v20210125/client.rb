@@ -941,6 +941,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建推理服务（含默认部署）
+
+        # @param request: Request instance for CreateInferenceService.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::CreateInferenceServiceRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::CreateInferenceServiceResponse`
+        def CreateInferenceService(request)
+          body = send_request('CreateInferenceService', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateInferenceServiceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建托管存储内表（该接口已废弃）
 
         # @param request: Request instance for CreateInternalTable.
@@ -1023,6 +1047,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateMetaDatabaseResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建模型新版本
+
+        # @param request: Request instance for CreateModelVersion.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::CreateModelVersionRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::CreateModelVersionResponse`
+        def CreateModelVersion(request)
+          body = send_request('CreateModelVersion', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateModelVersionResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -4495,6 +4543,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取单个推理服务详情
+
+        # @param request: Request instance for GetInferenceService.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::GetInferenceServiceRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::GetInferenceServiceResponse`
+        def GetInferenceService(request)
+          body = send_request('GetInferenceService', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetInferenceServiceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 根据配置ID获取作业配置详情
 
         # @param request: Request instance for GetJobSpec.
@@ -4673,6 +4745,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = GetLabYamlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取模型 config.json 配置（默认最新版本）
+
+        # @param request: Request instance for GetModelConfig.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::GetModelConfigRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::GetModelConfigResponse`
+        def GetModelConfig(request)
+          body = send_request('GetModelConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetModelConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取模型文件树（默认最新版本）
+
+        # @param request: Request instance for GetModelFiles.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::GetModelFilesRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::GetModelFilesResponse`
+        def GetModelFiles(request)
+          body = send_request('GetModelFiles', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetModelFilesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取模型 README 信息（默认最新版本）
+
+        # @param request: Request instance for GetModelReadme.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::GetModelReadmeRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::GetModelReadmeResponse`
+        def GetModelReadme(request)
+          body = send_request('GetModelReadme', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetModelReadmeResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -5239,6 +5383,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 列出推理引擎
+
+        # @param request: Request instance for ListInferenceEngines.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::ListInferenceEnginesRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::ListInferenceEnginesResponse`
+        def ListInferenceEngines(request)
+          body = send_request('ListInferenceEngines', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListInferenceEnginesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 列出推理模型（支持关键词过滤 + 分页）
 
         # @param request: Request instance for ListInferenceModels.
@@ -5249,6 +5417,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ListInferenceModelsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 列出推理服务（支持关键词和状态过滤 + 分页）
+
+        # @param request: Request instance for ListInferenceServices.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::ListInferenceServicesRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::ListInferenceServicesResponse`
+        def ListInferenceServices(request)
+          body = send_request('ListInferenceServices', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListInferenceServicesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -5321,6 +5513,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ListLabsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 列出模型所有版本
+
+        # @param request: Request instance for ListModelVersions.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::ListModelVersionsRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::ListModelVersionsResponse`
+        def ListModelVersions(request)
+          body = send_request('ListModelVersions', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListModelVersionsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -5839,6 +6055,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 返回指定时间范围内所有推理服务的聚合 KPI 值。
+
+        # @param request: Request instance for QueryDashboardOverview.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::QueryDashboardOverviewRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::QueryDashboardOverviewResponse`
+        def QueryDashboardOverview(request)
+          body = send_request('QueryDashboardOverview', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryDashboardOverviewResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询监控大盘服务列表
+
+        # @param request: Request instance for QueryDashboardServiceList.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::QueryDashboardServiceListRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::QueryDashboardServiceListResponse`
+        def QueryDashboardServiceList(request)
+          body = send_request('QueryDashboardServiceList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryDashboardServiceListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（QueryInternalTableWarehouse）用于获取原生表warehouse路径
 
         # @param request: Request instance for QueryInternalTableWarehouse.
@@ -5849,6 +6113,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = QueryInternalTableWarehouseResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询监控概览数据（瞬时值）
+
+        # @param request: Request instance for QueryMonitorOverview.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::QueryMonitorOverviewRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::QueryMonitorOverviewResponse`
+        def QueryMonitorOverview(request)
+          body = send_request('QueryMonitorOverview', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryMonitorOverviewResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -6007,6 +6295,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 重启推理服务（操作所有部署）。
+
+        # @param request: Request instance for RestartInferenceService.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::RestartInferenceServiceRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::RestartInferenceServiceResponse`
+        def RestartInferenceService(request)
+          body = send_request('RestartInferenceService', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RestartInferenceServiceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 撤销DLC Catalog访问权限
 
         # @param request: Request instance for RevokeDLCCatalogAccess.
@@ -6137,6 +6449,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = StartRayClusterResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 停止推理服务（操作所有部署）。
+
+        # @param request: Request instance for StopInferenceService.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::StopInferenceServiceRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::StopInferenceServiceResponse`
+        def StopInferenceService(request)
+          body = send_request('StopInferenceService', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StopInferenceServiceResponse.new
             model.deserialize(response['Response'])
             model
           else

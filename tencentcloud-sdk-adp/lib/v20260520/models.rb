@@ -7245,17 +7245,17 @@ module TencentCloud
 
       # 模型超参
       class ModelParameter < TencentCloud::Common::AbstractModel
-        # @param DefaultValue: 默认值
+        # @param DefaultValue: <p>默认值</p>
         # @type DefaultValue: String
-        # @param EnumValueList: 可选值列表
+        # @param EnumValueList: <p>可选值列表</p>
         # @type EnumValueList: Array
-        # @param MaxValue: 最大值（仅数值类型有效）
+        # @param MaxValue: <p>最大值（仅数值类型有效）</p>
         # @type MaxValue: Float
-        # @param MinValue: 最小值（仅数值类型有效）
+        # @param MinValue: <p>最小值（仅数值类型有效）</p>
         # @type MinValue: Float
-        # @param Name: 超参名称
+        # @param Name: <p>超参名称</p>
         # @type Name: String
-        # @param Type: 超参类型。1-浮点数, 2-整数, 3-字符串
+        # @param Type: <p>超参类型。1-浮点数, 2-整数, 3-字符串</p>
         # @type Type: Integer
 
         attr_accessor :DefaultValue, :EnumValueList, :MaxValue, :MinValue, :Name, :Type
