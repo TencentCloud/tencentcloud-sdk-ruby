@@ -2392,8 +2392,8 @@ module TencentCloud
 
         attr_accessor :StrategyId, :StrategyName, :CreateTime, :ModifyTime, :Description, :Config, :GatewayId, :CronConfig, :MaxReplicas
         extend Gem::Deprecate
-        deprecate :MaxReplicas, :none, 2026, 7
-        deprecate :MaxReplicas=, :none, 2026, 7
+        deprecate :MaxReplicas, :none, 2026, 8
+        deprecate :MaxReplicas=, :none, 2026, 8
 
         def initialize(strategyid=nil, strategyname=nil, createtime=nil, modifytime=nil, description=nil, config=nil, gatewayid=nil, cronconfig=nil, maxreplicas=nil)
           @StrategyId = strategyid
@@ -2454,16 +2454,16 @@ module TencentCloud
 
         attr_accessor :MaxReplicas, :Metrics, :Enabled, :CreateTime, :ModifyTime, :StrategyId, :AutoScalerId, :Behavior
         extend Gem::Deprecate
-        deprecate :Enabled, :none, 2026, 7
-        deprecate :Enabled=, :none, 2026, 7
-        deprecate :CreateTime, :none, 2026, 7
-        deprecate :CreateTime=, :none, 2026, 7
-        deprecate :ModifyTime, :none, 2026, 7
-        deprecate :ModifyTime=, :none, 2026, 7
-        deprecate :StrategyId, :none, 2026, 7
-        deprecate :StrategyId=, :none, 2026, 7
-        deprecate :AutoScalerId, :none, 2026, 7
-        deprecate :AutoScalerId=, :none, 2026, 7
+        deprecate :Enabled, :none, 2026, 8
+        deprecate :Enabled=, :none, 2026, 8
+        deprecate :CreateTime, :none, 2026, 8
+        deprecate :CreateTime=, :none, 2026, 8
+        deprecate :ModifyTime, :none, 2026, 8
+        deprecate :ModifyTime=, :none, 2026, 8
+        deprecate :StrategyId, :none, 2026, 8
+        deprecate :StrategyId=, :none, 2026, 8
+        deprecate :AutoScalerId, :none, 2026, 8
+        deprecate :AutoScalerId=, :none, 2026, 8
 
         def initialize(maxreplicas=nil, metrics=nil, enabled=nil, createtime=nil, modifytime=nil, strategyid=nil, autoscalerid=nil, behavior=nil)
           @MaxReplicas = maxreplicas
@@ -2584,14 +2584,14 @@ module TencentCloud
 
         attr_accessor :Enabled, :Params, :CreateTime, :ModifyTime, :StrategyId
         extend Gem::Deprecate
-        deprecate :Enabled, :none, 2026, 7
-        deprecate :Enabled=, :none, 2026, 7
-        deprecate :CreateTime, :none, 2026, 7
-        deprecate :CreateTime=, :none, 2026, 7
-        deprecate :ModifyTime, :none, 2026, 7
-        deprecate :ModifyTime=, :none, 2026, 7
-        deprecate :StrategyId, :none, 2026, 7
-        deprecate :StrategyId=, :none, 2026, 7
+        deprecate :Enabled, :none, 2026, 8
+        deprecate :Enabled=, :none, 2026, 8
+        deprecate :CreateTime, :none, 2026, 8
+        deprecate :CreateTime=, :none, 2026, 8
+        deprecate :ModifyTime, :none, 2026, 8
+        deprecate :ModifyTime=, :none, 2026, 8
+        deprecate :StrategyId, :none, 2026, 8
+        deprecate :StrategyId=, :none, 2026, 8
 
         def initialize(enabled=nil, params=nil, createtime=nil, modifytime=nil, strategyid=nil)
           @Enabled = enabled
@@ -3284,10 +3284,10 @@ module TencentCloud
 
         attr_accessor :GatewayId, :StrategyName, :Description, :Config, :CronScalerConfig, :MaxReplicas, :CronConfig
         extend Gem::Deprecate
-        deprecate :CronScalerConfig, :none, 2026, 7
-        deprecate :CronScalerConfig=, :none, 2026, 7
-        deprecate :MaxReplicas, :none, 2026, 7
-        deprecate :MaxReplicas=, :none, 2026, 7
+        deprecate :CronScalerConfig, :none, 2026, 8
+        deprecate :CronScalerConfig=, :none, 2026, 8
+        deprecate :MaxReplicas, :none, 2026, 8
+        deprecate :MaxReplicas=, :none, 2026, 8
 
         def initialize(gatewayid=nil, strategyname=nil, description=nil, config=nil, cronscalerconfig=nil, maxreplicas=nil, cronconfig=nil)
           @GatewayId = gatewayid
@@ -3330,8 +3330,8 @@ module TencentCloud
 
         attr_accessor :Result, :StrategyId, :RequestId
         extend Gem::Deprecate
-        deprecate :Result, :none, 2026, 7
-        deprecate :Result=, :none, 2026, 7
+        deprecate :Result, :none, 2026, 8
+        deprecate :Result=, :none, 2026, 8
 
         def initialize(result=nil, strategyid=nil, requestid=nil)
           @Result = result
@@ -3417,10 +3417,10 @@ module TencentCloud
 
         attr_accessor :GatewayId, :BindDomains, :CertId, :Name, :Key, :Crt
         extend Gem::Deprecate
-        deprecate :Key, :none, 2026, 7
-        deprecate :Key=, :none, 2026, 7
-        deprecate :Crt, :none, 2026, 7
-        deprecate :Crt=, :none, 2026, 7
+        deprecate :Key, :none, 2026, 8
+        deprecate :Key=, :none, 2026, 8
+        deprecate :Crt, :none, 2026, 8
+        deprecate :Crt=, :none, 2026, 8
 
         def initialize(gatewayid=nil, binddomains=nil, certid=nil, name=nil, key=nil, crt=nil)
           @GatewayId = gatewayid
@@ -4160,8 +4160,8 @@ module TencentCloud
 
         attr_accessor :GatewayId, :ServiceID, :RouteName, :Methods, :Hosts, :Paths, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :ForceHttps, :DestinationPorts, :Headers, :RequestBuffering, :ResponseBuffering, :RegexPriority, :QueryStringParameters
         extend Gem::Deprecate
-        deprecate :ForceHttps, :none, 2026, 7
-        deprecate :ForceHttps=, :none, 2026, 7
+        deprecate :ForceHttps, :none, 2026, 8
+        deprecate :ForceHttps=, :none, 2026, 8
 
         def initialize(gatewayid=nil, serviceid=nil, routename=nil, methods=nil, hosts=nil, paths=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, forcehttps=nil, destinationports=nil, headers=nil, requestbuffering=nil, responsebuffering=nil, regexpriority=nil, querystringparameters=nil)
           @GatewayId = gatewayid
@@ -6948,6 +6948,64 @@ module TencentCloud
         end
       end
 
+      # DescribeCNGWServicesWithRoutes请求参数结构体
+      class DescribeCNGWServicesWithRoutesRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: <p>网关ID</p>
+        # @type GatewayId: String
+        # @param Limit: <p>列表数量</p>
+        # @type Limit: Integer
+        # @param Offset: <p>列表 offset</p>
+        # @type Offset: Integer
+        # @param Filters: <p>过滤条件，多个过滤条件之间是与的关系，支持 name,upstreamType</p>
+        # @type Filters: Array
+
+        attr_accessor :GatewayId, :Limit, :Offset, :Filters
+
+        def initialize(gatewayid=nil, limit=nil, offset=nil, filters=nil)
+          @GatewayId = gatewayid
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              listfilter_tmp = ListFilter.new
+              listfilter_tmp.deserialize(i)
+              @Filters << listfilter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeCNGWServicesWithRoutes返回参数结构体
+      class DescribeCNGWServicesWithRoutesResponse < TencentCloud::Common::AbstractModel
+        # @param Result: <p>无</p>
+        # @type Result: :class:`Tencentcloud::Tse.v20201207.models.KongServiceWithRoutes`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = KongServiceWithRoutes.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCloudNativeAPIGatewayCORS请求参数结构体
       class DescribeCloudNativeAPIGatewayCORSRequest < TencentCloud::Common::AbstractModel
         # @param GatewayId: 网关ID
@@ -8094,28 +8152,40 @@ module TencentCloud
 
       # DescribeCloudNativeAPIGatewayRoutes请求参数结构体
       class DescribeCloudNativeAPIGatewayRoutesRequest < TencentCloud::Common::AbstractModel
-        # @param GatewayId: 网关ID
+        # @param GatewayId: <p>网关ID</p>
         # @type GatewayId: String
-        # @param Limit: 翻页单页查询限制数量[0,1000], 默认值0
+        # @param Limit: <p>翻页单页查询限制数量[0,1000], 默认值0</p>
         # @type Limit: Integer
-        # @param Offset: 翻页单页偏移量，默认值0
+        # @param Offset: <p>翻页单页偏移量，默认值0</p>
         # @type Offset: Integer
-        # @param ServiceName: 服务的名字，精确匹配
+        # @param ServiceName: <p>服务的名字，精确匹配</p>
         # @type ServiceName: String
-        # @param RouteName: 路由的名字，精确匹配
+        # @param RouteName: <p>路由的名字，精确匹配</p>
         # @type RouteName: String
-        # @param Filters: 过滤条件，多个过滤条件之间是与的关系，支持 name, path, host, method, service, protocol
+        # @param Filters: <p>过滤条件，多个过滤条件之间是与的关系，支持 name, path, host, method, service, protocol</p>
         # @type Filters: Array
+        # @param RouteTypes: <p>路由类型</p>
+        # @type RouteTypes: Array
+        # @param GrayRoutesFirst: <p>是否将灰度规则可能带来的路由排在原始路由前</p>
+        # @type GrayRoutesFirst: Boolean
+        # @param OrderField: <p>排序字段</p>
+        # @type OrderField: String
+        # @param OrderType: <p>排序方式</p><p>枚举值：</p><ul><li>DESC： 降序</li><li>ASC： 升序</li></ul>
+        # @type OrderType: String
 
-        attr_accessor :GatewayId, :Limit, :Offset, :ServiceName, :RouteName, :Filters
+        attr_accessor :GatewayId, :Limit, :Offset, :ServiceName, :RouteName, :Filters, :RouteTypes, :GrayRoutesFirst, :OrderField, :OrderType
 
-        def initialize(gatewayid=nil, limit=nil, offset=nil, servicename=nil, routename=nil, filters=nil)
+        def initialize(gatewayid=nil, limit=nil, offset=nil, servicename=nil, routename=nil, filters=nil, routetypes=nil, grayroutesfirst=nil, orderfield=nil, ordertype=nil)
           @GatewayId = gatewayid
           @Limit = limit
           @Offset = offset
           @ServiceName = servicename
           @RouteName = routename
           @Filters = filters
+          @RouteTypes = routetypes
+          @GrayRoutesFirst = grayroutesfirst
+          @OrderField = orderfield
+          @OrderType = ordertype
         end
 
         def deserialize(params)
@@ -8132,12 +8202,16 @@ module TencentCloud
               @Filters << listfilter_tmp
             end
           end
+          @RouteTypes = params['RouteTypes']
+          @GrayRoutesFirst = params['GrayRoutesFirst']
+          @OrderField = params['OrderField']
+          @OrderType = params['OrderType']
         end
       end
 
       # DescribeCloudNativeAPIGatewayRoutes返回参数结构体
       class DescribeCloudNativeAPIGatewayRoutesResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 无
+        # @param Result: <p>无</p>
         # @type Result: :class:`Tencentcloud::Tse.v20201207.models.KongServiceRouteList`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -8395,22 +8469,28 @@ module TencentCloud
 
       # DescribeCloudNativeAPIGatewayServices请求参数结构体
       class DescribeCloudNativeAPIGatewayServicesRequest < TencentCloud::Common::AbstractModel
-        # @param GatewayId: 网关ID
+        # @param GatewayId: <p>网关ID</p>
         # @type GatewayId: String
-        # @param Limit: 列表数量
+        # @param Limit: <p>列表数量</p>
         # @type Limit: Integer
-        # @param Offset: 列表 offset
+        # @param Offset: <p>列表 offset</p>
         # @type Offset: Integer
-        # @param Filters: 过滤条件，多个过滤条件之间是与的关系，支持 name,upstreamType
+        # @param Filters: <p>过滤条件，多个过滤条件之间是与的关系，支持 name,upstreamType</p>
         # @type Filters: Array
+        # @param OrderField: <p>排序字段</p>
+        # @type OrderField: String
+        # @param OrderType: <p>排序方式</p><p>枚举值：</p><ul><li>DESC： 降序</li><li>ASC： 升序</li></ul>
+        # @type OrderType: String
 
-        attr_accessor :GatewayId, :Limit, :Offset, :Filters
+        attr_accessor :GatewayId, :Limit, :Offset, :Filters, :OrderField, :OrderType
 
-        def initialize(gatewayid=nil, limit=nil, offset=nil, filters=nil)
+        def initialize(gatewayid=nil, limit=nil, offset=nil, filters=nil, orderfield=nil, ordertype=nil)
           @GatewayId = gatewayid
           @Limit = limit
           @Offset = offset
           @Filters = filters
+          @OrderField = orderfield
+          @OrderType = ordertype
         end
 
         def deserialize(params)
@@ -8425,12 +8505,14 @@ module TencentCloud
               @Filters << listfilter_tmp
             end
           end
+          @OrderField = params['OrderField']
+          @OrderType = params['OrderType']
         end
       end
 
       # DescribeCloudNativeAPIGatewayServices返回参数结构体
       class DescribeCloudNativeAPIGatewayServicesResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 无
+        # @param Result: <p>无</p>
         # @type Result: :class:`Tencentcloud::Tse.v20201207.models.KongServices`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -10624,8 +10706,8 @@ module TencentCloud
 
         attr_accessor :GatewayId, :Type, :TypeList
         extend Gem::Deprecate
-        deprecate :Type, :none, 2026, 7
-        deprecate :Type=, :none, 2026, 7
+        deprecate :Type, :none, 2026, 8
+        deprecate :Type=, :none, 2026, 8
 
         def initialize(gatewayid=nil, type=nil, typelist=nil)
           @GatewayId = gatewayid
@@ -12198,22 +12280,25 @@ module TencentCloud
 
       # Kong网关主动健康检查配置
       class KongActiveHealthCheck < TencentCloud::Common::AbstractModel
-        # @param HealthyInterval: 主动健康检查健康探测间隔，单位：秒，0表示不开启
+        # @param HealthyInterval: <p>主动健康检查健康探测间隔，单位：秒，0表示不开启</p>
         # @type HealthyInterval: Integer
-        # @param UnHealthyInterval: 主动健康检查异常探测间隔，单位：秒，0表示不开启
+        # @param UnHealthyInterval: <p>主动健康检查异常探测间隔，单位：秒，0表示不开启</p>
         # @type UnHealthyInterval: Integer
-        # @param HttpPath: 在 GET HTTP 请求中使用的路径，以作为主动运行状况检查的探测器运行。默认： ”/”。
+        # @param HttpPath: <p>在 GET HTTP 请求中使用的路径，以作为主动运行状况检查的探测器运行。默认： ”/”。</p>
         # @type HttpPath: String
-        # @param Timeout: GET HTTP 请求的超时时间，单位：秒。默认 60。
+        # @param Timeout: <p>GET HTTP 请求的超时时间，单位：秒。默认 60。</p>
         # @type Timeout: Float
+        # @param HostHeader: <p>Host头</p>
+        # @type HostHeader: String
 
-        attr_accessor :HealthyInterval, :UnHealthyInterval, :HttpPath, :Timeout
+        attr_accessor :HealthyInterval, :UnHealthyInterval, :HttpPath, :Timeout, :HostHeader
 
-        def initialize(healthyinterval=nil, unhealthyinterval=nil, httppath=nil, timeout=nil)
+        def initialize(healthyinterval=nil, unhealthyinterval=nil, httppath=nil, timeout=nil, hostheader=nil)
           @HealthyInterval = healthyinterval
           @UnHealthyInterval = unhealthyinterval
           @HttpPath = httppath
           @Timeout = timeout
+          @HostHeader = hostheader
         end
 
         def deserialize(params)
@@ -12221,6 +12306,7 @@ module TencentCloud
           @UnHealthyInterval = params['UnHealthyInterval']
           @HttpPath = params['HttpPath']
           @Timeout = params['Timeout']
+          @HostHeader = params['HostHeader']
         end
       end
 
@@ -12256,8 +12342,8 @@ module TencentCloud
 
         attr_accessor :Total, :CertificatesList, :Pages
         extend Gem::Deprecate
-        deprecate :Pages, :none, 2026, 7
-        deprecate :Pages=, :none, 2026, 7
+        deprecate :Pages, :none, 2026, 8
+        deprecate :Pages=, :none, 2026, 8
 
         def initialize(total=nil, certificateslist=nil, pages=nil)
           @Total = total
@@ -12355,55 +12441,57 @@ module TencentCloud
 
       # 云原生网关路由信息
       class KongRoutePreview < TencentCloud::Common::AbstractModel
-        # @param ID: 服务ID
+        # @param ID: <p>服务ID</p>
         # @type ID: String
-        # @param Name: 服务名字
+        # @param Name: <p>服务名字</p>
         # @type Name: String
-        # @param Methods: 无
+        # @param Methods: <p>无</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Methods: Array
-        # @param Paths: 无
+        # @param Paths: <p>无</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Paths: Array
-        # @param Hosts: 无
+        # @param Hosts: <p>无</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Hosts: Array
-        # @param Protocols: 无
+        # @param Protocols: <p>无</p>
         # @type Protocols: Array
-        # @param PreserveHost: 无
+        # @param PreserveHost: <p>无</p>
         # @type PreserveHost: Boolean
-        # @param HttpsRedirectStatusCode: 无
+        # @param HttpsRedirectStatusCode: <p>无</p>
         # @type HttpsRedirectStatusCode: Integer
-        # @param StripPath: 无
+        # @param StripPath: <p>无</p>
         # @type StripPath: Boolean
-        # @param CreatedTime: 无
+        # @param CreatedTime: <p>无</p>
         # @type CreatedTime: String
-        # @param ForceHttps: 是否开启了强制HTTPS
+        # @param ForceHttps: <p>是否开启了强制HTTPS</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ForceHttps: Boolean
-        # @param ServiceName: 服务名
+        # @param ServiceName: <p>服务名</p>
         # @type ServiceName: String
-        # @param ServiceID: 服务ID
+        # @param ServiceID: <p>服务ID</p>
         # @type ServiceID: String
-        # @param DestinationPorts: 目的端口
+        # @param DestinationPorts: <p>目的端口</p>
         # @type DestinationPorts: Array
-        # @param Headers: 路由的Headers
+        # @param Headers: <p>路由的Headers</p>
         # @type Headers: Array
-        # @param RequestBuffering: 是否缓存请求body，默认true
+        # @param RequestBuffering: <p>是否缓存请求body，默认true</p>
         # @type RequestBuffering: Boolean
-        # @param ResponseBuffering: 是否缓存响应body，默认true
+        # @param ResponseBuffering: <p>是否缓存响应body，默认true</p>
         # @type ResponseBuffering: Boolean
-        # @param RegexPriority: 正则优先级
+        # @param RegexPriority: <p>正则优先级</p>
         # @type RegexPriority: Integer
-        # @param QueryStringParameters: querystring参数
+        # @param QueryStringParameters: <p>querystring参数</p>
         # @type QueryStringParameters: Array
+        # @param RouteSource: <p>路由来源</p>
+        # @type RouteSource: String
 
-        attr_accessor :ID, :Name, :Methods, :Paths, :Hosts, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :CreatedTime, :ForceHttps, :ServiceName, :ServiceID, :DestinationPorts, :Headers, :RequestBuffering, :ResponseBuffering, :RegexPriority, :QueryStringParameters
+        attr_accessor :ID, :Name, :Methods, :Paths, :Hosts, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :CreatedTime, :ForceHttps, :ServiceName, :ServiceID, :DestinationPorts, :Headers, :RequestBuffering, :ResponseBuffering, :RegexPriority, :QueryStringParameters, :RouteSource
         extend Gem::Deprecate
-        deprecate :ForceHttps, :none, 2026, 7
-        deprecate :ForceHttps=, :none, 2026, 7
+        deprecate :ForceHttps, :none, 2026, 8
+        deprecate :ForceHttps=, :none, 2026, 8
 
-        def initialize(id=nil, name=nil, methods=nil, paths=nil, hosts=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, createdtime=nil, forcehttps=nil, servicename=nil, serviceid=nil, destinationports=nil, headers=nil, requestbuffering=nil, responsebuffering=nil, regexpriority=nil, querystringparameters=nil)
+        def initialize(id=nil, name=nil, methods=nil, paths=nil, hosts=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, createdtime=nil, forcehttps=nil, servicename=nil, serviceid=nil, destinationports=nil, headers=nil, requestbuffering=nil, responsebuffering=nil, regexpriority=nil, querystringparameters=nil, routesource=nil)
           @ID = id
           @Name = name
           @Methods = methods
@@ -12423,6 +12511,7 @@ module TencentCloud
           @ResponseBuffering = responsebuffering
           @RegexPriority = regexpriority
           @QueryStringParameters = querystringparameters
+          @RouteSource = routesource
         end
 
         def deserialize(params)
@@ -12459,6 +12548,7 @@ module TencentCloud
               @QueryStringParameters << kvmapping_tmp
             end
           end
+          @RouteSource = params['RouteSource']
         end
       end
 
@@ -12577,21 +12667,21 @@ module TencentCloud
 
       # 云原生网关服务预览信息
       class KongServicePreview < TencentCloud::Common::AbstractModel
-        # @param ID: 服务ID
+        # @param ID: <p>服务ID</p>
         # @type ID: String
-        # @param Name: 服务名字
+        # @param Name: <p>服务名字</p>
         # @type Name: String
-        # @param Tags: 标签
+        # @param Tags: <p>标签</p>
         # @type Tags: Array
-        # @param UpstreamInfo: 后端配置
+        # @param UpstreamInfo: <p>后端配置</p>
         # @type UpstreamInfo: :class:`Tencentcloud::Tse.v20201207.models.KongUpstreamInfo`
-        # @param UpstreamType: 后端类型
+        # @param UpstreamType: <p>后端类型</p>
         # @type UpstreamType: String
-        # @param CreatedTime: 创建时间
+        # @param CreatedTime: <p>创建时间</p>
         # @type CreatedTime: String
-        # @param Editable: 是否可编辑
+        # @param Editable: <p>是否可编辑</p>
         # @type Editable: Boolean
-        # @param Path: 请求路径
+        # @param Path: <p>请求路径</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Path: String
 
@@ -12623,6 +12713,44 @@ module TencentCloud
         end
       end
 
+      # kong实例的服务和路由列表
+      class KongServiceRoute < TencentCloud::Common::AbstractModel
+        # @param Service: <p>服务信息</p>
+        # @type Service: :class:`Tencentcloud::Tse.v20201207.models.KongServicePreview`
+        # @param RouteTotalCount: <p>路由总条数</p>
+        # @type RouteTotalCount: Integer
+        # @param RouteHasMore: <p>是否有未返回的路由</p>
+        # @type RouteHasMore: Boolean
+        # @param Routes: <p>路由信息</p>
+        # @type Routes: Array
+
+        attr_accessor :Service, :RouteTotalCount, :RouteHasMore, :Routes
+
+        def initialize(service=nil, routetotalcount=nil, routehasmore=nil, routes=nil)
+          @Service = service
+          @RouteTotalCount = routetotalcount
+          @RouteHasMore = routehasmore
+          @Routes = routes
+        end
+
+        def deserialize(params)
+          unless params['Service'].nil?
+            @Service = KongServicePreview.new
+            @Service.deserialize(params['Service'])
+          end
+          @RouteTotalCount = params['RouteTotalCount']
+          @RouteHasMore = params['RouteHasMore']
+          unless params['Routes'].nil?
+            @Routes = []
+            params['Routes'].each do |i|
+              kongroutepreview_tmp = KongRoutePreview.new
+              kongroutepreview_tmp.deserialize(i)
+              @Routes << kongroutepreview_tmp
+            end
+          end
+        end
+      end
+
       # kong服务路由列表
       class KongServiceRouteList < TencentCloud::Common::AbstractModel
         # @param RouteList: 无
@@ -12644,6 +12772,33 @@ module TencentCloud
               kongroutepreview_tmp = KongRoutePreview.new
               kongroutepreview_tmp.deserialize(i)
               @RouteList << kongroutepreview_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+        end
+      end
+
+      # 返回kong的服务和路由列表
+      class KongServiceWithRoutes < TencentCloud::Common::AbstractModel
+        # @param ServiceList: 
+        # @type ServiceList: Array
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+
+        attr_accessor :ServiceList, :TotalCount
+
+        def initialize(servicelist=nil, totalcount=nil)
+          @ServiceList = servicelist
+          @TotalCount = totalcount
+        end
+
+        def deserialize(params)
+          unless params['ServiceList'].nil?
+            @ServiceList = []
+            params['ServiceList'].each do |i|
+              kongserviceroute_tmp = KongServiceRoute.new
+              kongserviceroute_tmp.deserialize(i)
+              @ServiceList << kongserviceroute_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -13230,10 +13385,10 @@ module TencentCloud
 
         attr_accessor :GatewayId, :StrategyId, :StrategyName, :Description, :Config, :CronScalerConfig, :MaxReplicas, :CronConfig
         extend Gem::Deprecate
-        deprecate :CronScalerConfig, :none, 2026, 7
-        deprecate :CronScalerConfig=, :none, 2026, 7
-        deprecate :MaxReplicas, :none, 2026, 7
-        deprecate :MaxReplicas=, :none, 2026, 7
+        deprecate :CronScalerConfig, :none, 2026, 8
+        deprecate :CronScalerConfig=, :none, 2026, 8
+        deprecate :MaxReplicas, :none, 2026, 8
+        deprecate :MaxReplicas=, :none, 2026, 8
 
         def initialize(gatewayid=nil, strategyid=nil, strategyname=nil, description=nil, config=nil, cronscalerconfig=nil, maxreplicas=nil, cronconfig=nil)
           @GatewayId = gatewayid
@@ -13368,10 +13523,10 @@ module TencentCloud
 
         attr_accessor :GatewayId, :Id, :Name, :Key, :Crt, :BindDomains, :CertId, :CertSource
         extend Gem::Deprecate
-        deprecate :Name, :none, 2026, 7
-        deprecate :Name=, :none, 2026, 7
-        deprecate :BindDomains, :none, 2026, 7
-        deprecate :BindDomains=, :none, 2026, 7
+        deprecate :Name, :none, 2026, 8
+        deprecate :Name=, :none, 2026, 8
+        deprecate :BindDomains, :none, 2026, 8
+        deprecate :BindDomains=, :none, 2026, 8
 
         def initialize(gatewayid=nil, id=nil, name=nil, key=nil, crt=nil, binddomains=nil, certid=nil, certsource=nil)
           @GatewayId = gatewayid
@@ -13925,8 +14080,8 @@ module TencentCloud
 
         attr_accessor :GatewayId, :ServiceID, :RouteID, :RouteName, :Methods, :Hosts, :Paths, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :ForceHttps, :DestinationPorts, :Headers, :RequestBuffering, :ResponseBuffering, :RegexPriority, :QueryStringParameters
         extend Gem::Deprecate
-        deprecate :ForceHttps, :none, 2026, 7
-        deprecate :ForceHttps=, :none, 2026, 7
+        deprecate :ForceHttps, :none, 2026, 8
+        deprecate :ForceHttps=, :none, 2026, 8
 
         def initialize(gatewayid=nil, serviceid=nil, routeid=nil, routename=nil, methods=nil, hosts=nil, paths=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, forcehttps=nil, destinationports=nil, headers=nil, requestbuffering=nil, responsebuffering=nil, regexpriority=nil, querystringparameters=nil)
           @GatewayId = gatewayid
@@ -16457,8 +16612,8 @@ module TencentCloud
 
         attr_accessor :EnableActiveHealthCheck, :ActiveHealthCheck, :EnablePassiveHealthCheck, :PassiveHealthCheck, :Successes, :Failures, :Timeouts, :HealthyHttpStatuses, :UnhealthyHttpStatuses, :IgnoreZeroWeightNodes, :ZeroWeightHeathCheck
         extend Gem::Deprecate
-        deprecate :IgnoreZeroWeightNodes, :none, 2026, 7
-        deprecate :IgnoreZeroWeightNodes=, :none, 2026, 7
+        deprecate :IgnoreZeroWeightNodes, :none, 2026, 8
+        deprecate :IgnoreZeroWeightNodes=, :none, 2026, 8
 
         def initialize(enableactivehealthcheck=nil, activehealthcheck=nil, enablepassivehealthcheck=nil, passivehealthcheck=nil, successes=nil, failures=nil, timeouts=nil, healthyhttpstatuses=nil, unhealthyhttpstatuses=nil, ignorezeroweightnodes=nil, zeroweightheathcheck=nil)
           @EnableActiveHealthCheck = enableactivehealthcheck

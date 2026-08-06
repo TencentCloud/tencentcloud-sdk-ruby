@@ -3456,6 +3456,64 @@ module TencentCloud
         end
       end
 
+      # DescribeCNGWServicesWithRoutes请求参数结构体
+      class DescribeCNGWServicesWithRoutesRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: <p>网关ID</p>
+        # @type GatewayId: String
+        # @param Limit: <p>列表数量</p>
+        # @type Limit: Integer
+        # @param Offset: <p>列表 offset</p>
+        # @type Offset: Integer
+        # @param Filters: <p>过滤条件，多个过滤条件之间是与的关系，支持 name,upstreamType</p>
+        # @type Filters: Array
+
+        attr_accessor :GatewayId, :Limit, :Offset, :Filters
+
+        def initialize(gatewayid=nil, limit=nil, offset=nil, filters=nil)
+          @GatewayId = gatewayid
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              listfilter_tmp = ListFilter.new
+              listfilter_tmp.deserialize(i)
+              @Filters << listfilter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeCNGWServicesWithRoutes返回参数结构体
+      class DescribeCNGWServicesWithRoutesResponse < TencentCloud::Common::AbstractModel
+        # @param Result: <p>服务及路由查询结果</p>
+        # @type Result: :class:`Tencentcloud::Cngw.v20230418.models.KongServiceWithRoutes`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = KongServiceWithRoutes.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCloudNativeAPIGatewayConsumerGroup请求参数结构体
       class DescribeCloudNativeAPIGatewayConsumerGroupRequest < TencentCloud::Common::AbstractModel
         # @param GatewayId: <p>网关实例id</p>
@@ -4372,6 +4430,26 @@ module TencentCloud
         end
       end
 
+      # 键值对
+      class KVMapping < TencentCloud::Common::AbstractModel
+        # @param Key: 键值映射的键
+        # @type Key: String
+        # @param Value: 键值映射的值
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
       # Key/Value结构
       class KeyValue < TencentCloud::Common::AbstractModel
         # @param Key: 条件的Key
@@ -4389,6 +4467,392 @@ module TencentCloud
         def deserialize(params)
           @Key = params['Key']
           @Value = params['Value']
+        end
+      end
+
+      # 云原生网关路由信息
+      class KongRoutePreview < TencentCloud::Common::AbstractModel
+        # @param ID: <p>服务ID</p>
+        # @type ID: String
+        # @param Name: <p>服务名字</p>
+        # @type Name: String
+        # @param Methods: <p>请求方法列表</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Methods: Array
+        # @param Paths: <p>路由Paths列表</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Paths: Array
+        # @param Hosts: <p>路由Hosts列表</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Hosts: Array
+        # @param Protocols: <p>协议列表</p>
+        # @type Protocols: Array
+        # @param PreserveHost: <p>是否保留Host头</p>
+        # @type PreserveHost: Boolean
+        # @param HttpsRedirectStatusCode: <p>HTTPS重定向状态码</p>
+        # @type HttpsRedirectStatusCode: Integer
+        # @param StripPath: <p>是否去除路径前缀</p>
+        # @type StripPath: Boolean
+        # @param CreatedTime: <p>创建时间</p>
+        # @type CreatedTime: String
+        # @param ForceHttps: <p>强制转换 https</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ForceHttps: Boolean
+        # @param ServiceName: <p>服务名</p>
+        # @type ServiceName: String
+        # @param ServiceID: <p>服务ID</p>
+        # @type ServiceID: String
+        # @param DestinationPorts: <p>目的端口</p>
+        # @type DestinationPorts: Array
+        # @param Headers: <p>headers</p>
+        # @type Headers: Array
+        # @param RequestBuffering: <p>是否缓存请求body，默认true</p>
+        # @type RequestBuffering: Boolean
+        # @param ResponseBuffering: <p>是否缓存响应body，默认true</p>
+        # @type ResponseBuffering: Boolean
+        # @param RegexPriority: <p>正则优先级</p>
+        # @type RegexPriority: Integer
+        # @param QueryStringParameters: <p>querystring参数</p>
+        # @type QueryStringParameters: Array
+        # @param RouteSource: <p>路由来源</p>
+        # @type RouteSource: String
+
+        attr_accessor :ID, :Name, :Methods, :Paths, :Hosts, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :CreatedTime, :ForceHttps, :ServiceName, :ServiceID, :DestinationPorts, :Headers, :RequestBuffering, :ResponseBuffering, :RegexPriority, :QueryStringParameters, :RouteSource
+        extend Gem::Deprecate
+        deprecate :ForceHttps, :none, 2026, 8
+        deprecate :ForceHttps=, :none, 2026, 8
+
+        def initialize(id=nil, name=nil, methods=nil, paths=nil, hosts=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, createdtime=nil, forcehttps=nil, servicename=nil, serviceid=nil, destinationports=nil, headers=nil, requestbuffering=nil, responsebuffering=nil, regexpriority=nil, querystringparameters=nil, routesource=nil)
+          @ID = id
+          @Name = name
+          @Methods = methods
+          @Paths = paths
+          @Hosts = hosts
+          @Protocols = protocols
+          @PreserveHost = preservehost
+          @HttpsRedirectStatusCode = httpsredirectstatuscode
+          @StripPath = strippath
+          @CreatedTime = createdtime
+          @ForceHttps = forcehttps
+          @ServiceName = servicename
+          @ServiceID = serviceid
+          @DestinationPorts = destinationports
+          @Headers = headers
+          @RequestBuffering = requestbuffering
+          @ResponseBuffering = responsebuffering
+          @RegexPriority = regexpriority
+          @QueryStringParameters = querystringparameters
+          @RouteSource = routesource
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @Name = params['Name']
+          @Methods = params['Methods']
+          @Paths = params['Paths']
+          @Hosts = params['Hosts']
+          @Protocols = params['Protocols']
+          @PreserveHost = params['PreserveHost']
+          @HttpsRedirectStatusCode = params['HttpsRedirectStatusCode']
+          @StripPath = params['StripPath']
+          @CreatedTime = params['CreatedTime']
+          @ForceHttps = params['ForceHttps']
+          @ServiceName = params['ServiceName']
+          @ServiceID = params['ServiceID']
+          @DestinationPorts = params['DestinationPorts']
+          unless params['Headers'].nil?
+            @Headers = []
+            params['Headers'].each do |i|
+              kvmapping_tmp = KVMapping.new
+              kvmapping_tmp.deserialize(i)
+              @Headers << kvmapping_tmp
+            end
+          end
+          @RequestBuffering = params['RequestBuffering']
+          @ResponseBuffering = params['ResponseBuffering']
+          @RegexPriority = params['RegexPriority']
+          unless params['QueryStringParameters'].nil?
+            @QueryStringParameters = []
+            params['QueryStringParameters'].each do |i|
+              kvmapping_tmp = KVMapping.new
+              kvmapping_tmp.deserialize(i)
+              @QueryStringParameters << kvmapping_tmp
+            end
+          end
+          @RouteSource = params['RouteSource']
+        end
+      end
+
+      # 云原生网关服务预览信息
+      class KongServicePreview < TencentCloud::Common::AbstractModel
+        # @param ID: 服务ID
+        # @type ID: String
+        # @param CreatedTime: 创建时间
+        # @type CreatedTime: String
+        # @param Editable: 是否可编辑
+        # @type Editable: Boolean
+        # @param Name: 服务名字
+        # @type Name: String
+        # @param Path: 请求路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Path: String
+        # @param Tags: 标签
+        # @type Tags: Array
+        # @param UpstreamInfo: 后端配置
+        # @type UpstreamInfo: :class:`Tencentcloud::Cngw.v20230418.models.KongUpstreamInfo`
+        # @param UpstreamType: 后端类型
+        # @type UpstreamType: String
+
+        attr_accessor :ID, :CreatedTime, :Editable, :Name, :Path, :Tags, :UpstreamInfo, :UpstreamType
+
+        def initialize(id=nil, createdtime=nil, editable=nil, name=nil, path=nil, tags=nil, upstreaminfo=nil, upstreamtype=nil)
+          @ID = id
+          @CreatedTime = createdtime
+          @Editable = editable
+          @Name = name
+          @Path = path
+          @Tags = tags
+          @UpstreamInfo = upstreaminfo
+          @UpstreamType = upstreamtype
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @CreatedTime = params['CreatedTime']
+          @Editable = params['Editable']
+          @Name = params['Name']
+          @Path = params['Path']
+          @Tags = params['Tags']
+          unless params['UpstreamInfo'].nil?
+            @UpstreamInfo = KongUpstreamInfo.new
+            @UpstreamInfo.deserialize(params['UpstreamInfo'])
+          end
+          @UpstreamType = params['UpstreamType']
+        end
+      end
+
+      # kong实例的服务和路由列表
+      class KongServiceRoute < TencentCloud::Common::AbstractModel
+        # @param Service: <p>服务信息</p>
+        # @type Service: :class:`Tencentcloud::Cngw.v20230418.models.KongServicePreview`
+        # @param RouteTotalCount: <p>路由总数</p>
+        # @type RouteTotalCount: Integer
+        # @param RouteHasMore: <p>是否还有更多路由</p>
+        # @type RouteHasMore: Boolean
+        # @param Routes: <p>路由列表</p>
+        # @type Routes: Array
+
+        attr_accessor :Service, :RouteTotalCount, :RouteHasMore, :Routes
+
+        def initialize(service=nil, routetotalcount=nil, routehasmore=nil, routes=nil)
+          @Service = service
+          @RouteTotalCount = routetotalcount
+          @RouteHasMore = routehasmore
+          @Routes = routes
+        end
+
+        def deserialize(params)
+          unless params['Service'].nil?
+            @Service = KongServicePreview.new
+            @Service.deserialize(params['Service'])
+          end
+          @RouteTotalCount = params['RouteTotalCount']
+          @RouteHasMore = params['RouteHasMore']
+          unless params['Routes'].nil?
+            @Routes = []
+            params['Routes'].each do |i|
+              kongroutepreview_tmp = KongRoutePreview.new
+              kongroutepreview_tmp.deserialize(i)
+              @Routes << kongroutepreview_tmp
+            end
+          end
+        end
+      end
+
+      # 返回kong的服务和路由列表
+      class KongServiceWithRoutes < TencentCloud::Common::AbstractModel
+        # @param ServiceList: 服务及路由列表
+        # @type ServiceList: Array
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+
+        attr_accessor :ServiceList, :TotalCount
+
+        def initialize(servicelist=nil, totalcount=nil)
+          @ServiceList = servicelist
+          @TotalCount = totalcount
+        end
+
+        def deserialize(params)
+          unless params['ServiceList'].nil?
+            @ServiceList = []
+            params['ServiceList'].each do |i|
+              kongserviceroute_tmp = KongServiceRoute.new
+              kongserviceroute_tmp.deserialize(i)
+              @ServiceList << kongserviceroute_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+        end
+      end
+
+      # Kong Upstream中的Target
+      class KongTarget < TencentCloud::Common::AbstractModel
+        # @param Host: 目标主机地址
+        # @type Host: String
+        # @param Port: 端口
+        # @type Port: Integer
+        # @param Weight: 权重
+        # @type Weight: Integer
+        # @param CreatedTime: 创建时间
+        # @type CreatedTime: String
+        # @param CvmInstanceId: CVM实例ID
+        # @type CvmInstanceId: String
+        # @param CvmInstanceName: CVM实例名称
+        # @type CvmInstanceName: String
+        # @param Health: 健康状态
+        # @type Health: String
+        # @param Source: Target的来源
+        # @type Source: String
+        # @param Tags: target标签
+        # @type Tags: Array
+
+        attr_accessor :Host, :Port, :Weight, :CreatedTime, :CvmInstanceId, :CvmInstanceName, :Health, :Source, :Tags
+
+        def initialize(host=nil, port=nil, weight=nil, createdtime=nil, cvminstanceid=nil, cvminstancename=nil, health=nil, source=nil, tags=nil)
+          @Host = host
+          @Port = port
+          @Weight = weight
+          @CreatedTime = createdtime
+          @CvmInstanceId = cvminstanceid
+          @CvmInstanceName = cvminstancename
+          @Health = health
+          @Source = source
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @Host = params['Host']
+          @Port = params['Port']
+          @Weight = params['Weight']
+          @CreatedTime = params['CreatedTime']
+          @CvmInstanceId = params['CvmInstanceId']
+          @CvmInstanceName = params['CvmInstanceName']
+          @Health = params['Health']
+          @Source = params['Source']
+          @Tags = params['Tags']
+        end
+      end
+
+      # 服务的后端配置
+      class KongUpstreamInfo < TencentCloud::Common::AbstractModel
+        # @param Algorithm: 负载均衡算法，默认为 round-robin，还支持 least-connections，consisten_hashing
+        # @type Algorithm: String
+        # @param AutoScalingCvmPort: CVM弹性伸缩组端口
+        # @type AutoScalingCvmPort: Integer
+        # @param AutoScalingGroupID: CVM弹性伸缩组ID
+        # @type AutoScalingGroupID: String
+        # @param AutoScalingHookStatus: CVM弹性伸缩组生命周期挂钩状态
+        # @type AutoScalingHookStatus: String
+        # @param AutoScalingTatCmdStatus: CVM弹性伸缩组使用的CVM TAT命令状态
+        # @type AutoScalingTatCmdStatus: String
+        # @param HealthStatus: upstream健康状态HEALTHY（健康）, UNHEALTHY（异常）, HEALTHCHECKS_OFF（未开启）和NONE（不支持健康检查）
+        # @type HealthStatus: String
+        # @param Host: IP或域名
+        # @type Host: String
+        # @param Namespace: 命名空间
+        # @type Namespace: String
+        # @param Port: 端口
+        # @type Port: Integer
+        # @param RealSourceType: 精确的服务来源类型，新建服务来源时候传入的类型
+        # @type RealSourceType: String
+        # @param ScfCamAuthEnable: 云函数是否开启CAM鉴权，不填时默认为开启(true)
+        # @type ScfCamAuthEnable: Boolean
+        # @param ScfIsBase64Encoded: 云函数是否开启Base64编码，默认为false
+        # @type ScfIsBase64Encoded: Boolean
+        # @param ScfIsIntegratedResponse: 云函数是否开启响应集成，默认为false
+        # @type ScfIsIntegratedResponse: Boolean
+        # @param ScfLambdaName: SCF函数名
+        # @type ScfLambdaName: String
+        # @param ScfLambdaQualifier: SCF函数版本
+        # @type ScfLambdaQualifier: String
+        # @param ScfNamespace: SCF函数命名空间
+        # @type ScfNamespace: String
+        # @param ScfType: SCF函数类型
+        # @type ScfType: String
+        # @param ServiceName: 服务（注册中心或Kubernetes中的服务）名字
+        # @type ServiceName: String
+        # @param SlowStart: 冷启动时间，单位秒
+        # @type SlowStart: Integer
+        # @param SourceID: 服务来源ID
+        # @type SourceID: String
+        # @param SourceName: 服务来源的名字
+        # @type SourceName: String
+        # @param SourceType: 服务来源类型
+        # @type SourceType: String
+        # @param Targets: 服务后端类型是IPList时提供
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Targets: Array
+
+        attr_accessor :Algorithm, :AutoScalingCvmPort, :AutoScalingGroupID, :AutoScalingHookStatus, :AutoScalingTatCmdStatus, :HealthStatus, :Host, :Namespace, :Port, :RealSourceType, :ScfCamAuthEnable, :ScfIsBase64Encoded, :ScfIsIntegratedResponse, :ScfLambdaName, :ScfLambdaQualifier, :ScfNamespace, :ScfType, :ServiceName, :SlowStart, :SourceID, :SourceName, :SourceType, :Targets
+
+        def initialize(algorithm=nil, autoscalingcvmport=nil, autoscalinggroupid=nil, autoscalinghookstatus=nil, autoscalingtatcmdstatus=nil, healthstatus=nil, host=nil, namespace=nil, port=nil, realsourcetype=nil, scfcamauthenable=nil, scfisbase64encoded=nil, scfisintegratedresponse=nil, scflambdaname=nil, scflambdaqualifier=nil, scfnamespace=nil, scftype=nil, servicename=nil, slowstart=nil, sourceid=nil, sourcename=nil, sourcetype=nil, targets=nil)
+          @Algorithm = algorithm
+          @AutoScalingCvmPort = autoscalingcvmport
+          @AutoScalingGroupID = autoscalinggroupid
+          @AutoScalingHookStatus = autoscalinghookstatus
+          @AutoScalingTatCmdStatus = autoscalingtatcmdstatus
+          @HealthStatus = healthstatus
+          @Host = host
+          @Namespace = namespace
+          @Port = port
+          @RealSourceType = realsourcetype
+          @ScfCamAuthEnable = scfcamauthenable
+          @ScfIsBase64Encoded = scfisbase64encoded
+          @ScfIsIntegratedResponse = scfisintegratedresponse
+          @ScfLambdaName = scflambdaname
+          @ScfLambdaQualifier = scflambdaqualifier
+          @ScfNamespace = scfnamespace
+          @ScfType = scftype
+          @ServiceName = servicename
+          @SlowStart = slowstart
+          @SourceID = sourceid
+          @SourceName = sourcename
+          @SourceType = sourcetype
+          @Targets = targets
+        end
+
+        def deserialize(params)
+          @Algorithm = params['Algorithm']
+          @AutoScalingCvmPort = params['AutoScalingCvmPort']
+          @AutoScalingGroupID = params['AutoScalingGroupID']
+          @AutoScalingHookStatus = params['AutoScalingHookStatus']
+          @AutoScalingTatCmdStatus = params['AutoScalingTatCmdStatus']
+          @HealthStatus = params['HealthStatus']
+          @Host = params['Host']
+          @Namespace = params['Namespace']
+          @Port = params['Port']
+          @RealSourceType = params['RealSourceType']
+          @ScfCamAuthEnable = params['ScfCamAuthEnable']
+          @ScfIsBase64Encoded = params['ScfIsBase64Encoded']
+          @ScfIsIntegratedResponse = params['ScfIsIntegratedResponse']
+          @ScfLambdaName = params['ScfLambdaName']
+          @ScfLambdaQualifier = params['ScfLambdaQualifier']
+          @ScfNamespace = params['ScfNamespace']
+          @ScfType = params['ScfType']
+          @ServiceName = params['ServiceName']
+          @SlowStart = params['SlowStart']
+          @SourceID = params['SourceID']
+          @SourceName = params['SourceName']
+          @SourceType = params['SourceType']
+          unless params['Targets'].nil?
+            @Targets = []
+            params['Targets'].each do |i|
+              kongtarget_tmp = KongTarget.new
+              kongtarget_tmp.deserialize(i)
+              @Targets << kongtarget_tmp
+            end
+          end
         end
       end
 
@@ -4443,6 +4907,26 @@ module TencentCloud
               @DataList << cloudnativeapigatewayllmmodelservice_tmp
             end
           end
+        end
+      end
+
+      # 列表过滤条件，模糊匹配
+      class ListFilter < TencentCloud::Common::AbstractModel
+        # @param Key: 过滤字段
+        # @type Key: String
+        # @param Value: 过滤值
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
         end
       end
 

@@ -6541,28 +6541,30 @@ module TencentCloud
 
       # Kibana视图数据
       class KibanaView < TencentCloud::Common::AbstractModel
-        # @param Ip: Kibana节点IP
+        # @param Ip: <p>Kibana节点IP</p>
         # @type Ip: String
-        # @param DiskSize: 节点总磁盘大小
+        # @param DiskSize: <p>节点总磁盘大小</p>
         # @type DiskSize: Integer
-        # @param DiskUsage: 磁盘使用率
+        # @param DiskUsage: <p>磁盘使用率</p>
         # @type DiskUsage: Float
-        # @param MemSize: 节点内存大小
+        # @param MemSize: <p>节点内存大小</p>
         # @type MemSize: Integer
-        # @param MemUsage: 内存使用率
+        # @param MemUsage: <p>内存使用率</p>
         # @type MemUsage: Float
-        # @param CpuNum: 节点cpu个数
+        # @param CpuNum: <p>节点cpu个数</p>
         # @type CpuNum: Integer
-        # @param CpuUsage: cpu使用率
+        # @param CpuUsage: <p>cpu使用率</p>
         # @type CpuUsage: Float
-        # @param Zone: 可用区
+        # @param Zone: <p>可用区</p>
         # @type Zone: String
-        # @param NodeId: ts-0noqayxu-az6-hot-03222010-0
+        # @param NodeId: <p>ts-0noqayxu-az6-hot-03222010-0</p>
         # @type NodeId: String
+        # @param UserIp: <p>客户侧Ip信息</p>
+        # @type UserIp: String
 
-        attr_accessor :Ip, :DiskSize, :DiskUsage, :MemSize, :MemUsage, :CpuNum, :CpuUsage, :Zone, :NodeId
+        attr_accessor :Ip, :DiskSize, :DiskUsage, :MemSize, :MemUsage, :CpuNum, :CpuUsage, :Zone, :NodeId, :UserIp
 
-        def initialize(ip=nil, disksize=nil, diskusage=nil, memsize=nil, memusage=nil, cpunum=nil, cpuusage=nil, zone=nil, nodeid=nil)
+        def initialize(ip=nil, disksize=nil, diskusage=nil, memsize=nil, memusage=nil, cpunum=nil, cpuusage=nil, zone=nil, nodeid=nil, userip=nil)
           @Ip = ip
           @DiskSize = disksize
           @DiskUsage = diskusage
@@ -6572,6 +6574,7 @@ module TencentCloud
           @CpuUsage = cpuusage
           @Zone = zone
           @NodeId = nodeid
+          @UserIp = userip
         end
 
         def deserialize(params)
@@ -6584,6 +6587,7 @@ module TencentCloud
           @CpuUsage = params['CpuUsage']
           @Zone = params['Zone']
           @NodeId = params['NodeId']
+          @UserIp = params['UserIp']
         end
       end
 

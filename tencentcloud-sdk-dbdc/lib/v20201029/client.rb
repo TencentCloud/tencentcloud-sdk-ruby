@@ -653,6 +653,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口（ModifyDBCustomClusterAttributes）用于修改 DB Custom 集群的属性。
+
+        # @param request: Request instance for ModifyDBCustomClusterAttributes.
+        # @type request: :class:`Tencentcloud::dbdc::V20201029::ModifyDBCustomClusterAttributesRequest`
+        # @rtype: :class:`Tencentcloud::dbdc::V20201029::ModifyDBCustomClusterAttributesResponse`
+        def ModifyDBCustomClusterAttributes(request)
+          body = send_request('ModifyDBCustomClusterAttributes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDBCustomClusterAttributesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口（ModifyDBCustomClusterNodeConfig）用于修改 DB Custom 集群中节点的配置。
 
         # @param request: Request instance for ModifyDBCustomClusterNodeConfig.

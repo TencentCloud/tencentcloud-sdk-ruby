@@ -1360,8 +1360,8 @@ module TencentCloud
 
         attr_accessor :ConfigId, :ConfigName, :ConfigPath, :ConfigDesc, :ConfigTags, :ConfigPipeline, :ConfigCreateTime, :ConfigUpdateTime, :ConfigSchema, :ConfigAssociatedGroups, :ConfigAssociatedGroupList, :FilebeatConfigEnable, :FilebeatCloseTimeout, :FilebeatIgnoreOlder, :FilebeatHarvesterLimit, :FilebeatCloseInactive, :FilebeatCleanInactive, :CustomMultilinePattern
         extend Gem::Deprecate
-        deprecate :ConfigAssociatedGroups, :none, 2026, 7
-        deprecate :ConfigAssociatedGroups=, :none, 2026, 7
+        deprecate :ConfigAssociatedGroups, :none, 2026, 8
+        deprecate :ConfigAssociatedGroups=, :none, 2026, 8
 
         def initialize(configid=nil, configname=nil, configpath=nil, configdesc=nil, configtags=nil, configpipeline=nil, configcreatetime=nil, configupdatetime=nil, configschema=nil, configassociatedgroups=nil, configassociatedgrouplist=nil, filebeatconfigenable=nil, filebeatclosetimeout=nil, filebeatignoreolder=nil, filebeatharvesterlimit=nil, filebeatcloseinactive=nil, filebeatcleaninactive=nil, custommultilinepattern=nil)
           @ConfigId = configid
@@ -3708,10 +3708,10 @@ module TencentCloud
 
         attr_accessor :ApplicationName, :ApplicationType, :MicroserviceType, :ApplicationDesc, :ApplicationLogConfig, :ApplicationResourceType, :ApplicationRuntimeType, :ProgramId, :ServiceConfigList, :IgnoreCreateImageRepository, :ProgramIdList, :ApmInstanceId, :ProgramLanguage, :FrameworkType, :ServiceGovernanceConfig, :CreateSameNameImageRepository
         extend Gem::Deprecate
-        deprecate :ApplicationLogConfig, :none, 2026, 7
-        deprecate :ApplicationLogConfig=, :none, 2026, 7
-        deprecate :ApplicationResourceType, :none, 2026, 7
-        deprecate :ApplicationResourceType=, :none, 2026, 7
+        deprecate :ApplicationLogConfig, :none, 2026, 8
+        deprecate :ApplicationLogConfig=, :none, 2026, 8
+        deprecate :ApplicationResourceType, :none, 2026, 8
+        deprecate :ApplicationResourceType=, :none, 2026, 8
 
         def initialize(applicationname=nil, applicationtype=nil, microservicetype=nil, applicationdesc=nil, applicationlogconfig=nil, applicationresourcetype=nil, applicationruntimetype=nil, programid=nil, serviceconfiglist=nil, ignorecreateimagerepository=nil, programidlist=nil, apminstanceid=nil, programlanguage=nil, frameworktype=nil, servicegovernanceconfig=nil, createsamenameimagerepository=nil)
           @ApplicationName = applicationname
@@ -6552,10 +6552,12 @@ module TencentCloud
         # @type DoNotStart: Boolean
         # @param ImagePullSecretList: <p>镜像Secret列表</p>
         # @type ImagePullSecretList: Array
+        # @param MeshSidecarVersion: <p>用于区分使用sidecar的版本是稳定版还是发行版</p><p>枚举值：</p><ul><li>stable： sidecar稳定版</li><li>release： sidecar发行版</li></ul>
+        # @type MeshSidecarVersion: String
 
-        attr_accessor :ApplicationId, :ObservabilityConfig, :ClusterId, :GroupId, :Envs, :VolumeMountInfoList, :LifeCycleHookList, :AdditionalContainerList, :VolumeInfoList, :ServiceSettingList, :Alias, :GroupName, :Tags, :ContainerKind, :Server, :RepoName, :RepoType, :TcrRepoInfo, :SecretName, :TagName, :HealthCheckSettings, :CpuRequest, :CpuLimit, :MemRequest, :MemLimit, :JvmOpts, :InitContainerEnable, :PrivilegeContainerEnable, :RunCommand, :RunArg, :InstanceNum, :SchedulingStrategy, :RestartPolicy, :ServiceSpecEncode, :IstioMemRequest, :IstioCpuRequest, :IstioMemLimit, :IstioCpuLimit, :ServiceGovernanceConfig, :AgentMemRequest, :AgentCpuRequest, :AgentMemLimit, :AgentCpuLimit, :UpdateType, :UpdateIvl, :MaxSurge, :MaxUnavailable, :WarmupSetting, :ConfigTemplateId, :ConfigTemplateVersion, :VolumeClean, :NamespaceId, :DeployAgent, :AgentProfileList, :ServiceClean, :EnvClean, :DeployDesc, :K8sNamespaceName, :StaticIpEnabled, :PodManagementPolicyType, :Partition, :IncrementalDeployment, :DoNotStart, :ImagePullSecretList
+        attr_accessor :ApplicationId, :ObservabilityConfig, :ClusterId, :GroupId, :Envs, :VolumeMountInfoList, :LifeCycleHookList, :AdditionalContainerList, :VolumeInfoList, :ServiceSettingList, :Alias, :GroupName, :Tags, :ContainerKind, :Server, :RepoName, :RepoType, :TcrRepoInfo, :SecretName, :TagName, :HealthCheckSettings, :CpuRequest, :CpuLimit, :MemRequest, :MemLimit, :JvmOpts, :InitContainerEnable, :PrivilegeContainerEnable, :RunCommand, :RunArg, :InstanceNum, :SchedulingStrategy, :RestartPolicy, :ServiceSpecEncode, :IstioMemRequest, :IstioCpuRequest, :IstioMemLimit, :IstioCpuLimit, :ServiceGovernanceConfig, :AgentMemRequest, :AgentCpuRequest, :AgentMemLimit, :AgentCpuLimit, :UpdateType, :UpdateIvl, :MaxSurge, :MaxUnavailable, :WarmupSetting, :ConfigTemplateId, :ConfigTemplateVersion, :VolumeClean, :NamespaceId, :DeployAgent, :AgentProfileList, :ServiceClean, :EnvClean, :DeployDesc, :K8sNamespaceName, :StaticIpEnabled, :PodManagementPolicyType, :Partition, :IncrementalDeployment, :DoNotStart, :ImagePullSecretList, :MeshSidecarVersion
 
-        def initialize(applicationid=nil, observabilityconfig=nil, clusterid=nil, groupid=nil, envs=nil, volumemountinfolist=nil, lifecyclehooklist=nil, additionalcontainerlist=nil, volumeinfolist=nil, servicesettinglist=nil, _alias=nil, groupname=nil, tags=nil, containerkind=nil, server=nil, reponame=nil, repotype=nil, tcrrepoinfo=nil, secretname=nil, tagname=nil, healthchecksettings=nil, cpurequest=nil, cpulimit=nil, memrequest=nil, memlimit=nil, jvmopts=nil, initcontainerenable=nil, privilegecontainerenable=nil, runcommand=nil, runarg=nil, instancenum=nil, schedulingstrategy=nil, restartpolicy=nil, servicespecencode=nil, istiomemrequest=nil, istiocpurequest=nil, istiomemlimit=nil, istiocpulimit=nil, servicegovernanceconfig=nil, agentmemrequest=nil, agentcpurequest=nil, agentmemlimit=nil, agentcpulimit=nil, updatetype=nil, updateivl=nil, maxsurge=nil, maxunavailable=nil, warmupsetting=nil, configtemplateid=nil, configtemplateversion=nil, volumeclean=nil, namespaceid=nil, deployagent=nil, agentprofilelist=nil, serviceclean=nil, envclean=nil, deploydesc=nil, k8snamespacename=nil, staticipenabled=nil, podmanagementpolicytype=nil, partition=nil, incrementaldeployment=nil, donotstart=nil, imagepullsecretlist=nil)
+        def initialize(applicationid=nil, observabilityconfig=nil, clusterid=nil, groupid=nil, envs=nil, volumemountinfolist=nil, lifecyclehooklist=nil, additionalcontainerlist=nil, volumeinfolist=nil, servicesettinglist=nil, _alias=nil, groupname=nil, tags=nil, containerkind=nil, server=nil, reponame=nil, repotype=nil, tcrrepoinfo=nil, secretname=nil, tagname=nil, healthchecksettings=nil, cpurequest=nil, cpulimit=nil, memrequest=nil, memlimit=nil, jvmopts=nil, initcontainerenable=nil, privilegecontainerenable=nil, runcommand=nil, runarg=nil, instancenum=nil, schedulingstrategy=nil, restartpolicy=nil, servicespecencode=nil, istiomemrequest=nil, istiocpurequest=nil, istiomemlimit=nil, istiocpulimit=nil, servicegovernanceconfig=nil, agentmemrequest=nil, agentcpurequest=nil, agentmemlimit=nil, agentcpulimit=nil, updatetype=nil, updateivl=nil, maxsurge=nil, maxunavailable=nil, warmupsetting=nil, configtemplateid=nil, configtemplateversion=nil, volumeclean=nil, namespaceid=nil, deployagent=nil, agentprofilelist=nil, serviceclean=nil, envclean=nil, deploydesc=nil, k8snamespacename=nil, staticipenabled=nil, podmanagementpolicytype=nil, partition=nil, incrementaldeployment=nil, donotstart=nil, imagepullsecretlist=nil, meshsidecarversion=nil)
           @ApplicationId = applicationid
           @ObservabilityConfig = observabilityconfig
           @ClusterId = clusterid
@@ -6620,6 +6622,7 @@ module TencentCloud
           @IncrementalDeployment = incrementaldeployment
           @DoNotStart = donotstart
           @ImagePullSecretList = imagepullsecretlist
+          @MeshSidecarVersion = meshsidecarversion
         end
 
         def deserialize(params)
@@ -6761,6 +6764,7 @@ module TencentCloud
           @IncrementalDeployment = params['IncrementalDeployment']
           @DoNotStart = params['DoNotStart']
           @ImagePullSecretList = params['ImagePullSecretList']
+          @MeshSidecarVersion = params['MeshSidecarVersion']
         end
       end
 
@@ -6891,12 +6895,12 @@ module TencentCloud
 
         attr_accessor :GroupId, :TagName, :InstanceNum, :Server, :Reponame, :CpuLimit, :MemLimit, :JvmOpts, :CpuRequest, :MemRequest, :DoNotStart, :RepoName, :UpdateType, :UpdateIvl, :AgentCpuRequest, :AgentCpuLimit, :AgentMemRequest, :AgentMemLimit, :IstioCpuRequest, :IstioCpuLimit, :IstioMemRequest, :IstioMemLimit, :MaxSurge, :MaxUnavailable, :HealthCheckSettings, :Envs, :ServiceSetting, :DeployAgent, :SchedulingStrategy, :IncrementalDeployment, :RepoType, :VolumeInfos, :VolumeMountInfos, :VolumeInfoList, :VolumeMountInfoList, :VolumeClean, :AgentProfileList, :WarmupSetting
         extend Gem::Deprecate
-        deprecate :Reponame, :none, 2026, 7
-        deprecate :Reponame=, :none, 2026, 7
-        deprecate :VolumeInfos, :none, 2026, 7
-        deprecate :VolumeInfos=, :none, 2026, 7
-        deprecate :VolumeMountInfos, :none, 2026, 7
-        deprecate :VolumeMountInfos=, :none, 2026, 7
+        deprecate :Reponame, :none, 2026, 8
+        deprecate :Reponame=, :none, 2026, 8
+        deprecate :VolumeInfos, :none, 2026, 8
+        deprecate :VolumeInfos=, :none, 2026, 8
+        deprecate :VolumeMountInfos, :none, 2026, 8
+        deprecate :VolumeMountInfos=, :none, 2026, 8
 
         def initialize(groupid=nil, tagname=nil, instancenum=nil, server=nil, cpulimit=nil, memlimit=nil, jvmopts=nil, cpurequest=nil, memrequest=nil, donotstart=nil, reponame=nil, updatetype=nil, updateivl=nil, agentcpurequest=nil, agentcpulimit=nil, agentmemrequest=nil, agentmemlimit=nil, istiocpurequest=nil, istiocpulimit=nil, istiomemrequest=nil, istiomemlimit=nil, maxsurge=nil, maxunavailable=nil, healthchecksettings=nil, envs=nil, servicesetting=nil, deployagent=nil, schedulingstrategy=nil, incrementaldeployment=nil, repotype=nil, volumeinfos=nil, volumemountinfos=nil, volumeinfolist=nil, volumemountinfolist=nil, volumeclean=nil, agentprofilelist=nil, warmupsetting=nil)
           @GroupId = groupid
@@ -14211,8 +14215,8 @@ module TencentCloud
 
         attr_accessor :Reponame, :Repotype, :TagCount, :IsPublic, :IsUserFavor, :IsQcloudOfficial, :FavorCount, :PullCount, :Description, :CreationTime, :UpdateTime, :TcrRepoInfo, :TcrBindingId, :ApplicationId, :ApplicationName, :ApplicationNameReal, :Public, :CreateMode, :RepoName, :RepoType
         extend Gem::Deprecate
-        deprecate :ApplicationName, :none, 2026, 7
-        deprecate :ApplicationName=, :none, 2026, 7
+        deprecate :ApplicationName, :none, 2026, 8
+        deprecate :ApplicationName=, :none, 2026, 8
 
         def initialize(reponame=nil, repotype=nil, tagcount=nil, ispublic=nil, isuserfavor=nil, isqcloudofficial=nil, favorcount=nil, pullcount=nil, description=nil, creationtime=nil, updatetime=nil, tcrrepoinfo=nil, tcrbindingid=nil, applicationid=nil, applicationname=nil, applicationnamereal=nil, public=nil, createmode=nil, reponame=nil, repotype=nil)
           @Reponame = reponame
@@ -19176,8 +19180,8 @@ module TencentCloud
 
         attr_accessor :ThreadCount, :ThreadActive, :DeamonThreadCount, :DaemonThreadCount
         extend Gem::Deprecate
-        deprecate :DeamonThreadCount, :none, 2026, 7
-        deprecate :DeamonThreadCount=, :none, 2026, 7
+        deprecate :DeamonThreadCount, :none, 2026, 8
+        deprecate :DeamonThreadCount=, :none, 2026, 8
 
         def initialize(threadcount=nil, threadactive=nil, deamonthreadcount=nil, daemonthreadcount=nil)
           @ThreadCount = threadcount

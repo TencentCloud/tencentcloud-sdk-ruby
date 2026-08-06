@@ -1579,7 +1579,7 @@ module TencentCloud
         # @type ActivityId: Integer
         # @param ReadOnlyGroupId: <p>只读组ID。</p>
         # @type ReadOnlyGroupId: String
-        # @param TagList: <p>实例需要绑定的Tag信息，默认为空；可以通过调用 <a href="https://cloud.tencent.com/document/api/651/35316">DescribeTags</a> 返回值中的 Tags 字段来获取。</p>
+        # @param TagList: <p>实例需要绑定的Tag信息，默认为空；可以通过调用 <a href="https://cloud.tencent.com/document/api/651/35316">DescribeTags</a> 返回值中的 Tags 字段来获取。</p><p>当前字段未完整支持多个tag形式，不推荐使用，建议使用新字段Tags</p>
         # @type TagList: :class:`Tencentcloud::Postgres.v20170312.models.Tag`
         # @param SecurityGroupIds: <p>实例所属安全组，该参数可以通过调用 <a href="https://cloud.tencent.com/document/api/215/15808">DescribeSecurityGroups</a> 的返回值中的sgId字段来获取。若不指定该参数，则绑定默认安全组。</p>
         # @type SecurityGroupIds: Array
@@ -1593,13 +1593,15 @@ module TencentCloud
         # @type DedicatedClusterId: String
         # @param DeletionProtection: <p>实例是否开启删除保护: true-开启删除保护；false-关闭删除保护。</p>
         # @type DeletionProtection: Boolean
+        # @param Tags: <p>实例需要绑定的Tag信息，默认为空；可以通过调用 <a href="https://cloud.tencent.com/document/api/651/35316">DescribeTags</a> 返回值中的 Tags 字段来获取。</p>
+        # @type Tags: Array
 
-        attr_accessor :Zone, :MasterDBInstanceId, :SpecCode, :Storage, :InstanceCount, :Period, :VpcId, :SubnetId, :InstanceChargeType, :AutoVoucher, :VoucherIds, :AutoRenewFlag, :ProjectId, :ActivityId, :ReadOnlyGroupId, :TagList, :SecurityGroupIds, :NeedSupportIpv6, :Name, :DBVersion, :DedicatedClusterId, :DeletionProtection
+        attr_accessor :Zone, :MasterDBInstanceId, :SpecCode, :Storage, :InstanceCount, :Period, :VpcId, :SubnetId, :InstanceChargeType, :AutoVoucher, :VoucherIds, :AutoRenewFlag, :ProjectId, :ActivityId, :ReadOnlyGroupId, :TagList, :SecurityGroupIds, :NeedSupportIpv6, :Name, :DBVersion, :DedicatedClusterId, :DeletionProtection, :Tags
         extend Gem::Deprecate
-        deprecate :DBVersion, :none, 2026, 7
-        deprecate :DBVersion=, :none, 2026, 7
+        deprecate :DBVersion, :none, 2026, 8
+        deprecate :DBVersion=, :none, 2026, 8
 
-        def initialize(zone=nil, masterdbinstanceid=nil, speccode=nil, storage=nil, instancecount=nil, period=nil, vpcid=nil, subnetid=nil, instancechargetype=nil, autovoucher=nil, voucherids=nil, autorenewflag=nil, projectid=nil, activityid=nil, readonlygroupid=nil, taglist=nil, securitygroupids=nil, needsupportipv6=nil, name=nil, dbversion=nil, dedicatedclusterid=nil, deletionprotection=nil)
+        def initialize(zone=nil, masterdbinstanceid=nil, speccode=nil, storage=nil, instancecount=nil, period=nil, vpcid=nil, subnetid=nil, instancechargetype=nil, autovoucher=nil, voucherids=nil, autorenewflag=nil, projectid=nil, activityid=nil, readonlygroupid=nil, taglist=nil, securitygroupids=nil, needsupportipv6=nil, name=nil, dbversion=nil, dedicatedclusterid=nil, deletionprotection=nil, tags=nil)
           @Zone = zone
           @MasterDBInstanceId = masterdbinstanceid
           @SpecCode = speccode
@@ -1622,6 +1624,7 @@ module TencentCloud
           @DBVersion = dbversion
           @DedicatedClusterId = dedicatedclusterid
           @DeletionProtection = deletionprotection
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -1650,6 +1653,14 @@ module TencentCloud
           @DBVersion = params['DBVersion']
           @DedicatedClusterId = params['DedicatedClusterId']
           @DeletionProtection = params['DeletionProtection']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -5205,21 +5216,21 @@ module TencentCloud
 
       # DescribeTasks请求参数结构体
       class DescribeTasksRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 按照任务ID进行查询。其余云API中返回的FlowId和TaskId等价。
+        # @param TaskId: <p>按照任务ID进行查询。其余云API中返回的FlowId和TaskId等价。</p>
         # @type TaskId: Integer
-        # @param DBInstanceId: 按照数据库实例ID进行查询。
+        # @param DBInstanceId: <p>按照数据库实例ID进行查询。</p>
         # @type DBInstanceId: String
-        # @param MinStartTime: 任务的最早开始时间，形如2024-08-23 00:00:00,默认只展示180天内的数据。
+        # @param MinStartTime: <p>任务的最早开始时间，形如2024-08-23 00:00:00,默认只展示180天内的数据。</p>
         # @type MinStartTime: String
-        # @param MaxStartTime: 任务的最晚开始时间，形如2024-08-23 00:00:00，默认为当前时间。
+        # @param MaxStartTime: <p>任务的最晚开始时间，形如2024-08-23 00:00:00，默认为当前时间。</p>
         # @type MaxStartTime: String
-        # @param Limit: 每页显示数量，取值范围为1-100，默认为返回20条。
+        # @param Limit: <p>每页显示数量，取值范围为1-100，默认为返回20条。</p>
         # @type Limit: Integer
-        # @param Offset: 数据偏移量，从0开始。
+        # @param Offset: <p>数据偏移量，从0开始。</p>
         # @type Offset: Integer
-        # @param OrderBy: 排序字段，支持StartTime,EndTime，默认为StartTime。
+        # @param OrderBy: <p>排序字段，支持StartTime,EndTime，默认为StartTime。</p>
         # @type OrderBy: String
-        # @param OrderByType: 排序方式，包括升序：asc，降序：desc，默认为desc。
+        # @param OrderByType: <p>排序方式，包括升序：asc，降序：desc，默认为desc。</p>
         # @type OrderByType: String
 
         attr_accessor :TaskId, :DBInstanceId, :MinStartTime, :MaxStartTime, :Limit, :Offset, :OrderBy, :OrderByType
@@ -5249,9 +5260,9 @@ module TencentCloud
 
       # DescribeTasks返回参数结构体
       class DescribeTasksResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 查询到的任务数量
+        # @param TotalCount: <p>查询到的任务数量</p>
         # @type TotalCount: Integer
-        # @param TaskSet: 任务信息列表
+        # @param TaskSet: <p>任务信息列表</p>
         # @type TaskSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5833,8 +5844,8 @@ module TencentCloud
 
         attr_accessor :Storage, :Memory, :DBInstanceId, :InstanceChargeType, :Cpu
         extend Gem::Deprecate
-        deprecate :InstanceChargeType, :none, 2026, 7
-        deprecate :InstanceChargeType=, :none, 2026, 7
+        deprecate :InstanceChargeType, :none, 2026, 8
+        deprecate :InstanceChargeType=, :none, 2026, 8
 
         def initialize(storage=nil, memory=nil, dbinstanceid=nil, instancechargetype=nil, cpu=nil)
           @Storage = storage
@@ -6819,37 +6830,32 @@ module TencentCloud
 
       # ModifyDBInstanceSpec请求参数结构体
       class ModifyDBInstanceSpecRequest < TencentCloud::Common::AbstractModel
-        # @param DBInstanceId: 实例ID，形如：postgres-6bwgamo3。可通过[DescribeDBInstances](https://cloud.tencent.com/document/api/409/16773)接口获取
+        # @param DBInstanceId: <p>实例ID，形如：postgres-6bwgamo3。可通过<a href="https://cloud.tencent.com/document/api/409/16773">DescribeDBInstances</a>接口获取</p>
         # @type DBInstanceId: String
-        # @param Memory: 修改后的实例内存大小，单位GiB。
+        # @param Memory: <p>修改后的实例内存大小，单位GB。</p>
         # @type Memory: Integer
-        # @param Storage: 修改后的实例磁盘大小，单位GiB。该参数的设置步长为10。
+        # @param Storage: <p>修改后的实例磁盘大小，单位GB。该参数的设置步长为10。</p>
         # @type Storage: Integer
-        # @param AutoVoucher: 是否自动使用代金券：
-        # <li>0：否</li>
-        # <li>1：是</li>
-        # 默认值：0
+        # @param AutoVoucher: <p>是否自动使用代金券：</p><li>0：否</li><li>1：是</li>默认值：0
         # @type AutoVoucher: Integer
-        # @param VoucherIds: 代金券ID列表，目前仅支持指定一张代金券。
+        # @param VoucherIds: <p>代金券ID列表，目前仅支持指定一张代金券。</p>
         # @type VoucherIds: Array
-        # @param ActivityId: 活动ID。
+        # @param ActivityId: <p>活动ID。</p>
         # @type ActivityId: Integer
-        # @param SwitchTag: 指定实例配置完成变更后的切换时间。
-        # <li>0：立即切换 </li>
-        # <li>1：指定时间切换</li>
-        # <li>2：维护时间窗口内</li>切换
-        # 默认值：0
+        # @param SwitchTag: <p>指定实例配置完成变更后的切换时间。</p><li>0：立即切换 </li><li>1：指定时间切换</li><li>2：维护时间窗口内</li>切换默认值：0
         # @type SwitchTag: Integer
-        # @param SwitchStartTime: 切换开始时间，时间格式：HH:MM:SS，例如：01:00:00。当SwitchTag为0或2时，该参数失效。
+        # @param SwitchStartTime: <p>切换开始时间，时间格式：HH:MM:SS，例如：01:00:00。当SwitchTag为0或2时，该参数失效。</p>
         # @type SwitchStartTime: String
-        # @param SwitchEndTime: 切换截止时间，时间格式：HH:MM:SS，例如：01:30:00。当SwitchTag为0或2时，该参数失效。
+        # @param SwitchEndTime: <p>切换截止时间，时间格式：HH:MM:SS，例如：01:30:00。当SwitchTag为0或2时，该参数失效。</p>
         # @type SwitchEndTime: String
-        # @param Cpu: 修改后的实例CPU大小，单位Core。不填写该参数时，默认根据Memory确定Cpu大小。如Memory为2，支持的规格有1核2GiB，则不传入Cpu时，Cpu默认为1。
+        # @param Cpu: <p>修改后的实例CPU大小，单位Core。不填写该参数时，默认根据Memory确定Cpu大小。如Memory为2，支持的规格有1核2GB，则不传入Cpu时，Cpu默认为1。</p>
         # @type Cpu: Integer
+        # @param SyncModifyParams: <p>变配时同步修改的参数列表</p>
+        # @type SyncModifyParams: Array
 
-        attr_accessor :DBInstanceId, :Memory, :Storage, :AutoVoucher, :VoucherIds, :ActivityId, :SwitchTag, :SwitchStartTime, :SwitchEndTime, :Cpu
+        attr_accessor :DBInstanceId, :Memory, :Storage, :AutoVoucher, :VoucherIds, :ActivityId, :SwitchTag, :SwitchStartTime, :SwitchEndTime, :Cpu, :SyncModifyParams
 
-        def initialize(dbinstanceid=nil, memory=nil, storage=nil, autovoucher=nil, voucherids=nil, activityid=nil, switchtag=nil, switchstarttime=nil, switchendtime=nil, cpu=nil)
+        def initialize(dbinstanceid=nil, memory=nil, storage=nil, autovoucher=nil, voucherids=nil, activityid=nil, switchtag=nil, switchstarttime=nil, switchendtime=nil, cpu=nil, syncmodifyparams=nil)
           @DBInstanceId = dbinstanceid
           @Memory = memory
           @Storage = storage
@@ -6860,6 +6866,7 @@ module TencentCloud
           @SwitchStartTime = switchstarttime
           @SwitchEndTime = switchendtime
           @Cpu = cpu
+          @SyncModifyParams = syncmodifyparams
         end
 
         def deserialize(params)
@@ -6873,14 +6880,22 @@ module TencentCloud
           @SwitchStartTime = params['SwitchStartTime']
           @SwitchEndTime = params['SwitchEndTime']
           @Cpu = params['Cpu']
+          unless params['SyncModifyParams'].nil?
+            @SyncModifyParams = []
+            params['SyncModifyParams'].each do |i|
+              paramentry_tmp = ParamEntry.new
+              paramentry_tmp.deserialize(i)
+              @SyncModifyParams << paramentry_tmp
+            end
+          end
         end
       end
 
       # ModifyDBInstanceSpec返回参数结构体
       class ModifyDBInstanceSpecResponse < TencentCloud::Common::AbstractModel
-        # @param DealName: 订单号。
+        # @param DealName: <p>订单号。</p>
         # @type DealName: String
-        # @param BillId: 冻结流水号。
+        # @param BillId: <p>冻结流水号。</p>
         # @type BillId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

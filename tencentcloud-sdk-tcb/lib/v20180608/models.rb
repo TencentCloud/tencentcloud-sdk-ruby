@@ -801,6 +801,38 @@ module TencentCloud
         end
       end
 
+      # BuildLog
+      class CloudBaseRunBuildLog < TencentCloud::Common::AbstractModel
+        # @param Total: 总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param Delivered: 触达ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Delivered: Integer
+        # @param Text: 文档
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: String
+        # @param More: 是否更多
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type More: Boolean
+
+        attr_accessor :Total, :Delivered, :Text, :More
+
+        def initialize(total=nil, delivered=nil, text=nil, more=nil)
+          @Total = total
+          @Delivered = delivered
+          @Text = text
+          @More = more
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          @Delivered = params['Delivered']
+          @Text = params['Text']
+          @More = params['More']
+        end
+      end
+
       # cls日志信息
       class ClsInfo < TencentCloud::Common::AbstractModel
         # @param ClsRegion: cls所属地域
@@ -3199,6 +3231,62 @@ module TencentCloud
             end
           end
           @OutDate = params['OutDate']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCloudBaseRunBuildLog请求参数结构体
+      class DescribeCloudBaseRunBuildLogRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境ID
+        # @type EnvId: String
+        # @param ServiceName: 服务名称
+        # @type ServiceName: String
+        # @param ServiceVersion: 版本名称
+        # @type ServiceVersion: String
+        # @param BuildId: 构建ID
+        # @type BuildId: Integer
+        # @param Start: 偏移记录
+        # @type Start: Integer
+
+        attr_accessor :EnvId, :ServiceName, :ServiceVersion, :BuildId, :Start
+
+        def initialize(envid=nil, servicename=nil, serviceversion=nil, buildid=nil, start=nil)
+          @EnvId = envid
+          @ServiceName = servicename
+          @ServiceVersion = serviceversion
+          @BuildId = buildid
+          @Start = start
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @ServiceName = params['ServiceName']
+          @ServiceVersion = params['ServiceVersion']
+          @BuildId = params['BuildId']
+          @Start = params['Start']
+        end
+      end
+
+      # DescribeCloudBaseRunBuildLog返回参数结构体
+      class DescribeCloudBaseRunBuildLogResponse < TencentCloud::Common::AbstractModel
+        # @param Log: 日志
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Log: :class:`Tencentcloud::Tcb.v20180608.models.CloudBaseRunBuildLog`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Log, :RequestId
+
+        def initialize(log=nil, requestid=nil)
+          @Log = log
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Log'].nil?
+            @Log = CloudBaseRunBuildLog.new
+            @Log.deserialize(params['Log'])
+          end
           @RequestId = params['RequestId']
         end
       end

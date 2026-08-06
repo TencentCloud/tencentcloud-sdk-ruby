@@ -1293,6 +1293,76 @@ module TencentCloud
         end
       end
 
+      # 配置规则资源评估结果
+      class ConfigRuleResourceEvaluationResult < TencentCloud::Common::AbstractModel
+        # @param RuleId: 规则ID
+        # @type RuleId: String
+        # @param RuleName: 规则名称
+        # @type RuleName: String
+        # @param RuleIdentifier: 规则身份标识
+        # @type RuleIdentifier: String
+        # @param RuleDescription: 规则描述
+        # @type RuleDescription: String
+        # @param RuleOwnerId: 规则归属账号
+        # @type RuleOwnerId: Integer
+        # @param RuleRiskLevel: 规则风险等级
+        # @type RuleRiskLevel: Integer
+        # @param ResourceId: 资源ID
+        # @type ResourceId: String
+        # @param ResourceType: 资源类型
+        # @type ResourceType: String
+        # @param ResourceName: 资源名称
+        # @type ResourceName: String
+        # @param ResourceRegion: 资源地域
+        # @type ResourceRegion: String
+        # @param ResourceTags: 资源标签
+        # @type ResourceTags: Array
+        # @param Annotation: 合规详情
+        # @type Annotation: :class:`Tencentcloud::Config.v20220802.models.Annotation`
+
+        attr_accessor :RuleId, :RuleName, :RuleIdentifier, :RuleDescription, :RuleOwnerId, :RuleRiskLevel, :ResourceId, :ResourceType, :ResourceName, :ResourceRegion, :ResourceTags, :Annotation
+
+        def initialize(ruleid=nil, rulename=nil, ruleidentifier=nil, ruledescription=nil, ruleownerid=nil, rulerisklevel=nil, resourceid=nil, resourcetype=nil, resourcename=nil, resourceregion=nil, resourcetags=nil, annotation=nil)
+          @RuleId = ruleid
+          @RuleName = rulename
+          @RuleIdentifier = ruleidentifier
+          @RuleDescription = ruledescription
+          @RuleOwnerId = ruleownerid
+          @RuleRiskLevel = rulerisklevel
+          @ResourceId = resourceid
+          @ResourceType = resourcetype
+          @ResourceName = resourcename
+          @ResourceRegion = resourceregion
+          @ResourceTags = resourcetags
+          @Annotation = annotation
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+          @RuleName = params['RuleName']
+          @RuleIdentifier = params['RuleIdentifier']
+          @RuleDescription = params['RuleDescription']
+          @RuleOwnerId = params['RuleOwnerId']
+          @RuleRiskLevel = params['RuleRiskLevel']
+          @ResourceId = params['ResourceId']
+          @ResourceType = params['ResourceType']
+          @ResourceName = params['ResourceName']
+          @ResourceRegion = params['ResourceRegion']
+          unless params['ResourceTags'].nil?
+            @ResourceTags = []
+            params['ResourceTags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @ResourceTags << tag_tmp
+            end
+          end
+          unless params['Annotation'].nil?
+            @Annotation = Annotation.new
+            @Annotation.deserialize(params['Annotation'])
+          end
+        end
+      end
+
       # 规则编号信息
       class Control < TencentCloud::Common::AbstractModel
         # @param Id: <p>规则编号</p>
@@ -2799,6 +2869,61 @@ module TencentCloud
         end
       end
 
+      # ListAggregateConfigRuleResourceEvaluationResults请求参数结构体
+      class ListAggregateConfigRuleResourceEvaluationResultsRequest < TencentCloud::Common::AbstractModel
+        # @param AccountGroupId: <p>账号组Id</p>
+        # @type AccountGroupId: String
+        # @param Limit: <p>返回数量，最大值1000，不填写返回全部</p>
+        # @type Limit: Integer
+        # @param Offset: <p>偏移量，默认为0</p>
+        # @type Offset: Integer
+
+        attr_accessor :AccountGroupId, :Limit, :Offset
+
+        def initialize(accountgroupid=nil, limit=nil, offset=nil)
+          @AccountGroupId = accountgroupid
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @AccountGroupId = params['AccountGroupId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # ListAggregateConfigRuleResourceEvaluationResults返回参数结构体
+      class ListAggregateConfigRuleResourceEvaluationResultsResponse < TencentCloud::Common::AbstractModel
+        # @param Items: <p>配置规则资源评估结果列表</p>
+        # @type Items: Array
+        # @param TotalCount: <p>总数</p>
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Items, :TotalCount, :RequestId
+
+        def initialize(items=nil, totalcount=nil, requestid=nil)
+          @Items = items
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              configruleresourceevaluationresult_tmp = ConfigRuleResourceEvaluationResult.new
+              configruleresourceevaluationresult_tmp.deserialize(i)
+              @Items << configruleresourceevaluationresult_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ListAggregateConfigRules请求参数结构体
       class ListAggregateConfigRulesRequest < TencentCloud::Common::AbstractModel
         # @param Limit: <p>每页限制</p>
@@ -3200,6 +3325,57 @@ module TencentCloud
               @Items << evaluationresult_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ListConfigRuleResourceEvaluationResults请求参数结构体
+      class ListConfigRuleResourceEvaluationResultsRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: <p>返回数量，最大值1000，不填写返回全部</p>
+        # @type Limit: Integer
+        # @param Offset: <p>偏移量，默认为0</p>
+        # @type Offset: Integer
+
+        attr_accessor :Limit, :Offset
+
+        def initialize(limit=nil, offset=nil)
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # ListConfigRuleResourceEvaluationResults返回参数结构体
+      class ListConfigRuleResourceEvaluationResultsResponse < TencentCloud::Common::AbstractModel
+        # @param Items: <p>配置规则资源评估结果列表</p>
+        # @type Items: Array
+        # @param TotalCount: <p>总数</p>
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Items, :TotalCount, :RequestId
+
+        def initialize(items=nil, totalcount=nil, requestid=nil)
+          @Items = items
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              configruleresourceevaluationresult_tmp = ConfigRuleResourceEvaluationResult.new
+              configruleresourceevaluationresult_tmp.deserialize(i)
+              @Items << configruleresourceevaluationresult_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end

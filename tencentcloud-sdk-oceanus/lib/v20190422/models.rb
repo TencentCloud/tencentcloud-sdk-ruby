@@ -2142,23 +2142,17 @@ module TencentCloud
 
       # DescribeClusters请求参数结构体
       class DescribeClustersRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterIds: 按照一个或者多个集群 ID 查询，每次请求的集群上限为 100
+        # @param ClusterIds: <p>按照一个或者多个集群 ID 查询，每次请求的集群上限为 100</p>
         # @type ClusterIds: Array
-        # @param Offset: 偏移量，默认 0
+        # @param Offset: <p>偏移量，默认 0</p>
         # @type Offset: Integer
-        # @param Limit: 请求的集群数量，默认 20，最大值 100
+        # @param Limit: <p>请求的集群数量，默认 20，最大值 100</p>
         # @type Limit: Integer
-        # @param OrderType: 集群信息结果排序规则，1 按时间降序，2 按照时间升序，3  按照状态排序
+        # @param OrderType: <p>集群信息结果排序规则，1 按时间降序，2 按照时间升序，3  按照状态排序</p>
         # @type OrderType: Integer
-        # @param Filters: 过滤规则
-
-        # - Name
-        #     按照集群的名字进行模糊查询。例如：测试
-        #     类型： String
-        #     必选： 否
-
+        # @param Filters: <p>过滤规则</p><ul><li>Name<br>  按照集群的名字进行模糊查询。例如：测试<br>  类型： String<br>  必选： 否</li></ul>
         # @type Filters: Array
-        # @param WorkSpaceId: 工作空间 SerialId
+        # @param WorkSpaceId: <p>工作空间 SerialId</p>
         # @type WorkSpaceId: String
 
         attr_accessor :ClusterIds, :Offset, :Limit, :OrderType, :Filters, :WorkSpaceId
@@ -2191,9 +2185,9 @@ module TencentCloud
 
       # DescribeClusters返回参数结构体
       class DescribeClustersResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 集群总数
+        # @param TotalCount: <p>集群总数</p>
         # @type TotalCount: Integer
-        # @param ClusterSet: 集群列表
+        # @param ClusterSet: <p>集群列表</p>
         # @type ClusterSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2697,19 +2691,19 @@ module TencentCloud
 
       # DescribeJobs请求参数结构体
       class DescribeJobsRequest < TencentCloud::Common::AbstractModel
-        # @param JobIds: 按照一个或者多个作业ID查询。作业ID形如：cql-11112222，每次请求的作业上限为100。参数不支持同时指定JobIds和Filters。
+        # @param JobIds: <p>按照一个或者多个作业ID查询。作业ID形如：cql-11112222，每次请求的作业上限为100。参数不支持同时指定JobIds和Filters。</p>
         # @type JobIds: Array
-        # @param Filters: 过滤条件，支持的 Filter.Name 为：作业名 Name、作业状态 Status、所属集群 ClusterId、作业id JobId、集群名称 ClusterName。 每次请求的 Filters 个数的上限为 5，Filter.Values 的个数上限为 5。参数不支持同时指定 JobIds 和 Filters。
+        # @param Filters: <p>过滤条件，支持的 Filter.Name 为：作业名 Name、作业状态 Status、所属集群 ClusterId、作业id JobId、集群名称 ClusterName。 每次请求的 Filters 个数的上限为 5，Filter.Values 的个数上限为 5。参数不支持同时指定 JobIds 和 Filters。</p>
         # @type Filters: Array
-        # @param Offset: 偏移量，默认为0
+        # @param Offset: <p>偏移量，默认为0</p>
         # @type Offset: Integer
-        # @param Limit: 分页大小，默认为20，最大值为100
+        # @param Limit: <p>分页大小，默认为20，最大值为100</p>
         # @type Limit: Integer
-        # @param WorkSpaceId: 工作空间 SerialId
+        # @param WorkSpaceId: <p>工作空间 SerialId</p>
         # @type WorkSpaceId: String
-        # @param ExtraResult: 查询额外的作业信息,例如 JobEventInfo
+        # @param ExtraResult: <p>查询额外的作业信息,例如 JobEventInfo</p>
         # @type ExtraResult: Array
-        # @param ConnectorOptions: 查询引用connector
+        # @param ConnectorOptions: <p>查询引用connector</p>
         # @type ConnectorOptions: String
 
         attr_accessor :JobIds, :Filters, :Offset, :Limit, :WorkSpaceId, :ExtraResult, :ConnectorOptions
@@ -2744,9 +2738,9 @@ module TencentCloud
 
       # DescribeJobs返回参数结构体
       class DescribeJobsResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 作业总数
+        # @param TotalCount: <p>作业总数</p>
         # @type TotalCount: Integer
-        # @param JobSet: 作业列表
+        # @param JobSet: <p>作业列表</p>
         # @type JobSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

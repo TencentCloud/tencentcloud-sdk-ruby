@@ -2861,6 +2861,42 @@ module TencentCloud
         end
       end
 
+      # ModifyDBCustomClusterAttributes请求参数结构体
+      class ModifyDBCustomClusterAttributesRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: <p>集群ID</p><p>参数格式：dbcc-hj7gab15</p>
+        # @type ClusterId: String
+        # @param DeletionProtection: <p>是否启用集群删除保护</p><p>枚举值：</p><ul><li>true： 启用</li><li>false： 不启用</li></ul>
+        # @type DeletionProtection: Boolean
+
+        attr_accessor :ClusterId, :DeletionProtection
+
+        def initialize(clusterid=nil, deletionprotection=nil)
+          @ClusterId = clusterid
+          @DeletionProtection = deletionprotection
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @DeletionProtection = params['DeletionProtection']
+        end
+      end
+
+      # ModifyDBCustomClusterAttributes返回参数结构体
+      class ModifyDBCustomClusterAttributesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyDBCustomClusterNodeConfig请求参数结构体
       class ModifyDBCustomClusterNodeConfigRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: <p>目标集群 ID</p>

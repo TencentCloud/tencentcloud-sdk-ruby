@@ -241,12 +241,16 @@ module TencentCloud
         # @type RiskLevel: Integer
         # @param RiskLabels: <p>风险标签</p>
         # @type RiskLabels: Array
+        # @param RiskScore: <p>综合风险分数。</p><p>取值范围：[1, 1000]</p><p>数值越大，风险越大。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RiskScore: Integer
 
-        attr_accessor :RiskLevel, :RiskLabels
+        attr_accessor :RiskLevel, :RiskLabels, :RiskScore
 
-        def initialize(risklevel=nil, risklabels=nil)
+        def initialize(risklevel=nil, risklabels=nil, riskscore=nil)
           @RiskLevel = risklevel
           @RiskLabels = risklabels
+          @RiskScore = riskscore
         end
 
         def deserialize(params)
@@ -259,6 +263,7 @@ module TencentCloud
               @RiskLabels << risklabel_tmp
             end
           end
+          @RiskScore = params['RiskScore']
         end
       end
 
@@ -300,10 +305,14 @@ module TencentCloud
         # @type SystemVersion: String
         # @param SdkBuildVersion: <p>SDK版本</p>
         # @type SdkBuildVersion: String
+        # @param SignToken: <p>验签token，验签功能启用请联系我们。</p>
+        # @type SignToken: String
+        # @param TokenTime: <p>token生成时间戳，毫秒级。</p>
+        # @type TokenTime: String
 
-        attr_accessor :DeviceId, :AppVersion, :Brand, :ClientIp, :Model, :NetworkType, :PackageName, :Platform, :SystemVersion, :SdkBuildVersion
+        attr_accessor :DeviceId, :AppVersion, :Brand, :ClientIp, :Model, :NetworkType, :PackageName, :Platform, :SystemVersion, :SdkBuildVersion, :SignToken, :TokenTime
 
-        def initialize(deviceid=nil, appversion=nil, brand=nil, clientip=nil, model=nil, networktype=nil, packagename=nil, platform=nil, systemversion=nil, sdkbuildversion=nil)
+        def initialize(deviceid=nil, appversion=nil, brand=nil, clientip=nil, model=nil, networktype=nil, packagename=nil, platform=nil, systemversion=nil, sdkbuildversion=nil, signtoken=nil, tokentime=nil)
           @DeviceId = deviceid
           @AppVersion = appversion
           @Brand = brand
@@ -314,6 +323,8 @@ module TencentCloud
           @Platform = platform
           @SystemVersion = systemversion
           @SdkBuildVersion = sdkbuildversion
+          @SignToken = signtoken
+          @TokenTime = tokentime
         end
 
         def deserialize(params)
@@ -327,6 +338,8 @@ module TencentCloud
           @Platform = params['Platform']
           @SystemVersion = params['SystemVersion']
           @SdkBuildVersion = params['SdkBuildVersion']
+          @SignToken = params['SignToken']
+          @TokenTime = params['TokenTime']
         end
       end
 

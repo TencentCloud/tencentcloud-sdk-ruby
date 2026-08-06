@@ -797,6 +797,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 账号组查询配置规则资源评估结果列表
+
+        # @param request: Request instance for ListAggregateConfigRuleResourceEvaluationResults.
+        # @type request: :class:`Tencentcloud::config::V20220802::ListAggregateConfigRuleResourceEvaluationResultsRequest`
+        # @rtype: :class:`Tencentcloud::config::V20220802::ListAggregateConfigRuleResourceEvaluationResultsResponse`
+        def ListAggregateConfigRuleResourceEvaluationResults(request)
+          body = send_request('ListAggregateConfigRuleResourceEvaluationResults', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListAggregateConfigRuleResourceEvaluationResultsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 账号组获取规则列表
 
         # @param request: Request instance for ListAggregateConfigRules.
@@ -927,6 +951,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ListConfigRuleEvaluationResultsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询配置规则资源评估结果列表
+
+        # @param request: Request instance for ListConfigRuleResourceEvaluationResults.
+        # @type request: :class:`Tencentcloud::config::V20220802::ListConfigRuleResourceEvaluationResultsRequest`
+        # @rtype: :class:`Tencentcloud::config::V20220802::ListConfigRuleResourceEvaluationResultsResponse`
+        def ListConfigRuleResourceEvaluationResults(request)
+          body = send_request('ListConfigRuleResourceEvaluationResults', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListConfigRuleResourceEvaluationResultsResponse.new
             model.deserialize(response['Response'])
             model
           else

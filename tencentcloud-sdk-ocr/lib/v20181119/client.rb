@@ -398,32 +398,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口支持数学试题内容的识别和结构化输出，包括通用文本解析和小学/初中/高中数学公式解析能力（包括91种题型，180种符号），公式返回格式为 Latex 格式文本。
-
-        # 默认接口请求频率限制：5次/秒。
-
-        # @param request: Request instance for EduPaperOCR.
-        # @type request: :class:`Tencentcloud::ocr::V20181119::EduPaperOCRRequest`
-        # @rtype: :class:`Tencentcloud::ocr::V20181119::EduPaperOCRResponse`
-        def EduPaperOCR(request)
-          body = send_request('EduPaperOCR', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = EduPaperOCRResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 本接口支持图像英文文字的检测和识别，返回文字框位置与文字内容。支持多场景、任意版面下的英文、字母、数字和常见字符的识别，同时覆盖英文印刷体和英文手写体识别。
 
         # 默认接口请求频率限制：10次/秒。
@@ -596,87 +570,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ExtractDocMultiResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 本接口当前仅支持复杂磅单收发货单抽取，更多强推理场景支持定制咨询。点击[立即体验](https://ocrdemo.cloud.tencent.com/?action=ExtractDocMultiPro)。
-
-        # 默认接口请求频率限制：5次/秒。
-
-        # @param request: Request instance for ExtractDocMultiPro.
-        # @type request: :class:`Tencentcloud::ocr::V20181119::ExtractDocMultiProRequest`
-        # @rtype: :class:`Tencentcloud::ocr::V20181119::ExtractDocMultiProResponse`
-        def ExtractDocMultiPro(request)
-          body = send_request('ExtractDocMultiPro', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = ExtractDocMultiProResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # <b>此接口不再进行服务升级，建议您使用识别能力更强、服务性能更优的<a href="https://cloud.tencent.com/document/product/866/90802">通用票据识别（高级版）</a>。</b>
-        # 本接口支持机票行程单关键字段的识别，包括旅客姓名、有效身份证件号码、电子客票号码、验证码、填开单位、其他税费、燃油附加费、民航发展基金、保险费、销售单位代号、始发地、目的地、航班号、时间、日期、座位等级、承运人、发票消费类型、票价、合计金额、填开日期、国内国际标签、印刷序号、客票级别/类别、客票生效日期、有效期截止日期、免费行李等字段，支持航班信息多行明细输出。
-
-        # 默认接口请求频率限制：5次/秒。
-
-        # @param request: Request instance for FlightInvoiceOCR.
-        # @type request: :class:`Tencentcloud::ocr::V20181119::FlightInvoiceOCRRequest`
-        # @rtype: :class:`Tencentcloud::ocr::V20181119::FlightInvoiceOCRResponse`
-        def FlightInvoiceOCR(request)
-          body = send_request('FlightInvoiceOCR', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = FlightInvoiceOCRResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 接口下线
-
-        # 本接口支持识别主流初高中数学符号和公式，返回公式的 Latex 格式文本。
-
-        # 默认接口请求频率限制：5次/秒。
-
-        # @param request: Request instance for FormulaOCR.
-        # @type request: :class:`Tencentcloud::ocr::V20181119::FormulaOCRRequest`
-        # @rtype: :class:`Tencentcloud::ocr::V20181119::FormulaOCRResponse`
-        def FormulaOCR(request)
-          body = send_request('FormulaOCR', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = FormulaOCRResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1176,32 +1069,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ImageEnhancementResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 本接口支持病案首页、费用清单、结算单、医疗发票四种保险理赔单据的文本识别和结构化输出。
-
-        # 默认接口请求频率限制：1次/秒。
-
-        # @param request: Request instance for InsuranceBillOCR.
-        # @type request: :class:`Tencentcloud::ocr::V20181119::InsuranceBillOCRRequest`
-        # @rtype: :class:`Tencentcloud::ocr::V20181119::InsuranceBillOCRResponse`
-        def InsuranceBillOCR(request)
-          body = send_request('InsuranceBillOCR', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = InsuranceBillOCRResponse.new
             model.deserialize(response['Response'])
             model
           else

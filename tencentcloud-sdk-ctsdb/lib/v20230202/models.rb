@@ -67,10 +67,10 @@ module TencentCloud
 
         attr_accessor :AppID, :ClusterID, :AccountID, :Name, :Region, :Zones, :Networks, :Spec, :Status, :Period, :CreatedAt, :UpdatedAt, :Tenant, :Tags, :Security
         extend Gem::Deprecate
-        deprecate :Networks, :none, 2026, 5
-        deprecate :Networks=, :none, 2026, 5
-        deprecate :Spec, :none, 2026, 5
-        deprecate :Spec=, :none, 2026, 5
+        deprecate :Networks, :none, 2026, 8
+        deprecate :Networks=, :none, 2026, 8
+        deprecate :Spec, :none, 2026, 8
+        deprecate :Spec=, :none, 2026, 8
 
         def initialize(appid=nil, clusterid=nil, accountid=nil, name=nil, region=nil, zones=nil, networks=nil, spec=nil, status=nil, period=nil, createdat=nil, updatedat=nil, tenant=nil, tags=nil, security=nil)
           @AppID = appid
@@ -325,34 +325,37 @@ module TencentCloud
 
       # 数据库相关信息
       class Database < TencentCloud::Common::AbstractModel
-        # @param ClusterID: 实例ID
+        # @param ClusterID: <p>实例ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterID: String
-        # @param Name: 数据库名
+        # @param Name: <p>数据库名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
-        # @param CoolDownInDays: 降冷时间（天）
+        # @param CoolDownInDays: <p>降冷时间（天）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CoolDownInDays: Integer
-        # @param RetentionInDays: 数据保留时间（天）
+        # @param RetentionInDays: <p>数据保留时间（天）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RetentionInDays: Integer
-        # @param Remark: 备注
+        # @param Remark: <p>备注</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
-        # @param Status: 状态：0: 资源初始化中， 1: 资源创建中， 2: 正常状态， 3: 资源删除中， 4: 资源已删除， 5: 资源禁用中， 6: 资源已禁用， 7: 资源异常，需要人工操作
+        # @param Status: <p>状态：0: 资源初始化中， 1: 资源创建中， 2: 正常状态， 3: 资源删除中， 4: 资源已删除， 5: 资源禁用中， 6: 资源已禁用， 7: 资源异常，需要人工操作</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
-        # @param CreatedAt: 创建时间
+        # @param CreatedAt: <p>创建时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedAt: String
-        # @param UpdatedAt: 最后修改时间
+        # @param UpdatedAt: <p>最后修改时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdatedAt: String
+        # @param CoolDownTime: <p>降冷开启时间</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CoolDownTime: String
 
-        attr_accessor :ClusterID, :Name, :CoolDownInDays, :RetentionInDays, :Remark, :Status, :CreatedAt, :UpdatedAt
+        attr_accessor :ClusterID, :Name, :CoolDownInDays, :RetentionInDays, :Remark, :Status, :CreatedAt, :UpdatedAt, :CoolDownTime
 
-        def initialize(clusterid=nil, name=nil, cooldownindays=nil, retentionindays=nil, remark=nil, status=nil, createdat=nil, updatedat=nil)
+        def initialize(clusterid=nil, name=nil, cooldownindays=nil, retentionindays=nil, remark=nil, status=nil, createdat=nil, updatedat=nil, cooldowntime=nil)
           @ClusterID = clusterid
           @Name = name
           @CoolDownInDays = cooldownindays
@@ -361,6 +364,7 @@ module TencentCloud
           @Status = status
           @CreatedAt = createdat
           @UpdatedAt = updatedat
+          @CoolDownTime = cooldowntime
         end
 
         def deserialize(params)
@@ -372,6 +376,7 @@ module TencentCloud
           @Status = params['Status']
           @CreatedAt = params['CreatedAt']
           @UpdatedAt = params['UpdatedAt']
+          @CoolDownTime = params['CoolDownTime']
         end
       end
 

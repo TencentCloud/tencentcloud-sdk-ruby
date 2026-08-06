@@ -5814,26 +5814,30 @@ module TencentCloud
 
       # 描述实例机型配置信息
       class InstanceTypeConfig < TencentCloud::Common::AbstractModel
-        # @param Zone: 可用区。
+        # @param Zone: <p>可用区。</p>
         # @type Zone: String
-        # @param InstanceType: 实例机型。
+        # @param InstanceType: <p>实例机型。</p>
         # @type InstanceType: String
-        # @param InstanceFamily: 实例机型系列。
+        # @param InstanceFamily: <p>实例机型系列。</p>
         # @type InstanceFamily: String
-        # @param GPU: GPU核数，单位：核。
+        # @param GPU: <p>GPU核数，单位：核。</p>
         # @type GPU: Integer
-        # @param CPU: CPU核数，单位：核。
+        # @param CPU: <p>CPU核数，单位：核。</p>
         # @type CPU: Integer
-        # @param Memory: 内存容量，单位：`GiB`。
+        # @param Memory: <p>内存容量，单位：<code>GiB</code>。</p>
         # @type Memory: Integer
-        # @param FPGA: FPGA核数，单位：核。
+        # @param FPGA: <p>FPGA核数，单位：核。</p>
         # @type FPGA: Integer
-        # @param GpuCount: 实例机型映射的物理GPU卡数，单位：卡。vGPU卡型小于1，直通卡型大于等于1。vGPU是通过分片虚拟化技术，将物理GPU卡重新划分，同一块GPU卡经虚拟化分割后可分配至不同的实例使用。直通卡型会将GPU设备直接挂载给实例使用。
+        # @param GpuCount: <p>实例机型映射的物理GPU卡数，单位：卡。vGPU卡型小于1，直通卡型大于等于1。vGPU是通过分片虚拟化技术，将物理GPU卡重新划分，同一块GPU卡经虚拟化分割后可分配至不同的实例使用。直通卡型会将GPU设备直接挂载给实例使用。</p>
         # @type GpuCount: Float
+        # @param GpuType: <p>实例GPU类型</p>
+        # @type GpuType: String
+        # @param GpuMemory: <p>实例GPU单块显存,单位：GiB。</p>
+        # @type GpuMemory: Float
 
-        attr_accessor :Zone, :InstanceType, :InstanceFamily, :GPU, :CPU, :Memory, :FPGA, :GpuCount
+        attr_accessor :Zone, :InstanceType, :InstanceFamily, :GPU, :CPU, :Memory, :FPGA, :GpuCount, :GpuType, :GpuMemory
 
-        def initialize(zone=nil, instancetype=nil, instancefamily=nil, gpu=nil, cpu=nil, memory=nil, fpga=nil, gpucount=nil)
+        def initialize(zone=nil, instancetype=nil, instancefamily=nil, gpu=nil, cpu=nil, memory=nil, fpga=nil, gpucount=nil, gputype=nil, gpumemory=nil)
           @Zone = zone
           @InstanceType = instancetype
           @InstanceFamily = instancefamily
@@ -5842,6 +5846,8 @@ module TencentCloud
           @Memory = memory
           @FPGA = fpga
           @GpuCount = gpucount
+          @GpuType = gputype
+          @GpuMemory = gpumemory
         end
 
         def deserialize(params)
@@ -5853,6 +5859,8 @@ module TencentCloud
           @Memory = params['Memory']
           @FPGA = params['FPGA']
           @GpuCount = params['GpuCount']
+          @GpuType = params['GpuType']
+          @GpuMemory = params['GpuMemory']
         end
       end
 

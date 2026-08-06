@@ -1110,6 +1110,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询构建日志
+
+        # @param request: Request instance for DescribeCloudBaseRunBuildLog.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeCloudBaseRunBuildLogRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribeCloudBaseRunBuildLogResponse`
+        def DescribeCloudBaseRunBuildLog(request)
+          body = send_request('DescribeCloudBaseRunBuildLog', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloudBaseRunBuildLogResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询服务版本的详情，CPU和MEM  请使用CPUSize和MemSize
 
         # @param request: Request instance for DescribeCloudBaseRunServerVersion.
