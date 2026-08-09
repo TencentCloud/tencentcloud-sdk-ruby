@@ -150,12 +150,16 @@ module TencentCloud
         # @type Score: :class:`Tencentcloud::Rce.v20260130.models.DataScore`
         # @param Device: <p>设备基础信息</p>
         # @type Device: :class:`Tencentcloud::Rce.v20260130.models.Device`
+        # @param Environment: <p>IP环境基础信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Environment: :class:`Tencentcloud::Rce.v20260130.models.Environment`
 
-        attr_accessor :Score, :Device
+        attr_accessor :Score, :Device, :Environment
 
-        def initialize(score=nil, device=nil)
+        def initialize(score=nil, device=nil, environment=nil)
           @Score = score
           @Device = device
+          @Environment = environment
         end
 
         def deserialize(params)
@@ -166,6 +170,10 @@ module TencentCloud
           unless params['Device'].nil?
             @Device = Device.new
             @Device.deserialize(params['Device'])
+          end
+          unless params['Environment'].nil?
+            @Environment = Environment.new
+            @Environment.deserialize(params['Environment'])
           end
         end
       end
@@ -271,15 +279,20 @@ module TencentCloud
       class Decision < TencentCloud::Common::AbstractModel
         # @param DecisionResult: <p>决策结果</p><ul><li>pass：通过</li><li>review：复审</li><li>reject：拒绝</li></ul>
         # @type DecisionResult: String
+        # @param Disposition: <p>命中策略后的决策动作，可在控制台配置</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Disposition: String
 
-        attr_accessor :DecisionResult
+        attr_accessor :DecisionResult, :Disposition
 
-        def initialize(decisionresult=nil)
+        def initialize(decisionresult=nil, disposition=nil)
           @DecisionResult = decisionresult
+          @Disposition = disposition
         end
 
         def deserialize(params)
           @DecisionResult = params['DecisionResult']
+          @Disposition = params['Disposition']
         end
       end
 

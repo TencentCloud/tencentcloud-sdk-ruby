@@ -1484,6 +1484,129 @@ module TencentCloud
         end
       end
 
+      # CreateMetaDatabase请求参数结构体
+      class CreateMetaDatabaseRequest < TencentCloud::Common::AbstractModel
+        # @param CatalogId: 无
+        # @type CatalogId: Integer
+        # @param DatabaseName: 库名
+        # @type DatabaseName: String
+        # @param Comment: 备注
+        # @type Comment: String
+        # @param WorkSpaceId: 工作空间 SerialId
+        # @type WorkSpaceId: String
+
+        attr_accessor :CatalogId, :DatabaseName, :Comment, :WorkSpaceId
+
+        def initialize(catalogid=nil, databasename=nil, comment=nil, workspaceid=nil)
+          @CatalogId = catalogid
+          @DatabaseName = databasename
+          @Comment = comment
+          @WorkSpaceId = workspaceid
+        end
+
+        def deserialize(params)
+          @CatalogId = params['CatalogId']
+          @DatabaseName = params['DatabaseName']
+          @Comment = params['Comment']
+          @WorkSpaceId = params['WorkSpaceId']
+        end
+      end
+
+      # CreateMetaDatabase返回参数结构体
+      class CreateMetaDatabaseResponse < TencentCloud::Common::AbstractModel
+        # @param DatabaseId: 无
+        # @type DatabaseId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DatabaseId, :RequestId
+
+        def initialize(databaseid=nil, requestid=nil)
+          @DatabaseId = databaseid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DatabaseId = params['DatabaseId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateMetaTable请求参数结构体
+      class CreateMetaTableRequest < TencentCloud::Common::AbstractModel
+        # @param CatalogId: <p>Catalog Id</p>
+        # @type CatalogId: Integer
+        # @param DatabaseId: <p>库Id</p>
+        # @type DatabaseId: Integer
+        # @param SqlCode: <p>建表语句</p><p>参数格式：需要base64加密</p>
+        # @type SqlCode: String
+        # @param Comment: <p>备注</p>
+        # @type Comment: String
+        # @param ClusterId: <p>集群id</p>
+        # @type ClusterId: String
+        # @param ResourceRefs: <p>引用资源</p>
+        # @type ResourceRefs: Array
+        # @param FlinkVersion: <p>Flink版本</p>
+        # @type FlinkVersion: String
+        # @param WorkSpaceId: <p>工作空间 SerialId</p>
+        # @type WorkSpaceId: String
+        # @param AsyncTaskId: <p>异步id</p>
+        # @type AsyncTaskId: String
+
+        attr_accessor :CatalogId, :DatabaseId, :SqlCode, :Comment, :ClusterId, :ResourceRefs, :FlinkVersion, :WorkSpaceId, :AsyncTaskId
+
+        def initialize(catalogid=nil, databaseid=nil, sqlcode=nil, comment=nil, clusterid=nil, resourcerefs=nil, flinkversion=nil, workspaceid=nil, asynctaskid=nil)
+          @CatalogId = catalogid
+          @DatabaseId = databaseid
+          @SqlCode = sqlcode
+          @Comment = comment
+          @ClusterId = clusterid
+          @ResourceRefs = resourcerefs
+          @FlinkVersion = flinkversion
+          @WorkSpaceId = workspaceid
+          @AsyncTaskId = asynctaskid
+        end
+
+        def deserialize(params)
+          @CatalogId = params['CatalogId']
+          @DatabaseId = params['DatabaseId']
+          @SqlCode = params['SqlCode']
+          @Comment = params['Comment']
+          @ClusterId = params['ClusterId']
+          unless params['ResourceRefs'].nil?
+            @ResourceRefs = []
+            params['ResourceRefs'].each do |i|
+              resourceref_tmp = ResourceRef.new
+              resourceref_tmp.deserialize(i)
+              @ResourceRefs << resourceref_tmp
+            end
+          end
+          @FlinkVersion = params['FlinkVersion']
+          @WorkSpaceId = params['WorkSpaceId']
+          @AsyncTaskId = params['AsyncTaskId']
+        end
+      end
+
+      # CreateMetaTable返回参数结构体
+      class CreateMetaTableResponse < TencentCloud::Common::AbstractModel
+        # @param TableId: <p>表Id</p>
+        # @type TableId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TableId, :RequestId
+
+        def initialize(tableid=nil, requestid=nil)
+          @TableId = tableid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TableId = params['TableId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateOceanusCluster请求参数结构体
       class CreateOceanusClusterRequest < TencentCloud::Common::AbstractModel
         # @param ClusterName: <p>集群名称</p><p>入参限制：支持1-50个英文、汉字、数字、连接线-或下划线_</p>
@@ -4847,6 +4970,58 @@ module TencentCloud
         end
       end
 
+      # ModifyMetaTable请求参数结构体
+      class ModifyMetaTableRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: <p>集群唯一id</p>
+        # @type ClusterId: String
+        # @param TableId: <p>元数据表唯一id</p>
+        # @type TableId: String
+        # @param SqlCode: <p>SQL</p><p>参数格式：base64加密</p>
+        # @type SqlCode: String
+        # @param FlinkVersion: <p>Flink版本</p>
+        # @type FlinkVersion: String
+        # @param WorkSpaceId: <p>空间唯一id</p>
+        # @type WorkSpaceId: String
+        # @param Remark: <p>备注</p>
+        # @type Remark: String
+
+        attr_accessor :ClusterId, :TableId, :SqlCode, :FlinkVersion, :WorkSpaceId, :Remark
+
+        def initialize(clusterid=nil, tableid=nil, sqlcode=nil, flinkversion=nil, workspaceid=nil, remark=nil)
+          @ClusterId = clusterid
+          @TableId = tableid
+          @SqlCode = sqlcode
+          @FlinkVersion = flinkversion
+          @WorkSpaceId = workspaceid
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @TableId = params['TableId']
+          @SqlCode = params['SqlCode']
+          @FlinkVersion = params['FlinkVersion']
+          @WorkSpaceId = params['WorkSpaceId']
+          @Remark = params['Remark']
+        end
+      end
+
+      # ModifyMetaTable返回参数结构体
+      class ModifyMetaTableResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyWorkSpace请求参数结构体
       class ModifyWorkSpaceRequest < TencentCloud::Common::AbstractModel
         # @param WorkSpaceId: 工作空间 SerialId
@@ -5694,11 +5869,11 @@ module TencentCloud
 
       # RunSqlGatewayStatement请求参数结构体
       class RunSqlGatewayStatementRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: <p>集群ID</p>
         # @type ClusterId: String
-        # @param Sql: 需要执行的sql，该sql会被Sql Gateway执行，当前支持的是paimon修改需求，因此主要是DDL语句
+        # @param Sql: <p>需要执行的sql，需要对其进行base64编译后传入</p>
         # @type Sql: String
-        # @param SessionId: Sql Gateway会话ID，可不填，如果不填则会自动创建一个会话ID，每个会话ID都有一个存活时间，测试环境为10分钟，线上默认是30分钟
+        # @param SessionId: <p>Sql Gateway会话ID，可不填，如果不填则会自动创建一个会话ID，每个会话ID都有一个存活时间，测试环境为10分钟，线上默认是30分钟</p>
         # @type SessionId: String
 
         attr_accessor :ClusterId, :Sql, :SessionId
@@ -5718,12 +5893,12 @@ module TencentCloud
 
       # RunSqlGatewayStatement返回参数结构体
       class RunSqlGatewayStatementResponse < TencentCloud::Common::AbstractModel
-        # @param ErrorMessage: 错误信息
+        # @param ErrorMessage: <p>错误信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMessage: Array
-        # @param SessionId: 会话id，若入参未传，则返回自动创建的会话id，若入参已经传递，则返回值与原传入值一致
+        # @param SessionId: <p>会话id，若入参未传，则返回自动创建的会话id，若入参已经传递，则返回值与原传入值一致</p>
         # @type SessionId: String
-        # @param OperationHandleId: 返回执行id，可以根据该执行id和会话id获取执行结果
+        # @param OperationHandleId: <p>返回执行id，可以根据该执行id和会话id获取执行结果</p>
         # @type OperationHandleId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

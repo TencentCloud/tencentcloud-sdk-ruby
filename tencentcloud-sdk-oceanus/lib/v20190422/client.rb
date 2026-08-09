@@ -197,6 +197,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建元数据库
+
+        # @param request: Request instance for CreateMetaDatabase.
+        # @type request: :class:`Tencentcloud::oceanus::V20190422::CreateMetaDatabaseRequest`
+        # @rtype: :class:`Tencentcloud::oceanus::V20190422::CreateMetaDatabaseResponse`
+        def CreateMetaDatabase(request)
+          body = send_request('CreateMetaDatabase', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateMetaDatabaseResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建元数据表
+
+        # @param request: Request instance for CreateMetaTable.
+        # @type request: :class:`Tencentcloud::oceanus::V20190422::CreateMetaTableRequest`
+        # @rtype: :class:`Tencentcloud::oceanus::V20190422::CreateMetaTableResponse`
+        def CreateMetaTable(request)
+          body = send_request('CreateMetaTable', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateMetaTableResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建Oceanus集群
 
         # @param request: Request instance for CreateOceanusCluster.
@@ -1031,6 +1079,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改元数据表
+
+        # @param request: Request instance for ModifyMetaTable.
+        # @type request: :class:`Tencentcloud::oceanus::V20190422::ModifyMetaTableRequest`
+        # @rtype: :class:`Tencentcloud::oceanus::V20190422::ModifyMetaTableResponse`
+        def ModifyMetaTable(request)
+          body = send_request('ModifyMetaTable', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyMetaTableResponse.new
             model.deserialize(response['Response'])
             model
           else
