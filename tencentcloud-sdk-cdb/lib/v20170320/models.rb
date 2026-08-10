@@ -9396,6 +9396,26 @@ module TencentCloud
         end
       end
 
+      # 修改计费模式时，如果需要从按量计费转为包年包月，则需指定时长和自动续费标志
+      class InstanceChargePrepaid < TencentCloud::Common::AbstractModel
+        # @param Period: <p>购买实例的时长，单位：月。取值范围：1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 24, 36, 48, 60。</p>
+        # @type Period: Integer
+        # @param RenewFlag: <p>自动续费标识，0：不自动续费，1：自动续费</p>
+        # @type RenewFlag: Integer
+
+        attr_accessor :Period, :RenewFlag
+
+        def initialize(period=nil, renewflag=nil)
+          @Period = period
+          @RenewFlag = renewflag
+        end
+
+        def deserialize(params)
+          @Period = params['Period']
+          @RenewFlag = params['RenewFlag']
+        end
+      end
+
       # 实例审计详情信息
       class InstanceDbAuditStatus < TencentCloud::Common::AbstractModel
         # @param InstanceId: <p>实例ID。</p>
@@ -11380,6 +11400,89 @@ module TencentCloud
 
         def deserialize(params)
           @AsyncRequestId = params['AsyncRequestId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyInstanceChargeType请求参数结构体
+      class ModifyInstanceChargeTypeRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。</p>
+        # @type InstanceId: String
+        # @param InstanceChargeType: <p>修改后的计费类型</p><p>枚举值：</p><ul><li>PREPAID： 包年包月</li><li>POSTPAID_BY_HOUR： 按量计费</li></ul>
+        # @type InstanceChargeType: String
+        # @param InstanceChargePrepaid: <p>修改后包年包月相关参数设置</p>
+        # @type InstanceChargePrepaid: :class:`Tencentcloud::Cdb.v20170320.models.InstanceChargePrepaid`
+
+        attr_accessor :InstanceId, :InstanceChargeType, :InstanceChargePrepaid
+
+        def initialize(instanceid=nil, instancechargetype=nil, instancechargeprepaid=nil)
+          @InstanceId = instanceid
+          @InstanceChargeType = instancechargetype
+          @InstanceChargePrepaid = instancechargeprepaid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @InstanceChargeType = params['InstanceChargeType']
+          unless params['InstanceChargePrepaid'].nil?
+            @InstanceChargePrepaid = InstanceChargePrepaid.new
+            @InstanceChargePrepaid.deserialize(params['InstanceChargePrepaid'])
+          end
+        end
+      end
+
+      # ModifyInstanceChargeType返回参数结构体
+      class ModifyInstanceChargeTypeResponse < TencentCloud::Common::AbstractModel
+        # @param DealName: <p>订单ID</p>
+        # @type DealName: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DealName, :RequestId
+
+        def initialize(dealname=nil, requestid=nil)
+          @DealName = dealname
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DealName = params['DealName']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyInstanceDestroyProtect请求参数结构体
+      class ModifyInstanceDestroyProtectRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceIds: 实例 ID 列表
+        # @type InstanceIds: Array
+        # @param DestroyProtect: 开启或关闭实例销毁保护
+        # @type DestroyProtect: String
+
+        attr_accessor :InstanceIds, :DestroyProtect
+
+        def initialize(instanceids=nil, destroyprotect=nil)
+          @InstanceIds = instanceids
+          @DestroyProtect = destroyprotect
+        end
+
+        def deserialize(params)
+          @InstanceIds = params['InstanceIds']
+          @DestroyProtect = params['DestroyProtect']
+        end
+      end
+
+      # ModifyInstanceDestroyProtect返回参数结构体
+      class ModifyInstanceDestroyProtectResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -15056,20 +15159,24 @@ module TencentCloud
         # @type DealIds: Array
         # @param AsyncRequestId: <p>异步任务的请求 ID，可使用此 ID <a href="https://cloud.tencent.com/document/product/236/20410">查询异步任务的执行结果</a>。</p>
         # @type AsyncRequestId: String
+        # @param JobId: <p>任务列表的任务ID</p>
+        # @type JobId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :DealIds, :AsyncRequestId, :RequestId
+        attr_accessor :DealIds, :AsyncRequestId, :JobId, :RequestId
 
-        def initialize(dealids=nil, asyncrequestid=nil, requestid=nil)
+        def initialize(dealids=nil, asyncrequestid=nil, jobid=nil, requestid=nil)
           @DealIds = dealids
           @AsyncRequestId = asyncrequestid
+          @JobId = jobid
           @RequestId = requestid
         end
 
         def deserialize(params)
           @DealIds = params['DealIds']
           @AsyncRequestId = params['AsyncRequestId']
+          @JobId = params['JobId']
           @RequestId = params['RequestId']
         end
       end

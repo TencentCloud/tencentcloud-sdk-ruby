@@ -1388,9 +1388,9 @@ module TencentCloud
 
       # 欢迎语配置
       class AppGreetingConfig < TencentCloud::Common::AbstractModel
-        # @param Greeting: 欢迎语内容
+        # @param Greeting: <p>欢迎语内容</p>
         # @type Greeting: String
-        # @param OpeningQuestionList: 开场问题列表
+        # @param OpeningQuestionList: <p>开场问题列表</p>
         # @type OpeningQuestionList: Array
 
         attr_accessor :Greeting, :OpeningQuestionList
@@ -1759,9 +1759,9 @@ module TencentCloud
 
       # 应用状态信息 - 运行时状态信息(用户不可修改)
       class AppStatusInfo < TencentCloud::Common::AbstractModel
-        # @param Status: 应用状态 (OFFLINE:未上线, RUNNING:运行中, DISABLED:停用)。枚举值: 1:未上线, 2:运行中, 3:停用
+        # @param Status: <p>应用状态</p><p>枚举值：</p><ul><li>1： 未上线</li><li>2： 运行中</li><li>3： 停用</li><li>4： 导入中</li></ul>
         # @type Status: Integer
-        # @param StatusDescription: 状态描述
+        # @param StatusDescription: <p>状态描述</p>
         # @type StatusDescription: String
 
         attr_accessor :Status, :StatusDescription

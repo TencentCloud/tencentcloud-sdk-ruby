@@ -3354,6 +3354,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(ModifyInstanceChargeType)用于将实例的计费模式从包年包月改为按量计费。
+
+        # @param request: Request instance for ModifyInstanceChargeType.
+        # @type request: :class:`Tencentcloud::cdb::V20170320::ModifyInstanceChargeTypeRequest`
+        # @rtype: :class:`Tencentcloud::cdb::V20170320::ModifyInstanceChargeTypeResponse`
+        def ModifyInstanceChargeType(request)
+          body = send_request('ModifyInstanceChargeType', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyInstanceChargeTypeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口（ModifyInstanceDestroyProtect）用于修改实例销毁保护状态。
+
+        # @param request: Request instance for ModifyInstanceDestroyProtect.
+        # @type request: :class:`Tencentcloud::cdb::V20170320::ModifyInstanceDestroyProtectRequest`
+        # @rtype: :class:`Tencentcloud::cdb::V20170320::ModifyInstanceDestroyProtectResponse`
+        def ModifyInstanceDestroyProtect(request)
+          body = send_request('ModifyInstanceDestroyProtect', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyInstanceDestroyProtectResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(ModifyInstanceParam)用于修改云数据库实例的参数。
 
         # @param request: Request instance for ModifyInstanceParam.

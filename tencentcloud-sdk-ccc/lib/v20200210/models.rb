@@ -5017,31 +5017,35 @@ module TencentCloud
 
       # DescribeTelCdr请求参数结构体
       class DescribeTelCdrRequest < TencentCloud::Common::AbstractModel
-        # @param StartTimeStamp: 起始时间戳，Unix 秒级时间戳，最大支持近180天。
+        # @param StartTimeStamp: <p>起始时间戳，Unix 秒级时间戳，最大支持近180天。</p>
         # @type StartTimeStamp: Integer
-        # @param EndTimeStamp: 结束时间戳，Unix 秒级时间戳，结束时间与开始时间的区间范围小于90天。
+        # @param EndTimeStamp: <p>结束时间戳，Unix 秒级时间戳，结束时间与开始时间的区间范围小于90天。</p>
         # @type EndTimeStamp: Integer
-        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
+        # @param SdkAppId: <p>应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc</p>
         # @type SdkAppId: Integer
-        # @param PageSize: 分页尺寸（必填），上限 100
+        # @param PageSize: <p>分页尺寸（必填），上限 100</p>
         # @type PageSize: Integer
-        # @param PageNumber: 分页页码（必填），从 0 开始
+        # @param PageNumber: <p>分页页码（必填），从 0 开始</p>
         # @type PageNumber: Integer
-        # @param InstanceId: 实例 ID（废弃）
+        # @param InstanceId: <p>实例 ID（废弃）</p>
         # @type InstanceId: Integer
-        # @param Limit: 返回数据条数，上限（废弃）
+        # @param Limit: <p>返回数据条数，上限（废弃）</p>
         # @type Limit: Integer
-        # @param Offset: 偏移（废弃）
+        # @param Offset: <p>偏移（废弃）</p>
         # @type Offset: Integer
-        # @param Phones: 按手机号筛选
+        # @param Phones: <p>按手机号筛选</p>
         # @type Phones: Array
-        # @param SessionIds: 按SessionId筛选
+        # @param SessionIds: <p>按SessionId筛选</p>
         # @type SessionIds: Array
 
         attr_accessor :StartTimeStamp, :EndTimeStamp, :SdkAppId, :PageSize, :PageNumber, :InstanceId, :Limit, :Offset, :Phones, :SessionIds
         extend Gem::Deprecate
         deprecate :InstanceId, :none, 2026, 8
         deprecate :InstanceId=, :none, 2026, 8
+        deprecate :Limit, :none, 2026, 8
+        deprecate :Limit=, :none, 2026, 8
+        deprecate :Offset, :none, 2026, 8
+        deprecate :Offset=, :none, 2026, 8
 
         def initialize(starttimestamp=nil, endtimestamp=nil, sdkappid=nil, pagesize=nil, pagenumber=nil, instanceid=nil, limit=nil, offset=nil, phones=nil, sessionids=nil)
           @StartTimeStamp = starttimestamp
@@ -5072,11 +5076,11 @@ module TencentCloud
 
       # DescribeTelCdr返回参数结构体
       class DescribeTelCdrResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 话单记录总数
+        # @param TotalCount: <p>话单记录总数</p>
         # @type TotalCount: Integer
-        # @param TelCdrs: 话单记录
+        # @param TelCdrs: <p>话单记录</p>
         # @type TelCdrs: Array
-        # @param TelCdrList: 话单记录
+        # @param TelCdrList: <p>话单记录</p>
         # @type TelCdrList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7550,179 +7554,104 @@ module TencentCloud
 
       # 电话话单信息
       class TelCdrInfo < TencentCloud::Common::AbstractModel
-        # @param Caller: 主叫号码
+        # @param Caller: <p>主叫号码</p>
         # @type Caller: String
-        # @param Callee: 被叫号码
+        # @param Callee: <p>被叫号码</p>
         # @type Callee: String
-        # @param Time: 呼叫发起时间戳，Unix 时间戳
+        # @param Time: <p>呼叫发起时间戳，Unix 时间戳</p>
         # @type Time: Integer
-        # @param Direction: 呼入呼出方向 0 呼入 1 呼出
+        # @param Direction: <p>呼入呼出方向 0 呼入 1 呼出</p>
         # @type Direction: Integer
-        # @param CallType: 通话类型 1 呼出 2 呼入 3 音频呼入 5 预测式外呼 6 内线呼叫
+        # @param CallType: <p>通话类型 1 呼出 2 呼入 3 音频呼入 5 预测式外呼 6 内线呼叫</p>
         # @type CallType: Integer
-        # @param Duration: 通话时长
+        # @param Duration: <p>通话时长</p>
         # @type Duration: Integer
-        # @param RecordURL: 录音信息
+        # @param RecordURL: <p>录音信息</p>
         # @type RecordURL: String
-        # @param RecordId: 录音 ID
+        # @param RecordId: <p>录音 ID</p>
         # @type RecordId: String
-        # @param SeatUser: 座席信息
+        # @param SeatUser: <p>座席信息</p>
         # @type SeatUser: :class:`Tencentcloud::Ccc.v20200210.models.SeatUserInfo`
-        # @param EndStatus: EndStatus与EndStatusString一一对应，具体枚举如下：
-
-        # **场景	         EndStatus	EndStatusString	状态说明**
-
-        # 电话呼入&呼出	1	        ok	                        **正常通话**
-
-        # 电话呼入	             102	        ivrGiveUp	        **IVR期间用户放弃**
-
-        # 电话呼入	             103	        waitingGiveUp	       **排队时用户放弃**
-
-        # 电话呼入	             104	        ringingGiveUp	       **振铃时用户放弃**
-
-        # 电话呼入	             105	        noSeatOnline	       **无座席在线**
-
-        # 电话呼入              106	       notWorkTime	       **非工作时间**
-
-        # 电话呼入	            107	       ivrEnd	               **IVR全自动结束(无人工介入)**
-
-        # 电话呼入	            100	      blackList **黑名单(系统侧)**
-
-        # 电话呼出             108	        restrictedCallee	**全局外呼风险号码拦截(系统侧)**
-
-        # 电话呼出             109	        tooManyRequest	    **外呼频控拦截(系统侧)**
-
-        # 电话呼出             110	        restrictedArea	    **外呼地域拦截(系统侧)**
-
-        # 电话呼出             111	        restrictedTime	**外呼时段拦截(系统侧)**
-
-        # 电话呼出             202            notAnswer	 **被叫未接听**
-
-        # 电话呼出            203	    userReject	**被叫拒接挂断**
-
-        # 电话呼出	          204	    powerOff	**被叫关机**
-
-        # 电话呼出           205            numberNotExist	**被叫空号**
-
-        # 电话呼出	         206	           busy	**被叫忙**
-
-        # 电话呼出   	        207	           outOfCredit	**被叫欠费**
-
-        # 电话呼出	         208	           operatorError	**运营商线路异常**
-
-        # 电话呼出         	209	           callerCancel	**主叫取消**
-
-        # 电话呼出	        210	           notInService	**被叫不在服务区**
-
-        # 电话呼入&呼出	211    clientError    **座席客户端错误**
-
-        # 电话呼出        212     carrierBlocked      **运营商拦截**
-
-        # 电话呼出        213     callReminder      **提示来电提醒**
-
-        # 电话呼出        215     numberInvalid      **被叫号码无效**
-
-        # 电话呼出        216     callRestricted      **提示呼叫受限**
-
-        # 电话呼出        217     calleeRestricted      **被叫黑名单受限**
-
-        # 电话呼出        218     areaRestricted      **被叫区域受限**
-
-        # 电话呼出        219     promptCallForwarding      **提示呼叫转移**
-
-        # 电话呼出        220     callerCancelWhileRing      **振铃中主叫取消**
-
-        # 电话呼出        221     callerCancelWithoutRing      **未振铃被叫号码异常**
-
-        # 电话呼出        222     voiceMailReached      **语音信箱挂断**
-
-        # 音频呼入        501     callConflict      **VoIP用户呼叫冲突终止**
-
-        # 音频呼入        502     clientTimeout      **VoIP用户客户端超时**
-
-        # 音频呼入        503     voipClientError      **VoIP用户客户端错误**
-
-        # 中文详情[参考](https://www.tencentcloud.com/zh/document/product/1229/71847)
-
-        # 英文详情[参考](https://www.tencentcloud.com/document/product/1229/71847?lang=en)
+        # @param EndStatus: <p>EndStatus与EndStatusString一一对应，具体枚举如下：</p><p><strong>场景             EndStatus    EndStatusString    状态说明</strong></p><p>电话呼入&amp;呼出    1            ok                            <strong>正常通话</strong></p><p>电话呼入                 102            ivrGiveUp            <strong>IVR期间用户放弃</strong></p><p>电话呼入                 103            waitingGiveUp           <strong>排队时用户放弃</strong></p><p>电话呼入                 104            ringingGiveUp           <strong>振铃时用户放弃</strong></p><p>电话呼入                 105            noSeatOnline           <strong>无座席在线</strong></p><p>电话呼入              106           notWorkTime           <strong>非工作时间</strong>   </p><p>电话呼入                107           ivrEnd                   <strong>IVR全自动结束(无人工介入)</strong></p><p>电话呼入                100          blackList <strong>黑名单(系统侧)</strong></p><p>电话呼出             108            restrictedCallee    <strong>全局外呼风险号码拦截(系统侧)</strong></p><p>电话呼出             109            tooManyRequest        <strong>外呼频控拦截(系统侧)</strong></p><p>电话呼出             110            restrictedArea        <strong>外呼地域拦截(系统侧)</strong></p><p>电话呼出             111            restrictedTime    <strong>外呼时段拦截(系统侧)</strong></p><p>电话呼出             202            notAnswer     <strong>被叫未接听</strong></p><p>电话呼出            203        userReject    <strong>被叫拒接挂断</strong></p><p>电话呼出              204        powerOff    <strong>被叫关机</strong></p><p>电话呼出           205            numberNotExist    <strong>被叫空号</strong></p><p>电话呼出             206               busy    <strong>被叫忙</strong></p><p>电话呼出               207               outOfCredit    <strong>被叫欠费</strong></p><p>电话呼出             208               operatorError    <strong>运营商线路异常</strong></p><p>电话呼出             209               callerCancel    <strong>主叫取消</strong></p><p>电话呼出            210               notInService    <strong>被叫不在服务区</strong></p><p>电话呼入&amp;呼出    211    clientError    <strong>座席客户端错误</strong></p><p>电话呼出        212     carrierBlocked      <strong>运营商拦截</strong></p><p>电话呼出        213     callReminder      <strong>提示来电提醒</strong></p><p>电话呼出        215     numberInvalid      <strong>被叫号码无效</strong></p><p>电话呼出        216     callRestricted      <strong>提示呼叫受限</strong></p><p>电话呼出        217     calleeRestricted      <strong>被叫黑名单受限</strong></p><p>电话呼出        218     areaRestricted      <strong>被叫区域受限</strong></p><p>电话呼出        219     promptCallForwarding      <strong>提示呼叫转移</strong></p><p>电话呼出        220     callerCancelWhileRing      <strong>振铃中主叫取消</strong></p><p>电话呼出        221     callerCancelWithoutRing      <strong>未振铃被叫号码异常</strong></p><p>电话呼出        222     voiceMailReached      <strong>语音信箱挂断</strong></p><p>音频呼入        501     callConflict      <strong>VoIP用户呼叫冲突终止</strong></p><p>音频呼入        502     clientTimeout      <strong>VoIP用户客户端超时</strong></p><p>音频呼入        503     voipClientError      <strong>VoIP用户客户端错误</strong></p><p>中文详情<a href="https://www.tencentcloud.com/zh/document/product/1229/71847">参考</a></p><p>英文详情<a href="https://www.tencentcloud.com/document/product/1229/71847?lang=en">参考</a></p>
         # @type EndStatus: Integer
-        # @param SkillGroup: 技能组名称
+        # @param SkillGroup: <p>技能组名称</p>
         # @type SkillGroup: String
-        # @param CallerLocation: 主叫归属地
+        # @param CallerLocation: <p>主叫归属地</p>
         # @type CallerLocation: String
-        # @param IVRDuration: IVR 阶段耗时
+        # @param IVRDuration: <p>IVR 阶段耗时</p>
         # @type IVRDuration: Integer
-        # @param RingTimestamp: 振铃时间戳，UNIX 秒级时间戳
+        # @param RingTimestamp: <p>振铃时间戳，UNIX 秒级时间戳</p>
         # @type RingTimestamp: Integer
-        # @param AcceptTimestamp: 接听时间戳，UNIX 秒级时间戳
+        # @param AcceptTimestamp: <p>接听时间戳，UNIX 秒级时间戳</p>
         # @type AcceptTimestamp: Integer
-        # @param EndedTimestamp: 结束时间戳，UNIX 秒级时间戳
+        # @param EndedTimestamp: <p>结束时间戳，UNIX 秒级时间戳</p>
         # @type EndedTimestamp: Integer
-        # @param IVRKeyPressed: IVR 按键信息 ，e.g. ["1","2","3"]
+        # @param IVRKeyPressed: <p>IVR 按键信息 ，e.g. [&quot;1&quot;,&quot;2&quot;,&quot;3&quot;]</p>
         # @type IVRKeyPressed: Array
-        # @param HungUpSide: 挂机方 seat 座席 user 用户 system 系统
+        # @param IVRKeyPressedEx: <p>IVR按键信息（e.g.xa0[{&quot;Key&quot;:&quot;1&quot;,&quot;Label&quot;:&quot;非常满意&quot;}]）</p>
+        # @type IVRKeyPressedEx: Array
+        # @param HungUpSide: <p>挂机方 seat 座席 user 用户 system 系统</p>
         # @type HungUpSide: String
-        # @param ServeParticipants: 服务参与者列表
+        # @param ServeParticipants: <p>服务参与者列表</p>
         # @type ServeParticipants: Array
-        # @param SkillGroupId: 技能组ID
+        # @param SkillGroupId: <p>技能组ID</p>
         # @type SkillGroupId: Integer
-        # @param EndStatusString: 参考 EndStatus 字段
+        # @param EndStatusString: <p>参考 EndStatus 字段</p>
         # @type EndStatusString: String
-        # @param StartTimestamp: 会话开始时间戳，UNIX 秒级时间戳
+        # @param StartTimestamp: <p>会话开始时间戳，UNIX 秒级时间戳</p>
         # @type StartTimestamp: Integer
-        # @param QueuedTimestamp: 进入排队时间，Unix 秒级时间戳
+        # @param QueuedTimestamp: <p>进入排队时间，Unix 秒级时间戳</p>
         # @type QueuedTimestamp: Integer
-        # @param PostIVRKeyPressed: 后置IVR按键信息（e.g. [{"Key":"1","Label":"非常满意"}]）
+        # @param PostIVRKeyPressed: <p>后置IVR按键信息（e.g.xa0[{&quot;Key&quot;:&quot;1&quot;,&quot;Label&quot;:&quot;非常满意&quot;}]）</p>
         # @type PostIVRKeyPressed: Array
-        # @param QueuedSkillGroupId: 排队技能组Id
+        # @param PostIVRKeyPressedEx: <p>满意度按键信息 Key 为 noInput 表示进入满意度但无按键</p>
+        # @type PostIVRKeyPressedEx: Array
+        # @param QueuedSkillGroupId: <p>排队技能组Id</p>
         # @type QueuedSkillGroupId: Integer
-        # @param SessionId: 会话 ID
+        # @param SessionId: <p>会话 ID</p>
         # @type SessionId: String
-        # @param ProtectedCaller: 主叫号码保护ID，开启号码保护映射功能时有效，且Caller字段置空
+        # @param ProtectedCaller: <p>主叫号码保护ID，开启号码保护映射功能时有效，且Caller字段置空</p>
         # @type ProtectedCaller: String
-        # @param ProtectedCallee: 被叫号码保护ID，开启号码保护映射功能时有效，且Callee字段置空
+        # @param ProtectedCallee: <p>被叫号码保护ID，开启号码保护映射功能时有效，且Callee字段置空</p>
         # @type ProtectedCallee: String
-        # @param Uui: 客户自定义数据（User-to-User Interface）
+        # @param Uui: <p>客户自定义数据（User-to-User Interface）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uui: String
-        # @param UUI: 客户自定义数据（User-to-User Interface）
+        # @param UUI: <p>客户自定义数据（User-to-User Interface）</p>
         # @type UUI: String
-        # @param IVRKeyPressedEx: IVR按键信息（e.g. [{"Key":"1","Label":"非常满意"}]）
-        # @type IVRKeyPressedEx: Array
-        # @param AsrUrl: 获取录音ASR文本信息地址
+        # @param AsrUrl: <p>获取录音ASR文本信息地址</p>
         # @type AsrUrl: String
-        # @param AsrStatus: AsrUrl的状态：Complete
-        # 已完成;
-        # Processing
-        # 正在生成中;
-        # NotExists
-        # 无记录(未开启生成离线asr或者无套餐包)
+        # @param AsrStatus: <p>AsrUrl的状态：Complete<br>已完成;<br>Processing<br>正在生成中;<br>NotExists<br>无记录(未开启生成离线asr或者无套餐包)</p>
         # @type AsrStatus: String
-        # @param CustomRecordURL: 录音转存第三方COS地址
+        # @param CustomRecordURL: <p>录音转存第三方COS地址</p>
         # @type CustomRecordURL: String
-        # @param Remark: 备注
+        # @param Remark: <p>备注</p>
         # @type Remark: String
-        # @param QueuedSkillGroupName: 排队技能组名称
+        # @param QueuedSkillGroupName: <p>排队技能组名称</p>
         # @type QueuedSkillGroupName: String
-        # @param VoicemailRecordURL: 通话中语音留言录音URL
+        # @param VoicemailRecordURL: <p>通话中语音留言录音URL</p>
         # @type VoicemailRecordURL: Array
-        # @param VoicemailAsrURL: 通话中语音留言ASR文本信息地址
+        # @param VoicemailAsrURL: <p>通话中语音留言ASR文本信息地址</p>
         # @type VoicemailAsrURL: Array
-        # @param AIAgentId: 如果是智能体相关通话，这里是智能体 ID
+        # @param AIAgentId: <p>如果是智能体相关通话，这里是智能体 ID</p>
         # @type AIAgentId: Integer
-        # @param AIAgentName: 如果是智能体相关通话，这里是智能体名称
+        # @param AIAgentName: <p>如果是智能体相关通话，这里是智能体名称</p>
         # @type AIAgentName: String
-        # @param SysHangupReason: 接通后系统挂断原因，枚举类似
+        # @param SysHangupReason: <p>接通后系统挂断原因，枚举类似</p>
         # @type SysHangupReason: Integer
-        # @param SysHangupReasonString: 接通后系统挂断原因，文字描述信息
+        # @param SysHangupReasonString: <p>接通后系统挂断原因，文字描述信息</p>
         # @type SysHangupReasonString: String
 
-        attr_accessor :Caller, :Callee, :Time, :Direction, :CallType, :Duration, :RecordURL, :RecordId, :SeatUser, :EndStatus, :SkillGroup, :CallerLocation, :IVRDuration, :RingTimestamp, :AcceptTimestamp, :EndedTimestamp, :IVRKeyPressed, :HungUpSide, :ServeParticipants, :SkillGroupId, :EndStatusString, :StartTimestamp, :QueuedTimestamp, :PostIVRKeyPressed, :QueuedSkillGroupId, :SessionId, :ProtectedCaller, :ProtectedCallee, :Uui, :UUI, :IVRKeyPressedEx, :AsrUrl, :AsrStatus, :CustomRecordURL, :Remark, :QueuedSkillGroupName, :VoicemailRecordURL, :VoicemailAsrURL, :AIAgentId, :AIAgentName, :SysHangupReason, :SysHangupReasonString
+        attr_accessor :Caller, :Callee, :Time, :Direction, :CallType, :Duration, :RecordURL, :RecordId, :SeatUser, :EndStatus, :SkillGroup, :CallerLocation, :IVRDuration, :RingTimestamp, :AcceptTimestamp, :EndedTimestamp, :IVRKeyPressed, :IVRKeyPressedEx, :HungUpSide, :ServeParticipants, :SkillGroupId, :EndStatusString, :StartTimestamp, :QueuedTimestamp, :PostIVRKeyPressed, :PostIVRKeyPressedEx, :QueuedSkillGroupId, :SessionId, :ProtectedCaller, :ProtectedCallee, :Uui, :UUI, :AsrUrl, :AsrStatus, :CustomRecordURL, :Remark, :QueuedSkillGroupName, :VoicemailRecordURL, :VoicemailAsrURL, :AIAgentId, :AIAgentName, :SysHangupReason, :SysHangupReasonString
         extend Gem::Deprecate
+        deprecate :IVRKeyPressed, :none, 2026, 8
+        deprecate :IVRKeyPressed=, :none, 2026, 8
+        deprecate :PostIVRKeyPressed, :none, 2026, 8
+        deprecate :PostIVRKeyPressed=, :none, 2026, 8
         deprecate :Uui, :none, 2026, 8
         deprecate :Uui=, :none, 2026, 8
 
-        def initialize(caller=nil, callee=nil, time=nil, direction=nil, calltype=nil, duration=nil, recordurl=nil, recordid=nil, seatuser=nil, endstatus=nil, skillgroup=nil, callerlocation=nil, ivrduration=nil, ringtimestamp=nil, accepttimestamp=nil, endedtimestamp=nil, ivrkeypressed=nil, hungupside=nil, serveparticipants=nil, skillgroupid=nil, endstatusstring=nil, starttimestamp=nil, queuedtimestamp=nil, postivrkeypressed=nil, queuedskillgroupid=nil, sessionid=nil, protectedcaller=nil, protectedcallee=nil, uui=nil, ivrkeypressedex=nil, asrurl=nil, asrstatus=nil, customrecordurl=nil, remark=nil, queuedskillgroupname=nil, voicemailrecordurl=nil, voicemailasrurl=nil, aiagentid=nil, aiagentname=nil, syshangupreason=nil, syshangupreasonstring=nil)
+        def initialize(caller=nil, callee=nil, time=nil, direction=nil, calltype=nil, duration=nil, recordurl=nil, recordid=nil, seatuser=nil, endstatus=nil, skillgroup=nil, callerlocation=nil, ivrduration=nil, ringtimestamp=nil, accepttimestamp=nil, endedtimestamp=nil, ivrkeypressed=nil, ivrkeypressedex=nil, hungupside=nil, serveparticipants=nil, skillgroupid=nil, endstatusstring=nil, starttimestamp=nil, queuedtimestamp=nil, postivrkeypressed=nil, postivrkeypressedex=nil, queuedskillgroupid=nil, sessionid=nil, protectedcaller=nil, protectedcallee=nil, uui=nil, asrurl=nil, asrstatus=nil, customrecordurl=nil, remark=nil, queuedskillgroupname=nil, voicemailrecordurl=nil, voicemailasrurl=nil, aiagentid=nil, aiagentname=nil, syshangupreason=nil, syshangupreasonstring=nil)
           @Caller = caller
           @Callee = callee
           @Time = time
@@ -7740,6 +7669,7 @@ module TencentCloud
           @AcceptTimestamp = accepttimestamp
           @EndedTimestamp = endedtimestamp
           @IVRKeyPressed = ivrkeypressed
+          @IVRKeyPressedEx = ivrkeypressedex
           @HungUpSide = hungupside
           @ServeParticipants = serveparticipants
           @SkillGroupId = skillgroupid
@@ -7747,12 +7677,12 @@ module TencentCloud
           @StartTimestamp = starttimestamp
           @QueuedTimestamp = queuedtimestamp
           @PostIVRKeyPressed = postivrkeypressed
+          @PostIVRKeyPressedEx = postivrkeypressedex
           @QueuedSkillGroupId = queuedskillgroupid
           @SessionId = sessionid
           @ProtectedCaller = protectedcaller
           @ProtectedCallee = protectedcallee
           @UUI = uui
-          @IVRKeyPressedEx = ivrkeypressedex
           @AsrUrl = asrurl
           @AsrStatus = asrstatus
           @CustomRecordURL = customrecordurl
@@ -7787,6 +7717,14 @@ module TencentCloud
           @AcceptTimestamp = params['AcceptTimestamp']
           @EndedTimestamp = params['EndedTimestamp']
           @IVRKeyPressed = params['IVRKeyPressed']
+          unless params['IVRKeyPressedEx'].nil?
+            @IVRKeyPressedEx = []
+            params['IVRKeyPressedEx'].each do |i|
+              ivrkeypressedelement_tmp = IVRKeyPressedElement.new
+              ivrkeypressedelement_tmp.deserialize(i)
+              @IVRKeyPressedEx << ivrkeypressedelement_tmp
+            end
+          end
           @HungUpSide = params['HungUpSide']
           unless params['ServeParticipants'].nil?
             @ServeParticipants = []
@@ -7808,19 +7746,19 @@ module TencentCloud
               @PostIVRKeyPressed << ivrkeypressedelement_tmp
             end
           end
+          unless params['PostIVRKeyPressedEx'].nil?
+            @PostIVRKeyPressedEx = []
+            params['PostIVRKeyPressedEx'].each do |i|
+              ivrkeypressedelement_tmp = IVRKeyPressedElement.new
+              ivrkeypressedelement_tmp.deserialize(i)
+              @PostIVRKeyPressedEx << ivrkeypressedelement_tmp
+            end
+          end
           @QueuedSkillGroupId = params['QueuedSkillGroupId']
           @SessionId = params['SessionId']
           @ProtectedCaller = params['ProtectedCaller']
           @ProtectedCallee = params['ProtectedCallee']
           @UUI = params['UUI']
-          unless params['IVRKeyPressedEx'].nil?
-            @IVRKeyPressedEx = []
-            params['IVRKeyPressedEx'].each do |i|
-              ivrkeypressedelement_tmp = IVRKeyPressedElement.new
-              ivrkeypressedelement_tmp.deserialize(i)
-              @IVRKeyPressedEx << ivrkeypressedelement_tmp
-            end
-          end
           @AsrUrl = params['AsrUrl']
           @AsrStatus = params['AsrStatus']
           @CustomRecordURL = params['CustomRecordURL']

@@ -2753,10 +2753,12 @@ module TencentCloud
         # @type Tags: Array
         # @param VerifySSL: <p>是否校验服务提供商的SSL证书</p>
         # @type VerifySSL: Boolean
+        # @param HealthCheckConfig: <p>健康检查配置</p>
+        # @type HealthCheckConfig: :class:`Tencentcloud::Clb.v20180317.models.ServiceProviderHealthCheckConfigInput`
 
-        attr_accessor :AccessType, :ModelProvider, :ModelIds, :Keys, :ServiceProviderId, :ServiceProviderName, :Protocol, :ApiBase, :VpcId, :SubnetId, :HostHeader, :Tags, :VerifySSL
+        attr_accessor :AccessType, :ModelProvider, :ModelIds, :Keys, :ServiceProviderId, :ServiceProviderName, :Protocol, :ApiBase, :VpcId, :SubnetId, :HostHeader, :Tags, :VerifySSL, :HealthCheckConfig
 
-        def initialize(accesstype=nil, modelprovider=nil, modelids=nil, keys=nil, serviceproviderid=nil, serviceprovidername=nil, protocol=nil, apibase=nil, vpcid=nil, subnetid=nil, hostheader=nil, tags=nil, verifyssl=nil)
+        def initialize(accesstype=nil, modelprovider=nil, modelids=nil, keys=nil, serviceproviderid=nil, serviceprovidername=nil, protocol=nil, apibase=nil, vpcid=nil, subnetid=nil, hostheader=nil, tags=nil, verifyssl=nil, healthcheckconfig=nil)
           @AccessType = accesstype
           @ModelProvider = modelprovider
           @ModelIds = modelids
@@ -2770,6 +2772,7 @@ module TencentCloud
           @HostHeader = hostheader
           @Tags = tags
           @VerifySSL = verifyssl
+          @HealthCheckConfig = healthcheckconfig
         end
 
         def deserialize(params)
@@ -2807,6 +2810,10 @@ module TencentCloud
             end
           end
           @VerifySSL = params['VerifySSL']
+          unless params['HealthCheckConfig'].nil?
+            @HealthCheckConfig = ServiceProviderHealthCheckConfigInput.new
+            @HealthCheckConfig.deserialize(params['HealthCheckConfig'])
+          end
         end
       end
 
@@ -6011,19 +6018,30 @@ module TencentCloud
         # @type Limit: Integer
         # @param VpcId: <p>过滤PrivateCustom类型自建模型。如果传递了此参数，则只返回具有相同VPC Id的模型。</p>
         # @type VpcId: String
+        # @param Filters: <p>过滤器，Name取值：</p><ul><li>ModelName：按照模型名称过滤。</li><li>ServiceProviderId：按照BYOK ID过滤。</li><li>InputModalitiesUnion：按照模态过滤。</li></ul>
+        # @type Filters: Array
 
-        attr_accessor :Offset, :Limit, :VpcId
+        attr_accessor :Offset, :Limit, :VpcId, :Filters
 
-        def initialize(offset=nil, limit=nil, vpcid=nil)
+        def initialize(offset=nil, limit=nil, vpcid=nil, filters=nil)
           @Offset = offset
           @Limit = limit
           @VpcId = vpcid
+          @Filters = filters
         end
 
         def deserialize(params)
           @Offset = params['Offset']
           @Limit = params['Limit']
           @VpcId = params['VpcId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
         end
       end
 
@@ -9929,7 +9947,7 @@ module TencentCloud
         # @param ServiceProviderName: <p>服务提供商自定义名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceProviderName: String
-        # @param Status: <p>模型状态</p><p>枚举值：</p><ul><li>Active： 运行中</li><li>Provisioning： 创建中</li><li>Configuring： 变配中</li><li>Deleting： 删除中</li><li>ProvisionFailed： 创建失败</li><li>ConfigureFailed： 变配失败</li><li>DeletionFailed： 删除失败</li><li>Disabled： 已禁用</li></ul>
+        # @param Status: <p>模型状态</p><p>枚举值：</p><ul><li>Active： 运行中</li><li>Provisioning： 创建中</li><li>Configuring： 变配中</li></ul>
         # @type Status: String
         # @param SubnetId: <p>子网 ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -9941,10 +9959,12 @@ module TencentCloud
         # @param VpcId: <p>VPC 实例 ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
+        # @param HealthCheckConfig: <p>健康检查配置</p>
+        # @type HealthCheckConfig: :class:`Tencentcloud::Clb.v20180317.models.ServiceProviderHealthCheckConfigOutput`
 
-        attr_accessor :AccessType, :ApiBase, :CreatedAt, :HostHeader, :KeyCount, :Keys, :ModelIdsWithAlias, :ModelProvider, :Protocol, :ServiceIps, :ServiceProviderId, :ServiceProviderName, :Status, :SubnetId, :Tags, :VerifySSL, :VpcId
+        attr_accessor :AccessType, :ApiBase, :CreatedAt, :HostHeader, :KeyCount, :Keys, :ModelIdsWithAlias, :ModelProvider, :Protocol, :ServiceIps, :ServiceProviderId, :ServiceProviderName, :Status, :SubnetId, :Tags, :VerifySSL, :VpcId, :HealthCheckConfig
 
-        def initialize(accesstype=nil, apibase=nil, createdat=nil, hostheader=nil, keycount=nil, keys=nil, modelidswithalias=nil, modelprovider=nil, protocol=nil, serviceips=nil, serviceproviderid=nil, serviceprovidername=nil, status=nil, subnetid=nil, tags=nil, verifyssl=nil, vpcid=nil)
+        def initialize(accesstype=nil, apibase=nil, createdat=nil, hostheader=nil, keycount=nil, keys=nil, modelidswithalias=nil, modelprovider=nil, protocol=nil, serviceips=nil, serviceproviderid=nil, serviceprovidername=nil, status=nil, subnetid=nil, tags=nil, verifyssl=nil, vpcid=nil, healthcheckconfig=nil)
           @AccessType = accesstype
           @ApiBase = apibase
           @CreatedAt = createdat
@@ -9962,6 +9982,7 @@ module TencentCloud
           @Tags = tags
           @VerifySSL = verifyssl
           @VpcId = vpcid
+          @HealthCheckConfig = healthcheckconfig
         end
 
         def deserialize(params)
@@ -10003,6 +10024,10 @@ module TencentCloud
           end
           @VerifySSL = params['VerifySSL']
           @VpcId = params['VpcId']
+          unless params['HealthCheckConfig'].nil?
+            @HealthCheckConfig = ServiceProviderHealthCheckConfigOutput.new
+            @HealthCheckConfig.deserialize(params['HealthCheckConfig'])
+          end
         end
       end
 
@@ -13658,6 +13683,38 @@ module TencentCloud
           end
           @ServiceProviderId = params['ServiceProviderId']
           @ServiceProviderName = params['ServiceProviderName']
+        end
+      end
+
+      # 健康检查配置
+      class ServiceProviderHealthCheckConfigInput < TencentCloud::Common::AbstractModel
+        # @param HealthCheckEnabled: <p>是否开启健康检查</p><p>枚举值：</p><ul><li>true： 是</li><li>false： 否</li></ul>
+        # @type HealthCheckEnabled: Boolean
+
+        attr_accessor :HealthCheckEnabled
+
+        def initialize(healthcheckenabled=nil)
+          @HealthCheckEnabled = healthcheckenabled
+        end
+
+        def deserialize(params)
+          @HealthCheckEnabled = params['HealthCheckEnabled']
+        end
+      end
+
+      # 健康检查配置
+      class ServiceProviderHealthCheckConfigOutput < TencentCloud::Common::AbstractModel
+        # @param HealthCheckEnabled: <p>是否开启健康检查</p><p>枚举值：</p><ul><li>true： 是</li><li>false： 否</li></ul>
+        # @type HealthCheckEnabled: Boolean
+
+        attr_accessor :HealthCheckEnabled
+
+        def initialize(healthcheckenabled=nil)
+          @HealthCheckEnabled = healthcheckenabled
+        end
+
+        def deserialize(params)
+          @HealthCheckEnabled = params['HealthCheckEnabled']
         end
       end
 

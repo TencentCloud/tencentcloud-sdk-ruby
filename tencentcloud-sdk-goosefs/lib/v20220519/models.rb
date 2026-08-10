@@ -511,10 +511,10 @@ module TencentCloud
 
         attr_accessor :TaskType, :Bucket, :FileSystemId, :TaskPath, :TaskName, :IsTaskPathAbsolute, :RepositoryType, :TextLocation, :EnableDataFlowSubPath, :DataFlowSubPath, :EnableCustomDestPath, :CustomDestPath
         extend Gem::Deprecate
-        deprecate :EnableDataFlowSubPath, :none, 2026, 7
-        deprecate :EnableDataFlowSubPath=, :none, 2026, 7
-        deprecate :DataFlowSubPath, :none, 2026, 7
-        deprecate :DataFlowSubPath=, :none, 2026, 7
+        deprecate :EnableDataFlowSubPath, :none, 2026, 8
+        deprecate :EnableDataFlowSubPath=, :none, 2026, 8
+        deprecate :DataFlowSubPath, :none, 2026, 8
+        deprecate :DataFlowSubPath=, :none, 2026, 8
 
         def initialize(tasktype=nil, bucket=nil, filesystemid=nil, taskpath=nil, taskname=nil, istaskpathabsolute=nil, repositorytype=nil, textlocation=nil, enabledataflowsubpath=nil, dataflowsubpath=nil, enablecustomdestpath=nil, customdestpath=nil)
           @TaskType = tasktype
@@ -592,8 +592,8 @@ module TencentCloud
 
         attr_accessor :Name, :Description, :VpcId, :SubnetId, :Zone, :Type, :Tag, :GooseFSxBuildElements, :SecurityGroupId, :ClusterPort
         extend Gem::Deprecate
-        deprecate :Type, :none, 2026, 7
-        deprecate :Type=, :none, 2026, 7
+        deprecate :Type, :none, 2026, 8
+        deprecate :Type=, :none, 2026, 8
 
         def initialize(name=nil, description=nil, vpcid=nil, subnetid=nil, zone=nil, type=nil, tag=nil, goosefsxbuildelements=nil, securitygroupid=nil, clusterport=nil)
           @Name = name
@@ -1718,8 +1718,8 @@ module TencentCloud
 
         attr_accessor :Model, :Capacity, :MappedBucketList
         extend Gem::Deprecate
-        deprecate :MappedBucketList, :none, 2026, 7
-        deprecate :MappedBucketList=, :none, 2026, 7
+        deprecate :MappedBucketList, :none, 2026, 8
+        deprecate :MappedBucketList=, :none, 2026, 8
 
         def initialize(model=nil, capacity=nil, mappedbucketlist=nil)
           @Model = model

@@ -77,6 +77,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 添加漏洞白名单
+
+        # @param request: Request instance for AddVulWhitelist.
+        # @type request: :class:`Tencentcloud::csip::V20221121::AddVulWhitelistRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::AddVulWhitelistResponse`
+        def AddVulWhitelist(request)
+          body = send_request('AddVulWhitelist', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AddVulWhitelistResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 检测AK 异步任务
 
         # @param request: Request instance for CreateAccessKeyCheckTask.
@@ -677,6 +701,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建主机列漏洞表导出任务
+
+        # @param request: Request instance for CreateHostVulExportJob.
+        # @type request: :class:`Tencentcloud::csip::V20221121::CreateHostVulExportJobRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::CreateHostVulExportJobResponse`
+        def CreateHostVulExportJob(request)
+          body = send_request('CreateHostVulExportJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateHostVulExportJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建IaC检测接入Token
 
         # @param request: Request instance for CreateIaCAccessToken.
@@ -783,6 +831,126 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateSkillScanResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 对修复失败的漏洞修复任务进行重试，仅针对原任务中修复失败的主机重新下发修复指令。仅当任务状态为部分修复失败或全部修复失败时允许重试。
+
+        # @param request: Request instance for CreateVulFixRetryTask.
+        # @type request: :class:`Tencentcloud::csip::V20221121::CreateVulFixRetryTaskRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::CreateVulFixRetryTaskResponse`
+        def CreateVulFixRetryTask(request)
+          body = send_request('CreateVulFixRetryTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateVulFixRetryTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用户手动提交漏洞修复任务，指定需要修复的漏洞和目标主机，系统创建修复任务并下发执行。支持指定修复超时时间、是否创建快照等选项。通过FixItems数组精确控制每个漏洞/KB补丁修复哪些主机。
+
+        # @param request: Request instance for CreateVulFixTask.
+        # @type request: :class:`Tencentcloud::csip::V20221121::CreateVulFixTaskRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::CreateVulFixTaskResponse`
+        def CreateVulFixTask(request)
+          body = send_request('CreateVulFixTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateVulFixTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建已修复漏洞列表的导出任务。支持与 DescribeVulFixedList 相同的过滤条件，导出通过异步任务实现，返回 JobID 后前端轮询查询导出任务状态。导出字段包含漏洞ID、漏洞名称、漏洞等级、VPR评级、漏洞类型、CVE编号、主机名称、实例ID、关联组件&路径、修复时间。
+
+        # @param request: Request instance for CreateVulFixedExportJob.
+        # @type request: :class:`Tencentcloud::csip::V20221121::CreateVulFixedExportJobRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::CreateVulFixedExportJobResponse`
+        def CreateVulFixedExportJob(request)
+          body = send_request('CreateVulFixedExportJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateVulFixedExportJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建漏洞重新扫描
+
+        # @param request: Request instance for CreateVulReScan.
+        # @type request: :class:`Tencentcloud::csip::V20221121::CreateVulReScanRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::CreateVulReScanResponse`
+        def CreateVulReScan(request)
+          body = send_request('CreateVulReScan', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateVulReScanResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建漏洞扫描（一键扫描）
+
+        # @param request: Request instance for CreateVulScanManual.
+        # @type request: :class:`Tencentcloud::csip::V20221121::CreateVulScanManualRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::CreateVulScanManualResponse`
+        def CreateVulScanManual(request)
+          body = send_request('CreateVulScanManual', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateVulScanManualResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1239,6 +1407,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteRiskScanTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除漏洞白名单
+
+        # @param request: Request instance for DeleteVulWhitelist.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DeleteVulWhitelistRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DeleteVulWhitelistResponse`
+        def DeleteVulWhitelist(request)
+          body = send_request('DeleteVulWhitelist', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteVulWhitelistResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -4205,6 +4397,102 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取主机kb风险列表
+
+        # @param request: Request instance for DescribeHostKBRiskList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeHostKBRiskListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeHostKBRiskListResponse`
+        def DescribeHostKBRiskList(request)
+          body = send_request('DescribeHostKBRiskList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeHostKBRiskListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取主机漏洞VPR信息
+
+        # @param request: Request instance for DescribeHostVulItemVPRInfo.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeHostVulItemVPRInfoRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeHostVulItemVPRInfoResponse`
+        def DescribeHostVulItemVPRInfo(request)
+          body = send_request('DescribeHostVulItemVPRInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeHostVulItemVPRInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取主机漏洞概览
+
+        # @param request: Request instance for DescribeHostVulOverview.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeHostVulOverviewRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeHostVulOverviewResponse`
+        def DescribeHostVulOverview(request)
+          body = send_request('DescribeHostVulOverview', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeHostVulOverviewResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取主机漏洞风险列表
+
+        # @param request: Request instance for DescribeHostVulRiskList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeHostVulRiskListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeHostVulRiskListResponse`
+        def DescribeHostVulRiskList(request)
+          body = send_request('DescribeHostVulRiskList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeHostVulRiskListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取IaC检测文件列表
 
         # @param request: Request instance for DescribeIaCFileList.
@@ -4335,6 +4623,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeIpInvokeRecordDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 根据用户输入的 KB 内部 ID 查询单个 Windows KB 补丁的详情信息，返回 KB 基本信息、发布时间、是否需要重启，以及该 KB 关联的漏洞列表。
+
+        # @param request: Request instance for DescribeKBDetail.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeKBDetailRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeKBDetailResponse`
+        def DescribeKBDetail(request)
+          body = send_request('DescribeKBDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeKBDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询指定KB补丁可以更新的主机列表。用于Windows系统补丁修复场景，在用户提交KB补丁更新任务前，查询哪些主机缺少该补丁且支持自动更新。
+
+        # @param request: Request instance for DescribeKBUpdatableMachineList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeKBUpdatableMachineListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeKBUpdatableMachineListResponse`
+        def DescribeKBUpdatableMachineList(request)
+          body = send_request('DescribeKBUpdatableMachineList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeKBUpdatableMachineListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -5501,6 +5837,246 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取漏洞组件关联主机
+
+        # @param request: Request instance for DescribeVulComponentRelateHost.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeVulComponentRelateHostRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeVulComponentRelateHostResponse`
+        def DescribeVulComponentRelateHost(request)
+          body = send_request('DescribeVulComponentRelateHost', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeVulComponentRelateHostResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询指定漏洞修复任务的详情信息，包含每台主机的修复状态、快照状态等明细数据，支持分页和筛选。
+
+        # @param request: Request instance for DescribeVulFixTaskDetail.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeVulFixTaskDetailRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeVulFixTaskDetailResponse`
+        def DescribeVulFixTaskDetail(request)
+          body = send_request('DescribeVulFixTaskDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeVulFixTaskDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 分页查询漏洞修复任务记录列表，支持按修复状态、时间范围等条件筛选，展示每个修复任务的概要信息。
+
+        # @param request: Request instance for DescribeVulFixTaskList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeVulFixTaskListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeVulFixTaskListResponse`
+        def DescribeVulFixTaskList(request)
+          body = send_request('DescribeVulFixTaskList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeVulFixTaskListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询指定漏洞可以被修复的主机列表。在用户提交修复任务前，需要先查询哪些主机支持自动修复，为用户选择修复目标提供数据支持。
+
+        # @param request: Request instance for DescribeVulFixableMachineList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeVulFixableMachineListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeVulFixableMachineListResponse`
+        def DescribeVulFixableMachineList(request)
+          body = send_request('DescribeVulFixableMachineList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeVulFixableMachineListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询某个已修复漏洞在指定主机上的修复详情，包含漏洞基本信息、修复主机信息以及关联组件&路径的详细列表（组件名称、命中版本、关联路径、修复命令）。
+
+        # @param request: Request instance for DescribeVulFixedHostDetail.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeVulFixedHostDetailRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeVulFixedHostDetailResponse`
+        def DescribeVulFixedHostDetail(request)
+          body = send_request('DescribeVulFixedHostDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeVulFixedHostDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询已被修复的漏洞列表，展示修复成功的漏洞信息及修复情况统计，帮助用户了解修复成效。
+
+        # @param request: Request instance for DescribeVulFixedList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeVulFixedListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeVulFixedListResponse`
+        def DescribeVulFixedList(request)
+          body = send_request('DescribeVulFixedList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeVulFixedListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取漏洞主机关联组件
+
+        # @param request: Request instance for DescribeVulHostRelateComponent.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeVulHostRelateComponentRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeVulHostRelateComponentResponse`
+        def DescribeVulHostRelateComponent(request)
+          body = send_request('DescribeVulHostRelateComponent', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeVulHostRelateComponentResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取漏洞忽略列表
+
+        # @param request: Request instance for DescribeVulIgnoreRuleList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeVulIgnoreRuleListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeVulIgnoreRuleListResponse`
+        def DescribeVulIgnoreRuleList(request)
+          body = send_request('DescribeVulIgnoreRuleList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeVulIgnoreRuleListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取漏洞列表
+
+        # @param request: Request instance for DescribeVulItemList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeVulItemListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeVulItemListResponse`
+        def DescribeVulItemList(request)
+          body = send_request('DescribeVulItemList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeVulItemListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取漏洞标签列表
+
+        # @param request: Request instance for DescribeVulLabelList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeVulLabelListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeVulLabelListResponse`
+        def DescribeVulLabelList(request)
+          body = send_request('DescribeVulLabelList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeVulLabelListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询云边界分析-暴露路径下主机节点的漏洞列表
 
         # @param request: Request instance for DescribeVulRiskList.
@@ -5511,6 +6087,126 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeVulRiskListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取漏洞关联组件
+
+        # @param request: Request instance for DescribeVulRiskRelateComponent.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeVulRiskRelateComponentRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeVulRiskRelateComponentResponse`
+        def DescribeVulRiskRelateComponent(request)
+          body = send_request('DescribeVulRiskRelateComponent', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeVulRiskRelateComponentResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取漏洞或KB关联的主机
+
+        # @param request: Request instance for DescribeVulRiskRelateHost.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeVulRiskRelateHostRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeVulRiskRelateHostResponse`
+        def DescribeVulRiskRelateHost(request)
+          body = send_request('DescribeVulRiskRelateHost', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeVulRiskRelateHostResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取漏洞扫描（周期扫描）
+
+        # @param request: Request instance for DescribeVulScanPeriodic.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeVulScanPeriodicRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeVulScanPeriodicResponse`
+        def DescribeVulScanPeriodic(request)
+          body = send_request('DescribeVulScanPeriodic', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeVulScanPeriodicResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取扫描漏洞任务详情
+
+        # @param request: Request instance for DescribeVulScanTaskDetail.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeVulScanTaskDetailRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeVulScanTaskDetailResponse`
+        def DescribeVulScanTaskDetail(request)
+          body = send_request('DescribeVulScanTaskDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeVulScanTaskDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取漏洞扫描任务记录
+
+        # @param request: Request instance for DescribeVulScanTaskList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeVulScanTaskListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeVulScanTaskListResponse`
+        def DescribeVulScanTaskList(request)
+          body = send_request('DescribeVulScanTaskList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeVulScanTaskListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -6629,6 +7325,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改漏洞扫描（周期扫描）
+
+        # @param request: Request instance for ModifyVulScanPeriodic.
+        # @type request: :class:`Tencentcloud::csip::V20221121::ModifyVulScanPeriodicRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::ModifyVulScanPeriodicResponse`
+        def ModifyVulScanPeriodic(request)
+          body = send_request('ModifyVulScanPeriodic', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyVulScanPeriodicResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改漏洞白名单配置
+
+        # @param request: Request instance for ModifyVulWhitelistConfig.
+        # @type request: :class:`Tencentcloud::csip::V20221121::ModifyVulWhitelistConfigRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::ModifyVulWhitelistConfigResponse`
+        def ModifyVulWhitelistConfig(request)
+          body = send_request('ModifyVulWhitelistConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyVulWhitelistConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改漏洞白名单开关
+
+        # @param request: Request instance for ModifyVulWhitelistSwitch.
+        # @type request: :class:`Tencentcloud::csip::V20221121::ModifyVulWhitelistSwitchRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::ModifyVulWhitelistSwitchResponse`
+        def ModifyVulWhitelistSwitch(request)
+          body = send_request('ModifyVulWhitelistSwitch', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyVulWhitelistSwitchResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 重置Dspm资产账号密码
 
         # @param request: Request instance for ResetDspmAssetAccountPassword.
@@ -6735,6 +7503,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = StopRiskCenterTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 停止漏洞扫描（任务扫描）
+
+        # @param request: Request instance for StopVulScanTask.
+        # @type request: :class:`Tencentcloud::csip::V20221121::StopVulScanTaskRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::StopVulScanTaskResponse`
+        def StopVulScanTask(request)
+          body = send_request('StopVulScanTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StopVulScanTaskResponse.new
             model.deserialize(response['Response'])
             model
           else

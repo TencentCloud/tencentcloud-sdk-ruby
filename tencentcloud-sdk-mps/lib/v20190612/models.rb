@@ -21869,10 +21869,12 @@ module TencentCloud
         # @type AiExpansionConfig: :class:`Tencentcloud::Mps.v20190612.models.AiExpansionConfig`
         # @param AiStoryboardConfig: <p>Ai分镜拆解配置</p>
         # @type AiStoryboardConfig: :class:`Tencentcloud::Mps.v20190612.models.AiStoryboardConfig`
+        # @param UnderstandImageConfig: <p>图片理解配置</p>
+        # @type UnderstandImageConfig: :class:`Tencentcloud::Mps.v20190612.models.UnderstandImageConfig`
 
-        attr_accessor :EncodeConfig, :EnhanceConfig, :EraseConfig, :BlindWatermarkConfig, :BeautyConfig, :TransformConfig, :AiTryOnConfig, :AiPosterSuiteConfig, :CreateImageConfig, :AiCutoutConfig, :AiExpansionConfig, :AiStoryboardConfig
+        attr_accessor :EncodeConfig, :EnhanceConfig, :EraseConfig, :BlindWatermarkConfig, :BeautyConfig, :TransformConfig, :AiTryOnConfig, :AiPosterSuiteConfig, :CreateImageConfig, :AiCutoutConfig, :AiExpansionConfig, :AiStoryboardConfig, :UnderstandImageConfig
 
-        def initialize(encodeconfig=nil, enhanceconfig=nil, eraseconfig=nil, blindwatermarkconfig=nil, beautyconfig=nil, transformconfig=nil, aitryonconfig=nil, aipostersuiteconfig=nil, createimageconfig=nil, aicutoutconfig=nil, aiexpansionconfig=nil, aistoryboardconfig=nil)
+        def initialize(encodeconfig=nil, enhanceconfig=nil, eraseconfig=nil, blindwatermarkconfig=nil, beautyconfig=nil, transformconfig=nil, aitryonconfig=nil, aipostersuiteconfig=nil, createimageconfig=nil, aicutoutconfig=nil, aiexpansionconfig=nil, aistoryboardconfig=nil, understandimageconfig=nil)
           @EncodeConfig = encodeconfig
           @EnhanceConfig = enhanceconfig
           @EraseConfig = eraseconfig
@@ -21885,6 +21887,7 @@ module TencentCloud
           @AiCutoutConfig = aicutoutconfig
           @AiExpansionConfig = aiexpansionconfig
           @AiStoryboardConfig = aistoryboardconfig
+          @UnderstandImageConfig = understandimageconfig
         end
 
         def deserialize(params)
@@ -21935,6 +21938,10 @@ module TencentCloud
           unless params['AiStoryboardConfig'].nil?
             @AiStoryboardConfig = AiStoryboardConfig.new
             @AiStoryboardConfig.deserialize(params['AiStoryboardConfig'])
+          end
+          unless params['UnderstandImageConfig'].nil?
+            @UnderstandImageConfig = UnderstandImageConfig.new
+            @UnderstandImageConfig.deserialize(params['UnderstandImageConfig'])
           end
         end
       end
@@ -36116,6 +36123,26 @@ module TencentCloud
         end
       end
 
+      # 图片理解任务。
+      class UnderstandImageConfig < TencentCloud::Common::AbstractModel
+        # @param Model: <p>图片理解模型</p><p>枚举值：</p><ul><li>WAND-understand-1.0-lite： 轻量理解模型</li><li>WAND-understand-1.0-flash： 质量-速度平衡理解模型</li><li>WAND-understand-1.0-pro： 高质量理解模型</li></ul>
+        # @type Model: String
+        # @param Prompt: <p>图片理解指令</p>
+        # @type Prompt: String
+
+        attr_accessor :Model, :Prompt
+
+        def initialize(model=nil, prompt=nil)
+          @Model = model
+          @Prompt = prompt
+        end
+
+        def deserialize(params)
+          @Model = params['Model']
+          @Prompt = params['Prompt']
+        end
+      end
+
       # UpdateProject请求参数结构体
       class UpdateProjectRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: <p>项目id</p>
@@ -37672,10 +37699,12 @@ module TencentCloud
         # @type Labels: Array
         # @param Scenes: <p>推荐场景</p><p>如：教育</p>
         # @type Scenes: Array
+        # @param Engine: <p>音色所属引擎</p>
+        # @type Engine: String
 
-        attr_accessor :VoiceId, :Name, :Description, :Category, :Gender, :Age, :Languages, :AudioUrl, :Labels, :Scenes
+        attr_accessor :VoiceId, :Name, :Description, :Category, :Gender, :Age, :Languages, :AudioUrl, :Labels, :Scenes, :Engine
 
-        def initialize(voiceid=nil, name=nil, description=nil, category=nil, gender=nil, age=nil, languages=nil, audiourl=nil, labels=nil, scenes=nil)
+        def initialize(voiceid=nil, name=nil, description=nil, category=nil, gender=nil, age=nil, languages=nil, audiourl=nil, labels=nil, scenes=nil, engine=nil)
           @VoiceId = voiceid
           @Name = name
           @Description = description
@@ -37686,6 +37715,7 @@ module TencentCloud
           @AudioUrl = audiourl
           @Labels = labels
           @Scenes = scenes
+          @Engine = engine
         end
 
         def deserialize(params)
@@ -37699,6 +37729,7 @@ module TencentCloud
           @AudioUrl = params['AudioUrl']
           @Labels = params['Labels']
           @Scenes = params['Scenes']
+          @Engine = params['Engine']
         end
       end
 

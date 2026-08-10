@@ -269,21 +269,45 @@ module TencentCloud
         end
       end
 
+      # API Key类型凭据
+      class AgentCredentialApiKeyDTO < TencentCloud::Common::AbstractModel
+        # @param Value: <p>API Key</p>
+        # @type Value: String
+
+        attr_accessor :Value
+
+        def initialize(value=nil)
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Value = params['Value']
+        end
+      end
+
       # 凭证内容
       class AgentCredentialContentDTO < TencentCloud::Common::AbstractModel
-        # @param STSSystem: 如果认证类型为sts时，该项必填
+        # @param STSSystem: <p>如果认证类型为sts时，该项必填</p>
         # @type STSSystem: String
-        # @param STSService: 如果认证类型为sts时，该项必填
+        # @param STSService: <p>如果认证类型为sts时，该项必填</p>
         # @type STSService: String
-        # @param Headers: 如果认证类型为reqKey时，该项必填
+        # @param Headers: <p>如果认证类型为reqKey时，该项必填</p>
         # @type Headers: Array
+        # @param ApiKeys: <p>如果认证类型为apiKey时，该项必填</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApiKeys: Array
+        # @param FaultTolerance: <p>容错策略，仅Type为apiKey时支持</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FaultTolerance: :class:`Tencentcloud::Apis.v20240801.models.FaultToleranceDTO`
 
-        attr_accessor :STSSystem, :STSService, :Headers
+        attr_accessor :STSSystem, :STSService, :Headers, :ApiKeys, :FaultTolerance
 
-        def initialize(stssystem=nil, stsservice=nil, headers=nil)
+        def initialize(stssystem=nil, stsservice=nil, headers=nil, apikeys=nil, faulttolerance=nil)
           @STSSystem = stssystem
           @STSService = stsservice
           @Headers = headers
+          @ApiKeys = apikeys
+          @FaultTolerance = faulttolerance
         end
 
         def deserialize(params)
@@ -296,6 +320,18 @@ module TencentCloud
               agentcredentialcontentheaderdto_tmp.deserialize(i)
               @Headers << agentcredentialcontentheaderdto_tmp
             end
+          end
+          unless params['ApiKeys'].nil?
+            @ApiKeys = []
+            params['ApiKeys'].each do |i|
+              agentcredentialapikeydto_tmp = AgentCredentialApiKeyDTO.new
+              agentcredentialapikeydto_tmp.deserialize(i)
+              @ApiKeys << agentcredentialapikeydto_tmp
+            end
+          end
+          unless params['FaultTolerance'].nil?
+            @FaultTolerance = FaultToleranceDTO.new
+            @FaultTolerance.deserialize(params['FaultTolerance'])
           end
         end
       end
@@ -1009,10 +1045,16 @@ module TencentCloud
         # @type ModelProtocol: String
         # @param RawCustomModelProtocolConfig: <p>自定义模型协议配置</p>
         # @type RawCustomModelProtocolConfig: String
+        # @param RouteStrategy: <p>路由策略</p><p>枚举值：</p><ul><li>weight： 权重</li><li>taskComplexity： 任务复杂度</li><li>tokenLength： token长度</li></ul>
+        # @type RouteStrategy: String
+        # @param TokenLengthRoute: <p>token长度路由策略</p>
+        # @type TokenLengthRoute: Array
+        # @param TaskComplexityRoute: <p>任务复杂度路由策略</p>
+        # @type TaskComplexityRoute: :class:`Tencentcloud::Apis.v20240801.models.TaskComplexityRouteDTO`
 
-        attr_accessor :InstanceID, :Name, :Description, :PubPath, :TargetModels, :PathMatchType, :InvokeLimitConfigStatus, :InvokeLimitConfig, :TokenLimitStatus, :TokenLimitConfig, :TmsStatus, :TmsConfig, :IpWhiteStatus, :IpWhiteList, :IpBlackList, :PluginConfigs, :Timeout, :PromptModerateStatus, :PromptModerateConfig, :SensitiveDataCheckStatus, :SensitiveDataCheckConfig, :TargetSelect, :FindHostKeyMethod, :HostKeyHeaderName, :FallbackStatus, :FallbackModels, :ModelProtocol, :RawCustomModelProtocolConfig
+        attr_accessor :InstanceID, :Name, :Description, :PubPath, :TargetModels, :PathMatchType, :InvokeLimitConfigStatus, :InvokeLimitConfig, :TokenLimitStatus, :TokenLimitConfig, :TmsStatus, :TmsConfig, :IpWhiteStatus, :IpWhiteList, :IpBlackList, :PluginConfigs, :Timeout, :PromptModerateStatus, :PromptModerateConfig, :SensitiveDataCheckStatus, :SensitiveDataCheckConfig, :TargetSelect, :FindHostKeyMethod, :HostKeyHeaderName, :FallbackStatus, :FallbackModels, :ModelProtocol, :RawCustomModelProtocolConfig, :RouteStrategy, :TokenLengthRoute, :TaskComplexityRoute
 
-        def initialize(instanceid=nil, name=nil, description=nil, pubpath=nil, targetmodels=nil, pathmatchtype=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, tokenlimitstatus=nil, tokenlimitconfig=nil, tmsstatus=nil, tmsconfig=nil, ipwhitestatus=nil, ipwhitelist=nil, ipblacklist=nil, pluginconfigs=nil, timeout=nil, promptmoderatestatus=nil, promptmoderateconfig=nil, sensitivedatacheckstatus=nil, sensitivedatacheckconfig=nil, targetselect=nil, findhostkeymethod=nil, hostkeyheadername=nil, fallbackstatus=nil, fallbackmodels=nil, modelprotocol=nil, rawcustommodelprotocolconfig=nil)
+        def initialize(instanceid=nil, name=nil, description=nil, pubpath=nil, targetmodels=nil, pathmatchtype=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, tokenlimitstatus=nil, tokenlimitconfig=nil, tmsstatus=nil, tmsconfig=nil, ipwhitestatus=nil, ipwhitelist=nil, ipblacklist=nil, pluginconfigs=nil, timeout=nil, promptmoderatestatus=nil, promptmoderateconfig=nil, sensitivedatacheckstatus=nil, sensitivedatacheckconfig=nil, targetselect=nil, findhostkeymethod=nil, hostkeyheadername=nil, fallbackstatus=nil, fallbackmodels=nil, modelprotocol=nil, rawcustommodelprotocolconfig=nil, routestrategy=nil, tokenlengthroute=nil, taskcomplexityroute=nil)
           @InstanceID = instanceid
           @Name = name
           @Description = description
@@ -1041,6 +1083,9 @@ module TencentCloud
           @FallbackModels = fallbackmodels
           @ModelProtocol = modelprotocol
           @RawCustomModelProtocolConfig = rawcustommodelprotocolconfig
+          @RouteStrategy = routestrategy
+          @TokenLengthRoute = tokenlengthroute
+          @TaskComplexityRoute = taskcomplexityroute
         end
 
         def deserialize(params)
@@ -1108,6 +1153,19 @@ module TencentCloud
           end
           @ModelProtocol = params['ModelProtocol']
           @RawCustomModelProtocolConfig = params['RawCustomModelProtocolConfig']
+          @RouteStrategy = params['RouteStrategy']
+          unless params['TokenLengthRoute'].nil?
+            @TokenLengthRoute = []
+            params['TokenLengthRoute'].each do |i|
+              tokenlengthroutedto_tmp = TokenLengthRouteDTO.new
+              tokenlengthroutedto_tmp.deserialize(i)
+              @TokenLengthRoute << tokenlengthroutedto_tmp
+            end
+          end
+          unless params['TaskComplexityRoute'].nil?
+            @TaskComplexityRoute = TaskComplexityRouteDTO.new
+            @TaskComplexityRoute.deserialize(params['TaskComplexityRoute'])
+          end
         end
       end
 
@@ -2091,8 +2149,8 @@ module TencentCloud
 
         attr_accessor :AppID, :Uin, :InstanceID, :ID, :Name, :Status, :RelateAgentAppNum, :RelateMcpServerNum, :RelateModelNum, :RelateServiceNum, :Content, :CreateTime, :LastUpdateTime, :Type
         extend Gem::Deprecate
-        deprecate :RelateAgentAppNum, :none, 2026, 7
-        deprecate :RelateAgentAppNum=, :none, 2026, 7
+        deprecate :RelateAgentAppNum, :none, 2026, 8
+        deprecate :RelateAgentAppNum=, :none, 2026, 8
 
         def initialize(appid=nil, uin=nil, instanceid=nil, id=nil, name=nil, status=nil, relateagentappnum=nil, relatemcpservernum=nil, relatemodelnum=nil, relateservicenum=nil, content=nil, createtime=nil, lastupdatetime=nil, type=nil)
           @AppID = appid
@@ -2864,10 +2922,19 @@ module TencentCloud
         # @type ModelProtocol: String
         # @param RawCustomModelProtocolConfig: <p>自定义模型协议配置</p>
         # @type RawCustomModelProtocolConfig: String
+        # @param RouteStrategy: <p>路由策略</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RouteStrategy: String
+        # @param TokenLengthRoute: <p>token长度路由配置</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TokenLengthRoute: Array
+        # @param TaskComplexityRoute: <p>任务复杂度路由配置</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskComplexityRoute: :class:`Tencentcloud::Apis.v20240801.models.TaskComplexityRouteDTO`
 
-        attr_accessor :AppID, :Uin, :InstanceID, :ID, :Name, :Description, :PubPath, :PathMatchType, :TargetModels, :ModelNames, :InvokeLimitConfigStatus, :InvokeLimitConfig, :CreateTime, :LastUpdateTime, :TokenLimitStatus, :TokenLimitConfig, :TmsStatus, :TmsConfig, :IpWhiteStatus, :IpWhiteList, :IpBlackStatus, :IpBlackList, :PluginConfigs, :Timeout, :Status, :RelateAgentAppNum, :Url, :PromptModerateStatus, :PromptModerateConfig, :SensitiveDataCheckStatus, :SensitiveDataCheckConfig, :TargetSelect, :FindHostKeyMethod, :HostKeyHeaderName, :FallbackStatus, :FallbackModels, :ModelProtocol, :RawCustomModelProtocolConfig
+        attr_accessor :AppID, :Uin, :InstanceID, :ID, :Name, :Description, :PubPath, :PathMatchType, :TargetModels, :ModelNames, :InvokeLimitConfigStatus, :InvokeLimitConfig, :CreateTime, :LastUpdateTime, :TokenLimitStatus, :TokenLimitConfig, :TmsStatus, :TmsConfig, :IpWhiteStatus, :IpWhiteList, :IpBlackStatus, :IpBlackList, :PluginConfigs, :Timeout, :Status, :RelateAgentAppNum, :Url, :PromptModerateStatus, :PromptModerateConfig, :SensitiveDataCheckStatus, :SensitiveDataCheckConfig, :TargetSelect, :FindHostKeyMethod, :HostKeyHeaderName, :FallbackStatus, :FallbackModels, :ModelProtocol, :RawCustomModelProtocolConfig, :RouteStrategy, :TokenLengthRoute, :TaskComplexityRoute
 
-        def initialize(appid=nil, uin=nil, instanceid=nil, id=nil, name=nil, description=nil, pubpath=nil, pathmatchtype=nil, targetmodels=nil, modelnames=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, createtime=nil, lastupdatetime=nil, tokenlimitstatus=nil, tokenlimitconfig=nil, tmsstatus=nil, tmsconfig=nil, ipwhitestatus=nil, ipwhitelist=nil, ipblackstatus=nil, ipblacklist=nil, pluginconfigs=nil, timeout=nil, status=nil, relateagentappnum=nil, url=nil, promptmoderatestatus=nil, promptmoderateconfig=nil, sensitivedatacheckstatus=nil, sensitivedatacheckconfig=nil, targetselect=nil, findhostkeymethod=nil, hostkeyheadername=nil, fallbackstatus=nil, fallbackmodels=nil, modelprotocol=nil, rawcustommodelprotocolconfig=nil)
+        def initialize(appid=nil, uin=nil, instanceid=nil, id=nil, name=nil, description=nil, pubpath=nil, pathmatchtype=nil, targetmodels=nil, modelnames=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, createtime=nil, lastupdatetime=nil, tokenlimitstatus=nil, tokenlimitconfig=nil, tmsstatus=nil, tmsconfig=nil, ipwhitestatus=nil, ipwhitelist=nil, ipblackstatus=nil, ipblacklist=nil, pluginconfigs=nil, timeout=nil, status=nil, relateagentappnum=nil, url=nil, promptmoderatestatus=nil, promptmoderateconfig=nil, sensitivedatacheckstatus=nil, sensitivedatacheckconfig=nil, targetselect=nil, findhostkeymethod=nil, hostkeyheadername=nil, fallbackstatus=nil, fallbackmodels=nil, modelprotocol=nil, rawcustommodelprotocolconfig=nil, routestrategy=nil, tokenlengthroute=nil, taskcomplexityroute=nil)
           @AppID = appid
           @Uin = uin
           @InstanceID = instanceid
@@ -2906,6 +2973,9 @@ module TencentCloud
           @FallbackModels = fallbackmodels
           @ModelProtocol = modelprotocol
           @RawCustomModelProtocolConfig = rawcustommodelprotocolconfig
+          @RouteStrategy = routestrategy
+          @TokenLengthRoute = tokenlengthroute
+          @TaskComplexityRoute = taskcomplexityroute
         end
 
         def deserialize(params)
@@ -2983,6 +3053,19 @@ module TencentCloud
           end
           @ModelProtocol = params['ModelProtocol']
           @RawCustomModelProtocolConfig = params['RawCustomModelProtocolConfig']
+          @RouteStrategy = params['RouteStrategy']
+          unless params['TokenLengthRoute'].nil?
+            @TokenLengthRoute = []
+            params['TokenLengthRoute'].each do |i|
+              tokenlengthroutedto_tmp = TokenLengthRouteDTO.new
+              tokenlengthroutedto_tmp.deserialize(i)
+              @TokenLengthRoute << tokenlengthroutedto_tmp
+            end
+          end
+          unless params['TaskComplexityRoute'].nil?
+            @TaskComplexityRoute = TaskComplexityRouteDTO.new
+            @TaskComplexityRoute.deserialize(params['TaskComplexityRoute'])
+          end
         end
       end
 
@@ -3300,6 +3383,42 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # API Key容错策略配置
+      class FaultToleranceDTO < TencentCloud::Common::AbstractModel
+        # @param Enabled: <p>是否启用API Key容错配置</p>
+        # @type Enabled: Boolean
+        # @param ErrorCodes: <p>异常判定状态码，固定3位数字或字母</p>
+        # @type ErrorCodes: Array
+        # @param ErrorCount: <p>连续异常次数</p><p>单位：次</p>
+        # @type ErrorCount: Integer
+        # @param IsolationTime: <p>隔离时长</p><p>单位：秒</p>
+        # @type IsolationTime: Integer
+        # @param MaxSwitchCount: <p>最多切换次数</p><p>置0为不开启自动切换</p>
+        # @type MaxSwitchCount: Integer
+        # @param SwitchTimeout: <p>切换总时间预算</p><p>单位：秒</p>
+        # @type SwitchTimeout: Integer
+
+        attr_accessor :Enabled, :ErrorCodes, :ErrorCount, :IsolationTime, :MaxSwitchCount, :SwitchTimeout
+
+        def initialize(enabled=nil, errorcodes=nil, errorcount=nil, isolationtime=nil, maxswitchcount=nil, switchtimeout=nil)
+          @Enabled = enabled
+          @ErrorCodes = errorcodes
+          @ErrorCount = errorcount
+          @IsolationTime = isolationtime
+          @MaxSwitchCount = maxswitchcount
+          @SwitchTimeout = switchtimeout
+        end
+
+        def deserialize(params)
+          @Enabled = params['Enabled']
+          @ErrorCodes = params['ErrorCodes']
+          @ErrorCount = params['ErrorCount']
+          @IsolationTime = params['IsolationTime']
+          @MaxSwitchCount = params['MaxSwitchCount']
+          @SwitchTimeout = params['SwitchTimeout']
         end
       end
 
@@ -4175,10 +4294,16 @@ module TencentCloud
         # @type ModelProtocol: String
         # @param RawCustomModelProtocolConfig: <p>自定义模型协议配置</p>
         # @type RawCustomModelProtocolConfig: String
+        # @param RouteStrategy: <p>路由策略</p><p>枚举值：</p><ul><li>weight： 权重</li><li>taskComplexity： 任务复杂度</li><li>tokenLength： token长度</li></ul>
+        # @type RouteStrategy: String
+        # @param TokenLengthRoute: <p>token长度路由策略</p>
+        # @type TokenLengthRoute: Array
+        # @param TaskComplexityRoute: <p>任务复杂度路由策略</p>
+        # @type TaskComplexityRoute: :class:`Tencentcloud::Apis.v20240801.models.TaskComplexityRouteDTO`
 
-        attr_accessor :InstanceID, :ID, :Name, :Description, :TargetModels, :InvokeLimitConfigStatus, :InvokeLimitConfig, :TokenLimitStatus, :TokenLimitConfig, :TmsStatus, :TmsConfig, :IpWhiteStatus, :IpWhiteList, :IpBlackStatus, :IpBlackList, :PluginConfigs, :Timeout, :PromptModerateStatus, :PromptModerateConfig, :SensitiveDataCheckStatus, :SensitiveDataCheckConfig, :TargetSelect, :FindHostKeyMethod, :HostKeyHeaderName, :FallbackStatus, :FallbackModels, :ModelProtocol, :RawCustomModelProtocolConfig
+        attr_accessor :InstanceID, :ID, :Name, :Description, :TargetModels, :InvokeLimitConfigStatus, :InvokeLimitConfig, :TokenLimitStatus, :TokenLimitConfig, :TmsStatus, :TmsConfig, :IpWhiteStatus, :IpWhiteList, :IpBlackStatus, :IpBlackList, :PluginConfigs, :Timeout, :PromptModerateStatus, :PromptModerateConfig, :SensitiveDataCheckStatus, :SensitiveDataCheckConfig, :TargetSelect, :FindHostKeyMethod, :HostKeyHeaderName, :FallbackStatus, :FallbackModels, :ModelProtocol, :RawCustomModelProtocolConfig, :RouteStrategy, :TokenLengthRoute, :TaskComplexityRoute
 
-        def initialize(instanceid=nil, id=nil, name=nil, description=nil, targetmodels=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, tokenlimitstatus=nil, tokenlimitconfig=nil, tmsstatus=nil, tmsconfig=nil, ipwhitestatus=nil, ipwhitelist=nil, ipblackstatus=nil, ipblacklist=nil, pluginconfigs=nil, timeout=nil, promptmoderatestatus=nil, promptmoderateconfig=nil, sensitivedatacheckstatus=nil, sensitivedatacheckconfig=nil, targetselect=nil, findhostkeymethod=nil, hostkeyheadername=nil, fallbackstatus=nil, fallbackmodels=nil, modelprotocol=nil, rawcustommodelprotocolconfig=nil)
+        def initialize(instanceid=nil, id=nil, name=nil, description=nil, targetmodels=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, tokenlimitstatus=nil, tokenlimitconfig=nil, tmsstatus=nil, tmsconfig=nil, ipwhitestatus=nil, ipwhitelist=nil, ipblackstatus=nil, ipblacklist=nil, pluginconfigs=nil, timeout=nil, promptmoderatestatus=nil, promptmoderateconfig=nil, sensitivedatacheckstatus=nil, sensitivedatacheckconfig=nil, targetselect=nil, findhostkeymethod=nil, hostkeyheadername=nil, fallbackstatus=nil, fallbackmodels=nil, modelprotocol=nil, rawcustommodelprotocolconfig=nil, routestrategy=nil, tokenlengthroute=nil, taskcomplexityroute=nil)
           @InstanceID = instanceid
           @ID = id
           @Name = name
@@ -4207,6 +4332,9 @@ module TencentCloud
           @FallbackModels = fallbackmodels
           @ModelProtocol = modelprotocol
           @RawCustomModelProtocolConfig = rawcustommodelprotocolconfig
+          @RouteStrategy = routestrategy
+          @TokenLengthRoute = tokenlengthroute
+          @TaskComplexityRoute = taskcomplexityroute
         end
 
         def deserialize(params)
@@ -4274,6 +4402,19 @@ module TencentCloud
           end
           @ModelProtocol = params['ModelProtocol']
           @RawCustomModelProtocolConfig = params['RawCustomModelProtocolConfig']
+          @RouteStrategy = params['RouteStrategy']
+          unless params['TokenLengthRoute'].nil?
+            @TokenLengthRoute = []
+            params['TokenLengthRoute'].each do |i|
+              tokenlengthroutedto_tmp = TokenLengthRouteDTO.new
+              tokenlengthroutedto_tmp.deserialize(i)
+              @TokenLengthRoute << tokenlengthroutedto_tmp
+            end
+          end
+          unless params['TaskComplexityRoute'].nil?
+            @TaskComplexityRoute = TaskComplexityRouteDTO.new
+            @TaskComplexityRoute.deserialize(params['TaskComplexityRoute'])
+          end
         end
       end
 
@@ -4371,14 +4512,14 @@ module TencentCloud
 
         attr_accessor :InstanceID, :Name, :PaasID, :Description, :LabelIDs, :CategoryIDs, :AuthType, :SignType, :LoginTypes, :TargetSelect, :PubPath, :RequestMethod, :HttpProtocolType, :CheckTargetCertsError, :HttpProtocolVersion, :Versions, :TargetPath, :RequestParamsValidatorStatus, :RequestParamsValidatorJsonInfoT, :ResponseParamsValidatorStatus, :ResponseParamsValidatorJsonInfoT, :InvokeLimitConfigStatus, :InvokeLimitConfig, :HealthCheckStatus, :HealthCheckConfig, :SourceTypeStatus, :SourceTypeConfig, :IpWhiteStatus, :IpWhiteList, :IpBlackStatus, :IpBlackList, :PluginConfigs, :ID
         extend Gem::Deprecate
-        deprecate :PaasID, :none, 2026, 7
-        deprecate :PaasID=, :none, 2026, 7
-        deprecate :AuthType, :none, 2026, 7
-        deprecate :AuthType=, :none, 2026, 7
-        deprecate :SignType, :none, 2026, 7
-        deprecate :SignType=, :none, 2026, 7
-        deprecate :LoginTypes, :none, 2026, 7
-        deprecate :LoginTypes=, :none, 2026, 7
+        deprecate :PaasID, :none, 2026, 8
+        deprecate :PaasID=, :none, 2026, 8
+        deprecate :AuthType, :none, 2026, 8
+        deprecate :AuthType=, :none, 2026, 8
+        deprecate :SignType, :none, 2026, 8
+        deprecate :SignType=, :none, 2026, 8
+        deprecate :LoginTypes, :none, 2026, 8
+        deprecate :LoginTypes=, :none, 2026, 8
 
         def initialize(instanceid=nil, name=nil, paasid=nil, description=nil, labelids=nil, categoryids=nil, authtype=nil, signtype=nil, logintypes=nil, targetselect=nil, pubpath=nil, requestmethod=nil, httpprotocoltype=nil, checktargetcertserror=nil, httpprotocolversion=nil, versions=nil, targetpath=nil, requestparamsvalidatorstatus=nil, requestparamsvalidatorjsoninfot=nil, responseparamsvalidatorstatus=nil, responseparamsvalidatorjsoninfot=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, healthcheckstatus=nil, healthcheckconfig=nil, sourcetypestatus=nil, sourcetypeconfig=nil, ipwhitestatus=nil, ipwhitelist=nil, ipblackstatus=nil, ipblacklist=nil, pluginconfigs=nil, id=nil)
           @InstanceID = instanceid
@@ -4943,24 +5084,24 @@ module TencentCloud
 
         attr_accessor :InstanceID, :Name, :PaasID, :Description, :LabelIDs, :CategoryIDs, :AuthType, :SignType, :LoginTypes, :TargetSelect, :PubPath, :RequestMethod, :TargetHosts, :HttpProtocolType, :CheckTargetCertsError, :HttpProtocolVersion, :Versions, :TargetPath, :RequestParamsValidatorStatus, :RequestParamsValidatorJsonInfoT, :ResponseParamsValidatorStatus, :ResponseParamsValidatorJsonInfoT, :InvokeLimitConfigStatus, :InvokeLimitConfig, :HealthCheckStatus, :HealthCheckConfig, :SourceTypeStatus, :SourceTypeConfig, :TokenLimitStatus, :TokenLimitConfig, :TmsStatus, :TmsConfig, :IpWhiteStatus, :IpWhiteList, :IpBlackStatus, :IpBlackList, :PluginConfigs, :ID, :Status, :Url, :App, :Catalogs, :Labels, :Logins, :AuthAppNum, :CreateTime, :LastUpdateTime, :AppID, :Uin, :Domain, :OpenMessageLogStatus, :CurrPaasIDSubscriptionID, :TargetServiceType, :SqlTemplate, :TargetHostType, :TargetServiceHostType, :TargetServerGroupID, :TargetServerGroup, :CustomHttpHost, :HttpHostType, :MockStatusCode, :MockBody, :MockHeaders, :PathMatchType, :CustomMatch, :Timeout, :McpServerNum
         extend Gem::Deprecate
-        deprecate :PaasID, :none, 2026, 7
-        deprecate :PaasID=, :none, 2026, 7
-        deprecate :AuthType, :none, 2026, 7
-        deprecate :AuthType=, :none, 2026, 7
-        deprecate :SignType, :none, 2026, 7
-        deprecate :SignType=, :none, 2026, 7
-        deprecate :LoginTypes, :none, 2026, 7
-        deprecate :LoginTypes=, :none, 2026, 7
-        deprecate :TokenLimitStatus, :none, 2026, 7
-        deprecate :TokenLimitStatus=, :none, 2026, 7
-        deprecate :TokenLimitConfig, :none, 2026, 7
-        deprecate :TokenLimitConfig=, :none, 2026, 7
-        deprecate :TmsStatus, :none, 2026, 7
-        deprecate :TmsStatus=, :none, 2026, 7
-        deprecate :TmsConfig, :none, 2026, 7
-        deprecate :TmsConfig=, :none, 2026, 7
-        deprecate :CurrPaasIDSubscriptionID, :none, 2026, 7
-        deprecate :CurrPaasIDSubscriptionID=, :none, 2026, 7
+        deprecate :PaasID, :none, 2026, 8
+        deprecate :PaasID=, :none, 2026, 8
+        deprecate :AuthType, :none, 2026, 8
+        deprecate :AuthType=, :none, 2026, 8
+        deprecate :SignType, :none, 2026, 8
+        deprecate :SignType=, :none, 2026, 8
+        deprecate :LoginTypes, :none, 2026, 8
+        deprecate :LoginTypes=, :none, 2026, 8
+        deprecate :TokenLimitStatus, :none, 2026, 8
+        deprecate :TokenLimitStatus=, :none, 2026, 8
+        deprecate :TokenLimitConfig, :none, 2026, 8
+        deprecate :TokenLimitConfig=, :none, 2026, 8
+        deprecate :TmsStatus, :none, 2026, 8
+        deprecate :TmsStatus=, :none, 2026, 8
+        deprecate :TmsConfig, :none, 2026, 8
+        deprecate :TmsConfig=, :none, 2026, 8
+        deprecate :CurrPaasIDSubscriptionID, :none, 2026, 8
+        deprecate :CurrPaasIDSubscriptionID=, :none, 2026, 8
 
         def initialize(instanceid=nil, name=nil, paasid=nil, description=nil, labelids=nil, categoryids=nil, authtype=nil, signtype=nil, logintypes=nil, targetselect=nil, pubpath=nil, requestmethod=nil, targethosts=nil, httpprotocoltype=nil, checktargetcertserror=nil, httpprotocolversion=nil, versions=nil, targetpath=nil, requestparamsvalidatorstatus=nil, requestparamsvalidatorjsoninfot=nil, responseparamsvalidatorstatus=nil, responseparamsvalidatorjsoninfot=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, healthcheckstatus=nil, healthcheckconfig=nil, sourcetypestatus=nil, sourcetypeconfig=nil, tokenlimitstatus=nil, tokenlimitconfig=nil, tmsstatus=nil, tmsconfig=nil, ipwhitestatus=nil, ipwhitelist=nil, ipblackstatus=nil, ipblacklist=nil, pluginconfigs=nil, id=nil, status=nil, url=nil, app=nil, catalogs=nil, labels=nil, logins=nil, authappnum=nil, createtime=nil, lastupdatetime=nil, appid=nil, uin=nil, domain=nil, openmessagelogstatus=nil, currpaasidsubscriptionid=nil, targetservicetype=nil, sqltemplate=nil, targethosttype=nil, targetservicehosttype=nil, targetservergroupid=nil, targetservergroup=nil, customhttphost=nil, httphosttype=nil, mockstatuscode=nil, mockbody=nil, mockheaders=nil, pathmatchtype=nil, custommatch=nil, timeout=nil, mcpservernum=nil)
           @InstanceID = instanceid
@@ -5394,6 +5535,47 @@ module TencentCloud
         end
       end
 
+      # 任务复杂度路由参数
+      class TaskComplexityRouteDTO < TencentCloud::Common::AbstractModel
+        # @param ComplexityBias: <p>倾向度</p><p>取值范围：[0, 1]</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ComplexityBias: Float
+        # @param SimpleTargetModels: <p>简单模型</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SimpleTargetModels: Array
+        # @param ComplexTargetModels: <p>复杂模型</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ComplexTargetModels: Array
+
+        attr_accessor :ComplexityBias, :SimpleTargetModels, :ComplexTargetModels
+
+        def initialize(complexitybias=nil, simpletargetmodels=nil, complextargetmodels=nil)
+          @ComplexityBias = complexitybias
+          @SimpleTargetModels = simpletargetmodels
+          @ComplexTargetModels = complextargetmodels
+        end
+
+        def deserialize(params)
+          @ComplexityBias = params['ComplexityBias']
+          unless params['SimpleTargetModels'].nil?
+            @SimpleTargetModels = []
+            params['SimpleTargetModels'].each do |i|
+              targetmodeldto_tmp = TargetModelDTO.new
+              targetmodeldto_tmp.deserialize(i)
+              @SimpleTargetModels << targetmodeldto_tmp
+            end
+          end
+          unless params['ComplexTargetModels'].nil?
+            @ComplexTargetModels = []
+            params['ComplexTargetModels'].each do |i|
+              targetmodeldto_tmp = TargetModelDTO.new
+              targetmodeldto_tmp.deserialize(i)
+              @ComplexTargetModels << targetmodeldto_tmp
+            end
+          end
+        end
+      end
+
       # 内容安全配置
       class TmsConfigDTO < TencentCloud::Common::AbstractModel
         # @param Scope: <p>检测范围,请求/响应</p>
@@ -5438,6 +5620,40 @@ module TencentCloud
           @BizType = params['BizType']
           @InterceptMessage = params['InterceptMessage']
           @ContextScope = params['ContextScope']
+        end
+      end
+
+      # token长度路由参数
+      class TokenLengthRouteDTO < TencentCloud::Common::AbstractModel
+        # @param MinTokens: <p>Token 区间下限</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MinTokens: Integer
+        # @param MaxTokens: <p>Token 区间上限</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxTokens: Integer
+        # @param TargetModels: <p>模型</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetModels: Array
+
+        attr_accessor :MinTokens, :MaxTokens, :TargetModels
+
+        def initialize(mintokens=nil, maxtokens=nil, targetmodels=nil)
+          @MinTokens = mintokens
+          @MaxTokens = maxtokens
+          @TargetModels = targetmodels
+        end
+
+        def deserialize(params)
+          @MinTokens = params['MinTokens']
+          @MaxTokens = params['MaxTokens']
+          unless params['TargetModels'].nil?
+            @TargetModels = []
+            params['TargetModels'].each do |i|
+              targetmodeldto_tmp = TargetModelDTO.new
+              targetmodeldto_tmp.deserialize(i)
+              @TargetModels << targetmodeldto_tmp
+            end
+          end
         end
       end
 

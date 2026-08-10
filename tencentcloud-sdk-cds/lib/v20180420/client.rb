@@ -29,6 +29,78 @@ module TencentCloud
         end
 
 
+        # 下载报表PDF
+
+        # @param request: Request instance for CreateReportPdf.
+        # @type request: :class:`Tencentcloud::cds::V20180420::CreateReportPdfRequest`
+        # @rtype: :class:`Tencentcloud::cds::V20180420::CreateReportPdfResponse`
+        def CreateReportPdf(request)
+          body = send_request('CreateReportPdf', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateReportPdfResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 新建报表任务
+
+        # @param request: Request instance for CreateTimerReport.
+        # @type request: :class:`Tencentcloud::cds::V20180420::CreateTimerReportRequest`
+        # @rtype: :class:`Tencentcloud::cds::V20180420::CreateTimerReportResponse`
+        def CreateTimerReport(request)
+          body = send_request('CreateTimerReport', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateTimerReportResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询资产列表
+
+        # @param request: Request instance for DescribeAssetsList.
+        # @type request: :class:`Tencentcloud::cds::V20180420::DescribeAssetsListRequest`
+        # @rtype: :class:`Tencentcloud::cds::V20180420::DescribeAssetsListResponse`
+        def DescribeAssetsList(request)
+          body = send_request('DescribeAssetsList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAssetsListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 (DescribeDbauditInstanceType) 用于查询可售卖的产品规格列表。
 
         # @param request: Request instance for DescribeDbauditInstanceType.
@@ -87,6 +159,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDbauditUsedRegionsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询报表列表
+
+        # @param request: Request instance for DescribeReportList.
+        # @type request: :class:`Tencentcloud::cds::V20180420::DescribeReportListRequest`
+        # @rtype: :class:`Tencentcloud::cds::V20180420::DescribeReportListResponse`
+        def DescribeReportList(request)
+          body = send_request('DescribeReportList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeReportListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询报表任务列表
+
+        # @param request: Request instance for DescribeReportMissionList.
+        # @type request: :class:`Tencentcloud::cds::V20180420::DescribeReportMissionListRequest`
+        # @rtype: :class:`Tencentcloud::cds::V20180420::DescribeReportMissionListResponse`
+        def DescribeReportMissionList(request)
+          body = send_request('DescribeReportMissionList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeReportMissionListResponse.new
             model.deserialize(response['Response'])
             model
           else

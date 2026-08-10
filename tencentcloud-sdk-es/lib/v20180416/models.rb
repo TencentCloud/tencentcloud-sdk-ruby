@@ -3964,33 +3964,37 @@ module TencentCloud
 
       # DescribeUserCosSnapshotList请求参数结构体
       class DescribeUserCosSnapshotListRequest < TencentCloud::Common::AbstractModel
-        # @param CosBucket: cos桶名
+        # @param CosBucket: <p>cos桶名</p>
         # @type CosBucket: String
-        # @param BasePath: bucket 桶下的备份路径
+        # @param BasePath: <p>bucket 桶下的备份路径</p>
         # @type BasePath: String
-        # @param ClusterInstanceId: 云上集群迁移集群名
+        # @param ClusterInstanceId: <p>云上集群迁移集群名</p>
         # @type ClusterInstanceId: String
+        # @param PaasEsRepository: <p>es 集群仓库</p>
+        # @type PaasEsRepository: String
 
-        attr_accessor :CosBucket, :BasePath, :ClusterInstanceId
+        attr_accessor :CosBucket, :BasePath, :ClusterInstanceId, :PaasEsRepository
 
-        def initialize(cosbucket=nil, basepath=nil, clusterinstanceid=nil)
+        def initialize(cosbucket=nil, basepath=nil, clusterinstanceid=nil, paasesrepository=nil)
           @CosBucket = cosbucket
           @BasePath = basepath
           @ClusterInstanceId = clusterinstanceid
+          @PaasEsRepository = paasesrepository
         end
 
         def deserialize(params)
           @CosBucket = params['CosBucket']
           @BasePath = params['BasePath']
           @ClusterInstanceId = params['ClusterInstanceId']
+          @PaasEsRepository = params['PaasEsRepository']
         end
       end
 
       # DescribeUserCosSnapshotList返回参数结构体
       class DescribeUserCosSnapshotListResponse < TencentCloud::Common::AbstractModel
-        # @param CosSnapshotInfoList: cos 快照信息列表
+        # @param CosSnapshotInfoList: <p>cos 快照信息列表</p>
         # @type CosSnapshotInfoList: Array
-        # @param TotalCount: cos 快照数量
+        # @param TotalCount: <p>cos 快照数量</p>
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

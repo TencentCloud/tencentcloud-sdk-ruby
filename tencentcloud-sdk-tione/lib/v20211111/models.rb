@@ -8810,33 +8810,42 @@ module TencentCloud
 
       # 私有连接信息
       class PrivateLinkInfo < TencentCloud::Common::AbstractModel
-        # @param VpcId: 私有连接所在的VPCID
+        # @param VpcId: <p>私有连接所在的VPCID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
-        # @param SubnetId: 私有连接所在的子网ID
+        # @param SubnetId: <p>私有连接所在的子网ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetId: String
-        # @param InnerHttpAddr: HTTP内网调用地址
+        # @param InnerHttpAddr: <p>HTTP内网调用地址</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InnerHttpAddr: Array
-        # @param InnerHttpsAddr: HTTPS内网调用地址
+        # @param InnerHttpsAddr: <p>HTTPS内网调用地址</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InnerHttpsAddr: Array
-        # @param State: 私有连接状态
+        # @param State: <p>私有连接状态</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type State: String
-        # @param InnerGrpcAddr: grpc内网调用地址
+        # @param InnerGrpcAddr: <p>grpc内网调用地址</p>
         # @type InnerGrpcAddr: Array
+        # @param CreatedBy: <p>创建者 UIN</p>
+        # @type CreatedBy: String
+        # @param CreateTime: <p>创建时间</p>
+        # @type CreateTime: String
+        # @param SubUinName: <p>子用户名称</p>
+        # @type SubUinName: String
 
-        attr_accessor :VpcId, :SubnetId, :InnerHttpAddr, :InnerHttpsAddr, :State, :InnerGrpcAddr
+        attr_accessor :VpcId, :SubnetId, :InnerHttpAddr, :InnerHttpsAddr, :State, :InnerGrpcAddr, :CreatedBy, :CreateTime, :SubUinName
 
-        def initialize(vpcid=nil, subnetid=nil, innerhttpaddr=nil, innerhttpsaddr=nil, state=nil, innergrpcaddr=nil)
+        def initialize(vpcid=nil, subnetid=nil, innerhttpaddr=nil, innerhttpsaddr=nil, state=nil, innergrpcaddr=nil, createdby=nil, createtime=nil, subuinname=nil)
           @VpcId = vpcid
           @SubnetId = subnetid
           @InnerHttpAddr = innerhttpaddr
           @InnerHttpsAddr = innerhttpsaddr
           @State = state
           @InnerGrpcAddr = innergrpcaddr
+          @CreatedBy = createdby
+          @CreateTime = createtime
+          @SubUinName = subuinname
         end
 
         def deserialize(params)
@@ -8846,6 +8855,9 @@ module TencentCloud
           @InnerHttpsAddr = params['InnerHttpsAddr']
           @State = params['State']
           @InnerGrpcAddr = params['InnerGrpcAddr']
+          @CreatedBy = params['CreatedBy']
+          @CreateTime = params['CreateTime']
+          @SubUinName = params['SubUinName']
         end
       end
 
