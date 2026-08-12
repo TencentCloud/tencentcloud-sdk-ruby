@@ -1562,6 +1562,42 @@ module TencentCloud
         end
       end
 
+      # DeleteAggregators请求参数结构体
+      class DeleteAggregatorsRequest < TencentCloud::Common::AbstractModel
+        # @param AccountGroupId: 账号组ID
+        # @type AccountGroupId: String
+        # @param OwnerUin: 账号组创建者ID
+        # @type OwnerUin: Integer
+
+        attr_accessor :AccountGroupId, :OwnerUin
+
+        def initialize(accountgroupid=nil, owneruin=nil)
+          @AccountGroupId = accountgroupid
+          @OwnerUin = owneruin
+        end
+
+        def deserialize(params)
+          @AccountGroupId = params['AccountGroupId']
+          @OwnerUin = params['OwnerUin']
+        end
+      end
+
+      # DeleteAggregators返回参数结构体
+      class DeleteAggregatorsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteAlarmPolicy请求参数结构体
       class DeleteAlarmPolicyRequest < TencentCloud::Common::AbstractModel
         # @param AlarmPolicyId: 告警策略id
@@ -4639,6 +4675,61 @@ module TencentCloud
 
       # UpdateAggregateConfigRule返回参数结构体
       class UpdateAggregateConfigRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateAggregator请求参数结构体
+      class UpdateAggregatorRequest < TencentCloud::Common::AbstractModel
+        # @param Name: <p>账号组名称</p>
+        # @type Name: String
+        # @param Description: <p>账号组描述</p>
+        # @type Description: String
+        # @param AccountGroupId: <p>账号组类型</p><p>枚举值：</p><ul><li>RD： 全局账号组</li><li>CUSTOM： 自定义账号组</li></ul>
+        # @type AccountGroupId: String
+        # @param OwnerUin: <p>账号组创建者ID</p>
+        # @type OwnerUin: Integer
+        # @param AggregatorAccounts: <p>账号组成员信息列表，最多100个</p>
+        # @type AggregatorAccounts: Array
+
+        attr_accessor :Name, :Description, :AccountGroupId, :OwnerUin, :AggregatorAccounts
+
+        def initialize(name=nil, description=nil, accountgroupid=nil, owneruin=nil, aggregatoraccounts=nil)
+          @Name = name
+          @Description = description
+          @AccountGroupId = accountgroupid
+          @OwnerUin = owneruin
+          @AggregatorAccounts = aggregatoraccounts
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Description = params['Description']
+          @AccountGroupId = params['AccountGroupId']
+          @OwnerUin = params['OwnerUin']
+          unless params['AggregatorAccounts'].nil?
+            @AggregatorAccounts = []
+            params['AggregatorAccounts'].each do |i|
+              aggregatoraccount_tmp = AggregatorAccount.new
+              aggregatoraccount_tmp.deserialize(i)
+              @AggregatorAccounts << aggregatoraccount_tmp
+            end
+          end
+        end
+      end
+
+      # UpdateAggregator返回参数结构体
+      class UpdateAggregatorResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

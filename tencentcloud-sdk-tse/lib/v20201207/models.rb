@@ -14023,59 +14023,41 @@ module TencentCloud
 
       # ModifyCloudNativeAPIGatewayRoute请求参数结构体
       class ModifyCloudNativeAPIGatewayRouteRequest < TencentCloud::Common::AbstractModel
-        # @param GatewayId: 网关ID
+        # @param GatewayId: <p>网关ID</p>
         # @type GatewayId: String
-        # @param ServiceID: 所属服务的ID
+        # @param ServiceID: <p>所属服务的ID</p>
         # @type ServiceID: String
-        # @param RouteID: 路由的ID，实例级别唯一
+        # @param RouteID: <p>路由的ID，实例级别唯一</p>
         # @type RouteID: String
-        # @param RouteName: 路由的名字，实例级别唯一，可以不提供
+        # @param RouteName: <p>路由的名字，实例级别唯一，可以不提供</p>
         # @type RouteName: String
-        # @param Methods: 路由的方法，其中方法可选值：
-        # - GET
-        # - POST
-        # - DELETE
-        # - PUT
-        # - OPTIONS
-        # - PATCH
-        # - HEAD
-        # - ANY
-        # - TRACE
-        # - COPY
-        # - MOVE
-        # - PROPFIND
-        # - PROPPATCH
-        # - MKCOL
-        # - LOCK
-        # - UNLOCK
+        # @param Methods: <p>路由的方法，其中方法可选值：</p><ul><li>GET</li><li>POST</li><li>DELETE</li><li>PUT</li><li>OPTIONS</li><li>PATCH</li><li>HEAD</li><li>ANY</li><li>TRACE</li><li>COPY</li><li>MOVE</li><li>PROPFIND</li><li>PROPPATCH</li><li>MKCOL</li><li>LOCK</li><li>UNLOCK</li></ul>
         # @type Methods: Array
-        # @param Hosts: 路由的域名
+        # @param Hosts: <p>路由的域名</p>
         # @type Hosts: Array
-        # @param Paths: 路由的路径
+        # @param Paths: <p>路由的路径</p>
         # @type Paths: Array
-        # @param Protocols: 路由的协议，可选
-        # - https
-        # - http
+        # @param Protocols: <p>路由的协议，可选</p><ul><li>https</li><li>http</li></ul>
         # @type Protocols: Array
-        # @param PreserveHost: 转发到后端时是否保留Host
+        # @param PreserveHost: <p>转发到后端时是否保留Host</p>
         # @type PreserveHost: Boolean
-        # @param HttpsRedirectStatusCode: https重定向状态码
+        # @param HttpsRedirectStatusCode: <p>https重定向状态码</p>
         # @type HttpsRedirectStatusCode: Integer
-        # @param StripPath: 转发到后端时是否StripPath
+        # @param StripPath: <p>转发到后端时是否StripPath</p>
         # @type StripPath: Boolean
-        # @param ForceHttps: 是否开启强制HTTPS
+        # @param ForceHttps: <p>是否开启强制HTTPS</p>
         # @type ForceHttps: Boolean
-        # @param DestinationPorts: 四层匹配的目的端口
+        # @param DestinationPorts: <p>四层匹配的目的端口</p>
         # @type DestinationPorts: Array
-        # @param Headers: 路由的Headers
+        # @param Headers: <p>路由的Headers</p>
         # @type Headers: Array
-        # @param RequestBuffering: 是否缓存请求body，默认true
+        # @param RequestBuffering: <p>是否缓存请求body，默认true</p>
         # @type RequestBuffering: Boolean
-        # @param ResponseBuffering: 是否缓存响应body，默认true
+        # @param ResponseBuffering: <p>是否缓存响应body，默认true</p>
         # @type ResponseBuffering: Boolean
-        # @param RegexPriority: 增加优先级
+        # @param RegexPriority: <p>增加优先级</p>
         # @type RegexPriority: Integer
-        # @param QueryStringParameters: querysring参数
+        # @param QueryStringParameters: <p>querysring参数</p>
         # @type QueryStringParameters: Array
 
         attr_accessor :GatewayId, :ServiceID, :RouteID, :RouteName, :Methods, :Hosts, :Paths, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :ForceHttps, :DestinationPorts, :Headers, :RequestBuffering, :ResponseBuffering, :RegexPriority, :QueryStringParameters

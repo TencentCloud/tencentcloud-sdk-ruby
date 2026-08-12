@@ -74,10 +74,10 @@ module TencentCloud
 
         attr_accessor :Account, :LoginAccount, :LoginPassword, :DeviceId, :InstanceId, :Password, :PrivateKey, :PrivateKeyPassword, :Exe, :Drivers, :Width, :Height, :IntranetAccess, :AutoManageAccessCredential
         extend Gem::Deprecate
-        deprecate :LoginAccount, :none, 2026, 7
-        deprecate :LoginAccount=, :none, 2026, 7
-        deprecate :LoginPassword, :none, 2026, 7
-        deprecate :LoginPassword=, :none, 2026, 7
+        deprecate :LoginAccount, :none, 2026, 8
+        deprecate :LoginAccount=, :none, 2026, 8
+        deprecate :LoginPassword, :none, 2026, 8
+        deprecate :LoginPassword=, :none, 2026, 8
 
         def initialize(account=nil, loginaccount=nil, loginpassword=nil, deviceid=nil, instanceid=nil, password=nil, privatekey=nil, privatekeypassword=nil, exe=nil, drivers=nil, width=nil, height=nil, intranetaccess=nil, automanageaccesscredential=nil)
           @Account = account
@@ -2605,40 +2605,50 @@ module TencentCloud
 
       # DeployResource请求参数结构体
       class DeployResourceRequest < TencentCloud::Common::AbstractModel
-        # @param ResourceId: 需要开通服务的资源ID
+        # @param ResourceId: <p>需要开通服务的资源ID</p>
         # @type ResourceId: String
-        # @param ApCode: 需要开通服务的地域
+        # @param ApCode: <p>需要开通服务的地域</p>
         # @type ApCode: String
-        # @param Zone: 子网所在可用区
+        # @param Zone: <p>子网所在可用区</p>
         # @type Zone: String
-        # @param VpcId: 需要开通服务的VPC
+        # @param VpcId: <p>需要开通服务的VPC</p>
         # @type VpcId: String
-        # @param SubnetId: 需要开通服务的子网ID
+        # @param SubnetId: <p>需要开通服务的子网ID</p>
         # @type SubnetId: String
-        # @param CidrBlock: 需要开通服务的子网网段
+        # @param CidrBlock: <p>需要开通服务的子网网段</p>
         # @type CidrBlock: String
-        # @param VpcName: 需要开通服务的VPC名称
+        # @param VpcName: <p>需要开通服务的VPC名称</p>
         # @type VpcName: String
-        # @param VpcCidrBlock: 需要开通服务的VPC对应的网段
+        # @param VpcCidrBlock: <p>需要开通服务的VPC对应的网段</p>
         # @type VpcCidrBlock: String
-        # @param SubnetName: 需要开通服务的子网名称
+        # @param SubnetName: <p>需要开通服务的子网名称</p>
         # @type SubnetName: String
-        # @param CdcClusterId: 需要开通实例所属的CDC集群ID
+        # @param CdcClusterId: <p>需要开通实例所属的CDC集群ID</p>
         # @type CdcClusterId: String
-        # @param ShareClbId: 开通堡垒机指定共享的clbId
+        # @param ShareClbId: <p>开通堡垒机指定共享的clbId</p>
         # @type ShareClbId: String
-        # @param WebAccess: 0-关闭web访问堡垒机，1-开启web访问堡垒机
+        # @param WebAccess: <p>0-关闭web访问堡垒机，1-开启web访问堡垒机</p>
         # @type WebAccess: Integer
-        # @param ClientAccess: 0-关闭客户端访问堡垒机，1-开启客户端访问堡垒机
+        # @param ClientAccess: <p>0-关闭客户端访问堡垒机，1-开启客户端访问堡垒机</p>
         # @type ClientAccess: Integer
-        # @param IntranetAccess: 0-关闭内网访问堡垒机，1-开启内网访问堡垒机
+        # @param IntranetAccess: <p>0-关闭内网访问堡垒机，1-开启内网访问堡垒机</p>
         # @type IntranetAccess: Integer
-        # @param ExternalAccess: 0-关闭公网访问堡垒机，1-开启公网访问堡垒机
+        # @param ExternalAccess: <p>0-关闭公网访问堡垒机，1-开启公网访问堡垒机</p>
         # @type ExternalAccess: Integer
+        # @param DeploySubnets: <p>开通堡垒机的子网信息</p>
+        # @type DeploySubnets: Array
+        # @param IntranetVpcId: <p>开通内网访问的VPC ID</p>
+        # @type IntranetVpcId: String
+        # @param IntranetVpcCidrBlock: <p>开通内网访问的VPC 网段</p>
+        # @type IntranetVpcCidrBlock: String
+        # @param IntranetVpcName: <p>开通内网访问的VPC名称</p>
+        # @type IntranetVpcName: String
+        # @param IntranetSubnets: <p>开通内网访问的子网信息</p>
+        # @type IntranetSubnets: Array
 
-        attr_accessor :ResourceId, :ApCode, :Zone, :VpcId, :SubnetId, :CidrBlock, :VpcName, :VpcCidrBlock, :SubnetName, :CdcClusterId, :ShareClbId, :WebAccess, :ClientAccess, :IntranetAccess, :ExternalAccess
+        attr_accessor :ResourceId, :ApCode, :Zone, :VpcId, :SubnetId, :CidrBlock, :VpcName, :VpcCidrBlock, :SubnetName, :CdcClusterId, :ShareClbId, :WebAccess, :ClientAccess, :IntranetAccess, :ExternalAccess, :DeploySubnets, :IntranetVpcId, :IntranetVpcCidrBlock, :IntranetVpcName, :IntranetSubnets
 
-        def initialize(resourceid=nil, apcode=nil, zone=nil, vpcid=nil, subnetid=nil, cidrblock=nil, vpcname=nil, vpccidrblock=nil, subnetname=nil, cdcclusterid=nil, shareclbid=nil, webaccess=nil, clientaccess=nil, intranetaccess=nil, externalaccess=nil)
+        def initialize(resourceid=nil, apcode=nil, zone=nil, vpcid=nil, subnetid=nil, cidrblock=nil, vpcname=nil, vpccidrblock=nil, subnetname=nil, cdcclusterid=nil, shareclbid=nil, webaccess=nil, clientaccess=nil, intranetaccess=nil, externalaccess=nil, deploysubnets=nil, intranetvpcid=nil, intranetvpccidrblock=nil, intranetvpcname=nil, intranetsubnets=nil)
           @ResourceId = resourceid
           @ApCode = apcode
           @Zone = zone
@@ -2654,6 +2664,11 @@ module TencentCloud
           @ClientAccess = clientaccess
           @IntranetAccess = intranetaccess
           @ExternalAccess = externalaccess
+          @DeploySubnets = deploysubnets
+          @IntranetVpcId = intranetvpcid
+          @IntranetVpcCidrBlock = intranetvpccidrblock
+          @IntranetVpcName = intranetvpcname
+          @IntranetSubnets = intranetsubnets
         end
 
         def deserialize(params)
@@ -2672,6 +2687,25 @@ module TencentCloud
           @ClientAccess = params['ClientAccess']
           @IntranetAccess = params['IntranetAccess']
           @ExternalAccess = params['ExternalAccess']
+          unless params['DeploySubnets'].nil?
+            @DeploySubnets = []
+            params['DeploySubnets'].each do |i|
+              paraminitresourcesubnet_tmp = ParamInitResourceSubnet.new
+              paraminitresourcesubnet_tmp.deserialize(i)
+              @DeploySubnets << paraminitresourcesubnet_tmp
+            end
+          end
+          @IntranetVpcId = params['IntranetVpcId']
+          @IntranetVpcCidrBlock = params['IntranetVpcCidrBlock']
+          @IntranetVpcName = params['IntranetVpcName']
+          unless params['IntranetSubnets'].nil?
+            @IntranetSubnets = []
+            params['IntranetSubnets'].each do |i|
+              paraminitresourcesubnet_tmp = ParamInitResourceSubnet.new
+              paraminitresourcesubnet_tmp.deserialize(i)
+              @IntranetSubnets << paraminitresourcesubnet_tmp
+            end
+          end
         end
       end
 
@@ -4987,33 +5021,55 @@ module TencentCloud
 
       # EnableIntranetAccess请求参数结构体
       class EnableIntranetAccessRequest < TencentCloud::Common::AbstractModel
-        # @param ResourceId: 堡垒机实例id
+        # @param ResourceId: <p>堡垒机实例id</p>
         # @type ResourceId: String
-        # @param VpcId: 开通内网访问的vpc id
+        # @param VpcId: <p>开通内网访问的vpc id</p>
         # @type VpcId: String
-        # @param VpcCidrBlock: vpc的网段
+        # @param VpcName: <p>vpc名称</p>
+        # @type VpcName: String
+        # @param VpcRegion: <p>vpc地域</p>
+        # @type VpcRegion: String
+        # @param VpcCidrBlock: <p>vpc的网段</p>
         # @type VpcCidrBlock: String
-        # @param SubnetId: 开通内网访问的subnet id
+        # @param SubnetId: <p>开通内网访问的subnet id</p>
         # @type SubnetId: String
-        # @param DomainName: 内网ip的自定义域名，可为空
+        # @param DomainName: <p>内网ip的自定义域名，可为空</p>
         # @type DomainName: String
+        # @param IntranetSubnets: <p>开通内网的子网信息</p>
+        # @type IntranetSubnets: Array
 
-        attr_accessor :ResourceId, :VpcId, :VpcCidrBlock, :SubnetId, :DomainName
+        attr_accessor :ResourceId, :VpcId, :VpcName, :VpcRegion, :VpcCidrBlock, :SubnetId, :DomainName, :IntranetSubnets
+        extend Gem::Deprecate
+        deprecate :SubnetId, :none, 2026, 8
+        deprecate :SubnetId=, :none, 2026, 8
 
-        def initialize(resourceid=nil, vpcid=nil, vpccidrblock=nil, subnetid=nil, domainname=nil)
+        def initialize(resourceid=nil, vpcid=nil, vpcname=nil, vpcregion=nil, vpccidrblock=nil, subnetid=nil, domainname=nil, intranetsubnets=nil)
           @ResourceId = resourceid
           @VpcId = vpcid
+          @VpcName = vpcname
+          @VpcRegion = vpcregion
           @VpcCidrBlock = vpccidrblock
           @SubnetId = subnetid
           @DomainName = domainname
+          @IntranetSubnets = intranetsubnets
         end
 
         def deserialize(params)
           @ResourceId = params['ResourceId']
           @VpcId = params['VpcId']
+          @VpcName = params['VpcName']
+          @VpcRegion = params['VpcRegion']
           @VpcCidrBlock = params['VpcCidrBlock']
           @SubnetId = params['SubnetId']
           @DomainName = params['DomainName']
+          unless params['IntranetSubnets'].nil?
+            @IntranetSubnets = []
+            params['IntranetSubnets'].each do |i|
+              paraminitresourcesubnet_tmp = ParamInitResourceSubnet.new
+              paraminitresourcesubnet_tmp.deserialize(i)
+              @IntranetSubnets << paraminitresourcesubnet_tmp
+            end
+          end
         end
       end
 
@@ -6329,8 +6385,8 @@ module TencentCloud
 
         attr_accessor :ResourceId, :Status, :ResourceEdition, :ResourceNode, :AutoRenewFlag, :PackageBandwidth, :PackageNode, :LogDelivery
         extend Gem::Deprecate
-        deprecate :Status, :none, 2026, 7
-        deprecate :Status=, :none, 2026, 7
+        deprecate :Status, :none, 2026, 8
+        deprecate :Status=, :none, 2026, 8
 
         def initialize(resourceid=nil, status=nil, resourceedition=nil, resourcenode=nil, autorenewflag=nil, packagebandwidth=nil, packagenode=nil, logdelivery=nil)
           @ResourceId = resourceid
@@ -6664,6 +6720,34 @@ module TencentCloud
         end
       end
 
+      # 开通堡垒机的子网
+      class ParamInitResourceSubnet < TencentCloud::Common::AbstractModel
+        # @param SubnetId: <p>xa0子网id</p>
+        # @type SubnetId: String
+        # @param SubnetName: <p>子网名称</p>
+        # @type SubnetName: String
+        # @param Zone: <p>子网可用区</p>
+        # @type Zone: String
+        # @param SubnetCidrBlock: <p>子网cidr</p>
+        # @type SubnetCidrBlock: String
+
+        attr_accessor :SubnetId, :SubnetName, :Zone, :SubnetCidrBlock
+
+        def initialize(subnetid=nil, subnetname=nil, zone=nil, subnetcidrblock=nil)
+          @SubnetId = subnetid
+          @SubnetName = subnetname
+          @Zone = zone
+          @SubnetCidrBlock = subnetcidrblock
+        end
+
+        def deserialize(params)
+          @SubnetId = params['SubnetId']
+          @SubnetName = params['SubnetName']
+          @Zone = params['Zone']
+          @SubnetCidrBlock = params['SubnetCidrBlock']
+        end
+      end
+
       # 密码要求设置。
       class PasswordSetting < TencentCloud::Common::AbstractModel
         # @param MinLength: 密码最小长度，8-20，默认8。
@@ -6877,130 +6961,141 @@ module TencentCloud
 
       # 堡垒机服务信息
       class Resource < TencentCloud::Common::AbstractModel
-        # @param ResourceId: 服务实例ID，如bh-saas-s3ed4r5e
+        # @param ResourceId: <p>服务实例ID，如bh-saas-s3ed4r5e</p>
         # @type ResourceId: String
-        # @param ApCode: 地域编码
+        # @param ApCode: <p>地域编码</p>
         # @type ApCode: String
-        # @param SvArgs: 服务实例规格信息
+        # @param SvArgs: <p>服务实例规格信息</p>
         # @type SvArgs: String
-        # @param VpcId: VPC ID
+        # @param VpcId: <p>VPC ID</p>
         # @type VpcId: String
-        # @param Nodes: 服务规格对应的资产数
+        # @param Nodes: <p>服务规格对应的资产数</p>
         # @type Nodes: Integer
-        # @param RenewFlag: 自动续费标记，0 - 表示默认状态，1 - 表示自动续费，2 - 表示明确不自动续费
+        # @param RenewFlag: <p>自动续费标记，0 - 表示默认状态，1 - 表示自动续费，2 - 表示明确不自动续费</p>
         # @type RenewFlag: Integer
-        # @param ExpireTime: 过期时间
+        # @param ExpireTime: <p>过期时间</p>
         # @type ExpireTime: String
-        # @param Status: 资源状态，0 - 未初始化，1 - 正常，2 - 隔离，3 - 销毁，4 - 初始化失败，5 - 初始化中
+        # @param Status: <p>资源状态，0 - 未初始化，1 - 正常，2 - 隔离，3 - 销毁，4 - 初始化失败，5 - 初始化中</p>
         # @type Status: Integer
-        # @param ResourceName: 服务实例名，如T-Sec-堡垒机（SaaS型）
+        # @param ResourceName: <p>服务实例名，如T-Sec-堡垒机（SaaS型）</p>
         # @type ResourceName: String
-        # @param Pid: 定价模型ID
+        # @param Pid: <p>定价模型ID</p>
         # @type Pid: Integer
-        # @param CreateTime: 资源创建时间
+        # @param CreateTime: <p>资源创建时间</p>
         # @type CreateTime: String
-        # @param ProductCode: 商品码, p_cds_dasb
+        # @param ProductCode: <p>商品码, p_cds_dasb</p>
         # @type ProductCode: String
-        # @param SubProductCode: 子商品码, sp_cds_dasb_bh_saas
+        # @param SubProductCode: <p>子商品码, sp_cds_dasb_bh_saas</p>
         # @type SubProductCode: String
-        # @param Zone: 可用区
+        # @param Zone: <p>可用区</p>
         # @type Zone: String
-        # @param Expired: 是否过期，true-过期，false-未过期
+        # @param Expired: <p>是否过期，true-过期，false-未过期</p>
         # @type Expired: Boolean
-        # @param Deployed: 是否开通，true-开通，false-未开通
+        # @param Deployed: <p>是否开通，true-开通，false-未开通</p>
         # @type Deployed: Boolean
-        # @param VpcName: 开通服务的 VPC 名称
+        # @param VpcName: <p>开通服务的 VPC 名称</p>
         # @type VpcName: String
-        # @param VpcCidrBlock: 开通服务的 VPC 对应的网段
+        # @param VpcCidrBlock: <p>开通服务的 VPC 对应的网段</p>
         # @type VpcCidrBlock: String
-        # @param SubnetId: 开通服务的子网ID
+        # @param SubnetId: <p>开通服务的子网ID</p>
         # @type SubnetId: String
-        # @param SubnetName: 开通服务的子网名称
+        # @param SubnetName: <p>开通服务的子网名称</p>
         # @type SubnetName: String
-        # @param CidrBlock: 开通服务的子网网段
+        # @param CidrBlock: <p>开通服务的子网网段</p>
         # @type CidrBlock: String
-        # @param PublicIpSet: 外部IP
+        # @param PublicIpSet: <p>外部IP</p>
         # @type PublicIpSet: Array
-        # @param PrivateIpSet: 内部IP
+        # @param PrivateIpSet: <p>内部IP</p>
         # @type PrivateIpSet: Array
-        # @param ModuleSet: 服务开通的高级功能列表，如:[DB]
+        # @param ModuleSet: <p>服务开通的高级功能列表，如:[DB]</p>
         # @type ModuleSet: Array
-        # @param UsedNodes: 已使用的授权点数
+        # @param UsedNodes: <p>已使用的授权点数</p>
         # @type UsedNodes: Integer
-        # @param ExtendPoints: 扩展点数
+        # @param ExtendPoints: <p>扩展点数</p>
         # @type ExtendPoints: Integer
-        # @param PackageBandwidth: 带宽扩展包个数(4M)
+        # @param PackageBandwidth: <p>带宽扩展包个数(4M)</p>
         # @type PackageBandwidth: Integer
-        # @param PackageNode: 授权点数扩展包个数(50点)
+        # @param PackageNode: <p>授权点数扩展包个数(50点)</p>
         # @type PackageNode: Integer
-        # @param LogDeliveryArgs: 日志投递规格信息
+        # @param LogDeliveryArgs: <p>日志投递规格信息</p>
         # @type LogDeliveryArgs: String
-        # @param ClbSet: 堡垒机资源LB
+        # @param ClbSet: <p>堡垒机资源LB</p>
         # @type ClbSet: Array
-        # @param DomainCount: 网络域个数
+        # @param DomainCount: <p>网络域个数</p>
         # @type DomainCount: Integer
-        # @param UsedDomainCount: 已经使用的网络域个数
+        # @param UsedDomainCount: <p>已经使用的网络域个数</p>
         # @type UsedDomainCount: Integer
-        # @param Trial: 0 非试用版，1 试用版
+        # @param EnabledDomainCount: <p>开启的网络域个数（不包含默认网络域）</p>
+        # @type EnabledDomainCount: Integer
+        # @param Trial: <p>0 非试用版，1 试用版</p>
         # @type Trial: Integer
-        # @param LogDelivery: 日志投递规格信息
+        # @param LogDelivery: <p>日志投递规格信息</p>
         # @type LogDelivery: String
-        # @param CdcClusterId: cdc集群id
+        # @param CdcClusterId: <p>cdc集群id</p>
         # @type CdcClusterId: String
-        # @param DeployModel: 部署模式 默认0 0-cvm 1-tke
+        # @param DeployModel: <p>部署模式 默认0 0-cvm 1-tke</p>
         # @type DeployModel: Integer
-        # @param IntranetAccess: 0 默认值，非内网访问，1 内网访问，2 内网访问开通中，3 内网访问关闭中
+        # @param IntranetAccess: <p>0 默认值，非内网访问，1 内网访问，2 内网访问开通中，3 内网访问关闭中</p>
         # @type IntranetAccess: Integer
-        # @param IntranetPrivateIpSet: 内网访问的ip
+        # @param IntranetPrivateIpSet: <p>内网访问的ip</p>
         # @type IntranetPrivateIpSet: Array
-        # @param IntranetVpcId: 开通内网访问的vpc
+        # @param IntranetVpcId: <p>开通内网访问的vpc</p>
         # @type IntranetVpcId: String
-        # @param IntranetSubnetId: 开通内网访问的subnetId
+        # @param IntranetSubnetId: <p>开通内网访问的subnetId</p>
         # @type IntranetSubnetId: String
-        # @param IntranetVpcCidr: 开通内网访问vpc的网段
+        # @param IntranetSubnetIdSet: <p>开通内网访问的子网集合</p>
+        # @type IntranetSubnetIdSet: Array
+        # @param IntranetVpcCidr: <p>开通内网访问vpc的网段</p>
         # @type IntranetVpcCidr: String
-        # @param DomainName: 堡垒机内网ip自定义域名
+        # @param DomainName: <p>堡垒机内网ip自定义域名</p>
         # @type DomainName: String
-        # @param ShareClb: 是否共享clb，true-共享clb，false-独享clb
+        # @param ShareClb: <p>是否共享clb，true-共享clb，false-独享clb</p>
         # @type ShareClb: Boolean
-        # @param OpenClbId: 共享clb id
+        # @param OpenClbId: <p>共享clb id</p>
         # @type OpenClbId: String
-        # @param LbVipIsp: 运营商信息
+        # @param LbVipIsp: <p>运营商信息</p>
         # @type LbVipIsp: String
-        # @param TUICmdPort: linux资产命令行运维端口
+        # @param TUICmdPort: <p>linux资产命令行运维端口</p>
         # @type TUICmdPort: Integer
-        # @param TUIDirectPort: linux资产直连端口
+        # @param TUIDirectPort: <p>linux资产直连端口</p>
         # @type TUIDirectPort: Integer
-        # @param WebAccess: 1 默认值，web访问开启，0 web访问关闭，2 web访问开通中，3 web访问关闭中
+        # @param WebAccess: <p>1 默认值，web访问开启，0 web访问关闭，2 web访问开通中，3 web访问关闭中</p>
         # @type WebAccess: Integer
-        # @param ClientAccess: 1 默认值，客户单访问开启，0 客户端访问关闭，2 客户端访问开通中，3 客户端访问关闭中
+        # @param ClientAccess: <p>1 默认值，客户单访问开启，0 客户端访问关闭，2 客户端访问开通中，3 客户端访问关闭中</p>
         # @type ClientAccess: Integer
-        # @param ExternalAccess: 1 默认值，外网访问开启，0 外网访问关闭，2 外网访问开通中，3 外网访问关闭中
+        # @param ExternalAccess: <p>1 默认值，外网访问开启，0 外网访问关闭，2 外网访问开通中，3 外网访问关闭中</p>
         # @type ExternalAccess: Integer
-        # @param IOAResource: 0默认值。0-免费版（试用版）ioa，1-付费版ioa
+        # @param IOAResource: <p>0默认值。0-免费版（试用版）ioa，1-付费版ioa</p>
         # @type IOAResource: Integer
-        # @param PackageIOAUserCount: 零信任堡垒机用户扩展包个数。1个扩展包对应20个用户数
+        # @param PackageIOAUserCount: <p>零信任堡垒机用户扩展包个数。1个扩展包对应20个用户数</p>
         # @type PackageIOAUserCount: Integer
-        # @param PackageIOABandwidth:  零信任堡垒机带宽扩展包个数。一个扩展包表示4M带宽
+        # @param PackageIOABandwidth: <p>零信任堡垒机带宽扩展包个数。一个扩展包表示4M带宽</p>
         # @type PackageIOABandwidth: Integer
-        # @param IOAResourceId: 堡垒机实例对应的零信任实例id
+        # @param IOAResourceId: <p>堡垒机实例对应的零信任实例id</p>
         # @type IOAResourceId: String
-        # @param ResourceEdition: 资源类型 免费版/标准版/专业版 /国密版 free/standard/pro/gm
+        # @param ResourceEdition: <p>资源类型 免费版/标准版/专业版 /国密版 free/standard/pro/gm</p>
         # @type ResourceEdition: String
-        # @param TimeUnit: 计费周期 年：y，月：m，日：d，时：h，分：M，秒：s，一次性购买：p
+        # @param TimeUnit: <p>计费周期 年：y，月：m，日：d，时：h，分：M，秒：s，一次性购买：p</p>
         # @type TimeUnit: String
-        # @param TimeSpan: 计费时长
+        # @param TimeSpan: <p>计费时长</p>
         # @type TimeSpan: Integer
-        # @param PayMode: 计费模式 0后付费，1预付费
+        # @param PayMode: <p>计费模式 0后付费，1预付费</p>
         # @type PayMode: Integer
-        # @param BillingRegion: 计费侧地域
+        # @param BillingRegion: <p>计费侧地域</p>
         # @type BillingRegion: String
-        # @param BillingZone: 计费侧可用区
+        # @param BillingZone: <p>计费侧可用区</p>
         # @type BillingZone: String
+        # @param DeployCvmCount: <p>部署的cvm个数</p>
+        # @type DeployCvmCount: Integer
+        # @param ResourceZoneSet: <p>堡垒机实例的可用区信息</p>
+        # @type ResourceZoneSet: Array
 
-        attr_accessor :ResourceId, :ApCode, :SvArgs, :VpcId, :Nodes, :RenewFlag, :ExpireTime, :Status, :ResourceName, :Pid, :CreateTime, :ProductCode, :SubProductCode, :Zone, :Expired, :Deployed, :VpcName, :VpcCidrBlock, :SubnetId, :SubnetName, :CidrBlock, :PublicIpSet, :PrivateIpSet, :ModuleSet, :UsedNodes, :ExtendPoints, :PackageBandwidth, :PackageNode, :LogDeliveryArgs, :ClbSet, :DomainCount, :UsedDomainCount, :Trial, :LogDelivery, :CdcClusterId, :DeployModel, :IntranetAccess, :IntranetPrivateIpSet, :IntranetVpcId, :IntranetSubnetId, :IntranetVpcCidr, :DomainName, :ShareClb, :OpenClbId, :LbVipIsp, :TUICmdPort, :TUIDirectPort, :WebAccess, :ClientAccess, :ExternalAccess, :IOAResource, :PackageIOAUserCount, :PackageIOABandwidth, :IOAResourceId, :ResourceEdition, :TimeUnit, :TimeSpan, :PayMode, :BillingRegion, :BillingZone
+        attr_accessor :ResourceId, :ApCode, :SvArgs, :VpcId, :Nodes, :RenewFlag, :ExpireTime, :Status, :ResourceName, :Pid, :CreateTime, :ProductCode, :SubProductCode, :Zone, :Expired, :Deployed, :VpcName, :VpcCidrBlock, :SubnetId, :SubnetName, :CidrBlock, :PublicIpSet, :PrivateIpSet, :ModuleSet, :UsedNodes, :ExtendPoints, :PackageBandwidth, :PackageNode, :LogDeliveryArgs, :ClbSet, :DomainCount, :UsedDomainCount, :EnabledDomainCount, :Trial, :LogDelivery, :CdcClusterId, :DeployModel, :IntranetAccess, :IntranetPrivateIpSet, :IntranetVpcId, :IntranetSubnetId, :IntranetSubnetIdSet, :IntranetVpcCidr, :DomainName, :ShareClb, :OpenClbId, :LbVipIsp, :TUICmdPort, :TUIDirectPort, :WebAccess, :ClientAccess, :ExternalAccess, :IOAResource, :PackageIOAUserCount, :PackageIOABandwidth, :IOAResourceId, :ResourceEdition, :TimeUnit, :TimeSpan, :PayMode, :BillingRegion, :BillingZone, :DeployCvmCount, :ResourceZoneSet
+        extend Gem::Deprecate
+        deprecate :IntranetSubnetId, :none, 2026, 8
+        deprecate :IntranetSubnetId=, :none, 2026, 8
 
-        def initialize(resourceid=nil, apcode=nil, svargs=nil, vpcid=nil, nodes=nil, renewflag=nil, expiretime=nil, status=nil, resourcename=nil, pid=nil, createtime=nil, productcode=nil, subproductcode=nil, zone=nil, expired=nil, deployed=nil, vpcname=nil, vpccidrblock=nil, subnetid=nil, subnetname=nil, cidrblock=nil, publicipset=nil, privateipset=nil, moduleset=nil, usednodes=nil, extendpoints=nil, packagebandwidth=nil, packagenode=nil, logdeliveryargs=nil, clbset=nil, domaincount=nil, useddomaincount=nil, trial=nil, logdelivery=nil, cdcclusterid=nil, deploymodel=nil, intranetaccess=nil, intranetprivateipset=nil, intranetvpcid=nil, intranetsubnetid=nil, intranetvpccidr=nil, domainname=nil, shareclb=nil, openclbid=nil, lbvipisp=nil, tuicmdport=nil, tuidirectport=nil, webaccess=nil, clientaccess=nil, externalaccess=nil, ioaresource=nil, packageioausercount=nil, packageioabandwidth=nil, ioaresourceid=nil, resourceedition=nil, timeunit=nil, timespan=nil, paymode=nil, billingregion=nil, billingzone=nil)
+        def initialize(resourceid=nil, apcode=nil, svargs=nil, vpcid=nil, nodes=nil, renewflag=nil, expiretime=nil, status=nil, resourcename=nil, pid=nil, createtime=nil, productcode=nil, subproductcode=nil, zone=nil, expired=nil, deployed=nil, vpcname=nil, vpccidrblock=nil, subnetid=nil, subnetname=nil, cidrblock=nil, publicipset=nil, privateipset=nil, moduleset=nil, usednodes=nil, extendpoints=nil, packagebandwidth=nil, packagenode=nil, logdeliveryargs=nil, clbset=nil, domaincount=nil, useddomaincount=nil, enableddomaincount=nil, trial=nil, logdelivery=nil, cdcclusterid=nil, deploymodel=nil, intranetaccess=nil, intranetprivateipset=nil, intranetvpcid=nil, intranetsubnetid=nil, intranetsubnetidset=nil, intranetvpccidr=nil, domainname=nil, shareclb=nil, openclbid=nil, lbvipisp=nil, tuicmdport=nil, tuidirectport=nil, webaccess=nil, clientaccess=nil, externalaccess=nil, ioaresource=nil, packageioausercount=nil, packageioabandwidth=nil, ioaresourceid=nil, resourceedition=nil, timeunit=nil, timespan=nil, paymode=nil, billingregion=nil, billingzone=nil, deploycvmcount=nil, resourcezoneset=nil)
           @ResourceId = resourceid
           @ApCode = apcode
           @SvArgs = svargs
@@ -7033,6 +7128,7 @@ module TencentCloud
           @ClbSet = clbset
           @DomainCount = domaincount
           @UsedDomainCount = useddomaincount
+          @EnabledDomainCount = enableddomaincount
           @Trial = trial
           @LogDelivery = logdelivery
           @CdcClusterId = cdcclusterid
@@ -7041,6 +7137,7 @@ module TencentCloud
           @IntranetPrivateIpSet = intranetprivateipset
           @IntranetVpcId = intranetvpcid
           @IntranetSubnetId = intranetsubnetid
+          @IntranetSubnetIdSet = intranetsubnetidset
           @IntranetVpcCidr = intranetvpccidr
           @DomainName = domainname
           @ShareClb = shareclb
@@ -7061,6 +7158,8 @@ module TencentCloud
           @PayMode = paymode
           @BillingRegion = billingregion
           @BillingZone = billingzone
+          @DeployCvmCount = deploycvmcount
+          @ResourceZoneSet = resourcezoneset
         end
 
         def deserialize(params)
@@ -7103,6 +7202,7 @@ module TencentCloud
           end
           @DomainCount = params['DomainCount']
           @UsedDomainCount = params['UsedDomainCount']
+          @EnabledDomainCount = params['EnabledDomainCount']
           @Trial = params['Trial']
           @LogDelivery = params['LogDelivery']
           @CdcClusterId = params['CdcClusterId']
@@ -7111,6 +7211,7 @@ module TencentCloud
           @IntranetPrivateIpSet = params['IntranetPrivateIpSet']
           @IntranetVpcId = params['IntranetVpcId']
           @IntranetSubnetId = params['IntranetSubnetId']
+          @IntranetSubnetIdSet = params['IntranetSubnetIdSet']
           @IntranetVpcCidr = params['IntranetVpcCidr']
           @DomainName = params['DomainName']
           @ShareClb = params['ShareClb']
@@ -7131,6 +7232,63 @@ module TencentCloud
           @PayMode = params['PayMode']
           @BillingRegion = params['BillingRegion']
           @BillingZone = params['BillingZone']
+          @DeployCvmCount = params['DeployCvmCount']
+          unless params['ResourceZoneSet'].nil?
+            @ResourceZoneSet = []
+            params['ResourceZoneSet'].each do |i|
+              resourcedeployzone_tmp = ResourceDeployZone.new
+              resourcedeployzone_tmp.deserialize(i)
+              @ResourceZoneSet << resourcedeployzone_tmp
+            end
+          end
+        end
+      end
+
+      # 堡垒机实例部署的可用区
+      class ResourceDeployZone < TencentCloud::Common::AbstractModel
+        # @param VpcId: <p>部署堡垒机的VpcId</p>
+        # @type VpcId: String
+        # @param VpcName: <p>部署堡垒机vpc的名称</p>
+        # @type VpcName: String
+        # @param VpcCidrBlock: <p>部署堡垒机vpc的cidr</p>
+        # @type VpcCidrBlock: String
+        # @param SubnetId: <p>部署堡垒机的子网Id</p>
+        # @type SubnetId: String
+        # @param SubnetName: <p>部署堡垒机的子网名称</p>
+        # @type SubnetName: String
+        # @param SubnetCidrBlock: <p>子网cidr</p>
+        # @type SubnetCidrBlock: String
+        # @param Region: <p>部署堡垒机的地域</p>
+        # @type Region: String
+        # @param Zone: <p>部署堡垒机的可用区</p>
+        # @type Zone: String
+        # @param SubnetUsageType: <p>子网的作用场景</p><p>枚举值：</p><ul><li>DEPLOY： 部署堡垒机的子网</li><li>INTERNAL： 开通内网访问的子网</li></ul>
+        # @type SubnetUsageType: String
+
+        attr_accessor :VpcId, :VpcName, :VpcCidrBlock, :SubnetId, :SubnetName, :SubnetCidrBlock, :Region, :Zone, :SubnetUsageType
+
+        def initialize(vpcid=nil, vpcname=nil, vpccidrblock=nil, subnetid=nil, subnetname=nil, subnetcidrblock=nil, region=nil, zone=nil, subnetusagetype=nil)
+          @VpcId = vpcid
+          @VpcName = vpcname
+          @VpcCidrBlock = vpccidrblock
+          @SubnetId = subnetid
+          @SubnetName = subnetname
+          @SubnetCidrBlock = subnetcidrblock
+          @Region = region
+          @Zone = zone
+          @SubnetUsageType = subnetusagetype
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          @VpcName = params['VpcName']
+          @VpcCidrBlock = params['VpcCidrBlock']
+          @SubnetId = params['SubnetId']
+          @SubnetName = params['SubnetName']
+          @SubnetCidrBlock = params['SubnetCidrBlock']
+          @Region = params['Region']
+          @Zone = params['Zone']
+          @SubnetUsageType = params['SubnetUsageType']
         end
       end
 
@@ -8549,8 +8707,8 @@ module TencentCloud
 
         attr_accessor :Id, :InstanceId, :Name, :ApCode, :PublicIp, :PrivateIp, :Status, :Reason, :ExitCode, :StartTime, :EndTime, :StdOut, :StdErr, :DeviceName, :Account
         extend Gem::Deprecate
-        deprecate :Name, :none, 2026, 7
-        deprecate :Name=, :none, 2026, 7
+        deprecate :Name, :none, 2026, 8
+        deprecate :Name=, :none, 2026, 8
 
         def initialize(id=nil, instanceid=nil, name=nil, apcode=nil, publicip=nil, privateip=nil, status=nil, reason=nil, exitcode=nil, starttime=nil, endtime=nil, stdout=nil, stderr=nil, devicename=nil, account=nil)
           @Id = id

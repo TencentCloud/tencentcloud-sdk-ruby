@@ -2695,6 +2695,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改实例同步规则
+
+        # @param request: Request instance for ModifyReplication.
+        # @type request: :class:`Tencentcloud::tcr::V20190924::ModifyReplicationRequest`
+        # @rtype: :class:`Tencentcloud::tcr::V20190924::ModifyReplicationResponse`
+        def ModifyReplication(request)
+          body = send_request('ModifyReplication', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyReplicationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 更新镜像仓库信息，可修改仓库描述信息
 
         # @param request: Request instance for ModifyRepository.

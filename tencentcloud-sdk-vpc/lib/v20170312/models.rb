@@ -2550,21 +2550,17 @@ module TencentCloud
 
       # 云联网（CCN）关联实例（Instance）对象。
       class CcnInstance < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 关联实例ID。
+        # @param InstanceId: <p>关联实例ID。</p>
         # @type InstanceId: String
-        # @param InstanceRegion: 关联实例ID所属大区，例如：ap-guangzhou。
+        # @param InstanceRegion: <p>关联实例ID所属大区，例如：ap-guangzhou。</p>
         # @type InstanceRegion: String
-        # @param InstanceType: 关联实例类型，可选值：
-        # <li>`VPC`：私有网络</li>
-        # <li>`DIRECTCONNECT`：专线网关</li>
-        # <li>`BMVPC`：黑石私有网络</li>
-        # <li>`VPNGW`：VPNGW类型</li>
+        # @param InstanceType: <p>关联实例类型，可选值：</p><li><code>VPC</code>：私有网络</li><li><code>DIRECTCONNECT</code>：专线网关</li><li><code>BMVPC</code>：黑石私有网络</li><li><code>VPNGW</code>：VPNGW类型</li>
         # @type InstanceType: String
-        # @param Description: 备注
+        # @param Description: <p>备注</p>
         # @type Description: String
-        # @param RouteTableId: 实例关联的路由表ID。
+        # @param RouteTableId: <p>实例关联的路由表ID。</p>
         # @type RouteTableId: String
-        # @param OrderType: 实例付费方式
+        # @param OrderType: <p>实例付费方式</p><p>枚举值：</p><ul><li>PayByCcnOwner： CCN所在账号付费</li><li>PayByInstanceOwner： 关联实例所在账号付费</li></ul>
         # @type OrderType: String
 
         attr_accessor :InstanceId, :InstanceRegion, :InstanceType, :Description, :RouteTableId, :OrderType

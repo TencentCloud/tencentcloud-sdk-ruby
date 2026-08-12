@@ -317,24 +317,27 @@ module TencentCloud
 
       # CFS存储的配置
       class CFSConfig < TencentCloud::Common::AbstractModel
-        # @param Id: cfs的实例的ID
+        # @param Id: <p>cfs的实例的ID</p>
         # @type Id: String
-        # @param Path: 存储的路径
+        # @param Path: <p>存储的路径</p>
         # @type Path: String
-        # @param MountType: cfs的挂载类型，可选值为：STORAGE、SOURCE 分别表示存储拓展模式和数据源模式，默认为 STORAGE
+        # @param MountType: <p>cfs的挂载类型，可选值为：STORAGE、SOURCE 分别表示存储拓展模式和数据源模式，默认为 STORAGE</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MountType: String
-        # @param Protocol: 协议 1: NFS, 2: TURBO
+        # @param Protocol: <p>协议 1: NFS, 2: TURBO</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Protocol: String
+        # @param IsPresetStorage: <p>是否平台预置存储</p>
+        # @type IsPresetStorage: Boolean
 
-        attr_accessor :Id, :Path, :MountType, :Protocol
+        attr_accessor :Id, :Path, :MountType, :Protocol, :IsPresetStorage
 
-        def initialize(id=nil, path=nil, mounttype=nil, protocol=nil)
+        def initialize(id=nil, path=nil, mounttype=nil, protocol=nil, ispresetstorage=nil)
           @Id = id
           @Path = path
           @MountType = mounttype
           @Protocol = protocol
+          @IsPresetStorage = ispresetstorage
         end
 
         def deserialize(params)
@@ -342,6 +345,7 @@ module TencentCloud
           @Path = params['Path']
           @MountType = params['MountType']
           @Protocol = params['Protocol']
+          @IsPresetStorage = params['IsPresetStorage']
         end
       end
 
@@ -1674,10 +1678,12 @@ module TencentCloud
         # @type TrainToolConfig: :class:`Tencentcloud::Tione.v20211111.models.TrainToolConfig`
         # @param ResourceSupplyAttribute: <p>资源供应属性</p>
         # @type ResourceSupplyAttribute: :class:`Tencentcloud::Tione.v20211111.models.ResourceSupplyAttribute`
+        # @param Queues: <p>队列ID</p>
+        # @type Queues: Array
 
-        attr_accessor :Name, :ChargeType, :ResourceConfigInfos, :TiProjectId, :FrameworkName, :FrameworkVersion, :FrameworkEnvironment, :ResourceGroupId, :Tags, :ImageInfo, :CodePackagePath, :StartCmdInfo, :TrainingMode, :DataConfigs, :VpcId, :SubnetId, :Output, :LogConfig, :TuningParameters, :LogEnable, :Remark, :DataSource, :CallbackUrl, :EncodedStartCmdInfo, :CodeRepos, :ExposeNetworkConfig, :Envs, :TrainToolConfig, :ResourceSupplyAttribute
+        attr_accessor :Name, :ChargeType, :ResourceConfigInfos, :TiProjectId, :FrameworkName, :FrameworkVersion, :FrameworkEnvironment, :ResourceGroupId, :Tags, :ImageInfo, :CodePackagePath, :StartCmdInfo, :TrainingMode, :DataConfigs, :VpcId, :SubnetId, :Output, :LogConfig, :TuningParameters, :LogEnable, :Remark, :DataSource, :CallbackUrl, :EncodedStartCmdInfo, :CodeRepos, :ExposeNetworkConfig, :Envs, :TrainToolConfig, :ResourceSupplyAttribute, :Queues
 
-        def initialize(name=nil, chargetype=nil, resourceconfiginfos=nil, tiprojectid=nil, frameworkname=nil, frameworkversion=nil, frameworkenvironment=nil, resourcegroupid=nil, tags=nil, imageinfo=nil, codepackagepath=nil, startcmdinfo=nil, trainingmode=nil, dataconfigs=nil, vpcid=nil, subnetid=nil, output=nil, logconfig=nil, tuningparameters=nil, logenable=nil, remark=nil, datasource=nil, callbackurl=nil, encodedstartcmdinfo=nil, coderepos=nil, exposenetworkconfig=nil, envs=nil, traintoolconfig=nil, resourcesupplyattribute=nil)
+        def initialize(name=nil, chargetype=nil, resourceconfiginfos=nil, tiprojectid=nil, frameworkname=nil, frameworkversion=nil, frameworkenvironment=nil, resourcegroupid=nil, tags=nil, imageinfo=nil, codepackagepath=nil, startcmdinfo=nil, trainingmode=nil, dataconfigs=nil, vpcid=nil, subnetid=nil, output=nil, logconfig=nil, tuningparameters=nil, logenable=nil, remark=nil, datasource=nil, callbackurl=nil, encodedstartcmdinfo=nil, coderepos=nil, exposenetworkconfig=nil, envs=nil, traintoolconfig=nil, resourcesupplyattribute=nil, queues=nil)
           @Name = name
           @ChargeType = chargetype
           @ResourceConfigInfos = resourceconfiginfos
@@ -1707,6 +1713,7 @@ module TencentCloud
           @Envs = envs
           @TrainToolConfig = traintoolconfig
           @ResourceSupplyAttribute = resourcesupplyattribute
+          @Queues = queues
         end
 
         def deserialize(params)
@@ -1801,6 +1808,7 @@ module TencentCloud
             @ResourceSupplyAttribute = ResourceSupplyAttribute.new
             @ResourceSupplyAttribute.deserialize(params['ResourceSupplyAttribute'])
           end
+          @Queues = params['Queues']
         end
       end
 
@@ -9630,15 +9638,19 @@ module TencentCloud
       class ResourceSupplyAttribute < TencentCloud::Common::AbstractModel
         # @param SupplyType: <p>资源供应类型。TIDE:潮汐;SPOT:竞价;空:常规按量后付费</p>
         # @type SupplyType: String
+        # @param ClusterType: <p>集群类型</p><p>枚举值：</p><ul><li>DEFAULT： 默认集群</li><li>THIRD： 第三方集群</li></ul><p>默认值：DEFAULT</p>
+        # @type ClusterType: String
 
-        attr_accessor :SupplyType
+        attr_accessor :SupplyType, :ClusterType
 
-        def initialize(supplytype=nil)
+        def initialize(supplytype=nil, clustertype=nil)
           @SupplyType = supplytype
+          @ClusterType = clustertype
         end
 
         def deserialize(params)
           @SupplyType = params['SupplyType']
+          @ClusterType = params['ClusterType']
         end
       end
 

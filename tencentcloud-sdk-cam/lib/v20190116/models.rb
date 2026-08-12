@@ -2284,8 +2284,8 @@ module TencentCloud
 
         attr_accessor :Policies, :Roles, :Idps, :User, :Group, :Member, :IdentityProviders, :RequestId
         extend Gem::Deprecate
-        deprecate :Idps, :none, 2026, 7
-        deprecate :Idps=, :none, 2026, 7
+        deprecate :Idps, :none, 2026, 8
+        deprecate :Idps=, :none, 2026, 8
 
         def initialize(policies=nil, roles=nil, idps=nil, user=nil, group=nil, member=nil, identityproviders=nil, requestid=nil)
           @Policies = policies
@@ -4297,24 +4297,26 @@ module TencentCloud
 
       # 登录和敏感操作flag
       class LoginActionFlagIntl < TencentCloud::Common::AbstractModel
-        # @param Phone: 手机
+        # @param Phone: <p>手机</p>
         # @type Phone: Integer
-        # @param Token: 硬token
+        # @param Token: <p>硬token</p>
         # @type Token: Integer
-        # @param Stoken: 软token
+        # @param Stoken: <p>软token</p>
         # @type Stoken: Integer
-        # @param Wechat: 微信
+        # @param Wechat: <p>微信</p>
         # @type Wechat: Integer
-        # @param Custom: 自定义
+        # @param Custom: <p>自定义</p>
         # @type Custom: Integer
-        # @param Mail: 邮件
+        # @param Mail: <p>邮件</p>
         # @type Mail: Integer
-        # @param U2FToken: u2f硬件token
+        # @param U2FToken: <p>u2f硬件token</p>
         # @type U2FToken: Integer
+        # @param Passkey: <p>passkey通行密钥</p>
+        # @type Passkey: Integer
 
-        attr_accessor :Phone, :Token, :Stoken, :Wechat, :Custom, :Mail, :U2FToken
+        attr_accessor :Phone, :Token, :Stoken, :Wechat, :Custom, :Mail, :U2FToken, :Passkey
 
-        def initialize(phone=nil, token=nil, stoken=nil, wechat=nil, custom=nil, mail=nil, u2ftoken=nil)
+        def initialize(phone=nil, token=nil, stoken=nil, wechat=nil, custom=nil, mail=nil, u2ftoken=nil, passkey=nil)
           @Phone = phone
           @Token = token
           @Stoken = stoken
@@ -4322,6 +4324,7 @@ module TencentCloud
           @Custom = custom
           @Mail = mail
           @U2FToken = u2ftoken
+          @Passkey = passkey
         end
 
         def deserialize(params)
@@ -4332,6 +4335,7 @@ module TencentCloud
           @Custom = params['Custom']
           @Mail = params['Mail']
           @U2FToken = params['U2FToken']
+          @Passkey = params['Passkey']
         end
       end
 

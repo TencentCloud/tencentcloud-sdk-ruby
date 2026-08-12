@@ -101,6 +101,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 事件风险评估
+
+        # @param request: Request instance for AssessRisk.
+        # @type request: :class:`Tencentcloud::rce::V20260130::AssessRiskRequest`
+        # @rtype: :class:`Tencentcloud::rce::V20260130::AssessRiskResponse`
+        def AssessRisk(request)
+          body = send_request('AssessRisk', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AssessRiskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 事件信息上报
+
+        # @param request: Request instance for ReportEvent.
+        # @type request: :class:`Tencentcloud::rce::V20260130::ReportEventRequest`
+        # @rtype: :class:`Tencentcloud::rce::V20260130::ReportEventResponse`
+        def ReportEvent(request)
+          body = send_request('ReportEvent', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ReportEventResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
 
       end
     end

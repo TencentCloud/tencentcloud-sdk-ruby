@@ -4531,19 +4531,22 @@ module TencentCloud
         # @type Containers: Array
         # @param ResourceConfig: <p>推理服务的资源配置。</p>
         # @type ResourceConfig: :class:`Tencentcloud::Teo.v20220901.models.InferenceResourceConfig`
+        # @param AffinityConfig: <p>推理服务亲和性配置。</p>
+        # @type AffinityConfig: :class:`Tencentcloud::Teo.v20220901.models.InferenceAffinityConfig`
         # @param RequestPaths: <p>推理服务的请求路径列表。最多支持 20 个路径。</p>
         # @type RequestPaths: Array
         # @param Description: <p>描述信息。长度限制不超过 60 个字符。</p>
         # @type Description: String
 
-        attr_accessor :ZoneId, :Name, :ListenPort, :Containers, :ResourceConfig, :RequestPaths, :Description
+        attr_accessor :ZoneId, :Name, :ListenPort, :Containers, :ResourceConfig, :AffinityConfig, :RequestPaths, :Description
 
-        def initialize(zoneid=nil, name=nil, listenport=nil, containers=nil, resourceconfig=nil, requestpaths=nil, description=nil)
+        def initialize(zoneid=nil, name=nil, listenport=nil, containers=nil, resourceconfig=nil, affinityconfig=nil, requestpaths=nil, description=nil)
           @ZoneId = zoneid
           @Name = name
           @ListenPort = listenport
           @Containers = containers
           @ResourceConfig = resourceconfig
+          @AffinityConfig = affinityconfig
           @RequestPaths = requestpaths
           @Description = description
         end
@@ -4563,6 +4566,10 @@ module TencentCloud
           unless params['ResourceConfig'].nil?
             @ResourceConfig = InferenceResourceConfig.new
             @ResourceConfig.deserialize(params['ResourceConfig'])
+          end
+          unless params['AffinityConfig'].nil?
+            @AffinityConfig = InferenceAffinityConfig.new
+            @AffinityConfig.deserialize(params['AffinityConfig'])
           end
           @RequestPaths = params['RequestPaths']
           @Description = params['Description']
@@ -16170,6 +16177,33 @@ module TencentCloud
         end
       end
 
+      # 推理服务的亲和配置
+      class InferenceAffinityConfig < TencentCloud::Common::AbstractModel
+        # @param Switch: <p>推理服务亲和总开关。</p><p>枚举值：</p><ul><li>On： 开启推理服务亲和；</li><li>Off： 关闭推理服务亲和。</li></ul>
+        # @type Switch: String
+        # @param AffinityMode: <p>推理服务亲和方式。</p><p>枚举值：</p><ul><li>SessionId： 根据会话 ID 实现亲和。</li></ul><p>默认值：SessionId。</p>
+        # @type AffinityMode: String
+        # @param SessionIdAffinityConfig: <p>推理服务亲和性配置。当 AffinityMode 为 SessionId 时必填。</p>
+        # @type SessionIdAffinityConfig: :class:`Tencentcloud::Teo.v20220901.models.SessionIdAffinityConfig`
+
+        attr_accessor :Switch, :AffinityMode, :SessionIdAffinityConfig
+
+        def initialize(switch=nil, affinitymode=nil, sessionidaffinityconfig=nil)
+          @Switch = switch
+          @AffinityMode = affinitymode
+          @SessionIdAffinityConfig = sessionidaffinityconfig
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @AffinityMode = params['AffinityMode']
+          unless params['SessionIdAffinityConfig'].nil?
+            @SessionIdAffinityConfig = SessionIdAffinityConfig.new
+            @SessionIdAffinityConfig.deserialize(params['SessionIdAffinityConfig'])
+          end
+        end
+      end
+
       # 推理服务自动伸缩配置。
       class InferenceAutoScalingConfig < TencentCloud::Common::AbstractModel
         # @param MinInstanceCount: <p>最小实例数量。当配置了伸缩策略并且策略处于有效期时，将不会生效。</p>
@@ -16199,14 +16233,14 @@ module TencentCloud
 
       # 推理服务的容器配置。
       class InferenceContainerConfig < TencentCloud::Common::AbstractModel
-        # @param ImageType: 镜像类型。取值有：<li>TCR：腾讯云容器镜像服务的镜像。</li>
+        # @param ImageType: <p>镜像类型。取值有：<li>TCR：腾讯云容器镜像服务的镜像。</li></p>
         # @type ImageType: String
-        # @param TcrRepositoryConfig: TCR 镜像仓库信息。当 ImageType 为 TCR 时必填。
+        # @param TcrRepositoryConfig: <p>TCR 镜像仓库信息。当 ImageType 为 TCR 时必填。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TcrRepositoryConfig: :class:`Tencentcloud::Teo.v20220901.models.InferenceTCRRepositoryConfig`
-        # @param StartupCommand: 容器启动时执行的命令，未填写时默认使用镜像的 Entrypoint/CMD。最长支持 1024 字符。
+        # @param StartupCommand: <p>容器启动时执行的命令，未填写时默认使用镜像的 Entrypoint/CMD。最长支持 1024 字符。</p>
         # @type StartupCommand: String
-        # @param EnvironmentVariables: 容器运行时的环境变量。最多支持 10 个变量。
+        # @param EnvironmentVariables: <p>容器运行时的环境变量。最多支持 10 个变量。</p>
         # @type EnvironmentVariables: Array
 
         attr_accessor :ImageType, :TcrRepositoryConfig, :StartupCommand, :EnvironmentVariables
@@ -16238,13 +16272,13 @@ module TencentCloud
 
       # 推理服务容器配置的修改参数。
       class InferenceContainerConfigForModify < TencentCloud::Common::AbstractModel
-        # @param ImageType: 镜像类型。取值有：<li>TCR：腾讯云容器镜像服务的镜像。</li>
+        # @param ImageType: <p>镜像类型。取值有：<li>TCR：腾讯云容器镜像服务的镜像。</li></p>
         # @type ImageType: String
-        # @param TcrRepositoryConfig: TCR 镜像仓库信息。当 ImageType 为 TCR 时必填。
+        # @param TcrRepositoryConfig: <p>TCR 镜像仓库信息。当 ImageType 为 TCR 时必填。</p>
         # @type TcrRepositoryConfig: :class:`Tencentcloud::Teo.v20220901.models.InferenceTCRRepositoryConfig`
-        # @param StartupCommand: 容器启动时执行的命令，未填写时默认使用镜像的 Entrypoint/CMD。最长支持 1024 字符。
+        # @param StartupCommand: <p>容器启动时执行的命令，未填写时默认使用镜像的 Entrypoint/CMD。最长支持 1024 字符。</p>
         # @type StartupCommand: String
-        # @param EnvironmentVariables: 容器运行时的环境变量。最多支持 10 个变量。
+        # @param EnvironmentVariables: <p>容器运行时的环境变量。最多支持 10 个变量。</p>
         # @type EnvironmentVariables: Array
 
         attr_accessor :ImageType, :TcrRepositoryConfig, :StartupCommand, :EnvironmentVariables
@@ -16605,22 +16639,25 @@ module TencentCloud
 
       # 推理服务单次部署配置。
       class InferenceServiceConfig < TencentCloud::Common::AbstractModel
-        # @param ListenPort: 模型服务需要监听的端口。
+        # @param ListenPort: <p>模型服务需要监听的端口。</p>
         # @type ListenPort: Integer
-        # @param RequestPaths: 推理服务的请求路径列表。
+        # @param RequestPaths: <p>推理服务的请求路径列表。</p>
         # @type RequestPaths: Array
-        # @param Containers: 推理服务的容器配置。
+        # @param Containers: <p>推理服务的容器配置。</p>
         # @type Containers: Array
-        # @param ResourceConfig: 推理服务的资源配置。
+        # @param ResourceConfig: <p>推理服务的资源配置。</p>
         # @type ResourceConfig: :class:`Tencentcloud::Teo.v20220901.models.InferenceResourceConfig`
+        # @param AffinityConfig: <p>推理服务亲和性配置。</p>
+        # @type AffinityConfig: :class:`Tencentcloud::Teo.v20220901.models.InferenceAffinityConfig`
 
-        attr_accessor :ListenPort, :RequestPaths, :Containers, :ResourceConfig
+        attr_accessor :ListenPort, :RequestPaths, :Containers, :ResourceConfig, :AffinityConfig
 
-        def initialize(listenport=nil, requestpaths=nil, containers=nil, resourceconfig=nil)
+        def initialize(listenport=nil, requestpaths=nil, containers=nil, resourceconfig=nil, affinityconfig=nil)
           @ListenPort = listenport
           @RequestPaths = requestpaths
           @Containers = containers
           @ResourceConfig = resourceconfig
+          @AffinityConfig = affinityconfig
         end
 
         def deserialize(params)
@@ -16637,6 +16674,10 @@ module TencentCloud
           unless params['ResourceConfig'].nil?
             @ResourceConfig = InferenceResourceConfig.new
             @ResourceConfig.deserialize(params['ResourceConfig'])
+          end
+          unless params['AffinityConfig'].nil?
+            @AffinityConfig = InferenceAffinityConfig.new
+            @AffinityConfig.deserialize(params['AffinityConfig'])
           end
         end
       end
@@ -19080,18 +19121,21 @@ module TencentCloud
         # @type Containers: Array
         # @param ResourceConfig: <p>推理服务的资源配置。</p>
         # @type ResourceConfig: :class:`Tencentcloud::Teo.v20220901.models.InferenceResourceConfigForModify`
+        # @param AffinityConfig: <p>推理服务亲和性配置</p>
+        # @type AffinityConfig: :class:`Tencentcloud::Teo.v20220901.models.InferenceAffinityConfig`
         # @param Description: <p>描述信息。长度限制不超过 60 个字符。</p>
         # @type Description: String
 
-        attr_accessor :ZoneId, :ServiceId, :ListenPort, :RequestPaths, :Containers, :ResourceConfig, :Description
+        attr_accessor :ZoneId, :ServiceId, :ListenPort, :RequestPaths, :Containers, :ResourceConfig, :AffinityConfig, :Description
 
-        def initialize(zoneid=nil, serviceid=nil, listenport=nil, requestpaths=nil, containers=nil, resourceconfig=nil, description=nil)
+        def initialize(zoneid=nil, serviceid=nil, listenport=nil, requestpaths=nil, containers=nil, resourceconfig=nil, affinityconfig=nil, description=nil)
           @ZoneId = zoneid
           @ServiceId = serviceid
           @ListenPort = listenport
           @RequestPaths = requestpaths
           @Containers = containers
           @ResourceConfig = resourceconfig
+          @AffinityConfig = affinityconfig
           @Description = description
         end
 
@@ -19111,6 +19155,10 @@ module TencentCloud
           unless params['ResourceConfig'].nil?
             @ResourceConfig = InferenceResourceConfigForModify.new
             @ResourceConfig.deserialize(params['ResourceConfig'])
+          end
+          unless params['AffinityConfig'].nil?
+            @AffinityConfig = InferenceAffinityConfig.new
+            @AffinityConfig.deserialize(params['AffinityConfig'])
           end
           @Description = params['Description']
         end
@@ -24903,6 +24951,26 @@ module TencentCloud
           @DeployTime = params['DeployTime']
           @SignAlgo = params['SignAlgo']
           @CommonName = params['CommonName']
+        end
+      end
+
+      # 基于会话ID的亲和配置。
+      class SessionIdAffinityConfig < TencentCloud::Common::AbstractModel
+        # @param Source: <p>会话 ID 参数的传递位置。不填写时默认为 Header。</p><p>枚举值：</p><ul><li>Header： 在请求头中传递参数。</li></ul><p>默认值：Header。</p>
+        # @type Source: String
+        # @param HeaderName: <p>传递会话 ID 的请求头名称。当 Source 为 Header 时必填。<br>不填写时默认为 EO-Infer-Session-Id。</p><p>入参限制：长度为 1-64 个字符，仅支持字母、数字、中划线。</p><p>默认值：EO-Infer-Session-Id。</p>
+        # @type HeaderName: String
+
+        attr_accessor :Source, :HeaderName
+
+        def initialize(source=nil, headername=nil)
+          @Source = source
+          @HeaderName = headername
+        end
+
+        def deserialize(params)
+          @Source = params['Source']
+          @HeaderName = params['HeaderName']
         end
       end
 

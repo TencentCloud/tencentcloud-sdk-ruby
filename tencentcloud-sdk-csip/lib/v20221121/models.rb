@@ -3768,6 +3768,26 @@ module TencentCloud
         end
       end
 
+      # 集群定位信息
+      class ClusterIDWithAppIdItem < TencentCloud::Common::AbstractModel
+        # @param ClusterID: 集群ID
+        # @type ClusterID: String
+        # @param AppId: 集群所属AppId
+        # @type AppId: Integer
+
+        attr_accessor :ClusterID, :AppId
+
+        def initialize(clusterid=nil, appid=nil)
+          @ClusterID = clusterid
+          @AppId = appid
+        end
+
+        def deserialize(params)
+          @ClusterID = params['ClusterID']
+          @AppId = params['AppId']
+        end
+      end
+
       # AI Agent 命令沙箱插件状态
       class CommandPluginState < TencentCloud::Common::AbstractModel
         # @param InstallStatus: <p>插件安装状态（上层聚合）<br>枚举值：<br>NONE：未安装<br>INSTALLING：安装中<br>INSTALLED：已安装<br>INSTALL_FAIL：安装失败</p>
@@ -3809,6 +3829,34 @@ module TencentCloud
           @Version = params['Version']
           @Path = params['Path']
           @FixCommand = params['FixCommand']
+        end
+      end
+
+      # 高级镜像条件匹配（三个匹配串有且仅有一个非空）
+      class ConditionMatch < TencentCloud::Common::AbstractModel
+        # @param ImageIDMatchString: <p>镜像ID匹配串（三选一，有且仅有一个非空）</p>
+        # @type ImageIDMatchString: String
+        # @param ImageNameMatchString: <p>镜像名匹配串（三选一，有且仅有一个非空）</p>
+        # @type ImageNameMatchString: String
+        # @param ImageAddressMatchString: <p>镜像地址匹配串（三选一，有且仅有一个非空）</p>
+        # @type ImageAddressMatchString: String
+        # @param MatchType: <p>匹配条件，取值：EQUALS-等于/NOT_EQUALS-不等于/STARTS_WITH-以…开头/NOT_STARTS_WITH-不以…开头/ENDS_WITH-以…结尾/NOT_ENDS_WITH-不以…结尾/CONTAINS-包含/NOT_CONTAINS-不包含</p>
+        # @type MatchType: String
+
+        attr_accessor :ImageIDMatchString, :ImageNameMatchString, :ImageAddressMatchString, :MatchType
+
+        def initialize(imageidmatchstring=nil, imagenamematchstring=nil, imageaddressmatchstring=nil, matchtype=nil)
+          @ImageIDMatchString = imageidmatchstring
+          @ImageNameMatchString = imagenamematchstring
+          @ImageAddressMatchString = imageaddressmatchstring
+          @MatchType = matchtype
+        end
+
+        def deserialize(params)
+          @ImageIDMatchString = params['ImageIDMatchString']
+          @ImageNameMatchString = params['ImageNameMatchString']
+          @ImageAddressMatchString = params['ImageAddressMatchString']
+          @MatchType = params['MatchType']
         end
       end
 
@@ -8482,12 +8530,29 @@ module TencentCloud
         # @type ExcludeQuuids: Array
         # @param AutoInclude: <p>新增资产自动包含 0 不包含 1包含</p>
         # @type AutoInclude: Integer
+        # @param TagIDs: <p>标签</p>
+        # @type TagIDs: Array
+        # @param TCSSScope: <p>0，1</p><p>枚举值：</p><ul><li>0： 部分</li><li>1： 全部</li></ul>
+        # @type TCSSScope: Integer
+        # @param ClusterIDs: <p>集群ID</p>
+        # @type ClusterIDs: Array
+        # @param ExcludeClusterIDs: <p>排除集群ID</p>
+        # @type ExcludeClusterIDs: Array
+        # @param InstanceIds: <p>实例ID</p>
+        # @type InstanceIds: Array
+        # @param ExcludeInstanceIds: <p>排除实例ID</p>
+        # @type ExcludeInstanceIds: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :AILinkEnable, :RuleScopeDeep, :RuleScopeBalanced, :RuleScopePrecise, :Scope, :Quuids, :ExcludeQuuids, :AutoInclude, :RequestId
+        attr_accessor :AILinkEnable, :RuleScopeDeep, :RuleScopeBalanced, :RuleScopePrecise, :Scope, :Quuids, :ExcludeQuuids, :AutoInclude, :TagIDs, :TCSSScope, :ClusterIDs, :ExcludeClusterIDs, :InstanceIds, :ExcludeInstanceIds, :RequestId
+        extend Gem::Deprecate
+        deprecate :Quuids, :none, 2026, 8
+        deprecate :Quuids=, :none, 2026, 8
+        deprecate :ExcludeQuuids, :none, 2026, 8
+        deprecate :ExcludeQuuids=, :none, 2026, 8
 
-        def initialize(ailinkenable=nil, rulescopedeep=nil, rulescopebalanced=nil, rulescopeprecise=nil, scope=nil, quuids=nil, excludequuids=nil, autoinclude=nil, requestid=nil)
+        def initialize(ailinkenable=nil, rulescopedeep=nil, rulescopebalanced=nil, rulescopeprecise=nil, scope=nil, quuids=nil, excludequuids=nil, autoinclude=nil, tagids=nil, tcssscope=nil, clusterids=nil, excludeclusterids=nil, instanceids=nil, excludeinstanceids=nil, requestid=nil)
           @AILinkEnable = ailinkenable
           @RuleScopeDeep = rulescopedeep
           @RuleScopeBalanced = rulescopebalanced
@@ -8496,6 +8561,12 @@ module TencentCloud
           @Quuids = quuids
           @ExcludeQuuids = excludequuids
           @AutoInclude = autoinclude
+          @TagIDs = tagids
+          @TCSSScope = tcssscope
+          @ClusterIDs = clusterids
+          @ExcludeClusterIDs = excludeclusterids
+          @InstanceIds = instanceids
+          @ExcludeInstanceIds = excludeinstanceids
           @RequestId = requestid
         end
 
@@ -8508,6 +8579,12 @@ module TencentCloud
           @Quuids = params['Quuids']
           @ExcludeQuuids = params['ExcludeQuuids']
           @AutoInclude = params['AutoInclude']
+          @TagIDs = params['TagIDs']
+          @TCSSScope = params['TCSSScope']
+          @ClusterIDs = params['ClusterIDs']
+          @ExcludeClusterIDs = params['ExcludeClusterIDs']
+          @InstanceIds = params['InstanceIds']
+          @ExcludeInstanceIds = params['ExcludeInstanceIds']
           @RequestId = params['RequestId']
         end
       end
@@ -25553,10 +25630,18 @@ module TencentCloud
         # @type InstanceIDs: Array
         # @param ExcludeInstanceIDs: <p>排除实例ID</p>
         # @type ExcludeInstanceIDs: Array
+        # @param ClusterIDs: <p>生效集群ID列表（TCSSScope=0 时有值；空返回 []）</p>
+        # @type ClusterIDs: Array
+        # @param ExcludeClusterIDs: <p>排除集群ID列表（空返回 []）</p>
+        # @type ExcludeClusterIDs: Array
+        # @param ConditionMatches: <p>容器条件匹配</p>
+        # @type ConditionMatches: Array
+        # @param TagItems: <p>安全中心标签</p>
+        # @type TagItems: Array
 
-        attr_accessor :RuleID, :RuleType, :Name, :Description, :ContentType, :Action, :Level, :DetectMode, :DetectType, :AttackStage, :CWPScope, :QUUIDS, :Status, :CreateTime, :ModifyTime, :SupportBlock, :Md5List, :FileName, :FileDirectory, :Domains, :OutboundIP, :InboundIP, :CmdLineRules, :TCSSScope, :ImageIDs, :ImageNamesRegex, :Confidence, :ExcludeQUUIDS, :ExcludeImageIDs, :ProcessNetworkRules, :AppID, :InstanceIDs, :ExcludeInstanceIDs
+        attr_accessor :RuleID, :RuleType, :Name, :Description, :ContentType, :Action, :Level, :DetectMode, :DetectType, :AttackStage, :CWPScope, :QUUIDS, :Status, :CreateTime, :ModifyTime, :SupportBlock, :Md5List, :FileName, :FileDirectory, :Domains, :OutboundIP, :InboundIP, :CmdLineRules, :TCSSScope, :ImageIDs, :ImageNamesRegex, :Confidence, :ExcludeQUUIDS, :ExcludeImageIDs, :ProcessNetworkRules, :AppID, :InstanceIDs, :ExcludeInstanceIDs, :ClusterIDs, :ExcludeClusterIDs, :ConditionMatches, :TagItems
 
-        def initialize(ruleid=nil, ruletype=nil, name=nil, description=nil, contenttype=nil, action=nil, level=nil, detectmode=nil, detecttype=nil, attackstage=nil, cwpscope=nil, quuids=nil, status=nil, createtime=nil, modifytime=nil, supportblock=nil, md5list=nil, filename=nil, filedirectory=nil, domains=nil, outboundip=nil, inboundip=nil, cmdlinerules=nil, tcssscope=nil, imageids=nil, imagenamesregex=nil, confidence=nil, excludequuids=nil, excludeimageids=nil, processnetworkrules=nil, appid=nil, instanceids=nil, excludeinstanceids=nil)
+        def initialize(ruleid=nil, ruletype=nil, name=nil, description=nil, contenttype=nil, action=nil, level=nil, detectmode=nil, detecttype=nil, attackstage=nil, cwpscope=nil, quuids=nil, status=nil, createtime=nil, modifytime=nil, supportblock=nil, md5list=nil, filename=nil, filedirectory=nil, domains=nil, outboundip=nil, inboundip=nil, cmdlinerules=nil, tcssscope=nil, imageids=nil, imagenamesregex=nil, confidence=nil, excludequuids=nil, excludeimageids=nil, processnetworkrules=nil, appid=nil, instanceids=nil, excludeinstanceids=nil, clusterids=nil, excludeclusterids=nil, conditionmatches=nil, tagitems=nil)
           @RuleID = ruleid
           @RuleType = ruletype
           @Name = name
@@ -25590,6 +25675,10 @@ module TencentCloud
           @AppID = appid
           @InstanceIDs = instanceids
           @ExcludeInstanceIDs = excludeinstanceids
+          @ClusterIDs = clusterids
+          @ExcludeClusterIDs = excludeclusterids
+          @ConditionMatches = conditionmatches
+          @TagItems = tagitems
         end
 
         def deserialize(params)
@@ -25632,6 +25721,64 @@ module TencentCloud
           @AppID = params['AppID']
           @InstanceIDs = params['InstanceIDs']
           @ExcludeInstanceIDs = params['ExcludeInstanceIDs']
+          @ClusterIDs = params['ClusterIDs']
+          @ExcludeClusterIDs = params['ExcludeClusterIDs']
+          unless params['ConditionMatches'].nil?
+            @ConditionMatches = []
+            params['ConditionMatches'].each do |i|
+              conditionmatch_tmp = ConditionMatch.new
+              conditionmatch_tmp.deserialize(i)
+              @ConditionMatches << conditionmatch_tmp
+            end
+          end
+          unless params['TagItems'].nil?
+            @TagItems = []
+            params['TagItems'].each do |i|
+              edrruletagitem_tmp = EDRRuleTagItem.new
+              edrruletagitem_tmp.deserialize(i)
+              @TagItems << edrruletagitem_tmp
+            end
+          end
+        end
+      end
+
+      # 安全中心标签
+      class EDRRuleTagItem < TencentCloud::Common::AbstractModel
+        # @param ID: <p>安全中心标签ID</p>
+        # @type ID: Integer
+        # @param TagKey: <p>标签中文Key</p>
+        # @type TagKey: String
+        # @param TagKeyEn: <p>标签英文key</p>
+        # @type TagKeyEn: String
+        # @param TagValue: <p>标签中文值</p>
+        # @type TagValue: String
+        # @param TagValueEn: <p>标签英文值</p>
+        # @type TagValueEn: String
+        # @param Description: <p>标签描述</p>
+        # @type Description: String
+        # @param Color: <p>标签颜色</p>
+        # @type Color: String
+
+        attr_accessor :ID, :TagKey, :TagKeyEn, :TagValue, :TagValueEn, :Description, :Color
+
+        def initialize(id=nil, tagkey=nil, tagkeyen=nil, tagvalue=nil, tagvalueen=nil, description=nil, color=nil)
+          @ID = id
+          @TagKey = tagkey
+          @TagKeyEn = tagkeyen
+          @TagValue = tagvalue
+          @TagValueEn = tagvalueen
+          @Description = description
+          @Color = color
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @TagKey = params['TagKey']
+          @TagKeyEn = params['TagKeyEn']
+          @TagValue = params['TagValue']
+          @TagValueEn = params['TagValueEn']
+          @Description = params['Description']
+          @Color = params['Color']
         end
       end
 
@@ -25753,10 +25900,30 @@ module TencentCloud
         # @type NetResponsePayload: String
         # @param NetSvcPs: <p>服务进程信息（base64 编码后的 JSON 字符串）</p>
         # @type NetSvcPs: String
+        # @param ContainerName: <p>容器名称</p>
+        # @type ContainerName: String
+        # @param ImageName: <p>容器镜像名称</p>
+        # @type ImageName: String
+        # @param ClusterName: <p>集群名称</p>
+        # @type ClusterName: String
+        # @param RunStatus: <p>容器运行状态（原始枚举 RUNNING/PAUSED/STOPPED…，前端自行映射）</p><p>枚举值：</p><ul><li>RUNNING： 运行</li><li>PAUSED： 暂停</li><li>STOPPED： 停止</li><li>CREATED： 已经创建</li><li>DESTROYED： 已销毁</li><li>RESTARTING： 重启中</li><li>REMOVING： 迁移中</li><li>DEAD： DEAD</li><li>UNKNOWN： 未知</li></ul>
+        # @type RunStatus: String
+        # @param PodName: <p>POD 名称</p>
+        # @type PodName: String
+        # @param PodIp: <p>POD IP</p>
+        # @type PodIp: String
+        # @param Namespace: <p>命名空间</p>
+        # @type Namespace: String
+        # @param PodWorkloadType: <p>POD 负载类型</p>
+        # @type PodWorkloadType: String
+        # @param ClusterCaMD5: <p>集群 ca 证书 md5</p>
+        # @type ClusterCaMD5: String
+        # @param PodUniqueId: <p>POD 唯一 id</p>
+        # @type PodUniqueId: String
 
-        attr_accessor :Id, :AppId, :AlertId, :AlertCategory, :AlertSubType, :RuleId, :RuleType, :Level, :Status, :AttackStage, :DetectMode, :InstanceId, :Quuid, :EventCount, :IsProVersion, :AlertSource, :ImageId, :ContainerId, :ClusterId, :FirstDetectTime, :LatestDetectTime, :RuleName, :ContentType, :InstanceName, :PublicIp, :PrivateIp, :Content, :AlertName, :CSIPTags, :HarmDesc, :SuggestScheme, :HarmDescSource, :ThreatTags, :BashCmdDecoded, :NetVulName, :NetCVEId, :NetAbnormalAction, :IPIntel, :MultiBehaviorDetectionMode, :SourceDesc, :ModifyTime, :IntelSource, :Verdict, :VerdictBasis, :VirusName, :VirusFamily, :NetResponsePayload, :NetSvcPs
+        attr_accessor :Id, :AppId, :AlertId, :AlertCategory, :AlertSubType, :RuleId, :RuleType, :Level, :Status, :AttackStage, :DetectMode, :InstanceId, :Quuid, :EventCount, :IsProVersion, :AlertSource, :ImageId, :ContainerId, :ClusterId, :FirstDetectTime, :LatestDetectTime, :RuleName, :ContentType, :InstanceName, :PublicIp, :PrivateIp, :Content, :AlertName, :CSIPTags, :HarmDesc, :SuggestScheme, :HarmDescSource, :ThreatTags, :BashCmdDecoded, :NetVulName, :NetCVEId, :NetAbnormalAction, :IPIntel, :MultiBehaviorDetectionMode, :SourceDesc, :ModifyTime, :IntelSource, :Verdict, :VerdictBasis, :VirusName, :VirusFamily, :NetResponsePayload, :NetSvcPs, :ContainerName, :ImageName, :ClusterName, :RunStatus, :PodName, :PodIp, :Namespace, :PodWorkloadType, :ClusterCaMD5, :PodUniqueId
 
-        def initialize(id=nil, appid=nil, alertid=nil, alertcategory=nil, alertsubtype=nil, ruleid=nil, ruletype=nil, level=nil, status=nil, attackstage=nil, detectmode=nil, instanceid=nil, quuid=nil, eventcount=nil, isproversion=nil, alertsource=nil, imageid=nil, containerid=nil, clusterid=nil, firstdetecttime=nil, latestdetecttime=nil, rulename=nil, contenttype=nil, instancename=nil, publicip=nil, privateip=nil, content=nil, alertname=nil, csiptags=nil, harmdesc=nil, suggestscheme=nil, harmdescsource=nil, threattags=nil, bashcmddecoded=nil, netvulname=nil, netcveid=nil, netabnormalaction=nil, ipintel=nil, multibehaviordetectionmode=nil, sourcedesc=nil, modifytime=nil, intelsource=nil, verdict=nil, verdictbasis=nil, virusname=nil, virusfamily=nil, netresponsepayload=nil, netsvcps=nil)
+        def initialize(id=nil, appid=nil, alertid=nil, alertcategory=nil, alertsubtype=nil, ruleid=nil, ruletype=nil, level=nil, status=nil, attackstage=nil, detectmode=nil, instanceid=nil, quuid=nil, eventcount=nil, isproversion=nil, alertsource=nil, imageid=nil, containerid=nil, clusterid=nil, firstdetecttime=nil, latestdetecttime=nil, rulename=nil, contenttype=nil, instancename=nil, publicip=nil, privateip=nil, content=nil, alertname=nil, csiptags=nil, harmdesc=nil, suggestscheme=nil, harmdescsource=nil, threattags=nil, bashcmddecoded=nil, netvulname=nil, netcveid=nil, netabnormalaction=nil, ipintel=nil, multibehaviordetectionmode=nil, sourcedesc=nil, modifytime=nil, intelsource=nil, verdict=nil, verdictbasis=nil, virusname=nil, virusfamily=nil, netresponsepayload=nil, netsvcps=nil, containername=nil, imagename=nil, clustername=nil, runstatus=nil, podname=nil, podip=nil, namespace=nil, podworkloadtype=nil, clustercamd5=nil, poduniqueid=nil)
           @Id = id
           @AppId = appid
           @AlertId = alertid
@@ -25805,6 +25972,16 @@ module TencentCloud
           @VirusFamily = virusfamily
           @NetResponsePayload = netresponsepayload
           @NetSvcPs = netsvcps
+          @ContainerName = containername
+          @ImageName = imagename
+          @ClusterName = clustername
+          @RunStatus = runstatus
+          @PodName = podname
+          @PodIp = podip
+          @Namespace = namespace
+          @PodWorkloadType = podworkloadtype
+          @ClusterCaMD5 = clustercamd5
+          @PodUniqueId = poduniqueid
         end
 
         def deserialize(params)
@@ -25866,6 +26043,16 @@ module TencentCloud
           @VirusFamily = params['VirusFamily']
           @NetResponsePayload = params['NetResponsePayload']
           @NetSvcPs = params['NetSvcPs']
+          @ContainerName = params['ContainerName']
+          @ImageName = params['ImageName']
+          @ClusterName = params['ClusterName']
+          @RunStatus = params['RunStatus']
+          @PodName = params['PodName']
+          @PodIp = params['PodIp']
+          @Namespace = params['Namespace']
+          @PodWorkloadType = params['PodWorkloadType']
+          @ClusterCaMD5 = params['ClusterCaMD5']
+          @PodUniqueId = params['PodUniqueId']
         end
       end
 
@@ -25901,6 +26088,8 @@ module TencentCloud
         # @type IsProVersion: Integer
         # @param AlertSource: <p>告警来源</p>
         # @type AlertSource: String
+        # @param MachineType: <p>机器类型（列表接口专有；不限于容器告警，主机告警同样返回）。按 Quuid 富化自 machines.machine_type，原始枚举值原样透传、不做 i18n 翻译，前端自行映射展示。取值如 CVM / LH / Other / EKS-NATIVE 等；查不到对应机器信息时降级为空串 ""（与 InstanceName / PublicIp / PrivateIp 等资产富化字段降级行为一致）。告警详情接口（DescribeEdrAlertInfo）不返回此字段</p>
+        # @type MachineType: String
         # @param ImageId: <p>镜像ID</p>
         # @type ImageId: String
         # @param ContainerId: <p>容器id</p>
@@ -25925,10 +26114,16 @@ module TencentCloud
         # @type PrivateIp: String
         # @param RaspOpen: <p>该机器是否开启应用防护</p>
         # @type RaspOpen: Boolean
+        # @param ContainerName: <p>容器名称</p>
+        # @type ContainerName: String
+        # @param ImageName: <p>容器镜像名称</p>
+        # @type ImageName: String
+        # @param ClusterName: <p>集群名称</p>
+        # @type ClusterName: String
 
-        attr_accessor :Id, :AppId, :AlertId, :AlertCategory, :AlertSubType, :RuleId, :RuleType, :Level, :Status, :AttackStage, :DetectMode, :InstanceId, :Quuid, :IsProVersion, :AlertSource, :ImageId, :ContainerId, :ClusterId, :EventCount, :FirstDetectTime, :LatestDetectTime, :RuleName, :ContentType, :InstanceName, :PublicIp, :PrivateIp, :RaspOpen
+        attr_accessor :Id, :AppId, :AlertId, :AlertCategory, :AlertSubType, :RuleId, :RuleType, :Level, :Status, :AttackStage, :DetectMode, :InstanceId, :Quuid, :IsProVersion, :AlertSource, :MachineType, :ImageId, :ContainerId, :ClusterId, :EventCount, :FirstDetectTime, :LatestDetectTime, :RuleName, :ContentType, :InstanceName, :PublicIp, :PrivateIp, :RaspOpen, :ContainerName, :ImageName, :ClusterName
 
-        def initialize(id=nil, appid=nil, alertid=nil, alertcategory=nil, alertsubtype=nil, ruleid=nil, ruletype=nil, level=nil, status=nil, attackstage=nil, detectmode=nil, instanceid=nil, quuid=nil, isproversion=nil, alertsource=nil, imageid=nil, containerid=nil, clusterid=nil, eventcount=nil, firstdetecttime=nil, latestdetecttime=nil, rulename=nil, contenttype=nil, instancename=nil, publicip=nil, privateip=nil, raspopen=nil)
+        def initialize(id=nil, appid=nil, alertid=nil, alertcategory=nil, alertsubtype=nil, ruleid=nil, ruletype=nil, level=nil, status=nil, attackstage=nil, detectmode=nil, instanceid=nil, quuid=nil, isproversion=nil, alertsource=nil, machinetype=nil, imageid=nil, containerid=nil, clusterid=nil, eventcount=nil, firstdetecttime=nil, latestdetecttime=nil, rulename=nil, contenttype=nil, instancename=nil, publicip=nil, privateip=nil, raspopen=nil, containername=nil, imagename=nil, clustername=nil)
           @Id = id
           @AppId = appid
           @AlertId = alertid
@@ -25944,6 +26139,7 @@ module TencentCloud
           @Quuid = quuid
           @IsProVersion = isproversion
           @AlertSource = alertsource
+          @MachineType = machinetype
           @ImageId = imageid
           @ContainerId = containerid
           @ClusterId = clusterid
@@ -25956,6 +26152,9 @@ module TencentCloud
           @PublicIp = publicip
           @PrivateIp = privateip
           @RaspOpen = raspopen
+          @ContainerName = containername
+          @ImageName = imagename
+          @ClusterName = clustername
         end
 
         def deserialize(params)
@@ -25974,6 +26173,7 @@ module TencentCloud
           @Quuid = params['Quuid']
           @IsProVersion = params['IsProVersion']
           @AlertSource = params['AlertSource']
+          @MachineType = params['MachineType']
           @ImageId = params['ImageId']
           @ContainerId = params['ContainerId']
           @ClusterId = params['ClusterId']
@@ -25986,6 +26186,9 @@ module TencentCloud
           @PublicIp = params['PublicIp']
           @PrivateIp = params['PrivateIp']
           @RaspOpen = params['RaspOpen']
+          @ContainerName = params['ContainerName']
+          @ImageName = params['ImageName']
+          @ClusterName = params['ClusterName']
         end
       end
 
@@ -26025,17 +26228,17 @@ module TencentCloud
         end
       end
 
-      # EDR告警定位信息，用于永久忽略
+      # EDR告警定位信息，用于永久忽略/取消忽略
       class EdrAlertTargetForIgnore < TencentCloud::Common::AbstractModel
-        # @param Id: <p>告警主键ID</p>
+        # @param Id: 告警主键ID
         # @type Id: Integer
-        # @param AppId: <p>告警所属账号ID（跨账号，前端必传）</p>
+        # @param AppId: 告警所属账号ID（跨账号，前端必传）
         # @type AppId: Integer
-        # @param AlertId: <p>告警唯一标识</p>
+        # @param AlertId: 告警唯一标识
         # @type AlertId: String
-        # @param Quuid: <p>主机UUID（可选）</p>
+        # @param Quuid: 主机UUID（可选）
         # @type Quuid: String
-        # @param InstanceId: <p>实例ID（可选，用于白名单写入）</p>
+        # @param InstanceId: 实例ID（可选，用于白名单删除）
         # @type InstanceId: String
 
         attr_accessor :Id, :AppId, :AlertId, :Quuid, :InstanceId
@@ -26384,9 +26587,9 @@ module TencentCloud
         end
       end
 
-      # 过滤条件。同一 Name 下多个 Values 为或关系；不同 Name 之间为且关系。支持的 Name：ResultStatus（通过状态）、AssetName（资产名称/ID模糊）、IP（IP地址模糊）、Tag（资产标签模糊）
+      # 过滤条件。同一 Name 下多个 Values 为或关系；不同 Name 之间为且关系。支持的 Name：Status（执行结果，Values: SUCCESS/FAILED/USER_CANCELED/CHECKING）
       class Filters < TencentCloud::Common::AbstractModel
-        # @param Name: 过滤条件名称。取值：ResultStatus（通过状态，Values: PASS/NOT_PASS）、AssetName（资产名称/ID，模糊匹配）、IP（IP地址，模糊匹配）、Tag（资产标签，模糊匹配）
+        # @param Name: 过滤条件名称。取值：Status（执行结果，Values: SUCCESS/FAILED/USER_CANCELED/CHECKING）
         # @type Name: String
         # @param Values: 过滤条件值列表
         # @type Values: Array
@@ -27086,6 +27289,26 @@ module TencentCloud
         end
       end
 
+      # 镜像ID和对应的appid账号信息
+      class ImageIDWithAppIdItem < TencentCloud::Common::AbstractModel
+        # @param AppId: <p>账号ID</p>
+        # @type AppId: Integer
+        # @param ImageID: <p>容器镜像ID</p>
+        # @type ImageID: String
+
+        attr_accessor :AppId, :ImageID
+
+        def initialize(appid=nil, imageid=nil)
+          @AppId = appid
+          @ImageID = imageid
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @ImageID = params['ImageID']
+        end
+      end
+
       # 计费项信息
       class InquireInfo < TencentCloud::Common::AbstractModel
         # @param Name: 计费项名称
@@ -27106,11 +27329,11 @@ module TencentCloud
         end
       end
 
-      # instance_id和对应的appid账号信息
+      # 主机实例定位信息
       class InstanceIDWithAppIdItem < TencentCloud::Common::AbstractModel
-        # @param AppId: <p>APPID</p>
+        # @param AppId: 机器所属AppId
         # @type AppId: Integer
-        # @param InstanceID: <p>实例ID</p>
+        # @param InstanceID: 机器实例ID
         # @type InstanceID: String
 
         attr_accessor :AppId, :InstanceID
@@ -28521,10 +28744,27 @@ module TencentCloud
         # @type ExcludeQuuids: Array
         # @param AutoInclude: <p>新增资产自动包含 0 不包含 1包含</p>
         # @type AutoInclude: Integer
+        # @param TagIDs: <p>标签ID</p>
+        # @type TagIDs: Array
+        # @param TCSSScope: <p>0,1</p><p>枚举值：</p><ul><li>0： 部分</li><li>1： 全部</li></ul>
+        # @type TCSSScope: Integer
+        # @param ClusterIDs: <p>集群ID</p>
+        # @type ClusterIDs: Array
+        # @param ExcludeClusterIDs: <p>排除集群ID</p>
+        # @type ExcludeClusterIDs: Array
+        # @param InstanceIds: <p>实例ID</p>
+        # @type InstanceIds: Array
+        # @param ExcludeInstanceIds: <p>排除实例ID</p>
+        # @type ExcludeInstanceIds: Array
 
-        attr_accessor :AILinkEnable, :MemberId, :RuleScopeDeep, :RuleScopeBalanced, :RuleScopePrecise, :Scope, :Quuids, :ExcludeQuuids, :AutoInclude
+        attr_accessor :AILinkEnable, :MemberId, :RuleScopeDeep, :RuleScopeBalanced, :RuleScopePrecise, :Scope, :Quuids, :ExcludeQuuids, :AutoInclude, :TagIDs, :TCSSScope, :ClusterIDs, :ExcludeClusterIDs, :InstanceIds, :ExcludeInstanceIds
+        extend Gem::Deprecate
+        deprecate :Quuids, :none, 2026, 8
+        deprecate :Quuids=, :none, 2026, 8
+        deprecate :ExcludeQuuids, :none, 2026, 8
+        deprecate :ExcludeQuuids=, :none, 2026, 8
 
-        def initialize(ailinkenable=nil, memberid=nil, rulescopedeep=nil, rulescopebalanced=nil, rulescopeprecise=nil, scope=nil, quuids=nil, excludequuids=nil, autoinclude=nil)
+        def initialize(ailinkenable=nil, memberid=nil, rulescopedeep=nil, rulescopebalanced=nil, rulescopeprecise=nil, scope=nil, quuids=nil, excludequuids=nil, autoinclude=nil, tagids=nil, tcssscope=nil, clusterids=nil, excludeclusterids=nil, instanceids=nil, excludeinstanceids=nil)
           @AILinkEnable = ailinkenable
           @MemberId = memberid
           @RuleScopeDeep = rulescopedeep
@@ -28534,6 +28774,12 @@ module TencentCloud
           @Quuids = quuids
           @ExcludeQuuids = excludequuids
           @AutoInclude = autoinclude
+          @TagIDs = tagids
+          @TCSSScope = tcssscope
+          @ClusterIDs = clusterids
+          @ExcludeClusterIDs = excludeclusterids
+          @InstanceIds = instanceids
+          @ExcludeInstanceIds = excludeinstanceids
         end
 
         def deserialize(params)
@@ -28546,6 +28792,12 @@ module TencentCloud
           @Quuids = params['Quuids']
           @ExcludeQuuids = params['ExcludeQuuids']
           @AutoInclude = params['AutoInclude']
+          @TagIDs = params['TagIDs']
+          @TCSSScope = params['TCSSScope']
+          @ClusterIDs = params['ClusterIDs']
+          @ExcludeClusterIDs = params['ExcludeClusterIDs']
+          @InstanceIds = params['InstanceIds']
+          @ExcludeInstanceIds = params['ExcludeInstanceIds']
         end
       end
 
@@ -30020,10 +30272,20 @@ module TencentCloud
         # @type InstanceIDsWithAppId: Array
         # @param ExcludeInstanceIDsWithAppId: <p>全选资产排除的实例ID和APPID</p>
         # @type ExcludeInstanceIDsWithAppId: Array
+        # @param TagIDs: <p>安全中心标签ID列表（主机资产范围「按标签选择」，仅对主机生效）；上限 100（超限截断）。标签来源接口 DescribeAssetTagTree</p>
+        # @type TagIDs: Array
+        # @param ClusterIDsWithAppId: <p>指定生效集群列表（每项含 AppId + ClusterID，TCSSScope=0 时使用）。入参数组上限 3000（超限截断保留前 3000 项）</p>
+        # @type ClusterIDsWithAppId: Array
+        # @param ExcludeClusterIDsWithAppId: <p>排除集群列表（每项含 AppId + ClusterID）；入参数组上限 3000（超限截断保留前 3000 项）</p>
+        # @type ExcludeClusterIDsWithAppId: Array
+        # @param ImageIDsWithAppId: <p>直接选择镜像（每项含 AppId + ImageID，在集群基础上进一步过滤）。多账号场景下各账号只存属于自己的镜像；入参数组上限 3000（超限截断保留前 3000 项）</p>
+        # @type ImageIDsWithAppId: Array
+        # @param ConditionMatches: <p>容器条件匹配</p>
+        # @type ConditionMatches: Array
 
-        attr_accessor :RuleType, :AlertAction, :CWPScope, :TCSSScope, :Status, :MemberId, :Name, :ContentType, :Level, :DetectMode, :AttackStage, :RuleID, :Description, :DealOldEvents, :Md5List, :FileName, :FileDirectory, :CmdLineRules, :Domains, :OutboundIP, :InboundIP, :ImageIDs, :ProcessNetworkRules, :TargetAppIDs, :Target, :InstanceIDsWithAppId, :ExcludeInstanceIDsWithAppId
+        attr_accessor :RuleType, :AlertAction, :CWPScope, :TCSSScope, :Status, :MemberId, :Name, :ContentType, :Level, :DetectMode, :AttackStage, :RuleID, :Description, :DealOldEvents, :Md5List, :FileName, :FileDirectory, :CmdLineRules, :Domains, :OutboundIP, :InboundIP, :ImageIDs, :ProcessNetworkRules, :TargetAppIDs, :Target, :InstanceIDsWithAppId, :ExcludeInstanceIDsWithAppId, :TagIDs, :ClusterIDsWithAppId, :ExcludeClusterIDsWithAppId, :ImageIDsWithAppId, :ConditionMatches
 
-        def initialize(ruletype=nil, alertaction=nil, cwpscope=nil, tcssscope=nil, status=nil, memberid=nil, name=nil, contenttype=nil, level=nil, detectmode=nil, attackstage=nil, ruleid=nil, description=nil, dealoldevents=nil, md5list=nil, filename=nil, filedirectory=nil, cmdlinerules=nil, domains=nil, outboundip=nil, inboundip=nil, imageids=nil, processnetworkrules=nil, targetappids=nil, target=nil, instanceidswithappid=nil, excludeinstanceidswithappid=nil)
+        def initialize(ruletype=nil, alertaction=nil, cwpscope=nil, tcssscope=nil, status=nil, memberid=nil, name=nil, contenttype=nil, level=nil, detectmode=nil, attackstage=nil, ruleid=nil, description=nil, dealoldevents=nil, md5list=nil, filename=nil, filedirectory=nil, cmdlinerules=nil, domains=nil, outboundip=nil, inboundip=nil, imageids=nil, processnetworkrules=nil, targetappids=nil, target=nil, instanceidswithappid=nil, excludeinstanceidswithappid=nil, tagids=nil, clusteridswithappid=nil, excludeclusteridswithappid=nil, imageidswithappid=nil, conditionmatches=nil)
           @RuleType = ruletype
           @AlertAction = alertaction
           @CWPScope = cwpscope
@@ -30051,6 +30313,11 @@ module TencentCloud
           @Target = target
           @InstanceIDsWithAppId = instanceidswithappid
           @ExcludeInstanceIDsWithAppId = excludeinstanceidswithappid
+          @TagIDs = tagids
+          @ClusterIDsWithAppId = clusteridswithappid
+          @ExcludeClusterIDsWithAppId = excludeclusteridswithappid
+          @ImageIDsWithAppId = imageidswithappid
+          @ConditionMatches = conditionmatches
         end
 
         def deserialize(params)
@@ -30102,6 +30369,39 @@ module TencentCloud
               instanceidwithappiditem_tmp = InstanceIDWithAppIdItem.new
               instanceidwithappiditem_tmp.deserialize(i)
               @ExcludeInstanceIDsWithAppId << instanceidwithappiditem_tmp
+            end
+          end
+          @TagIDs = params['TagIDs']
+          unless params['ClusterIDsWithAppId'].nil?
+            @ClusterIDsWithAppId = []
+            params['ClusterIDsWithAppId'].each do |i|
+              clusteridwithappiditem_tmp = ClusterIDWithAppIdItem.new
+              clusteridwithappiditem_tmp.deserialize(i)
+              @ClusterIDsWithAppId << clusteridwithappiditem_tmp
+            end
+          end
+          unless params['ExcludeClusterIDsWithAppId'].nil?
+            @ExcludeClusterIDsWithAppId = []
+            params['ExcludeClusterIDsWithAppId'].each do |i|
+              clusteridwithappiditem_tmp = ClusterIDWithAppIdItem.new
+              clusteridwithappiditem_tmp.deserialize(i)
+              @ExcludeClusterIDsWithAppId << clusteridwithappiditem_tmp
+            end
+          end
+          unless params['ImageIDsWithAppId'].nil?
+            @ImageIDsWithAppId = []
+            params['ImageIDsWithAppId'].each do |i|
+              imageidwithappiditem_tmp = ImageIDWithAppIdItem.new
+              imageidwithappiditem_tmp.deserialize(i)
+              @ImageIDsWithAppId << imageidwithappiditem_tmp
+            end
+          end
+          unless params['ConditionMatches'].nil?
+            @ConditionMatches = []
+            params['ConditionMatches'].each do |i|
+              conditionmatch_tmp = ConditionMatch.new
+              conditionmatch_tmp.deserialize(i)
+              @ConditionMatches << conditionmatch_tmp
             end
           end
         end
@@ -31564,34 +31864,34 @@ module TencentCloud
         end
       end
 
-      # 地域信息
+      # 云资产所在地域信息。
       class RegionInfo < TencentCloud::Common::AbstractModel
-        # @param Region: <p>地域</p>
+        # @param Region: 地域标志，如 ap-guangzhou、ap-shanghai、ap-beijing。
         # @type Region: String
-        # @param RegionCode: <p>地域编码</p>
-        # @type RegionCode: String
-        # @param RegionId: <p>地域ID</p>
-        # @type RegionId: Integer
-        # @param RegionName: <p>地域名称</p>
+        # @param RegionName: 地域中文名，如华南地区（广州）、华东地区（上海）、华北地区（北京）。
         # @type RegionName: String
-        # @param RegionNameEn: <p>地域英文名称</p>
+        # @param RegionId: 地域数字 ID。
+        # @type RegionId: Integer
+        # @param RegionCode: 地域简码，如 gz、sh、bj。
+        # @type RegionCode: String
+        # @param RegionNameEn: 地域英文名。
         # @type RegionNameEn: String
 
-        attr_accessor :Region, :RegionCode, :RegionId, :RegionName, :RegionNameEn
+        attr_accessor :Region, :RegionName, :RegionId, :RegionCode, :RegionNameEn
 
-        def initialize(region=nil, regioncode=nil, regionid=nil, regionname=nil, regionnameen=nil)
+        def initialize(region=nil, regionname=nil, regionid=nil, regioncode=nil, regionnameen=nil)
           @Region = region
-          @RegionCode = regioncode
-          @RegionId = regionid
           @RegionName = regionname
+          @RegionId = regionid
+          @RegionCode = regioncode
           @RegionNameEn = regionnameen
         end
 
         def deserialize(params)
           @Region = params['Region']
-          @RegionCode = params['RegionCode']
-          @RegionId = params['RegionId']
           @RegionName = params['RegionName']
+          @RegionId = params['RegionId']
+          @RegionCode = params['RegionCode']
           @RegionNameEn = params['RegionNameEn']
         end
       end

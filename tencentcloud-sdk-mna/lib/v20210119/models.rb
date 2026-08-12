@@ -1087,15 +1087,30 @@ module TencentCloud
         # @type Status: Integer
         # @param InstanceSize: <p>网关实例数</p>
         # @type InstanceSize: Integer
+        # @param GatewayIp: <p>网关内网IP。</p>
+        # @type GatewayIp: String
+        # @param Username: <p>用户名。</p>
+        # @type Username: String
+        # @param Token: <p>网关接入token。</p>
+        # @type Token: String
+        # @param RegisterCenterUrl: <p>网关注册URL。</p>
+        # @type RegisterCenterUrl: String
+        # @param TelemetryUrl: <p>网关上报URL。</p>
+        # @type TelemetryUrl: String
 
-        attr_accessor :GatewayId, :GatewayName, :CreateTime, :Status, :InstanceSize
+        attr_accessor :GatewayId, :GatewayName, :CreateTime, :Status, :InstanceSize, :GatewayIp, :Username, :Token, :RegisterCenterUrl, :TelemetryUrl
 
-        def initialize(gatewayid=nil, gatewayname=nil, createtime=nil, status=nil, instancesize=nil)
+        def initialize(gatewayid=nil, gatewayname=nil, createtime=nil, status=nil, instancesize=nil, gatewayip=nil, username=nil, token=nil, registercenterurl=nil, telemetryurl=nil)
           @GatewayId = gatewayid
           @GatewayName = gatewayname
           @CreateTime = createtime
           @Status = status
           @InstanceSize = instancesize
+          @GatewayIp = gatewayip
+          @Username = username
+          @Token = token
+          @RegisterCenterUrl = registercenterurl
+          @TelemetryUrl = telemetryurl
         end
 
         def deserialize(params)
@@ -1104,6 +1119,11 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @Status = params['Status']
           @InstanceSize = params['InstanceSize']
+          @GatewayIp = params['GatewayIp']
+          @Username = params['Username']
+          @Token = params['Token']
+          @RegisterCenterUrl = params['RegisterCenterUrl']
+          @TelemetryUrl = params['TelemetryUrl']
         end
       end
 

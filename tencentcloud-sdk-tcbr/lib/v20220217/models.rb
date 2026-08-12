@@ -2138,6 +2138,29 @@ module TencentCloud
         end
       end
 
+      # 差异化更新配置信息
+      class ServerBaseConfigDiff < TencentCloud::Common::AbstractModel
+        # @param StrParams: 字符串参数 Key：EnvParam
+        # @type StrParams: Array
+
+        attr_accessor :StrParams
+
+        def initialize(strparams=nil)
+          @StrParams = strparams
+        end
+
+        def deserialize(params)
+          unless params['StrParams'].nil?
+            @StrParams = []
+            params['StrParams'].each do |i|
+              objectkv_tmp = ObjectKV.new
+              objectkv_tmp.deserialize(i)
+              @StrParams << objectkv_tmp
+            end
+          end
+        end
+      end
+
       # 服务基本信息
       class ServerBaseInfo < TencentCloud::Common::AbstractModel
         # @param ServerName: <p>服务名</p>
@@ -2439,6 +2462,64 @@ module TencentCloud
           @Bucket = params['Bucket']
           @CdnDomain = params['CdnDomain']
           @AppId = params['AppId']
+        end
+      end
+
+      # SubmitServerConfigChangeDiff请求参数结构体
+      class SubmitServerConfigChangeDiffRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境Id
+        # @type EnvId: String
+        # @param ServerName: 服务名
+        # @type ServerName: String
+        # @param Conf: 配置信息 deprecated
+        # @type Conf: :class:`Tencentcloud::Tcbr.v20220217.models.ServerBaseConfigDiff`
+        # @param Items: 配置信息
+        # @type Items: Array
+
+        attr_accessor :EnvId, :ServerName, :Conf, :Items
+
+        def initialize(envid=nil, servername=nil, conf=nil, items=nil)
+          @EnvId = envid
+          @ServerName = servername
+          @Conf = conf
+          @Items = items
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @ServerName = params['ServerName']
+          unless params['Conf'].nil?
+            @Conf = ServerBaseConfigDiff.new
+            @Conf.deserialize(params['Conf'])
+          end
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              diffconfigitem_tmp = DiffConfigItem.new
+              diffconfigitem_tmp.deserialize(i)
+              @Items << diffconfigitem_tmp
+            end
+          end
+        end
+      end
+
+      # SubmitServerConfigChangeDiff返回参数结构体
+      class SubmitServerConfigChangeDiffResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务Id 大于 0 需要请求 DescribeServerManageTask 接口获取任务进度，等于 0 则表示同步
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
         end
       end
 

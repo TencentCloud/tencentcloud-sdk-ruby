@@ -2535,12 +2535,21 @@ module TencentCloud
 
       # DeleteDatabase请求参数结构体
       class DeleteDatabaseRequest < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: <p>实例ID。可通过<a href="https://cloud.tencent.com/document/api/409/16773">DescribeDBInstances</a>接口获取</p>
+        # @type DBInstanceId: String
+        # @param DatabaseName: <p>数据库名称</p>
+        # @type DatabaseName: String
 
+        attr_accessor :DBInstanceId, :DatabaseName
 
-        def initialize()
+        def initialize(dbinstanceid=nil, databasename=nil)
+          @DBInstanceId = dbinstanceid
+          @DatabaseName = databasename
         end
 
         def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+          @DatabaseName = params['DatabaseName']
         end
       end
 

@@ -317,6 +317,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除账号组
+
+        # @param request: Request instance for DeleteAggregators.
+        # @type request: :class:`Tencentcloud::config::V20220802::DeleteAggregatorsRequest`
+        # @rtype: :class:`Tencentcloud::config::V20220802::DeleteAggregatorsResponse`
+        def DeleteAggregators(request)
+          body = send_request('DeleteAggregators', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAggregatorsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除告警规则
 
         # @param request: Request instance for DeleteAlarmPolicy.
@@ -1407,6 +1431,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpdateAggregateConfigRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 编辑账号组
+
+        # @param request: Request instance for UpdateAggregator.
+        # @type request: :class:`Tencentcloud::config::V20220802::UpdateAggregatorRequest`
+        # @rtype: :class:`Tencentcloud::config::V20220802::UpdateAggregatorResponse`
+        def UpdateAggregator(request)
+          body = send_request('UpdateAggregator', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateAggregatorResponse.new
             model.deserialize(response['Response'])
             model
           else

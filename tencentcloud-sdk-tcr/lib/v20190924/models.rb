@@ -6086,6 +6086,92 @@ module TencentCloud
         end
       end
 
+      # ModifyReplication请求参数结构体
+      class ModifyReplicationRequest < TencentCloud::Common::AbstractModel
+        # @param SourceRegistryId: <p>复制源实例ID</p>
+        # @type SourceRegistryId: String
+        # @param RuleName: <p>实例同步规则名称</p>
+        # @type RuleName: String
+        # @param Rule: <p>同步规则</p>
+        # @type Rule: :class:`Tencentcloud::Tcr.v20190924.models.ModifyReplicationRule`
+        # @param Description: <p>规则描述</p>
+        # @type Description: String
+
+        attr_accessor :SourceRegistryId, :RuleName, :Rule, :Description
+
+        def initialize(sourceregistryid=nil, rulename=nil, rule=nil, description=nil)
+          @SourceRegistryId = sourceregistryid
+          @RuleName = rulename
+          @Rule = rule
+          @Description = description
+        end
+
+        def deserialize(params)
+          @SourceRegistryId = params['SourceRegistryId']
+          @RuleName = params['RuleName']
+          unless params['Rule'].nil?
+            @Rule = ModifyReplicationRule.new
+            @Rule.deserialize(params['Rule'])
+          end
+          @Description = params['Description']
+        end
+      end
+
+      # ModifyReplication返回参数结构体
+      class ModifyReplicationResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 修改同步规则参数，用于 ModifyReplication 接口更新已有的实例同步规则配置。
+      class ModifyReplicationRule < TencentCloud::Common::AbstractModel
+        # @param DestNamespace: <p>目标命名空间</p>
+        # @type DestNamespace: String
+        # @param Override: <p>是否覆盖</p>
+        # @type Override: Boolean
+        # @param Deletion: <p>是否同步删除事件</p>
+        # @type Deletion: Boolean
+        # @param Filters: <p>过滤同步条件</p>
+        # @type Filters: Array
+        # @param Enabled: <p>是否开启规则</p>
+        # @type Enabled: Boolean
+
+        attr_accessor :DestNamespace, :Override, :Deletion, :Filters, :Enabled
+
+        def initialize(destnamespace=nil, override=nil, deletion=nil, filters=nil, enabled=nil)
+          @DestNamespace = destnamespace
+          @Override = override
+          @Deletion = deletion
+          @Filters = filters
+          @Enabled = enabled
+        end
+
+        def deserialize(params)
+          @DestNamespace = params['DestNamespace']
+          @Override = params['Override']
+          @Deletion = params['Deletion']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              replicationfilter_tmp = ReplicationFilter.new
+              replicationfilter_tmp.deserialize(i)
+              @Filters << replicationfilter_tmp
+            end
+          end
+          @Enabled = params['Enabled']
+        end
+      end
+
       # ModifyRepositoryAccessPersonal请求参数结构体
       class ModifyRepositoryAccessPersonalRequest < TencentCloud::Common::AbstractModel
         # @param RepoName: 仓库名称
