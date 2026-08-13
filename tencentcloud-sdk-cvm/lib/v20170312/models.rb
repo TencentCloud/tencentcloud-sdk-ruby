@@ -1159,10 +1159,12 @@ module TencentCloud
         # @type Metadata: :class:`Tencentcloud::Cvm.v20170312.models.Metadata`
         # @param TemplateDataModifyAction: <p>只允许传递 Update 和 Replace 参数，在模板使用自定义 Metadata 且在 RunInstances 也传递 Metadata 时生效。默认采用 Replace。</p><ul><li>Update：设模板 t含本参数值为Update、 metadata=[k1:v1, k2:v2] ，则RunInstances（给metadata=[k2:v3]）+ t 创建的 cvm 使用metadata=[k1:v1, k2:v3] </li><li>Replace：模板 t含本参数值为Replace、 metadata=[k1:v1, k2:v2] ，则RunInstances（给metadata=[k2:v3]）+ t 创建的 cvm 使用metadata=[k2:v3]<br><strong>注：内测中</strong>。</li></ul>
         # @type TemplateDataModifyAction: String
+        # @param NetworkInterfaces: <p>多网卡参数信息。 此功能仅部分地区灰度开放，如需使用<a href="https://console.cloud.tencent.com/workorder/category">请提交工单咨询</a></p>
+        # @type NetworkInterfaces: Array
 
-        attr_accessor :LaunchTemplateName, :Placement, :ImageId, :LaunchTemplateVersionDescription, :InstanceType, :SystemDisk, :DataDisks, :VirtualPrivateCloud, :InternetAccessible, :InstanceCount, :InstanceName, :LoginSettings, :SecurityGroupIds, :EnhancedService, :ClientToken, :HostName, :ActionTimer, :DisasterRecoverGroupIds, :TagSpecification, :InstanceMarketOptions, :UserData, :DryRun, :CamRoleName, :HpcClusterId, :InstanceChargeType, :InstanceChargePrepaid, :DisableApiTermination, :EnableJumboFrame, :LaunchTemplateTagSpecification, :Metadata, :TemplateDataModifyAction
+        attr_accessor :LaunchTemplateName, :Placement, :ImageId, :LaunchTemplateVersionDescription, :InstanceType, :SystemDisk, :DataDisks, :VirtualPrivateCloud, :InternetAccessible, :InstanceCount, :InstanceName, :LoginSettings, :SecurityGroupIds, :EnhancedService, :ClientToken, :HostName, :ActionTimer, :DisasterRecoverGroupIds, :TagSpecification, :InstanceMarketOptions, :UserData, :DryRun, :CamRoleName, :HpcClusterId, :InstanceChargeType, :InstanceChargePrepaid, :DisableApiTermination, :EnableJumboFrame, :LaunchTemplateTagSpecification, :Metadata, :TemplateDataModifyAction, :NetworkInterfaces
 
-        def initialize(launchtemplatename=nil, placement=nil, imageid=nil, launchtemplateversiondescription=nil, instancetype=nil, systemdisk=nil, datadisks=nil, virtualprivatecloud=nil, internetaccessible=nil, instancecount=nil, instancename=nil, loginsettings=nil, securitygroupids=nil, enhancedservice=nil, clienttoken=nil, hostname=nil, actiontimer=nil, disasterrecovergroupids=nil, tagspecification=nil, instancemarketoptions=nil, userdata=nil, dryrun=nil, camrolename=nil, hpcclusterid=nil, instancechargetype=nil, instancechargeprepaid=nil, disableapitermination=nil, enablejumboframe=nil, launchtemplatetagspecification=nil, metadata=nil, templatedatamodifyaction=nil)
+        def initialize(launchtemplatename=nil, placement=nil, imageid=nil, launchtemplateversiondescription=nil, instancetype=nil, systemdisk=nil, datadisks=nil, virtualprivatecloud=nil, internetaccessible=nil, instancecount=nil, instancename=nil, loginsettings=nil, securitygroupids=nil, enhancedservice=nil, clienttoken=nil, hostname=nil, actiontimer=nil, disasterrecovergroupids=nil, tagspecification=nil, instancemarketoptions=nil, userdata=nil, dryrun=nil, camrolename=nil, hpcclusterid=nil, instancechargetype=nil, instancechargeprepaid=nil, disableapitermination=nil, enablejumboframe=nil, launchtemplatetagspecification=nil, metadata=nil, templatedatamodifyaction=nil, networkinterfaces=nil)
           @LaunchTemplateName = launchtemplatename
           @Placement = placement
           @ImageId = imageid
@@ -1194,6 +1196,7 @@ module TencentCloud
           @LaunchTemplateTagSpecification = launchtemplatetagspecification
           @Metadata = metadata
           @TemplateDataModifyAction = templatedatamodifyaction
+          @NetworkInterfaces = networkinterfaces
         end
 
         def deserialize(params)
@@ -1279,6 +1282,14 @@ module TencentCloud
             @Metadata.deserialize(params['Metadata'])
           end
           @TemplateDataModifyAction = params['TemplateDataModifyAction']
+          unless params['NetworkInterfaces'].nil?
+            @NetworkInterfaces = []
+            params['NetworkInterfaces'].each do |i|
+              networkinterfaces_tmp = NetworkInterfaces.new
+              networkinterfaces_tmp.deserialize(i)
+              @NetworkInterfaces << networkinterfaces_tmp
+            end
+          end
         end
       end
 
@@ -1366,10 +1377,12 @@ module TencentCloud
         # @type Metadata: :class:`Tencentcloud::Cvm.v20170312.models.Metadata`
         # @param TemplateDataModifyAction: <p>只允许传递 Update 和 Replace 参数，在模板使用自定义 Metadata 且在 RunInstances 也传递 Metadata 时生效。默认采用 Replace。</p><ul><li>Update：设模板 t含本参数值为Update、 metadata=[k1:v1, k2:v2] ，则RunInstances（给metadata=[k2:v3]）+ t 创建的 cvm 使用metadata=[k1:v1, k2:v3] </li><li>Replace：模板 t含本参数值为Replace、 metadata=[k1:v1, k2:v2] ，则RunInstances（给metadata=[k2:v3]）+ t 创建的 cvm 使用metadata=[k2:v3]<br><strong>注：内测中</strong>。</li></ul>
         # @type TemplateDataModifyAction: String
+        # @param NetworkInterfaces: <p>多网卡参数信息。 此功能仅部分地区灰度开放，如需使用<a href="https://console.cloud.tencent.com/workorder/category">请提交工单咨询</a></p>
+        # @type NetworkInterfaces: Array
 
-        attr_accessor :Placement, :LaunchTemplateId, :LaunchTemplateVersion, :LaunchTemplateVersionDescription, :InstanceType, :ImageId, :SystemDisk, :DataDisks, :VirtualPrivateCloud, :InternetAccessible, :InstanceCount, :InstanceName, :LoginSettings, :SecurityGroupIds, :EnhancedService, :ClientToken, :HostName, :ActionTimer, :DisasterRecoverGroupIds, :TagSpecification, :InstanceMarketOptions, :UserData, :DryRun, :CamRoleName, :HpcClusterId, :InstanceChargeType, :InstanceChargePrepaid, :DisableApiTermination, :EnableJumboFrame, :Metadata, :TemplateDataModifyAction
+        attr_accessor :Placement, :LaunchTemplateId, :LaunchTemplateVersion, :LaunchTemplateVersionDescription, :InstanceType, :ImageId, :SystemDisk, :DataDisks, :VirtualPrivateCloud, :InternetAccessible, :InstanceCount, :InstanceName, :LoginSettings, :SecurityGroupIds, :EnhancedService, :ClientToken, :HostName, :ActionTimer, :DisasterRecoverGroupIds, :TagSpecification, :InstanceMarketOptions, :UserData, :DryRun, :CamRoleName, :HpcClusterId, :InstanceChargeType, :InstanceChargePrepaid, :DisableApiTermination, :EnableJumboFrame, :Metadata, :TemplateDataModifyAction, :NetworkInterfaces
 
-        def initialize(placement=nil, launchtemplateid=nil, launchtemplateversion=nil, launchtemplateversiondescription=nil, instancetype=nil, imageid=nil, systemdisk=nil, datadisks=nil, virtualprivatecloud=nil, internetaccessible=nil, instancecount=nil, instancename=nil, loginsettings=nil, securitygroupids=nil, enhancedservice=nil, clienttoken=nil, hostname=nil, actiontimer=nil, disasterrecovergroupids=nil, tagspecification=nil, instancemarketoptions=nil, userdata=nil, dryrun=nil, camrolename=nil, hpcclusterid=nil, instancechargetype=nil, instancechargeprepaid=nil, disableapitermination=nil, enablejumboframe=nil, metadata=nil, templatedatamodifyaction=nil)
+        def initialize(placement=nil, launchtemplateid=nil, launchtemplateversion=nil, launchtemplateversiondescription=nil, instancetype=nil, imageid=nil, systemdisk=nil, datadisks=nil, virtualprivatecloud=nil, internetaccessible=nil, instancecount=nil, instancename=nil, loginsettings=nil, securitygroupids=nil, enhancedservice=nil, clienttoken=nil, hostname=nil, actiontimer=nil, disasterrecovergroupids=nil, tagspecification=nil, instancemarketoptions=nil, userdata=nil, dryrun=nil, camrolename=nil, hpcclusterid=nil, instancechargetype=nil, instancechargeprepaid=nil, disableapitermination=nil, enablejumboframe=nil, metadata=nil, templatedatamodifyaction=nil, networkinterfaces=nil)
           @Placement = placement
           @LaunchTemplateId = launchtemplateid
           @LaunchTemplateVersion = launchtemplateversion
@@ -1401,6 +1414,7 @@ module TencentCloud
           @EnableJumboFrame = enablejumboframe
           @Metadata = metadata
           @TemplateDataModifyAction = templatedatamodifyaction
+          @NetworkInterfaces = networkinterfaces
         end
 
         def deserialize(params)
@@ -1479,6 +1493,14 @@ module TencentCloud
             @Metadata.deserialize(params['Metadata'])
           end
           @TemplateDataModifyAction = params['TemplateDataModifyAction']
+          unless params['NetworkInterfaces'].nil?
+            @NetworkInterfaces = []
+            params['NetworkInterfaces'].each do |i|
+              networkinterfaces_tmp = NetworkInterfaces.new
+              networkinterfaces_tmp.deserialize(i)
+              @NetworkInterfaces << networkinterfaces_tmp
+            end
+          end
         end
       end
 
@@ -5269,10 +5291,12 @@ module TencentCloud
         # @type CpuTopology: :class:`Tencentcloud::Cvm.v20170312.models.CpuTopology`
         # @param LaunchTemplate: <p>实例启动模板。</p>
         # @type LaunchTemplate: :class:`Tencentcloud::Cvm.v20170312.models.LaunchTemplate`
+        # @param NetworkInterfaces: <p>多网卡参数信息。 此功能仅部分地区灰度开放，如需使用<a href="https://console.cloud.tencent.com/workorder/category">请提交工单咨询</a></p>
+        # @type NetworkInterfaces: Array
 
-        attr_accessor :Placement, :ImageId, :InstanceChargeType, :InstanceChargePrepaid, :InstanceType, :SystemDisk, :DataDisks, :VirtualPrivateCloud, :InternetAccessible, :InstanceCount, :InstanceName, :LoginSettings, :SecurityGroupIds, :EnhancedService, :ClientToken, :HostName, :TagSpecification, :InstanceMarketOptions, :Metadata, :HpcClusterId, :CpuTopology, :LaunchTemplate
+        attr_accessor :Placement, :ImageId, :InstanceChargeType, :InstanceChargePrepaid, :InstanceType, :SystemDisk, :DataDisks, :VirtualPrivateCloud, :InternetAccessible, :InstanceCount, :InstanceName, :LoginSettings, :SecurityGroupIds, :EnhancedService, :ClientToken, :HostName, :TagSpecification, :InstanceMarketOptions, :Metadata, :HpcClusterId, :CpuTopology, :LaunchTemplate, :NetworkInterfaces
 
-        def initialize(placement=nil, imageid=nil, instancechargetype=nil, instancechargeprepaid=nil, instancetype=nil, systemdisk=nil, datadisks=nil, virtualprivatecloud=nil, internetaccessible=nil, instancecount=nil, instancename=nil, loginsettings=nil, securitygroupids=nil, enhancedservice=nil, clienttoken=nil, hostname=nil, tagspecification=nil, instancemarketoptions=nil, metadata=nil, hpcclusterid=nil, cputopology=nil, launchtemplate=nil)
+        def initialize(placement=nil, imageid=nil, instancechargetype=nil, instancechargeprepaid=nil, instancetype=nil, systemdisk=nil, datadisks=nil, virtualprivatecloud=nil, internetaccessible=nil, instancecount=nil, instancename=nil, loginsettings=nil, securitygroupids=nil, enhancedservice=nil, clienttoken=nil, hostname=nil, tagspecification=nil, instancemarketoptions=nil, metadata=nil, hpcclusterid=nil, cputopology=nil, launchtemplate=nil, networkinterfaces=nil)
           @Placement = placement
           @ImageId = imageid
           @InstanceChargeType = instancechargetype
@@ -5295,6 +5319,7 @@ module TencentCloud
           @HpcClusterId = hpcclusterid
           @CpuTopology = cputopology
           @LaunchTemplate = launchtemplate
+          @NetworkInterfaces = networkinterfaces
         end
 
         def deserialize(params)
@@ -5366,6 +5391,14 @@ module TencentCloud
           unless params['LaunchTemplate'].nil?
             @LaunchTemplate = LaunchTemplate.new
             @LaunchTemplate.deserialize(params['LaunchTemplate'])
+          end
+          unless params['NetworkInterfaces'].nil?
+            @NetworkInterfaces = []
+            params['NetworkInterfaces'].each do |i|
+              networkinterfaces_tmp = NetworkInterfaces.new
+              networkinterfaces_tmp.deserialize(i)
+              @NetworkInterfaces << networkinterfaces_tmp
+            end
           end
         end
       end
@@ -7345,6 +7378,48 @@ module TencentCloud
         end
       end
 
+      # 创建实例时的网卡配置信息，包含主网卡和辅助网卡的VPC、子网、IP分配等网络参数。
+
+      # 此功能仅部分地区灰度开放，如需使用[请提交工单咨询](https://console.cloud.tencent.com/workorder/category)
+      class NetworkInterfaces < TencentCloud::Common::AbstractModel
+        # @param InterfaceType: <p>表示是主网卡还是辅助网卡。注意：枚举值要全部大写；<strong>NetworkInterfaces数组中必须要有PRIMARY</strong>，且PRIMARY只能存在一个，SECONDARY可以存在多个。</p><p>枚举值：</p><ul><li>PRIMARY： 主网卡</li><li>SECONDARY： 辅助网卡</li></ul>
+        # @type InterfaceType: String
+        # @param VpcId: <p>私有网络ID，形如<code>vpc-xxx</code>。有效的VpcId可通过登录<a href="https://console.cloud.tencent.com/vpc/vpc?rid=1">控制台</a>查询；也可以调用接口 <a href="https://cloud.tencent.com/document/product/215/15778">DescribeVpcs</a> ，从接口返回中的<code>VpcId</code>字段获取。若在创建子机时VpcId与SubnetId同时传入<code>DEFAULT</code>，则强制使用默认vpc网络。</p>
+        # @type VpcId: String
+        # @param SubnetId: <p>私有网络子网ID，形如<code>subnet-xxx</code>。有效的私有网络子网ID可通过登录<a href="https://console.cloud.tencent.com/vpc/subnet?rid=1">控制台</a>查询；也可以调用接口  <a href="https://cloud.tencent.com/document/product/215/15784">DescribeSubnets</a> ，从接口返回中的<code>SubnetId</code>字段获取。若在创建子机时SubnetId与VpcId同时传入<code>DEFAULT</code>，则强制使用默认vpc网络。</p>
+        # @type SubnetId: String
+        # @param PrivateIpv4AddressCount: <p>此字段是必填字段，表示每张网卡自动分配私有网卡IP个数。注意：不允许客户同时指定ip且动态分配ip。</p><p>取值范围：[1, 50]</p>
+        # @type PrivateIpv4AddressCount: Integer
+        # @param NetworkInterfaceId: <p>指定存量的网卡ID用于绑定。只对辅助网卡生效，主网卡的生成采用既有流程。注：客户手动指定已有弹性网卡时，相关接口InstanceCount必须为1。主网卡不支持指定。</p>
+        # @type NetworkInterfaceId: String
+        # @param SecurityGroupIds: <p>实例所属安全组。该参数可以通过调用 <a href="https://cloud.tencent.com/document/api/215/15808">DescribeSecurityGroups</a> 的返回值中的 <code>SecurityGroupId</code> 字段来获取。若不指定该参数，则绑定指定项目下的默认安全组，如默认安全组不存在则将自动创建。</p><p>每个用户在每个地域每个项目下最多可设置50个安全组。</p>
+        # @type SecurityGroupIds: Array
+        # @param DeleteWithInstance: <p>是否随CVM删除绑定的弹性网卡，参数只对辅助网卡生效。默认保留辅助网卡兼容当前线上行为。该参数放置在主网卡上不生效，主网卡会随着CVM一同销毁。</p><p>默认值：<code>false</code></p>
+        # @type DeleteWithInstance: Boolean
+
+        attr_accessor :InterfaceType, :VpcId, :SubnetId, :PrivateIpv4AddressCount, :NetworkInterfaceId, :SecurityGroupIds, :DeleteWithInstance
+
+        def initialize(interfacetype=nil, vpcid=nil, subnetid=nil, privateipv4addresscount=nil, networkinterfaceid=nil, securitygroupids=nil, deletewithinstance=nil)
+          @InterfaceType = interfacetype
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @PrivateIpv4AddressCount = privateipv4addresscount
+          @NetworkInterfaceId = networkinterfaceid
+          @SecurityGroupIds = securitygroupids
+          @DeleteWithInstance = deletewithinstance
+        end
+
+        def deserialize(params)
+          @InterfaceType = params['InterfaceType']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @PrivateIpv4AddressCount = params['PrivateIpv4AddressCount']
+          @NetworkInterfaceId = params['NetworkInterfaceId']
+          @SecurityGroupIds = params['SecurityGroupIds']
+          @DeleteWithInstance = params['DeleteWithInstance']
+        end
+      end
+
       # 描述了单台实例操作次数限制
       class OperationCountLimit < TencentCloud::Common::AbstractModel
         # @param Operation: 实例操作。取值范围：<br><li>`INSTANCE_DEGRADE`：降配操作</li><li>`INTERNET_CHARGE_TYPE_CHANGE`：修改网络带宽计费模式</li>
@@ -8588,10 +8663,12 @@ module TencentCloud
         # @type DisableApiTermination: Boolean
         # @param EnableJumboFrame: <p>实例是否开启巨型帧，取值范围：<br>&lt;li/&gt; true：表示实例开启巨型帧，只有支持巨型帧的机型可设置为true。<br>&lt;li/&gt;false：表示实例关闭巨型帧，只有支持巨型帧的机型可设置为false。<br> 支持巨型帧的实例规格： <a href="https://cloud.tencent.com/document/product/213/11518">实例规格</a></p>
         # @type EnableJumboFrame: Boolean
+        # @param NetworkInterfaces: <p>多网卡参数信息。 此功能仅部分地区灰度开放，如需使用<a href="https://console.cloud.tencent.com/workorder/category">请提交工单咨询</a></p>
+        # @type NetworkInterfaces: Array
 
-        attr_accessor :InstanceChargeType, :InstanceChargePrepaid, :Placement, :InstanceType, :ImageId, :SystemDisk, :DataDisks, :VirtualPrivateCloud, :InternetAccessible, :InstanceCount, :MinCount, :InstanceName, :LoginSettings, :SecurityGroupIds, :EnhancedService, :ClientToken, :HostName, :ActionTimer, :DisasterRecoverGroupIds, :TagSpecification, :InstanceMarketOptions, :UserData, :Metadata, :DryRun, :CpuTopology, :CamRoleName, :HpcClusterId, :LaunchTemplate, :DedicatedClusterId, :ChcIds, :PartitionNumber, :DisableApiTermination, :EnableJumboFrame
+        attr_accessor :InstanceChargeType, :InstanceChargePrepaid, :Placement, :InstanceType, :ImageId, :SystemDisk, :DataDisks, :VirtualPrivateCloud, :InternetAccessible, :InstanceCount, :MinCount, :InstanceName, :LoginSettings, :SecurityGroupIds, :EnhancedService, :ClientToken, :HostName, :ActionTimer, :DisasterRecoverGroupIds, :TagSpecification, :InstanceMarketOptions, :UserData, :Metadata, :DryRun, :CpuTopology, :CamRoleName, :HpcClusterId, :LaunchTemplate, :DedicatedClusterId, :ChcIds, :PartitionNumber, :DisableApiTermination, :EnableJumboFrame, :NetworkInterfaces
 
-        def initialize(instancechargetype=nil, instancechargeprepaid=nil, placement=nil, instancetype=nil, imageid=nil, systemdisk=nil, datadisks=nil, virtualprivatecloud=nil, internetaccessible=nil, instancecount=nil, mincount=nil, instancename=nil, loginsettings=nil, securitygroupids=nil, enhancedservice=nil, clienttoken=nil, hostname=nil, actiontimer=nil, disasterrecovergroupids=nil, tagspecification=nil, instancemarketoptions=nil, userdata=nil, metadata=nil, dryrun=nil, cputopology=nil, camrolename=nil, hpcclusterid=nil, launchtemplate=nil, dedicatedclusterid=nil, chcids=nil, partitionnumber=nil, disableapitermination=nil, enablejumboframe=nil)
+        def initialize(instancechargetype=nil, instancechargeprepaid=nil, placement=nil, instancetype=nil, imageid=nil, systemdisk=nil, datadisks=nil, virtualprivatecloud=nil, internetaccessible=nil, instancecount=nil, mincount=nil, instancename=nil, loginsettings=nil, securitygroupids=nil, enhancedservice=nil, clienttoken=nil, hostname=nil, actiontimer=nil, disasterrecovergroupids=nil, tagspecification=nil, instancemarketoptions=nil, userdata=nil, metadata=nil, dryrun=nil, cputopology=nil, camrolename=nil, hpcclusterid=nil, launchtemplate=nil, dedicatedclusterid=nil, chcids=nil, partitionnumber=nil, disableapitermination=nil, enablejumboframe=nil, networkinterfaces=nil)
           @InstanceChargeType = instancechargetype
           @InstanceChargePrepaid = instancechargeprepaid
           @Placement = placement
@@ -8625,6 +8702,7 @@ module TencentCloud
           @PartitionNumber = partitionnumber
           @DisableApiTermination = disableapitermination
           @EnableJumboFrame = enablejumboframe
+          @NetworkInterfaces = networkinterfaces
         end
 
         def deserialize(params)
@@ -8711,6 +8789,14 @@ module TencentCloud
           @PartitionNumber = params['PartitionNumber']
           @DisableApiTermination = params['DisableApiTermination']
           @EnableJumboFrame = params['EnableJumboFrame']
+          unless params['NetworkInterfaces'].nil?
+            @NetworkInterfaces = []
+            params['NetworkInterfaces'].each do |i|
+              networkinterfaces_tmp = NetworkInterfaces.new
+              networkinterfaces_tmp.deserialize(i)
+              @NetworkInterfaces << networkinterfaces_tmp
+            end
+          end
         end
       end
 

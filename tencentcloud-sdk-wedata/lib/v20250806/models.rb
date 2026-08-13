@@ -19362,10 +19362,10 @@ module TencentCloud
 
       # 任务代码
       class TaskCodeResult < TencentCloud::Common::AbstractModel
-        # @param CodeInfo: 代码内容
+        # @param CodeInfo: <p>base64编码的代码内容</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CodeInfo: String
-        # @param CodeFileSize: 代码文件大小，单位KB
+        # @param CodeFileSize: <p>代码文件大小，单位KB</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CodeFileSize: String
 

@@ -2185,13 +2185,13 @@ module TencentCloud
 
       # DeleteTableConfig请求参数结构体
       class DeleteTableConfigRequest < TencentCloud::Common::AbstractModel
-        # @param JobId: 作业ID
+        # @param JobId: <p>作业ID</p>
         # @type JobId: String
-        # @param DebugId: 调试作业ID
+        # @param DebugId: <p>调试作业ID</p>
         # @type DebugId: Integer
-        # @param TableName: 表名
+        # @param TableName: <p>表名</p>
         # @type TableName: String
-        # @param WorkSpaceId: 工作空间 SerialId
+        # @param WorkSpaceId: <p>工作空间 SerialId</p>
         # @type WorkSpaceId: String
 
         attr_accessor :JobId, :DebugId, :TableName, :WorkSpaceId

@@ -3458,6 +3458,128 @@ module TencentCloud
         end
       end
 
+      # 地区策略配置。
+      class ConfigGroupFunctionRegionSelection < TencentCloud::Common::AbstractModel
+        # @param Function: <p>指定执行的函数，取值为函数在站点内的唯一标识。当 TriggerType 为 direct 时生效。</p>
+        # @type Function: String
+        # @param Regions: <p>国家/地区列表。示例值：CN：中国，CN.GD：中国广东。取值请参考：<a href="https://cloud.tencent.com/document/product/1552/112542">国家/地区及对应代码枚举</a>。</p>
+        # @type Regions: Array
+
+        attr_accessor :Function, :Regions
+
+        def initialize(function=nil, regions=nil)
+          @Function = function
+          @Regions = regions
+        end
+
+        def deserialize(params)
+          @Function = params['Function']
+          @Regions = params['Regions']
+        end
+      end
+
+      # 边缘函数触发规则。
+      class ConfigGroupFunctionTrigger < TencentCloud::Common::AbstractModel
+        # @param Condition: <p><a href="https://cloud.tencent.com/document/product/1552/90438#33f65828-c6c6-4b66-a011-25a20b548d5d">匹配条件。</a></p>
+        # @type Condition: String
+        # @param TriggerType: <p>函数选择配置类型：</p><p>枚举值：</p><ul><li>direct： 直接指定执行函数</li><li>weight： 基于权重比选择函数</li><li>region： 基于客户端 IP 的国家/地区选择函数</li></ul>
+        # @type TriggerType: String
+        # @param Function: <p>指定执行的函数，取值为函数在站点内的唯一标识。当 TriggerType 为 direct 时生效。</p>
+        # @type Function: String
+        # @param RegionMappingSelections: <p>基于客户端 IP 国家/地区的函数选择配置。</p>
+        # @type RegionMappingSelections: Array
+        # @param WeightedSelections: <p>基于权重的函数选择配置。</p>
+        # @type WeightedSelections: Array
+        # @param Remark: <p>规则描述。</p>
+        # @type Remark: String
+
+        attr_accessor :Condition, :TriggerType, :Function, :RegionMappingSelections, :WeightedSelections, :Remark
+
+        def initialize(condition=nil, triggertype=nil, function=nil, regionmappingselections=nil, weightedselections=nil, remark=nil)
+          @Condition = condition
+          @TriggerType = triggertype
+          @Function = function
+          @RegionMappingSelections = regionmappingselections
+          @WeightedSelections = weightedselections
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @Condition = params['Condition']
+          @TriggerType = params['TriggerType']
+          @Function = params['Function']
+          unless params['RegionMappingSelections'].nil?
+            @RegionMappingSelections = []
+            params['RegionMappingSelections'].each do |i|
+              configgroupfunctionregionselection_tmp = ConfigGroupFunctionRegionSelection.new
+              configgroupfunctionregionselection_tmp.deserialize(i)
+              @RegionMappingSelections << configgroupfunctionregionselection_tmp
+            end
+          end
+          unless params['WeightedSelections'].nil?
+            @WeightedSelections = []
+            params['WeightedSelections'].each do |i|
+              configgroupfunctionweightedselection_tmp = ConfigGroupFunctionWeightedSelection.new
+              configgroupfunctionweightedselection_tmp.deserialize(i)
+              @WeightedSelections << configgroupfunctionweightedselection_tmp
+            end
+          end
+          @Remark = params['Remark']
+        end
+      end
+
+      # 权重策略配置。
+      class ConfigGroupFunctionWeightedSelection < TencentCloud::Common::AbstractModel
+        # @param Function: <p>指定执行的函数，取值为函数在站点内的唯一标识。当 TriggerType 为 direct 时生效。</p>
+        # @type Function: String
+        # @param Weight: <p>选中权重。取值范围0-100，所有的权重之和需要为100。 选中概率计算方式为： weight/100。例如设置了两个函数 A 和 B ，其中 A 的权重为30，那么 B 的权重必须为70，最终选中 A 的概率为30%，选中 B 的概率为70%。</p>
+        # @type Weight: Integer
+
+        attr_accessor :Function, :Weight
+
+        def initialize(function=nil, weight=nil)
+          @Function = function
+          @Weight = weight
+        end
+
+        def deserialize(params)
+          @Function = params['Function']
+          @Weight = params['Weight']
+        end
+      end
+
+      # 七层加速规则，执行顺序由数组顺序决定。
+      class ConfigGroupRuleEngineItem < TencentCloud::Common::AbstractModel
+        # @param RuleName: <p>规则名称。名称长度限制不超过 255 个字符。</p>
+        # @type RuleName: String
+        # @param Description: <p>规则注释。可以填写多个注释。</p>
+        # @type Description: Array
+        # @param Branches: <p>子规则分支。此列表当前只支持填写一项规则，多填无效。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Branches: Array
+
+        attr_accessor :RuleName, :Description, :Branches
+
+        def initialize(rulename=nil, description=nil, branches=nil)
+          @RuleName = rulename
+          @Description = description
+          @Branches = branches
+        end
+
+        def deserialize(params)
+          @RuleName = params['RuleName']
+          @Description = params['Description']
+          unless params['Branches'].nil?
+            @Branches = []
+            params['Branches'].each do |i|
+              rulebranch_tmp = RuleBranch.new
+              rulebranch_tmp.deserialize(i)
+              @Branches << rulebranch_tmp
+            end
+          end
+        end
+      end
+
       # 配置组版本信息。
       class ConfigGroupVersionInfo < TencentCloud::Common::AbstractModel
         # @param VersionId: <p>配置组版本 ID，创建配置组版本时 EdgeOne 分配的唯一资源 ID。</p><p>参数格式：ver-2kplomhisdcb</p><p>取值参考：</p><ul><li><a href="https://cloud.tencent.com/document/api/1552/101867">CreateConfigGroupVersion</a> 返回值 <code>VersionId</code></li><li><a href="https://cloud.tencent.com/document/api/1552/101864">DescribeConfigGroupVersions</a> 返回值 <code>ConfigGroupVersionInfos</code></li></ul>
@@ -5501,6 +5623,8 @@ module TencentCloud
         # @type Fields: Array
         # @param CustomFields: <p>投递的自定义字段列表，支持在 HTTP 请求头、响应头、Cookie、请求正文中提取指定内容。<br>自定义字段名称不能重复，仅七层访问日志（LogType= l7-access-logs 或 domain）支持添加自定义字段。<br>允许配置的自定义字段个数有配额限制，如遇配额不足请 [联系我们](https://cloud.tencent.com/online-service?from=sales&amp;source=PRESALE)。</p>
         # @type CustomFields: Array
+        # @param CustomExpressionFields: <p>投递的自定义表达式字段列表，可以通过自定义日志推送字段名称和取值表达式，实现个性化的实时日志内容推送，使用详情见 [自定义日志字段表达式]()。<br>仅七层访问日志（LogType= l7-access-logs 或 domain）支持添加自定义字段。<br>允许配置的自定义字段个数有配额限制，如遇配额不足请 [联系我们](https://cloud.tencent.com/online-service?from=sales&amp;source=PRESALE) 。<br>**注意**：若 CustomExpressionFields 中存在命名 与 Fields 和 CustomFields 中同名的字段，以  CustomExpressionFields 中的取值为准。</p>
+        # @type CustomExpressionFields: Array
         # @param DeliveryConditions: <p>日志投递的过滤条件，不填表示投递全量日志。</p>
         # @type DeliveryConditions: Array
         # @param Sample: <p>采样比例，采用千分制，取值范围为1-1000，例如：填写 605 表示采样比例为 60.5%。不填表示采样比例为 100%。</p>
@@ -5514,9 +5638,9 @@ module TencentCloud
         # @param S3: <p>AWS S3 兼容存储桶的配置信息。当 TaskType 取值为 s3 时，该参数必填。</p>
         # @type S3: :class:`Tencentcloud::Teo.v20220901.models.S3`
 
-        attr_accessor :ZoneId, :Area, :LogType, :TaskName, :TaskType, :EntityList, :Fields, :CustomFields, :DeliveryConditions, :Sample, :LogFormat, :CLS, :CustomEndpoint, :S3
+        attr_accessor :ZoneId, :Area, :LogType, :TaskName, :TaskType, :EntityList, :Fields, :CustomFields, :CustomExpressionFields, :DeliveryConditions, :Sample, :LogFormat, :CLS, :CustomEndpoint, :S3
 
-        def initialize(zoneid=nil, area=nil, logtype=nil, taskname=nil, tasktype=nil, entitylist=nil, fields=nil, customfields=nil, deliveryconditions=nil, sample=nil, logformat=nil, cls=nil, customendpoint=nil, s3=nil)
+        def initialize(zoneid=nil, area=nil, logtype=nil, taskname=nil, tasktype=nil, entitylist=nil, fields=nil, customfields=nil, customexpressionfields=nil, deliveryconditions=nil, sample=nil, logformat=nil, cls=nil, customendpoint=nil, s3=nil)
           @ZoneId = zoneid
           @Area = area
           @LogType = logtype
@@ -5525,6 +5649,7 @@ module TencentCloud
           @EntityList = entitylist
           @Fields = fields
           @CustomFields = customfields
+          @CustomExpressionFields = customexpressionfields
           @DeliveryConditions = deliveryconditions
           @Sample = sample
           @LogFormat = logformat
@@ -5547,6 +5672,14 @@ module TencentCloud
               customfield_tmp = CustomField.new
               customfield_tmp.deserialize(i)
               @CustomFields << customfield_tmp
+            end
+          end
+          unless params['CustomExpressionFields'].nil?
+            @CustomExpressionFields = []
+            params['CustomExpressionFields'].each do |i|
+              customexpressionfield_tmp = CustomExpressionField.new
+              customexpressionfield_tmp.deserialize(i)
+              @CustomExpressionFields << customexpressionfield_tmp
             end
           end
           unless params['DeliveryConditions'].nil?
@@ -6123,6 +6256,104 @@ module TencentCloud
         end
       end
 
+      # 定制配置
+      class CustomAction < TencentCloud::Common::AbstractModel
+        # @param ActionId: <p>定制配置的配置项 Id。</p><p>您可以通过 DescribeAvailableCustomActionsForRuleEngine 接口的返回值 CustomActionSet[].ActionId 获取。</p>
+        # @type ActionId: String
+        # @param Parameters: <p>该定制配置项下各参数字段的取值。</p><p>您可以通过 DescribeAvailableCustomActionsForRuleEngine 接口返回值 CustomActionSet[].Parameters 获取。</p>
+        # @type Parameters: Array
+
+        attr_accessor :ActionId, :Parameters
+
+        def initialize(actionid=nil, parameters=nil)
+          @ActionId = actionid
+          @Parameters = parameters
+        end
+
+        def deserialize(params)
+          @ActionId = params['ActionId']
+          unless params['Parameters'].nil?
+            @Parameters = []
+            params['Parameters'].each do |i|
+              customactionparameter_tmp = CustomActionParameter.new
+              customactionparameter_tmp.deserialize(i)
+              @Parameters << customactionparameter_tmp
+            end
+          end
+        end
+      end
+
+      # 定制配置的单个字段参数内容。
+      class CustomActionParameter < TencentCloud::Common::AbstractModel
+        # @param Name: <p>定制配置项下各参数字段名称。</p><p>您可以通过 DescribeAvailableCustomActionsForRuleEngine 接口返回值 CustomActionSet[].Parameters[].Name 获取，如 &quot;Seconds&quot;、&quot;Ports&quot;、&quot;StatusCode&quot;。</p>
+        # @type Name: String
+        # @param ValueType: <p>定制配置项下各参数字段值的类型。</p><p>枚举值：</p><ul><li>String： 字符串类型。</li><li>Integer： 整型类型。</li><li>Float： 浮点数类型。</li><li>Boolean： 布尔类型。</li><li>ArrayOfString： 字符串数组类型。</li><li>ArrayOfInteger： 整型数组类型。</li><li>ArrayOfFloat： 浮点数数组类型。</li></ul><p>您可以通过 DescribeAvailableCustomActionsForRuleEngine 接口返回值 CustomActionSet[].Parameters[].Type 获取。</p>
+        # @type ValueType: String
+        # @param StringValue: <p>字符串类型参数值。当 ValueType 为 String 时，该参数必填。</p><p>您可以通过 DescribeAvailableCustomActionsForRuleEngine 接口返回值 CustomActionSet[].Parameters 获取参数值的默认值、单位、限制等说明。</p>
+        # @type StringValue: String
+        # @param IntegerValue: <p>整型类型参数值。当 ValueType 为 Integer 时，该参数必填。</p><p>您可以通过 DescribeAvailableCustomActionsForRuleEngine 接口返回值 CustomActionSet[].Parameters 获取参数值的默认值、单位、限制等说明。</p>
+        # @type IntegerValue: Integer
+        # @param FloatValue: <p>浮点数类型参数值。当 ValueType 为 Float 时，该参数必填。</p><p>您可以通过 DescribeAvailableCustomActionsForRuleEngine 接口返回值 CustomActionSet[].Parameters 获取参数值的默认值、单位、限制等说明。</p>
+        # @type FloatValue: Float
+        # @param BooleanValue: <p>布尔类型参数值。当 ValueType 为 Boolean 时，该参数必填。</p><p>您可以通过 DescribeAvailableCustomActionsForRuleEngine 接口返回值 CustomActionSet[].Parameters 获取参数值的默认值、单位、限制等说明。</p>
+        # @type BooleanValue: Boolean
+        # @param StringArrayValue: <p>字符串数组类型参数值。当 ValueType 为 ArrayOfString 时，该参数必填。</p><p>您可以通过 DescribeAvailableCustomActionsForRuleEngine 接口返回值 CustomActionSet[].Parameters 获取参数值的默认值、单位、限制等说明。</p>
+        # @type StringArrayValue: Array
+        # @param IntegerArrayValue: <p>整型数组类型参数值。当 ValueType 为 ArrayOfInteger 时，该参数必填。</p><p>您可以通过 DescribeAvailableCustomActionsForRuleEngine 接口返回值 CustomActionSet[].Parameters 获取参数值的默认值、单位、限制等说明。</p>
+        # @type IntegerArrayValue: Array
+        # @param FloatArrayValue: <p>浮点数数组类型参数值。当 ValueType 为 ArrayOfFloat 时，该参数必填。</p><p>您可以通过 DescribeAvailableCustomActionsForRuleEngine 接口返回值 CustomActionSet[].Parameters 获取参数值的默认值、单位、限制等说明。</p>
+        # @type FloatArrayValue: Array
+
+        attr_accessor :Name, :ValueType, :StringValue, :IntegerValue, :FloatValue, :BooleanValue, :StringArrayValue, :IntegerArrayValue, :FloatArrayValue
+
+        def initialize(name=nil, valuetype=nil, stringvalue=nil, integervalue=nil, floatvalue=nil, booleanvalue=nil, stringarrayvalue=nil, integerarrayvalue=nil, floatarrayvalue=nil)
+          @Name = name
+          @ValueType = valuetype
+          @StringValue = stringvalue
+          @IntegerValue = integervalue
+          @FloatValue = floatvalue
+          @BooleanValue = booleanvalue
+          @StringArrayValue = stringarrayvalue
+          @IntegerArrayValue = integerarrayvalue
+          @FloatArrayValue = floatarrayvalue
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @ValueType = params['ValueType']
+          @StringValue = params['StringValue']
+          @IntegerValue = params['IntegerValue']
+          @FloatValue = params['FloatValue']
+          @BooleanValue = params['BooleanValue']
+          @StringArrayValue = params['StringArrayValue']
+          @IntegerArrayValue = params['IntegerArrayValue']
+          @FloatArrayValue = params['FloatArrayValue']
+        end
+      end
+
+      # 定制配置操作参数。
+      class CustomActionParameters < TencentCloud::Common::AbstractModel
+        # @param CustomActions: <p>需要配置的定制配置列表。</p>
+        # @type CustomActions: Array
+
+        attr_accessor :CustomActions
+
+        def initialize(customactions=nil)
+          @CustomActions = customactions
+        end
+
+        def deserialize(params)
+          unless params['CustomActions'].nil?
+            @CustomActions = []
+            params['CustomActions'].each do |i|
+              customaction_tmp = CustomAction.new
+              customaction_tmp.deserialize(i)
+              @CustomActions << customaction_tmp
+            end
+          end
+        end
+      end
+
       # 实时日志投递到自定义 HTTP(S) 接口的配置信息。
       class CustomEndpoint < TencentCloud::Common::AbstractModel
         # @param Url: 实时日志投递的自定义 HTTP 接口地址，暂仅支持 HTTP/HTTPS 协议。
@@ -6212,6 +6443,30 @@ module TencentCloud
               @References << errorpagereference_tmp
             end
           end
+        end
+      end
+
+      # 实时日志投递任务中的自定义日志字段，字段支持自定义命名和配置取值表达式，使用详情见 [自定义日志字段表达式]()。
+      class CustomExpressionField < TencentCloud::Common::AbstractModel
+        # @param Name: <p>自定义日志字段名称。可输入1-100个字符，允许的字符为字母、数字、_，仅能以字母开头，该名称不能重复。</p>
+        # @type Name: String
+        # @param Expression: <p>自定义日志字段的取值表达式，表达式长度上限 4KB，语法说明详见 <a href=""> 自定义日志字段表达式</a>。</p>
+        # @type Expression: String
+        # @param Enabled: <p>是否投递该字段，不填表示不投递此字段。</p>
+        # @type Enabled: Boolean
+
+        attr_accessor :Name, :Expression, :Enabled
+
+        def initialize(name=nil, expression=nil, enabled=nil)
+          @Name = name
+          @Expression = expression
+          @Enabled = enabled
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Expression = params['Expression']
+          @Enabled = params['Enabled']
         end
       end
 
@@ -13890,6 +14145,40 @@ module TencentCloud
         end
       end
 
+      # DummyParseZoneFullConfig请求参数结构体
+      class DummyParseZoneFullConfigRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DummyParseZoneFullConfig返回参数结构体
+      class DummyParseZoneFullConfigResponse < TencentCloud::Common::AbstractModel
+        # @param ZoneFullConfig: <p>站点完整配置结构。</p>
+        # @type ZoneFullConfig: :class:`Tencentcloud::Teo.v20220901.models.ZoneFullConfig`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ZoneFullConfig, :RequestId
+
+        def initialize(zonefullconfig=nil, requestid=nil)
+          @ZoneFullConfig = zonefullconfig
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ZoneFullConfig'].nil?
+            @ZoneFullConfig = ZoneFullConfig.new
+            @ZoneFullConfig.deserialize(params['ZoneFullConfig'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # EdgeKVDelete请求参数结构体
       class EdgeKVDeleteRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点 ID。
@@ -15549,6 +15838,37 @@ module TencentCloud
         def deserialize(params)
           @Action = params['Action']
           @Value = params['Value']
+        end
+      end
+
+      # 域名级策略。
+      class HostPolicy < TencentCloud::Common::AbstractModel
+        # @param Host: <p>站点级策略，针对站点下所有域名生效的策略，详情见 站点级策略。</p>
+        # @type Host: String
+        # @param PolicyType: <p>当前域名使用的策略类型。取值有：<li>ZoneDefault：使用站点级策略，即 ZoneDefaultPolicy 中定义的策略配置。</li><li>Custom：使用域名级策略。使用该选项时，必须同时配置 Policy 字段，指定详细策略配置。</li><li>Template：使用策略模板。使用该选项时，必须同时配置 TemplateId 字段，指定当前域名使用的策略模板。</li></p>
+        # @type PolicyType: String
+        # @param Policy: <p>可选。当 PolicyType 为 Custom 时，该字段为当前域名的详细策略配置，对当前域名生效。</p>
+        # @type Policy: :class:`Tencentcloud::Teo.v20220901.models.SecurityPolicy`
+        # @param TemplateId: <p>可选。当 PolicyType 为 Template 时，该字段用于指定当前域名所使用的策略模板的 Id。</p>
+        # @type TemplateId: String
+
+        attr_accessor :Host, :PolicyType, :Policy, :TemplateId
+
+        def initialize(host=nil, policytype=nil, policy=nil, templateid=nil)
+          @Host = host
+          @PolicyType = policytype
+          @Policy = policy
+          @TemplateId = templateid
+        end
+
+        def deserialize(params)
+          @Host = params['Host']
+          @PolicyType = params['PolicyType']
+          unless params['Policy'].nil?
+            @Policy = SecurityPolicy.new
+            @Policy.deserialize(params['Policy'])
+          end
+          @TemplateId = params['TemplateId']
         end
       end
 
@@ -17694,40 +18014,35 @@ module TencentCloud
         end
       end
 
-      # 实时日志投递的输出格式。您可以直接通过 FormatType 参数使用指定预设日志输出格式（JSON Lines / csv），也可以在预设日志输出格式基础上，通过其他参数来自定义变体输出格式。
+      # 实时日志投递的输出格式。您可以直接通过 FormatType 参数使用指定预设日志输出格式（JSON Lines / csv），也可以在预设日志输出格式基础上，通过其他参数来自定义变体输出格式，使用详情见 [自定义日志输出格式](https://cloud.tencent.com/document/product/1552/110448)。
       class LogFormat < TencentCloud::Common::AbstractModel
-        # @param FormatType: 日志投递的预设输出格式类型，取值有：
-        # <li>json：使用预设日志输出格式 JSON Lines，单条日志中的字段以键值对方式呈现；</li>
-        # <li>csv：使用预设日志输出格式 csv，单条日志中仅呈现字段值，不呈现字段名称。</li>
+        # @param FormatType: <p>日志输出格式，取值有：</p><ul><li>json：使用预设日志输出格式 JSON Lines，单条日志中的字段以键值对方式呈现；</li><li>csv：使用预设日志输出格式 csv，单条日志中仅呈现字段值，不呈现字段名称。</li><li>template：使用用户自定义输出模板，单条日志中支持按照自定义模板进行自定义排版和拼接，需配合 RecordTemplate 字段使用。</li></ul>
         # @type FormatType: String
-        # @param BatchPrefix: 在每个日志投递批次之前添加的字符串。每个日志投递批次可能包含多条日志记录。
+        # @param BatchPrefix: <p>在每个日志投递批次之前添加的字符串。每个日志投递批次可能包含多条日志记录。</p>
         # @type BatchPrefix: String
-        # @param BatchSuffix: 在每个日志投递批次后附加的字符串。
+        # @param BatchSuffix: <p>在每个日志投递批次后附加的字符串。</p>
         # @type BatchSuffix: String
-        # @param RecordPrefix: 在每条日志记录之前添加的字符串。
+        # @param RecordPrefix: <p>单条日志前缀，在每条日志记录之前添加的字符串。</p>
         # @type RecordPrefix: String
-        # @param RecordSuffix: 在每条日志记录后附加的字符串。
+        # @param RecordSuffix: <p>单条日志后缀，在每条日志记录后附加的字符串。</p>
         # @type RecordSuffix: String
-        # @param RecordDelimiter: 插入日志记录之间作为分隔符的字符串，取值有：
-        # <li>\n：换行符；</li>
-        # <li>\t：制表符；</li>
-        # <li>，：半角逗号。</li>
+        # @param RecordDelimiter: <p>日志分隔符，插入日志记录之间作为分隔的字符串，取值有：</p><ul><li>\n：换行符；</li><li>\t：制表符；</li><li>，：半角逗号。</li></ul>
         # @type RecordDelimiter: String
-        # @param FieldDelimiter: 单条日志记录内，插入字段之间作为分隔符的字符串，取值有：
-        # <li>\t：制表符；</li>
-        # <li>，：半角逗号；</li>
-        # <li>;：半角分号。</li>
+        # @param RecordTemplate: <p>日志模板，单条日志的输出模板，长度限制 4KB，仅当 FormatType = template 生效。支持对配置的推送字段按照模板进行自定义排版和拼接。</p>
+        # @type RecordTemplate: String
+        # @param FieldDelimiter: <p>字段分隔符，单条日志记录内，插入字段之间作为分隔符的字符串，仅当 FormatType = csv 生效。取值有：<ul><li>\t：制表符；</li><li>，：半角逗号；</li><li>;：半角分号。</li></ul></p>
         # @type FieldDelimiter: String
 
-        attr_accessor :FormatType, :BatchPrefix, :BatchSuffix, :RecordPrefix, :RecordSuffix, :RecordDelimiter, :FieldDelimiter
+        attr_accessor :FormatType, :BatchPrefix, :BatchSuffix, :RecordPrefix, :RecordSuffix, :RecordDelimiter, :RecordTemplate, :FieldDelimiter
 
-        def initialize(formattype=nil, batchprefix=nil, batchsuffix=nil, recordprefix=nil, recordsuffix=nil, recorddelimiter=nil, fielddelimiter=nil)
+        def initialize(formattype=nil, batchprefix=nil, batchsuffix=nil, recordprefix=nil, recordsuffix=nil, recorddelimiter=nil, recordtemplate=nil, fielddelimiter=nil)
           @FormatType = formattype
           @BatchPrefix = batchprefix
           @BatchSuffix = batchsuffix
           @RecordPrefix = recordprefix
           @RecordSuffix = recordsuffix
           @RecordDelimiter = recorddelimiter
+          @RecordTemplate = recordtemplate
           @FieldDelimiter = fielddelimiter
         end
 
@@ -17738,6 +18053,7 @@ module TencentCloud
           @RecordPrefix = params['RecordPrefix']
           @RecordSuffix = params['RecordSuffix']
           @RecordDelimiter = params['RecordDelimiter']
+          @RecordTemplate = params['RecordTemplate']
           @FieldDelimiter = params['FieldDelimiter']
         end
       end
@@ -20002,39 +20318,36 @@ module TencentCloud
 
       # ModifyRealtimeLogDeliveryTask请求参数结构体
       class ModifyRealtimeLogDeliveryTaskRequest < TencentCloud::Common::AbstractModel
-        # @param ZoneId: 站点 ID。
+        # @param ZoneId: <p>站点 ID。</p>
         # @type ZoneId: String
-        # @param TaskId: 实时日志投递任务 ID。
+        # @param TaskId: <p>实时日志投递任务 ID。</p>
         # @type TaskId: String
-        # @param TaskName: 实时日志投递任务的名称，格式为数字、英文、-和_组合，最多 200 个字符。不填保持原有配置。
+        # @param TaskName: <p>实时日志投递任务的名称，格式为数字、英文、-和_组合，最多 200 个字符。不填保持原有配置。</p>
         # @type TaskName: String
-        # @param DeliveryStatus: 实时日志投递任务的状态，取值有：
-        # <li>enabled: 启用；</li>
-        # <li>disabled: 停用。</li>不填保持原有配置。
+        # @param DeliveryStatus: <p>实时日志投递任务的状态，取值有：</p><li>enabled: 启用；</li><li>disabled: 停用。</li>不填保持原有配置。
         # @type DeliveryStatus: String
-        # @param EntityList: 实时日志投递任务对应的实体（七层域名或者四层代理实例）列表。取值示例如下：
-        # <li>七层域名：domain.example.com；</li>
-        # <li>四层代理实例：sid-2s69eb5wcms7。</li>不填保持原有配置。
+        # @param EntityList: <p>实时日志投递任务对应的实体（七层域名或者四层代理实例）列表。取值示例如下：</p><li>七层域名：domain.example.com；</li><li>四层代理实例：sid-2s69eb5wcms7。</li>不填保持原有配置。<p>取值参考：<a href="https://cloud.tencent.com/document/api/1552/80690">DescribeApplicationProxies</a></p>
         # @type EntityList: Array
-        # @param Fields: 投递的预设字段列表。不填保持原有配置。
+        # @param Fields: <p>投递的预设字段列表。不填保持原有配置。</p><p>取值参考：DescribeLogFields</p>
         # @type Fields: Array
-        # @param CustomFields: 投递的自定义字段列表，支持在 HTTP 请求头、响应头、Cookie、请求正文中提取指定内容。不填保持原有配置。自定义字段名称不能重复，且最多不能超过 200 个字段。单个实时日志推送任务最多添加 5 个请求正文类型的自定义字段。目前仅站点加速日志（LogType=domain）支持添加自定义字段。
+        # @param CustomFields: <p>投递的自定义日志字段列表，可以通过自定义日志推送字段名称和取值表达式，实现个性化的实时日志内容推送，详见 <a href="">自定义日志字段表达式</a>。<br>仅七层访问日志（LogType= l7-access-logs 或 domain）支持添加自定义字段，允许配置的自定义字段个数有配额限制，如遇配额不足请 <a href="https://cloud.tencent.com/online-service?from=sales&amp;source=PRESALE">联系我们</a> 。</p>
         # @type CustomFields: Array
-        # @param DeliveryConditions: 日志投递的过滤条件。不填表示投递全量日志。
+        # @param CustomExpressionFields: <p>投递的自定义表达式字段列表，可以通过自定义日志推送字段名称和取值表达式，实现个性化的实时日志内容推送，使用详情见 [自定义日志字段表达式]()。<br>仅七层访问日志（LogType= l7-access-logs 或 domain）支持添加自定义字段。允许配置的自定义字段个数有配额限制，如遇配额不足请 [联系我们](https://cloud.tencent.com/online-service?from=sales&amp;source=PRESALE) 。<br>**注意**：若 CustomExpressionFields 中存在命名 与 Fields 和 CustomFields 中同名的字段，以  CustomExpressionFields 中的取值为准。</p>
+        # @type CustomExpressionFields: Array
+        # @param DeliveryConditions: <p>日志投递的过滤条件。不填表示投递全量日志。</p>
         # @type DeliveryConditions: Array
-        # @param Sample: 采样比例，采用千分制，取值范围为1-1000，例如：填写 605 表示采样比例为 60.5%。不填保持原有配置。
+        # @param Sample: <p>采样比例，采用千分制，取值范围为1-1000，例如：填写 605 表示采样比例为 60.5%。不填保持原有配置。</p>
         # @type Sample: Integer
-        # @param LogFormat: 日志投递的输出格式。不填保持原有配置。
-        # 特别地，当 TaskType 取值为 cls 时，LogFormat.FormatType 的值只能为 json，且 LogFormat 中其他参数将被忽略，建议不传 LogFormat。
+        # @param LogFormat: <p>日志投递的输出格式，使用详情见 <a href="https://cloud.tencent.com/document/product/1552/110448">自定义日志输出格式</a>。不填表示为默认格式，默认格式逻辑如下：<ul><li>当 TaskType 取值为 custom_endpoint 时，默认格式为多个 JSON 对象组成的数组，每个 JSON 对象为一条日志；</li><li>当 TaskType 取值为 s3 时，默认格式为 JSON Lines；</li></ul>特别地，当 TaskType 取值为 cls 或 log_analysis 时，LogFormat.FormatType 的值只能为 json，且 LogFormat 中其他参数将被忽略，建议不传 LogFormat。</p>
         # @type LogFormat: :class:`Tencentcloud::Teo.v20220901.models.LogFormat`
-        # @param CustomEndpoint: 自定义 HTTP 服务的配置信息，不填保持原有配置。
+        # @param CustomEndpoint: <p>自定义 HTTP 服务的配置信息，不填保持原有配置。</p>
         # @type CustomEndpoint: :class:`Tencentcloud::Teo.v20220901.models.CustomEndpoint`
-        # @param S3: AWS S3 兼容存储桶的配置信息，不填保持原有配置。
+        # @param S3: <p>AWS S3 兼容存储桶的配置信息，不填保持原有配置。</p>
         # @type S3: :class:`Tencentcloud::Teo.v20220901.models.S3`
 
-        attr_accessor :ZoneId, :TaskId, :TaskName, :DeliveryStatus, :EntityList, :Fields, :CustomFields, :DeliveryConditions, :Sample, :LogFormat, :CustomEndpoint, :S3
+        attr_accessor :ZoneId, :TaskId, :TaskName, :DeliveryStatus, :EntityList, :Fields, :CustomFields, :CustomExpressionFields, :DeliveryConditions, :Sample, :LogFormat, :CustomEndpoint, :S3
 
-        def initialize(zoneid=nil, taskid=nil, taskname=nil, deliverystatus=nil, entitylist=nil, fields=nil, customfields=nil, deliveryconditions=nil, sample=nil, logformat=nil, customendpoint=nil, s3=nil)
+        def initialize(zoneid=nil, taskid=nil, taskname=nil, deliverystatus=nil, entitylist=nil, fields=nil, customfields=nil, customexpressionfields=nil, deliveryconditions=nil, sample=nil, logformat=nil, customendpoint=nil, s3=nil)
           @ZoneId = zoneid
           @TaskId = taskid
           @TaskName = taskname
@@ -20042,6 +20355,7 @@ module TencentCloud
           @EntityList = entitylist
           @Fields = fields
           @CustomFields = customfields
+          @CustomExpressionFields = customexpressionfields
           @DeliveryConditions = deliveryconditions
           @Sample = sample
           @LogFormat = logformat
@@ -20062,6 +20376,14 @@ module TencentCloud
               customfield_tmp = CustomField.new
               customfield_tmp.deserialize(i)
               @CustomFields << customfield_tmp
+            end
+          end
+          unless params['CustomExpressionFields'].nil?
+            @CustomExpressionFields = []
+            params['CustomExpressionFields'].each do |i|
+              customexpressionfield_tmp = CustomExpressionField.new
+              customexpressionfield_tmp.deserialize(i)
+              @CustomExpressionFields << customexpressionfield_tmp
             end
           end
           unless params['DeliveryConditions'].nil?
@@ -23085,7 +23407,7 @@ module TencentCloud
         # @type TaskName: String
         # @param DeliveryStatus: <p>实时日志投递任务的状态，取值有： <li>enabled: 已启用；</li> <li>disabled: 已停用；</li><li>deleted: 异常删除状态，请检查目的地腾讯云 CLS 日志集/日志主题是否已被删除。</li></p>
         # @type DeliveryStatus: String
-        # @param TaskType: <p>实时日志投递任务类型，取值有： <li>cls: 推送到腾讯云 CLS；</li> <li>custom_endpoint：推送到自定义 HTTP(S) 地址；</li> <li>s3：推送到 AWS S3 兼容存储桶地址；</li><li>log_analysis：推送到 EdgeOne 日志分析。</li></p>
+        # @param TaskType: <p>实时日志投递任务类型，取值有： <ul><li>cls: 推送到腾讯云 CLS；</li> <li>custom_endpoint：推送到自定义 HTTP(S) 地址；</li> <li>s3：推送到 S3 兼容（兼容 SigV4 鉴权算法）的对象存储的地址；</li><li>log_analysis：推送到 EdgeOne 日志分析。</li></ul></p>
         # @type TaskType: String
         # @param EntityList: <p>实时日志投递任务对应的实体（七层域名或者四层代理实例）列表。取值示例如下： <li>七层域名：domain.example.com；</li> <li>四层代理实例：sid-2s69eb5wcms7。</li></p>
         # @type EntityList: Array
@@ -23097,6 +23419,8 @@ module TencentCloud
         # @type Fields: Array
         # @param CustomFields: <p>投递的自定义字段列表。</p>
         # @type CustomFields: Array
+        # @param CustomExpressionFields: <p>投递的自定义表达式字段列表。</p>
+        # @type CustomExpressionFields: Array
         # @param DeliveryConditions: <p>日志投递的过滤条件。</p>
         # @type DeliveryConditions: Array
         # @param Sample: <p>采样比例，采用千分制，取值范围为1-1000，例如：605 表示采样比例为 60.5%。</p>
@@ -23110,7 +23434,7 @@ module TencentCloud
         # @param CustomEndpoint: <p>自定义 HTTP 服务的配置信息。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CustomEndpoint: :class:`Tencentcloud::Teo.v20220901.models.CustomEndpoint`
-        # @param S3: <p>AWS S3 兼容存储桶的配置信息。</p>
+        # @param S3: <p>S3 兼容（兼容 SigV4 鉴权算法）的对象存储的配置信息。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type S3: :class:`Tencentcloud::Teo.v20220901.models.S3`
         # @param CreateTime: <p>创建时间。</p>
@@ -23118,9 +23442,9 @@ module TencentCloud
         # @param UpdateTime: <p>更新时间。</p>
         # @type UpdateTime: String
 
-        attr_accessor :TaskId, :TaskName, :DeliveryStatus, :TaskType, :EntityList, :LogType, :Area, :Fields, :CustomFields, :DeliveryConditions, :Sample, :LogFormat, :CLS, :CustomEndpoint, :S3, :CreateTime, :UpdateTime
+        attr_accessor :TaskId, :TaskName, :DeliveryStatus, :TaskType, :EntityList, :LogType, :Area, :Fields, :CustomFields, :CustomExpressionFields, :DeliveryConditions, :Sample, :LogFormat, :CLS, :CustomEndpoint, :S3, :CreateTime, :UpdateTime
 
-        def initialize(taskid=nil, taskname=nil, deliverystatus=nil, tasktype=nil, entitylist=nil, logtype=nil, area=nil, fields=nil, customfields=nil, deliveryconditions=nil, sample=nil, logformat=nil, cls=nil, customendpoint=nil, s3=nil, createtime=nil, updatetime=nil)
+        def initialize(taskid=nil, taskname=nil, deliverystatus=nil, tasktype=nil, entitylist=nil, logtype=nil, area=nil, fields=nil, customfields=nil, customexpressionfields=nil, deliveryconditions=nil, sample=nil, logformat=nil, cls=nil, customendpoint=nil, s3=nil, createtime=nil, updatetime=nil)
           @TaskId = taskid
           @TaskName = taskname
           @DeliveryStatus = deliverystatus
@@ -23130,6 +23454,7 @@ module TencentCloud
           @Area = area
           @Fields = fields
           @CustomFields = customfields
+          @CustomExpressionFields = customexpressionfields
           @DeliveryConditions = deliveryconditions
           @Sample = sample
           @LogFormat = logformat
@@ -23155,6 +23480,14 @@ module TencentCloud
               customfield_tmp = CustomField.new
               customfield_tmp.deserialize(i)
               @CustomFields << customfield_tmp
+            end
+          end
+          unless params['CustomExpressionFields'].nil?
+            @CustomExpressionFields = []
+            params['CustomExpressionFields'].each do |i|
+              customexpressionfield_tmp = CustomExpressionField.new
+              customexpressionfield_tmp.deserialize(i)
+              @CustomExpressionFields << customexpressionfield_tmp
             end
           end
           unless params['DeliveryConditions'].nil?
@@ -23797,7 +24130,7 @@ module TencentCloud
 
       # 规则引擎操作。
       class RuleEngineAction < TencentCloud::Common::AbstractModel
-        # @param Name: <p>操作名称。名称需要与参数结构体对应，例如 Name=Cache，则 CacheParameters 必填。</p><li>Cache：节点缓存 TTL；</li><li>CacheKey：自定义 Cache Key；</li><li>CachePrefresh：缓存预刷新；</li><li>AccessURLRedirect：访问 URL 重定向；</li><li>UpstreamURLRewrite：回源 URL 重写；</li><li>QUIC：QUIC；</li><li>WebSocket：WebSocket；</li><li>Authentication：Token 鉴权；</li><li>MaxAge：浏览器缓存 TTL；</li><li>StatusCodeCache：状态码缓存 TTL；</li><li>OfflineCache：离线缓存；</li><li>SmartRouting：智能加速；</li><li>AdvancedOriginRouting：高级回源优化；</li><li>RangeOriginPull：分片回源 ；</li><li>UpstreamHTTP2：HTTP2 回源；</li><li>HostHeader：Host Header 重写；</li><li>ForceRedirectHTTPS：访问协议强制 HTTPS 跳转配置；</li><li>OriginPullProtocol：回源 HTTPS；</li><li>Compression：智能压缩配置；</li><li>HSTS：HSTS；</li><li>ClientIPHeader：存储客户端请求 IP 的头部信息配置；</li><li>OCSPStapling：OCSP 装订；</li><li>HTTP2：HTTP2 接入；</li><li>PostMaxSize：POST 请求上传文件流式传输最大限制配置；</li><li>ClientIPCountry：回源时携带客户端 IP 所属地域信息；</li><li>UpstreamFollowRedirect：回源跟随重定向参数配置；</li><li>UpstreamRequest：回源请求参数；</li><li>Shield：源站卸载配置；</li><li>TLSConfig：SSL/TLS 安全；</li><li>ModifyOrigin：修改源站；</li><li> SiteFailover：源站故障转移；</li><li>HTTPUpstreamTimeout：七层回源超时配置；</li><li>HttpResponse：HTTP 应答；</li><li>ErrorPage：自定义错误页面；</li><li>ModifyResponseHeader：修改 HTTP 节点响应头；</li><li>ModifyRequestHeader：修改 HTTP 节点请求头；</li><li>ResponseSpeedLimit：单连接下载限速；</li><li>SetContentIdentifier：设置内容标识符；</li><li>Vary：Vary 特性配置；</li><li>ContentCompression：内容压缩配置；</li><li>OriginAuthentication：回源鉴权配置。</li>
+        # @param Name: <p>操作名称。名称需要与参数结构体对应，例如 Name=Cache，则 CacheParameters 必填。<li>Cache：节点缓存 TTL；</li><li>CacheKey：自定义 Cache Key；</li><li>CachePrefresh：缓存预刷新；</li><li>AccessURLRedirect：访问 URL 重定向；</li><li>UpstreamURLRewrite：回源 URL 重写；</li><li>QUIC：QUIC；</li><li>WebSocket：WebSocket；</li><li>Authentication：Token 鉴权；</li><li>MaxAge：浏览器缓存 TTL；</li><li>StatusCodeCache：状态码缓存 TTL；</li><li>OfflineCache：离线缓存；</li><li>SmartRouting：智能加速；</li><li>AdvancedOriginRouting：高级回源优化；</li><li>RangeOriginPull：分片回源 ；</li><li>UpstreamHTTP2：HTTP2 回源；</li><li>HostHeader：Host Header 重写；</li><li>ForceRedirectHTTPS：访问协议强制 HTTPS 跳转配置；</li><li>OriginPullProtocol：回源 HTTPS；</li><li>Compression：智能压缩配置；</li><li>HSTS：HSTS；</li><li>ClientIPHeader：存储客户端请求 IP 的头部信息配置；</li><li>OCSPStapling：OCSP 装订；</li><li>HTTP2：HTTP2 接入；</li><li>PostMaxSize：POST 请求上传文件流式传输最大限制配置；</li><li>ClientIPCountry：回源时携带客户端 IP 所属地域信息；</li><li>UpstreamFollowRedirect：回源跟随重定向参数配置；</li><li>UpstreamRequest：回源请求参数；</li><li>Shield：源站卸载配置；</li><li>TLSConfig：SSL/TLS 安全；</li><li>ModifyOrigin：修改源站；</li><li> SiteFailover：源站故障转移；</li><li>HTTPUpstreamTimeout：七层回源超时配置；</li><li>HttpResponse：HTTP 应答；</li><li>ErrorPage：自定义错误页面；</li><li>ModifyResponseHeader：修改 HTTP 节点响应头；</li><li>ModifyRequestHeader：修改 HTTP 节点请求头；</li><li>ResponseSpeedLimit：单连接下载限速；</li><li>SetContentIdentifier：设置内容标识符；</li><li>Vary：Vary 特性配置；</li><li>ContentCompression：内容压缩配置；</li><li>OriginAuthentication：回源鉴权配置；</li><li>CustomAction：定制配置。</li></p>
         # @type Name: String
         # @param CacheParameters: <p>节点缓存 TTL 配置参数，当 Name 取值为 Cache 时，该参数必填。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -23919,10 +24252,12 @@ module TencentCloud
         # @type ContentCompressionParameters: :class:`Tencentcloud::Teo.v20220901.models.ContentCompressionParameters`
         # @param OriginAuthenticationParameters: <p>回源鉴权配置参数，当 Name 取值为 OriginAuthentication 时，该参数必填。该参数为白名单功能，如有需要，请联系腾讯云工程师处理。</p>
         # @type OriginAuthenticationParameters: :class:`Tencentcloud::Teo.v20220901.models.OriginAuthenticationParameters`
+        # @param CustomActionParameters: <p>定制配置操作参数，当 Name 取值为 CustomAction 时，该参数必填。</p><p>您可以通过 DescribeAvailableCustomActionsForRuleEngine 接口的返回值 CustomActionSet 获取您当前支持的定制配置项列表。</p>
+        # @type CustomActionParameters: :class:`Tencentcloud::Teo.v20220901.models.CustomActionParameters`
 
-        attr_accessor :Name, :CacheParameters, :CacheKeyParameters, :CachePrefreshParameters, :AccessURLRedirectParameters, :UpstreamURLRewriteParameters, :QUICParameters, :WebSocketParameters, :AuthenticationParameters, :MaxAgeParameters, :StatusCodeCacheParameters, :OfflineCacheParameters, :SmartRoutingParameters, :AdvancedOriginRoutingParameters, :RangeOriginPullParameters, :UpstreamHTTP2Parameters, :HostHeaderParameters, :ForceRedirectHTTPSParameters, :OriginPullProtocolParameters, :CompressionParameters, :HSTSParameters, :ClientIPHeaderParameters, :OCSPStaplingParameters, :HTTP2Parameters, :PostMaxSizeParameters, :ClientIPCountryParameters, :UpstreamFollowRedirectParameters, :UpstreamRequestParameters, :ShieldParameters, :TLSConfigParameters, :ModifyOriginParameters, :SiteFailoverParameters, :HTTPUpstreamTimeoutParameters, :HttpResponseParameters, :ErrorPageParameters, :ModifyResponseHeaderParameters, :ModifyRequestHeaderParameters, :ResponseSpeedLimitParameters, :SetContentIdentifierParameters, :VaryParameters, :ContentCompressionParameters, :OriginAuthenticationParameters
+        attr_accessor :Name, :CacheParameters, :CacheKeyParameters, :CachePrefreshParameters, :AccessURLRedirectParameters, :UpstreamURLRewriteParameters, :QUICParameters, :WebSocketParameters, :AuthenticationParameters, :MaxAgeParameters, :StatusCodeCacheParameters, :OfflineCacheParameters, :SmartRoutingParameters, :AdvancedOriginRoutingParameters, :RangeOriginPullParameters, :UpstreamHTTP2Parameters, :HostHeaderParameters, :ForceRedirectHTTPSParameters, :OriginPullProtocolParameters, :CompressionParameters, :HSTSParameters, :ClientIPHeaderParameters, :OCSPStaplingParameters, :HTTP2Parameters, :PostMaxSizeParameters, :ClientIPCountryParameters, :UpstreamFollowRedirectParameters, :UpstreamRequestParameters, :ShieldParameters, :TLSConfigParameters, :ModifyOriginParameters, :SiteFailoverParameters, :HTTPUpstreamTimeoutParameters, :HttpResponseParameters, :ErrorPageParameters, :ModifyResponseHeaderParameters, :ModifyRequestHeaderParameters, :ResponseSpeedLimitParameters, :SetContentIdentifierParameters, :VaryParameters, :ContentCompressionParameters, :OriginAuthenticationParameters, :CustomActionParameters
 
-        def initialize(name=nil, cacheparameters=nil, cachekeyparameters=nil, cacheprefreshparameters=nil, accessurlredirectparameters=nil, upstreamurlrewriteparameters=nil, quicparameters=nil, websocketparameters=nil, authenticationparameters=nil, maxageparameters=nil, statuscodecacheparameters=nil, offlinecacheparameters=nil, smartroutingparameters=nil, advancedoriginroutingparameters=nil, rangeoriginpullparameters=nil, upstreamhttp2parameters=nil, hostheaderparameters=nil, forceredirecthttpsparameters=nil, originpullprotocolparameters=nil, compressionparameters=nil, hstsparameters=nil, clientipheaderparameters=nil, ocspstaplingparameters=nil, http2parameters=nil, postmaxsizeparameters=nil, clientipcountryparameters=nil, upstreamfollowredirectparameters=nil, upstreamrequestparameters=nil, shieldparameters=nil, tlsconfigparameters=nil, modifyoriginparameters=nil, sitefailoverparameters=nil, httpupstreamtimeoutparameters=nil, httpresponseparameters=nil, errorpageparameters=nil, modifyresponseheaderparameters=nil, modifyrequestheaderparameters=nil, responsespeedlimitparameters=nil, setcontentidentifierparameters=nil, varyparameters=nil, contentcompressionparameters=nil, originauthenticationparameters=nil)
+        def initialize(name=nil, cacheparameters=nil, cachekeyparameters=nil, cacheprefreshparameters=nil, accessurlredirectparameters=nil, upstreamurlrewriteparameters=nil, quicparameters=nil, websocketparameters=nil, authenticationparameters=nil, maxageparameters=nil, statuscodecacheparameters=nil, offlinecacheparameters=nil, smartroutingparameters=nil, advancedoriginroutingparameters=nil, rangeoriginpullparameters=nil, upstreamhttp2parameters=nil, hostheaderparameters=nil, forceredirecthttpsparameters=nil, originpullprotocolparameters=nil, compressionparameters=nil, hstsparameters=nil, clientipheaderparameters=nil, ocspstaplingparameters=nil, http2parameters=nil, postmaxsizeparameters=nil, clientipcountryparameters=nil, upstreamfollowredirectparameters=nil, upstreamrequestparameters=nil, shieldparameters=nil, tlsconfigparameters=nil, modifyoriginparameters=nil, sitefailoverparameters=nil, httpupstreamtimeoutparameters=nil, httpresponseparameters=nil, errorpageparameters=nil, modifyresponseheaderparameters=nil, modifyrequestheaderparameters=nil, responsespeedlimitparameters=nil, setcontentidentifierparameters=nil, varyparameters=nil, contentcompressionparameters=nil, originauthenticationparameters=nil, customactionparameters=nil)
           @Name = name
           @CacheParameters = cacheparameters
           @CacheKeyParameters = cachekeyparameters
@@ -23965,6 +24300,7 @@ module TencentCloud
           @VaryParameters = varyparameters
           @ContentCompressionParameters = contentcompressionparameters
           @OriginAuthenticationParameters = originauthenticationparameters
+          @CustomActionParameters = customactionparameters
         end
 
         def deserialize(params)
@@ -24132,6 +24468,10 @@ module TencentCloud
           unless params['OriginAuthenticationParameters'].nil?
             @OriginAuthenticationParameters = OriginAuthenticationParameters.new
             @OriginAuthenticationParameters.deserialize(params['OriginAuthenticationParameters'])
+          end
+          unless params['CustomActionParameters'].nil?
+            @CustomActionParameters = CustomActionParameters.new
+            @CustomActionParameters.deserialize(params['CustomActionParameters'])
           end
         end
       end
@@ -26580,6 +26920,66 @@ module TencentCloud
         end
       end
 
+      # 序列化的安全结构
+      class WebSecurity < TencentCloud::Common::AbstractModel
+        # @param ZoneDefaultPolicy: 站点级策略的配置详情。
+        # @type ZoneDefaultPolicy: :class:`Tencentcloud::Teo.v20220901.models.SecurityPolicy`
+        # @param HostPolicy: 域名级策略的配置详情。
+        # @type HostPolicy: :class:`Tencentcloud::Teo.v20220901.models.HostPolicy`
+        # @param Templates: 策略模板的配置详情。
+        # @type Templates: :class:`Tencentcloud::Teo.v20220901.models.WebSecurityTemplates`
+
+        attr_accessor :ZoneDefaultPolicy, :HostPolicy, :Templates
+
+        def initialize(zonedefaultpolicy=nil, hostpolicy=nil, templates=nil)
+          @ZoneDefaultPolicy = zonedefaultpolicy
+          @HostPolicy = hostpolicy
+          @Templates = templates
+        end
+
+        def deserialize(params)
+          unless params['ZoneDefaultPolicy'].nil?
+            @ZoneDefaultPolicy = SecurityPolicy.new
+            @ZoneDefaultPolicy.deserialize(params['ZoneDefaultPolicy'])
+          end
+          unless params['HostPolicy'].nil?
+            @HostPolicy = HostPolicy.new
+            @HostPolicy.deserialize(params['HostPolicy'])
+          end
+          unless params['Templates'].nil?
+            @Templates = WebSecurityTemplates.new
+            @Templates.deserialize(params['Templates'])
+          end
+        end
+      end
+
+      # 模板的安全配置。
+      class WebSecurityTemplates < TencentCloud::Common::AbstractModel
+        # @param TemplateId: <p>策略模板的 ID</p>
+        # @type TemplateId: String
+        # @param TemplateName: <p>策略模板名称。由中文、英文、数字和下划线组成，不能以下划线开头，且长度不能超过 32 个字符。</p>
+        # @type TemplateName: String
+        # @param Policy: <p>策略模板的策略配置，配置对所有关联了该策略模板的域名生效。</p>
+        # @type Policy: :class:`Tencentcloud::Teo.v20220901.models.SecurityPolicy`
+
+        attr_accessor :TemplateId, :TemplateName, :Policy
+
+        def initialize(templateid=nil, templatename=nil, policy=nil)
+          @TemplateId = templateid
+          @TemplateName = templatename
+          @Policy = policy
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          @TemplateName = params['TemplateName']
+          unless params['Policy'].nil?
+            @Policy = SecurityPolicy.new
+            @Policy.deserialize(params['Policy'])
+          end
+        end
+      end
+
       # WebSocket配置
       class WebSocket < TencentCloud::Common::AbstractModel
         # @param Switch: WebSocket 超时时间配置开关，取值有：
@@ -27021,6 +27421,58 @@ module TencentCloud
           unless params['ZoneConfig'].nil?
             @ZoneConfig = ZoneConfig.new
             @ZoneConfig.deserialize(params['ZoneConfig'])
+          end
+        end
+      end
+
+      # 站点完整配置结构。
+      class ZoneFullConfig < TencentCloud::Common::AbstractModel
+        # @param FormatVersion: <p>语法版本，当前默认为 1.0，输入其他值将会报错。</p>
+        # @type FormatVersion: String
+        # @param ZoneConfig: <p>站点级配置，包含「站点加速」中所有配置项，且所有项均为必选，否则配置无效。</p>
+        # @type ZoneConfig: :class:`Tencentcloud::Teo.v20220901.models.ZoneConfig`
+        # @param Rules: <p>规则级配置，包含「规则引擎」中所有规则，且数组可为空，表示不启用任何规则。</p>
+        # @type Rules: Array
+        # @param WebSecurity: <p>Web 安全防护配置，对应控制台中「安全防护 - Web 防护」里支持的功能。</p>
+        # @type WebSecurity: :class:`Tencentcloud::Teo.v20220901.models.WebSecurity`
+        # @param FunctionTriggers: <p>边缘函数触发规则配置，包含触发「边缘函数」中所有规则，且数组可为空，表示不启用任何规则。</p>
+        # @type FunctionTriggers: Array
+
+        attr_accessor :FormatVersion, :ZoneConfig, :Rules, :WebSecurity, :FunctionTriggers
+
+        def initialize(formatversion=nil, zoneconfig=nil, rules=nil, websecurity=nil, functiontriggers=nil)
+          @FormatVersion = formatversion
+          @ZoneConfig = zoneconfig
+          @Rules = rules
+          @WebSecurity = websecurity
+          @FunctionTriggers = functiontriggers
+        end
+
+        def deserialize(params)
+          @FormatVersion = params['FormatVersion']
+          unless params['ZoneConfig'].nil?
+            @ZoneConfig = ZoneConfig.new
+            @ZoneConfig.deserialize(params['ZoneConfig'])
+          end
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              configgroupruleengineitem_tmp = ConfigGroupRuleEngineItem.new
+              configgroupruleengineitem_tmp.deserialize(i)
+              @Rules << configgroupruleengineitem_tmp
+            end
+          end
+          unless params['WebSecurity'].nil?
+            @WebSecurity = WebSecurity.new
+            @WebSecurity.deserialize(params['WebSecurity'])
+          end
+          unless params['FunctionTriggers'].nil?
+            @FunctionTriggers = []
+            params['FunctionTriggers'].each do |i|
+              configgroupfunctiontrigger_tmp = ConfigGroupFunctionTrigger.new
+              configgroupfunctiontrigger_tmp.deserialize(i)
+              @FunctionTriggers << configgroupfunctiontrigger_tmp
+            end
           end
         end
       end

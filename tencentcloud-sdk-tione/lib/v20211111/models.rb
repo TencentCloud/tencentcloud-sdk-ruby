@@ -3609,30 +3609,31 @@ module TencentCloud
 
       # DescribeDatasets请求参数结构体
       class DescribeDatasetsRequest < TencentCloud::Common::AbstractModel
-        # @param DatasetIds: 数据集id列表
+        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @type TiProjectId: String
+        # @param DatasetIds: <p>数据集id列表</p>
         # @type DatasetIds: Array
-        # @param Filters: 数据集查询过滤条件，多个Filter之间的关系为逻辑与（AND）关系，过滤字段Filter.Name，类型为String
-        # DatasetName，数据集名称
-        # DatasetScope，数据集范围，SCOPE_DATASET_PRIVATE或SCOPE_DATASET_PUBLIC
+        # @param Filters: <p>数据集查询过滤条件，多个Filter之间的关系为逻辑与（AND）关系，过滤字段Filter.Name，类型为String<br>DatasetName，数据集名称<br>DatasetScope，数据集范围，SCOPE_DATASET_PRIVATE或SCOPE_DATASET_PUBLIC</p>
         # @type Filters: Array
-        # @param TagFilters: 标签过滤条件
+        # @param TagFilters: <p>标签过滤条件</p>
         # @type TagFilters: Array
-        # @param Order: 排序值，支持Asc或Desc，默认Desc
+        # @param Order: <p>排序值，支持Asc或Desc，默认Desc</p>
         # @type Order: String
-        # @param OrderField: 排序字段，支持CreateTime或UpdateTime，默认CreateTime
+        # @param OrderField: <p>排序字段，支持CreateTime或UpdateTime，默认CreateTime</p>
         # @type OrderField: String
-        # @param Offset: 偏移值
+        # @param Offset: <p>偏移值</p>
         # @type Offset: Integer
-        # @param Limit: 返回数据个数，默认20，最大支持200
+        # @param Limit: <p>返回数据个数，默认20，最大支持200</p>
         # @type Limit: Integer
-        # @param CFSChecking: 是否检查CFS。若开启，则在CFS挂载好之前，不会返回数据集列表。
+        # @param CFSChecking: <p>是否检查CFS。若开启，则在CFS挂载好之前，不会返回数据集列表。</p>
         # @type CFSChecking: Boolean
-        # @param CFSDetail: 是否返回CFS详情。
+        # @param CFSDetail: <p>是否返回CFS详情。</p>
         # @type CFSDetail: Boolean
 
-        attr_accessor :DatasetIds, :Filters, :TagFilters, :Order, :OrderField, :Offset, :Limit, :CFSChecking, :CFSDetail
+        attr_accessor :TiProjectId, :DatasetIds, :Filters, :TagFilters, :Order, :OrderField, :Offset, :Limit, :CFSChecking, :CFSDetail
 
-        def initialize(datasetids=nil, filters=nil, tagfilters=nil, order=nil, orderfield=nil, offset=nil, limit=nil, cfschecking=nil, cfsdetail=nil)
+        def initialize(tiprojectid=nil, datasetids=nil, filters=nil, tagfilters=nil, order=nil, orderfield=nil, offset=nil, limit=nil, cfschecking=nil, cfsdetail=nil)
+          @TiProjectId = tiprojectid
           @DatasetIds = datasetids
           @Filters = filters
           @TagFilters = tagfilters
@@ -3645,6 +3646,7 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @TiProjectId = params['TiProjectId']
           @DatasetIds = params['DatasetIds']
           unless params['Filters'].nil?
             @Filters = []
@@ -3673,16 +3675,16 @@ module TencentCloud
 
       # DescribeDatasets返回参数结构体
       class DescribeDatasetsResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 数据集总量（名称维度）
+        # @param TotalCount: <p>数据集总量（名称维度）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
-        # @param DatasetGroups: 数据集按照数据集名称聚合的分组
+        # @param DatasetGroups: <p>数据集按照数据集名称聚合的分组</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DatasetGroups: Array
-        # @param DatasetIdNums: 数据集ID总量
+        # @param DatasetIdNums: <p>数据集ID总量</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DatasetIdNums: Integer
-        # @param CFSNotReady: 若开启了CFSChecking，则检查CFS是否准备完毕。若CFS未准备完毕，则返回true，并且TotalCount为0，DatasetGroups为空。
+        # @param CFSNotReady: <p>若开启了CFSChecking，则检查CFS是否准备完毕。若CFS未准备完毕，则返回true，并且TotalCount为0，DatasetGroups为空。</p>
         # @type CFSNotReady: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -11521,7 +11523,7 @@ module TencentCloud
         # @param Message: <p>任务信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Message: String
-        # @param Status: <p>任务状态，eg：STARTING启动中、RUNNING运行中、STOPPING停止中、STOPPED已停止、FAILED异常、SUCCEED已完成</p>
+        # @param Status: <p>任务状态</p><p>枚举值：</p><ul><li>SUBMITTING： 排队中</li><li>STARTING： 启动中</li><li>RUNNING： 运行中</li><li>STOPPING： 停止中</li><li>STOPPED： 已停止</li><li>FAILED： 异常</li><li>SUCCEED： 已完成</li><li>SUBMIT_FAILED： 提交失败</li></ul>
         # @type Status: String
         # @param CallbackUrl: <p>回调地址</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -11704,7 +11706,7 @@ module TencentCloud
         # @param TrainingMode: <p>训练模式eg：PS_WORKER、DDP、MPI、HOROVOD</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TrainingMode: String
-        # @param Status: <p>任务状态，eg：SUBMITTING提交中、PENDING排队中、<br>STARTING启动中、RUNNING运行中、STOPPING停止中、STOPPED已停止、FAILED异常、SUCCEED已完成</p>
+        # @param Status: <p>任务状态</p><p>枚举值：</p><ul><li>SUBMITTING： 提交中</li><li>PENDING： 排队中</li><li>STARTING： 启动中</li><li>RUNNING： 运行中</li><li>STOPPING： 停止中</li><li>STOPPED： 已停止</li><li>FAILED： 异常</li><li>SUCCEED： 已完成</li><li>SUBMIT_FAILED： 提交失败</li></ul>
         # @type Status: String
         # @param RuntimeInSeconds: <p>运行时长</p>
         # 注意：此字段可能返回 null，表示取不到有效值。

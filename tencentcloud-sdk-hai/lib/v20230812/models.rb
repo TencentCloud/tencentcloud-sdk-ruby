@@ -2149,41 +2149,41 @@ module TencentCloud
 
       # 服务详情
       class ServiceDetail < TencentCloud::Common::AbstractModel
-        # @param ServiceId: 服务id
+        # @param ServiceId: <p>服务id</p>
         # @type ServiceId: String
-        # @param ServiceName: 服务名称
+        # @param ServiceName: <p>服务名称</p>
         # @type ServiceName: String
-        # @param ServiceState: 服务状态
+        # @param ServiceState: <p>服务状态</p>
         # @type ServiceState: String
-        # @param RunningReplicas: 运行中的副本数
+        # @param RunningReplicas: <p>运行中的副本数</p>
         # @type RunningReplicas: Integer
-        # @param TotalReplicas: 期望的副本总数
+        # @param TotalReplicas: <p>期望的副本总数</p>
         # @type TotalReplicas: Integer
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # @type CreateTime: String
-        # @param ComputeSet: 算力套餐详情
+        # @param ComputeSet: <p>算力套餐详情</p>
         # @type ComputeSet: Array
-        # @param ModelName: 模型名称
+        # @param ModelName: <p>模型名称</p>
         # @type ModelName: String
-        # @param DeploymentConfigs: 服务部署信息
+        # @param DeploymentConfigs: <p>服务部署信息</p>
         # @type DeploymentConfigs: Array
-        # @param HyperParam: 服务超参数配置
+        # @param HyperParam: <p>服务超参数配置</p>
         # @type HyperParam: :class:`Tencentcloud::Hai.v20230812.models.HyperParam`
-        # @param SecurityType: 
+        # @param SecurityType: <p>安全类型</p>
         # @type SecurityType: String
-        # @param RoleComputeSet: 
+        # @param RoleComputeSet: <p>角色算力配置列表</p>
         # @type RoleComputeSet: Array
-        # @param TargetReplicas: 
+        # @param TargetReplicas: <p>目标副本数</p>
         # @type TargetReplicas: Integer
-        # @param ChargeType: 计费类型：POSTPAID_BY_HOUR(按量)/PREPAID_BY_MONTH(包月)
+        # @param ChargeType: <p>计费类型：POSTPAID_BY_HOUR(按量)/PREPAID_BY_MONTH(包月)</p>
         # @type ChargeType: String
-        # @param ExpireTime: 到期时间(包月)，按量为空
+        # @param ExpireTime: <p>到期时间(包月)，按量为空</p>
         # @type ExpireTime: String
-        # @param RenewFlag: 自动续费标识(包月)
+        # @param RenewFlag: <p>自动续费标识(包月)</p>
         # @type RenewFlag: String
-        # @param RestrictState: 受限状态(如欠费隔离)
+        # @param RestrictState: <p>受限状态(如欠费隔离)</p>
         # @type RestrictState: String
-        # @param IsCustomDeploy: 是否自定义部署：1是 0否
+        # @param IsCustomDeploy: <p>是否自定义部署：1是 0否</p>
         # @type IsCustomDeploy: Integer
 
         attr_accessor :ServiceId, :ServiceName, :ServiceState, :RunningReplicas, :TotalReplicas, :CreateTime, :ComputeSet, :ModelName, :DeploymentConfigs, :HyperParam, :SecurityType, :RoleComputeSet, :TargetReplicas, :ChargeType, :ExpireTime, :RenewFlag, :RestrictState, :IsCustomDeploy

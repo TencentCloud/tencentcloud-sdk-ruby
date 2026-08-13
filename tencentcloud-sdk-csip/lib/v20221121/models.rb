@@ -7897,9 +7897,9 @@ module TencentCloud
 
       # DeleteDspmBackupLogList请求参数结构体
       class DeleteDspmBackupLogListRequest < TencentCloud::Common::AbstractModel
-        # @param Id: 备份日志Id
+        # @param Id: <p>备份日志Id</p>
         # @type Id: Integer
-        # @param MemberId: 集团账号的成员id
+        # @param MemberId: <p>集团账号的成员id</p>
         # @type MemberId: Array
 
         attr_accessor :Id, :MemberId
@@ -8229,9 +8229,9 @@ module TencentCloud
 
       # DeleteDspmRestoreLogList请求参数结构体
       class DeleteDspmRestoreLogListRequest < TencentCloud::Common::AbstractModel
-        # @param Id: 日志Id
+        # @param Id: <p>日志Id</p>
         # @type Id: Integer
-        # @param MemberId: 集团账号的成员id
+        # @param MemberId: <p>集团账号的成员id</p>
         # @type MemberId: Array
 
         attr_accessor :Id, :MemberId
@@ -13928,7 +13928,7 @@ module TencentCloud
 
       # DescribeDspmBackupSetting请求参数结构体
       class DescribeDspmBackupSettingRequest < TencentCloud::Common::AbstractModel
-        # @param MemberId: 集团账号的成员id
+        # @param MemberId: <p>集团账号的成员id</p>
         # @type MemberId: Array
 
         attr_accessor :MemberId
@@ -13944,15 +13944,15 @@ module TencentCloud
 
       # DescribeDspmBackupSetting返回参数结构体
       class DescribeDspmBackupSettingResponse < TencentCloud::Common::AbstractModel
-        # @param BackupLogSaveTime: 备份日志保留时长
+        # @param BackupLogSaveTime: <p>备份日志保留时长</p>
         # @type BackupLogSaveTime: Integer
-        # @param RestoreLogSaveTime: 恢复日志保留时长
+        # @param RestoreLogSaveTime: <p>恢复日志保留时长</p>
         # @type RestoreLogSaveTime: Integer
-        # @param LogMaxSaveTime: 日志最大生命周期限制
+        # @param LogMaxSaveTime: <p>日志最大生命周期限制</p>
         # @type LogMaxSaveTime: Integer
-        # @param OnlineLogMaxSaveTime: 在线日志最大天数限制
+        # @param OnlineLogMaxSaveTime: <p>在线日志最大天数限制</p>
         # @type OnlineLogMaxSaveTime: Integer
-        # @param MaxOnlineLogCount: 最大在线日志条数，单位是：个
+        # @param MaxOnlineLogCount: <p>最大在线日志条数，单位是：个</p>
         # @type MaxOnlineLogCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -14815,73 +14815,73 @@ module TencentCloud
       class DescribeDspmLogListRequest < TencentCloud::Common::AbstractModel
         # @param MemberId: <p>集团账号的成员id</p>
         # @type MemberId: Array
-        # @param Limit: 限制数目
+        # @param Limit: <p>限制数目</p>
         # @type Limit: Integer
-        # @param Offset: 偏移量
+        # @param Offset: <p>偏移量</p>
         # @type Offset: Integer
-        # @param Sort: 排序方式(desc=倒叙,asc=升序)
+        # @param Sort: <p>排序方式(desc=倒叙,asc=升序)</p>
         # @type Sort: String
-        # @param Field: 排序字段(opTime=时间,dangerLvl=风险等级)
+        # @param Field: <p>排序字段(opTime=时间,dangerLvl=风险等级)</p>
         # @type Field: String
-        # @param DangerLevel: 风险等级(0-安全,1-低风险,2-中风险,3-高风险,不传全部)
+        # @param DangerLevel: <p>风险等级(0-安全,1-低风险,2-中风险,3-高风险,不传全部)</p>
         # @type DangerLevel: String
-        # @param DbName: 数据库名称
+        # @param DbName: <p>数据库名称</p>
         # @type DbName: String
-        # @param DbPort: 数据库端口
+        # @param DbPort: <p>数据库端口</p>
         # @type DbPort: Integer
-        # @param DbIp: 数据库 IP
+        # @param DbIp: <p>数据库 IP</p>
         # @type DbIp: String
-        # @param AssetsId: 资产 ID
+        # @param AssetsId: <p>资产 ID</p>
         # @type AssetsId: Integer
-        # @param SessionId: 会话 ID
+        # @param SessionId: <p>会话 ID</p>
         # @type SessionId: String
-        # @param ClientSideIp: 客户端 IP
+        # @param ClientSideIp: <p>客户端 IP</p>
         # @type ClientSideIp: String
-        # @param EndTime: 结束时间
+        # @param EndTime: <p>结束时间</p>
         # @type EndTime: Integer
-        # @param HitRule: 命中规则
+        # @param HitRule: <p>命中规则</p>
         # @type HitRule: Integer
-        # @param StartTime: 开始时间
+        # @param StartTime: <p>开始时间</p>
         # @type StartTime: Integer
-        # @param FuzzySearch: 模糊查询
+        # @param FuzzySearch: <p>模糊查询</p>
         # @type FuzzySearch: String
-        # @param UserName: 用户名
+        # @param UserName: <p>用户名</p>
         # @type UserName: String
-        # @param RestoreLogId: 恢复日志id
+        # @param RestoreLogId: <p>恢复日志id</p>
         # @type RestoreLogId: Integer
-        # @param ClientName: 客户端
+        # @param ClientName: <p>客户端</p>
         # @type ClientName: String
-        # @param SourceTypes: 流量来源，取值 Agent/Proxy/空；传Agent会返回Agent的日志，传Proxy会返回Proxy日志，两者都传或不传则返回所有
+        # @param SourceTypes: <p>流量来源，取值 Agent/Proxy/空；传Agent会返回Agent的日志，传Proxy会返回Proxy日志，两者都传或不传则返回所有</p>
         # @type SourceTypes: Array
-        # @param TableName: 表名，长度限制64，多个表名查询的话可以用空格连接
+        # @param TableName: <p>表名，长度限制64，多个表名查询的话可以用空格连接</p>
         # @type TableName: String
-        # @param FieldName: 字段名，长度限制64，多个字段名查询的话可以用空格连接
+        # @param FieldName: <p>字段名，长度限制64，多个字段名查询的话可以用空格连接</p>
         # @type FieldName: String
-        # @param SqlMainTypes: SQL 主要类型，DDL, DML, DCL, TCL
+        # @param SqlMainTypes: <p>SQL 主要类型，DDL, DML, DCL, TCL</p>
         # @type SqlMainTypes: Array
-        # @param SqlType: 操作类型
+        # @param SqlType: <p>操作类型</p>
         # @type SqlType: String
-        # @param RowNumMin: 影响行数最小值
+        # @param RowNumMin: <p>影响行数最小值</p>
         # @type RowNumMin: Integer
-        # @param RowNumMax: 影响行数最大值
+        # @param RowNumMax: <p>影响行数最大值</p>
         # @type RowNumMax: Integer
-        # @param DbTypes: 数据库类型, 支持的值：cdb，mariadb
+        # @param DbTypes: <p>数据库类型, 支持的值：cdb，mariadb</p>
         # @type DbTypes: Array
-        # @param RetNo: 返回码
+        # @param RetNo: <p>返回码</p>
         # @type RetNo: Integer
-        # @param ClientDriverName: 客户端工具
+        # @param ClientDriverName: <p>客户端工具</p>
         # @type ClientDriverName: String
-        # @param ClientPort: 客户端端口
+        # @param ClientPort: <p>客户端端口</p>
         # @type ClientPort: Integer
-        # @param LogId: 审计日志 ID
+        # @param LogId: <p>审计日志 ID</p>
         # @type LogId: String
-        # @param DangerLevels: 风险等级数组(0-安全,1-低风险,2-中风险,3-高风险)
+        # @param DangerLevels: <p>风险等级数组(0-安全,1-低风险,2-中风险,3-高风险)</p>
         # @type DangerLevels: Array
-        # @param SensitiveCategoryRule: 字段分类
+        # @param SensitiveCategoryRule: <p>字段分类</p>
         # @type SensitiveCategoryRule: String
-        # @param SensitiveLevelRisk: 字段分级
+        # @param SensitiveLevelRisk: <p>字段分级</p>
         # @type SensitiveLevelRisk: String
-        # @param ClientMac: 客户端MAC
+        # @param ClientMac: <p>客户端MAC</p>
         # @type ClientMac: String
 
         attr_accessor :MemberId, :Limit, :Offset, :Sort, :Field, :DangerLevel, :DbName, :DbPort, :DbIp, :AssetsId, :SessionId, :ClientSideIp, :EndTime, :HitRule, :StartTime, :FuzzySearch, :UserName, :RestoreLogId, :ClientName, :SourceTypes, :TableName, :FieldName, :SqlMainTypes, :SqlType, :RowNumMin, :RowNumMax, :DbTypes, :RetNo, :ClientDriverName, :ClientPort, :LogId, :DangerLevels, :SensitiveCategoryRule, :SensitiveLevelRisk, :ClientMac
@@ -14965,9 +14965,9 @@ module TencentCloud
 
       # DescribeDspmLogList返回参数结构体
       class DescribeDspmLogListResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 总数目
+        # @param TotalCount: <p>总数目</p>
         # @type TotalCount: Integer
-        # @param List: 日志信息列表
+        # @param List: <p>日志信息列表</p>
         # @type List: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -22426,9 +22426,9 @@ module TencentCloud
 
       # DownloadDspmExportLog请求参数结构体
       class DownloadDspmExportLogRequest < TencentCloud::Common::AbstractModel
-        # @param MemberId: 集团账号的成员id
+        # @param MemberId: <p>集团账号的成员id</p>
         # @type MemberId: Array
-        # @param TaskId: 要下载的导出任务ID
+        # @param TaskId: <p>要下载的导出任务ID</p>
         # @type TaskId: Integer
 
         attr_accessor :MemberId, :TaskId
@@ -22446,7 +22446,7 @@ module TencentCloud
 
       # DownloadDspmExportLog返回参数结构体
       class DownloadDspmExportLogResponse < TencentCloud::Common::AbstractModel
-        # @param Url: 下载URL
+        # @param Url: <p>下载URL</p>
         # @type Url: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -23786,84 +23786,86 @@ module TencentCloud
 
       # 数据库资产
       class DspmDbAsset < TencentCloud::Common::AbstractModel
-        # @param AssetId: 资产实例Id
+        # @param AssetId: <p>资产实例Id</p>
         # @type AssetId: String
-        # @param AssetType: 资产类型
+        # @param AssetType: <p>资产类型</p>
         # @type AssetType: String
-        # @param Name:  资产名
+        # @param Name: <p>资产名</p>
         # @type Name: String
-        # @param AccountCount: 账号数
+        # @param AccountCount: <p>账号数</p>
         # @type AccountCount: Integer
-        # @param PublicIp: 公网访问地址，如果有多个，使用';'分割
+        # @param PublicIp: <p>公网访问地址，如果有多个，使用&#39;;&#39;分割</p>
         # @type PublicIp: String
-        # @param PrivateIp: 内网访问地址，如果有多个，使用';'分割
+        # @param PrivateIp: <p>内网访问地址，如果有多个，使用&#39;;&#39;分割</p>
         # @type PrivateIp: String
-        # @param WanDomain: 广域网域名地址，如果有多个，使用';'分割
+        # @param WanDomain: <p>广域网域名地址，如果有多个，使用&#39;;&#39;分割</p>
         # @type WanDomain: String
-        # @param Region: 地域
+        # @param Region: <p>地域</p>
         # @type Region: String
-        # @param VpcId: 资产所在vpc的vpcid
+        # @param VpcId: <p>资产所在vpc的vpcid</p>
         # @type VpcId: String
-        # @param VpcName: 资产所在vpc的vpc名
+        # @param VpcName: <p>资产所在vpc的vpc名</p>
         # @type VpcName: String
-        # @param SubnetId: 资产所在vpc子网的subnetid
+        # @param SubnetId: <p>资产所在vpc子网的subnetid</p>
         # @type SubnetId: String
-        # @param SubnetName: 资产所在vpc子网名
+        # @param SubnetName: <p>资产所在vpc子网名</p>
         # @type SubnetName: String
-        # @param Status: 实例状态
+        # @param Status: <p>实例状态</p>
         # @type Status: Integer
-        # @param CreateTime: 创建时间。
+        # @param CreateTime: <p>创建时间。</p>
         # @type CreateTime: String
-        # @param Manager: 管理者信息。
+        # @param Manager: <p>管理者信息。</p>
         # @type Manager: Array
-        # @param BindIdentify: 是否绑定身份。0-未绑定 1-已绑定
+        # @param BindIdentify: <p>是否绑定身份。0-未绑定 1-已绑定</p>
         # @type BindIdentify: Integer
-        # @param IsManager: 是否管理员
+        # @param IsManager: <p>是否管理员</p>
         # @type IsManager: Integer
-        # @param RiskCount: 风险统计信息
+        # @param RiskCount: <p>风险统计信息</p>
         # @type RiskCount: :class:`Tencentcloud::Csip.v20221121.models.DspmRiskCount`
-        # @param SafetyAdvice: 安全建议。
-        # Resolve 立即解决
-        # Reinforcement 加固
-        # None 暂无异常
+        # @param SafetyAdvice: <p>安全建议。<br>Resolve 立即解决<br>Reinforcement 加固<br>None 暂无异常</p>
         # @type SafetyAdvice: String
-        # @param LogDeliveryStatus: 日志投递状态。
-        # 0-投递关闭 1-投递打开 2-投递开通中 3-投递关闭中
+        # @param LogDeliveryStatus: <p>日志投递状态。<br>0-投递关闭 1-投递打开 2-投递开通中 3-投递关闭中</p>
         # @type LogDeliveryStatus: Integer
-        # @param LogDeliverySupported: 是否支持日志投递。0-不支持 1-支持
+        # @param LogDeliverySupported: <p>是否支持日志投递。0-不支持 1-支持</p>
         # @type LogDeliverySupported: Integer
-        # @param DataScanInfo: 数据扫描信息
+        # @param DataScanInfo: <p>数据扫描信息</p>
         # @type DataScanInfo: :class:`Tencentcloud::Csip.v20221121.models.DspmAssetDataScanDetail`
-        # @param AppId: 资产所属账号app id
+        # @param AppId: <p>资产所属账号app id</p>
         # @type AppId: Integer
-        # @param NickName: 账号昵称
+        # @param NickName: <p>账号昵称</p>
         # @type NickName: String
-        # @param Uin: 资产所属账号uin
+        # @param Uin: <p>资产所属账号uin</p>
         # @type Uin: String
-        # @param SecurityAnalyseStatus: 安全分析状态（0-关闭 1-打开 2-开通中 3-关闭中）
+        # @param SecurityAnalyseStatus: <p>安全分析状态（0-关闭 1-打开 2-开通中 3-关闭中）</p>
         # @type SecurityAnalyseStatus: Integer
-        # @param TotalAuditLogs: 当前实例的总日志数
+        # @param TotalAuditLogs: <p>当前实例的总日志数</p>
         # @type TotalAuditLogs: Integer
-        # @param LogDeliveryDisableReason: 日志审计禁止开通的原因，可选值：VersionNotSupportLogSubscription, InstanceIsUpgrading, CdbRuleAuditEnabled, AssetNotExists
+        # @param LogDeliveryDisableReason: <p>日志审计禁止开通的原因，可选值：VersionNotSupportLogSubscription, InstanceIsUpgrading, CdbRuleAuditEnabled, AssetNotExists</p>
         # @type LogDeliveryDisableReason: String
-        # @param OldestOnlineLogTimestamp: 在线日志的起始时间戳，精确到秒
+        # @param OldestOnlineLogTimestamp: <p>在线日志的起始时间戳，精确到秒</p>
         # @type OldestOnlineLogTimestamp: Integer
-        # @param NewestOnlineLogTimestamp: 在线日志的最新时间戳，精确到秒
+        # @param NewestOnlineLogTimestamp: <p>在线日志的最新时间戳，精确到秒</p>
         # @type NewestOnlineLogTimestamp: Integer
-        # @param OperationErrorMsg: 操作错误信息
+        # @param OperationErrorMsg: <p>操作错误信息</p>
         # @type OperationErrorMsg: String
-        # @param AccountOptSupported: 是否支持账号操作。0 不支持；1 支持
+        # @param AccountOptSupported: <p>是否支持账号操作。0 不支持；1 支持</p>
         # @type AccountOptSupported: Integer
-        # @param InstanceType: 实例类型
+        # @param InstanceType: <p>实例类型</p>
         # @type InstanceType: Integer
-        # @param ClusterType: 集群类型（MongoDB），与云接口 DescribeDBInstances 的 ClusterType 一致：0-副本集 1-分片；非 MongoDB 资产固定 0
+        # @param ClusterType: <p>集群类型（MongoDB），与云接口 DescribeDBInstances 的 ClusterType 一致：0-副本集 1-分片；非 MongoDB 资产固定 0</p>
         # @type ClusterType: Integer
-        # @param IdentifyScanSupported: 是否支持敏感数据识别。0 不支持；1 支持
+        # @param IdentifyScanSupported: <p>是否支持敏感数据识别。0 不支持；1 支持</p>
         # @type IdentifyScanSupported: Integer
+        # @param ClusterId: <p>集群ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterId: String
+        # @param ClusterName: <p>集群名</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterName: String
 
-        attr_accessor :AssetId, :AssetType, :Name, :AccountCount, :PublicIp, :PrivateIp, :WanDomain, :Region, :VpcId, :VpcName, :SubnetId, :SubnetName, :Status, :CreateTime, :Manager, :BindIdentify, :IsManager, :RiskCount, :SafetyAdvice, :LogDeliveryStatus, :LogDeliverySupported, :DataScanInfo, :AppId, :NickName, :Uin, :SecurityAnalyseStatus, :TotalAuditLogs, :LogDeliveryDisableReason, :OldestOnlineLogTimestamp, :NewestOnlineLogTimestamp, :OperationErrorMsg, :AccountOptSupported, :InstanceType, :ClusterType, :IdentifyScanSupported
+        attr_accessor :AssetId, :AssetType, :Name, :AccountCount, :PublicIp, :PrivateIp, :WanDomain, :Region, :VpcId, :VpcName, :SubnetId, :SubnetName, :Status, :CreateTime, :Manager, :BindIdentify, :IsManager, :RiskCount, :SafetyAdvice, :LogDeliveryStatus, :LogDeliverySupported, :DataScanInfo, :AppId, :NickName, :Uin, :SecurityAnalyseStatus, :TotalAuditLogs, :LogDeliveryDisableReason, :OldestOnlineLogTimestamp, :NewestOnlineLogTimestamp, :OperationErrorMsg, :AccountOptSupported, :InstanceType, :ClusterType, :IdentifyScanSupported, :ClusterId, :ClusterName
 
-        def initialize(assetid=nil, assettype=nil, name=nil, accountcount=nil, publicip=nil, privateip=nil, wandomain=nil, region=nil, vpcid=nil, vpcname=nil, subnetid=nil, subnetname=nil, status=nil, createtime=nil, manager=nil, bindidentify=nil, ismanager=nil, riskcount=nil, safetyadvice=nil, logdeliverystatus=nil, logdeliverysupported=nil, datascaninfo=nil, appid=nil, nickname=nil, uin=nil, securityanalysestatus=nil, totalauditlogs=nil, logdeliverydisablereason=nil, oldestonlinelogtimestamp=nil, newestonlinelogtimestamp=nil, operationerrormsg=nil, accountoptsupported=nil, instancetype=nil, clustertype=nil, identifyscansupported=nil)
+        def initialize(assetid=nil, assettype=nil, name=nil, accountcount=nil, publicip=nil, privateip=nil, wandomain=nil, region=nil, vpcid=nil, vpcname=nil, subnetid=nil, subnetname=nil, status=nil, createtime=nil, manager=nil, bindidentify=nil, ismanager=nil, riskcount=nil, safetyadvice=nil, logdeliverystatus=nil, logdeliverysupported=nil, datascaninfo=nil, appid=nil, nickname=nil, uin=nil, securityanalysestatus=nil, totalauditlogs=nil, logdeliverydisablereason=nil, oldestonlinelogtimestamp=nil, newestonlinelogtimestamp=nil, operationerrormsg=nil, accountoptsupported=nil, instancetype=nil, clustertype=nil, identifyscansupported=nil, clusterid=nil, clustername=nil)
           @AssetId = assetid
           @AssetType = assettype
           @Name = name
@@ -23899,6 +23901,8 @@ module TencentCloud
           @InstanceType = instancetype
           @ClusterType = clustertype
           @IdentifyScanSupported = identifyscansupported
+          @ClusterId = clusterid
+          @ClusterName = clustername
         end
 
         def deserialize(params)
@@ -23950,6 +23954,8 @@ module TencentCloud
           @InstanceType = params['InstanceType']
           @ClusterType = params['ClusterType']
           @IdentifyScanSupported = params['IdentifyScanSupported']
+          @ClusterId = params['ClusterId']
+          @ClusterName = params['ClusterName']
         end
       end
 
@@ -24870,62 +24876,70 @@ module TencentCloud
 
       # Dspm风险
       class DspmRisk < TencentCloud::Common::AbstractModel
-        # @param RiskId: 风险id
+        # @param RiskId: <p>风险id</p>
         # @type RiskId: String
-        # @param RiskName: 风险名称
+        # @param RiskName: <p>风险名称</p>
         # @type RiskName: String
-        # @param RiskNameEn: 风险英文名称
+        # @param RiskNameEn: <p>风险英文名称</p>
         # @type RiskNameEn: String
-        # @param StrategyType: 策略类型
+        # @param StrategyType: <p>策略类型</p>
         # @type StrategyType: String
-        # @param StrategyCategory: 策略类别
+        # @param StrategyCategory: <p>策略类别</p>
         # @type StrategyCategory: String
-        # @param RiskLevel: 风险等级
+        # @param RiskLevel: <p>风险等级</p>
         # @type RiskLevel: String
-        # @param AssetId: 资产实例Id
+        # @param AssetId: <p>资产实例Id</p>
         # @type AssetId: String
-        # @param AssetType: 资产类型
+        # @param AssetType: <p>资产类型</p>
         # @type AssetType: String
-        # @param AssetName: 资产名
+        # @param AssetName: <p>资产名</p>
         # @type AssetName: String
-        # @param AssetRegion: 地域
+        # @param AssetRegion: <p>地域</p>
         # @type AssetRegion: String
-        # @param Account: 资产账号
+        # @param Account: <p>资产账号</p>
         # @type Account: String
-        # @param Host: 主机地址
+        # @param Host: <p>主机地址</p>
         # @type Host: String
-        # @param AccountType: 账号类型
+        # @param AccountType: <p>账号类型</p>
         # @type AccountType: Integer
-        # @param DetectTime: 风险检出时间
+        # @param DetectTime: <p>风险检出时间</p>
         # @type DetectTime: String
-        # @param Status: 处理状态 0-未处理 1-已处置 2-已忽略
+        # @param Status: <p>处理状态 0-未处理 1-已处置 2-已忽略</p>
         # @type Status: Integer
-        # @param IdentifyId: 身份id
+        # @param IdentifyId: <p>身份id</p>
         # @type IdentifyId: String
-        # @param OwnerUin: 所属云账号uin用户
+        # @param OwnerUin: <p>所属云账号uin用户</p>
         # @type OwnerUin: :class:`Tencentcloud::Csip.v20221121.models.DspmUinUser`
-        # @param Person: 所属个人用户信息
+        # @param Person: <p>所属个人用户信息</p>
         # @type Person: :class:`Tencentcloud::Csip.v20221121.models.DspmPersonUser`
-        # @param RiskData: 风险数据。
+        # @param RiskData: <p>风险数据。</p>
         # @type RiskData: String
-        # @param IsAssetManager: 是否资产管理员
+        # @param IsAssetManager: <p>是否资产管理员</p>
         # @type IsAssetManager: Integer
-        # @param DataBeginTime: 数据起始时间
+        # @param DataBeginTime: <p>数据起始时间</p>
         # @type DataBeginTime: String
-        # @param DataEndTime: 数据结束时间
+        # @param DataEndTime: <p>数据结束时间</p>
         # @type DataEndTime: String
-        # @param RiskType: 风险类型。risk-风险；alarm-告警。
+        # @param RiskType: <p>风险类型。risk-风险；alarm-告警。</p>
         # @type RiskType: String
-        # @param AppId: 资产所属账号app id
+        # @param AppId: <p>资产所属账号app id</p>
         # @type AppId: Integer
-        # @param NickName: 账号昵称
+        # @param NickName: <p>账号昵称</p>
         # @type NickName: String
-        # @param Uin: 资产所属账号uin
+        # @param Uin: <p>资产所属账号uin</p>
         # @type Uin: String
+        # @param ClusterType: <p>MongoDb的集群类型，非 MongoDB 资产固定 0</p><p>枚举值：</p><ul><li>0： 副本集</li><li>1： 分片</li></ul><p>默认值：0</p>
+        # @type ClusterType: Integer
+        # @param ClusterId: <p>集群ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterId: String
+        # @param ClusterName: <p>集群名</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterName: String
 
-        attr_accessor :RiskId, :RiskName, :RiskNameEn, :StrategyType, :StrategyCategory, :RiskLevel, :AssetId, :AssetType, :AssetName, :AssetRegion, :Account, :Host, :AccountType, :DetectTime, :Status, :IdentifyId, :OwnerUin, :Person, :RiskData, :IsAssetManager, :DataBeginTime, :DataEndTime, :RiskType, :AppId, :NickName, :Uin
+        attr_accessor :RiskId, :RiskName, :RiskNameEn, :StrategyType, :StrategyCategory, :RiskLevel, :AssetId, :AssetType, :AssetName, :AssetRegion, :Account, :Host, :AccountType, :DetectTime, :Status, :IdentifyId, :OwnerUin, :Person, :RiskData, :IsAssetManager, :DataBeginTime, :DataEndTime, :RiskType, :AppId, :NickName, :Uin, :ClusterType, :ClusterId, :ClusterName
 
-        def initialize(riskid=nil, riskname=nil, risknameen=nil, strategytype=nil, strategycategory=nil, risklevel=nil, assetid=nil, assettype=nil, assetname=nil, assetregion=nil, account=nil, host=nil, accounttype=nil, detecttime=nil, status=nil, identifyid=nil, owneruin=nil, person=nil, riskdata=nil, isassetmanager=nil, databegintime=nil, dataendtime=nil, risktype=nil, appid=nil, nickname=nil, uin=nil)
+        def initialize(riskid=nil, riskname=nil, risknameen=nil, strategytype=nil, strategycategory=nil, risklevel=nil, assetid=nil, assettype=nil, assetname=nil, assetregion=nil, account=nil, host=nil, accounttype=nil, detecttime=nil, status=nil, identifyid=nil, owneruin=nil, person=nil, riskdata=nil, isassetmanager=nil, databegintime=nil, dataendtime=nil, risktype=nil, appid=nil, nickname=nil, uin=nil, clustertype=nil, clusterid=nil, clustername=nil)
           @RiskId = riskid
           @RiskName = riskname
           @RiskNameEn = risknameen
@@ -24952,6 +24966,9 @@ module TencentCloud
           @AppId = appid
           @NickName = nickname
           @Uin = uin
+          @ClusterType = clustertype
+          @ClusterId = clusterid
+          @ClusterName = clustername
         end
 
         def deserialize(params)
@@ -24987,6 +25004,9 @@ module TencentCloud
           @AppId = params['AppId']
           @NickName = params['NickName']
           @Uin = params['Uin']
+          @ClusterType = params['ClusterType']
+          @ClusterId = params['ClusterId']
+          @ClusterName = params['ClusterName']
         end
       end
 
@@ -29499,15 +29519,15 @@ module TencentCloud
 
       # ModifyDspmBackupSetting请求参数结构体
       class ModifyDspmBackupSettingRequest < TencentCloud::Common::AbstractModel
-        # @param MemberId: 集团账号的成员id
+        # @param MemberId: <p>集团账号的成员id</p>
         # @type MemberId: Array
-        # @param BackupLogSaveTime: 备份日志保留时长
+        # @param BackupLogSaveTime: <p>备份日志保留时长</p>
         # @type BackupLogSaveTime: Integer
-        # @param RestoreLogSaveTime: 恢复日志保留时长
+        # @param RestoreLogSaveTime: <p>恢复日志保留时长</p>
         # @type RestoreLogSaveTime: Integer
-        # @param LogMaxSaveTime: 日志最大生命周期限制
+        # @param LogMaxSaveTime: <p>日志最大生命周期限制</p>
         # @type LogMaxSaveTime: Integer
-        # @param OnlineLogMaxSaveTime: 在线日志最大天数限制
+        # @param OnlineLogMaxSaveTime: <p>在线日志最大天数限制</p>
         # @type OnlineLogMaxSaveTime: Integer
 
         attr_accessor :MemberId, :BackupLogSaveTime, :RestoreLogSaveTime, :LogMaxSaveTime, :OnlineLogMaxSaveTime
@@ -30030,9 +30050,9 @@ module TencentCloud
 
       # ModifyDspmRestoreLogTask请求参数结构体
       class ModifyDspmRestoreLogTaskRequest < TencentCloud::Common::AbstractModel
-        # @param Id: 备份日志Id
+        # @param Id: <p>备份日志Id</p>
         # @type Id: Integer
-        # @param MemberId: 集团账号的成员id
+        # @param MemberId: <p>集团账号的成员id</p>
         # @type MemberId: Array
 
         attr_accessor :Id, :MemberId
@@ -32090,9 +32110,9 @@ module TencentCloud
 
       # RetryDspmExportLog请求参数结构体
       class RetryDspmExportLogRequest < TencentCloud::Common::AbstractModel
-        # @param MemberId: 集团账号的成员id
+        # @param MemberId: <p>集团账号的成员id</p>
         # @type MemberId: Array
-        # @param TaskId: 任务ID
+        # @param TaskId: <p>任务ID</p>
         # @type TaskId: Integer
 
         attr_accessor :MemberId, :TaskId

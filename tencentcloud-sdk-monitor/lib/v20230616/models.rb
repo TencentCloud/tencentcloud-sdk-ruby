@@ -1000,10 +1000,12 @@ module TencentCloud
         # @type GoogleChatRobot: Array
         # @param SlackRobot: <p>Slack</p>
         # @type SlackRobot: Array
+        # @param TeamsWorkflowRobot: <p>Teams 工作流渠道</p>
+        # @type TeamsWorkflowRobot: Array
 
-        attr_accessor :QCloudYehe, :WeWorkRobot, :DingDingRobot, :FeiShuRobot, :Webhook, :TeamsRobot, :PagerDutyRobot, :GoogleChatRobot, :SlackRobot
+        attr_accessor :QCloudYehe, :WeWorkRobot, :DingDingRobot, :FeiShuRobot, :Webhook, :TeamsRobot, :PagerDutyRobot, :GoogleChatRobot, :SlackRobot, :TeamsWorkflowRobot
 
-        def initialize(qcloudyehe=nil, weworkrobot=nil, dingdingrobot=nil, feishurobot=nil, webhook=nil, teamsrobot=nil, pagerdutyrobot=nil, googlechatrobot=nil, slackrobot=nil)
+        def initialize(qcloudyehe=nil, weworkrobot=nil, dingdingrobot=nil, feishurobot=nil, webhook=nil, teamsrobot=nil, pagerdutyrobot=nil, googlechatrobot=nil, slackrobot=nil, teamsworkflowrobot=nil)
           @QCloudYehe = qcloudyehe
           @WeWorkRobot = weworkrobot
           @DingDingRobot = dingdingrobot
@@ -1013,6 +1015,7 @@ module TencentCloud
           @PagerDutyRobot = pagerdutyrobot
           @GoogleChatRobot = googlechatrobot
           @SlackRobot = slackrobot
+          @TeamsWorkflowRobot = teamsworkflowrobot
         end
 
         def deserialize(params)
@@ -1088,6 +1091,14 @@ module TencentCloud
               @SlackRobot << slackrobotnoticetmplmatcher_tmp
             end
           end
+          unless params['TeamsWorkflowRobot'].nil?
+            @TeamsWorkflowRobot = []
+            params['TeamsWorkflowRobot'].each do |i|
+              teamsworkflowrobotnoticetmplmatcher_tmp = TeamsWorkflowRobotNoticeTmplMatcher.new
+              teamsworkflowrobotnoticetmplmatcher_tmp.deserialize(i)
+              @TeamsWorkflowRobot << teamsworkflowrobotnoticetmplmatcher_tmp
+            end
+          end
         end
       end
 
@@ -1152,8 +1163,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :TotalPage, :CurrentPageNo, :IsEnd, :End
         extend Gem::Deprecate
-        deprecate :IsEnd, :none, 2026, 7
-        deprecate :IsEnd=, :none, 2026, 7
+        deprecate :IsEnd, :none, 2026, 8
+        deprecate :IsEnd=, :none, 2026, 8
 
         def initialize(totalcount=nil, totalpage=nil, currentpageno=nil, isend=nil, _end=nil)
           @TotalCount = totalcount
@@ -1454,6 +1465,53 @@ module TencentCloud
           @MatchingStatus = params['MatchingStatus']
           unless params['Template'].nil?
             @Template = TeamsRobotNoticeTmpl.new
+            @Template.deserialize(params['Template'])
+          end
+        end
+      end
+
+      # Microsoft Teams 工作流内容模板配置
+      class TeamsWorkflowRobotNoticeTmpl < TencentCloud::Common::AbstractModel
+        # @param ContentTmpl: <p>内容模板</p>
+        # @type ContentTmpl: String
+        # @param Version: <p>区分 TeamsWorkflow 是自定义内容还是自定义 POST BODY</p><p>枚举值：</p><ul><li>WorkflowText： 自定义内容</li><li>WorkflowJson： 自定义 POST BODY</li></ul>
+        # @type Version: String
+        # @param TitleTmpl: <p>标题模版</p>
+        # @type TitleTmpl: String
+
+        attr_accessor :ContentTmpl, :Version, :TitleTmpl
+
+        def initialize(contenttmpl=nil, version=nil, titletmpl=nil)
+          @ContentTmpl = contenttmpl
+          @Version = version
+          @TitleTmpl = titletmpl
+        end
+
+        def deserialize(params)
+          @ContentTmpl = params['ContentTmpl']
+          @Version = params['Version']
+          @TitleTmpl = params['TitleTmpl']
+        end
+      end
+
+      # Microsoft Teams 工作流通知模板的匹配器
+      class TeamsWorkflowRobotNoticeTmplMatcher < TencentCloud::Common::AbstractModel
+        # @param MatchingStatus: <p>匹配状态 Invalid; Trigger 告警触发; Recovery 告警恢复</p><p>枚举值：</p><ul><li>Trigger： 告警触发</li><li>Recovery： 告警恢复</li></ul>
+        # @type MatchingStatus: Array
+        # @param Template: <p>模板配置</p>
+        # @type Template: :class:`Tencentcloud::Monitor.v20230616.models.TeamsWorkflowRobotNoticeTmpl`
+
+        attr_accessor :MatchingStatus, :Template
+
+        def initialize(matchingstatus=nil, template=nil)
+          @MatchingStatus = matchingstatus
+          @Template = template
+        end
+
+        def deserialize(params)
+          @MatchingStatus = params['MatchingStatus']
+          unless params['Template'].nil?
+            @Template = TeamsWorkflowRobotNoticeTmpl.new
             @Template.deserialize(params['Template'])
           end
         end

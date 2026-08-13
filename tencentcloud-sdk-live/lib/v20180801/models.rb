@@ -17292,26 +17292,27 @@ module TencentCloud
 
       # SwitchCasterToEmergency请求参数结构体
       class SwitchCasterToEmergencyRequest < TencentCloud::Common::AbstractModel
-        # @param CasterId: 导播台ID。
+        # @param CasterId: <p>导播台ID。</p>
         # @type CasterId: Integer
+        # @param FromBeginning: <p>是否启用从头开始播放功能，仅对单点播输入源生效</p><p>默认值：false</p>
+        # @type FromBeginning: Boolean
 
-        attr_accessor :CasterId
+        attr_accessor :CasterId, :FromBeginning
 
-        def initialize(casterid=nil)
+        def initialize(casterid=nil, frombeginning=nil)
           @CasterId = casterid
+          @FromBeginning = frombeginning
         end
 
         def deserialize(params)
           @CasterId = params['CasterId']
+          @FromBeginning = params['FromBeginning']
         end
       end
 
       # SwitchCasterToEmergency返回参数结构体
       class SwitchCasterToEmergencyResponse < TencentCloud::Common::AbstractModel
-        # @param EmergencyStatus: 备播状态，范围[0,1,2]
-        # 0. 正常直播状态
-        # 1. 备播状态
-        # 2. 备播切换正常直播中，在配置了延播时长时出现
+        # @param EmergencyStatus: <p>备播状态，范围[0,1,2]</p><ol start="0"><li>正常直播状态</li><li>备播状态</li><li>备播切换正常直播中，在配置了延播时长时出现</li></ol>
         # @type EmergencyStatus: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

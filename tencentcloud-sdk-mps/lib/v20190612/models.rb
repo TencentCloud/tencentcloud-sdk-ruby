@@ -5568,6 +5568,69 @@ module TencentCloud
         end
       end
 
+      # Aigc任务详细信息
+      class AigcTaskListItem < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务ID</p>
+        # @type TaskId: String
+        # @param TaskType: <p>任务类型</p><p>枚举值：</p><ul><li>VideoRedraw： 转绘任务</li><li>AIDrama： AI漫剧任务</li></ul>
+        # @type TaskType: String
+        # @param TaskStatus: <p>任务状态</p><p>枚举值：</p><ul><li>PENDING： 任务等待调度</li><li>RUNNING： 任务运行中</li><li>FINISHED： 任务执行成功</li><li>STOP： 任务被中止</li><li>FAILED： 任务失败</li><li>TIMEOUT： 任务超时</li></ul>
+        # @type TaskStatus: String
+        # @param CreateTime: <p>任务创建时间</p>
+        # @type CreateTime: String
+        # @param ScheduledTime: <p>任务开始调度时间</p>
+        # @type ScheduledTime: String
+        # @param FinishedTime: <p>任务结束时间</p>
+        # @type FinishedTime: String
+        # @param Urls: <p>任务结果Url</p>
+        # @type Urls: Array
+        # @param TaskResultCode: <p>任务执行错误码</p>
+        # @type TaskResultCode: Integer
+        # @param TaskResultMsg: <p>任务执行错误信息</p>
+        # @type TaskResultMsg: String
+        # @param Resolution: <p>输出视频的分辨率</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Resolution: String
+        # @param Ratio: <p>输出视频的宽高比</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ratio: String
+        # @param RequestBody: <p>任务请求包</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RequestBody: String
+
+        attr_accessor :TaskId, :TaskType, :TaskStatus, :CreateTime, :ScheduledTime, :FinishedTime, :Urls, :TaskResultCode, :TaskResultMsg, :Resolution, :Ratio, :RequestBody
+
+        def initialize(taskid=nil, tasktype=nil, taskstatus=nil, createtime=nil, scheduledtime=nil, finishedtime=nil, urls=nil, taskresultcode=nil, taskresultmsg=nil, resolution=nil, ratio=nil, requestbody=nil)
+          @TaskId = taskid
+          @TaskType = tasktype
+          @TaskStatus = taskstatus
+          @CreateTime = createtime
+          @ScheduledTime = scheduledtime
+          @FinishedTime = finishedtime
+          @Urls = urls
+          @TaskResultCode = taskresultcode
+          @TaskResultMsg = taskresultmsg
+          @Resolution = resolution
+          @Ratio = ratio
+          @RequestBody = requestbody
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @TaskType = params['TaskType']
+          @TaskStatus = params['TaskStatus']
+          @CreateTime = params['CreateTime']
+          @ScheduledTime = params['ScheduledTime']
+          @FinishedTime = params['FinishedTime']
+          @Urls = params['Urls']
+          @TaskResultCode = params['TaskResultCode']
+          @TaskResultMsg = params['TaskResultMsg']
+          @Resolution = params['Resolution']
+          @Ratio = params['Ratio']
+          @RequestBody = params['RequestBody']
+        end
+      end
+
       # 用于AIGC创作视频时用到的扩展参数信息。
       class AigcVideoExtraParam < TencentCloud::Common::AbstractModel
         # @param Resolution: <p>生成视频的分辨率，分辨率与选择模型及设置的视频时长相关。 </p><p>不同模型支持的分辨率选项:</p><ol><li>Kling 720P(默认)，1080P。Kling 3.0、Kling 3.0-Omni 支持 4K。</li><li>Hailuo 768P(默认)，1080P。</li><li>Vidu 540P，720P(默认)，1080P。</li><li>PixVerse 540P，720P(默认)，1080P。</li><li>H2 720P，1080P(默认)。</li></ol><p>注意：除模型可支持的分辨率外，还可以生成 2K、4K分辨率。</p>
@@ -13597,6 +13660,72 @@ module TencentCloud
         end
       end
 
+      # DescribeAigcTaskList请求参数结构体
+      class DescribeAigcTaskListRequest < TencentCloud::Common::AbstractModel
+        # @param PageNum: <p>开始查询页</p>
+        # @type PageNum: Integer
+        # @param PageSize: <p>当前页要获取多少数据</p>
+        # @type PageSize: Integer
+        # @param QueryTaskFilter: <p>查询过滤条件</p>
+        # @type QueryTaskFilter: :class:`Tencentcloud::Mps.v20190612.models.QueryTaskFilter`
+
+        attr_accessor :PageNum, :PageSize, :QueryTaskFilter
+
+        def initialize(pagenum=nil, pagesize=nil, querytaskfilter=nil)
+          @PageNum = pagenum
+          @PageSize = pagesize
+          @QueryTaskFilter = querytaskfilter
+        end
+
+        def deserialize(params)
+          @PageNum = params['PageNum']
+          @PageSize = params['PageSize']
+          unless params['QueryTaskFilter'].nil?
+            @QueryTaskFilter = QueryTaskFilter.new
+            @QueryTaskFilter.deserialize(params['QueryTaskFilter'])
+          end
+        end
+      end
+
+      # DescribeAigcTaskList返回参数结构体
+      class DescribeAigcTaskListResponse < TencentCloud::Common::AbstractModel
+        # @param Total: <p>当前任务待返回总数</p>
+        # @type Total: Integer
+        # @param PageNum: <p>开始查询页</p>
+        # @type PageNum: Integer
+        # @param PageSize: <p>当前页要获取数据条目数</p>
+        # @type PageSize: Integer
+        # @param Tasks: <p>任务详情数据</p>
+        # @type Tasks: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :PageNum, :PageSize, :Tasks, :RequestId
+
+        def initialize(total=nil, pagenum=nil, pagesize=nil, tasks=nil, requestid=nil)
+          @Total = total
+          @PageNum = pagenum
+          @PageSize = pagesize
+          @Tasks = tasks
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          @PageNum = params['PageNum']
+          @PageSize = params['PageSize']
+          unless params['Tasks'].nil?
+            @Tasks = []
+            params['Tasks'].each do |i|
+              aigctasklistitem_tmp = AigcTaskListItem.new
+              aigctasklistitem_tmp.deserialize(i)
+              @Tasks << aigctasklistitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeAigcTaskStatus请求参数结构体
       class DescribeAigcTaskStatusRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: <p>任务ID</p>
@@ -20350,7 +20479,7 @@ module TencentCloud
 
       # 商品裂变任务信息
       class FissionTaskInfo < TencentCloud::Common::AbstractModel
-        # @param Duration: <p>视频输出时长</p><p>取值范围：[1, 15]</p><p>单位：秒</p><p>默认值：15</p>
+        # @param Duration: <p>视频输出时长</p><p>取值范围：[4, 15]</p><p>单位：秒</p><p>默认值：15</p>
         # @type Duration: Integer
         # @param ModelTier: <p>模型档位</p><p>枚举值：</p><ul><li>standard： 标准版</li><li>flagship： 旗舰版</li></ul>
         # @type ModelTier: String
@@ -20360,7 +20489,7 @@ module TencentCloud
         # @type Resolution: String
         # @param Market: <p>目标市场</p><p>枚举值：</p><ul><li>north_america： 北美</li><li>europe： 欧洲</li><li>china： 中国</li><li>japan： 日本</li><li>korea： 韩国</li><li>southeast_asia： 东南亚</li><li>brazil： 巴西</li><li>global： 全球</li><li>other： 其他</li></ul><p>影响默认出镜模特族裔与本地化风格；未指定 CustomModel 时按市场自动决定人种</p>
         # @type Market: String
-        # @param Language: <p>口播/字幕语言</p><p>枚举值：</p><ul><li>english： 英文</li><li>chinese： 中文</li><li>japanese： 日语</li><li>korean： 汉语</li><li>spanish： 西班牙语</li><li>portuguese： 葡萄牙语</li><li>music_only： 纯音乐无口播</li></ul>
+        # @param Language: <p>口播/字幕语言</p><p>枚举值：</p><ul><li>english： 英文</li><li>chinese： 中文</li><li>japanese： 日语</li><li>korean： 韩语</li><li>spanish： 西班牙语</li><li>portuguese： 葡萄牙语</li><li>music_only： 纯音乐无口播</li></ul>
         # @type Language: String
         # @param VideoType: <p>视频类型</p><p>枚举值：</p><ul><li>ugc： UGC种草</li><li>talk： 产品口播</li><li>display： 产品展示（纯商品、无人声）</li><li>unboxing： 开箱分享</li><li>reaction： 反应展示</li></ul>
         # @type VideoType: String
@@ -30042,6 +30171,38 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 查询AIGC任务列表过滤条件
+      class QueryTaskFilter < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务ID</p>
+        # @type TaskId: String
+        # @param TaskType: <p>任务类型</p>
+        # @type TaskType: String
+        # @param TaskStatus: <p>任务状态</p>
+        # @type TaskStatus: String
+        # @param Resolution: <p>分辨率</p>
+        # @type Resolution: String
+        # @param Ratio: <p>宽高比</p>
+        # @type Ratio: String
+
+        attr_accessor :TaskId, :TaskType, :TaskStatus, :Resolution, :Ratio
+
+        def initialize(taskid=nil, tasktype=nil, taskstatus=nil, resolution=nil, ratio=nil)
+          @TaskId = taskid
+          @TaskType = tasktype
+          @TaskStatus = taskstatus
+          @Resolution = resolution
+          @Ratio = ratio
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @TaskType = params['TaskType']
+          @TaskStatus = params['TaskStatus']
+          @Resolution = params['Resolution']
+          @Ratio = params['Ratio']
         end
       end
 
