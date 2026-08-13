@@ -4851,7 +4851,7 @@ module TencentCloud
         # @type ClusterName: String
         # @param Region: <p>地域</p>
         # @type Region: String
-        # @param Zone: <p>可用区</p>
+        # @param Zone: <p>集群主可用区</p>
         # @type Zone: String
         # @param PhysicalZone: <p>物理可用区</p>
         # @type PhysicalZone: String
@@ -4911,7 +4911,7 @@ module TencentCloud
         # @type IsFreeze: String
         # @param Tasks: <p>任务列表</p>
         # @type Tasks: Array
-        # @param MasterZone: <p>主可用区</p>
+        # @param MasterZone: <p>读写实例当前所在可用区</p>
         # @type MasterZone: String
         # @param SlaveZones: <p>从可用区列表</p>
         # @type SlaveZones: Array
@@ -4961,10 +4961,12 @@ module TencentCloud
         # @type ClusterLevel: String
         # @param IsOpenTDE: <p>是否开启透明加密</p>
         # @type IsOpenTDE: Boolean
+        # @param RealZone: <p>实例当前所在可用区</p>
+        # @type RealZone: String
 
-        attr_accessor :ClusterId, :ClusterName, :Region, :Zone, :PhysicalZone, :Status, :StatusDesc, :ServerlessStatus, :StorageId, :Storage, :MaxStorageSize, :MinStorageSize, :StoragePayMode, :VpcName, :VpcId, :SubnetName, :SubnetId, :Charset, :CreateTime, :DbType, :DbMode, :DbVersion, :StorageLimit, :UsedStorage, :Vip, :Vport, :RoAddr, :Ability, :CynosVersion, :BusinessType, :HasSlaveZone, :IsFreeze, :Tasks, :MasterZone, :SlaveZones, :InstanceSet, :PayMode, :PeriodEndTime, :ProjectID, :ResourceTags, :ProxyStatus, :LogBin, :IsSkipTrade, :PitrType, :IsOpenPasswordComplexity, :NetworkStatus, :ResourcePackages, :RenewFlag, :NetworkType, :SlaveZoneAttr, :CynosVersionTag, :GdnId, :GdnRole, :UsedArchiveStorage, :ArchiveStatus, :ArchiveProgress, :ClusterLevel, :IsOpenTDE
+        attr_accessor :ClusterId, :ClusterName, :Region, :Zone, :PhysicalZone, :Status, :StatusDesc, :ServerlessStatus, :StorageId, :Storage, :MaxStorageSize, :MinStorageSize, :StoragePayMode, :VpcName, :VpcId, :SubnetName, :SubnetId, :Charset, :CreateTime, :DbType, :DbMode, :DbVersion, :StorageLimit, :UsedStorage, :Vip, :Vport, :RoAddr, :Ability, :CynosVersion, :BusinessType, :HasSlaveZone, :IsFreeze, :Tasks, :MasterZone, :SlaveZones, :InstanceSet, :PayMode, :PeriodEndTime, :ProjectID, :ResourceTags, :ProxyStatus, :LogBin, :IsSkipTrade, :PitrType, :IsOpenPasswordComplexity, :NetworkStatus, :ResourcePackages, :RenewFlag, :NetworkType, :SlaveZoneAttr, :CynosVersionTag, :GdnId, :GdnRole, :UsedArchiveStorage, :ArchiveStatus, :ArchiveProgress, :ClusterLevel, :IsOpenTDE, :RealZone
 
-        def initialize(clusterid=nil, clustername=nil, region=nil, zone=nil, physicalzone=nil, status=nil, statusdesc=nil, serverlessstatus=nil, storageid=nil, storage=nil, maxstoragesize=nil, minstoragesize=nil, storagepaymode=nil, vpcname=nil, vpcid=nil, subnetname=nil, subnetid=nil, charset=nil, createtime=nil, dbtype=nil, dbmode=nil, dbversion=nil, storagelimit=nil, usedstorage=nil, vip=nil, vport=nil, roaddr=nil, ability=nil, cynosversion=nil, businesstype=nil, hasslavezone=nil, isfreeze=nil, tasks=nil, masterzone=nil, slavezones=nil, instanceset=nil, paymode=nil, periodendtime=nil, projectid=nil, resourcetags=nil, proxystatus=nil, logbin=nil, isskiptrade=nil, pitrtype=nil, isopenpasswordcomplexity=nil, networkstatus=nil, resourcepackages=nil, renewflag=nil, networktype=nil, slavezoneattr=nil, cynosversiontag=nil, gdnid=nil, gdnrole=nil, usedarchivestorage=nil, archivestatus=nil, archiveprogress=nil, clusterlevel=nil, isopentde=nil)
+        def initialize(clusterid=nil, clustername=nil, region=nil, zone=nil, physicalzone=nil, status=nil, statusdesc=nil, serverlessstatus=nil, storageid=nil, storage=nil, maxstoragesize=nil, minstoragesize=nil, storagepaymode=nil, vpcname=nil, vpcid=nil, subnetname=nil, subnetid=nil, charset=nil, createtime=nil, dbtype=nil, dbmode=nil, dbversion=nil, storagelimit=nil, usedstorage=nil, vip=nil, vport=nil, roaddr=nil, ability=nil, cynosversion=nil, businesstype=nil, hasslavezone=nil, isfreeze=nil, tasks=nil, masterzone=nil, slavezones=nil, instanceset=nil, paymode=nil, periodendtime=nil, projectid=nil, resourcetags=nil, proxystatus=nil, logbin=nil, isskiptrade=nil, pitrtype=nil, isopenpasswordcomplexity=nil, networkstatus=nil, resourcepackages=nil, renewflag=nil, networktype=nil, slavezoneattr=nil, cynosversiontag=nil, gdnid=nil, gdnrole=nil, usedarchivestorage=nil, archivestatus=nil, archiveprogress=nil, clusterlevel=nil, isopentde=nil, realzone=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @Region = region
@@ -5023,6 +5025,7 @@ module TencentCloud
           @ArchiveProgress = archiveprogress
           @ClusterLevel = clusterlevel
           @IsOpenTDE = isopentde
+          @RealZone = realzone
         end
 
         def deserialize(params)
@@ -5129,6 +5132,7 @@ module TencentCloud
           @ArchiveProgress = params['ArchiveProgress']
           @ClusterLevel = params['ClusterLevel']
           @IsOpenTDE = params['IsOpenTDE']
+          @RealZone = params['RealZone']
         end
       end
 
@@ -5174,7 +5178,7 @@ module TencentCloud
         # @type ProjectId: Integer
         # @param Region: <p>地域</p>
         # @type Region: String
-        # @param Zone: <p>可用区</p>
+        # @param Zone: <p>集群主可用区</p>
         # @type Zone: String
         # @param Status: <p>实例状态</p>
         # @type Status: String
@@ -5255,7 +5259,7 @@ module TencentCloud
         # @param ResourceTags: <p>资源标签</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceTags: Array
-        # @param MasterZone: <p>主可用区</p>
+        # @param MasterZone: <p>读写实例当前所在可用区</p>
         # @type MasterZone: String
         # @param SlaveZones: <p>备可用区</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -5279,10 +5283,12 @@ module TencentCloud
         # @type NodeList: Array
         # @param GdnId: <p>全球数据库唯一标识</p>
         # @type GdnId: String
+        # @param RealZone: <p>实例当前所在可用区</p>
+        # @type RealZone: String
 
-        attr_accessor :Uin, :AppId, :ClusterId, :ClusterName, :InstanceId, :InstanceName, :ProjectId, :Region, :Zone, :Status, :StatusDesc, :DbMode, :DbType, :DbVersion, :Cpu, :Memory, :Storage, :InstanceType, :InstanceRole, :UpdateTime, :CreateTime, :VpcId, :SubnetId, :Vip, :Vport, :PayMode, :PeriodEndTime, :DestroyDeadlineText, :IsolateTime, :NetType, :WanDomain, :WanIP, :WanPort, :WanStatus, :DestroyTime, :CynosVersion, :ProcessingTask, :RenewFlag, :MinCpu, :MaxCpu, :ServerlessStatus, :StorageId, :StoragePayMode, :PhysicalZone, :BusinessType, :Tasks, :IsFreeze, :ResourceTags, :MasterZone, :SlaveZones, :InstanceNetInfo, :ResourcePackages, :InstanceIndexMode, :InstanceAbility, :DeviceType, :InstanceStorageType, :CynosVersionTag, :NodeList, :GdnId
+        attr_accessor :Uin, :AppId, :ClusterId, :ClusterName, :InstanceId, :InstanceName, :ProjectId, :Region, :Zone, :Status, :StatusDesc, :DbMode, :DbType, :DbVersion, :Cpu, :Memory, :Storage, :InstanceType, :InstanceRole, :UpdateTime, :CreateTime, :VpcId, :SubnetId, :Vip, :Vport, :PayMode, :PeriodEndTime, :DestroyDeadlineText, :IsolateTime, :NetType, :WanDomain, :WanIP, :WanPort, :WanStatus, :DestroyTime, :CynosVersion, :ProcessingTask, :RenewFlag, :MinCpu, :MaxCpu, :ServerlessStatus, :StorageId, :StoragePayMode, :PhysicalZone, :BusinessType, :Tasks, :IsFreeze, :ResourceTags, :MasterZone, :SlaveZones, :InstanceNetInfo, :ResourcePackages, :InstanceIndexMode, :InstanceAbility, :DeviceType, :InstanceStorageType, :CynosVersionTag, :NodeList, :GdnId, :RealZone
 
-        def initialize(uin=nil, appid=nil, clusterid=nil, clustername=nil, instanceid=nil, instancename=nil, projectid=nil, region=nil, zone=nil, status=nil, statusdesc=nil, dbmode=nil, dbtype=nil, dbversion=nil, cpu=nil, memory=nil, storage=nil, instancetype=nil, instancerole=nil, updatetime=nil, createtime=nil, vpcid=nil, subnetid=nil, vip=nil, vport=nil, paymode=nil, periodendtime=nil, destroydeadlinetext=nil, isolatetime=nil, nettype=nil, wandomain=nil, wanip=nil, wanport=nil, wanstatus=nil, destroytime=nil, cynosversion=nil, processingtask=nil, renewflag=nil, mincpu=nil, maxcpu=nil, serverlessstatus=nil, storageid=nil, storagepaymode=nil, physicalzone=nil, businesstype=nil, tasks=nil, isfreeze=nil, resourcetags=nil, masterzone=nil, slavezones=nil, instancenetinfo=nil, resourcepackages=nil, instanceindexmode=nil, instanceability=nil, devicetype=nil, instancestoragetype=nil, cynosversiontag=nil, nodelist=nil, gdnid=nil)
+        def initialize(uin=nil, appid=nil, clusterid=nil, clustername=nil, instanceid=nil, instancename=nil, projectid=nil, region=nil, zone=nil, status=nil, statusdesc=nil, dbmode=nil, dbtype=nil, dbversion=nil, cpu=nil, memory=nil, storage=nil, instancetype=nil, instancerole=nil, updatetime=nil, createtime=nil, vpcid=nil, subnetid=nil, vip=nil, vport=nil, paymode=nil, periodendtime=nil, destroydeadlinetext=nil, isolatetime=nil, nettype=nil, wandomain=nil, wanip=nil, wanport=nil, wanstatus=nil, destroytime=nil, cynosversion=nil, processingtask=nil, renewflag=nil, mincpu=nil, maxcpu=nil, serverlessstatus=nil, storageid=nil, storagepaymode=nil, physicalzone=nil, businesstype=nil, tasks=nil, isfreeze=nil, resourcetags=nil, masterzone=nil, slavezones=nil, instancenetinfo=nil, resourcepackages=nil, instanceindexmode=nil, instanceability=nil, devicetype=nil, instancestoragetype=nil, cynosversiontag=nil, nodelist=nil, gdnid=nil, realzone=nil)
           @Uin = uin
           @AppId = appid
           @ClusterId = clusterid
@@ -5342,6 +5348,7 @@ module TencentCloud
           @CynosVersionTag = cynosversiontag
           @NodeList = nodelist
           @GdnId = gdnid
+          @RealZone = realzone
         end
 
         def deserialize(params)
@@ -5435,6 +5442,7 @@ module TencentCloud
           @CynosVersionTag = params['CynosVersionTag']
           @NodeList = params['NodeList']
           @GdnId = params['GdnId']
+          @RealZone = params['RealZone']
         end
       end
 
@@ -8172,7 +8180,7 @@ module TencentCloud
 
       # DescribeClusterDetail请求参数结构体
       class DescribeClusterDetailRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群Id
+        # @param ClusterId: <p>集群Id</p>
         # @type ClusterId: String
 
         attr_accessor :ClusterId
@@ -8188,7 +8196,7 @@ module TencentCloud
 
       # DescribeClusterDetail返回参数结构体
       class DescribeClusterDetailResponse < TencentCloud::Common::AbstractModel
-        # @param Detail: 集群详细信息
+        # @param Detail: <p>集群详细信息</p>
         # @type Detail: :class:`Tencentcloud::Cynosdb.v20190107.models.CynosdbClusterDetail`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

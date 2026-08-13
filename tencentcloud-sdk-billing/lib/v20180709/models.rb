@@ -8459,29 +8459,34 @@ module TencentCloud
 
       # DescribeCostDetail请求参数结构体
       class DescribeCostDetailRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 数量，最大值为100
+        # @param Limit: <p>数量，最大值为100</p>
         # @type Limit: Integer
-        # @param Offset: 偏移量
+        # @param Offset: <p>偏移量</p>
         # @type Offset: Integer
-        # @param BeginTime: 周期开始时间，查询粒度为天级别，需传入时分秒参数，格式为yyyy-mm-dd hh:ii:ss，Month和BeginTime&EndTime必传一个，如果有该字段则Month字段无效。BeginTime和EndTime必须一起传，且为同一月份，暂不支持跨月拉取。可拉取的数据是开通消耗账单后，且距今 18 个月内的数据。
+        # @param BeginTime: <p>周期开始时间，查询粒度为天级别，需传入时分秒参数，格式为yyyy-mm-dd hh:ii:ss，Month和BeginTime&amp;EndTime必传一个，如果有该字段则Month字段无效。BeginTime和EndTime必须一起传，且为同一月份，暂不支持跨月拉取。可拉取的数据是开通消耗账单后，且距今 18 个月内的数据。</p>
         # @type BeginTime: String
-        # @param EndTime: 周期结束时间，查询粒度为天级别，需传入时分秒参数，格式为yyyy-mm-dd hh:ii:ss，Month和BeginTime&EndTime必传一个，如果有该字段则Month字段无效。BeginTime和EndTime必须一起传，且为同一月份，暂不支持跨月拉取。可拉取的数据是开通消耗账单后，且距今 18 个月内的数据。
+        # @param EndTime: <p>周期结束时间，查询粒度为天级别，需传入时分秒参数，格式为yyyy-mm-dd hh:ii:ss，Month和BeginTime&amp;EndTime必传一个，如果有该字段则Month字段无效。BeginTime和EndTime必须一起传，且为同一月份，暂不支持跨月拉取。可拉取的数据是开通消耗账单后，且距今 18 个月内的数据。</p>
         # @type EndTime: String
-        # @param NeedRecordNum: 是否需要访问列表的总记录数，用于前端分页
-        # 1-表示需要， 0-表示不需要
+        # @param NeedRecordNum: <p>是否需要访问列表的总记录数，用于前端分页<br>1-表示需要， 0-表示不需要</p>
         # @type NeedRecordNum: Integer
-        # @param Month: 月份，格式为yyyy-mm，Month和BeginTime&EndTime必传一个，如果有传BeginTime&EndTime则Month字段无效。不能早于开通消耗账单的月份，最多可拉取18个月内的数据。
+        # @param Month: <p>月份，格式为yyyy-mm，Month和BeginTime&amp;EndTime必传一个，如果有传BeginTime&amp;EndTime则Month字段无效。不能早于开通消耗账单的月份，最多可拉取18个月内的数据。</p>
         # @type Month: String
-        # @param ProductCode: 查询指定产品信息
+        # @param ProductCode: <p>查询指定产品信息</p>
         # @type ProductCode: String
-        # @param PayMode: 付费模式 prePay/postPay
+        # @param PayMode: <p>付费模式 prePay/postPay</p>
         # @type PayMode: String
-        # @param ResourceId: 查询指定资源信息
+        # @param ResourceId: <p>查询指定资源信息</p>
         # @type ResourceId: String
+        # @param BusinessCode: <p>产品名称代码</p>
+        # @type BusinessCode: String
+        # @param ProjectId: <p>项目ID:资源所属项目ID</p>
+        # @type ProjectId: String
+        # @param RegionId: <p>地域ID</p>
+        # @type RegionId: String
 
-        attr_accessor :Limit, :Offset, :BeginTime, :EndTime, :NeedRecordNum, :Month, :ProductCode, :PayMode, :ResourceId
+        attr_accessor :Limit, :Offset, :BeginTime, :EndTime, :NeedRecordNum, :Month, :ProductCode, :PayMode, :ResourceId, :BusinessCode, :ProjectId, :RegionId
 
-        def initialize(limit=nil, offset=nil, begintime=nil, endtime=nil, needrecordnum=nil, month=nil, productcode=nil, paymode=nil, resourceid=nil)
+        def initialize(limit=nil, offset=nil, begintime=nil, endtime=nil, needrecordnum=nil, month=nil, productcode=nil, paymode=nil, resourceid=nil, businesscode=nil, projectid=nil, regionid=nil)
           @Limit = limit
           @Offset = offset
           @BeginTime = begintime
@@ -8491,6 +8496,9 @@ module TencentCloud
           @ProductCode = productcode
           @PayMode = paymode
           @ResourceId = resourceid
+          @BusinessCode = businesscode
+          @ProjectId = projectid
+          @RegionId = regionid
         end
 
         def deserialize(params)
@@ -8503,14 +8511,17 @@ module TencentCloud
           @ProductCode = params['ProductCode']
           @PayMode = params['PayMode']
           @ResourceId = params['ResourceId']
+          @BusinessCode = params['BusinessCode']
+          @ProjectId = params['ProjectId']
+          @RegionId = params['RegionId']
         end
       end
 
       # DescribeCostDetail返回参数结构体
       class DescribeCostDetailResponse < TencentCloud::Common::AbstractModel
-        # @param DetailSet: 消耗明细
+        # @param DetailSet: <p>消耗明细</p>
         # @type DetailSet: Array
-        # @param Total: 记录数
+        # @param Total: <p>记录数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -8885,26 +8896,30 @@ module TencentCloud
 
       # DescribeCostSummaryByResource请求参数结构体
       class DescribeCostSummaryByResourceRequest < TencentCloud::Common::AbstractModel
-        # @param BeginTime: 目前必须和EndTime相同月份，不支持跨月查询，且查询结果是整月数据，例如 BeginTime为2018-09，EndTime 为 2018-09，查询结果是 2018 年 9 月数据。
+        # @param BeginTime: <p>目前必须和EndTime相同月份，不支持跨月查询，且查询结果是整月数据，例如 BeginTime为2018-09，EndTime 为 2018-09，查询结果是 2018 年 9 月数据。</p>
         # @type BeginTime: String
-        # @param EndTime: 目前必须和BeginTime为相同月份，不支持跨月查询，且查询结果是整月数据，例如 BeginTime为2018-09，EndTime 为 2018-09，查询结果是 2018 年 9 月数据。
+        # @param EndTime: <p>目前必须和BeginTime为相同月份，不支持跨月查询，且查询结果是整月数据，例如 BeginTime为2018-09，EndTime 为 2018-09，查询结果是 2018 年 9 月数据。</p>
         # @type EndTime: String
-        # @param Limit: 每次获取数据量，最大值为100
+        # @param Limit: <p>每次获取数据量，最大值为100</p>
         # @type Limit: Integer
-        # @param Offset: 偏移量,默认从0开始
+        # @param Offset: <p>偏移量,默认从0开始</p>
         # @type Offset: Integer
-        # @param PayerUin: 查询账单数据的用户UIN
+        # @param PayerUin: <p>查询账单数据的用户UIN</p>
         # @type PayerUin: String
-        # @param NeedRecordNum: 是否需要返回记录数量，0不需要，1需要，默认不需要
+        # @param NeedRecordNum: <p>是否需要返回记录数量，0不需要，1需要，默认不需要</p>
         # @type NeedRecordNum: Integer
-        # @param NeedConditionValue: 是否需要返回过滤条件，0不需要，1需要，默认不需要
+        # @param NeedConditionValue: <p>是否需要返回过滤条件，0不需要，1需要，默认不需要</p>
         # @type NeedConditionValue: Integer
-        # @param Conditions: 过滤条件，只支持ResourceKeyword(资源关键字，支持资源id及资源名称模糊查询)，ProjectIds（项目id），RegionIds(地域id)，PayModes(付费模式，可选prePay和postPay)，HideFreeCost（是否隐藏0元流水，可选0和1），OrderByCost（按费用排序规则，可选desc和asc）
+        # @param Conditions: <p>过滤条件，只支持ResourceKeyword(资源关键字，支持资源id及资源名称模糊查询)，ProjectIds（项目id），RegionIds(地域id)，PayModes(付费模式，可选prePay和postPay)，HideFreeCost（是否隐藏0元流水，可选0和1），OrderByCost（按费用排序规则，可选desc和asc）</p>
         # @type Conditions: :class:`Tencentcloud::Billing.v20180709.models.Conditions`
+        # @param TagKey: <p>分账标签键，用户自定义</p>
+        # @type TagKey: String
+        # @param TagValue: <p>分账标签值，该参数为空表示该标签键下未设置标签值的记录</p>
+        # @type TagValue: String
 
-        attr_accessor :BeginTime, :EndTime, :Limit, :Offset, :PayerUin, :NeedRecordNum, :NeedConditionValue, :Conditions
+        attr_accessor :BeginTime, :EndTime, :Limit, :Offset, :PayerUin, :NeedRecordNum, :NeedConditionValue, :Conditions, :TagKey, :TagValue
 
-        def initialize(begintime=nil, endtime=nil, limit=nil, offset=nil, payeruin=nil, needrecordnum=nil, needconditionvalue=nil, conditions=nil)
+        def initialize(begintime=nil, endtime=nil, limit=nil, offset=nil, payeruin=nil, needrecordnum=nil, needconditionvalue=nil, conditions=nil, tagkey=nil, tagvalue=nil)
           @BeginTime = begintime
           @EndTime = endtime
           @Limit = limit
@@ -8913,6 +8928,8 @@ module TencentCloud
           @NeedRecordNum = needrecordnum
           @NeedConditionValue = needconditionvalue
           @Conditions = conditions
+          @TagKey = tagkey
+          @TagValue = tagvalue
         end
 
         def deserialize(params)
@@ -8927,22 +8944,24 @@ module TencentCloud
             @Conditions = Conditions.new
             @Conditions.deserialize(params['Conditions'])
           end
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
         end
       end
 
       # DescribeCostSummaryByResource返回参数结构体
       class DescribeCostSummaryByResourceResponse < TencentCloud::Common::AbstractModel
-        # @param Ready: 数据是否准备好，0未准备好，1准备好
+        # @param Ready: <p>数据是否准备好，0未准备好，1准备好</p>
         # @type Ready: Integer
-        # @param Total: 消耗详情
+        # @param Total: <p>消耗详情</p>
         # @type Total: :class:`Tencentcloud::Billing.v20180709.models.ConsumptionSummaryTotal`
-        # @param ConditionValue: 过滤条件
+        # @param ConditionValue: <p>过滤条件</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConditionValue: :class:`Tencentcloud::Billing.v20180709.models.ConsumptionResourceSummaryConditionValue`
-        # @param RecordNum: 记录数量
+        # @param RecordNum: <p>记录数量</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordNum: Integer
-        # @param Data: 资源消耗详情
+        # @param Data: <p>资源消耗详情</p>
         # @type Data: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

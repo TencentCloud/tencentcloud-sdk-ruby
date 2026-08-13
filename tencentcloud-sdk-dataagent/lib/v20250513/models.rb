@@ -687,10 +687,18 @@ module TencentCloud
         # @type WebUrl: String
         # @param Capabilities: <p>文件能力标识列表</p>
         # @type Capabilities: Array
+        # @param EnableGraphBuild: <p>0:关闭 1:开启图谱构建（入库时构建图谱），默认0</p>
+        # @type EnableGraphBuild: Integer
+        # @param EnableTreeBuild: <p>0:关闭 1:开启树构建（入库时构建树），默认0</p>
+        # @type EnableTreeBuild: Integer
+        # @param GraphBuildStatus: <p>图谱构建状态：null=未启用图谱; 0=待入库; 1=入库中; 2=入库成功; -1=入库失败（仅 EnableGraphBuild=1 时有意义）</p>
+        # @type GraphBuildStatus: Integer
+        # @param TreeBuildStatus: <p>图谱构建状态：null=未启用图谱; 0=待入库; 1=入库中; 2=入库成功; -1=入库失败（仅 EnableGraphBuild=1 时有意义）</p>
+        # @type TreeBuildStatus: Integer
 
-        attr_accessor :FileName, :FileSize, :Type, :FileId, :Status, :CreateUser, :CreateTime, :UpdateTime, :ChunkConfig, :Source, :FileUrl, :IsShowCase, :DocumentSummary, :WebUrl, :Capabilities
+        attr_accessor :FileName, :FileSize, :Type, :FileId, :Status, :CreateUser, :CreateTime, :UpdateTime, :ChunkConfig, :Source, :FileUrl, :IsShowCase, :DocumentSummary, :WebUrl, :Capabilities, :EnableGraphBuild, :EnableTreeBuild, :GraphBuildStatus, :TreeBuildStatus
 
-        def initialize(filename=nil, filesize=nil, type=nil, fileid=nil, status=nil, createuser=nil, createtime=nil, updatetime=nil, chunkconfig=nil, source=nil, fileurl=nil, isshowcase=nil, documentsummary=nil, weburl=nil, capabilities=nil)
+        def initialize(filename=nil, filesize=nil, type=nil, fileid=nil, status=nil, createuser=nil, createtime=nil, updatetime=nil, chunkconfig=nil, source=nil, fileurl=nil, isshowcase=nil, documentsummary=nil, weburl=nil, capabilities=nil, enablegraphbuild=nil, enabletreebuild=nil, graphbuildstatus=nil, treebuildstatus=nil)
           @FileName = filename
           @FileSize = filesize
           @Type = type
@@ -706,6 +714,10 @@ module TencentCloud
           @DocumentSummary = documentsummary
           @WebUrl = weburl
           @Capabilities = capabilities
+          @EnableGraphBuild = enablegraphbuild
+          @EnableTreeBuild = enabletreebuild
+          @GraphBuildStatus = graphbuildstatus
+          @TreeBuildStatus = treebuildstatus
         end
 
         def deserialize(params)
@@ -727,6 +739,10 @@ module TencentCloud
           @DocumentSummary = params['DocumentSummary']
           @WebUrl = params['WebUrl']
           @Capabilities = params['Capabilities']
+          @EnableGraphBuild = params['EnableGraphBuild']
+          @EnableTreeBuild = params['EnableTreeBuild']
+          @GraphBuildStatus = params['GraphBuildStatus']
+          @TreeBuildStatus = params['TreeBuildStatus']
         end
       end
 
@@ -1102,10 +1118,14 @@ module TencentCloud
         # @type EnableImageUnderstanding: Integer
         # @param EnableExtractDb: <p>是否开启表格结构化提取</p><p>枚举值：</p><ul><li>0： 不开启表格提取</li><li>1： 开启表格提取</li></ul><p>默认值：1</p>
         # @type EnableExtractDb: Integer
+        # @param EnableGraphBuild: <p>0:关闭 1:开启图谱构建（入库时），默认0</p>
+        # @type EnableGraphBuild: Integer
+        # @param EnableTreeBuild: <p>0:关闭 1:开启树构建（入库时），默认0</p>
+        # @type EnableTreeBuild: Integer
 
-        attr_accessor :ChunkType, :MaxChunkSize, :Delimiters, :ChunkOverlap, :Columns, :Indexes, :GenDocSummary, :GenParaSummary, :EnableImageUnderstanding, :EnableExtractDb
+        attr_accessor :ChunkType, :MaxChunkSize, :Delimiters, :ChunkOverlap, :Columns, :Indexes, :GenDocSummary, :GenParaSummary, :EnableImageUnderstanding, :EnableExtractDb, :EnableGraphBuild, :EnableTreeBuild
 
-        def initialize(chunktype=nil, maxchunksize=nil, delimiters=nil, chunkoverlap=nil, columns=nil, indexes=nil, gendocsummary=nil, genparasummary=nil, enableimageunderstanding=nil, enableextractdb=nil)
+        def initialize(chunktype=nil, maxchunksize=nil, delimiters=nil, chunkoverlap=nil, columns=nil, indexes=nil, gendocsummary=nil, genparasummary=nil, enableimageunderstanding=nil, enableextractdb=nil, enablegraphbuild=nil, enabletreebuild=nil)
           @ChunkType = chunktype
           @MaxChunkSize = maxchunksize
           @Delimiters = delimiters
@@ -1116,6 +1136,8 @@ module TencentCloud
           @GenParaSummary = genparasummary
           @EnableImageUnderstanding = enableimageunderstanding
           @EnableExtractDb = enableextractdb
+          @EnableGraphBuild = enablegraphbuild
+          @EnableTreeBuild = enabletreebuild
         end
 
         def deserialize(params)
@@ -1136,6 +1158,8 @@ module TencentCloud
           @GenParaSummary = params['GenParaSummary']
           @EnableImageUnderstanding = params['EnableImageUnderstanding']
           @EnableExtractDb = params['EnableExtractDb']
+          @EnableGraphBuild = params['EnableGraphBuild']
+          @EnableTreeBuild = params['EnableTreeBuild']
         end
       end
 
@@ -1788,24 +1812,28 @@ module TencentCloud
 
       # 检索配置
       class SearchConfig < TencentCloud::Common::AbstractModel
-        # @param Type: 检索类型：0:混合搜索 1：向量搜索 2：全文搜索
+        # @param Type: <p>检索类型：0:混合搜索 1：向量搜索 2：全文搜索</p>
         # @type Type: Integer
-        # @param Num: 召回数量最大值
+        # @param Num: <p>召回数量最大值</p>
         # @type Num: Integer
-        # @param EmbeddingWeight: 权重配置
+        # @param EmbeddingWeight: <p>权重配置</p>
         # @type EmbeddingWeight: Float
-        # @param Rerank: 0:关闭 1:开启，默认1
+        # @param Rerank: <p>0:关闭 1:开启，默认1</p>
         # @type Rerank: Integer
-        # @param AutoRag: 0:关闭 1:开启，默认0
+        # @param AutoRag: <p>0:关闭 1:开启，默认0</p>
         # @type AutoRag: Integer
-        # @param KnowledgeBaseIds: AutoRag关联的知识库ID列表
+        # @param KnowledgeBaseIds: <p>AutoRag关联的知识库ID列表</p>
         # @type KnowledgeBaseIds: Array
-        # @param SearchStatus: AutoRag搜索状态：0-未完成，1-已完成。仅当AutoRag=1时，该字段有效
+        # @param SearchStatus: <p>AutoRag搜索状态：0-未完成，1-已完成。仅当AutoRag=1时，该字段有效</p>
         # @type SearchStatus: Integer
+        # @param EnableGraphSearch: <p>0:关闭 1:开启图谱检索，默认0</p>
+        # @type EnableGraphSearch: Integer
+        # @param EnableTreeSearch: <p>0:关闭 1:开启树检索，默认0</p>
+        # @type EnableTreeSearch: Integer
 
-        attr_accessor :Type, :Num, :EmbeddingWeight, :Rerank, :AutoRag, :KnowledgeBaseIds, :SearchStatus
+        attr_accessor :Type, :Num, :EmbeddingWeight, :Rerank, :AutoRag, :KnowledgeBaseIds, :SearchStatus, :EnableGraphSearch, :EnableTreeSearch
 
-        def initialize(type=nil, num=nil, embeddingweight=nil, rerank=nil, autorag=nil, knowledgebaseids=nil, searchstatus=nil)
+        def initialize(type=nil, num=nil, embeddingweight=nil, rerank=nil, autorag=nil, knowledgebaseids=nil, searchstatus=nil, enablegraphsearch=nil, enabletreesearch=nil)
           @Type = type
           @Num = num
           @EmbeddingWeight = embeddingweight
@@ -1813,6 +1841,8 @@ module TencentCloud
           @AutoRag = autorag
           @KnowledgeBaseIds = knowledgebaseids
           @SearchStatus = searchstatus
+          @EnableGraphSearch = enablegraphsearch
+          @EnableTreeSearch = enabletreesearch
         end
 
         def deserialize(params)
@@ -1823,6 +1853,8 @@ module TencentCloud
           @AutoRag = params['AutoRag']
           @KnowledgeBaseIds = params['KnowledgeBaseIds']
           @SearchStatus = params['SearchStatus']
+          @EnableGraphSearch = params['EnableGraphSearch']
+          @EnableTreeSearch = params['EnableTreeSearch']
         end
       end
 

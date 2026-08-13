@@ -11671,7 +11671,7 @@ module TencentCloud
 
       # DescribeSaleResourceInfo返回参数结构体
       class DescribeSaleResourceInfoResponse < TencentCloud::Common::AbstractModel
-        # @param SaleResourceInfoList: 可售卖资源规格列表
+        # @param SaleResourceInfoList: 可售卖资源规格列表，包含规格、步长、单账户上限、以及库存情况
         # @type SaleResourceInfoList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -18240,6 +18240,50 @@ module TencentCloud
         end
       end
 
+      # 镜像响应类
+      class ImageDto < TencentCloud::Common::AbstractModel
+        # @param Id: <p>镜像ID</p>
+        # @type Id: Integer
+        # @param Name: <p>镜像名称</p>
+        # @type Name: String
+        # @param Url: <p>镜像地址</p>
+        # @type Url: String
+        # @param Description: <p>镜像描述</p>
+        # @type Description: String
+        # @param Type: <p>镜像类型（Ray/Workspace）</p>
+        # @type Type: String
+        # @param RayVersion: <p>镜像内置的 Ray 版本号</p>
+        # @type RayVersion: String
+        # @param CreateTime: <p>创建时间</p>
+        # @type CreateTime: Integer
+        # @param UpdateTime: <p>更新时间</p>
+        # @type UpdateTime: Integer
+
+        attr_accessor :Id, :Name, :Url, :Description, :Type, :RayVersion, :CreateTime, :UpdateTime
+
+        def initialize(id=nil, name=nil, url=nil, description=nil, type=nil, rayversion=nil, createtime=nil, updatetime=nil)
+          @Id = id
+          @Name = name
+          @Url = url
+          @Description = description
+          @Type = type
+          @RayVersion = rayversion
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @Url = params['Url']
+          @Description = params['Description']
+          @Type = params['Type']
+          @RayVersion = params['RayVersion']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
       # 推理引擎具体信息
       class InferenceEngineInfo < TencentCloud::Common::AbstractModel
         # @param EngineId: <p>引擎标识符</p>
@@ -19714,6 +19758,77 @@ module TencentCloud
               exampleentity_tmp = ExampleEntity.new
               exampleentity_tmp.deserialize(i)
               @Items << exampleentity_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ListImages请求参数结构体
+      class ListImagesRequest < TencentCloud::Common::AbstractModel
+        # @param Keyword: 关键词搜索（模糊匹配名称或描述）
+        # @type Keyword: String
+        # @param Type: 镜像类型过滤（Ray/Workspace）
+        # @type Type: String
+        # @param Page: 页数
+        # @type Page: Integer
+        # @param PageSize: 数量
+        # @type PageSize: Integer
+
+        attr_accessor :Keyword, :Type, :Page, :PageSize
+
+        def initialize(keyword=nil, type=nil, page=nil, pagesize=nil)
+          @Keyword = keyword
+          @Type = type
+          @Page = page
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          @Keyword = params['Keyword']
+          @Type = params['Type']
+          @Page = params['Page']
+          @PageSize = params['PageSize']
+        end
+      end
+
+      # ListImages返回参数结构体
+      class ListImagesResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总记录数
+        # @type Total: Integer
+        # @param Page: 当前页码（从1开始）
+        # @type Page: Integer
+        # @param PageSize: 页数
+        # @type PageSize: Integer
+        # @param TotalPages: 总页数
+        # @type TotalPages: Integer
+        # @param Items: 镜像列表
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Page, :PageSize, :TotalPages, :Items, :RequestId
+
+        def initialize(total=nil, page=nil, pagesize=nil, totalpages=nil, items=nil, requestid=nil)
+          @Total = total
+          @Page = page
+          @PageSize = pagesize
+          @TotalPages = totalpages
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          @Page = params['Page']
+          @PageSize = params['PageSize']
+          @TotalPages = params['TotalPages']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              imagedto_tmp = ImageDto.new
+              imagedto_tmp.deserialize(i)
+              @Items << imagedto_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -24697,13 +24812,17 @@ module TencentCloud
         # @param MaxSpec: <p>最大资源数量，仅GU有值</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxSpec: Integer
+        # @param StatusCategory: <p>库存情况，对当前地域该计费项实时可新增数量的分级预估。取值复用 BcpConstants 库存状态常量：</p><ul><li>EnoughStock：余量充足（&gt;100）</li><li>NormalStock：余量正常（50~100）</li><li>UnderStock：余量紧张（1~49）</li><li>WithoutStock：无库存（0）</li></ul><p>该值为底层提供的预估值，不代表保证可发货量，仅用于展示库存概况。当请求 Region 与资源池地域不一致、cold-start 缓存未 ready、或该计费项在快照中缺失时返回 null。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StatusCategory: String
 
-        attr_accessor :ResourceSpec, :Step, :MaxSpec
+        attr_accessor :ResourceSpec, :Step, :MaxSpec, :StatusCategory
 
-        def initialize(resourcespec=nil, step=nil, maxspec=nil)
+        def initialize(resourcespec=nil, step=nil, maxspec=nil, statuscategory=nil)
           @ResourceSpec = resourcespec
           @Step = step
           @MaxSpec = maxspec
+          @StatusCategory = statuscategory
         end
 
         def deserialize(params)
@@ -24713,6 +24832,7 @@ module TencentCloud
           end
           @Step = params['Step']
           @MaxSpec = params['MaxSpec']
+          @StatusCategory = params['StatusCategory']
         end
       end
 

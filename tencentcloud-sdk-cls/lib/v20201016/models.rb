@@ -411,64 +411,46 @@ module TencentCloud
 
       # 告警通知渠道组详细配置
       class AlarmNotice < TencentCloud::Common::AbstractModel
-        # @param Name: 告警通知渠道组名称。
+        # @param Name: <p>告警通知渠道组名称。</p>
         # @type Name: String
-        # @param Tags: 告警通知渠道组绑定的标签信息。
+        # @param Tags: <p>告警通知渠道组绑定的标签信息。</p>
         # @type Tags: Array
-        # @param Type: 告警模板的类型。可选值：
-        # <br><li> Trigger - 告警触发</li>
-        # <br><li> Recovery - 告警恢复</li>
-        # <br><li> All - 告警触发和告警恢复</li>
+        # @param Type: <p>告警模板的类型。可选值：<br><br><li> Trigger - 告警触发</li><br><br><li> Recovery - 告警恢复</li><br><br><li> All - 告警触发和告警恢复</li></p>
         # @type Type: String
-        # @param NoticeReceivers: 告警通知模板接收者信息。
+        # @param NoticeReceivers: <p>告警通知模板接收者信息。</p>
         # @type NoticeReceivers: Array
-        # @param WebCallbacks: 告警通知模板回调信息。
+        # @param WebCallbacks: <p>告警通知模板回调信息。</p>
         # @type WebCallbacks: Array
-        # @param AlarmNoticeId: 告警通知模板ID。
+        # @param AlarmNoticeId: <p>告警通知模板ID。</p>
         # @type AlarmNoticeId: String
-        # @param NoticeRules: 通知规则。
+        # @param NoticeRules: <p>通知规则。</p>
         # @type NoticeRules: Array
-        # @param AlarmShieldStatus: 免登录操作告警开关。
-        # 参数值： 1：关闭 2：开启（默认开启）
+        # @param AlarmShieldStatus: <p>免登录操作告警开关。<br>参数值： 1：关闭 2：开启（默认开启）</p>
         # @type AlarmShieldStatus: Integer
-        # @param JumpDomain: 调用链接域名。http:// 或者 https:// 开头，不能/结尾
+        # @param SecureDetailStatus: <p>告警详情需要安全认证登录开关，未传时默认&quot;关闭&quot;</p><p>枚举值：</p><ul><li>1： 关闭（默认值）</li><li>2： 开启</li></ul>
+        # @type SecureDetailStatus: Integer
+        # @param JumpDomain: <p>调用链接域名。http:// 或者 https:// 开头，不能/结尾</p>
         # @type JumpDomain: String
-        # @param AlarmNoticeDeliverConfig: 投递相关信息。
+        # @param AlarmNoticeDeliverConfig: <p>投递相关信息。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlarmNoticeDeliverConfig: :class:`Tencentcloud::Cls.v20201016.models.AlarmNoticeDeliverConfig`
-        # @param CreateTime: 创建时间。格式： YYYY-MM-DD HH:MM:SS
+        # @param CreateTime: <p>创建时间。格式： YYYY-MM-DD HH:MM:SS</p>
         # @type CreateTime: String
-        # @param UpdateTime: 最近更新时间。格式： YYYY-MM-DD HH:MM:SS
+        # @param UpdateTime: <p>最近更新时间。格式： YYYY-MM-DD HH:MM:SS</p>
         # @type UpdateTime: String
-        # @param DeliverStatus: 投递日志开关。
-
-        # 参数值：
-
-        # 1：关闭
-
-        # 2：开启
+        # @param DeliverStatus: <p>投递日志开关。</p><p>参数值：</p><p>1：关闭</p><p>2：开启</p>
         # @type DeliverStatus: Integer
-        # @param DeliverFlag: 投递日志标识。
-
-        # 参数值：
-
-        # 1：未启用
-
-        # 2：已启用
-
-        # 3：投递异常
+        # @param DeliverFlag: <p>投递日志标识。</p><p>参数值：</p><p>1：未启用</p><p>2：已启用</p><p>3：投递异常</p>
         # @type DeliverFlag: Integer
-        # @param AlarmShieldCount: 通知渠道组配置的告警屏蔽统计状态数量信息。
+        # @param AlarmShieldCount: <p>通知渠道组配置的告警屏蔽统计状态数量信息。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlarmShieldCount: :class:`Tencentcloud::Cls.v20201016.models.AlarmShieldCount`
-        # @param CallbackPrioritize: 统一设定自定义回调参数。
-        # -  true: 使用通知内容模板中的自定义回调参数覆盖告警策略中单独配置的请求头及请求内容。
-        # -  false:优先使用告警策略中单独配置的请求头及请求内容。
+        # @param CallbackPrioritize: <p>统一设定自定义回调参数。</p><ul><li>true: 使用通知内容模板中的自定义回调参数覆盖告警策略中单独配置的请求头及请求内容。</li><li>false:优先使用告警策略中单独配置的请求头及请求内容。</li></ul>
         # @type CallbackPrioritize: Boolean
 
-        attr_accessor :Name, :Tags, :Type, :NoticeReceivers, :WebCallbacks, :AlarmNoticeId, :NoticeRules, :AlarmShieldStatus, :JumpDomain, :AlarmNoticeDeliverConfig, :CreateTime, :UpdateTime, :DeliverStatus, :DeliverFlag, :AlarmShieldCount, :CallbackPrioritize
+        attr_accessor :Name, :Tags, :Type, :NoticeReceivers, :WebCallbacks, :AlarmNoticeId, :NoticeRules, :AlarmShieldStatus, :SecureDetailStatus, :JumpDomain, :AlarmNoticeDeliverConfig, :CreateTime, :UpdateTime, :DeliverStatus, :DeliverFlag, :AlarmShieldCount, :CallbackPrioritize
 
-        def initialize(name=nil, tags=nil, type=nil, noticereceivers=nil, webcallbacks=nil, alarmnoticeid=nil, noticerules=nil, alarmshieldstatus=nil, jumpdomain=nil, alarmnoticedeliverconfig=nil, createtime=nil, updatetime=nil, deliverstatus=nil, deliverflag=nil, alarmshieldcount=nil, callbackprioritize=nil)
+        def initialize(name=nil, tags=nil, type=nil, noticereceivers=nil, webcallbacks=nil, alarmnoticeid=nil, noticerules=nil, alarmshieldstatus=nil, securedetailstatus=nil, jumpdomain=nil, alarmnoticedeliverconfig=nil, createtime=nil, updatetime=nil, deliverstatus=nil, deliverflag=nil, alarmshieldcount=nil, callbackprioritize=nil)
           @Name = name
           @Tags = tags
           @Type = type
@@ -477,6 +459,7 @@ module TencentCloud
           @AlarmNoticeId = alarmnoticeid
           @NoticeRules = noticerules
           @AlarmShieldStatus = alarmshieldstatus
+          @SecureDetailStatus = securedetailstatus
           @JumpDomain = jumpdomain
           @AlarmNoticeDeliverConfig = alarmnoticedeliverconfig
           @CreateTime = createtime
@@ -524,6 +507,7 @@ module TencentCloud
             end
           end
           @AlarmShieldStatus = params['AlarmShieldStatus']
+          @SecureDetailStatus = params['SecureDetailStatus']
           @JumpDomain = params['JumpDomain']
           unless params['AlarmNoticeDeliverConfig'].nil?
             @AlarmNoticeDeliverConfig = AlarmNoticeDeliverConfig.new
@@ -2845,46 +2829,34 @@ module TencentCloud
 
       # CreateAlarmNotice请求参数结构体
       class CreateAlarmNoticeRequest < TencentCloud::Common::AbstractModel
-        # @param Name: 通知渠道组名称。最大支持255个字节。 不支持 '|'。
+        # @param Name: <p>通知渠道组名称。最大支持255个字节。 不支持 &#39;|&#39;。</p>
         # @type Name: String
-        # @param Tags: 标签描述列表，通过指定该参数可以同时绑定标签到相应的通知渠道组。最大支持50个标签键值对，并且不能有重复的键值对。
+        # @param Tags: <p>标签描述列表，通过指定该参数可以同时绑定标签到相应的通知渠道组。最大支持50个标签键值对，并且不能有重复的键值对。</p>
         # @type Tags: Array
-        # @param Type: 【简易模式】（简易模式/告警模式二选一，分别配置相应参数）
-        # 需要发送通知的告警类型。可选值：
-        # - Trigger - 告警触发
-        # - Recovery - 告警恢复
-        # - All - 告警触发和告警恢复
+        # @param Type: <p>【简易模式】（简易模式/告警模式二选一，分别配置相应参数）<br>需要发送通知的告警类型。可选值：</p><ul><li>Trigger - 告警触发</li><li>Recovery - 告警恢复</li><li>All - 告警触发和告警恢复</li></ul>
         # @type Type: String
-        # @param NoticeReceivers: 【简易模式】（简易模式/告警模式二选一，分别配置相应参数）
-        # 通知接收对象。
+        # @param NoticeReceivers: <p>【简易模式】（简易模式/告警模式二选一，分别配置相应参数）<br>通知接收对象。</p>
         # @type NoticeReceivers: Array
-        # @param WebCallbacks: 【简易模式】（简易模式/告警模式二选一，分别配置相应参数）
-        # 接口回调信息（包括企业微信、钉钉、飞书）。
+        # @param WebCallbacks: <p>【简易模式】（简易模式/告警模式二选一，分别配置相应参数）<br>接口回调信息（包括企业微信、钉钉、飞书）。</p>
         # @type WebCallbacks: Array
-        # @param NoticeRules: 【高级模式】（简易模式/告警模式二选一，分别配置相应参数）
-        # 通知规则。
+        # @param NoticeRules: <p>【高级模式】（简易模式/告警模式二选一，分别配置相应参数）<br>通知规则。</p>
         # @type NoticeRules: Array
-        # @param JumpDomain: 查询数据链接。http:// 或者 https:// 开头，不能/结尾
+        # @param JumpDomain: <p>查询数据链接。http:// 或者 https:// 开头，不能/结尾</p>
         # @type JumpDomain: String
-        # @param DeliverStatus: 投递日志开关。可取值如下：
-        # 1：关闭（默认值）；
-        # 2：开启
-        # 投递日志开关开启时， DeliverConfig参数必填。
+        # @param DeliverStatus: <p>投递日志开关。可取值如下：<br>1：关闭（默认值）；<br>2：开启<br>投递日志开关开启时， DeliverConfig参数必填。</p>
         # @type DeliverStatus: Integer
-        # @param DeliverConfig: 投递日志配置参数。当DeliverStatus开启时，必填。
+        # @param DeliverConfig: <p>投递日志配置参数。当DeliverStatus开启时，必填。</p>
         # @type DeliverConfig: :class:`Tencentcloud::Cls.v20201016.models.DeliverConfig`
-        # @param AlarmShieldStatus: 免登录操作告警开关。可取值如下：
-        # -      1：关闭
-        # -      2：开启（默认值）
+        # @param AlarmShieldStatus: <p>免登录操作告警开关。可取值如下：</p><ul><li>1：关闭</li><li>2：开启（默认值）</li></ul>
         # @type AlarmShieldStatus: Integer
-        # @param CallbackPrioritize: 统一设定自定义回调参数。
-        # -  true: 使用通知内容模板中的自定义回调参数覆盖告警策略中单独配置的请求头及请求内容。
-        # -  false:优先使用告警策略中单独配置的请求头及请求内容。
+        # @param SecureDetailStatus: <p>告警详情安全认证跳转开关，未传时默认&quot;关闭&quot;</p><p>枚举值：</p><ul><li>1： 关闭（默认值）</li><li>2： 开启</li></ul>
+        # @type SecureDetailStatus: Integer
+        # @param CallbackPrioritize: <p>统一设定自定义回调参数。</p><ul><li>true: 使用通知内容模板中的自定义回调参数覆盖告警策略中单独配置的请求头及请求内容。</li><li>false:优先使用告警策略中单独配置的请求头及请求内容。</li></ul>
         # @type CallbackPrioritize: Boolean
 
-        attr_accessor :Name, :Tags, :Type, :NoticeReceivers, :WebCallbacks, :NoticeRules, :JumpDomain, :DeliverStatus, :DeliverConfig, :AlarmShieldStatus, :CallbackPrioritize
+        attr_accessor :Name, :Tags, :Type, :NoticeReceivers, :WebCallbacks, :NoticeRules, :JumpDomain, :DeliverStatus, :DeliverConfig, :AlarmShieldStatus, :SecureDetailStatus, :CallbackPrioritize
 
-        def initialize(name=nil, tags=nil, type=nil, noticereceivers=nil, webcallbacks=nil, noticerules=nil, jumpdomain=nil, deliverstatus=nil, deliverconfig=nil, alarmshieldstatus=nil, callbackprioritize=nil)
+        def initialize(name=nil, tags=nil, type=nil, noticereceivers=nil, webcallbacks=nil, noticerules=nil, jumpdomain=nil, deliverstatus=nil, deliverconfig=nil, alarmshieldstatus=nil, securedetailstatus=nil, callbackprioritize=nil)
           @Name = name
           @Tags = tags
           @Type = type
@@ -2895,6 +2867,7 @@ module TencentCloud
           @DeliverStatus = deliverstatus
           @DeliverConfig = deliverconfig
           @AlarmShieldStatus = alarmshieldstatus
+          @SecureDetailStatus = securedetailstatus
           @CallbackPrioritize = callbackprioritize
         end
 
@@ -2940,13 +2913,14 @@ module TencentCloud
             @DeliverConfig.deserialize(params['DeliverConfig'])
           end
           @AlarmShieldStatus = params['AlarmShieldStatus']
+          @SecureDetailStatus = params['SecureDetailStatus']
           @CallbackPrioritize = params['CallbackPrioritize']
         end
       end
 
       # CreateAlarmNotice返回参数结构体
       class CreateAlarmNoticeResponse < TencentCloud::Common::AbstractModel
-        # @param AlarmNoticeId: 告警模板ID
+        # @param AlarmNoticeId: <p>告警模板ID</p>
         # @type AlarmNoticeId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -15415,53 +15389,36 @@ module TencentCloud
 
       # ModifyAlarmNotice请求参数结构体
       class ModifyAlarmNoticeRequest < TencentCloud::Common::AbstractModel
-        # @param AlarmNoticeId: 通知渠道组ID。-通过[获取通知渠道组列表](https://cloud.tencent.com/document/api/614/56462)获取通知渠道组ID
+        # @param AlarmNoticeId: <p>通知渠道组ID。-通过<a href="https://cloud.tencent.com/document/api/614/56462">获取通知渠道组列表</a>获取通知渠道组ID</p>
         # @type AlarmNoticeId: String
-        # @param Tags: 标签描述列表，通过指定该参数可以同时绑定标签到相应的通知渠道组。最大支持10个标签键值对，并且不能有重复的键值对。
+        # @param Tags: <p>标签描述列表，通过指定该参数可以同时绑定标签到相应的通知渠道组。最大支持10个标签键值对，并且不能有重复的键值对。</p>
         # @type Tags: Array
-        # @param Name: 通知渠道组名称。
+        # @param Name: <p>通知渠道组名称。</p>
         # @type Name: String
-        # @param Type: 通知类型。可选值：
-        # <li> Trigger - 告警触发</li>
-        # <li> Recovery - 告警恢复</li>
-        # <li> All - 告警触发和告警恢复</li>
+        # @param Type: <p>通知类型。可选值：</p><li> Trigger - 告警触发</li><li> Recovery - 告警恢复</li><li> All - 告警触发和告警恢复</li>
         # @type Type: String
-        # @param NoticeReceivers: 通知接收对象。
+        # @param NoticeReceivers: <p>通知接收对象。</p>
         # @type NoticeReceivers: Array
-        # @param WebCallbacks: 接口回调信息（包括企业微信等）。
+        # @param WebCallbacks: <p>接口回调信息（包括企业微信等）。</p>
         # @type WebCallbacks: Array
-        # @param NoticeRules: 通知规则。
-
-        # 注意:
-
-        # - Type、NoticeReceivers和WebCallbacks是一组配置，NoticeRules是另一组配置，2组配置互斥。
-        # - 传其中一组数据，则另一组数据置空。
+        # @param NoticeRules: <p>通知规则。</p><p>注意: </p><ul><li>Type、NoticeReceivers和WebCallbacks是一组配置，NoticeRules是另一组配置，2组配置互斥。</li><li>传其中一组数据，则另一组数据置空。</li></ul>
         # @type NoticeRules: Array
-        # @param JumpDomain: 调用链接域名。http:// 或者 https:// 开头，不能/结尾
+        # @param JumpDomain: <p>调用链接域名。http:// 或者 https:// 开头，不能/结尾</p>
         # @type JumpDomain: String
-        # @param DeliverStatus: 投递日志开关。
-
-        # 参数值：
-        # 1：关闭；
-
-        # 2：开启
+        # @param DeliverStatus: <p>投递日志开关。</p><p>参数值：<br>1：关闭；</p><p>2：开启</p>
         # @type DeliverStatus: Integer
-        # @param DeliverConfig: 投递日志配置。
+        # @param DeliverConfig: <p>投递日志配置。</p>
         # @type DeliverConfig: :class:`Tencentcloud::Cls.v20201016.models.DeliverConfig`
-        # @param AlarmShieldStatus: 免登录操作告警开关。
-
-        # 参数值：
-        #         1：关闭
-        #         2：开启（默认开启）
+        # @param AlarmShieldStatus: <p>免登录操作告警开关。</p><p>参数值：<br>        1：关闭<br>        2：开启（默认开启）</p>
         # @type AlarmShieldStatus: Integer
-        # @param CallbackPrioritize: 统一设定自定义回调参数。
-        # -  true: 使用通知内容模板中的自定义回调参数覆盖告警策略中单独配置的请求头及请求内容。
-        # -  false:优先使用告警策略中单独配置的请求头及请求内容。
+        # @param SecureDetailStatus: <p>告警详情安全认证跳转开关，未传时默认&quot;关闭&quot;</p><p>枚举值：</p><ul><li>1： 关闭（默认值）</li><li>2： 开启</li></ul>
+        # @type SecureDetailStatus: Integer
+        # @param CallbackPrioritize: <p>统一设定自定义回调参数。</p><ul><li>true: 使用通知内容模板中的自定义回调参数覆盖告警策略中单独配置的请求头及请求内容。</li><li>false:优先使用告警策略中单独配置的请求头及请求内容。</li></ul>
         # @type CallbackPrioritize: Boolean
 
-        attr_accessor :AlarmNoticeId, :Tags, :Name, :Type, :NoticeReceivers, :WebCallbacks, :NoticeRules, :JumpDomain, :DeliverStatus, :DeliverConfig, :AlarmShieldStatus, :CallbackPrioritize
+        attr_accessor :AlarmNoticeId, :Tags, :Name, :Type, :NoticeReceivers, :WebCallbacks, :NoticeRules, :JumpDomain, :DeliverStatus, :DeliverConfig, :AlarmShieldStatus, :SecureDetailStatus, :CallbackPrioritize
 
-        def initialize(alarmnoticeid=nil, tags=nil, name=nil, type=nil, noticereceivers=nil, webcallbacks=nil, noticerules=nil, jumpdomain=nil, deliverstatus=nil, deliverconfig=nil, alarmshieldstatus=nil, callbackprioritize=nil)
+        def initialize(alarmnoticeid=nil, tags=nil, name=nil, type=nil, noticereceivers=nil, webcallbacks=nil, noticerules=nil, jumpdomain=nil, deliverstatus=nil, deliverconfig=nil, alarmshieldstatus=nil, securedetailstatus=nil, callbackprioritize=nil)
           @AlarmNoticeId = alarmnoticeid
           @Tags = tags
           @Name = name
@@ -15473,6 +15430,7 @@ module TencentCloud
           @DeliverStatus = deliverstatus
           @DeliverConfig = deliverconfig
           @AlarmShieldStatus = alarmshieldstatus
+          @SecureDetailStatus = securedetailstatus
           @CallbackPrioritize = callbackprioritize
         end
 
@@ -15519,6 +15477,7 @@ module TencentCloud
             @DeliverConfig.deserialize(params['DeliverConfig'])
           end
           @AlarmShieldStatus = params['AlarmShieldStatus']
+          @SecureDetailStatus = params['SecureDetailStatus']
           @CallbackPrioritize = params['CallbackPrioritize']
         end
       end

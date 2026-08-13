@@ -3825,33 +3825,37 @@ module TencentCloud
 
       # DescribeExport请求参数结构体
       class DescribeExportRequest < TencentCloud::Common::AbstractModel
-        # @param ExportId: 日志下载任务的ID
+        # @param ExportId: <p>日志下载任务的ID</p>
         # @type ExportId: String
+        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @type TiProjectId: String
 
-        attr_accessor :ExportId
+        attr_accessor :ExportId, :TiProjectId
 
-        def initialize(exportid=nil)
+        def initialize(exportid=nil, tiprojectid=nil)
           @ExportId = exportid
+          @TiProjectId = tiprojectid
         end
 
         def deserialize(params)
           @ExportId = params['ExportId']
+          @TiProjectId = params['TiProjectId']
         end
       end
 
       # DescribeExport返回参数结构体
       class DescribeExportResponse < TencentCloud::Common::AbstractModel
-        # @param ExportId: 日志下载任务的ID
+        # @param ExportId: <p>日志下载任务的ID</p>
         # @type ExportId: String
-        # @param FileName: 日志下载文件名
+        # @param FileName: <p>日志下载文件名</p>
         # @type FileName: String
-        # @param CosPath: 日志导出路径,有效期一个小时，请尽快使用该路径下载。
+        # @param CosPath: <p>日志导出路径,有效期一个小时，请尽快使用该路径下载。</p>
         # @type CosPath: String
-        # @param CreateTime: 下载任务创建时间
+        # @param CreateTime: <p>下载任务创建时间</p>
         # @type CreateTime: String
-        # @param FileSize: 日志文件大小
+        # @param FileSize: <p>日志文件大小</p>
         # @type FileSize: String
-        # @param Status: 日志下载状态。Processing:导出正在进行中，Completed:导出完成，Failed:导出失败，Expired:日志导出已过期(三天有效期), Queuing 排队中
+        # @param Status: <p>日志下载状态。Processing:导出正在进行中，Completed:导出完成，Failed:导出失败，Expired:日志导出已过期(三天有效期), Queuing 排队中</p>
         # @type Status: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

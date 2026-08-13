@@ -80,7 +80,7 @@ module TencentCloud
         # @type Keywords: Array
         # @param Score: <p>该字段用于返回当前标签（Label）下的置信度，取值范围：0（<strong>置信度最低</strong>）-100（<strong>置信度最高</strong> ），越高代表文本越有可能属于当前返回的标签；如：<em>色情 99</em>，则表明该文本非常有可能属于色情内容；<em>色情 0</em>，则表明该文本不属于色情内容。</p>
         # @type Score: Integer
-        # @param LibType: <p>该字段用于返回自定义关键词对应的词库类型，取值为<strong>1</strong>（黑白库）和<strong>2</strong>（自定义关键词库），若未配置自定义关键词库,则默认值为1（黑白库匹配）。</p>
+        # @param LibType: <p>该字段用于返回自定义关键词对应的词库类型，取值为<strong>1</strong>（黑白库）和<strong>2</strong>（自定义关键词库），若未配置自定义关键词库,则默认值为1（黑白库匹配）。</p><p>枚举值：</p><ul><li>1： 黑白库</li><li>2： 自定义关键词库</li></ul>
         # @type LibType: Integer
         # @param LibId: <p>该字段用于返回自定义库的ID，以方便自定义库管理和配置。</p>
         # @type LibId: String
@@ -93,10 +93,13 @@ module TencentCloud
         # @type Tags: Array
         # @param HitInfos: <p>该字段用于返回违规文本命中信息</p>
         # @type HitInfos: Array
+        # @param HitSnippetInfos: <p>该字段用于标记导致本次审核命中标签的原文内容位置信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HitSnippetInfos: Array
 
-        attr_accessor :Label, :Suggestion, :Keywords, :Score, :LibType, :LibId, :LibName, :SubLabel, :Tags, :HitInfos
+        attr_accessor :Label, :Suggestion, :Keywords, :Score, :LibType, :LibId, :LibName, :SubLabel, :Tags, :HitInfos, :HitSnippetInfos
 
-        def initialize(label=nil, suggestion=nil, keywords=nil, score=nil, libtype=nil, libid=nil, libname=nil, sublabel=nil, tags=nil, hitinfos=nil)
+        def initialize(label=nil, suggestion=nil, keywords=nil, score=nil, libtype=nil, libid=nil, libname=nil, sublabel=nil, tags=nil, hitinfos=nil, hitsnippetinfos=nil)
           @Label = label
           @Suggestion = suggestion
           @Keywords = keywords
@@ -107,6 +110,7 @@ module TencentCloud
           @SubLabel = sublabel
           @Tags = tags
           @HitInfos = hitinfos
+          @HitSnippetInfos = hitsnippetinfos
         end
 
         def deserialize(params)
@@ -132,6 +136,14 @@ module TencentCloud
               hitinfo_tmp = HitInfo.new
               hitinfo_tmp.deserialize(i)
               @HitInfos << hitinfo_tmp
+            end
+          end
+          unless params['HitSnippetInfos'].nil?
+            @HitSnippetInfos = []
+            params['HitSnippetInfos'].each do |i|
+              hitsnippetinfo_tmp = HitSnippetInfo.new
+              hitsnippetinfo_tmp.deserialize(i)
+              @HitSnippetInfos << hitsnippetinfo_tmp
             end
           end
         end
@@ -523,10 +535,12 @@ module TencentCloud
         # @type Type: String
         # @param SessionId: <p>适用于上下文关联审核场景，若多条文本内容需要联合审核，通过该字段关联会话。</p>
         # @type SessionId: String
+        # @param BizTag: <p>该参数是送审客户的自定义参数，可用于标记客户的一些内部信息方便做审核明细取数筛选，没有特殊需求客户可不填写</p>
+        # @type BizTag: String
 
-        attr_accessor :Content, :BizType, :DataId, :User, :Device, :SourceLanguage, :Type, :SessionId
+        attr_accessor :Content, :BizType, :DataId, :User, :Device, :SourceLanguage, :Type, :SessionId, :BizTag
 
-        def initialize(content=nil, biztype=nil, dataid=nil, user=nil, device=nil, sourcelanguage=nil, type=nil, sessionid=nil)
+        def initialize(content=nil, biztype=nil, dataid=nil, user=nil, device=nil, sourcelanguage=nil, type=nil, sessionid=nil, biztag=nil)
           @Content = content
           @BizType = biztype
           @DataId = dataid
@@ -535,6 +549,7 @@ module TencentCloud
           @SourceLanguage = sourcelanguage
           @Type = type
           @SessionId = sessionid
+          @BizTag = biztag
         end
 
         def deserialize(params)
@@ -552,6 +567,7 @@ module TencentCloud
           @SourceLanguage = params['SourceLanguage']
           @Type = params['Type']
           @SessionId = params['SessionId']
+          @BizTag = params['BizTag']
         end
       end
 

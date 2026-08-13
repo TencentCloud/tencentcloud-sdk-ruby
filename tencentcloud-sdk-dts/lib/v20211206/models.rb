@@ -145,33 +145,33 @@ module TencentCloud
 
       # 一致性校验摘要信息
       class CompareAbstractInfo < TencentCloud::Common::AbstractModel
-        # @param Options: 校验配置参数
+        # @param Options: <p>校验配置参数</p>
         # @type Options: :class:`Tencentcloud::Dts.v20211206.models.CompareOptions`
-        # @param Objects: 一致性校验对比对象
+        # @param Objects: <p>一致性校验对比对象</p>
         # @type Objects: :class:`Tencentcloud::Dts.v20211206.models.CompareObject`
-        # @param Conclusion: 对比结论: same,different
+        # @param Conclusion: <p>对比结论: same,different</p>
         # @type Conclusion: String
-        # @param Status: 任务状态: success,failed
+        # @param Status: <p>任务状态: success,failed</p>
         # @type Status: String
-        # @param TotalTables: 总的表数量
+        # @param TotalTables: <p>总的表数量</p>
         # @type TotalTables: Integer
-        # @param CheckedTables: 已校验的表数量
+        # @param CheckedTables: <p>已校验的表数量</p>
         # @type CheckedTables: Integer
-        # @param DifferentTables: 不一致的表数量
+        # @param DifferentTables: <p>不一致的表数量</p>
         # @type DifferentTables: Integer
-        # @param SkippedTables: 跳过校验的表数量
+        # @param SkippedTables: <p>跳过校验的表数量</p>
         # @type SkippedTables: Integer
-        # @param NearlyTableCount: 预估表总数
+        # @param NearlyTableCount: <p>预估表总数</p>
         # @type NearlyTableCount: Integer
-        # @param DifferentRows: 不一致的数据行数量
+        # @param DifferentRows: <p>不一致的数据行数量</p>
         # @type DifferentRows: Integer
-        # @param SrcSampleRows: 源库行数，当对比类型为**行数对比**时此项有意义
+        # @param SrcSampleRows: <p>源库行数，当对比类型为<strong>行数对比</strong>时此项有意义</p>
         # @type SrcSampleRows: Integer
-        # @param DstSampleRows: 目标库行数，当对比类型为**行数对比**时此项有意义
+        # @param DstSampleRows: <p>目标库行数，当对比类型为<strong>行数对比</strong>时此项有意义</p>
         # @type DstSampleRows: Integer
-        # @param StartedAt: 开始时间
+        # @param StartedAt: <p>开始时间。当 <code>DateTimeISOFormat=true</code> 时返回 RFC 3339 格式（如 <code>2026-04-23T20:21:35+08:00</code>），否则返回 <code>yyyy-mm-dd hh:mm:ss</code>（北京时间）</p>
         # @type StartedAt: String
-        # @param FinishedAt: 结束时间
+        # @param FinishedAt: <p>结束时间。当 <code>DateTimeISOFormat=true</code> 时返回 RFC 3339 格式（如 <code>2026-04-23T20:21:35+08:00</code>），否则返回 <code>yyyy-mm-dd hh:mm:ss</code>（北京时间）</p>
         # @type FinishedAt: String
 
         attr_accessor :Options, :Objects, :Conclusion, :Status, :TotalTables, :CheckedTables, :DifferentTables, :SkippedTables, :NearlyTableCount, :DifferentRows, :SrcSampleRows, :DstSampleRows, :StartedAt, :FinishedAt
@@ -342,19 +342,19 @@ module TencentCloud
 
       # 一致性校验库表对象
       class CompareObjectItem < TencentCloud::Common::AbstractModel
-        # @param DbName: 数据库名
+        # @param DbName: <p>数据库名</p>
         # @type DbName: String
-        # @param DbMode: 数据库选择模式: all 为当前对象下的所有对象,partial 为部分对象
+        # @param DbMode: <p>数据库选择模式: all 为当前对象下的所有对象,partial 为部分对象</p>
         # @type DbMode: String
-        # @param SchemaName: schema名称
+        # @param SchemaName: <p>schema名称</p>
         # @type SchemaName: String
-        # @param TableMode: 表选择模式: all 为当前对象下的所有表对象,partial 为部分表对象
+        # @param TableMode: <p>表选择模式: all 为当前对象下的所有表对象,partial 为部分表对象</p>
         # @type TableMode: String
-        # @param Tables: 用于一致性校验的表配置，当 TableMode 为 partial 时，需要填写
+        # @param Tables: <p>用于一致性校验的表配置，当 TableMode 为 partial 时，需要填写</p>
         # @type Tables: Array
-        # @param ViewMode: 视图选择模式: all 为当前对象下的所有视图对象,partial 为部分视图对象(一致性校验不校验视图，当前参数未启作用)
+        # @param ViewMode: <p>视图选择模式: all 为当前对象下的所有视图对象,partial 为部分视图对象(一致性校验不校验视图，当前参数未启作用)</p>
         # @type ViewMode: String
-        # @param Views: 用于一致性校验的视图配置，当 ViewMode 为 partial 时， 需要填写(一致性校验不校验视图，当前参数未启作用)
+        # @param Views: <p>用于一致性校验的视图配置，当 ViewMode 为 partial 时， 需要填写(一致性校验不校验视图，当前参数未启作用)</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Views: Array
 
@@ -505,29 +505,29 @@ module TencentCloud
 
       # 不一致的表的校验结果详情。增量和全量都是这个结构，某些字段对增量没有意义，可以忽略。
       class CompareTableResult < TencentCloud::Common::AbstractModel
-        # @param Db: 库名
+        # @param Db: <p>库名</p>
         # @type Db: String
-        # @param Schema: schema名
+        # @param Schema: <p>schema名</p>
         # @type Schema: String
-        # @param Table: 表名
+        # @param Table: <p>表名</p>
         # @type Table: String
-        # @param Conclusion: 校验结果
+        # @param Conclusion: <p>校验结果</p>
         # @type Conclusion: String
-        # @param Status: 校验状态。仅全量阶段有意义
+        # @param Status: <p>校验状态。仅全量阶段有意义</p>
         # @type Status: String
-        # @param Progress: 校验进度。仅全量阶段有意义
+        # @param Progress: <p>校验进度。仅全量阶段有意义</p>
         # @type Progress: Integer
-        # @param RowCount: 不一致行数
+        # @param RowCount: <p>不一致行数</p>
         # @type RowCount: Integer
-        # @param StartedAt: 该表开始校验的时间
+        # @param StartedAt: <p>该表开始校验的时间。当 <code>DateTimeISOFormat=true</code> 时返回 RFC 3339 格式（如 <code>2026-04-23T20:21:35+08:00</code>），否则返回 <code>yyyy-mm-dd hh:mm:ss</code>（北京时间）</p>
         # @type StartedAt: String
-        # @param FinishedAt: 该表校验结束的时间
+        # @param FinishedAt: <p>该表校验结束的时间。当 <code>DateTimeISOFormat=true</code> 时返回 RFC 3339 格式（如 <code>2026-04-23T20:21:35+08:00</code>），否则返回 <code>yyyy-mm-dd hh:mm:ss</code>（北京时间）</p>
         # @type FinishedAt: String
-        # @param ExpectedAt: 预计该表校验结束的时间
+        # @param ExpectedAt: <p>预计该表校验结束的时间。当 <code>DateTimeISOFormat=true</code> 时返回 RFC 3339 格式（如 <code>2026-04-23T20:21:35+08:00</code>），否则返回 <code>yyyy-mm-dd hh:mm:ss</code>（北京时间）</p>
         # @type ExpectedAt: String
-        # @param SrcItem: 源端行数，如果是行数校验此值有意义
+        # @param SrcItem: <p>源端行数，如果是行数校验此值有意义</p>
         # @type SrcItem: String
-        # @param DstItem: 目标端行数，如果是行数校验此值有意义
+        # @param DstItem: <p>目标端行数，如果是行数校验此值有意义</p>
         # @type DstItem: String
 
         attr_accessor :Db, :Schema, :Table, :Conclusion, :Status, :Progress, :RowCount, :StartedAt, :FinishedAt, :ExpectedAt, :SrcItem, :DstItem
@@ -585,33 +585,33 @@ module TencentCloud
 
       # 一致性校验对象信息
       class CompareTaskItem < TencentCloud::Common::AbstractModel
-        # @param JobId: 任务id
+        # @param JobId: <p>任务id</p>
         # @type JobId: String
-        # @param CompareTaskId: 对比任务 Id
+        # @param CompareTaskId: <p>对比任务 Id</p>
         # @type CompareTaskId: String
-        # @param TaskName: 对比任务名称
+        # @param TaskName: <p>对比任务名称</p>
         # @type TaskName: String
-        # @param Status: 对比任务状态, 可能的值：created - 创建完成；readyRun - 等待运行；running - 运行中；success - 成功；stopping - 结束中；failed - 失败；canceled - 已终止
+        # @param Status: <p>对比任务状态, 可能的值：created - 创建完成；readyRun - 等待运行；running - 运行中；success - 成功；stopping - 结束中；failed - 失败；canceled - 已终止</p>
         # @type Status: String
-        # @param Config: 对比任务配置
+        # @param Config: <p>对比任务配置</p>
         # @type Config: :class:`Tencentcloud::Dts.v20211206.models.CompareObject`
-        # @param CheckProcess: 对比任务校验详情
+        # @param CheckProcess: <p>对比任务校验详情</p>
         # @type CheckProcess: :class:`Tencentcloud::Dts.v20211206.models.ProcessProgress`
-        # @param CompareProcess: 对比任务运行详情
+        # @param CompareProcess: <p>对比任务运行详情</p>
         # @type CompareProcess: :class:`Tencentcloud::Dts.v20211206.models.ProcessProgress`
-        # @param Conclusion: 对比结果, 可能的值：same - 一致；different - 不一致；skipAll - 跳过
+        # @param Conclusion: <p>对比结果, 可能的值：same - 一致；different - 不一致；skipAll - 跳过</p>
         # @type Conclusion: String
-        # @param CreatedAt: 任务创建时间
+        # @param CreatedAt: <p>任务创建时间。当 <code>DateTimeISOFormat=true</code> 时返回 RFC 3339 格式（如 <code>2026-04-23T20:21:35+08:00</code>），否则返回 <code>yyyy-mm-dd hh:mm:ss</code>（北京时间）</p>
         # @type CreatedAt: String
-        # @param StartedAt: 任务启动时间
+        # @param StartedAt: <p>任务启动时间。当 <code>DateTimeISOFormat=true</code> 时返回 RFC 3339 格式（如 <code>2026-04-23T20:21:35+08:00</code>），否则返回 <code>yyyy-mm-dd hh:mm:ss</code>（北京时间）</p>
         # @type StartedAt: String
-        # @param FinishedAt: 对比结束时间
+        # @param FinishedAt: <p>对比结束时间。当 <code>DateTimeISOFormat=true</code> 时返回 RFC 3339 格式（如 <code>2026-04-23T20:21:35+08:00</code>），否则返回 <code>yyyy-mm-dd hh:mm:ss</code>（北京时间）</p>
         # @type FinishedAt: String
-        # @param Method: 对比类型，dataCheck(完整数据对比)、sampleDataCheck(抽样数据对比)、rowsCount(行数对比)
+        # @param Method: <p>对比类型，dataCheck(完整数据对比)、sampleDataCheck(抽样数据对比)、rowsCount(行数对比)</p>
         # @type Method: String
-        # @param Options: 对比配置信息
+        # @param Options: <p>对比配置信息</p>
         # @type Options: :class:`Tencentcloud::Dts.v20211206.models.CompareOptions`
-        # @param Message: 一致性校验提示信息
+        # @param Message: <p>一致性校验提示信息</p>
         # @type Message: String
 
         attr_accessor :JobId, :CompareTaskId, :TaskName, :Status, :Config, :CheckProcess, :CompareProcess, :Conclusion, :CreatedAt, :StartedAt, :FinishedAt, :Method, :Options, :Message
@@ -837,7 +837,7 @@ module TencentCloud
         # @type JobMode: String
         # @param RunMode: <p>运行模式，取值如：Immediate(表示立即运行，默认为此项值)、Timed(表示定时运行)</p>
         # @type RunMode: String
-        # @param ExpectRunTime: <p>期待启动时间，当RunMode取值为Timed时，此值必填，形如：&quot;2006-01-02 15:04:05&quot;</p>
+        # @param ExpectRunTime: <p>期待启动时间，当 <code>RunMode</code> 取值为 <code>Timed</code> 时此值必填。当 <code>DateTimeISOFormat=true</code> 时按 RFC 3339 传入（如 <code>2026-04-23T20:21:35+08:00</code>），否则按 <code>yyyy-mm-dd hh:mm:ss</code>（北京时间）传入</p>
         # @type ExpectRunTime: String
         # @param SrcConnectType: <p>源端tdsql连接方式：proxy-通过tdsql proxy主机访问各个set节点，注意只有在自研上云的网络环境下才能通过这种方式连接，SrcInfos中只需要提供proxy主机信息。set-直连set节点，如选择直连set方式，需要正确填写proxy主机信息及所有set节点信息。源端是tdsqlmysql类型必填。</p>
         # @type SrcConnectType: String
@@ -853,7 +853,7 @@ module TencentCloud
         # @type DstInfos: :class:`Tencentcloud::Dts.v20211206.models.SyncDBEndpointInfos`
         # @param DstNodeType: <p>枚举值：cluster、single。目标库为单节点数据库使用single，多节点使用cluster</p>
         # @type DstNodeType: String
-        # @param Options: <p>同步任务选项；该字段下的RateLimitOption暂时无法生效、如果需要修改限速、可通过ModifySyncRateLimit接口完成限速</p>
+        # @param Options: <p>同步任务选项</p>
         # @type Options: :class:`Tencentcloud::Dts.v20211206.models.Options`
         # @param AutoRetryTimeRangeMinutes: <p>自动重试的时间段、可设置5至720分钟、0表示不重试</p>
         # @type AutoRetryTimeRangeMinutes: Integer
@@ -1767,45 +1767,45 @@ module TencentCloud
 
       # 迁移对象信息，在配置库表视图等对象信息时大小写敏感
       class DBItem < TencentCloud::Common::AbstractModel
-        # @param DbName: 需要迁移或同步的库名，当ObjectMode为partial时，此项必填
+        # @param DbName: <p>需要迁移或同步的库名，当ObjectMode为partial时，此项必填</p>
         # @type DbName: String
-        # @param NewDbName: 迁移或同步后的库名，默认与源库相同
+        # @param NewDbName: <p>迁移或同步后的库名，默认与源库相同</p>
         # @type NewDbName: String
-        # @param SchemaName: 迁移或同步的 schema
+        # @param SchemaName: <p>迁移或同步的 schema</p>
         # @type SchemaName: String
-        # @param NewSchemaName: 迁移或同步后的 schema name
+        # @param NewSchemaName: <p>迁移或同步后的 schema name</p>
         # @type NewSchemaName: String
-        # @param DBMode: DB选择模式: all(为当前对象下的所有对象)，partial(部分对象)，当ObjectMode为partial时，此项必填
+        # @param DBMode: <p>DB选择模式: all(为当前对象下的所有对象)，partial(部分对象)，当ObjectMode为partial时，此项必填</p>
         # @type DBMode: String
-        # @param SchemaMode: schema选择模式: all(为当前对象下的所有对象)，partial(部分对象)
+        # @param SchemaMode: <p>schema选择模式: all(为当前对象下的所有对象)，partial(部分对象)</p>
         # @type SchemaMode: String
-        # @param TableMode: 表选择模式: all(为当前对象下的所有对象)，partial(部分对象)，当DBMode为partial时此项必填
+        # @param TableMode: <p>表选择模式: all(为当前对象下的所有对象)，partial(部分对象)，当DBMode为partial时此项必填</p>
         # @type TableMode: String
-        # @param Tables: 表图对象集合，当 TableMode 为 partial 时，此项需要填写
+        # @param Tables: <p>表图对象集合，当 TableMode 为 partial 时，此项需要填写</p>
         # @type Tables: Array
-        # @param ViewMode: 视图选择模式: all 为当前对象下的所有视图对象,partial 为部分视图对象
+        # @param ViewMode: <p>视图选择模式: all 为当前对象下的所有视图对象,partial 为部分视图对象</p>
         # @type ViewMode: String
-        # @param Views: 视图对象集合，当 ViewMode 为 partial 时， 此项需要填写
+        # @param Views: <p>视图对象集合，当 ViewMode 为 partial 时， 此项需要填写</p>
         # @type Views: Array
-        # @param RoleMode: postgresql独有参数，角色选择模式: all 为当前对象下的所有角色对象,partial 为部分角色对象
+        # @param RoleMode: <p>postgresql独有参数，角色选择模式: all 为当前对象下的所有角色对象,partial 为部分角色对象</p>
         # @type RoleMode: String
-        # @param Roles: postgresql独有参数，当 RoleMode 为 partial 时， 此项需要填写
+        # @param Roles: <p>postgresql独有参数，当 RoleMode 为 partial 时， 此项需要填写</p>
         # @type Roles: Array
-        # @param FunctionMode: 选择要同步的模式，partial为部分，all为整选
+        # @param FunctionMode: <p>选择要同步的模式，partial为部分，all为整选</p>
         # @type FunctionMode: String
-        # @param TriggerMode: 选择要同步的模式，partial为部分，all为整选
+        # @param TriggerMode: <p>选择要同步的模式，partial为部分，all为整选</p>
         # @type TriggerMode: String
-        # @param EventMode: 选择要同步的模式，partial为部分，all为整选
+        # @param EventMode: <p>选择要同步的模式，partial为部分，all为整选</p>
         # @type EventMode: String
-        # @param ProcedureMode: 选择要同步的模式，partial为部分，all为整选
+        # @param ProcedureMode: <p>选择要同步的模式，partial为部分，all为整选</p>
         # @type ProcedureMode: String
-        # @param Functions: FunctionMode取值为partial时需要填写
+        # @param Functions: <p>FunctionMode取值为partial时需要填写</p>
         # @type Functions: Array
-        # @param Procedures: ProcedureMode取值为partial时需要填写
+        # @param Procedures: <p>ProcedureMode取值为partial时需要填写</p>
         # @type Procedures: Array
-        # @param Events: EventMode取值为partial时需要填写
+        # @param Events: <p>EventMode取值为partial时需要填写</p>
         # @type Events: Array
-        # @param Triggers: TriggerMode取值为partial时需要填写
+        # @param Triggers: <p>TriggerMode取值为partial时需要填写</p>
         # @type Triggers: Array
 
         attr_accessor :DbName, :NewDbName, :SchemaName, :NewSchemaName, :DBMode, :SchemaMode, :TableMode, :Tables, :ViewMode, :Views, :RoleMode, :Roles, :FunctionMode, :TriggerMode, :EventMode, :ProcedureMode, :Functions, :Procedures, :Events, :Triggers
@@ -2256,21 +2256,21 @@ module TencentCloud
 
       # DescribeCompareDiffItems请求参数结构体
       class DescribeCompareDiffItemsRequest < TencentCloud::Common::AbstractModel
-        # @param JobId: 迁移任务 Id
+        # @param JobId: <p>迁移任务 Id</p>
         # @type JobId: String
-        # @param CompareTaskId: 校验任务 Id
+        # @param CompareTaskId: <p>校验任务 Id</p>
         # @type CompareTaskId: String
-        # @param DBName: 数据库名
+        # @param DBName: <p>数据库名</p>
         # @type DBName: String
-        # @param SchemaName: schema名
+        # @param SchemaName: <p>schema名</p>
         # @type SchemaName: String
-        # @param TableName: 数据表名
+        # @param TableName: <p>数据表名</p>
         # @type TableName: String
-        # @param ChunkId: 数据分块号
+        # @param ChunkId: <p>数据分块号</p>
         # @type ChunkId: Integer
-        # @param Limit: 分页条件，查询结果返回条数
+        # @param Limit: <p>分页条件，查询结果返回条数</p>
         # @type Limit: Integer
-        # @param Offset: 分页条件，查询的起始位置
+        # @param Offset: <p>分页条件，查询的起始位置</p>
         # @type Offset: Integer
 
         attr_accessor :JobId, :CompareTaskId, :DBName, :SchemaName, :TableName, :ChunkId, :Limit, :Offset
@@ -2300,9 +2300,9 @@ module TencentCloud
 
       # DescribeCompareDiffItems返回参数结构体
       class DescribeCompareDiffItemsResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 查询结果的数量
+        # @param TotalCount: <p>查询结果的数量</p>
         # @type TotalCount: Integer
-        # @param Items: 查询结果详情
+        # @param Items: <p>查询结果详情</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Items: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -2414,15 +2414,15 @@ module TencentCloud
 
       # DescribeCompareTasks请求参数结构体
       class DescribeCompareTasksRequest < TencentCloud::Common::AbstractModel
-        # @param JobId: 迁移任务 Id，可通过 [DescribeMigrationJobs](https://cloud.tencent.com/document/product/571/82084) 接口获取。
+        # @param JobId: <p>迁移任务 Id，可通过 <a href="https://cloud.tencent.com/document/product/571/82084">DescribeMigrationJobs</a> 接口获取。</p>
         # @type JobId: String
-        # @param Limit: 分页设置，表示每页显示多少条任务，默认为 20
+        # @param Limit: <p>分页设置，表示每页显示多少条任务，默认为 20</p>
         # @type Limit: Integer
-        # @param Offset: 分页偏移量
+        # @param Offset: <p>分页偏移量</p>
         # @type Offset: Integer
-        # @param CompareTaskId: 校验任务 ID
+        # @param CompareTaskId: <p>校验任务 ID</p>
         # @type CompareTaskId: String
-        # @param Status: 任务状态过滤，可能的值：created - 创建完成；readyRun - 等待运行；running - 运行中；success - 成功；stopping - 结束中；failed - 失败；canceled - 已终止
+        # @param Status: <p>任务状态过滤，可能的值：created - 创建完成；readyRun - 等待运行；running - 运行中；success - 成功；stopping - 结束中；failed - 失败；canceled - 已终止</p>
         # @type Status: Array
 
         attr_accessor :JobId, :Limit, :Offset, :CompareTaskId, :Status
@@ -2446,9 +2446,9 @@ module TencentCloud
 
       # DescribeCompareTasks返回参数结构体
       class DescribeCompareTasksResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 数量
+        # @param TotalCount: <p>数量</p>
         # @type TotalCount: Integer
-        # @param Items: 一致性校验列表
+        # @param Items: <p>一致性校验列表</p>
         # @type Items: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2733,7 +2733,7 @@ module TencentCloud
 
       # DescribeMigrationDetail请求参数结构体
       class DescribeMigrationDetailRequest < TencentCloud::Common::AbstractModel
-        # @param JobId: 数据迁移任务ID，可通过[DescribeMigrationJobs](https://cloud.tencent.com/document/product/571/82084)接口获取。
+        # @param JobId: <p>数据迁移任务ID，可通过<a href="https://cloud.tencent.com/document/product/571/82084">DescribeMigrationJobs</a>接口获取。</p>
         # @type JobId: String
 
         attr_accessor :JobId
@@ -2749,51 +2749,49 @@ module TencentCloud
 
       # DescribeMigrationDetail返回参数结构体
       class DescribeMigrationDetailResponse < TencentCloud::Common::AbstractModel
-        # @param JobId: 数据迁移任务ID
+        # @param JobId: <p>数据迁移任务ID</p>
         # @type JobId: String
-        # @param JobName: 数据迁移任务名称
+        # @param JobName: <p>数据迁移任务名称</p>
         # @type JobName: String
-        # @param CreateTime: 任务创建(提交)时间，格式为 yyyy-mm-dd hh:mm:ss
+        # @param CreateTime: <p>任务创建(提交)时间。当 <code>DateTimeISOFormat=true</code> 时返回 RFC 3339 格式（如 <code>2026-04-23T20:21:35+08:00</code>），否则返回 <code>yyyy-mm-dd hh:mm:ss</code>（北京时间）</p>
         # @type CreateTime: String
-        # @param UpdateTime: 任务更新时间，格式为 yyyy-mm-dd hh:mm:ss
+        # @param UpdateTime: <p>任务更新时间。当 <code>DateTimeISOFormat=true</code> 时返回 RFC 3339 格式（如 <code>2026-04-23T20:21:35+08:00</code>），否则返回 <code>yyyy-mm-dd hh:mm:ss</code>（北京时间）</p>
         # @type UpdateTime: String
-        # @param StartTime: 任务开始执行时间，格式为 yyyy-mm-dd hh:mm:ss
+        # @param StartTime: <p>任务开始执行时间。当 <code>DateTimeISOFormat=true</code> 时返回 RFC 3339 格式（如 <code>2026-04-23T20:21:35+08:00</code>），否则返回 <code>yyyy-mm-dd hh:mm:ss</code>（北京时间）</p>
         # @type StartTime: String
-        # @param EndTime: 任务执行结束时间，格式为 yyyy-mm-dd hh:mm:ss
+        # @param EndTime: <p>任务执行结束时间。当 <code>DateTimeISOFormat=true</code> 时返回 RFC 3339 格式（如 <code>2026-04-23T20:21:35+08:00</code>），否则返回 <code>yyyy-mm-dd hh:mm:ss</code>（北京时间）</p>
         # @type EndTime: String
-        # @param BriefMsg: 迁移任务简要错误信息
+        # @param BriefMsg: <p>迁移任务简要错误信息</p>
         # @type BriefMsg: String
-        # @param Status: 任务状态，取值为：created(创建完成)、checking(校验中)、checkPass(校验通过)、checkNotPass(校验不通过)、readyRun(准备运行)、running(任务运行中)、readyComplete(准备完成)、success(任务成功)、failed(任务失败)、stopping(中止中)、completing(完成中)、
-        # pausing(暂停中)、
-        # manualPaused(已暂停)
+        # @param Status: <p>任务状态，取值为：created(创建完成)、checking(校验中)、checkPass(校验通过)、checkNotPass(校验不通过)、readyRun(准备运行)、running(任务运行中)、readyComplete(准备完成)、success(任务成功)、failed(任务失败)、stopping(中止中)、completing(完成中)、<br>pausing(暂停中)、<br>manualPaused(已暂停)</p>
         # @type Status: String
-        # @param Action: 任务操作信息
+        # @param Action: <p>任务操作信息</p>
         # @type Action: :class:`Tencentcloud::Dts.v20211206.models.MigrateAction`
-        # @param StepInfo: 迁移执行过程信息，在校验阶段显示校验过程步骤信息，在迁移阶段会显示迁移步骤信息
+        # @param StepInfo: <p>迁移执行过程信息，在校验阶段显示校验过程步骤信息，在迁移阶段会显示迁移步骤信息</p>
         # @type StepInfo: :class:`Tencentcloud::Dts.v20211206.models.MigrateDetailInfo`
-        # @param SrcInfo: 源实例信息
+        # @param SrcInfo: <p>源实例信息</p>
         # @type SrcInfo: :class:`Tencentcloud::Dts.v20211206.models.DBEndpointInfo`
-        # @param DstInfo: 目标端信息
+        # @param DstInfo: <p>目标端信息</p>
         # @type DstInfo: :class:`Tencentcloud::Dts.v20211206.models.DBEndpointInfo`
-        # @param CompareTask: 数据一致性校验结果
+        # @param CompareTask: <p>数据一致性校验结果</p>
         # @type CompareTask: :class:`Tencentcloud::Dts.v20211206.models.CompareTaskInfo`
-        # @param Tags: 标签信息
+        # @param Tags: <p>标签信息</p>
         # @type Tags: Array
-        # @param RunMode: 运行模式，取值如：immediate(表示立即运行)、timed(表示定时运行)
+        # @param RunMode: <p>运行模式，取值如：immediate(表示立即运行)、timed(表示定时运行)</p>
         # @type RunMode: String
-        # @param ExpectRunTime: 期待启动时间，当RunMode取值为timed时，此值必填，形如："2006-01-02 15:04:05"
+        # @param ExpectRunTime: <p>期待启动时间，当 <code>RunMode</code> 取值为 <code>timed</code> 时此值必填。当 <code>DateTimeISOFormat=true</code> 时返回 RFC 3339 格式（如 <code>2026-04-23T20:21:35+08:00</code>），否则返回 <code>yyyy-mm-dd hh:mm:ss</code>（北京时间）</p>
         # @type ExpectRunTime: String
-        # @param MigrateOption: 迁移选项，描述任务如何执行迁移等一系列配置信息
+        # @param MigrateOption: <p>迁移选项，描述任务如何执行迁移等一系列配置信息</p>
         # @type MigrateOption: :class:`Tencentcloud::Dts.v20211206.models.MigrateOption`
-        # @param CheckStepInfo: 校验任务运行详情
+        # @param CheckStepInfo: <p>校验任务运行详情</p>
         # @type CheckStepInfo: :class:`Tencentcloud::Dts.v20211206.models.CheckStepInfo`
-        # @param TradeInfo: 描述计费相关的信息
+        # @param TradeInfo: <p>描述计费相关的信息</p>
         # @type TradeInfo: :class:`Tencentcloud::Dts.v20211206.models.TradeInfo`
-        # @param ErrorInfo: 任务错误信息
+        # @param ErrorInfo: <p>任务错误信息</p>
         # @type ErrorInfo: Array
-        # @param DumperResumeCtrl: 全量导出可重入标识：enum::"yes"/"no"。yes表示当前任务可重入、no表示当前任务处于全量导出且不可重入阶段；如果在该值为no时重启任务导出流程不支持断点续传
+        # @param DumperResumeCtrl: <p>全量导出可重入标识：enum::&quot;yes&quot;/&quot;no&quot;。yes表示当前任务可重入、no表示当前任务处于全量导出且不可重入阶段；如果在该值为no时重启任务导出流程不支持断点续传</p>
         # @type DumperResumeCtrl: String
-        # @param RateLimitOption: 任务的限速信息
+        # @param RateLimitOption: <p>任务的限速信息</p>
         # @type RateLimitOption: :class:`Tencentcloud::Dts.v20211206.models.RateLimitOption`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3070,9 +3068,9 @@ module TencentCloud
 
       # DescribeOffsetByTime请求参数结构体
       class DescribeOffsetByTimeRequest < TencentCloud::Common::AbstractModel
-        # @param SubscribeId: 数据订阅实例的 ID，可通过[DescribeSubscribeJobs](https://cloud.tencent.com/document/product/571/102943)接口获取。
+        # @param SubscribeId: <p>数据订阅实例的 ID，可通过<a href="https://cloud.tencent.com/document/product/571/102943">DescribeSubscribeJobs</a>接口获取。</p>
         # @type SubscribeId: String
-        # @param Time: 时间点，格式为：Y-m-d h:m:s。如果输入时间比当前时间晚的多，相当于查询最新offset；如果输入时间比当前时间早的多，相当于查询最老offset；如果输入空，默认0时间，等价于查询最老offset。
+        # @param Time: <p>时间。当 <code>DateTimeISOFormat=true</code> 时按 RFC 3339 传入（如 <code>2026-04-23T20:21:35+08:00</code>），否则按 <code>Y-m-d h:m:s</code>（北京时间）传入。如果输入时间比当前时间晚的多，相当于查询最新 offset；如果输入时间比当前时间早的多，相当于查询最老 offset；如果输入空，默认 0 时间，等价于查询最老 offset。</p><p>参数格式：2026-04-23T20:21:35+08:00</p>
         # @type Time: String
 
         attr_accessor :SubscribeId, :Time
@@ -3090,7 +3088,7 @@ module TencentCloud
 
       # DescribeOffsetByTime返回参数结构体
       class DescribeOffsetByTimeResponse < TencentCloud::Common::AbstractModel
-        # @param Items: 时间与Offset的对应
+        # @param Items: <p>时间与Offset的对应</p>
         # @type Items: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3214,15 +3212,15 @@ module TencentCloud
         # @type Status: String
         # @param SubsStatus: <p>订阅任务状态，可能值为：未启动notStarted, 校验中checking, 校验不通过checkNotPass, 校验通过checkPass, 启动中starting, 运行中running, 异常出错error</p>
         # @type SubsStatus: String
-        # @param ModifyTime: <p>修改时间。</p>
+        # @param ModifyTime: <p>修改时间。当 <code>DateTimeISOFormat=true</code> 时返回 RFC 3339 格式（如 <code>2026-04-23T20:21:35+08:00</code>），否则返回 <code>Y-m-d h:m:s</code>（北京时间）。</p>
         # @type ModifyTime: String
-        # @param CreateTime: <p>创建时间。</p>
+        # @param CreateTime: <p>创建时间。当 <code>DateTimeISOFormat=true</code> 时返回 RFC 3339 格式（如 <code>2026-04-23T20:21:35+08:00</code>），否则返回 <code>Y-m-d h:m:s</code>（北京时间）。</p>
         # @type CreateTime: String
-        # @param IsolateTime: <p>隔离时间。</p>
+        # @param IsolateTime: <p>隔离时间。当 <code>DateTimeISOFormat=true</code> 时返回 RFC 3339 格式（如 <code>2026-04-23T20:21:35+08:00</code>），否则返回 <code>Y-m-d h:m:s</code>（北京时间）。</p>
         # @type IsolateTime: String
-        # @param ExpireTime: <p>包年包月任务的到期时间。</p>
+        # @param ExpireTime: <p>包年包月任务的到期时间。当 <code>DateTimeISOFormat=true</code> 时返回 RFC 3339 格式（如 <code>2026-04-23T20:21:35+08:00</code>），否则返回 <code>Y-m-d h:m:s</code>（北京时间）。</p>
         # @type ExpireTime: String
-        # @param OfflineTime: <p>下线时间。</p>
+        # @param OfflineTime: <p>下线时间。当 <code>DateTimeISOFormat=true</code> 时返回 RFC 3339 格式（如 <code>2026-04-23T20:21:35+08:00</code>），否则返回 <code>Y-m-d h:m:s</code>（北京时间）。</p>
         # @type OfflineTime: String
         # @param PayType: <p>付费方式，可能值为：0-包年包月，1-按量计费</p>
         # @type PayType: Integer
@@ -3390,31 +3388,31 @@ module TencentCloud
 
       # DescribeSubscribeJobs请求参数结构体
       class DescribeSubscribeJobsRequest < TencentCloud::Common::AbstractModel
-        # @param SubscribeId: 订阅 ID 筛选，精确匹配
+        # @param SubscribeId: <p>订阅 ID 筛选，精确匹配</p>
         # @type SubscribeId: String
-        # @param SubscribeIds: 订阅 ID 筛选，精确匹配
+        # @param SubscribeIds: <p>订阅 ID 筛选，精确匹配</p>
         # @type SubscribeIds: Array
-        # @param SubscribeName: 订阅名称，前缀模糊匹配
+        # @param SubscribeName: <p>订阅名称，前缀模糊匹配</p>
         # @type SubscribeName: String
-        # @param InstanceId: 订阅的云上数据库实例的 ID，精确匹配
+        # @param InstanceId: <p>订阅的云上数据库实例的 ID，精确匹配</p>
         # @type InstanceId: String
-        # @param Topic: 订阅的topicName
+        # @param Topic: <p>订阅的topicName</p>
         # @type Topic: String
-        # @param PayType: 计费模式筛选，可能的值：0-包年包月，1-按量计费
+        # @param PayType: <p>计费模式筛选，可能的值：0-包年包月，1-按量计费</p>
         # @type PayType: Integer
-        # @param Product: 订阅的数据库产品，目前支持 cynosdbmysql,mariadb,mongodb,mysql,percona,tdpg,tdsqlpercona(tdsqlmysql)
+        # @param Product: <p>订阅的数据库产品，目前支持 cynosdbmysql,mariadb,mongodb,mysql,percona,tdpg,tdsqlpercona(tdsqlmysql)</p>
         # @type Product: String
-        # @param Status: 数据订阅生命周期状态，可能的值为：正常 normal, 隔离中 isolating, 已隔离 isolated, 下线中 offlining，按量转包年包月中 post2PrePayIng
+        # @param Status: <p>数据订阅生命周期状态，可能的值为：正常 normal, 隔离中 isolating, 已隔离 isolated, 下线中 offlining，按量转包年包月中 post2PrePayIng</p>
         # @type Status: Array
-        # @param SubsStatus: 数据订阅状态，可能的值为：未启动 notStarted, 校验中 checking, 校验不通过 checkNotPass, 校验通过 checkPass, 启动中 starting, 运行中 running, 异常出错 error
+        # @param SubsStatus: <p>数据订阅状态，可能的值为：未启动 notStarted, 校验中 checking, 校验不通过 checkNotPass, 校验通过 checkPass, 启动中 starting, 运行中 running, 异常出错 error</p>
         # @type SubsStatus: Array
-        # @param Offset: 返回记录的起始偏移量。默认0
+        # @param Offset: <p>返回记录的起始偏移量。默认0</p>
         # @type Offset: Integer
-        # @param Limit: 单次返回的记录数量。默认20，最大100
+        # @param Limit: <p>单次返回的记录数量。默认20，最大100</p>
         # @type Limit: Integer
-        # @param OrderDirection: 排序方向，可选的值为"DESC"和"ASC"，默认为"DESC"，按创建时间逆序排序
+        # @param OrderDirection: <p>排序方向，可选的值为&quot;DESC&quot;和&quot;ASC&quot;，默认为&quot;DESC&quot;，按创建时间逆序排序</p>
         # @type OrderDirection: String
-        # @param TagFilters: tag 过滤条件，多个 TagFilter 之间关系为且
+        # @param TagFilters: <p>tag 过滤条件，多个 TagFilter 之间关系为且</p>
         # @type TagFilters: Array
 
         attr_accessor :SubscribeId, :SubscribeIds, :SubscribeName, :InstanceId, :Topic, :PayType, :Product, :Status, :SubsStatus, :Offset, :Limit, :OrderDirection, :TagFilters
@@ -3461,9 +3459,9 @@ module TencentCloud
 
       # DescribeSubscribeJobs返回参数结构体
       class DescribeSubscribeJobsResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 符合查询条件的实例总数
+        # @param TotalCount: <p>符合查询条件的实例总数</p>
         # @type TotalCount: Integer
-        # @param Items: 数据订阅实例的信息列表
+        # @param Items: <p>数据订阅实例的信息列表</p>
         # @type Items: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3532,21 +3530,21 @@ module TencentCloud
 
       # DescribeSyncCompareDiffItems请求参数结构体
       class DescribeSyncCompareDiffItemsRequest < TencentCloud::Common::AbstractModel
-        # @param JobId: 迁移任务 Id
+        # @param JobId: <p>迁移任务 Id</p>
         # @type JobId: String
-        # @param CompareTaskId: 校验任务 Id
+        # @param CompareTaskId: <p>校验任务 Id</p>
         # @type CompareTaskId: String
-        # @param DBName: 数据库名
+        # @param DBName: <p>数据库名</p>
         # @type DBName: String
-        # @param SchemaName: schema名
+        # @param SchemaName: <p>schema名</p>
         # @type SchemaName: String
-        # @param TableName: 数据表名
+        # @param TableName: <p>数据表名</p>
         # @type TableName: String
-        # @param ChunkId: 数据分块号
+        # @param ChunkId: <p>数据分块号</p>
         # @type ChunkId: Integer
-        # @param Limit: 分页条件，查询结果返回条数
+        # @param Limit: <p>分页条件，查询结果返回条数</p>
         # @type Limit: Integer
-        # @param Offset: 分页条件，查询的起始位置
+        # @param Offset: <p>分页条件，查询的起始位置</p>
         # @type Offset: Integer
 
         attr_accessor :JobId, :CompareTaskId, :DBName, :SchemaName, :TableName, :ChunkId, :Limit, :Offset
@@ -3576,9 +3574,9 @@ module TencentCloud
 
       # DescribeSyncCompareDiffItems返回参数结构体
       class DescribeSyncCompareDiffItemsResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 查询结果的数量
+        # @param TotalCount: <p>查询结果的数量</p>
         # @type TotalCount: Integer
-        # @param Items: 查询结果详情
+        # @param Items: <p>查询结果详情</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Items: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -3699,15 +3697,15 @@ module TencentCloud
 
       # DescribeSyncCompareTasks请求参数结构体
       class DescribeSyncCompareTasksRequest < TencentCloud::Common::AbstractModel
-        # @param JobId: 任务 Id
+        # @param JobId: <p>任务 Id</p>
         # @type JobId: String
-        # @param Limit: 分页设置，表示每页显示多少条任务，默认为 20
+        # @param Limit: <p>分页设置，表示每页显示多少条任务，默认为 20</p>
         # @type Limit: Integer
-        # @param Offset: 分页偏移量
+        # @param Offset: <p>分页偏移量</p>
         # @type Offset: Integer
-        # @param CompareTaskId: 校验任务 ID
+        # @param CompareTaskId: <p>校验任务 ID</p>
         # @type CompareTaskId: String
-        # @param Status: 任务状态过滤，可能的值：created - 创建完成；readyRun - 等待运行；running - 运行中；success - 成功；stopping - 结束中；failed - 失败；canceled - 已终止
+        # @param Status: <p>任务状态过滤，可能的值：created - 创建完成；readyRun - 等待运行；running - 运行中；success - 成功；stopping - 结束中；failed - 失败；canceled - 已终止</p>
         # @type Status: Array
 
         attr_accessor :JobId, :Limit, :Offset, :CompareTaskId, :Status
@@ -3731,10 +3729,10 @@ module TencentCloud
 
       # DescribeSyncCompareTasks返回参数结构体
       class DescribeSyncCompareTasksResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 数量
+        # @param TotalCount: <p>数量</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
-        # @param Items: 一致性校验任务列表
+        # @param Items: <p>一致性校验任务列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Items: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -3827,33 +3825,33 @@ module TencentCloud
 
       # DescribeSyncJobs请求参数结构体
       class DescribeSyncJobsRequest < TencentCloud::Common::AbstractModel
-        # @param JobId: 同步任务id，如sync-werwfs23，可通过[DescribeSyncJobs](https://cloud.tencent.com/document/product/571/82103)接口获取。
+        # @param JobId: <p>同步任务id，如sync-werwfs23，可通过<a href="https://cloud.tencent.com/document/product/571/82103">DescribeSyncJobs</a>接口获取。</p>
         # @type JobId: String
-        # @param JobIds: 同步任务id列表，如["sync-n3gh7md9"]
+        # @param JobIds: <p>同步任务id列表，如[&quot;sync-n3gh7md9&quot;]</p>
         # @type JobIds: Array
-        # @param JobName: 同步任务名
+        # @param JobName: <p>同步任务名</p>
         # @type JobName: String
-        # @param Order: 排序字段，目前仅支持CreateTime字段排序
+        # @param Order: <p>排序字段，目前仅支持CreateTime字段排序</p>
         # @type Order: String
-        # @param OrderSeq: 排序方式，升序为ASC，降序为DESC，默认为CreateTime降序
+        # @param OrderSeq: <p>排序方式，升序为ASC，降序为DESC，默认为CreateTime降序</p>
         # @type OrderSeq: String
-        # @param Offset: 偏移量，默认为0
+        # @param Offset: <p>偏移量，默认为0</p>
         # @type Offset: Integer
-        # @param Limit: 返回同步任务实例数量，默认20，有效区间[1,100]
+        # @param Limit: <p>返回同步任务实例数量，默认20，有效区间[1,100]</p>
         # @type Limit: Integer
-        # @param Status: 状态集合，如Initialized(初始化),CheckPass(校验通过),Running(运行中),ResumableErr(恢复中),Stopped(已结束)
+        # @param Status: <p>状态集合，如Initialized(初始化),CheckPass(校验通过),Running(运行中),ResumableErr(恢复中),Stopped(已结束)</p>
         # @type Status: Array
-        # @param RunMode: 运行模式，如Immediate:立即运行，Timed:定时运行
+        # @param RunMode: <p>运行模式，如Immediate:立即运行，Timed:定时运行</p>
         # @type RunMode: String
-        # @param JobType: 任务类型，如mysql2mysql：msyql同步到mysql;可取值有mysql2mysql、mysql2kafka、tdsqlmysql2kafka、tdsqlmysql2tdsqlmysql、tdsqlmysql2mysql、mysql2tdsqlmysql、mysql2mariadb、mariadb2mariadb、mariadb2kafka、cynosdbmysql2kafka、cynosdbmysql2cynosdbmysql、cynosdbmysql2mysql、mysql2cynosdbmysql、mariadb2tdsqlmysql、tdsqlmysql2cynosdbmysql、cynosdbmysql2tdsqlmysql、tdstore2mysql、tdstore2percona、tdstore2mariadb、tdstore2cynosdbmysql、cynosdbmysql2mariadb、mariadb2cynosdbmysql、tdsqlmysql2mariadb、mariadb2mysql、percona2mariadb、postgresql2postgresql、tdstore2tdsqlmysql、mongodb2mongodb
+        # @param JobType: <p>任务类型，如mysql2mysql：msyql同步到mysql;可取值有mysql2mysql、mysql2kafka、tdsqlmysql2kafka、tdsqlmysql2tdsqlmysql、tdsqlmysql2mysql、mysql2tdsqlmysql、mysql2mariadb、mariadb2mariadb、mariadb2kafka、cynosdbmysql2kafka、cynosdbmysql2cynosdbmysql、cynosdbmysql2mysql、mysql2cynosdbmysql、mariadb2tdsqlmysql、tdsqlmysql2cynosdbmysql、cynosdbmysql2tdsqlmysql、tdstore2mysql、tdstore2percona、tdstore2mariadb、tdstore2cynosdbmysql、cynosdbmysql2mariadb、mariadb2cynosdbmysql、tdsqlmysql2mariadb、mariadb2mysql、percona2mariadb、postgresql2postgresql、tdstore2tdsqlmysql、mongodb2mongodb</p>
         # @type JobType: String
-        # @param PayMode: 付费类型，PrePay：预付费，PostPay：后付费
+        # @param PayMode: <p>付费类型，PrePay：预付费，PostPay：后付费</p>
         # @type PayMode: String
-        # @param TagFilters: tag
+        # @param TagFilters: <p>tag</p>
         # @type TagFilters: Array
-        # @param SrcInfoPattern: 源端数据库连接信息，可以输入实例ID或者IP等
+        # @param SrcInfoPattern: <p>源端数据库连接信息，可以输入实例ID或者IP等</p>
         # @type SrcInfoPattern: String
-        # @param DstInfoPattern: 目标端数据库连接信息，可以输入实例ID或者IP等
+        # @param DstInfoPattern: <p>目标端数据库连接信息，可以输入实例ID或者IP等</p>
         # @type DstInfoPattern: String
 
         attr_accessor :JobId, :JobIds, :JobName, :Order, :OrderSeq, :Offset, :Limit, :Status, :RunMode, :JobType, :PayMode, :TagFilters, :SrcInfoPattern, :DstInfoPattern
@@ -3902,9 +3900,9 @@ module TencentCloud
 
       # DescribeSyncJobs返回参数结构体
       class DescribeSyncJobsResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 任务数目
+        # @param TotalCount: <p>任务数目</p>
         # @type TotalCount: Integer
-        # @param JobList: 任务详情数组
+        # @param JobList: <p>任务详情数组</p>
         # @type JobList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4073,33 +4071,33 @@ module TencentCloud
 
       # 数据块内不一致数据的详情信息
       class DiffChunkItem < TencentCloud::Common::AbstractModel
-        # @param DBName: 数据库名
+        # @param DBName: <p>数据库名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DBName: String
-        # @param SchemaName: schema名
+        # @param SchemaName: <p>schema名</p>
         # @type SchemaName: String
-        # @param TableName: 数据表名
+        # @param TableName: <p>数据表名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableName: String
-        # @param ChunkId: 分块号
+        # @param ChunkId: <p>分块号</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChunkId: Integer
-        # @param Identifier: 数据标识符，比如主键信息等
+        # @param Identifier: <p>数据标识符，比如主键信息等</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Identifier: String
-        # @param DiffType: 不一致类型，可能的取值为：data - 两边数据不一致；srcLack - 源缺失；dstLack - 目标缺失
+        # @param DiffType: <p>不一致类型，可能的取值为：data - 两边数据不一致；srcLack - 源缺失；dstLack - 目标缺失</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiffType: String
-        # @param SchemaInfo: 表结构信息
+        # @param SchemaInfo: <p>表结构信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SchemaInfo: Array
-        # @param SrcItem: 源端数据
+        # @param SrcItem: <p>源端数据</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SrcItem: Array
-        # @param DstItem: 目标端数据
+        # @param DstItem: <p>目标端数据</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DstItem: Array
-        # @param FinishedAt: 完成时间
+        # @param FinishedAt: <p>完成时间。当 <code>DateTimeISOFormat=true</code> 时返回 RFC 3339 格式（如 <code>2026-04-23T20:21:35+08:00</code>），否则返回 <code>yyyy-mm-dd hh:mm:ss</code>（北京时间）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FinishedAt: String
 
@@ -4310,27 +4308,27 @@ module TencentCloud
 
       # 校验不一致的表详情
       class DifferenceItem < TencentCloud::Common::AbstractModel
-        # @param Db: 数据库名
+        # @param Db: <p>数据库名</p>
         # @type Db: String
-        # @param Schema: schema
+        # @param Schema: <p>schema</p>
         # @type Schema: String
-        # @param Table: 表名
+        # @param Table: <p>表名</p>
         # @type Table: String
-        # @param Chunk: 分块号
+        # @param Chunk: <p>分块号</p>
         # @type Chunk: Integer
-        # @param SrcItem: 源库数值
+        # @param SrcItem: <p>源库数值</p>
         # @type SrcItem: String
-        # @param DstItem: 目标库数值
+        # @param DstItem: <p>目标库数值</p>
         # @type DstItem: String
-        # @param IndexName: 索引名称
+        # @param IndexName: <p>索引名称</p>
         # @type IndexName: String
-        # @param LowerBoundary: 索引下边界
+        # @param LowerBoundary: <p>索引下边界</p>
         # @type LowerBoundary: String
-        # @param UpperBoundary: 索引上边界
+        # @param UpperBoundary: <p>索引上边界</p>
         # @type UpperBoundary: String
-        # @param CostTime: 对比消耗时间,单位为 ms
+        # @param CostTime: <p>对比消耗时间,单位为 ms</p>
         # @type CostTime: Float
-        # @param FinishedAt: 完成时间
+        # @param FinishedAt: <p>完成时间。当 <code>DateTimeISOFormat=true</code> 时返回 RFC 3339 格式（如 <code>2026-04-23T20:21:35+08:00</code>），否则返回 <code>yyyy-mm-dd hh:mm:ss</code>（北京时间）</p>
         # @type FinishedAt: String
 
         attr_accessor :Db, :Schema, :Table, :Chunk, :SrcItem, :DstItem, :IndexName, :LowerBoundary, :UpperBoundary, :CostTime, :FinishedAt
@@ -5015,43 +5013,43 @@ module TencentCloud
 
       # 迁移任务列表
       class JobItem < TencentCloud::Common::AbstractModel
-        # @param JobId: 数据迁移任务ID
+        # @param JobId: <p>数据迁移任务ID</p>
         # @type JobId: String
-        # @param JobName: 数据迁移任务名称
+        # @param JobName: <p>数据迁移任务名称</p>
         # @type JobName: String
-        # @param CreateTime: 任务创建(提交)时间，格式为 yyyy-mm-dd hh:mm:ss
+        # @param CreateTime: <p>任务创建(提交)时间。当 <code>DateTimeISOFormat=true</code> 时返回 RFC 3339 格式（如 <code>2026-04-23T20:21:35+08:00</code>），否则返回 <code>yyyy-mm-dd hh:mm:ss</code>（北京时间）</p>
         # @type CreateTime: String
-        # @param UpdateTime: 任务更新时间，格式为 yyyy-mm-dd hh:mm:ss
+        # @param UpdateTime: <p>任务更新时间。当 <code>DateTimeISOFormat=true</code> 时返回 RFC 3339 格式（如 <code>2026-04-23T20:21:35+08:00</code>），否则返回 <code>yyyy-mm-dd hh:mm:ss</code>（北京时间）</p>
         # @type UpdateTime: String
-        # @param StartTime: 任务开始执行时间，格式为 yyyy-mm-dd hh:mm:ss
+        # @param StartTime: <p>任务开始执行时间。当 <code>DateTimeISOFormat=true</code> 时返回 RFC 3339 格式（如 <code>2026-04-23T20:21:35+08:00</code>），否则返回 <code>yyyy-mm-dd hh:mm:ss</code>（北京时间）</p>
         # @type StartTime: String
-        # @param EndTime: 任务执行结束时间，格式为 yyyy-mm-dd hh:mm:ss
+        # @param EndTime: <p>任务执行结束时间。当 <code>DateTimeISOFormat=true</code> 时返回 RFC 3339 格式（如 <code>2026-04-23T20:21:35+08:00</code>），否则返回 <code>yyyy-mm-dd hh:mm:ss</code>（北京时间）</p>
         # @type EndTime: String
-        # @param BriefMsg: 迁移任务错误信息
+        # @param BriefMsg: <p>迁移任务错误信息</p>
         # @type BriefMsg: String
-        # @param Status: 任务状态，取值为：creating(创建中)、created(创建完成)、checking(校验中)、checkPass(校验通过)、checkNotPass(校验不通过)、readyRun(准备运行)、running(任务运行)、readyComplete(准备完成)、success(任务成功)、failed(任务失败)、stopping(终止中)、completing(完成中)、pausing(暂停中)、manualPaused(已暂停)、resumableErr(可重试错误)、resuming(重试中)、unknown(未知状态)、error(任务错误)、canceled(已取消)
+        # @param Status: <p>任务状态，取值为：creating(创建中)、created(创建完成)、checking(校验中)、checkPass(校验通过)、checkNotPass(校验不通过)、readyRun(准备运行)、running(任务运行)、readyComplete(准备完成)、success(任务成功)、failed(任务失败)、stopping(终止中)、completing(完成中)、pausing(暂停中)、manualPaused(已暂停)、resumableErr(可重试错误)、resuming(重试中)、unknown(未知状态)、error(任务错误)、canceled(已取消)</p>
         # @type Status: String
-        # @param RunMode: 任务运行模式，值包括：immediate(立即运行)，timed(定时运行)
+        # @param RunMode: <p>任务运行模式，值包括：immediate(立即运行)，timed(定时运行)</p>
         # @type RunMode: String
-        # @param ExpectRunTime: 期待启动时间，当RunMode取值为timed时，此值必填，形如：2022-07-11 16:20:49
+        # @param ExpectRunTime: <p>期待启动时间，当 <code>RunMode</code> 取值为 <code>timed</code> 时此值必填。当 <code>DateTimeISOFormat=true</code> 时返回 RFC 3339 格式（如 <code>2026-04-23T20:21:35+08:00</code>），否则返回 <code>yyyy-mm-dd hh:mm:ss</code>（北京时间）</p>
         # @type ExpectRunTime: String
-        # @param Action: 任务操作信息
+        # @param Action: <p>任务操作信息</p>
         # @type Action: :class:`Tencentcloud::Dts.v20211206.models.MigrateAction`
-        # @param StepInfo: 迁移执行过程信息
+        # @param StepInfo: <p>迁移执行过程信息</p>
         # @type StepInfo: :class:`Tencentcloud::Dts.v20211206.models.MigrateDetailInfo`
-        # @param SrcInfo: 源实例信息
+        # @param SrcInfo: <p>源实例信息</p>
         # @type SrcInfo: :class:`Tencentcloud::Dts.v20211206.models.DBEndpointInfo`
-        # @param DstInfo: 目标端信息
+        # @param DstInfo: <p>目标端信息</p>
         # @type DstInfo: :class:`Tencentcloud::Dts.v20211206.models.DBEndpointInfo`
-        # @param CompareTask: 数据一致性校验结果
+        # @param CompareTask: <p>数据一致性校验结果</p>
         # @type CompareTask: :class:`Tencentcloud::Dts.v20211206.models.CompareTaskInfo`
-        # @param TradeInfo: 计费状态信息
+        # @param TradeInfo: <p>计费状态信息</p>
         # @type TradeInfo: :class:`Tencentcloud::Dts.v20211206.models.TradeInfo`
-        # @param Tags: 标签信息
+        # @param Tags: <p>标签信息</p>
         # @type Tags: Array
-        # @param AutoRetryTimeRangeMinutes: 自动重试时间段信息
+        # @param AutoRetryTimeRangeMinutes: <p>自动重试时间段信息</p>
         # @type AutoRetryTimeRangeMinutes: Integer
-        # @param DumperResumeCtrl: 全量导出可重入标识：enum::"yes"/"no"。yes表示当前任务可重入、no表示当前任务处于全量导出且不可重入阶段；如果在该值为no时重启任务导出流程不支持断点续传
+        # @param DumperResumeCtrl: <p>全量导出可重入标识：enum::&quot;yes&quot;/&quot;no&quot;。yes表示当前任务可重入、no表示当前任务处于全量导出且不可重入阶段；如果在该值为no时重启任务导出流程不支持断点续传</p>
         # @type DumperResumeCtrl: String
 
         attr_accessor :JobId, :JobName, :CreateTime, :UpdateTime, :StartTime, :EndTime, :BriefMsg, :Status, :RunMode, :ExpectRunTime, :Action, :StepInfo, :SrcInfo, :DstInfo, :CompareTask, :TradeInfo, :Tags, :AutoRetryTimeRangeMinutes, :DumperResumeCtrl
@@ -5302,7 +5300,7 @@ module TencentCloud
         # @type IsOverrideRoot: Boolean
         # @param IsDstReadOnly: <p>是否在迁移时设置目标库只读(仅对mysql有效)，true(设置只读)、false(不设置只读，默认此值)</p>
         # @type IsDstReadOnly: Boolean
-        # @param ExtraAttr: <p>其他附加信息，对于特定库可设置额外参数，Redis可定义如下的参数:<br>[&quot;DstWriteMode&quot;:normal,     目标库写入模式,可取值clearData(清空目标实例数据)、overwrite(以覆盖写的方式执行任务)、normal(要求目标端为空，否则校验不通过) ，不显示指定默认以覆盖写的方式执行任务    &quot;IsDstReadOnly&quot;:true,     是否在迁移时设置目标库只读,true(设置只读)、false(不设置只读)     &quot;ClientOutputBufferHardLimit&quot;:512,     从机缓冲区的硬性容量限制(MB)     &quot;ClientOutputBufferSoftLimit&quot;:512,     从机缓冲区的软性容量限制(MB)     &quot;ClientOutputBufferPersistTime&quot;:60, 从机缓冲区的软性限制持续时间(秒)     &quot;ReplBacklogSize&quot;:512,     环形缓冲区容量限制(MB)     &quot;ReplTimeout&quot;:120，        复制超时时间(秒)     &quot;IsExpireKey&quot;:&quot;true&quot;,过期key自动淘汰]</p>
+        # @param ExtraAttr: <p>其他附加信息，对于特定库可设置额外参数。<br>Redis可定义如下的参数:<br>[&quot;DstWriteMode&quot;:normal,     目标库写入模式,可取值clearData(清空目标实例数据)、overwrite(以覆盖写的方式执行任务)、normal(要求目标端为空，否则校验不通过) ，不显示指定默认以覆盖写的方式执行任务    &quot;IsDstReadOnly&quot;:true,     是否在迁移时设置目标库只读,true(设置只读)、false(不设置只读)     &quot;ClientOutputBufferHardLimit&quot;:512,     从机缓冲区的硬性容量限制(MB)     &quot;ClientOutputBufferSoftLimit&quot;:512,     从机缓冲区的软性容量限制(MB)     &quot;ClientOutputBufferPersistTime&quot;:60, 从机缓冲区的软性限制持续时间(秒)     &quot;ReplBacklogSize&quot;:512,     环形缓冲区容量限制(MB)     &quot;ReplTimeout&quot;:120，        复制超时时间(秒)     &quot;IsExpireKey&quot;:&quot;true&quot;,过期key自动淘汰]</p><p>Tidb可定义如下的参数<br>[&quot;tidb_increment_enable&quot;:true,     增量迁移开关,可取值true(开启增量,平台从下列ticdc_kafka_<em>字段提取用户自建Kafka配置)、false或不传(仅做结构+全量迁移,忽略所有ticdc_kafka_</em>字段) ,严格匹配字符串true(不区分大小写)才算开启    &quot;ticdc_kafka_broker&quot;:&quot;1.1.1.1:9092&quot;,     TiCDC输出的Kafka broker地址(用户自建Kafka,平台不负责创建/回收topic),增量开启时必填    &quot;ticdc_kafka_topic&quot;:&quot;tidb_topic&quot;,     TiCDC输出的Kafka topic,增量开启时必填(连通性测试场景可不填)    &quot;ticdc_kafka_data_format&quot;:&quot;open-protocol&quot;,     数据格式,可取值open-protocol(默认,不传时按此处理)、canal-json,其他值校验不通过    &quot;ticdc_kafka_security_protocol&quot;:&quot;PLAINTEXT&quot;,     传输层安全协议,可取值PLAINTEXT(默认,无认证,忽略下方认证字段)、SASL_PLAINTEXT、SASL_SSL,其他值校验不通过    &quot;ticdc_kafka_sasl_mechanism&quot;:&quot;SCRAM-SHA-256&quot;,     SASL认证机制,可取值SCRAM-SHA-256、SCRAM-SHA-512,当security_protocol为SASL_PLAINTEXT/SASL_SSL时必填    &quot;ticdc_kafka_username&quot;:&quot;user&quot;,     Kafka SASL用户名,当security_protocol为SASL_PLAINTEXT/SASL_SSL时必填    &quot;ticdc_kafka_password&quot;:&quot;password&quot;,     Kafka SASL密码,当security_protocol为SASL_PLAINTEXT/SASL_SSL时必填(不做trim,允许首尾空格)    &quot;ticdc_kafka_ssl_ca_base64_content&quot;:&quot;base64字符串&quot;,     base64编码的CA证书内容,仅security_protocol=SASL_SSL时使用,可选(为空表示信任系统根证书)]</p>
         # @type ExtraAttr: Array
         # @param MigrateWay: <p>pgsql迁移分类：logical(逻辑迁移)、physical(物理迁移)</p>
         # @type MigrateWay: String
@@ -5746,7 +5744,7 @@ module TencentCloud
         # @type DstInfo: :class:`Tencentcloud::Dts.v20211206.models.DBEndpointInfo`
         # @param JobName: <p>迁移任务名称，最大长度128</p>
         # @type JobName: String
-        # @param ExpectRunTime: <p>期待启动时间，当RunMode取值为timed时，此值必填，形如：&quot;2006-01-02 15:04:05&quot;</p>
+        # @param ExpectRunTime: <p>期待启动时间，当RunMode取值为timed时，此值必填。</p><p>参数格式：当 <code>DateTimeISOFormat=true</code> 时按 RFC 3339 传入（如 <code>2026-04-23T20:21:35+08:00</code>），否则按 <code>yyyy-mm-dd hh:mm:ss</code>（北京时间）传入</p>
         # @type ExpectRunTime: String
         # @param Tags: <p>标签信息</p>
         # @type Tags: Array
@@ -6105,17 +6103,17 @@ module TencentCloud
 
       # ModifySyncRateLimit请求参数结构体
       class ModifySyncRateLimitRequest < TencentCloud::Common::AbstractModel
-        # @param JobId: 同步任务ID，可通过[DescribeSyncJobs](https://cloud.tencent.com/document/product/571/82103)接口获取。
+        # @param JobId: <p>同步任务ID，可通过<a href="https://cloud.tencent.com/document/product/571/82103">DescribeSyncJobs</a>接口获取。</p>
         # @type JobId: String
-        # @param DumpThread: 同步任务全量导出线程数、有效值为 1-16
+        # @param DumpThread: <p>同步任务全量导出线程数、有效值为 1-16</p>
         # @type DumpThread: Integer
-        # @param DumpRps: 同步任务全量导出的 Rps 限制、需要大于 0;对于mongodb最大值为20000，其他数据库最大值为50000000
+        # @param DumpRps: <p>同步任务全量导出的 Rps 限制、需要大于 0;对于mongodb最大值为20000，其他数据库最大值为50000000</p>
         # @type DumpRps: Integer
-        # @param LoadThread: 同步任务全量导入线程数、有效值为 1-16
+        # @param LoadThread: <p>同步任务全量导入线程数、有效值为 1-16</p>
         # @type LoadThread: Integer
-        # @param SinkerThread: 同步任务增量导入线程数、有效值为 1-128
+        # @param SinkerThread: <p>同步任务增量导入线程数、有效值为 1-128</p>
         # @type SinkerThread: Integer
-        # @param LoadRps: 同步任务全量导入的Rps
+        # @param LoadRps: <p>同步任务全量导入的Rps</p>
         # @type LoadRps: Integer
 
         attr_accessor :JobId, :DumpThread, :DumpRps, :LoadThread, :SinkerThread, :LoadRps
@@ -6235,9 +6233,9 @@ module TencentCloud
 
       # 数据订阅kafka分区中checkpoint信息
       class OffsetTimeMap < TencentCloud::Common::AbstractModel
-        # @param PartitionNo: kafka分区编号
+        # @param PartitionNo: <p>kafka分区编号</p>
         # @type PartitionNo: Integer
-        # @param Offset: kafka offset
+        # @param Offset: <p>kafka offset</p>
         # @type Offset: Integer
 
         attr_accessor :PartitionNo, :Offset
@@ -6740,17 +6738,17 @@ module TencentCloud
 
       # ResetConsumerGroupOffset请求参数结构体
       class ResetConsumerGroupOffsetRequest < TencentCloud::Common::AbstractModel
-        # @param SubscribeId: 订阅实例id，可通过[DescribeSyncJobs](https://cloud.tencent.com/document/product/571/82103)接口获取。
+        # @param SubscribeId: <p>订阅实例id，可通过<a href="https://cloud.tencent.com/document/product/571/82103">DescribeSyncJobs</a>接口获取。</p>
         # @type SubscribeId: String
-        # @param TopicName: 订阅的kafka topic，可通过[DescribeSyncJobs](https://cloud.tencent.com/document/product/571/82103)接口获取。
+        # @param TopicName: <p>订阅的kafka topic，可通过<a href="https://cloud.tencent.com/document/product/571/82103">DescribeSyncJobs</a>接口获取。</p>
         # @type TopicName: String
-        # @param ConsumerGroupName: 消费组名称。实际的消费组全称形如：consumer-grp-#{SubscribeId}-#{ConsumerGroupName}。可通过[DescribeConsumerGroups](https://cloud.tencent.com/document/api/571/102947)接口获取。
+        # @param ConsumerGroupName: <p>消费组名称。实际的消费组全称形如：consumer-grp-#{SubscribeId}-#{ConsumerGroupName}。可通过<a href="https://cloud.tencent.com/document/api/571/102947">DescribeConsumerGroups</a>接口获取。</p>
         # @type ConsumerGroupName: String
-        # @param PartitionNos: 需要修改offset的分区编号，可通过[DescribeOffsetByTime](https://cloud.tencent.com/document/api/571/102946)接口获取。
+        # @param PartitionNos: <p>需要修改offset的分区编号，可通过<a href="https://cloud.tencent.com/document/api/571/102946">DescribeOffsetByTime</a>接口获取。</p>
         # @type PartitionNos: Array
-        # @param ResetMode: 重置方式。枚举值为 earliest-从最开始位置开始消费；latest-从最新位置开始消费；datetime-从指定时间前最近的checkpoint开始消费
+        # @param ResetMode: <p>重置方式。枚举值为 earliest-从最开始位置开始消费；latest-从最新位置开始消费；datetime-从指定时间前最近的checkpoint开始消费</p>
         # @type ResetMode: String
-        # @param ResetDatetime: 当 ResetMode 为 datetime 时，该项需要填，格式为：Y-m-d h:m:s。如果不填，默认用0时间，效果与earliest相同。
+        # @param ResetDatetime: <p>当 <code>ResetMode</code> 为 <code>datetime</code> 时该项需要填。当 <code>DateTimeISOFormat=true</code> 时按 RFC 3339 传入（如 <code>2026-04-23T20:21:35+08:00</code>），否则按 <code>Y-m-d h:m:s</code>（北京时间）传入。如果不填，默认用 0 时间，效果与 <code>earliest</code> 相同。 </p><p>参数格式：2026-04-23T20:21:35+08:00</p>
         # @type ResetDatetime: String
 
         attr_accessor :SubscribeId, :TopicName, :ConsumerGroupName, :PartitionNos, :ResetMode, :ResetDatetime
@@ -6960,7 +6958,7 @@ module TencentCloud
 
       # ResumeSyncJob请求参数结构体
       class ResumeSyncJobRequest < TencentCloud::Common::AbstractModel
-        # @param JobId: 同步任务id，可通过[DescribeSyncJobs](https://cloud.tencent.com/document/product/571/82103)接口获取。
+        # @param JobId: <p>同步任务id，可通过<a href="https://cloud.tencent.com/document/product/571/82103">DescribeSyncJobs</a>接口获取。</p>
         # @type JobId: String
 
         attr_accessor :JobId
@@ -7481,9 +7479,9 @@ module TencentCloud
         # @type StepId: String
         # @param Status: <p>当前步骤状态,可能返回有 notStarted(未开始)、running(校验中)、failed(校验任务失败)、finished(完成)、skipped(跳过)、paused(暂停)</p>
         # @type Status: String
-        # @param StartTime: <p>步骤开始时间，可能为空</p>
+        # @param StartTime: <p>步骤开始时间。当 <code>DateTimeISOFormat=true</code> 时返回 RFC 3339 格式（如 <code>2026-04-23T20:21:35+08:00</code>），否则返回 <code>yyyy-mm-dd hh:mm:ss</code>（北京时间）</p>
         # @type StartTime: String
-        # @param FinishTime: <p>完成时间</p>
+        # @param FinishTime: <p>完成时间。当 <code>DateTimeISOFormat=true</code> 时返回 RFC 3339 格式（如 <code>2026-04-23T20:21:35+08:00</code>），否则返回 <code>yyyy-mm-dd hh:mm:ss</code>（北京时间）</p>
         # @type FinishTime: String
         # @param Errors: <p>错误信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -8095,78 +8093,78 @@ module TencentCloud
 
       # 同步任务信息
       class SyncJobInfo < TencentCloud::Common::AbstractModel
-        # @param JobId: 同步任务id，如：sync-btso140
+        # @param JobId: <p>同步任务id，如：sync-btso140</p>
         # @type JobId: String
-        # @param JobName: 同步任务名
+        # @param JobName: <p>同步任务名</p>
         # @type JobName: String
-        # @param PayMode: 付款方式，PostPay(按量付费)、PrePay(包年包月)
+        # @param PayMode: <p>付款方式，PostPay(按量付费)、PrePay(包年包月)</p>
         # @type PayMode: String
-        # @param RunMode: 运行模式，Immediate(表示立即运行，默认为此项值)、Timed(表示定时运行)
+        # @param RunMode: <p>运行模式，Immediate(表示立即运行，默认为此项值)、Timed(表示定时运行)</p>
         # @type RunMode: String
-        # @param ExpectRunTime: 期待运行时间，格式为 yyyy-mm-dd hh:mm:ss
+        # @param ExpectRunTime: <p>期待运行时间。当 <code>DateTimeISOFormat=true</code> 时返回 RFC 3339 格式（如 <code>2026-04-23T20:21:35+08:00</code>），否则返回 <code>yyyy-mm-dd hh:mm:ss</code>（北京时间）</p>
         # @type ExpectRunTime: String
-        # @param AllActions: 支持的所有操作
+        # @param AllActions: <p>支持的所有操作</p>
         # @type AllActions: Array
-        # @param Actions: 当前状态能进行的操作
+        # @param Actions: <p>当前状态能进行的操作</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Actions: Array
-        # @param Options: 同步选项
+        # @param Options: <p>同步选项</p>
         # @type Options: :class:`Tencentcloud::Dts.v20211206.models.Options`
-        # @param Objects: 同步库表对象
+        # @param Objects: <p>同步库表对象</p>
         # @type Objects: :class:`Tencentcloud::Dts.v20211206.models.Objects`
-        # @param Specification: 任务规格
+        # @param Specification: <p>任务规格</p>
         # @type Specification: String
-        # @param ExpireTime: 过期时间，格式为 yyyy-mm-dd hh:mm:ss
+        # @param ExpireTime: <p>过期时间，格式为 yyyy-mm-dd hh:mm:ss</p>
         # @type ExpireTime: String
-        # @param SrcRegion: 源端地域，如：ap-guangzhou等
+        # @param SrcRegion: <p>源端地域，如：ap-guangzhou等</p>
         # @type SrcRegion: String
-        # @param SrcDatabaseType: 源端数据库类型，mysql,tdsqlmysql,mariadb,cynosdbmysql(表示tdsql-c实例),tdstore,percona,postgresql,mongodb等。
+        # @param SrcDatabaseType: <p>源端数据库类型，mysql,tdsqlmysql,mariadb,cynosdbmysql(表示tdsql-c实例),tdstore,percona,postgresql,mongodb等。</p>
         # @type SrcDatabaseType: String
-        # @param SrcAccessType: 源端接入类型，cdb(云数据库)、cvm(云服务器自建)、vpc(私有网络)、extranet(外网)、vpncloud(vpn接入)、dcg(专线接入)、ccn(云联网)、intranet(自研上云)
+        # @param SrcAccessType: <p>源端接入类型，cdb(云数据库)、cvm(云服务器自建)、vpc(私有网络)、extranet(外网)、vpncloud(vpn接入)、dcg(专线接入)、ccn(云联网)、intranet(自研上云)</p>
         # @type SrcAccessType: String
-        # @param SrcInfo: 源端信息，单节点数据库使用
+        # @param SrcInfo: <p>源端信息，单节点数据库使用</p>
         # @type SrcInfo: :class:`Tencentcloud::Dts.v20211206.models.Endpoint`
-        # @param SrcNodeType: 枚举值：cluster、single。源库为单节点数据库使用single，多节点使用cluster
+        # @param SrcNodeType: <p>枚举值：cluster、single。源库为单节点数据库使用single，多节点使用cluster</p>
         # @type SrcNodeType: String
-        # @param SrcInfos: 源端信息，若SrcNodeType=cluster，则源端信息在这个字段里，mongodb链路使用此参数透传。
+        # @param SrcInfos: <p>源端信息，若SrcNodeType=cluster，则源端信息在这个字段里，mongodb链路使用此参数透传。</p>
         # @type SrcInfos: :class:`Tencentcloud::Dts.v20211206.models.SyncDBEndpointInfos`
-        # @param DstRegion: 目标端地域，如：ap-guangzhou等
+        # @param DstRegion: <p>目标端地域，如：ap-guangzhou等</p>
         # @type DstRegion: String
-        # @param DstDatabaseType: 目标端数据库类型，mysql,tdsqlmysql,mariadb,cynosdbmysql(表示tdsql-c实例),tdstore,percona,postgresql,mongodb等。
+        # @param DstDatabaseType: <p>目标端数据库类型，mysql,tdsqlmysql,mariadb,cynosdbmysql(表示tdsql-c实例),tdstore,percona,postgresql,mongodb等。</p>
         # @type DstDatabaseType: String
-        # @param DstAccessType: 目标端接入类型，cdb(云数据库)、cvm(云主机自建)、vpc(私有网络)、extranet(外网)、vpncloud(vpn接入)、dcg(专线接入)、ccn(云联网)、intranet(自研上云)
+        # @param DstAccessType: <p>目标端接入类型，cdb(云数据库)、cvm(云主机自建)、vpc(私有网络)、extranet(外网)、vpncloud(vpn接入)、dcg(专线接入)、ccn(云联网)、intranet(自研上云)</p>
         # @type DstAccessType: String
-        # @param DstInfo: 目标端信息，单节点数据库使用
+        # @param DstInfo: <p>目标端信息，单节点数据库使用</p>
         # @type DstInfo: :class:`Tencentcloud::Dts.v20211206.models.Endpoint`
-        # @param DstNodeType: 枚举值：cluster、single。目标库为单节点数据库使用single，多节点使用cluster
+        # @param DstNodeType: <p>枚举值：cluster、single。目标库为单节点数据库使用single，多节点使用cluster</p>
         # @type DstNodeType: String
-        # @param DstInfos: 目标端信息，若SrcNodeType=cluster，则源端信息在这个字段里，mongodb链路使用此参数透传。
+        # @param DstInfos: <p>目标端信息，若SrcNodeType=cluster，则源端信息在这个字段里，mongodb链路使用此参数透传。</p>
         # @type DstInfos: :class:`Tencentcloud::Dts.v20211206.models.SyncDBEndpointInfos`
-        # @param CreateTime: 创建时间，格式为 yyyy-mm-dd hh:mm:ss
+        # @param CreateTime: <p>创建时间。当 <code>DateTimeISOFormat=true</code> 时返回 RFC 3339 格式（如 <code>2026-04-23T20:21:35+08:00</code>），否则返回 <code>yyyy-mm-dd hh:mm:ss</code>（北京时间）</p>
         # @type CreateTime: String
-        # @param StartTime: 开始时间，格式为 yyyy-mm-dd hh:mm:ss
+        # @param StartTime: <p>开始时间。当 <code>DateTimeISOFormat=true</code> 时返回 RFC 3339 格式（如 <code>2026-04-23T20:21:35+08:00</code>），否则返回 <code>yyyy-mm-dd hh:mm:ss</code>（北京时间）</p>
         # @type StartTime: String
-        # @param Status: 任务状态，UnInitialized(未初始化)、Initialized(已初始化)、Checking(校验中)、CheckPass(校验通过)、CheckNotPass(校验不通过)、ReadyRunning(准备运行)、Running(运行中)、Pausing(暂停中)、Paused(已暂停)、Stopping(停止中)、Stopped(已结束)、ResumableErr(任务错误)、Resuming(恢复中)、Failed(失败)、Released(已释放)、Resetting(重置中)、Unknown(未知)
+        # @param Status: <p>任务状态，UnInitialized(未初始化)、Initialized(已初始化)、Checking(校验中)、CheckPass(校验通过)、CheckNotPass(校验不通过)、ReadyRunning(准备运行)、Running(运行中)、Pausing(暂停中)、Paused(已暂停)、Stopping(停止中)、Stopped(已结束)、ResumableErr(任务错误)、Resuming(恢复中)、Failed(失败)、Released(已释放)、Resetting(重置中)、Unknown(未知)</p>
         # @type Status: String
-        # @param EndTime: 结束时间，格式为 yyyy-mm-dd hh:mm:ss
+        # @param EndTime: <p>结束时间。当 <code>DateTimeISOFormat=true</code> 时返回 RFC 3339 格式（如 <code>2026-04-23T20:21:35+08:00</code>），否则返回 <code>yyyy-mm-dd hh:mm:ss</code>（北京时间）</p>
         # @type EndTime: String
-        # @param Tags: 标签相关信息
+        # @param Tags: <p>标签相关信息</p>
         # @type Tags: Array
-        # @param Detail: 同步任务运行步骤信息
+        # @param Detail: <p>同步任务运行步骤信息</p>
         # @type Detail: :class:`Tencentcloud::Dts.v20211206.models.SyncDetailInfo`
-        # @param TradeStatus: 用于计费的状态，可能取值有：Normal(正常状态)、Resizing(变配中)、Renewing(续费中)、Isolating(隔离中)、Isolated(已隔离)、Offlining(下线中)、Offlined(已下线)、NotBilled(未计费)、Recovering(解隔离)、PostPay2Prepaying(按量计费转包年包月中)、PrePay2Postpaying(包年包月转按量计费中)
+        # @param TradeStatus: <p>用于计费的状态，可能取值有：Normal(正常状态)、Resizing(变配中)、Renewing(续费中)、Isolating(隔离中)、Isolated(已隔离)、Offlining(下线中)、Offlined(已下线)、NotBilled(未计费)、Recovering(解隔离)、PostPay2Prepaying(按量计费转包年包月中)、PrePay2Postpaying(包年包月转按量计费中)</p>
         # @type TradeStatus: String
-        # @param InstanceClass: 同步链路规格，如micro,small,medium,large
+        # @param InstanceClass: <p>同步链路规格，如micro,small,medium,large</p>
         # @type InstanceClass: String
-        # @param AutoRenew: 自动续费标识，当PayMode值为PrePay则此项配置有意义，取值为：1（表示自动续费）、0（不自动续费）
+        # @param AutoRenew: <p>自动续费标识，当PayMode值为PrePay则此项配置有意义，取值为：1（表示自动续费）、0（不自动续费）</p>
         # @type AutoRenew: Integer
-        # @param OfflineTime: 下线时间，格式为 yyyy-mm-dd hh:mm:ss
+        # @param OfflineTime: <p>下线时间，格式为 yyyy-mm-dd hh:mm:ss</p>
         # @type OfflineTime: String
-        # @param OptObjStatus: 动态修改对象，修改任务的状态等
+        # @param OptObjStatus: <p>动态修改对象，修改任务的状态等</p>
         # @type OptObjStatus: String
-        # @param AutoRetryTimeRangeMinutes: 自动重试时间段设置
+        # @param AutoRetryTimeRangeMinutes: <p>自动重试时间段设置</p>
         # @type AutoRetryTimeRangeMinutes: Integer
-        # @param DumperResumeCtrl: 全量导出可重入标识：enum::"yes"/"no"。yes表示当前任务可重入、no表示当前任务处于全量导出且不可重入阶段；如果在该值为no时重启任务导出流程不支持断点续传
+        # @param DumperResumeCtrl: <p>全量导出可重入标识：enum::&quot;yes&quot;/&quot;no&quot;。yes表示当前任务可重入、no表示当前任务处于全量导出且不可重入阶段；如果在该值为no时重启任务导出流程不支持断点续传</p>
         # @type DumperResumeCtrl: String
 
         attr_accessor :JobId, :JobName, :PayMode, :RunMode, :ExpectRunTime, :AllActions, :Actions, :Options, :Objects, :Specification, :ExpireTime, :SrcRegion, :SrcDatabaseType, :SrcAccessType, :SrcInfo, :SrcNodeType, :SrcInfos, :DstRegion, :DstDatabaseType, :DstAccessType, :DstInfo, :DstNodeType, :DstInfos, :CreateTime, :StartTime, :Status, :EndTime, :Tags, :Detail, :TradeStatus, :InstanceClass, :AutoRenew, :OfflineTime, :OptObjStatus, :AutoRetryTimeRangeMinutes, :DumperResumeCtrl
@@ -8459,27 +8457,27 @@ module TencentCloud
 
       # 计费状态信息
       class TradeInfo < TencentCloud::Common::AbstractModel
-        # @param DealName: 交易订单号
+        # @param DealName: <p>交易订单号</p>
         # @type DealName: String
-        # @param LastDealName: 上一次交易订单号
+        # @param LastDealName: <p>上一次交易订单号</p>
         # @type LastDealName: String
-        # @param InstanceClass: 实例规格，包括：micro、small、medium、large、xlarge、2xlarge等
+        # @param InstanceClass: <p>实例规格，包括：micro、small、medium、large、xlarge、2xlarge等</p>
         # @type InstanceClass: String
-        # @param TradeStatus: 计费任务状态， normal(计费或待计费)、resizing(变配中)、reversing(冲正中，比较短暂的状态)、isolating(隔离中，比较短暂的状态)、isolated(已隔离)、offlining(下线中)、offlined(已下线)、notBilled(未计费)
+        # @param TradeStatus: <p>计费任务状态， normal(计费或待计费)、resizing(变配中)、reversing(冲正中，比较短暂的状态)、isolating(隔离中，比较短暂的状态)、isolated(已隔离)、offlining(下线中)、offlined(已下线)、notBilled(未计费)</p>
         # @type TradeStatus: String
-        # @param ExpireTime: 到期时间，格式为"yyyy-mm-dd hh:mm:ss"
+        # @param ExpireTime: <p>到期时间。当 <code>DateTimeISOFormat=true</code> 时返回 RFC 3339 格式（如 <code>2026-04-23T20:21:35+08:00</code>），否则返回 <code>yyyy-mm-dd hh:mm:ss</code>（北京时间）</p>
         # @type ExpireTime: String
-        # @param OfflineTime: 下线时间，格式为"yyyy-mm-dd hh:mm:ss"
+        # @param OfflineTime: <p>下线时间。当 <code>DateTimeISOFormat=true</code> 时返回 RFC 3339 格式（如 <code>2026-04-23T20:21:35+08:00</code>），否则返回 <code>yyyy-mm-dd hh:mm:ss</code>（北京时间）</p>
         # @type OfflineTime: String
-        # @param IsolateTime: 隔离时间，格式为"yyyy-mm-dd hh:mm:ss"
+        # @param IsolateTime: <p>隔离时间。当 <code>DateTimeISOFormat=true</code> 时返回 RFC 3339 格式（如 <code>2026-04-23T20:21:35+08:00</code>），否则返回 <code>yyyy-mm-dd hh:mm:ss</code>（北京时间）</p>
         # @type IsolateTime: String
-        # @param OfflineReason: 下线原因
+        # @param OfflineReason: <p>下线原因</p>
         # @type OfflineReason: String
-        # @param IsolateReason: 隔离原因
+        # @param IsolateReason: <p>隔离原因</p>
         # @type IsolateReason: String
-        # @param PayType: 付费类型，包括：postpay(后付费)、prepay(预付费)
+        # @param PayType: <p>付费类型，包括：postpay(后付费)、prepay(预付费)</p>
         # @type PayType: String
-        # @param BillingType: 任务计费类型，包括：billing(计费)、notBilling(不计费)、 promotions(促销活动中)
+        # @param BillingType: <p>任务计费类型，包括：billing(计费)、notBilling(不计费)、 promotions(促销活动中)</p>
         # @type BillingType: String
 
         attr_accessor :DealName, :LastDealName, :InstanceClass, :TradeStatus, :ExpireTime, :OfflineTime, :IsolateTime, :OfflineReason, :IsolateReason, :PayType, :BillingType

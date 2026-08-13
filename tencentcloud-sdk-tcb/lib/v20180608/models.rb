@@ -5879,33 +5879,33 @@ module TencentCloud
 
       # 查询HTTP访问服务输出的域名信息，每个域名内包含所有路由信息
       class HTTPServiceDomain < TencentCloud::Common::AbstractModel
-        # @param Domain: 域名
+        # @param Domain: <p>域名</p>
         # @type Domain: String
-        # @param DomainType: 域名类型。 HTTPSERVICE: HTTP访问服务，CBR: 云托管服务，ANYSERVICE: 任意服务，AI_AGENT: AI agent，VM: 主机，INTEGRATION_CALLBACK: 集成回调
+        # @param DomainType: <p>域名类型。 HTTPSERVICE: HTTP访问服务，CBR: 云托管服务，ANYSERVICE: 任意服务，AI_AGENT: AI agent，VM: 主机，INTEGRATION_CALLBACK: 集成回调</p>
         # @type DomainType: String
-        # @param AccessType: 绑定类型。默认DIRECT。DIRECT: 直连到HTTP访问服务， CDN: 接入云开发CDN，CUSTOM: 自定义接入类型（其他CDN或者WAF）
+        # @param AccessType: <p>绑定类型。默认DIRECT。DIRECT: 直连到HTTP访问服务， CDN: 接入云开发CDN，CUSTOM: 自定义接入类型（其他CDN或者WAF）</p>
         # @type AccessType: String
-        # @param CertId: 证书ID。当前账户下SSL平台的证书ID
+        # @param CertId: <p>证书ID。当前账户下SSL平台的证书ID</p>
         # @type CertId: String
-        # @param Protocol: 协议类型。默认HTTP_AND_HTTPS。HTTP_AND_HTTPS: 同时开启http和https，HTTP_TO_HTTPS: http重定向成https，HTTPS_TO_HTTP: https重定向成http。如果未配置证书无法访问https或者进行重定向
+        # @param Protocol: <p>协议类型。默认HTTP_AND_HTTPS。HTTP_AND_HTTPS: 同时开启http和https，HTTP_TO_HTTPS: http重定向成https，HTTPS_TO_HTTP: https重定向成http。如果未配置证书无法访问https或者进行重定向</p>
         # @type Protocol: String
-        # @param Cname: 配置DNS解析的CNAME。根据AccessType返回不同的CNAME值。
+        # @param Cname: <p>配置DNS解析的CNAME。根据AccessType返回不同的CNAME值。</p>
         # @type Cname: String
-        # @param IsDefault: 是否是默认域名
+        # @param IsDefault: <p>是否是默认域名</p>
         # @type IsDefault: Boolean
-        # @param Enable: 域名开启状态
+        # @param Enable: <p>域名开启状态</p>
         # @type Enable: Boolean
-        # @param Status: 状态。PROCESSING、FAIL，SUCCESS。
+        # @param Status: <p>状态。</p><p>枚举值：</p><ul><li>PROCESSING： 处理中</li><li>FAIL： 失败</li><li>EO_PENDING_VERIFICATION： 待验证edgeone归属权</li><li>SUCCESS： 成功</li></ul>
         # @type Status: String
-        # @param DNSStatus: DNS解析状态。OK： 解析正常，INVALID：解析不正确，域名未解析到当前Cname域名。
+        # @param DNSStatus: <p>DNS解析状态</p><p>枚举值：</p><ul><li>OK： 正常，命中目标 cname</li><li>EMPTY： 解析为空，域名尚未配置 CNAME 或未生效</li><li>INVALID： 异常，解析到其他非目标地址</li></ul>
         # @type DNSStatus: String
-        # @param Routes: HTTP访问服务路由信息
+        # @param Routes: <p>HTTP访问服务路由信息</p>
         # @type Routes: Array
-        # @param Extension: 扩展字段，内部包含headers处理等
+        # @param Extension: <p>扩展字段，内部包含headers处理等</p>
         # @type Extension: :class:`Tencentcloud::Tcb.v20180608.models.HTTPServiceExtension`
-        # @param CreateTime: 域名创建时间
+        # @param CreateTime: <p>域名创建时间</p>
         # @type CreateTime: String
-        # @param UpdateTime: 域名更新时间
+        # @param UpdateTime: <p>域名更新时间</p>
         # @type UpdateTime: String
 
         attr_accessor :Domain, :DomainType, :AccessType, :CertId, :Protocol, :Cname, :IsDefault, :Enable, :Status, :DNSStatus, :Routes, :Extension, :CreateTime, :UpdateTime

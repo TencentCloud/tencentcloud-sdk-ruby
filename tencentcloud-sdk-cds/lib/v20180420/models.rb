@@ -101,18 +101,18 @@ module TencentCloud
         # @type AssetGroupId: Integer
         # @param IsNewCloudAudit: <p>是否是新云原生审计流程</p>
         # @type IsNewCloudAudit: Boolean
-        # @param AuditCapability: <p>审计功能支持说明</p>
-        # @type AuditCapability: Array
         # @param TrafficMirrorOn: <p>1</p><p>取值范围：[0, 1]</p>
         # @type TrafficMirrorOn: Integer
         # @param AuditScope: <p>流量镜像审计范围</p><p>枚举值：</p><ul><li>ALL： 全地域</li><li>REGION： 资产所在地域</li><li>VPC： 资产所在VPC</li></ul><p>默认值：REGION</p>
         # @type AuditScope: String
         # @param InstanceGroupId: <p>实例集群ID</p>
         # @type InstanceGroupId: String
+        # @param AssetGroups: <p>该资产所在的资产组</p>
+        # @type AssetGroups: Array
 
-        attr_accessor :AddTime, :Aid, :AssetsIp, :AssetsName, :AssetsPort, :AssetsType, :AssetsVersion, :AssetsAddType, :Status, :UpdateTime, :VpcId, :RegionId, :Permission, :InstanceId, :InstanceName, :AddType, :AssetSubnetId, :UploadPem, :AliveStatus, :AgentOn, :CasbOn, :GroupId, :Available, :CdbOn, :DbPlatform, :DbCharset, :OsPolicy, :BidirectionOn, :BidirectionMaxLine, :BidirectionMaxStorage, :BidirectionAllow, :BidirectionDelivery, :RoStatus, :AgentBound, :CdbErrorMsg, :DsgcBindingInfo, :BindingRules, :BindingModels, :GroupName, :AssetGroupId, :IsNewCloudAudit, :AuditCapability, :TrafficMirrorOn, :AuditScope, :InstanceGroupId
+        attr_accessor :AddTime, :Aid, :AssetsIp, :AssetsName, :AssetsPort, :AssetsType, :AssetsVersion, :AssetsAddType, :Status, :UpdateTime, :VpcId, :RegionId, :Permission, :InstanceId, :InstanceName, :AddType, :AssetSubnetId, :UploadPem, :AliveStatus, :AgentOn, :CasbOn, :GroupId, :Available, :CdbOn, :DbPlatform, :DbCharset, :OsPolicy, :BidirectionOn, :BidirectionMaxLine, :BidirectionMaxStorage, :BidirectionAllow, :BidirectionDelivery, :RoStatus, :AgentBound, :CdbErrorMsg, :DsgcBindingInfo, :BindingRules, :BindingModels, :GroupName, :AssetGroupId, :IsNewCloudAudit, :TrafficMirrorOn, :AuditScope, :InstanceGroupId, :AssetGroups
 
-        def initialize(addtime=nil, aid=nil, assetsip=nil, assetsname=nil, assetsport=nil, assetstype=nil, assetsversion=nil, assetsaddtype=nil, status=nil, updatetime=nil, vpcid=nil, regionid=nil, permission=nil, instanceid=nil, instancename=nil, addtype=nil, assetsubnetid=nil, uploadpem=nil, alivestatus=nil, agenton=nil, casbon=nil, groupid=nil, available=nil, cdbon=nil, dbplatform=nil, dbcharset=nil, ospolicy=nil, bidirectionon=nil, bidirectionmaxline=nil, bidirectionmaxstorage=nil, bidirectionallow=nil, bidirectiondelivery=nil, rostatus=nil, agentbound=nil, cdberrormsg=nil, dsgcbindinginfo=nil, bindingrules=nil, bindingmodels=nil, groupname=nil, assetgroupid=nil, isnewcloudaudit=nil, auditcapability=nil, trafficmirroron=nil, auditscope=nil, instancegroupid=nil)
+        def initialize(addtime=nil, aid=nil, assetsip=nil, assetsname=nil, assetsport=nil, assetstype=nil, assetsversion=nil, assetsaddtype=nil, status=nil, updatetime=nil, vpcid=nil, regionid=nil, permission=nil, instanceid=nil, instancename=nil, addtype=nil, assetsubnetid=nil, uploadpem=nil, alivestatus=nil, agenton=nil, casbon=nil, groupid=nil, available=nil, cdbon=nil, dbplatform=nil, dbcharset=nil, ospolicy=nil, bidirectionon=nil, bidirectionmaxline=nil, bidirectionmaxstorage=nil, bidirectionallow=nil, bidirectiondelivery=nil, rostatus=nil, agentbound=nil, cdberrormsg=nil, dsgcbindinginfo=nil, bindingrules=nil, bindingmodels=nil, groupname=nil, assetgroupid=nil, isnewcloudaudit=nil, trafficmirroron=nil, auditscope=nil, instancegroupid=nil, assetgroups=nil)
           @AddTime = addtime
           @Aid = aid
           @AssetsIp = assetsip
@@ -154,10 +154,10 @@ module TencentCloud
           @GroupName = groupname
           @AssetGroupId = assetgroupid
           @IsNewCloudAudit = isnewcloudaudit
-          @AuditCapability = auditcapability
           @TrafficMirrorOn = trafficmirroron
           @AuditScope = auditscope
           @InstanceGroupId = instancegroupid
+          @AssetGroups = assetgroups
         end
 
         def deserialize(params)
@@ -219,28 +219,17 @@ module TencentCloud
           @GroupName = params['GroupName']
           @AssetGroupId = params['AssetGroupId']
           @IsNewCloudAudit = params['IsNewCloudAudit']
-          unless params['AuditCapability'].nil?
-            @AuditCapability = []
-            params['AuditCapability'].each do |i|
-              auditcapability_tmp = AuditCapability.new
-              auditcapability_tmp.deserialize(i)
-              @AuditCapability << auditcapability_tmp
-            end
-          end
           @TrafficMirrorOn = params['TrafficMirrorOn']
           @AuditScope = params['AuditScope']
           @InstanceGroupId = params['InstanceGroupId']
-        end
-      end
-
-      # 资产支持的审计能力
-      class AuditCapability < TencentCloud::Common::AbstractModel
-
-
-        def initialize()
-        end
-
-        def deserialize(params)
+          unless params['AssetGroups'].nil?
+            @AssetGroups = []
+            params['AssetGroups'].each do |i|
+              idwithname_tmp = IdWithName.new
+              idwithname_tmp.deserialize(i)
+              @AssetGroups << idwithname_tmp
+            end
+          end
         end
       end
 
@@ -322,7 +311,7 @@ module TencentCloud
 
       # CreateReportPdf请求参数结构体
       class CreateReportPdfRequest < TencentCloud::Common::AbstractModel
-        # @param Id: 报表 Id
+        # @param Id: <p>报表 Id</p>
         # @type Id: Integer
 
         attr_accessor :Id
@@ -338,7 +327,7 @@ module TencentCloud
 
       # CreateReportPdf返回参数结构体
       class CreateReportPdfResponse < TencentCloud::Common::AbstractModel
-        # @param Url: 下载地址
+        # @param Url: <p>下载地址</p>
         # @type Url: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1076,52 +1065,36 @@ module TencentCloud
         # @param Id: 报表任务id
         # @type Id: Integer
         # @param TplName: 任务名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TplName: String
         # @param ReportType: 报表类型 1:单次报表 2:周期报表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReportType: Integer
         # @param Remark: 报告说明
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
         # @param TemplateId: 报表模板 1:综合分析报告 2:等保合规报告
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateId: Integer
         # @param AssetsList: 包含资产
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssetsList: Array
         # @param NextStartTime: 下次启动时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NextStartTime: Integer
         # @param MissionStatus: 任务状态 1:生成中 2:待生成3:已生成4:生成失败5:已暂停
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MissionStatus: Integer
         # @param MissionStatusMessage: 任务状态说明 仅生成中和生成失败有效
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MissionStatusMessage: String
         # @param ReportCount: 已生成报表数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReportCount: Integer
         # @param MissionStart: 任务起停 1:关闭 2:开启 仅周期报表有效
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MissionStart: Integer
         # @param CntDay: 统计周期 1:24小时 7:近一周 30:近30天 90:近90天 180:
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CntDay: Integer
         # @param CntCycle: 重复周期 1:每天 2:每周 3:每月
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CntCycle: Integer
         # @param CntTime: 执行日期 重复周期为天：无意义 周：星期几 1-7  月每月
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CntTime: Integer
         # @param CntDate: 执行时间 格式15:04 到分钟
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CntDate: String
         # @param Receivers: 创建者 0:内置 其余存放用户(uin)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Receivers: String
         # @param Notification: Notification  int  1关闭 2开启 不变更为0
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Notification: Integer
 
         attr_accessor :Id, :TplName, :ReportType, :Remark, :TemplateId, :AssetsList, :NextStartTime, :MissionStatus, :MissionStatusMessage, :ReportCount, :MissionStart, :CntDay, :CntCycle, :CntTime, :CntDate, :Receivers, :Notification
@@ -1207,13 +1180,10 @@ module TencentCloud
         # @param Title: 报告名称
         # @type Title: String
         # @param TemplateId: 报表模板
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateId: Integer
         # @param AssetsList: 包含资产
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssetsList: Array
         # @param CntDay: 时间范围 1:24小时 7:近一周 30:近30天 90:近90天 180:近180天 不变更为0
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CntDay: Integer
 
         attr_accessor :AddTime, :EndTime, :Id, :InstanceId, :IsDelete, :Receivers, :Remark, :ReportFile, :ReportStatus, :ReportTmpStatus, :ReportType, :SendResult, :SendType, :StartTime, :Title, :TemplateId, :AssetsList, :CntDay

@@ -5264,9 +5264,9 @@ module TencentCloud
         # @type X: Integer
         # @param Y: <p>左上角y。</p>
         # @type Y: Integer
-        # @param Width: <p>宽width。</p>
+        # @param Width: <p>宽width。</p><p>单位：px</p>
         # @type Width: Integer
-        # @param Height: <p>高height。</p>
+        # @param Height: <p>高height。</p><p>单位：px</p>
         # @type Height: Integer
 
         attr_accessor :X, :Y, :Width, :Height

@@ -367,99 +367,90 @@ module TencentCloud
 
       # CHC物理服务器信息
       class ChcHost < TencentCloud::Common::AbstractModel
-        # @param ChcId: CHC物理服务器ID。
+        # @param ChcId: <p>CHC物理服务器ID。</p>
         # @type ChcId: String
-        # @param InstanceName: 实例名称。
+        # @param InstanceName: <p>实例名称。</p>
         # @type InstanceName: String
-        # @param SerialNumber: 服务器序列号。
+        # @param SerialNumber: <p>服务器序列号。</p>
         # @type SerialNumber: String
-        # @param InstanceState: CHC的状态<br/>
-        # <ul>
-        # <li>INIT: 设备已录入。还未配置带外和部署网络</li>
-        # <li>READY: 已配置带外和部署网络</li>
-        # <li>PREPARED: 可分配云主机</li>
-        # <li>ONLINE: 已分配云主机</li>
-        # <li>OPERATING: 设备操作中，如正在配置带外网络等。</li>
-        # <li>CLEAR_NETWORK_FAILED: 清理带外和部署网络失败</li>
-        # </ul>
+        # @param InstanceState: <p>CHC的状态<br></p><ul><li>INIT: 设备已录入。还未配置带外和部署网络</li><li>READY: 已配置带外和部署网络</li><li>PREPARED: 可分配云主机</li><li>ONLINE: 已分配云主机</li><li>OPERATING: 设备操作中，如正在配置带外网络等。</li><li>CLEAR_NETWORK_FAILED: 清理带外和部署网络失败</li></ul>
         # @type InstanceState: String
-        # @param DeviceType: 设备类型。
+        # @param DeviceType: <p>设备类型。</p>
         # @type DeviceType: String
-        # @param Placement: 所属可用区
+        # @param Placement: <p>所属可用区。</p>
         # @type Placement: :class:`Tencentcloud::Cvm.v20170312.models.Placement`
-        # @param BmcVirtualPrivateCloud: 带外网络。
+        # @param BmcVirtualPrivateCloud: <p>带外网络。</p>
         # @type BmcVirtualPrivateCloud: :class:`Tencentcloud::Cvm.v20170312.models.VirtualPrivateCloud`
-        # @param BmcIp: 带外网络Ip。
+        # @param BmcIp: <p>带外网络IP。</p>
         # @type BmcIp: String
-        # @param BmcSecurityGroupIds: 带外网络安全组Id。
+        # @param BmcSecurityGroupIds: <p>带外网络安全组ID。</p>
         # @type BmcSecurityGroupIds: Array
-        # @param DeployVirtualPrivateCloud: 部署网络。
+        # @param DeployVirtualPrivateCloud: <p>部署网络。</p>
         # @type DeployVirtualPrivateCloud: :class:`Tencentcloud::Cvm.v20170312.models.VirtualPrivateCloud`
-        # @param DeployIp: 部署网络Ip。
+        # @param DeployIp: <p>部署网络IP。</p>
         # @type DeployIp: String
-        # @param DeploySecurityGroupIds: 部署网络安全组Id。
+        # @param DeploySecurityGroupIds: <p>部署网络安全组ID。</p>
         # @type DeploySecurityGroupIds: Array
-        # @param CvmInstanceId: 关联的云主机Id。
+        # @param CvmInstanceId: <p>关联的云主机ID。</p>
         # @type CvmInstanceId: String
-        # @param CreatedTime: 服务器导入的时间。
+        # @param CreatedTime: <p>服务器导入的时间。</p>
         # @type CreatedTime: String
-        # @param HardwareDescription: 机型的硬件描述，分别为CPU核数，内存容量和磁盘容量
+        # @param HardwareDescription: <p>机型的硬件描述，分别为CPU核数，内存容量和磁盘容量。</p>
         # @type HardwareDescription: String
-        # @param CPU: CHC物理服务器的CPU核数
+        # @param CPU: <p>CHC物理服务器的CPU核数。</p>
         # @type CPU: Integer
-        # @param Memory: CHC物理服务器的内存大小，单位为GB
+        # @param Memory: <p>CHC物理服务器的内存大小，单位为GB。</p>
         # @type Memory: Integer
-        # @param Disk: CHC物理服务器的磁盘信息
+        # @param Disk: <p>CHC物理服务器的磁盘信息。</p>
         # @type Disk: String
-        # @param BmcMAC: 带外网络下分配的MAC地址
+        # @param BmcMAC: <p>带外网络下分配的MAC地址。</p>
         # @type BmcMAC: String
-        # @param DeployMAC: 部署网络下分配的MAC地址
+        # @param DeployMAC: <p>部署网络下分配的MAC地址。</p>
         # @type DeployMAC: String
-        # @param TenantType: 设备托管类型。
-        # HOSTING: 托管
-        # TENANT: 租赁
+        # @param TenantType: <p>设备托管类型。</p><p>枚举值：</p><ul><li>HOSTING： 托管类型。</li><li>TENANT： 租赁类型。</li></ul>
         # @type TenantType: String
-        # @param DeployExtraConfig: chc dhcp选项，用于minios调试。
+        # @param DeployExtraConfig: <p>CHC DHCP选项，用于客户自建PXE环境。</p>
         # @type DeployExtraConfig: :class:`Tencentcloud::Cvm.v20170312.models.ChcDeployExtraConfig`
-        # @param Gpu: GPU型号。
+        # @param Gpu: <p>GPU型号。</p>
         # @type Gpu: String
-        # @param NetworkCard: 网卡型号。主要指RDMA网卡。
+        # @param NetworkCard: <p>网卡型号。主要指RDMA网卡。</p>
         # @type NetworkCard: String
-        # @param IsPredefinedType: 是否是预定义机型。
+        # @param IsPredefinedType: <p>是否是预定义机型。</p>
         # @type IsPredefinedType: Boolean
-        # @param ChcInstanceType: CHC云主机机型。
+        # @param ChcInstanceType: <p>CHC云主机机型。</p>
         # @type ChcInstanceType: String
-        # @param ChcInstanceFamily: CHC云主机机型簇。
+        # @param ChcInstanceFamily: <p>CHC云主机机型簇。</p>
         # @type ChcInstanceFamily: String
-        # @param ChcInstanceFamilyName: CHC云主机机型簇名称。
+        # @param ChcInstanceFamilyName: <p>CHC云主机机型簇名称。</p>
         # @type ChcInstanceFamilyName: String
-        # @param ResaleAppId: 转售客户的AppId。
+        # @param ResaleAppId: <p>转售客户的AppID。</p>
         # @type ResaleAppId: String
-        # @param ResaleAccountId: 转售客户的账号ID。
+        # @param ResaleAccountId: <p>转售客户的账号ID。</p>
         # @type ResaleAccountId: String
-        # @param SaleStatus: 售卖状态。<br/>
-        # <ul>
-        # <li>NOT_FOR_SALE:不可售卖</li>
-        # <li>AVAILABLE: 可售卖</li>
-        # <li>SOLD: 已售卖</li>
-        # </ul>
+        # @param SaleStatus: <p>售卖状态。<br></p><ul><li>NOT_FOR_SALE:不可售卖</li><li>AVAILABLE: 可售卖</li><li>SOLD: 已售卖</li></ul>
         # @type SaleStatus: String
-        # @param Tags: CHC物理服务器关联的标签列表。
+        # @param Tags: <p>CHC物理服务器关联的标签列表。</p>
         # @type Tags: Array
-        # @param LatestOperation: 最近操作
+        # @param LatestOperation: <p>最近操作。</p>
         # @type LatestOperation: String
-        # @param LatestOperationErrorCode: 最近操作错误码
+        # @param LatestOperationErrorCode: <p>最近操作错误码。</p>
         # @type LatestOperationErrorCode: String
-        # @param LatestOperationErrorMsg: 最近操作错误详情和建议项
+        # @param LatestOperationErrorMsg: <p>最近操作错误详情和建议项。</p>
         # @type LatestOperationErrorMsg: String
-        # @param LatestOperationName: 最近操作名称
+        # @param LatestOperationName: <p>最近操作名称。</p>
         # @type LatestOperationName: String
-        # @param LatestOperationState: 最近操作状态
+        # @param LatestOperationState: <p>最近操作状态。</p><p>枚举值：</p><ul><li>SUCCESS： 成功。</li><li>FAILED： 失败。</li></ul>
         # @type LatestOperationState: String
+        # @param ChcGatewayId: <p>所在的CHC网关的ID，只有专属网关才会返回。</p>
+        # @type ChcGatewayId: String
+        # @param DedicatedClusterId: <p>所属的CDC集群ID。</p>
+        # @type DedicatedClusterId: String
+        # @param NetworkMode: <p>业务网卡网络模式。</p><p>枚举值：</p><ul><li>DEPLOY： 部署网络模式</li><li>BUSINESS： 业务网络模式</li></ul>
+        # @type NetworkMode: String
 
-        attr_accessor :ChcId, :InstanceName, :SerialNumber, :InstanceState, :DeviceType, :Placement, :BmcVirtualPrivateCloud, :BmcIp, :BmcSecurityGroupIds, :DeployVirtualPrivateCloud, :DeployIp, :DeploySecurityGroupIds, :CvmInstanceId, :CreatedTime, :HardwareDescription, :CPU, :Memory, :Disk, :BmcMAC, :DeployMAC, :TenantType, :DeployExtraConfig, :Gpu, :NetworkCard, :IsPredefinedType, :ChcInstanceType, :ChcInstanceFamily, :ChcInstanceFamilyName, :ResaleAppId, :ResaleAccountId, :SaleStatus, :Tags, :LatestOperation, :LatestOperationErrorCode, :LatestOperationErrorMsg, :LatestOperationName, :LatestOperationState
+        attr_accessor :ChcId, :InstanceName, :SerialNumber, :InstanceState, :DeviceType, :Placement, :BmcVirtualPrivateCloud, :BmcIp, :BmcSecurityGroupIds, :DeployVirtualPrivateCloud, :DeployIp, :DeploySecurityGroupIds, :CvmInstanceId, :CreatedTime, :HardwareDescription, :CPU, :Memory, :Disk, :BmcMAC, :DeployMAC, :TenantType, :DeployExtraConfig, :Gpu, :NetworkCard, :IsPredefinedType, :ChcInstanceType, :ChcInstanceFamily, :ChcInstanceFamilyName, :ResaleAppId, :ResaleAccountId, :SaleStatus, :Tags, :LatestOperation, :LatestOperationErrorCode, :LatestOperationErrorMsg, :LatestOperationName, :LatestOperationState, :ChcGatewayId, :DedicatedClusterId, :NetworkMode
 
-        def initialize(chcid=nil, instancename=nil, serialnumber=nil, instancestate=nil, devicetype=nil, placement=nil, bmcvirtualprivatecloud=nil, bmcip=nil, bmcsecuritygroupids=nil, deployvirtualprivatecloud=nil, deployip=nil, deploysecuritygroupids=nil, cvminstanceid=nil, createdtime=nil, hardwaredescription=nil, cpu=nil, memory=nil, disk=nil, bmcmac=nil, deploymac=nil, tenanttype=nil, deployextraconfig=nil, gpu=nil, networkcard=nil, ispredefinedtype=nil, chcinstancetype=nil, chcinstancefamily=nil, chcinstancefamilyname=nil, resaleappid=nil, resaleaccountid=nil, salestatus=nil, tags=nil, latestoperation=nil, latestoperationerrorcode=nil, latestoperationerrormsg=nil, latestoperationname=nil, latestoperationstate=nil)
+        def initialize(chcid=nil, instancename=nil, serialnumber=nil, instancestate=nil, devicetype=nil, placement=nil, bmcvirtualprivatecloud=nil, bmcip=nil, bmcsecuritygroupids=nil, deployvirtualprivatecloud=nil, deployip=nil, deploysecuritygroupids=nil, cvminstanceid=nil, createdtime=nil, hardwaredescription=nil, cpu=nil, memory=nil, disk=nil, bmcmac=nil, deploymac=nil, tenanttype=nil, deployextraconfig=nil, gpu=nil, networkcard=nil, ispredefinedtype=nil, chcinstancetype=nil, chcinstancefamily=nil, chcinstancefamilyname=nil, resaleappid=nil, resaleaccountid=nil, salestatus=nil, tags=nil, latestoperation=nil, latestoperationerrorcode=nil, latestoperationerrormsg=nil, latestoperationname=nil, latestoperationstate=nil, chcgatewayid=nil, dedicatedclusterid=nil, networkmode=nil)
           @ChcId = chcid
           @InstanceName = instancename
           @SerialNumber = serialnumber
@@ -497,6 +488,9 @@ module TencentCloud
           @LatestOperationErrorMsg = latestoperationerrormsg
           @LatestOperationName = latestoperationname
           @LatestOperationState = latestoperationstate
+          @ChcGatewayId = chcgatewayid
+          @DedicatedClusterId = dedicatedclusterid
+          @NetworkMode = networkmode
         end
 
         def deserialize(params)
@@ -556,6 +550,9 @@ module TencentCloud
           @LatestOperationErrorMsg = params['LatestOperationErrorMsg']
           @LatestOperationName = params['LatestOperationName']
           @LatestOperationState = params['LatestOperationState']
+          @ChcGatewayId = params['ChcGatewayId']
+          @DedicatedClusterId = params['DedicatedClusterId']
+          @NetworkMode = params['NetworkMode']
         end
       end
 

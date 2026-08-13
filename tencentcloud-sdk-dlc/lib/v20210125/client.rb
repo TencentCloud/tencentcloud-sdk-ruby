@@ -3343,7 +3343,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询当前地域可售卖的资源规格和最大配额
+        # 查询当前地域可售卖的资源规格、最大配额，以及库存情况。StatusCategory 与 DescribePartitionAvailableQuota 数据同源，将实时可新增数量映射为库存分级；当请求 Region 与资源池实际部署地域不一致，或服务 cold-start 快照尚未就绪时，StatusCategory 为 null。
 
         # @param request: Request instance for DescribeSaleResourceInfo.
         # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeSaleResourceInfoRequest`
@@ -5369,6 +5369,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ListExamplesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 列出所有镜像
+
+        # @param request: Request instance for ListImages.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::ListImagesRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::ListImagesResponse`
+        def ListImages(request)
+          body = send_request('ListImages', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListImagesResponse.new
             model.deserialize(response['Response'])
             model
           else
