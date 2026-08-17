@@ -14136,6 +14136,141 @@ module TencentCloud
         end
       end
 
+      # VerifyGeneralCardWarn请求参数结构体
+      class VerifyGeneralCardWarnRequest < TencentCloud::Common::AbstractModel
+        # @param CardType: <p>卡证类型参数，仅支持传入下列指定值，请按实际情况选择对应卡证类型，目前支持以下类型：<br><strong>身份证件</strong><br>0101 身份证<br>0102 护照<br><strong>经营证照</strong><br>0201 营业执照<br><strong>权属登记</strong><br>0301 行驶证<br><strong>资格许可</strong><br>0401 驾驶证</p>
+        # @type CardType: String
+        # @param ImageUrl: <p>图片的 Url 地址。要求图片经Base64编码后不超过 10M。</p>
+        # @type ImageUrl: String
+        # @param ImageBase64: <p>图片的 Base64 值。要求图片经Base64编码后不超过 10M。</p>
+        # @type ImageBase64: String
+
+        attr_accessor :CardType, :ImageUrl, :ImageBase64
+
+        def initialize(cardtype=nil, imageurl=nil, imagebase64=nil)
+          @CardType = cardtype
+          @ImageUrl = imageurl
+          @ImageBase64 = imagebase64
+        end
+
+        def deserialize(params)
+          @CardType = params['CardType']
+          @ImageUrl = params['ImageUrl']
+          @ImageBase64 = params['ImageBase64']
+        end
+      end
+
+      # VerifyGeneralCardWarn返回参数结构体
+      class VerifyGeneralCardWarnResponse < TencentCloud::Common::AbstractModel
+        # @param Tamper: <p>区域篡改提示</p>
+        # @type Tamper: :class:`Tencentcloud::Ocr.v20181119.models.GeneralCardWarnInfo`
+        # @param Synthesis: <p>AIGC合成提示</p>
+        # @type Synthesis: :class:`Tencentcloud::Ocr.v20181119.models.GeneralCardWarnInfo`
+        # @param Template: <p>模板图片提示</p>
+        # @type Template: :class:`Tencentcloud::Ocr.v20181119.models.GeneralCardWarnInfo`
+        # @param RemakeScreen: <p>屏幕翻拍提示</p>
+        # @type RemakeScreen: :class:`Tencentcloud::Ocr.v20181119.models.GeneralCardWarnInfo`
+        # @param Screenshot: <p>截图提示</p>
+        # @type Screenshot: :class:`Tencentcloud::Ocr.v20181119.models.GeneralCardWarnInfo`
+        # @param Blur: <p>模糊提示</p>
+        # @type Blur: :class:`Tencentcloud::Ocr.v20181119.models.GeneralCardWarnInfo`
+        # @param BorderIncomplete: <p>边框不完整提示</p>
+        # @type BorderIncomplete: :class:`Tencentcloud::Ocr.v20181119.models.GeneralCardWarnInfo`
+        # @param Copy: <p>复印件提示</p>
+        # @type Copy: :class:`Tencentcloud::Ocr.v20181119.models.GeneralCardWarnInfo`
+        # @param Reflection: <p>反光提示</p>
+        # @type Reflection: :class:`Tencentcloud::Ocr.v20181119.models.GeneralCardWarnInfo`
+        # @param Cover: <p>遮挡提示</p>
+        # @type Cover: :class:`Tencentcloud::Ocr.v20181119.models.GeneralCardWarnInfo`
+        # @param Overlap: <p>重叠提示</p>
+        # @type Overlap: :class:`Tencentcloud::Ocr.v20181119.models.GeneralCardWarnInfo`
+        # @param Electron: <p>电子证照提示（目前仅支持电子身份证、电子营业执照识别）</p>
+        # @type Electron: :class:`Tencentcloud::Ocr.v20181119.models.GeneralCardWarnInfo`
+        # @param TextWatermark: <p>文字水印提示</p>
+        # @type TextWatermark: :class:`Tencentcloud::Ocr.v20181119.models.GeneralCardWarnInfo`
+        # @param WatermarkContent: <p>水印内容，当未检测到文字水印时不返回，返回多组水印时以 | 分隔。</p>
+        # @type WatermarkContent: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Tamper, :Synthesis, :Template, :RemakeScreen, :Screenshot, :Blur, :BorderIncomplete, :Copy, :Reflection, :Cover, :Overlap, :Electron, :TextWatermark, :WatermarkContent, :RequestId
+
+        def initialize(tamper=nil, synthesis=nil, template=nil, remakescreen=nil, screenshot=nil, blur=nil, borderincomplete=nil, copy=nil, reflection=nil, cover=nil, overlap=nil, electron=nil, textwatermark=nil, watermarkcontent=nil, requestid=nil)
+          @Tamper = tamper
+          @Synthesis = synthesis
+          @Template = template
+          @RemakeScreen = remakescreen
+          @Screenshot = screenshot
+          @Blur = blur
+          @BorderIncomplete = borderincomplete
+          @Copy = copy
+          @Reflection = reflection
+          @Cover = cover
+          @Overlap = overlap
+          @Electron = electron
+          @TextWatermark = textwatermark
+          @WatermarkContent = watermarkcontent
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Tamper'].nil?
+            @Tamper = GeneralCardWarnInfo.new
+            @Tamper.deserialize(params['Tamper'])
+          end
+          unless params['Synthesis'].nil?
+            @Synthesis = GeneralCardWarnInfo.new
+            @Synthesis.deserialize(params['Synthesis'])
+          end
+          unless params['Template'].nil?
+            @Template = GeneralCardWarnInfo.new
+            @Template.deserialize(params['Template'])
+          end
+          unless params['RemakeScreen'].nil?
+            @RemakeScreen = GeneralCardWarnInfo.new
+            @RemakeScreen.deserialize(params['RemakeScreen'])
+          end
+          unless params['Screenshot'].nil?
+            @Screenshot = GeneralCardWarnInfo.new
+            @Screenshot.deserialize(params['Screenshot'])
+          end
+          unless params['Blur'].nil?
+            @Blur = GeneralCardWarnInfo.new
+            @Blur.deserialize(params['Blur'])
+          end
+          unless params['BorderIncomplete'].nil?
+            @BorderIncomplete = GeneralCardWarnInfo.new
+            @BorderIncomplete.deserialize(params['BorderIncomplete'])
+          end
+          unless params['Copy'].nil?
+            @Copy = GeneralCardWarnInfo.new
+            @Copy.deserialize(params['Copy'])
+          end
+          unless params['Reflection'].nil?
+            @Reflection = GeneralCardWarnInfo.new
+            @Reflection.deserialize(params['Reflection'])
+          end
+          unless params['Cover'].nil?
+            @Cover = GeneralCardWarnInfo.new
+            @Cover.deserialize(params['Cover'])
+          end
+          unless params['Overlap'].nil?
+            @Overlap = GeneralCardWarnInfo.new
+            @Overlap.deserialize(params['Overlap'])
+          end
+          unless params['Electron'].nil?
+            @Electron = GeneralCardWarnInfo.new
+            @Electron.deserialize(params['Electron'])
+          end
+          unless params['TextWatermark'].nil?
+            @TextWatermark = GeneralCardWarnInfo.new
+            @TextWatermark.deserialize(params['TextWatermark'])
+          end
+          @WatermarkContent = params['WatermarkContent']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # VerifyOfdVatInvoiceOCR请求参数结构体
       class VerifyOfdVatInvoiceOCRRequest < TencentCloud::Common::AbstractModel
         # @param OfdFileUrl: OFD文件的 Url 地址。

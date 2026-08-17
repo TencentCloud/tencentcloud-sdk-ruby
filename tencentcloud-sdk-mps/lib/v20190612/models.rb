@@ -244,28 +244,11 @@ module TencentCloud
 
       # 编排原子任务
       class Activity < TencentCloud::Common::AbstractModel
-        # @param ActivityType: 原子任务类型：
-        # <li>input: 起始节点</li>
-        # <li>output：终止节点</li>
-        # <li>action-trans：转码</li>
-        # <li>action-samplesnapshot：采样截图</li>
-        # <li>action-AIAnalysis: 分析</li>
-        # <li>action-AIRecognition：识别</li>
-        # <li>action-aiReview：审核</li>
-        # <li>action-animated-graphics：转动图</li>
-        # <li>action-image-sprite：雪碧图</li>
-        # <li>action-snapshotByTimeOffset: 时间点截图</li>
-        # <li>action-adaptive-substream：自适应码流</li>
-        # <li>action-AIQualityControl：媒体质检</li>
-        # <li>action-SmartSubtitles：智能字幕</li>
-        # <li>action-exec-rules：判断规则</li>
-        # <li>action-SmartErase：智能擦除</li>
-
-
+        # @param ActivityType: <p>原子任务类型：</p><li>input: 起始节点</li><li>output：终止节点</li><li>action-trans：转码</li><li>action-samplesnapshot：采样截图</li><li>action-AIAnalysis: 分析</li><li>action-AIRecognition：识别</li><li>action-aiReview：审核</li><li>action-animated-graphics：转动图</li><li>action-image-sprite：雪碧图</li><li>action-snapshotByTimeOffset: 时间点截图</li><li>action-adaptive-substream：自适应码流</li><li>action-AIQualityControl：媒体质检</li><li>action-SmartSubtitles：智能字幕</li><li>action-exec-rules：判断规则</li><li>action-SmartErase：智能擦除</li>
         # @type ActivityType: String
-        # @param ReardriveIndex: 后驱节点索引数组
+        # @param ReardriveIndex: <p>后驱节点索引数组</p>
         # @type ReardriveIndex: Array
-        # @param ActivityPara: 原子任务参数
+        # @param ActivityPara: <p>原子任务参数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActivityPara: :class:`Tencentcloud::Mps.v20190612.models.ActivityPara`
 
@@ -7346,17 +7329,20 @@ module TencentCloud
         # @type AudioData: String
         # @param AudioUrl: <p>合成音频Url，有效期24小时</p>
         # @type AudioUrl: String
+        # @param ExtInfo: <p>扩展信息，json字符串</p>
+        # @type ExtInfo: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ErrorCode, :Msg, :VoiceId, :AudioData, :AudioUrl, :RequestId
+        attr_accessor :ErrorCode, :Msg, :VoiceId, :AudioData, :AudioUrl, :ExtInfo, :RequestId
 
-        def initialize(errorcode=nil, msg=nil, voiceid=nil, audiodata=nil, audiourl=nil, requestid=nil)
+        def initialize(errorcode=nil, msg=nil, voiceid=nil, audiodata=nil, audiourl=nil, extinfo=nil, requestid=nil)
           @ErrorCode = errorcode
           @Msg = msg
           @VoiceId = voiceid
           @AudioData = audiodata
           @AudioUrl = audiourl
+          @ExtInfo = extinfo
           @RequestId = requestid
         end
 
@@ -7366,6 +7352,7 @@ module TencentCloud
           @VoiceId = params['VoiceId']
           @AudioData = params['AudioData']
           @AudioUrl = params['AudioUrl']
+          @ExtInfo = params['ExtInfo']
           @RequestId = params['RequestId']
         end
       end
@@ -19898,21 +19885,15 @@ module TencentCloud
       # 当单位为%时，坐标范围为[0,1)；
       # 当单位为px时，X值范围为 [0，视频画面宽度]，Y值范围为 [0，视频画面高度]
       class EraseArea < TencentCloud::Common::AbstractModel
-        # @param LeftTopX: 区域左上角X坐标。
-        # 如当Unit取1即使用百分比单位时，0.05表示区域左上角离整个画面左上角的横向距离为画面宽度的5%。
+        # @param LeftTopX: <p>区域左上角X坐标。<br>如当Unit取1即使用百分比单位时，0.05表示区域左上角离整个画面左上角的横向距离为画面宽度的5%。</p>
         # @type LeftTopX: Float
-        # @param LeftTopY: 区域左上角Y坐标。
-        # 如当Unit取1即使用百分比单位时，0.1表示区域左上角离整个画面左上角的纵向距离为画面高度的10%。
+        # @param LeftTopY: <p>区域左上角Y坐标。<br>如当Unit取1即使用百分比单位时，0.1表示区域左上角离整个画面左上角的纵向距离为画面高度的10%。</p>
         # @type LeftTopY: Float
-        # @param RightBottomX: 区域右下角X坐标。
-        # 如当Unit取1即使用百分比单位时，0.75表示区域右下角离整个画面左上角的横向距离为画面宽度的75%。
+        # @param RightBottomX: <p>区域右下角X坐标。<br>如当Unit取1即使用百分比单位时，0.75表示区域右下角离整个画面左上角的横向距离为画面宽度的75%。</p>
         # @type RightBottomX: Float
-        # @param RightBottomY: 区域右下角Y坐标。
-        # 如当Unit取1即使用百分比单位时，0.9表示区域右下角离整个画面左上角的纵向距离为画面高度的90%。
+        # @param RightBottomY: <p>区域右下角Y坐标。<br>如当Unit取1即使用百分比单位时，0.9表示区域右下角离整个画面左上角的纵向距离为画面高度的90%。</p>
         # @type RightBottomY: Float
-        # @param Unit: 坐标单位
-        # - 1 百分比
-        # - 2 像素值
+        # @param Unit: <p>坐标单位</p><ul><li>1 百分比</li><li>2 像素值</li></ul>
         # @type Unit: Integer
 
         attr_accessor :LeftTopX, :LeftTopY, :RightBottomX, :RightBottomY, :Unit
@@ -29229,60 +29210,48 @@ module TencentCloud
 
       # ProcessMedia请求参数结构体
       class ProcessMediaRequest < TencentCloud::Common::AbstractModel
-        # @param InputInfo: 媒体处理的文件输入信息。
+        # @param InputInfo: <p>媒体处理的文件输入信息。</p>
         # @type InputInfo: :class:`Tencentcloud::Mps.v20190612.models.MediaInputInfo`
-        # @param OutputStorage: 媒体处理输出文件的目标存储。不填则继承 InputInfo 中的存储位置。
-        # 注意：当InputInfo.Type为URL时，该参数是必填项
+        # @param OutputStorage: <p>媒体处理输出文件的目标存储。不填则继承 InputInfo 中的存储位置。<br>注意：当InputInfo.Type为URL时，该参数是必填项</p>
         # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
-        # @param OutputDir: 媒体处理生成的文件输出的目标目录，必选以 / 开头和结尾，如`/movie/201907/`。
-        # 如果不填，表示与 InputInfo 中文件所在的目录一致。
+        # @param OutputDir: <p>媒体处理生成的文件输出的目标目录，必选以 / 开头和结尾，如<code>/movie/201907/</code>。<br>如果不填，表示与 InputInfo 中文件所在的目录一致。</p>
         # @type OutputDir: String
-        # @param ScheduleId: 编排ID。
-        # 注意1：对于OutputStorage、OutputDir参数：
-        # <li>当服务编排中子任务节点配置了OutputStorage、OutputDir时，该子任务节点中配置的输出作为子任务的输出。</li>
-        # <li>当服务编排中子任务节点没有配置OutputStorage、OutputDir时，若创建任务接口（ProcessMedia）有指定输出，将覆盖原有编排的默认输出。</li>
-        # <li>即输出设置的优先级：编排子任务节点 > 任务接口指定 > 对应编排内的配置 </li>
-        # 注意2：对于TaskNotifyConfig参数，若创建任务接口（ProcessMedia）有设置，将覆盖原有编排的默认回调。
-
-        # 注意3：编排的 Trigger 只是用来自动化触发场景，在手动发起的请求中已经配置的 Trigger 无意义。
+        # @param ScheduleId: <p>编排ID。<br>注意1：对于OutputStorage、OutputDir参数：</p><li>当服务编排中子任务节点配置了OutputStorage、OutputDir时，该子任务节点中配置的输出作为子任务的输出。</li><li>当服务编排中子任务节点没有配置OutputStorage、OutputDir时，若创建任务接口（ProcessMedia）有指定输出，将覆盖原有编排的默认输出。</li><li>即输出设置的优先级：编排子任务节点 &gt; 任务接口指定 &gt; 对应编排内的配置 </li>注意2：对于TaskNotifyConfig参数，若创建任务接口（ProcessMedia）有设置，将覆盖原有编排的默认回调。<p>注意3：编排的 Trigger 只是用来自动化触发场景，在手动发起的请求中已经配置的 Trigger 无意义。</p>
         # @type ScheduleId: Integer
-        # @param MediaProcessTask: 媒体处理类型任务参数。
+        # @param MediaProcessTask: <p>媒体处理类型任务参数。</p>
         # @type MediaProcessTask: :class:`Tencentcloud::Mps.v20190612.models.MediaProcessTaskInput`
-        # @param AiContentReviewTask: 视频内容审核类型任务参数。
+        # @param AiContentReviewTask: <p>视频内容审核类型任务参数。</p>
         # @type AiContentReviewTask: :class:`Tencentcloud::Mps.v20190612.models.AiContentReviewTaskInput`
-        # @param AiAnalysisTask: 视频内容分析类型任务参数。
+        # @param AiAnalysisTask: <p>视频内容分析类型任务参数。</p>
         # @type AiAnalysisTask: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskInput`
-        # @param AiRecognitionTask: 视频内容识别类型任务参数。
+        # @param AiRecognitionTask: <p>视频内容识别类型任务参数。</p>
         # @type AiRecognitionTask: :class:`Tencentcloud::Mps.v20190612.models.AiRecognitionTaskInput`
-        # @param AiQualityControlTask: 媒体质检类型任务参数。
+        # @param AiQualityControlTask: <p>媒体质检类型任务参数。</p>
         # @type AiQualityControlTask: :class:`Tencentcloud::Mps.v20190612.models.AiQualityControlTaskInput`
-        # @param SmartSubtitlesTask: 智能字幕
+        # @param SmartSubtitlesTask: <p>智能字幕</p>
         # @type SmartSubtitlesTask: :class:`Tencentcloud::Mps.v20190612.models.SmartSubtitlesTaskInput`
-        # @param SmartEraseTask: 智能擦除类型任务参数
+        # @param SmartEraseTask: <p>智能擦除类型任务参数</p>
         # @type SmartEraseTask: :class:`Tencentcloud::Mps.v20190612.models.SmartEraseTaskInput`
-        # @param TaskNotifyConfig: 任务的事件通知信息，不填代表不获取事件通知。
+        # @param TaskNotifyConfig: <p>任务的事件通知信息，不填代表不获取事件通知。</p>
         # @type TaskNotifyConfig: :class:`Tencentcloud::Mps.v20190612.models.TaskNotifyConfig`
-        # @param TasksPriority: 任务流的优先级，数值越大优先级越高，取值范围是-10到 10，不填代表0。
+        # @param TasksPriority: <p>任务流的优先级，数值越大优先级越高，取值范围是-10到 10，不填代表0。</p>
         # @type TasksPriority: Integer
-        # @param SessionId: 用于去重的识别码，如果三天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不传该参数或者参数为空字符串则本次请求不做去重操作。
+        # @param SessionId: <p>用于去重的识别码，如果三天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不传该参数或者参数为空字符串则本次请求不做去重操作。</p>
         # @type SessionId: String
-        # @param SessionContext: 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。
+        # @param SessionContext: <p>来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。</p>
         # @type SessionContext: String
-        # @param TaskType: 任务类型，默认Online
-        # <li> Online：实时任务</li>
-        # <li> Offline：闲时任务，不保证实效性，默认3天内处理完</li>
+        # @param TaskType: <p>任务类型，默认Online</p><li> Online：实时任务</li><li> Offline：闲时任务，不保证实效性，默认3天内处理完</li>
         # @type TaskType: String
-        # @param ResourceId: 资源ID，需要保证对应资源是开启状态。默认为账号主资源ID。
+        # @param ResourceId: <p>资源ID，需要保证对应资源是开启状态。默认为账号主资源ID。</p>
         # @type ResourceId: String
-        # @param SkipMateData: 是否跳过元信息获取，可选值：
-        # 0：表示不跳过
-        # 1：表示跳过
-        # 默认值：0
+        # @param Activities: <p>媒体编排任务组<br>注意：填写此参数ScheduleId字段将失效，Activities优先级大于ScheduleId</p>
+        # @type Activities: Array
+        # @param SkipMateData: <p>是否跳过元信息获取，可选值：<br>0：表示不跳过<br>1：表示跳过<br>默认值：0</p>
         # @type SkipMateData: Integer
 
-        attr_accessor :InputInfo, :OutputStorage, :OutputDir, :ScheduleId, :MediaProcessTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTask, :AiQualityControlTask, :SmartSubtitlesTask, :SmartEraseTask, :TaskNotifyConfig, :TasksPriority, :SessionId, :SessionContext, :TaskType, :ResourceId, :SkipMateData
+        attr_accessor :InputInfo, :OutputStorage, :OutputDir, :ScheduleId, :MediaProcessTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTask, :AiQualityControlTask, :SmartSubtitlesTask, :SmartEraseTask, :TaskNotifyConfig, :TasksPriority, :SessionId, :SessionContext, :TaskType, :ResourceId, :Activities, :SkipMateData
 
-        def initialize(inputinfo=nil, outputstorage=nil, outputdir=nil, scheduleid=nil, mediaprocesstask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontask=nil, aiqualitycontroltask=nil, smartsubtitlestask=nil, smarterasetask=nil, tasknotifyconfig=nil, taskspriority=nil, sessionid=nil, sessioncontext=nil, tasktype=nil, resourceid=nil, skipmatedata=nil)
+        def initialize(inputinfo=nil, outputstorage=nil, outputdir=nil, scheduleid=nil, mediaprocesstask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontask=nil, aiqualitycontroltask=nil, smartsubtitlestask=nil, smarterasetask=nil, tasknotifyconfig=nil, taskspriority=nil, sessionid=nil, sessioncontext=nil, tasktype=nil, resourceid=nil, activities=nil, skipmatedata=nil)
           @InputInfo = inputinfo
           @OutputStorage = outputstorage
           @OutputDir = outputdir
@@ -29300,6 +29269,7 @@ module TencentCloud
           @SessionContext = sessioncontext
           @TaskType = tasktype
           @ResourceId = resourceid
+          @Activities = activities
           @SkipMateData = skipmatedata
         end
 
@@ -29351,13 +29321,21 @@ module TencentCloud
           @SessionContext = params['SessionContext']
           @TaskType = params['TaskType']
           @ResourceId = params['ResourceId']
+          unless params['Activities'].nil?
+            @Activities = []
+            params['Activities'].each do |i|
+              activity_tmp = Activity.new
+              activity_tmp.deserialize(i)
+              @Activities << activity_tmp
+            end
+          end
           @SkipMateData = params['SkipMateData']
         end
       end
 
       # ProcessMedia返回参数结构体
       class ProcessMediaResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务 ID。
+        # @param TaskId: <p>任务 ID。</p>
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
