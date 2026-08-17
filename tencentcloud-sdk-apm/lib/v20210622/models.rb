@@ -277,10 +277,14 @@ module TencentCloud
         # @type HeadSamplerType: String
         # @param HeadSamplerArg: <p>采样阈值，100等于关闭采样，0表示全采样</p>
         # @type HeadSamplerArg: Integer
+        # @param CrossAccountStatus: <p>是否为跨账号</p><p>枚举值：</p><ul><li>0： 否</li><li>1： 是</li></ul>
+        # @type CrossAccountStatus: Integer
+        # @param CrossAccountPeerId: <p>跨账号关联ID</p>
+        # @type CrossAccountPeerId: String
 
-        attr_accessor :InstanceKey, :ServiceName, :UrlConvergenceSwitch, :UrlConvergenceThreshold, :UrlConvergence, :ExceptionFilter, :ErrorCodeFilter, :Components, :UrlExclude, :LogSource, :LogRegion, :IsRelatedLog, :LogTopicID, :IgnoreOperationName, :LogSet, :TraceRateLimit, :EnableSnapshot, :SnapshotTimeout, :AgentEnable, :InstrumentList, :TraceSquash, :EventEnable, :AgentOperationConfigView, :EnableLogConfig, :ServiceID, :EnableDashboardConfig, :IsRelatedDashboard, :DashboardTopicID, :EnableSecurityConfig, :IsInstrumentationVulnerabilityScan, :IsSqlInjectionAnalysis, :IsRemoteCommandExecutionAnalysis, :IsMemoryHijackingAnalysis, :LogIndexType, :LogTraceIdKey, :IsDeleteAnyFileAnalysis, :IsReadAnyFileAnalysis, :IsUploadAnyFileAnalysis, :IsIncludeAnyFileAnalysis, :IsDirectoryTraversalAnalysis, :IsTemplateEngineInjectionAnalysis, :IsScriptEngineInjectionAnalysis, :IsExpressionInjectionAnalysis, :IsJNDIInjectionAnalysis, :IsJNIInjectionAnalysis, :IsWebshellBackdoorAnalysis, :IsDeserializationAnalysis, :UrlAutoConvergenceEnable, :UrlLongSegmentThreshold, :UrlNumberSegmentThreshold, :DisableMemoryUsed, :DisableCpuUsed, :DbStatementParametersEnabled, :SlowSQLThresholds, :EnableDesensitizationRule, :DesensitizationRule, :LogSpanIdKey, :AutoProfilingConfig, :EnableThresholdConfig, :ErrRateThreshold, :ResponseDurationWarningThreshold, :UseDefaultFuseConfig, :AnalysisAutoEnable, :EnableHeadSampler, :HeadSamplerType, :HeadSamplerArg
+        attr_accessor :InstanceKey, :ServiceName, :UrlConvergenceSwitch, :UrlConvergenceThreshold, :UrlConvergence, :ExceptionFilter, :ErrorCodeFilter, :Components, :UrlExclude, :LogSource, :LogRegion, :IsRelatedLog, :LogTopicID, :IgnoreOperationName, :LogSet, :TraceRateLimit, :EnableSnapshot, :SnapshotTimeout, :AgentEnable, :InstrumentList, :TraceSquash, :EventEnable, :AgentOperationConfigView, :EnableLogConfig, :ServiceID, :EnableDashboardConfig, :IsRelatedDashboard, :DashboardTopicID, :EnableSecurityConfig, :IsInstrumentationVulnerabilityScan, :IsSqlInjectionAnalysis, :IsRemoteCommandExecutionAnalysis, :IsMemoryHijackingAnalysis, :LogIndexType, :LogTraceIdKey, :IsDeleteAnyFileAnalysis, :IsReadAnyFileAnalysis, :IsUploadAnyFileAnalysis, :IsIncludeAnyFileAnalysis, :IsDirectoryTraversalAnalysis, :IsTemplateEngineInjectionAnalysis, :IsScriptEngineInjectionAnalysis, :IsExpressionInjectionAnalysis, :IsJNDIInjectionAnalysis, :IsJNIInjectionAnalysis, :IsWebshellBackdoorAnalysis, :IsDeserializationAnalysis, :UrlAutoConvergenceEnable, :UrlLongSegmentThreshold, :UrlNumberSegmentThreshold, :DisableMemoryUsed, :DisableCpuUsed, :DbStatementParametersEnabled, :SlowSQLThresholds, :EnableDesensitizationRule, :DesensitizationRule, :LogSpanIdKey, :AutoProfilingConfig, :EnableThresholdConfig, :ErrRateThreshold, :ResponseDurationWarningThreshold, :UseDefaultFuseConfig, :AnalysisAutoEnable, :EnableHeadSampler, :HeadSamplerType, :HeadSamplerArg, :CrossAccountStatus, :CrossAccountPeerId
 
-        def initialize(instancekey=nil, servicename=nil, urlconvergenceswitch=nil, urlconvergencethreshold=nil, urlconvergence=nil, exceptionfilter=nil, errorcodefilter=nil, components=nil, urlexclude=nil, logsource=nil, logregion=nil, isrelatedlog=nil, logtopicid=nil, ignoreoperationname=nil, logset=nil, traceratelimit=nil, enablesnapshot=nil, snapshottimeout=nil, agentenable=nil, instrumentlist=nil, tracesquash=nil, eventenable=nil, agentoperationconfigview=nil, enablelogconfig=nil, serviceid=nil, enabledashboardconfig=nil, isrelateddashboard=nil, dashboardtopicid=nil, enablesecurityconfig=nil, isinstrumentationvulnerabilityscan=nil, issqlinjectionanalysis=nil, isremotecommandexecutionanalysis=nil, ismemoryhijackinganalysis=nil, logindextype=nil, logtraceidkey=nil, isdeleteanyfileanalysis=nil, isreadanyfileanalysis=nil, isuploadanyfileanalysis=nil, isincludeanyfileanalysis=nil, isdirectorytraversalanalysis=nil, istemplateengineinjectionanalysis=nil, isscriptengineinjectionanalysis=nil, isexpressioninjectionanalysis=nil, isjndiinjectionanalysis=nil, isjniinjectionanalysis=nil, iswebshellbackdooranalysis=nil, isdeserializationanalysis=nil, urlautoconvergenceenable=nil, urllongsegmentthreshold=nil, urlnumbersegmentthreshold=nil, disablememoryused=nil, disablecpuused=nil, dbstatementparametersenabled=nil, slowsqlthresholds=nil, enabledesensitizationrule=nil, desensitizationrule=nil, logspanidkey=nil, autoprofilingconfig=nil, enablethresholdconfig=nil, errratethreshold=nil, responsedurationwarningthreshold=nil, usedefaultfuseconfig=nil, analysisautoenable=nil, enableheadsampler=nil, headsamplertype=nil, headsamplerarg=nil)
+        def initialize(instancekey=nil, servicename=nil, urlconvergenceswitch=nil, urlconvergencethreshold=nil, urlconvergence=nil, exceptionfilter=nil, errorcodefilter=nil, components=nil, urlexclude=nil, logsource=nil, logregion=nil, isrelatedlog=nil, logtopicid=nil, ignoreoperationname=nil, logset=nil, traceratelimit=nil, enablesnapshot=nil, snapshottimeout=nil, agentenable=nil, instrumentlist=nil, tracesquash=nil, eventenable=nil, agentoperationconfigview=nil, enablelogconfig=nil, serviceid=nil, enabledashboardconfig=nil, isrelateddashboard=nil, dashboardtopicid=nil, enablesecurityconfig=nil, isinstrumentationvulnerabilityscan=nil, issqlinjectionanalysis=nil, isremotecommandexecutionanalysis=nil, ismemoryhijackinganalysis=nil, logindextype=nil, logtraceidkey=nil, isdeleteanyfileanalysis=nil, isreadanyfileanalysis=nil, isuploadanyfileanalysis=nil, isincludeanyfileanalysis=nil, isdirectorytraversalanalysis=nil, istemplateengineinjectionanalysis=nil, isscriptengineinjectionanalysis=nil, isexpressioninjectionanalysis=nil, isjndiinjectionanalysis=nil, isjniinjectionanalysis=nil, iswebshellbackdooranalysis=nil, isdeserializationanalysis=nil, urlautoconvergenceenable=nil, urllongsegmentthreshold=nil, urlnumbersegmentthreshold=nil, disablememoryused=nil, disablecpuused=nil, dbstatementparametersenabled=nil, slowsqlthresholds=nil, enabledesensitizationrule=nil, desensitizationrule=nil, logspanidkey=nil, autoprofilingconfig=nil, enablethresholdconfig=nil, errratethreshold=nil, responsedurationwarningthreshold=nil, usedefaultfuseconfig=nil, analysisautoenable=nil, enableheadsampler=nil, headsamplertype=nil, headsamplerarg=nil, crossaccountstatus=nil, crossaccountpeerid=nil)
           @InstanceKey = instancekey
           @ServiceName = servicename
           @UrlConvergenceSwitch = urlconvergenceswitch
@@ -347,6 +351,8 @@ module TencentCloud
           @EnableHeadSampler = enableheadsampler
           @HeadSamplerType = headsamplertype
           @HeadSamplerArg = headsamplerarg
+          @CrossAccountStatus = crossaccountstatus
+          @CrossAccountPeerId = crossaccountpeerid
         end
 
         def deserialize(params)
@@ -436,6 +442,8 @@ module TencentCloud
           @EnableHeadSampler = params['EnableHeadSampler']
           @HeadSamplerType = params['HeadSamplerType']
           @HeadSamplerArg = params['HeadSamplerArg']
+          @CrossAccountStatus = params['CrossAccountStatus']
+          @CrossAccountPeerId = params['CrossAccountPeerId']
         end
       end
 
@@ -880,10 +888,14 @@ module TencentCloud
         # @type LogSpanIdKey: String
         # @param DisableAiAbility: <p>是否禁用 AI 能力</p><p>单位：无</p>
         # @type DisableAiAbility: Integer
+        # @param CrossAccountStatus: <p>是否为跨账号</p><p>枚举值：</p><ul><li>0： 否</li><li>1： 是</li></ul>
+        # @type CrossAccountStatus: Integer
+        # @param CrossAccountPeerId: <p>跨账号关联ID</p>
+        # @type CrossAccountPeerId: String
 
-        attr_accessor :InstanceId, :Name, :Description, :Status, :Region, :Tags, :AppId, :CreateUin, :AmountOfUsedStorage, :ServiceCount, :CountOfReportSpanPerDay, :TraceDuration, :SpanDailyCounters, :BillingInstance, :ErrRateThreshold, :SampleRate, :ErrorSample, :SlowRequestSavedThreshold, :LogRegion, :LogSource, :IsRelatedLog, :LogTopicID, :ClientCount, :TotalCount, :LogSet, :MetricDuration, :CustomShowTags, :PayMode, :PayModeEffective, :ResponseDurationWarningThreshold, :Free, :DefaultTSF, :IsRelatedDashboard, :DashboardTopicID, :IsInstrumentationVulnerabilityScan, :IsSqlInjectionAnalysis, :StopReason, :IsRemoteCommandExecutionAnalysis, :IsMemoryHijackingAnalysis, :LogIndexType, :LogTraceIdKey, :IsDeleteAnyFileAnalysis, :IsReadAnyFileAnalysis, :IsUploadAnyFileAnalysis, :IsIncludeAnyFileAnalysis, :IsDirectoryTraversalAnalysis, :IsTemplateEngineInjectionAnalysis, :IsScriptEngineInjectionAnalysis, :IsExpressionInjectionAnalysis, :IsJNDIInjectionAnalysis, :IsJNIInjectionAnalysis, :IsWebshellBackdoorAnalysis, :IsDeserializationAnalysis, :Token, :UrlLongSegmentThreshold, :UrlNumberSegmentThreshold, :LogSpanIdKey, :DisableAiAbility
+        attr_accessor :InstanceId, :Name, :Description, :Status, :Region, :Tags, :AppId, :CreateUin, :AmountOfUsedStorage, :ServiceCount, :CountOfReportSpanPerDay, :TraceDuration, :SpanDailyCounters, :BillingInstance, :ErrRateThreshold, :SampleRate, :ErrorSample, :SlowRequestSavedThreshold, :LogRegion, :LogSource, :IsRelatedLog, :LogTopicID, :ClientCount, :TotalCount, :LogSet, :MetricDuration, :CustomShowTags, :PayMode, :PayModeEffective, :ResponseDurationWarningThreshold, :Free, :DefaultTSF, :IsRelatedDashboard, :DashboardTopicID, :IsInstrumentationVulnerabilityScan, :IsSqlInjectionAnalysis, :StopReason, :IsRemoteCommandExecutionAnalysis, :IsMemoryHijackingAnalysis, :LogIndexType, :LogTraceIdKey, :IsDeleteAnyFileAnalysis, :IsReadAnyFileAnalysis, :IsUploadAnyFileAnalysis, :IsIncludeAnyFileAnalysis, :IsDirectoryTraversalAnalysis, :IsTemplateEngineInjectionAnalysis, :IsScriptEngineInjectionAnalysis, :IsExpressionInjectionAnalysis, :IsJNDIInjectionAnalysis, :IsJNIInjectionAnalysis, :IsWebshellBackdoorAnalysis, :IsDeserializationAnalysis, :Token, :UrlLongSegmentThreshold, :UrlNumberSegmentThreshold, :LogSpanIdKey, :DisableAiAbility, :CrossAccountStatus, :CrossAccountPeerId
 
-        def initialize(instanceid=nil, name=nil, description=nil, status=nil, region=nil, tags=nil, appid=nil, createuin=nil, amountofusedstorage=nil, servicecount=nil, countofreportspanperday=nil, traceduration=nil, spandailycounters=nil, billinginstance=nil, errratethreshold=nil, samplerate=nil, errorsample=nil, slowrequestsavedthreshold=nil, logregion=nil, logsource=nil, isrelatedlog=nil, logtopicid=nil, clientcount=nil, totalcount=nil, logset=nil, metricduration=nil, customshowtags=nil, paymode=nil, paymodeeffective=nil, responsedurationwarningthreshold=nil, free=nil, defaulttsf=nil, isrelateddashboard=nil, dashboardtopicid=nil, isinstrumentationvulnerabilityscan=nil, issqlinjectionanalysis=nil, stopreason=nil, isremotecommandexecutionanalysis=nil, ismemoryhijackinganalysis=nil, logindextype=nil, logtraceidkey=nil, isdeleteanyfileanalysis=nil, isreadanyfileanalysis=nil, isuploadanyfileanalysis=nil, isincludeanyfileanalysis=nil, isdirectorytraversalanalysis=nil, istemplateengineinjectionanalysis=nil, isscriptengineinjectionanalysis=nil, isexpressioninjectionanalysis=nil, isjndiinjectionanalysis=nil, isjniinjectionanalysis=nil, iswebshellbackdooranalysis=nil, isdeserializationanalysis=nil, token=nil, urllongsegmentthreshold=nil, urlnumbersegmentthreshold=nil, logspanidkey=nil, disableaiability=nil)
+        def initialize(instanceid=nil, name=nil, description=nil, status=nil, region=nil, tags=nil, appid=nil, createuin=nil, amountofusedstorage=nil, servicecount=nil, countofreportspanperday=nil, traceduration=nil, spandailycounters=nil, billinginstance=nil, errratethreshold=nil, samplerate=nil, errorsample=nil, slowrequestsavedthreshold=nil, logregion=nil, logsource=nil, isrelatedlog=nil, logtopicid=nil, clientcount=nil, totalcount=nil, logset=nil, metricduration=nil, customshowtags=nil, paymode=nil, paymodeeffective=nil, responsedurationwarningthreshold=nil, free=nil, defaulttsf=nil, isrelateddashboard=nil, dashboardtopicid=nil, isinstrumentationvulnerabilityscan=nil, issqlinjectionanalysis=nil, stopreason=nil, isremotecommandexecutionanalysis=nil, ismemoryhijackinganalysis=nil, logindextype=nil, logtraceidkey=nil, isdeleteanyfileanalysis=nil, isreadanyfileanalysis=nil, isuploadanyfileanalysis=nil, isincludeanyfileanalysis=nil, isdirectorytraversalanalysis=nil, istemplateengineinjectionanalysis=nil, isscriptengineinjectionanalysis=nil, isexpressioninjectionanalysis=nil, isjndiinjectionanalysis=nil, isjniinjectionanalysis=nil, iswebshellbackdooranalysis=nil, isdeserializationanalysis=nil, token=nil, urllongsegmentthreshold=nil, urlnumbersegmentthreshold=nil, logspanidkey=nil, disableaiability=nil, crossaccountstatus=nil, crossaccountpeerid=nil)
           @InstanceId = instanceid
           @Name = name
           @Description = description
@@ -942,6 +954,8 @@ module TencentCloud
           @UrlNumberSegmentThreshold = urlnumbersegmentthreshold
           @LogSpanIdKey = logspanidkey
           @DisableAiAbility = disableaiability
+          @CrossAccountStatus = crossaccountstatus
+          @CrossAccountPeerId = crossaccountpeerid
         end
 
         def deserialize(params)
@@ -1010,6 +1024,8 @@ module TencentCloud
           @UrlNumberSegmentThreshold = params['UrlNumberSegmentThreshold']
           @LogSpanIdKey = params['LogSpanIdKey']
           @DisableAiAbility = params['DisableAiAbility']
+          @CrossAccountStatus = params['CrossAccountStatus']
+          @CrossAccountPeerId = params['CrossAccountPeerId']
         end
       end
 
@@ -1349,8 +1365,8 @@ module TencentCloud
 
         attr_accessor :Name, :Description, :TraceDuration, :Tags, :SpanDailyCounters, :PayMode, :Free
         extend Gem::Deprecate
-        deprecate :SpanDailyCounters, :none, 2026, 7
-        deprecate :SpanDailyCounters=, :none, 2026, 7
+        deprecate :SpanDailyCounters, :none, 2026, 8
+        deprecate :SpanDailyCounters=, :none, 2026, 8
 
         def initialize(name=nil, description=nil, traceduration=nil, tags=nil, spandailycounters=nil, paymode=nil, free=nil)
           @Name = name
@@ -1641,8 +1657,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :AgentType, :NetworkMode, :LanguageEnvironment, :ReportMethod
         extend Gem::Deprecate
-        deprecate :ReportMethod, :none, 2026, 7
-        deprecate :ReportMethod=, :none, 2026, 7
+        deprecate :ReportMethod, :none, 2026, 8
+        deprecate :ReportMethod=, :none, 2026, 8
 
         def initialize(instanceid=nil, agenttype=nil, networkmode=nil, languageenvironment=nil, reportmethod=nil)
           @InstanceId = instanceid
@@ -3452,16 +3468,20 @@ module TencentCloud
         # @type ResponseDurationWarningThreshold: Integer
         # @param UseDefaultFuseConfig: <p>是否使用探针默认熔断阈值</p>
         # @type UseDefaultFuseConfig: Boolean
-        # @param EnableHeadSampler: <p>是否开启探针头采样</p>
+        # @param EnableHeadSampler: <p>是否开启探针头采样</p><p>（受限）</p>
         # @type EnableHeadSampler: Boolean
-        # @param HeadSamplerType: <p>头采样类型</p><p>枚举值：</p><ul><li>parentbased_traceidratio： 跟随parent</li></ul>
+        # @param HeadSamplerType: <p>头采样类型</p><p>枚举值：</p><ul><li>parentbased_traceidratio： 跟随parent</li></ul><p>（受限）</p>
         # @type HeadSamplerType: String
-        # @param HeadSamplerArg: <p>采样率</p><p>取值范围：[0, 100]</p><p>默认值：100</p>
+        # @param HeadSamplerArg: <p>采样率</p><p>取值范围：[0, 100]</p><p>默认值：100</p><p>（受限）</p>
         # @type HeadSamplerArg: Integer
+        # @param CrossAccountStatus: <p>是否为跨账号</p><p>枚举值：</p><ul><li>0： 否</li><li>1： 是</li></ul>
+        # @type CrossAccountStatus: Integer
+        # @param CrossAccountPeerId: <p>跨账号关联ID</p>
+        # @type CrossAccountPeerId: String
 
-        attr_accessor :InstanceId, :ServiceName, :UrlConvergenceSwitch, :UrlConvergenceThreshold, :ExceptionFilter, :UrlConvergence, :ErrorCodeFilter, :UrlExclude, :IsRelatedLog, :LogRegion, :LogTopicID, :LogSet, :LogSource, :IgnoreOperationName, :EnableSnapshot, :SnapshotTimeout, :AgentEnable, :TraceSquash, :EventEnable, :InstrumentList, :AgentOperationConfigView, :EnableLogConfig, :EnableDashboardConfig, :IsRelatedDashboard, :DashboardTopicID, :LogIndexType, :LogTraceIdKey, :EnableSecurityConfig, :IsSqlInjectionAnalysis, :IsInstrumentationVulnerabilityScan, :IsRemoteCommandExecutionAnalysis, :IsMemoryHijackingAnalysis, :IsDeleteAnyFileAnalysis, :IsReadAnyFileAnalysis, :IsUploadAnyFileAnalysis, :IsIncludeAnyFileAnalysis, :IsDirectoryTraversalAnalysis, :IsTemplateEngineInjectionAnalysis, :IsScriptEngineInjectionAnalysis, :IsExpressionInjectionAnalysis, :IsJNDIInjectionAnalysis, :IsJNIInjectionAnalysis, :IsWebshellBackdoorAnalysis, :IsDeserializationAnalysis, :UrlAutoConvergenceEnable, :UrlLongSegmentThreshold, :UrlNumberSegmentThreshold, :DisableMemoryUsed, :DisableCpuUsed, :DbStatementParametersEnabled, :SlowSQLThresholds, :EnableDesensitizationRule, :DesensitizationRule, :LogSpanIdKey, :AutoProfilingConfig, :EnableThresholdConfig, :ErrRateThreshold, :ResponseDurationWarningThreshold, :UseDefaultFuseConfig, :EnableHeadSampler, :HeadSamplerType, :HeadSamplerArg
+        attr_accessor :InstanceId, :ServiceName, :UrlConvergenceSwitch, :UrlConvergenceThreshold, :ExceptionFilter, :UrlConvergence, :ErrorCodeFilter, :UrlExclude, :IsRelatedLog, :LogRegion, :LogTopicID, :LogSet, :LogSource, :IgnoreOperationName, :EnableSnapshot, :SnapshotTimeout, :AgentEnable, :TraceSquash, :EventEnable, :InstrumentList, :AgentOperationConfigView, :EnableLogConfig, :EnableDashboardConfig, :IsRelatedDashboard, :DashboardTopicID, :LogIndexType, :LogTraceIdKey, :EnableSecurityConfig, :IsSqlInjectionAnalysis, :IsInstrumentationVulnerabilityScan, :IsRemoteCommandExecutionAnalysis, :IsMemoryHijackingAnalysis, :IsDeleteAnyFileAnalysis, :IsReadAnyFileAnalysis, :IsUploadAnyFileAnalysis, :IsIncludeAnyFileAnalysis, :IsDirectoryTraversalAnalysis, :IsTemplateEngineInjectionAnalysis, :IsScriptEngineInjectionAnalysis, :IsExpressionInjectionAnalysis, :IsJNDIInjectionAnalysis, :IsJNIInjectionAnalysis, :IsWebshellBackdoorAnalysis, :IsDeserializationAnalysis, :UrlAutoConvergenceEnable, :UrlLongSegmentThreshold, :UrlNumberSegmentThreshold, :DisableMemoryUsed, :DisableCpuUsed, :DbStatementParametersEnabled, :SlowSQLThresholds, :EnableDesensitizationRule, :DesensitizationRule, :LogSpanIdKey, :AutoProfilingConfig, :EnableThresholdConfig, :ErrRateThreshold, :ResponseDurationWarningThreshold, :UseDefaultFuseConfig, :EnableHeadSampler, :HeadSamplerType, :HeadSamplerArg, :CrossAccountStatus, :CrossAccountPeerId
 
-        def initialize(instanceid=nil, servicename=nil, urlconvergenceswitch=nil, urlconvergencethreshold=nil, exceptionfilter=nil, urlconvergence=nil, errorcodefilter=nil, urlexclude=nil, isrelatedlog=nil, logregion=nil, logtopicid=nil, logset=nil, logsource=nil, ignoreoperationname=nil, enablesnapshot=nil, snapshottimeout=nil, agentenable=nil, tracesquash=nil, eventenable=nil, instrumentlist=nil, agentoperationconfigview=nil, enablelogconfig=nil, enabledashboardconfig=nil, isrelateddashboard=nil, dashboardtopicid=nil, logindextype=nil, logtraceidkey=nil, enablesecurityconfig=nil, issqlinjectionanalysis=nil, isinstrumentationvulnerabilityscan=nil, isremotecommandexecutionanalysis=nil, ismemoryhijackinganalysis=nil, isdeleteanyfileanalysis=nil, isreadanyfileanalysis=nil, isuploadanyfileanalysis=nil, isincludeanyfileanalysis=nil, isdirectorytraversalanalysis=nil, istemplateengineinjectionanalysis=nil, isscriptengineinjectionanalysis=nil, isexpressioninjectionanalysis=nil, isjndiinjectionanalysis=nil, isjniinjectionanalysis=nil, iswebshellbackdooranalysis=nil, isdeserializationanalysis=nil, urlautoconvergenceenable=nil, urllongsegmentthreshold=nil, urlnumbersegmentthreshold=nil, disablememoryused=nil, disablecpuused=nil, dbstatementparametersenabled=nil, slowsqlthresholds=nil, enabledesensitizationrule=nil, desensitizationrule=nil, logspanidkey=nil, autoprofilingconfig=nil, enablethresholdconfig=nil, errratethreshold=nil, responsedurationwarningthreshold=nil, usedefaultfuseconfig=nil, enableheadsampler=nil, headsamplertype=nil, headsamplerarg=nil)
+        def initialize(instanceid=nil, servicename=nil, urlconvergenceswitch=nil, urlconvergencethreshold=nil, exceptionfilter=nil, urlconvergence=nil, errorcodefilter=nil, urlexclude=nil, isrelatedlog=nil, logregion=nil, logtopicid=nil, logset=nil, logsource=nil, ignoreoperationname=nil, enablesnapshot=nil, snapshottimeout=nil, agentenable=nil, tracesquash=nil, eventenable=nil, instrumentlist=nil, agentoperationconfigview=nil, enablelogconfig=nil, enabledashboardconfig=nil, isrelateddashboard=nil, dashboardtopicid=nil, logindextype=nil, logtraceidkey=nil, enablesecurityconfig=nil, issqlinjectionanalysis=nil, isinstrumentationvulnerabilityscan=nil, isremotecommandexecutionanalysis=nil, ismemoryhijackinganalysis=nil, isdeleteanyfileanalysis=nil, isreadanyfileanalysis=nil, isuploadanyfileanalysis=nil, isincludeanyfileanalysis=nil, isdirectorytraversalanalysis=nil, istemplateengineinjectionanalysis=nil, isscriptengineinjectionanalysis=nil, isexpressioninjectionanalysis=nil, isjndiinjectionanalysis=nil, isjniinjectionanalysis=nil, iswebshellbackdooranalysis=nil, isdeserializationanalysis=nil, urlautoconvergenceenable=nil, urllongsegmentthreshold=nil, urlnumbersegmentthreshold=nil, disablememoryused=nil, disablecpuused=nil, dbstatementparametersenabled=nil, slowsqlthresholds=nil, enabledesensitizationrule=nil, desensitizationrule=nil, logspanidkey=nil, autoprofilingconfig=nil, enablethresholdconfig=nil, errratethreshold=nil, responsedurationwarningthreshold=nil, usedefaultfuseconfig=nil, enableheadsampler=nil, headsamplertype=nil, headsamplerarg=nil, crossaccountstatus=nil, crossaccountpeerid=nil)
           @InstanceId = instanceid
           @ServiceName = servicename
           @UrlConvergenceSwitch = urlconvergenceswitch
@@ -3524,6 +3544,8 @@ module TencentCloud
           @EnableHeadSampler = enableheadsampler
           @HeadSamplerType = headsamplertype
           @HeadSamplerArg = headsamplerarg
+          @CrossAccountStatus = crossaccountstatus
+          @CrossAccountPeerId = crossaccountpeerid
         end
 
         def deserialize(params)
@@ -3609,6 +3631,8 @@ module TencentCloud
           @EnableHeadSampler = params['EnableHeadSampler']
           @HeadSamplerType = params['HeadSamplerType']
           @HeadSamplerArg = params['HeadSamplerArg']
+          @CrossAccountStatus = params['CrossAccountStatus']
+          @CrossAccountPeerId = params['CrossAccountPeerId']
         end
       end
 
@@ -3776,10 +3800,14 @@ module TencentCloud
         # @type HeadSamplerArg: Integer
         # @param DisableAiAbility: <p>是否禁用 AI 能力</p><p>单位：无</p>
         # @type DisableAiAbility: Integer
+        # @param CrossAccountStatus: <p>是否为跨账号</p><p>枚举值：</p><ul><li>0： 否</li><li>1： 是</li></ul>
+        # @type CrossAccountStatus: Integer
+        # @param CrossAccountPeerId: <p>跨账号关联ID</p>
+        # @type CrossAccountPeerId: String
 
-        attr_accessor :InstanceId, :Name, :Tags, :Description, :TraceDuration, :OpenBilling, :SpanDailyCounters, :ErrRateThreshold, :SampleRate, :ErrorSample, :SlowRequestSavedThreshold, :IsRelatedLog, :LogRegion, :LogTopicID, :LogSet, :LogSource, :CustomShowTags, :PayMode, :ResponseDurationWarningThreshold, :Free, :IsRelatedDashboard, :DashboardTopicID, :IsSqlInjectionAnalysis, :IsInstrumentationVulnerabilityScan, :IsRemoteCommandExecutionAnalysis, :IsMemoryHijackingAnalysis, :LogIndexType, :LogTraceIdKey, :IsDeleteAnyFileAnalysis, :IsReadAnyFileAnalysis, :IsUploadAnyFileAnalysis, :IsIncludeAnyFileAnalysis, :IsDirectoryTraversalAnalysis, :IsTemplateEngineInjectionAnalysis, :IsScriptEngineInjectionAnalysis, :IsExpressionInjectionAnalysis, :IsJNDIInjectionAnalysis, :IsJNIInjectionAnalysis, :IsWebshellBackdoorAnalysis, :IsDeserializationAnalysis, :UrlLongSegmentThreshold, :UrlNumberSegmentThreshold, :LogSpanIdKey, :EnableHeadSampler, :HeadSamplerType, :HeadSamplerArg, :DisableAiAbility
+        attr_accessor :InstanceId, :Name, :Tags, :Description, :TraceDuration, :OpenBilling, :SpanDailyCounters, :ErrRateThreshold, :SampleRate, :ErrorSample, :SlowRequestSavedThreshold, :IsRelatedLog, :LogRegion, :LogTopicID, :LogSet, :LogSource, :CustomShowTags, :PayMode, :ResponseDurationWarningThreshold, :Free, :IsRelatedDashboard, :DashboardTopicID, :IsSqlInjectionAnalysis, :IsInstrumentationVulnerabilityScan, :IsRemoteCommandExecutionAnalysis, :IsMemoryHijackingAnalysis, :LogIndexType, :LogTraceIdKey, :IsDeleteAnyFileAnalysis, :IsReadAnyFileAnalysis, :IsUploadAnyFileAnalysis, :IsIncludeAnyFileAnalysis, :IsDirectoryTraversalAnalysis, :IsTemplateEngineInjectionAnalysis, :IsScriptEngineInjectionAnalysis, :IsExpressionInjectionAnalysis, :IsJNDIInjectionAnalysis, :IsJNIInjectionAnalysis, :IsWebshellBackdoorAnalysis, :IsDeserializationAnalysis, :UrlLongSegmentThreshold, :UrlNumberSegmentThreshold, :LogSpanIdKey, :EnableHeadSampler, :HeadSamplerType, :HeadSamplerArg, :DisableAiAbility, :CrossAccountStatus, :CrossAccountPeerId
 
-        def initialize(instanceid=nil, name=nil, tags=nil, description=nil, traceduration=nil, openbilling=nil, spandailycounters=nil, errratethreshold=nil, samplerate=nil, errorsample=nil, slowrequestsavedthreshold=nil, isrelatedlog=nil, logregion=nil, logtopicid=nil, logset=nil, logsource=nil, customshowtags=nil, paymode=nil, responsedurationwarningthreshold=nil, free=nil, isrelateddashboard=nil, dashboardtopicid=nil, issqlinjectionanalysis=nil, isinstrumentationvulnerabilityscan=nil, isremotecommandexecutionanalysis=nil, ismemoryhijackinganalysis=nil, logindextype=nil, logtraceidkey=nil, isdeleteanyfileanalysis=nil, isreadanyfileanalysis=nil, isuploadanyfileanalysis=nil, isincludeanyfileanalysis=nil, isdirectorytraversalanalysis=nil, istemplateengineinjectionanalysis=nil, isscriptengineinjectionanalysis=nil, isexpressioninjectionanalysis=nil, isjndiinjectionanalysis=nil, isjniinjectionanalysis=nil, iswebshellbackdooranalysis=nil, isdeserializationanalysis=nil, urllongsegmentthreshold=nil, urlnumbersegmentthreshold=nil, logspanidkey=nil, enableheadsampler=nil, headsamplertype=nil, headsamplerarg=nil, disableaiability=nil)
+        def initialize(instanceid=nil, name=nil, tags=nil, description=nil, traceduration=nil, openbilling=nil, spandailycounters=nil, errratethreshold=nil, samplerate=nil, errorsample=nil, slowrequestsavedthreshold=nil, isrelatedlog=nil, logregion=nil, logtopicid=nil, logset=nil, logsource=nil, customshowtags=nil, paymode=nil, responsedurationwarningthreshold=nil, free=nil, isrelateddashboard=nil, dashboardtopicid=nil, issqlinjectionanalysis=nil, isinstrumentationvulnerabilityscan=nil, isremotecommandexecutionanalysis=nil, ismemoryhijackinganalysis=nil, logindextype=nil, logtraceidkey=nil, isdeleteanyfileanalysis=nil, isreadanyfileanalysis=nil, isuploadanyfileanalysis=nil, isincludeanyfileanalysis=nil, isdirectorytraversalanalysis=nil, istemplateengineinjectionanalysis=nil, isscriptengineinjectionanalysis=nil, isexpressioninjectionanalysis=nil, isjndiinjectionanalysis=nil, isjniinjectionanalysis=nil, iswebshellbackdooranalysis=nil, isdeserializationanalysis=nil, urllongsegmentthreshold=nil, urlnumbersegmentthreshold=nil, logspanidkey=nil, enableheadsampler=nil, headsamplertype=nil, headsamplerarg=nil, disableaiability=nil, crossaccountstatus=nil, crossaccountpeerid=nil)
           @InstanceId = instanceid
           @Name = name
           @Tags = tags
@@ -3827,6 +3855,8 @@ module TencentCloud
           @HeadSamplerType = headsamplertype
           @HeadSamplerArg = headsamplerarg
           @DisableAiAbility = disableaiability
+          @CrossAccountStatus = crossaccountstatus
+          @CrossAccountPeerId = crossaccountpeerid
         end
 
         def deserialize(params)
@@ -3884,6 +3914,8 @@ module TencentCloud
           @HeadSamplerType = params['HeadSamplerType']
           @HeadSamplerArg = params['HeadSamplerArg']
           @DisableAiAbility = params['DisableAiAbility']
+          @CrossAccountStatus = params['CrossAccountStatus']
+          @CrossAccountPeerId = params['CrossAccountPeerId']
         end
       end
 

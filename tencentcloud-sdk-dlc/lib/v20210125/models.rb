@@ -2996,10 +2996,16 @@ module TencentCloud
         # @type Tasks: Array
         # @param ModelUid: <p>模型 UID（可选，前端预先生成的 UID，不传则后端自动生成）</p>
         # @type ModelUid: String
+        # @param ResourceTags: <p>系统标签列表（TagKey-TagValue）</p>
+        # @type ResourceTags: Array
+        # @param GooseFSConfig: <p>模型文件来源于goosefs</p>
+        # @type GooseFSConfig: :class:`Tencentcloud::Dlc.v20210125.models.GooseFSConfig`
+        # @param StorageType: <p>模型上传来源类型</p><p>枚举值：</p><ul><li>Local： 本地上传</li><li>COS： COS上传</li><li>CFS： CFS上传</li><li>CFSTurbo： CFSTurbo上传</li><li>GooseFS： GooseFS上传</li></ul>
+        # @type StorageType: String
 
-        attr_accessor :Name, :ModelType, :InitialVersion, :Provider, :Description, :ParameterSize, :Tags, :StorageUri, :UseCustomStorage, :Tasks, :ModelUid
+        attr_accessor :Name, :ModelType, :InitialVersion, :Provider, :Description, :ParameterSize, :Tags, :StorageUri, :UseCustomStorage, :Tasks, :ModelUid, :ResourceTags, :GooseFSConfig, :StorageType
 
-        def initialize(name=nil, modeltype=nil, initialversion=nil, provider=nil, description=nil, parametersize=nil, tags=nil, storageuri=nil, usecustomstorage=nil, tasks=nil, modeluid=nil)
+        def initialize(name=nil, modeltype=nil, initialversion=nil, provider=nil, description=nil, parametersize=nil, tags=nil, storageuri=nil, usecustomstorage=nil, tasks=nil, modeluid=nil, resourcetags=nil, goosefsconfig=nil, storagetype=nil)
           @Name = name
           @ModelType = modeltype
           @InitialVersion = initialversion
@@ -3011,6 +3017,9 @@ module TencentCloud
           @UseCustomStorage = usecustomstorage
           @Tasks = tasks
           @ModelUid = modeluid
+          @ResourceTags = resourcetags
+          @GooseFSConfig = goosefsconfig
+          @StorageType = storagetype
         end
 
         def deserialize(params)
@@ -3025,6 +3034,19 @@ module TencentCloud
           @UseCustomStorage = params['UseCustomStorage']
           @Tasks = params['Tasks']
           @ModelUid = params['ModelUid']
+          unless params['ResourceTags'].nil?
+            @ResourceTags = []
+            params['ResourceTags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @ResourceTags << tag_tmp
+            end
+          end
+          unless params['GooseFSConfig'].nil?
+            @GooseFSConfig = GooseFSConfig.new
+            @GooseFSConfig.deserialize(params['GooseFSConfig'])
+          end
+          @StorageType = params['StorageType']
         end
       end
 
@@ -3071,12 +3093,14 @@ module TencentCloud
         # @type UpdateTime: Integer
         # @param SubAccountUin: <p>Sub UIN</p>
         # @type SubAccountUin: String
+        # @param ResourceTags: <p>系统标签列表（TagKey-TagValue）</p>
+        # @type ResourceTags: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ModelId, :ModelUid, :Name, :Provider, :Description, :ModelType, :ParameterSize, :Tags, :LatestVersion, :VersionCount, :ServiceCount, :HasStorage, :HasCustomStorage, :StorageType, :BuiltIn, :Tasks, :AppId, :CreateTime, :UpdateTime, :SubAccountUin, :RequestId
+        attr_accessor :ModelId, :ModelUid, :Name, :Provider, :Description, :ModelType, :ParameterSize, :Tags, :LatestVersion, :VersionCount, :ServiceCount, :HasStorage, :HasCustomStorage, :StorageType, :BuiltIn, :Tasks, :AppId, :CreateTime, :UpdateTime, :SubAccountUin, :ResourceTags, :RequestId
 
-        def initialize(modelid=nil, modeluid=nil, name=nil, provider=nil, description=nil, modeltype=nil, parametersize=nil, tags=nil, latestversion=nil, versioncount=nil, servicecount=nil, hasstorage=nil, hascustomstorage=nil, storagetype=nil, builtin=nil, tasks=nil, appid=nil, createtime=nil, updatetime=nil, subaccountuin=nil, requestid=nil)
+        def initialize(modelid=nil, modeluid=nil, name=nil, provider=nil, description=nil, modeltype=nil, parametersize=nil, tags=nil, latestversion=nil, versioncount=nil, servicecount=nil, hasstorage=nil, hascustomstorage=nil, storagetype=nil, builtin=nil, tasks=nil, appid=nil, createtime=nil, updatetime=nil, subaccountuin=nil, resourcetags=nil, requestid=nil)
           @ModelId = modelid
           @ModelUid = modeluid
           @Name = name
@@ -3097,6 +3121,7 @@ module TencentCloud
           @CreateTime = createtime
           @UpdateTime = updatetime
           @SubAccountUin = subaccountuin
+          @ResourceTags = resourcetags
           @RequestId = requestid
         end
 
@@ -3121,6 +3146,14 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
           @SubAccountUin = params['SubAccountUin']
+          unless params['ResourceTags'].nil?
+            @ResourceTags = []
+            params['ResourceTags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @ResourceTags << tag_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -3163,10 +3196,18 @@ module TencentCloud
         # @type AutoscalerOptions: String
         # @param ApiKeyIds: <p>ApiKeyIds</p>
         # @type ApiKeyIds: Array
+        # @param AdvancedOptions: <p>AdvancedOptions 高级参数 JSON 字符串（可选），扁平 KV 结构，作用于 K8s RayService CR YAML 字段级</p>
+        # @type AdvancedOptions: String
+        # @param ResourceTags: <p>系统标签列表（TagKey-TagValue）</p>
+        # @type ResourceTags: Array
+        # @param IsCustom: <p>自定义RayServe提交</p>
+        # @type IsCustom: Boolean
+        # @param RuntimeEnv: <p>python runtime env</p>
+        # @type RuntimeEnv: String
 
-        attr_accessor :Name, :ModelUid, :Engine, :Replicas, :ResourcePartitionId, :Image, :ModelIdentifier, :Queue, :DeploymentName, :ModelVersion, :HeadHighAvailabilityEnabled, :AdvancedParams, :ImagePullPolicy, :AutoscalingEnabled, :MinReplicas, :MaxReplicas, :AutoscalerOptions, :ApiKeyIds
+        attr_accessor :Name, :ModelUid, :Engine, :Replicas, :ResourcePartitionId, :Image, :ModelIdentifier, :Queue, :DeploymentName, :ModelVersion, :HeadHighAvailabilityEnabled, :AdvancedParams, :ImagePullPolicy, :AutoscalingEnabled, :MinReplicas, :MaxReplicas, :AutoscalerOptions, :ApiKeyIds, :AdvancedOptions, :ResourceTags, :IsCustom, :RuntimeEnv
 
-        def initialize(name=nil, modeluid=nil, engine=nil, replicas=nil, resourcepartitionid=nil, image=nil, modelidentifier=nil, queue=nil, deploymentname=nil, modelversion=nil, headhighavailabilityenabled=nil, advancedparams=nil, imagepullpolicy=nil, autoscalingenabled=nil, minreplicas=nil, maxreplicas=nil, autoscaleroptions=nil, apikeyids=nil)
+        def initialize(name=nil, modeluid=nil, engine=nil, replicas=nil, resourcepartitionid=nil, image=nil, modelidentifier=nil, queue=nil, deploymentname=nil, modelversion=nil, headhighavailabilityenabled=nil, advancedparams=nil, imagepullpolicy=nil, autoscalingenabled=nil, minreplicas=nil, maxreplicas=nil, autoscaleroptions=nil, apikeyids=nil, advancedoptions=nil, resourcetags=nil, iscustom=nil, runtimeenv=nil)
           @Name = name
           @ModelUid = modeluid
           @Engine = engine
@@ -3185,6 +3226,10 @@ module TencentCloud
           @MaxReplicas = maxreplicas
           @AutoscalerOptions = autoscaleroptions
           @ApiKeyIds = apikeyids
+          @AdvancedOptions = advancedoptions
+          @ResourceTags = resourcetags
+          @IsCustom = iscustom
+          @RuntimeEnv = runtimeenv
         end
 
         def deserialize(params)
@@ -3206,6 +3251,17 @@ module TencentCloud
           @MaxReplicas = params['MaxReplicas']
           @AutoscalerOptions = params['AutoscalerOptions']
           @ApiKeyIds = params['ApiKeyIds']
+          @AdvancedOptions = params['AdvancedOptions']
+          unless params['ResourceTags'].nil?
+            @ResourceTags = []
+            params['ResourceTags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @ResourceTags << tag_tmp
+            end
+          end
+          @IsCustom = params['IsCustom']
+          @RuntimeEnv = params['RuntimeEnv']
         end
       end
 
@@ -3284,12 +3340,20 @@ module TencentCloud
         # @type CpuResourceSummary: :class:`Tencentcloud::Dlc.v20210125.models.CpuSummaryItem`
         # @param ResourceConfig: <p>资源配置（JSON 字符串，取自第一个部署）</p>
         # @type ResourceConfig: String
+        # @param AdvancedOptions: <p>AdvancedOptions 高级参数 JSON 字符串（扁平 KV 结构，取自第一个部署）</p>
+        # @type AdvancedOptions: String
+        # @param ResourceTags: <p>系统标签列表（TagKey-TagValue）</p>
+        # @type ResourceTags: Array
+        # @param DeploymentMode: <p>部署模式</p>
+        # @type DeploymentMode: String
+        # @param IsCustom: <p>是否是自定义 RayServe 创建</p>
+        # @type IsCustom: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ServiceId, :Name, :ModelId, :ModelUid, :ModelName, :ModelVersion, :ModelIdentifier, :ModelType, :Status, :EndpointUrl, :UnifiedEndpointUrl, :UnifiedV2EndpointUrl, :HeadHighAvailabilityEnabled, :AppId, :Uin, :CreateTime, :UpdateTime, :DeploymentCount, :HasRunningDeployment, :ApiKeyAuthEnabled, :ApiKeyAuthForceEnabled, :SkipTlsVerify, :ApiKeyBindMessage, :SubAccountUin, :CpuResourceSummary, :ResourceConfig, :RequestId
+        attr_accessor :ServiceId, :Name, :ModelId, :ModelUid, :ModelName, :ModelVersion, :ModelIdentifier, :ModelType, :Status, :EndpointUrl, :UnifiedEndpointUrl, :UnifiedV2EndpointUrl, :HeadHighAvailabilityEnabled, :AppId, :Uin, :CreateTime, :UpdateTime, :DeploymentCount, :HasRunningDeployment, :ApiKeyAuthEnabled, :ApiKeyAuthForceEnabled, :SkipTlsVerify, :ApiKeyBindMessage, :SubAccountUin, :CpuResourceSummary, :ResourceConfig, :AdvancedOptions, :ResourceTags, :DeploymentMode, :IsCustom, :RequestId
 
-        def initialize(serviceid=nil, name=nil, modelid=nil, modeluid=nil, modelname=nil, modelversion=nil, modelidentifier=nil, modeltype=nil, status=nil, endpointurl=nil, unifiedendpointurl=nil, unifiedv2endpointurl=nil, headhighavailabilityenabled=nil, appid=nil, uin=nil, createtime=nil, updatetime=nil, deploymentcount=nil, hasrunningdeployment=nil, apikeyauthenabled=nil, apikeyauthforceenabled=nil, skiptlsverify=nil, apikeybindmessage=nil, subaccountuin=nil, cpuresourcesummary=nil, resourceconfig=nil, requestid=nil)
+        def initialize(serviceid=nil, name=nil, modelid=nil, modeluid=nil, modelname=nil, modelversion=nil, modelidentifier=nil, modeltype=nil, status=nil, endpointurl=nil, unifiedendpointurl=nil, unifiedv2endpointurl=nil, headhighavailabilityenabled=nil, appid=nil, uin=nil, createtime=nil, updatetime=nil, deploymentcount=nil, hasrunningdeployment=nil, apikeyauthenabled=nil, apikeyauthforceenabled=nil, skiptlsverify=nil, apikeybindmessage=nil, subaccountuin=nil, cpuresourcesummary=nil, resourceconfig=nil, advancedoptions=nil, resourcetags=nil, deploymentmode=nil, iscustom=nil, requestid=nil)
           @ServiceId = serviceid
           @Name = name
           @ModelId = modelid
@@ -3316,6 +3380,10 @@ module TencentCloud
           @SubAccountUin = subaccountuin
           @CpuResourceSummary = cpuresourcesummary
           @ResourceConfig = resourceconfig
+          @AdvancedOptions = advancedoptions
+          @ResourceTags = resourcetags
+          @DeploymentMode = deploymentmode
+          @IsCustom = iscustom
           @RequestId = requestid
         end
 
@@ -3349,6 +3417,17 @@ module TencentCloud
             @CpuResourceSummary.deserialize(params['CpuResourceSummary'])
           end
           @ResourceConfig = params['ResourceConfig']
+          @AdvancedOptions = params['AdvancedOptions']
+          unless params['ResourceTags'].nil?
+            @ResourceTags = []
+            params['ResourceTags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @ResourceTags << tag_tmp
+            end
+          end
+          @DeploymentMode = params['DeploymentMode']
+          @IsCustom = params['IsCustom']
           @RequestId = params['RequestId']
         end
       end
@@ -4034,15 +4113,21 @@ module TencentCloud
         # @type StorageUri: String
         # @param UseCustomStorage: <p>是否使用用户自带存储桶（默认 false 表示平台托管）</p>
         # @type UseCustomStorage: Boolean
+        # @param GooseFSConfig: <p>创建模型时，模型从goosfe里面选取，则需要传递该参数</p>
+        # @type GooseFSConfig: :class:`Tencentcloud::Dlc.v20210125.models.GooseFSConfig`
+        # @param StorageType: <p>模型上传路径类型</p><p>枚举值：</p><ul><li>LOCAL： 本地上传</li><li>CFS： CFS上传</li><li>COS： COS上传</li><li>CFSTurbo： CFSTurbo上传</li><li>GooseFS： GooseFS上传</li></ul><p>选择cos、cfs、cfstrubo则必须要传storageuri，选择local时不能传递goosefsconfig</p>
+        # @type StorageType: String
 
-        attr_accessor :ModelUid, :ModelVersion, :Description, :StorageUri, :UseCustomStorage
+        attr_accessor :ModelUid, :ModelVersion, :Description, :StorageUri, :UseCustomStorage, :GooseFSConfig, :StorageType
 
-        def initialize(modeluid=nil, modelversion=nil, description=nil, storageuri=nil, usecustomstorage=nil)
+        def initialize(modeluid=nil, modelversion=nil, description=nil, storageuri=nil, usecustomstorage=nil, goosefsconfig=nil, storagetype=nil)
           @ModelUid = modeluid
           @ModelVersion = modelversion
           @Description = description
           @StorageUri = storageuri
           @UseCustomStorage = usecustomstorage
+          @GooseFSConfig = goosefsconfig
+          @StorageType = storagetype
         end
 
         def deserialize(params)
@@ -4051,6 +4136,11 @@ module TencentCloud
           @Description = params['Description']
           @StorageUri = params['StorageUri']
           @UseCustomStorage = params['UseCustomStorage']
+          unless params['GooseFSConfig'].nil?
+            @GooseFSConfig = GooseFSConfig.new
+            @GooseFSConfig.deserialize(params['GooseFSConfig'])
+          end
+          @StorageType = params['StorageType']
         end
       end
 
@@ -10750,15 +10840,19 @@ module TencentCloud
       class DescribeMCPTaskResultRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: <p>任务ID</p>
         # @type TaskId: String
+        # @param NextToken: <p>下一次请求数据</p>
+        # @type NextToken: String
 
-        attr_accessor :TaskId
+        attr_accessor :TaskId, :NextToken
 
-        def initialize(taskid=nil)
+        def initialize(taskid=nil, nexttoken=nil)
           @TaskId = taskid
+          @NextToken = nexttoken
         end
 
         def deserialize(params)
           @TaskId = params['TaskId']
+          @NextToken = params['NextToken']
         end
       end
 
@@ -15588,12 +15682,15 @@ module TencentCloud
         # @type UpdateTime: Integer
         # @param SubAccountUin: <p>Sub UIN</p>
         # @type SubAccountUin: String
+        # @param ResourceTags: <p>系统标签列表（TagKey-TagValue）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceTags: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ModelId, :ModelUid, :Name, :Provider, :Description, :ModelType, :ParameterSize, :Tags, :LatestVersion, :VersionCount, :ServiceCount, :HasStorage, :StorageRegion, :HasCustomStorage, :StorageType, :BuiltIn, :Tasks, :SupportedEngines, :Uin, :AppId, :CreateTime, :UpdateTime, :SubAccountUin, :RequestId
+        attr_accessor :ModelId, :ModelUid, :Name, :Provider, :Description, :ModelType, :ParameterSize, :Tags, :LatestVersion, :VersionCount, :ServiceCount, :HasStorage, :StorageRegion, :HasCustomStorage, :StorageType, :BuiltIn, :Tasks, :SupportedEngines, :Uin, :AppId, :CreateTime, :UpdateTime, :SubAccountUin, :ResourceTags, :RequestId
 
-        def initialize(modelid=nil, modeluid=nil, name=nil, provider=nil, description=nil, modeltype=nil, parametersize=nil, tags=nil, latestversion=nil, versioncount=nil, servicecount=nil, hasstorage=nil, storageregion=nil, hascustomstorage=nil, storagetype=nil, builtin=nil, tasks=nil, supportedengines=nil, uin=nil, appid=nil, createtime=nil, updatetime=nil, subaccountuin=nil, requestid=nil)
+        def initialize(modelid=nil, modeluid=nil, name=nil, provider=nil, description=nil, modeltype=nil, parametersize=nil, tags=nil, latestversion=nil, versioncount=nil, servicecount=nil, hasstorage=nil, storageregion=nil, hascustomstorage=nil, storagetype=nil, builtin=nil, tasks=nil, supportedengines=nil, uin=nil, appid=nil, createtime=nil, updatetime=nil, subaccountuin=nil, resourcetags=nil, requestid=nil)
           @ModelId = modelid
           @ModelUid = modeluid
           @Name = name
@@ -15617,6 +15714,7 @@ module TencentCloud
           @CreateTime = createtime
           @UpdateTime = updatetime
           @SubAccountUin = subaccountuin
+          @ResourceTags = resourcetags
           @RequestId = requestid
         end
 
@@ -15644,6 +15742,14 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
           @SubAccountUin = params['SubAccountUin']
+          unless params['ResourceTags'].nil?
+            @ResourceTags = []
+            params['ResourceTags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @ResourceTags << tag_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -15738,12 +15844,18 @@ module TencentCloud
         # @type CpuResourceSummary: :class:`Tencentcloud::Dlc.v20210125.models.CpuSummaryItem`
         # @param ResourceConfig: <p>资源配置（JSON 字符串，取自第一个部署）</p>
         # @type ResourceConfig: String
+        # @param DeploymentMode: <p>部署模式</p>
+        # @type DeploymentMode: String
+        # @param IsCustom: <p>是否为自定义代码部署</p>
+        # @type IsCustom: Boolean
+        # @param ResourceTags: <p>系统标签列表（TagKey-TagValue）</p>
+        # @type ResourceTags: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ServiceId, :Name, :ModelUid, :ModelName, :ModelVersion, :ModelIdentifier, :ModelType, :Status, :EndpointUrl, :UnifiedEndpointUrl, :UnifiedV2EndpointUrl, :AppId, :Uin, :CreateTime, :UpdateTime, :DeploymentCount, :HasRunningDeployment, :RayDashboardUrl, :ApiKeyAuthEnabled, :ApiKeyAuthForceEnabled, :SkipTlsVerify, :GpuResourceSummary, :SubAccountUin, :CpuResourceSummary, :ResourceConfig, :RequestId
+        attr_accessor :ServiceId, :Name, :ModelUid, :ModelName, :ModelVersion, :ModelIdentifier, :ModelType, :Status, :EndpointUrl, :UnifiedEndpointUrl, :UnifiedV2EndpointUrl, :AppId, :Uin, :CreateTime, :UpdateTime, :DeploymentCount, :HasRunningDeployment, :RayDashboardUrl, :ApiKeyAuthEnabled, :ApiKeyAuthForceEnabled, :SkipTlsVerify, :GpuResourceSummary, :SubAccountUin, :CpuResourceSummary, :ResourceConfig, :DeploymentMode, :IsCustom, :ResourceTags, :RequestId
 
-        def initialize(serviceid=nil, name=nil, modeluid=nil, modelname=nil, modelversion=nil, modelidentifier=nil, modeltype=nil, status=nil, endpointurl=nil, unifiedendpointurl=nil, unifiedv2endpointurl=nil, appid=nil, uin=nil, createtime=nil, updatetime=nil, deploymentcount=nil, hasrunningdeployment=nil, raydashboardurl=nil, apikeyauthenabled=nil, apikeyauthforceenabled=nil, skiptlsverify=nil, gpuresourcesummary=nil, subaccountuin=nil, cpuresourcesummary=nil, resourceconfig=nil, requestid=nil)
+        def initialize(serviceid=nil, name=nil, modeluid=nil, modelname=nil, modelversion=nil, modelidentifier=nil, modeltype=nil, status=nil, endpointurl=nil, unifiedendpointurl=nil, unifiedv2endpointurl=nil, appid=nil, uin=nil, createtime=nil, updatetime=nil, deploymentcount=nil, hasrunningdeployment=nil, raydashboardurl=nil, apikeyauthenabled=nil, apikeyauthforceenabled=nil, skiptlsverify=nil, gpuresourcesummary=nil, subaccountuin=nil, cpuresourcesummary=nil, resourceconfig=nil, deploymentmode=nil, iscustom=nil, resourcetags=nil, requestid=nil)
           @ServiceId = serviceid
           @Name = name
           @ModelUid = modeluid
@@ -15769,6 +15881,9 @@ module TencentCloud
           @SubAccountUin = subaccountuin
           @CpuResourceSummary = cpuresourcesummary
           @ResourceConfig = resourceconfig
+          @DeploymentMode = deploymentmode
+          @IsCustom = iscustom
+          @ResourceTags = resourcetags
           @RequestId = requestid
         end
 
@@ -15808,6 +15923,16 @@ module TencentCloud
             @CpuResourceSummary.deserialize(params['CpuResourceSummary'])
           end
           @ResourceConfig = params['ResourceConfig']
+          @DeploymentMode = params['DeploymentMode']
+          @IsCustom = params['IsCustom']
+          unless params['ResourceTags'].nil?
+            @ResourceTags = []
+            params['ResourceTags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @ResourceTags << tag_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -17884,14 +18009,54 @@ module TencentCloud
         end
       end
 
-      # 运行中部署的 GPU 资源汇总
-      class GpuSummaryItem < TencentCloud::Common::AbstractModel
+      # 推理模型接入goosefs参数
+      class GooseFSConfig < TencentCloud::Common::AbstractModel
+        # @param ClusterId: <p>goosefs集群id</p>
+        # @type ClusterId: String
+        # @param GooseFSPath: <p>goosefs命名空间名称</p>
+        # @type GooseFSPath: String
+        # @param MasterAddresses: <p>主从节点信息</p>
+        # @type MasterAddresses: Array
 
+        attr_accessor :ClusterId, :GooseFSPath, :MasterAddresses
 
-        def initialize()
+        def initialize(clusterid=nil, goosefspath=nil, masteraddresses=nil)
+          @ClusterId = clusterid
+          @GooseFSPath = goosefspath
+          @MasterAddresses = masteraddresses
         end
 
         def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @GooseFSPath = params['GooseFSPath']
+          @MasterAddresses = params['MasterAddresses']
+        end
+      end
+
+      # 运行中部署的 GPU 资源汇总
+      class GpuSummaryItem < TencentCloud::Common::AbstractModel
+        # @param GpuType: <p>GPU 型号</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GpuType: String
+        # @param GpuCount: <p>GPU 总数（gpuNum × replicas）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GpuCount: Integer
+        # @param Replicas: <p>运行中的副本数</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Replicas: Integer
+
+        attr_accessor :GpuType, :GpuCount, :Replicas
+
+        def initialize(gputype=nil, gpucount=nil, replicas=nil)
+          @GpuType = gputype
+          @GpuCount = gpucount
+          @Replicas = replicas
+        end
+
+        def deserialize(params)
+          @GpuType = params['GpuType']
+          @GpuCount = params['GpuCount']
+          @Replicas = params['Replicas']
         end
       end
 
@@ -18404,10 +18569,13 @@ module TencentCloud
         # @type UpdateTime: Integer
         # @param SubAccountUin: <p>云账户的 Sub UIN</p>
         # @type SubAccountUin: String
+        # @param ResourceTags: <p>系统标签列表（TagKey-TagValue）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceTags: Array
 
-        attr_accessor :ModelId, :ModelUid, :Name, :Provider, :Description, :ModelType, :SupportedEngines, :ParameterSize, :Tags, :LatestVersion, :VersionCount, :ServiceCount, :HasStorage, :StorageRegion, :HasCustomStorage, :StorageType, :BuiltIn, :Tasks, :AppId, :Uin, :CreateTime, :UpdateTime, :SubAccountUin
+        attr_accessor :ModelId, :ModelUid, :Name, :Provider, :Description, :ModelType, :SupportedEngines, :ParameterSize, :Tags, :LatestVersion, :VersionCount, :ServiceCount, :HasStorage, :StorageRegion, :HasCustomStorage, :StorageType, :BuiltIn, :Tasks, :AppId, :Uin, :CreateTime, :UpdateTime, :SubAccountUin, :ResourceTags
 
-        def initialize(modelid=nil, modeluid=nil, name=nil, provider=nil, description=nil, modeltype=nil, supportedengines=nil, parametersize=nil, tags=nil, latestversion=nil, versioncount=nil, servicecount=nil, hasstorage=nil, storageregion=nil, hascustomstorage=nil, storagetype=nil, builtin=nil, tasks=nil, appid=nil, uin=nil, createtime=nil, updatetime=nil, subaccountuin=nil)
+        def initialize(modelid=nil, modeluid=nil, name=nil, provider=nil, description=nil, modeltype=nil, supportedengines=nil, parametersize=nil, tags=nil, latestversion=nil, versioncount=nil, servicecount=nil, hasstorage=nil, storageregion=nil, hascustomstorage=nil, storagetype=nil, builtin=nil, tasks=nil, appid=nil, uin=nil, createtime=nil, updatetime=nil, subaccountuin=nil, resourcetags=nil)
           @ModelId = modelid
           @ModelUid = modeluid
           @Name = name
@@ -18431,6 +18599,7 @@ module TencentCloud
           @CreateTime = createtime
           @UpdateTime = updatetime
           @SubAccountUin = subaccountuin
+          @ResourceTags = resourcetags
         end
 
         def deserialize(params)
@@ -18457,6 +18626,14 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
           @SubAccountUin = params['SubAccountUin']
+          unless params['ResourceTags'].nil?
+            @ResourceTags = []
+            params['ResourceTags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @ResourceTags << tag_tmp
+            end
+          end
         end
       end
 
@@ -24812,7 +24989,7 @@ module TencentCloud
         # @param MaxSpec: <p>最大资源数量，仅GU有值</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxSpec: Integer
-        # @param StatusCategory: <p>库存情况，对当前地域该计费项实时可新增数量的分级预估。取值复用 BcpConstants 库存状态常量：</p><ul><li>EnoughStock：余量充足（&gt;100）</li><li>NormalStock：余量正常（50~100）</li><li>UnderStock：余量紧张（1~49）</li><li>WithoutStock：无库存（0）</li></ul><p>该值为底层提供的预估值，不代表保证可发货量，仅用于展示库存概况。当请求 Region 与资源池地域不一致、cold-start 缓存未 ready、或该计费项在快照中缺失时返回 null。</p>
+        # @param StatusCategory: <p>库存情况，对当前地域该计费项实时可新增数量的分级预估。取值复用 BcpConstants 库存状态常量：</p><ul><li>EnoughStock：余量充足</li><li>NormalStock：余量正常</li><li>UnderStock：余量紧张</li><li>WithoutStock：无库存</li></ul><p>该值为底层提供的预估值，不代表保证可发货量，仅用于展示库存概况。当请求 Region 与资源池地域不一致、cold-start 缓存未 ready、或该计费项在快照中缺失时返回 null。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StatusCategory: String
 
@@ -25025,12 +25202,15 @@ module TencentCloud
         # @type CpuResourceSummary: :class:`Tencentcloud::Dlc.v20210125.models.CpuSummaryItem`
         # @param ResourceConfig: <p>资源配置（JSON 字符串，取自第一个部署）</p>
         # @type ResourceConfig: String
+        # @param ResourceTags: <p>系统标签列表（TagKey-TagValue）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceTags: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ServiceId, :Name, :ModelUid, :ModelName, :ModelVersion, :ModelIdentifier, :ModelType, :Status, :EndpointUrl, :UnifiedEndpointUrl, :UnifiedV2EndpointUrl, :AppId, :Uin, :CreateTime, :UpdateTime, :DeploymentCount, :HasRunningDeployment, :ApiKeyAuthEnabled, :ApiKeyAuthForceEnabled, :SkipTlsVerify, :SubAccountUin, :CpuResourceSummary, :ResourceConfig, :RequestId
+        attr_accessor :ServiceId, :Name, :ModelUid, :ModelName, :ModelVersion, :ModelIdentifier, :ModelType, :Status, :EndpointUrl, :UnifiedEndpointUrl, :UnifiedV2EndpointUrl, :AppId, :Uin, :CreateTime, :UpdateTime, :DeploymentCount, :HasRunningDeployment, :ApiKeyAuthEnabled, :ApiKeyAuthForceEnabled, :SkipTlsVerify, :SubAccountUin, :CpuResourceSummary, :ResourceConfig, :ResourceTags, :RequestId
 
-        def initialize(serviceid=nil, name=nil, modeluid=nil, modelname=nil, modelversion=nil, modelidentifier=nil, modeltype=nil, status=nil, endpointurl=nil, unifiedendpointurl=nil, unifiedv2endpointurl=nil, appid=nil, uin=nil, createtime=nil, updatetime=nil, deploymentcount=nil, hasrunningdeployment=nil, apikeyauthenabled=nil, apikeyauthforceenabled=nil, skiptlsverify=nil, subaccountuin=nil, cpuresourcesummary=nil, resourceconfig=nil, requestid=nil)
+        def initialize(serviceid=nil, name=nil, modeluid=nil, modelname=nil, modelversion=nil, modelidentifier=nil, modeltype=nil, status=nil, endpointurl=nil, unifiedendpointurl=nil, unifiedv2endpointurl=nil, appid=nil, uin=nil, createtime=nil, updatetime=nil, deploymentcount=nil, hasrunningdeployment=nil, apikeyauthenabled=nil, apikeyauthforceenabled=nil, skiptlsverify=nil, subaccountuin=nil, cpuresourcesummary=nil, resourceconfig=nil, resourcetags=nil, requestid=nil)
           @ServiceId = serviceid
           @Name = name
           @ModelUid = modeluid
@@ -25054,6 +25234,7 @@ module TencentCloud
           @SubAccountUin = subaccountuin
           @CpuResourceSummary = cpuresourcesummary
           @ResourceConfig = resourceconfig
+          @ResourceTags = resourcetags
           @RequestId = requestid
         end
 
@@ -25084,6 +25265,14 @@ module TencentCloud
             @CpuResourceSummary.deserialize(params['CpuResourceSummary'])
           end
           @ResourceConfig = params['ResourceConfig']
+          unless params['ResourceTags'].nil?
+            @ResourceTags = []
+            params['ResourceTags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @ResourceTags << tag_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -26921,12 +27110,19 @@ module TencentCloud
         # @type CpuResourceSummary: :class:`Tencentcloud::Dlc.v20210125.models.CpuSummaryItem`
         # @param ResourceConfig: <p>资源配置（JSON 字符串，取自第一个部署）</p>
         # @type ResourceConfig: String
+        # @param ResourceTags: <p>系统标签列表（TagKey-TagValue）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceTags: Array
+        # @param DeploymentMode: <p>部署模式</p>
+        # @type DeploymentMode: String
+        # @param IsCustom: <p>是否为自定义代码部署</p>
+        # @type IsCustom: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ServiceId, :Name, :ModelUid, :ModelName, :ModelVersion, :ModelIdentifier, :ModelType, :Status, :EndpointUrl, :UnifiedEndpointUrl, :UnifiedV2EndpointUrl, :AppId, :Uin, :CreateTime, :UpdateTime, :DeploymentCount, :HasRunningDeployment, :ApiKeyAuthEnabled, :ApiKeyAuthForceEnabled, :SkipTlsVerify, :SubAccountUin, :CpuResourceSummary, :ResourceConfig, :RequestId
+        attr_accessor :ServiceId, :Name, :ModelUid, :ModelName, :ModelVersion, :ModelIdentifier, :ModelType, :Status, :EndpointUrl, :UnifiedEndpointUrl, :UnifiedV2EndpointUrl, :AppId, :Uin, :CreateTime, :UpdateTime, :DeploymentCount, :HasRunningDeployment, :ApiKeyAuthEnabled, :ApiKeyAuthForceEnabled, :SkipTlsVerify, :SubAccountUin, :CpuResourceSummary, :ResourceConfig, :ResourceTags, :DeploymentMode, :IsCustom, :RequestId
 
-        def initialize(serviceid=nil, name=nil, modeluid=nil, modelname=nil, modelversion=nil, modelidentifier=nil, modeltype=nil, status=nil, endpointurl=nil, unifiedendpointurl=nil, unifiedv2endpointurl=nil, appid=nil, uin=nil, createtime=nil, updatetime=nil, deploymentcount=nil, hasrunningdeployment=nil, apikeyauthenabled=nil, apikeyauthforceenabled=nil, skiptlsverify=nil, subaccountuin=nil, cpuresourcesummary=nil, resourceconfig=nil, requestid=nil)
+        def initialize(serviceid=nil, name=nil, modeluid=nil, modelname=nil, modelversion=nil, modelidentifier=nil, modeltype=nil, status=nil, endpointurl=nil, unifiedendpointurl=nil, unifiedv2endpointurl=nil, appid=nil, uin=nil, createtime=nil, updatetime=nil, deploymentcount=nil, hasrunningdeployment=nil, apikeyauthenabled=nil, apikeyauthforceenabled=nil, skiptlsverify=nil, subaccountuin=nil, cpuresourcesummary=nil, resourceconfig=nil, resourcetags=nil, deploymentmode=nil, iscustom=nil, requestid=nil)
           @ServiceId = serviceid
           @Name = name
           @ModelUid = modeluid
@@ -26950,6 +27146,9 @@ module TencentCloud
           @SubAccountUin = subaccountuin
           @CpuResourceSummary = cpuresourcesummary
           @ResourceConfig = resourceconfig
+          @ResourceTags = resourcetags
+          @DeploymentMode = deploymentmode
+          @IsCustom = iscustom
           @RequestId = requestid
         end
 
@@ -26980,6 +27179,16 @@ module TencentCloud
             @CpuResourceSummary.deserialize(params['CpuResourceSummary'])
           end
           @ResourceConfig = params['ResourceConfig']
+          unless params['ResourceTags'].nil?
+            @ResourceTags = []
+            params['ResourceTags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @ResourceTags << tag_tmp
+            end
+          end
+          @DeploymentMode = params['DeploymentMode']
+          @IsCustom = params['IsCustom']
           @RequestId = params['RequestId']
         end
       end
@@ -29262,15 +29471,18 @@ module TencentCloud
         # @type ParameterSize: String
         # @param Tags: <p>模型标签列表（可选）</p>
         # @type Tags: Array
+        # @param ResourceTags: <p>系统标签列表（TagKey-TagValue）</p>
+        # @type ResourceTags: Array
 
-        attr_accessor :ModelUid, :Name, :Description, :ParameterSize, :Tags
+        attr_accessor :ModelUid, :Name, :Description, :ParameterSize, :Tags, :ResourceTags
 
-        def initialize(modeluid=nil, name=nil, description=nil, parametersize=nil, tags=nil)
+        def initialize(modeluid=nil, name=nil, description=nil, parametersize=nil, tags=nil, resourcetags=nil)
           @ModelUid = modeluid
           @Name = name
           @Description = description
           @ParameterSize = parametersize
           @Tags = tags
+          @ResourceTags = resourcetags
         end
 
         def deserialize(params)
@@ -29279,6 +29491,14 @@ module TencentCloud
           @Description = params['Description']
           @ParameterSize = params['ParameterSize']
           @Tags = params['Tags']
+          unless params['ResourceTags'].nil?
+            @ResourceTags = []
+            params['ResourceTags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @ResourceTags << tag_tmp
+            end
+          end
         end
       end
 
@@ -29324,12 +29544,15 @@ module TencentCloud
         # @type UpdateTime: Integer
         # @param SubAccountUin: <p>SUB UIN</p>
         # @type SubAccountUin: String
+        # @param ResourceTags: <p>系统标签列表（TagKey-TagValue）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceTags: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ModelId, :ModelUid, :Name, :Provider, :Description, :ModelType, :ParameterSize, :Tags, :LatestVersion, :VersionCount, :ServiceCount, :HasStorage, :HasCustomStorage, :StorageType, :BuiltIn, :Tasks, :AppId, :CreateTime, :UpdateTime, :SubAccountUin, :RequestId
+        attr_accessor :ModelId, :ModelUid, :Name, :Provider, :Description, :ModelType, :ParameterSize, :Tags, :LatestVersion, :VersionCount, :ServiceCount, :HasStorage, :HasCustomStorage, :StorageType, :BuiltIn, :Tasks, :AppId, :CreateTime, :UpdateTime, :SubAccountUin, :ResourceTags, :RequestId
 
-        def initialize(modelid=nil, modeluid=nil, name=nil, provider=nil, description=nil, modeltype=nil, parametersize=nil, tags=nil, latestversion=nil, versioncount=nil, servicecount=nil, hasstorage=nil, hascustomstorage=nil, storagetype=nil, builtin=nil, tasks=nil, appid=nil, createtime=nil, updatetime=nil, subaccountuin=nil, requestid=nil)
+        def initialize(modelid=nil, modeluid=nil, name=nil, provider=nil, description=nil, modeltype=nil, parametersize=nil, tags=nil, latestversion=nil, versioncount=nil, servicecount=nil, hasstorage=nil, hascustomstorage=nil, storagetype=nil, builtin=nil, tasks=nil, appid=nil, createtime=nil, updatetime=nil, subaccountuin=nil, resourcetags=nil, requestid=nil)
           @ModelId = modelid
           @ModelUid = modeluid
           @Name = name
@@ -29350,6 +29573,7 @@ module TencentCloud
           @CreateTime = createtime
           @UpdateTime = updatetime
           @SubAccountUin = subaccountuin
+          @ResourceTags = resourcetags
           @RequestId = requestid
         end
 
@@ -29374,6 +29598,14 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
           @SubAccountUin = params['SubAccountUin']
+          unless params['ResourceTags'].nil?
+            @ResourceTags = []
+            params['ResourceTags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @ResourceTags << tag_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

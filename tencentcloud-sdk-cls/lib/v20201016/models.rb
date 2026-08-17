@@ -4667,17 +4667,11 @@ module TencentCloud
 
       # CreateLogset请求参数结构体
       class CreateLogsetRequest < TencentCloud::Common::AbstractModel
-        # @param LogsetName: 日志集名字。
-
-        # - 最大支持255个字符。不支持`|`字符。
+        # @param LogsetName: <p>日志集名字。</p><ul><li>最大支持255个字符。不支持<code>|</code>字符。</li></ul>
         # @type LogsetName: String
-        # @param Tags: 标签描述列表。最大支持10个标签键值对，并且不能有重复的键值对
+        # @param Tags: <p>标签描述列表。最大支持10个标签键值对，并且不能有重复的键值对</p>
         # @type Tags: Array
-        # @param LogsetId: 日志集ID，格式为：用户自定义部分-用户APPID。未填写该参数时将自动生成ID。
-
-        # - 用户自定义部分仅支持小写字母、数字和-，且不能以-开头和结尾，长度为3至40字符。
-        # - 尾部需要使用-拼接用户APPID，APPID可在https://console.cloud.tencent.com/developer页面查询。
-        # - 如果指定该字段，需保证全地域唯一
+        # @param LogsetId: <p>日志集ID，格式为：用户自定义部分-用户APPID。未填写该参数时将自动生成ID。</p><ul><li>用户自定义部分仅支持小写字母、数字和-，且不能以-开头和结尾，长度为3至40字符。</li><li>尾部需要使用-拼接用户APPID，APPID可在https://console.cloud.tencent.com/developer页面查询。</li><li>如果指定该字段，需保证全地域唯一</li></ul>
         # @type LogsetId: String
 
         attr_accessor :LogsetName, :Tags, :LogsetId
@@ -4704,7 +4698,7 @@ module TencentCloud
 
       # CreateLogset返回参数结构体
       class CreateLogsetResponse < TencentCloud::Common::AbstractModel
-        # @param LogsetId: 日志集ID
+        # @param LogsetId: <p>日志集ID</p>
         # @type LogsetId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7418,7 +7412,7 @@ module TencentCloud
 
       # DeleteLog请求参数结构体
       class DeleteLogRequest < TencentCloud::Common::AbstractModel
-        # @param TopicId: <p>日志主题id</p>
+        # @param TopicId: <p>日志主题id</p><p>仅在创建日志主题时，开启了日志修改/删除开关的主题，支持日志修改/删除。该功能暂时仅面向白名单内客户使用。</p>
         # @type TopicId: String
         # @param From: <p>检索时间范围-开始时间</p><p>单位：ms</p>
         # @type From: Integer
@@ -17078,7 +17072,7 @@ module TencentCloud
 
       # ModifyLog请求参数结构体
       class ModifyLogRequest < TencentCloud::Common::AbstractModel
-        # @param TopicId: <p>日志主题id</p>
+        # @param TopicId: <p>日志主题id</p><p>仅在创建日志主题时，开启了日志修改/删除开关的主题，支持日志修改/删除。该功能暂时仅面向白名单内客户使用。</p>
         # @type TopicId: String
         # @param From: <p>检索时间范围-开始时间</p><p>单位：ms</p>
         # @type From: Integer

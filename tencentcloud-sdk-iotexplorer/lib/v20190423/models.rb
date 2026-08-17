@@ -2903,10 +2903,12 @@ module TencentCloud
         # @type StorageRegion: String
         # @param UploadMethod: <p>上传方式</p><p>枚举值：</p><ul><li>single： 单文件上传</li><li>manifest： 上传源文件与 Manifest（先上传多个源文件，然后上传 Manifest JSON 触发分析）</li></ul><p>默认值：single</p>
         # @type UploadMethod: String
+        # @param UploadTarget: <p>上传目标</p><p>枚举值：</p><ul><li>session： 一次性上传会话（默认，通过入参传递 ComprehensionConfig 等上传参数）</li><li>stream： 上传到指定设备（加载对应设备的 ComprehensionConfig 等配置）</li></ul><p>默认值：session</p>
+        # @type UploadTarget: String
 
-        attr_accessor :ProductId, :DeviceName, :ServiceType, :ChannelId, :CallbackId, :ComprehensionConfig, :CustomId, :DurationSeconds, :MaxInvokeCount, :StorageRegion, :UploadMethod
+        attr_accessor :ProductId, :DeviceName, :ServiceType, :ChannelId, :CallbackId, :ComprehensionConfig, :CustomId, :DurationSeconds, :MaxInvokeCount, :StorageRegion, :UploadMethod, :UploadTarget
 
-        def initialize(productid=nil, devicename=nil, servicetype=nil, channelid=nil, callbackid=nil, comprehensionconfig=nil, customid=nil, durationseconds=nil, maxinvokecount=nil, storageregion=nil, uploadmethod=nil)
+        def initialize(productid=nil, devicename=nil, servicetype=nil, channelid=nil, callbackid=nil, comprehensionconfig=nil, customid=nil, durationseconds=nil, maxinvokecount=nil, storageregion=nil, uploadmethod=nil, uploadtarget=nil)
           @ProductId = productid
           @DeviceName = devicename
           @ServiceType = servicetype
@@ -2918,6 +2920,7 @@ module TencentCloud
           @MaxInvokeCount = maxinvokecount
           @StorageRegion = storageregion
           @UploadMethod = uploadmethod
+          @UploadTarget = uploadtarget
         end
 
         def deserialize(params)
@@ -2935,6 +2938,7 @@ module TencentCloud
           @MaxInvokeCount = params['MaxInvokeCount']
           @StorageRegion = params['StorageRegion']
           @UploadMethod = params['UploadMethod']
+          @UploadTarget = params['UploadTarget']
         end
       end
 
@@ -12426,46 +12430,34 @@ module TencentCloud
 
       # ListTWeSeeTasks请求参数结构体
       class ListTWeSeeTasksRequest < TencentCloud::Common::AbstractModel
-        # @param ProductId: 产品 ID
+        # @param ProductId: <p>产品 ID</p>
         # @type ProductId: String
-        # @param DeviceName: 设备名称
+        # @param DeviceName: <p>设备名称</p>
         # @type DeviceName: String
-        # @param ServiceCategory: 算法类目。可选值：
-        # - `COMPREHENSION`：视觉理解
-        # - `HIGHLIGHT`：视频浓缩
+        # @param ServiceCategory: <p>算法类目。可选值：</p><ul><li><code>COMPREHENSION</code>：视觉理解</li><li><code>HIGHLIGHT</code>：视频浓缩</li></ul>
         # @type ServiceCategory: String
-        # @param Limit: 分页拉取数量
+        # @param Limit: <p>分页拉取数量</p>
         # @type Limit: Integer
-        # @param Offset: 分页拉取偏移
+        # @param Offset: <p>分页拉取偏移</p>
         # @type Offset: Integer
-        # @param ServiceTypes: 算法类型。
-
-        # 当 ServiceCategory 为 `COMPREHENSION` 时，可选值包括：
-        # - `VID_COMP`：视频理解
-        # - `IMG_COMP`：图片理解
-        # - `CONT_PERSON_MOTIONLESS`：静姿检测
-
-        # 当 ServiceCategory 为 `HIGHLIGHT` 时，可选值包括：
-        # - `COMP_HIGHLIGHT`：视频浓缩
+        # @param ServiceTypes: <p>算法类型。</p><p>当 ServiceCategory 为 <code>COMPREHENSION</code> 时，可选值包括：</p><ul><li><code>VID_COMP</code>：视频理解</li><li><code>IMG_COMP</code>：图片理解</li><li><code>CONT_PERSON_MOTIONLESS</code>：静姿检测</li></ul><p>当 ServiceCategory 为 <code>HIGHLIGHT</code> 时，可选值包括：</p><ul><li><code>COMP_HIGHLIGHT</code>：视频浓缩</li></ul>
         # @type ServiceTypes: Array
-        # @param ChannelId: 通道 ID
+        # @param ChannelId: <p>通道 ID</p>
         # @type ChannelId: Integer
-        # @param StartTimeMs: 查询任务时间范围的起始时间（毫秒级 UNIX 时间戳）。不传则不生效时间范围条件。
+        # @param StartTimeMs: <p>查询任务时间范围的起始时间（毫秒级 UNIX 时间戳）。不传则不生效时间范围条件。</p>
         # @type StartTimeMs: Integer
-        # @param EndTimeMs: 查询任务时间范围的结束时间（毫秒级 UNIX 时间戳）。不传则不生效时间范围条件。
+        # @param EndTimeMs: <p>查询任务时间范围的结束时间（毫秒级 UNIX 时间戳）。不传则不生效时间范围条件。</p>
         # @type EndTimeMs: Integer
-        # @param Status: 要查询的任务的状态条件。不传则不按照状态过滤，可选值：
-
-        # - `1`：失败
-        # - `2`：空结果
-        # - `3`：有效结果
+        # @param Status: <p>要查询的任务的状态条件。不传则不按照状态过滤，可选值：</p><ul><li><code>1</code>：失败</li><li><code>2</code>：空结果</li><li><code>3</code>：有效结果</li></ul>
         # @type Status: Integer
-        # @param FileURLExpireTime: 下载 URL 的过期时间（秒级 UNIX 时间戳）。若传入该参数，则响应中将包含所有文件的下载 URL
+        # @param FileURLExpireTime: <p>下载 URL 的过期时间（秒级 UNIX 时间戳）。若传入该参数，则响应中将包含所有文件的下载 URL</p>
         # @type FileURLExpireTime: Integer
+        # @param Filters: <p>任务结果过滤条件</p>
+        # @type Filters: Array
 
-        attr_accessor :ProductId, :DeviceName, :ServiceCategory, :Limit, :Offset, :ServiceTypes, :ChannelId, :StartTimeMs, :EndTimeMs, :Status, :FileURLExpireTime
+        attr_accessor :ProductId, :DeviceName, :ServiceCategory, :Limit, :Offset, :ServiceTypes, :ChannelId, :StartTimeMs, :EndTimeMs, :Status, :FileURLExpireTime, :Filters
 
-        def initialize(productid=nil, devicename=nil, servicecategory=nil, limit=nil, offset=nil, servicetypes=nil, channelid=nil, starttimems=nil, endtimems=nil, status=nil, fileurlexpiretime=nil)
+        def initialize(productid=nil, devicename=nil, servicecategory=nil, limit=nil, offset=nil, servicetypes=nil, channelid=nil, starttimems=nil, endtimems=nil, status=nil, fileurlexpiretime=nil, filters=nil)
           @ProductId = productid
           @DeviceName = devicename
           @ServiceCategory = servicecategory
@@ -12477,6 +12469,7 @@ module TencentCloud
           @EndTimeMs = endtimems
           @Status = status
           @FileURLExpireTime = fileurlexpiretime
+          @Filters = filters
         end
 
         def deserialize(params)
@@ -12491,14 +12484,22 @@ module TencentCloud
           @EndTimeMs = params['EndTimeMs']
           @Status = params['Status']
           @FileURLExpireTime = params['FileURLExpireTime']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              visionrecognitiontaskfilter_tmp = VisionRecognitionTaskFilter.new
+              visionrecognitiontaskfilter_tmp.deserialize(i)
+              @Filters << visionrecognitiontaskfilter_tmp
+            end
+          end
         end
       end
 
       # ListTWeSeeTasks返回参数结构体
       class ListTWeSeeTasksResponse < TencentCloud::Common::AbstractModel
-        # @param Tasks: 任务列表
+        # @param Tasks: <p>任务列表</p>
         # @type Tasks: Array
-        # @param Total: 任务数量
+        # @param Total: <p>任务数量</p>
         # @type Total: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -15859,55 +15860,42 @@ module TencentCloud
 
       # TWeSee 任务详情
       class SeeTaskInfo < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务 ID
+        # @param TaskId: <p>任务 ID</p>
         # @type TaskId: String
-        # @param Status: 任务状态。可能取值：
-
-        # - `1`：失败
-        # - `2`：空结果
-        # - `3`：有效结果
-        # - `4`：处理中
+        # @param Status: <p>任务状态。可能取值：</p><ul><li><code>1</code>：失败</li><li><code>2</code>：空结果</li><li><code>3</code>：有效结果</li><li><code>4</code>：处理中</li></ul>
         # @type Status: Integer
-        # @param Metadata: 任务元数据
+        # @param Metadata: <p>任务元数据</p>
         # @type Metadata: :class:`Tencentcloud::Iotexplorer.v20190423.models.SeeTaskMetadata`
-        # @param ServiceCategory: 算法类目。可能取值：
-
-        # - `COMPREHENSION`：视觉理解
-        # - `HIGHLIGHT`：视频浓缩
+        # @param ServiceCategory: <p>算法类目。可能取值：</p><ul><li><code>COMPREHENSION</code>：视觉理解</li><li><code>HIGHLIGHT</code>：视频浓缩</li></ul>
         # @type ServiceCategory: String
-        # @param ServiceType: 算法类型。可能取值：
-
-        # - `VID_COMP`：视频理解
-        # - `IMG_COMP`：图片理解
-        # - `COMP_HIGHLIGHT`：视频浓缩
+        # @param ServiceType: <p>算法类型。可能取值：</p><ul><li><code>VID_COMP</code>：视频理解</li><li><code>IMG_COMP</code>：图片理解</li><li><code>COMP_HIGHLIGHT</code>：视频浓缩</li></ul>
         # @type ServiceType: String
-        # @param ServiceTier: 套餐规格。可能取值：
-
-        # - `POSTPAID`：后付费（适用于视频理解、图片理解）
-        # - `BASIC`：包年包月基础版（适用于视频理解）
+        # @param ServiceTier: <p>套餐规格。可能取值：</p><ul><li><code>POSTPAID</code>：后付费（适用于视频理解、图片理解）</li><li><code>BASIC</code>：包年包月基础版（适用于视频理解）</li></ul>
         # @type ServiceTier: String
-        # @param ComprehensionResult: 视觉理解结果（适用于视频理解、图片理解）
+        # @param ComprehensionResult: <p>视觉理解结果（适用于视频理解、图片理解）</p>
         # @type ComprehensionResult: :class:`Tencentcloud::Iotexplorer.v20190423.models.SeeComprehensionResult`
-        # @param CompHighlightResult: 视频语义浓缩结果（适用于视频语义浓缩）
+        # @param CompHighlightResult: <p>视频语义浓缩结果（适用于视频语义浓缩）</p>
         # @type CompHighlightResult: :class:`Tencentcloud::Iotexplorer.v20190423.models.SeeCompHighlightResult`
-        # @param DetectContinuousResult: 标签持续检测结果
+        # @param DetectContinuousResult: <p>标签持续检测结果</p>
         # @type DetectContinuousResult: :class:`Tencentcloud::Iotexplorer.v20190423.models.SeeDetectContinuousResult`
-        # @param CostBasic: 完成该任务所消耗的基础能力额度
+        # @param CostBasic: <p>完成该任务所消耗的基础能力额度</p>
         # @type CostBasic: Integer
-        # @param CostAdvanced: 完成该任务所消耗的高级能力额度
+        # @param CostAdvanced: <p>完成该任务所消耗的高级能力额度</p>
         # @type CostAdvanced: Integer
-        # @param Files: 输出文件名列表
+        # @param Files: <p>输出文件名列表</p>
         # @type Files: Array
-        # @param FilesInfo: 输出文件详情列表
+        # @param FilesInfo: <p>输出文件详情列表</p>
         # @type FilesInfo: Array
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # @type CreateTime: Integer
-        # @param UpdateTime: 最后更新时间
+        # @param UpdateTime: <p>最后更新时间</p>
         # @type UpdateTime: Integer
+        # @param COSURI: <p>直传 COS 的对象 URI</p>
+        # @type COSURI: String
 
-        attr_accessor :TaskId, :Status, :Metadata, :ServiceCategory, :ServiceType, :ServiceTier, :ComprehensionResult, :CompHighlightResult, :DetectContinuousResult, :CostBasic, :CostAdvanced, :Files, :FilesInfo, :CreateTime, :UpdateTime
+        attr_accessor :TaskId, :Status, :Metadata, :ServiceCategory, :ServiceType, :ServiceTier, :ComprehensionResult, :CompHighlightResult, :DetectContinuousResult, :CostBasic, :CostAdvanced, :Files, :FilesInfo, :CreateTime, :UpdateTime, :COSURI
 
-        def initialize(taskid=nil, status=nil, metadata=nil, servicecategory=nil, servicetype=nil, servicetier=nil, comprehensionresult=nil, comphighlightresult=nil, detectcontinuousresult=nil, costbasic=nil, costadvanced=nil, files=nil, filesinfo=nil, createtime=nil, updatetime=nil)
+        def initialize(taskid=nil, status=nil, metadata=nil, servicecategory=nil, servicetype=nil, servicetier=nil, comprehensionresult=nil, comphighlightresult=nil, detectcontinuousresult=nil, costbasic=nil, costadvanced=nil, files=nil, filesinfo=nil, createtime=nil, updatetime=nil, cosuri=nil)
           @TaskId = taskid
           @Status = status
           @Metadata = metadata
@@ -15923,6 +15911,7 @@ module TencentCloud
           @FilesInfo = filesinfo
           @CreateTime = createtime
           @UpdateTime = updatetime
+          @COSURI = cosuri
         end
 
         def deserialize(params)
@@ -15960,6 +15949,7 @@ module TencentCloud
           end
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+          @COSURI = params['COSURI']
         end
       end
 
@@ -18479,6 +18469,26 @@ module TencentCloud
               @FilesInfo << cloudstorageaiservicetaskfileinfo_tmp
             end
           end
+        end
+      end
+
+      # TWeSee 语义理解任务过滤条件
+      class VisionRecognitionTaskFilter < TencentCloud::Common::AbstractModel
+        # @param Key: 需要过滤的字段
+        # @type Key: String
+        # @param Values: 需要过滤的值
+        # @type Values: Array
+
+        attr_accessor :Key, :Values
+
+        def initialize(key=nil, values=nil)
+          @Key = key
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Values = params['Values']
         end
       end
 

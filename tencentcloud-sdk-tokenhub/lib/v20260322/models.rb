@@ -2016,6 +2016,8 @@ module TencentCloud
         # @type ModelName: String
         # @param ModelId: <p>模型 ID。</p>
         # @type ModelId: String
+        # @param ExtraModelIds: <p>模型id别名列表</p>
+        # @type ExtraModelIds: Array
         # @param DisplayName: <p>模型显示名称。</p>
         # @type DisplayName: String
         # @param Description: <p>模型描述。</p>
@@ -2051,11 +2053,12 @@ module TencentCloud
         # @param DiscontinuedAt: <p>停止新购时间</p>
         # @type DiscontinuedAt: String
 
-        attr_accessor :ModelName, :ModelId, :DisplayName, :Description, :Summary, :ModelType, :Brand, :ModelImage, :Provider, :Status, :Tags, :ModelChargingInfo, :ModelSpec, :ReleaseAt, :RecommendWeight, :ModelAccessInfo, :FreeTrialInfo, :OfflineAt, :DiscontinuedAt
+        attr_accessor :ModelName, :ModelId, :ExtraModelIds, :DisplayName, :Description, :Summary, :ModelType, :Brand, :ModelImage, :Provider, :Status, :Tags, :ModelChargingInfo, :ModelSpec, :ReleaseAt, :RecommendWeight, :ModelAccessInfo, :FreeTrialInfo, :OfflineAt, :DiscontinuedAt
 
-        def initialize(modelname=nil, modelid=nil, displayname=nil, description=nil, summary=nil, modeltype=nil, brand=nil, modelimage=nil, provider=nil, status=nil, tags=nil, modelcharginginfo=nil, modelspec=nil, releaseat=nil, recommendweight=nil, modelaccessinfo=nil, freetrialinfo=nil, offlineat=nil, discontinuedat=nil)
+        def initialize(modelname=nil, modelid=nil, extramodelids=nil, displayname=nil, description=nil, summary=nil, modeltype=nil, brand=nil, modelimage=nil, provider=nil, status=nil, tags=nil, modelcharginginfo=nil, modelspec=nil, releaseat=nil, recommendweight=nil, modelaccessinfo=nil, freetrialinfo=nil, offlineat=nil, discontinuedat=nil)
           @ModelName = modelname
           @ModelId = modelid
+          @ExtraModelIds = extramodelids
           @DisplayName = displayname
           @Description = description
           @Summary = summary
@@ -2078,6 +2081,7 @@ module TencentCloud
         def deserialize(params)
           @ModelName = params['ModelName']
           @ModelId = params['ModelId']
+          @ExtraModelIds = params['ExtraModelIds']
           @DisplayName = params['DisplayName']
           @Description = params['Description']
           @Summary = params['Summary']
@@ -2195,15 +2199,24 @@ module TencentCloud
         # @type PriceUnit: String
         # @param PeakPrice: <p>高峰价格，为空表示无高峰定价</p>
         # @type PeakPrice: String
+        # @param Specification: <p>规格描述，例如视觉/语音类模型有值（如 有参考视频 540P、图生视频 首帧 720P、动作控制 1080P、有声-未指定音色），其他模型为空。</p>
+        # @type Specification: String
+        # @param Usage: <p>Token 用量描述，例如视觉/语音类模型有值（如 第1秒 62,500 Tokens，后续每秒 15,625 Tokens），其他模型为空。</p>
+        # @type Usage: String
+        # @param ReferencePrice: <p>参考费用/预估费用描述，例如视觉/语音类模型有值（如 第1秒 0.625 元，后续每秒 0.15625 元），其他模型为空。</p>
+        # @type ReferencePrice: String
 
-        attr_accessor :PriceName, :DisplayName, :Price, :PriceUnit, :PeakPrice
+        attr_accessor :PriceName, :DisplayName, :Price, :PriceUnit, :PeakPrice, :Specification, :Usage, :ReferencePrice
 
-        def initialize(pricename=nil, displayname=nil, price=nil, priceunit=nil, peakprice=nil)
+        def initialize(pricename=nil, displayname=nil, price=nil, priceunit=nil, peakprice=nil, specification=nil, usage=nil, referenceprice=nil)
           @PriceName = pricename
           @DisplayName = displayname
           @Price = price
           @PriceUnit = priceunit
           @PeakPrice = peakprice
+          @Specification = specification
+          @Usage = usage
+          @ReferencePrice = referenceprice
         end
 
         def deserialize(params)
@@ -2212,6 +2225,9 @@ module TencentCloud
           @Price = params['Price']
           @PriceUnit = params['PriceUnit']
           @PeakPrice = params['PeakPrice']
+          @Specification = params['Specification']
+          @Usage = params['Usage']
+          @ReferencePrice = params['ReferencePrice']
         end
       end
 
@@ -2223,10 +2239,14 @@ module TencentCloud
         # @type EndpointName: String
         # @param ModelId: <p>模型 ID。</p>
         # @type ModelId: String
+        # @param ExtraModelIds: <p>模型id别名列表</p>
+        # @type ExtraModelIds: Array
         # @param ModelName: <p>模型名称。</p>
         # @type ModelName: String
         # @param Status: <p>状态。取值：ACTIVE（运行中）、INACTIVE（已停止）。</p>
         # @type Status: String
+        # @param ModelStatus: <p>模型状态</p><p>枚举值：</p><ul><li>online： 在线</li><li>pre-offline： 预下线</li><li>discontinued： 停止新购</li><li>maintenance： 维护中</li><li>offline： 下线</li></ul>
+        # @type ModelStatus: String
         # @param ServiceType: <p>服务类型。固定为 TEXT_GENERATION（文本生成）。</p>
         # @type ServiceType: String
         # @param ChargeType: <p>计费方式。取值：FREE（免费体验）、TOKEN（按 Token 计费）。未激活时为空。</p>
@@ -2242,14 +2262,16 @@ module TencentCloud
         # @param TPM: <p>推理服务的tpm 限制，没设置就按模型维度 tpm 限制展示</p>
         # @type TPM: Integer
 
-        attr_accessor :EndpointId, :EndpointName, :ModelId, :ModelName, :Status, :ServiceType, :ChargeType, :PaymentEnabled, :ChargeDetail, :StopReason, :RPM, :TPM
+        attr_accessor :EndpointId, :EndpointName, :ModelId, :ExtraModelIds, :ModelName, :Status, :ModelStatus, :ServiceType, :ChargeType, :PaymentEnabled, :ChargeDetail, :StopReason, :RPM, :TPM
 
-        def initialize(endpointid=nil, endpointname=nil, modelid=nil, modelname=nil, status=nil, servicetype=nil, chargetype=nil, paymentenabled=nil, chargedetail=nil, stopreason=nil, rpm=nil, tpm=nil)
+        def initialize(endpointid=nil, endpointname=nil, modelid=nil, extramodelids=nil, modelname=nil, status=nil, modelstatus=nil, servicetype=nil, chargetype=nil, paymentenabled=nil, chargedetail=nil, stopreason=nil, rpm=nil, tpm=nil)
           @EndpointId = endpointid
           @EndpointName = endpointname
           @ModelId = modelid
+          @ExtraModelIds = extramodelids
           @ModelName = modelname
           @Status = status
+          @ModelStatus = modelstatus
           @ServiceType = servicetype
           @ChargeType = chargetype
           @PaymentEnabled = paymentenabled
@@ -2263,8 +2285,10 @@ module TencentCloud
           @EndpointId = params['EndpointId']
           @EndpointName = params['EndpointName']
           @ModelId = params['ModelId']
+          @ExtraModelIds = params['ExtraModelIds']
           @ModelName = params['ModelName']
           @Status = params['Status']
+          @ModelStatus = params['ModelStatus']
           @ServiceType = params['ServiceType']
           @ChargeType = params['ChargeType']
           @PaymentEnabled = params['PaymentEnabled']

@@ -2859,7 +2859,7 @@ module TencentCloud
         # @type Port: Integer
         # @param RateLimitConfig: <p>限速配置</p>
         # @type RateLimitConfig: :class:`Tencentcloud::Clb.v20180317.models.RateLimitConfigForModelRouter`
-        # @param RouterSetting: <p>路由配置</p>
+        # @param RouterSetting: <p>路由配置</p><p>新创建实例时，默认会开启粘连路由</p>
         # @type RouterSetting: :class:`Tencentcloud::Clb.v20180317.models.RouterSettingWithoutFallBack`
         # @param Schema: <p>模型路由实例的网络协议</p><p>枚举值：</p><ul><li>HTTP： HTTP协议</li><li>HTTPS： HTTPS协议</li></ul>
         # @type Schema: String
@@ -2873,10 +2873,14 @@ module TencentCloud
         # @type ModelRouterBillingConfig: :class:`Tencentcloud::Clb.v20180317.models.ModelRouterBillingConfigInput`
         # @param ClientToken: <p>客户端Token，用于保证请求的幂等性。  从您的客户端生成一个参数值，确保不同请求间该参数值唯一。ClientToken只支持ASCII字符。</p>
         # @type ClientToken: String
+        # @param EipAddressId: <p>弹性公网IP的ID</p>
+        # @type EipAddressId: String
+        # @param Bandwidth: <p>单位</p><p>取值范围：[1, 2048]</p><p>单位：Mbps</p>
+        # @type Bandwidth: Integer
 
-        attr_accessor :ModelRouterType, :BudgetId, :CertId, :ClusterInfo, :ModelRouterName, :NetworkType, :Port, :RateLimitConfig, :RouterSetting, :Schema, :SubnetId, :Tags, :VpcId, :ModelRouterBillingConfig, :ClientToken
+        attr_accessor :ModelRouterType, :BudgetId, :CertId, :ClusterInfo, :ModelRouterName, :NetworkType, :Port, :RateLimitConfig, :RouterSetting, :Schema, :SubnetId, :Tags, :VpcId, :ModelRouterBillingConfig, :ClientToken, :EipAddressId, :Bandwidth
 
-        def initialize(modelroutertype=nil, budgetid=nil, certid=nil, clusterinfo=nil, modelroutername=nil, networktype=nil, port=nil, ratelimitconfig=nil, routersetting=nil, schema=nil, subnetid=nil, tags=nil, vpcid=nil, modelrouterbillingconfig=nil, clienttoken=nil)
+        def initialize(modelroutertype=nil, budgetid=nil, certid=nil, clusterinfo=nil, modelroutername=nil, networktype=nil, port=nil, ratelimitconfig=nil, routersetting=nil, schema=nil, subnetid=nil, tags=nil, vpcid=nil, modelrouterbillingconfig=nil, clienttoken=nil, eipaddressid=nil, bandwidth=nil)
           @ModelRouterType = modelroutertype
           @BudgetId = budgetid
           @CertId = certid
@@ -2892,6 +2896,8 @@ module TencentCloud
           @VpcId = vpcid
           @ModelRouterBillingConfig = modelrouterbillingconfig
           @ClientToken = clienttoken
+          @EipAddressId = eipaddressid
+          @Bandwidth = bandwidth
         end
 
         def deserialize(params)
@@ -2929,6 +2935,8 @@ module TencentCloud
             @ModelRouterBillingConfig.deserialize(params['ModelRouterBillingConfig'])
           end
           @ClientToken = params['ClientToken']
+          @EipAddressId = params['EipAddressId']
+          @Bandwidth = params['Bandwidth']
         end
       end
 
@@ -10086,6 +10094,33 @@ module TencentCloud
         end
       end
 
+      # 模型路由计费信息
+      class ModelRouterBillingConfigOutput < TencentCloud::Common::AbstractModel
+        # @param ChargeType: <p>模型路由计费模式</p><p>枚举值：</p><ul><li>POSTPAID_BY_HOUR： 按量计费</li><li>RESOURCE_PACKAGE： 按资源包抵扣</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChargeType: String
+        # @param SlaType: <p>实例规格</p><p>枚举值：</p><ul><li>t1.nano-01： 入门版</li><li>t1.nano-02： 轻量版</li><li>t1.nano-03： 轻量增强版</li><li>t1.micro-01： 微型版</li><li>t1.micro-02： 基础版</li><li>t1.small-01： 标准版</li><li>t1.small-02： 标准增强版</li><li>t1.medium-01： 进阶版</li><li>t1.medium-02： 进阶增强版</li><li>t1.large-01： 专业版</li><li>t1.large-02： 专业增强版</li><li>t1.xlarge-01： 旗舰版</li><li>t1.xlarge-02： 至尊版</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SlaType: String
+        # @param AssociateResourcePackage: <p>是否关联资源包抵扣</p><p>枚举值：</p><ul><li>true： 关联</li><li>false： 不关联</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssociateResourcePackage: Boolean
+
+        attr_accessor :ChargeType, :SlaType, :AssociateResourcePackage
+
+        def initialize(chargetype=nil, slatype=nil, associateresourcepackage=nil)
+          @ChargeType = chargetype
+          @SlaType = slatype
+          @AssociateResourcePackage = associateresourcepackage
+        end
+
+        def deserialize(params)
+          @ChargeType = params['ChargeType']
+          @SlaType = params['SlaType']
+          @AssociateResourcePackage = params['AssociateResourcePackage']
+        end
+      end
+
       # 查询单个实例详细信息
       class ModelRouterDetail < TencentCloud::Common::AbstractModel
         # @param BudgetId: <p>模型路由实例关联的Budget ID。</p><p>未关联Budget时返回空字符串。</p>
@@ -10139,10 +10174,12 @@ module TencentCloud
         # @type Bandwidth: Integer
         # @param EipAddressId: <p>弹性公网IP的ID</p>
         # @type EipAddressId: String
+        # @param BillingConfig: <p>计费信息</p>
+        # @type BillingConfig: :class:`Tencentcloud::Clb.v20180317.models.ModelRouterBillingConfigOutput`
 
-        attr_accessor :BudgetId, :BudgetName, :ClusterInfo, :CreatedTime, :CreditUsageSet, :Domain, :ModelRouterId, :ModelRouterName, :ModelRouterType, :ModifiedTime, :NetworkType, :RateLimitConfig, :RouterSetting, :SecurityGroups, :SecurityStatus, :ServiceEndPoints, :Status, :SubnetId, :Tags, :TradeStatus, :Vip, :VpcId, :Bandwidth, :EipAddressId
+        attr_accessor :BudgetId, :BudgetName, :ClusterInfo, :CreatedTime, :CreditUsageSet, :Domain, :ModelRouterId, :ModelRouterName, :ModelRouterType, :ModifiedTime, :NetworkType, :RateLimitConfig, :RouterSetting, :SecurityGroups, :SecurityStatus, :ServiceEndPoints, :Status, :SubnetId, :Tags, :TradeStatus, :Vip, :VpcId, :Bandwidth, :EipAddressId, :BillingConfig
 
-        def initialize(budgetid=nil, budgetname=nil, clusterinfo=nil, createdtime=nil, creditusageset=nil, domain=nil, modelrouterid=nil, modelroutername=nil, modelroutertype=nil, modifiedtime=nil, networktype=nil, ratelimitconfig=nil, routersetting=nil, securitygroups=nil, securitystatus=nil, serviceendpoints=nil, status=nil, subnetid=nil, tags=nil, tradestatus=nil, vip=nil, vpcid=nil, bandwidth=nil, eipaddressid=nil)
+        def initialize(budgetid=nil, budgetname=nil, clusterinfo=nil, createdtime=nil, creditusageset=nil, domain=nil, modelrouterid=nil, modelroutername=nil, modelroutertype=nil, modifiedtime=nil, networktype=nil, ratelimitconfig=nil, routersetting=nil, securitygroups=nil, securitystatus=nil, serviceendpoints=nil, status=nil, subnetid=nil, tags=nil, tradestatus=nil, vip=nil, vpcid=nil, bandwidth=nil, eipaddressid=nil, billingconfig=nil)
           @BudgetId = budgetid
           @BudgetName = budgetname
           @ClusterInfo = clusterinfo
@@ -10167,6 +10204,7 @@ module TencentCloud
           @VpcId = vpcid
           @Bandwidth = bandwidth
           @EipAddressId = eipaddressid
+          @BillingConfig = billingconfig
         end
 
         def deserialize(params)
@@ -10224,6 +10262,10 @@ module TencentCloud
           @VpcId = params['VpcId']
           @Bandwidth = params['Bandwidth']
           @EipAddressId = params['EipAddressId']
+          unless params['BillingConfig'].nil?
+            @BillingConfig = ModelRouterBillingConfigOutput.new
+            @BillingConfig.deserialize(params['BillingConfig'])
+          end
         end
       end
 
@@ -10551,13 +10593,16 @@ module TencentCloud
         # @param VpcId: <p>模型路由实例所属VPC的ID</p>
         # @type VpcId: String
         # @param Bandwidth: <p>带宽</p><p>单位：Mbps</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Bandwidth: Integer
         # @param EipAddressId: <p>弹性公网IP的ID</p>
         # @type EipAddressId: String
+        # @param BillingConfig: <p>计费信息</p>
+        # @type BillingConfig: :class:`Tencentcloud::Clb.v20180317.models.ModelRouterBillingConfigOutput`
 
-        attr_accessor :BudgetId, :BudgetName, :ClusterInfo, :CreatedTime, :CreditUsageSet, :Domain, :ModelRouterId, :ModelRouterName, :ModelRouterType, :ModifiedTime, :NetworkType, :SecurityStatus, :Status, :Tags, :TradeStatus, :Vip, :VpcId, :Bandwidth, :EipAddressId
+        attr_accessor :BudgetId, :BudgetName, :ClusterInfo, :CreatedTime, :CreditUsageSet, :Domain, :ModelRouterId, :ModelRouterName, :ModelRouterType, :ModifiedTime, :NetworkType, :SecurityStatus, :Status, :Tags, :TradeStatus, :Vip, :VpcId, :Bandwidth, :EipAddressId, :BillingConfig
 
-        def initialize(budgetid=nil, budgetname=nil, clusterinfo=nil, createdtime=nil, creditusageset=nil, domain=nil, modelrouterid=nil, modelroutername=nil, modelroutertype=nil, modifiedtime=nil, networktype=nil, securitystatus=nil, status=nil, tags=nil, tradestatus=nil, vip=nil, vpcid=nil, bandwidth=nil, eipaddressid=nil)
+        def initialize(budgetid=nil, budgetname=nil, clusterinfo=nil, createdtime=nil, creditusageset=nil, domain=nil, modelrouterid=nil, modelroutername=nil, modelroutertype=nil, modifiedtime=nil, networktype=nil, securitystatus=nil, status=nil, tags=nil, tradestatus=nil, vip=nil, vpcid=nil, bandwidth=nil, eipaddressid=nil, billingconfig=nil)
           @BudgetId = budgetid
           @BudgetName = budgetname
           @ClusterInfo = clusterinfo
@@ -10577,6 +10622,7 @@ module TencentCloud
           @VpcId = vpcid
           @Bandwidth = bandwidth
           @EipAddressId = eipaddressid
+          @BillingConfig = billingconfig
         end
 
         def deserialize(params)
@@ -10616,6 +10662,10 @@ module TencentCloud
           @VpcId = params['VpcId']
           @Bandwidth = params['Bandwidth']
           @EipAddressId = params['EipAddressId']
+          unless params['BillingConfig'].nil?
+            @BillingConfig = ModelRouterBillingConfigOutput.new
+            @BillingConfig.deserialize(params['BillingConfig'])
+          end
         end
       end
 
@@ -13073,15 +13123,18 @@ module TencentCloud
         # @param RoutingStrategyArgs: <p>L2模型组内路由调度算法参数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RoutingStrategyArgs: :class:`Tencentcloud::Clb.v20180317.models.RoutingStrategyArgs`
+        # @param StickyConfig: <p>粘连配置参数</p>
+        # @type StickyConfig: :class:`Tencentcloud::Clb.v20180317.models.StickyConfig`
 
-        attr_accessor :CrossModelGroupRoutingStrategy, :FallBack, :RoutingStrategy, :NumRetries, :RoutingStrategyArgs
+        attr_accessor :CrossModelGroupRoutingStrategy, :FallBack, :RoutingStrategy, :NumRetries, :RoutingStrategyArgs, :StickyConfig
 
-        def initialize(crossmodelgrouproutingstrategy=nil, fallback=nil, routingstrategy=nil, numretries=nil, routingstrategyargs=nil)
+        def initialize(crossmodelgrouproutingstrategy=nil, fallback=nil, routingstrategy=nil, numretries=nil, routingstrategyargs=nil, stickyconfig=nil)
           @CrossModelGroupRoutingStrategy = crossmodelgrouproutingstrategy
           @FallBack = fallback
           @RoutingStrategy = routingstrategy
           @NumRetries = numretries
           @RoutingStrategyArgs = routingstrategyargs
+          @StickyConfig = stickyconfig
         end
 
         def deserialize(params)
@@ -13096,6 +13149,10 @@ module TencentCloud
             @RoutingStrategyArgs = RoutingStrategyArgs.new
             @RoutingStrategyArgs.deserialize(params['RoutingStrategyArgs'])
           end
+          unless params['StickyConfig'].nil?
+            @StickyConfig = StickyConfig.new
+            @StickyConfig.deserialize(params['StickyConfig'])
+          end
         end
       end
 
@@ -13109,14 +13166,17 @@ module TencentCloud
         # @type RoutingStrategyArgs: :class:`Tencentcloud::Clb.v20180317.models.RoutingStrategyArgs`
         # @param NumRetries: <p>CMR实例级别请求组内重试次数</p><p>取值范围：[0, 5]</p><p>默认值：2</p>
         # @type NumRetries: Integer
+        # @param StickyConfig: <p>粘连路由配置参数</p>
+        # @type StickyConfig: :class:`Tencentcloud::Clb.v20180317.models.StickyConfig`
 
-        attr_accessor :RoutingStrategy, :CrossModelGroupRoutingStrategy, :RoutingStrategyArgs, :NumRetries
+        attr_accessor :RoutingStrategy, :CrossModelGroupRoutingStrategy, :RoutingStrategyArgs, :NumRetries, :StickyConfig
 
-        def initialize(routingstrategy=nil, crossmodelgrouproutingstrategy=nil, routingstrategyargs=nil, numretries=nil)
+        def initialize(routingstrategy=nil, crossmodelgrouproutingstrategy=nil, routingstrategyargs=nil, numretries=nil, stickyconfig=nil)
           @RoutingStrategy = routingstrategy
           @CrossModelGroupRoutingStrategy = crossmodelgrouproutingstrategy
           @RoutingStrategyArgs = routingstrategyargs
           @NumRetries = numretries
+          @StickyConfig = stickyconfig
         end
 
         def deserialize(params)
@@ -13127,6 +13187,10 @@ module TencentCloud
             @RoutingStrategyArgs.deserialize(params['RoutingStrategyArgs'])
           end
           @NumRetries = params['NumRetries']
+          unless params['StickyConfig'].nil?
+            @StickyConfig = StickyConfig.new
+            @StickyConfig.deserialize(params['StickyConfig'])
+          end
         end
       end
 
@@ -14115,6 +14179,22 @@ module TencentCloud
         def deserialize(params)
           @SpecType = params['SpecType']
           @Availability = params['Availability']
+        end
+      end
+
+      # 粘连路由配置
+      class StickyConfig < TencentCloud::Common::AbstractModel
+        # @param Enabled: <p>是否开启粘连路由</p>
+        # @type Enabled: Boolean
+
+        attr_accessor :Enabled
+
+        def initialize(enabled=nil)
+          @Enabled = enabled
+        end
+
+        def deserialize(params)
+          @Enabled = params['Enabled']
         end
       end
 

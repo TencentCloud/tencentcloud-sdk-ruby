@@ -2521,6 +2521,8 @@ module TencentCloud
         # @type EndTime: String
         # @param Severities: <p>风险等级列表，取值按影响程度从高至低分别为：1 - 致命、2 -严重、3 - 告警、4 - 提示、5 -健康。</p>
         # @type Severities: Array
+        # @param DiagItems: <p>诊断项列表，对于MySQL支持Connectivity,IUDSlow,SlowSql,SlowQueries,WaitRowLock,TrxNotCommit,DDLWaitMDL,IUDWaitMDL,QueryWaitMDL,DeadLock,ReadLock,SqlWaitMDL,FlushWaitLock,HighActiveSession,HighRequest,ManyPrepareStatement,SpaceUsage,MemoryUsage,CpuUsage,DbHealthCheck,LowTableOpenCacheHit,RiskAccount,BigTable,ReplIOError,ReplROResources,ReplSqlError,ReplDelayByDDL,ReplDelayByTrx,ReplDelayByRLock,AutoIncrement,AutoIncrementOverflowV2,BinlogDumpNonGtid,ReplDelay,Switch,BackendInstanceMigration,RoRemove,OutOfStorage,OutOfMemory,CpuUsagePeak,MemoryUsagePeak,SpaceUsagePeak,SqlJoinColumnTypeInconsistent,HighLatencyInTimeWindow</p>
+        # @type DiagItems: Array
         # @param InstanceIds: <p>实例ID列表。可通过 <a href="https://cloud.tencent.com/document/api/1130/57798">DescribeDiagDBInstances</a> 接口获取。<br>查询TDSQL MySQL分布式实例:Instanceld：填写集群ID&amp;Shard实例ID，如：dcdbt-157xxxk&amp;shard-qxxxx</p>
         # @type InstanceIds: Array
         # @param Product: <p>服务产品类型，支持值包括：&quot;mysql&quot; - 云数据库 MySQL，&quot;mongodb&quot;- 云数据库MongoDB, &quot;postgres&quot;-云数据库postgres,云数据库&quot;redis&quot; - 云数据库 Redis，&quot;mariadb&quot;-数据库mariadb，&quot;cynosdb&quot;-数据库 TDSQL-C, &quot;dcdb&quot;-数据库TDSQL MySQL    默认为&quot;mysql&quot;。</p>
@@ -2530,12 +2532,13 @@ module TencentCloud
         # @param Limit: <p>返回数量，默认20，最大值为50。</p>
         # @type Limit: Integer
 
-        attr_accessor :StartTime, :EndTime, :Severities, :InstanceIds, :Product, :Offset, :Limit
+        attr_accessor :StartTime, :EndTime, :Severities, :DiagItems, :InstanceIds, :Product, :Offset, :Limit
 
-        def initialize(starttime=nil, endtime=nil, severities=nil, instanceids=nil, product=nil, offset=nil, limit=nil)
+        def initialize(starttime=nil, endtime=nil, severities=nil, diagitems=nil, instanceids=nil, product=nil, offset=nil, limit=nil)
           @StartTime = starttime
           @EndTime = endtime
           @Severities = severities
+          @DiagItems = diagitems
           @InstanceIds = instanceids
           @Product = product
           @Offset = offset
@@ -2546,6 +2549,7 @@ module TencentCloud
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
           @Severities = params['Severities']
+          @DiagItems = params['DiagItems']
           @InstanceIds = params['InstanceIds']
           @Product = params['Product']
           @Offset = params['Offset']

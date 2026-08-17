@@ -77,6 +77,32 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建客户自有网关集群。
+
+        # 用于承载客户侧的自有网关实例，创建成功后返回集群 ID。
+
+        # @param request: Request instance for AddCustomerGatewayCluster.
+        # @type request: :class:`Tencentcloud::mna::V20210119::AddCustomerGatewayClusterRequest`
+        # @rtype: :class:`Tencentcloud::mna::V20210119::AddCustomerGatewayClusterResponse`
+        def AddCustomerGatewayCluster(request)
+          body = send_request('AddCustomerGatewayCluster', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AddCustomerGatewayClusterResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 新建设备记录
 
         # @param request: Request instance for AddDevice.
@@ -87,6 +113,32 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = AddDeviceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 向指定的客户自有网关集群注册一个网关实例。
+
+        # 注册成功后返回网关实例 ID、鉴权 Token 及 Agent 相关地址信息，用于后续网关 Agent 上报。
+
+        # @param request: Request instance for AddGateway.
+        # @type request: :class:`Tencentcloud::mna::V20210119::AddGatewayRequest`
+        # @rtype: :class:`Tencentcloud::mna::V20210119::AddGatewayResponse`
+        def AddGateway(request)
+          body = send_request('AddGateway', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AddGatewayResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -221,6 +273,32 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除客户自有网关集群。
+
+        # 删除指定的客户自有网关集群，操作不可逆。调用接口后，若通过 GetCustomerGatewayClusterList 接口查询不到对应集群，则表示删除成功。
+
+        # @param request: Request instance for DeleteCustomerGatewayCluster.
+        # @type request: :class:`Tencentcloud::mna::V20210119::DeleteCustomerGatewayClusterRequest`
+        # @rtype: :class:`Tencentcloud::mna::V20210119::DeleteCustomerGatewayClusterResponse`
+        def DeleteCustomerGatewayCluster(request)
+          body = send_request('DeleteCustomerGatewayCluster', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteCustomerGatewayClusterResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除设备信息
 
         # @param request: Request instance for DeleteDevice.
@@ -231,6 +309,32 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteDeviceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 从指定集群下删除一个客户自有网关实例。
+
+        # 删除后，通过 GetCustomerGatewayClusterList 查询不到对应实例，则表示删除成功。
+
+        # @param request: Request instance for DeleteGateway.
+        # @type request: :class:`Tencentcloud::mna::V20210119::DeleteGatewayRequest`
+        # @rtype: :class:`Tencentcloud::mna::V20210119::DeleteGatewayResponse`
+        def DeleteGateway(request)
+          body = send_request('DeleteGateway', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteGatewayResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -279,6 +383,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteL3ConnResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 此接口用来查询接入点列表。
+
+        # @param request: Request instance for DescribeAccessPointList.
+        # @type request: :class:`Tencentcloud::mna::V20210119::DescribeAccessPointListRequest`
+        # @rtype: :class:`Tencentcloud::mna::V20210119::DescribeAccessPointListResponse`
+        def DescribeAccessPointList(request)
+          body = send_request('DescribeAccessPointList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAccessPointListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -375,6 +503,32 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = GetApplicationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询客户自有网关集群列表。
+
+        # 支持按集群名称关键字过滤，使用 Offset/Limit 分页返回集群及其下网关实例信息。
+
+        # @param request: Request instance for GetCustomerGatewayClusterList.
+        # @type request: :class:`Tencentcloud::mna::V20210119::GetCustomerGatewayClusterListRequest`
+        # @rtype: :class:`Tencentcloud::mna::V20210119::GetCustomerGatewayClusterListResponse`
+        def GetCustomerGatewayClusterList(request)
+          body = send_request('GetCustomerGatewayClusterList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetCustomerGatewayClusterListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1037,6 +1191,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改设备接入网关类型。
+
+        # @param request: Request instance for ModifyDeviceAccessScope.
+        # @type request: :class:`Tencentcloud::mna::V20210119::ModifyDeviceAccessScopeRequest`
+        # @rtype: :class:`Tencentcloud::mna::V20210119::ModifyDeviceAccessScopeResponse`
+        def ModifyDeviceAccessScope(request)
+          body = send_request('ModifyDeviceAccessScope', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDeviceAccessScopeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 可开启/关闭流量包自动续费，不影响当前周期正在生效的流量包。
 
         # @param request: Request instance for ModifyPackageRenewFlag.
@@ -1191,6 +1369,32 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpdateApplicationKeyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新客户自有网关集群配置。
+
+        # 目前仅支持修改集群的公网访问 IP。
+
+        # @param request: Request instance for UpdateCustomerGatewayCluster.
+        # @type request: :class:`Tencentcloud::mna::V20210119::UpdateCustomerGatewayClusterRequest`
+        # @rtype: :class:`Tencentcloud::mna::V20210119::UpdateCustomerGatewayClusterResponse`
+        def UpdateCustomerGatewayCluster(request)
+          body = send_request('UpdateCustomerGatewayCluster', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateCustomerGatewayClusterResponse.new
             model.deserialize(response['Response'])
             model
           else

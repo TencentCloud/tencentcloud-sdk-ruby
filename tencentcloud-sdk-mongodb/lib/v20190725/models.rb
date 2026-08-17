@@ -837,14 +837,14 @@ module TencentCloud
         # @type NodeNum: Integer
         # @param MongoVersion: <p>指版本信息。具体支持的版本信息 ，请通过接口 <a href="https://cloud.tencent.com/document/product/240/38567">DescribeSpecInfo</a> 获取。</p><ul><li>MONGO_40_WT：MongoDB 4.0 WiredTiger存储引擎版本。</li><li>MONGO_42_WT：MongoDB 4.2 WiredTiger存储引擎版本。</li><li>MONGO_44_WT：MongoDB 4.4 WiredTiger存储引擎版本。</li><li>MONGO_50_WT：MongoDB 5.0 WiredTiger存储引擎版本。</li><li>MONGO_60_WT：MongoDB 6.0 WiredTiger存储引擎版本。</li><li>MONGO_70_WT：MongoDB 7.0 WiredTiger存储引擎版本。</li><li>MONGO_80_WT：MongoDB 8.0 WiredTiger存储引擎版本。</li></ul>
         # @type MongoVersion: String
-        # @param MachineCode: <p>产品推荐规格类型：</p><ul><li>GE.LD.T1：本地盘（通用I型）。</li><li>GE.CD.T1：云盘（通用I型）。</li></ul><p>产品白名单规格类型：</p><ul><li>HIO10G：本地盘（高IO万兆型）。</li><li>HCD：云盘（云盘版）。</li></ul><p>注意：白名单规格类型为白名单控制，如若需要，请 <a href="https://console.cloud.tencent.com/workorder/category">提交工单</a> 申请</p>
+        # @param MachineCode: <ul><li><strong>产品推荐规格类型</strong><ul><li>GE.LD.T1：本地盘（通用 I 型）。</li><li>GE.CD.T1：云盘（通用 I 型）。</li></ul></li><li><strong>产品受限白名单规格类型</strong><ul><li>HIO10G：本地盘（高 IO 万兆型），已售罄，建议选择 GE.LD.T1。</li><li>HCD：云盘（云盘版），已售罄，建议选择 GE.CD.T1。</li></ul></li></ul>            <blockquote class="d-mod-explain">              <div class="d-mod-title d-explain-title">                <i class="d-icon-explain"></i>说明：              </div>               <p> 受限白名单规格类型需白名单权限，如需开通，请<a href="https://console.cloud.tencent.com/workorder/category">提交工单</a>申请。</p>            </blockquote>
         # @type MachineCode: String
         # @param GoodsNum: <p>实例数量，最小值1，最大值为30。</p>
         # @type GoodsNum: Integer
-        # @param Zone: <p>可用区信息，输入格式如：ap-guangzhou-2。</p><ul><li>具体信息，请通过接口 <a href="https://cloud.tencent.com/document/product/240/38567">DescribeSpecInfo</a> 获取。</li><li>该参数为主可用区，如果多可用区部署，Zone必须是AvailabilityZoneList中的一个。</li></ul>
-        # @type Zone: String
         # @param ClusterType: <p>实例架构类型。</p><ul><li>REPLSET：副本集。</li><li>SHARD：分片集群。</li></ul>
         # @type ClusterType: String
+        # @param Zone: <p>可用区信息，输入格式如：ap-guangzhou-2。</p><ul><li>具体信息，请通过接口 <a href="https://cloud.tencent.com/document/product/240/38567">DescribeSpecInfo</a> 获取。</li><li>该参数为主可用区，如果多可用区部署，Zone必须是AvailabilityZoneList中的一个。</li></ul>
+        # @type Zone: String
         # @param VpcId: <p>私有网络ID。</p><ul><li>仅支持配置私有网络，必须选择一个与实例同一地域的私有网络。请登录<a href="https://console.cloud.tencent.com/vpc">私有网络控制台</a>获取可使用的私有网络 ID。</li><li>实例创建成功之后，支持更换私有网络。具体操作，请参见<a href="https://cloud.tencent.com/document/product/239/30910">更换网络</a>。</li></ul>
         # @type VpcId: String
         # @param SubnetId: <p>私有网络 VPC 的子网 ID。</p><ul><li>必须在已选的私有网络内指定一个子网。请登录<a href="https://console.cloud.tencent.com/vpc">私有网络控制台</a>获取可使用的子网 ID。</li><li>实例创建成功之后，支持更换私有网络及子网。具体操作，请参见<a href="https://cloud.tencent.com/document/product/239/30910">更换网络</a>。</li></ul>
@@ -892,9 +892,9 @@ module TencentCloud
         # @param CpuCore: <p>实例CPU核大小，单位：C。具体售卖的CPU规格，请通过接口 <a href="https://cloud.tencent.com/document/product/240/38567">DescribeSpecInfo</a> 获取。<br>注意：通用 I 型实例必须设置 CPU 大小。</p>
         # @type CpuCore: Integer
 
-        attr_accessor :Memory, :Volume, :ReplicateSetNum, :NodeNum, :MongoVersion, :MachineCode, :GoodsNum, :Zone, :ClusterType, :VpcId, :SubnetId, :Password, :ProjectId, :Tags, :Clone, :Father, :SecurityGroup, :RestoreTime, :InstanceName, :AvailabilityZoneList, :MongosCpu, :MongosMemory, :MongosNodeNum, :ReadonlyNodeNum, :ReadonlyNodeAvailabilityZoneList, :HiddenZone, :ParamTemplateId, :DataEncryption, :EncryptionKeySource, :KeyId, :KmsRegion, :CpuCore
+        attr_accessor :Memory, :Volume, :ReplicateSetNum, :NodeNum, :MongoVersion, :MachineCode, :GoodsNum, :ClusterType, :Zone, :VpcId, :SubnetId, :Password, :ProjectId, :Tags, :Clone, :Father, :SecurityGroup, :RestoreTime, :InstanceName, :AvailabilityZoneList, :MongosCpu, :MongosMemory, :MongosNodeNum, :ReadonlyNodeNum, :ReadonlyNodeAvailabilityZoneList, :HiddenZone, :ParamTemplateId, :DataEncryption, :EncryptionKeySource, :KeyId, :KmsRegion, :CpuCore
 
-        def initialize(memory=nil, volume=nil, replicatesetnum=nil, nodenum=nil, mongoversion=nil, machinecode=nil, goodsnum=nil, zone=nil, clustertype=nil, vpcid=nil, subnetid=nil, password=nil, projectid=nil, tags=nil, clone=nil, father=nil, securitygroup=nil, restoretime=nil, instancename=nil, availabilityzonelist=nil, mongoscpu=nil, mongosmemory=nil, mongosnodenum=nil, readonlynodenum=nil, readonlynodeavailabilityzonelist=nil, hiddenzone=nil, paramtemplateid=nil, dataencryption=nil, encryptionkeysource=nil, keyid=nil, kmsregion=nil, cpucore=nil)
+        def initialize(memory=nil, volume=nil, replicatesetnum=nil, nodenum=nil, mongoversion=nil, machinecode=nil, goodsnum=nil, clustertype=nil, zone=nil, vpcid=nil, subnetid=nil, password=nil, projectid=nil, tags=nil, clone=nil, father=nil, securitygroup=nil, restoretime=nil, instancename=nil, availabilityzonelist=nil, mongoscpu=nil, mongosmemory=nil, mongosnodenum=nil, readonlynodenum=nil, readonlynodeavailabilityzonelist=nil, hiddenzone=nil, paramtemplateid=nil, dataencryption=nil, encryptionkeysource=nil, keyid=nil, kmsregion=nil, cpucore=nil)
           @Memory = memory
           @Volume = volume
           @ReplicateSetNum = replicatesetnum
@@ -902,8 +902,8 @@ module TencentCloud
           @MongoVersion = mongoversion
           @MachineCode = machinecode
           @GoodsNum = goodsnum
-          @Zone = zone
           @ClusterType = clustertype
+          @Zone = zone
           @VpcId = vpcid
           @SubnetId = subnetid
           @Password = password
@@ -937,8 +937,8 @@ module TencentCloud
           @MongoVersion = params['MongoVersion']
           @MachineCode = params['MachineCode']
           @GoodsNum = params['GoodsNum']
-          @Zone = params['Zone']
           @ClusterType = params['ClusterType']
+          @Zone = params['Zone']
           @VpcId = params['VpcId']
           @SubnetId = params['SubnetId']
           @Password = params['Password']
@@ -1087,7 +1087,7 @@ module TencentCloud
         # @type Zone: String
         # @param Period: <p>指定购买实例的购买时长。取值可选：[1,2,3,4,5,6,7,8,9,10,11,12,24,36]；单位：月。</p>
         # @type Period: Integer
-        # @param MachineCode: <p>产品推荐规格类型：</p><ul><li>GE.LD.T1：本地盘（通用I型）。</li><li>GE.CD.T1：云盘（通用I型）。</li></ul><p>产品白名单规格类型：</p><ul><li>HIO10G：本地盘（高IO万兆型）。</li><li>HCD：云盘（云盘版）。</li></ul><p>注意：白名单规格类型为白名单控制，如若需要，请 <a href="https://console.cloud.tencent.com/workorder/category">提交工单</a> 申请</p>
+        # @param MachineCode: <ul><li><strong>产品推荐规格类型</strong><ul><li>GE.LD.T1：本地盘（通用 I 型）。</li><li>GE.CD.T1：云盘（通用 I 型）。</li></ul></li><li><strong>产品受限白名单规格类型</strong><ul><li>HIO10G：本地盘（高 IO 万兆型），已售罄，建议选择 GE.LD.T1。</li><li>HCD：云盘（云盘版），已售罄，建议选择 GE.CD.T1。</li></ul></li></ul>            <blockquote class="d-mod-explain">              <div class="d-mod-title d-explain-title">                <i class="d-icon-explain"></i>说明：              </div>               <p> 受限白名单规格类型需白名单权限，如需开通，请<a href="https://console.cloud.tencent.com/workorder/category">提交工单</a>申请。</p>            </blockquote>
         # @type MachineCode: String
         # @param ClusterType: <p>实例架构类型。</p><ul><li>REPLSET：副本集。</li><li>SHARD：分片集群。</li></ul>
         # @type ClusterType: String
@@ -5624,8 +5624,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :Memory, :Volume, :OplogSize, :NodeNum, :ReplicateSetNum, :InMaintenance, :MongosMemory, :AddNodeList, :RemoveNodeList, :Cpu, :MachineCode
         extend Gem::Deprecate
-        deprecate :OplogSize, :none, 2026, 7
-        deprecate :OplogSize=, :none, 2026, 7
+        deprecate :OplogSize, :none, 2026, 8
+        deprecate :OplogSize=, :none, 2026, 8
 
         def initialize(instanceid=nil, memory=nil, volume=nil, oplogsize=nil, nodenum=nil, replicatesetnum=nil, inmaintenance=nil, mongosmemory=nil, addnodelist=nil, removenodelist=nil, cpu=nil, machinecode=nil)
           @InstanceId = instanceid

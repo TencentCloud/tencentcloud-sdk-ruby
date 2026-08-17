@@ -17,6 +17,42 @@
 module TencentCloud
   module Mna
     module V20210119
+      # 接入点信息
+      class AccessPointInfo < TencentCloud::Common::AbstractModel
+        # @param Vendor: <p>接入点运营商。</p>
+        # @type Vendor: String
+        # @param PublicAddr: <p>接入点地址。</p>
+        # @type PublicAddr: String
+        # @param Region: <p>接入点地域。</p>
+        # @type Region: String
+        # @param BigArea: <p>接入点大区。</p>
+        # @type BigArea: String
+        # @param Available: <p>接入点是否可用。</p><p>枚举值：</p><ul><li>true： 接入点可用</li><li>false： 接入点不可用</li></ul>
+        # @type Available: Boolean
+        # @param GwGroupId: <p>集群ID</p>
+        # @type GwGroupId: String
+
+        attr_accessor :Vendor, :PublicAddr, :Region, :BigArea, :Available, :GwGroupId
+
+        def initialize(vendor=nil, publicaddr=nil, region=nil, bigarea=nil, available=nil, gwgroupid=nil)
+          @Vendor = vendor
+          @PublicAddr = publicaddr
+          @Region = region
+          @BigArea = bigarea
+          @Available = available
+          @GwGroupId = gwgroupid
+        end
+
+        def deserialize(params)
+          @Vendor = params['Vendor']
+          @PublicAddr = params['PublicAddr']
+          @Region = params['Region']
+          @BigArea = params['BigArea']
+          @Available = params['Available']
+          @GwGroupId = params['GwGroupId']
+        end
+      end
+
       # 激活设备
       class ActivateHardware < TencentCloud::Common::AbstractModel
         # @param Vendor: 厂商名称
@@ -203,6 +239,50 @@ module TencentCloud
         end
       end
 
+      # AddCustomerGatewayCluster请求参数结构体
+      class AddCustomerGatewayClusterRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterName: <p>集群名称。最大 64 字符，支持字母、数字、中划线、下划线、点及中文。</p>
+        # @type ClusterName: String
+        # @param BigArea: <p>部署大区标识。最大 32 字符。例如 CN 表示中国大陆。</p>
+        # @type BigArea: String
+        # @param RegionId: <p>地域标识。最大 32 字符。例如 ap-guangzhou。</p>
+        # @type RegionId: String
+
+        attr_accessor :ClusterName, :BigArea, :RegionId
+
+        def initialize(clustername=nil, bigarea=nil, regionid=nil)
+          @ClusterName = clustername
+          @BigArea = bigarea
+          @RegionId = regionid
+        end
+
+        def deserialize(params)
+          @ClusterName = params['ClusterName']
+          @BigArea = params['BigArea']
+          @RegionId = params['RegionId']
+        end
+      end
+
+      # AddCustomerGatewayCluster返回参数结构体
+      class AddCustomerGatewayClusterResponse < TencentCloud::Common::AbstractModel
+        # @param ClusterId: <p>集群 ID。</p>
+        # @type ClusterId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ClusterId, :RequestId
+
+        def initialize(clusterid=nil, requestid=nil)
+          @ClusterId = clusterid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AddDevice请求参数结构体
       class AddDeviceRequest < TencentCloud::Common::AbstractModel
         # @param DeviceName: 新建设备的名称
@@ -284,6 +364,70 @@ module TencentCloud
           @DataKey = params['DataKey']
           @DeviceId = params['DeviceId']
           @Signature = params['Signature']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # AddGateway请求参数结构体
+      class AddGatewayRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: <p>集群 ID。可通过 GetCustomerGatewayClusterList 接口获取。</p>
+        # @type ClusterId: String
+        # @param Username: <p>网关登录用户名。最大 64 字符。</p>
+        # @type Username: String
+        # @param Password: <p>网关登录密码。最大 128 字符。</p>
+        # @type Password: String
+        # @param GatewayIp: <p>网关内网IP。</p>
+        # @type GatewayIp: String
+        # @param RegionId: <p>地域标识。最大 32 字符。例如 ap-guangzhou。可通过 DescribeAccessPointList 接口获取。</p>
+        # @type RegionId: String
+
+        attr_accessor :ClusterId, :Username, :Password, :GatewayIp, :RegionId
+
+        def initialize(clusterid=nil, username=nil, password=nil, gatewayip=nil, regionid=nil)
+          @ClusterId = clusterid
+          @Username = username
+          @Password = password
+          @GatewayIp = gatewayip
+          @RegionId = regionid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Username = params['Username']
+          @Password = params['Password']
+          @GatewayIp = params['GatewayIp']
+          @RegionId = params['RegionId']
+        end
+      end
+
+      # AddGateway返回参数结构体
+      class AddGatewayResponse < TencentCloud::Common::AbstractModel
+        # @param GatewayId: <p>网关ID。</p>
+        # @type GatewayId: String
+        # @param Token: <p>网关鉴权 Token。</p>
+        # @type Token: String
+        # @param RegisterCenterUrl: <p>网关注册地址。</p>
+        # @type RegisterCenterUrl: String
+        # @param TelemetryUrl: <p>网关上报地址。</p>
+        # @type TelemetryUrl: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :GatewayId, :Token, :RegisterCenterUrl, :TelemetryUrl, :RequestId
+
+        def initialize(gatewayid=nil, token=nil, registercenterurl=nil, telemetryurl=nil, requestid=nil)
+          @GatewayId = gatewayid
+          @Token = token
+          @RegisterCenterUrl = registercenterurl
+          @TelemetryUrl = telemetryurl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @Token = params['Token']
+          @RegisterCenterUrl = params['RegisterCenterUrl']
+          @TelemetryUrl = params['TelemetryUrl']
           @RequestId = params['RequestId']
         end
       end
@@ -516,6 +660,38 @@ module TencentCloud
         end
       end
 
+      # DeleteCustomerGatewayCluster请求参数结构体
+      class DeleteCustomerGatewayClusterRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: <p>集群 ID。可通过 GetCustomerGatewayClusterList 接口获取。</p>
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DeleteCustomerGatewayCluster返回参数结构体
+      class DeleteCustomerGatewayClusterResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteDevice请求参数结构体
       class DeleteDeviceRequest < TencentCloud::Common::AbstractModel
         # @param DeviceId: 删除设备的唯一ID
@@ -534,6 +710,46 @@ module TencentCloud
 
       # DeleteDevice返回参数结构体
       class DeleteDeviceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteGateway请求参数结构体
+      class DeleteGatewayRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: <p>集群 ID。可通过 GetCustomerGatewayClusterList 接口获取。</p>
+        # @type ClusterId: String
+        # @param GatewayId: <p>网关ID。</p>
+        # @type GatewayId: String
+        # @param GatewayIp: <p>网关内网IP。</p>
+        # @type GatewayIp: String
+
+        attr_accessor :ClusterId, :GatewayId, :GatewayIp
+
+        def initialize(clusterid=nil, gatewayid=nil, gatewayip=nil)
+          @ClusterId = clusterid
+          @GatewayId = gatewayid
+          @GatewayIp = gatewayip
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @GatewayId = params['GatewayId']
+          @GatewayIp = params['GatewayIp']
+        end
+      end
+
+      # DeleteGateway返回参数结构体
+      class DeleteGatewayResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -608,6 +824,49 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAccessPointList请求参数结构体
+      class DescribeAccessPointListRequest < TencentCloud::Common::AbstractModel
+        # @param Regions: <p>地域列表</p>
+        # @type Regions: Array
+
+        attr_accessor :Regions
+
+        def initialize(regions=nil)
+          @Regions = regions
+        end
+
+        def deserialize(params)
+          @Regions = params['Regions']
+        end
+      end
+
+      # DescribeAccessPointList返回参数结构体
+      class DescribeAccessPointListResponse < TencentCloud::Common::AbstractModel
+        # @param AccessPointList: <p>接入点列表</p>
+        # @type AccessPointList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AccessPointList, :RequestId
+
+        def initialize(accesspointlist=nil, requestid=nil)
+          @AccessPointList = accesspointlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['AccessPointList'].nil?
+            @AccessPointList = []
+            params['AccessPointList'].each do |i|
+              accesspointinfo_tmp = AccessPointInfo.new
+              accesspointinfo_tmp.deserialize(i)
+              @AccessPointList << accesspointinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1075,6 +1334,49 @@ module TencentCloud
         end
       end
 
+      # 客户自有网关集群信息
+      class GatewayClusterInfo < TencentCloud::Common::AbstractModel
+        # @param ClusterId: <p>集群 ID。</p>
+        # @type ClusterId: String
+        # @param ClusterName: <p>集群名称。</p>
+        # @type ClusterName: String
+        # @param CreateTime: <p>创建时间。</p>
+        # @type CreateTime: Integer
+        # @param PublicIp: <p>公网访问 IP。</p>
+        # @type PublicIp: String
+        # @param InstanceCount: <p>集群下网关实例数量。</p>
+        # @type InstanceCount: Integer
+        # @param GatewayList: <p>网关列表。</p>
+        # @type GatewayList: Array
+
+        attr_accessor :ClusterId, :ClusterName, :CreateTime, :PublicIp, :InstanceCount, :GatewayList
+
+        def initialize(clusterid=nil, clustername=nil, createtime=nil, publicip=nil, instancecount=nil, gatewaylist=nil)
+          @ClusterId = clusterid
+          @ClusterName = clustername
+          @CreateTime = createtime
+          @PublicIp = publicip
+          @InstanceCount = instancecount
+          @GatewayList = gatewaylist
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @ClusterName = params['ClusterName']
+          @CreateTime = params['CreateTime']
+          @PublicIp = params['PublicIp']
+          @InstanceCount = params['InstanceCount']
+          unless params['GatewayList'].nil?
+            @GatewayList = []
+            params['GatewayList'].each do |i|
+              gatewayinfo_tmp = GatewayInfo.new
+              gatewayinfo_tmp.deserialize(i)
+              @GatewayList << gatewayinfo_tmp
+            end
+          end
+        end
+      end
+
       # 网关信息
       class GatewayInfo < TencentCloud::Common::AbstractModel
         # @param GatewayId: <p>网关ID</p>
@@ -1258,6 +1560,61 @@ module TencentCloud
           @MpApplicationName = params['MpApplicationName']
           @Remark = params['Remark']
           @AccessScope = params['AccessScope']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetCustomerGatewayClusterList请求参数结构体
+      class GetCustomerGatewayClusterListRequest < TencentCloud::Common::AbstractModel
+        # @param Keyword: <p>按集群名称模糊匹配的关键字。最大 64 字符。</p>
+        # @type Keyword: String
+        # @param PageNumber: <p>当前查看页码。</p>
+        # @type PageNumber: Integer
+        # @param PageSize: <p>每页显示记录数。</p>
+        # @type PageSize: Integer
+
+        attr_accessor :Keyword, :PageNumber, :PageSize
+
+        def initialize(keyword=nil, pagenumber=nil, pagesize=nil)
+          @Keyword = keyword
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          @Keyword = params['Keyword']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+        end
+      end
+
+      # GetCustomerGatewayClusterList返回参数结构体
+      class GetCustomerGatewayClusterListResponse < TencentCloud::Common::AbstractModel
+        # @param ClusterList: <p>集群列表。</p>
+        # @type ClusterList: Array
+        # @param TotalCount: <p>集群总数。</p>
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ClusterList, :TotalCount, :RequestId
+
+        def initialize(clusterlist=nil, totalcount=nil, requestid=nil)
+          @ClusterList = clusterlist
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ClusterList'].nil?
+            @ClusterList = []
+            params['ClusterList'].each do |i|
+              gatewayclusterinfo_tmp = GatewayClusterInfo.new
+              gatewayclusterinfo_tmp.deserialize(i)
+              @ClusterList << gatewayclusterinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -3027,6 +3384,42 @@ module TencentCloud
         end
       end
 
+      # ModifyDeviceAccessScope请求参数结构体
+      class ModifyDeviceAccessScopeRequest < TencentCloud::Common::AbstractModel
+        # @param DeviceIds: <p>设备ID</p>
+        # @type DeviceIds: Array
+        # @param AccessScope: <p>接入网关类型</p><p>枚举值：</p><ul><li>0： 公有云网关</li><li>1： 客户私有网关</li></ul><p>默认值：0</p><p>如果不传，则默认修改为接入公有云网关。</p>
+        # @type AccessScope: Integer
+
+        attr_accessor :DeviceIds, :AccessScope
+
+        def initialize(deviceids=nil, accessscope=nil)
+          @DeviceIds = deviceids
+          @AccessScope = accessscope
+        end
+
+        def deserialize(params)
+          @DeviceIds = params['DeviceIds']
+          @AccessScope = params['AccessScope']
+        end
+      end
+
+      # ModifyDeviceAccessScope返回参数结构体
+      class ModifyDeviceAccessScopeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyPackageRenewFlag请求参数结构体
       class ModifyPackageRenewFlagRequest < TencentCloud::Common::AbstractModel
         # @param ResourceId: <p>流量包的唯一资源ID</p>
@@ -3483,6 +3876,42 @@ module TencentCloud
 
       # UpdateApplicationKey返回参数结构体
       class UpdateApplicationKeyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateCustomerGatewayCluster请求参数结构体
+      class UpdateCustomerGatewayClusterRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: <p>集群 ID。可通过 GetCustomerGatewayClusterList 接口获取。</p>
+        # @type ClusterId: String
+        # @param PublicIp: <p>公网访问 IP。最大 64 字符，需为合法的 IPv4 或 IPv6 地址。</p>
+        # @type PublicIp: String
+
+        attr_accessor :ClusterId, :PublicIp
+
+        def initialize(clusterid=nil, publicip=nil)
+          @ClusterId = clusterid
+          @PublicIp = publicip
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @PublicIp = params['PublicIp']
+        end
+      end
+
+      # UpdateCustomerGatewayCluster返回参数结构体
+      class UpdateCustomerGatewayClusterResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
