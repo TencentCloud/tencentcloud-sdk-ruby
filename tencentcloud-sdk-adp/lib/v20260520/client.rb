@@ -869,6 +869,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询并发超限明细，包含QPM/TPM超限与专属并发超限记录，返回超限发生时间、空间、应用、模型及请求内容
+
+        # @param request: Request instance for DescribeConcurrencyLimitDetailList.
+        # @type request: :class:`Tencentcloud::adp::V20260520::DescribeConcurrencyLimitDetailListRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::DescribeConcurrencyLimitDetailListResponse`
+        def DescribeConcurrencyLimitDetailList(request)
+          body = send_request('DescribeConcurrencyLimitDetailList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeConcurrencyLimitDetailListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询资源消耗明细，包含计费相关字段（消耗类型、消耗目标、消耗场景、套餐包及PU消耗等）
+
+        # @param request: Request instance for DescribeConsumptionDetailList.
+        # @type request: :class:`Tencentcloud::adp::V20260520::DescribeConsumptionDetailListRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::DescribeConsumptionDetailListResponse`
+        def DescribeConsumptionDetailList(request)
+          body = send_request('DescribeConsumptionDetailList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeConsumptionDetailListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查看会话信息
 
         # @param request: Request instance for DescribeConversation.
@@ -951,6 +999,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeLatestReleaseResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询看板总览KPI卡片数据，通过resource_type区分资源看板与业务看板域，返回各域KPI指标列表
+
+        # @param request: Request instance for DescribeMetricOverviewList.
+        # @type request: :class:`Tencentcloud::adp::V20260520::DescribeMetricOverviewListRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::DescribeMetricOverviewListResponse`
+        def DescribeMetricOverviewList(request)
+          body = send_request('DescribeMetricOverviewList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeMetricOverviewListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1215,6 +1287,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeSystemVariableListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询资源调用时序明细，支持模型和插件两类资源，按时间顺序返回每条调用记录的详细信息
+
+        # @param request: Request instance for DescribeUsageDetailList.
+        # @type request: :class:`Tencentcloud::adp::V20260520::DescribeUsageDetailListRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::DescribeUsageDetailListResponse`
+        def DescribeUsageDetailList(request)
+          body = send_request('DescribeUsageDetailList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeUsageDetailListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询资源用量聚合明细，支持模型、插件、平台三类资源，按空间/应用维度聚合展示调用次数、Token消耗等指标
+
+        # @param request: Request instance for DescribeUsageSummaryList.
+        # @type request: :class:`Tencentcloud::adp::V20260520::DescribeUsageSummaryListRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::DescribeUsageSummaryListResponse`
+        def DescribeUsageSummaryList(request)
+          body = send_request('DescribeUsageSummaryList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeUsageSummaryListResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -13421,15 +13421,15 @@ module TencentCloud
 
       # DescribeIntegrationTask请求参数结构体
       class DescribeIntegrationTaskRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务id
+        # @param TaskId: <p>任务id</p>
         # @type TaskId: String
-        # @param ProjectId: 项目id
+        # @param ProjectId: <p>项目id</p>
         # @type ProjectId: String
-        # @param TaskType: 任务类型，201: 实时集成任务,   202：离线集成任务，不传默认值为201 实时任务类型
+        # @param TaskType: <p>任务类型，201: 实时集成任务,   202：离线集成任务，不传默认值为201 实时任务类型</p>
         # @type TaskType: Integer
-        # @param InstanceVersion: 提交版本号
+        # @param InstanceVersion: <p>提交版本号</p>
         # @type InstanceVersion: Integer
-        # @param ExtConfig: 额外参数
+        # @param ExtConfig: <p>额外参数</p>
         # @type ExtConfig: Array
 
         attr_accessor :TaskId, :ProjectId, :TaskType, :InstanceVersion, :ExtConfig
@@ -13460,24 +13460,27 @@ module TencentCloud
 
       # DescribeIntegrationTask返回参数结构体
       class DescribeIntegrationTaskResponse < TencentCloud::Common::AbstractModel
-        # @param TaskInfo: 任务信息
+        # @param TaskInfo: <p>任务信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskInfo: :class:`Tencentcloud::Wedata.v20210820.models.IntegrationTaskInfo`
-        # @param AgentStatus: 采集器统计信息
+        # @param AgentStatus: <p>采集器统计信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AgentStatus: :class:`Tencentcloud::Wedata.v20210820.models.AgentStatus`
-        # @param TaskVersion: 任务版本信息
+        # @param TaskVersion: <p>任务版本信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskVersion: :class:`Tencentcloud::Wedata.v20210820.models.TaskVersionInstance`
+        # @param TaskVersionList: <p>历史实例信息</p>
+        # @type TaskVersionList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskInfo, :AgentStatus, :TaskVersion, :RequestId
+        attr_accessor :TaskInfo, :AgentStatus, :TaskVersion, :TaskVersionList, :RequestId
 
-        def initialize(taskinfo=nil, agentstatus=nil, taskversion=nil, requestid=nil)
+        def initialize(taskinfo=nil, agentstatus=nil, taskversion=nil, taskversionlist=nil, requestid=nil)
           @TaskInfo = taskinfo
           @AgentStatus = agentstatus
           @TaskVersion = taskversion
+          @TaskVersionList = taskversionlist
           @RequestId = requestid
         end
 
@@ -13493,6 +13496,14 @@ module TencentCloud
           unless params['TaskVersion'].nil?
             @TaskVersion = TaskVersionInstance.new
             @TaskVersion.deserialize(params['TaskVersion'])
+          end
+          unless params['TaskVersionList'].nil?
+            @TaskVersionList = []
+            params['TaskVersionList'].each do |i|
+              realtimetaskinstancevo_tmp = RealtimeTaskInstanceVO.new
+              realtimetaskinstancevo_tmp.deserialize(i)
+              @TaskVersionList << realtimetaskinstancevo_tmp
+            end
           end
           @RequestId = params['RequestId']
         end
@@ -17177,10 +17188,12 @@ module TencentCloud
         # @type Keyword: String
         # @param JobType: <p>任务类型，不传时按 <code>INTEGRATION</code> 处理 </p><p>枚举值：</p><ul><li>INTEGRATION： 集成任务</li><li>VALIDATE： 对账任务</li></ul>
         # @type JobType: String
+        # @param Context: <p>滚动查询游标</p>
+        # @type Context: String
 
-        attr_accessor :ProjectId, :TaskId, :JobId, :EndTime, :StartTime, :Container, :Limit, :OrderType, :RunningOrderId, :Keyword, :JobType
+        attr_accessor :ProjectId, :TaskId, :JobId, :EndTime, :StartTime, :Container, :Limit, :OrderType, :RunningOrderId, :Keyword, :JobType, :Context
 
-        def initialize(projectid=nil, taskid=nil, jobid=nil, endtime=nil, starttime=nil, container=nil, limit=nil, ordertype=nil, runningorderid=nil, keyword=nil, jobtype=nil)
+        def initialize(projectid=nil, taskid=nil, jobid=nil, endtime=nil, starttime=nil, container=nil, limit=nil, ordertype=nil, runningorderid=nil, keyword=nil, jobtype=nil, context=nil)
           @ProjectId = projectid
           @TaskId = taskid
           @JobId = jobid
@@ -17192,6 +17205,7 @@ module TencentCloud
           @RunningOrderId = runningorderid
           @Keyword = keyword
           @JobType = jobtype
+          @Context = context
         end
 
         def deserialize(params)
@@ -17206,6 +17220,7 @@ module TencentCloud
           @RunningOrderId = params['RunningOrderId']
           @Keyword = params['Keyword']
           @JobType = params['JobType']
+          @Context = params['Context']
         end
       end
 
@@ -17217,14 +17232,17 @@ module TencentCloud
         # @param LogContentList: <p>日志集合</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogContentList: Array
+        # @param Context: <p>滚动查询游标</p>
+        # @type Context: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ListOver, :LogContentList, :RequestId
+        attr_accessor :ListOver, :LogContentList, :Context, :RequestId
 
-        def initialize(listover=nil, logcontentlist=nil, requestid=nil)
+        def initialize(listover=nil, logcontentlist=nil, context=nil, requestid=nil)
           @ListOver = listover
           @LogContentList = logcontentlist
+          @Context = context
           @RequestId = requestid
         end
 
@@ -17238,6 +17256,7 @@ module TencentCloud
               @LogContentList << logcontentinfo_tmp
             end
           end
+          @Context = params['Context']
           @RequestId = params['RequestId']
         end
       end
@@ -17413,30 +17432,36 @@ module TencentCloud
 
       # DescribeTableContentPreview请求参数结构体
       class DescribeTableContentPreviewRequest < TencentCloud::Common::AbstractModel
-        # @param TableId: 表ID
+        # @param TableId: <p>表ID</p>
         # @type TableId: String
-        # @param TechnologyType: 组件类型枚举值，支持的值有 HDFS/HBASE/HIVE/KAFKA
+        # @param TechnologyType: <p>组件类型枚举值，支持的值有 HDFS/HBASE/HIVE/KAFKA</p>
         # @type TechnologyType: String
-        # @param ClusterId: 集群id
+        # @param ClusterId: <p>集群id</p>
         # @type ClusterId: String
-        # @param ResourceType: 资源类型枚举值，支持的值有TOPIC/PATH/TABLE/DATABASE
+        # @param ResourceType: <p>资源类型枚举值，支持的值有TOPIC/PATH/TABLE/DATABASE</p>
         # @type ResourceType: String
-        # @param TableName: 表名
+        # @param TableName: <p>表名</p>
         # @type TableName: String
-        # @param ProjectId: 项目id
+        # @param ProjectId: <p>项目id</p>
         # @type ProjectId: String
-        # @param RowNum: 预览的行数，默认10行
+        # @param RowNum: <p>预览的行数，默认10行</p>
         # @type RowNum: Integer
-        # @param DatabaseName: 数据库名，kafka或其他无数据库概念的不填
+        # @param DatabaseName: <p>数据库名，kafka或其他无数据库概念的不填</p>
         # @type DatabaseName: String
-        # @param TaskId: 异步查询预览结果时填写
+        # @param TaskId: <p>异步查询预览结果时填写</p>
         # @type TaskId: String
-        # @param PartitionName: 分区信息
+        # @param PartitionName: <p>分区信息</p>
         # @type PartitionName: String
+        # @param ResourceGroupId: <p>资源组ID</p>
+        # @type ResourceGroupId: String
+        # @param Sql: <p>执行SQL</p>
+        # @type Sql: String
+        # @param EngineId: <p>引擎名</p>
+        # @type EngineId: String
 
-        attr_accessor :TableId, :TechnologyType, :ClusterId, :ResourceType, :TableName, :ProjectId, :RowNum, :DatabaseName, :TaskId, :PartitionName
+        attr_accessor :TableId, :TechnologyType, :ClusterId, :ResourceType, :TableName, :ProjectId, :RowNum, :DatabaseName, :TaskId, :PartitionName, :ResourceGroupId, :Sql, :EngineId
 
-        def initialize(tableid=nil, technologytype=nil, clusterid=nil, resourcetype=nil, tablename=nil, projectid=nil, rownum=nil, databasename=nil, taskid=nil, partitionname=nil)
+        def initialize(tableid=nil, technologytype=nil, clusterid=nil, resourcetype=nil, tablename=nil, projectid=nil, rownum=nil, databasename=nil, taskid=nil, partitionname=nil, resourcegroupid=nil, sql=nil, engineid=nil)
           @TableId = tableid
           @TechnologyType = technologytype
           @ClusterId = clusterid
@@ -17447,6 +17472,9 @@ module TencentCloud
           @DatabaseName = databasename
           @TaskId = taskid
           @PartitionName = partitionname
+          @ResourceGroupId = resourcegroupid
+          @Sql = sql
+          @EngineId = engineid
         end
 
         def deserialize(params)
@@ -17460,21 +17488,24 @@ module TencentCloud
           @DatabaseName = params['DatabaseName']
           @TaskId = params['TaskId']
           @PartitionName = params['PartitionName']
+          @ResourceGroupId = params['ResourceGroupId']
+          @Sql = params['Sql']
+          @EngineId = params['EngineId']
         end
       end
 
       # DescribeTableContentPreview返回参数结构体
       class DescribeTableContentPreviewResponse < TencentCloud::Common::AbstractModel
-        # @param ColumnNames: 表的列名列表
+        # @param ColumnNames: <p>表的列名列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ColumnNames: Array
-        # @param TableRecordSet: 表的行数据列表
+        # @param TableRecordSet: <p>表的行数据列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableRecordSet: Array
-        # @param TaskId: 异步预览任务ID
+        # @param TaskId: <p>异步预览任务ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: String
-        # @param AsyncState: 异步预览结果状态: 0 初始化， 1 执行中， 2 执行成功
+        # @param AsyncState: <p>异步预览结果状态: 0 初始化， 1 执行中， 2 执行成功</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AsyncState: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -32483,6 +32514,26 @@ module TencentCloud
               @BytesLogSpeed << bytesspeed_tmp
             end
           end
+        end
+      end
+
+      # 历史实例信息
+      class RealtimeTaskInstanceVO < TencentCloud::Common::AbstractModel
+        # @param InstanceDate: <p>实例生成时间</p>
+        # @type InstanceDate: String
+        # @param RunningOrderId: <p>实例id</p>
+        # @type RunningOrderId: Integer
+
+        attr_accessor :InstanceDate, :RunningOrderId
+
+        def initialize(instancedate=nil, runningorderid=nil)
+          @InstanceDate = instancedate
+          @RunningOrderId = runningorderid
+        end
+
+        def deserialize(params)
+          @InstanceDate = params['InstanceDate']
+          @RunningOrderId = params['RunningOrderId']
         end
       end
 

@@ -1059,6 +1059,34 @@ module TencentCloud
         end
       end
 
+      # CDC 独享集群云硬盘统计信息。
+      class DedicatedClusterDiskStatistic < TencentCloud::Common::AbstractModel
+        # @param DiskType: <p>硬盘介质类型。取值范围：<br>&lt;li&gt;CLOUD_BASIC：表示普通云硬盘<br>&lt;li&gt;CLOUD_PREMIUM：表示高性能云硬盘<br>&lt;li&gt;CLOUD_SSD：表示SSD云硬盘<br>&lt;li&gt;CLOUD_HSSD：表示增强型SSD云硬盘<br>&lt;li&gt;CLOUD_TSSD：表示极速型SSD云硬盘。</p>
+        # @type DiskType: String
+        # @param TotalDiskSize: <p>云硬盘总容量。</p><p>单位：GiB</p>
+        # @type TotalDiskSize: Integer
+        # @param UsedDiskSize: <p>已使用的云硬盘容量。</p><p>单位：GiB</p>
+        # @type UsedDiskSize: Integer
+        # @param AvailableDiskSize: <p>可用的云硬盘容量。</p><p>单位：GiB</p>
+        # @type AvailableDiskSize: Integer
+
+        attr_accessor :DiskType, :TotalDiskSize, :UsedDiskSize, :AvailableDiskSize
+
+        def initialize(disktype=nil, totaldisksize=nil, useddisksize=nil, availabledisksize=nil)
+          @DiskType = disktype
+          @TotalDiskSize = totaldisksize
+          @UsedDiskSize = useddisksize
+          @AvailableDiskSize = availabledisksize
+        end
+
+        def deserialize(params)
+          @DiskType = params['DiskType']
+          @TotalDiskSize = params['TotalDiskSize']
+          @UsedDiskSize = params['UsedDiskSize']
+          @AvailableDiskSize = params['AvailableDiskSize']
+        end
+      end
+
       # DeleteAutoSnapshotPolicies请求参数结构体
       class DeleteAutoSnapshotPoliciesRequest < TencentCloud::Common::AbstractModel
         # @param AutoSnapshotPolicyIds: 要删除的定期快照策略ID列表，通过[ DescribeAutoSnapshotPolicies](https://cloud.tencent.com/document/api/362/33556)接口查询。
@@ -1278,27 +1306,43 @@ module TencentCloud
 
       # DescribeDedicatedClusterDiskStatistics请求参数结构体
       class DescribeDedicatedClusterDiskStatisticsRequest < TencentCloud::Common::AbstractModel
+        # @param DedicatedClusterId: <p>云服务器独享集群ID。</p>
+        # @type DedicatedClusterId: String
 
+        attr_accessor :DedicatedClusterId
 
-        def initialize()
+        def initialize(dedicatedclusterid=nil)
+          @DedicatedClusterId = dedicatedclusterid
         end
 
         def deserialize(params)
+          @DedicatedClusterId = params['DedicatedClusterId']
         end
       end
 
       # DescribeDedicatedClusterDiskStatistics返回参数结构体
       class DescribeDedicatedClusterDiskStatisticsResponse < TencentCloud::Common::AbstractModel
+        # @param DedicatedClusterDiskStatisticSet: <p>云服务器独享集群云硬盘统计信息。</p>
+        # @type DedicatedClusterDiskStatisticSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :DedicatedClusterDiskStatisticSet, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(dedicatedclusterdiskstatisticset=nil, requestid=nil)
+          @DedicatedClusterDiskStatisticSet = dedicatedclusterdiskstatisticset
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['DedicatedClusterDiskStatisticSet'].nil?
+            @DedicatedClusterDiskStatisticSet = []
+            params['DedicatedClusterDiskStatisticSet'].each do |i|
+              dedicatedclusterdiskstatistic_tmp = DedicatedClusterDiskStatistic.new
+              dedicatedclusterdiskstatistic_tmp.deserialize(i)
+              @DedicatedClusterDiskStatisticSet << dedicatedclusterdiskstatistic_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1793,16 +1837,31 @@ module TencentCloud
 
       # DescribeRemoteDisks返回参数结构体
       class DescribeRemoteDisksResponse < TencentCloud::Common::AbstractModel
+        # @param RemoteDiskSet: <p>单副本SSD硬盘的详细信息列表。</p>
+        # @type RemoteDiskSet: Array
+        # @param TotalCount: <p>符合条件的单副本SSD硬盘数量。</p>
+        # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :RemoteDiskSet, :TotalCount, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(remotediskset=nil, totalcount=nil, requestid=nil)
+          @RemoteDiskSet = remotediskset
+          @TotalCount = totalcount
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['RemoteDiskSet'].nil?
+            @RemoteDiskSet = []
+            params['RemoteDiskSet'].each do |i|
+              remotediskdetail_tmp = RemoteDiskDetail.new
+              remotediskdetail_tmp.deserialize(i)
+              @RemoteDiskSet << remotediskdetail_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -3632,6 +3691,25 @@ module TencentCloud
           @Period = params['Period']
           @CurInstanceDeadline = params['CurInstanceDeadline']
           @RenewFlag = params['RenewFlag']
+        end
+      end
+
+      # 单副本SSD硬盘详情。
+      class RemoteDiskDetail < TencentCloud::Common::AbstractModel
+        # @param Placement: <p>单副本SSD硬盘所在的位置。</p>
+        # @type Placement: :class:`Tencentcloud::Cbs.v20170312.models.Placement`
+
+        attr_accessor :Placement
+
+        def initialize(placement=nil)
+          @Placement = placement
+        end
+
+        def deserialize(params)
+          unless params['Placement'].nil?
+            @Placement = Placement.new
+            @Placement.deserialize(params['Placement'])
+          end
         end
       end
 

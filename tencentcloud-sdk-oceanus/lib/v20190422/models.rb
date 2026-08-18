@@ -4147,10 +4147,12 @@ module TencentCloud
         # @param LogCOSBucket: <p>日志桶</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogCOSBucket: String
+        # @param IsLocked: <p>是否支持滚动删除，0，手动删除，1，自动滚动删除</p>
+        # @type IsLocked: Integer
 
-        attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :CreateTime, :Version, :DefaultParallelism, :Properties, :ResourceRefDetails, :CreatorUin, :UpdateTime, :COSBucket, :LogCollect, :MaxParallelism, :JobManagerSpec, :TaskManagerSpec, :ClsLogsetId, :ClsTopicId, :PythonVersion, :AutoRecover, :LogLevel, :ClazzLevels, :ExpertModeOn, :ExpertModeConfiguration, :TraceModeOn, :TraceModeConfiguration, :CheckpointRetainedNum, :JobGraph, :EsServerlessIndex, :EsServerlessSpace, :IndexName, :WorkspaceName, :FlinkVersion, :JdkVersion, :JobManagerCpu, :JobManagerMem, :TaskManagerCpu, :TaskManagerMem, :JobConfigItem, :CheckpointTimeoutSecond, :CheckpointIntervalSecond, :VariableReplaceMode, :StateCOSBucket, :LogCOSBucket
+        attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :CreateTime, :Version, :DefaultParallelism, :Properties, :ResourceRefDetails, :CreatorUin, :UpdateTime, :COSBucket, :LogCollect, :MaxParallelism, :JobManagerSpec, :TaskManagerSpec, :ClsLogsetId, :ClsTopicId, :PythonVersion, :AutoRecover, :LogLevel, :ClazzLevels, :ExpertModeOn, :ExpertModeConfiguration, :TraceModeOn, :TraceModeConfiguration, :CheckpointRetainedNum, :JobGraph, :EsServerlessIndex, :EsServerlessSpace, :IndexName, :WorkspaceName, :FlinkVersion, :JdkVersion, :JobManagerCpu, :JobManagerMem, :TaskManagerCpu, :TaskManagerMem, :JobConfigItem, :CheckpointTimeoutSecond, :CheckpointIntervalSecond, :VariableReplaceMode, :StateCOSBucket, :LogCOSBucket, :IsLocked
 
-        def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, createtime=nil, version=nil, defaultparallelism=nil, properties=nil, resourcerefdetails=nil, creatoruin=nil, updatetime=nil, cosbucket=nil, logcollect=nil, maxparallelism=nil, jobmanagerspec=nil, taskmanagerspec=nil, clslogsetid=nil, clstopicid=nil, pythonversion=nil, autorecover=nil, loglevel=nil, clazzlevels=nil, expertmodeon=nil, expertmodeconfiguration=nil, tracemodeon=nil, tracemodeconfiguration=nil, checkpointretainednum=nil, jobgraph=nil, esserverlessindex=nil, esserverlessspace=nil, indexname=nil, workspacename=nil, flinkversion=nil, jdkversion=nil, jobmanagercpu=nil, jobmanagermem=nil, taskmanagercpu=nil, taskmanagermem=nil, jobconfigitem=nil, checkpointtimeoutsecond=nil, checkpointintervalsecond=nil, variablereplacemode=nil, statecosbucket=nil, logcosbucket=nil)
+        def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, createtime=nil, version=nil, defaultparallelism=nil, properties=nil, resourcerefdetails=nil, creatoruin=nil, updatetime=nil, cosbucket=nil, logcollect=nil, maxparallelism=nil, jobmanagerspec=nil, taskmanagerspec=nil, clslogsetid=nil, clstopicid=nil, pythonversion=nil, autorecover=nil, loglevel=nil, clazzlevels=nil, expertmodeon=nil, expertmodeconfiguration=nil, tracemodeon=nil, tracemodeconfiguration=nil, checkpointretainednum=nil, jobgraph=nil, esserverlessindex=nil, esserverlessspace=nil, indexname=nil, workspacename=nil, flinkversion=nil, jdkversion=nil, jobmanagercpu=nil, jobmanagermem=nil, taskmanagercpu=nil, taskmanagermem=nil, jobconfigitem=nil, checkpointtimeoutsecond=nil, checkpointintervalsecond=nil, variablereplacemode=nil, statecosbucket=nil, logcosbucket=nil, islocked=nil)
           @JobId = jobid
           @EntrypointClass = entrypointclass
           @ProgramArgs = programargs
@@ -4195,6 +4197,7 @@ module TencentCloud
           @VariableReplaceMode = variablereplacemode
           @StateCOSBucket = statecosbucket
           @LogCOSBucket = logcosbucket
+          @IsLocked = islocked
         end
 
         def deserialize(params)
@@ -4275,6 +4278,7 @@ module TencentCloud
           @VariableReplaceMode = params['VariableReplaceMode']
           @StateCOSBucket = params['StateCOSBucket']
           @LogCOSBucket = params['LogCOSBucket']
+          @IsLocked = params['IsLocked']
         end
       end
 

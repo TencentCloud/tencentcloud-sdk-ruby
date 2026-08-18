@@ -3555,6 +3555,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # ModifyPrometheusInstanceAccessPoints 用于管理 Prometheus 实例的访问入口，当前支持 HTTP 与 HTTPS 两种协议：默认启用 HTTP，HTTPS（mTLS）为可选项，但至少需启用一种协议。现阶段对 Prometheus 的读写均通过私有网络入口完成；由于 HTTPS 依赖 mTLS，配置与运维复杂度更高，且在绝大多数场景下并无必要，因此通常不建议启用。
+
+        # @param request: Request instance for ModifyPrometheusInstanceAccessPoints.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::ModifyPrometheusInstanceAccessPointsRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::ModifyPrometheusInstanceAccessPointsResponse`
+        def ModifyPrometheusInstanceAccessPoints(request)
+          body = send_request('ModifyPrometheusInstanceAccessPoints', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyPrometheusInstanceAccessPointsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改 Prometheus 实例相关属性
 
         # @param request: Request instance for ModifyPrometheusInstanceAttributes.

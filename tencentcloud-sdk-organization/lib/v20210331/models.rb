@@ -2858,15 +2858,15 @@ module TencentCloud
 
       # DescribeOrganizationMembersAuthPolicy请求参数结构体
       class DescribeOrganizationMembersAuthPolicyRequest < TencentCloud::Common::AbstractModel
-        # @param Offset: 偏移量。取值是limit的整数倍。默认值 : 0。
+        # @param Offset: <p>偏移量。取值是limit的整数倍。默认值 : 0。</p>
         # @type Offset: Integer
-        # @param Limit: 限制数目。取值范围：1~50。默认值：10。
+        # @param Limit: <p>限制数目。取值范围：1~50。默认值：10。</p>
         # @type Limit: Integer
-        # @param MemberUin: 成员uin。
+        # @param MemberUin: <p>成员uin。</p>
         # @type MemberUin: Integer
-        # @param OrgSubAccountUin: 集团管理员子账号uin。
+        # @param OrgSubAccountUin: <p>集团管理员子账号uin。</p>
         # @type OrgSubAccountUin: Integer
-        # @param PolicyId: 成员访问策略Id。
+        # @param PolicyId: <p>成员访问策略Id。</p>
         # @type PolicyId: Integer
 
         attr_accessor :Offset, :Limit, :MemberUin, :OrgSubAccountUin, :PolicyId
@@ -2890,10 +2890,10 @@ module TencentCloud
 
       # DescribeOrganizationMembersAuthPolicy返回参数结构体
       class DescribeOrganizationMembersAuthPolicyResponse < TencentCloud::Common::AbstractModel
-        # @param Items: 访问授权策略列表。
+        # @param Items: <p>访问授权策略列表。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Items: Array
-        # @param Total: 总数目。
+        # @param Total: <p>总数目。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -5493,17 +5493,17 @@ module TencentCloud
 
       # ListRoleConfigurations请求参数结构体
       class ListRoleConfigurationsRequest < TencentCloud::Common::AbstractModel
-        # @param ZoneId: 空间 ID。
+        # @param ZoneId: <p>空间 ID。</p>
         # @type ZoneId: String
-        # @param NextToken: 查询返回结果下一页的令牌。首次调用 API 不需要NextToken。  当您首次调用 API 时，如果返回数据总条数超过MaxResults限制，数据会被截断，只返回MaxResults条数据，同时，返回参数IsTruncated为true，返回一个NextToken。您可以使用上一次返回的NextToken继续调用 API，其他请求参数保持不变，查询被截断的数据。您可以按此方法多次查询，直到IsTruncated为false，表示全部数据查询完毕。
+        # @param NextToken: <p>查询返回结果下一页的令牌。首次调用 API 不需要NextToken。  当您首次调用 API 时，如果返回数据总条数超过MaxResults限制，数据会被截断，只返回MaxResults条数据，同时，返回参数IsTruncated为true，返回一个NextToken。您可以使用上一次返回的NextToken继续调用 API，其他请求参数保持不变，查询被截断的数据。您可以按此方法多次查询，直到IsTruncated为false，表示全部数据查询完毕。</p>
         # @type NextToken: String
-        # @param MaxResults: 每页的最大数据条数。  取值范围：1~100。  默认值：10。
+        # @param MaxResults: <p>每页的最大数据条数。  取值范围：1~100。  默认值：10。</p>
         # @type MaxResults: Integer
-        # @param Filter: 过滤文本。不区分大小写。目前，支持 RoleConfigurationName和Description. 示例：Filter = "test"，表示查询名称或描述里包含 test 的权限配置。
+        # @param Filter: <p>过滤文本。不区分大小写。目前，支持 RoleConfigurationName和Description. 示例：Filter = &quot;test&quot;，表示查询名称或描述里包含 test 的权限配置。</p>
         # @type Filter: String
-        # @param FilterTargets: 检索成员账号是否配置过权限，如果配置过返回IsSelected: true, 否则返回false。
+        # @param FilterTargets: <p>检索成员账号是否配置过权限，如果配置过返回IsSelected: true, 否则返回false。</p>
         # @type FilterTargets: Array
-        # @param PrincipalId: 授权的用户UserId或者用户组的GroupId，必须和入参数FilterTargets一起设置
+        # @param PrincipalId: <p>授权的用户UserId或者用户组的GroupId，必须和入参数FilterTargets一起设置</p>
         # @type PrincipalId: String
 
         attr_accessor :ZoneId, :NextToken, :MaxResults, :Filter, :FilterTargets, :PrincipalId
@@ -5529,15 +5529,15 @@ module TencentCloud
 
       # ListRoleConfigurations返回参数结构体
       class ListRoleConfigurationsResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCounts: 符合请求参数条件的数据总条数。
+        # @param TotalCounts: <p>符合请求参数条件的数据总条数。</p>
         # @type TotalCounts: Integer
-        # @param MaxResults: 每页的最大数据条数。
+        # @param MaxResults: <p>每页的最大数据条数。</p>
         # @type MaxResults: Integer
-        # @param IsTruncated: 返回结果是否被截断。取值：  true：已截断。 false：未截断。
+        # @param IsTruncated: <p>返回结果是否被截断。取值：  true：已截断。 false：未截断。</p>
         # @type IsTruncated: Boolean
-        # @param NextToken: 查询返回结果下一页的令牌。  说明 只有IsTruncated为true时，才显示该参数。
+        # @param NextToken: <p>查询返回结果下一页的令牌。  说明 只有IsTruncated为true时，才显示该参数。</p>
         # @type NextToken: String
-        # @param RoleConfigurations: 权限配置列表。
+        # @param RoleConfigurations: <p>权限配置列表。</p>
         # @type RoleConfigurations: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6919,8 +6919,8 @@ module TencentCloud
 
         attr_accessor :ProductResourceId, :ResourceGrantLast
         extend Gem::Deprecate
-        deprecate :ResourceGrantLast, :none, 2026, 7
-        deprecate :ResourceGrantLast=, :none, 2026, 7
+        deprecate :ResourceGrantLast, :none, 2026, 8
+        deprecate :ResourceGrantLast=, :none, 2026, 8
 
         def initialize(productresourceid=nil, resourcegrantlast=nil)
           @ProductResourceId = productresourceid
@@ -7754,8 +7754,8 @@ module TencentCloud
 
         attr_accessor :ResourceId, :ProductResourceId
         extend Gem::Deprecate
-        deprecate :ResourceId, :none, 2026, 7
-        deprecate :ResourceId=, :none, 2026, 7
+        deprecate :ResourceId, :none, 2026, 8
+        deprecate :ResourceId=, :none, 2026, 8
 
         def initialize(resourceid=nil, productresourceid=nil)
           @ResourceId = resourceid

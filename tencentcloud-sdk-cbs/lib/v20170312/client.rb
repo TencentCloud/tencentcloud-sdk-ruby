@@ -528,7 +528,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询 CVM CDC 独享集群云硬盘统计信息。
+        # 查询云服务器独享集群云硬盘统计信息。
 
         # @param request: Request instance for DescribeDedicatedClusterDiskStatistics.
         # @type request: :class:`Tencentcloud::cbs::V20170312::DescribeDedicatedClusterDiskStatisticsRequest`

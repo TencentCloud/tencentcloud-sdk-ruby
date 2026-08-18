@@ -21504,181 +21504,187 @@ module TencentCloud
 
       # 工作流调度模式下的任务运行概要信息
       class TriggerTaskRunBrief < TencentCloud::Common::AbstractModel
-        # @param ExecutionId: 任务运行ID
+        # @param ExecutionId: <p>任务运行ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecutionId: String
-        # @param ExecutionState: 执行状态，运行失败:FAILED、运行成功:SUCCESS、等待中:PENDING、跳过运行:SKIP、运行中:RUNNING
+        # @param ExecutionState: <p>执行状态，运行失败:FAILED、运行成功:SUCCESS、等待中:PENDING、跳过运行:SKIP、运行中:RUNNING</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecutionState: String
-        # @param ProjectId: 项目ID
+        # @param ProjectId: <p>项目ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectId: String
-        # @param WorkflowId: 工作流ID
+        # @param WorkflowId: <p>工作流ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkflowId: String
-        # @param WorkflowExecutionId: 工作流运行ID
+        # @param WorkflowExecutionId: <p>工作流运行ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkflowExecutionId: String
-        # @param TaskId: 任务 ID
+        # @param TaskId: <p>任务 ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: String
-        # @param TaskType: 任务类型
+        # @param TaskType: <p>任务类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskType: String
-        # @param TaskVersionId: 任务版本
+        # @param TaskVersionId: <p>任务版本</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskVersionId: String
-        # @param TriggerType: 触发类型
+        # @param TriggerType: <p>触发类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TriggerType: String
-        # @param WaitTime: 等待时长，单位秒
+        # @param WaitTime: <p>等待时长，单位秒</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WaitTime: String
-        # @param ResourceGroup: 所属资源组
+        # @param ResourceGroup: <p>所属资源组</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceGroup: String
-        # @param ErrorCode: 错误码
+        # @param ErrorCode: <p>错误码</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorCode: String
-        # @param ExecuteUserUin: 运行账号
+        # @param ExecuteUserUin: <p>运行账号</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecuteUserUin: String
-        # @param CreaterUin: 创建人 ID
+        # @param CreaterUin: <p>创建人 ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreaterUin: String
-        # @param JobId: 执行平台执行 ID
+        # @param JobId: <p>执行平台执行 ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobId: String
-        # @param CreateTime: 创建时间戳
+        # @param CreateTime: <p>创建时间戳</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
-        # @param ScheduleTime: 计划调度时间
+        # @param ScheduleTime: <p>计划调度时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScheduleTime: String
-        # @param UpdateTime: 更新时间戳
+        # @param UpdateTime: <p>更新时间戳</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
-        # @param DependenceFinishedTime: 依赖任务完成时间
+        # @param DependenceFinishedTime: <p>依赖任务完成时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DependenceFinishedTime: String
-        # @param QueueStartTime: 任务下发执行平台时间
+        # @param QueueStartTime: <p>任务下发执行平台时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QueueStartTime: String
-        # @param PendingStartTime: 开始等待资源时间
+        # @param PendingStartTime: <p>开始等待资源时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PendingStartTime: String
-        # @param ExecutionStartTime: 运行开始时间
+        # @param ExecutionStartTime: <p>运行开始时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecutionStartTime: String
-        # @param ExecutionEndTime: 运行结束时间
+        # @param ExecutionEndTime: <p>运行结束时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecutionEndTime: String
-        # @param QueueCostTime: 排队时间
+        # @param QueueCostTime: <p>排队时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QueueCostTime: String
-        # @param ExecutionTime: 运行时间
+        # @param ExecutionTime: <p>运行时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecutionTime: String
-        # @param AllCostTime: 总花费时间
+        # @param AllCostTime: <p>总花费时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AllCostTime: String
-        # @param TimeZone: 时区
+        # @param TimeZone: <p>时区</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeZone: String
-        # @param DependOnList: 依赖上游任务 ID 列表
+        # @param DependOnList: <p>依赖上游任务 ID 列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DependOnList: Array
-        # @param RunParams: 运行参数
+        # @param RunParams: <p>运行参数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunParams: String
-        # @param TaskTypeExtensions: 任务扩展信息，包含脚本路径
+        # @param TaskTypeExtensions: <p>任务扩展信息，包含脚本路径</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskTypeExtensions: String
-        # @param RetryTimes: 重试次数，为 0 则表示首次运行
+        # @param RetryTimes: <p>重试次数，为 0 则表示首次运行</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RetryTimes: Integer
-        # @param LeftCoordinate: 左侧坐标
+        # @param LeftCoordinate: <p>左侧坐标</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LeftCoordinate: Float
-        # @param TopCoordinate: 顶部坐标
+        # @param TopCoordinate: <p>顶部坐标</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopCoordinate: Float
-        # @param ResourceGroupId: 资源组 ID
+        # @param ResourceGroupId: <p>资源组 ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceGroupId: String
-        # @param ErrorCodeStr: 错误码描述
+        # @param ErrorCodeStr: <p>错误码描述</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorCodeStr: String
-        # @param CreateUin: 创建人 UIN
+        # @param CreateUin: <p>创建人 UIN</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateUin: String
-        # @param IssueTime: 下发执行平台时间
+        # @param IssueTime: <p>下发执行平台时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IssueTime: String
-        # @param TaskName: 任务名称
+        # @param TaskName: <p>任务名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskName: String
-        # @param WorkflowName: 工作流名称
+        # @param WorkflowName: <p>工作流名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkflowName: String
-        # @param ExecuteUserName: 运行人名称
+        # @param ExecuteUserName: <p>运行人名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecuteUserName: String
-        # @param RerunTimes: 重跑次数
+        # @param RerunTimes: <p>重跑次数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RerunTimes: Integer
-        # @param IsLatestExecution: 是否是最新一次运行
+        # @param IsLatestExecution: <p>是否是最新一次运行</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsLatestExecution: Boolean
-        # @param TaskExecutionState: 任务运行状态
+        # @param TaskExecutionState: <p>任务运行状态</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskExecutionState: String
-        # @param CycleType: 周期类型
+        # @param CycleType: <p>周期类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CycleType: String
-        # @param UserNameInCharge: 责任人名称
+        # @param UserNameInCharge: <p>责任人名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserNameInCharge: String
-        # @param UserUinInCharge: 责任人id
+        # @param UserUinInCharge: <p>责任人id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserUinInCharge: String
-        # @param ResourceGroupName: 资源组名称
+        # @param ResourceGroupName: <p>资源组名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceGroupName: String
-        # @param Timezone: 时区
+        # @param Timezone: <p>时区</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Timezone: String
-        # @param FolderId: 文件夹id
+        # @param FolderId: <p>文件夹id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FolderId: String
-        # @param FolderName: 文件夹名称
+        # @param FolderName: <p>文件夹名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FolderName: String
-        # @param ProjectName: 项目名称
+        # @param ProjectName: <p>项目名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectName: String
-        # @param TaskTypeId: 任务类型id
+        # @param TaskTypeId: <p>任务类型id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskTypeId: Integer
-        # @param WorkflowParams: 工作流运行参数
+        # @param WorkflowParams: <p>工作流运行参数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkflowParams: String
-        # @param SupportRerun: 是否支持重跑
+        # @param SupportRerun: <p>是否支持重跑</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SupportRerun: Boolean
-        # @param WorkflowExecutionState: 工作流运行状态
+        # @param WorkflowExecutionState: <p>工作流运行状态</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkflowExecutionState: String
-        # @param ExecutionResult: 任务执行结果
+        # @param ExecutionResult: <p>任务执行结果</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecutionResult: String
-        # @param DependencyTriggerPolicy: 依赖策略
+        # @param DependencyTriggerPolicy: <p>依赖策略</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DependencyTriggerPolicy: String
+        # @param AssociatedEntityExist: <p>关联实体是否存在，true表示任务/工作流等实体存在，false表示实体已被删除</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssociatedEntityExist: Boolean
+        # @param ScheduleRunType: <p>调度执行类型</p><p>枚举值：</p><ul><li>0： 正常调度</li><li>1： 空跑调度</li><li>2： 用户驱动，手动触发</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScheduleRunType: String
 
-        attr_accessor :ExecutionId, :ExecutionState, :ProjectId, :WorkflowId, :WorkflowExecutionId, :TaskId, :TaskType, :TaskVersionId, :TriggerType, :WaitTime, :ResourceGroup, :ErrorCode, :ExecuteUserUin, :CreaterUin, :JobId, :CreateTime, :ScheduleTime, :UpdateTime, :DependenceFinishedTime, :QueueStartTime, :PendingStartTime, :ExecutionStartTime, :ExecutionEndTime, :QueueCostTime, :ExecutionTime, :AllCostTime, :TimeZone, :DependOnList, :RunParams, :TaskTypeExtensions, :RetryTimes, :LeftCoordinate, :TopCoordinate, :ResourceGroupId, :ErrorCodeStr, :CreateUin, :IssueTime, :TaskName, :WorkflowName, :ExecuteUserName, :RerunTimes, :IsLatestExecution, :TaskExecutionState, :CycleType, :UserNameInCharge, :UserUinInCharge, :ResourceGroupName, :Timezone, :FolderId, :FolderName, :ProjectName, :TaskTypeId, :WorkflowParams, :SupportRerun, :WorkflowExecutionState, :ExecutionResult, :DependencyTriggerPolicy
+        attr_accessor :ExecutionId, :ExecutionState, :ProjectId, :WorkflowId, :WorkflowExecutionId, :TaskId, :TaskType, :TaskVersionId, :TriggerType, :WaitTime, :ResourceGroup, :ErrorCode, :ExecuteUserUin, :CreaterUin, :JobId, :CreateTime, :ScheduleTime, :UpdateTime, :DependenceFinishedTime, :QueueStartTime, :PendingStartTime, :ExecutionStartTime, :ExecutionEndTime, :QueueCostTime, :ExecutionTime, :AllCostTime, :TimeZone, :DependOnList, :RunParams, :TaskTypeExtensions, :RetryTimes, :LeftCoordinate, :TopCoordinate, :ResourceGroupId, :ErrorCodeStr, :CreateUin, :IssueTime, :TaskName, :WorkflowName, :ExecuteUserName, :RerunTimes, :IsLatestExecution, :TaskExecutionState, :CycleType, :UserNameInCharge, :UserUinInCharge, :ResourceGroupName, :Timezone, :FolderId, :FolderName, :ProjectName, :TaskTypeId, :WorkflowParams, :SupportRerun, :WorkflowExecutionState, :ExecutionResult, :DependencyTriggerPolicy, :AssociatedEntityExist, :ScheduleRunType
 
-        def initialize(executionid=nil, executionstate=nil, projectid=nil, workflowid=nil, workflowexecutionid=nil, taskid=nil, tasktype=nil, taskversionid=nil, triggertype=nil, waittime=nil, resourcegroup=nil, errorcode=nil, executeuseruin=nil, createruin=nil, jobid=nil, createtime=nil, scheduletime=nil, updatetime=nil, dependencefinishedtime=nil, queuestarttime=nil, pendingstarttime=nil, executionstarttime=nil, executionendtime=nil, queuecosttime=nil, executiontime=nil, allcosttime=nil, timezone=nil, dependonlist=nil, runparams=nil, tasktypeextensions=nil, retrytimes=nil, leftcoordinate=nil, topcoordinate=nil, resourcegroupid=nil, errorcodestr=nil, createuin=nil, issuetime=nil, taskname=nil, workflowname=nil, executeusername=nil, reruntimes=nil, islatestexecution=nil, taskexecutionstate=nil, cycletype=nil, usernameincharge=nil, useruinincharge=nil, resourcegroupname=nil, timezone=nil, folderid=nil, foldername=nil, projectname=nil, tasktypeid=nil, workflowparams=nil, supportrerun=nil, workflowexecutionstate=nil, executionresult=nil, dependencytriggerpolicy=nil)
+        def initialize(executionid=nil, executionstate=nil, projectid=nil, workflowid=nil, workflowexecutionid=nil, taskid=nil, tasktype=nil, taskversionid=nil, triggertype=nil, waittime=nil, resourcegroup=nil, errorcode=nil, executeuseruin=nil, createruin=nil, jobid=nil, createtime=nil, scheduletime=nil, updatetime=nil, dependencefinishedtime=nil, queuestarttime=nil, pendingstarttime=nil, executionstarttime=nil, executionendtime=nil, queuecosttime=nil, executiontime=nil, allcosttime=nil, timezone=nil, dependonlist=nil, runparams=nil, tasktypeextensions=nil, retrytimes=nil, leftcoordinate=nil, topcoordinate=nil, resourcegroupid=nil, errorcodestr=nil, createuin=nil, issuetime=nil, taskname=nil, workflowname=nil, executeusername=nil, reruntimes=nil, islatestexecution=nil, taskexecutionstate=nil, cycletype=nil, usernameincharge=nil, useruinincharge=nil, resourcegroupname=nil, timezone=nil, folderid=nil, foldername=nil, projectname=nil, tasktypeid=nil, workflowparams=nil, supportrerun=nil, workflowexecutionstate=nil, executionresult=nil, dependencytriggerpolicy=nil, associatedentityexist=nil, scheduleruntype=nil)
           @ExecutionId = executionid
           @ExecutionState = executionstate
           @ProjectId = projectid
@@ -21736,6 +21742,8 @@ module TencentCloud
           @WorkflowExecutionState = workflowexecutionstate
           @ExecutionResult = executionresult
           @DependencyTriggerPolicy = dependencytriggerpolicy
+          @AssociatedEntityExist = associatedentityexist
+          @ScheduleRunType = scheduleruntype
         end
 
         def deserialize(params)
@@ -21796,6 +21804,8 @@ module TencentCloud
           @WorkflowExecutionState = params['WorkflowExecutionState']
           @ExecutionResult = params['ExecutionResult']
           @DependencyTriggerPolicy = params['DependencyTriggerPolicy']
+          @AssociatedEntityExist = params['AssociatedEntityExist']
+          @ScheduleRunType = params['ScheduleRunType']
         end
       end
 

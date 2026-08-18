@@ -403,10 +403,12 @@ module TencentCloud
         # @type MountPoint: String
         # @param ClusterId: <p>客户端集群id</p>
         # @type ClusterId: String
+        # @param MountPoints: 
+        # @type MountPoints: Array
 
-        attr_accessor :ClientNodeIp, :Status, :ClientType, :VpcId, :SubnetId, :InstanceId, :MountPoint, :ClusterId
+        attr_accessor :ClientNodeIp, :Status, :ClientType, :VpcId, :SubnetId, :InstanceId, :MountPoint, :ClusterId, :MountPoints
 
-        def initialize(clientnodeip=nil, status=nil, clienttype=nil, vpcid=nil, subnetid=nil, instanceid=nil, mountpoint=nil, clusterid=nil)
+        def initialize(clientnodeip=nil, status=nil, clienttype=nil, vpcid=nil, subnetid=nil, instanceid=nil, mountpoint=nil, clusterid=nil, mountpoints=nil)
           @ClientNodeIp = clientnodeip
           @Status = status
           @ClientType = clienttype
@@ -415,6 +417,7 @@ module TencentCloud
           @InstanceId = instanceid
           @MountPoint = mountpoint
           @ClusterId = clusterid
+          @MountPoints = mountpoints
         end
 
         def deserialize(params)
@@ -426,6 +429,14 @@ module TencentCloud
           @InstanceId = params['InstanceId']
           @MountPoint = params['MountPoint']
           @ClusterId = params['ClusterId']
+          unless params['MountPoints'].nil?
+            @MountPoints = []
+            params['MountPoints'].each do |i|
+              mountpointentry_tmp = MountPointEntry.new
+              mountpointentry_tmp.deserialize(i)
+              @MountPoints << mountpointentry_tmp
+            end
+          end
         end
       end
 
@@ -771,10 +782,16 @@ module TencentCloud
         # @type Status: Integer
         # @param ClusterMountSet: 客户端集群挂载存储集合
         # @type ClusterMountSet: Array
+        # @param Zone: 
+        # @type Zone: String
+        # @param MountStorageNum: 
+        # @type MountStorageNum: Integer
+        # @param StorageFileSystemId: 
+        # @type StorageFileSystemId: String
 
-        attr_accessor :ClusterId, :VpcId, :SubnetId, :ClientNum, :ClusterName, :ClusterType, :ManagerNodes, :Status, :ClusterMountSet
+        attr_accessor :ClusterId, :VpcId, :SubnetId, :ClientNum, :ClusterName, :ClusterType, :ManagerNodes, :Status, :ClusterMountSet, :Zone, :MountStorageNum, :StorageFileSystemId
 
-        def initialize(clusterid=nil, vpcid=nil, subnetid=nil, clientnum=nil, clustername=nil, clustertype=nil, managernodes=nil, status=nil, clustermountset=nil)
+        def initialize(clusterid=nil, vpcid=nil, subnetid=nil, clientnum=nil, clustername=nil, clustertype=nil, managernodes=nil, status=nil, clustermountset=nil, zone=nil, mountstoragenum=nil, storagefilesystemid=nil)
           @ClusterId = clusterid
           @VpcId = vpcid
           @SubnetId = subnetid
@@ -784,6 +801,9 @@ module TencentCloud
           @ManagerNodes = managernodes
           @Status = status
           @ClusterMountSet = clustermountset
+          @Zone = zone
+          @MountStorageNum = mountstoragenum
+          @StorageFileSystemId = storagefilesystemid
         end
 
         def deserialize(params)
@@ -810,6 +830,9 @@ module TencentCloud
               @ClusterMountSet << clustermountattr_tmp
             end
           end
+          @Zone = params['Zone']
+          @MountStorageNum = params['MountStorageNum']
+          @StorageFileSystemId = params['StorageFileSystemId']
         end
       end
 
@@ -2148,6 +2171,26 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 客户端挂载点
+      class MountPointEntry < TencentCloud::Common::AbstractModel
+        # @param StorageFileSystemId: 
+        # @type StorageFileSystemId: String
+        # @param MountDir: 
+        # @type MountDir: String
+
+        attr_accessor :StorageFileSystemId, :MountDir
+
+        def initialize(storagefilesystemid=nil, mountdir=nil)
+          @StorageFileSystemId = storagefilesystemid
+          @MountDir = mountdir
+        end
+
+        def deserialize(params)
+          @StorageFileSystemId = params['StorageFileSystemId']
+          @MountDir = params['MountDir']
         end
       end
 

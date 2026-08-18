@@ -1580,7 +1580,7 @@ module TencentCloud
 
       # DescribeJobsOverview请求参数结构体
       class DescribeJobsOverviewRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: <p>集群ID</p>
         # @type ClusterId: String
 
         attr_accessor :ClusterId
@@ -1596,11 +1596,11 @@ module TencentCloud
 
       # DescribeJobsOverview返回参数结构体
       class DescribeJobsOverviewResponse < TencentCloud::Common::AbstractModel
-        # @param JobTotal: 作业任务数量
+        # @param JobTotal: <p>作业任务数量</p>
         # @type JobTotal: Integer
-        # @param QueuingJobTotal: 排队中的作业任务数量
+        # @param QueuingJobTotal: <p>排队中的作业任务数量</p>
         # @type QueuingJobTotal: Integer
-        # @param RunningJobTotal: 运行中的作业数量
+        # @param RunningJobTotal: <p>运行中的作业数量</p>
         # @type RunningJobTotal: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1877,9 +1877,9 @@ module TencentCloud
 
       # DetachNodes请求参数结构体
       class DetachNodesRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群id
+        # @param ClusterId: <p>集群id</p>
         # @type ClusterId: String
-        # @param NodeIds: 集群中的节点id
+        # @param NodeIds: <p>集群中的节点id</p>
         # @type NodeIds: Array
 
         attr_accessor :ClusterId, :NodeIds

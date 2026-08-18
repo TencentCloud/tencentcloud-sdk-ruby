@@ -494,6 +494,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询指定模型的 TPM 和 QPM 配额上限。
+
+        # @param request: Request instance for DescribeModelQuota.
+        # @type request: :class:`Tencentcloud::tokenhub::V20260322::DescribeModelQuotaRequest`
+        # @rtype: :class:`Tencentcloud::tokenhub::V20260322::DescribeModelQuotaResponse`
+        def DescribeModelQuota(request)
+          body = send_request('DescribeModelQuota', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeModelQuotaResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询 TokenPlan 套餐详情。
 
         # 返回套餐基本信息及额度中心主额度包余量。

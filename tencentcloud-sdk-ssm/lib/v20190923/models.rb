@@ -622,12 +622,14 @@ module TencentCloud
         # @type TargetUinString: String
         # @param AccountInfoList: <p>对应云产品的账号信息</p>
         # @type AccountInfoList: Array
+        # @param NextRotationTime: 
+        # @type NextRotationTime: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :SecretName, :Description, :KmsKeyId, :CreateUin, :Status, :DeleteTime, :CreateTime, :SecretType, :ProductName, :ResourceID, :RotationStatus, :RotationFrequency, :ResourceName, :ProjectID, :AssociatedInstanceIDs, :TargetUin, :AdditionalConfig, :EncryptType, :EncryptSwitching, :CreateUinString, :TargetUinString, :AccountInfoList, :RequestId
+        attr_accessor :SecretName, :Description, :KmsKeyId, :CreateUin, :Status, :DeleteTime, :CreateTime, :SecretType, :ProductName, :ResourceID, :RotationStatus, :RotationFrequency, :ResourceName, :ProjectID, :AssociatedInstanceIDs, :TargetUin, :AdditionalConfig, :EncryptType, :EncryptSwitching, :CreateUinString, :TargetUinString, :AccountInfoList, :NextRotationTime, :RequestId
 
-        def initialize(secretname=nil, description=nil, kmskeyid=nil, createuin=nil, status=nil, deletetime=nil, createtime=nil, secrettype=nil, productname=nil, resourceid=nil, rotationstatus=nil, rotationfrequency=nil, resourcename=nil, projectid=nil, associatedinstanceids=nil, targetuin=nil, additionalconfig=nil, encrypttype=nil, encryptswitching=nil, createuinstring=nil, targetuinstring=nil, accountinfolist=nil, requestid=nil)
+        def initialize(secretname=nil, description=nil, kmskeyid=nil, createuin=nil, status=nil, deletetime=nil, createtime=nil, secrettype=nil, productname=nil, resourceid=nil, rotationstatus=nil, rotationfrequency=nil, resourcename=nil, projectid=nil, associatedinstanceids=nil, targetuin=nil, additionalconfig=nil, encrypttype=nil, encryptswitching=nil, createuinstring=nil, targetuinstring=nil, accountinfolist=nil, nextrotationtime=nil, requestid=nil)
           @SecretName = secretname
           @Description = description
           @KmsKeyId = kmskeyid
@@ -650,6 +652,7 @@ module TencentCloud
           @CreateUinString = createuinstring
           @TargetUinString = targetuinstring
           @AccountInfoList = accountinfolist
+          @NextRotationTime = nextrotationtime
           @RequestId = requestid
         end
 
@@ -683,6 +686,7 @@ module TencentCloud
               @AccountInfoList << secretaccountinfo_tmp
             end
           end
+          @NextRotationTime = params['NextRotationTime']
           @RequestId = params['RequestId']
         end
       end
@@ -899,17 +903,25 @@ module TencentCloud
         # @param VersionId: 指定对应凭据的版本号。
         # 对于云产品凭据如Mysql凭据，通过指定凭据名称和历史版本号来获取历史轮转凭据的明文信息，如果要获取当前正在使用的凭据版本的明文，需要将版本号指定为：SSM_Current。
         # @type VersionId: String
+        # @param EncryptionPublicKey: 
+        # @type EncryptionPublicKey: String
+        # @param EncryptionAlgorithm: 
+        # @type EncryptionAlgorithm: String
 
-        attr_accessor :SecretName, :VersionId
+        attr_accessor :SecretName, :VersionId, :EncryptionPublicKey, :EncryptionAlgorithm
 
-        def initialize(secretname=nil, versionid=nil)
+        def initialize(secretname=nil, versionid=nil, encryptionpublickey=nil, encryptionalgorithm=nil)
           @SecretName = secretname
           @VersionId = versionid
+          @EncryptionPublicKey = encryptionpublickey
+          @EncryptionAlgorithm = encryptionalgorithm
         end
 
         def deserialize(params)
           @SecretName = params['SecretName']
           @VersionId = params['VersionId']
+          @EncryptionPublicKey = params['EncryptionPublicKey']
+          @EncryptionAlgorithm = params['EncryptionAlgorithm']
         end
       end
 
@@ -1085,10 +1097,12 @@ module TencentCloud
         # @type ProductName: String
         # @param EncryptType: <p>凭据加密类型</p><p>枚举值：</p><ul><li>0： KMS 密钥加密</li><li>1： 软密钥加密</li></ul><p>默认值：0</p>
         # @type EncryptType: Integer
+        # @param InstanceID: <p>云产品实例 ID</p>
+        # @type InstanceID: String
 
-        attr_accessor :Offset, :Limit, :OrderType, :State, :SearchSecretName, :TagFilters, :SecretType, :ProductName, :EncryptType
+        attr_accessor :Offset, :Limit, :OrderType, :State, :SearchSecretName, :TagFilters, :SecretType, :ProductName, :EncryptType, :InstanceID
 
-        def initialize(offset=nil, limit=nil, ordertype=nil, state=nil, searchsecretname=nil, tagfilters=nil, secrettype=nil, productname=nil, encrypttype=nil)
+        def initialize(offset=nil, limit=nil, ordertype=nil, state=nil, searchsecretname=nil, tagfilters=nil, secrettype=nil, productname=nil, encrypttype=nil, instanceid=nil)
           @Offset = offset
           @Limit = limit
           @OrderType = ordertype
@@ -1098,6 +1112,7 @@ module TencentCloud
           @SecretType = secrettype
           @ProductName = productname
           @EncryptType = encrypttype
+          @InstanceID = instanceid
         end
 
         def deserialize(params)
@@ -1117,6 +1132,7 @@ module TencentCloud
           @SecretType = params['SecretType']
           @ProductName = params['ProductName']
           @EncryptType = params['EncryptType']
+          @InstanceID = params['InstanceID']
         end
       end
 

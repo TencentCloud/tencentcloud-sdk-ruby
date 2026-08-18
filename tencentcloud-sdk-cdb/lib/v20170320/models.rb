@@ -13282,10 +13282,12 @@ module TencentCloud
         # @type RoGroupZone: String
         # @param DelayReplicationTime: <p>延迟复制时间。单位：秒。值范围：1-259200，整数。</p>
         # @type DelayReplicationTime: Integer
+        # @param RoGroupType: <p>只读组类型。</p><p>枚举值：</p><ul><li>normal： 普通RO组</li><li>direct： 纯网络转发模式</li><li>default： 默认RO组</li></ul><p>默认值：normal</p>
+        # @type RoGroupType: String
 
-        attr_accessor :RoGroupMode, :RoGroupId, :RoGroupName, :RoOfflineDelay, :RoMaxDelayTime, :MinRoInGroup, :WeightMode, :Weight, :RoInstances, :Vip, :Vport, :UniqVpcId, :UniqSubnetId, :RoGroupRegion, :RoGroupZone, :DelayReplicationTime
+        attr_accessor :RoGroupMode, :RoGroupId, :RoGroupName, :RoOfflineDelay, :RoMaxDelayTime, :MinRoInGroup, :WeightMode, :Weight, :RoInstances, :Vip, :Vport, :UniqVpcId, :UniqSubnetId, :RoGroupRegion, :RoGroupZone, :DelayReplicationTime, :RoGroupType
 
-        def initialize(rogroupmode=nil, rogroupid=nil, rogroupname=nil, roofflinedelay=nil, romaxdelaytime=nil, minroingroup=nil, weightmode=nil, weight=nil, roinstances=nil, vip=nil, vport=nil, uniqvpcid=nil, uniqsubnetid=nil, rogroupregion=nil, rogroupzone=nil, delayreplicationtime=nil)
+        def initialize(rogroupmode=nil, rogroupid=nil, rogroupname=nil, roofflinedelay=nil, romaxdelaytime=nil, minroingroup=nil, weightmode=nil, weight=nil, roinstances=nil, vip=nil, vport=nil, uniqvpcid=nil, uniqsubnetid=nil, rogroupregion=nil, rogroupzone=nil, delayreplicationtime=nil, rogrouptype=nil)
           @RoGroupMode = rogroupmode
           @RoGroupId = rogroupid
           @RoGroupName = rogroupname
@@ -13302,6 +13304,7 @@ module TencentCloud
           @RoGroupRegion = rogroupregion
           @RoGroupZone = rogroupzone
           @DelayReplicationTime = delayreplicationtime
+          @RoGroupType = rogrouptype
         end
 
         def deserialize(params)
@@ -13328,6 +13331,7 @@ module TencentCloud
           @RoGroupRegion = params['RoGroupRegion']
           @RoGroupZone = params['RoGroupZone']
           @DelayReplicationTime = params['DelayReplicationTime']
+          @RoGroupType = params['RoGroupType']
         end
       end
 

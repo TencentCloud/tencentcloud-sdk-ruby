@@ -5619,15 +5619,17 @@ module TencentCloud
         # @type RemoveNodeList: Array
         # @param Cpu: <p>实例配置变更后的CPU大小。单位：C。该参数为空值时，默认取实例当前的 CPU 大小。当前所支持的CPU规格，请参见<a href="https://cloud.tencent.com/document/product/240/64125">产品规格</a>。</p>
         # @type Cpu: Integer
-        # @param MachineCode: <p>实例配置变更后的产品规格类型。该参数为空值时，默认取实例当前的产品规格类型。<br>当前支持的产品规格类型如下：<br>产品推荐规格类型：</p><ul><li>GE.LD.T1：本地盘（通用I型）。</li><li>GE.CD.T1：云盘（通用I型）。</li></ul><p>产品白名单规格类型：</p><ul><li>HIO10G：本地盘（高IO万兆型）。</li><li>HCD：云盘（云盘版）。</li></ul><p>注意：</p><ol><li>白名单规格类型为白名单控制，如若需要，请 <a href="https://console.cloud.tencent.com/workorder/category">提交工单</a> 申请</li><li>通用 I 型不能变更到白名单规格类型</li></ol>
+        # @param MachineCode: <p>实例配置变更后的产品规格类型。该参数为空值时，默认取实例当前的产品规格类型。<br>当前支持的产品规格类型如下：<br>产品推荐规格类型：</p><ul><li>GE.LD.T2：本地盘（通用II型）。</li><li>GE.CD.T2：云盘（通用II型）。</li><li>EX.LD.T2：本地盘（独享II型）。</li></ul><p>产品白名单规格类型：</p><ul><li>GE.LD.T1：本地盘（通用I型），预计将逐步售罄，建议选择通用II型。</li><li>GE.CD.T1：云盘（通用I型），预计将逐步售罄，建议选择通用II型。</li><li>HIO10G：本地盘（高IO万兆型），已售罄，建议选择通用II型。</li><li>HCD：云盘（云盘版），已售罄，建议选择通用II型。</li></ul><p>注意：</p><ol><li>白名单规格类型为白名单控制，如若需要，请 <a href="https://console.cloud.tencent.com/workorder/category">提交工单</a> 申请</li><li>默认不能变更到白名单规格类型</li><li>产品推荐的规格类型之间不支持相互变更</li></ol>
         # @type MachineCode: String
+        # @param ModifyShardList: <p>单分片变配列表，用于指定需要单独调整规格的分片。每次设置时 CPU、内存、磁盘都必须指定；如果指定多个分片，所有分片的目标规格必须一致；未指定的分片保持不变。仅分片集群支持，副本集不支持。注意：此参数与整实例级别的变配参数（如 Memory、Volume、CpuNum 等）互斥，不能同时传入。</p>
+        # @type ModifyShardList: Array
 
-        attr_accessor :InstanceId, :Memory, :Volume, :OplogSize, :NodeNum, :ReplicateSetNum, :InMaintenance, :MongosMemory, :AddNodeList, :RemoveNodeList, :Cpu, :MachineCode
+        attr_accessor :InstanceId, :Memory, :Volume, :OplogSize, :NodeNum, :ReplicateSetNum, :InMaintenance, :MongosMemory, :AddNodeList, :RemoveNodeList, :Cpu, :MachineCode, :ModifyShardList
         extend Gem::Deprecate
         deprecate :OplogSize, :none, 2026, 8
         deprecate :OplogSize=, :none, 2026, 8
 
-        def initialize(instanceid=nil, memory=nil, volume=nil, oplogsize=nil, nodenum=nil, replicatesetnum=nil, inmaintenance=nil, mongosmemory=nil, addnodelist=nil, removenodelist=nil, cpu=nil, machinecode=nil)
+        def initialize(instanceid=nil, memory=nil, volume=nil, oplogsize=nil, nodenum=nil, replicatesetnum=nil, inmaintenance=nil, mongosmemory=nil, addnodelist=nil, removenodelist=nil, cpu=nil, machinecode=nil, modifyshardlist=nil)
           @InstanceId = instanceid
           @Memory = memory
           @Volume = volume
@@ -5640,6 +5642,7 @@ module TencentCloud
           @RemoveNodeList = removenodelist
           @Cpu = cpu
           @MachineCode = machinecode
+          @ModifyShardList = modifyshardlist
         end
 
         def deserialize(params)
@@ -5669,6 +5672,14 @@ module TencentCloud
           end
           @Cpu = params['Cpu']
           @MachineCode = params['MachineCode']
+          unless params['ModifyShardList'].nil?
+            @ModifyShardList = []
+            params['ModifyShardList'].each do |i|
+              modifyshardspecinfo_tmp = ModifyShardSpecInfo.new
+              modifyshardspecinfo_tmp.deserialize(i)
+              @ModifyShardList << modifyshardspecinfo_tmp
+            end
+          end
         end
       end
 
@@ -5880,6 +5891,34 @@ module TencentCloud
         def deserialize(params)
           @FlowId = params['FlowId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 单shark变配入参
+      class ModifyShardSpecInfo < TencentCloud::Common::AbstractModel
+        # @param ReplicaSetId: <p>分片ID</p>
+        # @type ReplicaSetId: String
+        # @param Cpu: <p>CPU核数。单位：C。</p>
+        # @type Cpu: Integer
+        # @param Memory: <p>内存大小，单位：GB。</p>
+        # @type Memory: Integer
+        # @param Volume: <p>硬盘大小，单位：GB。</p>
+        # @type Volume: Integer
+
+        attr_accessor :ReplicaSetId, :Cpu, :Memory, :Volume
+
+        def initialize(replicasetid=nil, cpu=nil, memory=nil, volume=nil)
+          @ReplicaSetId = replicasetid
+          @Cpu = cpu
+          @Memory = memory
+          @Volume = volume
+        end
+
+        def deserialize(params)
+          @ReplicaSetId = params['ReplicaSetId']
+          @Cpu = params['Cpu']
+          @Memory = params['Memory']
+          @Volume = params['Volume']
         end
       end
 

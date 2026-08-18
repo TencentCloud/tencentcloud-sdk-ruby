@@ -3101,31 +3101,31 @@ module TencentCloud
 
       # ExportCustomerWorkOrderDetail请求参数结构体
       class ExportCustomerWorkOrderDetailRequest < TencentCloud::Common::AbstractModel
-        # @param WorkOrderType: 服务工单类型
-        # @type WorkOrderType: Array
-        # @param BeginDateTime: 要导出的工单的起始时间
+        # @param BeginDateTime: <p>要导出的工单的起始时间</p>
         # @type BeginDateTime: String
-        # @param EndDateTime: 要导出的工单的结束时间
+        # @param EndDateTime: <p>要导出的工单的结束时间</p>
         # @type EndDateTime: String
+        # @param WorkOrderType: <p>服务工单类型</p>
+        # @type WorkOrderType: Array
 
-        attr_accessor :WorkOrderType, :BeginDateTime, :EndDateTime
+        attr_accessor :BeginDateTime, :EndDateTime, :WorkOrderType
 
-        def initialize(workordertype=nil, begindatetime=nil, enddatetime=nil)
-          @WorkOrderType = workordertype
+        def initialize(begindatetime=nil, enddatetime=nil, workordertype=nil)
           @BeginDateTime = begindatetime
           @EndDateTime = enddatetime
+          @WorkOrderType = workordertype
         end
 
         def deserialize(params)
-          @WorkOrderType = params['WorkOrderType']
           @BeginDateTime = params['BeginDateTime']
           @EndDateTime = params['EndDateTime']
+          @WorkOrderType = params['WorkOrderType']
         end
       end
 
       # ExportCustomerWorkOrderDetail返回参数结构体
       class ExportCustomerWorkOrderDetailResponse < TencentCloud::Common::AbstractModel
-        # @param DownloadUrl: 返回下载地址
+        # @param DownloadUrl: <p>返回下载地址</p>
         # @type DownloadUrl: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

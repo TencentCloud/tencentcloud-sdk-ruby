@@ -3417,10 +3417,12 @@ module TencentCloud
         # @type SyncThrottleLimit: Integer
         # @param AutoExpandFlag: <p>任务是否自动扩容标识</p><p>枚举值：</p><ul><li>true： 自动扩容</li><li>false： 手动扩容</li></ul><p>默认值：true</p>
         # @type AutoExpandFlag: Boolean
+        # @param WarnMessage: <p>不影响任务执行的警告信息</p>
+        # @type WarnMessage: String
 
-        attr_accessor :TaskId, :TaskName, :TaskType, :Status, :SourceResource, :TargetResource, :CreateTime, :ErrorMessage, :TaskProgress, :TaskCurrentStep, :DatahubId, :StepList, :Description, :TaskMax, :SyncThrottleLimit, :AutoExpandFlag
+        attr_accessor :TaskId, :TaskName, :TaskType, :Status, :SourceResource, :TargetResource, :CreateTime, :ErrorMessage, :TaskProgress, :TaskCurrentStep, :DatahubId, :StepList, :Description, :TaskMax, :SyncThrottleLimit, :AutoExpandFlag, :WarnMessage
 
-        def initialize(taskid=nil, taskname=nil, tasktype=nil, status=nil, sourceresource=nil, targetresource=nil, createtime=nil, errormessage=nil, taskprogress=nil, taskcurrentstep=nil, datahubid=nil, steplist=nil, description=nil, taskmax=nil, syncthrottlelimit=nil, autoexpandflag=nil)
+        def initialize(taskid=nil, taskname=nil, tasktype=nil, status=nil, sourceresource=nil, targetresource=nil, createtime=nil, errormessage=nil, taskprogress=nil, taskcurrentstep=nil, datahubid=nil, steplist=nil, description=nil, taskmax=nil, syncthrottlelimit=nil, autoexpandflag=nil, warnmessage=nil)
           @TaskId = taskid
           @TaskName = taskname
           @TaskType = tasktype
@@ -3437,6 +3439,7 @@ module TencentCloud
           @TaskMax = taskmax
           @SyncThrottleLimit = syncthrottlelimit
           @AutoExpandFlag = autoexpandflag
+          @WarnMessage = warnmessage
         end
 
         def deserialize(params)
@@ -3462,6 +3465,7 @@ module TencentCloud
           @TaskMax = params['TaskMax']
           @SyncThrottleLimit = params['SyncThrottleLimit']
           @AutoExpandFlag = params['AutoExpandFlag']
+          @WarnMessage = params['WarnMessage']
         end
       end
 
@@ -3834,11 +3838,11 @@ module TencentCloud
 
       # DeleteGroupSubscribeTopic请求参数结构体
       class DeleteGroupSubscribeTopicRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: ckafka集群实例Id
+        # @param InstanceId: <p>ckafka集群实例Id</p>
         # @type InstanceId: String
-        # @param Group: 消费分组名称
+        # @param Group: <p>消费分组名称</p>
         # @type Group: String
-        # @param Topic: 主题名
+        # @param Topic: <p>主题名</p>
         # @type Topic: String
 
         attr_accessor :InstanceId, :Group, :Topic
@@ -3858,7 +3862,7 @@ module TencentCloud
 
       # DeleteGroupSubscribeTopic返回参数结构体
       class DeleteGroupSubscribeTopicResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 返回结果
+        # @param Result: <p>返回结果</p>
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.JgwOperateResponse`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5127,10 +5131,12 @@ module TencentCloud
         # @type SyncThrottleLimit: Integer
         # @param AutoExpandFlag: <p>自动扩容 true:自动扩容 false:手动扩容</p><p>默认值：true</p>
         # @type AutoExpandFlag: Boolean
+        # @param WarnMessage: <p>不影响任务执行的警告信息</p>
+        # @type WarnMessage: String
 
-        attr_accessor :TaskId, :TaskName, :TaskType, :Status, :SourceResource, :TargetResource, :Connections, :CreateTime, :TransformParam, :DatahubId, :SchemaId, :SchemaName, :TransformsParam, :ErrorMessage, :Tags, :Description, :IsolateStatus, :TaskMax, :SyncThrottleLimit, :AutoExpandFlag
+        attr_accessor :TaskId, :TaskName, :TaskType, :Status, :SourceResource, :TargetResource, :Connections, :CreateTime, :TransformParam, :DatahubId, :SchemaId, :SchemaName, :TransformsParam, :ErrorMessage, :Tags, :Description, :IsolateStatus, :TaskMax, :SyncThrottleLimit, :AutoExpandFlag, :WarnMessage
 
-        def initialize(taskid=nil, taskname=nil, tasktype=nil, status=nil, sourceresource=nil, targetresource=nil, connections=nil, createtime=nil, transformparam=nil, datahubid=nil, schemaid=nil, schemaname=nil, transformsparam=nil, errormessage=nil, tags=nil, description=nil, isolatestatus=nil, taskmax=nil, syncthrottlelimit=nil, autoexpandflag=nil)
+        def initialize(taskid=nil, taskname=nil, tasktype=nil, status=nil, sourceresource=nil, targetresource=nil, connections=nil, createtime=nil, transformparam=nil, datahubid=nil, schemaid=nil, schemaname=nil, transformsparam=nil, errormessage=nil, tags=nil, description=nil, isolatestatus=nil, taskmax=nil, syncthrottlelimit=nil, autoexpandflag=nil, warnmessage=nil)
           @TaskId = taskid
           @TaskName = taskname
           @TaskType = tasktype
@@ -5151,6 +5157,7 @@ module TencentCloud
           @TaskMax = taskmax
           @SyncThrottleLimit = syncthrottlelimit
           @AutoExpandFlag = autoexpandflag
+          @WarnMessage = warnmessage
         end
 
         def deserialize(params)
@@ -5200,6 +5207,7 @@ module TencentCloud
           @TaskMax = params['TaskMax']
           @SyncThrottleLimit = params['SyncThrottleLimit']
           @AutoExpandFlag = params['AutoExpandFlag']
+          @WarnMessage = params['WarnMessage']
         end
       end
 
@@ -6314,10 +6322,12 @@ module TencentCloud
         # @type OrderType: Integer
         # @param Filters: <p>目前支持 ReplicaNum （副本数）筛选</p>
         # @type Filters: Array
+        # @param SearchWordIgnoreCaseFlag: <p>搜索topic时是否忽略大小写敏感</p>
+        # @type SearchWordIgnoreCaseFlag: Boolean
 
-        attr_accessor :InstanceId, :SearchWord, :Offset, :Limit, :AclRuleName, :OrderBy, :OrderType, :Filters
+        attr_accessor :InstanceId, :SearchWord, :Offset, :Limit, :AclRuleName, :OrderBy, :OrderType, :Filters, :SearchWordIgnoreCaseFlag
 
-        def initialize(instanceid=nil, searchword=nil, offset=nil, limit=nil, aclrulename=nil, orderby=nil, ordertype=nil, filters=nil)
+        def initialize(instanceid=nil, searchword=nil, offset=nil, limit=nil, aclrulename=nil, orderby=nil, ordertype=nil, filters=nil, searchwordignorecaseflag=nil)
           @InstanceId = instanceid
           @SearchWord = searchword
           @Offset = offset
@@ -6326,6 +6336,7 @@ module TencentCloud
           @OrderBy = orderby
           @OrderType = ordertype
           @Filters = filters
+          @SearchWordIgnoreCaseFlag = searchwordignorecaseflag
         end
 
         def deserialize(params)
@@ -6344,6 +6355,7 @@ module TencentCloud
               @Filters << filter_tmp
             end
           end
+          @SearchWordIgnoreCaseFlag = params['SearchWordIgnoreCaseFlag']
         end
       end
 
@@ -10165,11 +10177,11 @@ module TencentCloud
         # @type UncleanLeaderElectionEnable: Integer
         # @param DeleteProtectionEnable: <p>实例删除保护开关: 1 开启  0 关闭</p>
         # @type DeleteProtectionEnable: Integer
-        # @param RetentionBytes: <p>实例级别消息保留大小</p>单位：byte<br>默认值：-1<br><p>实例级别消息保留大小</p>
+        # @param RetentionBytes: <p>实例级别消息保留大小</p><p>单位：byte</p><p>默认值：-1</p><p>实例级别消息保留大小</p>
         # @type RetentionBytes: Integer
         # @param AdminSecurity: <p>是否封禁高风险admin接口; true则封禁高风险adminApi; 关闭后不支持打开,仅专业版支持; 默认是false 对高风险admin接口不做处理</p>
         # @type AdminSecurity: Boolean
-        # @param TransactionalIdExpirationMs: <p>事务ID最大空闲时间，超时未提交的事务将被标记为过期</p>取值范围：[3600000, 604800000]<br>单位：ms
+        # @param TransactionalIdExpirationMs: <p>事务ID最大空闲时间，超时未提交的事务将被标记为过期</p><p>取值范围：[3600000, 604800000]</p><p>单位：ms</p>
         # @type TransactionalIdExpirationMs: Integer
 
         attr_accessor :InstanceId, :MsgRetentionTime, :InstanceName, :Config, :DynamicRetentionConfig, :RebalanceTime, :PublicNetwork, :DynamicDiskConfig, :MaxMessageByte, :UncleanLeaderElectionEnable, :DeleteProtectionEnable, :RetentionBytes, :AdminSecurity, :TransactionalIdExpirationMs
@@ -11761,7 +11773,7 @@ module TencentCloud
 
       # 路由实体对象
       class Route < TencentCloud::Common::AbstractModel
-        # @param AccessType: <p>实例接入方式0：PLAINTEXT (明文方式，没有带用户信息老版本及社区版本都支持)1：SASL_PLAINTEXT（明文方式，不过在数据开始时，会通过SASL方式登录鉴权，仅社区版本支持）2：SSL（SSL加密通信，没有带用户信息，老版本及社区版本都支持）3：SASL_SSL（SSL加密通信，在数据开始时，会通过SASL方式登录鉴权，仅社区版本支持）</p>
+        # @param AccessType: <p>实例接入方式<br>0：PLAINTEXT (明文方式，没有带用户信息老版本及社区版本都支持)<br>1：SASL_PLAINTEXT（明文方式，不过在数据开始时，会通过SASL方式登录鉴权，仅社区版本支持）<br>2：SSL（SSL加密通信，没有带用户信息，老版本及社区版本都支持）<br>3：SASL_SSL（SSL加密通信，在数据开始时，会通过SASL方式登录鉴权，仅社区版本支持）</p>
         # @type AccessType: Integer
         # @param RouteId: <p>路由Id</p>
         # @type RouteId: Integer
@@ -12086,13 +12098,13 @@ module TencentCloud
 
       # 各版本销售信息
       class SaleInfo < TencentCloud::Common::AbstractModel
-        # @param Flag: 手动设置的flag标志，true表示售罄，false表示可售。
+        # @param Flag: <p>手动设置的flag标志，true表示售罄，false表示可售。</p>
         # @type Flag: Boolean
-        # @param Version: ckafka版本号(1.1.1/2.4.2/0.10.2)
+        # @param Version: <p>ckafka版本号(1.1.1/2.4.2/0.10.2)</p>
         # @type Version: String
-        # @param Platform: 专业版、标准版标志
+        # @param Platform: <p>专业版、标准版标志</p>
         # @type Platform: String
-        # @param SoldOut: 售罄标志：true售罄
+        # @param SoldOut: <p>售罄标志：true售罄</p>
         # @type SoldOut: Boolean
 
         attr_accessor :Flag, :Version, :Platform, :SoldOut
@@ -13277,7 +13289,7 @@ module TencentCloud
       class UpgradeBrokerVersionRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: <p>ckafka集群实例Id</p>
         # @type InstanceId: String
-        # @param Type: <p>版本升级类型</p><p>枚举值：</p><ul><li>1： 小版本迁移升级(推荐)</li></ul>
+        # @param Type: <p>版本升级类型</p><p>枚举值：</p><ul><li>1： 小版本迁移升级(推荐)</li><li>5： 小版原地升级</li></ul>
         # @type Type: Integer
         # @param SourceVersion: <p>版本号</p>
         # @type SourceVersion: String

@@ -3912,7 +3912,7 @@ module TencentCloud
 
       # DescribeDBInstanceSSLConfig请求参数结构体
       class DescribeDBInstanceSSLConfigRequest < TencentCloud::Common::AbstractModel
-        # @param DBInstanceId: 实例ID，形如postgres-6bwgamo3。可通过[DescribeDBInstances](https://cloud.tencent.com/document/api/409/16773)接口获取
+        # @param DBInstanceId: <p>实例ID，形如postgres-6bwgamo3。可通过<a href="https://cloud.tencent.com/document/api/409/16773">DescribeDBInstances</a>接口获取</p>
         # @type DBInstanceId: String
 
         attr_accessor :DBInstanceId
@@ -3928,21 +3928,30 @@ module TencentCloud
 
       # DescribeDBInstanceSSLConfig返回参数结构体
       class DescribeDBInstanceSSLConfigResponse < TencentCloud::Common::AbstractModel
-        # @param SSLEnabled: true 代表开通 ，false 代表未开通
+        # @param SSLEnabled: <p>true 代表开通 ，false 代表未开通</p>
         # @type SSLEnabled: Boolean
-        # @param CAUrl: 云端根证书下载链接
+        # @param CAUrl: <p>云端根证书下载链接</p>
         # @type CAUrl: String
-        # @param ConnectAddress: 服务器证书中配置的内网或外网连接地址
+        # @param ConnectAddress: <p>服务器证书中配置的内网或外网连接地址</p>
         # @type ConnectAddress: String
+        # @param CACert: <p>CA证书公钥，仅云盘版</p>
+        # @type CACert: String
+        # @param CAJKS: <p>JKS公钥，仅云盘版</p>
+        # @type CAJKS: String
+        # @param CAP7B: <p>CAP7B公钥，仅云盘版</p>
+        # @type CAP7B: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :SSLEnabled, :CAUrl, :ConnectAddress, :RequestId
+        attr_accessor :SSLEnabled, :CAUrl, :ConnectAddress, :CACert, :CAJKS, :CAP7B, :RequestId
 
-        def initialize(sslenabled=nil, caurl=nil, connectaddress=nil, requestid=nil)
+        def initialize(sslenabled=nil, caurl=nil, connectaddress=nil, cacert=nil, cajks=nil, cap7b=nil, requestid=nil)
           @SSLEnabled = sslenabled
           @CAUrl = caurl
           @ConnectAddress = connectaddress
+          @CACert = cacert
+          @CAJKS = cajks
+          @CAP7B = cap7b
           @RequestId = requestid
         end
 
@@ -3950,6 +3959,9 @@ module TencentCloud
           @SSLEnabled = params['SSLEnabled']
           @CAUrl = params['CAUrl']
           @ConnectAddress = params['ConnectAddress']
+          @CACert = params['CACert']
+          @CAJKS = params['CAJKS']
+          @CAP7B = params['CAP7B']
           @RequestId = params['RequestId']
         end
       end

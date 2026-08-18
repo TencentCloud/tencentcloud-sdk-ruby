@@ -1589,9 +1589,9 @@ module TencentCloud
 
       # DeleteService请求参数结构体
       class DeleteServiceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceID: 实例ID
+        # @param InstanceID: <p>实例ID</p>
         # @type InstanceID: String
-        # @param ID: 业务ID
+        # @param ID: <p>业务ID</p>
         # @type ID: String
 
         attr_accessor :InstanceID, :ID
@@ -3325,9 +3325,9 @@ module TencentCloud
 
       # DescribeService请求参数结构体
       class DescribeServiceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceID: 实例ID
+        # @param InstanceID: <p>实例ID</p>
         # @type InstanceID: String
-        # @param ID: 业务ID
+        # @param ID: <p>业务ID</p>
         # @type ID: String
 
         attr_accessor :InstanceID, :ID

@@ -95,14 +95,9 @@ module TencentCloud
 
       # CreateAsrKeyWordLib请求参数结构体
       class CreateAsrKeyWordLibRequest < TencentCloud::Common::AbstractModel
-        # @param Name: 词表名称，长度在1-20之间
-        # 仅限中英文数字-_
+        # @param Name: <p>词表名称，长度在1-20之间<br>仅限中英文数字-_</p>
         # @type Name: String
-        # @param KeyWordFile: 词文件（纯文本文件）的二进制base64编码，以行分隔
-        # 格式要求：TXT
-        # 每行只有一个词，不满足格式则报错无法上传
-        # 每个词限制**5个汉字，15个字符**，单个词库最多不超过100个词
-        # 注意不要有空行，尤其是最后一行
+        # @param KeyWordFile: <p>词文件（纯文本文件）的二进制base64编码，以行分隔<br>格式要求：TXT<br>每行只有一个词，不满足格式则报错无法上传<br>每个词限制<strong>5个汉字，15个字符</strong>，单个词库最多不超过100个词<br>注意不要有空行，尤其是最后一行</p>
         # @type KeyWordFile: String
 
         attr_accessor :Name, :KeyWordFile
@@ -120,7 +115,7 @@ module TencentCloud
 
       # CreateAsrKeyWordLib返回参数结构体
       class CreateAsrKeyWordLibResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 词表ID数据
+        # @param Data: <p>词表ID数据</p>
         # @type Data: :class:`Tencentcloud::Asr.v20190614.models.KeyWordLibIdData`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -300,8 +295,8 @@ module TencentCloud
 
         attr_accessor :ModelName, :TextUrl, :ModelType, :TagInfos
         extend Gem::Deprecate
-        deprecate :TagInfos, :none, 2026, 7
-        deprecate :TagInfos=, :none, 2026, 7
+        deprecate :TagInfos, :none, 2026, 8
+        deprecate :TagInfos=, :none, 2026, 8
 
         def initialize(modelname=nil, texturl=nil, modeltype=nil, taginfos=nil)
           @ModelName = modelname
@@ -393,8 +388,8 @@ module TencentCloud
 
         attr_accessor :EngineModelType, :ChannelNum, :ResTextFormat, :SourceType, :Data, :DataLen, :Url, :CallbackUrl, :SpeakerDiarization, :SpeakerNumber, :HotwordId, :ReinforceHotword, :CustomizationId, :EmotionRecognition, :EmotionalEnergy, :ConvertNumMode, :FilterDirty, :FilterPunc, :FilterModal, :SentenceMaxLength, :Extra, :HotwordList, :KeyWordLibIdList, :ReplaceTextId, :SpeakerRoles
         extend Gem::Deprecate
-        deprecate :ReinforceHotword, :none, 2026, 7
-        deprecate :ReinforceHotword=, :none, 2026, 7
+        deprecate :ReinforceHotword, :none, 2026, 8
+        deprecate :ReinforceHotword=, :none, 2026, 8
 
         def initialize(enginemodeltype=nil, channelnum=nil, restextformat=nil, sourcetype=nil, data=nil, datalen=nil, url=nil, callbackurl=nil, speakerdiarization=nil, speakernumber=nil, hotwordid=nil, reinforcehotword=nil, customizationid=nil, emotionrecognition=nil, emotionalenergy=nil, convertnummode=nil, filterdirty=nil, filterpunc=nil, filtermodal=nil, sentencemaxlength=nil, extra=nil, hotwordlist=nil, keywordlibidlist=nil, replacetextid=nil, speakerroles=nil)
           @EngineModelType = enginemodeltype
@@ -792,8 +787,8 @@ module TencentCloud
 
         attr_accessor :TagInfos, :Offset, :Limit
         extend Gem::Deprecate
-        deprecate :TagInfos, :none, 2026, 7
-        deprecate :TagInfos=, :none, 2026, 7
+        deprecate :TagInfos, :none, 2026, 8
+        deprecate :TagInfos=, :none, 2026, 8
 
         def initialize(taginfos=nil, offset=nil, limit=nil)
           @TagInfos = taginfos
@@ -917,8 +912,8 @@ module TencentCloud
 
         attr_accessor :TagInfos, :Limit, :Offset
         extend Gem::Deprecate
-        deprecate :TagInfos, :none, 2026, 7
-        deprecate :TagInfos=, :none, 2026, 7
+        deprecate :TagInfos, :none, 2026, 8
+        deprecate :TagInfos=, :none, 2026, 8
 
         def initialize(taginfos=nil, limit=nil, offset=nil)
           @TagInfos = taginfos
@@ -1218,8 +1213,8 @@ module TencentCloud
 
         attr_accessor :ModelName, :DictName, :ModelId, :ModelType, :ServiceType, :ModelState, :AtUpdated, :TagInfos
         extend Gem::Deprecate
-        deprecate :TagInfos, :none, 2026, 7
-        deprecate :TagInfos=, :none, 2026, 7
+        deprecate :TagInfos, :none, 2026, 8
+        deprecate :TagInfos=, :none, 2026, 8
 
         def initialize(modelname=nil, dictname=nil, modelid=nil, modeltype=nil, servicetype=nil, modelstate=nil, atupdated=nil, taginfos=nil)
           @ModelName = modelname
@@ -1508,14 +1503,14 @@ module TencentCloud
 
         attr_accessor :EngSerViceType, :SourceType, :VoiceFormat, :ProjectId, :SubServiceType, :Url, :UsrAudioKey, :Data, :DataLen, :WordInfo, :FilterDirty, :FilterModal, :FilterPunc, :ConvertNumMode, :HotwordId, :CustomizationId, :ReinforceHotword, :HotwordList, :InputSampleRate, :ReplaceTextId
         extend Gem::Deprecate
-        deprecate :ProjectId, :none, 2026, 7
-        deprecate :ProjectId=, :none, 2026, 7
-        deprecate :SubServiceType, :none, 2026, 7
-        deprecate :SubServiceType=, :none, 2026, 7
-        deprecate :UsrAudioKey, :none, 2026, 7
-        deprecate :UsrAudioKey=, :none, 2026, 7
-        deprecate :ReinforceHotword, :none, 2026, 7
-        deprecate :ReinforceHotword=, :none, 2026, 7
+        deprecate :ProjectId, :none, 2026, 8
+        deprecate :ProjectId=, :none, 2026, 8
+        deprecate :SubServiceType, :none, 2026, 8
+        deprecate :SubServiceType=, :none, 2026, 8
+        deprecate :UsrAudioKey, :none, 2026, 8
+        deprecate :UsrAudioKey=, :none, 2026, 8
+        deprecate :ReinforceHotword, :none, 2026, 8
+        deprecate :ReinforceHotword=, :none, 2026, 8
 
         def initialize(engservicetype=nil, sourcetype=nil, voiceformat=nil, projectid=nil, subservicetype=nil, url=nil, usraudiokey=nil, data=nil, datalen=nil, wordinfo=nil, filterdirty=nil, filtermodal=nil, filterpunc=nil, convertnummode=nil, hotwordid=nil, customizationid=nil, reinforcehotword=nil, hotwordlist=nil, inputsamplerate=nil, replacetextid=nil)
           @EngSerViceType = engservicetype
@@ -1784,15 +1779,11 @@ module TencentCloud
 
       # UpdateAsrKeyWordLib请求参数结构体
       class UpdateAsrKeyWordLibRequest < TencentCloud::Common::AbstractModel
-        # @param KeyWordLibId: 关键词表ID
+        # @param KeyWordLibId: <p>关键词表ID</p>
         # @type KeyWordLibId: String
-        # @param Name: 词表名称，长度在1-20之间
-        # 仅限中英文数字-_
+        # @param Name: <p>词表名称，长度在1-20之间<br>仅限中英文数字-_</p>
         # @type Name: String
-        # @param KeyWordFile: - 词文件（纯文本文件）以行分隔 ，进行二进制base64编码
-        # - 格式要求：TXT 每行只有一个词，不满足格式则报错无法上传
-        # - 每个词最多5个汉字或15个字符，单个词库最多不超过100个词
-        # - 此参数为空则只更新词表名称
+        # @param KeyWordFile: <ul><li>词文件（纯文本文件）以行分隔 ，进行二进制base64编码</li><li>格式要求：TXT 每行只有一个词，不满足格式则报错无法上传 </li><li>每个词最多5个汉字或15个字符，单个词库最多不超过100个词</li><li>此参数为空则只更新词表名称</li></ul>
         # @type KeyWordFile: String
 
         attr_accessor :KeyWordLibId, :Name, :KeyWordFile
@@ -1812,7 +1803,7 @@ module TencentCloud
 
       # UpdateAsrKeyWordLib返回参数结构体
       class UpdateAsrKeyWordLibResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 关键词表ID数据
+        # @param Data: <p>关键词表ID数据</p>
         # @type Data: :class:`Tencentcloud::Asr.v20190614.models.KeyWordLibIdData`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

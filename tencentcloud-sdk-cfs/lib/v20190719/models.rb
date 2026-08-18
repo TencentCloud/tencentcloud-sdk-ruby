@@ -19,9 +19,9 @@ module TencentCloud
     module V20190719
       # ApplyPathLifecyclePolicy请求参数结构体
       class ApplyPathLifecyclePolicyRequest < TencentCloud::Common::AbstractModel
-        # @param LifecyclePolicyID: 生命周期管理策略ID
+        # @param LifecyclePolicyID: <p>生命周期管理策略ID</p>
         # @type LifecyclePolicyID: String
-        # @param Paths: 生命周期管理策略关联目录的绝对路径列表
+        # @param Paths: <p>生命周期管理策略所关联的目录路径列表，每个路径必须以 /cfs/ 开头，代表文件存储实例内部的逻辑路径，而非本地挂载点路径。</p><p>示例：</p><ul><li>若挂载的是CFS根目录 /，需关联挂载路径下的 test1/test2，则入参值为 /cfs/test1/test2</li><li>若挂载的是CFS子目录 /subdir，需关联挂载路径下的 test1/test2，则入参值为 /cfs/subdir/test1/test2</li></ul>
         # @type Paths: Array
 
         attr_accessor :LifecyclePolicyID, :Paths
@@ -46,7 +46,7 @@ module TencentCloud
 
       # ApplyPathLifecyclePolicy返回参数结构体
       class ApplyPathLifecyclePolicyResponse < TencentCloud::Common::AbstractModel
-        # @param CheckResults: 有规则冲突时返回的已有冲突规则信息
+        # @param CheckResults: <p>有规则冲突时返回的已有冲突规则信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CheckResults: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -860,31 +860,31 @@ module TencentCloud
 
       # CreateDataFlow请求参数结构体
       class CreateDataFlowRequest < TencentCloud::Common::AbstractModel
-        # @param FileSystemId: 文件系统 ID ，通过查询文件系统 [DescribeCfsFileSystems](https://cloud.tencent.com/document/product/582/38170) 获取
+        # @param FileSystemId: <p>文件系统 ID ，通过查询文件系统 <a href="https://cloud.tencent.com/document/product/582/38170">DescribeCfsFileSystems</a> 获取</p>
         # @type FileSystemId: String
-        # @param SourceStorageType: 源端数据类型；包含S3_COS，S3_L5
+        # @param SourceStorageType: <p>源端数据类型；包含S3_COS，S3_L5</p>
         # @type SourceStorageType: String
-        # @param SourceStorageAddress: 源端存储地址
+        # @param SourceStorageAddress: <p>源端存储地址</p>
         # @type SourceStorageAddress: String
-        # @param SourcePath: 源端路径
+        # @param SourcePath: <p>源端路径</p>
         # @type SourcePath: String
-        # @param TargetPath: 文件系统内目标路径
+        # @param TargetPath: <p>设置数据流动时指定的文件系统内目标路径，必须以 /cfs/ 开头，代表文件存储实例内部的逻辑路径，而非本地挂载点路径。<br>示例：</p><ul><li>若挂载的是CFS根目录 /，需将对象存储上的源端目录与挂载路径下的 test1/test2 建立映射关系，则入参值为 /cfs/test1/test2</li><li>若挂载的是CFS子目录 /subdir，需将对象存储上的源端目录与挂载路径下的 test1/test2 建立映射关系，则入参值为 /cfs/subdir/test1/test2</li></ul>
         # @type TargetPath: String
-        # @param SecretId: 密钥 ID
+        # @param SecretId: <p>密钥 ID</p>
         # @type SecretId: String
-        # @param SecretKey: 密钥 key
+        # @param SecretKey: <p>密钥 key</p>
         # @type SecretKey: String
-        # @param DataFlowName: 数据流动名称；支持不超过64字符长度，支持中文、数字、_、-
+        # @param DataFlowName: <p>数据流动名称；支持不超过64字符长度，支持中文、数字、_、-</p>
         # @type DataFlowName: String
-        # @param AutoRefresh:  0：不开启自动更新  1：开启自动更新
+        # @param AutoRefresh: <p>0：不开启自动更新  1：开启自动更新</p>
         # @type AutoRefresh: Integer
-        # @param UserKafkaTopic: KafkaConsumer 消费时使用的Topic参数
+        # @param UserKafkaTopic: <p>KafkaConsumer 消费时使用的Topic参数</p>
         # @type UserKafkaTopic: String
-        # @param ServerAddr: 	服务地址 示例值：kafkaconsumer-ap-beijing.cls.tencentyun.com:9095
+        # @param ServerAddr: <p>服务地址 示例值：kafkaconsumer-ap-beijing.cls.tencentyun.com:9095</p>
         # @type ServerAddr: String
-        # @param UserName: Kafka消费用户名.示例值：name
+        # @param UserName: <p>Kafka消费用户名.示例值：name</p>
         # @type UserName: String
-        # @param Password: Kafka消费用户密码。默认${SecretId}#${SecretKey}。
+        # @param Password: <p>Kafka消费用户密码。默认${SecretId}#${SecretKey}。</p>
         # @type Password: String
 
         attr_accessor :FileSystemId, :SourceStorageType, :SourceStorageAddress, :SourcePath, :TargetPath, :SecretId, :SecretKey, :DataFlowName, :AutoRefresh, :UserKafkaTopic, :ServerAddr, :UserName, :Password
@@ -924,7 +924,7 @@ module TencentCloud
 
       # CreateDataFlow返回参数结构体
       class CreateDataFlowResponse < TencentCloud::Common::AbstractModel
-        # @param DataFlowId: 数据流动管理 ID
+        # @param DataFlowId: <p>数据流动管理 ID</p>
         # @type DataFlowId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1016,7 +1016,7 @@ module TencentCloud
         # @type DataFlowId: String
         # @param IsOverwrite: <p>当CFSTurbo内的文件和外置存储存在同名情况时，是否覆盖。  ture：覆盖  false：不覆盖（同时也不会释放热存数据）  为空时，默认为false</p>
         # @type IsOverwrite: Boolean
-        # @param ListPath: <p>【新增】数据清单文件路径，清单文件内每行一条待处理文件的完整路径。与 TaskPath 二选一。路径必须以 /cfs 开头，且必须为 CFS 文件系统内已存在的文件。示例值：/cfs/lists/archive_list.txt</p>
+        # @param ListPath: <p>数据清单文件路径，清单文件内每行为待处理文件的完整路径。所有路径（包括清单文件路径、清单文件内每行表示的待处理文件的路径）必须以 /cfs 开头，指向CFS文件系统内已存在的文件，与 TaskPath 参数二选一填写。<br>示例：</p><ul><li>若挂载的是CFS根目录 /，清单文件位于挂载路径下的 lists/archive_list.txt，则入参值为 /cfs/lists/archive_list.txt</li><li>若挂载的是CFS子目录 /subdir，清单文件位于挂载路径下的 lists/archive_list.txt，则入参值为 /cfs/subdir/lists/archive_list.txt</li></ul>
         # @type ListPath: String
 
         attr_accessor :FileSystemId, :Type, :TaskName, :TaskPath, :DataFlowId, :IsOverwrite, :ListPath
@@ -1163,7 +1163,7 @@ module TencentCloud
         # @type SrcSecretKey: String
         # @param FileSystemId: <p>文件系统实例 ID，通过查询文件系统 <a href="https://cloud.tencent.com/document/product/582/38170">DescribeCfsFileSystems</a> 获取</p>
         # @type FileSystemId: String
-        # @param FsPath: <p>文件系统路径</p>
+        # @param FsPath: <p>文件系统内目录路径，不涉及实际挂载子目录/根目录，无需以/cfs/作为前缀</p>
         # @type FsPath: String
         # @param CoverType: <p>同名文件迁移时覆盖策略，默认为0。0: 最后修改时间优先；1: 全覆盖；2: 不覆盖</p>
         # @type CoverType: Integer
@@ -1247,42 +1247,35 @@ module TencentCloud
 
       # 数据流动信息
       class DataFlowInfo < TencentCloud::Common::AbstractModel
-        # @param DataFlowId: 数据流动管理 ID
+        # @param DataFlowId: <p>数据流动管理 ID</p>
         # @type DataFlowId: String
-        # @param DataFlowName: 数据流动名称
+        # @param DataFlowName: <p>数据流动名称</p>
         # @type DataFlowName: String
-        # @param SourceStorageType: 源端数据类型
+        # @param SourceStorageType: <p>源端数据类型</p>
         # @type SourceStorageType: String
-        # @param SourceStorageAddress: 源端存储地址
+        # @param SourceStorageAddress: <p>源端存储地址</p>
         # @type SourceStorageAddress: String
-        # @param SourcePath: 源端路径
+        # @param SourcePath: <p>源端路径</p>
         # @type SourcePath: String
-        # @param TargetPath: 目录路径
+        # @param TargetPath: <p>设置数据流动时指定的文件系统内目标路径，必须以 /cfs/ 开头，代表文件存储实例内部的逻辑路径，而非本地挂载点路径。<br>示例：</p><ul><li>若挂载的是CFS根目录 /，需将对象存储上的源端目录与挂载路径下的 test1/test2 建立映射关系，则入参值为 /cfs/test1/test2</li><li>若挂载的是CFS子目录 /subdir，需将对象存储上的源端目录与挂载路径下的 test1/test2 建立映射关系，则入参值为 /cfs/subdir/test1/test2</li></ul>
         # @type TargetPath: String
-        # @param Status: available：已生效
-        # pending：配置中
-        # unavailable：失效
-        # deleting：删除中
+        # @param Status: <p>available：已生效<br>pending：配置中<br>unavailable：失效<br>deleting：删除中</p>
         # @type Status: String
-        # @param CreationTime: 创建时间
+        # @param CreationTime: <p>创建时间</p>
         # @type CreationTime: String
-        # @param FileSystemId: 文件系统 ID
+        # @param FileSystemId: <p>文件系统 ID</p>
         # @type FileSystemId: String
-        # @param AutoRefresh: 0：不开启自动更新
-
-        # 1：开启自动更新
+        # @param AutoRefresh: <p>0：不开启自动更新</p><p>1：开启自动更新</p>
         # @type AutoRefresh: Integer
-        # @param UserKafkaTopic: KafkaConsumer 消费时使用的Topic参数
+        # @param UserKafkaTopic: <p>KafkaConsumer 消费时使用的Topic参数</p>
         # @type UserKafkaTopic: String
-        # @param ServerAddr: 服务地址
+        # @param ServerAddr: <p>服务地址</p>
         # @type ServerAddr: String
-        # @param UserName: Kafka消费用户名
+        # @param UserName: <p>Kafka消费用户名</p>
         # @type UserName: String
-        # @param AutoRefreshStatus: 自动刷新的状态，available：已生效
-        # pending：配置中
-        # unavailable：失效
+        # @param AutoRefreshStatus: <p>自动刷新的状态，available：已生效<br>pending：配置中<br>unavailable：失效</p>
         # @type AutoRefreshStatus: String
-        # @param AutoRefreshTime: 自动刷新开启时间
+        # @param AutoRefreshTime: <p>自动刷新开启时间</p>
         # @type AutoRefreshTime: String
 
         attr_accessor :DataFlowId, :DataFlowName, :SourceStorageType, :SourceStorageAddress, :SourcePath, :TargetPath, :Status, :CreationTime, :FileSystemId, :AutoRefresh, :UserKafkaTopic, :ServerAddr, :UserName, :AutoRefreshStatus, :AutoRefreshTime
@@ -1763,13 +1756,13 @@ module TencentCloud
 
       # DeleteUserQuota请求参数结构体
       class DeleteUserQuotaRequest < TencentCloud::Common::AbstractModel
-        # @param FileSystemId: 文件系统ID，通过查询文件系统列表获取；[DescribeCfsFileSystems](https://cloud.tencent.com/document/product/582/38170)
+        # @param FileSystemId: <p>文件系统ID，通过查询文件系统列表获取；<a href="https://cloud.tencent.com/document/product/582/38170">DescribeCfsFileSystems</a></p>
         # @type FileSystemId: String
-        # @param UserType: 指定配额类型，包括Uid（按用户ID限制）、Gid（按用户组ID限制）、Dir（按目录限制）
+        # @param UserType: <p>指定配额类型，包括Uid（按用户ID限制）、Gid（按用户组ID限制）、Dir（按目录限制）</p>
         # @type UserType: String
-        # @param UserId: UID/GID信息，和DirectoryPath参数，两者必须填写一个
+        # @param UserId: <p>UID/GID信息，和DirectoryPath参数，两者必须填写一个</p>
         # @type UserId: String
-        # @param DirectoryPath: 设置目录配额的目录的绝对路径，和UserId参数，两者必须填写一个
+        # @param DirectoryPath: <p>需删除配额的目录路径，必须以 /cfs/ 开头，代表文件存储实例内部的逻辑路径，而非本地挂载点路径。该参数与 UserId 参数至少填写一个。<br>示例：</p><ul><li>若挂载的是CFS根目录 /，需删除挂载路径下 test1/test2 的配额，则入参值为 /cfs/test1/test2</li><li>若挂载的是CFS子目录 /subdir，需删除挂载路径下 test1/test2 的配额，则入参值为 /cfs/subdir/test1/test2</li></ul>
         # @type DirectoryPath: String
 
         attr_accessor :FileSystemId, :UserType, :UserId, :DirectoryPath
@@ -2915,17 +2908,15 @@ module TencentCloud
 
       # DoDirectoryOperation请求参数结构体
       class DoDirectoryOperationRequest < TencentCloud::Common::AbstractModel
-        # @param FileSystemId: 文件系统 ID。当前仅 Turbo 系列文件系统支持调用此接口，通用系列文件系统（含增强型）不支持调用。
+        # @param FileSystemId: <p>文件系统 ID。当前仅 Turbo 系列文件系统支持调用此接口，通用系列文件系统（含增强型）不支持调用。</p>
         # @type FileSystemId: String
-        # @param OpetationType: create：创建目录，等同于mkdir。
-        # check：确认目录是否存在，等同于stat。
-        # move：对文件/目录进行重命名，等同于mv。
+        # @param OpetationType: <p>create：创建目录，等同于mkdir。<br>check：确认目录是否存在，等同于stat。<br>move：对文件/目录进行重命名，等同于mv。</p>
         # @type OpetationType: String
-        # @param DirectoryPath: 目录的绝对路径  默认递归创建（即如果目录中有子目录不存在，则先创建出对应子目录）
+        # @param DirectoryPath: <p>系统会默认递归创建路径中的所有父级目录。路径必须从 /cfs/ 开始，代表文件存储实例内部的逻辑路径，而非本地挂载点路径。<br>示例：</p><ul><li><p>若操作为 create/check</p><ul><li>若挂载的是CFS根目录 /，需在挂载路径下创建/检查是否存在 test1/test2，则入参值为 /cfs/test1/test2</li><li>若挂载的是CFS子目录 /subdir，需在挂载路径下创建/检查是否存在 test1/test2，则入参值为 /cfs/subdir/test1/test2</li></ul></li><li><p>若操作为 move</p><ul><li>若挂载的是CFS根目录 /，需在挂载路径下移动 test1/test2 下的文件到 DestPath，则入参值为 /cfs/test1/test2</li><li>若挂载的是CFS子目录 /subdir，需在挂载路径下挂载路径下移动 test1/test2 下的文件到 DestPath，则入参值为 /cfs/subdir/test1/test2</li></ul></li></ul>
         # @type DirectoryPath: String
-        # @param Mode: 创建目录的权限，若不传，默认为0755。若OperationType为 check，此值无实际意义。
+        # @param Mode: <p>创建目录的权限，若不传，默认为0755。若OperationType为 check，此值无实际意义。</p>
         # @type Mode: String
-        # @param DestPath: mv 操作的目标目录名称。路径必须以/cfs/开头
+        # @param DestPath: <p>mv 操作的目标目录路径，必须以 /cfs/ 开头，代表文件存储实例内部的逻辑路径，而非本地挂载点路径。<br>示例：</p><ul><li>若挂载的是CFS根目录 /，需将 DirectoryPath 下的文件移动到挂载路径下的 test3/test4，则入参值为 /cfs/test3/test4</li><li>若挂载的是CFS子目录 /subdir，需将 DirectoryPath 下的文件移动到挂载路径下的 test3/test4，则入参值为 /cfs/subdir/ test3/test4</li></ul>
         # @type DestPath: String
 
         attr_accessor :FileSystemId, :OpetationType, :DirectoryPath, :Mode, :DestPath
@@ -2949,7 +2940,7 @@ module TencentCloud
 
       # DoDirectoryOperation返回参数结构体
       class DoDirectoryOperationResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 1:成功 0:失败。创建目录的操作，1表示创建成功，0表示创建失败。  确认目录是否存在的操作，1表示目录存在，0表示目录不存在。此外，创建目录操作若目录已存在，也会返回创建成功。
+        # @param Result: <p>1:成功 0:失败。创建目录的操作，1表示创建成功，0表示创建失败。  确认目录是否存在的操作，1表示目录存在，0表示目录不存在。此外，创建目录操作若目录已存在，也会返回创建成功。</p>
         # @type Result: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3309,7 +3300,7 @@ module TencentCloud
         # @type DataFlowId: String
         # @param IsOverwrite: <p>当CFSTurbo内的文件和外置存储存在同名情况时，是否覆盖。</p><p>ture：覆盖</p><p>false：不覆盖（同时也不会释放热存数据）<br>为空时，默认为false</p>
         # @type IsOverwrite: Boolean
-        # @param ListPath: <p>【新增】数据清单文件路径，清单文件内每行一条待处理文件的完整路径。与 TaskPath 二选一。路径必须以 /cfs 开头，且必须为 CFS 文件系统内已存在的文件。示例值：/cfs/lists/archive_list.txt</p>
+        # @param ListPath: <p>数据清单文件路径，清单文件内每行为待处理文件的完整路径。所有路径（包括清单文件路径、清单文件内每行表示的待处理文件的路径）必须以 /cfs 开头，指向CFS文件系统内已存在的文件，与 TaskPath 参数二选一填写。<br>示例：</p><ul><li>若挂载的是CFS根目录 /，清单文件位于挂载路径下的 lists/archive_list.txt，则入参值为 /cfs/lists/archive_list.txt</li><li>若挂载的是CFS子目录 /subdir，清单文件位于挂载路径下的 lists/archive_list.txt，则入参值为 /cfs/subdir/lists/archive_list.txt</li></ul>
         # @type ListPath: String
 
         attr_accessor :TaskId, :TaskStatus, :CreationTime, :FinishTime, :FileTotalCount, :FileSuccessedCount, :FileFailedCount, :FileTotalSize, :FileSuccessedSize, :FileFailedSize, :FileTotalList, :FileSuccessedList, :FileFailedList, :FileSystemId, :TaskName, :TaskPath, :Type, :DataFlowId, :IsOverwrite, :ListPath
@@ -3499,7 +3490,7 @@ module TencentCloud
         # @type FsName: String
         # @param FileSystemId: <p>文件系统实例Id</p>
         # @type FileSystemId: String
-        # @param FsPath: <p>文件系统路径</p>
+        # @param FsPath: <p>文件系统内目录路径，不涉及实际挂载子目录/根目录，无需以/cfs/作为前缀</p>
         # @type FsPath: String
         # @param CoverType: <p>同名文件迁移时覆盖策略，默认为0。0: 最后修改时间优先；1: 全覆盖；2: 不覆盖</p>
         # @type CoverType: Integer
@@ -4151,17 +4142,17 @@ module TencentCloud
 
       # SetUserQuota请求参数结构体
       class SetUserQuotaRequest < TencentCloud::Common::AbstractModel
-        # @param FileSystemId: 文件系统 ID,通过[查询文件系统列表](https://cloud.tencent.com/document/api/582/38170)获取
+        # @param FileSystemId: <p>文件系统 ID,通过<a href="https://cloud.tencent.com/document/api/582/38170">查询文件系统列表</a>获取</p>
         # @type FileSystemId: String
-        # @param UserType: 指定配额类型，包括Uid、Gid，Dir，分别代表用户配额，用户组配额，目录配额
+        # @param UserType: <p>指定配额类型，包括Uid、Gid，Dir，分别代表用户配额，用户组配额，目录配额</p>
         # @type UserType: String
-        # @param UserId: UID/GID信息
+        # @param UserId: <p>UID/GID信息</p>
         # @type UserId: String
-        # @param CapacityHardLimit: 容量硬限制，单位GiB。设置范围10-10000000。
+        # @param CapacityHardLimit: <p>容量硬限制，单位GiB。设置范围10-10000000。</p>
         # @type CapacityHardLimit: Integer
-        # @param FileHardLimit: 文件硬限制，单位个。设置范围1000-100000000
+        # @param FileHardLimit: <p>文件硬限制，单位个。设置范围1000-100000000</p>
         # @type FileHardLimit: Integer
-        # @param DirectoryPath: 需设置目录配额的目录绝对路径，不同目录不可存在包含关系
+        # @param DirectoryPath: <p>需设置配额的目录路径，必须以 /cfs/ 开头，代表文件存储实例内部的逻辑路径，而非本地挂载点路径。不同目录之间不可存在包含关系。<br>示例：</p><ul><li>若挂载的是CFS根目录 /，需对挂载路径下的 test1/test2 设置配额，则入参值为 /cfs/test1/test2</li><li>若挂载的是CFS子目录 /subdir，需对挂载路径下的 test1/test2 设置配额，则入参值为 /cfs/subdir/test1/test2</li></ul>
         # @type DirectoryPath: String
 
         attr_accessor :FileSystemId, :UserType, :UserId, :CapacityHardLimit, :FileHardLimit, :DirectoryPath
@@ -4187,7 +4178,7 @@ module TencentCloud
 
       # SetUserQuota返回参数结构体
       class SetUserQuotaResponse < TencentCloud::Common::AbstractModel
-        # @param UserId: UID/GID信息
+        # @param UserId: <p>UID/GID信息</p>
         # @type UserId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4939,24 +4930,24 @@ module TencentCloud
 
       # 文件系统配额信息
       class UserQuota < TencentCloud::Common::AbstractModel
-        # @param UserType: 指定配额类型，包括Uid、Gid、Dir
+        # @param UserType: <p>指定配额类型，包括Uid、Gid、Dir</p>
         # @type UserType: String
-        # @param UserId: UID/GID信息
+        # @param UserId: <p>UID/GID信息</p>
         # @type UserId: String
-        # @param CapacityHardLimit: 容量硬限制，单位GiB
+        # @param CapacityHardLimit: <p>容量硬限制，单位GiB</p>
         # @type CapacityHardLimit: Integer
-        # @param FileHardLimit: 文件硬限制，单位个
+        # @param FileHardLimit: <p>文件硬限制，单位个</p>
         # @type FileHardLimit: Integer
-        # @param FileSystemId: 文件系统ID
+        # @param FileSystemId: <p>文件系统ID</p>
         # @type FileSystemId: String
-        # @param CapacityUsed: 容量使用，单位GiB
+        # @param CapacityUsed: <p>容量使用，单位GiB</p>
         # @type CapacityUsed: Integer
-        # @param FileUsed: 文件使用个数，单位个
+        # @param FileUsed: <p>文件使用个数，单位个</p>
         # @type FileUsed: Integer
-        # @param DirectoryPath: 目录配额的目录绝对路径
+        # @param DirectoryPath: <p>需设置配额的目录路径，必须以 /cfs/ 开头，代表文件存储实例内部的逻辑路径，而非本地挂载点路径。不同目录之间不可存在包含关系。<br>示例：</p><ul><li>若挂载的是CFS根目录 /，需对挂载路径下的 test1/test2 设置配额，则入参值为 /cfs/test1/test2</li><li>若挂载的是CFS子目录 /subdir，需对挂载路径下的 test1/test2 设置配额，则入参值为 /cfs/subdir/test1/test2</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DirectoryPath: String
-        # @param Status: 配置规则状态，inavailable---配置中，available --已生效，deleting--删除中，deleted 已删除，failed--配置失败
+        # @param Status: <p>配置规则状态，inavailable---配置中，available --已生效，deleting--删除中，deleted 已删除，failed--配置失败</p>
         # @type Status: String
 
         attr_accessor :UserType, :UserId, :CapacityHardLimit, :FileHardLimit, :FileSystemId, :CapacityUsed, :FileUsed, :DirectoryPath, :Status

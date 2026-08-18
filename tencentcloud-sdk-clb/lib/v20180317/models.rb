@@ -767,20 +767,19 @@ module TencentCloud
 
       # 批量绑定类型
       class BatchTarget < TencentCloud::Common::AbstractModel
-        # @param ListenerId: 监听器 ID。
+        # @param ListenerId: <p>监听器 ID。</p>
         # @type ListenerId: String
-        # @param Port: 绑定端口。
+        # @param Port: <p>绑定端口。</p>
         # @type Port: Integer
-        # @param InstanceId: 子机 ID。表示绑定主网卡主 IP。
+        # @param InstanceId: <p>子机 ID。表示绑定主网卡主 IP。</p>
         # @type InstanceId: String
-        # @param EniIp: 绑定 IP 时需要传入此参数，支持弹性网卡的 IP 和其他内网 IP，如果是弹性网卡则必须先绑定至CVM，然后才能绑定到负载均衡实例。
-        # 注意：参数 InstanceId、EniIp 只能传入一个且必须传入一个。如果绑定双栈IPV6子机，必须传该参数。
+        # @param EniIp: <p>绑定 IP 时需要传入此参数，支持弹性网卡的 IP 和其他内网 IP，如果是弹性网卡则必须先绑定至CVM，然后才能绑定到负载均衡实例。注意：参数 InstanceId、EniIp 只能传入一个且必须传入一个。如果绑定双栈IPV6子机，必须传该参数。如果是跨地域绑定，则必须传该参数，不支持传InstanceId参数。</p>
         # @type EniIp: String
-        # @param Weight: 子机权重，范围[0, 100]。绑定时如果不存在，则默认为10。
+        # @param Weight: <p>子机权重，范围[0, 100]。绑定时如果不存在，则默认为10。</p>
         # @type Weight: Integer
-        # @param LocationId: 七层规则 ID。7层负载均衡该参数必填
+        # @param LocationId: <p>七层规则 ID。7层负载均衡该参数必填</p>
         # @type LocationId: String
-        # @param Tag: 标签。
+        # @param Tag: <p>标签。</p>
         # @type Tag: String
 
         attr_accessor :ListenerId, :Port, :InstanceId, :EniIp, :Weight, :LocationId, :Tag
