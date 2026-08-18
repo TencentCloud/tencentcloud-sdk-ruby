@@ -3785,16 +3785,16 @@ module TencentCloud
       class CreateLabRequest < TencentCloud::Common::AbstractModel
         # @param Name: <p>数据实验室名称</p>
         # @type Name: String
-        # @param LabImage: <p>Lab 镜像地址（必填，用于开发工具如 Jupyter/VSCode/WebShell）。前端在&quot;内置 / 自定义&quot;两态中选择此值；当 Image 字段未显式传入时，后端会基于该字段按 R1（镜像表命中）/R2（同值 fallback）派生 Ray 集群镜像。</p>
-        # @type LabImage: String
         # @param ResourcePartitionId: <p>资源分区ID</p>
         # @type ResourcePartitionId: String
         # @param Queue: <p>队列名称</p>
         # @type Queue: String
-        # @param Description: <p>数据实验室描述</p>
-        # @type Description: String
         # @param Image: <p>Ray 集群镜像地址（可选，OpenAPI/SDK 高级控制入口）。前端不再传递此字段；为空时后端按 R1（镜像表查询命中）→ R2（同值 fallback）顺序自动派生。非空时直接作为 Ray 集群镜像，跳过派生（EXPLICIT），且后端不校验其与 LabImage 的兼容性。</p>
         # @type Image: String
+        # @param LabImage: <p>Lab 镜像地址（必填，用于开发工具如 Jupyter/VSCode/WebShell）。前端在&quot;内置 / 自定义&quot;两态中选择此值；当 Image 字段未显式传入时，后端会基于该字段按 R1（镜像表命中）/R2（同值 fallback）派生 Ray 集群镜像。</p>
+        # @type LabImage: String
+        # @param Description: <p>数据实验室描述</p>
+        # @type Description: String
         # @param ImagePullPolicy: <p>镜像拉取策略（Always, IfNotPresent, Never）</p>
         # @type ImagePullPolicy: String
         # @param ResourceConfig: <p>资源配置</p>
@@ -3828,15 +3828,15 @@ module TencentCloud
         # @param LabImagePullType: <p>Lab sidecar 镜像拉取类型（BuiltIn: 内置, Custom: 自定义-TCR, CustomCcr: 自定义-CCR）</p>
         # @type LabImagePullType: String
 
-        attr_accessor :Name, :LabImage, :ResourcePartitionId, :Queue, :Description, :Image, :ImagePullPolicy, :ResourceConfig, :ResourceConfigId, :Catalog, :GroupId, :ServiceTypes, :ExampleId, :CodeArchiveUrl, :LabImagePullPolicy, :AdvancedOptions, :Priority, :Tags, :PersistentWorkDir, :EnableToken, :ImagePullType, :LabImagePullType
+        attr_accessor :Name, :ResourcePartitionId, :Queue, :Image, :LabImage, :Description, :ImagePullPolicy, :ResourceConfig, :ResourceConfigId, :Catalog, :GroupId, :ServiceTypes, :ExampleId, :CodeArchiveUrl, :LabImagePullPolicy, :AdvancedOptions, :Priority, :Tags, :PersistentWorkDir, :EnableToken, :ImagePullType, :LabImagePullType
 
-        def initialize(name=nil, labimage=nil, resourcepartitionid=nil, queue=nil, description=nil, image=nil, imagepullpolicy=nil, resourceconfig=nil, resourceconfigid=nil, catalog=nil, groupid=nil, servicetypes=nil, exampleid=nil, codearchiveurl=nil, labimagepullpolicy=nil, advancedoptions=nil, priority=nil, tags=nil, persistentworkdir=nil, enabletoken=nil, imagepulltype=nil, labimagepulltype=nil)
+        def initialize(name=nil, resourcepartitionid=nil, queue=nil, image=nil, labimage=nil, description=nil, imagepullpolicy=nil, resourceconfig=nil, resourceconfigid=nil, catalog=nil, groupid=nil, servicetypes=nil, exampleid=nil, codearchiveurl=nil, labimagepullpolicy=nil, advancedoptions=nil, priority=nil, tags=nil, persistentworkdir=nil, enabletoken=nil, imagepulltype=nil, labimagepulltype=nil)
           @Name = name
-          @LabImage = labimage
           @ResourcePartitionId = resourcepartitionid
           @Queue = queue
-          @Description = description
           @Image = image
+          @LabImage = labimage
+          @Description = description
           @ImagePullPolicy = imagepullpolicy
           @ResourceConfig = resourceconfig
           @ResourceConfigId = resourceconfigid
@@ -3857,11 +3857,11 @@ module TencentCloud
 
         def deserialize(params)
           @Name = params['Name']
-          @LabImage = params['LabImage']
           @ResourcePartitionId = params['ResourcePartitionId']
           @Queue = params['Queue']
-          @Description = params['Description']
           @Image = params['Image']
+          @LabImage = params['LabImage']
+          @Description = params['Description']
           @ImagePullPolicy = params['ImagePullPolicy']
           @ResourceConfig = params['ResourceConfig']
           @ResourceConfigId = params['ResourceConfigId']
@@ -30069,12 +30069,12 @@ module TencentCloud
       class UpdateLabRequest < TencentCloud::Common::AbstractModel
         # @param Name: <p>数据实验室名称</p>
         # @type Name: String
+        # @param Image: <p>Ray 集群镜像地址（可选，OpenAPI/SDK 高级控制入口）。前端不再传递此字段；为空时后端按 R1（镜像表查询命中）→ R2（同值 fallback）顺序自动派生。非空时直接作为 Ray 集群镜像，跳过派生（EXPLICIT），且后端不校验其与 LabImage 的兼容性。</p>
+        # @type Image: String
         # @param LabImage: <p>Lab 镜像地址（必填，用于开发工具如 Jupyter/VSCode/WebShell）。前端在&quot;内置 / 自定义&quot;两态中选择此值；当 Image 字段未显式传入时，后端会基于该字段按 R1（镜像表命中）/R2（同值 fallback）派生 Ray 集群镜像。</p>
         # @type LabImage: String
         # @param Description: <p>数据实验室描述</p>
         # @type Description: String
-        # @param Image: <p>Ray 集群镜像地址（可选，OpenAPI/SDK 高级控制入口）。前端不再传递此字段；为空时后端按 R1（镜像表查询命中）→ R2（同值 fallback）顺序自动派生。非空时直接作为 Ray 集群镜像，跳过派生（EXPLICIT），且后端不校验其与 LabImage 的兼容性。</p>
-        # @type Image: String
         # @param ImagePullPolicy: <p>镜像拉取策略（Always, IfNotPresent, Never）</p>
         # @type ImagePullPolicy: String
         # @param ResourceConfigId: <p>资源配置ID</p>
@@ -30104,13 +30104,13 @@ module TencentCloud
         # @param LabImagePullType: <p>Lab sidecar 镜像拉取类型（BuiltIn: 内置, Custom: 自定义-TCR, CustomCcr: 自定义-CCR）</p>
         # @type LabImagePullType: String
 
-        attr_accessor :Name, :LabImage, :Description, :Image, :ImagePullPolicy, :ResourceConfigId, :GroupId, :ResourcePartitionId, :Queue, :ExampleId, :CodeArchiveUrl, :LabImagePullPolicy, :Priority, :EnableToken, :Tags, :PersistentWorkDir, :ImagePullType, :LabImagePullType
+        attr_accessor :Name, :Image, :LabImage, :Description, :ImagePullPolicy, :ResourceConfigId, :GroupId, :ResourcePartitionId, :Queue, :ExampleId, :CodeArchiveUrl, :LabImagePullPolicy, :Priority, :EnableToken, :Tags, :PersistentWorkDir, :ImagePullType, :LabImagePullType
 
-        def initialize(name=nil, labimage=nil, description=nil, image=nil, imagepullpolicy=nil, resourceconfigid=nil, groupid=nil, resourcepartitionid=nil, queue=nil, exampleid=nil, codearchiveurl=nil, labimagepullpolicy=nil, priority=nil, enabletoken=nil, tags=nil, persistentworkdir=nil, imagepulltype=nil, labimagepulltype=nil)
+        def initialize(name=nil, image=nil, labimage=nil, description=nil, imagepullpolicy=nil, resourceconfigid=nil, groupid=nil, resourcepartitionid=nil, queue=nil, exampleid=nil, codearchiveurl=nil, labimagepullpolicy=nil, priority=nil, enabletoken=nil, tags=nil, persistentworkdir=nil, imagepulltype=nil, labimagepulltype=nil)
           @Name = name
+          @Image = image
           @LabImage = labimage
           @Description = description
-          @Image = image
           @ImagePullPolicy = imagepullpolicy
           @ResourceConfigId = resourceconfigid
           @GroupId = groupid
@@ -30129,9 +30129,9 @@ module TencentCloud
 
         def deserialize(params)
           @Name = params['Name']
+          @Image = params['Image']
           @LabImage = params['LabImage']
           @Description = params['Description']
-          @Image = params['Image']
           @ImagePullPolicy = params['ImagePullPolicy']
           @ResourceConfigId = params['ResourceConfigId']
           @GroupId = params['GroupId']

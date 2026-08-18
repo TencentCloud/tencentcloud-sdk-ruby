@@ -6793,7 +6793,7 @@ module TencentCloud
         # @type RegionId: Integer
         # @param EnableAnonymous: <p>是否支持匿名</p>
         # @type EnableAnonymous: Boolean
-        # @param TokenValidTime: <p>Token有效时间</p>
+        # @param TokenValidTime: <p>Token有效时间，单位：小时</p>
         # @type TokenValidTime: Integer
         # @param InternalEndpoint: <p>实例内部访问地址</p>
         # @type InternalEndpoint: String
@@ -7840,35 +7840,35 @@ module TencentCloud
 
       # 镜像tag信息
       class TagInfo < TencentCloud::Common::AbstractModel
-        # @param TagName: Tag名称
+        # @param TagName: <p>Tag名称</p>
         # @type TagName: String
-        # @param TagId: 制品的 ID
+        # @param TagId: <p>制品的 ID</p>
         # @type TagId: String
-        # @param ImageId: docker image 可以看到的id
+        # @param ImageId: <p>docker image 可以看到的id</p>
         # @type ImageId: String
-        # @param Size: 大小
+        # @param Size: <p>大小</p>
         # @type Size: String
-        # @param CreationTime: 制品的创建时间
+        # @param CreationTime: <p>制品的创建时间</p>
         # @type CreationTime: String
-        # @param DurationDays: 制品创建至今时间长度
+        # @param DurationDays: <p>制品创建至今时间长度</p>
         # @type DurationDays: String
-        # @param Author: 标注的制品作者
+        # @param Author: <p>标注的制品作者</p>
         # @type Author: String
-        # @param Architecture: 标注的制品平台
+        # @param Architecture: <p>标注的制品平台</p>
         # @type Architecture: String
-        # @param DockerVersion: 创建制品的 Docker 版本
+        # @param DockerVersion: <p>创建制品的 Docker 版本</p>
         # @type DockerVersion: String
-        # @param OS: 标注的制品操作系统
+        # @param OS: <p>标注的制品操作系统</p>
         # @type OS: String
-        # @param SizeByte: 制品大小
+        # @param SizeByte: <p>制品大小，单位：Byte</p>
         # @type SizeByte: Integer
-        # @param Id: 序号
+        # @param Id: <p>序号</p>
         # @type Id: Integer
-        # @param UpdateTime: 数据更新时间
+        # @param UpdateTime: <p>数据更新时间</p>
         # @type UpdateTime: String
-        # @param PushTime: 制品更新时间
+        # @param PushTime: <p>制品更新时间</p>
         # @type PushTime: String
-        # @param Kind: 制品类型
+        # @param Kind: <p>制品类型</p>
         # @type Kind: String
 
         attr_accessor :TagName, :TagId, :ImageId, :Size, :CreationTime, :DurationDays, :Author, :Architecture, :DockerVersion, :OS, :SizeByte, :Id, :UpdateTime, :PushTime, :Kind

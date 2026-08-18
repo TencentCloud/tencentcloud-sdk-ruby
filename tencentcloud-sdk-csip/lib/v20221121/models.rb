@@ -37348,6 +37348,95 @@ module TencentCloud
         end
       end
 
+      # VPR解释卡片中的单个维度
+      class VPRExplainDimension < TencentCloud::Common::AbstractModel
+        # @param Key: <p>标签key</p>
+        # @type Key: String
+        # @param Name: <p>标签名称</p>
+        # @type Name: String
+        # @param Items: <p>标签子项</p>
+        # @type Items: Array
+
+        attr_accessor :Key, :Name, :Items
+
+        def initialize(key=nil, name=nil, items=nil)
+          @Key = key
+          @Name = name
+          @Items = items
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Name = params['Name']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              vprexplaindimensionitem_tmp = VPRExplainDimensionItem.new
+              vprexplaindimensionitem_tmp.deserialize(i)
+              @Items << vprexplaindimensionitem_tmp
+            end
+          end
+        end
+      end
+
+      # VPR解释卡片中的单个标签项
+      class VPRExplainDimensionItem < TencentCloud::Common::AbstractModel
+        # @param Key: <p>标签</p>
+        # @type Key: String
+        # @param Name: <p>标签名称</p>
+        # @type Name: String
+        # @param Remark: <p>标签描述</p>
+        # @type Remark: String
+
+        attr_accessor :Key, :Name, :Remark
+
+        def initialize(key=nil, name=nil, remark=nil)
+          @Key = key
+          @Name = name
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Name = params['Name']
+          @Remark = params['Remark']
+        end
+      end
+
+      # VPR评级解释卡片
+      class VPRExplainInfo < TencentCloud::Common::AbstractModel
+        # @param VulIntel: <p>漏洞情报</p>
+        # @type VulIntel: Array
+        # @param AssetContext: <p>资产上下文</p>
+        # @type AssetContext: Array
+
+        attr_accessor :VulIntel, :AssetContext
+
+        def initialize(vulintel=nil, assetcontext=nil)
+          @VulIntel = vulintel
+          @AssetContext = assetcontext
+        end
+
+        def deserialize(params)
+          unless params['VulIntel'].nil?
+            @VulIntel = []
+            params['VulIntel'].each do |i|
+              vprexplaindimension_tmp = VPRExplainDimension.new
+              vprexplaindimension_tmp.deserialize(i)
+              @VulIntel << vprexplaindimension_tmp
+            end
+          end
+          unless params['AssetContext'].nil?
+            @AssetContext = []
+            params['AssetContext'].each do |i|
+              vprexplaindimension_tmp = VPRExplainDimension.new
+              vprexplaindimension_tmp.deserialize(i)
+              @AssetContext << vprexplaindimension_tmp
+            end
+          end
+        end
+      end
+
       # 漏洞VPR标签
       class VPRLabel < TencentCloud::Common::AbstractModel
         # @param Name: <p>标签名称<br>枚举值：<br>IN_THE_WILD：在野利用<br>EXP：有 EXP<br>POC：有 POC<br>INTERNET_EXPOSED：外网暴露<br>NO_RESTART：无需重启<br>HIGH_VALUE_ASSET：重要资产<br>MALWARE_WEAPONIZED：已武器化</p>
@@ -38824,44 +38913,34 @@ module TencentCloud
 
       # 已修复漏洞信息
       class VulFixedItem < TencentCloud::Common::AbstractModel
-        # @param VulId: 漏洞ID
+        # @param VulId: <p>漏洞ID</p>
         # @type VulId: Integer
-        # @param VulName: 漏洞名称
+        # @param VulName: <p>漏洞名称</p>
         # @type VulName: String
-        # @param Level: 漏洞等级
-        # 枚举值：
-        # LOW：低危
-        # MEDIUM：中危
-        # HIGH：高危
-        # CRITICAL：严重
+        # @param Level: <p>漏洞等级<br>枚举值：<br>LOW：低危<br>MEDIUM：中危<br>HIGH：高危<br>CRITICAL：严重</p>
         # @type Level: String
-        # @param VRPRatingInfo: VPR 评级信息（包含评级结果、说明和分阶段评分），与 DescribeHostVulRiskList 一致
+        # @param VRPRatingInfo: <p>VPR 评级信息（包含评级结果、说明和分阶段评分），与 DescribeHostVulRiskList 一致</p>
         # @type VRPRatingInfo: :class:`Tencentcloud::Csip.v20221121.models.VPRRatingInfo`
-        # @param VulCategory: 漏洞类型
-        # 枚举值：
-        # LINUX：Linux软件漏洞
-        # WINDOWS：Windows系统补丁漏洞
-        # WEB_CMS：Web-CMS漏洞
-        # APPLICATION：应用漏洞
-        # EMERGENCY：应急漏洞
+        # @param VulCategory: <p>漏洞类型<br>枚举值：<br>LINUX：Linux软件漏洞<br>WINDOWS：Windows系统补丁漏洞<br>WEB_CMS：Web-CMS漏洞<br>APPLICATION：应用漏洞<br>EMERGENCY：应急漏洞</p>
         # @type VulCategory: String
-        # @param CveId: CVE编号
+        # @param CveId: <p>CVE编号</p>
         # @type CveId: String
-        # @param MachineName: 修复主机名称
+        # @param MachineName: <p>修复主机名称</p>
         # @type MachineName: String
-        # @param InstanceId: 修复主机实例ID
+        # @param InstanceId: <p>修复主机实例ID</p>
         # @type InstanceId: String
-        # @param ComponentCount: 关联组件&路径数量
+        # @param ComponentCount: <p>关联组件&amp;路径数量</p>
         # @type ComponentCount: Integer
-        # @param Components: 关联组件&路径列表
+        # @param Components: <p>关联组件&amp;路径列表</p>
         # @type Components: Array
-        # @param LatestFixTime: 最近一次修复时间
-        # 参数格式：YYYY-MM-DDTHH:mm:ssZ（ISO8601格式）
+        # @param LatestFixTime: <p>最近一次修复时间<br>参数格式：YYYY-MM-DDTHH:mm:ssZ（ISO8601格式）</p>
         # @type LatestFixTime: String
+        # @param VPRExplainInfo: <p>VPR评级依据</p>
+        # @type VPRExplainInfo: :class:`Tencentcloud::Csip.v20221121.models.VPRExplainInfo`
 
-        attr_accessor :VulId, :VulName, :Level, :VRPRatingInfo, :VulCategory, :CveId, :MachineName, :InstanceId, :ComponentCount, :Components, :LatestFixTime
+        attr_accessor :VulId, :VulName, :Level, :VRPRatingInfo, :VulCategory, :CveId, :MachineName, :InstanceId, :ComponentCount, :Components, :LatestFixTime, :VPRExplainInfo
 
-        def initialize(vulid=nil, vulname=nil, level=nil, vrpratinginfo=nil, vulcategory=nil, cveid=nil, machinename=nil, instanceid=nil, componentcount=nil, components=nil, latestfixtime=nil)
+        def initialize(vulid=nil, vulname=nil, level=nil, vrpratinginfo=nil, vulcategory=nil, cveid=nil, machinename=nil, instanceid=nil, componentcount=nil, components=nil, latestfixtime=nil, vprexplaininfo=nil)
           @VulId = vulid
           @VulName = vulname
           @Level = level
@@ -38873,6 +38952,7 @@ module TencentCloud
           @ComponentCount = componentcount
           @Components = components
           @LatestFixTime = latestfixtime
+          @VPRExplainInfo = vprexplaininfo
         end
 
         def deserialize(params)
@@ -38890,6 +38970,10 @@ module TencentCloud
           @ComponentCount = params['ComponentCount']
           @Components = params['Components']
           @LatestFixTime = params['LatestFixTime']
+          unless params['VPRExplainInfo'].nil?
+            @VPRExplainInfo = VPRExplainInfo.new
+            @VPRExplainInfo.deserialize(params['VPRExplainInfo'])
+          end
         end
       end
 

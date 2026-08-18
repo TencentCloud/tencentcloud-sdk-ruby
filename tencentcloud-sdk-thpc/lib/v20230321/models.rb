@@ -258,8 +258,8 @@ module TencentCloud
 
         attr_accessor :Commands, :StorageMounts, :EnvVars, :Docker, :OutputRedirect, :JobType, :TaskType
         extend Gem::Deprecate
-        deprecate :JobType, :none, 2026, 7
-        deprecate :JobType=, :none, 2026, 7
+        deprecate :JobType, :none, 2026, 8
+        deprecate :JobType=, :none, 2026, 8
 
         def initialize(commands=nil, storagemounts=nil, envvars=nil, docker=nil, outputredirect=nil, jobtype=nil, tasktype=nil)
           @Commands = commands
@@ -2227,6 +2227,60 @@ module TencentCloud
         end
       end
 
+      # InquirePriceModifyWorkspacesChargeType请求参数结构体
+      class InquirePriceModifyWorkspacesChargeTypeRequest < TencentCloud::Common::AbstractModel
+        # @param SpaceIds: <p>工作空间 ID 列表。每次请求的工作空间计费模式必须一致。</p>
+        # @type SpaceIds: Array
+        # @param SpaceChargeType: <p>转换的目标计费模式。当前仅支持 PREPAID（按量计费转包年包月）。</p>
+        # @type SpaceChargeType: String
+        # @param DryRun: <p>是否只进行参数和资源预检。true：不发起询价、组单或正式下单；false：执行对应操作。默认为 false。</p>
+        # @type DryRun: Boolean
+        # @param SpaceChargePrepaid: <p>预付费参数。Period 和 RenewFlag 均为可选字段；未传入时后端使用默认值 Period=1、RenewFlag=NOTIFY_AND_MANUAL_RENEW。</p>
+        # @type SpaceChargePrepaid: :class:`Tencentcloud::Thpc.v20230321.models.SpaceChargePrepaid`
+
+        attr_accessor :SpaceIds, :SpaceChargeType, :DryRun, :SpaceChargePrepaid
+
+        def initialize(spaceids=nil, spacechargetype=nil, dryrun=nil, spacechargeprepaid=nil)
+          @SpaceIds = spaceids
+          @SpaceChargeType = spacechargetype
+          @DryRun = dryrun
+          @SpaceChargePrepaid = spacechargeprepaid
+        end
+
+        def deserialize(params)
+          @SpaceIds = params['SpaceIds']
+          @SpaceChargeType = params['SpaceChargeType']
+          @DryRun = params['DryRun']
+          unless params['SpaceChargePrepaid'].nil?
+            @SpaceChargePrepaid = SpaceChargePrepaid.new
+            @SpaceChargePrepaid.deserialize(params['SpaceChargePrepaid'])
+          end
+        end
+      end
+
+      # InquirePriceModifyWorkspacesChargeType返回参数结构体
+      class InquirePriceModifyWorkspacesChargeTypeResponse < TencentCloud::Common::AbstractModel
+        # @param Price: <p>该参数表示对应规格工作空间的价格</p>
+        # @type Price: :class:`Tencentcloud::Thpc.v20230321.models.Price`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Price, :RequestId
+
+        def initialize(price=nil, requestid=nil)
+          @Price = price
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Price'].nil?
+            @Price = Price.new
+            @Price.deserialize(params['Price'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 描述了实例的计费模式
       class InstanceChargePrepaid < TencentCloud::Common::AbstractModel
         # @param Period: 购买实例的时长，单位：月。取值范围：1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 24, 36, 48, 60。
@@ -2278,6 +2332,62 @@ module TencentCloud
         def deserialize(params)
           @InternetChargeType = params['InternetChargeType']
           @InternetMaxBandwidthOut = params['InternetMaxBandwidthOut']
+        end
+      end
+
+      # 描述了单项的价格信息。
+      class ItemPrice < TencentCloud::Common::AbstractModel
+        # @param OriginalPrice: 预支合计费用的原价，预付费模式使用，单位：元。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginalPrice: Float
+        # @param DiscountPrice: 预支合计费用的折扣价，预付费模式使用，单位：元。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiscountPrice: Float
+        # @param Discount: 折扣，如20.0代表2折。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Discount: Float
+        # @param UnitPrice: 后续合计费用的原价，后付费模式使用，单位：元。
+
+        # 如返回了其他时间区间项，如UnitPriceSecondStep，则本项代表时间区间在(0, 96)小时；若未返回其他时间区间项，则本项代表全时段，即(0, ∞)小时
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnitPrice: Float
+        # @param DiscountUnitPrice: 后续合计费用的折扣价，后付费模式使用，单位：元
+
+        # 如返回了其他时间区间项，如DiscountUnitPriceSecondStep，则本项代表时间区间在(0, 96)小时；若未返回其他时间区间项，则本项代表全时段，即(0, ∞)小时
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiscountUnitPrice: Float
+        # @param ChargeUnit: 后续计价单元，后付费模式使用，可取值范围：
+
+        # HOUR：表示计价单元是按每小时来计算。当前涉及该计价单元的场景有：实例按小时后付费（POSTPAID_BY_HOUR）、带宽按小时后付费（BANDWIDTH_POSTPAID_BY_HOUR）：
+        # GB：表示计价单元是按每GB来计算。当前涉及该计价单元的场景有：流量按小时后付费（TRAFFIC_POSTPAID_BY_HOUR）。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChargeUnit: String
+        # @param UnitPriceDiscount: 后续合计费用的折扣价，后付费模式使用，单位：元
+
+        # 如返回了其他时间区间项，如UnitPriceDiscount
+        # float，则本项代表时间区间在(0, 96)小时；若未返回其他时间区间项，则本项代表全时段，即(0, ∞)小时
+        # @type UnitPriceDiscount: Float
+
+        attr_accessor :OriginalPrice, :DiscountPrice, :Discount, :UnitPrice, :DiscountUnitPrice, :ChargeUnit, :UnitPriceDiscount
+
+        def initialize(originalprice=nil, discountprice=nil, discount=nil, unitprice=nil, discountunitprice=nil, chargeunit=nil, unitpricediscount=nil)
+          @OriginalPrice = originalprice
+          @DiscountPrice = discountprice
+          @Discount = discount
+          @UnitPrice = unitprice
+          @DiscountUnitPrice = discountunitprice
+          @ChargeUnit = chargeunit
+          @UnitPriceDiscount = unitpricediscount
+        end
+
+        def deserialize(params)
+          @OriginalPrice = params['OriginalPrice']
+          @DiscountPrice = params['DiscountPrice']
+          @Discount = params['Discount']
+          @UnitPrice = params['UnitPrice']
+          @DiscountUnitPrice = params['DiscountUnitPrice']
+          @ChargeUnit = params['ChargeUnit']
+          @UnitPriceDiscount = params['UnitPriceDiscount']
         end
       end
 
@@ -2725,6 +2835,53 @@ module TencentCloud
         end
       end
 
+      # ModifyWorkspacesChargeType请求参数结构体
+      class ModifyWorkspacesChargeTypeRequest < TencentCloud::Common::AbstractModel
+        # @param SpaceIds: <p>工作空间 ID 列表。每次请求的工作空间计费模式必须一致。</p>
+        # @type SpaceIds: Array
+        # @param SpaceChargeType: <p>转换的目标计费模式。当前仅支持 PREPAID（按量计费转包年包月）。</p>
+        # @type SpaceChargeType: String
+        # @param DryRun: <p>是否只进行参数和资源预检。true：不发起询价、组单或正式下单；false：执行对应操作。默认为 false。</p>
+        # @type DryRun: Boolean
+        # @param SpaceChargePrepaid: <p>预付费参数。Period 和 RenewFlag 均为可选字段；未传入时后端使用默认值 Period=1、RenewFlag=NOTIFY_AND_MANUAL_RENEW。</p>
+        # @type SpaceChargePrepaid: :class:`Tencentcloud::Thpc.v20230321.models.SpaceChargePrepaid`
+
+        attr_accessor :SpaceIds, :SpaceChargeType, :DryRun, :SpaceChargePrepaid
+
+        def initialize(spaceids=nil, spacechargetype=nil, dryrun=nil, spacechargeprepaid=nil)
+          @SpaceIds = spaceids
+          @SpaceChargeType = spacechargetype
+          @DryRun = dryrun
+          @SpaceChargePrepaid = spacechargeprepaid
+        end
+
+        def deserialize(params)
+          @SpaceIds = params['SpaceIds']
+          @SpaceChargeType = params['SpaceChargeType']
+          @DryRun = params['DryRun']
+          unless params['SpaceChargePrepaid'].nil?
+            @SpaceChargePrepaid = SpaceChargePrepaid.new
+            @SpaceChargePrepaid.deserialize(params['SpaceChargePrepaid'])
+          end
+        end
+      end
+
+      # ModifyWorkspacesChargeType返回参数结构体
+      class ModifyWorkspacesChargeTypeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyWorkspacesRenewFlag请求参数结构体
       class ModifyWorkspacesRenewFlagRequest < TencentCloud::Common::AbstractModel
         # @param SpaceIds: 工作空间列表
@@ -2915,6 +3072,32 @@ module TencentCloud
 
         def deserialize(params)
           @Zone = params['Zone']
+        end
+      end
+
+      # 价格
+      class Price < TencentCloud::Common::AbstractModel
+        # @param SpacePrice: 工作空间价格
+        # @type SpacePrice: :class:`Tencentcloud::Thpc.v20230321.models.ItemPrice`
+        # @param BandwidthPrice: 网络价格
+        # @type BandwidthPrice: :class:`Tencentcloud::Thpc.v20230321.models.ItemPrice`
+
+        attr_accessor :SpacePrice, :BandwidthPrice
+
+        def initialize(spaceprice=nil, bandwidthprice=nil)
+          @SpacePrice = spaceprice
+          @BandwidthPrice = bandwidthprice
+        end
+
+        def deserialize(params)
+          unless params['SpacePrice'].nil?
+            @SpacePrice = ItemPrice.new
+            @SpacePrice.deserialize(params['SpacePrice'])
+          end
+          unless params['BandwidthPrice'].nil?
+            @BandwidthPrice = ItemPrice.new
+            @BandwidthPrice.deserialize(params['BandwidthPrice'])
+          end
         end
       end
 

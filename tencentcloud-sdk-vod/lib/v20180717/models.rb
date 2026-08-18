@@ -4787,7 +4787,7 @@ module TencentCloud
 
       # AIGC 生图任务的输出。
       class AigcImageTaskOutput < TencentCloud::Common::AbstractModel
-        # @param FileInfos: AIGC 生图任务的输出文件信息。
+        # @param FileInfos: <p>AIGC 生图任务的输出文件信息。</p>
         # @type FileInfos: Array
 
         attr_accessor :FileInfos

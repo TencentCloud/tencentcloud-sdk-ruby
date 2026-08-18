@@ -3160,6 +3160,8 @@ module TencentCloud
         # @type ClusterTopology: :class:`Tencentcloud::Cdb.v20170320.models.ClusterTopology`
         # @param DiskType: <p>硬盘类型，单节点（云盘）或者云盘版实例可以指定此参数。CLOUD_SSD 表示 SSD 云硬盘，CLOUD_HSSD 表示增强型 SSD 云硬盘，CLOUD_PREMIUM 表示高性能云硬盘。<br>说明：单节点（云盘）、云盘版实例硬盘类型所支持的地域略有不同，具体支持情况请参考 <a href="https://cloud.tencent.com/document/product/236/8458">地域和可用区</a>。</p>
         # @type DiskType: String
+        # @param CdcId: <p>CDC集群ID，非CDC场景无需指定该入参</p>
+        # @type CdcId: String
         # @param ClusterType: <p>集群类型:cage——金融围拢，cdc——CDB ON CDC；dedicate——独享集群</p>
         # @type ClusterType: String
         # @param DiskEncryption: <p>是否对磁盘进行加密。仅云盘版实例支持该功能。 指定为 &quot;on&quot; 表示开启加密， 否则不加密。 购买只读实例、灾备实例、新克隆实例时该参数自动和主实例保持一致。</p>
@@ -3169,9 +3171,9 @@ module TencentCloud
         # @param FourthZone: <p>备库 3 的可用区信息，默认为空，购买四节点主实例时可指定该参数。</p>
         # @type FourthZone: String
 
-        attr_accessor :GoodsNum, :Memory, :Volume, :EngineVersion, :UniqVpcId, :UniqSubnetId, :ProjectId, :Zone, :MasterInstanceId, :InstanceRole, :MasterRegion, :Port, :Password, :ParamList, :ProtectMode, :DeployMode, :SlaveZone, :BackupZone, :SecurityGroup, :RoGroup, :AutoRenewFlag, :InstanceName, :ResourceTags, :DeployGroupId, :ClientToken, :DeviceType, :ParamTemplateId, :AlarmPolicyList, :InstanceNodes, :Cpu, :AutoSyncFlag, :CageId, :ParamTemplateType, :AlarmPolicyIdList, :DryRun, :EngineType, :Vips, :DataProtectVolume, :ClusterTopology, :DiskType, :ClusterType, :DiskEncryption, :DestroyProtect, :FourthZone
+        attr_accessor :GoodsNum, :Memory, :Volume, :EngineVersion, :UniqVpcId, :UniqSubnetId, :ProjectId, :Zone, :MasterInstanceId, :InstanceRole, :MasterRegion, :Port, :Password, :ParamList, :ProtectMode, :DeployMode, :SlaveZone, :BackupZone, :SecurityGroup, :RoGroup, :AutoRenewFlag, :InstanceName, :ResourceTags, :DeployGroupId, :ClientToken, :DeviceType, :ParamTemplateId, :AlarmPolicyList, :InstanceNodes, :Cpu, :AutoSyncFlag, :CageId, :ParamTemplateType, :AlarmPolicyIdList, :DryRun, :EngineType, :Vips, :DataProtectVolume, :ClusterTopology, :DiskType, :CdcId, :ClusterType, :DiskEncryption, :DestroyProtect, :FourthZone
 
-        def initialize(goodsnum=nil, memory=nil, volume=nil, engineversion=nil, uniqvpcid=nil, uniqsubnetid=nil, projectid=nil, zone=nil, masterinstanceid=nil, instancerole=nil, masterregion=nil, port=nil, password=nil, paramlist=nil, protectmode=nil, deploymode=nil, slavezone=nil, backupzone=nil, securitygroup=nil, rogroup=nil, autorenewflag=nil, instancename=nil, resourcetags=nil, deploygroupid=nil, clienttoken=nil, devicetype=nil, paramtemplateid=nil, alarmpolicylist=nil, instancenodes=nil, cpu=nil, autosyncflag=nil, cageid=nil, paramtemplatetype=nil, alarmpolicyidlist=nil, dryrun=nil, enginetype=nil, vips=nil, dataprotectvolume=nil, clustertopology=nil, disktype=nil, clustertype=nil, diskencryption=nil, destroyprotect=nil, fourthzone=nil)
+        def initialize(goodsnum=nil, memory=nil, volume=nil, engineversion=nil, uniqvpcid=nil, uniqsubnetid=nil, projectid=nil, zone=nil, masterinstanceid=nil, instancerole=nil, masterregion=nil, port=nil, password=nil, paramlist=nil, protectmode=nil, deploymode=nil, slavezone=nil, backupzone=nil, securitygroup=nil, rogroup=nil, autorenewflag=nil, instancename=nil, resourcetags=nil, deploygroupid=nil, clienttoken=nil, devicetype=nil, paramtemplateid=nil, alarmpolicylist=nil, instancenodes=nil, cpu=nil, autosyncflag=nil, cageid=nil, paramtemplatetype=nil, alarmpolicyidlist=nil, dryrun=nil, enginetype=nil, vips=nil, dataprotectvolume=nil, clustertopology=nil, disktype=nil, cdcid=nil, clustertype=nil, diskencryption=nil, destroyprotect=nil, fourthzone=nil)
           @GoodsNum = goodsnum
           @Memory = memory
           @Volume = volume
@@ -3212,6 +3214,7 @@ module TencentCloud
           @DataProtectVolume = dataprotectvolume
           @ClusterTopology = clustertopology
           @DiskType = disktype
+          @CdcId = cdcid
           @ClusterType = clustertype
           @DiskEncryption = diskencryption
           @DestroyProtect = destroyprotect
@@ -3279,6 +3282,7 @@ module TencentCloud
             @ClusterTopology.deserialize(params['ClusterTopology'])
           end
           @DiskType = params['DiskType']
+          @CdcId = params['CdcId']
           @ClusterType = params['ClusterType']
           @DiskEncryption = params['DiskEncryption']
           @DestroyProtect = params['DestroyProtect']

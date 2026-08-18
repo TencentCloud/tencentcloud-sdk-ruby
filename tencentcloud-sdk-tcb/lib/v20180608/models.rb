@@ -5899,18 +5899,20 @@ module TencentCloud
         # @type Status: String
         # @param DNSStatus: <p>DNS解析状态</p><p>枚举值：</p><ul><li>OK： 正常，命中目标 cname</li><li>EMPTY： 解析为空，域名尚未配置 CNAME 或未生效</li><li>INVALID： 异常，解析到其他非目标地址</li></ul>
         # @type DNSStatus: String
+        # @param PlatformCnameDNSStatus: <p>是否CNAME到平台任一网关入口，默认接入/CDN/EO，不含CustomCname</p><p>枚举值：</p><ul><li>EMPTY： 解析为空</li><li>OK： 命中</li><li>INVALID：  解析到其他非目标地址</li></ul>
+        # @type PlatformCnameDNSStatus: String
         # @param Routes: <p>HTTP访问服务路由信息</p>
         # @type Routes: Array
         # @param Extension: <p>扩展字段，内部包含headers处理等</p>
         # @type Extension: :class:`Tencentcloud::Tcb.v20180608.models.HTTPServiceExtension`
-        # @param CreateTime: <p>域名创建时间</p>
+        # @param CreateTime: <p>域名创建时间，格式  YYYY-MM-DDTHH:mm:ss±HH:mm，时区为 UTC+8</p>
         # @type CreateTime: String
-        # @param UpdateTime: <p>域名更新时间</p>
+        # @param UpdateTime: <p>域名更新时间，格式  YYYY-MM-DDTHH:mm:ss±HH:mm，时区为 UTC+8</p>
         # @type UpdateTime: String
 
-        attr_accessor :Domain, :DomainType, :AccessType, :CertId, :Protocol, :Cname, :IsDefault, :Enable, :Status, :DNSStatus, :Routes, :Extension, :CreateTime, :UpdateTime
+        attr_accessor :Domain, :DomainType, :AccessType, :CertId, :Protocol, :Cname, :IsDefault, :Enable, :Status, :DNSStatus, :PlatformCnameDNSStatus, :Routes, :Extension, :CreateTime, :UpdateTime
 
-        def initialize(domain=nil, domaintype=nil, accesstype=nil, certid=nil, protocol=nil, cname=nil, isdefault=nil, enable=nil, status=nil, dnsstatus=nil, routes=nil, extension=nil, createtime=nil, updatetime=nil)
+        def initialize(domain=nil, domaintype=nil, accesstype=nil, certid=nil, protocol=nil, cname=nil, isdefault=nil, enable=nil, status=nil, dnsstatus=nil, platformcnamednsstatus=nil, routes=nil, extension=nil, createtime=nil, updatetime=nil)
           @Domain = domain
           @DomainType = domaintype
           @AccessType = accesstype
@@ -5921,6 +5923,7 @@ module TencentCloud
           @Enable = enable
           @Status = status
           @DNSStatus = dnsstatus
+          @PlatformCnameDNSStatus = platformcnamednsstatus
           @Routes = routes
           @Extension = extension
           @CreateTime = createtime
@@ -5938,6 +5941,7 @@ module TencentCloud
           @Enable = params['Enable']
           @Status = params['Status']
           @DNSStatus = params['DNSStatus']
+          @PlatformCnameDNSStatus = params['PlatformCnameDNSStatus']
           unless params['Routes'].nil?
             @Routes = []
             params['Routes'].each do |i|
@@ -6132,29 +6136,29 @@ module TencentCloud
 
       # 查询HTTP访问服务输出路由信息
       class HTTPServiceRoute < TencentCloud::Common::AbstractModel
-        # @param Path: 路径
+        # @param Path: <p>路径</p>
         # @type Path: String
-        # @param PathRewrite: 路径重写
+        # @param PathRewrite: <p>路径重写规则</p>
         # @type PathRewrite: :class:`Tencentcloud::Tcb.v20180608.models.HTTPServicePathRewrite`
-        # @param UpstreamResourceType: 上游服务类型。SCF: 云函数，CBR: 云托管，STATIC_STORE: 静态托管，WEB_SCF: WEB云函数，LH: Lighthouse
+        # @param UpstreamResourceType: <p>上游服务类型。SCF: 云函数，CBR: 云托管，STATIC_STORE: 静态托管，WEB_SCF: WEB云函数，LH: Lighthouse</p>
         # @type UpstreamResourceType: String
-        # @param UpstreamResourceName: 上游服务名
+        # @param UpstreamResourceName: <p>上游服务名</p>
         # @type UpstreamResourceName: String
-        # @param EnableSafeDomain: 是否开启安全域名
+        # @param EnableSafeDomain: <p>是否开启安全域名</p>
         # @type EnableSafeDomain: Boolean
-        # @param EnableAuth: 是否开启身份认证
+        # @param EnableAuth: <p>是否开启身份认证</p>
         # @type EnableAuth: Boolean
-        # @param EnablePathTransmission: 是否开启路径透传
+        # @param EnablePathTransmission: <p>是否开启路径透传</p>
         # @type EnablePathTransmission: Boolean
-        # @param QPSPolicy: QPS限频策略
+        # @param QPSPolicy: <p>QPS限频策略</p>
         # @type QPSPolicy: :class:`Tencentcloud::Tcb.v20180608.models.HTTPServiceRouteQPSPolicy`
-        # @param Enable: 是否开启路由
+        # @param Enable: <p>是否开启路由</p>
         # @type Enable: Boolean
-        # @param Extension: 扩展字段，内部包含headers处理等
+        # @param Extension: <p>扩展字段，内部包含headers处理等</p>
         # @type Extension: :class:`Tencentcloud::Tcb.v20180608.models.HTTPServiceExtension`
-        # @param CreateTime: 路由创建时间
+        # @param CreateTime: <p>路由创建时间，格式  YYYY-MM-DDTHH:mm:ss±HH:mm，时区为 UTC+8</p>
         # @type CreateTime: String
-        # @param UpdateTime: 路由更新时间
+        # @param UpdateTime: <p>路由更新时间，格式  YYYY-MM-DDTHH:mm:ss±HH:mm，时区为 UTC+8</p>
         # @type UpdateTime: String
 
         attr_accessor :Path, :PathRewrite, :UpstreamResourceType, :UpstreamResourceName, :EnableSafeDomain, :EnableAuth, :EnablePathTransmission, :QPSPolicy, :Enable, :Extension, :CreateTime, :UpdateTime

@@ -588,6 +588,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询按量计费工作空间转换为包年包月的价格。不会创建订单或变更资源。
+
+        # @param request: Request instance for InquirePriceModifyWorkspacesChargeType.
+        # @type request: :class:`Tencentcloud::thpc::V20230321::InquirePriceModifyWorkspacesChargeTypeRequest`
+        # @rtype: :class:`Tencentcloud::thpc::V20230321::InquirePriceModifyWorkspacesChargeTypeResponse`
+        def InquirePriceModifyWorkspacesChargeType(request)
+          body = send_request('InquirePriceModifyWorkspacesChargeType', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = InquirePriceModifyWorkspacesChargeTypeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改集群删除保护状态
 
         # @param request: Request instance for ModifyClusterDeletionProtection.
@@ -670,6 +694,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyWorkspacesAttributeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 正式提交按量计费工作空间转包年包月订单。仅支持 ONLINE 且计费模式为 POSTPAID_BY_HOUR 的工作空间。
+
+        # @param request: Request instance for ModifyWorkspacesChargeType.
+        # @type request: :class:`Tencentcloud::thpc::V20230321::ModifyWorkspacesChargeTypeRequest`
+        # @rtype: :class:`Tencentcloud::thpc::V20230321::ModifyWorkspacesChargeTypeResponse`
+        def ModifyWorkspacesChargeType(request)
+          body = send_request('ModifyWorkspacesChargeType', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyWorkspacesChargeTypeResponse.new
             model.deserialize(response['Response'])
             model
           else

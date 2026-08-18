@@ -1589,12 +1589,14 @@ module TencentCloud
         # @type KafkaConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.KafkaConnectParam`
         # @param MqttConnectParam: <p>MQTT配置，Type为 MQTT 时必填</p>
         # @type MqttConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.MqttConnectParam`
+        # @param IcebergConnectParam: <p>Iceberg配置，Type为ICEBERG时必填</p>
+        # @type IcebergConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.IcebergConnectParam`
         # @param Tags: <p>标签列表</p>
         # @type Tags: Array
 
-        attr_accessor :ResourceName, :Type, :Description, :DtsConnectParam, :MongoDBConnectParam, :EsConnectParam, :ClickHouseConnectParam, :MySQLConnectParam, :PostgreSQLConnectParam, :MariaDBConnectParam, :SQLServerConnectParam, :DorisConnectParam, :KafkaConnectParam, :MqttConnectParam, :Tags
+        attr_accessor :ResourceName, :Type, :Description, :DtsConnectParam, :MongoDBConnectParam, :EsConnectParam, :ClickHouseConnectParam, :MySQLConnectParam, :PostgreSQLConnectParam, :MariaDBConnectParam, :SQLServerConnectParam, :DorisConnectParam, :KafkaConnectParam, :MqttConnectParam, :IcebergConnectParam, :Tags
 
-        def initialize(resourcename=nil, type=nil, description=nil, dtsconnectparam=nil, mongodbconnectparam=nil, esconnectparam=nil, clickhouseconnectparam=nil, mysqlconnectparam=nil, postgresqlconnectparam=nil, mariadbconnectparam=nil, sqlserverconnectparam=nil, dorisconnectparam=nil, kafkaconnectparam=nil, mqttconnectparam=nil, tags=nil)
+        def initialize(resourcename=nil, type=nil, description=nil, dtsconnectparam=nil, mongodbconnectparam=nil, esconnectparam=nil, clickhouseconnectparam=nil, mysqlconnectparam=nil, postgresqlconnectparam=nil, mariadbconnectparam=nil, sqlserverconnectparam=nil, dorisconnectparam=nil, kafkaconnectparam=nil, mqttconnectparam=nil, icebergconnectparam=nil, tags=nil)
           @ResourceName = resourcename
           @Type = type
           @Description = description
@@ -1609,6 +1611,7 @@ module TencentCloud
           @DorisConnectParam = dorisconnectparam
           @KafkaConnectParam = kafkaconnectparam
           @MqttConnectParam = mqttconnectparam
+          @IcebergConnectParam = icebergconnectparam
           @Tags = tags
         end
 
@@ -1659,6 +1662,10 @@ module TencentCloud
           unless params['MqttConnectParam'].nil?
             @MqttConnectParam = MqttConnectParam.new
             @MqttConnectParam.deserialize(params['MqttConnectParam'])
+          end
+          unless params['IcebergConnectParam'].nil?
+            @IcebergConnectParam = IcebergConnectParam.new
+            @IcebergConnectParam.deserialize(params['IcebergConnectParam'])
           end
           unless params['Tags'].nil?
             @Tags = []
@@ -3198,91 +3205,65 @@ module TencentCloud
 
       # Datahub资源配置
       class DatahubResource < TencentCloud::Common::AbstractModel
-        # @param Type: 资源类型  type类型如下:
-        # KAFKA,
-        # EB_ES,
-        # EB_COS,
-        # EB_CLS,
-        # EB_,
-        # MONGODB,
-        # HTTP,
-        # TDW,
-        # ES,
-        # CLICKHOUSE,
-        # DTS,
-        # CLS,
-        # COS,
-        # TOPIC,
-        # MYSQL,
-        # MQTT,
-        # MYSQL_DATA,
-        # DORIS,
-        # POSTGRESQL,
-        # TDSQL_C_POSTGRESQL,
-        # TDSQL_POSTGRESQL,
-        # WAREHOUSE_POSTGRESQL,
-        # TDSQL_C_MYSQL,
-        # MARIADB,
-        # SQLSERVER,
-        # CTSDB,
-        # SCF
-
+        # @param Type: <p>资源类型  type类型如下:<br>KAFKA,<br>EB_ES,<br>EB_COS,<br>EB_CLS,<br>EB_,<br>MONGODB,<br>HTTP,<br>TDW,<br>ES,<br>CLICKHOUSE,<br>DTS,<br>CLS,<br>COS,<br>TOPIC,<br>MYSQL,<br>MQTT,<br>MYSQL_DATA,<br>DORIS,<br>POSTGRESQL,<br>TDSQL_C_POSTGRESQL,<br>TDSQL_POSTGRESQL,<br>WAREHOUSE_POSTGRESQL,<br>TDSQL_C_MYSQL,<br>MARIADB,<br>SQLSERVER,<br>CTSDB,<br>SCF</p>
         # @type Type: String
-        # @param KafkaParam: ckafka配置，Type为KAFKA时必填
+        # @param KafkaParam: <p>ckafka配置，Type为KAFKA时必填</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KafkaParam: :class:`Tencentcloud::Ckafka.v20190819.models.KafkaParam`
-        # @param EventBusParam: EB配置，Type为EB时必填
+        # @param EventBusParam: <p>EB配置，Type为EB时必填</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EventBusParam: :class:`Tencentcloud::Ckafka.v20190819.models.EventBusParam`
-        # @param MongoDBParam: MongoDB配置，Type为MONGODB时必填
+        # @param MongoDBParam: <p>MongoDB配置，Type为MONGODB时必填</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MongoDBParam: :class:`Tencentcloud::Ckafka.v20190819.models.MongoDBParam`
-        # @param EsParam: Es配置，Type为ES时必填
+        # @param EsParam: <p>Es配置，Type为ES时必填</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EsParam: :class:`Tencentcloud::Ckafka.v20190819.models.EsParam`
-        # @param TdwParam: Tdw配置，Type为TDW时必填
+        # @param TdwParam: <p>Tdw配置，Type为TDW时必填</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TdwParam: :class:`Tencentcloud::Ckafka.v20190819.models.TdwParam`
-        # @param DtsParam: Dts配置，Type为DTS时必填
+        # @param DtsParam: <p>Dts配置，Type为DTS时必填</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DtsParam: :class:`Tencentcloud::Ckafka.v20190819.models.DtsParam`
-        # @param ClickHouseParam: ClickHouse配置，Type为CLICKHOUSE时必填
+        # @param ClickHouseParam: <p>ClickHouse配置，Type为CLICKHOUSE时必填</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClickHouseParam: :class:`Tencentcloud::Ckafka.v20190819.models.ClickHouseParam`
-        # @param ClsParam: Cls配置，Type为CLS时必填
+        # @param ClsParam: <p>Cls配置，Type为CLS时必填</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClsParam: :class:`Tencentcloud::Ckafka.v20190819.models.ClsParam`
-        # @param CosParam: Cos配置，Type为COS时必填
+        # @param CosParam: <p>Cos配置，Type为COS时必填</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CosParam: :class:`Tencentcloud::Ckafka.v20190819.models.CosParam`
-        # @param MySQLParam: MySQL配置，Type为MYSQL时必填
+        # @param MySQLParam: <p>MySQL配置，Type为MYSQL时必填</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MySQLParam: :class:`Tencentcloud::Ckafka.v20190819.models.MySQLParam`
-        # @param PostgreSQLParam: PostgreSQL配置，Type为POSTGRESQL或TDSQL_C_POSTGRESQL时必填
+        # @param PostgreSQLParam: <p>PostgreSQL配置，Type为POSTGRESQL或TDSQL_C_POSTGRESQL时必填</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PostgreSQLParam: :class:`Tencentcloud::Ckafka.v20190819.models.PostgreSQLParam`
-        # @param TopicParam: Topic配置，Type为Topic时必填
+        # @param TopicParam: <p>Topic配置，Type为Topic时必填</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicParam: :class:`Tencentcloud::Ckafka.v20190819.models.TopicParam`
-        # @param MariaDBParam: MariaDB配置，Type为MARIADB时必填
+        # @param MariaDBParam: <p>MariaDB配置，Type为MARIADB时必填</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MariaDBParam: :class:`Tencentcloud::Ckafka.v20190819.models.MariaDBParam`
-        # @param SQLServerParam: SQLServer配置，Type为SQLSERVER时必填
+        # @param SQLServerParam: <p>SQLServer配置，Type为SQLSERVER时必填</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SQLServerParam: :class:`Tencentcloud::Ckafka.v20190819.models.SQLServerParam`
-        # @param CtsdbParam: Ctsdb配置，Type为CTSDB时必填
+        # @param CtsdbParam: <p>Ctsdb配置，Type为CTSDB时必填</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CtsdbParam: :class:`Tencentcloud::Ckafka.v20190819.models.CtsdbParam`
-        # @param ScfParam: Scf配置，Type为SCF时必填
+        # @param ScfParam: <p>Scf配置，Type为SCF时必填</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScfParam: :class:`Tencentcloud::Ckafka.v20190819.models.ScfParam`
-        # @param MqttParam: MQTT配置，Type为 MQTT 时必填
+        # @param MqttParam: <p>MQTT配置，Type为 MQTT 时必填</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MqttParam: :class:`Tencentcloud::Ckafka.v20190819.models.MqttParam`
+        # @param IcebergParam: <p>IceBerg配置</p>
+        # @type IcebergParam: :class:`Tencentcloud::Ckafka.v20190819.models.IcebergParam`
 
-        attr_accessor :Type, :KafkaParam, :EventBusParam, :MongoDBParam, :EsParam, :TdwParam, :DtsParam, :ClickHouseParam, :ClsParam, :CosParam, :MySQLParam, :PostgreSQLParam, :TopicParam, :MariaDBParam, :SQLServerParam, :CtsdbParam, :ScfParam, :MqttParam
+        attr_accessor :Type, :KafkaParam, :EventBusParam, :MongoDBParam, :EsParam, :TdwParam, :DtsParam, :ClickHouseParam, :ClsParam, :CosParam, :MySQLParam, :PostgreSQLParam, :TopicParam, :MariaDBParam, :SQLServerParam, :CtsdbParam, :ScfParam, :MqttParam, :IcebergParam
 
-        def initialize(type=nil, kafkaparam=nil, eventbusparam=nil, mongodbparam=nil, esparam=nil, tdwparam=nil, dtsparam=nil, clickhouseparam=nil, clsparam=nil, cosparam=nil, mysqlparam=nil, postgresqlparam=nil, topicparam=nil, mariadbparam=nil, sqlserverparam=nil, ctsdbparam=nil, scfparam=nil, mqttparam=nil)
+        def initialize(type=nil, kafkaparam=nil, eventbusparam=nil, mongodbparam=nil, esparam=nil, tdwparam=nil, dtsparam=nil, clickhouseparam=nil, clsparam=nil, cosparam=nil, mysqlparam=nil, postgresqlparam=nil, topicparam=nil, mariadbparam=nil, sqlserverparam=nil, ctsdbparam=nil, scfparam=nil, mqttparam=nil, icebergparam=nil)
           @Type = type
           @KafkaParam = kafkaparam
           @EventBusParam = eventbusparam
@@ -3301,6 +3282,7 @@ module TencentCloud
           @CtsdbParam = ctsdbparam
           @ScfParam = scfparam
           @MqttParam = mqttparam
+          @IcebergParam = icebergparam
         end
 
         def deserialize(params)
@@ -3373,22 +3355,31 @@ module TencentCloud
             @MqttParam = MqttParam.new
             @MqttParam.deserialize(params['MqttParam'])
           end
+          unless params['IcebergParam'].nil?
+            @IcebergParam = IcebergParam.new
+            @IcebergParam.deserialize(params['IcebergParam'])
+          end
         end
       end
 
       # Datahub请求的taskid
       class DatahubTaskIdRes < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务id
+        # @param TaskId: <p>任务id</p>
         # @type TaskId: String
+        # @param DatahubId: <p>DatahubId</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatahubId: String
 
-        attr_accessor :TaskId
+        attr_accessor :TaskId, :DatahubId
 
-        def initialize(taskid=nil)
+        def initialize(taskid=nil, datahubid=nil)
           @TaskId = taskid
+          @DatahubId = datahubid
         end
 
         def deserialize(params)
           @TaskId = params['TaskId']
+          @DatahubId = params['DatahubId']
         end
       end
 
@@ -4522,12 +4513,14 @@ module TencentCloud
         # @param MqttConnectParam: <p>MQTT配置，Type 为 MQTT 时返回</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MqttConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.MqttConnectParam`
+        # @param IcebergConnectParam: <p>Iceberg配置，Type为ICEBERG时返回</p>
+        # @type IcebergConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.IcebergConnectParam`
         # @param Tags: <p>标签列表</p>
         # @type Tags: Array
 
-        attr_accessor :ResourceId, :ResourceName, :Description, :Type, :Status, :CreateTime, :ErrorMessage, :DatahubTaskCount, :CurrentStep, :TaskProgress, :StepList, :DtsConnectParam, :MongoDBConnectParam, :EsConnectParam, :ClickHouseConnectParam, :MySQLConnectParam, :PostgreSQLConnectParam, :MariaDBConnectParam, :SQLServerConnectParam, :CtsdbConnectParam, :DorisConnectParam, :KafkaConnectParam, :MqttConnectParam, :Tags
+        attr_accessor :ResourceId, :ResourceName, :Description, :Type, :Status, :CreateTime, :ErrorMessage, :DatahubTaskCount, :CurrentStep, :TaskProgress, :StepList, :DtsConnectParam, :MongoDBConnectParam, :EsConnectParam, :ClickHouseConnectParam, :MySQLConnectParam, :PostgreSQLConnectParam, :MariaDBConnectParam, :SQLServerConnectParam, :CtsdbConnectParam, :DorisConnectParam, :KafkaConnectParam, :MqttConnectParam, :IcebergConnectParam, :Tags
 
-        def initialize(resourceid=nil, resourcename=nil, description=nil, type=nil, status=nil, createtime=nil, errormessage=nil, datahubtaskcount=nil, currentstep=nil, taskprogress=nil, steplist=nil, dtsconnectparam=nil, mongodbconnectparam=nil, esconnectparam=nil, clickhouseconnectparam=nil, mysqlconnectparam=nil, postgresqlconnectparam=nil, mariadbconnectparam=nil, sqlserverconnectparam=nil, ctsdbconnectparam=nil, dorisconnectparam=nil, kafkaconnectparam=nil, mqttconnectparam=nil, tags=nil)
+        def initialize(resourceid=nil, resourcename=nil, description=nil, type=nil, status=nil, createtime=nil, errormessage=nil, datahubtaskcount=nil, currentstep=nil, taskprogress=nil, steplist=nil, dtsconnectparam=nil, mongodbconnectparam=nil, esconnectparam=nil, clickhouseconnectparam=nil, mysqlconnectparam=nil, postgresqlconnectparam=nil, mariadbconnectparam=nil, sqlserverconnectparam=nil, ctsdbconnectparam=nil, dorisconnectparam=nil, kafkaconnectparam=nil, mqttconnectparam=nil, icebergconnectparam=nil, tags=nil)
           @ResourceId = resourceid
           @ResourceName = resourcename
           @Description = description
@@ -4551,6 +4544,7 @@ module TencentCloud
           @DorisConnectParam = dorisconnectparam
           @KafkaConnectParam = kafkaconnectparam
           @MqttConnectParam = mqttconnectparam
+          @IcebergConnectParam = icebergconnectparam
           @Tags = tags
         end
 
@@ -4613,6 +4607,10 @@ module TencentCloud
           unless params['MqttConnectParam'].nil?
             @MqttConnectParam = MqttConnectParam.new
             @MqttConnectParam.deserialize(params['MqttConnectParam'])
+          end
+          unless params['IcebergConnectParam'].nil?
+            @IcebergConnectParam = IcebergConnectParam.new
+            @IcebergConnectParam.deserialize(params['IcebergConnectParam'])
           end
           unless params['Tags'].nil?
             @Tags = []
@@ -4698,12 +4696,16 @@ module TencentCloud
         # @param MqttConnectParam: <p>MQTT配置，Type 为 MQTT 时返回</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MqttConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.MqttConnectParam`
+        # @param IcebergConnectParam: <p>Iceberg配置，Type为ICEBERG时返回</p>
+        # @type IcebergConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.IcebergConnectParam`
         # @param Tags: <p>标签列表</p>
         # @type Tags: Array
+        # @param IcebergDatabases: <p>iceberg数据库和表信息</p>
+        # @type IcebergDatabases: Array
 
-        attr_accessor :ResourceId, :ResourceName, :Description, :Type, :Status, :CreateTime, :ErrorMessage, :CurrentStep, :StepList, :MySQLConnectParam, :PostgreSQLConnectParam, :DtsConnectParam, :MongoDBConnectParam, :EsConnectParam, :ClickHouseConnectParam, :MariaDBConnectParam, :SQLServerConnectParam, :CtsdbConnectParam, :DorisConnectParam, :KafkaConnectParam, :MqttConnectParam, :Tags
+        attr_accessor :ResourceId, :ResourceName, :Description, :Type, :Status, :CreateTime, :ErrorMessage, :CurrentStep, :StepList, :MySQLConnectParam, :PostgreSQLConnectParam, :DtsConnectParam, :MongoDBConnectParam, :EsConnectParam, :ClickHouseConnectParam, :MariaDBConnectParam, :SQLServerConnectParam, :CtsdbConnectParam, :DorisConnectParam, :KafkaConnectParam, :MqttConnectParam, :IcebergConnectParam, :Tags, :IcebergDatabases
 
-        def initialize(resourceid=nil, resourcename=nil, description=nil, type=nil, status=nil, createtime=nil, errormessage=nil, currentstep=nil, steplist=nil, mysqlconnectparam=nil, postgresqlconnectparam=nil, dtsconnectparam=nil, mongodbconnectparam=nil, esconnectparam=nil, clickhouseconnectparam=nil, mariadbconnectparam=nil, sqlserverconnectparam=nil, ctsdbconnectparam=nil, dorisconnectparam=nil, kafkaconnectparam=nil, mqttconnectparam=nil, tags=nil)
+        def initialize(resourceid=nil, resourcename=nil, description=nil, type=nil, status=nil, createtime=nil, errormessage=nil, currentstep=nil, steplist=nil, mysqlconnectparam=nil, postgresqlconnectparam=nil, dtsconnectparam=nil, mongodbconnectparam=nil, esconnectparam=nil, clickhouseconnectparam=nil, mariadbconnectparam=nil, sqlserverconnectparam=nil, ctsdbconnectparam=nil, dorisconnectparam=nil, kafkaconnectparam=nil, mqttconnectparam=nil, icebergconnectparam=nil, tags=nil, icebergdatabases=nil)
           @ResourceId = resourceid
           @ResourceName = resourcename
           @Description = description
@@ -4725,7 +4727,9 @@ module TencentCloud
           @DorisConnectParam = dorisconnectparam
           @KafkaConnectParam = kafkaconnectparam
           @MqttConnectParam = mqttconnectparam
+          @IcebergConnectParam = icebergconnectparam
           @Tags = tags
+          @IcebergDatabases = icebergdatabases
         end
 
         def deserialize(params)
@@ -4786,12 +4790,24 @@ module TencentCloud
             @MqttConnectParam = MqttConnectParam.new
             @MqttConnectParam.deserialize(params['MqttConnectParam'])
           end
+          unless params['IcebergConnectParam'].nil?
+            @IcebergConnectParam = IcebergConnectParam.new
+            @IcebergConnectParam.deserialize(params['IcebergConnectParam'])
+          end
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
               tag_tmp = Tag.new
               tag_tmp.deserialize(i)
               @Tags << tag_tmp
+            end
+          end
+          unless params['IcebergDatabases'].nil?
+            @IcebergDatabases = []
+            params['IcebergDatabases'].each do |i|
+              icebergdatabaseinfo_tmp = IcebergDatabaseInfo.new
+              icebergdatabaseinfo_tmp.deserialize(i)
+              @IcebergDatabases << icebergdatabaseinfo_tmp
             end
           end
         end
@@ -7045,27 +7061,35 @@ module TencentCloud
 
       # Es连接源参数
       class EsConnectParam < TencentCloud::Common::AbstractModel
-        # @param Port: Es的连接port
+        # @param Port: <p>Es的连接port</p>
         # @type Port: Integer
-        # @param UserName: Es连接源的用户名
+        # @param UserName: <p>Es连接源的用户名</p>
         # @type UserName: String
-        # @param Password: Es连接源的密码
+        # @param Password: <p>Es连接源的密码</p>
         # @type Password: String
-        # @param Resource: Es连接源的实例资源
+        # @param Resource: <p>Es连接源的实例资源</p>
         # @type Resource: String
-        # @param SelfBuilt: Es连接源是否为自建集群
+        # @param SelfBuilt: <p>Es连接源是否为自建集群</p>
         # @type SelfBuilt: Boolean
-        # @param ServiceVip: Es连接源的实例vip，当为腾讯云实例时，必填
+        # @param ServiceVip: <p>Es连接源的实例vip，当为腾讯云实例时，必填</p>
         # @type ServiceVip: String
-        # @param UniqVpcId: Es连接源的vpcId，当为腾讯云实例时，必填
+        # @param UniqVpcId: <p>Es连接源的vpcId，当为腾讯云实例时，必填</p>
         # @type UniqVpcId: String
-        # @param IsUpdate: 是否更新到关联的Datahub任务
+        # @param IsUpdate: <p>是否更新到关联的Datahub任务</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsUpdate: Boolean
+        # @param EsType: <p>es类型</p><p>枚举值：</p><ul><li>CLUSTER： 普通集群es</li><li>SERVERLESS： serverless形态es</li></ul>
+        # @type EsType: String
+        # @param EsVersion: <p>es版本</p><p>默认值：7.14.2</p>
+        # @type EsVersion: String
+        # @param EndpointUrl: <p>endpointUrl，es的serverless版本的访问入口地址</p>
+        # @type EndpointUrl: String
+        # @param Protocol: <p>集群版 ES 连接协议，默认http协议</p><p>枚举值：</p><ul><li>http： http协议</li><li>https： https协议</li></ul>
+        # @type Protocol: String
 
-        attr_accessor :Port, :UserName, :Password, :Resource, :SelfBuilt, :ServiceVip, :UniqVpcId, :IsUpdate
+        attr_accessor :Port, :UserName, :Password, :Resource, :SelfBuilt, :ServiceVip, :UniqVpcId, :IsUpdate, :EsType, :EsVersion, :EndpointUrl, :Protocol
 
-        def initialize(port=nil, username=nil, password=nil, resource=nil, selfbuilt=nil, servicevip=nil, uniqvpcid=nil, isupdate=nil)
+        def initialize(port=nil, username=nil, password=nil, resource=nil, selfbuilt=nil, servicevip=nil, uniqvpcid=nil, isupdate=nil, estype=nil, esversion=nil, endpointurl=nil, protocol=nil)
           @Port = port
           @UserName = username
           @Password = password
@@ -7074,6 +7098,10 @@ module TencentCloud
           @ServiceVip = servicevip
           @UniqVpcId = uniqvpcid
           @IsUpdate = isupdate
+          @EsType = estype
+          @EsVersion = esversion
+          @EndpointUrl = endpointurl
+          @Protocol = protocol
         end
 
         def deserialize(params)
@@ -7085,31 +7113,43 @@ module TencentCloud
           @ServiceVip = params['ServiceVip']
           @UniqVpcId = params['UniqVpcId']
           @IsUpdate = params['IsUpdate']
+          @EsType = params['EsType']
+          @EsVersion = params['EsVersion']
+          @EndpointUrl = params['EndpointUrl']
+          @Protocol = params['Protocol']
         end
       end
 
       # Es修改连接源参数
       class EsModifyConnectParam < TencentCloud::Common::AbstractModel
-        # @param Resource: Es连接源的实例资源【不支持修改】
+        # @param Resource: <p>Es连接源的实例资源【不支持修改】</p>
         # @type Resource: String
-        # @param Port: Es的连接port【不支持修改】
+        # @param Port: <p>Es的连接port【不支持修改】</p>
         # @type Port: Integer
-        # @param ServiceVip: Es连接源的实例vip【不支持修改】
+        # @param ServiceVip: <p>Es连接源的实例vip【不支持修改】</p>
         # @type ServiceVip: String
-        # @param UniqVpcId: Es连接源的vpcId【不支持修改】
+        # @param UniqVpcId: <p>Es连接源的vpcId【不支持修改】</p>
         # @type UniqVpcId: String
-        # @param UserName: Es连接源的用户名
+        # @param UserName: <p>Es连接源的用户名</p>
         # @type UserName: String
-        # @param Password: Es连接源的密码
+        # @param Password: <p>Es连接源的密码</p>
         # @type Password: String
-        # @param SelfBuilt: Es连接源是否为自建集群【不支持修改】
+        # @param SelfBuilt: <p>Es连接源是否为自建集群【不支持修改】</p>
         # @type SelfBuilt: Boolean
-        # @param IsUpdate: 是否更新到关联的Datahub任务
+        # @param IsUpdate: <p>是否更新到关联的Datahub任务</p>
         # @type IsUpdate: Boolean
+        # @param EsType: <p>es类型</p><p>枚举值：</p><ul><li>CLUSTER： 普通集群es</li><li>SERVERLESS： serverless形态es</li></ul>
+        # @type EsType: String
+        # @param EsVersion: <p>es版本，默认7.14.2</p><p>默认值：7.14.2</p>
+        # @type EsVersion: String
+        # @param EndpointUrl: <p>endpointUrl，es的serverless版本的访问入口地址</p>
+        # @type EndpointUrl: String
+        # @param Protocol: <p>集群版 ES 连接协议，默认http协议</p><p>枚举值：</p><ul><li>http： http协议</li><li>https： https协议</li></ul>
+        # @type Protocol: String
 
-        attr_accessor :Resource, :Port, :ServiceVip, :UniqVpcId, :UserName, :Password, :SelfBuilt, :IsUpdate
+        attr_accessor :Resource, :Port, :ServiceVip, :UniqVpcId, :UserName, :Password, :SelfBuilt, :IsUpdate, :EsType, :EsVersion, :EndpointUrl, :Protocol
 
-        def initialize(resource=nil, port=nil, servicevip=nil, uniqvpcid=nil, username=nil, password=nil, selfbuilt=nil, isupdate=nil)
+        def initialize(resource=nil, port=nil, servicevip=nil, uniqvpcid=nil, username=nil, password=nil, selfbuilt=nil, isupdate=nil, estype=nil, esversion=nil, endpointurl=nil, protocol=nil)
           @Resource = resource
           @Port = port
           @ServiceVip = servicevip
@@ -7118,6 +7158,10 @@ module TencentCloud
           @Password = password
           @SelfBuilt = selfbuilt
           @IsUpdate = isupdate
+          @EsType = estype
+          @EsVersion = esversion
+          @EndpointUrl = endpointurl
+          @Protocol = protocol
         end
 
         def deserialize(params)
@@ -7129,55 +7173,61 @@ module TencentCloud
           @Password = params['Password']
           @SelfBuilt = params['SelfBuilt']
           @IsUpdate = params['IsUpdate']
+          @EsType = params['EsType']
+          @EsVersion = params['EsVersion']
+          @EndpointUrl = params['EndpointUrl']
+          @Protocol = params['Protocol']
         end
       end
 
       # Es类型入参
       class EsParam < TencentCloud::Common::AbstractModel
-        # @param Resource: Es实例资源Id
+        # @param Resource: <p>Es实例资源Id</p>
         # @type Resource: String
-        # @param Port: Es的连接port
+        # @param Port: <p>Es的连接port</p>
         # @type Port: Integer
-        # @param UserName: Es用户名
+        # @param UserName: <p>Es用户名</p>
         # @type UserName: String
-        # @param Password: Es密码
+        # @param Password: <p>Es密码</p>
         # @type Password: String
-        # @param SelfBuilt: 是否为自建集群
+        # @param SelfBuilt: <p>是否为自建集群</p>
         # @type SelfBuilt: Boolean
-        # @param ServiceVip: 实例vip
+        # @param ServiceVip: <p>实例vip</p>
         # @type ServiceVip: String
-        # @param UniqVpcId: 实例的vpcId
+        # @param UniqVpcId: <p>实例的vpcId</p>
         # @type UniqVpcId: String
-        # @param DropInvalidMessage: Es是否抛弃解析失败的消息
+        # @param DropInvalidMessage: <p>Es是否抛弃解析失败的消息</p>
         # @type DropInvalidMessage: Boolean
-        # @param Index: Es自定义index名称
+        # @param Index: <p>Es自定义index名称</p>
         # @type Index: String
-        # @param DateFormat: Es自定义日期后缀
+        # @param DateFormat: <p>Es自定义日期后缀</p>
         # @type DateFormat: String
-        # @param ContentKey: 非json格式数据的自定义key
+        # @param ContentKey: <p>非json格式数据的自定义key</p>
         # @type ContentKey: String
-        # @param DropInvalidJsonMessage: Es是否抛弃非json格式的消息
+        # @param DropInvalidJsonMessage: <p>Es是否抛弃非json格式的消息</p>
         # @type DropInvalidJsonMessage: Boolean
-        # @param DocumentIdField: 转储到Es中的文档ID取值字段名
+        # @param DocumentIdField: <p>转储到Es中的文档ID取值字段名</p>
         # @type DocumentIdField: String
-        # @param IndexType: Es自定义index名称的类型，STRING，JSONPATH，默认为STRING
+        # @param IndexType: <p>Es自定义index名称的类型，STRING，JSONPATH，默认为STRING</p>
         # @type IndexType: String
-        # @param DropCls: 当设置成员参数DropInvalidMessageToCls设置为true时,DropInvalidMessage参数失效
+        # @param DropCls: <p>当设置成员参数DropInvalidMessageToCls设置为true时,DropInvalidMessage参数失效</p>
         # @type DropCls: :class:`Tencentcloud::Ckafka.v20190819.models.DropCls`
-        # @param DatabasePrimaryKey: 转储到ES的消息为Database的binlog时，如果需要同步数据库操作，即增删改的操作到ES时填写数据库表主键
+        # @param DatabasePrimaryKey: <p>转储到ES的消息为Database的binlog时，如果需要同步数据库操作，即增删改的操作到ES时填写数据库表主键</p>
         # @type DatabasePrimaryKey: String
-        # @param DropDlq: 死信队列
+        # @param DropDlq: <p>死信队列</p>
         # @type DropDlq: :class:`Tencentcloud::Ckafka.v20190819.models.FailureParam`
-        # @param RecordMappingList: 使用数据订阅格式导入 es 时，消息与 es 索引字段映射关系。不填默认为默认字段匹配
+        # @param RecordMappingList: <p>使用数据订阅格式导入 es 时，消息与 es 索引字段映射关系。不填默认为默认字段匹配</p>
         # @type RecordMappingList: Array
-        # @param DateField: 消息要映射为 es 索引中 @timestamp 的字段，如果当前配置为空，则使用消息的时间戳进行映射
+        # @param DateField: <p>消息要映射为 es 索引中 @timestamp 的字段，如果当前配置为空，则使用消息的时间戳进行映射</p>
         # @type DateField: String
-        # @param RecordMappingMode: 用来区分当前索引映射，属于新建索引还是存量索引。"EXIST_MAPPING"：从存量索引中选择；"NEW_MAPPING"：新建索引
+        # @param RecordMappingMode: <p>用来区分当前索引映射，属于新建索引还是存量索引。&quot;EXIST_MAPPING&quot;：从存量索引中选择；&quot;NEW_MAPPING&quot;：新建索引</p>
         # @type RecordMappingMode: String
+        # @param Protocol: <p>集群版 ES 连接协议，默认http协议</p><p>枚举值：</p><ul><li>http： http协议</li><li>https： https协议</li></ul>
+        # @type Protocol: String
 
-        attr_accessor :Resource, :Port, :UserName, :Password, :SelfBuilt, :ServiceVip, :UniqVpcId, :DropInvalidMessage, :Index, :DateFormat, :ContentKey, :DropInvalidJsonMessage, :DocumentIdField, :IndexType, :DropCls, :DatabasePrimaryKey, :DropDlq, :RecordMappingList, :DateField, :RecordMappingMode
+        attr_accessor :Resource, :Port, :UserName, :Password, :SelfBuilt, :ServiceVip, :UniqVpcId, :DropInvalidMessage, :Index, :DateFormat, :ContentKey, :DropInvalidJsonMessage, :DocumentIdField, :IndexType, :DropCls, :DatabasePrimaryKey, :DropDlq, :RecordMappingList, :DateField, :RecordMappingMode, :Protocol
 
-        def initialize(resource=nil, port=nil, username=nil, password=nil, selfbuilt=nil, servicevip=nil, uniqvpcid=nil, dropinvalidmessage=nil, index=nil, dateformat=nil, contentkey=nil, dropinvalidjsonmessage=nil, documentidfield=nil, indextype=nil, dropcls=nil, databaseprimarykey=nil, dropdlq=nil, recordmappinglist=nil, datefield=nil, recordmappingmode=nil)
+        def initialize(resource=nil, port=nil, username=nil, password=nil, selfbuilt=nil, servicevip=nil, uniqvpcid=nil, dropinvalidmessage=nil, index=nil, dateformat=nil, contentkey=nil, dropinvalidjsonmessage=nil, documentidfield=nil, indextype=nil, dropcls=nil, databaseprimarykey=nil, dropdlq=nil, recordmappinglist=nil, datefield=nil, recordmappingmode=nil, protocol=nil)
           @Resource = resource
           @Port = port
           @UserName = username
@@ -7198,6 +7248,7 @@ module TencentCloud
           @RecordMappingList = recordmappinglist
           @DateField = datefield
           @RecordMappingMode = recordmappingmode
+          @Protocol = protocol
         end
 
         def deserialize(params)
@@ -7234,6 +7285,7 @@ module TencentCloud
           end
           @DateField = params['DateField']
           @RecordMappingMode = params['RecordMappingMode']
+          @Protocol = params['Protocol']
         end
       end
 
@@ -7989,6 +8041,122 @@ module TencentCloud
             end
           end
           @GroupCountQuota = params['GroupCountQuota']
+        end
+      end
+
+      # Iceberg连接源参数
+      class IcebergConnectParam < TencentCloud::Common::AbstractModel
+        # @param ServiceVip: <p>EMR实例的HiveMetaStore节点IP</p><p>参数格式：多个使用英文分号;分隔</p><p>创建连接时必选，编辑连接时不接收该参数</p>
+        # @type ServiceVip: String
+        # @param Resource: <p>EMR实例ID</p><p>创建连接时必选，编辑连接时不接收该参数</p>
+        # @type Resource: String
+        # @param UniqVpcId: <p>EMR实例的集群网络vpcId</p><p>创建连接时必选，编辑连接时不接收该参数</p>
+        # @type UniqVpcId: String
+        # @param AuthType: <p>认证类型</p><p>枚举值：</p><ul><li>NONE： 无认证</li><li>KERBEROS： Kerberos认证</li></ul><p>开启Kerberos认证的EMR实例，此处需传入KERBEROS，创建连接时必选，编辑连接时非必选</p>
+        # @type AuthType: String
+        # @param EniIdList: <p>EMR实例的HiveMetaStore节点IP绑定的弹性网卡Id列表</p><p>数量和顺序必须与ServiceVip字段中的多个IP对应，创建连接时必选，编辑连接时不接收该参数</p>
+        # @type EniIdList: Array
+        # @param CatalogType: <p>Catalog数据目录类型</p><p>枚举值：</p><ul><li>HIVE： Hive Catalog</li></ul><p>默认值：HIVE</p><p>仅支持Hive Catalog</p>
+        # @type CatalogType: String
+        # @param KeyTabContent: <p>用于Kerberos认证的user.keytab文件的内容</p><p>入参限制：文件内容需使用Base64编码</p><p>AuthType为KERBEROS时必传</p>
+        # @type KeyTabContent: String
+        # @param KRB5ConfContent: <p>用于Kerberos认证的krb5.conf文件的内容</p><p>入参限制：文件内容需使用Base64编码</p><p>AuthType为KERBEROS时必传</p>
+        # @type KRB5ConfContent: String
+        # @param KerberosUserPrincipal: <p>用户的Kerberos身份凭证</p>
+        # @type KerberosUserPrincipal: String
+        # @param KerberosPrincipal: <p>HiveMetastore服务端配置的Kerberos Principal</p><p>hive-site.xml中hive.metastore.kerberos.principal的值</p>
+        # @type KerberosPrincipal: String
+        # @param IsUpdate: <p>是否更新并重启所有关联的连接器任务</p><p>编辑连接时使用，如果不传，则根据认证类型及认证参数是否发生变化，来判断是否更新并重启所有关联的连接器任务</p>
+        # @type IsUpdate: Boolean
+
+        attr_accessor :ServiceVip, :Resource, :UniqVpcId, :AuthType, :EniIdList, :CatalogType, :KeyTabContent, :KRB5ConfContent, :KerberosUserPrincipal, :KerberosPrincipal, :IsUpdate
+
+        def initialize(servicevip=nil, resource=nil, uniqvpcid=nil, authtype=nil, eniidlist=nil, catalogtype=nil, keytabcontent=nil, krb5confcontent=nil, kerberosuserprincipal=nil, kerberosprincipal=nil, isupdate=nil)
+          @ServiceVip = servicevip
+          @Resource = resource
+          @UniqVpcId = uniqvpcid
+          @AuthType = authtype
+          @EniIdList = eniidlist
+          @CatalogType = catalogtype
+          @KeyTabContent = keytabcontent
+          @KRB5ConfContent = krb5confcontent
+          @KerberosUserPrincipal = kerberosuserprincipal
+          @KerberosPrincipal = kerberosprincipal
+          @IsUpdate = isupdate
+        end
+
+        def deserialize(params)
+          @ServiceVip = params['ServiceVip']
+          @Resource = params['Resource']
+          @UniqVpcId = params['UniqVpcId']
+          @AuthType = params['AuthType']
+          @EniIdList = params['EniIdList']
+          @CatalogType = params['CatalogType']
+          @KeyTabContent = params['KeyTabContent']
+          @KRB5ConfContent = params['KRB5ConfContent']
+          @KerberosUserPrincipal = params['KerberosUserPrincipal']
+          @KerberosPrincipal = params['KerberosPrincipal']
+          @IsUpdate = params['IsUpdate']
+        end
+      end
+
+      # iceberg数据
+      class IcebergDatabaseInfo < TencentCloud::Common::AbstractModel
+        # @param Name: <p>数据库名</p>
+        # @type Name: String
+        # @param Tables: <p>表名称</p>
+        # @type Tables: Array
+
+        attr_accessor :Name, :Tables
+
+        def initialize(name=nil, tables=nil)
+          @Name = name
+          @Tables = tables
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Tables = params['Tables']
+        end
+      end
+
+      # Iceberg接入参数
+      class IcebergParam < TencentCloud::Common::AbstractModel
+        # @param Resource: <p>Iceberg 连接资源 (EMR 实例)</p>
+        # @type Resource: String
+        # @param Database: <p>目标数据库名（Hive catalog 下的 namespace），必填</p>
+        # @type Database: String
+        # @param TableName: <p>目标表名</p>
+        # @type TableName: String
+        # @param SchemeType: <p>消息解析格式，当前仅支持 JSON</p><p>枚举值：</p><ul><li>JSON： JSON解析格式</li></ul>
+        # @type SchemeType: String
+        # @param EnableFieldExtension: <p>表字段扩展开关</p><p>枚举值：</p><ul><li>true： 开</li><li>false： 关</li></ul>
+        # @type EnableFieldExtension: Boolean
+        # @param UpsertMode: <p>Upset/CDC 模式，默认off</p><p>枚举值：</p><ul><li>Off： Off</li><li>UPSERT： UPSERT</li><li>CDC： CDC</li></ul>
+        # @type UpsertMode: String
+        # @param PrimaryKeys: <p>主键字段：UPSERT / CDC 模式必填（多个字段以英文逗号分隔）</p>
+        # @type PrimaryKeys: String
+
+        attr_accessor :Resource, :Database, :TableName, :SchemeType, :EnableFieldExtension, :UpsertMode, :PrimaryKeys
+
+        def initialize(resource=nil, database=nil, tablename=nil, schemetype=nil, enablefieldextension=nil, upsertmode=nil, primarykeys=nil)
+          @Resource = resource
+          @Database = database
+          @TableName = tablename
+          @SchemeType = schemetype
+          @EnableFieldExtension = enablefieldextension
+          @UpsertMode = upsertmode
+          @PrimaryKeys = primarykeys
+        end
+
+        def deserialize(params)
+          @Resource = params['Resource']
+          @Database = params['Database']
+          @TableName = params['TableName']
+          @SchemeType = params['SchemeType']
+          @EnableFieldExtension = params['EnableFieldExtension']
+          @UpsertMode = params['UpsertMode']
+          @PrimaryKeys = params['PrimaryKeys']
         end
       end
 
@@ -9657,10 +9825,12 @@ module TencentCloud
         # @type KafkaConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.KafkaConnectParam`
         # @param MqttConnectParam: <p>MQTT配置，Type为 MQTT 时必填</p>
         # @type MqttConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.MqttConnectParam`
+        # @param IcebergConnectParam: <p>Iceberg配置，Type为ICEBERG时必填</p>
+        # @type IcebergConnectParam: :class:`Tencentcloud::Ckafka.v20190819.models.IcebergConnectParam`
 
-        attr_accessor :ResourceId, :ResourceName, :Description, :Type, :DtsConnectParam, :MongoDBConnectParam, :EsConnectParam, :ClickHouseConnectParam, :MySQLConnectParam, :PostgreSQLConnectParam, :MariaDBConnectParam, :SQLServerConnectParam, :CtsdbConnectParam, :DorisConnectParam, :KafkaConnectParam, :MqttConnectParam
+        attr_accessor :ResourceId, :ResourceName, :Description, :Type, :DtsConnectParam, :MongoDBConnectParam, :EsConnectParam, :ClickHouseConnectParam, :MySQLConnectParam, :PostgreSQLConnectParam, :MariaDBConnectParam, :SQLServerConnectParam, :CtsdbConnectParam, :DorisConnectParam, :KafkaConnectParam, :MqttConnectParam, :IcebergConnectParam
 
-        def initialize(resourceid=nil, resourcename=nil, description=nil, type=nil, dtsconnectparam=nil, mongodbconnectparam=nil, esconnectparam=nil, clickhouseconnectparam=nil, mysqlconnectparam=nil, postgresqlconnectparam=nil, mariadbconnectparam=nil, sqlserverconnectparam=nil, ctsdbconnectparam=nil, dorisconnectparam=nil, kafkaconnectparam=nil, mqttconnectparam=nil)
+        def initialize(resourceid=nil, resourcename=nil, description=nil, type=nil, dtsconnectparam=nil, mongodbconnectparam=nil, esconnectparam=nil, clickhouseconnectparam=nil, mysqlconnectparam=nil, postgresqlconnectparam=nil, mariadbconnectparam=nil, sqlserverconnectparam=nil, ctsdbconnectparam=nil, dorisconnectparam=nil, kafkaconnectparam=nil, mqttconnectparam=nil, icebergconnectparam=nil)
           @ResourceId = resourceid
           @ResourceName = resourcename
           @Description = description
@@ -9677,6 +9847,7 @@ module TencentCloud
           @DorisConnectParam = dorisconnectparam
           @KafkaConnectParam = kafkaconnectparam
           @MqttConnectParam = mqttconnectparam
+          @IcebergConnectParam = icebergconnectparam
         end
 
         def deserialize(params)
@@ -9731,6 +9902,10 @@ module TencentCloud
           unless params['MqttConnectParam'].nil?
             @MqttConnectParam = MqttConnectParam.new
             @MqttConnectParam.deserialize(params['MqttConnectParam'])
+          end
+          unless params['IcebergConnectParam'].nil?
+            @IcebergConnectParam = IcebergConnectParam.new
+            @IcebergConnectParam.deserialize(params['IcebergConnectParam'])
           end
         end
       end
@@ -12789,21 +12964,21 @@ module TencentCloud
 
       # Topic配置
       class TopicParam < TencentCloud::Common::AbstractModel
-        # @param Resource: 单独售卖Topic的Topic名称
+        # @param Resource: <p>单独售卖Topic的Topic名称</p>
         # @type Resource: String
-        # @param OffsetType: Offset类型，最开始位置earliest，最新位置latest，时间点位置timestamp
+        # @param OffsetType: <p>Offset类型，最开始位置earliest，最新位置latest，时间点位置timestamp</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OffsetType: String
-        # @param StartTime: Offset类型为timestamp时必传，传时间戳，精确到秒
+        # @param StartTime: <p>Offset类型为timestamp时必传，传时间戳，精确到秒</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: Integer
-        # @param TopicId: Topic的TopicId【出参】
+        # @param TopicId: <p>Topic的TopicId【出参】</p>
         # @type TopicId: String
-        # @param CompressionType: 写入Topic时是否进行压缩，不开启填"none"，开启的话，可选择"gzip", "snappy", "lz4"中的一个进行填写。
+        # @param CompressionType: <p>写入Topic时是否进行压缩，不开启填&quot;none&quot;，开启的话，可选择&quot;gzip&quot;, &quot;snappy&quot;, &quot;lz4&quot;中的一个进行填写。</p>
         # @type CompressionType: String
-        # @param UseAutoCreateTopic: 使用的Topic是否需要自动创建（目前只支持SOURCE流入任务）
+        # @param UseAutoCreateTopic: <p>使用的Topic是否需要自动创建（目前只支持SOURCE流入任务）</p>
         # @type UseAutoCreateTopic: Boolean
-        # @param MsgMultiple: 源topic消息1条扩增成msgMultiple条写入目标topic(该参数目前只有ckafka流入ckafka适用)
+        # @param MsgMultiple: <p>源topic消息1条扩增成msgMultiple条写入目标topic(该参数目前只有ckafka流入ckafka适用)</p>
         # @type MsgMultiple: Integer
 
         attr_accessor :Resource, :OffsetType, :StartTime, :TopicId, :CompressionType, :UseAutoCreateTopic, :MsgMultiple

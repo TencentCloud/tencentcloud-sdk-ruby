@@ -3319,10 +3319,12 @@ module TencentCloud
         # @type SchedulerStatus: String
         # @param TriggerMode: <p>触发方式：定时触发：TIME_TRIGGER 。配置完之后，内部的TriggerMode状态可不配置，如果配置，内容会被该值覆盖。</p><p>枚举值：</p><ul><li>TIME_TRIGGER： 定时触发</li></ul>
         # @type TriggerMode: String
+        # @param ExecuteUserUin: <p>运行账号ID,未传时默认使用当前登录用户ID</p>
+        # @type ExecuteUserUin: String
 
-        attr_accessor :ProjectId, :WorkflowName, :ParentFolderPath, :WorkflowDesc, :OwnerUin, :WorkflowParams, :TriggerWorkflowSchedulerConfigurations, :BundleId, :BundleInfo, :GeneralTaskParams, :TriggerWorkflowRunConfiguration, :SchedulerStatus, :TriggerMode
+        attr_accessor :ProjectId, :WorkflowName, :ParentFolderPath, :WorkflowDesc, :OwnerUin, :WorkflowParams, :TriggerWorkflowSchedulerConfigurations, :BundleId, :BundleInfo, :GeneralTaskParams, :TriggerWorkflowRunConfiguration, :SchedulerStatus, :TriggerMode, :ExecuteUserUin
 
-        def initialize(projectid=nil, workflowname=nil, parentfolderpath=nil, workflowdesc=nil, owneruin=nil, workflowparams=nil, triggerworkflowschedulerconfigurations=nil, bundleid=nil, bundleinfo=nil, generaltaskparams=nil, triggerworkflowrunconfiguration=nil, schedulerstatus=nil, triggermode=nil)
+        def initialize(projectid=nil, workflowname=nil, parentfolderpath=nil, workflowdesc=nil, owneruin=nil, workflowparams=nil, triggerworkflowschedulerconfigurations=nil, bundleid=nil, bundleinfo=nil, generaltaskparams=nil, triggerworkflowrunconfiguration=nil, schedulerstatus=nil, triggermode=nil, executeuseruin=nil)
           @ProjectId = projectid
           @WorkflowName = workflowname
           @ParentFolderPath = parentfolderpath
@@ -3336,6 +3338,7 @@ module TencentCloud
           @TriggerWorkflowRunConfiguration = triggerworkflowrunconfiguration
           @SchedulerStatus = schedulerstatus
           @TriggerMode = triggermode
+          @ExecuteUserUin = executeuseruin
         end
 
         def deserialize(params)
@@ -3376,6 +3379,7 @@ module TencentCloud
           end
           @SchedulerStatus = params['SchedulerStatus']
           @TriggerMode = params['TriggerMode']
+          @ExecuteUserUin = params['ExecuteUserUin']
         end
       end
 
@@ -6304,9 +6308,9 @@ module TencentCloud
 
       # 通用过滤器
       class Filter < TencentCloud::Common::AbstractModel
-        # @param Name: 过滤字段名称
+        # @param Name: <p>过滤字段名称</p>
         # @type Name: String
-        # @param Values: 过滤值列表
+        # @param Values: <p>过滤值列表</p>
         # @type Values: Array
 
         attr_accessor :Name, :Values
@@ -13133,7 +13137,7 @@ module TencentCloud
       class ListTriggerWorkflowRunsRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目ID
         # @type ProjectId: String
-        # @param Filters: 过滤参数, 工作流名称或ID查询名称: Keyword, 工作流ID查询名称: WorkflowId,文件夹查询名称: FolderId, 负责人查询名称: InChargeUin, 工作流执行id: ExecutionId, 计划调度时间区间: ScheduleTimeGreaterEqual, ScheduleTimeLessEqual
+        # @param Filters: 过滤参数, 工作流名称或ID查询名称: Keyword, 工作流ID查询名称: WorkflowId,文件夹查询名称: FolderId, 负责人查询名称: InChargeUin, 运行账号ID查询名称: ExecuteUserUin, 工作流执行id: ExecutionId, 计划调度时间区间: ScheduleTimeGreaterEqual, ScheduleTimeLessEqual
         # @type Filters: Array
         # @param OrderFields: 排序字段，排序字段名称	如下开始时间：CreateTime，结束时间：EndTime，计划调度时间：ScheduleTime
         # @type OrderFields: Array
@@ -13200,30 +13204,32 @@ module TencentCloud
 
       # ListTriggerWorkflows请求参数结构体
       class ListTriggerWorkflowsRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目ID
+        # @param ProjectId: <p>项目ID</p>
         # @type ProjectId: String
-        # @param PageNumber: 请求的数据页数。默认值为1，取值大于等于1
+        # @param PageNumber: <p>请求的数据页数。默认值为1，取值大于等于1</p>
         # @type PageNumber: Integer
-        # @param PageSize: 每页显示的数据条数。默认值为10 ，最小值为10，最大值为200
+        # @param PageSize: <p>每页显示的数据条数。默认值为10 ，最小值为10，最大值为200</p>
         # @type PageSize: Integer
-        # @param Keyword: 搜索关键词
+        # @param Keyword: <p>搜索关键词</p>
         # @type Keyword: String
-        # @param ParentFolderPath: 工作流所属文件夹
+        # @param ParentFolderPath: <p>工作流所属文件夹</p>
         # @type ParentFolderPath: String
-        # @param BundleId: bundleId项
+        # @param BundleId: <p>bundleId项</p>
         # @type BundleId: String
-        # @param OwnerUin: 负责人ID
+        # @param OwnerUin: <p>负责人ID</p>
         # @type OwnerUin: String
-        # @param CreateUserUin: 创建人ID
+        # @param CreateUserUin: <p>创建人ID</p>
         # @type CreateUserUin: String
-        # @param ModifyTime: 修改时间区间 yyyy-MM-dd HH:mm:ss，需要在数组填入两个时间
+        # @param ExecuteUserUin: <p>运行账号ID</p>
+        # @type ExecuteUserUin: String
+        # @param ModifyTime: <p>修改时间区间 yyyy-MM-dd HH:mm:ss，需要在数组填入两个时间</p>
         # @type ModifyTime: Array
-        # @param CreateTime: 创建时间区间 yyyy-MM-dd HH:mm:ss，需要在数组填入两个时间
+        # @param CreateTime: <p>创建时间区间 yyyy-MM-dd HH:mm:ss，需要在数组填入两个时间</p>
         # @type CreateTime: Array
 
-        attr_accessor :ProjectId, :PageNumber, :PageSize, :Keyword, :ParentFolderPath, :BundleId, :OwnerUin, :CreateUserUin, :ModifyTime, :CreateTime
+        attr_accessor :ProjectId, :PageNumber, :PageSize, :Keyword, :ParentFolderPath, :BundleId, :OwnerUin, :CreateUserUin, :ExecuteUserUin, :ModifyTime, :CreateTime
 
-        def initialize(projectid=nil, pagenumber=nil, pagesize=nil, keyword=nil, parentfolderpath=nil, bundleid=nil, owneruin=nil, createuseruin=nil, modifytime=nil, createtime=nil)
+        def initialize(projectid=nil, pagenumber=nil, pagesize=nil, keyword=nil, parentfolderpath=nil, bundleid=nil, owneruin=nil, createuseruin=nil, executeuseruin=nil, modifytime=nil, createtime=nil)
           @ProjectId = projectid
           @PageNumber = pagenumber
           @PageSize = pagesize
@@ -13232,6 +13238,7 @@ module TencentCloud
           @BundleId = bundleid
           @OwnerUin = owneruin
           @CreateUserUin = createuseruin
+          @ExecuteUserUin = executeuseruin
           @ModifyTime = modifytime
           @CreateTime = createtime
         end
@@ -13245,6 +13252,7 @@ module TencentCloud
           @BundleId = params['BundleId']
           @OwnerUin = params['OwnerUin']
           @CreateUserUin = params['CreateUserUin']
+          @ExecuteUserUin = params['ExecuteUserUin']
           @ModifyTime = params['ModifyTime']
           @CreateTime = params['CreateTime']
         end
@@ -13252,7 +13260,7 @@ module TencentCloud
 
       # ListTriggerWorkflows返回参数结构体
       class ListTriggerWorkflowsResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 查询工作流分页信息
+        # @param Data: <p>查询工作流分页信息</p>
         # @type Data: :class:`Tencentcloud::Wedata.v20250806.models.ListTriggerWorkflowInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -14583,9 +14591,9 @@ module TencentCloud
 
       # 通用排序字段
       class OrderField < TencentCloud::Common::AbstractModel
-        # @param Name: 排序字段名称
+        # @param Name: <p>排序字段名称</p>
         # @type Name: String
-        # @param Direction: 排序方向：ASC|DESC
+        # @param Direction: <p>排序方向：ASC|DESC</p>
         # @type Direction: String
 
         attr_accessor :Name, :Direction
@@ -21134,55 +21142,58 @@ module TencentCloud
 
       # 任务概要信息
       class TriggerTaskBrief < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目id
+        # @param ProjectId: <p>项目id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectId: String
-        # @param ProjectName: 项目名称
+        # @param ProjectName: <p>项目名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectName: String
-        # @param WorkflowId: 工作流id
+        # @param WorkflowId: <p>工作流id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkflowId: String
-        # @param WorkflowName: 工作流名称
+        # @param WorkflowName: <p>工作流名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkflowName: String
-        # @param TaskId: 任务id
+        # @param TaskId: <p>任务id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: String
-        # @param TaskName: 任务名称
+        # @param TaskName: <p>任务名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskName: String
-        # @param TaskType: 任务类型
+        # @param TaskType: <p>任务类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskType: String
-        # @param UserUinInCharge: 责任人user UIN
+        # @param UserUinInCharge: <p>责任人user UIN</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserUinInCharge: String
-        # @param UserNameInCharge: 责任人名称
+        # @param UserNameInCharge: <p>责任人名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserNameInCharge: String
-        # @param FolderId: 文件夹ID
+        # @param FolderId: <p>文件夹ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FolderId: String
-        # @param FolderName: 文件夹名称
+        # @param FolderName: <p>文件夹名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FolderName: String
-        # @param TaskTypeId: 任务类型ID
+        # @param TaskTypeId: <p>任务类型ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskTypeId: Integer
-        # @param ExecutionState: 任务状态
+        # @param ExecutionState: <p>任务状态</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecutionState: String
-        # @param ExecutionStartTime: 运行开始时间
+        # @param ExecutionStartTime: <p>运行开始时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecutionStartTime: String
-        # @param DependencyTriggerPolicy: 依赖策略
+        # @param DependencyTriggerPolicy: <p>依赖策略</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DependencyTriggerPolicy: String
+        # @param ExecuteUserUin: <p>运行账号ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecuteUserUin: String
 
-        attr_accessor :ProjectId, :ProjectName, :WorkflowId, :WorkflowName, :TaskId, :TaskName, :TaskType, :UserUinInCharge, :UserNameInCharge, :FolderId, :FolderName, :TaskTypeId, :ExecutionState, :ExecutionStartTime, :DependencyTriggerPolicy
+        attr_accessor :ProjectId, :ProjectName, :WorkflowId, :WorkflowName, :TaskId, :TaskName, :TaskType, :UserUinInCharge, :UserNameInCharge, :FolderId, :FolderName, :TaskTypeId, :ExecutionState, :ExecutionStartTime, :DependencyTriggerPolicy, :ExecuteUserUin
 
-        def initialize(projectid=nil, projectname=nil, workflowid=nil, workflowname=nil, taskid=nil, taskname=nil, tasktype=nil, useruinincharge=nil, usernameincharge=nil, folderid=nil, foldername=nil, tasktypeid=nil, executionstate=nil, executionstarttime=nil, dependencytriggerpolicy=nil)
+        def initialize(projectid=nil, projectname=nil, workflowid=nil, workflowname=nil, taskid=nil, taskname=nil, tasktype=nil, useruinincharge=nil, usernameincharge=nil, folderid=nil, foldername=nil, tasktypeid=nil, executionstate=nil, executionstarttime=nil, dependencytriggerpolicy=nil, executeuseruin=nil)
           @ProjectId = projectid
           @ProjectName = projectname
           @WorkflowId = workflowid
@@ -21198,6 +21209,7 @@ module TencentCloud
           @ExecutionState = executionstate
           @ExecutionStartTime = executionstarttime
           @DependencyTriggerPolicy = dependencytriggerpolicy
+          @ExecuteUserUin = executeuseruin
         end
 
         def deserialize(params)
@@ -21216,6 +21228,7 @@ module TencentCloud
           @ExecutionState = params['ExecutionState']
           @ExecutionStartTime = params['ExecutionStartTime']
           @DependencyTriggerPolicy = params['DependencyTriggerPolicy']
+          @ExecuteUserUin = params['ExecuteUserUin']
         end
       end
 
@@ -22010,39 +22023,42 @@ module TencentCloud
 
       # 工作流概要信息
       class TriggerWorkflowBrief < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目ID
+        # @param ProjectId: <p>项目ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectId: String
-        # @param WorkflowId: 工作ID
+        # @param WorkflowId: <p>工作ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkflowId: String
-        # @param WorkflowName: 工作流名称
+        # @param WorkflowName: <p>工作流名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkflowName: String
-        # @param TaskCount: 任务数量
+        # @param TaskCount: <p>任务数量</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskCount: Integer
-        # @param FolderId: 文件夹ID
+        # @param FolderId: <p>文件夹ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FolderId: String
-        # @param FolderName: 文件夹名称
+        # @param FolderName: <p>文件夹名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FolderName: String
-        # @param WorkflowTriggerConfig: 调度配置
+        # @param WorkflowTriggerConfig: <p>调度配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkflowTriggerConfig: :class:`Tencentcloud::Wedata.v20250806.models.WorkflowTriggerConfig`
-        # @param UserNameInCharge: 责任人
+        # @param UserNameInCharge: <p>责任人</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserNameInCharge: String
-        # @param UserUinInCharge: 责任人ID
+        # @param UserUinInCharge: <p>责任人ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserUinInCharge: String
-        # @param WorkflowParams: 工作流参数
+        # @param WorkflowParams: <p>工作流参数</p>
         # @type WorkflowParams: String
+        # @param ExecuteUserUin: <p>运行账号ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecuteUserUin: String
 
-        attr_accessor :ProjectId, :WorkflowId, :WorkflowName, :TaskCount, :FolderId, :FolderName, :WorkflowTriggerConfig, :UserNameInCharge, :UserUinInCharge, :WorkflowParams
+        attr_accessor :ProjectId, :WorkflowId, :WorkflowName, :TaskCount, :FolderId, :FolderName, :WorkflowTriggerConfig, :UserNameInCharge, :UserUinInCharge, :WorkflowParams, :ExecuteUserUin
 
-        def initialize(projectid=nil, workflowid=nil, workflowname=nil, taskcount=nil, folderid=nil, foldername=nil, workflowtriggerconfig=nil, usernameincharge=nil, useruinincharge=nil, workflowparams=nil)
+        def initialize(projectid=nil, workflowid=nil, workflowname=nil, taskcount=nil, folderid=nil, foldername=nil, workflowtriggerconfig=nil, usernameincharge=nil, useruinincharge=nil, workflowparams=nil, executeuseruin=nil)
           @ProjectId = projectid
           @WorkflowId = workflowid
           @WorkflowName = workflowname
@@ -22053,6 +22069,7 @@ module TencentCloud
           @UserNameInCharge = usernameincharge
           @UserUinInCharge = useruinincharge
           @WorkflowParams = workflowparams
+          @ExecuteUserUin = executeuseruin
         end
 
         def deserialize(params)
@@ -22069,6 +22086,7 @@ module TencentCloud
           @UserNameInCharge = params['UserNameInCharge']
           @UserUinInCharge = params['UserUinInCharge']
           @WorkflowParams = params['WorkflowParams']
+          @ExecuteUserUin = params['ExecuteUserUin']
         end
       end
 
@@ -22113,10 +22131,13 @@ module TencentCloud
         # @param TriggerMode: <p>触发方式：定时触发：TIME_TRIGGER 。这里配置之后，内部的触发方式可不填，否则需要保持一致</p><p>枚举值：</p><ul><li>TIME_TRIGGER： 定时触发</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TriggerMode: String
+        # @param ExecuteUserUin: <p>运行账号ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecuteUserUin: String
 
-        attr_accessor :WorkflowName, :OwnerUin, :CreateUserUin, :WorkflowParams, :TriggerWorkflowSchedulerConfigurations, :WorkflowDesc, :Path, :BundleId, :BundleInfo, :GeneralTaskParams, :SchedulerStatus, :TriggerWorkflowRunConfiguration, :TriggerMode
+        attr_accessor :WorkflowName, :OwnerUin, :CreateUserUin, :WorkflowParams, :TriggerWorkflowSchedulerConfigurations, :WorkflowDesc, :Path, :BundleId, :BundleInfo, :GeneralTaskParams, :SchedulerStatus, :TriggerWorkflowRunConfiguration, :TriggerMode, :ExecuteUserUin
 
-        def initialize(workflowname=nil, owneruin=nil, createuseruin=nil, workflowparams=nil, triggerworkflowschedulerconfigurations=nil, workflowdesc=nil, path=nil, bundleid=nil, bundleinfo=nil, generaltaskparams=nil, schedulerstatus=nil, triggerworkflowrunconfiguration=nil, triggermode=nil)
+        def initialize(workflowname=nil, owneruin=nil, createuseruin=nil, workflowparams=nil, triggerworkflowschedulerconfigurations=nil, workflowdesc=nil, path=nil, bundleid=nil, bundleinfo=nil, generaltaskparams=nil, schedulerstatus=nil, triggerworkflowrunconfiguration=nil, triggermode=nil, executeuseruin=nil)
           @WorkflowName = workflowname
           @OwnerUin = owneruin
           @CreateUserUin = createuseruin
@@ -22130,6 +22151,7 @@ module TencentCloud
           @SchedulerStatus = schedulerstatus
           @TriggerWorkflowRunConfiguration = triggerworkflowrunconfiguration
           @TriggerMode = triggermode
+          @ExecuteUserUin = executeuseruin
         end
 
         def deserialize(params)
@@ -22170,39 +22192,43 @@ module TencentCloud
             @TriggerWorkflowRunConfiguration.deserialize(params['TriggerWorkflowRunConfiguration'])
           end
           @TriggerMode = params['TriggerMode']
+          @ExecuteUserUin = params['ExecuteUserUin']
         end
       end
 
       # 获取工作流的列表信息item
       class TriggerWorkflowInfo < TencentCloud::Common::AbstractModel
-        # @param WorkflowId: 工作流ID
+        # @param WorkflowId: <p>工作流ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkflowId: String
-        # @param WorkflowName: 工作流名称
+        # @param WorkflowName: <p>工作流名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkflowName: String
-        # @param OwnerUin: 负责人ID
+        # @param OwnerUin: <p>负责人ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OwnerUin: String
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
-        # @param ModifyTime: 最新修改时间
+        # @param ModifyTime: <p>最新修改时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifyTime: String
-        # @param UpdateUserUin: 最后更新人ID
+        # @param UpdateUserUin: <p>最后更新人ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateUserUin: String
-        # @param WorkflowDesc: 工作流描述
+        # @param WorkflowDesc: <p>工作流描述</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkflowDesc: String
-        # @param CreateUserUin: 创建人ID
+        # @param CreateUserUin: <p>创建人ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateUserUin: String
+        # @param ExecuteUserUin: <p>运行账号ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecuteUserUin: String
 
-        attr_accessor :WorkflowId, :WorkflowName, :OwnerUin, :CreateTime, :ModifyTime, :UpdateUserUin, :WorkflowDesc, :CreateUserUin
+        attr_accessor :WorkflowId, :WorkflowName, :OwnerUin, :CreateTime, :ModifyTime, :UpdateUserUin, :WorkflowDesc, :CreateUserUin, :ExecuteUserUin
 
-        def initialize(workflowid=nil, workflowname=nil, owneruin=nil, createtime=nil, modifytime=nil, updateuseruin=nil, workflowdesc=nil, createuseruin=nil)
+        def initialize(workflowid=nil, workflowname=nil, owneruin=nil, createtime=nil, modifytime=nil, updateuseruin=nil, workflowdesc=nil, createuseruin=nil, executeuseruin=nil)
           @WorkflowId = workflowid
           @WorkflowName = workflowname
           @OwnerUin = owneruin
@@ -22211,6 +22237,7 @@ module TencentCloud
           @UpdateUserUin = updateuseruin
           @WorkflowDesc = workflowdesc
           @CreateUserUin = createuseruin
+          @ExecuteUserUin = executeuseruin
         end
 
         def deserialize(params)
@@ -22222,6 +22249,7 @@ module TencentCloud
           @UpdateUserUin = params['UpdateUserUin']
           @WorkflowDesc = params['WorkflowDesc']
           @CreateUserUin = params['CreateUserUin']
+          @ExecuteUserUin = params['ExecuteUserUin']
         end
       end
 
@@ -22271,106 +22299,118 @@ module TencentCloud
 
       # 工作流运行概要信息
       class TriggerWorkflowRunBrief < TencentCloud::Common::AbstractModel
-        # @param AppId: 用户AppId
+        # @param AppId: <p>用户AppId</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: String
-        # @param ProjectId: 项目ID
+        # @param ProjectId: <p>项目ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectId: String
-        # @param WorkflowName: 工作流名称
+        # @param WorkflowName: <p>工作流名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkflowName: String
-        # @param WorkflowId: 工作流ID
+        # @param WorkflowId: <p>工作流ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkflowId: String
-        # @param ExecutionId: 工作流运行ID
+        # @param ExecutionId: <p>工作流运行ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecutionId: String
-        # @param TriggerId: 触发器ID
+        # @param TriggerId: <p>触发器ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TriggerId: String
-        # @param TriggerType: 触发方式:调度触发Scheduler、手动触发ManualTrigger、事件触发Event
+        # @param TriggerType: <p>触发方式:调度触发Scheduler、手动触发ManualTrigger、事件触发Event</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TriggerType: String
-        # @param CreateTime: 工作流触发时间
+        # @param CreateTime: <p>工作流触发时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
-        # @param ScheduleTime: 计划调度时间
+        # @param ScheduleTime: <p>计划调度时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScheduleTime: String
-        # @param ExecutionStartTime: 执行开始时间戳
+        # @param ExecutionStartTime: <p>执行开始时间戳</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecutionStartTime: String
-        # @param ExecutionEndTime: 执行结束时间戳
+        # @param ExecutionEndTime: <p>执行结束时间戳</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecutionEndTime: String
-        # @param ExecutionCostTime: 运行时长，单位秒
+        # @param ExecutionCostTime: <p>运行时长，单位秒</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecutionCostTime: String
-        # @param QueueCostTime: 并发排队花费时间，单位秒
+        # @param QueueCostTime: <p>并发排队花费时间，单位秒</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QueueCostTime: String
-        # @param PendingCostTime: 等待资源花费时间，单位秒
+        # @param PendingCostTime: <p>等待资源花费时间，单位秒</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PendingCostTime: String
-        # @param ExecutionState: 执行状态，运行失败:FAILED、运行成功:SUCCESS、等待中:PENDING、跳过运行:SKIPED、运行中:RUNNING
+        # @param ExecutionState: <p>执行状态，运行失败:FAILED、运行成功:SUCCESS、等待中:PENDING、跳过运行:SKIPED、运行中:RUNNING</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecutionState: String
-        # @param ExecuteUserUin: 运行用户UIN
+        # @param ExecuteUserUin: <p>运行用户UIN</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecuteUserUin: String
-        # @param ExecuteUserName: 运行用户名称
+        # @param ExecuteUserName: <p>运行用户名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecuteUserName: String
-        # @param ErrorCodeStr: 错误码
+        # @param ErrorCodeStr: <p>错误码</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorCodeStr: String
-        # @param WorkflowParams: 运行参数
+        # @param WorkflowParams: <p>运行参数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkflowParams: String
-        # @param WorkflowVersionId: 工作流版本信息ID
+        # @param WorkflowVersionId: <p>工作流版本信息ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkflowVersionId: String
-        # @param SupportRerun: 是否支持重跑
+        # @param SupportRerun: <p>是否支持重跑</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SupportRerun: Boolean
-        # @param RerunTimes: 重跑次数
+        # @param RerunTimes: <p>重跑次数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RerunTimes: Integer
-        # @param SelectedTaskIds: 运行的任务范围,逗号分隔的任务ID列表
+        # @param SelectedTaskIds: <p>运行的任务范围,逗号分隔的任务ID列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SelectedTaskIds: Array
-        # @param PendingStartTime: 等待并发开始时间
+        # @param PendingStartTime: <p>等待并发开始时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PendingStartTime: String
-        # @param QueueStartTime: 排队等待开始时间
+        # @param QueueStartTime: <p>排队等待开始时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QueueStartTime: String
-        # @param EndTime: 运行结束时间
+        # @param EndTime: <p>运行结束时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
-        # @param FolderId: 文件夹ID
+        # @param FolderId: <p>文件夹ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FolderId: String
-        # @param FolderName: 文件夹名称
+        # @param FolderName: <p>文件夹名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FolderName: String
-        # @param PlannedSchedulingTime: 计划调度时间
+        # @param PlannedSchedulingTime: <p>计划调度时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PlannedSchedulingTime: String
-        # @param CycleType: 周期类型
+        # @param CycleType: <p>周期类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CycleType: String
-        # @param UserNameInCharge: 责任人名称
+        # @param UserNameInCharge: <p>责任人名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserNameInCharge: String
-        # @param UserUinInCharge: 责任人ID
+        # @param UserUinInCharge: <p>责任人ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserUinInCharge: String
+        # @param AssociatedEntityExist: <p>关联实体是否存在</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssociatedEntityExist: Boolean
+        # @param ParentWorkflowExecutionId: <p>父工作流运行ID 【由嵌套工作流触发独有】</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParentWorkflowExecutionId: String
+        # @param ParentTaskExecutionId: <p>父任务运行ID 【由嵌套工作流触发独有】</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParentTaskExecutionId: String
+        # @param ParentTaskExecutionName: <p>父任务运行名称 【由嵌套工作流触发独有】</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParentTaskExecutionName: String
 
-        attr_accessor :AppId, :ProjectId, :WorkflowName, :WorkflowId, :ExecutionId, :TriggerId, :TriggerType, :CreateTime, :ScheduleTime, :ExecutionStartTime, :ExecutionEndTime, :ExecutionCostTime, :QueueCostTime, :PendingCostTime, :ExecutionState, :ExecuteUserUin, :ExecuteUserName, :ErrorCodeStr, :WorkflowParams, :WorkflowVersionId, :SupportRerun, :RerunTimes, :SelectedTaskIds, :PendingStartTime, :QueueStartTime, :EndTime, :FolderId, :FolderName, :PlannedSchedulingTime, :CycleType, :UserNameInCharge, :UserUinInCharge
+        attr_accessor :AppId, :ProjectId, :WorkflowName, :WorkflowId, :ExecutionId, :TriggerId, :TriggerType, :CreateTime, :ScheduleTime, :ExecutionStartTime, :ExecutionEndTime, :ExecutionCostTime, :QueueCostTime, :PendingCostTime, :ExecutionState, :ExecuteUserUin, :ExecuteUserName, :ErrorCodeStr, :WorkflowParams, :WorkflowVersionId, :SupportRerun, :RerunTimes, :SelectedTaskIds, :PendingStartTime, :QueueStartTime, :EndTime, :FolderId, :FolderName, :PlannedSchedulingTime, :CycleType, :UserNameInCharge, :UserUinInCharge, :AssociatedEntityExist, :ParentWorkflowExecutionId, :ParentTaskExecutionId, :ParentTaskExecutionName
 
-        def initialize(appid=nil, projectid=nil, workflowname=nil, workflowid=nil, executionid=nil, triggerid=nil, triggertype=nil, createtime=nil, scheduletime=nil, executionstarttime=nil, executionendtime=nil, executioncosttime=nil, queuecosttime=nil, pendingcosttime=nil, executionstate=nil, executeuseruin=nil, executeusername=nil, errorcodestr=nil, workflowparams=nil, workflowversionid=nil, supportrerun=nil, reruntimes=nil, selectedtaskids=nil, pendingstarttime=nil, queuestarttime=nil, endtime=nil, folderid=nil, foldername=nil, plannedschedulingtime=nil, cycletype=nil, usernameincharge=nil, useruinincharge=nil)
+        def initialize(appid=nil, projectid=nil, workflowname=nil, workflowid=nil, executionid=nil, triggerid=nil, triggertype=nil, createtime=nil, scheduletime=nil, executionstarttime=nil, executionendtime=nil, executioncosttime=nil, queuecosttime=nil, pendingcosttime=nil, executionstate=nil, executeuseruin=nil, executeusername=nil, errorcodestr=nil, workflowparams=nil, workflowversionid=nil, supportrerun=nil, reruntimes=nil, selectedtaskids=nil, pendingstarttime=nil, queuestarttime=nil, endtime=nil, folderid=nil, foldername=nil, plannedschedulingtime=nil, cycletype=nil, usernameincharge=nil, useruinincharge=nil, associatedentityexist=nil, parentworkflowexecutionid=nil, parenttaskexecutionid=nil, parenttaskexecutionname=nil)
           @AppId = appid
           @ProjectId = projectid
           @WorkflowName = workflowname
@@ -22403,6 +22443,10 @@ module TencentCloud
           @CycleType = cycletype
           @UserNameInCharge = usernameincharge
           @UserUinInCharge = useruinincharge
+          @AssociatedEntityExist = associatedentityexist
+          @ParentWorkflowExecutionId = parentworkflowexecutionid
+          @ParentTaskExecutionId = parenttaskexecutionid
+          @ParentTaskExecutionName = parenttaskexecutionname
         end
 
         def deserialize(params)
@@ -22438,6 +22482,10 @@ module TencentCloud
           @CycleType = params['CycleType']
           @UserNameInCharge = params['UserNameInCharge']
           @UserUinInCharge = params['UserUinInCharge']
+          @AssociatedEntityExist = params['AssociatedEntityExist']
+          @ParentWorkflowExecutionId = params['ParentWorkflowExecutionId']
+          @ParentTaskExecutionId = params['ParentTaskExecutionId']
+          @ParentTaskExecutionName = params['ParentTaskExecutionName']
         end
       end
 
@@ -23950,12 +23998,14 @@ module TencentCloud
         # @type TriggerWorkflowRunConfiguration: :class:`Tencentcloud::Wedata.v20250806.models.WorkflowRunConfig`
         # @param SchedulerStatus: <p>Trigger 状态 启动ACTIVE，暂停PAUSED。配置完之后，内部的Trigger状态可不配置，如果配置，内容会被该值覆盖。</p><p>枚举值：</p><ul><li>ACTIVE： 启动</li><li>PAUSED： 暂停</li></ul>
         # @type SchedulerStatus: String
-        # @param TriggerMode: <p>触发方式：定时触发：TIME_TRIGGER 。配置完之后，内部的TriggerMode状态可不配置，如果配置，内容会被该值覆盖。</p><p>枚举值：</p><ul><li>TIME_TRIGGER： 定时触发</li></ul>
+        # @param TriggerMode: <p>触发方式：定时触发：TIME_TRIGGER ，文件到达：FILE_ARRIVAL。配置完之后，内部的TriggerMode状态可不配置，如果配置，内容会被该值覆盖。</p><p>枚举值：</p><ul><li>TIME_TRIGGER： 定时触发</li><li>FILE_ARRIVAL： 文件到达</li></ul>
         # @type TriggerMode: String
+        # @param ExecuteUserUin: <p>运行账号ID</p>
+        # @type ExecuteUserUin: String
 
-        attr_accessor :WorkflowName, :OwnerUin, :WorkflowParams, :TriggerWorkflowSchedulerConfigurations, :WorkflowDesc, :BundleId, :BundleInfo, :GeneralTaskParams, :TriggerWorkflowRunConfiguration, :SchedulerStatus, :TriggerMode
+        attr_accessor :WorkflowName, :OwnerUin, :WorkflowParams, :TriggerWorkflowSchedulerConfigurations, :WorkflowDesc, :BundleId, :BundleInfo, :GeneralTaskParams, :TriggerWorkflowRunConfiguration, :SchedulerStatus, :TriggerMode, :ExecuteUserUin
 
-        def initialize(workflowname=nil, owneruin=nil, workflowparams=nil, triggerworkflowschedulerconfigurations=nil, workflowdesc=nil, bundleid=nil, bundleinfo=nil, generaltaskparams=nil, triggerworkflowrunconfiguration=nil, schedulerstatus=nil, triggermode=nil)
+        def initialize(workflowname=nil, owneruin=nil, workflowparams=nil, triggerworkflowschedulerconfigurations=nil, workflowdesc=nil, bundleid=nil, bundleinfo=nil, generaltaskparams=nil, triggerworkflowrunconfiguration=nil, schedulerstatus=nil, triggermode=nil, executeuseruin=nil)
           @WorkflowName = workflowname
           @OwnerUin = owneruin
           @WorkflowParams = workflowparams
@@ -23967,6 +24017,7 @@ module TencentCloud
           @TriggerWorkflowRunConfiguration = triggerworkflowrunconfiguration
           @SchedulerStatus = schedulerstatus
           @TriggerMode = triggermode
+          @ExecuteUserUin = executeuseruin
         end
 
         def deserialize(params)
@@ -24005,21 +24056,19 @@ module TencentCloud
           end
           @SchedulerStatus = params['SchedulerStatus']
           @TriggerMode = params['TriggerMode']
+          @ExecuteUserUin = params['ExecuteUserUin']
         end
       end
 
       # UpdateTriggerWorkflowPartially请求参数结构体
       class UpdateTriggerWorkflowPartiallyRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目ID
+        # @param ProjectId: <p>项目ID</p>
         # @type ProjectId: String
-        # @param WorkflowId: 工作流ID
+        # @param WorkflowId: <p>工作流ID</p>
         # @type WorkflowId: String
-        # @param NewSetting: 责任人ID
+        # @param NewSetting: <p>责任人ID</p>
         # @type NewSetting: :class:`Tencentcloud::Wedata.v20250806.models.UpdateTriggerWorkflowPartially`
-        # @param FieldToRemoveList: 删除字段内容，采用属性路径的形式标识，删除的值以":"分割，多个值以","分割
-        #  // 删除调度参数中 ParamKey 为 aa,bb 的属性 "WorkflowParams:aa,bb"
-        #  // 删除配置的 TriggerId 为 da46d950-d5ca-4cfb-a5a9-f3c2eeea1bf0 的调度配置"TriggerWorkflowSchedulerConfigurations :da46d950-d5ca-4cfb-a5a9-f3c2eeea1bf0"
-        # // 删除spark sql通用参数 "GeneralTaskParams: SPARK_SQL"
+        # @param FieldToRemoveList: <p>删除字段内容，采用属性路径的形式标识，删除的值以&quot;:&quot;分割，多个值以&quot;,&quot;分割<br> // 删除调度参数中 ParamKey 为 aa,bb 的属性 &quot;WorkflowParams:aa,bb&quot;<br> // 删除配置的 TriggerId 为 da46d950-d5ca-4cfb-a5a9-f3c2eeea1bf0 的调度配置&quot;TriggerWorkflowSchedulerConfigurations :da46d950-d5ca-4cfb-a5a9-f3c2eeea1bf0&quot;<br>// 删除spark sql通用参数 &quot;GeneralTaskParams: SPARK_SQL&quot;</p>
         # @type FieldToRemoveList: Array
 
         attr_accessor :ProjectId, :WorkflowId, :NewSetting, :FieldToRemoveList
@@ -24044,7 +24093,7 @@ module TencentCloud
 
       # UpdateTriggerWorkflowPartially返回参数结构体
       class UpdateTriggerWorkflowPartiallyResponse < TencentCloud::Common::AbstractModel
-        # @param Data: true代表成功，false代表失败
+        # @param Data: <p>true代表成功，false代表失败</p>
         # @type Data: :class:`Tencentcloud::Wedata.v20250806.models.UpdateTriggerWorkflowResult`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -24091,12 +24140,14 @@ module TencentCloud
         # @type TriggerWorkflowRunConfiguration: :class:`Tencentcloud::Wedata.v20250806.models.WorkflowRunConfig`
         # @param SchedulerStatus: <p>Trigger 状态 启动ACTIVE，暂停PAUSED。配置完之后，内部的SchedulerStatus可不配置，如果配置，内容会被改值覆盖。</p><p>枚举值：</p><ul><li>ACTIVE： 启动</li><li>PAUSED： 暂停</li></ul>
         # @type SchedulerStatus: String
-        # @param TriggerMode: <p>触发方式：定时触发：TIME_TRIGGER 。配置完之后，内部的TriggerMode状态可不配置，如果配置，内容会被该值覆盖。</p><p>枚举值：</p><ul><li>TIME_TRIGGER： 定时触发</li></ul>
+        # @param TriggerMode: <p>触发方式：定时触发：TIME_TRIGGER 。配置完之后，内部的TriggerMode状态可不配置，如果配置，内容会被该值覆盖。</p><p>枚举值：</p><ul><li>TIME_TRIGGER： 定时触发</li><li>FILE_ARRIVAL： 文件到达</li></ul>
         # @type TriggerMode: String
+        # @param ExecuteUserUin: <p>运行账号ID</p>
+        # @type ExecuteUserUin: String
 
-        attr_accessor :ProjectId, :WorkflowId, :WorkflowName, :OwnerUin, :WorkflowDesc, :WorkflowParams, :TriggerWorkflowSchedulerConfigurations, :BundleId, :BundleInfo, :GeneralTaskParams, :TriggerWorkflowRunConfiguration, :SchedulerStatus, :TriggerMode
+        attr_accessor :ProjectId, :WorkflowId, :WorkflowName, :OwnerUin, :WorkflowDesc, :WorkflowParams, :TriggerWorkflowSchedulerConfigurations, :BundleId, :BundleInfo, :GeneralTaskParams, :TriggerWorkflowRunConfiguration, :SchedulerStatus, :TriggerMode, :ExecuteUserUin
 
-        def initialize(projectid=nil, workflowid=nil, workflowname=nil, owneruin=nil, workflowdesc=nil, workflowparams=nil, triggerworkflowschedulerconfigurations=nil, bundleid=nil, bundleinfo=nil, generaltaskparams=nil, triggerworkflowrunconfiguration=nil, schedulerstatus=nil, triggermode=nil)
+        def initialize(projectid=nil, workflowid=nil, workflowname=nil, owneruin=nil, workflowdesc=nil, workflowparams=nil, triggerworkflowschedulerconfigurations=nil, bundleid=nil, bundleinfo=nil, generaltaskparams=nil, triggerworkflowrunconfiguration=nil, schedulerstatus=nil, triggermode=nil, executeuseruin=nil)
           @ProjectId = projectid
           @WorkflowId = workflowid
           @WorkflowName = workflowname
@@ -24110,6 +24161,7 @@ module TencentCloud
           @TriggerWorkflowRunConfiguration = triggerworkflowrunconfiguration
           @SchedulerStatus = schedulerstatus
           @TriggerMode = triggermode
+          @ExecuteUserUin = executeuseruin
         end
 
         def deserialize(params)
@@ -24150,6 +24202,7 @@ module TencentCloud
           end
           @SchedulerStatus = params['SchedulerStatus']
           @TriggerMode = params['TriggerMode']
+          @ExecuteUserUin = params['ExecuteUserUin']
         end
       end
 
@@ -25033,7 +25086,7 @@ module TencentCloud
 
       # 工作流调度配置
       class WorkflowTriggerConfig < TencentCloud::Common::AbstractModel
-        # @param TriggerMode: <p>触发方式，非必填，外部结构的TriggerMode字段优先级比当前字段高</p><ul><li>定时触发：TIME_TRIGGER</li><li>持续运行：CONTINUE_RUN（暂不支持）</li><li>文件到达：FILE_ARRIVAL（暂不支持）</li></ul><p>注意：</p><ul><li>TIME_TRIGGER 和 CONTINUE_RUN 模式下，SchedulerStatus、SchedulerTimeZone、StartTime、EndTime、ConfigMode、CycleType、CrontabExpression 必填；</li><li>FILE_ARRIVAL 模式下，FileArrivalPath、TriggerMinimumIntervalSecond、TriggerWaitTimeSecond 必填；</li></ul><p>枚举值：</p><ul><li>TIME_TRIGGER： 定时触发</li></ul>
+        # @param TriggerMode: <p>触发方式，非必填，外部结构的TriggerMode字段优先级比当前字段高</p><ul><li>定时触发：TIME_TRIGGER</li><li>文件到达：FILE_ARRIVAL</li><li>持续运行：CONTINUE_RUN（暂不支持）</li></ul><p>注意：</p><ul><li>TIME_TRIGGER 和 CONTINUE_RUN 模式下，SchedulerStatus、SchedulerTimeZone、StartTime、EndTime、ConfigMode、CycleType、CrontabExpression 必填；</li><li>FILE_ARRIVAL 模式下，FileArrivalPath、TriggerMinimumIntervalSecond、TriggerWaitTimeSecond 必填；</li></ul><p>枚举值：</p><ul><li>TIME_TRIGGER： 定时触发</li><li>FILE_ARRIVAL： 文件到达</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TriggerMode: String
         # @param ExtraInfo: <p>WorkflowTriggerConfig转换成Json格式，对账使用</p>
@@ -25063,19 +25116,25 @@ module TencentCloud
         # @param FileArrivalPath: <p>文件到达模式下    存储系统中的监听路径</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileArrivalPath: String
-        # @param TriggerMinimumIntervalSecond: <p>文件到达模式下    触发最短间隔时间（单位：秒）</p>
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TriggerMinimumIntervalSecond: Integer
-        # @param TriggerWaitTimeSecond: <p>文件到达模式下    触发等待时间（单位：秒）</p>
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TriggerWaitTimeSecond: Integer
         # @param SchedulerStatus: <p>Trigger 状态 启动ACTIVE，暂停PAUSED。外部的TriggerStatus优先级大于当前值</p><p>枚举值：</p><ul><li>ACTIVE： 启动</li><li>PAUSED： 暂停</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SchedulerStatus: String
+        # @param FileNamePattern: <p>文件到达模式下 文件匹配规则</p><p>入参限制：文件名匹配仅支持文件名和 *，不能包含路径分隔符 /</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileNamePattern: String
+        # @param Recursive: <p>文件到达模式下 是否递归检测子目录</p><p>取值范围：[0, 1]</p><p>默认值：1</p><p>默认 1（开启） 0 （关闭）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Recursive: Integer
+        # @param TriggerMinimumIntervalSecond: <p>文件到达模式下    触发最短间隔时间</p><p>单位：秒</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TriggerMinimumIntervalSecond: Integer
+        # @param TriggerWaitTimeSecond: <p>文件到达模式下    触发等待时间</p><p>单位：秒</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TriggerWaitTimeSecond: Integer
 
-        attr_accessor :TriggerMode, :ExtraInfo, :ScheduleTimeZone, :StartTime, :EndTime, :ConfigMode, :CycleType, :CrontabExpression, :TriggerId, :FileArrivalPath, :TriggerMinimumIntervalSecond, :TriggerWaitTimeSecond, :SchedulerStatus
+        attr_accessor :TriggerMode, :ExtraInfo, :ScheduleTimeZone, :StartTime, :EndTime, :ConfigMode, :CycleType, :CrontabExpression, :TriggerId, :FileArrivalPath, :SchedulerStatus, :FileNamePattern, :Recursive, :TriggerMinimumIntervalSecond, :TriggerWaitTimeSecond
 
-        def initialize(triggermode=nil, extrainfo=nil, scheduletimezone=nil, starttime=nil, endtime=nil, configmode=nil, cycletype=nil, crontabexpression=nil, triggerid=nil, filearrivalpath=nil, triggerminimumintervalsecond=nil, triggerwaittimesecond=nil, schedulerstatus=nil)
+        def initialize(triggermode=nil, extrainfo=nil, scheduletimezone=nil, starttime=nil, endtime=nil, configmode=nil, cycletype=nil, crontabexpression=nil, triggerid=nil, filearrivalpath=nil, schedulerstatus=nil, filenamepattern=nil, recursive=nil, triggerminimumintervalsecond=nil, triggerwaittimesecond=nil)
           @TriggerMode = triggermode
           @ExtraInfo = extrainfo
           @ScheduleTimeZone = scheduletimezone
@@ -25086,9 +25145,11 @@ module TencentCloud
           @CrontabExpression = crontabexpression
           @TriggerId = triggerid
           @FileArrivalPath = filearrivalpath
+          @SchedulerStatus = schedulerstatus
+          @FileNamePattern = filenamepattern
+          @Recursive = recursive
           @TriggerMinimumIntervalSecond = triggerminimumintervalsecond
           @TriggerWaitTimeSecond = triggerwaittimesecond
-          @SchedulerStatus = schedulerstatus
         end
 
         def deserialize(params)
@@ -25102,9 +25163,11 @@ module TencentCloud
           @CrontabExpression = params['CrontabExpression']
           @TriggerId = params['TriggerId']
           @FileArrivalPath = params['FileArrivalPath']
+          @SchedulerStatus = params['SchedulerStatus']
+          @FileNamePattern = params['FileNamePattern']
+          @Recursive = params['Recursive']
           @TriggerMinimumIntervalSecond = params['TriggerMinimumIntervalSecond']
           @TriggerWaitTimeSecond = params['TriggerWaitTimeSecond']
-          @SchedulerStatus = params['SchedulerStatus']
         end
       end
 

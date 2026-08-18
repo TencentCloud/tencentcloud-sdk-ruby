@@ -29208,27 +29208,27 @@ module TencentCloud
 
       # ModifyProject请求参数结构体
       class ModifyProjectRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 目标修改的项目ID
+        # @param ProjectId: <p>目标修改的项目ID</p>
         # @type ProjectId: String
-        # @param DisplayName: 项目显示名称，可以为中文名,需要租户范围内唯一
+        # @param DisplayName: <p>项目显示名称，可以为中文名,需要租户范围内唯一</p>
         # @type DisplayName: String
-        # @param Description: 备注
+        # @param Description: <p>备注</p>
         # @type Description: String
-        # @param TaskSubmitApproval: true/false则修改，不带该参数不修改。
+        # @param TaskSubmitApproval: <p>true/false则修改，不带该参数不修改。</p>
         # @type TaskSubmitApproval: Boolean
-        # @param ResourcePoolInfo: 资源池信息
+        # @param ResourcePoolInfo: <p>资源池信息</p>
         # @type ResourcePoolInfo: :class:`Tencentcloud::Wedata.v20210820.models.ResourcePoolInfo`
-        # @param ProjectManagers: 项目管理员
+        # @param ProjectManagers: <p>项目管理员</p>
         # @type ProjectManagers: Array
-        # @param TaskStrictMode: 调度任务严格模式
+        # @param TaskStrictMode: <p>调度任务严格模式</p>
         # @type TaskStrictMode: Boolean
-        # @param ExtraOptions: 以后新增选项可以直接通过前端的json格式写入去实现
+        # @param ExtraOptions: <p>以后新增选项可以直接通过前端的json格式写入去实现</p>
         # @type ExtraOptions: String
-        # @param Model: 项目类型，SIMPLE：简单模式 STANDARD：标准模式
+        # @param Model: <p>项目类型，SIMPLE：简单模式 STANDARD：标准模式</p>
         # @type Model: String
-        # @param ProjectOwner: 项目负责人
+        # @param ProjectOwner: <p>项目负责人</p>
         # @type ProjectOwner: Array
-        # @param ModifyType: 更新类型
+        # @param ModifyType: <p>更新类型</p>
         # @type ModifyType: String
 
         attr_accessor :ProjectId, :DisplayName, :Description, :TaskSubmitApproval, :ResourcePoolInfo, :ProjectManagers, :TaskStrictMode, :ExtraOptions, :Model, :ProjectOwner, :ModifyType
@@ -44672,67 +44672,70 @@ module TencentCloud
 
       # 工作流信息
       class WorkflowDsDTO < TencentCloud::Common::AbstractModel
-        # @param WorkflowId: 工作流ID
+        # @param WorkflowId: <p>工作流ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkflowId: String
-        # @param Owner: 责任人
+        # @param Owner: <p>责任人</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Owner: String
-        # @param OwnerId: 责任人ID
+        # @param OwnerId: <p>责任人ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OwnerId: String
-        # @param ProjectId: 项目ID
+        # @param ProjectId: <p>项目ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectId: String
-        # @param ProjectIdent: 项目标识
+        # @param ProjectIdent: <p>项目标识</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectIdent: String
-        # @param ProjectName: 项目名称
+        # @param ProjectName: <p>项目名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectName: String
-        # @param WorkflowDesc: 工作流描述
+        # @param WorkflowDesc: <p>工作流描述</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkflowDesc: String
-        # @param WorkflowName: 工作流名称
+        # @param WorkflowName: <p>工作流名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkflowName: String
-        # @param FolderId: 文件夹ID
+        # @param FolderId: <p>文件夹ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FolderId: String
-        # @param SparkParams: SparkSQL参数
+        # @param SparkParams: <p>SparkSQL参数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SparkParams: String
-        # @param Tasks: 任务列表
+        # @param Tasks: <p>任务列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tasks: Array
-        # @param Links: 任务链接列表
+        # @param Links: <p>任务链接列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Links: Array
-        # @param Params: 参数列表
+        # @param Params: <p>参数列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Params: Array
-        # @param WorkflowType: 工作流类型, 取值示例
-
-        # - cycle 周期工作流
-        # - manual 手动工作流
+        # @param WorkflowType: <p>工作流类型, 取值示例</p><ul><li>cycle 周期工作流</li><li>manual 手动工作流</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkflowType: String
-        # @param UpdateUser: 最近更新人名称
+        # @param UpdateUser: <p>最近更新人名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateUser: String
-        # @param UpdateUserId: 最近更新人id
+        # @param UpdateUserId: <p>最近更新人id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateUserId: String
-        # @param BundleId: BundleId CI/CD工程生成的bundle唯一标识
+        # @param BundleId: <p>BundleId CI/CD工程生成的bundle唯一标识</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BundleId: String
-        # @param BundleInfo: BundleId信息
+        # @param BundleInfo: <p>BundleId信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BundleInfo: String
+        # @param ExecuteUserUin: <p>运行账号ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecuteUserUin: String
+        # @param ExecuteUserName: <p>运行账号名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecuteUserName: String
 
-        attr_accessor :WorkflowId, :Owner, :OwnerId, :ProjectId, :ProjectIdent, :ProjectName, :WorkflowDesc, :WorkflowName, :FolderId, :SparkParams, :Tasks, :Links, :Params, :WorkflowType, :UpdateUser, :UpdateUserId, :BundleId, :BundleInfo
+        attr_accessor :WorkflowId, :Owner, :OwnerId, :ProjectId, :ProjectIdent, :ProjectName, :WorkflowDesc, :WorkflowName, :FolderId, :SparkParams, :Tasks, :Links, :Params, :WorkflowType, :UpdateUser, :UpdateUserId, :BundleId, :BundleInfo, :ExecuteUserUin, :ExecuteUserName
 
-        def initialize(workflowid=nil, owner=nil, ownerid=nil, projectid=nil, projectident=nil, projectname=nil, workflowdesc=nil, workflowname=nil, folderid=nil, sparkparams=nil, tasks=nil, links=nil, params=nil, workflowtype=nil, updateuser=nil, updateuserid=nil, bundleid=nil, bundleinfo=nil)
+        def initialize(workflowid=nil, owner=nil, ownerid=nil, projectid=nil, projectident=nil, projectname=nil, workflowdesc=nil, workflowname=nil, folderid=nil, sparkparams=nil, tasks=nil, links=nil, params=nil, workflowtype=nil, updateuser=nil, updateuserid=nil, bundleid=nil, bundleinfo=nil, executeuseruin=nil, executeusername=nil)
           @WorkflowId = workflowid
           @Owner = owner
           @OwnerId = ownerid
@@ -44751,6 +44754,8 @@ module TencentCloud
           @UpdateUserId = updateuserid
           @BundleId = bundleid
           @BundleInfo = bundleinfo
+          @ExecuteUserUin = executeuseruin
+          @ExecuteUserName = executeusername
         end
 
         def deserialize(params)
@@ -44793,6 +44798,8 @@ module TencentCloud
           @UpdateUserId = params['UpdateUserId']
           @BundleId = params['BundleId']
           @BundleInfo = params['BundleInfo']
+          @ExecuteUserUin = params['ExecuteUserUin']
+          @ExecuteUserName = params['ExecuteUserName']
         end
       end
 
