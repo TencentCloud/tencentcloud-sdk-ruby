@@ -246,22 +246,26 @@ module TencentCloud
       class Activity < TencentCloud::Common::AbstractModel
         # @param ActivityType: <p>原子任务类型：</p><li>input: 起始节点</li><li>output：终止节点</li><li>action-trans：转码</li><li>action-samplesnapshot：采样截图</li><li>action-AIAnalysis: 分析</li><li>action-AIRecognition：识别</li><li>action-aiReview：审核</li><li>action-animated-graphics：转动图</li><li>action-image-sprite：雪碧图</li><li>action-snapshotByTimeOffset: 时间点截图</li><li>action-adaptive-substream：自适应码流</li><li>action-AIQualityControl：媒体质检</li><li>action-SmartSubtitles：智能字幕</li><li>action-exec-rules：判断规则</li><li>action-SmartErase：智能擦除</li>
         # @type ActivityType: String
+        # @param PredriveIndex: <p>前驱节点索引数组。<br>注意：创建和修改编排时，该参数无效，由服务端自动生成。</p>
+        # @type PredriveIndex: Array
         # @param ReardriveIndex: <p>后驱节点索引数组</p>
         # @type ReardriveIndex: Array
         # @param ActivityPara: <p>原子任务参数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActivityPara: :class:`Tencentcloud::Mps.v20190612.models.ActivityPara`
 
-        attr_accessor :ActivityType, :ReardriveIndex, :ActivityPara
+        attr_accessor :ActivityType, :PredriveIndex, :ReardriveIndex, :ActivityPara
 
-        def initialize(activitytype=nil, reardriveindex=nil, activitypara=nil)
+        def initialize(activitytype=nil, predriveindex=nil, reardriveindex=nil, activitypara=nil)
           @ActivityType = activitytype
+          @PredriveIndex = predriveindex
           @ReardriveIndex = reardriveindex
           @ActivityPara = activitypara
         end
 
         def deserialize(params)
           @ActivityType = params['ActivityType']
+          @PredriveIndex = params['PredriveIndex']
           @ReardriveIndex = params['ReardriveIndex']
           unless params['ActivityPara'].nil?
             @ActivityPara = ActivityPara.new
@@ -9520,14 +9524,17 @@ module TencentCloud
         # @type Resolution: String
         # @param AspectRatio: <p>输出图片的宽高比</p><p>枚举值：</p><ul><li>1:1： 宽高比 1:1</li><li>2:3： 宽高比 2:3</li><li>3:2： 宽高比 3:2</li><li>3:4： 宽高比 3:4</li><li>4:3： 宽高比 4:3</li><li>9:16： 宽高比 9:16</li><li>16:9： 宽高比 16:9</li></ul><p>默认值：1:1</p>
         # @type AspectRatio: String
+        # @param AdditionalParameters: <p>附加参数。</p>
+        # @type AdditionalParameters: String
 
-        attr_accessor :Model, :Prompt, :Resolution, :AspectRatio
+        attr_accessor :Model, :Prompt, :Resolution, :AspectRatio, :AdditionalParameters
 
-        def initialize(model=nil, prompt=nil, resolution=nil, aspectratio=nil)
+        def initialize(model=nil, prompt=nil, resolution=nil, aspectratio=nil, additionalparameters=nil)
           @Model = model
           @Prompt = prompt
           @Resolution = resolution
           @AspectRatio = aspectratio
+          @AdditionalParameters = additionalparameters
         end
 
         def deserialize(params)
@@ -9535,6 +9542,7 @@ module TencentCloud
           @Prompt = params['Prompt']
           @Resolution = params['Resolution']
           @AspectRatio = params['AspectRatio']
+          @AdditionalParameters = params['AdditionalParameters']
         end
       end
 
