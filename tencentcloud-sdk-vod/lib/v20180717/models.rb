@@ -4333,6 +4333,10 @@ module TencentCloud
         # @type Prompt: String
         # @param NegativePrompt: <p>要阻止模型生成视频的提示词。最大支持1000字符。</p>
         # @type NegativePrompt: String
+        # @param AudioInfos: <p>参考音频信息</p>
+        # @type AudioInfos: Array
+        # @param VideoInfos: <p>参考视频信息</p>
+        # @type VideoInfos: Array
         # @param EnhancePrompt: <p>是否自动优化提示词。开启时将自动优化传入的Prompt，以提升生成质量。取值有： <li>Enabled：开启；</li> <li>Disabled：关闭；</li></p>
         # @type EnhancePrompt: Boolean
         # @param OutputConfig: <p>AIGC 生图输出结果文件输出。</p>
@@ -4340,14 +4344,16 @@ module TencentCloud
         # @param AdditionalParameters: <p>额外参数</p>
         # @type AdditionalParameters: String
 
-        attr_accessor :ModelName, :ModelVersion, :SceneType, :Prompt, :NegativePrompt, :EnhancePrompt, :OutputConfig, :AdditionalParameters
+        attr_accessor :ModelName, :ModelVersion, :SceneType, :Prompt, :NegativePrompt, :AudioInfos, :VideoInfos, :EnhancePrompt, :OutputConfig, :AdditionalParameters
 
-        def initialize(modelname=nil, modelversion=nil, scenetype=nil, prompt=nil, negativeprompt=nil, enhanceprompt=nil, outputconfig=nil, additionalparameters=nil)
+        def initialize(modelname=nil, modelversion=nil, scenetype=nil, prompt=nil, negativeprompt=nil, audioinfos=nil, videoinfos=nil, enhanceprompt=nil, outputconfig=nil, additionalparameters=nil)
           @ModelName = modelname
           @ModelVersion = modelversion
           @SceneType = scenetype
           @Prompt = prompt
           @NegativePrompt = negativeprompt
+          @AudioInfos = audioinfos
+          @VideoInfos = videoinfos
           @EnhancePrompt = enhanceprompt
           @OutputConfig = outputconfig
           @AdditionalParameters = additionalparameters
@@ -4359,6 +4365,22 @@ module TencentCloud
           @SceneType = params['SceneType']
           @Prompt = params['Prompt']
           @NegativePrompt = params['NegativePrompt']
+          unless params['AudioInfos'].nil?
+            @AudioInfos = []
+            params['AudioInfos'].each do |i|
+              aigcaudioreferenceaudioinfo_tmp = AigcAudioReferenceAudioInfo.new
+              aigcaudioreferenceaudioinfo_tmp.deserialize(i)
+              @AudioInfos << aigcaudioreferenceaudioinfo_tmp
+            end
+          end
+          unless params['VideoInfos'].nil?
+            @VideoInfos = []
+            params['VideoInfos'].each do |i|
+              aigcaudioreferencevideoinfo_tmp = AigcAudioReferenceVideoInfo.new
+              aigcaudioreferencevideoinfo_tmp.deserialize(i)
+              @VideoInfos << aigcaudioreferencevideoinfo_tmp
+            end
+          end
           @EnhancePrompt = params['EnhancePrompt']
           unless params['OutputConfig'].nil?
             @OutputConfig = AigcAudioOutputConfig.new
@@ -5350,7 +5372,7 @@ module TencentCloud
         # @type Status: String
         # @param ErrCode: <p>错误码。源异常时返回非0错误码，返回0时请使用各个具体任务的 ErrCode。</p>
         # @type ErrCode: Integer
-        # @param ErrCodeExt: <p>扩展错误码。</p><p>枚举值：</p><ul><li>RequestLimitExceeded： 调用超出并发限制。</li><li>InvalidParameter.VoilationContent： 输入 prompt 违反内容安全策略。</li><li>InvalidParameterValue： 参数错误。</li><li>FailedOperation： 模型任务堆积。</li><li>InternalError： 内部错误。</li></ul>
+        # @param ErrCodeExt: <p>扩展错误码。</p><p>枚举值：</p><ul><li>RequestLimitExceeded： 调用超出并发限制。</li><li>InvalidParameter.VoilationContent： 输入 prompt 违反内容安全策略。</li><li>InvalidParameterValue： 参数值错误。</li><li>FailedOperation： 模型任务堆积。</li><li>InternalError： 内部错误。</li><li>InvalidParameter： 非法参数。</li><li>InvalidParameter.MediaFormat： 无效的媒体格式。</li><li>ContentModerationFailed： 内容审核未通过。</li><li>ResourceInsufficient： 资源不足。</li><li>ModelGenerateFailed： 模型生成失败。</li><li>ResourceNotFound： 资源不存在。</li><li>OperationCanceled： 操作已取消。</li><li>TaskTimeout： 任务超时。</li></ul>
         # @type ErrCodeExt: String
         # @param Message: <p>错误信息。</p>
         # @type Message: String
@@ -17304,7 +17326,7 @@ module TencentCloud
 
       # DescribeTaskDetail返回参数结构体
       class DescribeTaskDetailResponse < TencentCloud::Common::AbstractModel
-        # @param TaskType: <p>任务类型，取值：<li>Procedure：视频处理任务；</li><li>EditMedia：视频编辑任务；</li><li>SplitMedia：视频拆条任务；</li><li>ComposeMedia：制作媒体文件任务；</li><li>WechatPublish：微信发布任务；</li><li>WechatMiniProgramPublish：微信小程序视频发布任务；</li><li>PullUpload：拉取上传媒体文件任务；</li><li>FastClipMedia：快速剪辑任务；</li><li>RemoveWatermarkTask：智能去除水印任务；</li><li>DescribeFileAttributesTask：获取文件属性任务；</li><li>RebuildMedia：音画质重生任务（不推荐使用）；</li><li>ReviewAudioVideo：音视频审核任务；</li><li>ExtractTraceWatermark：提取溯源水印任务；</li><li>ExtractCopyRightWatermark：提取版权水印任务；</li><li>QualityInspect：音画质检测任务；</li><li>QualityEnhance：音画质重生任务；</li><li>ComplexAdaptiveDynamicStreaming：复杂自适应码流任务；</li><li>ProcessMediaByMPS：MPS 视频处理任务；</li><li>AigcImageTask：AIGC 生图任务；</li><li>SceneAigcImageTask：场景化 AIGC 生图任务；</li><li>AigcVideoTask：AIGC 生视频任务；</li><li>ImportMediaKnowledge：导入媒体知识任务。</li><li>SceneAigcVideoTask：场景化 AIGC 生视频任务；</li><li> ExtractBlindWatermark：提取数字水印任务。</li><li> ExtractBlindWatermark：提取数字水印任务。</li><li> CreateAigcAdvancedCustomElement：创建自定义主体任务</li><li>CreateAigcCustomVoice：创建自定义音色任务</li><li>CreateAigcSubject：创建主体任务</li><li>AigcVideoRedrawTask：AIGC 视频转绘任务</li><li>CreateAigcAudioClone：AIGC 声音复刻任务</li><li>DescribeAigcFaceInfoAsync：异步获取 AIGC 人脸信息任务</li></p>
+        # @param TaskType: <p>任务类型，取值：<li>Procedure：视频处理任务；</li><li>EditMedia：视频编辑任务；</li><li>SplitMedia：视频拆条任务；</li><li>ComposeMedia：制作媒体文件任务；</li><li>WechatPublish：微信发布任务；</li><li>WechatMiniProgramPublish：微信小程序视频发布任务；</li><li>PullUpload：拉取上传媒体文件任务；</li><li>FastClipMedia：快速剪辑任务；</li><li>RemoveWatermarkTask：智能去除水印任务；</li><li>DescribeFileAttributesTask：获取文件属性任务；</li><li>RebuildMedia：音画质重生任务（不推荐使用）；</li><li>ReviewAudioVideo：音视频审核任务；</li><li>ExtractTraceWatermark：提取溯源水印任务；</li><li>ExtractCopyRightWatermark：提取版权水印任务；</li><li>QualityInspect：音画质检测任务；</li><li>QualityEnhance：音画质重生任务；</li><li>ComplexAdaptiveDynamicStreaming：复杂自适应码流任务；</li><li>ProcessMediaByMPS：MPS 视频处理任务；</li><li>AigcImageTask：AIGC 生图任务；</li><li>SceneAigcImageTask：场景化 AIGC 生图任务；</li><li>AigcVideoTask：AIGC 生视频任务；</li><li>ImportMediaKnowledge：导入媒体知识任务。</li><li>SceneAigcVideoTask：场景化 AIGC 生视频任务；</li><li> ExtractBlindWatermark：提取数字水印任务。</li><li> ExtractBlindWatermark：提取数字水印任务。</li><li> CreateAigcAdvancedCustomElement：创建自定义主体任务</li><li>CreateAigcCustomVoice：创建自定义音色任务</li><li>CreateAigcSubject：创建主体任务</li><li>AigcVideoRedrawTask：AIGC 视频转绘任务</li><li>CreateAigcAudioClone：AIGC 声音复刻任务</li><li>DescribeAigcFaceInfoAsync：异步获取 AIGC 人脸信息任务</li><li>WandAsrTask：WAND 语音识别</li></p>
         # @type TaskType: String
         # @param Status: <p>任务状态，取值：</p><li>WAITING：等待中；</li><li>PROCESSING：处理中；</li><li>FINISH：已完成；</li><li>ABORTED：已终止。</li>
         # @type Status: String

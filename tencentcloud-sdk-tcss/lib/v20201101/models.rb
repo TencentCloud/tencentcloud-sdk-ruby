@@ -13520,19 +13520,15 @@ module TencentCloud
 
       # DescribeEventEscapeImageList请求参数结构体
       class DescribeEventEscapeImageListRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @param Limit: <p>需要返回的数量，默认为10，最大值为100</p>
         # @type Limit: Integer
-        # @param Offset: 偏移量，默认为0。
+        # @param Offset: <p>偏移量，默认为0。</p>
         # @type Offset: Integer
-        # @param Filters: 过滤参数:
-        # EventType: 事件类型(MOUNT_SENSITIVE_PTAH:敏感路径挂载 PRIVILEGE_CONTAINER_START:特权容器)
-        # Status: 事件状态(EVENT_UNDEAL:未处理，EVENT_DEALED:已处理，EVENT_INGNORE:忽略)
-        # ImageID: 镜像id
-        # ImageName:镜像名称
+        # @param Filters: <p>过滤参数:<br>EventType: 事件类型(MOUNT_SENSITIVE_PTAH:敏感路径挂载 PRIVILEGE_CONTAINER_START:特权容器)<br>Status: 事件状态(EVENT_UNDEAL:未处理，EVENT_DEALED:已处理，EVENT_INGNORE:忽略)<br>ImageID: 镜像id<br>ImageName:镜像名称</p>
         # @type Filters: Array
-        # @param Order: 升序降序,asc desc
+        # @param Order: <p>升序降序,asc desc</p>
         # @type Order: String
-        # @param By: 排序字段
+        # @param By: <p>排序字段</p>
         # @type By: String
 
         attr_accessor :Limit, :Offset, :Filters, :Order, :By
@@ -13563,9 +13559,9 @@ module TencentCloud
 
       # DescribeEventEscapeImageList返回参数结构体
       class DescribeEventEscapeImageListResponse < TencentCloud::Common::AbstractModel
-        # @param List: 风险容器镜像列表
+        # @param List: <p>风险容器镜像列表</p>
         # @type List: Array
-        # @param TotalCount: 事件总数量
+        # @param TotalCount: <p>事件总数量</p>
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

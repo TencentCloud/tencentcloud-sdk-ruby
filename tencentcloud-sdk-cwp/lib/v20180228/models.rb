@@ -4459,8 +4459,8 @@ module TencentCloud
 
         attr_accessor :Id, :Uuid, :Name, :Level, :Rule, :Decription, :Operator, :IsGlobal, :Status, :CreateTime, :ModifyTime, :Hostip, :Uuids, :White, :DealOldEvents, :Description
         extend Gem::Deprecate
-        deprecate :Decription, :none, 2026, 7
-        deprecate :Decription=, :none, 2026, 7
+        deprecate :Decription, :none, 2026, 8
+        deprecate :Decription=, :none, 2026, 8
 
         def initialize(id=nil, uuid=nil, name=nil, level=nil, rule=nil, decription=nil, operator=nil, isglobal=nil, status=nil, createtime=nil, modifytime=nil, hostip=nil, uuids=nil, white=nil, dealoldevents=nil, description=nil)
           @Id = id
@@ -17346,16 +17346,16 @@ module TencentCloud
 
         attr_accessor :MachineCnt, :TencentCloudMachineCnt, :AliCloudMachineCnt, :BaiduCloudMachineCnt, :IDCMachineCnt, :OtherCloudMachineCnt, :ProtectMachineCnt, :BaseMachineCnt, :SpecialtyMachineCnt, :FlagshipMachineCnt, :RiskMachineCnt, :CompareYesterdayRiskMachineCnt, :CompareYesterdayNotProtectMachineCnt, :CompareYesterdayDeadlineMachineCnt, :DeadlineMachineCnt, :NotProtectMachineCnt, :LHGeneralDiscountCnt, :CompareYesterdayMachineCnt, :MachineDestroyAfterOfflineHours, :CloudFrom, :RequestId
         extend Gem::Deprecate
-        deprecate :TencentCloudMachineCnt, :none, 2026, 7
-        deprecate :TencentCloudMachineCnt=, :none, 2026, 7
-        deprecate :AliCloudMachineCnt, :none, 2026, 7
-        deprecate :AliCloudMachineCnt=, :none, 2026, 7
-        deprecate :BaiduCloudMachineCnt, :none, 2026, 7
-        deprecate :BaiduCloudMachineCnt=, :none, 2026, 7
-        deprecate :IDCMachineCnt, :none, 2026, 7
-        deprecate :IDCMachineCnt=, :none, 2026, 7
-        deprecate :OtherCloudMachineCnt, :none, 2026, 7
-        deprecate :OtherCloudMachineCnt=, :none, 2026, 7
+        deprecate :TencentCloudMachineCnt, :none, 2026, 8
+        deprecate :TencentCloudMachineCnt=, :none, 2026, 8
+        deprecate :AliCloudMachineCnt, :none, 2026, 8
+        deprecate :AliCloudMachineCnt=, :none, 2026, 8
+        deprecate :BaiduCloudMachineCnt, :none, 2026, 8
+        deprecate :BaiduCloudMachineCnt=, :none, 2026, 8
+        deprecate :IDCMachineCnt, :none, 2026, 8
+        deprecate :IDCMachineCnt=, :none, 2026, 8
+        deprecate :OtherCloudMachineCnt, :none, 2026, 8
+        deprecate :OtherCloudMachineCnt=, :none, 2026, 8
 
         def initialize(machinecnt=nil, tencentcloudmachinecnt=nil, alicloudmachinecnt=nil, baiducloudmachinecnt=nil, idcmachinecnt=nil, othercloudmachinecnt=nil, protectmachinecnt=nil, basemachinecnt=nil, specialtymachinecnt=nil, flagshipmachinecnt=nil, riskmachinecnt=nil, compareyesterdayriskmachinecnt=nil, compareyesterdaynotprotectmachinecnt=nil, compareyesterdaydeadlinemachinecnt=nil, deadlinemachinecnt=nil, notprotectmachinecnt=nil, lhgeneraldiscountcnt=nil, compareyesterdaymachinecnt=nil, machinedestroyafterofflinehours=nil, cloudfrom=nil, requestid=nil)
           @MachineCnt = machinecnt
@@ -21150,16 +21150,15 @@ module TencentCloud
 
       # DescribeReverseShellRulesAggregation请求参数结构体
       class DescribeReverseShellRulesAggregationRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 返回数量，默认为10，最大值为100。
+        # @param Limit: <p>返回数量，默认为10，最大值为100。</p>
         # @type Limit: Integer
-        # @param Offset: 偏移量，默认为0。
+        # @param Offset: <p>偏移量，默认为0。</p>
         # @type Offset: Integer
-        # @param Filters: 过滤条件。
-        # <li>Keywords - String - 是否必填：否 - 关键字(进程名称)</li>
+        # @param Filters: <p>过滤条件。</p><li>Keywords - String - 是否必填：否 - 关键字(进程名称)</li>
         # @type Filters: Array
-        # @param By: 排序字段，目前有：CreateTime、ModifyTime，默认按照ModifyTime排序
+        # @param By: <p>排序字段，目前有：CreateTime、ModifyTime，默认按照ModifyTime排序</p>
         # @type By: String
-        # @param Order: 排序升序还是倒序，DESC有ASC、
+        # @param Order: <p>排序升序还是倒序，DESC有ASC、</p>
         # @type Order: String
 
         attr_accessor :Limit, :Offset, :Filters, :By, :Order
@@ -21190,9 +21189,9 @@ module TencentCloud
 
       # DescribeReverseShellRulesAggregation返回参数结构体
       class DescribeReverseShellRulesAggregationResponse < TencentCloud::Common::AbstractModel
-        # @param List: 列表内容
+        # @param List: <p>列表内容</p>
         # @type List: Array
-        # @param TotalCount: 总条数
+        # @param TotalCount: <p>总条数</p>
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -28848,10 +28847,10 @@ module TencentCloud
 
         attr_accessor :Filters, :Fileds, :Fields, :Where
         extend Gem::Deprecate
-        deprecate :Fileds, :none, 2026, 7
-        deprecate :Fileds=, :none, 2026, 7
-        deprecate :Fields, :none, 2026, 7
-        deprecate :Fields=, :none, 2026, 7
+        deprecate :Fileds, :none, 2026, 8
+        deprecate :Fileds=, :none, 2026, 8
+        deprecate :Fields, :none, 2026, 8
+        deprecate :Fields=, :none, 2026, 8
 
         def initialize(filters=nil, fileds=nil, fields=nil, where=nil)
           @Filters = filters

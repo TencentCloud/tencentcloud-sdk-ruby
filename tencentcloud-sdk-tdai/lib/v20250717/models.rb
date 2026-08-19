@@ -166,10 +166,16 @@ module TencentCloud
         # @type Description: String
         # @param CreatingProgress: <p>发货进度详情</p>
         # @type CreatingProgress: :class:`Tencentcloud::Tdai.v20250717.models.CreatingProgress`
+        # @param RoleName: <p>实例关联的角色名称</p>
+        # @type RoleName: String
+        # @param OfflineTime: <p>实例下线时间</p><p>参数格式：2026-08-12 17:02:43</p>
+        # @type OfflineTime: String
+        # @param ProductName: <p>商业化资源归属</p>
+        # @type ProductName: String
 
-        attr_accessor :InstanceId, :InstanceName, :AgentId, :AgentName, :AgentInternalName, :AgentType, :AgentVersion, :Status, :Parameters, :CreateTime, :UpdateTime, :Tags, :DeployPlace, :PolicyIds, :ClawConfig, :InstanceType, :AllowedActions, :LastActiveTime, :Description, :CreatingProgress
+        attr_accessor :InstanceId, :InstanceName, :AgentId, :AgentName, :AgentInternalName, :AgentType, :AgentVersion, :Status, :Parameters, :CreateTime, :UpdateTime, :Tags, :DeployPlace, :PolicyIds, :ClawConfig, :InstanceType, :AllowedActions, :LastActiveTime, :Description, :CreatingProgress, :RoleName, :OfflineTime, :ProductName
 
-        def initialize(instanceid=nil, instancename=nil, agentid=nil, agentname=nil, agentinternalname=nil, agenttype=nil, agentversion=nil, status=nil, parameters=nil, createtime=nil, updatetime=nil, tags=nil, deployplace=nil, policyids=nil, clawconfig=nil, instancetype=nil, allowedactions=nil, lastactivetime=nil, description=nil, creatingprogress=nil)
+        def initialize(instanceid=nil, instancename=nil, agentid=nil, agentname=nil, agentinternalname=nil, agenttype=nil, agentversion=nil, status=nil, parameters=nil, createtime=nil, updatetime=nil, tags=nil, deployplace=nil, policyids=nil, clawconfig=nil, instancetype=nil, allowedactions=nil, lastactivetime=nil, description=nil, creatingprogress=nil, rolename=nil, offlinetime=nil, productname=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @AgentId = agentid
@@ -190,6 +196,9 @@ module TencentCloud
           @LastActiveTime = lastactivetime
           @Description = description
           @CreatingProgress = creatingprogress
+          @RoleName = rolename
+          @OfflineTime = offlinetime
+          @ProductName = productname
         end
 
         def deserialize(params)
@@ -233,6 +242,9 @@ module TencentCloud
             @CreatingProgress = CreatingProgress.new
             @CreatingProgress.deserialize(params['CreatingProgress'])
           end
+          @RoleName = params['RoleName']
+          @OfflineTime = params['OfflineTime']
+          @ProductName = params['ProductName']
         end
       end
 
@@ -461,10 +473,12 @@ module TencentCloud
         # @type SoulId: Integer
         # @param Description: <p>无</p>
         # @type Description: String
+        # @param UsePlatformAccount: <p>企业版是否使用平台大账号模式发货</p>
+        # @type UsePlatformAccount: Boolean
 
-        attr_accessor :AgentId, :AgentVersion, :InstanceName, :Parameters, :Tags, :InstanceType, :TemplateId, :Skills, :SoulId, :Description
+        attr_accessor :AgentId, :AgentVersion, :InstanceName, :Parameters, :Tags, :InstanceType, :TemplateId, :Skills, :SoulId, :Description, :UsePlatformAccount
 
-        def initialize(agentid=nil, agentversion=nil, instancename=nil, parameters=nil, tags=nil, instancetype=nil, templateid=nil, skills=nil, soulid=nil, description=nil)
+        def initialize(agentid=nil, agentversion=nil, instancename=nil, parameters=nil, tags=nil, instancetype=nil, templateid=nil, skills=nil, soulid=nil, description=nil, useplatformaccount=nil)
           @AgentId = agentid
           @AgentVersion = agentversion
           @InstanceName = instancename
@@ -475,6 +489,7 @@ module TencentCloud
           @Skills = skills
           @SoulId = soulid
           @Description = description
+          @UsePlatformAccount = useplatformaccount
         end
 
         def deserialize(params)
@@ -502,6 +517,7 @@ module TencentCloud
           @Skills = params['Skills']
           @SoulId = params['SoulId']
           @Description = params['Description']
+          @UsePlatformAccount = params['UsePlatformAccount']
         end
       end
 

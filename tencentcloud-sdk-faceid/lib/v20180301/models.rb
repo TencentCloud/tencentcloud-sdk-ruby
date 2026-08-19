@@ -312,8 +312,8 @@ module TencentCloud
 
         attr_accessor :ReqTime, :Seq, :IdCard, :Idcard, :Name, :Sim, :IsNeedCharge, :ChargeType, :ErrorCode, :ErrorMessage
         extend Gem::Deprecate
-        deprecate :Idcard, :none, 2026, 7
-        deprecate :Idcard=, :none, 2026, 7
+        deprecate :Idcard, :none, 2026, 8
+        deprecate :Idcard=, :none, 2026, 8
 
         def initialize(reqtime=nil, seq=nil, idcard=nil, name=nil, sim=nil, isneedcharge=nil, chargetype=nil, errorcode=nil, errormessage=nil)
           @ReqTime = reqtime
@@ -763,47 +763,29 @@ module TencentCloud
 
       # DetectAuth请求参数结构体
       class DetectAuthRequest < TencentCloud::Common::AbstractModel
-        # @param RuleId: 业务流程ID。
-        # - 用于细分客户使用场景, 可为业务配置不同的业务流程。
-        # - 申请开通服务后，登录腾讯云[慧眼人脸核身控制](https://console.cloud.tencent.com/faceid)进行创建，审核通过后即可调用。
-        # - 如有疑问，请添加[腾讯云人脸核身小助手](https://cloud.tencent.com/document/product/1007/56130)进行咨询。
+        # @param RuleId: <p>业务流程ID。</p><ul><li>用于细分客户使用场景, 可为业务配置不同的业务流程。</li><li>申请开通服务后，登录腾讯云<a href="https://console.cloud.tencent.com/faceid">慧眼人脸核身控制</a>进行创建，审核通过后即可调用。</li><li>如有疑问，请添加<a href="https://cloud.tencent.com/document/product/1007/56130">腾讯云人脸核身小助手</a>进行咨询。</li></ul>
         # @type RuleId: String
-        # @param TerminalType: 本接口不需要传递此参数。
+        # @param TerminalType: <p>本接口不需要传递此参数。</p>
         # @type TerminalType: String
-        # @param IdCard: 验证人的身份证号码。
-        # - 是否必传基于[控制台](https://console.cloud.tencent.com/faceid/access)申请业务流程时配置的提示。
+        # @param IdCard: <p>验证人的身份证号码。</p><ul><li>调用 detectAuth 时，该字段是否必传，以在<a href="https://console.cloud.tencent.com/faceid/access">控制台</a>申请 ruleId 时的配置提示为准，具体必填字段请参阅控制台界面。</li><li>若身份证号包含字母，该字母必须为大写 X，小写 x 将无法通过校验。</li></ul>
         # @type IdCard: String
-        # @param Name: 验证人的姓名。
-        # - 是否必传基于[控制台](https://console.cloud.tencent.com/faceid/access)申请业务流程时配置的提示。
-        # - 最长长度32位。中文请使用UTF-8编码。
+        # @param Name: <p>验证人的姓名。</p><ul><li>调用 detectAuth 时，该字段是否必传，以在<a href="https://console.cloud.tencent.com/faceid/access">控制台</a>申请 ruleId 时的配置提示为准，具体必填字段请参阅控制台界面。</li><li>最长长度32位。中文请使用UTF-8编码。</li></ul>
         # @type Name: String
-        # @param RedirectUrl: 认证结束后重定向的回调链接地址，仅微信H5场景使用。
-        # - 最长长度1024位。
-        # - 默认值：[腾讯云人脸核身产品介绍页](URL Here)https://cloud.tencent.com/product/faceid?Is=sdk-topnav
+        # @param RedirectUrl: <p>认证结束后重定向的回调链接地址，仅微信H5场景使用。</p><ul><li>最长长度1024位。</li><li>默认值：[腾讯云人脸核身产品介绍页](URL Here)https://cloud.tencent.com/product/faceid?Is=sdk-topnav</li></ul>
         # @type RedirectUrl: String
-        # @param Extra: 透传字段，在获取验证结果时返回。
-        # - 最长长度1024位。
+        # @param Extra: <p>透传字段，在获取验证结果时返回。</p><ul><li>最长长度1024位。</li></ul>
         # @type Extra: String
-        # @param ImageBase64: 用于人脸比对的图像数据，使用base64编码。
-        # - Base64编码后的图片数据大小不超过3M。
-        # - 仅支持jpg、png格式。
-        # - 请使用标准的Base64编码方式(带=补位)，编码规范参考RFC4648。
+        # @param ImageBase64: <p>用于人脸比对的图像数据，使用base64编码。</p><ul><li>Base64编码后的图片数据大小不超过3M。</li><li>仅支持jpg、png格式。</li><li>请使用标准的Base64编码方式(带=补位)，编码规范参考RFC4648。</li></ul>
         # @type ImageBase64: String
-        # @param Encryption: 敏感数据加密信息。对传入信息（姓名、身份证号）有加密需求的用户可使用此参数，详情请点击左侧链接。
+        # @param Encryption: <p>敏感数据加密信息。对传入信息（姓名、身份证号）有加密需求的用户可使用此参数，详情请点击左侧链接。</p>
         # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
-        # @param IntentionVerifyText: 意愿核身（朗读模式）使用的文案。
-        # - 若未使用意愿核身（朗读模式），则该字段无需传入。
-        # - 最长可接受120的字符串长度。
+        # @param IntentionVerifyText: <p>意愿核身（朗读模式）使用的文案。</p><ul><li>若未使用意愿核身（朗读模式），则该字段无需传入。</li><li>最长可接受120的字符串长度。</li></ul>
         # @type IntentionVerifyText: String
-        # @param IntentionQuestions: 意愿核身（语音播报+语音回答模式）使用的文案。
-        # - 包括：系统语音播报的文本、需要核验的标准文本。
-        # - 问答模式支持1-10轮（不超过10轮）的意愿确认。
+        # @param IntentionQuestions: <p>意愿核身（语音播报+语音回答模式）使用的文案。</p><ul><li>包括：系统语音播报的文本、需要核验的标准文本。</li><li>问答模式支持1-10轮（不超过10轮）的意愿确认。</li></ul>
         # @type IntentionQuestions: Array
-        # @param IntentionActions: 意愿核身（点头确认模式）使用的文案。
-        # - 若未使用意愿核身（点头确认模式），则该字段无需传入。
-        # - 点头确认模式支持1-10轮（不超过10轮）的意愿确认。
+        # @param IntentionActions: <p>意愿核身（点头确认模式）使用的文案。</p><ul><li>若未使用意愿核身（点头确认模式），则该字段无需传入。</li><li>点头确认模式支持1-10轮（不超过10轮）的意愿确认。</li></ul>
         # @type IntentionActions: Array
-        # @param Config: 意愿核身流程配置。
+        # @param Config: <p>意愿核身流程配置。</p>
         # @type Config: :class:`Tencentcloud::Faceid.v20180301.models.RuleIdConfig`
 
         attr_accessor :RuleId, :TerminalType, :IdCard, :Name, :RedirectUrl, :Extra, :ImageBase64, :Encryption, :IntentionVerifyText, :IntentionQuestions, :IntentionActions, :Config
@@ -861,11 +843,9 @@ module TencentCloud
 
       # DetectAuth返回参数结构体
       class DetectAuthResponse < TencentCloud::Common::AbstractModel
-        # @param Url: 用于发起核身流程的URL，仅微信H5场景使用。
+        # @param Url: <p>用于发起核身流程的URL，仅微信H5场景使用。</p>
         # @type Url: String
-        # @param BizToken: 一次核验流程的唯一标识。
-        # - 有效时间为7,200秒，超过有效期再进行人脸核验会报错，请在有效期内进行核验。
-        # - 完成人脸核验后，需根据此标识调用[获取实名核身结果信息增强版](https://cloud.tencent.com/document/api/1007/41957)获取用户最终验证结果信息。
+        # @param BizToken: <p>一次核验流程的唯一标识。</p><ul><li>有效时间为7,200秒，超过有效期再进行人脸核验会报错，请在有效期内进行核验。</li><li>完成人脸核验后，需根据此标识调用<a href="https://cloud.tencent.com/document/api/1007/41957">获取实名核身结果信息增强版</a>获取用户最终验证结果信息。</li></ul>
         # @type BizToken: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2035,19 +2015,15 @@ module TencentCloud
 
       # GetFaceIdResult请求参数结构体
       class GetFaceIdResultRequest < TencentCloud::Common::AbstractModel
-        # @param FaceIdToken: SDK人脸核身流程的标识。
-        # - 调用[GetFaceIdToken](https://cloud.tencent.com/document/product/1007/49198)接口时生成。
+        # @param FaceIdToken: <p>SDK人脸核身流程的标识。</p><ul><li>调用<a href="https://cloud.tencent.com/document/product/1007/49198">GetFaceIdToken</a>接口时生成。</li></ul>
         # @type FaceIdToken: String
-        # @param IsNeedVideo: 是否需要拉取视频。
-        # - 默认false：不需要。
+        # @param IsNeedVideo: <p>是否需要拉取视频。</p><ul><li>默认false：不需要。</li></ul>
         # @type IsNeedVideo: Boolean
-        # @param IsNeedBestFrame: 是否需要拉取截帧。
-        # - 默认false：不需要。
+        # @param IsNeedBestFrame: <p>是否需要拉取截帧。</p><ul><li>默认false：不需要。</li></ul>
         # @type IsNeedBestFrame: Boolean
-        # @param IsEncryptResponse: 是否对回包整体进行加密。
+        # @param IsEncryptResponse: <p>是否对回包整体进行加密。</p>
         # @type IsEncryptResponse: Boolean
-        # @param Encryption: 是否需要对返回中的敏感信息进行加密。
-        # 只需指定加密算法Algorithm即可，其余字段传入默认值。
+        # @param Encryption: <p>是否需要对返回中的敏感信息进行加密。<br>只需指定加密算法Algorithm即可，其余字段传入默认值。</p>
         # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
 
         attr_accessor :FaceIdToken, :IsNeedVideo, :IsNeedBestFrame, :IsEncryptResponse, :Encryption
@@ -2074,84 +2050,51 @@ module TencentCloud
 
       # GetFaceIdResult返回参数结构体
       class GetFaceIdResultResponse < TencentCloud::Common::AbstractModel
-        # @param IdCard: 身份证。
+        # @param IdCard: <p>身份证。</p>
         # @type IdCard: String
-        # @param Name: 姓名。
+        # @param Name: <p>姓名。</p>
         # @type Name: String
-        # @param Result: 业务核验结果。
-        # - 参考：https://cloud.tencent.com/document/product/1007/47912。
+        # @param Result: <p>业务核验结果。</p><ul><li>参考：https://cloud.tencent.com/document/product/1007/47912。</li></ul>
         # @type Result: String
-        # @param Description: 业务核验描述。
+        # @param Description: <p>业务核验描述。</p>
         # @type Description: String
-        # @param Similarity: 相似度。
-        # - 取值：0-100。
-        # - 数值越大相似度越高。
+        # @param Similarity: <p>相似度。</p><ul><li>取值：0-100。</li><li>数值越大相似度越高。</li></ul>
         # @type Similarity: Float
-        # @param VideoBase64: 用户核验的视频base64。
-        # - 如果选择了使用cos，返回完整cos地址，如https://bucket.cos.ap-guangzhou.myqcloud.com/objectKey。
+        # @param VideoBase64: <p>用户核验的视频base64。</p><ul><li>如果选择了使用cos，返回完整cos地址，如https://bucket.cos.ap-guangzhou.myqcloud.com/objectKey。</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VideoBase64: String
-        # @param BestFrameBase64: 用户核验视频的截帧base64。
-        # - 如果选择了使用cos，返回完整cos地址如https://bucket.cos.ap-guangzhou.myqcloud.com/objectKey。
+        # @param BestFrameBase64: <p>用户核验视频的截帧base64。</p><ul><li>如果选择了使用cos，返回完整cos地址如https://bucket.cos.ap-guangzhou.myqcloud.com/objectKey。</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BestFrameBase64: String
-        # @param Extra: 获取token时透传的信息。
+        # @param Extra: <p>获取token时透传的信息。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Extra: String
-        # @param DeviceInfoTag: plus版：描述当前请求所在设备的风险标签。
-        # - 详情如下：
-        # 06-疑似黑产设备。
-        # null-无设备风险。
-        # - 增强版：此字段不生效，默认为null。
+        # @param DeviceInfoTag: <p>plus版：描述当前请求所在设备的风险标签。</p><ul><li>详情如下：<br>01-设备疑似被Root/设备疑似越狱。<br>02-设备疑似被注入。<br>03-设备疑似为模拟器。<br>04-设备疑似存在风险操作。<br>05-摄像头疑似被劫持。<br>06-疑似黑产设备。<br>null-无设备风险。</li><li>增强版：此字段不生效，默认为null。</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceInfoTag: String
-        # @param RiskInfoTag: 行为风险标签。
-        # - 仅错误码返回1007（设备疑似被劫持）时返回风险标签。
-        # - 标签说明：
-        # 02：攻击风险
+        # @param RiskInfoTag: <p>行为风险标签。</p><ul><li>仅错误码返回1007（设备疑似被劫持）时返回风险标签。</li><li>标签说明：<br>02：攻击风险</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskInfoTag: String
-        # @param LivenessInfoTag: plus版：描述当前请求活体阶段被拒绝的详细原因。
-        # - 详情如下：
-        # 01-用户全程闭眼。
-        # 02-用户未完成指定动作。
-        # 03-疑似翻拍攻击。
-        # 04-疑似合成图片。
-        # 05-疑似合成视频。
-        # 06-疑似合成动作。
-        # 07-疑似黑产模板。
-        # 08-疑似存在水印。
-        # 09-反光校验未通过。
-        # 10-最佳帧校验未通过。
-        # 11-人脸质量过差。
-        # 12-人脸距离不匹配。
-        # 13-疑似对抗样本攻击。
-        # null-无。
-        # - 增强版：此字段不生效，默认为null。
+        # @param LivenessInfoTag: <p>plus版：描述当前请求活体阶段被拒绝的详细原因。</p><ul><li>详情如下：<br>01-用户全程闭眼。<br>02-用户未完成指定动作。<br>03-疑似翻拍攻击。<br>04-疑似合成图片。<br>05-疑似合成视频。<br>06-疑似合成动作。<br>07-疑似黑产模板。<br>08-疑似存在水印。<br>09-反光校验未通过。<br>10-最佳帧校验未通过。<br>11-人脸质量过差。<br>12-人脸距离不匹配。<br>13-疑似对抗样本攻击。<br>null-无。</li><li>增强版：此字段不生效，默认为null。</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LivenessInfoTag: String
-        # @param DeviceInfoLevel: plus版：描述当前请求所在设备的风险等级，共4级。
-        # - 详情如下：
-        # 1 - 安全。
-        # 2 - 低风险。
-        # 3 - 中风险。
-        # 4 - 高危。
-        # null - 未获取到风险等级。
-        # - 增强版：此字段不生效，默认为null。
+        # @param DeviceInfoLevel: <p>plus版：描述当前请求所在设备的风险等级，共4级。</p><ul><li>详情如下：<br>1 - 安全。<br>2 - 低风险。<br>3 - 中风险。<br>4 - 高危。<br>null - 未获取到风险等级。</li><li>增强版：此字段不生效，默认为null。</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceInfoLevel: String
-        # @param Encryption: 敏感数据加密信息。
+        # @param Encryption: <p>敏感数据加密信息。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
-        # @param EncryptedBody: 加密后的数据。
+        # @param EncryptedBody: <p>加密后的数据。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EncryptedBody: String
+        # @param IdCardFrontBase64: <p>用户核验的身份证人像页base64</p>
+        # @type IdCardFrontBase64: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :IdCard, :Name, :Result, :Description, :Similarity, :VideoBase64, :BestFrameBase64, :Extra, :DeviceInfoTag, :RiskInfoTag, :LivenessInfoTag, :DeviceInfoLevel, :Encryption, :EncryptedBody, :RequestId
+        attr_accessor :IdCard, :Name, :Result, :Description, :Similarity, :VideoBase64, :BestFrameBase64, :Extra, :DeviceInfoTag, :RiskInfoTag, :LivenessInfoTag, :DeviceInfoLevel, :Encryption, :EncryptedBody, :IdCardFrontBase64, :RequestId
 
-        def initialize(idcard=nil, name=nil, result=nil, description=nil, similarity=nil, videobase64=nil, bestframebase64=nil, extra=nil, deviceinfotag=nil, riskinfotag=nil, livenessinfotag=nil, deviceinfolevel=nil, encryption=nil, encryptedbody=nil, requestid=nil)
+        def initialize(idcard=nil, name=nil, result=nil, description=nil, similarity=nil, videobase64=nil, bestframebase64=nil, extra=nil, deviceinfotag=nil, riskinfotag=nil, livenessinfotag=nil, deviceinfolevel=nil, encryption=nil, encryptedbody=nil, idcardfrontbase64=nil, requestid=nil)
           @IdCard = idcard
           @Name = name
           @Result = result
@@ -2166,6 +2109,7 @@ module TencentCloud
           @DeviceInfoLevel = deviceinfolevel
           @Encryption = encryption
           @EncryptedBody = encryptedbody
+          @IdCardFrontBase64 = idcardfrontbase64
           @RequestId = requestid
         end
 
@@ -2187,6 +2131,7 @@ module TencentCloud
             @Encryption.deserialize(params['Encryption'])
           end
           @EncryptedBody = params['EncryptedBody']
+          @IdCardFrontBase64 = params['IdCardFrontBase64']
           @RequestId = params['RequestId']
         end
       end
@@ -2283,43 +2228,30 @@ module TencentCloud
 
       # GetFaceIdToken请求参数结构体
       class GetFaceIdTokenRequest < TencentCloud::Common::AbstractModel
-        # @param CompareLib: 比对库。
-        # - 取值范围：
-        # LOCAL：本地上传照片。
-        # BUSINESS：商业库。
+        # @param CompareLib: <p>比对库。</p><ul><li>取值范围：<br>LOCAL：本地上传照片。<br>BUSINESS：商业库。</li></ul>
         # @type CompareLib: String
-        # @param IdCard: 身份证。
-        # - CompareLib为商业库时必传。
+        # @param IdCard: <p>身份证。</p><ul><li>CompareLib为商业库时必传。</li></ul>
         # @type IdCard: String
-        # @param Name: 姓名。
-        # - CompareLib为商业库时必传。
+        # @param Name: <p>姓名。</p><ul><li>CompareLib为商业库时必传。</li></ul>
         # @type Name: String
-        # @param ImageBase64: 图片的Base64。
-        # - CompareLib为上传照片比对时必传。
-        # - Base64后图片最大8MB。
-        # - 请使用标准的Base64编码方式(带=补位)，编码规范参考RFC4648。
+        # @param ImageBase64: <p>图片的Base64。</p><ul><li>CompareLib为上传照片比对时必传。</li><li>Base64后图片最大8MB。</li><li>请使用标准的Base64编码方式(带=补位)，编码规范参考RFC4648。</li></ul>
         # @type ImageBase64: String
-        # @param Meta: SDK中生成的Meta字符串。
+        # @param Meta: <p>SDK中生成的Meta字符串。</p>
         # @type Meta: String
-        # @param Extra: 透传参数。
-        # - 1000长度字符串
+        # @param Extra: <p>透传参数。</p><ul><li>1000长度字符串</li></ul>
         # @type Extra: String
-        # @param UseCos: 是否使用cos桶。
-        # - 默认为false。
-        # - 设置该参数为true后，核身过程中的视频图片将会存储在人脸核身控制台授权cos的bucket中，拉取结果时会返回对应资源完整cos地址。
-        # - 开通地址见https://console.cloud.tencent.com/faceid/cos
-        # - 【注意】选择该参数为true后将不返回base64数据，请根据接入情况谨慎修改。
+        # @param UseCos: <p>是否使用cos桶。</p><ul><li>默认为false。</li><li>设置该参数为true后，核身过程中的视频图片将会存储在人脸核身控制台授权cos的bucket中，拉取结果时会返回对应资源完整cos地址。</li><li>开通地址见https://console.cloud.tencent.com/faceid/cos</li><li>【注意】选择该参数为true后将不返回base64数据，请根据接入情况谨慎修改。</li></ul>
         # @type UseCos: Boolean
-        # @param Encryption: 敏感数据加密信息。对传入信息（姓名、身份证号、自传照片）有加密需求的用户可使用此参数，详情请点击左侧链接。
+        # @param Encryption: <p>敏感数据加密信息。对传入信息（姓名、身份证号、自传照片）有加密需求的用户可使用此参数，详情请点击左侧链接。</p>
         # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
-        # @param RuleId: 用于细分客户使用场景。
-        # - 申请开通服务后，可以在腾讯云慧眼人脸核身控制台（https://console.cloud.tencent.com/faceid） 自助接入里面创建，审核通过后即可调用。
-        # - 如有疑问，请添加腾讯云人脸核身小助手进行咨询。
+        # @param RuleId: <p>用于细分客户使用场景。</p><ul><li>申请开通服务后，可以在腾讯云慧眼人脸核身控制台（https://console.cloud.tencent.com/faceid） 自助接入里面创建，审核通过后即可调用。</li><li>如有疑问，请添加腾讯云人脸核身小助手进行咨询。</li></ul>
         # @type RuleId: String
+        # @param MetaData: <p>SDK和用户设备的元信息。该字段的值由HuiYan SDK以JSON字符串格式返回。  说明：不要修改返回值，直接传递即可。</p>
+        # @type MetaData: String
 
-        attr_accessor :CompareLib, :IdCard, :Name, :ImageBase64, :Meta, :Extra, :UseCos, :Encryption, :RuleId
+        attr_accessor :CompareLib, :IdCard, :Name, :ImageBase64, :Meta, :Extra, :UseCos, :Encryption, :RuleId, :MetaData
 
-        def initialize(comparelib=nil, idcard=nil, name=nil, imagebase64=nil, meta=nil, extra=nil, usecos=nil, encryption=nil, ruleid=nil)
+        def initialize(comparelib=nil, idcard=nil, name=nil, imagebase64=nil, meta=nil, extra=nil, usecos=nil, encryption=nil, ruleid=nil, metadata=nil)
           @CompareLib = comparelib
           @IdCard = idcard
           @Name = name
@@ -2329,6 +2261,7 @@ module TencentCloud
           @UseCos = usecos
           @Encryption = encryption
           @RuleId = ruleid
+          @MetaData = metadata
         end
 
         def deserialize(params)
@@ -2344,25 +2277,30 @@ module TencentCloud
             @Encryption.deserialize(params['Encryption'])
           end
           @RuleId = params['RuleId']
+          @MetaData = params['MetaData']
         end
       end
 
       # GetFaceIdToken返回参数结构体
       class GetFaceIdTokenResponse < TencentCloud::Common::AbstractModel
-        # @param FaceIdToken: token值。- 有效期 10分钟。- 只能完成1次核身。
+        # @param FaceIdToken: <p>token值。- 有效期 10分钟。- 只能完成1次核身。</p>
         # @type FaceIdToken: String
+        # @param ClientConfig: <p>客户端配置信息，SDK将使用该配置进行后续操作。请将返回值原样传递给客户端SDK。</p>
+        # @type ClientConfig: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :FaceIdToken, :RequestId
+        attr_accessor :FaceIdToken, :ClientConfig, :RequestId
 
-        def initialize(faceidtoken=nil, requestid=nil)
+        def initialize(faceidtoken=nil, clientconfig=nil, requestid=nil)
           @FaceIdToken = faceidtoken
+          @ClientConfig = clientconfig
           @RequestId = requestid
         end
 
         def deserialize(params)
           @FaceIdToken = params['FaceIdToken']
+          @ClientConfig = params['ClientConfig']
           @RequestId = params['RequestId']
         end
       end
@@ -3184,8 +3122,8 @@ module TencentCloud
 
         attr_accessor :IntentionVerifyVideo, :AsrResult, :ErrorCode, :ErrorMessage, :IntentionVerifyBestFrame, :AsrResultSimilarity, :IntentionVerifyAudio
         extend Gem::Deprecate
-        deprecate :AsrResultSimilarity, :none, 2026, 7
-        deprecate :AsrResultSimilarity=, :none, 2026, 7
+        deprecate :AsrResultSimilarity, :none, 2026, 8
+        deprecate :AsrResultSimilarity=, :none, 2026, 8
 
         def initialize(intentionverifyvideo=nil, asrresult=nil, errorcode=nil, errormessage=nil, intentionverifybestframe=nil, asrresultsimilarity=nil, intentionverifyaudio=nil)
           @IntentionVerifyVideo = intentionverifyvideo

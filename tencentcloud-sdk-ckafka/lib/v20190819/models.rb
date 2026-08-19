@@ -254,6 +254,56 @@ module TencentCloud
         end
       end
 
+      # AssociateRoutesSecurityGroup请求参数结构体
+      class AssociateRoutesSecurityGroupRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceRoutes: 绑定路由的列表
+        # @type InstanceRoutes: Array
+        # @param SecurityGroupId: 安全组id
+        # @type SecurityGroupId: String
+
+        attr_accessor :InstanceRoutes, :SecurityGroupId
+
+        def initialize(instanceroutes=nil, securitygroupid=nil)
+          @InstanceRoutes = instanceroutes
+          @SecurityGroupId = securitygroupid
+        end
+
+        def deserialize(params)
+          unless params['InstanceRoutes'].nil?
+            @InstanceRoutes = []
+            params['InstanceRoutes'].each do |i|
+              instanceroute_tmp = InstanceRoute.new
+              instanceroute_tmp.deserialize(i)
+              @InstanceRoutes << instanceroute_tmp
+            end
+          end
+          @SecurityGroupId = params['SecurityGroupId']
+        end
+      end
+
+      # AssociateRoutesSecurityGroup返回参数结构体
+      class AssociateRoutesSecurityGroupResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回结果
+        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.SecurityGroupRouteOperateResp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = SecurityGroupRouteOperateResp.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AuthorizeToken请求参数结构体
       class AuthorizeTokenRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: ckafka集群实例Id, 可通过[DescribeInstances](https://cloud.tencent.com/document/product/597/40835)接口获取
@@ -6755,6 +6805,56 @@ module TencentCloud
         end
       end
 
+      # DisassociateRoutesSecurityGroup请求参数结构体
+      class DisassociateRoutesSecurityGroupRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceRoutes: 解绑路由的列表
+        # @type InstanceRoutes: Array
+        # @param SecurityGroupId: 安全组id
+        # @type SecurityGroupId: String
+
+        attr_accessor :InstanceRoutes, :SecurityGroupId
+
+        def initialize(instanceroutes=nil, securitygroupid=nil)
+          @InstanceRoutes = instanceroutes
+          @SecurityGroupId = securitygroupid
+        end
+
+        def deserialize(params)
+          unless params['InstanceRoutes'].nil?
+            @InstanceRoutes = []
+            params['InstanceRoutes'].each do |i|
+              instanceroute_tmp = InstanceRoute.new
+              instanceroute_tmp.deserialize(i)
+              @InstanceRoutes << instanceroute_tmp
+            end
+          end
+          @SecurityGroupId = params['SecurityGroupId']
+        end
+      end
+
+      # DisassociateRoutesSecurityGroup返回参数结构体
+      class DisassociateRoutesSecurityGroupResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回结果
+        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.SecurityGroupRouteOperateResp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = SecurityGroupRouteOperateResp.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # Doris 连接源参数
       class DorisConnectParam < TencentCloud::Common::AbstractModel
         # @param Port: Doris jdbc 负载均衡连接 port，通常映射到 fe 的 9030 端口
@@ -10358,6 +10458,53 @@ module TencentCloud
         end
       end
 
+      # ModifyRouteSecurityGroups请求参数结构体
+      class ModifyRouteSecurityGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceRoute: 实例路由
+        # @type InstanceRoute: :class:`Tencentcloud::Ckafka.v20190819.models.InstanceRoute`
+        # @param SecurityGroupIds: 修改后的安全组有序列表。
+        # 注意:不指定此参数或传空列表则代表解绑所有关联的安全组。
+        # @type SecurityGroupIds: Array
+
+        attr_accessor :InstanceRoute, :SecurityGroupIds
+
+        def initialize(instanceroute=nil, securitygroupids=nil)
+          @InstanceRoute = instanceroute
+          @SecurityGroupIds = securitygroupids
+        end
+
+        def deserialize(params)
+          unless params['InstanceRoute'].nil?
+            @InstanceRoute = InstanceRoute.new
+            @InstanceRoute.deserialize(params['InstanceRoute'])
+          end
+          @SecurityGroupIds = params['SecurityGroupIds']
+        end
+      end
+
+      # ModifyRouteSecurityGroups返回参数结构体
+      class ModifyRouteSecurityGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 	返回结果
+        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.SecurityGroupRouteOperateResp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = SecurityGroupRouteOperateResp.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyRoutineMaintenanceTask请求参数结构体
       class ModifyRoutineMaintenanceTaskRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: ckafka集群实例id,可通过[DescribeInstances](https://cloud.tencent.com/document/product/597/40835)接口获取
@@ -12220,6 +12367,28 @@ module TencentCloud
           @InstanceName = params['InstanceName']
           @VpcId = params['VpcId']
           @Vip = params['Vip']
+        end
+      end
+
+      # 安全组路由操作结果返回值
+      class SecurityGroupRouteOperateResp < TencentCloud::Common::AbstractModel
+        # @param ReturnCode: 操作返回的code，0为正常，非0为错误
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReturnCode: String
+        # @param ReturnMessage: 操作返回的信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReturnMessage: String
+
+        attr_accessor :ReturnCode, :ReturnMessage
+
+        def initialize(returncode=nil, returnmessage=nil)
+          @ReturnCode = returncode
+          @ReturnMessage = returnmessage
+        end
+
+        def deserialize(params)
+          @ReturnCode = params['ReturnCode']
+          @ReturnMessage = params['ReturnMessage']
         end
       end
 

@@ -1179,10 +1179,12 @@ module TencentCloud
         # @type SignToken: String
         # @param TokenTime: <p>token生成时间戳，毫秒级。</p>
         # @type TokenTime: String
+        # @param PrivacyBrowser: <p>隐私浏览器类型，当检测到隐私浏览器时返回，仅H5。</p>
+        # @type PrivacyBrowser: String
 
-        attr_accessor :DeviceId, :AppVersion, :Brand, :ClientIp, :Model, :NetworkType, :PackageName, :Platform, :SystemVersion, :SdkBuildVersion, :SignToken, :TokenTime
+        attr_accessor :DeviceId, :AppVersion, :Brand, :ClientIp, :Model, :NetworkType, :PackageName, :Platform, :SystemVersion, :SdkBuildVersion, :SignToken, :TokenTime, :PrivacyBrowser
 
-        def initialize(deviceid=nil, appversion=nil, brand=nil, clientip=nil, model=nil, networktype=nil, packagename=nil, platform=nil, systemversion=nil, sdkbuildversion=nil, signtoken=nil, tokentime=nil)
+        def initialize(deviceid=nil, appversion=nil, brand=nil, clientip=nil, model=nil, networktype=nil, packagename=nil, platform=nil, systemversion=nil, sdkbuildversion=nil, signtoken=nil, tokentime=nil, privacybrowser=nil)
           @DeviceId = deviceid
           @AppVersion = appversion
           @Brand = brand
@@ -1195,6 +1197,7 @@ module TencentCloud
           @SdkBuildVersion = sdkbuildversion
           @SignToken = signtoken
           @TokenTime = tokentime
+          @PrivacyBrowser = privacybrowser
         end
 
         def deserialize(params)
@@ -1210,6 +1213,7 @@ module TencentCloud
           @SdkBuildVersion = params['SdkBuildVersion']
           @SignToken = params['SignToken']
           @TokenTime = params['TokenTime']
+          @PrivacyBrowser = params['PrivacyBrowser']
         end
       end
 

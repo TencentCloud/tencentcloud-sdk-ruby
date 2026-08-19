@@ -5078,29 +5078,29 @@ module TencentCloud
 
       # ExportIpTraceLog请求参数结构体
       class ExportIpTraceLogRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: ES集群ID
+        # @param InstanceId: <p>ES集群ID</p>
         # @type InstanceId: String
-        # @param StartTime: 开始时间
+        # @param StartTime: <p>开始时间</p>
         # @type StartTime: String
-        # @param EndTime: 结束时间
+        # @param EndTime: <p>结束时间</p>
         # @type EndTime: String
-        # @param Offset: 起始偏移量
+        # @param Offset: <p>起始偏移量</p>
         # @type Offset: Integer
-        # @param Limit: 数据条数
+        # @param Limit: <p>数据条数</p>
         # @type Limit: Integer
-        # @param RemoteIp: 访问IP
+        # @param RemoteIp: <p>访问IP</p>
         # @type RemoteIp: Array
-        # @param TraceType: Request/Response 请求/返回, 非必填
+        # @param TraceType: <p>Request/Response 请求/返回, 非必填</p>
         # @type TraceType: Array
-        # @param NetType: Public/Private 公网访问/内网访问, 非必填
+        # @param NetType: <p>Public/Private 公网访问/内网访问, 非必填</p>
         # @type NetType: Array
-        # @param ReqTypeOrRspStatus: POST/GET/PUT/DELETE/HEAD/OPTIONS/PATCH/CONNECT/TRACE/CONNECT等, 非必填
+        # @param ReqTypeOrRspStatus: <p>POST/GET/PUT/DELETE/HEAD/OPTIONS/PATCH/CONNECT/TRACE/CONNECT等, 非必填</p>
         # @type ReqTypeOrRspStatus: Array
-        # @param SearchKey: 关键字模糊查询，支持Lucene Query String
+        # @param SearchKey: <p>关键字模糊查询，支持Lucene Query String</p>
         # @type SearchKey: String
-        # @param Uri: uri搜索
+        # @param Uri: <p>uri搜索</p>
         # @type Uri: String
-        # @param NodeIp: 集群节点IP
+        # @param NodeIp: <p>集群节点IP</p>
         # @type NodeIp: Array
 
         attr_accessor :InstanceId, :StartTime, :EndTime, :Offset, :Limit, :RemoteIp, :TraceType, :NetType, :ReqTypeOrRspStatus, :SearchKey, :Uri, :NodeIp
@@ -5138,7 +5138,7 @@ module TencentCloud
 
       # ExportIpTraceLog返回参数结构体
       class ExportIpTraceLogResponse < TencentCloud::Common::AbstractModel
-        # @param IpTraceList: IP时间列表
+        # @param IpTraceList: <p>IP时间列表</p>
         # @type IpTraceList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5256,7 +5256,7 @@ module TencentCloud
 
       # GetIpTraceStatus请求参数结构体
       class GetIpTraceStatusRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 集群ID
+        # @param InstanceId: <p>集群ID</p>
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -5272,17 +5272,17 @@ module TencentCloud
 
       # GetIpTraceStatus返回参数结构体
       class GetIpTraceStatusResponse < TencentCloud::Common::AbstractModel
-        # @param OpenIpTrace: 是否开启IP溯源
+        # @param OpenIpTrace: <p>是否开启IP溯源</p>
         # @type OpenIpTrace: Boolean
-        # @param DurationTime: IP溯源开启持续时间，单位：秒
+        # @param DurationTime: <p>IP溯源开启持续时间，单位：秒</p>
         # @type DurationTime: Integer
-        # @param IpTraceConfig: IP溯源配置
+        # @param IpTraceConfig: <p>IP溯源配置</p>
         # @type IpTraceConfig: :class:`Tencentcloud::Es.v20180416.models.IpTraceConfig`
-        # @param LastStartTime: 上次执行时间
+        # @param LastStartTime: <p>上次执行时间</p>
         # @type LastStartTime: String
-        # @param LastEndTime: 上次关闭时间
+        # @param LastEndTime: <p>上次关闭时间</p>
         # @type LastEndTime: String
-        # @param FilterKibanaIp: 是否过滤Kibana节点IP
+        # @param FilterKibanaIp: <p>是否过滤Kibana节点IP</p>
         # @type FilterKibanaIp: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -8361,29 +8361,29 @@ module TencentCloud
 
       # QueryIpTraceLog请求参数结构体
       class QueryIpTraceLogRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: ES集群ID
+        # @param InstanceId: <p>ES集群ID</p>
         # @type InstanceId: String
-        # @param StartTime: 开始时间
+        # @param StartTime: <p>开始时间</p>
         # @type StartTime: String
-        # @param EndTime: 结束时间
+        # @param EndTime: <p>结束时间</p>
         # @type EndTime: String
-        # @param Offset: 起始偏移量
+        # @param Offset: <p>起始偏移量</p>
         # @type Offset: Integer
-        # @param Limit: 数据条数
+        # @param Limit: <p>数据条数</p>
         # @type Limit: Integer
-        # @param RemoteIp: 访问IP
+        # @param RemoteIp: <p>访问IP</p>
         # @type RemoteIp: Array
-        # @param TraceType: Request/Response 请求/返回, 非必填
+        # @param TraceType: <p>Request/Response 请求/返回, 非必填</p>
         # @type TraceType: Array
-        # @param NetType: Public/Private 公网访问/内网访问, 非必填
+        # @param NetType: <p>Public/Private 公网访问/内网访问, 非必填</p>
         # @type NetType: Array
-        # @param ReqTypeOrRspStatus: POST/GET/PUT/DELETE/HEAD/OPTIONS/PATCH/CONNECT/TRACE/CONNECT等, 非必填
+        # @param ReqTypeOrRspStatus: <p>POST/GET/PUT/DELETE/HEAD/OPTIONS/PATCH/CONNECT/TRACE/CONNECT等, 非必填</p>
         # @type ReqTypeOrRspStatus: Array
-        # @param SearchKey: 关键字模糊查询，支持Lucene Query String
+        # @param SearchKey: <p>关键字模糊查询，支持Lucene Query String</p>
         # @type SearchKey: String
-        # @param Uri: Uri搜索
+        # @param Uri: <p>Uri搜索</p>
         # @type Uri: String
-        # @param NodeIp: 集群节点IP
+        # @param NodeIp: <p>集群节点IP</p>
         # @type NodeIp: Array
 
         attr_accessor :InstanceId, :StartTime, :EndTime, :Offset, :Limit, :RemoteIp, :TraceType, :NetType, :ReqTypeOrRspStatus, :SearchKey, :Uri, :NodeIp
@@ -8421,9 +8421,9 @@ module TencentCloud
 
       # QueryIpTraceLog返回参数结构体
       class QueryIpTraceLogResponse < TencentCloud::Common::AbstractModel
-        # @param Total: 总数
+        # @param Total: <p>总数</p>
         # @type Total: Integer
-        # @param IpTraceLogList: IP溯源日志列表
+        # @param IpTraceLogList: <p>IP溯源日志列表</p>
         # @type IpTraceLogList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -10433,15 +10433,15 @@ module TencentCloud
 
       # UpdateIpTraceStatus请求参数结构体
       class UpdateIpTraceStatusRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 集群ID
+        # @param InstanceId: <p>集群ID。该字段为必填字段。</p>
         # @type InstanceId: String
-        # @param OpenIpTrace: IP溯源配置开关
+        # @param OpenIpTrace: <p>IP溯源配置开关。该字段为必填字段。</p>
         # @type OpenIpTrace: Boolean
-        # @param DurationTime: IP溯源开启持续时间，单位：秒
+        # @param DurationTime: <p>IP溯源开启持续时间，单位：秒。该字段为必填字段。</p>
         # @type DurationTime: Integer
-        # @param IpTraceConfig: IP溯源配置
+        # @param IpTraceConfig: <p>IP溯源配置。该字段为必填字段。</p>
         # @type IpTraceConfig: :class:`Tencentcloud::Es.v20180416.models.IpTraceConfig`
-        # @param FilterKibanaIp: 是否过滤kibana节点IP
+        # @param FilterKibanaIp: <p>是否过滤kibana节点IP。</p>
         # @type FilterKibanaIp: Boolean
 
         attr_accessor :InstanceId, :OpenIpTrace, :DurationTime, :IpTraceConfig, :FilterKibanaIp

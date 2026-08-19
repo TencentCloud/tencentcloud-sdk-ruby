@@ -14395,7 +14395,7 @@ module TencentCloud
 
       # DescribeDesignTask返回参数结构体
       class DescribeDesignTaskResponse < TencentCloud::Common::AbstractModel
-        # @param ErrorCode: <p>错误码，成功时返回0</p>
+        # @param ErrorCode: <p>错误码，成功时返回0，处理中返回100</p>
         # @type ErrorCode: Integer
         # @param Msg: <p>错误信息，成功时返回success</p>
         # @type Msg: String
@@ -21684,6 +21684,22 @@ module TencentCloud
         end
       end
 
+      # 图片质量评估任务。
+      class ImageQualityConfig < TencentCloud::Common::AbstractModel
+        # @param Attributes: <p>图片质量评估维度</p><p>枚举值：</p><ul><li>Brightness： 亮度评估</li><li>Contrast： 对比度评估</li><li>Sharpness： 清晰度评估</li><li>IQA： 综合质量评估</li></ul>
+        # @type Attributes: Array
+
+        attr_accessor :Attributes
+
+        def initialize(attributes=nil)
+          @Attributes = attributes
+        end
+
+        def deserialize(params)
+          @Attributes = params['Attributes']
+        end
+      end
+
       # 综合增强配置
       class ImageQualityEnhanceConfig < TencentCloud::Common::AbstractModel
         # @param Switch: 能力配置开关，可选值：
@@ -21989,10 +22005,12 @@ module TencentCloud
         # @type AiStoryboardConfig: :class:`Tencentcloud::Mps.v20190612.models.AiStoryboardConfig`
         # @param UnderstandImageConfig: <p>图片理解配置</p>
         # @type UnderstandImageConfig: :class:`Tencentcloud::Mps.v20190612.models.UnderstandImageConfig`
+        # @param ImageQualityConfig: <p>图片质量评估配置</p>
+        # @type ImageQualityConfig: :class:`Tencentcloud::Mps.v20190612.models.ImageQualityConfig`
 
-        attr_accessor :EncodeConfig, :EnhanceConfig, :EraseConfig, :BlindWatermarkConfig, :BeautyConfig, :TransformConfig, :AiTryOnConfig, :AiPosterSuiteConfig, :CreateImageConfig, :AiCutoutConfig, :AiExpansionConfig, :AiStoryboardConfig, :UnderstandImageConfig
+        attr_accessor :EncodeConfig, :EnhanceConfig, :EraseConfig, :BlindWatermarkConfig, :BeautyConfig, :TransformConfig, :AiTryOnConfig, :AiPosterSuiteConfig, :CreateImageConfig, :AiCutoutConfig, :AiExpansionConfig, :AiStoryboardConfig, :UnderstandImageConfig, :ImageQualityConfig
 
-        def initialize(encodeconfig=nil, enhanceconfig=nil, eraseconfig=nil, blindwatermarkconfig=nil, beautyconfig=nil, transformconfig=nil, aitryonconfig=nil, aipostersuiteconfig=nil, createimageconfig=nil, aicutoutconfig=nil, aiexpansionconfig=nil, aistoryboardconfig=nil, understandimageconfig=nil)
+        def initialize(encodeconfig=nil, enhanceconfig=nil, eraseconfig=nil, blindwatermarkconfig=nil, beautyconfig=nil, transformconfig=nil, aitryonconfig=nil, aipostersuiteconfig=nil, createimageconfig=nil, aicutoutconfig=nil, aiexpansionconfig=nil, aistoryboardconfig=nil, understandimageconfig=nil, imagequalityconfig=nil)
           @EncodeConfig = encodeconfig
           @EnhanceConfig = enhanceconfig
           @EraseConfig = eraseconfig
@@ -22006,6 +22024,7 @@ module TencentCloud
           @AiExpansionConfig = aiexpansionconfig
           @AiStoryboardConfig = aistoryboardconfig
           @UnderstandImageConfig = understandimageconfig
+          @ImageQualityConfig = imagequalityconfig
         end
 
         def deserialize(params)
@@ -22060,6 +22079,10 @@ module TencentCloud
           unless params['UnderstandImageConfig'].nil?
             @UnderstandImageConfig = UnderstandImageConfig.new
             @UnderstandImageConfig.deserialize(params['UnderstandImageConfig'])
+          end
+          unless params['ImageQualityConfig'].nil?
+            @ImageQualityConfig = ImageQualityConfig.new
+            @ImageQualityConfig.deserialize(params['ImageQualityConfig'])
           end
         end
       end

@@ -393,23 +393,25 @@ module TencentCloud
 
       # ChatCompletion请求参数结构体
       class ChatCompletionRequest < TencentCloud::Common::AbstractModel
-        # @param Model: 对话的目标模型ID。
-        # 自行部署的开源大模型聊天：部署的模型服务组ID，形如ms-q7pfr29p。
+        # @param Model: <p>对话的目标模型ID。<br>自行部署的开源大模型聊天：部署的模型服务组ID，形如ms-q7pfr29p。</p>
         # @type Model: String
-        # @param Messages: 输入对话历史。旧的对话在前，数组中最后一项应该为这次的问题。
+        # @param Messages: <p>输入对话历史。旧的对话在前，数组中最后一项应该为这次的问题。</p>
         # @type Messages: Array
-        # @param Temperature: 仅当模型为自行部署的开源大模型时生效。采样随机值，默认值为0.7，取值范围[0,2]。较高的值(如0.8)将使输出更加随机，而较低的值(如0.2)将使输出更加确定。建议仅修改此参数或TopP，但不建议两者都修改。
+        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @type TiProjectId: String
+        # @param Temperature: <p>仅当模型为自行部署的开源大模型时生效。采样随机值，默认值为0.7，取值范围[0,2]。较高的值(如0.8)将使输出更加随机，而较低的值(如0.2)将使输出更加确定。建议仅修改此参数或TopP，但不建议两者都修改。</p>
         # @type Temperature: Float
-        # @param TopP: 仅当模型为自行部署的开源大模型时生效。核采样，默认值为1，取值范围[0,1]。指的是预先设置一个概率界限 p，然后将所有可能生成的token，根据概率大小从高到低排列，依次选取。当这些选取的token的累积概率大于或等于 p 值时停止，然后从已经选取的token中进行采样，生成下一个token。例如top_p为0.1时意味着模型只考虑累积概率为10%的token。建议仅修改此参数或Temperature，不建议两者都修改。
+        # @param TopP: <p>仅当模型为自行部署的开源大模型时生效。核采样，默认值为1，取值范围[0,1]。指的是预先设置一个概率界限 p，然后将所有可能生成的token，根据概率大小从高到低排列，依次选取。当这些选取的token的累积概率大于或等于 p 值时停止，然后从已经选取的token中进行采样，生成下一个token。例如top_p为0.1时意味着模型只考虑累积概率为10%的token。建议仅修改此参数或Temperature，不建议两者都修改。</p>
         # @type TopP: Float
-        # @param MaxTokens: 仅当模型为自行部署的开源大模型时生效。默认 512，模型可生成内容的最长 token 数量，最大不能超过模型支持的上下文长度。
+        # @param MaxTokens: <p>仅当模型为自行部署的开源大模型时生效。默认 512，模型可生成内容的最长 token 数量，最大不能超过模型支持的上下文长度。</p>
         # @type MaxTokens: Integer
 
-        attr_accessor :Model, :Messages, :Temperature, :TopP, :MaxTokens
+        attr_accessor :Model, :Messages, :TiProjectId, :Temperature, :TopP, :MaxTokens
 
-        def initialize(model=nil, messages=nil, temperature=nil, topp=nil, maxtokens=nil)
+        def initialize(model=nil, messages=nil, tiprojectid=nil, temperature=nil, topp=nil, maxtokens=nil)
           @Model = model
           @Messages = messages
+          @TiProjectId = tiprojectid
           @Temperature = temperature
           @TopP = topp
           @MaxTokens = maxtokens
@@ -425,6 +427,7 @@ module TencentCloud
               @Messages << message_tmp
             end
           end
+          @TiProjectId = params['TiProjectId']
           @Temperature = params['Temperature']
           @TopP = params['TopP']
           @MaxTokens = params['MaxTokens']
@@ -433,13 +436,13 @@ module TencentCloud
 
       # ChatCompletion返回参数结构体
       class ChatCompletionResponse < TencentCloud::Common::AbstractModel
-        # @param Model: 对话的模型服务组ID
+        # @param Model: <p>对话的模型服务组ID</p>
         # @type Model: String
-        # @param Choices: 本次问答的答案。
+        # @param Choices: <p>本次问答的答案。</p>
         # @type Choices: Array
-        # @param Id: 会话Id。
+        # @param Id: <p>会话Id。</p>
         # @type Id: String
-        # @param Usage: token统计
+        # @param Usage: <p>token统计</p>
         # @type Usage: :class:`Tencentcloud::Tione.v20211111.models.Usage`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -879,23 +882,27 @@ module TencentCloud
 
       # CreateModelServiceAuthToken请求参数结构体
       class CreateModelServiceAuthTokenRequest < TencentCloud::Common::AbstractModel
-        # @param ServiceGroupId: 服务组 id
+        # @param ServiceGroupId: <p>服务组 id</p>
         # @type ServiceGroupId: String
-        # @param Name: token 名称
+        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @type TiProjectId: String
+        # @param Name: <p>token 名称</p>
         # @type Name: String
-        # @param Description: Description 描述
+        # @param Description: <p>Description 描述</p>
         # @type Description: String
 
-        attr_accessor :ServiceGroupId, :Name, :Description
+        attr_accessor :ServiceGroupId, :TiProjectId, :Name, :Description
 
-        def initialize(servicegroupid=nil, name=nil, description=nil)
+        def initialize(servicegroupid=nil, tiprojectid=nil, name=nil, description=nil)
           @ServiceGroupId = servicegroupid
+          @TiProjectId = tiprojectid
           @Name = name
           @Description = description
         end
 
         def deserialize(params)
           @ServiceGroupId = params['ServiceGroupId']
+          @TiProjectId = params['TiProjectId']
           @Name = params['Name']
           @Description = params['Description']
         end
@@ -2673,20 +2680,24 @@ module TencentCloud
 
       # DeleteModelServiceAuthToken请求参数结构体
       class DeleteModelServiceAuthTokenRequest < TencentCloud::Common::AbstractModel
-        # @param ServiceGroupId: 服务组 id
+        # @param ServiceGroupId: <p>服务组 id</p>
         # @type ServiceGroupId: String
-        # @param AuthTokenValue: token 值
+        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @type TiProjectId: String
+        # @param AuthTokenValue: <p>token 值</p>
         # @type AuthTokenValue: String
 
-        attr_accessor :ServiceGroupId, :AuthTokenValue
+        attr_accessor :ServiceGroupId, :TiProjectId, :AuthTokenValue
 
-        def initialize(servicegroupid=nil, authtokenvalue=nil)
+        def initialize(servicegroupid=nil, tiprojectid=nil, authtokenvalue=nil)
           @ServiceGroupId = servicegroupid
+          @TiProjectId = tiprojectid
           @AuthTokenValue = authtokenvalue
         end
 
         def deserialize(params)
           @ServiceGroupId = params['ServiceGroupId']
+          @TiProjectId = params['TiProjectId']
           @AuthTokenValue = params['AuthTokenValue']
         end
       end
@@ -7200,23 +7211,27 @@ module TencentCloud
 
       # ModifyModelServiceAuthToken请求参数结构体
       class ModifyModelServiceAuthTokenRequest < TencentCloud::Common::AbstractModel
-        # @param ServiceGroupId: 服务组 id
+        # @param ServiceGroupId: <p>服务组 id</p>
         # @type ServiceGroupId: String
-        # @param NeedReset: 是否需要重置，如果为 true，重置 token 值
+        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @type TiProjectId: String
+        # @param NeedReset: <p>是否需要重置，如果为 true，重置 token 值</p>
         # @type NeedReset: Boolean
-        # @param AuthToken: AuthToken 数据
+        # @param AuthToken: <p>AuthToken 数据</p>
         # @type AuthToken: :class:`Tencentcloud::Tione.v20211111.models.AuthToken`
 
-        attr_accessor :ServiceGroupId, :NeedReset, :AuthToken
+        attr_accessor :ServiceGroupId, :TiProjectId, :NeedReset, :AuthToken
 
-        def initialize(servicegroupid=nil, needreset=nil, authtoken=nil)
+        def initialize(servicegroupid=nil, tiprojectid=nil, needreset=nil, authtoken=nil)
           @ServiceGroupId = servicegroupid
+          @TiProjectId = tiprojectid
           @NeedReset = needreset
           @AuthToken = authtoken
         end
 
         def deserialize(params)
           @ServiceGroupId = params['ServiceGroupId']
+          @TiProjectId = params['TiProjectId']
           @NeedReset = params['NeedReset']
           unless params['AuthToken'].nil?
             @AuthToken = AuthToken.new

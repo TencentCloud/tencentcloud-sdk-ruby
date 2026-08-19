@@ -3169,27 +3169,28 @@ module TencentCloud
 
       # CreateTopic请求参数结构体
       class CreateTopicRequest < TencentCloud::Common::AbstractModel
-        # @param TopicName: 日志主题的名称。
+        # @param TopicName: <p>日志主题的名称。</p>
         # @type TopicName: String
-        # @param PartitionCount: 主题分区Partition的数量，不传参默认创建1个，最大创建允许10个，分裂/合并操作会改变分区数量，整体上限50个。
+        # @param PartitionCount: <p>主题分区Partition的数量，不传参默认创建1个，最大创建允许10个，分裂/合并操作会改变分区数量，整体上限50个。</p>
         # @type PartitionCount: Integer
-        # @param TopicType: 日志类型，ACCESS：访问日志，HEALTH：健康检查日志，默认ACCESS。
+        # @param TopicType: <p>日志类型，ACCESS：访问日志，HEALTH：健康检查日志，默认ACCESS。</p>
         # @type TopicType: String
-        # @param Period: 存储时间，单位天，默认为 30。
-        # - 日志接入标准存储时，支持1至3600天，值为3640时代表永久保存。
-        # - 日志接入低频存储时，支持7至3600天，值为3640时代表永久保存。
+        # @param Period: <p>存储时间，单位天，默认为 30。</p><ul><li>日志接入标准存储时，支持1至3600天，值为3640时代表永久保存。</li><li>日志接入低频存储时，支持7至3600天，值为3640时代表永久保存。</li></ul>
         # @type Period: Integer
-        # @param StorageType: 日志主题的存储类型，可选值 HOT（标准存储），COLD（低频存储）；默认为HOT。
+        # @param StorageType: <p>日志主题的存储类型，可选值 HOT（标准存储），COLD（低频存储）；默认为HOT。</p>
         # @type StorageType: String
+        # @param Tags: <p>标签</p><p>最多支持一次传入20个</p>
+        # @type Tags: Array
 
-        attr_accessor :TopicName, :PartitionCount, :TopicType, :Period, :StorageType
+        attr_accessor :TopicName, :PartitionCount, :TopicType, :Period, :StorageType, :Tags
 
-        def initialize(topicname=nil, partitioncount=nil, topictype=nil, period=nil, storagetype=nil)
+        def initialize(topicname=nil, partitioncount=nil, topictype=nil, period=nil, storagetype=nil, tags=nil)
           @TopicName = topicname
           @PartitionCount = partitioncount
           @TopicType = topictype
           @Period = period
           @StorageType = storagetype
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -3198,12 +3199,20 @@ module TencentCloud
           @TopicType = params['TopicType']
           @Period = params['Period']
           @StorageType = params['StorageType']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              taginfo_tmp = TagInfo.new
+              taginfo_tmp.deserialize(i)
+              @Tags << taginfo_tmp
+            end
+          end
         end
       end
 
       # CreateTopic返回参数结构体
       class CreateTopicResponse < TencentCloud::Common::AbstractModel
-        # @param TopicId: 日志主题的 ID。
+        # @param TopicId: <p>日志主题的 ID。</p>
         # @type TopicId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

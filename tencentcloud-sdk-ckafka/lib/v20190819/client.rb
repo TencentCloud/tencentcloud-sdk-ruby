@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 绑定路由安全组
+
+        # @param request: Request instance for AssociateRoutesSecurityGroup.
+        # @type request: :class:`Tencentcloud::ckafka::V20190819::AssociateRoutesSecurityGroupRequest`
+        # @rtype: :class:`Tencentcloud::ckafka::V20190819::AssociateRoutesSecurityGroupResponse`
+        def AssociateRoutesSecurityGroup(request)
+          body = send_request('AssociateRoutesSecurityGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AssociateRoutesSecurityGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 给实例授权token
 
         # @param request: Request instance for AuthorizeToken.
@@ -1854,6 +1878,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 解绑路由安全组
+
+        # @param request: Request instance for DisassociateRoutesSecurityGroup.
+        # @type request: :class:`Tencentcloud::ckafka::V20190819::DisassociateRoutesSecurityGroupRequest`
+        # @rtype: :class:`Tencentcloud::ckafka::V20190819::DisassociateRoutesSecurityGroupResponse`
+        def DisassociateRoutesSecurityGroup(request)
+          body = send_request('DisassociateRoutesSecurityGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DisassociateRoutesSecurityGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 根据指定offset位置的消息
 
         # @param request: Request instance for FetchDatahubMessageByOffset.
@@ -2248,6 +2296,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyPasswordResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改路由安全组关联
+
+        # @param request: Request instance for ModifyRouteSecurityGroups.
+        # @type request: :class:`Tencentcloud::ckafka::V20190819::ModifyRouteSecurityGroupsRequest`
+        # @rtype: :class:`Tencentcloud::ckafka::V20190819::ModifyRouteSecurityGroupsResponse`
+        def ModifyRouteSecurityGroups(request)
+          body = send_request('ModifyRouteSecurityGroups', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyRouteSecurityGroupsResponse.new
             model.deserialize(response['Response'])
             model
           else

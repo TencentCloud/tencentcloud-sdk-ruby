@@ -1290,27 +1290,60 @@ module TencentCloud
 
       # DescribeModelQuota请求参数结构体
       class DescribeModelQuotaRequest < TencentCloud::Common::AbstractModel
+        # @param ModelId: <p>模型 ID。可通过 DescribeModelList 获取。</p>
+        # @type ModelId: String
 
+        attr_accessor :ModelId
 
-        def initialize()
+        def initialize(modelid=nil)
+          @ModelId = modelid
         end
 
         def deserialize(params)
+          @ModelId = params['ModelId']
         end
       end
 
       # DescribeModelQuota返回参数结构体
       class DescribeModelQuotaResponse < TencentCloud::Common::AbstractModel
+        # @param ModelId: <p>模型 ID。</p>
+        # @type ModelId: String
+        # @param TPMLimit: <p>TPM 限制（Tokens Per Minute）。模型无配额配置时不返回此字段。</p>
+        # @type TPMLimit: Integer
+        # @param RPMLimit: <p>RPM 限制（Request Per Minute）。模型无配额配置时不返回此字段。</p>
+        # @type RPMLimit: Integer
+        # @param TPMInputQuotaLimit: <p>TPM 保障包 input 配额</p>
+        # @type TPMInputQuotaLimit: Integer
+        # @param TPMOutputQuotaLimit: <p>TPM 保障包 output 配额</p>
+        # @type TPMOutputQuotaLimit: Integer
+        # @param TPMInputReserveLimit: <p>TPM 预留 input 配额</p>
+        # @type TPMInputReserveLimit: Integer
+        # @param TPMOutputReserveLimit: <p>TPM 预留 output 配额</p>
+        # @type TPMOutputReserveLimit: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :ModelId, :TPMLimit, :RPMLimit, :TPMInputQuotaLimit, :TPMOutputQuotaLimit, :TPMInputReserveLimit, :TPMOutputReserveLimit, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(modelid=nil, tpmlimit=nil, rpmlimit=nil, tpminputquotalimit=nil, tpmoutputquotalimit=nil, tpminputreservelimit=nil, tpmoutputreservelimit=nil, requestid=nil)
+          @ModelId = modelid
+          @TPMLimit = tpmlimit
+          @RPMLimit = rpmlimit
+          @TPMInputQuotaLimit = tpminputquotalimit
+          @TPMOutputQuotaLimit = tpmoutputquotalimit
+          @TPMInputReserveLimit = tpminputreservelimit
+          @TPMOutputReserveLimit = tpmoutputreservelimit
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @ModelId = params['ModelId']
+          @TPMLimit = params['TPMLimit']
+          @RPMLimit = params['RPMLimit']
+          @TPMInputQuotaLimit = params['TPMInputQuotaLimit']
+          @TPMOutputQuotaLimit = params['TPMOutputQuotaLimit']
+          @TPMInputReserveLimit = params['TPMInputReserveLimit']
+          @TPMOutputReserveLimit = params['TPMOutputReserveLimit']
           @RequestId = params['RequestId']
         end
       end
