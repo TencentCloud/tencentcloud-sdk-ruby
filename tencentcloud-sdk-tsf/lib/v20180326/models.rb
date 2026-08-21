@@ -20935,7 +20935,7 @@ module TencentCloud
         # @type MicroserviceType: String
         # @param ApplicationType: <p>应用类型</p>
         # @type ApplicationType: String
-        # @param GroupResourceType: <p>部署组资源类型</p>
+        # @param GroupResourceType: <p>部署组资源类型</p><p>枚举值：</p><ul><li>GW： 网关</li><li>DEF： 普通业务部署组</li><li>SVL： Serverless</li></ul>
         # @type GroupResourceType: String
         # @param UpdatedTime: <p>部署组更新时间戳</p>
         # @type UpdatedTime: Integer
@@ -20992,10 +20992,68 @@ module TencentCloud
         # @type RepositoryType: String
         # @param LivenessAutoRestart: <p>是否自动重启</p>
         # @type LivenessAutoRestart: Boolean
+        # @param MeshSidecarVersion: <p>Mesh Sidecar 数据面版本通道</p><p>枚举值：</p><ul><li>stable： 稳定版</li><li>release： 最新版</li></ul>
+        # @type MeshSidecarVersion: String
+        # @param BusinessLogConfigIdList: <p>业务日志配置 ID 列表</p>
+        # @type BusinessLogConfigIdList: String
+        # @param BusinessLogDeliveryConfigIdList: <p>业务系统 ID</p>
+        # @type BusinessLogDeliveryConfigIdList: String
+        # @param BusinessSystemId: <p>String型普通说明场景</p>
+        # @type BusinessSystemId: String
+        # @param BusinessSystemName: <p>业务系统名称</p>
+        # @type BusinessSystemName: String
+        # @param ClsMachineGroupId: <p>CLS 机器组 ID</p>
+        # @type ClsMachineGroupId: String
+        # @param EnableGovernance: <p>是否开启服务治理</p>
+        # @type EnableGovernance: Boolean
+        # @param EnableTelemetry: <p>是否开启可观测</p>
+        # @type EnableTelemetry: Boolean
+        # @param EnableTelemetryAgent: <p>是否开启 OT Agent</p>
+        # @type EnableTelemetryAgent: Boolean
+        # @param EnabledUnit: <p>是否开启单元化</p>
+        # @type EnabledUnit: Boolean
+        # @param ExclusiveInstances: <p>独享注册中心/配置中心实例列表</p>
+        # @type ExclusiveInstances: Array
+        # @param FrameworkType: <p>框架接入类型</p>
+        # @type FrameworkType: String
+        # @param GovernanceType: <p>服务治理实例模式</p>
+        # @type GovernanceType: String
+        # @param InstanceIdList: <p>部署组关联实例 ID 列表</p>
+        # @type InstanceIdList: Array
+        # @param IsStop: <p>部署组是否处于停止状态</p>
+        # @type IsStop: String
+        # @param K8sNamespaceName: <p>K8s 命名空间名称</p>
+        # @type K8sNamespaceName: String
+        # @param Language: <p>请求语言</p>
+        # @type Language: String
+        # @param MicroserviceSubType: <p>微服务子类型</p>
+        # @type MicroserviceSubType: String
+        # @param NonInvasiveType: <p>非侵入接入子类型</p>
+        # @type NonInvasiveType: String
+        # @param PreStopScript: <p>预停止脚本内容</p>
+        # @type PreStopScript: String
+        # @param RealNamespaceName: <p>实际使用的 K8s 命名空间名称</p>
+        # @type RealNamespaceName: String
+        # @param ServiceConfigList: <p>Mesh 服务端口与健康检查配置列表</p>
+        # @type ServiceConfigList: Array
+        # @param ServiceGovernanceConfig: <p>服务治理配置聚合对象</p>
+        # @type ServiceGovernanceConfig: :class:`Tencentcloud::Tsf.v20180326.models.ServiceGovernanceConfig`
+        # @param Tags: <p>部署组标签列表</p>
+        # @type Tags: Array
+        # @param TapmOtAgentVersion: <p>Tapm OT Agent 版本</p>
+        # @type TapmOtAgentVersion: String
+        # @param UnitEnvType: <p>单元环境类型</p>
+        # @type UnitEnvType: String
+        # @param UnitId: <p>单元 ID</p>
+        # @type UnitId: String
+        # @param UnitName: <p>单元类型</p>
+        # @type UnitName: String
+        # @param UnitType: <p>部署组资源类型</p>
+        # @type UnitType: String
 
-        attr_accessor :GroupId, :GroupName, :GroupStatus, :PackageId, :PackageName, :PackageVersion, :ClusterId, :ClusterName, :NamespaceId, :NamespaceName, :ApplicationId, :ApplicationName, :InstanceCount, :RunInstanceCount, :StartupParameters, :CreateTime, :UpdateTime, :OffInstanceCount, :GroupDesc, :MicroserviceType, :ApplicationType, :GroupResourceType, :UpdatedTime, :DeployDesc, :UpdateType, :DeployBetaEnable, :DeployBatch, :DeployExeMode, :DeployWaitTime, :EnableHealthCheck, :HealthCheckSettings, :PackageType, :StartScript, :StopScript, :Alias, :AgentProfileList, :WarmupSetting, :GatewayConfig, :EnableBatchHealthCheck, :FilebeatCgroupEnable, :FilebeatMaxCpu, :FilebeatMaxMem, :RepositoryId, :RepositoryName, :RepositoryType, :LivenessAutoRestart
+        attr_accessor :GroupId, :GroupName, :GroupStatus, :PackageId, :PackageName, :PackageVersion, :ClusterId, :ClusterName, :NamespaceId, :NamespaceName, :ApplicationId, :ApplicationName, :InstanceCount, :RunInstanceCount, :StartupParameters, :CreateTime, :UpdateTime, :OffInstanceCount, :GroupDesc, :MicroserviceType, :ApplicationType, :GroupResourceType, :UpdatedTime, :DeployDesc, :UpdateType, :DeployBetaEnable, :DeployBatch, :DeployExeMode, :DeployWaitTime, :EnableHealthCheck, :HealthCheckSettings, :PackageType, :StartScript, :StopScript, :Alias, :AgentProfileList, :WarmupSetting, :GatewayConfig, :EnableBatchHealthCheck, :FilebeatCgroupEnable, :FilebeatMaxCpu, :FilebeatMaxMem, :RepositoryId, :RepositoryName, :RepositoryType, :LivenessAutoRestart, :MeshSidecarVersion, :BusinessLogConfigIdList, :BusinessLogDeliveryConfigIdList, :BusinessSystemId, :BusinessSystemName, :ClsMachineGroupId, :EnableGovernance, :EnableTelemetry, :EnableTelemetryAgent, :EnabledUnit, :ExclusiveInstances, :FrameworkType, :GovernanceType, :InstanceIdList, :IsStop, :K8sNamespaceName, :Language, :MicroserviceSubType, :NonInvasiveType, :PreStopScript, :RealNamespaceName, :ServiceConfigList, :ServiceGovernanceConfig, :Tags, :TapmOtAgentVersion, :UnitEnvType, :UnitId, :UnitName, :UnitType
 
-        def initialize(groupid=nil, groupname=nil, groupstatus=nil, packageid=nil, packagename=nil, packageversion=nil, clusterid=nil, clustername=nil, namespaceid=nil, namespacename=nil, applicationid=nil, applicationname=nil, instancecount=nil, runinstancecount=nil, startupparameters=nil, createtime=nil, updatetime=nil, offinstancecount=nil, groupdesc=nil, microservicetype=nil, applicationtype=nil, groupresourcetype=nil, updatedtime=nil, deploydesc=nil, updatetype=nil, deploybetaenable=nil, deploybatch=nil, deployexemode=nil, deploywaittime=nil, enablehealthcheck=nil, healthchecksettings=nil, packagetype=nil, startscript=nil, stopscript=nil, _alias=nil, agentprofilelist=nil, warmupsetting=nil, gatewayconfig=nil, enablebatchhealthcheck=nil, filebeatcgroupenable=nil, filebeatmaxcpu=nil, filebeatmaxmem=nil, repositoryid=nil, repositoryname=nil, repositorytype=nil, livenessautorestart=nil)
+        def initialize(groupid=nil, groupname=nil, groupstatus=nil, packageid=nil, packagename=nil, packageversion=nil, clusterid=nil, clustername=nil, namespaceid=nil, namespacename=nil, applicationid=nil, applicationname=nil, instancecount=nil, runinstancecount=nil, startupparameters=nil, createtime=nil, updatetime=nil, offinstancecount=nil, groupdesc=nil, microservicetype=nil, applicationtype=nil, groupresourcetype=nil, updatedtime=nil, deploydesc=nil, updatetype=nil, deploybetaenable=nil, deploybatch=nil, deployexemode=nil, deploywaittime=nil, enablehealthcheck=nil, healthchecksettings=nil, packagetype=nil, startscript=nil, stopscript=nil, _alias=nil, agentprofilelist=nil, warmupsetting=nil, gatewayconfig=nil, enablebatchhealthcheck=nil, filebeatcgroupenable=nil, filebeatmaxcpu=nil, filebeatmaxmem=nil, repositoryid=nil, repositoryname=nil, repositorytype=nil, livenessautorestart=nil, meshsidecarversion=nil, businesslogconfigidlist=nil, businesslogdeliveryconfigidlist=nil, businesssystemid=nil, businesssystemname=nil, clsmachinegroupid=nil, enablegovernance=nil, enabletelemetry=nil, enabletelemetryagent=nil, enabledunit=nil, exclusiveinstances=nil, frameworktype=nil, governancetype=nil, instanceidlist=nil, isstop=nil, k8snamespacename=nil, language=nil, microservicesubtype=nil, noninvasivetype=nil, prestopscript=nil, realnamespacename=nil, serviceconfiglist=nil, servicegovernanceconfig=nil, tags=nil, tapmotagentversion=nil, unitenvtype=nil, unitid=nil, unitname=nil, unittype=nil)
           @GroupId = groupid
           @GroupName = groupname
           @GroupStatus = groupstatus
@@ -21042,6 +21100,35 @@ module TencentCloud
           @RepositoryName = repositoryname
           @RepositoryType = repositorytype
           @LivenessAutoRestart = livenessautorestart
+          @MeshSidecarVersion = meshsidecarversion
+          @BusinessLogConfigIdList = businesslogconfigidlist
+          @BusinessLogDeliveryConfigIdList = businesslogdeliveryconfigidlist
+          @BusinessSystemId = businesssystemid
+          @BusinessSystemName = businesssystemname
+          @ClsMachineGroupId = clsmachinegroupid
+          @EnableGovernance = enablegovernance
+          @EnableTelemetry = enabletelemetry
+          @EnableTelemetryAgent = enabletelemetryagent
+          @EnabledUnit = enabledunit
+          @ExclusiveInstances = exclusiveinstances
+          @FrameworkType = frameworktype
+          @GovernanceType = governancetype
+          @InstanceIdList = instanceidlist
+          @IsStop = isstop
+          @K8sNamespaceName = k8snamespacename
+          @Language = language
+          @MicroserviceSubType = microservicesubtype
+          @NonInvasiveType = noninvasivetype
+          @PreStopScript = prestopscript
+          @RealNamespaceName = realnamespacename
+          @ServiceConfigList = serviceconfiglist
+          @ServiceGovernanceConfig = servicegovernanceconfig
+          @Tags = tags
+          @TapmOtAgentVersion = tapmotagentversion
+          @UnitEnvType = unitenvtype
+          @UnitId = unitid
+          @UnitName = unitname
+          @UnitType = unittype
         end
 
         def deserialize(params)
@@ -21107,6 +21194,59 @@ module TencentCloud
           @RepositoryName = params['RepositoryName']
           @RepositoryType = params['RepositoryType']
           @LivenessAutoRestart = params['LivenessAutoRestart']
+          @MeshSidecarVersion = params['MeshSidecarVersion']
+          @BusinessLogConfigIdList = params['BusinessLogConfigIdList']
+          @BusinessLogDeliveryConfigIdList = params['BusinessLogDeliveryConfigIdList']
+          @BusinessSystemId = params['BusinessSystemId']
+          @BusinessSystemName = params['BusinessSystemName']
+          @ClsMachineGroupId = params['ClsMachineGroupId']
+          @EnableGovernance = params['EnableGovernance']
+          @EnableTelemetry = params['EnableTelemetry']
+          @EnableTelemetryAgent = params['EnableTelemetryAgent']
+          @EnabledUnit = params['EnabledUnit']
+          unless params['ExclusiveInstances'].nil?
+            @ExclusiveInstances = []
+            params['ExclusiveInstances'].each do |i|
+              exclusiveinstance_tmp = ExclusiveInstance.new
+              exclusiveinstance_tmp.deserialize(i)
+              @ExclusiveInstances << exclusiveinstance_tmp
+            end
+          end
+          @FrameworkType = params['FrameworkType']
+          @GovernanceType = params['GovernanceType']
+          @InstanceIdList = params['InstanceIdList']
+          @IsStop = params['IsStop']
+          @K8sNamespaceName = params['K8sNamespaceName']
+          @Language = params['Language']
+          @MicroserviceSubType = params['MicroserviceSubType']
+          @NonInvasiveType = params['NonInvasiveType']
+          @PreStopScript = params['PreStopScript']
+          @RealNamespaceName = params['RealNamespaceName']
+          unless params['ServiceConfigList'].nil?
+            @ServiceConfigList = []
+            params['ServiceConfigList'].each do |i|
+              serviceconfig_tmp = ServiceConfig.new
+              serviceconfig_tmp.deserialize(i)
+              @ServiceConfigList << serviceconfig_tmp
+            end
+          end
+          unless params['ServiceGovernanceConfig'].nil?
+            @ServiceGovernanceConfig = ServiceGovernanceConfig.new
+            @ServiceGovernanceConfig.deserialize(params['ServiceGovernanceConfig'])
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          @TapmOtAgentVersion = params['TapmOtAgentVersion']
+          @UnitEnvType = params['UnitEnvType']
+          @UnitId = params['UnitId']
+          @UnitName = params['UnitName']
+          @UnitType = params['UnitType']
         end
       end
 

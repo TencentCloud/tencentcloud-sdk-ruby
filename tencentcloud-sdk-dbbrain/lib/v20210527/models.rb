@@ -8504,7 +8504,7 @@ module TencentCloud
         # @type CpuTimeMax: Float
         # @param IoWaitTimeMin: <p>最小io等待时间，单位秒</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type IoWaitTimeMin: Integer
+        # @type IoWaitTimeMin: Float
         # @param LatencyMax: <p>最大执行时间，单位秒</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LatencyMax: Float

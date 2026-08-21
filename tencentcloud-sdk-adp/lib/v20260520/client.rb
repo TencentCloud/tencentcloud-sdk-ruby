@@ -173,6 +173,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建一条消息记录分类，支持指定分类名称与父分类（ParentId 为 0 时表示一级分类）
+
+        # @param request: Request instance for CreateMsgRecordCategory.
+        # @type request: :class:`Tencentcloud::adp::V20260520::CreateMsgRecordCategoryRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::CreateMsgRecordCategoryResponse`
+        def CreateMsgRecordCategory(request)
+          body = send_request('CreateMsgRecordCategory', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateMsgRecordCategoryResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取插件详情
 
         # @param request: Request instance for CreatePlugin.
@@ -447,6 +471,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteConversationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除指定的消息记录分类
+
+        # @param request: Request instance for DeleteMsgRecordCategory.
+        # @type request: :class:`Tencentcloud::adp::V20260520::DeleteMsgRecordCategoryRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::DeleteMsgRecordCategoryResponse`
+        def DeleteMsgRecordCategory(request)
+          body = send_request('DeleteMsgRecordCategory', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteMsgRecordCategoryResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1061,6 +1109,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询应用的消息记录分类树，返回分类及子分类、各分类下记录数量与操作权限
+
+        # @param request: Request instance for DescribeMsgRecordCategoryList.
+        # @type request: :class:`Tencentcloud::adp::V20260520::DescribeMsgRecordCategoryListRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::DescribeMsgRecordCategoryListResponse`
+        def DescribeMsgRecordCategoryList(request)
+          body = send_request('DescribeMsgRecordCategoryList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeMsgRecordCategoryListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询应用的对话消息记录列表，支持按渠道类型、反馈类型、意图、调用结果等条件过滤，并支持游标分页与按创建时间排序
+
+        # @param request: Request instance for DescribeMsgRecordList.
+        # @type request: :class:`Tencentcloud::adp::V20260520::DescribeMsgRecordListRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::DescribeMsgRecordListResponse`
+        def DescribeMsgRecordList(request)
+          body = send_request('DescribeMsgRecordList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeMsgRecordListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取插件详情
 
         # @param request: Request instance for DescribePlugin.
@@ -1527,6 +1623,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyConversationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改指定消息记录分类的名称
+
+        # @param request: Request instance for ModifyMsgRecordCategory.
+        # @type request: :class:`Tencentcloud::adp::V20260520::ModifyMsgRecordCategoryRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::ModifyMsgRecordCategoryResponse`
+        def ModifyMsgRecordCategory(request)
+          body = send_request('ModifyMsgRecordCategory', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyMsgRecordCategoryResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -530,19 +530,19 @@ module TencentCloud
 
       # CreateCfsFileSystem请求参数结构体
       class CreateCfsFileSystemRequest < TencentCloud::Common::AbstractModel
-        # @param Zone: <p>可用区名称，例如ap-beijing-1，请参考 <a href="https://cloud.tencent.com/document/product/582/13225">概览</a> 文档中的地域与可用区列表</p>
+        # @param Zone: <p>可用区名称</p><p>取值参考：<a href="https://cloud.tencent.com/document/product/213/15707?">查询可用区列表</a></p>
         # @type Zone: String
-        # @param NetInterface: <p>网络类型，可选值为 VPC，CCN；其中 VPC 为私有网络， CCN 为云联网。通用标准型/性能型请选择VPC，Turbo标准型/性能型请选择CCN。</p>
+        # @param NetInterface: <p>网络类型</p><p>枚举值：</p><ul><li><p>VPC： 私有网络</p></li><li><p>CCN： 云联网</p></li><li><p>通用标准型/性能型（含增强型）、吞吐型请选择VPC</p></li><li><p>Turbo标准型/性能型可选VPC或CCN</p></li><li><p>当 Scenario=AgentSandbox 时，即创建 AgentCFS时无需传入，传入将被忽略。</p></li></ul>
         # @type NetInterface: String
-        # @param PGroupId: <p>权限组 ID,pgroupbasic 是默认权限组，通过控制查询权限组列表接口获取<a href="https://cloud.tencent.com/document/product/582/38157">DescribeCfsPGroups</a></p>
+        # @param PGroupId: <p>权限组 ID。权限组规定了一组可来访白名单及操作权限。</p><p>取值参考：<a href="https://cloud.tencent.com/document/api/582/38157">DescribeCfsPGroups</a></p><ul><li>pgroupbasic 为【默认权限组】，【默认权限组】允许所有IP地址访问及读写权限。 </li><li>注意：当 Scenario=AgentSandbox 时，即创建 AgentCFS ，必须传入 pgroupbasic【默认权限组】，传其他值报错。</li></ul>
         # @type PGroupId: String
-        # @param Protocol: <p>文件系统协议类型， 值为 NFS、CIFS、TURBO ; 若留空则默认为 NFS协议，turbo系列必须选择TURBO，不支持NFS、CIFS</p>
+        # @param Protocol: <p>文件系统协议类型</p><p>枚举值：</p><ul><li>NFS： 通用标准型（含增强型）、通用性能型（含增强型）支持创建此协议的实例</li><li>CIFS： 即SMB协议，仅部分可用区的通用标准型、吞吐型支持此协议。</li><li>TURBO： Turbo标准型/Turbo性能型/AgentCFS是支持创建此协议的实例</li></ul><p>默认值：NFS</p>
         # @type Protocol: String
-        # @param StorageType: <p>文件系统存储类型，默认值为 SD ；其中 SD 为通用标准型存储， HP为通用性能型存储， TB为Turbo标准型， TP 为Turbo性能型。</p>
+        # @param StorageType: <p>文件系统存储类型其中 SD 为通用标准型存储， HP为通用性能型存储， TB为Turbo标准型， TP 为Turbo性能型。</p><p>枚举值：</p><ul><li>SD： 通用标准型（含增强型）。通用标准型 version = v1.5，通用标准型（增强型） version = v3.1。</li><li>HP： 通用性能型（含增强型）。通用性能型 version = v1.5，通用性能型（增强型） version = v3.1。</li><li>TB： Turbo标准型</li><li>TP： Turbo性能型</li><li>THP： 吞吐型</li></ul><p>默认值：SD</p>
         # @type StorageType: String
-        # @param VpcId: <p>私有网络（VPC） ID，若网络类型选择的是VPC，该字段为必填.通过查询私有网络接口获取，<br><a href="https://cloud.tencent.com/document/product/215/15778">DescribeVpcs</a></p>
+        # @param VpcId: <p>私有网络（VPC） ID，若网络类型选择的是VPC，该字段为必填。</p><p>取值参考：<a href="https://cloud.tencent.com/document/product/215/15778">查询VPC列表</a></p><p>当 Scenario=AgentSandbox 时，即创建 AgentCFS 时无需传入，传入将被忽略。</p>
         # @type VpcId: String
-        # @param SubnetId: <p>子网 ID，若网络类型选择的是VPC，该字段为必填。通过查询子网接口获取，<br><a href="https://cloud.tencent.com/document/product/215/15784">DescribeSubnets</a></p>
+        # @param SubnetId: <p>子网 ID，若网络类型选择的是VPC，该字段为必填。</p><p>取值参考：<a href="https://cloud.tencent.com/document/product/215/15784">查询子网列表</a></p><p>当 Scenario=AgentSandbox 时，即创建 AgentCFS 时无需传入，传入将被忽略。</p>
         # @type SubnetId: String
         # @param MountIP: <p>指定IP地址，仅VPC网络支持；若不填写、将在该子网下随机分配 IP，Turbo系列当前不支持指定</p>
         # @type MountIP: String
@@ -554,26 +554,28 @@ module TencentCloud
         # @type ResourceTags: Array
         # @param ClientToken: <p>用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。用于保证请求幂等性的字符串失效时间为2小时。</p>
         # @type ClientToken: String
-        # @param CcnId: <p>云联网ID， 若网络类型选择的是CCN，该字段为必填;通过查询云联网列表接口获取，通过接口<br><a href="https://cloud.tencent.com/document/product/215/19199">DescribeCcns</a></p>
+        # @param CcnId: <p>云联网ID， 若网络类型选择的是CCN，该字段为必填</p><p>取值参考：<a href="https://cloud.tencent.com/document/product/215/19199">查询CCN列表</a></p><p>当 Scenario=AgentSandbox 时，即创建 AgentCFS 时无需传入，传入将被忽略</p>
         # @type CcnId: String
-        # @param CidrBlock: <p>云联网中CFS使用的网段， 若网络类型选择的是Ccn，该字段为必填，且不能和Ccn中已经绑定的网段冲突</p>
+        # @param CidrBlock: <p>云联网中CFS使用的网段， 若网络类型选择的是CCN，该字段为必填，且不能和Ccn中已经绑定的网段冲突</p><p>当 Scenario=AgentSandbox 时，即创建 AgentCFS 时无需传入，传入将被忽略</p>
         # @type CidrBlock: String
-        # @param Capacity: <p>文件系统容量，turbo系列必填，单位为GiB。 turbo标准型单位GB，起售20TiB，即20480 GiB；扩容步长10TiB，即10240 GiB。turbo性能型起售10TiB，即10240 GiB；扩容步长10TiB，10240 GiB。</p>
+        # @param Capacity: <p>文件系统容量，turbo系列必填</p><p>单位：GiB</p><p>Turbo标准型起售20TiB，即20480 GiB，扩容步长10TiB，即10240 GiB。Turbo性能型起售10TiB，即10240 GiB，扩容步长10TiB，即10240 GiB。</p>
         # @type Capacity: Integer
-        # @param SnapshotId: <p>文件系统快照ID，通过查询快照列表获取该参数，<br><a href="https://cloud.tencent.com/document/product/582/80206">DescribeCfsSnapshots</a></p>
+        # @param SnapshotId: <p>文件系统快照 ID</p><p>取值参考：<a href="https://cloud.tencent.com/document/api/582/80206">DescribeCfsSnapshots</a></p>
         # @type SnapshotId: String
-        # @param AutoSnapshotPolicyId: <p>定期快照策略ID，通过查询快照策略信息获取,<br><a href="https://cloud.tencent.com/document/product/582/38157">DescribeAutoSnapshotPolicies</a></p>
+        # @param AutoSnapshotPolicyId: <p>定期快照策略 ID</p><p>取值参考：<a href="https://cloud.tencent.com/document/api/582/80208">DescribeAutoSnapshotPolicies</a></p>
         # @type AutoSnapshotPolicyId: String
-        # @param EnableAutoScaleUp: <p>是否开启默认扩容，仅turbo类型文件存储支持</p>
+        # @param EnableAutoScaleUp: <p>是否开启自动扩容策略，仅turbo类型文件存储支持</p>
         # @type EnableAutoScaleUp: Boolean
-        # @param CfsVersion: <p>v1.5：创建普通版的通用文件系统；<br>v3.1：创建增强版的通用文件系统<br>说明：增强版的通用系统需要开通白名单才能使用，如有需要请提交工单与我们联系。</p>
+        # @param CfsVersion: <p>文件系统版本号。</p><p>枚举值：</p><ul><li>v1.5： 创建通用标准型/通用性能型文件系统</li><li>v3.1： 创建通用标准型（增强型）/通用性能型（增强型）文件系统，如需创建增强型，此为必填项。</li><li>v4.0： 创建Turbo标准型、Turbo性能型、吞吐型文件系统，非必填项</li></ul><p>创建通用标准型（增强型）、通用性能型（增强型）须加白主账号，如需使用请联系我们。</p>
         # @type CfsVersion: String
-        # @param MetaType: <p>turbo文件系统元数据属性<br>basic：创建标准型的元数据<br>enhanced：创建增强型的元数据</p>
+        # @param MetaType: <p>turbo文件系统元数据类型</p><p>枚举值：</p><ul><li>basic： 创建标准版元数据。</li><li>enhanced： 创建增强版元数据</li></ul><p>详情参见<a href="https://cloud.tencent.com/document/product/582/116836">Turbo 文件系统元数据类型</a></p>
         # @type MetaType: String
+        # @param Scenario: <p>业务场景。</p><p>枚举值：</p><ul><li>AgentSandbox： 创建 AgentCFS 时必传</li></ul>
+        # @type Scenario: String
 
-        attr_accessor :Zone, :NetInterface, :PGroupId, :Protocol, :StorageType, :VpcId, :SubnetId, :MountIP, :FsName, :Encrypted, :ResourceTags, :ClientToken, :CcnId, :CidrBlock, :Capacity, :SnapshotId, :AutoSnapshotPolicyId, :EnableAutoScaleUp, :CfsVersion, :MetaType
+        attr_accessor :Zone, :NetInterface, :PGroupId, :Protocol, :StorageType, :VpcId, :SubnetId, :MountIP, :FsName, :Encrypted, :ResourceTags, :ClientToken, :CcnId, :CidrBlock, :Capacity, :SnapshotId, :AutoSnapshotPolicyId, :EnableAutoScaleUp, :CfsVersion, :MetaType, :Scenario
 
-        def initialize(zone=nil, netinterface=nil, pgroupid=nil, protocol=nil, storagetype=nil, vpcid=nil, subnetid=nil, mountip=nil, fsname=nil, encrypted=nil, resourcetags=nil, clienttoken=nil, ccnid=nil, cidrblock=nil, capacity=nil, snapshotid=nil, autosnapshotpolicyid=nil, enableautoscaleup=nil, cfsversion=nil, metatype=nil)
+        def initialize(zone=nil, netinterface=nil, pgroupid=nil, protocol=nil, storagetype=nil, vpcid=nil, subnetid=nil, mountip=nil, fsname=nil, encrypted=nil, resourcetags=nil, clienttoken=nil, ccnid=nil, cidrblock=nil, capacity=nil, snapshotid=nil, autosnapshotpolicyid=nil, enableautoscaleup=nil, cfsversion=nil, metatype=nil, scenario=nil)
           @Zone = zone
           @NetInterface = netinterface
           @PGroupId = pgroupid
@@ -594,6 +596,7 @@ module TencentCloud
           @EnableAutoScaleUp = enableautoscaleup
           @CfsVersion = cfsversion
           @MetaType = metatype
+          @Scenario = scenario
         end
 
         def deserialize(params)
@@ -624,6 +627,7 @@ module TencentCloud
           @EnableAutoScaleUp = params['EnableAutoScaleUp']
           @CfsVersion = params['CfsVersion']
           @MetaType = params['MetaType']
+          @Scenario = params['Scenario']
         end
       end
 
@@ -3056,77 +3060,69 @@ module TencentCloud
 
       # 文件系统基本信息
       class FileSystemInfo < TencentCloud::Common::AbstractModel
-        # @param CreationTime: 创建时间
+        # @param CreationTime: <p>创建时间</p>
         # @type CreationTime: String
-        # @param CreationToken: 用户自定义名称
+        # @param CreationToken: <p>用户自定义名称</p>
         # @type CreationToken: String
-        # @param FileSystemId: 文件系统 ID
+        # @param FileSystemId: <p>文件系统 ID</p>
         # @type FileSystemId: String
-        # @param LifeCycleState: 文件系统状态。取值范围：
-        # - creating:创建中
-        # - mounting:挂载中
-        # - create_failed:创建失败
-        # - available:可使用
-        # - unserviced:停服中
-        # - upgrading:升级中
+        # @param LifeCycleState: <p>文件系统状态。取值范围：</p><ul><li>creating:创建中</li><li>mounting:挂载中</li><li>create_failed:创建失败</li><li>available:可使用</li><li>unserviced:停服中</li><li>upgrading:升级中</li></ul>
         # @type LifeCycleState: String
-        # @param SizeByte: 文件系统已使用容量。单位：Byte
+        # @param SizeByte: <p>文件系统已使用容量。单位：Byte</p>
         # @type SizeByte: Integer
-        # @param SizeLimit: 文件系统空间限制。单位:GiB
+        # @param SizeLimit: <p>文件系统空间限制。单位:GiB</p>
         # @type SizeLimit: Integer
-        # @param ZoneId: 区域 ID
+        # @param ZoneId: <p>区域 ID</p>
         # @type ZoneId: Integer
-        # @param Zone: 区域名称
+        # @param Zone: <p>区域名称</p>
         # @type Zone: String
-        # @param Protocol: 文件系统协议类型, 支持 NFS,CIFS,TURBO
+        # @param Protocol: <p>文件系统协议类型, 支持 NFS,CIFS,TURBO</p>
         # @type Protocol: String
-        # @param StorageType: 存储类型，HP：通用性能型；SD：通用标准型；TP:turbo性能型；TB：turbo标准型；THP：吞吐型
+        # @param StorageType: <p>存储类型，HP：通用性能型；SD：通用标准型；TP:turbo性能型；TB：turbo标准型；THP：吞吐型</p>
         # @type StorageType: String
-        # @param StorageResourcePkg: 文件系统绑定的预付费存储包
+        # @param StorageResourcePkg: <p>文件系统绑定的预付费存储包</p>
         # @type StorageResourcePkg: String
-        # @param BandwidthResourcePkg: 文件系统绑定的预付费带宽包（暂未支持）
+        # @param BandwidthResourcePkg: <p>文件系统绑定的预付费带宽包（暂未支持）</p>
         # @type BandwidthResourcePkg: String
-        # @param PGroup: 文件系统绑定权限组信息
+        # @param PGroup: <p>文件系统绑定权限组信息</p>
         # @type PGroup: :class:`Tencentcloud::Cfs.v20190719.models.PGroup`
-        # @param FsName: 用户自定义名称
+        # @param FsName: <p>用户自定义名称</p>
         # @type FsName: String
-        # @param Encrypted: 文件系统是否加密,true：代表加密，false：非加密
+        # @param Encrypted: <p>文件系统是否加密,true：代表加密，false：非加密</p>
         # @type Encrypted: Boolean
-        # @param KmsKeyId: 加密所使用的密钥，可以为密钥的 ID 或者 ARN
+        # @param KmsKeyId: <p>加密所使用的密钥，可以为密钥的 ID 或者 ARN</p>
         # @type KmsKeyId: String
-        # @param AppId: 应用ID
+        # @param AppId: <p>应用ID</p>
         # @type AppId: Integer
-        # @param BandwidthLimit: 文件系统吞吐上限，吞吐上限是根据文件系统当前已使用存储量、绑定的存储资源包以及吞吐资源包一同确定. 单位MiB/s
+        # @param BandwidthLimit: <p>文件系统吞吐上限，吞吐上限是根据文件系统当前已使用存储量、绑定的存储资源包以及吞吐资源包一同确定. 单位MiB/s</p>
         # @type BandwidthLimit: Float
-        # @param AutoSnapshotPolicyId: 文件系统关联的快照策略
+        # @param AutoSnapshotPolicyId: <p>文件系统关联的快照策略</p>
         # @type AutoSnapshotPolicyId: String
-        # @param SnapStatus: 文件系统处理快照状态,snapping：快照中，normal：正常状态
+        # @param SnapStatus: <p>文件系统处理快照状态,snapping：快照中，normal：正常状态</p>
         # @type SnapStatus: String
-        # @param Capacity: 文件系统容量规格上限
-        # 单位:GiB
+        # @param Capacity: <p>文件系统容量规格上限<br>单位:GiB</p>
         # @type Capacity: Integer
-        # @param Tags: 文件系统标签列表
+        # @param Tags: <p>文件系统标签列表</p>
         # @type Tags: Array
-        # @param TieringState: 文件系统生命周期管理状态
-        # NotAvailable：不可用
-        # Available:可用
+        # @param TieringState: <p>文件系统生命周期管理状态<br>NotAvailable：不可用<br>Available:可用</p>
         # @type TieringState: String
-        # @param TieringDetail: 分层存储详情
+        # @param TieringDetail: <p>分层存储详情</p>
         # @type TieringDetail: :class:`Tencentcloud::Cfs.v20190719.models.TieringDetailInfo`
-        # @param AutoScaleUpRule: 文件系统自动扩容策略
+        # @param AutoScaleUpRule: <p>文件系统自动扩容策略</p>
         # @type AutoScaleUpRule: :class:`Tencentcloud::Cfs.v20190719.models.AutoScaleUpRule`
-        # @param Version: 文件系统版本
+        # @param Version: <p>文件系统版本</p>
         # @type Version: String
-        # @param ExstraPerformanceInfo: 额外性能信息
+        # @param ExstraPerformanceInfo: <p>额外性能信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExstraPerformanceInfo: Array
-        # @param MetaType: basic：标准版元数据类型
-        # enhanced：增项版元数据类型
+        # @param MetaType: <p>basic：标准版元数据类型<br>enhanced：增项版元数据类型</p>
         # @type MetaType: String
+        # @param Scenario: <p>业务场景。</p><p>枚举值：</p><ul><li>AgentSandbox： 创建 AgentCFS</li></ul>
+        # @type Scenario: String
 
-        attr_accessor :CreationTime, :CreationToken, :FileSystemId, :LifeCycleState, :SizeByte, :SizeLimit, :ZoneId, :Zone, :Protocol, :StorageType, :StorageResourcePkg, :BandwidthResourcePkg, :PGroup, :FsName, :Encrypted, :KmsKeyId, :AppId, :BandwidthLimit, :AutoSnapshotPolicyId, :SnapStatus, :Capacity, :Tags, :TieringState, :TieringDetail, :AutoScaleUpRule, :Version, :ExstraPerformanceInfo, :MetaType
+        attr_accessor :CreationTime, :CreationToken, :FileSystemId, :LifeCycleState, :SizeByte, :SizeLimit, :ZoneId, :Zone, :Protocol, :StorageType, :StorageResourcePkg, :BandwidthResourcePkg, :PGroup, :FsName, :Encrypted, :KmsKeyId, :AppId, :BandwidthLimit, :AutoSnapshotPolicyId, :SnapStatus, :Capacity, :Tags, :TieringState, :TieringDetail, :AutoScaleUpRule, :Version, :ExstraPerformanceInfo, :MetaType, :Scenario
 
-        def initialize(creationtime=nil, creationtoken=nil, filesystemid=nil, lifecyclestate=nil, sizebyte=nil, sizelimit=nil, zoneid=nil, zone=nil, protocol=nil, storagetype=nil, storageresourcepkg=nil, bandwidthresourcepkg=nil, pgroup=nil, fsname=nil, encrypted=nil, kmskeyid=nil, appid=nil, bandwidthlimit=nil, autosnapshotpolicyid=nil, snapstatus=nil, capacity=nil, tags=nil, tieringstate=nil, tieringdetail=nil, autoscaleuprule=nil, version=nil, exstraperformanceinfo=nil, metatype=nil)
+        def initialize(creationtime=nil, creationtoken=nil, filesystemid=nil, lifecyclestate=nil, sizebyte=nil, sizelimit=nil, zoneid=nil, zone=nil, protocol=nil, storagetype=nil, storageresourcepkg=nil, bandwidthresourcepkg=nil, pgroup=nil, fsname=nil, encrypted=nil, kmskeyid=nil, appid=nil, bandwidthlimit=nil, autosnapshotpolicyid=nil, snapstatus=nil, capacity=nil, tags=nil, tieringstate=nil, tieringdetail=nil, autoscaleuprule=nil, version=nil, exstraperformanceinfo=nil, metatype=nil, scenario=nil)
           @CreationTime = creationtime
           @CreationToken = creationtoken
           @FileSystemId = filesystemid
@@ -3155,6 +3151,7 @@ module TencentCloud
           @Version = version
           @ExstraPerformanceInfo = exstraperformanceinfo
           @MetaType = metatype
+          @Scenario = scenario
         end
 
         def deserialize(params)
@@ -3209,6 +3206,7 @@ module TencentCloud
             end
           end
           @MetaType = params['MetaType']
+          @Scenario = params['Scenario']
         end
       end
 

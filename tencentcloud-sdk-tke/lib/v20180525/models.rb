@@ -9532,20 +9532,32 @@ module TencentCloud
 
       # DescribeOSImages请求参数结构体
       class DescribeOSImagesRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: <p>镜像拉取接口增加过滤字段</p>
+        # @type Filters: Array
 
+        attr_accessor :Filters
 
-        def initialize()
+        def initialize(filters=nil)
+          @Filters = filters
         end
 
         def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
         end
       end
 
       # DescribeOSImages返回参数结构体
       class DescribeOSImagesResponse < TencentCloud::Common::AbstractModel
-        # @param OSImageSeriesSet: 镜像信息列表
+        # @param OSImageSeriesSet: <p>镜像信息列表</p>
         # @type OSImageSeriesSet: Array
-        # @param TotalCount: 镜像数量
+        # @param TotalCount: <p>镜像数量</p>
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -17896,28 +17908,31 @@ module TencentCloud
 
       # 操作系统描述
       class OSImage < TencentCloud::Common::AbstractModel
-        # @param SeriesName: os聚合名称
+        # @param SeriesName: <p>os聚合名称</p>
         # @type SeriesName: String
-        # @param Alias: os别名
+        # @param Alias: <p>os别名</p>
         # @type Alias: String
-        # @param OsName: os名称
+        # @param OsName: <p>os名称</p>
         # @type OsName: String
-        # @param OsCustomizeType: 操作系统类型(分为定制和非定制，取值分别为:DOCKER_CUSTOMIZE、GENERAL)
+        # @param OsCustomizeType: <p>操作系统类型(分为定制和非定制，取值分别为:DOCKER_CUSTOMIZE、GENERAL)</p>
         # @type OsCustomizeType: String
-        # @param Status: os是否下线(online表示在线,offline表示下线)
+        # @param Status: <p>os是否下线(online表示在线,offline表示下线)</p>
         # @type Status: String
-        # @param ImageId: 镜像id
+        # @param ImageId: <p>镜像id</p>
         # @type ImageId: String
+        # @param Arch: <p>架构</p>
+        # @type Arch: String
 
-        attr_accessor :SeriesName, :Alias, :OsName, :OsCustomizeType, :Status, :ImageId
+        attr_accessor :SeriesName, :Alias, :OsName, :OsCustomizeType, :Status, :ImageId, :Arch
 
-        def initialize(seriesname=nil, _alias=nil, osname=nil, oscustomizetype=nil, status=nil, imageid=nil)
+        def initialize(seriesname=nil, _alias=nil, osname=nil, oscustomizetype=nil, status=nil, imageid=nil, arch=nil)
           @SeriesName = seriesname
           @Alias = _alias
           @OsName = osname
           @OsCustomizeType = oscustomizetype
           @Status = status
           @ImageId = imageid
+          @Arch = arch
         end
 
         def deserialize(params)
@@ -17927,6 +17942,7 @@ module TencentCloud
           @OsCustomizeType = params['OsCustomizeType']
           @Status = params['Status']
           @ImageId = params['ImageId']
+          @Arch = params['Arch']
         end
       end
 

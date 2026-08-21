@@ -19,23 +19,23 @@ module TencentCloud
     module V20191118
       # 安卓应用
       class AndroidApp < TencentCloud::Common::AbstractModel
-        # @param AndroidAppId: 安卓应用 Id
+        # @param AndroidAppId: <p>安卓应用 Id</p>
         # @type AndroidAppId: String
-        # @param Name: 安卓应用名称
+        # @param Name: <p>安卓应用名称</p>
         # @type Name: String
-        # @param State: 安卓应用状态（上架、下架）
+        # @param State: <p>安卓应用状态（上架、下架）</p>
         # @type State: String
-        # @param AndroidAppVersionInfo: 安卓应用版本列表
+        # @param AndroidAppVersionInfo: <p>安卓应用版本列表</p>
         # @type AndroidAppVersionInfo: Array
-        # @param CreateTime: 安卓应用创建时间
+        # @param CreateTime: <p>安卓应用创建时间</p>
         # @type CreateTime: String
-        # @param UserId: 用户 Id
+        # @param UserId: <p>用户 Id</p>
         # @type UserId: String
-        # @param AppMode: 应用模式（NORMAL : 普通模式；ADVANCED : 高级模式）
+        # @param AppMode: <p>应用模式（NORMAL : 普通模式；ADVANCED : 高级模式）</p>
         # @type AppMode: String
-        # @param UpdateState: 应用更新状态，取值：UPLOADING 上传中、CREATING 创建中、CREATE_FAIL 创建失败、CREATE_SUCCESS 创建成功、PACKAGE_NAME_MISMATCH 包名不匹配、VERSION_ALREADY_EXISTS 版本已存在、APP_PARSE_FAIL app 解析失败、APP_EXISTS_SECURITY_RISK app 存在安全风险、NORMAL 默认状态
+        # @param UpdateState: <p>应用更新状态，取值：UPLOADING 上传中、CREATING 创建中、CREATE_FAIL 创建失败、CREATE_SUCCESS 创建成功、PACKAGE_NAME_MISMATCH 包名不匹配、VERSION_ALREADY_EXISTS 版本已存在、APP_PARSE_FAIL app 解析失败、APP_EXISTS_SECURITY_RISK app 存在安全风险、NORMAL 默认状态</p>
         # @type UpdateState: String
-        # @param PackageName: 安卓应用包名
+        # @param PackageName: <p>安卓应用包名</p>
         # @type PackageName: String
 
         attr_accessor :AndroidAppId, :Name, :State, :AndroidAppVersionInfo, :CreateTime, :UserId, :AppMode, :UpdateState, :PackageName
@@ -94,29 +94,29 @@ module TencentCloud
 
       # 安卓应用版本信息
       class AndroidAppVersionInfo < TencentCloud::Common::AbstractModel
-        # @param AndroidAppVersion: 安卓应用版本
+        # @param AndroidAppVersion: <p>安卓应用版本</p>
         # @type AndroidAppVersion: String
-        # @param State: 安卓应用版本创建状态，取值：NORMAL：无（默认）、UPLOADING：上传中、CREATING： 创建中、CREATE_FAIL：创建失败、PACKAGE_NAME_MISMATCH：包名不匹配、VERSION_ALREADY_EXISTS：版本已存在、APP_PARSE_FAIL： app 解析失败、APP_EXISTS_SECURITY_RISK：app 存在安全风险、CREATE_SUCCESS：创建成功
+        # @param State: <p>安卓应用版本创建状态，取值：NORMAL：无（默认）、UPLOADING：上传中、CREATING： 创建中、CREATE_FAIL：创建失败、PACKAGE_NAME_MISMATCH：包名不匹配、VERSION_ALREADY_EXISTS：版本已存在、APP_PARSE_FAIL： app 解析失败、APP_EXISTS_SECURITY_RISK：app 存在安全风险、CREATE_SUCCESS：创建成功</p>
         # @type State: String
-        # @param CreateTime: 安卓应用版本创建时间
+        # @param CreateTime: <p>安卓应用版本创建时间</p>
         # @type CreateTime: String
-        # @param Command: shell 安装命令（支持多条命令执行，通过 && 组合；只在应用 AppMode 为 ADVANCED 高级模式下 才会生效）
+        # @param Command: <p>shell 安装命令（支持多条命令执行，通过 &amp;&amp; 组合；只在应用 AppMode 为 ADVANCED 高级模式下 才会生效）</p>
         # @type Command: String
-        # @param UninstallCommand: shell 卸载命令（支持多条命令执行，通过 && 组合；只在应用 AppMode 为 ADVANCED 高级模式下 才会生效）
+        # @param UninstallCommand: <p>shell 卸载命令（支持多条命令执行，通过 &amp;&amp; 组合；只在应用 AppMode 为 ADVANCED 高级模式下 才会生效）</p>
         # @type UninstallCommand: String
-        # @param CleanupMode: 应用资源清理模式（实例安装应用所用资源），取值：CLEANUP_ON_UNINSTALL（默认值），卸载 App 时清理；CLEANUP_AFTER_INSTALL，安装 App 后立即清理。普通应用只有 CLEANUP_AFTER_INSTALL 模式。
+        # @param CleanupMode: <p>应用资源清理模式（实例安装应用所用资源），取值：CLEANUP_ON_UNINSTALL（默认值），卸载 App 时清理；CLEANUP_AFTER_INSTALL，安装 App 后立即清理。普通应用只有 CLEANUP_AFTER_INSTALL 模式。</p>
         # @type CleanupMode: String
-        # @param AndroidAppVersionName: 安卓应用版本名称（版本描述、备注）
+        # @param AndroidAppVersionName: <p>安卓应用版本名称（版本描述、备注）</p>
         # @type AndroidAppVersionName: String
-        # @param Activity: 安卓应用启动页
+        # @param Activity: <p>安卓应用启动页</p>
         # @type Activity: String
-        # @param VersionName: 应用版本号（Version Name）
+        # @param VersionName: <p>应用版本号（Version Name）</p>
         # @type VersionName: String
-        # @param MD5: 应用包 MD5
+        # @param MD5: <p>应用包 MD5</p>
         # @type MD5: String
-        # @param FileSize: 应用包文件大小（字节）
+        # @param FileSize: <p>应用包文件大小（字节）</p>
         # @type FileSize: Integer
-        # @param PackageName: 安卓应用包名
+        # @param PackageName: <p>安卓应用包名</p>
         # @type PackageName: String
 
         attr_accessor :AndroidAppVersion, :State, :CreateTime, :Command, :UninstallCommand, :CleanupMode, :AndroidAppVersionName, :Activity, :VersionName, :MD5, :FileSize, :PackageName
@@ -287,8 +287,8 @@ module TencentCloud
 
         attr_accessor :AndroidAppId, :Name, :AndroidAppVersion, :PackageName, :PackageVersion, :PackageLabel, :VersionName
         extend Gem::Deprecate
-        deprecate :PackageVersion, :none, 2026, 5
-        deprecate :PackageVersion=, :none, 2026, 5
+        deprecate :PackageVersion, :none, 2026, 8
+        deprecate :PackageVersion=, :none, 2026, 8
 
         def initialize(androidappid=nil, name=nil, androidappversion=nil, packagename=nil, packageversion=nil, packagelabel=nil, versionname=nil)
           @AndroidAppId = androidappid
@@ -1833,7 +1833,7 @@ module TencentCloud
 
       # DeleteAndroidInstanceImages请求参数结构体
       class DeleteAndroidInstanceImagesRequest < TencentCloud::Common::AbstractModel
-        # @param AndroidInstanceImageIds: 镜像 ID 列表
+        # @param AndroidInstanceImageIds: <p>镜像 ID 列表</p>
         # @type AndroidInstanceImageIds: Array
 
         attr_accessor :AndroidInstanceImageIds
@@ -1901,13 +1901,13 @@ module TencentCloud
 
       # DescribeAndroidApps请求参数结构体
       class DescribeAndroidAppsRequest < TencentCloud::Common::AbstractModel
-        # @param Offset: 分页偏移
+        # @param Offset: <p>分页偏移</p>
         # @type Offset: Integer
-        # @param Limit: 每页数量
+        # @param Limit: <p>每页数量</p>
         # @type Limit: Integer
-        # @param AndroidAppIds: 应用ID数组
+        # @param AndroidAppIds: <p>应用ID数组</p>
         # @type AndroidAppIds: Array
-        # @param Filters: 过滤条件，支持过滤的字段有：UserId、State、UpdateState、Name、AppMode 。其中 Name 为模糊匹配，其他参数为精确匹配。
+        # @param Filters: <p>过滤条件，支持过滤的字段有：UserId、State、UpdateState、Name、AppMode 。其中 Name 为模糊匹配，其他参数为精确匹配。</p>
         # @type Filters: Array
 
         attr_accessor :Offset, :Limit, :AndroidAppIds, :Filters
@@ -1936,9 +1936,9 @@ module TencentCloud
 
       # DescribeAndroidApps返回参数结构体
       class DescribeAndroidAppsResponse < TencentCloud::Common::AbstractModel
-        # @param Apps: 安卓应用列表
+        # @param Apps: <p>安卓应用列表</p>
         # @type Apps: Array
-        # @param TotalCount: 安卓应用列表长度
+        # @param TotalCount: <p>安卓应用列表长度</p>
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2178,8 +2178,8 @@ module TencentCloud
 
         attr_accessor :Total, :Labels, :AndroidInstanceLabels, :RequestId
         extend Gem::Deprecate
-        deprecate :Labels, :none, 2026, 5
-        deprecate :Labels=, :none, 2026, 5
+        deprecate :Labels, :none, 2026, 8
+        deprecate :Labels=, :none, 2026, 8
 
         def initialize(total=nil, labels=nil, androidinstancelabels=nil, requestid=nil)
           @Total = total
@@ -2540,7 +2540,7 @@ module TencentCloud
 
       # DestroyAndroidInstances请求参数结构体
       class DestroyAndroidInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param AndroidInstanceIds: 安卓实例 ID 列表
+        # @param AndroidInstanceIds: <p>安卓实例 ID 列表</p>
         # @type AndroidInstanceIds: Array
 
         attr_accessor :AndroidInstanceIds
@@ -3890,16 +3890,11 @@ module TencentCloud
 
       # ResetAndroidInstances请求参数结构体
       class ResetAndroidInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param AndroidInstanceIds: 实例ID列表
+        # @param AndroidInstanceIds: <p>实例ID列表</p>
         # @type AndroidInstanceIds: Array
-        # @param AndroidInstanceImageId: 指定有效的镜像 ID。
-        # 默认取值：默认使用当前镜像。
+        # @param AndroidInstanceImageId: <p>指定有效的镜像 ID。<br>默认取值：默认使用当前镜像。</p>
         # @type AndroidInstanceImageId: String
-        # @param Mode: 重置模式。在 AndroidInstanceImageId 不为空时才生效。
-
-        # CleanData：默认选项，清理系统属性和用户数据
-        # KeepSystemProperties：只保留系统属性
-        # KeepData: 保留系统属性和用户数据
+        # @param Mode: <p>重置模式。在 AndroidInstanceImageId 不为空时才生效。</p><p>CleanData：默认选项，清理系统属性和用户数据<br>KeepSystemProperties：只保留系统属性<br>KeepData: 保留系统属性和用户数据</p>
         # @type Mode: String
 
         attr_accessor :AndroidInstanceIds, :AndroidInstanceImageId, :Mode
@@ -3919,7 +3914,7 @@ module TencentCloud
 
       # ResetAndroidInstances返回参数结构体
       class ResetAndroidInstancesResponse < TencentCloud::Common::AbstractModel
-        # @param TaskSet: 任务集合
+        # @param TaskSet: <p>任务集合</p>
         # @type TaskSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4786,11 +4781,11 @@ module TencentCloud
 
       # UninstallAndroidInstancesApp请求参数结构体
       class UninstallAndroidInstancesAppRequest < TencentCloud::Common::AbstractModel
-        # @param AndroidInstanceIds: 实例ID
+        # @param AndroidInstanceIds: <p>实例ID</p>
         # @type AndroidInstanceIds: Array
-        # @param AndroidAppId: 应用ID
+        # @param AndroidAppId: <p>应用ID</p>
         # @type AndroidAppId: String
-        # @param PackageName: 包名
+        # @param PackageName: <p>包名</p>
         # @type PackageName: String
 
         attr_accessor :AndroidInstanceIds, :AndroidAppId, :PackageName
@@ -4810,7 +4805,7 @@ module TencentCloud
 
       # UninstallAndroidInstancesApp返回参数结构体
       class UninstallAndroidInstancesAppResponse < TencentCloud::Common::AbstractModel
-        # @param TaskSet: 任务集合
+        # @param TaskSet: <p>任务集合</p>
         # @type TaskSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

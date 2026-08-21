@@ -36299,17 +36299,21 @@ module TencentCloud
         # @type Model: String
         # @param Prompt: <p>图片理解指令</p>
         # @type Prompt: String
+        # @param Parameters: <p>图片理解模型参数，类型为 JSON 字符串。</p>
+        # @type Parameters: String
 
-        attr_accessor :Model, :Prompt
+        attr_accessor :Model, :Prompt, :Parameters
 
-        def initialize(model=nil, prompt=nil)
+        def initialize(model=nil, prompt=nil, parameters=nil)
           @Model = model
           @Prompt = prompt
+          @Parameters = parameters
         end
 
         def deserialize(params)
           @Model = params['Model']
           @Prompt = params['Prompt']
+          @Parameters = params['Parameters']
         end
       end
 

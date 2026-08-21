@@ -12723,52 +12723,56 @@ module TencentCloud
 
       # 电子发票详细条目信息
       class VatElectronicItemInfo < TencentCloud::Common::AbstractModel
-        # @param Name: 项目名称
+        # @param Name: <p>项目名称</p>
         # @type Name: String
-        # @param Quantity: 数量
+        # @param Quantity: <p>数量</p>
         # @type Quantity: String
-        # @param Specification: 规格型号
+        # @param Specification: <p>规格型号</p>
         # @type Specification: String
-        # @param Price: 单价
+        # @param Price: <p>单价</p>
         # @type Price: String
-        # @param Total: 金额
+        # @param Total: <p>金额</p>
         # @type Total: String
-        # @param TaxRate: 税率
+        # @param TaxRate: <p>税率</p>
         # @type TaxRate: String
-        # @param Tax: 税额
+        # @param Tax: <p>税额</p>
         # @type Tax: String
-        # @param Unit: 单位
+        # @param Unit: <p>单位</p>
         # @type Unit: String
-        # @param VehicleType: 运输工具类型
+        # @param VehicleType: <p>运输工具类型</p>
         # @type VehicleType: String
-        # @param VehicleBrand: 运输工具牌号
+        # @param VehicleBrand: <p>运输工具牌号</p>
         # @type VehicleBrand: String
-        # @param DeparturePlace: 起始地
+        # @param DeparturePlace: <p>起始地</p>
         # @type DeparturePlace: String
-        # @param ArrivalPlace: 到达地
+        # @param ArrivalPlace: <p>到达地</p>
         # @type ArrivalPlace: String
-        # @param TransportItemsName: 运输货物名称，仅货物运输服务发票返回
+        # @param TransportItemsName: <p>运输货物名称，仅货物运输服务发票返回</p>
         # @type TransportItemsName: String
-        # @param PlaceOfBuildingService: 建筑服务发生地，仅建筑发票返回
+        # @param PlaceOfBuildingService: <p>建筑服务发生地，仅建筑发票返回</p>
         # @type PlaceOfBuildingService: String
-        # @param BuildingName: 建筑项目名称，仅建筑发票返回
+        # @param BuildingName: <p>建筑项目名称，仅建筑发票返回</p>
         # @type BuildingName: String
-        # @param EstateNumber: 产权证书/不动产权证号，仅不动产经营租赁服务发票返回
+        # @param EstateNumber: <p>产权证书/不动产权证号，仅不动产经营租赁服务发票返回</p>
         # @type EstateNumber: String
-        # @param AreaUnit: 面积单位，仅不动产经营租赁服务发票返回
+        # @param AreaUnit: <p>面积单位，仅不动产经营租赁服务发票返回</p>
         # @type AreaUnit: String
-        # @param Traveler: 出行人，仅旅客运输服务发票返回
+        # @param Traveler: <p>出行人，仅旅客运输服务发票返回</p>
         # @type Traveler: String
-        # @param TravelerID: 有效身份证件号，仅旅客运输服务发票返回
+        # @param TravelerID: <p>有效身份证件号，仅旅客运输服务发票返回</p>
         # @type TravelerID: String
-        # @param TravelDate: 出行日期，仅旅客运输服务发票返回
+        # @param TravelDate: <p>出行日期，仅旅客运输服务发票返回</p>
         # @type TravelDate: String
-        # @param TravelLevel: 等级，仅旅客运输服务发票返回
+        # @param TravelLevel: <p>等级，仅旅客运输服务发票返回</p>
         # @type TravelLevel: String
+        # @param DateStart: <p>通行日期起</p>
+        # @type DateStart: String
+        # @param DateEnd: <p>通行日期止</p>
+        # @type DateEnd: String
 
-        attr_accessor :Name, :Quantity, :Specification, :Price, :Total, :TaxRate, :Tax, :Unit, :VehicleType, :VehicleBrand, :DeparturePlace, :ArrivalPlace, :TransportItemsName, :PlaceOfBuildingService, :BuildingName, :EstateNumber, :AreaUnit, :Traveler, :TravelerID, :TravelDate, :TravelLevel
+        attr_accessor :Name, :Quantity, :Specification, :Price, :Total, :TaxRate, :Tax, :Unit, :VehicleType, :VehicleBrand, :DeparturePlace, :ArrivalPlace, :TransportItemsName, :PlaceOfBuildingService, :BuildingName, :EstateNumber, :AreaUnit, :Traveler, :TravelerID, :TravelDate, :TravelLevel, :DateStart, :DateEnd
 
-        def initialize(name=nil, quantity=nil, specification=nil, price=nil, total=nil, taxrate=nil, tax=nil, unit=nil, vehicletype=nil, vehiclebrand=nil, departureplace=nil, arrivalplace=nil, transportitemsname=nil, placeofbuildingservice=nil, buildingname=nil, estatenumber=nil, areaunit=nil, traveler=nil, travelerid=nil, traveldate=nil, travellevel=nil)
+        def initialize(name=nil, quantity=nil, specification=nil, price=nil, total=nil, taxrate=nil, tax=nil, unit=nil, vehicletype=nil, vehiclebrand=nil, departureplace=nil, arrivalplace=nil, transportitemsname=nil, placeofbuildingservice=nil, buildingname=nil, estatenumber=nil, areaunit=nil, traveler=nil, travelerid=nil, traveldate=nil, travellevel=nil, datestart=nil, dateend=nil)
           @Name = name
           @Quantity = quantity
           @Specification = specification
@@ -12790,6 +12794,8 @@ module TencentCloud
           @TravelerID = travelerid
           @TravelDate = traveldate
           @TravelLevel = travellevel
+          @DateStart = datestart
+          @DateEnd = dateend
         end
 
         def deserialize(params)
@@ -12814,6 +12820,8 @@ module TencentCloud
           @TravelerID = params['TravelerID']
           @TravelDate = params['TravelDate']
           @TravelLevel = params['TravelLevel']
+          @DateStart = params['DateStart']
+          @DateEnd = params['DateEnd']
         end
       end
 
@@ -14418,7 +14426,7 @@ module TencentCloud
 
       # VerifyScenePhoto请求参数结构体
       class VerifyScenePhotoRequest < TencentCloud::Common::AbstractModel
-        # @param Scene: <p>场景类型参数，如果场景无法细分请选用该大类的第一个子类，目前支持以下类型：<br><strong>经营场所照</strong><br>0101 门头照<br>0102 店内照<br>0103 流动经营照</p>
+        # @param Scene: <p>场景类型参数，如果场景无法细分请选用该大类的第一个子类，目前支持以下类型：<br><strong>经营场所照</strong><br>0101 门头照<br>0102 店内照<br>0103 流动经营照    </p><p><strong>车牌业务照</strong><br>0201 车牌</p>
         # @type Scene: String
         # @param ImageUrl: <p>图片的 Url 地址。要求图片经Base64编码后不超过 10M。</p>
         # @type ImageUrl: String

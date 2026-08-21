@@ -13133,10 +13133,12 @@ module TencentCloud
         # @type SyntaxRule: Integer
         # @param DerivedFields: <p>导出字段</p>
         # @type DerivedFields: Array
+        # @param CreateTimestamp: <p>日志导出创建时间，毫秒时间戳</p><p>单位：ms</p>
+        # @type CreateTimestamp: Integer
 
-        attr_accessor :TopicId, :ExportId, :Query, :FileName, :FileSize, :Order, :Format, :Count, :Status, :From, :To, :CosPath, :CreateTime, :SyntaxRule, :DerivedFields
+        attr_accessor :TopicId, :ExportId, :Query, :FileName, :FileSize, :Order, :Format, :Count, :Status, :From, :To, :CosPath, :CreateTime, :SyntaxRule, :DerivedFields, :CreateTimestamp
 
-        def initialize(topicid=nil, exportid=nil, query=nil, filename=nil, filesize=nil, order=nil, format=nil, count=nil, status=nil, from=nil, to=nil, cospath=nil, createtime=nil, syntaxrule=nil, derivedfields=nil)
+        def initialize(topicid=nil, exportid=nil, query=nil, filename=nil, filesize=nil, order=nil, format=nil, count=nil, status=nil, from=nil, to=nil, cospath=nil, createtime=nil, syntaxrule=nil, derivedfields=nil, createtimestamp=nil)
           @TopicId = topicid
           @ExportId = exportid
           @Query = query
@@ -13152,6 +13154,7 @@ module TencentCloud
           @CreateTime = createtime
           @SyntaxRule = syntaxrule
           @DerivedFields = derivedfields
+          @CreateTimestamp = createtimestamp
         end
 
         def deserialize(params)
@@ -13170,6 +13173,7 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @SyntaxRule = params['SyntaxRule']
           @DerivedFields = params['DerivedFields']
+          @CreateTimestamp = params['CreateTimestamp']
         end
       end
 

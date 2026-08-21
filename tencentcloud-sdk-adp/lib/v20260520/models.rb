@@ -2794,6 +2794,30 @@ module TencentCloud
         end
       end
 
+      # CategoryPermission
+      class CategoryPermission < TencentCloud::Common::AbstractModel
+        # @param CanAdd: <p>当前用户是否可新增子分类</p>
+        # @type CanAdd: Boolean
+        # @param CanDelete: <p>当前用户是否可删除该分类</p>
+        # @type CanDelete: Boolean
+        # @param CanEdit: <p>当前用户是否可编辑该分类</p>
+        # @type CanEdit: Boolean
+
+        attr_accessor :CanAdd, :CanDelete, :CanEdit
+
+        def initialize(canadd=nil, candelete=nil, canedit=nil)
+          @CanAdd = canadd
+          @CanDelete = candelete
+          @CanEdit = canedit
+        end
+
+        def deserialize(params)
+          @CanAdd = params['CanAdd']
+          @CanDelete = params['CanDelete']
+          @CanEdit = params['CanEdit']
+        end
+      end
+
       # ClawAgent Agent团队协作配置
       class ClawAgentAgentTeamConfig < TencentCloud::Common::AbstractModel
         # @param Enabled: <p>是否开启Agent团队协作</p>
@@ -3987,6 +4011,50 @@ module TencentCloud
         end
       end
 
+      # CreateMsgRecordCategory请求参数结构体
+      class CreateMsgRecordCategoryRequest < TencentCloud::Common::AbstractModel
+        # @param Name: <p>分类名称</p>
+        # @type Name: String
+        # @param AppId: <p>应用 ID</p>
+        # @type AppId: String
+        # @param ParentId: <p>父分类业务 ID，0 表示一级分类（未分类）</p>
+        # @type ParentId: String
+
+        attr_accessor :Name, :AppId, :ParentId
+
+        def initialize(name=nil, appid=nil, parentid=nil)
+          @Name = name
+          @AppId = appid
+          @ParentId = parentid
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @AppId = params['AppId']
+          @ParentId = params['ParentId']
+        end
+      end
+
+      # CreateMsgRecordCategory返回参数结构体
+      class CreateMsgRecordCategoryResponse < TencentCloud::Common::AbstractModel
+        # @param CategoryId: <p>新建分类的业务 ID</p>
+        # @type CategoryId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CategoryId, :RequestId
+
+        def initialize(categoryid=nil, requestid=nil)
+          @CategoryId = categoryid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CategoryId = params['CategoryId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreatePlugin请求参数结构体
       class CreatePluginRequest < TencentCloud::Common::AbstractModel
         # @param Profile: <p>插件基础资料</p>
@@ -4652,6 +4720,42 @@ module TencentCloud
 
       # DeleteConversation返回参数结构体
       class DeleteConversationResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteMsgRecordCategory请求参数结构体
+      class DeleteMsgRecordCategoryRequest < TencentCloud::Common::AbstractModel
+        # @param AppId: <p>应用 ID</p>
+        # @type AppId: String
+        # @param CategoryId: <p>待删除的分类业务 ID</p>
+        # @type CategoryId: String
+
+        attr_accessor :AppId, :CategoryId
+
+        def initialize(appid=nil, categoryid=nil)
+          @AppId = appid
+          @CategoryId = categoryid
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @CategoryId = params['CategoryId']
+        end
+      end
+
+      # DeleteMsgRecordCategory返回参数结构体
+      class DeleteMsgRecordCategoryResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -6259,6 +6363,134 @@ module TencentCloud
               @ModelList << model_tmp
             end
           end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeMsgRecordCategoryList请求参数结构体
+      class DescribeMsgRecordCategoryListRequest < TencentCloud::Common::AbstractModel
+        # @param AppId: <p>应用 ID</p>
+        # @type AppId: String
+
+        attr_accessor :AppId
+
+        def initialize(appid=nil)
+          @AppId = appid
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+        end
+      end
+
+      # DescribeMsgRecordCategoryList返回参数结构体
+      class DescribeMsgRecordCategoryListResponse < TencentCloud::Common::AbstractModel
+        # @param CategoryList: <p>消息记录分类树列表</p>
+        # @type CategoryList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CategoryList, :RequestId
+
+        def initialize(categorylist=nil, requestid=nil)
+          @CategoryList = categorylist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CategoryList'].nil?
+            @CategoryList = []
+            params['CategoryList'].each do |i|
+              msgrecordcategory_tmp = MsgRecordCategory.new
+              msgrecordcategory_tmp.deserialize(i)
+              @CategoryList << msgrecordcategory_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeMsgRecordList请求参数结构体
+      class DescribeMsgRecordListRequest < TencentCloud::Common::AbstractModel
+        # @param AppId: <p>应用 ID</p>
+        # @type AppId: String
+        # @param FilterList: <p>过滤条件列表，支持：ChannelType（渠道类型，0 全部）、FeedbackType（反馈类型，-1 为全部）、QueryType、Query、CategoryId、ReplyMethod、StartTime、EndTime（秒时间戳）、Cursor（游标信息，上一页取响应 PrevCursor，下一页取响应 NextCursor）、Direction（方向，next 下一页，prev 上一页）、CallResult（调用结果，默认 0 为全部，1 为成功，2 为失败）、FailReason、Intent</p>
+        # @type FilterList: Array
+        # @param PageNumber: <p>页码，从 0 开始；不传时按 0 处理</p>
+        # @type PageNumber: Integer
+        # @param PageSize: <p>每页数量，最大 100；不传或传 0 时按默认分页大小处理</p>
+        # @type PageSize: Integer
+        # @param Sort: <p>排序条件，只支持按 CreateTime 排序</p>
+        # @type Sort: :class:`Tencentcloud::Adp.v20260520.models.Sort`
+
+        attr_accessor :AppId, :FilterList, :PageNumber, :PageSize, :Sort
+
+        def initialize(appid=nil, filterlist=nil, pagenumber=nil, pagesize=nil, sort=nil)
+          @AppId = appid
+          @FilterList = filterlist
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @Sort = sort
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          unless params['FilterList'].nil?
+            @FilterList = []
+            params['FilterList'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @FilterList << filter_tmp
+            end
+          end
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          unless params['Sort'].nil?
+            @Sort = Sort.new
+            @Sort.deserialize(params['Sort'])
+          end
+        end
+      end
+
+      # DescribeMsgRecordList返回参数结构体
+      class DescribeMsgRecordListResponse < TencentCloud::Common::AbstractModel
+        # @param HasMore: <p>是否有更多页</p>
+        # @type HasMore: Boolean
+        # @param MsgRecordList: <p>消息记录列表</p>
+        # @type MsgRecordList: Array
+        # @param NextCursor: <p>下一页游标信息</p>
+        # @type NextCursor: String
+        # @param PrevCursor: <p>上一页游标信息</p>
+        # @type PrevCursor: String
+        # @param TotalCount: <p>符合条件的总记录数，用于前端分页显示</p>
+        # @type TotalCount: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :HasMore, :MsgRecordList, :NextCursor, :PrevCursor, :TotalCount, :RequestId
+
+        def initialize(hasmore=nil, msgrecordlist=nil, nextcursor=nil, prevcursor=nil, totalcount=nil, requestid=nil)
+          @HasMore = hasmore
+          @MsgRecordList = msgrecordlist
+          @NextCursor = nextcursor
+          @PrevCursor = prevcursor
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @HasMore = params['HasMore']
+          unless params['MsgRecordList'].nil?
+            @MsgRecordList = []
+            params['MsgRecordList'].each do |i|
+              msgrecord_tmp = MsgRecord.new
+              msgrecord_tmp.deserialize(i)
+              @MsgRecordList << msgrecord_tmp
+            end
+          end
+          @NextCursor = params['NextCursor']
+          @PrevCursor = params['PrevCursor']
           @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
@@ -8342,6 +8574,46 @@ module TencentCloud
         end
       end
 
+      # ModifyMsgRecordCategory请求参数结构体
+      class ModifyMsgRecordCategoryRequest < TencentCloud::Common::AbstractModel
+        # @param AppId: <p>应用 ID</p>
+        # @type AppId: String
+        # @param CategoryId: <p>待修改的分类业务 ID</p>
+        # @type CategoryId: String
+        # @param Name: <p>修改后的分类名称</p>
+        # @type Name: String
+
+        attr_accessor :AppId, :CategoryId, :Name
+
+        def initialize(appid=nil, categoryid=nil, name=nil)
+          @AppId = appid
+          @CategoryId = categoryid
+          @Name = name
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @CategoryId = params['CategoryId']
+          @Name = params['Name']
+        end
+      end
+
+      # ModifyMsgRecordCategory返回参数结构体
+      class ModifyMsgRecordCategoryResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyPlugin请求参数结构体
       class ModifyPluginRequest < TencentCloud::Common::AbstractModel
         # @param PluginId: <p>插件id</p>
@@ -8561,6 +8833,206 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # MsgRecord
+      class MsgRecord < TencentCloud::Common::AbstractModel
+        # @param Answer: 答案
+        # @type Answer: String
+        # @param AppId: 应用ID
+        # @type AppId: String
+        # @param CategoryId: 分类ID
+        # @type CategoryId: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param Intent: 意图
+        # @type Intent: String
+        # @param IntentCategory: 意图分类
+        # @type IntentCategory: String
+        # @param IsSmart: 是否是智能分类
+        # @type IsSmart: Boolean
+        # @param Question: 问题
+        # @type Question: String
+        # @param RecordId: 记录ID
+        # @type RecordId: String
+        # @param ReplyMethod: 表示消息的回复方式，枚举 ReplyMethod：0=未指定, 1=大模型直接回复, 2=保守回复, 3=拒答, 4=敏感回复, 5=问答对优先回复, 6=欢迎语, 7=并发超限, 8=全局干预知识, 9=任务流程过程回复, 10=任务流程答案, 11=搜索引擎, 12=知识润色, 13=图片理解, 14=实时文档, 15=澄清确认, 16=工作流回复, 17=工作流结束, 18=智能体回复, 19=多意图, 20=中断, 21=智能体计划预览, 22=智能体计划结果, 23=智能体结构化输出。
+        # @type ReplyMethod: Integer
+        # @param Result: 返回结果
+        # @type Result: :class:`Tencentcloud::Adp.v20260520.models.MsgRecordResult`
+        # @param Score: 分数
+        # @type Score: Integer
+        # @param SessionId: 会话ID
+        # @type SessionId: String
+        # @param Source: 来源
+        # @type Source: :class:`Tencentcloud::Adp.v20260520.models.MsgRecordSource`
+        # @param TraceId: trace_id
+        # @type TraceId: String
+
+        attr_accessor :Answer, :AppId, :CategoryId, :CreateTime, :Intent, :IntentCategory, :IsSmart, :Question, :RecordId, :ReplyMethod, :Result, :Score, :SessionId, :Source, :TraceId
+
+        def initialize(answer=nil, appid=nil, categoryid=nil, createtime=nil, intent=nil, intentcategory=nil, issmart=nil, question=nil, recordid=nil, replymethod=nil, result=nil, score=nil, sessionid=nil, source=nil, traceid=nil)
+          @Answer = answer
+          @AppId = appid
+          @CategoryId = categoryid
+          @CreateTime = createtime
+          @Intent = intent
+          @IntentCategory = intentcategory
+          @IsSmart = issmart
+          @Question = question
+          @RecordId = recordid
+          @ReplyMethod = replymethod
+          @Result = result
+          @Score = score
+          @SessionId = sessionid
+          @Source = source
+          @TraceId = traceid
+        end
+
+        def deserialize(params)
+          @Answer = params['Answer']
+          @AppId = params['AppId']
+          @CategoryId = params['CategoryId']
+          @CreateTime = params['CreateTime']
+          @Intent = params['Intent']
+          @IntentCategory = params['IntentCategory']
+          @IsSmart = params['IsSmart']
+          @Question = params['Question']
+          @RecordId = params['RecordId']
+          @ReplyMethod = params['ReplyMethod']
+          unless params['Result'].nil?
+            @Result = MsgRecordResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @Score = params['Score']
+          @SessionId = params['SessionId']
+          unless params['Source'].nil?
+            @Source = MsgRecordSource.new
+            @Source.deserialize(params['Source'])
+          end
+          @TraceId = params['TraceId']
+        end
+      end
+
+      # MsgRecordCategory
+      class MsgRecordCategory < TencentCloud::Common::AbstractModel
+        # @param CategoryId: <p>分类的业务 ID</p>
+        # @type CategoryId: String
+        # @param Children: <p>子分类列表，树形嵌套</p>
+        # @type Children: Array
+        # @param Name: <p>分类名称</p>
+        # @type Name: String
+        # @param Permission: <p>当前用户对该分类的操作权限</p>
+        # @type Permission: :class:`Tencentcloud::Adp.v20260520.models.CategoryPermission`
+        # @param TotalCount: <p>该分类下消息记录的数量</p>
+        # @type TotalCount: String
+
+        attr_accessor :CategoryId, :Children, :Name, :Permission, :TotalCount
+
+        def initialize(categoryid=nil, children=nil, name=nil, permission=nil, totalcount=nil)
+          @CategoryId = categoryid
+          @Children = children
+          @Name = name
+          @Permission = permission
+          @TotalCount = totalcount
+        end
+
+        def deserialize(params)
+          @CategoryId = params['CategoryId']
+          unless params['Children'].nil?
+            @Children = []
+            params['Children'].each do |i|
+              msgrecordcategory_tmp = MsgRecordCategory.new
+              msgrecordcategory_tmp.deserialize(i)
+              @Children << msgrecordcategory_tmp
+            end
+          end
+          @Name = params['Name']
+          unless params['Permission'].nil?
+            @Permission = CategoryPermission.new
+            @Permission.deserialize(params['Permission'])
+          end
+          @TotalCount = params['TotalCount']
+        end
+      end
+
+      # MsgRecordResult
+      class MsgRecordResult < TencentCloud::Common::AbstractModel
+        # @param CallResult: 表示该条消息的调用结果：0=CALL_RESULT_UNKNOWN（全部/未知）, 1=CALL_RESULT_SUCCESS（成功）, 2=CALL_RESULT_FAILED（失败）；fail_reason（string）为调用失败时的失败原因描述。
+        # @type CallResult: Integer
+        # @param CustomerVariable: 自定义变量，json字符串
+        # @type CustomerVariable: String
+        # @param FailReason: 失败原因
+        # @type FailReason: String
+        # @param FirstTokenLatency: 首token耗时
+        # @type FirstTokenLatency: Integer
+        # @param InputToken: 输入token数
+        # @type InputToken: Integer
+        # @param OutputToken: 输出token数
+        # @type OutputToken: Integer
+        # @param TotalToken: 总token数
+        # @type TotalToken: Integer
+        # @param TotalTokenLatency: 总token耗时
+        # @type TotalTokenLatency: Integer
+
+        attr_accessor :CallResult, :CustomerVariable, :FailReason, :FirstTokenLatency, :InputToken, :OutputToken, :TotalToken, :TotalTokenLatency
+
+        def initialize(callresult=nil, customervariable=nil, failreason=nil, firsttokenlatency=nil, inputtoken=nil, outputtoken=nil, totaltoken=nil, totaltokenlatency=nil)
+          @CallResult = callresult
+          @CustomerVariable = customervariable
+          @FailReason = failreason
+          @FirstTokenLatency = firsttokenlatency
+          @InputToken = inputtoken
+          @OutputToken = outputtoken
+          @TotalToken = totaltoken
+          @TotalTokenLatency = totaltokenlatency
+        end
+
+        def deserialize(params)
+          @CallResult = params['CallResult']
+          @CustomerVariable = params['CustomerVariable']
+          @FailReason = params['FailReason']
+          @FirstTokenLatency = params['FirstTokenLatency']
+          @InputToken = params['InputToken']
+          @OutputToken = params['OutputToken']
+          @TotalToken = params['TotalToken']
+          @TotalTokenLatency = params['TotalTokenLatency']
+        end
+      end
+
+      # MsgRecordSource
+      class MsgRecordSource < TencentCloud::Common::AbstractModel
+        # @param ChannelType: 对话消息的接入渠道类型：0=未指定, 1=坐席, 2=体验页面(腾讯云), 3=评测端对话, 4=体验页面(手机号), 5=对话端API接入, 6=评测任务对话, 10=工作流调试, 10000=微信公众号, 10001=微信服务号, 10002=企微应用, 10003=网页组件, 10004=微信客服, 10005=微信小程序, 10006=元器, 10007=应用宝, 10008=元宝, 10009=企微智能机器人, 10010=元器API, 10011=LINE, 10012=Telegram, 10100=电脑管家, 20001=荣耀智能体平台, 20002=小米应用商店；user_id（string）为该渠道下的访客唯一标识。
+        # @type ChannelType: Integer
+        # @param FromId: 用户ID
+        # @type FromId: String
+        # @param FromType: 消息发送者的用户来源类型：1=用户（访客/C端用户）, 2=机器人（AI回复）, 3=坐席（人工客服）；from_id（string）为该来源类型下的用户唯一标识 ID。
+        # @type FromType: Integer
+        # @param UserAvatar: 用户头像
+        # @type UserAvatar: String
+        # @param UserId: 访客ID
+        # @type UserId: String
+        # @param UserNickname: 访客名称
+        # @type UserNickname: String
+
+        attr_accessor :ChannelType, :FromId, :FromType, :UserAvatar, :UserId, :UserNickname
+
+        def initialize(channeltype=nil, fromid=nil, fromtype=nil, useravatar=nil, userid=nil, usernickname=nil)
+          @ChannelType = channeltype
+          @FromId = fromid
+          @FromType = fromtype
+          @UserAvatar = useravatar
+          @UserId = userid
+          @UserNickname = usernickname
+        end
+
+        def deserialize(params)
+          @ChannelType = params['ChannelType']
+          @FromId = params['FromId']
+          @FromType = params['FromType']
+          @UserAvatar = params['UserAvatar']
+          @UserId = params['UserId']
+          @UserNickname = params['UserNickname']
         end
       end
 
@@ -10228,6 +10700,26 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @SkillMarkdownUrl = params['SkillMarkdownUrl']
           @UpdateDesc = params['UpdateDesc']
+        end
+      end
+
+      # <p>排序条件</p>
+      class Sort < TencentCloud::Common::AbstractModel
+        # @param Name: <p>排序字段名，如 create_time</p>
+        # @type Name: String
+        # @param Direction: <p>排序方向，1 升序，2 降序</p><table><tbody><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>SORT_ORDER_INVALID</td><td>0</td><td>无效</td></tr><tr><td>SORT_ORDER_ASC</td><td>1</td><td>升序</td></tr><tr><td>SORT_ORDER_DESC</td><td>2</td><td>降序</td></tr></tbody></table>
+        # @type Direction: Integer
+
+        attr_accessor :Name, :Direction
+
+        def initialize(name=nil, direction=nil)
+          @Name = name
+          @Direction = direction
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Direction = params['Direction']
         end
       end
 

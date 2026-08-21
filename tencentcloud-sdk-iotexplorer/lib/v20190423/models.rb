@@ -4396,6 +4396,61 @@ module TencentCloud
         end
       end
 
+      # DeleteTWeSeeTasksByCondition请求参数结构体
+      class DeleteTWeSeeTasksByConditionRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: <p>产品 ID</p>
+        # @type ProductId: String
+        # @param DeviceName: <p>设备名称</p>
+        # @type DeviceName: String
+        # @param ServiceCategory: <p>算法类目。</p><p>枚举值：</p><ul><li>COMPREHENSION： 视觉理解</li><li>HIGHLIGHT： 视频浓缩</li></ul>
+        # @type ServiceCategory: String
+        # @param Conditions: <p>任务删除条件，至少传入一个条件。不同条件之间为 AND 关系，同一条件的 Values 之间为 OR 关系。</p>
+        # @type Conditions: Array
+        # @param ChannelId: <p>通道 ID</p><p>默认值：0</p>
+        # @type ChannelId: Integer
+
+        attr_accessor :ProductId, :DeviceName, :ServiceCategory, :Conditions, :ChannelId
+
+        def initialize(productid=nil, devicename=nil, servicecategory=nil, conditions=nil, channelid=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @ServiceCategory = servicecategory
+          @Conditions = conditions
+          @ChannelId = channelid
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @ServiceCategory = params['ServiceCategory']
+          unless params['Conditions'].nil?
+            @Conditions = []
+            params['Conditions'].each do |i|
+              seedeletetaskcondition_tmp = SeeDeleteTaskCondition.new
+              seedeletetaskcondition_tmp.deserialize(i)
+              @Conditions << seedeletetaskcondition_tmp
+            end
+          end
+          @ChannelId = params['ChannelId']
+        end
+      end
+
+      # DeleteTWeSeeTasksByCondition返回参数结构体
+      class DeleteTWeSeeTasksByConditionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteTWeTalkAIBot请求参数结构体
       class DeleteTWeTalkAIBotRequest < TencentCloud::Common::AbstractModel
         # @param BotId: 智能体ID
@@ -15762,6 +15817,26 @@ module TencentCloud
           @ErrorCode = params['ErrorCode']
           @ErrorMsg = params['ErrorMsg']
           @Keywords = params['Keywords']
+        end
+      end
+
+      # TWeSee 任务删除条件
+      class SeeDeleteTaskCondition < TencentCloud::Common::AbstractModel
+        # @param Type: <p>条件类型。</p><p>枚举值：</p><ul><li>TaskId： 精确匹配任务 ID</li><li>TimeRange： 匹配任务时间范围与指定范围有重合的任务。值的格式为 <code>UnixTimestampStart,UnixTimestampEnd</code>，其中起止时间均为秒级 UNIX 时间戳，且结束时间不早于起始时间</li><li>CreateTimeBefore： 匹配在指定时间前创建的任务。值为秒级 UNIX 时间戳</li><li>COSURI： 精确匹配任务来源 COS URI，值必须以 <code>cos://</code> 开头</li><li>COSURIPrefix： 按前缀匹配任务来源 COS URI，值必须以 <code>cos://</code> 开头</li></ul>
+        # @type Type: String
+        # @param Values: <p>条件值列表。同一条件内的多个值之间为 OR 关系，至少传入一个非空值。</p>
+        # @type Values: Array
+
+        attr_accessor :Type, :Values
+
+        def initialize(type=nil, values=nil)
+          @Type = type
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Values = params['Values']
         end
       end
 

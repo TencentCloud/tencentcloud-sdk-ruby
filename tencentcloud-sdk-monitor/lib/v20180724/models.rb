@@ -2269,31 +2269,33 @@ module TencentCloud
 
       # CreateGrafanaInstance请求参数结构体
       class CreateGrafanaInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceName: 实例名
+        # @param InstanceName: <p>实例名</p>
         # @type InstanceName: String
-        # @param VpcId: VPC ID (私有网络 ID)
+        # @param VpcId: <p>VPC ID (私有网络 ID)</p>
         # @type VpcId: String
-        # @param SubnetIds: 子网 ID 数组(VPC ID下的子网 ID，只取第一个)。
-        # 注意：并不是所有可用区都可用（可通过 monitor:DescribePrometheusZones 接口获取可用区状态，选择 ZoneState 和ZoneResourceState 都为1的可用区）
+        # @param SubnetIds: <p>子网 ID 数组(VPC ID下的子网 ID，只取第一个)。<br>注意：并不是所有可用区都可用（可通过 monitor:DescribePrometheusZones 接口获取可用区状态，选择 ZoneState 和ZoneResourceState 都为1的可用区）</p>
         # @type SubnetIds: Array
-        # @param EnableInternet: 是否启用外网
+        # @param EnableInternet: <p>是否启用外网</p>
         # @type EnableInternet: Boolean
-        # @param GrafanaInitPassword: Grafana 初始密码(国际站用户必填，国内站用户可不填，不填时会生成随机密码并给主账号发送通知)
+        # @param GrafanaInitPassword: <p>Grafana 初始密码(国际站用户必填，国内站用户可不填，不填时会生成随机密码并给主账号发送通知)</p>
         # @type GrafanaInitPassword: String
-        # @param TagSpecification: 标签
+        # @param TagSpecification: <p>标签</p>
         # @type TagSpecification: Array
-        # @param AutoVoucher: 是否自动选择代金券，默认为 false
+        # @param DockerImage: <p>自定义版本，可用版本从 DescribeGrafanaVersions 接口获取</p>
+        # @type DockerImage: String
+        # @param AutoVoucher: <p>是否自动选择代金券，默认为 false</p>
         # @type AutoVoucher: Boolean
 
-        attr_accessor :InstanceName, :VpcId, :SubnetIds, :EnableInternet, :GrafanaInitPassword, :TagSpecification, :AutoVoucher
+        attr_accessor :InstanceName, :VpcId, :SubnetIds, :EnableInternet, :GrafanaInitPassword, :TagSpecification, :DockerImage, :AutoVoucher
 
-        def initialize(instancename=nil, vpcid=nil, subnetids=nil, enableinternet=nil, grafanainitpassword=nil, tagspecification=nil, autovoucher=nil)
+        def initialize(instancename=nil, vpcid=nil, subnetids=nil, enableinternet=nil, grafanainitpassword=nil, tagspecification=nil, dockerimage=nil, autovoucher=nil)
           @InstanceName = instancename
           @VpcId = vpcid
           @SubnetIds = subnetids
           @EnableInternet = enableinternet
           @GrafanaInitPassword = grafanainitpassword
           @TagSpecification = tagspecification
+          @DockerImage = dockerimage
           @AutoVoucher = autovoucher
         end
 
@@ -2311,13 +2313,14 @@ module TencentCloud
               @TagSpecification << prometheustag_tmp
             end
           end
+          @DockerImage = params['DockerImage']
           @AutoVoucher = params['AutoVoucher']
         end
       end
 
       # CreateGrafanaInstance返回参数结构体
       class CreateGrafanaInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例名
+        # @param InstanceId: <p>实例名</p>
         # @type InstanceId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6375,6 +6378,44 @@ module TencentCloud
               grafananotificationchannel_tmp = GrafanaNotificationChannel.new
               grafananotificationchannel_tmp.deserialize(i)
               @NotificationChannelSet << grafananotificationchannel_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeGrafanaVersions请求参数结构体
+      class DescribeGrafanaVersionsRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeGrafanaVersions返回参数结构体
+      class DescribeGrafanaVersionsResponse < TencentCloud::Common::AbstractModel
+        # @param Versions: 可选版本
+        # @type Versions: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Versions, :RequestId
+
+        def initialize(versions=nil, requestid=nil)
+          @Versions = versions
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Versions'].nil?
+            @Versions = []
+            params['Versions'].each do |i|
+              grafanaversion_tmp = GrafanaVersion.new
+              grafanaversion_tmp.deserialize(i)
+              @Versions << grafanaversion_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -11137,6 +11178,26 @@ module TencentCloud
 
         def deserialize(params)
           @PluginId = params['PluginId']
+          @Version = params['Version']
+        end
+      end
+
+      # Grafana 版本
+      class GrafanaVersion < TencentCloud::Common::AbstractModel
+        # @param Alias: 版本别名
+        # @type Alias: String
+        # @param Version: 版本
+        # @type Version: String
+
+        attr_accessor :Alias, :Version
+
+        def initialize(_alias=nil, version=nil)
+          @Alias = _alias
+          @Version = version
+        end
+
+        def deserialize(params)
+          @Alias = params['Alias']
           @Version = params['Version']
         end
       end

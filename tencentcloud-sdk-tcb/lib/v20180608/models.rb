@@ -496,6 +496,50 @@ module TencentCloud
         end
       end
 
+      # BindCls请求参数结构体
+      class BindClsRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境ID
+        # @type EnvId: String
+        # @param ClsRegion: CLS地域
+        # @type ClsRegion: String
+        # @param ClsLogsetId: CLS 日志集id
+        # @type ClsLogsetId: String
+        # @param ClsTopicId: CLS 日志主题ID
+        # @type ClsTopicId: String
+
+        attr_accessor :EnvId, :ClsRegion, :ClsLogsetId, :ClsTopicId
+
+        def initialize(envid=nil, clsregion=nil, clslogsetid=nil, clstopicid=nil)
+          @EnvId = envid
+          @ClsRegion = clsregion
+          @ClsLogsetId = clslogsetid
+          @ClsTopicId = clstopicid
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @ClsRegion = params['ClsRegion']
+          @ClsLogsetId = params['ClsLogsetId']
+          @ClsTopicId = params['ClsTopicId']
+        end
+      end
+
+      # BindCls返回参数结构体
+      class BindClsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # BindStorageSource请求参数结构体
       class BindStorageSourceRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: 环境ID

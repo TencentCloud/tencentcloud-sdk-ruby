@@ -112,23 +112,23 @@ module TencentCloud
 
       # 算力详情
       class ComputeDetail < TencentCloud::Common::AbstractModel
-        # @param BundleType: 算力套餐ID
+        # @param BundleType: <p>算力套餐ID</p>
         # @type BundleType: String
-        # @param Count: 节点数量
+        # @param Count: <p>节点数量</p>
         # @type Count: Integer
-        # @param GPUCount: 显卡数量
+        # @param GPUCount: <p>显卡数量</p>
         # @type GPUCount: String
-        # @param GPUMemory: 显存
+        # @param GPUMemory: <p>显存</p>
         # @type GPUMemory: String
-        # @param GPUPerformance: 算力
+        # @param GPUPerformance: <p>算力</p>
         # @type GPUPerformance: String
-        # @param CPU: CPU核数
+        # @param CPU: <p>CPU核数</p>
         # @type CPU: String
-        # @param Memory: 内存
+        # @param Memory: <p>内存</p>
         # @type Memory: String
-        # @param PrepaidEnable: 该套餐是否支持包年包月
+        # @param PrepaidEnable: <p>该套餐是否支持包年包月</p>
         # @type PrepaidEnable: Boolean
-        # @param PostpaidEnable: 该套餐是否支持按量计费
+        # @param PostpaidEnable: <p>该套餐是否支持按量计费</p>
         # @type PostpaidEnable: Boolean
 
         attr_accessor :BundleType, :Count, :GPUCount, :GPUMemory, :GPUPerformance, :CPU, :Memory, :PrepaidEnable, :PostpaidEnable
@@ -1116,19 +1116,23 @@ module TencentCloud
         # @type Limit: Integer
         # @param Offset: <p>偏移量</p>
         # @type Offset: Integer
+        # @param States: <p>实例状态</p><p>枚举值：</p><ul><li>RUNNING： 运行中</li><li>CREATING： 创建中</li><li>CREATE_FAILED： 部署失败</li><li>DELETING： 删除中</li><li>UPDATING： 更新中</li><li>RESTARTING： 重启中</li><li>ISOLATING： 隔离中</li><li>ARREARS： 欠费中</li><li>RESTORING： 冲正恢复中</li></ul>
+        # @type States: Array
 
-        attr_accessor :ServiceIds, :Limit, :Offset
+        attr_accessor :ServiceIds, :Limit, :Offset, :States
 
-        def initialize(serviceids=nil, limit=nil, offset=nil)
+        def initialize(serviceids=nil, limit=nil, offset=nil, states=nil)
           @ServiceIds = serviceids
           @Limit = limit
           @Offset = offset
+          @States = states
         end
 
         def deserialize(params)
           @ServiceIds = params['ServiceIds']
           @Limit = params['Limit']
           @Offset = params['Offset']
+          @States = params['States']
         end
       end
 
