@@ -2045,6 +2045,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeClusterStorageAutoExpand）用于查询自动库容配置。
+
+        # @param request: Request instance for DescribeClusterStorageAutoExpand.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeClusterStorageAutoExpandRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::DescribeClusterStorageAutoExpandResponse`
+        def DescribeClusterStorageAutoExpand(request)
+          body = send_request('DescribeClusterStorageAutoExpand', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeClusterStorageAutoExpandResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询集群透明加密信息
 
         # @param request: Request instance for DescribeClusterTransparentEncryptInfo.

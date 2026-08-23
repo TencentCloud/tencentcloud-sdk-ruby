@@ -6112,29 +6112,32 @@ module TencentCloud
 
       # 镜像描述信息
       class ImageInfo < TencentCloud::Common::AbstractModel
-        # @param ImageType: 镜像类型：TCR为腾讯云TCR镜像; CCR为腾讯云TCR个人版镜像，PreSet为平台预置镜像，CUSTOM为第三方自定义镜像
+        # @param ImageType: <p>镜像类型：TCR为腾讯云TCR镜像; CCR为腾讯云TCR个人版镜像，PreSet为平台预置镜像，CUSTOM为第三方自定义镜像</p>
         # @type ImageType: String
-        # @param ImageUrl: 镜像地址
+        # @param ImageUrl: <p>镜像地址</p>
         # @type ImageUrl: String
-        # @param RegistryRegion: TCR镜像对应的地域
+        # @param RegistryRegion: <p>TCR镜像对应的地域</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegistryRegion: String
-        # @param RegistryId: TCR镜像对应的实例id
+        # @param RegistryId: <p>TCR镜像对应的实例id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegistryId: String
-        # @param AllowSaveAllContent: 是否允许导出全部内容
+        # @param AllowSaveAllContent: <p>是否允许导出全部内容</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AllowSaveAllContent: Boolean
-        # @param ImageName: 镜像名称
+        # @param ImageName: <p>镜像名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageName: String
-        # @param SupportDataPipeline: 是否支持数据构建
+        # @param SupportDataPipeline: <p>是否支持数据构建</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SupportDataPipeline: Boolean
+        # @param ImageSecret: <p>镜像仓库用户名密码信息(仅当ImageType为CUSTOM第三方镜像的时候需要)</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageSecret: :class:`Tencentcloud::Tione.v20211111.models.ImageSecret`
 
-        attr_accessor :ImageType, :ImageUrl, :RegistryRegion, :RegistryId, :AllowSaveAllContent, :ImageName, :SupportDataPipeline
+        attr_accessor :ImageType, :ImageUrl, :RegistryRegion, :RegistryId, :AllowSaveAllContent, :ImageName, :SupportDataPipeline, :ImageSecret
 
-        def initialize(imagetype=nil, imageurl=nil, registryregion=nil, registryid=nil, allowsaveallcontent=nil, imagename=nil, supportdatapipeline=nil)
+        def initialize(imagetype=nil, imageurl=nil, registryregion=nil, registryid=nil, allowsaveallcontent=nil, imagename=nil, supportdatapipeline=nil, imagesecret=nil)
           @ImageType = imagetype
           @ImageUrl = imageurl
           @RegistryRegion = registryregion
@@ -6142,6 +6145,7 @@ module TencentCloud
           @AllowSaveAllContent = allowsaveallcontent
           @ImageName = imagename
           @SupportDataPipeline = supportdatapipeline
+          @ImageSecret = imagesecret
         end
 
         def deserialize(params)
@@ -6152,6 +6156,42 @@ module TencentCloud
           @AllowSaveAllContent = params['AllowSaveAllContent']
           @ImageName = params['ImageName']
           @SupportDataPipeline = params['SupportDataPipeline']
+          unless params['ImageSecret'].nil?
+            @ImageSecret = ImageSecret.new
+            @ImageSecret.deserialize(params['ImageSecret'])
+          end
+        end
+      end
+
+      # 自定义镜像仓库凭据
+      class ImageSecret < TencentCloud::Common::AbstractModel
+        # @param KeyId: 用于加密密码的KMS公钥ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KeyId: String
+        # @param Username: 用户名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Username: String
+        # @param Password: 密码,base64编码； 当keyId不为空时，密码是加密后的
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Password: String
+        # @param SecretId: 用户凭据ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecretId: String
+
+        attr_accessor :KeyId, :Username, :Password, :SecretId
+
+        def initialize(keyid=nil, username=nil, password=nil, secretid=nil)
+          @KeyId = keyid
+          @Username = username
+          @Password = password
+          @SecretId = secretid
+        end
+
+        def deserialize(params)
+          @KeyId = params['KeyId']
+          @Username = params['Username']
+          @Password = params['Password']
+          @SecretId = params['SecretId']
         end
       end
 

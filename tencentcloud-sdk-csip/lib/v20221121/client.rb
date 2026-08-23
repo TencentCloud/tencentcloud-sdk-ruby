@@ -77,6 +77,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 添加镜像仓库信息
+
+        # @param request: Request instance for AddImageRegistry.
+        # @type request: :class:`Tencentcloud::csip::V20221121::AddImageRegistryRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::AddImageRegistryResponse`
+        def AddImageRegistry(request)
+          body = send_request('AddImageRegistry', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AddImageRegistryResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 批量添加异地登录白名单
 
         # @param request: Request instance for AddLoginWhiteLists.
@@ -173,6 +197,102 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 批量修改镜像仓库定时扫描任务配置
+
+        # @param request: Request instance for BatchModifyImageRegistryTimedScanTaskConfig.
+        # @type request: :class:`Tencentcloud::csip::V20221121::BatchModifyImageRegistryTimedScanTaskConfigRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::BatchModifyImageRegistryTimedScanTaskConfigResponse`
+        def BatchModifyImageRegistryTimedScanTaskConfig(request)
+          body = send_request('BatchModifyImageRegistryTimedScanTaskConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BatchModifyImageRegistryTimedScanTaskConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量修改容器镜像敏感信息白名单
+
+        # @param request: Request instance for BatchModifyImageSensitiveWhitelist.
+        # @type request: :class:`Tencentcloud::csip::V20221121::BatchModifyImageSensitiveWhitelistRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::BatchModifyImageSensitiveWhitelistResponse`
+        def BatchModifyImageSensitiveWhitelist(request)
+          body = send_request('BatchModifyImageSensitiveWhitelist', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BatchModifyImageSensitiveWhitelistResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量修改镜像木马白名单
+
+        # @param request: Request instance for BatchModifyImageVirusWhitelist.
+        # @type request: :class:`Tencentcloud::csip::V20221121::BatchModifyImageVirusWhitelistRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::BatchModifyImageVirusWhitelistResponse`
+        def BatchModifyImageVirusWhitelist(request)
+          body = send_request('BatchModifyImageVirusWhitelist', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BatchModifyImageVirusWhitelistResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量修改容器镜像漏洞白名单
+
+        # @param request: Request instance for BatchModifyImageVulWhitelist.
+        # @type request: :class:`Tencentcloud::csip::V20221121::BatchModifyImageVulWhitelistRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::BatchModifyImageVulWhitelistResponse`
+        def BatchModifyImageVulWhitelist(request)
+          body = send_request('BatchModifyImageVulWhitelist', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BatchModifyImageVulWhitelistResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 绑定集群负责人
 
         # @param request: Request instance for BindClusterOwner.
@@ -231,6 +351,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CheckCWPExposePathPermissionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 检查镜像仓库实例名是否重复
+
+        # @param request: Request instance for CheckImageRegistryInstanceNameDuplicate.
+        # @type request: :class:`Tencentcloud::csip::V20221121::CheckImageRegistryInstanceNameDuplicateRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::CheckImageRegistryInstanceNameDuplicateResponse`
+        def CheckImageRegistryInstanceNameDuplicate(request)
+          body = send_request('CheckImageRegistryInstanceNameDuplicate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CheckImageRegistryInstanceNameDuplicateResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -401,6 +545,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateAllAssetsExportJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建镜像资产中组件列表导出任务
+
+        # @param request: Request instance for CreateAssetComponentListExportJob.
+        # @type request: :class:`Tencentcloud::csip::V20221121::CreateAssetComponentListExportJobRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::CreateAssetComponentListExportJobResponse`
+        def CreateAssetComponentListExportJob(request)
+          body = send_request('CreateAssetComponentListExportJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAssetComponentListExportJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建镜像仓库组件关联镜像列表导出任务
+
+        # @param request: Request instance for CreateAssetComponentRelatedImageListExportJob.
+        # @type request: :class:`Tencentcloud::csip::V20221121::CreateAssetComponentRelatedImageListExportJobRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::CreateAssetComponentRelatedImageListExportJobResponse`
+        def CreateAssetComponentRelatedImageListExportJob(request)
+          body = send_request('CreateAssetComponentRelatedImageListExportJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAssetComponentRelatedImageListExportJobResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1687,6 +1879,390 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建镜像资产列表导出任务
+
+        # @param request: Request instance for CreateImageAssetListExportJob.
+        # @type request: :class:`Tencentcloud::csip::V20221121::CreateImageAssetListExportJobRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::CreateImageAssetListExportJobResponse`
+        def CreateImageAssetListExportJob(request)
+          body = send_request('CreateImageAssetListExportJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateImageAssetListExportJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建镜像关联容器资产导出任务
+
+        # @param request: Request instance for CreateImageAssociatedContainerListExportJob.
+        # @type request: :class:`Tencentcloud::csip::V20221121::CreateImageAssociatedContainerListExportJobRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::CreateImageAssociatedContainerListExportJobResponse`
+        def CreateImageAssociatedContainerListExportJob(request)
+          body = send_request('CreateImageAssociatedContainerListExportJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateImageAssociatedContainerListExportJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建镜像关联主机资产列表导出任务
+
+        # @param request: Request instance for CreateImageAssociatedHostListExportJob.
+        # @type request: :class:`Tencentcloud::csip::V20221121::CreateImageAssociatedHostListExportJobRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::CreateImageAssociatedHostListExportJobResponse`
+        def CreateImageAssociatedHostListExportJob(request)
+          body = send_request('CreateImageAssociatedHostListExportJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateImageAssociatedHostListExportJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建镜像组件列表导出任务
+
+        # @param request: Request instance for CreateImageComponentListExportJob.
+        # @type request: :class:`Tencentcloud::csip::V20221121::CreateImageComponentListExportJobRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::CreateImageComponentListExportJobResponse`
+        def CreateImageComponentListExportJob(request)
+          body = send_request('CreateImageComponentListExportJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateImageComponentListExportJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建镜像层漏洞列表导出任务
+
+        # @param request: Request instance for CreateImageLayerVulListExportJob.
+        # @type request: :class:`Tencentcloud::csip::V20221121::CreateImageLayerVulListExportJobRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::CreateImageLayerVulListExportJobResponse`
+        def CreateImageLayerVulListExportJob(request)
+          body = send_request('CreateImageLayerVulListExportJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateImageLayerVulListExportJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建镜像仓库联通性检查任务
+
+        # @param request: Request instance for CreateImageRegistryConnectivityTask.
+        # @type request: :class:`Tencentcloud::csip::V20221121::CreateImageRegistryConnectivityTaskRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::CreateImageRegistryConnectivityTaskResponse`
+        def CreateImageRegistryConnectivityTask(request)
+          body = send_request('CreateImageRegistryConnectivityTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateImageRegistryConnectivityTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建镜像仓库列表导出任务
+
+        # @param request: Request instance for CreateImageRegistryListExportJob.
+        # @type request: :class:`Tencentcloud::csip::V20221121::CreateImageRegistryListExportJobRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::CreateImageRegistryListExportJobResponse`
+        def CreateImageRegistryListExportJob(request)
+          body = send_request('CreateImageRegistryListExportJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateImageRegistryListExportJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建镜像扫描任务
+
+        # @param request: Request instance for CreateImageRegistryScanTask.
+        # @type request: :class:`Tencentcloud::csip::V20221121::CreateImageRegistryScanTaskRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::CreateImageRegistryScanTaskResponse`
+        def CreateImageRegistryScanTask(request)
+          body = send_request('CreateImageRegistryScanTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateImageRegistryScanTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建镜像仓库镜像扫描任务配置
+
+        # @param request: Request instance for CreateImageRegistryTimedScanTaskConfig.
+        # @type request: :class:`Tencentcloud::csip::V20221121::CreateImageRegistryTimedScanTaskConfigRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::CreateImageRegistryTimedScanTaskConfigResponse`
+        def CreateImageRegistryTimedScanTaskConfig(request)
+          body = send_request('CreateImageRegistryTimedScanTaskConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateImageRegistryTimedScanTaskConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建镜像敏感信息列表导出任务
+
+        # @param request: Request instance for CreateImageSensitiveInfoListExportJob.
+        # @type request: :class:`Tencentcloud::csip::V20221121::CreateImageSensitiveInfoListExportJobRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::CreateImageSensitiveInfoListExportJobResponse`
+        def CreateImageSensitiveInfoListExportJob(request)
+          body = send_request('CreateImageSensitiveInfoListExportJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateImageSensitiveInfoListExportJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建容器镜像敏感信息白名单
+
+        # @param request: Request instance for CreateImageSensitiveWhitelist.
+        # @type request: :class:`Tencentcloud::csip::V20221121::CreateImageSensitiveWhitelistRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::CreateImageSensitiveWhitelistResponse`
+        def CreateImageSensitiveWhitelist(request)
+          body = send_request('CreateImageSensitiveWhitelist', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateImageSensitiveWhitelistResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建镜像木马病毒列表导出任务
+
+        # @param request: Request instance for CreateImageVirusListExportJob.
+        # @type request: :class:`Tencentcloud::csip::V20221121::CreateImageVirusListExportJobRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::CreateImageVirusListExportJobResponse`
+        def CreateImageVirusListExportJob(request)
+          body = send_request('CreateImageVirusListExportJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateImageVirusListExportJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建镜像木马白名单
+
+        # @param request: Request instance for CreateImageVirusWhitelist.
+        # @type request: :class:`Tencentcloud::csip::V20221121::CreateImageVirusWhitelistRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::CreateImageVirusWhitelistResponse`
+        def CreateImageVirusWhitelist(request)
+          body = send_request('CreateImageVirusWhitelist', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateImageVirusWhitelistResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建镜像漏洞列表导出任务
+
+        # @param request: Request instance for CreateImageVulListExportJob.
+        # @type request: :class:`Tencentcloud::csip::V20221121::CreateImageVulListExportJobRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::CreateImageVulListExportJobResponse`
+        def CreateImageVulListExportJob(request)
+          body = send_request('CreateImageVulListExportJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateImageVulListExportJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建镜像漏洞概览列表导出任务
+
+        # @param request: Request instance for CreateImageVulSummaryListExportJob.
+        # @type request: :class:`Tencentcloud::csip::V20221121::CreateImageVulSummaryListExportJobRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::CreateImageVulSummaryListExportJobResponse`
+        def CreateImageVulSummaryListExportJob(request)
+          body = send_request('CreateImageVulSummaryListExportJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateImageVulSummaryListExportJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建容器镜像漏洞白名单
+
+        # @param request: Request instance for CreateImageVulWhitelist.
+        # @type request: :class:`Tencentcloud::csip::V20221121::CreateImageVulWhitelistRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::CreateImageVulWhitelistResponse`
+        def CreateImageVulWhitelist(request)
+          body = send_request('CreateImageVulWhitelist', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateImageVulWhitelistResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建Pod关联容器列表导出任务。导出字段包含容器ID、容器名称、运行状态、节点ID、节点类型、镜像ID、镜像名称、隔离状态。支持Filter过滤。导出通过异步任务实现，返回JobId后前端轮询查询导出任务状态。
 
         # @param request: Request instance for CreatePodContainerListExportJob.
@@ -2721,6 +3297,150 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除镜像仓库信息
+
+        # @param request: Request instance for DeleteImageRegistry.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DeleteImageRegistryRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DeleteImageRegistryResponse`
+        def DeleteImageRegistry(request)
+          body = send_request('DeleteImageRegistry', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteImageRegistryResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除镜像仓库扫描任务
+
+        # @param request: Request instance for DeleteImageRegistryScanTask.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DeleteImageRegistryScanTaskRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DeleteImageRegistryScanTaskResponse`
+        def DeleteImageRegistryScanTask(request)
+          body = send_request('DeleteImageRegistryScanTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteImageRegistryScanTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除镜像仓库定时扫描任务配置
+
+        # @param request: Request instance for DeleteImageRegistryTimedScanTaskConfig.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DeleteImageRegistryTimedScanTaskConfigRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DeleteImageRegistryTimedScanTaskConfigResponse`
+        def DeleteImageRegistryTimedScanTaskConfig(request)
+          body = send_request('DeleteImageRegistryTimedScanTaskConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteImageRegistryTimedScanTaskConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除容器镜像敏感信息白名单
+
+        # @param request: Request instance for DeleteImageSensitiveWhitelist.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DeleteImageSensitiveWhitelistRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DeleteImageSensitiveWhitelistResponse`
+        def DeleteImageSensitiveWhitelist(request)
+          body = send_request('DeleteImageSensitiveWhitelist', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteImageSensitiveWhitelistResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除镜像木马白名单
+
+        # @param request: Request instance for DeleteImageVirusWhitelist.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DeleteImageVirusWhitelistRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DeleteImageVirusWhitelistResponse`
+        def DeleteImageVirusWhitelist(request)
+          body = send_request('DeleteImageVirusWhitelist', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteImageVirusWhitelistResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除容器镜像漏洞白名单
+
+        # @param request: Request instance for DeleteImageVulWhitelist.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DeleteImageVulWhitelistRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DeleteImageVulWhitelistResponse`
+        def DeleteImageVulWhitelist(request)
+          body = send_request('DeleteImageVulWhitelist', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteImageVulWhitelistResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于删除异地登录白名单规则。
 
         # @param request: Request instance for DeleteLoginWhiteList.
@@ -2779,6 +3499,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteRiskScanTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量删除 LLM 审计用户规则。任一 ID 不存在或属于其他租户时整体返回错误
+
+        # @param request: Request instance for DeleteSandboxLLMAuditRule.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DeleteSandboxLLMAuditRuleRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DeleteSandboxLLMAuditRuleResponse`
+        def DeleteSandboxLLMAuditRule(request)
+          body = send_request('DeleteSandboxLLMAuditRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteSandboxLLMAuditRuleResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2875,6 +3619,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAIAgentAssetListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取 AIAgent 资产凭据扫描列表
+
+        # @param request: Request instance for DescribeAIAgentCredentialList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeAIAgentCredentialListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeAIAgentCredentialListResponse`
+        def DescribeAIAgentCredentialList(request)
+          body = send_request('DescribeAIAgentCredentialList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAIAgentCredentialListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 按凭据组行 ID 分页查询单个凭据的泄露位置列表。用于配合 DescribeAIAgentCredentialList 接口拆分后的展开场景，避免单接口在数据倾斜场景下一次拉取几十万行 location 导致性能问题。
+
+        # @param request: Request instance for DescribeAIAgentCredentialLocationList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeAIAgentCredentialLocationListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeAIAgentCredentialLocationListResponse`
+        def DescribeAIAgentCredentialLocationList(request)
+          body = send_request('DescribeAIAgentCredentialLocationList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAIAgentCredentialLocationListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取 AI Agent skill 列表
+
+        # @param request: Request instance for DescribeAIAgentSkillList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeAIAgentSkillListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeAIAgentSkillListResponse`
+        def DescribeAIAgentSkillList(request)
+          body = send_request('DescribeAIAgentSkillList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAIAgentSkillListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -3501,6 +4317,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询资产中组件列表
+
+        # @param request: Request instance for DescribeAssetComponentList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeAssetComponentListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeAssetComponentListResponse`
+        def DescribeAssetComponentList(request)
+          body = send_request('DescribeAssetComponentList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAssetComponentListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询镜像仓库组件关联的镜像列表
+
+        # @param request: Request instance for DescribeAssetComponentRelatedImageList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeAssetComponentRelatedImageListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeAssetComponentRelatedImageListResponse`
+        def DescribeAssetComponentRelatedImageList(request)
+          body = send_request('DescribeAssetComponentRelatedImageList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAssetComponentRelatedImageListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 资产详情信息
 
         # @param request: Request instance for DescribeAssetDetail.
@@ -3847,6 +4711,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAssumeRoleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询后台扫描引擎地域列表
+
+        # @param request: Request instance for DescribeBackendScanEngineRegionList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeBackendScanEngineRegionListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeBackendScanEngineRegionListResponse`
+        def DescribeBackendScanEngineRegionList(request)
+          body = send_request('DescribeBackendScanEngineRegionList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBackendScanEngineRegionListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -4879,6 +5767,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeCallRecordResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询联通性检测主机列表
+
+        # @param request: Request instance for DescribeCheckConnectivityHostList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeCheckConnectivityHostListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeCheckConnectivityHostListResponse`
+        def DescribeCheckConnectivityHostList(request)
+          body = send_request('DescribeCheckConnectivityHostList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCheckConnectivityHostListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -8685,6 +9597,606 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询镜像资产详情
+
+        # @param request: Request instance for DescribeImageAssetDetail.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeImageAssetDetailRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeImageAssetDetailResponse`
+        def DescribeImageAssetDetail(request)
+          body = send_request('DescribeImageAssetDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeImageAssetDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询镜像资产列表
+
+        # @param request: Request instance for DescribeImageAssetList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeImageAssetListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeImageAssetListResponse`
+        def DescribeImageAssetList(request)
+          body = send_request('DescribeImageAssetList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeImageAssetListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询镜像关联资产数
+
+        # @param request: Request instance for DescribeImageAssociatedAssetCount.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeImageAssociatedAssetCountRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeImageAssociatedAssetCountResponse`
+        def DescribeImageAssociatedAssetCount(request)
+          body = send_request('DescribeImageAssociatedAssetCount', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeImageAssociatedAssetCountResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询镜像关联容器资产
+
+        # @param request: Request instance for DescribeImageAssociatedContainerList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeImageAssociatedContainerListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeImageAssociatedContainerListResponse`
+        def DescribeImageAssociatedContainerList(request)
+          body = send_request('DescribeImageAssociatedContainerList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeImageAssociatedContainerListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询镜像关联主机资产列表
+
+        # @param request: Request instance for DescribeImageAssociatedHostList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeImageAssociatedHostListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeImageAssociatedHostListResponse`
+        def DescribeImageAssociatedHostList(request)
+          body = send_request('DescribeImageAssociatedHostList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeImageAssociatedHostListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询镜像组件列表
+
+        # @param request: Request instance for DescribeImageComponentList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeImageComponentListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeImageComponentListResponse`
+        def DescribeImageComponentList(request)
+          body = send_request('DescribeImageComponentList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeImageComponentListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询镜像仓库导出任务列表
+
+        # @param request: Request instance for DescribeImageExportJobList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeImageExportJobListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeImageExportJobListResponse`
+        def DescribeImageExportJobList(request)
+          body = send_request('DescribeImageExportJobList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeImageExportJobListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询镜像层信息列表
+
+        # @param request: Request instance for DescribeImageLayerList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeImageLayerListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeImageLayerListResponse`
+        def DescribeImageLayerList(request)
+          body = send_request('DescribeImageLayerList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeImageLayerListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询镜像层漏洞列表
+
+        # @param request: Request instance for DescribeImageLayerVulList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeImageLayerVulListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeImageLayerVulListResponse`
+        def DescribeImageLayerVulList(request)
+          body = send_request('DescribeImageLayerVulList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeImageLayerVulListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询镜像仓库资产总览
+
+        # @param request: Request instance for DescribeImageRegistryAssetOverview.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeImageRegistryAssetOverviewRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeImageRegistryAssetOverviewResponse`
+        def DescribeImageRegistryAssetOverview(request)
+          body = send_request('DescribeImageRegistryAssetOverview', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeImageRegistryAssetOverviewResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询镜像仓库联通性检查任务结果
+
+        # @param request: Request instance for DescribeImageRegistryConnectivityTaskResult.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeImageRegistryConnectivityTaskResultRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeImageRegistryConnectivityTaskResultResponse`
+        def DescribeImageRegistryConnectivityTaskResult(request)
+          body = send_request('DescribeImageRegistryConnectivityTaskResult', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeImageRegistryConnectivityTaskResultResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询镜像仓库列表
+
+        # @param request: Request instance for DescribeImageRegistryList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeImageRegistryListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeImageRegistryListResponse`
+        def DescribeImageRegistryList(request)
+          body = send_request('DescribeImageRegistryList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeImageRegistryListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询镜像仓库命名空间列表
+
+        # @param request: Request instance for DescribeImageRegistryNamespaceList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeImageRegistryNamespaceListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeImageRegistryNamespaceListResponse`
+        def DescribeImageRegistryNamespaceList(request)
+          body = send_request('DescribeImageRegistryNamespaceList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeImageRegistryNamespaceListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询镜像仓库扫描子任务信息
+
+        # @param request: Request instance for DescribeImageRegistryScanSubTaskList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeImageRegistryScanSubTaskListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeImageRegistryScanSubTaskListResponse`
+        def DescribeImageRegistryScanSubTaskList(request)
+          body = send_request('DescribeImageRegistryScanSubTaskList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeImageRegistryScanSubTaskListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询镜像仓库镜像扫描任务列表
+
+        # @param request: Request instance for DescribeImageRegistryScanTaskList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeImageRegistryScanTaskListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeImageRegistryScanTaskListResponse`
+        def DescribeImageRegistryScanTaskList(request)
+          body = send_request('DescribeImageRegistryScanTaskList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeImageRegistryScanTaskListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查看镜像仓库定时扫描任务配置
+
+        # @param request: Request instance for DescribeImageRegistryTimedScanTaskConfig.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeImageRegistryTimedScanTaskConfigRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeImageRegistryTimedScanTaskConfigResponse`
+        def DescribeImageRegistryTimedScanTaskConfig(request)
+          body = send_request('DescribeImageRegistryTimedScanTaskConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeImageRegistryTimedScanTaskConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询镜像仓库定时扫描任务预览
+
+        # @param request: Request instance for DescribeImageRegistryTimedScanTaskPreview.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeImageRegistryTimedScanTaskPreviewRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeImageRegistryTimedScanTaskPreviewResponse`
+        def DescribeImageRegistryTimedScanTaskPreview(request)
+          body = send_request('DescribeImageRegistryTimedScanTaskPreview', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeImageRegistryTimedScanTaskPreviewResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询镜像敏感信息列表
+
+        # @param request: Request instance for DescribeImageSensitiveInfoList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeImageSensitiveInfoListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeImageSensitiveInfoListResponse`
+        def DescribeImageSensitiveInfoList(request)
+          body = send_request('DescribeImageSensitiveInfoList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeImageSensitiveInfoListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询容器镜像敏感信息白名单
+
+        # @param request: Request instance for DescribeImageSensitiveWhitelist.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeImageSensitiveWhitelistRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeImageSensitiveWhitelistResponse`
+        def DescribeImageSensitiveWhitelist(request)
+          body = send_request('DescribeImageSensitiveWhitelist', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeImageSensitiveWhitelistResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询镜像木马病毒列表
+
+        # @param request: Request instance for DescribeImageVirusList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeImageVirusListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeImageVirusListResponse`
+        def DescribeImageVirusList(request)
+          body = send_request('DescribeImageVirusList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeImageVirusListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询镜像木马白名单
+
+        # @param request: Request instance for DescribeImageVirusWhitelist.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeImageVirusWhitelistRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeImageVirusWhitelistResponse`
+        def DescribeImageVirusWhitelist(request)
+          body = send_request('DescribeImageVirusWhitelist', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeImageVirusWhitelistResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询镜像木马白名单详情
+
+        # @param request: Request instance for DescribeImageVirusWhitelistDetail.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeImageVirusWhitelistDetailRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeImageVirusWhitelistDetailResponse`
+        def DescribeImageVirusWhitelistDetail(request)
+          body = send_request('DescribeImageVirusWhitelistDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeImageVirusWhitelistDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询镜像漏洞列表
+
+        # @param request: Request instance for DescribeImageVulList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeImageVulListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeImageVulListResponse`
+        def DescribeImageVulList(request)
+          body = send_request('DescribeImageVulList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeImageVulListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询镜像漏洞概览列表
+
+        # @param request: Request instance for DescribeImageVulSummaryList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeImageVulSummaryListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeImageVulSummaryListResponse`
+        def DescribeImageVulSummaryList(request)
+          body = send_request('DescribeImageVulSummaryList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeImageVulSummaryListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询容器镜像漏洞白名单
+
+        # @param request: Request instance for DescribeImageVulWhitelist.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeImageVulWhitelistRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeImageVulWhitelistResponse`
+        def DescribeImageVulWhitelist(request)
+          body = send_request('DescribeImageVulWhitelist', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeImageVulWhitelistResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 对象存储异常检测调用记录信息
 
         # @param request: Request instance for DescribeIpInvokeRecord.
@@ -9381,6 +10893,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取通知设置（云API风险治理）
+
+        # @param request: Request instance for DescribeNotifySettingAk.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeNotifySettingAkRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeNotifySettingAkResponse`
+        def DescribeNotifySettingAk(request)
+          body = send_request('DescribeNotifySettingAk', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeNotifySettingAkResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取告警中心通知高级配置
 
         # @param request: Request instance for DescribeNotifySettingAlert.
@@ -9727,6 +11263,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeRaspLicenseListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询仓库总览
+
+        # @param request: Request instance for DescribeRegistryOverview.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeRegistryOverviewRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeRegistryOverviewResponse`
+        def DescribeRegistryOverview(request)
+          body = send_request('DescribeRegistryOverview', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRegistryOverviewResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询镜像仓库地域列表
+
+        # @param request: Request instance for DescribeRegistryRegionList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeRegistryRegionListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeRegistryRegionListResponse`
+        def DescribeRegistryRegionList(request)
+          body = send_request('DescribeRegistryRegionList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRegistryRegionListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -10317,6 +11901,126 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 分页查询 ACL 访问控制告警日志列表。支持按 Filter.Name=ID 精确过滤单条告警用于详情页场景
+
+        # @param request: Request instance for DescribeSandboxACLAlertList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeSandboxACLAlertListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeSandboxACLAlertListResponse`
+        def DescribeSandboxACLAlertList(request)
+          body = send_request('DescribeSandboxACLAlertList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSandboxACLAlertListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询当前租户的 ACL 用户访问控制规则列表。传入 Filter.Name=RuleID 可精确查询单条规则（用于详情页面场景）
+
+        # @param request: Request instance for DescribeSandboxACLRuleList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeSandboxACLRuleListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeSandboxACLRuleListResponse`
+        def DescribeSandboxACLRuleList(request)
+          body = send_request('DescribeSandboxACLRuleList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSandboxACLRuleListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询流量沙箱访问控制（ACL）系统规则列表，系统规则由 CSIP 平台内置，可被用户规则引用
+
+        # @param request: Request instance for DescribeSandboxACLSystemRuleList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeSandboxACLSystemRuleListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeSandboxACLSystemRuleListResponse`
+        def DescribeSandboxACLSystemRuleList(request)
+          body = send_request('DescribeSandboxACLSystemRuleList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSandboxACLSystemRuleListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询流量沙箱数据泄露防护（DLP）系统规则列表，系统规则由 CSIP 平台内置，可被用户规则引用
+
+        # @param request: Request instance for DescribeSandboxDLPSystemRuleList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeSandboxDLPSystemRuleListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeSandboxDLPSystemRuleListResponse`
+        def DescribeSandboxDLPSystemRuleList(request)
+          body = send_request('DescribeSandboxDLPSystemRuleList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSandboxDLPSystemRuleListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取命令沙箱文件规则列表
+
+        # @param request: Request instance for DescribeSandboxFileRuleList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeSandboxFileRuleListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeSandboxFileRuleListResponse`
+        def DescribeSandboxFileRuleList(request)
+          body = send_request('DescribeSandboxFileRuleList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSandboxFileRuleListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取扫描报告列表
 
         # @param request: Request instance for DescribeScanReportList.
@@ -10557,6 +12261,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询 Skill 安全检测告警详情，包含本地告警信息和引擎实时检测数据
+
+        # @param request: Request instance for DescribeSkillScanAlertDetail.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeSkillScanAlertDetailRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeSkillScanAlertDetailResponse`
+        def DescribeSkillScanAlertDetail(request)
+          body = send_request('DescribeSkillScanAlertDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSkillScanAlertDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询 Skill 安全检测告警列表，支持分页、过滤和排序
+
+        # @param request: Request instance for DescribeSkillScanAlertList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeSkillScanAlertListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeSkillScanAlertListResponse`
+        def DescribeSkillScanAlertList(request)
+          body = send_request('DescribeSkillScanAlertList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSkillScanAlertListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询 Skill 安全检测计费信息，包括订单状态、总配额、已消耗配额、到期时间、支付模式等。无订单时返回零值（仅含 TimeNow 和 BetaEndTime）。试用订单通过 ModifyTrialStatus(Module=9) 领取，正式订单通过计费系统创建。
 
         # @param request: Request instance for DescribeSkillScanPayInfo.
@@ -10663,6 +12415,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeSubnetAssetsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取TCR实例列表
+
+        # @param request: Request instance for DescribeTCRInstanceList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeTCRInstanceListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeTCRInstanceListResponse`
+        def DescribeTCRInstanceList(request)
+          body = send_request('DescribeTCRInstanceList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTCRInstanceListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -13329,6 +15105,126 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改镜像仓库信息
+
+        # @param request: Request instance for ModifyImageRegistry.
+        # @type request: :class:`Tencentcloud::csip::V20221121::ModifyImageRegistryRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::ModifyImageRegistryResponse`
+        def ModifyImageRegistry(request)
+          body = send_request('ModifyImageRegistry', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyImageRegistryResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改镜像仓库定时扫描任务配置
+
+        # @param request: Request instance for ModifyImageRegistryTimedScanTaskConfig.
+        # @type request: :class:`Tencentcloud::csip::V20221121::ModifyImageRegistryTimedScanTaskConfigRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::ModifyImageRegistryTimedScanTaskConfigResponse`
+        def ModifyImageRegistryTimedScanTaskConfig(request)
+          body = send_request('ModifyImageRegistryTimedScanTaskConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyImageRegistryTimedScanTaskConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改容器镜像敏感信息白名单
+
+        # @param request: Request instance for ModifyImageSensitiveWhitelist.
+        # @type request: :class:`Tencentcloud::csip::V20221121::ModifyImageSensitiveWhitelistRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::ModifyImageSensitiveWhitelistResponse`
+        def ModifyImageSensitiveWhitelist(request)
+          body = send_request('ModifyImageSensitiveWhitelist', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyImageSensitiveWhitelistResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询资产数据库信息
+
+        # @param request: Request instance for ModifyImageVirusWhitelist.
+        # @type request: :class:`Tencentcloud::csip::V20221121::ModifyImageVirusWhitelistRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::ModifyImageVirusWhitelistResponse`
+        def ModifyImageVirusWhitelist(request)
+          body = send_request('ModifyImageVirusWhitelist', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyImageVirusWhitelistResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改容器镜像漏洞白名单
+
+        # @param request: Request instance for ModifyImageVulWhitelist.
+        # @type request: :class:`Tencentcloud::csip::V20221121::ModifyImageVulWhitelistRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::ModifyImageVulWhitelistResponse`
+        def ModifyImageVulWhitelist(request)
+          body = send_request('ModifyImageVulWhitelist', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyImageVulWhitelistResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 更新合并后登录审计白名单信息（服务器列表数目应小于1000）
 
         # @param request: Request instance for ModifyLoginWhiteRecord.
@@ -13569,6 +15465,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改通知成员账号
+
+        # @param request: Request instance for ModifyNotifyMember.
+        # @type request: :class:`Tencentcloud::csip::V20221121::ModifyNotifyMemberRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::ModifyNotifyMemberResponse`
+        def ModifyNotifyMember(request)
+          body = send_request('ModifyNotifyMember', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyNotifyMemberResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改通知设置
 
         # @param request: Request instance for ModifyNotifySetting.
@@ -13579,6 +15499,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyNotifySettingResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改通知设置（云API风险治理）
+
+        # @param request: Request instance for ModifyNotifySettingAk.
+        # @type request: :class:`Tencentcloud::csip::V20221121::ModifyNotifySettingAkRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::ModifyNotifySettingAkResponse`
+        def ModifyNotifySettingAk(request)
+          body = send_request('ModifyNotifySettingAk', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyNotifySettingAkResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -13842,6 +15786,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 批量切换 LLM 审计用户规则的启禁用状态。任一规则不存在、属于其他租户或已删除时整体返回错误
+
+        # @param request: Request instance for ModifySandboxLLMAuditRuleStatus.
+        # @type request: :class:`Tencentcloud::csip::V20221121::ModifySandboxLLMAuditRuleStatusRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::ModifySandboxLLMAuditRuleStatusResponse`
+        def ModifySandboxLLMAuditRuleStatus(request)
+          body = send_request('ModifySandboxLLMAuditRuleStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifySandboxLLMAuditRuleStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改安全评分规则，必须传入完整规则集
 
         # @param request: Request instance for ModifySecurityScoreRule.
@@ -13876,6 +15844,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyShareUserCSPMResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量修改 Skill 安全检测告警的处理状态
+
+        # @param request: Request instance for ModifySkillScanAlertStatus.
+        # @type request: :class:`Tencentcloud::csip::V20221121::ModifySkillScanAlertStatusRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::ModifySkillScanAlertStatusResponse`
+        def ModifySkillScanAlertStatus(request)
+          body = send_request('ModifySkillScanAlertStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifySkillScanAlertStatusResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -14466,6 +16458,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 停止镜像仓库镜像扫描任务
+
+        # @param request: Request instance for StopImageRegistryScanTask.
+        # @type request: :class:`Tencentcloud::csip::V20221121::StopImageRegistryScanTaskRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::StopImageRegistryScanTaskResponse`
+        def StopImageRegistryScanTask(request)
+          body = send_request('StopImageRegistryScanTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StopImageRegistryScanTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 关闭防卸载功能
 
         # @param request: Request instance for StopPreventUninstall.
@@ -14596,6 +16612,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SyncDspmUsersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 镜像仓库同步
+
+        # @param request: Request instance for SyncImageRegistry.
+        # @type request: :class:`Tencentcloud::csip::V20221121::SyncImageRegistryRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::SyncImageRegistryResponse`
+        def SyncImageRegistry(request)
+          body = send_request('SyncImageRegistry', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SyncImageRegistryResponse.new
             model.deserialize(response['Response'])
             model
           else

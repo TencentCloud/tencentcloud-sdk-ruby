@@ -1285,6 +1285,42 @@ module TencentCloud
         end
       end
 
+      # DetachApplicationRole请求参数结构体
+      class DetachApplicationRoleRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: <p>集群 ID</p>
+        # @type ClusterId: String
+        # @param Instances: <p>解绑的 CVM 实例列表</p>
+        # @type Instances: Array
+
+        attr_accessor :ClusterId, :Instances
+
+        def initialize(clusterid=nil, instances=nil)
+          @ClusterId = clusterid
+          @Instances = instances
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Instances = params['Instances']
+        end
+      end
+
+      # DetachApplicationRole返回参数结构体
+      class DetachApplicationRoleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 节点系统盘和数据盘配置
       class Disk < TencentCloud::Common::AbstractModel
         # @param DiskType: 云盘类型

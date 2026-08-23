@@ -2335,6 +2335,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（ModifyInstancePasswordPolicy）用于修改实例密码复杂度。
+
+        # @param request: Request instance for ModifyInstancePasswordPolicy.
+        # @type request: :class:`Tencentcloud::redis::V20180412::ModifyInstancePasswordPolicyRequest`
+        # @rtype: :class:`Tencentcloud::redis::V20180412::ModifyInstancePasswordPolicyResponse`
+        def ModifyInstancePasswordPolicy(request)
+          body = send_request('ModifyInstancePasswordPolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyInstancePasswordPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（ModifyInstanceReadOnly）用于设置实例输入模式。
 
         # @param request: Request instance for ModifyInstanceReadOnly.

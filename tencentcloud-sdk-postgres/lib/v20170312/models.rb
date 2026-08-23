@@ -7015,15 +7015,36 @@ module TencentCloud
         # @type Description: String
         # @param ConnectionPool: <p>连接池开关</p><p>枚举值：</p><ul><li>true： 开启</li><li>false： 关闭</li></ul>
         # @type ConnectionPool: Boolean
+        # @param WeightMode: <p>权重模式</p><p>枚举值：</p><ul><li>system： 系统自动分配权重</li><li>custom： 自定义权重，此模式下ProxyAllocation参数必传</li></ul><p>默认值：system</p>
+        # @type WeightMode: String
+        # @param ProxyAllocation: <p>system</p><p>入参限制：路由权重列表。若 WeightMode 传的是system或不传 ，则传入的权重不生效，由系统分配默认权重。</p>
+        # @type ProxyAllocation: Array
+        # @param RoAutoAdd: <p>新增只读实例是否自动加入当前连接地址，仅后续新建实例生效</p>
+        # @type RoAutoAdd: Boolean
+        # @param LatencyRemove: <p>延迟剔除开关</p>
+        # @type LatencyRemove: Boolean
+        # @param LatencyRemoveTime: <p>延迟剔除阈值，仅在延迟剔除开关打开时有效</p><p>单位：秒</p>
+        # @type LatencyRemoveTime: Integer
+        # @param MinRouteNum: <p>最小保留路由数。在延迟/故障剔除时，至少保留的路由数量，防止所有节点被剔除导致服务不可用。</p>
+        # @type MinRouteNum: Integer
+        # @param LoadBalancePolicy: <p>负载均衡策略</p><p>枚举值：</p><ul><li>0： 按活跃连接数(默认)</li><li>1： 按请求数</li></ul>
+        # @type LoadBalancePolicy: Integer
 
-        attr_accessor :DBInstanceId, :AddressId, :ProxyGroupId, :Description, :ConnectionPool
+        attr_accessor :DBInstanceId, :AddressId, :ProxyGroupId, :Description, :ConnectionPool, :WeightMode, :ProxyAllocation, :RoAutoAdd, :LatencyRemove, :LatencyRemoveTime, :MinRouteNum, :LoadBalancePolicy
 
-        def initialize(dbinstanceid=nil, addressid=nil, proxygroupid=nil, description=nil, connectionpool=nil)
+        def initialize(dbinstanceid=nil, addressid=nil, proxygroupid=nil, description=nil, connectionpool=nil, weightmode=nil, proxyallocation=nil, roautoadd=nil, latencyremove=nil, latencyremovetime=nil, minroutenum=nil, loadbalancepolicy=nil)
           @DBInstanceId = dbinstanceid
           @AddressId = addressid
           @ProxyGroupId = proxygroupid
           @Description = description
           @ConnectionPool = connectionpool
+          @WeightMode = weightmode
+          @ProxyAllocation = proxyallocation
+          @RoAutoAdd = roautoadd
+          @LatencyRemove = latencyremove
+          @LatencyRemoveTime = latencyremovetime
+          @MinRouteNum = minroutenum
+          @LoadBalancePolicy = loadbalancepolicy
         end
 
         def deserialize(params)
@@ -7032,21 +7053,39 @@ module TencentCloud
           @ProxyGroupId = params['ProxyGroupId']
           @Description = params['Description']
           @ConnectionPool = params['ConnectionPool']
+          @WeightMode = params['WeightMode']
+          unless params['ProxyAllocation'].nil?
+            @ProxyAllocation = []
+            params['ProxyAllocation'].each do |i|
+              proxyroute_tmp = ProxyRoute.new
+              proxyroute_tmp.deserialize(i)
+              @ProxyAllocation << proxyroute_tmp
+            end
+          end
+          @RoAutoAdd = params['RoAutoAdd']
+          @LatencyRemove = params['LatencyRemove']
+          @LatencyRemoveTime = params['LatencyRemoveTime']
+          @MinRouteNum = params['MinRouteNum']
+          @LoadBalancePolicy = params['LoadBalancePolicy']
         end
       end
 
       # ModifyDBProxyAddress返回参数结构体
       class ModifyDBProxyAddressResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>异步任务 ID，用于 DescribeTasks 查询进度</p>
+        # @type TaskId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :TaskId, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end
       end
@@ -7931,10 +7970,26 @@ module TencentCloud
         # @type Routes: Array
         # @param ConnectionPoolLimit: <p>连接池大小</p>
         # @type ConnectionPoolLimit: Integer
+        # @param RwSplitEnable: <p>读写分离开关。启用后 proxy 将读请求分发到只读节点，写请求仍走主节点。</p>
+        # @type RwSplitEnable: Boolean
+        # @param WeightMode: <p>权重模式</p><p>枚举值：</p><ul><li>system： 系统自动分配</li><li>custom： 用户自定义权重</li></ul>
+        # @type WeightMode: String
+        # @param RoAutoAdd: <p>新增只读是否自动加入读写分离</p>
+        # @type RoAutoAdd: Boolean
+        # @param LatencyRemove: <p>延迟剔除开关</p>
+        # @type LatencyRemove: Boolean
+        # @param LatencyRemoveTime: <p>延迟剔除阈值</p><p>单位：秒</p>
+        # @type LatencyRemoveTime: Integer
+        # @param MinRouteNum: <p>最小保留路由数。在延迟/故障剔除时，至少保留的路由数量，防止所有节点被剔除导致服务不可用。</p>
+        # @type MinRouteNum: Integer
+        # @param FailOver: <p>只读全部异常时是否回切到主</p>
+        # @type FailOver: Boolean
+        # @param LoadBalancePolicy: <p>负载均衡策略</p><p>枚举值：</p><ul><li>0： 按活跃连接数(默认)</li><li>1： 按请求数</li></ul>
+        # @type LoadBalancePolicy: Integer
 
-        attr_accessor :AddressId, :Vip, :Vport, :VpcId, :SubnetId, :Description, :ConnectionPool, :Routes, :ConnectionPoolLimit
+        attr_accessor :AddressId, :Vip, :Vport, :VpcId, :SubnetId, :Description, :ConnectionPool, :Routes, :ConnectionPoolLimit, :RwSplitEnable, :WeightMode, :RoAutoAdd, :LatencyRemove, :LatencyRemoveTime, :MinRouteNum, :FailOver, :LoadBalancePolicy
 
-        def initialize(addressid=nil, vip=nil, vport=nil, vpcid=nil, subnetid=nil, description=nil, connectionpool=nil, routes=nil, connectionpoollimit=nil)
+        def initialize(addressid=nil, vip=nil, vport=nil, vpcid=nil, subnetid=nil, description=nil, connectionpool=nil, routes=nil, connectionpoollimit=nil, rwsplitenable=nil, weightmode=nil, roautoadd=nil, latencyremove=nil, latencyremovetime=nil, minroutenum=nil, failover=nil, loadbalancepolicy=nil)
           @AddressId = addressid
           @Vip = vip
           @Vport = vport
@@ -7944,6 +7999,14 @@ module TencentCloud
           @ConnectionPool = connectionpool
           @Routes = routes
           @ConnectionPoolLimit = connectionpoollimit
+          @RwSplitEnable = rwsplitenable
+          @WeightMode = weightmode
+          @RoAutoAdd = roautoadd
+          @LatencyRemove = latencyremove
+          @LatencyRemoveTime = latencyremovetime
+          @MinRouteNum = minroutenum
+          @FailOver = failover
+          @LoadBalancePolicy = loadbalancepolicy
         end
 
         def deserialize(params)
@@ -7963,6 +8026,14 @@ module TencentCloud
             end
           end
           @ConnectionPoolLimit = params['ConnectionPoolLimit']
+          @RwSplitEnable = params['RwSplitEnable']
+          @WeightMode = params['WeightMode']
+          @RoAutoAdd = params['RoAutoAdd']
+          @LatencyRemove = params['LatencyRemove']
+          @LatencyRemoveTime = params['LatencyRemoveTime']
+          @MinRouteNum = params['MinRouteNum']
+          @FailOver = params['FailOver']
+          @LoadBalancePolicy = params['LoadBalancePolicy']
         end
       end
 
@@ -8100,7 +8171,7 @@ module TencentCloud
         # @type Role: String
         # @param Weight: <p>路由权重，取值范围 [0, 100]</p>
         # @type Weight: Integer
-        # @param Status: <p>路由状态：available/unavailable</p>
+        # @param Status: <p>路由状态：online/offline</p><p>枚举值：</p><ul><li>online： 节点处于在线状态</li><li>offline： 节点处于下线状态</li></ul>
         # @type Status: String
 
         attr_accessor :NodeId, :Role, :Weight, :Status

@@ -478,6 +478,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 解绑原生节点 Application Role
+
+        # @param request: Request instance for DetachApplicationRole.
+        # @type request: :class:`Tencentcloud::tke::V20220501::DetachApplicationRoleRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20220501::DetachApplicationRoleResponse`
+        def DetachApplicationRole(request)
+          body = send_request('DetachApplicationRole', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DetachApplicationRoleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改原生节点
 
         # @param request: Request instance for ModifyClusterMachine.

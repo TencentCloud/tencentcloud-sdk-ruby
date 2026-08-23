@@ -7515,6 +7515,45 @@ module TencentCloud
         end
       end
 
+      # ModifyInstancePasswordPolicy请求参数结构体
+      class ModifyInstancePasswordPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例 ID。请登录 <a href="https://console.cloud.tencent.com/redis">Redis 控制台</a>在实例列表复制实例 ID。</p>
+        # @type InstanceId: String
+        # @param PasswordPolicy: <p>实例的密码复杂度策略控制对象，包含密码长度及各类字符（字母/数字/特殊符号）最小数量的校验指标。</p>
+        # @type PasswordPolicy: :class:`Tencentcloud::Redis.v20180412.models.PasswordPolicy`
+
+        attr_accessor :InstanceId, :PasswordPolicy
+
+        def initialize(instanceid=nil, passwordpolicy=nil)
+          @InstanceId = instanceid
+          @PasswordPolicy = passwordpolicy
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['PasswordPolicy'].nil?
+            @PasswordPolicy = PasswordPolicy.new
+            @PasswordPolicy.deserialize(params['PasswordPolicy'])
+          end
+        end
+      end
+
+      # ModifyInstancePasswordPolicy返回参数结构体
+      class ModifyInstancePasswordPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyInstancePassword请求参数结构体
       class ModifyInstancePasswordRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 指定实例 ID。例如：crs-xjhsdj****。请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。

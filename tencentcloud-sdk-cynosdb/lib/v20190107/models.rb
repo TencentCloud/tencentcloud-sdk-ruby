@@ -1290,6 +1290,8 @@ module TencentCloud
         # @type SnapShotType: String
         # @param BackupName: <p>备份文件备注</p>
         # @type BackupName: String
+        # @param ExistRegions: <p>备份文件所在地域</p>
+        # @type ExistRegions: Array
         # @param CopyStatus: <p>投递状态</p>
         # @type CopyStatus: String
         # @param EncryptKeyId: <p>秘钥id</p>
@@ -1301,9 +1303,9 @@ module TencentCloud
         # @param BackupPeriodStrategy: <p>备份周期策略</p>
         # @type BackupPeriodStrategy: String
 
-        attr_accessor :SnapshotId, :FileName, :FileSize, :StartTime, :FinishTime, :BackupType, :BackupMethod, :BackupStatus, :SnapshotTime, :BackupId, :SnapShotType, :BackupName, :CopyStatus, :EncryptKeyId, :EncryptRegion, :VaultInfos, :BackupPeriodStrategy
+        attr_accessor :SnapshotId, :FileName, :FileSize, :StartTime, :FinishTime, :BackupType, :BackupMethod, :BackupStatus, :SnapshotTime, :BackupId, :SnapShotType, :BackupName, :ExistRegions, :CopyStatus, :EncryptKeyId, :EncryptRegion, :VaultInfos, :BackupPeriodStrategy
 
-        def initialize(snapshotid=nil, filename=nil, filesize=nil, starttime=nil, finishtime=nil, backuptype=nil, backupmethod=nil, backupstatus=nil, snapshottime=nil, backupid=nil, snapshottype=nil, backupname=nil, copystatus=nil, encryptkeyid=nil, encryptregion=nil, vaultinfos=nil, backupperiodstrategy=nil)
+        def initialize(snapshotid=nil, filename=nil, filesize=nil, starttime=nil, finishtime=nil, backuptype=nil, backupmethod=nil, backupstatus=nil, snapshottime=nil, backupid=nil, snapshottype=nil, backupname=nil, existregions=nil, copystatus=nil, encryptkeyid=nil, encryptregion=nil, vaultinfos=nil, backupperiodstrategy=nil)
           @SnapshotId = snapshotid
           @FileName = filename
           @FileSize = filesize
@@ -1316,6 +1318,7 @@ module TencentCloud
           @BackupId = backupid
           @SnapShotType = snapshottype
           @BackupName = backupname
+          @ExistRegions = existregions
           @CopyStatus = copystatus
           @EncryptKeyId = encryptkeyid
           @EncryptRegion = encryptregion
@@ -1336,6 +1339,14 @@ module TencentCloud
           @BackupId = params['BackupId']
           @SnapShotType = params['SnapShotType']
           @BackupName = params['BackupName']
+          unless params['ExistRegions'].nil?
+            @ExistRegions = []
+            params['ExistRegions'].each do |i|
+              backupregionandids_tmp = BackupRegionAndIds.new
+              backupregionandids_tmp.deserialize(i)
+              @ExistRegions << backupregionandids_tmp
+            end
+          end
           @CopyStatus = params['CopyStatus']
           @EncryptKeyId = params['EncryptKeyId']
           @EncryptRegion = params['EncryptRegion']
@@ -8726,6 +8737,54 @@ module TencentCloud
               @ServerlessScalePlans << clusterserverlessscaleplan_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeClusterStorageAutoExpand请求参数结构体
+      class DescribeClusterStorageAutoExpandRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: <p>集群ID</p>
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DescribeClusterStorageAutoExpand返回参数结构体
+      class DescribeClusterStorageAutoExpandResponse < TencentCloud::Common::AbstractModel
+        # @param StorageUsageThreshold: <p>存储使用率阈值</p>
+        # @type StorageUsageThreshold: Integer
+        # @param ExpandStep: <p>扩容步长</p>
+        # @type ExpandStep: Integer
+        # @param MaxStorageLimit: <p>最大存储上限</p>
+        # @type MaxStorageLimit: Integer
+        # @param StorageAutoExpand: <p>是否开启：yes-开启，no-关闭</p>
+        # @type StorageAutoExpand: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :StorageUsageThreshold, :ExpandStep, :MaxStorageLimit, :StorageAutoExpand, :RequestId
+
+        def initialize(storageusagethreshold=nil, expandstep=nil, maxstoragelimit=nil, storageautoexpand=nil, requestid=nil)
+          @StorageUsageThreshold = storageusagethreshold
+          @ExpandStep = expandstep
+          @MaxStorageLimit = maxstoragelimit
+          @StorageAutoExpand = storageautoexpand
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @StorageUsageThreshold = params['StorageUsageThreshold']
+          @ExpandStep = params['ExpandStep']
+          @MaxStorageLimit = params['MaxStorageLimit']
+          @StorageAutoExpand = params['StorageAutoExpand']
           @RequestId = params['RequestId']
         end
       end

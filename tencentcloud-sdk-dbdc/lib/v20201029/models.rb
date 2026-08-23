@@ -3261,13 +3261,16 @@ module TencentCloud
         # @type NodeIds: Array
         # @param LoginSettings: <p>节点的登录参数</p>
         # @type LoginSettings: :class:`Tencentcloud::Dbdc.v20201029.models.LoginSettings`
+        # @param Force: <p>当节点中还有业务 Pod 在运行，默认会拦截从集群中移除节点的操作。如果该参数为 true，表示强制执行此操作。</p><p>枚举值：</p><ul><li>true： 是</li><li>false： 否</li></ul><p>默认值：false</p>
+        # @type Force: Boolean
 
-        attr_accessor :ClusterId, :NodeIds, :LoginSettings
+        attr_accessor :ClusterId, :NodeIds, :LoginSettings, :Force
 
-        def initialize(clusterid=nil, nodeids=nil, loginsettings=nil)
+        def initialize(clusterid=nil, nodeids=nil, loginsettings=nil, force=nil)
           @ClusterId = clusterid
           @NodeIds = nodeids
           @LoginSettings = loginsettings
+          @Force = force
         end
 
         def deserialize(params)
@@ -3277,6 +3280,7 @@ module TencentCloud
             @LoginSettings = LoginSettings.new
             @LoginSettings.deserialize(params['LoginSettings'])
           end
+          @Force = params['Force']
         end
       end
 
