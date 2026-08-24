@@ -1618,8 +1618,10 @@ module TencentCloud
         # @type CroppedWidth: Integer
         # @param CroppedHeight: <p>处理后图的高</p>
         # @type CroppedHeight: Integer
-        # @param CroppedImage: <p>图像处理后的jpg图片，base64格式</p>
+        # @param CroppedImage: <p>图像处理后的jpg图片，base64格式</p><p><strong><p><code>该字段后续不返回内容，请使用CroppedImageUrl</code></p></strong></p>
         # @type CroppedImage: String
+        # @param CroppedImageUrl: <p>图像处理后的jpg图片</p><p>参数格式：url格式</p>
+        # @type CroppedImageUrl: String
         # @param Position: <p>切图区域的4个角点坐标, 是个长度为8的数组<br>[0,1,2,3,4,5,6,7]</p><p>(0,1) 左上角坐标<br>(2,3) 右上角坐标<br>(4,5) 右下角坐标<br>(6,7) 左下角坐标</p>
         # @type Position: Array
         # @param Angle: <p>图像角度，AdjustOrientation =1时生效, 返回值如下  -1: 失败  0、90、180、270</p>
@@ -1628,12 +1630,13 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :CroppedWidth, :CroppedHeight, :CroppedImage, :Position, :Angle, :RequestId
+        attr_accessor :CroppedWidth, :CroppedHeight, :CroppedImage, :CroppedImageUrl, :Position, :Angle, :RequestId
 
-        def initialize(croppedwidth=nil, croppedheight=nil, croppedimage=nil, position=nil, angle=nil, requestid=nil)
+        def initialize(croppedwidth=nil, croppedheight=nil, croppedimage=nil, croppedimageurl=nil, position=nil, angle=nil, requestid=nil)
           @CroppedWidth = croppedwidth
           @CroppedHeight = croppedheight
           @CroppedImage = croppedimage
+          @CroppedImageUrl = croppedimageurl
           @Position = position
           @Angle = angle
           @RequestId = requestid
@@ -1643,6 +1646,7 @@ module TencentCloud
           @CroppedWidth = params['CroppedWidth']
           @CroppedHeight = params['CroppedHeight']
           @CroppedImage = params['CroppedImage']
+          @CroppedImageUrl = params['CroppedImageUrl']
           @Position = params['Position']
           @Angle = params['Angle']
           @RequestId = params['RequestId']

@@ -12997,6 +12997,46 @@ module TencentCloud
         end
       end
 
+      # EnableClientMsg请求参数结构体
+      class EnableClientMsgRequest < TencentCloud::Common::AbstractModel
+        # @param Status: 0表示关闭1表示开启
+        # @type Status: Integer
+        # @param Domain: 域名
+        # @type Domain: String
+
+        attr_accessor :Status, :Domain
+
+        def initialize(status=nil, domain=nil)
+          @Status = status
+          @Domain = domain
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @Domain = params['Domain']
+        end
+      end
+
+      # EnableClientMsg返回参数结构体
+      class EnableClientMsgResponse < TencentCloud::Common::AbstractModel
+        # @param RetCode: 0：成功，1：失败
+        # @type RetCode: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RetCode, :RequestId
+
+        def initialize(retcode=nil, requestid=nil)
+          @RetCode = retcode
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RetCode = params['RetCode']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # EnableLimitRuleItem
       class EnableLimitRuleItem < TencentCloud::Common::AbstractModel
         # @param LimitRuleId: 规则ID
@@ -20594,6 +20634,42 @@ module TencentCloud
 
         def deserialize(params)
           @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # QueryClientMsg请求参数结构体
+      class QueryClientMsgRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+
+        attr_accessor :Domain
+
+        def initialize(domain=nil)
+          @Domain = domain
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+        end
+      end
+
+      # QueryClientMsg返回参数结构体
+      class QueryClientMsgResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 0表示关闭，1表示开启
+        # @type Status: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :RequestId
+
+        def initialize(status=nil, requestid=nil)
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
           @RequestId = params['RequestId']
         end
       end

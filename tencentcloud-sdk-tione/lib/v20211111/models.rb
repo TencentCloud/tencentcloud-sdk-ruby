@@ -1020,10 +1020,12 @@ module TencentCloud
         # @type GatewayConfig: :class:`Tencentcloud::Tione.v20211111.models.GatewayConfig`
         # @param ResourceSupplyAttribute: <p>资源供应属性(潮汐/竞价等供应模式);空表示常规按量后付费</p>
         # @type ResourceSupplyAttribute: :class:`Tencentcloud::Tione.v20211111.models.ResourceSupplyAttribute`
+        # @param InferTemplateId: <p>推理模板 ID</p>
+        # @type InferTemplateId: String
 
-        attr_accessor :TiProjectId, :ServiceGroupId, :ServiceGroupName, :ServiceDescription, :ChargeType, :ResourceGroupId, :ModelInfo, :ImageInfo, :Env, :Resources, :InstanceType, :ScaleMode, :Replicas, :HorizontalPodAutoscaler, :LogEnable, :LogConfig, :AuthorizationEnable, :Tags, :NewVersion, :CronScaleJobs, :ScaleStrategy, :HybridBillingPrepaidReplicas, :CreateSource, :ModelHotUpdateEnable, :ScheduledAction, :VolumeMount, :ServiceLimit, :CallbackUrl, :ModelTurboEnable, :ServiceCategory, :Command, :ServiceEIP, :CommandBase64, :ServicePort, :DeployType, :InstancePerReplicas, :TerminationGracePeriodSeconds, :PreStopCommand, :GrpcEnable, :HealthProbe, :RollingUpdate, :Sidecar, :VolumeMounts, :SchedulingStrategy, :GatewayLogConfig, :GatewayConfig, :ResourceSupplyAttribute
+        attr_accessor :TiProjectId, :ServiceGroupId, :ServiceGroupName, :ServiceDescription, :ChargeType, :ResourceGroupId, :ModelInfo, :ImageInfo, :Env, :Resources, :InstanceType, :ScaleMode, :Replicas, :HorizontalPodAutoscaler, :LogEnable, :LogConfig, :AuthorizationEnable, :Tags, :NewVersion, :CronScaleJobs, :ScaleStrategy, :HybridBillingPrepaidReplicas, :CreateSource, :ModelHotUpdateEnable, :ScheduledAction, :VolumeMount, :ServiceLimit, :CallbackUrl, :ModelTurboEnable, :ServiceCategory, :Command, :ServiceEIP, :CommandBase64, :ServicePort, :DeployType, :InstancePerReplicas, :TerminationGracePeriodSeconds, :PreStopCommand, :GrpcEnable, :HealthProbe, :RollingUpdate, :Sidecar, :VolumeMounts, :SchedulingStrategy, :GatewayLogConfig, :GatewayConfig, :ResourceSupplyAttribute, :InferTemplateId
 
-        def initialize(tiprojectid=nil, servicegroupid=nil, servicegroupname=nil, servicedescription=nil, chargetype=nil, resourcegroupid=nil, modelinfo=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, scalemode=nil, replicas=nil, horizontalpodautoscaler=nil, logenable=nil, logconfig=nil, authorizationenable=nil, tags=nil, newversion=nil, cronscalejobs=nil, scalestrategy=nil, hybridbillingprepaidreplicas=nil, createsource=nil, modelhotupdateenable=nil, scheduledaction=nil, volumemount=nil, servicelimit=nil, callbackurl=nil, modelturboenable=nil, servicecategory=nil, command=nil, serviceeip=nil, commandbase64=nil, serviceport=nil, deploytype=nil, instanceperreplicas=nil, terminationgraceperiodseconds=nil, prestopcommand=nil, grpcenable=nil, healthprobe=nil, rollingupdate=nil, sidecar=nil, volumemounts=nil, schedulingstrategy=nil, gatewaylogconfig=nil, gatewayconfig=nil, resourcesupplyattribute=nil)
+        def initialize(tiprojectid=nil, servicegroupid=nil, servicegroupname=nil, servicedescription=nil, chargetype=nil, resourcegroupid=nil, modelinfo=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, scalemode=nil, replicas=nil, horizontalpodautoscaler=nil, logenable=nil, logconfig=nil, authorizationenable=nil, tags=nil, newversion=nil, cronscalejobs=nil, scalestrategy=nil, hybridbillingprepaidreplicas=nil, createsource=nil, modelhotupdateenable=nil, scheduledaction=nil, volumemount=nil, servicelimit=nil, callbackurl=nil, modelturboenable=nil, servicecategory=nil, command=nil, serviceeip=nil, commandbase64=nil, serviceport=nil, deploytype=nil, instanceperreplicas=nil, terminationgraceperiodseconds=nil, prestopcommand=nil, grpcenable=nil, healthprobe=nil, rollingupdate=nil, sidecar=nil, volumemounts=nil, schedulingstrategy=nil, gatewaylogconfig=nil, gatewayconfig=nil, resourcesupplyattribute=nil, infertemplateid=nil)
           @TiProjectId = tiprojectid
           @ServiceGroupId = servicegroupid
           @ServiceGroupName = servicegroupname
@@ -1071,6 +1073,7 @@ module TencentCloud
           @GatewayLogConfig = gatewaylogconfig
           @GatewayConfig = gatewayconfig
           @ResourceSupplyAttribute = resourcesupplyattribute
+          @InferTemplateId = infertemplateid
         end
 
         def deserialize(params)
@@ -1194,6 +1197,7 @@ module TencentCloud
             @ResourceSupplyAttribute = ResourceSupplyAttribute.new
             @ResourceSupplyAttribute.deserialize(params['ResourceSupplyAttribute'])
           end
+          @InferTemplateId = params['InferTemplateId']
         end
       end
 
@@ -7408,10 +7412,12 @@ module TencentCloud
         # @type SchedulingStrategy: String
         # @param TargetProjectId: <p>目标工作空间，不为0则进行迁移，源服务只允许在默认空间</p>
         # @type TargetProjectId: Integer
+        # @param InferTemplateId: <p>推理模板 ID，在内置大模型场景下使用</p>
+        # @type InferTemplateId: String
 
-        attr_accessor :ServiceId, :TiProjectId, :ModelInfo, :ImageInfo, :Env, :Resources, :InstanceType, :ScaleMode, :Replicas, :HorizontalPodAutoscaler, :LogEnable, :LogConfig, :ServiceAction, :ServiceDescription, :ScaleStrategy, :CronScaleJobs, :HybridBillingPrepaidReplicas, :ModelHotUpdateEnable, :ScheduledAction, :ServiceLimit, :VolumeMount, :ModelTurboEnable, :Command, :ServiceEIP, :CommandBase64, :ServicePort, :InstancePerReplicas, :TerminationGracePeriodSeconds, :PreStopCommand, :GrpcEnable, :HealthProbe, :RollingUpdate, :Sidecar, :ResourceGroupId, :VolumeMounts, :SchedulingStrategy, :TargetProjectId
+        attr_accessor :ServiceId, :TiProjectId, :ModelInfo, :ImageInfo, :Env, :Resources, :InstanceType, :ScaleMode, :Replicas, :HorizontalPodAutoscaler, :LogEnable, :LogConfig, :ServiceAction, :ServiceDescription, :ScaleStrategy, :CronScaleJobs, :HybridBillingPrepaidReplicas, :ModelHotUpdateEnable, :ScheduledAction, :ServiceLimit, :VolumeMount, :ModelTurboEnable, :Command, :ServiceEIP, :CommandBase64, :ServicePort, :InstancePerReplicas, :TerminationGracePeriodSeconds, :PreStopCommand, :GrpcEnable, :HealthProbe, :RollingUpdate, :Sidecar, :ResourceGroupId, :VolumeMounts, :SchedulingStrategy, :TargetProjectId, :InferTemplateId
 
-        def initialize(serviceid=nil, tiprojectid=nil, modelinfo=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, scalemode=nil, replicas=nil, horizontalpodautoscaler=nil, logenable=nil, logconfig=nil, serviceaction=nil, servicedescription=nil, scalestrategy=nil, cronscalejobs=nil, hybridbillingprepaidreplicas=nil, modelhotupdateenable=nil, scheduledaction=nil, servicelimit=nil, volumemount=nil, modelturboenable=nil, command=nil, serviceeip=nil, commandbase64=nil, serviceport=nil, instanceperreplicas=nil, terminationgraceperiodseconds=nil, prestopcommand=nil, grpcenable=nil, healthprobe=nil, rollingupdate=nil, sidecar=nil, resourcegroupid=nil, volumemounts=nil, schedulingstrategy=nil, targetprojectid=nil)
+        def initialize(serviceid=nil, tiprojectid=nil, modelinfo=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, scalemode=nil, replicas=nil, horizontalpodautoscaler=nil, logenable=nil, logconfig=nil, serviceaction=nil, servicedescription=nil, scalestrategy=nil, cronscalejobs=nil, hybridbillingprepaidreplicas=nil, modelhotupdateenable=nil, scheduledaction=nil, servicelimit=nil, volumemount=nil, modelturboenable=nil, command=nil, serviceeip=nil, commandbase64=nil, serviceport=nil, instanceperreplicas=nil, terminationgraceperiodseconds=nil, prestopcommand=nil, grpcenable=nil, healthprobe=nil, rollingupdate=nil, sidecar=nil, resourcegroupid=nil, volumemounts=nil, schedulingstrategy=nil, targetprojectid=nil, infertemplateid=nil)
           @ServiceId = serviceid
           @TiProjectId = tiprojectid
           @ModelInfo = modelinfo
@@ -7449,6 +7455,7 @@ module TencentCloud
           @VolumeMounts = volumemounts
           @SchedulingStrategy = schedulingstrategy
           @TargetProjectId = targetprojectid
+          @InferTemplateId = infertemplateid
         end
 
         def deserialize(params)
@@ -7546,6 +7553,7 @@ module TencentCloud
           end
           @SchedulingStrategy = params['SchedulingStrategy']
           @TargetProjectId = params['TargetProjectId']
+          @InferTemplateId = params['InferTemplateId']
         end
       end
 
@@ -10537,15 +10545,17 @@ module TencentCloud
         # @type SchedulingStrategy: String
         # @param NodeCount: <p>服务实际运行的节点数</p>
         # @type NodeCount: Integer
+        # @param InferTemplateId: <p>推理模板Id</p><p>参数格式：推理模板 ID</p>
+        # @type InferTemplateId: String
 
-        attr_accessor :Replicas, :ImageInfo, :Env, :Resources, :InstanceType, :ModelInfo, :LogEnable, :LogConfig, :AuthorizationEnable, :HorizontalPodAutoscaler, :Status, :Weight, :ResourceTotal, :OldReplicas, :HybridBillingPrepaidReplicas, :OldHybridBillingPrepaidReplicas, :ModelHotUpdateEnable, :InstanceAlias, :ScaleMode, :CronScaleJobs, :ScaleStrategy, :ScheduledAction, :PodList, :Pods, :PodInfos, :ServiceLimit, :ModelTurboEnable, :VolumeMount, :InferCodeInfo, :Command, :ServiceEIP, :ServicePort, :TerminationGracePeriodSeconds, :PreStopCommand, :GrpcEnable, :HealthProbe, :RollingUpdate, :InstancePerReplicas, :VolumeMounts, :SchedulingStrategy, :NodeCount
+        attr_accessor :Replicas, :ImageInfo, :Env, :Resources, :InstanceType, :ModelInfo, :LogEnable, :LogConfig, :AuthorizationEnable, :HorizontalPodAutoscaler, :Status, :Weight, :ResourceTotal, :OldReplicas, :HybridBillingPrepaidReplicas, :OldHybridBillingPrepaidReplicas, :ModelHotUpdateEnable, :InstanceAlias, :ScaleMode, :CronScaleJobs, :ScaleStrategy, :ScheduledAction, :PodList, :Pods, :PodInfos, :ServiceLimit, :ModelTurboEnable, :VolumeMount, :InferCodeInfo, :Command, :ServiceEIP, :ServicePort, :TerminationGracePeriodSeconds, :PreStopCommand, :GrpcEnable, :HealthProbe, :RollingUpdate, :InstancePerReplicas, :VolumeMounts, :SchedulingStrategy, :NodeCount, :InferTemplateId
         extend Gem::Deprecate
         deprecate :PodList, :none, 2026, 8
         deprecate :PodList=, :none, 2026, 8
         deprecate :Pods, :none, 2026, 8
         deprecate :Pods=, :none, 2026, 8
 
-        def initialize(replicas=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, modelinfo=nil, logenable=nil, logconfig=nil, authorizationenable=nil, horizontalpodautoscaler=nil, status=nil, weight=nil, resourcetotal=nil, oldreplicas=nil, hybridbillingprepaidreplicas=nil, oldhybridbillingprepaidreplicas=nil, modelhotupdateenable=nil, instancealias=nil, scalemode=nil, cronscalejobs=nil, scalestrategy=nil, scheduledaction=nil, podlist=nil, pods=nil, podinfos=nil, servicelimit=nil, modelturboenable=nil, volumemount=nil, infercodeinfo=nil, command=nil, serviceeip=nil, serviceport=nil, terminationgraceperiodseconds=nil, prestopcommand=nil, grpcenable=nil, healthprobe=nil, rollingupdate=nil, instanceperreplicas=nil, volumemounts=nil, schedulingstrategy=nil, nodecount=nil)
+        def initialize(replicas=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, modelinfo=nil, logenable=nil, logconfig=nil, authorizationenable=nil, horizontalpodautoscaler=nil, status=nil, weight=nil, resourcetotal=nil, oldreplicas=nil, hybridbillingprepaidreplicas=nil, oldhybridbillingprepaidreplicas=nil, modelhotupdateenable=nil, instancealias=nil, scalemode=nil, cronscalejobs=nil, scalestrategy=nil, scheduledaction=nil, podlist=nil, pods=nil, podinfos=nil, servicelimit=nil, modelturboenable=nil, volumemount=nil, infercodeinfo=nil, command=nil, serviceeip=nil, serviceport=nil, terminationgraceperiodseconds=nil, prestopcommand=nil, grpcenable=nil, healthprobe=nil, rollingupdate=nil, instanceperreplicas=nil, volumemounts=nil, schedulingstrategy=nil, nodecount=nil, infertemplateid=nil)
           @Replicas = replicas
           @ImageInfo = imageinfo
           @Env = env
@@ -10587,6 +10597,7 @@ module TencentCloud
           @VolumeMounts = volumemounts
           @SchedulingStrategy = schedulingstrategy
           @NodeCount = nodecount
+          @InferTemplateId = infertemplateid
         end
 
         def deserialize(params)
@@ -10704,6 +10715,7 @@ module TencentCloud
           end
           @SchedulingStrategy = params['SchedulingStrategy']
           @NodeCount = params['NodeCount']
+          @InferTemplateId = params['InferTemplateId']
         end
       end
 

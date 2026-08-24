@@ -1003,6 +1003,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建一个 TWeSee 人员，可关联已导入的人脸。
+
+        # @param request: Request instance for CreateTWeSeePerson.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::CreateTWeSeePersonRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::CreateTWeSeePersonResponse`
+        def CreateTWeSeePerson(request)
+          body = send_request('CreateTWeSeePerson', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateTWeSeePersonResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 开通 TWeSee 后付费服务
 
         # @param request: Request instance for CreateTWeSeePostPaidService.
@@ -1565,6 +1589,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteTWeSeeCallbackResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除指定 TWeSee 人脸。
+
+        # @param request: Request instance for DeleteTWeSeeFace.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DeleteTWeSeeFaceRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DeleteTWeSeeFaceResponse`
+        def DeleteTWeSeeFace(request)
+          body = send_request('DeleteTWeSeeFace', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteTWeSeeFaceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除指定 TWeSee 人员，可选择同时删除其关联人脸。
+
+        # @param request: Request instance for DeleteTWeSeePerson.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DeleteTWeSeePersonRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DeleteTWeSeePersonResponse`
+        def DeleteTWeSeePerson(request)
+          body = send_request('DeleteTWeSeePerson', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteTWeSeePersonResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -3115,6 +3187,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询指定 TWeSee 人脸详情。
+
+        # @param request: Request instance for DescribeTWeSeeFace.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DescribeTWeSeeFaceRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DescribeTWeSeeFaceResponse`
+        def DescribeTWeSeeFace(request)
+          body = send_request('DescribeTWeSeeFace', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTWeSeeFaceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询指定 TWeSee 人员详情及其代表人脸。
+
+        # @param request: Request instance for DescribeTWeSeePerson.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DescribeTWeSeePersonRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DescribeTWeSeePersonResponse`
+        def DescribeTWeSeePerson(request)
+          body = send_request('DescribeTWeSeePerson', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTWeSeePersonResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询 TWeSee 后付费服务
 
         # @param request: Request instance for DescribeTWeSeePostPaidService.
@@ -4149,6 +4269,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 检测图片中的人脸，并返回可用于人员管理的人脸元数据。
+
+        # @param request: Request instance for ImportTWeSeeFaces.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::ImportTWeSeeFacesRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::ImportTWeSeeFacesResponse`
+        def ImportTWeSeeFaces(request)
+          body = send_request('ImportTWeSeeFaces', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ImportTWeSeeFacesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 继承云存用户
 
         # @param request: Request instance for InheritCloudStorageUser.
@@ -4495,6 +4639,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ListTWeSeeCallbackResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询指定设备的 TWeSee 人员列表。
+
+        # @param request: Request instance for ListTWeSeePersons.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::ListTWeSeePersonsRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::ListTWeSeePersonsResponse`
+        def ListTWeSeePersons(request)
+          body = send_request('ListTWeSeePersons', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListTWeSeePersonsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -4927,6 +5095,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyTWeSeeConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 将 TWeSee 人脸关联到指定人员，或修改其代表人脸状态。
+
+        # @param request: Request instance for ModifyTWeSeeFace.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::ModifyTWeSeeFaceRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::ModifyTWeSeeFaceResponse`
+        def ModifyTWeSeeFace(request)
+          body = send_request('ModifyTWeSeeFace', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyTWeSeeFaceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改指定 TWeSee 人员的名称或记忆状态。Name、IsRemembered 至少传入一项，不支持取消持久记忆。
+
+        # @param request: Request instance for ModifyTWeSeePerson.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::ModifyTWeSeePersonRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::ModifyTWeSeePersonResponse`
+        def ModifyTWeSeePerson(request)
+          body = send_request('ModifyTWeSeePerson', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyTWeSeePersonResponse.new
             model.deserialize(response['Response'])
             model
           else

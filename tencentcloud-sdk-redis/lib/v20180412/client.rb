@@ -1157,6 +1157,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询指定实例当前密码复杂度配置
+
+        # @param request: Request instance for DescribeInstancePasswordPolicy.
+        # @type request: :class:`Tencentcloud::redis::V20180412::DescribeInstancePasswordPolicyRequest`
+        # @rtype: :class:`Tencentcloud::redis::V20180412::DescribeInstancePasswordPolicyResponse`
+        def DescribeInstancePasswordPolicy(request)
+          body = send_request('DescribeInstancePasswordPolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInstancePasswordPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeInstanceSecurityGroup）用于查询实例安全组信息。
 
         # @param request: Request instance for DescribeInstanceSecurityGroup.

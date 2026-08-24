@@ -49,6 +49,46 @@ module TencentCloud
         end
       end
 
+      # AcquireDeploymentToken请求参数结构体
+      class AcquireDeploymentTokenRequest < TencentCloud::Common::AbstractModel
+        # @param DeploymentId: <p>目标 ACTIVE Deployment 的稳定 ID。</p>
+        # @type DeploymentId: String
+
+        attr_accessor :DeploymentId
+
+        def initialize(deploymentid=nil)
+          @DeploymentId = deploymentid
+        end
+
+        def deserialize(params)
+          @DeploymentId = params['DeploymentId']
+        end
+      end
+
+      # AcquireDeploymentToken返回参数结构体
+      class AcquireDeploymentTokenResponse < TencentCloud::Common::AbstractModel
+        # @param Token: <p>只用于目标 Deployment 数据面入口的短期 bearer Token，格式为 dpt_ 加非空、无 padding 的 Base64URL opaque 后缀。</p>
+        # @type Token: String
+        # @param ExpiresAt: <p>Token 的绝对过期时间，UTC、秒精度 RFC3339 格式。</p>
+        # @type ExpiresAt: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Token, :ExpiresAt, :RequestId
+
+        def initialize(token=nil, expiresat=nil, requestid=nil)
+          @Token = token
+          @ExpiresAt = expiresat
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Token = params['Token']
+          @ExpiresAt = params['ExpiresAt']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AcquireSandboxInstanceToken请求参数结构体
       class AcquireSandboxInstanceTokenRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: <p>沙箱实例ID，生成的访问Token将仅可用于访问此沙箱实例</p>
@@ -90,6 +130,26 @@ module TencentCloud
           @ExpiresAt = params['ExpiresAt']
           @TrafficToken = params['TrafficToken']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # Deployment 对 Sandbox Instance 的亲和配置。
+      class AffinityConfiguration < TencentCloud::Common::AbstractModel
+        # @param Mode: <p>Affinity 模式。</p><p>枚举值：</p><ul><li>BEST_EFFORT：优先复用原 Instance，不可用时允许改选。</li><li>STRICT：只复用原 Instance，不可用时失败且不改选。</li><li>EXCLUSIVE：一个 Affinity ID 独占一个 Instance，不能迁移。</li></ul><p>缺失或空字符串表示关闭 Affinity。</p>
+        # @type Mode: String
+        # @param HeaderName: <p>请求和响应使用的 Affinity Header 名称。必须符合 HTTP field-name token 语法，长度为 1..128 个 ASCII 字节，且不能使用平台保留 Header。</p>
+        # @type HeaderName: String
+
+        attr_accessor :Mode, :HeaderName
+
+        def initialize(mode=nil, headername=nil)
+          @Mode = mode
+          @HeaderName = headername
+        end
+
+        def deserialize(params)
+          @Mode = params['Mode']
+          @HeaderName = params['HeaderName']
         end
       end
 
@@ -150,6 +210,25 @@ module TencentCloud
         def deserialize(params)
           @FileSystemId = params['FileSystemId']
           @Path = params['Path']
+        end
+      end
+
+      # 桌面电脑环境类沙箱配置
+      class ComputerConfiguration < TencentCloud::Common::AbstractModel
+        # @param WAAConfiguration: <p>waa沙箱工具配置</p>
+        # @type WAAConfiguration: :class:`Tencentcloud::Ags.v20250920.models.WAAConfiguration`
+
+        attr_accessor :WAAConfiguration
+
+        def initialize(waaconfiguration=nil)
+          @WAAConfiguration = waaconfiguration
+        end
+
+        def deserialize(params)
+          unless params['WAAConfiguration'].nil?
+            @WAAConfiguration = WAAConfiguration.new
+            @WAAConfiguration.deserialize(params['WAAConfiguration'])
+          end
         end
       end
 
@@ -217,6 +296,81 @@ module TencentCloud
           @Name = params['Name']
           @APIKey = params['APIKey']
           @KeyId = params['KeyId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateDeployment请求参数结构体
+      class CreateDeploymentRequest < TencentCloud::Common::AbstractModel
+        # @param DeploymentName: <p>唯一的 Deployment 名称，必须符合 DNS-1123 命名规范，创建后不可修改。</p>
+        # @type DeploymentName: String
+        # @param ToolId: <p>用于关联 Sandbox Tool 的标识，格式为 sdt- 加 8 位小写 base36 字符。</p>
+        # @type ToolId: String
+        # @param ScalingConfiguration: <p>伸缩配置；省略的成员由服务端补全默认值。</p>
+        # @type ScalingConfiguration: :class:`Tencentcloud::Ags.v20250920.models.ScalingConfiguration`
+        # @param LifecycleConfiguration: <p>空闲生命周期配置；省略的成员由服务端补全默认值。</p>
+        # @type LifecycleConfiguration: :class:`Tencentcloud::Ags.v20250920.models.LifecycleConfiguration`
+        # @param AffinityConfiguration: <p>Affinity 配置；省略或空 Mode 表示不启用。</p>
+        # @type AffinityConfiguration: :class:`Tencentcloud::Ags.v20250920.models.AffinityConfiguration`
+        # @param Tags: <p>标签</p>
+        # @type Tags: Array
+
+        attr_accessor :DeploymentName, :ToolId, :ScalingConfiguration, :LifecycleConfiguration, :AffinityConfiguration, :Tags
+
+        def initialize(deploymentname=nil, toolid=nil, scalingconfiguration=nil, lifecycleconfiguration=nil, affinityconfiguration=nil, tags=nil)
+          @DeploymentName = deploymentname
+          @ToolId = toolid
+          @ScalingConfiguration = scalingconfiguration
+          @LifecycleConfiguration = lifecycleconfiguration
+          @AffinityConfiguration = affinityconfiguration
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @DeploymentName = params['DeploymentName']
+          @ToolId = params['ToolId']
+          unless params['ScalingConfiguration'].nil?
+            @ScalingConfiguration = ScalingConfiguration.new
+            @ScalingConfiguration.deserialize(params['ScalingConfiguration'])
+          end
+          unless params['LifecycleConfiguration'].nil?
+            @LifecycleConfiguration = LifecycleConfiguration.new
+            @LifecycleConfiguration.deserialize(params['LifecycleConfiguration'])
+          end
+          unless params['AffinityConfiguration'].nil?
+            @AffinityConfiguration = AffinityConfiguration.new
+            @AffinityConfiguration.deserialize(params['AffinityConfiguration'])
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+        end
+      end
+
+      # CreateDeployment返回参数结构体
+      class CreateDeploymentResponse < TencentCloud::Common::AbstractModel
+        # @param Deployment: <p>已创建并完成默认值物化的 Deployment。</p>
+        # @type Deployment: :class:`Tencentcloud::Ags.v20250920.models.Deployment`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Deployment, :RequestId
+
+        def initialize(deployment=nil, requestid=nil)
+          @Deployment = deployment
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Deployment'].nil?
+            @Deployment = Deployment.new
+            @Deployment.deserialize(params['Deployment'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -574,6 +728,38 @@ module TencentCloud
         end
       end
 
+      # DeleteDeployment请求参数结构体
+      class DeleteDeploymentRequest < TencentCloud::Common::AbstractModel
+        # @param DeploymentId: <p>待删除的 Deployment ID。</p>
+        # @type DeploymentId: String
+
+        attr_accessor :DeploymentId
+
+        def initialize(deploymentid=nil)
+          @DeploymentId = deploymentid
+        end
+
+        def deserialize(params)
+          @DeploymentId = params['DeploymentId']
+        end
+      end
+
+      # DeleteDeployment返回参数结构体
+      class DeleteDeploymentResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteSandboxTool请求参数结构体
       class DeleteSandboxToolRequest < TencentCloud::Common::AbstractModel
         # @param ToolId: 沙箱工具ID
@@ -603,6 +789,78 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # Deployment 稳定访问入口定义
+      class Deployment < TencentCloud::Common::AbstractModel
+        # @param DeploymentId: <p>Deployment 稳定 ID，格式为 dpl- 加 8 位小写 base36 字符。</p>
+        # @type DeploymentId: String
+        # @param DeploymentName: <p>唯一且创建后不可修改的名称，必须符合 DNS-1123 命名规范。</p>
+        # @type DeploymentName: String
+        # @param ToolId: <p>用于关联 Sandbox Tool 的标识，格式为 sdt- 加 8 位小写 base36 字符。</p>
+        # @type ToolId: String
+        # @param ScalingConfiguration: <p>完整的活跃容量配置。</p>
+        # @type ScalingConfiguration: :class:`Tencentcloud::Ags.v20250920.models.ScalingConfiguration`
+        # @param LifecycleConfiguration: <p>完整的空闲生命周期配置。</p>
+        # @type LifecycleConfiguration: :class:`Tencentcloud::Ags.v20250920.models.LifecycleConfiguration`
+        # @param AffinityConfiguration: <p>可选 Affinity 配置；未启用时省略。</p>
+        # @type AffinityConfiguration: :class:`Tencentcloud::Ags.v20250920.models.AffinityConfiguration`
+        # @param Status: <p>Deployment 控制面状态。</p><p>枚举值：</p><ul><li>ACTIVE：入口可用。</li><li>DELETING：入口已关闭并正在异步删除。</li><li>DELETE_FAILED：最近一次异步删除失败，可再次调用 DeleteDeployment。</li></ul>
+        # @type Status: String
+        # @param StatusReason: <p>DELETE_FAILED 状态下 1..1024 个 UTF-8 字节的安全失败摘要，格式为 {Code}[.{SubCode}]: {Message}；其他状态省略。</p>
+        # @type StatusReason: String
+        # @param CreatedTime: <p>创建时间，UTC、秒精度 RFC3339 格式。</p>
+        # @type CreatedTime: String
+        # @param UpdatedTime: <p>最近一次成功公共配置写入或 Deployment 状态迁移时间，UTC、秒精度 RFC3339 格式。</p>
+        # @type UpdatedTime: String
+        # @param Tags: <p>标签</p>
+        # @type Tags: Array
+
+        attr_accessor :DeploymentId, :DeploymentName, :ToolId, :ScalingConfiguration, :LifecycleConfiguration, :AffinityConfiguration, :Status, :StatusReason, :CreatedTime, :UpdatedTime, :Tags
+
+        def initialize(deploymentid=nil, deploymentname=nil, toolid=nil, scalingconfiguration=nil, lifecycleconfiguration=nil, affinityconfiguration=nil, status=nil, statusreason=nil, createdtime=nil, updatedtime=nil, tags=nil)
+          @DeploymentId = deploymentid
+          @DeploymentName = deploymentname
+          @ToolId = toolid
+          @ScalingConfiguration = scalingconfiguration
+          @LifecycleConfiguration = lifecycleconfiguration
+          @AffinityConfiguration = affinityconfiguration
+          @Status = status
+          @StatusReason = statusreason
+          @CreatedTime = createdtime
+          @UpdatedTime = updatedtime
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @DeploymentId = params['DeploymentId']
+          @DeploymentName = params['DeploymentName']
+          @ToolId = params['ToolId']
+          unless params['ScalingConfiguration'].nil?
+            @ScalingConfiguration = ScalingConfiguration.new
+            @ScalingConfiguration.deserialize(params['ScalingConfiguration'])
+          end
+          unless params['LifecycleConfiguration'].nil?
+            @LifecycleConfiguration = LifecycleConfiguration.new
+            @LifecycleConfiguration.deserialize(params['LifecycleConfiguration'])
+          end
+          unless params['AffinityConfiguration'].nil?
+            @AffinityConfiguration = AffinityConfiguration.new
+            @AffinityConfiguration.deserialize(params['AffinityConfiguration'])
+          end
+          @Status = params['Status']
+          @StatusReason = params['StatusReason']
+          @CreatedTime = params['CreatedTime']
+          @UpdatedTime = params['UpdatedTime']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -644,6 +902,107 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDeploymentList请求参数结构体
+      class DescribeDeploymentListRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: <p>分页偏移量，默认 0，必须大于等于 0。</p>
+        # @type Offset: Integer
+        # @param Limit: <p>分页返回数量，默认 20，范围 1..200。</p>
+        # @type Limit: Integer
+        # @param Filters: <p>查询过滤条件。</p><p>Filter.Name 枚举值：</p><ul><li>deployment-id：按 DeploymentId 精确匹配</li><li>deployment-name：按 DeploymentName 精确匹配</li><li>deployment-name-like：按 DeploymentName 进行普通文本包含匹配，%、_ 等字符没有通配语义</li><li>tool-id：按 ToolId 精确匹配</li><li>status：按 Deployment 状态精确匹配，支持 ACTIVE、DELETING、DELETE_FAILED</li></ul><p>所有匹配均区分大小写。不同 Filter 之间为 AND，同一 Filter 的 Values 之间为 OR。</p>
+        # @type Filters: Array
+
+        attr_accessor :Offset, :Limit, :Filters
+
+        def initialize(offset=nil, limit=nil, filters=nil)
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeDeploymentList返回参数结构体
+      class DescribeDeploymentListResponse < TencentCloud::Common::AbstractModel
+        # @param DeploymentSet: <p>当前页完整 Deployment；无匹配时为空数组。</p>
+        # @type DeploymentSet: Array
+        # @param TotalCount: <p>应用 Filters 后、分页前的结果总数。</p>
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DeploymentSet, :TotalCount, :RequestId
+
+        def initialize(deploymentset=nil, totalcount=nil, requestid=nil)
+          @DeploymentSet = deploymentset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DeploymentSet'].nil?
+            @DeploymentSet = []
+            params['DeploymentSet'].each do |i|
+              deployment_tmp = Deployment.new
+              deployment_tmp.deserialize(i)
+              @DeploymentSet << deployment_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDeployment请求参数结构体
+      class DescribeDeploymentRequest < TencentCloud::Common::AbstractModel
+        # @param DeploymentId: <p>待查询的 Deployment ID。</p>
+        # @type DeploymentId: String
+
+        attr_accessor :DeploymentId
+
+        def initialize(deploymentid=nil)
+          @DeploymentId = deploymentid
+        end
+
+        def deserialize(params)
+          @DeploymentId = params['DeploymentId']
+        end
+      end
+
+      # DescribeDeployment返回参数结构体
+      class DescribeDeploymentResponse < TencentCloud::Common::AbstractModel
+        # @param Deployment: <p>完整 Deployment。</p>
+        # @type Deployment: :class:`Tencentcloud::Ags.v20250920.models.Deployment`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Deployment, :RequestId
+
+        def initialize(deployment=nil, requestid=nil)
+          @Deployment = deployment
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Deployment'].nil?
+            @Deployment = Deployment.new
+            @Deployment.deserialize(params['Deployment'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -936,6 +1295,26 @@ module TencentCloud
         end
       end
 
+      # Deployment 管理的 Sandbox Instance 的空闲生命周期配置
+      class LifecycleConfiguration < TencentCloud::Common::AbstractModel
+        # @param IdleTimeoutSeconds: <p>Sandbox Instance 没有活跃 Deployment 请求或连接后进入 IdleAction 的秒数，必须大于等于 30。</p>
+        # @type IdleTimeoutSeconds: Integer
+        # @param IdleAction: <p>空闲处理动作。</p><p>枚举值：</p><ul><li>STOP：停止并释放 Sandbox Instance。</li><li>PAUSE：暂停并保留 Sandbox Instance 状态。</li></ul>
+        # @type IdleAction: String
+
+        attr_accessor :IdleTimeoutSeconds, :IdleAction
+
+        def initialize(idletimeoutseconds=nil, idleaction=nil)
+          @IdleTimeoutSeconds = idletimeoutseconds
+          @IdleAction = idleaction
+        end
+
+        def deserialize(params)
+          @IdleTimeoutSeconds = params['IdleTimeoutSeconds']
+          @IdleAction = params['IdleAction']
+        end
+      end
+
       # 沙箱工具日志采集相关配置
       class LogConfiguration < TencentCloud::Common::AbstractModel
         # @param CLSConfig: <p>日志推送CLS的配置。</p>
@@ -996,6 +1375,70 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @Value = params['Value']
+        end
+      end
+
+      # ModifyDeployment请求参数结构体
+      class ModifyDeploymentRequest < TencentCloud::Common::AbstractModel
+        # @param DeploymentId: <p>待修改的 Deployment ID。</p>
+        # @type DeploymentId: String
+        # @param ScalingConfiguration: <p>完整替换伸缩配置；提供时必须包含全部三个成员。</p>
+        # @type ScalingConfiguration: :class:`Tencentcloud::Ags.v20250920.models.ScalingConfiguration`
+        # @param LifecycleConfiguration: <p>完整替换生命周期配置；提供时必须包含全部两个成员。</p>
+        # @type LifecycleConfiguration: :class:`Tencentcloud::Ags.v20250920.models.LifecycleConfiguration`
+        # @param Tags: <p>标签</p>
+        # @type Tags: Array
+
+        attr_accessor :DeploymentId, :ScalingConfiguration, :LifecycleConfiguration, :Tags
+
+        def initialize(deploymentid=nil, scalingconfiguration=nil, lifecycleconfiguration=nil, tags=nil)
+          @DeploymentId = deploymentid
+          @ScalingConfiguration = scalingconfiguration
+          @LifecycleConfiguration = lifecycleconfiguration
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @DeploymentId = params['DeploymentId']
+          unless params['ScalingConfiguration'].nil?
+            @ScalingConfiguration = ScalingConfiguration.new
+            @ScalingConfiguration.deserialize(params['ScalingConfiguration'])
+          end
+          unless params['LifecycleConfiguration'].nil?
+            @LifecycleConfiguration = LifecycleConfiguration.new
+            @LifecycleConfiguration.deserialize(params['LifecycleConfiguration'])
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyDeployment返回参数结构体
+      class ModifyDeploymentResponse < TencentCloud::Common::AbstractModel
+        # @param Deployment: <p>修改后的完整 Deployment。</p>
+        # @type Deployment: :class:`Tencentcloud::Ags.v20250920.models.Deployment`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Deployment, :RequestId
+
+        def initialize(deployment=nil, requestid=nil)
+          @Deployment = deployment
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Deployment'].nil?
+            @Deployment = Deployment.new
+            @Deployment.deserialize(params['Deployment'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -1240,6 +1683,8 @@ module TencentCloud
         # @type MountOptions: Array
         # @param CustomConfiguration: <p>沙箱实例自定义配置</p>
         # @type CustomConfiguration: :class:`Tencentcloud::Ags.v20250920.models.CustomConfigurationDetail`
+        # @param ComputerConfiguration: <p>桌面电脑环境类沙箱配置</p>
+        # @type ComputerConfiguration: :class:`Tencentcloud::Ags.v20250920.models.ComputerConfiguration`
         # @param NetworkMode: <p>网络模式</p><p>枚举值：</p><ul><li>PUBLIC： 公网访问</li><li>SANDBOX： 无网络</li><li>INTERNAL_SERVICE： 腾讯云内部公共服务</li></ul><p>可以覆盖工具级别的网络配置。但如果一个工具本身就不支持 VPC 网络，那么即便在实例设置里选了 VPC 模式，也是无效的</p>
         # @type NetworkMode: String
         # @param Metadata: <p>沙箱实例元数据</p>
@@ -1247,9 +1692,9 @@ module TencentCloud
         # @param AuthMode: <p>沙箱访问认证模式</p><p>枚举值：</p><ul><li>DEFAULT： 默认，即 TOKEN 认证</li><li>TOKEN： Token认证，即所有端口访问都需携带TOKEN</li><li>NONE： 免认证，即所有端口访问无需携带TOKEN</li><li>PUBLIC： 公开模式，即ENVD管理端口（49983）访问需携带TOKEN，其他端口无需携带TOKEN</li></ul><p>默认值：DEFAULT</p>
         # @type AuthMode: String
 
-        attr_accessor :InstanceId, :ToolId, :ToolName, :Status, :Persistent, :TimeoutSeconds, :ExpiresAt, :StopReason, :CreateTime, :UpdateTime, :MountOptions, :CustomConfiguration, :NetworkMode, :Metadata, :AuthMode
+        attr_accessor :InstanceId, :ToolId, :ToolName, :Status, :Persistent, :TimeoutSeconds, :ExpiresAt, :StopReason, :CreateTime, :UpdateTime, :MountOptions, :CustomConfiguration, :ComputerConfiguration, :NetworkMode, :Metadata, :AuthMode
 
-        def initialize(instanceid=nil, toolid=nil, toolname=nil, status=nil, persistent=nil, timeoutseconds=nil, expiresat=nil, stopreason=nil, createtime=nil, updatetime=nil, mountoptions=nil, customconfiguration=nil, networkmode=nil, metadata=nil, authmode=nil)
+        def initialize(instanceid=nil, toolid=nil, toolname=nil, status=nil, persistent=nil, timeoutseconds=nil, expiresat=nil, stopreason=nil, createtime=nil, updatetime=nil, mountoptions=nil, customconfiguration=nil, computerconfiguration=nil, networkmode=nil, metadata=nil, authmode=nil)
           @InstanceId = instanceid
           @ToolId = toolid
           @ToolName = toolname
@@ -1262,6 +1707,7 @@ module TencentCloud
           @UpdateTime = updatetime
           @MountOptions = mountoptions
           @CustomConfiguration = customconfiguration
+          @ComputerConfiguration = computerconfiguration
           @NetworkMode = networkmode
           @Metadata = metadata
           @AuthMode = authmode
@@ -1289,6 +1735,10 @@ module TencentCloud
           unless params['CustomConfiguration'].nil?
             @CustomConfiguration = CustomConfigurationDetail.new
             @CustomConfiguration.deserialize(params['CustomConfiguration'])
+          end
+          unless params['ComputerConfiguration'].nil?
+            @ComputerConfiguration = ComputerConfiguration.new
+            @ComputerConfiguration.deserialize(params['ComputerConfiguration'])
           end
           @NetworkMode = params['NetworkMode']
           unless params['Metadata'].nil?
@@ -1335,12 +1785,14 @@ module TencentCloud
         # @type CustomConfiguration: :class:`Tencentcloud::Ags.v20250920.models.CustomConfigurationDetail`
         # @param LogConfiguration: <p>沙箱工具日志推送相关配置</p>
         # @type LogConfiguration: :class:`Tencentcloud::Ags.v20250920.models.LogConfiguration`
+        # @param ComputerConfiguration: <p>桌面电脑环境类沙箱配置</p>
+        # @type ComputerConfiguration: :class:`Tencentcloud::Ags.v20250920.models.ComputerConfiguration`
         # @param StatusReason: <p>用于说明沙箱工具处于该状态的原因</p>
         # @type StatusReason: String
 
-        attr_accessor :ToolId, :ToolName, :ToolType, :Status, :Description, :Persistent, :DefaultTimeoutSeconds, :NetworkConfiguration, :Tags, :CreateTime, :UpdateTime, :RoleArn, :StorageMounts, :CustomConfiguration, :LogConfiguration, :StatusReason
+        attr_accessor :ToolId, :ToolName, :ToolType, :Status, :Description, :Persistent, :DefaultTimeoutSeconds, :NetworkConfiguration, :Tags, :CreateTime, :UpdateTime, :RoleArn, :StorageMounts, :CustomConfiguration, :LogConfiguration, :ComputerConfiguration, :StatusReason
 
-        def initialize(toolid=nil, toolname=nil, tooltype=nil, status=nil, description=nil, persistent=nil, defaulttimeoutseconds=nil, networkconfiguration=nil, tags=nil, createtime=nil, updatetime=nil, rolearn=nil, storagemounts=nil, customconfiguration=nil, logconfiguration=nil, statusreason=nil)
+        def initialize(toolid=nil, toolname=nil, tooltype=nil, status=nil, description=nil, persistent=nil, defaulttimeoutseconds=nil, networkconfiguration=nil, tags=nil, createtime=nil, updatetime=nil, rolearn=nil, storagemounts=nil, customconfiguration=nil, logconfiguration=nil, computerconfiguration=nil, statusreason=nil)
           @ToolId = toolid
           @ToolName = toolname
           @ToolType = tooltype
@@ -1356,6 +1808,7 @@ module TencentCloud
           @StorageMounts = storagemounts
           @CustomConfiguration = customconfiguration
           @LogConfiguration = logconfiguration
+          @ComputerConfiguration = computerconfiguration
           @StatusReason = statusreason
         end
 
@@ -1398,7 +1851,35 @@ module TencentCloud
             @LogConfiguration = LogConfiguration.new
             @LogConfiguration.deserialize(params['LogConfiguration'])
           end
+          unless params['ComputerConfiguration'].nil?
+            @ComputerConfiguration = ComputerConfiguration.new
+            @ComputerConfiguration.deserialize(params['ComputerConfiguration'])
+          end
           @StatusReason = params['StatusReason']
+        end
+      end
+
+      # Deployment 活跃容量配置
+      class ScalingConfiguration < TencentCloud::Common::AbstractModel
+        # @param MinInstanceCount: <p>活跃 Sandbox Instance 下限，必须大于等于 0。</p>
+        # @type MinInstanceCount: Integer
+        # @param MaxInstanceCount: <p>活跃 Sandbox Instance 上限，必须大于等于 1，并且不小于 MinInstanceCount。</p>
+        # @type MaxInstanceCount: Integer
+        # @param MaxInstanceRequestConcurrency: <p>每个活跃 Sandbox Instance 同时持有的 Deployment 请求或连接 Lease 上限，必须大于等于 1。</p>
+        # @type MaxInstanceRequestConcurrency: Integer
+
+        attr_accessor :MinInstanceCount, :MaxInstanceCount, :MaxInstanceRequestConcurrency
+
+        def initialize(mininstancecount=nil, maxinstancecount=nil, maxinstancerequestconcurrency=nil)
+          @MinInstanceCount = mininstancecount
+          @MaxInstanceCount = maxinstancecount
+          @MaxInstanceRequestConcurrency = maxinstancerequestconcurrency
+        end
+
+        def deserialize(params)
+          @MinInstanceCount = params['MinInstanceCount']
+          @MaxInstanceCount = params['MaxInstanceCount']
+          @MaxInstanceRequestConcurrency = params['MaxInstanceRequestConcurrency']
         end
       end
 
@@ -1735,6 +2216,22 @@ module TencentCloud
         def deserialize(params)
           @SubnetIds = params['SubnetIds']
           @SecurityGroupIds = params['SecurityGroupIds']
+        end
+      end
+
+      # waa自定义配置项
+      class WAAConfiguration < TencentCloud::Common::AbstractModel
+        # @param ImageId: <p>自定义waa镜像ID</p>
+        # @type ImageId: String
+
+        attr_accessor :ImageId
+
+        def initialize(imageid=nil)
+          @ImageId = imageid
+        end
+
+        def deserialize(params)
+          @ImageId = params['ImageId']
         end
       end
 

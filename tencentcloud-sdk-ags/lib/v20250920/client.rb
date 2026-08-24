@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 获取 Deployment 访问 Token
+
+        # @param request: Request instance for AcquireDeploymentToken.
+        # @type request: :class:`Tencentcloud::ags::V20250920::AcquireDeploymentTokenRequest`
+        # @rtype: :class:`Tencentcloud::ags::V20250920::AcquireDeploymentTokenResponse`
+        def AcquireDeploymentToken(request)
+          body = send_request('AcquireDeploymentToken', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AcquireDeploymentTokenResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取访问沙箱工具时所需要使用的访问Token，创建沙箱实例后需调用此接口获取沙箱实例访问Token。
         # 此Token可用于调用代码沙箱实例执行代码，或浏览器沙箱实例进行浏览器操作等。
 
@@ -64,6 +88,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateAPIKeyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建 Deployment
+
+        # @param request: Request instance for CreateDeployment.
+        # @type request: :class:`Tencentcloud::ags::V20250920::CreateDeploymentRequest`
+        # @rtype: :class:`Tencentcloud::ags::V20250920::CreateDeploymentResponse`
+        def CreateDeployment(request)
+          body = send_request('CreateDeployment', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDeploymentResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -150,6 +198,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除 Deployment
+
+        # @param request: Request instance for DeleteDeployment.
+        # @type request: :class:`Tencentcloud::ags::V20250920::DeleteDeploymentRequest`
+        # @rtype: :class:`Tencentcloud::ags::V20250920::DeleteDeploymentResponse`
+        def DeleteDeployment(request)
+          body = send_request('DeleteDeployment', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteDeploymentResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除沙箱工具
 
         # @param request: Request instance for DeleteSandboxTool.
@@ -184,6 +256,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAPIKeyListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询 Deployment 信息
+
+        # @param request: Request instance for DescribeDeployment.
+        # @type request: :class:`Tencentcloud::ags::V20250920::DescribeDeploymentRequest`
+        # @rtype: :class:`Tencentcloud::ags::V20250920::DescribeDeploymentResponse`
+        def DescribeDeployment(request)
+          body = send_request('DescribeDeployment', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDeploymentResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询 Deployment 列表
+
+        # @param request: Request instance for DescribeDeploymentList.
+        # @type request: :class:`Tencentcloud::ags::V20250920::DescribeDeploymentListRequest`
+        # @rtype: :class:`Tencentcloud::ags::V20250920::DescribeDeploymentListResponse`
+        def DescribeDeploymentList(request)
+          body = send_request('DescribeDeploymentList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDeploymentListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -256,6 +376,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeSandboxToolListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改 Deployment
+
+        # @param request: Request instance for ModifyDeployment.
+        # @type request: :class:`Tencentcloud::ags::V20250920::ModifyDeploymentRequest`
+        # @rtype: :class:`Tencentcloud::ags::V20250920::ModifyDeploymentResponse`
+        def ModifyDeployment(request)
+          body = send_request('ModifyDeployment', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDeploymentResponse.new
             model.deserialize(response['Response'])
             model
           else

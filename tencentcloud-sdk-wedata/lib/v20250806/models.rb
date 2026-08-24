@@ -6953,7 +6953,7 @@ module TencentCloud
 
       # GetProject请求参数结构体
       class GetProjectRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目id。一般使用项目Id来查询，与projectName必须存在一个。
+        # @param ProjectId: <p>项目id。一般使用项目Id来查询，与projectName必须存在一个。</p>
         # @type ProjectId: String
 
         attr_accessor :ProjectId
@@ -6969,7 +6969,7 @@ module TencentCloud
 
       # GetProject返回参数结构体
       class GetProjectResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 项目信息
+        # @param Data: <p>项目信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Wedata.v20250806.models.Project`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -14916,36 +14916,38 @@ module TencentCloud
 
       # 项目信息
       class Project < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目id
+        # @param ProjectId: <p>项目id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectId: String
-        # @param ProjectName: 项目标识，英文名
+        # @param ProjectName: <p>项目标识，英文名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectName: String
-        # @param DisplayName: 项目显示名称，可以为中文名
+        # @param DisplayName: <p>项目显示名称，可以为中文名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DisplayName: String
-        # @param Description: 备注
+        # @param Description: <p>备注</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
-        # @param CreatorUin: 项目创建人id
+        # @param CreatorUin: <p>项目创建人id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatorUin: String
-        # @param ProjectOwnerUin: 项目责任人id
+        # @param ProjectOwnerUin: <p>项目责任人id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectOwnerUin: String
-        # @param Status: 项目状态：0：禁用，1：启用，-3:禁用中，2：启用中
+        # @param Status: <p>项目状态：0：禁用，1：启用，-3:禁用中，2：启用中</p>
         # @type Status: Integer
-        # @param ProjectModel: 项目模式，SIMPLE：简单模式 STANDARD：标准模式
+        # @param ProjectModel: <p>项目模式，SIMPLE：简单模式 STANDARD：标准模式</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectModel: String
+        # @param WorkspaceExt: <p>项目的额外配置参数，{Key: &quot;scheduleMode&quot;, Value: &quot;task|workflow&quot;}</p>
+        # @type WorkspaceExt: Array
 
-        attr_accessor :ProjectId, :ProjectName, :DisplayName, :Description, :CreateTime, :CreatorUin, :ProjectOwnerUin, :Status, :ProjectModel
+        attr_accessor :ProjectId, :ProjectName, :DisplayName, :Description, :CreateTime, :CreatorUin, :ProjectOwnerUin, :Status, :ProjectModel, :WorkspaceExt
 
-        def initialize(projectid=nil, projectname=nil, displayname=nil, description=nil, createtime=nil, creatoruin=nil, projectowneruin=nil, status=nil, projectmodel=nil)
+        def initialize(projectid=nil, projectname=nil, displayname=nil, description=nil, createtime=nil, creatoruin=nil, projectowneruin=nil, status=nil, projectmodel=nil, workspaceext=nil)
           @ProjectId = projectid
           @ProjectName = projectname
           @DisplayName = displayname
@@ -14955,6 +14957,7 @@ module TencentCloud
           @ProjectOwnerUin = projectowneruin
           @Status = status
           @ProjectModel = projectmodel
+          @WorkspaceExt = workspaceext
         end
 
         def deserialize(params)
@@ -14967,6 +14970,14 @@ module TencentCloud
           @ProjectOwnerUin = params['ProjectOwnerUin']
           @Status = params['Status']
           @ProjectModel = params['ProjectModel']
+          unless params['WorkspaceExt'].nil?
+            @WorkspaceExt = []
+            params['WorkspaceExt'].each do |i|
+              workspaceext_tmp = WorkspaceExt.new
+              workspaceext_tmp.deserialize(i)
+              @WorkspaceExt << workspaceext_tmp
+            end
+          end
         end
       end
 
@@ -15061,25 +15072,29 @@ module TencentCloud
 
       # 项目信息
       class ProjectRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectName: 项目标识，英文名，以字母开头，可包含字母、数字和下划线，不能超过32个字符
+        # @param ProjectName: <p>项目标识，英文名，以字母开头，可包含字母、数字和下划线，不能超过32个字符</p>
         # @type ProjectName: String
-        # @param DisplayName: 项目显示名称，可以为中文名，以字母开头，可包含字母、数字和下划线，不能超过32个字符
+        # @param DisplayName: <p>项目显示名称，可以为中文名，以字母开头，可包含字母、数字和下划线，不能超过32个字符</p>
         # @type DisplayName: String
-        # @param ProjectModel: 项目模式，SIMPLE（默认）：简单模式 STANDARD：标准模式
+        # @param ProjectModel: <p>项目模式，SIMPLE（默认）：简单模式 STANDARD：标准模式</p>
         # @type ProjectModel: String
+        # @param ScheduleMode: <p>项目调度模式，task：任务模式 workflow：工作流模式</p>
+        # @type ScheduleMode: String
 
-        attr_accessor :ProjectName, :DisplayName, :ProjectModel
+        attr_accessor :ProjectName, :DisplayName, :ProjectModel, :ScheduleMode
 
-        def initialize(projectname=nil, displayname=nil, projectmodel=nil)
+        def initialize(projectname=nil, displayname=nil, projectmodel=nil, schedulemode=nil)
           @ProjectName = projectname
           @DisplayName = displayname
           @ProjectModel = projectmodel
+          @ScheduleMode = schedulemode
         end
 
         def deserialize(params)
           @ProjectName = params['ProjectName']
           @DisplayName = params['DisplayName']
           @ProjectModel = params['ProjectModel']
+          @ScheduleMode = params['ScheduleMode']
         end
       end
 
@@ -21190,10 +21205,13 @@ module TencentCloud
         # @param ExecuteUserUin: <p>运行账号ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecuteUserUin: String
+        # @param CycleType: <p>周期类型</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CycleType: String
 
-        attr_accessor :ProjectId, :ProjectName, :WorkflowId, :WorkflowName, :TaskId, :TaskName, :TaskType, :UserUinInCharge, :UserNameInCharge, :FolderId, :FolderName, :TaskTypeId, :ExecutionState, :ExecutionStartTime, :DependencyTriggerPolicy, :ExecuteUserUin
+        attr_accessor :ProjectId, :ProjectName, :WorkflowId, :WorkflowName, :TaskId, :TaskName, :TaskType, :UserUinInCharge, :UserNameInCharge, :FolderId, :FolderName, :TaskTypeId, :ExecutionState, :ExecutionStartTime, :DependencyTriggerPolicy, :ExecuteUserUin, :CycleType
 
-        def initialize(projectid=nil, projectname=nil, workflowid=nil, workflowname=nil, taskid=nil, taskname=nil, tasktype=nil, useruinincharge=nil, usernameincharge=nil, folderid=nil, foldername=nil, tasktypeid=nil, executionstate=nil, executionstarttime=nil, dependencytriggerpolicy=nil, executeuseruin=nil)
+        def initialize(projectid=nil, projectname=nil, workflowid=nil, workflowname=nil, taskid=nil, taskname=nil, tasktype=nil, useruinincharge=nil, usernameincharge=nil, folderid=nil, foldername=nil, tasktypeid=nil, executionstate=nil, executionstarttime=nil, dependencytriggerpolicy=nil, executeuseruin=nil, cycletype=nil)
           @ProjectId = projectid
           @ProjectName = projectname
           @WorkflowId = workflowid
@@ -21210,6 +21228,7 @@ module TencentCloud
           @ExecutionStartTime = executionstarttime
           @DependencyTriggerPolicy = dependencytriggerpolicy
           @ExecuteUserUin = executeuseruin
+          @CycleType = cycletype
         end
 
         def deserialize(params)
@@ -21229,6 +21248,7 @@ module TencentCloud
           @ExecutionStartTime = params['ExecutionStartTime']
           @DependencyTriggerPolicy = params['DependencyTriggerPolicy']
           @ExecuteUserUin = params['ExecuteUserUin']
+          @CycleType = params['CycleType']
         end
       end
 
@@ -25178,6 +25198,28 @@ module TencentCloud
           @Recursive = params['Recursive']
           @TriggerMinimumIntervalSecond = params['TriggerMinimumIntervalSecond']
           @TriggerWaitTimeSecond = params['TriggerWaitTimeSecond']
+        end
+      end
+
+      # 项目扩展信息
+      class WorkspaceExt < TencentCloud::Common::AbstractModel
+        # @param Key: <p>参数名</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param Value: <p>参数值</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
         end
       end
 

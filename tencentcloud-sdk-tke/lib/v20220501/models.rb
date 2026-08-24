@@ -455,34 +455,34 @@ module TencentCloud
 
       # 描述了k8s节点数据盘相关配置与信息。
       class DataDisk < TencentCloud::Common::AbstractModel
-        # @param DiskType: 云盘类型
+        # @param DiskType: <p>云盘类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiskType: String
-        # @param FileSystem: 文件系统(ext3/ext4/xfs)
+        # @param FileSystem: <p>文件系统(ext3/ext4/xfs)</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileSystem: String
-        # @param DiskSize: 云盘大小(G）
+        # @param DiskSize: <p>云盘大小(G）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiskSize: Integer
-        # @param AutoFormatAndMount: 是否自动化格式盘并挂载
+        # @param AutoFormatAndMount: <p>是否自动化格式盘并挂载</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoFormatAndMount: Boolean
-        # @param DiskPartition: 挂载设备名或分区名
+        # @param DiskPartition: <p>挂载设备名或分区名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiskPartition: String
-        # @param MountTarget: 挂载目录
+        # @param MountTarget: <p>挂载目录</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MountTarget: String
-        # @param Encrypt: 传入该参数用于创建加密云盘，取值固定为ENCRYPT
+        # @param Encrypt: <p>传入该参数用于创建加密云盘，取值固定为ENCRYPT</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Encrypt: String
-        # @param KmsKeyId: 购买加密盘时自定义密钥，当传入该参数时, Encrypt入参不为空
+        # @param KmsKeyId: <p>购买加密盘时自定义密钥，当传入该参数时, Encrypt入参不为空</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KmsKeyId: String
-        # @param SnapshotId: 快照ID，如果传入则根据此快照创建云硬盘，快照类型必须为数据盘快照
+        # @param SnapshotId: <p>快照ID，如果传入则根据此快照创建云硬盘，快照类型必须为数据盘快照</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SnapshotId: String
-        # @param ThroughputPerformance: 云硬盘性能，单位：MB/s。使用此参数可给云硬盘购买额外的性能
+        # @param ThroughputPerformance: <p>云硬盘性能，单位：MB/s。使用此参数可给云硬盘购买额外的性能</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ThroughputPerformance: Integer
 

@@ -3277,7 +3277,7 @@ module TencentCloud
       class CreateSSOAccountRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: <p>Grafana 实例 ID，例如：grafana-abcdefgh</p>
         # @type InstanceId: String
-        # @param UserId: <p>用户账号 ID ，例如：10000000</p>
+        # @param UserId: <p>用户子账号 ID ，例如：10000000</p>
         # @type UserId: String
         # @param Role: <p>权限(只取数组中的第一个，其中 Organization 暂未使用，可不填)</p>
         # @type Role: Array
@@ -3310,7 +3310,7 @@ module TencentCloud
 
       # CreateSSOAccount返回参数结构体
       class CreateSSOAccountResponse < TencentCloud::Common::AbstractModel
-        # @param UserId: <p>已添加的用户 UIN</p>
+        # @param UserId: <p>已添加的子账号ID</p>
         # @type UserId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6187,17 +6187,17 @@ module TencentCloud
 
       # DescribeGrafanaInstances请求参数结构体
       class DescribeGrafanaInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param Offset: 查询偏移量
+        # @param Offset: <p>查询偏移量</p>
         # @type Offset: Integer
-        # @param Limit: 查询数量
+        # @param Limit: <p>查询数量</p>
         # @type Limit: Integer
-        # @param InstanceIds: Grafana 实例 ID 数组
+        # @param InstanceIds: <p>Grafana 实例 ID 数组</p>
         # @type InstanceIds: Array
-        # @param InstanceName: Grafana 实例名，支持前缀模糊搜索
+        # @param InstanceName: <p>Grafana 实例名，支持前缀模糊搜索</p>
         # @type InstanceName: String
-        # @param InstanceStatus: 查询状态
+        # @param InstanceStatus: <p>查询状态</p>
         # @type InstanceStatus: Array
-        # @param TagFilters: 标签过滤数组
+        # @param TagFilters: <p>标签过滤数组</p>
         # @type TagFilters: Array
 
         attr_accessor :Offset, :Limit, :InstanceIds, :InstanceName, :InstanceStatus, :TagFilters
@@ -6230,11 +6230,11 @@ module TencentCloud
 
       # DescribeGrafanaInstances返回参数结构体
       class DescribeGrafanaInstancesResponse < TencentCloud::Common::AbstractModel
-        # @param InstanceSet: 已废弃，请使用 Instances
+        # @param InstanceSet: <p>已废弃，请使用 Instances</p>
         # @type InstanceSet: Array
-        # @param TotalCount: 符合查询条件的实例总数
+        # @param TotalCount: <p>符合查询条件的实例总数</p>
         # @type TotalCount: Integer
-        # @param Instances: 实例列表
+        # @param Instances: <p>实例列表</p>
         # @type Instances: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

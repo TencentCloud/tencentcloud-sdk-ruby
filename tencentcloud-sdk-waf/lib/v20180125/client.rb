@@ -3319,6 +3319,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 开关开启后，会将客户端的ip和port透传到后端
+
+        # @param request: Request instance for EnableClientMsg.
+        # @type request: :class:`Tencentcloud::waf::V20180125::EnableClientMsgRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::EnableClientMsgResponse`
+        def EnableClientMsg(request)
+          body = send_request('EnableClientMsg', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = EnableClientMsgResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 批量更改自研版限流规则开关
 
         # @param request: Request instance for EnableRateLimitsV2.
@@ -5034,6 +5058,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = QueryBypassAllStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询是否开启透传客户端信息
+
+        # @param request: Request instance for QueryClientMsg.
+        # @type request: :class:`Tencentcloud::waf::V20180125::QueryClientMsgRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::QueryClientMsgResponse`
+        def QueryClientMsg(request)
+          body = send_request('QueryClientMsg', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryClientMsgResponse.new
             model.deserialize(response['Response'])
             model
           else

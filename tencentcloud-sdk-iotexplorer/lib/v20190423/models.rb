@@ -2986,6 +2986,61 @@ module TencentCloud
         end
       end
 
+      # CreateTWeSeePerson请求参数结构体
+      class CreateTWeSeePersonRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品 ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param Name: 人员名称，最多 64 个字符
+        # @type Name: String
+        # @param FaceIds: 人脸 ID 列表，最多 5 个
+        # @type FaceIds: Array
+        # @param ChannelId: 通道 ID，默认值为 0
+        # @type ChannelId: Integer
+
+        attr_accessor :ProductId, :DeviceName, :Name, :FaceIds, :ChannelId
+
+        def initialize(productid=nil, devicename=nil, name=nil, faceids=nil, channelid=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @Name = name
+          @FaceIds = faceids
+          @ChannelId = channelid
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @Name = params['Name']
+          @FaceIds = params['FaceIds']
+          @ChannelId = params['ChannelId']
+        end
+      end
+
+      # CreateTWeSeePerson返回参数结构体
+      class CreateTWeSeePersonResponse < TencentCloud::Common::AbstractModel
+        # @param Person: 人员信息
+        # @type Person: :class:`Tencentcloud::Iotexplorer.v20190423.models.SeePersonInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Person, :RequestId
+
+        def initialize(person=nil, requestid=nil)
+          @Person = person
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Person'].nil?
+            @Person = SeePersonInfo.new
+            @Person.deserialize(params['Person'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateTWeSeePostPaidService请求参数结构体
       class CreateTWeSeePostPaidServiceRequest < TencentCloud::Common::AbstractModel
         # @param ServiceType: 算法类型。可选值：
@@ -4382,6 +4437,98 @@ module TencentCloud
 
       # DeleteTWeSeeCallback返回参数结构体
       class DeleteTWeSeeCallbackResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteTWeSeeFace请求参数结构体
+      class DeleteTWeSeeFaceRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品 ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param FaceId: 人脸 ID
+        # @type FaceId: String
+        # @param ChannelId: 通道 ID，默认值为 0
+        # @type ChannelId: Integer
+
+        attr_accessor :ProductId, :DeviceName, :FaceId, :ChannelId
+
+        def initialize(productid=nil, devicename=nil, faceid=nil, channelid=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @FaceId = faceid
+          @ChannelId = channelid
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @FaceId = params['FaceId']
+          @ChannelId = params['ChannelId']
+        end
+      end
+
+      # DeleteTWeSeeFace返回参数结构体
+      class DeleteTWeSeeFaceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteTWeSeePerson请求参数结构体
+      class DeleteTWeSeePersonRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品 ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param PersonId: 人员 ID
+        # @type PersonId: String
+        # @param ChannelId: 通道 ID，默认值为 0
+        # @type ChannelId: Integer
+        # @param DeleteFaces: 是否同时删除关联人脸，默认值为 false。人员仍有关联人脸时可设为 true 同步删除
+        # @type DeleteFaces: Boolean
+
+        attr_accessor :ProductId, :DeviceName, :PersonId, :ChannelId, :DeleteFaces
+
+        def initialize(productid=nil, devicename=nil, personid=nil, channelid=nil, deletefaces=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @PersonId = personid
+          @ChannelId = channelid
+          @DeleteFaces = deletefaces
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @PersonId = params['PersonId']
+          @ChannelId = params['ChannelId']
+          @DeleteFaces = params['DeleteFaces']
+        end
+      end
+
+      # DeleteTWeSeePerson返回参数结构体
+      class DeleteTWeSeePersonResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -7912,6 +8059,112 @@ module TencentCloud
         end
       end
 
+      # DescribeTWeSeeFace请求参数结构体
+      class DescribeTWeSeeFaceRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品 ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param FaceId: 人脸 ID
+        # @type FaceId: String
+        # @param ChannelId: 通道 ID，默认值为 0
+        # @type ChannelId: Integer
+
+        attr_accessor :ProductId, :DeviceName, :FaceId, :ChannelId
+
+        def initialize(productid=nil, devicename=nil, faceid=nil, channelid=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @FaceId = faceid
+          @ChannelId = channelid
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @FaceId = params['FaceId']
+          @ChannelId = params['ChannelId']
+        end
+      end
+
+      # DescribeTWeSeeFace返回参数结构体
+      class DescribeTWeSeeFaceResponse < TencentCloud::Common::AbstractModel
+        # @param Face: 人脸元数据
+        # @type Face: :class:`Tencentcloud::Iotexplorer.v20190423.models.SeeFaceInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Face, :RequestId
+
+        def initialize(face=nil, requestid=nil)
+          @Face = face
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Face'].nil?
+            @Face = SeeFaceInfo.new
+            @Face.deserialize(params['Face'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeTWeSeePerson请求参数结构体
+      class DescribeTWeSeePersonRequest < TencentCloud::Common::AbstractModel
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param PersonId: 人员 ID
+        # @type PersonId: String
+        # @param ProductId: 产品 ID
+        # @type ProductId: String
+        # @param ChannelId: 通道 ID，默认值为 0
+        # @type ChannelId: Integer
+        # @param FaceLimit: 返回的代表人脸数量，取值范围为 1 到 5，默认值为 1
+        # @type FaceLimit: Integer
+
+        attr_accessor :DeviceName, :PersonId, :ProductId, :ChannelId, :FaceLimit
+
+        def initialize(devicename=nil, personid=nil, productid=nil, channelid=nil, facelimit=nil)
+          @DeviceName = devicename
+          @PersonId = personid
+          @ProductId = productid
+          @ChannelId = channelid
+          @FaceLimit = facelimit
+        end
+
+        def deserialize(params)
+          @DeviceName = params['DeviceName']
+          @PersonId = params['PersonId']
+          @ProductId = params['ProductId']
+          @ChannelId = params['ChannelId']
+          @FaceLimit = params['FaceLimit']
+        end
+      end
+
+      # DescribeTWeSeePerson返回参数结构体
+      class DescribeTWeSeePersonResponse < TencentCloud::Common::AbstractModel
+        # @param Person: 人员信息
+        # @type Person: :class:`Tencentcloud::Iotexplorer.v20190423.models.SeePersonInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Person, :RequestId
+
+        def initialize(person=nil, requestid=nil)
+          @Person = person
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Person'].nil?
+            @Person = SeePersonInfo.new
+            @Person.deserialize(params['Person'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTWeSeePostPaidService请求参数结构体
       class DescribeTWeSeePostPaidServiceRequest < TencentCloud::Common::AbstractModel
         # @param ServiceType: 算法类型。可选值：
@@ -11040,6 +11293,65 @@ module TencentCloud
         end
       end
 
+      # ImportTWeSeeFaces请求参数结构体
+      class ImportTWeSeeFacesRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品 ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param ImageURL: 图片 URL，支持 HTTP(S) URL 或 JPG、PNG、BMP 格式的 data URL，图片大小不超过 5 MiB
+        # @type ImageURL: String
+        # @param ChannelId: 通道 ID，默认值为 0
+        # @type ChannelId: Integer
+
+        attr_accessor :ProductId, :DeviceName, :ImageURL, :ChannelId
+
+        def initialize(productid=nil, devicename=nil, imageurl=nil, channelid=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @ImageURL = imageurl
+          @ChannelId = channelid
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @ImageURL = params['ImageURL']
+          @ChannelId = params['ChannelId']
+        end
+      end
+
+      # ImportTWeSeeFaces返回参数结构体
+      class ImportTWeSeeFacesResponse < TencentCloud::Common::AbstractModel
+        # @param Faces: 检测到的人脸列表
+        # @type Faces: Array
+        # @param TaskId: 本次人脸导入任务 ID
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Faces, :TaskId, :RequestId
+
+        def initialize(faces=nil, taskid=nil, requestid=nil)
+          @Faces = faces
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Faces'].nil?
+            @Faces = []
+            params['Faces'].each do |i|
+              seefaceinfo_tmp = SeeFaceInfo.new
+              seefaceinfo_tmp.deserialize(i)
+              @Faces << seefaceinfo_tmp
+            end
+          end
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # InheritCloudStorageUser请求参数结构体
       class InheritCloudStorageUserRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品ID
@@ -11572,20 +11884,17 @@ module TencentCloud
 
       # InvokeTWeSeeComprehension请求参数结构体
       class InvokeTWeSeeComprehensionRequest < TencentCloud::Common::AbstractModel
-        # @param InputURL: 输入视频 / 图片的 URL
+        # @param InputURL: <p>输入视频 / 图片的 URL</p>
         # @type InputURL: String
-        # @param ServiceType: 算法类型。可选值：
-
-        # - `VID_COMP`：视频理解
-        # - `IMG_COMP`：图片理解
+        # @param ServiceType: <p>算法类型。可选值：</p><ul><li><code>VID_COMP</code>：视频理解</li><li><code>IMG_COMP</code>：图片理解</li></ul>
         # @type ServiceType: String
-        # @param Metadata: 任务元数据
+        # @param Metadata: <p>任务元数据</p>
         # @type Metadata: :class:`Tencentcloud::Iotexplorer.v20190423.models.SeeTaskMetadata`
-        # @param ComprehensionConfig: 视觉理解配置项
+        # @param ComprehensionConfig: <p>视觉理解配置项</p>
         # @type ComprehensionConfig: :class:`Tencentcloud::Iotexplorer.v20190423.models.SeeComprehensionConfig`
-        # @param WaitResultTimeout: 等待结果的超时时间（单位：秒）。填 0 表示无需等待结果。最大超时时长 25 秒，默认超时时长 20 秒。
+        # @param WaitResultTimeout: <p>等待结果的超时时间（单位：秒）。填 0 表示无需等待结果。最大超时时长 25 秒，默认超时时长 20 秒。</p>
         # @type WaitResultTimeout: Integer
-        # @param CallbackId: 回调目标 ID
+        # @param CallbackId: <p>回调目标 ID</p>
         # @type CallbackId: String
 
         attr_accessor :InputURL, :ServiceType, :Metadata, :ComprehensionConfig, :WaitResultTimeout, :CallbackId
@@ -11617,20 +11926,15 @@ module TencentCloud
 
       # InvokeTWeSeeComprehension返回参数结构体
       class InvokeTWeSeeComprehensionResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务 ID
+        # @param TaskId: <p>任务 ID</p>
         # @type TaskId: String
-        # @param Status: 任务状态。可能取值：
-
-        # - `1`：失败
-        # - `2`：空结果
-        # - `3`：有效结果
-        # - `4`：处理中
+        # @param Status: <p>任务状态。可能取值：</p><ul><li><code>1</code>：失败</li><li><code>2</code>：空结果</li><li><code>3</code>：有效结果</li><li><code>4</code>：处理中</li></ul>
         # @type Status: Integer
-        # @param ComprehensionResult: 视觉理解结果
+        # @param ComprehensionResult: <p>视觉理解结果</p>
         # @type ComprehensionResult: :class:`Tencentcloud::Iotexplorer.v20190423.models.SeeComprehensionResult`
-        # @param CostBasic: 完成该任务所消耗的基础能力额度
+        # @param CostBasic: <p>完成该任务所消耗的基础能力额度</p>
         # @type CostBasic: Integer
-        # @param CostAdvanced: 完成该任务所消耗的高级能力额度
+        # @param CostAdvanced: <p>完成该任务所消耗的高级能力额度</p>
         # @type CostAdvanced: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -12479,6 +12783,85 @@ module TencentCloud
             end
           end
           @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ListTWeSeePersons请求参数结构体
+      class ListTWeSeePersonsRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品 ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param Limit: 分页拉取数量，取值范围为 1 到 100
+        # @type Limit: Integer
+        # @param Offset: 分页拉取偏移，默认值为 0
+        # @type Offset: Integer
+        # @param ChannelId: 通道 ID，默认值为 0
+        # @type ChannelId: Integer
+        # @param FaceLimit: 每个人员返回的代表人脸数量，取值范围为 1 到 5，默认值为 1
+        # @type FaceLimit: Integer
+        # @param IsRemembered: 人员记忆状态。true：仅查询持久记忆人员；false：仅查询非持久记忆人员；不传时查询全部人员
+        # @type IsRemembered: Boolean
+
+        attr_accessor :ProductId, :DeviceName, :Limit, :Offset, :ChannelId, :FaceLimit, :IsRemembered
+
+        def initialize(productid=nil, devicename=nil, limit=nil, offset=nil, channelid=nil, facelimit=nil, isremembered=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @Limit = limit
+          @Offset = offset
+          @ChannelId = channelid
+          @FaceLimit = facelimit
+          @IsRemembered = isremembered
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @ChannelId = params['ChannelId']
+          @FaceLimit = params['FaceLimit']
+          @IsRemembered = params['IsRemembered']
+        end
+      end
+
+      # ListTWeSeePersons返回参数结构体
+      class ListTWeSeePersonsResponse < TencentCloud::Common::AbstractModel
+        # @param Limit: 本次请求的分页数量
+        # @type Limit: Integer
+        # @param Offset: 本次请求的分页偏移
+        # @type Offset: Integer
+        # @param Persons: 人员列表
+        # @type Persons: Array
+        # @param TotalCount: 符合条件的人员总数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Limit, :Offset, :Persons, :TotalCount, :RequestId
+
+        def initialize(limit=nil, offset=nil, persons=nil, totalcount=nil, requestid=nil)
+          @Limit = limit
+          @Offset = offset
+          @Persons = persons
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Persons'].nil?
+            @Persons = []
+            params['Persons'].each do |i|
+              seepersoninfo_tmp = SeePersonInfo.new
+              seepersoninfo_tmp.deserialize(i)
+              @Persons << seepersoninfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -13598,6 +13981,117 @@ module TencentCloud
 
       # ModifyTWeSeeConfig返回参数结构体
       class ModifyTWeSeeConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyTWeSeeFace请求参数结构体
+      class ModifyTWeSeeFaceRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品 ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param PersonId: 人员 ID
+        # @type PersonId: String
+        # @param FaceId: 人脸 ID
+        # @type FaceId: String
+        # @param ChannelId: 通道 ID，默认值为 0
+        # @type ChannelId: Integer
+        # @param IsPrototype: 是否设为代表人脸。关联未归属的人脸时，默认值为 true
+        # @type IsPrototype: Boolean
+
+        attr_accessor :ProductId, :DeviceName, :PersonId, :FaceId, :ChannelId, :IsPrototype
+
+        def initialize(productid=nil, devicename=nil, personid=nil, faceid=nil, channelid=nil, isprototype=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @PersonId = personid
+          @FaceId = faceid
+          @ChannelId = channelid
+          @IsPrototype = isprototype
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @PersonId = params['PersonId']
+          @FaceId = params['FaceId']
+          @ChannelId = params['ChannelId']
+          @IsPrototype = params['IsPrototype']
+        end
+      end
+
+      # ModifyTWeSeeFace返回参数结构体
+      class ModifyTWeSeeFaceResponse < TencentCloud::Common::AbstractModel
+        # @param Face: 人脸元数据
+        # @type Face: :class:`Tencentcloud::Iotexplorer.v20190423.models.SeeFaceInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Face, :RequestId
+
+        def initialize(face=nil, requestid=nil)
+          @Face = face
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Face'].nil?
+            @Face = SeeFaceInfo.new
+            @Face.deserialize(params['Face'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyTWeSeePerson请求参数结构体
+      class ModifyTWeSeePersonRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品 ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param PersonId: 人员 ID
+        # @type PersonId: String
+        # @param ChannelId: 通道 ID，默认值为 0
+        # @type ChannelId: Integer
+        # @param IsRemembered: 是否标记为持久记忆。
+        # @type IsRemembered: Boolean
+        # @param Name: 人员名称，最多 64 个字符
+        # @type Name: String
+
+        attr_accessor :ProductId, :DeviceName, :PersonId, :ChannelId, :IsRemembered, :Name
+
+        def initialize(productid=nil, devicename=nil, personid=nil, channelid=nil, isremembered=nil, name=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @PersonId = personid
+          @ChannelId = channelid
+          @IsRemembered = isremembered
+          @Name = name
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @PersonId = params['PersonId']
+          @ChannelId = params['ChannelId']
+          @IsRemembered = params['IsRemembered']
+          @Name = params['Name']
+        end
+      end
+
+      # ModifyTWeSeePerson返回参数结构体
+      class ModifyTWeSeePersonResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -15749,10 +16243,14 @@ module TencentCloud
         # @type EnableKeywords: Boolean
         # @param SummaryPrompt: <p>自定义摘要提示词</p>
         # @type SummaryPrompt: String
+        # @param EnableFaceDetection: <p>是否开启人脸检测</p>
+        # @type EnableFaceDetection: Boolean
+        # @param InputRotateDegree: <p>画面旋转角度</p><p>枚举值：</p><ul><li>0： 不旋转</li><li>90： 顺时针旋转90度</li><li>-90： 逆时针旋转90度</li><li>180： 旋转180度</li></ul><p>默认值：0</p>
+        # @type InputRotateDegree: Integer
 
-        attr_accessor :DetectTypes, :EnableSearch, :OutputLang, :AlternativeOutputLang, :MultiCameraLayout, :CustomDetectQueries, :MaxDuration, :EnableKeywords, :SummaryPrompt
+        attr_accessor :DetectTypes, :EnableSearch, :OutputLang, :AlternativeOutputLang, :MultiCameraLayout, :CustomDetectQueries, :MaxDuration, :EnableKeywords, :SummaryPrompt, :EnableFaceDetection, :InputRotateDegree
 
-        def initialize(detecttypes=nil, enablesearch=nil, outputlang=nil, alternativeoutputlang=nil, multicameralayout=nil, customdetectqueries=nil, maxduration=nil, enablekeywords=nil, summaryprompt=nil)
+        def initialize(detecttypes=nil, enablesearch=nil, outputlang=nil, alternativeoutputlang=nil, multicameralayout=nil, customdetectqueries=nil, maxduration=nil, enablekeywords=nil, summaryprompt=nil, enablefacedetection=nil, inputrotatedegree=nil)
           @DetectTypes = detecttypes
           @EnableSearch = enablesearch
           @OutputLang = outputlang
@@ -15762,6 +16260,8 @@ module TencentCloud
           @MaxDuration = maxduration
           @EnableKeywords = enablekeywords
           @SummaryPrompt = summaryprompt
+          @EnableFaceDetection = enablefacedetection
+          @InputRotateDegree = inputrotatedegree
         end
 
         def deserialize(params)
@@ -15781,6 +16281,8 @@ module TencentCloud
           @MaxDuration = params['MaxDuration']
           @EnableKeywords = params['EnableKeywords']
           @SummaryPrompt = params['SummaryPrompt']
+          @EnableFaceDetection = params['EnableFaceDetection']
+          @InputRotateDegree = params['InputRotateDegree']
         end
       end
 
@@ -15905,6 +16407,108 @@ module TencentCloud
         end
       end
 
+      # TWeSee 人脸元数据
+      class SeeFaceInfo < TencentCloud::Common::AbstractModel
+        # @param BoundingBox: 人脸框坐标，依次为左、上、右、下，取值范围为 0 到 1
+        # @type BoundingBox: Array
+        # @param FaceId: 人脸 ID
+        # @type FaceId: String
+        # @param CropImageURL: 人脸裁剪图 URL
+        # @type CropImageURL: String
+        # @param IsPrototype: 是否为代表人脸
+        # @type IsPrototype: Boolean
+        # @param PersonId: 人员 ID
+        # @type PersonId: String
+        # @param Source: 创建来源。0：自动识别；1：图片导入
+        # @type Source: Integer
+        # @param TimestampMs: 人脸所在画面的毫秒级 UNIX 时间戳
+        # @type TimestampMs: Integer
+
+        attr_accessor :BoundingBox, :FaceId, :CropImageURL, :IsPrototype, :PersonId, :Source, :TimestampMs
+
+        def initialize(boundingbox=nil, faceid=nil, cropimageurl=nil, isprototype=nil, personid=nil, source=nil, timestampms=nil)
+          @BoundingBox = boundingbox
+          @FaceId = faceid
+          @CropImageURL = cropimageurl
+          @IsPrototype = isprototype
+          @PersonId = personid
+          @Source = source
+          @TimestampMs = timestampms
+        end
+
+        def deserialize(params)
+          @BoundingBox = params['BoundingBox']
+          @FaceId = params['FaceId']
+          @CropImageURL = params['CropImageURL']
+          @IsPrototype = params['IsPrototype']
+          @PersonId = params['PersonId']
+          @Source = params['Source']
+          @TimestampMs = params['TimestampMs']
+        end
+      end
+
+      # TWeSee 人脸识别结果
+      class SeeFaceRecognitionResult < TencentCloud::Common::AbstractModel
+        # @param Persons: 识别到的人员列表
+        # @type Persons: Array
+
+        attr_accessor :Persons
+
+        def initialize(persons=nil)
+          @Persons = persons
+        end
+
+        def deserialize(params)
+          unless params['Persons'].nil?
+            @Persons = []
+            params['Persons'].each do |i|
+              seetaskpersoninfo_tmp = SeeTaskPersonInfo.new
+              seetaskpersoninfo_tmp.deserialize(i)
+              @Persons << seetaskpersoninfo_tmp
+            end
+          end
+        end
+      end
+
+      # TWeSee 人员信息
+      class SeePersonInfo < TencentCloud::Common::AbstractModel
+        # @param Faces: 代表人脸列表
+        # @type Faces: Array
+        # @param IsRemembered: 是否已标记为持久记忆
+        # @type IsRemembered: Boolean
+        # @param Name: 人员名称
+        # @type Name: String
+        # @param PersonId: 人员 ID
+        # @type PersonId: String
+        # @param Source: 创建来源。0：自动识别；1：用户创建
+        # @type Source: Integer
+
+        attr_accessor :Faces, :IsRemembered, :Name, :PersonId, :Source
+
+        def initialize(faces=nil, isremembered=nil, name=nil, personid=nil, source=nil)
+          @Faces = faces
+          @IsRemembered = isremembered
+          @Name = name
+          @PersonId = personid
+          @Source = source
+        end
+
+        def deserialize(params)
+          unless params['Faces'].nil?
+            @Faces = []
+            params['Faces'].each do |i|
+              seefaceinfo_tmp = SeeFaceInfo.new
+              seefaceinfo_tmp.deserialize(i)
+              @Faces << seefaceinfo_tmp
+            end
+          end
+          @IsRemembered = params['IsRemembered']
+          @Name = params['Name']
+          @PersonId = params['PersonId']
+          @Source = params['Source']
+        end
+      end
+
       # TWeSee 统计数据点
       class SeeStatItem < TencentCloud::Common::AbstractModel
         # @param Time: 时间
@@ -15933,6 +16537,34 @@ module TencentCloud
         end
       end
 
+      # TWeSee 任务人脸元数据
+      class SeeTaskFaceInfo < TencentCloud::Common::AbstractModel
+        # @param CropImageURL: 人脸裁剪图下载 URL，仅在请求 FileURLExpireTime 时返回
+        # @type CropImageURL: String
+        # @param FaceId: 人脸 ID
+        # @type FaceId: String
+        # @param PersonId: 人员 ID
+        # @type PersonId: String
+        # @param TimestampMs: 人脸所在画面的毫秒级 UNIX 时间戳
+        # @type TimestampMs: Integer
+
+        attr_accessor :CropImageURL, :FaceId, :PersonId, :TimestampMs
+
+        def initialize(cropimageurl=nil, faceid=nil, personid=nil, timestampms=nil)
+          @CropImageURL = cropimageurl
+          @FaceId = faceid
+          @PersonId = personid
+          @TimestampMs = timestampms
+        end
+
+        def deserialize(params)
+          @CropImageURL = params['CropImageURL']
+          @FaceId = params['FaceId']
+          @PersonId = params['PersonId']
+          @TimestampMs = params['TimestampMs']
+        end
+      end
+
       # TWeSee 任务详情
       class SeeTaskInfo < TencentCloud::Common::AbstractModel
         # @param TaskId: <p>任务 ID</p>
@@ -15953,6 +16585,8 @@ module TencentCloud
         # @type CompHighlightResult: :class:`Tencentcloud::Iotexplorer.v20190423.models.SeeCompHighlightResult`
         # @param DetectContinuousResult: <p>标签持续检测结果</p>
         # @type DetectContinuousResult: :class:`Tencentcloud::Iotexplorer.v20190423.models.SeeDetectContinuousResult`
+        # @param FaceRecognitionResult: <p>人脸检测结果</p>
+        # @type FaceRecognitionResult: :class:`Tencentcloud::Iotexplorer.v20190423.models.SeeFaceRecognitionResult`
         # @param CostBasic: <p>完成该任务所消耗的基础能力额度</p>
         # @type CostBasic: Integer
         # @param CostAdvanced: <p>完成该任务所消耗的高级能力额度</p>
@@ -15968,9 +16602,9 @@ module TencentCloud
         # @param COSURI: <p>直传 COS 的对象 URI</p>
         # @type COSURI: String
 
-        attr_accessor :TaskId, :Status, :Metadata, :ServiceCategory, :ServiceType, :ServiceTier, :ComprehensionResult, :CompHighlightResult, :DetectContinuousResult, :CostBasic, :CostAdvanced, :Files, :FilesInfo, :CreateTime, :UpdateTime, :COSURI
+        attr_accessor :TaskId, :Status, :Metadata, :ServiceCategory, :ServiceType, :ServiceTier, :ComprehensionResult, :CompHighlightResult, :DetectContinuousResult, :FaceRecognitionResult, :CostBasic, :CostAdvanced, :Files, :FilesInfo, :CreateTime, :UpdateTime, :COSURI
 
-        def initialize(taskid=nil, status=nil, metadata=nil, servicecategory=nil, servicetype=nil, servicetier=nil, comprehensionresult=nil, comphighlightresult=nil, detectcontinuousresult=nil, costbasic=nil, costadvanced=nil, files=nil, filesinfo=nil, createtime=nil, updatetime=nil, cosuri=nil)
+        def initialize(taskid=nil, status=nil, metadata=nil, servicecategory=nil, servicetype=nil, servicetier=nil, comprehensionresult=nil, comphighlightresult=nil, detectcontinuousresult=nil, facerecognitionresult=nil, costbasic=nil, costadvanced=nil, files=nil, filesinfo=nil, createtime=nil, updatetime=nil, cosuri=nil)
           @TaskId = taskid
           @Status = status
           @Metadata = metadata
@@ -15980,6 +16614,7 @@ module TencentCloud
           @ComprehensionResult = comprehensionresult
           @CompHighlightResult = comphighlightresult
           @DetectContinuousResult = detectcontinuousresult
+          @FaceRecognitionResult = facerecognitionresult
           @CostBasic = costbasic
           @CostAdvanced = costadvanced
           @Files = files
@@ -16010,6 +16645,10 @@ module TencentCloud
           unless params['DetectContinuousResult'].nil?
             @DetectContinuousResult = SeeDetectContinuousResult.new
             @DetectContinuousResult.deserialize(params['DetectContinuousResult'])
+          end
+          unless params['FaceRecognitionResult'].nil?
+            @FaceRecognitionResult = SeeFaceRecognitionResult.new
+            @FaceRecognitionResult.deserialize(params['FaceRecognitionResult'])
           end
           @CostBasic = params['CostBasic']
           @CostAdvanced = params['CostAdvanced']
@@ -16061,6 +16700,45 @@ module TencentCloud
           @StartTimeMs = params['StartTimeMs']
           @EndTimeMs = params['EndTimeMs']
           @CustomId = params['CustomId']
+        end
+      end
+
+      # TWeSee 任务人员信息
+      class SeeTaskPersonInfo < TencentCloud::Common::AbstractModel
+        # @param Faces: 该人员在任务中的人脸列表
+        # @type Faces: Array
+        # @param IsRemembered: 是否已标记为持久记忆
+        # @type IsRemembered: Boolean
+        # @param Name: 人员名称
+        # @type Name: String
+        # @param PersonId: 人员 ID
+        # @type PersonId: String
+        # @param Source: 创建来源。0：自动识别；1：用户创建
+        # @type Source: Integer
+
+        attr_accessor :Faces, :IsRemembered, :Name, :PersonId, :Source
+
+        def initialize(faces=nil, isremembered=nil, name=nil, personid=nil, source=nil)
+          @Faces = faces
+          @IsRemembered = isremembered
+          @Name = name
+          @PersonId = personid
+          @Source = source
+        end
+
+        def deserialize(params)
+          unless params['Faces'].nil?
+            @Faces = []
+            params['Faces'].each do |i|
+              seetaskfaceinfo_tmp = SeeTaskFaceInfo.new
+              seetaskfaceinfo_tmp.deserialize(i)
+              @Faces << seetaskfaceinfo_tmp
+            end
+          end
+          @IsRemembered = params['IsRemembered']
+          @Name = params['Name']
+          @PersonId = params['PersonId']
+          @Source = params['Source']
         end
       end
 

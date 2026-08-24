@@ -3201,6 +3201,45 @@ module TencentCloud
         end
       end
 
+      # DescribeInstancePasswordPolicy请求参数结构体
+      class DescribeInstancePasswordPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例 ID。请登录 <a href="https://console.cloud.tencent.com/redis">Redis 控制台</a>在实例列表复制实例 ID。</p>
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeInstancePasswordPolicy返回参数结构体
+      class DescribeInstancePasswordPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param PasswordPolicy: <p>实例密码复杂度策略。</p>
+        # @type PasswordPolicy: :class:`Tencentcloud::Redis.v20180412.models.PasswordPolicy`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PasswordPolicy, :RequestId
+
+        def initialize(passwordpolicy=nil, requestid=nil)
+          @PasswordPolicy = passwordpolicy
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['PasswordPolicy'].nil?
+            @PasswordPolicy = PasswordPolicy.new
+            @PasswordPolicy.deserialize(params['PasswordPolicy'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeInstanceSecurityGroup请求参数结构体
       class DescribeInstanceSecurityGroupRequest < TencentCloud::Common::AbstractModel
         # @param InstanceIds: 实例 ID 列表，数组长度限制[0,100]。请登录 [Redis 控制台](https://console.cloud.tencent.com/redis/instance/list)在实例列表复制实例 ID。

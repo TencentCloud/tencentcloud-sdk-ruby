@@ -502,47 +502,49 @@ module TencentCloud
 
       # 弹性扩缩容规格配置
       class AutoScaleResourceConf < TencentCloud::Common::AbstractModel
-        # @param Id: 配置ID。
+        # @param Id: <p>配置ID。</p>
         # @type Id: Integer
-        # @param ClusterId: 集群实例ID。
+        # @param ClusterId: <p>集群实例ID。</p>
         # @type ClusterId: Integer
-        # @param ScaleLowerBound: 自动扩缩容保留最小实例数。
+        # @param ScaleLowerBound: <p>自动扩缩容保留最小实例数。</p>
         # @type ScaleLowerBound: Integer
-        # @param ScaleUpperBound: 自动扩缩容最大实例数。
+        # @param ScaleUpperBound: <p>自动扩缩容最大实例数。</p>
         # @type ScaleUpperBound: Integer
-        # @param StrategyType: 扩容规则类型，1为按负载指标扩容规则，2为按时间扩容规则
+        # @param StrategyType: <p>扩容规则类型，1为按负载指标扩容规则，2为按时间扩容规则</p>
         # @type StrategyType: Integer
-        # @param NextTimeCanScale: 下次可扩容时间。
+        # @param NextTimeCanScale: <p>下次可扩容时间。</p>
         # @type NextTimeCanScale: Integer
-        # @param GraceDownFlag: 优雅缩容开关
+        # @param GraceDownFlag: <p>优雅缩容开关</p>
         # @type GraceDownFlag: Boolean
-        # @param HardwareType: "CVM"表示规格全部使用CVM相关类型，"POD"表示规格使用容器相关类型,默认为"CVM"。
+        # @param HardwareType: <p>&quot;CVM&quot;表示规格全部使用CVM相关类型，&quot;POD&quot;表示规格使用容器相关类型,默认为&quot;CVM&quot;。</p>
         # @type HardwareType: String
-        # @param PayMode: "POSTPAY"表示只使用按量计费，"SPOT_FIRST"表示竞价实例优先，只有HardwareType为"HOST"时支持竞价实例优先，"POD"只支持纯按量计费。
+        # @param PayMode: <p>&quot;POSTPAY&quot;表示只使用按量计费，&quot;SPOT_FIRST&quot;表示竞价实例优先，只有HardwareType为&quot;HOST&quot;时支持竞价实例优先，&quot;POD&quot;只支持纯按量计费。</p>
         # @type PayMode: String
-        # @param PostPayPercentMin: 竞价实例优先的场景下，按量计费资源数量的最低百分比，整数
+        # @param PostPayPercentMin: <p>竞价实例优先的场景下，按量计费资源数量的最低百分比，整数</p>
         # @type PostPayPercentMin: Integer
-        # @param ChangeToPod: 预设资源类型为HOST时，支持勾选“资源不足时切换POD”；支持取消勾选；0表示默认不勾选（0），1表示勾选
+        # @param ChangeToPod: <p>预设资源类型为HOST时，支持勾选“资源不足时切换POD”；支持取消勾选；0表示默认不勾选（0），1表示勾选</p>
         # @type ChangeToPod: Integer
-        # @param GroupName: 伸缩组名
+        # @param GroupName: <p>伸缩组名</p>
         # @type GroupName: String
-        # @param YarnNodeLabel: 标签
+        # @param YarnNodeLabel: <p>标签</p>
         # @type YarnNodeLabel: String
-        # @param WarehouseName: 对应的计算组
+        # @param WarehouseName: <p>对应的计算组</p>
         # @type WarehouseName: String
-        # @param GroupStatus: 伸缩组状态
+        # @param GroupStatus: <p>伸缩组状态</p>
         # @type GroupStatus: Integer
-        # @param Parallel: 并行伸缩 0关闭；1开启
+        # @param Parallel: <p>并行伸缩 0关闭；1开启</p>
         # @type Parallel: Integer
-        # @param EnableMNode: 是否支持MNode
+        # @param EnableMNode: <p>是否支持MNode</p>
         # @type EnableMNode: Integer
-        # @param ExtraAdvanceAttrs: 伸缩组更多设置
+        # @param ExtraAdvanceAttrs: <p>伸缩组更多设置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtraAdvanceAttrs: :class:`Tencentcloud::Emr.v20190103.models.AutoScaleGroupAdvanceAttrs`
+        # @param CustomNodeName: <p>自定义主机名</p>
+        # @type CustomNodeName: String
 
-        attr_accessor :Id, :ClusterId, :ScaleLowerBound, :ScaleUpperBound, :StrategyType, :NextTimeCanScale, :GraceDownFlag, :HardwareType, :PayMode, :PostPayPercentMin, :ChangeToPod, :GroupName, :YarnNodeLabel, :WarehouseName, :GroupStatus, :Parallel, :EnableMNode, :ExtraAdvanceAttrs
+        attr_accessor :Id, :ClusterId, :ScaleLowerBound, :ScaleUpperBound, :StrategyType, :NextTimeCanScale, :GraceDownFlag, :HardwareType, :PayMode, :PostPayPercentMin, :ChangeToPod, :GroupName, :YarnNodeLabel, :WarehouseName, :GroupStatus, :Parallel, :EnableMNode, :ExtraAdvanceAttrs, :CustomNodeName
 
-        def initialize(id=nil, clusterid=nil, scalelowerbound=nil, scaleupperbound=nil, strategytype=nil, nexttimecanscale=nil, gracedownflag=nil, hardwaretype=nil, paymode=nil, postpaypercentmin=nil, changetopod=nil, groupname=nil, yarnnodelabel=nil, warehousename=nil, groupstatus=nil, parallel=nil, enablemnode=nil, extraadvanceattrs=nil)
+        def initialize(id=nil, clusterid=nil, scalelowerbound=nil, scaleupperbound=nil, strategytype=nil, nexttimecanscale=nil, gracedownflag=nil, hardwaretype=nil, paymode=nil, postpaypercentmin=nil, changetopod=nil, groupname=nil, yarnnodelabel=nil, warehousename=nil, groupstatus=nil, parallel=nil, enablemnode=nil, extraadvanceattrs=nil, customnodename=nil)
           @Id = id
           @ClusterId = clusterid
           @ScaleLowerBound = scalelowerbound
@@ -561,6 +563,7 @@ module TencentCloud
           @Parallel = parallel
           @EnableMNode = enablemnode
           @ExtraAdvanceAttrs = extraadvanceattrs
+          @CustomNodeName = customnodename
         end
 
         def deserialize(params)
@@ -585,6 +588,7 @@ module TencentCloud
             @ExtraAdvanceAttrs = AutoScaleGroupAdvanceAttrs.new
             @ExtraAdvanceAttrs.deserialize(params['ExtraAdvanceAttrs'])
           end
+          @CustomNodeName = params['CustomNodeName']
         end
       end
 
@@ -1290,10 +1294,10 @@ module TencentCloud
 
         attr_accessor :Id, :ClusterId, :Ftitle, :ClusterName, :RegionId, :ZoneId, :AppId, :Uin, :ProjectId, :VpcId, :SubnetId, :Status, :AddTime, :RunTime, :Config, :MasterIp, :EmrVersion, :ChargeType, :TradeVersion, :ResourceOrderId, :IsTradeCluster, :AlarmInfo, :IsWoodpeckerCluster, :MetaDb, :Tags, :HiveMetaDb, :ServiceClass, :AliasInfo, :ProductId, :Zone, :SceneName, :SceneServiceClass, :SceneEmrVersion, :DisplayName, :VpcName, :SubnetName, :ClusterExternalServiceInfo, :UniqVpcId, :UniqSubnetId, :TopologyInfoList, :IsMultiZoneCluster, :IsCvmReplace, :ClusterTitle, :ConfigDetail, :BindFileSystemNum, :ClusterRelationInfoList, :RedisId, :IsIOHungSelfRecovery, :MetaDBGroupInfo
         extend Gem::Deprecate
-        deprecate :Ftitle, :none, 2026, 7
-        deprecate :Ftitle=, :none, 2026, 7
-        deprecate :Config, :none, 2026, 7
-        deprecate :Config=, :none, 2026, 7
+        deprecate :Ftitle, :none, 2026, 8
+        deprecate :Ftitle=, :none, 2026, 8
+        deprecate :Config, :none, 2026, 8
+        deprecate :Config=, :none, 2026, 8
 
         def initialize(id=nil, clusterid=nil, ftitle=nil, clustername=nil, regionid=nil, zoneid=nil, appid=nil, uin=nil, projectid=nil, vpcid=nil, subnetid=nil, status=nil, addtime=nil, runtime=nil, config=nil, masterip=nil, emrversion=nil, chargetype=nil, tradeversion=nil, resourceorderid=nil, istradecluster=nil, alarminfo=nil, iswoodpeckercluster=nil, metadb=nil, tags=nil, hivemetadb=nil, serviceclass=nil, aliasinfo=nil, productid=nil, zone=nil, scenename=nil, sceneserviceclass=nil, sceneemrversion=nil, displayname=nil, vpcname=nil, subnetname=nil, clusterexternalserviceinfo=nil, uniqvpcid=nil, uniqsubnetid=nil, topologyinfolist=nil, ismultizonecluster=nil, iscvmreplace=nil, clustertitle=nil, configdetail=nil, bindfilesystemnum=nil, clusterrelationinfolist=nil, redisid=nil, isiohungselfrecovery=nil, metadbgroupinfo=nil)
           @Id = id
@@ -12201,16 +12205,19 @@ module TencentCloud
         # @type LocalDataDisk: Array
         # @param SoftwareConfig: <p>节点配置信息，目前仅提供给terraform平台校验参数使用</p>
         # @type SoftwareConfig: Array
+        # @param CustomNodeName: <p>自定义主机名</p>
+        # @type CustomNodeName: String
 
-        attr_accessor :InstanceType, :SystemDisk, :Tags, :DataDisk, :LocalDataDisk, :SoftwareConfig
+        attr_accessor :InstanceType, :SystemDisk, :Tags, :DataDisk, :LocalDataDisk, :SoftwareConfig, :CustomNodeName
 
-        def initialize(instancetype=nil, systemdisk=nil, tags=nil, datadisk=nil, localdatadisk=nil, softwareconfig=nil)
+        def initialize(instancetype=nil, systemdisk=nil, tags=nil, datadisk=nil, localdatadisk=nil, softwareconfig=nil, customnodename=nil)
           @InstanceType = instancetype
           @SystemDisk = systemdisk
           @Tags = tags
           @DataDisk = datadisk
           @LocalDataDisk = localdatadisk
           @SoftwareConfig = softwareconfig
+          @CustomNodeName = customnodename
         end
 
         def deserialize(params)
@@ -12255,6 +12262,7 @@ module TencentCloud
               @SoftwareConfig << servicedeploy_tmp
             end
           end
+          @CustomNodeName = params['CustomNodeName']
         end
       end
 
@@ -12642,28 +12650,30 @@ module TencentCloud
 
       # 操作日志描述
       class OperationLog < TencentCloud::Common::AbstractModel
-        # @param InstanceId: EMR实例ID
+        # @param InstanceId: <p>EMR实例ID</p>
         # @type InstanceId: Integer
-        # @param Operation: 操作名称
+        # @param Operation: <p>操作名称</p>
         # @type Operation: String
-        # @param OperationType: 操作类型
+        # @param OperationType: <p>操作类型</p>
         # @type OperationType: Integer
-        # @param UserType: 用户类型
+        # @param UserType: <p>用户类型</p>
         # @type UserType: Integer
-        # @param Operator: 操作者
+        # @param Operator: <p>操作者</p>
         # @type Operator: String
-        # @param CreateTime: 操作时间
+        # @param CreateTime: <p>操作时间</p>
         # @type CreateTime: String
-        # @param Operand: 操作对象
+        # @param Operand: <p>操作对象</p>
         # @type Operand: String
-        # @param OperationDesc: 操作详情
+        # @param OperationDesc: <p>操作详情</p>
         # @type OperationDesc: String
-        # @param SecurityLevel: 安全级别
+        # @param SecurityLevel: <p>安全级别</p>
         # @type SecurityLevel: String
+        # @param OperatorName: <p>操作者名称</p>
+        # @type OperatorName: String
 
-        attr_accessor :InstanceId, :Operation, :OperationType, :UserType, :Operator, :CreateTime, :Operand, :OperationDesc, :SecurityLevel
+        attr_accessor :InstanceId, :Operation, :OperationType, :UserType, :Operator, :CreateTime, :Operand, :OperationDesc, :SecurityLevel, :OperatorName
 
-        def initialize(instanceid=nil, operation=nil, operationtype=nil, usertype=nil, operator=nil, createtime=nil, operand=nil, operationdesc=nil, securitylevel=nil)
+        def initialize(instanceid=nil, operation=nil, operationtype=nil, usertype=nil, operator=nil, createtime=nil, operand=nil, operationdesc=nil, securitylevel=nil, operatorname=nil)
           @InstanceId = instanceid
           @Operation = operation
           @OperationType = operationtype
@@ -12673,6 +12683,7 @@ module TencentCloud
           @Operand = operand
           @OperationDesc = operationdesc
           @SecurityLevel = securitylevel
+          @OperatorName = operatorname
         end
 
         def deserialize(params)
@@ -12685,6 +12696,7 @@ module TencentCloud
           @Operand = params['Operand']
           @OperationDesc = params['OperationDesc']
           @SecurityLevel = params['SecurityLevel']
+          @OperatorName = params['OperatorName']
         end
       end
 
@@ -15653,12 +15665,12 @@ module TencentCloud
 
         attr_accessor :DetectAlert, :DetetcFunctionKey, :DetetcFunctionValue, :DetetcTime, :DetectFunctionKey, :DetectFunctionValue, :DetectTime
         extend Gem::Deprecate
-        deprecate :DetetcFunctionKey, :none, 2026, 7
-        deprecate :DetetcFunctionKey=, :none, 2026, 7
-        deprecate :DetetcFunctionValue, :none, 2026, 7
-        deprecate :DetetcFunctionValue=, :none, 2026, 7
-        deprecate :DetetcTime, :none, 2026, 7
-        deprecate :DetetcTime=, :none, 2026, 7
+        deprecate :DetetcFunctionKey, :none, 2026, 8
+        deprecate :DetetcFunctionKey=, :none, 2026, 8
+        deprecate :DetetcFunctionValue, :none, 2026, 8
+        deprecate :DetetcFunctionValue=, :none, 2026, 8
+        deprecate :DetetcTime, :none, 2026, 8
+        deprecate :DetetcTime=, :none, 2026, 8
 
         def initialize(detectalert=nil, detetcfunctionkey=nil, detetcfunctionvalue=nil, detetctime=nil, detectfunctionkey=nil, detectfunctionvalue=nil, detecttime=nil)
           @DetectAlert = detectalert

@@ -6733,8 +6733,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :MsgId, :PulsarMsgId, :QueryDlqMsg, :QueryDeadLetterMessage, :Offset, :Limit, :FilterTrackGroup, :QueryDelayMessage
         extend Gem::Deprecate
-        deprecate :QueryDlqMsg, :none, 2026, 7
-        deprecate :QueryDlqMsg=, :none, 2026, 7
+        deprecate :QueryDlqMsg, :none, 2026, 8
+        deprecate :QueryDlqMsg=, :none, 2026, 8
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, msgid=nil, pulsarmsgid=nil, querydlqmsg=nil, querydeadlettermessage=nil, offset=nil, limit=nil, filtertrackgroup=nil, querydelaymessage=nil)
           @ClusterId = clusterid
@@ -6841,8 +6841,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :MsgId, :GroupName, :QueryDLQMsg, :QueryDeadLetterMessage
         extend Gem::Deprecate
-        deprecate :QueryDLQMsg, :none, 2026, 7
-        deprecate :QueryDLQMsg=, :none, 2026, 7
+        deprecate :QueryDLQMsg, :none, 2026, 8
+        deprecate :QueryDLQMsg=, :none, 2026, 8
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, msgid=nil, groupname=nil, querydlqmsg=nil, querydeadlettermessage=nil)
           @ClusterId = clusterid
@@ -7561,8 +7561,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :StartTime, :EndTime, :MsgId, :MsgKey, :Offset, :Limit, :TaskRequestId, :QueryDlqMsg, :NumOfLatestMsg, :Tag, :QueryDeadLetterMessage
         extend Gem::Deprecate
-        deprecate :QueryDlqMsg, :none, 2026, 7
-        deprecate :QueryDlqMsg=, :none, 2026, 7
+        deprecate :QueryDlqMsg, :none, 2026, 8
+        deprecate :QueryDlqMsg=, :none, 2026, 8
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, starttime=nil, endtime=nil, msgid=nil, msgkey=nil, offset=nil, limit=nil, taskrequestid=nil, querydlqmsg=nil, numoflatestmsg=nil, tag=nil, querydeadlettermessage=nil)
           @ClusterId = clusterid
@@ -12463,8 +12463,8 @@ module TencentCloud
 
         attr_accessor :MaxTpsPerNamespace, :MaxNamespaceNum, :UsedNamespaceNum, :MaxTopicNum, :UsedTopicNum, :MaxGroupNum, :UsedGroupNum, :MaxRetentionTime, :MaxLatencyTime, :MaxQueuesPerTopic, :TopicDistribution, :MaxRoleNum, :MaxTpsLimit
         extend Gem::Deprecate
-        deprecate :MaxTpsPerNamespace, :none, 2026, 7
-        deprecate :MaxTpsPerNamespace=, :none, 2026, 7
+        deprecate :MaxTpsPerNamespace, :none, 2026, 8
+        deprecate :MaxTpsPerNamespace=, :none, 2026, 8
 
         def initialize(maxtpspernamespace=nil, maxnamespacenum=nil, usednamespacenum=nil, maxtopicnum=nil, usedtopicnum=nil, maxgroupnum=nil, usedgroupnum=nil, maxretentiontime=nil, maxlatencytime=nil, maxqueuespertopic=nil, topicdistribution=nil, maxrolenum=nil, maxtpslimit=nil)
           @MaxTpsPerNamespace = maxtpspernamespace
@@ -12875,10 +12875,10 @@ module TencentCloud
 
         attr_accessor :Name, :ConsumerNum, :TPS, :TotalAccumulative, :ConsumptionMode, :ReadEnabled, :RetryPartitionNum, :CreateTime, :UpdateTime, :ClientProtocol, :Remark, :ConsumerType, :BroadcastEnabled, :GroupType, :RetryMaxTimes, :InstanceId, :Namespace, :SubscribeTopicNum, :TagList
         extend Gem::Deprecate
-        deprecate :TPS, :none, 2026, 7
-        deprecate :TPS=, :none, 2026, 7
-        deprecate :TotalAccumulative, :none, 2026, 7
-        deprecate :TotalAccumulative=, :none, 2026, 7
+        deprecate :TPS, :none, 2026, 8
+        deprecate :TPS=, :none, 2026, 8
+        deprecate :TotalAccumulative, :none, 2026, 8
+        deprecate :TotalAccumulative=, :none, 2026, 8
 
         def initialize(name=nil, consumernum=nil, tps=nil, totalaccumulative=nil, consumptionmode=nil, readenabled=nil, retrypartitionnum=nil, createtime=nil, updatetime=nil, clientprotocol=nil, remark=nil, consumertype=nil, broadcastenabled=nil, grouptype=nil, retrymaxtimes=nil, instanceid=nil, namespace=nil, subscribetopicnum=nil, taglist=nil)
           @Name = name

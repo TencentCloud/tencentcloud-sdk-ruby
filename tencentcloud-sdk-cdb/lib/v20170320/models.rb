@@ -5864,8 +5864,7 @@ module TencentCloud
 
       # DescribeClusterInfo请求参数结构体
       class DescribeClusterInfoRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID。可通过 [DescribeDBInstances](https://cloud.tencent.com/document/product/236/15872) 接口获取。
-        # 说明：仅能输入实例架构为云盘版的实例 ID，对应控制台实例配置显示为“云盘版（云盘）”的实例。
+        # @param InstanceId: <p>实例 ID。可通过 <a href="https://cloud.tencent.com/document/product/236/15872">DescribeDBInstances</a> 接口获取。<br>说明：仅能输入实例架构为云盘版的实例 ID，对应控制台实例配置显示为“云盘版（云盘）”的实例。</p>
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -5881,17 +5880,17 @@ module TencentCloud
 
       # DescribeClusterInfo返回参数结构体
       class DescribeClusterInfoResponse < TencentCloud::Common::AbstractModel
-        # @param ClusterName: 实例名称。
+        # @param ClusterName: <p>实例名称。</p>
         # @type ClusterName: String
-        # @param ReadWriteAddress: 云盘版实例的读写地址信息。
+        # @param ReadWriteAddress: <p>云盘版实例的读写地址信息。</p>
         # @type ReadWriteAddress: :class:`Tencentcloud::Cdb.v20170320.models.AddressInfo`
-        # @param ReadOnlyAddress: 云盘版实例的只读地址信息。
+        # @param ReadOnlyAddress: <p>云盘版实例的只读地址信息。</p>
         # @type ReadOnlyAddress: Array
-        # @param NodeList: 云盘版实例的节点列表信息。
+        # @param NodeList: <p>云盘版实例的节点列表信息。</p>
         # @type NodeList: Array
-        # @param ReadonlyLimit: 只读空间保护阈值,单位GB
+        # @param ReadonlyLimit: <p>只读空间保护阈值,单位GB</p>
         # @type ReadonlyLimit: Integer
-        # @param NodeCount: 实例节点数。
+        # @param NodeCount: <p>实例节点数。</p>
         # @type NodeCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

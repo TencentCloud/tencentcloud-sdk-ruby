@@ -2613,15 +2613,15 @@ module TencentCloud
         # @type Zone: String
         # @param VpcId: <p>需要开通服务的VPC</p>
         # @type VpcId: String
-        # @param SubnetId: <p>需要开通服务的子网ID</p>
+        # @param SubnetId: <p>需要开通服务的子网ID，此字段即将废除，请填写DeploySubnets包含的子网</p>
         # @type SubnetId: String
-        # @param CidrBlock: <p>需要开通服务的子网网段</p>
+        # @param CidrBlock: <p>需要开通服务的子网网段，此字段即将废除，请填写DeploySubnets包含的子网</p>
         # @type CidrBlock: String
         # @param VpcName: <p>需要开通服务的VPC名称</p>
         # @type VpcName: String
         # @param VpcCidrBlock: <p>需要开通服务的VPC对应的网段</p>
         # @type VpcCidrBlock: String
-        # @param SubnetName: <p>需要开通服务的子网名称</p>
+        # @param SubnetName: <p>需要开通服务的子网名称，此字段即将废除，请填写DeploySubnets包含的子网</p>
         # @type SubnetName: String
         # @param CdcClusterId: <p>需要开通实例所属的CDC集群ID</p>
         # @type CdcClusterId: String
@@ -2635,7 +2635,7 @@ module TencentCloud
         # @type IntranetAccess: Integer
         # @param ExternalAccess: <p>0-关闭公网访问堡垒机，1-开启公网访问堡垒机</p>
         # @type ExternalAccess: Integer
-        # @param DeploySubnets: <p>开通堡垒机的子网信息</p>
+        # @param DeploySubnets: <p>开通堡垒机的子网信息，最多支持2个子网</p>
         # @type DeploySubnets: Array
         # @param IntranetVpcId: <p>开通内网访问的VPC ID</p>
         # @type IntranetVpcId: String
@@ -2643,7 +2643,7 @@ module TencentCloud
         # @type IntranetVpcCidrBlock: String
         # @param IntranetVpcName: <p>开通内网访问的VPC名称</p>
         # @type IntranetVpcName: String
-        # @param IntranetSubnets: <p>开通内网访问的子网信息</p>
+        # @param IntranetSubnets: <p>开通内网访问的子网信息，最多支持2个子网</p>
         # @type IntranetSubnets: Array
 
         attr_accessor :ResourceId, :ApCode, :Zone, :VpcId, :SubnetId, :CidrBlock, :VpcName, :VpcCidrBlock, :SubnetName, :CdcClusterId, :ShareClbId, :WebAccess, :ClientAccess, :IntranetAccess, :ExternalAccess, :DeploySubnets, :IntranetVpcId, :IntranetVpcCidrBlock, :IntranetVpcName, :IntranetSubnets

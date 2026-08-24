@@ -7303,6 +7303,30 @@ module TencentCloud
         end
       end
 
+      # 租户ckafka信息
+      class CkafkaInstance < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param InstanceName: 实例名称
+        # @type InstanceName: String
+        # @param RegionId: 实例地域
+        # @type RegionId: String
+
+        attr_accessor :InstanceId, :InstanceName, :RegionId
+
+        def initialize(instanceid=nil, instancename=nil, regionid=nil)
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @RegionId = regionid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @RegionId = params['RegionId']
+        end
+      end
+
       # CLB监听器
       class ClbListenerItem < TencentCloud::Common::AbstractModel
         # @param ListenerID: <p>监听器ID</p>
@@ -12483,6 +12507,62 @@ module TencentCloud
         end
       end
 
+      # CreateDspmAuditFilterStrategy请求参数结构体
+      class CreateDspmAuditFilterStrategyRequest < TencentCloud::Common::AbstractModel
+        # @param Name: <p>策略名</p>
+        # @type Name: String
+        # @param Rule: <p>规则内容</p><p>参数格式：json</p>
+        # @type Rule: String
+        # @param IsEnabled: <p>是否启用</p><p>枚举值：</p><ul><li>1： 启用</li><li>0： 禁用</li></ul>
+        # @type IsEnabled: Integer
+        # @param Description: <p>策略描述</p>
+        # @type Description: String
+        # @param Remark: <p>备注</p>
+        # @type Remark: String
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+
+        attr_accessor :Name, :Rule, :IsEnabled, :Description, :Remark, :MemberId
+
+        def initialize(name=nil, rule=nil, isenabled=nil, description=nil, remark=nil, memberid=nil)
+          @Name = name
+          @Rule = rule
+          @IsEnabled = isenabled
+          @Description = description
+          @Remark = remark
+          @MemberId = memberid
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Rule = params['Rule']
+          @IsEnabled = params['IsEnabled']
+          @Description = params['Description']
+          @Remark = params['Remark']
+          @MemberId = params['MemberId']
+        end
+      end
+
+      # CreateDspmAuditFilterStrategy返回参数结构体
+      class CreateDspmAuditFilterStrategyResponse < TencentCloud::Common::AbstractModel
+        # @param AuditFilterStrategyId: <p>策略ID</p>
+        # @type AuditFilterStrategyId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AuditFilterStrategyId, :RequestId
+
+        def initialize(auditfilterstrategyid=nil, requestid=nil)
+          @AuditFilterStrategyId = auditfilterstrategyid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AuditFilterStrategyId = params['AuditFilterStrategyId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateDspmExportTask请求参数结构体
       class CreateDspmExportTaskRequest < TencentCloud::Common::AbstractModel
         # @param MemberId: <p>集团账号的成员id</p>
@@ -13072,6 +13152,37 @@ module TencentCloud
         end
       end
 
+      # CreateDspmResource请求参数结构体
+      class CreateDspmResourceRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # CreateDspmResource返回参数结构体
+      class CreateDspmResourceResponse < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 资产id
+        # @type ResourceId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ResourceId, :RequestId
+
+        def initialize(resourceid=nil, requestid=nil)
+          @ResourceId = resourceid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateDspmRiskExportJob请求参数结构体
       class CreateDspmRiskExportJobRequest < TencentCloud::Common::AbstractModel
         # @param MemberId: 集团账号的成员id
@@ -13111,6 +13222,82 @@ module TencentCloud
 
         def deserialize(params)
           @JobID = params['JobID']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateDspmRiskStrategy请求参数结构体
+      class CreateDspmRiskStrategyRequest < TencentCloud::Common::AbstractModel
+        # @param Name: <p>策略名</p>
+        # @type Name: String
+        # @param Rule: <p>策略规则，JSON 字符串</p>
+        # @type Rule: String
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+        # @param EnName: <p>英文策略名</p>
+        # @type EnName: String
+        # @param Description: <p>策略描述</p>
+        # @type Description: String
+        # @param EnDescription: <p>英文策略描述</p>
+        # @type EnDescription: String
+        # @param RiskLevel: <p>风险等级，可选值：Info/Low/Medium/High。不传默认 Medium</p>
+        # @type RiskLevel: String
+        # @param IsEnabled: <p>是否启用。0-禁用，1-启用，不传默认启用</p>
+        # @type IsEnabled: Integer
+        # @param RiskType: <p>风险类型。当前仅支持 alarm，不传默认 alarm</p>
+        # @type RiskType: String
+        # @param StrategyCategory: <p>策略类别。当前仅支持 SQLOperationAnomaly，不传默认 SQLOperationAnomaly</p>
+        # @type StrategyCategory: String
+
+        attr_accessor :Name, :Rule, :MemberId, :EnName, :Description, :EnDescription, :RiskLevel, :IsEnabled, :RiskType, :StrategyCategory
+
+        def initialize(name=nil, rule=nil, memberid=nil, enname=nil, description=nil, endescription=nil, risklevel=nil, isenabled=nil, risktype=nil, strategycategory=nil)
+          @Name = name
+          @Rule = rule
+          @MemberId = memberid
+          @EnName = enname
+          @Description = description
+          @EnDescription = endescription
+          @RiskLevel = risklevel
+          @IsEnabled = isenabled
+          @RiskType = risktype
+          @StrategyCategory = strategycategory
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Rule = params['Rule']
+          @MemberId = params['MemberId']
+          @EnName = params['EnName']
+          @Description = params['Description']
+          @EnDescription = params['EnDescription']
+          @RiskLevel = params['RiskLevel']
+          @IsEnabled = params['IsEnabled']
+          @RiskType = params['RiskType']
+          @StrategyCategory = params['StrategyCategory']
+        end
+      end
+
+      # CreateDspmRiskStrategy返回参数结构体
+      class CreateDspmRiskStrategyResponse < TencentCloud::Common::AbstractModel
+        # @param StrategyId: <p>策略id</p>
+        # @type StrategyId: Integer
+        # @param StrategyType: <p>策略类型</p>
+        # @type StrategyType: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :StrategyId, :StrategyType, :RequestId
+
+        def initialize(strategyid=nil, strategytype=nil, requestid=nil)
+          @StrategyId = strategyid
+          @StrategyType = strategytype
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @StrategyId = params['StrategyId']
+          @StrategyType = params['StrategyType']
           @RequestId = params['RequestId']
         end
       end
@@ -16676,6 +16863,42 @@ module TencentCloud
         end
       end
 
+      # DeleteDspmAuditFilterStrategy请求参数结构体
+      class DeleteDspmAuditFilterStrategyRequest < TencentCloud::Common::AbstractModel
+        # @param AuditFilterStrategyId: <p>策略ID</p>
+        # @type AuditFilterStrategyId: Array
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+
+        attr_accessor :AuditFilterStrategyId, :MemberId
+
+        def initialize(auditfilterstrategyid=nil, memberid=nil)
+          @AuditFilterStrategyId = auditfilterstrategyid
+          @MemberId = memberid
+        end
+
+        def deserialize(params)
+          @AuditFilterStrategyId = params['AuditFilterStrategyId']
+          @MemberId = params['MemberId']
+        end
+      end
+
+      # DeleteDspmAuditFilterStrategy返回参数结构体
+      class DeleteDspmAuditFilterStrategyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteDspmBackupLogList请求参数结构体
       class DeleteDspmBackupLogListRequest < TencentCloud::Common::AbstractModel
         # @param Id: <p>备份日志Id</p>
@@ -16698,6 +16921,38 @@ module TencentCloud
 
       # DeleteDspmBackupLogList返回参数结构体
       class DeleteDspmBackupLogListResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteDspmCkafkaConfig请求参数结构体
+      class DeleteDspmCkafkaConfigRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+
+        attr_accessor :MemberId
+
+        def initialize(memberid=nil)
+          @MemberId = memberid
+        end
+
+        def deserialize(params)
+          @MemberId = params['MemberId']
+        end
+      end
+
+      # DeleteDspmCkafkaConfig返回参数结构体
+      class DeleteDspmCkafkaConfigResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -17040,6 +17295,82 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteDspmRiskStrategy请求参数结构体
+      class DeleteDspmRiskStrategyRequest < TencentCloud::Common::AbstractModel
+        # @param StrategyId: <p>策略id，仅支持删除自定义策略（rule_source=custom）；内置策略请通过 ModifyDspmRiskStrategy 的 IsEnabled 禁用</p>
+        # @type StrategyId: Array
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+
+        attr_accessor :StrategyId, :MemberId
+
+        def initialize(strategyid=nil, memberid=nil)
+          @StrategyId = strategyid
+          @MemberId = memberid
+        end
+
+        def deserialize(params)
+          @StrategyId = params['StrategyId']
+          @MemberId = params['MemberId']
+        end
+      end
+
+      # DeleteDspmRiskStrategy返回参数结构体
+      class DeleteDspmRiskStrategyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteDspmShareUserData请求参数结构体
+      class DeleteDspmShareUserDataRequest < TencentCloud::Common::AbstractModel
+        # @param DeleteDataAppId: 用户appid
+        # @type DeleteDataAppId: Integer
+
+        attr_accessor :DeleteDataAppId
+
+        def initialize(deletedataappid=nil)
+          @DeleteDataAppId = deletedataappid
+        end
+
+        def deserialize(params)
+          @DeleteDataAppId = params['DeleteDataAppId']
+        end
+      end
+
+      # DeleteDspmShareUserData返回参数结构体
+      class DeleteDspmShareUserDataResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 0-成功，1-失败
+        # @type Result: Integer
+        # @param Msg: 成功或失败信息
+        # @type Msg: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :Msg, :RequestId
+
+        def initialize(result=nil, msg=nil, requestid=nil)
+          @Result = result
+          @Msg = msg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @Msg = params['Msg']
           @RequestId = params['RequestId']
         end
       end
@@ -29459,6 +29790,116 @@ module TencentCloud
         end
       end
 
+      # 过滤规则
+      class DescribeDspmAuditFilterStrategy < TencentCloud::Common::AbstractModel
+        # @param AuditFilterStrategyId: <p>策略ID</p>
+        # @type AuditFilterStrategyId: Integer
+        # @param Name: <p>策略名</p>
+        # @type Name: String
+        # @param Description: <p>策略描述</p>
+        # @type Description: String
+        # @param Rule: <p>规则内容</p>
+        # @type Rule: String
+        # @param IsEnabled: <p>是否启用</p><p>枚举值：</p><ul><li>0： 禁用</li><li>1： 启用</li></ul>
+        # @type IsEnabled: Integer
+        # @param Remark: <p>备注</p>
+        # @type Remark: String
+        # @param CreateTime: <p>创建时间</p><p>参数格式：2026-07-16T11:44:45+08</p>
+        # @type CreateTime: String
+        # @param ModifyTime: <p>更新时间</p><p>参数格式：2026-07-16T11:44:45+08</p>
+        # @type ModifyTime: String
+        # @param AppId: <p>云账号ID</p>
+        # @type AppId: Integer
+        # @param Uin: <p>用户标识</p>
+        # @type Uin: String
+        # @param NickName: <p>账号昵称</p>
+        # @type NickName: String
+
+        attr_accessor :AuditFilterStrategyId, :Name, :Description, :Rule, :IsEnabled, :Remark, :CreateTime, :ModifyTime, :AppId, :Uin, :NickName
+
+        def initialize(auditfilterstrategyid=nil, name=nil, description=nil, rule=nil, isenabled=nil, remark=nil, createtime=nil, modifytime=nil, appid=nil, uin=nil, nickname=nil)
+          @AuditFilterStrategyId = auditfilterstrategyid
+          @Name = name
+          @Description = description
+          @Rule = rule
+          @IsEnabled = isenabled
+          @Remark = remark
+          @CreateTime = createtime
+          @ModifyTime = modifytime
+          @AppId = appid
+          @Uin = uin
+          @NickName = nickname
+        end
+
+        def deserialize(params)
+          @AuditFilterStrategyId = params['AuditFilterStrategyId']
+          @Name = params['Name']
+          @Description = params['Description']
+          @Rule = params['Rule']
+          @IsEnabled = params['IsEnabled']
+          @Remark = params['Remark']
+          @CreateTime = params['CreateTime']
+          @ModifyTime = params['ModifyTime']
+          @AppId = params['AppId']
+          @Uin = params['Uin']
+          @NickName = params['NickName']
+        end
+      end
+
+      # DescribeDspmAuditFilterStrategy请求参数结构体
+      class DescribeDspmAuditFilterStrategyRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+        # @param Filter: <p>过滤条件</p>
+        # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+
+        attr_accessor :MemberId, :Filter
+
+        def initialize(memberid=nil, filter=nil)
+          @MemberId = memberid
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          @MemberId = params['MemberId']
+          unless params['Filter'].nil?
+            @Filter = Filter.new
+            @Filter.deserialize(params['Filter'])
+          end
+        end
+      end
+
+      # DescribeDspmAuditFilterStrategy返回参数结构体
+      class DescribeDspmAuditFilterStrategyResponse < TencentCloud::Common::AbstractModel
+        # @param StrategySet: <p>策略内容</p>
+        # @type StrategySet: Array
+        # @param TotalCount: <p>策略总数</p>
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :StrategySet, :TotalCount, :RequestId
+
+        def initialize(strategyset=nil, totalcount=nil, requestid=nil)
+          @StrategySet = strategyset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['StrategySet'].nil?
+            @StrategySet = []
+            params['StrategySet'].each do |i|
+              describedspmauditfilterstrategy_tmp = DescribeDspmAuditFilterStrategy.new
+              describedspmauditfilterstrategy_tmp.deserialize(i)
+              @StrategySet << describedspmauditfilterstrategy_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDspmBackupLogList请求参数结构体
       class DescribeDspmBackupLogListRequest < TencentCloud::Common::AbstractModel
         # @param Limit: <p>限制数目</p>
@@ -29594,6 +30035,132 @@ module TencentCloud
           @LogMaxSaveTime = params['LogMaxSaveTime']
           @OnlineLogMaxSaveTime = params['OnlineLogMaxSaveTime']
           @MaxOnlineLogCount = params['MaxOnlineLogCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDspmCkafkaRouteList请求参数结构体
+      class DescribeDspmCkafkaRouteListRequest < TencentCloud::Common::AbstractModel
+        # @param VipType: Ckafka接入类型
+        # @type VipType: Integer
+        # @param RegionId: Ckafka实例的地域
+        # @type RegionId: String
+        # @param InstanceId: Ckafka实例的id
+        # @type InstanceId: String
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+        # @param InstanceName: Ckafka实例的名称
+        # @type InstanceName: String
+
+        attr_accessor :VipType, :RegionId, :InstanceId, :MemberId, :InstanceName
+
+        def initialize(viptype=nil, regionid=nil, instanceid=nil, memberid=nil, instancename=nil)
+          @VipType = viptype
+          @RegionId = regionid
+          @InstanceId = instanceid
+          @MemberId = memberid
+          @InstanceName = instancename
+        end
+
+        def deserialize(params)
+          @VipType = params['VipType']
+          @RegionId = params['RegionId']
+          @InstanceId = params['InstanceId']
+          @MemberId = params['MemberId']
+          @InstanceName = params['InstanceName']
+        end
+      end
+
+      # DescribeDspmCkafkaRouteList返回参数结构体
+      class DescribeDspmCkafkaRouteListResponse < TencentCloud::Common::AbstractModel
+        # @param List: Ckafka实例的路由列表
+        # @type List: Array
+        # @param TotalCount: Ckafka实例的路由列表个数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :List, :TotalCount, :RequestId
+
+        def initialize(list=nil, totalcount=nil, requestid=nil)
+          @List = list
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              routeinfo_tmp = RouteInfo.new
+              routeinfo_tmp.deserialize(i)
+              @List << routeinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDspmCkafkaTopicList请求参数结构体
+      class DescribeDspmCkafkaTopicListRequest < TencentCloud::Common::AbstractModel
+        # @param VipType: ckafka的实例接入类型
+        # @type VipType: Integer
+        # @param RegionId: ckafka的实例地域
+        # @type RegionId: String
+        # @param InstanceId: ckafka的实例id
+        # @type InstanceId: String
+        # @param InstanceName: ckafka的实例名称
+        # @type InstanceName: String
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+
+        attr_accessor :VipType, :RegionId, :InstanceId, :InstanceName, :MemberId
+
+        def initialize(viptype=nil, regionid=nil, instanceid=nil, instancename=nil, memberid=nil)
+          @VipType = viptype
+          @RegionId = regionid
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @MemberId = memberid
+        end
+
+        def deserialize(params)
+          @VipType = params['VipType']
+          @RegionId = params['RegionId']
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @MemberId = params['MemberId']
+        end
+      end
+
+      # DescribeDspmCkafkaTopicList返回参数结构体
+      class DescribeDspmCkafkaTopicListResponse < TencentCloud::Common::AbstractModel
+        # @param List: ckafka实例的主题列表
+        # @type List: Array
+        # @param TotalCount: ckafka实例的主题列表的总数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :List, :TotalCount, :RequestId
+
+        def initialize(list=nil, totalcount=nil, requestid=nil)
+          @List = list
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              topicinfo_tmp = TopicInfo.new
+              topicinfo_tmp.deserialize(i)
+              @List << topicinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -30431,6 +30998,53 @@ module TencentCloud
         end
       end
 
+      # DescribeDspmLogDeliveryType请求参数结构体
+      class DescribeDspmLogDeliveryTypeRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+
+        attr_accessor :MemberId
+
+        def initialize(memberid=nil)
+          @MemberId = memberid
+        end
+
+        def deserialize(params)
+          @MemberId = params['MemberId']
+        end
+      end
+
+      # DescribeDspmLogDeliveryType返回参数结构体
+      class DescribeDspmLogDeliveryTypeResponse < TencentCloud::Common::AbstractModel
+        # @param List: 支持日志投递的类型列表
+        # @type List: Array
+        # @param TotalCount: 支持日志投递类型的总数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :List, :TotalCount, :RequestId
+
+        def initialize(list=nil, totalcount=nil, requestid=nil)
+          @List = list
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              logdeliverytype_tmp = LogDeliveryType.new
+              logdeliverytype_tmp.deserialize(i)
+              @List << logdeliverytype_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDspmLogList请求参数结构体
       class DescribeDspmLogListRequest < TencentCloud::Common::AbstractModel
         # @param MemberId: <p>集团账号的成员id</p>
@@ -30610,6 +31224,53 @@ module TencentCloud
               @List << auditloginfo_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDspmLogTypeConfigList请求参数结构体
+      class DescribeDspmLogTypeConfigListRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+
+        attr_accessor :MemberId
+
+        def initialize(memberid=nil)
+          @MemberId = memberid
+        end
+
+        def deserialize(params)
+          @MemberId = params['MemberId']
+        end
+      end
+
+      # DescribeDspmLogTypeConfigList返回参数结构体
+      class DescribeDspmLogTypeConfigListResponse < TencentCloud::Common::AbstractModel
+        # @param List: 用户ckafka配置，以及日志投递配置
+        # @type List: Array
+        # @param TotalCount: 配置总数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :List, :TotalCount, :RequestId
+
+        def initialize(list=nil, totalcount=nil, requestid=nil)
+          @List = list
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              logdeliveryckafkaconfig_tmp = LogDeliveryCkafkaConfig.new
+              logdeliveryckafkaconfig_tmp.deserialize(i)
+              @List << logdeliveryckafkaconfig_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -30849,6 +31510,41 @@ module TencentCloud
               @InfoSet << dspmpersonidentifyitem_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDspmResource请求参数结构体
+      class DescribeDspmResourceRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeDspmResource返回参数结构体
+      class DescribeDspmResourceResponse < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 资产id
+        # @type ResourceId: String
+        # @param Status: 资产状态: 0 未初始化，1 正常，2 隔离，3 销毁，4 初始化失败，5 初始化中
+        # @type Status: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ResourceId, :Status, :RequestId
+
+        def initialize(resourceid=nil, status=nil, requestid=nil)
+          @ResourceId = resourceid
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @Status = params['Status']
           @RequestId = params['RequestId']
         end
       end
@@ -31219,6 +31915,109 @@ module TencentCloud
         end
       end
 
+      # DescribeDspmSessionList请求参数结构体
+      class DescribeDspmSessionListRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+        # @param Limit: <p>限制数目</p>
+        # @type Limit: Integer
+        # @param Offset: <p>偏移量</p>
+        # @type Offset: Integer
+        # @param LoginType: <p>登陆状态(0 全部 1 成功 2 失败)</p>
+        # @type LoginType: Integer
+        # @param DbName: <p>数据库端口</p>
+        # @type DbName: String
+        # @param DbPort: <p>数据库名称</p>
+        # @type DbPort: Integer
+        # @param DbIp: <p>数据库 IP</p>
+        # @type DbIp: String
+        # @param AssetsId: <p>资产 ID</p>
+        # @type AssetsId: Integer
+        # @param SessionId: <p>会话 ID</p>
+        # @type SessionId: String
+        # @param ClientSideIp: <p>客户端 IP</p>
+        # @type ClientSideIp: String
+        # @param UserName: <p>用户名</p>
+        # @type UserName: String
+        # @param EndTime: <p>结束时间</p>
+        # @type EndTime: Integer
+        # @param StartTime: <p>开始时间</p>
+        # @type StartTime: Integer
+        # @param SourceTypes: <p>流量来源  取值 Agent/Proxy/空；传Agent会返回Agent的日志，传Proxy会返回Proxy日志，两者都传或不传则返回所有</p>
+        # @type SourceTypes: Array
+        # @param DbTypes: <p>[&quot;MySQL&quot;]</p>
+        # @type DbTypes: Array
+
+        attr_accessor :MemberId, :Limit, :Offset, :LoginType, :DbName, :DbPort, :DbIp, :AssetsId, :SessionId, :ClientSideIp, :UserName, :EndTime, :StartTime, :SourceTypes, :DbTypes
+
+        def initialize(memberid=nil, limit=nil, offset=nil, logintype=nil, dbname=nil, dbport=nil, dbip=nil, assetsid=nil, sessionid=nil, clientsideip=nil, username=nil, endtime=nil, starttime=nil, sourcetypes=nil, dbtypes=nil)
+          @MemberId = memberid
+          @Limit = limit
+          @Offset = offset
+          @LoginType = logintype
+          @DbName = dbname
+          @DbPort = dbport
+          @DbIp = dbip
+          @AssetsId = assetsid
+          @SessionId = sessionid
+          @ClientSideIp = clientsideip
+          @UserName = username
+          @EndTime = endtime
+          @StartTime = starttime
+          @SourceTypes = sourcetypes
+          @DbTypes = dbtypes
+        end
+
+        def deserialize(params)
+          @MemberId = params['MemberId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @LoginType = params['LoginType']
+          @DbName = params['DbName']
+          @DbPort = params['DbPort']
+          @DbIp = params['DbIp']
+          @AssetsId = params['AssetsId']
+          @SessionId = params['SessionId']
+          @ClientSideIp = params['ClientSideIp']
+          @UserName = params['UserName']
+          @EndTime = params['EndTime']
+          @StartTime = params['StartTime']
+          @SourceTypes = params['SourceTypes']
+          @DbTypes = params['DbTypes']
+        end
+      end
+
+      # DescribeDspmSessionList返回参数结构体
+      class DescribeDspmSessionListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>总数目</p>
+        # @type TotalCount: Integer
+        # @param List: <p>审计会话列表信息</p>
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :List, :RequestId
+
+        def initialize(totalcount=nil, list=nil, requestid=nil)
+          @TotalCount = totalcount
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              dspmauditsessioninfo_tmp = DspmAuditSessionInfo.new
+              dspmauditsessioninfo_tmp.deserialize(i)
+              @List << dspmauditsessioninfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDspmStatistics请求参数结构体
       class DescribeDspmStatisticsRequest < TencentCloud::Common::AbstractModel
         # @param MemberId: <p>集团账号的成员id</p>
@@ -31391,6 +32190,53 @@ module TencentCloud
 
         def deserialize(params)
           @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDspmUserCkafkaInstanceList请求参数结构体
+      class DescribeDspmUserCkafkaInstanceListRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+
+        attr_accessor :MemberId
+
+        def initialize(memberid=nil)
+          @MemberId = memberid
+        end
+
+        def deserialize(params)
+          @MemberId = params['MemberId']
+        end
+      end
+
+      # DescribeDspmUserCkafkaInstanceList返回参数结构体
+      class DescribeDspmUserCkafkaInstanceListResponse < TencentCloud::Common::AbstractModel
+        # @param List: 租户ckafka列表
+        # @type List: Array
+        # @param TotalCount: 返回租户ckafka数量
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :List, :TotalCount, :RequestId
+
+        def initialize(list=nil, totalcount=nil, requestid=nil)
+          @List = list
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              ckafkainstance_tmp = CkafkaInstance.new
+              ckafkainstance_tmp.deserialize(i)
+              @List << ckafkainstance_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -46060,6 +46906,110 @@ module TencentCloud
         end
       end
 
+      # 审计会话列表信息
+      class DspmAuditSessionInfo < TencentCloud::Common::AbstractModel
+        # @param SqlCount: <p>审计日志数</p>
+        # @type SqlCount: Integer
+        # @param LogoutTime: <p>登出时间</p>
+        # @type LogoutTime: Integer
+        # @param ClientIp: <p>客户端 IP</p>
+        # @type ClientIp: String
+        # @param ClientPort: <p>客户端端口</p>
+        # @type ClientPort: Integer
+        # @param DbIp: <p>数据库 IP</p>
+        # @type DbIp: String
+        # @param DbName: <p>数据库名称</p>
+        # @type DbName: String
+        # @param DbPort: <p>数据库端口</p>
+        # @type DbPort: Integer
+        # @param DbUser: <p>数据库用户</p>
+        # @type DbUser: String
+        # @param InstanceId: <p>审计单元 ID</p>
+        # @type InstanceId: Integer
+        # @param OpTime: <p>操作时间(时间)</p>
+        # @type OpTime: Integer
+        # @param RetNo: <p>返回码</p>
+        # @type RetNo: Integer
+        # @param SessionId: <p>会话Id</p>
+        # @type SessionId: String
+        # @param LoginTime: <p>登录时间</p>
+        # @type LoginTime: Integer
+        # @param InstanceName: <p>数据资产名称</p>
+        # @type InstanceName: String
+        # @param AssetName: <p>数据资产名称</p>
+        # @type AssetName: String
+        # @param SourceType: <p>流量来源</p>
+        # @type SourceType: String
+        # @param SourceTypeEn: <p>流量来源英文</p>
+        # @type SourceTypeEn: String
+        # @param AppId: <p>资产所属账号app id</p>
+        # @type AppId: Integer
+        # @param SourceTypeEnDisplayName: <p>流量来源</p>
+        # @type SourceTypeEnDisplayName: String
+        # @param NickName: <p>昵称</p>
+        # @type NickName: String
+        # @param Uin: <p>用户ID</p>
+        # @type Uin: String
+        # @param DbType: <p>数据库类型</p><p>枚举值：</p><ul><li>MongoDB： mongodb</li></ul>
+        # @type DbType: String
+        # @param AssetType: <p>资产类型</p><p>枚举值：</p><ul><li>cdb： mysql</li><li>mongodb： mongodb</li></ul>
+        # @type AssetType: String
+
+        attr_accessor :SqlCount, :LogoutTime, :ClientIp, :ClientPort, :DbIp, :DbName, :DbPort, :DbUser, :InstanceId, :OpTime, :RetNo, :SessionId, :LoginTime, :InstanceName, :AssetName, :SourceType, :SourceTypeEn, :AppId, :SourceTypeEnDisplayName, :NickName, :Uin, :DbType, :AssetType
+
+        def initialize(sqlcount=nil, logouttime=nil, clientip=nil, clientport=nil, dbip=nil, dbname=nil, dbport=nil, dbuser=nil, instanceid=nil, optime=nil, retno=nil, sessionid=nil, logintime=nil, instancename=nil, assetname=nil, sourcetype=nil, sourcetypeen=nil, appid=nil, sourcetypeendisplayname=nil, nickname=nil, uin=nil, dbtype=nil, assettype=nil)
+          @SqlCount = sqlcount
+          @LogoutTime = logouttime
+          @ClientIp = clientip
+          @ClientPort = clientport
+          @DbIp = dbip
+          @DbName = dbname
+          @DbPort = dbport
+          @DbUser = dbuser
+          @InstanceId = instanceid
+          @OpTime = optime
+          @RetNo = retno
+          @SessionId = sessionid
+          @LoginTime = logintime
+          @InstanceName = instancename
+          @AssetName = assetname
+          @SourceType = sourcetype
+          @SourceTypeEn = sourcetypeen
+          @AppId = appid
+          @SourceTypeEnDisplayName = sourcetypeendisplayname
+          @NickName = nickname
+          @Uin = uin
+          @DbType = dbtype
+          @AssetType = assettype
+        end
+
+        def deserialize(params)
+          @SqlCount = params['SqlCount']
+          @LogoutTime = params['LogoutTime']
+          @ClientIp = params['ClientIp']
+          @ClientPort = params['ClientPort']
+          @DbIp = params['DbIp']
+          @DbName = params['DbName']
+          @DbPort = params['DbPort']
+          @DbUser = params['DbUser']
+          @InstanceId = params['InstanceId']
+          @OpTime = params['OpTime']
+          @RetNo = params['RetNo']
+          @SessionId = params['SessionId']
+          @LoginTime = params['LoginTime']
+          @InstanceName = params['InstanceName']
+          @AssetName = params['AssetName']
+          @SourceType = params['SourceType']
+          @SourceTypeEn = params['SourceTypeEn']
+          @AppId = params['AppId']
+          @SourceTypeEnDisplayName = params['SourceTypeEnDisplayName']
+          @NickName = params['NickName']
+          @Uin = params['Uin']
+          @DbType = params['DbType']
+          @AssetType = params['AssetType']
+        end
+      end
+
       # 列权限信息
       class DspmColumnPrivilege < TencentCloud::Common::AbstractModel
         # @param Database: 数据库名
@@ -53486,6 +54436,134 @@ module TencentCloud
         end
       end
 
+      # 日志投递信息配置
+      class LogDeliveryCkafkaConfig < TencentCloud::Common::AbstractModel
+        # @param VipType: <p>接入类型</p>
+        # @type VipType: Integer
+        # @param InstanceId: <p>实例id</p>
+        # @type InstanceId: String
+        # @param InstanceName: <p>实例名称</p>
+        # @type InstanceName: String
+        # @param Vip: <p>虚拟ip  VipType 为7 有效</p>
+        # @type Vip: String
+        # @param Vport: <p>虚拟端口 VipType 为7有效</p>
+        # @type Vport: String
+        # @param Domain: <p>域名  VipType 为1有效</p>
+        # @type Domain: String
+        # @param DomainPort: <p>域名端口 VipType 为1有效</p>
+        # @type DomainPort: String
+        # @param RegionId: <p>实例地域</p>
+        # @type RegionId: String
+        # @param VpcId: <p>实例vpc</p>
+        # @type VpcId: String
+        # @param SubnetId: <p>实例子网</p>
+        # @type SubnetId: String
+        # @param Healthy: <p>实例健康状态， 1：健康，2：告警，3：异常&#39;, 4: 实例不存在</p>
+        # @type Healthy: Integer
+        # @param LogType: <p>日志类型</p>
+        # @type LogType: Integer
+        # @param TopicId: <p>投递的topicid</p>
+        # @type TopicId: String
+        # @param TopicName: <p>投递的topicname</p>
+        # @type TopicName: String
+        # @param Status: <p>投递状态</p>
+        # @type Status: Integer
+        # @param StatusMessages: <p>状态信息</p>
+        # @type StatusMessages: String
+        # @param IsOpen: <p>开启or关闭，投递状态1为开启，0 关闭，默认开启，但是如果没有topic 则关闭</p>
+        # @type IsOpen: Integer
+
+        attr_accessor :VipType, :InstanceId, :InstanceName, :Vip, :Vport, :Domain, :DomainPort, :RegionId, :VpcId, :SubnetId, :Healthy, :LogType, :TopicId, :TopicName, :Status, :StatusMessages, :IsOpen
+
+        def initialize(viptype=nil, instanceid=nil, instancename=nil, vip=nil, vport=nil, domain=nil, domainport=nil, regionid=nil, vpcid=nil, subnetid=nil, healthy=nil, logtype=nil, topicid=nil, topicname=nil, status=nil, statusmessages=nil, isopen=nil)
+          @VipType = viptype
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @Vip = vip
+          @Vport = vport
+          @Domain = domain
+          @DomainPort = domainport
+          @RegionId = regionid
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @Healthy = healthy
+          @LogType = logtype
+          @TopicId = topicid
+          @TopicName = topicname
+          @Status = status
+          @StatusMessages = statusmessages
+          @IsOpen = isopen
+        end
+
+        def deserialize(params)
+          @VipType = params['VipType']
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @Vip = params['Vip']
+          @Vport = params['Vport']
+          @Domain = params['Domain']
+          @DomainPort = params['DomainPort']
+          @RegionId = params['RegionId']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @Healthy = params['Healthy']
+          @LogType = params['LogType']
+          @TopicId = params['TopicId']
+          @TopicName = params['TopicName']
+          @Status = params['Status']
+          @StatusMessages = params['StatusMessages']
+          @IsOpen = params['IsOpen']
+        end
+      end
+
+      # 日志类型投递主题配置
+      class LogDeliveryInfo < TencentCloud::Common::AbstractModel
+        # @param LogType: 日志类型
+        # @type LogType: Integer
+        # @param TopicId: 投递的topicid
+        # @type TopicId: String
+        # @param TopicName: 投递的topicname
+        # @type TopicName: String
+
+        attr_accessor :LogType, :TopicId, :TopicName
+
+        def initialize(logtype=nil, topicid=nil, topicname=nil)
+          @LogType = logtype
+          @TopicId = topicid
+          @TopicName = topicname
+        end
+
+        def deserialize(params)
+          @LogType = params['LogType']
+          @TopicId = params['TopicId']
+          @TopicName = params['TopicName']
+        end
+      end
+
+      # 日志投递日志类型
+      class LogDeliveryType < TencentCloud::Common::AbstractModel
+        # @param LogType: 日志投递类型
+        # @type LogType: Integer
+        # @param LogTypeName: 投递日志类型的名称
+        # @type LogTypeName: String
+        # @param LogTypeDesc: 投递日志类型的描述
+        # @type LogTypeDesc: String
+
+        attr_accessor :LogType, :LogTypeName, :LogTypeDesc
+
+        def initialize(logtype=nil, logtypename=nil, logtypedesc=nil)
+          @LogType = logtype
+          @LogTypeName = logtypename
+          @LogTypeDesc = logtypedesc
+        end
+
+        def deserialize(params)
+          @LogType = params['LogType']
+          @LogTypeName = params['LogTypeName']
+          @LogTypeDesc = params['LogTypeDesc']
+        end
+      end
+
       # 日志动态索引信息
       class LogDynamicIndex < TencentCloud::Common::AbstractModel
         # @param Status: <p>状态</p>
@@ -56446,6 +57524,62 @@ module TencentCloud
         end
       end
 
+      # ModifyDspmAuditFilterStrategy请求参数结构体
+      class ModifyDspmAuditFilterStrategyRequest < TencentCloud::Common::AbstractModel
+        # @param AuditFilterStrategyId: <p>策略ID</p>
+        # @type AuditFilterStrategyId: Integer
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+        # @param Name: <p>策略名称</p>
+        # @type Name: String
+        # @param Description: <p>策略描述</p>
+        # @type Description: String
+        # @param Rule: <p>策略规则内容</p>
+        # @type Rule: String
+        # @param IsEnabled: <p>是否启用</p><p>枚举值：</p><ul><li>0： 不启用</li><li>1： 启用</li></ul>
+        # @type IsEnabled: Integer
+        # @param Remark: <p>备注</p>
+        # @type Remark: String
+
+        attr_accessor :AuditFilterStrategyId, :MemberId, :Name, :Description, :Rule, :IsEnabled, :Remark
+
+        def initialize(auditfilterstrategyid=nil, memberid=nil, name=nil, description=nil, rule=nil, isenabled=nil, remark=nil)
+          @AuditFilterStrategyId = auditfilterstrategyid
+          @MemberId = memberid
+          @Name = name
+          @Description = description
+          @Rule = rule
+          @IsEnabled = isenabled
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @AuditFilterStrategyId = params['AuditFilterStrategyId']
+          @MemberId = params['MemberId']
+          @Name = params['Name']
+          @Description = params['Description']
+          @Rule = params['Rule']
+          @IsEnabled = params['IsEnabled']
+          @Remark = params['Remark']
+        end
+      end
+
+      # ModifyDspmAuditFilterStrategy返回参数结构体
+      class ModifyDspmAuditFilterStrategyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyDspmBackupSetting请求参数结构体
       class ModifyDspmBackupSettingRequest < TencentCloud::Common::AbstractModel
         # @param MemberId: <p>集团账号的成员id</p>
@@ -56480,6 +57614,170 @@ module TencentCloud
 
       # ModifyDspmBackupSetting返回参数结构体
       class ModifyDspmBackupSettingResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyDspmCkafkaSave请求参数结构体
+      class ModifyDspmCkafkaSaveRequest < TencentCloud::Common::AbstractModel
+        # @param VipType: 接入类型，当前支持 1和7, 类型vip网络类型（1:外网TGW 2:基础网络 3:VPC网络 4:支撑网络(idc 环境) 5:SSL外网访问方式访问 6:黑石环境vpc 7:支撑网络(cvm 环境）
+        # @type VipType: Integer
+        # @param RegionId: 实例的地域
+        # @type RegionId: String
+        # @param InstanceId: 实例的id
+        # @type InstanceId: String
+        # @param InstanceName: 实例名称
+        # @type InstanceName: String
+        # @param RouteInfo: 实例的接入信息
+        # @type RouteInfo: :class:`Tencentcloud::Csip.v20221121.models.RouteInfo`
+        # @param Username: 接入为域名的时候，有效
+        # @type Username: String
+        # @param Password: 接入为域名的时候，有效
+        # @type Password: String
+        # @param LogDeliveryInfo: 日志投递的主题配置
+        # @type LogDeliveryInfo: Array
+        # @param IsOverwrite: 已存在配置时是否覆盖，默认 false（不覆盖，保持兼容）
+        # @type IsOverwrite: Boolean
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+
+        attr_accessor :VipType, :RegionId, :InstanceId, :InstanceName, :RouteInfo, :Username, :Password, :LogDeliveryInfo, :IsOverwrite, :MemberId
+
+        def initialize(viptype=nil, regionid=nil, instanceid=nil, instancename=nil, routeinfo=nil, username=nil, password=nil, logdeliveryinfo=nil, isoverwrite=nil, memberid=nil)
+          @VipType = viptype
+          @RegionId = regionid
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @RouteInfo = routeinfo
+          @Username = username
+          @Password = password
+          @LogDeliveryInfo = logdeliveryinfo
+          @IsOverwrite = isoverwrite
+          @MemberId = memberid
+        end
+
+        def deserialize(params)
+          @VipType = params['VipType']
+          @RegionId = params['RegionId']
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          unless params['RouteInfo'].nil?
+            @RouteInfo = RouteInfo.new
+            @RouteInfo.deserialize(params['RouteInfo'])
+          end
+          @Username = params['Username']
+          @Password = params['Password']
+          unless params['LogDeliveryInfo'].nil?
+            @LogDeliveryInfo = []
+            params['LogDeliveryInfo'].each do |i|
+              logdeliveryinfo_tmp = LogDeliveryInfo.new
+              logdeliveryinfo_tmp.deserialize(i)
+              @LogDeliveryInfo << logdeliveryinfo_tmp
+            end
+          end
+          @IsOverwrite = params['IsOverwrite']
+          @MemberId = params['MemberId']
+        end
+      end
+
+      # ModifyDspmCkafkaSave返回参数结构体
+      class ModifyDspmCkafkaSaveResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyDspmCkafkaStart请求参数结构体
+      class ModifyDspmCkafkaStartRequest < TencentCloud::Common::AbstractModel
+        # @param LogDeliveryInfo: 日志类型的主题投递
+        # @type LogDeliveryInfo: Array
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+
+        attr_accessor :LogDeliveryInfo, :MemberId
+
+        def initialize(logdeliveryinfo=nil, memberid=nil)
+          @LogDeliveryInfo = logdeliveryinfo
+          @MemberId = memberid
+        end
+
+        def deserialize(params)
+          unless params['LogDeliveryInfo'].nil?
+            @LogDeliveryInfo = []
+            params['LogDeliveryInfo'].each do |i|
+              logdeliveryinfo_tmp = LogDeliveryInfo.new
+              logdeliveryinfo_tmp.deserialize(i)
+              @LogDeliveryInfo << logdeliveryinfo_tmp
+            end
+          end
+          @MemberId = params['MemberId']
+        end
+      end
+
+      # ModifyDspmCkafkaStart返回参数结构体
+      class ModifyDspmCkafkaStartResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyDspmCkafkaStop请求参数结构体
+      class ModifyDspmCkafkaStopRequest < TencentCloud::Common::AbstractModel
+        # @param LogDeliveryInfo: 日志投递类型的配置
+        # @type LogDeliveryInfo: Array
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+
+        attr_accessor :LogDeliveryInfo, :MemberId
+
+        def initialize(logdeliveryinfo=nil, memberid=nil)
+          @LogDeliveryInfo = logdeliveryinfo
+          @MemberId = memberid
+        end
+
+        def deserialize(params)
+          unless params['LogDeliveryInfo'].nil?
+            @LogDeliveryInfo = []
+            params['LogDeliveryInfo'].each do |i|
+              logdeliveryinfo_tmp = LogDeliveryInfo.new
+              logdeliveryinfo_tmp.deserialize(i)
+              @LogDeliveryInfo << logdeliveryinfo_tmp
+            end
+          end
+          @MemberId = params['MemberId']
+        end
+      end
+
+      # ModifyDspmCkafkaStop返回参数结构体
+      class ModifyDspmCkafkaStopResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -56923,6 +58221,50 @@ module TencentCloud
 
       # ModifyDspmIpInfo返回参数结构体
       class ModifyDspmIpInfoResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyDspmLogDeliveryType请求参数结构体
+      class ModifyDspmLogDeliveryTypeRequest < TencentCloud::Common::AbstractModel
+        # @param LogType: 日志类型
+        # @type LogType: Integer
+        # @param TopicId: 投递的topicid
+        # @type TopicId: String
+        # @param TopicName: 投递的topicname
+        # @type TopicName: String
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+
+        attr_accessor :LogType, :TopicId, :TopicName, :MemberId
+
+        def initialize(logtype=nil, topicid=nil, topicname=nil, memberid=nil)
+          @LogType = logtype
+          @TopicId = topicid
+          @TopicName = topicname
+          @MemberId = memberid
+        end
+
+        def deserialize(params)
+          @LogType = params['LogType']
+          @TopicId = params['TopicId']
+          @TopicName = params['TopicName']
+          @MemberId = params['MemberId']
+        end
+      end
+
+      # ModifyDspmLogDeliveryType返回参数结构体
+      class ModifyDspmLogDeliveryTypeResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -59985,6 +61327,50 @@ module TencentCloud
         end
       end
 
+      # ModifyShareUserDspm请求参数结构体
+      class ModifyShareUserDspmRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+        # @param SharedAppIDList: 增加监测账号
+        # @type SharedAppIDList: Array
+
+        attr_accessor :MemberId, :SharedAppIDList
+
+        def initialize(memberid=nil, sharedappidlist=nil)
+          @MemberId = memberid
+          @SharedAppIDList = sharedappidlist
+        end
+
+        def deserialize(params)
+          @MemberId = params['MemberId']
+          @SharedAppIDList = params['SharedAppIDList']
+        end
+      end
+
+      # ModifyShareUserDspm返回参数结构体
+      class ModifyShareUserDspmResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 0-成功，1-失败
+        # @type Result: Integer
+        # @param Msg: 成功或失败信息
+        # @type Msg: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :Msg, :RequestId
+
+        def initialize(result=nil, msg=nil, requestid=nil)
+          @Result = result
+          @Msg = msg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @Msg = params['Msg']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifySkillScanAlertStatus请求参数结构体
       class ModifySkillScanAlertStatusRequest < TencentCloud::Common::AbstractModel
         # @param IDs: 告警记录 ID 列表
@@ -62784,6 +64170,34 @@ module TencentCloud
         end
       end
 
+      # 路由信息
+      class RouteInfo < TencentCloud::Common::AbstractModel
+        # @param Vip: 接入ip
+        # @type Vip: String
+        # @param Vport: 接入端口
+        # @type Vport: String
+        # @param Domain: 接入域名
+        # @type Domain: String
+        # @param DomainPort: 接入域名端口
+        # @type DomainPort: String
+
+        attr_accessor :Vip, :Vport, :Domain, :DomainPort
+
+        def initialize(vip=nil, vport=nil, domain=nil, domainport=nil)
+          @Vip = vip
+          @Vport = vport
+          @Domain = domain
+          @DomainPort = domainport
+        end
+
+        def deserialize(params)
+          @Vip = params['Vip']
+          @Vport = params['Vport']
+          @Domain = params['Domain']
+          @DomainPort = params['DomainPort']
+        end
+      end
+
       # EDR命令行规则
       class RuleContentCmdLine < TencentCloud::Common::AbstractModel
         # @param Process: <p>进程命令行信息</p>
@@ -63759,6 +65173,70 @@ module TencentCloud
 
       # SendDspmAssetLoginSmsCode返回参数结构体
       class SendDspmAssetLoginSmsCodeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # SendDspmCkafkaTest请求参数结构体
+      class SendDspmCkafkaTestRequest < TencentCloud::Common::AbstractModel
+        # @param VipType: 1为外网，7为支撑环境接入
+        # @type VipType: Integer
+        # @param InstanceId: ckafka实例id
+        # @type InstanceId: String
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+        # @param Vip: 为7有效
+        # @type Vip: String
+        # @param Vport: 为7有效
+        # @type Vport: String
+        # @param Domain: 域名，VipType为1有效
+        # @type Domain: String
+        # @param DomainPort: 域名端口，VipType为1有效
+        # @type DomainPort: String
+        # @param Username: 用户名，VipType为1有效
+        # @type Username: String
+        # @param Password: 用户密码，VipType为1有效
+        # @type Password: String
+
+        attr_accessor :VipType, :InstanceId, :MemberId, :Vip, :Vport, :Domain, :DomainPort, :Username, :Password
+
+        def initialize(viptype=nil, instanceid=nil, memberid=nil, vip=nil, vport=nil, domain=nil, domainport=nil, username=nil, password=nil)
+          @VipType = viptype
+          @InstanceId = instanceid
+          @MemberId = memberid
+          @Vip = vip
+          @Vport = vport
+          @Domain = domain
+          @DomainPort = domainport
+          @Username = username
+          @Password = password
+        end
+
+        def deserialize(params)
+          @VipType = params['VipType']
+          @InstanceId = params['InstanceId']
+          @MemberId = params['MemberId']
+          @Vip = params['Vip']
+          @Vport = params['Vport']
+          @Domain = params['Domain']
+          @DomainPort = params['DomainPort']
+          @Username = params['Username']
+          @Password = params['Password']
+        end
+      end
+
+      # SendDspmCkafkaTest返回参数结构体
+      class SendDspmCkafkaTestResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -65835,6 +67313,26 @@ module TencentCloud
           @OwnerAppId = params['OwnerAppId']
           @IsLatestImage = params['IsLatestImage']
           @ImageRepoAddress = params['ImageRepoAddress']
+        end
+      end
+
+      # ckafka实例的topic信息
+      class TopicInfo < TencentCloud::Common::AbstractModel
+        # @param TopicId: ckafka主题id
+        # @type TopicId: String
+        # @param TopicName: ckafka主题名称
+        # @type TopicName: String
+
+        attr_accessor :TopicId, :TopicName
+
+        def initialize(topicid=nil, topicname=nil)
+          @TopicId = topicid
+          @TopicName = topicname
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          @TopicName = params['TopicName']
         end
       end
 

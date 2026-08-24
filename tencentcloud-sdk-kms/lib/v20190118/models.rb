@@ -2700,29 +2700,29 @@ module TencentCloud
 
       # ListDataKeyDetail请求参数结构体
       class ListDataKeyDetailRequest < TencentCloud::Common::AbstractModel
-        # @param Offset: 含义跟 SQL 查询的 Offset 一致，表示本次获取从按一定顺序排列数组的第 Offset 个元素开始，缺省为0
+        # @param Offset: <p>含义跟 SQL 查询的 Offset 一致，表示本次获取从按一定顺序排列数组的第 Offset 个元素开始，缺省为0</p>
         # @type Offset: Integer
-        # @param Limit: 含义跟 SQL 查询的 Limit 一致，表示本次最多获取 Limit 个元素。缺省值为10，最大值为200
+        # @param Limit: <p>含义跟 SQL 查询的 Limit 一致，表示本次最多获取 Limit 个元素。缺省值为10，最大值为200</p>
         # @type Limit: Integer
-        # @param Role: 根据创建者角色筛选，默认 0 表示用户自己创建的数据密钥， 1 表示授权其它云产品自动创建的数据密钥
+        # @param Role: <p>根据创建者角色筛选，默认 0 表示用户自己创建的数据密钥， 1 表示授权其它云产品自动创建的数据密钥</p>
         # @type Role: Integer
-        # @param OrderType: 根据DataKey创建时间排序， 0 表示按照降序排序，1表示按照升序排序
+        # @param OrderType: <p>根据DataKey创建时间排序， 0 表示按照降序排序，1表示按照升序排序</p>
         # @type OrderType: Integer
-        # @param KeyState: 根据DataKey状态筛选， 0表示全部DataKey， 1 表示仅查询Enabled DataKey， 2 表示仅查询Disabled DataKey，3 表示查询PendingDelete 状态的DataKey(处于计划删除状态的Key)。
+        # @param KeyState: <p>根据DataKey状态筛选， 0表示全部DataKey， 1 表示仅查询Enabled DataKey， 2 表示仅查询Disabled DataKey，3 表示查询PendingDelete 状态的DataKey(处于计划删除状态的Key)。</p>
         # @type KeyState: Integer
-        # @param SearchKeyAlias: 根据DataKeyId或者DataKeyName进行模糊匹配查询
+        # @param SearchKeyAlias: <p>根据DataKeyId或者DataKeyName进行模糊匹配查询</p>
         # @type SearchKeyAlias: String
-        # @param Origin: 根据DateKey类型筛选， "TENCENT_KMS" 表示筛选密钥材料由KMS创建的数据密钥， "EXTERNAL" 表示筛选密钥材料需要用户导入的 EXTERNAL类型数据密钥，"ALL" 或者不设置表示两种类型都查询，大小写敏感。
+        # @param Origin: <p>根据DateKey类型筛选， &quot;TENCENT_KMS&quot; 表示筛选密钥材料由KMS创建的数据密钥， &quot;EXTERNAL&quot; 表示筛选密钥材料需要用户导入的 EXTERNAL类型数据密钥，&quot;ALL&quot; 或者不设置表示两种类型都查询，大小写敏感。</p>
         # @type Origin: String
-        # @param HsmClusterId: KMS 高级版对应的 HSM 集群 ID。
+        # @param HsmClusterId: <p>KMS 高级版对应的 HSM 集群 ID。当指定集群ID时查询集群的密钥列表；当指定default时,查询公有云共享版的密钥列表；当为空，默认查询所有的密钥列表包括集群和非集群。</p>
         # @type HsmClusterId: String
-        # @param KeyId: 根密钥全局唯一标识符
+        # @param KeyId: <p>根密钥全局唯一标识符</p>
         # @type KeyId: String
-        # @param DataKeyLen: 数据密钥的长度
+        # @param DataKeyLen: <p>数据密钥的长度</p>
         # @type DataKeyLen: Integer
-        # @param TagFilters: 标签过滤条件
+        # @param TagFilters: <p>标签过滤条件</p>
         # @type TagFilters: Array
-        # @param MemberAccounts: 成员账号信息数组
+        # @param MemberAccounts: <p>成员账号信息数组</p>
         # @type MemberAccounts: Array
 
         attr_accessor :Offset, :Limit, :Role, :OrderType, :KeyState, :SearchKeyAlias, :Origin, :HsmClusterId, :KeyId, :DataKeyLen, :TagFilters, :MemberAccounts
@@ -2774,9 +2774,9 @@ module TencentCloud
 
       # ListDataKeyDetail返回参数结构体
       class ListDataKeyDetailResponse < TencentCloud::Common::AbstractModel
-        # @param DataKeyMetadatas: 返回的属性信息列表。
+        # @param DataKeyMetadatas: <p>返回的属性信息列表。</p>
         # @type DataKeyMetadatas: Array
-        # @param TotalCount: DataKey的总数量
+        # @param TotalCount: <p>DataKey的总数量</p>
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2864,27 +2864,27 @@ module TencentCloud
 
       # ListKeyDetail请求参数结构体
       class ListKeyDetailRequest < TencentCloud::Common::AbstractModel
-        # @param Offset: 含义跟 SQL 查询的 Offset 一致，表示本次获取从按一定顺序排列数组的第 Offset 个元素开始，缺省为0
+        # @param Offset: <p>含义跟 SQL 查询的 Offset 一致，表示本次获取从按一定顺序排列数组的第 Offset 个元素开始，缺省为0</p>
         # @type Offset: Integer
-        # @param Limit: 含义跟 SQL 查询的 Limit 一致，表示本次最多获取 Limit 个元素。缺省值为10，最大值为200
+        # @param Limit: <p>含义跟 SQL 查询的 Limit 一致，表示本次最多获取 Limit 个元素。缺省值为10，最大值为200</p>
         # @type Limit: Integer
-        # @param Role: 根据创建者角色筛选，默认 0 表示用户自己创建的cmk， 1 表示授权其它云产品自动创建的cmk
+        # @param Role: <p>根据创建者角色筛选，默认 0 表示用户自己创建的cmk， 1 表示授权其它云产品自动创建的cmk</p>
         # @type Role: Integer
-        # @param OrderType: 根据CMK创建时间排序， 0 表示按照降序排序，1表示按照升序排序
+        # @param OrderType: <p>根据CMK创建时间排序， 0 表示按照降序排序，1表示按照升序排序</p>
         # @type OrderType: Integer
-        # @param KeyState: 根据CMK状态筛选， 0表示全部CMK， 1 表示仅查询Enabled CMK， 2 表示仅查询Disabled CMK，3 表示查询PendingDelete 状态的CMK(处于计划删除状态的Key)，4 表示查询 PendingImport 状态的CMK，5 表示查询 Archived 状态的 CMK
+        # @param KeyState: <p>根据CMK状态筛选， 0表示全部CMK， 1 表示仅查询Enabled CMK， 2 表示仅查询Disabled CMK，3 表示查询PendingDelete 状态的CMK(处于计划删除状态的Key)，4 表示查询 PendingImport 状态的CMK，5 表示查询 Archived 状态的 CMK</p>
         # @type KeyState: Integer
-        # @param SearchKeyAlias: 根据KeyId或者Alias进行模糊匹配查询
+        # @param SearchKeyAlias: <p>根据KeyId或者Alias进行模糊匹配查询</p>
         # @type SearchKeyAlias: String
-        # @param Origin: 根据CMK类型筛选， "TENCENT_KMS" 表示筛选密钥材料由KMS创建的CMK， "EXTERNAL" 表示筛选密钥材料需要用户导入的 EXTERNAL类型CMK，"ALL" 或者不设置表示两种类型都查询，大小写敏感。
+        # @param Origin: <p>根据CMK类型筛选， &quot;TENCENT_KMS&quot; 表示筛选密钥材料由KMS创建的CMK， &quot;EXTERNAL&quot; 表示筛选密钥材料需要用户导入的 EXTERNAL类型CMK，&quot;ALL&quot; 或者不设置表示两种类型都查询，大小写敏感。</p>
         # @type Origin: String
-        # @param KeyUsage: 根据CMK的KeyUsage筛选，ALL表示筛选全部，可使用的参数为：ALL 或 ENCRYPT_DECRYPT 或 ASYMMETRIC_DECRYPT_RSA_2048 或 ASYMMETRIC_DECRYPT_SM2 或 ASYMMETRIC_SIGN_VERIFY_SM2 或 ASYMMETRIC_SIGN_VERIFY_RSA_2048 或 ASYMMETRIC_SIGN_VERIFY_ECC，为空则默认筛选ENCRYPT_DECRYPT类型
+        # @param KeyUsage: <p>根据CMK的KeyUsage筛选，ALL表示筛选全部，可使用的参数为：ALL 或 ENCRYPT_DECRYPT 或 ASYMMETRIC_DECRYPT_RSA_2048 或 ASYMMETRIC_DECRYPT_SM2 或 ASYMMETRIC_SIGN_VERIFY_SM2 或 ASYMMETRIC_SIGN_VERIFY_RSA_2048 或 ASYMMETRIC_SIGN_VERIFY_ECC，为空则默认筛选ENCRYPT_DECRYPT类型</p>
         # @type KeyUsage: String
-        # @param TagFilters: 标签过滤条件
+        # @param TagFilters: <p>标签过滤条件</p>
         # @type TagFilters: Array
-        # @param HsmClusterId: KMS 高级版对应的 HSM 集群 ID（仅对 KMS 独占版/托管版服务实例有效）。
+        # @param HsmClusterId: <p>KMS 高级版对应的 HSM 集群 ID（仅对 KMS 独占版/托管版服务实例有效）。当指定集群ID时查询集群的密钥列表；当指定default时,查询公有云共享版的密钥列表；当为空，默认查询所有的密钥列表包括集群和非集群。</p>
         # @type HsmClusterId: String
-        # @param MemberAccounts: 可信服务成员账号信息数组
+        # @param MemberAccounts: <p>可信服务成员账号信息数组</p>
         # @type MemberAccounts: Array
 
         attr_accessor :Offset, :Limit, :Role, :OrderType, :KeyState, :SearchKeyAlias, :Origin, :KeyUsage, :TagFilters, :HsmClusterId, :MemberAccounts
@@ -2934,9 +2934,9 @@ module TencentCloud
 
       # ListKeyDetail返回参数结构体
       class ListKeyDetailResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: CMK的总数量
+        # @param TotalCount: <p>CMK的总数量</p>
         # @type TotalCount: Integer
-        # @param KeyMetadatas: 返回的属性信息列表。
+        # @param KeyMetadatas: <p>返回的属性信息列表。</p>
         # @type KeyMetadatas: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

@@ -4352,25 +4352,23 @@ module TencentCloud
 
       # CreateExport请求参数结构体
       class CreateExportRequest < TencentCloud::Common::AbstractModel
-        # @param TopicId: 日志主题Id
-        # - 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
+        # @param TopicId: <p>日志主题Id</p><ul><li>通过<a href="https://cloud.tencent.com/document/product/614/56454">获取日志主题列表</a>获取日志主题Id。</li></ul>
         # @type TopicId: String
-        # @param Count: 日志导出数量,  最大值5000万
+        # @param Count: <p>日志导出数量,  最大值5000万</p>
         # @type Count: Integer
-        # @param Query: 日志导出检索语句，不支持<a href="https://cloud.tencent.com/document/product/614/44061" target="_blank">[SQL语句]</a>
+        # @param Query: <p>日志导出检索语句，不支持<a href="https://cloud.tencent.com/document/product/614/44061" target="_blank">[SQL语句]</a></p>
         # @type Query: String
-        # @param From: 日志导出起始时间，毫秒时间戳
+        # @param From: <p>日志导出起始时间，毫秒时间戳</p>
         # @type From: Integer
-        # @param To: 日志导出结束时间，毫秒时间戳
+        # @param To: <p>日志导出结束时间，毫秒时间戳</p>
         # @type To: Integer
-        # @param Order: 日志导出时间排序。desc，asc，默认为desc
+        # @param Order: <p>日志导出时间排序。desc，asc，默认为desc</p>
         # @type Order: String
-        # @param Format: 日志导出数据格式。json，csv，默认为json
+        # @param Format: <p>日志导出数据格式。json，csv，默认为json</p>
         # @type Format: String
-        # @param SyntaxRule: 语法规则,  默认值为0。
-        # 0：Lucene语法，1：CQL语法。
+        # @param SyntaxRule: <p>检索语法规则，默认值为1，推荐使用1 。</p><ul><li>0：Lucene语法</li><li>1：CQL语法（CLS Query Language，日志服务专用检索语法）</li></ul><p>详细说明参见<a href="https://cloud.tencent.com/document/product/614/47044#RetrievesConditionalRules" target="_blank">检索条件语法规则</a>。</p>
         # @type SyntaxRule: Integer
-        # @param DerivedFields: 导出字段
+        # @param DerivedFields: <p>导出字段</p>
         # @type DerivedFields: Array
 
         attr_accessor :TopicId, :Count, :Query, :From, :To, :Order, :Format, :SyntaxRule, :DerivedFields
@@ -4402,7 +4400,7 @@ module TencentCloud
 
       # CreateExport返回参数结构体
       class CreateExportResponse < TencentCloud::Common::AbstractModel
-        # @param ExportId: 日志导出ID。
+        # @param ExportId: <p>日志导出ID。</p>
         # @type ExportId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

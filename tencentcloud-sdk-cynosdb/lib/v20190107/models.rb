@@ -5199,7 +5199,7 @@ module TencentCloud
         # @type Region: String
         # @param Zone: <p>集群主可用区</p>
         # @type Zone: String
-        # @param Status: <p>实例状态</p>
+        # @param Status: <p>实例状态</p><p>枚举值：</p><ul><li>creating： 创建中</li><li>running： 运行中</li><li>isolating： 隔离中</li><li>isolated： 已隔离</li><li>activating： 从回收站重新恢复</li><li>offlining： 下线中</li><li>offlined： 已下线</li><li>deleting： 删除中</li><li>deleted： 已删除</li></ul>
         # @type Status: String
         # @param StatusDesc: <p>实例状态中文描述</p>
         # @type StatusDesc: String
@@ -22426,27 +22426,57 @@ module TencentCloud
 
       # TransferClusterPrepayToPostpay请求参数结构体
       class TransferClusterPrepayToPostpayRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: <p>集群id</p>
+        # @type ClusterId: String
 
+        attr_accessor :ClusterId
 
-        def initialize()
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
         end
 
         def deserialize(params)
+          @ClusterId = params['ClusterId']
         end
       end
 
       # TransferClusterPrepayToPostpay返回参数结构体
       class TransferClusterPrepayToPostpayResponse < TencentCloud::Common::AbstractModel
+        # @param BigDealIds: <p>预付费总订单号</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BigDealIds: Array
+        # @param TranId: <p>冻结流水</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TranId: String
+        # @param DealNames: <p>订单号</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DealNames: Array
+        # @param ResourceIds: <p>资源id</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceIds: Array
+        # @param ClusterIds: <p>集群id</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterIds: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :BigDealIds, :TranId, :DealNames, :ResourceIds, :ClusterIds, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(bigdealids=nil, tranid=nil, dealnames=nil, resourceids=nil, clusterids=nil, requestid=nil)
+          @BigDealIds = bigdealids
+          @TranId = tranid
+          @DealNames = dealnames
+          @ResourceIds = resourceids
+          @ClusterIds = clusterids
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @BigDealIds = params['BigDealIds']
+          @TranId = params['TranId']
+          @DealNames = params['DealNames']
+          @ResourceIds = params['ResourceIds']
+          @ClusterIds = params['ClusterIds']
           @RequestId = params['RequestId']
         end
       end

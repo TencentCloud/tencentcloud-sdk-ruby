@@ -7124,19 +7124,22 @@ module TencentCloud
 
       # 本类型用于接口中描述待创建索引结构
       class MgoKeySchema < TencentCloud::Common::AbstractModel
-        # @param MgoIndexKeys: 索引字段
+        # @param MgoIndexKeys: <p>索引字段</p>
         # @type MgoIndexKeys: Array
-        # @param MgoIsUnique: 是否唯一索引
+        # @param MgoIsUnique: <p>是否唯一索引</p>
         # @type MgoIsUnique: Boolean
-        # @param MgoIsSparse: 是否稀疏索引
+        # @param MgoIsSparse: <p>是否稀疏索引</p>
         # @type MgoIsSparse: Boolean
+        # @param PartialFilterExpression: <p>稀疏索引表达式</p>
+        # @type PartialFilterExpression: String
 
-        attr_accessor :MgoIndexKeys, :MgoIsUnique, :MgoIsSparse
+        attr_accessor :MgoIndexKeys, :MgoIsUnique, :MgoIsSparse, :PartialFilterExpression
 
-        def initialize(mgoindexkeys=nil, mgoisunique=nil, mgoissparse=nil)
+        def initialize(mgoindexkeys=nil, mgoisunique=nil, mgoissparse=nil, partialfilterexpression=nil)
           @MgoIndexKeys = mgoindexkeys
           @MgoIsUnique = mgoisunique
           @MgoIsSparse = mgoissparse
+          @PartialFilterExpression = partialfilterexpression
         end
 
         def deserialize(params)
@@ -7150,6 +7153,7 @@ module TencentCloud
           end
           @MgoIsUnique = params['MgoIsUnique']
           @MgoIsSparse = params['MgoIsSparse']
+          @PartialFilterExpression = params['PartialFilterExpression']
         end
       end
 
@@ -9122,6 +9126,23 @@ module TencentCloud
         end
       end
 
+      # 云函数短信通道配置。适用于第三方短信服务商场景：用户在环境下部署名为 SendVerificationCode 的云函数，平台在发送验证码时调用该函数，函数体内由用户自行调用任意短信服务商 SDK 完成下发。
+      class SMSCloudFunctionConfig < TencentCloud::Common::AbstractModel
+        # @param FunctionName: <p>发送验证码的云函数名，当前仅支持 SendVerificationCode。</p><p>函数入参：</p><ul><li>Mobile：字符串（手机号，连续 E.164 格式，如 +8613800000000）</li><li>VerificationCode：字符串（验证码，如 123456）</li></ul><p>函数返回值：</p><ul><li>ErrorCode：int（0 表示成功，非 0 表示失败）</li><li>ErrorMessage：字符串（ErrorCode 非 0 时返回错误信息）</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FunctionName: String
+
+        attr_accessor :FunctionName
+
+        def initialize(functionname=nil)
+          @FunctionName = functionname
+        end
+
+        def deserialize(params)
+          @FunctionName = params['FunctionName']
+        end
+      end
+
       # 自定义短信服务商模板配置
       class SMSProviderTemplateConfig < TencentCloud::Common::AbstractModel
         # @param Vendor: <p>短信服务商类型</p><p>枚举值：</p><ul><li>TENCENT_CN： 腾讯云国内短信</li><li>TENCENT_INTL： 腾讯云国际短信</li></ul>
@@ -9136,6 +9157,9 @@ module TencentCloud
         # @param SignName: <p>短信服务商侧申请并审核通过的签名，按照服务商的文档和要求填写。</p><ul><li>腾讯云短信服务商，签名信息可前往 <a href="https://console.cloud.tencent.com/smsv2/csms-sign">国内短信</a> 或 <a href="https://console.cloud.tencent.com/smsv2/isms-sign">国际/港澳台短信</a> 的签名管理查看。<br> 注意：<ol><li>发送国内短信该参数必填，且需填写签名内容而非签名ID。</li><li>发送国际/港澳台短信该参数非必填。</li></ol></li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SignName: String
+        # @param AuthType: <p>凭证获取方式，不传默认为 SMS_AUTH_SECRET_KEY。</p><p>枚举值：</p><ul><li>SMS_AUTH_SECRET_KEY： 密钥授权，适用于跨账号腾讯云短信 / 其它厂商短信，AK/SK 加密托管至云开发平台控制台—扩展功能—授权管理</li><li>SMS_AUTH_ASSUME_ROLE： 策略授权（角色扮演），适用于同账号腾讯云短信，需预先将短信预设策略 QcloudSMSFullAccess 授权给云开发服务角色，平台以临时凭证代发，不保存任何长期密钥。选择该方式时 SecretId / SecretKey / CredentialAuthKeyId 必须为空</li></ul><p>枚举值：</p><ul><li>SMS_AUTH_SECRET_KEY： 密钥授权，适用于跨账号腾讯云短信 / 其它厂商短信，AK/SK 加密托管至云开发平台控制台—扩展功能—授权管理</li><li>SMS_AUTH_ASSUME_ROLE： 策略授权（角色扮演），适用于同账号腾讯云短信，需预先将短信预设策略 QcloudSMSFullAccess 授权给云开发服务角色，平台以临时凭证代发，不保存任何长期密钥。选择该方式时 SecretId / SecretKey / CredentialAuthKeyId 必须为空</li></ul><p>默认值：SMS_AUTH_SECRET_KEY</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuthType: String
         # @param SecretId: <p>调用短信服务商发送短信接口的调用秘钥对应的ID。</p><ul><li>调用api秘钥会保存在云开发平台控制台—扩展功能—授权管理中，如果对于短信调用的api秘钥有删除需求，可在此处进行删除，删除后，短信将无法正常发送。</li><li>腾讯云的调用api秘钥在腾讯云控制台获取，建议使用子账号的秘钥ID，并且按照最小权限配置。</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecretId: String
@@ -9148,18 +9172,23 @@ module TencentCloud
         # @param TemplateExtendParam: <p>当短信自定义模板含多个占位符时，平台只负责生成验证码值，其余占位符由调用方在此提供。</p><ul><li>无需提供验证码对应的占位的值，验证码由云开发平台侧生成。</li><li>如果是命名占位的服务商的短信模板，这里的参数按照需要对应的占位的key和value，会按照对应的key和value在发送短信时，填充到模板中。</li><li>如果是序号占位的服务商的短信模板，这里的参数不需要key, 只需要填写对应的value, 会按照填写的顺序依次填充到模板中。</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateExtendParam: Array
+        # @param CredentialAuthKeyId: <p>授权管理中密钥的自定义标识（创建 / 引用二合一），与 SecretId / SecretKey 组合决定行为：</p><ul><li>非空 + 带 SecretId/SecretKey → 以该标识创建新密钥；标识已存在时报错（keyID already exists）</li><li>非空 + 不带 SecretId/SecretKey → 引用授权管理中已存在的密钥（需归属当前环境）</li><li>空 + 带 SecretId/SecretKey → 使用平台按服务商生成的固定标识，覆盖更新（存量兼容）</li><li>空 + 不带 SecretId/SecretKey → 不修改密钥，沿用既有配置</li></ul><p>AuthType 为 SMS_AUTH_ASSUME_ROLE 时此参数必须为空。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CredentialAuthKeyId: String
 
-        attr_accessor :Vendor, :TemplateId, :SdkAppId, :SignName, :SecretId, :SecretKey, :SenderId, :TemplateExtendParam
+        attr_accessor :Vendor, :TemplateId, :SdkAppId, :SignName, :AuthType, :SecretId, :SecretKey, :SenderId, :TemplateExtendParam, :CredentialAuthKeyId
 
-        def initialize(vendor=nil, templateid=nil, sdkappid=nil, signname=nil, secretid=nil, secretkey=nil, senderid=nil, templateextendparam=nil)
+        def initialize(vendor=nil, templateid=nil, sdkappid=nil, signname=nil, authtype=nil, secretid=nil, secretkey=nil, senderid=nil, templateextendparam=nil, credentialauthkeyid=nil)
           @Vendor = vendor
           @TemplateId = templateid
           @SdkAppId = sdkappid
           @SignName = signname
+          @AuthType = authtype
           @SecretId = secretid
           @SecretKey = secretkey
           @SenderId = senderid
           @TemplateExtendParam = templateextendparam
+          @CredentialAuthKeyId = credentialauthkeyid
         end
 
         def deserialize(params)
@@ -9167,6 +9196,7 @@ module TencentCloud
           @TemplateId = params['TemplateId']
           @SdkAppId = params['SdkAppId']
           @SignName = params['SignName']
+          @AuthType = params['AuthType']
           @SecretId = params['SecretId']
           @SecretKey = params['SecretKey']
           @SenderId = params['SenderId']
@@ -9178,6 +9208,7 @@ module TencentCloud
               @TemplateExtendParam << smstemplateparams_tmp
             end
           end
+          @CredentialAuthKeyId = params['CredentialAuthKeyId']
         end
       end
 
@@ -9704,17 +9735,17 @@ module TencentCloud
 
       # UpdateTable请求参数结构体
       class UpdateTableRequest < TencentCloud::Common::AbstractModel
-        # @param TableName: 表名
+        # @param TableName: <p>表名</p>
         # @type TableName: String
-        # @param Tag: FlexDB实例ID
+        # @param Tag: <p>FlexDB实例ID</p>
         # @type Tag: String
-        # @param DropIndexes: 待删除索引信息
+        # @param DropIndexes: <p>待删除索引信息</p>
         # @type DropIndexes: Array
-        # @param CreateIndexes: 待创建索引信息
+        # @param CreateIndexes: <p>待创建索引信息</p>
         # @type CreateIndexes: Array
-        # @param EnvId: 云开发环境ID
+        # @param EnvId: <p>云开发环境ID</p>
         # @type EnvId: String
-        # @param MongoConnector: MongoDB连接器配置
+        # @param MongoConnector: <p>MongoDB连接器配置</p>
         # @type MongoConnector: :class:`Tencentcloud::Tcb.v20180608.models.MongoConnector`
 
         attr_accessor :TableName, :Tag, :DropIndexes, :CreateIndexes, :EnvId, :MongoConnector
@@ -10003,7 +10034,7 @@ module TencentCloud
       # ErrorMessage：字符串（ErrorCode 非 0 时，返回错误信息）
       # - 如果使用自定义短信模板发送短信时，需要按照对应的短信服务商的要求，申请并审核通过对应的短信模板后，在云开发平台配置自定义短信模板，云开发平台对于短信模板不会做其他操作和限制，只做短信发送的逻辑，其他的操作限制都由短信服务商自身提供。
       class VerificationConfig < TencentCloud::Common::AbstractModel
-        # @param Type: <p>短信验证码发送通道类型。</p><p>枚举值：</p><ul><li>default： 使用默认云开发短信包发送短信</li><li>apis： 使用云开发自定义 APIs 作为短信发送通道，需配合 Name 和 Method 参数使用。不传则不修改当前配置。</li><li>template： 自定义短信模板配置，需要配置TemplateProvider</li></ul>
+        # @param Type: <p>短信验证码发送通道类型。</p><p>枚举值：</p><ul><li>default： 使用默认云开发短信包发送短信</li><li>apis： 使用云开发自定义 APIs 作为短信发送通道，需配合 Name 和 Method 参数使用。不传则不修改当前配置。</li><li>template： 自定义短信模板配置，需要配置TemplateProvider</li><li>function： 云函数通道（第三方短信服务商），需要配置CloudFunction</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param Name: <p>自定义 APIs 数据源唯一标识，当 Type 为 apis 时必填。用于定位微搭 APIs 中对应的数据源。</p>
@@ -10018,15 +10049,19 @@ module TencentCloud
         # @param TemplateProvider: <p>自定义短信服务商模板配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateProvider: :class:`Tencentcloud::Tcb.v20180608.models.SMSProviderTemplateConfig`
+        # @param CloudFunction: <p>云函数短信通道配置，当 Type 为 function 时必填</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CloudFunction: :class:`Tencentcloud::Tcb.v20180608.models.SMSCloudFunctionConfig`
 
-        attr_accessor :Type, :Name, :Method, :SmsDayLimit, :TemplateProvider
+        attr_accessor :Type, :Name, :Method, :SmsDayLimit, :TemplateProvider, :CloudFunction
 
-        def initialize(type=nil, name=nil, method=nil, smsdaylimit=nil, templateprovider=nil)
+        def initialize(type=nil, name=nil, method=nil, smsdaylimit=nil, templateprovider=nil, cloudfunction=nil)
           @Type = type
           @Name = name
           @Method = method
           @SmsDayLimit = smsdaylimit
           @TemplateProvider = templateprovider
+          @CloudFunction = cloudfunction
         end
 
         def deserialize(params)
@@ -10037,6 +10072,10 @@ module TencentCloud
           unless params['TemplateProvider'].nil?
             @TemplateProvider = SMSProviderTemplateConfig.new
             @TemplateProvider.deserialize(params['TemplateProvider'])
+          end
+          unless params['CloudFunction'].nil?
+            @CloudFunction = SMSCloudFunctionConfig.new
+            @CloudFunction.deserialize(params['CloudFunction'])
           end
         end
       end
