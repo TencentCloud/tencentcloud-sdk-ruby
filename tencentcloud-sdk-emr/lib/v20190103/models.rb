@@ -1948,10 +1948,14 @@ module TencentCloud
         # @type ContainerExtraConf: :class:`Tencentcloud::Emr.v20190103.models.ContainerExtraConf`
         # @param EnableSparkAppMonitorInfo: <p>spark监控</p>
         # @type EnableSparkAppMonitorInfo: :class:`Tencentcloud::Emr.v20190103.models.EnableSparkAppMonitorInfo`
+        # @param ComputeResourceGroupIds: <p>已有EMR资源节点组Id列表</p>
+        # @type ComputeResourceGroupIds: Array
+        # @param TerminateProtection: <p>是否开启实例保护</p>
+        # @type TerminateProtection: Boolean
 
-        attr_accessor :InstanceName, :ClusterClass, :Software, :PlatFormType, :CosBucket, :EksClusterId, :ProductId, :ClientToken, :VPCSettings, :CloudResources, :SgId, :MetaDBInfo, :Tags, :LoginSettings, :ExternalService, :ZoneId, :DefaultMetaVersion, :NeedCdbAudit, :SgIP, :ContainerExtraConf, :EnableSparkAppMonitorInfo
+        attr_accessor :InstanceName, :ClusterClass, :Software, :PlatFormType, :CosBucket, :EksClusterId, :ProductId, :ClientToken, :VPCSettings, :CloudResources, :SgId, :MetaDBInfo, :Tags, :LoginSettings, :ExternalService, :ZoneId, :DefaultMetaVersion, :NeedCdbAudit, :SgIP, :ContainerExtraConf, :EnableSparkAppMonitorInfo, :ComputeResourceGroupIds, :TerminateProtection
 
-        def initialize(instancename=nil, clusterclass=nil, software=nil, platformtype=nil, cosbucket=nil, eksclusterid=nil, productid=nil, clienttoken=nil, vpcsettings=nil, cloudresources=nil, sgid=nil, metadbinfo=nil, tags=nil, loginsettings=nil, externalservice=nil, zoneid=nil, defaultmetaversion=nil, needcdbaudit=nil, sgip=nil, containerextraconf=nil, enablesparkappmonitorinfo=nil)
+        def initialize(instancename=nil, clusterclass=nil, software=nil, platformtype=nil, cosbucket=nil, eksclusterid=nil, productid=nil, clienttoken=nil, vpcsettings=nil, cloudresources=nil, sgid=nil, metadbinfo=nil, tags=nil, loginsettings=nil, externalservice=nil, zoneid=nil, defaultmetaversion=nil, needcdbaudit=nil, sgip=nil, containerextraconf=nil, enablesparkappmonitorinfo=nil, computeresourcegroupids=nil, terminateprotection=nil)
           @InstanceName = instancename
           @ClusterClass = clusterclass
           @Software = software
@@ -1973,6 +1977,8 @@ module TencentCloud
           @SgIP = sgip
           @ContainerExtraConf = containerextraconf
           @EnableSparkAppMonitorInfo = enablesparkappmonitorinfo
+          @ComputeResourceGroupIds = computeresourcegroupids
+          @TerminateProtection = terminateprotection
         end
 
         def deserialize(params)
@@ -2033,6 +2039,8 @@ module TencentCloud
             @EnableSparkAppMonitorInfo = EnableSparkAppMonitorInfo.new
             @EnableSparkAppMonitorInfo.deserialize(params['EnableSparkAppMonitorInfo'])
           end
+          @ComputeResourceGroupIds = params['ComputeResourceGroupIds']
+          @TerminateProtection = params['TerminateProtection']
         end
       end
 
@@ -7099,10 +7107,12 @@ module TencentCloud
         # @type ImageInfoV2: :class:`Tencentcloud::Emr.v20190103.models.ImageInfoV2`
         # @param GooseFSVolumes: <p>GooseFS盘</p>
         # @type GooseFSVolumes: Array
+        # @param EnableHistoryServer: <p>开启HistoryServer</p>
+        # @type EnableHistoryServer: Boolean
 
-        attr_accessor :DynamicInstanceName, :Namespace, :SupportHA, :CustomImage, :DynamicInstanceGroups, :SupportPV, :CBSVolumes, :CFSVolumes, :COSVolumes, :VolumeMounts, :Labels, :Tolerations, :Envs, :DependServices, :SupportToken, :CFSTurboVolumes, :ImageInfoV2, :GooseFSVolumes
+        attr_accessor :DynamicInstanceName, :Namespace, :SupportHA, :CustomImage, :DynamicInstanceGroups, :SupportPV, :CBSVolumes, :CFSVolumes, :COSVolumes, :VolumeMounts, :Labels, :Tolerations, :Envs, :DependServices, :SupportToken, :CFSTurboVolumes, :ImageInfoV2, :GooseFSVolumes, :EnableHistoryServer
 
-        def initialize(dynamicinstancename=nil, namespace=nil, supportha=nil, customimage=nil, dynamicinstancegroups=nil, supportpv=nil, cbsvolumes=nil, cfsvolumes=nil, cosvolumes=nil, volumemounts=nil, labels=nil, tolerations=nil, envs=nil, dependservices=nil, supporttoken=nil, cfsturbovolumes=nil, imageinfov2=nil, goosefsvolumes=nil)
+        def initialize(dynamicinstancename=nil, namespace=nil, supportha=nil, customimage=nil, dynamicinstancegroups=nil, supportpv=nil, cbsvolumes=nil, cfsvolumes=nil, cosvolumes=nil, volumemounts=nil, labels=nil, tolerations=nil, envs=nil, dependservices=nil, supporttoken=nil, cfsturbovolumes=nil, imageinfov2=nil, goosefsvolumes=nil, enablehistoryserver=nil)
           @DynamicInstanceName = dynamicinstancename
           @Namespace = namespace
           @SupportHA = supportha
@@ -7121,6 +7131,7 @@ module TencentCloud
           @CFSTurboVolumes = cfsturbovolumes
           @ImageInfoV2 = imageinfov2
           @GooseFSVolumes = goosefsvolumes
+          @EnableHistoryServer = enablehistoryserver
         end
 
         def deserialize(params)
@@ -7225,6 +7236,7 @@ module TencentCloud
               @GooseFSVolumes << goosefsvolume_tmp
             end
           end
+          @EnableHistoryServer = params['EnableHistoryServer']
         end
       end
 
@@ -8287,6 +8299,46 @@ module TencentCloud
           @ClientVersion = params['ClientVersion']
           @MountOptions = params['MountOptions']
           @JvmOptions = params['JvmOptions']
+        end
+      end
+
+      # GPU机型镜像与驱动配置
+      class GpuImageDriverSpec < TencentCloud::Common::AbstractModel
+        # @param ImageId: <p>镜像ID</p>
+        # @type ImageId: String
+        # @param DriverName: <p>驱动名称</p>
+        # @type DriverName: String
+        # @param DriverVersion: <p>驱动版本</p>
+        # @type DriverVersion: String
+        # @param CUDAName: <p>CUDA名称</p>
+        # @type CUDAName: String
+        # @param CUDAVersion: <p>CUDA版本</p>
+        # @type CUDAVersion: String
+        # @param CUDNNName: <p>CUDNN名称</p>
+        # @type CUDNNName: String
+        # @param CUDNNVersion: <p>CUDNN版本</p>
+        # @type CUDNNVersion: String
+
+        attr_accessor :ImageId, :DriverName, :DriverVersion, :CUDAName, :CUDAVersion, :CUDNNName, :CUDNNVersion
+
+        def initialize(imageid=nil, drivername=nil, driverversion=nil, cudaname=nil, cudaversion=nil, cudnnname=nil, cudnnversion=nil)
+          @ImageId = imageid
+          @DriverName = drivername
+          @DriverVersion = driverversion
+          @CUDAName = cudaname
+          @CUDAVersion = cudaversion
+          @CUDNNName = cudnnname
+          @CUDNNVersion = cudnnversion
+        end
+
+        def deserialize(params)
+          @ImageId = params['ImageId']
+          @DriverName = params['DriverName']
+          @DriverVersion = params['DriverVersion']
+          @CUDAName = params['CUDAName']
+          @CUDAVersion = params['CUDAVersion']
+          @CUDNNName = params['CUDNNName']
+          @CUDNNVersion = params['CUDNNVersion']
         end
       end
 
@@ -14373,10 +14425,14 @@ module TencentCloud
         # @type PartitionNumber: Integer
         # @param HCCHpcClusterId: <p>高性能集群ID</p>
         # @type HCCHpcClusterId: String
+        # @param CustomNodeName: <p>自定义主机名</p>
+        # @type CustomNodeName: String
+        # @param GpuImageDriver: <p>GPU镜像驱动配置</p>
+        # @type GpuImageDriver: :class:`Tencentcloud::Emr.v20190103.models.GpuImageDriverSpec`
 
-        attr_accessor :Spec, :StorageType, :DiskType, :MemSize, :Cpu, :DiskSize, :RootSize, :MultiDisks, :Tags, :InstanceType, :LocalDiskNum, :DiskNum, :GpuDesc, :PartitionNumber, :HCCHpcClusterId
+        attr_accessor :Spec, :StorageType, :DiskType, :MemSize, :Cpu, :DiskSize, :RootSize, :MultiDisks, :Tags, :InstanceType, :LocalDiskNum, :DiskNum, :GpuDesc, :PartitionNumber, :HCCHpcClusterId, :CustomNodeName, :GpuImageDriver
 
-        def initialize(spec=nil, storagetype=nil, disktype=nil, memsize=nil, cpu=nil, disksize=nil, rootsize=nil, multidisks=nil, tags=nil, instancetype=nil, localdisknum=nil, disknum=nil, gpudesc=nil, partitionnumber=nil, hcchpcclusterid=nil)
+        def initialize(spec=nil, storagetype=nil, disktype=nil, memsize=nil, cpu=nil, disksize=nil, rootsize=nil, multidisks=nil, tags=nil, instancetype=nil, localdisknum=nil, disknum=nil, gpudesc=nil, partitionnumber=nil, hcchpcclusterid=nil, customnodename=nil, gpuimagedriver=nil)
           @Spec = spec
           @StorageType = storagetype
           @DiskType = disktype
@@ -14392,6 +14448,8 @@ module TencentCloud
           @GpuDesc = gpudesc
           @PartitionNumber = partitionnumber
           @HCCHpcClusterId = hcchpcclusterid
+          @CustomNodeName = customnodename
+          @GpuImageDriver = gpuimagedriver
         end
 
         def deserialize(params)
@@ -14424,6 +14482,11 @@ module TencentCloud
           @GpuDesc = params['GpuDesc']
           @PartitionNumber = params['PartitionNumber']
           @HCCHpcClusterId = params['HCCHpcClusterId']
+          @CustomNodeName = params['CustomNodeName']
+          unless params['GpuImageDriver'].nil?
+            @GpuImageDriver = GpuImageDriverSpec.new
+            @GpuImageDriver.deserialize(params['GpuImageDriver'])
+          end
         end
       end
 
@@ -17217,28 +17280,49 @@ module TencentCloud
 
       # 用户管理中用户的简要信息
       class UserManagerUserBriefInfo < TencentCloud::Common::AbstractModel
-        # @param UserName: 用户名
+        # @param UserName: <p>用户名</p>
         # @type UserName: String
-        # @param UserGroup: 用户所属的组
+        # @param UserGroup: <p>用户所属的组</p>
         # @type UserGroup: String
-        # @param UserType: Manager表示管理员、NormalUser表示普通用户
+        # @param UserType: <p>Manager表示管理员、NormalUser表示普通用户</p>
         # @type UserType: String
-        # @param CreateTime: 用户创建时间
+        # @param CreateTime: <p>用户创建时间</p>
         # @type CreateTime: String
-        # @param SupportDownLoadKeyTab: 是否可以下载用户对应的keytab文件，对开启kerberos的集群才有意义
+        # @param SupportDownLoadKeyTab: <p>是否可以下载用户对应的keytab文件，对开启kerberos的集群才有意义</p>
         # @type SupportDownLoadKeyTab: Boolean
-        # @param DownLoadKeyTabUrl: keytab文件的下载地址
+        # @param DownLoadKeyTabUrl: <p>keytab文件的下载地址</p>
         # @type DownLoadKeyTabUrl: String
+        # @param Groups: <p>用户组</p>
+        # @type Groups: Array
+        # @param Uin: <p>客户UIN</p>
+        # @type Uin: String
+        # @param State: <p>用户状态</p>
+        # @type State: Integer
+        # @param DisplayPasswdUpdateTime: <p>是否展示密码更新时间</p>
+        # @type DisplayPasswdUpdateTime: Boolean
+        # @param PasswdUpdateTime: <p>密码最近更新时间</p>
+        # @type PasswdUpdateTime: String
+        # @param PasswdUsedDay: <p>已经使用的天数</p><p>单位：天</p>
+        # @type PasswdUsedDay: Integer
+        # @param PasswdUsedHour: <p>已经使用的小时数</p><p>单位：时</p>
+        # @type PasswdUsedHour: Integer
 
-        attr_accessor :UserName, :UserGroup, :UserType, :CreateTime, :SupportDownLoadKeyTab, :DownLoadKeyTabUrl
+        attr_accessor :UserName, :UserGroup, :UserType, :CreateTime, :SupportDownLoadKeyTab, :DownLoadKeyTabUrl, :Groups, :Uin, :State, :DisplayPasswdUpdateTime, :PasswdUpdateTime, :PasswdUsedDay, :PasswdUsedHour
 
-        def initialize(username=nil, usergroup=nil, usertype=nil, createtime=nil, supportdownloadkeytab=nil, downloadkeytaburl=nil)
+        def initialize(username=nil, usergroup=nil, usertype=nil, createtime=nil, supportdownloadkeytab=nil, downloadkeytaburl=nil, groups=nil, uin=nil, state=nil, displaypasswdupdatetime=nil, passwdupdatetime=nil, passwdusedday=nil, passwdusedhour=nil)
           @UserName = username
           @UserGroup = usergroup
           @UserType = usertype
           @CreateTime = createtime
           @SupportDownLoadKeyTab = supportdownloadkeytab
           @DownLoadKeyTabUrl = downloadkeytaburl
+          @Groups = groups
+          @Uin = uin
+          @State = state
+          @DisplayPasswdUpdateTime = displaypasswdupdatetime
+          @PasswdUpdateTime = passwdupdatetime
+          @PasswdUsedDay = passwdusedday
+          @PasswdUsedHour = passwdusedhour
         end
 
         def deserialize(params)
@@ -17248,6 +17332,13 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @SupportDownLoadKeyTab = params['SupportDownLoadKeyTab']
           @DownLoadKeyTabUrl = params['DownLoadKeyTabUrl']
+          @Groups = params['Groups']
+          @Uin = params['Uin']
+          @State = params['State']
+          @DisplayPasswdUpdateTime = params['DisplayPasswdUpdateTime']
+          @PasswdUpdateTime = params['PasswdUpdateTime']
+          @PasswdUsedDay = params['PasswdUsedDay']
+          @PasswdUsedHour = params['PasswdUsedHour']
         end
       end
 

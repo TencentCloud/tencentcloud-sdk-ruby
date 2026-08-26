@@ -9465,24 +9465,24 @@ module TencentCloud
 
       # 资源组
       class ResourceGroup < TencentCloud::Common::AbstractModel
-        # @param ResourceGroupId: 资源组id
+        # @param ResourceGroupId: <p>资源组id</p>
         # @type ResourceGroupId: String
-        # @param ResourceGroupName: 资源组名称
+        # @param ResourceGroupName: <p>资源组名称</p>
         # @type ResourceGroupName: String
-        # @param FreeInstance: 可用节点个数(运行中的节点)
+        # @param FreeInstance: <p>可用节点个数(运行中的节点)</p>
         # @type FreeInstance: Integer
-        # @param TotalInstance: 总节点个数(所有节点)
+        # @param TotalInstance: <p>总节点个数(所有节点)</p>
         # @type TotalInstance: Integer
-        # @param UsedResource: 资源组已用的资源
+        # @param UsedResource: <p>资源组已用的资源</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UsedResource: :class:`Tencentcloud::Tione.v20211111.models.GroupResource`
-        # @param TotalResource: 资源组总资源
+        # @param TotalResource: <p>资源组总资源</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalResource: :class:`Tencentcloud::Tione.v20211111.models.GroupResource`
-        # @param InstanceSet: 节点信息
+        # @param InstanceSet: <p>节点信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceSet: Array
-        # @param TagSet: 标签列表
+        # @param TagSet: <p>标签列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagSet: Array
 

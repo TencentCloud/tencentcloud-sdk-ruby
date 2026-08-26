@@ -149,6 +149,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建小程序告警屏蔽规则
+
+        # @param request: Request instance for CreateAlarmHistoryShield.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::CreateAlarmHistoryShieldRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::CreateAlarmHistoryShieldResponse`
+        def CreateAlarmHistoryShield(request)
+          body = send_request('CreateAlarmHistoryShield', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAlarmHistoryShieldResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建通知模板
 
         # @param request: Request instance for CreateAlarmNotice.
@@ -732,6 +756,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除小程序告警屏蔽规则
+
+        # @param request: Request instance for DeleteAlarmHistoryShields.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::DeleteAlarmHistoryShieldsRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::DeleteAlarmHistoryShieldsResponse`
+        def DeleteAlarmHistoryShields(request)
+          body = send_request('DeleteAlarmHistoryShields', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAlarmHistoryShieldsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除告警通知模板
 
         # @param request: Request instance for DeleteAlarmNotices.
@@ -1300,6 +1348,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAlarmHistoriesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取小程序告警屏蔽规则
+
+        # @param request: Request instance for DescribeAlarmHistoryShield.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::DescribeAlarmHistoryShieldRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::DescribeAlarmHistoryShieldResponse`
+        def DescribeAlarmHistoryShield(request)
+          body = send_request('DescribeAlarmHistoryShield', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAlarmHistoryShieldResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -3251,6 +3323,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = InstallPluginsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改小程序告警屏蔽规则
+
+        # @param request: Request instance for ModifyAlarmHistoryShield.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::ModifyAlarmHistoryShieldRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::ModifyAlarmHistoryShieldResponse`
+        def ModifyAlarmHistoryShield(request)
+          body = send_request('ModifyAlarmHistoryShield', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAlarmHistoryShieldResponse.new
             model.deserialize(response['Response'])
             model
           else

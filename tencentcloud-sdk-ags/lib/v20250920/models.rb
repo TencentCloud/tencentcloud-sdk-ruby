@@ -445,14 +445,16 @@ module TencentCloud
         # @type StorageMounts: Array
         # @param CustomConfiguration: <p>沙箱工具自定义配置</p>
         # @type CustomConfiguration: :class:`Tencentcloud::Ags.v20250920.models.CustomConfiguration`
+        # @param ComputerConfiguration: <p>桌面电脑环境类沙箱配置</p>
+        # @type ComputerConfiguration: :class:`Tencentcloud::Ags.v20250920.models.ComputerConfiguration`
         # @param LogConfiguration: <p>沙箱工具日志推送相关配置</p>
         # @type LogConfiguration: :class:`Tencentcloud::Ags.v20250920.models.LogConfiguration`
         # @param Persistent: <p>常驻沙箱标识</p>
         # @type Persistent: Boolean
 
-        attr_accessor :ToolName, :ToolType, :NetworkConfiguration, :Description, :DefaultTimeout, :Tags, :ClientToken, :RoleArn, :StorageMounts, :CustomConfiguration, :LogConfiguration, :Persistent
+        attr_accessor :ToolName, :ToolType, :NetworkConfiguration, :Description, :DefaultTimeout, :Tags, :ClientToken, :RoleArn, :StorageMounts, :CustomConfiguration, :ComputerConfiguration, :LogConfiguration, :Persistent
 
-        def initialize(toolname=nil, tooltype=nil, networkconfiguration=nil, description=nil, defaulttimeout=nil, tags=nil, clienttoken=nil, rolearn=nil, storagemounts=nil, customconfiguration=nil, logconfiguration=nil, persistent=nil)
+        def initialize(toolname=nil, tooltype=nil, networkconfiguration=nil, description=nil, defaulttimeout=nil, tags=nil, clienttoken=nil, rolearn=nil, storagemounts=nil, customconfiguration=nil, computerconfiguration=nil, logconfiguration=nil, persistent=nil)
           @ToolName = toolname
           @ToolType = tooltype
           @NetworkConfiguration = networkconfiguration
@@ -463,6 +465,7 @@ module TencentCloud
           @RoleArn = rolearn
           @StorageMounts = storagemounts
           @CustomConfiguration = customconfiguration
+          @ComputerConfiguration = computerconfiguration
           @LogConfiguration = logconfiguration
           @Persistent = persistent
         end
@@ -497,6 +500,10 @@ module TencentCloud
           unless params['CustomConfiguration'].nil?
             @CustomConfiguration = CustomConfiguration.new
             @CustomConfiguration.deserialize(params['CustomConfiguration'])
+          end
+          unless params['ComputerConfiguration'].nil?
+            @ComputerConfiguration = ComputerConfiguration.new
+            @ComputerConfiguration.deserialize(params['ComputerConfiguration'])
           end
           unless params['LogConfiguration'].nil?
             @LogConfiguration = LogConfiguration.new
@@ -2150,15 +2157,18 @@ module TencentCloud
         # @type Tags: Array
         # @param CustomConfiguration: <p>沙箱工具自定义配置</p>
         # @type CustomConfiguration: :class:`Tencentcloud::Ags.v20250920.models.CustomConfiguration`
+        # @param ComputerConfiguration: <p>桌面电脑环境类沙箱配置</p>
+        # @type ComputerConfiguration: :class:`Tencentcloud::Ags.v20250920.models.ComputerConfiguration`
 
-        attr_accessor :ToolId, :Description, :NetworkConfiguration, :Tags, :CustomConfiguration
+        attr_accessor :ToolId, :Description, :NetworkConfiguration, :Tags, :CustomConfiguration, :ComputerConfiguration
 
-        def initialize(toolid=nil, description=nil, networkconfiguration=nil, tags=nil, customconfiguration=nil)
+        def initialize(toolid=nil, description=nil, networkconfiguration=nil, tags=nil, customconfiguration=nil, computerconfiguration=nil)
           @ToolId = toolid
           @Description = description
           @NetworkConfiguration = networkconfiguration
           @Tags = tags
           @CustomConfiguration = customconfiguration
+          @ComputerConfiguration = computerconfiguration
         end
 
         def deserialize(params)
@@ -2179,6 +2189,10 @@ module TencentCloud
           unless params['CustomConfiguration'].nil?
             @CustomConfiguration = CustomConfiguration.new
             @CustomConfiguration.deserialize(params['CustomConfiguration'])
+          end
+          unless params['ComputerConfiguration'].nil?
+            @ComputerConfiguration = ComputerConfiguration.new
+            @ComputerConfiguration.deserialize(params['ComputerConfiguration'])
           end
         end
       end

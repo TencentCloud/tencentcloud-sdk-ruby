@@ -6816,35 +6816,34 @@ module TencentCloud
 
       # UpgradeDCDBInstance请求参数结构体
       class UpgradeDCDBInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 待升级的实例ID。形如：dcdbt-ow728lmc，可以通过 DescribeDCDBInstances 查询实例详情获得。
+        # @param InstanceId: <p>待升级的实例ID。形如：dcdbt-ow728lmc，可以通过 DescribeDCDBInstances 查询实例详情获得。</p>
         # @type InstanceId: String
-        # @param UpgradeType: 升级类型，取值范围:
-        # <li> ADD: 新增分片 </li>
-        #  <li> EXPAND: 升级实例中的已有分片 </li>
-        #  <li> SPLIT: 将已有分片中的数据切分到新增分片上</li>
+        # @param UpgradeType: <p>升级类型，取值范围: </p><li> ADD: 新增分片 </li>  <li> EXPAND: 升级实例中的已有分片 </li>  <li> SPLIT: 将已有分片中的数据切分到新增分片上</li>
         # @type UpgradeType: String
-        # @param AddShardConfig: 新增分片配置，当UpgradeType为ADD时生效。
+        # @param AddShardConfig: <p>新增分片配置，当UpgradeType为ADD时生效。</p>
         # @type AddShardConfig: :class:`Tencentcloud::Dcdb.v20180411.models.AddShardConfig`
-        # @param ExpandShardConfig: 扩容分片配置，当UpgradeType为EXPAND时生效。
+        # @param ExpandShardConfig: <p>扩容分片配置，当UpgradeType为EXPAND时生效。</p>
         # @type ExpandShardConfig: :class:`Tencentcloud::Dcdb.v20180411.models.ExpandShardConfig`
-        # @param SplitShardConfig: 切分分片配置，当UpgradeType为SPLIT时生效。
+        # @param SplitShardConfig: <p>切分分片配置，当UpgradeType为SPLIT时生效。</p>
         # @type SplitShardConfig: :class:`Tencentcloud::Dcdb.v20180411.models.SplitShardConfig`
-        # @param AutoVoucher: 是否自动使用代金券进行支付，默认不使用。
+        # @param AutoVoucher: <p>是否自动使用代金券进行支付，默认不使用。</p>
         # @type AutoVoucher: Boolean
-        # @param VoucherIds: 代金券ID列表，目前仅支持指定一张代金券。
+        # @param VoucherIds: <p>代金券ID列表，目前仅支持指定一张代金券。</p>
         # @type VoucherIds: Array
-        # @param Zones: 变更部署时指定的新可用区列表，第1个为主可用区，其余为从可用区
+        # @param Zones: <p>变更部署时指定的新可用区列表，第1个为主可用区，其余为从可用区</p>
         # @type Zones: Array
-        # @param SwitchStartTime: 切换开始时间，格式如: "2019-12-12 07:00:00"。开始时间必须在当前时间一个小时以后，3天以内。
+        # @param SwitchStartTime: <p>切换开始时间，格式如: &quot;2019-12-12 07:00:00&quot;。开始时间必须在当前时间一个小时以后，3天以内。</p>
         # @type SwitchStartTime: String
-        # @param SwitchEndTime: 切换结束时间, 格式如: "2019-12-12 07:15:00"，结束时间必须大于开始时间。
+        # @param SwitchEndTime: <p>切换结束时间, 格式如: &quot;2019-12-12 07:15:00&quot;，结束时间必须大于开始时间。</p>
         # @type SwitchEndTime: String
-        # @param SwitchAutoRetry: 是否自动重试。 0：不自动重试 1：自动重试
+        # @param SwitchAutoRetry: <p>是否自动重试。 0：不自动重试 1：自动重试</p>
         # @type SwitchAutoRetry: Integer
+        # @param SwitchInterval: <p>多个分片同时发起扩容，并发切换中的切换时间间隔，即当前分片切换开始时间和下一个分片的切换开始时间间隔，不传默认为1。</p><p>取值范围：[1, 180]</p><p>单位：秒</p>
+        # @type SwitchInterval: Integer
 
-        attr_accessor :InstanceId, :UpgradeType, :AddShardConfig, :ExpandShardConfig, :SplitShardConfig, :AutoVoucher, :VoucherIds, :Zones, :SwitchStartTime, :SwitchEndTime, :SwitchAutoRetry
+        attr_accessor :InstanceId, :UpgradeType, :AddShardConfig, :ExpandShardConfig, :SplitShardConfig, :AutoVoucher, :VoucherIds, :Zones, :SwitchStartTime, :SwitchEndTime, :SwitchAutoRetry, :SwitchInterval
 
-        def initialize(instanceid=nil, upgradetype=nil, addshardconfig=nil, expandshardconfig=nil, splitshardconfig=nil, autovoucher=nil, voucherids=nil, zones=nil, switchstarttime=nil, switchendtime=nil, switchautoretry=nil)
+        def initialize(instanceid=nil, upgradetype=nil, addshardconfig=nil, expandshardconfig=nil, splitshardconfig=nil, autovoucher=nil, voucherids=nil, zones=nil, switchstarttime=nil, switchendtime=nil, switchautoretry=nil, switchinterval=nil)
           @InstanceId = instanceid
           @UpgradeType = upgradetype
           @AddShardConfig = addshardconfig
@@ -6856,6 +6855,7 @@ module TencentCloud
           @SwitchStartTime = switchstarttime
           @SwitchEndTime = switchendtime
           @SwitchAutoRetry = switchautoretry
+          @SwitchInterval = switchinterval
         end
 
         def deserialize(params)
@@ -6879,13 +6879,13 @@ module TencentCloud
           @SwitchStartTime = params['SwitchStartTime']
           @SwitchEndTime = params['SwitchEndTime']
           @SwitchAutoRetry = params['SwitchAutoRetry']
+          @SwitchInterval = params['SwitchInterval']
         end
       end
 
       # UpgradeDCDBInstance返回参数结构体
       class UpgradeDCDBInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param DealName: 长订单号。可以据此调用 DescribeOrders
-        #  查询订单详细信息，或在支付失败时调用用户账号相关接口进行支付。
+        # @param DealName: <p>长订单号。可以据此调用 DescribeOrders<br> 查询订单详细信息，或在支付失败时调用用户账号相关接口进行支付。</p>
         # @type DealName: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6905,26 +6905,28 @@ module TencentCloud
 
       # UpgradeDedicatedDCDBInstance请求参数结构体
       class UpgradeDedicatedDCDBInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param UpgradeType: 升级类型，取值为ADD，SPLIT和EXPAND。ADD-添加分片；SPLIT-切分某个分片；EXPAND-垂直扩容某个分片
+        # @param UpgradeType: <p>升级类型，取值为ADD，SPLIT和EXPAND。ADD-添加分片；SPLIT-切分某个分片；EXPAND-垂直扩容某个分片</p>
         # @type UpgradeType: String
-        # @param InstanceId: 实例ID，形如 dcdbt-mlfjm74h
+        # @param InstanceId: <p>实例ID，形如 dcdbt-mlfjm74h</p>
         # @type InstanceId: String
-        # @param AddShardConfig: 当UpgradeType取值为ADD时，添加分片的配置参数
+        # @param AddShardConfig: <p>当UpgradeType取值为ADD时，添加分片的配置参数</p>
         # @type AddShardConfig: :class:`Tencentcloud::Dcdb.v20180411.models.AddShardConfig`
-        # @param ExpandShardConfig: 当UpgradeType取值为EXPAND时，垂直扩容分片的配置参数
+        # @param ExpandShardConfig: <p>当UpgradeType取值为EXPAND时，垂直扩容分片的配置参数</p>
         # @type ExpandShardConfig: :class:`Tencentcloud::Dcdb.v20180411.models.ExpandShardConfig`
-        # @param SplitShardConfig: 当UpgradeType取值为SPLIT时，切分分片的配置参数
+        # @param SplitShardConfig: <p>当UpgradeType取值为SPLIT时，切分分片的配置参数</p>
         # @type SplitShardConfig: :class:`Tencentcloud::Dcdb.v20180411.models.SplitShardConfig`
-        # @param SwitchAutoRetry: 错过切换时间窗口时，是否自动重试一次，0-否，1-是
+        # @param SwitchAutoRetry: <p>错过切换时间窗口时，是否自动重试一次，0-否，1-是</p>
         # @type SwitchAutoRetry: Integer
-        # @param SwitchStartTime: 切换时间窗口开始时间
+        # @param SwitchStartTime: <p>切换时间窗口开始时间</p>
         # @type SwitchStartTime: String
-        # @param SwitchEndTime: 切换时间窗口结束时间
+        # @param SwitchEndTime: <p>切换时间窗口结束时间</p>
         # @type SwitchEndTime: String
+        # @param SwitchInterval: <p>多个分片同时发起扩容，并发切换中的切换时间间隔，即当前分片切换开始时间和下一个分片的切换开始时间间隔，不传默认为1。</p><p>取值范围：[1, 180]</p><p>单位：秒</p>
+        # @type SwitchInterval: Integer
 
-        attr_accessor :UpgradeType, :InstanceId, :AddShardConfig, :ExpandShardConfig, :SplitShardConfig, :SwitchAutoRetry, :SwitchStartTime, :SwitchEndTime
+        attr_accessor :UpgradeType, :InstanceId, :AddShardConfig, :ExpandShardConfig, :SplitShardConfig, :SwitchAutoRetry, :SwitchStartTime, :SwitchEndTime, :SwitchInterval
 
-        def initialize(upgradetype=nil, instanceid=nil, addshardconfig=nil, expandshardconfig=nil, splitshardconfig=nil, switchautoretry=nil, switchstarttime=nil, switchendtime=nil)
+        def initialize(upgradetype=nil, instanceid=nil, addshardconfig=nil, expandshardconfig=nil, splitshardconfig=nil, switchautoretry=nil, switchstarttime=nil, switchendtime=nil, switchinterval=nil)
           @UpgradeType = upgradetype
           @InstanceId = instanceid
           @AddShardConfig = addshardconfig
@@ -6933,6 +6935,7 @@ module TencentCloud
           @SwitchAutoRetry = switchautoretry
           @SwitchStartTime = switchstarttime
           @SwitchEndTime = switchendtime
+          @SwitchInterval = switchinterval
         end
 
         def deserialize(params)
@@ -6953,12 +6956,13 @@ module TencentCloud
           @SwitchAutoRetry = params['SwitchAutoRetry']
           @SwitchStartTime = params['SwitchStartTime']
           @SwitchEndTime = params['SwitchEndTime']
+          @SwitchInterval = params['SwitchInterval']
         end
       end
 
       # UpgradeDedicatedDCDBInstance返回参数结构体
       class UpgradeDedicatedDCDBInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param FlowId: 异步任务流程ID
+        # @param FlowId: <p>异步任务流程ID</p>
         # @type FlowId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6978,31 +6982,30 @@ module TencentCloud
 
       # UpgradeHourDCDBInstance请求参数结构体
       class UpgradeHourDCDBInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 待升级的实例ID。形如：dcdbt-ow728lmc，可以通过 DescribeDCDBInstances 查询实例详情获得。
+        # @param InstanceId: <p>待升级的实例ID。形如：dcdbt-ow728lmc，可以通过 DescribeDCDBInstances 查询实例详情获得。</p>
         # @type InstanceId: String
-        # @param UpgradeType: 升级类型，取值范围:
-        # <li> ADD: 新增分片 </li>
-        #  <li> EXPAND: 升级实例中的已有分片 </li>
-        #  <li> SPLIT: 将已有分片中的数据切分到新增分片上</li>
+        # @param UpgradeType: <p>升级类型，取值范围: </p><li> ADD: 新增分片 </li>  <li> EXPAND: 升级实例中的已有分片 </li>  <li> SPLIT: 将已有分片中的数据切分到新增分片上</li>
         # @type UpgradeType: String
-        # @param AddShardConfig: 新增分片配置，当UpgradeType为ADD时生效。
+        # @param AddShardConfig: <p>新增分片配置，当UpgradeType为ADD时生效。</p>
         # @type AddShardConfig: :class:`Tencentcloud::Dcdb.v20180411.models.AddShardConfig`
-        # @param ExpandShardConfig: 扩容分片配置，当UpgradeType为EXPAND时生效。
+        # @param ExpandShardConfig: <p>扩容分片配置，当UpgradeType为EXPAND时生效。</p>
         # @type ExpandShardConfig: :class:`Tencentcloud::Dcdb.v20180411.models.ExpandShardConfig`
-        # @param SplitShardConfig: 切分分片配置，当UpgradeType为SPLIT时生效。
+        # @param SplitShardConfig: <p>切分分片配置，当UpgradeType为SPLIT时生效。</p>
         # @type SplitShardConfig: :class:`Tencentcloud::Dcdb.v20180411.models.SplitShardConfig`
-        # @param SwitchStartTime: 切换开始时间，格式如: "2019-12-12 07:00:00"。开始时间必须在当前时间一个小时以后，3天以内。
+        # @param SwitchStartTime: <p>切换开始时间，格式如: &quot;2019-12-12 07:00:00&quot;。开始时间必须在当前时间一个小时以后，3天以内。</p>
         # @type SwitchStartTime: String
-        # @param SwitchEndTime: 切换结束时间,  格式如: "2019-12-12 07:15:00"，结束时间必须大于开始时间。
+        # @param SwitchEndTime: <p>切换结束时间,  格式如: &quot;2019-12-12 07:15:00&quot;，结束时间必须大于开始时间。</p>
         # @type SwitchEndTime: String
-        # @param SwitchAutoRetry: 是否自动重试。 0：不自动重试  1：自动重试
+        # @param SwitchAutoRetry: <p>是否自动重试。 0：不自动重试  1：自动重试</p>
         # @type SwitchAutoRetry: Integer
-        # @param Zones: 变更部署时指定的新可用区列表，第1个为主可用区，其余为从可用区
+        # @param Zones: <p>变更部署时指定的新可用区列表，第1个为主可用区，其余为从可用区</p>
         # @type Zones: Array
+        # @param SwitchInterval: <p>多个分片同时发起扩容，并发切换中的切换时间间隔，即当前分片切换开始时间和下一个分片的切换开始时间间隔，不传默认为1。</p><p>取值范围：[1, 180]</p><p>单位：秒</p>
+        # @type SwitchInterval: Integer
 
-        attr_accessor :InstanceId, :UpgradeType, :AddShardConfig, :ExpandShardConfig, :SplitShardConfig, :SwitchStartTime, :SwitchEndTime, :SwitchAutoRetry, :Zones
+        attr_accessor :InstanceId, :UpgradeType, :AddShardConfig, :ExpandShardConfig, :SplitShardConfig, :SwitchStartTime, :SwitchEndTime, :SwitchAutoRetry, :Zones, :SwitchInterval
 
-        def initialize(instanceid=nil, upgradetype=nil, addshardconfig=nil, expandshardconfig=nil, splitshardconfig=nil, switchstarttime=nil, switchendtime=nil, switchautoretry=nil, zones=nil)
+        def initialize(instanceid=nil, upgradetype=nil, addshardconfig=nil, expandshardconfig=nil, splitshardconfig=nil, switchstarttime=nil, switchendtime=nil, switchautoretry=nil, zones=nil, switchinterval=nil)
           @InstanceId = instanceid
           @UpgradeType = upgradetype
           @AddShardConfig = addshardconfig
@@ -7012,6 +7015,7 @@ module TencentCloud
           @SwitchEndTime = switchendtime
           @SwitchAutoRetry = switchautoretry
           @Zones = zones
+          @SwitchInterval = switchinterval
         end
 
         def deserialize(params)
@@ -7033,6 +7037,7 @@ module TencentCloud
           @SwitchEndTime = params['SwitchEndTime']
           @SwitchAutoRetry = params['SwitchAutoRetry']
           @Zones = params['Zones']
+          @SwitchInterval = params['SwitchInterval']
         end
       end
 

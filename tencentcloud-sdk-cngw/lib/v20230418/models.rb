@@ -894,16 +894,22 @@ module TencentCloud
         # @type RequestLogPayloadMode: String
         # @param ResponseLogPayloadMode: <p>上游原始 payload access log 输出模式</p><p>枚举值：</p><ul><li>raw： access log 中 body 记录客户端原始上游响应</li><li>processed： access log 中 body 记录 AI 网关协议适配、改写、归一化后的 OpenAI-compatible 内容</li></ul>
         # @type ResponseLogPayloadMode: String
+        # @param RequestLogPayloadTruncationPolicy: <p>请求 Body 大小裁剪策略</p><p>枚举值：</p><ul><li>Bounded： 裁剪大小</li><li>UnBounded： 不裁剪大小</li></ul>
+        # @type RequestLogPayloadTruncationPolicy: String
+        # @param ResponseLogPayloadTruncationPolicy: <p>响应 Body 大小裁剪策略</p><p>枚举值：</p><ul><li>Bounded： 裁剪大小</li><li>UnBounded： 不裁剪大小</li></ul>
+        # @type ResponseLogPayloadTruncationPolicy: String
 
-        attr_accessor :EnableRequestLogPayloads, :EnableResponseLogPayloads, :RequestLogPayloadMaxSize, :ResponseLogPayloadMaxSize, :RequestLogPayloadMode, :ResponseLogPayloadMode
+        attr_accessor :EnableRequestLogPayloads, :EnableResponseLogPayloads, :RequestLogPayloadMaxSize, :ResponseLogPayloadMaxSize, :RequestLogPayloadMode, :ResponseLogPayloadMode, :RequestLogPayloadTruncationPolicy, :ResponseLogPayloadTruncationPolicy
 
-        def initialize(enablerequestlogpayloads=nil, enableresponselogpayloads=nil, requestlogpayloadmaxsize=nil, responselogpayloadmaxsize=nil, requestlogpayloadmode=nil, responselogpayloadmode=nil)
+        def initialize(enablerequestlogpayloads=nil, enableresponselogpayloads=nil, requestlogpayloadmaxsize=nil, responselogpayloadmaxsize=nil, requestlogpayloadmode=nil, responselogpayloadmode=nil, requestlogpayloadtruncationpolicy=nil, responselogpayloadtruncationpolicy=nil)
           @EnableRequestLogPayloads = enablerequestlogpayloads
           @EnableResponseLogPayloads = enableresponselogpayloads
           @RequestLogPayloadMaxSize = requestlogpayloadmaxsize
           @ResponseLogPayloadMaxSize = responselogpayloadmaxsize
           @RequestLogPayloadMode = requestlogpayloadmode
           @ResponseLogPayloadMode = responselogpayloadmode
+          @RequestLogPayloadTruncationPolicy = requestlogpayloadtruncationpolicy
+          @ResponseLogPayloadTruncationPolicy = responselogpayloadtruncationpolicy
         end
 
         def deserialize(params)
@@ -913,6 +919,8 @@ module TencentCloud
           @ResponseLogPayloadMaxSize = params['ResponseLogPayloadMaxSize']
           @RequestLogPayloadMode = params['RequestLogPayloadMode']
           @ResponseLogPayloadMode = params['ResponseLogPayloadMode']
+          @RequestLogPayloadTruncationPolicy = params['RequestLogPayloadTruncationPolicy']
+          @ResponseLogPayloadTruncationPolicy = params['ResponseLogPayloadTruncationPolicy']
         end
       end
 

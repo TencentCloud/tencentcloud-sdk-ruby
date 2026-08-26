@@ -17460,10 +17460,12 @@ module TencentCloud
         # @type EngineId: String
         # @param EngineTypeDetail: <p>引擎类型详情</p><ul><li>SparkSQL：SparkSQL</li><li>PrestoSQL：Presto</li><li>SparkBatch：Spark作业</li><li>StandardPresto：Presto</li><li>StandardSpark：Spark</li></ul>
         # @type EngineTypeDetail: String
+        # @param DatasourceId: <p>数据源ID</p>
+        # @type DatasourceId: Integer
 
-        attr_accessor :TableId, :TechnologyType, :ClusterId, :ResourceType, :TableName, :ProjectId, :RowNum, :DatabaseName, :TaskId, :PartitionName, :ResourceGroupId, :Sql, :EngineId, :EngineTypeDetail
+        attr_accessor :TableId, :TechnologyType, :ClusterId, :ResourceType, :TableName, :ProjectId, :RowNum, :DatabaseName, :TaskId, :PartitionName, :ResourceGroupId, :Sql, :EngineId, :EngineTypeDetail, :DatasourceId
 
-        def initialize(tableid=nil, technologytype=nil, clusterid=nil, resourcetype=nil, tablename=nil, projectid=nil, rownum=nil, databasename=nil, taskid=nil, partitionname=nil, resourcegroupid=nil, sql=nil, engineid=nil, enginetypedetail=nil)
+        def initialize(tableid=nil, technologytype=nil, clusterid=nil, resourcetype=nil, tablename=nil, projectid=nil, rownum=nil, databasename=nil, taskid=nil, partitionname=nil, resourcegroupid=nil, sql=nil, engineid=nil, enginetypedetail=nil, datasourceid=nil)
           @TableId = tableid
           @TechnologyType = technologytype
           @ClusterId = clusterid
@@ -17478,6 +17480,7 @@ module TencentCloud
           @Sql = sql
           @EngineId = engineid
           @EngineTypeDetail = enginetypedetail
+          @DatasourceId = datasourceid
         end
 
         def deserialize(params)
@@ -17495,6 +17498,7 @@ module TencentCloud
           @Sql = params['Sql']
           @EngineId = params['EngineId']
           @EngineTypeDetail = params['EngineTypeDetail']
+          @DatasourceId = params['DatasourceId']
         end
       end
 

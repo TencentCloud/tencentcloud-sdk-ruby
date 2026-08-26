@@ -1612,22 +1612,25 @@ module TencentCloud
 
       # CreateFileBackupPlan请求参数结构体
       class CreateFileBackupPlanRequest < TencentCloud::Common::AbstractModel
-        # @param PolicyId: 备份策略ID
+        # @param PolicyId: <p>备份策略ID</p>
         # @type PolicyId: String
-        # @param BackupStorageId: 备份库ID
+        # @param BackupStorageId: <p>备份库ID</p>
         # @type BackupStorageId: String
-        # @param PlanName: 计划名称
+        # @param PlanName: <p>计划名称</p>
         # @type PlanName: String
-        # @param Resources: 实例配置列表，[1,20]
+        # @param Resources: <p>实例配置列表，[1,20]</p>
         # @type Resources: Array
+        # @param ResourceType: <p>资源类型</p><p>枚举值：</p><ul><li>CVM_AGENT： CVM文件备份</li><li>CFS_AGENT： 文件系统备份</li><li>COS_AGENT： COS备份</li></ul><p>默认值：CVM_AGENT</p>
+        # @type ResourceType: String
 
-        attr_accessor :PolicyId, :BackupStorageId, :PlanName, :Resources
+        attr_accessor :PolicyId, :BackupStorageId, :PlanName, :Resources, :ResourceType
 
-        def initialize(policyid=nil, backupstorageid=nil, planname=nil, resources=nil)
+        def initialize(policyid=nil, backupstorageid=nil, planname=nil, resources=nil, resourcetype=nil)
           @PolicyId = policyid
           @BackupStorageId = backupstorageid
           @PlanName = planname
           @Resources = resources
+          @ResourceType = resourcetype
         end
 
         def deserialize(params)
@@ -1642,12 +1645,13 @@ module TencentCloud
               @Resources << resourceplan_tmp
             end
           end
+          @ResourceType = params['ResourceType']
         end
       end
 
       # CreateFileBackupPlan返回参数结构体
       class CreateFileBackupPlanResponse < TencentCloud::Common::AbstractModel
-        # @param PlanIds: 备份计划 ID 列表
+        # @param PlanIds: <p>备份计划 ID 列表</p>
         # @type PlanIds: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

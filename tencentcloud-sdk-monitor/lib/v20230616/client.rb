@@ -29,6 +29,78 @@ module TencentCloud
         end
 
 
+        # 取消对话执行
+
+        # @param request: Request instance for CancelAIWorkbenchChat.
+        # @type request: :class:`Tencentcloud::monitor::V20230616::CancelAIWorkbenchChatRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20230616::CancelAIWorkbenchChatResponse`
+        def CancelAIWorkbenchChat(request)
+          body = send_request('CancelAIWorkbenchChat', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CancelAIWorkbenchChatResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建 Agent
+
+        # @param request: Request instance for CreateAIWorkbenchAgent.
+        # @type request: :class:`Tencentcloud::monitor::V20230616::CreateAIWorkbenchAgentRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20230616::CreateAIWorkbenchAgentResponse`
+        def CreateAIWorkbenchAgent(request)
+          body = send_request('CreateAIWorkbenchAgent', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAIWorkbenchAgentResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建任务
+
+        # @param request: Request instance for CreateAIWorkbenchTask.
+        # @type request: :class:`Tencentcloud::monitor::V20230616::CreateAIWorkbenchTaskRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20230616::CreateAIWorkbenchTaskResponse`
+        def CreateAIWorkbenchTask(request)
+          body = send_request('CreateAIWorkbenchTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAIWorkbenchTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建自定义通知内容模板
 
         # @param request: Request instance for CreateNoticeContentTmpl.
@@ -53,6 +125,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除 Agent
+
+        # @param request: Request instance for DeleteAIWorkbenchAgent.
+        # @type request: :class:`Tencentcloud::monitor::V20230616::DeleteAIWorkbenchAgentRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20230616::DeleteAIWorkbenchAgentResponse`
+        def DeleteAIWorkbenchAgent(request)
+          body = send_request('DeleteAIWorkbenchAgent', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAIWorkbenchAgentResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除任务
+
+        # @param request: Request instance for DeleteAIWorkbenchTask.
+        # @type request: :class:`Tencentcloud::monitor::V20230616::DeleteAIWorkbenchTaskRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20230616::DeleteAIWorkbenchTaskResponse`
+        def DeleteAIWorkbenchTask(request)
+          body = send_request('DeleteAIWorkbenchTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAIWorkbenchTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除通知内容模板
 
         # @param request: Request instance for DeleteNoticeContentTmpls.
@@ -63,6 +183,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteNoticeContentTmplsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询 Agent 详情
+
+        # @param request: Request instance for DescribeAIWorkbenchAgent.
+        # @type request: :class:`Tencentcloud::monitor::V20230616::DescribeAIWorkbenchAgentRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20230616::DescribeAIWorkbenchAgentResponse`
+        def DescribeAIWorkbenchAgent(request)
+          body = send_request('DescribeAIWorkbenchAgent', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAIWorkbenchAgentResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询制品详情
+
+        # @param request: Request instance for DescribeAIWorkbenchArtifact.
+        # @type request: :class:`Tencentcloud::monitor::V20230616::DescribeAIWorkbenchArtifactRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20230616::DescribeAIWorkbenchArtifactResponse`
+        def DescribeAIWorkbenchArtifact(request)
+          body = send_request('DescribeAIWorkbenchArtifact', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAIWorkbenchArtifactResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询执行详情
+
+        # @param request: Request instance for DescribeAIWorkbenchExecution.
+        # @type request: :class:`Tencentcloud::monitor::V20230616::DescribeAIWorkbenchExecutionRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20230616::DescribeAIWorkbenchExecutionResponse`
+        def DescribeAIWorkbenchExecution(request)
+          body = send_request('DescribeAIWorkbenchExecution', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAIWorkbenchExecutionResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -149,6 +341,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询会话详情
+
+        # @param request: Request instance for DescribeAIWorkbenchSession.
+        # @type request: :class:`Tencentcloud::monitor::V20230616::DescribeAIWorkbenchSessionRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20230616::DescribeAIWorkbenchSessionResponse`
+        def DescribeAIWorkbenchSession(request)
+          body = send_request('DescribeAIWorkbenchSession', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAIWorkbenchSessionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询技能详情
+
+        # @param request: Request instance for DescribeAIWorkbenchSkill.
+        # @type request: :class:`Tencentcloud::monitor::V20230616::DescribeAIWorkbenchSkillRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20230616::DescribeAIWorkbenchSkillResponse`
+        def DescribeAIWorkbenchSkill(request)
+          body = send_request('DescribeAIWorkbenchSkill', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAIWorkbenchSkillResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 按需查询告警的通知历史
 
         # @param request: Request instance for DescribeAlarmNotifyHistories.
@@ -197,6 +437,270 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取AI工作台制品的下载地址
+
+        # @param request: Request instance for GetAIWorkbenchArtifactDownloadURL.
+        # @type request: :class:`Tencentcloud::monitor::V20230616::GetAIWorkbenchArtifactDownloadURLRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20230616::GetAIWorkbenchArtifactDownloadURLResponse`
+        def GetAIWorkbenchArtifactDownloadURL(request)
+          body = send_request('GetAIWorkbenchArtifactDownloadURL', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetAIWorkbenchArtifactDownloadURLResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询 Agent 列表
+
+        # @param request: Request instance for ListAIWorkbenchAgents.
+        # @type request: :class:`Tencentcloud::monitor::V20230616::ListAIWorkbenchAgentsRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20230616::ListAIWorkbenchAgentsResponse`
+        def ListAIWorkbenchAgents(request)
+          body = send_request('ListAIWorkbenchAgents', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListAIWorkbenchAgentsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询产物列表
+
+        # @param request: Request instance for ListAIWorkbenchArtifacts.
+        # @type request: :class:`Tencentcloud::monitor::V20230616::ListAIWorkbenchArtifactsRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20230616::ListAIWorkbenchArtifactsResponse`
+        def ListAIWorkbenchArtifacts(request)
+          body = send_request('ListAIWorkbenchArtifacts', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListAIWorkbenchArtifactsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询执行列表
+
+        # @param request: Request instance for ListAIWorkbenchExecutions.
+        # @type request: :class:`Tencentcloud::monitor::V20230616::ListAIWorkbenchExecutionsRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20230616::ListAIWorkbenchExecutionsResponse`
+        def ListAIWorkbenchExecutions(request)
+          body = send_request('ListAIWorkbenchExecutions', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListAIWorkbenchExecutionsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询 MCP 列表
+
+        # @param request: Request instance for ListAIWorkbenchMCPs.
+        # @type request: :class:`Tencentcloud::monitor::V20230616::ListAIWorkbenchMCPsRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20230616::ListAIWorkbenchMCPsResponse`
+        def ListAIWorkbenchMCPs(request)
+          body = send_request('ListAIWorkbenchMCPs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListAIWorkbenchMCPsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询消息列表
+
+        # @param request: Request instance for ListAIWorkbenchMessages.
+        # @type request: :class:`Tencentcloud::monitor::V20230616::ListAIWorkbenchMessagesRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20230616::ListAIWorkbenchMessagesResponse`
+        def ListAIWorkbenchMessages(request)
+          body = send_request('ListAIWorkbenchMessages', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListAIWorkbenchMessagesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 列出资源实例
+
+        # @param request: Request instance for ListAIWorkbenchResourceInstances.
+        # @type request: :class:`Tencentcloud::monitor::V20230616::ListAIWorkbenchResourceInstancesRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20230616::ListAIWorkbenchResourceInstancesResponse`
+        def ListAIWorkbenchResourceInstances(request)
+          body = send_request('ListAIWorkbenchResourceInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListAIWorkbenchResourceInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询资源地图列表
+
+        # @param request: Request instance for ListAIWorkbenchResourceMaps.
+        # @type request: :class:`Tencentcloud::monitor::V20230616::ListAIWorkbenchResourceMapsRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20230616::ListAIWorkbenchResourceMapsResponse`
+        def ListAIWorkbenchResourceMaps(request)
+          body = send_request('ListAIWorkbenchResourceMaps', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListAIWorkbenchResourceMapsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询会话列表
+
+        # @param request: Request instance for ListAIWorkbenchSessions.
+        # @type request: :class:`Tencentcloud::monitor::V20230616::ListAIWorkbenchSessionsRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20230616::ListAIWorkbenchSessionsResponse`
+        def ListAIWorkbenchSessions(request)
+          body = send_request('ListAIWorkbenchSessions', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListAIWorkbenchSessionsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询技能列表
+
+        # @param request: Request instance for ListAIWorkbenchSkills.
+        # @type request: :class:`Tencentcloud::monitor::V20230616::ListAIWorkbenchSkillsRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20230616::ListAIWorkbenchSkillsResponse`
+        def ListAIWorkbenchSkills(request)
+          body = send_request('ListAIWorkbenchSkills', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListAIWorkbenchSkillsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询任务列表
+
+        # @param request: Request instance for ListAIWorkbenchTasks.
+        # @type request: :class:`Tencentcloud::monitor::V20230616::ListAIWorkbenchTasksRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20230616::ListAIWorkbenchTasksResponse`
+        def ListAIWorkbenchTasks(request)
+          body = send_request('ListAIWorkbenchTasks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListAIWorkbenchTasksResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改通知内容模板
 
         # @param request: Request instance for ModifyNoticeContentTmpl.
@@ -231,6 +735,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = TriggerAIWorkbenchSREDigitalTwinTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 手动触发任务
+
+        # @param request: Request instance for TriggerAIWorkbenchTask.
+        # @type request: :class:`Tencentcloud::monitor::V20230616::TriggerAIWorkbenchTaskRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20230616::TriggerAIWorkbenchTaskResponse`
+        def TriggerAIWorkbenchTask(request)
+          body = send_request('TriggerAIWorkbenchTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = TriggerAIWorkbenchTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新 Agent
+
+        # @param request: Request instance for UpdateAIWorkbenchAgent.
+        # @type request: :class:`Tencentcloud::monitor::V20230616::UpdateAIWorkbenchAgentRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20230616::UpdateAIWorkbenchAgentResponse`
+        def UpdateAIWorkbenchAgent(request)
+          body = send_request('UpdateAIWorkbenchAgent', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateAIWorkbenchAgentResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -770,18 +770,25 @@ module TencentCloud
       # AddCustomRule请求参数结构体
       class AddCustomRuleRequest < TencentCloud::Common::AbstractModel
         # @param Name: 规则名称
+        # 入参限制：1-128个字符，不允许特殊字符
         # @type Name: String
-        # @param SortId: 优先级
+        # @param SortId: 优先级，0-100的整数，数字越小，代表这条规则的执行优先级越高
+        # 默认值：0
         # @type SortId: String
         # @param Strategies: 策略详情
         # @type Strategies: Array
         # @param Domain: 需要添加策略的域名
         # @type Domain: String
-        # @param ActionType: 动作类型，1代表阻断，2代表人机识别，3代表观察，4代表重定向，5代表JS校验
+        # @param ActionType: 动作类型
+        # 取值说明：1-阻断，2-人机识别（滑块），3-观察，4-重定向，5-JS校验，6-人机识别（无感验证-拦截），7-人机识别（无感验证-观察），8-语音验证码
+        # 入参限制：必填，取值范围为1-8
+        # 约束条件：当ActionType为4（重定向）时，Redirect参数不能为空
         # @type ActionType: String
         # @param Redirect: 如果动作是重定向，则表示重定向的地址；其他情况可以为空
         # @type Redirect: String
-        # @param ExpireTime: 过期时间，单位为秒级时间戳，例如1677254399表示过期时间为2023-02-24 23:59:59. 0表示永不过期
+        # @param ExpireTime: 过期时间，单位为秒级时间戳，例如1677254399表示过期时间为2023-02-24 23:59:59
+        # 取值说明：0表示永不过期
+        # 默认值：0（解析失败时也默认为0）
         # @type ExpireTime: String
         # @param Edition: WAF实例类型，sparta-waf表示SAAS型WAF，clb-waf表示负载均衡型WAF
         # @type Edition: String
@@ -802,8 +809,12 @@ module TencentCloud
         # @param PageId: 拦截页面id
         # @type PageId: String
         # @param LogicalOp: 匹配条件的逻辑关系，支持and、or，分别表示多个逻辑匹配条件是与、或的关系
+        # 默认值：and
+        # 入参限制：不区分大小写，仅支持and或or
         # @type LogicalOp: String
-        # @param ActionRatio: 按照动作灰度的比例，默认是100
+        # @param ActionRatio: 动作灰度比例，即规则命中后执行动作的流量百分比
+        # 取值范围：1-100
+        # 默认值：100（全量生效）
         # @type ActionRatio: Integer
 
         attr_accessor :Name, :SortId, :Strategies, :Domain, :ActionType, :Redirect, :ExpireTime, :Edition, :Bypass, :EventId, :JobType, :JobDateTime, :Source, :Label, :Status, :PageId, :LogicalOp, :ActionRatio
@@ -4879,7 +4890,7 @@ module TencentCloud
         # @type SourceType: String
         # @param Note: 备注
         # @type Note: String
-        # @param JobType: 规则执行的方式，TimedJob为定时执行，CronJob为周期执行
+        # @param JobType: 规则执行的方式，TimedJob为定时执行，CronJob为周期执行，JobType为空时，永久生效
         # @type JobType: String
         # @param JobDateTime: 定时配置详情
         # @type JobDateTime: :class:`Tencentcloud::Waf.v20180125.models.JobDateTime`
@@ -5871,10 +5882,13 @@ module TencentCloud
         # @param Domain: 删除的域名
         # @type Domain: String
         # @param RuleId: 删除的规则ID
+        # 说明：支持批量删除，多个规则ID用英文逗号分隔
+        # 与DomainRuleIdList二选一，优先使用DomainRuleIdList
         # @type RuleId: String
         # @param Edition: WAF的版本，clb-waf代表负载均衡WAF、sparta-waf代表SaaS WAF，默认是sparta-waf。
         # @type Edition: String
         # @param DomainRuleIdList: 批量删除的规则列表
+        # 说明：支持跨域名批量删除，每个元素指定域名和规则ID。如果不为空则忽略Domain和RuleId字段
         # @type DomainRuleIdList: Array
 
         attr_accessor :Domain, :RuleId, :Edition, :DomainRuleIdList
@@ -10112,10 +10126,12 @@ module TencentCloud
         # @type SessionId: String
         # @param IntentContent: <p>意图检测请求内容</p>
         # @type IntentContent: :class:`Tencentcloud::Waf.v20180125.models.IntentContent`
+        # @param ClientIP: <p>客户端来源IP地址，用于白名单匹配等场景，支持IPv4和IPv6格式</p>
+        # @type ClientIP: String
 
-        attr_accessor :ServiceId, :Type, :InstanceId, :Content, :ChatId, :UserId, :TokenUsage, :ImageEncode, :ToolName, :ToolArgs, :SessionId, :IntentContent
+        attr_accessor :ServiceId, :Type, :InstanceId, :Content, :ChatId, :UserId, :TokenUsage, :ImageEncode, :ToolName, :ToolArgs, :SessionId, :IntentContent, :ClientIP
 
-        def initialize(serviceid=nil, type=nil, instanceid=nil, content=nil, chatid=nil, userid=nil, tokenusage=nil, imageencode=nil, toolname=nil, toolargs=nil, sessionid=nil, intentcontent=nil)
+        def initialize(serviceid=nil, type=nil, instanceid=nil, content=nil, chatid=nil, userid=nil, tokenusage=nil, imageencode=nil, toolname=nil, toolargs=nil, sessionid=nil, intentcontent=nil, clientip=nil)
           @ServiceId = serviceid
           @Type = type
           @InstanceId = instanceid
@@ -10128,6 +10144,7 @@ module TencentCloud
           @ToolArgs = toolargs
           @SessionId = sessionid
           @IntentContent = intentcontent
+          @ClientIP = clientip
         end
 
         def deserialize(params)
@@ -10146,6 +10163,7 @@ module TencentCloud
             @IntentContent = IntentContent.new
             @IntentContent.deserialize(params['IntentContent'])
           end
+          @ClientIP = params['ClientIP']
         end
       end
 
@@ -11675,19 +11693,13 @@ module TencentCloud
       class DescribeTopicsRequest < TencentCloud::Common::AbstractModel
         # @param Filters: <ul><li>topicName 按照【日志主题名称】进行过滤，默认为模糊匹配，Filter.Values 当要查询访问日志时为access，查询攻击日志时为attack</li></ul>注意：每次请求的 Filters 的上限为10，Filter.Values 的上限为100。
         # @type Filters: Array
-        # @param Offset: 分页的偏移量，默认值为0。
+        # @param Offset: <p>分页的偏移量，默认值为0。</p>
         # @type Offset: Integer
-        # @param Limit: 分页单页限制数目，默认值为20，最大值100。
+        # @param Limit: <p>分页单页限制数目，默认值为20，最大值100。</p>
         # @type Limit: Integer
-        # @param PreciseSearch: 控制Filters相关字段是否为精确匹配。
-        # <ul><li>0: 默认值，topicName 和 logsetName 模糊匹配</li>
-        # <li>1: topicName   精确匹配</li>
-        # <li>2: logsetName精确匹配</li>
-        # <li>3: topicName 和logsetName 都精确匹配</li></ul>
+        # @param PreciseSearch: <p>控制Filters相关字段是否为精确匹配。</p><ul><li>0: 默认值，topicName 和 logsetName 模糊匹配</li><li>1: topicName   精确匹配</li><li>2: logsetName精确匹配</li><li>3: topicName 和logsetName 都精确匹配</li></ul>
         # @type PreciseSearch: Integer
-        # @param BizType: 主题类型
-        # <ul><li>0:日志主题，默认值</li>
-        # <li>1:指标主题</li></ul>
+        # @param BizType: <p>主题类型</p><ul><li>0:日志主题，默认值</li><li>1:指标主题</li></ul>
         # @type BizType: Integer
 
         attr_accessor :Filters, :Offset, :Limit, :PreciseSearch, :BizType
@@ -11718,9 +11730,9 @@ module TencentCloud
 
       # DescribeTopics返回参数结构体
       class DescribeTopicsResponse < TencentCloud::Common::AbstractModel
-        # @param Topics: 日志主题列表
+        # @param Topics: <p>日志主题列表</p>
         # @type Topics: Array
-        # @param TotalCount: 总数目
+        # @param TotalCount: <p>总数目</p>
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -17515,8 +17527,12 @@ module TencentCloud
         # @param RuleId: 编辑的规则ID
         # @type RuleId: Integer
         # @param RuleName: 编辑的规则名称
+        # 入参限制：1-128个字符，不允许特殊字符
         # @type RuleName: String
-        # @param RuleAction: 动作类型，1代表阻断，2代表人机识别，3代表观察，4代表重定向，5代表JS校验
+        # @param RuleAction: 动作类型
+        # 取值说明：1-阻断，2-人机识别（滑块），3-观察，4-重定向，5-JS校验，6-人机识别（无感验证-拦截），7-人机识别（无感验证-观察），8-语音验证码
+        # 入参限制：必填，取值范围为1-8
+        # 约束条件：当RuleAction为4（重定向）时，Redirect参数不能为空
         # @type RuleAction: String
         # @param Strategies: 匹配条件数组
         # @type Strategies: Array
@@ -17544,8 +17560,12 @@ module TencentCloud
         # @param PageId: 拦截页面id
         # @type PageId: String
         # @param LogicalOp: 匹配条件的逻辑关系，支持and、or，分别表示多个逻辑匹配条件是与、或的关系
+        # 默认值：and
+        # 入参限制：不区分大小写，仅支持and或or
         # @type LogicalOp: String
-        # @param ActionRatio: 规则生效比例
+        # @param ActionRatio: 动作灰度比例，即规则命中后执行动作的流量百分比
+        # 取值范围：1-100
+        # 默认值：100（全量生效）
         # @type ActionRatio: Integer
 
         attr_accessor :Domain, :RuleId, :RuleName, :RuleAction, :Strategies, :Edition, :Redirect, :Bypass, :SortId, :ExpireTime, :JobType, :JobDateTime, :Source, :Status, :PageId, :LogicalOp, :ActionRatio
@@ -21794,8 +21814,7 @@ module TencentCloud
 
       # 规则的匹配条件结构体
       class Strategy < TencentCloud::Common::AbstractModel
-        # @param Field: 匹配字段 匹配字段不同，相应的匹配参数、逻辑符号、匹配内容有所不同
-        # 具体如下所示： <table>
+        # @param Field: 匹配字段 匹配字段不同，相应的匹配参数、逻辑符号、匹配内容有所不同，具体如下所示： <table>
         # 	<thead>
         # 		<tr>
         # 			<th>匹配字段</th>
@@ -21820,13 +21839,13 @@ module TencentCloud
         # 		<tr>
         # 			<td>Referer（Referer）</td>
         # 			<td>不支持参数</td>
-        # 			<td>empty（内容为空）<br />null（不存在）<br />eq（等于）<br />neq（不等于）<br />contains（包含）<br />ncontains（不包含）<br/>belong_to（属于）<br/>not_belong_to（不属于）<br />len_eq（长度等于）<br />len_gt（长度大于）<br />len_lt（长度小于）<br />strprefix（前缀匹配）<br />strsuffix（后缀匹配）<br />rematch（正则匹配）</td>
+        # 			<td>empty（内容为空）<br />nempty（内容不为空）<br />null（不存在）<br />nnull（存在）<br />eq（等于）<br />neq（不等于）<br />contains（包含）<br />ncontains（不包含）<br />belong_to（属于）<br />not_belong_to（不属于）<br />len_eq（长度等于）<br />len_gt（长度大于）<br />len_lt（长度小于）<br />strprefix（前缀匹配）<br />strsuffix（后缀匹配）<br />rematch（正则匹配）</td>
         # 			<td>请输入内容,512个字符以内</td>
         # 		</tr>
         # 		<tr>
         # 			<td>URL（请求路径）</td>
         # 			<td>不支持参数</td>
-        # 			<td>eq（等于）<br />neq（不等于）<br />contains（包含）<br />ncontains（不包含）<br />len_eq（长度等于）<br />belong_to（属于）<br />not_belong_to（不属于）<br />len_gt（长度大于）<br />len_lt（长度小于）<br />strprefix（前缀匹配）<br />strsuffix（后缀匹配）<br />rematch（正则匹配）<br /></td>
+        # 			<td>eq（等于）<br />neq（不等于）<br />contains（包含）<br />ncontains（不包含）<br />belong_to（属于）<br />not_belong_to（不属于）<br />len_eq（长度等于）<br />len_gt（长度大于）<br />len_lt（长度小于）<br />strprefix（前缀匹配）<br />strsuffix（后缀匹配）<br />rematch（正则匹配）<br /></td>
         # 			<td>请以/开头,512个字符以内</td>
         # 		</tr>
         # 		<tr>
@@ -21838,25 +21857,25 @@ module TencentCloud
         # 		<tr>
         # 			<td>HTTP_METHOD（HTTP请求方法）</td>
         # 			<td>不支持参数</td>
-        # 			<td>eq（等于）<br />neq（不等于）<br/>belong_to（属于）<br/>not_belong_to（不属于）</td>
+        # 			<td>eq（等于）<br />neq（不等于）<br />belong_to（属于）<br />not_belong_to（不属于）<br />rematch（正则匹配）</td>
         # 			<td>请输入方法名称,建议大写</td>
         # 		</tr>
         # 		<tr>
         # 			<td>QUERY_STRING（请求字符串）</td>
         # 			<td>不支持参数</td>
-        # 			<td>同匹配字段<font color="Red">请求路径</font>逻辑符号</td>
+        # 			<td>empty（内容为空）<br />nnull（存在）<br />eq（等于）<br />neq（不等于）<br />contains（包含）<br />ncontains（不包含）<br />belong_to（属于）<br />not_belong_to（不属于）<br />len_eq（长度等于）<br />len_gt（长度大于）<br />len_lt（长度小于）<br />strprefix（前缀匹配）<br />strsuffix（后缀匹配）<br />rematch（正则匹配）</td>
         # 			<td>请输入内容,512个字符以内</td>
         # 		</tr>
         # 		<tr>
         # 			<td>GET（GET参数值）</td>
         # 			<td>支持参数录入</td>
-        # 			<td>contains（包含）<br />ncontains（不包含）<br/>belong_to（属于）<br/>not_belong_to（不属于）<br />len_eq（长度等于）<br />len_gt（长度大于）<br />len_lt（长度小于）<br />strprefix（前缀匹配）<br />strsuffix（后缀匹配）</td>
+        # 			<td>empty（内容为空）<br />eq（等于）<br />neq（不等于）<br />contains（包含）<br />ncontains（不包含）<br />belong_to（属于）<br />not_belong_to（不属于）<br />len_eq（长度等于）<br />len_gt（长度大于）<br />len_lt（长度小于）<br />strprefix（前缀匹配）<br />strsuffix（后缀匹配）<br />rematch（正则匹配）</td>
         # 			<td>请输入内容,512个字符以内</td>
         # 		</tr>
         # 		<tr>
         # 			<td>GET_PARAMS_NAMES（GET参数名）</td>
         # 			<td>不支持参数</td>
-        # 			<td>exsit（存在参数）<br />nexsit（不存在参数）<br/>belong_to（属于）<br/>not_belong_to（不属于）<br />len_eq（长度等于）<br />len_gt（长度大于）<br />len_lt（长度小于）<br />strprefix（前缀匹配）<br />strsuffix（后缀匹配）</td>
+        # 			<td>eq（等于）<br />neq（不等于）<br />belong_to（属于）<br />not_belong_to（不属于）<br />len_eq（长度等于）<br />len_gt（长度大于）<br />len_lt（长度小于）<br />strprefix（前缀匹配）<br />strsuffix（后缀匹配）</td>
         # 			<td>请输入内容,512个字符以内</td>
         # 		</tr>
         # 		<tr>
@@ -21868,22 +21887,20 @@ module TencentCloud
         # 		<tr>
         # 			<td>GET_POST_NAMES（POST参数名）</td>
         # 			<td>不支持参数</td>
-        # 			<td>同匹配字段<font color="Red">GET参数名</font>逻辑符号</td>
+        # 			<td>eq（等于）<br />neq（不等于）<br />belong_to（属于）<br />not_belong_to（不属于）<br />len_eq（长度等于）<br />len_gt（长度大于）<br />len_lt（长度小于）<br />strprefix（前缀匹配）<br />strsuffix（后缀匹配）<br />rematch（正则匹配）</td>
         # 			<td>请输入内容,512个字符以内</td>
         # 		</tr>
         # 		<tr>
         # 			<td>POST_BODY（完整BODY）</td>
         # 			<td>不支持参数</td>
-        # 			<td>同匹配字段<font color="Red">请求路径</font>逻辑符号</td>
+        # 			<td>empty（内容为空）<br />eq（等于）<br />neq（不等于）<br />contains（包含）<br />ncontains（不包含）<br />belong_to（属于）<br />not_belong_to（不属于）<br />len_eq（长度等于）<br />len_gt（长度大于）<br />len_lt（长度小于）<br />strprefix（前缀匹配）<br />strsuffix（后缀匹配）<br />rematch（正则匹配）</td>
         # 			<td>请输入BODY内容,512个字符以内</td>
         # 		</tr>
         # 		<tr>
         # 			<td>COOKIE（Cookie）</td>
         # 			<td>不支持参数</td>
-        # 			<td>empty（内容为空）<br />null（不存在）<br />rematch（正则匹配）</td>
-        # 			<td>
-        # 				<font color="Red">暂不支持</font>
-        # 			</td>
+        # 			<td>empty（内容为空）<br />null（不存在）<br />nnull（存在）<br />eq（等于）<br />neq（不等于）<br />contains（包含）<br />ncontains（不包含）<br />len_eq（长度等于）<br />len_gt（长度大于）<br />len_lt（长度小于）<br />rematch（正则匹配）</td>
+        # 			<td>请输入内容,512个字符以内</td>
         # 		</tr>
         # 		<tr>
         # 			<td>GET_COOKIES_NAMES（Cookie参数名）</td>
@@ -21900,43 +21917,49 @@ module TencentCloud
         # 		<tr>
         # 			<td>GET_HEADERS_NAMES（Header参数名）</td>
         # 			<td>不支持参数</td>
-        # 			<td>exsit（存在参数）<br />nexsit（不存在参数）<br />len_eq（长度等于）<br />len_gt（长度大于）<br />len_lt（长度小于）<br />strprefix（前缀匹配）<br />strsuffix（后缀匹配）<br />rematch（正则匹配）</td>
+        # 			<td>eq（等于）<br />neq（不等于）<br />len_eq（长度等于）<br />len_gt（长度大于）<br />len_lt（长度小于）<br />strprefix（前缀匹配）<br />strsuffix（后缀匹配）<br />rematch（正则匹配）</td>
         # 			<td>请输入内容,建议小写,512个字符以内</td>
         # 		</tr>
         # 		<tr>
         # 			<td>ARGS_HEADER（Header参数值）</td>
         # 			<td>支持参数录入</td>
-        # 			<td>contains（包含）<br />ncontains（不包含）<br />len_eq（长度等于）<br />len_gt（长度大于）<br />len_lt（长度小于）<br />strprefix（前缀匹配）<br />strsuffix（后缀匹配）<br />rematch（正则匹配）</td>
+        # 			<td>empty（内容为空）<br />nempty（内容不为空）<br />null（不存在）<br />nnull（存在）<br />eq（等于）<br />neq（不等于）<br />contains（包含）<br />ncontains（不包含）<br />belong_to（属于）<br />not_belong_to（不属于）<br />len_eq（长度等于）<br />len_gt（长度大于）<br />len_lt（长度小于）<br />strprefix（前缀匹配）<br />strsuffix（后缀匹配）<br />rematch（正则匹配）</td>
         # 			<td>请输入内容,512个字符以内</td>
         # 		</tr>
         # 		<tr>
         # 			<td>CONTENT_LENGTH（Content-length）</td>
-        # 			<td>支持参数录入</td>
-        # 			<td>numgt（数值大于）<br />numlt（数值小于）<br />numeq（数值等于）<br /></td>
+        # 			<td>不支持参数</td>
+        # 			<td>numeq（数值等于）<br />numneq（数值不等于）<br />numgt（数值大于）<br />numlt（数值小于）<br />numge（数值大于等于）<br />numle（数值小于等于）</td>
         # 			<td>请输入0-9999999999999之间的整数</td>
         # 		</tr>
         # 		<tr>
         # 			<td>IP_GEO（来源IP归属地）</td>
-        # 			<td>支持参数录入</td>
-        # 			<td>geo_in（属于）<br />geo_not_in（不属于）<br /></td>
+        # 			<td>不支持参数</td>
+        # 			<td>geo_in（属于）<br />geo_not_in（不属于）</td>
         # 			<td>请输入内容,10240字符以内，格式为序列化的JSON，格式为：[{"Country":"中国","Region":"广东","City":"深圳"}]</td>
+        # 		</tr>
+        # 		<tr>
+        # 			<td>HOST（请求Host）</td>
+        # 			<td>不支持参数</td>
+        # 			<td>empty（内容为空）<br />null（不存在）<br />nnull（存在）<br />eq（等于）<br />neq（不等于）<br />contains（包含）<br />ncontains（不包含）<br />len_eq（长度等于）<br />len_gt（长度大于）<br />len_lt（长度小于）<br />strprefix（前缀匹配）<br />strsuffix（后缀匹配）<br />rematch（正则匹配）</td>
+        # 			<td>请输入Host值,512个字符以内</td>
         # 		</tr>
         # 		<tr>
         # 			<td>CAPTCHA_RISK（验证码风险）</td>
         # 			<td>不支持参数</td>
-        # 			<td>eq（等于）<br />neq（不等于）<br />belong（属于）<br />not_belong（不属于）<br />null（不存在）<br />exist（存在）</td>
+        # 			<td>eq（等于）<br />neq（不等于）<br />belong_to（属于）<br />not_belong_to（不属于）<br />null（不存在）<br />nnull（存在）</td>
         # 			<td>请输入风险等级值,支持数值范围0-255</td>
         # 		</tr>
         # 		<tr>
         # 			<td>CAPTCHA_DEVICE_RISK（验证码设备风险）</td>
         # 			<td>不支持参数</td>
-        # 			<td>eq（等于）<br />neq（不等于）<br />belong（属于）<br />not_belong（不属于）<br />null（不存在）<br />exist（存在）</td>
+        # 			<td>eq（等于）<br />neq（不等于）<br />belong_to（属于）<br />not_belong_to（不属于）<br />null（不存在）<br />nnull（存在）</td>
         # 			<td>请输入设备风险代码,支持取值：101、201、301、401、501、601、701</td>
         # 		</tr>
         # 		<tr>
         # 			<td>CAPTCHAR_SCORE（验证码风险评估分）</td>
         # 			<td>不支持参数</td>
-        # 			<td>numeq（数值等于）<br />numgt（数值大于）<br />numlt（数值小于）<br />numle（数值小于等于）<br />numge（数值大于等于）<br />null（不存在）<br />exist（存在）</td>
+        # 			<td>numeq（数值等于）<br />numneq（数值不等于）<br />numgt（数值大于）<br />numlt（数值小于）<br />numle（数值小于等于）<br />numge（数值大于等于）<br />null（不存在）<br />nnull（存在）</td>
         # 			<td>请输入评估分数,支持数值范围0-100</td>
         # 		</tr>
         # 	</tbody>
@@ -21944,30 +21967,34 @@ module TencentCloud
         # @type Field: String
         # @param CompareFunc: 逻辑符号
 
-        #     逻辑符号一共分为以下几种类型：
+        # 逻辑符号一共分为以下几种类型：
         #         empty （ 内容为空）
-        #         null （不存在）
+        #         nempty （ 内容不为空）
+        #    null （不存在）
+        #      nnull （存在）
         #         eq （ 等于）
-        #         neq （ 不等于）
+        #     neq （ 不等于）
         #         contains （ 包含）
         #         ncontains （ 不包含）
-        #         strprefix （ 前缀匹配）
-        #         strsuffix （ 后缀匹配）
+        #      belong_to （属于）
+        #         not_belong_to （不属于）
+        #   strprefix （ 前缀匹配）
+        # strsuffix （ 后缀匹配）
         #         len_eq （ 长度等于）
-        #         len_gt （ 长度大于）
+        #  len_gt （ 长度大于）
         #         len_lt （ 长度小于）
-        #         ipmatch （ 属于）
-        #         ipnmatch （ 不属于）
+        #         ipmatch （ IP匹配）
+        #    ipnmatch （ IP不匹配）
+        #         rematch （ 正则匹配）
         #         numgt （ 数值大于）
         #         numlt （ 数值小于）
         #         numeq （ 数值等于）
-        #         numneq （ 数值不等于）
-        #         numle （ 数值小于等于）
+        #  numneq （ 数值不等于）
+        #       numle （ 数值小于等于）
         #         numge （ 数值大于等于）
-        # 		belong_to（属于）
-        # 		not_belong_to（不属于）
         #         geo_in （ IP地理属于）
         #         geo_not_in （ IP地理不属于）
+        #         cel （ CEL表达式）
         #     各匹配字段对应的逻辑符号不同，详见上述匹配字段表格
         # @type CompareFunc: String
         # @param Content: 匹配内容
@@ -23164,26 +23191,46 @@ module TencentCloud
       # UpsertSession请求参数结构体
       class UpsertSessionRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
+        # 入参限制：必填，必须为合法域名格式
         # @type Domain: String
-        # @param Source: session来源位置
+        # @param Source: 会话来源位置
+        # 取值说明：get-从URL查询参数中提取，post-从POST Body中提取，cookie-从Cookie中提取，header-从HTTP Header中提取
+        # 入参限制：必填，取值范围为get/post/cookie/header
         # @type Source: String
         # @param Category: 提取类别
+        # 取值说明：location-按位置提取（使用StartOffset和EndOffset），match-按字符串匹配提取（使用KeyOrStartMat和EndMat），exact_key-按精准Key提取（使用Key字段）
+        # 入参限制：必填，取值范围为location/match/exact_key
         # @type Category: String
         # @param KeyOrStartMat: 提取key或者起始匹配模式
+        # 入参限制：最长32个字符，不允许包含MongoDB注入字符
+        # 说明：当Category为match时，表示匹配的起始字符串；当Category为exact_key时，表示精确匹配的key名
         # @type KeyOrStartMat: String
         # @param EndMat: 结束匹配模式
+        # 入参限制：必填，最长32个字符，不允许包含MongoDB注入字符
+        # 说明：当Category为match时，表示匹配的结束字符串
         # @type EndMat: String
         # @param StartOffset: 起始偏移位置
+        # 入参限制：必填，整数字符串
+        # 约束条件：EndOffset不能小于StartOffset，且EndOffset-StartOffset+1不能超过256
+        # 说明：当Category为location时生效，表示从会话值中提取的起始字节位置
         # @type StartOffset: String
         # @param EndOffset: 结束偏移位置
+        # 入参限制：必填，整数字符串
+        # 约束条件：不能小于StartOffset，且EndOffset-StartOffset+1不能超过256
+        # 说明：当Category为location时生效，表示从会话值中提取的结束字节位置
         # @type EndOffset: String
         # @param Edition: 版本
         # @type Edition: String
-        # @param SessionName: Session名
+        # @param SessionName: 会话名称
+        # 说明：用于标识会话的可读名称
         # @type SessionName: String
-        # @param SessionID: Session对应ID
+        # @param SessionID: 会话ID
+        # 说明：传-1表示新增会话（系统自动生成ID），传已有ID表示更新该会话配置
+        # 约束条件：新增时每个域名最多10条会话规则
         # @type SessionID: Integer
-        # @param Key: 精准匹配时配置的key
+        # @param Key: 会话标识参数（精准匹配key）
+        # 入参限制：key中"."分隔的层级不超过2层
+        # 说明：当Category为exact_key时使用，表示要精确匹配的参数名
         # @type Key: String
 
         attr_accessor :Domain, :Source, :Category, :KeyOrStartMat, :EndMat, :StartOffset, :EndOffset, :Edition, :SessionName, :SessionID, :Key
@@ -23221,7 +23268,8 @@ module TencentCloud
       class UpsertSessionResponse < TencentCloud::Common::AbstractModel
         # @param Data: 结果
         # @type Data: String
-        # @param SessionID: SessionID
+        # @param SessionID: 会话ID
+        # 说明：新增时返回系统生成的SessionID，更新时返回请求中传入的SessionID
         # @type SessionID: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

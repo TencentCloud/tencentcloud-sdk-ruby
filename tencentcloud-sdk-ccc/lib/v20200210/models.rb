@@ -1319,31 +1319,29 @@ module TencentCloud
 
       # CreateAIAgentCall请求参数结构体
       class CreateAIAgentCallRequest < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
+        # @param SdkAppId: <p>应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc</p>
         # @type SdkAppId: Integer
-        # @param AIAgentId: AI智能体ID
+        # @param AIAgentId: <p>AI智能体ID</p>
         # @type AIAgentId: Integer
-        # @param Callee: 被叫号码
+        # @param Callee: <p>被叫号码</p>
         # @type Callee: String
-        # @param Callers: 主叫号码列表
+        # @param Callers: <p>主叫号码列表</p>
         # @type Callers: Array
-        # @param PromptVariables: 提示词变量
+        # @param PromptVariables: <p>提示词变量</p>
         # @type PromptVariables: Array
-        # @param Variables: 通用变量： <p>提示词变量</p> <p>欢迎语变量</p> <p> 欢迎语延迟播放(秒级)：welcome-message-delay</p>  <p> dify变量</p>
-
-        # 1. dify-inputs-xxx 为dify的inputs变量
-        # 2.  dify-inputs-user 为dify的user值
-        # 3.  dify-inputs-conversation_id 为dify的conversation_id值
+        # @param Variables: <p>通用变量： <p>提示词变量</p> <p>欢迎语变量</p> <p> 欢迎语延迟播放(秒级)：welcome-message-delay</p>  <p> dify变量</p>  </p><ol><li>dify-inputs-xxx 为dify的inputs变量</li><li>dify-inputs-user 为dify的user值</li><li>dify-inputs-conversation_id 为dify的conversation_id值</li></ol>
         # @type Variables: Array
-        # @param MaxRingTimeoutSecond: 最大振铃时长，达到时长阈值自动挂断。 仅自携号码支持当前参数
+        # @param MaxRingTimeoutSecond: <p>最大振铃时长，达到时长阈值自动挂断。 仅自携号码支持当前参数</p>
         # @type MaxRingTimeoutSecond: Integer
+        # @param AcquireTimeoutSecond: <p>智能体并发不足时，排队等待超时时间，单位秒</p><p>取值范围：[0, 5]</p><p>默认值：5</p>
+        # @type AcquireTimeoutSecond: Integer
 
-        attr_accessor :SdkAppId, :AIAgentId, :Callee, :Callers, :PromptVariables, :Variables, :MaxRingTimeoutSecond
+        attr_accessor :SdkAppId, :AIAgentId, :Callee, :Callers, :PromptVariables, :Variables, :MaxRingTimeoutSecond, :AcquireTimeoutSecond
         extend Gem::Deprecate
         deprecate :PromptVariables, :none, 2026, 8
         deprecate :PromptVariables=, :none, 2026, 8
 
-        def initialize(sdkappid=nil, aiagentid=nil, callee=nil, callers=nil, promptvariables=nil, variables=nil, maxringtimeoutsecond=nil)
+        def initialize(sdkappid=nil, aiagentid=nil, callee=nil, callers=nil, promptvariables=nil, variables=nil, maxringtimeoutsecond=nil, acquiretimeoutsecond=nil)
           @SdkAppId = sdkappid
           @AIAgentId = aiagentid
           @Callee = callee
@@ -1351,6 +1349,7 @@ module TencentCloud
           @PromptVariables = promptvariables
           @Variables = variables
           @MaxRingTimeoutSecond = maxringtimeoutsecond
+          @AcquireTimeoutSecond = acquiretimeoutsecond
         end
 
         def deserialize(params)
@@ -1375,12 +1374,13 @@ module TencentCloud
             end
           end
           @MaxRingTimeoutSecond = params['MaxRingTimeoutSecond']
+          @AcquireTimeoutSecond = params['AcquireTimeoutSecond']
         end
       end
 
       # CreateAIAgentCall返回参数结构体
       class CreateAIAgentCallResponse < TencentCloud::Common::AbstractModel
-        # @param SessionId: 新创建的会话 ID
+        # @param SessionId: <p>新创建的会话 ID</p>
         # @type SessionId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

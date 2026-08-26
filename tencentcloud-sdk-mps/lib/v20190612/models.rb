@@ -18269,7 +18269,7 @@ module TencentCloud
 
       # DescribeTextToSpeechAsyncTask返回参数结构体
       class DescribeTextToSpeechAsyncTaskResponse < TencentCloud::Common::AbstractModel
-        # @param ErrorCode: <p>错误码，成功时返回0</p>
+        # @param ErrorCode: <p>错误码，成功时返回0，处理中返回100</p>
         # @type ErrorCode: Integer
         # @param Msg: <p>错误信息，成功时返回success</p>
         # @type Msg: String
@@ -25310,48 +25310,39 @@ module TencentCloud
 
       # 转码信息
       class MediaTranscodeItem < TencentCloud::Common::AbstractModel
-        # @param OutputStorage: 转码后文件的目标存储。
+        # @param OutputStorage: <p>转码后文件的目标存储。</p>
         # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
-        # @param Path: 转码后的视频文件路径。
+        # @param Path: <p>转码后的视频文件路径。</p>
         # @type Path: String
-        # @param Definition: 转码规格 ID，参见[转码参数模板](https://cloud.tencent.com/document/product/862/37042)。
+        # @param Definition: <p>转码规格 ID，参见<a href="https://cloud.tencent.com/document/product/862/37042">转码参数模板</a>。</p>
         # @type Definition: Integer
-        # @param Bitrate: 视频流码率平均值与音频流码率平均值之和， 单位：bps。
+        # @param Bitrate: <p>视频流码率平均值与音频流码率平均值之和， 单位：bps。</p>
         # @type Bitrate: Integer
-        # @param Height: 视频流高度的最大值，单位：px。
+        # @param Height: <p>视频流高度的最大值，单位：px。</p>
         # @type Height: Integer
-        # @param Width: 视频流宽度的最大值，单位：px。
+        # @param Width: <p>视频流宽度的最大值，单位：px。</p>
         # @type Width: Integer
-        # @param Size: 媒体文件总大小（视频为 HLS 时，大小是 m3u8 和 ts 文件大小的总和），单位：字节。
+        # @param Size: <p>媒体文件总大小（视频为 HLS 时，大小是 m3u8 和 ts 文件大小的总和），单位：字节。</p>
         # @type Size: Integer
-        # @param Duration: 视频时长，单位：秒。
+        # @param Duration: <p>视频时长，单位：秒。</p>
         # @type Duration: Float
-        # @param Container: 容器类型，例如 m4a，mp4 等。
+        # @param Container: <p>容器类型，例如 m4a，mp4 等。</p>
         # @type Container: String
-        # @param Md5: 视频的 md5 值。
+        # @param Md5: <p>视频的 md5 值。</p>
         # @type Md5: String
-        # @param AudioStreamSet: 音频流信息。
+        # @param AudioStreamSet: <p>音频流信息。</p>
         # @type AudioStreamSet: Array
-        # @param VideoStreamSet: 视频流信息。
+        # @param VideoStreamSet: <p>视频流信息。</p>
         # @type VideoStreamSet: Array
-        # @param CallBackExtInfo: 视频转码使用增强项说明，增强项解释
-        # <li>hdr：HDR配置</li>
-        # <li>wd_fps：插帧帧率配置</li>
-        # <li>video_super_resolution：	超分配置</li>
-        # <li>repair：综合增强配置</li>
-        # <li>denoise：视频降噪配置</li>
-        # <li>color_enhance：色彩增强配置</li>
-        # <li>scratch：去划痕配置</li>
-        # <li>artifact：去伪影（毛刺）配置</li>
-        # <li>sharp：细节增强配置</li>
-        # <li>low_light：低光照增强配置</li>
-        # <li>face_enhance：人脸增强配置</li>
+        # @param CallBackExtInfo: <p>视频转码使用增强项说明，增强项解释</p><li>hdr：HDR配置</li><li>wd_fps：插帧帧率配置</li><li>video_super_resolution：    超分配置</li><li>repair：综合增强配置</li><li>denoise：视频降噪配置</li><li>color_enhance：色彩增强配置</li><li>scratch：去划痕配置</li><li>artifact：去伪影（毛刺）配置</li><li>sharp：细节增强配置</li><li>low_light：低光照增强配置</li><li>face_enhance：人脸增强配置</li>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CallBackExtInfo: String
+        # @param Usage: <p>MediaTranscodeItem</p>
+        # @type Usage: :class:`Tencentcloud::Mps.v20190612.models.MediaUsageItem`
 
-        attr_accessor :OutputStorage, :Path, :Definition, :Bitrate, :Height, :Width, :Size, :Duration, :Container, :Md5, :AudioStreamSet, :VideoStreamSet, :CallBackExtInfo
+        attr_accessor :OutputStorage, :Path, :Definition, :Bitrate, :Height, :Width, :Size, :Duration, :Container, :Md5, :AudioStreamSet, :VideoStreamSet, :CallBackExtInfo, :Usage
 
-        def initialize(outputstorage=nil, path=nil, definition=nil, bitrate=nil, height=nil, width=nil, size=nil, duration=nil, container=nil, md5=nil, audiostreamset=nil, videostreamset=nil, callbackextinfo=nil)
+        def initialize(outputstorage=nil, path=nil, definition=nil, bitrate=nil, height=nil, width=nil, size=nil, duration=nil, container=nil, md5=nil, audiostreamset=nil, videostreamset=nil, callbackextinfo=nil, usage=nil)
           @OutputStorage = outputstorage
           @Path = path
           @Definition = definition
@@ -25365,6 +25356,7 @@ module TencentCloud
           @AudioStreamSet = audiostreamset
           @VideoStreamSet = videostreamset
           @CallBackExtInfo = callbackextinfo
+          @Usage = usage
         end
 
         def deserialize(params)
@@ -25398,6 +25390,38 @@ module TencentCloud
             end
           end
           @CallBackExtInfo = params['CallBackExtInfo']
+          unless params['Usage'].nil?
+            @Usage = MediaUsageItem.new
+            @Usage.deserialize(params['Usage'])
+          end
+        end
+      end
+
+      # AIGC用量数据展示
+      class MediaUsageItem < TencentCloud::Common::AbstractModel
+        # @param InputImageCount: <p>输入图片数</p><p>单位：个数</p>
+        # @type InputImageCount: Integer
+        # @param InputSeconds: <p>输入秒数</p><p>单位：秒</p>
+        # @type InputSeconds: Integer
+        # @param OutputSeconds: <p>输出秒数</p><p>单位：秒</p>
+        # @type OutputSeconds: Integer
+        # @param TotalSeconds: <p>总秒数</p><p>单位：秒</p>
+        # @type TotalSeconds: Integer
+
+        attr_accessor :InputImageCount, :InputSeconds, :OutputSeconds, :TotalSeconds
+
+        def initialize(inputimagecount=nil, inputseconds=nil, outputseconds=nil, totalseconds=nil)
+          @InputImageCount = inputimagecount
+          @InputSeconds = inputseconds
+          @OutputSeconds = outputseconds
+          @TotalSeconds = totalseconds
+        end
+
+        def deserialize(params)
+          @InputImageCount = params['InputImageCount']
+          @InputSeconds = params['InputSeconds']
+          @OutputSeconds = params['OutputSeconds']
+          @TotalSeconds = params['TotalSeconds']
         end
       end
 

@@ -19,25 +19,25 @@ module TencentCloud
     module V20250101
       # ChatCompletions请求参数结构体
       class ChatCompletionsRequest < TencentCloud::Common::AbstractModel
-        # @param Messages: 会话内容，按对话时间从旧到新在数组中排列，长度受模型窗口大小限制。
+        # @param Messages: <p>会话内容，按对话时间从旧到新在数组中排列，长度受模型窗口大小限制。</p>
         # @type Messages: Array
-        # @param ModelName: 模型名称，可选模型列表：hunyuan-turbo，hunyuan-large，hunyuan-large-longcontext，hunyuan-standard，hunyuan-standard-256K，deepseek-r1，deepseek-v3，deepseek-r1-distill-qwen-32b。
+        # @param ModelName: <p>模型名称，可选模型列表：hunyuan-turbo，hunyuan-large，hunyuan-large-longcontext，hunyuan-standard，hunyuan-standard-256K，deepseek-r1，deepseek-v3，deepseek-r1-distill-qwen-32b。</p>
         # @type ModelName: String
-        # @param Stream: 是否以流式接口的形式返回数据，默认true。
+        # @param Stream: <p>是否以流式接口的形式返回数据，默认true。</p>
         # @type Stream: Boolean
-        # @param TopP: 取值区间为[0.0, 1.0], 非必要不建议使用, 不合理的取值会影响效果 。
+        # @param TopP: <p>取值区间为[0.0, 1.0], 非必要不建议使用, 不合理的取值会影响效果 。</p>
         # @type TopP: Float
-        # @param Temperature: 取值区间为[0.0, 2.0], 非必要不建议使用, 不合理的取值会影响效果 。
+        # @param Temperature: <p>取值区间为[0.0, 2.0], 非必要不建议使用, 不合理的取值会影响效果 。</p>
         # @type Temperature: Float
-        # @param OnlineSearch: 是否开启联网搜索。默认为 false。
+        # @param OnlineSearch: <p>是否开启联网搜索。默认为 false。</p>
         # @type OnlineSearch: Boolean
-        # @param OnlineSearchOptions: 当 OnlineSearch 为 true 时，指定的搜索引擎，默认为 bing。
+        # @param OnlineSearchOptions: <p>当 OnlineSearch 为 true 时，指定的搜索引擎，默认为 bing。</p>
         # @type OnlineSearchOptions: :class:`Tencentcloud::Es.v20250101.models.OnlineSearchOptions`
-        # @param Tools: 可调用的工具列表，当前支持模型：hunyuan-turbo, deepseek-v3。
+        # @param Tools: <p>可调用的工具列表，当前支持模型：hunyuan-turbo, deepseek-v3。</p>
         # @type Tools: Array
-        # @param ToolChoice: 工具使用选项，可选值包括 none、auto、custom。说明：1. 仅对 hunyuan-turbo、deepseek-v3 模型生效。2. none：不调用工具；auto：模型自行选择生成回复或调用工具；custom：强制模型调用指定的工具。3. 未设置时，默认值为auto
+        # @param ToolChoice: <p>工具使用选项，可选值包括 none、auto、custom。说明：1. 仅对 hunyuan-turbo、deepseek-v3 模型生效。2. none：不调用工具；auto：模型自行选择生成回复或调用工具；custom：强制模型调用指定的工具。3. 未设置时，默认值为auto</p>
         # @type ToolChoice: String
-        # @param CustomTool: 强制模型调用指定的工具，当参数ToolChoice为custom时，此参数为必填
+        # @param CustomTool: <p>强制模型调用指定的工具，当参数ToolChoice为custom时，此参数为必填</p>
         # @type CustomTool: :class:`Tencentcloud::Es.v20250101.models.Tool`
 
         attr_accessor :Messages, :ModelName, :Stream, :TopP, :Temperature, :OnlineSearch, :OnlineSearchOptions, :Tools, :ToolChoice, :CustomTool
@@ -91,13 +91,13 @@ module TencentCloud
 
       # ChatCompletions返回参数结构体
       class ChatCompletionsResponse < TencentCloud::Common::AbstractModel
-        # @param Id: 此次请求的id
+        # @param Id: <p>此次请求的id</p>
         # @type Id: String
-        # @param Choices: 回复内容
+        # @param Choices: <p>回复内容</p>
         # @type Choices: Array
-        # @param Usage: token使用量
+        # @param Usage: <p>token使用量</p>
         # @type Usage: :class:`Tencentcloud::Es.v20250101.models.TokenUsage`
-        # @param OnlineSearchContent: 联网搜索结果。
+        # @param OnlineSearchContent: <p>联网搜索结果。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OnlineSearchContent: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。本接口为流式响应接口，当请求成功时，RequestId 会被放在 HTTP 响应的 Header "X-TC-RequestId" 中。
