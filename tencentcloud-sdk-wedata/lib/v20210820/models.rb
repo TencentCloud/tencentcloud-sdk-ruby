@@ -3522,64 +3522,67 @@ module TencentCloud
 
       # 模版详情
       class CodeTemplateDetail < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目id
+        # @param ProjectId: <p>项目id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectId: String
-        # @param CodeTemplateName: 模版名称
+        # @param CodeTemplateName: <p>模版名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CodeTemplateName: String
-        # @param TaskType: 任务类型
+        # @param TaskType: <p>任务类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskType: Integer
-        # @param CodeTemplateDesc: 代码模版描述
+        # @param CodeTemplateDesc: <p>代码模版描述</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CodeTemplateDesc: String
-        # @param FolderId: 文件夹id
+        # @param FolderId: <p>文件夹id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FolderId: String
-        # @param FolderName: 文件夹名称
+        # @param FolderName: <p>文件夹名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FolderName: String
-        # @param InCharge: 责任人名称
+        # @param InCharge: <p>责任人名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InCharge: String
-        # @param InChargeId: 责任人id
+        # @param InChargeId: <p>责任人id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InChargeId: String
-        # @param Ext: 扩展信息
+        # @param Ext: <p>扩展信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ext: :class:`Tencentcloud::Wedata.v20210820.models.TaskExtDsVO`
-        # @param CodeTemplateId: 模版id
+        # @param CodeTemplateId: <p>模版id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CodeTemplateId: String
-        # @param LastUpdateTime: 最后更新时间
+        # @param LastUpdateTime: <p>最后更新时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastUpdateTime: String
-        # @param UpdateUser: 更新人名称
+        # @param UpdateUser: <p>更新人名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateUser: String
-        # @param UpdateUserId: 更新人id
+        # @param UpdateUserId: <p>更新人id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateUserId: String
-        # @param BrokerIp: 执行ip
+        # @param BrokerIp: <p>执行ip</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BrokerIp: String
-        # @param ResourceGroup: 资源组id
+        # @param ResourceGroup: <p>资源组id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceGroup: String
-        # @param Submit: 是否提交
+        # @param Submit: <p>是否提交</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Submit: Boolean
-        # @param ScriptChange: 模版脚本是否发生变化
+        # @param ScriptChange: <p>模版脚本是否发生变化</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScriptChange: Boolean
-        # @param Content: 代码模版脚本，base64编码返回
+        # @param Content: <p>代码模版脚本，base64编码返回</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Content: String
+        # @param Privilege: <p>用户对该资源的最高权限</p><p>枚举值：</p><ul><li>NO_PERMISSIONS： 无权限</li><li>CAN_VIEW： 只读权限</li><li>CAN_MANAGE： 管理权限</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Privilege: String
 
-        attr_accessor :ProjectId, :CodeTemplateName, :TaskType, :CodeTemplateDesc, :FolderId, :FolderName, :InCharge, :InChargeId, :Ext, :CodeTemplateId, :LastUpdateTime, :UpdateUser, :UpdateUserId, :BrokerIp, :ResourceGroup, :Submit, :ScriptChange, :Content
+        attr_accessor :ProjectId, :CodeTemplateName, :TaskType, :CodeTemplateDesc, :FolderId, :FolderName, :InCharge, :InChargeId, :Ext, :CodeTemplateId, :LastUpdateTime, :UpdateUser, :UpdateUserId, :BrokerIp, :ResourceGroup, :Submit, :ScriptChange, :Content, :Privilege
 
-        def initialize(projectid=nil, codetemplatename=nil, tasktype=nil, codetemplatedesc=nil, folderid=nil, foldername=nil, incharge=nil, inchargeid=nil, ext=nil, codetemplateid=nil, lastupdatetime=nil, updateuser=nil, updateuserid=nil, brokerip=nil, resourcegroup=nil, submit=nil, scriptchange=nil, content=nil)
+        def initialize(projectid=nil, codetemplatename=nil, tasktype=nil, codetemplatedesc=nil, folderid=nil, foldername=nil, incharge=nil, inchargeid=nil, ext=nil, codetemplateid=nil, lastupdatetime=nil, updateuser=nil, updateuserid=nil, brokerip=nil, resourcegroup=nil, submit=nil, scriptchange=nil, content=nil, privilege=nil)
           @ProjectId = projectid
           @CodeTemplateName = codetemplatename
           @TaskType = tasktype
@@ -3598,6 +3601,7 @@ module TencentCloud
           @Submit = submit
           @ScriptChange = scriptchange
           @Content = content
+          @Privilege = privilege
         end
 
         def deserialize(params)
@@ -3622,6 +3626,7 @@ module TencentCloud
           @Submit = params['Submit']
           @ScriptChange = params['ScriptChange']
           @Content = params['Content']
+          @Privilege = params['Privilege']
         end
       end
 
@@ -9855,82 +9860,76 @@ module TencentCloud
 
       # 批量操作任务列表
       class DescribeBatchOperateTaskDTO < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID
+        # @param TaskId: <p>任务ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: String
-        # @param TaskName: 任务名
+        # @param TaskName: <p>任务名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskName: String
-        # @param WorkflowId: 工作流Id
+        # @param WorkflowId: <p>工作流Id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkflowId: String
-        # @param WorkflowName: 工作流名
+        # @param WorkflowName: <p>工作流名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkflowName: String
-        # @param Status: 状态
+        # @param Status: <p>状态</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
-        # @param TaskTypeId: 任务ID
+        # @param TaskTypeId: <p>任务ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskTypeId: Integer
-        # @param TaskTypeDesc: 任务类型
+        # @param TaskTypeDesc: <p>任务类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskTypeDesc: String
-        # @param FolderName: 文件夹名
+        # @param FolderName: <p>文件夹名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FolderName: String
-        # @param FolderId: 文件夹ID
+        # @param FolderId: <p>文件夹ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FolderId: String
-        # @param InCharge: 负责人
+        # @param InCharge: <p>负责人</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InCharge: String
-        # @param Submit: 是否提交
+        # @param Submit: <p>是否提交</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Submit: Integer
-        # @param DataEngine: 引擎：
-        # presto\SparkJob\SparkSql
+        # @param DataEngine: <p>引擎：<br>presto\SparkJob\SparkSql</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataEngine: String
-        # @param UpdateTime: 更新时间
+        # @param UpdateTime: <p>更新时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
-        # @param CreateTime: 创造时间
+        # @param CreateTime: <p>创造时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
-        # @param CycleUnit: 周期类型D天周期
-        # H小时
-        # Ccrontab类型
-        # I分钟
-        # O一次性
-        # Y年
-        # R用户驱动
-        # W周
-        # M月
+        # @param CycleUnit: <p>周期类型D天周期<br>H小时<br>Ccrontab类型<br>I分钟<br>O一次性<br>Y年<br>R用户驱动<br>W周<br>M月</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CycleUnit: String
-        # @param ScheduleDesc: 调度计划
+        # @param ScheduleDesc: <p>调度计划</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScheduleDesc: String
-        # @param DatasourceId: 数据源ID
+        # @param DatasourceId: <p>数据源ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DatasourceId: String
-        # @param DatasourceType: 数据源类型
+        # @param DatasourceType: <p>数据源类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DatasourceType: String
-        # @param ComputeResource: 引擎名称
+        # @param ComputeResource: <p>引擎名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ComputeResource: String
-        # @param DlcRegion: dlc地域
+        # @param DlcRegion: <p>dlc地域</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DlcRegion: String
-        # @param IsInherit: 资源组或自定义
+        # @param IsInherit: <p>资源组或自定义</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsInherit: String
+        # @param Privilege: <p>用户对该资源的最高权限</p><p>枚举值：</p><ul><li>NO_PERMISSIONS： 无权限</li><li>CAN_VIEW： 只读权限</li><li>CAN_MANAGE： 管理权限</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Privilege: String
 
-        attr_accessor :TaskId, :TaskName, :WorkflowId, :WorkflowName, :Status, :TaskTypeId, :TaskTypeDesc, :FolderName, :FolderId, :InCharge, :Submit, :DataEngine, :UpdateTime, :CreateTime, :CycleUnit, :ScheduleDesc, :DatasourceId, :DatasourceType, :ComputeResource, :DlcRegion, :IsInherit
+        attr_accessor :TaskId, :TaskName, :WorkflowId, :WorkflowName, :Status, :TaskTypeId, :TaskTypeDesc, :FolderName, :FolderId, :InCharge, :Submit, :DataEngine, :UpdateTime, :CreateTime, :CycleUnit, :ScheduleDesc, :DatasourceId, :DatasourceType, :ComputeResource, :DlcRegion, :IsInherit, :Privilege
 
-        def initialize(taskid=nil, taskname=nil, workflowid=nil, workflowname=nil, status=nil, tasktypeid=nil, tasktypedesc=nil, foldername=nil, folderid=nil, incharge=nil, submit=nil, dataengine=nil, updatetime=nil, createtime=nil, cycleunit=nil, scheduledesc=nil, datasourceid=nil, datasourcetype=nil, computeresource=nil, dlcregion=nil, isinherit=nil)
+        def initialize(taskid=nil, taskname=nil, workflowid=nil, workflowname=nil, status=nil, tasktypeid=nil, tasktypedesc=nil, foldername=nil, folderid=nil, incharge=nil, submit=nil, dataengine=nil, updatetime=nil, createtime=nil, cycleunit=nil, scheduledesc=nil, datasourceid=nil, datasourcetype=nil, computeresource=nil, dlcregion=nil, isinherit=nil, privilege=nil)
           @TaskId = taskid
           @TaskName = taskname
           @WorkflowId = workflowid
@@ -9952,6 +9951,7 @@ module TencentCloud
           @ComputeResource = computeresource
           @DlcRegion = dlcregion
           @IsInherit = isinherit
+          @Privilege = privilege
         end
 
         def deserialize(params)
@@ -9976,6 +9976,7 @@ module TencentCloud
           @ComputeResource = params['ComputeResource']
           @DlcRegion = params['DlcRegion']
           @IsInherit = params['IsInherit']
+          @Privilege = params['Privilege']
         end
       end
 
@@ -14585,65 +14586,40 @@ module TencentCloud
 
       # 待提交任务信息
       class DescribePendingSubmitTaskInfo < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务编号
+        # @param TaskId: <p>任务编号</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: String
-        # @param TaskName: 任务名称
+        # @param TaskName: <p>任务名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskName: String
-        # @param ModifyType: 修改类型
+        # @param ModifyType: <p>修改类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifyType: String
-        # @param TaskStatus: 任务状态
+        # @param TaskStatus: <p>任务状态</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskStatus: String
-        # @param SubmitPreCheck: 提交预检查（Y/N）
+        # @param SubmitPreCheck: <p>提交预检查（Y/N）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubmitPreCheck: String
-        # @param SubmitPreCheckDetailList: 提交预检查提交可能会失败的原因
+        # @param SubmitPreCheckDetailList: <p>提交预检查提交可能会失败的原因</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubmitPreCheckDetailList: Array
-        # @param ExecutorGroupId: 资源组编号
+        # @param ExecutorGroupId: <p>资源组编号</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecutorGroupId: String
-        # @param ExecutorGroupName: 资源组名称
+        # @param ExecutorGroupName: <p>资源组名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecutorGroupName: String
-        # @param TaskTypeId: <p>任务类型id，取值范围：</p>
-        # <ul>
-        # <li>26 离线集成任务</li>
-        # <li>30 Python任务</li>
-        # <li>31 PySpark任务</li>
-        # <li>34 HiveSQL任务</li>
-        # <li>35 Shell任务</li>
-        # <li>36 SparkSQL任务</li>
-        # <li>21 JdbcSQL任务</li>
-        # <li>23 TDSQL-PostgreSQL任务</li>
-        # <li>32 DLCSQL任务</li>
-        # <li>33 Impala任务</li>
-        # <li>41 Kettle任务</li>
-        # <li>42 Tchouse-X任务</li>
-        # <li>43 TCHouse-X SQL任务</li>
-        # <li>46 DLCSpark任务</li>
-        # <li>50 DLC-PySpark任务</li>
-        # <li>47 TiOne任务</li>
-        # <li>48 Trino任务</li>
-        # <li>39 Spark任务</li>
-        # <li>92 MapReduce任务</li>
-        # <li>38 Shell表单模式任务</li>
-        # <li>130 BranchNode任务</li>
-        # <li>131 MergeNode任务</li>
-        # <li>132 Notebook任务</li>
-        # <li>133 SSH任务</li>
-        # <li>134 StarRocks任务</li>
-        # <li>137 For-each任务</li>
-        # </ul>
+        # @param TaskTypeId: <p>任务类型id，取值范围：</p><ul><li>26 离线集成任务</li><li>30 Python任务</li><li>31 PySpark任务</li><li>34 HiveSQL任务</li><li>35 Shell任务</li><li>36 SparkSQL任务</li><li>21 JdbcSQL任务</li><li>23 TDSQL-PostgreSQL任务</li><li>32 DLCSQL任务</li><li>33 Impala任务</li><li>41 Kettle任务</li><li>42 Tchouse-X任务</li><li>43 TCHouse-X SQL任务</li><li>46 DLCSpark任务</li><li>50 DLC-PySpark任务</li><li>47 TiOne任务</li><li>48 Trino任务</li><li>39 Spark任务</li><li>92 MapReduce任务</li><li>38 Shell表单模式任务</li><li>130 BranchNode任务</li><li>131 MergeNode任务</li><li>132 Notebook任务</li><li>133 SSH任务</li><li>134 StarRocks任务</li><li>137 For-each任务</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskTypeId: Integer
+        # @param Privilege: <p>用户对该资源的最高权限</p><p>枚举值：</p><ul><li>NO_PERMISSIONS： 无权限</li><li>CAN_VIEW： 只读权限</li><li>CAN_MANAGE： 管理权限</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Privilege: String
 
-        attr_accessor :TaskId, :TaskName, :ModifyType, :TaskStatus, :SubmitPreCheck, :SubmitPreCheckDetailList, :ExecutorGroupId, :ExecutorGroupName, :TaskTypeId
+        attr_accessor :TaskId, :TaskName, :ModifyType, :TaskStatus, :SubmitPreCheck, :SubmitPreCheckDetailList, :ExecutorGroupId, :ExecutorGroupName, :TaskTypeId, :Privilege
 
-        def initialize(taskid=nil, taskname=nil, modifytype=nil, taskstatus=nil, submitprecheck=nil, submitprecheckdetaillist=nil, executorgroupid=nil, executorgroupname=nil, tasktypeid=nil)
+        def initialize(taskid=nil, taskname=nil, modifytype=nil, taskstatus=nil, submitprecheck=nil, submitprecheckdetaillist=nil, executorgroupid=nil, executorgroupname=nil, tasktypeid=nil, privilege=nil)
           @TaskId = taskid
           @TaskName = taskname
           @ModifyType = modifytype
@@ -14653,6 +14629,7 @@ module TencentCloud
           @ExecutorGroupId = executorgroupid
           @ExecutorGroupName = executorgroupname
           @TaskTypeId = tasktypeid
+          @Privilege = privilege
         end
 
         def deserialize(params)
@@ -14672,6 +14649,7 @@ module TencentCloud
           @ExecutorGroupId = params['ExecutorGroupId']
           @ExecutorGroupName = params['ExecutorGroupName']
           @TaskTypeId = params['TaskTypeId']
+          @Privilege = params['Privilege']
         end
       end
 
@@ -22525,43 +22503,46 @@ module TencentCloud
 
       # 文件夹属性
       class FolderDsDto < TencentCloud::Common::AbstractModel
-        # @param Id: 文件夹id
+        # @param Id: <p>文件夹id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: String
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
-        # @param Name: 文件夹名称
+        # @param Name: <p>文件夹名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
-        # @param ProjectId: 所属项目id
+        # @param ProjectId: <p>所属项目id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectId: String
-        # @param UpdateTime: 更新时间
+        # @param UpdateTime: <p>更新时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
-        # @param ParentsFolderId: 父文件夹id
+        # @param ParentsFolderId: <p>父文件夹id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParentsFolderId: String
-        # @param Total: 工作流总数
+        # @param Total: <p>工作流总数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
-        # @param Workflows: 工作流列表
+        # @param Workflows: <p>工作流列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Workflows: Array
-        # @param TotalFolders: 子文件夹总数
+        # @param TotalFolders: <p>子文件夹总数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalFolders: Integer
-        # @param Folders: 子文件夹列表
+        # @param Folders: <p>子文件夹列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Folders: Array
-        # @param FindType: 搜索类型
+        # @param FindType: <p>搜索类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FindType: String
+        # @param Privilege: <p>用户对该资源的最高权限</p><p>枚举值：</p><ul><li>NO_PERMISSIONS： 无权限</li><li>CAN_VIEW： 只读权限</li><li>CAN_MANAGE： 管理权限</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Privilege: String
 
-        attr_accessor :Id, :CreateTime, :Name, :ProjectId, :UpdateTime, :ParentsFolderId, :Total, :Workflows, :TotalFolders, :Folders, :FindType
+        attr_accessor :Id, :CreateTime, :Name, :ProjectId, :UpdateTime, :ParentsFolderId, :Total, :Workflows, :TotalFolders, :Folders, :FindType, :Privilege
 
-        def initialize(id=nil, createtime=nil, name=nil, projectid=nil, updatetime=nil, parentsfolderid=nil, total=nil, workflows=nil, totalfolders=nil, folders=nil, findtype=nil)
+        def initialize(id=nil, createtime=nil, name=nil, projectid=nil, updatetime=nil, parentsfolderid=nil, total=nil, workflows=nil, totalfolders=nil, folders=nil, findtype=nil, privilege=nil)
           @Id = id
           @CreateTime = createtime
           @Name = name
@@ -22573,6 +22554,7 @@ module TencentCloud
           @TotalFolders = totalfolders
           @Folders = folders
           @FindType = findtype
+          @Privilege = privilege
         end
 
         def deserialize(params)
@@ -22601,6 +22583,7 @@ module TencentCloud
             end
           end
           @FindType = params['FindType']
+          @Privilege = params['Privilege']
         end
       end
 
@@ -25500,10 +25483,13 @@ module TencentCloud
         # @param ProxyTaskType: <p>代理任务类型（仅 嵌套场景使用，非 嵌套 场景为 null）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProxyTaskType: :class:`Tencentcloud::Wedata.v20210820.models.TaskTypeOpsDto`
+        # @param Privilege: <p>权限</p><p>枚举值：</p><ul><li>CAN_MANAGE： 可管理</li><li>CAN_VIEW： 可见</li><li>NO_PERMISSIONS： 无权限</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Privilege: String
 
-        attr_accessor :TaskId, :TaskName, :WorkflowId, :WorkflowName, :InCharge, :CycleType, :CurRunDate, :NextCurDate, :RunPriority, :TryLimit, :Tries, :TotalRunNum, :DoFlag, :RedoFlag, :State, :RuntimeBroker, :ErrorDesc, :TaskType, :DependenceFulfillTime, :FirstDependenceFulfillTime, :FirstStartTime, :StartTime, :EndTime, :CostTime, :CostMillisecond, :MaxCostTime, :MinCostTime, :AvgCostTime, :LastLog, :SchedulerDateTime, :LastSchedulerDateTime, :LastUpdate, :CreateTime, :DependencyRel, :ExecutionSpace, :IgnoreEvent, :VirtualFlag, :FolderId, :FolderName, :SonList, :ProductName, :ResourceGroup, :ResourceInstanceId, :YarnQueue, :SchedulerDesc, :FirstSubmitTime, :FirstRunTime, :ProjectId, :ProjectIdent, :ProjectName, :TenantId, :InstanceKey, :ExecutorGroupId, :ExecutorGroupName, :RelatedInstanceList, :RelatedInstanceSize, :OwnerId, :UserId, :InstanceLifeCycleOpsDto, :RetryAttempts, :DeletedFatherList, :CirculateInstanceList, :ConcurrentStrategy, :ScheduleRunType, :AllowRedoType, :InstanceCycleType, :InstanceSchedulerDesc, :Privileges, :TaskExecutionId, :DlcTaskId, :DlcSparkJobId, :Ext, :RelatedEventList, :ProxyTaskId, :WorkflowRunName, :ProxyTaskType
+        attr_accessor :TaskId, :TaskName, :WorkflowId, :WorkflowName, :InCharge, :CycleType, :CurRunDate, :NextCurDate, :RunPriority, :TryLimit, :Tries, :TotalRunNum, :DoFlag, :RedoFlag, :State, :RuntimeBroker, :ErrorDesc, :TaskType, :DependenceFulfillTime, :FirstDependenceFulfillTime, :FirstStartTime, :StartTime, :EndTime, :CostTime, :CostMillisecond, :MaxCostTime, :MinCostTime, :AvgCostTime, :LastLog, :SchedulerDateTime, :LastSchedulerDateTime, :LastUpdate, :CreateTime, :DependencyRel, :ExecutionSpace, :IgnoreEvent, :VirtualFlag, :FolderId, :FolderName, :SonList, :ProductName, :ResourceGroup, :ResourceInstanceId, :YarnQueue, :SchedulerDesc, :FirstSubmitTime, :FirstRunTime, :ProjectId, :ProjectIdent, :ProjectName, :TenantId, :InstanceKey, :ExecutorGroupId, :ExecutorGroupName, :RelatedInstanceList, :RelatedInstanceSize, :OwnerId, :UserId, :InstanceLifeCycleOpsDto, :RetryAttempts, :DeletedFatherList, :CirculateInstanceList, :ConcurrentStrategy, :ScheduleRunType, :AllowRedoType, :InstanceCycleType, :InstanceSchedulerDesc, :Privileges, :TaskExecutionId, :DlcTaskId, :DlcSparkJobId, :Ext, :RelatedEventList, :ProxyTaskId, :WorkflowRunName, :ProxyTaskType, :Privilege
 
-        def initialize(taskid=nil, taskname=nil, workflowid=nil, workflowname=nil, incharge=nil, cycletype=nil, currundate=nil, nextcurdate=nil, runpriority=nil, trylimit=nil, tries=nil, totalrunnum=nil, doflag=nil, redoflag=nil, state=nil, runtimebroker=nil, errordesc=nil, tasktype=nil, dependencefulfilltime=nil, firstdependencefulfilltime=nil, firststarttime=nil, starttime=nil, endtime=nil, costtime=nil, costmillisecond=nil, maxcosttime=nil, mincosttime=nil, avgcosttime=nil, lastlog=nil, schedulerdatetime=nil, lastschedulerdatetime=nil, lastupdate=nil, createtime=nil, dependencyrel=nil, executionspace=nil, ignoreevent=nil, virtualflag=nil, folderid=nil, foldername=nil, sonlist=nil, productname=nil, resourcegroup=nil, resourceinstanceid=nil, yarnqueue=nil, schedulerdesc=nil, firstsubmittime=nil, firstruntime=nil, projectid=nil, projectident=nil, projectname=nil, tenantid=nil, instancekey=nil, executorgroupid=nil, executorgroupname=nil, relatedinstancelist=nil, relatedinstancesize=nil, ownerid=nil, userid=nil, instancelifecycleopsdto=nil, retryattempts=nil, deletedfatherlist=nil, circulateinstancelist=nil, concurrentstrategy=nil, scheduleruntype=nil, allowredotype=nil, instancecycletype=nil, instanceschedulerdesc=nil, privileges=nil, taskexecutionid=nil, dlctaskid=nil, dlcsparkjobid=nil, ext=nil, relatedeventlist=nil, proxytaskid=nil, workflowrunname=nil, proxytasktype=nil)
+        def initialize(taskid=nil, taskname=nil, workflowid=nil, workflowname=nil, incharge=nil, cycletype=nil, currundate=nil, nextcurdate=nil, runpriority=nil, trylimit=nil, tries=nil, totalrunnum=nil, doflag=nil, redoflag=nil, state=nil, runtimebroker=nil, errordesc=nil, tasktype=nil, dependencefulfilltime=nil, firstdependencefulfilltime=nil, firststarttime=nil, starttime=nil, endtime=nil, costtime=nil, costmillisecond=nil, maxcosttime=nil, mincosttime=nil, avgcosttime=nil, lastlog=nil, schedulerdatetime=nil, lastschedulerdatetime=nil, lastupdate=nil, createtime=nil, dependencyrel=nil, executionspace=nil, ignoreevent=nil, virtualflag=nil, folderid=nil, foldername=nil, sonlist=nil, productname=nil, resourcegroup=nil, resourceinstanceid=nil, yarnqueue=nil, schedulerdesc=nil, firstsubmittime=nil, firstruntime=nil, projectid=nil, projectident=nil, projectname=nil, tenantid=nil, instancekey=nil, executorgroupid=nil, executorgroupname=nil, relatedinstancelist=nil, relatedinstancesize=nil, ownerid=nil, userid=nil, instancelifecycleopsdto=nil, retryattempts=nil, deletedfatherlist=nil, circulateinstancelist=nil, concurrentstrategy=nil, scheduleruntype=nil, allowredotype=nil, instancecycletype=nil, instanceschedulerdesc=nil, privileges=nil, taskexecutionid=nil, dlctaskid=nil, dlcsparkjobid=nil, ext=nil, relatedeventlist=nil, proxytaskid=nil, workflowrunname=nil, proxytasktype=nil, privilege=nil)
           @TaskId = taskid
           @TaskName = taskname
           @WorkflowId = workflowid
@@ -25580,6 +25566,7 @@ module TencentCloud
           @ProxyTaskId = proxytaskid
           @WorkflowRunName = workflowrunname
           @ProxyTaskType = proxytasktype
+          @Privilege = privilege
         end
 
         def deserialize(params)
@@ -25692,6 +25679,7 @@ module TencentCloud
             @ProxyTaskType = TaskTypeOpsDto.new
             @ProxyTaskType.deserialize(params['ProxyTaskType'])
           end
+          @Privilege = params['Privilege']
         end
       end
 
@@ -28281,10 +28269,13 @@ module TencentCloud
         # @param RunScheduleRangeWeekDays: <p>指定时间段补录生效日，星期一到星期日，1-7</p><p>枚举值：</p><ul><li>星期一： 1</li><li>星期二： 2</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunScheduleRangeWeekDays: Array
+        # @param Privilege: <p>资源权限</p><p>枚举值：</p><ul><li>NO_PERMISSIONS： 无权限</li><li>CAN_VIEW： 可见</li><li>CAN_MANAGE： 可管理</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Privilege: String
 
-        attr_accessor :PlanId, :MakeName, :ProjectId, :CheckParent, :SameSelfDependType, :ParallelNum, :SameCycle, :SourceTaskCycle, :TargetTaskCycle, :TargetTaskAction, :MapParamList, :MakeExtList, :CreatorId, :Creator, :CreateTime, :TaskIdList, :MakeDatetimeList, :Remark, :SchedulerResourceGroup, :SchedulerResourceGroupName, :IntegrationResourceGroup, :IntegrationResourceGroupName, :TaskCount, :CompletePercent, :SuccessPercent, :CheckParentType, :SameSelfWorkflowDependType, :SelfWorkflowDependency, :MakeDataTimeOrder, :ScheduleTimeZone, :AppParam, :TimeType, :StartTime, :EndTime, :FailurePercent, :AlarmRule, :RunType, :RunDateTime, :RunScheduleTimeZone, :RunScheduleRangeStartTime, :RunScheduleRangeEndTime, :RunScheduleRangeWeekDays
+        attr_accessor :PlanId, :MakeName, :ProjectId, :CheckParent, :SameSelfDependType, :ParallelNum, :SameCycle, :SourceTaskCycle, :TargetTaskCycle, :TargetTaskAction, :MapParamList, :MakeExtList, :CreatorId, :Creator, :CreateTime, :TaskIdList, :MakeDatetimeList, :Remark, :SchedulerResourceGroup, :SchedulerResourceGroupName, :IntegrationResourceGroup, :IntegrationResourceGroupName, :TaskCount, :CompletePercent, :SuccessPercent, :CheckParentType, :SameSelfWorkflowDependType, :SelfWorkflowDependency, :MakeDataTimeOrder, :ScheduleTimeZone, :AppParam, :TimeType, :StartTime, :EndTime, :FailurePercent, :AlarmRule, :RunType, :RunDateTime, :RunScheduleTimeZone, :RunScheduleRangeStartTime, :RunScheduleRangeEndTime, :RunScheduleRangeWeekDays, :Privilege
 
-        def initialize(planid=nil, makename=nil, projectid=nil, checkparent=nil, sameselfdependtype=nil, parallelnum=nil, samecycle=nil, sourcetaskcycle=nil, targettaskcycle=nil, targettaskaction=nil, mapparamlist=nil, makeextlist=nil, creatorid=nil, creator=nil, createtime=nil, taskidlist=nil, makedatetimelist=nil, remark=nil, schedulerresourcegroup=nil, schedulerresourcegroupname=nil, integrationresourcegroup=nil, integrationresourcegroupname=nil, taskcount=nil, completepercent=nil, successpercent=nil, checkparenttype=nil, sameselfworkflowdependtype=nil, selfworkflowdependency=nil, makedatatimeorder=nil, scheduletimezone=nil, appparam=nil, timetype=nil, starttime=nil, endtime=nil, failurepercent=nil, alarmrule=nil, runtype=nil, rundatetime=nil, runscheduletimezone=nil, runschedulerangestarttime=nil, runschedulerangeendtime=nil, runschedulerangeweekdays=nil)
+        def initialize(planid=nil, makename=nil, projectid=nil, checkparent=nil, sameselfdependtype=nil, parallelnum=nil, samecycle=nil, sourcetaskcycle=nil, targettaskcycle=nil, targettaskaction=nil, mapparamlist=nil, makeextlist=nil, creatorid=nil, creator=nil, createtime=nil, taskidlist=nil, makedatetimelist=nil, remark=nil, schedulerresourcegroup=nil, schedulerresourcegroupname=nil, integrationresourcegroup=nil, integrationresourcegroupname=nil, taskcount=nil, completepercent=nil, successpercent=nil, checkparenttype=nil, sameselfworkflowdependtype=nil, selfworkflowdependency=nil, makedatatimeorder=nil, scheduletimezone=nil, appparam=nil, timetype=nil, starttime=nil, endtime=nil, failurepercent=nil, alarmrule=nil, runtype=nil, rundatetime=nil, runscheduletimezone=nil, runschedulerangestarttime=nil, runschedulerangeendtime=nil, runschedulerangeweekdays=nil, privilege=nil)
           @PlanId = planid
           @MakeName = makename
           @ProjectId = projectid
@@ -28327,6 +28318,7 @@ module TencentCloud
           @RunScheduleRangeStartTime = runschedulerangestarttime
           @RunScheduleRangeEndTime = runschedulerangeendtime
           @RunScheduleRangeWeekDays = runschedulerangeweekdays
+          @Privilege = privilege
         end
 
         def deserialize(params)
@@ -28396,6 +28388,7 @@ module TencentCloud
           @RunScheduleRangeStartTime = params['RunScheduleRangeStartTime']
           @RunScheduleRangeEndTime = params['RunScheduleRangeEndTime']
           @RunScheduleRangeWeekDays = params['RunScheduleRangeWeekDays']
+          @Privilege = params['Privilege']
         end
       end
 
@@ -28615,10 +28608,13 @@ module TencentCloud
         # @param ScheduleTimeList: <p>数据时间列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScheduleTimeList: Array
+        # @param Privilege: <p>对象权限</p><p>枚举值：</p><ul><li>CAN_VIEW： 只读权限</li><li>CAN_MANAGE： 管理权限</li><li>NO_PERMISSIONS： 无权限</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Privilege: String
 
-        attr_accessor :TriggerId, :TriggerName, :Remark, :DatetimeList, :TaskCnt, :InstanceCnt, :FinishedInstanceCnt, :SuccessInstanceCnt, :Status, :TriggerParams, :OwnerUin, :UserUin, :UserName, :TenantId, :ProjectId, :CreateTime, :ScheduleTimeZone, :TimeType, :TriggerSource, :TriggerSourceId, :ParentSpTaskId, :ParentSpInstanceName, :ParentSpInstanceDataTime, :ScheduleTimeList
+        attr_accessor :TriggerId, :TriggerName, :Remark, :DatetimeList, :TaskCnt, :InstanceCnt, :FinishedInstanceCnt, :SuccessInstanceCnt, :Status, :TriggerParams, :OwnerUin, :UserUin, :UserName, :TenantId, :ProjectId, :CreateTime, :ScheduleTimeZone, :TimeType, :TriggerSource, :TriggerSourceId, :ParentSpTaskId, :ParentSpInstanceName, :ParentSpInstanceDataTime, :ScheduleTimeList, :Privilege
 
-        def initialize(triggerid=nil, triggername=nil, remark=nil, datetimelist=nil, taskcnt=nil, instancecnt=nil, finishedinstancecnt=nil, successinstancecnt=nil, status=nil, triggerparams=nil, owneruin=nil, useruin=nil, username=nil, tenantid=nil, projectid=nil, createtime=nil, scheduletimezone=nil, timetype=nil, triggersource=nil, triggersourceid=nil, parentsptaskid=nil, parentspinstancename=nil, parentspinstancedatatime=nil, scheduletimelist=nil)
+        def initialize(triggerid=nil, triggername=nil, remark=nil, datetimelist=nil, taskcnt=nil, instancecnt=nil, finishedinstancecnt=nil, successinstancecnt=nil, status=nil, triggerparams=nil, owneruin=nil, useruin=nil, username=nil, tenantid=nil, projectid=nil, createtime=nil, scheduletimezone=nil, timetype=nil, triggersource=nil, triggersourceid=nil, parentsptaskid=nil, parentspinstancename=nil, parentspinstancedatatime=nil, scheduletimelist=nil, privilege=nil)
           @TriggerId = triggerid
           @TriggerName = triggername
           @Remark = remark
@@ -28643,6 +28639,7 @@ module TencentCloud
           @ParentSpInstanceName = parentspinstancename
           @ParentSpInstanceDataTime = parentspinstancedatatime
           @ScheduleTimeList = scheduletimelist
+          @Privilege = privilege
         end
 
         def deserialize(params)
@@ -28670,6 +28667,7 @@ module TencentCloud
           @ParentSpInstanceName = params['ParentSpInstanceName']
           @ParentSpInstanceDataTime = params['ParentSpInstanceDataTime']
           @ScheduleTimeList = params['ScheduleTimeList']
+          @Privilege = params['Privilege']
         end
       end
 
@@ -40646,10 +40644,13 @@ module TencentCloud
         # @param LastUpdateTimestamp: <p>任务最后更新时间戳</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastUpdateTimestamp: Integer
+        # @param Privilege: <p>用户对该资源的最高权限</p><p>枚举值：</p><ul><li>NO_PERMISSIONS： 无权限</li><li>CAN_VIEW： 只读权限</li><li>CAN_MANAGE： 管理权限</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Privilege: String
 
-        attr_accessor :TaskId, :VirtualTaskId, :VirtualFlag, :TaskName, :WorkflowId, :RealWorkflowId, :WorkflowName, :FolderId, :FolderName, :CreateTime, :LastUpdate, :Status, :InCharge, :InChargeId, :StartTime, :EndTime, :ExecutionStartTime, :ExecutionEndTime, :ProjectId, :ProjectIdent, :ProjectName, :CycleType, :CycleStep, :CrontabExpression, :DelayTime, :StartupTime, :RetryWait, :Retriable, :TaskAction, :TryLimit, :RunPriority, :TaskType, :BrokerIp, :ClusterId, :MinDateTime, :MaxDateTime, :ExecutionTTL, :SelfDepend, :LeftCoordinate, :TopCoordinate, :TaskExt, :Properties, :Notes, :InstanceInitStrategy, :YarnQueue, :Alarms, :Alarm, :ScriptChange, :Submit, :LastSchedulerCommitTime, :NormalizedJobStartTime, :RecoverFreezeStartTime, :SourceServer, :TargetServer, :Tasks, :Creater, :DependencyRel, :DependencyWorkflow, :EventListenerConfig, :EventPublisherConfig, :DependencyConfigList, :VirtualTaskStatus, :RecycleTips, :RecycleUser, :NewOrUpdate, :Params, :TaskLinkInfo, :ImportResult, :ImportErrMsg, :ContentType, :TaskAutoSubmit, :ProductName, :OwnId, :UserId, :TenantId, :UpdateUser, :UpdateTime, :UpdateUserId, :SchedulerDesc, :ResourceGroup, :VersionDesc, :LinkId, :UserFileId, :SourceServiceId, :SourceServiceType, :TargetServiceId, :TargetServiceType, :ParamInList, :ParamOutList, :TaskFolderId, :MaxRetryAttempts, :ResourceGroupName, :SourceServiceName, :TaskRegisterOutputTable, :CycleDependencyConfigList, :Warning, :ScheduleRunType, :ConcurrentStrategy, :ScheduleTimeZone, :TemplateId, :AllowRedoType, :BundleId, :BundleInfo, :AllowDownstreamDependency, :DependencyTriggerPolicy, :LastUpdateTimestamp
+        attr_accessor :TaskId, :VirtualTaskId, :VirtualFlag, :TaskName, :WorkflowId, :RealWorkflowId, :WorkflowName, :FolderId, :FolderName, :CreateTime, :LastUpdate, :Status, :InCharge, :InChargeId, :StartTime, :EndTime, :ExecutionStartTime, :ExecutionEndTime, :ProjectId, :ProjectIdent, :ProjectName, :CycleType, :CycleStep, :CrontabExpression, :DelayTime, :StartupTime, :RetryWait, :Retriable, :TaskAction, :TryLimit, :RunPriority, :TaskType, :BrokerIp, :ClusterId, :MinDateTime, :MaxDateTime, :ExecutionTTL, :SelfDepend, :LeftCoordinate, :TopCoordinate, :TaskExt, :Properties, :Notes, :InstanceInitStrategy, :YarnQueue, :Alarms, :Alarm, :ScriptChange, :Submit, :LastSchedulerCommitTime, :NormalizedJobStartTime, :RecoverFreezeStartTime, :SourceServer, :TargetServer, :Tasks, :Creater, :DependencyRel, :DependencyWorkflow, :EventListenerConfig, :EventPublisherConfig, :DependencyConfigList, :VirtualTaskStatus, :RecycleTips, :RecycleUser, :NewOrUpdate, :Params, :TaskLinkInfo, :ImportResult, :ImportErrMsg, :ContentType, :TaskAutoSubmit, :ProductName, :OwnId, :UserId, :TenantId, :UpdateUser, :UpdateTime, :UpdateUserId, :SchedulerDesc, :ResourceGroup, :VersionDesc, :LinkId, :UserFileId, :SourceServiceId, :SourceServiceType, :TargetServiceId, :TargetServiceType, :ParamInList, :ParamOutList, :TaskFolderId, :MaxRetryAttempts, :ResourceGroupName, :SourceServiceName, :TaskRegisterOutputTable, :CycleDependencyConfigList, :Warning, :ScheduleRunType, :ConcurrentStrategy, :ScheduleTimeZone, :TemplateId, :AllowRedoType, :BundleId, :BundleInfo, :AllowDownstreamDependency, :DependencyTriggerPolicy, :LastUpdateTimestamp, :Privilege
 
-        def initialize(taskid=nil, virtualtaskid=nil, virtualflag=nil, taskname=nil, workflowid=nil, realworkflowid=nil, workflowname=nil, folderid=nil, foldername=nil, createtime=nil, lastupdate=nil, status=nil, incharge=nil, inchargeid=nil, starttime=nil, endtime=nil, executionstarttime=nil, executionendtime=nil, projectid=nil, projectident=nil, projectname=nil, cycletype=nil, cyclestep=nil, crontabexpression=nil, delaytime=nil, startuptime=nil, retrywait=nil, retriable=nil, taskaction=nil, trylimit=nil, runpriority=nil, tasktype=nil, brokerip=nil, clusterid=nil, mindatetime=nil, maxdatetime=nil, executionttl=nil, selfdepend=nil, leftcoordinate=nil, topcoordinate=nil, taskext=nil, properties=nil, notes=nil, instanceinitstrategy=nil, yarnqueue=nil, alarms=nil, alarm=nil, scriptchange=nil, submit=nil, lastschedulercommittime=nil, normalizedjobstarttime=nil, recoverfreezestarttime=nil, sourceserver=nil, targetserver=nil, tasks=nil, creater=nil, dependencyrel=nil, dependencyworkflow=nil, eventlistenerconfig=nil, eventpublisherconfig=nil, dependencyconfiglist=nil, virtualtaskstatus=nil, recycletips=nil, recycleuser=nil, neworupdate=nil, params=nil, tasklinkinfo=nil, importresult=nil, importerrmsg=nil, contenttype=nil, taskautosubmit=nil, productname=nil, ownid=nil, userid=nil, tenantid=nil, updateuser=nil, updatetime=nil, updateuserid=nil, schedulerdesc=nil, resourcegroup=nil, versiondesc=nil, linkid=nil, userfileid=nil, sourceserviceid=nil, sourceservicetype=nil, targetserviceid=nil, targetservicetype=nil, paraminlist=nil, paramoutlist=nil, taskfolderid=nil, maxretryattempts=nil, resourcegroupname=nil, sourceservicename=nil, taskregisteroutputtable=nil, cycledependencyconfiglist=nil, warning=nil, scheduleruntype=nil, concurrentstrategy=nil, scheduletimezone=nil, templateid=nil, allowredotype=nil, bundleid=nil, bundleinfo=nil, allowdownstreamdependency=nil, dependencytriggerpolicy=nil, lastupdatetimestamp=nil)
+        def initialize(taskid=nil, virtualtaskid=nil, virtualflag=nil, taskname=nil, workflowid=nil, realworkflowid=nil, workflowname=nil, folderid=nil, foldername=nil, createtime=nil, lastupdate=nil, status=nil, incharge=nil, inchargeid=nil, starttime=nil, endtime=nil, executionstarttime=nil, executionendtime=nil, projectid=nil, projectident=nil, projectname=nil, cycletype=nil, cyclestep=nil, crontabexpression=nil, delaytime=nil, startuptime=nil, retrywait=nil, retriable=nil, taskaction=nil, trylimit=nil, runpriority=nil, tasktype=nil, brokerip=nil, clusterid=nil, mindatetime=nil, maxdatetime=nil, executionttl=nil, selfdepend=nil, leftcoordinate=nil, topcoordinate=nil, taskext=nil, properties=nil, notes=nil, instanceinitstrategy=nil, yarnqueue=nil, alarms=nil, alarm=nil, scriptchange=nil, submit=nil, lastschedulercommittime=nil, normalizedjobstarttime=nil, recoverfreezestarttime=nil, sourceserver=nil, targetserver=nil, tasks=nil, creater=nil, dependencyrel=nil, dependencyworkflow=nil, eventlistenerconfig=nil, eventpublisherconfig=nil, dependencyconfiglist=nil, virtualtaskstatus=nil, recycletips=nil, recycleuser=nil, neworupdate=nil, params=nil, tasklinkinfo=nil, importresult=nil, importerrmsg=nil, contenttype=nil, taskautosubmit=nil, productname=nil, ownid=nil, userid=nil, tenantid=nil, updateuser=nil, updatetime=nil, updateuserid=nil, schedulerdesc=nil, resourcegroup=nil, versiondesc=nil, linkid=nil, userfileid=nil, sourceserviceid=nil, sourceservicetype=nil, targetserviceid=nil, targetservicetype=nil, paraminlist=nil, paramoutlist=nil, taskfolderid=nil, maxretryattempts=nil, resourcegroupname=nil, sourceservicename=nil, taskregisteroutputtable=nil, cycledependencyconfiglist=nil, warning=nil, scheduleruntype=nil, concurrentstrategy=nil, scheduletimezone=nil, templateid=nil, allowredotype=nil, bundleid=nil, bundleinfo=nil, allowdownstreamdependency=nil, dependencytriggerpolicy=nil, lastupdatetimestamp=nil, privilege=nil)
           @TaskId = taskid
           @VirtualTaskId = virtualtaskid
           @VirtualFlag = virtualflag
@@ -40756,6 +40757,7 @@ module TencentCloud
           @AllowDownstreamDependency = allowdownstreamdependency
           @DependencyTriggerPolicy = dependencytriggerpolicy
           @LastUpdateTimestamp = lastupdatetimestamp
+          @Privilege = privilege
         end
 
         def deserialize(params)
@@ -40934,6 +40936,7 @@ module TencentCloud
           @AllowDownstreamDependency = params['AllowDownstreamDependency']
           @DependencyTriggerPolicy = params['DependencyTriggerPolicy']
           @LastUpdateTimestamp = params['LastUpdateTimestamp']
+          @Privilege = params['Privilege']
         end
       end
 
@@ -41993,10 +41996,13 @@ module TencentCloud
         # @param ProxyTaskTypeId: <p>代理任务类型ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProxyTaskTypeId: Integer
+        # @param Privilege: <p>对象权限</p><p>枚举值：</p><ul><li>CAN_MANAGE： 管理权限</li><li>CAN_VIEW： 只读权限</li><li>NO_PERMISSIONS： 无权限</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Privilege: String
 
-        attr_accessor :TaskId, :VirtualTaskId, :VirtualFlag, :TaskName, :WorkflowId, :RealWorkflowId, :WorkflowName, :FolderId, :FolderName, :CreateTime, :LastUpdate, :Status, :InCharge, :InChargeId, :StartTime, :EndTime, :ExecutionStartTime, :ExecutionEndTime, :CycleType, :CycleStep, :CrontabExpression, :DelayTime, :StartupTime, :RetryWait, :RetryAble, :TaskAction, :TryLimit, :RunPriority, :TaskType, :BrokerIp, :ClusterId, :MinDateTime, :MaxDateTime, :ExecutionTTL, :SelfDepend, :LeftCoordinate, :TopCoordinate, :Notes, :InstanceInitStrategy, :YarnQueue, :LastSchedulerCommitTime, :NormalizedJobStartTime, :SchedulerDesc, :ResourceGroup, :Creator, :DependencyRel, :DependencyWorkflow, :EventListenerConfig, :EventPublisherConfig, :VirtualTaskStatus, :TaskLinkInfo, :ProductName, :ProjectId, :ProjectIdent, :ProjectName, :OwnId, :UserId, :TenantId, :UpdateUser, :UpdateTime, :UpdateUserId, :TaskTypeId, :TaskTypeDesc, :ShowWorkflow, :FirstSubmitTime, :FirstRunTime, :ScheduleDesc, :CycleNum, :Crontab, :StartDate, :EndDate, :CycleUnit, :InitStrategy, :Layer, :SourceServiceId, :SourceServiceType, :TargetServiceId, :TargetServiceType, :TasksStr, :Submit, :ExecutorGroupId, :ExecutorGroupName, :TaskExtInfo, :EventListenerInfos, :ScriptInfo, :DLCResourceConfig, :ParentTaskInfos, :ExtResourceFlag, :NewParentTaskInfos, :SelfWorkFlowDependType, :AllowRedoType, :OwnerId, :Privileges, :BundleId, :BundleInfo, :WorkflowType, :TaskExtDTO, :ScheduleTimeZone, :ProxyTaskId, :ProxyTaskTypeId
+        attr_accessor :TaskId, :VirtualTaskId, :VirtualFlag, :TaskName, :WorkflowId, :RealWorkflowId, :WorkflowName, :FolderId, :FolderName, :CreateTime, :LastUpdate, :Status, :InCharge, :InChargeId, :StartTime, :EndTime, :ExecutionStartTime, :ExecutionEndTime, :CycleType, :CycleStep, :CrontabExpression, :DelayTime, :StartupTime, :RetryWait, :RetryAble, :TaskAction, :TryLimit, :RunPriority, :TaskType, :BrokerIp, :ClusterId, :MinDateTime, :MaxDateTime, :ExecutionTTL, :SelfDepend, :LeftCoordinate, :TopCoordinate, :Notes, :InstanceInitStrategy, :YarnQueue, :LastSchedulerCommitTime, :NormalizedJobStartTime, :SchedulerDesc, :ResourceGroup, :Creator, :DependencyRel, :DependencyWorkflow, :EventListenerConfig, :EventPublisherConfig, :VirtualTaskStatus, :TaskLinkInfo, :ProductName, :ProjectId, :ProjectIdent, :ProjectName, :OwnId, :UserId, :TenantId, :UpdateUser, :UpdateTime, :UpdateUserId, :TaskTypeId, :TaskTypeDesc, :ShowWorkflow, :FirstSubmitTime, :FirstRunTime, :ScheduleDesc, :CycleNum, :Crontab, :StartDate, :EndDate, :CycleUnit, :InitStrategy, :Layer, :SourceServiceId, :SourceServiceType, :TargetServiceId, :TargetServiceType, :TasksStr, :Submit, :ExecutorGroupId, :ExecutorGroupName, :TaskExtInfo, :EventListenerInfos, :ScriptInfo, :DLCResourceConfig, :ParentTaskInfos, :ExtResourceFlag, :NewParentTaskInfos, :SelfWorkFlowDependType, :AllowRedoType, :OwnerId, :Privileges, :BundleId, :BundleInfo, :WorkflowType, :TaskExtDTO, :ScheduleTimeZone, :ProxyTaskId, :ProxyTaskTypeId, :Privilege
 
-        def initialize(taskid=nil, virtualtaskid=nil, virtualflag=nil, taskname=nil, workflowid=nil, realworkflowid=nil, workflowname=nil, folderid=nil, foldername=nil, createtime=nil, lastupdate=nil, status=nil, incharge=nil, inchargeid=nil, starttime=nil, endtime=nil, executionstarttime=nil, executionendtime=nil, cycletype=nil, cyclestep=nil, crontabexpression=nil, delaytime=nil, startuptime=nil, retrywait=nil, retryable=nil, taskaction=nil, trylimit=nil, runpriority=nil, tasktype=nil, brokerip=nil, clusterid=nil, mindatetime=nil, maxdatetime=nil, executionttl=nil, selfdepend=nil, leftcoordinate=nil, topcoordinate=nil, notes=nil, instanceinitstrategy=nil, yarnqueue=nil, lastschedulercommittime=nil, normalizedjobstarttime=nil, schedulerdesc=nil, resourcegroup=nil, creator=nil, dependencyrel=nil, dependencyworkflow=nil, eventlistenerconfig=nil, eventpublisherconfig=nil, virtualtaskstatus=nil, tasklinkinfo=nil, productname=nil, projectid=nil, projectident=nil, projectname=nil, ownid=nil, userid=nil, tenantid=nil, updateuser=nil, updatetime=nil, updateuserid=nil, tasktypeid=nil, tasktypedesc=nil, showworkflow=nil, firstsubmittime=nil, firstruntime=nil, scheduledesc=nil, cyclenum=nil, crontab=nil, startdate=nil, enddate=nil, cycleunit=nil, initstrategy=nil, layer=nil, sourceserviceid=nil, sourceservicetype=nil, targetserviceid=nil, targetservicetype=nil, tasksstr=nil, submit=nil, executorgroupid=nil, executorgroupname=nil, taskextinfo=nil, eventlistenerinfos=nil, scriptinfo=nil, dlcresourceconfig=nil, parenttaskinfos=nil, extresourceflag=nil, newparenttaskinfos=nil, selfworkflowdependtype=nil, allowredotype=nil, ownerid=nil, privileges=nil, bundleid=nil, bundleinfo=nil, workflowtype=nil, taskextdto=nil, scheduletimezone=nil, proxytaskid=nil, proxytasktypeid=nil)
+        def initialize(taskid=nil, virtualtaskid=nil, virtualflag=nil, taskname=nil, workflowid=nil, realworkflowid=nil, workflowname=nil, folderid=nil, foldername=nil, createtime=nil, lastupdate=nil, status=nil, incharge=nil, inchargeid=nil, starttime=nil, endtime=nil, executionstarttime=nil, executionendtime=nil, cycletype=nil, cyclestep=nil, crontabexpression=nil, delaytime=nil, startuptime=nil, retrywait=nil, retryable=nil, taskaction=nil, trylimit=nil, runpriority=nil, tasktype=nil, brokerip=nil, clusterid=nil, mindatetime=nil, maxdatetime=nil, executionttl=nil, selfdepend=nil, leftcoordinate=nil, topcoordinate=nil, notes=nil, instanceinitstrategy=nil, yarnqueue=nil, lastschedulercommittime=nil, normalizedjobstarttime=nil, schedulerdesc=nil, resourcegroup=nil, creator=nil, dependencyrel=nil, dependencyworkflow=nil, eventlistenerconfig=nil, eventpublisherconfig=nil, virtualtaskstatus=nil, tasklinkinfo=nil, productname=nil, projectid=nil, projectident=nil, projectname=nil, ownid=nil, userid=nil, tenantid=nil, updateuser=nil, updatetime=nil, updateuserid=nil, tasktypeid=nil, tasktypedesc=nil, showworkflow=nil, firstsubmittime=nil, firstruntime=nil, scheduledesc=nil, cyclenum=nil, crontab=nil, startdate=nil, enddate=nil, cycleunit=nil, initstrategy=nil, layer=nil, sourceserviceid=nil, sourceservicetype=nil, targetserviceid=nil, targetservicetype=nil, tasksstr=nil, submit=nil, executorgroupid=nil, executorgroupname=nil, taskextinfo=nil, eventlistenerinfos=nil, scriptinfo=nil, dlcresourceconfig=nil, parenttaskinfos=nil, extresourceflag=nil, newparenttaskinfos=nil, selfworkflowdependtype=nil, allowredotype=nil, ownerid=nil, privileges=nil, bundleid=nil, bundleinfo=nil, workflowtype=nil, taskextdto=nil, scheduletimezone=nil, proxytaskid=nil, proxytasktypeid=nil, privilege=nil)
           @TaskId = taskid
           @VirtualTaskId = virtualtaskid
           @VirtualFlag = virtualflag
@@ -42097,6 +42103,7 @@ module TencentCloud
           @ScheduleTimeZone = scheduletimezone
           @ProxyTaskId = proxytaskid
           @ProxyTaskTypeId = proxytasktypeid
+          @Privilege = privilege
         end
 
         def deserialize(params)
@@ -42235,6 +42242,7 @@ module TencentCloud
           @ScheduleTimeZone = params['ScheduleTimeZone']
           @ProxyTaskId = params['ProxyTaskId']
           @ProxyTaskTypeId = params['ProxyTaskTypeId']
+          @Privilege = params['Privilege']
         end
       end
 
@@ -44630,55 +44638,58 @@ module TencentCloud
 
       # 工作流画布详情
       class WorkflowCanvasOpsDto < TencentCloud::Common::AbstractModel
-        # @param WorkflowId: 工作流id
+        # @param WorkflowId: <p>工作流id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkflowId: String
-        # @param WorkflowDesc: 工作流详情描述
+        # @param WorkflowDesc: <p>工作流详情描述</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkflowDesc: String
-        # @param WorkflowName: 工作流名称
+        # @param WorkflowName: <p>工作流名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkflowName: String
-        # @param FolderId: 所属文件夹id
+        # @param FolderId: <p>所属文件夹id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FolderId: String
-        # @param FolderIds: 所属文件夹ids
+        # @param FolderIds: <p>所属文件夹ids</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FolderIds: Array
-        # @param Tasks: 任务列表
+        # @param Tasks: <p>任务列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tasks: Array
-        # @param Links: 任务依赖边列表
+        # @param Links: <p>任务依赖边列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Links: Array
-        # @param UserGroupId: 工作流所属用户分组id,若有多个分号隔开: a;b;c
+        # @param UserGroupId: <p>工作流所属用户分组id,若有多个分号隔开: a;b;c</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserGroupId: String
-        # @param UserGroupName: 工作流所属用户分组名称,若有多个分号隔开: a;b;c
+        # @param UserGroupName: <p>工作流所属用户分组名称,若有多个分号隔开: a;b;c</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserGroupName: String
-        # @param ProjectId: 项目id
+        # @param ProjectId: <p>项目id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectId: String
-        # @param ProjectIdent: 项目标识
+        # @param ProjectIdent: <p>项目标识</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectIdent: String
-        # @param ProjectName: 项目名称
+        # @param ProjectName: <p>项目名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectName: String
-        # @param Owner: 责任人
+        # @param Owner: <p>责任人</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Owner: String
-        # @param OwnerId: 责任人UserId
+        # @param OwnerId: <p>责任人UserId</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OwnerId: String
-        # @param WorkflowType: 工作流类型，周期cycle，手动manual
+        # @param WorkflowType: <p>工作流类型，周期cycle，手动manual</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkflowType: String
+        # @param Privilege: <p>用户对该资源的最高权限</p><p>枚举值：</p><ul><li>NO_PERMISSIONS： 无权限</li><li>CAN_VIEW： 只读权限</li><li>CAN_MANAGE： 管理权限</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Privilege: String
 
-        attr_accessor :WorkflowId, :WorkflowDesc, :WorkflowName, :FolderId, :FolderIds, :Tasks, :Links, :UserGroupId, :UserGroupName, :ProjectId, :ProjectIdent, :ProjectName, :Owner, :OwnerId, :WorkflowType
+        attr_accessor :WorkflowId, :WorkflowDesc, :WorkflowName, :FolderId, :FolderIds, :Tasks, :Links, :UserGroupId, :UserGroupName, :ProjectId, :ProjectIdent, :ProjectName, :Owner, :OwnerId, :WorkflowType, :Privilege
 
-        def initialize(workflowid=nil, workflowdesc=nil, workflowname=nil, folderid=nil, folderids=nil, tasks=nil, links=nil, usergroupid=nil, usergroupname=nil, projectid=nil, projectident=nil, projectname=nil, owner=nil, ownerid=nil, workflowtype=nil)
+        def initialize(workflowid=nil, workflowdesc=nil, workflowname=nil, folderid=nil, folderids=nil, tasks=nil, links=nil, usergroupid=nil, usergroupname=nil, projectid=nil, projectident=nil, projectname=nil, owner=nil, ownerid=nil, workflowtype=nil, privilege=nil)
           @WorkflowId = workflowid
           @WorkflowDesc = workflowdesc
           @WorkflowName = workflowname
@@ -44694,6 +44705,7 @@ module TencentCloud
           @Owner = owner
           @OwnerId = ownerid
           @WorkflowType = workflowtype
+          @Privilege = privilege
         end
 
         def deserialize(params)
@@ -44726,6 +44738,7 @@ module TencentCloud
           @Owner = params['Owner']
           @OwnerId = params['OwnerId']
           @WorkflowType = params['WorkflowType']
+          @Privilege = params['Privilege']
         end
       end
 
@@ -44791,10 +44804,13 @@ module TencentCloud
         # @param ExecuteUserName: <p>运行账号名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecuteUserName: String
+        # @param Privilege: <p>用户对该资源的最高权限</p><p>枚举值：</p><ul><li>NO_PERMISSIONS： 无权限</li><li>CAN_VIEW： 只读权限</li><li>CAN_MANAGE： 管理权限</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Privilege: String
 
-        attr_accessor :WorkflowId, :Owner, :OwnerId, :ProjectId, :ProjectIdent, :ProjectName, :WorkflowDesc, :WorkflowName, :FolderId, :SparkParams, :Tasks, :Links, :Params, :WorkflowType, :UpdateUser, :UpdateUserId, :BundleId, :BundleInfo, :ExecuteUserUin, :ExecuteUserName
+        attr_accessor :WorkflowId, :Owner, :OwnerId, :ProjectId, :ProjectIdent, :ProjectName, :WorkflowDesc, :WorkflowName, :FolderId, :SparkParams, :Tasks, :Links, :Params, :WorkflowType, :UpdateUser, :UpdateUserId, :BundleId, :BundleInfo, :ExecuteUserUin, :ExecuteUserName, :Privilege
 
-        def initialize(workflowid=nil, owner=nil, ownerid=nil, projectid=nil, projectident=nil, projectname=nil, workflowdesc=nil, workflowname=nil, folderid=nil, sparkparams=nil, tasks=nil, links=nil, params=nil, workflowtype=nil, updateuser=nil, updateuserid=nil, bundleid=nil, bundleinfo=nil, executeuseruin=nil, executeusername=nil)
+        def initialize(workflowid=nil, owner=nil, ownerid=nil, projectid=nil, projectident=nil, projectname=nil, workflowdesc=nil, workflowname=nil, folderid=nil, sparkparams=nil, tasks=nil, links=nil, params=nil, workflowtype=nil, updateuser=nil, updateuserid=nil, bundleid=nil, bundleinfo=nil, executeuseruin=nil, executeusername=nil, privilege=nil)
           @WorkflowId = workflowid
           @Owner = owner
           @OwnerId = ownerid
@@ -44815,6 +44831,7 @@ module TencentCloud
           @BundleInfo = bundleinfo
           @ExecuteUserUin = executeuseruin
           @ExecuteUserName = executeusername
+          @Privilege = privilege
         end
 
         def deserialize(params)
@@ -44859,6 +44876,7 @@ module TencentCloud
           @BundleInfo = params['BundleInfo']
           @ExecuteUserUin = params['ExecuteUserUin']
           @ExecuteUserName = params['ExecuteUserName']
+          @Privilege = params['Privilege']
         end
       end
 
@@ -44919,10 +44937,13 @@ module TencentCloud
         # @param NestedBySpTaskIds: <p>引用该手动工作流的嵌套工作流任务ID列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NestedBySpTaskIds: Array
+        # @param Privilege: <p>权限</p><p>枚举值：</p><ul><li>CAN_MANAGE： 可管理</li><li>CAN_VIEW： 可见</li><li>NO_PERMISSION： 无权限</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Privilege: String
 
-        attr_accessor :TaskCount, :FolderName, :WorkFlowId, :Owner, :OwnerId, :ProjectId, :ProjectIdent, :ProjectName, :WorkFlowDesc, :WorkFlowName, :FolderId, :Status, :CreateTime, :ModifyTime, :ModifyUser, :WorkflowType, :BundleId, :BundleInfo, :NestedBySpTaskIds
+        attr_accessor :TaskCount, :FolderName, :WorkFlowId, :Owner, :OwnerId, :ProjectId, :ProjectIdent, :ProjectName, :WorkFlowDesc, :WorkFlowName, :FolderId, :Status, :CreateTime, :ModifyTime, :ModifyUser, :WorkflowType, :BundleId, :BundleInfo, :NestedBySpTaskIds, :Privilege
 
-        def initialize(taskcount=nil, foldername=nil, workflowid=nil, owner=nil, ownerid=nil, projectid=nil, projectident=nil, projectname=nil, workflowdesc=nil, workflowname=nil, folderid=nil, status=nil, createtime=nil, modifytime=nil, modifyuser=nil, workflowtype=nil, bundleid=nil, bundleinfo=nil, nestedbysptaskids=nil)
+        def initialize(taskcount=nil, foldername=nil, workflowid=nil, owner=nil, ownerid=nil, projectid=nil, projectident=nil, projectname=nil, workflowdesc=nil, workflowname=nil, folderid=nil, status=nil, createtime=nil, modifytime=nil, modifyuser=nil, workflowtype=nil, bundleid=nil, bundleinfo=nil, nestedbysptaskids=nil, privilege=nil)
           @TaskCount = taskcount
           @FolderName = foldername
           @WorkFlowId = workflowid
@@ -44942,6 +44963,7 @@ module TencentCloud
           @BundleId = bundleid
           @BundleInfo = bundleinfo
           @NestedBySpTaskIds = nestedbysptaskids
+          @Privilege = privilege
         end
 
         def deserialize(params)
@@ -44964,6 +44986,7 @@ module TencentCloud
           @BundleId = params['BundleId']
           @BundleInfo = params['BundleInfo']
           @NestedBySpTaskIds = params['NestedBySpTaskIds']
+          @Privilege = params['Privilege']
         end
       end
 
@@ -44998,85 +45021,88 @@ module TencentCloud
 
       # 工作流调度信息
       class WorkflowScheduleDtoDs < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目ID
+        # @param ProjectId: <p>项目ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectId: String
-        # @param WorkflowId: 工作流ID
+        # @param WorkflowId: <p>工作流ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkflowId: String
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
-        # @param Creater: 创建人
+        # @param Creater: <p>创建人</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Creater: String
-        # @param ModifyTime: 修改时间
+        # @param ModifyTime: <p>修改时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifyTime: String
-        # @param DelayTime: 延迟时间
+        # @param DelayTime: <p>延迟时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DelayTime: Integer
-        # @param StartupTime: 启动时间
+        # @param StartupTime: <p>启动时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartupTime: Integer
-        # @param SelfDepend: 任务依赖
+        # @param SelfDepend: <p>任务依赖</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SelfDepend: String
-        # @param StartTime: 开始时间
+        # @param StartTime: <p>开始时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
-        # @param EndTime: 结束时间
+        # @param EndTime: <p>结束时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
-        # @param TaskAction: 指定运行时间
+        # @param TaskAction: <p>指定运行时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskAction: String
-        # @param CycleType: 调度周期时间单位
+        # @param CycleType: <p>调度周期时间单位</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CycleType: String
-        # @param CycleStep: 调度周期
+        # @param CycleStep: <p>调度周期</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CycleStep: Integer
-        # @param CrontabExpression: Cron表达式
+        # @param CrontabExpression: <p>Cron表达式</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CrontabExpression: String
-        # @param ExecutionStartTime: 执行时间左闭区间
+        # @param ExecutionStartTime: <p>执行时间左闭区间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecutionStartTime: String
-        # @param ExecutionEndTime: 执行时间右闭区间
+        # @param ExecutionEndTime: <p>执行时间右闭区间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecutionEndTime: String
-        # @param InstanceInitStrategy: 实例初始化策略
+        # @param InstanceInitStrategy: <p>实例初始化策略</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceInitStrategy: String
-        # @param DependencyWorkflow: 工作流依赖
+        # @param DependencyWorkflow: <p>工作流依赖</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DependencyWorkflow: String
-        # @param SchedulerDesc: 调度计划
+        # @param SchedulerDesc: <p>调度计划</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SchedulerDesc: String
-        # @param FirstSubmitTime: 工作流首次提交时间
+        # @param FirstSubmitTime: <p>工作流首次提交时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FirstSubmitTime: String
-        # @param LatestSubmitTime: 工作流最近提交时间
+        # @param LatestSubmitTime: <p>工作流最近提交时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LatestSubmitTime: String
-        # @param CalendarOpen: 日历调度是否开启
+        # @param CalendarOpen: <p>日历调度是否开启</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CalendarOpen: String
-        # @param CalendarName: 日历调度名称
+        # @param CalendarName: <p>日历调度名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CalendarName: String
-        # @param CalendarId: 日历调度id
+        # @param CalendarId: <p>日历调度id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CalendarId: String
-        # @param ScheduleTimeZone: 时区配置
+        # @param ScheduleTimeZone: <p>时区配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScheduleTimeZone: String
+        # @param Privilege: <p>用户对该资源的最高权限</p><p>枚举值：</p><ul><li>NO_PERMISSIONS： 无权限</li><li>CAN_VIEW： 只读权限</li><li>CAN_MANAGE： 管理权限</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Privilege: String
 
-        attr_accessor :ProjectId, :WorkflowId, :CreateTime, :Creater, :ModifyTime, :DelayTime, :StartupTime, :SelfDepend, :StartTime, :EndTime, :TaskAction, :CycleType, :CycleStep, :CrontabExpression, :ExecutionStartTime, :ExecutionEndTime, :InstanceInitStrategy, :DependencyWorkflow, :SchedulerDesc, :FirstSubmitTime, :LatestSubmitTime, :CalendarOpen, :CalendarName, :CalendarId, :ScheduleTimeZone
+        attr_accessor :ProjectId, :WorkflowId, :CreateTime, :Creater, :ModifyTime, :DelayTime, :StartupTime, :SelfDepend, :StartTime, :EndTime, :TaskAction, :CycleType, :CycleStep, :CrontabExpression, :ExecutionStartTime, :ExecutionEndTime, :InstanceInitStrategy, :DependencyWorkflow, :SchedulerDesc, :FirstSubmitTime, :LatestSubmitTime, :CalendarOpen, :CalendarName, :CalendarId, :ScheduleTimeZone, :Privilege
 
-        def initialize(projectid=nil, workflowid=nil, createtime=nil, creater=nil, modifytime=nil, delaytime=nil, startuptime=nil, selfdepend=nil, starttime=nil, endtime=nil, taskaction=nil, cycletype=nil, cyclestep=nil, crontabexpression=nil, executionstarttime=nil, executionendtime=nil, instanceinitstrategy=nil, dependencyworkflow=nil, schedulerdesc=nil, firstsubmittime=nil, latestsubmittime=nil, calendaropen=nil, calendarname=nil, calendarid=nil, scheduletimezone=nil)
+        def initialize(projectid=nil, workflowid=nil, createtime=nil, creater=nil, modifytime=nil, delaytime=nil, startuptime=nil, selfdepend=nil, starttime=nil, endtime=nil, taskaction=nil, cycletype=nil, cyclestep=nil, crontabexpression=nil, executionstarttime=nil, executionendtime=nil, instanceinitstrategy=nil, dependencyworkflow=nil, schedulerdesc=nil, firstsubmittime=nil, latestsubmittime=nil, calendaropen=nil, calendarname=nil, calendarid=nil, scheduletimezone=nil, privilege=nil)
           @ProjectId = projectid
           @WorkflowId = workflowid
           @CreateTime = createtime
@@ -45102,6 +45128,7 @@ module TencentCloud
           @CalendarName = calendarname
           @CalendarId = calendarid
           @ScheduleTimeZone = scheduletimezone
+          @Privilege = privilege
         end
 
         def deserialize(params)
@@ -45130,6 +45157,7 @@ module TencentCloud
           @CalendarName = params['CalendarName']
           @CalendarId = params['CalendarId']
           @ScheduleTimeZone = params['ScheduleTimeZone']
+          @Privilege = params['Privilege']
         end
       end
 

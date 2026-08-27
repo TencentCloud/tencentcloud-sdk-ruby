@@ -455,13 +455,13 @@ module TencentCloud
 
       # 通用筛选条件
       class CommonFilter < TencentCloud::Common::AbstractModel
-        # @param Name: <p>筛选字段名。支持：SecurityGroupId、FwGroupId、IP（IP地址模糊搜索）、InstanceName（实例名称模糊搜索）、VpcId（VPC ID精确搜索）</p>
+        # @param Name: 筛选字段名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
-        # @param Values: <p>筛选值列表</p>
+        # @param Values: 筛选值列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Values: Array
-        # @param OperatorType: <p>操作类型。1=等于，7=in，9=模糊匹配</p>
+        # @param OperatorType: 操作类型：1-精确匹配 9-模糊匹配
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OperatorType: Integer
 
@@ -522,11 +522,11 @@ module TencentCloud
 
       # CreateEdgeAclRuleGroup请求参数结构体
       class CreateEdgeAclRuleGroupRequest < TencentCloud::Common::AbstractModel
-        # @param GroupName: 规则组名称，长度1-50字符
+        # @param GroupName: <p>规则组名称，长度1-50字符</p>
         # @type GroupName: String
-        # @param Product: 产品类型，固定为 cfw_edge_acl
+        # @param Product: <p>产品类型，固定为 cfw_edge_acl</p>
         # @type Product: String
-        # @param Rules: 规则列表
+        # @param Rules: <p>规则列表</p>
         # @type Rules: Array
 
         attr_accessor :GroupName, :Product, :Rules
@@ -553,7 +553,7 @@ module TencentCloud
 
       # CreateEdgeAclRuleGroup返回参数结构体
       class CreateEdgeAclRuleGroupResponse < TencentCloud::Common::AbstractModel
-        # @param GroupId: 创建的规则组ID
+        # @param GroupId: <p>创建的规则组ID</p>
         # @type GroupId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2448,22 +2448,25 @@ module TencentCloud
 
       # 成员信息
       class MemberInfo < TencentCloud::Common::AbstractModel
-        # @param AppId: 成员AppId
+        # @param AppId: <p>成员AppId</p>
         # @type AppId: String
-        # @param Uin: 成员Uin
+        # @param Uin: <p>成员Uin</p>
         # @type Uin: String
-        # @param Nickname: 成员昵称
+        # @param Nickname: <p>成员昵称</p>
         # @type Nickname: String
-        # @param MemberId: 成员Id
+        # @param MemberId: <p>成员Id</p>
         # @type MemberId: String
+        # @param NodeName: <p>所属部门</p>
+        # @type NodeName: String
 
-        attr_accessor :AppId, :Uin, :Nickname, :MemberId
+        attr_accessor :AppId, :Uin, :Nickname, :MemberId, :NodeName
 
-        def initialize(appid=nil, uin=nil, nickname=nil, memberid=nil)
+        def initialize(appid=nil, uin=nil, nickname=nil, memberid=nil, nodename=nil)
           @AppId = appid
           @Uin = uin
           @Nickname = nickname
           @MemberId = memberid
+          @NodeName = nodename
         end
 
         def deserialize(params)
@@ -2471,6 +2474,7 @@ module TencentCloud
           @Uin = params['Uin']
           @Nickname = params['Nickname']
           @MemberId = params['MemberId']
+          @NodeName = params['NodeName']
         end
       end
 
@@ -3137,59 +3141,67 @@ module TencentCloud
 
       # 集团成员信息
       class OrganMemberItem < TencentCloud::Common::AbstractModel
-        # @param MemberId: 成员 ID
+        # @param MemberId: <p>成员 ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MemberId: String
-        # @param AppId: 成员账号 AppId
+        # @param AppId: <p>成员账号 AppId</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: String
-        # @param Uin: 账号Uin
+        # @param Uin: <p>账号Uin</p>
         # @type Uin: String
-        # @param Nickname: 账号名称
+        # @param Nickname: <p>账号名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Nickname: String
-        # @param SubAccountCount: 子账号数量
+        # @param SubAccountCount: <p>子账号数量</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubAccountCount: Integer
-        # @param NodeName: 所属组织架构节点名称
+        # @param NodeName: <p>所属组织架构节点名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NodeName: String
-        # @param Role: 成员身份：admin-管理员，delegatedAdmin-委派管理员，member-普通成员
+        # @param Role: <p>成员身份：admin-管理员，delegatedAdmin-委派管理员，member-普通成员</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Role: String
-        # @param RoleDisplay: 成员身份显示名称（前端展示用）
+        # @param RoleDisplay: <p>成员身份显示名称（前端展示用）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RoleDisplay: String
-        # @param AccountGroup: 所属账户组
+        # @param AccountGroup: <p>所属账户组</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccountGroup: :class:`Tencentcloud::Fwm.v20250611.models.AccountGroupInfo`
-        # @param CfwManaged: 云防火墙纳管状态：0-未纳管，1-已纳管
+        # @param CfwManaged: <p>云防火墙纳管状态：0-未纳管，1-已纳管</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CfwManaged: Integer
-        # @param CfwShareRole: 云防火墙共享角色：sharer-共享者，user-使用者，none-未设置
+        # @param CfwShareRole: <p>云防火墙共享角色：sharer-共享者，user-使用者，none-未设置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CfwShareRole: String
-        # @param CfwShareRoleDisplay: 云防火墙共享角色显示名称（前端展示用）
+        # @param CfwShareRoleDisplay: <p>云防火墙共享角色显示名称（前端展示用）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CfwShareRoleDisplay: String
-        # @param CfwSharerAppId: 云防火墙共享者 AppId，成员角色为使用者时有值
+        # @param CfwSharerAppId: <p>云防火墙共享者 AppId，成员角色为使用者时有值</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CfwSharerAppId: String
-        # @param CfwInstanceId: 云防火墙计费实例 ID，非空表示已购买云防火墙
+        # @param CfwInstanceId: <p>云防火墙计费实例 ID，非空表示已购买云防火墙</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CfwInstanceId: String
-        # @param PolicyAnalysisEnabled: 策略分析权限：0-关闭，1-开启
+        # @param PolicyAnalysisEnabled: <p>策略分析权限：0-关闭，1-开启</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolicyAnalysisEnabled: Integer
-        # @param MemberCreateTime: 成员加入集团时间
+        # @param MemberCreateTime: <p>成员加入集团时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MemberCreateTime: String
-        # @param JoinType: 账号加入方式
+        # @param JoinType: <p>账号加入方式</p>
         # @type JoinType: String
+        # @param CfwPayStatus: <p>云防火墙套餐状态</p><p>枚举值：</p><ul><li>0： 未购买</li><li>2： 已购买</li><li>3： 试用中</li><li>4： 已过期</li></ul>
+        # @type CfwPayStatus: Integer
+        # @param CfwCapable: <p>是否具备云防火墙使用能力</p>
+        # @type CfwCapable: Integer
+        # @param SgManaged: <p>私有安全组纳管开关， 0:未纳管，1:已纳管</p>
+        # @type SgManaged: Integer
+        # @param IsCfwPostPay: <p>是否是后付费云防版本</p><p>枚举值：</p><ul><li>1： 后付费</li><li>0： 非后付费</li><li>-1： 未知</li></ul>
+        # @type IsCfwPostPay: Integer
 
-        attr_accessor :MemberId, :AppId, :Uin, :Nickname, :SubAccountCount, :NodeName, :Role, :RoleDisplay, :AccountGroup, :CfwManaged, :CfwShareRole, :CfwShareRoleDisplay, :CfwSharerAppId, :CfwInstanceId, :PolicyAnalysisEnabled, :MemberCreateTime, :JoinType
+        attr_accessor :MemberId, :AppId, :Uin, :Nickname, :SubAccountCount, :NodeName, :Role, :RoleDisplay, :AccountGroup, :CfwManaged, :CfwShareRole, :CfwShareRoleDisplay, :CfwSharerAppId, :CfwInstanceId, :PolicyAnalysisEnabled, :MemberCreateTime, :JoinType, :CfwPayStatus, :CfwCapable, :SgManaged, :IsCfwPostPay
 
-        def initialize(memberid=nil, appid=nil, uin=nil, nickname=nil, subaccountcount=nil, nodename=nil, role=nil, roledisplay=nil, accountgroup=nil, cfwmanaged=nil, cfwsharerole=nil, cfwshareroledisplay=nil, cfwsharerappid=nil, cfwinstanceid=nil, policyanalysisenabled=nil, membercreatetime=nil, jointype=nil)
+        def initialize(memberid=nil, appid=nil, uin=nil, nickname=nil, subaccountcount=nil, nodename=nil, role=nil, roledisplay=nil, accountgroup=nil, cfwmanaged=nil, cfwsharerole=nil, cfwshareroledisplay=nil, cfwsharerappid=nil, cfwinstanceid=nil, policyanalysisenabled=nil, membercreatetime=nil, jointype=nil, cfwpaystatus=nil, cfwcapable=nil, sgmanaged=nil, iscfwpostpay=nil)
           @MemberId = memberid
           @AppId = appid
           @Uin = uin
@@ -3207,6 +3219,10 @@ module TencentCloud
           @PolicyAnalysisEnabled = policyanalysisenabled
           @MemberCreateTime = membercreatetime
           @JoinType = jointype
+          @CfwPayStatus = cfwpaystatus
+          @CfwCapable = cfwcapable
+          @SgManaged = sgmanaged
+          @IsCfwPostPay = iscfwpostpay
         end
 
         def deserialize(params)
@@ -3230,6 +3246,10 @@ module TencentCloud
           @PolicyAnalysisEnabled = params['PolicyAnalysisEnabled']
           @MemberCreateTime = params['MemberCreateTime']
           @JoinType = params['JoinType']
+          @CfwPayStatus = params['CfwPayStatus']
+          @CfwCapable = params['CfwCapable']
+          @SgManaged = params['SgManaged']
+          @IsCfwPostPay = params['IsCfwPostPay']
         end
       end
 

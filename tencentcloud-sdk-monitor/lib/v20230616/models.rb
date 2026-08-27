@@ -701,6 +701,76 @@ module TencentCloud
         end
       end
 
+      # CreateDispenseExternalRule请求参数结构体
+      class CreateDispenseExternalRuleRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 规则名称
+        # @type Name: String
+        # @param ExtNamespace: 云监控对外命名空间
+        # @type ExtNamespace: String
+        # @param Producer: 转发目标消信息
+        # @type Producer: :class:`Tencentcloud::Monitor.v20230616.models.Producer`
+        # @param DispenseRegions: 转发部署地域列表
+        # @type DispenseRegions: Array
+        # @param ExtMetrics: 云监控对外指标
+        # @type ExtMetrics: Array
+        # @param Period: 指标统计周期
+        # @type Period: Array
+        # @param DispenseConditions: 转发过滤条件信息
+        # @type DispenseConditions: Array
+
+        attr_accessor :Name, :ExtNamespace, :Producer, :DispenseRegions, :ExtMetrics, :Period, :DispenseConditions
+
+        def initialize(name=nil, extnamespace=nil, producer=nil, dispenseregions=nil, extmetrics=nil, period=nil, dispenseconditions=nil)
+          @Name = name
+          @ExtNamespace = extnamespace
+          @Producer = producer
+          @DispenseRegions = dispenseregions
+          @ExtMetrics = extmetrics
+          @Period = period
+          @DispenseConditions = dispenseconditions
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @ExtNamespace = params['ExtNamespace']
+          unless params['Producer'].nil?
+            @Producer = Producer.new
+            @Producer.deserialize(params['Producer'])
+          end
+          @DispenseRegions = params['DispenseRegions']
+          @ExtMetrics = params['ExtMetrics']
+          @Period = params['Period']
+          unless params['DispenseConditions'].nil?
+            @DispenseConditions = []
+            params['DispenseConditions'].each do |i|
+              dispensecondition_tmp = DispenseCondition.new
+              dispensecondition_tmp.deserialize(i)
+              @DispenseConditions << dispensecondition_tmp
+            end
+          end
+        end
+      end
+
+      # CreateDispenseExternalRule返回参数结构体
+      class CreateDispenseExternalRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RuleId: 转发规则Id
+        # @type RuleId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RuleId, :RequestId
+
+        def initialize(ruleid=nil, requestid=nil)
+          @RuleId = ruleid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateNoticeContentTmpl请求参数结构体
       class CreateNoticeContentTmplRequest < TencentCloud::Common::AbstractModel
         # @param TmplName: <p>模板名称</p>
@@ -802,6 +872,38 @@ module TencentCloud
 
       # DeleteAIWorkbenchTask返回参数结构体
       class DeleteAIWorkbenchTaskResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteDispenseExternalRule请求参数结构体
+      class DeleteDispenseExternalRuleRequest < TencentCloud::Common::AbstractModel
+        # @param RuleIdList: 需要删除的规则Id
+        # @type RuleIdList: Array
+
+        attr_accessor :RuleIdList
+
+        def initialize(ruleidlist=nil)
+          @RuleIdList = ruleidlist
+        end
+
+        def deserialize(params)
+          @RuleIdList = params['RuleIdList']
+        end
+      end
+
+      # DeleteDispenseExternalRule返回参数结构体
+      class DeleteDispenseExternalRuleResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -1283,6 +1385,265 @@ module TencentCloud
         end
       end
 
+      # DescribeDispenseExternalRuleList请求参数结构体
+      class DescribeDispenseExternalRuleListRequest < TencentCloud::Common::AbstractModel
+        # @param Page: 页数
+        # @type Page: Integer
+        # @param PageSize: 页面大小
+        # @type PageSize: Integer
+        # @param DispenseRegions: 转发部署地域
+        # @type DispenseRegions: Array
+        # @param Keyword: 关键字搜索规则名
+        # @type Keyword: String
+
+        attr_accessor :Page, :PageSize, :DispenseRegions, :Keyword
+
+        def initialize(page=nil, pagesize=nil, dispenseregions=nil, keyword=nil)
+          @Page = page
+          @PageSize = pagesize
+          @DispenseRegions = dispenseregions
+          @Keyword = keyword
+        end
+
+        def deserialize(params)
+          @Page = params['Page']
+          @PageSize = params['PageSize']
+          @DispenseRegions = params['DispenseRegions']
+          @Keyword = params['Keyword']
+        end
+      end
+
+      # DescribeDispenseExternalRuleList返回参数结构体
+      class DescribeDispenseExternalRuleListResponse < TencentCloud::Common::AbstractModel
+        # @param RuleList: 指标列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleList: Array
+        # @param TotalCount: 列表大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RuleList, :TotalCount, :RequestId
+
+        def initialize(rulelist=nil, totalcount=nil, requestid=nil)
+          @RuleList = rulelist
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['RuleList'].nil?
+            @RuleList = []
+            params['RuleList'].each do |i|
+              rule_tmp = Rule.new
+              rule_tmp.deserialize(i)
+              @RuleList << rule_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDispenseExternalRule请求参数结构体
+      class DescribeDispenseExternalRuleRequest < TencentCloud::Common::AbstractModel
+        # @param RuleId: 规则id
+        # @type RuleId: Integer
+
+        attr_accessor :RuleId
+
+        def initialize(ruleid=nil)
+          @RuleId = ruleid
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+        end
+      end
+
+      # DescribeDispenseExternalRule返回参数结构体
+      class DescribeDispenseExternalRuleResponse < TencentCloud::Common::AbstractModel
+        # @param Rule: 规则
+        # @type Rule: :class:`Tencentcloud::Monitor.v20230616.models.Rule`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Rule, :RequestId
+
+        def initialize(rule=nil, requestid=nil)
+          @Rule = rule
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Rule'].nil?
+            @Rule = Rule.new
+            @Rule.deserialize(params['Rule'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDispenseRegion请求参数结构体
+      class DescribeDispenseRegionRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeDispenseRegion返回参数结构体
+      class DescribeDispenseRegionResponse < TencentCloud::Common::AbstractModel
+        # @param RegionList: 转发地域列表
+        # @type RegionList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RegionList, :RequestId
+
+        def initialize(regionlist=nil, requestid=nil)
+          @RegionList = regionlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['RegionList'].nil?
+            @RegionList = []
+            params['RegionList'].each do |i|
+              dispenseregion_tmp = DispenseRegion.new
+              dispenseregion_tmp.deserialize(i)
+              @RegionList << dispenseregion_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeExtMetric请求参数结构体
+      class DescribeExtMetricRequest < TencentCloud::Common::AbstractModel
+        # @param ExtNamespace: 对外命名空间
+        # @type ExtNamespace: String
+
+        attr_accessor :ExtNamespace
+
+        def initialize(extnamespace=nil)
+          @ExtNamespace = extnamespace
+        end
+
+        def deserialize(params)
+          @ExtNamespace = params['ExtNamespace']
+        end
+      end
+
+      # DescribeExtMetric返回参数结构体
+      class DescribeExtMetricResponse < TencentCloud::Common::AbstractModel
+        # @param ExtMetricList: 对外指标
+        # @type ExtMetricList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ExtMetricList, :RequestId
+
+        def initialize(extmetriclist=nil, requestid=nil)
+          @ExtMetricList = extmetriclist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ExtMetricList'].nil?
+            @ExtMetricList = []
+            params['ExtMetricList'].each do |i|
+              extmetric_tmp = ExtMetric.new
+              extmetric_tmp.deserialize(i)
+              @ExtMetricList << extmetric_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeExtNamespace请求参数结构体
+      class DescribeExtNamespaceRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeExtNamespace返回参数结构体
+      class DescribeExtNamespaceResponse < TencentCloud::Common::AbstractModel
+        # @param ExtNamespaceList: 对外命名空间列表
+        # @type ExtNamespaceList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ExtNamespaceList, :RequestId
+
+        def initialize(extnamespacelist=nil, requestid=nil)
+          @ExtNamespaceList = extnamespacelist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ExtNamespaceList = params['ExtNamespaceList']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeKafka请求参数结构体
+      class DescribeKafkaRequest < TencentCloud::Common::AbstractModel
+        # @param Brokers: kafka地址
+        # @type Brokers: String
+        # @param DispenseRegions: 转发部署地域列表
+        # @type DispenseRegions: Array
+
+        attr_accessor :Brokers, :DispenseRegions
+
+        def initialize(brokers=nil, dispenseregions=nil)
+          @Brokers = brokers
+          @DispenseRegions = dispenseregions
+        end
+
+        def deserialize(params)
+          @Brokers = params['Brokers']
+          @DispenseRegions = params['DispenseRegions']
+        end
+      end
+
+      # DescribeKafka返回参数结构体
+      class DescribeKafkaResponse < TencentCloud::Common::AbstractModel
+        # @param KafkaConnectivityList: 连通性列表
+        # @type KafkaConnectivityList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :KafkaConnectivityList, :RequestId
+
+        def initialize(kafkaconnectivitylist=nil, requestid=nil)
+          @KafkaConnectivityList = kafkaconnectivitylist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['KafkaConnectivityList'].nil?
+            @KafkaConnectivityList = []
+            params['KafkaConnectivityList'].each do |i|
+              kafkaconnectivity_tmp = KafkaConnectivity.new
+              kafkaconnectivity_tmp.deserialize(i)
+              @KafkaConnectivityList << kafkaconnectivity_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeNoticeContentTmpl请求参数结构体
       class DescribeNoticeContentTmplRequest < TencentCloud::Common::AbstractModel
         # @param PageNumber: 分页数
@@ -1418,6 +1779,109 @@ module TencentCloud
         end
       end
 
+      # 转发过滤条件信息
+      class DispenseCondition < TencentCloud::Common::AbstractModel
+        # @param ExtMetric: 对外指标名
+        # @type ExtMetric: String
+        # @param DispenseFilters: 过滤条件表
+        # @type DispenseFilters: Array
+        # @param ConditionId: 过滤条件id
+        # @type ConditionId: Integer
+
+        attr_accessor :ExtMetric, :DispenseFilters, :ConditionId
+
+        def initialize(extmetric=nil, dispensefilters=nil, conditionid=nil)
+          @ExtMetric = extmetric
+          @DispenseFilters = dispensefilters
+          @ConditionId = conditionid
+        end
+
+        def deserialize(params)
+          @ExtMetric = params['ExtMetric']
+          unless params['DispenseFilters'].nil?
+            @DispenseFilters = []
+            params['DispenseFilters'].each do |i|
+              dispensefilter_tmp = DispenseFilter.new
+              dispensefilter_tmp.deserialize(i)
+              @DispenseFilters << dispensefilter_tmp
+            end
+          end
+          @ConditionId = params['ConditionId']
+        end
+      end
+
+      # 过滤表
+      class DispenseFilter < TencentCloud::Common::AbstractModel
+        # @param Key: 维度名称
+        # @type Key: String
+        # @param Values: 维度值列表
+        # @type Values: Array
+        # @param Expression: 表示式
+        # @type Expression: String
+
+        attr_accessor :Key, :Values, :Expression
+
+        def initialize(key=nil, values=nil, expression=nil)
+          @Key = key
+          @Values = values
+          @Expression = expression
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Values = params['Values']
+          @Expression = params['Expression']
+        end
+      end
+
+      # 全局维度
+      class DispenseGlobalTag < TencentCloud::Common::AbstractModel
+        # @param Key: 维度key
+        # @type Key: String
+        # @param Value: 维度值
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
+      # 转发地域信息
+      class DispenseRegion < TencentCloud::Common::AbstractModel
+        # @param Region: 地域缩写
+        # @type Region: String
+        # @param RegionCnName: 地域中文名
+        # @type RegionCnName: String
+        # @param RegionEnName: 地域英文名
+        # @type RegionEnName: String
+        # @param RuleNumber: 规则数量
+        # @type RuleNumber: Integer
+
+        attr_accessor :Region, :RegionCnName, :RegionEnName, :RuleNumber
+
+        def initialize(region=nil, regioncnname=nil, regionenname=nil, rulenumber=nil)
+          @Region = region
+          @RegionCnName = regioncnname
+          @RegionEnName = regionenname
+          @RuleNumber = rulenumber
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          @RegionCnName = params['RegionCnName']
+          @RegionEnName = params['RegionEnName']
+          @RuleNumber = params['RuleNumber']
+        end
+      end
+
       # 环境变量entry
       class EnvEntry < TencentCloud::Common::AbstractModel
         # @param Value: <p>环境变量value</p>
@@ -1518,6 +1982,47 @@ module TencentCloud
           @Status = params['Status']
           @Summary = params['Summary']
           @DurationMs = params['DurationMs']
+        end
+      end
+
+      # 对外指标
+      class ExtMetric < TencentCloud::Common::AbstractModel
+        # @param MetricName: 指标名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetricName: String
+        # @param MetricCName: 中文指标名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetricCName: String
+        # @param CNMeaning: 中文含义
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CNMeaning: String
+        # @param EnMeaning: 英文含义
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnMeaning: String
+        # @param Unit: 单位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Unit: String
+        # @param DimensionFlag: 是否配置对外维度
+        # @type DimensionFlag: Boolean
+
+        attr_accessor :MetricName, :MetricCName, :CNMeaning, :EnMeaning, :Unit, :DimensionFlag
+
+        def initialize(metricname=nil, metriccname=nil, cnmeaning=nil, enmeaning=nil, unit=nil, dimensionflag=nil)
+          @MetricName = metricname
+          @MetricCName = metriccname
+          @CNMeaning = cnmeaning
+          @EnMeaning = enmeaning
+          @Unit = unit
+          @DimensionFlag = dimensionflag
+        end
+
+        def deserialize(params)
+          @MetricName = params['MetricName']
+          @MetricCName = params['MetricCName']
+          @CNMeaning = params['CNMeaning']
+          @EnMeaning = params['EnMeaning']
+          @Unit = params['Unit']
+          @DimensionFlag = params['DimensionFlag']
         end
       end
 
@@ -1680,6 +2185,26 @@ module TencentCloud
           @CoreTruths = params['CoreTruths']
           @Vibe = params['Vibe']
           @Boundaries = params['Boundaries']
+        end
+      end
+
+      # kafka连通性
+      class KafkaConnectivity < TencentCloud::Common::AbstractModel
+        # @param Region: 地域
+        # @type Region: String
+        # @param Result: 连通
+        # @type Result: Boolean
+
+        attr_accessor :Region, :Result
+
+        def initialize(region=nil, result=nil)
+          @Region = region
+          @Result = result
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          @Result = params['Result']
         end
       end
 
@@ -2502,6 +3027,112 @@ module TencentCloud
         end
       end
 
+      # ModifyDispenseExternalRule请求参数结构体
+      class ModifyDispenseExternalRuleRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 规则名称
+        # @type Name: String
+        # @param ExtNamespace: 云监控对外命名空间
+        # @type ExtNamespace: String
+        # @param Producer: 转发目标消信息
+        # @type Producer: :class:`Tencentcloud::Monitor.v20230616.models.Producer`
+        # @param RuleId: 规则ID
+        # @type RuleId: Integer
+        # @param DispenseRegions: 转发部署地域列表
+        # @type DispenseRegions: Array
+        # @param ExtMetrics: 云监控对外指标
+        # @type ExtMetrics: Array
+        # @param Period: 指标统计周期
+        # @type Period: Array
+        # @param DispenseConditions: 转发过滤信息
+        # @type DispenseConditions: Array
+
+        attr_accessor :Name, :ExtNamespace, :Producer, :RuleId, :DispenseRegions, :ExtMetrics, :Period, :DispenseConditions
+
+        def initialize(name=nil, extnamespace=nil, producer=nil, ruleid=nil, dispenseregions=nil, extmetrics=nil, period=nil, dispenseconditions=nil)
+          @Name = name
+          @ExtNamespace = extnamespace
+          @Producer = producer
+          @RuleId = ruleid
+          @DispenseRegions = dispenseregions
+          @ExtMetrics = extmetrics
+          @Period = period
+          @DispenseConditions = dispenseconditions
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @ExtNamespace = params['ExtNamespace']
+          unless params['Producer'].nil?
+            @Producer = Producer.new
+            @Producer.deserialize(params['Producer'])
+          end
+          @RuleId = params['RuleId']
+          @DispenseRegions = params['DispenseRegions']
+          @ExtMetrics = params['ExtMetrics']
+          @Period = params['Period']
+          unless params['DispenseConditions'].nil?
+            @DispenseConditions = []
+            params['DispenseConditions'].each do |i|
+              dispensecondition_tmp = DispenseCondition.new
+              dispensecondition_tmp.deserialize(i)
+              @DispenseConditions << dispensecondition_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyDispenseExternalRule返回参数结构体
+      class ModifyDispenseExternalRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyDispenseExternalRuleStatus请求参数结构体
+      class ModifyDispenseExternalRuleStatusRequest < TencentCloud::Common::AbstractModel
+        # @param RuleIdList: 规则id列表
+        # @type RuleIdList: Array
+        # @param Status: 状态
+        # @type Status: Integer
+
+        attr_accessor :RuleIdList, :Status
+
+        def initialize(ruleidlist=nil, status=nil)
+          @RuleIdList = ruleidlist
+          @Status = status
+        end
+
+        def deserialize(params)
+          @RuleIdList = params['RuleIdList']
+          @Status = params['Status']
+        end
+      end
+
+      # ModifyDispenseExternalRuleStatus返回参数结构体
+      class ModifyDispenseExternalRuleStatusResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyNoticeContentTmpl请求参数结构体
       class ModifyNoticeContentTmplRequest < TencentCloud::Common::AbstractModel
         # @param TmplName: 模板名称
@@ -2955,6 +3586,65 @@ module TencentCloud
         end
       end
 
+      # 转发目标对象信息
+      class Producer < TencentCloud::Common::AbstractModel
+        # @param ProtocolType: 转发协议类型，0-stormRetPb, 1-tcbDispensePb, 2-stormRetJson, 3-ADPPb(废弃)，4-中台pb
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProtocolType: Integer
+        # @param Type: 目标类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Brokers: 转发kafka地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Brokers: String
+        # @param Topic: 转发kafka topic
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Topic: String
+        # @param Merge: 是否合并指标,默认是1，合并
+        # @type Merge: Integer
+        # @param GlobalTags: 全局维度组
+        # @type GlobalTags: Array
+        # @param DefaultTags: 默认维度组，只提供维度即可
+        # @type DefaultTags: Array
+        # @param Username: Kafka用户名
+        # @type Username: String
+        # @param Password: Kafka密码
+        # @type Password: String
+
+        attr_accessor :ProtocolType, :Type, :Brokers, :Topic, :Merge, :GlobalTags, :DefaultTags, :Username, :Password
+
+        def initialize(protocoltype=nil, type=nil, brokers=nil, topic=nil, merge=nil, globaltags=nil, defaulttags=nil, username=nil, password=nil)
+          @ProtocolType = protocoltype
+          @Type = type
+          @Brokers = brokers
+          @Topic = topic
+          @Merge = merge
+          @GlobalTags = globaltags
+          @DefaultTags = defaulttags
+          @Username = username
+          @Password = password
+        end
+
+        def deserialize(params)
+          @ProtocolType = params['ProtocolType']
+          @Type = params['Type']
+          @Brokers = params['Brokers']
+          @Topic = params['Topic']
+          @Merge = params['Merge']
+          unless params['GlobalTags'].nil?
+            @GlobalTags = []
+            params['GlobalTags'].each do |i|
+              dispenseglobaltag_tmp = DispenseGlobalTag.new
+              dispenseglobaltag_tmp.deserialize(i)
+              @GlobalTags << dispenseglobaltag_tmp
+            end
+          end
+          @DefaultTags = params['DefaultTags']
+          @Username = params['Username']
+          @Password = params['Password']
+        end
+      end
+
       # 官网通知内容模板
       class QCloudYeheNoticeTmpl < TencentCloud::Common::AbstractModel
         # @param Email: 邮件通知渠道
@@ -3149,6 +3839,77 @@ module TencentCloud
           @Name = params['Name']
           @Description = params['Description']
           @InstanceCount = params['InstanceCount']
+        end
+      end
+
+      # 转发规则
+      class Rule < TencentCloud::Common::AbstractModel
+        # @param RuleId: 规则Id
+        # @type RuleId: Integer
+        # @param Name: 规则名称
+        # @type Name: String
+        # @param ExtNamespace: 对外namespace
+        # @type ExtNamespace: String
+        # @param ExtMetric: 对外指标列表
+        # @type ExtMetric: Array
+        # @param Producer: 输出信息
+        # @type Producer: :class:`Tencentcloud::Monitor.v20230616.models.Producer`
+        # @param UpdateTime: 更新时间
+        # @type UpdateTime: Integer
+        # @param Status: 规则触发状态
+        # @type Status: Integer
+        # @param Period: 指标粒度周期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Period: Array
+        # @param DispenseConditions: 转发过滤条件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DispenseConditions: Array
+        # @param DispenseRegions: 转发地域列表
+        # @type DispenseRegions: Array
+
+        attr_accessor :RuleId, :Name, :ExtNamespace, :ExtMetric, :Producer, :UpdateTime, :Status, :Period, :DispenseConditions, :DispenseRegions
+
+        def initialize(ruleid=nil, name=nil, extnamespace=nil, extmetric=nil, producer=nil, updatetime=nil, status=nil, period=nil, dispenseconditions=nil, dispenseregions=nil)
+          @RuleId = ruleid
+          @Name = name
+          @ExtNamespace = extnamespace
+          @ExtMetric = extmetric
+          @Producer = producer
+          @UpdateTime = updatetime
+          @Status = status
+          @Period = period
+          @DispenseConditions = dispenseconditions
+          @DispenseRegions = dispenseregions
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+          @Name = params['Name']
+          @ExtNamespace = params['ExtNamespace']
+          unless params['ExtMetric'].nil?
+            @ExtMetric = []
+            params['ExtMetric'].each do |i|
+              extmetric_tmp = ExtMetric.new
+              extmetric_tmp.deserialize(i)
+              @ExtMetric << extmetric_tmp
+            end
+          end
+          unless params['Producer'].nil?
+            @Producer = Producer.new
+            @Producer.deserialize(params['Producer'])
+          end
+          @UpdateTime = params['UpdateTime']
+          @Status = params['Status']
+          @Period = params['Period']
+          unless params['DispenseConditions'].nil?
+            @DispenseConditions = []
+            params['DispenseConditions'].each do |i|
+              dispensecondition_tmp = DispenseCondition.new
+              dispensecondition_tmp.deserialize(i)
+              @DispenseConditions << dispensecondition_tmp
+            end
+          end
+          @DispenseRegions = params['DispenseRegions']
         end
       end
 

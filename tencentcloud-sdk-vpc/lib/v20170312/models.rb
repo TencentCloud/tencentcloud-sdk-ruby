@@ -12560,14 +12560,13 @@ module TencentCloud
 
       # DescribeHaVips请求参数结构体
       class DescribeHaVipsRequest < TencentCloud::Common::AbstractModel
-        # @param HaVipIds: `HAVIP`唯一`ID`，形如：`havip-9o233uri`。
+        # @param HaVipIds: <p><code>HAVIP</code>唯一<code>ID</code>，形如：<code>havip-9o233uri</code>。</p>
         # @type HaVipIds: Array
-        # @param Filters: 过滤条件，参数不支持同时指定`HaVipIds`和`Filters`。<li>havip-id - String - `HAVIP`唯一`ID`，形如：`havip-9o233uri`。</li><li>havip-name - String - `HAVIP`名称。</li><li>vpc-id - String - `HAVIP`所在私有网络`ID`。</li><li>subnet-id - String - `HAVIP`所在子网`ID`。</li><li>vip - String - `HAVIP`的地址`VIP`。</li><li>address-ip - String - `HAVIP`绑定的弹性公网`IP`。</li><li>havip-association.instance-id - String - `HAVIP`绑定的子机或网卡。</li><li>havip-association.instance-type - String - `HAVIP`绑定的类型，取值:CVM, ENI。</li><li>check-associate - Bool - 是否开启HaVip飘移时校验绑定的子机或网卡。</li><li>cdc-id - String - CDC实例ID。</li>
-        # <li>type- String - HAVIP类型。取值: NORMAL(普通); GWLB(网关负载均衡); OPTIMIZATION(优化模式)。</li>
+        # @param Filters: <p>过滤条件，参数不支持同时指定<code>HaVipIds</code>和<code>Filters</code>。Filter 数量限制为10个，以及单Filter 的value值限制为5个。<li>havip-id - String - <code>HAVIP</code>唯一<code>ID</code>，形如：<code>havip-9o233uri</code>。</li><li>havip-name - String - <code>HAVIP</code>名称。</li><li>vpc-id - String - <code>HAVIP</code>所在私有网络<code>ID</code>。</li><li>subnet-id - String - <code>HAVIP</code>所在子网<code>ID</code>。</li><li>vip - String - <code>HAVIP</code>的地址<code>VIP</code>。</li><li>address-ip - String - <code>HAVIP</code>绑定的弹性公网<code>IP</code>。</li><li>havip-association.instance-id - String - <code>HAVIP</code>绑定的子机或网卡。</li><li>havip-association.instance-type - String - <code>HAVIP</code>绑定的类型，取值:CVM, ENI。</li><li>check-associate - Bool - 是否开启HaVip飘移时校验绑定的子机或网卡。</li><li>cdc-id - String - CDC实例ID。</li></p><li>type - String - HAVIP类型。取值: NORMAL(普通); GWLB(网关负载均衡); OPTIMIZATION(优化模式)。</li><li>termination-protection - String - 删除保护。取值: true; false。</li><li>traffic-protection - String - 流量保护。取值: true; false。</li>
         # @type Filters: Array
-        # @param Offset: 偏移量，默认为0。
+        # @param Offset: <p>偏移量，默认为0。</p>
         # @type Offset: Integer
-        # @param Limit: 返回数量，默认为20，最大值为100。
+        # @param Limit: <p>返回数量，默认为20，最大值为100。</p>
         # @type Limit: Integer
 
         attr_accessor :HaVipIds, :Filters, :Offset, :Limit
@@ -12596,9 +12595,9 @@ module TencentCloud
 
       # DescribeHaVips返回参数结构体
       class DescribeHaVipsResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 符合条件的对象数。
+        # @param TotalCount: <p>符合条件的对象数。</p>
         # @type TotalCount: Integer
-        # @param HaVipSet: `HAVIP`对象数组。
+        # @param HaVipSet: <p><code>HAVIP</code>对象数组。</p>
         # @type HaVipSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -19805,39 +19804,37 @@ module TencentCloud
 
       # 描述 HAVIP 信息
       class HaVip < TencentCloud::Common::AbstractModel
-        # @param HaVipId: `HAVIP`的`ID`，是`HAVIP`的唯一标识。
+        # @param HaVipId: <p><code>HAVIP</code>的<code>ID</code>，是<code>HAVIP</code>的唯一标识。</p>
         # @type HaVipId: String
-        # @param HaVipName: `HAVIP`名称。
+        # @param HaVipName: <p><code>HAVIP</code>名称。</p>
         # @type HaVipName: String
-        # @param Vip: 虚拟IP地址。
+        # @param Vip: <p>虚拟IP地址。</p>
         # @type Vip: String
-        # @param VpcId: `HAVIP`所在私有网络`ID`。
+        # @param VpcId: <p><code>HAVIP</code>所在私有网络<code>ID</code>。</p>
         # @type VpcId: String
-        # @param SubnetId: `HAVIP`所在子网`ID`。
+        # @param SubnetId: <p><code>HAVIP</code>所在子网<code>ID</code>。</p>
         # @type SubnetId: String
-        # @param NetworkInterfaceId: `HAVIP`关联弹性网卡`ID`。
+        # @param NetworkInterfaceId: <p><code>HAVIP</code>关联弹性网卡<code>ID</code>。</p>
         # @type NetworkInterfaceId: String
-        # @param InstanceId: 被绑定的实例`ID`。
+        # @param InstanceId: <p>被绑定的实例<code>ID</code>。</p>
         # @type InstanceId: String
-        # @param AddressIp: 绑定`EIP`。
+        # @param AddressIp: <p>绑定<code>EIP</code>。</p>
         # @type AddressIp: String
-        # @param State: 状态：
-        # <li>`AVAILABLE`：运行中</li>
-        # <li>`UNBIND`：未绑定</li>
+        # @param State: <p>状态：</p><li><code>AVAILABLE</code>：运行中</li><li><code>UNBIND</code>：未绑定</li>
         # @type State: String
-        # @param CreatedTime: 创建时间。
+        # @param CreatedTime: <p>创建时间。</p>
         # @type CreatedTime: String
-        # @param Business: 使用havip的业务标识。
+        # @param Business: <p>使用havip的业务标识。</p>
         # @type Business: String
-        # @param HaVipAssociationSet: `HAVIP`的飘移范围。
+        # @param HaVipAssociationSet: <p><code>HAVIP</code>的飘移范围。</p>
         # @type HaVipAssociationSet: Array
-        # @param CheckAssociate: 是否开启`HAVIP`的漂移范围校验。
+        # @param CheckAssociate: <p>是否开启<code>HAVIP</code>的漂移范围校验。</p>
         # @type CheckAssociate: Boolean
-        # @param CdcId: CDC实例ID。
+        # @param CdcId: <p>CDC实例ID。</p>
         # @type CdcId: String
-        # @param FlushedTime: HAVIP 刷新时间。该参数只作为出参数。以下场景会触发FlushedTime 被刷新：1）子机发出免费 ARP 触发 HAVIP 漂移；2）手动HAVIP解绑网卡; 没有更新时默认值：0000-00-00 00:00:00
+        # @param FlushedTime: <p>HAVIP 刷新时间。该参数只作为出参数。以下场景会触发FlushedTime 被刷新：1）子机发出免费 ARP 触发 HAVIP 漂移；2）手动HAVIP解绑网卡; 没有更新时默认值：0000-00-00 00:00:00</p>
         # @type FlushedTime: String
-        # @param TagSet: 标签键值对。
+        # @param TagSet: <p>标签键值对。</p>
         # @type TagSet: Array
 
         attr_accessor :HaVipId, :HaVipName, :Vip, :VpcId, :SubnetId, :NetworkInterfaceId, :InstanceId, :AddressIp, :State, :CreatedTime, :Business, :HaVipAssociationSet, :CheckAssociate, :CdcId, :FlushedTime, :TagSet

@@ -2124,10 +2124,12 @@ module TencentCloud
         # @type WebUiVersion: Integer
         # @param EnableCbsSysEncryptFlag: <p>系统盘是否加密</p>
         # @type EnableCbsSysEncryptFlag: Boolean
+        # @param MetaDBGroupInfo: <p>自定义metadb数据</p>
+        # @type MetaDBGroupInfo: Array
 
-        attr_accessor :ProductVersion, :EnableSupportHAFlag, :InstanceName, :InstanceChargeType, :LoginSettings, :SceneSoftwareConfig, :InstanceChargePrepaid, :SecurityGroupIds, :ScriptBootstrapActionConfig, :ClientToken, :NeedMasterWan, :EnableRemoteLoginFlag, :EnableKerberosFlag, :CustomConf, :Tags, :DisasterRecoverGroupIds, :EnableCbsEncryptFlag, :MetaDBInfo, :DependService, :ZoneResourceConfiguration, :CosBucket, :NodeMarks, :LoadBalancerId, :DefaultMetaVersion, :NeedCdbAudit, :SgIP, :PartitionNumber, :WebUiVersion, :EnableCbsSysEncryptFlag
+        attr_accessor :ProductVersion, :EnableSupportHAFlag, :InstanceName, :InstanceChargeType, :LoginSettings, :SceneSoftwareConfig, :InstanceChargePrepaid, :SecurityGroupIds, :ScriptBootstrapActionConfig, :ClientToken, :NeedMasterWan, :EnableRemoteLoginFlag, :EnableKerberosFlag, :CustomConf, :Tags, :DisasterRecoverGroupIds, :EnableCbsEncryptFlag, :MetaDBInfo, :DependService, :ZoneResourceConfiguration, :CosBucket, :NodeMarks, :LoadBalancerId, :DefaultMetaVersion, :NeedCdbAudit, :SgIP, :PartitionNumber, :WebUiVersion, :EnableCbsSysEncryptFlag, :MetaDBGroupInfo
 
-        def initialize(productversion=nil, enablesupporthaflag=nil, instancename=nil, instancechargetype=nil, loginsettings=nil, scenesoftwareconfig=nil, instancechargeprepaid=nil, securitygroupids=nil, scriptbootstrapactionconfig=nil, clienttoken=nil, needmasterwan=nil, enableremoteloginflag=nil, enablekerberosflag=nil, customconf=nil, tags=nil, disasterrecovergroupids=nil, enablecbsencryptflag=nil, metadbinfo=nil, dependservice=nil, zoneresourceconfiguration=nil, cosbucket=nil, nodemarks=nil, loadbalancerid=nil, defaultmetaversion=nil, needcdbaudit=nil, sgip=nil, partitionnumber=nil, webuiversion=nil, enablecbssysencryptflag=nil)
+        def initialize(productversion=nil, enablesupporthaflag=nil, instancename=nil, instancechargetype=nil, loginsettings=nil, scenesoftwareconfig=nil, instancechargeprepaid=nil, securitygroupids=nil, scriptbootstrapactionconfig=nil, clienttoken=nil, needmasterwan=nil, enableremoteloginflag=nil, enablekerberosflag=nil, customconf=nil, tags=nil, disasterrecovergroupids=nil, enablecbsencryptflag=nil, metadbinfo=nil, dependservice=nil, zoneresourceconfiguration=nil, cosbucket=nil, nodemarks=nil, loadbalancerid=nil, defaultmetaversion=nil, needcdbaudit=nil, sgip=nil, partitionnumber=nil, webuiversion=nil, enablecbssysencryptflag=nil, metadbgroupinfo=nil)
           @ProductVersion = productversion
           @EnableSupportHAFlag = enablesupporthaflag
           @InstanceName = instancename
@@ -2157,6 +2159,7 @@ module TencentCloud
           @PartitionNumber = partitionnumber
           @WebUiVersion = webuiversion
           @EnableCbsSysEncryptFlag = enablecbssysencryptflag
+          @MetaDBGroupInfo = metadbgroupinfo
         end
 
         def deserialize(params)
@@ -2236,6 +2239,14 @@ module TencentCloud
           @PartitionNumber = params['PartitionNumber']
           @WebUiVersion = params['WebUiVersion']
           @EnableCbsSysEncryptFlag = params['EnableCbsSysEncryptFlag']
+          unless params['MetaDBGroupInfo'].nil?
+            @MetaDBGroupInfo = []
+            params['MetaDBGroupInfo'].each do |i|
+              custommetadbinfo_tmp = CustomMetaDBInfo.new
+              custommetadbinfo_tmp.deserialize(i)
+              @MetaDBGroupInfo << custommetadbinfo_tmp
+            end
+          end
         end
       end
 
@@ -5371,6 +5382,49 @@ module TencentCloud
               kyuubiqueryinfo_tmp = KyuubiQueryInfo.new
               kyuubiqueryinfo_tmp.deserialize(i)
               @KyuubiQueryInfoList << kyuubiqueryinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeMetaDBInfo请求参数结构体
+      class DescribeMetaDBInfoRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>集群id</p>
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeMetaDBInfo返回参数结构体
+      class DescribeMetaDBInfoResponse < TencentCloud::Common::AbstractModel
+        # @param MetaDBGroupInfo: <p>自定义db数据</p>
+        # @type MetaDBGroupInfo: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MetaDBGroupInfo, :RequestId
+
+        def initialize(metadbgroupinfo=nil, requestid=nil)
+          @MetaDBGroupInfo = metadbgroupinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['MetaDBGroupInfo'].nil?
+            @MetaDBGroupInfo = []
+            params['MetaDBGroupInfo'].each do |i|
+              custommetadbinfo_tmp = CustomMetaDBInfo.new
+              custommetadbinfo_tmp.deserialize(i)
+              @MetaDBGroupInfo << custommetadbinfo_tmp
             end
           end
           @RequestId = params['RequestId']

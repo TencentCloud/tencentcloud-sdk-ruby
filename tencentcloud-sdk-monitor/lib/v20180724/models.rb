@@ -2542,27 +2542,27 @@ module TencentCloud
 
       # CreateOnCallForm请求参数结构体
       class CreateOnCallFormRequest < TencentCloud::Common::AbstractModel
-        # @param Module: 固定值，为"monitor"
+        # @param Module: <p>固定值，为&quot;monitor&quot;</p>
         # @type Module: String
-        # @param OnCallFormName: 值班表名称
+        # @param OnCallFormName: <p>值班表名称</p>
         # @type OnCallFormName: String
-        # @param StaffInfos: 值班人员id组
+        # @param StaffInfos: <p>值班人员id组</p>
         # @type StaffInfos: Array
-        # @param RotationType: 轮转类型
+        # @param RotationType: <p>轮转类型</p>
         # @type RotationType: String
-        # @param ShiftTime: 换班时间
+        # @param ShiftTime: <p>换班时间</p>
         # @type ShiftTime: String
-        # @param EffectiveStartTime: 有效期开始时间，单位s
+        # @param EffectiveStartTime: <p>有效期开始时间，单位s</p>
         # @type EffectiveStartTime: Integer
-        # @param EffectiveEndTime: 有效期结束时间，单位s
+        # @param EffectiveEndTime: <p>有效期结束时间，单位s</p>
         # @type EffectiveEndTime: Integer
-        # @param TimeZone: 时区(-12 - 12)
+        # @param TimeZone: <p>时区(-12 - 12)</p>
         # @type TimeZone: Float
-        # @param OnCallFormDesc: 值班表描述
+        # @param OnCallFormDesc: <p>值班表描述</p>
         # @type OnCallFormDesc: String
-        # @param CoverStaffInfos: 轮班信息
+        # @param CoverStaffInfos: <p>轮班信息</p>
         # @type CoverStaffInfos: Array
-        # @param Tags: 模板绑定的标签
+        # @param Tags: <p>模板绑定的标签</p>
         # @type Tags: Array
 
         attr_accessor :Module, :OnCallFormName, :StaffInfos, :RotationType, :ShiftTime, :EffectiveStartTime, :EffectiveEndTime, :TimeZone, :OnCallFormDesc, :CoverStaffInfos, :Tags
@@ -2619,7 +2619,7 @@ module TencentCloud
 
       # CreateOnCallForm返回参数结构体
       class CreateOnCallFormResponse < TencentCloud::Common::AbstractModel
-        # @param OnCallFormID: 值班表id
+        # @param OnCallFormID: <p>值班表id</p>
         # @type OnCallFormID: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3827,9 +3827,9 @@ module TencentCloud
 
       # DeleteOnCallForms请求参数结构体
       class DeleteOnCallFormsRequest < TencentCloud::Common::AbstractModel
-        # @param Module: 固定值，为"monitor"
+        # @param Module: <p>固定值，为&quot;monitor&quot;</p>
         # @type Module: String
-        # @param OnCallFormIDs: 要删除的值班表id
+        # @param OnCallFormIDs: <p>要删除的值班表id</p>
         # @type OnCallFormIDs: Array
 
         attr_accessor :Module, :OnCallFormIDs
@@ -3847,9 +3847,9 @@ module TencentCloud
 
       # DeleteOnCallForms返回参数结构体
       class DeleteOnCallFormsResponse < TencentCloud::Common::AbstractModel
-        # @param FailedOnCallFormIDs: 失败删除的排班id
+        # @param FailedOnCallFormIDs: <p>失败删除的排班id</p>
         # @type FailedOnCallFormIDs: Array
-        # @param SuccessOnCallFormIDs: 成功删除的排班id
+        # @param SuccessOnCallFormIDs: <p>成功删除的排班id</p>
         # @type SuccessOnCallFormIDs: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6938,9 +6938,9 @@ module TencentCloud
 
       # DescribeOnCallForm请求参数结构体
       class DescribeOnCallFormRequest < TencentCloud::Common::AbstractModel
-        # @param Module: 固定值，为"monitor"
+        # @param Module: <p>固定值，为&quot;monitor&quot;</p>
         # @type Module: String
-        # @param OnCallFormID: 值班id
+        # @param OnCallFormID: <p>值班id</p>
         # @type OnCallFormID: String
 
         attr_accessor :Module, :OnCallFormID
@@ -6958,7 +6958,7 @@ module TencentCloud
 
       # DescribeOnCallForm返回参数结构体
       class DescribeOnCallFormResponse < TencentCloud::Common::AbstractModel
-        # @param OnCallForm: 值班详情
+        # @param OnCallForm: <p>值班详情</p>
         # @type OnCallForm: :class:`Tencentcloud::Monitor.v20180724.models.OneOnCallForm`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6981,19 +6981,19 @@ module TencentCloud
 
       # DescribeOnCallForms请求参数结构体
       class DescribeOnCallFormsRequest < TencentCloud::Common::AbstractModel
-        # @param Module: 固定值，为"monitor"
+        # @param Module: <p>固定值，为&quot;monitor&quot;</p>
         # @type Module: String
-        # @param Offset: 分页查询起始位
+        # @param Offset: <p>分页查询起始位</p>
         # @type Offset: Integer
-        # @param Limit: 分页查询页数
+        # @param Limit: <p>分页查询页数</p>
         # @type Limit: Integer
-        # @param OnCallFormStaffIDs: 支持userId进行检索
+        # @param OnCallFormStaffIDs: <p>支持userId进行检索</p>
         # @type OnCallFormStaffIDs: Array
-        # @param RotationType: 值班类型
+        # @param RotationType: <p>值班类型</p>
         # @type RotationType: String
-        # @param Order: 排序方式
+        # @param Order: <p>排序方式</p>
         # @type Order: String
-        # @param OnCallFormName: 支持id、name进行检索
+        # @param OnCallFormName: <p>支持id、name进行检索</p>
         # @type OnCallFormName: String
 
         attr_accessor :Module, :Offset, :Limit, :OnCallFormStaffIDs, :RotationType, :Order, :OnCallFormName
@@ -7021,9 +7021,9 @@ module TencentCloud
 
       # DescribeOnCallForms返回参数结构体
       class DescribeOnCallFormsResponse < TencentCloud::Common::AbstractModel
-        # @param OnCallForms: 排班信息
+        # @param OnCallForms: <p>排班信息</p>
         # @type OnCallForms: Array
-        # @param TotalCount: 总数
+        # @param TotalCount: <p>总数</p>
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -17420,27 +17420,27 @@ module TencentCloud
 
       # UpdateOnCallForm请求参数结构体
       class UpdateOnCallFormRequest < TencentCloud::Common::AbstractModel
-        # @param Module: 固定值，为"monitor"
+        # @param Module: <p>固定值，为&quot;monitor&quot;</p>
         # @type Module: String
-        # @param OnCallFormID: 值班表id
+        # @param OnCallFormID: <p>值班表id</p>
         # @type OnCallFormID: String
-        # @param OnCallFormName: 值班表名称
+        # @param OnCallFormName: <p>值班表名称</p>
         # @type OnCallFormName: String
-        # @param StaffInfos: 值班人员id组
+        # @param StaffInfos: <p>值班人员id组</p>
         # @type StaffInfos: Array
-        # @param RotationType: 轮转类型
+        # @param RotationType: <p>轮转类型</p>
         # @type RotationType: String
-        # @param ShiftTime: 换班时间
+        # @param ShiftTime: <p>换班时间</p>
         # @type ShiftTime: String
-        # @param EffectiveStartTime: 有效期开始时间，单位s
+        # @param EffectiveStartTime: <p>有效期开始时间，单位s</p>
         # @type EffectiveStartTime: Integer
-        # @param EffectiveEndTime: 有效期结束时间，单位s
+        # @param EffectiveEndTime: <p>有效期结束时间，单位s</p>
         # @type EffectiveEndTime: Integer
-        # @param TimeZone: 时区(-12 - 12)
+        # @param TimeZone: <p>时区(-12 - 12)</p>
         # @type TimeZone: Float
-        # @param OnCallFormDesc: 值班表描述
+        # @param OnCallFormDesc: <p>值班表描述</p>
         # @type OnCallFormDesc: String
-        # @param CoverStaffInfos: 轮班信息
+        # @param CoverStaffInfos: <p>轮班信息</p>
         # @type CoverStaffInfos: Array
 
         attr_accessor :Module, :OnCallFormID, :OnCallFormName, :StaffInfos, :RotationType, :ShiftTime, :EffectiveStartTime, :EffectiveEndTime, :TimeZone, :OnCallFormDesc, :CoverStaffInfos
@@ -17490,7 +17490,7 @@ module TencentCloud
 
       # UpdateOnCallForm返回参数结构体
       class UpdateOnCallFormResponse < TencentCloud::Common::AbstractModel
-        # @param OnCallFormID: 值班表id
+        # @param OnCallFormID: <p>值班表id</p>
         # @type OnCallFormID: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

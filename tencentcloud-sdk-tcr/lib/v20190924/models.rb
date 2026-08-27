@@ -3760,6 +3760,70 @@ module TencentCloud
         end
       end
 
+      # DescribeReplicationExecutions请求参数结构体
+      class DescribeReplicationExecutionsRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: 实例ID
+        # @type RegistryId: String
+        # @param PolicyId: 策略ID
+        # @type PolicyId: Integer
+        # @param ReplicationInstanceId: 复制实例ID
+        # @type ReplicationInstanceId: String
+        # @param Page: 页数，默认为1
+        # @type Page: Integer
+        # @param PageSize: 每页展示个数，默认为100
+        # @type PageSize: Integer
+
+        attr_accessor :RegistryId, :PolicyId, :ReplicationInstanceId, :Page, :PageSize
+
+        def initialize(registryid=nil, policyid=nil, replicationinstanceid=nil, page=nil, pagesize=nil)
+          @RegistryId = registryid
+          @PolicyId = policyid
+          @ReplicationInstanceId = replicationinstanceid
+          @Page = page
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          @RegistryId = params['RegistryId']
+          @PolicyId = params['PolicyId']
+          @ReplicationInstanceId = params['ReplicationInstanceId']
+          @Page = params['Page']
+          @PageSize = params['PageSize']
+        end
+      end
+
+      # DescribeReplicationExecutions返回参数结构体
+      class DescribeReplicationExecutionsResponse < TencentCloud::Common::AbstractModel
+        # @param ReplicationExecutionList: 镜像分发执行记录列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReplicationExecutionList: Array
+        # @param TotalCount: 执行记录总数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ReplicationExecutionList, :TotalCount, :RequestId
+
+        def initialize(replicationexecutionlist=nil, totalcount=nil, requestid=nil)
+          @ReplicationExecutionList = replicationexecutionlist
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ReplicationExecutionList'].nil?
+            @ReplicationExecutionList = []
+            params['ReplicationExecutionList'].each do |i|
+              replicationexecution_tmp = ReplicationExecution.new
+              replicationexecution_tmp.deserialize(i)
+              @ReplicationExecutionList << replicationexecution_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeReplicationInstanceCreateTasks请求参数结构体
       class DescribeReplicationInstanceCreateTasksRequest < TencentCloud::Common::AbstractModel
         # @param ReplicationRegistryId: 同步实例Id，见实例返回列表中的同步实例ID
@@ -3985,6 +4049,66 @@ module TencentCloud
               replicationpolicyinfo_tmp = ReplicationPolicyInfo.new
               replicationpolicyinfo_tmp.deserialize(i)
               @ReplicationPolicyInfoList << replicationpolicyinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeReplicationTasks请求参数结构体
+      class DescribeReplicationTasksRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: 实例ID
+        # @type RegistryId: String
+        # @param ExecutionId: 执行记录ID
+        # @type ExecutionId: Integer
+        # @param Page: 页数，默认为1
+        # @type Page: Integer
+        # @param PageSize: 每页展示个数，默认为100
+        # @type PageSize: Integer
+
+        attr_accessor :RegistryId, :ExecutionId, :Page, :PageSize
+
+        def initialize(registryid=nil, executionid=nil, page=nil, pagesize=nil)
+          @RegistryId = registryid
+          @ExecutionId = executionid
+          @Page = page
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          @RegistryId = params['RegistryId']
+          @ExecutionId = params['ExecutionId']
+          @Page = params['Page']
+          @PageSize = params['PageSize']
+        end
+      end
+
+      # DescribeReplicationTasks返回参数结构体
+      class DescribeReplicationTasksResponse < TencentCloud::Common::AbstractModel
+        # @param ReplicationTaskList: 任务列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReplicationTaskList: Array
+        # @param TotalCount: 任务列表总数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ReplicationTaskList, :TotalCount, :RequestId
+
+        def initialize(replicationtasklist=nil, totalcount=nil, requestid=nil)
+          @ReplicationTaskList = replicationtasklist
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ReplicationTaskList'].nil?
+            @ReplicationTaskList = []
+            params['ReplicationTaskList'].each do |i|
+              replicationtask_tmp = ReplicationTask.new
+              replicationtask_tmp.deserialize(i)
+              @ReplicationTaskList << replicationtask_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -6987,6 +7111,53 @@ module TencentCloud
         end
       end
 
+      # 策略执行记录
+      class ReplicationExecution < TencentCloud::Common::AbstractModel
+        # @param ExecutionID: 执行记录ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecutionID: Integer
+        # @param PolicyID: 策略ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PolicyID: Integer
+        # @param Status: 执行状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param Total: 执行任务总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param Succeed: 执行任务成功数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Succeed: Integer
+        # @param StartTime: 开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
+
+        attr_accessor :ExecutionID, :PolicyID, :Status, :Total, :Succeed, :StartTime, :EndTime
+
+        def initialize(executionid=nil, policyid=nil, status=nil, total=nil, succeed=nil, starttime=nil, endtime=nil)
+          @ExecutionID = executionid
+          @PolicyID = policyid
+          @Status = status
+          @Total = total
+          @Succeed = succeed
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @ExecutionID = params['ExecutionID']
+          @PolicyID = params['PolicyID']
+          @Status = params['Status']
+          @Total = params['Total']
+          @Succeed = params['Succeed']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
       # 同步规则过滤器
       class ReplicationFilter < TencentCloud::Common::AbstractModel
         # @param Type: 类型（name、tag和resource）
@@ -7184,6 +7355,53 @@ module TencentCloud
             end
           end
           @Deletion = params['Deletion']
+        end
+      end
+
+      # 实例同步/实例复制任务列表
+      class ReplicationTask < TencentCloud::Common::AbstractModel
+        # @param ResourceType: 资源类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceType: String
+        # @param SrcResource: 源资源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SrcResource: String
+        # @param DstResource: 目的资源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DstResource: String
+        # @param JobID: Job任务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JobID: String
+        # @param Status: 任务执行状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param StartTime: 开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
+
+        attr_accessor :ResourceType, :SrcResource, :DstResource, :JobID, :Status, :StartTime, :EndTime
+
+        def initialize(resourcetype=nil, srcresource=nil, dstresource=nil, jobid=nil, status=nil, starttime=nil, endtime=nil)
+          @ResourceType = resourcetype
+          @SrcResource = srcresource
+          @DstResource = dstresource
+          @JobID = jobid
+          @Status = status
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @ResourceType = params['ResourceType']
+          @SrcResource = params['SrcResource']
+          @DstResource = params['DstResource']
+          @JobID = params['JobID']
+          @Status = params['Status']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
         end
       end
 

@@ -5921,6 +5921,161 @@ module TencentCloud
         end
       end
 
+      # HTTPService缓存动作（Type + 具体子字段的标签联合，Type 与被设置的子字段必须一一对应）
+      class HTTPServiceCacheAction < TencentCloud::Common::AbstractModel
+        # @param Type: <p>HTTPService 缓存动作类型</p><p>枚举值：</p><ul><li>Cache： 节点缓存 + 浏览器缓存统一动作（节点秒数 CacheTime、浏览器秒数 MaxAgeTime）</li><li>CacheKey： 仅开启EO边缘加速通道下发</li></ul>
+        # @type Type: String
+        # @param Cache: <p>节点缓存配置。Type=Cache 时必填</p>
+        # @type Cache: :class:`Tencentcloud::Tcb.v20180608.models.HTTPServiceCacheParams`
+        # @param CacheKey: <p>自定义缓存键。Type=CacheKey 时必填</p>
+        # @type CacheKey: :class:`Tencentcloud::Tcb.v20180608.models.HTTPServiceCacheKeyParams`
+
+        attr_accessor :Type, :Cache, :CacheKey
+
+        def initialize(type=nil, cache=nil, cachekey=nil)
+          @Type = type
+          @Cache = cache
+          @CacheKey = cachekey
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          unless params['Cache'].nil?
+            @Cache = HTTPServiceCacheParams.new
+            @Cache.deserialize(params['Cache'])
+          end
+          unless params['CacheKey'].nil?
+            @CacheKey = HTTPServiceCacheKeyParams.new
+            @CacheKey.deserialize(params['CacheKey'])
+          end
+        end
+      end
+
+      # 自定义缓存键参数。约束：FullURLCache=on 与 QueryStringSwitch=on 互斥
+      # 使用示例：
+      # - 整 URL 参与缓存键：{FullURLCache: "on", QueryStringSwitch: "off"}
+      # - URL 路径 + 仅保留 x/y：{FullURLCache: "off", QueryStringSwitch: "on", QueryStringAction: "includeCustom", QueryStringValues: ["x", "y"]}
+      # - URL 路径 + 忽略 debug：{FullURLCache: "off", QueryStringSwitch: "on", QueryStringAction: "excludeCustom", QueryStringValues: ["debug"]}
+      class HTTPServiceCacheKeyParams < TencentCloud::Common::AbstractModel
+        # @param FullURLCache: <p>全 URL 缓存开关</p><p>枚举值：</p><ul><li>on： 开启</li><li>off： 关闭</li></ul>
+        # @type FullURLCache: String
+        # @param QueryStringSwitch: <p>查询参数是否参与缓存键</p><p>枚举值：</p><ul><li>on： 开启</li><li>off： 关闭</li></ul>
+        # @type QueryStringSwitch: String
+        # @param QueryStringAction: <p>QueryStringSwitch=on 时必填</p><p>枚举值：</p><ul><li>includeCustom： 白名单</li><li>excludeCustom： 黑名单</li></ul>
+        # @type QueryStringAction: String
+        # @param QueryStringValues: <p>参数名列表</p><p>入参限制：最多 100 项，单项 1~128 字节</p>
+        # @type QueryStringValues: Array
+
+        attr_accessor :FullURLCache, :QueryStringSwitch, :QueryStringAction, :QueryStringValues
+
+        def initialize(fullurlcache=nil, querystringswitch=nil, querystringaction=nil, querystringvalues=nil)
+          @FullURLCache = fullurlcache
+          @QueryStringSwitch = querystringswitch
+          @QueryStringAction = querystringaction
+          @QueryStringValues = querystringvalues
+        end
+
+        def deserialize(params)
+          @FullURLCache = params['FullURLCache']
+          @QueryStringSwitch = params['QueryStringSwitch']
+          @QueryStringAction = params['QueryStringAction']
+          @QueryStringValues = params['QueryStringValues']
+        end
+      end
+
+      # HTTPService 缓存参数（节点缓存 + 浏览器缓存共用行为模式）。
+      # FollowOrigin / NoCache / (CacheTime||MaxAgeTime) 三者互斥，必须开启其一：
+      # - FollowOrigin=true：节点与浏览器缓存均遵循源站；
+      # - NoCache=true：节点与浏览器缓存均不缓存（Cache-Control: no-cache）；
+      # - CacheTime>0 或 MaxAgeTime>0：至少设置其一，分别控制节点、浏览器缓存秒数，可独立设置。
+      class HTTPServiceCacheParams < TencentCloud::Common::AbstractModel
+        # @param FollowOrigin: <p>遵循源站</p>
+        # @type FollowOrigin: Boolean
+        # @param NoCache: <p>不缓存</p>
+        # @type NoCache: Boolean
+        # @param CacheTime: <p>自定义缓存时间（秒）</p><p>取值范围：[0, 31536000]</p><p>单位：秒</p>
+        # @type CacheTime: Integer
+        # @param MaxAgeTime: <p>浏览器缓存秒数（对应 max-age）</p><p>取值范围：[0, 31536000]</p><p>单位：秒</p>
+        # @type MaxAgeTime: Integer
+
+        attr_accessor :FollowOrigin, :NoCache, :CacheTime, :MaxAgeTime
+
+        def initialize(followorigin=nil, nocache=nil, cachetime=nil, maxagetime=nil)
+          @FollowOrigin = followorigin
+          @NoCache = nocache
+          @CacheTime = cachetime
+          @MaxAgeTime = maxagetime
+        end
+
+        def deserialize(params)
+          @FollowOrigin = params['FollowOrigin']
+          @NoCache = params['NoCache']
+          @CacheTime = params['CacheTime']
+          @MaxAgeTime = params['MaxAgeTime']
+        end
+      end
+
+      # HTTPService 缓存规则条目
+      class HTTPServiceCacheRule < TencentCloud::Common::AbstractModel
+        # @param Description: <p>自定义描述，最多 128 字节</p>
+        # @type Description: String
+        # @param Enable: <p>规则开关：nil/true 启用，false 禁用</p>
+        # @type Enable: Boolean
+        # @param Condition: <p>HTTPService 规则匹配条件（必填）</p>
+        # @type Condition: :class:`Tencentcloud::Tcb.v20180608.models.HTTPServiceRuleCondition`
+        # @param Actions: <p>HTTPService 缓存动作列表，同一规则内相同 Type 至多一个</p>
+        # @type Actions: Array
+
+        attr_accessor :Description, :Enable, :Condition, :Actions
+
+        def initialize(description=nil, enable=nil, condition=nil, actions=nil)
+          @Description = description
+          @Enable = enable
+          @Condition = condition
+          @Actions = actions
+        end
+
+        def deserialize(params)
+          @Description = params['Description']
+          @Enable = params['Enable']
+          unless params['Condition'].nil?
+            @Condition = HTTPServiceRuleCondition.new
+            @Condition.deserialize(params['Condition'])
+          end
+          unless params['Actions'].nil?
+            @Actions = []
+            params['Actions'].each do |i|
+              httpservicecacheaction_tmp = HTTPServiceCacheAction.new
+              httpservicecacheaction_tmp.deserialize(i)
+              @Actions << httpservicecacheaction_tmp
+            end
+          end
+        end
+      end
+
+      # HTTPService 缓存配置（域名维度）
+      class HTTPServiceCacheSet < TencentCloud::Common::AbstractModel
+        # @param Rules: <p>HTTPService 缓存配置列表。Rules 按数组顺序为优先级顺序，Rules[n-1] 优先级最高</p>
+        # @type Rules: Array
+
+        attr_accessor :Rules
+
+        def initialize(rules=nil)
+          @Rules = rules
+        end
+
+        def deserialize(params)
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              httpservicecacherule_tmp = HTTPServiceCacheRule.new
+              httpservicecacherule_tmp.deserialize(i)
+              @Rules << httpservicecacherule_tmp
+            end
+          end
+        end
+      end
+
       # 查询HTTP访问服务输出的域名信息，每个域名内包含所有路由信息
       class HTTPServiceDomain < TencentCloud::Common::AbstractModel
         # @param Domain: <p>域名</p>
@@ -6057,21 +6212,28 @@ module TencentCloud
         end
       end
 
-      # HTTP访问服务路由扩展字段
+      # HTTPService 路由扩展字段
       class HTTPServiceExtension < TencentCloud::Common::AbstractModel
-        # @param HeadersHandler: 添加请求头列表
+        # @param HeadersHandler: <p>添加请求头列表</p>
         # @type HeadersHandler: :class:`Tencentcloud::Tcb.v20180608.models.HTTPServiceHeadersHandler`
+        # @param Cache: <p>HTTPService 缓存配置，包含Cache 节点缓存 / MaxAge 浏览器缓存 / CacheKey 自定义缓存键</p>
+        # @type Cache: :class:`Tencentcloud::Tcb.v20180608.models.HTTPServiceCacheSet`
 
-        attr_accessor :HeadersHandler
+        attr_accessor :HeadersHandler, :Cache
 
-        def initialize(headershandler=nil)
+        def initialize(headershandler=nil, cache=nil)
           @HeadersHandler = headershandler
+          @Cache = cache
         end
 
         def deserialize(params)
           unless params['HeadersHandler'].nil?
             @HeadersHandler = HTTPServiceHeadersHandler.new
             @HeadersHandler.deserialize(params['HeadersHandler'])
+          end
+          unless params['Cache'].nil?
+            @Cache = HTTPServiceCacheSet.new
+            @Cache.deserialize(params['Cache'])
           end
         end
       end
@@ -6328,6 +6490,30 @@ module TencentCloud
             @QPSPerClient = HTTPServiceQPSPerClient.new
             @QPSPerClient.deserialize(params['QPSPerClient'])
           end
+        end
+      end
+
+      # HTTPService缓存规则匹配条件（必填）
+      class HTTPServiceRuleCondition < TencentCloud::Common::AbstractModel
+        # @param Target: <p>Target 匹配对象</p><p>枚举值：</p><ul><li>url_path： 请求 URI 路径（不含查询串），例：/static/logo.jpg</li><li>file_extension： 请求文件扩展名（EO 从 path 中解析），例：jpg</li><li>full_uri： 完整 URI（路径 + 查询串），例：/download?type=hd</li></ul>
+        # @type Target: String
+        # @param MatchType: <p>MatchType 字符串匹配类型</p><p>枚举值：</p><ul><li>prefix：  前缀匹配</li><li>suffix： 后缀匹配</li><li>contains： 包含匹配</li><li>exact： 精确匹配</li></ul>
+        # @type MatchType: String
+        # @param Values: <p>Values 匹配值集合，Values 内任一命中即认为条件成立（OR 语义）</p><p>入参限制：单项 1~1024 字节，最多 100 条</p>
+        # @type Values: Array
+
+        attr_accessor :Target, :MatchType, :Values
+
+        def initialize(target=nil, matchtype=nil, values=nil)
+          @Target = target
+          @MatchType = matchtype
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Target = params['Target']
+          @MatchType = params['MatchType']
+          @Values = params['Values']
         end
       end
 

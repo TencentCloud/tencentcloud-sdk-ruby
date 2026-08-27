@@ -4205,24 +4205,28 @@ module TencentCloud
 
       # MQTTEndpoint
       class MQTTEndpointItem < TencentCloud::Common::AbstractModel
-        # @param Type: 类型
+        # @param Type: <p>类型</p>
         # @type Type: String
-        # @param Url: 接入点
+        # @param Url: <p>接入点</p>
         # @type Url: String
-        # @param VpcId: vpc信息
+        # @param VpcId: <p>vpc信息</p>
         # @type VpcId: String
-        # @param SubnetId: 子网信息
+        # @param SubnetId: <p>子网信息</p>
         # @type SubnetId: String
-        # @param Host: 主机
+        # @param Host: <p>主机</p>
         # @type Host: String
-        # @param Port: 端口
+        # @param Port: <p>端口</p>
         # @type Port: Integer
-        # @param Ip: 接入点ip
+        # @param Ip: <p>接入点ip</p>
         # @type Ip: String
+        # @param PortEnable: <p>端口是否打开</p>
+        # @type PortEnable: Boolean
+        # @param VpcEndpointId: <p>vpce唯一id</p>
+        # @type VpcEndpointId: String
 
-        attr_accessor :Type, :Url, :VpcId, :SubnetId, :Host, :Port, :Ip
+        attr_accessor :Type, :Url, :VpcId, :SubnetId, :Host, :Port, :Ip, :PortEnable, :VpcEndpointId
 
-        def initialize(type=nil, url=nil, vpcid=nil, subnetid=nil, host=nil, port=nil, ip=nil)
+        def initialize(type=nil, url=nil, vpcid=nil, subnetid=nil, host=nil, port=nil, ip=nil, portenable=nil, vpcendpointid=nil)
           @Type = type
           @Url = url
           @VpcId = vpcid
@@ -4230,6 +4234,8 @@ module TencentCloud
           @Host = host
           @Port = port
           @Ip = ip
+          @PortEnable = portenable
+          @VpcEndpointId = vpcendpointid
         end
 
         def deserialize(params)
@@ -4240,6 +4246,8 @@ module TencentCloud
           @Host = params['Host']
           @Port = params['Port']
           @Ip = params['Ip']
+          @PortEnable = params['PortEnable']
+          @VpcEndpointId = params['VpcEndpointId']
         end
       end
 

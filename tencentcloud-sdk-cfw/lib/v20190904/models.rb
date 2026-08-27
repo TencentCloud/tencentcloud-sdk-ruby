@@ -3743,26 +3743,28 @@ module TencentCloud
 
       # DescribeAddressTemplateList请求参数结构体
       class DescribeAddressTemplateListRequest < TencentCloud::Common::AbstractModel
-        # @param Offset: 偏移量，分页用
+        # @param Offset: <p>偏移量，分页用</p>
         # @type Offset: Integer
-        # @param Limit: 条数，分页用
+        # @param Limit: <p>条数，分页用</p>
         # @type Limit: Integer
-        # @param By: 排序字段，取值：UpdateTime最近更新时间，RulesNum关联规则数
+        # @param By: <p>排序字段，取值：UpdateTime最近更新时间，RulesNum关联规则数</p>
         # @type By: String
-        # @param Order: 排序，取值 ：asc正序，desc逆序
+        # @param Order: <p>排序，取值 ：asc正序，desc逆序</p>
         # @type Order: String
-        # @param SearchValue: 搜索值
+        # @param SearchValue: <p>搜索值</p>
         # @type SearchValue: String
-        # @param Uuid: 检索地址模板唯一id
+        # @param Uuid: <p>检索地址模板唯一id</p>
         # @type Uuid: String
-        # @param TemplateType: 模板类型，取值：1：ip模板，5：域名模板，6：协议端口模板
+        # @param TemplateType: <p>模板类型，取值：1：ip模板，5：域名模板，6：协议端口模板</p>
         # @type TemplateType: String
-        # @param TemplateId: 模板Id
+        # @param TemplateId: <p>模板Id</p>
         # @type TemplateId: String
+        # @param SourceType: <p>模板来源</p>
+        # @type SourceType: String
 
-        attr_accessor :Offset, :Limit, :By, :Order, :SearchValue, :Uuid, :TemplateType, :TemplateId
+        attr_accessor :Offset, :Limit, :By, :Order, :SearchValue, :Uuid, :TemplateType, :TemplateId, :SourceType
 
-        def initialize(offset=nil, limit=nil, by=nil, order=nil, searchvalue=nil, uuid=nil, templatetype=nil, templateid=nil)
+        def initialize(offset=nil, limit=nil, by=nil, order=nil, searchvalue=nil, uuid=nil, templatetype=nil, templateid=nil, sourcetype=nil)
           @Offset = offset
           @Limit = limit
           @By = by
@@ -3771,6 +3773,7 @@ module TencentCloud
           @Uuid = uuid
           @TemplateType = templatetype
           @TemplateId = templateid
+          @SourceType = sourcetype
         end
 
         def deserialize(params)
@@ -3782,33 +3785,36 @@ module TencentCloud
           @Uuid = params['Uuid']
           @TemplateType = params['TemplateType']
           @TemplateId = params['TemplateId']
+          @SourceType = params['SourceType']
         end
       end
 
       # DescribeAddressTemplateList返回参数结构体
       class DescribeAddressTemplateListResponse < TencentCloud::Common::AbstractModel
-        # @param Total: 模板总数
+        # @param Total: <p>模板总数</p>
         # @type Total: Integer
-        # @param Data: 模板列表数据
+        # @param Data: <p>模板列表数据</p>
         # @type Data: Array
-        # @param NameList: 模板名称列表
+        # @param NameList: <p>模板名称列表</p>
         # @type NameList: Array
-        # @param IpTemplateCount: Ip地址模板数量
+        # @param IpTemplateCount: <p>Ip地址模板数量</p>
         # @type IpTemplateCount: Integer
-        # @param DomainTemplateCount: 域名地址模板数量
+        # @param DomainTemplateCount: <p>域名地址模板数量</p>
         # @type DomainTemplateCount: Integer
-        # @param PortTemplateCount: 协议端口模板数量
+        # @param PortTemplateCount: <p>协议端口模板数量</p>
         # @type PortTemplateCount: Integer
-        # @param UsedTemplateCount: 已使用的地址模板数
+        # @param UsedTemplateCount: <p>已使用的地址模板数</p>
         # @type UsedTemplateCount: Integer
-        # @param TemplateQuotaCount: 地址模板配额数量
+        # @param TemplateQuotaCount: <p>地址模板配额数量</p>
         # @type TemplateQuotaCount: Integer
+        # @param TkeTemplateCount: <p>容器服务地址模板数量</p>
+        # @type TkeTemplateCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Total, :Data, :NameList, :IpTemplateCount, :DomainTemplateCount, :PortTemplateCount, :UsedTemplateCount, :TemplateQuotaCount, :RequestId
+        attr_accessor :Total, :Data, :NameList, :IpTemplateCount, :DomainTemplateCount, :PortTemplateCount, :UsedTemplateCount, :TemplateQuotaCount, :TkeTemplateCount, :RequestId
 
-        def initialize(total=nil, data=nil, namelist=nil, iptemplatecount=nil, domaintemplatecount=nil, porttemplatecount=nil, usedtemplatecount=nil, templatequotacount=nil, requestid=nil)
+        def initialize(total=nil, data=nil, namelist=nil, iptemplatecount=nil, domaintemplatecount=nil, porttemplatecount=nil, usedtemplatecount=nil, templatequotacount=nil, tketemplatecount=nil, requestid=nil)
           @Total = total
           @Data = data
           @NameList = namelist
@@ -3817,6 +3823,7 @@ module TencentCloud
           @PortTemplateCount = porttemplatecount
           @UsedTemplateCount = usedtemplatecount
           @TemplateQuotaCount = templatequotacount
+          @TkeTemplateCount = tketemplatecount
           @RequestId = requestid
         end
 
@@ -3836,6 +3843,7 @@ module TencentCloud
           @PortTemplateCount = params['PortTemplateCount']
           @UsedTemplateCount = params['UsedTemplateCount']
           @TemplateQuotaCount = params['TemplateQuotaCount']
+          @TkeTemplateCount = params['TkeTemplateCount']
           @RequestId = params['RequestId']
         end
       end
@@ -6107,17 +6115,17 @@ module TencentCloud
 
       # DescribeIpsRuleListNew请求参数结构体
       class DescribeIpsRuleListNewRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 每页条数
+        # @param Limit: <p>每页条数</p>
         # @type Limit: Integer
-        # @param Offset: 偏移值
+        # @param Offset: <p>偏移值</p>
         # @type Offset: Integer
-        # @param Index: 需要查询的索引，特定场景使用，可不填
+        # @param Index: <p>需要查询的索引，特定场景使用，可不填</p>
         # @type Index: String
-        # @param Filters: 过滤条件组合
+        # @param Filters: <p>过滤条件组合</p>
         # @type Filters: Array
-        # @param Order: desc：降序；asc：升序。根据By字段的值进行排序，这里传参的话则By也必须有值
+        # @param Order: <p>desc：降序；asc：升序。根据By字段的值进行排序，这里传参的话则By也必须有值</p>
         # @type Order: String
-        # @param By: 排序所用到的字段
+        # @param By: <p>排序所用到的字段</p>
         # @type By: String
 
         attr_accessor :Limit, :Offset, :Index, :Filters, :Order, :By
@@ -6150,15 +6158,15 @@ module TencentCloud
 
       # DescribeIpsRuleListNew返回参数结构体
       class DescribeIpsRuleListNewResponse < TencentCloud::Common::AbstractModel
-        # @param Total: 总条数
+        # @param Total: <p>总条数</p>
         # @type Total: Integer
-        # @param Data: 规则详情
+        # @param Data: <p>规则详情</p>
         # @type Data: Array
-        # @param ReturnCode: 返回状态码 0 成功 非0不成功
+        # @param ReturnCode: <p>返回状态码 0 成功 非0不成功</p>
         # @type ReturnCode: Integer
-        # @param ReturnMsg: 返回信息  success 成功 其他 不成功
+        # @param ReturnMsg: <p>返回信息  success 成功 其他 不成功</p>
         # @type ReturnMsg: String
-        # @param Category: 字段类型
+        # @param Category: <p>字段类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Category: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -9782,12 +9790,70 @@ module TencentCloud
 
       # IPS规则展示字段相关结构
       class IpsRuleDetailNew < TencentCloud::Common::AbstractModel
+        # @param RuleID: <p>规则ID</p>
+        # @type RuleID: String
+        # @param EventName: <p>规则名称</p>
+        # @type EventName: String
+        # @param EventNameDesc: <p>规则描述</p>
+        # @type EventNameDesc: String
+        # @param Category: <p>规则类型</p>
+        # @type Category: String
+        # @param Confidence: <p>置信度</p>
+        # @type Confidence: String
+        # @param Id: <p>自增id</p>
+        # @type Id: Integer
+        # @param VulTarget: <p>漏洞对象</p>
+        # @type VulTarget: String
+        # @param Cve: <p>漏洞编号</p>
+        # @type Cve: String
+        # @param Status: <p>状态 0 关闭 1打开</p>
+        # @type Status: Integer
+        # @param Action: <p>0观察, 1阻断</p>
+        # @type Action: Integer
+        # @param DefaultAction: <p>默认策略</p>
+        # @type DefaultAction: Integer
+        # @param RuleType: <p>基础防御/虚拟补丁</p>
+        # @type RuleType: Integer
+        # @param Level: <p>危险等级</p>
+        # @type Level: String
+        # @param FwType: <p>FwType字段 1 border 2 nat 4 vpc</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FwType: Integer
 
+        attr_accessor :RuleID, :EventName, :EventNameDesc, :Category, :Confidence, :Id, :VulTarget, :Cve, :Status, :Action, :DefaultAction, :RuleType, :Level, :FwType
 
-        def initialize()
+        def initialize(ruleid=nil, eventname=nil, eventnamedesc=nil, category=nil, confidence=nil, id=nil, vultarget=nil, cve=nil, status=nil, action=nil, defaultaction=nil, ruletype=nil, level=nil, fwtype=nil)
+          @RuleID = ruleid
+          @EventName = eventname
+          @EventNameDesc = eventnamedesc
+          @Category = category
+          @Confidence = confidence
+          @Id = id
+          @VulTarget = vultarget
+          @Cve = cve
+          @Status = status
+          @Action = action
+          @DefaultAction = defaultaction
+          @RuleType = ruletype
+          @Level = level
+          @FwType = fwtype
         end
 
         def deserialize(params)
+          @RuleID = params['RuleID']
+          @EventName = params['EventName']
+          @EventNameDesc = params['EventNameDesc']
+          @Category = params['Category']
+          @Confidence = params['Confidence']
+          @Id = params['Id']
+          @VulTarget = params['VulTarget']
+          @Cve = params['Cve']
+          @Status = params['Status']
+          @Action = params['Action']
+          @DefaultAction = params['DefaultAction']
+          @RuleType = params['RuleType']
+          @Level = params['Level']
+          @FwType = params['FwType']
         end
       end
 
@@ -14452,29 +14518,29 @@ module TencentCloud
 
       # 地址模板列表数据
       class TemplateListInfo < TencentCloud::Common::AbstractModel
-        # @param Uuid: 模板ID
+        # @param Uuid: <p>模板ID</p>
         # @type Uuid: String
-        # @param Name: 模板名称
+        # @param Name: <p>模板名称</p>
         # @type Name: String
-        # @param Detail: 描述
+        # @param Detail: <p>描述</p>
         # @type Detail: String
-        # @param IpString: IP模板
+        # @param IpString: <p>IP模板</p>
         # @type IpString: String
-        # @param InsertTime: 插入时间
+        # @param InsertTime: <p>插入时间</p>
         # @type InsertTime: String
-        # @param UpdateTime: 修改时间
+        # @param UpdateTime: <p>修改时间</p>
         # @type UpdateTime: String
-        # @param Type: 模板类型
+        # @param Type: <p>模板类型</p>
         # @type Type: Integer
-        # @param RulesNum: 关联规则条数
+        # @param RulesNum: <p>关联规则条数</p>
         # @type RulesNum: Integer
-        # @param TemplateId: 模板Id
+        # @param TemplateId: <p>模板Id</p>
         # @type TemplateId: String
-        # @param ProtocolType: 协议端口模板，协议类型，4:4层协议，7:7层协议
+        # @param ProtocolType: <p>协议端口模板，协议类型，4:4层协议，7:7层协议</p>
         # @type ProtocolType: String
-        # @param IPNum: 模板包含地址数量
+        # @param IPNum: <p>模板包含地址数量</p>
         # @type IPNum: Integer
-        # @param IpVersion: IP版本,0,IPv4;1,IPv6
+        # @param IpVersion: <p>IP版本,0,IPv4;1,IPv6</p>
         # @type IpVersion: Integer
 
         attr_accessor :Uuid, :Name, :Detail, :IpString, :InsertTime, :UpdateTime, :Type, :RulesNum, :TemplateId, :ProtocolType, :IPNum, :IpVersion

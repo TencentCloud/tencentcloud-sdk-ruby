@@ -174,6 +174,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 同步音色转换，根据输入音频和指定音色将输入音频转换为指定音色
+
+        # @param request: Request instance for ChangeVoice.
+        # @type request: :class:`Tencentcloud::mps::V20190612::ChangeVoiceRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::ChangeVoiceResponse`
+        def ChangeVoice(request)
+          body = send_request('ChangeVoice', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ChangeVoiceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 爆款复刻。输入爆款参考视频+商品图，生成风格/节奏对齐的视频
 
         # @param request: Request instance for CloneViral.

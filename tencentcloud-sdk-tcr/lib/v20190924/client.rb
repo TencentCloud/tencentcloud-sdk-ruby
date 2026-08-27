@@ -1855,6 +1855,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 实例同步/实例复制策略执行记录列表
+
+        # @param request: Request instance for DescribeReplicationExecutions.
+        # @type request: :class:`Tencentcloud::tcr::V20190924::DescribeReplicationExecutionsRequest`
+        # @rtype: :class:`Tencentcloud::tcr::V20190924::DescribeReplicationExecutionsResponse`
+        def DescribeReplicationExecutions(request)
+          body = send_request('DescribeReplicationExecutions', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeReplicationExecutionsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询创建从实例任务状态
 
         # @param request: Request instance for DescribeReplicationInstanceCreateTasks.
@@ -1937,6 +1961,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeReplicationPoliciesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 实例同步/实例复制执行任务列表
+
+        # @param request: Request instance for DescribeReplicationTasks.
+        # @type request: :class:`Tencentcloud::tcr::V20190924::DescribeReplicationTasksRequest`
+        # @rtype: :class:`Tencentcloud::tcr::V20190924::DescribeReplicationTasksResponse`
+        def DescribeReplicationTasks(request)
+          body = send_request('DescribeReplicationTasks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeReplicationTasksResponse.new
             model.deserialize(response['Response'])
             model
           else

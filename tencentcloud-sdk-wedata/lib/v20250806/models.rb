@@ -62,25 +62,27 @@ module TencentCloud
 
       # 告警规则接收人配置
       class AlarmGroup < TencentCloud::Common::AbstractModel
-        # @param AlarmEscalationRecipientIds: 告警升级人ID列表
-        # 若告警接收人或上级升级人未在告警间隔时间内确认告警，则会发送告警给下一级升级人。
+        # @param AlarmEscalationRecipientIds: <p>告警升级人ID列表<br>若告警接收人或上级升级人未在告警间隔时间内确认告警，则会发送告警给下一级升级人。</p>
         # @type AlarmEscalationRecipientIds: Array
-        # @param AlarmEscalationInterval: 告警升级间隔
+        # @param AlarmEscalationInterval: <p>告警升级间隔</p>
         # @type AlarmEscalationInterval: Integer
-        # @param NotificationFatigue: 告警通知疲劳配置
+        # @param NotificationFatigue: <p>告警通知疲劳配置</p>
         # @type NotificationFatigue: :class:`Tencentcloud::Wedata.v20250806.models.NotificationFatigue`
-        # @param AlarmWays: 告警渠道 1.邮件，2.短信，3.微信，4.语音，5.企业微信，6.Http，7.企业微信群 8 飞书群 9 钉钉群 10 Slack群 11 Teams群（默认1.邮件） 7.企业微信群 8 飞书群 9 钉钉群 10 Slack群 11 Teams群 只能选择一个渠道
+        # @param AlarmWays: <p>告警渠道 1.邮件，2.短信，3.微信，4.语音，5.企业微信，6.Http，7.企业微信群 8 飞书群 9 钉钉群 10 Slack群 11 Teams群（默认1.邮件） 7.企业微信群 8 飞书群 9 钉钉群 10 Slack群 11 Teams群 只能选择一个渠道</p>
         # @type AlarmWays: Array
-        # @param WebHooks: 企业微信群/飞书群/钉钉群 /Slack群/Teams群的webhook地址列表
+        # @param WebHooks: <p>企业微信群/飞书群/钉钉群 /Slack群/Teams群的webhook地址列表</p>
         # @type WebHooks: Array
-        # @param AlarmRecipientType: 告警接收人类型：1.指定人员，2.任务责任人，3.值班表（默认1.指定人员）
+        # @param AlarmRecipientType: <p>告警接收人类型：1.指定人员，2.任务责任人，3.值班表（默认1.指定人员）</p>
         # @type AlarmRecipientType: Integer
-        # @param AlarmRecipientIds: 根据AlarmRecipientType的类型该列表具有不同的业务id 1（指定人员）: 告警接收人id列表 2（任务责任人）：无需配置 3（值班表）：值班表id列表
+        # @param AlarmRecipientIds: <p>根据AlarmRecipientType的类型该列表具有不同的业务id 1（指定人员）: 告警接收人id列表 2（任务责任人）：无需配置 3（值班表）：值班表id列表</p>
         # @type AlarmRecipientIds: Array
+        # @param CustomEmails: <p>自定义邮箱列表</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomEmails: Array
 
-        attr_accessor :AlarmEscalationRecipientIds, :AlarmEscalationInterval, :NotificationFatigue, :AlarmWays, :WebHooks, :AlarmRecipientType, :AlarmRecipientIds
+        attr_accessor :AlarmEscalationRecipientIds, :AlarmEscalationInterval, :NotificationFatigue, :AlarmWays, :WebHooks, :AlarmRecipientType, :AlarmRecipientIds, :CustomEmails
 
-        def initialize(alarmescalationrecipientids=nil, alarmescalationinterval=nil, notificationfatigue=nil, alarmways=nil, webhooks=nil, alarmrecipienttype=nil, alarmrecipientids=nil)
+        def initialize(alarmescalationrecipientids=nil, alarmescalationinterval=nil, notificationfatigue=nil, alarmways=nil, webhooks=nil, alarmrecipienttype=nil, alarmrecipientids=nil, customemails=nil)
           @AlarmEscalationRecipientIds = alarmescalationrecipientids
           @AlarmEscalationInterval = alarmescalationinterval
           @NotificationFatigue = notificationfatigue
@@ -88,6 +90,7 @@ module TencentCloud
           @WebHooks = webhooks
           @AlarmRecipientType = alarmrecipienttype
           @AlarmRecipientIds = alarmrecipientids
+          @CustomEmails = customemails
         end
 
         def deserialize(params)
@@ -108,35 +111,39 @@ module TencentCloud
           end
           @AlarmRecipientType = params['AlarmRecipientType']
           @AlarmRecipientIds = params['AlarmRecipientIds']
+          @CustomEmails = params['CustomEmails']
         end
       end
 
       # 告警信息
       class AlarmMessage < TencentCloud::Common::AbstractModel
-        # @param AlarmMessageId: 告警消息Id
+        # @param AlarmMessageId: <p>告警消息Id</p>
         # @type AlarmMessageId: Integer
-        # @param AlarmTime: 告警时间，同一条告警可能发送多次，只显示最新的告警时间
+        # @param AlarmTime: <p>告警时间，同一条告警可能发送多次，只显示最新的告警时间</p>
         # @type AlarmTime: String
-        # @param TaskName: 任务名称
+        # @param TaskName: <p>任务名称</p>
         # @type TaskName: String
-        # @param TaskId: 任务Id
+        # @param TaskId: <p>任务Id</p>
         # @type TaskId: String
-        # @param CurRunDate: 任务的实例数据时间
+        # @param CurRunDate: <p>任务的实例数据时间</p>
         # @type CurRunDate: String
-        # @param AlarmReason: 告警原因
+        # @param AlarmReason: <p>告警原因</p>
         # @type AlarmReason: String
-        # @param AlarmLevel: 告警级别，1.普通， 2.重要，3.紧急
+        # @param AlarmLevel: <p>告警级别，1.普通， 2.重要，3.紧急</p>
         # @type AlarmLevel: Integer
-        # @param AlarmRuleId: 告警规则Id
+        # @param AlarmRuleId: <p>告警规则Id</p>
         # @type AlarmRuleId: String
-        # @param AlarmWays: 告警渠道 1.邮件，2.短信，3.微信，4.语音，5.企业微信，6.Http，7.企业微信群， 8.飞书群，9.钉钉群，10.Slack群,11.Teams群（默认1.邮件），7.企业微信群，8.飞书群，9.钉钉群，10.Slack群，11.Teams群
+        # @param AlarmWays: <p>告警渠道 1.邮件，2.短信，3.微信，4.语音，5.企业微信，6.Http，7.企业微信群， 8.飞书群，9.钉钉群，10.Slack群,11.Teams群（默认1.邮件），7.企业微信群，8.飞书群，9.钉钉群，10.Slack群，11.Teams群</p>
         # @type AlarmWays: Array
-        # @param AlarmRecipients: 告警接收人
+        # @param AlarmRecipients: <p>告警接收人</p>
         # @type AlarmRecipients: Array
+        # @param CustomEmails: <p>自定义邮箱列表</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomEmails: Array
 
-        attr_accessor :AlarmMessageId, :AlarmTime, :TaskName, :TaskId, :CurRunDate, :AlarmReason, :AlarmLevel, :AlarmRuleId, :AlarmWays, :AlarmRecipients
+        attr_accessor :AlarmMessageId, :AlarmTime, :TaskName, :TaskId, :CurRunDate, :AlarmReason, :AlarmLevel, :AlarmRuleId, :AlarmWays, :AlarmRecipients, :CustomEmails
 
-        def initialize(alarmmessageid=nil, alarmtime=nil, taskname=nil, taskid=nil, currundate=nil, alarmreason=nil, alarmlevel=nil, alarmruleid=nil, alarmways=nil, alarmrecipients=nil)
+        def initialize(alarmmessageid=nil, alarmtime=nil, taskname=nil, taskid=nil, currundate=nil, alarmreason=nil, alarmlevel=nil, alarmruleid=nil, alarmways=nil, alarmrecipients=nil, customemails=nil)
           @AlarmMessageId = alarmmessageid
           @AlarmTime = alarmtime
           @TaskName = taskname
@@ -147,6 +154,7 @@ module TencentCloud
           @AlarmRuleId = alarmruleid
           @AlarmWays = alarmways
           @AlarmRecipients = alarmrecipients
+          @CustomEmails = customemails
         end
 
         def deserialize(params)
@@ -160,6 +168,7 @@ module TencentCloud
           @AlarmRuleId = params['AlarmRuleId']
           @AlarmWays = params['AlarmWays']
           @AlarmRecipients = params['AlarmRecipients']
+          @CustomEmails = params['CustomEmails']
         end
       end
 
@@ -21701,10 +21710,13 @@ module TencentCloud
         # @param ScheduleRunType: <p>调度执行类型</p><p>枚举值：</p><ul><li>0： 正常调度</li><li>1： 空跑调度</li><li>2： 用户驱动，手动触发</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScheduleRunType: String
+        # @param Privilege: <p>权限</p><p>枚举值：</p><ul><li>CAN_MANAGE： 可管理</li><li>CAN_VIEW： 可见</li><li>NO_PERMISSION： 无权限</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Privilege: String
 
-        attr_accessor :ExecutionId, :ExecutionState, :ProjectId, :WorkflowId, :WorkflowExecutionId, :TaskId, :TaskType, :TaskVersionId, :TriggerType, :WaitTime, :ResourceGroup, :ErrorCode, :ExecuteUserUin, :CreaterUin, :JobId, :CreateTime, :ScheduleTime, :UpdateTime, :DependenceFinishedTime, :QueueStartTime, :PendingStartTime, :ExecutionStartTime, :ExecutionEndTime, :QueueCostTime, :ExecutionTime, :AllCostTime, :TimeZone, :DependOnList, :RunParams, :TaskTypeExtensions, :RetryTimes, :LeftCoordinate, :TopCoordinate, :ResourceGroupId, :ErrorCodeStr, :CreateUin, :IssueTime, :TaskName, :WorkflowName, :ExecuteUserName, :RerunTimes, :IsLatestExecution, :TaskExecutionState, :CycleType, :UserNameInCharge, :UserUinInCharge, :ResourceGroupName, :Timezone, :FolderId, :FolderName, :ProjectName, :TaskTypeId, :WorkflowParams, :SupportRerun, :WorkflowExecutionState, :ExecutionResult, :DependencyTriggerPolicy, :AssociatedEntityExist, :ScheduleRunType
+        attr_accessor :ExecutionId, :ExecutionState, :ProjectId, :WorkflowId, :WorkflowExecutionId, :TaskId, :TaskType, :TaskVersionId, :TriggerType, :WaitTime, :ResourceGroup, :ErrorCode, :ExecuteUserUin, :CreaterUin, :JobId, :CreateTime, :ScheduleTime, :UpdateTime, :DependenceFinishedTime, :QueueStartTime, :PendingStartTime, :ExecutionStartTime, :ExecutionEndTime, :QueueCostTime, :ExecutionTime, :AllCostTime, :TimeZone, :DependOnList, :RunParams, :TaskTypeExtensions, :RetryTimes, :LeftCoordinate, :TopCoordinate, :ResourceGroupId, :ErrorCodeStr, :CreateUin, :IssueTime, :TaskName, :WorkflowName, :ExecuteUserName, :RerunTimes, :IsLatestExecution, :TaskExecutionState, :CycleType, :UserNameInCharge, :UserUinInCharge, :ResourceGroupName, :Timezone, :FolderId, :FolderName, :ProjectName, :TaskTypeId, :WorkflowParams, :SupportRerun, :WorkflowExecutionState, :ExecutionResult, :DependencyTriggerPolicy, :AssociatedEntityExist, :ScheduleRunType, :Privilege
 
-        def initialize(executionid=nil, executionstate=nil, projectid=nil, workflowid=nil, workflowexecutionid=nil, taskid=nil, tasktype=nil, taskversionid=nil, triggertype=nil, waittime=nil, resourcegroup=nil, errorcode=nil, executeuseruin=nil, createruin=nil, jobid=nil, createtime=nil, scheduletime=nil, updatetime=nil, dependencefinishedtime=nil, queuestarttime=nil, pendingstarttime=nil, executionstarttime=nil, executionendtime=nil, queuecosttime=nil, executiontime=nil, allcosttime=nil, timezone=nil, dependonlist=nil, runparams=nil, tasktypeextensions=nil, retrytimes=nil, leftcoordinate=nil, topcoordinate=nil, resourcegroupid=nil, errorcodestr=nil, createuin=nil, issuetime=nil, taskname=nil, workflowname=nil, executeusername=nil, reruntimes=nil, islatestexecution=nil, taskexecutionstate=nil, cycletype=nil, usernameincharge=nil, useruinincharge=nil, resourcegroupname=nil, timezone=nil, folderid=nil, foldername=nil, projectname=nil, tasktypeid=nil, workflowparams=nil, supportrerun=nil, workflowexecutionstate=nil, executionresult=nil, dependencytriggerpolicy=nil, associatedentityexist=nil, scheduleruntype=nil)
+        def initialize(executionid=nil, executionstate=nil, projectid=nil, workflowid=nil, workflowexecutionid=nil, taskid=nil, tasktype=nil, taskversionid=nil, triggertype=nil, waittime=nil, resourcegroup=nil, errorcode=nil, executeuseruin=nil, createruin=nil, jobid=nil, createtime=nil, scheduletime=nil, updatetime=nil, dependencefinishedtime=nil, queuestarttime=nil, pendingstarttime=nil, executionstarttime=nil, executionendtime=nil, queuecosttime=nil, executiontime=nil, allcosttime=nil, timezone=nil, dependonlist=nil, runparams=nil, tasktypeextensions=nil, retrytimes=nil, leftcoordinate=nil, topcoordinate=nil, resourcegroupid=nil, errorcodestr=nil, createuin=nil, issuetime=nil, taskname=nil, workflowname=nil, executeusername=nil, reruntimes=nil, islatestexecution=nil, taskexecutionstate=nil, cycletype=nil, usernameincharge=nil, useruinincharge=nil, resourcegroupname=nil, timezone=nil, folderid=nil, foldername=nil, projectname=nil, tasktypeid=nil, workflowparams=nil, supportrerun=nil, workflowexecutionstate=nil, executionresult=nil, dependencytriggerpolicy=nil, associatedentityexist=nil, scheduleruntype=nil, privilege=nil)
           @ExecutionId = executionid
           @ExecutionState = executionstate
           @ProjectId = projectid
@@ -21764,6 +21776,7 @@ module TencentCloud
           @DependencyTriggerPolicy = dependencytriggerpolicy
           @AssociatedEntityExist = associatedentityexist
           @ScheduleRunType = scheduleruntype
+          @Privilege = privilege
         end
 
         def deserialize(params)
@@ -21826,6 +21839,7 @@ module TencentCloud
           @DependencyTriggerPolicy = params['DependencyTriggerPolicy']
           @AssociatedEntityExist = params['AssociatedEntityExist']
           @ScheduleRunType = params['ScheduleRunType']
+          @Privilege = params['Privilege']
         end
       end
 
@@ -22437,10 +22451,13 @@ module TencentCloud
         # @param ParentTaskExecutionName: <p>父任务运行名称 【由嵌套工作流触发独有】</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParentTaskExecutionName: String
+        # @param Privilege: <p>权限</p><p>枚举值：</p><ul><li>CAN_MANAGE： 可管理</li><li>CAN_VIEW： 可见</li><li>NO_PERMISSION： 无权限</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Privilege: String
 
-        attr_accessor :AppId, :ProjectId, :WorkflowName, :WorkflowId, :ExecutionId, :TriggerId, :TriggerType, :CreateTime, :ScheduleTime, :ExecutionStartTime, :ExecutionEndTime, :ExecutionCostTime, :QueueCostTime, :PendingCostTime, :ExecutionState, :ExecuteUserUin, :ExecuteUserName, :ErrorCodeStr, :WorkflowParams, :WorkflowVersionId, :SupportRerun, :RerunTimes, :SelectedTaskIds, :PendingStartTime, :QueueStartTime, :EndTime, :FolderId, :FolderName, :PlannedSchedulingTime, :CycleType, :UserNameInCharge, :UserUinInCharge, :AssociatedEntityExist, :ParentWorkflowExecutionId, :ParentTaskExecutionId, :ParentTaskExecutionName
+        attr_accessor :AppId, :ProjectId, :WorkflowName, :WorkflowId, :ExecutionId, :TriggerId, :TriggerType, :CreateTime, :ScheduleTime, :ExecutionStartTime, :ExecutionEndTime, :ExecutionCostTime, :QueueCostTime, :PendingCostTime, :ExecutionState, :ExecuteUserUin, :ExecuteUserName, :ErrorCodeStr, :WorkflowParams, :WorkflowVersionId, :SupportRerun, :RerunTimes, :SelectedTaskIds, :PendingStartTime, :QueueStartTime, :EndTime, :FolderId, :FolderName, :PlannedSchedulingTime, :CycleType, :UserNameInCharge, :UserUinInCharge, :AssociatedEntityExist, :ParentWorkflowExecutionId, :ParentTaskExecutionId, :ParentTaskExecutionName, :Privilege
 
-        def initialize(appid=nil, projectid=nil, workflowname=nil, workflowid=nil, executionid=nil, triggerid=nil, triggertype=nil, createtime=nil, scheduletime=nil, executionstarttime=nil, executionendtime=nil, executioncosttime=nil, queuecosttime=nil, pendingcosttime=nil, executionstate=nil, executeuseruin=nil, executeusername=nil, errorcodestr=nil, workflowparams=nil, workflowversionid=nil, supportrerun=nil, reruntimes=nil, selectedtaskids=nil, pendingstarttime=nil, queuestarttime=nil, endtime=nil, folderid=nil, foldername=nil, plannedschedulingtime=nil, cycletype=nil, usernameincharge=nil, useruinincharge=nil, associatedentityexist=nil, parentworkflowexecutionid=nil, parenttaskexecutionid=nil, parenttaskexecutionname=nil)
+        def initialize(appid=nil, projectid=nil, workflowname=nil, workflowid=nil, executionid=nil, triggerid=nil, triggertype=nil, createtime=nil, scheduletime=nil, executionstarttime=nil, executionendtime=nil, executioncosttime=nil, queuecosttime=nil, pendingcosttime=nil, executionstate=nil, executeuseruin=nil, executeusername=nil, errorcodestr=nil, workflowparams=nil, workflowversionid=nil, supportrerun=nil, reruntimes=nil, selectedtaskids=nil, pendingstarttime=nil, queuestarttime=nil, endtime=nil, folderid=nil, foldername=nil, plannedschedulingtime=nil, cycletype=nil, usernameincharge=nil, useruinincharge=nil, associatedentityexist=nil, parentworkflowexecutionid=nil, parenttaskexecutionid=nil, parenttaskexecutionname=nil, privilege=nil)
           @AppId = appid
           @ProjectId = projectid
           @WorkflowName = workflowname
@@ -22477,6 +22494,7 @@ module TencentCloud
           @ParentWorkflowExecutionId = parentworkflowexecutionid
           @ParentTaskExecutionId = parenttaskexecutionid
           @ParentTaskExecutionName = parenttaskexecutionname
+          @Privilege = privilege
         end
 
         def deserialize(params)
@@ -22516,6 +22534,7 @@ module TencentCloud
           @ParentWorkflowExecutionId = params['ParentWorkflowExecutionId']
           @ParentTaskExecutionId = params['ParentTaskExecutionId']
           @ParentTaskExecutionName = params['ParentTaskExecutionName']
+          @Privilege = params['Privilege']
         end
       end
 
@@ -25155,16 +25174,22 @@ module TencentCloud
         # @param Recursive: <p>文件到达模式下 是否递归检测子目录</p><p>取值范围：[0, 1]</p><p>默认值：1</p><p>默认 1（开启） 0 （关闭）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Recursive: Integer
-        # @param TriggerMinimumIntervalSecond: <p>文件到达模式下    触发最短间隔时间</p><p>单位：秒</p>
+        # @param TriggerMinimumInterval: <p>文件到达模式下 最小触发间隔</p><p>取值范围：[1, 1440]</p><p>单位：分钟</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TriggerMinimumInterval: Integer
+        # @param TriggerWaitTime: <p>文件到达模式下 文件批次等待时间</p><p>取值范围：[1, 60]</p><p>单位：分钟</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TriggerWaitTime: Integer
+        # @param TriggerMinimumIntervalSecond: <p>文件到达模式下    触发最短间隔时间</p><p>单位：秒</p><p>后续废弃 勿用</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TriggerMinimumIntervalSecond: Integer
-        # @param TriggerWaitTimeSecond: <p>文件到达模式下    触发等待时间</p><p>单位：秒</p>
+        # @param TriggerWaitTimeSecond: <p>文件到达模式下    触发等待时间</p><p>单位：秒</p><p>后续废弃 勿用</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TriggerWaitTimeSecond: Integer
 
-        attr_accessor :TriggerMode, :ExtraInfo, :ScheduleTimeZone, :StartTime, :EndTime, :ConfigMode, :CycleType, :CrontabExpression, :TriggerId, :FileArrivalPath, :SchedulerStatus, :FileNamePattern, :Recursive, :TriggerMinimumIntervalSecond, :TriggerWaitTimeSecond
+        attr_accessor :TriggerMode, :ExtraInfo, :ScheduleTimeZone, :StartTime, :EndTime, :ConfigMode, :CycleType, :CrontabExpression, :TriggerId, :FileArrivalPath, :SchedulerStatus, :FileNamePattern, :Recursive, :TriggerMinimumInterval, :TriggerWaitTime, :TriggerMinimumIntervalSecond, :TriggerWaitTimeSecond
 
-        def initialize(triggermode=nil, extrainfo=nil, scheduletimezone=nil, starttime=nil, endtime=nil, configmode=nil, cycletype=nil, crontabexpression=nil, triggerid=nil, filearrivalpath=nil, schedulerstatus=nil, filenamepattern=nil, recursive=nil, triggerminimumintervalsecond=nil, triggerwaittimesecond=nil)
+        def initialize(triggermode=nil, extrainfo=nil, scheduletimezone=nil, starttime=nil, endtime=nil, configmode=nil, cycletype=nil, crontabexpression=nil, triggerid=nil, filearrivalpath=nil, schedulerstatus=nil, filenamepattern=nil, recursive=nil, triggerminimuminterval=nil, triggerwaittime=nil, triggerminimumintervalsecond=nil, triggerwaittimesecond=nil)
           @TriggerMode = triggermode
           @ExtraInfo = extrainfo
           @ScheduleTimeZone = scheduletimezone
@@ -25178,6 +25203,8 @@ module TencentCloud
           @SchedulerStatus = schedulerstatus
           @FileNamePattern = filenamepattern
           @Recursive = recursive
+          @TriggerMinimumInterval = triggerminimuminterval
+          @TriggerWaitTime = triggerwaittime
           @TriggerMinimumIntervalSecond = triggerminimumintervalsecond
           @TriggerWaitTimeSecond = triggerwaittimesecond
         end
@@ -25196,6 +25223,8 @@ module TencentCloud
           @SchedulerStatus = params['SchedulerStatus']
           @FileNamePattern = params['FileNamePattern']
           @Recursive = params['Recursive']
+          @TriggerMinimumInterval = params['TriggerMinimumInterval']
+          @TriggerWaitTime = params['TriggerWaitTime']
           @TriggerMinimumIntervalSecond = params['TriggerMinimumIntervalSecond']
           @TriggerWaitTimeSecond = params['TriggerWaitTimeSecond']
         end

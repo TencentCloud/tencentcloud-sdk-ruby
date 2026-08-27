@@ -199,11 +199,11 @@ module TencentCloud
 
       # BuildClientNodeMountCommand请求参数结构体
       class BuildClientNodeMountCommandRequest < TencentCloud::Common::AbstractModel
-        # @param FileSystemId: 文件系统ID
+        # @param FileSystemId: <p>文件系统ID</p>
         # @type FileSystemId: String
-        # @param CustomMountDir: 自定义挂载目录的绝对路径, 如果未指定, 则会使用默认值, 格式/goosefsx/${fs_id}-proxy. 比如/goosefsx/x-c60-a2b3d4-proxy
+        # @param CustomMountDir: <p>自定义挂载目录的绝对路径, 如果未指定, 则会使用默认值, 格式/goosefsx/${fs_id}-proxy. 比如/goosefsx/x-c60-a2b3d4-proxy</p>
         # @type CustomMountDir: String
-        # @param ClusterId: 客户端集群ID
+        # @param ClusterId: <p>客户端集群ID</p>
         # @type ClusterId: String
 
         attr_accessor :FileSystemId, :CustomMountDir, :ClusterId
@@ -223,7 +223,7 @@ module TencentCloud
 
       # BuildClientNodeMountCommand返回参数结构体
       class BuildClientNodeMountCommandResponse < TencentCloud::Common::AbstractModel
-        # @param Command: 挂载命令
+        # @param Command: <p>挂载命令</p>
         # @type Command: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -519,15 +519,23 @@ module TencentCloud
         # @type EnableCustomDestPath: Boolean
         # @param CustomDestPath: <p>自定义目的路径（预热任务表示本地路径，沉降任务表示COS桶前缀）</p>
         # @type CustomDestPath: String
+        # @param OutputBucket: <p>输出的COS桶，用于存放任务执行的相关结果（当前用于存放任务失败时的失败文件列表）</p>
+        # @type OutputBucket: String
+        # @param OutputPrefix: <p>输出的COS桶的前缀，用于存放任务执行的相关结果（当前用于存放任务失败时的失败文件列表）</p>
+        # @type OutputPrefix: String
+        # @param EnableCustomSrcPath: <p>是否支持自定义数据源路径(暂时仅支持清单过滤使用)</p>
+        # @type EnableCustomSrcPath: Boolean
+        # @param CustomSrcPath: <p>自定义数据源路径(暂时仅支持清单过滤使用)</p>
+        # @type CustomSrcPath: String
 
-        attr_accessor :TaskType, :Bucket, :FileSystemId, :TaskPath, :TaskName, :IsTaskPathAbsolute, :RepositoryType, :TextLocation, :EnableDataFlowSubPath, :DataFlowSubPath, :EnableCustomDestPath, :CustomDestPath
+        attr_accessor :TaskType, :Bucket, :FileSystemId, :TaskPath, :TaskName, :IsTaskPathAbsolute, :RepositoryType, :TextLocation, :EnableDataFlowSubPath, :DataFlowSubPath, :EnableCustomDestPath, :CustomDestPath, :OutputBucket, :OutputPrefix, :EnableCustomSrcPath, :CustomSrcPath
         extend Gem::Deprecate
         deprecate :EnableDataFlowSubPath, :none, 2026, 8
         deprecate :EnableDataFlowSubPath=, :none, 2026, 8
         deprecate :DataFlowSubPath, :none, 2026, 8
         deprecate :DataFlowSubPath=, :none, 2026, 8
 
-        def initialize(tasktype=nil, bucket=nil, filesystemid=nil, taskpath=nil, taskname=nil, istaskpathabsolute=nil, repositorytype=nil, textlocation=nil, enabledataflowsubpath=nil, dataflowsubpath=nil, enablecustomdestpath=nil, customdestpath=nil)
+        def initialize(tasktype=nil, bucket=nil, filesystemid=nil, taskpath=nil, taskname=nil, istaskpathabsolute=nil, repositorytype=nil, textlocation=nil, enabledataflowsubpath=nil, dataflowsubpath=nil, enablecustomdestpath=nil, customdestpath=nil, outputbucket=nil, outputprefix=nil, enablecustomsrcpath=nil, customsrcpath=nil)
           @TaskType = tasktype
           @Bucket = bucket
           @FileSystemId = filesystemid
@@ -540,6 +548,10 @@ module TencentCloud
           @DataFlowSubPath = dataflowsubpath
           @EnableCustomDestPath = enablecustomdestpath
           @CustomDestPath = customdestpath
+          @OutputBucket = outputbucket
+          @OutputPrefix = outputprefix
+          @EnableCustomSrcPath = enablecustomsrcpath
+          @CustomSrcPath = customsrcpath
         end
 
         def deserialize(params)
@@ -555,6 +567,10 @@ module TencentCloud
           @DataFlowSubPath = params['DataFlowSubPath']
           @EnableCustomDestPath = params['EnableCustomDestPath']
           @CustomDestPath = params['CustomDestPath']
+          @OutputBucket = params['OutputBucket']
+          @OutputPrefix = params['OutputPrefix']
+          @EnableCustomSrcPath = params['EnableCustomSrcPath']
+          @CustomSrcPath = params['CustomSrcPath']
         end
       end
 

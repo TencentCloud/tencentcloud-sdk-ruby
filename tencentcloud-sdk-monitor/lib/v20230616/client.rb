@@ -101,6 +101,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 转发接口：创建转发规则
+
+        # @param request: Request instance for CreateDispenseExternalRule.
+        # @type request: :class:`Tencentcloud::monitor::V20230616::CreateDispenseExternalRuleRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20230616::CreateDispenseExternalRuleResponse`
+        def CreateDispenseExternalRule(request)
+          body = send_request('CreateDispenseExternalRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDispenseExternalRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建自定义通知内容模板
 
         # @param request: Request instance for CreateNoticeContentTmpl.
@@ -159,6 +183,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteAIWorkbenchTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 规则删除接口
+
+        # @param request: Request instance for DeleteDispenseExternalRule.
+        # @type request: :class:`Tencentcloud::monitor::V20230616::DeleteDispenseExternalRuleRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20230616::DeleteDispenseExternalRuleResponse`
+        def DeleteDispenseExternalRule(request)
+          body = send_request('DeleteDispenseExternalRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteDispenseExternalRuleResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -399,6 +447,150 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAlarmNotifyHistoriesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 转发规则查询接口
+
+        # @param request: Request instance for DescribeDispenseExternalRule.
+        # @type request: :class:`Tencentcloud::monitor::V20230616::DescribeDispenseExternalRuleRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20230616::DescribeDispenseExternalRuleResponse`
+        def DescribeDispenseExternalRule(request)
+          body = send_request('DescribeDispenseExternalRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDispenseExternalRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询所有列表
+
+        # @param request: Request instance for DescribeDispenseExternalRuleList.
+        # @type request: :class:`Tencentcloud::monitor::V20230616::DescribeDispenseExternalRuleListRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20230616::DescribeDispenseExternalRuleListResponse`
+        def DescribeDispenseExternalRuleList(request)
+          body = send_request('DescribeDispenseExternalRuleList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDispenseExternalRuleListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 转发地域列表查询接口
+
+        # @param request: Request instance for DescribeDispenseRegion.
+        # @type request: :class:`Tencentcloud::monitor::V20230616::DescribeDispenseRegionRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20230616::DescribeDispenseRegionResponse`
+        def DescribeDispenseRegion(request)
+          body = send_request('DescribeDispenseRegion', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDispenseRegionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询对外指标
+
+        # @param request: Request instance for DescribeExtMetric.
+        # @type request: :class:`Tencentcloud::monitor::V20230616::DescribeExtMetricRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20230616::DescribeExtMetricResponse`
+        def DescribeExtMetric(request)
+          body = send_request('DescribeExtMetric', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeExtMetricResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 转发查询对外命名空间接口
+
+        # @param request: Request instance for DescribeExtNamespace.
+        # @type request: :class:`Tencentcloud::monitor::V20230616::DescribeExtNamespaceRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20230616::DescribeExtNamespaceResponse`
+        def DescribeExtNamespace(request)
+          body = send_request('DescribeExtNamespace', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeExtNamespaceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 转发kafka连通性测试
+
+        # @param request: Request instance for DescribeKafka.
+        # @type request: :class:`Tencentcloud::monitor::V20230616::DescribeKafkaRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20230616::DescribeKafkaResponse`
+        def DescribeKafka(request)
+          body = send_request('DescribeKafka', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeKafkaResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -687,6 +879,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ListAIWorkbenchTasksResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 转发规则更新接口
+
+        # @param request: Request instance for ModifyDispenseExternalRule.
+        # @type request: :class:`Tencentcloud::monitor::V20230616::ModifyDispenseExternalRuleRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20230616::ModifyDispenseExternalRuleResponse`
+        def ModifyDispenseExternalRule(request)
+          body = send_request('ModifyDispenseExternalRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDispenseExternalRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 新增规则开启关闭接口
+
+        # @param request: Request instance for ModifyDispenseExternalRuleStatus.
+        # @type request: :class:`Tencentcloud::monitor::V20230616::ModifyDispenseExternalRuleStatusRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20230616::ModifyDispenseExternalRuleStatusResponse`
+        def ModifyDispenseExternalRuleStatus(request)
+          body = send_request('ModifyDispenseExternalRuleStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDispenseExternalRuleStatusResponse.new
             model.deserialize(response['Response'])
             model
           else

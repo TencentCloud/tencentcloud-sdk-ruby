@@ -4483,21 +4483,21 @@ module TencentCloud
 
       # CreatePartition请求参数结构体
       class CreatePartitionRequest < TencentCloud::Common::AbstractModel
-        # @param ActionType: <p>交易类型：purchase-新购，renew-续费，modify-变配</p>
+        # @param ActionType: <p>交易类型：purchase-新购</p>
         # @type ActionType: String
-        # @param PayMode: <p>付费模式：0-后付费，1-预付费</p>
+        # @param PayMode: <p>付费模式：1-预付费</p>
         # @type PayMode: Integer
         # @param ResourceQuotaList: <p>资源配额列表（计费项+数量）</p>
         # @type ResourceQuotaList: Array
-        # @param TimeSpan: <p>时间大小，预付费时为购买月数，后付费时为3600</p>
+        # @param TimeSpan: <p>时间大小，预付费时为购买月数</p>
         # @type TimeSpan: Integer
-        # @param TimeUnit: <p>时间单位，预付费为m（月），后付费为s（秒）</p>
+        # @param TimeUnit: <p>时间单位，预付费为m（月）</p>
         # @type TimeUnit: String
         # @param AutoRenewFlag: <p>自动续费标志：0-默认，1-自动续费，2-不自动续费（仅预付费有效）</p>
         # @type AutoRenewFlag: Integer
         # @param Name: <p>弹性资源池名称，用于订单页展示</p>
         # @type Name: String
-        # @param Description: <p>队列描述</p>
+        # @param Description: <p>资源包描述</p>
         # @type Description: String
 
         attr_accessor :ActionType, :PayMode, :ResourceQuotaList, :TimeSpan, :TimeUnit, :AutoRenewFlag, :Name, :Description

@@ -6993,6 +6993,73 @@ module TencentCloud
         end
       end
 
+      # ChangeVoice请求参数结构体
+      class ChangeVoiceRequest < TencentCloud::Common::AbstractModel
+        # @param AudioData: <p>待转换音频base64编码</p>
+        # @type AudioData: String
+        # @param AudioUrl: <p>待转换音频Url，AudioData为空时有效</p>
+        # @type AudioUrl: String
+        # @param VoiceId: <p>音色ID</p>
+        # @type VoiceId: String
+        # @param Output: <p>输出相关参数</p>
+        # @type Output: :class:`Tencentcloud::Mps.v20190612.models.SyncDubbingOutputOption`
+        # @param ExtParam: <p>扩展参数，json字符串</p>
+        # @type ExtParam: String
+
+        attr_accessor :AudioData, :AudioUrl, :VoiceId, :Output, :ExtParam
+
+        def initialize(audiodata=nil, audiourl=nil, voiceid=nil, output=nil, extparam=nil)
+          @AudioData = audiodata
+          @AudioUrl = audiourl
+          @VoiceId = voiceid
+          @Output = output
+          @ExtParam = extparam
+        end
+
+        def deserialize(params)
+          @AudioData = params['AudioData']
+          @AudioUrl = params['AudioUrl']
+          @VoiceId = params['VoiceId']
+          unless params['Output'].nil?
+            @Output = SyncDubbingOutputOption.new
+            @Output.deserialize(params['Output'])
+          end
+          @ExtParam = params['ExtParam']
+        end
+      end
+
+      # ChangeVoice返回参数结构体
+      class ChangeVoiceResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorCode: <p>错误码，成功时返回0</p>
+        # @type ErrorCode: Integer
+        # @param Msg: <p>错误信息，成功时返回success</p>
+        # @type Msg: String
+        # @param AudioData: <p>结果音频的base64编码，默认mp3格式</p>
+        # @type AudioData: String
+        # @param AudioUrl: <p>结果音频url，有效期24小时</p>
+        # @type AudioUrl: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrorCode, :Msg, :AudioData, :AudioUrl, :RequestId
+
+        def initialize(errorcode=nil, msg=nil, audiodata=nil, audiourl=nil, requestid=nil)
+          @ErrorCode = errorcode
+          @Msg = msg
+          @AudioData = audiodata
+          @AudioUrl = audiourl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrorCode = params['ErrorCode']
+          @Msg = params['Msg']
+          @AudioData = params['AudioData']
+          @AudioUrl = params['AudioUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 线性组装频道告警返回信息。
       class ChannelAlertResp < TencentCloud::Common::AbstractModel
         # @param ProgramAlertCounts: Program告警聚合信息。

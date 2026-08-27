@@ -159,10 +159,12 @@ module TencentCloud
         # @type SkillList: Array
         # @param AdvancedConfig: <p>高级配置</p>
         # @type AdvancedConfig: :class:`Tencentcloud::Adp.v20260520.models.AgentAdvancedConfig`
+        # @param ExternalToolList: <p>调用方执行的 Function Tool 列表</p><p>入参限制：仅在 C 端用户态 Agent 场景可用，B 端配置态 Agent 忽略该字段与</p>
+        # @type ExternalToolList: Array
 
-        attr_accessor :AgentId, :Profile, :Instructions, :Model, :ToolList, :PluginList, :SkillList, :AdvancedConfig
+        attr_accessor :AgentId, :Profile, :Instructions, :Model, :ToolList, :PluginList, :SkillList, :AdvancedConfig, :ExternalToolList
 
-        def initialize(agentid=nil, profile=nil, instructions=nil, model=nil, toollist=nil, pluginlist=nil, skilllist=nil, advancedconfig=nil)
+        def initialize(agentid=nil, profile=nil, instructions=nil, model=nil, toollist=nil, pluginlist=nil, skilllist=nil, advancedconfig=nil, externaltoollist=nil)
           @AgentId = agentid
           @Profile = profile
           @Instructions = instructions
@@ -171,6 +173,7 @@ module TencentCloud
           @PluginList = pluginlist
           @SkillList = skilllist
           @AdvancedConfig = advancedconfig
+          @ExternalToolList = externaltoollist
         end
 
         def deserialize(params)
@@ -211,6 +214,49 @@ module TencentCloud
           unless params['AdvancedConfig'].nil?
             @AdvancedConfig = AgentAdvancedConfig.new
             @AdvancedConfig.deserialize(params['AdvancedConfig'])
+          end
+          unless params['ExternalToolList'].nil?
+            @ExternalToolList = []
+            params['ExternalToolList'].each do |i|
+              agentexternaltoolconfig_tmp = AgentExternalToolConfig.new
+              agentexternaltoolconfig_tmp.deserialize(i)
+              @ExternalToolList << agentexternaltoolconfig_tmp
+            end
+          end
+        end
+      end
+
+      # 调用方执行的 Function Tool 配置
+      class AgentExternalToolConfig < TencentCloud::Common::AbstractModel
+        # @param Type: <p>工具类型</p><p>入参限制：目前仅支持 &quot;function&quot;</p>
+        # @type Type: String
+        # @param Name: <p>工具名称</p>
+        # @type Name: String
+        # @param Description: <p>工具描述</p>
+        # @type Description: String
+        # @param Parameters: <p>工具入参定义</p>
+        # @type Parameters: Array
+
+        attr_accessor :Type, :Name, :Description, :Parameters
+
+        def initialize(type=nil, name=nil, description=nil, parameters=nil)
+          @Type = type
+          @Name = name
+          @Description = description
+          @Parameters = parameters
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Name = params['Name']
+          @Description = params['Description']
+          unless params['Parameters'].nil?
+            @Parameters = []
+            params['Parameters'].each do |i|
+              requestparam_tmp = RequestParam.new
+              requestparam_tmp.deserialize(i)
+              @Parameters << requestparam_tmp
+            end
           end
         end
       end
@@ -594,9 +640,9 @@ module TencentCloud
       class AgentSpec < TencentCloud::Common::AbstractModel
         # @param Profile: <p>Agent基本配置</p>
         # @type Profile: :class:`Tencentcloud::Adp.v20260520.models.AgentProfile`
-        # @param Instructions: 系统提示词
+        # @param Instructions: <p>系统提示词</p>
         # @type Instructions: String
-        # @param Model: 主模型配置
+        # @param Model: <p>主模型配置</p>
         # @type Model: :class:`Tencentcloud::Adp.v20260520.models.AgentModelConfig`
         # @param ToolList: <p>工具信息</p>
         # @type ToolList: Array
@@ -604,12 +650,14 @@ module TencentCloud
         # @type PluginList: Array
         # @param SkillList: <p>技能信息</p>
         # @type SkillList: Array
-        # @param AdvancedConfig: 高级设置
+        # @param AdvancedConfig: <p>高级设置</p>
         # @type AdvancedConfig: :class:`Tencentcloud::Adp.v20260520.models.AgentAdvancedConfig`
+        # @param ExternalToolList: <p>调用方执行的 Function Tool 列表</p><p>入参限制：仅在 C 端用户态 Agent 场景可用，B 端配置态 Agent  忽略该字段与</p>
+        # @type ExternalToolList: Array
 
-        attr_accessor :Profile, :Instructions, :Model, :ToolList, :PluginList, :SkillList, :AdvancedConfig
+        attr_accessor :Profile, :Instructions, :Model, :ToolList, :PluginList, :SkillList, :AdvancedConfig, :ExternalToolList
 
-        def initialize(profile=nil, instructions=nil, model=nil, toollist=nil, pluginlist=nil, skilllist=nil, advancedconfig=nil)
+        def initialize(profile=nil, instructions=nil, model=nil, toollist=nil, pluginlist=nil, skilllist=nil, advancedconfig=nil, externaltoollist=nil)
           @Profile = profile
           @Instructions = instructions
           @Model = model
@@ -617,6 +665,7 @@ module TencentCloud
           @PluginList = pluginlist
           @SkillList = skilllist
           @AdvancedConfig = advancedconfig
+          @ExternalToolList = externaltoollist
         end
 
         def deserialize(params)
@@ -656,6 +705,14 @@ module TencentCloud
           unless params['AdvancedConfig'].nil?
             @AdvancedConfig = AgentAdvancedConfig.new
             @AdvancedConfig.deserialize(params['AdvancedConfig'])
+          end
+          unless params['ExternalToolList'].nil?
+            @ExternalToolList = []
+            params['ExternalToolList'].each do |i|
+              agentexternaltoolconfig_tmp = AgentExternalToolConfig.new
+              agentexternaltoolconfig_tmp.deserialize(i)
+              @ExternalToolList << agentexternaltoolconfig_tmp
+            end
           end
         end
       end

@@ -7227,6 +7227,62 @@ module TencentCloud
         end
       end
 
+      # CreateRequestWithEncryption请求参数结构体
+      class CreateRequestWithEncryptionRequest < TencentCloud::Common::AbstractModel
+        # @param RequestAction: <p>操作的接口名称。取值参考接口文档输入参数章节关于公共参数 Action 的说明。</p>
+        # @type RequestAction: String
+        # @param IV: <p>加密算法使用的初始化向量。固定为 16 字节，将 IV 原始字节使用标准 Base64 编码后传入。</p>
+        # @type IV: String
+        # @param EncryptedData: <p>使用 AES-CBC 或 SM4-CBC 加密请求内容得到的密文。加密前请求内容采用 PKCS#7 Padding；将密文原始字节使用标准 Base64 编码后传入。</p>
+        # @type EncryptedData: String
+        # @param EncryptionSignature: <p>用于校验请求数据完整性。对 IV 原始字节和密文原始字节直接拼接（不加拼接符）后计算 HMAC-SHA256，再将计算结果使用标准 Base64 编码后传入。</p>
+        # @type EncryptionSignature: String
+
+        attr_accessor :RequestAction, :IV, :EncryptedData, :EncryptionSignature
+
+        def initialize(requestaction=nil, iv=nil, encrypteddata=nil, encryptionsignature=nil)
+          @RequestAction = requestaction
+          @IV = iv
+          @EncryptedData = encrypteddata
+          @EncryptionSignature = encryptionsignature
+        end
+
+        def deserialize(params)
+          @RequestAction = params['RequestAction']
+          @IV = params['IV']
+          @EncryptedData = params['EncryptedData']
+          @EncryptionSignature = params['EncryptionSignature']
+        end
+      end
+
+      # CreateRequestWithEncryption返回参数结构体
+      class CreateRequestWithEncryptionResponse < TencentCloud::Common::AbstractModel
+        # @param IV: <p>加密算法使用的初始化向量。固定为 16 字节，将 IV 原始字节使用标准 Base64 编码后传入。</p>
+        # @type IV: String
+        # @param EncryptedData: <p>使用 AES-CBC 或 SM4-CBC 加密返回内容得到的密文。加密前返回内容采用 PKCS#7 Padding；将密文原始字节使用标准 Base64 编码后传入。</p>
+        # @type EncryptedData: String
+        # @param EncryptionSignature: <p>用于校验请求数据完整性。对 IV 原始字节和密文原始字节直接拼接（不加拼接符）后计算 HMAC-SHA256，再将计算结果使用标准 Base64 编码后传入。</p>
+        # @type EncryptionSignature: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :IV, :EncryptedData, :EncryptionSignature, :RequestId
+
+        def initialize(iv=nil, encrypteddata=nil, encryptionsignature=nil, requestid=nil)
+          @IV = iv
+          @EncryptedData = encrypteddata
+          @EncryptionSignature = encryptionsignature
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @IV = params['IV']
+          @EncryptedData = params['EncryptedData']
+          @EncryptionSignature = params['EncryptionSignature']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 发起流程的可嵌入页面操作结果页配置
       class CreateResultPageConfig < TencentCloud::Common::AbstractModel
         # @param Type: <ul>
