@@ -221,7 +221,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建专业集群——预付费，仅通过api调用
+        # 创建Pulsar标准版或专业版实例——预付费，仅通过api调用
 
         # @param request: Request instance for CreateProCluster.
         # @type request: :class:`Tencentcloud::tdmq::V20200217::CreateProClusterRequest`
@@ -1727,7 +1727,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取Pulsar专业版集群实例信息
+        # 获取Pulsar标准版或专业版实例信息
 
         # @param request: Request instance for DescribePulsarProInstanceDetail.
         # @type request: :class:`Tencentcloud::tdmq::V20200217::DescribePulsarProInstanceDetailRequest`
@@ -1751,7 +1751,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询用户已购的Pulsar专业版实例列表
+        # 查询用户已购的Pulsar实例列表
 
         # @param request: Request instance for DescribePulsarProInstances.
         # @type request: :class:`Tencentcloud::tdmq::V20200217::DescribePulsarProInstancesRequest`
@@ -2886,7 +2886,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 更新集群信息
+        # 更新虚拟集群信息
 
         # @param request: Request instance for ModifyCluster.
         # @type request: :class:`Tencentcloud::tdmq::V20200217::ModifyClusterRequest`

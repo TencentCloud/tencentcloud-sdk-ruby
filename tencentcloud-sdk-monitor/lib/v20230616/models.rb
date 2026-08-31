@@ -2028,21 +2028,28 @@ module TencentCloud
 
       # 飞书机器人内容模板配置
       class FeiShuRobotNoticeTmpl < TencentCloud::Common::AbstractModel
-        # @param ContentTmpl: 内容模板
+        # @param ContentTmpl: <p>内容模板</p>
         # @type ContentTmpl: String
-        # @param TitleTmpl: 标题模板
+        # @param TitleTmpl: <p>标题模板</p>
         # @type TitleTmpl: String
+        # @param TitleColor: <p>通知内容模版标题自定义颜色</p>
+        # @type TitleColor: :class:`Tencentcloud::Monitor.v20230616.models.RobotNoticeTitleColor`
 
-        attr_accessor :ContentTmpl, :TitleTmpl
+        attr_accessor :ContentTmpl, :TitleTmpl, :TitleColor
 
-        def initialize(contenttmpl=nil, titletmpl=nil)
+        def initialize(contenttmpl=nil, titletmpl=nil, titlecolor=nil)
           @ContentTmpl = contenttmpl
           @TitleTmpl = titletmpl
+          @TitleColor = titlecolor
         end
 
         def deserialize(params)
           @ContentTmpl = params['ContentTmpl']
           @TitleTmpl = params['TitleTmpl']
+          unless params['TitleColor'].nil?
+            @TitleColor = RobotNoticeTitleColor.new
+            @TitleColor.deserialize(params['TitleColor'])
+          end
         end
       end
 
@@ -3839,6 +3846,57 @@ module TencentCloud
           @Name = params['Name']
           @Description = params['Description']
           @InstanceCount = params['InstanceCount']
+        end
+      end
+
+      # 告警通知内容模版自定义标题颜色
+      class RobotNoticeTitleColor < TencentCloud::Common::AbstractModel
+        # @param Default: <p>通知内容模版自定义标题颜色默认颜色</p>
+        # @type Default: String
+        # @param Rules: <p>通知内容模版自定义标题颜色规则，label 匹配设置颜色</p>
+        # @type Rules: Array
+
+        attr_accessor :Default, :Rules
+
+        def initialize(default=nil, rules=nil)
+          @Default = default
+          @Rules = rules
+        end
+
+        def deserialize(params)
+          @Default = params['Default']
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              robotnoticetitlecolorrules_tmp = RobotNoticeTitleColorRules.new
+              robotnoticetitlecolorrules_tmp.deserialize(i)
+              @Rules << robotnoticetitlecolorrules_tmp
+            end
+          end
+        end
+      end
+
+      # 告警通知内容模版自定义标题颜色 key-value 匹配规则
+      class RobotNoticeTitleColorRules < TencentCloud::Common::AbstractModel
+        # @param Key: <p>通知内容模版自定义颜色 Label 匹配的 Key</p>
+        # @type Key: String
+        # @param Value: <p>通知内容模版自定义颜色 Label 匹配的 Value</p>
+        # @type Value: String
+        # @param Color: <p>通知内容模版自定义颜色</p>
+        # @type Color: String
+
+        attr_accessor :Key, :Value, :Color
+
+        def initialize(key=nil, value=nil, color=nil)
+          @Key = key
+          @Value = value
+          @Color = color
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+          @Color = params['Color']
         end
       end
 

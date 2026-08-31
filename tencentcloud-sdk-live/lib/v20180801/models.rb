@@ -2041,30 +2041,23 @@ module TencentCloud
 
       # 云端特效信息。
       class CloudEffectInfo < TencentCloud::Common::AbstractModel
-        # @param Id: 云端特效 ID。
+        # @param Id: <p>云端特效 ID。</p>
         # @type Id: String
-        # @param Prompt: 云端特效描述词。
+        # @param Prompt: <p>云端特效描述词。</p>
         # @type Prompt: String
-        # @param Flag: 云端特效标签。
+        # @param Flag: <p>云端特效标签。</p>
         # @type Flag: String
-        # @param Status: 云端特效生成状态。
-        # 生成中 - GENERATING。
-        # 处理中 - PROCESSING。
-        # 生成失败 - FAILED。
-        # 已完成 - FINISH。
+        # @param Status: <p>云端特效生成状态。<br>生成中 - GENERATING。<br>处理中 - PROCESSING。<br>生成失败 - FAILED。<br>已完成 - FINISH。</p>
         # @type Status: String
-        # @param Message: 特效信息，生成失败时，此处返回失败原因。
+        # @param Message: <p>特效信息，生成失败时，此处返回失败原因。</p>
         # @type Message: String
-        # @param PreviewImageUrl: 云端特效预览图片。
+        # @param PreviewImageUrl: <p>云端特效预览图片。</p>
         # @type PreviewImageUrl: String
-        # @param Type: 云端特效类型。
-        # PGC : 官方精品特效。
-        # AIGC : AI生成的特效。
-        # UGC : 用户上传特效。
+        # @param Type: <p>云端特效类型。<br>PGC : 官方精品特效。<br>AIGC : AI生成的特效。<br>UGC : 用户上传特效。</p>
         # @type Type: String
-        # @param CreateTime: 云端特效创建时间。
+        # @param CreateTime: <p>云端特效创建时间。</p>
         # @type CreateTime: String
-        # @param UpdateTime: 云端特效更新时间。
+        # @param UpdateTime: <p>云端特效更新时间。</p>
         # @type UpdateTime: String
 
         attr_accessor :Id, :Prompt, :Flag, :Status, :Message, :PreviewImageUrl, :Type, :CreateTime, :UpdateTime
@@ -7719,13 +7712,16 @@ module TencentCloud
       class DescribeLiveCloudEffectConfigResponse < TencentCloud::Common::AbstractModel
         # @param EffectTemplateList: <p>模板生礼物的模板信息列表。</p>
         # @type EffectTemplateList: Array
+        # @param PunishmentEffectTemplateList: <p>惩罚特效模板信息列表。</p>
+        # @type PunishmentEffectTemplateList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :EffectTemplateList, :RequestId
+        attr_accessor :EffectTemplateList, :PunishmentEffectTemplateList, :RequestId
 
-        def initialize(effecttemplatelist=nil, requestid=nil)
+        def initialize(effecttemplatelist=nil, punishmenteffecttemplatelist=nil, requestid=nil)
           @EffectTemplateList = effecttemplatelist
+          @PunishmentEffectTemplateList = punishmenteffecttemplatelist
           @RequestId = requestid
         end
 
@@ -7736,6 +7732,14 @@ module TencentCloud
               cloudeffecttemplateinfo_tmp = CloudEffectTemplateInfo.new
               cloudeffecttemplateinfo_tmp.deserialize(i)
               @EffectTemplateList << cloudeffecttemplateinfo_tmp
+            end
+          end
+          unless params['PunishmentEffectTemplateList'].nil?
+            @PunishmentEffectTemplateList = []
+            params['PunishmentEffectTemplateList'].each do |i|
+              cloudeffecttemplateinfo_tmp = CloudEffectTemplateInfo.new
+              cloudeffecttemplateinfo_tmp.deserialize(i)
+              @PunishmentEffectTemplateList << cloudeffecttemplateinfo_tmp
             end
           end
           @RequestId = params['RequestId']

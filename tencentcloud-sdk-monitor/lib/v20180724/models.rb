@@ -1806,52 +1806,54 @@ module TencentCloud
 
       # CreateAlarmPolicy请求参数结构体
       class CreateAlarmPolicyRequest < TencentCloud::Common::AbstractModel
-        # @param Module: 固定值，为"monitor"
+        # @param Module: <p>固定值，为&quot;monitor&quot;</p>
         # @type Module: String
-        # @param PolicyName: 策略名称，不超过60字符
+        # @param PolicyName: <p>策略名称，不超过60字符</p>
         # @type PolicyName: String
-        # @param MonitorType: 监控类型 MT_QCE=云产品监控
+        # @param MonitorType: <p>监控类型 MT_QCE=云产品监控</p>
         # @type MonitorType: String
-        # @param Namespace: 告警策略类型，由 [DescribeAllNamespaces](https://cloud.tencent.com/document/product/248/48683) 获得。对于云产品监控，取接口出参的 QceNamespacesNew.N.Id，例如 cvm_device
+        # @param Namespace: <p>告警策略类型，由 <a href="https://cloud.tencent.com/document/product/248/48683">DescribeAllNamespaces</a> 获得。对于云产品监控，取接口出参的 QceNamespacesNew.N.Id，例如 cvm_device</p>
         # @type Namespace: String
-        # @param Remark: 备注，不超过100字符，仅支持中英文、数字、下划线、-
+        # @param Remark: <p>备注，不超过100字符，仅支持中英文、数字、下划线、-</p>
         # @type Remark: String
-        # @param Enable: 是否启用 0=停用 1=启用，可不传 默认为1
+        # @param Enable: <p>是否启用 0=停用 1=启用，可不传 默认为1</p>
         # @type Enable: Integer
-        # @param ProjectId: 项目 Id，对于区分项目的产品必须传入非 -1 的值。 -1=无项目 0=默认项目，如不传 默认为 -1。支持的项目 Id 可以在控制台 [账号中心-项目管理](https://console.cloud.tencent.com/project) 中查看。
+        # @param ProjectId: <p>项目 Id，对于区分项目的产品必须传入非 -1 的值。 -1=无项目 0=默认项目，如不传 默认为 -1。支持的项目 Id 可以在控制台 <a href="https://console.cloud.tencent.com/project">账号中心-项目管理</a> 中查看。</p>
         # @type ProjectId: Integer
-        # @param ConditionTemplateId: 触发条件模板 Id，该参数与 Condition 参数二选一。如果策略绑定触发条件模板，则传该参数；否则不传该参数，而是传 Condition 参数。触发条件模板 Id 可以从 [DescribeConditionsTemplateList](https://cloud.tencent.com/document/api/248/70250) 接口获取。
+        # @param ConditionTemplateId: <p>触发条件模板 Id，该参数与 Condition 参数二选一。如果策略绑定触发条件模板，则传该参数；否则不传该参数，而是传 Condition 参数。触发条件模板 Id 可以从 <a href="https://cloud.tencent.com/document/api/248/70250">DescribeConditionsTemplateList</a> 接口获取。</p>
         # @type ConditionTemplateId: Integer
-        # @param Condition: 指标触发条件，支持的指标可以从 [DescribeAlarmMetrics](https://cloud.tencent.com/document/product/248/51283) 查询。
+        # @param Condition: <p>指标触发条件，支持的指标可以从 <a href="https://cloud.tencent.com/document/product/248/51283">DescribeAlarmMetrics</a> 查询。</p>
         # @type Condition: :class:`Tencentcloud::Monitor.v20180724.models.AlarmPolicyCondition`
-        # @param EventCondition: 事件触发条件，支持的事件可以从 [DescribeAlarmEvents](https://cloud.tencent.com/document/product/248/51284) 查询。
+        # @param EventCondition: <p>事件触发条件，支持的事件可以从 <a href="https://cloud.tencent.com/document/product/248/51284">DescribeAlarmEvents</a> 查询。</p>
         # @type EventCondition: :class:`Tencentcloud::Monitor.v20180724.models.AlarmPolicyEventCondition`
-        # @param NoticeIds: 通知规则 Id 列表，由 [DescribeAlarmNotices](https://cloud.tencent.com/document/product/248/51280) 获得
+        # @param NoticeIds: <p>通知规则 Id 列表，由 <a href="https://cloud.tencent.com/document/product/248/51280">DescribeAlarmNotices</a> 获得</p>
         # @type NoticeIds: Array
-        # @param TriggerTasks: 触发任务列表
+        # @param TriggerTasks: <p>触发任务列表</p>
         # @type TriggerTasks: Array
-        # @param Filter: 全局过滤条件
+        # @param Filter: <p>全局过滤条件</p>
         # @type Filter: :class:`Tencentcloud::Monitor.v20180724.models.AlarmPolicyFilter`
-        # @param GroupBy: 聚合维度列表，指定按哪些维度 key 来做 group by
+        # @param GroupBy: <p>聚合维度列表，指定按哪些维度 key 来做 group by</p>
         # @type GroupBy: Array
-        # @param Tags: 模板绑定的标签
+        # @param IsBindAll: <p>是否绑定全部对象。如果是的话，不需要再传filter或者调用BindPolicyObject，0=否，1=是，默认为否</p><p>取值范围：[0, 1]</p><p>默认值：0</p><p>不是所有策略类型都支持绑定全部对象</p>
+        # @type IsBindAll: Integer
+        # @param Tags: <p>模板绑定的标签</p>
         # @type Tags: Array
-        # @param LogAlarmReqInfo: 日志告警信息
+        # @param LogAlarmReqInfo: <p>日志告警信息</p>
         # @type LogAlarmReqInfo: :class:`Tencentcloud::Monitor.v20180724.models.LogAlarmReq`
-        # @param HierarchicalNotices: 告警分级通知规则配置
+        # @param HierarchicalNotices: <p>告警分级通知规则配置</p>
         # @type HierarchicalNotices: Array
-        # @param MigrateFlag: 迁移策略专用字段，0-走鉴权逻辑，1-跳过鉴权逻辑
+        # @param MigrateFlag: <p>迁移策略专用字段，0-走鉴权逻辑，1-跳过鉴权逻辑</p>
         # @type MigrateFlag: Integer
-        # @param EbSubject: 事件配置的告警
+        # @param EbSubject: <p>事件配置的告警</p>
         # @type EbSubject: String
-        # @param AdditionalAlarmContent: 附加告警内容
+        # @param AdditionalAlarmContent: <p>附加告警内容</p>
         # @type AdditionalAlarmContent: String
-        # @param NoticeContentTmplBindInfos: 通知模板绑定信息
+        # @param NoticeContentTmplBindInfos: <p>通知模板绑定信息</p>
         # @type NoticeContentTmplBindInfos: Array
 
-        attr_accessor :Module, :PolicyName, :MonitorType, :Namespace, :Remark, :Enable, :ProjectId, :ConditionTemplateId, :Condition, :EventCondition, :NoticeIds, :TriggerTasks, :Filter, :GroupBy, :Tags, :LogAlarmReqInfo, :HierarchicalNotices, :MigrateFlag, :EbSubject, :AdditionalAlarmContent, :NoticeContentTmplBindInfos
+        attr_accessor :Module, :PolicyName, :MonitorType, :Namespace, :Remark, :Enable, :ProjectId, :ConditionTemplateId, :Condition, :EventCondition, :NoticeIds, :TriggerTasks, :Filter, :GroupBy, :IsBindAll, :Tags, :LogAlarmReqInfo, :HierarchicalNotices, :MigrateFlag, :EbSubject, :AdditionalAlarmContent, :NoticeContentTmplBindInfos
 
-        def initialize(_module=nil, policyname=nil, monitortype=nil, namespace=nil, remark=nil, enable=nil, projectid=nil, conditiontemplateid=nil, condition=nil, eventcondition=nil, noticeids=nil, triggertasks=nil, filter=nil, groupby=nil, tags=nil, logalarmreqinfo=nil, hierarchicalnotices=nil, migrateflag=nil, ebsubject=nil, additionalalarmcontent=nil, noticecontenttmplbindinfos=nil)
+        def initialize(_module=nil, policyname=nil, monitortype=nil, namespace=nil, remark=nil, enable=nil, projectid=nil, conditiontemplateid=nil, condition=nil, eventcondition=nil, noticeids=nil, triggertasks=nil, filter=nil, groupby=nil, isbindall=nil, tags=nil, logalarmreqinfo=nil, hierarchicalnotices=nil, migrateflag=nil, ebsubject=nil, additionalalarmcontent=nil, noticecontenttmplbindinfos=nil)
           @Module = _module
           @PolicyName = policyname
           @MonitorType = monitortype
@@ -1866,6 +1868,7 @@ module TencentCloud
           @TriggerTasks = triggertasks
           @Filter = filter
           @GroupBy = groupby
+          @IsBindAll = isbindall
           @Tags = tags
           @LogAlarmReqInfo = logalarmreqinfo
           @HierarchicalNotices = hierarchicalnotices
@@ -1906,6 +1909,7 @@ module TencentCloud
             @Filter.deserialize(params['Filter'])
           end
           @GroupBy = params['GroupBy']
+          @IsBindAll = params['IsBindAll']
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
@@ -1942,9 +1946,9 @@ module TencentCloud
 
       # CreateAlarmPolicy返回参数结构体
       class CreateAlarmPolicyResponse < TencentCloud::Common::AbstractModel
-        # @param PolicyId: 告警策略 ID
+        # @param PolicyId: <p>告警策略 ID</p>
         # @type PolicyId: String
-        # @param OriginId: 可用于实例、实例组的绑定和解绑接口（[BindingPolicyObject](https://cloud.tencent.com/document/product/248/40421)、[UnBindingAllPolicyObject](https://cloud.tencent.com/document/product/248/40568)、[UnBindingPolicyObject](https://cloud.tencent.com/document/product/248/40567)）的策略 ID
+        # @param OriginId: <p>可用于实例、实例组的绑定和解绑接口（<a href="https://cloud.tencent.com/document/product/248/40421">BindingPolicyObject</a>、<a href="https://cloud.tencent.com/document/product/248/40568">UnBindingAllPolicyObject</a>、<a href="https://cloud.tencent.com/document/product/248/40567">UnBindingPolicyObject</a>）的策略 ID</p>
         # @type OriginId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -12698,14 +12702,14 @@ module TencentCloud
 
         attr_accessor :AlarmNotifyPeriod, :AlarmNotifyType, :EventID, :RuleID, :MetricName, :Description
         extend Gem::Deprecate
-        deprecate :AlarmNotifyPeriod, :none, 2026, 8
-        deprecate :AlarmNotifyPeriod=, :none, 2026, 8
-        deprecate :AlarmNotifyType, :none, 2026, 8
-        deprecate :AlarmNotifyType=, :none, 2026, 8
-        deprecate :EventID, :none, 2026, 8
-        deprecate :EventID=, :none, 2026, 8
-        deprecate :RuleID, :none, 2026, 8
-        deprecate :RuleID=, :none, 2026, 8
+        deprecate :AlarmNotifyPeriod, :none, 2026, 9
+        deprecate :AlarmNotifyPeriod=, :none, 2026, 9
+        deprecate :AlarmNotifyType, :none, 2026, 9
+        deprecate :AlarmNotifyType=, :none, 2026, 9
+        deprecate :EventID, :none, 2026, 9
+        deprecate :EventID=, :none, 2026, 9
+        deprecate :RuleID, :none, 2026, 9
+        deprecate :RuleID=, :none, 2026, 9
 
         def initialize(alarmnotifyperiod=nil, alarmnotifytype=nil, eventid=nil, ruleid=nil, metricname=nil, description=nil)
           @AlarmNotifyPeriod = alarmnotifyperiod
@@ -16012,10 +16016,10 @@ module TencentCloud
 
         attr_accessor :URL, :URLRelabelConfig, :BasicAuth, :MaxBlockSize, :Label, :Headers, :RemoteWriteType
         extend Gem::Deprecate
-        deprecate :MaxBlockSize, :none, 2026, 8
-        deprecate :MaxBlockSize=, :none, 2026, 8
-        deprecate :Label, :none, 2026, 8
-        deprecate :Label=, :none, 2026, 8
+        deprecate :MaxBlockSize, :none, 2026, 9
+        deprecate :MaxBlockSize=, :none, 2026, 9
+        deprecate :Label, :none, 2026, 9
+        deprecate :Label=, :none, 2026, 9
 
         def initialize(url=nil, urlrelabelconfig=nil, basicauth=nil, maxblocksize=nil, label=nil, headers=nil, remotewritetype=nil)
           @URL = url

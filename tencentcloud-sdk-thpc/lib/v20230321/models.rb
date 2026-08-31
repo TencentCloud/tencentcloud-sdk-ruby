@@ -913,6 +913,62 @@ module TencentCloud
         end
       end
 
+      # CreateScheduledAction请求参数结构体
+      class CreateScheduledActionRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: <p>集群 ID。</p>
+        # @type ClusterId: String
+        # @param QueueName: <p>队列名称。</p>
+        # @type QueueName: String
+        # @param ScheduledActionName: <p>定时伸缩任务名称。</p>
+        # @type ScheduledActionName: String
+        # @param StartTime: <p>定时伸缩任务生效起始时间，格式：YYYY-MM-DD HH:MM:SS。</p>
+        # @type StartTime: String
+        # @param DesiredCapacity: <p>定时触发后队列期望节点数。</p>
+        # @type DesiredCapacity: Integer
+        # @param EndTime: <p>定时伸缩任务生效结束时间，格式：YYYY-MM-DD HH:MM:SS。不传则永久有效。</p>
+        # @type EndTime: String
+        # @param Recurrence: <p>重复策略，遵循 cron 表达式格式。不传则只执行一次。</p>
+        # @type Recurrence: String
+
+        attr_accessor :ClusterId, :QueueName, :ScheduledActionName, :StartTime, :DesiredCapacity, :EndTime, :Recurrence
+
+        def initialize(clusterid=nil, queuename=nil, scheduledactionname=nil, starttime=nil, desiredcapacity=nil, endtime=nil, recurrence=nil)
+          @ClusterId = clusterid
+          @QueueName = queuename
+          @ScheduledActionName = scheduledactionname
+          @StartTime = starttime
+          @DesiredCapacity = desiredcapacity
+          @EndTime = endtime
+          @Recurrence = recurrence
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @QueueName = params['QueueName']
+          @ScheduledActionName = params['ScheduledActionName']
+          @StartTime = params['StartTime']
+          @DesiredCapacity = params['DesiredCapacity']
+          @EndTime = params['EndTime']
+          @Recurrence = params['Recurrence']
+        end
+      end
+
+      # CreateScheduledAction返回参数结构体
+      class CreateScheduledActionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateWorkspaces请求参数结构体
       class CreateWorkspacesRequest < TencentCloud::Common::AbstractModel
         # @param ClientToken: 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。
@@ -1262,6 +1318,38 @@ module TencentCloud
         end
       end
 
+      # DeleteScheduledAction请求参数结构体
+      class DeleteScheduledActionRequest < TencentCloud::Common::AbstractModel
+        # @param ScheduledActionIds: <p>定时伸缩任务 ID 列表，最多 20 个。</p>
+        # @type ScheduledActionIds: Array
+
+        attr_accessor :ScheduledActionIds
+
+        def initialize(scheduledactionids=nil)
+          @ScheduledActionIds = scheduledactionids
+        end
+
+        def deserialize(params)
+          @ScheduledActionIds = params['ScheduledActionIds']
+        end
+      end
+
+      # DeleteScheduledAction返回参数结构体
+      class DeleteScheduledActionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeAutoScalingConfiguration请求参数结构体
       class DescribeAutoScalingConfigurationRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: <p>集群ID。</p>
@@ -1531,6 +1619,42 @@ module TencentCloud
         end
       end
 
+      # DescribeInstanceFamilies请求参数结构体
+      class DescribeInstanceFamiliesRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: <p>集群 ID。</p>
+        # @type ClusterId: String
+        # @param Vendor: <p>GPU 厂商过滤条件。</p>
+        # @type Vendor: String
+
+        attr_accessor :ClusterId, :Vendor
+
+        def initialize(clusterid=nil, vendor=nil)
+          @ClusterId = clusterid
+          @Vendor = vendor
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Vendor = params['Vendor']
+        end
+      end
+
+      # DescribeInstanceFamilies返回参数结构体
+      class DescribeInstanceFamiliesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeJobSubmitInfo请求参数结构体
       class DescribeJobSubmitInfoRequest < TencentCloud::Common::AbstractModel
         # @param JobId: 作业ID
@@ -1754,6 +1878,78 @@ module TencentCloud
         end
       end
 
+      # DescribeQueueAutoScalingOverview请求参数结构体
+      class DescribeQueueAutoScalingOverviewRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群 ID。
+        # @type ClusterId: String
+        # @param QueueNames: 队列名称列表。不传则返回所有队列的弹性伸缩概览信息。
+        # @type QueueNames: Array
+
+        attr_accessor :ClusterId, :QueueNames
+
+        def initialize(clusterid=nil, queuenames=nil)
+          @ClusterId = clusterid
+          @QueueNames = queuenames
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @QueueNames = params['QueueNames']
+        end
+      end
+
+      # DescribeQueueAutoScalingOverview返回参数结构体
+      class DescribeQueueAutoScalingOverviewResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeQueueAutoScaling请求参数结构体
+      class DescribeQueueAutoScalingRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群 ID。
+        # @type ClusterId: String
+        # @param QueueName: 队列名称。不传则返回所有队列的弹性伸缩配置。
+        # @type QueueName: String
+
+        attr_accessor :ClusterId, :QueueName
+
+        def initialize(clusterid=nil, queuename=nil)
+          @ClusterId = clusterid
+          @QueueName = queuename
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @QueueName = params['QueueName']
+        end
+      end
+
+      # DescribeQueueAutoScaling返回参数结构体
+      class DescribeQueueAutoScalingResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeQueues请求参数结构体
       class DescribeQueuesRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID。
@@ -1805,6 +2001,50 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeScheduledActions请求参数结构体
+      class DescribeScheduledActionsRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: <p>集群 ID。</p>
+        # @type ClusterId: String
+        # @param QueueName: <p>队列名称。</p>
+        # @type QueueName: String
+        # @param ScheduledActionIds: <p>定时伸缩任务 ID 列表。</p>
+        # @type ScheduledActionIds: Array
+        # @param Status: <p>任务状态过滤条件。</p>
+        # @type Status: String
+
+        attr_accessor :ClusterId, :QueueName, :ScheduledActionIds, :Status
+
+        def initialize(clusterid=nil, queuename=nil, scheduledactionids=nil, status=nil)
+          @ClusterId = clusterid
+          @QueueName = queuename
+          @ScheduledActionIds = scheduledactionids
+          @Status = status
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @QueueName = params['QueueName']
+          @ScheduledActionIds = params['ScheduledActionIds']
+          @Status = params['Status']
+        end
+      end
+
+      # DescribeScheduledActions返回参数结构体
+      class DescribeScheduledActionsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -2109,6 +2349,65 @@ module TencentCloud
         end
       end
 
+      # 扩容方式配置，定义用什么创建节点。
+      class ExpansionPolicy < TencentCloud::Common::AbstractModel
+        # @param ExpansionMode: <p>扩容方式。可选值：LAUNCH_TEMPLATE（启动模板）、MULTI_CARD（多卡型混扩）。</p>
+        # @type ExpansionMode: String
+        # @param LaunchTemplateIds: <p>启动模板 ID 列表，最多 10 个。ExpansionMode=LAUNCH_TEMPLATE 时使用。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LaunchTemplateIds: Array
+        # @param ReferenceInstanceId: <p>参考实例 ID，根据已有实例配置生成启动模板。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReferenceInstanceId: String
+        # @param TemplateOverrides: <p>启动模板扩容覆盖配置。ExpansionMode=MULTI_CARD 时使用。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TemplateOverrides: :class:`Tencentcloud::Thpc.v20230321.models.TemplateOverrides`
+        # @param ExpansionPriority: <p>候选规格排序策略。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpansionPriority: :class:`Tencentcloud::Thpc.v20230321.models.ExpansionPriority`
+
+        attr_accessor :ExpansionMode, :LaunchTemplateIds, :ReferenceInstanceId, :TemplateOverrides, :ExpansionPriority
+
+        def initialize(expansionmode=nil, launchtemplateids=nil, referenceinstanceid=nil, templateoverrides=nil, expansionpriority=nil)
+          @ExpansionMode = expansionmode
+          @LaunchTemplateIds = launchtemplateids
+          @ReferenceInstanceId = referenceinstanceid
+          @TemplateOverrides = templateoverrides
+          @ExpansionPriority = expansionpriority
+        end
+
+        def deserialize(params)
+          @ExpansionMode = params['ExpansionMode']
+          @LaunchTemplateIds = params['LaunchTemplateIds']
+          @ReferenceInstanceId = params['ReferenceInstanceId']
+          unless params['TemplateOverrides'].nil?
+            @TemplateOverrides = TemplateOverrides.new
+            @TemplateOverrides.deserialize(params['TemplateOverrides'])
+          end
+          unless params['ExpansionPriority'].nil?
+            @ExpansionPriority = ExpansionPriority.new
+            @ExpansionPriority.deserialize(params['ExpansionPriority'])
+          end
+        end
+      end
+
+      # 候选计算资源规格排序策略。LARGE_FIRST/SMALL_FIRST 表示按规格大小选择候选资源，GPU 场景按卡数判断大小。
+      class ExpansionPriority < TencentCloud::Common::AbstractModel
+        # @param InstanceSpecPriority: <p>候选规格排序方式。可选值：LARGE_FIRST（大规格优先）、SMALL_FIRST（小规格优先）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceSpecPriority: String
+
+        attr_accessor :InstanceSpecPriority
+
+        def initialize(instancespecpriority=nil)
+          @InstanceSpecPriority = instancespecpriority
+        end
+
+        def deserialize(params)
+          @InstanceSpecPriority = params['InstanceSpecPriority']
+        end
+      end
+
       # >描述键值对过滤器，用于条件过滤查询。例如过滤ID、名称、状态等
       # > * 若存在多个`Filter`时，`Filter`间的关系为逻辑与（`AND`）关系。
       # > * 若同一个`Filter`存在多个`Values`，同一`Filter`下`Values`间的关系为逻辑或（`OR`）关系。
@@ -2224,6 +2523,164 @@ module TencentCloud
         def deserialize(params)
           @Masters = params['Masters']
           @LocalPath = params['LocalPath']
+        end
+      end
+
+      # InquirePriceCreateWorkspaces请求参数结构体
+      class InquirePriceCreateWorkspacesRequest < TencentCloud::Common::AbstractModel
+        # @param ClientToken: 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。
+        # @type ClientToken: String
+        # @param Placement: 实例所在的位置。通过该参数可以指定实例所属可用区，所属项目，所属宿主机（在专用宿主机上创建子机时指定）等属性。 <b>注：如果您不指定LaunchTemplate参数，则Placement为必选参数。若同时传递Placement和LaunchTemplate，则默认覆盖LaunchTemplate中对应的Placement的值。</b>
+        # @type Placement: :class:`Tencentcloud::Thpc.v20230321.models.SpacePlacement`
+        # @param SpaceChargePrepaid: 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。若指定实例的付费模式为预付费则该参数必传。
+        # @type SpaceChargePrepaid: :class:`Tencentcloud::Thpc.v20230321.models.SpaceChargePrepaid`
+        # @param SpaceChargeType: 工作空间计费类型
+        # @type SpaceChargeType: String
+        # @param SpaceType: 工作空间规格
+        # @type SpaceType: String
+        # @param ImageId: 镜像ID
+        # @type ImageId: String
+        # @param SystemDisk: 工作空间系统盘信息
+        # @type SystemDisk: :class:`Tencentcloud::Thpc.v20230321.models.SpaceSystemDisk`
+        # @param DataDisks: 工作空间数据盘信息
+        # @type DataDisks: Array
+        # @param VirtualPrivateCloud: 私有网络相关信息
+        # @type VirtualPrivateCloud: :class:`Tencentcloud::Thpc.v20230321.models.SpaceVirtualPrivateCloud`
+        # @param InternetAccessible: 公网带宽相关信息设置
+        # @type InternetAccessible: :class:`Tencentcloud::Thpc.v20230321.models.SpaceInternetAccessible`
+        # @param SpaceCount: 购买工作空间数量
+        # @type SpaceCount: Integer
+        # @param SpaceName: 工作空间显示名称
+        # @type SpaceName: String
+        # @param LoginSettings: 工作空间登陆设置
+        # @type LoginSettings: :class:`Tencentcloud::Thpc.v20230321.models.LoginSettings`
+        # @param SecurityGroupIds: 工作空间所属安全组
+        # @type SecurityGroupIds: Array
+        # @param EnhancedService: 增强服务
+        # @type EnhancedService: :class:`Tencentcloud::Thpc.v20230321.models.EnhancedService`
+        # @param DryRun: 是否只预检此次请求
+        # @type DryRun: Boolean
+        # @param UserData: 提供给工作空间使用的用户数据
+        # @type UserData: String
+        # @param DisasterRecoverGroupIds: 置放群组id
+        # @type DisasterRecoverGroupIds: Array
+        # @param TagSpecification: 标签描述列表
+        # @type TagSpecification: Array
+        # @param HpcClusterId: 高性能计算集群ID
+        # @type HpcClusterId: String
+        # @param CamRoleName: CAM角色名称
+        # @type CamRoleName: String
+        # @param HostName: 实例主机名。<br><li>点号（.）和短横线（-）不能作为 HostName 的首尾字符，不能连续使用。</li><br><li>Windows 实例：主机名名字符长度为[2, 15]，允许字母（不限制大小写）、数字和短横线（-）组成，不支持点号（.），不能全是数字。</li><br><li>其他类型（Linux 等）实例：主机名字符长度为[2, 60]，允许支持多个点号，点之间为一段，每段允许字母（不限制大小写）、数字和短横线（-）组成。</li><br><li>购买多台实例，如果指定模式串`{R:x}`，表示生成数字`[x, x+n-1]`，其中`n`表示购买实例的数量，例如`server{R:3}`，购买1台时，实例主机名为`server3`；购买2台时，实例主机名分别为`server3`，`server4`。支持指定多个模式串`{R:x}`。</li><br><li>购买多台实例，如果不指定模式串，则在实例主机名添加后缀`1、2...n`，其中`n`表示购买实例的数量，例如`server`，购买2台时，实例主机名分别为`server1`，`server2`。</li>
+        # @type HostName: String
+
+        attr_accessor :ClientToken, :Placement, :SpaceChargePrepaid, :SpaceChargeType, :SpaceType, :ImageId, :SystemDisk, :DataDisks, :VirtualPrivateCloud, :InternetAccessible, :SpaceCount, :SpaceName, :LoginSettings, :SecurityGroupIds, :EnhancedService, :DryRun, :UserData, :DisasterRecoverGroupIds, :TagSpecification, :HpcClusterId, :CamRoleName, :HostName
+
+        def initialize(clienttoken=nil, placement=nil, spacechargeprepaid=nil, spacechargetype=nil, spacetype=nil, imageid=nil, systemdisk=nil, datadisks=nil, virtualprivatecloud=nil, internetaccessible=nil, spacecount=nil, spacename=nil, loginsettings=nil, securitygroupids=nil, enhancedservice=nil, dryrun=nil, userdata=nil, disasterrecovergroupids=nil, tagspecification=nil, hpcclusterid=nil, camrolename=nil, hostname=nil)
+          @ClientToken = clienttoken
+          @Placement = placement
+          @SpaceChargePrepaid = spacechargeprepaid
+          @SpaceChargeType = spacechargetype
+          @SpaceType = spacetype
+          @ImageId = imageid
+          @SystemDisk = systemdisk
+          @DataDisks = datadisks
+          @VirtualPrivateCloud = virtualprivatecloud
+          @InternetAccessible = internetaccessible
+          @SpaceCount = spacecount
+          @SpaceName = spacename
+          @LoginSettings = loginsettings
+          @SecurityGroupIds = securitygroupids
+          @EnhancedService = enhancedservice
+          @DryRun = dryrun
+          @UserData = userdata
+          @DisasterRecoverGroupIds = disasterrecovergroupids
+          @TagSpecification = tagspecification
+          @HpcClusterId = hpcclusterid
+          @CamRoleName = camrolename
+          @HostName = hostname
+        end
+
+        def deserialize(params)
+          @ClientToken = params['ClientToken']
+          unless params['Placement'].nil?
+            @Placement = SpacePlacement.new
+            @Placement.deserialize(params['Placement'])
+          end
+          unless params['SpaceChargePrepaid'].nil?
+            @SpaceChargePrepaid = SpaceChargePrepaid.new
+            @SpaceChargePrepaid.deserialize(params['SpaceChargePrepaid'])
+          end
+          @SpaceChargeType = params['SpaceChargeType']
+          @SpaceType = params['SpaceType']
+          @ImageId = params['ImageId']
+          unless params['SystemDisk'].nil?
+            @SystemDisk = SpaceSystemDisk.new
+            @SystemDisk.deserialize(params['SystemDisk'])
+          end
+          unless params['DataDisks'].nil?
+            @DataDisks = []
+            params['DataDisks'].each do |i|
+              spacedatadisk_tmp = SpaceDataDisk.new
+              spacedatadisk_tmp.deserialize(i)
+              @DataDisks << spacedatadisk_tmp
+            end
+          end
+          unless params['VirtualPrivateCloud'].nil?
+            @VirtualPrivateCloud = SpaceVirtualPrivateCloud.new
+            @VirtualPrivateCloud.deserialize(params['VirtualPrivateCloud'])
+          end
+          unless params['InternetAccessible'].nil?
+            @InternetAccessible = SpaceInternetAccessible.new
+            @InternetAccessible.deserialize(params['InternetAccessible'])
+          end
+          @SpaceCount = params['SpaceCount']
+          @SpaceName = params['SpaceName']
+          unless params['LoginSettings'].nil?
+            @LoginSettings = LoginSettings.new
+            @LoginSettings.deserialize(params['LoginSettings'])
+          end
+          @SecurityGroupIds = params['SecurityGroupIds']
+          unless params['EnhancedService'].nil?
+            @EnhancedService = EnhancedService.new
+            @EnhancedService.deserialize(params['EnhancedService'])
+          end
+          @DryRun = params['DryRun']
+          @UserData = params['UserData']
+          @DisasterRecoverGroupIds = params['DisasterRecoverGroupIds']
+          unless params['TagSpecification'].nil?
+            @TagSpecification = []
+            params['TagSpecification'].each do |i|
+              tagspecification_tmp = TagSpecification.new
+              tagspecification_tmp.deserialize(i)
+              @TagSpecification << tagspecification_tmp
+            end
+          end
+          @HpcClusterId = params['HpcClusterId']
+          @CamRoleName = params['CamRoleName']
+          @HostName = params['HostName']
+        end
+      end
+
+      # InquirePriceCreateWorkspaces返回参数结构体
+      class InquirePriceCreateWorkspacesResponse < TencentCloud::Common::AbstractModel
+        # @param Price: 该参数表示对应配置实例的价格
+        # @type Price: :class:`Tencentcloud::Thpc.v20230321.models.Price`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Price, :RequestId
+
+        def initialize(price=nil, requestid=nil)
+          @Price = price
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Price'].nil?
+            @Price = Price.new
+            @Price.deserialize(params['Price'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -2799,6 +3256,50 @@ module TencentCloud
         end
       end
 
+      # ModifyScheduledAction请求参数结构体
+      class ModifyScheduledActionRequest < TencentCloud::Common::AbstractModel
+        # @param ScheduledActionId: <p>定时伸缩任务 ID。</p>
+        # @type ScheduledActionId: String
+        # @param ScheduledActionName: <p>定时伸缩任务名称。</p>
+        # @type ScheduledActionName: String
+        # @param DesiredCapacity: <p>定时触发后队列期望节点数。</p>
+        # @type DesiredCapacity: Integer
+        # @param Status: <p>任务状态。</p>
+        # @type Status: String
+
+        attr_accessor :ScheduledActionId, :ScheduledActionName, :DesiredCapacity, :Status
+
+        def initialize(scheduledactionid=nil, scheduledactionname=nil, desiredcapacity=nil, status=nil)
+          @ScheduledActionId = scheduledactionid
+          @ScheduledActionName = scheduledactionname
+          @DesiredCapacity = desiredcapacity
+          @Status = status
+        end
+
+        def deserialize(params)
+          @ScheduledActionId = params['ScheduledActionId']
+          @ScheduledActionName = params['ScheduledActionName']
+          @DesiredCapacity = params['DesiredCapacity']
+          @Status = params['Status']
+        end
+      end
+
+      # ModifyScheduledAction返回参数结构体
+      class ModifyScheduledActionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyWorkspacesAttribute请求参数结构体
       class ModifyWorkspacesAttributeRequest < TencentCloud::Common::AbstractModel
         # @param SpaceIds: 工作空间列表
@@ -3346,6 +3847,28 @@ module TencentCloud
         end
       end
 
+      # 伸缩策略配置，定义队列的容量语义。
+      class ScalingPolicy < TencentCloud::Common::AbstractModel
+        # @param DesiredCapacity: <p>期望节点数。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DesiredCapacity: Integer
+        # @param ScalingUnit: <p>伸缩单位。可选值：NODE（按节点）、GPU_CARD（按 GPU 卡）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScalingUnit: String
+
+        attr_accessor :DesiredCapacity, :ScalingUnit
+
+        def initialize(desiredcapacity=nil, scalingunit=nil)
+          @DesiredCapacity = desiredcapacity
+          @ScalingUnit = scalingunit
+        end
+
+        def deserialize(params)
+          @DesiredCapacity = params['DesiredCapacity']
+          @ScalingUnit = params['ScalingUnit']
+        end
+      end
+
       # SetAutoScalingConfiguration请求参数结构体
       class SetAutoScalingConfigurationRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: <p>集群ID。</p>
@@ -3387,6 +3910,56 @@ module TencentCloud
 
       # SetAutoScalingConfiguration返回参数结构体
       class SetAutoScalingConfigurationResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # SetQueueAutoScaling请求参数结构体
+      class SetQueueAutoScalingRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群 ID。
+        # @type ClusterId: String
+        # @param QueueName: 队列名称。
+        # @type QueueName: String
+        # @param ScalingPolicy: <p>伸缩容量策略，用于设置目标容量及容量单位。单独传入时仅更新容量相关配置，未传字段保持原值。</p>
+        # @type ScalingPolicy: :class:`Tencentcloud::Thpc.v20230321.models.ScalingPolicy`
+        # @param ExpansionPolicy: <p>扩容策略，用于配置启动模板、机型族、GPU 卡数、规格优先级和多可用区等扩容方式。单独传入时仅更新扩容相关配置，未传字段保持原值。</p>
+        # @type ExpansionPolicy: :class:`Tencentcloud::Thpc.v20230321.models.ExpansionPolicy`
+
+        attr_accessor :ClusterId, :QueueName, :ScalingPolicy, :ExpansionPolicy
+
+        def initialize(clusterid=nil, queuename=nil, scalingpolicy=nil, expansionpolicy=nil)
+          @ClusterId = clusterid
+          @QueueName = queuename
+          @ScalingPolicy = scalingpolicy
+          @ExpansionPolicy = expansionpolicy
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @QueueName = params['QueueName']
+          unless params['ScalingPolicy'].nil?
+            @ScalingPolicy = ScalingPolicy.new
+            @ScalingPolicy.deserialize(params['ScalingPolicy'])
+          end
+          unless params['ExpansionPolicy'].nil?
+            @ExpansionPolicy = ExpansionPolicy.new
+            @ExpansionPolicy.deserialize(params['ExpansionPolicy'])
+          end
+        end
+      end
+
+      # SetQueueAutoScaling返回参数结构体
+      class SetQueueAutoScalingResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -4034,6 +4607,38 @@ module TencentCloud
         def deserialize(params)
           @StartTask = params['StartTask']
           @EndTask = params['EndTask']
+        end
+      end
+
+      # 启动模板扩容覆盖配置。ExpansionMode=MULTI_CARD 时通过此对象指定机型族、卡数折算等覆盖参数。
+      class TemplateOverrides < TencentCloud::Common::AbstractModel
+        # @param InstanceFamilies: <p>候选机型族列表，最多 10 个。MULTI_CARD 模式的明确标志字段。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceFamilies: Array
+        # @param GpuCountPerNode: <p>每节点 GPU 卡数。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GpuCountPerNode: Integer
+        # @param EnableMixedGpuCount: <p>是否启用混合 GPU 卡数折算，默认 false。未传时保持已持久化的混卡开关。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableMixedGpuCount: Boolean
+        # @param EnableMultiZone: <p>是否启用多可用区扩容。未传时保持已持久化的分区策略，局部更新不得覆盖。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableMultiZone: Boolean
+
+        attr_accessor :InstanceFamilies, :GpuCountPerNode, :EnableMixedGpuCount, :EnableMultiZone
+
+        def initialize(instancefamilies=nil, gpucountpernode=nil, enablemixedgpucount=nil, enablemultizone=nil)
+          @InstanceFamilies = instancefamilies
+          @GpuCountPerNode = gpucountpernode
+          @EnableMixedGpuCount = enablemixedgpucount
+          @EnableMultiZone = enablemultizone
+        end
+
+        def deserialize(params)
+          @InstanceFamilies = params['InstanceFamilies']
+          @GpuCountPerNode = params['GpuCountPerNode']
+          @EnableMixedGpuCount = params['EnableMixedGpuCount']
+          @EnableMultiZone = params['EnableMultiZone']
         end
       end
 

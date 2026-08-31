@@ -919,6 +919,50 @@ module TencentCloud
         end
       end
 
+      # CloseDBProxyAddress请求参数结构体
+      class CloseDBProxyAddressRequest < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: <p>实例 ID，指定要关闭代理地址的目标实例</p>
+        # @type DBInstanceId: String
+        # @param AddressId: <p>代理地址 ID，指定要关闭（删除）的代理地址</p>
+        # @type AddressId: String
+        # @param ProxyGroupId: <p>代理组 ID。不传则按实例自动查找其默认代理组</p>
+        # @type ProxyGroupId: String
+
+        attr_accessor :DBInstanceId, :AddressId, :ProxyGroupId
+
+        def initialize(dbinstanceid=nil, addressid=nil, proxygroupid=nil)
+          @DBInstanceId = dbinstanceid
+          @AddressId = addressid
+          @ProxyGroupId = proxygroupid
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+          @AddressId = params['AddressId']
+          @ProxyGroupId = params['ProxyGroupId']
+        end
+      end
+
+      # CloseDBProxyAddress返回参数结构体
+      class CloseDBProxyAddressResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>异步任务 ID，可通过 DescribeFlow 查询任务进度</p>
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateAccount请求参数结构体
       class CreateAccountRequest < TencentCloud::Common::AbstractModel
         # @param DBInstanceId: 实例ID。可通过[DescribeDBInstances](https://cloud.tencent.com/document/api/409/16773)接口获取
@@ -1182,6 +1226,101 @@ module TencentCloud
 
         def deserialize(params)
           @FlowId = params['FlowId']
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateDBProxyAddress请求参数结构体
+      class CreateDBProxyAddressRequest < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: <p>实例 ID，指定要创建代理地址的目标实例</p>
+        # @type DBInstanceId: String
+        # @param VpcId: <p>VPC ID，代理地址所属的私有网络</p>
+        # @type VpcId: String
+        # @param SubnetId: <p>子网 ID，代理地址所属的子网</p>
+        # @type SubnetId: String
+        # @param ProxyGroupId: <p>代理组 ID。不传则按实例自动查找其默认代理组</p>
+        # @type ProxyGroupId: String
+        # @param SecurityGroup: <p>安全组 ID 列表，用于代理地址的网络安全控制</p>
+        # @type SecurityGroup: Array
+        # @param Description: <p>代理地址备注信息，最长 256 个字符</p>
+        # @type Description: String
+        # @param ConnectionPool: <p>连接池开关。true：开启连接池；false：关闭连接池</p>
+        # @type ConnectionPool: Boolean
+        # @param WeightMode: <p>权重模式。取值：<ul><li>system：系统自动分配权重</li><li>custom：手动指定权重，需配合 ProxyAllocation 参数使用</li></ul></p>
+        # @type WeightMode: String
+        # @param ProxyAllocation: <p>路由权重列表。WeightMode 为 custom 时必填。若WeightMode传system或不传 ，则传入的权重不生效，由系统分配默认权重。</p>
+        # @type ProxyAllocation: Array
+        # @param RoAutoAdd: <p>是否自动将新增的只读实例加入读写分离。true：自动加入；false：不自动加入</p>
+        # @type RoAutoAdd: Boolean
+        # @param LatencyRemove: <p>延迟剔除开关。true：开启延迟剔除，当只读实例延迟超过阈值时自动剔除路由；false：关闭延迟剔除。开启时 LatencyRemoveTime 必填</p>
+        # @type LatencyRemove: Boolean
+        # @param LatencyRemoveTime: <p>延迟剔除阈值，单位秒，取值范围 [1, 10000]。LatencyRemove 为 true 时必填</p>
+        # @type LatencyRemoveTime: Integer
+        # @param MinRouteNum: <p>最小路由节点数，取值范围 [0, 256]。用于防止延迟剔除将所有节点剔除后的兜底策略</p>
+        # @type MinRouteNum: Integer
+        # @param LoadBalancePolicy: <p>负载均衡策略</p><p>枚举值：</p><ul><li>0： 按活跃连接数(默认)</li><li>1： 按请求数</li></ul>
+        # @type LoadBalancePolicy: Integer
+
+        attr_accessor :DBInstanceId, :VpcId, :SubnetId, :ProxyGroupId, :SecurityGroup, :Description, :ConnectionPool, :WeightMode, :ProxyAllocation, :RoAutoAdd, :LatencyRemove, :LatencyRemoveTime, :MinRouteNum, :LoadBalancePolicy
+
+        def initialize(dbinstanceid=nil, vpcid=nil, subnetid=nil, proxygroupid=nil, securitygroup=nil, description=nil, connectionpool=nil, weightmode=nil, proxyallocation=nil, roautoadd=nil, latencyremove=nil, latencyremovetime=nil, minroutenum=nil, loadbalancepolicy=nil)
+          @DBInstanceId = dbinstanceid
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @ProxyGroupId = proxygroupid
+          @SecurityGroup = securitygroup
+          @Description = description
+          @ConnectionPool = connectionpool
+          @WeightMode = weightmode
+          @ProxyAllocation = proxyallocation
+          @RoAutoAdd = roautoadd
+          @LatencyRemove = latencyremove
+          @LatencyRemoveTime = latencyremovetime
+          @MinRouteNum = minroutenum
+          @LoadBalancePolicy = loadbalancepolicy
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @ProxyGroupId = params['ProxyGroupId']
+          @SecurityGroup = params['SecurityGroup']
+          @Description = params['Description']
+          @ConnectionPool = params['ConnectionPool']
+          @WeightMode = params['WeightMode']
+          unless params['ProxyAllocation'].nil?
+            @ProxyAllocation = []
+            params['ProxyAllocation'].each do |i|
+              proxyroute_tmp = ProxyRoute.new
+              proxyroute_tmp.deserialize(i)
+              @ProxyAllocation << proxyroute_tmp
+            end
+          end
+          @RoAutoAdd = params['RoAutoAdd']
+          @LatencyRemove = params['LatencyRemove']
+          @LatencyRemoveTime = params['LatencyRemoveTime']
+          @MinRouteNum = params['MinRouteNum']
+          @LoadBalancePolicy = params['LoadBalancePolicy']
+        end
+      end
+
+      # CreateDBProxyAddress返回参数结构体
+      class CreateDBProxyAddressResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>异步任务 ID。可通过 DescribeTasks 接口查询任务执行进度</p>
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end
@@ -4138,6 +4277,58 @@ module TencentCloud
               @ProxyInfos << proxygroupinfo_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDBProxySSLConfig请求参数结构体
+      class DescribeDBProxySSLConfigRequest < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: <p>实例 ID。</p>
+        # @type DBInstanceId: String
+        # @param ProxyGroupId: <p>代理组 ID。</p>
+        # @type ProxyGroupId: String
+        # @param ProxyAddressId: <p>代理连接地址 ID。</p>
+        # @type ProxyAddressId: String
+
+        attr_accessor :DBInstanceId, :ProxyGroupId, :ProxyAddressId
+
+        def initialize(dbinstanceid=nil, proxygroupid=nil, proxyaddressid=nil)
+          @DBInstanceId = dbinstanceid
+          @ProxyGroupId = proxygroupid
+          @ProxyAddressId = proxyaddressid
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+          @ProxyGroupId = params['ProxyGroupId']
+          @ProxyAddressId = params['ProxyAddressId']
+        end
+      end
+
+      # DescribeDBProxySSLConfig返回参数结构体
+      class DescribeDBProxySSLConfigResponse < TencentCloud::Common::AbstractModel
+        # @param SSLEnabled: <p>SSL 是否开启。true 表示已开启，false 表示未开启。</p>
+        # @type SSLEnabled: Boolean
+        # @param ConnectAddress: <p>SSL 连接的地址（VIP 或域名）。</p>
+        # @type ConnectAddress: String
+        # @param CAUrl: <p>CA 证书下载地址。仅在 SSL 开启时有值。</p>
+        # @type CAUrl: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SSLEnabled, :ConnectAddress, :CAUrl, :RequestId
+
+        def initialize(sslenabled=nil, connectaddress=nil, caurl=nil, requestid=nil)
+          @SSLEnabled = sslenabled
+          @ConnectAddress = connectaddress
+          @CAUrl = caurl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SSLEnabled = params['SSLEnabled']
+          @ConnectAddress = params['ConnectAddress']
+          @CAUrl = params['CAUrl']
           @RequestId = params['RequestId']
         end
       end
@@ -7157,6 +7348,58 @@ module TencentCloud
 
         def deserialize(params)
           @DealName = params['DealName']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyDBProxySSLConfig请求参数结构体
+      class ModifyDBProxySSLConfigRequest < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: 实例 ID，指定要修改 SSL 配置的数据库代理所属的目标实例
+        # @type DBInstanceId: String
+        # @param ProxyGroupId: 代理组 ID，指定要修改 SSL 配置的代理组
+        # @type ProxyGroupId: String
+        # @param ProxyAddressId: 代理地址 ID，指定要修改 SSL 配置的代理连接地址
+        # @type ProxyAddressId: String
+        # @param SSLEnabled: SSL 开关。true：开启 SSL；false：关闭 SSL
+        # @type SSLEnabled: Boolean
+        # @param ConnectAddress: 连接地址。SSLEnabled 为 true 时必填，需与代理地址的 Vip 保持一致，用于 SSL 证书校验
+        # @type ConnectAddress: String
+
+        attr_accessor :DBInstanceId, :ProxyGroupId, :ProxyAddressId, :SSLEnabled, :ConnectAddress
+
+        def initialize(dbinstanceid=nil, proxygroupid=nil, proxyaddressid=nil, sslenabled=nil, connectaddress=nil)
+          @DBInstanceId = dbinstanceid
+          @ProxyGroupId = proxygroupid
+          @ProxyAddressId = proxyaddressid
+          @SSLEnabled = sslenabled
+          @ConnectAddress = connectaddress
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+          @ProxyGroupId = params['ProxyGroupId']
+          @ProxyAddressId = params['ProxyAddressId']
+          @SSLEnabled = params['SSLEnabled']
+          @ConnectAddress = params['ConnectAddress']
+        end
+      end
+
+      # ModifyDBProxySSLConfig返回参数结构体
+      class ModifyDBProxySSLConfigResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 异步任务 ID。可通过 DescribeTasks 接口查询任务执行进度。当 SSL 状态无变更时返回 0，无需等待任务
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end
       end

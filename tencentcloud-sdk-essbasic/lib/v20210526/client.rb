@@ -2640,7 +2640,7 @@ module TencentCloud
         #     ciphertext = SymmetricEncrypt(ALGO, AESKey, iv, plaintext)
         #     # 4. 计算完整性签名：HMAC(Key, IV || Ciphertext)
         #     signature = HMAC(HMACKey, concat(iv, ciphertext))
-        #     # 5. 组装外层请求参数（三段均为标准 Base64）
+        #     # 5. 组装外层请求参数
         #     encReq = {
         #         RequestAction:       bizAction,
         #         ApplicationId:       bizApplicationId,
@@ -2679,6 +2679,7 @@ module TencentCloud
         # ```
 
         # **AES-CBC 示例**
+
         # 以下示例参数及结果可用于验证 AES-CBC 加密和 HMAC-SHA256 签名算法的实现是否正确。
 
         # 加密密钥：AES-CBC-Key-1234
@@ -2689,7 +2690,7 @@ module TencentCloud
         # 最终请求参数：
         # ```
         # {
-        #   "RequestAction": "DescribeFlowComponents",
+        #   "RequestAction": "ChannelDescribeFlowComponents",
         #   "ApplicationId: "yD******************************,
         #   "IV": "MTIzNDU2Nzg5MGFiY2RlZg==",
         #   "EncryptedData": "Iqp2W1jislwMNmE7bH9dKZZiMQsfkAPyvAAqDFRnWLw=",
@@ -2698,6 +2699,7 @@ module TencentCloud
         # ```
 
         # **SM4-CBC 示例**
+
         # 以下示例参数及结果可用于验证 SM4-CBC 加密和 HMAC-SM4 签名算法的实现是否正确。
 
         # 加密密钥：SM4-CBC-Key-1234
@@ -2708,7 +2710,7 @@ module TencentCloud
         # 最终请求参数：
         # ```
         # {
-        #   "RequestAction": "DescribeFlowComponents",
+        #   "RequestAction": "ChannelDescribeFlowComponents",
         #   "ApplicationId: "yD******************************,
         #   "IV": "ZmVkY2JhMDk4NzY1NDMyMQ==",
         #   "EncryptedData": "GwUovQhNUPaUnVM/UDXMtPOYTpTSi2B1oyZDFbyyvns=",

@@ -372,6 +372,9 @@ module TencentCloud
         # @type ResultDetail: String
         # @param Cause: 集群活动起因。
         # @type Cause: String
+        # @param QueueName: 队列名称。集群级活动（如创建/删除集群）此字段为空，队列级活动（如扩容/缩容）为对应队列名。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QueueName: String
         # @param Description: 集群活动描述。
         # @type Description: String
         # @param RelatedNodeActivitySet: 集群活动相关节点活动集合。
@@ -381,9 +384,9 @@ module TencentCloud
         # @param EndTime: 集群活动结束时间。
         # @type EndTime: String
 
-        attr_accessor :ClusterId, :ActivityId, :ActivityType, :ActivityStatus, :ActivityStatusCode, :ResultDetail, :Cause, :Description, :RelatedNodeActivitySet, :StartTime, :EndTime
+        attr_accessor :ClusterId, :ActivityId, :ActivityType, :ActivityStatus, :ActivityStatusCode, :ResultDetail, :Cause, :QueueName, :Description, :RelatedNodeActivitySet, :StartTime, :EndTime
 
-        def initialize(clusterid=nil, activityid=nil, activitytype=nil, activitystatus=nil, activitystatuscode=nil, resultdetail=nil, cause=nil, description=nil, relatednodeactivityset=nil, starttime=nil, endtime=nil)
+        def initialize(clusterid=nil, activityid=nil, activitytype=nil, activitystatus=nil, activitystatuscode=nil, resultdetail=nil, cause=nil, queuename=nil, description=nil, relatednodeactivityset=nil, starttime=nil, endtime=nil)
           @ClusterId = clusterid
           @ActivityId = activityid
           @ActivityType = activitytype
@@ -391,6 +394,7 @@ module TencentCloud
           @ActivityStatusCode = activitystatuscode
           @ResultDetail = resultdetail
           @Cause = cause
+          @QueueName = queuename
           @Description = description
           @RelatedNodeActivitySet = relatednodeactivityset
           @StartTime = starttime
@@ -405,6 +409,7 @@ module TencentCloud
           @ActivityStatusCode = params['ActivityStatusCode']
           @ResultDetail = params['ResultDetail']
           @Cause = params['Cause']
+          @QueueName = params['QueueName']
           @Description = params['Description']
           unless params['RelatedNodeActivitySet'].nil?
             @RelatedNodeActivitySet = []

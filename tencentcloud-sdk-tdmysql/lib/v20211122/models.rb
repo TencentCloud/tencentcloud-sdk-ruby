@@ -159,7 +159,9 @@ module TencentCloud
         end
       end
 
-      # serverless实例的ccu范围
+      # serverless实例的资源范围
+      # ResourceType 为 cpu 时表示 ccu
+      # 为 nodecount 时表示节点数范围
       class AutoScalingConfig < TencentCloud::Common::AbstractModel
         # @param RangeMin: <p>ccu最小值</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -167,17 +169,21 @@ module TencentCloud
         # @param RangeMax: <p>ccu最大值</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RangeMax: Float
+        # @param ResourceType: <p>返回的 range 参数对应的资源类型</p><p>枚举值：</p><ul><li>cpu： 返回的是 cpu 调整返回限制，当不存在mem限制时代表 ccu</li><li>nodecount： 返回的是水平扩缩容的节点数限制范围</li></ul>
+        # @type ResourceType: String
 
-        attr_accessor :RangeMin, :RangeMax
+        attr_accessor :RangeMin, :RangeMax, :ResourceType
 
-        def initialize(rangemin=nil, rangemax=nil)
+        def initialize(rangemin=nil, rangemax=nil, resourcetype=nil)
           @RangeMin = rangemin
           @RangeMax = rangemax
+          @ResourceType = resourcetype
         end
 
         def deserialize(params)
           @RangeMin = params['RangeMin']
           @RangeMax = params['RangeMax']
+          @ResourceType = params['ResourceType']
         end
       end
 
@@ -917,7 +923,7 @@ module TencentCloud
         # @type TemplateId: String
         # @param SQLMode: <p>兼容模式，enum:MySQL,HBase</p>
         # @type SQLMode: String
-        # @param AutoScaleConfig: <p>svls实例的ccu变配配置</p>
+        # @param AutoScaleConfig: <p>SVLS 实例的ccu变配配置</p><p>入参限制：同时传入 AutoScaleConfigs 时此参数不再生效</p>
         # @type AutoScaleConfig: :class:`Tencentcloud::Tdmysql.v20211122.models.AutoScalingConfig`
         # @param SecurityGroupIds: <p>绑定安全组列表</p>
         # @type SecurityGroupIds: Array
@@ -927,10 +933,12 @@ module TencentCloud
         # @type Password: String
         # @param EncryptionEnable: <p>是否开启透明加密，0：不开启，1：开启</p>
         # @type EncryptionEnable: Integer
+        # @param AutoScaleConfigs: <p>SVLS 实例的自动变配相关限制</p><p>入参限制：传入时 AutoScaleConfig 参数不再生效</p>
+        # @type AutoScaleConfigs: Array
 
-        attr_accessor :Zone, :VpcId, :SubnetId, :SpecCode, :Disk, :StorageNodeNum, :Replications, :InstanceCount, :FullReplications, :CreateVersion, :InstanceName, :ResourceTags, :InitParams, :TimeUnit, :TimeSpan, :StorageNodeCpu, :StorageNodeMem, :PayMode, :MCNum, :Vport, :Zones, :AutoVoucher, :VoucherIds, :InstanceType, :StorageType, :AZMode, :InstanceMode, :TemplateId, :SQLMode, :AutoScaleConfig, :SecurityGroupIds, :UserName, :Password, :EncryptionEnable
+        attr_accessor :Zone, :VpcId, :SubnetId, :SpecCode, :Disk, :StorageNodeNum, :Replications, :InstanceCount, :FullReplications, :CreateVersion, :InstanceName, :ResourceTags, :InitParams, :TimeUnit, :TimeSpan, :StorageNodeCpu, :StorageNodeMem, :PayMode, :MCNum, :Vport, :Zones, :AutoVoucher, :VoucherIds, :InstanceType, :StorageType, :AZMode, :InstanceMode, :TemplateId, :SQLMode, :AutoScaleConfig, :SecurityGroupIds, :UserName, :Password, :EncryptionEnable, :AutoScaleConfigs
 
-        def initialize(zone=nil, vpcid=nil, subnetid=nil, speccode=nil, disk=nil, storagenodenum=nil, replications=nil, instancecount=nil, fullreplications=nil, createversion=nil, instancename=nil, resourcetags=nil, initparams=nil, timeunit=nil, timespan=nil, storagenodecpu=nil, storagenodemem=nil, paymode=nil, mcnum=nil, vport=nil, zones=nil, autovoucher=nil, voucherids=nil, instancetype=nil, storagetype=nil, azmode=nil, instancemode=nil, templateid=nil, sqlmode=nil, autoscaleconfig=nil, securitygroupids=nil, username=nil, password=nil, encryptionenable=nil)
+        def initialize(zone=nil, vpcid=nil, subnetid=nil, speccode=nil, disk=nil, storagenodenum=nil, replications=nil, instancecount=nil, fullreplications=nil, createversion=nil, instancename=nil, resourcetags=nil, initparams=nil, timeunit=nil, timespan=nil, storagenodecpu=nil, storagenodemem=nil, paymode=nil, mcnum=nil, vport=nil, zones=nil, autovoucher=nil, voucherids=nil, instancetype=nil, storagetype=nil, azmode=nil, instancemode=nil, templateid=nil, sqlmode=nil, autoscaleconfig=nil, securitygroupids=nil, username=nil, password=nil, encryptionenable=nil, autoscaleconfigs=nil)
           @Zone = zone
           @VpcId = vpcid
           @SubnetId = subnetid
@@ -965,6 +973,7 @@ module TencentCloud
           @UserName = username
           @Password = password
           @EncryptionEnable = encryptionenable
+          @AutoScaleConfigs = autoscaleconfigs
         end
 
         def deserialize(params)
@@ -1019,6 +1028,14 @@ module TencentCloud
           @UserName = params['UserName']
           @Password = params['Password']
           @EncryptionEnable = params['EncryptionEnable']
+          unless params['AutoScaleConfigs'].nil?
+            @AutoScaleConfigs = []
+            params['AutoScaleConfigs'].each do |i|
+              autoscalingconfig_tmp = AutoScalingConfig.new
+              autoscalingconfig_tmp.deserialize(i)
+              @AutoScaleConfigs << autoscalingconfig_tmp
+            end
+          end
         end
       end
 
@@ -1659,12 +1676,14 @@ module TencentCloud
         # @type EncryptionEnable: Integer
         # @param EncryptionKmsRegion: <p>真实使用的kms地域，用于后续调用kms服务</p>
         # @type EncryptionKmsRegion: String
+        # @param AutoScaleConfigs: <p>serverless自动变配配置</p>
+        # @type AutoScaleConfigs: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :InstanceName, :Zone, :VpcId, :SubnetId, :CreateVersion, :Vip, :Vport, :Status, :Disk, :StorageNodeNum, :InitParams, :ResourceTags, :CreateTime, :UpdateTime, :Replications, :FullReplications, :CharSet, :Node, :Region, :SpecCode, :InstanceId, :StatusDesc, :StorageNodeCpu, :StorageNodeMem, :RenewFlag, :PayMode, :ExpireAt, :IsolatedAt, :InstanceType, :StorageType, :Zones, :DiskUsage, :BinlogStatus, :AZMode, :StandbyFlag, :BinlogType, :TimingModifyInstanceFlag, :ColumnarNodeCpu, :ColumnarNodeMem, :ColumnarNodeNum, :ColumnarNodeDisk, :ColumnarNodeStorageType, :ColumnarNodeSpecCode, :ColumnarVip, :ColumnarVport, :IsSupportColumnar, :InstanceCategory, :SQLMode, :IsSwitchFullReplicationsEnable, :InstanceMode, :DumperVip, :DumperVport, :AutoScaleConfig, :TemplateId, :TemplateName, :AnalysisMode, :AnalysisRelationInfos, :AnalysisInstanceInfo, :MaintenanceWindow, :EncryptionEnable, :EncryptionKmsRegion, :RequestId
+        attr_accessor :InstanceName, :Zone, :VpcId, :SubnetId, :CreateVersion, :Vip, :Vport, :Status, :Disk, :StorageNodeNum, :InitParams, :ResourceTags, :CreateTime, :UpdateTime, :Replications, :FullReplications, :CharSet, :Node, :Region, :SpecCode, :InstanceId, :StatusDesc, :StorageNodeCpu, :StorageNodeMem, :RenewFlag, :PayMode, :ExpireAt, :IsolatedAt, :InstanceType, :StorageType, :Zones, :DiskUsage, :BinlogStatus, :AZMode, :StandbyFlag, :BinlogType, :TimingModifyInstanceFlag, :ColumnarNodeCpu, :ColumnarNodeMem, :ColumnarNodeNum, :ColumnarNodeDisk, :ColumnarNodeStorageType, :ColumnarNodeSpecCode, :ColumnarVip, :ColumnarVport, :IsSupportColumnar, :InstanceCategory, :SQLMode, :IsSwitchFullReplicationsEnable, :InstanceMode, :DumperVip, :DumperVport, :AutoScaleConfig, :TemplateId, :TemplateName, :AnalysisMode, :AnalysisRelationInfos, :AnalysisInstanceInfo, :MaintenanceWindow, :EncryptionEnable, :EncryptionKmsRegion, :AutoScaleConfigs, :RequestId
 
-        def initialize(instancename=nil, zone=nil, vpcid=nil, subnetid=nil, createversion=nil, vip=nil, vport=nil, status=nil, disk=nil, storagenodenum=nil, initparams=nil, resourcetags=nil, createtime=nil, updatetime=nil, replications=nil, fullreplications=nil, charset=nil, node=nil, region=nil, speccode=nil, instanceid=nil, statusdesc=nil, storagenodecpu=nil, storagenodemem=nil, renewflag=nil, paymode=nil, expireat=nil, isolatedat=nil, instancetype=nil, storagetype=nil, zones=nil, diskusage=nil, binlogstatus=nil, azmode=nil, standbyflag=nil, binlogtype=nil, timingmodifyinstanceflag=nil, columnarnodecpu=nil, columnarnodemem=nil, columnarnodenum=nil, columnarnodedisk=nil, columnarnodestoragetype=nil, columnarnodespeccode=nil, columnarvip=nil, columnarvport=nil, issupportcolumnar=nil, instancecategory=nil, sqlmode=nil, isswitchfullreplicationsenable=nil, instancemode=nil, dumpervip=nil, dumpervport=nil, autoscaleconfig=nil, templateid=nil, templatename=nil, analysismode=nil, analysisrelationinfos=nil, analysisinstanceinfo=nil, maintenancewindow=nil, encryptionenable=nil, encryptionkmsregion=nil, requestid=nil)
+        def initialize(instancename=nil, zone=nil, vpcid=nil, subnetid=nil, createversion=nil, vip=nil, vport=nil, status=nil, disk=nil, storagenodenum=nil, initparams=nil, resourcetags=nil, createtime=nil, updatetime=nil, replications=nil, fullreplications=nil, charset=nil, node=nil, region=nil, speccode=nil, instanceid=nil, statusdesc=nil, storagenodecpu=nil, storagenodemem=nil, renewflag=nil, paymode=nil, expireat=nil, isolatedat=nil, instancetype=nil, storagetype=nil, zones=nil, diskusage=nil, binlogstatus=nil, azmode=nil, standbyflag=nil, binlogtype=nil, timingmodifyinstanceflag=nil, columnarnodecpu=nil, columnarnodemem=nil, columnarnodenum=nil, columnarnodedisk=nil, columnarnodestoragetype=nil, columnarnodespeccode=nil, columnarvip=nil, columnarvport=nil, issupportcolumnar=nil, instancecategory=nil, sqlmode=nil, isswitchfullreplicationsenable=nil, instancemode=nil, dumpervip=nil, dumpervport=nil, autoscaleconfig=nil, templateid=nil, templatename=nil, analysismode=nil, analysisrelationinfos=nil, analysisinstanceinfo=nil, maintenancewindow=nil, encryptionenable=nil, encryptionkmsregion=nil, autoscaleconfigs=nil, requestid=nil)
           @InstanceName = instancename
           @Zone = zone
           @VpcId = vpcid
@@ -1726,6 +1745,7 @@ module TencentCloud
           @MaintenanceWindow = maintenancewindow
           @EncryptionEnable = encryptionenable
           @EncryptionKmsRegion = encryptionkmsregion
+          @AutoScaleConfigs = autoscaleconfigs
           @RequestId = requestid
         end
 
@@ -1828,6 +1848,14 @@ module TencentCloud
           end
           @EncryptionEnable = params['EncryptionEnable']
           @EncryptionKmsRegion = params['EncryptionKmsRegion']
+          unless params['AutoScaleConfigs'].nil?
+            @AutoScaleConfigs = []
+            params['AutoScaleConfigs'].each do |i|
+              autoscalingconfig_tmp = AutoScalingConfig.new
+              autoscalingconfig_tmp.deserialize(i)
+              @AutoScaleConfigs << autoscalingconfig_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1842,14 +1870,20 @@ module TencentCloud
         # @type Offset: Integer
         # @param EngineType: <p>指定查询引擎类型</p><p>枚举值：</p><ul><li>libra： 列存引擎</li></ul>
         # @type EngineType: String
+        # @param OrderBy: <p>查询Order By字段，支持 StorageNodeNum/CreateTime/CreateVersion</p>
+        # @type OrderBy: String
+        # @param OrderDirection: <p>排序方向</p><p>枚举值：</p><ul><li>ASC： 升序</li><li>DESC： 降序</li></ul><p>默认值：DESC</p>
+        # @type OrderDirection: String
 
-        attr_accessor :Filters, :Limit, :Offset, :EngineType
+        attr_accessor :Filters, :Limit, :Offset, :EngineType, :OrderBy, :OrderDirection
 
-        def initialize(filters=nil, limit=nil, offset=nil, enginetype=nil)
+        def initialize(filters=nil, limit=nil, offset=nil, enginetype=nil, orderby=nil, orderdirection=nil)
           @Filters = filters
           @Limit = limit
           @Offset = offset
           @EngineType = enginetype
+          @OrderBy = orderby
+          @OrderDirection = orderdirection
         end
 
         def deserialize(params)
@@ -1864,6 +1898,8 @@ module TencentCloud
           @Limit = params['Limit']
           @Offset = params['Offset']
           @EngineType = params['EngineType']
+          @OrderBy = params['OrderBy']
+          @OrderDirection = params['OrderDirection']
         end
       end
 
@@ -3055,14 +3091,17 @@ module TencentCloud
         # @type HybridNodeSpecs: Array
         # @param ServerlessCcuSpec: <p>svls节点售卖规格列表</p>
         # @type ServerlessCcuSpec: Array
+        # @param ServerlessNodeNumSpec: <p>serverless节点数量配置</p>
+        # @type ServerlessNodeNumSpec: :class:`Tencentcloud::Tdmysql.v20211122.models.ServerlessNodeNumSpec`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :HybridNodeSpecs, :ServerlessCcuSpec, :RequestId
+        attr_accessor :HybridNodeSpecs, :ServerlessCcuSpec, :ServerlessNodeNumSpec, :RequestId
 
-        def initialize(hybridnodespecs=nil, serverlessccuspec=nil, requestid=nil)
+        def initialize(hybridnodespecs=nil, serverlessccuspec=nil, serverlessnodenumspec=nil, requestid=nil)
           @HybridNodeSpecs = hybridnodespecs
           @ServerlessCcuSpec = serverlessccuspec
+          @ServerlessNodeNumSpec = serverlessnodenumspec
           @RequestId = requestid
         end
 
@@ -3082,6 +3121,10 @@ module TencentCloud
               serverlessccu_tmp.deserialize(i)
               @ServerlessCcuSpec << serverlessccu_tmp
             end
+          end
+          unless params['ServerlessNodeNumSpec'].nil?
+            @ServerlessNodeNumSpec = ServerlessNodeNumSpec.new
+            @ServerlessNodeNumSpec.deserialize(params['ServerlessNodeNumSpec'])
           end
           @RequestId = params['RequestId']
         end
@@ -3535,8 +3578,10 @@ module TencentCloud
         # @type AnalysisRelationInfos: Array
         # @param AnalysisInstanceInfo: <p>分析引擎实例信息</p>
         # @type AnalysisInstanceInfo: :class:`Tencentcloud::Tdmysql.v20211122.models.AnalysisInstanceInfo`
+        # @param AutoScaleConfigs: <p>有关该实例的多个自动变配相关配置，ccu、nodecount 值</p>
+        # @type AutoScaleConfigs: Array
 
-        attr_accessor :ComputeNodeNum, :Zone, :CreateVersion, :InitParams, :Status, :InstanceId, :StorageNodeNum, :ResourceTags, :InstanceName, :Cpu, :VpcId, :Mem, :Vip, :SubnetId, :Vport, :Disk, :CreateTime, :Region, :StatusDesc, :MCCpu, :MCMem, :ComputerNodeCpu, :ComputerNodeMem, :StorageNodeCpu, :StorageNodeMem, :MCNum, :RenewFlag, :PayMode, :AccountTag, :InstanceType, :StorageType, :DestroyedAt, :ExpireAt, :IsolatedAt, :IsolatedFrom, :Replications, :FullReplications, :AppId, :SubAccountUin, :Uin, :Zones, :Nodes, :BinlogStatus, :CdcNodeCpu, :CdcNodeMem, :CdcNodeNum, :AZMode, :StandbyFlag, :StandbySecondaryNum, :ColumnarNodeCpu, :ColumnarNodeMem, :ColumnarNodeNum, :ColumnarNodeDisk, :ColumnarNodeStorageType, :InstanceCategory, :ExclusiveClusterId, :SQLMode, :InstanceMode, :ClusterId, :AutoScaleConfig, :AnalysisMode, :AnalysisRelationInfos, :AnalysisInstanceInfo
+        attr_accessor :ComputeNodeNum, :Zone, :CreateVersion, :InitParams, :Status, :InstanceId, :StorageNodeNum, :ResourceTags, :InstanceName, :Cpu, :VpcId, :Mem, :Vip, :SubnetId, :Vport, :Disk, :CreateTime, :Region, :StatusDesc, :MCCpu, :MCMem, :ComputerNodeCpu, :ComputerNodeMem, :StorageNodeCpu, :StorageNodeMem, :MCNum, :RenewFlag, :PayMode, :AccountTag, :InstanceType, :StorageType, :DestroyedAt, :ExpireAt, :IsolatedAt, :IsolatedFrom, :Replications, :FullReplications, :AppId, :SubAccountUin, :Uin, :Zones, :Nodes, :BinlogStatus, :CdcNodeCpu, :CdcNodeMem, :CdcNodeNum, :AZMode, :StandbyFlag, :StandbySecondaryNum, :ColumnarNodeCpu, :ColumnarNodeMem, :ColumnarNodeNum, :ColumnarNodeDisk, :ColumnarNodeStorageType, :InstanceCategory, :ExclusiveClusterId, :SQLMode, :InstanceMode, :ClusterId, :AutoScaleConfig, :AnalysisMode, :AnalysisRelationInfos, :AnalysisInstanceInfo, :AutoScaleConfigs
         extend Gem::Deprecate
         deprecate :ComputeNodeNum, :none, 2026, 8
         deprecate :ComputeNodeNum=, :none, 2026, 8
@@ -3563,7 +3608,7 @@ module TencentCloud
         deprecate :ClusterId, :none, 2026, 8
         deprecate :ClusterId=, :none, 2026, 8
 
-        def initialize(computenodenum=nil, zone=nil, createversion=nil, initparams=nil, status=nil, instanceid=nil, storagenodenum=nil, resourcetags=nil, instancename=nil, cpu=nil, vpcid=nil, mem=nil, vip=nil, subnetid=nil, vport=nil, disk=nil, createtime=nil, region=nil, statusdesc=nil, mccpu=nil, mcmem=nil, computernodecpu=nil, computernodemem=nil, storagenodecpu=nil, storagenodemem=nil, mcnum=nil, renewflag=nil, paymode=nil, accounttag=nil, instancetype=nil, storagetype=nil, destroyedat=nil, expireat=nil, isolatedat=nil, isolatedfrom=nil, replications=nil, fullreplications=nil, appid=nil, subaccountuin=nil, uin=nil, zones=nil, nodes=nil, binlogstatus=nil, cdcnodecpu=nil, cdcnodemem=nil, cdcnodenum=nil, azmode=nil, standbyflag=nil, standbysecondarynum=nil, columnarnodecpu=nil, columnarnodemem=nil, columnarnodenum=nil, columnarnodedisk=nil, columnarnodestoragetype=nil, instancecategory=nil, exclusiveclusterid=nil, sqlmode=nil, instancemode=nil, clusterid=nil, autoscaleconfig=nil, analysismode=nil, analysisrelationinfos=nil, analysisinstanceinfo=nil)
+        def initialize(computenodenum=nil, zone=nil, createversion=nil, initparams=nil, status=nil, instanceid=nil, storagenodenum=nil, resourcetags=nil, instancename=nil, cpu=nil, vpcid=nil, mem=nil, vip=nil, subnetid=nil, vport=nil, disk=nil, createtime=nil, region=nil, statusdesc=nil, mccpu=nil, mcmem=nil, computernodecpu=nil, computernodemem=nil, storagenodecpu=nil, storagenodemem=nil, mcnum=nil, renewflag=nil, paymode=nil, accounttag=nil, instancetype=nil, storagetype=nil, destroyedat=nil, expireat=nil, isolatedat=nil, isolatedfrom=nil, replications=nil, fullreplications=nil, appid=nil, subaccountuin=nil, uin=nil, zones=nil, nodes=nil, binlogstatus=nil, cdcnodecpu=nil, cdcnodemem=nil, cdcnodenum=nil, azmode=nil, standbyflag=nil, standbysecondarynum=nil, columnarnodecpu=nil, columnarnodemem=nil, columnarnodenum=nil, columnarnodedisk=nil, columnarnodestoragetype=nil, instancecategory=nil, exclusiveclusterid=nil, sqlmode=nil, instancemode=nil, clusterid=nil, autoscaleconfig=nil, analysismode=nil, analysisrelationinfos=nil, analysisinstanceinfo=nil, autoscaleconfigs=nil)
           @ComputeNodeNum = computenodenum
           @Zone = zone
           @CreateVersion = createversion
@@ -3627,6 +3672,7 @@ module TencentCloud
           @AnalysisMode = analysismode
           @AnalysisRelationInfos = analysisrelationinfos
           @AnalysisInstanceInfo = analysisinstanceinfo
+          @AutoScaleConfigs = autoscaleconfigs
         end
 
         def deserialize(params)
@@ -3726,6 +3772,14 @@ module TencentCloud
           unless params['AnalysisInstanceInfo'].nil?
             @AnalysisInstanceInfo = AnalysisInstanceInfo.new
             @AnalysisInstanceInfo.deserialize(params['AnalysisInstanceInfo'])
+          end
+          unless params['AutoScaleConfigs'].nil?
+            @AutoScaleConfigs = []
+            params['AutoScaleConfigs'].each do |i|
+              autoscalingconfig_tmp = AutoScalingConfig.new
+              autoscalingconfig_tmp.deserialize(i)
+              @AutoScaleConfigs << autoscalingconfig_tmp
+            end
           end
         end
       end
@@ -4898,7 +4952,7 @@ module TencentCloud
       # serverless实例的ccu规格
       class ServerlessCcu < TencentCloud::Common::AbstractModel
         # @param MinCcu: <p>ccu最小值</p>
-        # @type MinCcu: Integer
+        # @type MinCcu: Float
         # @param MaxCcu: <p>ccu最大值范围</p>
         # @type MaxCcu: Array
 
@@ -4912,6 +4966,26 @@ module TencentCloud
         def deserialize(params)
           @MinCcu = params['MinCcu']
           @MaxCcu = params['MaxCcu']
+        end
+      end
+
+      # Serverless 实例允许调整的 hybrid 节点数量上下限
+      class ServerlessNodeNumSpec < TencentCloud::Common::AbstractModel
+        # @param MinNodeNum: <p>最小节点数</p>
+        # @type MinNodeNum: Integer
+        # @param MaxNodeNum: <p>最大节点数</p>
+        # @type MaxNodeNum: Integer
+
+        attr_accessor :MinNodeNum, :MaxNodeNum
+
+        def initialize(minnodenum=nil, maxnodenum=nil)
+          @MinNodeNum = minnodenum
+          @MaxNodeNum = maxnodenum
+        end
+
+        def deserialize(params)
+          @MinNodeNum = params['MinNodeNum']
+          @MaxNodeNum = params['MaxNodeNum']
         end
       end
 

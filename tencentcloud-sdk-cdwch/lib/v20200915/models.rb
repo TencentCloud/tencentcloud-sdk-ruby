@@ -595,8 +595,8 @@ module TencentCloud
 
         attr_accessor :Zone, :HaFlag, :UserVPCId, :UserSubnetId, :ProductVersion, :ChargeProperties, :InstanceName, :DataSpec, :Tags, :ClsLogSetId, :CosBucketName, :MountDiskType, :HAZk, :CommonSpec, :TagItems, :SecondaryZoneInfo, :CkDefaultUserPwd, :ClusterType
         extend Gem::Deprecate
-        deprecate :Tags, :none, 2026, 7
-        deprecate :Tags=, :none, 2026, 7
+        deprecate :Tags, :none, 2026, 9
+        deprecate :Tags=, :none, 2026, 9
 
         def initialize(zone=nil, haflag=nil, uservpcid=nil, usersubnetid=nil, productversion=nil, chargeproperties=nil, instancename=nil, dataspec=nil, tags=nil, clslogsetid=nil, cosbucketname=nil, mountdisktype=nil, hazk=nil, commonspec=nil, tagitems=nil, secondaryzoneinfo=nil, ckdefaultuserpwd=nil, clustertype=nil)
           @Zone = zone
@@ -1090,15 +1090,18 @@ module TencentCloud
         # @type UserName: String
         # @param UserType: <p>账户的类型</p>
         # @type UserType: String
+        # @param InstanceType: <p>实例类型</p><p>枚举值：</p><ul><li>SSC： 弹性版实例</li><li>Standard： 标准版实例</li></ul>
+        # @type InstanceType: String
 
-        attr_accessor :InstanceId, :ApiType, :Cluster, :UserName, :UserType
+        attr_accessor :InstanceId, :ApiType, :Cluster, :UserName, :UserType, :InstanceType
 
-        def initialize(instanceid=nil, apitype=nil, cluster=nil, username=nil, usertype=nil)
+        def initialize(instanceid=nil, apitype=nil, cluster=nil, username=nil, usertype=nil, instancetype=nil)
           @InstanceId = instanceid
           @ApiType = apitype
           @Cluster = cluster
           @UserName = username
           @UserType = usertype
+          @InstanceType = instancetype
         end
 
         def deserialize(params)
@@ -1107,6 +1110,7 @@ module TencentCloud
           @Cluster = params['Cluster']
           @UserName = params['UserName']
           @UserType = params['UserType']
+          @InstanceType = params['InstanceType']
         end
       end
 
@@ -2654,16 +2658,19 @@ module TencentCloud
         # @type GlobalPrivileges: Array
         # @param DatabasePrivilegeList: <p>数据库表权限</p>
         # @type DatabasePrivilegeList: Array
+        # @param InstanceType: <p>实例类型</p><p>枚举值：</p><ul><li>SSC： 弹性版实例</li><li>Standard： 标准版实例</li></ul>
+        # @type InstanceType: String
 
-        attr_accessor :InstanceId, :Cluster, :UserName, :AllDatabase, :GlobalPrivileges, :DatabasePrivilegeList
+        attr_accessor :InstanceId, :Cluster, :UserName, :AllDatabase, :GlobalPrivileges, :DatabasePrivilegeList, :InstanceType
 
-        def initialize(instanceid=nil, cluster=nil, username=nil, alldatabase=nil, globalprivileges=nil, databaseprivilegelist=nil)
+        def initialize(instanceid=nil, cluster=nil, username=nil, alldatabase=nil, globalprivileges=nil, databaseprivilegelist=nil, instancetype=nil)
           @InstanceId = instanceid
           @Cluster = cluster
           @UserName = username
           @AllDatabase = alldatabase
           @GlobalPrivileges = globalprivileges
           @DatabasePrivilegeList = databaseprivilegelist
+          @InstanceType = instancetype
         end
 
         def deserialize(params)
@@ -2680,6 +2687,7 @@ module TencentCloud
               @DatabasePrivilegeList << databaseprivilegeinfo_tmp
             end
           end
+          @InstanceType = params['InstanceType']
         end
       end
 

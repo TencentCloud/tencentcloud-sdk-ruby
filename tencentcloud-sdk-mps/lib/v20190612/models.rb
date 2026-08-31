@@ -1115,6 +1115,30 @@ module TencentCloud
         end
       end
 
+      # Agent结果文件上传COS时，需传入的信息。 需创建并授权MPS_QcsRole角色。
+      class AgentStoreCosParam < TencentCloud::Common::AbstractModel
+        # @param CosBucketName: <p>存储至 cos 的 bucket 桶名称。需要cos存储时，该值必填。 示例值：bucket。</p>
+        # @type CosBucketName: String
+        # @param CosBucketRegion: <p>存储至 cos 的 bucket 区域。与bucket所属区域相同，上传cos时必填。 示例值：ap-guangzhou</p>
+        # @type CosBucketRegion: String
+        # @param CosBucketPath: <p>存储至 cos 的 bucket 路径。<br>可选。<br>示例值：my_file</p>
+        # @type CosBucketPath: String
+
+        attr_accessor :CosBucketName, :CosBucketRegion, :CosBucketPath
+
+        def initialize(cosbucketname=nil, cosbucketregion=nil, cosbucketpath=nil)
+          @CosBucketName = cosbucketname
+          @CosBucketRegion = cosbucketregion
+          @CosBucketPath = cosbucketpath
+        end
+
+        def deserialize(params)
+          @CosBucketName = params['CosBucketName']
+          @CosBucketRegion = params['CosBucketRegion']
+          @CosBucketPath = params['CosBucketPath']
+        end
+      end
+
       # 智能分析结果
       class AiAnalysisResult < TencentCloud::Common::AbstractModel
         # @param Type: 任务的类型，可以取的值有：
@@ -1308,17 +1332,17 @@ module TencentCloud
 
       # 智能分类任务结果类型
       class AiAnalysisTaskClassificationResult < TencentCloud::Common::AbstractModel
-        # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
+        # @param Status: <p>任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。</p>
         # @type Status: String
-        # @param ErrCodeExt: 错误码，空字符串表示成功，其他值表示失败，取值请参考 [媒体处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
+        # @param ErrCodeExt: <p>错误码，空字符串表示成功，其他值表示失败，取值请参考 <a href="https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81">媒体处理类错误码</a> 列表。</p>
         # @type ErrCodeExt: String
-        # @param ErrCode: 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
+        # @param ErrCode: <p>错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。</p>
         # @type ErrCode: Integer
-        # @param Message: 错误信息。
+        # @param Message: <p>错误信息。</p>
         # @type Message: String
-        # @param Input: 智能分类任务输入。
+        # @param Input: <p>智能分类任务输入。</p>
         # @type Input: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskClassificationInput`
-        # @param Output: 智能分类任务输出。
+        # @param Output: <p>智能分类任务输出。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskClassificationOutput`
 
@@ -1401,17 +1425,17 @@ module TencentCloud
 
       # 智能封面结果类型
       class AiAnalysisTaskCoverResult < TencentCloud::Common::AbstractModel
-        # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
+        # @param Status: <p>任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。</p>
         # @type Status: String
-        # @param ErrCodeExt: 错误码，空字符串表示成功，其他值表示失败，取值请参考 [媒体处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
+        # @param ErrCodeExt: <p>错误码，空字符串表示成功，其他值表示失败，取值请参考 <a href="https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81">媒体处理类错误码</a> 列表。</p>
         # @type ErrCodeExt: String
-        # @param ErrCode: 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
+        # @param ErrCode: <p>错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。</p>
         # @type ErrCode: Integer
-        # @param Message: 错误信息。
+        # @param Message: <p>错误信息。</p>
         # @type Message: String
-        # @param Input: 智能封面任务输入。
+        # @param Input: <p>智能封面任务输入。</p>
         # @type Input: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskCoverInput`
-        # @param Output: 智能封面任务输出。
+        # @param Output: <p>智能封面任务输出。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskCoverOutput`
 
@@ -1893,17 +1917,17 @@ module TencentCloud
 
       # 智能按帧标签结果类型
       class AiAnalysisTaskFrameTagResult < TencentCloud::Common::AbstractModel
-        # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
+        # @param Status: <p>任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。</p>
         # @type Status: String
-        # @param ErrCodeExt: 错误码，空字符串表示成功，其他值表示失败，取值请参考 [媒体处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
+        # @param ErrCodeExt: <p>错误码，空字符串表示成功，其他值表示失败，取值请参考 <a href="https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81">媒体处理类错误码</a> 列表。</p>
         # @type ErrCodeExt: String
-        # @param ErrCode: 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
+        # @param ErrCode: <p>错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。</p>
         # @type ErrCode: Integer
-        # @param Message: 错误信息。
+        # @param Message: <p>错误信息。</p>
         # @type Message: String
-        # @param Input: 智能按帧标签任务输入。
+        # @param Input: <p>智能按帧标签任务输入。</p>
         # @type Input: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskFrameTagInput`
-        # @param Output: 智能按帧标签任务输出。
+        # @param Output: <p>智能按帧标签任务输出。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskFrameTagOutput`
 
@@ -3219,8 +3243,8 @@ module TencentCloud
 
         attr_accessor :SegmentSet, :SubtitlePath, :OutputStorage
         extend Gem::Deprecate
-        deprecate :OutputStorage, :none, 2026, 8
-        deprecate :OutputStorage=, :none, 2026, 8
+        deprecate :OutputStorage, :none, 2026, 9
+        deprecate :OutputStorage=, :none, 2026, 9
 
         def initialize(segmentset=nil, subtitlepath=nil, outputstorage=nil)
           @SegmentSet = segmentset
@@ -5223,21 +5247,21 @@ module TencentCloud
 
       # AI 样本管理，人物信息。
       class AiSamplePerson < TencentCloud::Common::AbstractModel
-        # @param PersonId: 人物 ID。
+        # @param PersonId: <p>人物 ID。</p>
         # @type PersonId: String
-        # @param Name: 人物名称。
+        # @param Name: <p>人物名称。</p>
         # @type Name: String
-        # @param Description: 人物描述。
+        # @param Description: <p>人物描述。</p>
         # @type Description: String
-        # @param FaceInfoSet: 人脸信息。
+        # @param FaceInfoSet: <p>人脸信息。</p>
         # @type FaceInfoSet: Array
-        # @param TagSet: 人物标签。
+        # @param TagSet: <p>人物标签。</p>
         # @type TagSet: Array
-        # @param UsageSet: 应用场景。
+        # @param UsageSet: <p>应用场景。</p>
         # @type UsageSet: Array
-        # @param CreateTime: 创建时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        # @param CreateTime: <p>创建时间，使用 <a href="https://cloud.tencent.com/document/product/862/37710#52">ISO 日期格式</a>。</p>
         # @type CreateTime: String
-        # @param UpdateTime: 最后修改时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        # @param UpdateTime: <p>最后修改时间，使用 <a href="https://cloud.tencent.com/document/product/862/37710#52">ISO 日期格式</a>。</p>
         # @type UpdateTime: String
 
         attr_accessor :PersonId, :Name, :Description, :FaceInfoSet, :TagSet, :UsageSet, :CreateTime, :UpdateTime
@@ -5274,9 +5298,9 @@ module TencentCloud
 
       # AI 样本管理，标签操作。
       class AiSampleTagOperation < TencentCloud::Common::AbstractModel
-        # @param Type: 操作类型，可选值：add（添加）、delete（删除）、reset（重置）。
+        # @param Type: <p>操作类型，可选值：add（添加）、delete（删除）、reset（重置）。</p>
         # @type Type: String
-        # @param Tags: 标签，长度限制：128 个字符。
+        # @param Tags: <p>标签，长度限制：128 个字符。</p>
         # @type Tags: Array
 
         attr_accessor :Type, :Tags
@@ -5694,14 +5718,11 @@ module TencentCloud
 
       # 用于AIGC视频生成的参考视频素材。
       class AigcVideoReferenceVideoInfo < TencentCloud::Common::AbstractModel
-        # @param VideoUrl: 参考视频url。需要外网可访问。
-        # 可作为特征参考视频，也可作为待编辑视频，默认为待编辑视频；可选择性保留视频原声
-        # 通过ReferType参数区分参考视频类型：feature为特征参考视频，base为待编辑视频
-        # 参考视频为待编辑视频时，不能定义视频首尾帧。
+        # @param VideoUrl: <p>参考视频url。需要外网可访问。<br>可作为特征参考视频，也可作为待编辑视频，默认为待编辑视频；可选择性保留视频原声<br>通过ReferType参数区分参考视频类型：feature为特征参考视频，base为待编辑视频<br>参考视频为待编辑视频时，不能定义视频首尾帧。</p>
         # @type VideoUrl: String
-        # @param ReferType: 通过ReferType参数区分参考视频类型：feature为特征参考视频，base为待编辑视频。
+        # @param ReferType: <p>通过ReferType参数区分参考视频类型：feature为特征参考视频，base为待编辑视频。</p>
         # @type ReferType: String
-        # @param KeepOriginalSound: 通过KeepOriginalSound参数选择是否保留视频原声，yes为保留，no为不保留；当前参数对特征参考视频（feature）也生效。
+        # @param KeepOriginalSound: <p>通过KeepOriginalSound参数选择是否保留视频原声，yes为保留，no为不保留；当前参数对特征参考视频（feature）也生效。</p>
         # @type KeepOriginalSound: String
 
         attr_accessor :VideoUrl, :ReferType, :KeepOriginalSound
@@ -6158,15 +6179,9 @@ module TencentCloud
 
       # 音量美化配置
       class AudioBeautifyConfig < TencentCloud::Common::AbstractModel
-        # @param Switch: 能力配置开关，可选值：
-        # <li>ON：开启；</li>
-        # <li>OFF：关闭。</li>
-        # 默认值：ON。
+        # @param Switch: <p>能力配置开关，可选值：</p><li>ON：开启；</li><li>OFF：关闭。</li>默认值：ON。
         # @type Switch: String
-        # @param Types: 类型，可多选，可选值：
-        # <li>declick：杂音去除</li>
-        # <li>deesser：齿音压制</li>
-        # 默认值：declick。
+        # @param Types: <p>类型，可多选，可选值：</p><li>declick：杂音去除</li><li>deesser：齿音压制</li>默认值：declick。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Types: Array
 
@@ -8857,6 +8872,61 @@ module TencentCloud
         end
       end
 
+      # CreateAgentRecordTask请求参数结构体
+      class CreateAgentRecordTaskRequest < TencentCloud::Common::AbstractModel
+        # @param LiveRoomUrl: <p>直播间URL</p>
+        # @type LiveRoomUrl: String
+        # @param MaxDurationMinutes: <p>最长录制时长</p><p>单位：分</p><p>最长支持720分</p>
+        # @type MaxDurationMinutes: Integer
+        # @param StoreCosParam: <p>文件结果指定存储Cos桶信息。 注意：需开通Cos，创建并授权MPS_QcsRole角色。</p>
+        # @type StoreCosParam: :class:`Tencentcloud::Mps.v20190612.models.AgentStoreCosParam`
+        # @param StartTime: <p>定时录制开始时刻</p><p>参数格式：2026-07-01T15:31:32+08:00</p><p>空表示提交后立即开始录制；非空表示从该时刻开始录制</p>
+        # @type StartTime: String
+        # @param InterruptPolicy: <p>中断策略</p><p>枚举值：</p><ul><li>STOP_ON_INTERRUPT： 直播流中断后立即结束录制</li><li>CONTINUE_UNTIL_END： 直播流中断时忽略中断，继续录制直到任务结束时间</li></ul><p>默认值：STOP_ON_INTERRUPT</p>
+        # @type InterruptPolicy: String
+
+        attr_accessor :LiveRoomUrl, :MaxDurationMinutes, :StoreCosParam, :StartTime, :InterruptPolicy
+
+        def initialize(liveroomurl=nil, maxdurationminutes=nil, storecosparam=nil, starttime=nil, interruptpolicy=nil)
+          @LiveRoomUrl = liveroomurl
+          @MaxDurationMinutes = maxdurationminutes
+          @StoreCosParam = storecosparam
+          @StartTime = starttime
+          @InterruptPolicy = interruptpolicy
+        end
+
+        def deserialize(params)
+          @LiveRoomUrl = params['LiveRoomUrl']
+          @MaxDurationMinutes = params['MaxDurationMinutes']
+          unless params['StoreCosParam'].nil?
+            @StoreCosParam = AgentStoreCosParam.new
+            @StoreCosParam.deserialize(params['StoreCosParam'])
+          end
+          @StartTime = params['StartTime']
+          @InterruptPolicy = params['InterruptPolicy']
+        end
+      end
+
+      # CreateAgentRecordTask返回参数结构体
+      class CreateAgentRecordTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务创建成功后，返回的任务ID。<br>调用查询接口，轮询获取任务进度及生成结果。</p>
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateAiDramaTask请求参数结构体
       class CreateAiDramaTaskRequest < TencentCloud::Common::AbstractModel
         # @param Input: <p>ai漫剧输入</p>
@@ -10156,8 +10226,8 @@ module TencentCloud
 
         attr_accessor :OutputName, :Description, :Protocol, :OutputRegion, :OutputType, :OutputKind, :SRTSettings, :RTMPSettings, :RTPSettings, :AllowIpList, :MaxConcurrent, :SecurityGroupIds, :Zones, :RISTSettings, :PidSelector, :StreamSelector
         extend Gem::Deprecate
-        deprecate :PidSelector, :none, 2026, 8
-        deprecate :PidSelector=, :none, 2026, 8
+        deprecate :PidSelector, :none, 2026, 9
+        deprecate :PidSelector=, :none, 2026, 9
 
         def initialize(outputname=nil, description=nil, protocol=nil, outputregion=nil, outputtype=nil, outputkind=nil, srtsettings=nil, rtmpsettings=nil, rtpsettings=nil, allowiplist=nil, maxconcurrent=nil, securitygroupids=nil, zones=nil, ristsettings=nil, pidselector=nil, streamselector=nil)
           @OutputName = outputname
@@ -10276,9 +10346,9 @@ module TencentCloud
 
       # 创建媒体传输流的输出的RTP的目标地址。
       class CreateOutputRTPSettingsDestinations < TencentCloud::Common::AbstractModel
-        # @param Ip: 转推的目标IP。
+        # @param Ip: <p>转推的目标IP。</p>
         # @type Ip: String
-        # @param Port: 转推的目标端口。
+        # @param Port: <p>转推的目标端口。</p>
         # @type Port: Integer
 
         attr_accessor :Ip, :Port
@@ -13616,6 +13686,50 @@ module TencentCloud
         end
       end
 
+      # DescribeAgentRecordTask请求参数结构体
+      class DescribeAgentRecordTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>创建Agent录制任务时，返回的任务ID。</p>
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeAgentRecordTask返回参数结构体
+      class DescribeAgentRecordTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Status: <p>任务当前状态。 </p><p>枚举值：</p><ul><li>WAITING： 等待中</li><li>RUNNING： 执行中</li><li>SUCCESS： 成功</li><li>FAILED： 失败</li></ul>
+        # @type Status: String
+        # @param ErrorMessage: <p>当任务状态为 FAILED 时，返回失败信息。</p>
+        # @type ErrorMessage: String
+        # @param RecordUrls: <p>当任务状态为 SUCCESS 时，返回录制文件Url列表。</p>
+        # @type RecordUrls: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :ErrorMessage, :RecordUrls, :RequestId
+
+        def initialize(status=nil, errormessage=nil, recordurls=nil, requestid=nil)
+          @Status = status
+          @ErrorMessage = errormessage
+          @RecordUrls = recordurls
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @ErrorMessage = params['ErrorMessage']
+          @RecordUrls = params['RecordUrls']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeAigcAudioTask请求参数结构体
       class DescribeAigcAudioTaskRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: <p>创建AIGC生视频任务时，返回的任务ID。</p>
@@ -14550,26 +14664,26 @@ module TencentCloud
 
       # 查询Flow的配置信息。
       class DescribeFlow < TencentCloud::Common::AbstractModel
-        # @param FlowId: 流Id。
+        # @param FlowId: <p>流Id。</p>
         # @type FlowId: String
-        # @param FlowName: 流名称。
+        # @param FlowName: <p>流名称。</p>
         # @type FlowName: String
-        # @param State: 流状态，目前有IDLE/RUNNING。
+        # @param State: <p>流状态，目前有IDLE/RUNNING。</p>
         # @type State: String
-        # @param MaxBandwidth: 最大带宽值。
+        # @param MaxBandwidth: <p>最大带宽值。</p>
         # @type MaxBandwidth: Integer
-        # @param InputGroup: 输入组。
+        # @param InputGroup: <p>输入组。</p>
         # @type InputGroup: Array
-        # @param OutputGroup: 输出组。
+        # @param OutputGroup: <p>输出组。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutputGroup: Array
-        # @param EventId: 该Flow关联的媒体传输事件EventId。
+        # @param EventId: <p>该Flow关联的媒体传输事件EventId。</p>
         # @type EventId: String
-        # @param Region: 媒体传输输入流所属的区域，取值和InputRegion相同。
+        # @param Region: <p>媒体传输输入流所属的区域，取值和InputRegion相同。</p>
         # @type Region: String
-        # @param AllowedInputProtocols: 该Flow允许创建的输入协议
+        # @param AllowedInputProtocols: <p>该Flow允许创建的输入协议</p>
         # @type AllowedInputProtocols: Array
-        # @param AllowedOutputProtocols: 该Flow允许创建的输出协议
+        # @param AllowedOutputProtocols: <p>该Flow允许创建的输出协议</p>
         # @type AllowedOutputProtocols: Array
 
         attr_accessor :FlowId, :FlowName, :State, :MaxBandwidth, :InputGroup, :OutputGroup, :EventId, :Region, :AllowedInputProtocols, :AllowedOutputProtocols
@@ -14927,53 +15041,53 @@ module TencentCloud
 
       # 查询输入配置信息。
       class DescribeInput < TencentCloud::Common::AbstractModel
-        # @param InputId: 输入Id。
+        # @param InputId: <p>输入Id。</p>
         # @type InputId: String
-        # @param InputName: 输入名称。
+        # @param InputName: <p>输入名称。</p>
         # @type InputName: String
-        # @param Description: 输入描述。
+        # @param Description: <p>输入描述。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
-        # @param Protocol: 输入协议。
+        # @param Protocol: <p>输入协议。</p>
         # @type Protocol: String
-        # @param InputAddressList: 输入地址列表。
+        # @param InputAddressList: <p>输入地址列表。</p>
         # @type InputAddressList: Array
-        # @param AllowIpList: 输入IP白名单列表。
+        # @param AllowIpList: <p>输入IP白名单列表。</p>
         # @type AllowIpList: Array
-        # @param SRTSettings: 输入的SRT配置信息。
+        # @param SRTSettings: <p>输入的SRT配置信息。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SRTSettings: :class:`Tencentcloud::Mps.v20190612.models.DescribeInputSRTSettings`
-        # @param RTPSettings: 输入的RTP配置信息。
+        # @param RTPSettings: <p>输入的RTP配置信息。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RTPSettings: :class:`Tencentcloud::Mps.v20190612.models.DescribeInputRTPSettings`
-        # @param InputRegion: 输入的地区。
+        # @param InputRegion: <p>输入的地区。</p>
         # @type InputRegion: String
-        # @param RTMPSettings: 输入的RTMP配置信息。
+        # @param RTMPSettings: <p>输入的RTMP配置信息。</p>
         # @type RTMPSettings: :class:`Tencentcloud::Mps.v20190612.models.DescribeInputRTMPSettings`
-        # @param FailOver: 输入的主备开关。
+        # @param FailOver: <p>输入的主备开关。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailOver: String
-        # @param RTMPPullSettings: 输入的RTMP_PULL配置信息。
+        # @param RTMPPullSettings: <p>输入的RTMP_PULL配置信息。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RTMPPullSettings: :class:`Tencentcloud::Mps.v20190612.models.DescribeInputRTMPPullSettings`
-        # @param RTSPPullSettings: 输入的RTSP_PULL配置信息。
+        # @param RTSPPullSettings: <p>输入的RTSP_PULL配置信息。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RTSPPullSettings: :class:`Tencentcloud::Mps.v20190612.models.DescribeInputRTSPPullSettings`
-        # @param HLSPullSettings: 输入的HLS_PULL配置信息。
+        # @param HLSPullSettings: <p>输入的HLS_PULL配置信息。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HLSPullSettings: :class:`Tencentcloud::Mps.v20190612.models.DescribeInputHLSPullSettings`
-        # @param ResilientStream: 延播平滑吐流配置信息。
+        # @param ResilientStream: <p>延播平滑吐流配置信息。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResilientStream: :class:`Tencentcloud::Mps.v20190612.models.ResilientStreamConf`
-        # @param SecurityGroupIds: 绑定的输入安全组 ID。
+        # @param SecurityGroupIds: <p>绑定的输入安全组 ID。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecurityGroupIds: Array
-        # @param Zones: 可用区配置，开启容灾情况下最多有两个，顺序和pipeline 0、1对应，否则最多只有一个可用区。
+        # @param Zones: <p>可用区配置，开启容灾情况下最多有两个，顺序和pipeline 0、1对应，否则最多只有一个可用区。</p>
         # @type Zones: Array
-        # @param RISTSettings: 输入的RIST配置信息。
+        # @param RISTSettings: <p>输入的RIST配置信息。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RISTSettings: :class:`Tencentcloud::Mps.v20190612.models.DescribeInputRISTSettings`
-        # @param StreamUrls: 输入模块配置相关的URL信息，包含提供的推流地址，或者配置的第三方源流地址
+        # @param StreamUrls: <p>输入模块配置相关的URL信息，包含提供的推流地址，或者配置的第三方源流地址</p>
         # @type StreamUrls: Array
 
         attr_accessor :InputId, :InputName, :Description, :Protocol, :InputAddressList, :AllowIpList, :SRTSettings, :RTPSettings, :InputRegion, :RTMPSettings, :FailOver, :RTMPPullSettings, :RTSPPullSettings, :HLSPullSettings, :ResilientStream, :SecurityGroupIds, :Zones, :RISTSettings, :StreamUrls
@@ -15155,9 +15269,9 @@ module TencentCloud
 
       # 查询输入的RTP配置信息。
       class DescribeInputRTPSettings < TencentCloud::Common::AbstractModel
-        # @param FEC: 是否FEC。
+        # @param FEC: <p>是否FEC。</p>
         # @type FEC: String
-        # @param IdleTimeout: 空闲超时时间。
+        # @param IdleTimeout: <p>空闲超时时间。</p>
         # @type IdleTimeout: Integer
 
         attr_accessor :FEC, :IdleTimeout
@@ -15463,8 +15577,8 @@ module TencentCloud
 
         attr_accessor :OutputId, :OutputName, :OutputType, :OutputKind, :Description, :Protocol, :OutputAddressList, :OutputRegion, :SRTSettings, :RTPSettings, :RTMPSettings, :RTMPPullSettings, :AllowIpList, :RTSPPullSettings, :HLSPullSettings, :MaxConcurrent, :SecurityGroupIds, :Zones, :RISTSettings, :PidSelector, :StreamUrls, :StreamSelector
         extend Gem::Deprecate
-        deprecate :PidSelector, :none, 2026, 8
-        deprecate :PidSelector=, :none, 2026, 8
+        deprecate :PidSelector, :none, 2026, 9
+        deprecate :PidSelector=, :none, 2026, 9
 
         def initialize(outputid=nil, outputname=nil, outputtype=nil, outputkind=nil, description=nil, protocol=nil, outputaddresslist=nil, outputregion=nil, srtsettings=nil, rtpsettings=nil, rtmpsettings=nil, rtmppullsettings=nil, allowiplist=nil, rtsppullsettings=nil, hlspullsettings=nil, maxconcurrent=nil, securitygroupids=nil, zones=nil, ristsettings=nil, pidselector=nil, streamurls=nil, streamselector=nil)
           @OutputId = outputid
@@ -15788,37 +15902,37 @@ module TencentCloud
 
       # 查询输出的SRT配置信息。
       class DescribeOutputSRTSettings < TencentCloud::Common::AbstractModel
-        # @param Destinations: 转推的目标的地址信息列表，SRT模式为CALLER时使用。
+        # @param Destinations: <p>转推的目标的地址信息列表，SRT模式为CALLER时使用。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Destinations: Array
-        # @param StreamId: 流Id。
+        # @param StreamId: <p>流Id。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StreamId: String
-        # @param Latency: 延迟。
+        # @param Latency: <p>延迟。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Latency: Integer
-        # @param RecvLatency: 接收延迟。
+        # @param RecvLatency: <p>接收延迟。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecvLatency: Integer
-        # @param PeerLatency: 对端延迟。
+        # @param PeerLatency: <p>对端延迟。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PeerLatency: Integer
-        # @param PeerIdleTimeout: 对端空闲超时时间。
+        # @param PeerIdleTimeout: <p>对端空闲超时时间。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PeerIdleTimeout: Integer
-        # @param Passphrase: 加密密钥。
+        # @param Passphrase: <p>加密密钥。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Passphrase: String
-        # @param PbKeyLen: 加密密钥长度。
+        # @param PbKeyLen: <p>加密密钥长度。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PbKeyLen: Integer
-        # @param Mode: SRT模式。
+        # @param Mode: <p>SRT模式。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Mode: String
-        # @param SourceAddresses: 服务器监听地址，SRT模式为LISTENER时使用。
+        # @param SourceAddresses: <p>服务器监听地址，SRT模式为LISTENER时使用。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceAddresses: Array
-        # @param FEC: FEC 配置
+        # @param FEC: <p>FEC 配置</p>
         # @type FEC: :class:`Tencentcloud::Mps.v20190612.models.SRTFECFullOptions`
 
         attr_accessor :Destinations, :StreamId, :Latency, :RecvLatency, :PeerLatency, :PeerIdleTimeout, :Passphrase, :PbKeyLen, :Mode, :SourceAddresses, :FEC
@@ -20080,8 +20194,8 @@ module TencentCloud
 
         attr_accessor :TaskType, :EvaluationTypeSet, :EvaluationRangeType, :ContrastInfoSet, :ContrastMediaSet, :ContrastTemplateSet, :StartTime, :EndTime, :StartFrameIndex, :EndFrameIndex, :ResolutionAlignmentMode, :BitrateSet, :VCRFSet
         extend Gem::Deprecate
-        deprecate :ContrastInfoSet, :none, 2026, 8
-        deprecate :ContrastInfoSet=, :none, 2026, 8
+        deprecate :ContrastInfoSet, :none, 2026, 9
+        deprecate :ContrastInfoSet=, :none, 2026, 9
 
         def initialize(tasktype=nil, evaluationtypeset=nil, evaluationrangetype=nil, contrastinfoset=nil, contrastmediaset=nil, contrasttemplateset=nil, starttime=nil, endtime=nil, startframeindex=nil, endframeindex=nil, resolutionalignmentmode=nil, bitrateset=nil, vcrfset=nil)
           @TaskType = tasktype
@@ -20533,6 +20647,30 @@ module TencentCloud
         end
       end
 
+      # Query 返回的单个产物文件
+      class File3D < TencentCloud::Common::AbstractModel
+        # @param Type: <p>文件类型，OBJ / GLB / FBX / STL / USDZ</p><p>枚举值：</p><ul><li>OBJ： 3D 通用交换格式</li><li>GLB： glTF 2.0 二进制（&quot;3D 界的 JPEG&quot;）</li><li>FBX： Autodesk 影视/游戏工业标准</li><li>STL： 3D 打印/CAD 三角面片</li><li>USDZ： Pixar/Apple 打包场景描述</li></ul>
+        # @type Type: String
+        # @param Url: <p>文件下载 URL（临时签名，TTL 一般 24h）</p>
+        # @type Url: String
+        # @param PreviewImageUrl: <p>预览图 URL（若有）</p>
+        # @type PreviewImageUrl: String
+
+        attr_accessor :Type, :Url, :PreviewImageUrl
+
+        def initialize(type=nil, url=nil, previewimageurl=nil)
+          @Type = type
+          @Url = url
+          @PreviewImageUrl = previewimageurl
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Url = params['Url']
+          @PreviewImageUrl = params['PreviewImageUrl']
+        end
+      end
+
       # 商品裂变任务信息
       class FissionTaskInfo < TencentCloud::Common::AbstractModel
         # @param Duration: <p>视频输出时长</p><p>取值范围：[4, 15]</p><p>单位：秒</p><p>默认值：15</p>
@@ -20664,25 +20802,25 @@ module TencentCloud
 
       # 传输流日志信息。
       class FlowLogInfo < TencentCloud::Common::AbstractModel
-        # @param Timestamp: 时间戳，单位为秒。
+        # @param Timestamp: <p>时间戳，单位为秒。</p>
         # @type Timestamp: Integer
-        # @param Type: 输入输出类型（input/output）。
+        # @param Type: <p>输入输出类型（input/output）。</p>
         # @type Type: String
-        # @param InputOutputId: 输入或输出Id。
+        # @param InputOutputId: <p>输入或输出Id。</p>
         # @type InputOutputId: String
-        # @param Protocol: 协议。
+        # @param Protocol: <p>协议。</p>
         # @type Protocol: String
-        # @param EventCode: 事件代码。
+        # @param EventCode: <p>事件代码。</p>
         # @type EventCode: String
-        # @param EventMessage: 事件信息。
+        # @param EventMessage: <p>事件信息。</p>
         # @type EventMessage: String
-        # @param RemoteIp: 对端IP。
+        # @param RemoteIp: <p>对端IP。</p>
         # @type RemoteIp: String
-        # @param RemotePort: 对端端口。
+        # @param RemotePort: <p>对端端口。</p>
         # @type RemotePort: String
-        # @param Pipeline: 主备通道，0为主通道，1为备通道。
+        # @param Pipeline: <p>主备通道，0为主通道，1为备通道。</p>
         # @type Pipeline: String
-        # @param InputOutputName: 输入或输出的名称。
+        # @param InputOutputName: <p>输入或输出的名称。</p>
         # @type InputOutputName: String
 
         attr_accessor :Timestamp, :Type, :InputOutputId, :Protocol, :EventCode, :EventMessage, :RemoteIp, :RemotePort, :Pipeline, :InputOutputName
@@ -22284,9 +22422,9 @@ module TencentCloud
 
       # 输入地址信息。
       class InputAddress < TencentCloud::Common::AbstractModel
-        # @param Ip: 输入地址的IP。
+        # @param Ip: <p>输入地址的IP。</p>
         # @type Ip: String
-        # @param Port: 输入地址的端口。
+        # @param Port: <p>输入地址的端口。</p>
         # @type Port: Integer
 
         attr_accessor :Ip, :Port
@@ -23104,10 +23242,10 @@ module TencentCloud
 
         attr_accessor :QualityControlResults, :DiagnoseResults, :QualityControlResultSet, :DiagnoseResultSet
         extend Gem::Deprecate
-        deprecate :QualityControlResults, :none, 2026, 8
-        deprecate :QualityControlResults=, :none, 2026, 8
-        deprecate :DiagnoseResults, :none, 2026, 8
-        deprecate :DiagnoseResults=, :none, 2026, 8
+        deprecate :QualityControlResults, :none, 2026, 9
+        deprecate :QualityControlResults=, :none, 2026, 9
+        deprecate :DiagnoseResults, :none, 2026, 9
+        deprecate :DiagnoseResults=, :none, 2026, 9
 
         def initialize(qualitycontrolresults=nil, diagnoseresults=nil, qualitycontrolresultset=nil, diagnoseresultset=nil)
           @QualityControlResults = qualitycontrolresults
@@ -23835,17 +23973,15 @@ module TencentCloud
 
       # 直播处理任务信息
       class LiveStreamProcessTask < TencentCloud::Common::AbstractModel
-        # @param TaskId: 媒体处理任务 ID。
+        # @param TaskId: <p>媒体处理任务 ID。</p>
         # @type TaskId: String
-        # @param Status: 任务流状态，取值：
-        # <li>PROCESSING：处理中；</li>
-        # <li>FINISH：已完成。</li>
+        # @param Status: <p>任务流状态，取值：</p><li>PROCESSING：处理中；</li><li>FINISH：已完成。</li>
         # @type Status: String
-        # @param ErrCode: 错误码，0 表示成功，其他值表示失败。
+        # @param ErrCode: <p>错误码，0 表示成功，其他值表示失败。</p>
         # @type ErrCode: Integer
-        # @param Message: 错误信息。
+        # @param Message: <p>错误信息。</p>
         # @type Message: String
-        # @param Url: 直播流 URL。
+        # @param Url: <p>直播流 URL。</p>
         # @type Url: String
 
         attr_accessor :TaskId, :Status, :ErrCode, :Message, :Url
@@ -24821,23 +24957,23 @@ module TencentCloud
 
       # 对视频转自适应码流任务结果类型
       class MediaProcessTaskAdaptiveDynamicStreamingResult < TencentCloud::Common::AbstractModel
-        # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
+        # @param Status: <p>任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。</p>
         # @type Status: String
-        # @param ErrCodeExt: 错误码，空字符串表示成功，其他值表示失败，取值请参考 [媒体处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
+        # @param ErrCodeExt: <p>错误码，空字符串表示成功，其他值表示失败，取值请参考 <a href="https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81">媒体处理类错误码</a> 列表。</p>
         # @type ErrCodeExt: String
-        # @param ErrCode: 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
+        # @param ErrCode: <p>错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。</p>
         # @type ErrCode: Integer
-        # @param Message: 错误信息。
+        # @param Message: <p>错误信息。</p>
         # @type Message: String
-        # @param Input: 对视频转自适应码流任务的输入。
+        # @param Input: <p>对视频转自适应码流任务的输入。</p>
         # @type Input: :class:`Tencentcloud::Mps.v20190612.models.AdaptiveDynamicStreamingTaskInput`
-        # @param Output: 对视频转自适应码流任务的输出。
+        # @param Output: <p>对视频转自适应码流任务的输出。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Mps.v20190612.models.AdaptiveDynamicStreamingInfoItem`
-        # @param BeginProcessTime: 任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        # @param BeginProcessTime: <p>任务开始执行的时间，采用 <a href="https://cloud.tencent.com/document/product/862/37710#52">ISO 日期格式</a>。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BeginProcessTime: String
-        # @param FinishTime: 任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        # @param FinishTime: <p>任务执行完毕的时间，采用 <a href="https://cloud.tencent.com/document/product/862/37710#52">ISO 日期格式</a>。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FinishTime: String
 
@@ -24874,23 +25010,23 @@ module TencentCloud
 
       # 转动图任务结果类型
       class MediaProcessTaskAnimatedGraphicResult < TencentCloud::Common::AbstractModel
-        # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
+        # @param Status: <p>任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。</p>
         # @type Status: String
-        # @param ErrCodeExt: 错误码，空字符串表示成功，其他值表示失败，取值请参考 [媒体处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
+        # @param ErrCodeExt: <p>错误码，空字符串表示成功，其他值表示失败，取值请参考 <a href="https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81">媒体处理类错误码</a> 列表。</p>
         # @type ErrCodeExt: String
-        # @param ErrCode: 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
+        # @param ErrCode: <p>错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。</p>
         # @type ErrCode: Integer
-        # @param Message: 错误信息。
+        # @param Message: <p>错误信息。</p>
         # @type Message: String
-        # @param Input: 转动图任务的输入。
+        # @param Input: <p>转动图任务的输入。</p>
         # @type Input: :class:`Tencentcloud::Mps.v20190612.models.AnimatedGraphicTaskInput`
-        # @param Output: 转动图任务的输出。
+        # @param Output: <p>转动图任务的输出。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Mps.v20190612.models.MediaAnimatedGraphicsItem`
-        # @param BeginProcessTime: 任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        # @param BeginProcessTime: <p>任务开始执行的时间，采用 <a href="https://cloud.tencent.com/document/product/862/37710#52">ISO 日期格式</a>。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BeginProcessTime: String
-        # @param FinishTime: 任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        # @param FinishTime: <p>任务执行完毕的时间，采用 <a href="https://cloud.tencent.com/document/product/862/37710#52">ISO 日期格式</a>。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FinishTime: String
 
@@ -25276,21 +25412,17 @@ module TencentCloud
 
       # 采样截图信息
       class MediaSampleSnapshotItem < TencentCloud::Common::AbstractModel
-        # @param Definition: 采样截图规格 ID，参见[采样截图参数模板](https://cloud.tencent.com/document/product/266/33480#.E9.87.87.E6.A0.B7.E6.88.AA.E5.9B.BE.E6.A8.A1.E6.9D.BF)。
+        # @param Definition: <p>采样截图规格 ID，参见<a href="https://cloud.tencent.com/document/product/266/33480#.E9.87.87.E6.A0.B7.E6.88.AA.E5.9B.BE.E6.A8.A1.E6.9D.BF">采样截图参数模板</a>。</p>
         # @type Definition: Integer
-        # @param SampleType: 采样方式，取值范围：
-        # <li>Percent：根据百分比间隔采样。</li>
-        # <li>Time：根据时间间隔采样。</li>
+        # @param SampleType: <p>采样方式，取值范围：</p><li>Percent：根据百分比间隔采样。</li><li>Time：根据时间间隔采样。</li>
         # @type SampleType: String
-        # @param Interval: 采样间隔
-        # <li>当 SampleType 为 Percent 时，该值表示多少百分比一张图。</li>
-        # <li>当 SampleType 为 Time 时，该值表示多少时间间隔一张图，单位秒， 第一张图均为视频首帧。</li>
+        # @param Interval: <p>采样间隔</p><li>当 SampleType 为 Percent 时，该值表示多少百分比一张图。</li><li>当 SampleType 为 Time 时，该值表示多少时间间隔一张图，单位秒， 第一张图均为视频首帧。</li>
         # @type Interval: Integer
-        # @param Storage: 截图后文件的存储位置。
+        # @param Storage: <p>截图后文件的存储位置。</p>
         # @type Storage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
-        # @param ImagePathSet: 生成的截图 path 列表。
+        # @param ImagePathSet: <p>生成的截图 path 列表。</p>
         # @type ImagePathSet: Array
-        # @param WaterMarkDefinition: 截图如果被打上了水印，被打水印的模板 ID 列表。
+        # @param WaterMarkDefinition: <p>截图如果被打上了水印，被打水印的模板 ID 列表。</p>
         # @type WaterMarkDefinition: Array
 
         attr_accessor :Definition, :SampleType, :Interval, :Storage, :ImagePathSet, :WaterMarkDefinition
@@ -26369,8 +26501,8 @@ module TencentCloud
 
         attr_accessor :OutputId, :OutputName, :Description, :Protocol, :OutputKind, :SRTSettings, :RTPSettings, :RTMPSettings, :AllowIpList, :MaxConcurrent, :SecurityGroupIds, :Zones, :RISTSettings, :OutputType, :PidSelector, :StreamSelector
         extend Gem::Deprecate
-        deprecate :PidSelector, :none, 2026, 8
-        deprecate :PidSelector=, :none, 2026, 8
+        deprecate :PidSelector, :none, 2026, 9
+        deprecate :PidSelector=, :none, 2026, 9
 
         def initialize(outputid=nil, outputname=nil, description=nil, protocol=nil, outputkind=nil, srtsettings=nil, rtpsettings=nil, rtmpsettings=nil, allowiplist=nil, maxconcurrent=nil, securitygroupids=nil, zones=nil, ristsettings=nil, outputtype=nil, pidselector=nil, streamselector=nil)
           @OutputId = outputid
@@ -27799,39 +27931,19 @@ module TencentCloud
 
       # 媒体处理任务中的马赛克参数类型
       class MosaicInput < TencentCloud::Common::AbstractModel
-        # @param CoordinateOrigin: 原点位置，目前仅支持：
-        # <li>TopLeft：表示坐标原点位于视频图像左上角，马赛克原点为图片或文字的左上角。</li>
-        # 默认值：TopLeft。
+        # @param CoordinateOrigin: <p>原点位置，目前仅支持：</p><li>TopLeft：表示坐标原点位于视频图像左上角，马赛克原点为图片或文字的左上角。</li>默认值：TopLeft。
         # @type CoordinateOrigin: String
-        # @param XPos: 马赛克原点距离视频图像坐标原点的水平位置。支持 %、px 两种格式：
-        # <li>当字符串以 % 结尾，表示马赛克 XPos 为视频宽度指定百分比，如 10% 表示 XPos 为视频宽度的 10%；</li>
-        # <li>当字符串以 px 结尾，表示马赛克 XPos 为指定像素，如 100px 表示 XPos 为 100 像素。</li>
-        # 默认值：0px。
+        # @param XPos: <p>马赛克原点距离视频图像坐标原点的水平位置。支持 %、px 两种格式：</p><li>当字符串以 % 结尾，表示马赛克 XPos 为视频宽度指定百分比，如 10% 表示 XPos 为视频宽度的 10%；</li><li>当字符串以 px 结尾，表示马赛克 XPos 为指定像素，如 100px 表示 XPos 为 100 像素。</li>默认值：0px。
         # @type XPos: String
-        # @param YPos: 马赛克原点距离视频图像坐标原点的垂直位置。支持 %、px 两种格式：
-        # <li>当字符串以 % 结尾，表示马赛克 YPos 为视频高度指定百分比，如 10% 表示 YPos 为视频高度的 10%；</li>
-        # <li>当字符串以 px 结尾，表示马赛克 YPos 为指定像素，如 100px 表示 YPos 为 100 像素。</li>
-        # 默认值：0px。
+        # @param YPos: <p>马赛克原点距离视频图像坐标原点的垂直位置。支持 %、px 两种格式：</p><li>当字符串以 % 结尾，表示马赛克 YPos 为视频高度指定百分比，如 10% 表示 YPos 为视频高度的 10%；</li><li>当字符串以 px 结尾，表示马赛克 YPos 为指定像素，如 100px 表示 YPos 为 100 像素。</li>默认值：0px。
         # @type YPos: String
-        # @param Width: 马赛克的宽度。支持 %、px 两种格式：
-        # <li>当字符串以 % 结尾，表示马赛克 Width 为视频宽度的百分比大小，如 10% 表示 Width 为视频宽度的 10%；</li>
-        # <li>当字符串以 px 结尾，表示马赛克 Width 单位为像素，如 100px 表示 Width 为 100 像素。</li>
-        # 默认值：10%。
+        # @param Width: <p>马赛克的宽度。支持 %、px 两种格式：</p><li>当字符串以 % 结尾，表示马赛克 Width 为视频宽度的百分比大小，如 10% 表示 Width 为视频宽度的 10%；</li><li>当字符串以 px 结尾，表示马赛克 Width 单位为像素，如 100px 表示 Width 为 100 像素。</li>默认值：10%。
         # @type Width: String
-        # @param Height: 马赛克的高度。支持 %、px 两种格式：
-        # <li>当字符串以 % 结尾，表示马赛克 Height 为视频高度的百分比大小，如 10% 表示 Height 为视频高度的 10%；</li>
-        # <li>当字符串以 px 结尾，表示马赛克 Height 单位为像素，如 100px 表示 Height 为 100 像素。</li>
-        # 默认值：10%。
+        # @param Height: <p>马赛克的高度。支持 %、px 两种格式：</p><li>当字符串以 % 结尾，表示马赛克 Height 为视频高度的百分比大小，如 10% 表示 Height 为视频高度的 10%；</li><li>当字符串以 px 结尾，表示马赛克 Height 单位为像素，如 100px 表示 Height 为 100 像素。</li>默认值：10%。
         # @type Height: String
-        # @param StartTimeOffset: 马赛克的起始时间偏移，单位：秒。不填或填0，表示马赛克从画面出现时开始显现。
-        # <li>不填或填0，表示马赛克从画面开始就出现；</li>
-        # <li>当数值大于0时（假设为 n），表示马赛克从画面开始的第 n 秒出现；</li>
-        # <li>当数值小于0时（假设为 -n），表示马赛克从离画面结束 n 秒前开始出现。</li>
+        # @param StartTimeOffset: <p>马赛克的起始时间偏移，单位：秒。不填或填0，表示马赛克从画面出现时开始显现。</p><li>不填或填0，表示马赛克从画面开始就出现；</li><li>当数值大于0时（假设为 n），表示马赛克从画面开始的第 n 秒出现；</li><li>当数值小于0时（假设为 -n），表示马赛克从离画面结束 n 秒前开始出现。</li>
         # @type StartTimeOffset: Float
-        # @param EndTimeOffset: 马赛克的结束时间偏移，单位：秒。
-        # <li>不填或填0，表示马赛克持续到画面结束；</li>
-        # <li>当数值大于0时（假设为 n），表示马赛克持续到第 n 秒时消失；</li>
-        # <li>当数值小于0时（假设为 -n），表示马赛克持续到离画面结束 n 秒前消失。</li>
+        # @param EndTimeOffset: <p>马赛克的结束时间偏移，单位：秒。</p><li>不填或填0，表示马赛克持续到画面结束；</li><li>当数值大于0时（假设为 n），表示马赛克持续到第 n 秒时消失；</li><li>当数值小于0时（假设为 -n），表示马赛克持续到离画面结束 n 秒前消失。</li>
         # @type EndTimeOffset: Float
 
         attr_accessor :CoordinateOrigin, :XPos, :YPos, :Width, :Height, :StartTimeOffset, :EndTimeOffset
@@ -28722,23 +28834,13 @@ module TencentCloud
 
       # 画面涉敏任务控制参数
       class PoliticalImgReviewTemplateInfo < TencentCloud::Common::AbstractModel
-        # @param Switch: 画面涉敏任务开关，可选值：
-        # <li>ON：开启画面涉敏任务；</li>
-        # <li>OFF：关闭画面涉敏任务。</li>
+        # @param Switch: <p>画面涉敏任务开关，可选值：</p><li>ON：开启画面涉敏任务；</li><li>OFF：关闭画面涉敏任务。</li>
         # @type Switch: String
-        # @param LabelSet: 画面涉敏过滤标签，审核结果包含选择的标签则返回结果，如果过滤标签为空，则审核结果全部返回，可选值为：
-        # <li>violation_photo：违规图标；</li>
-        # <li>politician：涉敏人物；</li>
-        # <li>entertainment：娱乐人物；</li>
-        # <li>sport：体育人物；</li>
-        # <li>entrepreneur：商业人物；</li>
-        # <li>scholar：教育学者；</li>
-        # <li>celebrity：知名人物；</li>
-        # <li>military：军事人物。</li>
+        # @param LabelSet: <p>画面涉敏过滤标签，审核结果包含选择的标签则返回结果，如果过滤标签为空，则审核结果全部返回，可选值为：</p><li>violation_photo：违规图标；</li><li>politician：涉敏人物；</li><li>entertainment：娱乐人物；</li><li>sport：体育人物；</li><li>entrepreneur：商业人物；</li><li>scholar：教育学者；</li><li>celebrity：知名人物；</li><li>military：军事人物。</li>
         # @type LabelSet: Array
-        # @param BlockConfidence: 判定涉嫌违规的分数阈值，当智能审核达到该分数以上，认为涉嫌违规，不填默认为 97 分。取值范围：0~100。
+        # @param BlockConfidence: <p>判定涉嫌违规的分数阈值，当智能审核达到该分数以上，认为涉嫌违规，不填默认为 97 分。取值范围：0~100。</p>
         # @type BlockConfidence: Integer
-        # @param ReviewConfidence: 判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核，不填默认为 95 分。取值范围：0~100。
+        # @param ReviewConfidence: <p>判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核，不填默认为 95 分。取值范围：0~100。</p>
         # @type ReviewConfidence: Integer
 
         attr_accessor :Switch, :LabelSet, :BlockConfidence, :ReviewConfidence
@@ -28760,23 +28862,13 @@ module TencentCloud
 
       # 画面涉敏任务控制参数。
       class PoliticalImgReviewTemplateInfoForUpdate < TencentCloud::Common::AbstractModel
-        # @param Switch: 画面涉敏任务开关，可选值：
-        # <li>ON：开启画面涉敏任务；</li>
-        # <li>OFF：关闭画面涉敏任务。</li>
+        # @param Switch: <p>画面涉敏任务开关，可选值：</p><li>ON：开启画面涉敏任务；</li><li>OFF：关闭画面涉敏任务。</li>
         # @type Switch: String
-        # @param LabelSet: 画面涉敏过滤标签，审核结果包含选择的标签则返回结果，如果过滤标签为空，则审核结果全部返回，可选值为：
-        # <li>violation_photo：违规图标；</li>
-        # <li>politician：涉敏人物；</li>
-        # <li>entertainment：娱乐人物；</li>
-        # <li>sport：体育人物；</li>
-        # <li>entrepreneur：商业人物；</li>
-        # <li>scholar：教育学者；</li>
-        # <li>celebrity：知名人物；</li>
-        # <li>military：军事人物。</li>
+        # @param LabelSet: <p>画面涉敏过滤标签，审核结果包含选择的标签则返回结果，如果过滤标签为空，则审核结果全部返回，可选值为：</p><li>violation_photo：违规图标；</li><li>politician：涉敏人物；</li><li>entertainment：娱乐人物；</li><li>sport：体育人物；</li><li>entrepreneur：商业人物；</li><li>scholar：教育学者；</li><li>celebrity：知名人物；</li><li>military：军事人物。</li>
         # @type LabelSet: Array
-        # @param BlockConfidence: 判定涉嫌违规的分数阈值，当智能审核达到该分数以上，认为涉嫌违规。取值范围：0~100。
+        # @param BlockConfidence: <p>判定涉嫌违规的分数阈值，当智能审核达到该分数以上，认为涉嫌违规。取值范围：0~100。</p>
         # @type BlockConfidence: Integer
-        # @param ReviewConfidence: 判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核。取值范围：0~100。
+        # @param ReviewConfidence: <p>判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核。取值范围：0~100。</p>
         # @type ReviewConfidence: Integer
 
         attr_accessor :Switch, :LabelSet, :BlockConfidence, :ReviewConfidence
@@ -30215,6 +30307,65 @@ module TencentCloud
         end
       end
 
+      # QueryHunyuan3DTask请求参数结构体
+      class QueryHunyuan3DTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务ID</p>
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # QueryHunyuan3DTask返回参数结构体
+      class QueryHunyuan3DTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Status: <p>任务状态</p><p>枚举值：</p><ul><li>WAIT： 已排队，等待执行</li><li>RUN： 正在执行</li><li>DONE： 已成功完成，ResultFile3Ds 有值</li><li>FAIL： 已失败，ErrorCode / ErrorMessage 有值</li></ul>
+        # @type Status: String
+        # @param Progress: <p>进度百分比，0~100。未知时为 0；DONE 时应为 100；FAIL 时保留最后一次已知值</p>
+        # @type Progress: Integer
+        # @param ErrorCode: <p>仅 Status=FAIL 时有值，字符串错误码（如 InternalError.ModelInference）</p>
+        # @type ErrorCode: String
+        # @param ErrorMessage: <p>仅 Status=FAIL 时有值，详细文案</p>
+        # @type ErrorMessage: String
+        # @param ResultFile3Ds: <p>仅 Status=DONE 时有值，产物文件列表</p>
+        # @type ResultFile3Ds: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :Progress, :ErrorCode, :ErrorMessage, :ResultFile3Ds, :RequestId
+
+        def initialize(status=nil, progress=nil, errorcode=nil, errormessage=nil, resultfile3ds=nil, requestid=nil)
+          @Status = status
+          @Progress = progress
+          @ErrorCode = errorcode
+          @ErrorMessage = errormessage
+          @ResultFile3Ds = resultfile3ds
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @Progress = params['Progress']
+          @ErrorCode = params['ErrorCode']
+          @ErrorMessage = params['ErrorMessage']
+          unless params['ResultFile3Ds'].nil?
+            @ResultFile3Ds = []
+            params['ResultFile3Ds'].each do |i|
+              file3d_tmp = File3D.new
+              file3d_tmp.deserialize(i)
+              @ResultFile3Ds << file3d_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # QueryProject请求参数结构体
       class QueryProjectRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: <p>项目id</p>
@@ -30348,9 +30499,9 @@ module TencentCloud
 
       # 转推的RTP目标地址信息。
       class RTPAddressDestination < TencentCloud::Common::AbstractModel
-        # @param Ip: 转推的目标地址的IP。
+        # @param Ip: <p>转推的目标地址的IP。</p>
         # @type Ip: String
-        # @param Port: 转推的目标地址的端口。
+        # @param Port: <p>转推的目标地址的端口。</p>
         # @type Port: Integer
 
         attr_accessor :Ip, :Port
@@ -31214,9 +31365,9 @@ module TencentCloud
 
       # 转推的目标地址信息。
       class SRTAddressDestination < TencentCloud::Common::AbstractModel
-        # @param Ip: 目标地址的IP。
+        # @param Ip: <p>目标地址的IP。</p>
         # @type Ip: String
-        # @param Port: 目标地址的端口。
+        # @param Port: <p>目标地址的端口。</p>
         # @type Port: Integer
 
         attr_accessor :Ip, :Port
@@ -31867,23 +32018,23 @@ module TencentCloud
 
       # 编排视频审核任务结果类型
       class ScheduleReviewTaskResult < TencentCloud::Common::AbstractModel
-        # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
+        # @param Status: <p>任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。</p>
         # @type Status: String
-        # @param ErrCodeExt: 错误码，空字符串表示成功，其他值表示失败，取值请参考 [媒体处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
+        # @param ErrCodeExt: <p>错误码，空字符串表示成功，其他值表示失败，取值请参考 <a href="https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81">媒体处理类错误码</a> 列表。</p>
         # @type ErrCodeExt: String
-        # @param ErrCode: 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
+        # @param ErrCode: <p>错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。</p>
         # @type ErrCode: Integer
-        # @param Message: 错误信息。
+        # @param Message: <p>错误信息。</p>
         # @type Message: String
-        # @param Input: 审核任务的输入。
+        # @param Input: <p>审核任务的输入。</p>
         # @type Input: :class:`Tencentcloud::Mps.v20190612.models.AiContentReviewTaskInput`
-        # @param Output: 审核任务的输出。
+        # @param Output: <p>审核任务的输出。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: Array
-        # @param BeginProcessTime: 任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        # @param BeginProcessTime: <p>任务开始执行的时间，采用 <a href="https://cloud.tencent.com/document/product/862/37710#52">ISO 日期格式</a>。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BeginProcessTime: String
-        # @param FinishTime: 任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        # @param FinishTime: <p>任务执行完毕的时间，采用 <a href="https://cloud.tencent.com/document/product/862/37710#52">ISO 日期格式</a>。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FinishTime: String
 
@@ -32196,18 +32347,18 @@ module TencentCloud
 
       # 安全组信息。
       class SecurityGroupInfo < TencentCloud::Common::AbstractModel
-        # @param Id: 安全组 ID。
+        # @param Id: <p>安全组 ID。</p>
         # @type Id: String
-        # @param Name: 安全组名称。
+        # @param Name: <p>安全组名称。</p>
         # @type Name: String
-        # @param Whitelist: 白名单列表。
+        # @param Whitelist: <p>白名单列表。</p>
         # @type Whitelist: Array
-        # @param OccupiedInputs: 绑定的输入流列表。
+        # @param OccupiedInputs: <p>绑定的输入流列表。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OccupiedInputs: Array
-        # @param Region: 安全组地址。
+        # @param Region: <p>安全组地址。</p>
         # @type Region: String
-        # @param OccupiedOutputs: 绑定的输出流列表。
+        # @param OccupiedOutputs: <p>绑定的输出流列表。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OccupiedOutputs: Array
 
@@ -33886,9 +34037,9 @@ module TencentCloud
 
       # 指定规格任务统计数据。
       class SpecificationDataItem < TencentCloud::Common::AbstractModel
-        # @param Specification: 任务规格。
+        # @param Specification: <p>任务规格。</p>
         # @type Specification: String
-        # @param Data: 统计数据。
+        # @param Data: <p>统计数据。</p>
         # @type Data: Array
 
         attr_accessor :Specification, :Data
@@ -34188,6 +34339,89 @@ module TencentCloud
           @Label = params['Label']
           @Url = params['Url']
           @Type = params['Type']
+        end
+      end
+
+      # SubmitHunyuan3DTask请求参数结构体
+      class SubmitHunyuan3DTaskRequest < TencentCloud::Common::AbstractModel
+        # @param Prompt: <p>文生 3D 的提示词</p><p>入参限制：最长 1024 utf-8 字符</p>
+        # @type Prompt: String
+        # @param ImageUrl: <p>图生 3D 的图片 URL（http/https）</p>
+        # @type ImageUrl: String
+        # @param MultiViewImages: <p>多视角图生 3D，至少 2 张，且必须包含 front 视角</p>
+        # @type MultiViewImages: Array
+        # @param GenerateType: <p>生成类型</p><p>枚举值：</p><ul><li>Normal： 生成完整 3D 资产（几何 + 纹理）</li><li>Geometry： 只生成几何体（无纹理，输出速度更快）</li><li>Texture： 只生成纹理（需要传 MeshUrl）</li></ul><p>默认值：Normal</p>
+        # @type GenerateType: String
+        # @param MeshUrl: <p>已有 3D 模型的 URL（仅支持 .glb / .obj）。传了 MeshUrl → 强制 GenerateType=Texture（贴纹理场景）</p>
+        # @type MeshUrl: String
+        # @param EnablePBR: <p>是否输出 PBR 材质</p><p>默认值：false</p>
+        # @type EnablePBR: Boolean
+        # @param FaceCount: <p>面片数，范围 [3000, 1500000]。仅 Normal / Geometry 分支生效</p><p>取值范围：[3000, 1500000]</p><p>默认值：500000</p>
+        # @type FaceCount: Integer
+        # @param KeepUV: <p>是否保留 UV 展开</p><p>默认值：false</p>
+        # @type KeepUV: Boolean
+        # @param ResultFormat: <p>除默认返回的 obj + glb 外，附加输出的一种格式。当前仅支持 FBX</p>
+        # @type ResultFormat: String
+        # @param Seed: <p>随机种子，同一 Seed 输入下结果可复现</p>
+        # @type Seed: Integer
+        # @param Style: <p>风格控制词</p>
+        # @type Style: String
+
+        attr_accessor :Prompt, :ImageUrl, :MultiViewImages, :GenerateType, :MeshUrl, :EnablePBR, :FaceCount, :KeepUV, :ResultFormat, :Seed, :Style
+
+        def initialize(prompt=nil, imageurl=nil, multiviewimages=nil, generatetype=nil, meshurl=nil, enablepbr=nil, facecount=nil, keepuv=nil, resultformat=nil, seed=nil, style=nil)
+          @Prompt = prompt
+          @ImageUrl = imageurl
+          @MultiViewImages = multiviewimages
+          @GenerateType = generatetype
+          @MeshUrl = meshurl
+          @EnablePBR = enablepbr
+          @FaceCount = facecount
+          @KeepUV = keepuv
+          @ResultFormat = resultformat
+          @Seed = seed
+          @Style = style
+        end
+
+        def deserialize(params)
+          @Prompt = params['Prompt']
+          @ImageUrl = params['ImageUrl']
+          unless params['MultiViewImages'].nil?
+            @MultiViewImages = []
+            params['MultiViewImages'].each do |i|
+              viewimage_tmp = ViewImage.new
+              viewimage_tmp.deserialize(i)
+              @MultiViewImages << viewimage_tmp
+            end
+          end
+          @GenerateType = params['GenerateType']
+          @MeshUrl = params['MeshUrl']
+          @EnablePBR = params['EnablePBR']
+          @FaceCount = params['FaceCount']
+          @KeepUV = params['KeepUV']
+          @ResultFormat = params['ResultFormat']
+          @Seed = params['Seed']
+          @Style = params['Style']
+        end
+      end
+
+      # SubmitHunyuan3DTask返回参数结构体
+      class SubmitHunyuan3DTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务 ID</p>
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -35521,23 +35755,13 @@ module TencentCloud
 
       # 画面涉敏任务控制参数
       class TerrorismImgReviewTemplateInfo < TencentCloud::Common::AbstractModel
-        # @param Switch: 画面涉敏任务开关，可选值：
-        # <li>ON：开启画面涉敏任务；</li>
-        # <li>OFF：关闭画面涉敏任务。</li>
+        # @param Switch: <p>画面涉敏任务开关，可选值：</p><li>ON：开启画面涉敏任务；</li><li>OFF：关闭画面涉敏任务。</li>
         # @type Switch: String
-        # @param LabelSet: 画面涉敏过滤标签，审核结果包含选择的标签则返回结果，如果过滤标签为空，则审核结果全部返回，可选值为：
-        # <li>guns：武器枪支；</li>
-        # <li>crowd：人群聚集；</li>
-        # <li>bloody：血腥画面；</li>
-        # <li>police：警察部队；</li>
-        # <li>banners：涉敏旗帜；</li>
-        # <li>militant：武装分子；</li>
-        # <li>explosion：爆炸火灾；</li>
-        # <li>terrorists：涉敏人物；</li>
+        # @param LabelSet: <p>画面涉敏过滤标签，审核结果包含选择的标签则返回结果，如果过滤标签为空，则审核结果全部返回，可选值为：</p><li>guns：武器枪支；</li><li>crowd：人群聚集；</li><li>bloody：血腥画面；</li><li>police：警察部队；</li><li>banners：涉敏旗帜；</li><li>militant：武装分子；</li><li>explosion：爆炸火灾；</li><li>terrorists：涉敏人物；</li>
         # @type LabelSet: Array
-        # @param BlockConfidence: 判定涉嫌违规的分数阈值，当智能审核达到该分数以上，认为涉嫌违规，不填默认为 90 分。取值范围：0~100。
+        # @param BlockConfidence: <p>判定涉嫌违规的分数阈值，当智能审核达到该分数以上，认为涉嫌违规，不填默认为 90 分。取值范围：0~100。</p>
         # @type BlockConfidence: Integer
-        # @param ReviewConfidence: 判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核，不填默认为 80 分。取值范围：0~100。
+        # @param ReviewConfidence: <p>判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核，不填默认为 80 分。取值范围：0~100。</p>
         # @type ReviewConfidence: Integer
 
         attr_accessor :Switch, :LabelSet, :BlockConfidence, :ReviewConfidence
@@ -35559,23 +35783,13 @@ module TencentCloud
 
       # 画面涉敏任务控制参数。
       class TerrorismImgReviewTemplateInfoForUpdate < TencentCloud::Common::AbstractModel
-        # @param Switch: 画面涉敏任务开关，可选值：
-        # <li>ON：开启画面涉敏任务；</li>
-        # <li>OFF：关闭画面涉敏任务。</li>
+        # @param Switch: <p>画面涉敏任务开关，可选值：</p><li>ON：开启画面涉敏任务；</li><li>OFF：关闭画面涉敏任务。</li>
         # @type Switch: String
-        # @param LabelSet: 画面涉敏过滤标签，审核结果包含选择的标签则返回结果，如果过滤标签为空，则审核结果全部返回，可选值为：
-        # <li>guns：武器枪支；</li>
-        # <li>crowd：人群聚集；</li>
-        # <li>bloody：血腥画面；</li>
-        # <li>police：警察部队；</li>
-        # <li>banners：涉敏旗帜；</li>
-        # <li>militant：武装分子；</li>
-        # <li>explosion：爆炸火灾；</li>
-        # <li>terrorists：涉敏人物；</li>
+        # @param LabelSet: <p>画面涉敏过滤标签，审核结果包含选择的标签则返回结果，如果过滤标签为空，则审核结果全部返回，可选值为：</p><li>guns：武器枪支；</li><li>crowd：人群聚集；</li><li>bloody：血腥画面；</li><li>police：警察部队；</li><li>banners：涉敏旗帜；</li><li>militant：武装分子；</li><li>explosion：爆炸火灾；</li><li>terrorists：涉敏人物；</li>
         # @type LabelSet: Array
-        # @param BlockConfidence: 判定涉嫌违规的分数阈值，当智能审核达到该分数以上，认为涉嫌违规。取值范围：0~100。
+        # @param BlockConfidence: <p>判定涉嫌违规的分数阈值，当智能审核达到该分数以上，认为涉嫌违规。取值范围：0~100。</p>
         # @type BlockConfidence: Integer
-        # @param ReviewConfidence: 判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核。取值范围：0~100。
+        # @param ReviewConfidence: <p>判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核。取值范围：0~100。</p>
         # @type ReviewConfidence: Integer
 
         attr_accessor :Switch, :LabelSet, :BlockConfidence, :ReviewConfidence
@@ -37942,6 +38156,26 @@ module TencentCloud
         end
       end
 
+      # 多视角图生 3D 场景下，MultiViewImages 数组中的单个视角。
+      class ViewImage < TencentCloud::Common::AbstractModel
+        # @param ViewType: <p>视角类型</p><p>枚举值：</p><ul><li>front： 正视图 （必填）</li><li>back： 背视图</li><li>left： 左视图</li><li>right： 右视图</li><li>top： 顶视图</li><li>bottom： 底视图</li><li>left_front： 左前 45°</li><li>right_front： 右前 45°</li></ul><p>MultiViewImages 数组长度 ≥ 2 ; 必须包含 front 视角;  同一 ViewType 不允许重复; 每项必须提供 ViewImageUrl</p>
+        # @type ViewType: String
+        # @param ViewImageUrl: <p>图片 URL（http / https）</p>
+        # @type ViewImageUrl: String
+
+        attr_accessor :ViewType, :ViewImageUrl
+
+        def initialize(viewtype=nil, viewimageurl=nil)
+          @ViewType = viewtype
+          @ViewImageUrl = viewimageurl
+        end
+
+        def deserialize(params)
+          @ViewType = params['ViewType']
+          @ViewImageUrl = params['ViewImageUrl']
+        end
+      end
+
       # 音色信息
       class VoiceInfo < TencentCloud::Common::AbstractModel
         # @param VoiceId: <p>音色ID</p>
@@ -38111,29 +38345,17 @@ module TencentCloud
 
       # 媒体处理任务中的水印参数类型
       class WatermarkInput < TencentCloud::Common::AbstractModel
-        # @param Definition: 水印模板 ID。
+        # @param Definition: <p>水印模板 ID。</p>
         # @type Definition: Integer
-        # @param RawParameter: 水印自定义参数，当 Definition 填 0 时有效。
-        # 该参数用于高度定制场景，建议您优先使用 Definition 指定水印参数。
-        # 水印自定义参数不支持截图打水印。
+        # @param RawParameter: <p>水印自定义参数，当 Definition 填 0 时有效。<br>该参数用于高度定制场景，建议您优先使用 Definition 指定水印参数。<br>水印自定义参数不支持截图打水印。</p>
         # @type RawParameter: :class:`Tencentcloud::Mps.v20190612.models.RawWatermarkParameter`
-        # @param TextContent: 文字内容，长度不超过100个字符。仅当水印类型为文字水印时填写。
-        # 文字水印不支持截图打水印。
+        # @param TextContent: <p>文字内容，长度不超过100个字符。仅当水印类型为文字水印时填写。<br>文字水印不支持截图打水印。</p>
         # @type TextContent: String
-        # @param SvgContent: SVG 内容。长度不超过 2000000 个字符。仅当水印类型为 SVG 水印时填写。
-        # SVG 水印不支持截图打水印。
+        # @param SvgContent: <p>SVG 内容。长度不超过 2000000 个字符。仅当水印类型为 SVG 水印时填写。<br>SVG 水印不支持截图打水印。</p>
         # @type SvgContent: String
-        # @param StartTimeOffset: 水印的起始时间偏移，单位：秒。不填或填0，表示水印从画面出现时开始显现。
-        # <li>不填或填0，表示水印从画面开始就出现；</li>
-        # <li>当数值大于0时（假设为 n），表示水印从画面开始的第 n 秒出现；</li>
-        # <li>当数值小于0时（假设为 -n），表示水印从离画面结束 n 秒前开始出现。</li>
-        # 注：只用于视频场景，截图不支持。
+        # @param StartTimeOffset: <p>水印的起始时间偏移，单位：秒。不填或填0，表示水印从画面出现时开始显现。</p><li>不填或填0，表示水印从画面开始就出现；</li><li>当数值大于0时（假设为 n），表示水印从画面开始的第 n 秒出现；</li><li>当数值小于0时（假设为 -n），表示水印从离画面结束 n 秒前开始出现。</li>注：只用于视频场景，截图不支持。
         # @type StartTimeOffset: Float
-        # @param EndTimeOffset: 水印的结束时间偏移，单位：秒。
-        # <li>不填或填0，表示水印持续到画面结束；</li>
-        # <li>当数值大于0时（假设为 n），表示水印持续到第 n 秒时消失；</li>
-        # <li>当数值小于0时（假设为 -n），表示水印持续到离画面结束 n 秒前消失。</li>
-        # 注：只用于视频场景，截图不支持。
+        # @param EndTimeOffset: <p>水印的结束时间偏移，单位：秒。</p><li>不填或填0，表示水印持续到画面结束；</li><li>当数值大于0时（假设为 n），表示水印持续到第 n 秒时消失；</li><li>当数值小于0时（假设为 -n），表示水印持续到离画面结束 n 秒前消失。</li>注：只用于视频场景，截图不支持。
         # @type EndTimeOffset: Float
 
         attr_accessor :Definition, :RawParameter, :TextContent, :SvgContent, :StartTimeOffset, :EndTimeOffset

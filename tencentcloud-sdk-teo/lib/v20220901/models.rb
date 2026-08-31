@@ -8401,6 +8401,80 @@ module TencentCloud
         end
       end
 
+      # DescribeAvailableCustomActionsForRuleEngine请求参数结构体
+      class DescribeAvailableCustomActionsForRuleEngineRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: <p>站点 ID。</p>
+        # @type ZoneId: String
+        # @param Filters: <p>过滤条件，多个条件为且关系，Filters.Values 的上限为 20。该参数不填写时，返回当前站点下所有可用的规则引擎定制配置。详细的过滤条件如下：</p><li>action-id：按照定制配置唯一标识 ID 进行过滤；</li><li>name：按照定制配置名称进行过滤。</li>模糊查询时仅支持过滤字段名为 <code>name</code>。<p></p>
+        # @type Filters: Array
+        # @param Limit: <p>分页查询限制数目。</p><p>取值范围：[0, 1000]</p><p>默认值：20</p>
+        # @type Limit: Integer
+        # @param Offset: <p>分页偏移量。</p><p>默认值：0</p>
+        # @type Offset: Integer
+        # @param SortBy: <p>排序字段，取值有：</p><li>action-id：按照定制配置唯一标识 ID 排序；</li><li>create-time：按照定制配置创建时间排序。</li>默认值：<code>action-id</code>。<p></p>
+        # @type SortBy: String
+        # @param SortOrder: <p>排序方式，取值有：</p><li>asc：升序排序；</li><li>desc：降序排序。</li>默认值：desc。<p></p>
+        # @type SortOrder: String
+
+        attr_accessor :ZoneId, :Filters, :Limit, :Offset, :SortBy, :SortOrder
+
+        def initialize(zoneid=nil, filters=nil, limit=nil, offset=nil, sortby=nil, sortorder=nil)
+          @ZoneId = zoneid
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+          @SortBy = sortby
+          @SortOrder = sortorder
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              advancedfilter_tmp = AdvancedFilter.new
+              advancedfilter_tmp.deserialize(i)
+              @Filters << advancedfilter_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @SortBy = params['SortBy']
+          @SortOrder = params['SortOrder']
+        end
+      end
+
+      # DescribeAvailableCustomActionsForRuleEngine返回参数结构体
+      class DescribeAvailableCustomActionsForRuleEngineResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>符合条件的规则引擎定制配置的总数。</p>
+        # @type TotalCount: Integer
+        # @param CustomActionSet: <p>符合条件的规则引擎定制配置的列表。</p>
+        # @type CustomActionSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :CustomActionSet, :RequestId
+
+        def initialize(totalcount=nil, customactionset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @CustomActionSet = customactionset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['CustomActionSet'].nil?
+            @CustomActionSet = []
+            params['CustomActionSet'].each do |i|
+              ruleenginecustomaction_tmp = RuleEngineCustomAction.new
+              ruleenginecustomaction_tmp.deserialize(i)
+              @CustomActionSet << ruleenginecustomaction_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeAvailablePlans请求参数结构体
       class DescribeAvailablePlansRequest < TencentCloud::Common::AbstractModel
 
@@ -24475,6 +24549,121 @@ module TencentCloud
             @CustomActionParameters = CustomActionParameters.new
             @CustomActionParameters.deserialize(params['CustomActionParameters'])
           end
+        end
+      end
+
+      # 规则引擎操作定制配置。
+      class RuleEngineCustomAction < TencentCloud::Common::AbstractModel
+        # @param ActionId: <p>定制配置唯一 ID。</p>
+        # @type ActionId: String
+        # @param Name: <p>定制配置名称。</p>
+        # @type Name: String
+        # @param Description: <p>定制配置描述。</p>
+        # @type Description: String
+        # @param Parameters: <p>定制配置参数定义列表。</p>
+        # @type Parameters: Array
+        # @param SupportedConditions: <p>定制配置支持的匹配条件。</p><p>支持匹配条件参考官方文档 <a href="https://cloud.tencent.com/document/product/1552/125344">通用参考-配置语法-变量</a>。</p>
+        # @type SupportedConditions: Array
+
+        attr_accessor :ActionId, :Name, :Description, :Parameters, :SupportedConditions
+
+        def initialize(actionid=nil, name=nil, description=nil, parameters=nil, supportedconditions=nil)
+          @ActionId = actionid
+          @Name = name
+          @Description = description
+          @Parameters = parameters
+          @SupportedConditions = supportedconditions
+        end
+
+        def deserialize(params)
+          @ActionId = params['ActionId']
+          @Name = params['Name']
+          @Description = params['Description']
+          unless params['Parameters'].nil?
+            @Parameters = []
+            params['Parameters'].each do |i|
+              ruleenginecustomactionparameterschema_tmp = RuleEngineCustomActionParameterSchema.new
+              ruleenginecustomactionparameterschema_tmp.deserialize(i)
+              @Parameters << ruleenginecustomactionparameterschema_tmp
+            end
+          end
+          @SupportedConditions = params['SupportedConditions']
+        end
+      end
+
+      # 规则引擎操作定制配置参数结构定义。
+      class RuleEngineCustomActionParameterSchema < TencentCloud::Common::AbstractModel
+        # @param Name: <p>参数字段名称。</p>
+        # @type Name: String
+        # @param ValueType: <p>参数字段类型，取值有：<li>Boolean：布尔；</li><li>Integer：整型；</li><li>Float：浮点型；</li><li>String：字符串；</li><li>ArrayOfInteger：整型数组；</li><li>ArrayOfFloat：浮点型数组；</li><li>ArrayOfString：字符串数组。</li></p>
+        # @type ValueType: String
+        # @param Description: <p>参数字段描述。</p>
+        # @type Description: String
+        # @param Default: <p>参数字段默认值。</p>
+        # @type Default: String
+        # @param Unit: <p>参数字段单位。</p>
+        # @type Unit: String
+        # @param Required: <p>参数字段是否必填。</p><p>默认值：false</p><p>若填充，则适用于所有参数字段类型校验；若不填充则不校验。</p>
+        # @type Required: Boolean
+        # @param MinValue: <p>参数字段最小值。</p><p>若填充，适用于整数、浮点数、整数数组、浮点数数组类型参数的数值校验；若不填充则不校验。</p>
+        # @type MinValue: Float
+        # @param MaxValue: <p>参数字段最大值。</p><p>若填充，适用于整数、浮点数、整数数组、浮点数数组类型参数的数值校验；若不填充则不校验。</p>
+        # @type MaxValue: Float
+        # @param MinLength: <p>参数字段最小长度。</p><p>若填充，适用于字符串、字符串数组类型参数的数值校验；若不填充则不校验。</p>
+        # @type MinLength: Integer
+        # @param MaxLength: <p>参数字段最大长度。</p><p>若填充，适用于字符串、字符串数组类型参数的数值校验；若不填充则不校验。</p>
+        # @type MaxLength: Integer
+        # @param MinItems: <p>参数字段最小项数。</p><p>若填充，适用于各类数组类型参数的数值校验；若不填充则不校验。</p>
+        # @type MinItems: Integer
+        # @param MaxItems: <p>参数字段最大项数。</p><p>若填充，适用于各类数组类型参数的数值校验；若不填充则不校验。</p>
+        # @type MaxItems: Integer
+        # @param UniqueItems: <p>参数字段项是否唯一。</p><p>默认值：false</p><p>若填充，适用于各类数组类型参数的数值校验；若不填充则不校验。</p>
+        # @type UniqueItems: Boolean
+        # @param AllowedPattern: <p>参数字段允许的格式。</p><p>若填充，需要校验字符串或者字符串数组内容合适；若不填充则不校验。</p>
+        # @type AllowedPattern: String
+        # @param AllowedValues: <p>参数字段允许的取值，若为空则不校验。</p><p>若本参数填充，则说明对应参数为枚举类型，仅允许填充本参数数组中的值；若不填充则不校验。</p>
+        # @type AllowedValues: Array
+        # @param MultipleOf: <p>参数字段最小步长。若填充，适用于浮点型和浮点型数组类型参数的数值校验；若不填充则不校验。</p>
+        # @type MultipleOf: String
+
+        attr_accessor :Name, :ValueType, :Description, :Default, :Unit, :Required, :MinValue, :MaxValue, :MinLength, :MaxLength, :MinItems, :MaxItems, :UniqueItems, :AllowedPattern, :AllowedValues, :MultipleOf
+
+        def initialize(name=nil, valuetype=nil, description=nil, default=nil, unit=nil, required=nil, minvalue=nil, maxvalue=nil, minlength=nil, maxlength=nil, minitems=nil, maxitems=nil, uniqueitems=nil, allowedpattern=nil, allowedvalues=nil, multipleof=nil)
+          @Name = name
+          @ValueType = valuetype
+          @Description = description
+          @Default = default
+          @Unit = unit
+          @Required = required
+          @MinValue = minvalue
+          @MaxValue = maxvalue
+          @MinLength = minlength
+          @MaxLength = maxlength
+          @MinItems = minitems
+          @MaxItems = maxitems
+          @UniqueItems = uniqueitems
+          @AllowedPattern = allowedpattern
+          @AllowedValues = allowedvalues
+          @MultipleOf = multipleof
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @ValueType = params['ValueType']
+          @Description = params['Description']
+          @Default = params['Default']
+          @Unit = params['Unit']
+          @Required = params['Required']
+          @MinValue = params['MinValue']
+          @MaxValue = params['MaxValue']
+          @MinLength = params['MinLength']
+          @MaxLength = params['MaxLength']
+          @MinItems = params['MinItems']
+          @MaxItems = params['MaxItems']
+          @UniqueItems = params['UniqueItems']
+          @AllowedPattern = params['AllowedPattern']
+          @AllowedValues = params['AllowedValues']
+          @MultipleOf = params['MultipleOf']
         end
       end
 

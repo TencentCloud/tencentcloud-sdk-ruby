@@ -116,8 +116,8 @@ module TencentCloud
 
         attr_accessor :PkgType, :MiniProgramAppId, :DeviceList
         extend Gem::Deprecate
-        deprecate :MiniProgramAppId, :none, 2026, 8
-        deprecate :MiniProgramAppId=, :none, 2026, 8
+        deprecate :MiniProgramAppId, :none, 2026, 9
+        deprecate :MiniProgramAppId=, :none, 2026, 9
 
         def initialize(pkgtype=nil, miniprogramappid=nil, devicelist=nil)
           @PkgType = pkgtype
@@ -152,8 +152,8 @@ module TencentCloud
 
         attr_accessor :DeviceList, :FailureList, :SuccessList, :RequestId
         extend Gem::Deprecate
-        deprecate :DeviceList, :none, 2026, 8
-        deprecate :DeviceList=, :none, 2026, 8
+        deprecate :DeviceList, :none, 2026, 9
+        deprecate :DeviceList=, :none, 2026, 9
 
         def initialize(devicelist=nil, failurelist=nil, successlist=nil, requestid=nil)
           @DeviceList = devicelist
@@ -4549,7 +4549,7 @@ module TencentCloud
         # @type ProductId: String
         # @param DeviceName: <p>设备名称</p>
         # @type DeviceName: String
-        # @param ServiceCategory: <p>算法类目。</p><p>枚举值：</p><ul><li>COMPREHENSION： 视觉理解</li><li>HIGHLIGHT： 视频浓缩</li></ul>
+        # @param ServiceCategory: <p>算法类目。</p><p>枚举值：</p><ul><li>COMPREHENSION： 视觉理解</li><li>HIGHLIGHT： 视频浓缩</li><li>SUMMARIZATION： 每日/每周总结</li></ul>
         # @type ServiceCategory: String
         # @param Conditions: <p>任务删除条件，至少传入一个条件。不同条件之间为 AND 关系，同一条件的 Values 之间为 OR 关系。</p>
         # @type Conditions: Array
@@ -8257,15 +8257,13 @@ module TencentCloud
 
       # DescribeTWeSeeSubscription请求参数结构体
       class DescribeTWeSeeSubscriptionRequest < TencentCloud::Common::AbstractModel
-        # @param ProductId: 产品 ID
+        # @param ProductId: <p>产品 ID</p>
         # @type ProductId: String
-        # @param DeviceName: 设备名称
+        # @param DeviceName: <p>设备名称</p>
         # @type DeviceName: String
-        # @param ServiceType: 算法类型。可选值：
-
-        # - `VID_COMP`：视频理解
+        # @param ServiceType: <p>算法类型。可选值：</p><ul><li><code>VID_COMP</code>：视频理解</li></ul>
         # @type ServiceType: String
-        # @param ChannelId: 通道 ID
+        # @param ChannelId: <p>通道 ID</p>
         # @type ChannelId: Integer
 
         attr_accessor :ProductId, :DeviceName, :ServiceType, :ChannelId
@@ -8287,43 +8285,40 @@ module TencentCloud
 
       # DescribeTWeSeeSubscription返回参数结构体
       class DescribeTWeSeeSubscriptionResponse < TencentCloud::Common::AbstractModel
-        # @param ResourceId: 资源 ID
+        # @param ResourceId: <p>资源 ID</p>
         # @type ResourceId: String
-        # @param ServiceTier: 套餐规格。可能取值：
-
-        # - `BASIC`：包年包月基础版（适用于视频理解）
+        # @param ServiceTier: <p>套餐规格。可能取值：</p><ul><li><code>BASIC</code>：包年包月基础版（适用于视频理解）</li></ul>
         # @type ServiceTier: String
-        # @param ExpireTime: 到期时间，秒级时间戳
+        # @param ExpireTime: <p>到期时间，秒级时间戳</p>
         # @type ExpireTime: Integer
-        # @param Enabled: 启用状态，`true` 为开启，`false` 为关闭
+        # @param Enabled: <p>启用状态，<code>true</code> 为开启，<code>false</code> 为关闭</p>
         # @type Enabled: Boolean
-        # @param Status: 订阅状态。可能取值：
-
-        # - `NORMAL`：正常
-        # - `ISOLATED`：隔离
+        # @param Status: <p>订阅状态。可能取值：</p><ul><li><code>NORMAL</code>：正常</li><li><code>ISOLATED</code>：隔离</li></ul>
         # @type Status: String
-        # @param ComprehensionConfig: 视觉理解配置（适用于视频理解、图片理解）
+        # @param ComprehensionConfig: <p>视觉理解配置（适用于视频理解、图片理解）</p>
         # @type ComprehensionConfig: :class:`Tencentcloud::Iotexplorer.v20190423.models.SeeComprehensionConfig`
-        # @param CompHighlightConfig: 视频语义浓缩配置（适用于视频语义浓缩）
+        # @param CompHighlightConfig: <p>视频语义浓缩配置（适用于视频语义浓缩）</p>
         # @type CompHighlightConfig: :class:`Tencentcloud::Iotexplorer.v20190423.models.SeeCompHighlightConfig`
-        # @param EventIdFilterConfig: 云存事件 ID 过滤规则配置项
+        # @param EventIdFilterConfig: <p>云存事件 ID 过滤规则配置项</p>
         # @type EventIdFilterConfig: :class:`Tencentcloud::Iotexplorer.v20190423.models.SeeEventIdFilterConfig`
-        # @param QuotaBasic: 当前周期基础能力总额度
+        # @param SummarizeConfig: <p>每日与每周总结配置</p>
+        # @type SummarizeConfig: :class:`Tencentcloud::Iotexplorer.v20190423.models.SeeSummarizeConfig`
+        # @param QuotaBasic: <p>当前周期基础能力总额度</p>
         # @type QuotaBasic: Integer
-        # @param QuotaUsedBasic: 当前周期基础能力已用额度
+        # @param QuotaUsedBasic: <p>当前周期基础能力已用额度</p>
         # @type QuotaUsedBasic: Integer
-        # @param QuotaAdvanced: 当前周期高级能力总额度
+        # @param QuotaAdvanced: <p>当前周期高级能力总额度</p>
         # @type QuotaAdvanced: Integer
-        # @param QuotaUsedAdvanced: 当前周期高级能力已用额度
+        # @param QuotaUsedAdvanced: <p>当前周期高级能力已用额度</p>
         # @type QuotaUsedAdvanced: Integer
-        # @param QuotaRefreshTime: 额度刷新时间
+        # @param QuotaRefreshTime: <p>额度刷新时间</p>
         # @type QuotaRefreshTime: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ResourceId, :ServiceTier, :ExpireTime, :Enabled, :Status, :ComprehensionConfig, :CompHighlightConfig, :EventIdFilterConfig, :QuotaBasic, :QuotaUsedBasic, :QuotaAdvanced, :QuotaUsedAdvanced, :QuotaRefreshTime, :RequestId
+        attr_accessor :ResourceId, :ServiceTier, :ExpireTime, :Enabled, :Status, :ComprehensionConfig, :CompHighlightConfig, :EventIdFilterConfig, :SummarizeConfig, :QuotaBasic, :QuotaUsedBasic, :QuotaAdvanced, :QuotaUsedAdvanced, :QuotaRefreshTime, :RequestId
 
-        def initialize(resourceid=nil, servicetier=nil, expiretime=nil, enabled=nil, status=nil, comprehensionconfig=nil, comphighlightconfig=nil, eventidfilterconfig=nil, quotabasic=nil, quotausedbasic=nil, quotaadvanced=nil, quotausedadvanced=nil, quotarefreshtime=nil, requestid=nil)
+        def initialize(resourceid=nil, servicetier=nil, expiretime=nil, enabled=nil, status=nil, comprehensionconfig=nil, comphighlightconfig=nil, eventidfilterconfig=nil, summarizeconfig=nil, quotabasic=nil, quotausedbasic=nil, quotaadvanced=nil, quotausedadvanced=nil, quotarefreshtime=nil, requestid=nil)
           @ResourceId = resourceid
           @ServiceTier = servicetier
           @ExpireTime = expiretime
@@ -8332,6 +8327,7 @@ module TencentCloud
           @ComprehensionConfig = comprehensionconfig
           @CompHighlightConfig = comphighlightconfig
           @EventIdFilterConfig = eventidfilterconfig
+          @SummarizeConfig = summarizeconfig
           @QuotaBasic = quotabasic
           @QuotaUsedBasic = quotausedbasic
           @QuotaAdvanced = quotaadvanced
@@ -8358,6 +8354,10 @@ module TencentCloud
             @EventIdFilterConfig = SeeEventIdFilterConfig.new
             @EventIdFilterConfig.deserialize(params['EventIdFilterConfig'])
           end
+          unless params['SummarizeConfig'].nil?
+            @SummarizeConfig = SeeSummarizeConfig.new
+            @SummarizeConfig.deserialize(params['SummarizeConfig'])
+          end
           @QuotaBasic = params['QuotaBasic']
           @QuotaUsedBasic = params['QuotaUsedBasic']
           @QuotaAdvanced = params['QuotaAdvanced']
@@ -8369,23 +8369,27 @@ module TencentCloud
 
       # DescribeTWeSeeTask请求参数结构体
       class DescribeTWeSeeTaskRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务 ID
+        # @param TaskId: <p>任务 ID</p>
         # @type TaskId: String
+        # @param FileURLExpireTime: <p>下载 URL 的过期时间（秒级 UNIX 时间戳）。若传入该参数，则响应中将包含所有文件的下载 URL</p><p>单位：秒</p>
+        # @type FileURLExpireTime: Integer
 
-        attr_accessor :TaskId
+        attr_accessor :TaskId, :FileURLExpireTime
 
-        def initialize(taskid=nil)
+        def initialize(taskid=nil, fileurlexpiretime=nil)
           @TaskId = taskid
+          @FileURLExpireTime = fileurlexpiretime
         end
 
         def deserialize(params)
           @TaskId = params['TaskId']
+          @FileURLExpireTime = params['FileURLExpireTime']
         end
       end
 
       # DescribeTWeSeeTask返回参数结构体
       class DescribeTWeSeeTaskResponse < TencentCloud::Common::AbstractModel
-        # @param TaskInfo: 任务信息
+        # @param TaskInfo: <p>任务信息</p>
         # @type TaskInfo: :class:`Tencentcloud::Iotexplorer.v20190423.models.SeeTaskInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -9087,8 +9091,8 @@ module TencentCloud
 
         attr_accessor :ModelId, :Sn, :ErrCode, :ErrMessage, :ExpireTime
         extend Gem::Deprecate
-        deprecate :ModelId, :none, 2026, 8
-        deprecate :ModelId=, :none, 2026, 8
+        deprecate :ModelId, :none, 2026, 9
+        deprecate :ModelId=, :none, 2026, 9
 
         def initialize(modelid=nil, sn=nil, errcode=nil, errmessage=nil, expiretime=nil)
           @ModelId = modelid
@@ -10806,8 +10810,8 @@ module TencentCloud
 
         attr_accessor :MiniProgramAppId, :DeviceList
         extend Gem::Deprecate
-        deprecate :MiniProgramAppId, :none, 2026, 8
-        deprecate :MiniProgramAppId=, :none, 2026, 8
+        deprecate :MiniProgramAppId, :none, 2026, 9
+        deprecate :MiniProgramAppId=, :none, 2026, 9
 
         def initialize(miniprogramappid=nil, devicelist=nil)
           @MiniProgramAppId = miniprogramappid
@@ -12868,59 +12872,55 @@ module TencentCloud
 
       # ListTWeSeeTasks请求参数结构体
       class ListTWeSeeTasksRequest < TencentCloud::Common::AbstractModel
-        # @param ProductId: <p>产品 ID</p>
-        # @type ProductId: String
         # @param DeviceName: <p>设备名称</p>
         # @type DeviceName: String
-        # @param ServiceCategory: <p>算法类目。可选值：</p><ul><li><code>COMPREHENSION</code>：视觉理解</li><li><code>HIGHLIGHT</code>：视频浓缩</li></ul>
-        # @type ServiceCategory: String
         # @param Limit: <p>分页拉取数量</p>
         # @type Limit: Integer
-        # @param Offset: <p>分页拉取偏移</p>
-        # @type Offset: Integer
-        # @param ServiceTypes: <p>算法类型。</p><p>当 ServiceCategory 为 <code>COMPREHENSION</code> 时，可选值包括：</p><ul><li><code>VID_COMP</code>：视频理解</li><li><code>IMG_COMP</code>：图片理解</li><li><code>CONT_PERSON_MOTIONLESS</code>：静姿检测</li></ul><p>当 ServiceCategory 为 <code>HIGHLIGHT</code> 时，可选值包括：</p><ul><li><code>COMP_HIGHLIGHT</code>：视频浓缩</li></ul>
-        # @type ServiceTypes: Array
+        # @param ProductId: <p>产品 ID</p>
+        # @type ProductId: String
+        # @param ServiceCategory: <p>算法类目。可选值：</p><ul><li><code>COMPREHENSION</code>：视觉理解</li><li><code>HIGHLIGHT</code>：视频浓缩</li><li><code>SUMMARIZATION</code>：每日/每周总结</li></ul>
+        # @type ServiceCategory: String
         # @param ChannelId: <p>通道 ID</p>
         # @type ChannelId: Integer
-        # @param StartTimeMs: <p>查询任务时间范围的起始时间（毫秒级 UNIX 时间戳）。不传则不生效时间范围条件。</p>
-        # @type StartTimeMs: Integer
         # @param EndTimeMs: <p>查询任务时间范围的结束时间（毫秒级 UNIX 时间戳）。不传则不生效时间范围条件。</p>
         # @type EndTimeMs: Integer
-        # @param Status: <p>要查询的任务的状态条件。不传则不按照状态过滤，可选值：</p><ul><li><code>1</code>：失败</li><li><code>2</code>：空结果</li><li><code>3</code>：有效结果</li></ul>
-        # @type Status: Integer
         # @param FileURLExpireTime: <p>下载 URL 的过期时间（秒级 UNIX 时间戳）。若传入该参数，则响应中将包含所有文件的下载 URL</p>
         # @type FileURLExpireTime: Integer
         # @param Filters: <p>任务结果过滤条件</p>
         # @type Filters: Array
+        # @param Offset: <p>分页拉取偏移</p>
+        # @type Offset: Integer
+        # @param ServiceTypes: <p>算法类型。</p><p>当 ServiceCategory 为 <code>COMPREHENSION</code> 时，可选值包括：</p><ul><li><code>VID_COMP</code>：视频理解</li><li><code>IMG_COMP</code>：图片理解</li><li><code>CONT_PERSON_MOTIONLESS</code>：静姿检测</li></ul><p>当 ServiceCategory 为 <code>HIGHLIGHT</code> 时，可选值包括：</p><ul><li><code>COMP_HIGHLIGHT</code>：视频浓缩</li></ul><p>当 ServiceCategory 为 <code>SUMMARIZATION</code> 时，可选值包括：</p><ul><li><code>DAILY_SUM</code>：每日总结</li><li><code>WEEKLY_SUM</code>：每周总结</li></ul>
+        # @type ServiceTypes: Array
+        # @param StartTimeMs: <p>查询任务时间范围的起始时间（毫秒级 UNIX 时间戳）。不传则不生效时间范围条件。</p>
+        # @type StartTimeMs: Integer
+        # @param Status: <p>要查询的任务的状态条件。不传则不按照状态过滤，可选值：</p><ul><li><code>1</code>：失败</li><li><code>2</code>：空结果</li><li><code>3</code>：有效结果</li></ul>
+        # @type Status: Integer
 
-        attr_accessor :ProductId, :DeviceName, :ServiceCategory, :Limit, :Offset, :ServiceTypes, :ChannelId, :StartTimeMs, :EndTimeMs, :Status, :FileURLExpireTime, :Filters
+        attr_accessor :DeviceName, :Limit, :ProductId, :ServiceCategory, :ChannelId, :EndTimeMs, :FileURLExpireTime, :Filters, :Offset, :ServiceTypes, :StartTimeMs, :Status
 
-        def initialize(productid=nil, devicename=nil, servicecategory=nil, limit=nil, offset=nil, servicetypes=nil, channelid=nil, starttimems=nil, endtimems=nil, status=nil, fileurlexpiretime=nil, filters=nil)
-          @ProductId = productid
+        def initialize(devicename=nil, limit=nil, productid=nil, servicecategory=nil, channelid=nil, endtimems=nil, fileurlexpiretime=nil, filters=nil, offset=nil, servicetypes=nil, starttimems=nil, status=nil)
           @DeviceName = devicename
-          @ServiceCategory = servicecategory
           @Limit = limit
-          @Offset = offset
-          @ServiceTypes = servicetypes
+          @ProductId = productid
+          @ServiceCategory = servicecategory
           @ChannelId = channelid
-          @StartTimeMs = starttimems
           @EndTimeMs = endtimems
-          @Status = status
           @FileURLExpireTime = fileurlexpiretime
           @Filters = filters
+          @Offset = offset
+          @ServiceTypes = servicetypes
+          @StartTimeMs = starttimems
+          @Status = status
         end
 
         def deserialize(params)
-          @ProductId = params['ProductId']
           @DeviceName = params['DeviceName']
-          @ServiceCategory = params['ServiceCategory']
           @Limit = params['Limit']
-          @Offset = params['Offset']
-          @ServiceTypes = params['ServiceTypes']
+          @ProductId = params['ProductId']
+          @ServiceCategory = params['ServiceCategory']
           @ChannelId = params['ChannelId']
-          @StartTimeMs = params['StartTimeMs']
           @EndTimeMs = params['EndTimeMs']
-          @Status = params['Status']
           @FileURLExpireTime = params['FileURLExpireTime']
           unless params['Filters'].nil?
             @Filters = []
@@ -12930,6 +12930,10 @@ module TencentCloud
               @Filters << visionrecognitiontaskfilter_tmp
             end
           end
+          @Offset = params['Offset']
+          @ServiceTypes = params['ServiceTypes']
+          @StartTimeMs = params['StartTimeMs']
+          @Status = params['Status']
         end
       end
 
@@ -14161,55 +14165,62 @@ module TencentCloud
 
       # ModifyTWeSeeSubscription请求参数结构体
       class ModifyTWeSeeSubscriptionRequest < TencentCloud::Common::AbstractModel
-        # @param ProductId: 产品 ID
-        # @type ProductId: String
         # @param DeviceName: 设备名称
         # @type DeviceName: String
+        # @param ProductId: 产品 ID
+        # @type ProductId: String
         # @param ServiceType: 算法类型。可选值：
 
         # - `VID_COMP`：视频理解
         # @type ServiceType: String
         # @param ChannelId: 通道 ID
         # @type ChannelId: Integer
-        # @param Enabled: 功能开关。`true` 为开启，`false` 为关闭；不传表示不修改
-        # @type Enabled: Boolean
-        # @param ComprehensionConfig: 视觉理解配置（适用于视频理解、图片理解），不传则不修改
-        # @type ComprehensionConfig: :class:`Tencentcloud::Iotexplorer.v20190423.models.SeeComprehensionConfig`
         # @param CompHighlightConfig: 视频语义浓缩配置（适用于视频语义浓缩），不传则不修改
         # @type CompHighlightConfig: :class:`Tencentcloud::Iotexplorer.v20190423.models.SeeCompHighlightConfig`
+        # @param ComprehensionConfig: 视觉理解配置（适用于视频理解、图片理解），不传则不修改
+        # @type ComprehensionConfig: :class:`Tencentcloud::Iotexplorer.v20190423.models.SeeComprehensionConfig`
+        # @param Enabled: 功能开关。`true` 为开启，`false` 为关闭；不传表示不修改
+        # @type Enabled: Boolean
         # @param EventIdFilterConfig: 云存事件 ID 过滤规则配置，不传则不修改
         # @type EventIdFilterConfig: :class:`Tencentcloud::Iotexplorer.v20190423.models.SeeEventIdFilterConfig`
+        # @param SummarizeConfig: 每日与每周总结配置，不传则不修改
+        # @type SummarizeConfig: :class:`Tencentcloud::Iotexplorer.v20190423.models.SeeSummarizeConfig`
 
-        attr_accessor :ProductId, :DeviceName, :ServiceType, :ChannelId, :Enabled, :ComprehensionConfig, :CompHighlightConfig, :EventIdFilterConfig
+        attr_accessor :DeviceName, :ProductId, :ServiceType, :ChannelId, :CompHighlightConfig, :ComprehensionConfig, :Enabled, :EventIdFilterConfig, :SummarizeConfig
 
-        def initialize(productid=nil, devicename=nil, servicetype=nil, channelid=nil, enabled=nil, comprehensionconfig=nil, comphighlightconfig=nil, eventidfilterconfig=nil)
-          @ProductId = productid
+        def initialize(devicename=nil, productid=nil, servicetype=nil, channelid=nil, comphighlightconfig=nil, comprehensionconfig=nil, enabled=nil, eventidfilterconfig=nil, summarizeconfig=nil)
           @DeviceName = devicename
+          @ProductId = productid
           @ServiceType = servicetype
           @ChannelId = channelid
-          @Enabled = enabled
-          @ComprehensionConfig = comprehensionconfig
           @CompHighlightConfig = comphighlightconfig
+          @ComprehensionConfig = comprehensionconfig
+          @Enabled = enabled
           @EventIdFilterConfig = eventidfilterconfig
+          @SummarizeConfig = summarizeconfig
         end
 
         def deserialize(params)
-          @ProductId = params['ProductId']
           @DeviceName = params['DeviceName']
+          @ProductId = params['ProductId']
           @ServiceType = params['ServiceType']
           @ChannelId = params['ChannelId']
-          @Enabled = params['Enabled']
-          unless params['ComprehensionConfig'].nil?
-            @ComprehensionConfig = SeeComprehensionConfig.new
-            @ComprehensionConfig.deserialize(params['ComprehensionConfig'])
-          end
           unless params['CompHighlightConfig'].nil?
             @CompHighlightConfig = SeeCompHighlightConfig.new
             @CompHighlightConfig.deserialize(params['CompHighlightConfig'])
           end
+          unless params['ComprehensionConfig'].nil?
+            @ComprehensionConfig = SeeComprehensionConfig.new
+            @ComprehensionConfig.deserialize(params['ComprehensionConfig'])
+          end
+          @Enabled = params['Enabled']
           unless params['EventIdFilterConfig'].nil?
             @EventIdFilterConfig = SeeEventIdFilterConfig.new
             @EventIdFilterConfig.deserialize(params['EventIdFilterConfig'])
+          end
+          unless params['SummarizeConfig'].nil?
+            @SummarizeConfig = SeeSummarizeConfig.new
+            @SummarizeConfig.deserialize(params['SummarizeConfig'])
           end
         end
       end
@@ -16537,6 +16548,46 @@ module TencentCloud
         end
       end
 
+      # TWeSee 每日与每周总结配置
+      class SeeSummarizeConfig < TencentCloud::Common::AbstractModel
+        # @param EnableDailySummary: 是否开启每日总结
+        # @type EnableDailySummary: Boolean
+        # @param EnableWeeklySummary: 是否开启每周总结
+        # @type EnableWeeklySummary: Boolean
+        # @param SummaryVerbosity: <p>生成总结的详细程度</p><p>枚举值：</p><ul><li>low： 精简</li><li>medium： 概要（默认值）</li></ul>
+        # @type SummaryVerbosity: String
+
+        attr_accessor :EnableDailySummary, :EnableWeeklySummary, :SummaryVerbosity
+
+        def initialize(enabledailysummary=nil, enableweeklysummary=nil, summaryverbosity=nil)
+          @EnableDailySummary = enabledailysummary
+          @EnableWeeklySummary = enableweeklysummary
+          @SummaryVerbosity = summaryverbosity
+        end
+
+        def deserialize(params)
+          @EnableDailySummary = params['EnableDailySummary']
+          @EnableWeeklySummary = params['EnableWeeklySummary']
+          @SummaryVerbosity = params['SummaryVerbosity']
+        end
+      end
+
+      # TWeSee 每日或每周总结结果
+      class SeeSummarizeResult < TencentCloud::Common::AbstractModel
+        # @param Summary: 总结文本
+        # @type Summary: String
+
+        attr_accessor :Summary
+
+        def initialize(summary=nil)
+          @Summary = summary
+        end
+
+        def deserialize(params)
+          @Summary = params['Summary']
+        end
+      end
+
       # TWeSee 任务人脸元数据
       class SeeTaskFaceInfo < TencentCloud::Common::AbstractModel
         # @param CropImageURL: 人脸裁剪图下载 URL，仅在请求 FileURLExpireTime 时返回
@@ -16573,9 +16624,9 @@ module TencentCloud
         # @type Status: Integer
         # @param Metadata: <p>任务元数据</p>
         # @type Metadata: :class:`Tencentcloud::Iotexplorer.v20190423.models.SeeTaskMetadata`
-        # @param ServiceCategory: <p>算法类目。可能取值：</p><ul><li><code>COMPREHENSION</code>：视觉理解</li><li><code>HIGHLIGHT</code>：视频浓缩</li></ul>
+        # @param ServiceCategory: <p>算法类目。</p><p>枚举值：</p><ul><li>COMPREHENSION： 视觉理解</li><li>HIGHLIGHT： 视频浓缩</li><li>SUMMARIZATION： 每日/每周总结</li></ul>
         # @type ServiceCategory: String
-        # @param ServiceType: <p>算法类型。可能取值：</p><ul><li><code>VID_COMP</code>：视频理解</li><li><code>IMG_COMP</code>：图片理解</li><li><code>COMP_HIGHLIGHT</code>：视频浓缩</li></ul>
+        # @param ServiceType: <p>算法类型。</p><p>枚举值：</p><ul><li>VID_COMP： 视频理解</li><li>IMG_COMP： 图片理解</li><li>COMP_HIGHLIGHT： 视频浓缩</li><li>DAILY_SUM： 每日总结</li><li>WEEKLY_SUM： 每周总结</li></ul>
         # @type ServiceType: String
         # @param ServiceTier: <p>套餐规格。可能取值：</p><ul><li><code>POSTPAID</code>：后付费（适用于视频理解、图片理解）</li><li><code>BASIC</code>：包年包月基础版（适用于视频理解）</li></ul>
         # @type ServiceTier: String
@@ -16587,6 +16638,8 @@ module TencentCloud
         # @type DetectContinuousResult: :class:`Tencentcloud::Iotexplorer.v20190423.models.SeeDetectContinuousResult`
         # @param FaceRecognitionResult: <p>人脸检测结果</p>
         # @type FaceRecognitionResult: :class:`Tencentcloud::Iotexplorer.v20190423.models.SeeFaceRecognitionResult`
+        # @param SummarizeResult: <p>每日或每周总结结果</p>
+        # @type SummarizeResult: :class:`Tencentcloud::Iotexplorer.v20190423.models.SeeSummarizeResult`
         # @param CostBasic: <p>完成该任务所消耗的基础能力额度</p>
         # @type CostBasic: Integer
         # @param CostAdvanced: <p>完成该任务所消耗的高级能力额度</p>
@@ -16602,9 +16655,9 @@ module TencentCloud
         # @param COSURI: <p>直传 COS 的对象 URI</p>
         # @type COSURI: String
 
-        attr_accessor :TaskId, :Status, :Metadata, :ServiceCategory, :ServiceType, :ServiceTier, :ComprehensionResult, :CompHighlightResult, :DetectContinuousResult, :FaceRecognitionResult, :CostBasic, :CostAdvanced, :Files, :FilesInfo, :CreateTime, :UpdateTime, :COSURI
+        attr_accessor :TaskId, :Status, :Metadata, :ServiceCategory, :ServiceType, :ServiceTier, :ComprehensionResult, :CompHighlightResult, :DetectContinuousResult, :FaceRecognitionResult, :SummarizeResult, :CostBasic, :CostAdvanced, :Files, :FilesInfo, :CreateTime, :UpdateTime, :COSURI
 
-        def initialize(taskid=nil, status=nil, metadata=nil, servicecategory=nil, servicetype=nil, servicetier=nil, comprehensionresult=nil, comphighlightresult=nil, detectcontinuousresult=nil, facerecognitionresult=nil, costbasic=nil, costadvanced=nil, files=nil, filesinfo=nil, createtime=nil, updatetime=nil, cosuri=nil)
+        def initialize(taskid=nil, status=nil, metadata=nil, servicecategory=nil, servicetype=nil, servicetier=nil, comprehensionresult=nil, comphighlightresult=nil, detectcontinuousresult=nil, facerecognitionresult=nil, summarizeresult=nil, costbasic=nil, costadvanced=nil, files=nil, filesinfo=nil, createtime=nil, updatetime=nil, cosuri=nil)
           @TaskId = taskid
           @Status = status
           @Metadata = metadata
@@ -16615,6 +16668,7 @@ module TencentCloud
           @CompHighlightResult = comphighlightresult
           @DetectContinuousResult = detectcontinuousresult
           @FaceRecognitionResult = facerecognitionresult
+          @SummarizeResult = summarizeresult
           @CostBasic = costbasic
           @CostAdvanced = costadvanced
           @Files = files
@@ -16649,6 +16703,10 @@ module TencentCloud
           unless params['FaceRecognitionResult'].nil?
             @FaceRecognitionResult = SeeFaceRecognitionResult.new
             @FaceRecognitionResult.deserialize(params['FaceRecognitionResult'])
+          end
+          unless params['SummarizeResult'].nil?
+            @SummarizeResult = SeeSummarizeResult.new
+            @SummarizeResult.deserialize(params['SummarizeResult'])
           end
           @CostBasic = params['CostBasic']
           @CostAdvanced = params['CostAdvanced']
@@ -16864,8 +16922,8 @@ module TencentCloud
 
         attr_accessor :ModelId, :Sn, :ExpireTime, :PkgType
         extend Gem::Deprecate
-        deprecate :ModelId, :none, 2026, 8
-        deprecate :ModelId=, :none, 2026, 8
+        deprecate :ModelId, :none, 2026, 9
+        deprecate :ModelId=, :none, 2026, 9
 
         def initialize(modelid=nil, sn=nil, expiretime=nil, pkgtype=nil)
           @ModelId = modelid
@@ -16895,10 +16953,10 @@ module TencentCloud
 
         attr_accessor :Sn, :ModelId, :ActiveNum
         extend Gem::Deprecate
-        deprecate :ModelId, :none, 2026, 8
-        deprecate :ModelId=, :none, 2026, 8
-        deprecate :ActiveNum, :none, 2026, 8
-        deprecate :ActiveNum=, :none, 2026, 8
+        deprecate :ModelId, :none, 2026, 9
+        deprecate :ModelId=, :none, 2026, 9
+        deprecate :ActiveNum, :none, 2026, 9
+        deprecate :ActiveNum=, :none, 2026, 9
 
         def initialize(sn=nil, modelid=nil, activenum=nil)
           @Sn = sn
@@ -16980,8 +17038,8 @@ module TencentCloud
 
         attr_accessor :Uin, :AppId, :InstanceId, :BotId, :Name, :Description, :TargetLanguage, :STTConfig, :LLMConfig, :TTSConfig, :AgentConfig, :ProductList, :CreateTime, :UpdateTime, :BoundProducts, :CustomTools, :WebhookTools, :BotType, :RAGConfig
         extend Gem::Deprecate
-        deprecate :ProductList, :none, 2026, 8
-        deprecate :ProductList=, :none, 2026, 8
+        deprecate :ProductList, :none, 2026, 9
+        deprecate :ProductList=, :none, 2026, 9
 
         def initialize(uin=nil, appid=nil, instanceid=nil, botid=nil, name=nil, description=nil, targetlanguage=nil, sttconfig=nil, llmconfig=nil, ttsconfig=nil, agentconfig=nil, productlist=nil, createtime=nil, updatetime=nil, boundproducts=nil, customtools=nil, webhooktools=nil, bottype=nil, ragconfig=nil)
           @Uin = uin

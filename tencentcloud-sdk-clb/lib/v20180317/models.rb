@@ -104,6 +104,26 @@ module TencentCloud
         end
       end
 
+      # 多协议 ApiBase 单条目。
+      class ApiBaseItem < TencentCloud::Common::AbstractModel
+        # @param Protocol: <p>后端转发协议</p>
+        # @type Protocol: String
+        # @param ApiBase: <p>Api Base URL</p>
+        # @type ApiBase: String
+
+        attr_accessor :Protocol, :ApiBase
+
+        def initialize(protocol=nil, apibase=nil)
+          @Protocol = protocol
+          @ApiBase = apibase
+        end
+
+        def deserialize(params)
+          @Protocol = params['Protocol']
+          @ApiBase = params['ApiBase']
+        end
+      end
+
       # AssociateBudget请求参数结构体
       class AssociateBudgetRequest < TencentCloud::Common::AbstractModel
         # @param BudgetId: <p>Budget ID。</p>
@@ -2742,6 +2762,8 @@ module TencentCloud
         # @type Protocol: String
         # @param ApiBase: <p>API Base URL</p>
         # @type ApiBase: String
+        # @param ApiBases: <p>多协议 Api Base URL</p>
+        # @type ApiBases: Array
         # @param VpcId: <p>VPC ID</p>
         # @type VpcId: String
         # @param SubnetId: <p>子网 ID</p>
@@ -2754,10 +2776,14 @@ module TencentCloud
         # @type VerifySSL: Boolean
         # @param HealthCheckConfig: <p>健康检查配置</p>
         # @type HealthCheckConfig: :class:`Tencentcloud::Clb.v20180317.models.ServiceProviderHealthCheckConfigInput`
+        # @param CMRPrivateNetworkTunnelId: <p>私网管道 ID</p>
+        # @type CMRPrivateNetworkTunnelId: String
+        # @param HealthCheckConfigs: <p>健康检查配置</p>
+        # @type HealthCheckConfigs: Array
 
-        attr_accessor :AccessType, :ModelProvider, :ModelIds, :Keys, :ServiceProviderId, :ServiceProviderName, :Protocol, :ApiBase, :VpcId, :SubnetId, :HostHeader, :Tags, :VerifySSL, :HealthCheckConfig
+        attr_accessor :AccessType, :ModelProvider, :ModelIds, :Keys, :ServiceProviderId, :ServiceProviderName, :Protocol, :ApiBase, :ApiBases, :VpcId, :SubnetId, :HostHeader, :Tags, :VerifySSL, :HealthCheckConfig, :CMRPrivateNetworkTunnelId, :HealthCheckConfigs
 
-        def initialize(accesstype=nil, modelprovider=nil, modelids=nil, keys=nil, serviceproviderid=nil, serviceprovidername=nil, protocol=nil, apibase=nil, vpcid=nil, subnetid=nil, hostheader=nil, tags=nil, verifyssl=nil, healthcheckconfig=nil)
+        def initialize(accesstype=nil, modelprovider=nil, modelids=nil, keys=nil, serviceproviderid=nil, serviceprovidername=nil, protocol=nil, apibase=nil, apibases=nil, vpcid=nil, subnetid=nil, hostheader=nil, tags=nil, verifyssl=nil, healthcheckconfig=nil, cmrprivatenetworktunnelid=nil, healthcheckconfigs=nil)
           @AccessType = accesstype
           @ModelProvider = modelprovider
           @ModelIds = modelids
@@ -2766,12 +2792,15 @@ module TencentCloud
           @ServiceProviderName = serviceprovidername
           @Protocol = protocol
           @ApiBase = apibase
+          @ApiBases = apibases
           @VpcId = vpcid
           @SubnetId = subnetid
           @HostHeader = hostheader
           @Tags = tags
           @VerifySSL = verifyssl
           @HealthCheckConfig = healthcheckconfig
+          @CMRPrivateNetworkTunnelId = cmrprivatenetworktunnelid
+          @HealthCheckConfigs = healthcheckconfigs
         end
 
         def deserialize(params)
@@ -2797,6 +2826,14 @@ module TencentCloud
           @ServiceProviderName = params['ServiceProviderName']
           @Protocol = params['Protocol']
           @ApiBase = params['ApiBase']
+          unless params['ApiBases'].nil?
+            @ApiBases = []
+            params['ApiBases'].each do |i|
+              apibaseitem_tmp = ApiBaseItem.new
+              apibaseitem_tmp.deserialize(i)
+              @ApiBases << apibaseitem_tmp
+            end
+          end
           @VpcId = params['VpcId']
           @SubnetId = params['SubnetId']
           @HostHeader = params['HostHeader']
@@ -2812,6 +2849,15 @@ module TencentCloud
           unless params['HealthCheckConfig'].nil?
             @HealthCheckConfig = ServiceProviderHealthCheckConfigInput.new
             @HealthCheckConfig.deserialize(params['HealthCheckConfig'])
+          end
+          @CMRPrivateNetworkTunnelId = params['CMRPrivateNetworkTunnelId']
+          unless params['HealthCheckConfigs'].nil?
+            @HealthCheckConfigs = []
+            params['HealthCheckConfigs'].each do |i|
+              serviceproviderhealthcheckconfigiteminput_tmp = ServiceProviderHealthCheckConfigItemInput.new
+              serviceproviderhealthcheckconfigiteminput_tmp.deserialize(i)
+              @HealthCheckConfigs << serviceproviderhealthcheckconfigiteminput_tmp
+            end
           end
         end
       end
@@ -7258,12 +7304,14 @@ module TencentCloud
         # @type ModelProtocol: String
         # @param ModelProvider: <p>模型提供商</p>
         # @type ModelProvider: String
-        # @param ServiceProviderId: <p>BYOK 业务 ID，可选</p><p>格式：byok-xxxxxxxx</p>
+        # @param ServiceProviderId: <p>BYOK 业务 ID，可选</p><p>格式：byok-xxxxxxxx，预留参数</p>
         # @type ServiceProviderId: String
+        # @param CMRPrivateNetworkTunnelId: <p>    CMR 私网管道ID </p>
+        # @type CMRPrivateNetworkTunnelId: String
 
-        attr_accessor :AccessType, :ApiBase, :ApiKey, :HostHeader, :KeyId, :ModelPath, :ModelProtocol, :ModelProvider, :ServiceProviderId
+        attr_accessor :AccessType, :ApiBase, :ApiKey, :HostHeader, :KeyId, :ModelPath, :ModelProtocol, :ModelProvider, :ServiceProviderId, :CMRPrivateNetworkTunnelId
 
-        def initialize(accesstype=nil, apibase=nil, apikey=nil, hostheader=nil, keyid=nil, modelpath=nil, modelprotocol=nil, modelprovider=nil, serviceproviderid=nil)
+        def initialize(accesstype=nil, apibase=nil, apikey=nil, hostheader=nil, keyid=nil, modelpath=nil, modelprotocol=nil, modelprovider=nil, serviceproviderid=nil, cmrprivatenetworktunnelid=nil)
           @AccessType = accesstype
           @ApiBase = apibase
           @ApiKey = apikey
@@ -7273,6 +7321,7 @@ module TencentCloud
           @ModelProtocol = modelprotocol
           @ModelProvider = modelprovider
           @ServiceProviderId = serviceproviderid
+          @CMRPrivateNetworkTunnelId = cmrprivatenetworktunnelid
         end
 
         def deserialize(params)
@@ -7285,6 +7334,7 @@ module TencentCloud
           @ModelProtocol = params['ModelProtocol']
           @ModelProvider = params['ModelProvider']
           @ServiceProviderId = params['ServiceProviderId']
+          @CMRPrivateNetworkTunnelId = params['CMRPrivateNetworkTunnelId']
         end
       end
 
@@ -9940,6 +9990,9 @@ module TencentCloud
         # @param ApiBase: <p>API Base URL</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApiBase: String
+        # @param ApiBases: <p>多协议 API Base URL</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApiBases: Array
         # @param CreatedAt: <p>模型创建时间（ISO 8601）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedAt: String
@@ -9977,12 +10030,21 @@ module TencentCloud
         # @type VpcId: String
         # @param HealthCheckConfig: <p>健康检查配置</p>
         # @type HealthCheckConfig: :class:`Tencentcloud::Clb.v20180317.models.ServiceProviderHealthCheckConfigOutput`
+        # @param CMRPrivateNetworkTunnelId: <p>私网管道 ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CMRPrivateNetworkTunnelId: String
+        # @param CMRPrivateNetworkTunnelName: <p>私网管道名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CMRPrivateNetworkTunnelName: String
+        # @param HealthCheckConfigs: <p>健康检查配置</p>
+        # @type HealthCheckConfigs: Array
 
-        attr_accessor :AccessType, :ApiBase, :CreatedAt, :HostHeader, :KeyCount, :Keys, :ModelIdsWithAlias, :ModelProvider, :Protocol, :ServiceIps, :ServiceProviderId, :ServiceProviderName, :Status, :SubnetId, :Tags, :VerifySSL, :VpcId, :HealthCheckConfig
+        attr_accessor :AccessType, :ApiBase, :ApiBases, :CreatedAt, :HostHeader, :KeyCount, :Keys, :ModelIdsWithAlias, :ModelProvider, :Protocol, :ServiceIps, :ServiceProviderId, :ServiceProviderName, :Status, :SubnetId, :Tags, :VerifySSL, :VpcId, :HealthCheckConfig, :CMRPrivateNetworkTunnelId, :CMRPrivateNetworkTunnelName, :HealthCheckConfigs
 
-        def initialize(accesstype=nil, apibase=nil, createdat=nil, hostheader=nil, keycount=nil, keys=nil, modelidswithalias=nil, modelprovider=nil, protocol=nil, serviceips=nil, serviceproviderid=nil, serviceprovidername=nil, status=nil, subnetid=nil, tags=nil, verifyssl=nil, vpcid=nil, healthcheckconfig=nil)
+        def initialize(accesstype=nil, apibase=nil, apibases=nil, createdat=nil, hostheader=nil, keycount=nil, keys=nil, modelidswithalias=nil, modelprovider=nil, protocol=nil, serviceips=nil, serviceproviderid=nil, serviceprovidername=nil, status=nil, subnetid=nil, tags=nil, verifyssl=nil, vpcid=nil, healthcheckconfig=nil, cmrprivatenetworktunnelid=nil, cmrprivatenetworktunnelname=nil, healthcheckconfigs=nil)
           @AccessType = accesstype
           @ApiBase = apibase
+          @ApiBases = apibases
           @CreatedAt = createdat
           @HostHeader = hostheader
           @KeyCount = keycount
@@ -9999,11 +10061,22 @@ module TencentCloud
           @VerifySSL = verifyssl
           @VpcId = vpcid
           @HealthCheckConfig = healthcheckconfig
+          @CMRPrivateNetworkTunnelId = cmrprivatenetworktunnelid
+          @CMRPrivateNetworkTunnelName = cmrprivatenetworktunnelname
+          @HealthCheckConfigs = healthcheckconfigs
         end
 
         def deserialize(params)
           @AccessType = params['AccessType']
           @ApiBase = params['ApiBase']
+          unless params['ApiBases'].nil?
+            @ApiBases = []
+            params['ApiBases'].each do |i|
+              apibaseitem_tmp = ApiBaseItem.new
+              apibaseitem_tmp.deserialize(i)
+              @ApiBases << apibaseitem_tmp
+            end
+          end
           @CreatedAt = params['CreatedAt']
           @HostHeader = params['HostHeader']
           @KeyCount = params['KeyCount']
@@ -10043,6 +10116,16 @@ module TencentCloud
           unless params['HealthCheckConfig'].nil?
             @HealthCheckConfig = ServiceProviderHealthCheckConfigOutput.new
             @HealthCheckConfig.deserialize(params['HealthCheckConfig'])
+          end
+          @CMRPrivateNetworkTunnelId = params['CMRPrivateNetworkTunnelId']
+          @CMRPrivateNetworkTunnelName = params['CMRPrivateNetworkTunnelName']
+          unless params['HealthCheckConfigs'].nil?
+            @HealthCheckConfigs = []
+            params['HealthCheckConfigs'].each do |i|
+              serviceproviderhealthcheckconfigitemoutput_tmp = ServiceProviderHealthCheckConfigItemOutput.new
+              serviceproviderhealthcheckconfigitemoutput_tmp.deserialize(i)
+              @HealthCheckConfigs << serviceproviderhealthcheckconfigitemoutput_tmp
+            end
           end
         end
       end
@@ -10179,6 +10262,7 @@ module TencentCloud
         # @param VpcId: <p>模型路由实例所属VPC的ID</p>
         # @type VpcId: String
         # @param Bandwidth: <p>带宽</p><p>单位：Mbps</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Bandwidth: Integer
         # @param EipAddressId: <p>弹性公网IP的ID</p>
         # @type EipAddressId: String
@@ -13775,6 +13859,71 @@ module TencentCloud
       end
 
       # 健康检查配置
+      class ServiceProviderHealthCheckConfigItemInput < TencentCloud::Common::AbstractModel
+        # @param HealthCheckEnabled: <p>是否开启健康检查</p><p>枚举值：</p><ul><li>true： 是</li><li>false： 否</li></ul>
+        # @type HealthCheckEnabled: Boolean
+        # @param HealthCheckInterval: <p>健康检查间隔。支持以300s为步长配置。</p><p>取值范围：[300, 14400]</p><p>单位：s</p><p>默认值：300</p>
+        # @type HealthCheckInterval: Integer
+        # @param HealthCheckUnhealthyThreshold: <p>不健康阈值。表示当模型连续多少次不健康时认为该模型不健康。</p><p>取值范围：[1, 10]</p>
+        # @type HealthCheckUnhealthyThreshold: Integer
+        # @param HealthCheckMaxTokens: <p>健康检查使用的最大Token数量。部分模型如gpt系列可能仅支持大于等于16。</p><p>取值范围：[1, 1024]</p><p>默认值：1</p>
+        # @type HealthCheckMaxTokens: Integer
+        # @param HealthCheckProtocol: <p>健康检查协议</p><p>枚举值：</p><ul><li>chat： 表示/chat/completion协议</li><li>messages： 表示/v1/messages协议</li><li>responses： 表示/v1/messages协议</li></ul>
+        # @type HealthCheckProtocol: String
+
+        attr_accessor :HealthCheckEnabled, :HealthCheckInterval, :HealthCheckUnhealthyThreshold, :HealthCheckMaxTokens, :HealthCheckProtocol
+
+        def initialize(healthcheckenabled=nil, healthcheckinterval=nil, healthcheckunhealthythreshold=nil, healthcheckmaxtokens=nil, healthcheckprotocol=nil)
+          @HealthCheckEnabled = healthcheckenabled
+          @HealthCheckInterval = healthcheckinterval
+          @HealthCheckUnhealthyThreshold = healthcheckunhealthythreshold
+          @HealthCheckMaxTokens = healthcheckmaxtokens
+          @HealthCheckProtocol = healthcheckprotocol
+        end
+
+        def deserialize(params)
+          @HealthCheckEnabled = params['HealthCheckEnabled']
+          @HealthCheckInterval = params['HealthCheckInterval']
+          @HealthCheckUnhealthyThreshold = params['HealthCheckUnhealthyThreshold']
+          @HealthCheckMaxTokens = params['HealthCheckMaxTokens']
+          @HealthCheckProtocol = params['HealthCheckProtocol']
+        end
+      end
+
+      # 健康检查配置
+      class ServiceProviderHealthCheckConfigItemOutput < TencentCloud::Common::AbstractModel
+        # @param HealthCheckEnabled: <p>是否开启健康检查</p><p>枚举值：</p><ul><li>true： 是</li><li>false： 否</li></ul>
+        # @type HealthCheckEnabled: Boolean
+        # @param HealthCheckInterval: <p>健康检查间隔。支持以300s为步长配置。</p><p>单位：s</p><p>默认值：300</p>
+        # @type HealthCheckInterval: Integer
+        # @param HealthCheckUnhealthyThreshold: <p>不健康阈值。表示当模型连续多少次不健康时认为该模型不健康。</p><p>取值范围：[1, 10]</p><p>默认值：1</p>
+        # @type HealthCheckUnhealthyThreshold: Integer
+        # @param HealthCheckMaxTokens: <p>健康检查使用的最大Token数量。部分模型如gpt系列可能仅支持大于等于16。</p><p>默认值：1</p>
+        # @type HealthCheckMaxTokens: Integer
+        # @param HealthCheckProtocol: <p>健康检查协议</p><p>枚举值：</p><ul><li>chat： 表示/chat/completion协议</li><li>messages： 表示/v1/messages协议</li><li>responses： 表示/v1/messages协议</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HealthCheckProtocol: String
+
+        attr_accessor :HealthCheckEnabled, :HealthCheckInterval, :HealthCheckUnhealthyThreshold, :HealthCheckMaxTokens, :HealthCheckProtocol
+
+        def initialize(healthcheckenabled=nil, healthcheckinterval=nil, healthcheckunhealthythreshold=nil, healthcheckmaxtokens=nil, healthcheckprotocol=nil)
+          @HealthCheckEnabled = healthcheckenabled
+          @HealthCheckInterval = healthcheckinterval
+          @HealthCheckUnhealthyThreshold = healthcheckunhealthythreshold
+          @HealthCheckMaxTokens = healthcheckmaxtokens
+          @HealthCheckProtocol = healthcheckprotocol
+        end
+
+        def deserialize(params)
+          @HealthCheckEnabled = params['HealthCheckEnabled']
+          @HealthCheckInterval = params['HealthCheckInterval']
+          @HealthCheckUnhealthyThreshold = params['HealthCheckUnhealthyThreshold']
+          @HealthCheckMaxTokens = params['HealthCheckMaxTokens']
+          @HealthCheckProtocol = params['HealthCheckProtocol']
+        end
+      end
+
+      # 健康检查配置
       class ServiceProviderHealthCheckConfigOutput < TencentCloud::Common::AbstractModel
         # @param HealthCheckEnabled: <p>是否开启健康检查</p><p>枚举值：</p><ul><li>true： 是</li><li>false： 否</li></ul>
         # @type HealthCheckEnabled: Boolean
@@ -14742,10 +14891,14 @@ module TencentCloud
         # @type ServiceProviderId: String
         # @param VerifySSL: <p>是否校验服务提供商的SSL证书</p><p>PublicBYOK时为True且禁止传入；若传入VerifySSL，则优先同步入参逻辑；若传入了ServiceProviderId则同步已创建的Byok实例该Model的逻辑；否则PublicCustom模式下为True，PrivateCustom模式下为False。</p>
         # @type VerifySSL: Boolean
+        # @param HealthCheckProtocol: <p>健康检查协议</p><p>枚举值：</p><ul><li>chat： 表示/chat/completion协议</li><li>messages： 表示/v1/messages协议</li><li>responses： 表示/responses协议</li></ul>
+        # @type HealthCheckProtocol: String
+        # @param CMRPrivateNetworkTunnelId: <p>CMR私网管道ID</p>
+        # @type CMRPrivateNetworkTunnelId: String
 
-        attr_accessor :Model, :ProviderKey, :ProviderKeyId, :AccessType, :ModelProtocol, :ModelProvider, :ApiBase, :HostHeader, :ServiceProviderId, :VerifySSL
+        attr_accessor :Model, :ProviderKey, :ProviderKeyId, :AccessType, :ModelProtocol, :ModelProvider, :ApiBase, :HostHeader, :ServiceProviderId, :VerifySSL, :HealthCheckProtocol, :CMRPrivateNetworkTunnelId
 
-        def initialize(model=nil, providerkey=nil, providerkeyid=nil, accesstype=nil, modelprotocol=nil, modelprovider=nil, apibase=nil, hostheader=nil, serviceproviderid=nil, verifyssl=nil)
+        def initialize(model=nil, providerkey=nil, providerkeyid=nil, accesstype=nil, modelprotocol=nil, modelprovider=nil, apibase=nil, hostheader=nil, serviceproviderid=nil, verifyssl=nil, healthcheckprotocol=nil, cmrprivatenetworktunnelid=nil)
           @Model = model
           @ProviderKey = providerkey
           @ProviderKeyId = providerkeyid
@@ -14756,6 +14909,8 @@ module TencentCloud
           @HostHeader = hostheader
           @ServiceProviderId = serviceproviderid
           @VerifySSL = verifyssl
+          @HealthCheckProtocol = healthcheckprotocol
+          @CMRPrivateNetworkTunnelId = cmrprivatenetworktunnelid
         end
 
         def deserialize(params)
@@ -14769,6 +14924,8 @@ module TencentCloud
           @HostHeader = params['HostHeader']
           @ServiceProviderId = params['ServiceProviderId']
           @VerifySSL = params['VerifySSL']
+          @HealthCheckProtocol = params['HealthCheckProtocol']
+          @CMRPrivateNetworkTunnelId = params['CMRPrivateNetworkTunnelId']
         end
       end
 
@@ -14829,10 +14986,14 @@ module TencentCloud
         # @type ServiceProviderId: String
         # @param VerifySSL: <p>是否校验服务提供商的SSL证书</p><p>默认值：AccessType取值为：</p><ul><li>PublicBYOK时，该参数无效；</li><li>PublicCustom时，该参数默认为true；</li><li>PrivateCustom时，该参数默认为false；</li></ul>
         # @type VerifySSL: Boolean
+        # @param HealthCheckProtocol: <p>健康检查协议</p><p>枚举值：</p><ul><li>chat： 表示/chat/completion协议</li><li>messages： 表示/v1/messages协议</li><li>responses： 表示/responses协议</li></ul>
+        # @type HealthCheckProtocol: String
+        # @param CMRPrivateNetworkTunnelId: <p>    CMR 私网管道ID </p>
+        # @type CMRPrivateNetworkTunnelId: String
 
-        attr_accessor :Models, :ProviderKey, :ProviderKeyId, :AccessType, :ModelProvider, :ModelProtocol, :ApiBase, :HostHeader, :ServiceProviderId, :VerifySSL
+        attr_accessor :Models, :ProviderKey, :ProviderKeyId, :AccessType, :ModelProvider, :ModelProtocol, :ApiBase, :HostHeader, :ServiceProviderId, :VerifySSL, :HealthCheckProtocol, :CMRPrivateNetworkTunnelId
 
-        def initialize(models=nil, providerkey=nil, providerkeyid=nil, accesstype=nil, modelprovider=nil, modelprotocol=nil, apibase=nil, hostheader=nil, serviceproviderid=nil, verifyssl=nil)
+        def initialize(models=nil, providerkey=nil, providerkeyid=nil, accesstype=nil, modelprovider=nil, modelprotocol=nil, apibase=nil, hostheader=nil, serviceproviderid=nil, verifyssl=nil, healthcheckprotocol=nil, cmrprivatenetworktunnelid=nil)
           @Models = models
           @ProviderKey = providerkey
           @ProviderKeyId = providerkeyid
@@ -14843,6 +15004,8 @@ module TencentCloud
           @HostHeader = hostheader
           @ServiceProviderId = serviceproviderid
           @VerifySSL = verifyssl
+          @HealthCheckProtocol = healthcheckprotocol
+          @CMRPrivateNetworkTunnelId = cmrprivatenetworktunnelid
         end
 
         def deserialize(params)
@@ -14856,6 +15019,8 @@ module TencentCloud
           @HostHeader = params['HostHeader']
           @ServiceProviderId = params['ServiceProviderId']
           @VerifySSL = params['VerifySSL']
+          @HealthCheckProtocol = params['HealthCheckProtocol']
+          @CMRPrivateNetworkTunnelId = params['CMRPrivateNetworkTunnelId']
         end
       end
 

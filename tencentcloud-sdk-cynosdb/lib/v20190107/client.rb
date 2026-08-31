@@ -4037,6 +4037,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改集群级别
+
+        # @param request: Request instance for ModifyClusterLevel.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::ModifyClusterLevelRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::ModifyClusterLevelResponse`
+        def ModifyClusterLevel(request)
+          body = send_request('ModifyClusterLevel', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyClusterLevelResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（ModifyClusterName）用于修改集群名称。
 
         # @param request: Request instance for ModifyClusterName.

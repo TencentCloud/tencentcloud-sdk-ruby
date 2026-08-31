@@ -17,11 +17,11 @@
 module TencentCloud
   module Cdb
     module V20170320
-      # 数据库账号信息
+      # 账号信息
       class Account < TencentCloud::Common::AbstractModel
-        # @param User: <p>账号名，可输入1 - 32个字符。</p>
+        # @param User: 账号名称
         # @type User: String
-        # @param Host: <p>账号的主机。</p><p>IP 形式，支持填入%。</p>
+        # @param Host: 账号的主机地址
         # @type Host: String
 
         attr_accessor :User, :Host
@@ -58,8 +58,8 @@ module TencentCloud
 
         attr_accessor :Notes, :Host, :User, :ModifyTime, :ModifyPasswordTime, :CreateTime, :MaxUserConnections, :OpenCam
         extend Gem::Deprecate
-        deprecate :CreateTime, :none, 2026, 8
-        deprecate :CreateTime=, :none, 2026, 8
+        deprecate :CreateTime, :none, 2026, 9
+        deprecate :CreateTime=, :none, 2026, 9
 
         def initialize(notes=nil, host=nil, user=nil, modifytime=nil, modifypasswordtime=nil, createtime=nil, maxuserconnections=nil, opencam=nil)
           @Notes = notes
@@ -442,8 +442,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :StartTime, :EndTime, :AggregationConditions, :AuditLogFilter, :LogFilter
         extend Gem::Deprecate
-        deprecate :AuditLogFilter, :none, 2026, 8
-        deprecate :AuditLogFilter=, :none, 2026, 8
+        deprecate :AuditLogFilter, :none, 2026, 9
+        deprecate :AuditLogFilter=, :none, 2026, 9
 
         def initialize(instanceid=nil, starttime=nil, endtime=nil, aggregationconditions=nil, auditlogfilter=nil, logfilter=nil)
           @InstanceId = instanceid
@@ -1107,10 +1107,10 @@ module TencentCloud
 
         attr_accessor :ExpandThreshold, :ShrinkThreshold, :ExpandPeriod, :ShrinkPeriod, :ExpandSecondPeriod, :ShrinkSecondPeriod
         extend Gem::Deprecate
-        deprecate :ExpandPeriod, :none, 2026, 8
-        deprecate :ExpandPeriod=, :none, 2026, 8
-        deprecate :ShrinkPeriod, :none, 2026, 8
-        deprecate :ShrinkPeriod=, :none, 2026, 8
+        deprecate :ExpandPeriod, :none, 2026, 9
+        deprecate :ExpandPeriod=, :none, 2026, 9
+        deprecate :ShrinkPeriod, :none, 2026, 9
+        deprecate :ShrinkPeriod=, :none, 2026, 9
 
         def initialize(expandthreshold=nil, shrinkthreshold=nil, expandperiod=nil, shrinkperiod=nil, expandsecondperiod=nil, shrinksecondperiod=nil)
           @ExpandThreshold = expandthreshold
@@ -1427,8 +1427,8 @@ module TencentCloud
 
         attr_accessor :Name, :Size, :Date, :IntranetUrl, :InternetUrl, :Type, :BinlogStartTime, :BinlogFinishTime, :Region, :Status, :RemoteInfo, :CosStorageType, :InstanceId, :Progress
         extend Gem::Deprecate
-        deprecate :InstanceId, :none, 2026, 8
-        deprecate :InstanceId=, :none, 2026, 8
+        deprecate :InstanceId, :none, 2026, 9
+        deprecate :InstanceId=, :none, 2026, 9
 
         def initialize(name=nil, size=nil, date=nil, intraneturl=nil, interneturl=nil, type=nil, binlogstarttime=nil, binlogfinishtime=nil, region=nil, status=nil, remoteinfo=nil, cosstoragetype=nil, instanceid=nil, progress=nil)
           @Name = name
@@ -2376,8 +2376,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :StartTime, :EndTime, :Order, :OrderBy, :Filter, :LogFilter, :ColumnFilter
         extend Gem::Deprecate
-        deprecate :Filter, :none, 2026, 8
-        deprecate :Filter=, :none, 2026, 8
+        deprecate :Filter, :none, 2026, 9
+        deprecate :Filter=, :none, 2026, 9
 
         def initialize(instanceid=nil, starttime=nil, endtime=nil, order=nil, orderby=nil, filter=nil, logfilter=nil, columnfilter=nil)
           @InstanceId = instanceid
@@ -2924,8 +2924,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :SpecifiedRollbackTime, :SpecifiedBackupId, :UniqVpcId, :UniqSubnetId, :Memory, :Volume, :InstanceName, :SecurityGroup, :ResourceTags, :Cpu, :ProtectMode, :DeployMode, :SlaveZone, :BackupZone, :DeviceType, :InstanceNodes, :DeployGroupId, :DryRun, :CageId, :ProjectId, :PayType, :Period, :ClusterTopology, :SrcRegion, :SpecifiedSubBackupId, :MasterZone, :Zone, :FourthZone
         extend Gem::Deprecate
-        deprecate :MasterZone, :none, 2026, 8
-        deprecate :MasterZone=, :none, 2026, 8
+        deprecate :MasterZone, :none, 2026, 9
+        deprecate :MasterZone=, :none, 2026, 9
 
         def initialize(instanceid=nil, specifiedrollbacktime=nil, specifiedbackupid=nil, uniqvpcid=nil, uniqsubnetid=nil, memory=nil, volume=nil, instancename=nil, securitygroup=nil, resourcetags=nil, cpu=nil, protectmode=nil, deploymode=nil, slavezone=nil, backupzone=nil, devicetype=nil, instancenodes=nil, deploygroupid=nil, dryrun=nil, cageid=nil, projectid=nil, paytype=nil, period=nil, clustertopology=nil, srcregion=nil, specifiedsubbackupid=nil, masterzone=nil, zone=nil, fourthzone=nil)
           @InstanceId = instanceid
@@ -4374,11 +4374,11 @@ module TencentCloud
 
       # DescribeAccountPrivileges请求参数结构体
       class DescribeAccountPrivilegesRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
+        # @param InstanceId: <p>实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。</p>
         # @type InstanceId: String
-        # @param User: 数据库的账号名称。可通过 [DescribeAccounts](https://cloud.tencent.com/document/api/236/17499) 接口获取。
+        # @param User: <p>数据库的账号名称。可通过 <a href="https://cloud.tencent.com/document/api/236/17499">DescribeAccounts</a> 接口获取。</p>
         # @type User: String
-        # @param Host: 数据库的账号域名。可通过 [DescribeAccounts](https://cloud.tencent.com/document/api/236/17499) 接口获取。
+        # @param Host: <p>数据库的账号域名。可通过 <a href="https://cloud.tencent.com/document/api/236/17499">DescribeAccounts</a> 接口获取。</p>
         # @type Host: String
 
         attr_accessor :InstanceId, :User, :Host
@@ -4398,13 +4398,13 @@ module TencentCloud
 
       # DescribeAccountPrivileges返回参数结构体
       class DescribeAccountPrivilegesResponse < TencentCloud::Common::AbstractModel
-        # @param GlobalPrivileges: 全局权限数组。
+        # @param GlobalPrivileges: <p>全局权限数组。</p>
         # @type GlobalPrivileges: Array
-        # @param DatabasePrivileges: 数据库权限数组。
+        # @param DatabasePrivileges: <p>数据库权限数组。</p>
         # @type DatabasePrivileges: Array
-        # @param TablePrivileges: 数据库中的表权限数组。
+        # @param TablePrivileges: <p>数据库中的表权限数组。</p>
         # @type TablePrivileges: Array
-        # @param ColumnPrivileges: 数据库表中的列权限数组。
+        # @param ColumnPrivileges: <p>数据库表中的列权限数组。</p>
         # @type ColumnPrivileges: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5159,10 +5159,10 @@ module TencentCloud
 
         attr_accessor :StartTimeMin, :StartTimeMax, :BackupExpireDays, :BackupMethod, :BinlogExpireDays, :BackupTimeWindow, :EnableBackupPeriodSave, :BackupPeriodSaveDays, :BackupPeriodSaveInterval, :BackupPeriodSaveCount, :StartBackupPeriodSaveDate, :EnableBackupArchive, :BackupArchiveDays, :EnableBinlogArchive, :BinlogArchiveDays, :EnableBackupStandby, :BackupStandbyDays, :EnableBinlogStandby, :BinlogStandbyDays, :RequestId
         extend Gem::Deprecate
-        deprecate :StartTimeMin, :none, 2026, 8
-        deprecate :StartTimeMin=, :none, 2026, 8
-        deprecate :StartTimeMax, :none, 2026, 8
-        deprecate :StartTimeMax=, :none, 2026, 8
+        deprecate :StartTimeMin, :none, 2026, 9
+        deprecate :StartTimeMin=, :none, 2026, 9
+        deprecate :StartTimeMax, :none, 2026, 9
+        deprecate :StartTimeMax=, :none, 2026, 9
 
         def initialize(starttimemin=nil, starttimemax=nil, backupexpiredays=nil, backupmethod=nil, binlogexpiredays=nil, backuptimewindow=nil, enablebackupperiodsave=nil, backupperiodsavedays=nil, backupperiodsaveinterval=nil, backupperiodsavecount=nil, startbackupperiodsavedate=nil, enablebackuparchive=nil, backuparchivedays=nil, enablebinlogarchive=nil, binlogarchivedays=nil, enablebackupstandby=nil, backupstandbydays=nil, enablebinlogstandby=nil, binlogstandbydays=nil, requestid=nil)
           @StartTimeMin = starttimemin
@@ -7862,8 +7862,8 @@ module TencentCloud
 
         attr_accessor :Count, :CustomConf, :WeightRule, :CustomConfInfo, :RequestId
         extend Gem::Deprecate
-        deprecate :CustomConf, :none, 2026, 8
-        deprecate :CustomConf=, :none, 2026, 8
+        deprecate :CustomConf, :none, 2026, 9
+        deprecate :CustomConf=, :none, 2026, 9
 
         def initialize(count=nil, customconf=nil, weightrule=nil, customconfinfo=nil, requestid=nil)
           @Count = count
@@ -9881,8 +9881,8 @@ module TencentCloud
 
         attr_accessor :AsyncRequestId, :RequestId
         extend Gem::Deprecate
-        deprecate :AsyncRequestId, :none, 2026, 8
-        deprecate :AsyncRequestId=, :none, 2026, 8
+        deprecate :AsyncRequestId, :none, 2026, 9
+        deprecate :AsyncRequestId=, :none, 2026, 9
 
         def initialize(asyncrequestid=nil, requestid=nil)
           @AsyncRequestId = asyncrequestid
@@ -10275,19 +10275,19 @@ module TencentCloud
 
       # ModifyAccountPassword请求参数结构体
       class ModifyAccountPasswordRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
+        # @param InstanceId: <p>实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。</p>
         # @type InstanceId: String
-        # @param NewPassword: 数据库账号的新密码。密码应至少包含字母、数字和字符（_+-&=!@#$%^*()）中的两种，长度为8-64个字符。
+        # @param NewPassword: <p>数据库账号的新密码。密码应至少包含字母、数字和字符（_+-&amp;=!@#$%^*()）中的两种，长度为8-64个字符。</p>
         # @type NewPassword: String
-        # @param Accounts: 云数据库账号。可通过 [DescribeAccounts](https://cloud.tencent.com/document/api/236/17499) 接口获取。
+        # @param Accounts: <p>云数据库账号。可通过 <a href="https://cloud.tencent.com/document/api/236/17499">DescribeAccounts</a> 接口获取。</p>
         # @type Accounts: Array
-        # @param SkipValidatePassword: 该字段已废弃。
+        # @param SkipValidatePassword: <p>该字段已废弃。</p>
         # @type SkipValidatePassword: Boolean
 
         attr_accessor :InstanceId, :NewPassword, :Accounts, :SkipValidatePassword
         extend Gem::Deprecate
-        deprecate :SkipValidatePassword, :none, 2026, 8
-        deprecate :SkipValidatePassword=, :none, 2026, 8
+        deprecate :SkipValidatePassword, :none, 2026, 9
+        deprecate :SkipValidatePassword=, :none, 2026, 9
 
         def initialize(instanceid=nil, newpassword=nil, accounts=nil, skipvalidatepassword=nil)
           @InstanceId = instanceid
@@ -10313,7 +10313,7 @@ module TencentCloud
 
       # ModifyAccountPassword返回参数结构体
       class ModifyAccountPasswordResponse < TencentCloud::Common::AbstractModel
-        # @param AsyncRequestId: 异步任务的请求 ID，可使用此 ID 查询异步任务的执行结果。
+        # @param AsyncRequestId: <p>异步任务的请求 ID，可使用此 ID 查询异步任务的执行结果。</p>
         # @type AsyncRequestId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -10333,23 +10333,19 @@ module TencentCloud
 
       # ModifyAccountPrivileges请求参数结构体
       class ModifyAccountPrivilegesRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
+        # @param InstanceId: <p>实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。</p>
         # @type InstanceId: String
-        # @param Accounts: 数据库的账号，包括用户名和域名。可通过 [DescribeAccounts](https://cloud.tencent.com/document/api/236/17499) 接口获取。
+        # @param Accounts: <p>数据库的账号，包括用户名和域名。可通过 <a href="https://cloud.tencent.com/document/api/236/17499">DescribeAccounts</a> 接口获取。</p>
         # @type Accounts: Array
-        # @param GlobalPrivileges: 全局权限。其中，GlobalPrivileges 中权限的可选值为："SELECT","INSERT","UPDATE","DELETE","CREATE", "PROCESS", "DROP","REFERENCES","INDEX","ALTER","SHOW DATABASES","CREATE TEMPORARY TABLES","LOCK TABLES","EXECUTE","CREATE VIEW","SHOW VIEW","CREATE ROUTINE","ALTER ROUTINE","EVENT","TRIGGER","CREATE USER","RELOAD","REPLICATION CLIENT","REPLICATION SLAVE"。
-        # 注意，ModifyAction为空时，不传该参数表示清除该权限。
+        # @param GlobalPrivileges: <p>全局权限。其中，GlobalPrivileges 中权限的可选值为：&quot;SELECT&quot;,&quot;INSERT&quot;,&quot;UPDATE&quot;,&quot;DELETE&quot;,&quot;CREATE&quot;, &quot;PROCESS&quot;, &quot;DROP&quot;,&quot;REFERENCES&quot;,&quot;INDEX&quot;,&quot;ALTER&quot;,&quot;SHOW DATABASES&quot;,&quot;CREATE TEMPORARY TABLES&quot;,&quot;LOCK TABLES&quot;,&quot;EXECUTE&quot;,&quot;CREATE VIEW&quot;,&quot;SHOW VIEW&quot;,&quot;CREATE ROUTINE&quot;,&quot;ALTER ROUTINE&quot;,&quot;EVENT&quot;,&quot;TRIGGER&quot;,&quot;CREATE USER&quot;,&quot;RELOAD&quot;,&quot;REPLICATION CLIENT&quot;,&quot;REPLICATION SLAVE&quot;。<br>注意，ModifyAction为空时，不传该参数表示清除该权限。</p>
         # @type GlobalPrivileges: Array
-        # @param DatabasePrivileges: 数据库的权限。Privileges 权限的可选值为："SELECT","INSERT","UPDATE","DELETE","CREATE",	"DROP","REFERENCES","INDEX","ALTER","CREATE TEMPORARY TABLES","LOCK TABLES","EXECUTE","CREATE VIEW","SHOW VIEW","CREATE ROUTINE","ALTER ROUTINE","EVENT","TRIGGER"。
-        # 注意，ModifyAction为空时，不传该参数表示清除该权限。
+        # @param DatabasePrivileges: <p>数据库的权限。Privileges 权限的可选值为：&quot;SELECT&quot;,&quot;INSERT&quot;,&quot;UPDATE&quot;,&quot;DELETE&quot;,&quot;CREATE&quot;,    &quot;DROP&quot;,&quot;REFERENCES&quot;,&quot;INDEX&quot;,&quot;ALTER&quot;,&quot;CREATE TEMPORARY TABLES&quot;,&quot;LOCK TABLES&quot;,&quot;EXECUTE&quot;,&quot;CREATE VIEW&quot;,&quot;SHOW VIEW&quot;,&quot;CREATE ROUTINE&quot;,&quot;ALTER ROUTINE&quot;,&quot;EVENT&quot;,&quot;TRIGGER&quot;。<br>注意，ModifyAction为空时，不传该参数表示清除该权限。</p>
         # @type DatabasePrivileges: Array
-        # @param TablePrivileges: 数据库中表的权限。Privileges 权限的可选值为：权限的可选值为："SELECT","INSERT","UPDATE","DELETE","CREATE",	"DROP","REFERENCES","INDEX","ALTER","CREATE VIEW","SHOW VIEW", "TRIGGER"。
-        # 注意，ModifyAction为空时，不传该参数表示清除该权限。
+        # @param TablePrivileges: <p>数据库中表的权限。Privileges 权限的可选值为：权限的可选值为：&quot;SELECT&quot;,&quot;INSERT&quot;,&quot;UPDATE&quot;,&quot;DELETE&quot;,&quot;CREATE&quot;,    &quot;DROP&quot;,&quot;REFERENCES&quot;,&quot;INDEX&quot;,&quot;ALTER&quot;,&quot;CREATE VIEW&quot;,&quot;SHOW VIEW&quot;, &quot;TRIGGER&quot;。<br>注意，ModifyAction为空时，不传该参数表示清除该权限。</p>
         # @type TablePrivileges: Array
-        # @param ColumnPrivileges: 数据库表中列的权限。Privileges 权限的可选值为："SELECT","INSERT","UPDATE","REFERENCES"。
-        # 注意，ModifyAction为空时，不传该参数表示清除该权限。
+        # @param ColumnPrivileges: <p>数据库表中列的权限。Privileges 权限的可选值为：&quot;SELECT&quot;,&quot;INSERT&quot;,&quot;UPDATE&quot;,&quot;REFERENCES&quot;。<br>注意，ModifyAction为空时，不传该参数表示清除该权限。</p>
         # @type ColumnPrivileges: Array
-        # @param ModifyAction: 该参数不为空时，为批量修改权限。可选值为：grant - 授予权限，revoke - 回收权限。
+        # @param ModifyAction: <p>该参数不为空时，为批量修改权限。可选值为：grant - 授予权限，revoke - 回收权限。</p>
         # @type ModifyAction: String
 
         attr_accessor :InstanceId, :Accounts, :GlobalPrivileges, :DatabasePrivileges, :TablePrivileges, :ColumnPrivileges, :ModifyAction
@@ -10405,7 +10401,7 @@ module TencentCloud
 
       # ModifyAccountPrivileges返回参数结构体
       class ModifyAccountPrivilegesResponse < TencentCloud::Common::AbstractModel
-        # @param AsyncRequestId: 异步任务的请求 ID，可使用此 ID 查询异步任务的执行结果。
+        # @param AsyncRequestId: <p>异步任务的请求 ID，可使用此 ID 查询异步任务的执行结果。</p>
         # @type AsyncRequestId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -10629,8 +10625,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :LogExpireDay, :HighLogExpireDay, :AuditAll, :AuditRuleFilters, :RuleTemplateIds
         extend Gem::Deprecate
-        deprecate :AuditRuleFilters, :none, 2026, 8
-        deprecate :AuditRuleFilters=, :none, 2026, 8
+        deprecate :AuditRuleFilters, :none, 2026, 9
+        deprecate :AuditRuleFilters=, :none, 2026, 9
 
         def initialize(instanceid=nil, logexpireday=nil, highlogexpireday=nil, auditall=nil, auditrulefilters=nil, ruletemplateids=nil)
           @InstanceId = instanceid
@@ -11393,8 +11389,8 @@ module TencentCloud
 
         attr_accessor :AsyncRequestId, :RequestId
         extend Gem::Deprecate
-        deprecate :AsyncRequestId, :none, 2026, 8
-        deprecate :AsyncRequestId=, :none, 2026, 8
+        deprecate :AsyncRequestId, :none, 2026, 9
+        deprecate :AsyncRequestId=, :none, 2026, 9
 
         def initialize(asyncrequestid=nil, requestid=nil)
           @AsyncRequestId = asyncrequestid
@@ -11902,8 +11898,8 @@ module TencentCloud
 
         attr_accessor :RoGroupId, :RoGroupInfo, :RoWeightValues, :IsBalanceRoLoad, :ReplicationDelayTime
         extend Gem::Deprecate
-        deprecate :ReplicationDelayTime, :none, 2026, 8
-        deprecate :ReplicationDelayTime=, :none, 2026, 8
+        deprecate :ReplicationDelayTime, :none, 2026, 9
+        deprecate :ReplicationDelayTime=, :none, 2026, 9
 
         def initialize(rogroupid=nil, rogroupinfo=nil, roweightvalues=nil, isbalanceroload=nil, replicationdelaytime=nil)
           @RoGroupId = rogroupid
@@ -12134,8 +12130,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :LogExpireDay, :HighLogExpireDay, :AuditRuleFilters, :RuleTemplateIds, :AuditAll
         extend Gem::Deprecate
-        deprecate :AuditRuleFilters, :none, 2026, 8
-        deprecate :AuditRuleFilters=, :none, 2026, 8
+        deprecate :AuditRuleFilters, :none, 2026, 9
+        deprecate :AuditRuleFilters=, :none, 2026, 9
 
         def initialize(instanceid=nil, logexpireday=nil, highlogexpireday=nil, auditrulefilters=nil, ruletemplateids=nil, auditall=nil)
           @InstanceId = instanceid
@@ -12414,8 +12410,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :ParamName, :OldValue, :NewValue, :IsSucess, :ModifyTime, :IsSuccess
         extend Gem::Deprecate
-        deprecate :IsSucess, :none, 2026, 8
-        deprecate :IsSucess=, :none, 2026, 8
+        deprecate :IsSucess, :none, 2026, 9
+        deprecate :IsSucess=, :none, 2026, 9
 
         def initialize(instanceid=nil, paramname=nil, oldvalue=nil, newvalue=nil, issucess=nil, modifytime=nil, issuccess=nil)
           @InstanceId = instanceid
@@ -14476,8 +14472,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :DstSlave, :ForceSwitch, :WaitSwitch, :DstNodeId
         extend Gem::Deprecate
-        deprecate :ForceSwitch, :none, 2026, 8
-        deprecate :ForceSwitch=, :none, 2026, 8
+        deprecate :ForceSwitch, :none, 2026, 9
+        deprecate :ForceSwitch=, :none, 2026, 9
 
         def initialize(instanceid=nil, dstslave=nil, forceswitch=nil, waitswitch=nil, dstnodeid=nil)
           @InstanceId = instanceid

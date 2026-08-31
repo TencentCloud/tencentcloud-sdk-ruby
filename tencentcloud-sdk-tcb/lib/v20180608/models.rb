@@ -1279,10 +1279,12 @@ module TencentCloud
         # @type CustomSteps: Array
         # @param Secrets: <p>敏感凭证（AES 加密落库），构建容器中以 $SECRET_NAME 引用</p>
         # @type Secrets: Array
+        # @param NodeJsVersion: <p>选择 NodeRuntime 版本: 16,18,20,22,24 等</p>
+        # @type NodeJsVersion: String
 
-        attr_accessor :EnvId, :ServiceName, :DeployType, :BuildType, :StaticConfig, :Source, :Commands, :Env, :CustomSteps, :Secrets
+        attr_accessor :EnvId, :ServiceName, :DeployType, :BuildType, :StaticConfig, :Source, :Commands, :Env, :CustomSteps, :Secrets, :NodeJsVersion
 
-        def initialize(envid=nil, servicename=nil, deploytype=nil, buildtype=nil, staticconfig=nil, source=nil, commands=nil, env=nil, customsteps=nil, secrets=nil)
+        def initialize(envid=nil, servicename=nil, deploytype=nil, buildtype=nil, staticconfig=nil, source=nil, commands=nil, env=nil, customsteps=nil, secrets=nil, nodejsversion=nil)
           @EnvId = envid
           @ServiceName = servicename
           @DeployType = deploytype
@@ -1293,6 +1295,7 @@ module TencentCloud
           @Env = env
           @CustomSteps = customsteps
           @Secrets = secrets
+          @NodeJsVersion = nodejsversion
         end
 
         def deserialize(params)
@@ -1336,6 +1339,7 @@ module TencentCloud
               @Secrets << buildsecret_tmp
             end
           end
+          @NodeJsVersion = params['NodeJsVersion']
         end
       end
 
@@ -7611,6 +7615,42 @@ module TencentCloud
         end
       end
 
+      # ModifyEnvExtra请求参数结构体
+      class ModifyEnvExtraRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: <p>环境ID</p>
+        # @type EnvId: String
+        # @param EnableOverrun: <p>开启或关闭 <code>超限转按量</code>。<br>可取值： TRUE/FALSE （字符串类型）<br>非法制、不传、为空 则不变更该字段。</p>
+        # @type EnableOverrun: String
+
+        attr_accessor :EnvId, :EnableOverrun
+
+        def initialize(envid=nil, enableoverrun=nil)
+          @EnvId = envid
+          @EnableOverrun = enableoverrun
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @EnableOverrun = params['EnableOverrun']
+        end
+      end
+
+      # ModifyEnvExtra返回参数结构体
+      class ModifyEnvExtraResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyEnvPlan请求参数结构体
       class ModifyEnvPlanRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: 所需变更套餐的环境ID
@@ -9679,8 +9719,8 @@ module TencentCloud
 
         attr_accessor :EnvId, :CdnDomain, :Bucket, :Regoin, :Status, :Region
         extend Gem::Deprecate
-        deprecate :Regoin, :none, 2026, 8
-        deprecate :Regoin=, :none, 2026, 8
+        deprecate :Regoin, :none, 2026, 9
+        deprecate :Regoin=, :none, 2026, 9
 
         def initialize(envid=nil, cdndomain=nil, bucket=nil, regoin=nil, status=nil, region=nil)
           @EnvId = envid

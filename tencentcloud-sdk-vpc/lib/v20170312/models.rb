@@ -629,12 +629,12 @@ module TencentCloud
 
         attr_accessor :AddressTemplateId, :AddressTemplateName, :From, :To, :Description, :UpdatedTime
         extend Gem::Deprecate
-        deprecate :AddressTemplateName, :none, 2026, 8
-        deprecate :AddressTemplateName=, :none, 2026, 8
-        deprecate :From, :none, 2026, 8
-        deprecate :From=, :none, 2026, 8
-        deprecate :To, :none, 2026, 8
-        deprecate :To=, :none, 2026, 8
+        deprecate :AddressTemplateName, :none, 2026, 9
+        deprecate :AddressTemplateName=, :none, 2026, 9
+        deprecate :From, :none, 2026, 9
+        deprecate :From=, :none, 2026, 9
+        deprecate :To, :none, 2026, 9
+        deprecate :To=, :none, 2026, 9
 
         def initialize(addresstemplateid=nil, addresstemplatename=nil, from=nil, to=nil, description=nil, updatedtime=nil)
           @AddressTemplateId = addresstemplateid
@@ -809,8 +809,8 @@ module TencentCloud
 
         attr_accessor :AddressCount, :InternetServiceProvider, :InternetChargeType, :IPChargeType, :InternetMaxBandwidthOut, :AddressChargePrepaid, :AddressType, :AnycastZone, :VipCluster, :ApplicableForCLB, :Tags, :BandwidthPackageId, :AddressName, :DedicatedClusterId, :IsDedicatedAddressPool, :Egress, :AntiDDoSPackageId, :ClientToken
         extend Gem::Deprecate
-        deprecate :ApplicableForCLB, :none, 2026, 8
-        deprecate :ApplicableForCLB=, :none, 2026, 8
+        deprecate :ApplicableForCLB, :none, 2026, 9
+        deprecate :ApplicableForCLB=, :none, 2026, 9
 
         def initialize(addresscount=nil, internetserviceprovider=nil, internetchargetype=nil, ipchargetype=nil, internetmaxbandwidthout=nil, addresschargeprepaid=nil, addresstype=nil, anycastzone=nil, vipcluster=nil, applicableforclb=nil, tags=nil, bandwidthpackageid=nil, addressname=nil, dedicatedclusterid=nil, isdedicatedaddresspool=nil, egress=nil, antiddospackageid=nil, clienttoken=nil)
           @AddressCount = addresscount
@@ -2174,62 +2174,64 @@ module TencentCloud
 
       # 云联网（CCN）对象
       class CCN < TencentCloud::Common::AbstractModel
-        # @param CcnId: 云联网唯一ID
+        # @param CcnId: <p>云联网唯一ID</p>
         # @type CcnId: String
-        # @param CcnName: 云联网名称
+        # @param CcnName: <p>云联网名称</p>
         # @type CcnName: String
-        # @param CcnDescription: 云联网描述信息
+        # @param CcnDescription: <p>云联网描述信息</p>
         # @type CcnDescription: String
-        # @param InstanceCount: 关联实例数量
+        # @param InstanceCount: <p>关联实例数量</p>
         # @type InstanceCount: Integer
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # @type CreateTime: String
-        # @param State: 实例状态， 'ISOLATED': 隔离中（欠费停服），'AVAILABLE'：运行中。
+        # @param State: <p>实例状态， &#39;ISOLATED&#39;: 隔离中（欠费停服），&#39;AVAILABLE&#39;：运行中。</p>
         # @type State: String
-        # @param QosLevel: 实例服务质量，’PT’：白金，'AU'：金，'AG'：银。
+        # @param QosLevel: <p>实例服务质量，’PT’：白金，&#39;AU&#39;：金，&#39;AG&#39;：银。</p>
         # @type QosLevel: String
-        # @param InstanceChargeType: 付费类型，PREPAID为预付费，POSTPAID为后付费。
+        # @param InstanceChargeType: <p>付费类型，PREPAID为预付费，POSTPAID为后付费。</p>
         # @type InstanceChargeType: String
-        # @param InstanceMeteringType: 计量类型
+        # @param InstanceMeteringType: <p>计量类型</p>
         # @type InstanceMeteringType: String
-        # @param BandwidthLimitType: 限速类型，`INTER_REGION_LIMIT` 为地域间限速；`OUTER_REGION_LIMIT` 为地域出口限速。
+        # @param BandwidthLimitType: <p>限速类型，<code>INTER_REGION_LIMIT</code> 为地域间限速；<code>OUTER_REGION_LIMIT</code> 为地域出口限速。</p>
         # @type BandwidthLimitType: String
-        # @param TagSet: 标签键值对。
+        # @param TagSet: <p>标签键值对。</p>
         # @type TagSet: Array
-        # @param RoutePriorityFlag: 是否支持云联网路由优先级的功能。`False`：不支持，`True`：支持。
+        # @param RoutePriorityFlag: <p>是否支持云联网路由优先级的功能。<code>False</code>：不支持，<code>True</code>：支持。</p>
         # @type RoutePriorityFlag: Boolean
-        # @param RouteTableCount: 实例关联的路由表个数。
+        # @param RouteTableCount: <p>实例关联的路由表个数。</p>
         # @type RouteTableCount: Integer
-        # @param RouteTableFlag: 是否开启云联网多路由表特性。`False`：未开启，`True`：开启。
+        # @param RouteTableFlag: <p>是否开启云联网多路由表特性。<code>False</code>：未开启，<code>True</code>：开启。</p>
         # @type RouteTableFlag: Boolean
-        # @param IsSecurityLock: `true`：实例已被封禁，流量不通，`false`:解封禁。
+        # @param IsSecurityLock: <p><code>true</code>：实例已被封禁，流量不通，<code>false</code>:解封禁。</p>
         # @type IsSecurityLock: Boolean
-        # @param RouteBroadcastPolicyFlag: 是否开启云联网路由传播策略。`False` 未开启，`True` 开启。
+        # @param RouteBroadcastPolicyFlag: <p>是否开启云联网路由传播策略。<code>False</code> 未开启，<code>True</code> 开启。</p>
         # @type RouteBroadcastPolicyFlag: Boolean
-        # @param RouteECMPFlag: 是否开启等价路由功能。`False` 未开启，`True` 开启。
+        # @param RouteECMPFlag: <p>是否开启等价路由功能。<code>False</code> 未开启，<code>True</code> 开启。</p>
         # @type RouteECMPFlag: Boolean
-        # @param RouteOverlapFlag: 是否开启路由重叠功能。`False` 未开启，`True` 开启。
+        # @param RouteOverlapFlag: <p>是否开启路由重叠功能。<code>False</code> 未开启，<code>True</code> 开启。</p>
         # @type RouteOverlapFlag: Boolean
-        # @param TrafficMarkingPolicyFlag: 是否开启QOS。
+        # @param TrafficMarkingPolicyFlag: <p>是否开启QOS。</p>
         # @type TrafficMarkingPolicyFlag: Boolean
-        # @param RouteSelectPolicyFlag: 是否开启路由表选择策略。
+        # @param RouteSelectPolicyFlag: <p>是否开启路由表选择策略。</p>
         # @type RouteSelectPolicyFlag: Boolean
-        # @param DirectConnectAccelerateChannelFlag: 是否开启二层云联网通道。
+        # @param DirectConnectAccelerateChannelFlag: <p>是否开启二层云联网通道。</p>
         # @type DirectConnectAccelerateChannelFlag: Boolean
-        # @param Ipv6Flag: 是否支持ipv6路由表
+        # @param Ipv6Flag: <p>是否支持ipv6路由表</p>
         # @type Ipv6Flag: Boolean
-        # @param MrtbAggregatePolicyFlag: 是否支持路由表聚合策略
+        # @param MrtbAggregatePolicyFlag: <p>是否支持路由表聚合策略</p>
         # @type MrtbAggregatePolicyFlag: Boolean
-        # @param MrtbPolicyValueFlag: 是否支持AsPath策略值
+        # @param MrtbPolicyValueFlag: <p>是否支持AsPath策略值</p>
         # @type MrtbPolicyValueFlag: Boolean
-        # @param RouteTablePolicyValueCommunityFlag: 是否支持Community策略值
+        # @param RouteTablePolicyValueCommunityFlag: <p>是否支持Community策略值</p>
         # @type RouteTablePolicyValueCommunityFlag: Boolean
-        # @param PolicyBasedRoutingFlag: 是否支持策略路由
+        # @param PolicyBasedRoutingFlag: <p>是否支持策略路由</p>
         # @type PolicyBasedRoutingFlag: Boolean
+        # @param ServiceLevelMode: <p>服务等级模式</p><p>枚举值：</p><ul><li>0： 云联网模式</li><li>1： 地域间模式</li></ul>
+        # @type ServiceLevelMode: Integer
 
-        attr_accessor :CcnId, :CcnName, :CcnDescription, :InstanceCount, :CreateTime, :State, :QosLevel, :InstanceChargeType, :InstanceMeteringType, :BandwidthLimitType, :TagSet, :RoutePriorityFlag, :RouteTableCount, :RouteTableFlag, :IsSecurityLock, :RouteBroadcastPolicyFlag, :RouteECMPFlag, :RouteOverlapFlag, :TrafficMarkingPolicyFlag, :RouteSelectPolicyFlag, :DirectConnectAccelerateChannelFlag, :Ipv6Flag, :MrtbAggregatePolicyFlag, :MrtbPolicyValueFlag, :RouteTablePolicyValueCommunityFlag, :PolicyBasedRoutingFlag
+        attr_accessor :CcnId, :CcnName, :CcnDescription, :InstanceCount, :CreateTime, :State, :QosLevel, :InstanceChargeType, :InstanceMeteringType, :BandwidthLimitType, :TagSet, :RoutePriorityFlag, :RouteTableCount, :RouteTableFlag, :IsSecurityLock, :RouteBroadcastPolicyFlag, :RouteECMPFlag, :RouteOverlapFlag, :TrafficMarkingPolicyFlag, :RouteSelectPolicyFlag, :DirectConnectAccelerateChannelFlag, :Ipv6Flag, :MrtbAggregatePolicyFlag, :MrtbPolicyValueFlag, :RouteTablePolicyValueCommunityFlag, :PolicyBasedRoutingFlag, :ServiceLevelMode
 
-        def initialize(ccnid=nil, ccnname=nil, ccndescription=nil, instancecount=nil, createtime=nil, state=nil, qoslevel=nil, instancechargetype=nil, instancemeteringtype=nil, bandwidthlimittype=nil, tagset=nil, routepriorityflag=nil, routetablecount=nil, routetableflag=nil, issecuritylock=nil, routebroadcastpolicyflag=nil, routeecmpflag=nil, routeoverlapflag=nil, trafficmarkingpolicyflag=nil, routeselectpolicyflag=nil, directconnectacceleratechannelflag=nil, ipv6flag=nil, mrtbaggregatepolicyflag=nil, mrtbpolicyvalueflag=nil, routetablepolicyvaluecommunityflag=nil, policybasedroutingflag=nil)
+        def initialize(ccnid=nil, ccnname=nil, ccndescription=nil, instancecount=nil, createtime=nil, state=nil, qoslevel=nil, instancechargetype=nil, instancemeteringtype=nil, bandwidthlimittype=nil, tagset=nil, routepriorityflag=nil, routetablecount=nil, routetableflag=nil, issecuritylock=nil, routebroadcastpolicyflag=nil, routeecmpflag=nil, routeoverlapflag=nil, trafficmarkingpolicyflag=nil, routeselectpolicyflag=nil, directconnectacceleratechannelflag=nil, ipv6flag=nil, mrtbaggregatepolicyflag=nil, mrtbpolicyvalueflag=nil, routetablepolicyvaluecommunityflag=nil, policybasedroutingflag=nil, servicelevelmode=nil)
           @CcnId = ccnid
           @CcnName = ccnname
           @CcnDescription = ccndescription
@@ -2256,6 +2258,7 @@ module TencentCloud
           @MrtbPolicyValueFlag = mrtbpolicyvalueflag
           @RouteTablePolicyValueCommunityFlag = routetablepolicyvaluecommunityflag
           @PolicyBasedRoutingFlag = policybasedroutingflag
+          @ServiceLevelMode = servicelevelmode
         end
 
         def deserialize(params)
@@ -2292,55 +2295,48 @@ module TencentCloud
           @MrtbPolicyValueFlag = params['MrtbPolicyValueFlag']
           @RouteTablePolicyValueCommunityFlag = params['RouteTablePolicyValueCommunityFlag']
           @PolicyBasedRoutingFlag = params['PolicyBasedRoutingFlag']
+          @ServiceLevelMode = params['ServiceLevelMode']
         end
       end
 
       # 云联网（CCN）关联实例（Instance）对象
       class CcnAttachedInstance < TencentCloud::Common::AbstractModel
-        # @param CcnId: 云联网实例ID。
+        # @param CcnId: <p>云联网实例ID。</p>
         # @type CcnId: String
-        # @param InstanceType: 关联实例类型：
-        # <li>`VPC`：私有网络</li>
-        # <li>`DIRECTCONNECT`：专线网关</li>
-        # <li>`BMVPC`：黑石私有网络</li>
+        # @param InstanceType: <p>关联实例类型：</p><li><code>VPC</code>：私有网络</li><li><code>DIRECTCONNECT</code>：专线网关</li><li><code>BMVPC</code>：黑石私有网络</li>
         # @type InstanceType: String
-        # @param InstanceId: 关联实例ID。
+        # @param InstanceId: <p>关联实例ID。</p>
         # @type InstanceId: String
-        # @param InstanceName: 关联实例名称。
+        # @param InstanceName: <p>关联实例名称。</p>
         # @type InstanceName: String
-        # @param InstanceRegion: 关联实例所属大区，例如：ap-guangzhou。
+        # @param InstanceRegion: <p>关联实例所属大区，例如：ap-guangzhou。</p>
         # @type InstanceRegion: String
-        # @param InstanceUin: 关联实例所属UIN（根账号）。
+        # @param InstanceUin: <p>关联实例所属UIN（根账号）。</p>
         # @type InstanceUin: String
-        # @param CidrBlock: 关联实例CIDR。
+        # @param CidrBlock: <p>关联实例CIDR。</p>
         # @type CidrBlock: Array
-        # @param State: 关联实例状态：
-        # <li>`PENDING`：申请中</li>
-        # <li>`ACTIVE`：已连接</li>
-        # <li>`EXPIRED`：已过期</li>
-        # <li>`REJECTED`：已拒绝</li>
-        # <li>`DELETED`：已删除</li>
-        # <li>`FAILED`：失败的（2小时后将异步强制解关联）</li>
-        # <li>`ATTACHING`：关联中</li>
-        # <li>`DETACHING`：解关联中</li>
-        # <li>`DETACHFAILED`：解关联失败（2小时后将异步强制解关联）</li>
+        # @param State: <p>关联实例状态：</p><li><code>PENDING</code>：申请中</li><li><code>ACTIVE</code>：已连接</li><li><code>EXPIRED</code>：已过期</li><li><code>REJECTED</code>：已拒绝</li><li><code>DELETED</code>：已删除</li><li><code>FAILED</code>：失败的（2小时后将异步强制解关联）</li><li><code>ATTACHING</code>：关联中</li><li><code>DETACHING</code>：解关联中</li><li><code>DETACHFAILED</code>：解关联失败（2小时后将异步强制解关联）</li>
         # @type State: String
-        # @param AttachedTime: 关联时间。
+        # @param AttachedTime: <p>关联时间。</p>
         # @type AttachedTime: String
-        # @param CcnUin: 云联网所属UIN（根账号）。
+        # @param CcnUin: <p>云联网所属UIN（根账号）。</p>
         # @type CcnUin: String
-        # @param InstanceArea: 关联实例所属的大地域，如: CHINA_MAINLAND
+        # @param InstanceArea: <p>关联实例所属的大地域，如: CHINA_MAINLAND</p>
         # @type InstanceArea: String
-        # @param Description: 备注
+        # @param Description: <p>备注</p>
         # @type Description: String
-        # @param RouteTableId: 路由表ID
+        # @param RouteTableId: <p>路由表ID</p>
         # @type RouteTableId: String
-        # @param RouteTableName: 路由表名称
+        # @param RouteTableName: <p>路由表名称</p>
         # @type RouteTableName: String
+        # @param AliasType: <p>别名类型</p>
+        # @type AliasType: String
+        # @param AliasInstanceId: <p>别名ID</p>
+        # @type AliasInstanceId: String
 
-        attr_accessor :CcnId, :InstanceType, :InstanceId, :InstanceName, :InstanceRegion, :InstanceUin, :CidrBlock, :State, :AttachedTime, :CcnUin, :InstanceArea, :Description, :RouteTableId, :RouteTableName
+        attr_accessor :CcnId, :InstanceType, :InstanceId, :InstanceName, :InstanceRegion, :InstanceUin, :CidrBlock, :State, :AttachedTime, :CcnUin, :InstanceArea, :Description, :RouteTableId, :RouteTableName, :AliasType, :AliasInstanceId
 
-        def initialize(ccnid=nil, instancetype=nil, instanceid=nil, instancename=nil, instanceregion=nil, instanceuin=nil, cidrblock=nil, state=nil, attachedtime=nil, ccnuin=nil, instancearea=nil, description=nil, routetableid=nil, routetablename=nil)
+        def initialize(ccnid=nil, instancetype=nil, instanceid=nil, instancename=nil, instanceregion=nil, instanceuin=nil, cidrblock=nil, state=nil, attachedtime=nil, ccnuin=nil, instancearea=nil, description=nil, routetableid=nil, routetablename=nil, aliastype=nil, aliasinstanceid=nil)
           @CcnId = ccnid
           @InstanceType = instancetype
           @InstanceId = instanceid
@@ -2355,6 +2351,8 @@ module TencentCloud
           @Description = description
           @RouteTableId = routetableid
           @RouteTableName = routetablename
+          @AliasType = aliastype
+          @AliasInstanceId = aliasinstanceid
         end
 
         def deserialize(params)
@@ -2372,6 +2370,8 @@ module TencentCloud
           @Description = params['Description']
           @RouteTableId = params['RouteTableId']
           @RouteTableName = params['RouteTableName']
+          @AliasType = params['AliasType']
+          @AliasInstanceId = params['AliasInstanceId']
         end
       end
 
@@ -2797,40 +2797,44 @@ module TencentCloud
 
       # CCN路由策略对象
       class CcnRoute < TencentCloud::Common::AbstractModel
-        # @param RouteId: 路由策略ID
+        # @param RouteId: <p>路由策略ID</p>
         # @type RouteId: String
-        # @param DestinationCidrBlock: 目的端
+        # @param DestinationCidrBlock: <p>目的端</p>
         # @type DestinationCidrBlock: String
-        # @param InstanceType: 下一跳类型（关联实例类型），所有类型：VPC、DIRECTCONNECT
+        # @param InstanceType: <p>下一跳类型（关联实例类型），所有类型：VPC、DIRECTCONNECT</p>
         # @type InstanceType: String
-        # @param InstanceId: 下一跳（关联实例）
+        # @param InstanceId: <p>下一跳（关联实例）</p>
         # @type InstanceId: String
-        # @param InstanceName: 下一跳名称（关联实例名称）
+        # @param InstanceName: <p>下一跳名称（关联实例名称）</p>
         # @type InstanceName: String
-        # @param InstanceRegion: 下一跳所属地域（关联实例所属地域）
+        # @param InstanceRegion: <p>下一跳所属地域（关联实例所属地域）</p>
         # @type InstanceRegion: String
-        # @param UpdateTime: 更新时间
+        # @param UpdateTime: <p>更新时间</p>
         # @type UpdateTime: String
-        # @param Enabled: 路由是否启用
+        # @param Enabled: <p>路由是否启用</p>
         # @type Enabled: Boolean
-        # @param InstanceUin: 关联实例所属UIN（根账号）
+        # @param InstanceUin: <p>关联实例所属UIN（根账号）</p>
         # @type InstanceUin: String
-        # @param ExtraState: 路由的扩展状态
+        # @param ExtraState: <p>路由的扩展状态</p>
         # @type ExtraState: String
-        # @param IsBgp: 是否动态路由
+        # @param IsBgp: <p>是否动态路由</p>
         # @type IsBgp: Boolean
-        # @param RoutePriority: 路由优先级
+        # @param RoutePriority: <p>路由优先级</p>
         # @type RoutePriority: Integer
-        # @param InstanceExtraName: 下一跳扩展名称（关联实例的扩展名称）
+        # @param InstanceExtraName: <p>下一跳扩展名称（关联实例的扩展名称）</p>
         # @type InstanceExtraName: String
-        # @param AliasType: 实例类型
+        # @param AliasType: <p>实例类型</p>
         # @type AliasType: String
-        # @param AliasInstanceId: 实例id
+        # @param AliasInstanceId: <p>实例id</p>
         # @type AliasInstanceId: String
+        # @param RouteTableId: <p>路由表ID</p>
+        # @type RouteTableId: String
+        # @param AsPath: <p>AS-PATH</p>
+        # @type AsPath: String
 
-        attr_accessor :RouteId, :DestinationCidrBlock, :InstanceType, :InstanceId, :InstanceName, :InstanceRegion, :UpdateTime, :Enabled, :InstanceUin, :ExtraState, :IsBgp, :RoutePriority, :InstanceExtraName, :AliasType, :AliasInstanceId
+        attr_accessor :RouteId, :DestinationCidrBlock, :InstanceType, :InstanceId, :InstanceName, :InstanceRegion, :UpdateTime, :Enabled, :InstanceUin, :ExtraState, :IsBgp, :RoutePriority, :InstanceExtraName, :AliasType, :AliasInstanceId, :RouteTableId, :AsPath
 
-        def initialize(routeid=nil, destinationcidrblock=nil, instancetype=nil, instanceid=nil, instancename=nil, instanceregion=nil, updatetime=nil, enabled=nil, instanceuin=nil, extrastate=nil, isbgp=nil, routepriority=nil, instanceextraname=nil, aliastype=nil, aliasinstanceid=nil)
+        def initialize(routeid=nil, destinationcidrblock=nil, instancetype=nil, instanceid=nil, instancename=nil, instanceregion=nil, updatetime=nil, enabled=nil, instanceuin=nil, extrastate=nil, isbgp=nil, routepriority=nil, instanceextraname=nil, aliastype=nil, aliasinstanceid=nil, routetableid=nil, aspath=nil)
           @RouteId = routeid
           @DestinationCidrBlock = destinationcidrblock
           @InstanceType = instancetype
@@ -2846,6 +2850,8 @@ module TencentCloud
           @InstanceExtraName = instanceextraname
           @AliasType = aliastype
           @AliasInstanceId = aliasinstanceid
+          @RouteTableId = routetableid
+          @AsPath = aspath
         end
 
         def deserialize(params)
@@ -2864,6 +2870,8 @@ module TencentCloud
           @InstanceExtraName = params['InstanceExtraName']
           @AliasType = params['AliasType']
           @AliasInstanceId = params['AliasInstanceId']
+          @RouteTableId = params['RouteTableId']
+          @AsPath = params['AsPath']
         end
       end
 
@@ -2929,21 +2937,21 @@ module TencentCloud
 
       # 云联网路由传播策略
       class CcnRouteTableBroadcastPolicy < TencentCloud::Common::AbstractModel
-        # @param RouteConditions: 路由条件
+        # @param RouteConditions: <p>路由条件</p>
         # @type RouteConditions: Array
-        # @param BroadcastConditions: 传播条件
+        # @param BroadcastConditions: <p>传播条件</p>
         # @type BroadcastConditions: Array
-        # @param Action: 路由行为，`accept` 允许，`drop` 拒绝
+        # @param Action: <p>路由行为，<code>accept</code> 允许，<code>drop</code> 拒绝</p>
         # @type Action: String
-        # @param Description: 策略描述
+        # @param Description: <p>策略描述</p>
         # @type Description: String
-        # @param OperateAsPath: as-path操作
+        # @param OperateAsPath: <p>as-path操作</p>
         # @type OperateAsPath: String
-        # @param AsPathOperateMode: as-path操作模式
+        # @param AsPathOperateMode: <p>as-path操作模式</p>
         # @type AsPathOperateMode: String
-        # @param OperateCommunitySet: community操作
+        # @param OperateCommunitySet: <p>community操作</p>
         # @type OperateCommunitySet: Array
-        # @param CommunityOperateMode: community操作模式
+        # @param CommunityOperateMode: <p>community操作模式</p>
         # @type CommunityOperateMode: String
 
         attr_accessor :RouteConditions, :BroadcastConditions, :Action, :Description, :OperateAsPath, :AsPathOperateMode, :OperateCommunitySet, :CommunityOperateMode
@@ -3545,8 +3553,8 @@ module TencentCloud
 
         attr_accessor :ConfilctId, :DestinationItem, :ConflictId
         extend Gem::Deprecate
-        deprecate :ConfilctId, :none, 2026, 8
-        deprecate :ConfilctId=, :none, 2026, 8
+        deprecate :ConfilctId, :none, 2026, 9
+        deprecate :ConfilctId=, :none, 2026, 9
 
         def initialize(confilctid=nil, destinationitem=nil, conflictid=nil)
           @ConfilctId = confilctid
@@ -5124,8 +5132,8 @@ module TencentCloud
 
         attr_accessor :NatGatewayName, :VpcId, :InternetMaxBandwidthOut, :MaxConcurrentConnection, :AddressCount, :PublicIpAddresses, :Zone, :Tags, :SubnetId, :StockPublicIpAddressesBandwidthOut, :PublicIpAddressesBandwidthOut, :PublicIpFromSameZone, :NatProductVersion, :DeletionProtectionEnabled, :ExclusiveType
         extend Gem::Deprecate
-        deprecate :SubnetId, :none, 2026, 8
-        deprecate :SubnetId=, :none, 2026, 8
+        deprecate :SubnetId, :none, 2026, 9
+        deprecate :SubnetId=, :none, 2026, 9
 
         def initialize(natgatewayname=nil, vpcid=nil, internetmaxbandwidthout=nil, maxconcurrentconnection=nil, addresscount=nil, publicipaddresses=nil, zone=nil, tags=nil, subnetid=nil, stockpublicipaddressesbandwidthout=nil, publicipaddressesbandwidthout=nil, publicipfromsamezone=nil, natproductversion=nil, deletionprotectionenabled=nil, exclusivetype=nil)
           @NatGatewayName = natgatewayname
@@ -6968,8 +6976,8 @@ module TencentCloud
 
         attr_accessor :VpcId, :EndPointServiceName, :AutoAcceptFlag, :ServiceInstanceId, :IsPassService, :ServiceType, :Tags, :IpAddressType
         extend Gem::Deprecate
-        deprecate :IsPassService, :none, 2026, 8
-        deprecate :IsPassService=, :none, 2026, 8
+        deprecate :IsPassService, :none, 2026, 9
+        deprecate :IsPassService=, :none, 2026, 9
 
         def initialize(vpcid=nil, endpointservicename=nil, autoacceptflag=nil, serviceinstanceid=nil, ispassservice=nil, servicetype=nil, tags=nil, ipaddresstype=nil)
           @VpcId = vpcid
@@ -7286,8 +7294,8 @@ module TencentCloud
 
         attr_accessor :VpnGatewayId, :CustomerGatewayId, :VpnConnectionName, :PreShareKey, :VpcId, :SecurityPolicyDatabases, :IKEOptionsSpecification, :IPSECOptionsSpecification, :Tags, :EnableHealthCheck, :HealthCheckLocalIp, :HealthCheckRemoteIp, :RouteType, :NegotiationType, :DpdEnable, :DpdTimeout, :DpdAction, :Route, :BgpConfig, :HealthCheckConfig
         extend Gem::Deprecate
-        deprecate :Route, :none, 2026, 8
-        deprecate :Route=, :none, 2026, 8
+        deprecate :Route, :none, 2026, 9
+        deprecate :Route=, :none, 2026, 9
 
         def initialize(vpngatewayid=nil, customergatewayid=nil, vpnconnectionname=nil, presharekey=nil, vpcid=nil, securitypolicydatabases=nil, ikeoptionsspecification=nil, ipsecoptionsspecification=nil, tags=nil, enablehealthcheck=nil, healthchecklocalip=nil, healthcheckremoteip=nil, routetype=nil, negotiationtype=nil, dpdenable=nil, dpdtimeout=nil, dpdaction=nil, route=nil, bgpconfig=nil, healthcheckconfig=nil)
           @VpnGatewayId = vpngatewayid
@@ -16910,8 +16918,8 @@ module TencentCloud
 
         attr_accessor :VpcEndpointServiceUserSet, :VpcEndPointServiceUserSet, :TotalCount, :RequestId
         extend Gem::Deprecate
-        deprecate :VpcEndpointServiceUserSet, :none, 2026, 8
-        deprecate :VpcEndpointServiceUserSet=, :none, 2026, 8
+        deprecate :VpcEndpointServiceUserSet, :none, 2026, 9
+        deprecate :VpcEndpointServiceUserSet=, :none, 2026, 9
 
         def initialize(vpcendpointserviceuserset=nil, totalcount=nil, requestid=nil)
           @VpcEndPointServiceUserSet = vpcendpointserviceuserset
@@ -20205,8 +20213,8 @@ module TencentCloud
 
         attr_accessor :EncryptAlgorithm, :IntegrityAlgorith, :IPSECSaLifetimeSeconds, :PfsDhGroup, :IPSECSaLifetimeTraffic, :IntegrityAlgorithm
         extend Gem::Deprecate
-        deprecate :IntegrityAlgorith, :none, 2026, 8
-        deprecate :IntegrityAlgorith=, :none, 2026, 8
+        deprecate :IntegrityAlgorith, :none, 2026, 9
+        deprecate :IntegrityAlgorith=, :none, 2026, 9
 
         def initialize(encryptalgorithm=nil, integrityalgorith=nil, ipsecsalifetimeseconds=nil, pfsdhgroup=nil, ipsecsalifetimetraffic=nil, integrityalgorithm=nil)
           @EncryptAlgorithm = encryptalgorithm
@@ -20601,37 +20609,32 @@ module TencentCloud
 
       # 云联网实例绑定路由表信息
       class InstanceBind < TencentCloud::Common::AbstractModel
-        # @param CcnId: 云联网ID。
+        # @param CcnId: <p>云联网ID。</p>
         # @type CcnId: String
-        # @param InstanceType: 实例类型：VPC，DIRECTCONNECT，BMVPC，EDGE，EDGE_TUNNEL，EDGE_VPNGW，VPNGW。
+        # @param InstanceType: <p>实例类型：VPC，DIRECTCONNECT，BMVPC，EDGE，EDGE_TUNNEL，EDGE_VPNGW，VPNGW。</p>
         # @type InstanceType: String
-        # @param InstanceId: 实例ID。
+        # @param InstanceId: <p>实例ID。</p>
         # @type InstanceId: String
-        # @param InstanceBindTime: 实例绑定路由表的时间。
+        # @param InstanceBindTime: <p>实例绑定路由表的时间。</p>
         # @type InstanceBindTime: String
-        # @param RouteTableId: 路由表ID。
+        # @param RouteTableId: <p>路由表ID。</p>
         # @type RouteTableId: String
-        # @param InstanceName: 实例名称。
+        # @param InstanceName: <p>实例名称。</p>
         # @type InstanceName: String
-        # @param InstanceRegion: 实例所在地域。
+        # @param InstanceRegion: <p>实例所在地域。</p>
         # @type InstanceRegion: String
-        # @param InstanceUin: 实例所属的账户uin。
+        # @param InstanceUin: <p>实例所属的账户uin。</p>
         # @type InstanceUin: String
-        # @param State: 关联实例状态：
-        # <li>`PENDING`：申请中</li>
-        # <li>`ACTIVE`：已连接</li>
-        # <li>`EXPIRED`：已过期</li>
-        # <li>`REJECTED`：已拒绝</li>
-        # <li>`DELETED`：已删除</li>
-        # <li>`FAILED`：失败的（2小时后将异步强制解关联）</li>
-        # <li>`ATTACHING`：关联中</li>
-        # <li>`DETACHING`：解关联中</li>
-        # <li>`DETACHFAILED`：解关联失败（2小时后将异步强制解关联）</li>
+        # @param State: <p>关联实例状态：</p><li><code>PENDING</code>：申请中</li><li><code>ACTIVE</code>：已连接</li><li><code>EXPIRED</code>：已过期</li><li><code>REJECTED</code>：已拒绝</li><li><code>DELETED</code>：已删除</li><li><code>FAILED</code>：失败的（2小时后将异步强制解关联）</li><li><code>ATTACHING</code>：关联中</li><li><code>DETACHING</code>：解关联中</li><li><code>DETACHFAILED</code>：解关联失败（2小时后将异步强制解关联）</li>
         # @type State: String
+        # @param AliasType: <p>别名类型</p>
+        # @type AliasType: String
+        # @param AliasInstanceId: <p>别名实例ID</p>
+        # @type AliasInstanceId: String
 
-        attr_accessor :CcnId, :InstanceType, :InstanceId, :InstanceBindTime, :RouteTableId, :InstanceName, :InstanceRegion, :InstanceUin, :State
+        attr_accessor :CcnId, :InstanceType, :InstanceId, :InstanceBindTime, :RouteTableId, :InstanceName, :InstanceRegion, :InstanceUin, :State, :AliasType, :AliasInstanceId
 
-        def initialize(ccnid=nil, instancetype=nil, instanceid=nil, instancebindtime=nil, routetableid=nil, instancename=nil, instanceregion=nil, instanceuin=nil, state=nil)
+        def initialize(ccnid=nil, instancetype=nil, instanceid=nil, instancebindtime=nil, routetableid=nil, instancename=nil, instanceregion=nil, instanceuin=nil, state=nil, aliastype=nil, aliasinstanceid=nil)
           @CcnId = ccnid
           @InstanceType = instancetype
           @InstanceId = instanceid
@@ -20641,6 +20644,8 @@ module TencentCloud
           @InstanceRegion = instanceregion
           @InstanceUin = instanceuin
           @State = state
+          @AliasType = aliastype
+          @AliasInstanceId = aliasinstanceid
         end
 
         def deserialize(params)
@@ -20653,6 +20658,8 @@ module TencentCloud
           @InstanceRegion = params['InstanceRegion']
           @InstanceUin = params['InstanceUin']
           @State = params['State']
+          @AliasType = params['AliasType']
+          @AliasInstanceId = params['AliasInstanceId']
         end
       end
 
@@ -21617,10 +21624,10 @@ module TencentCloud
 
         attr_accessor :AddressIds, :InternetMaxBandwidthOut, :StartTime, :EndTime
         extend Gem::Deprecate
-        deprecate :StartTime, :none, 2026, 8
-        deprecate :StartTime=, :none, 2026, 8
-        deprecate :EndTime, :none, 2026, 8
-        deprecate :EndTime=, :none, 2026, 8
+        deprecate :StartTime, :none, 2026, 9
+        deprecate :StartTime=, :none, 2026, 9
+        deprecate :EndTime, :none, 2026, 9
+        deprecate :EndTime=, :none, 2026, 9
 
         def initialize(addressids=nil, internetmaxbandwidthout=nil, starttime=nil, endtime=nil)
           @AddressIds = addressids

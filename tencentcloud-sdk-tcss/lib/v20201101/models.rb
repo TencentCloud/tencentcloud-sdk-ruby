@@ -20280,17 +20280,14 @@ module TencentCloud
 
       # DescribeVirusMonitorConfig返回参数结构体
       class DescribeVirusMonitorConfigResponse < TencentCloud::Common::AbstractModel
-        # @param EnableScan: 是否开启实时监控
+        # @param EnableScan: <p>是否开启实时监控</p>
         # @type EnableScan: Boolean
-        # @param IsIncludePath: true:包含路径 false:排除路径
+        # @param IsIncludePath: <p>true:包含路径 false:排除路径</p>
         # @type IsIncludePath: Boolean
-        # @param ScanPath: 自选排除或扫描的地址
+        # @param ScanPath: <p>自选排除或扫描的地址</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScanPath: Array
-        # @param ScanPathMode: 扫描路径模式：
-        # SCAN_PATH_ALL：全部路径
-        # SCAN_PATH_DEFAULT：默认路径
-        # SCAN_PATH_USER_DEFINE：用户自定义路径
+        # @param ScanPathMode: <p>扫描路径模式：<br>SCAN_PATH_ALL：全部路径<br>SCAN_PATH_DEFAULT：默认路径<br>SCAN_PATH_USER_DEFINE：用户自定义路径</p>
         # @type ScanPathMode: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -20413,28 +20410,23 @@ module TencentCloud
 
       # DescribeVirusScanConfig返回参数结构体
       class DescribeVirusScanConfigResponse < TencentCloud::Common::AbstractModel
-        # @param EnableScan: 是否开启定期扫描
+        # @param EnableScan: <p>是否开启定期扫描</p>
         # @type EnableScan: Boolean
-        # @param Cycle: 检测周期每隔多少天
+        # @param Cycle: <p>检测周期每隔多少天</p>
         # @type Cycle: Integer
-        # @param BeginScanAt: 扫描开始时间
+        # @param BeginScanAt: <p>扫描开始时间</p>
         # @type BeginScanAt: String
-        # @param Timeout: 超时时长，单位小时
+        # @param Timeout: <p>超时时长，单位小时</p>
         # @type Timeout: Integer
-        # @param ScanRangeType: SCAN_NODE:扫描节点
-        # SCAN_CONTAINER:扫描容器
+        # @param ScanRangeType: <p>SCAN_NODE:扫描节点<br>SCAN_CONTAINER:扫描容器</p>
         # @type ScanRangeType: String
-        # @param ScanIDs: 自选扫描范围的容器id或者节点id
+        # @param ScanIDs: <p>自选扫描范围的容器id或者节点id</p>
         # @type ScanIDs: Array
-        # @param ScanPath: 自选排除或扫描的地址
+        # @param ScanPath: <p>自选排除或扫描的地址</p>
         # @type ScanPath: Array
-        # @param ScanPathMode: 扫描路径模式：
-        # SCAN_PATH_ALL：全部路径
-        # SCAN_PATH_DEFAULT：默认路径
-        # SCAN_PATH_USER_DEFINE：用户自定义路径
+        # @param ScanPathMode: <p>扫描路径模式：<br>SCAN_PATH_ALL：全部路径<br>SCAN_PATH_DEFAULT：默认路径<br>SCAN_PATH_USER_DEFINE：用户自定义路径</p>
         # @type ScanPathMode: String
-        # @param IsIncludePath: true:包含路径
-        # false:排除路径
+        # @param IsIncludePath: <p>true:包含路径<br>false:排除路径</p>
         # @type IsIncludePath: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

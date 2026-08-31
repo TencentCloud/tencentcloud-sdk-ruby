@@ -79,6 +79,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 音色设计，根据prompt生成音色ID。克隆/设计音色数量上限默认100
+
+        # @param request: Request instance for CloneVoiceAsync.
+        # @type request: :class:`Tencentcloud::vod::V20180717::CloneVoiceAsyncRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::CloneVoiceAsyncResponse`
+        def CloneVoiceAsync(request)
+          body = send_request('CloneVoiceAsync', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CloneVoiceAsyncResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口用于确认媒体文件（和封面文件）上传到腾讯云点播的结果，并存储媒体信息，返回文件的播放地址和文件 ID。
 
         # @param request: Request instance for CommitUpload.
@@ -2140,6 +2164,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 音色设计，根据prompt生成音色ID。克隆/设计音色数量上限默认100
+
+        # @param request: Request instance for DeleteVoice.
+        # @type request: :class:`Tencentcloud::vod::V20180717::DeleteVoiceRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::DeleteVoiceResponse`
+        def DeleteVoice(request)
+          body = send_request('DeleteVoice', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteVoiceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除用户自定义水印模板。
 
         # @param request: Request instance for DeleteWatermarkTemplate.
@@ -3790,6 +3838,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 音色设计，根据prompt生成音色ID。克隆/设计音色数量上限默认100
+
+        # @param request: Request instance for DescribeVoices.
+        # @type request: :class:`Tencentcloud::vod::V20180717::DescribeVoicesRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::DescribeVoicesResponse`
+        def DescribeVoices(request)
+          body = send_request('DescribeVoices', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeVoicesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询用户自定义水印模板，支持根据条件，分页查询。
 
         # @param request: Request instance for DescribeWatermarkTemplates.
@@ -3824,6 +3896,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeWordSamplesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 音色设计，根据prompt生成音色ID。克隆/设计音色数量上限默认100
+
+        # @param request: Request instance for DesignVoiceAsync.
+        # @type request: :class:`Tencentcloud::vod::V20180717::DesignVoiceAsyncRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::DesignVoiceAsyncResponse`
+        def DesignVoiceAsync(request)
+          body = send_request('DesignVoiceAsync', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DesignVoiceAsyncResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -5861,6 +5957,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 音色设计，根据prompt生成音色ID。克隆/设计音色数量上限默认100
+
+        # @param request: Request instance for TextToSpeechAsync.
+        # @type request: :class:`Tencentcloud::vod::V20180717::TextToSpeechAsyncRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::TextToSpeechAsyncResponse`
+        def TextToSpeechAsync(request)
+          body = send_request('TextToSpeechAsync', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = TextToSpeechAsyncResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建AIGC调用API的Token。创建后数据同步有延时，约30秒后可查询或删除。
 
         # @param request: Request instance for UpdateAigcApiToken.
@@ -5871,6 +5991,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpdateAigcApiTokenResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 音色设计，根据prompt生成音色ID。克隆/设计音色数量上限默认100
+
+        # @param request: Request instance for UpdateVoice.
+        # @type request: :class:`Tencentcloud::vod::V20180717::UpdateVoiceRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::UpdateVoiceResponse`
+        def UpdateVoice(request)
+          body = send_request('UpdateVoice', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateVoiceResponse.new
             model.deserialize(response['Response'])
             model
           else

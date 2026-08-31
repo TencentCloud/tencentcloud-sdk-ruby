@@ -1294,10 +1294,10 @@ module TencentCloud
 
         attr_accessor :Id, :ClusterId, :Ftitle, :ClusterName, :RegionId, :ZoneId, :AppId, :Uin, :ProjectId, :VpcId, :SubnetId, :Status, :AddTime, :RunTime, :Config, :MasterIp, :EmrVersion, :ChargeType, :TradeVersion, :ResourceOrderId, :IsTradeCluster, :AlarmInfo, :IsWoodpeckerCluster, :MetaDb, :Tags, :HiveMetaDb, :ServiceClass, :AliasInfo, :ProductId, :Zone, :SceneName, :SceneServiceClass, :SceneEmrVersion, :DisplayName, :VpcName, :SubnetName, :ClusterExternalServiceInfo, :UniqVpcId, :UniqSubnetId, :TopologyInfoList, :IsMultiZoneCluster, :IsCvmReplace, :ClusterTitle, :ConfigDetail, :BindFileSystemNum, :ClusterRelationInfoList, :RedisId, :IsIOHungSelfRecovery, :MetaDBGroupInfo
         extend Gem::Deprecate
-        deprecate :Ftitle, :none, 2026, 8
-        deprecate :Ftitle=, :none, 2026, 8
-        deprecate :Config, :none, 2026, 8
-        deprecate :Config=, :none, 2026, 8
+        deprecate :Ftitle, :none, 2026, 9
+        deprecate :Ftitle=, :none, 2026, 9
+        deprecate :Config, :none, 2026, 9
+        deprecate :Config=, :none, 2026, 9
 
         def initialize(id=nil, clusterid=nil, ftitle=nil, clustername=nil, regionid=nil, zoneid=nil, appid=nil, uin=nil, projectid=nil, vpcid=nil, subnetid=nil, status=nil, addtime=nil, runtime=nil, config=nil, masterip=nil, emrversion=nil, chargetype=nil, tradeversion=nil, resourceorderid=nil, istradecluster=nil, alarminfo=nil, iswoodpeckercluster=nil, metadb=nil, tags=nil, hivemetadb=nil, serviceclass=nil, aliasinfo=nil, productid=nil, zone=nil, scenename=nil, sceneserviceclass=nil, sceneemrversion=nil, displayname=nil, vpcname=nil, subnetname=nil, clusterexternalserviceinfo=nil, uniqvpcid=nil, uniqsubnetid=nil, topologyinfolist=nil, ismultizonecluster=nil, iscvmreplace=nil, clustertitle=nil, configdetail=nil, bindfilesystemnum=nil, clusterrelationinfolist=nil, redisid=nil, isiohungselfrecovery=nil, metadbgroupinfo=nil)
           @Id = id
@@ -11322,22 +11322,25 @@ module TencentCloud
 
       # ModifySLInstance请求参数结构体
       class ModifySLInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例唯一标识符（字符串表示）。
+        # @param InstanceId: <p>实例唯一标识符（字符串表示）。</p>
         # @type InstanceId: String
-        # @param Zone: 需要变更的区域名称。
+        # @param Zone: <p>需要变更的区域名称。</p>
         # @type Zone: String
-        # @param NodeNum: 该区域变配后的目标节点数量，所有区域节点总数应大于等于3，小于等于50。
+        # @param NodeNum: <p>该区域变配后的目标节点数量，所有区域节点总数应大于等于3，小于等于50。</p>
         # @type NodeNum: Integer
-        # @param ClientToken: 唯一随机标识，时效性为5分钟，需要调用者指定 防止客户端重复创建资源，例如 a9a90aa6-****-****-****-fae360632808
+        # @param ClientToken: <p>唯一随机标识，时效性为5分钟，需要调用者指定 防止客户端重复创建资源，例如 a9a90aa6-<strong><strong>-</strong></strong>-****-fae360632808</p>
         # @type ClientToken: String
+        # @param DiskSize: <p>存储空间大小，需要是100的倍数，且不允许比当前存储空间小（只允许扩容）</p><p>单位：GB</p>
+        # @type DiskSize: Integer
 
-        attr_accessor :InstanceId, :Zone, :NodeNum, :ClientToken
+        attr_accessor :InstanceId, :Zone, :NodeNum, :ClientToken, :DiskSize
 
-        def initialize(instanceid=nil, zone=nil, nodenum=nil, clienttoken=nil)
+        def initialize(instanceid=nil, zone=nil, nodenum=nil, clienttoken=nil, disksize=nil)
           @InstanceId = instanceid
           @Zone = zone
           @NodeNum = nodenum
           @ClientToken = clienttoken
+          @DiskSize = disksize
         end
 
         def deserialize(params)
@@ -11345,6 +11348,7 @@ module TencentCloud
           @Zone = params['Zone']
           @NodeNum = params['NodeNum']
           @ClientToken = params['ClientToken']
+          @DiskSize = params['DiskSize']
         end
       end
 
@@ -15782,12 +15786,12 @@ module TencentCloud
 
         attr_accessor :DetectAlert, :DetetcFunctionKey, :DetetcFunctionValue, :DetetcTime, :DetectFunctionKey, :DetectFunctionValue, :DetectTime
         extend Gem::Deprecate
-        deprecate :DetetcFunctionKey, :none, 2026, 8
-        deprecate :DetetcFunctionKey=, :none, 2026, 8
-        deprecate :DetetcFunctionValue, :none, 2026, 8
-        deprecate :DetetcFunctionValue=, :none, 2026, 8
-        deprecate :DetetcTime, :none, 2026, 8
-        deprecate :DetetcTime=, :none, 2026, 8
+        deprecate :DetetcFunctionKey, :none, 2026, 9
+        deprecate :DetetcFunctionKey=, :none, 2026, 9
+        deprecate :DetetcFunctionValue, :none, 2026, 9
+        deprecate :DetetcFunctionValue=, :none, 2026, 9
+        deprecate :DetetcTime, :none, 2026, 9
+        deprecate :DetetcTime=, :none, 2026, 9
 
         def initialize(detectalert=nil, detetcfunctionkey=nil, detetcfunctionvalue=nil, detetctime=nil, detectfunctionkey=nil, detectfunctionvalue=nil, detecttime=nil)
           @DetectAlert = detectalert

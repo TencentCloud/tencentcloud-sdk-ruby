@@ -1611,8 +1611,8 @@ module TencentCloud
 
         attr_accessor :ProjectId, :RoleIdList, :UserList, :UserInfoList
         extend Gem::Deprecate
-        deprecate :UserList, :none, 2026, 6
-        deprecate :UserList=, :none, 2026, 6
+        deprecate :UserList, :none, 2026, 8
+        deprecate :UserList=, :none, 2026, 8
 
         def initialize(projectid=nil, roleidlist=nil, userlist=nil, userinfolist=nil)
           @ProjectId = projectid
@@ -1698,8 +1698,8 @@ module TencentCloud
 
         attr_accessor :RoleIdList, :UserList, :UserInfoList, :UserGroups
         extend Gem::Deprecate
-        deprecate :UserList, :none, 2026, 6
-        deprecate :UserList=, :none, 2026, 6
+        deprecate :UserList, :none, 2026, 8
+        deprecate :UserList=, :none, 2026, 8
 
         def initialize(roleidlist=nil, userlist=nil, userinfolist=nil, usergroups=nil)
           @RoleIdList = roleidlist
@@ -3664,24 +3664,26 @@ module TencentCloud
 
       # DescribeUserRoleList请求参数结构体
       class DescribeUserRoleListRequest < TencentCloud::Common::AbstractModel
-        # @param PageNo: 页码
+        # @param PageNo: <p>页码</p>
         # @type PageNo: Integer
-        # @param PageSize: 页数
+        # @param PageSize: <p>页数</p>
         # @type PageSize: Integer
-        # @param AllPage: 全部页码
+        # @param AllPage: <p>全部页码</p>
         # @type AllPage: Boolean
-        # @param UserType: 0 企业用户 1 访客 不填表示所有用户
+        # @param UserType: <p>0 企业用户 1 访客 不填表示所有用户</p>
         # @type UserType: String
-        # @param Keyword: 模糊搜索的关键字
+        # @param Keyword: <p>模糊搜索的关键字</p>
         # @type Keyword: String
-        # @param ProjectId: 项目id
+        # @param ProjectId: <p>项目id</p>
         # @type ProjectId: String
-        # @param IsOnlyBindAppUser: 是否只获取绑定企微应用的
+        # @param IsOnlyBindAppUser: <p>是否只获取绑定企微应用的</p>
         # @type IsOnlyBindAppUser: Boolean
+        # @param IdentityType: <p>用户类型</p>
+        # @type IdentityType: String
 
-        attr_accessor :PageNo, :PageSize, :AllPage, :UserType, :Keyword, :ProjectId, :IsOnlyBindAppUser
+        attr_accessor :PageNo, :PageSize, :AllPage, :UserType, :Keyword, :ProjectId, :IsOnlyBindAppUser, :IdentityType
 
-        def initialize(pageno=nil, pagesize=nil, allpage=nil, usertype=nil, keyword=nil, projectid=nil, isonlybindappuser=nil)
+        def initialize(pageno=nil, pagesize=nil, allpage=nil, usertype=nil, keyword=nil, projectid=nil, isonlybindappuser=nil, identitytype=nil)
           @PageNo = pageno
           @PageSize = pagesize
           @AllPage = allpage
@@ -3689,6 +3691,7 @@ module TencentCloud
           @Keyword = keyword
           @ProjectId = projectid
           @IsOnlyBindAppUser = isonlybindappuser
+          @IdentityType = identitytype
         end
 
         def deserialize(params)
@@ -3699,6 +3702,7 @@ module TencentCloud
           @Keyword = params['Keyword']
           @ProjectId = params['ProjectId']
           @IsOnlyBindAppUser = params['IsOnlyBindAppUser']
+          @IdentityType = params['IdentityType']
         end
       end
 
@@ -3707,13 +3711,13 @@ module TencentCloud
         # @param ErrorInfo: 自定义错误信息对象
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
-        # @param Extra: 扩展描述信息(提供更多异常信息,用于辅助判断)
+        # @param Extra: <p>扩展描述信息(提供更多异常信息,用于辅助判断)</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Extra: String
-        # @param Data: 数据
+        # @param Data: <p>数据</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Bi.v20220105.models.UserRoleListData`
-        # @param Msg: 消息
+        # @param Msg: <p>消息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Msg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -7312,10 +7316,13 @@ module TencentCloud
         # @param LarkOpenId: <p>飞书OpenId</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LarkOpenId: String
+        # @param IdentityType: <p>用户类型</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IdentityType: String
 
-        attr_accessor :UserId, :UserName, :Email, :PhoneNumber, :AreaCode, :AppUserId, :AppUserName, :LarkOpenId
+        attr_accessor :UserId, :UserName, :Email, :PhoneNumber, :AreaCode, :AppUserId, :AppUserName, :LarkOpenId, :IdentityType
 
-        def initialize(userid=nil, username=nil, email=nil, phonenumber=nil, areacode=nil, appuserid=nil, appusername=nil, larkopenid=nil)
+        def initialize(userid=nil, username=nil, email=nil, phonenumber=nil, areacode=nil, appuserid=nil, appusername=nil, larkopenid=nil, identitytype=nil)
           @UserId = userid
           @UserName = username
           @Email = email
@@ -7324,6 +7331,7 @@ module TencentCloud
           @AppUserId = appuserid
           @AppUserName = appusername
           @LarkOpenId = larkopenid
+          @IdentityType = identitytype
         end
 
         def deserialize(params)
@@ -7335,6 +7343,7 @@ module TencentCloud
           @AppUserId = params['AppUserId']
           @AppUserName = params['AppUserName']
           @LarkOpenId = params['LarkOpenId']
+          @IdentityType = params['IdentityType']
         end
       end
 
@@ -7455,78 +7464,81 @@ module TencentCloud
 
       # 用户角色信息
       class UserRoleListDataUserRoleInfo < TencentCloud::Common::AbstractModel
-        # @param Id: 业务ID
+        # @param Id: <p>业务ID</p>
         # @type Id: Integer
-        # @param RoleList: 角色列表
+        # @param RoleList: <p>角色列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RoleList: Array
-        # @param RoleIdList: 角色ID列表
+        # @param RoleIdList: <p>角色ID列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RoleIdList: Array
-        # @param UserId: 用户ID
+        # @param UserId: <p>用户ID</p>
         # @type UserId: String
-        # @param UserName: 用户名
+        # @param UserName: <p>用户名</p>
         # @type UserName: String
-        # @param CorpId: 企业ID
+        # @param CorpId: <p>企业ID</p>
         # @type CorpId: String
-        # @param Email: 邮箱
+        # @param Email: <p>邮箱</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Email: String
-        # @param CreatedUser: 创建人
+        # @param CreatedUser: <p>创建人</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedUser: String
-        # @param CreatedAt: 创建时间
+        # @param CreatedAt: <p>创建时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedAt: String
-        # @param UpdatedUser: 更新人
+        # @param UpdatedUser: <p>更新人</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdatedUser: String
-        # @param UpdatedAt: 更新时间
+        # @param UpdatedAt: <p>更新时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdatedAt: String
-        # @param LastLogin: 最后一次登录时间
+        # @param LastLogin: <p>最后一次登录时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastLogin: String
-        # @param Status: 账号状态
+        # @param Status: <p>账号状态</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
-        # @param PhoneNumber: 手机号码
+        # @param PhoneNumber: <p>手机号码</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PhoneNumber: String
-        # @param AreaCode: 手机号区号
+        # @param AreaCode: <p>手机号区号</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AreaCode: String
-        # @param RootAccount: 是否为主账号
+        # @param RootAccount: <p>是否为主账号</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RootAccount: Boolean
-        # @param CorpAdmin: 是否为企业管理员
+        # @param CorpAdmin: <p>是否为企业管理员</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CorpAdmin: Boolean
-        # @param AppUserId: 企微用户id
+        # @param AppUserId: <p>企微用户id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppUserId: String
-        # @param AppUserAliasName: 昵称
+        # @param AppUserAliasName: <p>昵称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppUserAliasName: String
-        # @param AppUserName: 应用用户名
+        # @param AppUserName: <p>应用用户名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppUserName: String
-        # @param InValidateAppRange: 是否在可见范围内
+        # @param InValidateAppRange: <p>是否在可见范围内</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InValidateAppRange: Boolean
-        # @param AppOpenUserId: 用户openid
+        # @param AppOpenUserId: <p>用户openid</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppOpenUserId: String
-        # @param EmailActivationStatus: 邮箱激活状态
+        # @param EmailActivationStatus: <p>邮箱激活状态</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EmailActivationStatus: Integer
-        # @param UserGroupList: 用户组信息
+        # @param UserGroupList: <p>用户组信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserGroupList: Array
+        # @param IdentityType: <p>用户类型</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IdentityType: String
 
-        attr_accessor :Id, :RoleList, :RoleIdList, :UserId, :UserName, :CorpId, :Email, :CreatedUser, :CreatedAt, :UpdatedUser, :UpdatedAt, :LastLogin, :Status, :PhoneNumber, :AreaCode, :RootAccount, :CorpAdmin, :AppUserId, :AppUserAliasName, :AppUserName, :InValidateAppRange, :AppOpenUserId, :EmailActivationStatus, :UserGroupList
+        attr_accessor :Id, :RoleList, :RoleIdList, :UserId, :UserName, :CorpId, :Email, :CreatedUser, :CreatedAt, :UpdatedUser, :UpdatedAt, :LastLogin, :Status, :PhoneNumber, :AreaCode, :RootAccount, :CorpAdmin, :AppUserId, :AppUserAliasName, :AppUserName, :InValidateAppRange, :AppOpenUserId, :EmailActivationStatus, :UserGroupList, :IdentityType
 
-        def initialize(id=nil, rolelist=nil, roleidlist=nil, userid=nil, username=nil, corpid=nil, email=nil, createduser=nil, createdat=nil, updateduser=nil, updatedat=nil, lastlogin=nil, status=nil, phonenumber=nil, areacode=nil, rootaccount=nil, corpadmin=nil, appuserid=nil, appuseraliasname=nil, appusername=nil, invalidateapprange=nil, appopenuserid=nil, emailactivationstatus=nil, usergrouplist=nil)
+        def initialize(id=nil, rolelist=nil, roleidlist=nil, userid=nil, username=nil, corpid=nil, email=nil, createduser=nil, createdat=nil, updateduser=nil, updatedat=nil, lastlogin=nil, status=nil, phonenumber=nil, areacode=nil, rootaccount=nil, corpadmin=nil, appuserid=nil, appuseraliasname=nil, appusername=nil, invalidateapprange=nil, appopenuserid=nil, emailactivationstatus=nil, usergrouplist=nil, identitytype=nil)
           @Id = id
           @RoleList = rolelist
           @RoleIdList = roleidlist
@@ -7551,6 +7563,7 @@ module TencentCloud
           @AppOpenUserId = appopenuserid
           @EmailActivationStatus = emailactivationstatus
           @UserGroupList = usergrouplist
+          @IdentityType = identitytype
         end
 
         def deserialize(params)
@@ -7592,6 +7605,7 @@ module TencentCloud
               @UserGroupList << usergroupdto_tmp
             end
           end
+          @IdentityType = params['IdentityType']
         end
       end
 

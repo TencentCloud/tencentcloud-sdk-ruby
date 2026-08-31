@@ -2012,6 +2012,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询站点规则引擎操作可用的定制配置列表。
+
+        # @param request: Request instance for DescribeAvailableCustomActionsForRuleEngine.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeAvailableCustomActionsForRuleEngineRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeAvailableCustomActionsForRuleEngineResponse`
+        def DescribeAvailableCustomActionsForRuleEngine(request)
+          body = send_request('DescribeAvailableCustomActionsForRuleEngine', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAvailableCustomActionsForRuleEngineResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询当前账户可用套餐信息列表
 
         # @param request: Request instance for DescribeAvailablePlans.

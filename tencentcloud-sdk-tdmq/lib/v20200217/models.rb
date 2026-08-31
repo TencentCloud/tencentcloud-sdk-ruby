@@ -1505,7 +1505,7 @@ module TencentCloud
 
       # CreateProCluster请求参数结构体
       class CreateProClusterRequest < TencentCloud::Common::AbstractModel
-        # @param ZoneIds: <p>多可用区部署选择三个可用区，示例[200002,200003,200004]<br>单可用区部署选择一个可用区，示例[200002]</p><p>当选择PULSAR.P2.MINI1 时只支持两个可用区，其他支持三个可用区</p>
+        # @param ZoneIds: <p>多可用区部署选择三个可用区，示例[200002,200003,200004]<br>单可用区部署选择一个可用区，示例[200002]</p><p>专业版：当选择PULSAR.P2.MINI1时只支持两个可用区，其他规格支持三个可用区<br>标准版（PULSAR.S2系列）：只支持两个可用区</p>
         # @type ZoneIds: Array
         # @param ProductName: <p>集群规格代号<br>参考 <a href="https://cloud.tencent.com/document/product/1179/83705">专业集群规格</a></p>
         # @type ProductName: String
@@ -1525,10 +1525,14 @@ module TencentCloud
         # @type Tags: Array
         # @param InstanceVersion: <p>集群版本信息</p>
         # @type InstanceVersion: String
+        # @param UserTenant: <p>用户自定义租户名，可选。<br>不能为空，支持数字、字母以及符号 “-_=:.”，长度不超过 64 个字符。<br>未传时使用默认规则（实例 ID 作为租户名）。</p>
+        # @type UserTenant: String
+        # @param ElasticTpsEnabled: <p>是否开启弹性TPS（1：开启，0：关闭），仅专业版P1固定存储集群支持</p>
+        # @type ElasticTpsEnabled: Integer
 
-        attr_accessor :ZoneIds, :ProductName, :AutoRenewFlag, :TimeSpan, :ClusterName, :AutoVoucher, :StorageSize, :Vpc, :Tags, :InstanceVersion
+        attr_accessor :ZoneIds, :ProductName, :AutoRenewFlag, :TimeSpan, :ClusterName, :AutoVoucher, :StorageSize, :Vpc, :Tags, :InstanceVersion, :UserTenant, :ElasticTpsEnabled
 
-        def initialize(zoneids=nil, productname=nil, autorenewflag=nil, timespan=nil, clustername=nil, autovoucher=nil, storagesize=nil, vpc=nil, tags=nil, instanceversion=nil)
+        def initialize(zoneids=nil, productname=nil, autorenewflag=nil, timespan=nil, clustername=nil, autovoucher=nil, storagesize=nil, vpc=nil, tags=nil, instanceversion=nil, usertenant=nil, elastictpsenabled=nil)
           @ZoneIds = zoneids
           @ProductName = productname
           @AutoRenewFlag = autorenewflag
@@ -1539,6 +1543,8 @@ module TencentCloud
           @Vpc = vpc
           @Tags = tags
           @InstanceVersion = instanceversion
+          @UserTenant = usertenant
+          @ElasticTpsEnabled = elastictpsenabled
         end
 
         def deserialize(params)
@@ -1562,6 +1568,8 @@ module TencentCloud
             end
           end
           @InstanceVersion = params['InstanceVersion']
+          @UserTenant = params['UserTenant']
+          @ElasticTpsEnabled = params['ElasticTpsEnabled']
         end
       end
 
@@ -5162,11 +5170,11 @@ module TencentCloud
 
       # DescribePulsarProInstances请求参数结构体
       class DescribePulsarProInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: 查询条件过滤器
+        # @param Filters: <p>查询条件过滤器</p>
         # @type Filters: Array
-        # @param Limit: 查询数目上限，默认20
+        # @param Limit: <p>查询数目上限，默认20</p>
         # @type Limit: Integer
-        # @param Offset: 查询起始位置
+        # @param Offset: <p>查询起始位置</p>
         # @type Offset: Integer
 
         attr_accessor :Filters, :Limit, :Offset
@@ -5193,9 +5201,9 @@ module TencentCloud
 
       # DescribePulsarProInstances返回参数结构体
       class DescribePulsarProInstancesResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 未分页的总数目
+        # @param TotalCount: <p>未分页的总数目</p>
         # @type TotalCount: Integer
-        # @param Instances: 实例信息列表
+        # @param Instances: <p>实例信息列表</p>
         # @type Instances: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6733,8 +6741,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :MsgId, :PulsarMsgId, :QueryDlqMsg, :QueryDeadLetterMessage, :Offset, :Limit, :FilterTrackGroup, :QueryDelayMessage
         extend Gem::Deprecate
-        deprecate :QueryDlqMsg, :none, 2026, 8
-        deprecate :QueryDlqMsg=, :none, 2026, 8
+        deprecate :QueryDlqMsg, :none, 2026, 9
+        deprecate :QueryDlqMsg=, :none, 2026, 9
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, msgid=nil, pulsarmsgid=nil, querydlqmsg=nil, querydeadlettermessage=nil, offset=nil, limit=nil, filtertrackgroup=nil, querydelaymessage=nil)
           @ClusterId = clusterid
@@ -6841,8 +6849,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :MsgId, :GroupName, :QueryDLQMsg, :QueryDeadLetterMessage
         extend Gem::Deprecate
-        deprecate :QueryDLQMsg, :none, 2026, 8
-        deprecate :QueryDLQMsg=, :none, 2026, 8
+        deprecate :QueryDLQMsg, :none, 2026, 9
+        deprecate :QueryDLQMsg=, :none, 2026, 9
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, msgid=nil, groupname=nil, querydlqmsg=nil, querydeadlettermessage=nil)
           @ClusterId = clusterid
@@ -7561,8 +7569,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :StartTime, :EndTime, :MsgId, :MsgKey, :Offset, :Limit, :TaskRequestId, :QueryDlqMsg, :NumOfLatestMsg, :Tag, :QueryDeadLetterMessage
         extend Gem::Deprecate
-        deprecate :QueryDlqMsg, :none, 2026, 8
-        deprecate :QueryDlqMsg=, :none, 2026, 8
+        deprecate :QueryDlqMsg, :none, 2026, 9
+        deprecate :QueryDlqMsg=, :none, 2026, 9
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, starttime=nil, endtime=nil, msgid=nil, msgkey=nil, offset=nil, limit=nil, taskrequestid=nil, querydlqmsg=nil, numoflatestmsg=nil, tag=nil, querydeadlettermessage=nil)
           @ClusterId = clusterid
@@ -10796,7 +10804,7 @@ module TencentCloud
         end
       end
 
-      # Pulsar专业版集群信息
+      # Pulsar标准版或专业版集群信息
       class PulsarProClusterInfo < TencentCloud::Common::AbstractModel
         # @param ClusterId: <p>集群Id。</p>
         # @type ClusterId: String
@@ -10818,7 +10826,7 @@ module TencentCloud
         # @param CanEditRoute: <p>是否可以修改路由</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CanEditRoute: Boolean
-        # @param BillingLabelVersion: <p>代表是专业版和小规格专业版的不同计费规格PULSAR.P1固定存储PULSAR.P2弹性存储</p>
+        # @param BillingLabelVersion: <p>代表是专业版和标准版的不同计费规格<br>PULSAR.P1固定存储<br>PULSAR.P2弹性存储<br>PULSAR.S2标准版</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BillingLabelVersion: String
         # @param ExpireTime: <p>实例到期时间戳，毫秒级精度。</p>
@@ -10830,7 +10838,7 @@ module TencentCloud
         # @param DefaultPartitionNumber: <p>自动创建主题的默认分区数，如果没开启就是0</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DefaultPartitionNumber: Integer
-        # @param Tenant: <p>用户自定义的租户别名，如果没有，会复用专业集群 ID</p>
+        # @param Tenant: <p>用户自定义的租户别名，如果没有，会复用集群 ID</p>
         # @type Tenant: String
         # @param DeleteProtection: <p>删除保护开关标识</p>
         # @type DeleteProtection: Integer
@@ -10838,10 +10846,12 @@ module TencentCloud
         # @type ElasticTpsEnabled: Integer
         # @param EncryptionStatus: <p>是否开启数据加密</p><p>枚举值：</p><ul><li>0： 关闭数据加密</li><li>1： 开启数据加密</li></ul>
         # @type EncryptionStatus: Integer
+        # @param AutoExpansionEnabled: <p>是否开启磁盘自动扩容。枚举值：0-关闭，1-开启</p>
+        # @type AutoExpansionEnabled: Integer
 
-        attr_accessor :ClusterId, :ClusterName, :Remark, :CreateTime, :Status, :Version, :NodeDistribution, :MaxStorage, :CanEditRoute, :BillingLabelVersion, :ExpireTime, :AutoCreateTopicStatus, :DefaultPartitionNumber, :Tenant, :DeleteProtection, :ElasticTpsEnabled, :EncryptionStatus
+        attr_accessor :ClusterId, :ClusterName, :Remark, :CreateTime, :Status, :Version, :NodeDistribution, :MaxStorage, :CanEditRoute, :BillingLabelVersion, :ExpireTime, :AutoCreateTopicStatus, :DefaultPartitionNumber, :Tenant, :DeleteProtection, :ElasticTpsEnabled, :EncryptionStatus, :AutoExpansionEnabled
 
-        def initialize(clusterid=nil, clustername=nil, remark=nil, createtime=nil, status=nil, version=nil, nodedistribution=nil, maxstorage=nil, caneditroute=nil, billinglabelversion=nil, expiretime=nil, autocreatetopicstatus=nil, defaultpartitionnumber=nil, tenant=nil, deleteprotection=nil, elastictpsenabled=nil, encryptionstatus=nil)
+        def initialize(clusterid=nil, clustername=nil, remark=nil, createtime=nil, status=nil, version=nil, nodedistribution=nil, maxstorage=nil, caneditroute=nil, billinglabelversion=nil, expiretime=nil, autocreatetopicstatus=nil, defaultpartitionnumber=nil, tenant=nil, deleteprotection=nil, elastictpsenabled=nil, encryptionstatus=nil, autoexpansionenabled=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @Remark = remark
@@ -10859,6 +10869,7 @@ module TencentCloud
           @DeleteProtection = deleteprotection
           @ElasticTpsEnabled = elastictpsenabled
           @EncryptionStatus = encryptionstatus
+          @AutoExpansionEnabled = autoexpansionenabled
         end
 
         def deserialize(params)
@@ -10886,10 +10897,11 @@ module TencentCloud
           @DeleteProtection = params['DeleteProtection']
           @ElasticTpsEnabled = params['ElasticTpsEnabled']
           @EncryptionStatus = params['EncryptionStatus']
+          @AutoExpansionEnabled = params['AutoExpansionEnabled']
         end
       end
 
-      # Pulsar专业版集群规格信息
+      # Pulsar标准版或专业版集群规格信息
       class PulsarProClusterSpecInfo < TencentCloud::Common::AbstractModel
         # @param SpecName: <p>集群规格名称</p>
         # @type SpecName: String
@@ -10955,56 +10967,56 @@ module TencentCloud
         end
       end
 
-      # Pulsar专业版实例信息
+      # Pulsar标准版或专业版实例信息
       class PulsarProInstance < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例id
+        # @param InstanceId: <p>实例id</p>
         # @type InstanceId: String
-        # @param InstanceName: 实例名称
+        # @param InstanceName: <p>实例名称</p>
         # @type InstanceName: String
-        # @param InstanceVersion: 实例版本
+        # @param InstanceVersion: <p>实例版本</p>
         # @type InstanceVersion: String
-        # @param Status: 实例状态，0-创建中，1-正常，2-隔离中，3-已销毁，4 - 异常, 5 - 发货失败，6-变配中，7-变配失败
+        # @param Status: <p>实例状态，0-创建中，1-正常，2-隔离中，3-已销毁，4 - 异常, 5 - 发货失败，6-变配中，7-变配失败</p>
         # @type Status: Integer
-        # @param ConfigDisplay: 实例配置规格名称
+        # @param ConfigDisplay: <p>实例配置规格名称</p>
         # @type ConfigDisplay: String
-        # @param MaxTps: 峰值TPS
+        # @param MaxTps: <p>峰值TPS</p>
         # @type MaxTps: Integer
-        # @param MaxStorage: 存储容量，GB为单位
+        # @param MaxStorage: <p>存储容量，GB为单位</p>
         # @type MaxStorage: Integer
-        # @param ExpireTime: 实例到期时间，毫秒为单位
+        # @param ExpireTime: <p>实例到期时间，毫秒为单位</p>
         # @type ExpireTime: Integer
-        # @param AutoRenewFlag: 自动续费标记，0表示默认状态(用户未设置，即初始状态即手动续费)， 1表示自动续费，2表示明确不自动续费(用户设置)
+        # @param AutoRenewFlag: <p>自动续费标记，0表示默认状态(用户未设置，即初始状态即手动续费)， 1表示自动续费，2表示明确不自动续费(用户设置)</p>
         # @type AutoRenewFlag: Integer
-        # @param PayMode: 0-后付费，1-预付费
+        # @param PayMode: <p>0-后付费，1-预付费</p>
         # @type PayMode: Integer
-        # @param Remark: 备注信息
+        # @param Remark: <p>备注信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
-        # @param SpecName: 实例配置ID
+        # @param SpecName: <p>实例配置ID</p>
         # @type SpecName: String
-        # @param ScalableTps: 规格外弹性TPS
+        # @param ScalableTps: <p>规格外弹性TPS</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScalableTps: Integer
-        # @param VpcId: VPC的id
+        # @param VpcId: <p>VPC的id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
-        # @param SubnetId: 子网id
+        # @param SubnetId: <p>子网id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetId: String
-        # @param MaxBandWidth: 峰值带宽。单位：mbps
+        # @param MaxBandWidth: <p>峰值带宽。单位：mbps</p>
         # @type MaxBandWidth: Integer
-        # @param Tags: 集群的标签列表
+        # @param Tags: <p>集群的标签列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
-        # @param CreateTime: 集群创建时间
+        # @param CreateTime: <p>集群创建时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
-        # @param BillingLabelVersion: 代表是专业版和小规格专业版的不同计费规格PULSAR.P1固定存储PULSAR.P2弹性存储
+        # @param BillingLabelVersion: <p>代表是专业版和标准版的不同计费规格<br>PULSAR.P1固定存储<br>PULSAR.P2弹性存储<br>PULSAR.S2标准版</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BillingLabelVersion: String
-        # @param Tenant: 自定义租户
+        # @param Tenant: <p>自定义租户</p>
         # @type Tenant: String
-        # @param CertificateList: 集群的证书列表
+        # @param CertificateList: <p>集群的证书列表</p>
         # @type CertificateList: Array
 
         attr_accessor :InstanceId, :InstanceName, :InstanceVersion, :Status, :ConfigDisplay, :MaxTps, :MaxStorage, :ExpireTime, :AutoRenewFlag, :PayMode, :Remark, :SpecName, :ScalableTps, :VpcId, :SubnetId, :MaxBandWidth, :Tags, :CreateTime, :BillingLabelVersion, :Tenant, :CertificateList
@@ -12463,8 +12475,8 @@ module TencentCloud
 
         attr_accessor :MaxTpsPerNamespace, :MaxNamespaceNum, :UsedNamespaceNum, :MaxTopicNum, :UsedTopicNum, :MaxGroupNum, :UsedGroupNum, :MaxRetentionTime, :MaxLatencyTime, :MaxQueuesPerTopic, :TopicDistribution, :MaxRoleNum, :MaxTpsLimit
         extend Gem::Deprecate
-        deprecate :MaxTpsPerNamespace, :none, 2026, 8
-        deprecate :MaxTpsPerNamespace=, :none, 2026, 8
+        deprecate :MaxTpsPerNamespace, :none, 2026, 9
+        deprecate :MaxTpsPerNamespace=, :none, 2026, 9
 
         def initialize(maxtpspernamespace=nil, maxnamespacenum=nil, usednamespacenum=nil, maxtopicnum=nil, usedtopicnum=nil, maxgroupnum=nil, usedgroupnum=nil, maxretentiontime=nil, maxlatencytime=nil, maxqueuespertopic=nil, topicdistribution=nil, maxrolenum=nil, maxtpslimit=nil)
           @MaxTpsPerNamespace = maxtpspernamespace
@@ -12875,10 +12887,10 @@ module TencentCloud
 
         attr_accessor :Name, :ConsumerNum, :TPS, :TotalAccumulative, :ConsumptionMode, :ReadEnabled, :RetryPartitionNum, :CreateTime, :UpdateTime, :ClientProtocol, :Remark, :ConsumerType, :BroadcastEnabled, :GroupType, :RetryMaxTimes, :InstanceId, :Namespace, :SubscribeTopicNum, :TagList
         extend Gem::Deprecate
-        deprecate :TPS, :none, 2026, 8
-        deprecate :TPS=, :none, 2026, 8
-        deprecate :TotalAccumulative, :none, 2026, 8
-        deprecate :TotalAccumulative=, :none, 2026, 8
+        deprecate :TPS, :none, 2026, 9
+        deprecate :TPS=, :none, 2026, 9
+        deprecate :TotalAccumulative, :none, 2026, 9
+        deprecate :TotalAccumulative=, :none, 2026, 9
 
         def initialize(name=nil, consumernum=nil, tps=nil, totalaccumulative=nil, consumptionmode=nil, readenabled=nil, retrypartitionnum=nil, createtime=nil, updatetime=nil, clientprotocol=nil, remark=nil, consumertype=nil, broadcastenabled=nil, grouptype=nil, retrymaxtimes=nil, instanceid=nil, namespace=nil, subscribetopicnum=nil, taglist=nil)
           @Name = name

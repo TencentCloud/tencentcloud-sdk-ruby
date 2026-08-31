@@ -153,6 +153,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 为指定集群队列创建定时伸缩任务，按计划时间自动调整队列的节点数量。
+
+        # @param request: Request instance for CreateScheduledAction.
+        # @type request: :class:`Tencentcloud::thpc::V20230321::CreateScheduledActionRequest`
+        # @rtype: :class:`Tencentcloud::thpc::V20230321::CreateScheduledActionResponse`
+        def CreateScheduledAction(request)
+          body = send_request('CreateScheduledAction', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateScheduledActionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 (CreateWorkspaces) 用于创建工作空间。
 
         # @param request: Request instance for CreateWorkspaces.
@@ -300,6 +324,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除指定的定时伸缩任务。
+
+        # @param request: Request instance for DeleteScheduledAction.
+        # @type request: :class:`Tencentcloud::thpc::V20230321::DeleteScheduledActionRequest`
+        # @rtype: :class:`Tencentcloud::thpc::V20230321::DeleteScheduledActionResponse`
+        def DeleteScheduledAction(request)
+          body = send_request('DeleteScheduledAction', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteScheduledActionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(DescribeAutoScalingConfiguration)用于查询集群弹性伸缩配置信息。本接口仅适用于弹性伸缩类型为THPC_AS的集群。
 
         # @param request: Request instance for DescribeAutoScalingConfiguration.
@@ -420,6 +468,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询指定集群可用的机型族列表，用于弹性伸缩配置时选择机型族。
+
+        # @param request: Request instance for DescribeInstanceFamilies.
+        # @type request: :class:`Tencentcloud::thpc::V20230321::DescribeInstanceFamiliesRequest`
+        # @rtype: :class:`Tencentcloud::thpc::V20230321::DescribeInstanceFamiliesResponse`
+        def DescribeInstanceFamilies(request)
+          body = send_request('DescribeInstanceFamilies', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInstanceFamiliesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于查询作业的提交信息。
 
         # @param request: Request instance for DescribeJobSubmitInfo.
@@ -516,6 +588,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询指定集群的队列弹性伸缩配置信息。
+
+        # @param request: Request instance for DescribeQueueAutoScaling.
+        # @type request: :class:`Tencentcloud::thpc::V20230321::DescribeQueueAutoScalingRequest`
+        # @rtype: :class:`Tencentcloud::thpc::V20230321::DescribeQueueAutoScalingResponse`
+        def DescribeQueueAutoScaling(request)
+          body = send_request('DescribeQueueAutoScaling', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeQueueAutoScalingResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询指定集群的队列弹性伸缩概览信息，包括期望容量、当前容量、当前动态节点数、有效定时任务数等。
+
+        # @param request: Request instance for DescribeQueueAutoScalingOverview.
+        # @type request: :class:`Tencentcloud::thpc::V20230321::DescribeQueueAutoScalingOverviewRequest`
+        # @rtype: :class:`Tencentcloud::thpc::V20230321::DescribeQueueAutoScalingOverviewResponse`
+        def DescribeQueueAutoScalingOverview(request)
+          body = send_request('DescribeQueueAutoScalingOverview', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeQueueAutoScalingOverviewResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(DescribeQueues)用于查询指定集群队列概览信息列表。
 
         # @param request: Request instance for DescribeQueues.
@@ -526,6 +646,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeQueuesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询指定集群队列的定时伸缩任务列表。
+
+        # @param request: Request instance for DescribeScheduledActions.
+        # @type request: :class:`Tencentcloud::thpc::V20230321::DescribeScheduledActionsRequest`
+        # @rtype: :class:`Tencentcloud::thpc::V20230321::DescribeScheduledActionsResponse`
+        def DescribeScheduledActions(request)
+          body = send_request('DescribeScheduledActions', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeScheduledActionsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -574,6 +718,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DetachNodesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口(InquirePriceCreateWorkspaces)用于创建实例询价。
+
+        # @param request: Request instance for InquirePriceCreateWorkspaces.
+        # @type request: :class:`Tencentcloud::thpc::V20230321::InquirePriceCreateWorkspacesRequest`
+        # @rtype: :class:`Tencentcloud::thpc::V20230321::InquirePriceCreateWorkspacesResponse`
+        def InquirePriceCreateWorkspaces(request)
+          body = send_request('InquirePriceCreateWorkspaces', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = InquirePriceCreateWorkspacesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -684,6 +852,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改指定的定时伸缩任务配置。
+
+        # @param request: Request instance for ModifyScheduledAction.
+        # @type request: :class:`Tencentcloud::thpc::V20230321::ModifyScheduledActionRequest`
+        # @rtype: :class:`Tencentcloud::thpc::V20230321::ModifyScheduledActionResponse`
+        def ModifyScheduledAction(request)
+          body = send_request('ModifyScheduledAction', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyScheduledActionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 (ModifyWorkspacesAttribute) 用于修改工作空间的属性（目前只支持修改工作空间的名称）。
 
         # @param request: Request instance for ModifyWorkspacesAttribute.
@@ -766,6 +958,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SetAutoScalingConfigurationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 为指定集群的队列配置弹性伸缩策略，包括伸缩容量、扩容方式等。
+
+        # @param request: Request instance for SetQueueAutoScaling.
+        # @type request: :class:`Tencentcloud::thpc::V20230321::SetQueueAutoScalingRequest`
+        # @rtype: :class:`Tencentcloud::thpc::V20230321::SetQueueAutoScalingResponse`
+        def SetQueueAutoScaling(request)
+          body = send_request('SetQueueAutoScaling', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SetQueueAutoScalingResponse.new
             model.deserialize(response['Response'])
             model
           else

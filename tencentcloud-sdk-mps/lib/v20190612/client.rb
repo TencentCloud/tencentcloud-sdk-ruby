@@ -318,6 +318,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 调用该接口，用于创建Agent录制任务。
+
+        # @param request: Request instance for CreateAgentRecordTask.
+        # @type request: :class:`Tencentcloud::mps::V20190612::CreateAgentRecordTaskRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::CreateAgentRecordTaskResponse`
+        def CreateAgentRecordTask(request)
+          body = send_request('CreateAgentRecordTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAgentRecordTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # Ai漫剧工作流，输入剧本，自动拆分分镜，生成Ai漫剧
 
         # @param request: Request instance for CreateAiDramaTask.
@@ -2232,6 +2256,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAdaptiveDynamicStreamingTemplatesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 调用该接口，用于查询Agent录制任务的进度以及获取生成结果。
+
+        # @param request: Request instance for DescribeAgentRecordTask.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DescribeAgentRecordTaskRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DescribeAgentRecordTaskResponse`
+        def DescribeAgentRecordTask(request)
+          body = send_request('DescribeAgentRecordTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAgentRecordTaskResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -5147,6 +5195,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询混元3D任务对应的结果
+
+        # @param request: Request instance for QueryHunyuan3DTask.
+        # @type request: :class:`Tencentcloud::mps::V20190612::QueryHunyuan3DTaskRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::QueryHunyuan3DTaskResponse`
+        def QueryHunyuan3DTask(request)
+          body = send_request('QueryHunyuan3DTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryHunyuan3DTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 剧集项目查询
 
         # @param request: Request instance for QueryProject.
@@ -5325,6 +5397,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = StopStreamPackageLinearAssemblyChannelResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 提交创建混元3D的任务
+
+        # @param request: Request instance for SubmitHunyuan3DTask.
+        # @type request: :class:`Tencentcloud::mps::V20190612::SubmitHunyuan3DTaskRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::SubmitHunyuan3DTaskResponse`
+        def SubmitHunyuan3DTask(request)
+          body = send_request('SubmitHunyuan3DTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SubmitHunyuan3DTaskResponse.new
             model.deserialize(response['Response'])
             model
           else

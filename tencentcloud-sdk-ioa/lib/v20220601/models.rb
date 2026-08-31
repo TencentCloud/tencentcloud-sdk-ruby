@@ -822,6 +822,49 @@ module TencentCloud
         end
       end
 
+      # DeleteAccountGroupResources请求参数结构体
+      class DeleteAccountGroupResourcesRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceList: 资源集
+        # @type ResourceList: Array
+        # @param AccountGroupId: 账户组Id(只支持32位)
+        # @type AccountGroupId: Integer
+
+        attr_accessor :ResourceList, :AccountGroupId
+
+        def initialize(resourcelist=nil, accountgroupid=nil)
+          @ResourceList = resourcelist
+          @AccountGroupId = accountgroupid
+        end
+
+        def deserialize(params)
+          unless params['ResourceList'].nil?
+            @ResourceList = []
+            params['ResourceList'].each do |i|
+              deleteresourcedata_tmp = DeleteResourceData.new
+              deleteresourcedata_tmp.deserialize(i)
+              @ResourceList << deleteresourcedata_tmp
+            end
+          end
+          @AccountGroupId = params['AccountGroupId']
+        end
+      end
+
+      # DeleteAccountGroupResources返回参数结构体
+      class DeleteAccountGroupResourcesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteDeviceVirtualGroup请求参数结构体
       class DeleteDeviceVirtualGroupRequest < TencentCloud::Common::AbstractModel
         # @param DomainInstanceId: 管理域实例ID，用于CAM管理域权限分配。若企业未进行管理域的划分，可直接传入根域"1"，此时表示针对当前企业的全部设备和账号进行接口CRUD，具体CRUD的影响范围限制于相应接口的入参。
@@ -859,6 +902,28 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 资源集
+      class DeleteResourceData < TencentCloud::Common::AbstractModel
+        # @param ResourceType: 资源类型 ,1:资源 2:资源组(只支持32位)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceType: Integer
+        # @param ResourceId: 资源或资源组Id(只支持32位)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceId: Integer
+
+        attr_accessor :ResourceType, :ResourceId
+
+        def initialize(resourcetype=nil, resourceid=nil)
+          @ResourceType = resourcetype
+          @ResourceId = resourceid
+        end
+
+        def deserialize(params)
+          @ResourceType = params['ResourceType']
+          @ResourceId = params['ResourceId']
         end
       end
 
@@ -2545,10 +2610,22 @@ module TencentCloud
         # @type RemarkName: String
         # @param BiosUuid: <p>BiosUUID（启动盘标识符）</p>
         # @type BiosUuid: String
+        # @param NetworkCards: <p>多网卡数据</p>
+        # @type NetworkCards: Array
+        # @param VideoCards: <p>多显卡数据</p>
+        # @type VideoCards: Array
+        # @param MainBoard: <p>主板型号</p>
+        # @type MainBoard: String
+        # @param BaseBoardSn: <p>主板序列号</p>
+        # @type BaseBoardSn: String
+        # @param BaseBoardManufacturer: <p>主板制造商</p>
+        # @type BaseBoardManufacturer: String
+        # @param AudioCard: <p>声卡</p>
+        # @type AudioCard: String
 
-        attr_accessor :Id, :Mid, :OsType, :Name, :UserName, :Status, :GroupId, :GroupName, :GroupNamePath, :AccountName, :Ip, :MacAddr, :Cpu, :Memory, :HardDiskSize, :Monitor, :RemarkName, :BiosUuid
+        attr_accessor :Id, :Mid, :OsType, :Name, :UserName, :Status, :GroupId, :GroupName, :GroupNamePath, :AccountName, :Ip, :MacAddr, :Cpu, :Memory, :HardDiskSize, :Monitor, :RemarkName, :BiosUuid, :NetworkCards, :VideoCards, :MainBoard, :BaseBoardSn, :BaseBoardManufacturer, :AudioCard
 
-        def initialize(id=nil, mid=nil, ostype=nil, name=nil, username=nil, status=nil, groupid=nil, groupname=nil, groupnamepath=nil, accountname=nil, ip=nil, macaddr=nil, cpu=nil, memory=nil, harddisksize=nil, monitor=nil, remarkname=nil, biosuuid=nil)
+        def initialize(id=nil, mid=nil, ostype=nil, name=nil, username=nil, status=nil, groupid=nil, groupname=nil, groupnamepath=nil, accountname=nil, ip=nil, macaddr=nil, cpu=nil, memory=nil, harddisksize=nil, monitor=nil, remarkname=nil, biosuuid=nil, networkcards=nil, videocards=nil, mainboard=nil, baseboardsn=nil, baseboardmanufacturer=nil, audiocard=nil)
           @Id = id
           @Mid = mid
           @OsType = ostype
@@ -2567,6 +2644,12 @@ module TencentCloud
           @Monitor = monitor
           @RemarkName = remarkname
           @BiosUuid = biosuuid
+          @NetworkCards = networkcards
+          @VideoCards = videocards
+          @MainBoard = mainboard
+          @BaseBoardSn = baseboardsn
+          @BaseBoardManufacturer = baseboardmanufacturer
+          @AudioCard = audiocard
         end
 
         def deserialize(params)
@@ -2588,6 +2671,26 @@ module TencentCloud
           @Monitor = params['Monitor']
           @RemarkName = params['RemarkName']
           @BiosUuid = params['BiosUuid']
+          unless params['NetworkCards'].nil?
+            @NetworkCards = []
+            params['NetworkCards'].each do |i|
+              devicenetworkcardbrief_tmp = DeviceNetworkCardBrief.new
+              devicenetworkcardbrief_tmp.deserialize(i)
+              @NetworkCards << devicenetworkcardbrief_tmp
+            end
+          end
+          unless params['VideoCards'].nil?
+            @VideoCards = []
+            params['VideoCards'].each do |i|
+              devicevideocardbrief_tmp = DeviceVideoCardBrief.new
+              devicevideocardbrief_tmp.deserialize(i)
+              @VideoCards << devicevideocardbrief_tmp
+            end
+          end
+          @MainBoard = params['MainBoard']
+          @BaseBoardSn = params['BaseBoardSn']
+          @BaseBoardManufacturer = params['BaseBoardManufacturer']
+          @AudioCard = params['AudioCard']
         end
       end
 
@@ -4119,6 +4222,42 @@ module TencentCloud
         end
       end
 
+      # 多网卡MAC地址等列表数据
+      class DeviceNetworkCardBrief < TencentCloud::Common::AbstractModel
+        # @param MacAddress: <p>MAC地址</p>
+        # @type MacAddress: String
+        # @param NetworkCardName: <p>网卡名称</p>
+        # @type NetworkCardName: String
+        # @param NetworkCardType: <p>网卡类型</p><p>枚举值：</p><ul><li>1： 物理网卡</li><li>2： 虚拟网卡</li></ul>
+        # @type NetworkCardType: Integer
+        # @param NetworkCardStatus: <p>网卡状态</p><p>枚举值：</p><ul><li>1： 启用中</li><li>2： 未启用</li></ul>
+        # @type NetworkCardStatus: Integer
+        # @param Ipv4Address: <p>IPv4地址</p>
+        # @type Ipv4Address: String
+        # @param Ipv6Address: <p>IPv6地址</p>
+        # @type Ipv6Address: String
+
+        attr_accessor :MacAddress, :NetworkCardName, :NetworkCardType, :NetworkCardStatus, :Ipv4Address, :Ipv6Address
+
+        def initialize(macaddress=nil, networkcardname=nil, networkcardtype=nil, networkcardstatus=nil, ipv4address=nil, ipv6address=nil)
+          @MacAddress = macaddress
+          @NetworkCardName = networkcardname
+          @NetworkCardType = networkcardtype
+          @NetworkCardStatus = networkcardstatus
+          @Ipv4Address = ipv4address
+          @Ipv6Address = ipv6address
+        end
+
+        def deserialize(params)
+          @MacAddress = params['MacAddress']
+          @NetworkCardName = params['NetworkCardName']
+          @NetworkCardType = params['NetworkCardType']
+          @NetworkCardStatus = params['NetworkCardStatus']
+          @Ipv4Address = params['Ipv4Address']
+          @Ipv6Address = params['Ipv6Address']
+        end
+      end
+
       # 分页的具体数据对象
       class DeviceNetworkInfo < TencentCloud::Common::AbstractModel
         # @param LocalAddr: 本地地址
@@ -4257,6 +4396,22 @@ module TencentCloud
           @StartType = params['StartType']
           @State = params['State']
           @User = params['User']
+        end
+      end
+
+      # 设备显卡简要信息
+      class DeviceVideoCardBrief < TencentCloud::Common::AbstractModel
+        # @param VideoCardName: <p>显卡名称</p>
+        # @type VideoCardName: String
+
+        attr_accessor :VideoCardName
+
+        def initialize(videocardname=nil)
+          @VideoCardName = videocardname
+        end
+
+        def deserialize(params)
+          @VideoCardName = params['VideoCardName']
         end
       end
 

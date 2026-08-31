@@ -29,15 +29,18 @@ module TencentCloud
         # @type BucketRegion: String
         # @param LibraryExtension: <p>媒体库配置项，部分参数新建后不可更改</p>
         # @type LibraryExtension: :class:`Tencentcloud::Smh.v20210712.models.LibraryExtension`
+        # @param Tags: <p>媒体库标签列表。</p>
+        # @type Tags: Array
 
-        attr_accessor :Name, :Remark, :BucketName, :BucketRegion, :LibraryExtension
+        attr_accessor :Name, :Remark, :BucketName, :BucketRegion, :LibraryExtension, :Tags
 
-        def initialize(name=nil, remark=nil, bucketname=nil, bucketregion=nil, libraryextension=nil)
+        def initialize(name=nil, remark=nil, bucketname=nil, bucketregion=nil, libraryextension=nil, tags=nil)
           @Name = name
           @Remark = remark
           @BucketName = bucketname
           @BucketRegion = bucketregion
           @LibraryExtension = libraryextension
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -48,6 +51,14 @@ module TencentCloud
           unless params['LibraryExtension'].nil?
             @LibraryExtension = LibraryExtension.new
             @LibraryExtension.deserialize(params['LibraryExtension'])
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              resourcetag_tmp = ResourceTag.new
+              resourcetag_tmp.deserialize(i)
+              @Tags << resourcetag_tmp
+            end
           end
         end
       end
@@ -120,15 +131,18 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 单次列出的数量限制，不超过100.
         # @type Limit: Integer
+        # @param TagFilters: 
+        # @type TagFilters: Array
 
-        attr_accessor :LibraryIds, :PageNumber, :PageSize, :Offset, :Limit
+        attr_accessor :LibraryIds, :PageNumber, :PageSize, :Offset, :Limit, :TagFilters
 
-        def initialize(libraryids=nil, pagenumber=nil, pagesize=nil, offset=nil, limit=nil)
+        def initialize(libraryids=nil, pagenumber=nil, pagesize=nil, offset=nil, limit=nil, tagfilters=nil)
           @LibraryIds = libraryids
           @PageNumber = pagenumber
           @PageSize = pagesize
           @Offset = offset
           @Limit = limit
+          @TagFilters = tagfilters
         end
 
         def deserialize(params)
@@ -137,6 +151,14 @@ module TencentCloud
           @PageSize = params['PageSize']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          unless params['TagFilters'].nil?
+            @TagFilters = []
+            params['TagFilters'].each do |i|
+              tagfilter_tmp = TagFilter.new
+              tagfilter_tmp.deserialize(i)
+              @TagFilters << tagfilter_tmp
+            end
+          end
         end
       end
 
@@ -465,32 +487,34 @@ module TencentCloud
 
       # PaaS 服务媒体库信息
       class Library < TencentCloud::Common::AbstractModel
-        # @param LibraryId: 媒体库 ID
+        # @param LibraryId: <p>媒体库 ID</p>
         # @type LibraryId: String
-        # @param Name: 媒体库友好名称
+        # @param Name: <p>媒体库友好名称</p>
         # @type Name: String
-        # @param Remark: 备注
+        # @param Remark: <p>备注</p>
         # @type Remark: String
-        # @param BucketName: 媒体库绑定的 COS 存储桶
+        # @param BucketName: <p>媒体库绑定的 COS 存储桶</p>
         # @type BucketName: String
-        # @param BucketRegion: 媒体库绑定的 COS 存储桶所在的地域
+        # @param BucketRegion: <p>媒体库绑定的 COS 存储桶所在的地域</p>
         # @type BucketRegion: String
-        # @param AccessDomain: 该媒体库的业务 API 访问域名
+        # @param AccessDomain: <p>该媒体库的业务 API 访问域名</p>
         # @type AccessDomain: String
-        # @param CreationTime: 媒体库创建时间
+        # @param CreationTime: <p>媒体库创建时间</p>
         # @type CreationTime: String
-        # @param LibraryExtension: 媒体库配置项
+        # @param LibraryExtension: <p>媒体库配置项</p>
         # @type LibraryExtension: :class:`Tencentcloud::Smh.v20210712.models.LibraryExtension`
-        # @param Size: 媒体库用量，单位为 Bytes，由于数字类型精度限制，该字段为 String 类型。
+        # @param Size: <p>媒体库用量，单位为 Bytes，由于数字类型精度限制，该字段为 String 类型。</p>
         # @type Size: String
-        # @param DirNum: 媒体库目录数，由于数字类型精度限制，该字段为 String 类型。
+        # @param DirNum: <p>媒体库目录数，由于数字类型精度限制，该字段为 String 类型。</p>
         # @type DirNum: String
-        # @param FileNum: 媒体库文件数，由于数字类型精度限制，该字段为 String 类型。
+        # @param FileNum: <p>媒体库文件数，由于数字类型精度限制，该字段为 String 类型。</p>
         # @type FileNum: String
+        # @param Tags: <p>媒体库关联的标签列表。</p>
+        # @type Tags: Array
 
-        attr_accessor :LibraryId, :Name, :Remark, :BucketName, :BucketRegion, :AccessDomain, :CreationTime, :LibraryExtension, :Size, :DirNum, :FileNum
+        attr_accessor :LibraryId, :Name, :Remark, :BucketName, :BucketRegion, :AccessDomain, :CreationTime, :LibraryExtension, :Size, :DirNum, :FileNum, :Tags
 
-        def initialize(libraryid=nil, name=nil, remark=nil, bucketname=nil, bucketregion=nil, accessdomain=nil, creationtime=nil, libraryextension=nil, size=nil, dirnum=nil, filenum=nil)
+        def initialize(libraryid=nil, name=nil, remark=nil, bucketname=nil, bucketregion=nil, accessdomain=nil, creationtime=nil, libraryextension=nil, size=nil, dirnum=nil, filenum=nil, tags=nil)
           @LibraryId = libraryid
           @Name = name
           @Remark = remark
@@ -502,6 +526,7 @@ module TencentCloud
           @Size = size
           @DirNum = dirnum
           @FileNum = filenum
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -519,6 +544,14 @@ module TencentCloud
           @Size = params['Size']
           @DirNum = params['DirNum']
           @FileNum = params['FileNum']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              resourcetag_tmp = ResourceTag.new
+              resourcetag_tmp.deserialize(i)
+              @Tags << resourcetag_tmp
+            end
+          end
         end
       end
 
@@ -640,14 +673,17 @@ module TencentCloud
         # @type Remark: String
         # @param LibraryExtension: <p>媒体库配置项，部分参数在新建后不可更改，且仅修改传入的参数。如不传该参数则不修改任何配置项。</p>
         # @type LibraryExtension: :class:`Tencentcloud::Smh.v20210712.models.LibraryExtension`
+        # @param Tags: <p>媒体库标签列表。</p>
+        # @type Tags: Array
 
-        attr_accessor :LibraryId, :Name, :Remark, :LibraryExtension
+        attr_accessor :LibraryId, :Name, :Remark, :LibraryExtension, :Tags
 
-        def initialize(libraryid=nil, name=nil, remark=nil, libraryextension=nil)
+        def initialize(libraryid=nil, name=nil, remark=nil, libraryextension=nil, tags=nil)
           @LibraryId = libraryid
           @Name = name
           @Remark = remark
           @LibraryExtension = libraryextension
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -657,6 +693,14 @@ module TencentCloud
           unless params['LibraryExtension'].nil?
             @LibraryExtension = LibraryExtension.new
             @LibraryExtension.deserialize(params['LibraryExtension'])
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              resourcetag_tmp = ResourceTag.new
+              resourcetag_tmp.deserialize(i)
+              @Tags << resourcetag_tmp
+            end
           end
         end
       end
@@ -674,6 +718,26 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 资源标签的键和值
+      class ResourceTag < TencentCloud::Common::AbstractModel
+        # @param TagKey: <p>标签键。</p>
+        # @type TagKey: String
+        # @param TagValue: <p>标签值。</p>
+        # @type TagValue: String
+
+        attr_accessor :TagKey, :TagValue
+
+        def initialize(tagkey=nil, tagvalue=nil)
+          @TagKey = tagkey
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
         end
       end
 
@@ -718,6 +782,26 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 标签过滤条件
+      class TagFilter < TencentCloud::Common::AbstractModel
+        # @param TagKey: <p>用于筛选媒体库的标签键。</p>
+        # @type TagKey: String
+        # @param TagValue: <p>用于筛选媒体库的标签值列表。</p>
+        # @type TagValue: Array
+
+        attr_accessor :TagKey, :TagValue
+
+        def initialize(tagkey=nil, tagvalue=nil)
+          @TagKey = tagkey
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
         end
       end
 
