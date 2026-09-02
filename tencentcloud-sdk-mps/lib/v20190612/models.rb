@@ -15476,13 +15476,16 @@ module TencentCloud
 
       # DescribeMediaMetaData请求参数结构体
       class DescribeMediaMetaDataRequest < TencentCloud::Common::AbstractModel
-        # @param InputInfo: 需要获取元信息的文件输入信息。
+        # @param InputInfo: <p>需要获取元信息的文件输入信息。</p>
         # @type InputInfo: :class:`Tencentcloud::Mps.v20190612.models.MediaInputInfo`
+        # @param Mode: <p>指定为slow时，增加接口超时时间</p><p>枚举值：</p><ul><li>slow： 增加接口超时时间</li></ul>
+        # @type Mode: String
 
-        attr_accessor :InputInfo
+        attr_accessor :InputInfo, :Mode
 
-        def initialize(inputinfo=nil)
+        def initialize(inputinfo=nil, mode=nil)
           @InputInfo = inputinfo
+          @Mode = mode
         end
 
         def deserialize(params)
@@ -15490,12 +15493,13 @@ module TencentCloud
             @InputInfo = MediaInputInfo.new
             @InputInfo.deserialize(params['InputInfo'])
           end
+          @Mode = params['Mode']
         end
       end
 
       # DescribeMediaMetaData返回参数结构体
       class DescribeMediaMetaDataResponse < TencentCloud::Common::AbstractModel
-        # @param MetaData: 媒体元信息。
+        # @param MetaData: <p>媒体元信息。</p>
         # @type MetaData: :class:`Tencentcloud::Mps.v20190612.models.MediaMetaData`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

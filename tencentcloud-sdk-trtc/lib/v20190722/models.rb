@@ -1174,6 +1174,38 @@ module TencentCloud
         end
       end
 
+      # CreateRecognizeVocabV3请求参数结构体
+      class CreateRecognizeVocabV3Request < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: <p>客户维度唯一标识</p>
+        # @type SdkAppId: Integer
+
+        attr_accessor :SdkAppId
+
+        def initialize(sdkappid=nil)
+          @SdkAppId = sdkappid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+        end
+      end
+
+      # CreateRecognizeVocabV3返回参数结构体
+      class CreateRecognizeVocabV3Response < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteCloudModeration请求参数结构体
       class DeleteCloudModerationRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: <p>TRTC的SDKAppId，和TRTC的房间所对应的SDKAppId相同。</p>
@@ -1396,6 +1428,33 @@ module TencentCloud
 
       # DeletePicture返回参数结构体
       class DeletePictureResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteRecognizeVocabV3请求参数结构体
+      class DeleteRecognizeVocabV3Request < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DeleteRecognizeVocabV3返回参数结构体
+      class DeleteRecognizeVocabV3Response < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -3427,6 +3486,33 @@ module TencentCloud
         end
       end
 
+      # DownloadRecognizeVocabV3请求参数结构体
+      class DownloadRecognizeVocabV3Request < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DownloadRecognizeVocabV3返回参数结构体
+      class DownloadRecognizeVocabV3Response < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 渲染移动模式参数，不渲染移动模式时，请勿设置此参数。
       class EmulateMobileParams < TencentCloud::Common::AbstractModel
         # @param MobileDeviceType: 移动设备类型，
@@ -3578,6 +3664,60 @@ module TencentCloud
           @EventId = params['EventId']
           @ParamOne = params['ParamOne']
           @ParamTwo = params['ParamTwo']
+        end
+      end
+
+      # GetRecognizeVocabListV3请求参数结构体
+      class GetRecognizeVocabListV3Request < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # GetRecognizeVocabListV3返回参数结构体
+      class GetRecognizeVocabListV3Response < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetRecognizeVocabV3请求参数结构体
+      class GetRecognizeVocabV3Request < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # GetRecognizeVocabV3返回参数结构体
+      class GetRecognizeVocabV3Response < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -5304,10 +5444,10 @@ module TencentCloud
 
         attr_accessor :Language, :AlternativeLanguage, :Model, :TranslationLanguage, :HotWordList, :VadSilenceTime, :VadLevel
         extend Gem::Deprecate
-        deprecate :Model, :none, 2026, 8
-        deprecate :Model=, :none, 2026, 8
-        deprecate :TranslationLanguage, :none, 2026, 8
-        deprecate :TranslationLanguage=, :none, 2026, 8
+        deprecate :Model, :none, 2026, 9
+        deprecate :Model=, :none, 2026, 9
+        deprecate :TranslationLanguage, :none, 2026, 9
+        deprecate :TranslationLanguage=, :none, 2026, 9
 
         def initialize(language=nil, alternativelanguage=nil, model=nil, translationlanguage=nil, hotwordlist=nil, vadsilencetime=nil, vadlevel=nil)
           @Language = language
@@ -5844,6 +5984,33 @@ module TencentCloud
           @Priority = params['Priority']
           @AddHistory = params['AddHistory']
           @MetaInfo = params['MetaInfo']
+        end
+      end
+
+      # SetVocabStateV3请求参数结构体
+      class SetVocabStateV3Request < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # SetVocabStateV3返回参数结构体
+      class SetVocabStateV3Response < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -6446,12 +6613,12 @@ module TencentCloud
 
         attr_accessor :SdkAppId, :RoomId, :RoomIdType, :UserId, :UserSig, :StreamUrl, :PrivateMapKey, :VideoEncodeParams, :AudioEncodeParams, :SourceUrl, :SeekSecond, :AutoPush, :RepeatNum, :MaxDuration, :Volume, :EnableProgress, :Tempo, :IdleTimeout
         extend Gem::Deprecate
-        deprecate :VideoEncodeParams, :none, 2026, 8
-        deprecate :VideoEncodeParams=, :none, 2026, 8
-        deprecate :AudioEncodeParams, :none, 2026, 8
-        deprecate :AudioEncodeParams=, :none, 2026, 8
-        deprecate :SourceUrl, :none, 2026, 8
-        deprecate :SourceUrl=, :none, 2026, 8
+        deprecate :VideoEncodeParams, :none, 2026, 9
+        deprecate :VideoEncodeParams=, :none, 2026, 9
+        deprecate :AudioEncodeParams, :none, 2026, 9
+        deprecate :AudioEncodeParams=, :none, 2026, 9
+        deprecate :SourceUrl, :none, 2026, 9
+        deprecate :SourceUrl=, :none, 2026, 9
 
         def initialize(sdkappid=nil, roomid=nil, roomidtype=nil, userid=nil, usersig=nil, streamurl=nil, privatemapkey=nil, videoencodeparams=nil, audioencodeparams=nil, sourceurl=nil, seeksecond=nil, autopush=nil, repeatnum=nil, maxduration=nil, volume=nil, enableprogress=nil, tempo=nil, idletimeout=nil)
           @SdkAppId = sdkappid
@@ -7282,8 +7449,8 @@ module TencentCloud
 
         attr_accessor :Text, :Voice, :SdkAppId, :AudioFormat, :APIKey, :Model, :Language, :PronunciationDict, :AlignmentMode, :ExtraParams
         extend Gem::Deprecate
-        deprecate :APIKey, :none, 2026, 8
-        deprecate :APIKey=, :none, 2026, 8
+        deprecate :APIKey, :none, 2026, 9
+        deprecate :APIKey=, :none, 2026, 9
 
         def initialize(text=nil, voice=nil, sdkappid=nil, audioformat=nil, apikey=nil, model=nil, language=nil, pronunciationdict=nil, alignmentmode=nil, extraparams=nil)
           @Text = text
@@ -7385,8 +7552,8 @@ module TencentCloud
 
         attr_accessor :Text, :Voice, :SdkAppId, :AudioFormat, :APIKey, :Model, :Language, :PronunciationDict, :AlignmentMode, :ExtraParams
         extend Gem::Deprecate
-        deprecate :APIKey, :none, 2026, 8
-        deprecate :APIKey=, :none, 2026, 8
+        deprecate :APIKey, :none, 2026, 9
+        deprecate :APIKey=, :none, 2026, 9
 
         def initialize(text=nil, voice=nil, sdkappid=nil, audioformat=nil, apikey=nil, model=nil, language=nil, pronunciationdict=nil, alignmentmode=nil, extraparams=nil)
           @Text = text
@@ -7541,10 +7708,10 @@ module TencentCloud
 
         attr_accessor :UserId, :UserSig, :IMAdminUserId, :IMAdminUserSig, :MaxIdleTime, :TranscriptionMode, :TargetUserId, :TargetUserIdList, :VoicePrint, :TurnDetection
         extend Gem::Deprecate
-        deprecate :IMAdminUserId, :none, 2026, 8
-        deprecate :IMAdminUserId=, :none, 2026, 8
-        deprecate :IMAdminUserSig, :none, 2026, 8
-        deprecate :IMAdminUserSig=, :none, 2026, 8
+        deprecate :IMAdminUserId, :none, 2026, 9
+        deprecate :IMAdminUserId=, :none, 2026, 9
+        deprecate :IMAdminUserSig, :none, 2026, 9
+        deprecate :IMAdminUserSig=, :none, 2026, 9
 
         def initialize(userid=nil, usersig=nil, imadminuserid=nil, imadminusersig=nil, maxidletime=nil, transcriptionmode=nil, targetuserid=nil, targetuseridlist=nil, voiceprint=nil, turndetection=nil)
           @UserId = userid
@@ -7862,6 +8029,33 @@ module TencentCloud
 
         def deserialize(params)
           @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateRecognizeVocabV3请求参数结构体
+      class UpdateRecognizeVocabV3Request < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # UpdateRecognizeVocabV3返回参数结构体
+      class UpdateRecognizeVocabV3Response < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -8210,8 +8404,8 @@ module TencentCloud
 
         attr_accessor :SdkAppId, :VoiceName, :PromptAudio, :APIKey, :PromptText, :Model, :Language, :ExtraParams
         extend Gem::Deprecate
-        deprecate :APIKey, :none, 2026, 8
-        deprecate :APIKey=, :none, 2026, 8
+        deprecate :APIKey, :none, 2026, 9
+        deprecate :APIKey=, :none, 2026, 9
 
         def initialize(sdkappid=nil, voicename=nil, promptaudio=nil, apikey=nil, prompttext=nil, model=nil, language=nil, extraparams=nil)
           @SdkAppId = sdkappid

@@ -578,6 +578,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 根据链路查询目标服务的上下游相关服务
+
+        # @param request: Request instance for DescribeRelatedServicesOnTrace.
+        # @type request: :class:`Tencentcloud::apm::V20210622::DescribeRelatedServicesOnTraceRequest`
+        # @rtype: :class:`Tencentcloud::apm::V20210622::DescribeRelatedServicesOnTraceResponse`
+        def DescribeRelatedServicesOnTrace(request)
+          body = send_request('DescribeRelatedServicesOnTrace', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRelatedServicesOnTraceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 应用概览数据拉取
 
         # @param request: Request instance for DescribeServiceOverview.

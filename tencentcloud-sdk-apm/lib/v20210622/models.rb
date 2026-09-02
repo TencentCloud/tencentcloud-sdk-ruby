@@ -1365,8 +1365,8 @@ module TencentCloud
 
         attr_accessor :Name, :Description, :TraceDuration, :Tags, :SpanDailyCounters, :PayMode, :Free
         extend Gem::Deprecate
-        deprecate :SpanDailyCounters, :none, 2026, 8
-        deprecate :SpanDailyCounters=, :none, 2026, 8
+        deprecate :SpanDailyCounters, :none, 2026, 9
+        deprecate :SpanDailyCounters=, :none, 2026, 9
 
         def initialize(name=nil, description=nil, traceduration=nil, tags=nil, spandailycounters=nil, paymode=nil, free=nil)
           @Name = name
@@ -1657,8 +1657,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :AgentType, :NetworkMode, :LanguageEnvironment, :ReportMethod
         extend Gem::Deprecate
-        deprecate :ReportMethod, :none, 2026, 8
-        deprecate :ReportMethod=, :none, 2026, 8
+        deprecate :ReportMethod, :none, 2026, 9
+        deprecate :ReportMethod=, :none, 2026, 9
 
         def initialize(instanceid=nil, agenttype=nil, networkmode=nil, languageenvironment=nil, reportmethod=nil)
           @InstanceId = instanceid
@@ -2904,6 +2904,78 @@ module TencentCloud
           @VulnerabilityCount = params['VulnerabilityCount']
           @ImportantVulnerabilityCount = params['ImportantVulnerabilityCount']
           @CriticalVulnerabilityCount = params['CriticalVulnerabilityCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRelatedServicesOnTrace请求参数结构体
+      class DescribeRelatedServicesOnTraceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 业务系统 ID
+        # @type InstanceId: String
+        # @param StartTime: 查询开始时间
+        # @type StartTime: Integer
+        # @param EndTime: 查询结束时间
+        # @type EndTime: Integer
+        # @param ServiceName: 应用名
+        # @type ServiceName: String
+        # @param IsServiceTopology: 是否为应用拓扑查询
+        # @type IsServiceTopology: Boolean
+
+        attr_accessor :InstanceId, :StartTime, :EndTime, :ServiceName, :IsServiceTopology
+
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, servicename=nil, isservicetopology=nil)
+          @InstanceId = instanceid
+          @StartTime = starttime
+          @EndTime = endtime
+          @ServiceName = servicename
+          @IsServiceTopology = isservicetopology
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @ServiceName = params['ServiceName']
+          @IsServiceTopology = params['IsServiceTopology']
+        end
+      end
+
+      # DescribeRelatedServicesOnTrace返回参数结构体
+      class DescribeRelatedServicesOnTraceResponse < TencentCloud::Common::AbstractModel
+        # @param TotalTraces: 查询的总链路数
+        # @type TotalTraces: Integer
+        # @param TotalServices: 查询到的应用的数量
+        # @type TotalServices: Integer
+        # @param SelectedTraces: 挑选的链路数量
+        # @type SelectedTraces: Integer
+        # @param ServiceRelations: 相关的服务/应用名列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceRelations: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalTraces, :TotalServices, :SelectedTraces, :ServiceRelations, :RequestId
+
+        def initialize(totaltraces=nil, totalservices=nil, selectedtraces=nil, servicerelations=nil, requestid=nil)
+          @TotalTraces = totaltraces
+          @TotalServices = totalservices
+          @SelectedTraces = selectedtraces
+          @ServiceRelations = servicerelations
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalTraces = params['TotalTraces']
+          @TotalServices = params['TotalServices']
+          @SelectedTraces = params['SelectedTraces']
+          unless params['ServiceRelations'].nil?
+            @ServiceRelations = []
+            params['ServiceRelations'].each do |i|
+              servicerelation_tmp = ServiceRelation.new
+              servicerelation_tmp.deserialize(i)
+              @ServiceRelations << servicerelation_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -4432,6 +4504,30 @@ module TencentCloud
           @EnableThresholdConfig = params['EnableThresholdConfig']
           @ErrRateThreshold = params['ErrRateThreshold']
           @ResponseDurationWarningThreshold = params['ResponseDurationWarningThreshold']
+        end
+      end
+
+      # 应用对应的链路上下游应用集合
+      class ServiceRelation < TencentCloud::Common::AbstractModel
+        # @param ServiceName: 应用名
+        # @type ServiceName: String
+        # @param UpstreamServices: 上游应用集合
+        # @type UpstreamServices: Array
+        # @param DownstreamServices: 下游应用集合
+        # @type DownstreamServices: Array
+
+        attr_accessor :ServiceName, :UpstreamServices, :DownstreamServices
+
+        def initialize(servicename=nil, upstreamservices=nil, downstreamservices=nil)
+          @ServiceName = servicename
+          @UpstreamServices = upstreamservices
+          @DownstreamServices = downstreamservices
+        end
+
+        def deserialize(params)
+          @ServiceName = params['ServiceName']
+          @UpstreamServices = params['UpstreamServices']
+          @DownstreamServices = params['DownstreamServices']
         end
       end
 

@@ -1060,16 +1060,20 @@ module TencentCloud
 
       # CreateAuditLogFile返回参数结构体
       class CreateAuditLogFileResponse < TencentCloud::Common::AbstractModel
+        # @param FileName: <p>文件名称</p>
+        # @type FileName: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :FileName, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(filename=nil, requestid=nil)
+          @FileName = filename
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @FileName = params['FileName']
           @RequestId = params['RequestId']
         end
       end
@@ -1737,8 +1741,8 @@ module TencentCloud
 
         attr_accessor :Zone, :MasterDBInstanceId, :SpecCode, :Storage, :InstanceCount, :Period, :VpcId, :SubnetId, :InstanceChargeType, :AutoVoucher, :VoucherIds, :AutoRenewFlag, :ProjectId, :ActivityId, :ReadOnlyGroupId, :TagList, :SecurityGroupIds, :NeedSupportIpv6, :Name, :DBVersion, :DedicatedClusterId, :DeletionProtection, :Tags
         extend Gem::Deprecate
-        deprecate :DBVersion, :none, 2026, 8
-        deprecate :DBVersion=, :none, 2026, 8
+        deprecate :DBVersion, :none, 2026, 9
+        deprecate :DBVersion=, :none, 2026, 9
 
         def initialize(zone=nil, masterdbinstanceid=nil, speccode=nil, storage=nil, instancecount=nil, period=nil, vpcid=nil, subnetid=nil, instancechargetype=nil, autovoucher=nil, voucherids=nil, autorenewflag=nil, projectid=nil, activityid=nil, readonlygroupid=nil, taglist=nil, securitygroupids=nil, needsupportipv6=nil, name=nil, dbversion=nil, dedicatedclusterid=nil, deletionprotection=nil, tags=nil)
           @Zone = zone
@@ -6083,8 +6087,8 @@ module TencentCloud
 
         attr_accessor :Storage, :Memory, :DBInstanceId, :InstanceChargeType, :Cpu
         extend Gem::Deprecate
-        deprecate :InstanceChargeType, :none, 2026, 8
-        deprecate :InstanceChargeType=, :none, 2026, 8
+        deprecate :InstanceChargeType, :none, 2026, 9
+        deprecate :InstanceChargeType=, :none, 2026, 9
 
         def initialize(storage=nil, memory=nil, dbinstanceid=nil, instancechargetype=nil, cpu=nil)
           @Storage = storage

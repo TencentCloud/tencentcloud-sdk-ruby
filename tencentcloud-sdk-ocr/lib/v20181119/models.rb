@@ -3875,8 +3875,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Angel, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2026, 8
-        deprecate :Angel=, :none, 2026, 8
+        deprecate :Angel, :none, 2026, 9
+        deprecate :Angel=, :none, 2026, 9
 
         def initialize(textdetections=nil, angel=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
@@ -3982,8 +3982,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Language, :Angel, :PdfPageSize, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2026, 8
-        deprecate :Angel=, :none, 2026, 8
+        deprecate :Angel, :none, 2026, 9
+        deprecate :Angel=, :none, 2026, 9
 
         def initialize(textdetections=nil, language=nil, angel=nil, pdfpagesize=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
@@ -4079,8 +4079,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Angel, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2026, 8
-        deprecate :Angel=, :none, 2026, 8
+        deprecate :Angel, :none, 2026, 9
+        deprecate :Angel=, :none, 2026, 9
 
         def initialize(textdetections=nil, angel=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
@@ -4226,8 +4226,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Angel, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2026, 8
-        deprecate :Angel=, :none, 2026, 8
+        deprecate :Angel, :none, 2026, 9
+        deprecate :Angel=, :none, 2026, 9
 
         def initialize(textdetections=nil, angel=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
@@ -4428,8 +4428,8 @@ module TencentCloud
 
         attr_accessor :ReturnHeadImage, :DetectFake, :ImageBase64, :ImageUrl
         extend Gem::Deprecate
-        deprecate :DetectFake, :none, 2026, 8
-        deprecate :DetectFake=, :none, 2026, 8
+        deprecate :DetectFake, :none, 2026, 9
+        deprecate :DetectFake=, :none, 2026, 9
 
         def initialize(returnheadimage=nil, detectfake=nil, imagebase64=nil, imageurl=nil)
           @ReturnHeadImage = returnheadimage
@@ -4494,10 +4494,10 @@ module TencentCloud
 
         attr_accessor :CnName, :EnName, :TelexCode, :Sex, :Birthday, :Permanent, :IdNum, :Symbol, :FirstIssueDate, :CurrentIssueDate, :FakeDetectResult, :HeadImage, :SmallHeadImage, :WarningCode, :WarnCardInfos, :WindowEmbeddedText, :RequestId
         extend Gem::Deprecate
-        deprecate :FakeDetectResult, :none, 2026, 8
-        deprecate :FakeDetectResult=, :none, 2026, 8
-        deprecate :WarningCode, :none, 2026, 8
-        deprecate :WarningCode=, :none, 2026, 8
+        deprecate :FakeDetectResult, :none, 2026, 9
+        deprecate :FakeDetectResult=, :none, 2026, 9
+        deprecate :WarningCode, :none, 2026, 9
+        deprecate :WarningCode=, :none, 2026, 9
 
         def initialize(cnname=nil, enname=nil, telexcode=nil, sex=nil, birthday=nil, permanent=nil, idnum=nil, symbol=nil, firstissuedate=nil, currentissuedate=nil, fakedetectresult=nil, headimage=nil, smallheadimage=nil, warningcode=nil, warncardinfos=nil, windowembeddedtext=nil, requestid=nil)
           @CnName = cnname
@@ -4844,8 +4844,8 @@ module TencentCloud
 
         attr_accessor :ImageBase64, :ImageUrl, :CardSide, :Config, :EnableRecognitionRectify, :EnableReflectDetail, :EnableDateVerify, :CardWarnType
         extend Gem::Deprecate
-        deprecate :EnableDateVerify, :none, 2026, 8
-        deprecate :EnableDateVerify=, :none, 2026, 8
+        deprecate :EnableDateVerify, :none, 2026, 9
+        deprecate :EnableDateVerify=, :none, 2026, 9
 
         def initialize(imagebase64=nil, imageurl=nil, cardside=nil, config=nil, enablerecognitionrectify=nil, enablereflectdetail=nil, enabledateverify=nil, cardwarntype=nil)
           @ImageBase64 = imagebase64
@@ -5647,10 +5647,10 @@ module TencentCloud
 
         attr_accessor :ID, :Name, :Address, :Sex, :Warn, :Image, :AdvancedInfo, :Type, :Birthday, :MyKadNumber, :WarnCardInfos, :RequestId
         extend Gem::Deprecate
-        deprecate :Warn, :none, 2026, 8
-        deprecate :Warn=, :none, 2026, 8
-        deprecate :AdvancedInfo, :none, 2026, 8
-        deprecate :AdvancedInfo=, :none, 2026, 8
+        deprecate :Warn, :none, 2026, 9
+        deprecate :Warn=, :none, 2026, 9
+        deprecate :AdvancedInfo, :none, 2026, 9
+        deprecate :AdvancedInfo=, :none, 2026, 9
 
         def initialize(id=nil, name=nil, address=nil, sex=nil, warn=nil, image=nil, advancedinfo=nil, type=nil, birthday=nil, mykadnumber=nil, warncardinfos=nil, requestid=nil)
           @ID = id
@@ -5752,10 +5752,10 @@ module TencentCloud
 
         attr_accessor :ID, :Name, :DateOfBirth, :Sex, :DateOfExpiration, :IssuingCountry, :Nationality, :Warn, :Image, :AdvancedInfo, :CodeSet, :CodeCrc, :Surname, :GivenName, :Type, :PassportRecognizeInfos, :WarnCardInfos, :CardCount, :RequestId
         extend Gem::Deprecate
-        deprecate :Warn, :none, 2026, 8
-        deprecate :Warn=, :none, 2026, 8
-        deprecate :AdvancedInfo, :none, 2026, 8
-        deprecate :AdvancedInfo=, :none, 2026, 8
+        deprecate :Warn, :none, 2026, 9
+        deprecate :Warn=, :none, 2026, 9
+        deprecate :AdvancedInfo, :none, 2026, 9
+        deprecate :AdvancedInfo=, :none, 2026, 9
 
         def initialize(id=nil, name=nil, dateofbirth=nil, sex=nil, dateofexpiration=nil, issuingcountry=nil, nationality=nil, warn=nil, image=nil, advancedinfo=nil, codeset=nil, codecrc=nil, surname=nil, givenname=nil, type=nil, passportrecognizeinfos=nil, warncardinfos=nil, cardcount=nil, requestid=nil)
           @ID = id
@@ -6784,60 +6784,62 @@ module TencentCloud
 
       # 非税收入
       class NonTaxIncomeBill < TencentCloud::Common::AbstractModel
-        # @param Title: 发票名称
+        # @param Title: <p>发票名称</p>
         # @type Title: String
-        # @param Number: 发票号码
+        # @param Number: <p>发票号码</p>
         # @type Number: String
-        # @param Code: 发票代码
+        # @param Code: <p>发票代码</p>
         # @type Code: String
-        # @param CheckCode: 校验码
+        # @param CheckCode: <p>校验码</p>
         # @type CheckCode: String
-        # @param Date: 开票日期
+        # @param Date: <p>开票日期</p>
         # @type Date: String
-        # @param Total: 价税合计（小写）
+        # @param Total: <p>价税合计（小写）</p>
         # @type Total: String
-        # @param TotalCn: 价税合计（大写）
+        # @param TotalCn: <p>价税合计（大写）</p>
         # @type TotalCn: String
-        # @param Buyer: 交款人名称
+        # @param Buyer: <p>交款人名称</p>
         # @type Buyer: String
-        # @param BuyerTaxID: 交款人纳税人识别号
+        # @param BuyerTaxID: <p>交款人纳税人识别号</p>
         # @type BuyerTaxID: String
-        # @param Seller: 收款人名称
+        # @param Seller: <p>收款人名称</p>
         # @type Seller: String
-        # @param SellerCompany: 收款单位名称
+        # @param SellerCompany: <p>收款单位名称</p>
         # @type SellerCompany: String
-        # @param Remark: 备注
+        # @param Remark: <p>备注</p>
         # @type Remark: String
-        # @param CurrencyCode: 币种
+        # @param CurrencyCode: <p>币种</p>
         # @type CurrencyCode: String
-        # @param Reviewer: 复核人
+        # @param Reviewer: <p>复核人</p>
         # @type Reviewer: String
-        # @param QRCodeMark: 是否存在二维码（1：有，0：无）
+        # @param QRCodeMark: <p>是否存在二维码（1：有，0：无）</p>
         # @type QRCodeMark: Integer
-        # @param OtherInfo: 其他信息
+        # @param OtherInfo: <p>其他信息</p>
         # @type OtherInfo: String
-        # @param PaymentCode: 缴款码
+        # @param PaymentCode: <p>缴款码</p>
         # @type PaymentCode: String
-        # @param ReceiveUnitCode: 执收单位编码
+        # @param ReceiveUnitCode: <p>执收单位编码</p>
         # @type ReceiveUnitCode: String
-        # @param Receiver: 执收单位名称
+        # @param Receiver: <p>执收单位名称</p>
         # @type Receiver: String
-        # @param Operator: 经办人
+        # @param Operator: <p>经办人</p>
         # @type Operator: String
-        # @param PayerAccount: 付款人账号
+        # @param PayerAccount: <p>付款人账号</p>
         # @type PayerAccount: String
-        # @param PayerBank: 付款人开户银行
+        # @param PayerBank: <p>付款人开户银行</p>
         # @type PayerBank: String
-        # @param ReceiverAccount: 收款人账号
+        # @param ReceiverAccount: <p>收款人账号</p>
         # @type ReceiverAccount: String
-        # @param ReceiverBank: 收款人开户银行
+        # @param ReceiverBank: <p>收款人开户银行</p>
         # @type ReceiverBank: String
-        # @param NonTaxItems: 条目
+        # @param NonTaxItems: <p>条目</p>
         # @type NonTaxItems: Array
+        # @param BillName: <p>票据名称</p>
+        # @type BillName: String
 
-        attr_accessor :Title, :Number, :Code, :CheckCode, :Date, :Total, :TotalCn, :Buyer, :BuyerTaxID, :Seller, :SellerCompany, :Remark, :CurrencyCode, :Reviewer, :QRCodeMark, :OtherInfo, :PaymentCode, :ReceiveUnitCode, :Receiver, :Operator, :PayerAccount, :PayerBank, :ReceiverAccount, :ReceiverBank, :NonTaxItems
+        attr_accessor :Title, :Number, :Code, :CheckCode, :Date, :Total, :TotalCn, :Buyer, :BuyerTaxID, :Seller, :SellerCompany, :Remark, :CurrencyCode, :Reviewer, :QRCodeMark, :OtherInfo, :PaymentCode, :ReceiveUnitCode, :Receiver, :Operator, :PayerAccount, :PayerBank, :ReceiverAccount, :ReceiverBank, :NonTaxItems, :BillName
 
-        def initialize(title=nil, number=nil, code=nil, checkcode=nil, date=nil, total=nil, totalcn=nil, buyer=nil, buyertaxid=nil, seller=nil, sellercompany=nil, remark=nil, currencycode=nil, reviewer=nil, qrcodemark=nil, otherinfo=nil, paymentcode=nil, receiveunitcode=nil, receiver=nil, operator=nil, payeraccount=nil, payerbank=nil, receiveraccount=nil, receiverbank=nil, nontaxitems=nil)
+        def initialize(title=nil, number=nil, code=nil, checkcode=nil, date=nil, total=nil, totalcn=nil, buyer=nil, buyertaxid=nil, seller=nil, sellercompany=nil, remark=nil, currencycode=nil, reviewer=nil, qrcodemark=nil, otherinfo=nil, paymentcode=nil, receiveunitcode=nil, receiver=nil, operator=nil, payeraccount=nil, payerbank=nil, receiveraccount=nil, receiverbank=nil, nontaxitems=nil, billname=nil)
           @Title = title
           @Number = number
           @Code = code
@@ -6863,6 +6865,7 @@ module TencentCloud
           @ReceiverAccount = receiveraccount
           @ReceiverBank = receiverbank
           @NonTaxItems = nontaxitems
+          @BillName = billname
         end
 
         def deserialize(params)
@@ -6898,6 +6901,7 @@ module TencentCloud
               @NonTaxItems << nontaxitem_tmp
             end
           end
+          @BillName = params['BillName']
         end
       end
 
@@ -9052,8 +9056,8 @@ module TencentCloud
 
         attr_accessor :ID, :ThaiName, :EnFirstName, :EnLastName, :IssueDate, :ExpirationDate, :EnIssueDate, :EnExpirationDate, :Birthday, :EnBirthday, :Religion, :SerialNumber, :Address, :LaserID, :PortraitImage, :WarnCardInfos, :AdvancedInfo, :CardCount, :RequestId
         extend Gem::Deprecate
-        deprecate :AdvancedInfo, :none, 2026, 8
-        deprecate :AdvancedInfo=, :none, 2026, 8
+        deprecate :AdvancedInfo, :none, 2026, 9
+        deprecate :AdvancedInfo=, :none, 2026, 9
 
         def initialize(id=nil, thainame=nil, enfirstname=nil, enlastname=nil, issuedate=nil, expirationdate=nil, enissuedate=nil, enexpirationdate=nil, birthday=nil, enbirthday=nil, religion=nil, serialnumber=nil, address=nil, laserid=nil, portraitimage=nil, warncardinfos=nil, advancedinfo=nil, cardcount=nil, requestid=nil)
           @ID = id
@@ -10600,8 +10604,8 @@ module TencentCloud
 
         attr_accessor :ImageBase64, :ImageUrl, :PdfPageNumber, :ItemNames, :EnableCoord, :FileStartPageNumber, :FileEndPageNumber, :ModelConfig
         extend Gem::Deprecate
-        deprecate :PdfPageNumber, :none, 2026, 8
-        deprecate :PdfPageNumber=, :none, 2026, 8
+        deprecate :PdfPageNumber, :none, 2026, 9
+        deprecate :PdfPageNumber=, :none, 2026, 9
 
         def initialize(imagebase64=nil, imageurl=nil, pdfpagenumber=nil, itemnames=nil, enablecoord=nil, filestartpagenumber=nil, fileendpagenumber=nil, modelconfig=nil)
           @ImageBase64 = imagebase64
@@ -10728,10 +10732,10 @@ module TencentCloud
 
         attr_accessor :ImageBase64, :ImageUrl, :PdfPageNumber, :BoolSingleQuestion, :EnableDeepThink, :QuestionConfigMap, :ReferenceAnswer, :ImageBase64List, :ImageUrlList, :AssistMarkType, :AnswerAssistMap
         extend Gem::Deprecate
-        deprecate :BoolSingleQuestion, :none, 2026, 8
-        deprecate :BoolSingleQuestion=, :none, 2026, 8
-        deprecate :EnableDeepThink, :none, 2026, 8
-        deprecate :EnableDeepThink=, :none, 2026, 8
+        deprecate :BoolSingleQuestion, :none, 2026, 9
+        deprecate :BoolSingleQuestion=, :none, 2026, 9
+        deprecate :EnableDeepThink, :none, 2026, 9
+        deprecate :EnableDeepThink=, :none, 2026, 9
 
         def initialize(imagebase64=nil, imageurl=nil, pdfpagenumber=nil, boolsinglequestion=nil, enabledeepthink=nil, questionconfigmap=nil, referenceanswer=nil, imagebase64list=nil, imageurllist=nil, assistmarktype=nil, answerassistmap=nil)
           @ImageBase64 = imagebase64
@@ -12773,10 +12777,12 @@ module TencentCloud
         # @type DateStart: String
         # @param DateEnd: <p>通行日期止</p>
         # @type DateEnd: String
+        # @param VinNo: <p>车架号</p>
+        # @type VinNo: String
 
-        attr_accessor :Name, :Quantity, :Specification, :Price, :Total, :TaxRate, :Tax, :Unit, :VehicleType, :VehicleBrand, :DeparturePlace, :ArrivalPlace, :TransportItemsName, :PlaceOfBuildingService, :BuildingName, :EstateNumber, :AreaUnit, :Traveler, :TravelerID, :TravelDate, :TravelLevel, :DateStart, :DateEnd
+        attr_accessor :Name, :Quantity, :Specification, :Price, :Total, :TaxRate, :Tax, :Unit, :VehicleType, :VehicleBrand, :DeparturePlace, :ArrivalPlace, :TransportItemsName, :PlaceOfBuildingService, :BuildingName, :EstateNumber, :AreaUnit, :Traveler, :TravelerID, :TravelDate, :TravelLevel, :DateStart, :DateEnd, :VinNo
 
-        def initialize(name=nil, quantity=nil, specification=nil, price=nil, total=nil, taxrate=nil, tax=nil, unit=nil, vehicletype=nil, vehiclebrand=nil, departureplace=nil, arrivalplace=nil, transportitemsname=nil, placeofbuildingservice=nil, buildingname=nil, estatenumber=nil, areaunit=nil, traveler=nil, travelerid=nil, traveldate=nil, travellevel=nil, datestart=nil, dateend=nil)
+        def initialize(name=nil, quantity=nil, specification=nil, price=nil, total=nil, taxrate=nil, tax=nil, unit=nil, vehicletype=nil, vehiclebrand=nil, departureplace=nil, arrivalplace=nil, transportitemsname=nil, placeofbuildingservice=nil, buildingname=nil, estatenumber=nil, areaunit=nil, traveler=nil, travelerid=nil, traveldate=nil, travellevel=nil, datestart=nil, dateend=nil, vinno=nil)
           @Name = name
           @Quantity = quantity
           @Specification = specification
@@ -12800,6 +12806,7 @@ module TencentCloud
           @TravelLevel = travellevel
           @DateStart = datestart
           @DateEnd = dateend
+          @VinNo = vinno
         end
 
         def deserialize(params)
@@ -12826,6 +12833,7 @@ module TencentCloud
           @TravelLevel = params['TravelLevel']
           @DateStart = params['DateStart']
           @DateEnd = params['DateEnd']
+          @VinNo = params['VinNo']
         end
       end
 

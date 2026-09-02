@@ -5566,10 +5566,10 @@ module TencentCloud
 
         attr_accessor :PlanId, :PolicyId, :PlanName, :BackupPaths, :IncludeFileTypes, :ExcludePatterns, :ExcludeSystemDirectories, :BackupStorageId, :Status
         extend Gem::Deprecate
-        deprecate :PolicyId, :none, 2026, 8
-        deprecate :PolicyId=, :none, 2026, 8
-        deprecate :BackupStorageId, :none, 2026, 8
-        deprecate :BackupStorageId=, :none, 2026, 8
+        deprecate :PolicyId, :none, 2026, 9
+        deprecate :PolicyId=, :none, 2026, 9
+        deprecate :BackupStorageId, :none, 2026, 9
+        deprecate :BackupStorageId=, :none, 2026, 9
 
         def initialize(planid=nil, policyid=nil, planname=nil, backuppaths=nil, includefiletypes=nil, excludepatterns=nil, excludesystemdirectories=nil, backupstorageid=nil, status=nil)
           @PlanId = planid

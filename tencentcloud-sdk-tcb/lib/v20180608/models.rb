@@ -5718,6 +5718,9 @@ module TencentCloud
         # @param Columns: <p>字段名列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Columns: Array
+        # @param ColumnTypes: <p>字段类型名</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ColumnTypes: Array
         # @param Rows: <p>数据行。每一行数据都是一个JSON串，将JSON进行反序列化将得到了每列的值。值可能是 null 或者 字符串，如果是 null 说明该列的值为 &lt;null&gt;，如果是字符串则为该列的值的字符串表示形式。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Rows: Array
@@ -5726,11 +5729,12 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :AffectedRows, :Columns, :Rows, :ExecutionTimeMs, :RequestId
+        attr_accessor :AffectedRows, :Columns, :ColumnTypes, :Rows, :ExecutionTimeMs, :RequestId
 
-        def initialize(affectedrows=nil, columns=nil, rows=nil, executiontimems=nil, requestid=nil)
+        def initialize(affectedrows=nil, columns=nil, columntypes=nil, rows=nil, executiontimems=nil, requestid=nil)
           @AffectedRows = affectedrows
           @Columns = columns
+          @ColumnTypes = columntypes
           @Rows = rows
           @ExecutionTimeMs = executiontimems
           @RequestId = requestid
@@ -5739,6 +5743,7 @@ module TencentCloud
         def deserialize(params)
           @AffectedRows = params['AffectedRows']
           @Columns = params['Columns']
+          @ColumnTypes = params['ColumnTypes']
           @Rows = params['Rows']
           @ExecutionTimeMs = params['ExecutionTimeMs']
           @RequestId = params['RequestId']

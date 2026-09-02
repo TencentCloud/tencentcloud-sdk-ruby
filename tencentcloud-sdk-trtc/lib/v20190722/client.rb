@@ -243,6 +243,38 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 接口说明：
+        # 用户通过本接口进行热词表的创建。
+
+        # • 默认最多可创建30个热词表。
+        # • 每个热词表最多可添加1000个词，每个词最长10个汉字或30个英文字符，不能超出限制。
+        # • 热词表可以通过数组或者本地文件形式上传。
+        # • 本地文件必须为UTF-8编码格式，每行仅添加一个热词且不能包含标点和特殊字符。
+        # • 热词权重取值范围为[1,11]之间的整数或者100，权重越大代表该词被识别出来的概率越大。
+        # • 注意: 热词权重设置为11时，当前热词将升级为超级热词，建议仅将重要且必须生效的热词设置到11，设置过多权重为11的热词将影响整体字准率。
+
+        # @param request: Request instance for CreateRecognizeVocabV3.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::CreateRecognizeVocabV3Request`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::CreateRecognizeVocabV3Response`
+        def CreateRecognizeVocabV3(request)
+          body = send_request('CreateRecognizeVocabV3', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateRecognizeVocabV3Response.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 成功开启AI 内容理解任务后，可以使用此接口来停止进行内容识别。
 
         # @param request: Request instance for DeleteCloudModeration.
@@ -373,6 +405,31 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeletePictureResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 接口说明：
+        # 用户通过本接口进行热词表的删除。
+
+        # @param request: Request instance for DeleteRecognizeVocabV3.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::DeleteRecognizeVocabV3Request`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::DeleteRecognizeVocabV3Response`
+        def DeleteRecognizeVocabV3(request)
+          body = send_request('DeleteRecognizeVocabV3', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteRecognizeVocabV3Response.new
             model.deserialize(response['Response'])
             model
           else
@@ -1344,6 +1401,81 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 接口说明：
+        # 用户通过本接口进行热词表的下载，获得词表权重文件形式的 base64 值，文件形式为通过 “|” 分割的词和权重，即 word|weight 的形式。
+
+        # @param request: Request instance for DownloadRecognizeVocabV3.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::DownloadRecognizeVocabV3Request`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::DownloadRecognizeVocabV3Response`
+        def DownloadRecognizeVocabV3(request)
+          body = send_request('DownloadRecognizeVocabV3', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DownloadRecognizeVocabV3Response.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 接口说明：
+        # 用户通过本接口分页列举所有的热词表。
+
+        # @param request: Request instance for GetRecognizeVocabListV3.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::GetRecognizeVocabListV3Request`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::GetRecognizeVocabListV3Response`
+        def GetRecognizeVocabListV3(request)
+          body = send_request('GetRecognizeVocabListV3', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetRecognizeVocabListV3Response.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 接口说明：
+        # 用户根据词表的ID可以获取对应的热词表信息
+
+        # @param request: Request instance for GetRecognizeVocabV3.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::GetRecognizeVocabV3Request`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::GetRecognizeVocabV3Response`
+        def GetRecognizeVocabV3(request)
+          body = send_request('GetRecognizeVocabV3', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetRecognizeVocabV3Response.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 成功开启AI 内容理解任务后，可以使用此接口来更新订阅黑白名单。
 
         # @param request: Request instance for ModifyCloudModeration.
@@ -1498,6 +1630,31 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = RemoveUserByStrRoomIdResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 接口说明：
+        # 用户通过该接口可以设置热词表的默认状态。初始状态为0，用户可设置状态为1，即为默认状态。默认状态表示用户在请求识别时，如不设置热词表ID，则默认使用状态为1的热词表。
+
+        # @param request: Request instance for SetVocabStateV3.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::SetVocabStateV3Request`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::SetVocabStateV3Response`
+        def SetVocabStateV3(request)
+          body = send_request('SetVocabStateV3', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SetVocabStateV3Response.new
             model.deserialize(response['Response'])
             model
           else
@@ -1994,6 +2151,31 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpdatePublishCdnStreamResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 接口说明：
+        # 用户通过本接口进行热词表的更新。
+
+        # @param request: Request instance for UpdateRecognizeVocabV3.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::UpdateRecognizeVocabV3Request`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::UpdateRecognizeVocabV3Response`
+        def UpdateRecognizeVocabV3(request)
+          body = send_request('UpdateRecognizeVocabV3', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateRecognizeVocabV3Response.new
             model.deserialize(response['Response'])
             model
           else
