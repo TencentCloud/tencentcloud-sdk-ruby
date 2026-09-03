@@ -1076,7 +1076,7 @@ module TencentCloud
       class DescribeConsumerClientRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 腾讯云 RocketMQ 实例 ID，从 [DescribeFusionInstanceList](https://cloud.tencent.com/document/api/1493/106745) 接口或控制台获得。
         # @type InstanceId: String
-        # @param ClientId: 客户端ID，从 [DescribeConsumerClientList](https://cloud.tencent.com/document/api/1493/120140) 接口中的 [ConsumerClient](https://cloud.tencent.com/document/api/1493/96031#ConsumerClient) 出参中获得。
+        # @param ClientId: <p>客户端ID，从 <a href="https://cloud.tencent.com/document/api/1493/120140">DescribeConsumerClientList</a> 接口中的 <a href="https://cloud.tencent.com/document/api/1493/96031#ConsumerClient">ConsumerClient</a> 出参中获得。</p>
         # @type ClientId: String
         # @param Filters: 过滤查询条件列表，请在引用此参数的API说明中了解使用方法。
         # @type Filters: Array
@@ -1117,20 +1117,23 @@ module TencentCloud
 
       # DescribeConsumerClient返回参数结构体
       class DescribeConsumerClientResponse < TencentCloud::Common::AbstractModel
-        # @param Client: 客户端详情
+        # @param Client: <p>客户端详情</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Client: :class:`Tencentcloud::Trocket.v20230308.models.ConsumerClient`
-        # @param TopicList: 主题消费信息
+        # @param TopicList: <p>主题消费信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicList: Array
+        # @param TopicTotalCount: <p>订阅主题总数</p>
+        # @type TopicTotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Client, :TopicList, :RequestId
+        attr_accessor :Client, :TopicList, :TopicTotalCount, :RequestId
 
-        def initialize(client=nil, topiclist=nil, requestid=nil)
+        def initialize(client=nil, topiclist=nil, topictotalcount=nil, requestid=nil)
           @Client = client
           @TopicList = topiclist
+          @TopicTotalCount = topictotalcount
           @RequestId = requestid
         end
 
@@ -1147,6 +1150,7 @@ module TencentCloud
               @TopicList << topicconsumestats_tmp
             end
           end
+          @TopicTotalCount = params['TopicTotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -2121,12 +2125,15 @@ module TencentCloud
         # @param MessageTracksCount: <p>消息消费情况列表总条数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MessageTracksCount: Integer
+        # @param DelayMessageStatus: <p>5.x 时间轮定时消息状态，仅在查询定时消息（命中 RMQ_SYS_WHEEL_TIMER）时返回。枚举值：PENDING（未到期）、DELIVERED（已到期投递）、RECALLED（已撤回）、NOT_FOUND（消息不存在）、UNSUPPORTED（该消息类型不支持状态查询，如 4.x DelayLevel 延迟消息）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DelayMessageStatus: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Body, :Properties, :ProduceTime, :MessageId, :ProducerAddr, :MessageTracks, :ShowTopicName, :LiteTopic, :MessageTracksCount, :RequestId
+        attr_accessor :Body, :Properties, :ProduceTime, :MessageId, :ProducerAddr, :MessageTracks, :ShowTopicName, :LiteTopic, :MessageTracksCount, :DelayMessageStatus, :RequestId
 
-        def initialize(body=nil, properties=nil, producetime=nil, messageid=nil, produceraddr=nil, messagetracks=nil, showtopicname=nil, litetopic=nil, messagetrackscount=nil, requestid=nil)
+        def initialize(body=nil, properties=nil, producetime=nil, messageid=nil, produceraddr=nil, messagetracks=nil, showtopicname=nil, litetopic=nil, messagetrackscount=nil, delaymessagestatus=nil, requestid=nil)
           @Body = body
           @Properties = properties
           @ProduceTime = producetime
@@ -2136,6 +2143,7 @@ module TencentCloud
           @ShowTopicName = showtopicname
           @LiteTopic = litetopic
           @MessageTracksCount = messagetrackscount
+          @DelayMessageStatus = delaymessagestatus
           @RequestId = requestid
         end
 
@@ -2156,6 +2164,7 @@ module TencentCloud
           @ShowTopicName = params['ShowTopicName']
           @LiteTopic = params['LiteTopic']
           @MessageTracksCount = params['MessageTracksCount']
+          @DelayMessageStatus = params['DelayMessageStatus']
           @RequestId = params['RequestId']
         end
       end

@@ -592,6 +592,50 @@ module TencentCloud
         end
       end
 
+      # BreakStandbyDBInstanceRelation请求参数结构体
+      class BreakStandbyDBInstanceRelationRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 备实例 ID
+        # @type InstanceId: String
+        # @param IsForce: 是否强制断开
+        # @type IsForce: Boolean
+        # @param SyncDelay:  时延，单位是秒,0不检查
+        # @type SyncDelay: Integer
+
+        attr_accessor :InstanceId, :IsForce, :SyncDelay
+
+        def initialize(instanceid=nil, isforce=nil, syncdelay=nil)
+          @InstanceId = instanceid
+          @IsForce = isforce
+          @SyncDelay = syncdelay
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @IsForce = params['IsForce']
+          @SyncDelay = params['SyncDelay']
+        end
+      end
+
+      # BreakStandbyDBInstanceRelation返回参数结构体
+      class BreakStandbyDBInstanceRelationResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 任务 ID
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CancelIsolateDBInstances请求参数结构体
       class CancelIsolateDBInstancesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceIds: 需要隔离的实例ID列表
@@ -1111,6 +1155,153 @@ module TencentCloud
         def deserialize(params)
           @BackupSetId = params['BackupSetId']
           @IsSuccess = params['IsSuccess']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateStandbyDBInstance请求参数结构体
+      class CreateStandbyDBInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param PrimaryInstanceId: <p>主实例 id</p>
+        # @type PrimaryInstanceId: String
+        # @param Zone: <p>创建实例区域</p>
+        # @type Zone: String
+        # @param VpcId: <p>字符型vpcid</p>
+        # @type VpcId: String
+        # @param SubnetId: <p>字符型subnetid</p>
+        # @type SubnetId: String
+        # @param SpecCode: <p>购买规格</p>
+        # @type SpecCode: String
+        # @param Disk: <p>存储节点磁盘容量，单位GB</p>
+        # @type Disk: Integer
+        # @param StorageNodeNum: <p>存储节点数量</p>
+        # @type StorageNodeNum: Integer
+        # @param Replications: <p>存储节点副本数量，最大为5，要求为奇数</p>
+        # @type Replications: Integer
+        # @param FullReplications: <p>全能型副本数</p>
+        # @type FullReplications: Integer
+        # @param InstanceName: <p>实例名称，要求长度1-60，允许包含中文、英文大小写、数字、-、_</p>
+        # @type InstanceName: String
+        # @param TimeUnit: <p>时间单位，y：年，m：月，d：日</p>
+        # @type TimeUnit: String
+        # @param TimeSpan: <p>商品的时间大小</p>
+        # @type TimeSpan: Integer
+        # @param StorageNodeCpu: <p>存储节点CPU核数</p>
+        # @type StorageNodeCpu: Integer
+        # @param StorageNodeMem: <p>存储节点内存大小</p>
+        # @type StorageNodeMem: Integer
+        # @param PayMode: <p>付费模式，0表示按需计费/后付费，1表示预付费</p>
+        # @type PayMode: String
+        # @param Vport: <p>自定义端口</p>
+        # @type Vport: Integer
+        # @param Zones: <p>多AZ可用区列表</p>
+        # @type Zones: Array
+        # @param AutoVoucher: <p>是否使用优惠卷</p>
+        # @type AutoVoucher: Boolean
+        # @param VoucherIds: <p>优惠卷列表</p>
+        # @type VoucherIds: Array
+        # @param InstanceType: <p>实例架构类型，19.0.0 起支持 &quot;hybrid&quot;&quot;</p>
+        # @type InstanceType: String
+        # @param StorageType: <p>磁盘类型,CLOUD_HSSD增强型SSD,CLOUD_TCS本地SSD盘</p>
+        # @type StorageType: String
+        # @param ResourceTags: <p>标签键值对数组</p>
+        # @type ResourceTags: Array
+        # @param PrimaryInstanceRegion: <p>主实例地域</p>
+        # @type PrimaryInstanceRegion: String
+        # @param InstanceMode: <p>实例模式，normal:标准型；enhanced:加强型</p>
+        # @type InstanceMode: String
+        # @param Password: <p>dbaadmin密码</p>
+        # @type Password: String
+        # @param SecurityGroupIds: <p>绑定安全组id列表</p>
+        # @type SecurityGroupIds: Array
+
+        attr_accessor :PrimaryInstanceId, :Zone, :VpcId, :SubnetId, :SpecCode, :Disk, :StorageNodeNum, :Replications, :FullReplications, :InstanceName, :TimeUnit, :TimeSpan, :StorageNodeCpu, :StorageNodeMem, :PayMode, :Vport, :Zones, :AutoVoucher, :VoucherIds, :InstanceType, :StorageType, :ResourceTags, :PrimaryInstanceRegion, :InstanceMode, :Password, :SecurityGroupIds
+
+        def initialize(primaryinstanceid=nil, zone=nil, vpcid=nil, subnetid=nil, speccode=nil, disk=nil, storagenodenum=nil, replications=nil, fullreplications=nil, instancename=nil, timeunit=nil, timespan=nil, storagenodecpu=nil, storagenodemem=nil, paymode=nil, vport=nil, zones=nil, autovoucher=nil, voucherids=nil, instancetype=nil, storagetype=nil, resourcetags=nil, primaryinstanceregion=nil, instancemode=nil, password=nil, securitygroupids=nil)
+          @PrimaryInstanceId = primaryinstanceid
+          @Zone = zone
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @SpecCode = speccode
+          @Disk = disk
+          @StorageNodeNum = storagenodenum
+          @Replications = replications
+          @FullReplications = fullreplications
+          @InstanceName = instancename
+          @TimeUnit = timeunit
+          @TimeSpan = timespan
+          @StorageNodeCpu = storagenodecpu
+          @StorageNodeMem = storagenodemem
+          @PayMode = paymode
+          @Vport = vport
+          @Zones = zones
+          @AutoVoucher = autovoucher
+          @VoucherIds = voucherids
+          @InstanceType = instancetype
+          @StorageType = storagetype
+          @ResourceTags = resourcetags
+          @PrimaryInstanceRegion = primaryinstanceregion
+          @InstanceMode = instancemode
+          @Password = password
+          @SecurityGroupIds = securitygroupids
+        end
+
+        def deserialize(params)
+          @PrimaryInstanceId = params['PrimaryInstanceId']
+          @Zone = params['Zone']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @SpecCode = params['SpecCode']
+          @Disk = params['Disk']
+          @StorageNodeNum = params['StorageNodeNum']
+          @Replications = params['Replications']
+          @FullReplications = params['FullReplications']
+          @InstanceName = params['InstanceName']
+          @TimeUnit = params['TimeUnit']
+          @TimeSpan = params['TimeSpan']
+          @StorageNodeCpu = params['StorageNodeCpu']
+          @StorageNodeMem = params['StorageNodeMem']
+          @PayMode = params['PayMode']
+          @Vport = params['Vport']
+          @Zones = params['Zones']
+          @AutoVoucher = params['AutoVoucher']
+          @VoucherIds = params['VoucherIds']
+          @InstanceType = params['InstanceType']
+          @StorageType = params['StorageType']
+          unless params['ResourceTags'].nil?
+            @ResourceTags = []
+            params['ResourceTags'].each do |i|
+              resourcetag_tmp = ResourceTag.new
+              resourcetag_tmp.deserialize(i)
+              @ResourceTags << resourcetag_tmp
+            end
+          end
+          @PrimaryInstanceRegion = params['PrimaryInstanceRegion']
+          @InstanceMode = params['InstanceMode']
+          @Password = params['Password']
+          @SecurityGroupIds = params['SecurityGroupIds']
+        end
+      end
+
+      # CreateStandbyDBInstance返回参数结构体
+      class CreateStandbyDBInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例 ID</p>
+        # @type InstanceId: String
+        # @param FlowId: <p>任务ID</p>
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceId, :FlowId, :RequestId
+
+        def initialize(instanceid=nil, flowid=nil, requestid=nil)
+          @InstanceId = instanceid
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @FlowId = params['FlowId']
           @RequestId = params['RequestId']
         end
       end
@@ -3130,6 +3321,50 @@ module TencentCloud
         end
       end
 
+      # DescribeStandbyDBInstanceRelationDetail请求参数结构体
+      class DescribeStandbyDBInstanceRelationDetailRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceIds: 实例 ID
+        # @type InstanceIds: Array
+
+        attr_accessor :InstanceIds
+
+        def initialize(instanceids=nil)
+          @InstanceIds = instanceids
+        end
+
+        def deserialize(params)
+          @InstanceIds = params['InstanceIds']
+        end
+      end
+
+      # DescribeStandbyDBInstanceRelationDetail返回参数结构体
+      class DescribeStandbyDBInstanceRelationDetailResponse < TencentCloud::Common::AbstractModel
+        # @param RelationInfos: 灾备关系
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RelationInfos: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RelationInfos, :RequestId
+
+        def initialize(relationinfos=nil, requestid=nil)
+          @RelationInfos = relationinfos
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['RelationInfos'].nil?
+            @RelationInfos = []
+            params['RelationInfos'].each do |i|
+              standbydbinstancerelation_tmp = StandbyDBInstanceRelation.new
+              standbydbinstancerelation_tmp.deserialize(i)
+              @RelationInfos << standbydbinstancerelation_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeUserPrivileges请求参数结构体
       class DescribeUserPrivilegesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID，形如：tdsql3-5baee8df。
@@ -3583,30 +3818,30 @@ module TencentCloud
 
         attr_accessor :ComputeNodeNum, :Zone, :CreateVersion, :InitParams, :Status, :InstanceId, :StorageNodeNum, :ResourceTags, :InstanceName, :Cpu, :VpcId, :Mem, :Vip, :SubnetId, :Vport, :Disk, :CreateTime, :Region, :StatusDesc, :MCCpu, :MCMem, :ComputerNodeCpu, :ComputerNodeMem, :StorageNodeCpu, :StorageNodeMem, :MCNum, :RenewFlag, :PayMode, :AccountTag, :InstanceType, :StorageType, :DestroyedAt, :ExpireAt, :IsolatedAt, :IsolatedFrom, :Replications, :FullReplications, :AppId, :SubAccountUin, :Uin, :Zones, :Nodes, :BinlogStatus, :CdcNodeCpu, :CdcNodeMem, :CdcNodeNum, :AZMode, :StandbyFlag, :StandbySecondaryNum, :ColumnarNodeCpu, :ColumnarNodeMem, :ColumnarNodeNum, :ColumnarNodeDisk, :ColumnarNodeStorageType, :InstanceCategory, :ExclusiveClusterId, :SQLMode, :InstanceMode, :ClusterId, :AutoScaleConfig, :AnalysisMode, :AnalysisRelationInfos, :AnalysisInstanceInfo, :AutoScaleConfigs
         extend Gem::Deprecate
-        deprecate :ComputeNodeNum, :none, 2026, 8
-        deprecate :ComputeNodeNum=, :none, 2026, 8
-        deprecate :Cpu, :none, 2026, 8
-        deprecate :Cpu=, :none, 2026, 8
-        deprecate :Mem, :none, 2026, 8
-        deprecate :Mem=, :none, 2026, 8
-        deprecate :MCCpu, :none, 2026, 8
-        deprecate :MCCpu=, :none, 2026, 8
-        deprecate :MCMem, :none, 2026, 8
-        deprecate :MCMem=, :none, 2026, 8
-        deprecate :ComputerNodeCpu, :none, 2026, 8
-        deprecate :ComputerNodeCpu=, :none, 2026, 8
-        deprecate :ComputerNodeMem, :none, 2026, 8
-        deprecate :ComputerNodeMem=, :none, 2026, 8
-        deprecate :MCNum, :none, 2026, 8
-        deprecate :MCNum=, :none, 2026, 8
-        deprecate :CdcNodeCpu, :none, 2026, 8
-        deprecate :CdcNodeCpu=, :none, 2026, 8
-        deprecate :CdcNodeMem, :none, 2026, 8
-        deprecate :CdcNodeMem=, :none, 2026, 8
-        deprecate :CdcNodeNum, :none, 2026, 8
-        deprecate :CdcNodeNum=, :none, 2026, 8
-        deprecate :ClusterId, :none, 2026, 8
-        deprecate :ClusterId=, :none, 2026, 8
+        deprecate :ComputeNodeNum, :none, 2026, 9
+        deprecate :ComputeNodeNum=, :none, 2026, 9
+        deprecate :Cpu, :none, 2026, 9
+        deprecate :Cpu=, :none, 2026, 9
+        deprecate :Mem, :none, 2026, 9
+        deprecate :Mem=, :none, 2026, 9
+        deprecate :MCCpu, :none, 2026, 9
+        deprecate :MCCpu=, :none, 2026, 9
+        deprecate :MCMem, :none, 2026, 9
+        deprecate :MCMem=, :none, 2026, 9
+        deprecate :ComputerNodeCpu, :none, 2026, 9
+        deprecate :ComputerNodeCpu=, :none, 2026, 9
+        deprecate :ComputerNodeMem, :none, 2026, 9
+        deprecate :ComputerNodeMem=, :none, 2026, 9
+        deprecate :MCNum, :none, 2026, 9
+        deprecate :MCNum=, :none, 2026, 9
+        deprecate :CdcNodeCpu, :none, 2026, 9
+        deprecate :CdcNodeCpu=, :none, 2026, 9
+        deprecate :CdcNodeMem, :none, 2026, 9
+        deprecate :CdcNodeMem=, :none, 2026, 9
+        deprecate :CdcNodeNum, :none, 2026, 9
+        deprecate :CdcNodeNum=, :none, 2026, 9
+        deprecate :ClusterId, :none, 2026, 9
+        deprecate :ClusterId=, :none, 2026, 9
 
         def initialize(computenodenum=nil, zone=nil, createversion=nil, initparams=nil, status=nil, instanceid=nil, storagenodenum=nil, resourcetags=nil, instancename=nil, cpu=nil, vpcid=nil, mem=nil, vip=nil, subnetid=nil, vport=nil, disk=nil, createtime=nil, region=nil, statusdesc=nil, mccpu=nil, mcmem=nil, computernodecpu=nil, computernodemem=nil, storagenodecpu=nil, storagenodemem=nil, mcnum=nil, renewflag=nil, paymode=nil, accounttag=nil, instancetype=nil, storagetype=nil, destroyedat=nil, expireat=nil, isolatedat=nil, isolatedfrom=nil, replications=nil, fullreplications=nil, appid=nil, subaccountuin=nil, uin=nil, zones=nil, nodes=nil, binlogstatus=nil, cdcnodecpu=nil, cdcnodemem=nil, cdcnodenum=nil, azmode=nil, standbyflag=nil, standbysecondarynum=nil, columnarnodecpu=nil, columnarnodemem=nil, columnarnodenum=nil, columnarnodedisk=nil, columnarnodestoragetype=nil, instancecategory=nil, exclusiveclusterid=nil, sqlmode=nil, instancemode=nil, clusterid=nil, autoscaleconfig=nil, analysismode=nil, analysisrelationinfos=nil, analysisinstanceinfo=nil, autoscaleconfigs=nil)
           @ComputeNodeNum = computenodenum
@@ -5095,6 +5330,110 @@ module TencentCloud
               @Explain << explain_tmp
             end
           end
+        end
+      end
+
+      # 灾备实例关系
+      class StandbyDBInstanceRelation < TencentCloud::Common::AbstractModel
+        # @param PrimaryInstanceId: 主实例 ID
+        # @type PrimaryInstanceId: String
+        # @param PrimaryInstanceName: 主实例名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PrimaryInstanceName: String
+        # @param PrimaryRegion: 主实例地域
+        # @type PrimaryRegion: String
+        # @param PrimaryVip: 主实例子网 IP
+        # @type PrimaryVip: String
+        # @param PrimaryVport: 主实例子网端口
+        # @type PrimaryVport: Integer
+        # @param PrimaryZones: 主实例可用区
+        # @type PrimaryZones: Array
+        # @param PrimaryStatus: 主实例运行状态
+        # @type PrimaryStatus: String
+        # @param SecondaryInstanceId: 备实例 ID
+        # @type SecondaryInstanceId: String
+        # @param SecondaryInstanceName: 备实例名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecondaryInstanceName: String
+        # @param SecondaryRegion: 备实例地域
+        # @type SecondaryRegion: String
+        # @param SecondaryVip: 备实例子网 IP
+        # @type SecondaryVip: String
+        # @param SecondaryVport: 备实例子网端口
+        # @type SecondaryVport: Integer
+        # @param SecondaryZones: 备实例可用区
+        # @type SecondaryZones: Array
+        # @param SecondaryStatus: 备实例运行状态
+        # @type SecondaryStatus: String
+        # @param ConnType: 连接类型，log_service 或 raft
+        # @type ConnType: String
+        # @param SyncMode: 同步类型，sync 或 async
+        # @type SyncMode: String
+        # @param SyncStatus: 同步状态，1: 正在同步；2: 同步异常
+        # @type SyncStatus: Integer
+        # @param SyncStatusDesc: 同步状态描述，同步状态异常时的错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SyncStatusDesc: String
+        # @param StandbyStatus: 灾备状态描述，"creating" "running" "modifying"，无灾备关系时为空
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StandbyStatus: String
+        # @param PrimaryCreateVersion: 主实例版本
+        # @type PrimaryCreateVersion: String
+        # @param SecondaryCreateVersion: 备实例版本
+        # @type SecondaryCreateVersion: String
+        # @param SyncDelay: 时延 单位为秒
+        # @type SyncDelay: Integer
+
+        attr_accessor :PrimaryInstanceId, :PrimaryInstanceName, :PrimaryRegion, :PrimaryVip, :PrimaryVport, :PrimaryZones, :PrimaryStatus, :SecondaryInstanceId, :SecondaryInstanceName, :SecondaryRegion, :SecondaryVip, :SecondaryVport, :SecondaryZones, :SecondaryStatus, :ConnType, :SyncMode, :SyncStatus, :SyncStatusDesc, :StandbyStatus, :PrimaryCreateVersion, :SecondaryCreateVersion, :SyncDelay
+
+        def initialize(primaryinstanceid=nil, primaryinstancename=nil, primaryregion=nil, primaryvip=nil, primaryvport=nil, primaryzones=nil, primarystatus=nil, secondaryinstanceid=nil, secondaryinstancename=nil, secondaryregion=nil, secondaryvip=nil, secondaryvport=nil, secondaryzones=nil, secondarystatus=nil, conntype=nil, syncmode=nil, syncstatus=nil, syncstatusdesc=nil, standbystatus=nil, primarycreateversion=nil, secondarycreateversion=nil, syncdelay=nil)
+          @PrimaryInstanceId = primaryinstanceid
+          @PrimaryInstanceName = primaryinstancename
+          @PrimaryRegion = primaryregion
+          @PrimaryVip = primaryvip
+          @PrimaryVport = primaryvport
+          @PrimaryZones = primaryzones
+          @PrimaryStatus = primarystatus
+          @SecondaryInstanceId = secondaryinstanceid
+          @SecondaryInstanceName = secondaryinstancename
+          @SecondaryRegion = secondaryregion
+          @SecondaryVip = secondaryvip
+          @SecondaryVport = secondaryvport
+          @SecondaryZones = secondaryzones
+          @SecondaryStatus = secondarystatus
+          @ConnType = conntype
+          @SyncMode = syncmode
+          @SyncStatus = syncstatus
+          @SyncStatusDesc = syncstatusdesc
+          @StandbyStatus = standbystatus
+          @PrimaryCreateVersion = primarycreateversion
+          @SecondaryCreateVersion = secondarycreateversion
+          @SyncDelay = syncdelay
+        end
+
+        def deserialize(params)
+          @PrimaryInstanceId = params['PrimaryInstanceId']
+          @PrimaryInstanceName = params['PrimaryInstanceName']
+          @PrimaryRegion = params['PrimaryRegion']
+          @PrimaryVip = params['PrimaryVip']
+          @PrimaryVport = params['PrimaryVport']
+          @PrimaryZones = params['PrimaryZones']
+          @PrimaryStatus = params['PrimaryStatus']
+          @SecondaryInstanceId = params['SecondaryInstanceId']
+          @SecondaryInstanceName = params['SecondaryInstanceName']
+          @SecondaryRegion = params['SecondaryRegion']
+          @SecondaryVip = params['SecondaryVip']
+          @SecondaryVport = params['SecondaryVport']
+          @SecondaryZones = params['SecondaryZones']
+          @SecondaryStatus = params['SecondaryStatus']
+          @ConnType = params['ConnType']
+          @SyncMode = params['SyncMode']
+          @SyncStatus = params['SyncStatus']
+          @SyncStatusDesc = params['SyncStatusDesc']
+          @StandbyStatus = params['StandbyStatus']
+          @PrimaryCreateVersion = params['PrimaryCreateVersion']
+          @SecondaryCreateVersion = params['SecondaryCreateVersion']
+          @SyncDelay = params['SyncDelay']
         end
       end
 

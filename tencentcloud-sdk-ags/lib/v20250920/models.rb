@@ -1367,9 +1367,9 @@ module TencentCloud
 
       # metadata 项
       class MetadataVar < TencentCloud::Common::AbstractModel
-        # @param Name: <p>沙箱元数据名</p>
+        # @param Name: <p>元数据名</p>
         # @type Name: String
-        # @param Value: <p>沙箱元数据值</p>
+        # @param Value: <p>元数据值</p>
         # @type Value: String
 
         attr_accessor :Name, :Value

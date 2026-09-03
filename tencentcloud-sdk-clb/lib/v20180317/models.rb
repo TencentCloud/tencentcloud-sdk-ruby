@@ -11657,19 +11657,30 @@ module TencentCloud
       class ModifyModelAttributesRequest < TencentCloud::Common::AbstractModel
         # @param ServiceProviderId: <p>BYOK的ID</p><p>参数格式：byok-kot39u7j</p>
         # @type ServiceProviderId: String
-        # @param ServiceProviderName: <p>BYOK的自定义名字</p><p>入参限制：1～256个字符</p>
+        # @param ServiceProviderName: <p>BYOK的自定义名字</p><p>入参限制：1～255个字符</p>
         # @type ServiceProviderName: String
+        # @param ApiBases: <p>多协议 Api Base URL</p>
+        # @type ApiBases: Array
 
-        attr_accessor :ServiceProviderId, :ServiceProviderName
+        attr_accessor :ServiceProviderId, :ServiceProviderName, :ApiBases
 
-        def initialize(serviceproviderid=nil, serviceprovidername=nil)
+        def initialize(serviceproviderid=nil, serviceprovidername=nil, apibases=nil)
           @ServiceProviderId = serviceproviderid
           @ServiceProviderName = serviceprovidername
+          @ApiBases = apibases
         end
 
         def deserialize(params)
           @ServiceProviderId = params['ServiceProviderId']
           @ServiceProviderName = params['ServiceProviderName']
+          unless params['ApiBases'].nil?
+            @ApiBases = []
+            params['ApiBases'].each do |i|
+              apibaseitem_tmp = ApiBaseItem.new
+              apibaseitem_tmp.deserialize(i)
+              @ApiBases << apibaseitem_tmp
+            end
+          end
         end
       end
 

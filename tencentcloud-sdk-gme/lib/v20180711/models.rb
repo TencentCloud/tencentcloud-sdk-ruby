@@ -1342,28 +1342,31 @@ module TencentCloud
 
       # DescribeApplicationList请求参数结构体
       class DescribeApplicationListRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目ID，0表示默认项目，-1表示所有项目，如果需要查找具体项目下的应用列表，请填入具体项目ID，项目ID在项目管理中查看 https://console.cloud.tencent.com/project
+        # @param ProjectId: <p>项目ID，0表示默认项目，-1表示所有项目，如果需要查找具体项目下的应用列表，请填入具体项目ID，项目ID在项目管理中查看 https://console.cloud.tencent.com/project</p>
         # @type ProjectId: Integer
-        # @param PageNo: 页码ID，0表示第一页，以此后推。默认填0
+        # @param PageNo: <p>页码ID，0表示第一页，以此后推。默认填0</p>
         # @type PageNo: Integer
-        # @param PageSize: 每页展示应用数量。默认填200
+        # @param PageSize: <p>每页展示应用数量。默认填200</p>
         # @type PageSize: Integer
-        # @param SearchText: 所查找应用名称的关键字，支持模糊匹配查找。空串表示查询所有应用
+        # @param SearchText: <p>所查找应用名称的关键字，支持模糊匹配查找。空串表示查询所有应用</p>
         # @type SearchText: String
-        # @param TagSet: 标签列表
+        # @param TagSet: <p>标签列表</p>
         # @type TagSet: Array
-        # @param Filters: 查找过滤关键字列表
+        # @param Filters: <p>查找过滤关键字列表</p>
         # @type Filters: Array
+        # @param NewVersion: <p>是否查询GME3.0应用</p><p>取值范围：[0, 1]</p><p>默认值：0</p>
+        # @type NewVersion: Integer
 
-        attr_accessor :ProjectId, :PageNo, :PageSize, :SearchText, :TagSet, :Filters
+        attr_accessor :ProjectId, :PageNo, :PageSize, :SearchText, :TagSet, :Filters, :NewVersion
 
-        def initialize(projectid=nil, pageno=nil, pagesize=nil, searchtext=nil, tagset=nil, filters=nil)
+        def initialize(projectid=nil, pageno=nil, pagesize=nil, searchtext=nil, tagset=nil, filters=nil, newversion=nil)
           @ProjectId = projectid
           @PageNo = pageno
           @PageSize = pagesize
           @SearchText = searchtext
           @TagSet = tagset
           @Filters = filters
+          @NewVersion = newversion
         end
 
         def deserialize(params)
@@ -1387,14 +1390,15 @@ module TencentCloud
               @Filters << filter_tmp
             end
           end
+          @NewVersion = params['NewVersion']
         end
       end
 
       # DescribeApplicationList返回参数结构体
       class DescribeApplicationListResponse < TencentCloud::Common::AbstractModel
-        # @param ApplicationList: 获取应用列表返回
+        # @param ApplicationList: <p>获取应用列表返回</p>
         # @type ApplicationList: Array
-        # @param Total: 应用总数
+        # @param Total: <p>应用总数</p>
         # @type Total: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

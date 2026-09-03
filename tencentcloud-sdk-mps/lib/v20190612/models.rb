@@ -1141,69 +1141,60 @@ module TencentCloud
 
       # 智能分析结果
       class AiAnalysisResult < TencentCloud::Common::AbstractModel
-        # @param Type: 任务的类型，可以取的值有：
-        # <li>Classification：智能分类</li>
-        # <li>Cover：智能封面</li>
-        # <li>Tag：智能标签</li>
-        # <li>FrameTag：智能按帧标签</li>
-        # <li>Highlight：智能精彩集锦</li>
-        # <li>DeLogo：智能擦除</li>
-        # <li>Description：大模型摘要</li>
-        # <li>Dubbing：智能译制</li>
-        # <li>VideoRemake: 视频去重</li>
-        # <li>VideoComprehension: 视频（音频）理解</li>
-        # <li>Cutout：视频抠图</li>
-        # <li>Reel：智能成片</li>
+        # @param Type: <p>任务的类型，可以取的值有：</p><li>Classification：智能分类</li><li>Cover：智能封面</li><li>Tag：智能标签</li><li>FrameTag：智能按帧标签</li><li>Highlight：智能精彩集锦</li><li>DeLogo：智能擦除</li><li>Description：大模型摘要</li><li>Dubbing：智能译制</li><li>VideoRemake: 视频去重</li><li>VideoComprehension: 视频（音频）理解</li><li>Cutout：视频抠图</li><li>Reel：智能成片</li>
         # @type Type: String
-        # @param ClassificationTask: 视频内容分析智能分类任务的查询结果，当任务类型为 Classification 时有效。
+        # @param ClassificationTask: <p>视频内容分析智能分类任务的查询结果，当任务类型为 Classification 时有效。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClassificationTask: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskClassificationResult`
-        # @param CoverTask: 视频内容分析智能封面任务的查询结果，当任务类型为 Cover 时有效。
+        # @param CoverTask: <p>视频内容分析智能封面任务的查询结果，当任务类型为 Cover 时有效。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CoverTask: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskCoverResult`
-        # @param TagTask: 视频内容分析智能标签任务的查询结果，当任务类型为 Tag 时有效。
+        # @param TagTask: <p>视频内容分析智能标签任务的查询结果，当任务类型为 Tag 时有效。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagTask: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskTagResult`
-        # @param FrameTagTask: 视频内容分析智能按帧标签任务的查询结果，当任务类型为 FrameTag 时有效。
+        # @param FrameTagTask: <p>视频内容分析智能按帧标签任务的查询结果，当任务类型为 FrameTag 时有效。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FrameTagTask: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskFrameTagResult`
-        # @param HighlightTask: 视频内容分析集锦任务的查询结果，当任务类型为 Highlight时有效。
+        # @param HighlightTask: <p>视频内容分析集锦任务的查询结果，当任务类型为 Highlight时有效。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HighlightTask: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskHighlightResult`
-        # @param DeLogoTask: 视频内容分析智能擦除任务的查询结果，当任务类型为 DeLogo 时有效。
+        # @param DeLogoTask: <p>视频内容分析智能擦除任务的查询结果，当任务类型为 DeLogo 时有效。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeLogoTask: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskDelLogoResult`
-        # @param SegmentTask: 视频内容分析拆条任务的查询结果，当任务类型为 SegmentRecognition 时有效。
+        # @param SegmentTask: <p>视频内容分析拆条任务的查询结果，当任务类型为 SegmentRecognition 时有效。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SegmentTask: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskSegmentResult`
-        # @param HeadTailTask: 视频内容分析片头片尾任务的查询结果，当任务类型为 HeadTailRecognition 时有效。
+        # @param HeadTailTask: <p>视频内容分析片头片尾任务的查询结果，当任务类型为 HeadTailRecognition 时有效。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HeadTailTask: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskHeadTailResult`
-        # @param DescriptionTask: 视频内容分析摘要任务的查询结果，当任务类型为 Description 时有效。
+        # @param DescriptionTask: <p>视频内容分析摘要任务的查询结果，当任务类型为 Description 时有效。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DescriptionTask: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskDescriptionResult`
-        # @param HorizontalToVerticalTask: 视频内容分析横转竖任务的查询结果，当任务类型为 HorizontalToVertical 时有效。
+        # @param HorizontalToVerticalTask: <p>视频内容分析横转竖任务的查询结果，当任务类型为 HorizontalToVertical 时有效。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HorizontalToVerticalTask: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskHorizontalToVerticalResult`
-        # @param DubbingTask: 视频内容分析译制任务的查询结果，当任务类型为 Dubbing 时有效。
+        # @param DubbingTask: <p>视频内容分析译制任务的查询结果，当任务类型为 Dubbing 时有效。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DubbingTask: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskDubbingResult`
-        # @param VideoRemakeTask: 视频内容分析去重任务的查询结果，当任务类型为 VideoRemake 时有效。
+        # @param VideoRemakeTask: <p>视频内容分析去重任务的查询结果，当任务类型为 VideoRemake 时有效。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VideoRemakeTask: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskVideoRemakeResult`
-        # @param VideoComprehensionTask: 视频（音频）理解任务的查询结果，当任务类型为 VideoComprehension 时有效。
+        # @param VideoComprehensionTask: <p>视频（音频）理解任务的查询结果，当任务类型为 VideoComprehension 时有效。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VideoComprehensionTask: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskVideoComprehensionResult`
-        # @param CutoutTask: 视频内容分析智能抠图任务的查询结果，当任务类型为Cutout时有效。
+        # @param CutoutTask: <p>视频内容分析智能抠图任务的查询结果，当任务类型为Cutout时有效。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CutoutTask: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskCutoutResult`
-        # @param ReelTask: 视频内容分析AI解说二创任务的查询结果，当任务类型为Reel时有效。
+        # @param ReelTask: <p>视频内容分析AI解说二创任务的查询结果，当任务类型为Reel时有效。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReelTask: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskReelResult`
+        # @param GenericTask: <p>智能分析通用任务的查询结果，当任务类型为Generic时有效。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GenericTask: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskGenericResult`
 
-        attr_accessor :Type, :ClassificationTask, :CoverTask, :TagTask, :FrameTagTask, :HighlightTask, :DeLogoTask, :SegmentTask, :HeadTailTask, :DescriptionTask, :HorizontalToVerticalTask, :DubbingTask, :VideoRemakeTask, :VideoComprehensionTask, :CutoutTask, :ReelTask
+        attr_accessor :Type, :ClassificationTask, :CoverTask, :TagTask, :FrameTagTask, :HighlightTask, :DeLogoTask, :SegmentTask, :HeadTailTask, :DescriptionTask, :HorizontalToVerticalTask, :DubbingTask, :VideoRemakeTask, :VideoComprehensionTask, :CutoutTask, :ReelTask, :GenericTask
 
-        def initialize(type=nil, classificationtask=nil, covertask=nil, tagtask=nil, frametagtask=nil, highlighttask=nil, delogotask=nil, segmenttask=nil, headtailtask=nil, descriptiontask=nil, horizontaltoverticaltask=nil, dubbingtask=nil, videoremaketask=nil, videocomprehensiontask=nil, cutouttask=nil, reeltask=nil)
+        def initialize(type=nil, classificationtask=nil, covertask=nil, tagtask=nil, frametagtask=nil, highlighttask=nil, delogotask=nil, segmenttask=nil, headtailtask=nil, descriptiontask=nil, horizontaltoverticaltask=nil, dubbingtask=nil, videoremaketask=nil, videocomprehensiontask=nil, cutouttask=nil, reeltask=nil, generictask=nil)
           @Type = type
           @ClassificationTask = classificationtask
           @CoverTask = covertask
@@ -1220,6 +1211,7 @@ module TencentCloud
           @VideoComprehensionTask = videocomprehensiontask
           @CutoutTask = cutouttask
           @ReelTask = reeltask
+          @GenericTask = generictask
         end
 
         def deserialize(params)
@@ -1283,6 +1275,10 @@ module TencentCloud
           unless params['ReelTask'].nil?
             @ReelTask = AiAnalysisTaskReelResult.new
             @ReelTask.deserialize(params['ReelTask'])
+          end
+          unless params['GenericTask'].nil?
+            @GenericTask = AiAnalysisTaskGenericResult.new
+            @GenericTask.deserialize(params['GenericTask'])
           end
         end
       end
@@ -1953,6 +1949,88 @@ module TencentCloud
           end
           unless params['Output'].nil?
             @Output = AiAnalysisTaskFrameTagOutput.new
+            @Output.deserialize(params['Output'])
+          end
+        end
+      end
+
+      # 智能分析通用任务输入类型
+      class AiAnalysisTaskGenericInput < TencentCloud::Common::AbstractModel
+        # @param Definition: <p>智能分析模板 ID。</p>
+        # @type Definition: Integer
+        # @param ExtendedParameter: <p>扩展参数。</p>
+        # @type ExtendedParameter: String
+
+        attr_accessor :Definition, :ExtendedParameter
+
+        def initialize(definition=nil, extendedparameter=nil)
+          @Definition = definition
+          @ExtendedParameter = extendedparameter
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          @ExtendedParameter = params['ExtendedParameter']
+        end
+      end
+
+      # 智能分析通用结果信息
+      class AiAnalysisTaskGenericOutput < TencentCloud::Common::AbstractModel
+        # @param OutputStorage: <p>存储位置。</p>
+        # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
+        # @param Result: <p>任务结果。</p>
+        # @type Result: String
+
+        attr_accessor :OutputStorage, :Result
+
+        def initialize(outputstorage=nil, result=nil)
+          @OutputStorage = outputstorage
+          @Result = result
+        end
+
+        def deserialize(params)
+          unless params['OutputStorage'].nil?
+            @OutputStorage = TaskOutputStorage.new
+            @OutputStorage.deserialize(params['OutputStorage'])
+          end
+          @Result = params['Result']
+        end
+      end
+
+      # 智能分析通用结果类型
+      class AiAnalysisTaskGenericResult < TencentCloud::Common::AbstractModel
+        # @param Status: <p>任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。</p><p>枚举值：</p><ul><li>PROCESSING： 处理中</li><li>SUCCESS： 成功</li><li>FAIL： 失败</li></ul>
+        # @type Status: String
+        # @param ErrCode: <p>错误码，0：成功，其他值：失败。</p>
+        # @type ErrCode: Integer
+        # @param Message: <p>错误信息。</p>
+        # @type Message: String
+        # @param Input: <p>智能分析任务输入。</p>
+        # @type Input: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskGenericInput`
+        # @param Output: <p>智能分析任务输出。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Output: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskGenericOutput`
+
+        attr_accessor :Status, :ErrCode, :Message, :Input, :Output
+
+        def initialize(status=nil, errcode=nil, message=nil, input=nil, output=nil)
+          @Status = status
+          @ErrCode = errcode
+          @Message = message
+          @Input = input
+          @Output = output
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @ErrCode = params['ErrCode']
+          @Message = params['Message']
+          unless params['Input'].nil?
+            @Input = AiAnalysisTaskGenericInput.new
+            @Input.deserialize(params['Input'])
+          end
+          unless params['Output'].nil?
+            @Output = AiAnalysisTaskGenericOutput.new
             @Output.deserialize(params['Output'])
           end
         end
@@ -5716,6 +5794,44 @@ module TencentCloud
         end
       end
 
+      # 参考主体信息。
+      # 对于Vidu模型：
+      # Id -> server_id， 通过主体创建接口获取的主体ID。
+      # name -> 主体ID， 后续通过@主体ID方式使用。
+
+      # 对于Kling模型:
+      # id -> element_id， 主体ID, 通过主体创建接口获取的主体ID。
+      class AigcVideoReferenceSubjectInfo < TencentCloud::Common::AbstractModel
+        # @param Id: <p>参考主体的 ID。</p>
+        # @type Id: String
+        # @param Name: <p>主体名称。</p>
+        # @type Name: String
+        # @param VoiceId: <p>主体音色ID。</p>
+        # @type VoiceId: String
+        # @param ImageUrls: <p>主体图片列表。</p>
+        # @type ImageUrls: Array
+        # @param VideoUrls: <p>主体视频列表。</p>
+        # @type VideoUrls: Array
+
+        attr_accessor :Id, :Name, :VoiceId, :ImageUrls, :VideoUrls
+
+        def initialize(id=nil, name=nil, voiceid=nil, imageurls=nil, videourls=nil)
+          @Id = id
+          @Name = name
+          @VoiceId = voiceid
+          @ImageUrls = imageurls
+          @VideoUrls = videourls
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @VoiceId = params['VoiceId']
+          @ImageUrls = params['ImageUrls']
+          @VideoUrls = params['VideoUrls']
+        end
+      end
+
       # 用于AIGC视频生成的参考视频素材。
       class AigcVideoReferenceVideoInfo < TencentCloud::Common::AbstractModel
         # @param VideoUrl: <p>参考视频url。需要外网可访问。<br>可作为特征参考视频，也可作为待编辑视频，默认为待编辑视频；可选择性保留视频原声<br>通过ReferType参数区分参考视频类型：feature为特征参考视频，base为待编辑视频<br>参考视频为待编辑视频时，不能定义视频首尾帧。</p>
@@ -9028,39 +9144,36 @@ module TencentCloud
 
       # CreateAigcAudioTask请求参数结构体
       class CreateAigcAudioTaskRequest < TencentCloud::Common::AbstractModel
-        # @param ModelName: <p>模型名称。生音乐当前支持的模型: GL、MiniMaxMusic。</p>
+        # @param ModelName: <p>模型名称。生音乐当前支持的模型: GL、MiniMaxMusic、EL、Mureka。</p>
         # @type ModelName: String
-        # @param ModelVersion: <p>指定模型特定版本号。默认使用系统当前所支持的模型稳定版本。<br>模型GL支持的版本号：3.0-clip、3.0-pro。<br>模型MiniMaxMusic支持的版本号：2.0、2.5、2.6。</p>
+        # @param ModelVersion: <p>指定模型特定版本号。默认使用系统当前所支持的模型稳定版本。模型GL支持的版本号：3.0-clip、3.0-pro。模型MiniMaxMusic支持的版本号：2.0、2.5、2.6， 3.0。模型EL支持的版本号: compose_v2、sound_t2s_v2。模型Mureka支持的版本号: song_8、song_9、song_9.5、instrumental_8、instrumental_9、instrumental_9.5。</p>
         # @type ModelVersion: String
         # @param SceneType: <p>指定场景生音频。音乐: music。</p>
         # @type SceneType: String
-        # @param Prompt: <p>生成视频的描述。(注：最大支持2000字符)。当未传入图片时，此参数必填。</p>
+        # @param Prompt: <p>生成音乐的描述。(注：最大支持2000字符)。</p>
         # @type Prompt: String
-        # @param VideoInfos: <p>参考视频信息。仅部分模型支持。</p>
+        # @param VideoInfos: <p>参考视频信息。仅部分模型支持。</p><ol><li>Kling的视频生音效。</li><li>EL的视频配背景音乐。</li></ol>
         # @type VideoInfos: Array
-        # @param AudioInfos: <p>传入参考音频信息。</p><p>比如传入音频生成音乐时需要传入。</p>
+        # @param AudioInfos: <p>传入参考音频信息。</p><ol><li>MiniMaxMusic的翻唱功能使用。</li></ol><p>比如传入音频生成音乐时需要传入。</p>
         # @type AudioInfos: Array
-        # @param OutputAudioFormat: <p>输出音频格式，默认不填。mp3、wav。</p>
-        # @type OutputAudioFormat: String
         # @param StoreCosParam: <p>文件结果指定存储Cos桶信息。 注意：需开通Cos，创建并授权MPS_QcsRole角色。</p>
         # @type StoreCosParam: :class:`Tencentcloud::Mps.v20190612.models.AigcStoreCosParam`
         # @param ExtraParameters: <p>用于传入要求的额外参数。</p>
         # @type ExtraParameters: :class:`Tencentcloud::Mps.v20190612.models.AigcAudioExtraParam`
-        # @param AdditionalParameters: <p>用于传入一些模型需要的特殊场景参数，Json格式序列化成字符串。<br>示例MinimaxMusic模型传入歌词时：<br>{"lyric":{"小马在快乐奔跑，花儿在开放"}}</p><ol><li>MiniMaxMusic生纯音乐参数使用示例: &quot;AdditionalParameters&quot;:&quot;{"is_instrumental":true}&quot;</li></ol>
+        # @param AdditionalParameters: <p>用于传入一些模型需要的特殊场景参数，Json格式序列化成字符串。<br>示例MinimaxMusic模型传入歌词时：<br>{"lyric":{"小马在快乐奔跑，花儿在开放"}}</p><ol><li>MiniMaxMusic生纯音乐参数使用示例: &quot;AdditionalParameters&quot;:&quot;{"is_instrumental":true}&quot;。<br>支持的透传参数有: lyrics，is_instrumental，aigc_watermark，sample_rate，bitrate。</li><li>EL生音乐支持透传的参数有:<br>PromptInfluence，WithTimestamps，CompositionPlan，ForceInstrumental等参数。</li></ol>
         # @type AdditionalParameters: String
         # @param Operator: <p>接口操作者名称。</p>
         # @type Operator: String
 
-        attr_accessor :ModelName, :ModelVersion, :SceneType, :Prompt, :VideoInfos, :AudioInfos, :OutputAudioFormat, :StoreCosParam, :ExtraParameters, :AdditionalParameters, :Operator
+        attr_accessor :ModelName, :ModelVersion, :SceneType, :Prompt, :VideoInfos, :AudioInfos, :StoreCosParam, :ExtraParameters, :AdditionalParameters, :Operator
 
-        def initialize(modelname=nil, modelversion=nil, scenetype=nil, prompt=nil, videoinfos=nil, audioinfos=nil, outputaudioformat=nil, storecosparam=nil, extraparameters=nil, additionalparameters=nil, operator=nil)
+        def initialize(modelname=nil, modelversion=nil, scenetype=nil, prompt=nil, videoinfos=nil, audioinfos=nil, storecosparam=nil, extraparameters=nil, additionalparameters=nil, operator=nil)
           @ModelName = modelname
           @ModelVersion = modelversion
           @SceneType = scenetype
           @Prompt = prompt
           @VideoInfos = videoinfos
           @AudioInfos = audioinfos
-          @OutputAudioFormat = outputaudioformat
           @StoreCosParam = storecosparam
           @ExtraParameters = extraparameters
           @AdditionalParameters = additionalparameters
@@ -9088,7 +9201,6 @@ module TencentCloud
               @AudioInfos << aigcaudioreferenceaudioinfo_tmp
             end
           end
-          @OutputAudioFormat = params['OutputAudioFormat']
           unless params['StoreCosParam'].nil?
             @StoreCosParam = AigcStoreCosParam.new
             @StoreCosParam.deserialize(params['StoreCosParam'])
@@ -9239,6 +9351,8 @@ module TencentCloud
         # @type VideoInfos: Array
         # @param AudioInfos: <p>部分模型支持参考音频传入，使用URL传入。</p>
         # @type AudioInfos: Array
+        # @param SubjectInfos: <p>主体信息。</p>
+        # @type SubjectInfos: Array
         # @param Duration: <p>生成视频的时长。<br>注意：</p><ol><li>Kling，默认：5 秒。<ul><li>O1 支持 3-10 秒。</li><li>3.0-Omni 支持 3-15 秒，当使用视频参考时只支持 3-10 秒。</li><li>3.0 支持 3-15 秒。</li><li>其他版本支持 5、10 秒。</li></ul></li><li>Hailuo 的 std 模式可支持 6、10 秒，其他仅 6 秒。默认：6 秒。</li><li>Vidu，默认：5 秒。<ul><li>q3-pro、q3-turbo、q3、q3-mix 支持 3-16 秒。</li><li>q2-pro、q2-turbo、q2 支持 1-10 秒。 </li></ul></li><li>PixVerse，默认：5 秒。<ul><li>v5.6 支持 5、8、10 秒。</li><li>v6、c1 支持 1-15 秒。</li></ul></li><li>H2，支持 3-15 秒，默认 ：5 秒。</li></ol>
         # @type Duration: Integer
         # @param ExtraParameters: <p>用于传入要求的额外参数。</p>
@@ -9250,9 +9364,9 @@ module TencentCloud
         # @param Operator: <p>接口操作者名称。</p>
         # @type Operator: String
 
-        attr_accessor :ModelName, :ModelVersion, :SceneType, :Prompt, :NegativePrompt, :EnhancePrompt, :ImageUrl, :LastImageUrl, :ImageInfos, :VideoInfos, :AudioInfos, :Duration, :ExtraParameters, :StoreCosParam, :AdditionalParameters, :Operator
+        attr_accessor :ModelName, :ModelVersion, :SceneType, :Prompt, :NegativePrompt, :EnhancePrompt, :ImageUrl, :LastImageUrl, :ImageInfos, :VideoInfos, :AudioInfos, :SubjectInfos, :Duration, :ExtraParameters, :StoreCosParam, :AdditionalParameters, :Operator
 
-        def initialize(modelname=nil, modelversion=nil, scenetype=nil, prompt=nil, negativeprompt=nil, enhanceprompt=nil, imageurl=nil, lastimageurl=nil, imageinfos=nil, videoinfos=nil, audioinfos=nil, duration=nil, extraparameters=nil, storecosparam=nil, additionalparameters=nil, operator=nil)
+        def initialize(modelname=nil, modelversion=nil, scenetype=nil, prompt=nil, negativeprompt=nil, enhanceprompt=nil, imageurl=nil, lastimageurl=nil, imageinfos=nil, videoinfos=nil, audioinfos=nil, subjectinfos=nil, duration=nil, extraparameters=nil, storecosparam=nil, additionalparameters=nil, operator=nil)
           @ModelName = modelname
           @ModelVersion = modelversion
           @SceneType = scenetype
@@ -9264,6 +9378,7 @@ module TencentCloud
           @ImageInfos = imageinfos
           @VideoInfos = videoinfos
           @AudioInfos = audioinfos
+          @SubjectInfos = subjectinfos
           @Duration = duration
           @ExtraParameters = extraparameters
           @StoreCosParam = storecosparam
@@ -9302,6 +9417,14 @@ module TencentCloud
               aigcvideoreferenceaudioinfo_tmp = AigcVideoReferenceAudioInfo.new
               aigcvideoreferenceaudioinfo_tmp.deserialize(i)
               @AudioInfos << aigcvideoreferenceaudioinfo_tmp
+            end
+          end
+          unless params['SubjectInfos'].nil?
+            @SubjectInfos = []
+            params['SubjectInfos'].each do |i|
+              aigcvideoreferencesubjectinfo_tmp = AigcVideoReferenceSubjectInfo.new
+              aigcvideoreferencesubjectinfo_tmp.deserialize(i)
+              @SubjectInfos << aigcvideoreferencesubjectinfo_tmp
             end
           end
           @Duration = params['Duration']
@@ -10114,21 +10237,21 @@ module TencentCloud
 
       # CreateMediaEvaluation请求参数结构体
       class CreateMediaEvaluationRequest < TencentCloud::Common::AbstractModel
-        # @param InputInfo: 评测的原文件输入信息。目前输入对象的类型有 COS 和 URL。
+        # @param InputInfo: <p>评测的原文件输入信息。目前输入对象的类型有 COS 和 URL。</p>
         # @type InputInfo: :class:`Tencentcloud::Mps.v20190612.models.MediaInputInfo`
-        # @param EvaluationTask: 评测任务参数。
+        # @param EvaluationTask: <p>评测任务参数。</p>
         # @type EvaluationTask: :class:`Tencentcloud::Mps.v20190612.models.EvaluationTaskInput`
-        # @param OutputStorage: 评测的输出文件的目标存储。不填则继承 InputInfo 中的存储位置。目前输出对象存储位置的类型有COS。
+        # @param OutputStorage: <p>评测的输出文件的目标存储。不填则继承 InputInfo 中的存储位置。目前输出对象存储位置的类型有COS。</p>
         # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
-        # @param OutputDir: 评测生成文件的输出目录，必选以 / 开头和结尾，如/movie/201907/。 如果不填，表示与 InputInfo 中文件所在的目录一致。
+        # @param OutputDir: <p>评测生成文件的输出目录，必选以 / 开头和结尾，如/movie/201907/。 如果不填，表示与 InputInfo 中文件所在的目录一致。</p>
         # @type OutputDir: String
-        # @param TaskNotifyConfig: 任务的事件通知信息，不填代表不获取事件通知。
+        # @param TaskNotifyConfig: <p>任务的事件通知信息，不填代表不获取事件通知。</p>
         # @type TaskNotifyConfig: :class:`Tencentcloud::Mps.v20190612.models.TaskNotifyConfig`
-        # @param TasksPriority: 任务优先级，数值越大优先级越高，取值范围是-10到 10，不填代表0。
+        # @param TasksPriority: <p>任务优先级，数值越大优先级越高，取值范围是-10到 10，不填代表0。</p>
         # @type TasksPriority: Integer
-        # @param SessionId: 用于去重的识别码，如果三天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
+        # @param SessionId: <p>用于去重的识别码，如果三天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。</p>
         # @type SessionId: String
-        # @param SessionContext: 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。
+        # @param SessionContext: <p>来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。</p>
         # @type SessionContext: String
 
         attr_accessor :InputInfo, :EvaluationTask, :OutputStorage, :OutputDir, :TaskNotifyConfig, :TasksPriority, :SessionId, :SessionContext
@@ -10170,7 +10293,7 @@ module TencentCloud
 
       # CreateMediaEvaluation返回参数结构体
       class CreateMediaEvaluationResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务 ID。
+        # @param TaskId: <p>任务 ID。</p>
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -13710,15 +13833,18 @@ module TencentCloud
         # @type ErrorMessage: String
         # @param RecordUrls: <p>当任务状态为 SUCCESS 时，返回录制文件Url列表。</p>
         # @type RecordUrls: Array
+        # @param LiveStatus: <p>直播状态</p><p>枚举值：</p><ul><li>LIVE： 直播中</li><li>PAUSED： 直播暂停</li><li>ENDED： 直播结束</li></ul>
+        # @type LiveStatus: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Status, :ErrorMessage, :RecordUrls, :RequestId
+        attr_accessor :Status, :ErrorMessage, :RecordUrls, :LiveStatus, :RequestId
 
-        def initialize(status=nil, errormessage=nil, recordurls=nil, requestid=nil)
+        def initialize(status=nil, errormessage=nil, recordurls=nil, livestatus=nil, requestid=nil)
           @Status = status
           @ErrorMessage = errormessage
           @RecordUrls = recordurls
+          @LiveStatus = livestatus
           @RequestId = requestid
         end
 
@@ -13726,6 +13852,7 @@ module TencentCloud
           @Status = params['Status']
           @ErrorMessage = params['ErrorMessage']
           @RecordUrls = params['RecordUrls']
+          @LiveStatus = params['LiveStatus']
           @RequestId = params['RequestId']
         end
       end
@@ -15522,69 +15649,70 @@ module TencentCloud
 
       # 查询输出的配置信息。
       class DescribeOutput < TencentCloud::Common::AbstractModel
-        # @param OutputId: 输出Id。
+        # @param OutputId: <p>输出Id。</p>
         # @type OutputId: String
-        # @param OutputName: 输出名称。
+        # @param OutputName: <p>输出名称。</p>
         # @type OutputName: String
-        # @param OutputType: 输出类型。
+        # @param OutputType: <p>输出类型。</p>
         # @type OutputType: String
-        # @param OutputKind: 输出模块类型，包括Pinpoint（单点输出，最多支持四路并发输出）；MultiMesh（多路输出，支持大于四路的并发输出，目前可以达到200路）。默认类型为 Pinpoint 输出。对于单个 Flow 一个区域最多只能有一个 MultiMesh 输出。
+        # @param OutputKind: <p>输出模块类型，包括Pinpoint（单点输出，最多支持四路并发输出）；MultiMesh（多路输出，支持大于四路的并发输出，目前可以达到200路）。默认类型为 Pinpoint 输出。对于单个 Flow 一个区域最多只能有一个 MultiMesh 输出。</p>
         # @type OutputKind: String
-        # @param Description: 输出描述。
+        # @param Description: <p>输出描述。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
-        # @param Protocol: 输出协议。
+        # @param Protocol: <p>输出协议。</p>
         # @type Protocol: String
-        # @param OutputAddressList: 输出的出口地址信息列表。
+        # @param OutputAddressList: <p>输出的出口地址信息列表。</p>
         # @type OutputAddressList: Array
-        # @param OutputRegion: 输出的地区。
+        # @param OutputRegion: <p>输出的地区。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutputRegion: String
-        # @param SRTSettings: 输出的SRT配置信息。
+        # @param SRTSettings: <p>输出的SRT配置信息。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SRTSettings: :class:`Tencentcloud::Mps.v20190612.models.DescribeOutputSRTSettings`
-        # @param RTPSettings: 输出的RTP配置信息。
+        # @param RTPSettings: <p>输出的RTP配置信息。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RTPSettings: :class:`Tencentcloud::Mps.v20190612.models.DescribeOutputRTPSettings`
-        # @param RTMPSettings: 输出的RTMP配置信息。
+        # @param RTMPSettings: <p>输出的RTMP配置信息。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RTMPSettings: :class:`Tencentcloud::Mps.v20190612.models.DescribeOutputRTMPSettings`
-        # @param RTMPPullSettings: 输出的RTMP拉流配置信息。
+        # @param RTMPPullSettings: <p>输出的RTMP拉流配置信息。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RTMPPullSettings: :class:`Tencentcloud::Mps.v20190612.models.DescribeOutputRTMPPullSettings`
-        # @param AllowIpList: CIDR白名单列表。
-        # 当Protocol为RTMP_PULL有效，为空代表不限制客户端IP。
+        # @param AllowIpList: <p>CIDR白名单列表。<br>当Protocol为RTMP_PULL有效，为空代表不限制客户端IP。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AllowIpList: Array
-        # @param RTSPPullSettings: 输出的RTSP拉流配置信息。
+        # @param RTSPPullSettings: <p>输出的RTSP拉流配置信息。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RTSPPullSettings: :class:`Tencentcloud::Mps.v20190612.models.DescribeOutputRTSPPullSettings`
-        # @param HLSPullSettings: 输出的HLS拉流配置信息。
+        # @param HLSPullSettings: <p>输出的HLS拉流配置信息。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HLSPullSettings: :class:`Tencentcloud::Mps.v20190612.models.DescribeOutputHLSPullSettings`
-        # @param MaxConcurrent: 最大拉流并发数，最大为4，默认4。
+        # @param MaxConcurrent: <p>最大拉流并发数，最大为4，默认4。</p>
         # @type MaxConcurrent: Integer
-        # @param SecurityGroupIds: 绑定的安全组 ID。
+        # @param SecurityGroupIds: <p>绑定的安全组 ID。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecurityGroupIds: Array
-        # @param Zones: 可用区，output目前最多只支持一个。
+        # @param Zones: <p>可用区，output目前最多只支持一个。</p>
         # @type Zones: Array
-        # @param RISTSettings: 输出的RIST配置信息。
+        # @param RISTSettings: <p>输出的RIST配置信息。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RISTSettings: :class:`Tencentcloud::Mps.v20190612.models.DescribeOutputRISTSettings`
-        # @param PidSelector: 对于含有多个音/视频轨的流，可以指定需要使用的轨道
+        # @param PidSelector: <p>对于含有多个音/视频轨的流，可以指定需要使用的轨道</p>
         # @type PidSelector: :class:`Tencentcloud::Mps.v20190612.models.PidSelector`
-        # @param StreamUrls: 输出模块配置，相关的URL，包括提供的拉流地址，或者配置的输出到第三方的转推地址
+        # @param StreamUrls: <p>输出模块配置，相关的URL，包括提供的拉流地址，或者配置的输出到第三方的转推地址</p>
         # @type StreamUrls: Array
-        # @param StreamSelector: 对于含有多个音/视频轨的流，可以指定需要使用的轨道
+        # @param StreamSelector: <p>对于含有多个音/视频轨的流，可以指定需要使用的轨道</p>
         # @type StreamSelector: :class:`Tencentcloud::Mps.v20190612.models.StreamSelector`
+        # @param State: <p>启用或者禁用输出</p><p>枚举值：</p><ul><li>DISABLED： 禁用</li><li>ENABLED： 启用</li></ul>
+        # @type State: String
 
-        attr_accessor :OutputId, :OutputName, :OutputType, :OutputKind, :Description, :Protocol, :OutputAddressList, :OutputRegion, :SRTSettings, :RTPSettings, :RTMPSettings, :RTMPPullSettings, :AllowIpList, :RTSPPullSettings, :HLSPullSettings, :MaxConcurrent, :SecurityGroupIds, :Zones, :RISTSettings, :PidSelector, :StreamUrls, :StreamSelector
+        attr_accessor :OutputId, :OutputName, :OutputType, :OutputKind, :Description, :Protocol, :OutputAddressList, :OutputRegion, :SRTSettings, :RTPSettings, :RTMPSettings, :RTMPPullSettings, :AllowIpList, :RTSPPullSettings, :HLSPullSettings, :MaxConcurrent, :SecurityGroupIds, :Zones, :RISTSettings, :PidSelector, :StreamUrls, :StreamSelector, :State
         extend Gem::Deprecate
         deprecate :PidSelector, :none, 2026, 9
         deprecate :PidSelector=, :none, 2026, 9
 
-        def initialize(outputid=nil, outputname=nil, outputtype=nil, outputkind=nil, description=nil, protocol=nil, outputaddresslist=nil, outputregion=nil, srtsettings=nil, rtpsettings=nil, rtmpsettings=nil, rtmppullsettings=nil, allowiplist=nil, rtsppullsettings=nil, hlspullsettings=nil, maxconcurrent=nil, securitygroupids=nil, zones=nil, ristsettings=nil, pidselector=nil, streamurls=nil, streamselector=nil)
+        def initialize(outputid=nil, outputname=nil, outputtype=nil, outputkind=nil, description=nil, protocol=nil, outputaddresslist=nil, outputregion=nil, srtsettings=nil, rtpsettings=nil, rtmpsettings=nil, rtmppullsettings=nil, allowiplist=nil, rtsppullsettings=nil, hlspullsettings=nil, maxconcurrent=nil, securitygroupids=nil, zones=nil, ristsettings=nil, pidselector=nil, streamurls=nil, streamselector=nil, state=nil)
           @OutputId = outputid
           @OutputName = outputname
           @OutputType = outputtype
@@ -15607,6 +15735,7 @@ module TencentCloud
           @PidSelector = pidselector
           @StreamUrls = streamurls
           @StreamSelector = streamselector
+          @State = state
         end
 
         def deserialize(params)
@@ -15673,6 +15802,7 @@ module TencentCloud
             @StreamSelector = StreamSelector.new
             @StreamSelector.deserialize(params['StreamSelector'])
           end
+          @State = params['State']
         end
       end
 

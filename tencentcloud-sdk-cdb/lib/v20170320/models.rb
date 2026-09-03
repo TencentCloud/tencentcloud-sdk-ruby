@@ -1589,17 +1589,11 @@ module TencentCloud
 
       # 售卖实例类型
       class CdbSellType < TencentCloud::Common::AbstractModel
-        # @param TypeName: 售卖实例名称。
-        # Z3：是高可用类型，对应规格中的 DeviceType，包含 UNIVERSAL，EXCLUSIVE。
-        # CVM：是基础版类型，对应规格中的 DeviceType 是 BASIC（已下线）。
-        # TKE：是基础版v2类型，对应规格中的 DeviceType 是 BASIC_V2。
-        # CLOUD_NATIVE_CLUSTER：表示云盘版标准型。
-        # CLOUD_NATIVE_CLUSTER_EXCLUSIVE：表示云盘版加强型。
-        # ECONOMICAL：表示经济型。
+        # @param TypeName: <p>售卖实例名称。<br>Z3：是高可用类型，对应规格中的 DeviceType，包含 UNIVERSAL，EXCLUSIVE。<br>CVM：是基础版类型，对应规格中的 DeviceType 是 BASIC（已下线）。<br>TKE：是基础版v2类型，对应规格中的 DeviceType 是 BASIC_V2。<br>CLOUD_NATIVE_CLUSTER：表示云盘版标准型。<br>CLOUD_NATIVE_CLUSTER_EXCLUSIVE：表示云盘版加强型。<br>CLOUD_NATIVE_CLUSTER_ULTRA：表示云盘版旗舰型。<br>CLOUD_NATIVE_SINGLE_NODE：表示云盘版单节点<br>ECONOMICAL：表示经济型。</p>
         # @type TypeName: String
-        # @param EngineVersion: 引擎版本号
+        # @param EngineVersion: <p>引擎版本号</p>
         # @type EngineVersion: Array
-        # @param ConfigIds: 售卖规格Id
+        # @param ConfigIds: <p>售卖规格Id</p>
         # @type ConfigIds: Array
 
         attr_accessor :TypeName, :EngineVersion, :ConfigIds
@@ -11261,9 +11255,9 @@ module TencentCloud
 
       # ModifyDBInstanceReadOnlyStatus请求参数结构体
       class ModifyDBInstanceReadOnlyStatusRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例ID相同，可使用[查询实例列表](https://cloud.tencent.com/document/api/236/15872) 接口获取，其值为输出参数中字段 InstanceId 的值。
+        # @param InstanceId: <p>实例ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例ID相同，可使用<a href="https://cloud.tencent.com/document/api/236/15872">查询实例列表</a> 接口获取，其值为输出参数中字段 InstanceId 的值。此接口不支持设置云盘版实例为只读。</p>
         # @type InstanceId: String
-        # @param ReadOnly: 是否设置为只读。其中：1表示设置实例为只读，0表示解除只读状态
+        # @param ReadOnly: <p>是否设置为只读。其中：1表示设置实例为只读，0表示解除只读状态</p>
         # @type ReadOnly: Integer
 
         attr_accessor :InstanceId, :ReadOnly

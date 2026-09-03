@@ -19,22 +19,27 @@ module TencentCloud
     module V20240801
       # 关联的mcp服务配置
       class AgentAppMcpServerDTO < TencentCloud::Common::AbstractModel
-        # @param ID: mcp server id
+        # @param ID: <p>mcp server id</p>
         # @type ID: String
-        # @param NeedAuth: 是否需要鉴权
+        # @param NeedAuth: <p>是否需要鉴权（已废弃，请勿使用）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NeedAuth: Boolean
-        # @param AgentCredentialID: 凭据代填的ID
+        # @param AgentCredentialID: <p>凭据代填的ID（已废弃，请勿使用）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AgentCredentialID: String
-        # @param SSEResourceIdentifier: 应用为OAuth2认证时，sse模式请求mcp时的资源标识
+        # @param SSEResourceIdentifier: <p>应用为OAuth2认证时，sse模式请求mcp时的资源标识</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SSEResourceIdentifier: String
-        # @param StreamableResourceIdentifier: 应用为OAuth2认证时，streamable模式请求mcp时的资源标识
+        # @param StreamableResourceIdentifier: <p>应用为OAuth2认证时，streamable模式请求mcp时的资源标识</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StreamableResourceIdentifier: String
 
         attr_accessor :ID, :NeedAuth, :AgentCredentialID, :SSEResourceIdentifier, :StreamableResourceIdentifier
+        extend Gem::Deprecate
+        deprecate :NeedAuth, :none, 2026, 9
+        deprecate :NeedAuth=, :none, 2026, 9
+        deprecate :AgentCredentialID, :none, 2026, 9
+        deprecate :AgentCredentialID=, :none, 2026, 9
 
         def initialize(id=nil, needauth=nil, agentcredentialid=nil, sseresourceidentifier=nil, streamableresourceidentifier=nil)
           @ID = id
@@ -181,12 +186,17 @@ module TencentCloud
         # @type InvokeLimitConfigStatus: Boolean
         # @param InvokeLimitConfig: <p>限流配置</p>
         # @type InvokeLimitConfig: :class:`Tencentcloud::Apis.v20240801.models.InvokeLimitConfigDTO`
-        # @param NeedAuth: <p>是否要认证</p>
+        # @param NeedAuth: <p>是否要认证（已废弃，请勿使用）</p>
         # @type NeedAuth: Boolean
-        # @param AgentCredentialID: <p>凭据ID</p>
+        # @param AgentCredentialID: <p>凭据ID（已废弃，请勿使用）</p>
         # @type AgentCredentialID: String
 
         attr_accessor :ID, :InvokeLimitConfigStatus, :InvokeLimitConfig, :NeedAuth, :AgentCredentialID
+        extend Gem::Deprecate
+        deprecate :NeedAuth, :none, 2026, 9
+        deprecate :NeedAuth=, :none, 2026, 9
+        deprecate :AgentCredentialID, :none, 2026, 9
+        deprecate :AgentCredentialID=, :none, 2026, 9
 
         def initialize(id=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, needauth=nil, agentcredentialid=nil)
           @ID = id
@@ -785,10 +795,16 @@ module TencentCloud
         # @type PluginConfigs: Array
         # @param IgnoreHealthCheck: <p>是否忽略健康检查</p>
         # @type IgnoreHealthCheck: Boolean
+        # @param CredentialID: <p>凭据ID</p>
+        # @type CredentialID: String
+        # @param Domain: <p>访问域名</p>
+        # @type Domain: String
+        # @param RequestProtocolType: <p>访问协议</p><p>枚举值：</p><ul><li>http： http</li><li>https： https</li></ul>
+        # @type RequestProtocolType: String
 
-        attr_accessor :Mode, :McpVersion, :InstanceID, :Name, :Description, :WrapServices, :TargetSelect, :TargetHosts, :HttpProtocolType, :CheckTargetCertsError, :TargetPath, :InvokeLimitConfigStatus, :InvokeLimitConfig, :IpWhiteStatus, :IpWhiteConfig, :IpBlackStatus, :IpBlackConfig, :CustomHttpHost, :HttpHostType, :Timeout, :McpSecurityRules, :ToolConfigs, :WrapPaasID, :PluginConfigs, :IgnoreHealthCheck
+        attr_accessor :Mode, :McpVersion, :InstanceID, :Name, :Description, :WrapServices, :TargetSelect, :TargetHosts, :HttpProtocolType, :CheckTargetCertsError, :TargetPath, :InvokeLimitConfigStatus, :InvokeLimitConfig, :IpWhiteStatus, :IpWhiteConfig, :IpBlackStatus, :IpBlackConfig, :CustomHttpHost, :HttpHostType, :Timeout, :McpSecurityRules, :ToolConfigs, :WrapPaasID, :PluginConfigs, :IgnoreHealthCheck, :CredentialID, :Domain, :RequestProtocolType
 
-        def initialize(mode=nil, mcpversion=nil, instanceid=nil, name=nil, description=nil, wrapservices=nil, targetselect=nil, targethosts=nil, httpprotocoltype=nil, checktargetcertserror=nil, targetpath=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, ipwhitestatus=nil, ipwhiteconfig=nil, ipblackstatus=nil, ipblackconfig=nil, customhttphost=nil, httphosttype=nil, timeout=nil, mcpsecurityrules=nil, toolconfigs=nil, wrappaasid=nil, pluginconfigs=nil, ignorehealthcheck=nil)
+        def initialize(mode=nil, mcpversion=nil, instanceid=nil, name=nil, description=nil, wrapservices=nil, targetselect=nil, targethosts=nil, httpprotocoltype=nil, checktargetcertserror=nil, targetpath=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, ipwhitestatus=nil, ipwhiteconfig=nil, ipblackstatus=nil, ipblackconfig=nil, customhttphost=nil, httphosttype=nil, timeout=nil, mcpsecurityrules=nil, toolconfigs=nil, wrappaasid=nil, pluginconfigs=nil, ignorehealthcheck=nil, credentialid=nil, domain=nil, requestprotocoltype=nil)
           @Mode = mode
           @McpVersion = mcpversion
           @InstanceID = instanceid
@@ -814,6 +830,9 @@ module TencentCloud
           @WrapPaasID = wrappaasid
           @PluginConfigs = pluginconfigs
           @IgnoreHealthCheck = ignorehealthcheck
+          @CredentialID = credentialid
+          @Domain = domain
+          @RequestProtocolType = requestprotocoltype
         end
 
         def deserialize(params)
@@ -879,6 +898,9 @@ module TencentCloud
             end
           end
           @IgnoreHealthCheck = params['IgnoreHealthCheck']
+          @CredentialID = params['CredentialID']
+          @Domain = params['Domain']
+          @RequestProtocolType = params['RequestProtocolType']
         end
       end
 
@@ -1051,10 +1073,14 @@ module TencentCloud
         # @type TokenLengthRoute: Array
         # @param TaskComplexityRoute: <p>任务复杂度路由策略</p>
         # @type TaskComplexityRoute: :class:`Tencentcloud::Apis.v20240801.models.TaskComplexityRouteDTO`
+        # @param Domain: <p>访问域名</p>
+        # @type Domain: String
+        # @param RequestProtocolType: <p>访问协议</p>
+        # @type RequestProtocolType: String
 
-        attr_accessor :InstanceID, :Name, :Description, :PubPath, :TargetModels, :PathMatchType, :InvokeLimitConfigStatus, :InvokeLimitConfig, :TokenLimitStatus, :TokenLimitConfig, :TmsStatus, :TmsConfig, :IpWhiteStatus, :IpWhiteList, :IpBlackList, :PluginConfigs, :Timeout, :PromptModerateStatus, :PromptModerateConfig, :SensitiveDataCheckStatus, :SensitiveDataCheckConfig, :TargetSelect, :FindHostKeyMethod, :HostKeyHeaderName, :FallbackStatus, :FallbackModels, :ModelProtocol, :RawCustomModelProtocolConfig, :RouteStrategy, :TokenLengthRoute, :TaskComplexityRoute
+        attr_accessor :InstanceID, :Name, :Description, :PubPath, :TargetModels, :PathMatchType, :InvokeLimitConfigStatus, :InvokeLimitConfig, :TokenLimitStatus, :TokenLimitConfig, :TmsStatus, :TmsConfig, :IpWhiteStatus, :IpWhiteList, :IpBlackList, :PluginConfigs, :Timeout, :PromptModerateStatus, :PromptModerateConfig, :SensitiveDataCheckStatus, :SensitiveDataCheckConfig, :TargetSelect, :FindHostKeyMethod, :HostKeyHeaderName, :FallbackStatus, :FallbackModels, :ModelProtocol, :RawCustomModelProtocolConfig, :RouteStrategy, :TokenLengthRoute, :TaskComplexityRoute, :Domain, :RequestProtocolType
 
-        def initialize(instanceid=nil, name=nil, description=nil, pubpath=nil, targetmodels=nil, pathmatchtype=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, tokenlimitstatus=nil, tokenlimitconfig=nil, tmsstatus=nil, tmsconfig=nil, ipwhitestatus=nil, ipwhitelist=nil, ipblacklist=nil, pluginconfigs=nil, timeout=nil, promptmoderatestatus=nil, promptmoderateconfig=nil, sensitivedatacheckstatus=nil, sensitivedatacheckconfig=nil, targetselect=nil, findhostkeymethod=nil, hostkeyheadername=nil, fallbackstatus=nil, fallbackmodels=nil, modelprotocol=nil, rawcustommodelprotocolconfig=nil, routestrategy=nil, tokenlengthroute=nil, taskcomplexityroute=nil)
+        def initialize(instanceid=nil, name=nil, description=nil, pubpath=nil, targetmodels=nil, pathmatchtype=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, tokenlimitstatus=nil, tokenlimitconfig=nil, tmsstatus=nil, tmsconfig=nil, ipwhitestatus=nil, ipwhitelist=nil, ipblacklist=nil, pluginconfigs=nil, timeout=nil, promptmoderatestatus=nil, promptmoderateconfig=nil, sensitivedatacheckstatus=nil, sensitivedatacheckconfig=nil, targetselect=nil, findhostkeymethod=nil, hostkeyheadername=nil, fallbackstatus=nil, fallbackmodels=nil, modelprotocol=nil, rawcustommodelprotocolconfig=nil, routestrategy=nil, tokenlengthroute=nil, taskcomplexityroute=nil, domain=nil, requestprotocoltype=nil)
           @InstanceID = instanceid
           @Name = name
           @Description = description
@@ -1086,6 +1112,8 @@ module TencentCloud
           @RouteStrategy = routestrategy
           @TokenLengthRoute = tokenlengthroute
           @TaskComplexityRoute = taskcomplexityroute
+          @Domain = domain
+          @RequestProtocolType = requestprotocoltype
         end
 
         def deserialize(params)
@@ -1166,6 +1194,8 @@ module TencentCloud
             @TaskComplexityRoute = TaskComplexityRouteDTO.new
             @TaskComplexityRoute.deserialize(params['TaskComplexityRoute'])
           end
+          @Domain = params['Domain']
+          @RequestProtocolType = params['RequestProtocolType']
         end
       end
 
@@ -2149,8 +2179,8 @@ module TencentCloud
 
         attr_accessor :AppID, :Uin, :InstanceID, :ID, :Name, :Status, :RelateAgentAppNum, :RelateMcpServerNum, :RelateModelNum, :RelateServiceNum, :Content, :CreateTime, :LastUpdateTime, :Type
         extend Gem::Deprecate
-        deprecate :RelateAgentAppNum, :none, 2026, 8
-        deprecate :RelateAgentAppNum=, :none, 2026, 8
+        deprecate :RelateAgentAppNum, :none, 2026, 9
+        deprecate :RelateAgentAppNum=, :none, 2026, 9
 
         def initialize(appid=nil, uin=nil, instanceid=nil, id=nil, name=nil, status=nil, relateagentappnum=nil, relatemcpservernum=nil, relatemodelnum=nil, relateservicenum=nil, content=nil, createtime=nil, lastupdatetime=nil, type=nil)
           @AppID = appid
@@ -2394,10 +2424,20 @@ module TencentCloud
         # @type PluginConfigs: Array
         # @param IgnoreHealthCheck: <p>是否忽略健康检查</p>
         # @type IgnoreHealthCheck: Boolean
+        # @param CredentialID: <p>凭据ID</p>
+        # @type CredentialID: String
+        # @param CredentialName: <p>凭据名称</p>
+        # @type CredentialName: String
+        # @param Domain: <p>访问域名</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Domain: String
+        # @param RequestProtocolType: <p>访问协议</p><p>枚举值：</p><ul><li>http： http</li><li>https： https</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RequestProtocolType: String
 
-        attr_accessor :InstanceID, :Name, :Description, :LabelIDs, :CategoryIDs, :TargetSelect, :TargetHosts, :HttpProtocolType, :CheckTargetCertsError, :TargetPath, :InvokeLimitConfigStatus, :InvokeLimitConfig, :IpWhiteStatus, :IpWhiteConfig, :IpBlackStatus, :IpBlackConfig, :ID, :Status, :Url, :App, :Catalogs, :Labels, :CreateTime, :LastUpdateTime, :AppID, :Uin, :CustomHttpHost, :HttpHostType, :Timeout, :Mode, :McpVersion, :WrapServices, :ToolNum, :McpSecurityRulesVO, :ToolConfigs, :UrlObj, :ToolMessage, :Tools, :WrapPaasID, :RelateAgentAppNum, :PluginConfigs, :IgnoreHealthCheck
+        attr_accessor :InstanceID, :Name, :Description, :LabelIDs, :CategoryIDs, :TargetSelect, :TargetHosts, :HttpProtocolType, :CheckTargetCertsError, :TargetPath, :InvokeLimitConfigStatus, :InvokeLimitConfig, :IpWhiteStatus, :IpWhiteConfig, :IpBlackStatus, :IpBlackConfig, :ID, :Status, :Url, :App, :Catalogs, :Labels, :CreateTime, :LastUpdateTime, :AppID, :Uin, :CustomHttpHost, :HttpHostType, :Timeout, :Mode, :McpVersion, :WrapServices, :ToolNum, :McpSecurityRulesVO, :ToolConfigs, :UrlObj, :ToolMessage, :Tools, :WrapPaasID, :RelateAgentAppNum, :PluginConfigs, :IgnoreHealthCheck, :CredentialID, :CredentialName, :Domain, :RequestProtocolType
 
-        def initialize(instanceid=nil, name=nil, description=nil, labelids=nil, categoryids=nil, targetselect=nil, targethosts=nil, httpprotocoltype=nil, checktargetcertserror=nil, targetpath=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, ipwhitestatus=nil, ipwhiteconfig=nil, ipblackstatus=nil, ipblackconfig=nil, id=nil, status=nil, url=nil, app=nil, catalogs=nil, labels=nil, createtime=nil, lastupdatetime=nil, appid=nil, uin=nil, customhttphost=nil, httphosttype=nil, timeout=nil, mode=nil, mcpversion=nil, wrapservices=nil, toolnum=nil, mcpsecurityrulesvo=nil, toolconfigs=nil, urlobj=nil, toolmessage=nil, tools=nil, wrappaasid=nil, relateagentappnum=nil, pluginconfigs=nil, ignorehealthcheck=nil)
+        def initialize(instanceid=nil, name=nil, description=nil, labelids=nil, categoryids=nil, targetselect=nil, targethosts=nil, httpprotocoltype=nil, checktargetcertserror=nil, targetpath=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, ipwhitestatus=nil, ipwhiteconfig=nil, ipblackstatus=nil, ipblackconfig=nil, id=nil, status=nil, url=nil, app=nil, catalogs=nil, labels=nil, createtime=nil, lastupdatetime=nil, appid=nil, uin=nil, customhttphost=nil, httphosttype=nil, timeout=nil, mode=nil, mcpversion=nil, wrapservices=nil, toolnum=nil, mcpsecurityrulesvo=nil, toolconfigs=nil, urlobj=nil, toolmessage=nil, tools=nil, wrappaasid=nil, relateagentappnum=nil, pluginconfigs=nil, ignorehealthcheck=nil, credentialid=nil, credentialname=nil, domain=nil, requestprotocoltype=nil)
           @InstanceID = instanceid
           @Name = name
           @Description = description
@@ -2440,6 +2480,10 @@ module TencentCloud
           @RelateAgentAppNum = relateagentappnum
           @PluginConfigs = pluginconfigs
           @IgnoreHealthCheck = ignorehealthcheck
+          @CredentialID = credentialid
+          @CredentialName = credentialname
+          @Domain = domain
+          @RequestProtocolType = requestprotocoltype
         end
 
         def deserialize(params)
@@ -2549,6 +2593,10 @@ module TencentCloud
             end
           end
           @IgnoreHealthCheck = params['IgnoreHealthCheck']
+          @CredentialID = params['CredentialID']
+          @CredentialName = params['CredentialName']
+          @Domain = params['Domain']
+          @RequestProtocolType = params['RequestProtocolType']
         end
       end
 
@@ -2931,10 +2979,16 @@ module TencentCloud
         # @param TaskComplexityRoute: <p>任务复杂度路由配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskComplexityRoute: :class:`Tencentcloud::Apis.v20240801.models.TaskComplexityRouteDTO`
+        # @param Domain: <p>访问域名</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Domain: String
+        # @param RequestProtocolType: <p>访问协议</p><p>枚举值：</p><ul><li>http： http</li><li>https： https</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RequestProtocolType: String
 
-        attr_accessor :AppID, :Uin, :InstanceID, :ID, :Name, :Description, :PubPath, :PathMatchType, :TargetModels, :ModelNames, :InvokeLimitConfigStatus, :InvokeLimitConfig, :CreateTime, :LastUpdateTime, :TokenLimitStatus, :TokenLimitConfig, :TmsStatus, :TmsConfig, :IpWhiteStatus, :IpWhiteList, :IpBlackStatus, :IpBlackList, :PluginConfigs, :Timeout, :Status, :RelateAgentAppNum, :Url, :PromptModerateStatus, :PromptModerateConfig, :SensitiveDataCheckStatus, :SensitiveDataCheckConfig, :TargetSelect, :FindHostKeyMethod, :HostKeyHeaderName, :FallbackStatus, :FallbackModels, :ModelProtocol, :RawCustomModelProtocolConfig, :RouteStrategy, :TokenLengthRoute, :TaskComplexityRoute
+        attr_accessor :AppID, :Uin, :InstanceID, :ID, :Name, :Description, :PubPath, :PathMatchType, :TargetModels, :ModelNames, :InvokeLimitConfigStatus, :InvokeLimitConfig, :CreateTime, :LastUpdateTime, :TokenLimitStatus, :TokenLimitConfig, :TmsStatus, :TmsConfig, :IpWhiteStatus, :IpWhiteList, :IpBlackStatus, :IpBlackList, :PluginConfigs, :Timeout, :Status, :RelateAgentAppNum, :Url, :PromptModerateStatus, :PromptModerateConfig, :SensitiveDataCheckStatus, :SensitiveDataCheckConfig, :TargetSelect, :FindHostKeyMethod, :HostKeyHeaderName, :FallbackStatus, :FallbackModels, :ModelProtocol, :RawCustomModelProtocolConfig, :RouteStrategy, :TokenLengthRoute, :TaskComplexityRoute, :Domain, :RequestProtocolType
 
-        def initialize(appid=nil, uin=nil, instanceid=nil, id=nil, name=nil, description=nil, pubpath=nil, pathmatchtype=nil, targetmodels=nil, modelnames=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, createtime=nil, lastupdatetime=nil, tokenlimitstatus=nil, tokenlimitconfig=nil, tmsstatus=nil, tmsconfig=nil, ipwhitestatus=nil, ipwhitelist=nil, ipblackstatus=nil, ipblacklist=nil, pluginconfigs=nil, timeout=nil, status=nil, relateagentappnum=nil, url=nil, promptmoderatestatus=nil, promptmoderateconfig=nil, sensitivedatacheckstatus=nil, sensitivedatacheckconfig=nil, targetselect=nil, findhostkeymethod=nil, hostkeyheadername=nil, fallbackstatus=nil, fallbackmodels=nil, modelprotocol=nil, rawcustommodelprotocolconfig=nil, routestrategy=nil, tokenlengthroute=nil, taskcomplexityroute=nil)
+        def initialize(appid=nil, uin=nil, instanceid=nil, id=nil, name=nil, description=nil, pubpath=nil, pathmatchtype=nil, targetmodels=nil, modelnames=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, createtime=nil, lastupdatetime=nil, tokenlimitstatus=nil, tokenlimitconfig=nil, tmsstatus=nil, tmsconfig=nil, ipwhitestatus=nil, ipwhitelist=nil, ipblackstatus=nil, ipblacklist=nil, pluginconfigs=nil, timeout=nil, status=nil, relateagentappnum=nil, url=nil, promptmoderatestatus=nil, promptmoderateconfig=nil, sensitivedatacheckstatus=nil, sensitivedatacheckconfig=nil, targetselect=nil, findhostkeymethod=nil, hostkeyheadername=nil, fallbackstatus=nil, fallbackmodels=nil, modelprotocol=nil, rawcustommodelprotocolconfig=nil, routestrategy=nil, tokenlengthroute=nil, taskcomplexityroute=nil, domain=nil, requestprotocoltype=nil)
           @AppID = appid
           @Uin = uin
           @InstanceID = instanceid
@@ -2976,6 +3030,8 @@ module TencentCloud
           @RouteStrategy = routestrategy
           @TokenLengthRoute = tokenlengthroute
           @TaskComplexityRoute = taskcomplexityroute
+          @Domain = domain
+          @RequestProtocolType = requestprotocoltype
         end
 
         def deserialize(params)
@@ -3066,6 +3122,8 @@ module TencentCloud
             @TaskComplexityRoute = TaskComplexityRouteDTO.new
             @TaskComplexityRoute.deserialize(params['TaskComplexityRoute'])
           end
+          @Domain = params['Domain']
+          @RequestProtocolType = params['RequestProtocolType']
         end
       end
 
@@ -3595,23 +3653,36 @@ module TencentCloud
 
       # 限流窗口配置
       class LimitWindowsDTO < TencentCloud::Common::AbstractModel
-        # @param Interval: 时间窗口，分钟
+        # @param Interval: <p>时间窗口，分钟</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Interval: Integer
-        # @param Limit: 累计上限，k
+        # @param Limit: <p>累计上限，k</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Limit: Integer
+        # @param Type: <p>限流类型</p><p>枚举值：</p><ul><li>minute： 时间窗口</li><li>day： 自然日</li><li>month： 自然月</li><li>timeRange： 时间范围</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param TimeRange: <p>时间区间配置</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimeRange: :class:`Tencentcloud::Apis.v20240801.models.TimeRange`
 
-        attr_accessor :Interval, :Limit
+        attr_accessor :Interval, :Limit, :Type, :TimeRange
 
-        def initialize(interval=nil, limit=nil)
+        def initialize(interval=nil, limit=nil, type=nil, timerange=nil)
           @Interval = interval
           @Limit = limit
+          @Type = type
+          @TimeRange = timerange
         end
 
         def deserialize(params)
           @Interval = params['Interval']
           @Limit = params['Limit']
+          @Type = params['Type']
+          unless params['TimeRange'].nil?
+            @TimeRange = TimeRange.new
+            @TimeRange.deserialize(params['TimeRange'])
+          end
         end
       end
 
@@ -4026,10 +4097,16 @@ module TencentCloud
         # @type PluginConfigs: Array
         # @param IgnoreHealthCheck: <p>是否忽略健康检查</p>
         # @type IgnoreHealthCheck: Boolean
+        # @param CredentialID: <p>凭据ID</p>
+        # @type CredentialID: String
+        # @param Domain: <p>访问域名</p>
+        # @type Domain: String
+        # @param RequestProtocolType: <p>访问协议</p><p>枚举值：</p><ul><li>http： http</li><li>https： https</li></ul>
+        # @type RequestProtocolType: String
 
-        attr_accessor :ID, :Mode, :McpVersion, :InstanceID, :Name, :Description, :WrapServices, :TargetSelect, :TargetHosts, :HttpProtocolType, :CheckTargetCertsError, :TargetPath, :InvokeLimitConfigStatus, :InvokeLimitConfig, :IpWhiteStatus, :IpWhiteConfig, :IpBlackStatus, :IpBlackConfig, :TargetHostType, :CustomHttpHost, :HttpHostType, :Timeout, :McpSecurityRules, :ToolConfigs, :WrapPaasID, :PluginConfigs, :IgnoreHealthCheck
+        attr_accessor :ID, :Mode, :McpVersion, :InstanceID, :Name, :Description, :WrapServices, :TargetSelect, :TargetHosts, :HttpProtocolType, :CheckTargetCertsError, :TargetPath, :InvokeLimitConfigStatus, :InvokeLimitConfig, :IpWhiteStatus, :IpWhiteConfig, :IpBlackStatus, :IpBlackConfig, :TargetHostType, :CustomHttpHost, :HttpHostType, :Timeout, :McpSecurityRules, :ToolConfigs, :WrapPaasID, :PluginConfigs, :IgnoreHealthCheck, :CredentialID, :Domain, :RequestProtocolType
 
-        def initialize(id=nil, mode=nil, mcpversion=nil, instanceid=nil, name=nil, description=nil, wrapservices=nil, targetselect=nil, targethosts=nil, httpprotocoltype=nil, checktargetcertserror=nil, targetpath=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, ipwhitestatus=nil, ipwhiteconfig=nil, ipblackstatus=nil, ipblackconfig=nil, targethosttype=nil, customhttphost=nil, httphosttype=nil, timeout=nil, mcpsecurityrules=nil, toolconfigs=nil, wrappaasid=nil, pluginconfigs=nil, ignorehealthcheck=nil)
+        def initialize(id=nil, mode=nil, mcpversion=nil, instanceid=nil, name=nil, description=nil, wrapservices=nil, targetselect=nil, targethosts=nil, httpprotocoltype=nil, checktargetcertserror=nil, targetpath=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, ipwhitestatus=nil, ipwhiteconfig=nil, ipblackstatus=nil, ipblackconfig=nil, targethosttype=nil, customhttphost=nil, httphosttype=nil, timeout=nil, mcpsecurityrules=nil, toolconfigs=nil, wrappaasid=nil, pluginconfigs=nil, ignorehealthcheck=nil, credentialid=nil, domain=nil, requestprotocoltype=nil)
           @ID = id
           @Mode = mode
           @McpVersion = mcpversion
@@ -4057,6 +4134,9 @@ module TencentCloud
           @WrapPaasID = wrappaasid
           @PluginConfigs = pluginconfigs
           @IgnoreHealthCheck = ignorehealthcheck
+          @CredentialID = credentialid
+          @Domain = domain
+          @RequestProtocolType = requestprotocoltype
         end
 
         def deserialize(params)
@@ -4124,6 +4204,9 @@ module TencentCloud
             end
           end
           @IgnoreHealthCheck = params['IgnoreHealthCheck']
+          @CredentialID = params['CredentialID']
+          @Domain = params['Domain']
+          @RequestProtocolType = params['RequestProtocolType']
         end
       end
 
@@ -4300,10 +4383,14 @@ module TencentCloud
         # @type TokenLengthRoute: Array
         # @param TaskComplexityRoute: <p>任务复杂度路由策略</p>
         # @type TaskComplexityRoute: :class:`Tencentcloud::Apis.v20240801.models.TaskComplexityRouteDTO`
+        # @param Domain: <p>访问域名</p>
+        # @type Domain: String
+        # @param RequestProtocolType: <p>访问协议</p>
+        # @type RequestProtocolType: String
 
-        attr_accessor :InstanceID, :ID, :Name, :Description, :TargetModels, :InvokeLimitConfigStatus, :InvokeLimitConfig, :TokenLimitStatus, :TokenLimitConfig, :TmsStatus, :TmsConfig, :IpWhiteStatus, :IpWhiteList, :IpBlackStatus, :IpBlackList, :PluginConfigs, :Timeout, :PromptModerateStatus, :PromptModerateConfig, :SensitiveDataCheckStatus, :SensitiveDataCheckConfig, :TargetSelect, :FindHostKeyMethod, :HostKeyHeaderName, :FallbackStatus, :FallbackModels, :ModelProtocol, :RawCustomModelProtocolConfig, :RouteStrategy, :TokenLengthRoute, :TaskComplexityRoute
+        attr_accessor :InstanceID, :ID, :Name, :Description, :TargetModels, :InvokeLimitConfigStatus, :InvokeLimitConfig, :TokenLimitStatus, :TokenLimitConfig, :TmsStatus, :TmsConfig, :IpWhiteStatus, :IpWhiteList, :IpBlackStatus, :IpBlackList, :PluginConfigs, :Timeout, :PromptModerateStatus, :PromptModerateConfig, :SensitiveDataCheckStatus, :SensitiveDataCheckConfig, :TargetSelect, :FindHostKeyMethod, :HostKeyHeaderName, :FallbackStatus, :FallbackModels, :ModelProtocol, :RawCustomModelProtocolConfig, :RouteStrategy, :TokenLengthRoute, :TaskComplexityRoute, :Domain, :RequestProtocolType
 
-        def initialize(instanceid=nil, id=nil, name=nil, description=nil, targetmodels=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, tokenlimitstatus=nil, tokenlimitconfig=nil, tmsstatus=nil, tmsconfig=nil, ipwhitestatus=nil, ipwhitelist=nil, ipblackstatus=nil, ipblacklist=nil, pluginconfigs=nil, timeout=nil, promptmoderatestatus=nil, promptmoderateconfig=nil, sensitivedatacheckstatus=nil, sensitivedatacheckconfig=nil, targetselect=nil, findhostkeymethod=nil, hostkeyheadername=nil, fallbackstatus=nil, fallbackmodels=nil, modelprotocol=nil, rawcustommodelprotocolconfig=nil, routestrategy=nil, tokenlengthroute=nil, taskcomplexityroute=nil)
+        def initialize(instanceid=nil, id=nil, name=nil, description=nil, targetmodels=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, tokenlimitstatus=nil, tokenlimitconfig=nil, tmsstatus=nil, tmsconfig=nil, ipwhitestatus=nil, ipwhitelist=nil, ipblackstatus=nil, ipblacklist=nil, pluginconfigs=nil, timeout=nil, promptmoderatestatus=nil, promptmoderateconfig=nil, sensitivedatacheckstatus=nil, sensitivedatacheckconfig=nil, targetselect=nil, findhostkeymethod=nil, hostkeyheadername=nil, fallbackstatus=nil, fallbackmodels=nil, modelprotocol=nil, rawcustommodelprotocolconfig=nil, routestrategy=nil, tokenlengthroute=nil, taskcomplexityroute=nil, domain=nil, requestprotocoltype=nil)
           @InstanceID = instanceid
           @ID = id
           @Name = name
@@ -4335,6 +4422,8 @@ module TencentCloud
           @RouteStrategy = routestrategy
           @TokenLengthRoute = tokenlengthroute
           @TaskComplexityRoute = taskcomplexityroute
+          @Domain = domain
+          @RequestProtocolType = requestprotocoltype
         end
 
         def deserialize(params)
@@ -4415,6 +4504,8 @@ module TencentCloud
             @TaskComplexityRoute = TaskComplexityRouteDTO.new
             @TaskComplexityRoute.deserialize(params['TaskComplexityRoute'])
           end
+          @Domain = params['Domain']
+          @RequestProtocolType = params['RequestProtocolType']
         end
       end
 
@@ -4512,14 +4603,14 @@ module TencentCloud
 
         attr_accessor :InstanceID, :Name, :PaasID, :Description, :LabelIDs, :CategoryIDs, :AuthType, :SignType, :LoginTypes, :TargetSelect, :PubPath, :RequestMethod, :HttpProtocolType, :CheckTargetCertsError, :HttpProtocolVersion, :Versions, :TargetPath, :RequestParamsValidatorStatus, :RequestParamsValidatorJsonInfoT, :ResponseParamsValidatorStatus, :ResponseParamsValidatorJsonInfoT, :InvokeLimitConfigStatus, :InvokeLimitConfig, :HealthCheckStatus, :HealthCheckConfig, :SourceTypeStatus, :SourceTypeConfig, :IpWhiteStatus, :IpWhiteList, :IpBlackStatus, :IpBlackList, :PluginConfigs, :ID
         extend Gem::Deprecate
-        deprecate :PaasID, :none, 2026, 8
-        deprecate :PaasID=, :none, 2026, 8
-        deprecate :AuthType, :none, 2026, 8
-        deprecate :AuthType=, :none, 2026, 8
-        deprecate :SignType, :none, 2026, 8
-        deprecate :SignType=, :none, 2026, 8
-        deprecate :LoginTypes, :none, 2026, 8
-        deprecate :LoginTypes=, :none, 2026, 8
+        deprecate :PaasID, :none, 2026, 9
+        deprecate :PaasID=, :none, 2026, 9
+        deprecate :AuthType, :none, 2026, 9
+        deprecate :AuthType=, :none, 2026, 9
+        deprecate :SignType, :none, 2026, 9
+        deprecate :SignType=, :none, 2026, 9
+        deprecate :LoginTypes, :none, 2026, 9
+        deprecate :LoginTypes=, :none, 2026, 9
 
         def initialize(instanceid=nil, name=nil, paasid=nil, description=nil, labelids=nil, categoryids=nil, authtype=nil, signtype=nil, logintypes=nil, targetselect=nil, pubpath=nil, requestmethod=nil, httpprotocoltype=nil, checktargetcertserror=nil, httpprotocolversion=nil, versions=nil, targetpath=nil, requestparamsvalidatorstatus=nil, requestparamsvalidatorjsoninfot=nil, responseparamsvalidatorstatus=nil, responseparamsvalidatorjsoninfot=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, healthcheckstatus=nil, healthcheckconfig=nil, sourcetypestatus=nil, sourcetypeconfig=nil, ipwhitestatus=nil, ipwhitelist=nil, ipblackstatus=nil, ipblacklist=nil, pluginconfigs=nil, id=nil)
           @InstanceID = instanceid
@@ -5081,29 +5172,36 @@ module TencentCloud
         # @param McpServerNum: <p>绑定的mcp server数量</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type McpServerNum: Integer
+        # @param CredentialID: <p>凭据ID</p>
+        # @type CredentialID: String
+        # @param CredentialName: <p>凭据名称</p>
+        # @type CredentialName: String
+        # @param RequestProtocolType: <p>访问协议</p><p>枚举值：</p><ul><li>http： http</li><li>https： https</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RequestProtocolType: String
 
-        attr_accessor :InstanceID, :Name, :PaasID, :Description, :LabelIDs, :CategoryIDs, :AuthType, :SignType, :LoginTypes, :TargetSelect, :PubPath, :RequestMethod, :TargetHosts, :HttpProtocolType, :CheckTargetCertsError, :HttpProtocolVersion, :Versions, :TargetPath, :RequestParamsValidatorStatus, :RequestParamsValidatorJsonInfoT, :ResponseParamsValidatorStatus, :ResponseParamsValidatorJsonInfoT, :InvokeLimitConfigStatus, :InvokeLimitConfig, :HealthCheckStatus, :HealthCheckConfig, :SourceTypeStatus, :SourceTypeConfig, :TokenLimitStatus, :TokenLimitConfig, :TmsStatus, :TmsConfig, :IpWhiteStatus, :IpWhiteList, :IpBlackStatus, :IpBlackList, :PluginConfigs, :ID, :Status, :Url, :App, :Catalogs, :Labels, :Logins, :AuthAppNum, :CreateTime, :LastUpdateTime, :AppID, :Uin, :Domain, :OpenMessageLogStatus, :CurrPaasIDSubscriptionID, :TargetServiceType, :SqlTemplate, :TargetHostType, :TargetServiceHostType, :TargetServerGroupID, :TargetServerGroup, :CustomHttpHost, :HttpHostType, :MockStatusCode, :MockBody, :MockHeaders, :PathMatchType, :CustomMatch, :Timeout, :McpServerNum
+        attr_accessor :InstanceID, :Name, :PaasID, :Description, :LabelIDs, :CategoryIDs, :AuthType, :SignType, :LoginTypes, :TargetSelect, :PubPath, :RequestMethod, :TargetHosts, :HttpProtocolType, :CheckTargetCertsError, :HttpProtocolVersion, :Versions, :TargetPath, :RequestParamsValidatorStatus, :RequestParamsValidatorJsonInfoT, :ResponseParamsValidatorStatus, :ResponseParamsValidatorJsonInfoT, :InvokeLimitConfigStatus, :InvokeLimitConfig, :HealthCheckStatus, :HealthCheckConfig, :SourceTypeStatus, :SourceTypeConfig, :TokenLimitStatus, :TokenLimitConfig, :TmsStatus, :TmsConfig, :IpWhiteStatus, :IpWhiteList, :IpBlackStatus, :IpBlackList, :PluginConfigs, :ID, :Status, :Url, :App, :Catalogs, :Labels, :Logins, :AuthAppNum, :CreateTime, :LastUpdateTime, :AppID, :Uin, :Domain, :OpenMessageLogStatus, :CurrPaasIDSubscriptionID, :TargetServiceType, :SqlTemplate, :TargetHostType, :TargetServiceHostType, :TargetServerGroupID, :TargetServerGroup, :CustomHttpHost, :HttpHostType, :MockStatusCode, :MockBody, :MockHeaders, :PathMatchType, :CustomMatch, :Timeout, :McpServerNum, :CredentialID, :CredentialName, :RequestProtocolType
         extend Gem::Deprecate
-        deprecate :PaasID, :none, 2026, 8
-        deprecate :PaasID=, :none, 2026, 8
-        deprecate :AuthType, :none, 2026, 8
-        deprecate :AuthType=, :none, 2026, 8
-        deprecate :SignType, :none, 2026, 8
-        deprecate :SignType=, :none, 2026, 8
-        deprecate :LoginTypes, :none, 2026, 8
-        deprecate :LoginTypes=, :none, 2026, 8
-        deprecate :TokenLimitStatus, :none, 2026, 8
-        deprecate :TokenLimitStatus=, :none, 2026, 8
-        deprecate :TokenLimitConfig, :none, 2026, 8
-        deprecate :TokenLimitConfig=, :none, 2026, 8
-        deprecate :TmsStatus, :none, 2026, 8
-        deprecate :TmsStatus=, :none, 2026, 8
-        deprecate :TmsConfig, :none, 2026, 8
-        deprecate :TmsConfig=, :none, 2026, 8
-        deprecate :CurrPaasIDSubscriptionID, :none, 2026, 8
-        deprecate :CurrPaasIDSubscriptionID=, :none, 2026, 8
+        deprecate :PaasID, :none, 2026, 9
+        deprecate :PaasID=, :none, 2026, 9
+        deprecate :AuthType, :none, 2026, 9
+        deprecate :AuthType=, :none, 2026, 9
+        deprecate :SignType, :none, 2026, 9
+        deprecate :SignType=, :none, 2026, 9
+        deprecate :LoginTypes, :none, 2026, 9
+        deprecate :LoginTypes=, :none, 2026, 9
+        deprecate :TokenLimitStatus, :none, 2026, 9
+        deprecate :TokenLimitStatus=, :none, 2026, 9
+        deprecate :TokenLimitConfig, :none, 2026, 9
+        deprecate :TokenLimitConfig=, :none, 2026, 9
+        deprecate :TmsStatus, :none, 2026, 9
+        deprecate :TmsStatus=, :none, 2026, 9
+        deprecate :TmsConfig, :none, 2026, 9
+        deprecate :TmsConfig=, :none, 2026, 9
+        deprecate :CurrPaasIDSubscriptionID, :none, 2026, 9
+        deprecate :CurrPaasIDSubscriptionID=, :none, 2026, 9
 
-        def initialize(instanceid=nil, name=nil, paasid=nil, description=nil, labelids=nil, categoryids=nil, authtype=nil, signtype=nil, logintypes=nil, targetselect=nil, pubpath=nil, requestmethod=nil, targethosts=nil, httpprotocoltype=nil, checktargetcertserror=nil, httpprotocolversion=nil, versions=nil, targetpath=nil, requestparamsvalidatorstatus=nil, requestparamsvalidatorjsoninfot=nil, responseparamsvalidatorstatus=nil, responseparamsvalidatorjsoninfot=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, healthcheckstatus=nil, healthcheckconfig=nil, sourcetypestatus=nil, sourcetypeconfig=nil, tokenlimitstatus=nil, tokenlimitconfig=nil, tmsstatus=nil, tmsconfig=nil, ipwhitestatus=nil, ipwhitelist=nil, ipblackstatus=nil, ipblacklist=nil, pluginconfigs=nil, id=nil, status=nil, url=nil, app=nil, catalogs=nil, labels=nil, logins=nil, authappnum=nil, createtime=nil, lastupdatetime=nil, appid=nil, uin=nil, domain=nil, openmessagelogstatus=nil, currpaasidsubscriptionid=nil, targetservicetype=nil, sqltemplate=nil, targethosttype=nil, targetservicehosttype=nil, targetservergroupid=nil, targetservergroup=nil, customhttphost=nil, httphosttype=nil, mockstatuscode=nil, mockbody=nil, mockheaders=nil, pathmatchtype=nil, custommatch=nil, timeout=nil, mcpservernum=nil)
+        def initialize(instanceid=nil, name=nil, paasid=nil, description=nil, labelids=nil, categoryids=nil, authtype=nil, signtype=nil, logintypes=nil, targetselect=nil, pubpath=nil, requestmethod=nil, targethosts=nil, httpprotocoltype=nil, checktargetcertserror=nil, httpprotocolversion=nil, versions=nil, targetpath=nil, requestparamsvalidatorstatus=nil, requestparamsvalidatorjsoninfot=nil, responseparamsvalidatorstatus=nil, responseparamsvalidatorjsoninfot=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, healthcheckstatus=nil, healthcheckconfig=nil, sourcetypestatus=nil, sourcetypeconfig=nil, tokenlimitstatus=nil, tokenlimitconfig=nil, tmsstatus=nil, tmsconfig=nil, ipwhitestatus=nil, ipwhitelist=nil, ipblackstatus=nil, ipblacklist=nil, pluginconfigs=nil, id=nil, status=nil, url=nil, app=nil, catalogs=nil, labels=nil, logins=nil, authappnum=nil, createtime=nil, lastupdatetime=nil, appid=nil, uin=nil, domain=nil, openmessagelogstatus=nil, currpaasidsubscriptionid=nil, targetservicetype=nil, sqltemplate=nil, targethosttype=nil, targetservicehosttype=nil, targetservergroupid=nil, targetservergroup=nil, customhttphost=nil, httphosttype=nil, mockstatuscode=nil, mockbody=nil, mockheaders=nil, pathmatchtype=nil, custommatch=nil, timeout=nil, mcpservernum=nil, credentialid=nil, credentialname=nil, requestprotocoltype=nil)
           @InstanceID = instanceid
           @Name = name
           @PaasID = paasid
@@ -5171,6 +5269,9 @@ module TencentCloud
           @CustomMatch = custommatch
           @Timeout = timeout
           @McpServerNum = mcpservernum
+          @CredentialID = credentialid
+          @CredentialName = credentialname
+          @RequestProtocolType = requestprotocoltype
         end
 
         def deserialize(params)
@@ -5317,6 +5418,9 @@ module TencentCloud
           end
           @Timeout = params['Timeout']
           @McpServerNum = params['McpServerNum']
+          @CredentialID = params['CredentialID']
+          @CredentialName = params['CredentialName']
+          @RequestProtocolType = params['RequestProtocolType']
         end
       end
 
@@ -5576,6 +5680,26 @@ module TencentCloud
         end
       end
 
+      # 时间区间配置
+      class TimeRange < TencentCloud::Common::AbstractModel
+        # @param Start: <p>起始时间</p><p>参数格式：格式：09:00:00</p>
+        # @type Start: String
+        # @param End: <p>结束时间</p><p>参数格式：格式：12:00:00</p>
+        # @type End: String
+
+        attr_accessor :Start, :End
+
+        def initialize(start=nil, _end=nil)
+          @Start = start
+          @End = _end
+        end
+
+        def deserialize(params)
+          @Start = params['Start']
+          @End = params['End']
+        end
+      end
+
       # 内容安全配置
       class TmsConfigDTO < TencentCloud::Common::AbstractModel
         # @param Scope: <p>检测范围,请求/响应</p>
@@ -5670,6 +5794,9 @@ module TencentCloud
         # @type LimitWindows: Array
 
         attr_accessor :Type, :LimitRequestBody, :LimitWindows
+        extend Gem::Deprecate
+        deprecate :Type, :none, 2026, 9
+        deprecate :Type=, :none, 2026, 9
 
         def initialize(type=nil, limitrequestbody=nil, limitwindows=nil)
           @Type = type

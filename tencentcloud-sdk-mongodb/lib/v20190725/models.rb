@@ -837,7 +837,7 @@ module TencentCloud
         # @type NodeNum: Integer
         # @param MongoVersion: <p>指版本信息。具体支持的版本信息 ，请通过接口 <a href="https://cloud.tencent.com/document/product/240/38567">DescribeSpecInfo</a> 获取。</p><ul><li>MONGO_40_WT：MongoDB 4.0 WiredTiger存储引擎版本。</li><li>MONGO_42_WT：MongoDB 4.2 WiredTiger存储引擎版本。</li><li>MONGO_44_WT：MongoDB 4.4 WiredTiger存储引擎版本。</li><li>MONGO_50_WT：MongoDB 5.0 WiredTiger存储引擎版本。</li><li>MONGO_60_WT：MongoDB 6.0 WiredTiger存储引擎版本。</li><li>MONGO_70_WT：MongoDB 7.0 WiredTiger存储引擎版本。</li><li>MONGO_80_WT：MongoDB 8.0 WiredTiger存储引擎版本。</li></ul>
         # @type MongoVersion: String
-        # @param MachineCode: <ul><li><strong>产品推荐规格类型</strong><ul><li>GE.LD.T1：本地盘（通用 I 型）。</li><li>GE.CD.T1：云盘（通用 I 型）。</li></ul></li><li><strong>产品受限白名单规格类型</strong><ul><li>HIO10G：本地盘（高 IO 万兆型），已售罄，建议选择 GE.LD.T1。</li><li>HCD：云盘（云盘版），已售罄，建议选择 GE.CD.T1。</li></ul></li></ul>            <blockquote class="d-mod-explain">              <div class="d-mod-title d-explain-title">                <i class="d-icon-explain"></i>说明：              </div>               <p> 受限白名单规格类型需白名单权限，如需开通，请<a href="https://console.cloud.tencent.com/workorder/category">提交工单</a>申请。</p>            </blockquote>
+        # @param MachineCode: <ul><li><strong>产品推荐规格类型</strong><ul><li>GE.LD.T2：本地盘（通用 II 型）。</li><li>EX.LD.T2：本地盘（独享 II 型）。</li><li>GE.CD.T1：云盘（通用 I 型）。</li></ul></li><li><strong>产品受限白名单规格类型</strong><ul><li>GE.LD.T1：本地盘（通用 I 型），预计将逐步售罄，建议选择 GE.LD.T2。</li><li>HIO10G：本地盘（高 IO 万兆型），已售罄，建议选择 GE.LD.T2。</li><li>HCD：云盘（云盘版），已售罄，建议选择 GE.CD.T1。</li></ul></li></ul>            <blockquote class="d-mod-explain">              <div class="d-mod-title d-explain-title">                <i class="d-icon-explain"></i>说明：              </div>               <p> 受限白名单规格类型需白名单权限，如需开通，请<a href="https://console.cloud.tencent.com/workorder/category">提交工单</a>申请。</p>            </blockquote>
         # @type MachineCode: String
         # @param GoodsNum: <p>实例数量，最小值1，最大值为30。</p>
         # @type GoodsNum: Integer
@@ -859,7 +859,7 @@ module TencentCloud
         # @type Clone: Integer
         # @param Father: <p>父实例 ID。</p><ul><li>当参数<strong>Clone</strong>为3或者4时，即实例为只读或灾备实例时，该参数必须配置。</li><li>请登录 <a href="https://console.cloud.tencent.com/mongodb">MongoDB 控制台</a>在实例列表复制父实例 ID。</li></ul>
         # @type Father: String
-        # @param SecurityGroup: <p>安全组 ID。 请登录<a href="https://console.cloud.tencent.com/vpc/security-group">安全组控制台</a>页面获取与数据库实例同地域的安全组 ID。</p>
+        # @param SecurityGroup: <p>安全组 ID。 请登录<a href="https://console.cloud.tencent.com/vpc/security-group">安全组控制台</a>页面获取与数据库实例同地域的安全组 ID。</p><p>根据最新的云服务安全规则，所有实例均需绑定安全组。</p>
         # @type SecurityGroup: Array
         # @param RestoreTime: <p>克隆实例回档时间。</p><ul><li>若为克隆实例，则必须配置该参数。输入格式示例：2021-08-13 16:30:00。</li><li>回档时间范围：仅能回档7天内时间点的数据。</li></ul>
         # @type RestoreTime: String
@@ -1087,7 +1087,7 @@ module TencentCloud
         # @type Zone: String
         # @param Period: <p>指定购买实例的购买时长。取值可选：[1,2,3,4,5,6,7,8,9,10,11,12,24,36]；单位：月。</p>
         # @type Period: Integer
-        # @param MachineCode: <ul><li><strong>产品推荐规格类型</strong><ul><li>GE.LD.T1：本地盘（通用 I 型）。</li><li>GE.CD.T1：云盘（通用 I 型）。</li></ul></li><li><strong>产品受限白名单规格类型</strong><ul><li>HIO10G：本地盘（高 IO 万兆型），已售罄，建议选择 GE.LD.T1。</li><li>HCD：云盘（云盘版），已售罄，建议选择 GE.CD.T1。</li></ul></li></ul>            <blockquote class="d-mod-explain">              <div class="d-mod-title d-explain-title">                <i class="d-icon-explain"></i>说明：              </div>               <p> 受限白名单规格类型需白名单权限，如需开通，请<a href="https://console.cloud.tencent.com/workorder/category">提交工单</a>申请。</p>            </blockquote>
+        # @param MachineCode: <ul><li><strong>产品推荐规格类型</strong><ul><li>GE.LD.T2：本地盘（通用 II 型）。</li><li>EX.LD.T2：本地盘（独享 II 型）。</li><li>GE.CD.T1：云盘（通用 I 型）。</li></ul></li><li><strong>产品受限白名单规格类型</strong><ul><li>GE.LD.T1：本地盘（通用 I 型），预计将逐步售罄，建议选择 GE.LD.T2</li><li>HIO10G：本地盘（高 IO 万兆型），已售罄，建议选择 GE.LD.T2。</li><li>HCD：云盘（云盘版），已售罄，建议选择 GE.CD.T1。</li></ul></li></ul>            <blockquote class="d-mod-explain">              <div class="d-mod-title d-explain-title">                <i class="d-icon-explain"></i>说明：              </div>               <p> 受限白名单规格类型需白名单权限，如需开通，请<a href="https://console.cloud.tencent.com/workorder/category">提交工单</a>申请。</p>            </blockquote>
         # @type MachineCode: String
         # @param ClusterType: <p>实例架构类型。</p><ul><li>REPLSET：副本集。</li><li>SHARD：分片集群。</li></ul>
         # @type ClusterType: String
@@ -2621,25 +2621,19 @@ module TencentCloud
 
       # DescribeDBInstanceNodeProperty请求参数结构体
       class DescribeDBInstanceNodePropertyRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
+        # @param InstanceId: <p>实例 ID。请登录 <a href="https://console.cloud.tencent.com/mongodb">MongoDB 控制台</a>在实例列表复制实例 ID。</p>
         # @type InstanceId: String
-        # @param NodeIds: 节点 ID。请登录 [MongoDB 控制台的节点管理](https://console.cloud.tencent.com/mongodb)复制节点 ID。
+        # @param NodeIds: <p>节点 ID。请登录 <a href="https://console.cloud.tencent.com/mongodb">MongoDB 控制台的节点管理</a>复制节点 ID。</p>
         # @type NodeIds: Array
-        # @param Roles: 节点角色。可选值包括：
-        # - PRIMARY：主节点。
-        # - SECONDARY：从节点。
-        # - READONLY：只读节点。
-        # - ARBITER：仲裁节点。
+        # @param Roles: <p>节点角色。可选值包括：</p><ul><li>PRIMARY：主节点。</li><li>SECONDARY：从节点。</li><li>READONLY：只读节点。</li><li>ARBITER：仲裁节点。</li></ul>
         # @type Roles: Array
-        # @param OnlyHidden: 该参数指定节点是否为 Hidden 节点，默认为 false。
+        # @param OnlyHidden: <p>该参数指定节点是否为 Hidden 节点，默认为 false。</p>
         # @type OnlyHidden: Boolean
-        # @param Priority: 该参数指定选举新主节点的优先级。其取值范围为[0,100]，数值越高，优先级越高。
+        # @param Priority: <p>该参数指定选举新主节点的优先级。其取值范围为[0,100]，数值越高，优先级越高。</p>
         # @type Priority: Integer
-        # @param Votes: 该参数指定节点投票权。
-        # - 1：具有投票权。
-        # - 0：无投票权。
+        # @param Votes: <p>该参数指定节点投票权。</p><ul><li>1：具有投票权。</li><li>0：无投票权。</li></ul>
         # @type Votes: Integer
-        # @param Tags: 节点标签。
+        # @param Tags: <p>节点标签。</p>
         # @type Tags: Array
 
         attr_accessor :InstanceId, :NodeIds, :Roles, :OnlyHidden, :Priority, :Votes, :Tags
@@ -2674,18 +2668,21 @@ module TencentCloud
 
       # DescribeDBInstanceNodeProperty返回参数结构体
       class DescribeDBInstanceNodePropertyResponse < TencentCloud::Common::AbstractModel
-        # @param Mongos: Mongos节点属性。
+        # @param Mongos: <p>Mongos节点属性。</p>
         # @type Mongos: Array
-        # @param ReplicateSets: 副本集节点信息。
+        # @param ReplicateSets: <p>副本集节点信息。</p>
         # @type ReplicateSets: Array
+        # @param DynamoProxies: <p>Dynamo节点信息</p>
+        # @type DynamoProxies: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Mongos, :ReplicateSets, :RequestId
+        attr_accessor :Mongos, :ReplicateSets, :DynamoProxies, :RequestId
 
-        def initialize(mongos=nil, replicatesets=nil, requestid=nil)
+        def initialize(mongos=nil, replicatesets=nil, dynamoproxies=nil, requestid=nil)
           @Mongos = mongos
           @ReplicateSets = replicatesets
+          @DynamoProxies = dynamoproxies
           @RequestId = requestid
         end
 
@@ -2704,6 +2701,14 @@ module TencentCloud
               replicatesetinfo_tmp = ReplicateSetInfo.new
               replicatesetinfo_tmp.deserialize(i)
               @ReplicateSets << replicatesetinfo_tmp
+            end
+          end
+          unless params['DynamoProxies'].nil?
+            @DynamoProxies = []
+            params['DynamoProxies'].each do |i|
+              nodeproperty_tmp = NodeProperty.new
+              nodeproperty_tmp.deserialize(i)
+              @DynamoProxies << nodeproperty_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -4240,7 +4245,7 @@ module TencentCloud
         # @type Volume: Integer
         # @param MongoVersion: <p>实例版本信息。具体支持的版本，请通过接口<a href="https://cloud.tencent.com/document/product/240/38567">DescribeSpecInfo</a>查询，其返回的数据结构SpecItems中的参数MongoVersionCode为实例所支持的版本信息。版本信息与版本号对应关系如下：</p><ul><li>MONGO_40_WT：MongoDB 4.0 WiredTiger存储引擎版本。</li><li>MONGO_42_WT：MongoDB 4.2 WiredTiger存储引擎版本。</li><li>MONGO_44_WT：MongoDB 4.4 WiredTiger存储引擎版本。</li><li>MONGO_50_WT：MongoDB 5.0 WiredTiger存储引擎版本。</li><li>MONGO_60_WT：MongoDB 6.0 WiredTiger存储引擎版本。</li><li>MONGO_70_WT：MongoDB 7.0 WiredTiger存储引擎版本。</li><li>MONGO_80_WT：MongoDB 8.0 WiredTiger存储引擎版本。</li></ul>
         # @type MongoVersion: String
-        # @param MachineCode: <p>产品推荐规格类型：</p><ul><li>GE.LD.T1：本地盘（通用I型）。</li><li>GE.CD.T1：云盘（通用I型）。</li></ul><p>产品白名单规格类型：</p><ul><li>HIO10G：本地盘（高IO万兆型）。</li><li>HCD：云盘（云盘版）。</li></ul><p>注意：白名单规格类型为白名单控制，如若需要，请 <a href="https://console.cloud.tencent.com/workorder/category">提交工单</a> 申请</p>
+        # @param MachineCode: <p>产品推荐规格类型：</p><ul><li>GE.LD.T2：本地盘（通用II型）。</li><li>EX.LD.T2：本地盘（独享II型）。</li><li>GE.CD.T1：云盘（通用I型）。</li></ul><p>产品白名单规格类型：</p><ul><li>GE.LD.T1：本地盘（通用I型），预计将逐步售罄，建议选择 GE.LD.T2。</li><li>HIO10G：本地盘（高IO万兆型），已售罄，建议选择 GE.LD.T2。</li><li>HCD：云盘（云盘版），已售罄，建议选择 GE.CD.T1。</li></ul><p>注意：白名单规格类型为白名单控制，如若需要，请 <a href="https://console.cloud.tencent.com/workorder/category">提交工单</a> 申请</p>
         # @type MachineCode: String
         # @param GoodsNum: <p>实例数量，取值范围为[1,10]。</p>
         # @type GoodsNum: Integer
@@ -5619,15 +5624,15 @@ module TencentCloud
         # @type RemoveNodeList: Array
         # @param Cpu: <p>实例配置变更后的CPU大小。单位：C。该参数为空值时，默认取实例当前的 CPU 大小。当前所支持的CPU规格，请参见<a href="https://cloud.tencent.com/document/product/240/64125">产品规格</a>。</p>
         # @type Cpu: Integer
-        # @param MachineCode: <p>实例配置变更后的产品规格类型。该参数为空值时，默认取实例当前的产品规格类型。<br>当前支持的产品规格类型如下：<br>产品推荐规格类型：</p><ul><li>GE.LD.T2：本地盘（通用II型）。</li><li>GE.CD.T2：云盘（通用II型）。</li><li>EX.LD.T2：本地盘（独享II型）。</li></ul><p>产品白名单规格类型：</p><ul><li>GE.LD.T1：本地盘（通用I型），预计将逐步售罄，建议选择通用II型。</li><li>GE.CD.T1：云盘（通用I型），预计将逐步售罄，建议选择通用II型。</li><li>HIO10G：本地盘（高IO万兆型），已售罄，建议选择通用II型。</li><li>HCD：云盘（云盘版），已售罄，建议选择通用II型。</li></ul><p>注意：</p><ol><li>白名单规格类型为白名单控制，如若需要，请 <a href="https://console.cloud.tencent.com/workorder/category">提交工单</a> 申请</li><li>默认不能变更到白名单规格类型</li><li>产品推荐的规格类型之间不支持相互变更</li></ol>
+        # @param MachineCode: <p>实例配置变更后的产品规格类型。该参数为空值时，默认取实例当前的产品规格类型。<br>当前支持的产品规格类型如下：<br>产品推荐规格类型：</p><ul><li>GE.LD.T2：本地盘（通用II型）。</li><li>EX.LD.T2：本地盘（独享II型）。</li><li>GE.LD.T1：本地盘（通用I型）。</li></ul><p>产品白名单规格类型：</p><ul><li>GE.LD.T1：本地盘（通用I型），预计将逐步售罄。</li><li>HIO10G：本地盘（高IO万兆型），已售罄，建议选择 GE.LD.T1。</li><li>HCD：云盘（云盘版），已售罄，建议选择 GE.CD.T1。</li></ul><p>注意：</p><ol><li>白名单规格类型为白名单控制，如若需要，请 <a href="https://console.cloud.tencent.com/workorder/category">提交工单</a> 申请</li><li>默认不能变更到白名单规格类型</li><li>产品推荐的规格类型之间不支持相互变更</li></ol>
         # @type MachineCode: String
         # @param ModifyShardList: <p>单分片变配列表，用于指定需要单独调整规格的分片。每次设置时 CPU、内存、磁盘都必须指定；如果指定多个分片，所有分片的目标规格必须一致；未指定的分片保持不变。仅分片集群支持，副本集不支持。注意：此参数与整实例级别的变配参数（如 Memory、Volume、CpuNum 等）互斥，不能同时传入。</p>
         # @type ModifyShardList: Array
 
         attr_accessor :InstanceId, :Memory, :Volume, :OplogSize, :NodeNum, :ReplicateSetNum, :InMaintenance, :MongosMemory, :AddNodeList, :RemoveNodeList, :Cpu, :MachineCode, :ModifyShardList
         extend Gem::Deprecate
-        deprecate :OplogSize, :none, 2026, 8
-        deprecate :OplogSize=, :none, 2026, 8
+        deprecate :OplogSize, :none, 2026, 9
+        deprecate :OplogSize=, :none, 2026, 9
 
         def initialize(instanceid=nil, memory=nil, volume=nil, oplogsize=nil, nodenum=nil, replicatesetnum=nil, inmaintenance=nil, mongosmemory=nil, addnodelist=nil, removenodelist=nil, cpu=nil, machinecode=nil, modifyshardlist=nil)
           @InstanceId = instanceid
@@ -5924,46 +5929,30 @@ module TencentCloud
 
       # 节点属性
       class NodeProperty < TencentCloud::Common::AbstractModel
-        # @param Zone: 节点所在的可用区。
+        # @param Zone: <p>节点所在的可用区。</p>
         # @type Zone: String
-        # @param NodeName: 节点名称。
+        # @param NodeName: <p>节点名称。</p>
         # @type NodeName: String
-        # @param Address: 节点访问地址。
+        # @param Address: <p>节点访问地址。</p>
         # @type Address: String
-        # @param WanServiceAddress: 节点公网访问外网地址(IP或域名，示例为IP方式)。
+        # @param WanServiceAddress: <p>节点公网访问外网地址(IP或域名，示例为IP方式)。</p>
         # @type WanServiceAddress: String
-        # @param Role: 节点角色。
-        # - PRIMARY：主节点。
-        # - SECONDARY：从节点。
-        # - READONLY：只读节点。
-        # - ARBITER：仲裁节点。
+        # @param Role: <p>节点角色。</p><ul><li>PRIMARY：主节点。</li><li>SECONDARY：从节点。</li><li>READONLY：只读节点。</li><li>ARBITER：仲裁节点。</li></ul>
         # @type Role: String
-        # @param Hidden: 节点是否为 Hidden 节点。
-        # - true：Hidden 节点。
-        # - false：非 Hidden 节点。
+        # @param Hidden: <p>节点是否为 Hidden 节点。</p><ul><li>true：Hidden 节点。</li><li>false：非 Hidden 节点。</li></ul>
         # @type Hidden: Boolean
-        # @param Status: 节点状态。
-        # - NORMAL：正常运行中。
-        # - STARTUP：正在启动。
-        # - STARTUP2：正在启动，处理中间数据。
-        # - RECOVERING：恢复中，暂不可用。
-        # - DOWN：已掉线。
-        # - UNKNOWN：未知状态。
-        # - ROLLBACK：回滚中。
-        # - REMOVED：已移除。
+        # @param Status: <p>节点状态。</p><ul><li>NORMAL：正常运行中。</li><li>STARTUP：正在启动。</li><li>STARTUP2：正在启动，处理中间数据。</li><li>RECOVERING：恢复中，暂不可用。</li><li>DOWN：已掉线。</li><li>UNKNOWN：未知状态。</li><li>ROLLBACK：回滚中。</li><li>REMOVED：已移除。</li></ul>
         # @type Status: String
-        # @param SlaveDelay: 主从同步延迟时间，单位：秒。
+        # @param SlaveDelay: <p>主从同步延迟时间，单位：秒。</p>
         # @type SlaveDelay: Integer
-        # @param Priority: 节点优先级。其取值范围为[0,100]，数值越高，优先级越高。
+        # @param Priority: <p>节点优先级。其取值范围为[0,100]，数值越高，优先级越高。</p>
         # @type Priority: Integer
-        # @param Votes: 节点投票权。
-        # - 1：具有投票权。
-        # - 0：无投票权。
+        # @param Votes: <p>节点投票权。</p><ul><li>1：具有投票权。</li><li>0：无投票权。</li></ul>
         # @type Votes: Integer
-        # @param Tags: 节点标签。
+        # @param Tags: <p>节点标签。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
-        # @param ReplicateSetId: 副本集 ID。
+        # @param ReplicateSetId: <p>副本集 ID。</p>
         # @type ReplicateSetId: String
 
         attr_accessor :Zone, :NodeName, :Address, :WanServiceAddress, :Role, :Hidden, :Status, :SlaveDelay, :Priority, :Votes, :Tags, :ReplicateSetId
@@ -6372,7 +6361,7 @@ module TencentCloud
 
       # 副本集信息
       class ReplicateSetInfo < TencentCloud::Common::AbstractModel
-        # @param Nodes: 节点属性
+        # @param Nodes: <p>节点属性</p>
         # @type Nodes: Array
 
         attr_accessor :Nodes

@@ -1176,32 +1176,59 @@ module TencentCloud
 
       # CreateRecognizeVocabV3请求参数结构体
       class CreateRecognizeVocabV3Request < TencentCloud::Common::AbstractModel
+        # @param Name: <p>词表名称（同 SdkAppId 下唯一）</p>
+        # @type Name: String
         # @param SdkAppId: <p>客户维度唯一标识</p>
         # @type SdkAppId: Integer
+        # @param Description: <p>描述</p>
+        # @type Description: String
+        # @param WordWeights: <p>热词+权重数组</p>
+        # @type WordWeights: Array
+        # @param WordWeightStr: <p>文本形式热词</p>
+        # @type WordWeightStr: String
 
-        attr_accessor :SdkAppId
+        attr_accessor :Name, :SdkAppId, :Description, :WordWeights, :WordWeightStr
 
-        def initialize(sdkappid=nil)
+        def initialize(name=nil, sdkappid=nil, description=nil, wordweights=nil, wordweightstr=nil)
+          @Name = name
           @SdkAppId = sdkappid
+          @Description = description
+          @WordWeights = wordweights
+          @WordWeightStr = wordweightstr
         end
 
         def deserialize(params)
+          @Name = params['Name']
           @SdkAppId = params['SdkAppId']
+          @Description = params['Description']
+          unless params['WordWeights'].nil?
+            @WordWeights = []
+            params['WordWeights'].each do |i|
+              hotword_tmp = HotWord.new
+              hotword_tmp.deserialize(i)
+              @WordWeights << hotword_tmp
+            end
+          end
+          @WordWeightStr = params['WordWeightStr']
         end
       end
 
       # CreateRecognizeVocabV3返回参数结构体
       class CreateRecognizeVocabV3Response < TencentCloud::Common::AbstractModel
+        # @param VocabId: <p>词表 id</p>
+        # @type VocabId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :VocabId, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(vocabid=nil, requestid=nil)
+          @VocabId = vocabid
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @VocabId = params['VocabId']
           @RequestId = params['RequestId']
         end
       end
@@ -1444,12 +1471,21 @@ module TencentCloud
 
       # DeleteRecognizeVocabV3请求参数结构体
       class DeleteRecognizeVocabV3Request < TencentCloud::Common::AbstractModel
+        # @param VocabId: <p>词表 id</p>
+        # @type VocabId: String
+        # @param SdkAppId: <p>客户维度唯一标识</p>
+        # @type SdkAppId: Integer
 
+        attr_accessor :VocabId, :SdkAppId
 
-        def initialize()
+        def initialize(vocabid=nil, sdkappid=nil)
+          @VocabId = vocabid
+          @SdkAppId = sdkappid
         end
 
         def deserialize(params)
+          @VocabId = params['VocabId']
+          @SdkAppId = params['SdkAppId']
         end
       end
 
@@ -3488,27 +3524,44 @@ module TencentCloud
 
       # DownloadRecognizeVocabV3请求参数结构体
       class DownloadRecognizeVocabV3Request < TencentCloud::Common::AbstractModel
+        # @param VocabId: <p>词表 id</p>
+        # @type VocabId: String
+        # @param SdkAppId: <p>客户维度唯一标识</p>
+        # @type SdkAppId: Integer
 
+        attr_accessor :VocabId, :SdkAppId
 
-        def initialize()
+        def initialize(vocabid=nil, sdkappid=nil)
+          @VocabId = vocabid
+          @SdkAppId = sdkappid
         end
 
         def deserialize(params)
+          @VocabId = params['VocabId']
+          @SdkAppId = params['SdkAppId']
         end
       end
 
       # DownloadRecognizeVocabV3返回参数结构体
       class DownloadRecognizeVocabV3Response < TencentCloud::Common::AbstractModel
+        # @param VocabId: <p>词表 id</p>
+        # @type VocabId: String
+        # @param WordWeightStr: <p>文本形式热词</p>
+        # @type WordWeightStr: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :VocabId, :WordWeightStr, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(vocabid=nil, wordweightstr=nil, requestid=nil)
+          @VocabId = vocabid
+          @WordWeightStr = wordweightstr
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @VocabId = params['VocabId']
+          @WordWeightStr = params['WordWeightStr']
           @RequestId = params['RequestId']
         end
       end
@@ -3669,55 +3722,147 @@ module TencentCloud
 
       # GetRecognizeVocabListV3请求参数结构体
       class GetRecognizeVocabListV3Request < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: <p>客户维度唯一标识</p>
+        # @type SdkAppId: Integer
+        # @param Offset: <p>分页偏移</p>
+        # @type Offset: Integer
+        # @param Limit: <p>分页大小</p>
+        # @type Limit: Integer
 
+        attr_accessor :SdkAppId, :Offset, :Limit
 
-        def initialize()
+        def initialize(sdkappid=nil, offset=nil, limit=nil)
+          @SdkAppId = sdkappid
+          @Offset = offset
+          @Limit = limit
         end
 
         def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
         end
       end
 
       # GetRecognizeVocabListV3返回参数结构体
       class GetRecognizeVocabListV3Response < TencentCloud::Common::AbstractModel
+        # @param VocabList: <p>词表列表</p>
+        # @type VocabList: Array
+        # @param TotalCount: <p>词表个数</p><p>单位：个</p>
+        # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :VocabList, :TotalCount, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(vocablist=nil, totalcount=nil, requestid=nil)
+          @VocabList = vocablist
+          @TotalCount = totalcount
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['VocabList'].nil?
+            @VocabList = []
+            params['VocabList'].each do |i|
+              vocab_tmp = Vocab.new
+              vocab_tmp.deserialize(i)
+              @VocabList << vocab_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
 
       # GetRecognizeVocabV3请求参数结构体
       class GetRecognizeVocabV3Request < TencentCloud::Common::AbstractModel
+        # @param VocabId: <p>词表 id</p>
+        # @type VocabId: String
+        # @param SdkAppId: <p>客户维度唯一标识</p>
+        # @type SdkAppId: Integer
 
+        attr_accessor :VocabId, :SdkAppId
 
-        def initialize()
+        def initialize(vocabid=nil, sdkappid=nil)
+          @VocabId = vocabid
+          @SdkAppId = sdkappid
         end
 
         def deserialize(params)
+          @VocabId = params['VocabId']
+          @SdkAppId = params['SdkAppId']
         end
       end
 
       # GetRecognizeVocabV3返回参数结构体
       class GetRecognizeVocabV3Response < TencentCloud::Common::AbstractModel
+        # @param Name: <p>词表名称</p>
+        # @type Name: String
+        # @param Description: <p>描述</p>
+        # @type Description: String
+        # @param VocabId: <p>词表 id</p>
+        # @type VocabId: String
+        # @param WordWeights: <p>热词+权重数组</p>
+        # @type WordWeights: Array
+        # @param CreateTime: <p>创建时间</p>
+        # @type CreateTime: String
+        # @param UpdateTime: <p>更新时间</p>
+        # @type UpdateTime: String
+        # @param State: <p>是否设置默认词表</p><p>枚举值：</p><ul><li>0： 否</li><li>1： 是</li></ul>
+        # @type State: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Name, :Description, :VocabId, :WordWeights, :CreateTime, :UpdateTime, :State, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(name=nil, description=nil, vocabid=nil, wordweights=nil, createtime=nil, updatetime=nil, state=nil, requestid=nil)
+          @Name = name
+          @Description = description
+          @VocabId = vocabid
+          @WordWeights = wordweights
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @State = state
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @Name = params['Name']
+          @Description = params['Description']
+          @VocabId = params['VocabId']
+          unless params['WordWeights'].nil?
+            @WordWeights = []
+            params['WordWeights'].each do |i|
+              hotword_tmp = HotWord.new
+              hotword_tmp.deserialize(i)
+              @WordWeights << hotword_tmp
+            end
+          end
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @State = params['State']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 热词的词和权重
+      class HotWord < TencentCloud::Common::AbstractModel
+        # @param Word: <p>热词</p>
+        # @type Word: String
+        # @param Weight: <p>权重</p>
+        # @type Weight: Integer
+
+        attr_accessor :Word, :Weight
+
+        def initialize(word=nil, weight=nil)
+          @Word = word
+          @Weight = weight
+        end
+
+        def deserialize(params)
+          @Word = params['Word']
+          @Weight = params['Weight']
         end
       end
 
@@ -4276,7 +4421,8 @@ module TencentCloud
         # 2: 开启录制（使用控制台自动录制模板参数，参考：[跳转文档](https://cloud.tencent.com/document/product/647/111748#.E5.BD.95.E5.88.B6.E6.8E.A7.E5.88.B6.E6.96.B9.E6.A1.88)）；
         # 3: 开启录制（使用API指定参数）。
         # @type UniRecord: Integer
-        # @param RecordKey: 录制任务 key，标识一个录制任务；您可以通过该参数，将多个转推任务录制成一个文件。不指定该参数时，只录制当前转推任务。
+        # @param RecordKey: 录制任务标识 key，显式关联多个转推任务到一个录制任务；一般不需设置，默认录制本次转推内容。
+        # 如果有特殊需求，比如将多段转推内容分时录制到同一个文件，可以通过设置此参数来控制。举例: 时间点10:00 发起转推任务:A + RecorderKey:abc，10:05分发起转推任务B+ RecorderKey:abc，那么录制文件会包含，转推A(10:00~10:05分的内容)+转推B的内容。
         # 【限制长度为128字节，只允许包含大小写英文字母（a-zA-Z）、数字（0-9）及下划线(_)和连词符(-)】
         # @type RecordKey: String
         # @param RecordWaitTime: 【仅当UniRecord=3时此参数有效】
@@ -5989,27 +6135,44 @@ module TencentCloud
 
       # SetVocabStateV3请求参数结构体
       class SetVocabStateV3Request < TencentCloud::Common::AbstractModel
+        # @param VocabId: <p>词表 id</p>
+        # @type VocabId: String
+        # @param State: <p>是否设置为默认词表</p>
+        # @type State: Integer
+        # @param SdkAppId: <p>客户维度唯一标识</p>
+        # @type SdkAppId: Integer
 
+        attr_accessor :VocabId, :State, :SdkAppId
 
-        def initialize()
+        def initialize(vocabid=nil, state=nil, sdkappid=nil)
+          @VocabId = vocabid
+          @State = state
+          @SdkAppId = sdkappid
         end
 
         def deserialize(params)
+          @VocabId = params['VocabId']
+          @State = params['State']
+          @SdkAppId = params['SdkAppId']
         end
       end
 
       # SetVocabStateV3返回参数结构体
       class SetVocabStateV3Response < TencentCloud::Common::AbstractModel
+        # @param VocabId: <p>词表 id</p>
+        # @type VocabId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :VocabId, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(vocabid=nil, requestid=nil)
+          @VocabId = vocabid
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @VocabId = params['VocabId']
           @RequestId = params['RequestId']
         end
       end
@@ -6453,33 +6616,29 @@ module TencentCloud
 
       # StartPublishCdnStream请求参数结构体
       class StartPublishCdnStreamRequest < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: TRTC的[SdkAppId](https://cloud.tencent.com/document/product/647/46351#sdkappid)，和转推的房间所对应的SdkAppId相同。
+        # @param SdkAppId: <p>TRTC的<a href="https://cloud.tencent.com/document/product/647/46351#sdkappid">SdkAppId</a>，和转推的房间所对应的SdkAppId相同。</p>
         # @type SdkAppId: Integer
-        # @param RoomId: 主房间信息RoomId，转推的TRTC房间所对应的RoomId。
+        # @param RoomId: <p>主房间信息RoomId，转推的TRTC房间所对应的RoomId。</p>
         # @type RoomId: String
-        # @param RoomIdType: 主房间信息RoomType，必须和转推的房间所对应的RoomId类型相同，0为整型房间号，1为字符串房间号。
+        # @param RoomIdType: <p>主房间信息RoomType，必须和转推的房间所对应的RoomId类型相同，0为整型房间号，1为字符串房间号。</p>
         # @type RoomIdType: Integer
-        # @param AgentParams: 转推服务加入TRTC房间的机器人参数。
+        # @param AgentParams: <p>转推服务加入TRTC房间的机器人参数。</p>
         # @type AgentParams: :class:`Tencentcloud::Trtc.v20190722.models.AgentParams`
-        # @param WithTranscoding: 是否转码，0表示无需转码，1表示需要转码。
-        # WithTranscoding为0，表示旁路转推，默认不转码；WithTranscoding为1，表示混流转推，此时一定会转码，并收取转码费用。
-        # 注：
-        # 1，混流是必须转码的，这个参数需设置为1。
-        # 2，WithTranscoding=0时，视频输出Codec默认跟随上行视频Codec，如果上行视频Codec发生变化，CDN会断流重推。
+        # @param WithTranscoding: <p>是否转码，0表示无需转码，1表示需要转码。<br>WithTranscoding为0，表示旁路转推，默认不转码；WithTranscoding为1，表示混流转推，此时一定会转码，并收取转码费用。<br>注：<br>1，混流是必须转码的，这个参数需设置为1。<br>2，WithTranscoding=0时，视频输出Codec默认跟随上行视频Codec，如果上行视频Codec发生变化，CDN会断流重推。</p>
         # @type WithTranscoding: Integer
-        # @param AudioParams: 转推流的音频编码参数。由于音频是必转码的（不会收取转码费用），所以启动任务的时候，必须填写。
+        # @param AudioParams: <p>转推流的音频编码参数。由于音频是必转码的（不会收取转码费用），所以启动任务的时候，必须填写。</p>
         # @type AudioParams: :class:`Tencentcloud::Trtc.v20190722.models.McuAudioParams`
-        # @param VideoParams: 转推流的视频编码参数，不填表示纯音频转推。
+        # @param VideoParams: <p>转推流的视频编码参数，不填表示纯音频转推。</p>
         # @type VideoParams: :class:`Tencentcloud::Trtc.v20190722.models.McuVideoParams`
-        # @param SingleSubscribeParams: 需要单流旁路转推的用户上行参数，单流旁路转推时，WithTranscoding需要设置为0。
+        # @param SingleSubscribeParams: <p>需要单流旁路转推的用户上行参数，单流旁路转推时，WithTranscoding需要设置为0。</p>
         # @type SingleSubscribeParams: :class:`Tencentcloud::Trtc.v20190722.models.SingleSubscribeParams`
-        # @param PublishCdnParams: 转推的CDN参数，一个任务最多支持10个推流URL。和回推房间参数必须要有一个。
+        # @param PublishCdnParams: <p>转推的CDN参数，一个任务最多支持10个推流URL。和回推房间参数必须要有一个。</p>
         # @type PublishCdnParams: Array
-        # @param SeiParams: 混流SEI参数
+        # @param SeiParams: <p>混流SEI参数</p>
         # @type SeiParams: :class:`Tencentcloud::Trtc.v20190722.models.McuSeiParams`
-        # @param FeedBackRoomParams: 回推房间信息，一个任务最多支持回推10个房间，和转推CDN参数必须要有一个。注：回推房间需使用10.4及以上SDK版本，如您有需求，请联系腾讯云技术支持。
+        # @param FeedBackRoomParams: <p>回推房间信息，一个任务最多支持回推10个房间，和转推CDN参数必须要有一个。注：回推房间需使用10.4及以上SDK版本，如您有需求，请联系腾讯云技术支持。</p>
         # @type FeedBackRoomParams: Array
-        # @param RecordParams: 转推录制参数，[参考文档](https://cloud.tencent.com/document/product/647/111748)。
+        # @param RecordParams: <p>转推录制参数，<a href="https://cloud.tencent.com/document/product/647/111748">参考文档</a>。</p>
         # @type RecordParams: :class:`Tencentcloud::Trtc.v20190722.models.McuRecordParams`
 
         attr_accessor :SdkAppId, :RoomId, :RoomIdType, :AgentParams, :WithTranscoding, :AudioParams, :VideoParams, :SingleSubscribeParams, :PublishCdnParams, :SeiParams, :FeedBackRoomParams, :RecordParams
@@ -6549,7 +6708,7 @@ module TencentCloud
 
       # StartPublishCdnStream返回参数结构体
       class StartPublishCdnStreamResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 用于唯一标识转推任务，由腾讯云服务端生成，后续更新和停止请求都需要携带TaskID参数。
+        # @param TaskId: <p>用于唯一标识转推任务，由腾讯云服务端生成，后续更新和停止请求都需要携带TaskID参数。</p>
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7937,25 +8096,25 @@ module TencentCloud
 
       # UpdatePublishCdnStream请求参数结构体
       class UpdatePublishCdnStreamRequest < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: TRTC的[SdkAppId](https://cloud.tencent.com/document/product/647/46351#sdkappid)，和转推的房间所对应的SdkAppId相同。
+        # @param SdkAppId: <p>TRTC的<a href="https://cloud.tencent.com/document/product/647/46351#sdkappid">SdkAppId</a>，和转推的房间所对应的SdkAppId相同。</p>
         # @type SdkAppId: Integer
-        # @param TaskId: 唯一标识转推任务。
+        # @param TaskId: <p>唯一标识转推任务。</p>
         # @type TaskId: String
-        # @param SequenceNumber: 客户保证同一个任务，每次更新请求中的SequenceNumber递增，防止请求乱序。
+        # @param SequenceNumber: <p>客户保证同一个任务，每次更新请求中的SequenceNumber递增，防止请求乱序。</p>
         # @type SequenceNumber: Integer
-        # @param WithTranscoding: 是否转码，0表示无需转码，1表示需要转码。 WithTranscoding为0，表示旁路转推，默认不转码；WithTranscoding为1，表示混流转推，此时一定会转码，并收取转码费用。 注： 1，混流是必须转码的，这个参数需设置为1。 2，WithTranscoding=0时，视频输出Codec默认跟随上行视频Codec，如果上行视频Codec发生变化，CDN会断流重推。
+        # @param WithTranscoding: <p>是否转码，0表示无需转码，1表示需要转码。 WithTranscoding为0，表示旁路转推，默认不转码；WithTranscoding为1，表示混流转推，此时一定会转码，并收取转码费用。 注： 1，混流是必须转码的，这个参数需设置为1。 2，WithTranscoding=0时，视频输出Codec默认跟随上行视频Codec，如果上行视频Codec发生变化，CDN会断流重推。</p>
         # @type WithTranscoding: Integer
-        # @param AudioParams: 更新相关参数，只支持更新参与混音的主播列表参数，不支持更新Codec、采样率、码率和声道数。不填表示不更新此参数。
+        # @param AudioParams: <p>更新相关参数，只支持更新参与混音的主播列表参数，不支持更新Codec、采样率、码率和声道数。不填表示不更新此参数。</p>
         # @type AudioParams: :class:`Tencentcloud::Trtc.v20190722.models.McuAudioParams`
-        # @param VideoParams: 更新视频相关参数，转码时支持更新除编码类型之外的编码参数，视频布局参数，背景图片和背景颜色参数，水印参数。不填表示不更新此参数。
+        # @param VideoParams: <p>更新视频相关参数，转码时支持更新除编码类型之外的编码参数，视频布局参数，背景图片和背景颜色参数，水印参数。不填表示不更新此参数。</p>
         # @type VideoParams: :class:`Tencentcloud::Trtc.v20190722.models.McuVideoParams`
-        # @param SingleSubscribeParams: 更新单流转推的用户上行参数，仅在非转码时有效。不填表示不更新此参数。
+        # @param SingleSubscribeParams: <p>更新单流转推的用户上行参数，仅在非转码时有效。不填表示不更新此参数。</p>
         # @type SingleSubscribeParams: :class:`Tencentcloud::Trtc.v20190722.models.SingleSubscribeParams`
-        # @param PublishCdnParams: 更新转推的CDN参数。不填表示不更新此参数。
+        # @param PublishCdnParams: <p>更新转推的CDN参数。不填表示不更新此参数。</p>
         # @type PublishCdnParams: Array
-        # @param SeiParams: 混流SEI参数
+        # @param SeiParams: <p>混流SEI参数</p>
         # @type SeiParams: :class:`Tencentcloud::Trtc.v20190722.models.McuSeiParams`
-        # @param FeedBackRoomParams: 回推房间信息
+        # @param FeedBackRoomParams: <p>回推房间信息</p>
         # @type FeedBackRoomParams: Array
 
         attr_accessor :SdkAppId, :TaskId, :SequenceNumber, :WithTranscoding, :AudioParams, :VideoParams, :SingleSubscribeParams, :PublishCdnParams, :SeiParams, :FeedBackRoomParams
@@ -8015,7 +8174,7 @@ module TencentCloud
 
       # UpdatePublishCdnStream返回参数结构体
       class UpdatePublishCdnStreamResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 转推任务唯一的String Id
+        # @param TaskId: <p>转推任务唯一的String Id</p>
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -8035,27 +8194,63 @@ module TencentCloud
 
       # UpdateRecognizeVocabV3请求参数结构体
       class UpdateRecognizeVocabV3Request < TencentCloud::Common::AbstractModel
+        # @param VocabId: <p>词表 id</p>
+        # @type VocabId: String
+        # @param SdkAppId: <p>客户维度唯一标识</p>
+        # @type SdkAppId: Integer
+        # @param Name: <p>词表名称</p>
+        # @type Name: String
+        # @param Description: <p>词表描述</p>
+        # @type Description: String
+        # @param WordWeights: <p>热词数组</p>
+        # @type WordWeights: Array
+        # @param WordWeightStr: <p>base64 编码的词表文本</p>
+        # @type WordWeightStr: String
 
+        attr_accessor :VocabId, :SdkAppId, :Name, :Description, :WordWeights, :WordWeightStr
 
-        def initialize()
+        def initialize(vocabid=nil, sdkappid=nil, name=nil, description=nil, wordweights=nil, wordweightstr=nil)
+          @VocabId = vocabid
+          @SdkAppId = sdkappid
+          @Name = name
+          @Description = description
+          @WordWeights = wordweights
+          @WordWeightStr = wordweightstr
         end
 
         def deserialize(params)
+          @VocabId = params['VocabId']
+          @SdkAppId = params['SdkAppId']
+          @Name = params['Name']
+          @Description = params['Description']
+          unless params['WordWeights'].nil?
+            @WordWeights = []
+            params['WordWeights'].each do |i|
+              hotword_tmp = HotWord.new
+              hotword_tmp.deserialize(i)
+              @WordWeights << hotword_tmp
+            end
+          end
+          @WordWeightStr = params['WordWeightStr']
         end
       end
 
       # UpdateRecognizeVocabV3返回参数结构体
       class UpdateRecognizeVocabV3Response < TencentCloud::Common::AbstractModel
+        # @param VocabId: <p>词表 id</p>
+        # @type VocabId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :VocabId, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(vocabid=nil, requestid=nil)
+          @VocabId = vocabid
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @VocabId = params['VocabId']
           @RequestId = params['RequestId']
         end
       end
@@ -8348,6 +8543,53 @@ module TencentCloud
           @Fps = params['Fps']
           @BitRate = params['BitRate']
           @Gop = params['Gop']
+        end
+      end
+
+      # 词表内容
+      class Vocab < TencentCloud::Common::AbstractModel
+        # @param Name: <p>热词表名称</p>
+        # @type Name: String
+        # @param Description: <p>热词表描述</p>
+        # @type Description: String
+        # @param VocabId: <p>热词表ID</p>
+        # @type VocabId: String
+        # @param WordWeights: <p>词权重列表</p>
+        # @type WordWeights: Array
+        # @param CreateTime: <p>词表创建时间</p>
+        # @type CreateTime: String
+        # @param UpdateTime: <p>词表更新时间</p>
+        # @type UpdateTime: String
+        # @param State: <p>热词表状态，1为默认状态即在识别时默认加载该热词表进行识别，0为初始状态</p>
+        # @type State: Integer
+
+        attr_accessor :Name, :Description, :VocabId, :WordWeights, :CreateTime, :UpdateTime, :State
+
+        def initialize(name=nil, description=nil, vocabid=nil, wordweights=nil, createtime=nil, updatetime=nil, state=nil)
+          @Name = name
+          @Description = description
+          @VocabId = vocabid
+          @WordWeights = wordweights
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @State = state
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Description = params['Description']
+          @VocabId = params['VocabId']
+          unless params['WordWeights'].nil?
+            @WordWeights = []
+            params['WordWeights'].each do |i|
+              hotword_tmp = HotWord.new
+              hotword_tmp.deserialize(i)
+              @WordWeights << hotword_tmp
+            end
+          end
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @State = params['State']
         end
       end
 

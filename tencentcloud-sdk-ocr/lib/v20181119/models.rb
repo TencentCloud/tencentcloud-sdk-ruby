@@ -1899,6 +1899,61 @@ module TencentCloud
         end
       end
 
+      # DescribeQuestionSplitJob请求参数结构体
+      class DescribeQuestionSplitJobRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: <p>任务唯一ID。由服务端生成。</p>
+        # @type JobId: String
+
+        attr_accessor :JobId
+
+        def initialize(jobid=nil)
+          @JobId = jobid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+        end
+      end
+
+      # DescribeQuestionSplitJob返回参数结构体
+      class DescribeQuestionSplitJobResponse < TencentCloud::Common::AbstractModel
+        # @param QuestionInfo: <p>切题详情</p>
+        # @type QuestionInfo: Array
+        # @param ErrorCode: <p>任务执行错误码。当任务状态不为 FAIL 时，该值为&quot;&quot;。</p>
+        # @type ErrorCode: String
+        # @param ErrorMessage: <p>任务执行错误信息。当任务状态不为 FAIL 时，该值为&quot;&quot;。</p>
+        # @type ErrorMessage: String
+        # @param JobStatus: <p>任务状态。</p><p>枚举值：</p><ul><li>WAIT： 等待中</li><li>RUN： 执行中</li><li>FAIL： 任务失败</li><li>DONE： 任务成功</li></ul>
+        # @type JobStatus: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :QuestionInfo, :ErrorCode, :ErrorMessage, :JobStatus, :RequestId
+
+        def initialize(questioninfo=nil, errorcode=nil, errormessage=nil, jobstatus=nil, requestid=nil)
+          @QuestionInfo = questioninfo
+          @ErrorCode = errorcode
+          @ErrorMessage = errormessage
+          @JobStatus = jobstatus
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['QuestionInfo'].nil?
+            @QuestionInfo = []
+            params['QuestionInfo'].each do |i|
+              questioninfo_tmp = QuestionInfo.new
+              questioninfo_tmp.deserialize(i)
+              @QuestionInfo << questioninfo_tmp
+            end
+          end
+          @ErrorCode = params['ErrorCode']
+          @ErrorMessage = params['ErrorMessage']
+          @JobStatus = params['JobStatus']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 机票详细信息元组
       class DetailInformationOfAirTicketTupleList < TencentCloud::Common::AbstractModel
         # @param DepartureStation: 出发站（自）
@@ -2742,26 +2797,29 @@ module TencentCloud
 
       # 试题识别结果-元素内容
       class Element < TencentCloud::Common::AbstractModel
-        # @param Text: 元素内容，当type为figure时该字段内容为图片的位置
+        # @param Text: <p>元素内容，当type为figure时该字段内容为图片的位置</p>
         # @type Text: String
-        # @param Coord: 元素坐标
+        # @param Coord: <p>元素坐标</p>
         # @type Coord: :class:`Tencentcloud::Ocr.v20181119.models.Polygon`
-        # @param GroupType: 元素group类型，包括multiple-choice(选择题)、fill-in-the-blank(填空题)、problem-solving(解答题)、arithmetic(算术题)
+        # @param GroupType: <p>元素group类型，包括multiple-choice(选择题)、fill-in-the-blank(填空题)、problem-solving(解答题)、arithmetic(算术题)</p>
         # @type GroupType: String
-        # @param ResultList: 结果列表
+        # @param ResultList: <p>结果列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResultList: Array
-        # @param Index: 元素索引
+        # @param Index: <p>元素索引</p>
         # @type Index: Integer
+        # @param PageIndex: <p>元素所在页</p><p>单位：页</p><p>默认值：1</p>
+        # @type PageIndex: Integer
 
-        attr_accessor :Text, :Coord, :GroupType, :ResultList, :Index
+        attr_accessor :Text, :Coord, :GroupType, :ResultList, :Index, :PageIndex
 
-        def initialize(text=nil, coord=nil, grouptype=nil, resultlist=nil, index=nil)
+        def initialize(text=nil, coord=nil, grouptype=nil, resultlist=nil, index=nil, pageindex=nil)
           @Text = text
           @Coord = coord
           @GroupType = grouptype
           @ResultList = resultlist
           @Index = index
+          @PageIndex = pageindex
         end
 
         def deserialize(params)
@@ -2780,6 +2838,7 @@ module TencentCloud
             end
           end
           @Index = params['Index']
+          @PageIndex = params['PageIndex']
         end
       end
 
@@ -9568,30 +9627,32 @@ module TencentCloud
 
       # 结果列表
       class ResultList < TencentCloud::Common::AbstractModel
-        # @param Question: 题干
+        # @param Question: <p>题干</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Question: Array
-        # @param Option: 选项
+        # @param Option: <p>选项</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Option: Array
-        # @param Figure: 插图
+        # @param Figure: <p>插图</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Figure: Array
-        # @param Table: 表格
+        # @param Table: <p>表格</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Table: Array
-        # @param Answer: 答案
+        # @param Answer: <p>答案</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Answer: Array
-        # @param Parse: 解析
+        # @param Parse: <p>解析</p>
         # @type Parse: Array
-        # @param Coord: 整题的坐标
+        # @param Coord: <p>整题的坐标，多页单题跨页/单页单题跨栏场景下，存在一道题有多个坐标</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Coord: Array
+        # @param CoordPageIndex: <p>多坐标返回，显示坐标所在页</p><p>默认值：[]</p>
+        # @type CoordPageIndex: Array
 
-        attr_accessor :Question, :Option, :Figure, :Table, :Answer, :Parse, :Coord
+        attr_accessor :Question, :Option, :Figure, :Table, :Answer, :Parse, :Coord, :CoordPageIndex
 
-        def initialize(question=nil, option=nil, figure=nil, table=nil, answer=nil, parse=nil, coord=nil)
+        def initialize(question=nil, option=nil, figure=nil, table=nil, answer=nil, parse=nil, coord=nil, coordpageindex=nil)
           @Question = question
           @Option = option
           @Figure = figure
@@ -9599,6 +9660,7 @@ module TencentCloud
           @Answer = answer
           @Parse = parse
           @Coord = coord
+          @CoordPageIndex = coordpageindex
         end
 
         def deserialize(params)
@@ -9658,6 +9720,7 @@ module TencentCloud
               @Coord << polygon_tmp
             end
           end
+          @CoordPageIndex = params['CoordPageIndex']
         end
       end
 
@@ -10801,6 +10864,54 @@ module TencentCloud
           end
           @QuestionCount = params['QuestionCount']
           @OriginalImageUrl = params['OriginalImageUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # SubmitQuestionSplitJob请求参数结构体
+      class SubmitQuestionSplitJobRequest < TencentCloud::Common::AbstractModel
+        # @param ImageUrlList: <p>批量ImageUrl图片入口。要求Base64不超过10M，分辨率建议600*800以上，支持PNG、JPG、JPEG、BMP、PDF格式。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。</p><p>入参限制：要求pdf只能有一个url或base64</p>
+        # @type ImageUrlList: Array
+        # @param ImageBase64List: <p>批量base64图片入口。要求图片经Base64编码后不超过10M，分辨率建议600*800以上，支持PNG、JPG、JPEG、BMP、PDF格式。图片下载时间不超过 3 秒。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。</p><p>入参限制：要求pdf只能有一个url或base64</p>
+        # @type ImageBase64List: Array
+        # @param ModelType: <p>选择切题模型</p><p>枚举值：</p><ul><li>youtu_crop： 轻量化切题模型，运算速度更快，适合常规切题</li><li>youtu_crop_pro： 属于切题精调大模型，针对双栏、跨栏等复杂版式识别精度大幅提升，但推理耗时更长</li></ul><p>默认值：youtu_crop</p>
+        # @type ModelType: String
+
+        attr_accessor :ImageUrlList, :ImageBase64List, :ModelType
+
+        def initialize(imageurllist=nil, imagebase64list=nil, modeltype=nil)
+          @ImageUrlList = imageurllist
+          @ImageBase64List = imagebase64list
+          @ModelType = modeltype
+        end
+
+        def deserialize(params)
+          @ImageUrlList = params['ImageUrlList']
+          @ImageBase64List = params['ImageBase64List']
+          @ModelType = params['ModelType']
+        end
+      end
+
+      # SubmitQuestionSplitJob返回参数结构体
+      class SubmitQuestionSplitJobResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: <p>任务唯一ID。由服务端生成。</p>
+        # @type JobId: String
+        # @param ImageZipUrl: <p>PDF 转完之后的图片压缩包列表地址。</p>
+        # @type ImageZipUrl: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :ImageZipUrl, :RequestId
+
+        def initialize(jobid=nil, imagezipurl=nil, requestid=nil)
+          @JobId = jobid
+          @ImageZipUrl = imagezipurl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @ImageZipUrl = params['ImageZipUrl']
           @RequestId = params['RequestId']
         end
       end

@@ -94,62 +94,62 @@ module TencentCloud
 
       # 聚合软件的已安装终端列表中的一行数据
       class AggrSoftDeviceRow < TencentCloud::Common::AbstractModel
-        # @param DeviceName: 终端名
+        # @param DeviceName: <p>终端名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceName: String
-        # @param LastLoginAccount: 最近登录账号
+        # @param LastLoginAccount: <p>最近登录账号</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastLoginAccount: String
-        # @param DeviceUserName: 终端用户名
+        # @param DeviceUserName: <p>终端用户名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceUserName: String
-        # @param Version: 软件版本
+        # @param Version: <p>软件版本</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: String
-        # @param PiracyRisk: 是否盗版
+        # @param PiracyRisk: <p>是否盗版</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PiracyRisk: Integer
-        # @param PiracyReason: 盗版原因
+        # @param PiracyReason: <p>盗版原因</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PiracyReason: String
-        # @param InstallTime: 安装时间
+        # @param InstallTime: <p>安装时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstallTime: String
-        # @param UserPath: 用户目录
+        # @param UserPath: <p>用户目录</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserPath: String
-        # @param UserGroup: 所在分组
+        # @param UserGroup: <p>所在分组</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserGroup: String
-        # @param IP: IP
+        # @param IP: <p>IP</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IP: String
-        # @param MAC: MAC
+        # @param MAC: <p>MAC</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MAC: String
-        # @param UseTime: 使用时长
+        # @param UseTime: <p>使用时长</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UseTime: Integer
-        # @param DeviceId: 设备ID
+        # @param DeviceId: <p>设备ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceId: Integer
-        # @param FullSoftName: 软件全名
+        # @param FullSoftName: <p>软件全名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FullSoftName: String
-        # @param Id: 数据ID（唯一）
+        # @param Id: <p>数据ID（唯一）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: Integer
-        # @param NewVersion: 该终端此款软件可升级到的目标版本号
+        # @param NewVersion: <p>该终端此款软件可升级到的目标版本号</p>
         # @type NewVersion: String
-        # @param UpgradeSoftId: 该软件对应运营配置的可升级id
+        # @param UpgradeSoftId: <p>该软件对应运营配置的可升级id</p>
         # @type UpgradeSoftId: Integer
-        # @param RemarkName: 终端备注名
+        # @param RemarkName: <p>终端备注名</p>
         # @type RemarkName: String
-        # @param SoftwareId: 软件id
+        # @param SoftwareId: <p>软件id</p>
         # @type SoftwareId: Integer
-        # @param OsType: 0:win 2:mac
+        # @param OsType: <p>0:win 2:mac</p>
         # @type OsType: Integer
-        # @param AssetType: 所有权
+        # @param AssetType: <p>所有权</p>
         # @type AssetType: String
 
         attr_accessor :DeviceName, :LastLoginAccount, :DeviceUserName, :Version, :PiracyRisk, :PiracyReason, :InstallTime, :UserPath, :UserGroup, :IP, :MAC, :UseTime, :DeviceId, :FullSoftName, :Id, :NewVersion, :UpgradeSoftId, :RemarkName, :SoftwareId, :OsType, :AssetType
@@ -435,10 +435,12 @@ module TencentCloud
         # @type Description: String
         # @param Scene: <p>使用场景：API 创建，快速上手，普通配置等</p>
         # @type Scene: String
+        # @param NameI18n: <p>名称多语言</p>
+        # @type NameI18n: Array
 
-        attr_accessor :Type, :Name, :Config, :SyncEnable, :SyncPolicy, :SyncPolicyParams, :CreateAuthConfig, :DisplayOnLoginPage, :Description, :Scene
+        attr_accessor :Type, :Name, :Config, :SyncEnable, :SyncPolicy, :SyncPolicyParams, :CreateAuthConfig, :DisplayOnLoginPage, :Description, :Scene, :NameI18n
 
-        def initialize(type=nil, name=nil, config=nil, syncenable=nil, syncpolicy=nil, syncpolicyparams=nil, createauthconfig=nil, displayonloginpage=nil, description=nil, scene=nil)
+        def initialize(type=nil, name=nil, config=nil, syncenable=nil, syncpolicy=nil, syncpolicyparams=nil, createauthconfig=nil, displayonloginpage=nil, description=nil, scene=nil, namei18n=nil)
           @Type = type
           @Name = name
           @Config = config
@@ -449,6 +451,7 @@ module TencentCloud
           @DisplayOnLoginPage = displayonloginpage
           @Description = description
           @Scene = scene
+          @NameI18n = namei18n
         end
 
         def deserialize(params)
@@ -462,6 +465,14 @@ module TencentCloud
           @DisplayOnLoginPage = params['DisplayOnLoginPage']
           @Description = params['Description']
           @Scene = params['Scene']
+          unless params['NameI18n'].nil?
+            @NameI18n = []
+            params['NameI18n'].each do |i|
+              i18nstring_tmp = I18nString.new
+              i18nstring_tmp.deserialize(i)
+              @NameI18n << i18nstring_tmp
+            end
+          end
         end
       end
 
@@ -822,6 +833,26 @@ module TencentCloud
         end
       end
 
+      # DeleteAccountGroup请求参数结构体
+      class DeleteAccountGroupRequest < TencentCloud::Common::AbstractModel
+        # @param DomainInstanceId: 管理域实例ID，用于CAM管理域权限分配。若企业未进行管理域的划分，可直接传入根域"1"，此时表示针对当前企业的全部设备和账号进行接口CRUD，具体CRUD的影响范围限制于相应接口的入参。
+        # @type DomainInstanceId: String
+        # @param AccountGroupId: <p>分组或者目录id(只支持32位)</p>
+        # @type AccountGroupId: Integer
+
+        attr_accessor :DomainInstanceId, :AccountGroupId
+
+        def initialize(domaininstanceid=nil, accountgroupid=nil)
+          @DomainInstanceId = domaininstanceid
+          @AccountGroupId = accountgroupid
+        end
+
+        def deserialize(params)
+          @DomainInstanceId = params['DomainInstanceId']
+          @AccountGroupId = params['AccountGroupId']
+        end
+      end
+
       # DeleteAccountGroupResources请求参数结构体
       class DeleteAccountGroupResourcesRequest < TencentCloud::Common::AbstractModel
         # @param ResourceList: 资源集
@@ -851,6 +882,22 @@ module TencentCloud
 
       # DeleteAccountGroupResources返回参数结构体
       class DeleteAccountGroupResourcesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteAccountGroup返回参数结构体
+      class DeleteAccountGroupResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -929,47 +976,47 @@ module TencentCloud
 
       # 账号分组信息
       class DescribeAccountGroupsData < TencentCloud::Common::AbstractModel
-        # @param NamePath: 账号分组名全路径，点分格式
+        # @param NamePath: <p>账号分组名全路径，点分格式</p>
         # @type NamePath: String
-        # @param IdPathArr: 账号分组ID全路径，数组格式
+        # @param IdPathArr: <p>账号分组ID全路径，数组格式</p>
         # @type IdPathArr: Array
-        # @param ExtraInfo: 扩展信息
+        # @param ExtraInfo: <p>扩展信息</p>
         # @type ExtraInfo: String
-        # @param Utime: 最后更新时间
+        # @param Utime: <p>最后更新时间</p>
         # @type Utime: String
-        # @param ParentId: 父分组ID
+        # @param ParentId: <p>父分组ID</p>
         # @type ParentId: Integer
-        # @param OrgId: 源账号组织ID。使用第三方导入用户源时，记录该分组在源组织架构下的分组ID
+        # @param OrgId: <p>源账号组织ID。使用第三方导入用户源时，记录该分组在源组织架构下的分组ID</p>
         # @type OrgId: String
-        # @param Name: 分组名称
+        # @param Name: <p>分组名称</p>
         # @type Name: String
-        # @param Id: 分组ID
+        # @param Id: <p>分组ID</p>
         # @type Id: Integer
-        # @param Description: 分组描述
+        # @param Description: <p>分组描述</p>
         # @type Description: String
-        # @param Source: 同步数据源
+        # @param Source: <p>同步数据源</p>
         # @type Source: Integer
-        # @param IdPath: 账号分组ID全路径，点分格式
+        # @param IdPath: <p>账号分组ID全路径，点分格式</p>
         # @type IdPath: String
-        # @param Itime: 创建时间
+        # @param Itime: <p>创建时间</p>
         # @type Itime: String
-        # @param ParentOrgId: 父源账号组织ID。使用第三方导入用户源时，记录该分组在源组织架构下的分组ID
+        # @param ParentOrgId: <p>父源账号组织ID。使用第三方导入用户源时，记录该分组在源组织架构下的分组ID</p>
         # @type ParentOrgId: String
-        # @param ImportType: 导入类型
+        # @param ImportType: <p>导入类型</p>
         # @type ImportType: String
-        # @param MiniIamId: miniIAM id
+        # @param MiniIamId: <p>miniIAM id</p>
         # @type MiniIamId: String
-        # @param UserTotal: 该分组下含子组的所有用户总数
+        # @param UserTotal: <p>该分组下含子组的所有用户总数</p>
         # @type UserTotal: Integer
-        # @param IsLeaf: 是否叶子节点
+        # @param IsLeaf: <p>是否叶子节点</p>
         # @type IsLeaf: Boolean
-        # @param ReadOnly: 是否该账户的直接权限
+        # @param ReadOnly: <p>是否该账户的直接权限</p>
         # @type ReadOnly: Boolean
-        # @param LatestSyncResult: 最新一次同步任务的结果
+        # @param LatestSyncResult: <p>最新一次同步任务的结果</p>
         # @type LatestSyncResult: String
-        # @param LatestSyncTime: 最新一次同步任务的结束时间
+        # @param LatestSyncTime: <p>最新一次同步任务的结束时间</p>
         # @type LatestSyncTime: String
-        # @param NamePathArr: 分组名称数组
+        # @param NamePathArr: <p>分组名称数组</p>
         # @type NamePathArr: Array
 
         attr_accessor :NamePath, :IdPathArr, :ExtraInfo, :Utime, :ParentId, :OrgId, :Name, :Id, :Description, :Source, :IdPath, :Itime, :ParentOrgId, :ImportType, :MiniIamId, :UserTotal, :IsLeaf, :ReadOnly, :LatestSyncResult, :LatestSyncTime, :NamePathArr
@@ -1055,7 +1102,9 @@ module TencentCloud
 
       # DescribeAccountGroups请求参数结构体
       class DescribeAccountGroupsRequest < TencentCloud::Common::AbstractModel
-        # @param Deepin: 搜索范围：0-仅当前分组的直接子组，1-当前分组的所有子组。默认为0。
+        # @param DomainInstanceId: 管理域实例ID，用于CAM管理域权限分配。若企业未进行管理域的划分，可直接传入根域"1"，此时表示针对当前企业的全部设备和账号进行接口CRUD，具体CRUD的影响范围限制于相应接口的入参。
+        # @type DomainInstanceId: String
+        # @param Deepin: （仅SaaS版本适用）搜索范围：0-仅当前分组的直接子组，1-当前分组的所有子组。默认为0。
         # @type Deepin: Integer
         # @param Condition: 查询条件
 
@@ -1073,15 +1122,17 @@ module TencentCloud
         # @param ParentId: 父分组ID，获取该分组下的子组信息。默认查询全网根分组下子组信息。
         # @type ParentId: Integer
 
-        attr_accessor :Deepin, :Condition, :ParentId
+        attr_accessor :DomainInstanceId, :Deepin, :Condition, :ParentId
 
-        def initialize(deepin=nil, condition=nil, parentid=nil)
+        def initialize(domaininstanceid=nil, deepin=nil, condition=nil, parentid=nil)
+          @DomainInstanceId = domaininstanceid
           @Deepin = deepin
           @Condition = condition
           @ParentId = parentid
         end
 
         def deserialize(params)
+          @DomainInstanceId = params['DomainInstanceId']
           @Deepin = params['Deepin']
           unless params['Condition'].nil?
             @Condition = Condition.new
@@ -1973,22 +2024,25 @@ module TencentCloud
 
       # 节点分组信息
       class DescribeDLPEdgeNodeGroupsRspItem < TencentCloud::Common::AbstractModel
-        # @param Id: 自增id，数据库中唯一
+        # @param Id: <p>自增id，数据库中唯一</p>
         # @type Id: Integer
-        # @param GroupName: 节点分组名称
+        # @param GroupName: <p>节点分组名称</p>
         # @type GroupName: String
-        # @param GroupId: 节点分组id
+        # @param GroupId: <p>节点分组id</p>
         # @type GroupId: String
-        # @param EdgeCount: 包含边缘节点数量
+        # @param EdgeCount: <p>包含边缘节点数量</p>
         # @type EdgeCount: Integer
+        # @param GroupNameI18n: <p>分组中英文</p>
+        # @type GroupNameI18n: Array
 
-        attr_accessor :Id, :GroupName, :GroupId, :EdgeCount
+        attr_accessor :Id, :GroupName, :GroupId, :EdgeCount, :GroupNameI18n
 
-        def initialize(id=nil, groupname=nil, groupid=nil, edgecount=nil)
+        def initialize(id=nil, groupname=nil, groupid=nil, edgecount=nil, groupnamei18n=nil)
           @Id = id
           @GroupName = groupname
           @GroupId = groupid
           @EdgeCount = edgecount
+          @GroupNameI18n = groupnamei18n
         end
 
         def deserialize(params)
@@ -1996,6 +2050,14 @@ module TencentCloud
           @GroupName = params['GroupName']
           @GroupId = params['GroupId']
           @EdgeCount = params['EdgeCount']
+          unless params['GroupNameI18n'].nil?
+            @GroupNameI18n = []
+            params['GroupNameI18n'].each do |i|
+              i18nstring_tmp = I18nString.new
+              i18nstring_tmp.deserialize(i)
+              @GroupNameI18n << i18nstring_tmp
+            end
+          end
         end
       end
 
@@ -2393,55 +2455,55 @@ module TencentCloud
 
       # 终端详情响应对象集合
       class DescribeDeviceDetailListData < TencentCloud::Common::AbstractModel
-        # @param UserName: 账号名
+        # @param UserName: <p>账号名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserName: String
-        # @param ComputerName: 计算机名
+        # @param ComputerName: <p>计算机名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ComputerName: String
-        # @param Name: 名称
+        # @param Name: <p>名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
-        # @param AccountGroupIdPath: 用户组IdPath
+        # @param AccountGroupIdPath: <p>用户组IdPath</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccountGroupIdPath: String
-        # @param AccountGroupId: 用户组id(只支持32位)
+        # @param AccountGroupId: <p>用户组id(只支持32位)</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccountGroupId: Integer
-        # @param GroupNamePath: 终端组名path
+        # @param GroupNamePath: <p>终端组名path</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupNamePath: String
-        # @param Ip: Ip地址
+        # @param Ip: <p>Ip地址</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ip: String
-        # @param AccountGroupName: 用户组名
+        # @param AccountGroupName: <p>用户组名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccountGroupName: String
-        # @param GroupIdPath: 终端组IdPath
+        # @param GroupIdPath: <p>终端组IdPath</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupIdPath: String
-        # @param Mid: 唯一标识Mid
+        # @param Mid: <p>唯一标识Mid</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Mid: String
-        # @param IoaUserName: IOA账号名
+        # @param IoaUserName: <p>IOA账号名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IoaUserName: String
-        # @param GroupId: 所在分组Id(只支持32位)
+        # @param GroupId: <p>所在分组Id(只支持32位)</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupId: Integer
-        # @param GroupName: 所在分组Name
+        # @param GroupName: <p>所在分组Name</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupName: String
-        # @param Mac: Mac地址
+        # @param Mac: <p>Mac地址</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Mac: String
-        # @param Version: 软件版本
+        # @param Version: <p>软件版本</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: String
-        # @param AccountGroupNamePath: 用户组名Path
+        # @param AccountGroupNamePath: <p>用户组名Path</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccountGroupNamePath: String
-        # @param Id: 列表Id(只支持32位)
+        # @param Id: <p>列表Id(只支持32位)</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: Integer
 
@@ -3122,7 +3184,7 @@ module TencentCloud
 
       # 所属组
       class DescribeLocalAccountAccountGroupsData < TencentCloud::Common::AbstractModel
-        # @param AccountGroupId: 组Id(只支持32位)
+        # @param AccountGroupId: <p>组Id(只支持32位)</p>
         # @type AccountGroupId: Integer
 
         attr_accessor :AccountGroupId
@@ -3138,45 +3200,45 @@ module TencentCloud
 
       # 获取账号列表响应的单个对象
       class DescribeLocalAccountsData < TencentCloud::Common::AbstractModel
-        # @param Id: uid，数据库中唯一
+        # @param Id: <p>uid，数据库中唯一</p>
         # @type Id: Integer
-        # @param UserId: 账号，登录账号
+        # @param UserId: <p>账号，登录账号</p>
         # @type UserId: String
-        # @param UserName: 用户名
+        # @param UserName: <p>用户名</p>
         # @type UserName: String
-        # @param AccountId: 账号id，同Id字段
+        # @param AccountId: <p>账号id，同Id字段</p>
         # @type AccountId: Integer
-        # @param GroupId: 账号所在的分组id
+        # @param GroupId: <p>账号所在的分组id</p>
         # @type GroupId: Integer
-        # @param GroupName: 账号所在的分组名称
+        # @param GroupName: <p>账号所在的分组名称</p>
         # @type GroupName: String
-        # @param NamePath: 账号所在的分组名称路径，用英文.分割
+        # @param NamePath: <p>账号所在的分组名称路径，用英文.分割</p>
         # @type NamePath: String
-        # @param Source: 账号来源,0表示本地账号(只支持32位)
+        # @param Source: <p>账号来源,0表示本地账号(只支持32位)</p>
         # @type Source: Integer
-        # @param Status: 账号状态,0禁用，1启用(只支持32位)
+        # @param Status: <p>账号状态,0禁用，1启用(只支持32位)</p>
         # @type Status: Integer
-        # @param Itime: 账号的创建时间
+        # @param Itime: <p>账号的创建时间</p>
         # @type Itime: String
-        # @param Utime: 账号的最后更新时间
+        # @param Utime: <p>账号的最后更新时间</p>
         # @type Utime: String
-        # @param ExtraInfo: 账号的扩展信息，包含邮箱、手机号、身份证、职位等信息
+        # @param ExtraInfo: <p>账号的扩展信息，包含邮箱、手机号、身份证、职位等信息</p>
         # @type ExtraInfo: String
-        # @param RiskLevel: 用户风险等级，枚举：none, low, middle, high
+        # @param RiskLevel: <p>用户风险等级，枚举：none, low, middle, high</p>
         # @type RiskLevel: String
-        # @param AccountGroups: 所属组
+        # @param AccountGroups: <p>所属组</p>
         # @type AccountGroups: Array
-        # @param MobileBindNum: 绑定手机端设备数
+        # @param MobileBindNum: <p>绑定手机端设备数</p>
         # @type MobileBindNum: Integer
-        # @param PcBindNum: 绑定Pc端设备数
+        # @param PcBindNum: <p>绑定Pc端设备数</p>
         # @type PcBindNum: Integer
-        # @param OnlineStatus: 账号在线状态 1：在线 2：离线
+        # @param OnlineStatus: <p>账号在线状态 1：在线 2：离线</p>
         # @type OnlineStatus: Integer
-        # @param ActiveStatus: 账号活跃状态 1：活跃 2：非活跃
+        # @param ActiveStatus: <p>账号活跃状态 1：活跃 2：非活跃</p>
         # @type ActiveStatus: Integer
-        # @param LoginTime: 账号登录时间
+        # @param LoginTime: <p>账号登录时间</p>
         # @type LoginTime: String
-        # @param LogoutTime: 账号登出时间
+        # @param LogoutTime: <p>账号登出时间</p>
         # @type LogoutTime: String
 
         attr_accessor :Id, :UserId, :UserName, :AccountId, :GroupId, :GroupName, :NamePath, :Source, :Status, :Itime, :Utime, :ExtraInfo, :RiskLevel, :AccountGroups, :MobileBindNum, :PcBindNum, :OnlineStatus, :ActiveStatus, :LoginTime, :LogoutTime
@@ -3566,43 +3628,43 @@ module TencentCloud
 
       # 软件统计响应对象集合
       class DescribeSoftCensusListByDeviceData < TencentCloud::Common::AbstractModel
-        # @param UserName: 终端用户名
+        # @param UserName: <p>终端用户名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserName: String
-        # @param MacAddr: mac地址
+        # @param MacAddr: <p>mac地址</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MacAddr: String
-        # @param Name: 终端计算机名称
+        # @param Name: <p>终端计算机名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
-        # @param GroupNamePath: 终端组路径名
+        # @param GroupNamePath: <p>终端组路径名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupNamePath: String
-        # @param Ip: IP地址
+        # @param Ip: <p>IP地址</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ip: String
-        # @param Mid: 唯一标识Mid
+        # @param Mid: <p>唯一标识Mid</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Mid: String
-        # @param IoaUserName: 企业账户名
+        # @param IoaUserName: <p>企业账户名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IoaUserName: String
-        # @param GroupId: 终端分组Id(只支持32位)
+        # @param GroupId: <p>终端分组Id(只支持32位)</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupId: Integer
-        # @param GroupName: 终端组名
+        # @param GroupName: <p>终端组名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupName: String
-        # @param Id: 终端列表Id(只支持32位)
+        # @param Id: <p>终端列表Id(只支持32位)</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: Integer
-        # @param SoftNum: 软件数量(只支持32位)
+        # @param SoftNum: <p>软件数量(只支持32位)</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SoftNum: Integer
-        # @param PiracyRisk: 盗版风险（1=风险;2=未知）
+        # @param PiracyRisk: <p>盗版风险（1=风险;2=未知）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PiracyRisk: Integer
-        # @param RemarkName: 终端备注名
+        # @param RemarkName: <p>终端备注名</p>
         # @type RemarkName: String
 
         attr_accessor :UserName, :MacAddr, :Name, :GroupNamePath, :Ip, :Mid, :IoaUserName, :GroupId, :GroupName, :Id, :SoftNum, :PiracyRisk, :RemarkName
@@ -4140,41 +4202,41 @@ module TencentCloud
 
       # 返回的数组列表
       class DeviceGroupDetail < TencentCloud::Common::AbstractModel
-        # @param Id: 设备组id
+        # @param Id: <p>设备组id</p>
         # @type Id: Integer
-        # @param Name: 设备组名称
+        # @param Name: <p>设备组名称</p>
         # @type Name: String
-        # @param Description: 设备组描述
+        # @param Description: <p>设备组描述</p>
         # @type Description: String
-        # @param ParentId: 父节点id
+        # @param ParentId: <p>父节点id</p>
         # @type ParentId: Integer
-        # @param IdPath: 基于id的节点路径
+        # @param IdPath: <p>基于id的节点路径</p>
         # @type IdPath: String
-        # @param NamePath: 基于名称的节点路径
+        # @param NamePath: <p>基于名称的节点路径</p>
         # @type NamePath: String
-        # @param Locked: 分组锁定状态
+        # @param Locked: <p>分组锁定状态</p>
         # @type Locked: Integer
-        # @param OsType: 系统类型（0: win，1：linux，2: mac，4：android，5：ios   ）
+        # @param OsType: <p>系统类型（0: win，1：linux，2: mac，4：android，5：ios   ）</p>
         # @type OsType: Integer
-        # @param Sort: 排序
+        # @param Sort: <p>排序</p>
         # @type Sort: Integer
-        # @param FromAuto: 是否自动调整
+        # @param FromAuto: <p>是否自动调整</p>
         # @type FromAuto: Integer
-        # @param Count: 子节点数量
+        # @param Count: <p>子节点数量</p>
         # @type Count: Integer
-        # @param Icon: 图标
+        # @param Icon: <p>图标</p>
         # @type Icon: String
-        # @param WithIp: 是否有ip
+        # @param WithIp: <p>是否有ip</p>
         # @type WithIp: Integer
-        # @param HasIp: 是否有组ip
+        # @param HasIp: <p>是否有组ip</p>
         # @type HasIp: Boolean
-        # @param IsLeaf: 是否是叶子节点
+        # @param IsLeaf: <p>是否是叶子节点</p>
         # @type IsLeaf: Boolean
-        # @param ReadOnly: 是否只读
+        # @param ReadOnly: <p>是否只读</p>
         # @type ReadOnly: Boolean
-        # @param BindAccount: 对应绑定的账号id
+        # @param BindAccount: <p>对应绑定的账号id</p>
         # @type BindAccount: Integer
-        # @param BindAccountName: 绑定账号的用户名
+        # @param BindAccountName: <p>绑定账号的用户名</p>
         # @type BindAccountName: String
 
         attr_accessor :Id, :Name, :Description, :ParentId, :IdPath, :NamePath, :Locked, :OsType, :Sort, :FromAuto, :Count, :Icon, :WithIp, :HasIp, :IsLeaf, :ReadOnly, :BindAccount, :BindAccountName
@@ -4417,17 +4479,17 @@ module TencentCloud
 
       # 终端自定义分组列表数据
       class DeviceVirtualDeviceGroupsDetail < TencentCloud::Common::AbstractModel
-        # @param Id: 终端自定义分组id
+        # @param Id: <p>终端自定义分组id</p>
         # @type Id: Integer
-        # @param DeviceVirtualGroupName: 自定义分组名称
+        # @param DeviceVirtualGroupName: <p>自定义分组名称</p>
         # @type DeviceVirtualGroupName: String
-        # @param DeviceCount: 设备数
+        # @param DeviceCount: <p>设备数</p>
         # @type DeviceCount: Integer
-        # @param OsType: 系统类型（0: win，1：linux，2: mac，4：android，5：ios  ）
+        # @param OsType: <p>系统类型（0: win，1：linux，2: mac，4：android，5：ios  ）</p>
         # @type OsType: Integer
-        # @param Itime: 创建时间
+        # @param Itime: <p>创建时间</p>
         # @type Itime: String
-        # @param Utime: 更新时间
+        # @param Utime: <p>更新时间</p>
         # @type Utime: String
 
         attr_accessor :Id, :DeviceVirtualGroupName, :DeviceCount, :OsType, :Itime, :Utime
@@ -4475,10 +4537,12 @@ module TencentCloud
         # @type SourceId: String
         # @param DisplayOnLoginPage: <p>是否在登录页展示</p>
         # @type DisplayOnLoginPage: Boolean
+        # @param NameI18n: <p>名称多语言</p>
+        # @type NameI18n: Array
 
-        attr_accessor :Id, :Type, :Name, :Config, :SyncEnable, :SyncPolicy, :SyncPolicyParams, :CreateAuthConfig, :Description, :SourceId, :DisplayOnLoginPage
+        attr_accessor :Id, :Type, :Name, :Config, :SyncEnable, :SyncPolicy, :SyncPolicyParams, :CreateAuthConfig, :Description, :SourceId, :DisplayOnLoginPage, :NameI18n
 
-        def initialize(id=nil, type=nil, name=nil, config=nil, syncenable=nil, syncpolicy=nil, syncpolicyparams=nil, createauthconfig=nil, description=nil, sourceid=nil, displayonloginpage=nil)
+        def initialize(id=nil, type=nil, name=nil, config=nil, syncenable=nil, syncpolicy=nil, syncpolicyparams=nil, createauthconfig=nil, description=nil, sourceid=nil, displayonloginpage=nil, namei18n=nil)
           @Id = id
           @Type = type
           @Name = name
@@ -4490,6 +4554,7 @@ module TencentCloud
           @Description = description
           @SourceId = sourceid
           @DisplayOnLoginPage = displayonloginpage
+          @NameI18n = namei18n
         end
 
         def deserialize(params)
@@ -4504,6 +4569,14 @@ module TencentCloud
           @Description = params['Description']
           @SourceId = params['SourceId']
           @DisplayOnLoginPage = params['DisplayOnLoginPage']
+          unless params['NameI18n'].nil?
+            @NameI18n = []
+            params['NameI18n'].each do |i|
+              i18nstring_tmp = I18nString.new
+              i18nstring_tmp.deserialize(i)
+              @NameI18n << i18nstring_tmp
+            end
+          end
         end
       end
 
@@ -4527,10 +4600,12 @@ module TencentCloud
         # @type AuthSupportPlatforms: Array
         # @param AuthMethods: <p>认证方式，授权认证/扫码认证 等</p>
         # @type AuthMethods: Array
+        # @param NameI18n: <p>名称多语言支持</p>
+        # @type NameI18n: Array
 
-        attr_accessor :Id, :Name, :IdentifySourceId, :CreateAuthConfig, :AuthSourceId, :AuthConfigId, :AuthPolicyId, :AuthSupportPlatforms, :AuthMethods
+        attr_accessor :Id, :Name, :IdentifySourceId, :CreateAuthConfig, :AuthSourceId, :AuthConfigId, :AuthPolicyId, :AuthSupportPlatforms, :AuthMethods, :NameI18n
 
-        def initialize(id=nil, name=nil, identifysourceid=nil, createauthconfig=nil, authsourceid=nil, authconfigid=nil, authpolicyid=nil, authsupportplatforms=nil, authmethods=nil)
+        def initialize(id=nil, name=nil, identifysourceid=nil, createauthconfig=nil, authsourceid=nil, authconfigid=nil, authpolicyid=nil, authsupportplatforms=nil, authmethods=nil, namei18n=nil)
           @Id = id
           @Name = name
           @IdentifySourceId = identifysourceid
@@ -4540,6 +4615,7 @@ module TencentCloud
           @AuthPolicyId = authpolicyid
           @AuthSupportPlatforms = authsupportplatforms
           @AuthMethods = authmethods
+          @NameI18n = namei18n
         end
 
         def deserialize(params)
@@ -4552,6 +4628,14 @@ module TencentCloud
           @AuthPolicyId = params['AuthPolicyId']
           @AuthSupportPlatforms = params['AuthSupportPlatforms']
           @AuthMethods = params['AuthMethods']
+          unless params['NameI18n'].nil?
+            @NameI18n = []
+            params['NameI18n'].each do |i|
+              i18nstring_tmp = I18nString.new
+              i18nstring_tmp.deserialize(i)
+              @NameI18n << i18nstring_tmp
+            end
+          end
         end
       end
 
@@ -4742,39 +4826,39 @@ module TencentCloud
 
       # 账号分组详情响应数据
       class GetAccountGroupData < TencentCloud::Common::AbstractModel
-        # @param NamePath: 分组名称全路径，点分格式
+        # @param NamePath: <p>分组名称全路径，点分格式</p>
         # @type NamePath: String
-        # @param IdPathArr: 分组ID全路径，数组格式
+        # @param IdPathArr: <p>分组ID全路径，数组格式</p>
         # @type IdPathArr: Array
-        # @param ExtraInfo: 分组扩展信息
+        # @param ExtraInfo: <p>分组扩展信息</p>
         # @type ExtraInfo: String
-        # @param Utime: 最后更新时间
+        # @param Utime: <p>最后更新时间</p>
         # @type Utime: String
-        # @param ParentId: 当前分组的父分组ID
+        # @param ParentId: <p>当前分组的父分组ID</p>
         # @type ParentId: Integer
-        # @param OrgId: 源账号组ID，该字段仅适用于第三方同步的组织架构，通过OrgId-Id构成源组织架构分组ID-现组织架构分组ID映射关系
+        # @param OrgId: <p>源账号组ID，该字段仅适用于第三方同步的组织架构，通过OrgId-Id构成源组织架构分组ID-现组织架构分组ID映射关系</p>
         # @type OrgId: String
-        # @param Name: 分组名称
+        # @param Name: <p>分组名称</p>
         # @type Name: String
-        # @param Id: 分组ID
+        # @param Id: <p>分组ID</p>
         # @type Id: Integer
-        # @param Description: 分组描述
+        # @param Description: <p>分组描述</p>
         # @type Description: String
-        # @param Source: 分组导入源(只支持32位)
+        # @param Source: <p>分组导入源(只支持32位)</p>
         # @type Source: Integer
-        # @param IdPath: 分组ID全路径，点分格式
+        # @param IdPath: <p>分组ID全路径，点分格式</p>
         # @type IdPath: String
-        # @param Itime: 创建时间
+        # @param Itime: <p>创建时间</p>
         # @type Itime: String
-        # @param ParentOrgId: 父源账号组ID，该字段仅适用于第三方同步的组织架构
+        # @param ParentOrgId: <p>父源账号组ID，该字段仅适用于第三方同步的组织架构</p>
         # @type ParentOrgId: String
-        # @param Import: 导入信息,json格式
+        # @param Import: <p>导入信息,json格式</p>
         # @type Import: String
-        # @param ImportEnable: 是否开启导入架构
+        # @param ImportEnable: <p>是否开启导入架构</p>
         # @type ImportEnable: Boolean
-        # @param ImportType: 导入类型
+        # @param ImportType: <p>导入类型</p>
         # @type ImportType: String
-        # @param MiniIamId: miniIAMId，MiniIAM源才有
+        # @param MiniIamId: <p>miniIAMId，MiniIAM源才有</p>
         # @type MiniIamId: String
 
         attr_accessor :NamePath, :IdPathArr, :ExtraInfo, :Utime, :ParentId, :OrgId, :Name, :Id, :Description, :Source, :IdPath, :Itime, :ParentOrgId, :Import, :ImportEnable, :ImportType, :MiniIamId
@@ -5037,21 +5121,21 @@ module TencentCloud
         end
       end
 
-      # GrantedAccountItem
+      # 账号分组授权信息
       class GrantedAccountGroupItem < TencentCloud::Common::AbstractModel
-        # @param AccountGroupId: 账户组Id
+        # @param AccountGroupId: <p>账户组Id</p>
         # @type AccountGroupId: Integer
-        # @param Name: 分组名称
+        # @param Name: <p>分组名称</p>
         # @type Name: String
-        # @param IdPathArray: 所属分组Id
+        # @param IdPathArray: <p>所属分组Id</p>
         # @type IdPathArray: Array
-        # @param NamePathArray: 所属分组NamePathArray
+        # @param NamePathArray: <p>所属分组NamePathArray</p>
         # @type NamePathArray: Array
-        # @param AccountCount: 目录id
+        # @param AccountCount: <p>目录id</p>
         # @type AccountCount: Integer
-        # @param ExpireTime: 过期时间
+        # @param ExpireTime: <p>过期时间</p>
         # @type ExpireTime: Integer
-        # @param RelationId: 关联id
+        # @param RelationId: <p>关联id</p>
         # @type RelationId: Integer
 
         attr_accessor :AccountGroupId, :Name, :IdPathArray, :NamePathArray, :AccountCount, :ExpireTime, :RelationId
@@ -5161,6 +5245,26 @@ module TencentCloud
         end
       end
 
+      # I18nString 国际化字符串（对齐云API平台已注册数据结构 ID:131745，用途：入参/出参） 使用方式：通常以 repeated I18nString 数组承载多语言，一条元素装一种语言。 出参示例：[{"Lang":"zh-CN","Value":"策略名"},{"Lang":"en-US","Value":"Policy Name"}] 入参约定：客户端至少提供 zh-CN 一条；后端建议在业务层调用 i18n.MustZhCn 校验。
+      class I18nString < TencentCloud::Common::AbstractModel
+        # @param Lang: <p>语言枚举</p><p>枚举值：</p><ul><li>zh-CN： 简体中文</li><li>en-US： 英文</li></ul>
+        # @type Lang: String
+        # @param Value: <p>这是一段业务字符串</p>
+        # @type Value: String
+
+        attr_accessor :Lang, :Value
+
+        def initialize(lang=nil, value=nil)
+          @Lang = lang
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Lang = params['Lang']
+          @Value = params['Value']
+        end
+      end
+
       # ModifyBusinessResource请求参数结构体
       class ModifyBusinessResourceRequest < TencentCloud::Common::AbstractModel
         # @param AreaId: 业务资源所在的模块id，没有资源模块先创建资源模块(只支持32位)
@@ -5247,10 +5351,12 @@ module TencentCloud
         # @type Id: Integer
         # @param Description: <p>描述</p>
         # @type Description: String
+        # @param NameI18n: <p>名称多语言</p>
+        # @type NameI18n: Array
 
-        attr_accessor :Type, :Name, :Config, :SyncEnable, :SyncPolicy, :SyncPolicyParams, :CreateAuthConfig, :DisplayOnLoginPage, :Id, :Description
+        attr_accessor :Type, :Name, :Config, :SyncEnable, :SyncPolicy, :SyncPolicyParams, :CreateAuthConfig, :DisplayOnLoginPage, :Id, :Description, :NameI18n
 
-        def initialize(type=nil, name=nil, config=nil, syncenable=nil, syncpolicy=nil, syncpolicyparams=nil, createauthconfig=nil, displayonloginpage=nil, id=nil, description=nil)
+        def initialize(type=nil, name=nil, config=nil, syncenable=nil, syncpolicy=nil, syncpolicyparams=nil, createauthconfig=nil, displayonloginpage=nil, id=nil, description=nil, namei18n=nil)
           @Type = type
           @Name = name
           @Config = config
@@ -5261,6 +5367,7 @@ module TencentCloud
           @DisplayOnLoginPage = displayonloginpage
           @Id = id
           @Description = description
+          @NameI18n = namei18n
         end
 
         def deserialize(params)
@@ -5274,6 +5381,14 @@ module TencentCloud
           @DisplayOnLoginPage = params['DisplayOnLoginPage']
           @Id = params['Id']
           @Description = params['Description']
+          unless params['NameI18n'].nil?
+            @NameI18n = []
+            params['NameI18n'].each do |i|
+              i18nstring_tmp = I18nString.new
+              i18nstring_tmp.deserialize(i)
+              @NameI18n << i18nstring_tmp
+            end
+          end
         end
       end
 

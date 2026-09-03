@@ -317,6 +317,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 云api查余额告警阈值接口，支持传入uin
+
+        # @param request: Request instance for DescribeAccountWarning.
+        # @type request: :class:`Tencentcloud::billing::V20180709::DescribeAccountWarningRequest`
+        # @rtype: :class:`Tencentcloud::billing::V20180709::DescribeAccountWarningResponse`
+        def DescribeAccountWarning(request)
+          body = send_request('DescribeAccountWarning', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAccountWarningResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询资源目录筛选条件
 
         # @param request: Request instance for DescribeAllocateConditions.
@@ -1488,6 +1512,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeVoucherUsageDetailsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 云api设置余额告警阈值接口
+
+        # @param request: Request instance for ModifyAccountWarning.
+        # @type request: :class:`Tencentcloud::billing::V20180709::ModifyAccountWarningRequest`
+        # @rtype: :class:`Tencentcloud::billing::V20180709::ModifyAccountWarningResponse`
+        def ModifyAccountWarning(request)
+          body = send_request('ModifyAccountWarning', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAccountWarningResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -344,10 +344,12 @@ module TencentCloud
         # @type ApproverMobileMode: String
         # @param ForbidModifySealInfos: <p>在嵌入式文件发起下,若合同是通过文件,当签署人控件指定了印章类型（或印章Id）,在嵌入页面上是否能修改</p>
         # @type ForbidModifySealInfos: Boolean
+        # @param AddSignComponentUseSealSize: <p>【仅 SignBeanTag=1 时有效】 签署方自行添加签署印章类控件（SIGN_SEAL、SIGN_PAGING_SEAL、SIGN_LEGAL_PERSON_SEAL）时，「盖章区适配签署方印章尺寸」开关的控制策略</p><p>枚举值：</p><ul><li>0： 默认关闭，可开启。与现网一致</li><li>1： 关闭且置灰——按控件默认的4.2cm尺寸盖章，签署方无法开启开关 </li><li>2： 默认开启且可修改——默认按印章实际尺寸盖章，签署方可手动关闭</li><li>3： 开启且置灰——强制按印章实际尺寸盖章，签署方不可修改。</li></ul><p>默认值：0</p>
+        # @type AddSignComponentUseSealSize: Integer
 
-        attr_accessor :NoRefuse, :NoTransfer, :CanEditApprover, :FillType, :FlowReadLimit, :ForbidAddSignDate, :ApproverMobileMode, :ForbidModifySealInfos
+        attr_accessor :NoRefuse, :NoTransfer, :CanEditApprover, :FillType, :FlowReadLimit, :ForbidAddSignDate, :ApproverMobileMode, :ForbidModifySealInfos, :AddSignComponentUseSealSize
 
-        def initialize(norefuse=nil, notransfer=nil, caneditapprover=nil, filltype=nil, flowreadlimit=nil, forbidaddsigndate=nil, approvermobilemode=nil, forbidmodifysealinfos=nil)
+        def initialize(norefuse=nil, notransfer=nil, caneditapprover=nil, filltype=nil, flowreadlimit=nil, forbidaddsigndate=nil, approvermobilemode=nil, forbidmodifysealinfos=nil, addsigncomponentusesealsize=nil)
           @NoRefuse = norefuse
           @NoTransfer = notransfer
           @CanEditApprover = caneditapprover
@@ -356,6 +358,7 @@ module TencentCloud
           @ForbidAddSignDate = forbidaddsigndate
           @ApproverMobileMode = approvermobilemode
           @ForbidModifySealInfos = forbidmodifysealinfos
+          @AddSignComponentUseSealSize = addsigncomponentusesealsize
         end
 
         def deserialize(params)
@@ -367,6 +370,7 @@ module TencentCloud
           @ForbidAddSignDate = params['ForbidAddSignDate']
           @ApproverMobileMode = params['ApproverMobileMode']
           @ForbidModifySealInfos = params['ForbidModifySealInfos']
+          @AddSignComponentUseSealSize = params['AddSignComponentUseSealSize']
         end
       end
 

@@ -258,8 +258,8 @@ module TencentCloud
 
         attr_accessor :Commands, :StorageMounts, :EnvVars, :Docker, :OutputRedirect, :JobType, :TaskType
         extend Gem::Deprecate
-        deprecate :JobType, :none, 2026, 8
-        deprecate :JobType=, :none, 2026, 8
+        deprecate :JobType, :none, 2026, 9
+        deprecate :JobType=, :none, 2026, 9
 
         def initialize(commands=nil, storagemounts=nil, envvars=nil, docker=nil, outputredirect=nil, jobtype=nil, tasktype=nil)
           @Commands = commands
@@ -361,6 +361,58 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # BindClusterVpc请求参数结构体
+      class BindClusterVpcRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: <p>集群ID。</p>
+        # @type ClusterId: String
+        # @param VpcId: <p>私有网络ID，形如<code>vpc-xxx</code>。可通过调用<a href="https://cloud.tencent.com/document/api/215/15778">DescribeVpcs</a>获取。</p>
+        # @type VpcId: String
+        # @param SubnetId: <p>私有网络子网ID，形如<code>subnet-xxx</code>。可通过调用<a href="https://cloud.tencent.com/document/api/215/15784">DescribeSubnets</a>获取。</p>
+        # @type SubnetId: String
+
+        attr_accessor :ClusterId, :VpcId, :SubnetId
+
+        def initialize(clusterid=nil, vpcid=nil, subnetid=nil)
+          @ClusterId = clusterid
+          @VpcId = vpcid
+          @SubnetId = subnetid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+        end
+      end
+
+      # BindClusterVpc返回参数结构体
+      class BindClusterVpcResponse < TencentCloud::Common::AbstractModel
+        # @param ClusterId: <p>集群ID。</p>
+        # @type ClusterId: String
+        # @param VpcId: <p>绑定的私有网络ID。</p>
+        # @type VpcId: String
+        # @param SubnetId: <p>绑定的子网ID。</p>
+        # @type SubnetId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ClusterId, :VpcId, :SubnetId, :RequestId
+
+        def initialize(clusterid=nil, vpcid=nil, subnetid=nil, requestid=nil)
+          @ClusterId = clusterid
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
           @RequestId = params['RequestId']
         end
       end
@@ -467,10 +519,13 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 集群活动结束时间。
         # @type EndTime: String
+        # @param QueueName: 队列名称。集群级活动（如创建/删除集群）此字段为空，队列级活动（如扩容/缩容）为对应队列名。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QueueName: String
 
-        attr_accessor :ClusterId, :ActivityId, :ActivityType, :ActivityStatus, :ActivityStatusCode, :ResultDetail, :Cause, :Description, :RelatedNodeActivitySet, :StartTime, :EndTime
+        attr_accessor :ClusterId, :ActivityId, :ActivityType, :ActivityStatus, :ActivityStatusCode, :ResultDetail, :Cause, :Description, :RelatedNodeActivitySet, :StartTime, :EndTime, :QueueName
 
-        def initialize(clusterid=nil, activityid=nil, activitytype=nil, activitystatus=nil, activitystatuscode=nil, resultdetail=nil, cause=nil, description=nil, relatednodeactivityset=nil, starttime=nil, endtime=nil)
+        def initialize(clusterid=nil, activityid=nil, activitytype=nil, activitystatus=nil, activitystatuscode=nil, resultdetail=nil, cause=nil, description=nil, relatednodeactivityset=nil, starttime=nil, endtime=nil, queuename=nil)
           @ClusterId = clusterid
           @ActivityId = activityid
           @ActivityType = activitytype
@@ -482,6 +537,7 @@ module TencentCloud
           @RelatedNodeActivitySet = relatednodeactivityset
           @StartTime = starttime
           @EndTime = endtime
+          @QueueName = queuename
         end
 
         def deserialize(params)
@@ -503,6 +559,7 @@ module TencentCloud
           end
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
+          @QueueName = params['QueueName']
         end
       end
 
@@ -1417,19 +1474,30 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: <p>返回数量，默认为20，最大值为100。关于<code>Limit</code>的更进一步介绍请参考 API <a href="https://cloud.tencent.com/document/api/213/15688">简介</a>中的相关小节。</p>
         # @type Limit: Integer
+        # @param Filters: <li><strong>queue-name</strong></li> <p style="padding-left: 30px;">按照【<strong>队列名称</strong>】进行过滤。队列名称形如：compute。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p><p style="padding-left: 30px;">每次请求的<code>Filters</code>的上限为10，<code>Filter.Values</code>的上限为5。</p>
+        # @type Filters: Array
 
-        attr_accessor :ClusterId, :Offset, :Limit
+        attr_accessor :ClusterId, :Offset, :Limit, :Filters
 
-        def initialize(clusterid=nil, offset=nil, limit=nil)
+        def initialize(clusterid=nil, offset=nil, limit=nil, filters=nil)
           @ClusterId = clusterid
           @Offset = offset
           @Limit = limit
+          @Filters = filters
         end
 
         def deserialize(params)
           @ClusterId = params['ClusterId']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
         end
       end
 
@@ -1460,6 +1528,96 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeClusterDedicatedProxy请求参数结构体
+      class DescribeClusterDedicatedProxyRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: <p>集群ID。</p>
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DescribeClusterDedicatedProxy返回参数结构体
+      class DescribeClusterDedicatedProxyResponse < TencentCloud::Common::AbstractModel
+        # @param Enabled: <p>代理是否已开通。true表示已开通，false表示从未开通。</p>
+        # @type Enabled: Boolean
+        # @param EndPointId: <p>终端节点ID。未开通代理时为空。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndPointId: String
+        # @param EndPointVip: <p>终端节点VIP地址。未开通代理时为空。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndPointVip: String
+        # @param EndPointReady: <p>终端节点是否就绪。true表示已就绪可用，false表示未就绪或未开通。</p>
+        # @type EndPointReady: Boolean
+        # @param EndPointStatus: <p>终端节点状态。取值范围：<li>ACTIVE：已激活</li><li>BINDCHANGE：变更中</li><li>BINDINGCREATE：创建中</li><li>BINDINGDELETE：删除中</li><li>ABNORMAL：异常</li><li>UNKNOWN：未知</li><li>ASSUME_ROLE_FAILED：授权失败</li></p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndPointStatus: String
+        # @param LastKnownStatus: <p>上次同步的终端节点状态（DB记录值）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastKnownStatus: String
+        # @param EndPointServiceId: <p>终端节点服务ID。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndPointServiceId: String
+        # @param VpcId: <p>私有网络ID。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param SubnetId: <p>子网ID。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetId: String
+        # @param CreateTime: <p>代理创建时间。未开通时为空。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param LastSyncTime: <p>上次状态同步时间。cron未同步过时为null。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastSyncTime: String
+        # @param RealtimeQueryTime: <p>本次实时查询时间。未开通时为空。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RealtimeQueryTime: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Enabled, :EndPointId, :EndPointVip, :EndPointReady, :EndPointStatus, :LastKnownStatus, :EndPointServiceId, :VpcId, :SubnetId, :CreateTime, :LastSyncTime, :RealtimeQueryTime, :RequestId
+
+        def initialize(enabled=nil, endpointid=nil, endpointvip=nil, endpointready=nil, endpointstatus=nil, lastknownstatus=nil, endpointserviceid=nil, vpcid=nil, subnetid=nil, createtime=nil, lastsynctime=nil, realtimequerytime=nil, requestid=nil)
+          @Enabled = enabled
+          @EndPointId = endpointid
+          @EndPointVip = endpointvip
+          @EndPointReady = endpointready
+          @EndPointStatus = endpointstatus
+          @LastKnownStatus = lastknownstatus
+          @EndPointServiceId = endpointserviceid
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @CreateTime = createtime
+          @LastSyncTime = lastsynctime
+          @RealtimeQueryTime = realtimequerytime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Enabled = params['Enabled']
+          @EndPointId = params['EndPointId']
+          @EndPointVip = params['EndPointVip']
+          @EndPointReady = params['EndPointReady']
+          @EndPointStatus = params['EndPointStatus']
+          @LastKnownStatus = params['LastKnownStatus']
+          @EndPointServiceId = params['EndPointServiceId']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @CreateTime = params['CreateTime']
+          @LastSyncTime = params['LastSyncTime']
+          @RealtimeQueryTime = params['RealtimeQueryTime']
           @RequestId = params['RequestId']
         end
       end
@@ -2151,6 +2309,38 @@ module TencentCloud
         end
       end
 
+      # DisableClusterDedicatedProxy请求参数结构体
+      class DisableClusterDedicatedProxyRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: <p>集群ID。</p>
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DisableClusterDedicatedProxy返回参数结构体
+      class DisableClusterDedicatedProxyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 容器配置信息。
       class Docker < TencentCloud::Common::AbstractModel
         # @param Image: 容器镜像地址
@@ -2168,6 +2358,70 @@ module TencentCloud
         def deserialize(params)
           @Image = params['Image']
           @RunArgs = params['RunArgs']
+        end
+      end
+
+      # EnableClusterDedicatedProxy请求参数结构体
+      class EnableClusterDedicatedProxyRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: <p>集群ID。</p>
+        # @type ClusterId: String
+        # @param VpcId: <p>私有网络ID，形如<code>vpc-xxx</code>。可通过调用<a href="https://cloud.tencent.com/document/api/215/15778">DescribeVpcs</a>获取。若不指定，则使用集群已绑定的VPC。</p>
+        # @type VpcId: String
+        # @param SubnetId: <p>私有网络子网ID，形如<code>subnet-xxx</code>。可通过调用<a href="https://cloud.tencent.com/document/api/215/15784">DescribeSubnets</a>获取。与VpcId需同时指定或同时不指定。</p>
+        # @type SubnetId: String
+
+        attr_accessor :ClusterId, :VpcId, :SubnetId
+
+        def initialize(clusterid=nil, vpcid=nil, subnetid=nil)
+          @ClusterId = clusterid
+          @VpcId = vpcid
+          @SubnetId = subnetid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+        end
+      end
+
+      # EnableClusterDedicatedProxy返回参数结构体
+      class EnableClusterDedicatedProxyResponse < TencentCloud::Common::AbstractModel
+        # @param EndPointId: <p>终端节点ID。</p>
+        # @type EndPointId: String
+        # @param EndPointVip: <p>终端节点VIP地址。</p>
+        # @type EndPointVip: String
+        # @param EndPointReady: <p>终端节点是否就绪。true表示已就绪，false表示未就绪。</p>
+        # @type EndPointReady: Boolean
+        # @param EndPointStatus: <p>终端节点状态。取值范围：<li>ACTIVE：已激活</li><li>BINDCHANGE：变更中</li><li>BINDINGCREATE：创建中</li><li>BINDINGDELETE：删除中</li></p>
+        # @type EndPointStatus: String
+        # @param VpcId: <p>私有网络ID。</p>
+        # @type VpcId: String
+        # @param SubnetId: <p>子网ID。</p>
+        # @type SubnetId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :EndPointId, :EndPointVip, :EndPointReady, :EndPointStatus, :VpcId, :SubnetId, :RequestId
+
+        def initialize(endpointid=nil, endpointvip=nil, endpointready=nil, endpointstatus=nil, vpcid=nil, subnetid=nil, requestid=nil)
+          @EndPointId = endpointid
+          @EndPointVip = endpointvip
+          @EndPointReady = endpointready
+          @EndPointStatus = endpointstatus
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @EndPointId = params['EndPointId']
+          @EndPointVip = params['EndPointVip']
+          @EndPointReady = params['EndPointReady']
+          @EndPointStatus = params['EndPointStatus']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -2427,6 +2681,134 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @Values = params['Values']
+        end
+      end
+
+      # GenerateRegisterCode请求参数结构体
+      class GenerateRegisterCodeRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: <p>集群ID。</p>
+        # @type ClusterId: String
+        # @param QueueName: <p>队列名称。</p>
+        # @type QueueName: String
+        # @param ExpireSeconds: <p>指定生成的注册码的过期时间, 单位为秒</p><p>取值范围：[1, 604800]</p><p>默认值：604800</p>
+        # @type ExpireSeconds: Integer
+
+        attr_accessor :ClusterId, :QueueName, :ExpireSeconds
+
+        def initialize(clusterid=nil, queuename=nil, expireseconds=nil)
+          @ClusterId = clusterid
+          @QueueName = queuename
+          @ExpireSeconds = expireseconds
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @QueueName = params['QueueName']
+          @ExpireSeconds = params['ExpireSeconds']
+        end
+      end
+
+      # GenerateRegisterCode返回参数结构体
+      class GenerateRegisterCodeResponse < TencentCloud::Common::AbstractModel
+        # @param RegisterCode: <p>集群队列的注册码,用于机器注册进入队列时使用</p><p>默认值：无</p>
+        # @type RegisterCode: String
+        # @param ExpireAt: <p>注册码的过期时间, unix时间戳格式</p>
+        # @type ExpireAt: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RegisterCode, :ExpireAt, :RequestId
+
+        def initialize(registercode=nil, expireat=nil, requestid=nil)
+          @RegisterCode = registercode
+          @ExpireAt = expireat
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RegisterCode = params['RegisterCode']
+          @ExpireAt = params['ExpireAt']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GenerateRegisterCommand请求参数结构体
+      class GenerateRegisterCommandRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: <p>IDC集群ID，形如<code>hpc-xxxxxxxx</code>。</p>
+        # @type ClusterId: String
+        # @param Proxy: <p>是否通过内网专线代理连接。</p><li>true：IDC机器需经PrivateLink代理接入</li><li>false：IDC机器可直连（默认值）</li><p></p>
+        # @type Proxy: Boolean
+        # @param VpcId: <p>私有网络ID，形如<code>vpc-xxx</code>。仅当<code>Proxy=true</code>且集群未绑定VPC时必填。与SubnetId需同时指定或同时不指定。</p>
+        # @type VpcId: String
+        # @param SubnetId: <p>私有网络子网ID，形如<code>subnet-xxx</code>。仅当<code>Proxy=true</code>且集群未绑定VPC时必填。与VpcId需同时指定或同时不指定。</p>
+        # @type SubnetId: String
+        # @param QueueName: <p>注册码绑定的队列名称。不指定时由系统取集群默认队列。</p>
+        # @type QueueName: String
+        # @param ExpireSeconds: <p>注册码有效期，单位：秒。默认值为604800（7天）。</p>
+        # @type ExpireSeconds: Integer
+
+        attr_accessor :ClusterId, :Proxy, :VpcId, :SubnetId, :QueueName, :ExpireSeconds
+
+        def initialize(clusterid=nil, proxy=nil, vpcid=nil, subnetid=nil, queuename=nil, expireseconds=nil)
+          @ClusterId = clusterid
+          @Proxy = proxy
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @QueueName = queuename
+          @ExpireSeconds = expireseconds
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Proxy = params['Proxy']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @QueueName = params['QueueName']
+          @ExpireSeconds = params['ExpireSeconds']
+        end
+      end
+
+      # GenerateRegisterCommand返回参数结构体
+      class GenerateRegisterCommandResponse < TencentCloud::Common::AbstractModel
+        # @param RegisterCommand: <p>渲染好的节点注册命令，可直接在IDC机器上以root身份执行。</p>
+        # @type RegisterCommand: String
+        # @param RegisterCode: <p>节点注册码。作为不透明凭证使用，请妥善保管，仅在节点注册纳管时传入。</p>
+        # @type RegisterCode: String
+        # @param ExpireAt: <p>注册码到期的Unix时间戳，单位：秒。</p>
+        # @type ExpireAt: Integer
+        # @param Proxy: <p>回显本次是否走内网专线代理。</p>
+        # @type Proxy: Boolean
+        # @param EndPointVip: <p>代理终端节点VIP地址。当<code>Proxy=true</code>且终端节点就绪时非空。</p>
+        # @type EndPointVip: String
+        # @param EndPointStatus: <p>终端节点状态。取值范围：</p><li>ACTIVE：已激活</li><li>BINDCHANGE：变更中</li><li>BINDINGCREATE：创建中</li><li>BINDINGDELETE：删除中</li><p></p>
+        # @type EndPointStatus: String
+        # @param ClusterId: <p>回显集群ID。</p>
+        # @type ClusterId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RegisterCommand, :RegisterCode, :ExpireAt, :Proxy, :EndPointVip, :EndPointStatus, :ClusterId, :RequestId
+
+        def initialize(registercommand=nil, registercode=nil, expireat=nil, proxy=nil, endpointvip=nil, endpointstatus=nil, clusterid=nil, requestid=nil)
+          @RegisterCommand = registercommand
+          @RegisterCode = registercode
+          @ExpireAt = expireat
+          @Proxy = proxy
+          @EndPointVip = endpointvip
+          @EndPointStatus = endpointstatus
+          @ClusterId = clusterid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RegisterCommand = params['RegisterCommand']
+          @RegisterCode = params['RegisterCode']
+          @ExpireAt = params['ExpireAt']
+          @Proxy = params['Proxy']
+          @EndPointVip = params['EndPointVip']
+          @EndPointStatus = params['EndPointStatus']
+          @ClusterId = params['ClusterId']
+          @RequestId = params['RequestId']
         end
       end
 

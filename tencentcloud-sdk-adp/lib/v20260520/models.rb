@@ -3280,10 +3280,13 @@ module TencentCloud
         # @param WorkflowInput: <p>工作流输入参数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkflowInput: String
+        # @param McpApp: <p>MCP-APP调用信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type McpApp: :class:`Tencentcloud::Adp.v20260520.models.ConversationMcpApp`
 
-        attr_accessor :Text, :Type, :CustomParamList, :CustomParams, :CustomVariablesData, :EnterpriseCharts, :OptionCardList, :OptionCards, :OptionMode, :QuoteInfoList, :QuoteInfos, :ReferenceList, :References, :RelatedRecordId, :TaskList, :Tasks, :WorkflowInput
+        attr_accessor :Text, :Type, :CustomParamList, :CustomParams, :CustomVariablesData, :EnterpriseCharts, :OptionCardList, :OptionCards, :OptionMode, :QuoteInfoList, :QuoteInfos, :ReferenceList, :References, :RelatedRecordId, :TaskList, :Tasks, :WorkflowInput, :McpApp
 
-        def initialize(text=nil, type=nil, customparamlist=nil, customparams=nil, customvariablesdata=nil, enterprisecharts=nil, optioncardlist=nil, optioncards=nil, optionmode=nil, quoteinfolist=nil, quoteinfos=nil, referencelist=nil, references=nil, relatedrecordid=nil, tasklist=nil, tasks=nil, workflowinput=nil)
+        def initialize(text=nil, type=nil, customparamlist=nil, customparams=nil, customvariablesdata=nil, enterprisecharts=nil, optioncardlist=nil, optioncards=nil, optionmode=nil, quoteinfolist=nil, quoteinfos=nil, referencelist=nil, references=nil, relatedrecordid=nil, tasklist=nil, tasks=nil, workflowinput=nil, mcpapp=nil)
           @Text = text
           @Type = type
           @CustomParamList = customparamlist
@@ -3301,6 +3304,7 @@ module TencentCloud
           @TaskList = tasklist
           @Tasks = tasks
           @WorkflowInput = workflowinput
+          @McpApp = mcpapp
         end
 
         def deserialize(params)
@@ -3363,6 +3367,10 @@ module TencentCloud
             end
           end
           @WorkflowInput = params['WorkflowInput']
+          unless params['McpApp'].nil?
+            @McpApp = ConversationMcpApp.new
+            @McpApp.deserialize(params['McpApp'])
+          end
         end
       end
 
@@ -3423,6 +3431,35 @@ module TencentCloud
           end
           @Method = params['Method']
           @RecommendPromptMode = params['RecommendPromptMode']
+        end
+      end
+
+      # MCP App 内容，供历史会话重建可交互 App
+      class ConversationMcpApp < TencentCloud::Common::AbstractModel
+        # @param PluginId: <p>能力边界：一次请求只能读该 plugin 的资源</p>
+        # @type PluginId: String
+        # @param ResourceUri: <p>ui:// 资源，前端据此调 ReadMCPResource 拉 HTML</p>
+        # @type ResourceUri: String
+        # @param ThreadId: <p>agent-exec 侧 thread</p>
+        # @type ThreadId: String
+        # @param ToolResult: <p>JSON：完整 CallToolResult 原文，供历史会话重建时重放</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ToolResult: String
+
+        attr_accessor :PluginId, :ResourceUri, :ThreadId, :ToolResult
+
+        def initialize(pluginid=nil, resourceuri=nil, threadid=nil, toolresult=nil)
+          @PluginId = pluginid
+          @ResourceUri = resourceuri
+          @ThreadId = threadid
+          @ToolResult = toolresult
+        end
+
+        def deserialize(params)
+          @PluginId = params['PluginId']
+          @ResourceUri = params['ResourceUri']
+          @ThreadId = params['ThreadId']
+          @ToolResult = params['ToolResult']
         end
       end
 
@@ -6081,29 +6118,29 @@ module TencentCloud
         # @type MessageList: Array
         # @param Messages: <p>消息列表</p>
         # @type Messages: Array
-        # @param ResetInfo: <p>最近一次重置信息</p>
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ResetInfo: :class:`Tencentcloud::Adp.v20260520.models.ConversationResetInfo`
         # @param RecordSummaryList: <p>单次对话记录统计列表，与 message_list 通过 record_id / related_record_id 关联</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordSummaryList: Array
+        # @param ResetInfo: <p>最近一次重置信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResetInfo: :class:`Tencentcloud::Adp.v20260520.models.ConversationResetInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :FirstRecordId, :HasMoreAfter, :HasMoreBefore, :LastRecordId, :MessageList, :Messages, :ResetInfo, :RecordSummaryList, :RequestId
+        attr_accessor :FirstRecordId, :HasMoreAfter, :HasMoreBefore, :LastRecordId, :MessageList, :Messages, :RecordSummaryList, :ResetInfo, :RequestId
         extend Gem::Deprecate
-        deprecate :Messages, :none, 2026, 8
-        deprecate :Messages=, :none, 2026, 8
+        deprecate :Messages, :none, 2026, 9
+        deprecate :Messages=, :none, 2026, 9
 
-        def initialize(firstrecordid=nil, hasmoreafter=nil, hasmorebefore=nil, lastrecordid=nil, messagelist=nil, messages=nil, resetinfo=nil, recordsummarylist=nil, requestid=nil)
+        def initialize(firstrecordid=nil, hasmoreafter=nil, hasmorebefore=nil, lastrecordid=nil, messagelist=nil, messages=nil, recordsummarylist=nil, resetinfo=nil, requestid=nil)
           @FirstRecordId = firstrecordid
           @HasMoreAfter = hasmoreafter
           @HasMoreBefore = hasmorebefore
           @LastRecordId = lastrecordid
           @MessageList = messagelist
           @Messages = messages
-          @ResetInfo = resetinfo
           @RecordSummaryList = recordsummarylist
+          @ResetInfo = resetinfo
           @RequestId = requestid
         end
 
@@ -6128,10 +6165,6 @@ module TencentCloud
               @Messages << conversationmessage_tmp
             end
           end
-          unless params['ResetInfo'].nil?
-            @ResetInfo = ConversationResetInfo.new
-            @ResetInfo.deserialize(params['ResetInfo'])
-          end
           unless params['RecordSummaryList'].nil?
             @RecordSummaryList = []
             params['RecordSummaryList'].each do |i|
@@ -6139,6 +6172,10 @@ module TencentCloud
               conversationrecordsummary_tmp.deserialize(i)
               @RecordSummaryList << conversationrecordsummary_tmp
             end
+          end
+          unless params['ResetInfo'].nil?
+            @ResetInfo = ConversationResetInfo.new
+            @ResetInfo.deserialize(params['ResetInfo'])
           end
           @RequestId = params['RequestId']
         end
@@ -7795,10 +7832,12 @@ module TencentCloud
         # @type Timeout: Integer
         # @param AuthConfig: <p>授权信息</p>
         # @type AuthConfig: :class:`Tencentcloud::Adp.v20260520.models.AuthConfig`
+        # @param SupportsApps: <p>是否支持交互界面（MCP Apps），插件级标签，默认false</p>
+        # @type SupportsApps: Boolean
 
-        attr_accessor :ExternalMCPServerUrl, :MCPServerUrl, :MCPTransport, :PluginHeader, :PluginQuery, :SSEReadTimeout, :Timeout, :AuthConfig
+        attr_accessor :ExternalMCPServerUrl, :MCPServerUrl, :MCPTransport, :PluginHeader, :PluginQuery, :SSEReadTimeout, :Timeout, :AuthConfig, :SupportsApps
 
-        def initialize(externalmcpserverurl=nil, mcpserverurl=nil, mcptransport=nil, pluginheader=nil, pluginquery=nil, ssereadtimeout=nil, timeout=nil, authconfig=nil)
+        def initialize(externalmcpserverurl=nil, mcpserverurl=nil, mcptransport=nil, pluginheader=nil, pluginquery=nil, ssereadtimeout=nil, timeout=nil, authconfig=nil, supportsapps=nil)
           @ExternalMCPServerUrl = externalmcpserverurl
           @MCPServerUrl = mcpserverurl
           @MCPTransport = mcptransport
@@ -7807,6 +7846,7 @@ module TencentCloud
           @SSEReadTimeout = ssereadtimeout
           @Timeout = timeout
           @AuthConfig = authconfig
+          @SupportsApps = supportsapps
         end
 
         def deserialize(params)
@@ -7835,6 +7875,7 @@ module TencentCloud
             @AuthConfig = AuthConfig.new
             @AuthConfig.deserialize(params['AuthConfig'])
           end
+          @SupportsApps = params['SupportsApps']
         end
       end
 
@@ -7844,12 +7885,19 @@ module TencentCloud
         # @type Inputs: Array
         # @param Outputs: <p>输出参数</p>
         # @type Outputs: Array
+        # @param Meta: <p>工具meta信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Meta: :class:`Tencentcloud::Adp.v20260520.models.MCPToolMeta`
+        # @param SupportsApps: <p>是否支持交互界面（MCP Apps），插件级标签  默认值：false</p>
+        # @type SupportsApps: Boolean
 
-        attr_accessor :Inputs, :Outputs
+        attr_accessor :Inputs, :Outputs, :Meta, :SupportsApps
 
-        def initialize(inputs=nil, outputs=nil)
+        def initialize(inputs=nil, outputs=nil, meta=nil, supportsapps=nil)
           @Inputs = inputs
           @Outputs = outputs
+          @Meta = meta
+          @SupportsApps = supportsapps
         end
 
         def deserialize(params)
@@ -7869,6 +7917,50 @@ module TencentCloud
               @Outputs << responseparam_tmp
             end
           end
+          unless params['Meta'].nil?
+            @Meta = MCPToolMeta.new
+            @Meta.deserialize(params['Meta'])
+          end
+          @SupportsApps = params['SupportsApps']
+        end
+      end
+
+      # 对应 MCP 协议工具 _meta，承载 MCP Apps 工具的 UI 元信息（本期仅消费 resourceUri）
+      class MCPToolMeta < TencentCloud::Common::AbstractModel
+        # @param Ui: <p>工具的 UI 扩展元信息，对应 MCP 协议的 _meta.ui，声明工具关联的交互式界面资源（ResourceUri）及调用方可见性（Visibility）。仅当工具支持 MCP Apps 或声明了可见性时返回；纯文本工具该字段为空。详见 MCPToolUIMeta 结构定义。</p>
+        # @type Ui: :class:`Tencentcloud::Adp.v20260520.models.MCPToolUIMeta`
+
+        attr_accessor :Ui
+
+        def initialize(ui=nil)
+          @Ui = ui
+        end
+
+        def deserialize(params)
+          unless params['Ui'].nil?
+            @Ui = MCPToolUIMeta.new
+            @Ui.deserialize(params['Ui'])
+          end
+        end
+      end
+
+      # 对应 MCP 协议 _meta.ui，定义 MCP Apps 工具的交互界面元信息（本期仅消费 resourceUri，visibility）
+      class MCPToolUIMeta < TencentCloud::Common::AbstractModel
+        # @param ResourceUri: <p>关联的 UI 资源 URI，ui:// scheme，格式为 ui://&lt;插件标识&gt;/&lt;资源名&gt;-&lt;版本&gt;。该字段是 MCP Apps 交互式界面的入口，非空时表示工具支持 Apps（&quot;文本 + 交互式界面&quot;展示），为空则为纯文本工具。由工具同步结果自动识别填充，不支持手工编辑。</p>
+        # @type ResourceUri: String
+        # @param Visibility: <p>工具的调用方可见性声明，取值范围：model（模型可调用）、app（应用界面可调用），可多选，如 [&quot;model&quot;,&quot;app&quot;]。与 ResourceUri 相互独立（SEP-1865），可单独存在，例如纯后端 app-only 工具为 [&quot;app&quot;]。当 ResourceUri 非空且本字段缺省时，按规范归一化为 [&quot;model&quot;,&quot;app&quot;]；存量非 Apps 工具保持为空。</p><p>枚举值：</p><ul><li>model： 支持model</li><li>app： 支持app</li></ul>
+        # @type Visibility: Array
+
+        attr_accessor :ResourceUri, :Visibility
+
+        def initialize(resourceuri=nil, visibility=nil)
+          @ResourceUri = resourceuri
+          @Visibility = visibility
+        end
+
+        def deserialize(params)
+          @ResourceUri = params['ResourceUri']
+          @Visibility = params['Visibility']
         end
       end
 

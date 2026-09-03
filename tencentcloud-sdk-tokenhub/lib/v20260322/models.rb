@@ -1946,10 +1946,12 @@ module TencentCloud
         # @type AutoAdjustQuota: Integer
         # @param RPM: <p>RPM（每分钟请求数限流）。当推理服务未单独设置时，回退为关联模型的默认 RPM 值。</p>
         # @type RPM: Integer
+        # @param ModelStatus: <p>模型状态</p><p>枚举值：</p><ul><li>online： 在线</li><li>pre-offline： 预下线</li><li>discontinued： 停止新购</li><li>maintenance： 维护</li><li>offline： 下线</li></ul>
+        # @type ModelStatus: String
 
-        attr_accessor :EndpointId, :EndpointName, :ModelName, :ModelId, :Status, :ServiceType, :ChargeType, :PaymentEnabled, :ChargeDetail, :StopReason, :TPM, :AutoAdjustQuota, :RPM
+        attr_accessor :EndpointId, :EndpointName, :ModelName, :ModelId, :Status, :ServiceType, :ChargeType, :PaymentEnabled, :ChargeDetail, :StopReason, :TPM, :AutoAdjustQuota, :RPM, :ModelStatus
 
-        def initialize(endpointid=nil, endpointname=nil, modelname=nil, modelid=nil, status=nil, servicetype=nil, chargetype=nil, paymentenabled=nil, chargedetail=nil, stopreason=nil, tpm=nil, autoadjustquota=nil, rpm=nil)
+        def initialize(endpointid=nil, endpointname=nil, modelname=nil, modelid=nil, status=nil, servicetype=nil, chargetype=nil, paymentenabled=nil, chargedetail=nil, stopreason=nil, tpm=nil, autoadjustquota=nil, rpm=nil, modelstatus=nil)
           @EndpointId = endpointid
           @EndpointName = endpointname
           @ModelName = modelname
@@ -1963,6 +1965,7 @@ module TencentCloud
           @TPM = tpm
           @AutoAdjustQuota = autoadjustquota
           @RPM = rpm
+          @ModelStatus = modelstatus
         end
 
         def deserialize(params)
@@ -1979,6 +1982,7 @@ module TencentCloud
           @TPM = params['TPM']
           @AutoAdjustQuota = params['AutoAdjustQuota']
           @RPM = params['RPM']
+          @ModelStatus = params['ModelStatus']
         end
       end
 

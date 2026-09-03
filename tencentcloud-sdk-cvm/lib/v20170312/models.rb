@@ -2052,8 +2052,8 @@ module TencentCloud
 
         attr_accessor :GroupQuota, :CurrentNum, :CvmInHostGroupQuota, :CvmInSwGroupQuota, :CvmInRackGroupQuota, :CvmInSwitchGroupQuota, :RequestId
         extend Gem::Deprecate
-        deprecate :CvmInSwGroupQuota, :none, 2026, 8
-        deprecate :CvmInSwGroupQuota=, :none, 2026, 8
+        deprecate :CvmInSwGroupQuota, :none, 2026, 9
+        deprecate :CvmInSwGroupQuota=, :none, 2026, 9
 
         def initialize(groupquota=nil, currentnum=nil, cvminhostgroupquota=nil, cvminswgroupquota=nil, cvminrackgroupquota=nil, cvminswitchgroupquota=nil, requestid=nil)
           @GroupQuota = groupquota
@@ -3964,8 +3964,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :Password, :Username, :ForceStop, :StopType
         extend Gem::Deprecate
-        deprecate :ForceStop, :none, 2026, 8
-        deprecate :ForceStop=, :none, 2026, 8
+        deprecate :ForceStop, :none, 2026, 9
+        deprecate :ForceStop=, :none, 2026, 9
 
         def initialize(instanceid=nil, password=nil, username=nil, forcestop=nil, stoptype=nil)
           @InstanceId = instanceid
@@ -5565,8 +5565,8 @@ module TencentCloud
 
         attr_accessor :Placement, :InstanceId, :InstanceType, :CPU, :Memory, :RestrictState, :InstanceName, :InstanceChargeType, :SystemDisk, :DataDisks, :PrivateIpAddresses, :PublicIpAddresses, :InternetAccessible, :VirtualPrivateCloud, :ImageId, :RenewFlag, :CreatedTime, :ExpiredTime, :OsName, :SecurityGroupIds, :LoginSettings, :InstanceState, :Tags, :StopChargingMode, :Uuid, :LatestOperation, :LatestOperationState, :LatestOperationRequestId, :DisasterRecoverGroupId, :IPv6Addresses, :CamRoleName, :HpcClusterId, :RdmaIpAddresses, :DedicatedClusterId, :IsolatedSource, :DisasterRecoverGroupIds, :GPUInfo, :LicenseType, :DisableApiTermination, :DefaultLoginUser, :DefaultLoginPort, :LatestOperationErrorMsg, :Metadata, :PublicIPv6Addresses, :CpuTopology, :PartitionNumber
         extend Gem::Deprecate
-        deprecate :DisasterRecoverGroupId, :none, 2026, 8
-        deprecate :DisasterRecoverGroupId=, :none, 2026, 8
+        deprecate :DisasterRecoverGroupId, :none, 2026, 9
+        deprecate :DisasterRecoverGroupId=, :none, 2026, 9
 
         def initialize(placement=nil, instanceid=nil, instancetype=nil, cpu=nil, memory=nil, restrictstate=nil, instancename=nil, instancechargetype=nil, systemdisk=nil, datadisks=nil, privateipaddresses=nil, publicipaddresses=nil, internetaccessible=nil, virtualprivatecloud=nil, imageid=nil, renewflag=nil, createdtime=nil, expiredtime=nil, osname=nil, securitygroupids=nil, loginsettings=nil, instancestate=nil, tags=nil, stopchargingmode=nil, uuid=nil, latestoperation=nil, latestoperationstate=nil, latestoperationrequestid=nil, disasterrecovergroupid=nil, ipv6addresses=nil, camrolename=nil, hpcclusterid=nil, rdmaipaddresses=nil, dedicatedclusterid=nil, isolatedsource=nil, disasterrecovergroupids=nil, gpuinfo=nil, licensetype=nil, disableapitermination=nil, defaultloginuser=nil, defaultloginport=nil, latestoperationerrormsg=nil, metadata=nil, publicipv6addresses=nil, cputopology=nil, partitionnumber=nil)
           @Placement = placement
@@ -6033,7 +6033,7 @@ module TencentCloud
         end
       end
 
-      # 描述了实例的公网可访问性，声明了实例的公网使用计费模式，最大带宽等
+      # 描述了实例的主网卡公网可访问性，声明了实例的公网使用计费模式，最大带宽等
       class InternetAccessible < TencentCloud::Common::AbstractModel
         # @param InternetChargeType: 网络计费类型。取值范围：<br><li>BANDWIDTH_PREPAID：预付费按带宽结算</li><li>TRAFFIC_POSTPAID_BY_HOUR：流量按小时后付费</li><li>BANDWIDTH_POSTPAID_BY_HOUR：带宽按小时后付费</li><li>BANDWIDTH_PACKAGE：带宽包用户</li>默认取值：非带宽包用户默认与子机付费类型保持一致，比如子机付费类型为预付费，网络计费类型默认为预付费；子机付费类型为后付费，网络计费类型默认为后付费。
         # @type InternetChargeType: String
@@ -7136,8 +7136,8 @@ module TencentCloud
 
         attr_accessor :InstanceIds, :DisasterRecoverGroupId, :Force, :DisasterRecoverGroupIds, :PartitionNumber
         extend Gem::Deprecate
-        deprecate :DisasterRecoverGroupId, :none, 2026, 8
-        deprecate :DisasterRecoverGroupId=, :none, 2026, 8
+        deprecate :DisasterRecoverGroupId, :none, 2026, 9
+        deprecate :DisasterRecoverGroupId=, :none, 2026, 9
 
         def initialize(instanceids=nil, disasterrecovergroupid=nil, force=nil, disasterrecovergroupids=nil, partitionnumber=nil)
           @InstanceIds = instanceids
@@ -7722,8 +7722,8 @@ module TencentCloud
 
         attr_accessor :InstanceIds, :ForceReboot, :StopType
         extend Gem::Deprecate
-        deprecate :ForceReboot, :none, 2026, 8
-        deprecate :ForceReboot=, :none, 2026, 8
+        deprecate :ForceReboot, :none, 2026, 9
+        deprecate :ForceReboot=, :none, 2026, 9
 
         def initialize(instanceids=nil, forcereboot=nil, stoptype=nil)
           @InstanceIds = instanceids
@@ -8165,20 +8165,19 @@ module TencentCloud
 
       # ResetInstance请求参数结构体
       class ResetInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID。可通过 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728) API返回值中的`InstanceId`获取。
+        # @param InstanceId: <p>实例ID。可通过 <a href="https://cloud.tencent.com/document/api/213/15728">DescribeInstances</a> API返回值中的<code>InstanceId</code>获取。</p>
         # @type InstanceId: String
-        # @param ImageId: 指定有效的[镜像](https://cloud.tencent.com/document/product/213/4940)ID，格式形如`img-xxx`。镜像类型分为四种：<br/><li>公共镜像</li><li>自定义镜像</li><li>共享镜像</li><li>服务市场镜像</li><br/>可通过以下方式获取可用的镜像ID：<br/><li>`公共镜像`、`自定义镜像`、`共享镜像`的镜像ID可通过登录[控制台](https://console.cloud.tencent.com/cvm/image?rid=1&imageType=PUBLIC_IMAGE)查询；`服务镜像市场`的镜像ID可通过[云市场](https://market.cloud.tencent.com/list)查询。</li><li>通过调用接口 [DescribeImages](https://cloud.tencent.com/document/api/213/15715) ，取返回信息中的`ImageId`字段。</li>
-        # 默认取值：默认使用当前镜像。
+        # @param ImageId: <p>指定有效的<a href="https://cloud.tencent.com/document/product/213/4940">镜像</a>ID，格式形如<code>img-xxx</code>。镜像类型分为四种：<br><li>公共镜像</li><li>自定义镜像</li><li>共享镜像</li><li>服务市场镜像</li><br>可通过以下方式获取可用的镜像ID：<br><li><code>公共镜像</code>、<code>自定义镜像</code>、<code>共享镜像</code>的镜像ID可通过登录<a href="https://console.cloud.tencent.com/cvm/image?rid=1&amp;imageType=PUBLIC_IMAGE">控制台</a>查询；<code>服务镜像市场</code>的镜像ID可通过<a href="https://market.cloud.tencent.com/list">云市场</a>查询。</li><li>通过调用接口 <a href="https://cloud.tencent.com/document/api/213/15715">DescribeImages</a> ，取返回信息中的<code>ImageId</code>字段。</li><br>默认取值：默认使用当前镜像。</p>
         # @type ImageId: String
-        # @param SystemDisk: 实例系统盘配置信息。系统盘为云盘的实例可以通过该参数指定重装后的系统盘大小来实现对系统盘的扩容操作。系统盘大小只支持扩容不支持缩容；重装只支持修改系统盘的大小，不能修改系统盘的类型。
+        # @param SystemDisk: <p>实例系统盘配置信息。系统盘为云盘的实例可以通过该参数指定重装后的系统盘大小来实现对系统盘的扩容操作。系统盘大小只支持扩容不支持缩容；重装只支持修改系统盘的大小，不能修改系统盘的类型。</p>
         # @type SystemDisk: :class:`Tencentcloud::Cvm.v20170312.models.SystemDisk`
-        # @param LoginSettings: 实例登录设置。通过该参数可以设置实例的登录方式密码、密钥或保持镜像的原始登录设置。默认情况下会随机生成密码，并以站内信方式知会到用户。
+        # @param LoginSettings: <p>实例登录设置。通过该参数可以设置实例的登录方式密码、密钥或保持镜像的原始登录设置。默认情况下会随机生成密码，并以站内信方式知会到用户。</p>
         # @type LoginSettings: :class:`Tencentcloud::Cvm.v20170312.models.LoginSettings`
-        # @param EnhancedService: 增强服务。通过该参数可以指定是否开启云安全、云监控等服务。若不指定该参数，则默认公共镜像开启云监控、云安全服务；自定义镜像与镜像市场镜像默认不开启云监控，云安全服务，而使用镜像里保留的服务。
+        # @param EnhancedService: <p>增强服务。通过该参数可以指定是否开启云安全、云监控等服务。若不指定该参数，则默认公共镜像开启云监控、云安全服务；自定义镜像与镜像市场镜像默认不开启云监控，云安全服务，而使用镜像里保留的服务。</p>
         # @type EnhancedService: :class:`Tencentcloud::Cvm.v20170312.models.EnhancedService`
-        # @param HostName: 重装系统时，可以指定修改实例的主机名。<br><li>点号（.）和短横线（-）不能作为 HostName 的首尾字符，不能连续使用。</li><br><li>Windows 实例：主机名字符长度为[2, 15]，允许字母（不限制大小写）、数字和短横线（-）组成，不支持点号（.），不能全是数字。</li><br><li>其他类型（Linux 等）实例：主机名字符长度为[2, 60]，允许支持多个点号，点之间为一段，每段允许字母（不限制大小写）、数字和短横线（-）组成。</li>
+        # @param HostName: <p>重装系统时，可以指定修改实例的主机名。<br><li>点号（.）和短横线（-）不能作为 HostName 的首尾字符，不能连续使用。</li><br><li>Windows 实例：主机名字符长度为[2, 15]，允许字母（不限制大小写）、数字和短横线（-）组成，不支持点号（.），不能全是数字。</li><br><li>其他类型（Linux 等）实例：主机名字符长度为[2, 60]，允许支持多个点号，点之间为一段，每段允许字母（不限制大小写）、数字和短横线（-）组成。</li></p>
         # @type HostName: String
-        # @param UserData: 提供给实例使用的用户数据，需要以 base64 方式编码，支持的最大数据大小为 16KB。关于获取此参数的详细介绍，请参阅[Windows](https://cloud.tencent.com/document/product/213/17526)和[Linux](https://cloud.tencent.com/document/product/213/17525)启动时运行命令。
+        # @param UserData: <p>提供给实例使用的用户数据，需要以 base64 方式编码，支持的最大数据大小为 16KB。关于获取此参数的详细介绍，请参阅<a href="https://cloud.tencent.com/document/product/213/17526">Windows</a>和<a href="https://cloud.tencent.com/document/product/213/17525">Linux</a>启动时运行命令。</p>
         # @type UserData: String
 
         attr_accessor :InstanceId, :ImageId, :SystemDisk, :LoginSettings, :EnhancedService, :HostName, :UserData
@@ -8985,8 +8984,8 @@ module TencentCloud
 
         attr_accessor :InstanceIds, :ForceStop, :StopType, :StoppedMode
         extend Gem::Deprecate
-        deprecate :ForceStop, :none, 2026, 8
-        deprecate :ForceStop=, :none, 2026, 8
+        deprecate :ForceStop, :none, 2026, 9
+        deprecate :ForceStop=, :none, 2026, 9
 
         def initialize(instanceids=nil, forcestop=nil, stoptype=nil, stoppedmode=nil)
           @InstanceIds = instanceids

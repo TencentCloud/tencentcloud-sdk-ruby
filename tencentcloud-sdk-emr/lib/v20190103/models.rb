@@ -306,6 +306,34 @@ module TencentCloud
         end
       end
 
+      # 架构信息
+      class ArchitectureInfo < TencentCloud::Common::AbstractModel
+        # @param Architecture: <p>架构类型</p>
+        # @type Architecture: String
+        # @param ArchitectureName: <p>架构类型名称</p>
+        # @type ArchitectureName: String
+        # @param Order: <p>架构类型展示顺序</p>
+        # @type Order: Integer
+        # @param InstanceFamilies: <p>架构包含的机型族</p>
+        # @type InstanceFamilies: Array
+
+        attr_accessor :Architecture, :ArchitectureName, :Order, :InstanceFamilies
+
+        def initialize(architecture=nil, architecturename=nil, order=nil, instancefamilies=nil)
+          @Architecture = architecture
+          @ArchitectureName = architecturename
+          @Order = order
+          @InstanceFamilies = instancefamilies
+        end
+
+        def deserialize(params)
+          @Architecture = params['Architecture']
+          @ArchitectureName = params['ArchitectureName']
+          @Order = params['Order']
+          @InstanceFamilies = params['InstanceFamilies']
+        end
+      end
+
       # 通用的参数
       class Arg < TencentCloud::Common::AbstractModel
         # @param Key: key
@@ -3878,12 +3906,16 @@ module TencentCloud
         # @type RayClusterYaml: String
         # @param ImageInfoV2: <p>镜像信息</p>
         # @type ImageInfoV2: :class:`Tencentcloud::Emr.v20190103.models.ImageInfoV2`
+        # @param EnableHistoryServer: <p>是否开启日志收集</p>
+        # @type EnableHistoryServer: Boolean
+        # @param TensorBoardUrl: <p>tensorboard 链接</p>
+        # @type TensorBoardUrl: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RayClusterName, :RayClusterId, :SubmitType, :Namespace, :CreateTime, :UpdateTime, :Labels, :Tolerations, :Env, :SupportExternalKerberosService, :KerberosCluster, :Token, :HeadGroupSpec, :WorkerGroupSpecs, :StorageConfigEnabled, :RedisInstance, :CustomImage, :DashboardUrl, :TotalPodCount, :HighAvailability, :PersistentVolume, :RayClusterYaml, :ImageInfoV2, :RequestId
+        attr_accessor :RayClusterName, :RayClusterId, :SubmitType, :Namespace, :CreateTime, :UpdateTime, :Labels, :Tolerations, :Env, :SupportExternalKerberosService, :KerberosCluster, :Token, :HeadGroupSpec, :WorkerGroupSpecs, :StorageConfigEnabled, :RedisInstance, :CustomImage, :DashboardUrl, :TotalPodCount, :HighAvailability, :PersistentVolume, :RayClusterYaml, :ImageInfoV2, :EnableHistoryServer, :TensorBoardUrl, :RequestId
 
-        def initialize(rayclustername=nil, rayclusterid=nil, submittype=nil, namespace=nil, createtime=nil, updatetime=nil, labels=nil, tolerations=nil, env=nil, supportexternalkerberosservice=nil, kerberoscluster=nil, token=nil, headgroupspec=nil, workergroupspecs=nil, storageconfigenabled=nil, redisinstance=nil, customimage=nil, dashboardurl=nil, totalpodcount=nil, highavailability=nil, persistentvolume=nil, rayclusteryaml=nil, imageinfov2=nil, requestid=nil)
+        def initialize(rayclustername=nil, rayclusterid=nil, submittype=nil, namespace=nil, createtime=nil, updatetime=nil, labels=nil, tolerations=nil, env=nil, supportexternalkerberosservice=nil, kerberoscluster=nil, token=nil, headgroupspec=nil, workergroupspecs=nil, storageconfigenabled=nil, redisinstance=nil, customimage=nil, dashboardurl=nil, totalpodcount=nil, highavailability=nil, persistentvolume=nil, rayclusteryaml=nil, imageinfov2=nil, enablehistoryserver=nil, tensorboardurl=nil, requestid=nil)
           @RayClusterName = rayclustername
           @RayClusterId = rayclusterid
           @SubmitType = submittype
@@ -3907,6 +3939,8 @@ module TencentCloud
           @PersistentVolume = persistentvolume
           @RayClusterYaml = rayclusteryaml
           @ImageInfoV2 = imageinfov2
+          @EnableHistoryServer = enablehistoryserver
+          @TensorBoardUrl = tensorboardurl
           @RequestId = requestid
         end
 
@@ -3977,6 +4011,8 @@ module TencentCloud
             @ImageInfoV2 = ImageInfoV2.new
             @ImageInfoV2.deserialize(params['ImageInfoV2'])
           end
+          @EnableHistoryServer = params['EnableHistoryServer']
+          @TensorBoardUrl = params['TensorBoardUrl']
           @RequestId = params['RequestId']
         end
       end
@@ -5632,77 +5668,21 @@ module TencentCloud
 
       # DescribeNodeSpec请求参数结构体
       class DescribeNodeSpecRequest < TencentCloud::Common::AbstractModel
-        # @param ZoneId: 可用区Id，可以通过https://document.capi.woa.com/document/api/1605/76892查询相关信息
+        # @param ZoneId: <p>可用区Id，可以通过https://document.capi.woa.com/document/api/1605/76892查询相关信息</p>
         # @type ZoneId: Integer
-        # @param CvmPayMode: 0,按量，1包年包月，99按量+包年包月，错填将不会展示费用信息
+        # @param CvmPayMode: <p>0,按量，1包年包月，99按量+包年包月，错填将不会展示费用信息</p>
         # @type CvmPayMode: Integer
-        # @param NodeType: 节点类型,Master,Core,Task,Router,All
+        # @param NodeType: <p>节点类型,Master,Core,Task,Router,All</p>
         # @type NodeType: String
-        # @param TradeType: 0:旧计费页面,1:新计费页面。 错填，默认为旧计费
+        # @param TradeType: <p>0:旧计费页面,1:新计费页面。 错填，默认为旧计费</p>
         # @type TradeType: Integer
-        # @param ProductId: 产品Id，不填为0，则表示所有productId，前台使用必填
-
-        # 44	EMR	V3.5.0
-        # 43	EMR	V3.4.0.tlinux
-        # 42	EMR	V2.7.0.tlinux
-        # 41	DRUID	V1.1.0
-        # 67	STARROCKS	V2.2.0
-        # 45	DRUID	V1.1.0.tlinux
-        # 40	EMRCLOUD	v3.2.0
-        # 47	EMR	V4.0.0
-        # 48	STARROCKS	V1.2.0
-        # 49	STARROCKS	V1.3.0
-        # 50	KAFKA	V2.0.0
-        # 51	STARROCKS	V1.4.0
-        # 52	EMR-TKE	V1.0.0
-        # 53	EMR	V3.6.0
-        # 54	STARROCKS	V2.0.0
-        # 55	EMR-TKE	V1.0.1
-        # 56	EMR-TKE	DLCV1.0.0
-        # 57	EMR	V2.8.0
-        # 58	EMR	V3.6.1
-        # 59	SERVERLESS	V1.0.0
-        # 60	EMR-TKE	V1.1.0
-        # 62	STARROCKS	V2.1.1
-        # 63	STARROCKS	V2.1.1.tlinux
-        # 64	EMR-TKE	TCCV1.0.0
-        # 65	EMR-TKE-AI	V1.0.0
-        # 66	RSS	V1.0.0
-        # 24	EMR	TianQiong-V1.0.0
-        # 3	EMR	V2.0.1.tlinux
-        # 4	EMR	V2.1.0
-        # 7	EMR	V3.0.0
-        # 8	EMR	V3.0.0.tlinux
-        # 9	EMR	V2.2.0
-        # 11	CLICKHOUSE	V1.0.0
-        # 12	CLICKHOUSE	V1.0.0.tlinux
-        # 16	EMR	V2.3.0
-        # 17	CLICKHOUSE	V1.1.0
-        # 18	CLICKHOUSE	V1.1.0.tlinux
-        # 19	EMR	V2.4.0
-        # 20	EMR	V2.5.0
-        # 21	USERCUSTOM	V1.0.0
-        # 22	CLICKHOUSE	V1.2.0
-        # 39	STARROCKS	V1.1.0
-        # 25	EMR	V3.1.0
-        # 26	DORIS	V1.0.0
-        # 27	KAFKA	V1.0.0
-        # 28	EMR	V3.2.0
-        # 29	EMR	V2.5.1
-        # 30	EMR	V2.6.0
-        # 32	DORIS	V1.1.0
-        # 33	EMR	V3.2.1
-        # 34	EMR	V3.3.0
-        # 35	DORIS	V1.2.0
-        # 36	STARROCKS	V1.0.0
-        # 37	EMR	V3.4.0
-        # 38	EMR	V2.7.0
+        # @param ProductId: <p>产品Id，不填为0，则表示所有productId，前台使用必填</p><p>44    EMR    V3.5.0<br>43    EMR    V3.4.0.tlinux<br>42    EMR    V2.7.0.tlinux<br>41    DRUID    V1.1.0<br>67    STARROCKS    V2.2.0<br>45    DRUID    V1.1.0.tlinux<br>40    EMRCLOUD    v3.2.0<br>47    EMR    V4.0.0<br>48    STARROCKS    V1.2.0<br>49    STARROCKS    V1.3.0<br>50    KAFKA    V2.0.0<br>51    STARROCKS    V1.4.0<br>52    EMR-TKE    V1.0.0<br>53    EMR    V3.6.0<br>54    STARROCKS    V2.0.0<br>55    EMR-TKE    V1.0.1<br>56    EMR-TKE    DLCV1.0.0<br>57    EMR    V2.8.0<br>58    EMR    V3.6.1<br>59    SERVERLESS    V1.0.0<br>60    EMR-TKE    V1.1.0<br>62    STARROCKS    V2.1.1<br>63    STARROCKS    V2.1.1.tlinux<br>64    EMR-TKE    TCCV1.0.0<br>65    EMR-TKE-AI    V1.0.0<br>66    RSS    V1.0.0<br>24    EMR    TianQiong-V1.0.0<br>3    EMR    V2.0.1.tlinux<br>4    EMR    V2.1.0<br>7    EMR    V3.0.0<br>8    EMR    V3.0.0.tlinux<br>9    EMR    V2.2.0<br>11    CLICKHOUSE    V1.0.0<br>12    CLICKHOUSE    V1.0.0.tlinux<br>16    EMR    V2.3.0<br>17    CLICKHOUSE    V1.1.0<br>18    CLICKHOUSE    V1.1.0.tlinux<br>19    EMR    V2.4.0<br>20    EMR    V2.5.0<br>21    USERCUSTOM    V1.0.0<br>22    CLICKHOUSE    V1.2.0<br>39    STARROCKS    V1.1.0<br>25    EMR    V3.1.0<br>26    DORIS    V1.0.0<br>27    KAFKA    V1.0.0<br>28    EMR    V3.2.0<br>29    EMR    V2.5.1<br>30    EMR    V2.6.0<br>32    DORIS    V1.1.0<br>33    EMR    V3.2.1<br>34    EMR    V3.3.0<br>35    DORIS    V1.2.0<br>36    STARROCKS    V1.0.0<br>37    EMR    V3.4.0<br>38    EMR    V2.7.0</p>
         # @type ProductId: Integer
-        # @param SceneName: 场景名
+        # @param SceneName: <p>场景名</p>
         # @type SceneName: String
-        # @param ResourceBaseType: 类型为ComputeResource和EMR以及默认，默认为EMR
+        # @param ResourceBaseType: <p>类型为ComputeResource和EMR以及默认，默认为EMR</p>
         # @type ResourceBaseType: String
-        # @param ComputeResourceId: 计算资源id
+        # @param ComputeResourceId: <p>计算资源id</p>
         # @type ComputeResourceId: String
 
         attr_accessor :ZoneId, :CvmPayMode, :NodeType, :TradeType, :ProductId, :SceneName, :ResourceBaseType, :ComputeResourceId
@@ -5732,15 +5712,18 @@ module TencentCloud
 
       # DescribeNodeSpec返回参数结构体
       class DescribeNodeSpecResponse < TencentCloud::Common::AbstractModel
-        # @param NodeSpecs: 节点规格类型
+        # @param NodeSpecs: <p>节点规格类型</p>
         # @type NodeSpecs: Array
+        # @param Architectures: <p>机型架构信息</p>
+        # @type Architectures: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :NodeSpecs, :RequestId
+        attr_accessor :NodeSpecs, :Architectures, :RequestId
 
-        def initialize(nodespecs=nil, requestid=nil)
+        def initialize(nodespecs=nil, architectures=nil, requestid=nil)
           @NodeSpecs = nodespecs
+          @Architectures = architectures
           @RequestId = requestid
         end
 
@@ -5751,6 +5734,14 @@ module TencentCloud
               describenodespec_tmp = DescribeNodeSpec.new
               describenodespec_tmp.deserialize(i)
               @NodeSpecs << describenodespec_tmp
+            end
+          end
+          unless params['Architectures'].nil?
+            @Architectures = []
+            params['Architectures'].each do |i|
+              architectureinfo_tmp = ArchitectureInfo.new
+              architectureinfo_tmp.deserialize(i)
+              @Architectures << architectureinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -9242,43 +9233,38 @@ module TencentCloud
 
       # InquiryPriceScaleOutInstance请求参数结构体
       class InquiryPriceScaleOutInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param TimeUnit: 扩容的时间单位。取值范围：
-        # <li>s：表示秒。PayMode取值为0时，TimeUnit只能取值为s。</li>
-        # <li>m：表示月份。PayMode取值为1时，TimeUnit只能取值为m。</li>
+        # @param TimeUnit: <p>扩容的时间单位。取值范围：</p><li>s：表示秒。PayMode取值为0时，TimeUnit只能取值为s。</li><li>m：表示月份。PayMode取值为1时，TimeUnit只能取值为m。</li>
         # @type TimeUnit: String
-        # @param TimeSpan: 扩容的时长。结合TimeUnit一起使用。
-        # <li>TimeUnit为s时，该参数只能填写3600，表示按量计费实例。</li>
-        # <li>TimeUnit为m时，该参数填写的数字表示包年包月实例的购买时长，如1表示购买一个月</li>
+        # @param TimeSpan: <p>扩容的时长。结合TimeUnit一起使用。</p><li>TimeUnit为s时，该参数只能填写3600，表示按量计费实例。</li><li>TimeUnit为m时，该参数填写的数字表示包年包月实例的购买时长，如1表示购买一个月</li>
         # @type TimeSpan: Integer
-        # @param ZoneId: 实例所属的可用区ID，例如100003。该参数可以通过调用 [DescribeZones](https://cloud.tencent.com/document/api/213/15707) 的返回值中的ZoneId字段来获取。
+        # @param ZoneId: <p>实例所属的可用区ID，例如100003。该参数可以通过调用 <a href="https://cloud.tencent.com/document/api/213/15707">DescribeZones</a> 的返回值中的ZoneId字段来获取。</p>
         # @type ZoneId: Integer
-        # @param PayMode: 实例计费模式。取值范围：
-        # <li>0：表示按量计费。</li>
-        # <li>1：表示包年包月。</li>
+        # @param PayMode: <p>实例计费模式。取值范围：</p><li>0：表示按量计费。</li><li>1：表示包年包月。</li>
         # @type PayMode: Integer
-        # @param InstanceId: 实例ID。
+        # @param InstanceId: <p>实例ID。</p>
         # @type InstanceId: String
-        # @param CoreCount: 扩容的Core节点数量。
+        # @param CoreCount: <p>扩容的Core节点数量。</p>
         # @type CoreCount: Integer
-        # @param TaskCount: 扩容的Task节点数量。
+        # @param TaskCount: <p>扩容的Task节点数量。</p>
         # @type TaskCount: Integer
-        # @param Currency: 货币种类。取值范围：
-        # <li>CNY：表示人民币。</li>
+        # @param Currency: <p>货币种类。取值范围：</p><li>CNY：表示人民币。</li>
         # @type Currency: String
-        # @param RouterCount: 扩容的Router节点数量。
+        # @param RouterCount: <p>扩容的Router节点数量。</p>
         # @type RouterCount: Integer
-        # @param MasterCount: 扩容的Master节点数量。
+        # @param MasterCount: <p>扩容的Master节点数量。</p>
         # @type MasterCount: Integer
-        # @param ResourceBaseType: 类型为ComputeResource和EMR以及默认，默认为EMR
+        # @param ResourceBaseType: <p>类型为ComputeResource和EMR以及默认，默认为EMR</p>
         # @type ResourceBaseType: String
-        # @param ComputeResourceId: 计算资源id
+        # @param ComputeResourceId: <p>计算资源id</p>
         # @type ComputeResourceId: String
-        # @param HardwareResourceType: 扩容资源类型
+        # @param HardwareResourceType: <p>扩容资源类型</p>
         # @type HardwareResourceType: String
+        # @param NodeGroupId: <p>节点组ID</p>
+        # @type NodeGroupId: String
 
-        attr_accessor :TimeUnit, :TimeSpan, :ZoneId, :PayMode, :InstanceId, :CoreCount, :TaskCount, :Currency, :RouterCount, :MasterCount, :ResourceBaseType, :ComputeResourceId, :HardwareResourceType
+        attr_accessor :TimeUnit, :TimeSpan, :ZoneId, :PayMode, :InstanceId, :CoreCount, :TaskCount, :Currency, :RouterCount, :MasterCount, :ResourceBaseType, :ComputeResourceId, :HardwareResourceType, :NodeGroupId
 
-        def initialize(timeunit=nil, timespan=nil, zoneid=nil, paymode=nil, instanceid=nil, corecount=nil, taskcount=nil, currency=nil, routercount=nil, mastercount=nil, resourcebasetype=nil, computeresourceid=nil, hardwareresourcetype=nil)
+        def initialize(timeunit=nil, timespan=nil, zoneid=nil, paymode=nil, instanceid=nil, corecount=nil, taskcount=nil, currency=nil, routercount=nil, mastercount=nil, resourcebasetype=nil, computeresourceid=nil, hardwareresourcetype=nil, nodegroupid=nil)
           @TimeUnit = timeunit
           @TimeSpan = timespan
           @ZoneId = zoneid
@@ -9292,6 +9278,7 @@ module TencentCloud
           @ResourceBaseType = resourcebasetype
           @ComputeResourceId = computeresourceid
           @HardwareResourceType = hardwareresourcetype
+          @NodeGroupId = nodegroupid
         end
 
         def deserialize(params)
@@ -9308,23 +9295,22 @@ module TencentCloud
           @ResourceBaseType = params['ResourceBaseType']
           @ComputeResourceId = params['ComputeResourceId']
           @HardwareResourceType = params['HardwareResourceType']
+          @NodeGroupId = params['NodeGroupId']
         end
       end
 
       # InquiryPriceScaleOutInstance返回参数结构体
       class InquiryPriceScaleOutInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param OriginalCost: 原价，单位为元。
+        # @param OriginalCost: <p>原价，单位为元。</p>
         # @type OriginalCost: String
-        # @param DiscountCost: 折扣价，单位为元。
+        # @param DiscountCost: <p>折扣价，单位为元。</p>
         # @type DiscountCost: String
-        # @param Unit: 扩容的时间单位。取值范围：
-        # <li>s：表示秒。</li>
-        # <li>m：表示月份。</li>
+        # @param Unit: <p>扩容的时间单位。取值范围：</p><li>s：表示秒。</li><li>m：表示月份。</li>
         # @type Unit: String
-        # @param PriceSpec: 询价的节点规格。
+        # @param PriceSpec: <p>询价的节点规格。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PriceSpec: :class:`Tencentcloud::Emr.v20190103.models.PriceResource`
-        # @param MultipleEmrPrice: 对应入参MultipleResources中多个规格的询价结果，其它出参返回的是第一个规格的询价结果
+        # @param MultipleEmrPrice: <p>对应入参MultipleResources中多个规格的询价结果，其它出参返回的是第一个规格的询价结果</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MultipleEmrPrice: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -10536,10 +10522,12 @@ module TencentCloud
         # @type ImageInfoV2: :class:`Tencentcloud::Emr.v20190103.models.ImageInfoV2`
         # @param GooseFSVolumes: <p>GooseFS盘</p>
         # @type GooseFSVolumes: Array
+        # @param EnableHistoryServer: <p>是否开启日志收集</p>
+        # @type EnableHistoryServer: Boolean
 
-        attr_accessor :ModifyScope, :AddDynamicInstanceGroup, :SupportPV, :CBSVolumes, :CFSVolumes, :COSVolumes, :VolumeMounts, :Labels, :Tolerations, :Envs, :DependServices, :SupportNewToken, :ModifyDynamicInstanceGroup, :CFSTurboVolumes, :CustomImage, :ImageInfoV2, :GooseFSVolumes
+        attr_accessor :ModifyScope, :AddDynamicInstanceGroup, :SupportPV, :CBSVolumes, :CFSVolumes, :COSVolumes, :VolumeMounts, :Labels, :Tolerations, :Envs, :DependServices, :SupportNewToken, :ModifyDynamicInstanceGroup, :CFSTurboVolumes, :CustomImage, :ImageInfoV2, :GooseFSVolumes, :EnableHistoryServer
 
-        def initialize(modifyscope=nil, adddynamicinstancegroup=nil, supportpv=nil, cbsvolumes=nil, cfsvolumes=nil, cosvolumes=nil, volumemounts=nil, labels=nil, tolerations=nil, envs=nil, dependservices=nil, supportnewtoken=nil, modifydynamicinstancegroup=nil, cfsturbovolumes=nil, customimage=nil, imageinfov2=nil, goosefsvolumes=nil)
+        def initialize(modifyscope=nil, adddynamicinstancegroup=nil, supportpv=nil, cbsvolumes=nil, cfsvolumes=nil, cosvolumes=nil, volumemounts=nil, labels=nil, tolerations=nil, envs=nil, dependservices=nil, supportnewtoken=nil, modifydynamicinstancegroup=nil, cfsturbovolumes=nil, customimage=nil, imageinfov2=nil, goosefsvolumes=nil, enablehistoryserver=nil)
           @ModifyScope = modifyscope
           @AddDynamicInstanceGroup = adddynamicinstancegroup
           @SupportPV = supportpv
@@ -10557,6 +10545,7 @@ module TencentCloud
           @CustomImage = customimage
           @ImageInfoV2 = imageinfov2
           @GooseFSVolumes = goosefsvolumes
+          @EnableHistoryServer = enablehistoryserver
         end
 
         def deserialize(params)
@@ -10659,6 +10648,7 @@ module TencentCloud
               @GooseFSVolumes << goosefsvolume_tmp
             end
           end
+          @EnableHistoryServer = params['EnableHistoryServer']
         end
       end
 
@@ -12601,10 +12591,14 @@ module TencentCloud
         # @type NeedHpcClusterId: Boolean
         # @param IsGpuInstance: <p>是否是GPU机型</p>
         # @type IsGpuInstance: Boolean
+        # @param GpuResourceKey: <p>K8S场景GPU资源定义</p>
+        # @type GpuResourceKey: String
+        # @param GpuNum: <p>GPU卡数</p>
+        # @type GpuNum: Integer
 
-        attr_accessor :InstanceType, :Cpu, :Memory, :Order, :Num, :SellOutReason, :SystemDisk, :DataDisk, :LocalDataDisk, :SoldOutReason, :InstanceFamily, :NodeName, :NodeType, :Type, :TypeName, :FamilyName, :CpuType, :Remark, :OriginPrice, :PrepaidUnderwritePeriods, :GpuDesc, :QuotaNum, :QuotaUnit, :NeedHpcClusterId, :IsGpuInstance
+        attr_accessor :InstanceType, :Cpu, :Memory, :Order, :Num, :SellOutReason, :SystemDisk, :DataDisk, :LocalDataDisk, :SoldOutReason, :InstanceFamily, :NodeName, :NodeType, :Type, :TypeName, :FamilyName, :CpuType, :Remark, :OriginPrice, :PrepaidUnderwritePeriods, :GpuDesc, :QuotaNum, :QuotaUnit, :NeedHpcClusterId, :IsGpuInstance, :GpuResourceKey, :GpuNum
 
-        def initialize(instancetype=nil, cpu=nil, memory=nil, order=nil, num=nil, selloutreason=nil, systemdisk=nil, datadisk=nil, localdatadisk=nil, soldoutreason=nil, instancefamily=nil, nodename=nil, nodetype=nil, type=nil, typename=nil, familyname=nil, cputype=nil, remark=nil, originprice=nil, prepaidunderwriteperiods=nil, gpudesc=nil, quotanum=nil, quotaunit=nil, needhpcclusterid=nil, isgpuinstance=nil)
+        def initialize(instancetype=nil, cpu=nil, memory=nil, order=nil, num=nil, selloutreason=nil, systemdisk=nil, datadisk=nil, localdatadisk=nil, soldoutreason=nil, instancefamily=nil, nodename=nil, nodetype=nil, type=nil, typename=nil, familyname=nil, cputype=nil, remark=nil, originprice=nil, prepaidunderwriteperiods=nil, gpudesc=nil, quotanum=nil, quotaunit=nil, needhpcclusterid=nil, isgpuinstance=nil, gpuresourcekey=nil, gpunum=nil)
           @InstanceType = instancetype
           @Cpu = cpu
           @Memory = memory
@@ -12630,6 +12624,8 @@ module TencentCloud
           @QuotaUnit = quotaunit
           @NeedHpcClusterId = needhpcclusterid
           @IsGpuInstance = isgpuinstance
+          @GpuResourceKey = gpuresourcekey
+          @GpuNum = gpunum
         end
 
         def deserialize(params)
@@ -12679,6 +12675,8 @@ module TencentCloud
           @QuotaUnit = params['QuotaUnit']
           @NeedHpcClusterId = params['NeedHpcClusterId']
           @IsGpuInstance = params['IsGpuInstance']
+          @GpuResourceKey = params['GpuResourceKey']
+          @GpuNum = params['GpuNum']
         end
       end
 
@@ -14150,10 +14148,12 @@ module TencentCloud
         # @type DashboardUrl: String
         # @param Namespace: <p>命名空间</p>
         # @type Namespace: String
+        # @param StorageCount: <p>raycluster挂载的volume数量</p>
+        # @type StorageCount: Integer
 
-        attr_accessor :RayClusterName, :RayClusterId, :PodCount, :CreateTime, :RedisCount, :SubmitType, :DashboardUrl, :Namespace
+        attr_accessor :RayClusterName, :RayClusterId, :PodCount, :CreateTime, :RedisCount, :SubmitType, :DashboardUrl, :Namespace, :StorageCount
 
-        def initialize(rayclustername=nil, rayclusterid=nil, podcount=nil, createtime=nil, rediscount=nil, submittype=nil, dashboardurl=nil, namespace=nil)
+        def initialize(rayclustername=nil, rayclusterid=nil, podcount=nil, createtime=nil, rediscount=nil, submittype=nil, dashboardurl=nil, namespace=nil, storagecount=nil)
           @RayClusterName = rayclustername
           @RayClusterId = rayclusterid
           @PodCount = podcount
@@ -14162,6 +14162,7 @@ module TencentCloud
           @SubmitType = submittype
           @DashboardUrl = dashboardurl
           @Namespace = namespace
+          @StorageCount = storagecount
         end
 
         def deserialize(params)
@@ -14173,6 +14174,7 @@ module TencentCloud
           @SubmitType = params['SubmitType']
           @DashboardUrl = params['DashboardUrl']
           @Namespace = params['Namespace']
+          @StorageCount = params['StorageCount']
         end
       end
 

@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 本接口（BreakStandbyDBInstanceRelation）用于提供断开灾备实例主备连接功能
+
+        # @param request: Request instance for BreakStandbyDBInstanceRelation.
+        # @type request: :class:`Tencentcloud::tdmysql::V20211122::BreakStandbyDBInstanceRelationRequest`
+        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::BreakStandbyDBInstanceRelationResponse`
+        def BreakStandbyDBInstanceRelation(request)
+          body = send_request('BreakStandbyDBInstanceRelation', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BreakStandbyDBInstanceRelationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（CancelIsolateDBInstances）提供批量解除隔离实例功能
 
         # @param request: Request instance for CancelIsolateDBInstances.
@@ -111,6 +135,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateDBSBackupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（CreateStandbyDBInstances）提供批量创建灾备实例功能
+
+        # @param request: Request instance for CreateStandbyDBInstance.
+        # @type request: :class:`Tencentcloud::tdmysql::V20211122::CreateStandbyDBInstanceRequest`
+        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::CreateStandbyDBInstanceResponse`
+        def CreateStandbyDBInstance(request)
+          body = send_request('CreateStandbyDBInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateStandbyDBInstanceResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -663,6 +711,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeSpecsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeStandbyDBinstanceRelations）用于查询实例灾备连接关系
+
+        # @param request: Request instance for DescribeStandbyDBInstanceRelationDetail.
+        # @type request: :class:`Tencentcloud::tdmysql::V20211122::DescribeStandbyDBInstanceRelationDetailRequest`
+        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::DescribeStandbyDBInstanceRelationDetailResponse`
+        def DescribeStandbyDBInstanceRelationDetail(request)
+          body = send_request('DescribeStandbyDBInstanceRelationDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeStandbyDBInstanceRelationDetailResponse.new
             model.deserialize(response['Response'])
             model
           else

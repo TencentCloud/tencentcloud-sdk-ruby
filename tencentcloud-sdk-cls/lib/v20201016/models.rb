@@ -1133,9 +1133,9 @@ module TencentCloud
 
       # CancelRebuildIndexTask请求参数结构体
       class CancelRebuildIndexTaskRequest < TencentCloud::Common::AbstractModel
-        # @param TopicId: 日志主题ID
+        # @param TopicId: <p>日志主题ID</p><p>取值参考：<a href="https://cloud.tencent.com/document/api/614/56454">DescribeTopics</a></p>
         # @type TopicId: String
-        # @param TaskId: 索引重建任务ID
+        # @param TaskId: <p>索引重建任务ID</p><p>取值参考：<a href="https://cloud.tencent.com/document/api/614/127535">DescribeRebuildIndexTasks</a></p>
         # @type TaskId: String
 
         attr_accessor :TopicId, :TaskId
@@ -2983,8 +2983,8 @@ module TencentCloud
 
         attr_accessor :Name, :AlarmTargets, :MonitorTime, :TriggerCount, :AlarmPeriod, :Condition, :AlarmLevel, :MultiConditions, :Status, :Enable, :MessageTemplate, :CallBack, :Analysis, :GroupTriggerStatus, :GroupTriggerCondition, :Tags, :MonitorObjectType, :Classifications, :AlarmNoticeIds, :MonitorNotice
         extend Gem::Deprecate
-        deprecate :Enable, :none, 2026, 8
-        deprecate :Enable=, :none, 2026, 8
+        deprecate :Enable, :none, 2026, 9
+        deprecate :Enable=, :none, 2026, 9
 
         def initialize(name=nil, alarmtargets=nil, monitortime=nil, triggercount=nil, alarmperiod=nil, condition=nil, alarmlevel=nil, multiconditions=nil, status=nil, enable=nil, messagetemplate=nil, callback=nil, analysis=nil, grouptriggerstatus=nil, grouptriggercondition=nil, tags=nil, monitorobjecttype=nil, classifications=nil, alarmnoticeids=nil, monitornotice=nil)
           @Name = name
@@ -3323,8 +3323,8 @@ module TencentCloud
 
         attr_accessor :Name, :TopicId, :Type, :LogType, :ConfigFlag, :LogsetId, :LogsetName, :TopicName, :HostFile, :ContainerFile, :ContainerStdout, :LogFormat, :ExtractRule, :ExcludePaths, :UserDefineRule, :GroupId, :GroupIds, :CollectInfos, :AdvancedConfig
         extend Gem::Deprecate
-        deprecate :LogFormat, :none, 2026, 8
-        deprecate :LogFormat=, :none, 2026, 8
+        deprecate :LogFormat, :none, 2026, 9
+        deprecate :LogFormat=, :none, 2026, 9
 
         def initialize(name=nil, topicid=nil, type=nil, logtype=nil, configflag=nil, logsetid=nil, logsetname=nil, topicname=nil, hostfile=nil, containerfile=nil, containerstdout=nil, logformat=nil, extractrule=nil, excludepaths=nil, userdefinerule=nil, groupid=nil, groupids=nil, collectinfos=nil, advancedconfig=nil)
           @Name = name
@@ -5267,33 +5267,32 @@ module TencentCloud
 
       # CreateRemoteWriteTask请求参数结构体
       class CreateRemoteWriteTaskRequest < TencentCloud::Common::AbstractModel
-        # @param TopicId: 日志主题 ID
+        # @param TopicId: <p>日志主题 ID</p>
         # @type TopicId: String
-        # @param Name: 任务名称
+        # @param Name: <p>任务名称</p>
         # @type Name: String
-        # @param Target: 目标服务名称
+        # @param Target: <p>目标服务名称</p>
         # @type Target: String
-        # @param RemoteWriteURL: 目标地址
+        # @param RemoteWriteURL: <p>目标地址</p>
         # @type RemoteWriteURL: String
-        # @param AuthType: 鉴权类型
-        # 0: 无鉴权
-        # 1: basic_auth
-        # 2: token
+        # @param AuthType: <p>鉴权类型<br>0: 无鉴权<br>1: basic_auth<br>2: token</p>
         # @type AuthType: Integer
-        # @param NetType: 网络类型： 1 内网 2外网
+        # @param NetType: <p>网络类型： 1 内网 2外网</p>
         # @type NetType: Integer
-        # @param VpcId: 私有网络id
+        # @param VpcId: <p>私有网络id</p>
         # @type VpcId: String
-        # @param AuthInfo: 鉴权信息
+        # @param AuthInfo: <p>鉴权信息</p>
         # @type AuthInfo: :class:`Tencentcloud::Cls.v20201016.models.RemoteWriteAuthInfo`
-        # @param VirtualGatewayType: 后端服务类型
-        # 0 CVM
-        # 1025 CLB
+        # @param VirtualGatewayType: <p>后端服务类型<br>0 CVM<br>1025 CLB</p>
         # @type VirtualGatewayType: Integer
+        # @param InstanceId: <p>云时序数据库实例ID</p>
+        # @type InstanceId: String
+        # @param HasServicesLog: <p>是否开启投递服务日志。1：关闭，2：开启。 默认值：2</p>
+        # @type HasServicesLog: Integer
 
-        attr_accessor :TopicId, :Name, :Target, :RemoteWriteURL, :AuthType, :NetType, :VpcId, :AuthInfo, :VirtualGatewayType
+        attr_accessor :TopicId, :Name, :Target, :RemoteWriteURL, :AuthType, :NetType, :VpcId, :AuthInfo, :VirtualGatewayType, :InstanceId, :HasServicesLog
 
-        def initialize(topicid=nil, name=nil, target=nil, remotewriteurl=nil, authtype=nil, nettype=nil, vpcid=nil, authinfo=nil, virtualgatewaytype=nil)
+        def initialize(topicid=nil, name=nil, target=nil, remotewriteurl=nil, authtype=nil, nettype=nil, vpcid=nil, authinfo=nil, virtualgatewaytype=nil, instanceid=nil, hasserviceslog=nil)
           @TopicId = topicid
           @Name = name
           @Target = target
@@ -5303,6 +5302,8 @@ module TencentCloud
           @VpcId = vpcid
           @AuthInfo = authinfo
           @VirtualGatewayType = virtualgatewaytype
+          @InstanceId = instanceid
+          @HasServicesLog = hasserviceslog
         end
 
         def deserialize(params)
@@ -5318,12 +5319,14 @@ module TencentCloud
             @AuthInfo.deserialize(params['AuthInfo'])
           end
           @VirtualGatewayType = params['VirtualGatewayType']
+          @InstanceId = params['InstanceId']
+          @HasServicesLog = params['HasServicesLog']
         end
       end
 
       # CreateRemoteWriteTask返回参数结构体
       class CreateRemoteWriteTaskResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: remoteWrite任务id
+        # @param TaskId: <p>remoteWrite任务id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -10467,34 +10470,23 @@ module TencentCloud
 
       # DescribeLogContext请求参数结构体
       class DescribeLogContextRequest < TencentCloud::Common::AbstractModel
-        # @param TopicId: 要查询的日志主题Id。
-        # - 通过 [获取日志主题列表](https://cloud.tencent.com/document/product/614/56454) 获取日志主题Id。
-        # - 通过 [创建日志主题](https://cloud.tencent.com/document/product/614/56456) 获取日志主题Id。
+        # @param TopicId: <p>要查询的日志主题Id。</p><ul><li>通过 <a href="https://cloud.tencent.com/document/product/614/56454">获取日志主题列表</a> 获取日志主题Id。</li><li>通过 <a href="https://cloud.tencent.com/document/product/614/56456">创建日志主题</a> 获取日志主题Id。</li></ul>
         # @type TopicId: String
-        # @param BTime: 日志时间,  即 [检索分析日志](https://cloud.tencent.com/document/product/614/56447) 接口返回信息中Results结构体中的Time，需按照 UTC+8 时区将该毫秒级Unix时间戳转换为 YYYY-mm-dd HH:MM:SS.FFF 格式的字符串。
+        # @param BTime: <p>日志时间,  即 <a href="https://cloud.tencent.com/document/product/614/56447">检索分析日志</a> 接口返回信息中Results结构体中的Time，需按照 UTC+8 时区将该毫秒级Unix时间戳转换为 YYYY-mm-dd HH:MM:SS.FFF 格式的字符串。</p>
         # @type BTime: String
-        # @param PkgId: 日志包序号，即 [检索分析日志](https://cloud.tencent.com/document/product/614/56447) 接口返回信息中Results结构体中的PkgId。
+        # @param PkgId: <p>日志包序号，即 <a href="https://cloud.tencent.com/document/product/614/56447">检索分析日志</a> 接口返回信息中Results结构体中的PkgId。</p>
         # @type PkgId: String
-        # @param PkgLogId: 日志包内一条日志的序号，即 [检索分析日志](https://cloud.tencent.com/document/product/614/56447) 接口返回信息中Results结构中的PkgLogId。
+        # @param PkgLogId: <p>日志包内一条日志的序号，即 <a href="https://cloud.tencent.com/document/product/614/56447">检索分析日志</a> 接口返回信息中Results结构中的PkgLogId。</p>
         # @type PkgLogId: Integer
-        # @param PrevLogs: 前${PrevLogs}条日志，默认值10。
+        # @param PrevLogs: <p>前${PrevLogs}条日志，默认值10，最大100。</p>
         # @type PrevLogs: Integer
-        # @param NextLogs: 后${NextLogs}条日志，默认值10。
+        # @param NextLogs: <p>后${NextLogs}条日志，默认值10，最大100。</p>
         # @type NextLogs: Integer
-        # @param Query: 检索语句，对日志上下文进行过滤，最大长度为12KB
-        # 语句由 <a href="https://cloud.tencent.com/document/product/614/47044" target="_blank">[检索条件]</a>构成，不支持SQL语句
+        # @param Query: <p>检索语句，对日志上下文进行过滤，最大长度为12KB<br>语句由 <a href="https://cloud.tencent.com/document/product/614/47044" target="_blank">[检索条件]</a>构成，不支持SQL语句</p>
         # @type Query: String
-        # @param From: 上下文检索的开始时间，单位：毫秒级时间戳
-        # 注意：
-        # - From为空时，表示上下文检索的开始时间不做限制
-        # - From和To非空时，From < To
-        # - 暂时仅支持上海 / 弗吉尼亚/ 新加坡地域
+        # @param From: <p>上下文检索的开始时间，单位：毫秒级时间戳<br>注意：</p><ul><li>From为空时，表示上下文检索的开始时间不做限制</li><li>From和To非空时，From &lt; To</li></ul>
         # @type From: Integer
-        # @param To: 上下文检索的结束时间，单位：毫秒级时间戳。
-        # 注意：
-        # - To为空时，表示上下文检索的结束时间不做限制
-        # - From和To非空时，From < To
-        # - 暂时仅支持上海 / 弗吉尼亚/ 新加坡地域
+        # @param To: <p>上下文检索的结束时间，单位：毫秒级时间戳。<br>注意：</p><ul><li>To为空时，表示上下文检索的结束时间不做限制</li><li>From和To非空时，From &lt; To</li></ul>
         # @type To: Integer
 
         attr_accessor :TopicId, :BTime, :PkgId, :PkgLogId, :PrevLogs, :NextLogs, :Query, :From, :To
@@ -10526,11 +10518,11 @@ module TencentCloud
 
       # DescribeLogContext返回参数结构体
       class DescribeLogContextResponse < TencentCloud::Common::AbstractModel
-        # @param LogContextInfos: 日志上下文信息集合
+        # @param LogContextInfos: <p>日志上下文信息集合</p>
         # @type LogContextInfos: Array
-        # @param PrevOver: 上文日志是否已经返回完成（当PrevOver为false，表示有上文日志还未全部返回）。
+        # @param PrevOver: <p>上文日志是否已经返回完成（当PrevOver为false，表示有上文日志还未全部返回）。</p>
         # @type PrevOver: Boolean
-        # @param NextOver: 下文日志是否已经返回完成（当NextOver为false，表示有下文日志还未全部返回）。
+        # @param NextOver: <p>下文日志是否已经返回完成（当NextOver为false，表示有下文日志还未全部返回）。</p>
         # @type NextOver: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -15539,8 +15531,8 @@ module TencentCloud
 
         attr_accessor :AlarmId, :Name, :MonitorTime, :Condition, :AlarmLevel, :MultiConditions, :TriggerCount, :AlarmPeriod, :AlarmTargets, :Status, :Enable, :MessageTemplate, :CallBack, :Analysis, :GroupTriggerStatus, :GroupTriggerCondition, :Tags, :MonitorObjectType, :Classifications, :AlarmNoticeIds, :MonitorNotice
         extend Gem::Deprecate
-        deprecate :Enable, :none, 2026, 8
-        deprecate :Enable=, :none, 2026, 8
+        deprecate :Enable, :none, 2026, 9
+        deprecate :Enable=, :none, 2026, 9
 
         def initialize(alarmid=nil, name=nil, monitortime=nil, condition=nil, alarmlevel=nil, multiconditions=nil, triggercount=nil, alarmperiod=nil, alarmtargets=nil, status=nil, enable=nil, messagetemplate=nil, callback=nil, analysis=nil, grouptriggerstatus=nil, grouptriggercondition=nil, tags=nil, monitorobjecttype=nil, classifications=nil, alarmnoticeids=nil, monitornotice=nil)
           @AlarmId = alarmid
@@ -15846,8 +15838,8 @@ module TencentCloud
 
         attr_accessor :ConfigExtraId, :Name, :TopicId, :HostFile, :ContainerFile, :ContainerStdout, :LogType, :LogFormat, :ExtractRule, :ExcludePaths, :UserDefineRule, :Type, :GroupId, :ConfigFlag, :LogsetId, :LogsetName, :TopicName, :AdvancedConfig
         extend Gem::Deprecate
-        deprecate :LogFormat, :none, 2026, 8
-        deprecate :LogFormat=, :none, 2026, 8
+        deprecate :LogFormat, :none, 2026, 9
+        deprecate :LogFormat=, :none, 2026, 9
 
         def initialize(configextraid=nil, name=nil, topicid=nil, hostfile=nil, containerfile=nil, containerstdout=nil, logtype=nil, logformat=nil, extractrule=nil, excludepaths=nil, userdefinerule=nil, type=nil, groupid=nil, configflag=nil, logsetid=nil, logsetname=nil, topicname=nil, advancedconfig=nil)
           @ConfigExtraId = configextraid
@@ -17666,36 +17658,36 @@ module TencentCloud
 
       # ModifyRemoteWriteTask请求参数结构体
       class ModifyRemoteWriteTaskRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务id
+        # @param TaskId: <p>任务id</p>
         # @type TaskId: String
-        # @param TopicId: 日志主题id
+        # @param TopicId: <p>日志主题id</p>
         # @type TopicId: String
-        # @param Enable: 任务状态
-        # 0 关闭 1 开启
+        # @param Enable: <p>任务状态<br>0 关闭 1 开启</p>
         # @type Enable: Integer
-        # @param Name: RemoteWrite任务名称
+        # @param Name: <p>RemoteWrite任务名称</p>
         # @type Name: String
-        # @param NetType: 1 内网 2外网
+        # @param NetType: <p>1 内网 2外网</p>
         # @type NetType: Integer
-        # @param VpcId: 私有网络id
+        # @param VpcId: <p>私有网络id</p>
         # @type VpcId: String
-        # @param Target: 目标服务名称
+        # @param Target: <p>目标服务名称</p>
         # @type Target: String
-        # @param RemoteWriteURL: 目标地址
+        # @param RemoteWriteURL: <p>目标地址</p>
         # @type RemoteWriteURL: String
-        # @param AuthType: 0: 无鉴权 1: basic_auth 2: token
+        # @param AuthType: <p>0: 无鉴权 1: basic_auth 2: token</p>
         # @type AuthType: Integer
-        # @param AuthInfo: 鉴权信息
+        # @param AuthInfo: <p>鉴权信息</p>
         # @type AuthInfo: :class:`Tencentcloud::Cls.v20201016.models.RemoteWriteAuthInfo`
-        # @param VirtualGatewayType: 后端服务类型
-        # -1 没有
-        # 0 CVM
-        # 1025 CLB
+        # @param VirtualGatewayType: <p>后端服务类型<br>-1 没有<br>0 CVM<br>1025 CLB</p>
         # @type VirtualGatewayType: Integer
+        # @param InstanceId: <p>云时序数据库实例ID</p>
+        # @type InstanceId: String
+        # @param HasServicesLog: <p>是否开启投递服务日志。1：关闭，2：开启。</p>
+        # @type HasServicesLog: Integer
 
-        attr_accessor :TaskId, :TopicId, :Enable, :Name, :NetType, :VpcId, :Target, :RemoteWriteURL, :AuthType, :AuthInfo, :VirtualGatewayType
+        attr_accessor :TaskId, :TopicId, :Enable, :Name, :NetType, :VpcId, :Target, :RemoteWriteURL, :AuthType, :AuthInfo, :VirtualGatewayType, :InstanceId, :HasServicesLog
 
-        def initialize(taskid=nil, topicid=nil, enable=nil, name=nil, nettype=nil, vpcid=nil, target=nil, remotewriteurl=nil, authtype=nil, authinfo=nil, virtualgatewaytype=nil)
+        def initialize(taskid=nil, topicid=nil, enable=nil, name=nil, nettype=nil, vpcid=nil, target=nil, remotewriteurl=nil, authtype=nil, authinfo=nil, virtualgatewaytype=nil, instanceid=nil, hasserviceslog=nil)
           @TaskId = taskid
           @TopicId = topicid
           @Enable = enable
@@ -17707,6 +17699,8 @@ module TencentCloud
           @AuthType = authtype
           @AuthInfo = authinfo
           @VirtualGatewayType = virtualgatewaytype
+          @InstanceId = instanceid
+          @HasServicesLog = hasserviceslog
         end
 
         def deserialize(params)
@@ -17724,6 +17718,8 @@ module TencentCloud
             @AuthInfo.deserialize(params['AuthInfo'])
           end
           @VirtualGatewayType = params['VirtualGatewayType']
+          @InstanceId = params['InstanceId']
+          @HasServicesLog = params['HasServicesLog']
         end
       end
 
@@ -19290,8 +19286,8 @@ module TencentCloud
 
         attr_accessor :LogContent, :LineNum, :DstTopicId, :FailReason, :Time, :DstTopicName
         extend Gem::Deprecate
-        deprecate :DstTopicName, :none, 2026, 8
-        deprecate :DstTopicName=, :none, 2026, 8
+        deprecate :DstTopicName, :none, 2026, 9
+        deprecate :DstTopicName=, :none, 2026, 9
 
         def initialize(logcontent=nil, linenum=nil, dsttopicid=nil, failreason=nil, time=nil, dsttopicname=nil)
           @LogContent = logcontent
@@ -19725,61 +19721,61 @@ module TencentCloud
 
       # RemoteWrite配置信息
       class RemoteWriteInfo < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务id
+        # @param TaskId: <p>任务id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: String
-        # @param TopicId: 日志主题ID
+        # @param TopicId: <p>日志主题ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicId: String
-        # @param Name: Remote Write任务名称
+        # @param Name: <p>Remote Write任务名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
-        # @param NetType: 网络类型
-        # 1: 内网
-        # 2:外网
+        # @param NetType: <p>网络类型<br>1: 内网<br>2:外网</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NetType: Integer
-        # @param VpcId: 私有网络id
+        # @param VpcId: <p>私有网络id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
-        # @param Status: 任务运行状态
-        # 1: 运行中
-        # 2:暂停
-        # 3: 失败
+        # @param Status: <p>任务运行状态<br>1: 运行中<br>2:暂停<br>3: 失败</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
-        # @param UpdateTime: 更新时间
+        # @param UpdateTime: <p>更新时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
-        # @param Target: 目标服务名称
+        # @param Target: <p>目标服务名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Target: String
-        # @param RemoteWriteURL: 目标地址
+        # @param RemoteWriteURL: <p>目标地址</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RemoteWriteURL: String
-        # @param AuthType: 鉴权类型
-        # 0: 无鉴权 1: basic_auth 2: token
+        # @param AuthType: <p>鉴权类型<br>0: 无鉴权 1: basic_auth 2: token</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AuthType: Integer
-        # @param AuthInfo: 鉴权信息
+        # @param AuthInfo: <p>鉴权信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AuthInfo: :class:`Tencentcloud::Cls.v20201016.models.RemoteWriteAuthInfo`
-        # @param LogsetId: 日志集
+        # @param LogsetId: <p>日志集</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogsetId: String
-        # @param Enable: 任务状态
+        # @param Enable: <p>任务状态</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Enable: Integer
-        # @param VirtualGatewayType: 后端服务类型
+        # @param VirtualGatewayType: <p>后端服务类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VirtualGatewayType: Integer
+        # @param InstanceId: <p>云时序数据库实例ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param HasServicesLog: <p>是否开启投递服务日志。1：关闭，2：开启。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HasServicesLog: Integer
 
-        attr_accessor :TaskId, :TopicId, :Name, :NetType, :VpcId, :Status, :CreateTime, :UpdateTime, :Target, :RemoteWriteURL, :AuthType, :AuthInfo, :LogsetId, :Enable, :VirtualGatewayType
+        attr_accessor :TaskId, :TopicId, :Name, :NetType, :VpcId, :Status, :CreateTime, :UpdateTime, :Target, :RemoteWriteURL, :AuthType, :AuthInfo, :LogsetId, :Enable, :VirtualGatewayType, :InstanceId, :HasServicesLog
 
-        def initialize(taskid=nil, topicid=nil, name=nil, nettype=nil, vpcid=nil, status=nil, createtime=nil, updatetime=nil, target=nil, remotewriteurl=nil, authtype=nil, authinfo=nil, logsetid=nil, enable=nil, virtualgatewaytype=nil)
+        def initialize(taskid=nil, topicid=nil, name=nil, nettype=nil, vpcid=nil, status=nil, createtime=nil, updatetime=nil, target=nil, remotewriteurl=nil, authtype=nil, authinfo=nil, logsetid=nil, enable=nil, virtualgatewaytype=nil, instanceid=nil, hasserviceslog=nil)
           @TaskId = taskid
           @TopicId = topicid
           @Name = name
@@ -19795,6 +19791,8 @@ module TencentCloud
           @LogsetId = logsetid
           @Enable = enable
           @VirtualGatewayType = virtualgatewaytype
+          @InstanceId = instanceid
+          @HasServicesLog = hasserviceslog
         end
 
         def deserialize(params)
@@ -19816,6 +19814,8 @@ module TencentCloud
           @LogsetId = params['LogsetId']
           @Enable = params['Enable']
           @VirtualGatewayType = params['VirtualGatewayType']
+          @InstanceId = params['InstanceId']
+          @HasServicesLog = params['HasServicesLog']
         end
       end
 
@@ -20421,10 +20421,10 @@ module TencentCloud
 
         attr_accessor :From, :To, :QueryString, :QuerySyntax, :TopicId, :Topics, :Sort, :Limit, :Offset, :Context, :SamplingRate, :UseNewAnalysis, :HighLight, :Query, :SyntaxRule
         extend Gem::Deprecate
-        deprecate :Query, :none, 2026, 8
-        deprecate :Query=, :none, 2026, 8
-        deprecate :SyntaxRule, :none, 2026, 8
-        deprecate :SyntaxRule=, :none, 2026, 8
+        deprecate :Query, :none, 2026, 9
+        deprecate :Query=, :none, 2026, 9
+        deprecate :SyntaxRule, :none, 2026, 9
+        deprecate :SyntaxRule=, :none, 2026, 9
 
         def initialize(from=nil, to=nil, querystring=nil, querysyntax=nil, topicid=nil, topics=nil, sort=nil, limit=nil, offset=nil, context=nil, samplingrate=nil, usenewanalysis=nil, highlight=nil, query=nil, syntaxrule=nil)
           @From = from
@@ -21476,8 +21476,8 @@ module TencentCloud
 
         attr_accessor :TopicId, :HashKey, :CompressType
         extend Gem::Deprecate
-        deprecate :HashKey, :none, 2026, 8
-        deprecate :HashKey=, :none, 2026, 8
+        deprecate :HashKey, :none, 2026, 9
+        deprecate :HashKey=, :none, 2026, 9
 
         def initialize(topicid=nil, hashkey=nil, compresstype=nil)
           @TopicId = topicid
@@ -21654,10 +21654,10 @@ module TencentCloud
 
         attr_accessor :CallbackType, :Url, :WebCallbackId, :Method, :NoticeContentId, :RemindType, :Mobiles, :UserIds, :Headers, :Body, :Index
         extend Gem::Deprecate
-        deprecate :Headers, :none, 2026, 8
-        deprecate :Headers=, :none, 2026, 8
-        deprecate :Body, :none, 2026, 8
-        deprecate :Body=, :none, 2026, 8
+        deprecate :Headers, :none, 2026, 9
+        deprecate :Headers=, :none, 2026, 9
+        deprecate :Body, :none, 2026, 9
+        deprecate :Body=, :none, 2026, 9
 
         def initialize(callbacktype=nil, url=nil, webcallbackid=nil, method=nil, noticecontentid=nil, remindtype=nil, mobiles=nil, userids=nil, headers=nil, body=nil, index=nil)
           @CallbackType = callbacktype

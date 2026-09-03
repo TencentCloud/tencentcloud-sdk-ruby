@@ -530,10 +530,10 @@ module TencentCloud
 
         attr_accessor :TaskType, :Bucket, :FileSystemId, :TaskPath, :TaskName, :IsTaskPathAbsolute, :RepositoryType, :TextLocation, :EnableDataFlowSubPath, :DataFlowSubPath, :EnableCustomDestPath, :CustomDestPath, :OutputBucket, :OutputPrefix, :EnableCustomSrcPath, :CustomSrcPath
         extend Gem::Deprecate
-        deprecate :EnableDataFlowSubPath, :none, 2026, 8
-        deprecate :EnableDataFlowSubPath=, :none, 2026, 8
-        deprecate :DataFlowSubPath, :none, 2026, 8
-        deprecate :DataFlowSubPath=, :none, 2026, 8
+        deprecate :EnableDataFlowSubPath, :none, 2026, 9
+        deprecate :EnableDataFlowSubPath=, :none, 2026, 9
+        deprecate :DataFlowSubPath, :none, 2026, 9
+        deprecate :DataFlowSubPath=, :none, 2026, 9
 
         def initialize(tasktype=nil, bucket=nil, filesystemid=nil, taskpath=nil, taskname=nil, istaskpathabsolute=nil, repositorytype=nil, textlocation=nil, enabledataflowsubpath=nil, dataflowsubpath=nil, enablecustomdestpath=nil, customdestpath=nil, outputbucket=nil, outputprefix=nil, enablecustomsrcpath=nil, customsrcpath=nil)
           @TaskType = tasktype
@@ -619,8 +619,8 @@ module TencentCloud
 
         attr_accessor :Name, :Description, :VpcId, :SubnetId, :Zone, :Type, :Tag, :GooseFSxBuildElements, :SecurityGroupId, :ClusterPort
         extend Gem::Deprecate
-        deprecate :Type, :none, 2026, 8
-        deprecate :Type=, :none, 2026, 8
+        deprecate :Type, :none, 2026, 9
+        deprecate :Type=, :none, 2026, 9
 
         def initialize(name=nil, description=nil, vpcid=nil, subnetid=nil, zone=nil, type=nil, tag=nil, goosefsxbuildelements=nil, securitygroupid=nil, clusterport=nil)
           @Name = name
@@ -1757,8 +1757,8 @@ module TencentCloud
 
         attr_accessor :Model, :Capacity, :MappedBucketList
         extend Gem::Deprecate
-        deprecate :MappedBucketList, :none, 2026, 8
-        deprecate :MappedBucketList=, :none, 2026, 8
+        deprecate :MappedBucketList, :none, 2026, 9
+        deprecate :MappedBucketList=, :none, 2026, 9
 
         def initialize(model=nil, capacity=nil, mappedbucketlist=nil)
           @Model = model
@@ -1883,42 +1883,77 @@ module TencentCloud
         end
       end
 
+      # 数据预热任务参数
+      class LoadDataAttrs < TencentCloud::Common::AbstractModel
+        # @param LoadType: <p>预热类型，枚举值 LoadByPath｜LoadByList</p>
+        # @type LoadType: String
+        # @param SkipIfExists: <p>是否跳过相同文件，默认为 true</p>
+        # @type SkipIfExists: Boolean
+        # @param LoadByPath: <p>预热路径，入参单条挂载路径。入参数LoadType为LoadByPath，该参数不应为空</p>
+        # @type LoadByPath: String
+        # @param LoadByList: <p>通过文件列表批量预热，入参为 cos://bucket-appid/ 开头的 COS 路径，且仅支持 txt 格式文件，长度不能超过255个字符。入参数LoadType为LoadByList，该参数不应为空</p>
+        # @type LoadByList: String
+        # @param Replica: <p>副本数配置，枚举值，可选值 SingleReplica（单副本，默认）｜MaxReplica（最大副本）</p>
+        # @type Replica: String
+
+        attr_accessor :LoadType, :SkipIfExists, :LoadByPath, :LoadByList, :Replica
+
+        def initialize(loadtype=nil, skipifexists=nil, loadbypath=nil, loadbylist=nil, replica=nil)
+          @LoadType = loadtype
+          @SkipIfExists = skipifexists
+          @LoadByPath = loadbypath
+          @LoadByList = loadbylist
+          @Replica = replica
+        end
+
+        def deserialize(params)
+          @LoadType = params['LoadType']
+          @SkipIfExists = params['SkipIfExists']
+          @LoadByPath = params['LoadByPath']
+          @LoadByList = params['LoadByList']
+          @Replica = params['Replica']
+        end
+      end
+
       # 预热任务参数
       class LoadTaskAttrs < TencentCloud::Common::AbstractModel
-        # @param TaskId: 预热任务 ID
+        # @param TaskId: <p>预热任务 ID</p>
         # @type TaskId: String
-        # @param TaskType: 预热任务类型，枚举值，MetadataLoad｜DistributedLoad
+        # @param TaskType: <p>预热任务类型，枚举值，MetadataLoad｜DistributedLoad</p>
         # @type TaskType: String
-        # @param Description: 任务描述，支持中文
+        # @param Description: <p>任务描述，支持中文</p>
         # @type Description: String
-        # @param Priority: 任务优先级，数值越高代表优先级越高，边界值 1-9999，默认值为 1
+        # @param Priority: <p>任务优先级，数值越高代表优先级越高，边界值 1-9999，默认值为 1</p>
         # @type Priority: Integer
-        # @param MetadataLoadAttrs: 元数据预热任务参数，用于仅预热元数据时入参。入参数TaskType为MetadataLoad时，该参数不应为空。
+        # @param MetadataLoadAttrs: <p>元数据预热任务参数，用于仅预热元数据时入参。入参数TaskType为MetadataLoad时，该参数不应为空。</p>
         # @type MetadataLoadAttrs: :class:`Tencentcloud::Goosefs.v20220519.models.MetadataLoadAttrs`
-        # @param DistributedLoadAttrs: 数据预热任务参数。入参数TaskType为DistributedLoad时，该参数不应为空。
+        # @param DistributedLoadAttrs: <p>数据预热任务参数。入参数TaskType为DistributedLoad时，该参数不应为空。</p>
         # @type DistributedLoadAttrs: :class:`Tencentcloud::Goosefs.v20220519.models.DistributedLoadAttrs`
-        # @param ReportPath: 将任务执行报告写入 COS 的路径，如果不需要报告则入参空
+        # @param LoadDataAttrs: <p>仅预热数据参数。入参数TaskType为LoadData时，该参数不应为空。</p>
+        # @type LoadDataAttrs: :class:`Tencentcloud::Goosefs.v20220519.models.LoadDataAttrs`
+        # @param ReportPath: <p>将任务执行报告写入 COS 的路径，如果不需要报告则入参空</p>
         # @type ReportPath: String
-        # @param State: 枚举，Completed，Running，Waiting，Cancelled
+        # @param State: <p>枚举，Completed，Running，Waiting，Cancelled</p>
         # @type State: String
-        # @param TaskMessage: 任务执行信息，打印预热文件成功个数，失败个数，预热耗时信息
+        # @param TaskMessage: <p>任务执行信息，打印预热文件成功个数，失败个数，预热耗时信息</p>
         # @type TaskMessage: String
-        # @param CreateTime: 预热任务创建时间
+        # @param CreateTime: <p>预热任务创建时间</p>
         # @type CreateTime: String
-        # @param ModifyTime: 预热任务变更时间
+        # @param ModifyTime: <p>预热任务变更时间</p>
         # @type ModifyTime: String
-        # @param Requester: 任务提交账号，子账号或服务角色 ID
+        # @param Requester: <p>任务提交账号，子账号或服务角色 ID</p>
         # @type Requester: String
 
-        attr_accessor :TaskId, :TaskType, :Description, :Priority, :MetadataLoadAttrs, :DistributedLoadAttrs, :ReportPath, :State, :TaskMessage, :CreateTime, :ModifyTime, :Requester
+        attr_accessor :TaskId, :TaskType, :Description, :Priority, :MetadataLoadAttrs, :DistributedLoadAttrs, :LoadDataAttrs, :ReportPath, :State, :TaskMessage, :CreateTime, :ModifyTime, :Requester
 
-        def initialize(taskid=nil, tasktype=nil, description=nil, priority=nil, metadataloadattrs=nil, distributedloadattrs=nil, reportpath=nil, state=nil, taskmessage=nil, createtime=nil, modifytime=nil, requester=nil)
+        def initialize(taskid=nil, tasktype=nil, description=nil, priority=nil, metadataloadattrs=nil, distributedloadattrs=nil, loaddataattrs=nil, reportpath=nil, state=nil, taskmessage=nil, createtime=nil, modifytime=nil, requester=nil)
           @TaskId = taskid
           @TaskType = tasktype
           @Description = description
           @Priority = priority
           @MetadataLoadAttrs = metadataloadattrs
           @DistributedLoadAttrs = distributedloadattrs
+          @LoadDataAttrs = loaddataattrs
           @ReportPath = reportpath
           @State = state
           @TaskMessage = taskmessage
@@ -1940,6 +1975,10 @@ module TencentCloud
             @DistributedLoadAttrs = DistributedLoadAttrs.new
             @DistributedLoadAttrs.deserialize(params['DistributedLoadAttrs'])
           end
+          unless params['LoadDataAttrs'].nil?
+            @LoadDataAttrs = LoadDataAttrs.new
+            @LoadDataAttrs.deserialize(params['LoadDataAttrs'])
+          end
           @ReportPath = params['ReportPath']
           @State = params['State']
           @TaskMessage = params['TaskMessage']
@@ -1951,28 +1990,31 @@ module TencentCloud
 
       # 创建预热任务
       class LoadTaskCreationAttrs < TencentCloud::Common::AbstractModel
-        # @param TaskType: 预热任务类型，枚举值，MetadataLoad｜DistributedLoad。
+        # @param TaskType: <p>预热任务类型，枚举值，MetadataLoad｜DistributedLoad。</p>
         # @type TaskType: String
-        # @param Priority: 任务优先级，数值越高代表优先级越高，边界值 1-9999，默认值为 1
+        # @param Priority: <p>任务优先级，数值越高代表优先级越高，边界值 1-9999，默认值为 1</p>
         # @type Priority: Integer
-        # @param Description: 任务描述，支持中文
+        # @param Description: <p>任务描述，支持中文</p>
         # @type Description: String
-        # @param MetadataLoadAttrs: 元数据预热任务参数，用于仅预热元数据时入参。入参数TaskType为MetadataLoad时，该参数不应为空。
+        # @param MetadataLoadAttrs: <p>元数据预热任务参数，用于仅预热元数据时入参。入参数TaskType为MetadataLoad时，该参数不应为空。</p>
         # @type MetadataLoadAttrs: :class:`Tencentcloud::Goosefs.v20220519.models.MetadataLoadAttrs`
-        # @param DistributedLoadAttrs: 数据预热任务参数。入参数TaskType为DistributedLoad时，该参数不应为空。
+        # @param DistributedLoadAttrs: <p>数据预热任务参数。入参数TaskType为DistributedLoad时，该参数不应为空。</p>
         # @type DistributedLoadAttrs: :class:`Tencentcloud::Goosefs.v20220519.models.DistributedLoadAttrs`
-        # @param ReportPath: 将任务执行报告写入 COS 的路径，如果不需要报告则入参空
+        # @param ReportPath: <p>将任务执行报告写入 COS 的路径，如果不需要报告则入参空</p>
         # @type ReportPath: String
+        # @param LoadDataAttrs: <p>仅预热数据任务参数。入参数TaskType为LoadData时，该参数不应为空。</p>
+        # @type LoadDataAttrs: :class:`Tencentcloud::Goosefs.v20220519.models.LoadDataAttrs`
 
-        attr_accessor :TaskType, :Priority, :Description, :MetadataLoadAttrs, :DistributedLoadAttrs, :ReportPath
+        attr_accessor :TaskType, :Priority, :Description, :MetadataLoadAttrs, :DistributedLoadAttrs, :ReportPath, :LoadDataAttrs
 
-        def initialize(tasktype=nil, priority=nil, description=nil, metadataloadattrs=nil, distributedloadattrs=nil, reportpath=nil)
+        def initialize(tasktype=nil, priority=nil, description=nil, metadataloadattrs=nil, distributedloadattrs=nil, reportpath=nil, loaddataattrs=nil)
           @TaskType = tasktype
           @Priority = priority
           @Description = description
           @MetadataLoadAttrs = metadataloadattrs
           @DistributedLoadAttrs = distributedloadattrs
           @ReportPath = reportpath
+          @LoadDataAttrs = loaddataattrs
         end
 
         def deserialize(params)
@@ -1988,6 +2030,10 @@ module TencentCloud
             @DistributedLoadAttrs.deserialize(params['DistributedLoadAttrs'])
           end
           @ReportPath = params['ReportPath']
+          unless params['LoadDataAttrs'].nil?
+            @LoadDataAttrs = LoadDataAttrs.new
+            @LoadDataAttrs.deserialize(params['LoadDataAttrs'])
+          end
         end
       end
 

@@ -70,8 +70,8 @@ module TencentCloud
 
         attr_accessor :AutoScalingGroupId, :ActivityId, :ActivityType, :StatusCode, :StatusMessage, :Cause, :Description, :StartTime, :EndTime, :CreatedTime, :ActivityRelatedInstanceSet, :StatusMessageSimplified, :LifecycleActionResultSet, :DetailedStatusMessageSet, :InvocationResultSet, :RelatedInstanceSet
         extend Gem::Deprecate
-        deprecate :ActivityRelatedInstanceSet, :none, 2026, 7
-        deprecate :ActivityRelatedInstanceSet=, :none, 2026, 7
+        deprecate :ActivityRelatedInstanceSet, :none, 2026, 9
+        deprecate :ActivityRelatedInstanceSet=, :none, 2026, 9
 
         def initialize(autoscalinggroupid=nil, activityid=nil, activitytype=nil, statuscode=nil, statusmessage=nil, cause=nil, description=nil, starttime=nil, endtime=nil, createdtime=nil, activityrelatedinstanceset=nil, statusmessagesimplified=nil, lifecycleactionresultset=nil, detailedstatusmessageset=nil, invocationresultset=nil, relatedinstanceset=nil)
           @AutoScalingGroupId = autoscalinggroupid
@@ -611,31 +611,26 @@ module TencentCloud
 
       # ClearLaunchConfigurationAttributes请求参数结构体
       class ClearLaunchConfigurationAttributesRequest < TencentCloud::Common::AbstractModel
-        # @param LaunchConfigurationId: 启动配置ID。可通过如下方式获取：
-        # <li>通过登录 [控制台](https://console.cloud.tencent.com/autoscaling/config) 查询启动配置ID。</li>
-        # <li>通过调用接口 [DescribeLaunchConfigurations](https://cloud.tencent.com/document/api/377/20445) ，取返回信息中的 LaunchConfigurationId 获取启动配置ID。</li>
+        # @param LaunchConfigurationId: <p>启动配置ID。可通过如下方式获取：</p><li>通过登录 [控制台](https://console.cloud.tencent.com/autoscaling/config) 查询启动配置ID。</li><li>通过调用接口 [DescribeLaunchConfigurations](https://cloud.tencent.com/document/api/377/20445) ，取返回信息中的 LaunchConfigurationId 获取启动配置ID。</li>
         # @type LaunchConfigurationId: String
-        # @param ClearDataDisks: 是否清空数据盘信息，非必填，默认为 false。
-        # 填 true 代表清空“数据盘”信息，清空后基于此新创建的云主机将不含有任何数据盘。
+        # @param ClearDataDisks: <p>是否清空数据盘信息，非必填，默认为 false。<br>填 true 代表清空“数据盘”信息，清空后基于此新创建的云主机将不含有任何数据盘。</p>
         # @type ClearDataDisks: Boolean
-        # @param ClearHostNameSettings: 是否清空云服务器主机名相关设置信息，非必填，默认为 false。
-        # 填 true 代表清空主机名设置信息，清空后基于此新创建的云主机将不设置主机名。
+        # @param ClearHostNameSettings: <p>是否清空云服务器主机名相关设置信息，非必填，默认为 false。<br>填 true 代表清空主机名设置信息，清空后基于此新创建的云主机将不设置主机名。</p>
         # @type ClearHostNameSettings: Boolean
-        # @param ClearInstanceNameSettings: 是否清空云服务器实例名相关设置信息，非必填，默认为 false。
-        # 填 true 代表清空主机名设置信息，清空后基于此新创建的云主机将按照“as-{{ 伸缩组AutoScalingGroupName }}”进行设置。
+        # @param ClearInstanceNameSettings: <p>是否清空云服务器实例名相关设置信息，非必填，默认为 false。<br>填 true 代表清空主机名设置信息，清空后基于此新创建的云主机将按照“as-{{ 伸缩组AutoScalingGroupName }}”进行设置。</p>
         # @type ClearInstanceNameSettings: Boolean
-        # @param ClearDisasterRecoverGroupIds: 是否清空置放群组信息，非必填，默认为 false。
-        # 填 true 代表清空置放群组信息，清空后基于此新创建的云主机将不指定任何置放群组。
+        # @param ClearDisasterRecoverGroupIds: <p>是否清空置放群组信息，非必填，默认为 false。<br>填 true 代表清空置放群组信息，清空后基于此新创建的云主机将不指定任何置放群组。</p>
         # @type ClearDisasterRecoverGroupIds: Boolean
-        # @param ClearInstanceTags: 是否清空实例标签列表，非必填，默认为 false。
-        # 填 true 代表清空实例标签列表，清空后基于此新创建的云主机将不会绑定列表中的标签。
+        # @param ClearInstanceTags: <p>是否清空实例标签列表，非必填，默认为 false。<br>填 true 代表清空实例标签列表，清空后基于此新创建的云主机将不会绑定列表中的标签。</p>
         # @type ClearInstanceTags: Boolean
-        # @param ClearMetadata: 是否清空 MetaData，非必填，默认为 false。填 true 代表清空 MetaData，清空后基于此新创建的云主机将不会关联自定义的 Metadata。
+        # @param ClearMetadata: <p>是否清空 MetaData，非必填，默认为 false。填 true 代表清空 MetaData，清空后基于此新创建的云主机将不会关联自定义的 Metadata。</p>
         # @type ClearMetadata: Boolean
+        # @param ClearNetworkInterfaces: <p>是否清除启动配置中的 NetworkInterfaces。取值 TRUE 时清除；未传或 FALSE 时不处理该字段。</p>
+        # @type ClearNetworkInterfaces: Boolean
 
-        attr_accessor :LaunchConfigurationId, :ClearDataDisks, :ClearHostNameSettings, :ClearInstanceNameSettings, :ClearDisasterRecoverGroupIds, :ClearInstanceTags, :ClearMetadata
+        attr_accessor :LaunchConfigurationId, :ClearDataDisks, :ClearHostNameSettings, :ClearInstanceNameSettings, :ClearDisasterRecoverGroupIds, :ClearInstanceTags, :ClearMetadata, :ClearNetworkInterfaces
 
-        def initialize(launchconfigurationid=nil, cleardatadisks=nil, clearhostnamesettings=nil, clearinstancenamesettings=nil, cleardisasterrecovergroupids=nil, clearinstancetags=nil, clearmetadata=nil)
+        def initialize(launchconfigurationid=nil, cleardatadisks=nil, clearhostnamesettings=nil, clearinstancenamesettings=nil, cleardisasterrecovergroupids=nil, clearinstancetags=nil, clearmetadata=nil, clearnetworkinterfaces=nil)
           @LaunchConfigurationId = launchconfigurationid
           @ClearDataDisks = cleardatadisks
           @ClearHostNameSettings = clearhostnamesettings
@@ -643,6 +638,7 @@ module TencentCloud
           @ClearDisasterRecoverGroupIds = cleardisasterrecovergroupids
           @ClearInstanceTags = clearinstancetags
           @ClearMetadata = clearmetadata
+          @ClearNetworkInterfaces = clearnetworkinterfaces
         end
 
         def deserialize(params)
@@ -653,6 +649,7 @@ module TencentCloud
           @ClearDisasterRecoverGroupIds = params['ClearDisasterRecoverGroupIds']
           @ClearInstanceTags = params['ClearInstanceTags']
           @ClearMetadata = params['ClearMetadata']
+          @ClearNetworkInterfaces = params['ClearNetworkInterfaces']
         end
       end
 
@@ -969,13 +966,13 @@ module TencentCloud
 
       # CreateLaunchConfiguration请求参数结构体
       class CreateLaunchConfigurationRequest < TencentCloud::Common::AbstractModel
-        # @param LaunchConfigurationName: <p>启动配置显示名称。名称仅支持中文、英文、数字、下划线、分隔符"-"、小数点，最大长度不能超60个字节。</p>
+        # @param LaunchConfigurationName: <p>启动配置显示名称。名称仅支持中文、英文、数字、下划线、分隔符&quot;-&quot;、小数点，最大长度不能超60个字节。</p>
         # @type LaunchConfigurationName: String
-        # @param ImageId: <p>指定有效的<a href="https://cloud.tencent.com/document/product/213/4940">镜像</a>ID，格式形如<code>img-8toqc6s3</code>。镜像Id与镜像族名称，二者必填一个且只能填写一个。镜像类型分为四种：<br/><li>公共镜像</li><li>自定义镜像</li><li>共享镜像</li><li>服务市场镜像</li><br/>可通过以下方式获取可用的镜像ID：<br/><li><code>公共镜像</code>、<code>自定义镜像</code>、<code>共享镜像</code>的镜像ID可通过登录<a href="https://console.cloud.tencent.com/cvm/image?rid=1&amp;imageType=PUBLIC_IMAGE">控制台</a>查询；<code>服务镜像市场</code>的镜像ID可通过<a href="https://market.cloud.tencent.com/list">云市场</a>查询。</li><li>通过调用接口 <a href="https://cloud.tencent.com/document/api/213/15715">DescribeImages</a> ，取返回信息中的<code>ImageId</code>字段。</li></p>
+        # @param ImageId: <p>指定有效的<a href="https://cloud.tencent.com/document/product/213/4940">镜像</a>ID，格式形如<code>img-8toqc6s3</code>。镜像Id与镜像族名称，二者必填一个且只能填写一个。镜像类型分为四种：<br><li>公共镜像</li><li>自定义镜像</li><li>共享镜像</li><li>服务市场镜像</li><br>可通过以下方式获取可用的镜像ID：<br><li><code>公共镜像</code>、<code>自定义镜像</code>、<code>共享镜像</code>的镜像ID可通过登录<a href="https://console.cloud.tencent.com/cvm/image?rid=1&amp;imageType=PUBLIC_IMAGE">控制台</a>查询；<code>服务镜像市场</code>的镜像ID可通过<a href="https://market.cloud.tencent.com/list">云市场</a>查询。</li><li>通过调用接口 <a href="https://cloud.tencent.com/document/api/213/15715">DescribeImages</a> ，取返回信息中的<code>ImageId</code>字段。</li></p>
         # @type ImageId: String
-        # @param ProjectId: <p>启动配置所属项目ID。默认值为0，表示使用默认项目。该参数可以通过调用 <a href="https://cloud.tencent.com/document/api/651/78725">DescribeProject</a> 的返回值中的 projectId 字段来获取。注意：伸缩组内实例所属项目ID取伸缩组项目ID，与这里取值无关。</p>
+        # @param ProjectId: <p>启动配置所属项目ID。默认值为0，表示使用默认项目。该参数可以通过调用 <a href="https://cloud.tencent.com/document/api/651/78725">DescribeProject</a> 的返回值中的 projectId 字段来获取。<br>注意：伸缩组内实例所属项目ID取伸缩组项目ID，与这里取值无关。</p>
         # @type ProjectId: Integer
-        # @param InstanceType: <p>实例机型。不同实例机型指定了不同的资源规格，具体取值可通过调用接口 <a href="https://cloud.tencent.com/document/api/213/15749">DescribeInstanceTypeConfigs</a> 来获得最新的规格表或参见<a href="https://cloud.tencent.com/document/product/213/11518">实例类型</a>描述。<code>InstanceType</code>和<code>InstanceTypes</code>参数互斥，二者必填一个且只能填写一个。</p>
+        # @param InstanceType: <p>实例机型。不同实例机型指定了不同的资源规格，具体取值可通过调用接口 <a href="https://cloud.tencent.com/document/api/213/15749">DescribeInstanceTypeConfigs</a> 来获得最新的规格表或参见<a href="https://cloud.tencent.com/document/product/213/11518">实例类型</a>描述。<br><code>InstanceType</code>和<code>InstanceTypes</code>参数互斥，二者必填一个且只能填写一个。</p>
         # @type InstanceType: String
         # @param SystemDisk: <p>实例系统盘配置信息。若不指定该参数，则按照系统默认值进行分配。</p>
         # @type SystemDisk: :class:`Tencentcloud::As.v20180419.models.SystemDisk`
@@ -991,29 +988,29 @@ module TencentCloud
         # @type EnhancedService: :class:`Tencentcloud::As.v20180419.models.EnhancedService`
         # @param UserData: <p>经过 Base64 编码后的自定义数据，最大长度不超过16KB。</p>
         # @type UserData: String
-        # @param InstanceChargeType: <p>实例计费类型，CVM默认值按照POSTPAID_BY_HOUR处理。<li>POSTPAID_BY_HOUR：按小时后付费</li><li>SPOTPAID：竞价付费</li><li>PREPAID：预付费，即包年包月</li><li>CDCPAID：专用集群付费</li></p>
+        # @param InstanceChargeType: <p>实例计费类型，CVM默认值按照POSTPAID_BY_HOUR处理。</p><li>POSTPAID_BY_HOUR：按小时后付费</li><li>SPOTPAID：竞价付费</li><li>PREPAID：预付费，即包年包月</li><li>CDCPAID：专用集群付费</li>
         # @type InstanceChargeType: String
         # @param InstanceMarketOptions: <p>实例的市场相关选项，如竞价实例相关参数，若指定实例的付费模式为竞价付费则该参数必传。</p>
         # @type InstanceMarketOptions: :class:`Tencentcloud::As.v20180419.models.InstanceMarketOptionsRequest`
-        # @param InstanceTypes: <p>实例机型列表，不同实例机型指定了不同的资源规格，最多支持10种实例机型。<code>InstanceType</code>和<code>InstanceTypes</code>参数互斥，二者必填一个且只能填写一个。具体取值可通过调用接口<a href="https://cloud.tencent.com/document/api/213/15749">DescribeInstanceTypeConfigs</a>来获得最新的规格表或参见<a href="https://cloud.tencent.com/document/product/213/11518">实例规格描述</a>。</p>
+        # @param InstanceTypes: <p>实例机型列表，不同实例机型指定了不同的资源规格，最多支持10种实例机型。<br><code>InstanceType</code>和<code>InstanceTypes</code>参数互斥，二者必填一个且只能填写一个。具体取值可通过调用接口<a href="https://cloud.tencent.com/document/api/213/15749">DescribeInstanceTypeConfigs</a>来获得最新的规格表或参见<a href="https://cloud.tencent.com/document/product/213/11518">实例规格描述</a>。</p>
         # @type InstanceTypes: Array
         # @param CamRoleName: <p>CAM角色名称。可通过<a href="https://cloud.tencent.com/document/product/598/36223">DescribeRoleList</a>接口返回值中的roleName获取。</p>
         # @type CamRoleName: String
-        # @param InstanceTypesCheckPolicy: <p>实例类型校验策略，取值包括 ALL 和 ANY，默认取值为ANY。该参数仅在 InstanceTypes 入参包含多个机型时生效。<li> ALL，所有实例类型（InstanceType）都可用则通过校验，否则校验报错。</li><li> ANY，存在任何一个实例类型（InstanceType）可用则通过校验，否则校验报错。</li></p><p>实例类型不可用的常见原因包括该实例类型售罄、对应云盘售罄等。如果 InstanceTypes 中一款机型不存在或者已下线，则无论 InstanceTypesCheckPolicy 采用何种取值，都会校验报错。</p>
+        # @param InstanceTypesCheckPolicy: <p>实例类型校验策略，取值包括 ALL 和 ANY，默认取值为ANY。该参数仅在 InstanceTypes 入参包含多个机型时生效。</p><li> ALL，所有实例类型（InstanceType）都可用则通过校验，否则校验报错。</li><li> ANY，存在任何一个实例类型（InstanceType）可用则通过校验，否则校验报错。</li><p>实例类型不可用的常见原因包括该实例类型售罄、对应云盘售罄等。<br>如果 InstanceTypes 中一款机型不存在或者已下线，则无论 InstanceTypesCheckPolicy 采用何种取值，都会校验报错。</p>
         # @type InstanceTypesCheckPolicy: String
         # @param InstanceTags: <p>标签列表。通过指定该参数，可以为扩容的实例绑定标签。最多支持指定10个标签。</p>
         # @type InstanceTags: Array
         # @param Tags: <p>标签描述列表。通过指定该参数可以支持绑定标签到启动配置。每个启动配置最多支持30个标签。</p>
         # @type Tags: Array
-        # @param HostNameSettings: <p>云服务器主机名（HostName）的相关设置。不支持windows实例设置主机名。 新增该属性时，必须传递云服务器的主机名，其它未传递字段会设置为默认值。会校验主机名(如果存在后缀则加上后缀)是否超过最大位数46。</p>
+        # @param HostNameSettings: <p>云服务器主机名（HostName）的相关设置。<br>不支持windows实例设置主机名。<br>新增该属性时，必须传递云服务器的主机名，其它未传递字段会设置为默认值。<br>会校验主机名(如果存在后缀则加上后缀)是否超过最大位数46。</p>
         # @type HostNameSettings: :class:`Tencentcloud::As.v20180419.models.HostNameSettings`
-        # @param InstanceNameSettings: <p>云服务器实例名（InstanceName）的相关设置。如果用户在启动配置中设置此字段，则伸缩组创建出的实例 InstanceName 参照此字段进行设置，并传递给 CVM；如果用户未在启动配置中设置此字段，则伸缩组创建出的实例 InstanceName 按照“as-{{ 伸缩组AutoScalingGroupName }}”进行设置，并传递给 CVM。新增该属性时，必须传递云服务器的实例名称，其它未传递字段会设置为默认值。会校验实例名称(如果存在后缀则加上后缀)是否超过最大位数108。</p>
+        # @param InstanceNameSettings: <p>云服务器实例名（InstanceName）的相关设置。<br>如果用户在启动配置中设置此字段，则伸缩组创建出的实例 InstanceName 参照此字段进行设置，并传递给 CVM；如果用户未在启动配置中设置此字段，则伸缩组创建出的实例 InstanceName 按照“as-{{ 伸缩组AutoScalingGroupName }}”进行设置，并传递给 CVM。<br>新增该属性时，必须传递云服务器的实例名称，其它未传递字段会设置为默认值。<br>会校验实例名称(如果存在后缀则加上后缀)是否超过最大位数108。</p>
         # @type InstanceNameSettings: :class:`Tencentcloud::As.v20180419.models.InstanceNameSettings`
         # @param InstanceChargePrepaid: <p>预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。若指定实例的付费模式为预付费则该参数必传。</p>
         # @type InstanceChargePrepaid: :class:`Tencentcloud::As.v20180419.models.InstanceChargePrepaid`
-        # @param DiskTypePolicy: <p>云盘类型选择策略，默认取值 ORIGINAL，取值范围：<li>ORIGINAL：使用设置的云盘类型</li><li>AUTOMATIC：自动选择当前可用的云盘类型</li></p>
+        # @param DiskTypePolicy: <p>云盘类型选择策略，默认取值 ORIGINAL，取值范围：</p><li>ORIGINAL：使用设置的云盘类型</li><li>AUTOMATIC：自动选择当前可用的云盘类型</li>
         # @type DiskTypePolicy: String
-        # @param HpcClusterId: <p>高性能计算集群ID。可通过调用<a href="https://cloud.tencent.com/document/product/213/83220">DescribeHpcClusters</a>接口获取该参数。注意：此字段默认为空。</p>
+        # @param HpcClusterId: <p>高性能计算集群ID。可通过调用<a href="https://cloud.tencent.com/document/product/213/83220">DescribeHpcClusters</a>接口获取该参数。<br>注意：此字段默认为空。</p>
         # @type HpcClusterId: String
         # @param IPv6InternetAccessible: <p>IPv6公网带宽相关信息设置。若新建实例包含IPv6地址，该参数可为新建实例的IPv6地址分配公网带宽。关联启动配置的伸缩组Ipv6AddressCount参数为0时，该参数不会生效。</p>
         # @type IPv6InternetAccessible: :class:`Tencentcloud::As.v20180419.models.IPv6InternetAccessible`
@@ -1025,10 +1022,12 @@ module TencentCloud
         # @type DedicatedClusterId: String
         # @param Metadata: <p>自定义metadata。</p>
         # @type Metadata: :class:`Tencentcloud::As.v20180419.models.Metadata`
+        # @param NetworkInterfaces: <p>扩容实例的弹性网卡配置。</p><p>入参限制：最多 17 项。配置该参数时必须显式包含且只能包含一个 PRIMARY，AS 不自动补齐主网卡；显式空数组非法；竞价实例不支持此参数。</p><p>VPC 和子网由伸缩组按当前候选子网自动注入；不配置时不传给 CVM。启动配置中的 SecurityGroupIds 参数仍保留。</p>
+        # @type NetworkInterfaces: Array
 
-        attr_accessor :LaunchConfigurationName, :ImageId, :ProjectId, :InstanceType, :SystemDisk, :DataDisks, :InternetAccessible, :LoginSettings, :SecurityGroupIds, :EnhancedService, :UserData, :InstanceChargeType, :InstanceMarketOptions, :InstanceTypes, :CamRoleName, :InstanceTypesCheckPolicy, :InstanceTags, :Tags, :HostNameSettings, :InstanceNameSettings, :InstanceChargePrepaid, :DiskTypePolicy, :HpcClusterId, :IPv6InternetAccessible, :DisasterRecoverGroupIds, :ImageFamily, :DedicatedClusterId, :Metadata
+        attr_accessor :LaunchConfigurationName, :ImageId, :ProjectId, :InstanceType, :SystemDisk, :DataDisks, :InternetAccessible, :LoginSettings, :SecurityGroupIds, :EnhancedService, :UserData, :InstanceChargeType, :InstanceMarketOptions, :InstanceTypes, :CamRoleName, :InstanceTypesCheckPolicy, :InstanceTags, :Tags, :HostNameSettings, :InstanceNameSettings, :InstanceChargePrepaid, :DiskTypePolicy, :HpcClusterId, :IPv6InternetAccessible, :DisasterRecoverGroupIds, :ImageFamily, :DedicatedClusterId, :Metadata, :NetworkInterfaces
 
-        def initialize(launchconfigurationname=nil, imageid=nil, projectid=nil, instancetype=nil, systemdisk=nil, datadisks=nil, internetaccessible=nil, loginsettings=nil, securitygroupids=nil, enhancedservice=nil, userdata=nil, instancechargetype=nil, instancemarketoptions=nil, instancetypes=nil, camrolename=nil, instancetypescheckpolicy=nil, instancetags=nil, tags=nil, hostnamesettings=nil, instancenamesettings=nil, instancechargeprepaid=nil, disktypepolicy=nil, hpcclusterid=nil, ipv6internetaccessible=nil, disasterrecovergroupids=nil, imagefamily=nil, dedicatedclusterid=nil, metadata=nil)
+        def initialize(launchconfigurationname=nil, imageid=nil, projectid=nil, instancetype=nil, systemdisk=nil, datadisks=nil, internetaccessible=nil, loginsettings=nil, securitygroupids=nil, enhancedservice=nil, userdata=nil, instancechargetype=nil, instancemarketoptions=nil, instancetypes=nil, camrolename=nil, instancetypescheckpolicy=nil, instancetags=nil, tags=nil, hostnamesettings=nil, instancenamesettings=nil, instancechargeprepaid=nil, disktypepolicy=nil, hpcclusterid=nil, ipv6internetaccessible=nil, disasterrecovergroupids=nil, imagefamily=nil, dedicatedclusterid=nil, metadata=nil, networkinterfaces=nil)
           @LaunchConfigurationName = launchconfigurationname
           @ImageId = imageid
           @ProjectId = projectid
@@ -1057,6 +1056,7 @@ module TencentCloud
           @ImageFamily = imagefamily
           @DedicatedClusterId = dedicatedclusterid
           @Metadata = metadata
+          @NetworkInterfaces = networkinterfaces
         end
 
         def deserialize(params)
@@ -1138,6 +1138,14 @@ module TencentCloud
           unless params['Metadata'].nil?
             @Metadata = Metadata.new
             @Metadata.deserialize(params['Metadata'])
+          end
+          unless params['NetworkInterfaces'].nil?
+            @NetworkInterfaces = []
+            params['NetworkInterfaces'].each do |i|
+              networkinterface_tmp = NetworkInterface.new
+              networkinterface_tmp.deserialize(i)
+              @NetworkInterfaces << networkinterface_tmp
+            end
           end
         end
       end
@@ -1494,44 +1502,31 @@ module TencentCloud
 
       # 启动配置的数据盘配置信息。若不指定该参数，则默认不购买数据盘，当前仅支持购买的时候指定一个数据盘。
       class DataDisk < TencentCloud::Common::AbstractModel
-        # @param DiskType: 数据盘类型。数据盘类型限制详见[云硬盘类型](https://cloud.tencent.com/document/product/362/2353)。取值范围：
-        # <li>LOCAL_BASIC：本地硬盘</li>
-        # <li>LOCAL_SSD：本地SSD硬盘</li>
-        # <li>CLOUD_BASIC：普通云硬盘</li>
-        # <li>CLOUD_PREMIUM：高性能云硬盘</li>
-        # <li>CLOUD_SSD：SSD云硬盘</li>
-        # <li>CLOUD_HSSD：增强型SSD云硬盘</li>
-        # <li>CLOUD_TSSD：极速型SSD云硬盘</li>
-        # <li>CLOUD_BSSD：通用型SSD云硬盘</li>
-        # 默认取值与系统盘类型（SystemDisk.DiskType）保持一致。
+        # @param DiskType: <p>数据盘类型。数据盘类型限制详见<a href="https://cloud.tencent.com/document/product/362/2353">云硬盘类型</a>。取值范围：</p><li>LOCAL_BASIC：本地硬盘</li><li>LOCAL_SSD：本地SSD硬盘</li><li>CLOUD_BASIC：普通云硬盘</li><li>CLOUD_PREMIUM：高性能云硬盘</li><li>CLOUD_SSD：SSD云硬盘</li><li>CLOUD_HSSD：增强型SSD云硬盘</li><li>CLOUD_TSSD：极速型SSD云硬盘</li><li>CLOUD_BSSD：通用型SSD云硬盘</li>默认取值与系统盘类型（SystemDisk.DiskType）保持一致。
         # @type DiskType: String
-        # @param DiskSize: 数据盘大小，单位：GB。不同数据盘类型取值范围不同，具体限制详见：[CVM实例配置](https://cloud.tencent.com/document/product/213/2177)。默认值为0，表示不购买数据盘。更多限制详见[产品文档](https://cloud.tencent.com/document/product/362/5145)。
+        # @param DiskSize: <p>数据盘大小，单位：GB。不同数据盘类型取值范围不同，具体限制详见：<a href="https://cloud.tencent.com/document/product/213/2177">CVM实例配置</a>。默认值为0，表示不购买数据盘。更多限制详见<a href="https://cloud.tencent.com/document/product/362/5145">产品文档</a>。</p>
         # @type DiskSize: Integer
-        # @param SnapshotId: 数据盘快照 ID，可通过 [DescribeSnapshots](https://cloud.tencent.com/document/product/362/15647) 接口获取该参数。
+        # @param SnapshotId: <p>数据盘快照 ID，可通过 <a href="https://cloud.tencent.com/document/product/362/15647">DescribeSnapshots</a> 接口获取该参数。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SnapshotId: String
-        # @param DeleteWithInstance: 数据盘是否随子机销毁。取值范围：
-        # <li>TRUE：子机销毁时，销毁数据盘，只支持按小时后付费云盘</li>
-        # <li>FALSE：子机销毁时，保留数据盘</li>
+        # @param DeleteWithInstance: <p>数据盘是否随子机销毁。取值范围：</p><li>TRUE：子机销毁时，销毁数据盘，只支持按小时后付费云盘</li><li>FALSE：子机销毁时，保留数据盘</li>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeleteWithInstance: Boolean
-        # @param Encrypt: 数据盘是否加密。取值范围：
-        # <li>TRUE：加密</li>
-        # <li>FALSE：不加密</li>
+        # @param Encrypt: <p>是否加密数据盘。TRUE 表示加密，FALSE 表示不加密；具体盘型、地域及 KMS 规则由 CVM 校验。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Encrypt: Boolean
-        # @param ThroughputPerformance: 云硬盘性能，单位：MB/s。使用此参数可给云硬盘购买额外的性能，功能介绍和类型限制详见：[增强型 SSD 云硬盘额外性能说明](https://cloud.tencent.com/document/product/362/51896#.E5.A2.9E.E5.BC.BA.E5.9E.8B-ssd-.E4.BA.91.E7.A1.AC.E7.9B.98.E9.A2.9D.E5.A4.96.E6.80.A7.E8.83.BD)。
-        # 当前仅支持极速型云盘（CLOUD_TSSD）和增强型SSD云硬盘（CLOUD_HSSD）且 需容量 > 460GB。
+        # @param ThroughputPerformance: <p>云硬盘性能，单位：MB/s。使用此参数可给云硬盘购买额外的性能，功能介绍和类型限制详见：<a href="https://cloud.tencent.com/document/product/362/51896#.E5.A2.9E.E5.BC.BA.E5.9E.8B-ssd-.E4.BA.91.E7.A1.AC.E7.9B.98.E9.A2.9D.E5.A4.96.E6.80.A7.E8.83.BD">增强型 SSD 云硬盘额外性能说明</a>。<br>当前仅支持极速型云盘（CLOUD_TSSD）和增强型SSD云硬盘（CLOUD_HSSD）且 需容量 &gt; 460GB。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ThroughputPerformance: Integer
-        # @param BurstPerformance: 突发性能。是否开启突发性能，默认取值为 false。当前该参数仅支持极速型云盘（CLOUD_TSSD）和增强型SSD云硬盘（CLOUD_HSSD）且需容量 > 460GB。
-        # 注：内测中，需提单申请后使用。
+        # @param BurstPerformance: <p>突发性能。是否开启突发性能，默认取值为 false。当前该参数仅支持极速型云盘（CLOUD_TSSD）和增强型SSD云硬盘（CLOUD_HSSD）且需容量 &gt; 460GB。<br>注：内测中，需提单申请后使用。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BurstPerformance: Boolean
+        # @param KmsKeyId: <p>数据盘加密使用的 KMS 密钥 ID。密钥有效性、权限以及与盘型和地域的适配性由 CVM 校验。</p>
+        # @type KmsKeyId: String
 
-        attr_accessor :DiskType, :DiskSize, :SnapshotId, :DeleteWithInstance, :Encrypt, :ThroughputPerformance, :BurstPerformance
+        attr_accessor :DiskType, :DiskSize, :SnapshotId, :DeleteWithInstance, :Encrypt, :ThroughputPerformance, :BurstPerformance, :KmsKeyId
 
-        def initialize(disktype=nil, disksize=nil, snapshotid=nil, deletewithinstance=nil, encrypt=nil, throughputperformance=nil, burstperformance=nil)
+        def initialize(disktype=nil, disksize=nil, snapshotid=nil, deletewithinstance=nil, encrypt=nil, throughputperformance=nil, burstperformance=nil, kmskeyid=nil)
           @DiskType = disktype
           @DiskSize = disksize
           @SnapshotId = snapshotid
@@ -1539,6 +1534,7 @@ module TencentCloud
           @Encrypt = encrypt
           @ThroughputPerformance = throughputperformance
           @BurstPerformance = burstperformance
+          @KmsKeyId = kmskeyid
         end
 
         def deserialize(params)
@@ -1549,6 +1545,7 @@ module TencentCloud
           @Encrypt = params['Encrypt']
           @ThroughputPerformance = params['ThroughputPerformance']
           @BurstPerformance = params['BurstPerformance']
+          @KmsKeyId = params['KmsKeyId']
         end
       end
 
@@ -2737,8 +2734,8 @@ module TencentCloud
 
         attr_accessor :SecurityService, :MonitorService, :AutomationService, :AutomationToolsService
         extend Gem::Deprecate
-        deprecate :AutomationService, :none, 2026, 7
-        deprecate :AutomationService=, :none, 2026, 7
+        deprecate :AutomationService, :none, 2026, 9
+        deprecate :AutomationService=, :none, 2026, 9
 
         def initialize(securityservice=nil, monitorservice=nil, automationservice=nil, automationtoolsservice=nil)
           @SecurityService = securityservice
@@ -3428,83 +3425,80 @@ module TencentCloud
 
       # 符合条件的启动配置信息的集合。
       class LaunchConfiguration < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 实例所属项目ID。
+        # @param ProjectId: <p>实例所属项目ID。</p>
         # @type ProjectId: Integer
-        # @param LaunchConfigurationId: 启动配置ID。
+        # @param LaunchConfigurationId: <p>启动配置ID。</p>
         # @type LaunchConfigurationId: String
-        # @param LaunchConfigurationName: 启动配置名称。
+        # @param LaunchConfigurationName: <p>启动配置名称。</p>
         # @type LaunchConfigurationName: String
-        # @param InstanceType: 实例机型。
+        # @param InstanceType: <p>实例机型。</p>
         # @type InstanceType: String
-        # @param SystemDisk: 实例系统盘配置信息。
+        # @param SystemDisk: <p>实例系统盘配置信息。</p>
         # @type SystemDisk: :class:`Tencentcloud::As.v20180419.models.SystemDisk`
-        # @param DataDisks: 实例数据盘配置信息。
+        # @param DataDisks: <p>实例数据盘配置信息。</p>
         # @type DataDisks: Array
-        # @param LoginSettings: 实例登录设置。
+        # @param LoginSettings: <p>实例登录设置。</p>
         # @type LoginSettings: :class:`Tencentcloud::As.v20180419.models.LimitedLoginSettings`
-        # @param InternetAccessible: 公网带宽相关信息设置。
+        # @param InternetAccessible: <p>公网带宽相关信息设置。</p>
         # @type InternetAccessible: :class:`Tencentcloud::As.v20180419.models.InternetAccessible`
-        # @param SecurityGroupIds: 实例所属安全组。
+        # @param SecurityGroupIds: <p>实例所属安全组。</p>
         # @type SecurityGroupIds: Array
-        # @param AutoScalingGroupAbstractSet: 启动配置关联的伸缩组。
+        # @param AutoScalingGroupAbstractSet: <p>启动配置关联的伸缩组。</p>
         # @type AutoScalingGroupAbstractSet: Array
-        # @param UserData: 自定义数据。
+        # @param UserData: <p>自定义数据。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserData: String
-        # @param CreatedTime: 启动配置创建时间，为标准`UTC`时间。
+        # @param CreatedTime: <p>启动配置创建时间，为标准<code>UTC</code>时间。</p>
         # @type CreatedTime: String
-        # @param EnhancedService: 实例的增强服务启用情况与其设置。
+        # @param EnhancedService: <p>实例的增强服务启用情况与其设置。</p>
         # @type EnhancedService: :class:`Tencentcloud::As.v20180419.models.EnhancedService`
-        # @param ImageId: 镜像ID。
+        # @param ImageId: <p>镜像ID。</p>
         # @type ImageId: String
-        # @param LaunchConfigurationStatus: 启动配置当前状态。取值范围：<li>NORMAL：正常</li><li>IMAGE_ABNORMAL：启动配置镜像异常</li><li>CBS_SNAP_ABNORMAL：启动配置数据盘快照异常</li><li>SECURITY_GROUP_ABNORMAL：启动配置安全组异常</li>
+        # @param LaunchConfigurationStatus: <p>启动配置当前状态。取值范围：<li>NORMAL：正常</li><li>IMAGE_ABNORMAL：启动配置镜像异常</li><li>CBS_SNAP_ABNORMAL：启动配置数据盘快照异常</li><li>SECURITY_GROUP_ABNORMAL：启动配置安全组异常</li></p>
         # @type LaunchConfigurationStatus: String
-        # @param InstanceChargeType: 实例计费类型，取值范围如下：
-        # <li>POSTPAID_BY_HOUR：按小时后付费</li>
-        # <li>SPOTPAID：竞价付费</li>
-        # <li>PREPAID：预付费，即包年包月</li>
-        # <li>CDCPAID：专用集群付费</li>
+        # @param InstanceChargeType: <p>实例计费类型，取值范围如下：</p><li>POSTPAID_BY_HOUR：按小时后付费</li><li>SPOTPAID：竞价付费</li><li>PREPAID：预付费，即包年包月</li><li>CDCPAID：专用集群付费</li>
         # @type InstanceChargeType: String
-        # @param InstanceMarketOptions: 实例的市场相关选项，如竞价实例相关参数，若指定实例的付费模式为竞价付费则该参数必传。
+        # @param InstanceMarketOptions: <p>实例的市场相关选项，如竞价实例相关参数，若指定实例的付费模式为竞价付费则该参数必传。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceMarketOptions: :class:`Tencentcloud::As.v20180419.models.InstanceMarketOptionsRequest`
-        # @param InstanceTypes: 实例机型列表。
+        # @param InstanceTypes: <p>实例机型列表。</p>
         # @type InstanceTypes: Array
-        # @param InstanceTags: 实例标签列表。扩容出来的实例会自动带上标签，最多支持10个标签。
+        # @param InstanceTags: <p>实例标签列表。扩容出来的实例会自动带上标签，最多支持10个标签。</p>
         # @type InstanceTags: Array
-        # @param Tags: 标签列表，该参数内的标签仅用于绑定启动配置，不会传递给基于该启动配置扩容的 CVM 实例。
+        # @param Tags: <p>标签列表，该参数内的标签仅用于绑定启动配置，不会传递给基于该启动配置扩容的 CVM 实例。</p>
         # @type Tags: Array
-        # @param VersionNumber: 版本号。
+        # @param VersionNumber: <p>版本号。</p>
         # @type VersionNumber: Integer
-        # @param UpdatedTime: 更新时间，为标准`UTC`时间。
+        # @param UpdatedTime: <p>更新时间，为标准<code>UTC</code>时间。</p>
         # @type UpdatedTime: String
-        # @param CamRoleName: CAM角色名称。可通过[DescribeRoleList](https://cloud.tencent.com/document/product/598/36223)接口返回值中的roleName获取。
+        # @param CamRoleName: <p>CAM角色名称。可通过<a href="https://cloud.tencent.com/document/product/598/36223">DescribeRoleList</a>接口返回值中的roleName获取。</p>
         # @type CamRoleName: String
-        # @param LastOperationInstanceTypesCheckPolicy: 上次操作时，InstanceTypesCheckPolicy 取值。
+        # @param LastOperationInstanceTypesCheckPolicy: <p>上次操作时，InstanceTypesCheckPolicy 取值。</p>
         # @type LastOperationInstanceTypesCheckPolicy: String
-        # @param HostNameSettings: 云服务器主机名（HostName）的相关设置。
+        # @param HostNameSettings: <p>云服务器主机名（HostName）的相关设置。</p>
         # @type HostNameSettings: :class:`Tencentcloud::As.v20180419.models.HostNameSettings`
-        # @param InstanceNameSettings: 云服务器实例名（InstanceName）的相关设置。
+        # @param InstanceNameSettings: <p>云服务器实例名（InstanceName）的相关设置。</p>
         # @type InstanceNameSettings: :class:`Tencentcloud::As.v20180419.models.InstanceNameSettings`
-        # @param InstanceChargePrepaid: 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。若指定实例的付费模式为预付费则该参数必传。
+        # @param InstanceChargePrepaid: <p>预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。若指定实例的付费模式为预付费则该参数必传。</p>
         # @type InstanceChargePrepaid: :class:`Tencentcloud::As.v20180419.models.InstanceChargePrepaid`
-        # @param DiskTypePolicy: 云盘类型选择策略。取值范围：<li>ORIGINAL：使用设置的云盘类型</li><li>AUTOMATIC：自动选择当前可用区下可用的云盘类型</li>
+        # @param DiskTypePolicy: <p>云盘类型选择策略。取值范围：<li>ORIGINAL：使用设置的云盘类型</li><li>AUTOMATIC：自动选择当前可用区下可用的云盘类型</li></p>
         # @type DiskTypePolicy: String
-        # @param HpcClusterId: 高性能计算集群ID。<br>
-        # 注意：此字段默认为空。
+        # @param HpcClusterId: <p>高性能计算集群ID。<br><br>注意：此字段默认为空。</p>
         # @type HpcClusterId: String
-        # @param IPv6InternetAccessible: IPv6公网带宽相关信息设置。
+        # @param IPv6InternetAccessible: <p>IPv6公网带宽相关信息设置。</p>
         # @type IPv6InternetAccessible: :class:`Tencentcloud::As.v20180419.models.IPv6InternetAccessible`
-        # @param DisasterRecoverGroupIds: 置放群组id，仅支持指定一个。
+        # @param DisasterRecoverGroupIds: <p>置放群组id，仅支持指定一个。</p>
         # @type DisasterRecoverGroupIds: Array
-        # @param ImageFamily: 镜像族名称。
+        # @param ImageFamily: <p>镜像族名称。</p>
         # @type ImageFamily: String
-        # @param DedicatedClusterId: 本地专用集群 ID。
+        # @param DedicatedClusterId: <p>本地专用集群 ID。</p>
         # @type DedicatedClusterId: String
+        # @param NetworkInterfaces: <p>启动配置的弹性网卡配置。</p>
+        # @type NetworkInterfaces: Array
 
-        attr_accessor :ProjectId, :LaunchConfigurationId, :LaunchConfigurationName, :InstanceType, :SystemDisk, :DataDisks, :LoginSettings, :InternetAccessible, :SecurityGroupIds, :AutoScalingGroupAbstractSet, :UserData, :CreatedTime, :EnhancedService, :ImageId, :LaunchConfigurationStatus, :InstanceChargeType, :InstanceMarketOptions, :InstanceTypes, :InstanceTags, :Tags, :VersionNumber, :UpdatedTime, :CamRoleName, :LastOperationInstanceTypesCheckPolicy, :HostNameSettings, :InstanceNameSettings, :InstanceChargePrepaid, :DiskTypePolicy, :HpcClusterId, :IPv6InternetAccessible, :DisasterRecoverGroupIds, :ImageFamily, :DedicatedClusterId
+        attr_accessor :ProjectId, :LaunchConfigurationId, :LaunchConfigurationName, :InstanceType, :SystemDisk, :DataDisks, :LoginSettings, :InternetAccessible, :SecurityGroupIds, :AutoScalingGroupAbstractSet, :UserData, :CreatedTime, :EnhancedService, :ImageId, :LaunchConfigurationStatus, :InstanceChargeType, :InstanceMarketOptions, :InstanceTypes, :InstanceTags, :Tags, :VersionNumber, :UpdatedTime, :CamRoleName, :LastOperationInstanceTypesCheckPolicy, :HostNameSettings, :InstanceNameSettings, :InstanceChargePrepaid, :DiskTypePolicy, :HpcClusterId, :IPv6InternetAccessible, :DisasterRecoverGroupIds, :ImageFamily, :DedicatedClusterId, :NetworkInterfaces
 
-        def initialize(projectid=nil, launchconfigurationid=nil, launchconfigurationname=nil, instancetype=nil, systemdisk=nil, datadisks=nil, loginsettings=nil, internetaccessible=nil, securitygroupids=nil, autoscalinggroupabstractset=nil, userdata=nil, createdtime=nil, enhancedservice=nil, imageid=nil, launchconfigurationstatus=nil, instancechargetype=nil, instancemarketoptions=nil, instancetypes=nil, instancetags=nil, tags=nil, versionnumber=nil, updatedtime=nil, camrolename=nil, lastoperationinstancetypescheckpolicy=nil, hostnamesettings=nil, instancenamesettings=nil, instancechargeprepaid=nil, disktypepolicy=nil, hpcclusterid=nil, ipv6internetaccessible=nil, disasterrecovergroupids=nil, imagefamily=nil, dedicatedclusterid=nil)
+        def initialize(projectid=nil, launchconfigurationid=nil, launchconfigurationname=nil, instancetype=nil, systemdisk=nil, datadisks=nil, loginsettings=nil, internetaccessible=nil, securitygroupids=nil, autoscalinggroupabstractset=nil, userdata=nil, createdtime=nil, enhancedservice=nil, imageid=nil, launchconfigurationstatus=nil, instancechargetype=nil, instancemarketoptions=nil, instancetypes=nil, instancetags=nil, tags=nil, versionnumber=nil, updatedtime=nil, camrolename=nil, lastoperationinstancetypescheckpolicy=nil, hostnamesettings=nil, instancenamesettings=nil, instancechargeprepaid=nil, disktypepolicy=nil, hpcclusterid=nil, ipv6internetaccessible=nil, disasterrecovergroupids=nil, imagefamily=nil, dedicatedclusterid=nil, networkinterfaces=nil)
           @ProjectId = projectid
           @LaunchConfigurationId = launchconfigurationid
           @LaunchConfigurationName = launchconfigurationname
@@ -3538,6 +3532,7 @@ module TencentCloud
           @DisasterRecoverGroupIds = disasterrecovergroupids
           @ImageFamily = imagefamily
           @DedicatedClusterId = dedicatedclusterid
+          @NetworkInterfaces = networkinterfaces
         end
 
         def deserialize(params)
@@ -3629,6 +3624,14 @@ module TencentCloud
           @DisasterRecoverGroupIds = params['DisasterRecoverGroupIds']
           @ImageFamily = params['ImageFamily']
           @DedicatedClusterId = params['DedicatedClusterId']
+          unless params['NetworkInterfaces'].nil?
+            @NetworkInterfaces = []
+            params['NetworkInterfaces'].each do |i|
+              networkinterface_tmp = NetworkInterface.new
+              networkinterface_tmp.deserialize(i)
+              @NetworkInterfaces << networkinterface_tmp
+            end
+          end
         end
       end
 
@@ -3917,7 +3920,7 @@ module TencentCloud
         # @type DesiredCapacity: Integer
         # @param LaunchConfigurationId: <p>启动配置ID。可以通过如下方式获取可用的启动配置ID:</p><li>通过登录 [控制台](https://console.cloud.tencent.com/autoscaling/config) 查询启动配置ID。</li><li>通过调用接口 [DescribeLaunchConfigurations](https://cloud.tencent.com/document/api/377/20445) ，取返回信息中的 LaunchConfigurationId 获取启动配置ID。</li>
         # @type LaunchConfigurationId: String
-        # @param MaxSize: <p>最大实例数，取值范围为 [0,2000]。需满足最大值大于等于期望值，期望值大于等于最小值。</p>
+        # @param MaxSize: <p>最大实例数，取值范围为 [0,2000]。需满足最大值大于等于期望值，期望值大于等于最小值。</p><p>取值范围：[0, 2000]</p>
         # @type MaxSize: Integer
         # @param MinSize: <p>最小实例数，取值范围为 [0,2000]。需满足最大值大于等于期望值，期望值大于等于最小值。</p>
         # @type MinSize: Integer
@@ -4091,91 +4094,64 @@ module TencentCloud
 
       # ModifyLaunchConfigurationAttributes请求参数结构体
       class ModifyLaunchConfigurationAttributesRequest < TencentCloud::Common::AbstractModel
-        # @param LaunchConfigurationId: 启动配置ID。可通过登录 [控制台](https://console.cloud.tencent.com/autoscaling/config) 或调用接口 [DescribeLaunchConfigurations](https://cloud.tencent.com/document/api/377/20445) ，取返回信息中的 LaunchConfigurationId 获取启动配置ID。
+        # @param LaunchConfigurationId: <p>启动配置ID。可通过登录 <a href="https://console.cloud.tencent.com/autoscaling/config">控制台</a> 或调用接口 <a href="https://cloud.tencent.com/document/api/377/20445">DescribeLaunchConfigurations</a> ，取返回信息中的 LaunchConfigurationId 获取启动配置ID。</p>
         # @type LaunchConfigurationId: String
-        # @param ImageId: 指定有效的[镜像](https://cloud.tencent.com/document/product/213/4940)ID，格式形如`img-8toqc6s3`。镜像类型分为四种：<br/><li>公共镜像</li><li>自定义镜像</li><li>共享镜像</li><li>服务市场镜像</li><br/>可通过以下方式获取可用的镜像ID：<br/><li>`公共镜像`、`自定义镜像`、`共享镜像`的镜像ID可通过登录[控制台](https://console.cloud.tencent.com/cvm/image?rid=1&imageType=PUBLIC_IMAGE)查询；`服务镜像市场`的镜像ID可通过[云市场](https://market.cloud.tencent.com/list)查询。</li><li>通过调用接口 [DescribeImages](https://cloud.tencent.com/document/api/213/15715) ，取返回信息中的`ImageId`字段。</li>
+        # @param ImageId: <p>指定有效的<a href="https://cloud.tencent.com/document/product/213/4940">镜像</a>ID，格式形如<code>img-8toqc6s3</code>。镜像类型分为四种：<br><li>公共镜像</li><li>自定义镜像</li><li>共享镜像</li><li>服务市场镜像</li><br>可通过以下方式获取可用的镜像ID：<br><li><code>公共镜像</code>、<code>自定义镜像</code>、<code>共享镜像</code>的镜像ID可通过登录<a href="https://console.cloud.tencent.com/cvm/image?rid=1&amp;imageType=PUBLIC_IMAGE">控制台</a>查询；<code>服务镜像市场</code>的镜像ID可通过<a href="https://market.cloud.tencent.com/list">云市场</a>查询。</li><li>通过调用接口 <a href="https://cloud.tencent.com/document/api/213/15715">DescribeImages</a> ，取返回信息中的<code>ImageId</code>字段。</li></p>
         # @type ImageId: String
-        # @param InstanceTypes: 实例类型列表，不同实例机型指定了不同的资源规格，最多支持10种实例机型。
-        # InstanceType 指定单一实例类型，通过设置 InstanceTypes可以指定多实例类型，并使原有的InstanceType失效。具体取值可通过调用接口[DescribeInstanceTypeConfigs](https://cloud.tencent.com/document/api/213/15749)来获得最新的规格表或参见[实例规格描述](https://cloud.tencent.com/document/product/213/11518)。
+        # @param InstanceTypes: <p>实例类型列表，不同实例机型指定了不同的资源规格，最多支持10种实例机型。<br>InstanceType 指定单一实例类型，通过设置 InstanceTypes可以指定多实例类型，并使原有的InstanceType失效。具体取值可通过调用接口<a href="https://cloud.tencent.com/document/api/213/15749">DescribeInstanceTypeConfigs</a>来获得最新的规格表或参见<a href="https://cloud.tencent.com/document/product/213/11518">实例规格描述</a>。</p>
         # @type InstanceTypes: Array
-        # @param InstanceTypesCheckPolicy: 实例类型校验策略，在实际修改 InstanceTypes 时发挥作用，取值包括 ALL 和 ANY，默认取值为ANY。
-        # <li> ALL，所有实例类型（InstanceType）都可用则通过校验，否则校验报错。</li>
-        # <li> ANY，存在任何一个实例类型（InstanceType）可用则通过校验，否则校验报错。</li>
-        # 实例类型不可用的常见原因包括该实例类型售罄、对应云盘售罄等。
-        # 如果 InstanceTypes 中一款机型不存在或者已下线，则无论 InstanceTypesCheckPolicy 采用何种取值，都会校验报错。
+        # @param InstanceTypesCheckPolicy: <p>实例类型校验策略，在实际修改 InstanceTypes 时发挥作用，取值包括 ALL 和 ANY，默认取值为ANY。</p><li> ALL，所有实例类型（InstanceType）都可用则通过校验，否则校验报错。</li> <li> ANY，存在任何一个实例类型（InstanceType）可用则通过校验，否则校验报错。</li> 实例类型不可用的常见原因包括该实例类型售罄、对应云盘售罄等。如果 InstanceTypes 中一款机型不存在或者已下线，则无论 InstanceTypesCheckPolicy 采用何种取值，都会校验报错。
         # @type InstanceTypesCheckPolicy: String
-        # @param LaunchConfigurationName: 启动配置显示名称。名称仅支持中文、英文、数字、下划线、分隔符"-"、小数点，最大长度不能超60个字节。
+        # @param LaunchConfigurationName: <p>启动配置显示名称。名称仅支持中文、英文、数字、下划线、分隔符&quot;-&quot;、小数点，最大长度不能超60个字节。</p>
         # @type LaunchConfigurationName: String
-        # @param UserData: 经过 Base64 编码后的自定义数据，最大长度不超过16KB。如果要清空UserData，则指定其为空字符串。
+        # @param UserData: <p>经过 Base64 编码后的自定义数据，最大长度不超过16KB。如果要清空UserData，则指定其为空字符串。</p>
         # @type UserData: String
-        # @param SecurityGroupIds: 实例所属安全组。该参数可以通过调用 [DescribeSecurityGroups](https://cloud.tencent.com/document/api/215/15808) 的返回值中的`SecurityGroupId`字段来获取。
-        # 若指定该参数，请至少提供一个安全组，列表顺序有先后。
+        # @param SecurityGroupIds: <p>实例所属安全组。该参数可以通过调用 <a href="https://cloud.tencent.com/document/api/215/15808">DescribeSecurityGroups</a> 的返回值中的<code>SecurityGroupId</code>字段来获取。<br>若指定该参数，请至少提供一个安全组，列表顺序有先后。</p>
         # @type SecurityGroupIds: Array
-        # @param InternetAccessible: 公网带宽相关信息设置。
-        # 当公网出带宽上限为0Mbps时，不支持修改为开通分配公网IP；相应的，当前为开通分配公网IP时，修改的公网出带宽上限值必须大于0Mbps。
+        # @param InternetAccessible: <p>公网带宽相关信息设置。<br>当公网出带宽上限为0Mbps时，不支持修改为开通分配公网IP；相应的，当前为开通分配公网IP时，修改的公网出带宽上限值必须大于0Mbps。</p>
         # @type InternetAccessible: :class:`Tencentcloud::As.v20180419.models.InternetAccessible`
-        # @param InstanceChargeType: 实例计费类型。具体取值范围如下：
-        # <li>POSTPAID_BY_HOUR：按小时后付费</li>
-        # <li>SPOTPAID：竞价付费</li>
-        # <li>PREPAID：预付费，即包年包月</li>
-        # <li>CDCPAID：专用集群付费</li>
+        # @param InstanceChargeType: <p>实例计费类型。具体取值范围如下：</p><li>POSTPAID_BY_HOUR：按小时后付费</li><li>SPOTPAID：竞价付费</li><li>PREPAID：预付费，即包年包月</li><li>CDCPAID：专用集群付费</li>
         # @type InstanceChargeType: String
-        # @param InstanceChargePrepaid: 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。
-        # 若修改实例的付费模式为预付费，则该参数必传；从预付费修改为其他付费模式时，本字段原信息会自动丢弃。
-        # 当新增该字段时，必须传递购买实例的时长，其它未传递字段会设置为默认值。
-        # 当修改本字段时，当前付费模式必须为预付费。
+        # @param InstanceChargePrepaid: <p>预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。<br>若修改实例的付费模式为预付费，则该参数必传；从预付费修改为其他付费模式时，本字段原信息会自动丢弃。<br>当新增该字段时，必须传递购买实例的时长，其它未传递字段会设置为默认值。<br>当修改本字段时，当前付费模式必须为预付费。</p>
         # @type InstanceChargePrepaid: :class:`Tencentcloud::As.v20180419.models.InstanceChargePrepaid`
-        # @param InstanceMarketOptions: 实例的市场相关选项，如竞价实例相关参数。
-        # 若修改实例的付费模式为竞价付费，则该参数必传；从竞价付费修改为其他付费模式时，本字段原信息会自动丢弃。
-        # 当新增该字段时，必须传递竞价相关选项下的竞价出价，其它未传递字段会设置为默认值。
-        # 当修改本字段时，当前付费模式必须为竞价付费。
+        # @param InstanceMarketOptions: <p>实例的市场相关选项，如竞价实例相关参数。<br>若修改实例的付费模式为竞价付费，则该参数必传；从竞价付费修改为其他付费模式时，本字段原信息会自动丢弃。<br>当新增该字段时，必须传递竞价相关选项下的竞价出价，其它未传递字段会设置为默认值。<br>当修改本字段时，当前付费模式必须为竞价付费。</p>
         # @type InstanceMarketOptions: :class:`Tencentcloud::As.v20180419.models.InstanceMarketOptionsRequest`
-        # @param DiskTypePolicy: 云盘类型选择策略，取值范围：
-        # <li>ORIGINAL：使用设置的云盘类型。</li>
-        # <li>AUTOMATIC：自动选择当前可用的云盘类型。</li>
+        # @param DiskTypePolicy: <p>云盘类型选择策略，取值范围：</p><li>ORIGINAL：使用设置的云盘类型。</li><li>AUTOMATIC：自动选择当前可用的云盘类型。</li>
         # @type DiskTypePolicy: String
-        # @param SystemDisk: 实例系统盘配置信息。
+        # @param SystemDisk: <p>实例系统盘配置信息。</p>
         # @type SystemDisk: :class:`Tencentcloud::As.v20180419.models.SystemDisk`
-        # @param DataDisks: 实例数据盘配置信息。
-        # 最多支持指定11块数据盘。采取整体修改，因此请提供修改后的全部值。
-        # 数据盘类型默认与系统盘类型保持一致。
+        # @param DataDisks: <p>实例数据盘配置信息。<br>最多支持指定11块数据盘。采取整体修改，因此请提供修改后的全部值。<br>数据盘类型默认与系统盘类型保持一致。</p>
         # @type DataDisks: Array
-        # @param HostNameSettings: 云服务器主机名（HostName）的相关设置。
-        # 不支持windows实例设置主机名。
-        # 新增该属性时，必须传递云服务器的主机名，其它未传递字段会设置为默认值。
-        # 会校验主机名(如果存在后缀则加上后缀)是否超过最大位数46。
+        # @param HostNameSettings: <p>云服务器主机名（HostName）的相关设置。<br>不支持windows实例设置主机名。<br>新增该属性时，必须传递云服务器的主机名，其它未传递字段会设置为默认值。<br>会校验主机名(如果存在后缀则加上后缀)是否超过最大位数46。</p>
         # @type HostNameSettings: :class:`Tencentcloud::As.v20180419.models.HostNameSettings`
-        # @param InstanceNameSettings: 云服务器（InstanceName）实例名的相关设置。
-        # 如果用户在启动配置中设置此字段，则伸缩组创建出的实例 InstanceName 参照此字段进行设置，并传递给 CVM；如果用户未在启动配置中设置此字段，则伸缩组创建出的实例 InstanceName 按照“as-{{ 伸缩组AutoScalingGroupName }}”进行设置，并传递给 CVM。
-        # 新增该属性时，必须传递云服务器的实例名称，其它未传递字段会设置为默认值。
-        # 会校验实例名(如果存在后缀则加上后缀)是否超过最大位数108。
+        # @param InstanceNameSettings: <p>云服务器（InstanceName）实例名的相关设置。<br>如果用户在启动配置中设置此字段，则伸缩组创建出的实例 InstanceName 参照此字段进行设置，并传递给 CVM；如果用户未在启动配置中设置此字段，则伸缩组创建出的实例 InstanceName 按照“as-{{ 伸缩组AutoScalingGroupName }}”进行设置，并传递给 CVM。<br>新增该属性时，必须传递云服务器的实例名称，其它未传递字段会设置为默认值。<br>会校验实例名(如果存在后缀则加上后缀)是否超过最大位数108。</p>
         # @type InstanceNameSettings: :class:`Tencentcloud::As.v20180419.models.InstanceNameSettings`
-        # @param EnhancedService: 增强服务。通过该参数可以指定是否开启云安全、云监控等服务。
+        # @param EnhancedService: <p>增强服务。通过该参数可以指定是否开启云安全、云监控等服务。</p>
         # @type EnhancedService: :class:`Tencentcloud::As.v20180419.models.EnhancedService`
-        # @param CamRoleName: CAM角色名称。可通过[DescribeRoleList](https://cloud.tencent.com/document/product/598/36223)接口返回值中的roleName获取。
+        # @param CamRoleName: <p>CAM角色名称。可通过<a href="https://cloud.tencent.com/document/product/598/36223">DescribeRoleList</a>接口返回值中的roleName获取。</p>
         # @type CamRoleName: String
-        # @param HpcClusterId: 高性能计算集群ID。可通过调用[DescribeHpcClusters](https://cloud.tencent.com/document/product/213/83220)接口获取该参数。
-        # 注意：此字段默认为空。
+        # @param HpcClusterId: <p>高性能计算集群ID。可通过调用<a href="https://cloud.tencent.com/document/product/213/83220">DescribeHpcClusters</a>接口获取该参数。<br>注意：此字段默认为空。</p>
         # @type HpcClusterId: String
-        # @param IPv6InternetAccessible: IPv6公网带宽相关信息设置。若新建实例包含IPv6地址，该参数可为新建实例的IPv6地址分配公网带宽。关联启动配置的伸缩组Ipv6AddressCount参数为0时，该参数不会生效。
+        # @param IPv6InternetAccessible: <p>IPv6公网带宽相关信息设置。若新建实例包含IPv6地址，该参数可为新建实例的IPv6地址分配公网带宽。关联启动配置的伸缩组Ipv6AddressCount参数为0时，该参数不会生效。</p>
         # @type IPv6InternetAccessible: :class:`Tencentcloud::As.v20180419.models.IPv6InternetAccessible`
-        # @param DisasterRecoverGroupIds: 置放群组id，仅支持指定一个。可通过调用[DescribeDisasterRecoverGroups](https://cloud.tencent.com/document/product/213/17810)接口获取该参数。
+        # @param DisasterRecoverGroupIds: <p>置放群组id，仅支持指定一个。可通过调用<a href="https://cloud.tencent.com/document/product/213/17810">DescribeDisasterRecoverGroups</a>接口获取该参数。</p>
         # @type DisasterRecoverGroupIds: Array
-        # @param LoginSettings: 实例登录设置，包括密码、密钥或保持镜像的原始登录设置。<br>请注意，指定新的登录设置会覆盖原有登录设置。例如，如果您之前使用密码登录，使用该参数将登录设置修改为密钥，则原有密码被清除。
+        # @param LoginSettings: <p>实例登录设置，包括密码、密钥或保持镜像的原始登录设置。<br>请注意，指定新的登录设置会覆盖原有登录设置。例如，如果您之前使用密码登录，使用该参数将登录设置修改为密钥，则原有密码被清除。</p>
         # @type LoginSettings: :class:`Tencentcloud::As.v20180419.models.LoginSettings`
-        # @param InstanceTags: 实例标签列表。通过指定该参数，可以为扩容的实例绑定标签。最多支持指定10个标签。
-        # 该参数会覆盖原有的实例标签列表，如需新增标签，需将新标签和原有标签一并传入。
+        # @param InstanceTags: <p>实例标签列表。通过指定该参数，可以为扩容的实例绑定标签。最多支持指定10个标签。<br>该参数会覆盖原有的实例标签列表，如需新增标签，需将新标签和原有标签一并传入。</p>
         # @type InstanceTags: Array
-        # @param ImageFamily: 镜像族名称。可通过调用[DescribeImages](https://cloud.tencent.com/document/product/213/15715)接口获取该参数。
+        # @param ImageFamily: <p>镜像族名称。可通过调用<a href="https://cloud.tencent.com/document/product/213/15715">DescribeImages</a>接口获取该参数。</p>
         # @type ImageFamily: String
-        # @param DedicatedClusterId: 本地专用集群ID。
+        # @param DedicatedClusterId: <p>本地专用集群ID。</p>
         # @type DedicatedClusterId: String
-        # @param Metadata: 自定义metadata。
+        # @param Metadata: <p>自定义metadata。</p>
         # @type Metadata: :class:`Tencentcloud::As.v20180419.models.Metadata`
+        # @param NetworkInterfaces: <p>替换启动配置中的弹性网卡配置。</p><p>入参限制：最多 17 项；必须显式包含且只能包含一个 PRIMARY，AS 不自动补齐主网卡；显式空数组非法。</p><p>字段规则与 CreateLaunchConfiguration 一致。清除请调用 ClearLaunchConfigurationAttributes 并传 ClearNetworkInterfaces=true。</p>
+        # @type NetworkInterfaces: Array
 
-        attr_accessor :LaunchConfigurationId, :ImageId, :InstanceTypes, :InstanceTypesCheckPolicy, :LaunchConfigurationName, :UserData, :SecurityGroupIds, :InternetAccessible, :InstanceChargeType, :InstanceChargePrepaid, :InstanceMarketOptions, :DiskTypePolicy, :SystemDisk, :DataDisks, :HostNameSettings, :InstanceNameSettings, :EnhancedService, :CamRoleName, :HpcClusterId, :IPv6InternetAccessible, :DisasterRecoverGroupIds, :LoginSettings, :InstanceTags, :ImageFamily, :DedicatedClusterId, :Metadata
+        attr_accessor :LaunchConfigurationId, :ImageId, :InstanceTypes, :InstanceTypesCheckPolicy, :LaunchConfigurationName, :UserData, :SecurityGroupIds, :InternetAccessible, :InstanceChargeType, :InstanceChargePrepaid, :InstanceMarketOptions, :DiskTypePolicy, :SystemDisk, :DataDisks, :HostNameSettings, :InstanceNameSettings, :EnhancedService, :CamRoleName, :HpcClusterId, :IPv6InternetAccessible, :DisasterRecoverGroupIds, :LoginSettings, :InstanceTags, :ImageFamily, :DedicatedClusterId, :Metadata, :NetworkInterfaces
 
-        def initialize(launchconfigurationid=nil, imageid=nil, instancetypes=nil, instancetypescheckpolicy=nil, launchconfigurationname=nil, userdata=nil, securitygroupids=nil, internetaccessible=nil, instancechargetype=nil, instancechargeprepaid=nil, instancemarketoptions=nil, disktypepolicy=nil, systemdisk=nil, datadisks=nil, hostnamesettings=nil, instancenamesettings=nil, enhancedservice=nil, camrolename=nil, hpcclusterid=nil, ipv6internetaccessible=nil, disasterrecovergroupids=nil, loginsettings=nil, instancetags=nil, imagefamily=nil, dedicatedclusterid=nil, metadata=nil)
+        def initialize(launchconfigurationid=nil, imageid=nil, instancetypes=nil, instancetypescheckpolicy=nil, launchconfigurationname=nil, userdata=nil, securitygroupids=nil, internetaccessible=nil, instancechargetype=nil, instancechargeprepaid=nil, instancemarketoptions=nil, disktypepolicy=nil, systemdisk=nil, datadisks=nil, hostnamesettings=nil, instancenamesettings=nil, enhancedservice=nil, camrolename=nil, hpcclusterid=nil, ipv6internetaccessible=nil, disasterrecovergroupids=nil, loginsettings=nil, instancetags=nil, imagefamily=nil, dedicatedclusterid=nil, metadata=nil, networkinterfaces=nil)
           @LaunchConfigurationId = launchconfigurationid
           @ImageId = imageid
           @InstanceTypes = instancetypes
@@ -4202,6 +4178,7 @@ module TencentCloud
           @ImageFamily = imagefamily
           @DedicatedClusterId = dedicatedclusterid
           @Metadata = metadata
+          @NetworkInterfaces = networkinterfaces
         end
 
         def deserialize(params)
@@ -4274,6 +4251,14 @@ module TencentCloud
           unless params['Metadata'].nil?
             @Metadata = Metadata.new
             @Metadata.deserialize(params['Metadata'])
+          end
+          unless params['NetworkInterfaces'].nil?
+            @NetworkInterfaces = []
+            params['NetworkInterfaces'].each do |i|
+              networkinterface_tmp = NetworkInterface.new
+              networkinterface_tmp.deserialize(i)
+              @NetworkInterfaces << networkinterface_tmp
+            end
           end
         end
       end
@@ -4668,6 +4653,34 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 启动配置中的弹性网卡配置。
+      class NetworkInterface < TencentCloud::Common::AbstractModel
+        # @param InterfaceType: <p>网卡类型。本字段在每个网卡项的请求中必填。</p><p>枚举值：</p><ul><li>PRIMARY： 主网卡</li><li>SECONDARY： 辅助网卡</li></ul><p>配置上层 NetworkInterfaces 时，数组必须显式包含且只能包含一个 PRIMARY，AS 不自动补齐主网卡。</p>
+        # @type InterfaceType: String
+        # @param PrivateIpv4AddressCount: <p>网卡请求分配的内网 IPv4 地址总数，包含主 IP。</p><p>取值范围：[1, 40]</p><p>SECONDARY 网卡请求时必填；PRIMARY 网卡请求时可选，未填写时仅在实际扩容构造 CVM 请求副本时按 1 处理，不写回启动配置。显式传入的值由 AS 透传给 CVM，最终由 CVM/VPC 校验。</p>
+        # @type PrivateIpv4AddressCount: Integer
+        # @param SecurityGroupIds: <p>弹性网卡绑定的安全组 ID 列表。</p><p>入参限制：最多 10 个。</p><p>对于 PRIMARY，网卡中显式配置的非空列表优先于启动配置中的 SecurityGroupIds 参数；网卡中未配置时使用启动配置中的 SecurityGroupIds 参数，两处均未配置时 AS 不指定安全组，继续按 CVM 缺省规则处理。对于 SECONDARY，仅透传网卡中显式配置的非空列表，不继承启动配置中的 SecurityGroupIds 参数。</p>
+        # @type SecurityGroupIds: Array
+        # @param IsKeepENI: <p>实例销毁时是否保留辅助网卡，仅对 SECONDARY 有效。</p><p>枚举值：</p><ul><li>false： 不保留辅助网卡，辅助网卡随实例销毁</li><li>true： 保留辅助网卡</li></ul><p>默认值：false</p><p>PRIMARY 不允许配置 true。</p>
+        # @type IsKeepENI: Boolean
+
+        attr_accessor :InterfaceType, :PrivateIpv4AddressCount, :SecurityGroupIds, :IsKeepENI
+
+        def initialize(interfacetype=nil, privateipv4addresscount=nil, securitygroupids=nil, iskeepeni=nil)
+          @InterfaceType = interfacetype
+          @PrivateIpv4AddressCount = privateipv4addresscount
+          @SecurityGroupIds = securitygroupids
+          @IsKeepENI = iskeepeni
+        end
+
+        def deserialize(params)
+          @InterfaceType = params['InterfaceType']
+          @PrivateIpv4AddressCount = params['PrivateIpv4AddressCount']
+          @SecurityGroupIds = params['SecurityGroupIds']
+          @IsKeepENI = params['IsKeepENI']
         end
       end
 
@@ -5691,30 +5704,29 @@ module TencentCloud
 
       # 启动配置的系统盘配置信息。若不指定该参数，则按照系统默认值进行分配。
       class SystemDisk < TencentCloud::Common::AbstractModel
-        # @param DiskType: 系统盘类型。系统盘类型限制详见[云硬盘类型](https://cloud.tencent.com/document/product/362/2353)。取值范围
-        # <li>LOCAL_BASIC：本地硬盘</li>
-        # <li>LOCAL_SSD：本地SSD硬盘</li>
-        # <li>CLOUD_BASIC：普通云硬盘</li>
-        # <li>CLOUD_PREMIUM：高性能云硬盘</li>
-        # <li>CLOUD_SSD：SSD云硬盘</li>
-        # <li>CLOUD_BSSD：通用型SSD云硬盘</li>
-        # <li>CLOUD_HSSD：增强型SSD云硬盘</li>
-        # <li>CLOUD_TSSD：极速型SSD云硬盘</li>
-        # <li>默认取值：CLOUD_PREMIUM。</li>
+        # @param DiskType: <p>系统盘类型。系统盘类型限制详见<a href="https://cloud.tencent.com/document/product/362/2353">云硬盘类型</a>。取值范围</p><li>LOCAL_BASIC：本地硬盘</li><li>LOCAL_SSD：本地SSD硬盘</li><li>CLOUD_BASIC：普通云硬盘</li><li>CLOUD_PREMIUM：高性能云硬盘</li><li>CLOUD_SSD：SSD云硬盘</li><li>CLOUD_BSSD：通用型SSD云硬盘</li><li>CLOUD_HSSD：增强型SSD云硬盘</li><li>CLOUD_TSSD：极速型SSD云硬盘</li><li>默认取值：CLOUD_PREMIUM。</li>
         # @type DiskType: String
-        # @param DiskSize: 系统盘大小，单位：GB。默认值为 50
+        # @param DiskSize: <p>系统盘大小，单位：GB。默认值为 50</p>
         # @type DiskSize: Integer
+        # @param Encrypt: <p>是否加密系统盘。TRUE 表示加密，FALSE 表示不加密；具体盘型、地域及 KMS 规则由 CVM 校验。</p>
+        # @type Encrypt: Boolean
+        # @param KmsKeyId: <p>系统盘加密使用的 KMS 密钥 ID。密钥有效性、权限以及与盘型和地域的适配性由 CVM 校验。</p>
+        # @type KmsKeyId: String
 
-        attr_accessor :DiskType, :DiskSize
+        attr_accessor :DiskType, :DiskSize, :Encrypt, :KmsKeyId
 
-        def initialize(disktype=nil, disksize=nil)
+        def initialize(disktype=nil, disksize=nil, encrypt=nil, kmskeyid=nil)
           @DiskType = disktype
           @DiskSize = disksize
+          @Encrypt = encrypt
+          @KmsKeyId = kmskeyid
         end
 
         def deserialize(params)
           @DiskType = params['DiskType']
           @DiskSize = params['DiskSize']
+          @Encrypt = params['Encrypt']
+          @KmsKeyId = params['KmsKeyId']
         end
       end
 

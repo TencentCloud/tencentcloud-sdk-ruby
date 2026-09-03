@@ -17,6 +17,30 @@
 module TencentCloud
   module Trro
     module V20220325
+      # 标注上下文
+      class AnnotationContext < TencentCloud::Common::AbstractModel
+        # @param TaskGoal: <p>任务目标（整段视频的总目标）</p>
+        # @type TaskGoal: String
+        # @param KeyObjects: <p>关键物体列表</p>
+        # @type KeyObjects: Array
+        # @param AtomicVerbs: <p>原子动词参考列表</p>
+        # @type AtomicVerbs: Array
+
+        attr_accessor :TaskGoal, :KeyObjects, :AtomicVerbs
+
+        def initialize(taskgoal=nil, keyobjects=nil, atomicverbs=nil)
+          @TaskGoal = taskgoal
+          @KeyObjects = keyobjects
+          @AtomicVerbs = atomicverbs
+        end
+
+        def deserialize(params)
+          @TaskGoal = params['TaskGoal']
+          @KeyObjects = params['KeyObjects']
+          @AtomicVerbs = params['AtomicVerbs']
+        end
+      end
+
       # BatchDeleteDevices请求参数结构体
       class BatchDeleteDevicesRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 目标删除设备所属项目ID
@@ -101,6 +125,49 @@ module TencentCloud
         end
       end
 
+      # 批量输入源
+      class BatchS3SourceInfo < TencentCloud::Common::AbstractModel
+        # @param Bucket: <p>存储桶名称</p>
+        # @type Bucket: String
+        # @param Endpoint: <p>存储服务地址</p>
+        # @type Endpoint: String
+        # @param Region: <p>存储区域</p>
+        # @type Region: String
+        # @param Prefix: <p>视频目录前缀，如 video/，仅列举视频文件</p>
+        # @type Prefix: String
+        # @param Secret: <p>访问凭证，需对该桶有读取权限</p>
+        # @type Secret: :class:`Tencentcloud::Trro.v20220325.models.SecretInfo`
+        # @param Filter: <p>文件名正则过滤规则，仅文件名匹配的文件会处理，不传不过滤</p>
+        # @type Filter: String
+        # @param IsCos: <p>是否腾讯云 COS：1 是，0 否。使用腾讯云 COS 时必须传 1</p><p>取值范围：[0, 1]</p>
+        # @type IsCos: Integer
+
+        attr_accessor :Bucket, :Endpoint, :Region, :Prefix, :Secret, :Filter, :IsCos
+
+        def initialize(bucket=nil, endpoint=nil, region=nil, prefix=nil, secret=nil, filter=nil, iscos=nil)
+          @Bucket = bucket
+          @Endpoint = endpoint
+          @Region = region
+          @Prefix = prefix
+          @Secret = secret
+          @Filter = filter
+          @IsCos = iscos
+        end
+
+        def deserialize(params)
+          @Bucket = params['Bucket']
+          @Endpoint = params['Endpoint']
+          @Region = params['Region']
+          @Prefix = params['Prefix']
+          unless params['Secret'].nil?
+            @Secret = SecretInfo.new
+            @Secret.deserialize(params['Secret'])
+          end
+          @Filter = params['Filter']
+          @IsCos = params['IsCos']
+        end
+      end
+
       # BoundLicenses请求参数结构体
       class BoundLicensesRequest < TencentCloud::Common::AbstractModel
         # @param Count: license数量
@@ -138,6 +205,26 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 回调配置
+      class CallbackInfo < TencentCloud::Common::AbstractModel
+        # @param Url: <p>回调地址</p>
+        # @type Url: String
+        # @param Secret: <p>回调签名密钥，用于回调请求的签名校验</p>
+        # @type Secret: String
+
+        attr_accessor :Url, :Secret
+
+        def initialize(url=nil, secret=nil)
+          @Url = url
+          @Secret = secret
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
+          @Secret = params['Secret']
         end
       end
 
@@ -184,6 +271,77 @@ module TencentCloud
           @AccessKey = params['AccessKey']
           @SecretKey = params['SecretKey']
           @FileNamePrefix = params['FileNamePrefix']
+        end
+      end
+
+      # CreateBatchVideoAnnotationJob请求参数结构体
+      class CreateBatchVideoAnnotationJobRequest < TencentCloud::Common::AbstractModel
+        # @param InputStorage: <p>批量输入源信息（目录前缀）</p>
+        # @type InputStorage: :class:`Tencentcloud::Trro.v20220325.models.BatchS3SourceInfo`
+        # @param AnnotationType: <p>标注模式（当前仅开放精标注）</p><p>枚举值：</p><ul><li>3： 精标注</li></ul>
+        # @type AnnotationType: Integer
+        # @param AnnotationContext: <p>标注上下文信息</p>
+        # @type AnnotationContext: :class:`Tencentcloud::Trro.v20220325.models.AnnotationContext`
+        # @param ProcessParams: <p>标注处理参数，预留字段，当前无效</p>
+        # @type ProcessParams: :class:`Tencentcloud::Trro.v20220325.models.ProcessParams`
+        # @param OutputStorage: <p>批量结果输出存储信息，不传则不投递</p>
+        # @type OutputStorage: :class:`Tencentcloud::Trro.v20220325.models.OutputStorage`
+        # @param CallbackInfo: <p>回调信息，配置后当任务下子处理项状态从处理中变为其他状态时，服务端会向回调地址发送请求（退避重试三次，不保证回调一定送达，需保证目标地址接收服务有效），建议接收方做好幂等处理。回调请求格式如下：<br><strong>请求头</strong></p><table><thead><tr><th>名称</th><th>值</th></tr></thead><tbody><tr><td>X-Annotation-Signature</td><td>hex(HMAC-SHA256(请求体原始字节, CallbackInfo.Secret))</td></tr></tbody></table><p><strong>请求体</strong>（application/json）</p><table><thead><tr><th>参数名</th><th>类型</th><th>必选</th><th>描述</th></tr></thead><tbody><tr><td>JobId</td><td>string</td><td>是</td><td>任务 ID</td></tr><tr><td>TaskId</td><td>string</td><td>是</td><td>处理项 ID</td></tr><tr><td>FileName</td><td>string</td><td>是</td><td>视频文件名</td></tr><tr><td>Status</td><td>int</td><td>是</td><td>触发本次回调的处理项状态：3 超时，4 异常，5 待确认，6 成功</td></tr><tr><td>StatusChangedAt</td><td>int</td><td>是</td><td>状态变更时间，Unix 时间戳（秒）</td></tr><tr><td>RawResult</td><td>string</td><td>否</td><td>当前生效的结果 JSON 原文：成功=标注产物；待确认=原始标注；确认后=确认版内容。超时/异常无内容</td></tr></tbody></table>
+        # @type CallbackInfo: :class:`Tencentcloud::Trro.v20220325.models.CallbackInfo`
+
+        attr_accessor :InputStorage, :AnnotationType, :AnnotationContext, :ProcessParams, :OutputStorage, :CallbackInfo
+
+        def initialize(inputstorage=nil, annotationtype=nil, annotationcontext=nil, processparams=nil, outputstorage=nil, callbackinfo=nil)
+          @InputStorage = inputstorage
+          @AnnotationType = annotationtype
+          @AnnotationContext = annotationcontext
+          @ProcessParams = processparams
+          @OutputStorage = outputstorage
+          @CallbackInfo = callbackinfo
+        end
+
+        def deserialize(params)
+          unless params['InputStorage'].nil?
+            @InputStorage = BatchS3SourceInfo.new
+            @InputStorage.deserialize(params['InputStorage'])
+          end
+          @AnnotationType = params['AnnotationType']
+          unless params['AnnotationContext'].nil?
+            @AnnotationContext = AnnotationContext.new
+            @AnnotationContext.deserialize(params['AnnotationContext'])
+          end
+          unless params['ProcessParams'].nil?
+            @ProcessParams = ProcessParams.new
+            @ProcessParams.deserialize(params['ProcessParams'])
+          end
+          unless params['OutputStorage'].nil?
+            @OutputStorage = OutputStorage.new
+            @OutputStorage.deserialize(params['OutputStorage'])
+          end
+          unless params['CallbackInfo'].nil?
+            @CallbackInfo = CallbackInfo.new
+            @CallbackInfo.deserialize(params['CallbackInfo'])
+          end
+        end
+      end
+
+      # CreateBatchVideoAnnotationJob返回参数结构体
+      class CreateBatchVideoAnnotationJobResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: <p>任务 ID</p>
+        # @type JobId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :RequestId
+
+        def initialize(jobid=nil, requestid=nil)
+          @JobId = jobid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -342,6 +500,149 @@ module TencentCloud
         end
       end
 
+      # CreateVideoAnnotationJob请求参数结构体
+      class CreateVideoAnnotationJobRequest < TencentCloud::Common::AbstractModel
+        # @param InputType: <p>输入源类型：1 S3 兼容存储，2 HTTP URL</p><p>枚举值：</p><ul><li>1： S3 兼容存储</li><li>2： HTTP URL</li></ul>
+        # @type InputType: Integer
+        # @param AnnotationType: <p>标注模式（当前仅开放精标注）</p><p>枚举值：</p><ul><li>3： 精标注</li></ul>
+        # @type AnnotationType: Integer
+        # @param S3SourceInfo: <p>S3 存储输入源信息，InputType=1 时必填</p>
+        # @type S3SourceInfo: :class:`Tencentcloud::Trro.v20220325.models.S3SourceInfo`
+        # @param HttpUrl: <p>视频 HTTP URL。InputType=2 时必填。格式如 https://example.com/video.mp4</p>
+        # @type HttpUrl: String
+        # @param AnnotationContext: <p>标注上下文信息</p>
+        # @type AnnotationContext: :class:`Tencentcloud::Trro.v20220325.models.AnnotationContext`
+        # @param ProcessParams: <p>标注处理参数，预留字段，当前无效</p>
+        # @type ProcessParams: :class:`Tencentcloud::Trro.v20220325.models.ProcessParams`
+        # @param OutputInfo: <p>结果输出信息</p>
+        # @type OutputInfo: :class:`Tencentcloud::Trro.v20220325.models.OutputInfo`
+        # @param CallbackInfo: <p>回调信息，配置后当处理项状态从处理中变为其他状态时，服务端会向回调地址发送请求（退避重试三次，不保证回调一定送达，需保证目标地址接收服务有效），建议接收方做好幂等处理。回调请求格式如下：<br><strong>请求头</strong></p><table><thead><tr><th>名称</th><th>值</th></tr></thead><tbody><tr><td>X-Annotation-Signature</td><td>hex(HMAC-SHA256(请求体原始字节, CallbackInfo.Secret))</td></tr></tbody></table><p><strong>请求体</strong>（application/json）</p><table><thead><tr><th>参数名</th><th>类型</th><th>必选</th><th>描述</th></tr></thead><tbody><tr><td>JobId</td><td>string</td><td>是</td><td>任务 ID</td></tr><tr><td>TaskId</td><td>string</td><td>是</td><td>处理项 ID</td></tr><tr><td>FileName</td><td>string</td><td>是</td><td>视频文件名</td></tr><tr><td>Status</td><td>int</td><td>是</td><td>触发本次回调的处理项状态：3 超时，4 异常，5 待确认，6 成功</td></tr><tr><td>StatusChangedAt</td><td>int</td><td>是</td><td>状态变更时间，Unix 时间戳（秒）</td></tr><tr><td>RawResult</td><td>string</td><td>否</td><td>当前生效的结果 JSON 原文：成功=标注产物；待确认=原始标注；确认后=确认版内容。超时/异常无内容</td></tr></tbody></table>
+        # @type CallbackInfo: :class:`Tencentcloud::Trro.v20220325.models.CallbackInfo`
+
+        attr_accessor :InputType, :AnnotationType, :S3SourceInfo, :HttpUrl, :AnnotationContext, :ProcessParams, :OutputInfo, :CallbackInfo
+
+        def initialize(inputtype=nil, annotationtype=nil, s3sourceinfo=nil, httpurl=nil, annotationcontext=nil, processparams=nil, outputinfo=nil, callbackinfo=nil)
+          @InputType = inputtype
+          @AnnotationType = annotationtype
+          @S3SourceInfo = s3sourceinfo
+          @HttpUrl = httpurl
+          @AnnotationContext = annotationcontext
+          @ProcessParams = processparams
+          @OutputInfo = outputinfo
+          @CallbackInfo = callbackinfo
+        end
+
+        def deserialize(params)
+          @InputType = params['InputType']
+          @AnnotationType = params['AnnotationType']
+          unless params['S3SourceInfo'].nil?
+            @S3SourceInfo = S3SourceInfo.new
+            @S3SourceInfo.deserialize(params['S3SourceInfo'])
+          end
+          @HttpUrl = params['HttpUrl']
+          unless params['AnnotationContext'].nil?
+            @AnnotationContext = AnnotationContext.new
+            @AnnotationContext.deserialize(params['AnnotationContext'])
+          end
+          unless params['ProcessParams'].nil?
+            @ProcessParams = ProcessParams.new
+            @ProcessParams.deserialize(params['ProcessParams'])
+          end
+          unless params['OutputInfo'].nil?
+            @OutputInfo = OutputInfo.new
+            @OutputInfo.deserialize(params['OutputInfo'])
+          end
+          unless params['CallbackInfo'].nil?
+            @CallbackInfo = CallbackInfo.new
+            @CallbackInfo.deserialize(params['CallbackInfo'])
+          end
+        end
+      end
+
+      # CreateVideoAnnotationJob返回参数结构体
+      class CreateVideoAnnotationJobResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: <p>任务 ID</p>
+        # @type JobId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :RequestId
+
+        def initialize(jobid=nil, requestid=nil)
+          @JobId = jobid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteAnnotationJob请求参数结构体
+      class DeleteAnnotationJobRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: <p>任务 ID</p>
+        # @type JobId: String
+
+        attr_accessor :JobId
+
+        def initialize(jobid=nil)
+          @JobId = jobid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+        end
+      end
+
+      # DeleteAnnotationJob返回参数结构体
+      class DeleteAnnotationJobResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteAnnotationTask请求参数结构体
+      class DeleteAnnotationTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>处理项 ID</p>
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DeleteAnnotationTask返回参数结构体
+      class DeleteAnnotationTaskResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteCloudRecording请求参数结构体
       class DeleteCloudRecordingRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: 录制任务的唯一Id，在启动录制成功后会返回。
@@ -402,6 +703,212 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAnnotationJobs请求参数结构体
+      class DescribeAnnotationJobsRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: <p>分页偏移，默认 0</p>
+        # @type Offset: Integer
+        # @param Limit: <p>每页数量，默认 20，最大 100</p><p>取值范围：[10, 100]</p>
+        # @type Limit: Integer
+        # @param Status: <p>按任务状态过滤：1 处理中，2 异常，3 成功。不传查全部</p><p>枚举值：</p><ul><li>1： 处理中</li><li>2： 异常</li><li>3： 成功</li></ul>
+        # @type Status: Integer
+        # @param InputPath: <p>按输入路径前缀过滤，不传不过滤</p>
+        # @type InputPath: String
+
+        attr_accessor :Offset, :Limit, :Status, :InputPath
+
+        def initialize(offset=nil, limit=nil, status=nil, inputpath=nil)
+          @Offset = offset
+          @Limit = limit
+          @Status = status
+          @InputPath = inputpath
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Status = params['Status']
+          @InputPath = params['InputPath']
+        end
+      end
+
+      # DescribeAnnotationJobs返回参数结构体
+      class DescribeAnnotationJobsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>符合条件的任务总数</p>
+        # @type TotalCount: Integer
+        # @param Offset: <p>分页偏移</p>
+        # @type Offset: Integer
+        # @param Limit: <p>每页数量</p>
+        # @type Limit: Integer
+        # @param Jobs: <p>任务列表</p>
+        # @type Jobs: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Offset, :Limit, :Jobs, :RequestId
+
+        def initialize(totalcount=nil, offset=nil, limit=nil, jobs=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Offset = offset
+          @Limit = limit
+          @Jobs = jobs
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Jobs'].nil?
+            @Jobs = []
+            params['Jobs'].each do |i|
+              job_tmp = Job.new
+              job_tmp.deserialize(i)
+              @Jobs << job_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAnnotationResults请求参数结构体
+      class DescribeAnnotationResultsRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>处理项 ID</p>
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeAnnotationResults返回参数结构体
+      class DescribeAnnotationResultsResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>处理项 ID</p>
+        # @type TaskId: String
+        # @param FileName: <p>视频文件名</p>
+        # @type FileName: String
+        # @param Status: <p>处理项状态：1 未处理，2 处理中，3 超时，4 异常，5待确认，6 成功</p><p>枚举值：</p><ul><li>1： 未处理</li><li>2： 处理中</li><li>3： 超时</li><li>4： 异常</li><li>5： 待确认</li><li>6： 成功</li></ul>
+        # @type Status: Integer
+        # @param ErrorMsg: <p>失败原因，成功为空</p>
+        # @type ErrorMsg: String
+        # @param Result: <p>标注结果 JSON 原文，非成功状态为空</p>
+        # @type Result: String
+        # @param ResultSize: <p>标注结果字节数</p>
+        # @type ResultSize: Integer
+        # @param CreateTime: <p>创建时间，Unix 时间戳（秒）</p>
+        # @type CreateTime: String
+        # @param FinishTime: <p>完成时间，Unix 时间戳（秒），进行中为 0</p>
+        # @type FinishTime: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :FileName, :Status, :ErrorMsg, :Result, :ResultSize, :CreateTime, :FinishTime, :RequestId
+
+        def initialize(taskid=nil, filename=nil, status=nil, errormsg=nil, result=nil, resultsize=nil, createtime=nil, finishtime=nil, requestid=nil)
+          @TaskId = taskid
+          @FileName = filename
+          @Status = status
+          @ErrorMsg = errormsg
+          @Result = result
+          @ResultSize = resultsize
+          @CreateTime = createtime
+          @FinishTime = finishtime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @FileName = params['FileName']
+          @Status = params['Status']
+          @ErrorMsg = params['ErrorMsg']
+          @Result = params['Result']
+          @ResultSize = params['ResultSize']
+          @CreateTime = params['CreateTime']
+          @FinishTime = params['FinishTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAnnotationTasks请求参数结构体
+      class DescribeAnnotationTasksRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: <p>任务 ID</p>
+        # @type JobId: String
+        # @param Offset: <p>分页偏移，默认 0</p>
+        # @type Offset: Integer
+        # @param Limit: <p>每页数量，默认 20，最大 100</p><p>取值范围：[10, 100]</p>
+        # @type Limit: Integer
+        # @param FileName: <p>按文件名前缀过滤，不传不过滤</p>
+        # @type FileName: String
+        # @param Status: <p>按处理项状态过滤：1 未处理，2 处理中，3 超时，4 异常，5待确认，6 成功。不传查全部</p><p>枚举值：</p><ul><li>1： 未处理</li><li>2： 处理中</li><li>3： 超时</li><li>4： 异常</li><li>5： 待确认</li><li>6： 成功</li></ul>
+        # @type Status: Integer
+
+        attr_accessor :JobId, :Offset, :Limit, :FileName, :Status
+
+        def initialize(jobid=nil, offset=nil, limit=nil, filename=nil, status=nil)
+          @JobId = jobid
+          @Offset = offset
+          @Limit = limit
+          @FileName = filename
+          @Status = status
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @FileName = params['FileName']
+          @Status = params['Status']
+        end
+      end
+
+      # DescribeAnnotationTasks返回参数结构体
+      class DescribeAnnotationTasksResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: <p>任务 ID</p>
+        # @type JobId: String
+        # @param TotalCount: <p>处理项总数</p>
+        # @type TotalCount: Integer
+        # @param Offset: <p>分页偏移</p>
+        # @type Offset: Integer
+        # @param Limit: <p>每页数量</p>
+        # @type Limit: Integer
+        # @param Tasks: <p>处理项列表</p>
+        # @type Tasks: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :TotalCount, :Offset, :Limit, :Tasks, :RequestId
+
+        def initialize(jobid=nil, totalcount=nil, offset=nil, limit=nil, tasks=nil, requestid=nil)
+          @JobId = jobid
+          @TotalCount = totalcount
+          @Offset = offset
+          @Limit = limit
+          @Tasks = tasks
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @TotalCount = params['TotalCount']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Tasks'].nil?
+            @Tasks = []
+            params['Tasks'].each do |i|
+              task_tmp = Task.new
+              task_tmp.deserialize(i)
+              @Tasks << task_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1571,6 +2078,54 @@ module TencentCloud
         end
       end
 
+      # 任务信息
+      class Job < TencentCloud::Common::AbstractModel
+        # @param JobId: <p>任务 ID</p>
+        # @type JobId: String
+        # @param JobType: <p>任务类型：1 单视频，2 批量</p><p>枚举值：</p><ul><li>1： 单视频</li><li>2： 批量</li></ul>
+        # @type JobType: Integer
+        # @param AnnotationType: <p>标注模式：3 精标注</p><p>枚举值：</p><ul><li>3： 精标注</li></ul>
+        # @type AnnotationType: Integer
+        # @param Status: <p>任务状态：1 处理中，2 异常，3 成功</p><p>枚举值：</p><ul><li>1： 处理中</li><li>2： 异常</li><li>3： 成功</li></ul>
+        # @type Status: Integer
+        # @param IngestStatus: <p>文件列举状态：0 列举中，1 全部加载，2 超过数量上限截断（仅批量任务）</p><p>枚举值：</p><ul><li>0： 列举中</li><li>1： 全部加载</li><li>2： 超过数量上限截断（仅批量任务）</li></ul>
+        # @type IngestStatus: Integer
+        # @param InputPath: <p>输入路径（S3源为桶名/对象路径：批量任务为目录前缀，单文件为文件完整路径；HTTP源为完整URL）</p>
+        # @type InputPath: String
+        # @param TotalNumber: <p>处理项总数</p>
+        # @type TotalNumber: Integer
+        # @param CreateTime: <p>创建时间，Unix 时间戳（秒）</p>
+        # @type CreateTime: String
+        # @param FinishTime: <p>完成时间，Unix 时间戳（秒），未完成为 0</p>
+        # @type FinishTime: String
+
+        attr_accessor :JobId, :JobType, :AnnotationType, :Status, :IngestStatus, :InputPath, :TotalNumber, :CreateTime, :FinishTime
+
+        def initialize(jobid=nil, jobtype=nil, annotationtype=nil, status=nil, ingeststatus=nil, inputpath=nil, totalnumber=nil, createtime=nil, finishtime=nil)
+          @JobId = jobid
+          @JobType = jobtype
+          @AnnotationType = annotationtype
+          @Status = status
+          @IngestStatus = ingeststatus
+          @InputPath = inputpath
+          @TotalNumber = totalnumber
+          @CreateTime = createtime
+          @FinishTime = finishtime
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @JobType = params['JobType']
+          @AnnotationType = params['AnnotationType']
+          @Status = params['Status']
+          @IngestStatus = params['IngestStatus']
+          @InputPath = params['InputPath']
+          @TotalNumber = params['TotalNumber']
+          @CreateTime = params['CreateTime']
+          @FinishTime = params['FinishTime']
+        end
+      end
+
       # 按授权查看的license列表
       class License < TencentCloud::Common::AbstractModel
         # @param Count: 该类型的license个数
@@ -1891,6 +2446,80 @@ module TencentCloud
         end
       end
 
+      # 单文件结果投递
+      class OutputInfo < TencentCloud::Common::AbstractModel
+        # @param Bucket: <p>存储桶名称</p>
+        # @type Bucket: String
+        # @param Endpoint: <p>存储服务地址</p>
+        # @type Endpoint: String
+        # @param Region: <p>存储区域</p>
+        # @type Region: String
+        # @param Key: <p>输出文件路径，如 output/result.json</p>
+        # @type Key: String
+        # @param Secret: <p>访问凭证，需对该桶有写入权限</p>
+        # @type Secret: :class:`Tencentcloud::Trro.v20220325.models.SecretInfo`
+
+        attr_accessor :Bucket, :Endpoint, :Region, :Key, :Secret
+
+        def initialize(bucket=nil, endpoint=nil, region=nil, key=nil, secret=nil)
+          @Bucket = bucket
+          @Endpoint = endpoint
+          @Region = region
+          @Key = key
+          @Secret = secret
+        end
+
+        def deserialize(params)
+          @Bucket = params['Bucket']
+          @Endpoint = params['Endpoint']
+          @Region = params['Region']
+          @Key = params['Key']
+          unless params['Secret'].nil?
+            @Secret = SecretInfo.new
+            @Secret.deserialize(params['Secret'])
+          end
+        end
+      end
+
+      # 批量结果投递
+      class OutputStorage < TencentCloud::Common::AbstractModel
+        # @param Bucket: <p>存储桶名称</p>
+        # @type Bucket: String
+        # @param Endpoint: <p>存储服务地址</p>
+        # @type Endpoint: String
+        # @param Region: <p>存储区域</p>
+        # @type Region: String
+        # @param Secret: <p>访问凭证，需对该桶有写权限</p>
+        # @type Secret: :class:`Tencentcloud::Trro.v20220325.models.SecretInfo`
+        # @param Prefix: <p>输出目录前缀，不传写入桶根目录</p>
+        # @type Prefix: String
+        # @param NameRule: <p>输出文件名规则，支持变量 $FileName、$FileType、$TaskId、$YYYY、$mm、$dd、$HH、$MM、$SS，须至少含一个变量，默认 $FileName_$TaskId.json</p>
+        # @type NameRule: String
+
+        attr_accessor :Bucket, :Endpoint, :Region, :Secret, :Prefix, :NameRule
+
+        def initialize(bucket=nil, endpoint=nil, region=nil, secret=nil, prefix=nil, namerule=nil)
+          @Bucket = bucket
+          @Endpoint = endpoint
+          @Region = region
+          @Secret = secret
+          @Prefix = prefix
+          @NameRule = namerule
+        end
+
+        def deserialize(params)
+          @Bucket = params['Bucket']
+          @Endpoint = params['Endpoint']
+          @Region = params['Region']
+          unless params['Secret'].nil?
+            @Secret = SecretInfo.new
+            @Secret.deserialize(params['Secret'])
+          end
+          @Prefix = params['Prefix']
+          @NameRule = params['NameRule']
+        end
+      end
+
       # 权限信息
       class PolicyInfo < TencentCloud::Common::AbstractModel
         # @param RemoteDeviceId: 远端设备ID
@@ -1912,6 +2541,22 @@ module TencentCloud
           @RemoteDeviceId = params['RemoteDeviceId']
           @FieldDeviceIds = params['FieldDeviceIds']
           @ModifyTime = params['ModifyTime']
+        end
+      end
+
+      # 标注处理参数
+      class ProcessParams < TencentCloud::Common::AbstractModel
+        # @param Mode: <p>标注处理模式，预留字段</p>
+        # @type Mode: String
+
+        attr_accessor :Mode
+
+        def initialize(mode=nil)
+          @Mode = mode
+        end
+
+        def deserialize(params)
+          @Mode = params['Mode']
         end
       end
 
@@ -2003,6 +2648,97 @@ module TencentCloud
         end
       end
 
+      # RetryAnnotationTask请求参数结构体
+      class RetryAnnotationTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>处理项 ID，仅超时（3）或异常（4）状态可重试</p>
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # RetryAnnotationTask返回参数结构体
+      class RetryAnnotationTaskResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 单文件 COS 输入源
+      class S3SourceInfo < TencentCloud::Common::AbstractModel
+        # @param Bucket: <p>存储桶名称</p>
+        # @type Bucket: String
+        # @param Endpoint: <p>存储服务地址</p>
+        # @type Endpoint: String
+        # @param Region: <p>存储区域</p>
+        # @type Region: String
+        # @param Key: <p>视频文件路径</p>
+        # @type Key: String
+        # @param Secret: <p>访问凭证，需对该桶有读取权限</p>
+        # @type Secret: :class:`Tencentcloud::Trro.v20220325.models.SecretInfo`
+        # @param IsCos: <p>是否腾讯云 COS：1 是，0 否。使用腾讯云 COS 时必须传 1</p><p>取值范围：[0, 1]</p>
+        # @type IsCos: Integer
+
+        attr_accessor :Bucket, :Endpoint, :Region, :Key, :Secret, :IsCos
+
+        def initialize(bucket=nil, endpoint=nil, region=nil, key=nil, secret=nil, iscos=nil)
+          @Bucket = bucket
+          @Endpoint = endpoint
+          @Region = region
+          @Key = key
+          @Secret = secret
+          @IsCos = iscos
+        end
+
+        def deserialize(params)
+          @Bucket = params['Bucket']
+          @Endpoint = params['Endpoint']
+          @Region = params['Region']
+          @Key = params['Key']
+          unless params['Secret'].nil?
+            @Secret = SecretInfo.new
+            @Secret.deserialize(params['Secret'])
+          end
+          @IsCos = params['IsCos']
+        end
+      end
+
+      # 访问凭证
+      class SecretInfo < TencentCloud::Common::AbstractModel
+        # @param SecretId: <p>密钥 ID</p>
+        # @type SecretId: String
+        # @param SecretKey: <p>密钥 Key</p>
+        # @type SecretKey: String
+
+        attr_accessor :SecretId, :SecretKey
+
+        def initialize(secretid=nil, secretkey=nil)
+          @SecretId = secretid
+          @SecretKey = secretkey
+        end
+
+        def deserialize(params)
+          @SecretId = params['SecretId']
+          @SecretKey = params['SecretKey']
+        end
+      end
+
       # 会话数据详单（按设备区分）
       class SessionDeviceDetail < TencentCloud::Common::AbstractModel
         # @param DeviceType: <p>设备类型：field或remote</p>
@@ -2083,8 +2819,8 @@ module TencentCloud
 
         attr_accessor :DeviceType, :StartTime, :EndTime, :SessionId, :Rate, :Fps, :Lost, :NetworkLatency, :VideoLatency, :CpuUsed, :MemUsed, :TimeOffset, :ProjectId, :DeviceId, :Ver, :SdkMode, :DecodeCost, :RenderConst, :K100, :K150, :NACK, :BitRateEstimate, :Width, :Height, :EncodeCost, :CaptureCost, :RenderCost, :ConfigWidth, :ConfigHeight, :FrameDelta, :MaxFrameDelta, :TotalBitrateEstimate, :Lag100Duration, :Lag150Duration, :MultiMode, :MultiNet, :ControlLatency
         extend Gem::Deprecate
-        deprecate :RenderConst, :none, 2026, 7
-        deprecate :RenderConst=, :none, 2026, 7
+        deprecate :RenderConst, :none, 2026, 9
+        deprecate :RenderConst=, :none, 2026, 9
 
         def initialize(devicetype=nil, starttime=nil, endtime=nil, sessionid=nil, rate=nil, fps=nil, lost=nil, networklatency=nil, videolatency=nil, cpuused=nil, memused=nil, timeoffset=nil, projectid=nil, deviceid=nil, ver=nil, sdkmode=nil, decodecost=nil, renderconst=nil, k100=nil, k150=nil, nack=nil, bitrateestimate=nil, width=nil, height=nil, encodecost=nil, capturecost=nil, rendercost=nil, configwidth=nil, configheight=nil, framedelta=nil, maxframedelta=nil, totalbitrateestimate=nil, lag100duration=nil, lag150duration=nil, multimode=nil, multinet=nil, controllatency=nil)
           @DeviceType = devicetype
@@ -2341,6 +3077,46 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 处理项信息
+      class Task < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>处理项 ID</p>
+        # @type TaskId: String
+        # @param FileName: <p>视频文件名</p>
+        # @type FileName: String
+        # @param Status: <p>处理项状态：1 未处理，2 处理中，3 超时，4 异常，5待确认，6 成功</p><p>枚举值：</p><ul><li>1： 未处理</li><li>2： 处理中</li><li>3： 超时</li><li>4： 异常</li><li>5： 待确认</li><li>6： 成功</li></ul>
+        # @type Status: Integer
+        # @param InputPath: <p>视频完整路径（S3源为桶名/文件key；HTTP源为完整URL）</p>
+        # @type InputPath: String
+        # @param ErrorMsg: <p>失败原因，成功为空</p>
+        # @type ErrorMsg: String
+        # @param CreateTime: <p>创建时间，Unix 时间戳（秒）</p>
+        # @type CreateTime: String
+        # @param FinishTime: <p>完成时间，Unix 时间戳（秒），进行中为 0</p>
+        # @type FinishTime: String
+
+        attr_accessor :TaskId, :FileName, :Status, :InputPath, :ErrorMsg, :CreateTime, :FinishTime
+
+        def initialize(taskid=nil, filename=nil, status=nil, inputpath=nil, errormsg=nil, createtime=nil, finishtime=nil)
+          @TaskId = taskid
+          @FileName = filename
+          @Status = status
+          @InputPath = inputpath
+          @ErrorMsg = errormsg
+          @CreateTime = createtime
+          @FinishTime = finishtime
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @FileName = params['FileName']
+          @Status = params['Status']
+          @InputPath = params['InputPath']
+          @ErrorMsg = params['ErrorMsg']
+          @CreateTime = params['CreateTime']
+          @FinishTime = params['FinishTime']
         end
       end
 

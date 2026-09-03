@@ -7845,6 +7845,74 @@ module TencentCloud
         end
       end
 
+      # ModifyPGInstanceSpec请求参数结构体
+      class ModifyPGInstanceSpecRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: <p>环境 id</p>
+        # @type EnvId: String
+        # @param Cpu: <p>cpu 核数</p><p>单位：核数</p>
+        # @type Cpu: Integer
+        # @param Memory: <p>内存容量</p><p>单位：GB</p>
+        # @type Memory: Integer
+        # @param Storage: <p>磁盘容量</p><p>单位：GB</p>
+        # @type Storage: Integer
+        # @param SwitchTag: <p>类型</p><p>枚举值：</p><ul><li>0： 立即执行</li><li>1： 指定时间执行</li><li>2： 维护时间执行</li></ul>
+        # @type SwitchTag: Integer
+        # @param SwitchStartTime: <p>SwitchTag=1 时，启动时间</p><p>参数格式：YYYY-MM-dd HH:mm:ss</p>
+        # @type SwitchStartTime: String
+        # @param SwitchEndTime: <p>SwitchTag=1 时结束时间</p><p>参数格式：YYYY-MM-dd HH:mm:ss</p>
+        # @type SwitchEndTime: String
+        # @param DryRun: <p>预检</p>
+        # @type DryRun: Boolean
+
+        attr_accessor :EnvId, :Cpu, :Memory, :Storage, :SwitchTag, :SwitchStartTime, :SwitchEndTime, :DryRun
+
+        def initialize(envid=nil, cpu=nil, memory=nil, storage=nil, switchtag=nil, switchstarttime=nil, switchendtime=nil, dryrun=nil)
+          @EnvId = envid
+          @Cpu = cpu
+          @Memory = memory
+          @Storage = storage
+          @SwitchTag = switchtag
+          @SwitchStartTime = switchstarttime
+          @SwitchEndTime = switchendtime
+          @DryRun = dryrun
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @Cpu = params['Cpu']
+          @Memory = params['Memory']
+          @Storage = params['Storage']
+          @SwitchTag = params['SwitchTag']
+          @SwitchStartTime = params['SwitchStartTime']
+          @SwitchEndTime = params['SwitchEndTime']
+          @DryRun = params['DryRun']
+        end
+      end
+
+      # ModifyPGInstanceSpec返回参数结构体
+      class ModifyPGInstanceSpecResponse < TencentCloud::Common::AbstractModel
+        # @param DealName: <p>账单名</p>
+        # @type DealName: String
+        # @param BillId: <p>账单标识</p>
+        # @type BillId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DealName, :BillId, :RequestId
+
+        def initialize(dealname=nil, billid=nil, requestid=nil)
+          @DealName = dealname
+          @BillId = billid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DealName = params['DealName']
+          @BillId = params['BillId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyProvider请求参数结构体
       class ModifyProviderRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: 云开发环境 ID，用于唯一标识当前操作所属的云开发环境。

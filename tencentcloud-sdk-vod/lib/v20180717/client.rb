@@ -103,6 +103,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 发起音色克隆任务，基于参考音频克隆生成专属音色，生成的音色可供后续语音合成使用。
+
+        # @param request: Request instance for CloneVoiceSync.
+        # @type request: :class:`Tencentcloud::vod::V20180717::CloneVoiceSyncRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::CloneVoiceSyncResponse`
+        def CloneVoiceSync(request)
+          body = send_request('CloneVoiceSync', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CloneVoiceSyncResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口用于确认媒体文件（和封面文件）上传到腾讯云点播的结果，并存储媒体信息，返回文件的播放地址和文件 ID。
 
         # @param request: Request instance for CommitUpload.
@@ -5971,6 +5995,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = TextToSpeechAsyncResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 发起语音合成任务，将文本合成为语音。
+
+        # @param request: Request instance for TextToSpeechSync.
+        # @type request: :class:`Tencentcloud::vod::V20180717::TextToSpeechSyncRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::TextToSpeechSyncResponse`
+        def TextToSpeechSync(request)
+          body = send_request('TextToSpeechSync', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = TextToSpeechSyncResponse.new
             model.deserialize(response['Response'])
             model
           else

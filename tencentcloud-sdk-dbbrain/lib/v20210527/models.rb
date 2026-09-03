@@ -1343,23 +1343,25 @@ module TencentCloud
 
       # CreateRedisBigKeyAnalysisTask请求参数结构体
       class CreateRedisBigKeyAnalysisTaskRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID。可通过 [DescribeDiagDBInstances](https://cloud.tencent.com/document/api/1130/57798) 接口获取。
+        # @param InstanceId: <p>实例 ID。可通过 <a href="https://cloud.tencent.com/document/api/1130/57798">DescribeDiagDBInstances</a> 接口获取。</p>
         # @type InstanceId: String
-        # @param Product: 服务产品类型，支持值包括 "redis" - 云数据库 Redis。
+        # @param Product: <p>服务产品类型，支持值包括 &quot;redis&quot; - 云数据库 Redis。</p>
         # @type Product: String
-        # @param ShardIds: 分片节点序号列表。当列表为空时，选择所有分片节点。
+        # @param ShardIds: <p>分片节点序号列表。当列表为空时，选择所有分片节点。</p>
         # @type ShardIds: Array
-        # @param KeyDelimiterList: Top Key前缀的分隔符列表。
-        # 目前仅支持以下分割符：[",", ";", ":", "_", "-", "+", "@", "=", "|", "#", "."]，当列表为空时，默认选择所有分隔符。
+        # @param KeyDelimiterList: <p>Top Key前缀的分隔符列表。<br>目前仅支持以下分割符：[&quot;,&quot;, &quot;;&quot;, &quot;:&quot;, &quot;_&quot;, &quot;-&quot;, &quot;+&quot;, &quot;@&quot;, &quot;=&quot;, &quot;|&quot;, &quot;#&quot;, &quot;.&quot;]，当列表为空时，默认选择所有分隔符。</p>
         # @type KeyDelimiterList: Array
+        # @param BackupId: <p>历史备份文件ID</p>
+        # @type BackupId: String
 
-        attr_accessor :InstanceId, :Product, :ShardIds, :KeyDelimiterList
+        attr_accessor :InstanceId, :Product, :ShardIds, :KeyDelimiterList, :BackupId
 
-        def initialize(instanceid=nil, product=nil, shardids=nil, keydelimiterlist=nil)
+        def initialize(instanceid=nil, product=nil, shardids=nil, keydelimiterlist=nil, backupid=nil)
           @InstanceId = instanceid
           @Product = product
           @ShardIds = shardids
           @KeyDelimiterList = keydelimiterlist
+          @BackupId = backupid
         end
 
         def deserialize(params)
@@ -1367,12 +1369,13 @@ module TencentCloud
           @Product = params['Product']
           @ShardIds = params['ShardIds']
           @KeyDelimiterList = params['KeyDelimiterList']
+          @BackupId = params['BackupId']
         end
       end
 
       # CreateRedisBigKeyAnalysisTask返回参数结构体
       class CreateRedisBigKeyAnalysisTaskResponse < TencentCloud::Common::AbstractModel
-        # @param AsyncRequestId: 异步任务ID。
+        # @param AsyncRequestId: <p>异步任务ID。</p>
         # @type AsyncRequestId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

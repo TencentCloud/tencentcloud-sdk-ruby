@@ -221,6 +221,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 管理员在目录管理页面删除一个分组，私有化调用path为：capi/Assets/DeleteAccountGroup
+
+        # @param request: Request instance for DeleteAccountGroup.
+        # @type request: :class:`Tencentcloud::ioa::V20220601::DeleteAccountGroupRequest`
+        # @rtype: :class:`Tencentcloud::ioa::V20220601::DeleteAccountGroupResponse`
+        def DeleteAccountGroup(request)
+          body = send_request('DeleteAccountGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAccountGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除账户组资源授权，私有化调用path为：capi/NGN/DeleteAccountGroupResources
 
         # @param request: Request instance for DeleteAccountGroupResources.

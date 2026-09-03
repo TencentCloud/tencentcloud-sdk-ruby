@@ -4459,8 +4459,8 @@ module TencentCloud
 
         attr_accessor :Id, :Uuid, :Name, :Level, :Rule, :Decription, :Operator, :IsGlobal, :Status, :CreateTime, :ModifyTime, :Hostip, :Uuids, :White, :DealOldEvents, :Description
         extend Gem::Deprecate
-        deprecate :Decription, :none, 2026, 8
-        deprecate :Decription=, :none, 2026, 8
+        deprecate :Decription, :none, 2026, 9
+        deprecate :Decription=, :none, 2026, 9
 
         def initialize(id=nil, uuid=nil, name=nil, level=nil, rule=nil, decription=nil, operator=nil, isglobal=nil, status=nil, createtime=nil, modifytime=nil, hostip=nil, uuids=nil, white=nil, dealoldevents=nil, description=nil)
           @Id = id
@@ -4902,6 +4902,30 @@ module TencentCloud
         def deserialize(params)
           @TopicID = params['TopicID']
           @TopicName = params['TopicName']
+        end
+      end
+
+      # 主机标签
+      class CWPTags < TencentCloud::Common::AbstractModel
+        # @param Rid: <p>记录ID</p>
+        # @type Rid: Integer
+        # @param Name: <p>标签名</p>
+        # @type Name: String
+        # @param TagId: <p>标签ID</p>
+        # @type TagId: Integer
+
+        attr_accessor :Rid, :Name, :TagId
+
+        def initialize(rid=nil, name=nil, tagid=nil)
+          @Rid = rid
+          @Name = name
+          @TagId = tagid
+        end
+
+        def deserialize(params)
+          @Rid = params['Rid']
+          @Name = params['Name']
+          @TagId = params['TagId']
         end
       end
 
@@ -17346,16 +17370,16 @@ module TencentCloud
 
         attr_accessor :MachineCnt, :TencentCloudMachineCnt, :AliCloudMachineCnt, :BaiduCloudMachineCnt, :IDCMachineCnt, :OtherCloudMachineCnt, :ProtectMachineCnt, :BaseMachineCnt, :SpecialtyMachineCnt, :FlagshipMachineCnt, :RiskMachineCnt, :CompareYesterdayRiskMachineCnt, :CompareYesterdayNotProtectMachineCnt, :CompareYesterdayDeadlineMachineCnt, :DeadlineMachineCnt, :NotProtectMachineCnt, :LHGeneralDiscountCnt, :CompareYesterdayMachineCnt, :MachineDestroyAfterOfflineHours, :CloudFrom, :RequestId
         extend Gem::Deprecate
-        deprecate :TencentCloudMachineCnt, :none, 2026, 8
-        deprecate :TencentCloudMachineCnt=, :none, 2026, 8
-        deprecate :AliCloudMachineCnt, :none, 2026, 8
-        deprecate :AliCloudMachineCnt=, :none, 2026, 8
-        deprecate :BaiduCloudMachineCnt, :none, 2026, 8
-        deprecate :BaiduCloudMachineCnt=, :none, 2026, 8
-        deprecate :IDCMachineCnt, :none, 2026, 8
-        deprecate :IDCMachineCnt=, :none, 2026, 8
-        deprecate :OtherCloudMachineCnt, :none, 2026, 8
-        deprecate :OtherCloudMachineCnt=, :none, 2026, 8
+        deprecate :TencentCloudMachineCnt, :none, 2026, 9
+        deprecate :TencentCloudMachineCnt=, :none, 2026, 9
+        deprecate :AliCloudMachineCnt, :none, 2026, 9
+        deprecate :AliCloudMachineCnt=, :none, 2026, 9
+        deprecate :BaiduCloudMachineCnt, :none, 2026, 9
+        deprecate :BaiduCloudMachineCnt=, :none, 2026, 9
+        deprecate :IDCMachineCnt, :none, 2026, 9
+        deprecate :IDCMachineCnt=, :none, 2026, 9
+        deprecate :OtherCloudMachineCnt, :none, 2026, 9
+        deprecate :OtherCloudMachineCnt=, :none, 2026, 9
 
         def initialize(machinecnt=nil, tencentcloudmachinecnt=nil, alicloudmachinecnt=nil, baiducloudmachinecnt=nil, idcmachinecnt=nil, othercloudmachinecnt=nil, protectmachinecnt=nil, basemachinecnt=nil, specialtymachinecnt=nil, flagshipmachinecnt=nil, riskmachinecnt=nil, compareyesterdayriskmachinecnt=nil, compareyesterdaynotprotectmachinecnt=nil, compareyesterdaydeadlinemachinecnt=nil, deadlinemachinecnt=nil, notprotectmachinecnt=nil, lhgeneraldiscountcnt=nil, compareyesterdaymachinecnt=nil, machinedestroyafterofflinehours=nil, cloudfrom=nil, requestid=nil)
           @MachineCnt = machinecnt
@@ -20590,6 +20614,7 @@ module TencentCloud
         # - NodeName 容器节点名称
         # - ClusterID 容器集群ID
         # - ClusterName 容器集群名称
+        # - CWPTags 主机标签(值为标签ID,多个取并集,仅AssetType=CWP/TCSS_HOST生效)
         # @type Filters: Array
         # @param Limit: 限制条数,默认10
         # @type Limit: Integer
@@ -21084,7 +21109,17 @@ module TencentCloud
         # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
         # @param Filters: 过滤条件。
-        # <li>Keywords - String - 是否必填：否 - 关键字(主机内网IP|进程名)</li>
+        # <li>ProcName - String - 是否必填：否 - 进程名(模糊匹配进程名或父进程名)</li>
+        # <li>MachineName - String - 是否必填：否 - 主机名称(模糊匹配)</li>
+        # <li>InstanceID - String - 是否必填：否 - 实例ID(模糊匹配)</li>
+        # <li>IP - String - 是否必填：否 - 主机IP(内网IP或公网IP,模糊匹配)</li>
+        # <li>Quuid - String - 是否必填：否 - 主机QUUID(支持多个)</li>
+        # <li>Uuid - String - 是否必填：否 - 主机UUID</li>
+        # <li>Status - String - 是否必填：否 - 处理状态(0:待处理 2:已加入白名单 3:已处理 4:已忽略)</li>
+        # <li>DetectBy - String - 是否必填：否 - 检测方式(0:行为分析 1:命令特征检测)</li>
+        # <li>ID - String - 是否必填：否 - 事件ID(支持多个)</li>
+        # <li>CreateBeginTime - String - 是否必填：否 - 发生开始时间</li>
+        # <li>CreateEndTime - String - 是否必填：否 - 发生结束时间</li>
         # @type Filters: Array
         # @param Order: 排序方式：根据请求次数排序：asc-升序/desc-降序
         # @type Order: String
@@ -28847,10 +28882,10 @@ module TencentCloud
 
         attr_accessor :Filters, :Fileds, :Fields, :Where
         extend Gem::Deprecate
-        deprecate :Fileds, :none, 2026, 8
-        deprecate :Fileds=, :none, 2026, 8
-        deprecate :Fields, :none, 2026, 8
-        deprecate :Fields=, :none, 2026, 8
+        deprecate :Fileds, :none, 2026, 9
+        deprecate :Fileds=, :none, 2026, 9
+        deprecate :Fields, :none, 2026, 9
+        deprecate :Fields=, :none, 2026, 9
 
         def initialize(filters=nil, fileds=nil, fields=nil, where=nil)
           @Filters = filters
@@ -31104,7 +31139,7 @@ module TencentCloud
         end
       end
 
-      # 描述键值对过滤器，用于条件过滤查询。例如过滤ID、名称、状态等
+      # 描述键值对过滤器，用于条件过滤查询。例如过滤ID、名称、状态、时间等
 
       # 若存在多个Filter时，Filter间的关系为逻辑与（AND）关系。
       # 若同一个Filter存在多个Values，同一Filter下Values间的关系为逻辑或（OR）关系。
@@ -36864,28 +36899,29 @@ module TencentCloud
 
       # 订单详情
       class OrderDetail < TencentCloud::Common::AbstractModel
-        # @param ResourceID: 资源ID
+        # @param ResourceID: <p>资源ID</p>
         # @type ResourceID: String
-        # @param InquireKey: 计费项
+        # @param InquireKey: <p>计费项</p>
         # @type InquireKey: String
-        # @param Status: 订单状态
-        # - 1 正常
-        # - 2 隔离期
-        # - 3 已销毁
+        # @param Status: <p>订单状态</p><ul><li>1 正常</li><li>2 隔离期</li><li>3 已销毁</li></ul>
         # @type Status: Integer
+        # @param SourceType: <p>源类型</p>
+        # @type SourceType: Integer
 
-        attr_accessor :ResourceID, :InquireKey, :Status
+        attr_accessor :ResourceID, :InquireKey, :Status, :SourceType
 
-        def initialize(resourceid=nil, inquirekey=nil, status=nil)
+        def initialize(resourceid=nil, inquirekey=nil, status=nil, sourcetype=nil)
           @ResourceID = resourceid
           @InquireKey = inquirekey
           @Status = status
+          @SourceType = sourcetype
         end
 
         def deserialize(params)
           @ResourceID = params['ResourceID']
           @InquireKey = params['InquireKey']
           @Status = params['Status']
+          @SourceType = params['SourceType']
         end
       end
 
@@ -38892,90 +38928,71 @@ module TencentCloud
 
       # 重保授权包列表对象
       class RaspLicenseList < TencentCloud::Common::AbstractModel
-        # @param QUUID: 机器唯一ID
+        # @param QUUID: <p>机器唯一ID</p>
         # @type QUUID: String
-        # @param InstanceName: 实例名称
+        # @param InstanceName: <p>实例名称</p>
         # @type InstanceName: String
-        # @param InstanceId: 实例ID
+        # @param InstanceId: <p>实例ID</p>
         # @type InstanceId: String
-        # @param PublicIP: 公网IP
+        # @param PublicIP: <p>公网IP</p>
         # @type PublicIP: String
-        # @param PrivateIP: 内网IP
+        # @param PrivateIP: <p>内网IP</p>
         # @type PrivateIP: String
-        # @param Tags: 云标签信息
+        # @param Tags: <p>云标签信息</p>
         # @type Tags: Array
-        # @param ProtectionVersion: 防护版本信息
-        # - CriticalProtection 重保防护包
-        # - Pro 容器安全-专业版
-        # - Ultimate 主机安全-旗舰版
+        # @param CWPTags: <p>主机标签信息(仅AssetType=CWP/TCSS_HOST有值)</p>
+        # @type CWPTags: Array
+        # @param ProtectionVersion: <p>防护版本信息</p><ul><li>CriticalProtection 重保防护包</li><li>Pro 容器安全-专业版</li><li>Ultimate 主机安全-旗舰版</li></ul>
         # @type ProtectionVersion: Array
-        # @param ConfigurationSetting: 防护设置
-        # - 0 未配置
-        # - 1 已配置
+        # @param ConfigurationSetting: <p>防护设置</p><ul><li>0 未配置</li><li>1 已配置</li></ul>
         # @type ConfigurationSetting: Integer
-        # @param Enable: 总开关
-        # - 0 未开启
-        # - 1已开启
+        # @param Enable: <p>总开关</p><ul><li>0 未开启</li><li>1已开启</li></ul>
         # @type Enable: Integer
-        # @param VulDefEnable: 漏洞防御开关
-        # - 0 未开启
-        # - 1 开启
+        # @param VulDefEnable: <p>漏洞防御开关</p><ul><li>0 未开启</li><li>1 开启</li></ul>
         # @type VulDefEnable: Integer
-        # @param VulDefMode: 漏洞防御模式
-        # - 0 标准
-        # - 1 重保
+        # @param VulDefMode: <p>漏洞防御模式</p><ul><li>0 标准</li><li>1 重保</li></ul>
         # @type VulDefMode: Integer
-        # @param VulDefAction: 漏洞防御动作
-        # - 0 仅检测
-        # - 1 检测+防御
+        # @param VulDefAction: <p>漏洞防御动作</p><ul><li>0 仅检测</li><li>1 检测+防御</li></ul>
         # @type VulDefAction: Integer
-        # @param MemShellDefEnable: 内存马防御开关
-        # - 0 未开启
-        # - 1 开启
+        # @param MemShellDefEnable: <p>内存马防御开关</p><ul><li>0 未开启</li><li>1 开启</li></ul>
         # @type MemShellDefEnable: Integer
-        # @param SafeInject: 更多防护
-        # - 0 不注入会重启的进程
-        # - 1 注入会重启的进程
+        # @param SafeInject: <p>更多防护</p><ul><li>0 不注入会重启的进程 </li><li>1 注入会重启的进程</li></ul>
         # @type SafeInject: Integer
-        # @param PerformanceLimit: 性能阈值配置开关
-        # - 0 未开启
-        # - 1 开启
+        # @param PerformanceLimit: <p>性能阈值配置开关</p><ul><li>0 未开启</li><li>1 开启</li></ul>
         # @type PerformanceLimit: Integer
-        # @param PerformanceLimitCpu: CPU阈值,取值1-99
+        # @param PerformanceLimitCpu: <p>CPU阈值,取值1-99</p>
         # @type PerformanceLimitCpu: Integer
-        # @param PerformanceLimitMem: 内存阈值,取值1-99
+        # @param PerformanceLimitMem: <p>内存阈值,取值1-99</p>
         # @type PerformanceLimitMem: Integer
-        # @param PerformanceLimitMemAmount: 内存剩余阈值
+        # @param PerformanceLimitMemAmount: <p>内存剩余阈值</p>
         # @type PerformanceLimitMemAmount: Integer
-        # @param RaspException: 插件状态
-        # - 0 使用正常
-        # - 1 存在异常
-        # - 2 未使用
+        # @param RaspException: <p>插件状态</p><ul><li>0 使用正常</li><li>1 存在异常</li><li>2 未使用</li></ul>
         # @type RaspException: Integer
-        # @param LatestUpdateTime: 最近更新时间
+        # @param LatestUpdateTime: <p>最近更新时间</p>
         # @type LatestUpdateTime: String
-        # @param ClusterName: 集群ID,仅容器资产有值
+        # @param ClusterName: <p>集群ID,仅容器资产有值</p>
         # @type ClusterName: String
-        # @param ClusterId: 集群名称,仅容器资产有值
+        # @param ClusterId: <p>集群名称,仅容器资产有值</p>
         # @type ClusterId: String
-        # @param OrderDetail: 订单信息
+        # @param OrderDetail: <p>订单信息</p>
         # @type OrderDetail: :class:`Tencentcloud::Cwp.v20180228.models.OrderDetail`
-        # @param IsUnBind: 是否允许解绑,fasle 不允许 true 允许
+        # @param IsUnBind: <p>是否允许解绑,fasle 不允许 true 允许</p>
         # @type IsUnBind: Boolean
-        # @param UUID: uuid 机器唯一ID,仅AssetType = CWP 时有值
+        # @param UUID: <p>uuid 机器唯一ID,仅AssetType = CWP 时有值</p>
         # @type UUID: String
-        # @param Reason: 无注入/注入失败原因
+        # @param Reason: <p>无注入/注入失败原因</p>
         # @type Reason: String
 
-        attr_accessor :QUUID, :InstanceName, :InstanceId, :PublicIP, :PrivateIP, :Tags, :ProtectionVersion, :ConfigurationSetting, :Enable, :VulDefEnable, :VulDefMode, :VulDefAction, :MemShellDefEnable, :SafeInject, :PerformanceLimit, :PerformanceLimitCpu, :PerformanceLimitMem, :PerformanceLimitMemAmount, :RaspException, :LatestUpdateTime, :ClusterName, :ClusterId, :OrderDetail, :IsUnBind, :UUID, :Reason
+        attr_accessor :QUUID, :InstanceName, :InstanceId, :PublicIP, :PrivateIP, :Tags, :CWPTags, :ProtectionVersion, :ConfigurationSetting, :Enable, :VulDefEnable, :VulDefMode, :VulDefAction, :MemShellDefEnable, :SafeInject, :PerformanceLimit, :PerformanceLimitCpu, :PerformanceLimitMem, :PerformanceLimitMemAmount, :RaspException, :LatestUpdateTime, :ClusterName, :ClusterId, :OrderDetail, :IsUnBind, :UUID, :Reason
 
-        def initialize(quuid=nil, instancename=nil, instanceid=nil, publicip=nil, privateip=nil, tags=nil, protectionversion=nil, configurationsetting=nil, enable=nil, vuldefenable=nil, vuldefmode=nil, vuldefaction=nil, memshelldefenable=nil, safeinject=nil, performancelimit=nil, performancelimitcpu=nil, performancelimitmem=nil, performancelimitmemamount=nil, raspexception=nil, latestupdatetime=nil, clustername=nil, clusterid=nil, orderdetail=nil, isunbind=nil, uuid=nil, reason=nil)
+        def initialize(quuid=nil, instancename=nil, instanceid=nil, publicip=nil, privateip=nil, tags=nil, cwptags=nil, protectionversion=nil, configurationsetting=nil, enable=nil, vuldefenable=nil, vuldefmode=nil, vuldefaction=nil, memshelldefenable=nil, safeinject=nil, performancelimit=nil, performancelimitcpu=nil, performancelimitmem=nil, performancelimitmemamount=nil, raspexception=nil, latestupdatetime=nil, clustername=nil, clusterid=nil, orderdetail=nil, isunbind=nil, uuid=nil, reason=nil)
           @QUUID = quuid
           @InstanceName = instancename
           @InstanceId = instanceid
           @PublicIP = publicip
           @PrivateIP = privateip
           @Tags = tags
+          @CWPTags = cwptags
           @ProtectionVersion = protectionversion
           @ConfigurationSetting = configurationsetting
           @Enable = enable
@@ -39010,6 +39027,14 @@ module TencentCloud
               tags_tmp = Tags.new
               tags_tmp.deserialize(i)
               @Tags << tags_tmp
+            end
+          end
+          unless params['CWPTags'].nil?
+            @CWPTags = []
+            params['CWPTags'].each do |i|
+              cwptags_tmp = CWPTags.new
+              cwptags_tmp.deserialize(i)
+              @CWPTags << cwptags_tmp
             end
           end
           @ProtectionVersion = params['ProtectionVersion']
@@ -42568,9 +42593,9 @@ module TencentCloud
 
       # 平台标签
       class Tags < TencentCloud::Common::AbstractModel
-        # @param TagKey: 标签键
+        # @param TagKey: <p>标签键</p>
         # @type TagKey: String
-        # @param TagValue: 标签值
+        # @param TagValue: <p>标签值</p>
         # @type TagValue: String
 
         attr_accessor :TagKey, :TagValue
