@@ -13453,41 +13453,33 @@ module TencentCloud
 
       # GetAlarmLog请求参数结构体
       class GetAlarmLogRequest < TencentCloud::Common::AbstractModel
-        # @param From: 要查询的执行详情的起始时间，Unix时间戳，单位ms。
+        # @param From: <p>要查询的执行详情的起始时间，Unix时间戳，单位ms。</p>
         # @type From: Integer
-        # @param To: 要查询的执行详情的结束时间，Unix时间戳，单位ms。
+        # @param To: <p>要查询的执行详情的结束时间，Unix时间戳，单位ms。</p>
         # @type To: Integer
-        # @param Query: 查询过滤条件，例如：
-        # - 按告警策略ID查询：`alert_id:"alarm-0745ec00-e605-xxxx-b50b-54afe61fc971"`
-        #    - 通过[获取告警策略列表](https://cloud.tencent.com/document/api/614/56461)获取告警策略ID
-        # - 按监控对象ID查询：`monitored_object:"823d8bfa-76a7-xxxx-8399-8cda74d4009b" `
-        #   - 通过[获取告警策略列表](https://cloud.tencent.com/document/api/614/56461)获取监控对象ID
-        # - 按告警策略ID及监控对象ID查询：`alert_id:"alarm-0745ec00-e605-xxxx-b50b-54afe61fc971" AND monitored_object:"823d8bfa-76a7-xxxx-8399-8cda74d4009b"`
-        # - 按告警策略ID及监控对象ID查询支持SQL语句：`(alert_id:"alarm-5ce45495-09e8-4d58-xxxx-768134bf330c") AND (monitored_object:"3c514e84-6f1f-46ec-xxxx-05de6163f7fe") AND NOT condition_evaluate_result: "Skip" AND condition_evaluate_result:[* TO *] | SELECT count(*) as top50StatisticsTotalCount, count_if(condition_evaluate_result='ProcessError') as top50StatisticsFailureCount, count_if(notification_send_result!='NotSend') as top50NoticeTotalCount, count_if(notification_send_result='SendPartFail' or notification_send_result='SendFail') as top50NoticeFailureCount, alert_id, alert_name, monitored_object, topic_type, happen_threshold, alert_threshold, notify_template group by alert_id, alert_name, monitored_object,topic_type, happen_threshold, alert_threshold, notify_template order by top50StatisticsTotalCount desc limit 1`
+        # @param Query: <p>查询过滤条件，例如：</p><ul><li>按告警策略ID查询：<code>alert_id:&quot;alarm-0745ec00-e605-xxxx-b50b-54afe61fc971&quot;</code><ul><li>通过<a href="https://cloud.tencent.com/document/api/614/56461">获取告警策略列表</a>获取告警策略ID</li></ul></li><li>按监控对象ID查询：<code>monitored_object:&quot;823d8bfa-76a7-xxxx-8399-8cda74d4009b&quot;</code><ul><li>通过<a href="https://cloud.tencent.com/document/api/614/56461">获取告警策略列表</a>获取监控对象ID</li></ul></li><li>按告警策略ID及监控对象ID查询：<code>alert_id:&quot;alarm-0745ec00-e605-xxxx-b50b-54afe61fc971&quot; AND monitored_object:&quot;823d8bfa-76a7-xxxx-8399-8cda74d4009b&quot;</code></li><li>按告警策略ID及监控对象ID查询支持SQL语句：<code>(alert_id:&quot;alarm-5ce45495-0918-4d58-xxxx-768134bf330c&quot;) AND (monitored_object:&quot;3c514e84-6f1f-46ec-xxxx-05de6163f7fe&quot;) AND NOT condition_evaluate_result: &quot;Skip&quot; AND condition_evaluate_result:[* TO *] | SELECT count(*) as top50StatisticsTotalCount, count_if(condition_evaluate_result=&#39;ProcessError&#39;) as top50StatisticsFailureCount, count_if(notification_send_result!=&#39;NotSend&#39;) as top50NoticeTotalCount, count_if(notification_send_result=&#39;SendPartFail&#39; or notification_send_result=&#39;SendFail&#39;) as top50NoticeFailureCount, alert_id, alert_name, monitored_object, topic_type, happen_threshold, alert_threshold, notify_template group by alert_id, alert_name, monitored_object,topic_type, happen_threshold, alert_threshold, notify_template order by top50StatisticsTotalCount desc limit 1</code></li></ul><p>该查询语句走Lucene语法（已废弃）</p>
         # @type Query: String
-        # @param Limit: 单次查询返回的执行详情条数，最大值为1000
+        # @param QueryString: <p>查询过滤条件，例如：- 按告警策略ID查询：<code>alert_id:&quot;alarm-0745ec00-e605-xxxx-b50b-54afe61fc971&quot;</code>   - 通过<a href="https://cloud.tencent.com/document/api/614/56461">获取告警策略列表</a>获取告警策略ID- 按监控对象ID查询：<code>monitored_object:&quot;823d8bfa-76a7-xxxx-8399-8cda74d4009b&quot;</code>  - 通过<a href="https://cloud.tencent.com/document/api/614/56461">获取告警策略列表</a>获取监控对象ID- 按告警策略ID及监控对象ID查询：<code>alert_id:&quot;alarm-0745ec00-e605-xxxx-b50b-54afe61fc971&quot; AND monitored_object:&quot;823d8bfa-76a7-xxxx-8399-8cda74d4009b&quot;</code>- 按告警策略ID及监控对象ID查询支持SQL语句：<code>(alert_id:&quot;alarm-5ce45495-0918-4d58-xxxx-768134bf330c&quot;) AND (monitored_object:&quot;3c514e84-6f1f-46ec-xxxx-05de6163f7fe&quot;) AND NOT condition_evaluate_result: &quot;Skip&quot; AND condition_evaluate_result:[* TO *] | SELECT count(*) as top50StatisticsTotalCount, count_if(condition_evaluate_result=&#39;ProcessError&#39;) as top50StatisticsFailureCount, count_if(notification_send_result!=&#39;NotSend&#39;) as top50NoticeTotalCount, count_if(notification_send_result=&#39;SendPartFail&#39; or notification_send_result=&#39;SendFail&#39;) as top50NoticeFailureCount, alert_id, alert_name, monitored_object, topic_type, happen_threshold, alert_threshold, notify_template group by alert_id, alert_name, monitored_object,topic_type, happen_threshold, alert_threshold, notify_template order by top50StatisticsTotalCount desc limit 1</code></p><p>该查询语句走CQL语法</p>
+        # @type QueryString: String
+        # @param Limit: <p>单次查询返回的执行详情条数，最大值为1000</p>
         # @type Limit: Integer
-        # @param Context: 透传上次接口返回的Context值，可获取后续更多日志，总计最多可获取1万条原始日志，过期时间1小时。
-        # 注意：
-        # * 透传该参数时，请勿修改除该参数外的其它参数
-        # * 仅当检索分析语句(Query)不包含SQL时有效，SQL获取后续结果参考<a href="https://cloud.tencent.com/document/product/614/58977" target="_blank">SQL LIMIT语法</a>
+        # @param Context: <p>透传上次接口返回的Context值，可获取后续更多日志，总计最多可获取1万条原始日志，过期时间1小时。<br>注意：</p><ul><li>透传该参数时，请勿修改除该参数外的其它参数</li><li>仅当检索分析语句(Query)不包含SQL时有效，SQL获取后续结果参考<a href="https://cloud.tencent.com/document/product/614/58977" target="_blank">SQL LIMIT语法</a></li></ul>
         # @type Context: String
-        # @param Sort: 原始日志是否按时间排序返回；可选值：asc(升序)、desc(降序)，默认为 desc
-        # 注意：
-        # * 仅当检索分析语句(Query)不包含SQL时有效
-        # * SQL结果排序方式参考<a href="https://cloud.tencent.com/document/product/614/58978" target="_blank">SQL ORDER BY语法</a>
+        # @param Sort: <p>原始日志是否按时间排序返回；可选值：asc(升序)、desc(降序)，默认为 desc<br>注意：</p><ul><li>仅当检索分析语句(Query)不包含SQL时有效</li><li>SQL结果排序方式参考<a href="https://cloud.tencent.com/document/product/614/58978" target="_blank">SQL ORDER BY语法</a></li></ul>
         # @type Sort: String
-        # @param UseNewAnalysis: true：代表使用新的检索结果返回方式，输出参数AnalysisRecords和Columns有效；
-        # false：代表使用老的检索结果返回方式，输出AnalysisResults和ColNames有效；
-        # 两种返回方式在编码格式上有少量区别，建议使用true。
+        # @param UseNewAnalysis: <p>true：代表使用新的检索结果返回方式，输出参数AnalysisRecords和Columns有效；<br>false：代表使用老的检索结果返回方式，输出AnalysisResults和ColNames有效；<br>两种返回方式在编码格式上有少量区别，建议使用true。</p>
         # @type UseNewAnalysis: Boolean
 
-        attr_accessor :From, :To, :Query, :Limit, :Context, :Sort, :UseNewAnalysis
+        attr_accessor :From, :To, :Query, :QueryString, :Limit, :Context, :Sort, :UseNewAnalysis
+        extend Gem::Deprecate
+        deprecate :Query, :none, 2026, 9
+        deprecate :Query=, :none, 2026, 9
 
-        def initialize(from=nil, to=nil, query=nil, limit=nil, context=nil, sort=nil, usenewanalysis=nil)
+        def initialize(from=nil, to=nil, query=nil, querystring=nil, limit=nil, context=nil, sort=nil, usenewanalysis=nil)
           @From = from
           @To = to
           @Query = query
+          @QueryString = querystring
           @Limit = limit
           @Context = context
           @Sort = sort
@@ -13498,6 +13490,7 @@ module TencentCloud
           @From = params['From']
           @To = params['To']
           @Query = params['Query']
+          @QueryString = params['QueryString']
           @Limit = params['Limit']
           @Context = params['Context']
           @Sort = params['Sort']
@@ -13507,29 +13500,25 @@ module TencentCloud
 
       # GetAlarmLog返回参数结构体
       class GetAlarmLogResponse < TencentCloud::Common::AbstractModel
-        # @param Context: 加载后续详情的Context
+        # @param Context: <p>加载后续详情的Context</p>
         # @type Context: String
-        # @param ListOver: 指定时间范围内的告警执行详情是否完整返回
+        # @param ListOver: <p>指定时间范围内的告警执行详情是否完整返回</p>
         # @type ListOver: Boolean
-        # @param Analysis: 返回的结果是否为SQL分析结果
+        # @param Analysis: <p>返回的结果是否为SQL分析结果</p>
         # @type Analysis: Boolean
-        # @param ColNames: 分析结果的列名，如果Query语句有SQL查询，则返回查询字段的列名；
-        # 否则为空。
+        # @param ColNames: <p>分析结果的列名，如果Query语句有SQL查询，则返回查询字段的列名；<br>否则为空。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ColNames: Array
-        # @param Results: 执行详情查询结果。
-        # 当Query字段无SQL语句时，返回查询结果。
-        # 当Query字段有SQL语句时，可能返回null。
+        # @param Results: <p>执行详情查询结果。<br>当Query字段无SQL语句时，返回查询结果。<br>当Query字段有SQL语句时，可能返回null。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Results: Array
-        # @param AnalysisResults: 执行详情统计分析结果。当Query字段有SQL语句时，返回SQL统计结果，否则可能返回null。
-
+        # @param AnalysisResults: <p>执行详情统计分析结果。当Query字段有SQL语句时，返回SQL统计结果，否则可能返回null。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AnalysisResults: Array
-        # @param AnalysisRecords: 执行详情统计分析结果；UseNewAnalysis为true有效。
+        # @param AnalysisRecords: <p>执行详情统计分析结果；UseNewAnalysis为true有效。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AnalysisRecords: Array
-        # @param Columns: 分析结果的列名， UseNewAnalysis为true有效
+        # @param Columns: <p>分析结果的列名， UseNewAnalysis为true有效</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Columns: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。

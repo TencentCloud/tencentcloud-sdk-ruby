@@ -5686,10 +5686,16 @@ module TencentCloud
         # @param RequestBody: <p>任务请求包</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RequestBody: String
+        # @param TaskInfo: <p>任务其他信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskInfo: String
+        # @param Stage: <p>任务子状态</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Stage: String
 
-        attr_accessor :TaskId, :TaskType, :TaskStatus, :CreateTime, :ScheduledTime, :FinishedTime, :Urls, :TaskResultCode, :TaskResultMsg, :Resolution, :Ratio, :RequestBody
+        attr_accessor :TaskId, :TaskType, :TaskStatus, :CreateTime, :ScheduledTime, :FinishedTime, :Urls, :TaskResultCode, :TaskResultMsg, :Resolution, :Ratio, :RequestBody, :TaskInfo, :Stage
 
-        def initialize(taskid=nil, tasktype=nil, taskstatus=nil, createtime=nil, scheduledtime=nil, finishedtime=nil, urls=nil, taskresultcode=nil, taskresultmsg=nil, resolution=nil, ratio=nil, requestbody=nil)
+        def initialize(taskid=nil, tasktype=nil, taskstatus=nil, createtime=nil, scheduledtime=nil, finishedtime=nil, urls=nil, taskresultcode=nil, taskresultmsg=nil, resolution=nil, ratio=nil, requestbody=nil, taskinfo=nil, stage=nil)
           @TaskId = taskid
           @TaskType = tasktype
           @TaskStatus = taskstatus
@@ -5702,6 +5708,8 @@ module TencentCloud
           @Resolution = resolution
           @Ratio = ratio
           @RequestBody = requestbody
+          @TaskInfo = taskinfo
+          @Stage = stage
         end
 
         def deserialize(params)
@@ -5717,6 +5725,8 @@ module TencentCloud
           @Resolution = params['Resolution']
           @Ratio = params['Ratio']
           @RequestBody = params['RequestBody']
+          @TaskInfo = params['TaskInfo']
+          @Stage = params['Stage']
         end
       end
 
@@ -7293,7 +7303,7 @@ module TencentCloud
       class CloneViralAIGC < TencentCloud::Common::AbstractModel
         # @param Duration: <p>视频时长</p><p>取值范围：[4, 15]</p>
         # @type Duration: Integer
-        # @param AspectRatio: <p>宽高比。可选 16:9/4:3/1:1/3:4/9:16/21:9/adaptive</p>
+        # @param AspectRatio: <p>宽高比。旗舰版支持 16:9/4:3/1:1/3:4/9:16/21:9/adaptive，标准版支持16:9/1:1/9:16</p>
         # @type AspectRatio: String
         # @param Resolution: <p>分辨率。支持720p（默认）/1080p/2k/4k</p>
         # @type Resolution: String
@@ -7342,6 +7352,53 @@ module TencentCloud
           @Language = params['Language']
           @Market = params['Market']
           @FissionLevel = params['FissionLevel']
+        end
+      end
+
+      # 爆款复刻输出COS信息
+      class CloneViralCosInfo < TencentCloud::Common::AbstractModel
+        # @param Region: <p>区域</p>
+        # @type Region: String
+        # @param Bucket: <p>COS桶</p>
+        # @type Bucket: String
+        # @param Dir: <p>目录。空时默认根目录</p>
+        # @type Dir: String
+
+        attr_accessor :Region, :Bucket, :Dir
+
+        def initialize(region=nil, bucket=nil, dir=nil)
+          @Region = region
+          @Bucket = bucket
+          @Dir = dir
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          @Bucket = params['Bucket']
+          @Dir = params['Dir']
+        end
+      end
+
+      # 爆款复刻输出配置
+      class CloneViralOutputOption < TencentCloud::Common::AbstractModel
+        # @param Type: <p>输出类型。默认url</p><p>枚举值：</p><ul><li>url： 临时链接，有效期24小时</li><li>cos： 指定cos桶和路径</li></ul>
+        # @type Type: String
+        # @param CosInfo: <p>自定义cos信息</p>
+        # @type CosInfo: :class:`Tencentcloud::Mps.v20190612.models.CloneViralCosInfo`
+
+        attr_accessor :Type, :CosInfo
+
+        def initialize(type=nil, cosinfo=nil)
+          @Type = type
+          @CosInfo = cosinfo
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          unless params['CosInfo'].nil?
+            @CosInfo = CloneViralCosInfo.new
+            @CosInfo.deserialize(params['CosInfo'])
+          end
         end
       end
 
@@ -7409,15 +7466,18 @@ module TencentCloud
         # @type ContentParam: :class:`Tencentcloud::Mps.v20190612.models.CloneViralContent`
         # @param Persona: <p>模特形象</p>
         # @type Persona: :class:`Tencentcloud::Mps.v20190612.models.CloneViralPersona`
+        # @param Output: <p>输出相关参数</p>
+        # @type Output: :class:`Tencentcloud::Mps.v20190612.models.CloneViralOutputOption`
 
-        attr_accessor :VideoUrl, :Product, :AIGCParam, :ContentParam, :Persona
+        attr_accessor :VideoUrl, :Product, :AIGCParam, :ContentParam, :Persona, :Output
 
-        def initialize(videourl=nil, product=nil, aigcparam=nil, contentparam=nil, persona=nil)
+        def initialize(videourl=nil, product=nil, aigcparam=nil, contentparam=nil, persona=nil, output=nil)
           @VideoUrl = videourl
           @Product = product
           @AIGCParam = aigcparam
           @ContentParam = contentparam
           @Persona = persona
+          @Output = output
         end
 
         def deserialize(params)
@@ -7437,6 +7497,10 @@ module TencentCloud
           unless params['Persona'].nil?
             @Persona = CloneViralPersona.new
             @Persona.deserialize(params['Persona'])
+          end
+          unless params['Output'].nil?
+            @Output = CloneViralOutputOption.new
+            @Output.deserialize(params['Output'])
           end
         end
       end
@@ -14068,12 +14132,18 @@ module TencentCloud
         # @type RequestBody: String
         # @param TaskType: <p>任务类型</p>
         # @type TaskType: String
+        # @param TaskInfo: <p>任务其他信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskInfo: String
+        # @param Stage: <p>任务子状态</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Stage: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskId, :TaskStatus, :OutputUrl, :CreateTime, :ScheduledTime, :FinishedTime, :TaskResultCode, :TaskResultMsg, :RequestBody, :TaskType, :RequestId
+        attr_accessor :TaskId, :TaskStatus, :OutputUrl, :CreateTime, :ScheduledTime, :FinishedTime, :TaskResultCode, :TaskResultMsg, :RequestBody, :TaskType, :TaskInfo, :Stage, :RequestId
 
-        def initialize(taskid=nil, taskstatus=nil, outputurl=nil, createtime=nil, scheduledtime=nil, finishedtime=nil, taskresultcode=nil, taskresultmsg=nil, requestbody=nil, tasktype=nil, requestid=nil)
+        def initialize(taskid=nil, taskstatus=nil, outputurl=nil, createtime=nil, scheduledtime=nil, finishedtime=nil, taskresultcode=nil, taskresultmsg=nil, requestbody=nil, tasktype=nil, taskinfo=nil, stage=nil, requestid=nil)
           @TaskId = taskid
           @TaskStatus = taskstatus
           @OutputUrl = outputurl
@@ -14084,6 +14154,8 @@ module TencentCloud
           @TaskResultMsg = taskresultmsg
           @RequestBody = requestbody
           @TaskType = tasktype
+          @TaskInfo = taskinfo
+          @Stage = stage
           @RequestId = requestid
         end
 
@@ -14098,6 +14170,8 @@ module TencentCloud
           @TaskResultMsg = params['TaskResultMsg']
           @RequestBody = params['RequestBody']
           @TaskType = params['TaskType']
+          @TaskInfo = params['TaskInfo']
+          @Stage = params['Stage']
           @RequestId = params['RequestId']
         end
       end
@@ -14600,15 +14674,18 @@ module TencentCloud
         # @type Message: String
         # @param VideoUrls: <p>当任务状态为 DONE时，返回视频Url列表，视频存储24小时</p>
         # @type VideoUrls: Array
+        # @param RequestBody: <p>任务请求体</p>
+        # @type RequestBody: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Status, :Message, :VideoUrls, :RequestId
+        attr_accessor :Status, :Message, :VideoUrls, :RequestBody, :RequestId
 
-        def initialize(status=nil, message=nil, videourls=nil, requestid=nil)
+        def initialize(status=nil, message=nil, videourls=nil, requestbody=nil, requestid=nil)
           @Status = status
           @Message = message
           @VideoUrls = videourls
+          @RequestBody = requestbody
           @RequestId = requestid
         end
 
@@ -14616,6 +14693,7 @@ module TencentCloud
           @Status = params['Status']
           @Message = params['Message']
           @VideoUrls = params['VideoUrls']
+          @RequestBody = params['RequestBody']
           @RequestId = params['RequestId']
         end
       end
@@ -19622,6 +19700,22 @@ module TencentCloud
         end
       end
 
+      # AIGC 文档生成视频背景图片信息
+      class DocToVideoBackgroundInfo < TencentCloud::Common::AbstractModel
+        # @param ImageUrl: <p>用于生成视频的背景图片 URL。</p>
+        # @type ImageUrl: String
+
+        attr_accessor :ImageUrl
+
+        def initialize(imageurl=nil)
+          @ImageUrl = imageurl
+        end
+
+        def deserialize(params)
+          @ImageUrl = params['ImageUrl']
+        end
+      end
+
       # cos信息，存储用户请求时填写的cos信息，用于存放结果
       class DocToVideoCosInfo < TencentCloud::Common::AbstractModel
         # @param CosBucketRegion: <p>cos桶地域</p>
@@ -19666,10 +19760,20 @@ module TencentCloud
         # @type EnableTTS: Boolean
         # @param VoiceId: <p>音色ID。仅开启AI配音功能时有效。</p>
         # @type VoiceId: String
+        # @param PPTXFidelity: <p>是否开启 PPTX 保真复刻模式。</p><p>开启状态下，会尽可能复刻输入 PPTX 文档的内容，无法完美复刻。<br>暂时无法复刻动画效果，</p><p>开启状态下，需保证输入文档中至少有一个 PPTX 文档。<br>如果有多个 PPTX 文档，则只会对首个文档进行保真复刻。</p><p>默认值：false</p>
+        # @type PPTXFidelity: Boolean
+        # @param Mode: <p>生成视频的模式。</p><p>枚举值：</p><ul><li>stage： 确认后生成模式</li><li>auto： 端到端直接生成模式</li></ul>
+        # @type Mode: String
+        # @param Background: <p>用于生成视频的背景图片信息。</p><p>仅在 PreserveLayout 为 false 时起作用。</p>
+        # @type Background: :class:`Tencentcloud::Mps.v20190612.models.DocToVideoBackgroundInfo`
+        # @param Watermark: <p>用于生成视频的水印图片信息。</p><p>仅在 PreserveLayout 为 false 时起作用。</p>
+        # @type Watermark: :class:`Tencentcloud::Mps.v20190612.models.DocToVideoWatermarkInfo`
+        # @param EnableCaption: <p>是否开启字幕生成。</p><p>默认值：false</p>
+        # @type EnableCaption: Boolean
 
-        attr_accessor :FileUrl, :Prompt, :ModelName, :ModelVersion, :Ratio, :Language, :ReferenceDuration, :EnableTTS, :VoiceId
+        attr_accessor :FileUrl, :Prompt, :ModelName, :ModelVersion, :Ratio, :Language, :ReferenceDuration, :EnableTTS, :VoiceId, :PPTXFidelity, :Mode, :Background, :Watermark, :EnableCaption
 
-        def initialize(fileurl=nil, prompt=nil, modelname=nil, modelversion=nil, ratio=nil, language=nil, referenceduration=nil, enabletts=nil, voiceid=nil)
+        def initialize(fileurl=nil, prompt=nil, modelname=nil, modelversion=nil, ratio=nil, language=nil, referenceduration=nil, enabletts=nil, voiceid=nil, pptxfidelity=nil, mode=nil, background=nil, watermark=nil, enablecaption=nil)
           @FileUrl = fileurl
           @Prompt = prompt
           @ModelName = modelname
@@ -19679,6 +19783,11 @@ module TencentCloud
           @ReferenceDuration = referenceduration
           @EnableTTS = enabletts
           @VoiceId = voiceid
+          @PPTXFidelity = pptxfidelity
+          @Mode = mode
+          @Background = background
+          @Watermark = watermark
+          @EnableCaption = enablecaption
         end
 
         def deserialize(params)
@@ -19691,6 +19800,37 @@ module TencentCloud
           @ReferenceDuration = params['ReferenceDuration']
           @EnableTTS = params['EnableTTS']
           @VoiceId = params['VoiceId']
+          @PPTXFidelity = params['PPTXFidelity']
+          @Mode = params['Mode']
+          unless params['Background'].nil?
+            @Background = DocToVideoBackgroundInfo.new
+            @Background.deserialize(params['Background'])
+          end
+          unless params['Watermark'].nil?
+            @Watermark = DocToVideoWatermarkInfo.new
+            @Watermark.deserialize(params['Watermark'])
+          end
+          @EnableCaption = params['EnableCaption']
+        end
+      end
+
+      # AIGC 文档生成视频水印图片信息
+      class DocToVideoWatermarkInfo < TencentCloud::Common::AbstractModel
+        # @param ImageUrl: <p>用于生成视频的水印图片 URL。</p>
+        # @type ImageUrl: String
+        # @param Position: <p>水印图片位置。</p><p>枚举值：</p><ul><li>top-left： 左上角</li><li>top-right： 右上角</li><li>bottom-left： 左下角</li><li>bottom-right： 右下角</li></ul>
+        # @type Position: String
+
+        attr_accessor :ImageUrl, :Position
+
+        def initialize(imageurl=nil, position=nil)
+          @ImageUrl = imageurl
+          @Position = position
+        end
+
+        def deserialize(params)
+          @ImageUrl = params['ImageUrl']
+          @Position = params['Position']
         end
       end
 
@@ -30563,7 +30703,7 @@ module TencentCloud
       class QueryTaskFilter < TencentCloud::Common::AbstractModel
         # @param TaskId: <p>任务ID</p>
         # @type TaskId: String
-        # @param TaskType: <p>任务类型</p>
+        # @param TaskType: <p>任务类型</p><p>枚举值：</p><ul><li>RedrawVideo： 视频重绘</li><li>AIDrama： AI漫剧</li><li>DocGenVideo： 文档生视频</li><li>FissionVideo： 视频裂变</li></ul>
         # @type TaskType: String
         # @param TaskStatus: <p>任务状态</p>
         # @type TaskStatus: String
@@ -30571,15 +30711,24 @@ module TencentCloud
         # @type Resolution: String
         # @param Ratio: <p>宽高比</p>
         # @type Ratio: String
+        # @param ExecuteMode: <p>任务执行模式</p><p>枚举值：</p><ul><li>auto： 直接生成</li><li>phased： 确认后再生成</li></ul>
+        # @type ExecuteMode: String
+        # @param VideoType: <p>裂变任务视频类型过滤: ugc、talk、display、unboxing、reaction</p><p>枚举值：</p><ul><li>ugc： UGC种草</li><li>talk： 产品口播</li><li>display： 产品展示</li><li>unboxing： 开箱分享</li><li>reaction： 反应展示</li></ul>
+        # @type VideoType: String
+        # @param ModelTier: <p>模型类型</p><p>枚举值：</p><ul><li>standard： 标准版</li><li>flagship： 高级版</li></ul>
+        # @type ModelTier: String
 
-        attr_accessor :TaskId, :TaskType, :TaskStatus, :Resolution, :Ratio
+        attr_accessor :TaskId, :TaskType, :TaskStatus, :Resolution, :Ratio, :ExecuteMode, :VideoType, :ModelTier
 
-        def initialize(taskid=nil, tasktype=nil, taskstatus=nil, resolution=nil, ratio=nil)
+        def initialize(taskid=nil, tasktype=nil, taskstatus=nil, resolution=nil, ratio=nil, executemode=nil, videotype=nil, modeltier=nil)
           @TaskId = taskid
           @TaskType = tasktype
           @TaskStatus = taskstatus
           @Resolution = resolution
           @Ratio = ratio
+          @ExecuteMode = executemode
+          @VideoType = videotype
+          @ModelTier = modeltier
         end
 
         def deserialize(params)
@@ -30588,6 +30737,9 @@ module TencentCloud
           @TaskStatus = params['TaskStatus']
           @Resolution = params['Resolution']
           @Ratio = params['Ratio']
+          @ExecuteMode = params['ExecuteMode']
+          @VideoType = params['VideoType']
+          @ModelTier = params['ModelTier']
         end
       end
 

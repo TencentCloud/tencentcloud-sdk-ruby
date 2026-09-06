@@ -2780,10 +2780,14 @@ module TencentCloud
         # @type CMRPrivateNetworkTunnelId: String
         # @param HealthCheckConfigs: <p>健康检查配置</p>
         # @type HealthCheckConfigs: Array
+        # @param Capability: <p>模型输出模态</p>
+        # @type Capability: String
+        # @param EndpointPath: <p>请求后缀</p>
+        # @type EndpointPath: String
 
-        attr_accessor :AccessType, :ModelProvider, :ModelIds, :Keys, :ServiceProviderId, :ServiceProviderName, :Protocol, :ApiBase, :ApiBases, :VpcId, :SubnetId, :HostHeader, :Tags, :VerifySSL, :HealthCheckConfig, :CMRPrivateNetworkTunnelId, :HealthCheckConfigs
+        attr_accessor :AccessType, :ModelProvider, :ModelIds, :Keys, :ServiceProviderId, :ServiceProviderName, :Protocol, :ApiBase, :ApiBases, :VpcId, :SubnetId, :HostHeader, :Tags, :VerifySSL, :HealthCheckConfig, :CMRPrivateNetworkTunnelId, :HealthCheckConfigs, :Capability, :EndpointPath
 
-        def initialize(accesstype=nil, modelprovider=nil, modelids=nil, keys=nil, serviceproviderid=nil, serviceprovidername=nil, protocol=nil, apibase=nil, apibases=nil, vpcid=nil, subnetid=nil, hostheader=nil, tags=nil, verifyssl=nil, healthcheckconfig=nil, cmrprivatenetworktunnelid=nil, healthcheckconfigs=nil)
+        def initialize(accesstype=nil, modelprovider=nil, modelids=nil, keys=nil, serviceproviderid=nil, serviceprovidername=nil, protocol=nil, apibase=nil, apibases=nil, vpcid=nil, subnetid=nil, hostheader=nil, tags=nil, verifyssl=nil, healthcheckconfig=nil, cmrprivatenetworktunnelid=nil, healthcheckconfigs=nil, capability=nil, endpointpath=nil)
           @AccessType = accesstype
           @ModelProvider = modelprovider
           @ModelIds = modelids
@@ -2801,6 +2805,8 @@ module TencentCloud
           @HealthCheckConfig = healthcheckconfig
           @CMRPrivateNetworkTunnelId = cmrprivatenetworktunnelid
           @HealthCheckConfigs = healthcheckconfigs
+          @Capability = capability
+          @EndpointPath = endpointpath
         end
 
         def deserialize(params)
@@ -2859,6 +2865,8 @@ module TencentCloud
               @HealthCheckConfigs << serviceproviderhealthcheckconfigiteminput_tmp
             end
           end
+          @Capability = params['Capability']
+          @EndpointPath = params['EndpointPath']
         end
       end
 
@@ -2922,10 +2930,12 @@ module TencentCloud
         # @type EipAddressId: String
         # @param Bandwidth: <p>单位</p><p>取值范围：[1, 2048]</p><p>单位：Mbps</p>
         # @type Bandwidth: Integer
+        # @param EmbeddingConfig: <p>Embedding 配置</p>
+        # @type EmbeddingConfig: :class:`Tencentcloud::Clb.v20180317.models.EmbeddingConfig`
 
-        attr_accessor :ModelRouterType, :BudgetId, :CertId, :ClusterInfo, :ModelRouterName, :NetworkType, :Port, :RateLimitConfig, :RouterSetting, :Schema, :SubnetId, :Tags, :VpcId, :ModelRouterBillingConfig, :ClientToken, :EipAddressId, :Bandwidth
+        attr_accessor :ModelRouterType, :BudgetId, :CertId, :ClusterInfo, :ModelRouterName, :NetworkType, :Port, :RateLimitConfig, :RouterSetting, :Schema, :SubnetId, :Tags, :VpcId, :ModelRouterBillingConfig, :ClientToken, :EipAddressId, :Bandwidth, :EmbeddingConfig
 
-        def initialize(modelroutertype=nil, budgetid=nil, certid=nil, clusterinfo=nil, modelroutername=nil, networktype=nil, port=nil, ratelimitconfig=nil, routersetting=nil, schema=nil, subnetid=nil, tags=nil, vpcid=nil, modelrouterbillingconfig=nil, clienttoken=nil, eipaddressid=nil, bandwidth=nil)
+        def initialize(modelroutertype=nil, budgetid=nil, certid=nil, clusterinfo=nil, modelroutername=nil, networktype=nil, port=nil, ratelimitconfig=nil, routersetting=nil, schema=nil, subnetid=nil, tags=nil, vpcid=nil, modelrouterbillingconfig=nil, clienttoken=nil, eipaddressid=nil, bandwidth=nil, embeddingconfig=nil)
           @ModelRouterType = modelroutertype
           @BudgetId = budgetid
           @CertId = certid
@@ -2943,6 +2953,7 @@ module TencentCloud
           @ClientToken = clienttoken
           @EipAddressId = eipaddressid
           @Bandwidth = bandwidth
+          @EmbeddingConfig = embeddingconfig
         end
 
         def deserialize(params)
@@ -2982,6 +2993,10 @@ module TencentCloud
           @ClientToken = params['ClientToken']
           @EipAddressId = params['EipAddressId']
           @Bandwidth = params['Bandwidth']
+          unless params['EmbeddingConfig'].nil?
+            @EmbeddingConfig = EmbeddingConfig.new
+            @EmbeddingConfig.deserialize(params['EmbeddingConfig'])
+          end
         end
       end
 
@@ -5951,19 +5966,23 @@ module TencentCloud
         # @type Limit: Integer
         # @param Offset: <p>翻页偏移量</p><p>默认值：0</p>
         # @type Offset: Integer
+        # @param Capability: <p>模型输出模态</p>
+        # @type Capability: String
 
-        attr_accessor :ModelRouterId, :Limit, :Offset
+        attr_accessor :ModelRouterId, :Limit, :Offset, :Capability
 
-        def initialize(modelrouterid=nil, limit=nil, offset=nil)
+        def initialize(modelrouterid=nil, limit=nil, offset=nil, capability=nil)
           @ModelRouterId = modelrouterid
           @Limit = limit
           @Offset = offset
+          @Capability = capability
         end
 
         def deserialize(params)
           @ModelRouterId = params['ModelRouterId']
           @Limit = params['Limit']
           @Offset = params['Offset']
+          @Capability = params['Capability']
         end
       end
 
@@ -7652,6 +7671,36 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # embedding配置。
+      class EmbeddingConfig < TencentCloud::Common::AbstractModel
+        # @param RoutingStrategy: <p>模型内路由策略</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RoutingStrategy: String
+        # @param RoutingStrategyArgs: <p>路由参数</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RoutingStrategyArgs: :class:`Tencentcloud::Clb.v20180317.models.RoutingStrategyArgs`
+        # @param NumRetries: <p>同一模型请求重试次数</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NumRetries: Integer
+
+        attr_accessor :RoutingStrategy, :RoutingStrategyArgs, :NumRetries
+
+        def initialize(routingstrategy=nil, routingstrategyargs=nil, numretries=nil)
+          @RoutingStrategy = routingstrategy
+          @RoutingStrategyArgs = routingstrategyargs
+          @NumRetries = numretries
+        end
+
+        def deserialize(params)
+          @RoutingStrategy = params['RoutingStrategy']
+          unless params['RoutingStrategyArgs'].nil?
+            @RoutingStrategyArgs = RoutingStrategyArgs.new
+            @RoutingStrategyArgs.deserialize(params['RoutingStrategyArgs'])
+          end
+          @NumRetries = params['NumRetries']
         end
       end
 
@@ -9836,7 +9885,7 @@ module TencentCloud
 
       # 模型别名对象
       class ModelAlias < TencentCloud::Common::AbstractModel
-        # @param Coefficient: <p>模型积分系数配置，包含 <code>InputCoefficient</code>、<code>InputCachedCoefficient</code> 和 <code>OutputCoefficient</code>。</p><p>未配置时输入系数默认为 25，缓存命中输入系数默认为 3，输出系数默认为 100。</p>
+        # @param Coefficient: <p>模型积分系数配置，包含 <code>InputCoefficient</code> 和 <code>OutputCoefficient</code>。</p><p>未配置时输入系数和输出系数均返回 1。</p>
         # @type Coefficient: :class:`Tencentcloud::Clb.v20180317.models.Coefficient`
         # @param ModelAliasName: <p>模型别名名称。</p><p>若用户配置了模型别名，则为该别名；未配置时为原始模型名称。</p>
         # @type ModelAliasName: String
@@ -9846,15 +9895,18 @@ module TencentCloud
         # @type Source: String
         # @param Status: <p>状态</p><p>枚举值：</p><ul><li>Active： 正常可用</li><li>Configuring： 变配中</li><li>ConfigureFailed： 变配失败</li></ul>
         # @type Status: String
+        # @param Capability: <p>模型能力</p>
+        # @type Capability: String
 
-        attr_accessor :Coefficient, :ModelAliasName, :ServiceProviderCoefficientSet, :Source, :Status
+        attr_accessor :Coefficient, :ModelAliasName, :ServiceProviderCoefficientSet, :Source, :Status, :Capability
 
-        def initialize(coefficient=nil, modelaliasname=nil, serviceprovidercoefficientset=nil, source=nil, status=nil)
+        def initialize(coefficient=nil, modelaliasname=nil, serviceprovidercoefficientset=nil, source=nil, status=nil, capability=nil)
           @Coefficient = coefficient
           @ModelAliasName = modelaliasname
           @ServiceProviderCoefficientSet = serviceprovidercoefficientset
           @Source = source
           @Status = status
+          @Capability = capability
         end
 
         def deserialize(params)
@@ -9873,6 +9925,7 @@ module TencentCloud
           end
           @Source = params['Source']
           @Status = params['Status']
+          @Capability = params['Capability']
         end
       end
 
@@ -9886,14 +9939,17 @@ module TencentCloud
         # @type ServiceProviders: Array
         # @param Type: <p>模型类型</p>
         # @type Type: String
+        # @param Capability: <p>输出模态</p>
+        # @type Capability: String
 
-        attr_accessor :InputModalitiesUnion, :ModelName, :ServiceProviders, :Type
+        attr_accessor :InputModalitiesUnion, :ModelName, :ServiceProviders, :Type, :Capability
 
-        def initialize(inputmodalitiesunion=nil, modelname=nil, serviceproviders=nil, type=nil)
+        def initialize(inputmodalitiesunion=nil, modelname=nil, serviceproviders=nil, type=nil, capability=nil)
           @InputModalitiesUnion = inputmodalitiesunion
           @ModelName = modelname
           @ServiceProviders = serviceproviders
           @Type = type
+          @Capability = capability
         end
 
         def deserialize(params)
@@ -9908,6 +9964,7 @@ module TencentCloud
             end
           end
           @Type = params['Type']
+          @Capability = params['Capability']
         end
       end
 
@@ -10038,10 +10095,16 @@ module TencentCloud
         # @type CMRPrivateNetworkTunnelName: String
         # @param HealthCheckConfigs: <p>健康检查配置</p>
         # @type HealthCheckConfigs: Array
+        # @param Capability: <p>模型输出模态</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Capability: String
+        # @param EndpointPath: <p>请求后缀</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndpointPath: String
 
-        attr_accessor :AccessType, :ApiBase, :ApiBases, :CreatedAt, :HostHeader, :KeyCount, :Keys, :ModelIdsWithAlias, :ModelProvider, :Protocol, :ServiceIps, :ServiceProviderId, :ServiceProviderName, :Status, :SubnetId, :Tags, :VerifySSL, :VpcId, :HealthCheckConfig, :CMRPrivateNetworkTunnelId, :CMRPrivateNetworkTunnelName, :HealthCheckConfigs
+        attr_accessor :AccessType, :ApiBase, :ApiBases, :CreatedAt, :HostHeader, :KeyCount, :Keys, :ModelIdsWithAlias, :ModelProvider, :Protocol, :ServiceIps, :ServiceProviderId, :ServiceProviderName, :Status, :SubnetId, :Tags, :VerifySSL, :VpcId, :HealthCheckConfig, :CMRPrivateNetworkTunnelId, :CMRPrivateNetworkTunnelName, :HealthCheckConfigs, :Capability, :EndpointPath
 
-        def initialize(accesstype=nil, apibase=nil, apibases=nil, createdat=nil, hostheader=nil, keycount=nil, keys=nil, modelidswithalias=nil, modelprovider=nil, protocol=nil, serviceips=nil, serviceproviderid=nil, serviceprovidername=nil, status=nil, subnetid=nil, tags=nil, verifyssl=nil, vpcid=nil, healthcheckconfig=nil, cmrprivatenetworktunnelid=nil, cmrprivatenetworktunnelname=nil, healthcheckconfigs=nil)
+        def initialize(accesstype=nil, apibase=nil, apibases=nil, createdat=nil, hostheader=nil, keycount=nil, keys=nil, modelidswithalias=nil, modelprovider=nil, protocol=nil, serviceips=nil, serviceproviderid=nil, serviceprovidername=nil, status=nil, subnetid=nil, tags=nil, verifyssl=nil, vpcid=nil, healthcheckconfig=nil, cmrprivatenetworktunnelid=nil, cmrprivatenetworktunnelname=nil, healthcheckconfigs=nil, capability=nil, endpointpath=nil)
           @AccessType = accesstype
           @ApiBase = apibase
           @ApiBases = apibases
@@ -10064,6 +10127,8 @@ module TencentCloud
           @CMRPrivateNetworkTunnelId = cmrprivatenetworktunnelid
           @CMRPrivateNetworkTunnelName = cmrprivatenetworktunnelname
           @HealthCheckConfigs = healthcheckconfigs
+          @Capability = capability
+          @EndpointPath = endpointpath
         end
 
         def deserialize(params)
@@ -10127,6 +10192,8 @@ module TencentCloud
               @HealthCheckConfigs << serviceproviderhealthcheckconfigitemoutput_tmp
             end
           end
+          @Capability = params['Capability']
+          @EndpointPath = params['EndpointPath']
         end
       end
 
@@ -10268,10 +10335,12 @@ module TencentCloud
         # @type EipAddressId: String
         # @param BillingConfig: <p>计费信息</p>
         # @type BillingConfig: :class:`Tencentcloud::Clb.v20180317.models.ModelRouterBillingConfigOutput`
+        # @param EmbeddingConfig: <p>Embedding配置</p>
+        # @type EmbeddingConfig: :class:`Tencentcloud::Clb.v20180317.models.EmbeddingConfig`
 
-        attr_accessor :BudgetId, :BudgetName, :ClusterInfo, :CreatedTime, :CreditUsageSet, :Domain, :ModelRouterId, :ModelRouterName, :ModelRouterType, :ModifiedTime, :NetworkType, :RateLimitConfig, :RouterSetting, :SecurityGroups, :SecurityStatus, :ServiceEndPoints, :Status, :SubnetId, :Tags, :TradeStatus, :Vip, :VpcId, :Bandwidth, :EipAddressId, :BillingConfig
+        attr_accessor :BudgetId, :BudgetName, :ClusterInfo, :CreatedTime, :CreditUsageSet, :Domain, :ModelRouterId, :ModelRouterName, :ModelRouterType, :ModifiedTime, :NetworkType, :RateLimitConfig, :RouterSetting, :SecurityGroups, :SecurityStatus, :ServiceEndPoints, :Status, :SubnetId, :Tags, :TradeStatus, :Vip, :VpcId, :Bandwidth, :EipAddressId, :BillingConfig, :EmbeddingConfig
 
-        def initialize(budgetid=nil, budgetname=nil, clusterinfo=nil, createdtime=nil, creditusageset=nil, domain=nil, modelrouterid=nil, modelroutername=nil, modelroutertype=nil, modifiedtime=nil, networktype=nil, ratelimitconfig=nil, routersetting=nil, securitygroups=nil, securitystatus=nil, serviceendpoints=nil, status=nil, subnetid=nil, tags=nil, tradestatus=nil, vip=nil, vpcid=nil, bandwidth=nil, eipaddressid=nil, billingconfig=nil)
+        def initialize(budgetid=nil, budgetname=nil, clusterinfo=nil, createdtime=nil, creditusageset=nil, domain=nil, modelrouterid=nil, modelroutername=nil, modelroutertype=nil, modifiedtime=nil, networktype=nil, ratelimitconfig=nil, routersetting=nil, securitygroups=nil, securitystatus=nil, serviceendpoints=nil, status=nil, subnetid=nil, tags=nil, tradestatus=nil, vip=nil, vpcid=nil, bandwidth=nil, eipaddressid=nil, billingconfig=nil, embeddingconfig=nil)
           @BudgetId = budgetid
           @BudgetName = budgetname
           @ClusterInfo = clusterinfo
@@ -10297,6 +10366,7 @@ module TencentCloud
           @Bandwidth = bandwidth
           @EipAddressId = eipaddressid
           @BillingConfig = billingconfig
+          @EmbeddingConfig = embeddingconfig
         end
 
         def deserialize(params)
@@ -10357,6 +10427,10 @@ module TencentCloud
           unless params['BillingConfig'].nil?
             @BillingConfig = ModelRouterBillingConfigOutput.new
             @BillingConfig.deserialize(params['BillingConfig'])
+          end
+          unless params['EmbeddingConfig'].nil?
+            @EmbeddingConfig = EmbeddingConfig.new
+            @EmbeddingConfig.deserialize(params['EmbeddingConfig'])
           end
         end
       end
@@ -11612,19 +11686,22 @@ module TencentCloud
 
       # ModifyModelAliasAttributes请求参数结构体
       class ModifyModelAliasAttributesRequest < TencentCloud::Common::AbstractModel
-        # @param Coefficient: <p>模型积分系数配置。</p><p>必填，至少包含 <code>InputCoefficient</code>、<code>InputCachedCoefficient</code>、<code>OutputCoefficient</code> 中的一个字段，未传字段保持原值。</p><p><code>InputCoefficient</code> 为非缓存命中输入积分系数。</p><p><code>InputCachedCoefficient</code> 为缓存命中输入积分系数，用于 provider prompt cache 命中的输入 token。</p><p><code>OutputCoefficient</code> 为输出积分系数。</p><p>各字段取值范围：[0, 5000]，仅支持整数，0 表示该类 token 不计积分。</p>
+        # @param Coefficient: <p>模型积分系数配置。</p><p>必填，包含 <code>InputCoefficient</code> 和 <code>OutputCoefficient</code>。</p><p><code>InputCoefficient</code> 为输入积分系数。</p><p><code>OutputCoefficient</code> 为输出积分系数。</p><p>取值范围：[1, 200]，最多支持 1 位小数。</p>
         # @type Coefficient: :class:`Tencentcloud::Clb.v20180317.models.Coefficient`
-        # @param ModelAliasNames: <p>模型别名列表。</p><p>不传 <code>ServiceProviderIds</code>（按 ModelAlias 账号维度修改）时支持数组批量，同一份 Coefficient 应用到多个别名。</p><p>传入 <code>ServiceProviderIds</code>（按 ServiceProvider 维度修改）时只能传 1 个别名，锁定唯一 model 别名；去重后不等于 1 个将返回 InvalidParameter。</p>
+        # @param ModelAliasNames: <p>模型别名</p>
         # @type ModelAliasNames: Array
         # @param ServiceProviderIds: <p>BYOK 实例（ServiceProvider）ID 列表。</p><p>可选，数组。传入时按 ServiceProvider 维度修改：把同一份 Coefficient 批量应用到数组内每一个实例（覆盖配置，仅作用于这些实例），此时 <code>ModelAliasNames</code> 只能传 1 个别名（即 1 别名 × N ServiceProvider）；数组需去重、非空、上限 100，任一实例不归属/不存在/该实例下无该别名将整批返回错误。不传时按 ModelAlias（账号）维度修改，作用于该别名下未单独配置覆盖的全部实例。</p>
         # @type ServiceProviderIds: Array
+        # @param Capability: <p>模型能力</p>
+        # @type Capability: String
 
-        attr_accessor :Coefficient, :ModelAliasNames, :ServiceProviderIds
+        attr_accessor :Coefficient, :ModelAliasNames, :ServiceProviderIds, :Capability
 
-        def initialize(coefficient=nil, modelaliasnames=nil, serviceproviderids=nil)
+        def initialize(coefficient=nil, modelaliasnames=nil, serviceproviderids=nil, capability=nil)
           @Coefficient = coefficient
           @ModelAliasNames = modelaliasnames
           @ServiceProviderIds = serviceproviderids
+          @Capability = capability
         end
 
         def deserialize(params)
@@ -11634,6 +11711,7 @@ module TencentCloud
           end
           @ModelAliasNames = params['ModelAliasNames']
           @ServiceProviderIds = params['ServiceProviderIds']
+          @Capability = params['Capability']
         end
       end
 
@@ -11661,13 +11739,19 @@ module TencentCloud
         # @type ServiceProviderName: String
         # @param ApiBases: <p>多协议 Api Base URL</p>
         # @type ApiBases: Array
+        # @param ApiBase: <p>非chat输出模态的Api Base URL</p>
+        # @type ApiBase: String
+        # @param EndpointPath: <p>非chat输出模态的请求后缀</p>
+        # @type EndpointPath: String
 
-        attr_accessor :ServiceProviderId, :ServiceProviderName, :ApiBases
+        attr_accessor :ServiceProviderId, :ServiceProviderName, :ApiBases, :ApiBase, :EndpointPath
 
-        def initialize(serviceproviderid=nil, serviceprovidername=nil, apibases=nil)
+        def initialize(serviceproviderid=nil, serviceprovidername=nil, apibases=nil, apibase=nil, endpointpath=nil)
           @ServiceProviderId = serviceproviderid
           @ServiceProviderName = serviceprovidername
           @ApiBases = apibases
+          @ApiBase = apibase
+          @EndpointPath = endpointpath
         end
 
         def deserialize(params)
@@ -11681,6 +11765,8 @@ module TencentCloud
               @ApiBases << apibaseitem_tmp
             end
           end
+          @ApiBase = params['ApiBase']
+          @EndpointPath = params['EndpointPath']
         end
       end
 
@@ -11714,16 +11800,22 @@ module TencentCloud
         # @type RouterSetting: :class:`Tencentcloud::Clb.v20180317.models.RouterSettingWithFallBack`
         # @param Bandwidth: <p>带宽</p><p>取值范围：[1, 2048]</p><p>单位：Mbps</p>
         # @type Bandwidth: Integer
+        # @param Capability: <p>模型输出模态</p>
+        # @type Capability: String
+        # @param EmbeddingConfig: <p>embedding 模态配置</p>
+        # @type EmbeddingConfig: :class:`Tencentcloud::Clb.v20180317.models.EmbeddingConfig`
 
-        attr_accessor :ModelRouterId, :CertId, :ModelRouterName, :RateLimitConfig, :RouterSetting, :Bandwidth
+        attr_accessor :ModelRouterId, :CertId, :ModelRouterName, :RateLimitConfig, :RouterSetting, :Bandwidth, :Capability, :EmbeddingConfig
 
-        def initialize(modelrouterid=nil, certid=nil, modelroutername=nil, ratelimitconfig=nil, routersetting=nil, bandwidth=nil)
+        def initialize(modelrouterid=nil, certid=nil, modelroutername=nil, ratelimitconfig=nil, routersetting=nil, bandwidth=nil, capability=nil, embeddingconfig=nil)
           @ModelRouterId = modelrouterid
           @CertId = certid
           @ModelRouterName = modelroutername
           @RateLimitConfig = ratelimitconfig
           @RouterSetting = routersetting
           @Bandwidth = bandwidth
+          @Capability = capability
+          @EmbeddingConfig = embeddingconfig
         end
 
         def deserialize(params)
@@ -11739,6 +11831,11 @@ module TencentCloud
             @RouterSetting.deserialize(params['RouterSetting'])
           end
           @Bandwidth = params['Bandwidth']
+          @Capability = params['Capability']
+          unless params['EmbeddingConfig'].nil?
+            @EmbeddingConfig = EmbeddingConfig.new
+            @EmbeddingConfig.deserialize(params['EmbeddingConfig'])
+          end
         end
       end
 
@@ -15001,10 +15098,12 @@ module TencentCloud
         # @type HealthCheckProtocol: String
         # @param CMRPrivateNetworkTunnelId: <p>    CMR 私网管道ID </p>
         # @type CMRPrivateNetworkTunnelId: String
+        # @param Capability: <p>对应模型的能力</p><p>枚举值：</p><ul><li>chat： 生文能力</li><li>embedding： 向量能力</li></ul>
+        # @type Capability: String
 
-        attr_accessor :Models, :ProviderKey, :ProviderKeyId, :AccessType, :ModelProvider, :ModelProtocol, :ApiBase, :HostHeader, :ServiceProviderId, :VerifySSL, :HealthCheckProtocol, :CMRPrivateNetworkTunnelId
+        attr_accessor :Models, :ProviderKey, :ProviderKeyId, :AccessType, :ModelProvider, :ModelProtocol, :ApiBase, :HostHeader, :ServiceProviderId, :VerifySSL, :HealthCheckProtocol, :CMRPrivateNetworkTunnelId, :Capability
 
-        def initialize(models=nil, providerkey=nil, providerkeyid=nil, accesstype=nil, modelprovider=nil, modelprotocol=nil, apibase=nil, hostheader=nil, serviceproviderid=nil, verifyssl=nil, healthcheckprotocol=nil, cmrprivatenetworktunnelid=nil)
+        def initialize(models=nil, providerkey=nil, providerkeyid=nil, accesstype=nil, modelprovider=nil, modelprotocol=nil, apibase=nil, hostheader=nil, serviceproviderid=nil, verifyssl=nil, healthcheckprotocol=nil, cmrprivatenetworktunnelid=nil, capability=nil)
           @Models = models
           @ProviderKey = providerkey
           @ProviderKeyId = providerkeyid
@@ -15017,6 +15116,7 @@ module TencentCloud
           @VerifySSL = verifyssl
           @HealthCheckProtocol = healthcheckprotocol
           @CMRPrivateNetworkTunnelId = cmrprivatenetworktunnelid
+          @Capability = capability
         end
 
         def deserialize(params)
@@ -15032,6 +15132,7 @@ module TencentCloud
           @VerifySSL = params['VerifySSL']
           @HealthCheckProtocol = params['HealthCheckProtocol']
           @CMRPrivateNetworkTunnelId = params['CMRPrivateNetworkTunnelId']
+          @Capability = params['Capability']
         end
       end
 

@@ -354,7 +354,7 @@ module TencentCloud
         # @type ReadOnlyCount: Integer
         # @param DeviceType: <p>实例机器类型，支持值如下：</p><ul><li>common：表示通用型</li><li>exclusive：表示独享型</li></ul>
         # @type DeviceType: String
-        # @param InstanceGrpId: <p>实例组ID，在已有RO组中新增实例时使用，不传则新增RO组。当前版本不建议传输该值。</p>
+        # @param InstanceGrpId: <p>当前字段已废弃。当前版本不再传输该值。</p>
         # @type InstanceGrpId: String
         # @param VpcId: <p>所属VPC网络ID。</p>
         # @type VpcId: String
@@ -8144,13 +8144,13 @@ module TencentCloud
 
       # DescribeClusterDetailDatabases请求参数结构体
       class DescribeClusterDetailDatabasesRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: <p>集群ID</p>
         # @type ClusterId: String
-        # @param Offset: 偏移量，默认0
+        # @param Offset: <p>偏移量，默认0</p>
         # @type Offset: Integer
-        # @param Limit: 返回数量，默认20,最大100
+        # @param Limit: <p>返回数量，默认20,最大100</p>
         # @type Limit: Integer
-        # @param DbName: 数据库名称
+        # @param DbName: <p>数据库名称，通过该字段进行子串匹配</p>
         # @type DbName: String
 
         attr_accessor :ClusterId, :Offset, :Limit, :DbName
@@ -8172,9 +8172,9 @@ module TencentCloud
 
       # DescribeClusterDetailDatabases返回参数结构体
       class DescribeClusterDetailDatabasesResponse < TencentCloud::Common::AbstractModel
-        # @param DbInfos: 数据库信息
+        # @param DbInfos: <p>数据库信息</p>
         # @type DbInfos: Array
-        # @param TotalCount: 总数
+        # @param TotalCount: <p>总数</p>
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -9381,7 +9381,7 @@ module TencentCloud
         # @type IncludeZoneStocks: Boolean
         # @param DeviceType: <p>实例机器类型</p>
         # @type DeviceType: String
-        # @param ClusterLevel: <p>集群级别，可空。例如 P0, P1</p>
+        # @param ClusterLevel: <p>集群级别。例如 P0, P1。若未指定可用区，针对于不支持亲和性的可用区将降级查询非亲和性资源。</p>
         # @type ClusterLevel: String
 
         attr_accessor :DbType, :IncludeZoneStocks, :DeviceType, :ClusterLevel
@@ -22595,27 +22595,52 @@ module TencentCloud
 
       # TransferStoragePrepayToPostpay请求参数结构体
       class TransferStoragePrepayToPostpayRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: <p>集群id</p>
+        # @type ClusterId: String
 
+        attr_accessor :ClusterId
 
-        def initialize()
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
         end
 
         def deserialize(params)
+          @ClusterId = params['ClusterId']
         end
       end
 
       # TransferStoragePrepayToPostpay返回参数结构体
       class TransferStoragePrepayToPostpayResponse < TencentCloud::Common::AbstractModel
+        # @param BigDealIds: <p>预付费总订单号</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BigDealIds: Array
+        # @param DealNames: <p>订单号</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DealNames: Array
+        # @param ResourceIds: <p>资源id</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceIds: Array
+        # @param ClusterIds: <p>集群id</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterIds: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :BigDealIds, :DealNames, :ResourceIds, :ClusterIds, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(bigdealids=nil, dealnames=nil, resourceids=nil, clusterids=nil, requestid=nil)
+          @BigDealIds = bigdealids
+          @DealNames = dealnames
+          @ResourceIds = resourceids
+          @ClusterIds = clusterids
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @BigDealIds = params['BigDealIds']
+          @DealNames = params['DealNames']
+          @ResourceIds = params['ResourceIds']
+          @ClusterIds = params['ClusterIds']
           @RequestId = params['RequestId']
         end
       end

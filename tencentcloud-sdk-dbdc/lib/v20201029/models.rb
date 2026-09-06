@@ -263,6 +263,97 @@ module TencentCloud
         end
       end
 
+      # CreateDBCustomDisasterRecoverGroup请求参数结构体
+      class CreateDBCustomDisasterRecoverGroupRequest < TencentCloud::Common::AbstractModel
+        # @param Name: <p>置放群组名称</p><p>入参限制：长度1-60个字符，支持中、英文</p>
+        # @type Name: String
+        # @param Type: <p>置放群组类型</p><p>枚举值：</p><ul><li>HOST： 物理机</li></ul><p>默认值：HOST</p><p>当前仅支持物理机类型</p>
+        # @type Type: String
+        # @param Strategy: <p>置放群组策略</p><p>入参限制：当前仅支持分散置放群组</p><p>枚举值：</p><ul><li>SPREAD： 分散置放群组</li></ul><p>默认值：SPREAD</p>
+        # @type Strategy: String
+        # @param Affinity: <p>置放群组的亲和度，在置放群组的实例会按该亲和度分布</p><p>取值范围：[1, 10]</p><p>默认值：1</p>
+        # @type Affinity: Integer
+        # @param Tags: <p>标签</p>
+        # @type Tags: Array
+        # @param ClientToken: <p>用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。</p>
+        # @type ClientToken: String
+
+        attr_accessor :Name, :Type, :Strategy, :Affinity, :Tags, :ClientToken
+
+        def initialize(name=nil, type=nil, strategy=nil, affinity=nil, tags=nil, clienttoken=nil)
+          @Name = name
+          @Type = type
+          @Strategy = strategy
+          @Affinity = affinity
+          @Tags = tags
+          @ClientToken = clienttoken
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Type = params['Type']
+          @Strategy = params['Strategy']
+          @Affinity = params['Affinity']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          @ClientToken = params['ClientToken']
+        end
+      end
+
+      # CreateDBCustomDisasterRecoverGroup返回参数结构体
+      class CreateDBCustomDisasterRecoverGroupResponse < TencentCloud::Common::AbstractModel
+        # @param DisasterRecoverGroupId: <p>置放群组ID</p>
+        # @type DisasterRecoverGroupId: String
+        # @param Name: <p>置放群组名称</p>
+        # @type Name: String
+        # @param Type: <p>置放群组类型</p><p>枚举值：</p><ul><li>HOST： 物理机</li></ul>
+        # @type Type: String
+        # @param Status: <p>状态</p><p>枚举值：</p><ul><li>Creating： 创建中</li></ul>
+        # @type Status: String
+        # @param NodeQuotaTotal: <p>置放群组内可容纳的节点数量</p>
+        # @type NodeQuotaTotal: Integer
+        # @param CurrentNum: <p>置放群组内已有节点数量</p>
+        # @type CurrentNum: Integer
+        # @param CreatedTime: <p>创建时间</p>
+        # @type CreatedTime: String
+        # @param Strategy: <p>置放群组策略</p><p>枚举值：</p><ul><li>SPREAD： 分散置放群组</li></ul>
+        # @type Strategy: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DisasterRecoverGroupId, :Name, :Type, :Status, :NodeQuotaTotal, :CurrentNum, :CreatedTime, :Strategy, :RequestId
+
+        def initialize(disasterrecovergroupid=nil, name=nil, type=nil, status=nil, nodequotatotal=nil, currentnum=nil, createdtime=nil, strategy=nil, requestid=nil)
+          @DisasterRecoverGroupId = disasterrecovergroupid
+          @Name = name
+          @Type = type
+          @Status = status
+          @NodeQuotaTotal = nodequotatotal
+          @CurrentNum = currentnum
+          @CreatedTime = createdtime
+          @Strategy = strategy
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DisasterRecoverGroupId = params['DisasterRecoverGroupId']
+          @Name = params['Name']
+          @Type = params['Type']
+          @Status = params['Status']
+          @NodeQuotaTotal = params['NodeQuotaTotal']
+          @CurrentNum = params['CurrentNum']
+          @CreatedTime = params['CreatedTime']
+          @Strategy = params['Strategy']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateDBCustomNodes请求参数结构体
       class CreateDBCustomNodesRequest < TencentCloud::Common::AbstractModel
         # @param Zone: <p>产品支持的可用区</p><p>枚举值：</p><ul><li>ap-shanghai-5： 上海五区</li><li>ap-shanghai-8： 上海八区</li><li>ap-nanjing-3： 南京三区</li></ul>
@@ -307,10 +398,12 @@ module TencentCloud
         # @type DryRun: Boolean
         # @param SecurityGroupIds: <p>设置节点安全组</p><p>参数格式：设置需要与节点绑定的多个安全组ID，以数组形式配置。</p>
         # @type SecurityGroupIds: Array
+        # @param DisasterRecoverGroupIds: <p>置放群组ID</p><p>入参限制：仅支持指定一个</p>
+        # @type DisasterRecoverGroupIds: Array
 
-        attr_accessor :Zone, :ImageId, :VpcId, :SubnetId, :NodeType, :NodeCount, :LoginSettings, :Period, :AutoRenew, :NodeName, :AutoVoucher, :VoucherIds, :Tags, :ClientToken, :ChargeType, :NetworkMode, :SystemDisk, :DataDisks, :HostName, :DryRun, :SecurityGroupIds
+        attr_accessor :Zone, :ImageId, :VpcId, :SubnetId, :NodeType, :NodeCount, :LoginSettings, :Period, :AutoRenew, :NodeName, :AutoVoucher, :VoucherIds, :Tags, :ClientToken, :ChargeType, :NetworkMode, :SystemDisk, :DataDisks, :HostName, :DryRun, :SecurityGroupIds, :DisasterRecoverGroupIds
 
-        def initialize(zone=nil, imageid=nil, vpcid=nil, subnetid=nil, nodetype=nil, nodecount=nil, loginsettings=nil, period=nil, autorenew=nil, nodename=nil, autovoucher=nil, voucherids=nil, tags=nil, clienttoken=nil, chargetype=nil, networkmode=nil, systemdisk=nil, datadisks=nil, hostname=nil, dryrun=nil, securitygroupids=nil)
+        def initialize(zone=nil, imageid=nil, vpcid=nil, subnetid=nil, nodetype=nil, nodecount=nil, loginsettings=nil, period=nil, autorenew=nil, nodename=nil, autovoucher=nil, voucherids=nil, tags=nil, clienttoken=nil, chargetype=nil, networkmode=nil, systemdisk=nil, datadisks=nil, hostname=nil, dryrun=nil, securitygroupids=nil, disasterrecovergroupids=nil)
           @Zone = zone
           @ImageId = imageid
           @VpcId = vpcid
@@ -332,6 +425,7 @@ module TencentCloud
           @HostName = hostname
           @DryRun = dryrun
           @SecurityGroupIds = securitygroupids
+          @DisasterRecoverGroupIds = disasterrecovergroupids
         end
 
         def deserialize(params)
@@ -376,6 +470,7 @@ module TencentCloud
           @HostName = params['HostName']
           @DryRun = params['DryRun']
           @SecurityGroupIds = params['SecurityGroupIds']
+          @DisasterRecoverGroupIds = params['DisasterRecoverGroupIds']
         end
       end
 
@@ -712,10 +807,12 @@ module TencentCloud
         # @param SecurityGroupIds: <p>节点绑定的安全组</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecurityGroupIds: Array
+        # @param DisasterRecoverGroupId: <p>置放群组ID</p>
+        # @type DisasterRecoverGroupId: String
 
-        attr_accessor :NodeId, :NodeName, :SSHEndpoint, :LanIP, :ClusterId, :Zone, :NodeType, :CPU, :Memory, :SystemDisk, :DataDisks, :OsName, :ImageId, :VpcId, :SubnetId, :Status, :ChargeType, :ExpireTime, :CreatedTime, :IsolatedTime, :Tags, :AutoRenew, :SwitchId, :RackId, :HostIp, :NetworkMode, :EniIP, :SecurityGroupIds
+        attr_accessor :NodeId, :NodeName, :SSHEndpoint, :LanIP, :ClusterId, :Zone, :NodeType, :CPU, :Memory, :SystemDisk, :DataDisks, :OsName, :ImageId, :VpcId, :SubnetId, :Status, :ChargeType, :ExpireTime, :CreatedTime, :IsolatedTime, :Tags, :AutoRenew, :SwitchId, :RackId, :HostIp, :NetworkMode, :EniIP, :SecurityGroupIds, :DisasterRecoverGroupId
 
-        def initialize(nodeid=nil, nodename=nil, sshendpoint=nil, lanip=nil, clusterid=nil, zone=nil, nodetype=nil, cpu=nil, memory=nil, systemdisk=nil, datadisks=nil, osname=nil, imageid=nil, vpcid=nil, subnetid=nil, status=nil, chargetype=nil, expiretime=nil, createdtime=nil, isolatedtime=nil, tags=nil, autorenew=nil, switchid=nil, rackid=nil, hostip=nil, networkmode=nil, eniip=nil, securitygroupids=nil)
+        def initialize(nodeid=nil, nodename=nil, sshendpoint=nil, lanip=nil, clusterid=nil, zone=nil, nodetype=nil, cpu=nil, memory=nil, systemdisk=nil, datadisks=nil, osname=nil, imageid=nil, vpcid=nil, subnetid=nil, status=nil, chargetype=nil, expiretime=nil, createdtime=nil, isolatedtime=nil, tags=nil, autorenew=nil, switchid=nil, rackid=nil, hostip=nil, networkmode=nil, eniip=nil, securitygroupids=nil, disasterrecovergroupid=nil)
           @NodeId = nodeid
           @NodeName = nodename
           @SSHEndpoint = sshendpoint
@@ -744,6 +841,7 @@ module TencentCloud
           @NetworkMode = networkmode
           @EniIP = eniip
           @SecurityGroupIds = securitygroupids
+          @DisasterRecoverGroupId = disasterrecovergroupid
         end
 
         def deserialize(params)
@@ -792,6 +890,7 @@ module TencentCloud
           @NetworkMode = params['NetworkMode']
           @EniIP = params['EniIP']
           @SecurityGroupIds = params['SecurityGroupIds']
+          @DisasterRecoverGroupId = params['DisasterRecoverGroupId']
         end
       end
 
@@ -960,6 +1059,84 @@ module TencentCloud
           @DiskType = params['DiskType']
           @DiskSize = params['DiskSize']
           @DiskName = params['DiskName']
+        end
+      end
+
+      # DeleteDBCustomDisasterRecoverGroups请求参数结构体
+      class DeleteDBCustomDisasterRecoverGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param DisasterRecoverGroupIds: <p>置放群组ID</p><p>入参限制：数量上限为10。若置放群组内有节点，需要先移除。</p>
+        # @type DisasterRecoverGroupIds: Array
+
+        attr_accessor :DisasterRecoverGroupIds
+
+        def initialize(disasterrecovergroupids=nil)
+          @DisasterRecoverGroupIds = disasterrecovergroupids
+        end
+
+        def deserialize(params)
+          @DisasterRecoverGroupIds = params['DisasterRecoverGroupIds']
+        end
+      end
+
+      # DeleteDBCustomDisasterRecoverGroups返回参数结构体
+      class DeleteDBCustomDisasterRecoverGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteDBCustomNodesDisasterRecoverGroup请求参数结构体
+      class DeleteDBCustomNodesDisasterRecoverGroupRequest < TencentCloud::Common::AbstractModel
+        # @param NodeIds: <p>节点ID</p><p>入参限制：单次数量上限为100</p>
+        # @type NodeIds: Array
+        # @param DisasterRecoverGroupIds: <p>置放群组ID</p><p>入参限制：只支持传一个ID</p>
+        # @type DisasterRecoverGroupIds: Array
+
+        attr_accessor :NodeIds, :DisasterRecoverGroupIds
+
+        def initialize(nodeids=nil, disasterrecovergroupids=nil)
+          @NodeIds = nodeids
+          @DisasterRecoverGroupIds = disasterrecovergroupids
+        end
+
+        def deserialize(params)
+          @NodeIds = params['NodeIds']
+          @DisasterRecoverGroupIds = params['DisasterRecoverGroupIds']
+        end
+      end
+
+      # DeleteDBCustomNodesDisasterRecoverGroup返回参数结构体
+      class DeleteDBCustomNodesDisasterRecoverGroupResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -1402,6 +1579,123 @@ module TencentCloud
               dbcustomcluster_tmp = DBCustomCluster.new
               dbcustomcluster_tmp.deserialize(i)
               @ClusterSet << dbcustomcluster_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDBCustomDisasterRecoverGroupQuota请求参数结构体
+      class DescribeDBCustomDisasterRecoverGroupQuotaRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeDBCustomDisasterRecoverGroupQuota返回参数结构体
+      class DescribeDBCustomDisasterRecoverGroupQuotaResponse < TencentCloud::Common::AbstractModel
+        # @param GroupQuota: <p>可创建置放群组数量的上限</p>
+        # @type GroupQuota: Integer
+        # @param CurrentNum: <p>已经创建的置放群组数量</p>
+        # @type CurrentNum: Integer
+        # @param NodeInHostGroupQuota: <p>物理机类型置放群组内节点的配额数</p>
+        # @type NodeInHostGroupQuota: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :GroupQuota, :CurrentNum, :NodeInHostGroupQuota, :RequestId
+
+        def initialize(groupquota=nil, currentnum=nil, nodeinhostgroupquota=nil, requestid=nil)
+          @GroupQuota = groupquota
+          @CurrentNum = currentnum
+          @NodeInHostGroupQuota = nodeinhostgroupquota
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @GroupQuota = params['GroupQuota']
+          @CurrentNum = params['CurrentNum']
+          @NodeInHostGroupQuota = params['NodeInHostGroupQuota']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDBCustomDisasterRecoverGroups请求参数结构体
+      class DescribeDBCustomDisasterRecoverGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param DisasterRecoverGroupIds: <p>置放群组ID</p><p>入参限制：单次数量上限是10</p>
+        # @type DisasterRecoverGroupIds: Array
+        # @param Filters: <p>查询筛选条件。支持的筛选条件包括：</p><ul><li>tag-key：按标签键进行过滤。</li><li>tag-value：按标签值进行过滤。</li></ul><p>入参限制：数量上限为5</p>
+        # @type Filters: Array
+        # @param Tags: <p>根据标签键和标签值筛选 DB Custom 置放群组</p><p>入参限制：数量上限为5</p>
+        # @type Tags: Array
+        # @param Offset: <p>分页偏移量</p>
+        # @type Offset: Integer
+        # @param Limit: <p>返回数量</p><p>取值范围：[1, 100]</p><p>默认值：20</p>
+        # @type Limit: Integer
+
+        attr_accessor :DisasterRecoverGroupIds, :Filters, :Tags, :Offset, :Limit
+
+        def initialize(disasterrecovergroupids=nil, filters=nil, tags=nil, offset=nil, limit=nil)
+          @DisasterRecoverGroupIds = disasterrecovergroupids
+          @Filters = filters
+          @Tags = tags
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @DisasterRecoverGroupIds = params['DisasterRecoverGroupIds']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeDBCustomDisasterRecoverGroups返回参数结构体
+      class DescribeDBCustomDisasterRecoverGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>总数</p>
+        # @type TotalCount: Integer
+        # @param DisasterRecoverGroupSet: <p>置放群组列表</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DisasterRecoverGroupSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :DisasterRecoverGroupSet, :RequestId
+
+        def initialize(totalcount=nil, disasterrecovergroupset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @DisasterRecoverGroupSet = disasterrecovergroupset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['DisasterRecoverGroupSet'].nil?
+            @DisasterRecoverGroupSet = []
+            params['DisasterRecoverGroupSet'].each do |i|
+              disasterrecovergroup_tmp = DisasterRecoverGroup.new
+              disasterrecovergroup_tmp.deserialize(i)
+              @DisasterRecoverGroupSet << disasterrecovergroup_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -2454,6 +2748,70 @@ module TencentCloud
         end
       end
 
+      # DB Custom 置放群组信息。
+      class DisasterRecoverGroup < TencentCloud::Common::AbstractModel
+        # @param DisasterRecoverGroupId: <p>置放群组ID</p>
+        # @type DisasterRecoverGroupId: String
+        # @param Name: <p>置放群组名称</p>
+        # @type Name: String
+        # @param Type: <p>置放群组类型</p><p>枚举值：</p><ul><li>HOST： 物理机</li></ul>
+        # @type Type: String
+        # @param Status: <p>置放群组状态</p><p>枚举值：</p><ul><li>Creating： 创建中</li><li>Available： 正常可使用</li><li>CreateFailed： 创建失败</li><li>Deleting： 删除中</li><li>Modifying： 变更中</li></ul>
+        # @type Status: String
+        # @param NodeQuotaTotal: <p>置放群组内最大容纳节点数</p>
+        # @type NodeQuotaTotal: Integer
+        # @param CurrentNum: <p>置放群组内当前节点数</p>
+        # @type CurrentNum: Integer
+        # @param Affinity: <p>亲和度</p><p>取值范围：[1, 10]</p>
+        # @type Affinity: Integer
+        # @param Strategy: <p>置放群组策略</p><p>枚举值：</p><ul><li>SPREAD： 分散置放群组</li></ul>
+        # @type Strategy: String
+        # @param CreatedTime: <p>创建时间</p>
+        # @type CreatedTime: String
+        # @param Tags: <p>标签信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param NodeIds: <p>置放群组内 DB Custom 节点数量</p>
+        # @type NodeIds: Array
+
+        attr_accessor :DisasterRecoverGroupId, :Name, :Type, :Status, :NodeQuotaTotal, :CurrentNum, :Affinity, :Strategy, :CreatedTime, :Tags, :NodeIds
+
+        def initialize(disasterrecovergroupid=nil, name=nil, type=nil, status=nil, nodequotatotal=nil, currentnum=nil, affinity=nil, strategy=nil, createdtime=nil, tags=nil, nodeids=nil)
+          @DisasterRecoverGroupId = disasterrecovergroupid
+          @Name = name
+          @Type = type
+          @Status = status
+          @NodeQuotaTotal = nodequotatotal
+          @CurrentNum = currentnum
+          @Affinity = affinity
+          @Strategy = strategy
+          @CreatedTime = createdtime
+          @Tags = tags
+          @NodeIds = nodeids
+        end
+
+        def deserialize(params)
+          @DisasterRecoverGroupId = params['DisasterRecoverGroupId']
+          @Name = params['Name']
+          @Type = params['Type']
+          @Status = params['Status']
+          @NodeQuotaTotal = params['NodeQuotaTotal']
+          @CurrentNum = params['CurrentNum']
+          @Affinity = params['Affinity']
+          @Strategy = params['Strategy']
+          @CreatedTime = params['CreatedTime']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          @NodeIds = params['NodeIds']
+        end
+      end
+
       # 描述键值对过滤器，用于条件过滤查询。
       class Filter < TencentCloud::Common::AbstractModel
         # @param Name: <p>筛选条件</p>
@@ -2978,9 +3336,9 @@ module TencentCloud
       class ModifyDBCustomClusterTagsRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: <p>DB Custom 集群ID</p><p>参数格式：dbcc-xxxxxxxx</p>
         # @type ClusterId: String
-        # @param AddTags: <p>为 DB Custom 集群绑定的标签信息</p><p>入参限制：参考标签平台的限制策略</p>
+        # @param AddTags: <p>为 DB Custom 集群绑定的标签信息</p><p>入参限制：参考标签平台的限制策略</p><p>如果集群未关联输入的标签键，则增加关联；若已关联，则将该集群关联的键对应的标签值修改为输入值。本接口中 AddTags 和 DeleteTagKeys 二者必须存在其一，且二者不能包含相同的标签键。</p>
         # @type AddTags: Array
-        # @param DeleteTagKeys: <p>为 DB Custom 集群删除的标签Key</p>
+        # @param DeleteTagKeys: <p>为 DB Custom 集群解关联的标签Key</p><p>本接口中 AddTags 和 DeleteTagKeys 二者必须存在其一，且二者不能包含相同的标签键。</p>
         # @type DeleteTagKeys: Array
 
         attr_accessor :ClusterId, :AddTags, :DeleteTagKeys
@@ -3007,6 +3365,97 @@ module TencentCloud
 
       # ModifyDBCustomClusterTags返回参数结构体
       class ModifyDBCustomClusterTagsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyDBCustomDisasterRecoverGroupAttribute请求参数结构体
+      class ModifyDBCustomDisasterRecoverGroupAttributeRequest < TencentCloud::Common::AbstractModel
+        # @param DisasterRecoverGroupId: <p>置放群组ID</p>
+        # @type DisasterRecoverGroupId: String
+        # @param Name: <p>置放群组名称</p><p>入参限制：长度1-60个字符，支持中、英文</p>
+        # @type Name: String
+        # @param Affinity: <p>置放群组的亲和度，在置放群组的节点会按该亲和度分布</p><p>取值范围：[1, 10]</p>
+        # @type Affinity: Integer
+
+        attr_accessor :DisasterRecoverGroupId, :Name, :Affinity
+
+        def initialize(disasterrecovergroupid=nil, name=nil, affinity=nil)
+          @DisasterRecoverGroupId = disasterrecovergroupid
+          @Name = name
+          @Affinity = affinity
+        end
+
+        def deserialize(params)
+          @DisasterRecoverGroupId = params['DisasterRecoverGroupId']
+          @Name = params['Name']
+          @Affinity = params['Affinity']
+        end
+      end
+
+      # ModifyDBCustomDisasterRecoverGroupAttribute返回参数结构体
+      class ModifyDBCustomDisasterRecoverGroupAttributeResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务ID</p>
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyDBCustomDisasterRecoverGroupTags请求参数结构体
+      class ModifyDBCustomDisasterRecoverGroupTagsRequest < TencentCloud::Common::AbstractModel
+        # @param DisasterRecoverGroupId: <p>置放群组ID</p>
+        # @type DisasterRecoverGroupId: String
+        # @param AddTags: <p>为 DB Custom 置放群组绑定的标签信息</p><p>入参限制：参考标签侧的限制</p><p>如果置放群组未关联输入的标签键，则增加关联；若已关联，则将该置放群组关联的键对应的标签值修改为输入值。本接口中 AddTags 和 DeleteTagKeys 二者必须存在其一，且二者不能包含相同的标签键。</p>
+        # @type AddTags: Array
+        # @param DeleteTagKeys: <p>需要解关联的标签Key</p><p>本接口中 AddTags 和 DeleteTagKeys 二者必须存在其一，且二者不能包含相同的标签键。</p>
+        # @type DeleteTagKeys: Array
+
+        attr_accessor :DisasterRecoverGroupId, :AddTags, :DeleteTagKeys
+
+        def initialize(disasterrecovergroupid=nil, addtags=nil, deletetagkeys=nil)
+          @DisasterRecoverGroupId = disasterrecovergroupid
+          @AddTags = addtags
+          @DeleteTagKeys = deletetagkeys
+        end
+
+        def deserialize(params)
+          @DisasterRecoverGroupId = params['DisasterRecoverGroupId']
+          unless params['AddTags'].nil?
+            @AddTags = []
+            params['AddTags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @AddTags << tag_tmp
+            end
+          end
+          @DeleteTagKeys = params['DeleteTagKeys']
+        end
+      end
+
+      # ModifyDBCustomDisasterRecoverGroupTags返回参数结构体
+      class ModifyDBCustomDisasterRecoverGroupTagsResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -3110,9 +3559,9 @@ module TencentCloud
       class ModifyDBCustomNodeTagsRequest < TencentCloud::Common::AbstractModel
         # @param NodeId: <p>DB Custom 节点ID</p><p>参数格式：dbcn-0zan5xxk</p>
         # @type NodeId: String
-        # @param AddTags: <p>为节点绑定的标签信息</p><p>入参限制：参考标签侧的限制</p>
+        # @param AddTags: <p>为节点绑定的标签信息</p><p>入参限制：参考标签侧的限制</p><p>如果节点未关联输入的标签键，则增加关联；若已关联，则将该节点关联的键对应的标签值修改为输入值。本接口中 AddTags 和 DeleteTagKeys 二者必须存在其一，且二者不能包含相同的标签键。</p>
         # @type AddTags: Array
-        # @param DeleteTagKeys: <p>需要删除的标签Key</p>
+        # @param DeleteTagKeys: <p>需要解关联的标签Key</p><p>本接口中 AddTags 和 DeleteTagKeys 二者必须存在其一，且二者不能包含相同的标签键。</p>
         # @type DeleteTagKeys: Array
 
         attr_accessor :NodeId, :AddTags, :DeleteTagKeys
@@ -3149,6 +3598,51 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyDBCustomNodesDisasterRecoverGroup请求参数结构体
+      class ModifyDBCustomNodesDisasterRecoverGroupRequest < TencentCloud::Common::AbstractModel
+        # @param NodeIds: <p>节点ID</p><p>入参限制：单次数量上限为100</p>
+        # @type NodeIds: Array
+        # @param DisasterRecoverGroupIds: <p>置放群组ID</p><p>入参限制：支持传一个ID</p>
+        # @type DisasterRecoverGroupIds: Array
+        # @param Force: <p>是否强制更换节点宿主机</p><p>枚举值：</p><ul><li>true： 表示允许节点更换宿主机，允许重启。本地盘节点不支持指定此参数。</li><li>false： 不允许节点更换宿主机，只在当前宿主机上加入置放群组。这可能导致更换置放群组失败。</li></ul><p>默认值：false</p>
+        # @type Force: Boolean
+
+        attr_accessor :NodeIds, :DisasterRecoverGroupIds, :Force
+
+        def initialize(nodeids=nil, disasterrecovergroupids=nil, force=nil)
+          @NodeIds = nodeids
+          @DisasterRecoverGroupIds = disasterrecovergroupids
+          @Force = force
+        end
+
+        def deserialize(params)
+          @NodeIds = params['NodeIds']
+          @DisasterRecoverGroupIds = params['DisasterRecoverGroupIds']
+          @Force = params['Force']
+        end
+      end
+
+      # ModifyDBCustomNodesDisasterRecoverGroup返回参数结构体
+      class ModifyDBCustomNodesDisasterRecoverGroupResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end
       end

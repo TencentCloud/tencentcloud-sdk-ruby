@@ -5743,30 +5743,38 @@ module TencentCloud
 
       # 普通设备的录像详情
       class RecordTaskItem < TencentCloud::Common::AbstractModel
-        # @param RecordTaskId: 录像任务ID
+        # @param RecordTaskId: <p>录像任务ID</p>
         # @type RecordTaskId: String
-        # @param RecordPlanId: 录制计划ID
+        # @param RecordPlanId: <p>录制计划ID</p>
         # @type RecordPlanId: String
-        # @param StartTime: 本录制片段开始时间
+        # @param StartTime: <p>本录制片段开始时间</p>
         # @type StartTime: Integer
-        # @param EndTime: 本录制片段结束时间
+        # @param EndTime: <p>本录制片段结束时间</p>
         # @type EndTime: Integer
-        # @param EventId: 录制模式
+        # @param EventId: <p>录制模式</p>
         # @type EventId: Integer
-        # @param VideoUrl: 本录制片段对应的录制文件URL
+        # @param VideoUrl: <p>本录制片段对应的录制文件URL</p>
         # @type VideoUrl: String
-        # @param RecordStatus: 本录制片段当前的录制状态
+        # @param RecordStatus: <p>本录制片段当前的录制状态</p>
         # @type RecordStatus: Integer
-        # @param SceneId: 场景ID
+        # @param SceneId: <p>场景ID</p>
         # @type SceneId: Integer
-        # @param WarnId: 告警ID
+        # @param WarnId: <p>告警ID</p>
         # @type WarnId: Integer
-        # @param RecordId: 录制id，NVR下属设备有效
+        # @param RecordId: <p>录制id，NVR下属设备有效</p>
         # @type RecordId: String
+        # @param InitID: <p>视频自增ID</p>
+        # @type InitID: Integer
+        # @param ExpectDeleteTime: <p>过期时间</p>
+        # @type ExpectDeleteTime: Integer
+        # @param RecordTimeLen: <p>录制时长</p>
+        # @type RecordTimeLen: Integer
+        # @param FileSize: <p>文件大小</p>
+        # @type FileSize: Integer
 
-        attr_accessor :RecordTaskId, :RecordPlanId, :StartTime, :EndTime, :EventId, :VideoUrl, :RecordStatus, :SceneId, :WarnId, :RecordId
+        attr_accessor :RecordTaskId, :RecordPlanId, :StartTime, :EndTime, :EventId, :VideoUrl, :RecordStatus, :SceneId, :WarnId, :RecordId, :InitID, :ExpectDeleteTime, :RecordTimeLen, :FileSize
 
-        def initialize(recordtaskid=nil, recordplanid=nil, starttime=nil, endtime=nil, eventid=nil, videourl=nil, recordstatus=nil, sceneid=nil, warnid=nil, recordid=nil)
+        def initialize(recordtaskid=nil, recordplanid=nil, starttime=nil, endtime=nil, eventid=nil, videourl=nil, recordstatus=nil, sceneid=nil, warnid=nil, recordid=nil, initid=nil, expectdeletetime=nil, recordtimelen=nil, filesize=nil)
           @RecordTaskId = recordtaskid
           @RecordPlanId = recordplanid
           @StartTime = starttime
@@ -5777,6 +5785,10 @@ module TencentCloud
           @SceneId = sceneid
           @WarnId = warnid
           @RecordId = recordid
+          @InitID = initid
+          @ExpectDeleteTime = expectdeletetime
+          @RecordTimeLen = recordtimelen
+          @FileSize = filesize
         end
 
         def deserialize(params)
@@ -5790,6 +5802,10 @@ module TencentCloud
           @SceneId = params['SceneId']
           @WarnId = params['WarnId']
           @RecordId = params['RecordId']
+          @InitID = params['InitID']
+          @ExpectDeleteTime = params['ExpectDeleteTime']
+          @RecordTimeLen = params['RecordTimeLen']
+          @FileSize = params['FileSize']
         end
       end
 

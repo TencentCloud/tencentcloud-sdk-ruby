@@ -1680,6 +1680,33 @@ module TencentCloud
         end
       end
 
+      # DescribeDBCharsets请求参数结构体
+      class DescribeDBCharsetsRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeDBCharsets返回参数结构体
+      class DescribeDBCharsetsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDBEngines请求参数结构体
       class DescribeDBEnginesRequest < TencentCloud::Common::AbstractModel
 
@@ -2906,6 +2933,96 @@ module TencentCloud
         end
       end
 
+      # DescribeFlowTypes请求参数结构体
+      class DescribeFlowTypesRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeFlowTypes返回参数结构体
+      class DescribeFlowTypesResponse < TencentCloud::Common::AbstractModel
+        # @param FlowTypes: <p>任务类型信息，供前端下拉筛选使用</p>
+        # @type FlowTypes: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowTypes, :RequestId
+
+        def initialize(flowtypes=nil, requestid=nil)
+          @FlowTypes = flowtypes
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['FlowTypes'].nil?
+            @FlowTypes = []
+            params['FlowTypes'].each do |i|
+              flowtype_tmp = FlowType.new
+              flowtype_tmp.deserialize(i)
+              @FlowTypes << flowtype_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeInstanceDataReservedSpace请求参数结构体
+      class DescribeInstanceDataReservedSpaceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例ID</p>
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeInstanceDataReservedSpace返回参数结构体
+      class DescribeInstanceDataReservedSpaceResponse < TencentCloud::Common::AbstractModel
+        # @param ReservedRate: <p>实际保留比例（%，单节点）</p>
+        # @type ReservedRate: Float
+        # @param ReservedSpaceGB: <p>实际保留空间 GB（单节点）</p><p>单位：GB</p>
+        # @type ReservedSpaceGB: Float
+        # @param UsableSpaceGB: <p>用户可用空间 GB（单节点）</p><p>单位：GB</p>
+        # @type UsableSpaceGB: Float
+        # @param IsLegacy: <p>true=旧版本（&lt;21.6.4.0），值取自老参数 tdstore_enter_readonly_threshold；false=新版本</p>
+        # @type IsLegacy: Boolean
+        # @param KernelVersion: <p>内核版本号</p>
+        # @type KernelVersion: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ReservedRate, :ReservedSpaceGB, :UsableSpaceGB, :IsLegacy, :KernelVersion, :RequestId
+
+        def initialize(reservedrate=nil, reservedspacegb=nil, usablespacegb=nil, islegacy=nil, kernelversion=nil, requestid=nil)
+          @ReservedRate = reservedrate
+          @ReservedSpaceGB = reservedspacegb
+          @UsableSpaceGB = usablespacegb
+          @IsLegacy = islegacy
+          @KernelVersion = kernelversion
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ReservedRate = params['ReservedRate']
+          @ReservedSpaceGB = params['ReservedSpaceGB']
+          @UsableSpaceGB = params['UsableSpaceGB']
+          @IsLegacy = params['IsLegacy']
+          @KernelVersion = params['KernelVersion']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeInstanceSSLStatus请求参数结构体
       class DescribeInstanceSSLStatusRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: <p>实例ID</p>
@@ -3634,6 +3751,28 @@ module TencentCloud
           @Rows = params['Rows']
           @Filtered = params['Filtered']
           @Extra = params['Extra']
+        end
+      end
+
+      # 任务类型信息，供前端下拉筛选使用
+      class FlowType < TencentCloud::Common::AbstractModel
+        # @param FlowName: <p>任务类型名称，后续可以对 DescribeFlows 出参中的 FlowName 进行筛选</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowName: String
+        # @param FlowDesc: <p>任务类型中文描述</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowDesc: String
+
+        attr_accessor :FlowName, :FlowDesc
+
+        def initialize(flowname=nil, flowdesc=nil)
+          @FlowName = flowname
+          @FlowDesc = flowdesc
+        end
+
+        def deserialize(params)
+          @FlowName = params['FlowName']
+          @FlowDesc = params['FlowDesc']
         end
       end
 
@@ -4581,6 +4720,46 @@ module TencentCloud
         end
       end
 
+      # ModifyInstanceDataReservedSpace请求参数结构体
+      class ModifyInstanceDataReservedSpaceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例ID</p>
+        # @type InstanceId: String
+        # @param ReservedSpaceGB: <p>拟修改的目标保留空间大小</p><p>单位：GB</p>
+        # @type ReservedSpaceGB: Float
+
+        attr_accessor :InstanceId, :ReservedSpaceGB
+
+        def initialize(instanceid=nil, reservedspacegb=nil)
+          @InstanceId = instanceid
+          @ReservedSpaceGB = reservedspacegb
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ReservedSpaceGB = params['ReservedSpaceGB']
+        end
+      end
+
+      # ModifyInstanceDataReservedSpace返回参数结构体
+      class ModifyInstanceDataReservedSpaceResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>参数下发 flow 任务 ID（复用 ModifyDBParameters 链路，异步 flow 但秒级生效）</p>
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyInstanceName请求参数结构体
       class ModifyInstanceNameRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 需要修改的实例id
@@ -4964,6 +5143,38 @@ module TencentCloud
           @HaveSetValue = params['HaveSetValue']
           @NeedRestart = params['NeedRestart']
           @Description = params['Description']
+        end
+      end
+
+      # ResetDbaAdminPrivileges请求参数结构体
+      class ResetDbaAdminPrivilegesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例id</p>
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # ResetDbaAdminPrivileges返回参数结构体
+      class ResetDbaAdminPrivilegesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

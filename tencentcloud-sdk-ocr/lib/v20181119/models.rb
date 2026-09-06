@@ -2187,63 +2187,61 @@ module TencentCloud
 
       # 全电发票（航空运输电子客票行程单）
       class ElectronicAirTransport < TencentCloud::Common::AbstractModel
-        # @param Code: 发票代码
+        # @param Code: <p>发票代码</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Code: String
-        # @param Number: 发票号码
+        # @param Number: <p>发票号码</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Number: String
-        # @param Date: 开票日期
+        # @param Date: <p>开票日期</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Date: String
-        # @param Amount: 金额
+        # @param Amount: <p>金额</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Amount: String
-        # @param CheckCode: 校验码
+        # @param CheckCode: <p>校验码</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CheckCode: String
-        # @param Total: 价税合计
+        # @param Total: <p>价税合计</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: String
-        # @param DeductionMark: 抵扣标志
+        # @param DeductionMark: <p>抵扣标志</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeductionMark: String
-        # @param StateCode: 发票状态代码，0正常 1 未更新  2作废 3已红冲
+        # @param StateCode: <p>发票状态代码，0正常 1 未更新  2作废 3已红冲</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StateCode: String
-        # @param BuyerTaxCode: 购方识别号
+        # @param BuyerTaxCode: <p>购方识别号</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BuyerTaxCode: String
-        # @param BuyerName: 购方名称
+        # @param BuyerName: <p>购方名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BuyerName: String
-        # @param Tax: 合计税额
+        # @param Tax: <p>合计税额</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tax: String
-        # @param DomesticInternationalMark: 国内国际标识
+        # @param DomesticInternationalMark: <p>国内国际标识</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DomesticInternationalMark: String
-        # @param PassengerName: 旅客姓名
+        # @param PassengerName: <p>旅客姓名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PassengerName: String
-        # @param PassengerNo: 有效身份证件号码
+        # @param PassengerNo: <p>有效身份证件号码</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PassengerNo: String
-        # @param ElectronicNumber: 电子客票号码
+        # @param ElectronicNumber: <p>电子客票号码</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ElectronicNumber: String
-        # @param ElectronicAirTransportDetails: 全电发票（航空运输电子客票行程单）详细信息
-
-
+        # @param ElectronicAirTransportDetails: <p>全电发票（航空运输电子客票行程单）详细信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ElectronicAirTransportDetails: Array
-        # @param Fare: 票价
+        # @param Fare: <p>票价</p>
         # @type Fare: String
-        # @param FuelSurcharge: 燃油附加费
+        # @param FuelSurcharge: <p>燃油附加费</p>
         # @type FuelSurcharge: String
-        # @param TaxAmount: 增值税税额
+        # @param TaxAmount: <p>增值税税额</p>
         # @type TaxAmount: String
-        # @param DevelopmentFund: 民航发展基金
+        # @param DevelopmentFund: <p>民航发展基金</p>
         # @type DevelopmentFund: String
 
         attr_accessor :Code, :Number, :Date, :Amount, :CheckCode, :Total, :DeductionMark, :StateCode, :BuyerTaxCode, :BuyerName, :Tax, :DomesticInternationalMark, :PassengerName, :PassengerNo, :ElectronicNumber, :ElectronicAirTransportDetails, :Fare, :FuelSurcharge, :TaxAmount, :DevelopmentFund
@@ -2304,31 +2302,31 @@ module TencentCloud
 
       # 全电发票（航空运输电子客票行程单）详细信息
       class ElectronicAirTransportDetail < TencentCloud::Common::AbstractModel
-        # @param FlightSegment: 航段序号
+        # @param FlightSegment: <p>航段序号</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlightSegment: String
-        # @param StationGetOn: 始发站
+        # @param StationGetOn: <p>始发站</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StationGetOn: String
-        # @param StationGetOff: 目的站
+        # @param StationGetOff: <p>目的站</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StationGetOff: String
-        # @param Carrier: 承运人
+        # @param Carrier: <p>承运人</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Carrier: String
-        # @param FlightNumber: 航班号
+        # @param FlightNumber: <p>航班号</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlightNumber: String
-        # @param SeatLevel: 座位等级
+        # @param SeatLevel: <p>座位等级</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SeatLevel: String
-        # @param FlightDate: 承运日期
+        # @param FlightDate: <p>承运日期</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlightDate: String
-        # @param DepartureTime: 起飞时间
+        # @param DepartureTime: <p>起飞时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DepartureTime: String
-        # @param FareBasis: 客票级别/客票类别
+        # @param FareBasis: <p>客票级别/客票类别</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FareBasis: String
 
@@ -2569,82 +2567,96 @@ module TencentCloud
 
       # 全电发票（铁路电子客票）
       class ElectronicTrainTicket < TencentCloud::Common::AbstractModel
-        # @param BuyerName: 购方名称
+        # @param BuyerName: <p>购方名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BuyerName: String
-        # @param BuyerTaxCode: 购方识别号
+        # @param BuyerTaxCode: <p>购方识别号</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BuyerTaxCode: String
-        # @param Number: 发票号码
+        # @param Number: <p>发票号码</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Number: String
-        # @param Date: 开票日期
+        # @param Date: <p>开票日期</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Date: String
-        # @param TotalCN: 价税合计（中文大写）
+        # @param TotalCN: <p>价税合计（中文大写）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCN: String
-        # @param Tax: 税额
+        # @param Tax: <p>税额</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tax: String
-        # @param ServiceType: 业务类型，0：退票，1:售票
+        # @param ServiceType: <p>业务类型，0：退票，1:售票</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceType: String
-        # @param TimeGetOn: 出发时间
+        # @param TimeGetOn: <p>出发时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeGetOn: String
-        # @param TrainNumber: 车次
+        # @param TrainNumber: <p>车次</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TrainNumber: String
-        # @param Code: 发票代码
+        # @param Code: <p>发票代码</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Code: String
-        # @param SeatType: 席别
+        # @param SeatType: <p>席别</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SeatType: String
-        # @param DateGetOn: 乘车日期
+        # @param DateGetOn: <p>乘车日期</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DateGetOn: String
-        # @param TrainCabin: 车厢
+        # @param TrainCabin: <p>车厢</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TrainCabin: String
-        # @param StationGetOn: 出发站
+        # @param StationGetOn: <p>出发站</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StationGetOn: String
-        # @param ElectronicNumber: 电子客票号
+        # @param ElectronicNumber: <p>电子客票号</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ElectronicNumber: String
-        # @param PassengerName: 姓名
+        # @param PassengerName: <p>姓名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PassengerName: String
-        # @param PassengerNo: 证件号
+        # @param PassengerNo: <p>证件号</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PassengerNo: String
-        # @param Amount: 金额
+        # @param Amount: <p>金额</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Amount: String
-        # @param StationGetOff: 到达站
+        # @param StationGetOff: <p>到达站</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StationGetOff: String
-        # @param TaxRate: 税率
+        # @param TaxRate: <p>税率</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaxRate: String
-        # @param Seat: 席位
+        # @param Seat: <p>席位</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Seat: String
-        # @param Total: 价税合计
+        # @param Total: <p>价税合计</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: String
-        # @param CheckCode: 校验码
+        # @param CheckCode: <p>校验码</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CheckCode: String
-        # @param StateCode: 发票状态代码，0正常 1 未更新  2作废 3已红冲
+        # @param StateCode: <p>发票状态代码，0正常 1 未更新  2作废 3已红冲</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StateCode: String
+        # @param Type: <p>发票类型</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param AirConditionerFeature: <p>空调特征</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AirConditionerFeature: String
+        # @param TicketType: <p>票种，不替代 VatInvoice.Type。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TicketType: String
+        # @param OriginalTaxRate: <p>原始税率</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginalTaxRate: String
+        # @param FullElectronicNumber: <p>全电发票号码，映射源字段 qdfphm。</p>
+        # @type FullElectronicNumber: String
 
-        attr_accessor :BuyerName, :BuyerTaxCode, :Number, :Date, :TotalCN, :Tax, :ServiceType, :TimeGetOn, :TrainNumber, :Code, :SeatType, :DateGetOn, :TrainCabin, :StationGetOn, :ElectronicNumber, :PassengerName, :PassengerNo, :Amount, :StationGetOff, :TaxRate, :Seat, :Total, :CheckCode, :StateCode
+        attr_accessor :BuyerName, :BuyerTaxCode, :Number, :Date, :TotalCN, :Tax, :ServiceType, :TimeGetOn, :TrainNumber, :Code, :SeatType, :DateGetOn, :TrainCabin, :StationGetOn, :ElectronicNumber, :PassengerName, :PassengerNo, :Amount, :StationGetOff, :TaxRate, :Seat, :Total, :CheckCode, :StateCode, :Type, :AirConditionerFeature, :TicketType, :OriginalTaxRate, :FullElectronicNumber
 
-        def initialize(buyername=nil, buyertaxcode=nil, number=nil, date=nil, totalcn=nil, tax=nil, servicetype=nil, timegeton=nil, trainnumber=nil, code=nil, seattype=nil, dategeton=nil, traincabin=nil, stationgeton=nil, electronicnumber=nil, passengername=nil, passengerno=nil, amount=nil, stationgetoff=nil, taxrate=nil, seat=nil, total=nil, checkcode=nil, statecode=nil)
+        def initialize(buyername=nil, buyertaxcode=nil, number=nil, date=nil, totalcn=nil, tax=nil, servicetype=nil, timegeton=nil, trainnumber=nil, code=nil, seattype=nil, dategeton=nil, traincabin=nil, stationgeton=nil, electronicnumber=nil, passengername=nil, passengerno=nil, amount=nil, stationgetoff=nil, taxrate=nil, seat=nil, total=nil, checkcode=nil, statecode=nil, type=nil, airconditionerfeature=nil, tickettype=nil, originaltaxrate=nil, fullelectronicnumber=nil)
           @BuyerName = buyername
           @BuyerTaxCode = buyertaxcode
           @Number = number
@@ -2669,6 +2681,11 @@ module TencentCloud
           @Total = total
           @CheckCode = checkcode
           @StateCode = statecode
+          @Type = type
+          @AirConditionerFeature = airconditionerfeature
+          @TicketType = tickettype
+          @OriginalTaxRate = originaltaxrate
+          @FullElectronicNumber = fullelectronicnumber
         end
 
         def deserialize(params)
@@ -2696,6 +2713,11 @@ module TencentCloud
           @Total = params['Total']
           @CheckCode = params['CheckCode']
           @StateCode = params['StateCode']
+          @Type = params['Type']
+          @AirConditionerFeature = params['AirConditionerFeature']
+          @TicketType = params['TicketType']
+          @OriginalTaxRate = params['OriginalTaxRate']
+          @FullElectronicNumber = params['FullElectronicNumber']
         end
       end
 
@@ -7190,25 +7212,31 @@ module TencentCloud
 
       # 通行费发票信息
       class PassInvoiceInfo < TencentCloud::Common::AbstractModel
-        # @param NumberPlate: 通行费车牌号
+        # @param NumberPlate: <p>通行费车牌号；数电通行费源字段 cph 写入该字段。</p>
         # @type NumberPlate: String
-        # @param Type: 通行费类型
+        # @param Type: <p>通行费类型；数电通行费源字段 cllx 写入该字</p>
         # @type Type: String
-        # @param PassDateBegin: 通行日期起
+        # @param PassDateBegin: <p>通行日期起</p>
         # @type PassDateBegin: String
-        # @param PassDateEnd: 通行日期止
+        # @param PassDateEnd: <p>通行日期止</p>
         # @type PassDateEnd: String
-        # @param TaxClassifyCode: 税收分类编码
+        # @param TaxClassifyCode: <p>税收分类编码</p>
         # @type TaxClassifyCode: String
+        # @param CarType: <p>通行费车牌号</p>
+        # @type CarType: String
+        # @param PlateNumber: <p>通行费车辆类型</p>
+        # @type PlateNumber: String
 
-        attr_accessor :NumberPlate, :Type, :PassDateBegin, :PassDateEnd, :TaxClassifyCode
+        attr_accessor :NumberPlate, :Type, :PassDateBegin, :PassDateEnd, :TaxClassifyCode, :CarType, :PlateNumber
 
-        def initialize(numberplate=nil, type=nil, passdatebegin=nil, passdateend=nil, taxclassifycode=nil)
+        def initialize(numberplate=nil, type=nil, passdatebegin=nil, passdateend=nil, taxclassifycode=nil, cartype=nil, platenumber=nil)
           @NumberPlate = numberplate
           @Type = type
           @PassDateBegin = passdatebegin
           @PassDateEnd = passdateend
           @TaxClassifyCode = taxclassifycode
+          @CarType = cartype
+          @PlateNumber = platenumber
         end
 
         def deserialize(params)
@@ -7217,6 +7245,8 @@ module TencentCloud
           @PassDateBegin = params['PassDateBegin']
           @PassDateEnd = params['PassDateEnd']
           @TaxClassifyCode = params['TaxClassifyCode']
+          @CarType = params['CarType']
+          @PlateNumber = params['PlateNumber']
         end
       end
 
@@ -9328,6 +9358,38 @@ module TencentCloud
           @Y = params['Y']
           @Width = params['Width']
           @Height = params['Height']
+        end
+      end
+
+      # 红字发票信息
+      class RedLetterInvoiceItem < TencentCloud::Common::AbstractModel
+        # @param Code: <p>红字发票代码</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Code: String
+        # @param Number: <p>红字发票号码</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Number: String
+        # @param Date: <p>红字开票日期</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Date: String
+        # @param State: <p>红字发票状态</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type State: String
+
+        attr_accessor :Code, :Number, :Date, :State
+
+        def initialize(code=nil, number=nil, date=nil, state=nil)
+          @Code = code
+          @Number = number
+          @Date = date
+          @State = state
+        end
+
+        def deserialize(params)
+          @Code = params['Code']
+          @Number = params['Number']
+          @Date = params['Date']
+          @State = params['State']
         end
       end
 
@@ -12594,58 +12656,89 @@ module TencentCloud
 
       # 二手车销售统一发票信息
       class UsedVehicleInvoiceInfo < TencentCloud::Common::AbstractModel
-        # @param TaxBureau: 所属税局
+        # @param TaxBureau: <p>所属税局</p>
         # @type TaxBureau: String
-        # @param Buyer: 买方单位/个人
+        # @param Buyer: <p>买方单位/个人</p>
         # @type Buyer: String
-        # @param BuyerNo: 买方单位代码/身份证号码
+        # @param BuyerNo: <p>买方单位代码/身份证号码</p>
         # @type BuyerNo: String
-        # @param BuyerAddress: 买方单位/个人地址
+        # @param BuyerAddress: <p>买方单位/个人地址</p>
         # @type BuyerAddress: String
-        # @param BuyerTel: 买方单位电话
+        # @param BuyerTel: <p>买方单位电话</p>
         # @type BuyerTel: String
-        # @param Seller: 卖方单位/个人
+        # @param Seller: <p>卖方单位/个人</p>
         # @type Seller: String
-        # @param SellerNo: 卖方单位代码/身份证号码
+        # @param SellerNo: <p>卖方单位代码/身份证号码</p>
         # @type SellerNo: String
-        # @param SellerAddress: 卖方单位/个人地址
+        # @param SellerAddress: <p>卖方单位/个人地址</p>
         # @type SellerAddress: String
-        # @param SellerTel: 卖方单位电话
+        # @param SellerTel: <p>卖方单位电话</p>
         # @type SellerTel: String
-        # @param VehicleLicenseNo: 车牌照号
+        # @param VehicleLicenseNo: <p>车牌照号</p>
         # @type VehicleLicenseNo: String
-        # @param RegisterNo: 登记证号
+        # @param RegisterNo: <p>登记证号</p>
         # @type RegisterNo: String
-        # @param VehicleIdentifyNo: 车架号/车辆识别代码
+        # @param VehicleIdentifyNo: <p>车架号/车辆识别代码</p>
         # @type VehicleIdentifyNo: String
-        # @param ManagementOffice: 转入地车辆管理所名称
+        # @param ManagementOffice: <p>转入地车辆管理所名称</p>
         # @type ManagementOffice: String
-        # @param VehicleTotalPrice: 车价合计
+        # @param VehicleTotalPrice: <p>车价合计</p>
         # @type VehicleTotalPrice: String
-        # @param Auctioneer: 经营、拍卖单位
+        # @param Auctioneer: <p>经营、拍卖单位</p>
         # @type Auctioneer: String
-        # @param AuctioneerAddress: 经营、拍卖单位地址
+        # @param AuctioneerAddress: <p>经营、拍卖单位地址</p>
         # @type AuctioneerAddress: String
-        # @param AuctioneerTaxpayerNum: 经营、拍卖单位纳税人识别号
+        # @param AuctioneerTaxpayerNum: <p>经营、拍卖单位纳税人识别号</p>
         # @type AuctioneerTaxpayerNum: String
-        # @param AuctioneerBankAccount: 经营、拍卖单位开户银行、账号
+        # @param AuctioneerBankAccount: <p>经营、拍卖单位开户银行、账号</p>
         # @type AuctioneerBankAccount: String
-        # @param AuctioneerTel: 经营、拍卖单位电话
+        # @param AuctioneerTel: <p>经营、拍卖单位电话</p>
         # @type AuctioneerTel: String
-        # @param Market: 二手车市场
+        # @param Market: <p>二手车市场</p>
         # @type Market: String
-        # @param MarketTaxpayerNum: 二手车市场纳税人识别号
+        # @param MarketTaxpayerNum: <p>二手车市场纳税人识别号</p>
         # @type MarketTaxpayerNum: String
-        # @param MarketAddress: 二手车市场地址
+        # @param MarketAddress: <p>二手车市场地址</p>
         # @type MarketAddress: String
-        # @param MarketBankAccount: 二手车市场开户银行账号
+        # @param MarketBankAccount: <p>二手车市场开户银行账号</p>
         # @type MarketBankAccount: String
-        # @param MarketTel: 二手车市场电话
+        # @param MarketTel: <p>二手车市场电话</p>
         # @type MarketTel: String
+        # @param VehicleTotalPriceCN: <p>车价合计中文大写</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VehicleTotalPriceCN: String
+        # @param InvoiceRiskLevel: <p>发票风险等级</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InvoiceRiskLevel: String
+        # @param CarType: <p>车辆类型</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CarType: String
+        # @param PlateModel: <p>厂牌型号</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PlateModel: String
+        # @param AbandonerName: <p>作废人</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AbandonerName: String
+        # @param AbandonDate: <p>作废日期</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AbandonDate: String
+        # @param IssuerType: <p>开票方类型：1 经营单位，2 拍卖单位，03 二手车市场。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IssuerType: String
+        # @param IssuerTaxCode: <p>开票方纳税人识别号</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IssuerTaxCode: String
+        # @param CustomCode: <p>自行编码</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomCode: String
+        # @param TaxClassifyCode: <p>商品编码</p>
+        # @type TaxClassifyCode: String
+        # @param ZeroTaxRateMark: <p>零税率标识：空：非零税率，0：出口零税，1：免税，2：不征税，3 普通零税率</p>
+        # @type ZeroTaxRateMark: String
 
-        attr_accessor :TaxBureau, :Buyer, :BuyerNo, :BuyerAddress, :BuyerTel, :Seller, :SellerNo, :SellerAddress, :SellerTel, :VehicleLicenseNo, :RegisterNo, :VehicleIdentifyNo, :ManagementOffice, :VehicleTotalPrice, :Auctioneer, :AuctioneerAddress, :AuctioneerTaxpayerNum, :AuctioneerBankAccount, :AuctioneerTel, :Market, :MarketTaxpayerNum, :MarketAddress, :MarketBankAccount, :MarketTel
+        attr_accessor :TaxBureau, :Buyer, :BuyerNo, :BuyerAddress, :BuyerTel, :Seller, :SellerNo, :SellerAddress, :SellerTel, :VehicleLicenseNo, :RegisterNo, :VehicleIdentifyNo, :ManagementOffice, :VehicleTotalPrice, :Auctioneer, :AuctioneerAddress, :AuctioneerTaxpayerNum, :AuctioneerBankAccount, :AuctioneerTel, :Market, :MarketTaxpayerNum, :MarketAddress, :MarketBankAccount, :MarketTel, :VehicleTotalPriceCN, :InvoiceRiskLevel, :CarType, :PlateModel, :AbandonerName, :AbandonDate, :IssuerType, :IssuerTaxCode, :CustomCode, :TaxClassifyCode, :ZeroTaxRateMark
 
-        def initialize(taxbureau=nil, buyer=nil, buyerno=nil, buyeraddress=nil, buyertel=nil, seller=nil, sellerno=nil, selleraddress=nil, sellertel=nil, vehiclelicenseno=nil, registerno=nil, vehicleidentifyno=nil, managementoffice=nil, vehicletotalprice=nil, auctioneer=nil, auctioneeraddress=nil, auctioneertaxpayernum=nil, auctioneerbankaccount=nil, auctioneertel=nil, market=nil, markettaxpayernum=nil, marketaddress=nil, marketbankaccount=nil, markettel=nil)
+        def initialize(taxbureau=nil, buyer=nil, buyerno=nil, buyeraddress=nil, buyertel=nil, seller=nil, sellerno=nil, selleraddress=nil, sellertel=nil, vehiclelicenseno=nil, registerno=nil, vehicleidentifyno=nil, managementoffice=nil, vehicletotalprice=nil, auctioneer=nil, auctioneeraddress=nil, auctioneertaxpayernum=nil, auctioneerbankaccount=nil, auctioneertel=nil, market=nil, markettaxpayernum=nil, marketaddress=nil, marketbankaccount=nil, markettel=nil, vehicletotalpricecn=nil, invoicerisklevel=nil, cartype=nil, platemodel=nil, abandonername=nil, abandondate=nil, issuertype=nil, issuertaxcode=nil, customcode=nil, taxclassifycode=nil, zerotaxratemark=nil)
           @TaxBureau = taxbureau
           @Buyer = buyer
           @BuyerNo = buyerno
@@ -12670,6 +12763,17 @@ module TencentCloud
           @MarketAddress = marketaddress
           @MarketBankAccount = marketbankaccount
           @MarketTel = markettel
+          @VehicleTotalPriceCN = vehicletotalpricecn
+          @InvoiceRiskLevel = invoicerisklevel
+          @CarType = cartype
+          @PlateModel = platemodel
+          @AbandonerName = abandonername
+          @AbandonDate = abandondate
+          @IssuerType = issuertype
+          @IssuerTaxCode = issuertaxcode
+          @CustomCode = customcode
+          @TaxClassifyCode = taxclassifycode
+          @ZeroTaxRateMark = zerotaxratemark
         end
 
         def deserialize(params)
@@ -12697,6 +12801,17 @@ module TencentCloud
           @MarketAddress = params['MarketAddress']
           @MarketBankAccount = params['MarketBankAccount']
           @MarketTel = params['MarketTel']
+          @VehicleTotalPriceCN = params['VehicleTotalPriceCN']
+          @InvoiceRiskLevel = params['InvoiceRiskLevel']
+          @CarType = params['CarType']
+          @PlateModel = params['PlateModel']
+          @AbandonerName = params['AbandonerName']
+          @AbandonDate = params['AbandonDate']
+          @IssuerType = params['IssuerType']
+          @IssuerTaxCode = params['IssuerTaxCode']
+          @CustomCode = params['CustomCode']
+          @TaxClassifyCode = params['TaxClassifyCode']
+          @ZeroTaxRateMark = params['ZeroTaxRateMark']
         end
       end
 
@@ -12950,108 +13065,115 @@ module TencentCloud
 
       # 增值税发票、购车发票、全电发票的基础要素字段信息。
       class VatInvoice < TencentCloud::Common::AbstractModel
-        # @param Code: 发票代码
+        # @param Code: <p>发票代码</p>
         # @type Code: String
-        # @param Number: 发票号码
+        # @param Number: <p>发票号码</p>
         # @type Number: String
-        # @param Date: 开票日期
+        # @param Date: <p>开票日期</p>
         # @type Date: String
-        # @param BuyerName: 购方抬头
-        # 通用机打发票类型时不返回
+        # @param BuyerName: <p>购方抬头<br>通用机打发票类型时不返回</p>
         # @type BuyerName: String
-        # @param BuyerTaxCode: 购方税号
-        # 通用机打发票类型时不返回
+        # @param BuyerTaxCode: <p>购方税号<br>通用机打发票类型时不返回</p>
         # @type BuyerTaxCode: String
-        # @param BuyerAddressPhone: 购方地址电话
-        # 通用机打发票类型做不返回
+        # @param BuyerAddressPhone: <p>购方地址电话<br>通用机打发票类型做不返回</p>
         # @type BuyerAddressPhone: String
-        # @param BuyerBankAccount: 购方银行账号
-        # 通用机打发票类型时不返回
+        # @param BuyerBankAccount: <p>购方银行账号<br>通用机打发票类型时不返回</p>
         # @type BuyerBankAccount: String
-        # @param SellerName: 销方名称
+        # @param SellerName: <p>销方名称</p>
         # @type SellerName: String
-        # @param SellerTaxCode: 销方税号
+        # @param SellerTaxCode: <p>销方税号</p>
         # @type SellerTaxCode: String
-        # @param SellerAddressPhone: 销方地址电话
+        # @param SellerAddressPhone: <p>销方地址电话</p>
         # @type SellerAddressPhone: String
-        # @param SellerBankAccount: 销方银行账号
+        # @param SellerBankAccount: <p>销方银行账号</p>
         # @type SellerBankAccount: String
-        # @param Remark: 备注
+        # @param Remark: <p>备注</p>
         # @type Remark: String
-        # @param MachineNo: 机器编码
+        # @param MachineNo: <p>机器编码</p>
         # @type MachineNo: String
-        # @param Type: 票种类型
-        # 01：增值税专用发票，
-        # 02：货运运输业增值税专用发票，
-        # 03：机动车销售统一发票，
-        # 04：增值税普通发票，
-        # 08：增值税电子专用发票（含全电，全电仅新版接口支持），
-        # 09：全电发票，
-        # 0901：全电纸质发票(增值税专用发票)，
-        # 0903：全电纸质(机动车销售统一发票)，
-        # 0904：全电纸质发票(增值税普通发票)，
-        # 0910：电子发票(普通发票)，
-        # 0915：全电纸质(二手车销售统一发票)，
-        # 0920：电子发票(增值税专用发票)，
-        # 0930：电子发票(机动车销售统一发票)，
-        # 0940：电子发票(二手车销售统一发票)，
-        # 10：增值税电子普通发票（含全电，全电仅新版接口支持），
-        # 11：增值税普通发票（卷式），
-        # 14：增值税电子（通行费）发票，
-        # 15：二手车销售统一发票，
-        # 32：深圳区块链发票，
-        # 61：电子发票（航空运输电子客票行程单），
-        # 8208：电子发票(通行费发票)，
-        # 83：电子发票(铁路电子客票)，
-        # 100：区块链发票，
-        # 101：财政票据，
-        # 102：通用电子发票，
-        # 103：车辆通行费
-
-
-
+        # @param Type: <p>票种类型<br>01：增值税专用发票，<br>02：货运运输业增值税专用发票，<br>03：机动车销售统一发票，<br>04：增值税普通发票，<br>08：增值税电子专用发票（含全电，全电仅新版接口支持），<br>09：全电发票，<br>0901：全电纸质发票(增值税专用发票)，<br>0903：全电纸质(机动车销售统一发票)，<br>0904：全电纸质发票(增值税普通发票)，<br>0910：电子发票(普通发票)，<br>0915：全电纸质(二手车销售统一发票)，<br>0920：电子发票(增值税专用发票)，<br>0930：电子发票(机动车销售统一发票)，<br>0940：电子发票(二手车销售统一发票)，<br>10：增值税电子普通发票（含全电，全电仅新版接口支持），<br>11：增值税普通发票（卷式），<br>14：增值税电子（通行费）发票，<br>15：二手车销售统一发票，<br>32：深圳区块链发票，<br>61：电子发票（航空运输电子客票行程单），<br>8208：电子发票(通行费发票)，<br>83：电子发票(铁路电子客票)，<br>100：区块链发票，<br>101：财政票据，<br>102：通用电子发票，<br>103：车辆通行费</p>
         # @type Type: String
-        # @param ElectronicType: 具体的全电发票类型：01: 全电专用发票；02：全电普通发票；03：全电火车票；04：全电机票行程单
+        # @param ElectronicType: <p>具体的全电发票类型：01: 全电专用发票；02：全电普通发票；03：全电火车票；04：全电机票行程单</p>
         # @type ElectronicType: String
-        # @param CheckCode: 检验码
+        # @param CheckCode: <p>检验码</p>
         # @type CheckCode: String
-        # @param IsAbandoned: 是否作废（红冲）是否作废（红冲）
-        # Y：已作废，N：未作废，H：红冲，HP：部分红冲，HF：全额红冲
+        # @param IsAbandoned: <p>是否作废（红冲）是否作废（红冲）<br>Y：已作废，N：未作废，H：红冲，HP：部分红冲，HF：全额红冲</p>
         # @type IsAbandoned: String
-        # @param HasSellerList: 是否有销货清单
-        # Y: 有清单 N：无清单
-        # 卷票无
+        # @param HasSellerList: <p>是否有销货清单<br>Y: 有清单 N：无清单<br>卷票无</p>
         # @type HasSellerList: String
-        # @param SellerListTitle: 销货清单标题
+        # @param SellerListTitle: <p>销货清单标题</p>
         # @type SellerListTitle: String
-        # @param SellerListTax: 销货清单税额
+        # @param SellerListTax: <p>销货清单税额</p>
         # @type SellerListTax: String
-        # @param AmountWithoutTax: 不含税金额
+        # @param AmountWithoutTax: <p>不含税金额</p>
         # @type AmountWithoutTax: String
-        # @param TaxAmount: 税额
+        # @param TaxAmount: <p>税额</p>
         # @type TaxAmount: String
-        # @param AmountWithTax: 含税金额
+        # @param AmountWithTax: <p>含税金额</p>
         # @type AmountWithTax: String
-        # @param Items: 项目明细
+        # @param Items: <p>项目明细</p>
         # @type Items: Array
-        # @param TaxBureau: 所属税局
+        # @param TaxBureau: <p>所属税局</p>
         # @type TaxBureau: String
-        # @param TrafficFreeFlag: 通行费标志:Y、是;N、否
+        # @param TrafficFreeFlag: <p>通行费标志:Y、是;N、否</p>
         # @type TrafficFreeFlag: String
-        # @param RedLetterInvoiceMark: 是否为红票
+        # @param RedLetterInvoiceMark: <p>是否为红票</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RedLetterInvoiceMark: Boolean
-        # @param IssuingTypeMark: 开具类型标识（0: 委托代开，1：自开，2：代开，3：代办退税
+        # @param IssuingTypeMark: <p>开具类型标识（0: 委托代开，1：自开，2：代开，3：代办退税</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IssuingTypeMark: Integer
-        # @param SellerAgentName: 代开销售方名称
+        # @param SellerAgentName: <p>代开销售方名称</p>
         # @type SellerAgentName: String
-        # @param SellerAgentTaxID: 代开销售方税号
+        # @param SellerAgentTaxID: <p>代开销售方税号</p>
         # @type SellerAgentTaxID: String
+        # @param RegionCode: <p>地区代码</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionCode: String
+        # @param ReviewerName: <p>复核人</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReviewerName: String
+        # @param IssuerName: <p>开票人</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IssuerName: String
+        # @param PayeeName: <p>收款人</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PayeeName: String
+        # @param MachineCode: <p>开票机号</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MachineCode: String
+        # @param TaxControlCode: <p>税控码/密码区</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaxControlCode: String
+        # @param AmountWithTaxCN: <p>价税合计（中文大写）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AmountWithTaxCN: String
+        # @param TaxRate: <p>税率</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaxRate: String
+        # @param SpecialTicketCode: <p>特殊票种代码</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SpecialTicketCode: String
+        # @param RedLetterInvoices: <p>红字发票信息列表</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RedLetterInvoices: Array
+        # @param FullElectronicType: <p>全电类型</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FullElectronicType: String
+        # @param OfdUrl: <p>OFD版式文件下载链接</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OfdUrl: String
+        # @param PdfUrl: <p>PDF版式文件下载链接</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PdfUrl: String
+        # @param OriginalCode: <p>原发票代码，对应蓝字发票代码。</p>
+        # @type OriginalCode: String
+        # @param OriginalNumber: <p>原发票号码，对应蓝字发票号码。</p>
+        # @type OriginalNumber: String
 
-        attr_accessor :Code, :Number, :Date, :BuyerName, :BuyerTaxCode, :BuyerAddressPhone, :BuyerBankAccount, :SellerName, :SellerTaxCode, :SellerAddressPhone, :SellerBankAccount, :Remark, :MachineNo, :Type, :ElectronicType, :CheckCode, :IsAbandoned, :HasSellerList, :SellerListTitle, :SellerListTax, :AmountWithoutTax, :TaxAmount, :AmountWithTax, :Items, :TaxBureau, :TrafficFreeFlag, :RedLetterInvoiceMark, :IssuingTypeMark, :SellerAgentName, :SellerAgentTaxID
+        attr_accessor :Code, :Number, :Date, :BuyerName, :BuyerTaxCode, :BuyerAddressPhone, :BuyerBankAccount, :SellerName, :SellerTaxCode, :SellerAddressPhone, :SellerBankAccount, :Remark, :MachineNo, :Type, :ElectronicType, :CheckCode, :IsAbandoned, :HasSellerList, :SellerListTitle, :SellerListTax, :AmountWithoutTax, :TaxAmount, :AmountWithTax, :Items, :TaxBureau, :TrafficFreeFlag, :RedLetterInvoiceMark, :IssuingTypeMark, :SellerAgentName, :SellerAgentTaxID, :RegionCode, :ReviewerName, :IssuerName, :PayeeName, :MachineCode, :TaxControlCode, :AmountWithTaxCN, :TaxRate, :SpecialTicketCode, :RedLetterInvoices, :FullElectronicType, :OfdUrl, :PdfUrl, :OriginalCode, :OriginalNumber
 
-        def initialize(code=nil, number=nil, date=nil, buyername=nil, buyertaxcode=nil, buyeraddressphone=nil, buyerbankaccount=nil, sellername=nil, sellertaxcode=nil, selleraddressphone=nil, sellerbankaccount=nil, remark=nil, machineno=nil, type=nil, electronictype=nil, checkcode=nil, isabandoned=nil, hassellerlist=nil, sellerlisttitle=nil, sellerlisttax=nil, amountwithouttax=nil, taxamount=nil, amountwithtax=nil, items=nil, taxbureau=nil, trafficfreeflag=nil, redletterinvoicemark=nil, issuingtypemark=nil, selleragentname=nil, selleragenttaxid=nil)
+        def initialize(code=nil, number=nil, date=nil, buyername=nil, buyertaxcode=nil, buyeraddressphone=nil, buyerbankaccount=nil, sellername=nil, sellertaxcode=nil, selleraddressphone=nil, sellerbankaccount=nil, remark=nil, machineno=nil, type=nil, electronictype=nil, checkcode=nil, isabandoned=nil, hassellerlist=nil, sellerlisttitle=nil, sellerlisttax=nil, amountwithouttax=nil, taxamount=nil, amountwithtax=nil, items=nil, taxbureau=nil, trafficfreeflag=nil, redletterinvoicemark=nil, issuingtypemark=nil, selleragentname=nil, selleragenttaxid=nil, regioncode=nil, reviewername=nil, issuername=nil, payeename=nil, machinecode=nil, taxcontrolcode=nil, amountwithtaxcn=nil, taxrate=nil, specialticketcode=nil, redletterinvoices=nil, fullelectronictype=nil, ofdurl=nil, pdfurl=nil, originalcode=nil, originalnumber=nil)
           @Code = code
           @Number = number
           @Date = date
@@ -13082,6 +13204,21 @@ module TencentCloud
           @IssuingTypeMark = issuingtypemark
           @SellerAgentName = selleragentname
           @SellerAgentTaxID = selleragenttaxid
+          @RegionCode = regioncode
+          @ReviewerName = reviewername
+          @IssuerName = issuername
+          @PayeeName = payeename
+          @MachineCode = machinecode
+          @TaxControlCode = taxcontrolcode
+          @AmountWithTaxCN = amountwithtaxcn
+          @TaxRate = taxrate
+          @SpecialTicketCode = specialticketcode
+          @RedLetterInvoices = redletterinvoices
+          @FullElectronicType = fullelectronictype
+          @OfdUrl = ofdurl
+          @PdfUrl = pdfurl
+          @OriginalCode = originalcode
+          @OriginalNumber = originalnumber
         end
 
         def deserialize(params)
@@ -13122,6 +13259,28 @@ module TencentCloud
           @IssuingTypeMark = params['IssuingTypeMark']
           @SellerAgentName = params['SellerAgentName']
           @SellerAgentTaxID = params['SellerAgentTaxID']
+          @RegionCode = params['RegionCode']
+          @ReviewerName = params['ReviewerName']
+          @IssuerName = params['IssuerName']
+          @PayeeName = params['PayeeName']
+          @MachineCode = params['MachineCode']
+          @TaxControlCode = params['TaxControlCode']
+          @AmountWithTaxCN = params['AmountWithTaxCN']
+          @TaxRate = params['TaxRate']
+          @SpecialTicketCode = params['SpecialTicketCode']
+          unless params['RedLetterInvoices'].nil?
+            @RedLetterInvoices = []
+            params['RedLetterInvoices'].each do |i|
+              redletterinvoiceitem_tmp = RedLetterInvoiceItem.new
+              redletterinvoiceitem_tmp.deserialize(i)
+              @RedLetterInvoices << redletterinvoiceitem_tmp
+            end
+          end
+          @FullElectronicType = params['FullElectronicType']
+          @OfdUrl = params['OfdUrl']
+          @PdfUrl = params['PdfUrl']
+          @OriginalCode = params['OriginalCode']
+          @OriginalNumber = params['OriginalNumber']
         end
       end
 
@@ -13374,44 +13533,59 @@ module TencentCloud
 
       # 增值税发票项目明细
       class VatInvoiceItem < TencentCloud::Common::AbstractModel
-        # @param LineNo: 行号
+        # @param LineNo: <p>行号</p>
         # @type LineNo: String
-        # @param Name: 名称
+        # @param Name: <p>名称</p>
         # @type Name: String
-        # @param Spec: 规格
+        # @param Spec: <p>规格</p>
         # @type Spec: String
-        # @param Unit: 单位
+        # @param Unit: <p>单位</p>
         # @type Unit: String
-        # @param Quantity: 数量
+        # @param Quantity: <p>数量</p>
         # @type Quantity: String
-        # @param UnitPrice: 单价
+        # @param UnitPrice: <p>单价</p>
         # @type UnitPrice: String
-        # @param AmountWithoutTax: 不含税金额
+        # @param AmountWithoutTax: <p>不含税金额</p>
         # @type AmountWithoutTax: String
-        # @param TaxRate: 税率
+        # @param TaxRate: <p>税率</p>
         # @type TaxRate: String
-        # @param TaxAmount: 税额
+        # @param TaxAmount: <p>税额</p>
         # @type TaxAmount: String
-        # @param TaxClassifyCode: 税收分类编码
+        # @param TaxClassifyCode: <p>税收分类编码</p>
         # @type TaxClassifyCode: String
-        # @param VehicleType: 运输工具类型
+        # @param VehicleType: <p>运输工具类型</p>
         # @type VehicleType: String
-        # @param VehicleBrand: 运输工具牌号
+        # @param VehicleBrand: <p>运输工具牌号</p>
         # @type VehicleBrand: String
-        # @param DeparturePlace: 起始地
+        # @param DeparturePlace: <p>起始地</p>
         # @type DeparturePlace: String
-        # @param ArrivalPlace: 到达地
+        # @param ArrivalPlace: <p>到达地</p>
         # @type ArrivalPlace: String
-        # @param TransportItemsName: 运输货物名称
+        # @param TransportItemsName: <p>运输货物名称</p>
         # @type TransportItemsName: String
-        # @param ConstructionPlace: 建筑服务发生地
+        # @param ConstructionPlace: <p>建筑服务发生地</p>
         # @type ConstructionPlace: String
-        # @param ConstructionName: 建筑项目名称
+        # @param ConstructionName: <p>建筑项目名称</p>
         # @type ConstructionName: String
+        # @param OriginalTaxRate: <p>原始税率</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginalTaxRate: String
+        # @param OriginalTaxAmount: <p>原始税额</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginalTaxAmount: String
+        # @param ZeroTaxRateMark: <p>零税率标识</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ZeroTaxRateMark: String
+        # @param TaxIncludedUnitPrice: <p>含税单价</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaxIncludedUnitPrice: String
+        # @param TaxIncludedAmount: <p>含税金额</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaxIncludedAmount: Float
 
-        attr_accessor :LineNo, :Name, :Spec, :Unit, :Quantity, :UnitPrice, :AmountWithoutTax, :TaxRate, :TaxAmount, :TaxClassifyCode, :VehicleType, :VehicleBrand, :DeparturePlace, :ArrivalPlace, :TransportItemsName, :ConstructionPlace, :ConstructionName
+        attr_accessor :LineNo, :Name, :Spec, :Unit, :Quantity, :UnitPrice, :AmountWithoutTax, :TaxRate, :TaxAmount, :TaxClassifyCode, :VehicleType, :VehicleBrand, :DeparturePlace, :ArrivalPlace, :TransportItemsName, :ConstructionPlace, :ConstructionName, :OriginalTaxRate, :OriginalTaxAmount, :ZeroTaxRateMark, :TaxIncludedUnitPrice, :TaxIncludedAmount
 
-        def initialize(lineno=nil, name=nil, spec=nil, unit=nil, quantity=nil, unitprice=nil, amountwithouttax=nil, taxrate=nil, taxamount=nil, taxclassifycode=nil, vehicletype=nil, vehiclebrand=nil, departureplace=nil, arrivalplace=nil, transportitemsname=nil, constructionplace=nil, constructionname=nil)
+        def initialize(lineno=nil, name=nil, spec=nil, unit=nil, quantity=nil, unitprice=nil, amountwithouttax=nil, taxrate=nil, taxamount=nil, taxclassifycode=nil, vehicletype=nil, vehiclebrand=nil, departureplace=nil, arrivalplace=nil, transportitemsname=nil, constructionplace=nil, constructionname=nil, originaltaxrate=nil, originaltaxamount=nil, zerotaxratemark=nil, taxincludedunitprice=nil, taxincludedamount=nil)
           @LineNo = lineno
           @Name = name
           @Spec = spec
@@ -13429,6 +13603,11 @@ module TencentCloud
           @TransportItemsName = transportitemsname
           @ConstructionPlace = constructionplace
           @ConstructionName = constructionname
+          @OriginalTaxRate = originaltaxrate
+          @OriginalTaxAmount = originaltaxamount
+          @ZeroTaxRateMark = zerotaxratemark
+          @TaxIncludedUnitPrice = taxincludedunitprice
+          @TaxIncludedAmount = taxincludedamount
         end
 
         def deserialize(params)
@@ -13449,6 +13628,11 @@ module TencentCloud
           @TransportItemsName = params['TransportItemsName']
           @ConstructionPlace = params['ConstructionPlace']
           @ConstructionName = params['ConstructionName']
+          @OriginalTaxRate = params['OriginalTaxRate']
+          @OriginalTaxAmount = params['OriginalTaxAmount']
+          @ZeroTaxRateMark = params['ZeroTaxRateMark']
+          @TaxIncludedUnitPrice = params['TaxIncludedUnitPrice']
+          @TaxIncludedAmount = params['TaxIncludedAmount']
         end
       end
 
@@ -13878,43 +14062,43 @@ module TencentCloud
 
       # 机动车销售统一发票信息
       class VehicleInvoiceInfo < TencentCloud::Common::AbstractModel
-        # @param CarType: 车辆类型
+        # @param CarType: <p>车辆类型</p>
         # @type CarType: String
-        # @param PlateModel: 厂牌型号
+        # @param PlateModel: <p>厂牌型号</p>
         # @type PlateModel: String
-        # @param ProduceAddress: 产地
+        # @param ProduceAddress: <p>产地</p>
         # @type ProduceAddress: String
-        # @param CertificateNo: 合格证号
+        # @param CertificateNo: <p>合格证号</p>
         # @type CertificateNo: String
-        # @param ImportNo: 进口证明书号
+        # @param ImportNo: <p>进口证明书号</p>
         # @type ImportNo: String
-        # @param VinNo: LSVCA2NP9HN0xxxxx
+        # @param VinNo: <p>LSVCA2NP9HN0xxxxx</p>
         # @type VinNo: String
-        # @param PayTaxesNo: 完税证书号
+        # @param PayTaxesNo: <p>完税证书号</p>
         # @type PayTaxesNo: String
-        # @param Tonnage: 吨位
+        # @param Tonnage: <p>吨位</p>
         # @type Tonnage: String
-        # @param LimitCount: 限乘人数
+        # @param LimitCount: <p>限乘人数</p>
         # @type LimitCount: String
-        # @param EngineNo: 发动机号码
+        # @param EngineNo: <p>发动机号码</p>
         # @type EngineNo: String
-        # @param BizCheckFormNo: 商检单号
+        # @param BizCheckFormNo: <p>商检单号</p>
         # @type BizCheckFormNo: String
-        # @param TaxtationOrgCode: 主管税务机关代码
+        # @param TaxtationOrgCode: <p>主管税务机关代码</p>
         # @type TaxtationOrgCode: String
-        # @param TaxtationOrgName: 主管税务机关名称
+        # @param TaxtationOrgName: <p>主管税务机关名称</p>
         # @type TaxtationOrgName: String
-        # @param MotorTaxRate: 税率
+        # @param MotorTaxRate: <p>税率</p>
         # @type MotorTaxRate: String
-        # @param MotorBankName: 银行账号
+        # @param MotorBankName: <p>银行账号</p>
         # @type MotorBankName: String
-        # @param MotorBankAccount: 开户行
+        # @param MotorBankAccount: <p>开户行</p>
         # @type MotorBankAccount: String
-        # @param SellerAddress: 销售地址
+        # @param SellerAddress: <p>销售地址</p>
         # @type SellerAddress: String
-        # @param SellerTel: 销售电话
+        # @param SellerTel: <p>销售电话</p>
         # @type SellerTel: String
-        # @param BuyerNo: 购方身份证
+        # @param BuyerNo: <p>购方身份证</p>
         # @type BuyerNo: String
 
         attr_accessor :CarType, :PlateModel, :ProduceAddress, :CertificateNo, :ImportNo, :VinNo, :PayTaxesNo, :Tonnage, :LimitCount, :EngineNo, :BizCheckFormNo, :TaxtationOrgCode, :TaxtationOrgName, :MotorTaxRate, :MotorBankName, :MotorBankAccount, :SellerAddress, :SellerTel, :BuyerNo

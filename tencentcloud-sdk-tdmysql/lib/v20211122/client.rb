@@ -245,6 +245,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeDBCharsets）提供查询支持字符集功能
+
+        # @param request: Request instance for DescribeDBCharsets.
+        # @type request: :class:`Tencentcloud::tdmysql::V20211122::DescribeDBCharsetsRequest`
+        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::DescribeDBCharsetsResponse`
+        def DescribeDBCharsets(request)
+          body = send_request('DescribeDBCharsets', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDBCharsetsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeDBEngines）用于获取DB引擎版本列表
 
         # @param request: Request instance for DescribeDBEngines.
@@ -591,6 +615,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeFlowResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeFlowTypes）用于获取所有任务类型
+
+        # @param request: Request instance for DescribeFlowTypes.
+        # @type request: :class:`Tencentcloud::tdmysql::V20211122::DescribeFlowTypesRequest`
+        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::DescribeFlowTypesResponse`
+        def DescribeFlowTypes(request)
+          body = send_request('DescribeFlowTypes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeFlowTypesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeInstanceDataReservedSpace）提供查询实例数据保留空间
+
+        # @param request: Request instance for DescribeInstanceDataReservedSpace.
+        # @type request: :class:`Tencentcloud::tdmysql::V20211122::DescribeInstanceDataReservedSpaceRequest`
+        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::DescribeInstanceDataReservedSpaceResponse`
+        def DescribeInstanceDataReservedSpace(request)
+          body = send_request('DescribeInstanceDataReservedSpace', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInstanceDataReservedSpaceResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1013,6 +1085,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（ModifyInstanceDataReservedSpace）提供修改实例数据保留空间
+
+        # @param request: Request instance for ModifyInstanceDataReservedSpace.
+        # @type request: :class:`Tencentcloud::tdmysql::V20211122::ModifyInstanceDataReservedSpaceRequest`
+        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::ModifyInstanceDataReservedSpaceResponse`
+        def ModifyInstanceDataReservedSpace(request)
+          body = send_request('ModifyInstanceDataReservedSpace', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyInstanceDataReservedSpaceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（ModifyInstanceName）提供修改实例名称功能
 
         # @param request: Request instance for ModifyInstanceName.
@@ -1119,6 +1215,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyUserPrivilegesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 重置dbaadmin账号权限
+
+        # @param request: Request instance for ResetDbaAdminPrivileges.
+        # @type request: :class:`Tencentcloud::tdmysql::V20211122::ResetDbaAdminPrivilegesRequest`
+        # @rtype: :class:`Tencentcloud::tdmysql::V20211122::ResetDbaAdminPrivilegesResponse`
+        def ResetDbaAdminPrivileges(request)
+          body = send_request('ResetDbaAdminPrivileges', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ResetDbaAdminPrivilegesResponse.new
             model.deserialize(response['Response'])
             model
           else
