@@ -2895,29 +2895,105 @@ module TencentCloud
         end
       end
 
+      # CreateLiveAvatarCloneFigure请求参数结构体
+      class CreateLiveAvatarCloneFigureRequest < TencentCloud::Common::AbstractModel
+        # @param SceneType: <p>形象克隆场景类型</p><p>枚举值：</p><ul><li>PHOTO： 图生数字人</li><li>GREEN_SCREEN： 绿幕数字人</li><li>REAL_SHOT： 实景数字人</li></ul>
+        # @type SceneType: String
+        # @param FigureName: <p>克隆的形象的名字</p>
+        # @type FigureName: String
+        # @param MaterialUrl: <p>克隆的形象的url</p>
+        # @type MaterialUrl: String
+        # @param Gender: <p>克隆的形象的性别</p><p>枚举值：</p><ul><li>MALE： 男</li><li>FEMALE： 女</li><li>UNHNOWN： 不知道</li></ul>
+        # @type Gender: String
+        # @param IdentityWrittenUrl: <p>授权pdf</p>
+        # @type IdentityWrittenUrl: String
+        # @param IdentityVideoUrl: <p>授权视频</p>
+        # @type IdentityVideoUrl: String
+        # @param PhotoVersion: <p>图生视频时，动作训练幅度大小</p><p>枚举值：</p><ul><li>0： 只有头部轻微动</li><li>1： 头部跟身体均动</li></ul>
+        # @type PhotoVersion: Integer
+
+        attr_accessor :SceneType, :FigureName, :MaterialUrl, :Gender, :IdentityWrittenUrl, :IdentityVideoUrl, :PhotoVersion
+
+        def initialize(scenetype=nil, figurename=nil, materialurl=nil, gender=nil, identitywrittenurl=nil, identityvideourl=nil, photoversion=nil)
+          @SceneType = scenetype
+          @FigureName = figurename
+          @MaterialUrl = materialurl
+          @Gender = gender
+          @IdentityWrittenUrl = identitywrittenurl
+          @IdentityVideoUrl = identityvideourl
+          @PhotoVersion = photoversion
+        end
+
+        def deserialize(params)
+          @SceneType = params['SceneType']
+          @FigureName = params['FigureName']
+          @MaterialUrl = params['MaterialUrl']
+          @Gender = params['Gender']
+          @IdentityWrittenUrl = params['IdentityWrittenUrl']
+          @IdentityVideoUrl = params['IdentityVideoUrl']
+          @PhotoVersion = params['PhotoVersion']
+        end
+      end
+
+      # CreateLiveAvatarCloneFigure返回参数结构体
+      class CreateLiveAvatarCloneFigureResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>该图克隆形象生成的任务id</p>
+        # @type TaskId: String
+        # @param Status: <p>该克隆形象返回的状态</p><p>枚举值：</p><ul><li>SUBMITTING： 已受理</li><li>CHECKING： 检查中</li><li>QUEUE： 排队中</li><li>MAKING： 训练中</li><li>CONFIRMING： 效果确认</li><li>SUCCESS： 成功</li><li>FAIL： 失败</li></ul>
+        # @type Status: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :Status, :RequestId
+
+        def initialize(taskid=nil, status=nil, requestid=nil)
+          @TaskId = taskid
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateLiveAvatarRoom请求参数结构体
       class CreateLiveAvatarRoomRequest < TencentCloud::Common::AbstractModel
-        # @param Name: 直播间名称。
+        # @param Name: <p>直播间名称。</p>
         # @type Name: String
-        # @param Operator: 操作者。
+        # @param Operator: <p>操作者。</p>
         # @type Operator: String
+        # @param AvatarKey: <p>形象ID</p>
+        # @type AvatarKey: String
+        # @param TimbreKey: <p>音色ID</p>
+        # @type TimbreKey: String
+        # @param LiveMode: <p>房间模式</p><p>枚举值：</p><ul><li>INTERACT： 交互模式</li><li>FREE： 自由模式</li><li>NORMAL： 普通模式</li></ul>
+        # @type LiveMode: String
 
-        attr_accessor :Name, :Operator
+        attr_accessor :Name, :Operator, :AvatarKey, :TimbreKey, :LiveMode
 
-        def initialize(name=nil, operator=nil)
+        def initialize(name=nil, operator=nil, avatarkey=nil, timbrekey=nil, livemode=nil)
           @Name = name
           @Operator = operator
+          @AvatarKey = avatarkey
+          @TimbreKey = timbrekey
+          @LiveMode = livemode
         end
 
         def deserialize(params)
           @Name = params['Name']
           @Operator = params['Operator']
+          @AvatarKey = params['AvatarKey']
+          @TimbreKey = params['TimbreKey']
+          @LiveMode = params['LiveMode']
         end
       end
 
       # CreateLiveAvatarRoom返回参数结构体
       class CreateLiveAvatarRoomResponse < TencentCloud::Common::AbstractModel
-        # @param RoomId: 数字人直播间 ID。
+        # @param RoomId: <p>数字人直播间 ID。</p>
         # @type RoomId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5039,6 +5115,38 @@ module TencentCloud
 
       # DeleteCaster返回参数结构体
       class DeleteCasterResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteLiveAvatarCloneFigure请求参数结构体
+      class DeleteLiveAvatarCloneFigureRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>待查的克隆形象的TaskId</p>
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DeleteLiveAvatarCloneFigure返回参数结构体
+      class DeleteLiveAvatarCloneFigureResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -7228,6 +7336,65 @@ module TencentCloud
               @InfoList << avatarbackgroundinfo_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLiveAvatarCloneFigureList请求参数结构体
+      class DescribeLiveAvatarCloneFigureListRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>待查询的克隆形象的TaskId</p>
+        # @type TaskId: String
+        # @param Status: <p>根据状态查询克隆形象</p><p>枚举值：</p><ul><li>SUBMITTING： 已受理</li><li>CHECKING： 检查中</li><li>QUEUE： 排队中</li><li>MAKING： 训练中</li><li>CONFIRMING： 效果确认</li><li>SUCCESS： 成功</li><li>FAIL： 失败</li></ul>
+        # @type Status: String
+        # @param Limit: <p>期望返回克隆形象的个数（最多20个）</p>
+        # @type Limit: String
+        # @param Offset: <p>期望返回克隆形象的起始偏移位置（默认为0）</p>
+        # @type Offset: String
+
+        attr_accessor :TaskId, :Status, :Limit, :Offset
+
+        def initialize(taskid=nil, status=nil, limit=nil, offset=nil)
+          @TaskId = taskid
+          @Status = status
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Status = params['Status']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeLiveAvatarCloneFigureList返回参数结构体
+      class DescribeLiveAvatarCloneFigureListResponse < TencentCloud::Common::AbstractModel
+        # @param CloneFigureList: <p>克隆形象列表</p>
+        # @type CloneFigureList: Array
+        # @param TotalCount: <p>克隆形象总个数</p><p>单位：个</p>
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CloneFigureList, :TotalCount, :RequestId
+
+        def initialize(clonefigurelist=nil, totalcount=nil, requestid=nil)
+          @CloneFigureList = clonefigurelist
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CloneFigureList'].nil?
+            @CloneFigureList = []
+            params['CloneFigureList'].each do |i|
+              liveavatarclonefigureinfo_tmp = LiveAvatarCloneFigureInfo.new
+              liveavatarclonefigureinfo_tmp.deserialize(i)
+              @CloneFigureList << liveavatarclonefigureinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -12716,6 +12883,94 @@ module TencentCloud
         end
       end
 
+      # 数字人直播间克隆形象信息
+      class LiveAvatarCloneFigureInfo < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>克隆形象任务ID</p>
+        # @type TaskId: String
+        # @param SceneType: <p>场景模式</p><p>枚举值：</p><ul><li>PHOTO： 图生形象</li><li>GREEN_SCREEN： 绿幕形象</li><li>REAL_SHOT： 实景形象</li></ul>
+        # @type SceneType: String
+        # @param FigureName: <p>形象名称</p>
+        # @type FigureName: String
+        # @param Gender: <p>性别：男或者女</p>
+        # @type Gender: String
+        # @param Status: <p>状态</p><p>枚举值：</p><ul><li>SUCCESS： 成功</li><li>FAILED： 失败</li><li>PROCESSING： 生成中</li></ul>
+        # @type Status: String
+        # @param Progress: <p>进度条</p>
+        # @type Progress: Integer
+        # @param AvatarKey: <p>克隆好的形象在系统的key</p>
+        # @type AvatarKey: String
+        # @param FigureImg: <p>形象的图像</p>
+        # @type FigureImg: String
+        # @param FailReason: <p>失败原因，成功时，该字段没值</p>
+        # @type FailReason: String
+        # @param MaterialUrl: <p>训练视频</p>
+        # @type MaterialUrl: String
+        # @param CreateTime: <p>该克隆音色创建的时间</p><p>参数格式：YYYY-MM-DD</p>
+        # @type CreateTime: String
+        # @param UpdateTime: <p>更新时间</p><p>参数格式：YYYY-MM</p>
+        # @type UpdateTime: String
+        # @param RenewStatus: <p>是否有续期</p>
+        # @type RenewStatus: String
+        # @param IsExpired: <p>是否过期</p>
+        # @type IsExpired: Boolean
+        # @param ExpireTime: <p>有效期时间</p><p>参数格式：YYYY-MM</p>
+        # @type ExpireTime: String
+        # @param NeedPlayback: <p>是否循环播放(实景克隆形象能使用)</p>
+        # @type NeedPlayback: Integer
+        # @param PhotoVersion: <p>训练幅度，0：表示只有有头部动；1表示头部和手势都有训练</p><p>单位：1</p>
+        # @type PhotoVersion: Integer
+        # @param ConfirmDemoUrls: <p>待确认视频</p>
+        # @type ConfirmDemoUrls: String
+        # @param EstimatedCompleteTime: <p>形象克隆完成时间</p><p>参数格式：YYYY-MM</p>
+        # @type EstimatedCompleteTime: String
+
+        attr_accessor :TaskId, :SceneType, :FigureName, :Gender, :Status, :Progress, :AvatarKey, :FigureImg, :FailReason, :MaterialUrl, :CreateTime, :UpdateTime, :RenewStatus, :IsExpired, :ExpireTime, :NeedPlayback, :PhotoVersion, :ConfirmDemoUrls, :EstimatedCompleteTime
+
+        def initialize(taskid=nil, scenetype=nil, figurename=nil, gender=nil, status=nil, progress=nil, avatarkey=nil, figureimg=nil, failreason=nil, materialurl=nil, createtime=nil, updatetime=nil, renewstatus=nil, isexpired=nil, expiretime=nil, needplayback=nil, photoversion=nil, confirmdemourls=nil, estimatedcompletetime=nil)
+          @TaskId = taskid
+          @SceneType = scenetype
+          @FigureName = figurename
+          @Gender = gender
+          @Status = status
+          @Progress = progress
+          @AvatarKey = avatarkey
+          @FigureImg = figureimg
+          @FailReason = failreason
+          @MaterialUrl = materialurl
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @RenewStatus = renewstatus
+          @IsExpired = isexpired
+          @ExpireTime = expiretime
+          @NeedPlayback = needplayback
+          @PhotoVersion = photoversion
+          @ConfirmDemoUrls = confirmdemourls
+          @EstimatedCompleteTime = estimatedcompletetime
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @SceneType = params['SceneType']
+          @FigureName = params['FigureName']
+          @Gender = params['Gender']
+          @Status = params['Status']
+          @Progress = params['Progress']
+          @AvatarKey = params['AvatarKey']
+          @FigureImg = params['FigureImg']
+          @FailReason = params['FailReason']
+          @MaterialUrl = params['MaterialUrl']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @RenewStatus = params['RenewStatus']
+          @IsExpired = params['IsExpired']
+          @ExpireTime = params['ExpireTime']
+          @NeedPlayback = params['NeedPlayback']
+          @PhotoVersion = params['PhotoVersion']
+          @ConfirmDemoUrls = params['ConfirmDemoUrls']
+          @EstimatedCompleteTime = params['EstimatedCompleteTime']
+        end
+      end
+
       # 用作批量绑定域名和证书。
       class LiveCertDomainInfo < TencentCloud::Common::AbstractModel
         # @param DomainName: 域名。
@@ -16699,15 +16954,27 @@ module TencentCloud
         # @type Operator: String
         # @param RoomType: <p>房间类型。AIGC：AIGC形象房间；PRESET：预设形象房间</p><p>枚举值：</p><ul><li>AIGC： AIGC形象房间</li><li>PRESET： 预设形象房间</li></ul>
         # @type RoomType: String
+        # @param SessionProtocol: <p>交互模式下的协议，支持rtmp和trtc，默认是rtmp</p>
+        # @type SessionProtocol: String
+        # @param TrtcSdkAppId: <p>使用trtc协议时，在trtc的appid</p>
+        # @type TrtcSdkAppId: String
+        # @param TrtcUserSig: <p>进入房间时需要用UserSign来校验权限</p>
+        # @type TrtcUserSig: String
+        # @param TrtcRoomId: <p>要进入的房间</p>
+        # @type TrtcRoomId: String
 
-        attr_accessor :RoomId, :Comment, :ToUrl, :Operator, :RoomType
+        attr_accessor :RoomId, :Comment, :ToUrl, :Operator, :RoomType, :SessionProtocol, :TrtcSdkAppId, :TrtcUserSig, :TrtcRoomId
 
-        def initialize(roomid=nil, comment=nil, tourl=nil, operator=nil, roomtype=nil)
+        def initialize(roomid=nil, comment=nil, tourl=nil, operator=nil, roomtype=nil, sessionprotocol=nil, trtcsdkappid=nil, trtcusersig=nil, trtcroomid=nil)
           @RoomId = roomid
           @Comment = comment
           @ToUrl = tourl
           @Operator = operator
           @RoomType = roomtype
+          @SessionProtocol = sessionprotocol
+          @TrtcSdkAppId = trtcsdkappid
+          @TrtcUserSig = trtcusersig
+          @TrtcRoomId = trtcroomid
         end
 
         def deserialize(params)
@@ -16716,6 +16983,10 @@ module TencentCloud
           @ToUrl = params['ToUrl']
           @Operator = params['Operator']
           @RoomType = params['RoomType']
+          @SessionProtocol = params['SessionProtocol']
+          @TrtcSdkAppId = params['TrtcSdkAppId']
+          @TrtcUserSig = params['TrtcUserSig']
+          @TrtcRoomId = params['TrtcRoomId']
         end
       end
 

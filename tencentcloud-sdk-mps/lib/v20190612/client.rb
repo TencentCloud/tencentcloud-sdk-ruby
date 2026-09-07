@@ -4472,6 +4472,32 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改 AIGC 文档生视频任务状态。
+
+        # 包含 confirm（确认当前阶段）和 regenerate（重新生成当前阶段）两种动作含义。
+
+        # @param request: Request instance for ModifyDocToVideoTaskStatus.
+        # @type request: :class:`Tencentcloud::mps::V20190612::ModifyDocToVideoTaskStatusRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::ModifyDocToVideoTaskStatusResponse`
+        def ModifyDocToVideoTaskStatus(request)
+          body = send_request('ModifyDocToVideoTaskStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDocToVideoTaskStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改用户自定义雪碧图模板。
 
         # @param request: Request instance for ModifyImageSpriteTemplate.

@@ -1868,25 +1868,31 @@ module TencentCloud
 
       # GetFlowPackages请求参数结构体
       class GetFlowPackagesRequest < TencentCloud::Common::AbstractModel
-        # @param PageNumber: 页码，从1开始
+        # @param PageNumber: <p>页码，从1开始</p>
         # @type PageNumber: Integer
-        # @param PageSize: 每页个数
+        # @param PageSize: <p>每页个数</p>
         # @type PageSize: Integer
-        # @param ResourceId: 流量包的唯一资源ID
+        # @param ResourceId: <p>流量包的唯一资源ID</p>
         # @type ResourceId: String
-        # @param DeviceId: 流量包绑定的设备ID
+        # @param DeviceId: <p>流量包绑定的设备ID</p>
         # @type DeviceId: String
-        # @param Status: 流量包状态，0：未生效，1：有效期内，2：已过期
+        # @param Status: <p>流量包状态，0：未生效，1：有效期内，2：已过期</p>
         # @type Status: Integer
+        # @param ActiveTimeStart: <p>生效时间在此时间之后</p>
+        # @type ActiveTimeStart: String
+        # @param ActiveTimeEnd: <p>生效时间在此时间之前</p>
+        # @type ActiveTimeEnd: String
 
-        attr_accessor :PageNumber, :PageSize, :ResourceId, :DeviceId, :Status
+        attr_accessor :PageNumber, :PageSize, :ResourceId, :DeviceId, :Status, :ActiveTimeStart, :ActiveTimeEnd
 
-        def initialize(pagenumber=nil, pagesize=nil, resourceid=nil, deviceid=nil, status=nil)
+        def initialize(pagenumber=nil, pagesize=nil, resourceid=nil, deviceid=nil, status=nil, activetimestart=nil, activetimeend=nil)
           @PageNumber = pagenumber
           @PageSize = pagesize
           @ResourceId = resourceid
           @DeviceId = deviceid
           @Status = status
+          @ActiveTimeStart = activetimestart
+          @ActiveTimeEnd = activetimeend
         end
 
         def deserialize(params)
@@ -1895,14 +1901,16 @@ module TencentCloud
           @ResourceId = params['ResourceId']
           @DeviceId = params['DeviceId']
           @Status = params['Status']
+          @ActiveTimeStart = params['ActiveTimeStart']
+          @ActiveTimeEnd = params['ActiveTimeEnd']
         end
       end
 
       # GetFlowPackages返回参数结构体
       class GetFlowPackagesResponse < TencentCloud::Common::AbstractModel
-        # @param PackageList: 流量包列表
+        # @param PackageList: <p>流量包列表</p>
         # @type PackageList: Array
-        # @param Total: 总数
+        # @param Total: <p>总数</p>
         # @type Total: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

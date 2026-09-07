@@ -3164,10 +3164,12 @@ module TencentCloud
         # @type DestroyProtect: String
         # @param FourthZone: <p>备库 3 的可用区信息，默认为空，购买四节点主实例时可指定该参数。</p>
         # @type FourthZone: String
+        # @param AutoStrategy: <p>弹性扩容参数（如果不传，则不开启）</p>
+        # @type AutoStrategy: :class:`Tencentcloud::Cdb.v20170320.models.AutoStrategy`
 
-        attr_accessor :GoodsNum, :Memory, :Volume, :EngineVersion, :UniqVpcId, :UniqSubnetId, :ProjectId, :Zone, :MasterInstanceId, :InstanceRole, :MasterRegion, :Port, :Password, :ParamList, :ProtectMode, :DeployMode, :SlaveZone, :BackupZone, :SecurityGroup, :RoGroup, :AutoRenewFlag, :InstanceName, :ResourceTags, :DeployGroupId, :ClientToken, :DeviceType, :ParamTemplateId, :AlarmPolicyList, :InstanceNodes, :Cpu, :AutoSyncFlag, :CageId, :ParamTemplateType, :AlarmPolicyIdList, :DryRun, :EngineType, :Vips, :DataProtectVolume, :ClusterTopology, :DiskType, :CdcId, :ClusterType, :DiskEncryption, :DestroyProtect, :FourthZone
+        attr_accessor :GoodsNum, :Memory, :Volume, :EngineVersion, :UniqVpcId, :UniqSubnetId, :ProjectId, :Zone, :MasterInstanceId, :InstanceRole, :MasterRegion, :Port, :Password, :ParamList, :ProtectMode, :DeployMode, :SlaveZone, :BackupZone, :SecurityGroup, :RoGroup, :AutoRenewFlag, :InstanceName, :ResourceTags, :DeployGroupId, :ClientToken, :DeviceType, :ParamTemplateId, :AlarmPolicyList, :InstanceNodes, :Cpu, :AutoSyncFlag, :CageId, :ParamTemplateType, :AlarmPolicyIdList, :DryRun, :EngineType, :Vips, :DataProtectVolume, :ClusterTopology, :DiskType, :CdcId, :ClusterType, :DiskEncryption, :DestroyProtect, :FourthZone, :AutoStrategy
 
-        def initialize(goodsnum=nil, memory=nil, volume=nil, engineversion=nil, uniqvpcid=nil, uniqsubnetid=nil, projectid=nil, zone=nil, masterinstanceid=nil, instancerole=nil, masterregion=nil, port=nil, password=nil, paramlist=nil, protectmode=nil, deploymode=nil, slavezone=nil, backupzone=nil, securitygroup=nil, rogroup=nil, autorenewflag=nil, instancename=nil, resourcetags=nil, deploygroupid=nil, clienttoken=nil, devicetype=nil, paramtemplateid=nil, alarmpolicylist=nil, instancenodes=nil, cpu=nil, autosyncflag=nil, cageid=nil, paramtemplatetype=nil, alarmpolicyidlist=nil, dryrun=nil, enginetype=nil, vips=nil, dataprotectvolume=nil, clustertopology=nil, disktype=nil, cdcid=nil, clustertype=nil, diskencryption=nil, destroyprotect=nil, fourthzone=nil)
+        def initialize(goodsnum=nil, memory=nil, volume=nil, engineversion=nil, uniqvpcid=nil, uniqsubnetid=nil, projectid=nil, zone=nil, masterinstanceid=nil, instancerole=nil, masterregion=nil, port=nil, password=nil, paramlist=nil, protectmode=nil, deploymode=nil, slavezone=nil, backupzone=nil, securitygroup=nil, rogroup=nil, autorenewflag=nil, instancename=nil, resourcetags=nil, deploygroupid=nil, clienttoken=nil, devicetype=nil, paramtemplateid=nil, alarmpolicylist=nil, instancenodes=nil, cpu=nil, autosyncflag=nil, cageid=nil, paramtemplatetype=nil, alarmpolicyidlist=nil, dryrun=nil, enginetype=nil, vips=nil, dataprotectvolume=nil, clustertopology=nil, disktype=nil, cdcid=nil, clustertype=nil, diskencryption=nil, destroyprotect=nil, fourthzone=nil, autostrategy=nil)
           @GoodsNum = goodsnum
           @Memory = memory
           @Volume = volume
@@ -3213,6 +3215,7 @@ module TencentCloud
           @DiskEncryption = diskencryption
           @DestroyProtect = destroyprotect
           @FourthZone = fourthzone
+          @AutoStrategy = autostrategy
         end
 
         def deserialize(params)
@@ -3281,6 +3284,10 @@ module TencentCloud
           @DiskEncryption = params['DiskEncryption']
           @DestroyProtect = params['DestroyProtect']
           @FourthZone = params['FourthZone']
+          unless params['AutoStrategy'].nil?
+            @AutoStrategy = AutoStrategy.new
+            @AutoStrategy.deserialize(params['AutoStrategy'])
+          end
         end
       end
 
@@ -3398,10 +3405,12 @@ module TencentCloud
         # @type DestroyProtect: String
         # @param FourthZone: <p>备库 3 的可用区信息，默认为空，购买四节点主实例时可指定该参数。</p>
         # @type FourthZone: String
+        # @param AutoStrategy: <p>弹性扩容参数（如果不传，则不开启）</p>
+        # @type AutoStrategy: :class:`Tencentcloud::Cdb.v20170320.models.AutoStrategy`
 
-        attr_accessor :Memory, :Volume, :Period, :GoodsNum, :Zone, :UniqVpcId, :UniqSubnetId, :ProjectId, :Port, :InstanceRole, :MasterInstanceId, :EngineVersion, :Password, :ProtectMode, :DeployMode, :SlaveZone, :ParamList, :BackupZone, :AutoRenewFlag, :MasterRegion, :SecurityGroup, :RoGroup, :InstanceName, :ResourceTags, :DeployGroupId, :ClientToken, :DeviceType, :ParamTemplateId, :AlarmPolicyList, :InstanceNodes, :Cpu, :AutoSyncFlag, :CageId, :ParamTemplateType, :AlarmPolicyIdList, :DryRun, :EngineType, :Vips, :DataProtectVolume, :ClusterTopology, :DiskType, :DiskEncryption, :DestroyProtect, :FourthZone
+        attr_accessor :Memory, :Volume, :Period, :GoodsNum, :Zone, :UniqVpcId, :UniqSubnetId, :ProjectId, :Port, :InstanceRole, :MasterInstanceId, :EngineVersion, :Password, :ProtectMode, :DeployMode, :SlaveZone, :ParamList, :BackupZone, :AutoRenewFlag, :MasterRegion, :SecurityGroup, :RoGroup, :InstanceName, :ResourceTags, :DeployGroupId, :ClientToken, :DeviceType, :ParamTemplateId, :AlarmPolicyList, :InstanceNodes, :Cpu, :AutoSyncFlag, :CageId, :ParamTemplateType, :AlarmPolicyIdList, :DryRun, :EngineType, :Vips, :DataProtectVolume, :ClusterTopology, :DiskType, :DiskEncryption, :DestroyProtect, :FourthZone, :AutoStrategy
 
-        def initialize(memory=nil, volume=nil, period=nil, goodsnum=nil, zone=nil, uniqvpcid=nil, uniqsubnetid=nil, projectid=nil, port=nil, instancerole=nil, masterinstanceid=nil, engineversion=nil, password=nil, protectmode=nil, deploymode=nil, slavezone=nil, paramlist=nil, backupzone=nil, autorenewflag=nil, masterregion=nil, securitygroup=nil, rogroup=nil, instancename=nil, resourcetags=nil, deploygroupid=nil, clienttoken=nil, devicetype=nil, paramtemplateid=nil, alarmpolicylist=nil, instancenodes=nil, cpu=nil, autosyncflag=nil, cageid=nil, paramtemplatetype=nil, alarmpolicyidlist=nil, dryrun=nil, enginetype=nil, vips=nil, dataprotectvolume=nil, clustertopology=nil, disktype=nil, diskencryption=nil, destroyprotect=nil, fourthzone=nil)
+        def initialize(memory=nil, volume=nil, period=nil, goodsnum=nil, zone=nil, uniqvpcid=nil, uniqsubnetid=nil, projectid=nil, port=nil, instancerole=nil, masterinstanceid=nil, engineversion=nil, password=nil, protectmode=nil, deploymode=nil, slavezone=nil, paramlist=nil, backupzone=nil, autorenewflag=nil, masterregion=nil, securitygroup=nil, rogroup=nil, instancename=nil, resourcetags=nil, deploygroupid=nil, clienttoken=nil, devicetype=nil, paramtemplateid=nil, alarmpolicylist=nil, instancenodes=nil, cpu=nil, autosyncflag=nil, cageid=nil, paramtemplatetype=nil, alarmpolicyidlist=nil, dryrun=nil, enginetype=nil, vips=nil, dataprotectvolume=nil, clustertopology=nil, disktype=nil, diskencryption=nil, destroyprotect=nil, fourthzone=nil, autostrategy=nil)
           @Memory = memory
           @Volume = volume
           @Period = period
@@ -3446,6 +3455,7 @@ module TencentCloud
           @DiskEncryption = diskencryption
           @DestroyProtect = destroyprotect
           @FourthZone = fourthzone
+          @AutoStrategy = autostrategy
         end
 
         def deserialize(params)
@@ -3513,6 +3523,10 @@ module TencentCloud
           @DiskEncryption = params['DiskEncryption']
           @DestroyProtect = params['DestroyProtect']
           @FourthZone = params['FourthZone']
+          unless params['AutoStrategy'].nil?
+            @AutoStrategy = AutoStrategy.new
+            @AutoStrategy.deserialize(params['AutoStrategy'])
+          end
         end
       end
 

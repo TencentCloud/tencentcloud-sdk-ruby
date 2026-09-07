@@ -17822,34 +17822,6 @@ module TencentCloud
         end
       end
 
-      # 事件日志项
-      class EventLogItem < TencentCloud::Common::AbstractModel
-        # @param EventTime: 事件时间（Unix 时间戳，秒级）
-        # @type EventTime: Integer
-        # @param Component: 组件名称
-        # @type Component: String
-        # @param Level: 日志级别（INFO/WARN/ERROR）
-        # @type Level: String
-        # @param Message: 事件内容
-        # @type Message: String
-
-        attr_accessor :EventTime, :Component, :Level, :Message
-
-        def initialize(eventtime=nil, component=nil, level=nil, message=nil)
-          @EventTime = eventtime
-          @Component = component
-          @Level = level
-          @Message = message
-        end
-
-        def deserialize(params)
-          @EventTime = params['EventTime']
-          @Component = params['Component']
-          @Level = params['Level']
-          @Message = params['Message']
-        end
-      end
-
       # 案例分类详情
       class ExampleCategories < TencentCloud::Common::AbstractModel
         # @param Categories: <p>分类名称</p>
@@ -20315,92 +20287,6 @@ module TencentCloud
 
         def deserialize(params)
           @Yaml = params['Yaml']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # GetRayJobEventLog请求参数结构体
-      class GetRayJobEventLogRequest < TencentCloud::Common::AbstractModel
-        # @param Id: ray-jobID
-        # @type Id: String
-        # @param StartTime: 开始时间
-        # @type StartTime: Integer
-        # @param EndTime: 结束时间
-        # @type EndTime: Integer
-        # @param Page: 当前页码（从1开始）
-        # @type Page: Integer
-        # @param PageSize: 页数
-        # @type PageSize: Integer
-        # @param SortFields: 排序字段列表（列表字段）
-        # @type SortFields: Array
-
-        attr_accessor :Id, :StartTime, :EndTime, :Page, :PageSize, :SortFields
-
-        def initialize(id=nil, starttime=nil, endtime=nil, page=nil, pagesize=nil, sortfields=nil)
-          @Id = id
-          @StartTime = starttime
-          @EndTime = endtime
-          @Page = page
-          @PageSize = pagesize
-          @SortFields = sortfields
-        end
-
-        def deserialize(params)
-          @Id = params['Id']
-          @StartTime = params['StartTime']
-          @EndTime = params['EndTime']
-          @Page = params['Page']
-          @PageSize = params['PageSize']
-          unless params['SortFields'].nil?
-            @SortFields = []
-            params['SortFields'].each do |i|
-              sortfield_tmp = SortField.new
-              sortfield_tmp.deserialize(i)
-              @SortFields << sortfield_tmp
-            end
-          end
-        end
-      end
-
-      # GetRayJobEventLog返回参数结构体
-      class GetRayJobEventLogResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 事件总数
-        # @type TotalCount: Integer
-        # @param Events: 事件列表
-        # @type Events: Array
-        # @param Page: 当前页码（从1开始）
-        # @type Page: Integer
-        # @param PageSize: 页数
-        # @type PageSize: Integer
-        # @param TotalPages: 总页数
-        # @type TotalPages: Integer
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :TotalCount, :Events, :Page, :PageSize, :TotalPages, :RequestId
-
-        def initialize(totalcount=nil, events=nil, page=nil, pagesize=nil, totalpages=nil, requestid=nil)
-          @TotalCount = totalcount
-          @Events = events
-          @Page = page
-          @PageSize = pagesize
-          @TotalPages = totalpages
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @TotalCount = params['TotalCount']
-          unless params['Events'].nil?
-            @Events = []
-            params['Events'].each do |i|
-              eventlogitem_tmp = EventLogItem.new
-              eventlogitem_tmp.deserialize(i)
-              @Events << eventlogitem_tmp
-            end
-          end
-          @Page = params['Page']
-          @PageSize = params['PageSize']
-          @TotalPages = params['TotalPages']
           @RequestId = params['RequestId']
         end
       end

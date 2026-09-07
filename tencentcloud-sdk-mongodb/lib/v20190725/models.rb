@@ -6568,6 +6568,82 @@ module TencentCloud
         end
       end
 
+      # ScaleDownDBInstanceCpu请求参数结构体
+      class ScaleDownDBInstanceCpuRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例ID</p>
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # ScaleDownDBInstanceCpu返回参数结构体
+      class ScaleDownDBInstanceCpuResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: <p>任务流ID</p>
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ScaleUpDBInstanceCpu请求参数结构体
+      class ScaleUpDBInstanceCpuRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例ID</p>
+        # @type InstanceId: String
+        # @param ExtraCpu: <p>要扩容的CPU核数（增量），每个节点都会增加这么多核数</p>
+        # @type ExtraCpu: Integer
+
+        attr_accessor :InstanceId, :ExtraCpu
+
+        def initialize(instanceid=nil, extracpu=nil)
+          @InstanceId = instanceid
+          @ExtraCpu = extracpu
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ExtraCpu = params['ExtraCpu']
+        end
+      end
+
+      # ScaleUpDBInstanceCpu返回参数结构体
+      class ScaleUpDBInstanceCpuResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: <p>任务流ID</p>
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 安全组信息
       class SecurityGroup < TencentCloud::Common::AbstractModel
         # @param ProjectId: 所属项目 ID。

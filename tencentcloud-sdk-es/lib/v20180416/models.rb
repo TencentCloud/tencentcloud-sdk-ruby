@@ -419,40 +419,42 @@ module TencentCloud
 
       # 采集器输出的实例信息
       class CollectorOutputInstance < TencentCloud::Common::AbstractModel
-        # @param Type: 采集器输出的实例类型（支持elasticsearch、logstash）
+        # @param Type: <p>采集器输出的实例类型（支持elasticsearch、logstash）</p>
         # @type Type: String
-        # @param InstanceId: 采集器输出的实例ID
+        # @param InstanceId: <p>采集器输出的实例ID</p>
         # @type InstanceId: String
-        # @param ESUserName: 采集器输出到的ES实例的用户名
+        # @param ESUserName: <p>采集器输出到的ES实例的用户名</p>
         # @type ESUserName: String
-        # @param ESUserPasswd: 采集器输出到的ES实例的密码
+        # @param ESUserPasswd: <p>采集器输出到的ES实例的密码</p>
         # @type ESUserPasswd: String
-        # @param EnableMonitoring: 采集器输出到ES实例时，是否开启监控（1为开启，0为不开启，默认为0）
+        # @param EnableMonitoring: <p>采集器输出到ES实例时，是否开启监控（1为开启，0为不开启，默认为0）</p>
         # @type EnableMonitoring: Integer
-        # @param EnableDashboard: 采集器输出到ES实例时，是否开启自动在kibana中生成Dashboard（1为开启，0为不开启，默认为0）
+        # @param EnableDashboard: <p>采集器输出到ES实例时，是否开启自动在kibana中生成Dashboard（1为开启，0为不开启，默认为0）</p>
         # @type EnableDashboard: Integer
-        # @param KafkaEndpoint: Ckafka实例的vip
+        # @param KafkaEndpoint: <p>Ckafka实例的vip</p>
         # @type KafkaEndpoint: String
-        # @param KafkaTopic: Ckafka实例中的Topic
+        # @param KafkaTopic: <p>Ckafka实例中的Topic</p>
         # @type KafkaTopic: String
-        # @param KafkaVersion: Ckafka实例的版本号
+        # @param KafkaVersion: <p>Ckafka实例的版本号</p>
         # @type KafkaVersion: String
-        # @param SesTopicId: topic id
+        # @param SesTopicId: <p>topic id</p>
         # @type SesTopicId: String
-        # @param SesTopicName: topic name
+        # @param SesTopicName: <p>topic name</p>
         # @type SesTopicName: String
-        # @param SesTopicAddress: topic address
+        # @param SesTopicAddress: <p>topic address</p>
         # @type SesTopicAddress: String
-        # @param SesTopicUserName: /
+        # @param SesTopicUserName: <p>/</p>
         # @type SesTopicUserName: String
-        # @param SesTopicPasswd: /
+        # @param SesTopicPasswd: <p>/</p>
         # @type SesTopicPasswd: String
-        # @param LogstashListenPort: /
+        # @param LogstashListenPort: <p>/</p>
         # @type LogstashListenPort: Integer
+        # @param SesSpaceId: <p>serverless 的 spaceid</p>
+        # @type SesSpaceId: String
 
-        attr_accessor :Type, :InstanceId, :ESUserName, :ESUserPasswd, :EnableMonitoring, :EnableDashboard, :KafkaEndpoint, :KafkaTopic, :KafkaVersion, :SesTopicId, :SesTopicName, :SesTopicAddress, :SesTopicUserName, :SesTopicPasswd, :LogstashListenPort
+        attr_accessor :Type, :InstanceId, :ESUserName, :ESUserPasswd, :EnableMonitoring, :EnableDashboard, :KafkaEndpoint, :KafkaTopic, :KafkaVersion, :SesTopicId, :SesTopicName, :SesTopicAddress, :SesTopicUserName, :SesTopicPasswd, :LogstashListenPort, :SesSpaceId
 
-        def initialize(type=nil, instanceid=nil, esusername=nil, esuserpasswd=nil, enablemonitoring=nil, enabledashboard=nil, kafkaendpoint=nil, kafkatopic=nil, kafkaversion=nil, sestopicid=nil, sestopicname=nil, sestopicaddress=nil, sestopicusername=nil, sestopicpasswd=nil, logstashlistenport=nil)
+        def initialize(type=nil, instanceid=nil, esusername=nil, esuserpasswd=nil, enablemonitoring=nil, enabledashboard=nil, kafkaendpoint=nil, kafkatopic=nil, kafkaversion=nil, sestopicid=nil, sestopicname=nil, sestopicaddress=nil, sestopicusername=nil, sestopicpasswd=nil, logstashlistenport=nil, sesspaceid=nil)
           @Type = type
           @InstanceId = instanceid
           @ESUserName = esusername
@@ -468,6 +470,7 @@ module TencentCloud
           @SesTopicUserName = sestopicusername
           @SesTopicPasswd = sestopicpasswd
           @LogstashListenPort = logstashlistenport
+          @SesSpaceId = sesspaceid
         end
 
         def deserialize(params)
@@ -486,6 +489,7 @@ module TencentCloud
           @SesTopicUserName = params['SesTopicUserName']
           @SesTopicPasswd = params['SesTopicPasswd']
           @LogstashListenPort = params['LogstashListenPort']
+          @SesSpaceId = params['SesSpaceId']
         end
       end
 

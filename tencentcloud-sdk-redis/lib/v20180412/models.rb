@@ -801,8 +801,8 @@ module TencentCloud
 
         attr_accessor :DealId, :InstanceIds, :DealName, :RequestId
         extend Gem::Deprecate
-        deprecate :DealId, :none, 2026, 8
-        deprecate :DealId=, :none, 2026, 8
+        deprecate :DealId, :none, 2026, 9
+        deprecate :DealId=, :none, 2026, 9
 
         def initialize(dealid=nil, instanceids=nil, dealname=nil, requestid=nil)
           @DealId = dealid
@@ -1204,8 +1204,8 @@ module TencentCloud
 
         attr_accessor :DealId, :InstanceIds, :DealName, :RequestId
         extend Gem::Deprecate
-        deprecate :DealId, :none, 2026, 8
-        deprecate :DealId=, :none, 2026, 8
+        deprecate :DealId, :none, 2026, 9
+        deprecate :DealId=, :none, 2026, 9
 
         def initialize(dealid=nil, instanceids=nil, dealname=nil, requestid=nil)
           @DealId = dealid
@@ -1843,12 +1843,12 @@ module TencentCloud
 
         attr_accessor :DownloadUrl, :InnerDownloadUrl, :Filenames, :BackupInfos, :RequestId
         extend Gem::Deprecate
-        deprecate :DownloadUrl, :none, 2026, 8
-        deprecate :DownloadUrl=, :none, 2026, 8
-        deprecate :InnerDownloadUrl, :none, 2026, 8
-        deprecate :InnerDownloadUrl=, :none, 2026, 8
-        deprecate :Filenames, :none, 2026, 8
-        deprecate :Filenames=, :none, 2026, 8
+        deprecate :DownloadUrl, :none, 2026, 9
+        deprecate :DownloadUrl=, :none, 2026, 9
+        deprecate :InnerDownloadUrl, :none, 2026, 9
+        deprecate :InnerDownloadUrl=, :none, 2026, 9
+        deprecate :Filenames, :none, 2026, 9
+        deprecate :Filenames=, :none, 2026, 9
 
         def initialize(downloadurl=nil, innerdownloadurl=nil, filenames=nil, backupinfos=nil, requestid=nil)
           @DownloadUrl = downloadurl
@@ -2236,7 +2236,7 @@ module TencentCloud
         # @type BeginTime: String
         # @param EndTime: <p>结束时间，格式如：2017-02-08 19:09:26。查询实例在 [beginTime, endTime] 时间段内开始备份的备份列表，查询时间最大跨度30天。</p>
         # @type EndTime: String
-        # @param Status: <p>备份任务的状态：<br>1：备份在流程中。<br>2：备份正常。<br>3：备份转RDB文件处理中。<br>4：已完成RDB转换。<br>-1：备份已过期。<br>-2：备份已删除。</p>
+        # @param Status: <p>备份的状态：</p><p>枚举值：</p><ul><li>1： 备份在流程中。</li><li>2： 备份正常。</li></ul><p>默认值：2</p>
         # @type Status: Array
         # @param InstanceName: <p>实例名称，支持根据实例名称模糊搜索。</p>
         # @type InstanceName: String
@@ -2418,8 +2418,8 @@ module TencentCloud
 
         attr_accessor :DealIds, :DealName
         extend Gem::Deprecate
-        deprecate :DealIds, :none, 2026, 8
-        deprecate :DealIds=, :none, 2026, 8
+        deprecate :DealIds, :none, 2026, 9
+        deprecate :DealIds=, :none, 2026, 9
 
         def initialize(dealids=nil, dealname=nil)
           @DealIds = dealids
@@ -4663,8 +4663,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :InstanceSlowlogDetail, :InstanceSlowLogDetail, :RequestId
         extend Gem::Deprecate
-        deprecate :InstanceSlowlogDetail, :none, 2026, 8
-        deprecate :InstanceSlowlogDetail=, :none, 2026, 8
+        deprecate :InstanceSlowlogDetail, :none, 2026, 9
+        deprecate :InstanceSlowlogDetail=, :none, 2026, 9
 
         def initialize(totalcount=nil, instanceslowlogdetail=nil, requestid=nil)
           @TotalCount = totalcount
@@ -4832,10 +4832,10 @@ module TencentCloud
 
         attr_accessor :InstanceId, :InstanceName, :Limit, :Offset, :ProjectIds, :TaskTypes, :BeginTime, :EndTime, :TaskStatus, :Result, :OperatorUin, :OperateUin
         extend Gem::Deprecate
-        deprecate :ProjectIds, :none, 2026, 8
-        deprecate :ProjectIds=, :none, 2026, 8
-        deprecate :OperatorUin, :none, 2026, 8
-        deprecate :OperatorUin=, :none, 2026, 8
+        deprecate :ProjectIds, :none, 2026, 9
+        deprecate :ProjectIds=, :none, 2026, 9
+        deprecate :OperatorUin, :none, 2026, 9
+        deprecate :OperatorUin=, :none, 2026, 9
 
         def initialize(instanceid=nil, instancename=nil, limit=nil, offset=nil, projectids=nil, tasktypes=nil, begintime=nil, endtime=nil, taskstatus=nil, result=nil, operatoruin=nil, operateuin=nil)
           @InstanceId = instanceid
@@ -5029,8 +5029,8 @@ module TencentCloud
 
         attr_accessor :DealId, :DealName, :RequestId
         extend Gem::Deprecate
-        deprecate :DealId, :none, 2026, 8
-        deprecate :DealId=, :none, 2026, 8
+        deprecate :DealId, :none, 2026, 9
+        deprecate :DealId=, :none, 2026, 9
 
         def initialize(dealid=nil, dealname=nil, requestid=nil)
           @DealId = dealid
@@ -5154,8 +5154,8 @@ module TencentCloud
 
         attr_accessor :Status, :TaskId, :RequestId
         extend Gem::Deprecate
-        deprecate :Status, :none, 2026, 8
-        deprecate :Status=, :none, 2026, 8
+        deprecate :Status, :none, 2026, 9
+        deprecate :Status=, :none, 2026, 9
 
         def initialize(status=nil, taskid=nil, requestid=nil)
           @Status = status
@@ -6260,8 +6260,8 @@ module TencentCloud
 
         attr_accessor :InstanceName, :InstanceId, :Appid, :ProjectId, :RegionId, :ZoneId, :VpcId, :SubnetId, :Status, :WanIp, :Port, :Createtime, :Size, :SizeUsed, :Type, :AutoRenewFlag, :DeadlineTime, :Engine, :ProductType, :UniqVpcId, :UniqSubnetId, :BillingMode, :InstanceTitle, :OfflineTime, :SubStatus, :Tags, :InstanceNode, :RedisShardSize, :RedisShardNum, :RedisReplicasNum, :PriceId, :CloseTime, :SlaveReadWeight, :InstanceTags, :ProjectName, :NoAuth, :ClientLimit, :DtsStatus, :NetLimit, :PasswordFree, :Vip6, :IPv6, :ReadOnly, :RemainBandwidthDuration, :DiskSize, :MonitorVersion, :ClientLimitMin, :ClientLimitMax, :NodeSet, :Region, :WanAddress, :PolarisServer, :RedisClusterId, :DedicatedClusterId, :ProductVersion, :CurrentProxyVersion, :CurrentRedisVersion, :UpgradeProxyVersion, :UpgradeRedisVersion, :BackupMode, :DeleteProtectionSwitch
         extend Gem::Deprecate
-        deprecate :SizeUsed, :none, 2026, 8
-        deprecate :SizeUsed=, :none, 2026, 8
+        deprecate :SizeUsed, :none, 2026, 9
+        deprecate :SizeUsed=, :none, 2026, 9
 
         def initialize(instancename=nil, instanceid=nil, appid=nil, projectid=nil, regionid=nil, zoneid=nil, vpcid=nil, subnetid=nil, status=nil, wanip=nil, port=nil, createtime=nil, size=nil, sizeused=nil, type=nil, autorenewflag=nil, deadlinetime=nil, engine=nil, producttype=nil, uniqvpcid=nil, uniqsubnetid=nil, billingmode=nil, instancetitle=nil, offlinetime=nil, substatus=nil, tags=nil, instancenode=nil, redisshardsize=nil, redisshardnum=nil, redisreplicasnum=nil, priceid=nil, closetime=nil, slavereadweight=nil, instancetags=nil, projectname=nil, noauth=nil, clientlimit=nil, dtsstatus=nil, netlimit=nil, passwordfree=nil, vip6=nil, ipv6=nil, readonly=nil, remainbandwidthduration=nil, disksize=nil, monitorversion=nil, clientlimitmin=nil, clientlimitmax=nil, nodeset=nil, region=nil, wanaddress=nil, polarisserver=nil, redisclusterid=nil, dedicatedclusterid=nil, productversion=nil, currentproxyversion=nil, currentredisversion=nil, upgradeproxyversion=nil, upgraderedisversion=nil, backupmode=nil, deleteprotectionswitch=nil)
           @InstanceName = instancename
@@ -7712,12 +7712,12 @@ module TencentCloud
 
         attr_accessor :Operation, :InstanceIds, :InstanceNames, :ProjectId, :AutoRenews, :DeleteProtectionSwitches, :InstanceId, :InstanceName, :AutoRenew
         extend Gem::Deprecate
-        deprecate :InstanceId, :none, 2026, 8
-        deprecate :InstanceId=, :none, 2026, 8
-        deprecate :InstanceName, :none, 2026, 8
-        deprecate :InstanceName=, :none, 2026, 8
-        deprecate :AutoRenew, :none, 2026, 8
-        deprecate :AutoRenew=, :none, 2026, 8
+        deprecate :InstanceId, :none, 2026, 9
+        deprecate :InstanceId=, :none, 2026, 9
+        deprecate :InstanceName, :none, 2026, 9
+        deprecate :InstanceName=, :none, 2026, 9
+        deprecate :AutoRenew, :none, 2026, 9
+        deprecate :AutoRenew=, :none, 2026, 9
 
         def initialize(operation=nil, instanceids=nil, instancenames=nil, projectid=nil, autorenews=nil, deleteprotectionswitches=nil, instanceid=nil, instancename=nil, autorenew=nil)
           @Operation = operation
@@ -8342,8 +8342,8 @@ module TencentCloud
 
         attr_accessor :Type, :TypeName, :MinBuyNum, :MaxBuyNum, :Saleout, :Engine, :Version, :TotalSize, :ShardSize, :ReplicaNum, :ShardNum, :PayMode, :EnableRepicaReadOnly, :EnableReplicaReadOnly
         extend Gem::Deprecate
-        deprecate :EnableRepicaReadOnly, :none, 2026, 8
-        deprecate :EnableRepicaReadOnly=, :none, 2026, 8
+        deprecate :EnableRepicaReadOnly, :none, 2026, 9
+        deprecate :EnableRepicaReadOnly=, :none, 2026, 9
 
         def initialize(type=nil, typename=nil, minbuynum=nil, maxbuynum=nil, saleout=nil, engine=nil, version=nil, totalsize=nil, shardsize=nil, replicanum=nil, shardnum=nil, paymode=nil, enablerepicareadonly=nil, enablereplicareadonly=nil)
           @Type = type
@@ -8406,7 +8406,7 @@ module TencentCloud
         # @type StartTime: String
         # @param BackupId: <p>备份任务ID。</p>
         # @type BackupId: String
-        # @param BackupType: <p>备份类型。</p><ul><li>1：凌晨系统发起的自动备份。</li><li>0：用户发起的手动备份。</li></ul>
+        # @param BackupType: <p>备份类型。</p><p>枚举值：</p><ul><li>0： 用户发起的手动备份</li><li>1： 凌晨系统发起的自动备份</li><li>2： 变配触发的备份</li></ul>
         # @type BackupType: String
         # @param Status: <p>备份状态。 </p><ul><li>1：备份被其它流程锁定。</li><li>2：备份正常，没有被任何流程锁定。</li><li>-1：备份已过期。</li><li>3：备份正在被导出。</li><li>4：备份导出成功。</li></ul>
         # @type Status: Integer
@@ -8909,8 +8909,8 @@ module TencentCloud
 
         attr_accessor :DealId, :DealName, :RequestId
         extend Gem::Deprecate
-        deprecate :DealId, :none, 2026, 8
-        deprecate :DealId=, :none, 2026, 8
+        deprecate :DealId, :none, 2026, 9
+        deprecate :DealId=, :none, 2026, 9
 
         def initialize(dealid=nil, dealname=nil, requestid=nil)
           @DealId = dealid
@@ -9334,8 +9334,8 @@ module TencentCloud
 
         attr_accessor :TaskId, :RequestId
         extend Gem::Deprecate
-        deprecate :TaskId, :none, 2026, 8
-        deprecate :TaskId=, :none, 2026, 8
+        deprecate :TaskId, :none, 2026, 9
+        deprecate :TaskId=, :none, 2026, 9
 
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
@@ -9672,8 +9672,8 @@ module TencentCloud
 
         attr_accessor :DealId, :DealName, :ZoneId, :GoodsNum, :Creater, :CreatTime, :OverdueTime, :EndTime, :Status, :Description, :Price, :InstanceIds
         extend Gem::Deprecate
-        deprecate :DealId, :none, 2026, 8
-        deprecate :DealId=, :none, 2026, 8
+        deprecate :DealId, :none, 2026, 9
+        deprecate :DealId=, :none, 2026, 9
 
         def initialize(dealid=nil, dealname=nil, zoneid=nil, goodsnum=nil, creater=nil, creattime=nil, overduetime=nil, endtime=nil, status=nil, description=nil, price=nil, instanceids=nil)
           @DealId = dealid
@@ -9769,8 +9769,8 @@ module TencentCloud
 
         attr_accessor :DealId, :DealName, :RequestId
         extend Gem::Deprecate
-        deprecate :DealId, :none, 2026, 8
-        deprecate :DealId=, :none, 2026, 8
+        deprecate :DealId, :none, 2026, 9
+        deprecate :DealId=, :none, 2026, 9
 
         def initialize(dealid=nil, dealname=nil, requestid=nil)
           @DealId = dealid
@@ -9826,8 +9826,8 @@ module TencentCloud
 
         attr_accessor :DealId, :DealName, :RequestId
         extend Gem::Deprecate
-        deprecate :DealId, :none, 2026, 8
-        deprecate :DealId=, :none, 2026, 8
+        deprecate :DealId, :none, 2026, 9
+        deprecate :DealId=, :none, 2026, 9
 
         def initialize(dealid=nil, dealname=nil, requestid=nil)
           @DealId = dealid

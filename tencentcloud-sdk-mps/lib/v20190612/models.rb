@@ -19814,6 +19814,30 @@ module TencentCloud
         end
       end
 
+      # AIGC 文档生视频任务重新生成的输入信息
+      class DocToVideoRegenerateInput < TencentCloud::Common::AbstractModel
+        # @param Scope: <p>重新生成的范围。</p><p>枚举值：</p><ul><li>full： 该阶段全量重新生成（例如：修改整体的场景数量）</li><li>scenes： 按场景局部重新生成（例如：修改某场景的具体内容）</li></ul>
+        # @type Scope: String
+        # @param Prompt: <p>重新生成时的提示词。</p>
+        # @type Prompt: String
+        # @param SceneIds: <p>按页局部重新生成时的目标页 ID 数组。仅 Scope=scenes 时必填。不可重复，单次重新生成最多 5 页。</p>
+        # @type SceneIds: Array
+
+        attr_accessor :Scope, :Prompt, :SceneIds
+
+        def initialize(scope=nil, prompt=nil, sceneids=nil)
+          @Scope = scope
+          @Prompt = prompt
+          @SceneIds = sceneids
+        end
+
+        def deserialize(params)
+          @Scope = params['Scope']
+          @Prompt = params['Prompt']
+          @SceneIds = params['SceneIds']
+        end
+      end
+
       # AIGC 文档生成视频水印图片信息
       class DocToVideoWatermarkInfo < TencentCloud::Common::AbstractModel
         # @param ImageUrl: <p>用于生成视频的水印图片 URL。</p>
@@ -26475,6 +26499,76 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 修改 AIGC 文档生视频任务状态输入
+      class ModifyDocToVideoTaskStatusInput < TencentCloud::Common::AbstractModel
+        # @param Action: <p>修改动作类型。</p><p>枚举值：</p><ul><li>confirm： 确认已完成阶段并推进下一阶段</li><li>regenerate： 重新生成指定阶段</li></ul>
+        # @type Action: String
+        # @param Stage: <p>修改目标阶段。</p><p>枚举值：</p><ul><li>STAGE_1：<br>Action=confirm 时：确认大纲、继续生成后续配音、动画效果、字幕；<br>Action=regenerate 时：重新生成大纲。</li></ul><ul><li>STAGE_2：<br>Action=confirm 时：确认生成的配音、动画效果、字幕，生成最终成片；<br>Action=regenerate 时：重新生成配音、动画效果、字幕。</li></ul>
+        # @type Stage: String
+        # @param SourceTaskId: <p>需要进行修改的目标任务 ID。</p>
+        # @type SourceTaskId: String
+        # @param Regenerate: <p>重新生成参数。</p><p>仅 Action=regenerate 时必填。</p>
+        # @type Regenerate: :class:`Tencentcloud::Mps.v20190612.models.DocToVideoRegenerateInput`
+
+        attr_accessor :Action, :Stage, :SourceTaskId, :Regenerate
+
+        def initialize(action=nil, stage=nil, sourcetaskid=nil, regenerate=nil)
+          @Action = action
+          @Stage = stage
+          @SourceTaskId = sourcetaskid
+          @Regenerate = regenerate
+        end
+
+        def deserialize(params)
+          @Action = params['Action']
+          @Stage = params['Stage']
+          @SourceTaskId = params['SourceTaskId']
+          unless params['Regenerate'].nil?
+            @Regenerate = DocToVideoRegenerateInput.new
+            @Regenerate.deserialize(params['Regenerate'])
+          end
+        end
+      end
+
+      # ModifyDocToVideoTaskStatus请求参数结构体
+      class ModifyDocToVideoTaskStatusRequest < TencentCloud::Common::AbstractModel
+        # @param Input: <p>修改AIGC文档生视频任务状态的输入</p>
+        # @type Input: :class:`Tencentcloud::Mps.v20190612.models.ModifyDocToVideoTaskStatusInput`
+
+        attr_accessor :Input
+
+        def initialize(input=nil)
+          @Input = input
+        end
+
+        def deserialize(params)
+          unless params['Input'].nil?
+            @Input = ModifyDocToVideoTaskStatusInput.new
+            @Input.deserialize(params['Input'])
+          end
+        end
+      end
+
+      # ModifyDocToVideoTaskStatus返回参数结构体
+      class ModifyDocToVideoTaskStatusResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务ID</p>
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end
       end

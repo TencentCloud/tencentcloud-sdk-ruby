@@ -6675,11 +6675,11 @@ module TencentCloud
 
       # ModifyWebhookTrigger请求参数结构体
       class ModifyWebhookTriggerRequest < TencentCloud::Common::AbstractModel
-        # @param RegistryId: 实例Id
+        # @param RegistryId: <p>实例Id</p>
         # @type RegistryId: String
-        # @param Trigger: 触发器参数
+        # @param Trigger: <p>触发器参数</p>
         # @type Trigger: :class:`Tencentcloud::Tcr.v20190924.models.WebhookTrigger`
-        # @param Namespace: 命名空间
+        # @param Namespace: <p>命名空间</p>
         # @type Namespace: String
 
         attr_accessor :RegistryId, :Trigger, :Namespace
@@ -8818,23 +8818,24 @@ module TencentCloud
 
       # Webhook 触发器
       class WebhookTrigger < TencentCloud::Common::AbstractModel
-        # @param Name: 触发器名称
+        # @param Name: <p>触发器名称</p>
         # @type Name: String
-        # @param Targets: 触发器目标
+        # @param Targets: <p>触发器目标</p>
         # @type Targets: Array
-        # @param EventTypes: 触发动作
+        # @param EventTypes: <p>触发动作</p>
         # @type EventTypes: Array
-        # @param Condition: 触发规则
+        # @param Condition: <p>触发规则</p>
         # @type Condition: String
-        # @param Enabled: 启用触发器
+        # @param Enabled: <p>启用触发器</p>
         # @type Enabled: Boolean
-        # @param Id: 触发器Id
+        # @param Id: <p>触发器Id</p>
         # @type Id: Integer
-        # @param Description: 触发器描述
+        # @param Description: <p>触发器描述</p>
         # @type Description: String
-        # @param NamespaceId: 触发器所属命名空间 Id
+        # @param NamespaceId: <p>触发器所属命名空间 Id</p>
         # @type NamespaceId: Integer
-        # @param NamespaceName: 触发器所属命名空间名称
+        # @param NamespaceName: <p>触发器所属命名空间名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NamespaceName: String
 
         attr_accessor :Name, :Targets, :EventTypes, :Condition, :Enabled, :Id, :Description, :NamespaceId, :NamespaceName

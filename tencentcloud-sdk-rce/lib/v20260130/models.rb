@@ -1701,15 +1701,21 @@ module TencentCloud
         # @type UserLoginName: String
         # @param LoginResult: <p>登录结果</p>
         # @type LoginResult: :class:`Tencentcloud::Rce.v20260130.models.Result`
+        # @param RegisterTime: <p>用户注册时间。</p><p>参数格式：要求符合ISO 8601标准的带时区的毫秒级时间，格式&quot;YYYY-MM-DDTHH:mm:ss.sssZ&quot; ，例如&quot;2025-10-19T09:11:10.145+08:00&quot;</p>
+        # @type RegisterTime: String
+        # @param IsPaidUser: <p>是否付费用户。</p><p>枚举值：</p><ul><li>true： 付费用户</li><li>false： 非付费用户</li></ul>
+        # @type IsPaidUser: Boolean
         # @param Cust: <p>与RCE约定的定制化信息，为K:V 格式的对象数组，示例：[{&quot;Key&quot;: &quot;ApproverName&quot;, &quot;Value&quot;: &quot;bob&quot;},{&quot;Key&quot;:&quot;ApproverPhone&quot;,&quot;Value&quot;: &quot;+86131****5678&quot;}]</p>
         # @type Cust: Array
 
-        attr_accessor :UserInfo, :UserLoginName, :LoginResult, :Cust
+        attr_accessor :UserInfo, :UserLoginName, :LoginResult, :RegisterTime, :IsPaidUser, :Cust
 
-        def initialize(userinfo=nil, userloginname=nil, loginresult=nil, cust=nil)
+        def initialize(userinfo=nil, userloginname=nil, loginresult=nil, registertime=nil, ispaiduser=nil, cust=nil)
           @UserInfo = userinfo
           @UserLoginName = userloginname
           @LoginResult = loginresult
+          @RegisterTime = registertime
+          @IsPaidUser = ispaiduser
           @Cust = cust
         end
 
@@ -1723,6 +1729,8 @@ module TencentCloud
             @LoginResult = Result.new
             @LoginResult.deserialize(params['LoginResult'])
           end
+          @RegisterTime = params['RegisterTime']
+          @IsPaidUser = params['IsPaidUser']
           unless params['Cust'].nil?
             @Cust = []
             params['Cust'].each do |i|

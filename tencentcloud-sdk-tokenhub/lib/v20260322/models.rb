@@ -1320,12 +1320,16 @@ module TencentCloud
         # @type TPMInputReserveLimit: Integer
         # @param TPMOutputReserveLimit: <p>TPM 预留 output 配额</p>
         # @type TPMOutputReserveLimit: Integer
+        # @param TPMInputReservePostPaidLimit: <p>TPM 预留后付费 input 配额</p>
+        # @type TPMInputReservePostPaidLimit: Integer
+        # @param TPMOutputReservePostPaidLimit: <p>TPM 预留后付费 output 配额</p>
+        # @type TPMOutputReservePostPaidLimit: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ModelId, :TPMLimit, :RPMLimit, :TPMInputQuotaLimit, :TPMOutputQuotaLimit, :TPMInputReserveLimit, :TPMOutputReserveLimit, :RequestId
+        attr_accessor :ModelId, :TPMLimit, :RPMLimit, :TPMInputQuotaLimit, :TPMOutputQuotaLimit, :TPMInputReserveLimit, :TPMOutputReserveLimit, :TPMInputReservePostPaidLimit, :TPMOutputReservePostPaidLimit, :RequestId
 
-        def initialize(modelid=nil, tpmlimit=nil, rpmlimit=nil, tpminputquotalimit=nil, tpmoutputquotalimit=nil, tpminputreservelimit=nil, tpmoutputreservelimit=nil, requestid=nil)
+        def initialize(modelid=nil, tpmlimit=nil, rpmlimit=nil, tpminputquotalimit=nil, tpmoutputquotalimit=nil, tpminputreservelimit=nil, tpmoutputreservelimit=nil, tpminputreservepostpaidlimit=nil, tpmoutputreservepostpaidlimit=nil, requestid=nil)
           @ModelId = modelid
           @TPMLimit = tpmlimit
           @RPMLimit = rpmlimit
@@ -1333,6 +1337,8 @@ module TencentCloud
           @TPMOutputQuotaLimit = tpmoutputquotalimit
           @TPMInputReserveLimit = tpminputreservelimit
           @TPMOutputReserveLimit = tpmoutputreservelimit
+          @TPMInputReservePostPaidLimit = tpminputreservepostpaidlimit
+          @TPMOutputReservePostPaidLimit = tpmoutputreservepostpaidlimit
           @RequestId = requestid
         end
 
@@ -1344,6 +1350,8 @@ module TencentCloud
           @TPMOutputQuotaLimit = params['TPMOutputQuotaLimit']
           @TPMInputReserveLimit = params['TPMInputReserveLimit']
           @TPMOutputReserveLimit = params['TPMOutputReserveLimit']
+          @TPMInputReservePostPaidLimit = params['TPMInputReservePostPaidLimit']
+          @TPMOutputReservePostPaidLimit = params['TPMOutputReservePostPaidLimit']
           @RequestId = params['RequestId']
         end
       end

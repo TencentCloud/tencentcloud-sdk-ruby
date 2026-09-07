@@ -1931,6 +1931,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # ScaleDownDBInstanceCpu
+
+        # @param request: Request instance for ScaleDownDBInstanceCpu.
+        # @type request: :class:`Tencentcloud::mongodb::V20190725::ScaleDownDBInstanceCpuRequest`
+        # @rtype: :class:`Tencentcloud::mongodb::V20190725::ScaleDownDBInstanceCpuResponse`
+        def ScaleDownDBInstanceCpu(request)
+          body = send_request('ScaleDownDBInstanceCpu', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ScaleDownDBInstanceCpuResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 手动开启cpu弹性扩容
+
+        # @param request: Request instance for ScaleUpDBInstanceCpu.
+        # @type request: :class:`Tencentcloud::mongodb::V20190725::ScaleUpDBInstanceCpuRequest`
+        # @rtype: :class:`Tencentcloud::mongodb::V20190725::ScaleUpDBInstanceCpuResponse`
+        def ScaleUpDBInstanceCpu(request)
+          body = send_request('ScaleUpDBInstanceCpu', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ScaleUpDBInstanceCpuResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（SetAccountUserPrivilege）用于设置实例的账号权限。
 
         # @param request: Request instance for SetAccountUserPrivilege.

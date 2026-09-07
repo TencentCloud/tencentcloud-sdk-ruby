@@ -74,10 +74,10 @@ module TencentCloud
 
         attr_accessor :Account, :LoginAccount, :LoginPassword, :DeviceId, :InstanceId, :Password, :PrivateKey, :PrivateKeyPassword, :Exe, :Drivers, :Width, :Height, :IntranetAccess, :AutoManageAccessCredential
         extend Gem::Deprecate
-        deprecate :LoginAccount, :none, 2026, 8
-        deprecate :LoginAccount=, :none, 2026, 8
-        deprecate :LoginPassword, :none, 2026, 8
-        deprecate :LoginPassword=, :none, 2026, 8
+        deprecate :LoginAccount, :none, 2026, 9
+        deprecate :LoginAccount=, :none, 2026, 9
+        deprecate :LoginPassword, :none, 2026, 9
+        deprecate :LoginPassword=, :none, 2026, 9
 
         def initialize(account=nil, loginaccount=nil, loginpassword=nil, deviceid=nil, instanceid=nil, password=nil, privatekey=nil, privatekeypassword=nil, exe=nil, drivers=nil, width=nil, height=nil, intranetaccess=nil, automanageaccesscredential=nil)
           @Account = account
@@ -561,6 +561,8 @@ module TencentCloud
         # @type ClientAppPath: String
         # @param ClientAppKind: <p>客户端工具类型</p>
         # @type ClientAppKind: String
+        # @param ClientAppArgs: <p>客户端工具启动参数</p>
+        # @type ClientAppArgs: Array
         # @param Url: <p>应用资产url</p>
         # @type Url: String
         # @param BindStatus: <p>托管状态</p><p>枚举值：</p><ul><li>0： 未托管</li><li>1： 已托管</li></ul>
@@ -602,9 +604,9 @@ module TencentCloud
         # @param SubmitValue: <p>提交按钮选择器属性值</p>
         # @type SubmitValue: String
 
-        attr_accessor :Id, :InstanceId, :Name, :DeviceId, :DeviceAccountId, :Kind, :ClientAppPath, :ClientAppKind, :Url, :BindStatus, :DeviceInstanceId, :DeviceName, :DeviceAccountName, :ResourceId, :Resource, :DomainId, :DomainName, :GroupSet, :Department, :AccountCount, :AgentInputType, :AgentInputSubmit, :UserNameType, :UserNameValue, :PasswordType, :PasswordValue, :SubmitType, :SubmitValue
+        attr_accessor :Id, :InstanceId, :Name, :DeviceId, :DeviceAccountId, :Kind, :ClientAppPath, :ClientAppKind, :ClientAppArgs, :Url, :BindStatus, :DeviceInstanceId, :DeviceName, :DeviceAccountName, :ResourceId, :Resource, :DomainId, :DomainName, :GroupSet, :Department, :AccountCount, :AgentInputType, :AgentInputSubmit, :UserNameType, :UserNameValue, :PasswordType, :PasswordValue, :SubmitType, :SubmitValue
 
-        def initialize(id=nil, instanceid=nil, name=nil, deviceid=nil, deviceaccountid=nil, kind=nil, clientapppath=nil, clientappkind=nil, url=nil, bindstatus=nil, deviceinstanceid=nil, devicename=nil, deviceaccountname=nil, resourceid=nil, resource=nil, domainid=nil, domainname=nil, groupset=nil, department=nil, accountcount=nil, agentinputtype=nil, agentinputsubmit=nil, usernametype=nil, usernamevalue=nil, passwordtype=nil, passwordvalue=nil, submittype=nil, submitvalue=nil)
+        def initialize(id=nil, instanceid=nil, name=nil, deviceid=nil, deviceaccountid=nil, kind=nil, clientapppath=nil, clientappkind=nil, clientappargs=nil, url=nil, bindstatus=nil, deviceinstanceid=nil, devicename=nil, deviceaccountname=nil, resourceid=nil, resource=nil, domainid=nil, domainname=nil, groupset=nil, department=nil, accountcount=nil, agentinputtype=nil, agentinputsubmit=nil, usernametype=nil, usernamevalue=nil, passwordtype=nil, passwordvalue=nil, submittype=nil, submitvalue=nil)
           @Id = id
           @InstanceId = instanceid
           @Name = name
@@ -613,6 +615,7 @@ module TencentCloud
           @Kind = kind
           @ClientAppPath = clientapppath
           @ClientAppKind = clientappkind
+          @ClientAppArgs = clientappargs
           @Url = url
           @BindStatus = bindstatus
           @DeviceInstanceId = deviceinstanceid
@@ -644,6 +647,7 @@ module TencentCloud
           @Kind = params['Kind']
           @ClientAppPath = params['ClientAppPath']
           @ClientAppKind = params['ClientAppKind']
+          @ClientAppArgs = params['ClientAppArgs']
           @Url = params['Url']
           @BindStatus = params['BindStatus']
           @DeviceInstanceId = params['DeviceInstanceId']
@@ -5040,8 +5044,8 @@ module TencentCloud
 
         attr_accessor :ResourceId, :VpcId, :VpcName, :VpcRegion, :VpcCidrBlock, :SubnetId, :DomainName, :IntranetSubnets
         extend Gem::Deprecate
-        deprecate :SubnetId, :none, 2026, 8
-        deprecate :SubnetId=, :none, 2026, 8
+        deprecate :SubnetId, :none, 2026, 9
+        deprecate :SubnetId=, :none, 2026, 9
 
         def initialize(resourceid=nil, vpcid=nil, vpcname=nil, vpcregion=nil, vpccidrblock=nil, subnetid=nil, domainname=nil, intranetsubnets=nil)
           @ResourceId = resourceid
@@ -6385,8 +6389,8 @@ module TencentCloud
 
         attr_accessor :ResourceId, :Status, :ResourceEdition, :ResourceNode, :AutoRenewFlag, :PackageBandwidth, :PackageNode, :LogDelivery
         extend Gem::Deprecate
-        deprecate :Status, :none, 2026, 8
-        deprecate :Status=, :none, 2026, 8
+        deprecate :Status, :none, 2026, 9
+        deprecate :Status=, :none, 2026, 9
 
         def initialize(resourceid=nil, status=nil, resourceedition=nil, resourcenode=nil, autorenewflag=nil, packagebandwidth=nil, packagenode=nil, logdelivery=nil)
           @ResourceId = resourceid
@@ -6929,17 +6933,21 @@ module TencentCloud
 
       # ResetUser请求参数结构体
       class ResetUserRequest < TencentCloud::Common::AbstractModel
-        # @param IdSet: 用户ID集合
+        # @param IdSet: <p>用户ID集合</p>
         # @type IdSet: Array
+        # @param ResetType: <p>重置类型</p><p>枚举值：</p><ul><li>0： 同时重置本地认证密码、OTP验证码</li><li>1： 仅重置本地认证密码</li><li>2： 仅重置OTP验证码</li></ul><p>默认值：0</p>
+        # @type ResetType: Integer
 
-        attr_accessor :IdSet
+        attr_accessor :IdSet, :ResetType
 
-        def initialize(idset=nil)
+        def initialize(idset=nil, resettype=nil)
           @IdSet = idset
+          @ResetType = resettype
         end
 
         def deserialize(params)
           @IdSet = params['IdSet']
+          @ResetType = params['ResetType']
         end
       end
 
@@ -7092,8 +7100,8 @@ module TencentCloud
 
         attr_accessor :ResourceId, :ApCode, :SvArgs, :VpcId, :Nodes, :RenewFlag, :ExpireTime, :Status, :ResourceName, :Pid, :CreateTime, :ProductCode, :SubProductCode, :Zone, :Expired, :Deployed, :VpcName, :VpcCidrBlock, :SubnetId, :SubnetName, :CidrBlock, :PublicIpSet, :PrivateIpSet, :ModuleSet, :UsedNodes, :ExtendPoints, :PackageBandwidth, :PackageNode, :LogDeliveryArgs, :ClbSet, :DomainCount, :UsedDomainCount, :EnabledDomainCount, :Trial, :LogDelivery, :CdcClusterId, :DeployModel, :IntranetAccess, :IntranetPrivateIpSet, :IntranetVpcId, :IntranetSubnetId, :IntranetSubnetIdSet, :IntranetVpcCidr, :DomainName, :ShareClb, :OpenClbId, :LbVipIsp, :TUICmdPort, :TUIDirectPort, :WebAccess, :ClientAccess, :ExternalAccess, :IOAResource, :PackageIOAUserCount, :PackageIOABandwidth, :IOAResourceId, :ResourceEdition, :TimeUnit, :TimeSpan, :PayMode, :BillingRegion, :BillingZone, :DeployCvmCount, :ResourceZoneSet
         extend Gem::Deprecate
-        deprecate :IntranetSubnetId, :none, 2026, 8
-        deprecate :IntranetSubnetId=, :none, 2026, 8
+        deprecate :IntranetSubnetId, :none, 2026, 9
+        deprecate :IntranetSubnetId=, :none, 2026, 9
 
         def initialize(resourceid=nil, apcode=nil, svargs=nil, vpcid=nil, nodes=nil, renewflag=nil, expiretime=nil, status=nil, resourcename=nil, pid=nil, createtime=nil, productcode=nil, subproductcode=nil, zone=nil, expired=nil, deployed=nil, vpcname=nil, vpccidrblock=nil, subnetid=nil, subnetname=nil, cidrblock=nil, publicipset=nil, privateipset=nil, moduleset=nil, usednodes=nil, extendpoints=nil, packagebandwidth=nil, packagenode=nil, logdeliveryargs=nil, clbset=nil, domaincount=nil, useddomaincount=nil, enableddomaincount=nil, trial=nil, logdelivery=nil, cdcclusterid=nil, deploymodel=nil, intranetaccess=nil, intranetprivateipset=nil, intranetvpcid=nil, intranetsubnetid=nil, intranetsubnetidset=nil, intranetvpccidr=nil, domainname=nil, shareclb=nil, openclbid=nil, lbvipisp=nil, tuicmdport=nil, tuidirectport=nil, webaccess=nil, clientaccess=nil, externalaccess=nil, ioaresource=nil, packageioausercount=nil, packageioabandwidth=nil, ioaresourceid=nil, resourceedition=nil, timeunit=nil, timespan=nil, paymode=nil, billingregion=nil, billingzone=nil, deploycvmcount=nil, resourcezoneset=nil)
           @ResourceId = resourceid
@@ -8707,8 +8715,8 @@ module TencentCloud
 
         attr_accessor :Id, :InstanceId, :Name, :ApCode, :PublicIp, :PrivateIp, :Status, :Reason, :ExitCode, :StartTime, :EndTime, :StdOut, :StdErr, :DeviceName, :Account
         extend Gem::Deprecate
-        deprecate :Name, :none, 2026, 8
-        deprecate :Name=, :none, 2026, 8
+        deprecate :Name, :none, 2026, 9
+        deprecate :Name=, :none, 2026, 9
 
         def initialize(id=nil, instanceid=nil, name=nil, apcode=nil, publicip=nil, privateip=nil, status=nil, reason=nil, exitcode=nil, starttime=nil, endtime=nil, stdout=nil, stderr=nil, devicename=nil, account=nil)
           @Id = id

@@ -1451,99 +1451,6 @@ module TencentCloud
         end
       end
 
-      # ChannelCreateConvertTaskApi请求参数结构体
-      class ChannelCreateConvertTaskApiRequest < TencentCloud::Common::AbstractModel
-        # @param Agent: 关于渠道应用的相关信息，包括渠道应用标识、第三方平台子客企业标识及第三方平台子客企业中的员工标识等内容，您可以参阅开发者中心所提供的 Agent 结构体以获取详细定义。
-
-        # 此接口下面信息必填。
-        # <ul>
-        # <li>渠道应用标识:  Agent.AppId</li>
-        # <li>第三方平台子客企业标识: Agent.ProxyOrganizationOpenId</li>
-        # <li>第三方平台子客企业中的员工标识: Agent. ProxyOperator.OpenId</li>
-        # </ul>
-        # 第三方平台子客企业和员工必须已经经过实名认证
-        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
-        # @param ResourceType: 需要进行转换的资源文件类型
-        # 支持的文件类型如下：
-        # <ul><li>doc</li>
-        # <li>docx</li>
-        # <li>xls</li>
-        # <li>xlsx</li>
-        # <li>jpg</li>
-        # <li>jpeg</li>
-        # <li>png</li>
-        # <li>bmp</li>
-        # <li>html</li>
-        # <li>txt</li></ul>
-        # @type ResourceType: String
-        # @param ResourceName: 需要进行转换操作的文件资源名称，带资源后缀名。
-
-        # 注:  `资源名称长度限制为256个字符`
-        # @type ResourceName: String
-        # @param ResourceId: 需要进行转换操作的文件资源Id，通过<a href="https://qian.tencent.com/developers/partnerApis/files/UploadFiles" target="_blank">UploadFiles</a>接口获取文件资源Id。
-
-        # 注:  `目前，此接口仅支持单个文件进行转换。`
-        # @type ResourceId: String
-        # @param Operator: 调用方用户信息，不用传
-        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
-        # @param Organization: 暂未开放
-        # @type Organization: :class:`Tencentcloud::Essbasic.v20210526.models.OrganizationInfo`
-
-        attr_accessor :Agent, :ResourceType, :ResourceName, :ResourceId, :Operator, :Organization
-        extend Gem::Deprecate
-        deprecate :Operator, :none, 2026, 9
-        deprecate :Operator=, :none, 2026, 9
-        deprecate :Organization, :none, 2026, 9
-        deprecate :Organization=, :none, 2026, 9
-
-        def initialize(agent=nil, resourcetype=nil, resourcename=nil, resourceid=nil, operator=nil, organization=nil)
-          @Agent = agent
-          @ResourceType = resourcetype
-          @ResourceName = resourcename
-          @ResourceId = resourceid
-          @Operator = operator
-          @Organization = organization
-        end
-
-        def deserialize(params)
-          unless params['Agent'].nil?
-            @Agent = Agent.new
-            @Agent.deserialize(params['Agent'])
-          end
-          @ResourceType = params['ResourceType']
-          @ResourceName = params['ResourceName']
-          @ResourceId = params['ResourceId']
-          unless params['Operator'].nil?
-            @Operator = UserInfo.new
-            @Operator.deserialize(params['Operator'])
-          end
-          unless params['Organization'].nil?
-            @Organization = OrganizationInfo.new
-            @Organization.deserialize(params['Organization'])
-          end
-        end
-      end
-
-      # ChannelCreateConvertTaskApi返回参数结构体
-      class ChannelCreateConvertTaskApiResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 接口返回的文件转换任务Id，可以调用接口<a href="https://qian.tencent.com/developers/partnerApis/files/ChannelGetTaskResultApi" target="_blank">查询转换任务状态</a>获取转换任务的状态和转换后的文件资源Id。
-        # @type TaskId: String
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :TaskId, :RequestId
-
-        def initialize(taskid=nil, requestid=nil)
-          @TaskId = taskid
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @TaskId = params['TaskId']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # ChannelCreateDynamicFlowApprover请求参数结构体
       class ChannelCreateDynamicFlowApproverRequest < TencentCloud::Common::AbstractModel
         # @param FillDynamicFlowList: 动态合同信息
@@ -1607,7 +1514,7 @@ module TencentCloud
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param EmbedType: <p>要生成WEB嵌入界面的类型, 可以选择的值如下: </p><ul><li>CREATE_SEAL: 生成创建印章的嵌入页面</li><li>CREATE_TEMPLATE：生成创建模板的嵌入页面</li><li>MODIFY_TEMPLATE：生成修改模板的嵌入页面</li><li>PREVIEW_TEMPLATE：生成预览模板的嵌入页面</li><li>PREVIEW_FLOW：生成预览合同文档的嵌入页面（H5链接，支持移动端的浏览器中打开）</li><li>PREVIEW_FLOW_DETAIL：生成预览合同详情的嵌入页面（仅支持PC的浏览器中打开）</li><li>PREVIEW_SEAL_LIST：生成预览印章列表的嵌入页面</li><li>PREVIEW_SEAL_DETAIL：生成预览印章详情的嵌入页面</li><li>EXTEND_SERVICE：生成扩展服务的嵌入页面</li></ul>
         # @type EmbedType: String
-        # @param BusinessId: <p>WEB嵌入的业务资源ID</p><p>当EmbedType取值</p><ul><li>为MODIFY_TEMPLATE，PREVIEW_TEMPLATE必填，取值为模板id</li><li>为CREATE_TEMPLATE，非必填，取值为资源id。*资源Id获取可使用接口[上传文件](https://qian.tencent.com/developers/partnerApis/files/UploadFiles)*</li><li>为PREVIEW_FLOW，PREVIEW_FLOW_DETAIL必填，取值为合同id</li><li>为PREVIEW_SEAL_DETAIL必填，取值为印章id</li></ul><p>注意：</p><ol><li>CREATE_TEMPLATE中的BusinessId仅支持PDF文件类型， 如果您的文件不是PDF， 请使用接口<a href="https://qian.tencent.com/developers/partnerApis/files/ChannelCreateConvertTaskApi">创建文件转换任务</a> 和<a href="https://qian.tencent.com/developers/partnerApis/files/ChannelGetTaskResultApi">查询转换任务状态</a> 来进行转换成PDF资源。</li></ol>
+        # @param BusinessId: <p>WEB嵌入的业务资源ID</p><p>当EmbedType取值</p><ul><li>为MODIFY_TEMPLATE，PREVIEW_TEMPLATE必填，取值为模板id</li><li>为CREATE_TEMPLATE，非必填，取值为资源id。*资源Id获取可使用接口[上传文件](https://qian.tencent.com/developers/partnerApis/files/UploadFiles)*</li><li>为PREVIEW_FLOW，PREVIEW_FLOW_DETAIL必填，取值为合同id</li><li>为PREVIEW_SEAL_DETAIL必填，取值为印章id</li></ul><p>注意：</p><ol><li>CREATE_TEMPLATE中的BusinessId仅支持PDF文件类型， 如果您的文件不是PDF， 请使用接口<a href="https://qian.tencent.com/developers/partnerApis/files/CreateFileConvertTask">创建文件转换任务</a> 和<a href="https://qian.tencent.com/developers/partnerApis/files/DescribeFileConvertTask">查询转换任务状态</a> 来进行转换成PDF资源。</li></ol>
         # @type BusinessId: String
         # @param HiddenComponents: <p>是否隐藏控件，只有预览模板时生效，目前字段已废弃，请使用<a href="https://qian.tencent.com/developers/partnerApis/dataTypes#embedurloption">嵌入式页面url个性化参数Option</a> 的ShowTemplateComponent来指定是否展示or隐藏控件</p>
         # @type HiddenComponents: Boolean
@@ -2063,20 +1970,11 @@ module TencentCloud
 
       # ChannelCreateFlowGroupByTemplates请求参数结构体
       class ChannelCreateFlowGroupByTemplatesRequest < TencentCloud::Common::AbstractModel
-        # @param Agent: 合同的发起企业和发起人信息，<a href="https://qcloudimg.tencent-cloud.cn/raw/b69f8aad306c40b7b78d096e39b2edbb.png" target="_blank">点击查看合同发起企业和人展示的位置</a>
-
-        # 此接口下面信息必填。
-        # <ul>
-        # <li>渠道应用标识:  <a href="https://qcloudimg.tencent-cloud.cn/raw/a71872de3d540d55451e3e73a2ad1a6e.png" target="_blank">Agent.AppId</a></li>
-        # <li>第三方平台子客企业标识: Agent.ProxyOrganizationOpenId（合同的发起企业）</li>
-        # <li>第三方平台子客企业中的员工标识: Agent.ProxyOperator.OpenId （合同的发起人）</li>
-        # </ul>
-
-        # 合同的发起企业和发起人必需已经完成实名，并加入企业
+        # @param Agent: <p>合同的发起企业和发起人信息，<a href="https://qcloudimg.tencent-cloud.cn/raw/b69f8aad306c40b7b78d096e39b2edbb.png" target="_blank">点击查看合同发起企业和人展示的位置</a></p><p>此接口下面信息必填。</p><ul><li>渠道应用标识:  <a href="https://qcloudimg.tencent-cloud.cn/raw/a71872de3d540d55451e3e73a2ad1a6e.png" target="_blank">Agent.AppId</a></li><li>第三方平台子客企业标识: Agent.ProxyOrganizationOpenId（合同的发起企业）</li><li>第三方平台子客企业中的员工标识: Agent.ProxyOperator.OpenId （合同的发起人）</li></ul><p>合同的发起企业和发起人必需已经完成实名，并加入企业</p>
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
-        # @param FlowInfos: 合同组中每个合同签署流程的信息，合同组中最少包含2个合同，不能超过50个合同。
+        # @param FlowInfos: <p>合同组中每个合同签署流程的信息，合同组中最少包含2个合同，不能超过50个合同。</p>
         # @type FlowInfos: Array
-        # @param FlowGroupName: 合同组的名称（可自定义此名称），长度不能超过200，只能由中文、字母、数字和下划线组成。
+        # @param FlowGroupName: <p>合同组的名称（可自定义此名称），长度不能超过200，只能由中文、字母、数字和下划线组成。</p>
         # @type FlowGroupName: String
 
         attr_accessor :Agent, :FlowInfos, :FlowGroupName
@@ -2106,18 +2004,13 @@ module TencentCloud
 
       # ChannelCreateFlowGroupByTemplates返回参数结构体
       class ChannelCreateFlowGroupByTemplatesResponse < TencentCloud::Common::AbstractModel
-        # @param FlowGroupId: 合同组ID，为32位字符串。
-        # 建议开发者妥善保存此合同组ID，以便于顺利进行后续操作。
+        # @param FlowGroupId: <p>合同组ID，为32位字符串。<br>建议开发者妥善保存此合同组ID，以便于顺利进行后续操作。</p>
         # @type FlowGroupId: String
-        # @param FlowIds: 合同组中每个合同流程ID，每个ID均为32位字符串。
-
-        # 注:
-        # `此数组的顺序和入参中的FlowInfos顺序一致`
+        # @param FlowIds: <p>合同组中每个合同流程ID，每个ID均为32位字符串。</p><p>注:<br><code>此数组的顺序和入参中的FlowInfos顺序一致</code></p>
         # @type FlowIds: Array
-        # @param TaskInfos: 复杂文档合成任务（如，包含动态表格的预览任务）的任务信息数组；
-        # 如果文档需要异步合成，此字段会返回该异步任务的任务信息，后续可以通过ChannelGetTaskResultApi接口查询任务详情；
+        # @param TaskInfos: <p>复杂文档合成任务（如，包含动态表格的预览任务）的任务信息数组；<br>如果文档需要异步合成，此字段会返回该异步任务的任务信息，后续可以通过<a href="https://qian.tencent.com/developers/partnerApis/files/DescribeFileConvertTask">查询转换任务状态</a>接口查询任务详情；</p>
         # @type TaskInfos: Array
-        # @param Approvers: 合同组签署方信息
+        # @param Approvers: <p>合同组签署方信息</p>
         # @type Approvers: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4427,108 +4320,6 @@ module TencentCloud
         end
       end
 
-      # ChannelGetTaskResultApi请求参数结构体
-      class ChannelGetTaskResultApiRequest < TencentCloud::Common::AbstractModel
-        # @param Agent: 关于渠道应用的相关信息，包括渠道应用标识、第三方平台子客企业标识及第三方平台子客企业中的员工标识等内容，您可以参阅开发者中心所提供的 Agent 结构体以获取详细定义。
-
-        # 此接口下面信息必填。
-        # <ul>
-        # <li>渠道应用标识:  Agent.AppId</li>
-        # <li>第三方平台子客企业标识: Agent.ProxyOrganizationOpenId</li>
-        # <li>第三方平台子客企业中的员工标识: Agent. ProxyOperator.OpenId</li>
-        # </ul>
-        # 第三方平台子客企业和员工必须已经经过实名认证
-        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
-        # @param TaskId: 转换任务Id，通过接口<a href="https://qian.tencent.com/developers/partnerApis/files/ChannelCreateConvertTaskApi" target="_blank">创建文件转换任务接口</a>得到的转换任务id
-        # @type TaskId: String
-        # @param Operator: 操作者的信息，不用传
-        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
-        # @param Organization: 暂未开放
-        # @type Organization: :class:`Tencentcloud::Essbasic.v20210526.models.OrganizationInfo`
-
-        attr_accessor :Agent, :TaskId, :Operator, :Organization
-        extend Gem::Deprecate
-        deprecate :Operator, :none, 2026, 9
-        deprecate :Operator=, :none, 2026, 9
-        deprecate :Organization, :none, 2026, 9
-        deprecate :Organization=, :none, 2026, 9
-
-        def initialize(agent=nil, taskid=nil, operator=nil, organization=nil)
-          @Agent = agent
-          @TaskId = taskid
-          @Operator = operator
-          @Organization = organization
-        end
-
-        def deserialize(params)
-          unless params['Agent'].nil?
-            @Agent = Agent.new
-            @Agent.deserialize(params['Agent'])
-          end
-          @TaskId = params['TaskId']
-          unless params['Operator'].nil?
-            @Operator = UserInfo.new
-            @Operator.deserialize(params['Operator'])
-          end
-          unless params['Organization'].nil?
-            @Organization = OrganizationInfo.new
-            @Organization.deserialize(params['Organization'])
-          end
-        end
-      end
-
-      # ChannelGetTaskResultApi返回参数结构体
-      class ChannelGetTaskResultApiResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务Id
-        # @type TaskId: String
-        # @param TaskStatus: 任务状态，需要关注的状态
-        # <ul><li>**0**  :NeedTranform   - 任务已提交</li>
-        # <li>**4**  :Processing     - 文档转换中</li>
-        # <li>**8**  :TaskEnd        - 任务处理完成</li>
-        # <li>**-2** :DownloadFailed - 下载失败</li>
-        # <li>**-6** :ProcessFailed  - 转换失败</li>
-        # <li>**-13**:ProcessTimeout - 转换文件超时</li></ul>
-        # @type TaskStatus: Integer
-        # @param TaskMessage: 状态描述，需要关注的状态
-        # <ul><li> **NeedTranform** : 任务已提交</li>
-        # <li> **Processing** : 文档转换中</li>
-        # <li> **TaskEnd** : 任务处理完成</li>
-        # <li> **DownloadFailed** : 下载失败</li>
-        # <li> **ProcessFailed** : 转换失败</li>
-        # <li> **ProcessTimeout** : 转换文件超时</li></ul>
-        # @type TaskMessage: String
-        # @param ResourceId: 资源Id（即FileId），用于[用PDF文件创建签署流程](https://qian.tencent.com/developers/partnerApis/startFlows/ChannelCreateFlowByFiles)
-        # @type ResourceId: String
-        # @param PreviewUrl: 预览文件Url，有效期30分钟
-        # 当前字段返回为空，发起的时候，将ResourceId 放入发起即可
-        # @type PreviewUrl: String
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :TaskId, :TaskStatus, :TaskMessage, :ResourceId, :PreviewUrl, :RequestId
-        extend Gem::Deprecate
-        deprecate :PreviewUrl, :none, 2026, 9
-        deprecate :PreviewUrl=, :none, 2026, 9
-
-        def initialize(taskid=nil, taskstatus=nil, taskmessage=nil, resourceid=nil, previewurl=nil, requestid=nil)
-          @TaskId = taskid
-          @TaskStatus = taskstatus
-          @TaskMessage = taskmessage
-          @ResourceId = resourceid
-          @PreviewUrl = previewurl
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @TaskId = params['TaskId']
-          @TaskStatus = params['TaskStatus']
-          @TaskMessage = params['TaskMessage']
-          @ResourceId = params['ResourceId']
-          @PreviewUrl = params['PreviewUrl']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # ChannelModifyRole请求参数结构体
       class ChannelModifyRoleRequest < TencentCloud::Common::AbstractModel
         # @param Agent: 代理企业和员工的信息。
@@ -6449,7 +6240,7 @@ module TencentCloud
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param FlowInfos: <p>要创建的合同信息列表，最多支持一次创建20个合同</p>
         # @type FlowInfos: Array
-        # @param NeedPreview: <p>是否为预览模式，取值如下：</p><ul><li> **false**：非预览模式（默认），会产生合同流程并返回合同流程编号FlowId。</li><li> **true**：预览模式，不产生合同流程，不返回合同流程编号FlowId，而是返回预览链接PreviewUrl，有效期为300秒，用于查看真实发起后合同的样子。 <font color="red">注意： 以预览模式创建的合同仅供查看，因此参与方无法进行签署操作</font></li></ul><p><strong>注1</strong>: 如果预览的文件中指定了动态表格控件，此时此接口返回的是合成前的文档预览链接，合成完成后的文档预览链接需要通过回调通知的方式或使用返回的TaskInfo中的TaskId通过ChannelGetTaskResultApi接口查询得到</p><p><strong>注2</strong>: 预览服务按照合同份额 1:2的比例赠送预览次数。例如：购买 100 份合同，将赠送 200 次合同预览额度。当赠送的预览额度使用完后，如需继续使用预览服务，则需要单独购买预览服务额度。</p>
+        # @param NeedPreview: <p>是否为预览模式，取值如下：</p><ul><li> **false**：非预览模式（默认），会产生合同流程并返回合同流程编号FlowId。</li><li> **true**：预览模式，不产生合同流程，不返回合同流程编号FlowId，而是返回预览链接PreviewUrl，有效期为300秒，用于查看真实发起后合同的样子。 <font color="red">注意： 以预览模式创建的合同仅供查看，因此参与方无法进行签署操作</font></li></ul><p><strong>注1</strong>: 如果预览的文件中指定了动态表格控件，此时此接口返回的是合成前的文档预览链接，合成完成后的文档预览链接需要通过回调通知的方式或使用返回的TaskInfo中的TaskId通过<a href="https://qian.tencent.com/developers/partnerApis/files/DescribeFileConvertTask">查询转换任务状态</a>接口查询得到</p><p><strong>注2</strong>: 预览服务按照合同份额 1:2的比例赠送预览次数。例如：购买 100 份合同，将赠送 200 次合同预览额度。当赠送的预览额度使用完后，如需继续使用预览服务，则需要单独购买预览服务额度。</p>
         # @type NeedPreview: Boolean
         # @param PreviewType: <p>预览模式下产生的预览链接类型 </p><ul><li> **0** :(默认) 文件流 ,点开后下载预览的合同PDF文件 </li><li> **1** :H5链接 ,点开后在浏览器中展示合同的样子</li></ul>注: <code>此参数在NeedPreview 为true时有效</code>
         # @type PreviewType: Integer
@@ -6499,9 +6290,9 @@ module TencentCloud
         # @type CustomerData: Array
         # @param ErrorMessages: <p>创建消息，对应多个合同ID，<br>成功为“”,创建失败则对应失败消息</p>
         # @type ErrorMessages: Array
-        # @param PreviewUrls: <p>合同预览链接URL数组。</p><p>注：如果是预览模式(即NeedPreview设置为true)时, 才会有此预览链接URL<br>如果预览的文件中指定了动态表格控件，此时此接口返回的是合成前的文档预览链接，合成完成后的文档预览链接需要通过<a href="https://qian.tencent.com/developers/partner/callback_types_contracts_sign#%E5%8D%81%E4%B8%80-%E5%90%88%E5%90%8C%E6%96%87%E6%A1%A3%E5%90%88%E6%88%90%E5%AE%8C%E6%88%90%E5%9B%9E%E8%B0%83">合同文档合成完成回调</a>获取或使用返回的TaskInfo中的TaskId通过<a href="https://qian.tencent.com/developers/partnerApis/files/ChannelGetTaskResultApi">查询转换任务状态</a>接口查询得到</p>
+        # @param PreviewUrls: <p>合同预览链接URL数组。</p><p>注：如果是预览模式(即NeedPreview设置为true)时, 才会有此预览链接URL<br>如果预览的文件中指定了动态表格控件，此时此接口返回的是合成前的文档预览链接，合成完成后的文档预览链接需要通过<a href="https://qian.tencent.com/developers/partner/callback_types_contracts_sign#%E5%8D%81%E4%B8%80-%E5%90%88%E5%90%8C%E6%96%87%E6%A1%A3%E5%90%88%E6%88%90%E5%AE%8C%E6%88%90%E5%9B%9E%E8%B0%83">合同文档合成完成回调</a>获取或使用返回的TaskInfo中的TaskId通过<a href="https://qian.tencent.com/developers/partnerApis/files/DescribeFileConvertTask">查询转换任务状态</a>接口查询得到</p>
         # @type PreviewUrls: Array
-        # @param TaskInfos: <p>复杂文档合成任务（如，包含动态表格的预览任务）的任务信息数组；<br>如果文档需要异步合成，此字段会返回该异步任务的任务信息，后续可以通过ChannelGetTaskResultApi接口查询任务详情；</p>
+        # @param TaskInfos: <p>复杂文档合成任务（如，包含动态表格的预览任务）的任务信息数组；<br>如果文档需要异步合成，此字段会返回该异步任务的任务信息，后续可以通过<a href="https://qian.tencent.com/developers/partnerApis/files/DescribeFileConvertTask">查询转换任务状态</a>接口查询任务详情；</p>
         # @type TaskInfos: Array
         # @param FlowApprovers: <p>签署方信息，如角色ID、角色名称等</p>
         # @type FlowApprovers: Array
@@ -11944,21 +11735,21 @@ module TencentCloud
 
       # - 签署控件 是否默认展示日期.
       class SignComponentConfig < TencentCloud::Common::AbstractModel
-        # @param HideDate: 签署控件默认属性配置，是否默认展示签署日期， 在页面中可以进行修改。
-
-        # - false 展示签署日期（默认）
-        # - true 不展示签署日期
-        # ![image](https://qcloudimg.tencent-cloud.cn/raw/448514412e2f69f6129425beda4ff568.png)。
+        # @param HideDate: <p>签署控件默认属性配置，是否默认展示签署日期， 在页面中可以进行修改。</p><ul><li>false 展示签署日期（默认）</li><li>true 不展示签署日期<br><img src="https://qcloudimg.tencent-cloud.cn/raw/448514412e2f69f6129425beda4ff568.png" alt="image">。</li></ul>
         # @type HideDate: Boolean
+        # @param AddSignComponentUseSealSize: <p>【仅 SignBeanTag=1 时有效】 签署方自行添加签署印章类控件（SIGN_SEAL、SIGN_PAGING_SEAL、SIGN_LEGAL_PERSON_SEAL）时，「盖章区适配签署方印章尺寸」开关的控制策略</p><p>枚举值：</p><ul><li>0： 默认关闭，可开启。与现网一致</li><li>1： 关闭且置灰——按控件默认的4.2cm尺寸盖章，签署方无法开启开关</li><li>2： 默认开启且可修改——默认按印章实际尺寸盖章，签署方可手动关闭</li><li>3： 开启且置灰——强制按印章实际尺寸盖章，签署方不可修改</li></ul><p>默认值：0</p>
+        # @type AddSignComponentUseSealSize: Integer
 
-        attr_accessor :HideDate
+        attr_accessor :HideDate, :AddSignComponentUseSealSize
 
-        def initialize(hidedate=nil)
+        def initialize(hidedate=nil, addsigncomponentusesealsize=nil)
           @HideDate = hidedate
+          @AddSignComponentUseSealSize = addsigncomponentusesealsize
         end
 
         def deserialize(params)
           @HideDate = params['HideDate']
+          @AddSignComponentUseSealSize = params['AddSignComponentUseSealSize']
         end
       end
 
@@ -12578,7 +12369,7 @@ module TencentCloud
       class UploadFilesRequest < TencentCloud::Common::AbstractModel
         # @param Agent: <p>关于渠道应用的相关信息，包括渠道应用标识、第三方平台子客企业标识及第三方平台子客企业中的员工标识等内容，您可以参阅开发者中心所提供的 Agent 结构体以获取详细定义。</p><p>此接口下面信息必填。</p><ul><li>渠道应用标识:  Agent.AppId</li><li>第三方平台子客企业标识: Agent.ProxyOrganizationOpenId</li><li>第三方平台子客企业中的员工标识: Agent. ProxyOperator.OpenId</li></ul>第三方平台子客企业和员工必须已经经过实名认证
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
-        # @param BusinessType: <p>文件对应业务类型,可以选择的类型如下</p><p>枚举值：</p><ul><li>TEMPLATE： 此上传的文件用户生成合同模板，文件类型支持.pdf/.doc/.docx/.html格式，如果非pdf文件需要通过<a href="https://qian.tencent.com/developers/companyApis/templatesAndFiles/CreateConvertTaskApi" target="_blank">创建文件转换任务</a>转换后才能使用</li><li>DOCUMENT： 此文件用来发起合同流程，文件类型支持.pdf/.doc/.docx/.jpg/.png/.xls.xlsx/.html。如果上传的是非pdf文件，用来发起流程，还需要通过<a href="https://qian.tencent.com/developers/companyApis/templatesAndFiles/CreateConvertTaskApi" target="_blank">创建文件转换任务</a>转换后得到的pdf文件才能用于发起合同接口。如果上传的文件不是用来发起合同，直接上传后使用返回的文件资源Id即可</li><li>SEAL：  此文件用于印章的生成，文件类型支持.jpg/.jpeg/.png</li><li>ARCHIVE： 此文件用于归档文件夹，文件类型支持.pdf/.zip格式</li><li>BUSINESSLICENSE： 此文件用于上传营业执照，用于后续<a href="https://qian.tencent.com/developers/partnerApis/accounts/CreateConsoleLoginUrl" target="_blank">生成子客登录链接</a>认证子客的时候提供营业执照，文件类型支持.jpg/.jpeg/.png，限制8M以内</li></ul>
+        # @param BusinessType: <p>文件对应业务类型,可以选择的类型如下</p><p>枚举值：</p><ul><li>TEMPLATE： 此上传的文件用户生成合同模板，文件类型支持.pdf/.doc/.docx/.html格式，如果非pdf文件需要通过<a href="https://qian.tencent.com/developers/companyApis/templatesAndFiles/CreateConvertTaskApi" target="_blank">创建文件转换任务</a>转换后才能使用</li><li>DOCUMENT： 此文件用来发起合同流程，文件类型支持.pdf/.doc/.docx/.jpg/.png/.xls.xlsx/.html。如果上传的是非pdf文件，用来发起流程，还需要通过<a href="https://qian.tencent.com/developers/partnerApis/files/CreateFileConvertTask" target="_blank">创建文件转换任务</a>转换后得到的pdf文件才能用于发起合同接口。如果上传的文件不是用来发起合同，直接上传后使用返回的文件资源Id即可</li><li>SEAL：  此文件用于印章的生成，文件类型支持.jpg/.jpeg/.png</li><li>ARCHIVE： 此文件用于归档文件夹，文件类型支持.pdf/.zip格式</li><li>BUSINESSLICENSE： 此文件用于上传营业执照，用于后续<a href="https://qian.tencent.com/developers/partnerApis/accounts/CreateConsoleLoginUrl" target="_blank">生成子客登录链接</a>认证子客的时候提供营业执照，文件类型支持.jpg/.jpeg/.png，限制8M以内</li></ul>
         # @type BusinessType: String
         # @param FileInfos: <p>上传文件内容数组，一次最多可上传20个文件。</p><p><b>若上传多个文件，所有文件必须为相同类型</b>，例如全部为PDF或全部为Word文件。不支持混合文件类型的上传。</p>
         # @type FileInfos: Array

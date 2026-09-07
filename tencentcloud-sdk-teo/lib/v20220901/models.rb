@@ -198,10 +198,12 @@ module TencentCloud
         # @type CreatedOn: String
         # @param ModifiedOn: <p>修改时间。</p>
         # @type ModifiedOn: String
+        # @param ComplianceRestrictions: <p>域名因合规问题产生的地区访问限制列表。</p>
+        # @type ComplianceRestrictions: Array
 
-        attr_accessor :ZoneId, :DomainName, :DomainStatus, :Cname, :IPv6Status, :IdentificationStatus, :OwnershipVerification, :OriginDetail, :OriginProtocol, :HttpOriginPort, :HttpsOriginPort, :Certificate, :CreatedOn, :ModifiedOn
+        attr_accessor :ZoneId, :DomainName, :DomainStatus, :Cname, :IPv6Status, :IdentificationStatus, :OwnershipVerification, :OriginDetail, :OriginProtocol, :HttpOriginPort, :HttpsOriginPort, :Certificate, :CreatedOn, :ModifiedOn, :ComplianceRestrictions
 
-        def initialize(zoneid=nil, domainname=nil, domainstatus=nil, cname=nil, ipv6status=nil, identificationstatus=nil, ownershipverification=nil, origindetail=nil, originprotocol=nil, httporiginport=nil, httpsoriginport=nil, certificate=nil, createdon=nil, modifiedon=nil)
+        def initialize(zoneid=nil, domainname=nil, domainstatus=nil, cname=nil, ipv6status=nil, identificationstatus=nil, ownershipverification=nil, origindetail=nil, originprotocol=nil, httporiginport=nil, httpsoriginport=nil, certificate=nil, createdon=nil, modifiedon=nil, compliancerestrictions=nil)
           @ZoneId = zoneid
           @DomainName = domainname
           @DomainStatus = domainstatus
@@ -216,6 +218,7 @@ module TencentCloud
           @Certificate = certificate
           @CreatedOn = createdon
           @ModifiedOn = modifiedon
+          @ComplianceRestrictions = compliancerestrictions
         end
 
         def deserialize(params)
@@ -242,6 +245,14 @@ module TencentCloud
           end
           @CreatedOn = params['CreatedOn']
           @ModifiedOn = params['ModifiedOn']
+          unless params['ComplianceRestrictions'].nil?
+            @ComplianceRestrictions = []
+            params['ComplianceRestrictions'].each do |i|
+              compliancerestriction_tmp = ComplianceRestriction.new
+              compliancerestriction_tmp.deserialize(i)
+              @ComplianceRestrictions << compliancerestriction_tmp
+            end
+          end
         end
       end
 
@@ -2409,8 +2420,8 @@ module TencentCloud
 
         attr_accessor :Switch, :CacheTime, :IgnoreCacheControl
         extend Gem::Deprecate
-        deprecate :IgnoreCacheControl, :none, 2026, 8
-        deprecate :IgnoreCacheControl=, :none, 2026, 8
+        deprecate :IgnoreCacheControl, :none, 2026, 9
+        deprecate :IgnoreCacheControl=, :none, 2026, 9
 
         def initialize(switch=nil, cachetime=nil, ignorecachecontrol=nil)
           @Switch = switch
@@ -3368,6 +3379,26 @@ module TencentCloud
               @Parameters << rulecodeactionparams_tmp
             end
           end
+        end
+      end
+
+      # 因政府法律法规、用户协议等规定，对资源进行地区访问限制信息。
+      class ComplianceRestriction < TencentCloud::Common::AbstractModel
+        # @param Reason: <p>下发访问限制的原因。</p><p>枚举值：</p><ul><li>ICP_RECORD_REQUIRED： 未备案；</li><li>GOVERNMENT_ORDER： 政府指令。</li></ul>
+        # @type Reason: String
+        # @param Region: <p>限制访问地区的具体国家/地区码，使用“ISO 3166 国家/地区代码标准”。</p><p>参数格式：查看链接：https://www.iso.org/iso-3166-country-codes.html。</p>
+        # @type Region: String
+
+        attr_accessor :Reason, :Region
+
+        def initialize(reason=nil, region=nil)
+          @Reason = reason
+          @Region = region
+        end
+
+        def deserialize(params)
+          @Reason = params['Reason']
+          @Region = params['Region']
         end
       end
 
@@ -4817,8 +4848,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :ProxyName, :Area, :Ipv6, :StaticIp, :AccelerateMainland, :DDosProtectionConfig
         extend Gem::Deprecate
-        deprecate :DDosProtectionConfig, :none, 2026, 8
-        deprecate :DDosProtectionConfig=, :none, 2026, 8
+        deprecate :DDosProtectionConfig, :none, 2026, 9
+        deprecate :DDosProtectionConfig=, :none, 2026, 9
 
         def initialize(zoneid=nil, proxyname=nil, area=nil, ipv6=nil, staticip=nil, acceleratemainland=nil, ddosprotectionconfig=nil)
           @ZoneId = zoneid
@@ -5463,8 +5494,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :Targets, :Mode, :EncodeUrl, :Headers, :PrefetchMediaSegments
         extend Gem::Deprecate
-        deprecate :EncodeUrl, :none, 2026, 8
-        deprecate :EncodeUrl=, :none, 2026, 8
+        deprecate :EncodeUrl, :none, 2026, 9
+        deprecate :EncodeUrl=, :none, 2026, 9
 
         def initialize(zoneid=nil, targets=nil, mode=nil, encodeurl=nil, headers=nil, prefetchmediasegments=nil)
           @ZoneId = zoneid
@@ -5548,8 +5579,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :Type, :Method, :Targets, :EncodeUrl, :CacheTag
         extend Gem::Deprecate
-        deprecate :EncodeUrl, :none, 2026, 8
-        deprecate :EncodeUrl=, :none, 2026, 8
+        deprecate :EncodeUrl, :none, 2026, 9
+        deprecate :EncodeUrl=, :none, 2026, 9
 
         def initialize(zoneid=nil, type=nil, method=nil, targets=nil, encodeurl=nil, cachetag=nil)
           @ZoneId = zoneid
@@ -6150,10 +6181,10 @@ module TencentCloud
 
         attr_accessor :Type, :ZoneName, :Area, :PlanId, :AliasZoneName, :Tags, :AllowDuplicates, :JumpStart
         extend Gem::Deprecate
-        deprecate :AllowDuplicates, :none, 2026, 8
-        deprecate :AllowDuplicates=, :none, 2026, 8
-        deprecate :JumpStart, :none, 2026, 8
-        deprecate :JumpStart=, :none, 2026, 8
+        deprecate :AllowDuplicates, :none, 2026, 9
+        deprecate :AllowDuplicates=, :none, 2026, 9
+        deprecate :JumpStart, :none, 2026, 9
+        deprecate :JumpStart=, :none, 2026, 9
 
         def initialize(type=nil, zonename=nil, area=nil, planid=nil, aliaszonename=nil, tags=nil, allowduplicates=nil, jumpstart=nil)
           @Type = type
@@ -12713,8 +12744,8 @@ module TencentCloud
 
         attr_accessor :StartTime, :EndTime, :MetricNames, :ZoneIds, :ProxyIds, :Interval, :Filters, :Area
         extend Gem::Deprecate
-        deprecate :Area, :none, 2026, 8
-        deprecate :Area=, :none, 2026, 8
+        deprecate :Area, :none, 2026, 9
+        deprecate :Area=, :none, 2026, 9
 
         def initialize(starttime=nil, endtime=nil, metricnames=nil, zoneids=nil, proxyids=nil, interval=nil, filters=nil, area=nil)
           @StartTime = starttime
@@ -15262,32 +15293,35 @@ module TencentCloud
 
       # 边缘函数详情
       class Function < TencentCloud::Common::AbstractModel
-        # @param FunctionId: 函数 ID。
+        # @param FunctionId: <p>函数 ID。</p>
         # @type FunctionId: String
-        # @param ZoneId: 站点 ID。
+        # @param ZoneId: <p>站点 ID。</p>
         # @type ZoneId: String
-        # @param Name: 函数名字。
+        # @param Name: <p>函数名字。</p>
         # @type Name: String
-        # @param Remark: 函数描述。
+        # @param Remark: <p>函数描述。</p>
         # @type Remark: String
-        # @param Content: 函数内容。
+        # @param Content: <p>函数内容。</p>
         # @type Content: String
-        # @param Domain: 函数默认域名。
+        # @param Domain: <p>函数默认域名。</p>
         # @type Domain: String
-        # @param CreateTime: 创建时间。时间为世界标准时间（UTC）， 遵循 ISO 8601 标准的日期和时间格式。
+        # @param DomainComplianceRestrictions: <p>边缘函数默认域名因合规问题产生的地区访问限制列表。</p>
+        # @type DomainComplianceRestrictions: Array
+        # @param CreateTime: <p>创建时间。时间为世界标准时间（UTC）， 遵循 ISO 8601 标准的日期和时间格式。</p>
         # @type CreateTime: String
-        # @param UpdateTime: 修改时间。时间为世界标准时间（UTC）， 遵循 ISO 8601 标准的日期和时间格式。
+        # @param UpdateTime: <p>修改时间。时间为世界标准时间（UTC）， 遵循 ISO 8601 标准的日期和时间格式。</p>
         # @type UpdateTime: String
 
-        attr_accessor :FunctionId, :ZoneId, :Name, :Remark, :Content, :Domain, :CreateTime, :UpdateTime
+        attr_accessor :FunctionId, :ZoneId, :Name, :Remark, :Content, :Domain, :DomainComplianceRestrictions, :CreateTime, :UpdateTime
 
-        def initialize(functionid=nil, zoneid=nil, name=nil, remark=nil, content=nil, domain=nil, createtime=nil, updatetime=nil)
+        def initialize(functionid=nil, zoneid=nil, name=nil, remark=nil, content=nil, domain=nil, domaincompliancerestrictions=nil, createtime=nil, updatetime=nil)
           @FunctionId = functionid
           @ZoneId = zoneid
           @Name = name
           @Remark = remark
           @Content = content
           @Domain = domain
+          @DomainComplianceRestrictions = domaincompliancerestrictions
           @CreateTime = createtime
           @UpdateTime = updatetime
         end
@@ -15299,6 +15333,14 @@ module TencentCloud
           @Remark = params['Remark']
           @Content = params['Content']
           @Domain = params['Domain']
+          unless params['DomainComplianceRestrictions'].nil?
+            @DomainComplianceRestrictions = []
+            params['DomainComplianceRestrictions'].each do |i|
+              compliancerestriction_tmp = ComplianceRestriction.new
+              compliancerestriction_tmp.deserialize(i)
+              @DomainComplianceRestrictions << compliancerestriction_tmp
+            end
+          end
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
         end
@@ -17728,8 +17770,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :ProxyId, :ProxyName, :Area, :Cname, :Ips, :Status, :Ipv6, :StaticIp, :AccelerateMainland, :DDosProtectionConfig, :L4ProxyRuleCount, :UpdateTime
         extend Gem::Deprecate
-        deprecate :DDosProtectionConfig, :none, 2026, 8
-        deprecate :DDosProtectionConfig=, :none, 2026, 8
+        deprecate :DDosProtectionConfig, :none, 2026, 9
+        deprecate :DDosProtectionConfig=, :none, 2026, 9
 
         def initialize(zoneid=nil, proxyid=nil, proxyname=nil, area=nil, cname=nil, ips=nil, status=nil, ipv6=nil, staticip=nil, acceleratemainland=nil, ddosprotectionconfig=nil, l4proxyrulecount=nil, updatetime=nil)
           @ZoneId = zoneid
@@ -19446,8 +19488,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :Hosts, :Mode, :ServerCertInfo, :ApplyType, :ClientCertInfo, :UpstreamCertInfo
         extend Gem::Deprecate
-        deprecate :ApplyType, :none, 2026, 8
-        deprecate :ApplyType=, :none, 2026, 8
+        deprecate :ApplyType, :none, 2026, 9
+        deprecate :ApplyType=, :none, 2026, 9
 
         def initialize(zoneid=nil, hosts=nil, mode=nil, servercertinfo=nil, applytype=nil, clientcertinfo=nil, upstreamcertinfo=nil)
           @ZoneId = zoneid
@@ -22090,12 +22132,12 @@ module TencentCloud
 
         attr_accessor :OriginType, :Origin, :BackupOrigin, :OriginGroupName, :BackOriginGroupName, :PrivateAccess, :PrivateParameters, :HostHeader, :VodeoSubAppId, :VodeoDistributionRange, :VodeoBucketId, :VodOriginScope, :VodBucketId
         extend Gem::Deprecate
-        deprecate :VodeoSubAppId, :none, 2026, 8
-        deprecate :VodeoSubAppId=, :none, 2026, 8
-        deprecate :VodeoDistributionRange, :none, 2026, 8
-        deprecate :VodeoDistributionRange=, :none, 2026, 8
-        deprecate :VodeoBucketId, :none, 2026, 8
-        deprecate :VodeoBucketId=, :none, 2026, 8
+        deprecate :VodeoSubAppId, :none, 2026, 9
+        deprecate :VodeoSubAppId=, :none, 2026, 9
+        deprecate :VodeoDistributionRange, :none, 2026, 9
+        deprecate :VodeoDistributionRange=, :none, 2026, 9
+        deprecate :VodeoBucketId, :none, 2026, 9
+        deprecate :VodeoBucketId=, :none, 2026, 9
 
         def initialize(origintype=nil, origin=nil, backuporigin=nil, origingroupname=nil, backorigingroupname=nil, privateaccess=nil, privateparameters=nil, hostheader=nil, vodeosubappid=nil, vodeodistributionrange=nil, vodeobucketid=nil, vodoriginscope=nil, vodbucketid=nil)
           @OriginType = origintype
@@ -22410,12 +22452,12 @@ module TencentCloud
 
         attr_accessor :OriginType, :Origin, :BackupOrigin, :PrivateAccess, :PrivateParameters, :HostHeader, :VodeoSubAppId, :VodeoDistributionRange, :VodeoBucketId, :VodOriginScope, :VodBucketId
         extend Gem::Deprecate
-        deprecate :VodeoSubAppId, :none, 2026, 8
-        deprecate :VodeoSubAppId=, :none, 2026, 8
-        deprecate :VodeoDistributionRange, :none, 2026, 8
-        deprecate :VodeoDistributionRange=, :none, 2026, 8
-        deprecate :VodeoBucketId, :none, 2026, 8
-        deprecate :VodeoBucketId=, :none, 2026, 8
+        deprecate :VodeoSubAppId, :none, 2026, 9
+        deprecate :VodeoSubAppId=, :none, 2026, 9
+        deprecate :VodeoDistributionRange, :none, 2026, 9
+        deprecate :VodeoDistributionRange=, :none, 2026, 9
+        deprecate :VodeoBucketId, :none, 2026, 9
+        deprecate :VodeoBucketId=, :none, 2026, 9
 
         def initialize(origintype=nil, origin=nil, backuporigin=nil, privateaccess=nil, privateparameters=nil, hostheader=nil, vodeosubappid=nil, vodeodistributionrange=nil, vodeobucketid=nil, vodoriginscope=nil, vodbucketid=nil)
           @OriginType = origintype
@@ -24182,8 +24224,8 @@ module TencentCloud
 
         attr_accessor :Operator, :Target, :Values, :IgnoreCase, :Name, :IgnoreNameCase
         extend Gem::Deprecate
-        deprecate :IgnoreNameCase, :none, 2026, 8
-        deprecate :IgnoreNameCase=, :none, 2026, 8
+        deprecate :IgnoreNameCase, :none, 2026, 9
+        deprecate :IgnoreNameCase=, :none, 2026, 9
 
         def initialize(operator=nil, target=nil, values=nil, ignorecase=nil, name=nil, ignorenamecase=nil)
           @Operator = operator

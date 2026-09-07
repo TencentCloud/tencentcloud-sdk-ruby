@@ -538,6 +538,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 调用该接口，用于创建数字人直播间/AIGC直播间话术。
+
+        # @param request: Request instance for CreateLiveAvatarCloneFigure.
+        # @type request: :class:`Tencentcloud::live::V20180801::CreateLiveAvatarCloneFigureRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::CreateLiveAvatarCloneFigureResponse`
+        def CreateLiveAvatarCloneFigure(request)
+          body = send_request('CreateLiveAvatarCloneFigure', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateLiveAvatarCloneFigureResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 调用该接口，用于创建数字人直播间。
 
         # @param request: Request instance for CreateLiveAvatarRoom.
@@ -1325,6 +1349,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteCasterOutputInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 调用该接口，用于删除已有的数字人直播间里面的话术。
+
+        # @param request: Request instance for DeleteLiveAvatarCloneFigure.
+        # @type request: :class:`Tencentcloud::live::V20180801::DeleteLiveAvatarCloneFigureRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DeleteLiveAvatarCloneFigureResponse`
+        def DeleteLiveAvatarCloneFigure(request)
+          body = send_request('DeleteLiveAvatarCloneFigure', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteLiveAvatarCloneFigureResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2490,6 +2538,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeLiveAvatarBackgroundListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 调用该接口，查询数字人直播间信息列表。
+
+        # @param request: Request instance for DescribeLiveAvatarCloneFigureList.
+        # @type request: :class:`Tencentcloud::live::V20180801::DescribeLiveAvatarCloneFigureListRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeLiveAvatarCloneFigureListResponse`
+        def DescribeLiveAvatarCloneFigureList(request)
+          body = send_request('DescribeLiveAvatarCloneFigureList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLiveAvatarCloneFigureListResponse.new
             model.deserialize(response['Response'])
             model
           else
