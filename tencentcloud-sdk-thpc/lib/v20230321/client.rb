@@ -451,6 +451,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口 (ModifyInitNodeScripts) 用于修改节点初始化脚本。
+
+        # @param request: Request instance for DescribeClusterMonitorStatus.
+        # @type request: :class:`Tencentcloud::thpc::V20230321::DescribeClusterMonitorStatusRequest`
+        # @rtype: :class:`Tencentcloud::thpc::V20230321::DescribeClusterMonitorStatusResponse`
+        def DescribeClusterMonitorStatus(request)
+          body = send_request('DescribeClusterMonitorStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeClusterMonitorStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 (DescribeClusterStorageOption) 用于查询集群存储选项信息。
 
         # @param request: Request instance for DescribeClusterStorageOption.
@@ -815,6 +839,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口 (ModifyInitNodeScripts) 用于修改节点初始化脚本。
+
+        # @param request: Request instance for DisableClusterMonitor.
+        # @type request: :class:`Tencentcloud::thpc::V20230321::DisableClusterMonitorRequest`
+        # @rtype: :class:`Tencentcloud::thpc::V20230321::DisableClusterMonitorResponse`
+        def DisableClusterMonitor(request)
+          body = send_request('DisableClusterMonitor', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DisableClusterMonitorResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 (EnableClusterDedicatedProxy) 用于开启IDC集群的专线/VPN代理。
 
         # * 开启后，系统将自动创建VPC终端节点（EndPoint），实现IDC集群与云上VPC的网络互通。
@@ -829,6 +877,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = EnableClusterDedicatedProxyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口 (ModifyInitNodeScripts) 用于修改节点初始化脚本。
+
+        # @param request: Request instance for EnableClusterMonitor.
+        # @type request: :class:`Tencentcloud::thpc::V20230321::EnableClusterMonitorRequest`
+        # @rtype: :class:`Tencentcloud::thpc::V20230321::EnableClusterMonitorResponse`
+        def EnableClusterMonitor(request)
+          body = send_request('EnableClusterMonitor', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = EnableClusterMonitorResponse.new
             model.deserialize(response['Response'])
             model
           else

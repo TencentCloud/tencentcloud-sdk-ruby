@@ -1905,63 +1905,6 @@ module TencentCloud
         end
       end
 
-      # CreateVmInstance请求参数结构体
-      class CreateVmInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param EnvId: 环境ID
-        # @type EnvId: String
-        # @param Type: 服务器类型：
-        # LightHouse = 轻量云服务器
-        # CVM = 云服务器
-        # @type Type: String
-        # @param LightHouseBundleId: 轻量云服务器套餐ID。 当Type=LightHouse时必传
-        # @type LightHouseBundleId: String
-        # @param LightHouseBlueprintId: 轻量云服务器镜像ID。当Type=LightHouse时必传
-        # @type LightHouseBlueprintId: String
-        # @param InstanceName: 服务器别名
-        # @type InstanceName: String
-        # @param LoginConfiguration: 登录方式
-        # @type LoginConfiguration: :class:`Tencentcloud::Tcb.v20180608.models.VMLoginConfiguration`
-
-        attr_accessor :EnvId, :Type, :LightHouseBundleId, :LightHouseBlueprintId, :InstanceName, :LoginConfiguration
-
-        def initialize(envid=nil, type=nil, lighthousebundleid=nil, lighthouseblueprintid=nil, instancename=nil, loginconfiguration=nil)
-          @EnvId = envid
-          @Type = type
-          @LightHouseBundleId = lighthousebundleid
-          @LightHouseBlueprintId = lighthouseblueprintid
-          @InstanceName = instancename
-          @LoginConfiguration = loginconfiguration
-        end
-
-        def deserialize(params)
-          @EnvId = params['EnvId']
-          @Type = params['Type']
-          @LightHouseBundleId = params['LightHouseBundleId']
-          @LightHouseBlueprintId = params['LightHouseBlueprintId']
-          @InstanceName = params['InstanceName']
-          unless params['LoginConfiguration'].nil?
-            @LoginConfiguration = VMLoginConfiguration.new
-            @LoginConfiguration.deserialize(params['LoginConfiguration'])
-          end
-        end
-      end
-
-      # CreateVmInstance返回参数结构体
-      class CreateVmInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
       # 安全网关自定义日志配置
       class CustomLogConfig < TencentCloud::Common::AbstractModel
         # @param NeedReqBodyLog: 是否需要请求体
@@ -2445,42 +2388,6 @@ module TencentCloud
             @Data = DeleteUsersResp.new
             @Data.deserialize(params['Data'])
           end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DeleteVmInstance请求参数结构体
-      class DeleteVmInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 服务器实例id
-        # @type InstanceId: String
-        # @param EnvId: 环境id
-        # @type EnvId: String
-
-        attr_accessor :InstanceId, :EnvId
-
-        def initialize(instanceid=nil, envid=nil)
-          @InstanceId = instanceid
-          @EnvId = envid
-        end
-
-        def deserialize(params)
-          @InstanceId = params['InstanceId']
-          @EnvId = params['EnvId']
-        end
-      end
-
-      # DeleteVmInstance返回参数结构体
-      class DeleteVmInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -4159,6 +4066,85 @@ module TencentCloud
         end
       end
 
+      # DescribeHTTPServiceCachePurgeTask请求参数结构体
+      class DescribeHTTPServiceCachePurgeTaskRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: <p>环境ID</p>
+        # @type EnvId: String
+        # @param Domain: <p>HTTPService域名</p>
+        # @type Domain: String
+        # @param CacheType: <p>缓存类型</p><p>枚举值：</p><ul><li>EO： EO缓存</li><li>CDN： CDN缓存</li></ul><p>默认值：EO</p>
+        # @type CacheType: String
+        # @param TaskId: <p>任务id，PurgeHTTPServiceCache返回的TaskId，可选</p>
+        # @type TaskId: String
+        # @param PurgeType: <p>按刷新类型过滤</p><p>枚举值：</p><ul><li>PURGE_URL： URL 刷新</li><li>PURGE_PREFIX： 目录刷新</li><li>PURGE_HOST： Hostname 刷新</li></ul>
+        # @type PurgeType: String
+        # @param StartTime: <p>查询开始时间，TaskId为空时，默认开始时间是7天前</p><p>参数格式：格式 YYYY-MM-DDTHH:mm:ss±HH:mmZ，时区为 UTC+0</p>
+        # @type StartTime: String
+        # @param EndTime: <p>查询结束时间，TaskId为空时，默认结束时间是当前</p><p>参数格式：格式 YYYY-MM-DDTHH:mm:ss±HH:mmZ，时区为 UTC+0</p>
+        # @type EndTime: String
+        # @param Offset: <p>分页偏移量。默认 0</p>
+        # @type Offset: Integer
+        # @param Limit: <p>分页限制。默认20，最大值1000</p>
+        # @type Limit: Integer
+
+        attr_accessor :EnvId, :Domain, :CacheType, :TaskId, :PurgeType, :StartTime, :EndTime, :Offset, :Limit
+
+        def initialize(envid=nil, domain=nil, cachetype=nil, taskid=nil, purgetype=nil, starttime=nil, endtime=nil, offset=nil, limit=nil)
+          @EnvId = envid
+          @Domain = domain
+          @CacheType = cachetype
+          @TaskId = taskid
+          @PurgeType = purgetype
+          @StartTime = starttime
+          @EndTime = endtime
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @Domain = params['Domain']
+          @CacheType = params['CacheType']
+          @TaskId = params['TaskId']
+          @PurgeType = params['PurgeType']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeHTTPServiceCachePurgeTask返回参数结构体
+      class DescribeHTTPServiceCachePurgeTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Tasks: <p>任务列表</p>
+        # @type Tasks: Array
+        # @param TotalCount: <p>域名总数，分页查询使用总数判断是否已经拉取到所有数据</p>
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Tasks, :TotalCount, :RequestId
+
+        def initialize(tasks=nil, totalcount=nil, requestid=nil)
+          @Tasks = tasks
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Tasks'].nil?
+            @Tasks = []
+            params['Tasks'].each do |i|
+              httpservicecachepurgetask_tmp = HTTPServiceCachePurgeTask.new
+              httpservicecachepurgetask_tmp.deserialize(i)
+              @Tasks << httpservicecachepurgetask_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeHTTPServiceRoute请求参数结构体
       class DescribeHTTPServiceRouteRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: 环境ID
@@ -5028,98 +5014,6 @@ module TencentCloud
         end
       end
 
-      # DescribeVmInstances请求参数结构体
-      class DescribeVmInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param EnvId: 环境ID
-        # @type EnvId: String
-        # @param Type: 服务器类型： LightHouse = 轻量云服务器 CVM = 云服务器
-        # @type Type: String
-
-        attr_accessor :EnvId, :Type
-
-        def initialize(envid=nil, type=nil)
-          @EnvId = envid
-          @Type = type
-        end
-
-        def deserialize(params)
-          @EnvId = params['EnvId']
-          @Type = params['Type']
-        end
-      end
-
-      # DescribeVmInstances返回参数结构体
-      class DescribeVmInstancesResponse < TencentCloud::Common::AbstractModel
-        # @param InstanceList: 主机实例列表
-        # @type InstanceList: Array
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :InstanceList, :RequestId
-
-        def initialize(instancelist=nil, requestid=nil)
-          @InstanceList = instancelist
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['InstanceList'].nil?
-            @InstanceList = []
-            params['InstanceList'].each do |i|
-              vminstance_tmp = VmInstance.new
-              vminstance_tmp.deserialize(i)
-              @InstanceList << vminstance_tmp
-            end
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeVmSpec请求参数结构体
-      class DescribeVmSpecRequest < TencentCloud::Common::AbstractModel
-        # @param Type: 类型：
-        # LightHouse = 轻量云服务器
-        # CVM = 云服务器
-        # @type Type: String
-
-        attr_accessor :Type
-
-        def initialize(type=nil)
-          @Type = type
-        end
-
-        def deserialize(params)
-          @Type = params['Type']
-        end
-      end
-
-      # DescribeVmSpec返回参数结构体
-      class DescribeVmSpecResponse < TencentCloud::Common::AbstractModel
-        # @param SpecList: 规格列表
-        # @type SpecList: Array
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :SpecList, :RequestId
-
-        def initialize(speclist=nil, requestid=nil)
-          @SpecList = speclist
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['SpecList'].nil?
-            @SpecList = []
-            params['SpecList'].each do |i|
-              vmspec_tmp = VMSpec.new
-              vmspec_tmp.deserialize(i)
-              @SpecList << vmspec_tmp
-            end
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DestroyEnv请求参数结构体
       class DestroyEnvRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: 环境Id
@@ -5787,9 +5681,9 @@ module TencentCloud
 
       # 描述键值对过滤器，用于条件过滤查询。例如过滤ID、名称、状态等
       class Filter < TencentCloud::Common::AbstractModel
-        # @param Name: 需要过滤的字段。过滤条件数量限制为10。
+        # @param Name: <p>需要过滤的字段。过滤条件数量限制为10。</p>
         # @type Name: String
-        # @param Values: 字段的过滤值。
+        # @param Values: <p>字段的过滤值。</p>
         # @type Values: Array
 
         attr_accessor :Name, :Values
@@ -6021,6 +5915,54 @@ module TencentCloud
           @NoCache = params['NoCache']
           @CacheTime = params['CacheTime']
           @MaxAgeTime = params['MaxAgeTime']
+        end
+      end
+
+      # 清除任务详情
+      class HTTPServiceCachePurgeTask < TencentCloud::Common::AbstractModel
+        # @param CacheType: <p>缓存类型</p><p>枚举值：</p><ul><li>EO： EO</li><li>TCBCDN： 云开发cdn</li></ul><p>默认值：EO</p>
+        # @type CacheType: String
+        # @param TaskId: <p>任务id</p>
+        # @type TaskId: String
+        # @param Status: <p>状态</p><p>枚举值：</p><ul><li>PROCESSING： 处理中</li><li>SUCCESS： 成功</li><li>FAILED： 失败</li><li>TIMEOUT： 超时</li><li>CANCELED： 取消</li></ul>
+        # @type Status: String
+        # @param PurgeType: <p>刷新类型</p><p>枚举值：</p><ul><li>PURGE_URL： URL 刷新</li><li>PURGE_PREFIX： 目录刷新</li><li>PURGE_HOST： Hostname 刷新</li></ul>
+        # @type PurgeType: String
+        # @param Method: <p>清除缓存分为直接删除和标记过期两种方式。URL 类型默认为“直接删除”，其它清除类型默认为“标记过期”</p><p>枚举值：</p><ul><li>INVALIDATE： 标记过期：节点缓存标记为过期，用户请求时回源校验，源站 304 则复用，200 则更新</li><li>DELETE： 直接删除：从节点直接删除缓存，用户下次请求强制回源拉新</li></ul>
+        # @type Method: String
+        # @param Targets: <p>刷新目标列表（URL / 前缀 / host）</p>
+        # @type Targets: Array
+        # @param FailReason: <p>失败原因</p>
+        # @type FailReason: String
+        # @param CreateTime: <p>任务创建时间</p><p>参数格式：格式 YYYY-MM-DDTHH:mm:ss±HH:mmZ，时区为 UTC+0</p>
+        # @type CreateTime: String
+        # @param UpdateTime: <p>任务更新时间</p><p>参数格式：格式 YYYY-MM-DDTHH:mm:ss±HH:mmZ，时区为 UTC+0</p>
+        # @type UpdateTime: String
+
+        attr_accessor :CacheType, :TaskId, :Status, :PurgeType, :Method, :Targets, :FailReason, :CreateTime, :UpdateTime
+
+        def initialize(cachetype=nil, taskid=nil, status=nil, purgetype=nil, method=nil, targets=nil, failreason=nil, createtime=nil, updatetime=nil)
+          @CacheType = cachetype
+          @TaskId = taskid
+          @Status = status
+          @PurgeType = purgetype
+          @Method = method
+          @Targets = targets
+          @FailReason = failreason
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @CacheType = params['CacheType']
+          @TaskId = params['TaskId']
+          @Status = params['Status']
+          @PurgeType = params['PurgeType']
+          @Method = params['Method']
+          @Targets = params['Targets']
+          @FailReason = params['FailReason']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
         end
       end
 
@@ -6632,73 +6574,6 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @Direction = params['Direction']
-        end
-      end
-
-      # InquireVmPrice请求参数结构体
-      class InquireVmPriceRequest < TencentCloud::Common::AbstractModel
-        # @param Type: 服务器类型：
-        # LightHouse = 轻量云服务器
-        # CVM = 云服务器
-        # @type Type: String
-        # @param LightHouseBundleId: 轻量云服务器套餐ID。
-        # 当Type=LightHouse时必传
-        # @type LightHouseBundleId: String
-        # @param LightHouseBlueprintId: 轻量云服务器镜像ID。当Type=LightHouse时必传
-        # @type LightHouseBlueprintId: String
-
-        attr_accessor :Type, :LightHouseBundleId, :LightHouseBlueprintId
-
-        def initialize(type=nil, lighthousebundleid=nil, lighthouseblueprintid=nil)
-          @Type = type
-          @LightHouseBundleId = lighthousebundleid
-          @LightHouseBlueprintId = lighthouseblueprintid
-        end
-
-        def deserialize(params)
-          @Type = params['Type']
-          @LightHouseBundleId = params['LightHouseBundleId']
-          @LightHouseBlueprintId = params['LightHouseBlueprintId']
-        end
-      end
-
-      # InquireVmPrice返回参数结构体
-      class InquireVmPriceResponse < TencentCloud::Common::AbstractModel
-        # @param Currency: 价格货币单位。取值范围CNY:人民币。USD:美元。
-        # @type Currency: String
-        # @param OriginalPrice: 原价（主机原始每月价格）
-        # @type OriginalPrice: Float
-        # @param Discount: 折扣率
-        # @type Discount: Float
-        # @param DiscountPrice: 折扣后每月价格
-        # @type DiscountPrice: Float
-        # @param OriginalCredits: 折扣前每天资源点
-        # @type OriginalCredits: Float
-        # @param DiscountCredits: 折扣后每天资源点
-        # @type DiscountCredits: Float
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Currency, :OriginalPrice, :Discount, :DiscountPrice, :OriginalCredits, :DiscountCredits, :RequestId
-
-        def initialize(currency=nil, originalprice=nil, discount=nil, discountprice=nil, originalcredits=nil, discountcredits=nil, requestid=nil)
-          @Currency = currency
-          @OriginalPrice = originalprice
-          @Discount = discount
-          @DiscountPrice = discountprice
-          @OriginalCredits = originalcredits
-          @DiscountCredits = discountcredits
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Currency = params['Currency']
-          @OriginalPrice = params['OriginalPrice']
-          @Discount = params['Discount']
-          @DiscountPrice = params['DiscountPrice']
-          @OriginalCredits = params['OriginalCredits']
-          @DiscountCredits = params['DiscountCredits']
-          @RequestId = params['RequestId']
         end
       end
 
@@ -9087,6 +8962,62 @@ module TencentCloud
         end
       end
 
+      # PurgeHTTPServiceCache请求参数结构体
+      class PurgeHTTPServiceCacheRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: <p>环境ID</p>
+        # @type EnvId: String
+        # @param Domain: <p>HTTPService域名</p>
+        # @type Domain: String
+        # @param Targets: <p>Targets</p><p>参数格式：Targets 刷新目标列表，语义随 PurgeType 变化</p><p>入参限制：单次请求最多传 20 个 Target，单条 URL/prefix/host 最长 2048</p>
+        # @type Targets: Array
+        # @param CacheType: <p>需要刷新的缓存类型：CDN 或 EO</p><p>枚举值：</p><ul><li>EO： EO缓存</li><li>CDN： CDN缓存</li></ul><p>默认值：EO</p>
+        # @type CacheType: String
+        # @param PurgeType: <p>PurgeType 刷新方式（purge 粒度），TCBCDN仅支持purge_url</p><p>枚举值：</p><ul><li>PURGE_URL： URL 列表（需含协议，如 https://a.com/b.jpg）</li><li>PURGE_PREFIX： URL 前缀列表（需含协议，如 https://a.com/dir/），仅EO支持</li><li>PURGE_HOST： Hostname 列表（可为 host 或 http(s)://host），仅EO支持</li></ul><p>默认值：PURGE_URL</p>
+        # @type PurgeType: String
+
+        attr_accessor :EnvId, :Domain, :Targets, :CacheType, :PurgeType
+
+        def initialize(envid=nil, domain=nil, targets=nil, cachetype=nil, purgetype=nil)
+          @EnvId = envid
+          @Domain = domain
+          @Targets = targets
+          @CacheType = cachetype
+          @PurgeType = purgetype
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @Domain = params['Domain']
+          @Targets = params['Targets']
+          @CacheType = params['CacheType']
+          @PurgeType = params['PurgeType']
+        end
+      end
+
+      # PurgeHTTPServiceCache返回参数结构体
+      class PurgeHTTPServiceCacheResponse < TencentCloud::Common::AbstractModel
+        # @param CacheType: <p>需要刷新的缓存类型：TCBCDN 或 EO</p><p>枚举值：</p><ul><li>EO： EO缓存</li><li>CDN： CDN缓存</li></ul>
+        # @type CacheType: String
+        # @param TaskId: <p>刷新任务ID</p>
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CacheType, :TaskId, :RequestId
+
+        def initialize(cachetype=nil, taskid=nil, requestid=nil)
+          @CacheType = cachetype
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CacheType = params['CacheType']
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # PushPGUserMigrations请求参数结构体
       class PushPGUserMigrationsRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: <p>云开发环境ID</p>
@@ -10149,122 +10080,6 @@ module TencentCloud
         end
       end
 
-      # 云服务器登录方式
-      class VMLoginConfiguration < TencentCloud::Common::AbstractModel
-        # @param LoginType: 登录方式。扫码登录时指定为 SCAN_LOGIN
-        # @type LoginType: String
-        # @param AutoGeneratePassword: 是否自动生成密码
-        # @type AutoGeneratePassword: String
-        # @param Password: 指定密码登录
-        # @type Password: String
-        # @param KeyIds: 绑定密钥ID
-        # @type KeyIds: Array
-
-        attr_accessor :LoginType, :AutoGeneratePassword, :Password, :KeyIds
-
-        def initialize(logintype=nil, autogeneratepassword=nil, password=nil, keyids=nil)
-          @LoginType = logintype
-          @AutoGeneratePassword = autogeneratepassword
-          @Password = password
-          @KeyIds = keyids
-        end
-
-        def deserialize(params)
-          @LoginType = params['LoginType']
-          @AutoGeneratePassword = params['AutoGeneratePassword']
-          @Password = params['Password']
-          @KeyIds = params['KeyIds']
-        end
-      end
-
-      # 虚拟主机价格
-      class VMPrice < TencentCloud::Common::AbstractModel
-        # @param Currency: 价格货币单位。取值范围CNY:人民币。USD:美元。
-        # @type Currency: String
-        # @param OriginalPrice: 原始价格
-        # @type OriginalPrice: Float
-        # @param Discount: 折扣率
-        # @type Discount: Float
-        # @param DiscountPrice: 折扣后的价格
-        # @type DiscountPrice: Float
-        # @param OriginalCredits: 折扣前每天资源点
-        # @type OriginalCredits: Float
-        # @param DiscountCredits: 折扣后每天所需资源点
-        # @type DiscountCredits: Float
-
-        attr_accessor :Currency, :OriginalPrice, :Discount, :DiscountPrice, :OriginalCredits, :DiscountCredits
-
-        def initialize(currency=nil, originalprice=nil, discount=nil, discountprice=nil, originalcredits=nil, discountcredits=nil)
-          @Currency = currency
-          @OriginalPrice = originalprice
-          @Discount = discount
-          @DiscountPrice = discountprice
-          @OriginalCredits = originalcredits
-          @DiscountCredits = discountcredits
-        end
-
-        def deserialize(params)
-          @Currency = params['Currency']
-          @OriginalPrice = params['OriginalPrice']
-          @Discount = params['Discount']
-          @DiscountPrice = params['DiscountPrice']
-          @OriginalCredits = params['OriginalCredits']
-          @DiscountCredits = params['DiscountCredits']
-        end
-      end
-
-      # VM规格
-      class VMSpec < TencentCloud::Common::AbstractModel
-        # @param Type: LightHouse=轻量云服务器
-        # CVM=云服务器
-        # @type Type: String
-        # @param LightHouseSpec: 轻量云服务器规格。
-        # 当Type=LightHouse时有效
-        # @type LightHouseSpec: :class:`Tencentcloud::Tcb.v20180608.models.VMSpecLightHouse`
-        # @param Price: 价格信息
-        # @type Price: :class:`Tencentcloud::Tcb.v20180608.models.VMPrice`
-
-        attr_accessor :Type, :LightHouseSpec, :Price
-
-        def initialize(type=nil, lighthousespec=nil, price=nil)
-          @Type = type
-          @LightHouseSpec = lighthousespec
-          @Price = price
-        end
-
-        def deserialize(params)
-          @Type = params['Type']
-          unless params['LightHouseSpec'].nil?
-            @LightHouseSpec = VMSpecLightHouse.new
-            @LightHouseSpec.deserialize(params['LightHouseSpec'])
-          end
-          unless params['Price'].nil?
-            @Price = VMPrice.new
-            @Price.deserialize(params['Price'])
-          end
-        end
-      end
-
-      # vm规格
-      class VMSpecLightHouse < TencentCloud::Common::AbstractModel
-        # @param BundleId: LH主机的BundleId
-        # @type BundleId: String
-        # @param BundleConfig: 主机配置详情json
-        # @type BundleConfig: String
-
-        attr_accessor :BundleId, :BundleConfig
-
-        def initialize(bundleid=nil, bundleconfig=nil)
-          @BundleId = bundleid
-          @BundleConfig = bundleconfig
-        end
-
-        def deserialize(params)
-          @BundleId = params['BundleId']
-          @BundleConfig = params['BundleConfig']
-        end
-      end
-
       # 资源用量明细结构
       class ValueDetail < TencentCloud::Common::AbstractModel
         # @param CalcTime: <p>时间</p>
@@ -10303,9 +10118,9 @@ module TencentCloud
 
       # 对象变量
       class Variable < TencentCloud::Common::AbstractModel
-        # @param Key: 变量的名称
+        # @param Key: <p>变量的名称</p>
         # @type Key: String
-        # @param Value: 变量的值
+        # @param Value: <p>变量的值</p>
         # @type Value: String
 
         attr_accessor :Key, :Value
@@ -10513,30 +10328,6 @@ module TencentCloud
             @EO.deserialize(params['EO'])
           end
           @RequestId = params['RequestId']
-        end
-      end
-
-      # 云主机实例
-      class VmInstance < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例id
-        # @type InstanceId: String
-        # @param Status: 实例状态
-        # @type Status: String
-        # @param Region: 实例地域
-        # @type Region: String
-
-        attr_accessor :InstanceId, :Status, :Region
-
-        def initialize(instanceid=nil, status=nil, region=nil)
-          @InstanceId = instanceid
-          @Status = status
-          @Region = region
-        end
-
-        def deserialize(params)
-          @InstanceId = params['InstanceId']
-          @Status = params['Status']
-          @Region = params['Region']
         end
       end
 

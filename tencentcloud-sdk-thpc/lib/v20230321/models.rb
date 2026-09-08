@@ -1622,6 +1622,46 @@ module TencentCloud
         end
       end
 
+      # DescribeClusterMonitorStatus请求参数结构体
+      class DescribeClusterMonitorStatusRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: <p>集群ID。</p>
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DescribeClusterMonitorStatus返回参数结构体
+      class DescribeClusterMonitorStatusResponse < TencentCloud::Common::AbstractModel
+        # @param MonitorStatus: <p>集群监控状态</p>
+        # @type MonitorStatus: String
+        # @param PrometheusId: <p>集群关联的prometheus实例ID</p>
+        # @type PrometheusId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MonitorStatus, :PrometheusId, :RequestId
+
+        def initialize(monitorstatus=nil, prometheusid=nil, requestid=nil)
+          @MonitorStatus = monitorstatus
+          @PrometheusId = prometheusid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @MonitorStatus = params['MonitorStatus']
+          @PrometheusId = params['PrometheusId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeClusterStorageOption请求参数结构体
       class DescribeClusterStorageOptionRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID。
@@ -2341,6 +2381,38 @@ module TencentCloud
         end
       end
 
+      # DisableClusterMonitor请求参数结构体
+      class DisableClusterMonitorRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: <p>集群ID。</p>
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DisableClusterMonitor返回参数结构体
+      class DisableClusterMonitorResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 容器配置信息。
       class Docker < TencentCloud::Common::AbstractModel
         # @param Image: 容器镜像地址
@@ -2421,6 +2493,42 @@ module TencentCloud
           @EndPointStatus = params['EndPointStatus']
           @VpcId = params['VpcId']
           @SubnetId = params['SubnetId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # EnableClusterMonitor请求参数结构体
+      class EnableClusterMonitorRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: <p>集群ID。</p>
+        # @type ClusterId: String
+        # @param PrometheusId: <p>Prometheus实例ID</p>
+        # @type PrometheusId: String
+
+        attr_accessor :ClusterId, :PrometheusId
+
+        def initialize(clusterid=nil, prometheusid=nil)
+          @ClusterId = clusterid
+          @PrometheusId = prometheusid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @PrometheusId = params['PrometheusId']
+        end
+      end
+
+      # EnableClusterMonitor返回参数结构体
+      class EnableClusterMonitorResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

@@ -1004,6 +1004,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建工作区。
+
+        # @param request: Request instance for CreateResourceGraph.
+        # @type request: :class:`Tencentcloud::cls::V20201016::CreateResourceGraphRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::CreateResourceGraphResponse`
+        def CreateResourceGraph(request)
+          body = send_request('CreateResourceGraph', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateResourceGraphResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 接入指定云产品。EBPF 类产品需提供 EBPFCollectRule，API 类产品仅需 Product。
+
+        # @param request: Request instance for CreateResourceGraphProductIngestTask.
+        # @type request: :class:`Tencentcloud::cls::V20201016::CreateResourceGraphProductIngestTaskRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::CreateResourceGraphProductIngestTaskResponse`
+        def CreateResourceGraphProductIngestTask(request)
+          body = send_request('CreateResourceGraphProductIngestTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateResourceGraphProductIngestTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于创建aws导入任务
 
         # @param request: Request instance for CreateS3Recharge.
@@ -1950,6 +1998,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteRemoteWriteTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除工作区。删除前需确认是否级联清理已接入的云产品（待产品确认）。
+
+        # @param request: Request instance for DeleteResourceGraph.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DeleteResourceGraphRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DeleteResourceGraphResponse`
+        def DeleteResourceGraph(request)
+          body = send_request('DeleteResourceGraph', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteResourceGraphResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除产品接入任务
+
+        # @param request: Request instance for DeleteResourceGraphProductIngestTask.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DeleteResourceGraphProductIngestTaskRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DeleteResourceGraphProductIngestTaskResponse`
+        def DeleteResourceGraphProductIngestTask(request)
+          body = send_request('DeleteResourceGraphProductIngestTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteResourceGraphProductIngestTaskResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -3381,6 +3477,246 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询单个云产品接入的详情，包含基本信息、实例选择、eBPF 采集规则和关联的日志主题。
+
+        # @param request: Request instance for DescribeResourceGraphDetail.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DescribeResourceGraphDetailRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DescribeResourceGraphDetailResponse`
+        def DescribeResourceGraphDetail(request)
+          body = send_request('DescribeResourceGraphDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeResourceGraphDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 分页查询资源图谱实体列表。Filters 支持  Product / EntityClassName / Keyword 过滤；TagFilter 由于结构特殊（key 单选 + values 多选）独立成字段。
+
+        # @param request: Request instance for DescribeResourceGraphEntities.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DescribeResourceGraphEntitiesRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DescribeResourceGraphEntitiesResponse`
+        def DescribeResourceGraphEntities(request)
+          body = send_request('DescribeResourceGraphEntities', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeResourceGraphEntitiesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 以指定实体为中心，按 Direction（上/下游/全部）+ Hop（跳数）查询依赖拓扑，同时返回拓扑图（节点+边）、4 张卡片汇总、列表区数据、产品 tag 汇总。
+
+        # @param request: Request instance for DescribeResourceGraphEntityDependency.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DescribeResourceGraphEntityDependencyRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DescribeResourceGraphEntityDependencyResponse`
+        def DescribeResourceGraphEntityDependency(request)
+          body = send_request('DescribeResourceGraphEntityDependency', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeResourceGraphEntityDependencyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询单个实体的完整详情，包含基本信息、动态属性、标签、关联主题。
+
+        # @param request: Request instance for DescribeResourceGraphEntityDetail.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DescribeResourceGraphEntityDetailRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DescribeResourceGraphEntityDetailResponse`
+        def DescribeResourceGraphEntityDetail(request)
+          body = send_request('DescribeResourceGraphEntityDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeResourceGraphEntityDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询资源图谱失败详情
+
+        # @param request: Request instance for DescribeResourceGraphFailureDetail.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DescribeResourceGraphFailureDetailRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DescribeResourceGraphFailureDetailResponse`
+        def DescribeResourceGraphFailureDetail(request)
+          body = send_request('DescribeResourceGraphFailureDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeResourceGraphFailureDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询资源图谱失败详情
+
+        # @param request: Request instance for DescribeResourceGraphIngestTaskFailureDetail.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DescribeResourceGraphIngestTaskFailureDetailRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DescribeResourceGraphIngestTaskFailureDetailResponse`
+        def DescribeResourceGraphIngestTaskFailureDetail(request)
+          body = send_request('DescribeResourceGraphIngestTaskFailureDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeResourceGraphIngestTaskFailureDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询单个云产品接入的详情，包含基本信息、实例选择、eBPF 采集规则和关联的日志主题。
+
+        # @param request: Request instance for DescribeResourceGraphProductIngestTaskDetail.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DescribeResourceGraphProductIngestTaskDetailRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DescribeResourceGraphProductIngestTaskDetailResponse`
+        def DescribeResourceGraphProductIngestTaskDetail(request)
+          body = send_request('DescribeResourceGraphProductIngestTaskDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeResourceGraphProductIngestTaskDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 分页查询云产品接入列表，返回顶部 4 张卡片汇总 + 列表行。支持按 Status / CollectMethod / Product / Name 过滤。
+
+        # @param request: Request instance for DescribeResourceGraphProductIngestTaskList.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DescribeResourceGraphProductIngestTaskListRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DescribeResourceGraphProductIngestTaskListResponse`
+        def DescribeResourceGraphProductIngestTaskList(request)
+          body = send_request('DescribeResourceGraphProductIngestTaskList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeResourceGraphProductIngestTaskListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 资源图谱tke集群接入状态
+
+        # @param request: Request instance for DescribeResourceGraphTkeClusterStatus.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DescribeResourceGraphTkeClusterStatusRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DescribeResourceGraphTkeClusterStatusResponse`
+        def DescribeResourceGraphTkeClusterStatus(request)
+          body = send_request('DescribeResourceGraphTkeClusterStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeResourceGraphTkeClusterStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 分页查询工作区列表，支持按 WorkAreaId / Name / Region 过滤。
+
+        # @param request: Request instance for DescribeResourceGraphs.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DescribeResourceGraphsRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DescribeResourceGraphsResponse`
+        def DescribeResourceGraphs(request)
+          body = send_request('DescribeResourceGraphs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeResourceGraphsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于获取cos导入配置
 
         # @param request: Request instance for DescribeS3Recharges.
@@ -4535,6 +4871,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 编辑工作区基本信息。支持改名（仍需保持租户内唯一）和修改描述，主题地域 Region 不可修改。
+
+        # @param request: Request instance for ModifyResourceGraph.
+        # @type request: :class:`Tencentcloud::cls::V20201016::ModifyResourceGraphRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::ModifyResourceGraphResponse`
+        def ModifyResourceGraph(request)
+          body = send_request('ModifyResourceGraph', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyResourceGraphResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改资源图谱实体与日志主题关系
+
+        # @param request: Request instance for ModifyResourceGraphEntityTopicsRelation.
+        # @type request: :class:`Tencentcloud::cls::V20201016::ModifyResourceGraphEntityTopicsRelationRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::ModifyResourceGraphEntityTopicsRelationResponse`
+        def ModifyResourceGraphEntityTopicsRelation(request)
+          body = send_request('ModifyResourceGraphEntityTopicsRelation', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyResourceGraphEntityTopicsRelationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 编辑已接入云产品的实例选择、eBPF 规则、日志主题配置。
+
+        # @param request: Request instance for ModifyResourceGraphProductIngestTask.
+        # @type request: :class:`Tencentcloud::cls::V20201016::ModifyResourceGraphProductIngestTaskRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::ModifyResourceGraphProductIngestTaskResponse`
+        def ModifyResourceGraphProductIngestTask(request)
+          body = send_request('ModifyResourceGraphProductIngestTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyResourceGraphProductIngestTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于修改aws导入任务
 
         # @param request: Request instance for ModifyS3Recharge.
@@ -4835,6 +5243,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = QueryRangeMetricResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 重试资源图谱
+
+        # @param request: Request instance for RetryResourceGraph.
+        # @type request: :class:`Tencentcloud::cls::V20201016::RetryResourceGraphRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::RetryResourceGraphResponse`
+        def RetryResourceGraph(request)
+          body = send_request('RetryResourceGraph', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RetryResourceGraphResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 重试初始化资源图谱工作区
+
+        # @param request: Request instance for RetryResourceGraphProductIngestTask.
+        # @type request: :class:`Tencentcloud::cls::V20201016::RetryResourceGraphProductIngestTaskRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::RetryResourceGraphProductIngestTaskResponse`
+        def RetryResourceGraphProductIngestTask(request)
+          body = send_request('RetryResourceGraphProductIngestTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RetryResourceGraphProductIngestTaskResponse.new
             model.deserialize(response['Response'])
             model
           else

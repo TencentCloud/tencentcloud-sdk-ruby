@@ -1810,13 +1810,13 @@ module TencentCloud
 
       # DescribeListeners请求参数结构体
       class DescribeListenersRequest < TencentCloud::Common::AbstractModel
-        # @param GlobalAcceleratorId: 全球加速实例ID。
+        # @param GlobalAcceleratorId: <p>全球加速实例ID。</p>
         # @type GlobalAcceleratorId: String
-        # @param Offset: 偏移量，默认为0。
+        # @param Offset: <p>偏移量，默认为0。</p>
         # @type Offset: Integer
-        # @param Limit: 返回数量，默认为20，最大值为100。
+        # @param Limit: <p>返回数量。</p><p>取值范围：[1, 200]</p><p>默认值：20</p>
         # @type Limit: Integer
-        # @param Filters: 过滤条件。  listener-id- String -（过滤条件）监听器实例ID。
+        # @param Filters: <p>过滤条件。  listener-id- String -（过滤条件）监听器实例ID。</p>
         # @type Filters: Array
 
         attr_accessor :GlobalAcceleratorId, :Offset, :Limit, :Filters
@@ -1845,9 +1845,9 @@ module TencentCloud
 
       # DescribeListeners返回参数结构体
       class DescribeListenersResponse < TencentCloud::Common::AbstractModel
-        # @param ListenerSet: 符合条件的监听器实例。
+        # @param ListenerSet: <p>符合条件的监听器实例。</p>
         # @type ListenerSet: Array
-        # @param TotalCount: 符合条件的实例个数。
+        # @param TotalCount: <p>符合条件的实例个数。</p>
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

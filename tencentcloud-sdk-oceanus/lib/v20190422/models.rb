@@ -2488,6 +2488,50 @@ module TencentCloud
         end
       end
 
+      # DescribeJobDetail请求参数结构体
+      class DescribeJobDetailRequest < TencentCloud::Common::AbstractModel
+        # @param Path: flink rest api 路径
+        # @type Path: String
+        # @param JobSerialId: 作业id
+        # @type JobSerialId: String
+        # @param Method: 请求rest api 方法
+        # @type Method: String
+
+        attr_accessor :Path, :JobSerialId, :Method
+
+        def initialize(path=nil, jobserialid=nil, method=nil)
+          @Path = path
+          @JobSerialId = jobserialid
+          @Method = method
+        end
+
+        def deserialize(params)
+          @Path = params['Path']
+          @JobSerialId = params['JobSerialId']
+          @Method = params['Method']
+        end
+      end
+
+      # DescribeJobDetail返回参数结构体
+      class DescribeJobDetailResponse < TencentCloud::Common::AbstractModel
+        # @param Data: flink rest api 响应
+        # @type Data: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeJobEvents请求参数结构体
       class DescribeJobEventsRequest < TencentCloud::Common::AbstractModel
         # @param JobId: <p>作业的 ID</p>

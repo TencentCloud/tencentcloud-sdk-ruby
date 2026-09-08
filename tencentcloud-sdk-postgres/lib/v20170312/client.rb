@@ -173,6 +173,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（CloseMem0Service）用于关闭实例的Mem0服务
+
+        # @param request: Request instance for CloseMem0Service.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::CloseMem0ServiceRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::CloseMem0ServiceResponse`
+        def CloseMem0Service(request)
+          body = send_request('CloseMem0Service', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CloseMem0ServiceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（ClosePostgRestService）用于关闭实例的PostgREST服务
+
+        # @param request: Request instance for ClosePostgRESTService.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::ClosePostgRESTServiceRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::ClosePostgRESTServiceResponse`
+        def ClosePostgRESTService(request)
+          body = send_request('ClosePostgRESTService', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ClosePostgRESTServiceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 此接口用于创建数据账号，返回的Oid为账号唯一标识。与数据库系统表pg_roles中记录的oid一致。
 
         # @param request: Request instance for CreateAccount.
@@ -1558,6 +1606,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeMem0Service）用于查询某个实例的Mem0服务信息
+
+        # @param request: Request instance for DescribeMem0Service.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::DescribeMem0ServiceRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::DescribeMem0ServiceResponse`
+        def DescribeMem0Service(request)
+          body = send_request('DescribeMem0Service', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeMem0ServiceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeOrders）用于查询订单信息。
 
         # @param request: Request instance for DescribeOrders.
@@ -1640,6 +1712,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeParamsEventResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribePostgRestService）用于查询某个实例的PostgREST服务信息
+
+        # @param request: Request instance for DescribePostgRESTService.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::DescribePostgRESTServiceRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::DescribePostgRESTServiceResponse`
+        def DescribePostgRESTService(request)
+          body = send_request('DescribePostgRESTService', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePostgRESTServiceResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2699,6 +2795,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = OpenDBExtranetAccessResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（OpenMem0Service）用于开启实例Mem0服务
+
+        # @param request: Request instance for OpenMem0Service.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::OpenMem0ServiceRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::OpenMem0ServiceResponse`
+        def OpenMem0Service(request)
+          body = send_request('OpenMem0Service', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = OpenMem0ServiceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（OpenPostgRestService）用于开启实例PostgREST服务
+
+        # @param request: Request instance for OpenPostgRESTService.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::OpenPostgRESTServiceRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::OpenPostgRESTServiceResponse`
+        def OpenPostgRESTService(request)
+          body = send_request('OpenPostgRESTService', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = OpenPostgRESTServiceResponse.new
             model.deserialize(response['Response'])
             model
           else

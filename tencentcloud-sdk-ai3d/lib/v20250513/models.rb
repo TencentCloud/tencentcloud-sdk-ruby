@@ -1064,14 +1064,11 @@ module TencentCloud
 
       # SubmitReduceFaceJob请求参数结构体
       class SubmitReduceFaceJobRequest < TencentCloud::Common::AbstractModel
-        # @param File3D: 源3D模型文件。其中参数 Type 和 Url 必填，参数 PreviewImageUrl 无意义，可忽略。
-        # Type可选值：OBJ，GLB
+        # @param File3D: <p>源3D模型文件。其中参数 Type 和 Url 必填，参数 PreviewImageUrl 无意义，可忽略。Type可选值：OBJ，GLB，FBX</p>
         # @type File3D: :class:`Tencentcloud::Ai3d.v20250513.models.File3D`
-        # @param PolygonType: 多边形类型，表示模型的表面由几边形网格构成，默认为triangle,参考值:
-        # triangle:三角形面。
-        # quadrilateral：四边形面。
+        # @param PolygonType: <p>多边形类型，表示模型的表面由几边形网格构成，默认为triangle,参考值:<br>triangle:三角形面。<br>quadrilateral：四边形面。</p>
         # @type PolygonType: String
-        # @param FaceLevel: 减面后面数档位类型，可选值：high，medium, low。
+        # @param FaceLevel: <p>减面后面数档位类型，可选值：high，medium, low。</p>
         # @type FaceLevel: String
 
         attr_accessor :File3D, :PolygonType, :FaceLevel
@@ -1094,7 +1091,7 @@ module TencentCloud
 
       # SubmitReduceFaceJob返回参数结构体
       class SubmitReduceFaceJobResponse < TencentCloud::Common::AbstractModel
-        # @param JobId: 任务ID（有效期24小时）
+        # @param JobId: <p>任务ID（有效期24小时）</p>
         # @type JobId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

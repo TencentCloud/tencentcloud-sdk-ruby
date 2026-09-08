@@ -91,13 +91,13 @@ module TencentCloud
 
       # AddClientSubscription请求参数结构体
       class AddClientSubscriptionRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: <p>实例ID</p>
         # @type InstanceId: String
-        # @param ClientId: 客户端id
+        # @param ClientId: <p>客户端id</p>
         # @type ClientId: String
-        # @param TopicFilter: 订阅
+        # @param TopicFilter: <p>订阅</p>
         # @type TopicFilter: String
-        # @param Qos: 服务质量:0,1,2
+        # @param Qos: <p>服务质量:0,1,2</p>
         # @type Qos: String
 
         attr_accessor :InstanceId, :ClientId, :TopicFilter, :Qos
@@ -739,11 +739,11 @@ module TencentCloud
 
       # CreateInsPublicEndpoint请求参数结构体
       class CreateInsPublicEndpointRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
+        # @param InstanceId: <p>腾讯云MQTT实例ID，从 <a href="https://cloud.tencent.com/document/api/1778/111029">DescribeInstanceList</a>接口或控制台获得。</p>
         # @type InstanceId: String
-        # @param Bandwidth: 带宽,单位Mbps
+        # @param Bandwidth: <p>带宽,单位Mbps</p>
         # @type Bandwidth: Integer
-        # @param Rules: 公网访问规则
+        # @param Rules: <p>公网访问规则</p>
         # @type Rules: Array
 
         attr_accessor :InstanceId, :Bandwidth, :Rules
@@ -786,32 +786,29 @@ module TencentCloud
 
       # CreateInstance请求参数结构体
       class CreateInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceType: 实例类型，需要和SkuCode保持对应关系，可参考 [获取MQTT产品售卖规格](https://cloud.tencent.com/document/api/1778/116232) 接口获取。
-        # BASIC 基础版
-        # PRO  专业版
-        # PLATINUM 铂金版
+        # @param InstanceType: <p>实例类型，需要和SkuCode保持对应关系，可参考 <a href="https://cloud.tencent.com/document/api/1778/116232">获取MQTT产品售卖规格</a> 接口获取。<br>BASIC 基础版<br>PRO  专业版<br>PLATINUM 铂金版</p>
         # @type InstanceType: String
-        # @param Name: 集群名称不能为空, 3-64个字符，只能包含数字、字母、“-”和“_”。
+        # @param Name: <p>集群名称不能为空, 3-64个字符，只能包含数字、字母、“-”和“_”。</p>
         # @type Name: String
-        # @param SkuCode: 商品规格，需要和InstanceType保持对应关系，可参考 [获取MQTT产品售卖规格](https://cloud.tencent.com/document/api/1778/116232) 接口获取。
+        # @param SkuCode: <p>商品规格，需要和InstanceType保持对应关系，可参考 <a href="https://cloud.tencent.com/document/api/1778/116232">获取MQTT产品售卖规格</a> 接口获取。</p>
         # @type SkuCode: String
-        # @param Remark: 备注信息，最长 128 字符
+        # @param Remark: <p>备注信息，最长 128 字符</p>
         # @type Remark: String
-        # @param TagList: 标签列表
+        # @param TagList: <p>标签列表</p>
         # @type TagList: Array
-        # @param VpcList: 实例绑定的VPC信息，需要传当前用户下可用的VPC和SUBNET
+        # @param VpcList: <p>实例绑定的VPC信息，需要传当前用户下可用的VPC和SUBNET</p>
         # @type VpcList: Array
-        # @param EnablePublic: 是否开启公网，默认false（关闭）
+        # @param EnablePublic: <p>是否开启公网，默认false（关闭）</p>
         # @type EnablePublic: Boolean
-        # @param Bandwidth: 公网带宽（单位：Mbps），EnablePublic 为True时，该字段必须填写且大于0.
+        # @param Bandwidth: <p>公网带宽（单位：Mbps），EnablePublic 为True时，该字段必须填写且大于0.</p>
         # @type Bandwidth: Integer
-        # @param IpRules: 公网访问白名单，不传表示拒绝所有IP网络访问。
+        # @param IpRules: <p>公网访问白名单，不传表示拒绝所有IP网络访问。</p>
         # @type IpRules: Array
-        # @param RenewFlag: 是否自动续费（0: 不自动续费；1: 自动续费），仅购买预付费集群时生效。默认1:自动续费
+        # @param RenewFlag: <p>是否自动续费（0: 不自动续费；1: 自动续费），仅购买预付费集群时生效。默认1:自动续费</p>
         # @type RenewFlag: Integer
-        # @param TimeSpan: 购买时长（单位：月），购买预付费集群时生效，默认1m（月）。可选范围：1~12、24、36、48、60；
+        # @param TimeSpan: <p>购买时长（单位：月），购买预付费集群时生效，默认1m（月）。可选范围：1~12、24、36、48、60；</p>
         # @type TimeSpan: Integer
-        # @param PayMode: 付费模式（0: 后付费；1: 预付费），默认0（后付费）。
+        # @param PayMode: <p>付费模式（0: 后付费；1: 预付费），默认0（后付费）。</p>
         # @type PayMode: Integer
 
         attr_accessor :InstanceType, :Name, :SkuCode, :Remark, :TagList, :VpcList, :EnablePublic, :Bandwidth, :IpRules, :RenewFlag, :TimeSpan, :PayMode
@@ -870,7 +867,7 @@ module TencentCloud
 
       # CreateInstance返回参数结构体
       class CreateInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: <p>实例ID</p>
         # @type InstanceId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -890,23 +887,19 @@ module TencentCloud
 
       # CreateJWKSAuthenticator请求参数结构体
       class CreateJWKSAuthenticatorRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
+        # @param InstanceId: <p>腾讯云MQTT实例ID，从 <a href="https://cloud.tencent.com/document/api/1778/111029">DescribeInstanceList</a>接口或控制台获得。</p>
         # @type InstanceId: String
-        # @param Endpoint: JWKS服务地址，（Text字段和Endpoint字段必须选择一个填写）
+        # @param Endpoint: <p>JWKS服务地址，（Text字段和Endpoint字段必须选择一个填写）</p>
         # @type Endpoint: String
-        # @param RefreshInterval: 认证文本刷新间隔时间，单位：秒，最小值60，默认值60，最大值1000。填写认证服务器地址（Endpoint）时生效。
+        # @param RefreshInterval: <p>认证文本刷新间隔时间，单位：秒，最小值60，默认值60，最大值1000。填写认证服务器地址（Endpoint）时生效。</p>
         # @type RefreshInterval: Integer
-        # @param Text: jwks文本，（Text字段和Endpoint字段必须选择一个填写）
+        # @param Text: <p>jwks文本，（Text字段和Endpoint字段必须选择一个填写）</p>
         # @type Text: String
-        # @param Status: 认证器是否开启：open-启用；close-关闭，默认open-启用
+        # @param Status: <p>认证器是否开启：open-启用；close-关闭，默认open-启用</p>
         # @type Status: String
-        # @param Remark: 说明，不能超过 128 个字符
+        # @param Remark: <p>说明，不能超过 128 个字符</p>
         # @type Remark: String
-        # @param From: 认证字段；
-        # username-对应 MQTT CONNECT Packet 中 username 字段，
-        # password-对应 MQTT CONNECT Packet 中 password 字段。
-
-        # 默认username
+        # @param From: <p>认证字段；<br>username-对应 MQTT CONNECT Packet 中 username 字段，<br>password-对应 MQTT CONNECT Packet 中 password 字段。</p><p>默认username</p>
         # @type From: String
 
         attr_accessor :InstanceId, :Endpoint, :RefreshInterval, :Text, :Status, :Remark, :From
@@ -1081,11 +1074,11 @@ module TencentCloud
 
       # CreateTopic请求参数结构体
       class CreateTopicRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
+        # @param InstanceId: <p>腾讯云MQTT实例ID，从 <a href="https://cloud.tencent.com/document/api/1778/111029">DescribeInstanceList</a>接口或控制台获得。</p>
         # @type InstanceId: String
-        # @param Topic: 主题，不能为空，只能包含字母、数字、“-”及“_”，3-100 字符。
+        # @param Topic: <p>主题，不能为空，只能包含字母、数字、“-”及“_”，3-100 字符。</p>
         # @type Topic: String
-        # @param Remark: 备注，最长 128 字符
+        # @param Remark: <p>备注，最长 128 字符</p>
         # @type Remark: String
 
         attr_accessor :InstanceId, :Topic, :Remark
@@ -1105,9 +1098,9 @@ module TencentCloud
 
       # CreateTopic返回参数结构体
       class CreateTopicResponse < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: <p>实例ID</p>
         # @type InstanceId: String
-        # @param Topic: 主题
+        # @param Topic: <p>主题</p>
         # @type Topic: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1245,12 +1238,9 @@ module TencentCloud
 
       # DeleteAuthenticator请求参数结构体
       class DeleteAuthenticatorRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
+        # @param InstanceId: <p>腾讯云MQTT实例ID，从 <a href="https://cloud.tencent.com/document/api/1778/111029">DescribeInstanceList</a>接口或控制台获得。</p>
         # @type InstanceId: String
-        # @param Type: 认证器类型:
-        # JWT：JWT认证器
-        # JWKS：JWKS认证器
-        # HTTP：HTTP认证器
+        # @param Type: <p>认证器类型:<br>JWT：JWT认证器<br>JWKS：JWKS认证器<br>HTTP：HTTP认证器</p>
         # @type Type: String
 
         attr_accessor :InstanceId, :Type
@@ -1392,11 +1382,11 @@ module TencentCloud
 
       # DeleteClientSubscription请求参数结构体
       class DeleteClientSubscriptionRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: <p>实例ID</p>
         # @type InstanceId: String
-        # @param ClientId: 客户端id
+        # @param ClientId: <p>客户端id</p>
         # @type ClientId: String
-        # @param TopicFilter: 订阅
+        # @param TopicFilter: <p>订阅</p>
         # @type TopicFilter: String
 
         attr_accessor :InstanceId, :ClientId, :TopicFilter
@@ -1504,7 +1494,7 @@ module TencentCloud
 
       # DeleteInsPublicEndpoint请求参数结构体
       class DeleteInsPublicEndpointRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
+        # @param InstanceId: <p>腾讯云MQTT实例ID，从 <a href="https://cloud.tencent.com/document/api/1778/111029">DescribeInstanceList</a>接口或控制台获得。</p>
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -1536,7 +1526,7 @@ module TencentCloud
 
       # DeleteInstance请求参数结构体
       class DeleteInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
+        # @param InstanceId: <p>腾讯云MQTT实例ID，从 <a href="https://cloud.tencent.com/document/api/1778/111029">DescribeInstanceList</a>接口或控制台获得。</p>
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -1604,9 +1594,9 @@ module TencentCloud
 
       # DeleteTopic请求参数结构体
       class DeleteTopicRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: <p>实例ID</p>
         # @type InstanceId: String
-        # @param Topic: 主题
+        # @param Topic: <p>主题</p>
         # @type Topic: String
 
         attr_accessor :InstanceId, :Topic
@@ -1640,9 +1630,9 @@ module TencentCloud
 
       # DeleteUser请求参数结构体
       class DeleteUserRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: <p>实例ID</p>
         # @type InstanceId: String
-        # @param Username: 用户名
+        # @param Username: <p>用户名</p>
         # @type Username: String
 
         attr_accessor :InstanceId, :Username
@@ -1945,18 +1935,15 @@ module TencentCloud
 
       # DescribeClientList请求参数结构体
       class DescribeClientListRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
+        # @param InstanceId: <p>腾讯云MQTT实例ID，从 <a href="https://cloud.tencent.com/document/api/1778/111029">DescribeInstanceList</a>接口或控制台获得。</p>
         # @type InstanceId: String
-        # @param ClientId: 客户端ID
+        # @param ClientId: <p>客户端ID</p>
         # @type ClientId: String
-        # @param Number: 客户端数量限制,最大1024，默认1024
+        # @param Number: <p>客户端数量限制,最大1024，默认1024</p>
         # @type Number: String
-        # @param OnlineStatus: 0:查询在线和离线客户端（默认值）
-        # 1:查询在线客户端
-        # 2:查询离线客户端
+        # @param OnlineStatus: <p>0:查询在线和离线客户端（默认值）<br>1:查询在线客户端<br>2:查询离线客户端</p>
         # @type OnlineStatus: Integer
-        # @param MaxTimestamp: 在线连接：表示最后的连接时间
-        # 离线连接：表示最后的断开连接时间
+        # @param MaxTimestamp: <p>在线连接：表示最后的连接时间<br>离线连接：表示最后的断开连接时间</p>
         # @type MaxTimestamp: Integer
 
         attr_accessor :InstanceId, :ClientId, :Number, :OnlineStatus, :MaxTimestamp
@@ -1980,7 +1967,7 @@ module TencentCloud
 
       # DescribeClientList返回参数结构体
       class DescribeClientListResponse < TencentCloud::Common::AbstractModel
-        # @param Clients: 客户端列表
+        # @param Clients: <p>客户端列表</p>
         # @type Clients: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2444,7 +2431,7 @@ module TencentCloud
 
       # DescribeInsPublicEndpoints请求参数结构体
       class DescribeInsPublicEndpointsRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
+        # @param InstanceId: <p>腾讯云MQTT实例ID，从 <a href="https://cloud.tencent.com/document/api/1778/111029">DescribeInstanceList</a>接口或控制台获得。</p>
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -2460,20 +2447,15 @@ module TencentCloud
 
       # DescribeInsPublicEndpoints返回参数结构体
       class DescribeInsPublicEndpointsResponse < TencentCloud::Common::AbstractModel
-        # @param Endpoints: 接入点
+        # @param Endpoints: <p>接入点</p>
         # @type Endpoints: Array
-        # @param InstanceId: 实例id
+        # @param InstanceId: <p>实例id</p>
         # @type InstanceId: String
-        # @param Bandwidth: 带宽，单位Mbps
+        # @param Bandwidth: <p>带宽，单位Mbps</p>
         # @type Bandwidth: Integer
-        # @param Rules: 公网访问规则
+        # @param Rules: <p>公网访问规则</p>
         # @type Rules: Array
-        # @param Status: 公网状态：
-        #     NORMAL-正常
-        #     CLOSING-关闭中
-        #     MODIFYING-修改中
-        #     CREATING-开启中
-        #     CLOSE-关闭
+        # @param Status: <p>公网状态：<br>    NORMAL-正常<br>    CLOSING-关闭中<br>    MODIFYING-修改中<br>    CREATING-开启中<br>    CLOSE-关闭</p>
         # @type Status: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2515,7 +2497,7 @@ module TencentCloud
 
       # DescribeInsVPCEndpoints请求参数结构体
       class DescribeInsVPCEndpointsRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
+        # @param InstanceId: <p>腾讯云MQTT实例ID，从 <a href="https://cloud.tencent.com/document/api/1778/111029">DescribeInstanceList</a>接口或控制台获得。</p>
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -2531,7 +2513,7 @@ module TencentCloud
 
       # DescribeInsVPCEndpoints返回参数结构体
       class DescribeInsVPCEndpointsResponse < TencentCloud::Common::AbstractModel
-        # @param Endpoints: 接入点
+        # @param Endpoints: <p>接入点</p>
         # @type Endpoints: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2730,8 +2712,8 @@ module TencentCloud
 
         attr_accessor :InstanceType, :InstanceId, :InstanceName, :TopicNum, :TopicNumLimit, :TpsLimit, :CreatedTime, :Remark, :InstanceStatus, :SkuCode, :MaxSubscriptionPerClient, :AuthorizationPolicyLimit, :ClientNumLimit, :DeviceCertificateProvisionType, :AutomaticActivation, :RenewFlag, :PayMode, :ExpiryTime, :DestroyTime, :X509Mode, :MaxCaNum, :RegistrationCode, :MaxSubscription, :AuthorizationPolicy, :SharedSubscriptionGroupLimit, :MaxTopicFilterPerSharedSubscriptionGroup, :AutoSubscriptionPolicyLimit, :MaxTopicFilterPerAutoSubscriptionPolicy, :UseDefaultServerCert, :TrustedCaLimit, :ServerCertLimit, :TopicPrefixSlashLimit, :MessageRate, :TransportLayerSecurity, :MessageEnrichmentRuleLimit, :BlockRuleLimit, :DeleteProtect, :EventDialect, :HashMessagePolicy, :RequestId
         extend Gem::Deprecate
-        deprecate :MaxTopicFilterPerSharedSubscriptionGroup, :none, 2026, 8
-        deprecate :MaxTopicFilterPerSharedSubscriptionGroup=, :none, 2026, 8
+        deprecate :MaxTopicFilterPerSharedSubscriptionGroup, :none, 2026, 9
+        deprecate :MaxTopicFilterPerSharedSubscriptionGroup=, :none, 2026, 9
 
         def initialize(instancetype=nil, instanceid=nil, instancename=nil, topicnum=nil, topicnumlimit=nil, tpslimit=nil, createdtime=nil, remark=nil, instancestatus=nil, skucode=nil, maxsubscriptionperclient=nil, authorizationpolicylimit=nil, clientnumlimit=nil, devicecertificateprovisiontype=nil, automaticactivation=nil, renewflag=nil, paymode=nil, expirytime=nil, destroytime=nil, x509mode=nil, maxcanum=nil, registrationcode=nil, maxsubscription=nil, authorizationpolicy=nil, sharedsubscriptiongrouplimit=nil, maxtopicfilterpersharedsubscriptiongroup=nil, autosubscriptionpolicylimit=nil, maxtopicfilterperautosubscriptionpolicy=nil, usedefaultservercert=nil, trustedcalimit=nil, servercertlimit=nil, topicprefixslashlimit=nil, messagerate=nil, transportlayersecurity=nil, messageenrichmentrulelimit=nil, blockrulelimit=nil, deleteprotect=nil, eventdialect=nil, hashmessagepolicy=nil, requestid=nil)
           @InstanceType = instancetype
@@ -3398,14 +3380,13 @@ module TencentCloud
 
       # DescribeTopicList请求参数结构体
       class DescribeTopicListRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
+        # @param InstanceId: <p>腾讯云MQTT实例ID，从 <a href="https://cloud.tencent.com/document/api/1778/111029">DescribeInstanceList</a>接口或控制台获得。</p>
         # @type InstanceId: String
-        # @param Filters: 查询条件列表:
-        # 支持TopicName模糊查询
+        # @param Filters: <p>查询条件列表:<br>支持TopicName模糊查询</p>
         # @type Filters: Array
-        # @param Offset: 查询起始位置，默认0。
+        # @param Offset: <p>查询起始位置，默认0。</p>
         # @type Offset: Integer
-        # @param Limit: 查询结果限制数量，默认20，最大20
+        # @param Limit: <p>查询结果限制数量，默认20，最大20</p>
         # @type Limit: Integer
 
         attr_accessor :InstanceId, :Filters, :Offset, :Limit
@@ -3434,9 +3415,9 @@ module TencentCloud
 
       # DescribeTopicList返回参数结构体
       class DescribeTopicListResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 查询总数
+        # @param TotalCount: <p>查询总数</p>
         # @type TotalCount: Integer
-        # @param Data: 主题列表
+        # @param Data: <p>主题列表</p>
         # @type Data: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3465,9 +3446,9 @@ module TencentCloud
 
       # DescribeTopic请求参数结构体
       class DescribeTopicRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: <p>实例ID</p>
         # @type InstanceId: String
-        # @param Topic: 主题
+        # @param Topic: <p>主题</p>
         # @type Topic: String
 
         attr_accessor :InstanceId, :Topic
@@ -3485,13 +3466,13 @@ module TencentCloud
 
       # DescribeTopic返回参数结构体
       class DescribeTopicResponse < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: <p>实例ID</p>
         # @type InstanceId: String
-        # @param Topic: 主题名称
+        # @param Topic: <p>主题名称</p>
         # @type Topic: String
-        # @param Remark: 备注
+        # @param Remark: <p>备注</p>
         # @type Remark: String
-        # @param CreatedTime: 创建时间，秒为单位
+        # @param CreatedTime: <p>创建时间，秒为单位</p>
         # @type CreatedTime: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4320,8 +4301,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :InstanceName, :Version, :InstanceType, :InstanceStatus, :TopicNumLimit, :Remark, :TopicNum, :SkuCode, :TpsLimit, :CreateTime, :MaxSubscriptionPerClient, :ClientNumLimit, :RenewFlag, :PayMode, :ExpiryTime, :DestroyTime, :AuthorizationPolicyLimit, :MaxCaNum, :MaxSubscription, :SharedSubscriptionGroupLimit, :MaxTopicFilterPerSharedSubscriptionGroup, :AutoSubscriptionPolicyLimit, :MaxTopicFilterPerAutoSubscriptionPolicy, :DeleteProtect
         extend Gem::Deprecate
-        deprecate :MaxTopicFilterPerSharedSubscriptionGroup, :none, 2026, 8
-        deprecate :MaxTopicFilterPerSharedSubscriptionGroup=, :none, 2026, 8
+        deprecate :MaxTopicFilterPerSharedSubscriptionGroup, :none, 2026, 9
+        deprecate :MaxTopicFilterPerSharedSubscriptionGroup=, :none, 2026, 9
 
         def initialize(instanceid=nil, instancename=nil, version=nil, instancetype=nil, instancestatus=nil, topicnumlimit=nil, remark=nil, topicnum=nil, skucode=nil, tpslimit=nil, createtime=nil, maxsubscriptionperclient=nil, clientnumlimit=nil, renewflag=nil, paymode=nil, expirytime=nil, destroytime=nil, authorizationpolicylimit=nil, maxcanum=nil, maxsubscription=nil, sharedsubscriptiongrouplimit=nil, maxtopicfilterpersharedsubscriptiongroup=nil, autosubscriptionpolicylimit=nil, maxtopicfilterperautosubscriptionpolicy=nil, deleteprotect=nil)
           @InstanceId = instanceid
@@ -4438,12 +4419,12 @@ module TencentCloud
 
         attr_accessor :MsgId, :Tags, :Keys, :ProducerAddr, :ProduceTime, :DeadLetterResendTimes, :DeadLetterResendSuccessTimes, :SubTopic, :Qos
         extend Gem::Deprecate
-        deprecate :DeadLetterResendTimes, :none, 2026, 8
-        deprecate :DeadLetterResendTimes=, :none, 2026, 8
-        deprecate :DeadLetterResendSuccessTimes, :none, 2026, 8
-        deprecate :DeadLetterResendSuccessTimes=, :none, 2026, 8
-        deprecate :SubTopic, :none, 2026, 8
-        deprecate :SubTopic=, :none, 2026, 8
+        deprecate :DeadLetterResendTimes, :none, 2026, 9
+        deprecate :DeadLetterResendTimes=, :none, 2026, 9
+        deprecate :DeadLetterResendSuccessTimes, :none, 2026, 9
+        deprecate :DeadLetterResendSuccessTimes=, :none, 2026, 9
+        deprecate :SubTopic, :none, 2026, 9
+        deprecate :SubTopic=, :none, 2026, 9
 
         def initialize(msgid=nil, tags=nil, keys=nil, produceraddr=nil, producetime=nil, deadletterresendtimes=nil, deadletterresendsuccesstimes=nil, subtopic=nil, qos=nil)
           @MsgId = msgid
@@ -4898,11 +4879,11 @@ module TencentCloud
 
       # ModifyInsPublicEndpoint请求参数结构体
       class ModifyInsPublicEndpointRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
+        # @param InstanceId: <p>腾讯云MQTT实例ID，从 <a href="https://cloud.tencent.com/document/api/1778/111029">DescribeInstanceList</a>接口或控制台获得。</p>
         # @type InstanceId: String
-        # @param Bandwidth: 带宽，单位：Mbps
+        # @param Bandwidth: <p>带宽，单位：Mbps</p>
         # @type Bandwidth: Integer
-        # @param Rules: 公网访问规则
+        # @param Rules: <p>公网访问规则</p>
         # @type Rules: Array
 
         attr_accessor :InstanceId, :Bandwidth, :Rules
@@ -5003,30 +4984,25 @@ module TencentCloud
 
       # ModifyInstance请求参数结构体
       class ModifyInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
+        # @param InstanceId: <p>腾讯云MQTT实例ID，从 <a href="https://cloud.tencent.com/document/api/1778/111029">DescribeInstanceList</a>接口或控制台获得。</p>
         # @type InstanceId: String
-        # @param Name: 要修改实例名称，不能为空, 3-64个字符，只能包含数字、字母、“-”和“_”。
+        # @param Name: <p>要修改实例名称，不能为空, 3-64个字符，只能包含数字、字母、“-”和“_”。</p>
         # @type Name: String
-        # @param Remark: 要修改的备注信息，最多128个字符。
+        # @param Remark: <p>要修改的备注信息，最多128个字符。</p>
         # @type Remark: String
-        # @param SkuCode: 需要变更的配置规格
-        # 基础版和专业版集群不能升配到铂金版规格，铂金版集群不能降配至基础版和增强版规格。
+        # @param SkuCode: <p>需要变更的配置规格<br>基础版和专业版集群不能升配到铂金版规格，铂金版集群不能降配至基础版和增强版规格。</p>
         # @type SkuCode: String
-        # @param DeviceCertificateProvisionType: 客户端证书注册方式：
-        # JITP：自动注册
-        # API：手动通过API注册
+        # @param DeviceCertificateProvisionType: <p>客户端证书注册方式：<br>JITP：自动注册<br>API：手动通过API注册</p>
         # @type DeviceCertificateProvisionType: String
-        # @param AutomaticActivation: 自动注册证书是否自动激活
+        # @param AutomaticActivation: <p>自动注册证书是否自动激活</p>
         # @type AutomaticActivation: Boolean
-        # @param AuthorizationPolicy: 授权策略开关
+        # @param AuthorizationPolicy: <p>授权策略开关</p>
         # @type AuthorizationPolicy: Boolean
-        # @param UseDefaultServerCert: 是否使用默认的服务端证书
+        # @param UseDefaultServerCert: <p>是否使用默认的服务端证书</p>
         # @type UseDefaultServerCert: Boolean
-        # @param X509Mode: TLS：单向认证
-        # mTLS；双向认证
-        # BYOC：一机一证
+        # @param X509Mode: <p>TLS：单向认证<br>mTLS；双向认证<br>BYOC：一机一证</p>
         # @type X509Mode: String
-        # @param MessageRate: 单客户端消息收发限速单位 条/秒
+        # @param MessageRate: <p>单客户端消息收发限速单位 条/秒</p>
         # @type MessageRate: Integer
 
         attr_accessor :InstanceId, :Name, :Remark, :SkuCode, :DeviceCertificateProvisionType, :AutomaticActivation, :AuthorizationPolicy, :UseDefaultServerCert, :X509Mode, :MessageRate
@@ -5076,21 +5052,19 @@ module TencentCloud
 
       # ModifyJWKSAuthenticator请求参数结构体
       class ModifyJWKSAuthenticatorRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
+        # @param InstanceId: <p>腾讯云MQTT实例ID，从 <a href="https://cloud.tencent.com/document/api/1778/111029">DescribeInstanceList</a>接口或控制台获得。</p>
         # @type InstanceId: String
-        # @param Endpoint: JWKS服务器地址，（Text字段和Endpoint字段必须选择一个填写）
+        # @param Endpoint: <p>JWKS服务器地址，（Text字段和Endpoint字段必须选择一个填写）</p>
         # @type Endpoint: String
-        # @param Status: 认证器状态：open-启用（默认）；close-关闭
+        # @param Status: <p>认证器状态：open-启用（默认）；close-关闭</p>
         # @type Status: String
-        # @param RefreshInterval: 认证文本刷新间隔时间，单位：秒，最小值60，默认值60，最大值1000。填写认证服务器地址时生效。
+        # @param RefreshInterval: <p>认证文本刷新间隔时间，单位：秒，最小值60，默认值60，最大值1000。填写认证服务器地址时生效。</p>
         # @type RefreshInterval: Integer
-        # @param Text: JWKS文本，认证服务器地址为空时生效。（Text字段和Endpoint字段必须选择一个填写）
+        # @param Text: <p>JWKS文本，认证服务器地址为空时生效。（Text字段和Endpoint字段必须选择一个填写）</p>
         # @type Text: String
-        # @param From: 认证字段；
-        # username-对应 MQTT CONNECT Packet 中 username 字段，
-        # password-对应 MQTT CONNECT Packet 中 password 字段。默认username
+        # @param From: <p>认证字段；<br>username-对应 MQTT CONNECT Packet 中 username 字段，<br>password-对应 MQTT CONNECT Packet 中 password 字段。默认username</p>
         # @type From: String
-        # @param Remark: 说明，不能超过 128 个字符
+        # @param Remark: <p>说明，不能超过 128 个字符</p>
         # @type Remark: String
 
         attr_accessor :InstanceId, :Endpoint, :Status, :RefreshInterval, :Text, :From, :Remark
@@ -5155,8 +5129,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :Algorithm, :From, :Secret, :PublicKey, :Status, :Remark, :Text
         extend Gem::Deprecate
-        deprecate :Text, :none, 2026, 8
-        deprecate :Text=, :none, 2026, 8
+        deprecate :Text, :none, 2026, 9
+        deprecate :Text=, :none, 2026, 9
 
         def initialize(instanceid=nil, algorithm=nil, from=nil, secret=nil, publickey=nil, status=nil, remark=nil, text=nil)
           @InstanceId = instanceid
@@ -5266,11 +5240,11 @@ module TencentCloud
 
       # ModifyTopic请求参数结构体
       class ModifyTopicRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
+        # @param InstanceId: <p>腾讯云MQTT实例ID，从 <a href="https://cloud.tencent.com/document/api/1778/111029">DescribeInstanceList</a>接口或控制台获得。</p>
         # @type InstanceId: String
-        # @param Topic: 主题，不能为空，只能包含字母、数字、“-”及“_”，3-100 字符。
+        # @param Topic: <p>主题，不能为空，只能包含字母、数字、“-”及“_”，3-100 字符。</p>
         # @type Topic: String
-        # @param Remark: 备注信息，最长 128 字符
+        # @param Remark: <p>备注信息，最长 128 字符</p>
         # @type Remark: String
 
         attr_accessor :InstanceId, :Topic, :Remark
@@ -5306,11 +5280,11 @@ module TencentCloud
 
       # ModifyUser请求参数结构体
       class ModifyUserRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
+        # @param InstanceId: <p>实例ID，从 <a href="https://cloud.tencent.com/document/api/1778/111029">DescribeInstanceList</a>接口或控制台获得。</p>
         # @type InstanceId: String
-        # @param Username: 用户名
+        # @param Username: <p>用户名</p>
         # @type Username: String
-        # @param Remark: 备注，长度不超过128个字符。
+        # @param Remark: <p>备注，长度不超过128个字符。</p>
         # @type Remark: String
 
         attr_accessor :InstanceId, :Username, :Remark
@@ -5523,22 +5497,19 @@ module TencentCloud
 
       # PublishMessage请求参数结构体
       class PublishMessageRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
+        # @param InstanceId: <p>腾讯云MQTT实例ID，从 <a href="https://cloud.tencent.com/document/api/1778/111029">DescribeInstanceList</a>接口或控制台获得。</p>
         # @type InstanceId: String
-        # @param Payload: 消息负载 Payload，是消息的实际内容，需要按 encoding 指定的编码方式进行编码
+        # @param Payload: <p>消息负载 Payload，是消息的实际内容，需要按 encoding 指定的编码方式进行编码</p>
         # @type Payload: String
-        # @param TargetTopic: 消息目的主题，该参数与 TargetClientId 二选一
+        # @param TargetTopic: <p>消息目的主题，该参数与 TargetClientId 二选一</p>
         # @type TargetTopic: String
-        # @param TargetClientId: 消息目的客户端 ID，该参数与 TargetTopic 二选一
+        # @param TargetClientId: <p>消息目的客户端 ID，该参数与 TargetTopic 二选一</p>
         # @type TargetClientId: String
-        # @param Encoding: 消息 payload 编码，可选 plain 或 base64，默认为 plain（即不编码）
+        # @param Encoding: <p>消息 payload 编码，可选 plain 或 base64，默认为 plain（即不编码）</p>
         # @type Encoding: String
-        # @param Qos: 消息的服务质量等级，默认为 1
-        # QoS 0（至多一次）消息发送后，不保证接收方一定收到，也不要求接收方确认。
-        # QoS 1（至少一次）消息至少被接收方成功接收一次，但可能重复。
-        # QoS 2（恰好一次）消息确保被接收方接收且仅接收一次，无重复。
+        # @param Qos: <p>消息的服务质量等级，默认为 1<br>QoS 0（至多一次）消息发送后，不保证接收方一定收到，也不要求接收方确认。<br>QoS 1（至少一次）消息至少被接收方成功接收一次，但可能重复。<br>QoS 2（恰好一次）消息确保被接收方接收且仅接收一次，无重复。</p>
         # @type Qos: Integer
-        # @param Retain: 是否为保留消息，默认为 false，且仅支持发布到主题的消息设置为 true
+        # @param Retain: <p>是否为保留消息，默认为 false，且仅支持发布到主题的消息设置为 true</p>
         # @type Retain: Boolean
 
         attr_accessor :InstanceId, :Payload, :TargetTopic, :TargetClientId, :Encoding, :Qos, :Retain

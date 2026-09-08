@@ -217,17 +217,24 @@ module TencentCloud
       class ComputerConfiguration < TencentCloud::Common::AbstractModel
         # @param WAAConfiguration: <p>waa沙箱工具配置</p>
         # @type WAAConfiguration: :class:`Tencentcloud::Ags.v20250920.models.WAAConfiguration`
+        # @param OSWorldConfiguration: <p>配置内置 OSWorld</p>
+        # @type OSWorldConfiguration: :class:`Tencentcloud::Ags.v20250920.models.OSWorldConfiguration`
 
-        attr_accessor :WAAConfiguration
+        attr_accessor :WAAConfiguration, :OSWorldConfiguration
 
-        def initialize(waaconfiguration=nil)
+        def initialize(waaconfiguration=nil, osworldconfiguration=nil)
           @WAAConfiguration = waaconfiguration
+          @OSWorldConfiguration = osworldconfiguration
         end
 
         def deserialize(params)
           unless params['WAAConfiguration'].nil?
             @WAAConfiguration = WAAConfiguration.new
             @WAAConfiguration.deserialize(params['WAAConfiguration'])
+          end
+          unless params['OSWorldConfiguration'].nil?
+            @OSWorldConfiguration = OSWorldConfiguration.new
+            @OSWorldConfiguration.deserialize(params['OSWorldConfiguration'])
           end
         end
       end
@@ -1497,6 +1504,22 @@ module TencentCloud
             @VpcConfig = VPCConfig.new
             @VpcConfig.deserialize(params['VpcConfig'])
           end
+        end
+      end
+
+      # OSWorld 内置版本配置
+      class OSWorldConfiguration < TencentCloud::Common::AbstractModel
+        # @param Version: <p>指定内置 OSWorld 版本</p><p>枚举值：</p><ul><li>osworld1： osworld v1</li><li>osworld2： osworld v2</li></ul><p>默认值：osworld1</p>
+        # @type Version: String
+
+        attr_accessor :Version
+
+        def initialize(version=nil)
+          @Version = version
+        end
+
+        def deserialize(params)
+          @Version = params['Version']
         end
       end
 

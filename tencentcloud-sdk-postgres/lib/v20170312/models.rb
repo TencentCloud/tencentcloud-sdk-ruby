@@ -19,31 +19,30 @@ module TencentCloud
     module V20170312
       # 账户信息
       class AccountInfo < TencentCloud::Common::AbstractModel
-        # @param DBInstanceId: 实例ID，形如postgres-lnp6j617
+        # @param DBInstanceId: <p>实例ID，形如postgres-lnp6j617</p>
         # @type DBInstanceId: String
-        # @param UserName: 账号
+        # @param UserName: <p>账号</p>
         # @type UserName: String
-        # @param Remark: 账号备注
+        # @param Remark: <p>账号备注</p>
         # @type Remark: String
-        # @param Status: 账号状态。 1-创建中，2-正常，3-修改中，4-密码重置中，5-锁定中，-1-删除中
+        # @param Status: <p>账号状态。 1-创建中，2-正常，3-修改中，4-密码重置中，5-锁定中，-1-删除中</p>
         # @type Status: Integer
-        # @param CreateTime: 账号创建时间
+        # @param CreateTime: <p>账号创建时间</p>
         # @type CreateTime: String
-        # @param UpdateTime: 账号最后一次更新时间
+        # @param UpdateTime: <p>账号最后一次更新时间</p>
         # @type UpdateTime: String
-        # @param PasswordUpdateTime: 账号密码最近一次修改时间。
-
-        # 此字段只在2025-10-31后才生效，之前无论是否修改密码，该值统一为默认值：0000-00-00 00:00:00
-        # 同时仅通过云API或者管控控制台修改密码，才会更新该字段。
+        # @param PasswordUpdateTime: <p>账号密码最近一次修改时间。</p><p>此字段只在2025-10-31后才生效，之前无论是否修改密码，该值统一为默认值：0000-00-00 00:00:00<br>同时仅通过云API或者管控控制台修改密码，才会更新该字段。</p>
         # @type PasswordUpdateTime: String
-        # @param UserType: 账号类型。支持normal、tencentDBSuper。normal指代普通用户，tencentDBSuper为拥有pg_tencentdb_superuser角色的账号。
+        # @param UserType: <p>账号类型。支持normal、tencentDBSuper。normal指代普通用户，tencentDBSuper为拥有pg_tencentdb_superuser角色的账号。</p>
         # @type UserType: String
-        # @param OpenCam: 用户账号是否启用CAM验证
+        # @param OpenCam: <p>用户账号是否启用CAM验证</p>
         # @type OpenCam: Boolean
+        # @param PGRoles: <p>该账号实际加入了哪些预设角色</p>
+        # @type PGRoles: Array
 
-        attr_accessor :DBInstanceId, :UserName, :Remark, :Status, :CreateTime, :UpdateTime, :PasswordUpdateTime, :UserType, :OpenCam
+        attr_accessor :DBInstanceId, :UserName, :Remark, :Status, :CreateTime, :UpdateTime, :PasswordUpdateTime, :UserType, :OpenCam, :PGRoles
 
-        def initialize(dbinstanceid=nil, username=nil, remark=nil, status=nil, createtime=nil, updatetime=nil, passwordupdatetime=nil, usertype=nil, opencam=nil)
+        def initialize(dbinstanceid=nil, username=nil, remark=nil, status=nil, createtime=nil, updatetime=nil, passwordupdatetime=nil, usertype=nil, opencam=nil, pgroles=nil)
           @DBInstanceId = dbinstanceid
           @UserName = username
           @Remark = remark
@@ -53,6 +52,7 @@ module TencentCloud
           @PasswordUpdateTime = passwordupdatetime
           @UserType = usertype
           @OpenCam = opencam
+          @PGRoles = pgroles
         end
 
         def deserialize(params)
@@ -65,6 +65,7 @@ module TencentCloud
           @PasswordUpdateTime = params['PasswordUpdateTime']
           @UserType = params['UserType']
           @OpenCam = params['OpenCam']
+          @PGRoles = params['PGRoles']
         end
       end
 
@@ -946,6 +947,78 @@ module TencentCloud
       # CloseDBProxyAddress返回参数结构体
       class CloseDBProxyAddressResponse < TencentCloud::Common::AbstractModel
         # @param TaskId: <p>异步任务 ID，可通过 DescribeFlow 查询任务进度</p>
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CloseMem0Service请求参数结构体
+      class CloseMem0ServiceRequest < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: <p>实例ID</p>
+        # @type DBInstanceId: String
+
+        attr_accessor :DBInstanceId
+
+        def initialize(dbinstanceid=nil)
+          @DBInstanceId = dbinstanceid
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+        end
+      end
+
+      # CloseMem0Service返回参数结构体
+      class CloseMem0ServiceResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>关闭mem0服务任务ID</p>
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ClosePostgRESTService请求参数结构体
+      class ClosePostgRESTServiceRequest < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: <p>实例ID</p><p>参数格式：postgres-0uwjmh8t</p>
+        # @type DBInstanceId: String
+
+        attr_accessor :DBInstanceId
+
+        def initialize(dbinstanceid=nil)
+          @DBInstanceId = dbinstanceid
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+        end
+      end
+
+      # ClosePostgRESTService返回参数结构体
+      class ClosePostgRESTServiceResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>关闭PostgREST服务任务ID</p>
         # @type TaskId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2365,15 +2438,15 @@ module TencentCloud
 
       # 描述数据库中某个对象所属的类型、是在哪个数据库、模式、表中的对象。
       class DatabaseObject < TencentCloud::Common::AbstractModel
-        # @param ObjectType: 支持使用的数据库对象类型有：account,database,schema,sequence,procedure,type,function,table,view,matview,column。
+        # @param ObjectType: <p>支持使用的数据库对象类型有：account,database,schema,sequence,procedure,type,function,table,view,matview,column。</p>
         # @type ObjectType: String
-        # @param ObjectName: 所描述的数据库对象名称
+        # @param ObjectName: <p>所描述的数据库对象名称，或者当ModifyType为grantRole / revokeRole时，必须等于顶层UserName</p>
         # @type ObjectName: String
-        # @param DatabaseName: 所要描述的数据库对象，所属的数据库名称。当描述对象类型不为database时，此参数必选。
+        # @param DatabaseName: <p>所要描述的数据库对象，所属的数据库名称。当描述对象类型不为database时，此参数必选。</p>
         # @type DatabaseName: String
-        # @param SchemaName: 所要描述的数据库对象，所属的模式名称。当描述对象不为database、schema时，此参数必选。
+        # @param SchemaName: <p>所要描述的数据库对象，所属的模式名称。当描述对象不为database、schema时，此参数必选。</p>
         # @type SchemaName: String
-        # @param TableName: 所要描述的数据库对象，所属的表名称。当描述的对象类型为column时，此参数必填。
+        # @param TableName: <p>所要描述的数据库对象，所属的表名称。当描述的对象类型为column时，此参数必填。</p>
         # @type TableName: String
 
         attr_accessor :ObjectType, :ObjectName, :DatabaseName, :SchemaName, :TableName
@@ -2397,10 +2470,10 @@ module TencentCloud
 
       # 指定账号对数据库对象拥有的权限列表
       class DatabasePrivilege < TencentCloud::Common::AbstractModel
-        # @param Object: 数据库对象，当ObjectType为database时，DatabaseName/SchemaName/TableName可为空；当ObjectType为schema时，SchemaName/TableName可为空；当ObjectType为column时，TableName不可为空，其余情况均可为空。
+        # @param Object: <p>数据库对象，当ObjectType为database时，DatabaseName/SchemaName/TableName可为空；当ObjectType为schema时，SchemaName/TableName可为空；当ObjectType为column时，TableName不可为空，其余情况均可为空。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Object: :class:`Tencentcloud::Postgres.v20170312.models.DatabaseObject`
-        # @param PrivilegeSet: 指定账号对数据库对象拥有的权限列表
+        # @param PrivilegeSet: <p>指定账号对数据库对象拥有的权限列表，或者角色权限修改</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PrivilegeSet: Array
 
@@ -4906,6 +4979,93 @@ module TencentCloud
         end
       end
 
+      # DescribeMem0Service请求参数结构体
+      class DescribeMem0ServiceRequest < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: <p>实例ID</p>
+        # @type DBInstanceId: String
+
+        attr_accessor :DBInstanceId
+
+        def initialize(dbinstanceid=nil)
+          @DBInstanceId = dbinstanceid
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+        end
+      end
+
+      # DescribeMem0Service返回参数结构体
+      class DescribeMem0ServiceResponse < TencentCloud::Common::AbstractModel
+        # @param Status: <p>mem0服务运行状态</p><p>枚举值：</p><ul><li>running： mem0服务正常运行</li><li>none： 未开通</li><li>creating： 正在开通</li><li>deleting： mem0服务关闭中</li></ul>
+        # @type Status: String
+        # @param CreateTime: <p>Mem0服务创建时间</p>
+        # @type CreateTime: String
+        # @param UpdateTime: <p>Mem0服务最后更新时间</p>
+        # @type UpdateTime: String
+        # @param InnerAddress: <p>Mem0服务访问地址</p>
+        # @type InnerAddress: String
+        # @param AgenticBaseId: <p>Mem0服务使用的AgenticBase</p>
+        # @type AgenticBaseId: String
+        # @param LLMMode: <p>Mem0服务使用的LLM提供方</p><p>枚举值：</p><ul><li>tokenhub： 腾讯云大模型服务平台TokenHub</li></ul>
+        # @type LLMMode: String
+        # @param LLMModel: <p>Mem0服务使用的LLM模型</p>
+        # @type LLMModel: String
+        # @param EmbeddingModel: <p>Mem0服务当前使用的Embedding 模型</p>
+        # @type EmbeddingModel: String
+        # @param EmbeddingDims: <p>Embedding 向量维度，目前固定1024</p>
+        # @type EmbeddingDims: Integer
+        # @param PGDatabaseName: <p>Mem0服务使用的PG数据库</p>
+        # @type PGDatabaseName: String
+        # @param PGUserName: <p>Mem0服务使用的PG用户名</p>
+        # @type PGUserName: String
+        # @param NetworkAccessList: <p>Mem0的网络状态</p>
+        # @type NetworkAccessList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :CreateTime, :UpdateTime, :InnerAddress, :AgenticBaseId, :LLMMode, :LLMModel, :EmbeddingModel, :EmbeddingDims, :PGDatabaseName, :PGUserName, :NetworkAccessList, :RequestId
+
+        def initialize(status=nil, createtime=nil, updatetime=nil, inneraddress=nil, agenticbaseid=nil, llmmode=nil, llmmodel=nil, embeddingmodel=nil, embeddingdims=nil, pgdatabasename=nil, pgusername=nil, networkaccesslist=nil, requestid=nil)
+          @Status = status
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @InnerAddress = inneraddress
+          @AgenticBaseId = agenticbaseid
+          @LLMMode = llmmode
+          @LLMModel = llmmodel
+          @EmbeddingModel = embeddingmodel
+          @EmbeddingDims = embeddingdims
+          @PGDatabaseName = pgdatabasename
+          @PGUserName = pgusername
+          @NetworkAccessList = networkaccesslist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @InnerAddress = params['InnerAddress']
+          @AgenticBaseId = params['AgenticBaseId']
+          @LLMMode = params['LLMMode']
+          @LLMModel = params['LLMModel']
+          @EmbeddingModel = params['EmbeddingModel']
+          @EmbeddingDims = params['EmbeddingDims']
+          @PGDatabaseName = params['PGDatabaseName']
+          @PGUserName = params['PGUserName']
+          unless params['NetworkAccessList'].nil?
+            @NetworkAccessList = []
+            params['NetworkAccessList'].each do |i|
+              dbinstancenetinfo_tmp = DBInstanceNetInfo.new
+              dbinstancenetinfo_tmp.deserialize(i)
+              @NetworkAccessList << dbinstancenetinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeOrders请求参数结构体
       class DescribeOrdersRequest < TencentCloud::Common::AbstractModel
         # @param DealNames: 订单名集合
@@ -5134,6 +5294,63 @@ module TencentCloud
               @EventItems << eventitem_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePostgRESTService请求参数结构体
+      class DescribePostgRESTServiceRequest < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: <p>实例ID</p><p>参数格式：postgres-19nmz2xb</p>
+        # @type DBInstanceId: String
+
+        attr_accessor :DBInstanceId
+
+        def initialize(dbinstanceid=nil)
+          @DBInstanceId = dbinstanceid
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+        end
+      end
+
+      # DescribePostgRESTService返回参数结构体
+      class DescribePostgRESTServiceResponse < TencentCloud::Common::AbstractModel
+        # @param Status: <p>PostgREST服务运行状态</p><p>枚举值：</p><ul><li>closed： 已关闭</li><li>creating： 创建中</li><li>running： 运行中</li></ul><p>默认值：closed</p>
+        # @type Status: String
+        # @param CreateTime: <p>创建时间</p><p>参数格式：2026-05-10 10:00:00</p>
+        # @type CreateTime: String
+        # @param NetworkAccessList: <p>PostgREST服务网络连接信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NetworkAccessList: Array
+        # @param JWTSecret: <p>PostgREST服务JWT值</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JWTSecret: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :CreateTime, :NetworkAccessList, :JWTSecret, :RequestId
+
+        def initialize(status=nil, createtime=nil, networkaccesslist=nil, jwtsecret=nil, requestid=nil)
+          @Status = status
+          @CreateTime = createtime
+          @NetworkAccessList = networkaccesslist
+          @JWTSecret = jwtsecret
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @CreateTime = params['CreateTime']
+          unless params['NetworkAccessList'].nil?
+            @NetworkAccessList = []
+            params['NetworkAccessList'].each do |i|
+              dbinstancenetinfo_tmp = DBInstanceNetInfo.new
+              dbinstancenetinfo_tmp.deserialize(i)
+              @NetworkAccessList << dbinstancenetinfo_tmp
+            end
+          end
+          @JWTSecret = params['JWTSecret']
           @RequestId = params['RequestId']
         end
       end
@@ -7549,11 +7766,11 @@ module TencentCloud
 
       # 用于修改数据库对象的权限，其中包含了数据库对象描述的数据结构、需要修改的权限列表以及修改的类型等。
       class ModifyPrivilege < TencentCloud::Common::AbstractModel
-        # @param DatabasePrivilege: 要修改的数据库对象及权限列表
+        # @param DatabasePrivilege: <p>要修改的数据库对象及权限列表</p>
         # @type DatabasePrivilege: :class:`Tencentcloud::Postgres.v20170312.models.DatabasePrivilege`
-        # @param ModifyType: 修改的方式，当前仅支持grantObject、revokeObject、alterRole。grantObject代表授权、revokeObject代表收回权、alterRole代表修改账号类型。
+        # @param ModifyType: <p>修改的方式，当前仅支持grantObject、revokeObject、alterRole、grantRole、revoke，当前仅支持grantObject、revokeObject、alterRole、grantRole、revokeRole。gRole。grantObject代表授权、revokeObject代表收回权、alterRole代表修改账号类型、grantRole代表加入对应角色、revokeRole 代表移出对应角色。</p>
         # @type ModifyType: String
-        # @param IsCascade: 当ModifyType为revokeObject才需要此参数，参数为true时，撤销权限会级联撤销。默认为false。
+        # @param IsCascade: <p>当ModifyType为revokeObject才需要此参数，参数为true时，撤销权限会级联撤销。默认为false。</p>
         # @type IsCascade: Boolean
 
         attr_accessor :DatabasePrivilege, :ModifyType, :IsCascade
@@ -7878,6 +8095,113 @@ module TencentCloud
 
         def deserialize(params)
           @FlowId = params['FlowId']
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # OpenMem0Service请求参数结构体
+      class OpenMem0ServiceRequest < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: <p>实例ID</p>
+        # @type DBInstanceId: String
+        # @param AgenticBaseId: <p>AgenticBaseID，开启Mem0服务前请先开通AgenticBase套餐</p>
+        # @type AgenticBaseId: String
+        # @param LLMModel: <p>Mem0服务使用的LLM模型</p><p>枚举值：</p><ul><li>auto： 自动选择合适的模型</li><li>deepseek-v4-flash： deepseek-v4-flash</li><li>deepseek-v4-pro： deepseek-v4-pro</li><li>glm-5： glm-5</li><li>glm-5-turbo： glm-5-turbo</li><li>glm-5.1： glm-5.1</li><li>kimi-k2.5： kimi-k2.5</li><li>kimi-k2.6： kimi-k2.6</li><li>minimax-m2.5： minimax-m2.5</li><li>minimax-m2.7： minimax-m2.7</li></ul>
+        # @type LLMModel: String
+        # @param EmbeddingApiKey: <p>请前往腾讯云Tokenhub开通服务将ApiKey填入</p>
+        # @type EmbeddingApiKey: String
+
+        attr_accessor :DBInstanceId, :AgenticBaseId, :LLMModel, :EmbeddingApiKey
+
+        def initialize(dbinstanceid=nil, agenticbaseid=nil, llmmodel=nil, embeddingapikey=nil)
+          @DBInstanceId = dbinstanceid
+          @AgenticBaseId = agenticbaseid
+          @LLMModel = llmmodel
+          @EmbeddingApiKey = embeddingapikey
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+          @AgenticBaseId = params['AgenticBaseId']
+          @LLMModel = params['LLMModel']
+          @EmbeddingApiKey = params['EmbeddingApiKey']
+        end
+      end
+
+      # OpenMem0Service返回参数结构体
+      class OpenMem0ServiceResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>开启Mem0服务任务ID</p>
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # OpenPostgRESTService请求参数结构体
+      class OpenPostgRESTServiceRequest < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: <p>实例ID</p>
+        # @type DBInstanceId: String
+        # @param EnableWanNet: <p>是否开启外网</p>
+        # @type EnableWanNet: Boolean
+        # @param RestConfig: <p>PostgREST服务参数</p>
+        # @type RestConfig: Array
+        # @param VpcId: <p>VPC</p><p>参数格式：私有网络ID，形如vpc-e6w23k31。非必选，不传默认使用实例的vpc</p>
+        # @type VpcId: String
+        # @param SubnetId: <p>私有网络子网ID，形如subnet-51lcif9y。非必选，不传则使用实例的子网</p>
+        # @type SubnetId: String
+
+        attr_accessor :DBInstanceId, :EnableWanNet, :RestConfig, :VpcId, :SubnetId
+
+        def initialize(dbinstanceid=nil, enablewannet=nil, restconfig=nil, vpcid=nil, subnetid=nil)
+          @DBInstanceId = dbinstanceid
+          @EnableWanNet = enablewannet
+          @RestConfig = restconfig
+          @VpcId = vpcid
+          @SubnetId = subnetid
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+          @EnableWanNet = params['EnableWanNet']
+          unless params['RestConfig'].nil?
+            @RestConfig = []
+            params['RestConfig'].each do |i|
+              paramentry_tmp = ParamEntry.new
+              paramentry_tmp.deserialize(i)
+              @RestConfig << paramentry_tmp
+            end
+          end
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+        end
+      end
+
+      # OpenPostgRESTService返回参数结构体
+      class OpenPostgRESTServiceResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>开启PostgREST服务任务ID</p>
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end

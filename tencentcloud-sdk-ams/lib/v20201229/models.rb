@@ -283,8 +283,8 @@ module TencentCloud
 
         attr_accessor :Label, :Score, :StartTime, :EndTime, :SubLabelCode, :SubLabel, :Suggestion
         extend Gem::Deprecate
-        deprecate :SubLabelCode, :none, 2026, 8
-        deprecate :SubLabelCode=, :none, 2026, 8
+        deprecate :SubLabelCode, :none, 2026, 9
+        deprecate :SubLabelCode=, :none, 2026, 9
 
         def initialize(label=nil, score=nil, starttime=nil, endtime=nil, sublabelcode=nil, sublabel=nil, suggestion=nil)
           @Label = label
@@ -717,10 +717,9 @@ module TencentCloud
 
       # DescribeTaskDetail请求参数结构体
       class DescribeTaskDetailRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 该字段表示创建音频审核任务后返回的任务ID（在Results参数中），用于标识需要查询任务详情的审核任务。
-        # <br>备注：查询接口单次最大查询量为**20条每次**。
+        # @param TaskId: <p>该字段表示创建音频审核任务后返回的任务ID（在Results参数中），用于标识需要查询任务详情的审核任务。<br><br>备注：查询接口单次最大查询量为<strong>20条每次</strong>。</p>
         # @type TaskId: String
-        # @param ShowAllSegments: 该布尔字段表示是否展示全部的音频片段，取值：True(展示全部的音频分片)、False(只展示命中审核规则的音频分片)；默认值为False。
+        # @param ShowAllSegments: <p>该布尔字段表示是否展示全部的音频片段，取值：True(展示全部的音频分片)、False(只展示命中审核规则的音频分片)；默认值为False。</p>
         # @type ShowAllSegments: Boolean
 
         attr_accessor :TaskId, :ShowAllSegments
@@ -738,47 +737,48 @@ module TencentCloud
 
       # DescribeTaskDetail返回参数结构体
       class DescribeTaskDetailResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 该字段用于返回创建音频审核任务后返回的任务ID（在Results参数中），用于标识需要查询任务详情的审核任务。
+        # @param TaskId: <p>该字段用于返回创建音频审核任务后返回的任务ID（在Results参数中），用于标识需要查询任务详情的审核任务。</p>
         # @type TaskId: String
-        # @param DataId: 该字段用于返回调用音频审核接口时在Tasks参数内传入的数据ID参数，方便数据的辨别和管理。
+        # @param DataId: <p>该字段用于返回调用音频审核接口时在Tasks参数内传入的数据ID参数，方便数据的辨别和管理。</p>
         # @type DataId: String
-        # @param BizType: 该字段用于返回调用音频审核接口时传入的BizType参数，方便数据的辨别和管理。
+        # @param BizType: <p>该字段用于返回调用音频审核接口时传入的BizType参数，方便数据的辨别和管理。</p>
         # @type BizType: String
-        # @param Name: 该字段用于返回调用音频审核接口时传入的TaskInput参数中的任务名称，方便任务的识别与管理。
+        # @param Name: <p>该字段用于返回调用音频审核接口时传入的TaskInput参数中的任务名称，方便任务的识别与管理。</p>
         # @type Name: String
-        # @param Status: 该字段用于返回所查询内容的任务状态。
-        # <br>取值：**FINISH**（任务已完成）、**PENDING** （任务等待中）、**RUNNING** （任务进行中）、**ERROR** （任务出错）、**CANCELLED** （任务已取消）。
+        # @param Status: <p>该字段用于返回所查询内容的任务状态。<br><br>取值：<strong>FINISH</strong>（任务已完成）、<strong>PENDING</strong> （任务等待中）、<strong>RUNNING</strong> （任务进行中）、<strong>ERROR</strong> （任务出错）、<strong>CANCELLED</strong> （任务已取消）。</p>
         # @type Status: String
-        # @param Type: 该字段用于返回调用音频审核接口时输入的音频审核类型，取值为：**AUDIO**（点播音频）和**LIVE_AUDIO**（直播音频），默认值为AUDIO。
+        # @param Type: <p>该字段用于返回调用音频审核接口时输入的音频审核类型，取值为：<strong>AUDIO</strong>（点播音频）和<strong>LIVE_AUDIO</strong>（直播音频），默认值为AUDIO。</p>
         # @type Type: String
-        # @param Suggestion: 该字段用于返回基于恶意标签的后续操作建议。当您获取到判定结果后，返回值表示系统推荐的后续操作；建议您按照业务所需，对不同违规类型与建议值进行处理。<br>返回值：**Block**：建议屏蔽，**Review** ：建议人工复审，**Pass**：建议通过
+        # @param Suggestion: <p>该字段用于返回基于恶意标签的后续操作建议。当您获取到判定结果后，返回值表示系统推荐的后续操作；建议您按照业务所需，对不同违规类型与建议值进行处理。<br>返回值：<strong>Block</strong>：建议屏蔽，<strong>Review</strong> ：建议人工复审，<strong>Pass</strong>：建议通过</p>
         # @type Suggestion: String
-        # @param Labels: 该字段用于返回检测结果所对应的恶意标签。<br>返回值：**Porn**：色情，**Abuse**：谩骂，**Ad**：广告，**Custom**：自定义违规；以及其他令人反感、不安全或不适宜的内容类型。
+        # @param Labels: <p>该字段用于返回检测结果所对应的恶意标签。<br>返回值：<strong>Porn</strong>：色情，<strong>Abuse</strong>：谩骂，<strong>Ad</strong>：广告，<strong>Custom</strong>：自定义违规；以及其他令人反感、不安全或不适宜的内容类型。</p>
         # @type Labels: Array
-        # @param InputInfo: 该字段用于返回审核服务的媒体内容信息，主要包括传入文件类型和访问地址。
+        # @param InputInfo: <p>该字段用于返回审核服务的媒体内容信息，主要包括传入文件类型和访问地址。</p>
         # @type InputInfo: :class:`Tencentcloud::Ams.v20201229.models.InputInfo`
-        # @param AudioText: 该字段用于返回音频文件识别出的对应文本内容，最大支持**前1000个字符**。
+        # @param AudioText: <p>该字段用于返回音频文件识别出的对应文本内容，最大支持<strong>前1000个字符</strong>。</p>
         # @type AudioText: String
-        # @param AudioSegments: 该字段用于返回音频片段的审核结果，主要包括开始时间和音频审核的相应结果。<br>具体输出内容请参见AudioSegments及AudioResult数据结构的详细描述。
+        # @param AudioSegments: <p>该字段用于返回音频片段的审核结果，主要包括开始时间和音频审核的相应结果。<br>具体输出内容请参见AudioSegments及AudioResult数据结构的详细描述。</p>
         # @type AudioSegments: Array
-        # @param ErrorType: 当任务状态为Error时，该字段用于返回对应错误的类型；任务状态非Error时，默认返回为空。
+        # @param ErrorType: <p>当任务状态为Error时，该字段用于返回对应错误的类型；任务状态非Error时，默认返回为空。</p>
         # @type ErrorType: String
-        # @param ErrorDescription: 当任务状态为Error时，该字段用于返回对应错误的详细描述，任务状态非Error时默认返回为空。
+        # @param ErrorDescription: <p>当任务状态为Error时，该字段用于返回对应错误的详细描述，任务状态非Error时默认返回为空。</p>
         # @type ErrorDescription: String
-        # @param CreatedAt: 该字段用于返回被查询任务创建的时间，格式采用 ISO 8601标准。
+        # @param CreatedAt: <p>该字段用于返回被查询任务创建的时间，格式采用 ISO 8601标准。</p>
         # @type CreatedAt: String
-        # @param UpdatedAt: 该字段用于返回被查询任务最后更新时间，格式采用 ISO 8601标准。
+        # @param UpdatedAt: <p>该字段用于返回被查询任务最后更新时间，格式采用 ISO 8601标准。</p>
         # @type UpdatedAt: String
-        # @param Label: 该字段用于返回检测结果所对应的标签。如果未命中恶意，返回Normal，如果命中恶意，则返回Labels中优先级最高的标签
+        # @param Label: <p>该字段用于返回检测结果所对应的标签。如果未命中恶意，返回Normal，如果命中恶意，则返回Labels中优先级最高的标签</p>
         # @type Label: String
-        # @param MediaInfo: 媒体信息
+        # @param MediaInfo: <p>媒体信息</p>
         # @type MediaInfo: :class:`Tencentcloud::Ams.v20201229.models.MediaInfo`
+        # @param HitSnippetInfos: <p>命中信息</p>
+        # @type HitSnippetInfos: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskId, :DataId, :BizType, :Name, :Status, :Type, :Suggestion, :Labels, :InputInfo, :AudioText, :AudioSegments, :ErrorType, :ErrorDescription, :CreatedAt, :UpdatedAt, :Label, :MediaInfo, :RequestId
+        attr_accessor :TaskId, :DataId, :BizType, :Name, :Status, :Type, :Suggestion, :Labels, :InputInfo, :AudioText, :AudioSegments, :ErrorType, :ErrorDescription, :CreatedAt, :UpdatedAt, :Label, :MediaInfo, :HitSnippetInfos, :RequestId
 
-        def initialize(taskid=nil, dataid=nil, biztype=nil, name=nil, status=nil, type=nil, suggestion=nil, labels=nil, inputinfo=nil, audiotext=nil, audiosegments=nil, errortype=nil, errordescription=nil, createdat=nil, updatedat=nil, label=nil, mediainfo=nil, requestid=nil)
+        def initialize(taskid=nil, dataid=nil, biztype=nil, name=nil, status=nil, type=nil, suggestion=nil, labels=nil, inputinfo=nil, audiotext=nil, audiosegments=nil, errortype=nil, errordescription=nil, createdat=nil, updatedat=nil, label=nil, mediainfo=nil, hitsnippetinfos=nil, requestid=nil)
           @TaskId = taskid
           @DataId = dataid
           @BizType = biztype
@@ -796,6 +796,7 @@ module TencentCloud
           @UpdatedAt = updatedat
           @Label = label
           @MediaInfo = mediainfo
+          @HitSnippetInfos = hitsnippetinfos
           @RequestId = requestid
         end
 
@@ -836,6 +837,14 @@ module TencentCloud
           unless params['MediaInfo'].nil?
             @MediaInfo = MediaInfo.new
             @MediaInfo.deserialize(params['MediaInfo'])
+          end
+          unless params['HitSnippetInfos'].nil?
+            @HitSnippetInfos = []
+            params['HitSnippetInfos'].each do |i|
+              hitsnippetinfos_tmp = HitSnippetInfos.new
+              hitsnippetinfos_tmp.deserialize(i)
+              @HitSnippetInfos << hitsnippetinfos_tmp
+            end
           end
           @RequestId = params['RequestId']
         end
@@ -911,6 +920,26 @@ module TencentCloud
         end
       end
 
+      # 命中音频时间位置
+      class Duration < TencentCloud::Common::AbstractModel
+        # @param Start: <p>开始时间</p><p>单位：秒</p>
+        # @type Start: Float
+        # @param End: <p>结束时间</p><p>单位：秒</p>
+        # @type End: Float
+
+        attr_accessor :Start, :End
+
+        def initialize(start=nil, _end=nil)
+          @Start = start
+          @End = _end
+        end
+
+        def deserialize(params)
+          @Start = params['Start']
+          @End = params['End']
+        end
+      end
+
       # 关键词命中位置信息
       class HitInfo < TencentCloud::Common::AbstractModel
         # @param Type: 标识模型命中还是关键词命中
@@ -946,6 +975,76 @@ module TencentCloud
         end
       end
 
+      # 机审命中信息
+      class HitSnippetInfos < TencentCloud::Common::AbstractModel
+        # @param Target: <p>命中内容</p>
+        # @type Target: String
+        # @param Snippet: <p>文本命中的文本块</p>
+        # @type Snippet: String
+        # @param Scene: <p>命中场景</p>
+        # @type Scene: String
+        # @param AtomicCategory: <p>命中类型</p>
+        # @type AtomicCategory: String
+        # @param AtomicName: <p>命中类型库/模型名称</p>
+        # @type AtomicName: String
+        # @param AtomicId: <p>命中原子能力</p>
+        # @type AtomicId: String
+        # @param UnitId: <p>命中单位</p>
+        # @type UnitId: String
+        # @param UnitName: <p>命中单位名称</p>
+        # @type UnitName: String
+        # @param ParticleId: <p>命中颗粒ID</p>
+        # @type ParticleId: String
+        # @param Positions: <p>命中文本在原文起始位置</p>
+        # @type Positions: Array
+        # @param Duration: <p>命中音时间位置</p>
+        # @type Duration: :class:`Tencentcloud::Ams.v20201229.models.Duration`
+        # @param Score: <p>分数</p>
+        # @type Score: Integer
+
+        attr_accessor :Target, :Snippet, :Scene, :AtomicCategory, :AtomicName, :AtomicId, :UnitId, :UnitName, :ParticleId, :Positions, :Duration, :Score
+
+        def initialize(target=nil, snippet=nil, scene=nil, atomiccategory=nil, atomicname=nil, atomicid=nil, unitid=nil, unitname=nil, particleid=nil, positions=nil, duration=nil, score=nil)
+          @Target = target
+          @Snippet = snippet
+          @Scene = scene
+          @AtomicCategory = atomiccategory
+          @AtomicName = atomicname
+          @AtomicId = atomicid
+          @UnitId = unitid
+          @UnitName = unitname
+          @ParticleId = particleid
+          @Positions = positions
+          @Duration = duration
+          @Score = score
+        end
+
+        def deserialize(params)
+          @Target = params['Target']
+          @Snippet = params['Snippet']
+          @Scene = params['Scene']
+          @AtomicCategory = params['AtomicCategory']
+          @AtomicName = params['AtomicName']
+          @AtomicId = params['AtomicId']
+          @UnitId = params['UnitId']
+          @UnitName = params['UnitName']
+          @ParticleId = params['ParticleId']
+          unless params['Positions'].nil?
+            @Positions = []
+            params['Positions'].each do |i|
+              position_tmp = Position.new
+              position_tmp.deserialize(i)
+              @Positions << position_tmp
+            end
+          end
+          unless params['Duration'].nil?
+            @Duration = Duration.new
+            @Duration.deserialize(params['Duration'])
+          end
+          @Score = params['Score']
+        end
+      end
+
       # 输入信息详情
       class InputInfo < TencentCloud::Common::AbstractModel
         # @param Type: <p>该字段表示文件访问类型，取值为<strong>URL</strong>（资源链接）和<strong>COS</strong> (腾讯云对象存储)。</p>
@@ -959,15 +1058,21 @@ module TencentCloud
         # @type ImageUrlList: Array
         # @param TextContent: <p>大模型审核场景下，base64编码的审核要求内容</p>
         # @type TextContent: String
+        # @param Title: <p>标题</p>
+        # @type Title: String
+        # @param Extra: <p>其他信息</p>
+        # @type Extra: String
 
-        attr_accessor :Type, :Url, :BucketInfo, :ImageUrlList, :TextContent
+        attr_accessor :Type, :Url, :BucketInfo, :ImageUrlList, :TextContent, :Title, :Extra
 
-        def initialize(type=nil, url=nil, bucketinfo=nil, imageurllist=nil, textcontent=nil)
+        def initialize(type=nil, url=nil, bucketinfo=nil, imageurllist=nil, textcontent=nil, title=nil, extra=nil)
           @Type = type
           @Url = url
           @BucketInfo = bucketinfo
           @ImageUrlList = imageurllist
           @TextContent = textcontent
+          @Title = title
+          @Extra = extra
         end
 
         def deserialize(params)
@@ -979,6 +1084,8 @@ module TencentCloud
           end
           @ImageUrlList = params['ImageUrlList']
           @TextContent = params['TextContent']
+          @Title = params['Title']
+          @Extra = params['Extra']
         end
       end
 
@@ -1165,14 +1272,14 @@ module TencentCloud
 
       # 说话人结果
       class SpeakerResults < TencentCloud::Common::AbstractModel
-        # @param Label: 标签
+        # @param Label: <p>标签</p>
         # @type Label: String
-        # @param Score: 得分
+        # @param Score: <p>得分</p>
         # @type Score: Integer
-        # @param StartTime: 开始时间
+        # @param StartTime: <p>开始时间</p>
         # @type StartTime: Float
-        # @param EndTime: 结束时间
-        # @type EndTime: String
+        # @param EndTime: <p>结束时间</p>
+        # @type EndTime: Float
 
         attr_accessor :Label, :Score, :StartTime, :EndTime
 

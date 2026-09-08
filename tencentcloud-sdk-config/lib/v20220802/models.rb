@@ -3878,12 +3878,17 @@ module TencentCloud
 
       # OpenConfigRecorder请求参数结构体
       class OpenConfigRecorderRequest < TencentCloud::Common::AbstractModel
+        # @param FromMode: <p>1:从控制中心调用</p>
+        # @type FromMode: Integer
 
+        attr_accessor :FromMode
 
-        def initialize()
+        def initialize(frommode=nil)
+          @FromMode = frommode
         end
 
         def deserialize(params)
+          @FromMode = params['FromMode']
         end
       end
 

@@ -560,31 +560,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建虚拟服务器
-        # 创建流程为先调用[DescribeVmSpec](https://cloud.tencent.com/document/product/876/129360)获取可购买的规格，同时调用[DescribeBlueprints](https://cloud.tencent.com/document/product/1207/47689)拉取镜像列表，选中一个规格和一个镜像后，调用[InquireVmPrice](https://cloud.tencent.com/document/product/876/129759)询价，如果价格可接受，调用此接口创建实例
-
-        # @param request: Request instance for CreateVmInstance.
-        # @type request: :class:`Tencentcloud::tcb::V20180608::CreateVmInstanceRequest`
-        # @rtype: :class:`Tencentcloud::tcb::V20180608::CreateVmInstanceResponse`
-        def CreateVmInstance(request)
-          body = send_request('CreateVmInstance', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = CreateVmInstanceResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 删除 AI 模型配置分组，支持批量删除。内置分组无法删除。分组删除后，该分组下的所有模型配置将同步移除，针对该分组模型的请求将会失败，请在删除前确认业务侧已停止对该分组的调用。
 
         # 注意：
@@ -799,30 +774,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteUsersResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 销毁云服务器实例
-
-        # @param request: Request instance for DeleteVmInstance.
-        # @type request: :class:`Tencentcloud::tcb::V20180608::DeleteVmInstanceRequest`
-        # @rtype: :class:`Tencentcloud::tcb::V20180608::DeleteVmInstanceResponse`
-        def DeleteVmInstance(request)
-          body = send_request('DeleteVmInstance', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DeleteVmInstanceResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1437,6 +1388,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口DescribeHTTPServiceCachePurgeTask为只读查询，不修改任何缓存或环境资源，仅返回指定环境下域名缓存刷新任务的状态与时间等信息。通过PurgeHTTPServiceCache清除域名缓存后，可通过此接口传入任务id可查询清除任务状态、时间、缓存类型等信息。也可通过此接口查询历史任务记录。
+
+        # @param request: Request instance for DescribeHTTPServiceCachePurgeTask.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeHTTPServiceCachePurgeTaskRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribeHTTPServiceCachePurgeTaskResponse`
+        def DescribeHTTPServiceCachePurgeTask(request)
+          body = send_request('DescribeHTTPServiceCachePurgeTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeHTTPServiceCachePurgeTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口DescribeHTTPServiceRoute用于查询环境下HTTP访问服务路由信息。可通过Filters过滤。如果不存在不会返回错误。HTTP访问服务提供了默认域名，通过本接口可直接获取默认域名。前置需已开通 HTTP 访问服务；调用CreateHTTPServiceRoute或者ModifyHTTPServiceRoute后可使用本接口查询创建或者修改结果
 
         # @param request: Request instance for DescribeHTTPServiceRoute.
@@ -1786,54 +1761,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询环境下的云服务器列表
-
-        # @param request: Request instance for DescribeVmInstances.
-        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeVmInstancesRequest`
-        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribeVmInstancesResponse`
-        def DescribeVmInstances(request)
-          body = send_request('DescribeVmInstances', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeVmInstancesResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 云服务器规格list
-
-        # @param request: Request instance for DescribeVmSpec.
-        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeVmSpecRequest`
-        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribeVmSpecResponse`
-        def DescribeVmSpec(request)
-          body = send_request('DescribeVmSpec', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeVmSpecResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 本接口用于销毁云开发环境。
         # 云开发环境遵循腾讯云包年包月预付费产品生命周期，因此环境销毁需要分两步：
         # 1. 资源退费。此时会根据当前环境剩余有效期，自动退还相关费用(代金券不退)。退款后，环境进入隔离期。
@@ -1951,30 +1878,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = GetProvidersResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 查询服务器价格
-
-        # @param request: Request instance for InquireVmPrice.
-        # @type request: :class:`Tencentcloud::tcb::V20180608::InquireVmPriceRequest`
-        # @rtype: :class:`Tencentcloud::tcb::V20180608::InquireVmPriceResponse`
-        def InquireVmPrice(request)
-          body = send_request('InquireVmPrice', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = InquireVmPriceResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2398,6 +2301,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = PreviewPGUserMigrationsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口PurgeHTTPServiceCache为异步操作，清除指定环境下 HTTPService 域名的缓存，操作不可逆，仅影响指定 Domain 的缓存命中，不影响源站数据。用于清除HTTP访问服务域名缓存。支持刷新CDN和EO两种类型。清除缓存后会生成任务id，通过DescribeHTTPServiceCachePurgeTask传入任务id可查询任务进度和详细信息。
+
+        # @param request: Request instance for PurgeHTTPServiceCache.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::PurgeHTTPServiceCacheRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::PurgeHTTPServiceCacheResponse`
+        def PurgeHTTPServiceCache(request)
+          body = send_request('PurgeHTTPServiceCache', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = PurgeHTTPServiceCacheResponse.new
             model.deserialize(response['Response'])
             model
           else

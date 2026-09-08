@@ -2549,13 +2549,13 @@ module TencentCloud
 
       # CreateUserSig请求参数结构体
       class CreateUserSigRequest < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
+        # @param SdkAppId: <p>应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc</p>
         # @type SdkAppId: Integer
-        # @param Uid: 用户 ID，该值必须与 ClientData 字段中 Uid 的值一致
+        # @param Uid: <p>用户 ID</p>
         # @type Uid: String
-        # @param ClientData: 用户签名数据，必填字段，为标准 JSON 格式
+        # @param ClientData: <p>用户签名数据</p>
         # @type ClientData: String
-        # @param ExpiredTime: 有效期，单位秒，不超过 1 小时
+        # @param ExpiredTime: <p>有效期，单位秒，不超过 1 小时</p>
         # @type ExpiredTime: Integer
 
         attr_accessor :SdkAppId, :Uid, :ClientData, :ExpiredTime
@@ -2577,7 +2577,7 @@ module TencentCloud
 
       # CreateUserSig返回参数结构体
       class CreateUserSigResponse < TencentCloud::Common::AbstractModel
-        # @param UserSig: 签名结果
+        # @param UserSig: <p>签名结果</p>
         # @type UserSig: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

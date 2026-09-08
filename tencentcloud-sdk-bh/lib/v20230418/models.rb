@@ -4210,9 +4210,9 @@ module TencentCloud
 
       # DescribeSourceTypes返回参数结构体
       class DescribeSourceTypesResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 认证源总数
+        # @param TotalCount: <p>认证源总数</p>
         # @type TotalCount: Integer
-        # @param SourceTypeSet: 认证源信息
+        # @param SourceTypeSet: <p>认证源信息</p>
         # @type SourceTypeSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6524,27 +6524,25 @@ module TencentCloud
 
       # ModifyUser请求参数结构体
       class ModifyUserRequest < TencentCloud::Common::AbstractModel
-        # @param Id: 用户ID
+        # @param Id: <p>用户ID</p>
         # @type Id: Integer
-        # @param RealName: 用户姓名，最大长度20个字符，不能包含空格
+        # @param RealName: <p>用户姓名，最大长度20个字符，不能包含空格</p>
         # @type RealName: String
-        # @param Phone: 按照"国家地区代码|手机号"的格式输入。如: "+86|xxxxxxxx"
+        # @param Phone: <p>按照&quot;国家地区代码|手机号&quot;的格式输入。如: &quot;+86|xxxxxxxx&quot;</p>
         # @type Phone: String
-        # @param Email: 电子邮件
+        # @param Email: <p>电子邮件</p>
         # @type Email: String
-        # @param ValidateFrom: 用户生效时间，如:"2021-09-22T00:00:00+00:00"
-        # 生效、失效时间不填则用户长期有效
+        # @param ValidateFrom: <p>用户生效时间，如:&quot;2021-09-22T00:00:00+00:00&quot;<br>生效、失效时间不填则用户长期有效</p>
         # @type ValidateFrom: String
-        # @param ValidateTo: 用户失效时间，如:"2021-09-23T00:00:00+00:00"
-        # 生效、失效时间不填则用户长期有效
+        # @param ValidateTo: <p>用户失效时间，如:&quot;2021-09-23T00:00:00+00:00&quot;<br>生效、失效时间不填则用户长期有效</p>
         # @type ValidateTo: String
-        # @param GroupIdSet: 所属用户组ID集合
+        # @param GroupIdSet: <p>所属用户组ID集合</p>
         # @type GroupIdSet: Array
-        # @param AuthType: 认证方式，0 - 本地，1 - LDAP，2 - OAuth 不传则默认为0
+        # @param AuthType: <p>认证方式，0 - 本地，1 - LDAP，2 - OAuth 不传则默认为0</p>
         # @type AuthType: Integer
-        # @param ValidateTime: 访问时间段限制， 由0、1组成的字符串，长度168(7 × 24)，代表该用户在一周中允许访问的时间段。字符串中第N个字符代表在一周中的第N个小时， 0 - 代表不允许访问，1 - 代表允许访问
+        # @param ValidateTime: <p>访问时间段限制， 由0、1组成的字符串，长度168(7 × 24)，代表该用户在一周中允许访问的时间段。字符串中第N个字符代表在一周中的第N个小时， 0 - 代表不允许访问，1 - 代表允许访问</p>
         # @type ValidateTime: String
-        # @param DepartmentId: 用户所属部门的ID，如1.2.3
+        # @param DepartmentId: <p>用户所属部门的ID，如1.2.3</p>
         # @type DepartmentId: String
 
         attr_accessor :Id, :RealName, :Phone, :Email, :ValidateFrom, :ValidateTo, :GroupIdSet, :AuthType, :ValidateTime, :DepartmentId

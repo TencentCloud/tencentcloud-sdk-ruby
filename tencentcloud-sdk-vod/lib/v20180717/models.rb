@@ -15446,11 +15446,11 @@ module TencentCloud
 
       # DescribeCurrentPlaylist请求参数结构体
       class DescribeCurrentPlaylistRequest < TencentCloud::Common::AbstractModel
-        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。</b>
+        # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。</b></p>
         # @type SubAppId: Integer
-        # @param RoundPlayId: 轮播播单唯一标识。
+        # @param RoundPlayId: <p>轮播播单唯一标识。</p>
         # @type RoundPlayId: String
-        # @param Limit: 返回的播放列表的长度。最大10，默认值为5。
+        # @param Limit: <p>返回的播放列表的长度。最大10，默认值为5。</p>
         # @type Limit: Integer
 
         attr_accessor :SubAppId, :RoundPlayId, :Limit
@@ -15470,7 +15470,7 @@ module TencentCloud
 
       # DescribeCurrentPlaylist返回参数结构体
       class DescribeCurrentPlaylistResponse < TencentCloud::Common::AbstractModel
-        # @param CurrentPlaylist: 当前播放列表信息。
+        # @param CurrentPlaylist: <p>当前播放列表信息。</p>
         # @type CurrentPlaylist: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

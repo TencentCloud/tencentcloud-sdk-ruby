@@ -15100,10 +15100,12 @@ module TencentCloud
         # @type CMRPrivateNetworkTunnelId: String
         # @param Capability: <p>对应模型的能力</p><p>枚举值：</p><ul><li>chat： 生文能力</li><li>embedding： 向量能力</li></ul>
         # @type Capability: String
+        # @param EndpointPath: <p>端点路径</p>
+        # @type EndpointPath: String
 
-        attr_accessor :Models, :ProviderKey, :ProviderKeyId, :AccessType, :ModelProvider, :ModelProtocol, :ApiBase, :HostHeader, :ServiceProviderId, :VerifySSL, :HealthCheckProtocol, :CMRPrivateNetworkTunnelId, :Capability
+        attr_accessor :Models, :ProviderKey, :ProviderKeyId, :AccessType, :ModelProvider, :ModelProtocol, :ApiBase, :HostHeader, :ServiceProviderId, :VerifySSL, :HealthCheckProtocol, :CMRPrivateNetworkTunnelId, :Capability, :EndpointPath
 
-        def initialize(models=nil, providerkey=nil, providerkeyid=nil, accesstype=nil, modelprovider=nil, modelprotocol=nil, apibase=nil, hostheader=nil, serviceproviderid=nil, verifyssl=nil, healthcheckprotocol=nil, cmrprivatenetworktunnelid=nil, capability=nil)
+        def initialize(models=nil, providerkey=nil, providerkeyid=nil, accesstype=nil, modelprovider=nil, modelprotocol=nil, apibase=nil, hostheader=nil, serviceproviderid=nil, verifyssl=nil, healthcheckprotocol=nil, cmrprivatenetworktunnelid=nil, capability=nil, endpointpath=nil)
           @Models = models
           @ProviderKey = providerkey
           @ProviderKeyId = providerkeyid
@@ -15117,6 +15119,7 @@ module TencentCloud
           @HealthCheckProtocol = healthcheckprotocol
           @CMRPrivateNetworkTunnelId = cmrprivatenetworktunnelid
           @Capability = capability
+          @EndpointPath = endpointpath
         end
 
         def deserialize(params)
@@ -15133,6 +15136,7 @@ module TencentCloud
           @HealthCheckProtocol = params['HealthCheckProtocol']
           @CMRPrivateNetworkTunnelId = params['CMRPrivateNetworkTunnelId']
           @Capability = params['Capability']
+          @EndpointPath = params['EndpointPath']
         end
       end
 

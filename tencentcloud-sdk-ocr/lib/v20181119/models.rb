@@ -7668,10 +7668,10 @@ module TencentCloud
 
       # 头像照片和坐标
       class PortraitImageInfo < TencentCloud::Common::AbstractModel
-        # @param PortraitImage: 头像
+        # @param PortraitImage: <p>头像</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PortraitImage: String
-        # @param ImageCoordinates: 头像坐标
+        # @param ImageCoordinates: <p>头像坐标</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageCoordinates: :class:`Tencentcloud::Ocr.v20181119.models.ImageCoordinates`
 

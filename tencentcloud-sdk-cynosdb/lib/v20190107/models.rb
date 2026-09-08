@@ -9383,14 +9383,17 @@ module TencentCloud
         # @type DeviceType: String
         # @param ClusterLevel: <p>集群级别。例如 P0, P1。若未指定可用区，针对于不支持亲和性的可用区将降级查询非亲和性资源。</p>
         # @type ClusterLevel: String
+        # @param Zone: <p>可用区</p>
+        # @type Zone: String
 
-        attr_accessor :DbType, :IncludeZoneStocks, :DeviceType, :ClusterLevel
+        attr_accessor :DbType, :IncludeZoneStocks, :DeviceType, :ClusterLevel, :Zone
 
-        def initialize(dbtype=nil, includezonestocks=nil, devicetype=nil, clusterlevel=nil)
+        def initialize(dbtype=nil, includezonestocks=nil, devicetype=nil, clusterlevel=nil, zone=nil)
           @DbType = dbtype
           @IncludeZoneStocks = includezonestocks
           @DeviceType = devicetype
           @ClusterLevel = clusterlevel
+          @Zone = zone
         end
 
         def deserialize(params)
@@ -9398,6 +9401,7 @@ module TencentCloud
           @IncludeZoneStocks = params['IncludeZoneStocks']
           @DeviceType = params['DeviceType']
           @ClusterLevel = params['ClusterLevel']
+          @Zone = params['Zone']
         end
       end
 

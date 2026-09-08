@@ -6169,24 +6169,27 @@ module TencentCloud
 
       # CreateScanMalwareSetting请求参数结构体
       class CreateScanMalwareSettingRequest < TencentCloud::Common::AbstractModel
-        # @param ScanPattern: 扫描模式 0 全盘扫描, 1 快速扫描
+        # @param ScanPattern: <p>扫描模式 0 全盘扫描, 1 快速扫描</p>
         # @type ScanPattern: Integer
-        # @param HostType: 服务器分类：1:专业版服务器；2:自选服务器
+        # @param HostType: <p>服务器分类：1:专业版服务器；2:自选服务器</p>
         # @type HostType: Integer
-        # @param QuuidList: 自选服务器时生效，主机quuid的string数组
+        # @param CustomPaths: <p>自定义路径列表，仅ScanPattern=2/3时生效：2表示仅扫描这些路径，3表示扫描时排除这些路径。最少1条，最多200条</p>
+        # @type CustomPaths: Array
+        # @param QuuidList: <p>自选服务器时生效，主机quuid的string数组</p>
         # @type QuuidList: Array
-        # @param TimeoutPeriod: 超时时间单位 秒 默认3600 秒
+        # @param TimeoutPeriod: <p>超时时间单位 秒 默认3600 秒</p>
         # @type TimeoutPeriod: Integer
-        # @param EngineType: 1标准模式（只报严重、高危）、2增强模式（报严重、高危、中危）、3严格模式（报严重、高、中、低、提示）
+        # @param EngineType: <p>1标准模式（只报严重、高危）、2增强模式（报严重、高危、中危）、3严格模式（报严重、高、中、低、提示）</p>
         # @type EngineType: Integer
-        # @param EnableMemShellScan: 是否开启恶意进程查杀[0:未开启,1:开启]
+        # @param EnableMemShellScan: <p>是否开启恶意进程查杀[0:未开启,1:开启]</p>
         # @type EnableMemShellScan: Integer
 
-        attr_accessor :ScanPattern, :HostType, :QuuidList, :TimeoutPeriod, :EngineType, :EnableMemShellScan
+        attr_accessor :ScanPattern, :HostType, :CustomPaths, :QuuidList, :TimeoutPeriod, :EngineType, :EnableMemShellScan
 
-        def initialize(scanpattern=nil, hosttype=nil, quuidlist=nil, timeoutperiod=nil, enginetype=nil, enablememshellscan=nil)
+        def initialize(scanpattern=nil, hosttype=nil, custompaths=nil, quuidlist=nil, timeoutperiod=nil, enginetype=nil, enablememshellscan=nil)
           @ScanPattern = scanpattern
           @HostType = hosttype
+          @CustomPaths = custompaths
           @QuuidList = quuidlist
           @TimeoutPeriod = timeoutperiod
           @EngineType = enginetype
@@ -6196,6 +6199,7 @@ module TencentCloud
         def deserialize(params)
           @ScanPattern = params['ScanPattern']
           @HostType = params['HostType']
+          @CustomPaths = params['CustomPaths']
           @QuuidList = params['QuuidList']
           @TimeoutPeriod = params['TimeoutPeriod']
           @EngineType = params['EngineType']
@@ -6205,7 +6209,7 @@ module TencentCloud
 
       # CreateScanMalwareSetting返回参数结构体
       class CreateScanMalwareSettingResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务id
+        # @param TaskId: <p>任务id</p>
         # @type TaskId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -18484,6 +18488,8 @@ module TencentCloud
       class DescribeMalwareTimingScanSettingResponse < TencentCloud::Common::AbstractModel
         # @param CheckPattern: <p>检测模式 0 全盘检测  1快速检测</p>
         # @type CheckPattern: Integer
+        # @param CustomPaths: <p>自定义路径列表，CheckPattern=2/3时生效</p>
+        # @type CustomPaths: Array
         # @param StartTime: <p>检测周期 开始时间</p>
         # @type StartTime: String
         # @param EndTime: <p>检测周期 超时结束时间</p>
@@ -18494,6 +18500,8 @@ module TencentCloud
         # @type QuuidList: Array
         # @param MonitoringPattern: <p>监控模式 0 标准 1深度</p>
         # @type MonitoringPattern: Integer
+        # @param MonitorCustomPaths: <p>监控自定义路径列表，MonitoringPattern=2/3时生效</p>
+        # @type MonitorCustomPaths: Array
         # @param Cycle: <p>周期 1每天</p>
         # @type Cycle: Integer
         # @param EnableScan: <p>定时检测开关 0 关闭1 开启</p>
@@ -18527,15 +18535,17 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :CheckPattern, :StartTime, :EndTime, :IsGlobal, :QuuidList, :MonitoringPattern, :Cycle, :EnableScan, :Id, :RealTimeMonitoring, :AutoIsolation, :ClickTimeout, :KillProcess, :EngineType, :EnableInspiredEngine, :EnableMemShellScan, :ProtectMode, :ProtectFileScope, :DoClean, :QuaraUuids, :QuaraScope, :RequestId
+        attr_accessor :CheckPattern, :CustomPaths, :StartTime, :EndTime, :IsGlobal, :QuuidList, :MonitoringPattern, :MonitorCustomPaths, :Cycle, :EnableScan, :Id, :RealTimeMonitoring, :AutoIsolation, :ClickTimeout, :KillProcess, :EngineType, :EnableInspiredEngine, :EnableMemShellScan, :ProtectMode, :ProtectFileScope, :DoClean, :QuaraUuids, :QuaraScope, :RequestId
 
-        def initialize(checkpattern=nil, starttime=nil, endtime=nil, isglobal=nil, quuidlist=nil, monitoringpattern=nil, cycle=nil, enablescan=nil, id=nil, realtimemonitoring=nil, autoisolation=nil, clicktimeout=nil, killprocess=nil, enginetype=nil, enableinspiredengine=nil, enablememshellscan=nil, protectmode=nil, protectfilescope=nil, doclean=nil, quarauuids=nil, quarascope=nil, requestid=nil)
+        def initialize(checkpattern=nil, custompaths=nil, starttime=nil, endtime=nil, isglobal=nil, quuidlist=nil, monitoringpattern=nil, monitorcustompaths=nil, cycle=nil, enablescan=nil, id=nil, realtimemonitoring=nil, autoisolation=nil, clicktimeout=nil, killprocess=nil, enginetype=nil, enableinspiredengine=nil, enablememshellscan=nil, protectmode=nil, protectfilescope=nil, doclean=nil, quarauuids=nil, quarascope=nil, requestid=nil)
           @CheckPattern = checkpattern
+          @CustomPaths = custompaths
           @StartTime = starttime
           @EndTime = endtime
           @IsGlobal = isglobal
           @QuuidList = quuidlist
           @MonitoringPattern = monitoringpattern
+          @MonitorCustomPaths = monitorcustompaths
           @Cycle = cycle
           @EnableScan = enablescan
           @Id = id
@@ -18556,11 +18566,13 @@ module TencentCloud
 
         def deserialize(params)
           @CheckPattern = params['CheckPattern']
+          @CustomPaths = params['CustomPaths']
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
           @IsGlobal = params['IsGlobal']
           @QuuidList = params['QuuidList']
           @MonitoringPattern = params['MonitoringPattern']
+          @MonitorCustomPaths = params['MonitorCustomPaths']
           @Cycle = params['Cycle']
           @EnableScan = params['EnableScan']
           @Id = params['Id']
@@ -35208,6 +35220,10 @@ module TencentCloud
         # @type Cycle: Integer
         # @param RealTimeMonitoring: <p>实时监控 0 关闭 1开启</p>
         # @type RealTimeMonitoring: Integer
+        # @param CustomPaths: <p>自定义路径列表，仅CheckPattern=2/3时生效：2表示仅检测这些路径，3表示检测时排除这些路径。最少1条，最多200条</p>
+        # @type CustomPaths: Array
+        # @param MonitorCustomPaths: <p>监控自定义路径列表，仅MonitoringPattern=2/3时生效：2表示仅监控这些路径，3表示监控时排除这些路径。最少1条，最多200条</p>
+        # @type MonitorCustomPaths: Array
         # @param QuuidList: <p>自选服务器时必须 主机quuid的string数组</p>
         # @type QuuidList: Array
         # @param AutoIsolation: <p>是否自动隔离 1隔离 0 不隔离</p>
@@ -35233,9 +35249,9 @@ module TencentCloud
         # @param ProductType: <p>产品类型 0-主机安全(默认) 1-安全中心</p>
         # @type ProductType: Integer
 
-        attr_accessor :CheckPattern, :StartTime, :EndTime, :IsGlobal, :EnableScan, :MonitoringPattern, :Cycle, :RealTimeMonitoring, :QuuidList, :AutoIsolation, :KillProcess, :DoClean, :EngineType, :EnableInspiredEngine, :EnableMemShellScan, :ProtectMode, :ProtectFileScope, :QuaraUuids, :QuaraScope, :ProductType
+        attr_accessor :CheckPattern, :StartTime, :EndTime, :IsGlobal, :EnableScan, :MonitoringPattern, :Cycle, :RealTimeMonitoring, :CustomPaths, :MonitorCustomPaths, :QuuidList, :AutoIsolation, :KillProcess, :DoClean, :EngineType, :EnableInspiredEngine, :EnableMemShellScan, :ProtectMode, :ProtectFileScope, :QuaraUuids, :QuaraScope, :ProductType
 
-        def initialize(checkpattern=nil, starttime=nil, endtime=nil, isglobal=nil, enablescan=nil, monitoringpattern=nil, cycle=nil, realtimemonitoring=nil, quuidlist=nil, autoisolation=nil, killprocess=nil, doclean=nil, enginetype=nil, enableinspiredengine=nil, enablememshellscan=nil, protectmode=nil, protectfilescope=nil, quarauuids=nil, quarascope=nil, producttype=nil)
+        def initialize(checkpattern=nil, starttime=nil, endtime=nil, isglobal=nil, enablescan=nil, monitoringpattern=nil, cycle=nil, realtimemonitoring=nil, custompaths=nil, monitorcustompaths=nil, quuidlist=nil, autoisolation=nil, killprocess=nil, doclean=nil, enginetype=nil, enableinspiredengine=nil, enablememshellscan=nil, protectmode=nil, protectfilescope=nil, quarauuids=nil, quarascope=nil, producttype=nil)
           @CheckPattern = checkpattern
           @StartTime = starttime
           @EndTime = endtime
@@ -35244,6 +35260,8 @@ module TencentCloud
           @MonitoringPattern = monitoringpattern
           @Cycle = cycle
           @RealTimeMonitoring = realtimemonitoring
+          @CustomPaths = custompaths
+          @MonitorCustomPaths = monitorcustompaths
           @QuuidList = quuidlist
           @AutoIsolation = autoisolation
           @KillProcess = killprocess
@@ -35267,6 +35285,8 @@ module TencentCloud
           @MonitoringPattern = params['MonitoringPattern']
           @Cycle = params['Cycle']
           @RealTimeMonitoring = params['RealTimeMonitoring']
+          @CustomPaths = params['CustomPaths']
+          @MonitorCustomPaths = params['MonitorCustomPaths']
           @QuuidList = params['QuuidList']
           @AutoIsolation = params['AutoIsolation']
           @KillProcess = params['KillProcess']
