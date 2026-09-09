@@ -19,36 +19,34 @@ module TencentCloud
     module V20230508
       # CreateWorkspace请求参数结构体
       class CreateWorkspaceRequest < TencentCloud::Common::AbstractModel
-        # @param Name: 工作空间名称, 长度限制 2~64
+        # @param Name: <p>工作空间名称, 长度限制 2~64</p>
         # @type Name: String
-        # @param Description: 工作空间描述, 长度限制 0~255
+        # @param Description: <p>工作空间描述, 长度限制 0~255</p>
         # @type Description: String
-        # @param Specs: 工作空间规格。Standard: 2C4G, Calculation: 4C8G, Profession: 8C16G. 默认是 Standard。
+        # @param Specs: <p>工作空间规格。Standard: 2C4G, Calculation: 4C8G, Profession: 8C16G. 默认是 Standard。</p>
         # @type Specs: String
-        # @param Image: 工作空间基础镜像名称, 默认会使用 All In One 镜像, 长度限制 1~255
+        # @param Image: <p>工作空间基础镜像名称, 默认会使用 All In One 镜像, 长度限制 1~255</p>
         # @type Image: String
-        # @param Repository: Git 仓库. 工作空间启动时会自动克隆该仓库
+        # @param Repository: <p>Git 仓库. 工作空间启动时会自动克隆该仓库</p>
         # @type Repository: :class:`Tencentcloud::Cloudstudio.v20230508.models.GitRepository`
-        # @param Envs: 环境变量. 会被注入到工作空间中
+        # @param Envs: <p>环境变量. 会被注入到工作空间中</p>
         # @type Envs: Array
-        # @param Extensions: 预装插件. 工作空间启动时, 会自动安装这些插件。长度限制: 0~10
+        # @param Extensions: <p>预装插件. 工作空间启动时, 会自动安装这些插件。长度限制: 0~10</p>
         # @type Extensions: Array
-        # @param Lifecycle: 工作空间生命周期钩子.  分为三个阶段 init, start, destroy. 分别表示工作空间数据初始化阶段, 工作空间启动阶段, 工作空间关闭阶段.  用户可以自定义 shell 命令.
+        # @param Lifecycle: <p>工作空间生命周期钩子.  分为三个阶段 init, start, destroy. 分别表示工作空间数据初始化阶段, 工作空间启动阶段, 工作空间关闭阶段.  用户可以自定义 shell 命令.</p>
         # @type Lifecycle: :class:`Tencentcloud::Cloudstudio.v20230508.models.LifeCycle`
-        # @param TenantAppId: 应用名称
+        # @param TenantAppId: <p>应用名称</p>
         # @type TenantAppId: Integer
-        # @param TenantUin: 用户UIN
+        # @param TenantUin: <p>用户UIN</p>
         # @type TenantUin: String
-        # @param TenantUniqVpcId: VPCID
+        # @param TenantUniqVpcId: <p>VPCID</p>
         # @type TenantUniqVpcId: String
-        # @param TenantSubnetId: 子网ID
+        # @param TenantSubnetId: <p>子网ID</p>
         # @type TenantSubnetId: String
-        # @param Region: 地域
-        # @type Region: String
 
-        attr_accessor :Name, :Description, :Specs, :Image, :Repository, :Envs, :Extensions, :Lifecycle, :TenantAppId, :TenantUin, :TenantUniqVpcId, :TenantSubnetId, :Region
+        attr_accessor :Name, :Description, :Specs, :Image, :Repository, :Envs, :Extensions, :Lifecycle, :TenantAppId, :TenantUin, :TenantUniqVpcId, :TenantSubnetId
 
-        def initialize(name=nil, description=nil, specs=nil, image=nil, repository=nil, envs=nil, extensions=nil, lifecycle=nil, tenantappid=nil, tenantuin=nil, tenantuniqvpcid=nil, tenantsubnetid=nil, region=nil)
+        def initialize(name=nil, description=nil, specs=nil, image=nil, repository=nil, envs=nil, extensions=nil, lifecycle=nil, tenantappid=nil, tenantuin=nil, tenantuniqvpcid=nil, tenantsubnetid=nil)
           @Name = name
           @Description = description
           @Specs = specs
@@ -61,7 +59,6 @@ module TencentCloud
           @TenantUin = tenantuin
           @TenantUniqVpcId = tenantuniqvpcid
           @TenantSubnetId = tenantsubnetid
-          @Region = region
         end
 
         def deserialize(params)
@@ -90,15 +87,14 @@ module TencentCloud
           @TenantUin = params['TenantUin']
           @TenantUniqVpcId = params['TenantUniqVpcId']
           @TenantSubnetId = params['TenantSubnetId']
-          @Region = params['Region']
         end
       end
 
       # CreateWorkspace返回参数结构体
       class CreateWorkspaceResponse < TencentCloud::Common::AbstractModel
-        # @param SpaceKey: 工作空间 SpaceKey
+        # @param SpaceKey: <p>工作空间 SpaceKey</p>
         # @type SpaceKey: String
-        # @param Name: 工作空间名称
+        # @param Name: <p>工作空间名称</p>
         # @type Name: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

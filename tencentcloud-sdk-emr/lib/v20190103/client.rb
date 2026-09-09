@@ -728,6 +728,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询导出配置
+
+        # @param request: Request instance for DescribeExportConfs.
+        # @type request: :class:`Tencentcloud::emr::V20190103::DescribeExportConfsRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::DescribeExportConfsResponse`
+        def DescribeExportConfs(request)
+          body = send_request('DescribeExportConfs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeExportConfsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询YARN资源调度的全局配置
 
         # @param request: Request instance for DescribeGlobalConfig.
@@ -2042,6 +2066,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifySLInstanceBasicResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 配置导入下发
+
+        # @param request: Request instance for ModifyServiceParamsByExportConfs.
+        # @type request: :class:`Tencentcloud::emr::V20190103::ModifyServiceParamsByExportConfsRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::ModifyServiceParamsByExportConfsResponse`
+        def ModifyServiceParamsByExportConfs(request)
+          body = send_request('ModifyServiceParamsByExportConfs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyServiceParamsByExportConfsResponse.new
             model.deserialize(response['Response'])
             model
           else

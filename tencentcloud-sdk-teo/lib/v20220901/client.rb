@@ -405,7 +405,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建自定义错误页面。
+        # 创建自定义响应页面。
 
         # @param request: Request instance for CreateCustomizeErrorPage.
         # @type request: :class:`Tencentcloud::teo::V20220901::CreateCustomizeErrorPageRequest`
@@ -4516,7 +4516,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改自定义错误页面。
+        # 修改自定义响应页面。
 
         # @param request: Request instance for ModifyCustomErrorPage.
         # @type request: :class:`Tencentcloud::teo::V20220901::ModifyCustomErrorPageRequest`

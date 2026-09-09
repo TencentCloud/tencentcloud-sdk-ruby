@@ -5554,6 +5554,8 @@ module TencentCloud
         # @param LatestOperationErrorMsg: <p>实例的最新操作错误信息。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LatestOperationErrorMsg: String
+        # @param EnableJumboFrame: <p>实例是否开启巨型帧</p>
+        # @type EnableJumboFrame: Boolean
         # @param Metadata: <p>自定义metadata，本参数对应创建 CVM时指定的Metadata 信息。<strong>注：内测中</strong>。</p>
         # @type Metadata: :class:`Tencentcloud::Cvm.v20170312.models.Metadata`
         # @param PublicIPv6Addresses: <p>实例绑定的公网IPv6地址。</p>
@@ -5563,12 +5565,12 @@ module TencentCloud
         # @param PartitionNumber: <p>分区置放群组的分区号，具体取决于所选置放群组的分区数量(功能灰度中)</p>
         # @type PartitionNumber: Integer
 
-        attr_accessor :Placement, :InstanceId, :InstanceType, :CPU, :Memory, :RestrictState, :InstanceName, :InstanceChargeType, :SystemDisk, :DataDisks, :PrivateIpAddresses, :PublicIpAddresses, :InternetAccessible, :VirtualPrivateCloud, :ImageId, :RenewFlag, :CreatedTime, :ExpiredTime, :OsName, :SecurityGroupIds, :LoginSettings, :InstanceState, :Tags, :StopChargingMode, :Uuid, :LatestOperation, :LatestOperationState, :LatestOperationRequestId, :DisasterRecoverGroupId, :IPv6Addresses, :CamRoleName, :HpcClusterId, :RdmaIpAddresses, :DedicatedClusterId, :IsolatedSource, :DisasterRecoverGroupIds, :GPUInfo, :LicenseType, :DisableApiTermination, :DefaultLoginUser, :DefaultLoginPort, :LatestOperationErrorMsg, :Metadata, :PublicIPv6Addresses, :CpuTopology, :PartitionNumber
+        attr_accessor :Placement, :InstanceId, :InstanceType, :CPU, :Memory, :RestrictState, :InstanceName, :InstanceChargeType, :SystemDisk, :DataDisks, :PrivateIpAddresses, :PublicIpAddresses, :InternetAccessible, :VirtualPrivateCloud, :ImageId, :RenewFlag, :CreatedTime, :ExpiredTime, :OsName, :SecurityGroupIds, :LoginSettings, :InstanceState, :Tags, :StopChargingMode, :Uuid, :LatestOperation, :LatestOperationState, :LatestOperationRequestId, :DisasterRecoverGroupId, :IPv6Addresses, :CamRoleName, :HpcClusterId, :RdmaIpAddresses, :DedicatedClusterId, :IsolatedSource, :DisasterRecoverGroupIds, :GPUInfo, :LicenseType, :DisableApiTermination, :DefaultLoginUser, :DefaultLoginPort, :LatestOperationErrorMsg, :EnableJumboFrame, :Metadata, :PublicIPv6Addresses, :CpuTopology, :PartitionNumber
         extend Gem::Deprecate
         deprecate :DisasterRecoverGroupId, :none, 2026, 9
         deprecate :DisasterRecoverGroupId=, :none, 2026, 9
 
-        def initialize(placement=nil, instanceid=nil, instancetype=nil, cpu=nil, memory=nil, restrictstate=nil, instancename=nil, instancechargetype=nil, systemdisk=nil, datadisks=nil, privateipaddresses=nil, publicipaddresses=nil, internetaccessible=nil, virtualprivatecloud=nil, imageid=nil, renewflag=nil, createdtime=nil, expiredtime=nil, osname=nil, securitygroupids=nil, loginsettings=nil, instancestate=nil, tags=nil, stopchargingmode=nil, uuid=nil, latestoperation=nil, latestoperationstate=nil, latestoperationrequestid=nil, disasterrecovergroupid=nil, ipv6addresses=nil, camrolename=nil, hpcclusterid=nil, rdmaipaddresses=nil, dedicatedclusterid=nil, isolatedsource=nil, disasterrecovergroupids=nil, gpuinfo=nil, licensetype=nil, disableapitermination=nil, defaultloginuser=nil, defaultloginport=nil, latestoperationerrormsg=nil, metadata=nil, publicipv6addresses=nil, cputopology=nil, partitionnumber=nil)
+        def initialize(placement=nil, instanceid=nil, instancetype=nil, cpu=nil, memory=nil, restrictstate=nil, instancename=nil, instancechargetype=nil, systemdisk=nil, datadisks=nil, privateipaddresses=nil, publicipaddresses=nil, internetaccessible=nil, virtualprivatecloud=nil, imageid=nil, renewflag=nil, createdtime=nil, expiredtime=nil, osname=nil, securitygroupids=nil, loginsettings=nil, instancestate=nil, tags=nil, stopchargingmode=nil, uuid=nil, latestoperation=nil, latestoperationstate=nil, latestoperationrequestid=nil, disasterrecovergroupid=nil, ipv6addresses=nil, camrolename=nil, hpcclusterid=nil, rdmaipaddresses=nil, dedicatedclusterid=nil, isolatedsource=nil, disasterrecovergroupids=nil, gpuinfo=nil, licensetype=nil, disableapitermination=nil, defaultloginuser=nil, defaultloginport=nil, latestoperationerrormsg=nil, enablejumboframe=nil, metadata=nil, publicipv6addresses=nil, cputopology=nil, partitionnumber=nil)
           @Placement = placement
           @InstanceId = instanceid
           @InstanceType = instancetype
@@ -5611,6 +5613,7 @@ module TencentCloud
           @DefaultLoginUser = defaultloginuser
           @DefaultLoginPort = defaultloginport
           @LatestOperationErrorMsg = latestoperationerrormsg
+          @EnableJumboFrame = enablejumboframe
           @Metadata = metadata
           @PublicIPv6Addresses = publicipv6addresses
           @CpuTopology = cputopology
@@ -5692,6 +5695,7 @@ module TencentCloud
           @DefaultLoginUser = params['DefaultLoginUser']
           @DefaultLoginPort = params['DefaultLoginPort']
           @LatestOperationErrorMsg = params['LatestOperationErrorMsg']
+          @EnableJumboFrame = params['EnableJumboFrame']
           unless params['Metadata'].nil?
             @Metadata = Metadata.new
             @Metadata.deserialize(params['Metadata'])

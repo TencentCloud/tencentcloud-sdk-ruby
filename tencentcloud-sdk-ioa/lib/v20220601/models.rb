@@ -1706,10 +1706,46 @@ module TencentCloud
         # @type ConnectorGroupType: String
         # @param DomainSuffix: <p>域名后缀</p>
         # @type DomainSuffix: String
+        # @param ConnectivityCheckSwitch: <p>连通性检查开关，0-关闭 1-开启，默认1(只支持32位)</p>
+        # @type ConnectivityCheckSwitch: Integer
+        # @param ConnectivityCheckInterval: <p>连通性检查测试间隔数值，最小为1，默认1(只支持32位)</p>
+        # @type ConnectivityCheckInterval: Integer
+        # @param ConnectivityCheckIntervalUnit: <p>连通性检查测试间隔单位 minutes/hours/days，默认hours</p>
+        # @type ConnectivityCheckIntervalUnit: String
+        # @param URLAuditState: <p>URL审计开关：0-关闭 1-开启，默认0</p>
+        # @type URLAuditState: Integer
+        # @param URLAuditId: <p>URL审计证书ID列表，多个用分号分隔</p>
+        # @type URLAuditId: String
+        # @param URLPath: <p>URL审计路径，多个用分号分隔</p>
+        # @type URLPath: String
+        # @param ReachableType: <p>检测方式：0-未检测 1-主动 2-流量</p>
+        # @type ReachableType: Integer
+        # @param APISecretName: <p>API密钥名称</p>
+        # @type APISecretName: String
+        # @param APISecretKey: <p>API密钥Key</p>
+        # @type APISecretKey: String
+        # @param EnableSensitiveRes: <p>是否为敏感资源：0-否 1-是</p>
+        # @type EnableSensitiveRes: Integer
+        # @param EnableIPPolicy: <p>用户接入IP限制开关：0-不启用 1-启用</p>
+        # @type EnableIPPolicy: Integer
+        # @param IPPolicyAttr: <p>IP分组属性：0-白名单 1-黑名单</p>
+        # @type IPPolicyAttr: Integer
+        # @param IPPolicyIds: <p>IP分组ID列表</p>
+        # @type IPPolicyIds: Array
+        # @param IPPolicyNames: <p>IP分组名称（分号分隔）</p>
+        # @type IPPolicyNames: String
+        # @param EnableUserAgent: <p>访问浏览器规则开关：0-不启用 1-启用</p>
+        # @type EnableUserAgent: Integer
+        # @param UserAgentAttr: <p>浏览器规则属性：0-白名单 1-黑名单</p>
+        # @type UserAgentAttr: Integer
+        # @param UserAgentIds: <p>浏览器规则ID列表</p>
+        # @type UserAgentIds: Array
+        # @param UserAgentNames: <p>浏览器规则名称（分号分隔）</p>
+        # @type UserAgentNames: String
 
-        attr_accessor :ServiceId, :ServiceName, :ServiceType, :ServiceAddress, :ServicePort, :CreateTime, :UpdateTime, :Remark, :AreaId, :SmartGateIds, :Protocol, :Levels, :SmartGateNames, :DirectConn, :DetectState, :DetectInfo, :DetectTime, :ConnectorGroupId, :ConnectorGroupName, :ReachableTime, :ReachableState, :AccessType, :BackendScheme, :BackendPath, :FrontScheme, :FrontHost, :FrontPort, :FrontPath, :DisableFront, :CustomDomain, :CustomHost, :CnameStatus, :CertificateId, :WebGwResourceType, :APISecretId, :AreaName, :SSLCertId, :EnableDependentAddr, :DependentAddr, :WebGwNoAuth, :ConnectorGroupType, :DomainSuffix
+        attr_accessor :ServiceId, :ServiceName, :ServiceType, :ServiceAddress, :ServicePort, :CreateTime, :UpdateTime, :Remark, :AreaId, :SmartGateIds, :Protocol, :Levels, :SmartGateNames, :DirectConn, :DetectState, :DetectInfo, :DetectTime, :ConnectorGroupId, :ConnectorGroupName, :ReachableTime, :ReachableState, :AccessType, :BackendScheme, :BackendPath, :FrontScheme, :FrontHost, :FrontPort, :FrontPath, :DisableFront, :CustomDomain, :CustomHost, :CnameStatus, :CertificateId, :WebGwResourceType, :APISecretId, :AreaName, :SSLCertId, :EnableDependentAddr, :DependentAddr, :WebGwNoAuth, :ConnectorGroupType, :DomainSuffix, :ConnectivityCheckSwitch, :ConnectivityCheckInterval, :ConnectivityCheckIntervalUnit, :URLAuditState, :URLAuditId, :URLPath, :ReachableType, :APISecretName, :APISecretKey, :EnableSensitiveRes, :EnableIPPolicy, :IPPolicyAttr, :IPPolicyIds, :IPPolicyNames, :EnableUserAgent, :UserAgentAttr, :UserAgentIds, :UserAgentNames
 
-        def initialize(serviceid=nil, servicename=nil, servicetype=nil, serviceaddress=nil, serviceport=nil, createtime=nil, updatetime=nil, remark=nil, areaid=nil, smartgateids=nil, protocol=nil, levels=nil, smartgatenames=nil, directconn=nil, detectstate=nil, detectinfo=nil, detecttime=nil, connectorgroupid=nil, connectorgroupname=nil, reachabletime=nil, reachablestate=nil, accesstype=nil, backendscheme=nil, backendpath=nil, frontscheme=nil, fronthost=nil, frontport=nil, frontpath=nil, disablefront=nil, customdomain=nil, customhost=nil, cnamestatus=nil, certificateid=nil, webgwresourcetype=nil, apisecretid=nil, areaname=nil, sslcertid=nil, enabledependentaddr=nil, dependentaddr=nil, webgwnoauth=nil, connectorgrouptype=nil, domainsuffix=nil)
+        def initialize(serviceid=nil, servicename=nil, servicetype=nil, serviceaddress=nil, serviceport=nil, createtime=nil, updatetime=nil, remark=nil, areaid=nil, smartgateids=nil, protocol=nil, levels=nil, smartgatenames=nil, directconn=nil, detectstate=nil, detectinfo=nil, detecttime=nil, connectorgroupid=nil, connectorgroupname=nil, reachabletime=nil, reachablestate=nil, accesstype=nil, backendscheme=nil, backendpath=nil, frontscheme=nil, fronthost=nil, frontport=nil, frontpath=nil, disablefront=nil, customdomain=nil, customhost=nil, cnamestatus=nil, certificateid=nil, webgwresourcetype=nil, apisecretid=nil, areaname=nil, sslcertid=nil, enabledependentaddr=nil, dependentaddr=nil, webgwnoauth=nil, connectorgrouptype=nil, domainsuffix=nil, connectivitycheckswitch=nil, connectivitycheckinterval=nil, connectivitycheckintervalunit=nil, urlauditstate=nil, urlauditid=nil, urlpath=nil, reachabletype=nil, apisecretname=nil, apisecretkey=nil, enablesensitiveres=nil, enableippolicy=nil, ippolicyattr=nil, ippolicyids=nil, ippolicynames=nil, enableuseragent=nil, useragentattr=nil, useragentids=nil, useragentnames=nil)
           @ServiceId = serviceid
           @ServiceName = servicename
           @ServiceType = servicetype
@@ -1752,6 +1788,24 @@ module TencentCloud
           @WebGwNoAuth = webgwnoauth
           @ConnectorGroupType = connectorgrouptype
           @DomainSuffix = domainsuffix
+          @ConnectivityCheckSwitch = connectivitycheckswitch
+          @ConnectivityCheckInterval = connectivitycheckinterval
+          @ConnectivityCheckIntervalUnit = connectivitycheckintervalunit
+          @URLAuditState = urlauditstate
+          @URLAuditId = urlauditid
+          @URLPath = urlpath
+          @ReachableType = reachabletype
+          @APISecretName = apisecretname
+          @APISecretKey = apisecretkey
+          @EnableSensitiveRes = enablesensitiveres
+          @EnableIPPolicy = enableippolicy
+          @IPPolicyAttr = ippolicyattr
+          @IPPolicyIds = ippolicyids
+          @IPPolicyNames = ippolicynames
+          @EnableUserAgent = enableuseragent
+          @UserAgentAttr = useragentattr
+          @UserAgentIds = useragentids
+          @UserAgentNames = useragentnames
         end
 
         def deserialize(params)
@@ -1797,6 +1851,24 @@ module TencentCloud
           @WebGwNoAuth = params['WebGwNoAuth']
           @ConnectorGroupType = params['ConnectorGroupType']
           @DomainSuffix = params['DomainSuffix']
+          @ConnectivityCheckSwitch = params['ConnectivityCheckSwitch']
+          @ConnectivityCheckInterval = params['ConnectivityCheckInterval']
+          @ConnectivityCheckIntervalUnit = params['ConnectivityCheckIntervalUnit']
+          @URLAuditState = params['URLAuditState']
+          @URLAuditId = params['URLAuditId']
+          @URLPath = params['URLPath']
+          @ReachableType = params['ReachableType']
+          @APISecretName = params['APISecretName']
+          @APISecretKey = params['APISecretKey']
+          @EnableSensitiveRes = params['EnableSensitiveRes']
+          @EnableIPPolicy = params['EnableIPPolicy']
+          @IPPolicyAttr = params['IPPolicyAttr']
+          @IPPolicyIds = params['IPPolicyIds']
+          @IPPolicyNames = params['IPPolicyNames']
+          @EnableUserAgent = params['EnableUserAgent']
+          @UserAgentAttr = params['UserAgentAttr']
+          @UserAgentIds = params['UserAgentIds']
+          @UserAgentNames = params['UserAgentNames']
         end
       end
 

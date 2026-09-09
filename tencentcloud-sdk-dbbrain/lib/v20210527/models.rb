@@ -3423,21 +3423,21 @@ module TencentCloud
 
       # DescribeMongoDBProcessList请求参数结构体
       class DescribeMongoDBProcessListRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID。可通过 [DescribeDiagDBInstances](https://cloud.tencent.com/document/api/1130/57798) 接口获取。
+        # @param InstanceId: <p>实例 ID。可通过 <a href="https://cloud.tencent.com/document/api/1130/57798">DescribeDiagDBInstances</a> 接口获取。</p>
         # @type InstanceId: String
-        # @param Product: 服务产品类型，支持值：mongodb
+        # @param Product: <p>服务产品类型，支持值：mongodb</p>
         # @type Product: String
-        # @param ID: 线程的ID，用于筛选线程列表。
+        # @param ID: <p>线程的ID，用于筛选线程列表。</p>
         # @type ID: Integer
-        # @param Host: 线程的操作主机地址，用于筛选线程列表。
+        # @param Host: <p>线程的操作主机地址，用于筛选线程列表。</p>
         # @type Host: String
-        # @param DB: 线程的操作数据库，用于筛选线程列表,如果是多个 使用 ','  分割
+        # @param DB: <p>线程的操作数据库，用于筛选线程列表,如果是多个 使用 &#39;,&#39;  分割</p>
         # @type DB: String
-        # @param Type: 命令类型 ,如果是多个 使用 ','  分割
+        # @param Type: <p>命令类型 ,如果是多个 使用 &#39;,&#39;  分割</p>
         # @type Type: String
-        # @param Time: 线程的操作时长最小值，单位秒，用于筛选操作时长大于该值的线程列表。
+        # @param Time: <p>线程的操作时长最小值，单位秒，用于筛选操作时长大于该值的线程列表。</p>
         # @type Time: Integer
-        # @param Limit: 返回数量，默认20。
+        # @param Limit: <p>返回数量，默认20。</p>
         # @type Limit: Integer
 
         attr_accessor :InstanceId, :Product, :ID, :Host, :DB, :Type, :Time, :Limit
@@ -3467,7 +3467,7 @@ module TencentCloud
 
       # DescribeMongoDBProcessList返回参数结构体
       class DescribeMongoDBProcessListResponse < TencentCloud::Common::AbstractModel
-        # @param ProcessList: 数据
+        # @param ProcessList: <p>数据</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProcessList: :class:`Tencentcloud::Dbbrain.v20210527.models.MongoDBProcessList`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。

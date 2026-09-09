@@ -1248,7 +1248,7 @@ module TencentCloud
 
       # 描述了服务的超参数配置
       class HyperParam < TencentCloud::Common::AbstractModel
-        # @param HiCache: HiCache缓存
+        # @param HiCache: <p>HiCache缓存</p>
         # @type HiCache: :class:`Tencentcloud::Hai.v20230812.models.HiCacheInfo`
 
         attr_accessor :HiCache

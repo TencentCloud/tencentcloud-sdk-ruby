@@ -681,22 +681,25 @@ module TencentCloud
 
       # ControlAIConversation请求参数结构体
       class ControlAIConversationRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务唯一标识
+        # @param TaskId: <p>任务唯一标识</p>
         # @type TaskId: String
-        # @param Command: 控制命令，目前支持命令如下：- ServerPushText，服务端发送文本给AI机器人，AI机器人会播报该文本. - InvokeLLM，服务端发送文本给大模型，触发对话
+        # @param Command: <p>控制命令，目前支持命令如下：- ServerPushText，服务端发送文本给AI机器人，AI机器人会播报该文本. - InvokeLLM，服务端发送文本给大模型，触发对话。- TransparentData，透传信息给客户端。</p>
         # @type Command: String
-        # @param ServerPushText: 服务端发送播报文本命令，当Command为ServerPushText时必填
+        # @param ServerPushText: <p>服务端发送播报文本命令，当Command为ServerPushText时必填</p>
         # @type ServerPushText: :class:`Tencentcloud::Trtc.v20190722.models.ServerPushText`
-        # @param InvokeLLM: 服务端发送命令主动请求大模型,当Command为InvokeLLM时会把content请求到大模型,头部增加X-Invoke-LLM="1"
+        # @param InvokeLLM: <p>服务端发送命令主动请求大模型,当Command为InvokeLLM时会把content请求到大模型,头部增加X-Invoke-LLM=&quot;1&quot;</p>
         # @type InvokeLLM: :class:`Tencentcloud::Trtc.v20190722.models.InvokeLLM`
+        # @param TransparentData: <p>ai对话需要透传给客户端的信息</p>
+        # @type TransparentData: :class:`Tencentcloud::Trtc.v20190722.models.TransparentData`
 
-        attr_accessor :TaskId, :Command, :ServerPushText, :InvokeLLM
+        attr_accessor :TaskId, :Command, :ServerPushText, :InvokeLLM, :TransparentData
 
-        def initialize(taskid=nil, command=nil, serverpushtext=nil, invokellm=nil)
+        def initialize(taskid=nil, command=nil, serverpushtext=nil, invokellm=nil, transparentdata=nil)
           @TaskId = taskid
           @Command = command
           @ServerPushText = serverpushtext
           @InvokeLLM = invokellm
+          @TransparentData = transparentdata
         end
 
         def deserialize(params)
@@ -709,6 +712,10 @@ module TencentCloud
           unless params['InvokeLLM'].nil?
             @InvokeLLM = InvokeLLM.new
             @InvokeLLM.deserialize(params['InvokeLLM'])
+          end
+          unless params['TransparentData'].nil?
+            @TransparentData = TransparentData.new
+            @TransparentData.deserialize(params['TransparentData'])
           end
         end
       end
@@ -7983,6 +7990,22 @@ module TencentCloud
               @Terminologies << terminologyitem_tmp
             end
           end
+        end
+      end
+
+      # ai对话需要透传给客户端的数据
+      class TransparentData < TencentCloud::Common::AbstractModel
+        # @param Data: <p>透传给客户端的信息</p>
+        # @type Data: String
+
+        attr_accessor :Data
+
+        def initialize(data=nil)
+          @Data = data
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
         end
       end
 

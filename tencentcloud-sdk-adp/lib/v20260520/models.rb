@@ -398,16 +398,19 @@ module TencentCloud
         # @type AuthType: Integer
         # @param OAuthConsent: <p>OAuth 授权同意模式；0-开发者授权；1-使用者授权（仅在auth_type=3时生效）</p>
         # @type OAuthConsent: Integer
+        # @param CredentialConfig: <p>凭证配置</p>
+        # @type CredentialConfig: :class:`Tencentcloud::Adp.v20260520.models.AgentPluginCredentialConfig`
 
-        attr_accessor :PluginId, :HeaderParameterList, :QueryParameterList, :EnableCamRoleAuth, :AuthType, :OAuthConsent
+        attr_accessor :PluginId, :HeaderParameterList, :QueryParameterList, :EnableCamRoleAuth, :AuthType, :OAuthConsent, :CredentialConfig
 
-        def initialize(pluginid=nil, headerparameterlist=nil, queryparameterlist=nil, enablecamroleauth=nil, authtype=nil, oauthconsent=nil)
+        def initialize(pluginid=nil, headerparameterlist=nil, queryparameterlist=nil, enablecamroleauth=nil, authtype=nil, oauthconsent=nil, credentialconfig=nil)
           @PluginId = pluginid
           @HeaderParameterList = headerparameterlist
           @QueryParameterList = queryparameterlist
           @EnableCamRoleAuth = enablecamroleauth
           @AuthType = authtype
           @OAuthConsent = oauthconsent
+          @CredentialConfig = credentialconfig
         end
 
         def deserialize(params)
@@ -431,6 +434,68 @@ module TencentCloud
           @EnableCamRoleAuth = params['EnableCamRoleAuth']
           @AuthType = params['AuthType']
           @OAuthConsent = params['OAuthConsent']
+          unless params['CredentialConfig'].nil?
+            @CredentialConfig = AgentPluginCredentialConfig.new
+            @CredentialConfig.deserialize(params['CredentialConfig'])
+          end
+        end
+      end
+
+      # Agent 插件凭据配置
+      class AgentPluginCredentialConfig < TencentCloud::Common::AbstractModel
+        # @param AuthValueSource: <p>插件鉴权值来源</p><p>枚举值：</p><ul><li>0： 未指定</li><li>1： 使用插件默认鉴权值，仅 APIKey/AccessKey 支持</li><li>2： 引用凭证</li><li>3： 引用变量</li></ul>
+        # @type AuthValueSource: Integer
+        # @param CredentialId: <p>凭证ID</p><p>入参限制：AuthValueSource=2时必填</p>
+        # @type CredentialId: String
+        # @param ParamList: <p>参数配置</p>
+        # @type ParamList: Array
+
+        attr_accessor :AuthValueSource, :CredentialId, :ParamList
+
+        def initialize(authvaluesource=nil, credentialid=nil, paramlist=nil)
+          @AuthValueSource = authvaluesource
+          @CredentialId = credentialid
+          @ParamList = paramlist
+        end
+
+        def deserialize(params)
+          @AuthValueSource = params['AuthValueSource']
+          @CredentialId = params['CredentialId']
+          unless params['ParamList'].nil?
+            @ParamList = []
+            params['ParamList'].each do |i|
+              agentplugincredentialparam_tmp = AgentPluginCredentialParam.new
+              agentplugincredentialparam_tmp.deserialize(i)
+              @ParamList << agentplugincredentialparam_tmp
+            end
+          end
+        end
+      end
+
+      # Agent 插件凭据参数配置（变量模式）
+      class AgentPluginCredentialParam < TencentCloud::Common::AbstractModel
+        # @param KeyLocation: <p>参数位置</p><p>枚举值：</p><ul><li>0： Header 鉴权</li><li>1： Query 鉴权</li></ul>
+        # @type KeyLocation: Integer
+        # @param Name: <p>参数名称</p>
+        # @type Name: String
+        # @param Input: <p>参数取值来源</p>
+        # @type Input: :class:`Tencentcloud::Adp.v20260520.models.AgentInput`
+
+        attr_accessor :KeyLocation, :Name, :Input
+
+        def initialize(keylocation=nil, name=nil, input=nil)
+          @KeyLocation = keylocation
+          @Name = name
+          @Input = input
+        end
+
+        def deserialize(params)
+          @KeyLocation = params['KeyLocation']
+          @Name = params['Name']
+          unless params['Input'].nil?
+            @Input = AgentInput.new
+            @Input.deserialize(params['Input'])
+          end
         end
       end
 
@@ -2817,6 +2882,30 @@ module TencentCloud
         end
       end
 
+      # 回调配置
+      class CallbackConfig < TencentCloud::Common::AbstractModel
+        # @param CallbackAesKey: <p>回调AESKey</p>
+        # @type CallbackAesKey: String
+        # @param CallbackToken: <p>回调Token</p>
+        # @type CallbackToken: String
+        # @param CallbackUrl: <p>回调URL</p>
+        # @type CallbackUrl: String
+
+        attr_accessor :CallbackAesKey, :CallbackToken, :CallbackUrl
+
+        def initialize(callbackaeskey=nil, callbacktoken=nil, callbackurl=nil)
+          @CallbackAesKey = callbackaeskey
+          @CallbackToken = callbacktoken
+          @CallbackUrl = callbackurl
+        end
+
+        def deserialize(params)
+          @CallbackAesKey = params['CallbackAesKey']
+          @CallbackToken = params['CallbackToken']
+          @CallbackUrl = params['CallbackUrl']
+        end
+      end
+
       # CAM授权信息
       class CamAuthConfig < TencentCloud::Common::AbstractModel
         # @param RoleName: 角色名称
@@ -2872,6 +2961,158 @@ module TencentCloud
           @CanAdd = params['CanAdd']
           @CanDelete = params['CanDelete']
           @CanEdit = params['CanEdit']
+        end
+      end
+
+      # 渠道信息
+      class Channel < TencentCloud::Common::AbstractModel
+        # @param ChannelId: <p>渠道ID</p>
+        # @type ChannelId: String
+        # @param ChannelStatus: <p>渠道状态（仅B端）：1-未发布，2-运行中，3-已下线（与ConnectStatus互斥）</p>
+        # @type ChannelStatus: Integer
+        # @param ConnectStatus: <p>连接状态（仅C端）：1-初始，2-连接成功，3-连接失败（与ChannelStatus互斥）</p>
+        # @type ConnectStatus: Integer
+        # @param CreateTime: <p>创建时间（Unix秒）</p>
+        # @type CreateTime: String
+        # @param Spec: <p>渠道规格</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Spec: :class:`Tencentcloud::Adp.v20260520.models.ChannelSpec`
+        # @param UpdateTime: <p>更新时间（Unix秒）</p>
+        # @type UpdateTime: String
+        # @param Updater: <p>最后更新人</p>
+        # @type Updater: String
+
+        attr_accessor :ChannelId, :ChannelStatus, :ConnectStatus, :CreateTime, :Spec, :UpdateTime, :Updater
+
+        def initialize(channelid=nil, channelstatus=nil, connectstatus=nil, createtime=nil, spec=nil, updatetime=nil, updater=nil)
+          @ChannelId = channelid
+          @ChannelStatus = channelstatus
+          @ConnectStatus = connectstatus
+          @CreateTime = createtime
+          @Spec = spec
+          @UpdateTime = updatetime
+          @Updater = updater
+        end
+
+        def deserialize(params)
+          @ChannelId = params['ChannelId']
+          @ChannelStatus = params['ChannelStatus']
+          @ConnectStatus = params['ConnectStatus']
+          @CreateTime = params['CreateTime']
+          unless params['Spec'].nil?
+            @Spec = ChannelSpec.new
+            @Spec.deserialize(params['Spec'])
+          end
+          @UpdateTime = params['UpdateTime']
+          @Updater = params['Updater']
+        end
+      end
+
+      # 渠道规格（聚合场景/类型/名称/备注/配置）
+      class ChannelSpec < TencentCloud::Common::AbstractModel
+        # @param ChannelName: <p>渠道名称</p>
+        # @type ChannelName: String
+        # @param ChannelType: <p>渠道类型，详见ChannelType枚举</p><p>枚举值：</p><ul><li>10000： 微信服务号(Wechat)</li><li>10002： 企微应用(WeComApp)</li><li>10004： 微信客服(WechatCustomerService)</li><li>10009： 企微智能机器人(WeComRobot)</li><li>10013： 钉钉机器人(DingTalk)</li><li>10014： 企微智能机器人WebSocket(WeComRobot)</li><li>10015： 微信ClawBot(WechatClawBot)</li><li>10011： LINE(Line)</li><li>10012： Telegram(Telegram)</li><li>10016： 飞书机器人(Lark) </li></ul><p>C端场景（Scene=1时）只支持10014和10015</p>
+        # @type ChannelType: Integer
+        # @param Description: <p>备注</p>
+        # @type Description: String
+        # @param DingTalk: <p>钉钉机器人配置</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DingTalk: :class:`Tencentcloud::Adp.v20260520.models.DingTalkChannelConfig`
+        # @param Lark: <p>飞书机器人配置</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Lark: :class:`Tencentcloud::Adp.v20260520.models.LarkChannelConfig`
+        # @param Line: <p>LINE配置</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Line: :class:`Tencentcloud::Adp.v20260520.models.LineChannelConfig`
+        # @param Scene: <p>渠道场景：0-B端场景，1-C端场景</p>
+        # @type Scene: Integer
+        # @param Telegram: <p>Telegram配置</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Telegram: :class:`Tencentcloud::Adp.v20260520.models.TelegramChannelConfig`
+        # @param UserAgent: <p>归属用户+Agent运行态标识（C端）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserAgent: :class:`Tencentcloud::Adp.v20260520.models.UserAgentReference`
+        # @param Wechat: <p>微信公众号/小程序配置</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Wechat: :class:`Tencentcloud::Adp.v20260520.models.WechatChannelConfig`
+        # @param WechatClawBot: <p>微信ClawBot配置</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WechatClawBot: :class:`Tencentcloud::Adp.v20260520.models.WechatClawBotChannelConfig`
+        # @param WechatCustomerService: <p>微信客服配置</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WechatCustomerService: :class:`Tencentcloud::Adp.v20260520.models.WechatCustomerServiceChannelConfig`
+        # @param WecomApp: <p>企微应用配置</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WecomApp: :class:`Tencentcloud::Adp.v20260520.models.WecomAppChannelConfig`
+        # @param WecomRobot: <p>企微机器人配置</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WecomRobot: :class:`Tencentcloud::Adp.v20260520.models.WecomRobotChannelConfig`
+
+        attr_accessor :ChannelName, :ChannelType, :Description, :DingTalk, :Lark, :Line, :Scene, :Telegram, :UserAgent, :Wechat, :WechatClawBot, :WechatCustomerService, :WecomApp, :WecomRobot
+
+        def initialize(channelname=nil, channeltype=nil, description=nil, dingtalk=nil, lark=nil, line=nil, scene=nil, telegram=nil, useragent=nil, wechat=nil, wechatclawbot=nil, wechatcustomerservice=nil, wecomapp=nil, wecomrobot=nil)
+          @ChannelName = channelname
+          @ChannelType = channeltype
+          @Description = description
+          @DingTalk = dingtalk
+          @Lark = lark
+          @Line = line
+          @Scene = scene
+          @Telegram = telegram
+          @UserAgent = useragent
+          @Wechat = wechat
+          @WechatClawBot = wechatclawbot
+          @WechatCustomerService = wechatcustomerservice
+          @WecomApp = wecomapp
+          @WecomRobot = wecomrobot
+        end
+
+        def deserialize(params)
+          @ChannelName = params['ChannelName']
+          @ChannelType = params['ChannelType']
+          @Description = params['Description']
+          unless params['DingTalk'].nil?
+            @DingTalk = DingTalkChannelConfig.new
+            @DingTalk.deserialize(params['DingTalk'])
+          end
+          unless params['Lark'].nil?
+            @Lark = LarkChannelConfig.new
+            @Lark.deserialize(params['Lark'])
+          end
+          unless params['Line'].nil?
+            @Line = LineChannelConfig.new
+            @Line.deserialize(params['Line'])
+          end
+          @Scene = params['Scene']
+          unless params['Telegram'].nil?
+            @Telegram = TelegramChannelConfig.new
+            @Telegram.deserialize(params['Telegram'])
+          end
+          unless params['UserAgent'].nil?
+            @UserAgent = UserAgentReference.new
+            @UserAgent.deserialize(params['UserAgent'])
+          end
+          unless params['Wechat'].nil?
+            @Wechat = WechatChannelConfig.new
+            @Wechat.deserialize(params['Wechat'])
+          end
+          unless params['WechatClawBot'].nil?
+            @WechatClawBot = WechatClawBotChannelConfig.new
+            @WechatClawBot.deserialize(params['WechatClawBot'])
+          end
+          unless params['WechatCustomerService'].nil?
+            @WechatCustomerService = WechatCustomerServiceChannelConfig.new
+            @WechatCustomerService.deserialize(params['WechatCustomerService'])
+          end
+          unless params['WecomApp'].nil?
+            @WecomApp = WecomAppChannelConfig.new
+            @WecomApp.deserialize(params['WecomApp'])
+          end
+          unless params['WecomRobot'].nil?
+            @WecomRobot = WecomRobotChannelConfig.new
+            @WecomRobot.deserialize(params['WecomRobot'])
+          end
         end
       end
 
@@ -4041,6 +4282,53 @@ module TencentCloud
         end
       end
 
+      # CreateChannel请求参数结构体
+      class CreateChannelRequest < TencentCloud::Common::AbstractModel
+        # @param AppId: <p>应用业务ID</p>
+        # @type AppId: String
+        # @param Spec: <p>渠道规格（场景/类型/名称/备注/配置，必填）</p>
+        # @type Spec: :class:`Tencentcloud::Adp.v20260520.models.ChannelSpec`
+
+        attr_accessor :AppId, :Spec
+
+        def initialize(appid=nil, spec=nil)
+          @AppId = appid
+          @Spec = spec
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          unless params['Spec'].nil?
+            @Spec = ChannelSpec.new
+            @Spec.deserialize(params['Spec'])
+          end
+        end
+      end
+
+      # CreateChannel返回参数结构体
+      class CreateChannelResponse < TencentCloud::Common::AbstractModel
+        # @param ChannelId: <p>渠道ID</p>
+        # @type ChannelId: String
+        # @param QrcodeUrl: <p>二维码URL（扫码类渠道创建后回填，其他场景为空）</p>
+        # @type QrcodeUrl: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ChannelId, :QrcodeUrl, :RequestId
+
+        def initialize(channelid=nil, qrcodeurl=nil, requestid=nil)
+          @ChannelId = channelid
+          @QrcodeUrl = qrcodeurl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ChannelId = params['ChannelId']
+          @QrcodeUrl = params['QrcodeUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateConversation请求参数结构体
       class CreateConversationRequest < TencentCloud::Common::AbstractModel
         # @param Type: <p>会话类型 枚举值: 0-CONVERSATION_TYPE_UNSPECIFIED(未指定；列表查询时表示全部), 1-CONVERSATION_TYPE_VISITOR(访客端体验), 2-CONVERSATION_TYPE_EVALUATION(评测), 5-CONVERSATION_TYPE_API(API 接入), 10-CONVERSATION_TYPE_WORKFLOW(工作流调试), 20-CONVERSATION_TYPE_SHARE(分享链接)</p>
@@ -4762,6 +5050,46 @@ module TencentCloud
 
       # DeleteAppTrigger返回参数结构体
       class DeleteAppTriggerResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteChannel请求参数结构体
+      class DeleteChannelRequest < TencentCloud::Common::AbstractModel
+        # @param AppId: <p>应用业务ID</p>
+        # @type AppId: String
+        # @param ChannelId: <p>渠道业务ID</p>
+        # @type ChannelId: String
+        # @param Scene: <p>渠道场景：0-B端场景，1-C端场景</p>
+        # @type Scene: Integer
+
+        attr_accessor :AppId, :ChannelId, :Scene
+
+        def initialize(appid=nil, channelid=nil, scene=nil)
+          @AppId = appid
+          @ChannelId = channelid
+          @Scene = scene
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @ChannelId = params['ChannelId']
+          @Scene = params['Scene']
+        end
+      end
+
+      # DeleteChannel返回参数结构体
+      class DeleteChannelResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -5797,6 +6125,123 @@ module TencentCloud
               auditlogmetafield_tmp.deserialize(i)
               @BizObjects << auditlogmetafield_tmp
             end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeChannelList请求参数结构体
+      class DescribeChannelListRequest < TencentCloud::Common::AbstractModel
+        # @param AppId: <p>应用业务ID</p>
+        # @type AppId: String
+        # @param Scene: <p>渠道场景：0-B端场景，1-C端场景</p>
+        # @type Scene: Integer
+        # @param FilterList: <p>过滤条件（可选，支持ChannelType/ChannelStatus等维度）</p>
+        # @type FilterList: Array
+        # @param PageNumber: <p>页码（从1开始）</p>
+        # @type PageNumber: Integer
+        # @param PageSize: <p>每页数量（最大100）</p>
+        # @type PageSize: Integer
+
+        attr_accessor :AppId, :Scene, :FilterList, :PageNumber, :PageSize
+
+        def initialize(appid=nil, scene=nil, filterlist=nil, pagenumber=nil, pagesize=nil)
+          @AppId = appid
+          @Scene = scene
+          @FilterList = filterlist
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @Scene = params['Scene']
+          unless params['FilterList'].nil?
+            @FilterList = []
+            params['FilterList'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @FilterList << filter_tmp
+            end
+          end
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+        end
+      end
+
+      # DescribeChannelList返回参数结构体
+      class DescribeChannelListResponse < TencentCloud::Common::AbstractModel
+        # @param ChannelList: <p>渠道列表</p>
+        # @type ChannelList: Array
+        # @param TotalCount: <p>总数</p>
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ChannelList, :TotalCount, :RequestId
+
+        def initialize(channellist=nil, totalcount=nil, requestid=nil)
+          @ChannelList = channellist
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ChannelList'].nil?
+            @ChannelList = []
+            params['ChannelList'].each do |i|
+              channel_tmp = Channel.new
+              channel_tmp.deserialize(i)
+              @ChannelList << channel_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeChannel请求参数结构体
+      class DescribeChannelRequest < TencentCloud::Common::AbstractModel
+        # @param AppId: <p>应用业务ID</p>
+        # @type AppId: String
+        # @param ChannelId: <p>渠道业务ID</p>
+        # @type ChannelId: String
+        # @param Scene: <p>渠道场景：0-B端场景，1-C端场景</p>
+        # @type Scene: Integer
+
+        attr_accessor :AppId, :ChannelId, :Scene
+
+        def initialize(appid=nil, channelid=nil, scene=nil)
+          @AppId = appid
+          @ChannelId = channelid
+          @Scene = scene
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @ChannelId = params['ChannelId']
+          @Scene = params['Scene']
+        end
+      end
+
+      # DescribeChannel返回参数结构体
+      class DescribeChannelResponse < TencentCloud::Common::AbstractModel
+        # @param Channel: <p>渠道信息（含spec）</p>
+        # @type Channel: :class:`Tencentcloud::Adp.v20260520.models.Channel`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Channel, :RequestId
+
+        def initialize(channel=nil, requestid=nil)
+          @Channel = channel
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Channel'].nil?
+            @Channel = Channel.new
+            @Channel.deserialize(params['Channel'])
           end
           @RequestId = params['RequestId']
         end
@@ -7473,6 +7918,26 @@ module TencentCloud
         end
       end
 
+      # 钉钉机器人渠道配置
+      class DingTalkChannelConfig < TencentCloud::Common::AbstractModel
+        # @param AppKey: <p>钉钉机器人ClientId（AppKey）</p>
+        # @type AppKey: String
+        # @param AppSecret: <p>钉钉机器人ClientSecret（AppSecret）</p>
+        # @type AppSecret: String
+
+        attr_accessor :AppKey, :AppSecret
+
+        def initialize(appkey=nil, appsecret=nil)
+          @AppKey = appkey
+          @AppSecret = appsecret
+        end
+
+        def deserialize(params)
+          @AppKey = params['AppKey']
+          @AppSecret = params['AppSecret']
+        end
+      end
+
       # DuplexBilling
       class DuplexBilling < TencentCloud::Common::AbstractModel
         # @param BillingUnit: <table><tbody><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>UNKNOW</td><td>0</td><td></td></tr><tr><td>TOKEN</td><td>1</td><td>按token</td></tr><tr><td>PAGE_COUNT</td><td>2</td><td>按页数</td></tr><tr><td>TIMES</td><td>3</td><td>按次数</td></tr><tr><td>TIMES_THOUSAND</td><td>4</td><td>按千次数</td></tr><tr><td>SECOND</td><td>5</td><td>按时长</td></tr><tr><td>CHARACTER</td><td>6</td><td>按字符数</td></tr><tr><td>CHARACTER_THOUSAND</td><td>7</td><td>按千字符数</td></tr><tr><td>SHEET</td><td>8</td><td>按张</td></tr><tr><td>NUMBER</td><td>9</td><td>按个数</td></tr></tbody></table>
@@ -7811,6 +8276,50 @@ module TencentCloud
           @StartAt = params['StartAt']
           @Unit = params['Unit']
           @Value = params['Value']
+        end
+      end
+
+      # 飞书机器人渠道配置
+      class LarkChannelConfig < TencentCloud::Common::AbstractModel
+        # @param AppId: <p>飞书机器人AppId</p>
+        # @type AppId: String
+        # @param AppSecret: <p>飞书机器人AppSecret</p>
+        # @type AppSecret: String
+
+        attr_accessor :AppId, :AppSecret
+
+        def initialize(appid=nil, appsecret=nil)
+          @AppId = appid
+          @AppSecret = appsecret
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @AppSecret = params['AppSecret']
+        end
+      end
+
+      # LINE渠道配置
+      class LineChannelConfig < TencentCloud::Common::AbstractModel
+        # @param AccessToken: <p>LINE Channel Access Token</p>
+        # @type AccessToken: String
+        # @param CallbackUrl: <p>LINE回调地址</p>
+        # @type CallbackUrl: String
+        # @param ChannelSecret: <p>LINE Channel Secret</p>
+        # @type ChannelSecret: String
+
+        attr_accessor :AccessToken, :CallbackUrl, :ChannelSecret
+
+        def initialize(accesstoken=nil, callbackurl=nil, channelsecret=nil)
+          @AccessToken = accesstoken
+          @CallbackUrl = callbackurl
+          @ChannelSecret = channelsecret
+        end
+
+        def deserialize(params)
+          @AccessToken = params['AccessToken']
+          @CallbackUrl = params['CallbackUrl']
+          @ChannelSecret = params['ChannelSecret']
         end
       end
 
@@ -8645,6 +9154,60 @@ module TencentCloud
 
       # ModifyAppTrigger返回参数结构体
       class ModifyAppTriggerResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyChannel请求参数结构体
+      class ModifyChannelRequest < TencentCloud::Common::AbstractModel
+        # @param AppId: <p>应用业务ID</p>
+        # @type AppId: String
+        # @param ChannelId: <p>渠道业务ID</p>
+        # @type ChannelId: String
+        # @param Scene: <p>渠道场景：0-B端场景，1-C端场景</p>
+        # @type Scene: Integer
+        # @param Spec: <p>待更新的渠道规格</p>
+        # @type Spec: :class:`Tencentcloud::Adp.v20260520.models.ChannelSpec`
+        # @param UpdateMask: <p>更新字段掩码,<br>B端(Scene=0)：支持：【spec.description&quot; ,&quot;spec.wecom_robot.callback.wecom_robot_id&quot;】<br>C端(Scene=1)：支持：【&quot;spec.description&quot; , &quot;spec.wecom_robot.websocket.bot_id&quot; ,&quot;spec.wecom_robot.websocket.bot_secret&quot;】</p>
+        # @type UpdateMask: :class:`Tencentcloud::Adp.v20260520.models.FieldMask`
+
+        attr_accessor :AppId, :ChannelId, :Scene, :Spec, :UpdateMask
+
+        def initialize(appid=nil, channelid=nil, scene=nil, spec=nil, updatemask=nil)
+          @AppId = appid
+          @ChannelId = channelid
+          @Scene = scene
+          @Spec = spec
+          @UpdateMask = updatemask
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @ChannelId = params['ChannelId']
+          @Scene = params['Scene']
+          unless params['Spec'].nil?
+            @Spec = ChannelSpec.new
+            @Spec.deserialize(params['Spec'])
+          end
+          unless params['UpdateMask'].nil?
+            @UpdateMask = FieldMask.new
+            @UpdateMask.deserialize(params['UpdateMask'])
+          end
+        end
+      end
+
+      # ModifyChannel返回参数结构体
+      class ModifyChannelResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -10474,6 +11037,33 @@ module TencentCloud
         end
       end
 
+      # Skill 企业共享配置。
+      class SkillCorpShareConfig < TencentCloud::Common::AbstractModel
+        # @param ShareScope: <table><tbody><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>SHARE_SCOPE_TYPE_UNSPECIFIED</td><td>0</td><td></td></tr><tr><td>SHARE_SCOPE_TYPE_ALL</td><td>1</td><td></td></tr><tr><td>SHARE_SCOPE_TYPE_ACCOUNT</td><td>2</td><td></td></tr><tr><td>SHARE_SCOPE_TYPE_SPACE</td><td>3</td><td></td></tr></tbody></table><p>枚举值：</p><ul><li>0： 未指定</li><li>1： 全企业共享</li><li>3： 按空间共享</li></ul>
+        # @type ShareScope: Integer
+        # @param ShareScopeList: <p>共享范围信息，仅支持空间；StrId 为空间ID，Name 为空间名称</p>
+        # @type ShareScopeList: Array
+
+        attr_accessor :ShareScope, :ShareScopeList
+
+        def initialize(sharescope=nil, sharescopelist=nil)
+          @ShareScope = sharescope
+          @ShareScopeList = sharescopelist
+        end
+
+        def deserialize(params)
+          @ShareScope = params['ShareScope']
+          unless params['ShareScopeList'].nil?
+            @ShareScopeList = []
+            params['ShareScopeList'].each do |i|
+              identity_tmp = Identity.new
+              identity_tmp.deserialize(i)
+              @ShareScopeList << identity_tmp
+            end
+          end
+        end
+      end
+
       # skill详情
       class SkillDetail < TencentCloud::Common::AbstractModel
         # @param ReferenceSummaryList: 调用情况摘要
@@ -10560,26 +11150,28 @@ module TencentCloud
 
       # SkillProfile Skill 基础展示信息。
       class SkillProfile < TencentCloud::Common::AbstractModel
-        # @param CreateTime: 创建时间（Unix秒）
+        # @param CreateTime: <p>创建时间（Unix秒）</p>
         # @type CreateTime: String
-        # @param Creator: 创建者
+        # @param Creator: <p>创建者</p>
         # @type Creator: String
-        # @param Description: Skill 描述
+        # @param Description: <p>Skill 描述</p>
         # @type Description: String
-        # @param DisplayDescription: Skill 展示描述
+        # @param DisplayDescription: <p>Skill 展示描述</p>
         # @type DisplayDescription: String
-        # @param DisplayName: Skill 展示名称
+        # @param DisplayName: <p>Skill 展示名称</p>
         # @type DisplayName: String
-        # @param IconUrl: Skill 图标
+        # @param IconUrl: <p>Skill 图标</p>
         # @type IconUrl: String
-        # @param Name: Skill 名称
+        # @param Name: <p>Skill 名称</p>
         # @type Name: String
-        # @param UpdateTime: 更新时间（Unix秒）
+        # @param UpdateTime: <p>更新时间（Unix秒）</p>
         # @type UpdateTime: String
+        # @param SpaceId: <p>空间</p>
+        # @type SpaceId: String
 
-        attr_accessor :CreateTime, :Creator, :Description, :DisplayDescription, :DisplayName, :IconUrl, :Name, :UpdateTime
+        attr_accessor :CreateTime, :Creator, :Description, :DisplayDescription, :DisplayName, :IconUrl, :Name, :UpdateTime, :SpaceId
 
-        def initialize(createtime=nil, creator=nil, description=nil, displaydescription=nil, displayname=nil, iconurl=nil, name=nil, updatetime=nil)
+        def initialize(createtime=nil, creator=nil, description=nil, displaydescription=nil, displayname=nil, iconurl=nil, name=nil, updatetime=nil, spaceid=nil)
           @CreateTime = createtime
           @Creator = creator
           @Description = description
@@ -10588,6 +11180,7 @@ module TencentCloud
           @IconUrl = iconurl
           @Name = name
           @UpdateTime = updatetime
+          @SpaceId = spaceid
         end
 
         def deserialize(params)
@@ -10599,6 +11192,7 @@ module TencentCloud
           @IconUrl = params['IconUrl']
           @Name = params['Name']
           @UpdateTime = params['UpdateTime']
+          @SpaceId = params['SpaceId']
         end
       end
 
@@ -10671,35 +11265,31 @@ module TencentCloud
 
       # SkillShare Skill 企业共享信息。
       class SkillShare < TencentCloud::Common::AbstractModel
-        # @param ApprovalId: 审批ID
+        # @param ApprovalId: <p>审批ID</p>
         # @type ApprovalId: String
-        # @param ShareSkillId: 共享后关联的新 skill_id
+        # @param ShareSkillId: <p>共享后关联的新 skill_id</p>
         # @type ShareSkillId: String
-        # @param ShareVersion: 共享版本，如 1.0.0
+        # @param ShareVersion: <p>共享版本，如 1.0.0</p>
         # @type ShareVersion: String
-        # @param ShareVersionId: 共享版本ID
+        # @param ShareVersionId: <p>共享版本ID</p>
         # @type ShareVersionId: String
-        # @param SkillId: 原 skill_id
+        # @param SkillId: <p>原 skill_id</p>
         # @type SkillId: String
-        # @param Status: 共享状态
-
-        # 枚举值:
-        # | uint | 描述 |
-        # | --- | --- |
-        # | 0 | 未共享 |
-        # | 1 | 已共享 |
-        # | 2 | 审批中 |
+        # @param Status: <p>共享状态</p><p>枚举值:<br>| uint | 描述 |<br>| --- | --- |<br>| 0 | 未共享 |<br>| 1 | 已共享 |<br>| 2 | 审批中 |</p>
         # @type Status: Integer
+        # @param CorpShareConfig: <p>企业共享范围</p>
+        # @type CorpShareConfig: :class:`Tencentcloud::Adp.v20260520.models.SkillCorpShareConfig`
 
-        attr_accessor :ApprovalId, :ShareSkillId, :ShareVersion, :ShareVersionId, :SkillId, :Status
+        attr_accessor :ApprovalId, :ShareSkillId, :ShareVersion, :ShareVersionId, :SkillId, :Status, :CorpShareConfig
 
-        def initialize(approvalid=nil, shareskillid=nil, shareversion=nil, shareversionid=nil, skillid=nil, status=nil)
+        def initialize(approvalid=nil, shareskillid=nil, shareversion=nil, shareversionid=nil, skillid=nil, status=nil, corpshareconfig=nil)
           @ApprovalId = approvalid
           @ShareSkillId = shareskillid
           @ShareVersion = shareversion
           @ShareVersionId = shareversionid
           @SkillId = skillid
           @Status = status
+          @CorpShareConfig = corpshareconfig
         end
 
         def deserialize(params)
@@ -10709,6 +11299,10 @@ module TencentCloud
           @ShareVersionId = params['ShareVersionId']
           @SkillId = params['SkillId']
           @Status = params['Status']
+          unless params['CorpShareConfig'].nil?
+            @CorpShareConfig = SkillCorpShareConfig.new
+            @CorpShareConfig.deserialize(params['CorpShareConfig'])
+          end
         end
       end
 
@@ -10796,35 +11390,31 @@ module TencentCloud
 
       # SkillVersion Skill 版本信息。
       class SkillVersion < TencentCloud::Common::AbstractModel
-        # @param AnalysisInfo: 检测信息
+        # @param AnalysisInfo: <p>检测信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AnalysisInfo: :class:`Tencentcloud::Adp.v20260520.models.SkillAnalysisInfo`
-        # @param Version: 当前生效版本号
+        # @param Version: <p>当前生效版本号</p>
         # @type Version: String
-        # @param VersionId: 当前生效版本ID
+        # @param VersionId: <p>当前生效版本ID</p>
         # @type VersionId: String
-        # @param VersionStatus:     Skill 版本发布流程状态：
-        #       - 0 INITIALIZED      初始化（版本初始态）
-        #       - 1 AUDITING         审核中（f_analysis_status ∈ {PENDING, RUNNING}）
-        #       - 2 PENDING_RELEASE  待发布（低/中风险，等用户确认上架）
-        #       - 3 RELEASED         已发布
-        #       - 4 UNRELEASED       未发布（HIGH / UNAVAILABLE / FAILED / 用户放弃，含历史"不通过"语义）
-        #     与 SkillAnalysisStatus 解耦：前者是用户视角发布生命周期，后者是安全检测阶段。
+        # @param VersionStatus: <p>Skill 版本发布流程状态：</p><pre><code>  - 0 INITIALIZED      初始化（版本初始态）  - 1 AUDITING         审核中（f_analysis_status ∈ {PENDING, RUNNING}）  - 2 PENDING_RELEASE  待发布（低/中风险，等用户确认上架）  - 3 RELEASED         已发布  - 4 UNRELEASED       未发布（HIGH / UNAVAILABLE / FAILED / 用户放弃，含历史&quot;不通过&quot;语义）与 SkillAnalysisStatus 解耦：前者是用户视角发布生命周期，后者是安全检测阶段。</code></pre>
         # @type VersionStatus: Integer
-        # @param SkillMd5: Skill包的md5信息
+        # @param SkillMd5: <p>Skill包的md5信息</p>
         # @type SkillMd5: String
-        # @param SkillUrl: 版本包地址
+        # @param SkillUrl: <p>版本包地址</p>
         # @type SkillUrl: String
-        # @param CreateTime: 版本创建时间（Unix秒）
+        # @param CreateTime: <p>版本创建时间（Unix秒）</p>
         # @type CreateTime: String
-        # @param SkillMarkdownUrl: skill md文档
+        # @param SkillMarkdownUrl: <p>skill md文档</p>
         # @type SkillMarkdownUrl: String
-        # @param UpdateDesc: 版本变更说明
+        # @param UpdateDesc: <p>版本变更说明</p>
         # @type UpdateDesc: String
+        # @param Updater: <p>变更用户</p>
+        # @type Updater: String
 
-        attr_accessor :AnalysisInfo, :Version, :VersionId, :VersionStatus, :SkillMd5, :SkillUrl, :CreateTime, :SkillMarkdownUrl, :UpdateDesc
+        attr_accessor :AnalysisInfo, :Version, :VersionId, :VersionStatus, :SkillMd5, :SkillUrl, :CreateTime, :SkillMarkdownUrl, :UpdateDesc, :Updater
 
-        def initialize(analysisinfo=nil, version=nil, versionid=nil, versionstatus=nil, skillmd5=nil, skillurl=nil, createtime=nil, skillmarkdownurl=nil, updatedesc=nil)
+        def initialize(analysisinfo=nil, version=nil, versionid=nil, versionstatus=nil, skillmd5=nil, skillurl=nil, createtime=nil, skillmarkdownurl=nil, updatedesc=nil, updater=nil)
           @AnalysisInfo = analysisinfo
           @Version = version
           @VersionId = versionid
@@ -10834,6 +11424,7 @@ module TencentCloud
           @CreateTime = createtime
           @SkillMarkdownUrl = skillmarkdownurl
           @UpdateDesc = updatedesc
+          @Updater = updater
         end
 
         def deserialize(params)
@@ -10849,6 +11440,7 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @SkillMarkdownUrl = params['SkillMarkdownUrl']
           @UpdateDesc = params['UpdateDesc']
+          @Updater = params['Updater']
         end
       end
 
@@ -10957,6 +11549,22 @@ module TencentCloud
         def deserialize(params)
           @Description = params['Description']
           @Name = params['Name']
+        end
+      end
+
+      # Telegram渠道配置
+      class TelegramChannelConfig < TencentCloud::Common::AbstractModel
+        # @param BotToken: <p>Telegram Bot Token</p>
+        # @type BotToken: String
+
+        attr_accessor :BotToken
+
+        def initialize(bottoken=nil)
+          @BotToken = bottoken
+        end
+
+        def deserialize(params)
+          @BotToken = params['BotToken']
         end
       end
 
@@ -11490,6 +12098,26 @@ module TencentCloud
         end
       end
 
+      # 用户+Agent归属引用
+      class UserAgentReference < TencentCloud::Common::AbstractModel
+        # @param AgentId: <p>claw agent 运行态标识</p>
+        # @type AgentId: String
+        # @param UserId: <p>归属用户标识</p>
+        # @type UserId: String
+
+        attr_accessor :AgentId, :UserId
+
+        def initialize(agentid=nil, userid=nil)
+          @AgentId = agentid
+          @UserId = userid
+        end
+
+        def deserialize(params)
+          @AgentId = params['AgentId']
+          @UserId = params['UserId']
+        end
+      end
+
       # 变量信息
       class Variable < TencentCloud::Common::AbstractModel
         # @param DefaultFileName: <p>默认文件名称</p>
@@ -11498,7 +12126,7 @@ module TencentCloud
         # @type DefaultValue: String
         # @param Description: <p>变量描述</p>
         # @type Description: String
-        # @param ModuleType: <p>模块类型。枚举值: 1:环境参数, 2:应用参数, 3:系统参数, -1:所有参数</p>
+        # @param ModuleType: <p>变量模块类型</p><p>枚举值：</p><ul><li>0： API参数</li><li>1： 环境参数</li><li>2： 应用参数</li><li>3： 系统参数</li></ul>
         # @type ModuleType: Integer
         # @param Name: <p>变量名称</p>
         # @type Name: String
@@ -11510,10 +12138,14 @@ module TencentCloud
         # @type EnableEndpoints: Boolean
         # @param EndpointList: <p>网络策略列表(支持: 精确域名、*.通配子域名、可带协议/端口/路径前缀)</p>
         # @type EndpointList: Array
+        # @param IsBuiltin: <p>是否内置变量</p>
+        # @type IsBuiltin: Boolean
+        # @param EnableSandbox: <p>是否可注入到沙箱环境</p>
+        # @type EnableSandbox: Boolean
 
-        attr_accessor :DefaultFileName, :DefaultValue, :Description, :ModuleType, :Name, :Type, :VariableId, :EnableEndpoints, :EndpointList
+        attr_accessor :DefaultFileName, :DefaultValue, :Description, :ModuleType, :Name, :Type, :VariableId, :EnableEndpoints, :EndpointList, :IsBuiltin, :EnableSandbox
 
-        def initialize(defaultfilename=nil, defaultvalue=nil, description=nil, moduletype=nil, name=nil, type=nil, variableid=nil, enableendpoints=nil, endpointlist=nil)
+        def initialize(defaultfilename=nil, defaultvalue=nil, description=nil, moduletype=nil, name=nil, type=nil, variableid=nil, enableendpoints=nil, endpointlist=nil, isbuiltin=nil, enablesandbox=nil)
           @DefaultFileName = defaultfilename
           @DefaultValue = defaultvalue
           @Description = description
@@ -11523,6 +12155,8 @@ module TencentCloud
           @VariableId = variableid
           @EnableEndpoints = enableendpoints
           @EndpointList = endpointlist
+          @IsBuiltin = isbuiltin
+          @EnableSandbox = enablesandbox
         end
 
         def deserialize(params)
@@ -11535,6 +12169,8 @@ module TencentCloud
           @VariableId = params['VariableId']
           @EnableEndpoints = params['EnableEndpoints']
           @EndpointList = params['EndpointList']
+          @IsBuiltin = params['IsBuiltin']
+          @EnableSandbox = params['EnableSandbox']
         end
       end
 
@@ -11579,6 +12215,227 @@ module TencentCloud
           @TimbreKey = params['TimbreKey']
           @VoiceName = params['VoiceName']
           @VoiceType = params['VoiceType']
+        end
+      end
+
+      # 微信公众号/小程序渠道配置
+      class WechatChannelConfig < TencentCloud::Common::AbstractModel
+        # @param QrcodeUrl: <p>授权二维码URL（创建后回填）</p>
+        # @type QrcodeUrl: String
+        # @param WechatAppId: <p>公众号/小程序AppId（授权后回填）</p>
+        # @type WechatAppId: String
+        # @param WechatRefreshToken: <p>公众号/小程序RefreshToken（授权后回填）</p>
+        # @type WechatRefreshToken: String
+
+        attr_accessor :QrcodeUrl, :WechatAppId, :WechatRefreshToken
+
+        def initialize(qrcodeurl=nil, wechatappid=nil, wechatrefreshtoken=nil)
+          @QrcodeUrl = qrcodeurl
+          @WechatAppId = wechatappid
+          @WechatRefreshToken = wechatrefreshtoken
+        end
+
+        def deserialize(params)
+          @QrcodeUrl = params['QrcodeUrl']
+          @WechatAppId = params['WechatAppId']
+          @WechatRefreshToken = params['WechatRefreshToken']
+        end
+      end
+
+      # 微信ClawBot渠道配置
+      class WechatClawBotChannelConfig < TencentCloud::Common::AbstractModel
+        # @param BotId: <p>ClawBot机器人ID（扫码后回填）</p>
+        # @type BotId: String
+        # @param BotToken: <p>ClawBot机器人Token（扫码后回填）</p>
+        # @type BotToken: String
+        # @param QrcodeStatus: <p>二维码状态（wait/confirmed/expired）</p>
+        # @type QrcodeStatus: String
+        # @param QrcodeUrl: <p>二维码URL（创建后回填）</p>
+        # @type QrcodeUrl: String
+        # @param WechatUserId: <p>微信用户ID（扫码后回填）</p>
+        # @type WechatUserId: String
+
+        attr_accessor :BotId, :BotToken, :QrcodeStatus, :QrcodeUrl, :WechatUserId
+
+        def initialize(botid=nil, bottoken=nil, qrcodestatus=nil, qrcodeurl=nil, wechatuserid=nil)
+          @BotId = botid
+          @BotToken = bottoken
+          @QrcodeStatus = qrcodestatus
+          @QrcodeUrl = qrcodeurl
+          @WechatUserId = wechatuserid
+        end
+
+        def deserialize(params)
+          @BotId = params['BotId']
+          @BotToken = params['BotToken']
+          @QrcodeStatus = params['QrcodeStatus']
+          @QrcodeUrl = params['QrcodeUrl']
+          @WechatUserId = params['WechatUserId']
+        end
+      end
+
+      # 微信客服渠道配置
+      class WechatCustomerServiceChannelConfig < TencentCloud::Common::AbstractModel
+        # @param AgentSecret: <p>企业微信应用Secret</p>
+        # @type AgentSecret: String
+        # @param Avatar: <p>头像URL</p>
+        # @type Avatar: String
+        # @param Callback: <p>回调配置</p>
+        # @type Callback: :class:`Tencentcloud::Adp.v20260520.models.CallbackConfig`
+        # @param CustomerServiceId: <p>客服账号ID</p>
+        # @type CustomerServiceId: String
+        # @param Name: <p>客服账号名称</p>
+        # @type Name: String
+        # @param ShareCodeUrl: <p>客服形象二维码URL</p>
+        # @type ShareCodeUrl: String
+        # @param WecomCorpId: <p>企业微信企业ID</p>
+        # @type WecomCorpId: String
+
+        attr_accessor :AgentSecret, :Avatar, :Callback, :CustomerServiceId, :Name, :ShareCodeUrl, :WecomCorpId
+
+        def initialize(agentsecret=nil, avatar=nil, callback=nil, customerserviceid=nil, name=nil, sharecodeurl=nil, wecomcorpid=nil)
+          @AgentSecret = agentsecret
+          @Avatar = avatar
+          @Callback = callback
+          @CustomerServiceId = customerserviceid
+          @Name = name
+          @ShareCodeUrl = sharecodeurl
+          @WecomCorpId = wecomcorpid
+        end
+
+        def deserialize(params)
+          @AgentSecret = params['AgentSecret']
+          @Avatar = params['Avatar']
+          unless params['Callback'].nil?
+            @Callback = CallbackConfig.new
+            @Callback.deserialize(params['Callback'])
+          end
+          @CustomerServiceId = params['CustomerServiceId']
+          @Name = params['Name']
+          @ShareCodeUrl = params['ShareCodeUrl']
+          @WecomCorpId = params['WecomCorpId']
+        end
+      end
+
+      # 企微应用渠道配置
+      class WecomAppChannelConfig < TencentCloud::Common::AbstractModel
+        # @param Callback: <p>回调配置</p>
+        # @type Callback: :class:`Tencentcloud::Adp.v20260520.models.CallbackConfig`
+        # @param ThirdChannelCorpId: <p>第三方企业ID</p>
+        # @type ThirdChannelCorpId: String
+        # @param ThirdChannelId: <p>第三方渠道ID</p>
+        # @type ThirdChannelId: String
+        # @param WecomAgentId: <p>企微应用ID</p>
+        # @type WecomAgentId: String
+        # @param WecomAgentSecret: <p>企微应用Secret</p>
+        # @type WecomAgentSecret: String
+        # @param WecomCorpId: <p>企业ID</p>
+        # @type WecomCorpId: String
+
+        attr_accessor :Callback, :ThirdChannelCorpId, :ThirdChannelId, :WecomAgentId, :WecomAgentSecret, :WecomCorpId
+
+        def initialize(callback=nil, thirdchannelcorpid=nil, thirdchannelid=nil, wecomagentid=nil, wecomagentsecret=nil, wecomcorpid=nil)
+          @Callback = callback
+          @ThirdChannelCorpId = thirdchannelcorpid
+          @ThirdChannelId = thirdchannelid
+          @WecomAgentId = wecomagentid
+          @WecomAgentSecret = wecomagentsecret
+          @WecomCorpId = wecomcorpid
+        end
+
+        def deserialize(params)
+          unless params['Callback'].nil?
+            @Callback = CallbackConfig.new
+            @Callback.deserialize(params['Callback'])
+          end
+          @ThirdChannelCorpId = params['ThirdChannelCorpId']
+          @ThirdChannelId = params['ThirdChannelId']
+          @WecomAgentId = params['WecomAgentId']
+          @WecomAgentSecret = params['WecomAgentSecret']
+          @WecomCorpId = params['WecomCorpId']
+        end
+      end
+
+      # 企微机器人回调接入配置
+      class WecomRobotCallbackAccess < TencentCloud::Common::AbstractModel
+        # @param Callback: <p>回调配置</p>
+        # @type Callback: :class:`Tencentcloud::Adp.v20260520.models.CallbackConfig`
+        # @param RobotName: <p>机器人名称</p>
+        # @type RobotName: String
+        # @param WecomCorpId: <p>企微企业ID</p>
+        # @type WecomCorpId: String
+        # @param WecomRobotId: <p>企微机器人ID</p>
+        # @type WecomRobotId: String
+
+        attr_accessor :Callback, :RobotName, :WecomCorpId, :WecomRobotId
+
+        def initialize(callback=nil, robotname=nil, wecomcorpid=nil, wecomrobotid=nil)
+          @Callback = callback
+          @RobotName = robotname
+          @WecomCorpId = wecomcorpid
+          @WecomRobotId = wecomrobotid
+        end
+
+        def deserialize(params)
+          unless params['Callback'].nil?
+            @Callback = CallbackConfig.new
+            @Callback.deserialize(params['Callback'])
+          end
+          @RobotName = params['RobotName']
+          @WecomCorpId = params['WecomCorpId']
+          @WecomRobotId = params['WecomRobotId']
+        end
+      end
+
+      # 企微机器人渠道配置
+      class WecomRobotChannelConfig < TencentCloud::Common::AbstractModel
+        # @param Callback: <p>回调接入配置</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Callback: :class:`Tencentcloud::Adp.v20260520.models.WecomRobotCallbackAccess`
+        # @param Websocket: <p>WebSocket长连接配置</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Websocket: :class:`Tencentcloud::Adp.v20260520.models.WecomRobotWebsocketAccess`
+
+        attr_accessor :Callback, :Websocket
+
+        def initialize(callback=nil, websocket=nil)
+          @Callback = callback
+          @Websocket = websocket
+        end
+
+        def deserialize(params)
+          unless params['Callback'].nil?
+            @Callback = WecomRobotCallbackAccess.new
+            @Callback.deserialize(params['Callback'])
+          end
+          unless params['Websocket'].nil?
+            @Websocket = WecomRobotWebsocketAccess.new
+            @Websocket.deserialize(params['Websocket'])
+          end
+        end
+      end
+
+      # 企微机器人WebSocket接入配置
+      class WecomRobotWebsocketAccess < TencentCloud::Common::AbstractModel
+        # @param BindType: <p>绑定类型：1-扫码绑定，2-填写表单绑定</p>
+        # @type BindType: Integer
+        # @param BotId: <p>企微机器人BotId</p>
+        # @type BotId: String
+        # @param BotSecret: <p>企微机器人BotSecret</p>
+        # @type BotSecret: String
+
+        attr_accessor :BindType, :BotId, :BotSecret
+
+        def initialize(bindtype=nil, botid=nil, botsecret=nil)
+          @BindType = bindtype
+          @BotId = botid
+          @BotSecret = botsecret
+        end
+
+        def deserialize(params)
+          @BindType = params['BindType']
+          @BotId = params['BotId']
+          @BotSecret = params['BotSecret']
         end
       end
 

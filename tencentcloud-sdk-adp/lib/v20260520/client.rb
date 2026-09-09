@@ -29,7 +29,7 @@ module TencentCloud
         end
 
 
-        # 创建Agent
+        # 复制 Agent（目前仅支持claw模式））
 
         # @param request: Request instance for CopyAgentFromApp.
         # @type request: :class:`Tencentcloud::adp::V20260520::CopyAgentFromAppRequest`
@@ -135,6 +135,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateAppTriggerResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建渠道（通过scene区分B端应用发布渠道与C端IM渠道）
+
+        # @param request: Request instance for CreateChannel.
+        # @type request: :class:`Tencentcloud::adp::V20260520::CreateChannelRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::CreateChannelResponse`
+        def CreateChannel(request)
+          body = send_request('CreateChannel', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateChannelResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -447,6 +471,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteAppTriggerResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除渠道（通过scene区分场景）
+
+        # @param request: Request instance for DeleteChannel.
+        # @type request: :class:`Tencentcloud::adp::V20260520::DeleteChannelRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::DeleteChannelResponse`
+        def DeleteChannel(request)
+          body = send_request('DeleteChannel', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteChannelResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -903,6 +951,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAuditLogMetaResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取渠道详情（scene区分场景）
+
+        # @param request: Request instance for DescribeChannel.
+        # @type request: :class:`Tencentcloud::adp::V20260520::DescribeChannelRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::DescribeChannelResponse`
+        def DescribeChannel(request)
+          body = send_request('DescribeChannel', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeChannelResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取渠道列表（scene区分场景）
+
+        # @param request: Request instance for DescribeChannelList.
+        # @type request: :class:`Tencentcloud::adp::V20260520::DescribeChannelListRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::DescribeChannelListResponse`
+        def DescribeChannelList(request)
+          body = send_request('DescribeChannelList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeChannelListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1599,6 +1695,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyAppTriggerResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改渠道（支持修改备注与企微机器人渠道回调机器人ID）
+
+        # @param request: Request instance for ModifyChannel.
+        # @type request: :class:`Tencentcloud::adp::V20260520::ModifyChannelRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::ModifyChannelResponse`
+        def ModifyChannel(request)
+          body = send_request('ModifyChannel', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyChannelResponse.new
             model.deserialize(response['Response'])
             model
           else

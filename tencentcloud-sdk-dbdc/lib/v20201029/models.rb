@@ -386,7 +386,7 @@ module TencentCloud
         # @type ClientToken: String
         # @param ChargeType: <p>计费模式</p><p>枚举值：</p><ul><li>PREPAID： 包年包月</li><li>POSTPAID： 按量付费</li></ul><p>默认值：默认为包年包月(PREPAID)</p>
         # @type ChargeType: String
-        # @param NetworkMode: <p>访问主机的网络模式</p><p>枚举值：</p><ul><li>privatelink： 四层网络联通，放通SSH 通路</li><li>cross_tenant_eni： 三层网络联通，双网卡模式</li></ul><p>默认值：默认值为：privatelink</p>
+        # @param NetworkMode: <p>访问主机的网络模式</p><p>枚举值：</p><ul><li>cross_tenant_eni： 三层网络联通，双网卡模式</li></ul><p>默认值：默认值为：cross_tenant_eni</p><p>原 privatelink 访问主机的网络模式已下线。</p>
         # @type NetworkMode: String
         # @param SystemDisk: <p>系统盘配置</p><p>入参限制：仅云盘版机型支持，如DB.SA5机型。本地盘机型DB.AT5机型不支持设置</p>
         # @type SystemDisk: :class:`Tencentcloud::Dbdc.v20201029.models.SystemDisk`
@@ -587,10 +587,12 @@ module TencentCloud
         # @param SecurityGroupIds: <p>节点绑定的安全组</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecurityGroupIds: Array
+        # @param LatestRunningTaskType: <p>节点最新进行中的任务类型</p><p>枚举值：</p><ul><li>add-nodes-to-cluster： 添加节点到集群</li><li>remove-nodes-from-cluster： 从集群中移除节点</li><li>modify-nodes-attributes： 修改节点属性</li><li>modify-nodes-drg： 修改节点置放群组</li></ul>
+        # @type LatestRunningTaskType: String
 
-        attr_accessor :NodeId, :NodeName, :LanIP, :SSHEndpoint, :Status, :Zone, :NodeType, :NetworkMode, :EniIP, :SecurityGroupIds
+        attr_accessor :NodeId, :NodeName, :LanIP, :SSHEndpoint, :Status, :Zone, :NodeType, :NetworkMode, :EniIP, :SecurityGroupIds, :LatestRunningTaskType
 
-        def initialize(nodeid=nil, nodename=nil, lanip=nil, sshendpoint=nil, status=nil, zone=nil, nodetype=nil, networkmode=nil, eniip=nil, securitygroupids=nil)
+        def initialize(nodeid=nil, nodename=nil, lanip=nil, sshendpoint=nil, status=nil, zone=nil, nodetype=nil, networkmode=nil, eniip=nil, securitygroupids=nil, latestrunningtasktype=nil)
           @NodeId = nodeid
           @NodeName = nodename
           @LanIP = lanip
@@ -601,6 +603,7 @@ module TencentCloud
           @NetworkMode = networkmode
           @EniIP = eniip
           @SecurityGroupIds = securitygroupids
+          @LatestRunningTaskType = latestrunningtasktype
         end
 
         def deserialize(params)
@@ -614,6 +617,7 @@ module TencentCloud
           @NetworkMode = params['NetworkMode']
           @EniIP = params['EniIP']
           @SecurityGroupIds = params['SecurityGroupIds']
+          @LatestRunningTaskType = params['LatestRunningTaskType']
         end
       end
 
@@ -809,10 +813,12 @@ module TencentCloud
         # @type SecurityGroupIds: Array
         # @param DisasterRecoverGroupId: <p>置放群组ID</p>
         # @type DisasterRecoverGroupId: String
+        # @param LatestRunningTaskType: <p>节点最新进行中的任务类型</p><p>枚举值：</p><ul><li>add-nodes-to-cluster： 添加节点到集群</li><li>remove-nodes-from-cluster： 从集群中移除节点</li><li>modify-nodes-attributes： 修改节点属性</li><li>modify-nodes-drg： 修改节点置放群组</li></ul>
+        # @type LatestRunningTaskType: String
 
-        attr_accessor :NodeId, :NodeName, :SSHEndpoint, :LanIP, :ClusterId, :Zone, :NodeType, :CPU, :Memory, :SystemDisk, :DataDisks, :OsName, :ImageId, :VpcId, :SubnetId, :Status, :ChargeType, :ExpireTime, :CreatedTime, :IsolatedTime, :Tags, :AutoRenew, :SwitchId, :RackId, :HostIp, :NetworkMode, :EniIP, :SecurityGroupIds, :DisasterRecoverGroupId
+        attr_accessor :NodeId, :NodeName, :SSHEndpoint, :LanIP, :ClusterId, :Zone, :NodeType, :CPU, :Memory, :SystemDisk, :DataDisks, :OsName, :ImageId, :VpcId, :SubnetId, :Status, :ChargeType, :ExpireTime, :CreatedTime, :IsolatedTime, :Tags, :AutoRenew, :SwitchId, :RackId, :HostIp, :NetworkMode, :EniIP, :SecurityGroupIds, :DisasterRecoverGroupId, :LatestRunningTaskType
 
-        def initialize(nodeid=nil, nodename=nil, sshendpoint=nil, lanip=nil, clusterid=nil, zone=nil, nodetype=nil, cpu=nil, memory=nil, systemdisk=nil, datadisks=nil, osname=nil, imageid=nil, vpcid=nil, subnetid=nil, status=nil, chargetype=nil, expiretime=nil, createdtime=nil, isolatedtime=nil, tags=nil, autorenew=nil, switchid=nil, rackid=nil, hostip=nil, networkmode=nil, eniip=nil, securitygroupids=nil, disasterrecovergroupid=nil)
+        def initialize(nodeid=nil, nodename=nil, sshendpoint=nil, lanip=nil, clusterid=nil, zone=nil, nodetype=nil, cpu=nil, memory=nil, systemdisk=nil, datadisks=nil, osname=nil, imageid=nil, vpcid=nil, subnetid=nil, status=nil, chargetype=nil, expiretime=nil, createdtime=nil, isolatedtime=nil, tags=nil, autorenew=nil, switchid=nil, rackid=nil, hostip=nil, networkmode=nil, eniip=nil, securitygroupids=nil, disasterrecovergroupid=nil, latestrunningtasktype=nil)
           @NodeId = nodeid
           @NodeName = nodename
           @SSHEndpoint = sshendpoint
@@ -842,6 +848,7 @@ module TencentCloud
           @EniIP = eniip
           @SecurityGroupIds = securitygroupids
           @DisasterRecoverGroupId = disasterrecovergroupid
+          @LatestRunningTaskType = latestrunningtasktype
         end
 
         def deserialize(params)
@@ -891,6 +898,7 @@ module TencentCloud
           @EniIP = params['EniIP']
           @SecurityGroupIds = params['SecurityGroupIds']
           @DisasterRecoverGroupId = params['DisasterRecoverGroupId']
+          @LatestRunningTaskType = params['LatestRunningTaskType']
         end
       end
 
@@ -3223,19 +3231,31 @@ module TencentCloud
       class ModifyDBCustomClusterAttributesRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: <p>集群ID</p><p>参数格式：dbcc-hj7gab15</p>
         # @type ClusterId: String
+        # @param ClusterIds: <p>集群 ID 列表</p><p>入参限制：最多支持 100 个</p><p>ClusterId 和 ClusterIds 必须传一个且不能同时传</p>
+        # @type ClusterIds: Array
         # @param DeletionProtection: <p>是否启用集群删除保护</p><p>枚举值：</p><ul><li>true： 启用</li><li>false： 不启用</li></ul>
         # @type DeletionProtection: Boolean
+        # @param ClusterName: <p>集群名称</p><p>入参限制：最长128个字符</p>
+        # @type ClusterName: String
+        # @param ClusterDescription: <p>集群描述</p><p>入参限制：最长200个字符</p>
+        # @type ClusterDescription: String
 
-        attr_accessor :ClusterId, :DeletionProtection
+        attr_accessor :ClusterId, :ClusterIds, :DeletionProtection, :ClusterName, :ClusterDescription
 
-        def initialize(clusterid=nil, deletionprotection=nil)
+        def initialize(clusterid=nil, clusterids=nil, deletionprotection=nil, clustername=nil, clusterdescription=nil)
           @ClusterId = clusterid
+          @ClusterIds = clusterids
           @DeletionProtection = deletionprotection
+          @ClusterName = clustername
+          @ClusterDescription = clusterdescription
         end
 
         def deserialize(params)
           @ClusterId = params['ClusterId']
+          @ClusterIds = params['ClusterIds']
           @DeletionProtection = params['DeletionProtection']
+          @ClusterName = params['ClusterName']
+          @ClusterDescription = params['ClusterDescription']
         end
       end
 
@@ -3474,6 +3494,8 @@ module TencentCloud
       class ModifyDBCustomNodeAttributesRequest < TencentCloud::Common::AbstractModel
         # @param NodeId: <p>节点ID</p><p>参数格式：dbcn-hq98qjym</p>
         # @type NodeId: String
+        # @param NodeIds: <p>节点 ID 列表</p><p>入参限制：最多支持 100 个</p><p>NodeId 和 NodeIds 必须传一个且不能同时传</p>
+        # @type NodeIds: Array
         # @param HostName: <p>主机 HostName</p><p>入参限制：参数设置规则参见：<a href="https://cloud.tencent.com/document/api/1322/132929">创建 DB Custom 节点接口</a>的 HostName 参数说明。</p><p>注意：节点在没有加入到集群之前才支持修改主机 HostName。</p>
         # @type HostName: String
         # @param NodeName: <p>节点名称</p><p>入参限制：参数设置规则参见：<a href="https://cloud.tencent.com/document/api/1322/132929">创建 DB Custom 节点接口</a>的 NodeName 参数说明。</p>
@@ -3481,10 +3503,11 @@ module TencentCloud
         # @param AutoReboot: <p>修改实例 HostName 是否自动重启实例，不传默认自动重启。</p><p>枚举值：</p><ul><li>true： 修改主机 HostName，并自动重启主机</li><li>false： 修改主机 HostName，不自动重启主机，需要手动重启使新主机 HostName 生效</li></ul><p>默认值：true</p>
         # @type AutoReboot: Boolean
 
-        attr_accessor :NodeId, :HostName, :NodeName, :AutoReboot
+        attr_accessor :NodeId, :NodeIds, :HostName, :NodeName, :AutoReboot
 
-        def initialize(nodeid=nil, hostname=nil, nodename=nil, autoreboot=nil)
+        def initialize(nodeid=nil, nodeids=nil, hostname=nil, nodename=nil, autoreboot=nil)
           @NodeId = nodeid
+          @NodeIds = nodeids
           @HostName = hostname
           @NodeName = nodename
           @AutoReboot = autoreboot
@@ -3492,6 +3515,7 @@ module TencentCloud
 
         def deserialize(params)
           @NodeId = params['NodeId']
+          @NodeIds = params['NodeIds']
           @HostName = params['HostName']
           @NodeName = params['NodeName']
           @AutoReboot = params['AutoReboot']

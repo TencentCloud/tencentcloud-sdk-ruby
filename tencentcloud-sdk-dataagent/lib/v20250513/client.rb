@@ -293,30 +293,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取用户会话记录详情列表
-
-        # @param request: Request instance for GetSessionDetails.
-        # @type request: :class:`Tencentcloud::dataagent::V20250513::GetSessionDetailsRequest`
-        # @rtype: :class:`Tencentcloud::dataagent::V20250513::GetSessionDetailsResponse`
-        def GetSessionDetails(request)
-          body = send_request('GetSessionDetails', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = GetSessionDetailsResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 查询上传任务
 
         # @param request: Request instance for GetUploadJobDetails.
@@ -519,6 +495,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = QueryUserAuthorityResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询用户会话详情
+
+        # @param request: Request instance for QueryUserSessionDetail.
+        # @type request: :class:`Tencentcloud::dataagent::V20250513::QueryUserSessionDetailRequest`
+        # @rtype: :class:`Tencentcloud::dataagent::V20250513::QueryUserSessionDetailResponse`
+        def QueryUserSessionDetail(request)
+          body = send_request('QueryUserSessionDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryUserSessionDetailResponse.new
             model.deserialize(response['Response'])
             model
           else

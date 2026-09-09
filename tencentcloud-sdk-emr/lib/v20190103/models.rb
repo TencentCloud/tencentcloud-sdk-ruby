@@ -1675,6 +1675,26 @@ module TencentCloud
         end
       end
 
+      # 配置下发参数
+      class ConfSubContext < TencentCloud::Common::AbstractModel
+        # @param FileName: 配置文件名字
+        # @type FileName: String
+        # @param Params: 配置文件参数,需要转为base64
+        # @type Params: String
+
+        attr_accessor :FileName, :Params
+
+        def initialize(filename=nil, params=nil)
+          @FileName = filename
+          @Params = params
+        end
+
+        def deserialize(params)
+          @FileName = params['FileName']
+          @Params = params['Params']
+        end
+      end
+
       # 资源调度 - 队列修改信息
       class ConfigModifyInfoV2 < TencentCloud::Common::AbstractModel
         # @param OpType: 操作类型，可选值：
@@ -4306,6 +4326,73 @@ module TencentCloud
               overviewmetricdata_tmp = OverviewMetricData.new
               overviewmetricdata_tmp.deserialize(i)
               @Result << overviewmetricdata_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeExportConfs请求参数结构体
+      class DescribeExportConfsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例ID</p>
+        # @type InstanceId: String
+        # @param ExportConfContexts: <p>指定需要导出的配置</p>
+        # @type ExportConfContexts: Array
+        # @param ExportType: <p>导出类型</p><p>枚举值：</p><ul><li>0： 全部配置</li><li>1： 只导出自定义和修改过的配置</li></ul>
+        # @type ExportType: Integer
+        # @param Ip: <p>节点ip</p>
+        # @type Ip: String
+        # @param ConfGroupName: <p>配置组名称</p>
+        # @type ConfGroupName: String
+
+        attr_accessor :InstanceId, :ExportConfContexts, :ExportType, :Ip, :ConfGroupName
+
+        def initialize(instanceid=nil, exportconfcontexts=nil, exporttype=nil, ip=nil, confgroupname=nil)
+          @InstanceId = instanceid
+          @ExportConfContexts = exportconfcontexts
+          @ExportType = exporttype
+          @Ip = ip
+          @ConfGroupName = confgroupname
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['ExportConfContexts'].nil?
+            @ExportConfContexts = []
+            params['ExportConfContexts'].each do |i|
+              exportconfcontext_tmp = ExportConfContext.new
+              exportconfcontext_tmp.deserialize(i)
+              @ExportConfContexts << exportconfcontext_tmp
+            end
+          end
+          @ExportType = params['ExportType']
+          @Ip = params['Ip']
+          @ConfGroupName = params['ConfGroupName']
+        end
+      end
+
+      # DescribeExportConfs返回参数结构体
+      class DescribeExportConfsResponse < TencentCloud::Common::AbstractModel
+        # @param ExportConfParamList: <p>导出配置参数</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExportConfParamList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ExportConfParamList, :RequestId
+
+        def initialize(exportconfparamlist=nil, requestid=nil)
+          @ExportConfParamList = exportconfparamlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ExportConfParamList'].nil?
+            @ExportConfParamList = []
+            params['ExportConfParamList'].each do |i|
+              exportconfmeta_tmp = ExportConfMeta.new
+              exportconfmeta_tmp.deserialize(i)
+              @ExportConfParamList << exportconfmeta_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -8117,6 +8204,62 @@ module TencentCloud
         end
       end
 
+      # 指定要导出配置的上下文结构
+      class ExportConfContext < TencentCloud::Common::AbstractModel
+        # @param ServiceType: <p>服务配置</p>
+        # @type ServiceType: Integer
+        # @param FileName: <p>文件名</p>
+        # @type FileName: String
+        # @param ServiceName: <p>服务名称</p>
+        # @type ServiceName: String
+
+        attr_accessor :ServiceType, :FileName, :ServiceName
+
+        def initialize(servicetype=nil, filename=nil, servicename=nil)
+          @ServiceType = servicetype
+          @FileName = filename
+          @ServiceName = servicename
+        end
+
+        def deserialize(params)
+          @ServiceType = params['ServiceType']
+          @FileName = params['FileName']
+          @ServiceName = params['ServiceName']
+        end
+      end
+
+      # 导出配置结构体
+      class ExportConfMeta < TencentCloud::Common::AbstractModel
+        # @param ServiceName: <p>组件名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceName: String
+        # @param Classification: <p>文件名</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Classification: String
+        # @param ServiceVersion: <p>组件版本</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceVersion: String
+        # @param Properties: <p>导出配置参数</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Properties: String
+
+        attr_accessor :ServiceName, :Classification, :ServiceVersion, :Properties
+
+        def initialize(servicename=nil, classification=nil, serviceversion=nil, properties=nil)
+          @ServiceName = servicename
+          @Classification = classification
+          @ServiceVersion = serviceversion
+          @Properties = properties
+        end
+
+        def deserialize(params)
+          @ServiceName = params['ServiceName']
+          @Classification = params['Classification']
+          @ServiceVersion = params['ServiceVersion']
+          @Properties = params['Properties']
+        end
+      end
+
       # 容器集群外部访问设置
       class ExternalAccess < TencentCloud::Common::AbstractModel
         # @param Type: 外部访问类型，当前仅支持CLB字段
@@ -11354,6 +11497,72 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyServiceParamsByExportConfs请求参数结构体
+      class ModifyServiceParamsByExportConfsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>集群id</p>
+        # @type InstanceId: String
+        # @param ExportConfParamList: <p>导入配置项</p>
+        # @type ExportConfParamList: Array
+        # @param IpList: <p>ip</p>
+        # @type IpList: Array
+        # @param ConfGroupName: <p>配置组</p>
+        # @type ConfGroupName: String
+
+        attr_accessor :InstanceId, :ExportConfParamList, :IpList, :ConfGroupName
+
+        def initialize(instanceid=nil, exportconfparamlist=nil, iplist=nil, confgroupname=nil)
+          @InstanceId = instanceid
+          @ExportConfParamList = exportconfparamlist
+          @IpList = iplist
+          @ConfGroupName = confgroupname
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['ExportConfParamList'].nil?
+            @ExportConfParamList = []
+            params['ExportConfParamList'].each do |i|
+              exportconfmeta_tmp = ExportConfMeta.new
+              exportconfmeta_tmp.deserialize(i)
+              @ExportConfParamList << exportconfmeta_tmp
+            end
+          end
+          @IpList = params['IpList']
+          @ConfGroupName = params['ConfGroupName']
+        end
+      end
+
+      # ModifyServiceParamsByExportConfs返回参数结构体
+      class ModifyServiceParamsByExportConfsResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: <p>流程id</p>
+        # @type FlowId: Integer
+        # @param WaitModifyConfList: <p>变更项</p>
+        # @type WaitModifyConfList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :WaitModifyConfList, :RequestId
+
+        def initialize(flowid=nil, waitmodifyconflist=nil, requestid=nil)
+          @FlowId = flowid
+          @WaitModifyConfList = waitmodifyconflist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          unless params['WaitModifyConfList'].nil?
+            @WaitModifyConfList = []
+            params['WaitModifyConfList'].each do |i|
+              confsubcontext_tmp = ConfSubContext.new
+              confsubcontext_tmp.deserialize(i)
+              @WaitModifyConfList << confsubcontext_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

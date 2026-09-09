@@ -4289,15 +4289,15 @@ module TencentCloud
 
       # CreateCustomizeErrorPage请求参数结构体
       class CreateCustomizeErrorPageRequest < TencentCloud::Common::AbstractModel
-        # @param ZoneId: 站点 ID。
+        # @param ZoneId: <p>站点 ID。</p>
         # @type ZoneId: String
-        # @param Name: 自定义错误页名称，名称为 2-30 个字符。
+        # @param Name: <p>自定义响应页面名称，名称为 2-30 个字符。</p>
         # @type Name: String
-        # @param ContentType: 自定义错误页面类型，取值有：<li>text/html； </li><li>application/json；</li><li>text/plain；</li><li>text/xml。</li>
+        # @param ContentType: <p>自定义响应页面类型，取值有：</p><ul><li>text/html</li><li>application/json</li><li>plain/text</li><li>text/xml</li><li>text/css</li><li>text/javascript</li><li>application/javascript</li><li>text/markdown</li></ul>
         # @type ContentType: String
-        # @param Description: 自定义错误页面描述，描述不超过 60 个字符。
+        # @param Description: <p>自定义响应页面描述，描述不超过 60 个字符。</p>
         # @type Description: String
-        # @param Content: 自定义错误页面内容，内容不超过 2KB。
+        # @param Content: <p>自定义响应页面内容，内容不超过 16KB。</p>
         # @type Content: String
 
         attr_accessor :ZoneId, :Name, :ContentType, :Description, :Content
@@ -4321,7 +4321,7 @@ module TencentCloud
 
       # CreateCustomizeErrorPage返回参数结构体
       class CreateCustomizeErrorPageResponse < TencentCloud::Common::AbstractModel
-        # @param PageId: 页面 ID。
+        # @param PageId: <p>自定义响应页面 ID。</p>
         # @type PageId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -18978,17 +18978,17 @@ module TencentCloud
 
       # ModifyCustomErrorPage请求参数结构体
       class ModifyCustomErrorPageRequest < TencentCloud::Common::AbstractModel
-        # @param PageId: 自定义错误页面 ID。
+        # @param PageId: <p>自定义响应页面 ID。</p>
         # @type PageId: String
-        # @param ZoneId: 站点 ID。
+        # @param ZoneId: <p>站点 ID。</p>
         # @type ZoneId: String
-        # @param Name: 自定义错误页名称，名称为2 - 60个字符。
+        # @param Name: <p>自定义响应页面名称，名称为 2 - 60 个字符。</p>
         # @type Name: String
-        # @param Description: 自定义错误页描述，描述内容不超过60个字符。
+        # @param Description: <p>自定义响应页面描述，描述内容不超过 60 个字符。</p>
         # @type Description: String
-        # @param ContentType: 自定义错误页面类型，取值有：<li>text/html。 </li><li>application/json。</li><li>plain/text。</li><li>text/xml。</li>
+        # @param ContentType: <p>自定义响应页面类型，取值有：</p><ul><li>text/html</li><li>application/json</li><li>plain/text</li><li>text/xml</li><li>text/css</li><li>text/javascript</li><li>application/javascript</li><li>text/markdown</li></ul>
         # @type ContentType: String
-        # @param Content: 自定义错误页面内容。内容不超过 2KB。
+        # @param Content: <p>自定义响应页面内容。内容不超过 16KB。</p>
         # @type Content: String
 
         attr_accessor :PageId, :ZoneId, :Name, :Description, :ContentType, :Content
