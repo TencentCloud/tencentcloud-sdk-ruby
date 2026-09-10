@@ -3527,28 +3527,34 @@ module TencentCloud
 
       # 用量时间周期内的时序点列表（按 metric key 索引）。为 JSON 数组的字符串形式,数组长度与响应 Timestamps 一致，无数据点处为 null。具体包含哪些 key 由响应 MetricKeys 决定。
       class UsageSeries < TencentCloud::Common::AbstractModel
-        # @param TotalToken: <p>[tokens 族]总 token 数用量时间周期内的 JSON 字符串形式，如 <code>&quot;[12,null,15]&quot;</code>。</p>
+        # @param TotalToken: <p>[tokens / apikey_usage 族]总 token 数用量时间周期内的 JSON 字符串形式，如 <code>&quot;[12,null,15]&quot;</code>。</p>
         # @type TotalToken: String
-        # @param InputTotalToken: <p>[tokens 族]输入 token 数用量时间周期内的 JSON 字符串形式，如 <code>&quot;[7,null,9]&quot;</code>。</p>
+        # @param InputTotalToken: <p>[tokens / apikey_usage 族]输入 token 数用量时间周期内的 JSON 字符串形式，如 <code>&quot;[7,null,9]&quot;</code>。</p>
         # @type InputTotalToken: String
-        # @param OutputTotalToken: <p>[tokens 族]输出 token 数用量时间周期内的 JSON 字符串形式，如 <code>&quot;[5,null,6]&quot;</code>。</p>
+        # @param OutputTotalToken: <p>[tokens / apikey_usage 族]输出 token 数用量时间周期内的 JSON 字符串形式，如 <code>&quot;[5,null,6]&quot;</code>。</p>
         # @type OutputTotalToken: String
-        # @param CacheTotalToken: <p>[tokens 族]读缓存 token 数用量时间周期内的 JSON 字符串形式，如<code>&quot;[5,null,6]&quot;</code>。</p>
+        # @param CacheTotalToken: <p>[tokens / apikey_usage 族]读缓存 token 数用量时间周期内的 JSON 字符串形式，如<code>&quot;[5,null,6]&quot;</code>。</p>
         # @type CacheTotalToken: String
         # @param SearchRequestCount: <p>[search 族] 搜索请求数用量时间周期内的 JSON 字符串形式，如<code>&quot;[5,null,6]&quot;</code>。</p>
         # @type SearchRequestCount: String
         # @param SearchCount: <p>[search 族] 搜索引擎调用次数用量时间周期内的 JSON 字符串形式，如<code>&quot;[5,null,6]&quot;</code>。</p>
         # @type SearchCount: String
+        # @param RequestCount: <p>[apikey_usage 族] 请求次数在时间周期内的 JSON 字符串形式，如 <code>&quot;[12,null,15]&quot;</code>。</p>
+        # @type RequestCount: String
+        # @param RequestFailCount: <p>[apikey_usage 族] 请求失败次数在时间周期内的 JSON 字符串形式，如 &quot;[12,null,15]&quot;。</p>
+        # @type RequestFailCount: String
 
-        attr_accessor :TotalToken, :InputTotalToken, :OutputTotalToken, :CacheTotalToken, :SearchRequestCount, :SearchCount
+        attr_accessor :TotalToken, :InputTotalToken, :OutputTotalToken, :CacheTotalToken, :SearchRequestCount, :SearchCount, :RequestCount, :RequestFailCount
 
-        def initialize(totaltoken=nil, inputtotaltoken=nil, outputtotaltoken=nil, cachetotaltoken=nil, searchrequestcount=nil, searchcount=nil)
+        def initialize(totaltoken=nil, inputtotaltoken=nil, outputtotaltoken=nil, cachetotaltoken=nil, searchrequestcount=nil, searchcount=nil, requestcount=nil, requestfailcount=nil)
           @TotalToken = totaltoken
           @InputTotalToken = inputtotaltoken
           @OutputTotalToken = outputtotaltoken
           @CacheTotalToken = cachetotaltoken
           @SearchRequestCount = searchrequestcount
           @SearchCount = searchcount
+          @RequestCount = requestcount
+          @RequestFailCount = requestfailcount
         end
 
         def deserialize(params)
@@ -3558,33 +3564,41 @@ module TencentCloud
           @CacheTotalToken = params['CacheTotalToken']
           @SearchRequestCount = params['SearchRequestCount']
           @SearchCount = params['SearchCount']
+          @RequestCount = params['RequestCount']
+          @RequestFailCount = params['RequestFailCount']
         end
       end
 
-      # 时间周期内的统计聚合值（按 metric key 索引）。声明 tokens / search 两族字段都在本 schema 中，按 MetricKeys 实际返回取值，参见响应顶层 `MetricKeys` 字段。
+      # 时间周期内的统计聚合值，按 MetricKeys 实际返回取值，参见响应顶层 `MetricKeys` 字段。
       class UsageStats < TencentCloud::Common::AbstractModel
-        # @param TotalToken: <p>[tokens 族] 时间周期内的累计总 token 数。</p>
+        # @param TotalToken: <p>[tokens / apikey_usage 族] 时间周期内的累计总 token 数。</p>
         # @type TotalToken: Integer
-        # @param InputTotalToken: <p>[tokens 族] 时间周期内的累计输入 token 数。</p>
+        # @param InputTotalToken: <p>[tokens / apikey_usage 族] 时间周期内的累计输入 token 数。</p>
         # @type InputTotalToken: Integer
-        # @param OutputTotalToken: <p>[tokens 族] 时间周期内的累计输出 token 数。</p>
+        # @param OutputTotalToken: <p>[tokens / apikey_usage 族] 时间周期内的累计输出 token 数。</p>
         # @type OutputTotalToken: Integer
-        # @param CacheTotalToken: <p>[tokens 族] 时间周期内的累计读缓存 token 数（命中缓存部分）</p>
+        # @param CacheTotalToken: <p>[tokens / apikey_usage 族] 时间周期内的累计读缓存 token 数（命中缓存部分）注意：CacheTotalToken 是 InputTotalToken 的子集（已包含在内）。</p>
         # @type CacheTotalToken: Integer
-        # @param SearchRequestCount: <p>[search 族] 整段累计联网搜索请求数</p>
+        # @param SearchRequestCount: <p>[search 族] 时间周期内的累计联网搜索请求数</p>
         # @type SearchRequestCount: Integer
-        # @param SearchCount: <p>[search 族] 整段累计搜索引擎调用次数</p>
+        # @param SearchCount: <p>[search 族] 时间周期内的累计搜索引擎调用次数</p>
         # @type SearchCount: Integer
+        # @param RequestCount: <p>[apikey_usage 族] 时间周期内的累计请求次数</p>
+        # @type RequestCount: Integer
+        # @param RequestFailCount: <p>[apikey_usage 族] 时间周期内的累计请求失败次数</p>
+        # @type RequestFailCount: Integer
 
-        attr_accessor :TotalToken, :InputTotalToken, :OutputTotalToken, :CacheTotalToken, :SearchRequestCount, :SearchCount
+        attr_accessor :TotalToken, :InputTotalToken, :OutputTotalToken, :CacheTotalToken, :SearchRequestCount, :SearchCount, :RequestCount, :RequestFailCount
 
-        def initialize(totaltoken=nil, inputtotaltoken=nil, outputtotaltoken=nil, cachetotaltoken=nil, searchrequestcount=nil, searchcount=nil)
+        def initialize(totaltoken=nil, inputtotaltoken=nil, outputtotaltoken=nil, cachetotaltoken=nil, searchrequestcount=nil, searchcount=nil, requestcount=nil, requestfailcount=nil)
           @TotalToken = totaltoken
           @InputTotalToken = inputtotaltoken
           @OutputTotalToken = outputtotaltoken
           @CacheTotalToken = cachetotaltoken
           @SearchRequestCount = searchrequestcount
           @SearchCount = searchcount
+          @RequestCount = requestcount
+          @RequestFailCount = requestfailcount
         end
 
         def deserialize(params)
@@ -3594,6 +3608,8 @@ module TencentCloud
           @CacheTotalToken = params['CacheTotalToken']
           @SearchRequestCount = params['SearchRequestCount']
           @SearchCount = params['SearchCount']
+          @RequestCount = params['RequestCount']
+          @RequestFailCount = params['RequestFailCount']
         end
       end
 

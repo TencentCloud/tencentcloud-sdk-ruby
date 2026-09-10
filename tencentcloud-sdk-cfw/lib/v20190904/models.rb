@@ -2764,6 +2764,118 @@ module TencentCloud
         end
       end
 
+      # NDR出站数据泄露-告警事件
+      class DataLeakOutAlertEvent < TencentCloud::Common::AbstractModel
+        # @param RiskID: 风险ID
+        # @type RiskID: String
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param InstanceName: 实例名称
+        # @type InstanceName: String
+        # @param InstanceType: 实例类型
+        # @type InstanceType: String
+        # @param Region: 地域
+        # @type Region: String
+        # @param SrcIP: 源IP
+        # @type SrcIP: String
+        # @param DstIPPort: 目的IP端口，多个以逗号连接：1.1.1.1:80,1.1.1.1:8080
+        # @type DstIPPort: String
+        # @param Hostname: hostname
+        # @type Hostname: String
+        # @param DstServiceType: 目的服务类型
+        # @type DstServiceType: String
+        # @param DstServiceName: 目的服务名称
+        # @type DstServiceName: String
+        # @param LeakTypeSet: 以逗号连接的敏感类型ID集合: 10001,10002,10003
+        # @type LeakTypeSet: String
+        # @param EventCount: 事件数量
+        # @type EventCount: Integer
+        # @param FirstIdentificationTime: 首次识别时间
+        # @type FirstIdentificationTime: String
+        # @param LatestIdentificationTime: 最近识别时间
+        # @type LatestIdentificationTime: String
+        # @param Level: 风险等级
+        # @type Level: Integer
+        # @param Status: 处置状态
+        # @type Status: Integer
+        # @param Comment: 备注
+        # @type Comment: String
+        # @param ApiPattern: API
+        # @type ApiPattern: String
+        # @param AnalysisStatus: AI分析状态
+        # @type AnalysisStatus: Integer
+        # @param AnalysisFailReason: AI分析失败原因（失败时）
+        # @type AnalysisFailReason: String
+        # @param ApiBizType: API业务类型
+        # @type ApiBizType: String
+        # @param RiskScenario: 风险类型（风险场景）
+        # @type RiskScenario: String
+        # @param AiSuggestedLevel: AI建议风险等级
+        # @type AiSuggestedLevel: Integer
+        # @param DstGeoLocation: 目的IP地理信息
+        # @type DstGeoLocation: String
+        # @param HighestLevel: 最高敏感等级
+        # @type HighestLevel: String
+
+        attr_accessor :RiskID, :InstanceId, :InstanceName, :InstanceType, :Region, :SrcIP, :DstIPPort, :Hostname, :DstServiceType, :DstServiceName, :LeakTypeSet, :EventCount, :FirstIdentificationTime, :LatestIdentificationTime, :Level, :Status, :Comment, :ApiPattern, :AnalysisStatus, :AnalysisFailReason, :ApiBizType, :RiskScenario, :AiSuggestedLevel, :DstGeoLocation, :HighestLevel
+
+        def initialize(riskid=nil, instanceid=nil, instancename=nil, instancetype=nil, region=nil, srcip=nil, dstipport=nil, hostname=nil, dstservicetype=nil, dstservicename=nil, leaktypeset=nil, eventcount=nil, firstidentificationtime=nil, latestidentificationtime=nil, level=nil, status=nil, comment=nil, apipattern=nil, analysisstatus=nil, analysisfailreason=nil, apibiztype=nil, riskscenario=nil, aisuggestedlevel=nil, dstgeolocation=nil, highestlevel=nil)
+          @RiskID = riskid
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @InstanceType = instancetype
+          @Region = region
+          @SrcIP = srcip
+          @DstIPPort = dstipport
+          @Hostname = hostname
+          @DstServiceType = dstservicetype
+          @DstServiceName = dstservicename
+          @LeakTypeSet = leaktypeset
+          @EventCount = eventcount
+          @FirstIdentificationTime = firstidentificationtime
+          @LatestIdentificationTime = latestidentificationtime
+          @Level = level
+          @Status = status
+          @Comment = comment
+          @ApiPattern = apipattern
+          @AnalysisStatus = analysisstatus
+          @AnalysisFailReason = analysisfailreason
+          @ApiBizType = apibiztype
+          @RiskScenario = riskscenario
+          @AiSuggestedLevel = aisuggestedlevel
+          @DstGeoLocation = dstgeolocation
+          @HighestLevel = highestlevel
+        end
+
+        def deserialize(params)
+          @RiskID = params['RiskID']
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @InstanceType = params['InstanceType']
+          @Region = params['Region']
+          @SrcIP = params['SrcIP']
+          @DstIPPort = params['DstIPPort']
+          @Hostname = params['Hostname']
+          @DstServiceType = params['DstServiceType']
+          @DstServiceName = params['DstServiceName']
+          @LeakTypeSet = params['LeakTypeSet']
+          @EventCount = params['EventCount']
+          @FirstIdentificationTime = params['FirstIdentificationTime']
+          @LatestIdentificationTime = params['LatestIdentificationTime']
+          @Level = params['Level']
+          @Status = params['Status']
+          @Comment = params['Comment']
+          @ApiPattern = params['ApiPattern']
+          @AnalysisStatus = params['AnalysisStatus']
+          @AnalysisFailReason = params['AnalysisFailReason']
+          @ApiBizType = params['ApiBizType']
+          @RiskScenario = params['RiskScenario']
+          @AiSuggestedLevel = params['AiSuggestedLevel']
+          @DstGeoLocation = params['DstGeoLocation']
+          @HighestLevel = params['HighestLevel']
+        end
+      end
+
       # 数据库白名单规则数据
       class DatabaseWhiteListRuleData < TencentCloud::Common::AbstractModel
         # @param SourceIp: 访问源
@@ -6615,6 +6727,131 @@ module TencentCloud
               fieldoption_tmp = FieldOption.new
               fieldoption_tmp.deserialize(i)
               @InstanceTypeOptions << fieldoption_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeNDRDataLeakOutAlertList请求参数结构体
+      class DescribeNDRDataLeakOutAlertListRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 每页条数
+        # @type Limit: Integer
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Order: 排序方式，asc正序 desc倒序
+        # @type Order: String
+        # @param By: 排序字段
+        # @type By: String
+        # @param Filters: 查询过滤条件，多个条件之间为AND的关系
+        # @type Filters: Array
+
+        attr_accessor :Limit, :Offset, :Order, :By, :Filters
+
+        def initialize(limit=nil, offset=nil, order=nil, by=nil, filters=nil)
+          @Limit = limit
+          @Offset = offset
+          @Order = order
+          @By = by
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Order = params['Order']
+          @By = params['By']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              operatorfilter_tmp = OperatorFilter.new
+              operatorfilter_tmp.deserialize(i)
+              @Filters << operatorfilter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeNDRDataLeakOutAlertList返回参数结构体
+      class DescribeNDRDataLeakOutAlertListResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 符合查询条件的总条数
+        # @type Total: Integer
+        # @param Data: 查询结果列表
+        # @type Data: Array
+        # @param InstanceTypeOptions: 实例类型可选项
+        # @type InstanceTypeOptions: Array
+        # @param RegionOptions: 地域可选项
+        # @type RegionOptions: Array
+        # @param DstServiceTypeOptions: 目标服务类型可选项
+        # @type DstServiceTypeOptions: Array
+        # @param RiskScenarioOptions: 风险场景（类型）可选项
+        # @type RiskScenarioOptions: Array
+        # @param AnalysisStatusOptions: AI分析任务状态可选项
+        # @type AnalysisStatusOptions: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Data, :InstanceTypeOptions, :RegionOptions, :DstServiceTypeOptions, :RiskScenarioOptions, :AnalysisStatusOptions, :RequestId
+
+        def initialize(total=nil, data=nil, instancetypeoptions=nil, regionoptions=nil, dstservicetypeoptions=nil, riskscenariooptions=nil, analysisstatusoptions=nil, requestid=nil)
+          @Total = total
+          @Data = data
+          @InstanceTypeOptions = instancetypeoptions
+          @RegionOptions = regionoptions
+          @DstServiceTypeOptions = dstservicetypeoptions
+          @RiskScenarioOptions = riskscenariooptions
+          @AnalysisStatusOptions = analysisstatusoptions
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              dataleakoutalertevent_tmp = DataLeakOutAlertEvent.new
+              dataleakoutalertevent_tmp.deserialize(i)
+              @Data << dataleakoutalertevent_tmp
+            end
+          end
+          unless params['InstanceTypeOptions'].nil?
+            @InstanceTypeOptions = []
+            params['InstanceTypeOptions'].each do |i|
+              fieldoption_tmp = FieldOption.new
+              fieldoption_tmp.deserialize(i)
+              @InstanceTypeOptions << fieldoption_tmp
+            end
+          end
+          unless params['RegionOptions'].nil?
+            @RegionOptions = []
+            params['RegionOptions'].each do |i|
+              fieldoption_tmp = FieldOption.new
+              fieldoption_tmp.deserialize(i)
+              @RegionOptions << fieldoption_tmp
+            end
+          end
+          unless params['DstServiceTypeOptions'].nil?
+            @DstServiceTypeOptions = []
+            params['DstServiceTypeOptions'].each do |i|
+              fieldoption_tmp = FieldOption.new
+              fieldoption_tmp.deserialize(i)
+              @DstServiceTypeOptions << fieldoption_tmp
+            end
+          end
+          unless params['RiskScenarioOptions'].nil?
+            @RiskScenarioOptions = []
+            params['RiskScenarioOptions'].each do |i|
+              fieldoption_tmp = FieldOption.new
+              fieldoption_tmp.deserialize(i)
+              @RiskScenarioOptions << fieldoption_tmp
+            end
+          end
+          unless params['AnalysisStatusOptions'].nil?
+            @AnalysisStatusOptions = []
+            params['AnalysisStatusOptions'].each do |i|
+              fieldoption_tmp = FieldOption.new
+              fieldoption_tmp.deserialize(i)
+              @AnalysisStatusOptions << fieldoption_tmp
             end
           end
           @RequestId = params['RequestId']

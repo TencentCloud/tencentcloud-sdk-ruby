@@ -88,6 +88,208 @@ module TencentCloud
         end
       end
 
+      # AI配音任务
+      class AIDubbingTaskInput < TencentCloud::Common::AbstractModel
+        # @param Definition: <p>AI配音模板id。</p>
+        # @type Definition: Integer
+        # @param RawParameter: <p>AI配音自定义参数，当 Definition 填 0 时有效。 该参数用于高度定制场景，建议您优先使用 Definition 指定配音参数。</p>
+        # @type RawParameter: :class:`Tencentcloud::Mps.v20190612.models.RawAIDubbingParameter`
+        # @param OverrideParameter: <p>AI配音自定义参数，当 Definition 不填 0 时有效。 当填写了该结构中的部分配音参数时，将使用填写的参数覆盖AI配音模板中的参数。 该参数用于高度定制场景，建议您仅使用 Definition 指定配音参数。</p>
+        # @type OverrideParameter: :class:`Tencentcloud::Mps.v20190612.models.OverrideAIDubbingParameter`
+        # @param OutputStorage: <p>文件的目标存储，不填则继承上层的 OutputStorage 值。</p>
+        # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
+        # @param SrcSubtitleInfo: <p>外部源字幕文件信息。</p>
+        # @type SrcSubtitleInfo: :class:`Tencentcloud::Mps.v20190612.models.MediaInputInfo`
+        # @param DstSubtitleInfos: <p>外部字幕文件信息，译文字幕。</p>
+        # @type DstSubtitleInfos: Array
+        # @param OutputObjectPath: <p>文件的输出路径，可以为相对路径或者绝对路径。<br>若需定义输出路径，路径需以<code>.{format}</code>结尾。变量名请参考 <a href="https://cloud.tencent.com/document/product/862/37039">文件名变量说明</a>。<br>相对路径示例：</p><li>文件名_{变量名}.{format}</li><li>文件名.{format}</li>绝对路径示例：<li>/自定义路径/文件名_{变量名}.{format}</li><p><strong>注意</strong>：目前不支持<code>BatchProcessMedia</code>接口。</p>
+        # @type OutputObjectPath: String
+        # @param ExtendedParameter: <p>AI配音扩展参数，序列化的 json 字符串。</p>
+        # @type ExtendedParameter: String
+        # @param DramaId: <p>关联剧集ID。<br>注意：配音模式为按角色智能配音时此值生效。</p>
+        # @type DramaId: String
+
+        attr_accessor :Definition, :RawParameter, :OverrideParameter, :OutputStorage, :SrcSubtitleInfo, :DstSubtitleInfos, :OutputObjectPath, :ExtendedParameter, :DramaId
+
+        def initialize(definition=nil, rawparameter=nil, overrideparameter=nil, outputstorage=nil, srcsubtitleinfo=nil, dstsubtitleinfos=nil, outputobjectpath=nil, extendedparameter=nil, dramaid=nil)
+          @Definition = definition
+          @RawParameter = rawparameter
+          @OverrideParameter = overrideparameter
+          @OutputStorage = outputstorage
+          @SrcSubtitleInfo = srcsubtitleinfo
+          @DstSubtitleInfos = dstsubtitleinfos
+          @OutputObjectPath = outputobjectpath
+          @ExtendedParameter = extendedparameter
+          @DramaId = dramaid
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          unless params['RawParameter'].nil?
+            @RawParameter = RawAIDubbingParameter.new
+            @RawParameter.deserialize(params['RawParameter'])
+          end
+          unless params['OverrideParameter'].nil?
+            @OverrideParameter = OverrideAIDubbingParameter.new
+            @OverrideParameter.deserialize(params['OverrideParameter'])
+          end
+          unless params['OutputStorage'].nil?
+            @OutputStorage = TaskOutputStorage.new
+            @OutputStorage.deserialize(params['OutputStorage'])
+          end
+          unless params['SrcSubtitleInfo'].nil?
+            @SrcSubtitleInfo = MediaInputInfo.new
+            @SrcSubtitleInfo.deserialize(params['SrcSubtitleInfo'])
+          end
+          unless params['DstSubtitleInfos'].nil?
+            @DstSubtitleInfos = []
+            params['DstSubtitleInfos'].each do |i|
+              dstsubtitleinput_tmp = DstSubtitleInput.new
+              dstsubtitleinput_tmp.deserialize(i)
+              @DstSubtitleInfos << dstsubtitleinput_tmp
+            end
+          end
+          @OutputObjectPath = params['OutputObjectPath']
+          @ExtendedParameter = params['ExtendedParameter']
+          @DramaId = params['DramaId']
+        end
+      end
+
+      # AI配音结果信息
+      class AIDubbingTaskOutput < TencentCloud::Common::AbstractModel
+        # @param OriginSubtitlePath: <p>基于画面提取的字幕文件路径。</p>
+        # @type OriginSubtitlePath: String
+        # @param TranslateSubtitlePath: <p>基于画面提取的字幕翻译文件路径。</p>
+        # @type TranslateSubtitlePath: String
+        # @param VoiceClonedVideo: <p>音色克隆后的视频文件地址</p>
+        # @type VoiceClonedVideo: String
+        # @param VoiceClonedMarkFile: <p>音色克隆的标注文件地址</p>
+        # @type VoiceClonedMarkFile: String
+        # @param VideoPath: <p>视频输出路径。</p>
+        # @type VideoPath: String
+        # @param OriginSubtitleFileId: <p>基于画面提取的字幕文件FileId。</p>
+        # @type OriginSubtitleFileId: String
+        # @param TranslateSubtitleFileId: <p>基于画面提取的字幕翻译文件FileId    。</p>
+        # @type TranslateSubtitleFileId: String
+        # @param SpeakerPath: <p>标记文件路径。</p>
+        # @type SpeakerPath: String
+        # @param SpeakerFileId: <p>标记文件Fileid。</p>
+        # @type SpeakerFileId: String
+        # @param EraseVideoFileId: <p>擦除视频输出FileId。</p>
+        # @type EraseVideoFileId: String
+        # @param EraseVideoPath: <p>擦除视频输出路径。</p>
+        # @type EraseVideoPath: String
+        # @param DstAudioPath: <p>译文配音音频文件路径。</p>
+        # @type DstAudioPath: String
+        # @param DstAudioFileId: <p>译文配音音频文件FileId。</p>
+        # @type DstAudioFileId: String
+        # @param DubbingEditInfoUrl: <p>音色克隆编辑信息</p><p>用于音色克隆二次修改的编辑信息</p>
+        # @type DubbingEditInfoUrl: String
+        # @param SubtitlePos: <p>擦除的字幕位置。<strong>注意</strong>：仅对字幕提取且开启返回字幕位置时有效。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubtitlePos: :class:`Tencentcloud::Mps.v20190612.models.SubtitlePosition`
+        # @param OutputStorage: <p>AI配音任务输出文件的存储位置。</p>
+        # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
+
+        attr_accessor :OriginSubtitlePath, :TranslateSubtitlePath, :VoiceClonedVideo, :VoiceClonedMarkFile, :VideoPath, :OriginSubtitleFileId, :TranslateSubtitleFileId, :SpeakerPath, :SpeakerFileId, :EraseVideoFileId, :EraseVideoPath, :DstAudioPath, :DstAudioFileId, :DubbingEditInfoUrl, :SubtitlePos, :OutputStorage
+
+        def initialize(originsubtitlepath=nil, translatesubtitlepath=nil, voiceclonedvideo=nil, voiceclonedmarkfile=nil, videopath=nil, originsubtitlefileid=nil, translatesubtitlefileid=nil, speakerpath=nil, speakerfileid=nil, erasevideofileid=nil, erasevideopath=nil, dstaudiopath=nil, dstaudiofileid=nil, dubbingeditinfourl=nil, subtitlepos=nil, outputstorage=nil)
+          @OriginSubtitlePath = originsubtitlepath
+          @TranslateSubtitlePath = translatesubtitlepath
+          @VoiceClonedVideo = voiceclonedvideo
+          @VoiceClonedMarkFile = voiceclonedmarkfile
+          @VideoPath = videopath
+          @OriginSubtitleFileId = originsubtitlefileid
+          @TranslateSubtitleFileId = translatesubtitlefileid
+          @SpeakerPath = speakerpath
+          @SpeakerFileId = speakerfileid
+          @EraseVideoFileId = erasevideofileid
+          @EraseVideoPath = erasevideopath
+          @DstAudioPath = dstaudiopath
+          @DstAudioFileId = dstaudiofileid
+          @DubbingEditInfoUrl = dubbingeditinfourl
+          @SubtitlePos = subtitlepos
+          @OutputStorage = outputstorage
+        end
+
+        def deserialize(params)
+          @OriginSubtitlePath = params['OriginSubtitlePath']
+          @TranslateSubtitlePath = params['TranslateSubtitlePath']
+          @VoiceClonedVideo = params['VoiceClonedVideo']
+          @VoiceClonedMarkFile = params['VoiceClonedMarkFile']
+          @VideoPath = params['VideoPath']
+          @OriginSubtitleFileId = params['OriginSubtitleFileId']
+          @TranslateSubtitleFileId = params['TranslateSubtitleFileId']
+          @SpeakerPath = params['SpeakerPath']
+          @SpeakerFileId = params['SpeakerFileId']
+          @EraseVideoFileId = params['EraseVideoFileId']
+          @EraseVideoPath = params['EraseVideoPath']
+          @DstAudioPath = params['DstAudioPath']
+          @DstAudioFileId = params['DstAudioFileId']
+          @DubbingEditInfoUrl = params['DubbingEditInfoUrl']
+          unless params['SubtitlePos'].nil?
+            @SubtitlePos = SubtitlePosition.new
+            @SubtitlePos.deserialize(params['SubtitlePos'])
+          end
+          unless params['OutputStorage'].nil?
+            @OutputStorage = TaskOutputStorage.new
+            @OutputStorage.deserialize(params['OutputStorage'])
+          end
+        end
+      end
+
+      # AI配音任务结果
+      class AIDubbingTaskResult < TencentCloud::Common::AbstractModel
+        # @param Status: <p>任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。</p>
+        # @type Status: String
+        # @param ErrCodeExt: <p>错误码，空字符串表示成功，其他值表示失败，取值请参考 <a href="https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81">媒体处理类错误码</a> 列表。</p>
+        # @type ErrCodeExt: String
+        # @param Message: <p>错误信息。</p>
+        # @type Message: String
+        # @param Input: <p>AI配音任务输入。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Input: :class:`Tencentcloud::Mps.v20190612.models.AIDubbingTaskInput`
+        # @param Output: <p>AI配音任务输出。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Output: :class:`Tencentcloud::Mps.v20190612.models.AIDubbingTaskOutput`
+        # @param Progress: <p>任务进度。</p>
+        # @type Progress: Integer
+        # @param BeginProcessTime: <p>任务开始执行的时间，采用 ISO 日期格式。</p>
+        # @type BeginProcessTime: String
+        # @param FinishTime: <p>任务执行完毕的时间，采用 ISO 日期格式。</p>
+        # @type FinishTime: String
+
+        attr_accessor :Status, :ErrCodeExt, :Message, :Input, :Output, :Progress, :BeginProcessTime, :FinishTime
+
+        def initialize(status=nil, errcodeext=nil, message=nil, input=nil, output=nil, progress=nil, beginprocesstime=nil, finishtime=nil)
+          @Status = status
+          @ErrCodeExt = errcodeext
+          @Message = message
+          @Input = input
+          @Output = output
+          @Progress = progress
+          @BeginProcessTime = beginprocesstime
+          @FinishTime = finishtime
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @ErrCodeExt = params['ErrCodeExt']
+          @Message = params['Message']
+          unless params['Input'].nil?
+            @Input = AIDubbingTaskInput.new
+            @Input.deserialize(params['Input'])
+          end
+          unless params['Output'].nil?
+            @Output = AIDubbingTaskOutput.new
+            @Output.deserialize(params['Output'])
+          end
+          @Progress = params['Progress']
+          @BeginProcessTime = params['BeginProcessTime']
+          @FinishTime = params['FinishTime']
+        end
+      end
+
       # 视频内容识别模板详情
       class AIRecognitionTemplateItem < TencentCloud::Common::AbstractModel
         # @param Definition: 视频内容识别模板唯一标识。
@@ -276,49 +478,51 @@ module TencentCloud
 
       # 编排原子任务
       class ActivityPara < TencentCloud::Common::AbstractModel
-        # @param TranscodeTask: 视频转码任务
+        # @param TranscodeTask: <p>视频转码任务</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TranscodeTask: :class:`Tencentcloud::Mps.v20190612.models.TranscodeTaskInput`
-        # @param AnimatedGraphicTask: 视频转动图任务
+        # @param AnimatedGraphicTask: <p>视频转动图任务</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AnimatedGraphicTask: :class:`Tencentcloud::Mps.v20190612.models.AnimatedGraphicTaskInput`
-        # @param SnapshotByTimeOffsetTask: 视频按时间点截图任务
+        # @param SnapshotByTimeOffsetTask: <p>视频按时间点截图任务</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SnapshotByTimeOffsetTask: :class:`Tencentcloud::Mps.v20190612.models.SnapshotByTimeOffsetTaskInput`
-        # @param SampleSnapshotTask: 视频采样截图任务
+        # @param SampleSnapshotTask: <p>视频采样截图任务</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SampleSnapshotTask: :class:`Tencentcloud::Mps.v20190612.models.SampleSnapshotTaskInput`
-        # @param ImageSpriteTask: 视频截雪碧图任务
+        # @param ImageSpriteTask: <p>视频截雪碧图任务</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageSpriteTask: :class:`Tencentcloud::Mps.v20190612.models.ImageSpriteTaskInput`
-        # @param AdaptiveDynamicStreamingTask: 转自适应码流任务
+        # @param AdaptiveDynamicStreamingTask: <p>转自适应码流任务</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdaptiveDynamicStreamingTask: :class:`Tencentcloud::Mps.v20190612.models.AdaptiveDynamicStreamingTaskInput`
-        # @param AiContentReviewTask: 视频内容审核类型任务
+        # @param AiContentReviewTask: <p>视频内容审核类型任务</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AiContentReviewTask: :class:`Tencentcloud::Mps.v20190612.models.AiContentReviewTaskInput`
-        # @param AiAnalysisTask: 视频内容分析类型任务
+        # @param AiAnalysisTask: <p>视频内容分析类型任务</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AiAnalysisTask: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskInput`
-        # @param AiRecognitionTask: 视频内容识别类型任务
+        # @param AiRecognitionTask: <p>视频内容识别类型任务</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AiRecognitionTask: :class:`Tencentcloud::Mps.v20190612.models.AiRecognitionTaskInput`
-        # @param QualityControlTask: 媒体质检任务
+        # @param QualityControlTask: <p>媒体质检任务</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QualityControlTask: :class:`Tencentcloud::Mps.v20190612.models.AiQualityControlTaskInput`
-        # @param ExecRulesTask: 任务条件判断
+        # @param ExecRulesTask: <p>任务条件判断</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecRulesTask: :class:`Tencentcloud::Mps.v20190612.models.ExecRulesTask`
-        # @param SmartSubtitlesTask: 智能字幕任务
+        # @param SmartSubtitlesTask: <p>智能字幕任务</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SmartSubtitlesTask: :class:`Tencentcloud::Mps.v20190612.models.SmartSubtitlesTaskInput`
-        # @param SmartEraseTask: 智能擦除任务
+        # @param SmartEraseTask: <p>智能擦除任务</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SmartEraseTask: :class:`Tencentcloud::Mps.v20190612.models.SmartEraseTaskInput`
+        # @param AIDubbingTask: <p>AI配音任务。</p>
+        # @type AIDubbingTask: :class:`Tencentcloud::Mps.v20190612.models.AIDubbingTaskInput`
 
-        attr_accessor :TranscodeTask, :AnimatedGraphicTask, :SnapshotByTimeOffsetTask, :SampleSnapshotTask, :ImageSpriteTask, :AdaptiveDynamicStreamingTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTask, :QualityControlTask, :ExecRulesTask, :SmartSubtitlesTask, :SmartEraseTask
+        attr_accessor :TranscodeTask, :AnimatedGraphicTask, :SnapshotByTimeOffsetTask, :SampleSnapshotTask, :ImageSpriteTask, :AdaptiveDynamicStreamingTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTask, :QualityControlTask, :ExecRulesTask, :SmartSubtitlesTask, :SmartEraseTask, :AIDubbingTask
 
-        def initialize(transcodetask=nil, animatedgraphictask=nil, snapshotbytimeoffsettask=nil, samplesnapshottask=nil, imagespritetask=nil, adaptivedynamicstreamingtask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontask=nil, qualitycontroltask=nil, execrulestask=nil, smartsubtitlestask=nil, smarterasetask=nil)
+        def initialize(transcodetask=nil, animatedgraphictask=nil, snapshotbytimeoffsettask=nil, samplesnapshottask=nil, imagespritetask=nil, adaptivedynamicstreamingtask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontask=nil, qualitycontroltask=nil, execrulestask=nil, smartsubtitlestask=nil, smarterasetask=nil, aidubbingtask=nil)
           @TranscodeTask = transcodetask
           @AnimatedGraphicTask = animatedgraphictask
           @SnapshotByTimeOffsetTask = snapshotbytimeoffsettask
@@ -332,6 +536,7 @@ module TencentCloud
           @ExecRulesTask = execrulestask
           @SmartSubtitlesTask = smartsubtitlestask
           @SmartEraseTask = smarterasetask
+          @AIDubbingTask = aidubbingtask
         end
 
         def deserialize(params)
@@ -387,54 +592,60 @@ module TencentCloud
             @SmartEraseTask = SmartEraseTaskInput.new
             @SmartEraseTask.deserialize(params['SmartEraseTask'])
           end
+          unless params['AIDubbingTask'].nil?
+            @AIDubbingTask = AIDubbingTaskInput.new
+            @AIDubbingTask.deserialize(params['AIDubbingTask'])
+          end
         end
       end
 
       # 编排子任务输出
       class ActivityResItem < TencentCloud::Common::AbstractModel
-        # @param TranscodeTask: 转码任务输出
+        # @param TranscodeTask: <p>转码任务输出</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TranscodeTask: :class:`Tencentcloud::Mps.v20190612.models.MediaProcessTaskTranscodeResult`
-        # @param AnimatedGraphicTask: 转动图任务输出
+        # @param AnimatedGraphicTask: <p>转动图任务输出</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AnimatedGraphicTask: :class:`Tencentcloud::Mps.v20190612.models.MediaProcessTaskAnimatedGraphicResult`
-        # @param SnapshotByTimeOffsetTask: 时间点截图任务输出
+        # @param SnapshotByTimeOffsetTask: <p>时间点截图任务输出</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SnapshotByTimeOffsetTask: :class:`Tencentcloud::Mps.v20190612.models.MediaProcessTaskSnapshotByTimeOffsetResult`
-        # @param SampleSnapshotTask: 采样截图任务输出
+        # @param SampleSnapshotTask: <p>采样截图任务输出</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SampleSnapshotTask: :class:`Tencentcloud::Mps.v20190612.models.MediaProcessTaskSampleSnapshotResult`
-        # @param ImageSpriteTask: 雪碧图任务输出
+        # @param ImageSpriteTask: <p>雪碧图任务输出</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageSpriteTask: :class:`Tencentcloud::Mps.v20190612.models.MediaProcessTaskImageSpriteResult`
-        # @param AdaptiveDynamicStreamingTask: 自适应码流任务输出
+        # @param AdaptiveDynamicStreamingTask: <p>自适应码流任务输出</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdaptiveDynamicStreamingTask: :class:`Tencentcloud::Mps.v20190612.models.MediaProcessTaskAdaptiveDynamicStreamingResult`
-        # @param RecognitionTask: 识别任务输出
+        # @param RecognitionTask: <p>识别任务输出</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecognitionTask: :class:`Tencentcloud::Mps.v20190612.models.ScheduleRecognitionTaskResult`
-        # @param ReviewTask: 审核任务输出
+        # @param ReviewTask: <p>审核任务输出</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReviewTask: :class:`Tencentcloud::Mps.v20190612.models.ScheduleReviewTaskResult`
-        # @param AnalysisTask: 分析任务输出
+        # @param AnalysisTask: <p>分析任务输出</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AnalysisTask: :class:`Tencentcloud::Mps.v20190612.models.ScheduleAnalysisTaskResult`
-        # @param QualityControlTask: 媒体质检任务输出
+        # @param QualityControlTask: <p>媒体质检任务输出</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QualityControlTask: :class:`Tencentcloud::Mps.v20190612.models.ScheduleQualityControlTaskResult`
-        # @param ExecRuleTask: 条件判断任务输出
+        # @param ExecRuleTask: <p>条件判断任务输出</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecRuleTask: :class:`Tencentcloud::Mps.v20190612.models.ScheduleExecRuleTaskResult`
-        # @param SmartSubtitlesTask: 智能字幕任务输出
+        # @param SmartSubtitlesTask: <p>智能字幕任务输出</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SmartSubtitlesTask: :class:`Tencentcloud::Mps.v20190612.models.ScheduleSmartSubtitleTaskResult`
-        # @param SmartEraseTask: 智能擦除任务输出
+        # @param SmartEraseTask: <p>智能擦除任务输出</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SmartEraseTask: :class:`Tencentcloud::Mps.v20190612.models.SmartEraseTaskResult`
+        # @param AIDubbingTask: <p>AI配音任务输出。</p>
+        # @type AIDubbingTask: :class:`Tencentcloud::Mps.v20190612.models.AIDubbingTaskResult`
 
-        attr_accessor :TranscodeTask, :AnimatedGraphicTask, :SnapshotByTimeOffsetTask, :SampleSnapshotTask, :ImageSpriteTask, :AdaptiveDynamicStreamingTask, :RecognitionTask, :ReviewTask, :AnalysisTask, :QualityControlTask, :ExecRuleTask, :SmartSubtitlesTask, :SmartEraseTask
+        attr_accessor :TranscodeTask, :AnimatedGraphicTask, :SnapshotByTimeOffsetTask, :SampleSnapshotTask, :ImageSpriteTask, :AdaptiveDynamicStreamingTask, :RecognitionTask, :ReviewTask, :AnalysisTask, :QualityControlTask, :ExecRuleTask, :SmartSubtitlesTask, :SmartEraseTask, :AIDubbingTask
 
-        def initialize(transcodetask=nil, animatedgraphictask=nil, snapshotbytimeoffsettask=nil, samplesnapshottask=nil, imagespritetask=nil, adaptivedynamicstreamingtask=nil, recognitiontask=nil, reviewtask=nil, analysistask=nil, qualitycontroltask=nil, execruletask=nil, smartsubtitlestask=nil, smarterasetask=nil)
+        def initialize(transcodetask=nil, animatedgraphictask=nil, snapshotbytimeoffsettask=nil, samplesnapshottask=nil, imagespritetask=nil, adaptivedynamicstreamingtask=nil, recognitiontask=nil, reviewtask=nil, analysistask=nil, qualitycontroltask=nil, execruletask=nil, smartsubtitlestask=nil, smarterasetask=nil, aidubbingtask=nil)
           @TranscodeTask = transcodetask
           @AnimatedGraphicTask = animatedgraphictask
           @SnapshotByTimeOffsetTask = snapshotbytimeoffsettask
@@ -448,6 +659,7 @@ module TencentCloud
           @ExecRuleTask = execruletask
           @SmartSubtitlesTask = smartsubtitlestask
           @SmartEraseTask = smarterasetask
+          @AIDubbingTask = aidubbingtask
         end
 
         def deserialize(params)
@@ -503,26 +715,18 @@ module TencentCloud
             @SmartEraseTask = SmartEraseTaskResult.new
             @SmartEraseTask.deserialize(params['SmartEraseTask'])
           end
+          unless params['AIDubbingTask'].nil?
+            @AIDubbingTask = AIDubbingTaskResult.new
+            @AIDubbingTask.deserialize(params['AIDubbingTask'])
+          end
         end
       end
 
       # 编排任务输出
       class ActivityResult < TencentCloud::Common::AbstractModel
-        # @param ActivityType: 原子任务类型。
-        # <li>Transcode：转码。</li>
-        # <li>SampleSnapshot：采样截图。</li>
-        # <li>AnimatedGraphics：转动图。</li>
-        # <li>SnapshotByTimeOffset：时间点截图。</li>
-        # <li>ImageSprites：雪碧图。</li>
-        # <li>AdaptiveDynamicStreaming：自适应码流。</li>
-        # <li>AiContentReview：内容审核。</li>
-        # <li>AIRecognition：智能识别。</li>
-        # <li>AIAnalysis：智能分析。</li>
-        # <li>AiQualityControl：媒体质检。</li>
-        # <li>SmartSubtitles：智能字幕。</li>
-        # <li>SmartErase：智能擦除。</li>
+        # @param ActivityType: <p>原子任务类型。</p><li>Transcode：转码。</li><li>SampleSnapshot：采样截图。</li><li>AnimatedGraphics：转动图。</li><li>SnapshotByTimeOffset：时间点截图。</li><li>ImageSprites：雪碧图。</li><li>AdaptiveDynamicStreaming：自适应码流。</li><li>AiContentReview：内容审核。</li><li>AIRecognition：智能识别。</li><li>AIAnalysis：智能分析。</li><li>AiQualityControl：媒体质检。</li><li>SmartSubtitles：智能字幕。</li><li>SmartErase：智能擦除。</li><li>Dubbing: AI配音</li>
         # @type ActivityType: String
-        # @param ActivityResItem: 原子任务输出。
+        # @param ActivityResItem: <p>原子任务输出。</p>
         # @type ActivityResItem: :class:`Tencentcloud::Mps.v20190612.models.ActivityResItem`
 
         attr_accessor :ActivityType, :ActivityResItem
@@ -4201,9 +4405,9 @@ module TencentCloud
 
       # 翻译结果。
       class AiRecognitionTaskTransTextResultOutput < TencentCloud::Common::AbstractModel
-        # @param SegmentSet: 翻译片段列表。
+        # @param SegmentSet: <p>翻译片段列表。</p>
         # @type SegmentSet: Array
-        # @param SubtitlePath: 字幕文件地址。
+        # @param SubtitlePath: <p>字幕文件地址。</p>
         # @type SubtitlePath: String
 
         attr_accessor :SegmentSet, :SubtitlePath
@@ -19916,6 +20120,171 @@ module TencentCloud
         end
       end
 
+      # AI配音外部翻译字幕信息
+      class DstSubtitleInput < TencentCloud::Common::AbstractModel
+        # @param DstSubtitleInfo: <p>外部翻译字幕信息。</p>
+        # @type DstSubtitleInfo: :class:`Tencentcloud::Mps.v20190612.models.MediaInputInfo`
+
+        attr_accessor :DstSubtitleInfo
+
+        def initialize(dstsubtitleinfo=nil)
+          @DstSubtitleInfo = dstsubtitleinfo
+        end
+
+        def deserialize(params)
+          unless params['DstSubtitleInfo'].nil?
+            @DstSubtitleInfo = MediaInputInfo.new
+            @DstSubtitleInfo.deserialize(params['DstSubtitleInfo'])
+          end
+        end
+      end
+
+      # dubbing任务配置
+      class DubbingConfig < TencentCloud::Common::AbstractModel
+        # @param DubbingMode: <p>配音类型，可选值：FullAutoEmotionClone：全自动高情感克隆配音；RoleBasedSmartDubbing：按角色智能配音；SingleVoice：指定单一音色；</p>
+        # @type DubbingMode: String
+        # @param BackgroundVolume: <p>背景音音量，范围0-100</p><p>默认值：80</p>
+        # @type BackgroundVolume: Integer
+        # @param SecondaryTuning: <p>二次微调开关，可选值：<br>ON: 开启二次微调；<br>OFF: 不开启二次微调；</p><p>默认值：OFF</p><p>仅 RoleBasedSmartDubbing 时允许设为 ON</p>
+        # @type SecondaryTuning: String
+        # @param VoiceId: <p>指定音色</p><p>仅 SingleVoice 时有效且 Create 必填</p>
+        # @type VoiceId: String
+        # @param DubbingVersion: <p>配音版本，可选值：v1，v2</p><p>默认值：v2</p><p>只在（FullAutoEmotionClone：全自动高情感克隆配音）模式下生效</p>
+        # @type DubbingVersion: String
+
+        attr_accessor :DubbingMode, :BackgroundVolume, :SecondaryTuning, :VoiceId, :DubbingVersion
+
+        def initialize(dubbingmode=nil, backgroundvolume=nil, secondarytuning=nil, voiceid=nil, dubbingversion=nil)
+          @DubbingMode = dubbingmode
+          @BackgroundVolume = backgroundvolume
+          @SecondaryTuning = secondarytuning
+          @VoiceId = voiceid
+          @DubbingVersion = dubbingversion
+        end
+
+        def deserialize(params)
+          @DubbingMode = params['DubbingMode']
+          @BackgroundVolume = params['BackgroundVolume']
+          @SecondaryTuning = params['SecondaryTuning']
+          @VoiceId = params['VoiceId']
+          @DubbingVersion = params['DubbingVersion']
+        end
+      end
+
+      # dubbing任务压制字幕配置
+      class DubbingEmbedSubtitleConfig < TencentCloud::Common::AbstractModel
+        # @param SubtitleEmbedId: <p>压制字幕id。</p>
+        # @type SubtitleEmbedId: Integer
+        # @param UseOriginalPos: <p>沿用原字幕位置。</p><p>默认值：1</p>
+        # @type UseOriginalPos: Integer
+        # @param UseOriginalSize: <p>沿用原字幕字号。</p><p>默认值：1</p>
+        # @type UseOriginalSize: Integer
+
+        attr_accessor :SubtitleEmbedId, :UseOriginalPos, :UseOriginalSize
+
+        def initialize(subtitleembedid=nil, useoriginalpos=nil, useoriginalsize=nil)
+          @SubtitleEmbedId = subtitleembedid
+          @UseOriginalPos = useoriginalpos
+          @UseOriginalSize = useoriginalsize
+        end
+
+        def deserialize(params)
+          @SubtitleEmbedId = params['SubtitleEmbedId']
+          @UseOriginalPos = params['UseOriginalPos']
+          @UseOriginalSize = params['UseOriginalSize']
+        end
+      end
+
+      # dubbing任务输出配置
+      class DubbingOutputConfig < TencentCloud::Common::AbstractModel
+        # @param OutputMode: <p>输出方式</p><p>枚举值：</p><ul><li>FinalVideoOnly： 默认，仅成片视频</li><li>AudioAndSubtitle： 译文音频+译文字幕</li><li>Custom： 自定义</li></ul><p>默认值：FinalVideoOnly</p><p>使用外部字幕时无译文音频+字幕返回</p>
+        # @type OutputMode: String
+        # @param OutputFinalVideo: <p>输出成片视频开关</p><p>枚举值：</p><ul><li>ON： 打开</li><li>OFF： 关闭</li></ul><p>默认值：ON</p><p>仅 Custom 模式生效</p>
+        # @type OutputFinalVideo: String
+        # @param OutputSubtitle: <p>输出字幕文件（同时包含原语音字幕、目标语言字幕）开关</p><p>枚举值：</p><ul><li>ON： 开启</li><li>OFF： 关闭</li></ul><p>默认值：OFF</p>
+        # @type OutputSubtitle: String
+        # @param OutputDstAudio: <p>输出译文配音音频开关</p><p>枚举值：</p><ul><li>ON： 开启</li><li>OFF： 关闭</li></ul><p>默认值：OFF</p><p>仅 Custom 模式生效</p>
+        # @type OutputDstAudio: String
+        # @param EmbedSubtitleConfig: <p>压制字幕配置信息。</p>
+        # @type EmbedSubtitleConfig: :class:`Tencentcloud::Mps.v20190612.models.DubbingEmbedSubtitleConfig`
+
+        attr_accessor :OutputMode, :OutputFinalVideo, :OutputSubtitle, :OutputDstAudio, :EmbedSubtitleConfig
+
+        def initialize(outputmode=nil, outputfinalvideo=nil, outputsubtitle=nil, outputdstaudio=nil, embedsubtitleconfig=nil)
+          @OutputMode = outputmode
+          @OutputFinalVideo = outputfinalvideo
+          @OutputSubtitle = outputsubtitle
+          @OutputDstAudio = outputdstaudio
+          @EmbedSubtitleConfig = embedsubtitleconfig
+        end
+
+        def deserialize(params)
+          @OutputMode = params['OutputMode']
+          @OutputFinalVideo = params['OutputFinalVideo']
+          @OutputSubtitle = params['OutputSubtitle']
+          @OutputDstAudio = params['OutputDstAudio']
+          unless params['EmbedSubtitleConfig'].nil?
+            @EmbedSubtitleConfig = DubbingEmbedSubtitleConfig.new
+            @EmbedSubtitleConfig.deserialize(params['EmbedSubtitleConfig'])
+          end
+        end
+      end
+
+      # dubbing任务翻译配置
+      class DubbingSubtitleConfig < TencentCloud::Common::AbstractModel
+        # @param SubtitleSource: <p>字幕来源。</p><p>枚举值：</p><ul><li>OCR： OCR文本识别，识别视频画面上的文本。</li><li>ASR： ASR语音识别，识别视频语音对话。</li><li>External： 外部字幕文件，提供原文/译文字幕URL。</li></ul>
+        # @type SubtitleSource: String
+        # @param AsrAssistOcr: <p>使用ASR辅助OCR。</p><p>枚举值：</p><ul><li>ON： 开启使用ASR辅助OCR。</li><li>OFF： 不开启使用ASR辅助OCR。</li></ul><p>默认值：OFF</p><p>仅 SubtitleSource=OCR 时允许设为 ON</p>
+        # @type AsrAssistOcr: String
+        # @param EraseOriginalSubtitle: <p>擦除原字幕。</p><p>枚举值：</p><ul><li>ON： 擦除原字幕。</li><li>OFF： 保留原字幕。</li></ul><p>默认值：OFF</p><p>SubtitleSource=External 时不允许设为 ON</p>
+        # @type EraseOriginalSubtitle: String
+        # @param SelectingSubtitleAreasConfig: <p>字幕位置信息。</p>
+        # @type SelectingSubtitleAreasConfig: :class:`Tencentcloud::Mps.v20190612.models.SelectingSubtitleAreasConfig`
+
+        attr_accessor :SubtitleSource, :AsrAssistOcr, :EraseOriginalSubtitle, :SelectingSubtitleAreasConfig
+
+        def initialize(subtitlesource=nil, asrassistocr=nil, eraseoriginalsubtitle=nil, selectingsubtitleareasconfig=nil)
+          @SubtitleSource = subtitlesource
+          @AsrAssistOcr = asrassistocr
+          @EraseOriginalSubtitle = eraseoriginalsubtitle
+          @SelectingSubtitleAreasConfig = selectingsubtitleareasconfig
+        end
+
+        def deserialize(params)
+          @SubtitleSource = params['SubtitleSource']
+          @AsrAssistOcr = params['AsrAssistOcr']
+          @EraseOriginalSubtitle = params['EraseOriginalSubtitle']
+          unless params['SelectingSubtitleAreasConfig'].nil?
+            @SelectingSubtitleAreasConfig = SelectingSubtitleAreasConfig.new
+            @SelectingSubtitleAreasConfig.deserialize(params['SelectingSubtitleAreasConfig'])
+          end
+        end
+      end
+
+      # dubbing任务翻译配置
+      class DubbingTranslateConfig < TencentCloud::Common::AbstractModel
+        # @param VideoSrcLanguage: <p>源语言。</p>
+        # @type VideoSrcLanguage: String
+        # @param TranslateDstLanguage: <p>翻译目标语言。</p>
+        # @type TranslateDstLanguage: String
+        # @param SimplifyTranslation: <p>智能简化译文。</p><p>枚举值：</p><ul><li>ON： 开启智能简化译文。</li><li>OFF： 关闭智能简化译文。</li></ul><p>默认值：OFF</p>
+        # @type SimplifyTranslation: String
+
+        attr_accessor :VideoSrcLanguage, :TranslateDstLanguage, :SimplifyTranslation
+
+        def initialize(videosrclanguage=nil, translatedstlanguage=nil, simplifytranslation=nil)
+          @VideoSrcLanguage = videosrclanguage
+          @TranslateDstLanguage = translatedstlanguage
+          @SimplifyTranslation = simplifytranslation
+        end
+
+        def deserialize(params)
+          @VideoSrcLanguage = params['VideoSrcLanguage']
+          @TranslateDstLanguage = params['TranslateDstLanguage']
+          @SimplifyTranslation = params['SimplifyTranslation']
+        end
+      end
+
       # 编辑点播视频文件信息
       class EditMediaFileInfo < TencentCloud::Common::AbstractModel
         # @param InputInfo: 视频的输入信息。
@@ -28607,6 +28976,46 @@ module TencentCloud
         end
       end
 
+      # AI配音自定义参数
+      class OverrideAIDubbingParameter < TencentCloud::Common::AbstractModel
+        # @param TranslateConfig: <p>翻译配置信息。</p>
+        # @type TranslateConfig: :class:`Tencentcloud::Mps.v20190612.models.DubbingTranslateConfig`
+        # @param SubtitleConfig: <p>字幕配置信息。</p>
+        # @type SubtitleConfig: :class:`Tencentcloud::Mps.v20190612.models.DubbingSubtitleConfig`
+        # @param DubbingConfig: <p>配音配置信息。</p>
+        # @type DubbingConfig: :class:`Tencentcloud::Mps.v20190612.models.DubbingConfig`
+        # @param OutputConfig: <p>输出配置信息。</p>
+        # @type OutputConfig: :class:`Tencentcloud::Mps.v20190612.models.DubbingOutputConfig`
+
+        attr_accessor :TranslateConfig, :SubtitleConfig, :DubbingConfig, :OutputConfig
+
+        def initialize(translateconfig=nil, subtitleconfig=nil, dubbingconfig=nil, outputconfig=nil)
+          @TranslateConfig = translateconfig
+          @SubtitleConfig = subtitleconfig
+          @DubbingConfig = dubbingconfig
+          @OutputConfig = outputconfig
+        end
+
+        def deserialize(params)
+          unless params['TranslateConfig'].nil?
+            @TranslateConfig = DubbingTranslateConfig.new
+            @TranslateConfig.deserialize(params['TranslateConfig'])
+          end
+          unless params['SubtitleConfig'].nil?
+            @SubtitleConfig = DubbingSubtitleConfig.new
+            @SubtitleConfig.deserialize(params['SubtitleConfig'])
+          end
+          unless params['DubbingConfig'].nil?
+            @DubbingConfig = DubbingConfig.new
+            @DubbingConfig.deserialize(params['DubbingConfig'])
+          end
+          unless params['OutputConfig'].nil?
+            @OutputConfig = DubbingOutputConfig.new
+            @OutputConfig.deserialize(params['OutputConfig'])
+          end
+        end
+      end
+
       # 智能擦除自定义参数
       class OverrideEraseParameter < TencentCloud::Common::AbstractModel
         # @param EraseType: <p>擦除类型</p><ul><li>subtitle 去字幕</li><li>watermark 去水印</li><li>privacy 隐私保护</li></ul>
@@ -29814,6 +30223,8 @@ module TencentCloud
         # @type SmartSubtitlesTask: :class:`Tencentcloud::Mps.v20190612.models.SmartSubtitlesTaskInput`
         # @param SmartEraseTask: <p>智能擦除类型任务参数</p>
         # @type SmartEraseTask: :class:`Tencentcloud::Mps.v20190612.models.SmartEraseTaskInput`
+        # @param AIDubbingTask: <p>AI配音类型任务参数</p>
+        # @type AIDubbingTask: :class:`Tencentcloud::Mps.v20190612.models.AIDubbingTaskInput`
         # @param TaskNotifyConfig: <p>任务的事件通知信息，不填代表不获取事件通知。</p>
         # @type TaskNotifyConfig: :class:`Tencentcloud::Mps.v20190612.models.TaskNotifyConfig`
         # @param TasksPriority: <p>任务流的优先级，数值越大优先级越高，取值范围是-10到 10，不填代表0。</p>
@@ -29831,9 +30242,9 @@ module TencentCloud
         # @param SkipMateData: <p>是否跳过元信息获取，可选值：<br>0：表示不跳过<br>1：表示跳过<br>默认值：0</p>
         # @type SkipMateData: Integer
 
-        attr_accessor :InputInfo, :OutputStorage, :OutputDir, :ScheduleId, :MediaProcessTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTask, :AiQualityControlTask, :SmartSubtitlesTask, :SmartEraseTask, :TaskNotifyConfig, :TasksPriority, :SessionId, :SessionContext, :TaskType, :ResourceId, :Activities, :SkipMateData
+        attr_accessor :InputInfo, :OutputStorage, :OutputDir, :ScheduleId, :MediaProcessTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTask, :AiQualityControlTask, :SmartSubtitlesTask, :SmartEraseTask, :AIDubbingTask, :TaskNotifyConfig, :TasksPriority, :SessionId, :SessionContext, :TaskType, :ResourceId, :Activities, :SkipMateData
 
-        def initialize(inputinfo=nil, outputstorage=nil, outputdir=nil, scheduleid=nil, mediaprocesstask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontask=nil, aiqualitycontroltask=nil, smartsubtitlestask=nil, smarterasetask=nil, tasknotifyconfig=nil, taskspriority=nil, sessionid=nil, sessioncontext=nil, tasktype=nil, resourceid=nil, activities=nil, skipmatedata=nil)
+        def initialize(inputinfo=nil, outputstorage=nil, outputdir=nil, scheduleid=nil, mediaprocesstask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontask=nil, aiqualitycontroltask=nil, smartsubtitlestask=nil, smarterasetask=nil, aidubbingtask=nil, tasknotifyconfig=nil, taskspriority=nil, sessionid=nil, sessioncontext=nil, tasktype=nil, resourceid=nil, activities=nil, skipmatedata=nil)
           @InputInfo = inputinfo
           @OutputStorage = outputstorage
           @OutputDir = outputdir
@@ -29845,6 +30256,7 @@ module TencentCloud
           @AiQualityControlTask = aiqualitycontroltask
           @SmartSubtitlesTask = smartsubtitlestask
           @SmartEraseTask = smarterasetask
+          @AIDubbingTask = aidubbingtask
           @TaskNotifyConfig = tasknotifyconfig
           @TasksPriority = taskspriority
           @SessionId = sessionid
@@ -29893,6 +30305,10 @@ module TencentCloud
           unless params['SmartEraseTask'].nil?
             @SmartEraseTask = SmartEraseTaskInput.new
             @SmartEraseTask.deserialize(params['SmartEraseTask'])
+          end
+          unless params['AIDubbingTask'].nil?
+            @AIDubbingTask = AIDubbingTaskInput.new
+            @AIDubbingTask.deserialize(params['AIDubbingTask'])
           end
           unless params['TaskNotifyConfig'].nil?
             @TaskNotifyConfig = TaskNotifyConfig.new
@@ -30910,6 +31326,46 @@ module TencentCloud
 
         def deserialize(params)
           @Url = params['Url']
+        end
+      end
+
+      # AI配音自定义参数
+      class RawAIDubbingParameter < TencentCloud::Common::AbstractModel
+        # @param TranslateConfig: <p>翻译配置信息。</p>
+        # @type TranslateConfig: :class:`Tencentcloud::Mps.v20190612.models.DubbingTranslateConfig`
+        # @param SubtitleConfig: <p>字幕配置信息。</p>
+        # @type SubtitleConfig: :class:`Tencentcloud::Mps.v20190612.models.DubbingSubtitleConfig`
+        # @param DubbingConfig: <p>配音配置信息。</p>
+        # @type DubbingConfig: :class:`Tencentcloud::Mps.v20190612.models.DubbingConfig`
+        # @param OutputConfig: <p>输出配置信息。</p>
+        # @type OutputConfig: :class:`Tencentcloud::Mps.v20190612.models.DubbingOutputConfig`
+
+        attr_accessor :TranslateConfig, :SubtitleConfig, :DubbingConfig, :OutputConfig
+
+        def initialize(translateconfig=nil, subtitleconfig=nil, dubbingconfig=nil, outputconfig=nil)
+          @TranslateConfig = translateconfig
+          @SubtitleConfig = subtitleconfig
+          @DubbingConfig = dubbingconfig
+          @OutputConfig = outputconfig
+        end
+
+        def deserialize(params)
+          unless params['TranslateConfig'].nil?
+            @TranslateConfig = DubbingTranslateConfig.new
+            @TranslateConfig.deserialize(params['TranslateConfig'])
+          end
+          unless params['SubtitleConfig'].nil?
+            @SubtitleConfig = DubbingSubtitleConfig.new
+            @SubtitleConfig.deserialize(params['SubtitleConfig'])
+          end
+          unless params['DubbingConfig'].nil?
+            @DubbingConfig = DubbingConfig.new
+            @DubbingConfig.deserialize(params['DubbingConfig'])
+          end
+          unless params['OutputConfig'].nil?
+            @OutputConfig = DubbingOutputConfig.new
+            @OutputConfig.deserialize(params['OutputConfig'])
+          end
         end
       end
 
@@ -38935,10 +39391,8 @@ module TencentCloud
         # @param Trigger: 工作流绑定的输入规则，当上传视频命中该规则到该对象时即触发工作流。
         # @type Trigger: :class:`Tencentcloud::Mps.v20190612.models.WorkflowTrigger`
         # @param OutputStorage: 媒体处理的文件输出存储位置。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
         # @param MediaProcessTask: 媒体处理类型任务参数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MediaProcessTask: :class:`Tencentcloud::Mps.v20190612.models.MediaProcessTaskInput`
         # @param AiContentReviewTask: 视频内容审核类型任务参数。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -38950,7 +39404,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AiRecognitionTask: :class:`Tencentcloud::Mps.v20190612.models.AiRecognitionTaskInput`
         # @param TaskNotifyConfig: 任务的事件通知信息，不填代表不获取事件通知。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskNotifyConfig: :class:`Tencentcloud::Mps.v20190612.models.TaskNotifyConfig`
         # @param TaskPriority: 任务流的优先级，数值越大优先级越高，取值范围是 -10 到 10，不填代表 0。
         # @type TaskPriority: Integer
@@ -39021,43 +39474,43 @@ module TencentCloud
 
       # 媒体处理任务信息
       class WorkflowTask < TencentCloud::Common::AbstractModel
-        # @param TaskId: 媒体处理任务 ID。
+        # @param TaskId: <p>媒体处理任务 ID。</p>
         # @type TaskId: String
-        # @param Status: 任务流状态，取值：
-        # <li>PROCESSING：处理中；</li>
-        # <li>FINISH：已完成。</li>
+        # @param Status: <p>任务流状态，取值：</p><li>PROCESSING：处理中；</li><li>FINISH：已完成。</li>
         # @type Status: String
-        # @param ErrCode: 源异常时返回非0错误码，返回0 时请使用各个具体任务的 ErrCode。
+        # @param ErrCode: <p>源异常时返回非0错误码，返回0 时请使用各个具体任务的 ErrCode。</p>
         # @type ErrCode: Integer
-        # @param Message: 源异常时返回对应异常Message，否则请使用各个具体任务的 Message。
+        # @param Message: <p>源异常时返回对应异常Message，否则请使用各个具体任务的 Message。</p>
         # @type Message: String
-        # @param InputInfo: 媒体处理的目标文件信息。
+        # @param InputInfo: <p>媒体处理的目标文件信息。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InputInfo: :class:`Tencentcloud::Mps.v20190612.models.MediaInputInfo`
-        # @param MetaData: 原始视频的元信息。
+        # @param MetaData: <p>原始视频的元信息。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MetaData: :class:`Tencentcloud::Mps.v20190612.models.MediaMetaData`
-        # @param MediaProcessResultSet: 媒体处理任务的执行状态与结果。
+        # @param MediaProcessResultSet: <p>媒体处理任务的执行状态与结果。</p>
         # @type MediaProcessResultSet: Array
-        # @param AiContentReviewResultSet: 视频内容审核任务的执行状态与结果。
+        # @param AiContentReviewResultSet: <p>视频内容审核任务的执行状态与结果。</p>
         # @type AiContentReviewResultSet: Array
-        # @param AiAnalysisResultSet: 视频内容分析任务的执行状态与结果。
+        # @param AiAnalysisResultSet: <p>视频内容分析任务的执行状态与结果。</p>
         # @type AiAnalysisResultSet: Array
-        # @param AiRecognitionResultSet: 视频内容识别任务的执行状态与结果。
+        # @param AiRecognitionResultSet: <p>视频内容识别任务的执行状态与结果。</p>
         # @type AiRecognitionResultSet: Array
-        # @param AiQualityControlTaskResult: 媒体质检任务的执行状态与结果。
+        # @param AiQualityControlTaskResult: <p>媒体质检任务的执行状态与结果。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AiQualityControlTaskResult: :class:`Tencentcloud::Mps.v20190612.models.ScheduleQualityControlTaskResult`
-        # @param SmartSubtitlesTaskResult: 智能字幕任务的执行结果
+        # @param SmartSubtitlesTaskResult: <p>智能字幕任务的执行结果</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SmartSubtitlesTaskResult: Array
-        # @param SmartEraseTaskResult: 智能擦除任务的执行结果
+        # @param SmartEraseTaskResult: <p>智能擦除任务的执行结果</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SmartEraseTaskResult: :class:`Tencentcloud::Mps.v20190612.models.SmartEraseTaskResult`
+        # @param AiDubbingTaskResult: <p>AI配音任务的执行结果。</p>
+        # @type AiDubbingTaskResult: :class:`Tencentcloud::Mps.v20190612.models.AIDubbingTaskResult`
 
-        attr_accessor :TaskId, :Status, :ErrCode, :Message, :InputInfo, :MetaData, :MediaProcessResultSet, :AiContentReviewResultSet, :AiAnalysisResultSet, :AiRecognitionResultSet, :AiQualityControlTaskResult, :SmartSubtitlesTaskResult, :SmartEraseTaskResult
+        attr_accessor :TaskId, :Status, :ErrCode, :Message, :InputInfo, :MetaData, :MediaProcessResultSet, :AiContentReviewResultSet, :AiAnalysisResultSet, :AiRecognitionResultSet, :AiQualityControlTaskResult, :SmartSubtitlesTaskResult, :SmartEraseTaskResult, :AiDubbingTaskResult
 
-        def initialize(taskid=nil, status=nil, errcode=nil, message=nil, inputinfo=nil, metadata=nil, mediaprocessresultset=nil, aicontentreviewresultset=nil, aianalysisresultset=nil, airecognitionresultset=nil, aiqualitycontroltaskresult=nil, smartsubtitlestaskresult=nil, smarterasetaskresult=nil)
+        def initialize(taskid=nil, status=nil, errcode=nil, message=nil, inputinfo=nil, metadata=nil, mediaprocessresultset=nil, aicontentreviewresultset=nil, aianalysisresultset=nil, airecognitionresultset=nil, aiqualitycontroltaskresult=nil, smartsubtitlestaskresult=nil, smarterasetaskresult=nil, aidubbingtaskresult=nil)
           @TaskId = taskid
           @Status = status
           @ErrCode = errcode
@@ -39071,6 +39524,7 @@ module TencentCloud
           @AiQualityControlTaskResult = aiqualitycontroltaskresult
           @SmartSubtitlesTaskResult = smartsubtitlestaskresult
           @SmartEraseTaskResult = smarterasetaskresult
+          @AiDubbingTaskResult = aidubbingtaskresult
         end
 
         def deserialize(params)
@@ -39133,6 +39587,10 @@ module TencentCloud
           unless params['SmartEraseTaskResult'].nil?
             @SmartEraseTaskResult = SmartEraseTaskResult.new
             @SmartEraseTaskResult.deserialize(params['SmartEraseTaskResult'])
+          end
+          unless params['AiDubbingTaskResult'].nil?
+            @AiDubbingTaskResult = AIDubbingTaskResult.new
+            @AiDubbingTaskResult.deserialize(params['AiDubbingTaskResult'])
           end
         end
       end

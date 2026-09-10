@@ -116,11 +116,11 @@ module TencentCloud
 
       # CreateWorkspaceToken请求参数结构体
       class CreateWorkspaceTokenRequest < TencentCloud::Common::AbstractModel
-        # @param SpaceKey: 工作空间 SpaceKey
+        # @param SpaceKey: <p>工作空间 SpaceKey</p>
         # @type SpaceKey: String
-        # @param TokenExpiredLimitSec: token过期时间，单位是秒，默认 3600
+        # @param TokenExpiredLimitSec: <p>token过期时间，单位是秒，默认 3600</p>
         # @type TokenExpiredLimitSec: Integer
-        # @param Policies: token 授权策略，可选值为 workspace-run-only, all。默认为 workspace-run-only
+        # @param Policies: <p>token 授权策略，可选值为 workspace-run-only, all。默认为 workspace-run-only</p>
         # @type Policies: Array
 
         attr_accessor :SpaceKey, :TokenExpiredLimitSec, :Policies
@@ -140,9 +140,9 @@ module TencentCloud
 
       # CreateWorkspaceToken返回参数结构体
       class CreateWorkspaceTokenResponse < TencentCloud::Common::AbstractModel
-        # @param Token: 访问工作空间临时凭证
+        # @param Token: <p>访问工作空间临时凭证</p>
         # @type Token: String
-        # @param ExpiredTime: token 过期时间
+        # @param ExpiredTime: <p>token 过期时间</p>
         # @type ExpiredTime: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -410,19 +410,19 @@ module TencentCloud
 
       # ModifyWorkspace请求参数结构体
       class ModifyWorkspaceRequest < TencentCloud::Common::AbstractModel
-        # @param SpaceKey: 工作空间 SpaceKey. 更新该工作空间的属性
+        # @param SpaceKey: <p>工作空间 SpaceKey. 更新该工作空间的属性</p>
         # @type SpaceKey: String
-        # @param Name: 工作空间名称
+        # @param Name: <p>工作空间名称</p>
         # @type Name: String
-        # @param Description: 工作空间描述
+        # @param Description: <p>工作空间描述</p>
         # @type Description: String
-        # @param Specs: 工作空间规格。STANDARD: 2C4G, CALCULATION: 4C8G, PROFESSION: 8C16G. 默认是 STANDARD。
+        # @param Specs: <p>工作空间规格。STANDARD: 2C4G, CALCULATION: 4C8G, PROFESSION: 8C16G. 默认是 STANDARD。</p>
         # @type Specs: String
-        # @param Envs: 环境变量. 会被注入到工作空间中
+        # @param Envs: <p>环境变量. 会被注入到工作空间中</p>
         # @type Envs: Array
-        # @param Extensions: 预装插件. 工作空间启动时, 会自动安装这些插件
+        # @param Extensions: <p>预装插件. 工作空间启动时, 会自动安装这些插件</p>
         # @type Extensions: Array
-        # @param Lifecycle: 工作空间生命周期钩子.  分为三个阶段 init, start, destroy. 分别表示工作空间数据初始化阶段, 工作空间启动阶段, 工作空间关闭阶段.  用户可以自定义 shell 命令.
+        # @param Lifecycle: <p>工作空间生命周期钩子.  分为三个阶段 init, start, destroy. 分别表示工作空间数据初始化阶段, 工作空间启动阶段, 工作空间关闭阶段.  用户可以自定义 shell 命令.</p>
         # @type Lifecycle: :class:`Tencentcloud::Cloudstudio.v20230508.models.LifeCycle`
 
         attr_accessor :SpaceKey, :Name, :Description, :Specs, :Envs, :Extensions, :Lifecycle

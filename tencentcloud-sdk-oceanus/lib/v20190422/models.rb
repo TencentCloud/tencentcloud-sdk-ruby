@@ -4673,10 +4673,16 @@ module TencentCloud
         # @type LastDiagnoseTime: String
         # @param ManagerUin: <p>负责人Uin</p>
         # @type ManagerUin: String
+        # @param StartupPoint: <p>启动位点</p>
+        # @type StartupPoint: String
+        # @param IsEvent: <p>是否有事件</p>
+        # @type IsEvent: Boolean
+        # @param IsAlarm: <p>是否告警</p>
+        # @type IsAlarm: Boolean
 
-        attr_accessor :JobId, :Region, :Zone, :AppId, :OwnerUin, :CreatorUin, :Name, :JobType, :Status, :CreateTime, :StartTime, :StopTime, :UpdateTime, :TotalRunMillis, :Remark, :LastOpResult, :ClusterName, :LatestJobConfigVersion, :LatestValidJobConfigVersion, :PublishedJobConfigVersion, :RunningCuNum, :CuMem, :StatusDesc, :CurrentRunMillis, :ClusterId, :WebUIUrl, :SchedulerType, :ClusterStatus, :RunningCu, :FlinkVersion, :WorkSpaceId, :WorkSpaceName, :Tags, :EventInfo, :Description, :ScalingType, :RunningCpu, :RunningMem, :OpenJobDefaultAlarm, :ProgressDesc, :ContinueAlarm, :RestartCount, :ExpectJobDefaultAlarmStatus, :JdkVersion, :StateCOSBucket, :NewStateCOSBucket, :StateCOSBucketType, :NewStateCOSBucketType, :HealthScore, :LastDiagnoseTime, :ManagerUin
+        attr_accessor :JobId, :Region, :Zone, :AppId, :OwnerUin, :CreatorUin, :Name, :JobType, :Status, :CreateTime, :StartTime, :StopTime, :UpdateTime, :TotalRunMillis, :Remark, :LastOpResult, :ClusterName, :LatestJobConfigVersion, :LatestValidJobConfigVersion, :PublishedJobConfigVersion, :RunningCuNum, :CuMem, :StatusDesc, :CurrentRunMillis, :ClusterId, :WebUIUrl, :SchedulerType, :ClusterStatus, :RunningCu, :FlinkVersion, :WorkSpaceId, :WorkSpaceName, :Tags, :EventInfo, :Description, :ScalingType, :RunningCpu, :RunningMem, :OpenJobDefaultAlarm, :ProgressDesc, :ContinueAlarm, :RestartCount, :ExpectJobDefaultAlarmStatus, :JdkVersion, :StateCOSBucket, :NewStateCOSBucket, :StateCOSBucketType, :NewStateCOSBucketType, :HealthScore, :LastDiagnoseTime, :ManagerUin, :StartupPoint, :IsEvent, :IsAlarm
 
-        def initialize(jobid=nil, region=nil, zone=nil, appid=nil, owneruin=nil, creatoruin=nil, name=nil, jobtype=nil, status=nil, createtime=nil, starttime=nil, stoptime=nil, updatetime=nil, totalrunmillis=nil, remark=nil, lastopresult=nil, clustername=nil, latestjobconfigversion=nil, latestvalidjobconfigversion=nil, publishedjobconfigversion=nil, runningcunum=nil, cumem=nil, statusdesc=nil, currentrunmillis=nil, clusterid=nil, webuiurl=nil, schedulertype=nil, clusterstatus=nil, runningcu=nil, flinkversion=nil, workspaceid=nil, workspacename=nil, tags=nil, eventinfo=nil, description=nil, scalingtype=nil, runningcpu=nil, runningmem=nil, openjobdefaultalarm=nil, progressdesc=nil, continuealarm=nil, restartcount=nil, expectjobdefaultalarmstatus=nil, jdkversion=nil, statecosbucket=nil, newstatecosbucket=nil, statecosbuckettype=nil, newstatecosbuckettype=nil, healthscore=nil, lastdiagnosetime=nil, manageruin=nil)
+        def initialize(jobid=nil, region=nil, zone=nil, appid=nil, owneruin=nil, creatoruin=nil, name=nil, jobtype=nil, status=nil, createtime=nil, starttime=nil, stoptime=nil, updatetime=nil, totalrunmillis=nil, remark=nil, lastopresult=nil, clustername=nil, latestjobconfigversion=nil, latestvalidjobconfigversion=nil, publishedjobconfigversion=nil, runningcunum=nil, cumem=nil, statusdesc=nil, currentrunmillis=nil, clusterid=nil, webuiurl=nil, schedulertype=nil, clusterstatus=nil, runningcu=nil, flinkversion=nil, workspaceid=nil, workspacename=nil, tags=nil, eventinfo=nil, description=nil, scalingtype=nil, runningcpu=nil, runningmem=nil, openjobdefaultalarm=nil, progressdesc=nil, continuealarm=nil, restartcount=nil, expectjobdefaultalarmstatus=nil, jdkversion=nil, statecosbucket=nil, newstatecosbucket=nil, statecosbuckettype=nil, newstatecosbuckettype=nil, healthscore=nil, lastdiagnosetime=nil, manageruin=nil, startuppoint=nil, isevent=nil, isalarm=nil)
           @JobId = jobid
           @Region = region
           @Zone = zone
@@ -4728,6 +4734,9 @@ module TencentCloud
           @HealthScore = healthscore
           @LastDiagnoseTime = lastdiagnosetime
           @ManagerUin = manageruin
+          @StartupPoint = startuppoint
+          @IsEvent = isevent
+          @IsAlarm = isalarm
         end
 
         def deserialize(params)
@@ -4792,6 +4801,9 @@ module TencentCloud
           @HealthScore = params['HealthScore']
           @LastDiagnoseTime = params['LastDiagnoseTime']
           @ManagerUin = params['ManagerUin']
+          @StartupPoint = params['StartupPoint']
+          @IsEvent = params['IsEvent']
+          @IsAlarm = params['IsAlarm']
         end
       end
 

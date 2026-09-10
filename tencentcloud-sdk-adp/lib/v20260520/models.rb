@@ -77,6 +77,85 @@ module TencentCloud
         end
       end
 
+      # AccessKey鉴权配置
+      class AccessKeyAuthConfig < TencentCloud::Common::AbstractModel
+        # @param ParamList: <p>Access Key字段配置</p>
+        # @type ParamList: Array
+        # @param PassThroughConfig: <p>Access Key透传配置</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PassThroughConfig: :class:`Tencentcloud::Adp.v20260520.models.AccessKeyPassThroughConfig`
+        # @param UsageMode: <p>Access Key 使用模式</p><p>枚举值：</p><ul><li>1： Access Key透传</li></ul>
+        # @type UsageMode: Integer
+
+        attr_accessor :ParamList, :PassThroughConfig, :UsageMode
+
+        def initialize(paramlist=nil, passthroughconfig=nil, usagemode=nil)
+          @ParamList = paramlist
+          @PassThroughConfig = passthroughconfig
+          @UsageMode = usagemode
+        end
+
+        def deserialize(params)
+          unless params['ParamList'].nil?
+            @ParamList = []
+            params['ParamList'].each do |i|
+              accesskeyparamconfig_tmp = AccessKeyParamConfig.new
+              accesskeyparamconfig_tmp.deserialize(i)
+              @ParamList << accesskeyparamconfig_tmp
+            end
+          end
+          unless params['PassThroughConfig'].nil?
+            @PassThroughConfig = AccessKeyPassThroughConfig.new
+            @PassThroughConfig.deserialize(params['PassThroughConfig'])
+          end
+          @UsageMode = params['UsageMode']
+        end
+      end
+
+      # Access Key 字段配置
+      class AccessKeyParamConfig < TencentCloud::Common::AbstractModel
+        # @param FieldType: <p>Access Key 字段类型，1:AccessKeyId，2:AccessKeySecret，3:SessionToken</p>
+        # @type FieldType: Integer
+        # @param IsRequired: <p>是否必填</p>
+        # @type IsRequired: Boolean
+        # @param ParamName: <p>header/query 字段名</p>
+        # @type ParamName: String
+        # @param ParamValue: <p>AccessKey密钥默认值，允许为空</p>
+        # @type ParamValue: String
+
+        attr_accessor :FieldType, :IsRequired, :ParamName, :ParamValue
+
+        def initialize(fieldtype=nil, isrequired=nil, paramname=nil, paramvalue=nil)
+          @FieldType = fieldtype
+          @IsRequired = isrequired
+          @ParamName = paramname
+          @ParamValue = paramvalue
+        end
+
+        def deserialize(params)
+          @FieldType = params['FieldType']
+          @IsRequired = params['IsRequired']
+          @ParamName = params['ParamName']
+          @ParamValue = params['ParamValue']
+        end
+      end
+
+      # Access Key 透传配置
+      class AccessKeyPassThroughConfig < TencentCloud::Common::AbstractModel
+        # @param KeyLocation: <p>Access Key 字段统一注入位置，0:Header，1:Query</p>
+        # @type KeyLocation: Integer
+
+        attr_accessor :KeyLocation
+
+        def initialize(keylocation=nil)
+          @KeyLocation = keylocation
+        end
+
+        def deserialize(params)
+          @KeyLocation = params['KeyLocation']
+        end
+      end
+
       # 员工信息
       class AccountInfo < TencentCloud::Common::AbstractModel
         # @param AccountUin: <p>员工子账号id</p>
@@ -2746,23 +2825,26 @@ module TencentCloud
       class AuthConfig < TencentCloud::Common::AbstractModel
         # @param AuthType: <p>授权方式。</p><p>枚举值：</p><ul><li>0：无鉴权</li><li>1：API Key 鉴权</li><li>2：CAM 授权</li><li>3：OAuth 2.0 授权</li></ul>
         # @type AuthType: Integer
-        # @param ApiKeyAuthConfig: API Key授权配置
+        # @param ApiKeyAuthConfig: <p>API Key授权配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApiKeyAuthConfig: :class:`Tencentcloud::Adp.v20260520.models.ApiKeyAuthConfig`
-        # @param CamAuthConfig: CAM授权配置
+        # @param CamAuthConfig: <p>CAM授权配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CamAuthConfig: :class:`Tencentcloud::Adp.v20260520.models.CamAuthConfig`
-        # @param OAuthConfig: OAuth2.0授权配置
+        # @param OAuthConfig: <p>OAuth2.0授权配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OAuthConfig: :class:`Tencentcloud::Adp.v20260520.models.OAuthConfig`
+        # @param AccessKeyAuthConfig: <p>AccessKey授权配置</p>
+        # @type AccessKeyAuthConfig: :class:`Tencentcloud::Adp.v20260520.models.AccessKeyAuthConfig`
 
-        attr_accessor :AuthType, :ApiKeyAuthConfig, :CamAuthConfig, :OAuthConfig
+        attr_accessor :AuthType, :ApiKeyAuthConfig, :CamAuthConfig, :OAuthConfig, :AccessKeyAuthConfig
 
-        def initialize(authtype=nil, apikeyauthconfig=nil, camauthconfig=nil, oauthconfig=nil)
+        def initialize(authtype=nil, apikeyauthconfig=nil, camauthconfig=nil, oauthconfig=nil, accesskeyauthconfig=nil)
           @AuthType = authtype
           @ApiKeyAuthConfig = apikeyauthconfig
           @CamAuthConfig = camauthconfig
           @OAuthConfig = oauthconfig
+          @AccessKeyAuthConfig = accesskeyauthconfig
         end
 
         def deserialize(params)
@@ -2778,6 +2860,10 @@ module TencentCloud
           unless params['OAuthConfig'].nil?
             @OAuthConfig = OAuthConfig.new
             @OAuthConfig.deserialize(params['OAuthConfig'])
+          end
+          unless params['AccessKeyAuthConfig'].nil?
+            @AccessKeyAuthConfig = AccessKeyAuthConfig.new
+            @AccessKeyAuthConfig.deserialize(params['AccessKeyAuthConfig'])
           end
         end
       end
@@ -2908,28 +2994,28 @@ module TencentCloud
 
       # CAM授权信息
       class CamAuthConfig < TencentCloud::Common::AbstractModel
-        # @param RoleName: 角色名称
+        # @param RoleName: <p>角色名称</p>
         # @type RoleName: String
-        # @param KeyLocation: 密钥位置 HEADER/QUERY
-
-        # 枚举值:
-        # | uint | 描述 |
-        # | --- | --- |
-        # | 0 | 头鉴权 |
-        # | 1 | 请求信息鉴权 |
+        # @param KeyLocation: <p>密钥位置 HEADER/QUERY</p><p>枚举值:<br>| uint | 描述 |<br>| --- | --- |<br>| 0 | 头鉴权 |<br>| 1 | 请求信息鉴权 |</p>
         # @type KeyLocation: Integer
-        # @param SecretIdName: SecretId字段名称
+        # @param SecretIdName: <p>SecretId字段名称</p>
         # @type SecretIdName: String
-        # @param SecretKeyName: SecretKey字段名称
+        # @param SecretKeyName: <p>SecretKey字段名称</p>
         # @type SecretKeyName: String
+        # @param ParamList: <p>CAM Access Key 字段配置</p>
+        # @type ParamList: Array
+        # @param SupportRoleAuth: <p>是否支持CAM角色授权</p>
+        # @type SupportRoleAuth: Boolean
 
-        attr_accessor :RoleName, :KeyLocation, :SecretIdName, :SecretKeyName
+        attr_accessor :RoleName, :KeyLocation, :SecretIdName, :SecretKeyName, :ParamList, :SupportRoleAuth
 
-        def initialize(rolename=nil, keylocation=nil, secretidname=nil, secretkeyname=nil)
+        def initialize(rolename=nil, keylocation=nil, secretidname=nil, secretkeyname=nil, paramlist=nil, supportroleauth=nil)
           @RoleName = rolename
           @KeyLocation = keylocation
           @SecretIdName = secretidname
           @SecretKeyName = secretkeyname
+          @ParamList = paramlist
+          @SupportRoleAuth = supportroleauth
         end
 
         def deserialize(params)
@@ -2937,6 +3023,15 @@ module TencentCloud
           @KeyLocation = params['KeyLocation']
           @SecretIdName = params['SecretIdName']
           @SecretKeyName = params['SecretKeyName']
+          unless params['ParamList'].nil?
+            @ParamList = []
+            params['ParamList'].each do |i|
+              accesskeyparamconfig_tmp = AccessKeyParamConfig.new
+              accesskeyparamconfig_tmp.deserialize(i)
+              @ParamList << accesskeyparamconfig_tmp
+            end
+          end
+          @SupportRoleAuth = params['SupportRoleAuth']
         end
       end
 
@@ -4658,14 +4753,17 @@ module TencentCloud
         # @type SpaceId: String
         # @param VersionId: <p>必填，被共享的版本id（必须高于已共享版本）</p>
         # @type VersionId: String
+        # @param CorpShareConfig: <p>共享配置</p>
+        # @type CorpShareConfig: :class:`Tencentcloud::Adp.v20260520.models.SkillCorpShareConfig`
 
-        attr_accessor :ApplyRemark, :SkillId, :SpaceId, :VersionId
+        attr_accessor :ApplyRemark, :SkillId, :SpaceId, :VersionId, :CorpShareConfig
 
-        def initialize(applyremark=nil, skillid=nil, spaceid=nil, versionid=nil)
+        def initialize(applyremark=nil, skillid=nil, spaceid=nil, versionid=nil, corpshareconfig=nil)
           @ApplyRemark = applyremark
           @SkillId = skillid
           @SpaceId = spaceid
           @VersionId = versionid
+          @CorpShareConfig = corpshareconfig
         end
 
         def deserialize(params)
@@ -4673,6 +4771,10 @@ module TencentCloud
           @SkillId = params['SkillId']
           @SpaceId = params['SpaceId']
           @VersionId = params['VersionId']
+          unless params['CorpShareConfig'].nil?
+            @CorpShareConfig = SkillCorpShareConfig.new
+            @CorpShareConfig.deserialize(params['CorpShareConfig'])
+          end
         end
       end
 
@@ -7091,26 +7193,28 @@ module TencentCloud
 
       # DescribePluginSummaryList请求参数结构体
       class DescribePluginSummaryListRequest < TencentCloud::Common::AbstractModel
-        # @param SpaceId: 空间ID，查询空间内的插件列表时使用
+        # @param SpaceId: <p>空间ID，查询空间内的插件列表时使用</p>
         # @type SpaceId: String
-        # @param FilterList: 过滤条件列表 支持：PluginKind、CategoryKey、PluginSource、PluginId、PluginClass、BillingType
+        # @param FilterList: <p>过滤条件列表，支持 PluginKind、CategoryKey、PluginSource、PluginId、PluginClass、BillingType、AuthType、IsShared、IsCreatedByMe</p>
         # @type FilterList: Array
         # @param IsFavoriteOnly: <p>是否只返回已收藏插件。取 true 时，仅返回当前用户已收藏的插件；取 false 或不传时不按收藏状态过滤。</p>
         # @type IsFavoriteOnly: Boolean
         # @param Module: <p>插件展示场景。不传或取 0 时不限定场景。</p><p>枚举值：</p><ul><li>0：不限定场景</li><li>1：Agent 模式</li><li>2：工作流</li><li>3：智能工作台</li></ul>
         # @type Module: Integer
-        # @param PageNumber: 页码 从0开始
+        # @param PageNumber: <p>页码 从0开始</p>
         # @type PageNumber: Integer
-        # @param PageSize: 每页大小
+        # @param PageSize: <p>每页大小</p>
         # @type PageSize: Integer
-        # @param Query: 查询内容 模糊匹配：插件名称/插件描述/工具名称/工具描述
+        # @param Query: <p>查询内容 模糊匹配：插件名称/插件描述/工具名称/工具描述</p>
         # @type Query: String
         # @param SortType: <p>排序方式。</p><p>枚举值：</p><ul><li>0：未指定，默认排序</li><li>1：按相关性排序</li><li>2：按更新时间排序</li><li>3：默认排序</li><li>4：按热度排序</li></ul>
         # @type SortType: Integer
+        # @param PluginSpaceRelation: <p>筛选当前空间/企业共享插件</p><p>取值范围：[0, 2]</p>
+        # @type PluginSpaceRelation: Integer
 
-        attr_accessor :SpaceId, :FilterList, :IsFavoriteOnly, :Module, :PageNumber, :PageSize, :Query, :SortType
+        attr_accessor :SpaceId, :FilterList, :IsFavoriteOnly, :Module, :PageNumber, :PageSize, :Query, :SortType, :PluginSpaceRelation
 
-        def initialize(spaceid=nil, filterlist=nil, isfavoriteonly=nil, _module=nil, pagenumber=nil, pagesize=nil, query=nil, sorttype=nil)
+        def initialize(spaceid=nil, filterlist=nil, isfavoriteonly=nil, _module=nil, pagenumber=nil, pagesize=nil, query=nil, sorttype=nil, pluginspacerelation=nil)
           @SpaceId = spaceid
           @FilterList = filterlist
           @IsFavoriteOnly = isfavoriteonly
@@ -7119,6 +7223,7 @@ module TencentCloud
           @PageSize = pagesize
           @Query = query
           @SortType = sorttype
+          @PluginSpaceRelation = pluginspacerelation
         end
 
         def deserialize(params)
@@ -7137,14 +7242,15 @@ module TencentCloud
           @PageSize = params['PageSize']
           @Query = params['Query']
           @SortType = params['SortType']
+          @PluginSpaceRelation = params['PluginSpaceRelation']
         end
       end
 
       # DescribePluginSummaryList返回参数结构体
       class DescribePluginSummaryListResponse < TencentCloud::Common::AbstractModel
-        # @param PluginList: plugin_list
+        # @param PluginList: <p>plugin_list</p>
         # @type PluginList: Array
-        # @param TotalCount: total_count
+        # @param TotalCount: <p>total_count</p>
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7385,13 +7491,16 @@ module TencentCloud
       class DescribeSkillReferenceListResponse < TencentCloud::Common::AbstractModel
         # @param ReferenceList: <p>按 SkillRefType 分组的引用汇总：某类型 total_count = 0 时不入组（不返回空占位） 本期同时落 OPENCLAW / AGENT / CORP_ASSISTANT 三路</p>
         # @type ReferenceList: Array
+        # @param AllowForceModify: <p>当前用户是否允许强制删除有引用的Skill</p>
+        # @type AllowForceModify: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ReferenceList, :RequestId
+        attr_accessor :ReferenceList, :AllowForceModify, :RequestId
 
-        def initialize(referencelist=nil, requestid=nil)
+        def initialize(referencelist=nil, allowforcemodify=nil, requestid=nil)
           @ReferenceList = referencelist
+          @AllowForceModify = allowforcemodify
           @RequestId = requestid
         end
 
@@ -7404,6 +7513,7 @@ module TencentCloud
               @ReferenceList << skillreferencegroup_tmp
             end
           end
+          @AllowForceModify = params['AllowForceModify']
           @RequestId = params['RequestId']
         end
       end
@@ -8142,11 +8252,11 @@ module TencentCloud
         end
       end
 
-      # 列表通用过滤条件（多个 Filter 之间为 AND 关系，同一 Filter 的多个 value_list 为 OR 关系）
+      # 列表通用过滤条件（多个 Filter 之间为 AND 关系，同一 Filter 的多个 value_list 为 OR 关系；BETWEEN 时 value_list 必须恰好 2 个元素表示闭区间 [start, end]）
       class Filter < TencentCloud::Common::AbstractModel
         # @param Name: 过滤字段名
         # @type Name: String
-        # @param Operator: 操作符，默认 IN（向后兼容）<table><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>FILTER_OPERATOR_IN</td><td>0</td><td>属于 value_list（默认值，向后兼容；value_list 不可为空）</td></tr><tr><td>FILTER_OPERATOR_NOT_IN</td><td>1</td><td>不属于 value_list（value_list 不可为空）</td></tr></table>
+        # @param Operator: 操作符，默认 IN（向后兼容）<table><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>FILTER_OPERATOR_IN</td><td>0</td><td>属于 value_list（默认值，向后兼容；value_list 不可为空）</td></tr><tr><td>FILTER_OPERATOR_NOT_IN</td><td>1</td><td>不属于 value_list（value_list 不可为空）</td></tr><tr><td>FILTER_OPERATOR_BETWEEN</td><td>2</td><td>之间（闭区间 [start, end]；value_list 必须恰好 2 个元素，允许其一为空表示单边开区间）</td></tr></table>
         # @type Operator: Integer
         # @param ValueList: 过滤值数组
         # @type ValueList: Array
@@ -10165,37 +10275,51 @@ module TencentCloud
 
       # 插件概要信息（用于插件列表）
       class PluginSummary < TencentCloud::Common::AbstractModel
+        # @param Config: <p>插件配置信息</p>
+        # @type Config: :class:`Tencentcloud::Adp.v20260520.models.PluginConfig`
+        # @param IsShared: <p>是否已配置共享</p>
+        # @type IsShared: Boolean
         # @param Operation: <p>插件运营管理信息</p>
         # @type Operation: :class:`Tencentcloud::Adp.v20260520.models.PluginOperation`
         # @param PluginId: <p>插件id</p>
         # @type PluginId: String
         # @param Profile: <p>插件基础信息</p>
         # @type Profile: :class:`Tencentcloud::Adp.v20260520.models.PluginProfile`
+        # @param SpaceId: <p>插件所属空间 ID；内置插件为空</p>
+        # @type SpaceId: String
         # @param Statistics: <p>插件统计信息</p>
         # @type Statistics: :class:`Tencentcloud::Adp.v20260520.models.PluginStatistics`
         # @param Status: <p>插件状态，1:可用，2:不可用 </p><p>枚举值：</p><ul><li>1： 可用</li><li>2： 不可用</li></ul>
         # @type Status: Integer
-        # @param UserState: <p>用户维度的插件状态信息</p>
-        # @type UserState: :class:`Tencentcloud::Adp.v20260520.models.PluginUserState`
-        # @param Config: <p>插件配置信息</p>
-        # @type Config: :class:`Tencentcloud::Adp.v20260520.models.PluginConfig`
         # @param ToolList: <p>工具信息</p>
         # @type ToolList: Array
+        # @param UserState: <p>用户维度的插件状态信息</p>
+        # @type UserState: :class:`Tencentcloud::Adp.v20260520.models.PluginUserState`
+        # @param UpdateTime: <p>更新时间，Unix时间戳</p><p>单位：秒</p>
+        # @type UpdateTime: String
 
-        attr_accessor :Operation, :PluginId, :Profile, :Statistics, :Status, :UserState, :Config, :ToolList
+        attr_accessor :Config, :IsShared, :Operation, :PluginId, :Profile, :SpaceId, :Statistics, :Status, :ToolList, :UserState, :UpdateTime
 
-        def initialize(operation=nil, pluginid=nil, profile=nil, statistics=nil, status=nil, userstate=nil, config=nil, toollist=nil)
+        def initialize(config=nil, isshared=nil, operation=nil, pluginid=nil, profile=nil, spaceid=nil, statistics=nil, status=nil, toollist=nil, userstate=nil, updatetime=nil)
+          @Config = config
+          @IsShared = isshared
           @Operation = operation
           @PluginId = pluginid
           @Profile = profile
+          @SpaceId = spaceid
           @Statistics = statistics
           @Status = status
-          @UserState = userstate
-          @Config = config
           @ToolList = toollist
+          @UserState = userstate
+          @UpdateTime = updatetime
         end
 
         def deserialize(params)
+          unless params['Config'].nil?
+            @Config = PluginConfig.new
+            @Config.deserialize(params['Config'])
+          end
+          @IsShared = params['IsShared']
           unless params['Operation'].nil?
             @Operation = PluginOperation.new
             @Operation.deserialize(params['Operation'])
@@ -10205,19 +10329,12 @@ module TencentCloud
             @Profile = PluginProfile.new
             @Profile.deserialize(params['Profile'])
           end
+          @SpaceId = params['SpaceId']
           unless params['Statistics'].nil?
             @Statistics = PluginStatistics.new
             @Statistics.deserialize(params['Statistics'])
           end
           @Status = params['Status']
-          unless params['UserState'].nil?
-            @UserState = PluginUserState.new
-            @UserState.deserialize(params['UserState'])
-          end
-          unless params['Config'].nil?
-            @Config = PluginConfig.new
-            @Config.deserialize(params['Config'])
-          end
           unless params['ToolList'].nil?
             @ToolList = []
             params['ToolList'].each do |i|
@@ -10226,6 +10343,11 @@ module TencentCloud
               @ToolList << toolsummary_tmp
             end
           end
+          unless params['UserState'].nil?
+            @UserState = PluginUserState.new
+            @UserState.deserialize(params['UserState'])
+          end
+          @UpdateTime = params['UpdateTime']
         end
       end
 

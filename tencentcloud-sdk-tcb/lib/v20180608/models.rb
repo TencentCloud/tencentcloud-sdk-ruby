@@ -236,6 +236,42 @@ module TencentCloud
         end
       end
 
+      # Agent 创建云函数镜像配置
+      class AgentRuntimeCodeImageConfig < TencentCloud::Common::AbstractModel
+        # @param ImageType: 镜像仓库类型，个人版或者企业版：personal/enterprise
+        # @type ImageType: String
+        # @param ImageUri: {domain}/{namespace}/{imageName}:{tag}@{digest}
+        # @type ImageUri: String
+        # @param RegistryId: 用于企业版TCR获取镜像拉取临时凭证，ImageType为"enterprise"时必填
+        # @type RegistryId: String
+        # @param Command: 容器的启动命令。该参数为可选参数，如果不填写，则默认使用 Dockerfile 中的 Entrypoint。传入规范，填写可运行的指令，例如 python
+        # @type Command: String
+        # @param Args: 容器的启动参数。该参数为可选参数，如果不填写，则默认使用 Dockerfile 中的 CMD。传入规范，以“空格”作为参数的分割标识，例如 -u app.py
+        # @type Args: String
+        # @param ContainerImageAccelerate: 镜像加速开关，默认False
+        # @type ContainerImageAccelerate: Boolean
+
+        attr_accessor :ImageType, :ImageUri, :RegistryId, :Command, :Args, :ContainerImageAccelerate
+
+        def initialize(imagetype=nil, imageuri=nil, registryid=nil, command=nil, args=nil, containerimageaccelerate=nil)
+          @ImageType = imagetype
+          @ImageUri = imageuri
+          @RegistryId = registryid
+          @Command = command
+          @Args = args
+          @ContainerImageAccelerate = containerimageaccelerate
+        end
+
+        def deserialize(params)
+          @ImageType = params['ImageType']
+          @ImageUri = params['ImageUri']
+          @RegistryId = params['RegistryId']
+          @Command = params['Command']
+          @Args = params['Args']
+          @ContainerImageAccelerate = params['ContainerImageAccelerate']
+        end
+      end
+
       # AllocateEnv请求参数结构体
       class AllocateEnvRequest < TencentCloud::Common::AbstractModel
         # @param AllocateId: <p>分配请求ID，会按这个值做幂等</p><p>入参限制：长度不超过64</p>
@@ -967,6 +1003,46 @@ module TencentCloud
         end
       end
 
+      # base64编码后的代码块
+      class CodeReq < TencentCloud::Common::AbstractModel
+        # @param ZipFile: 包含函数代码的zip格式文件
+        # @type ZipFile: String
+        # @param CosBucketName: 对象存储桶名称（填写存储桶名称自定义部分，不包含-appid）
+        # @type CosBucketName: String
+        # @param CosObjectName: 对象存储中代码包文件路径，以/开头
+        # @type CosObjectName: String
+        # @param CosBucketRegion: 对象存储的地域，地域为北京时需要传入ap-beijing,北京一区时需要传递ap-beijing-1，其他的地域不需要传递。
+        # @type CosBucketRegion: String
+        # @param TempCosObjectName: 如果是从TempCos创建的话，需要传入TempCosObjectName
+        # @type TempCosObjectName: String
+        # @param DemoId: 如果是通过Demo创建的话，需要传入DemoId
+        # @type DemoId: String
+        # @param CosTimestamp: 上传云开发cos后返回的时间戳
+        # @type CosTimestamp: String
+
+        attr_accessor :ZipFile, :CosBucketName, :CosObjectName, :CosBucketRegion, :TempCosObjectName, :DemoId, :CosTimestamp
+
+        def initialize(zipfile=nil, cosbucketname=nil, cosobjectname=nil, cosbucketregion=nil, tempcosobjectname=nil, demoid=nil, costimestamp=nil)
+          @ZipFile = zipfile
+          @CosBucketName = cosbucketname
+          @CosObjectName = cosobjectname
+          @CosBucketRegion = cosbucketregion
+          @TempCosObjectName = tempcosobjectname
+          @DemoId = demoid
+          @CosTimestamp = costimestamp
+        end
+
+        def deserialize(params)
+          @ZipFile = params['ZipFile']
+          @CosBucketName = params['CosBucketName']
+          @CosObjectName = params['CosObjectName']
+          @CosBucketRegion = params['CosBucketRegion']
+          @TempCosObjectName = params['TempCosObjectName']
+          @DemoId = params['DemoId']
+          @CosTimestamp = params['CosTimestamp']
+        end
+      end
+
       # CreateAIModel请求参数结构体
       class CreateAIModelRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: <p>环境id</p>
@@ -1521,6 +1597,183 @@ module TencentCloud
 
         def deserialize(params)
           @EnvId = params['EnvId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateFunction请求参数结构体
+      class CreateFunctionRequest < TencentCloud::Common::AbstractModel
+        # @param FunctionName: <p>创建的函数名称</p>
+        # @type FunctionName: String
+        # @param EnvId: <p>环境ID</p>
+        # @type EnvId: String
+        # @param Handler: <p>函数处理方法名称</p>
+        # @type Handler: String
+        # @param MemorySize: <p>函数运行时内存大小</p>
+        # @type MemorySize: Integer
+        # @param Timeout: <p>函数最长执行时间</p>
+        # @type Timeout: Integer
+        # @param UseGpu: <p>此参数公司内部展示。是否使用GPU进行计算</p>
+        # @type UseGpu: String
+        # @param InstallDependency: <p>在线依赖安装</p>
+        # @type InstallDependency: String
+        # @param Stamp: <p>此参数公司内部展示。用于小程序，GPU集群，不对外</p>
+        # @type Stamp: String
+        # @param Role: <p>函数绑定的角色</p>
+        # @type Role: String
+        # @param Description: <p>函数描述</p>
+        # @type Description: String
+        # @param Runtime: <p>函数运行环境</p>
+        # @type Runtime: String
+        # @param ClsTopicId: <p>函数日志投递到的CLS TopicID</p>
+        # @type ClsTopicId: String
+        # @param ClsLogsetId: <p>函数日志投递到的CLS LogsetID</p>
+        # @type ClsLogsetId: String
+        # @param Code: <p>包含函数代码文件的zip格式文件</p>
+        # @type Code: :class:`Tencentcloud::Tcb.v20180608.models.CodeReq`
+        # @param PrivateConfig: <p>云函数配置项</p>
+        # @type PrivateConfig: :class:`Tencentcloud::Tcb.v20180608.models.PrivateConfig`
+        # @param Type: <p>函数类型，默认值为Event，创建触发器函数请填写Event，创建HTTP函数级服务请填写HTTP</p>
+        # @type Type: String
+        # @param ProtocolType: <p>HTTP函数支持的访问协议。当前支持WebSockets协议，值为WS</p>
+        # @type ProtocolType: String
+        # @param Environment: <p>环境变量</p>
+        # @type Environment: :class:`Tencentcloud::Tcb.v20180608.models.FunctionEnvironment`
+        # @param InitTimeout: <p>函数初始化超时时间，默认 65s，镜像部署函数默认 90s。</p>
+        # @type InitTimeout: Integer
+        # @param CodeSource: <p>代码来源，支持ZipFile, Cos, Demo 其中之一</p>
+        # @type CodeSource: String
+        # @param VpcConfig: <p>函数的私有网络配置</p>
+        # @type VpcConfig: :class:`Tencentcloud::Tcb.v20180608.models.FunctionVpcConfig`
+        # @param Layers: <p>函数要关联的Layer版本列表，Layer会按照在列表中顺序依次覆盖。</p>
+        # @type Layers: Array
+        # @param PublicNetConfig: <p>公网访问配置</p>
+        # @type PublicNetConfig: :class:`Tencentcloud::Tcb.v20180608.models.FunctionPublicNetConfig`
+        # @param AsyncRunEnable: <p>是否开启异步属性，TRUE 为开启，FALSE为关闭</p>
+        # @type AsyncRunEnable: String
+        # @param TraceEnable: <p>是否开启事件追踪，TRUE 为开启，FALSE为关闭</p>
+        # @type TraceEnable: String
+        # @param AutoCreateClsTopic: <p>是否自动创建cls主题，TRUE 为开启，FALSE为关闭</p>
+        # @type AutoCreateClsTopic: String
+        # @param AutoDeployClsTopicIndex: <p>是否自动创建cls索引，TRUE 为开启，FALSE为关闭</p>
+        # @type AutoDeployClsTopicIndex: String
+        # @param DnsCache: <p>是否开启Dns缓存能力。只支持EVENT函数。默认为FALSE，TRUE 为开启，FALSE为关闭</p>
+        # @type DnsCache: String
+        # @param EipConfig: <p>EipConfig固定ip配置</p>
+        # @type EipConfig: :class:`Tencentcloud::Tcb.v20180608.models.FunctionEipConfigFixed`
+
+        attr_accessor :FunctionName, :EnvId, :Handler, :MemorySize, :Timeout, :UseGpu, :InstallDependency, :Stamp, :Role, :Description, :Runtime, :ClsTopicId, :ClsLogsetId, :Code, :PrivateConfig, :Type, :ProtocolType, :Environment, :InitTimeout, :CodeSource, :VpcConfig, :Layers, :PublicNetConfig, :AsyncRunEnable, :TraceEnable, :AutoCreateClsTopic, :AutoDeployClsTopicIndex, :DnsCache, :EipConfig
+
+        def initialize(functionname=nil, envid=nil, handler=nil, memorysize=nil, timeout=nil, usegpu=nil, installdependency=nil, stamp=nil, role=nil, description=nil, runtime=nil, clstopicid=nil, clslogsetid=nil, code=nil, privateconfig=nil, type=nil, protocoltype=nil, environment=nil, inittimeout=nil, codesource=nil, vpcconfig=nil, layers=nil, publicnetconfig=nil, asyncrunenable=nil, traceenable=nil, autocreateclstopic=nil, autodeployclstopicindex=nil, dnscache=nil, eipconfig=nil)
+          @FunctionName = functionname
+          @EnvId = envid
+          @Handler = handler
+          @MemorySize = memorysize
+          @Timeout = timeout
+          @UseGpu = usegpu
+          @InstallDependency = installdependency
+          @Stamp = stamp
+          @Role = role
+          @Description = description
+          @Runtime = runtime
+          @ClsTopicId = clstopicid
+          @ClsLogsetId = clslogsetid
+          @Code = code
+          @PrivateConfig = privateconfig
+          @Type = type
+          @ProtocolType = protocoltype
+          @Environment = environment
+          @InitTimeout = inittimeout
+          @CodeSource = codesource
+          @VpcConfig = vpcconfig
+          @Layers = layers
+          @PublicNetConfig = publicnetconfig
+          @AsyncRunEnable = asyncrunenable
+          @TraceEnable = traceenable
+          @AutoCreateClsTopic = autocreateclstopic
+          @AutoDeployClsTopicIndex = autodeployclstopicindex
+          @DnsCache = dnscache
+          @EipConfig = eipconfig
+        end
+
+        def deserialize(params)
+          @FunctionName = params['FunctionName']
+          @EnvId = params['EnvId']
+          @Handler = params['Handler']
+          @MemorySize = params['MemorySize']
+          @Timeout = params['Timeout']
+          @UseGpu = params['UseGpu']
+          @InstallDependency = params['InstallDependency']
+          @Stamp = params['Stamp']
+          @Role = params['Role']
+          @Description = params['Description']
+          @Runtime = params['Runtime']
+          @ClsTopicId = params['ClsTopicId']
+          @ClsLogsetId = params['ClsLogsetId']
+          unless params['Code'].nil?
+            @Code = CodeReq.new
+            @Code.deserialize(params['Code'])
+          end
+          unless params['PrivateConfig'].nil?
+            @PrivateConfig = PrivateConfig.new
+            @PrivateConfig.deserialize(params['PrivateConfig'])
+          end
+          @Type = params['Type']
+          @ProtocolType = params['ProtocolType']
+          unless params['Environment'].nil?
+            @Environment = FunctionEnvironment.new
+            @Environment.deserialize(params['Environment'])
+          end
+          @InitTimeout = params['InitTimeout']
+          @CodeSource = params['CodeSource']
+          unless params['VpcConfig'].nil?
+            @VpcConfig = FunctionVpcConfig.new
+            @VpcConfig.deserialize(params['VpcConfig'])
+          end
+          unless params['Layers'].nil?
+            @Layers = []
+            params['Layers'].each do |i|
+              functionlayer_tmp = FunctionLayer.new
+              functionlayer_tmp.deserialize(i)
+              @Layers << functionlayer_tmp
+            end
+          end
+          unless params['PublicNetConfig'].nil?
+            @PublicNetConfig = FunctionPublicNetConfig.new
+            @PublicNetConfig.deserialize(params['PublicNetConfig'])
+          end
+          @AsyncRunEnable = params['AsyncRunEnable']
+          @TraceEnable = params['TraceEnable']
+          @AutoCreateClsTopic = params['AutoCreateClsTopic']
+          @AutoDeployClsTopicIndex = params['AutoDeployClsTopicIndex']
+          @DnsCache = params['DnsCache']
+          unless params['EipConfig'].nil?
+            @EipConfig = FunctionEipConfigFixed.new
+            @EipConfig.deserialize(params['EipConfig'])
+          end
+        end
+      end
+
+      # CreateFunction返回参数结构体
+      class CreateFunctionResponse < TencentCloud::Common::AbstractModel
+        # @param SCFErrorCode: <p>调用scf返回的错误码</p>
+        # @type SCFErrorCode: String
+        # @param SCFErrorMsg: <p>错误码对应的描述信息</p>
+        # @type SCFErrorMsg: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SCFErrorCode, :SCFErrorMsg, :RequestId
+
+        def initialize(scferrorcode=nil, scferrormsg=nil, requestid=nil)
+          @SCFErrorCode = scferrorcode
+          @SCFErrorMsg = scferrormsg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SCFErrorCode = params['SCFErrorCode']
+          @SCFErrorMsg = params['SCFErrorMsg']
           @RequestId = params['RequestId']
         end
       end
@@ -2202,6 +2455,50 @@ module TencentCloud
 
         def deserialize(params)
           @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteFunction请求参数结构体
+      class DeleteFunctionRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: <p>环境 ID。可通过 DescribeEnvs 接口获取。</p>
+        # @type EnvId: String
+        # @param FunctionName: <p>函数名称。最大 60 字符，以字母开头，支持字母、数字、下划线和连字符。可通过 ListFunctions 或 GetFunction 获取。</p>
+        # @type FunctionName: String
+        # @param Qualifier: <p>函数版本。取值：$LATEST（最新版本）。不填默认 $LATEST。当前仅支持 $LATEST。</p>
+        # @type Qualifier: String
+
+        attr_accessor :EnvId, :FunctionName, :Qualifier
+
+        def initialize(envid=nil, functionname=nil, qualifier=nil)
+          @EnvId = envid
+          @FunctionName = functionname
+          @Qualifier = qualifier
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @FunctionName = params['FunctionName']
+          @Qualifier = params['Qualifier']
+        end
+      end
+
+      # DeleteFunction返回参数结构体
+      class DeleteFunctionResponse < TencentCloud::Common::AbstractModel
+        # @param FunctionId: <p>函数 ID，仅 CBF 云函数返回</p>
+        # @type FunctionId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FunctionId, :RequestId
+
+        def initialize(functionid=nil, requestid=nil)
+          @FunctionId = functionid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FunctionId = params['FunctionId']
           @RequestId = params['RequestId']
         end
       end
@@ -5157,6 +5454,62 @@ module TencentCloud
         end
       end
 
+      # DownloadFunction请求参数结构体
+      class DownloadFunctionRequest < TencentCloud::Common::AbstractModel
+        # @param FunctionName: <p>函数的名称</p>
+        # @type FunctionName: String
+        # @param EnvId: <p>环境ID</p>
+        # @type EnvId: String
+        # @param Qualifier: <p>函数的版本</p>
+        # @type Qualifier: String
+
+        attr_accessor :FunctionName, :EnvId, :Qualifier
+
+        def initialize(functionname=nil, envid=nil, qualifier=nil)
+          @FunctionName = functionname
+          @EnvId = envid
+          @Qualifier = qualifier
+        end
+
+        def deserialize(params)
+          @FunctionName = params['FunctionName']
+          @EnvId = params['EnvId']
+          @Qualifier = params['Qualifier']
+        end
+      end
+
+      # DownloadFunction返回参数结构体
+      class DownloadFunctionResponse < TencentCloud::Common::AbstractModel
+        # @param SCFErrorCode: <p>调用SCF报错的错误码</p>
+        # @type SCFErrorCode: String
+        # @param SCFErrorMsg: <p>调用SCF报错的错误信息</p>
+        # @type SCFErrorMsg: String
+        # @param Url: <p>返回的不跨域url</p>
+        # @type Url: String
+        # @param CodeSha256: <p>函数的SHA256编码</p>
+        # @type CodeSha256: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SCFErrorCode, :SCFErrorMsg, :Url, :CodeSha256, :RequestId
+
+        def initialize(scferrorcode=nil, scferrormsg=nil, url=nil, codesha256=nil, requestid=nil)
+          @SCFErrorCode = scferrorcode
+          @SCFErrorMsg = scferrormsg
+          @Url = url
+          @CodeSha256 = codesha256
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SCFErrorCode = params['SCFErrorCode']
+          @SCFErrorMsg = params['SCFErrorMsg']
+          @Url = params['Url']
+          @CodeSha256 = params['CodeSha256']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 本类型用于UpdateTable接口中描述待删除索引信息
       class DropIndex < TencentCloud::Common::AbstractModel
         # @param IndexName: 索引名称
@@ -5699,6 +6052,154 @@ module TencentCloud
         end
       end
 
+      # 云函数
+      class Function < TencentCloud::Common::AbstractModel
+        # @param ModTime: <p>修改时间</p>
+        # @type ModTime: String
+        # @param AddTime: <p>创建时间</p>
+        # @type AddTime: String
+        # @param Runtime: <p>运行时</p>
+        # @type Runtime: String
+        # @param FunctionName: <p>函数名称</p>
+        # @type FunctionName: String
+        # @param FunctionId: <p>函数ID</p>
+        # @type FunctionId: String
+        # @param Namespace: <p>命名空间</p>
+        # @type Namespace: String
+        # @param Status: <p>函数状态，状态值</p>
+        # @type Status: String
+        # @param StatusDesc: <p>函数状态详情</p>
+        # @type StatusDesc: String
+        # @param Description: <p>函数描述</p>
+        # @type Description: String
+        # @param Tags: <p>函数标签</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param Type: <p>函数类型，取值为 HTTP 或者 Event</p>
+        # @type Type: String
+        # @param StatusReasons: <p>函数状态失败原因</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StatusReasons: Array
+        # @param TotalProvisionedConcurrencyMem: <p>函数所有版本预置并发内存总和</p>
+        # @type TotalProvisionedConcurrencyMem: Integer
+        # @param ReservedConcurrencyMem: <p>函数并发保留内存</p>
+        # @type ReservedConcurrencyMem: Integer
+        # @param AsyncRunEnable: <p>函数异步属性，取值 TRUE 或者 FALSE</p>
+        # @type AsyncRunEnable: String
+        # @param TraceEnable: <p>异步函数是否开启调用追踪，取值 TRUE 或者 FALSE</p>
+        # @type TraceEnable: String
+
+        attr_accessor :ModTime, :AddTime, :Runtime, :FunctionName, :FunctionId, :Namespace, :Status, :StatusDesc, :Description, :Tags, :Type, :StatusReasons, :TotalProvisionedConcurrencyMem, :ReservedConcurrencyMem, :AsyncRunEnable, :TraceEnable
+
+        def initialize(modtime=nil, addtime=nil, runtime=nil, functionname=nil, functionid=nil, namespace=nil, status=nil, statusdesc=nil, description=nil, tags=nil, type=nil, statusreasons=nil, totalprovisionedconcurrencymem=nil, reservedconcurrencymem=nil, asyncrunenable=nil, traceenable=nil)
+          @ModTime = modtime
+          @AddTime = addtime
+          @Runtime = runtime
+          @FunctionName = functionname
+          @FunctionId = functionid
+          @Namespace = namespace
+          @Status = status
+          @StatusDesc = statusdesc
+          @Description = description
+          @Tags = tags
+          @Type = type
+          @StatusReasons = statusreasons
+          @TotalProvisionedConcurrencyMem = totalprovisionedconcurrencymem
+          @ReservedConcurrencyMem = reservedconcurrencymem
+          @AsyncRunEnable = asyncrunenable
+          @TraceEnable = traceenable
+        end
+
+        def deserialize(params)
+          @ModTime = params['ModTime']
+          @AddTime = params['AddTime']
+          @Runtime = params['Runtime']
+          @FunctionName = params['FunctionName']
+          @FunctionId = params['FunctionId']
+          @Namespace = params['Namespace']
+          @Status = params['Status']
+          @StatusDesc = params['StatusDesc']
+          @Description = params['Description']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          @Type = params['Type']
+          unless params['StatusReasons'].nil?
+            @StatusReasons = []
+            params['StatusReasons'].each do |i|
+              statusreason_tmp = StatusReason.new
+              statusreason_tmp.deserialize(i)
+              @StatusReasons << statusreason_tmp
+            end
+          end
+          @TotalProvisionedConcurrencyMem = params['TotalProvisionedConcurrencyMem']
+          @ReservedConcurrencyMem = params['ReservedConcurrencyMem']
+          @AsyncRunEnable = params['AsyncRunEnable']
+          @TraceEnable = params['TraceEnable']
+        end
+      end
+
+      # 云函数公网访问固定ip配置
+      class FunctionEipConfig < TencentCloud::Common::AbstractModel
+        # @param EipStatus: Eip开启状态，取值['ENABLE','DISABLE']
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EipStatus: String
+
+        attr_accessor :EipStatus
+
+        def initialize(eipstatus=nil)
+          @EipStatus = eipstatus
+        end
+
+        def deserialize(params)
+          @EipStatus = params['EipStatus']
+        end
+      end
+
+      # 固定 IP 配置
+      class FunctionEipConfigFixed < TencentCloud::Common::AbstractModel
+        # @param EipFixed: <p>是否固定 IP，TRUE / FALSE</p>
+        # @type EipFixed: String
+
+        attr_accessor :EipFixed
+
+        def initialize(eipfixed=nil)
+          @EipFixed = eipfixed
+        end
+
+        def deserialize(params)
+          @EipFixed = params['EipFixed']
+        end
+      end
+
+      # 函数的环境变量参数
+      class FunctionEnvironment < TencentCloud::Common::AbstractModel
+        # @param Variables: 环境变量数组
+        # @type Variables: Array
+
+        attr_accessor :Variables
+
+        def initialize(variables=nil)
+          @Variables = variables
+        end
+
+        def deserialize(params)
+          unless params['Variables'].nil?
+            @Variables = []
+            params['Variables'].each do |i|
+              variable_tmp = Variable.new
+              variable_tmp.deserialize(i)
+              @Variables << variable_tmp
+            end
+          end
+        end
+      end
+
       # 函数的信息
       class FunctionInfo < TencentCloud::Common::AbstractModel
         # @param Namespace: 命名空间
@@ -5717,6 +6218,103 @@ module TencentCloud
         def deserialize(params)
           @Namespace = params['Namespace']
           @Region = params['Region']
+        end
+      end
+
+      # 云函数Layer版本
+      class FunctionLayer < TencentCloud::Common::AbstractModel
+        # @param LayerName: <p>层名称</p>
+        # @type LayerName: String
+        # @param LayerVersion: <p>层版本号</p>
+        # @type LayerVersion: Integer
+
+        attr_accessor :LayerName, :LayerVersion
+
+        def initialize(layername=nil, layerversion=nil)
+          @LayerName = layername
+          @LayerVersion = layerversion
+        end
+
+        def deserialize(params)
+          @LayerName = params['LayerName']
+          @LayerVersion = params['LayerVersion']
+        end
+      end
+
+      # 云函数公网访问配置
+      class FunctionPublicNetConfig < TencentCloud::Common::AbstractModel
+        # @param PublicNetStatus: 是否开启公网访问能力取值['DISABLE','ENABLE']
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublicNetStatus: String
+        # @param EipConfig: Eip配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EipConfig: :class:`Tencentcloud::Tcb.v20180608.models.FunctionEipConfig`
+
+        attr_accessor :PublicNetStatus, :EipConfig
+
+        def initialize(publicnetstatus=nil, eipconfig=nil)
+          @PublicNetStatus = publicnetstatus
+          @EipConfig = eipconfig
+        end
+
+        def deserialize(params)
+          @PublicNetStatus = params['PublicNetStatus']
+          unless params['EipConfig'].nil?
+            @EipConfig = FunctionEipConfig.new
+            @EipConfig.deserialize(params['EipConfig'])
+          end
+        end
+      end
+
+      # 触发器类型
+      class FunctionTrigger < TencentCloud::Common::AbstractModel
+        # @param ModTime: <p>触发器最后修改时间</p>
+        # @type ModTime: String
+        # @param Type: <p>触发器类型</p>
+        # @type Type: String
+        # @param TriggerDesc: <p>触发器详细配置</p>
+        # @type TriggerDesc: String
+        # @param TriggerName: <p>触发器名称</p>
+        # @type TriggerName: String
+        # @param AddTime: <p>触发器创建时间</p>
+        # @type AddTime: String
+
+        attr_accessor :ModTime, :Type, :TriggerDesc, :TriggerName, :AddTime
+
+        def initialize(modtime=nil, type=nil, triggerdesc=nil, triggername=nil, addtime=nil)
+          @ModTime = modtime
+          @Type = type
+          @TriggerDesc = triggerdesc
+          @TriggerName = triggername
+          @AddTime = addtime
+        end
+
+        def deserialize(params)
+          @ModTime = params['ModTime']
+          @Type = params['Type']
+          @TriggerDesc = params['TriggerDesc']
+          @TriggerName = params['TriggerName']
+          @AddTime = params['AddTime']
+        end
+      end
+
+      # 私有网络参数配置
+      class FunctionVpcConfig < TencentCloud::Common::AbstractModel
+        # @param VpcId: <p>私有网络 的 id</p>
+        # @type VpcId: String
+        # @param SubnetId: <p>子网的 id</p>
+        # @type SubnetId: String
+
+        attr_accessor :VpcId, :SubnetId
+
+        def initialize(vpcid=nil, subnetid=nil)
+          @VpcId = vpcid
+          @SubnetId = subnetid
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
         end
       end
 
@@ -5772,6 +6370,202 @@ module TencentCloud
             @CustomConfig = WxGatewayCustomConfig.new
             @CustomConfig.deserialize(params['CustomConfig'])
           end
+        end
+      end
+
+      # GetFunction请求参数结构体
+      class GetFunctionRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: <p>环境Id</p>
+        # @type EnvId: String
+        # @param FunctionName: <p>函数名</p>
+        # @type FunctionName: String
+        # @param Qualifier: <p>函数的版本</p>
+        # @type Qualifier: String
+        # @param Namespace: <p>环境</p>
+        # @type Namespace: String
+        # @param ShowCode: <p>是否返回代码</p>
+        # @type ShowCode: String
+
+        attr_accessor :EnvId, :FunctionName, :Qualifier, :Namespace, :ShowCode
+
+        def initialize(envid=nil, functionname=nil, qualifier=nil, namespace=nil, showcode=nil)
+          @EnvId = envid
+          @FunctionName = functionname
+          @Qualifier = qualifier
+          @Namespace = namespace
+          @ShowCode = showcode
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @FunctionName = params['FunctionName']
+          @Qualifier = params['Qualifier']
+          @Namespace = params['Namespace']
+          @ShowCode = params['ShowCode']
+        end
+      end
+
+      # GetFunction返回参数结构体
+      class GetFunctionResponse < TencentCloud::Common::AbstractModel
+        # @param ModTime: <p>函数最后修改时间</p>
+        # @type ModTime: String
+        # @param CodeInfo: <p>函数代码（&gt;1M 不返回）</p>
+        # @type CodeInfo: String
+        # @param Description: <p>函数描述</p>
+        # @type Description: String
+        # @param Triggers: <p>触发器列表</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Triggers: Array
+        # @param Handler: <p>入口函数</p>
+        # @type Handler: String
+        # @param CodeSize: <p>代码大小（字节）</p>
+        # @type CodeSize: Integer
+        # @param Timeout: <p>超时时间（秒）</p>
+        # @type Timeout: Integer
+        # @param FunctionVersion: <p>函数版本</p>
+        # @type FunctionVersion: String
+        # @param MemorySize: <p>内存大小（MB）</p>
+        # @type MemorySize: Integer
+        # @param Runtime: <p>运行环境</p>
+        # @type Runtime: String
+        # @param FunctionName: <p>函数名称</p>
+        # @type FunctionName: String
+        # @param VpcConfig: <p>VPC 配置</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcConfig: :class:`Tencentcloud::Tcb.v20180608.models.FunctionVpcConfig`
+        # @param UseGpu: <p>是否使用 GPU (&quot;TRUE&quot;/&quot;FALSE&quot;)</p>
+        # @type UseGpu: String
+        # @param CodeResult: <p>代码校验结果 (&quot;success&quot;/&quot;failed&quot;)</p>
+        # @type CodeResult: String
+        # @param ErrNo: <p>代码错误码</p>
+        # @type ErrNo: Integer
+        # @param Namespace: <p>命名空间</p>
+        # @type Namespace: String
+        # @param Role: <p>角色</p>
+        # @type Role: String
+        # @param InstallDependency: <p>是否自动安装依赖 (&quot;TRUE&quot;/&quot;FALSE&quot;)</p>
+        # @type InstallDependency: String
+        # @param Status: <p>函数状态 (&quot;Active&quot;, &quot;Inactive&quot; 等)</p>
+        # @type Status: String
+        # @param FunctionId: <p>函数 ID</p>
+        # @type FunctionId: String
+        # @param Tags: <p>标签列表</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param Type: <p>函数类型 (&quot;HTTP&quot; 或 &quot;Event&quot;)</p>
+        # @type Type: String
+        # @param L5Enable: <p>是否启用 L5 (&quot;TRUE&quot;/&quot;FALSE&quot;)</p>
+        # @type L5Enable: String
+        # @param AddTime: <p>函数创建时间</p>
+        # @type AddTime: String
+        # @param OnsEnable: <p>对应scf.GetFunction接口的OnsEnable，是否启用 Ons (&quot;TRUE&quot;/&quot;FALSE&quot;)</p>
+        # @type OnsEnable: String
+        # @param AvailableStatus: <p>计费状态 (&quot;Available&quot; 等)</p>
+        # @type AvailableStatus: String
+        # @param Qualifier: <p>函数版本（查询时传入的）</p>
+        # @type Qualifier: String
+        # @param InitTimeout: <p>初始化超时时间（秒）</p>
+        # @type InitTimeout: Integer
+        # @param AsyncRunEnable: <p>是否开启异步 (&quot;TRUE&quot;/&quot;FALSE&quot;)</p>
+        # @type AsyncRunEnable: String
+        # @param TraceEnable: <p>是否开启事件追踪 (&quot;TRUE&quot;/&quot;FALSE&quot;)</p>
+        # @type TraceEnable: String
+        # @param ImageConfig: <p>镜像配置</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageConfig: :class:`Tencentcloud::Tcb.v20180608.models.AgentRuntimeCodeImageConfig`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ModTime, :CodeInfo, :Description, :Triggers, :Handler, :CodeSize, :Timeout, :FunctionVersion, :MemorySize, :Runtime, :FunctionName, :VpcConfig, :UseGpu, :CodeResult, :ErrNo, :Namespace, :Role, :InstallDependency, :Status, :FunctionId, :Tags, :Type, :L5Enable, :AddTime, :OnsEnable, :AvailableStatus, :Qualifier, :InitTimeout, :AsyncRunEnable, :TraceEnable, :ImageConfig, :RequestId
+
+        def initialize(modtime=nil, codeinfo=nil, description=nil, triggers=nil, handler=nil, codesize=nil, timeout=nil, functionversion=nil, memorysize=nil, runtime=nil, functionname=nil, vpcconfig=nil, usegpu=nil, coderesult=nil, errno=nil, namespace=nil, role=nil, installdependency=nil, status=nil, functionid=nil, tags=nil, type=nil, l5enable=nil, addtime=nil, onsenable=nil, availablestatus=nil, qualifier=nil, inittimeout=nil, asyncrunenable=nil, traceenable=nil, imageconfig=nil, requestid=nil)
+          @ModTime = modtime
+          @CodeInfo = codeinfo
+          @Description = description
+          @Triggers = triggers
+          @Handler = handler
+          @CodeSize = codesize
+          @Timeout = timeout
+          @FunctionVersion = functionversion
+          @MemorySize = memorysize
+          @Runtime = runtime
+          @FunctionName = functionname
+          @VpcConfig = vpcconfig
+          @UseGpu = usegpu
+          @CodeResult = coderesult
+          @ErrNo = errno
+          @Namespace = namespace
+          @Role = role
+          @InstallDependency = installdependency
+          @Status = status
+          @FunctionId = functionid
+          @Tags = tags
+          @Type = type
+          @L5Enable = l5enable
+          @AddTime = addtime
+          @OnsEnable = onsenable
+          @AvailableStatus = availablestatus
+          @Qualifier = qualifier
+          @InitTimeout = inittimeout
+          @AsyncRunEnable = asyncrunenable
+          @TraceEnable = traceenable
+          @ImageConfig = imageconfig
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ModTime = params['ModTime']
+          @CodeInfo = params['CodeInfo']
+          @Description = params['Description']
+          unless params['Triggers'].nil?
+            @Triggers = []
+            params['Triggers'].each do |i|
+              functiontrigger_tmp = FunctionTrigger.new
+              functiontrigger_tmp.deserialize(i)
+              @Triggers << functiontrigger_tmp
+            end
+          end
+          @Handler = params['Handler']
+          @CodeSize = params['CodeSize']
+          @Timeout = params['Timeout']
+          @FunctionVersion = params['FunctionVersion']
+          @MemorySize = params['MemorySize']
+          @Runtime = params['Runtime']
+          @FunctionName = params['FunctionName']
+          unless params['VpcConfig'].nil?
+            @VpcConfig = FunctionVpcConfig.new
+            @VpcConfig.deserialize(params['VpcConfig'])
+          end
+          @UseGpu = params['UseGpu']
+          @CodeResult = params['CodeResult']
+          @ErrNo = params['ErrNo']
+          @Namespace = params['Namespace']
+          @Role = params['Role']
+          @InstallDependency = params['InstallDependency']
+          @Status = params['Status']
+          @FunctionId = params['FunctionId']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          @Type = params['Type']
+          @L5Enable = params['L5Enable']
+          @AddTime = params['AddTime']
+          @OnsEnable = params['OnsEnable']
+          @AvailableStatus = params['AvailableStatus']
+          @Qualifier = params['Qualifier']
+          @InitTimeout = params['InitTimeout']
+          @AsyncRunEnable = params['AsyncRunEnable']
+          @TraceEnable = params['TraceEnable']
+          unless params['ImageConfig'].nil?
+            @ImageConfig = AgentRuntimeCodeImageConfig.new
+            @ImageConfig.deserialize(params['ImageConfig'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -6594,6 +7388,89 @@ module TencentCloud
         def deserialize(params)
           @Key = params['Key']
           @Value = params['Value']
+        end
+      end
+
+      # ListFunctions请求参数结构体
+      class ListFunctionsRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: <p>命名空间</p>
+        # @type EnvId: String
+        # @param Order: <p>以升序还是降序的方式返回结果，可选值 ASC 和 DESC</p>
+        # @type Order: String
+        # @param Orderby: <p>根据哪个字段进行返回结果排序,支持以下字段：AddTime, ModTime, FunctionName</p>
+        # @type Orderby: String
+        # @param Offset: <p>数据偏移量，默认值为 0</p>
+        # @type Offset: Integer
+        # @param Limit: <p>返回数据长度，默认值为 20</p>
+        # @type Limit: Integer
+        # @param SearchKey: <p>支持FunctionName模糊匹配</p>
+        # @type SearchKey: String
+        # @param Description: <p>函数描述，支持模糊搜索</p>
+        # @type Description: String
+        # @param Filters: <p>过滤特定属性或者有特定标签的函数。- 传值方式key-value 进行传值 例如：&quot;Filters&quot;: [{ &quot;Name&quot;: &quot;Status&quot;, &quot;Values&quot;: [&quot;CreateFailed&quot;,&quot;Creating&quot;]}, {&quot;Name&quot;: &quot;Type&quot;,&quot;Values&quot;: [&quot;HTTP&quot;]}]上述条件的函数是，函数状态为创建失败或者创建中，且函数类型为 HTTP 函数如果通过标签进行过滤：- tag:tag-key - String - 是否必填：否 - （过滤条件）按照标签键值对进行过滤。 tag-key使用具体的标签键进行替换。示例值：&quot;Filters&quot;: [{&quot;Name&quot;:&quot;tag-dmtest&quot;,&quot;Values&quot;:[&quot;dmtest&quot;]}]入参限制：1.每次请求的Filters的上限为10，Filter.Values的上限为5。2.[VpcId&#39;, &#39;SubnetId&#39;, &#39;ClsTopicId&#39;, &#39;ClsLogsetId&#39;, &#39;Role&#39;, &#39;CfsId&#39;, &#39;CfsMountInsId&#39;, &#39;Eip&#39;] 过滤的Name 为这些属性时， values 只能传一个值3.[&#39;Status&#39;, &#39;Runtime&#39;, &#39;Type&#39;, &#39;PublicNetStatus&#39;, &#39;AsyncRunEnable&#39;, &#39;TraceEnable&#39;, &#39;Stamp&#39;] 过滤的Name 为这些属性时 ，values 可以传多个值</p>
+        # @type Filters: Array
+
+        attr_accessor :EnvId, :Order, :Orderby, :Offset, :Limit, :SearchKey, :Description, :Filters
+
+        def initialize(envid=nil, order=nil, orderby=nil, offset=nil, limit=nil, searchkey=nil, description=nil, filters=nil)
+          @EnvId = envid
+          @Order = order
+          @Orderby = orderby
+          @Offset = offset
+          @Limit = limit
+          @SearchKey = searchkey
+          @Description = description
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @Order = params['Order']
+          @Orderby = params['Orderby']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @SearchKey = params['SearchKey']
+          @Description = params['Description']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # ListFunctions返回参数结构体
+      class ListFunctionsResponse < TencentCloud::Common::AbstractModel
+        # @param Functions: <p>函数列表</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Functions: Array
+        # @param TotalCount: <p>总数</p>
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Functions, :TotalCount, :RequestId
+
+        def initialize(functions=nil, totalcount=nil, requestid=nil)
+          @Functions = functions
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Functions'].nil?
+            @Functions = []
+            params['Functions'].each do |i|
+              function_tmp = Function.new
+              function_tmp.deserialize(i)
+              @Functions << function_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -8668,6 +9545,22 @@ module TencentCloud
         end
       end
 
+      # 云函数配置
+      class PrivateConfig < TencentCloud::Common::AbstractModel
+        # @param Language: 云函数的语言
+        # @type Language: String
+
+        attr_accessor :Language
+
+        def initialize(language=nil)
+          @Language = language
+        end
+
+        def deserialize(params)
+          @Language = params['Language']
+        end
+      end
+
       # 身份源配置信息。描述云开发环境下用户登录身份源的完整配置，定义了用户通过何种方式进入系统并完成身份认证。支持多种类型：包括标准协议身份源（OAuth 2.0、OIDC、SAML 2.0）、内置身份源（邮箱登录、自定义登录）以及通过插件机制扩展的身份源（如 CAS）。每个身份源包含认证配置、启用状态、用户自动注册策略、信息透传模式等核心属性，是登录认证流程的核心数据结构。
       class Provider < TencentCloud::Common::AbstractModel
         # @param Id: 身份源的唯一标识符，用于在系统内区分不同的身份源。格式要求：2~32 位，仅支持小写英文字母和数字，不可包含空格或特殊字符。创建后不可修改
@@ -9745,6 +10638,26 @@ module TencentCloud
         end
       end
 
+      # 状态原因描述
+      class StatusReason < TencentCloud::Common::AbstractModel
+        # @param ErrorCode: <p>错误码</p>
+        # @type ErrorCode: String
+        # @param ErrorMessage: <p>错误描述</p>
+        # @type ErrorMessage: String
+
+        attr_accessor :ErrorCode, :ErrorMessage
+
+        def initialize(errorcode=nil, errormessage=nil)
+          @ErrorCode = errorcode
+          @ErrorMessage = errormessage
+        end
+
+        def deserialize(params)
+          @ErrorCode = params['ErrorCode']
+          @ErrorMessage = params['ErrorMessage']
+        end
+      end
+
       # StorageInfo 资源信息
       class StorageInfo < TencentCloud::Common::AbstractModel
         # @param Region: <p>资源所属地域。<br>当前支持ap-shanghai</p>
@@ -9959,6 +10872,208 @@ module TencentCloud
 
         def deserialize(params)
           @Count = params['Count']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateFunctionCode请求参数结构体
+      class UpdateFunctionCodeRequest < TencentCloud::Common::AbstractModel
+        # @param FunctionName: <p>创建的函数名称</p>
+        # @type FunctionName: String
+        # @param EnvId: <p>环境ID</p>
+        # @type EnvId: String
+        # @param Handler: <p>函数处理方法名称</p>
+        # @type Handler: String
+        # @param Namespace: <p>函数所属命名空间</p>
+        # @type Namespace: String
+        # @param InstallDependency: <p>在线依赖安装</p>
+        # @type InstallDependency: String
+        # @param Publish: <p>在更新时是否同步发布新版本，默认为：FALSE，不发布 示例值：FALSE</p>
+        # @type Publish: String
+        # @param Code: <p>包含函数代码文件的zip格式文件</p>
+        # @type Code: :class:`Tencentcloud::Tcb.v20180608.models.CodeReq`
+        # @param CodeSource: <p>代码来源方式，支持 ZipFile, Cos, Inline 之一 示例值：Cos</p>
+        # @type CodeSource: String
+
+        attr_accessor :FunctionName, :EnvId, :Handler, :Namespace, :InstallDependency, :Publish, :Code, :CodeSource
+
+        def initialize(functionname=nil, envid=nil, handler=nil, namespace=nil, installdependency=nil, publish=nil, code=nil, codesource=nil)
+          @FunctionName = functionname
+          @EnvId = envid
+          @Handler = handler
+          @Namespace = namespace
+          @InstallDependency = installdependency
+          @Publish = publish
+          @Code = code
+          @CodeSource = codesource
+        end
+
+        def deserialize(params)
+          @FunctionName = params['FunctionName']
+          @EnvId = params['EnvId']
+          @Handler = params['Handler']
+          @Namespace = params['Namespace']
+          @InstallDependency = params['InstallDependency']
+          @Publish = params['Publish']
+          unless params['Code'].nil?
+            @Code = CodeReq.new
+            @Code.deserialize(params['Code'])
+          end
+          @CodeSource = params['CodeSource']
+        end
+      end
+
+      # UpdateFunctionCode返回参数结构体
+      class UpdateFunctionCodeResponse < TencentCloud::Common::AbstractModel
+        # @param SCFErrorCode: <p>调用scf返回的错误码</p>
+        # @type SCFErrorCode: String
+        # @param SCFErrorMsg: <p>错误码对应的描述信息</p>
+        # @type SCFErrorMsg: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SCFErrorCode, :SCFErrorMsg, :RequestId
+
+        def initialize(scferrorcode=nil, scferrormsg=nil, requestid=nil)
+          @SCFErrorCode = scferrorcode
+          @SCFErrorMsg = scferrormsg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SCFErrorCode = params['SCFErrorCode']
+          @SCFErrorMsg = params['SCFErrorMsg']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateFunctionConfiguration请求参数结构体
+      class UpdateFunctionConfigurationRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: <p>环境ID</p>
+        # @type EnvId: String
+        # @param FunctionName: <p>要修改的函数名称</p>
+        # @type FunctionName: String
+        # @param Description: <p>函数描述。最大支持 1000 个英文字母、数字、空格、逗号和英文句号，支持中文</p>
+        # @type Description: String
+        # @param MemorySize: <p>函数运行时内存大小，默认为 128 M，可选范围64M、128 M-3072 M，以 128MB 为阶梯。</p>
+        # @type MemorySize: Integer
+        # @param Timeout: <p>函数最长执行时间，单位为秒，可选值范围 1-900 秒，默认为 3 秒</p>
+        # @type Timeout: Integer
+        # @param Environment: <p>函数的环境变量</p>
+        # @type Environment: :class:`Tencentcloud::Tcb.v20180608.models.FunctionEnvironment`
+        # @param VpcConfig: <p>函数的私有网络配置</p>
+        # @type VpcConfig: :class:`Tencentcloud::Tcb.v20180608.models.FunctionVpcConfig`
+        # @param PublicNetConfig: <p>公网访问配置</p>
+        # @type PublicNetConfig: :class:`Tencentcloud::Tcb.v20180608.models.FunctionPublicNetConfig`
+        # @param Runtime: <p>函数运行环境，创建时指定，目前不支持修改。</p>
+        # @type Runtime: String
+        # @param Role: <p>函数绑定的角色</p>
+        # @type Role: String
+        # @param InstallDependency: <p>在线依赖安装，TRUE 表示安装，仅支持 Node.js 函数。 </p><p>默认值：FALSE</p>
+        # @type InstallDependency: String
+        # @param ClsTopicId: <p>日志投递到的cls日志集ID</p>
+        # @type ClsTopicId: String
+        # @param ClsLogsetId: <p>日志投递到的cls Topic ID</p>
+        # @type ClsLogsetId: String
+        # @param Publish: <p>在更新时是否同步发布新版本</p><p>默认值：FALSE</p>
+        # @type Publish: String
+        # @param L5Enable: <p>是否开启L5访问能力，TRUE 为开启，FALSE为关闭</p>
+        # @type L5Enable: String
+        # @param Layers: <p>函数要关联的层版本列表，层的版本会按照在列表中顺序依次覆盖。</p>
+        # @type Layers: Array
+        # @param InitTimeout: <p>函数初始化执行超时时间</p>
+        # @type InitTimeout: Integer
+        # @param DnsCache: <p>是否开启Dns缓存能力。只支持EVENT函数。</p><p>默认值：FALSE</p>
+        # @type DnsCache: String
+        # @param IgnoreSysLog: <p>忽略系统日志上报</p>
+        # @type IgnoreSysLog: String
+        # @param EipConfig: <p>固定IP配置</p>
+        # @type EipConfig: Array
+
+        attr_accessor :EnvId, :FunctionName, :Description, :MemorySize, :Timeout, :Environment, :VpcConfig, :PublicNetConfig, :Runtime, :Role, :InstallDependency, :ClsTopicId, :ClsLogsetId, :Publish, :L5Enable, :Layers, :InitTimeout, :DnsCache, :IgnoreSysLog, :EipConfig
+
+        def initialize(envid=nil, functionname=nil, description=nil, memorysize=nil, timeout=nil, environment=nil, vpcconfig=nil, publicnetconfig=nil, runtime=nil, role=nil, installdependency=nil, clstopicid=nil, clslogsetid=nil, publish=nil, l5enable=nil, layers=nil, inittimeout=nil, dnscache=nil, ignoresyslog=nil, eipconfig=nil)
+          @EnvId = envid
+          @FunctionName = functionname
+          @Description = description
+          @MemorySize = memorysize
+          @Timeout = timeout
+          @Environment = environment
+          @VpcConfig = vpcconfig
+          @PublicNetConfig = publicnetconfig
+          @Runtime = runtime
+          @Role = role
+          @InstallDependency = installdependency
+          @ClsTopicId = clstopicid
+          @ClsLogsetId = clslogsetid
+          @Publish = publish
+          @L5Enable = l5enable
+          @Layers = layers
+          @InitTimeout = inittimeout
+          @DnsCache = dnscache
+          @IgnoreSysLog = ignoresyslog
+          @EipConfig = eipconfig
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @FunctionName = params['FunctionName']
+          @Description = params['Description']
+          @MemorySize = params['MemorySize']
+          @Timeout = params['Timeout']
+          unless params['Environment'].nil?
+            @Environment = FunctionEnvironment.new
+            @Environment.deserialize(params['Environment'])
+          end
+          unless params['VpcConfig'].nil?
+            @VpcConfig = FunctionVpcConfig.new
+            @VpcConfig.deserialize(params['VpcConfig'])
+          end
+          unless params['PublicNetConfig'].nil?
+            @PublicNetConfig = FunctionPublicNetConfig.new
+            @PublicNetConfig.deserialize(params['PublicNetConfig'])
+          end
+          @Runtime = params['Runtime']
+          @Role = params['Role']
+          @InstallDependency = params['InstallDependency']
+          @ClsTopicId = params['ClsTopicId']
+          @ClsLogsetId = params['ClsLogsetId']
+          @Publish = params['Publish']
+          @L5Enable = params['L5Enable']
+          unless params['Layers'].nil?
+            @Layers = []
+            params['Layers'].each do |i|
+              functionlayer_tmp = FunctionLayer.new
+              functionlayer_tmp.deserialize(i)
+              @Layers << functionlayer_tmp
+            end
+          end
+          @InitTimeout = params['InitTimeout']
+          @DnsCache = params['DnsCache']
+          @IgnoreSysLog = params['IgnoreSysLog']
+          unless params['EipConfig'].nil?
+            @EipConfig = []
+            params['EipConfig'].each do |i|
+              functioneipconfigfixed_tmp = FunctionEipConfigFixed.new
+              functioneipconfigfixed_tmp.deserialize(i)
+              @EipConfig << functioneipconfigfixed_tmp
+            end
+          end
+        end
+      end
+
+      # UpdateFunctionConfiguration返回参数结构体
+      class UpdateFunctionConfigurationResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

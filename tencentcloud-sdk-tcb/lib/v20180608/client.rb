@@ -414,6 +414,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建云函数
+
+        # @param request: Request instance for CreateFunction.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::CreateFunctionRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::CreateFunctionResponse`
+        def CreateFunction(request)
+          body = send_request('CreateFunction', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateFunctionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口CreateHTTPServiceRoute用于创建HTTP访问服务路由。如果不传Domain.Routes，仅创建域名信息。首次创建域名后需要调用DescribeHTTPServiceRoute查询域名状态，如果状态是PROCESSING，需要轮询查询域名状态直到SUCCESS或者FAIL。如果状态是FAIL，可以删除后重新创建。创建成功后域名可能无法访问，原因是异步下发的路由，可通过http或者https探测路由是否下发，如果http访问返回404或者https访问握手失败，可等待一会再试，直到访问正常。此外HTTP访问服务提供了默认域名，通过DescribeHTTPServiceRoute接口可直接获取默认域名。
 
         # @param request: Request instance for CreateHTTPServiceRoute.
@@ -676,6 +700,32 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteCloudAppVersionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除云函数。
+
+        # 删除指定环境下的云函数。调用接口后，若通过 GetFunction 接口查询不到该函数，则表示删除成功。
+
+        # @param request: Request instance for DeleteFunction.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::DeleteFunctionRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::DeleteFunctionResponse`
+        def DeleteFunction(request)
+          body = send_request('DeleteFunction', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteFunctionResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1844,6 +1894,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取云函数地址并下载zip包
+
+        # @param request: Request instance for DownloadFunction.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::DownloadFunctionRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::DownloadFunctionResponse`
+        def DownloadFunction(request)
+          body = send_request('DownloadFunction', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DownloadFunctionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 在Postgres数据库上执行SQL
 
         # @param request: Request instance for ExecutePGSql.
@@ -1868,6 +1942,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取云函数详情
+
+        # @param request: Request instance for GetFunction.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::GetFunctionRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::GetFunctionResponse`
+        def GetFunction(request)
+          body = send_request('GetFunction', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetFunctionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询指定云开发环境下的身份认证源列表。返回该环境已配置的所有身份认证源信息，包括第三方登录（OAuth、OIDC、SAML）、微信小程序登录、自定义登录和邮箱登录等。返回结果包含认证源基本信息、关联应用、配置状态及启用情况。若自定义登录或邮箱登录的身份源尚未创建，接口会自动追加一个默认关闭状态的身份源记录。
 
         # @param request: Request instance for GetProviders.
@@ -1878,6 +1976,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = GetProvidersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口根据传入的查询参数返回相关函数信息。
+
+        # @param request: Request instance for ListFunctions.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::ListFunctionsRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::ListFunctionsResponse`
+        def ListFunctions(request)
+          body = send_request('ListFunctions', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListFunctionsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2566,6 +2688,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpdateAIModelResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新云函数代码
+
+        # @param request: Request instance for UpdateFunctionCode.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::UpdateFunctionCodeRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::UpdateFunctionCodeResponse`
+        def UpdateFunctionCode(request)
+          body = send_request('UpdateFunctionCode', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateFunctionCodeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口根据传入参数更新函数配置。
+
+        # @param request: Request instance for UpdateFunctionConfiguration.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::UpdateFunctionConfigurationRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::UpdateFunctionConfigurationResponse`
+        def UpdateFunctionConfiguration(request)
+          body = send_request('UpdateFunctionConfiguration', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateFunctionConfigurationResponse.new
             model.deserialize(response['Response'])
             model
           else

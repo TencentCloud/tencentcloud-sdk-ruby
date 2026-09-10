@@ -1310,6 +1310,38 @@ module TencentCloud
         end
       end
 
+      # 智能抠图配置。
+      class AiCutOutConfig < TencentCloud::Common::AbstractModel
+        # @param Switch: <p>能力配置开关，可选值：  ON：开启； OFF：关闭。 默认值：ON。</p>
+        # @type Switch: String
+        # @param Type: <p>抠图目标类型指定：&quot;foreground&quot; / &quot;pattern&quot;</p>
+        # @type Type: String
+        # @param PatternConfig: <p>图案抠图配置。仅在Type为pattern时生效。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PatternConfig: :class:`Tencentcloud::Vod.v20180717.models.PatternConfig`
+        # @param Model: <p>抠图模型选择，可不填。</p><p>枚举值：</p><ul><li>auto： 自动选择合适的模型</li><li>WAND-cutout-1.0-lite： 标准版，速度最快</li><li>WAND-cutout-2.0-lite： 增强版，速度更快</li><li>WAND-cutout-2.0-flash： 增强版，质量-速度平衡</li><li>WAND-cutout-3.0-lite： 增强版，速度更快</li><li>WAND-cutout-3.0-flash： 增强版，质量-速度平衡</li></ul>
+        # @type Model: String
+
+        attr_accessor :Switch, :Type, :PatternConfig, :Model
+
+        def initialize(switch=nil, type=nil, patternconfig=nil, model=nil)
+          @Switch = switch
+          @Type = type
+          @PatternConfig = patternconfig
+          @Model = model
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @Type = params['Type']
+          unless params['PatternConfig'].nil?
+            @PatternConfig = PatternConfig.new
+            @PatternConfig.deserialize(params['PatternConfig'])
+          end
+          @Model = params['Model']
+        end
+      end
+
       # 智能识别结果。
       class AiRecognitionResult < TencentCloud::Common::AbstractModel
         # @param Type: 任务的类型，取值范围：
@@ -30028,6 +30060,38 @@ module TencentCloud
         end
       end
 
+      # 印花提取配置。
+      class PatternConfig < TencentCloud::Common::AbstractModel
+        # @param TransparencyThreshold: <p>透明度阈值</p><p>取值范围：[0, 255]</p><p>默认值：30</p>
+        # @type TransparencyThreshold: Integer
+        # @param OpaqueThreshold: <p>不透明阈值，必须大于TransparencyThreshold</p><p>取值范围：[0, 255]</p><p>默认值：127</p>
+        # @type OpaqueThreshold: Integer
+        # @param EdgeSamplingStep: <p>边缘采样步数</p><p>取值范围：[1, 10]</p><p>默认值：5</p>
+        # @type EdgeSamplingStep: Integer
+        # @param EdgeExpansionStep: <p>边缘扩展步数</p><p>默认值：5</p>
+        # @type EdgeExpansionStep: Integer
+        # @param EdgeBlendingIntensity: <p>边缘融合强度</p><p>取值范围：[0.0, 1.0]</p><p>默认值：0.5</p>
+        # @type EdgeBlendingIntensity: Float
+
+        attr_accessor :TransparencyThreshold, :OpaqueThreshold, :EdgeSamplingStep, :EdgeExpansionStep, :EdgeBlendingIntensity
+
+        def initialize(transparencythreshold=nil, opaquethreshold=nil, edgesamplingstep=nil, edgeexpansionstep=nil, edgeblendingintensity=nil)
+          @TransparencyThreshold = transparencythreshold
+          @OpaqueThreshold = opaquethreshold
+          @EdgeSamplingStep = edgesamplingstep
+          @EdgeExpansionStep = edgeexpansionstep
+          @EdgeBlendingIntensity = edgeblendingintensity
+        end
+
+        def deserialize(params)
+          @TransparencyThreshold = params['TransparencyThreshold']
+          @OpaqueThreshold = params['OpaqueThreshold']
+          @EdgeSamplingStep = params['EdgeSamplingStep']
+          @EdgeExpansionStep = params['EdgeExpansionStep']
+          @EdgeBlendingIntensity = params['EdgeBlendingIntensity']
+        end
+      end
+
       # 剪辑固化任务信息。
       class PersistenceCompleteTask < TencentCloud::Common::AbstractModel
         # @param FileId: 固化生成的媒体 ID。
@@ -31282,13 +31346,16 @@ module TencentCloud
         # @param BeautyConfig: <p>图片美颜配置。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BeautyConfig: :class:`Tencentcloud::Vod.v20180717.models.ImageBeautyConfig`
+        # @param AiCutOutConfig: <p>Ai抠图配置</p>
+        # @type AiCutOutConfig: :class:`Tencentcloud::Vod.v20180717.models.AiCutOutConfig`
 
-        attr_accessor :EncodeConfig, :EnhanceConfig, :BeautyConfig
+        attr_accessor :EncodeConfig, :EnhanceConfig, :BeautyConfig, :AiCutOutConfig
 
-        def initialize(encodeconfig=nil, enhanceconfig=nil, beautyconfig=nil)
+        def initialize(encodeconfig=nil, enhanceconfig=nil, beautyconfig=nil, aicutoutconfig=nil)
           @EncodeConfig = encodeconfig
           @EnhanceConfig = enhanceconfig
           @BeautyConfig = beautyconfig
+          @AiCutOutConfig = aicutoutconfig
         end
 
         def deserialize(params)
@@ -31303,6 +31370,10 @@ module TencentCloud
           unless params['BeautyConfig'].nil?
             @BeautyConfig = ImageBeautyConfig.new
             @BeautyConfig.deserialize(params['BeautyConfig'])
+          end
+          unless params['AiCutOutConfig'].nil?
+            @AiCutOutConfig = AiCutOutConfig.new
+            @AiCutOutConfig.deserialize(params['AiCutOutConfig'])
           end
         end
       end

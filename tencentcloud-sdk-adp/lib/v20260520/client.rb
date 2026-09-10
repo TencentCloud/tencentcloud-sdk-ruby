@@ -77,7 +77,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建Agent
+        # 创建Agent（目前仅支持claw模式）
 
         # @param request: Request instance for CreateAgent.
         # @type request: :class:`Tencentcloud::adp::V20260520::CreateAgentRequest`

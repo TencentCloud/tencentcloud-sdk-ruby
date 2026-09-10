@@ -18577,15 +18577,15 @@ module TencentCloud
 
       # 用户信息
       class UserInfo < TencentCloud::Common::AbstractModel
-        # @param UserId: 用户在平台的编号
+        # @param UserId: <p>用户在平台中的编号（UserId）</p><p>UserId 获取方式：<a href="https://qcloudimg.tencent-cloud.cn/raw/6b054d6161b04c24855de15cb243f6bf.png" target="_blank">点击查看</a></p>
         # @type UserId: String
-        # @param Channel: 用户的来源渠道，一般不用传，特定场景根据接口说明传值
+        # @param Channel: <p>用户的来源渠道，一般不用传，特定场景根据接口说明传值</p>
         # @type Channel: String
-        # @param OpenId: 用户在渠道的编号，一般不用传，特定场景根据接口说明传值
+        # @param OpenId: <p>用户在渠道的编号，一般不用传，特定场景根据接口说明传值</p>
         # @type OpenId: String
-        # @param ClientIp: 用户真实IP，内部字段，暂未开放
+        # @param ClientIp: <p>用户真实IP，内部字段，暂未开放</p>
         # @type ClientIp: String
-        # @param ProxyIp: 用户代理IP，内部字段，暂未开放
+        # @param ProxyIp: <p>用户代理IP，内部字段，暂未开放</p>
         # @type ProxyIp: String
 
         attr_accessor :UserId, :Channel, :OpenId, :ClientIp, :ProxyIp

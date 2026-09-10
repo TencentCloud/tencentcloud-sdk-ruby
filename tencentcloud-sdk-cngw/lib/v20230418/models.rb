@@ -187,6 +187,26 @@ module TencentCloud
         end
       end
 
+      # 版本变更的兼容变更，破坏变更数
+      class AIGWChangeSummary < TencentCloud::Common::AbstractModel
+        # @param Breaking: <p>破坏性变更数</p>
+        # @type Breaking: Integer
+        # @param Compatible: <p>兼容性变更数</p>
+        # @type Compatible: Integer
+
+        attr_accessor :Breaking, :Compatible
+
+        def initialize(breaking=nil, compatible=nil)
+          @Breaking = breaking
+          @Compatible = compatible
+        end
+
+        def deserialize(params)
+          @Breaking = params['Breaking']
+          @Compatible = params['Compatible']
+        end
+      end
+
       # AI 网关中消费者组简要信息
       class AIGWConsumerGroupBrief < TencentCloud::Common::AbstractModel
         # @param Name: <p>消费者组名称</p>
@@ -224,6 +244,26 @@ module TencentCloud
         def deserialize(params)
           @ScopeType = params['ScopeType']
           @AllowList = params['AllowList']
+        end
+      end
+
+      # 新建MCP路由结果
+      class AIGWCreateMCPRouteResult < TencentCloud::Common::AbstractModel
+        # @param RouteId: <p>路由ID</p>
+        # @type RouteId: String
+        # @param Success: <p>结果</p>
+        # @type Success: Boolean
+
+        attr_accessor :RouteId, :Success
+
+        def initialize(routeid=nil, success=nil)
+          @RouteId = routeid
+          @Success = success
+        end
+
+        def deserialize(params)
+          @RouteId = params['RouteId']
+          @Success = params['Success']
         end
       end
 
@@ -365,6 +405,30 @@ module TencentCloud
           end
           @PlaceholderFormat = params['PlaceholderFormat']
           @OnFailure = params['OnFailure']
+        end
+      end
+
+      # MCP路由 Header规则对象
+      class AIGWHeaderRule < TencentCloud::Common::AbstractModel
+        # @param Key: <p>Header的Key</p>
+        # @type Key: String
+        # @param MatchType: <p>Header匹配规则</p><p>枚举值：</p><ul><li>Exact： 精确</li><li>Prefix： 前缀</li><li>Regex： 正则</li></ul>
+        # @type MatchType: String
+        # @param Value: <p>Header匹配的值</p>
+        # @type Value: String
+
+        attr_accessor :Key, :MatchType, :Value
+
+        def initialize(key=nil, matchtype=nil, value=nil)
+          @Key = key
+          @MatchType = matchtype
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @MatchType = params['MatchType']
+          @Value = params['Value']
         end
       end
 
@@ -959,6 +1023,124 @@ module TencentCloud
         end
       end
 
+      # MCP路由对象
+      class AIGWMCPRoute < TencentCloud::Common::AbstractModel
+        # @param CreateTime: <p>创建时间</p>
+        # @type CreateTime: String
+        # @param Expression: <p>路由表达式</p>
+        # @type Expression: String
+        # @param HeaderMatch: <p>Header匹配规则</p>
+        # @type HeaderMatch: Array
+        # @param IsDefault: <p>是否为默认路由</p><p>枚举值：</p><ul><li>true： 是</li><li>false： 否</li></ul>
+        # @type IsDefault: Boolean
+        # @param Methods: <p>http path</p>
+        # @type Methods: Array
+        # @param Name: <p>路由名称</p>
+        # @type Name: String
+        # @param Path: <p>路由路径</p>
+        # @type Path: String
+        # @param PathMatchType: <p>路径匹配方式</p><p>枚举值：</p><ul><li>Exact： 精确</li><li>Prefix： 前缀</li><li>Regex： 正则</li></ul>
+        # @type PathMatchType: String
+        # @param Priority: <p>优先级</p>
+        # @type Priority: Integer
+        # @param RouteId: <p>路由ID</p>
+        # @type RouteId: String
+        # @param Status: <p>启用/禁用状态</p><p>枚举值：</p><ul><li>Enabled： 启用</li><li>Disabled： 禁用</li></ul>
+        # @type Status: String
+        # @param PreserveHost: <p>是否开启保留原Host功能</p>
+        # @type PreserveHost: Boolean
+
+        attr_accessor :CreateTime, :Expression, :HeaderMatch, :IsDefault, :Methods, :Name, :Path, :PathMatchType, :Priority, :RouteId, :Status, :PreserveHost
+
+        def initialize(createtime=nil, expression=nil, headermatch=nil, isdefault=nil, methods=nil, name=nil, path=nil, pathmatchtype=nil, priority=nil, routeid=nil, status=nil, preservehost=nil)
+          @CreateTime = createtime
+          @Expression = expression
+          @HeaderMatch = headermatch
+          @IsDefault = isdefault
+          @Methods = methods
+          @Name = name
+          @Path = path
+          @PathMatchType = pathmatchtype
+          @Priority = priority
+          @RouteId = routeid
+          @Status = status
+          @PreserveHost = preservehost
+        end
+
+        def deserialize(params)
+          @CreateTime = params['CreateTime']
+          @Expression = params['Expression']
+          unless params['HeaderMatch'].nil?
+            @HeaderMatch = []
+            params['HeaderMatch'].each do |i|
+              aigwheaderrule_tmp = AIGWHeaderRule.new
+              aigwheaderrule_tmp.deserialize(i)
+              @HeaderMatch << aigwheaderrule_tmp
+            end
+          end
+          @IsDefault = params['IsDefault']
+          @Methods = params['Methods']
+          @Name = params['Name']
+          @Path = params['Path']
+          @PathMatchType = params['PathMatchType']
+          @Priority = params['Priority']
+          @RouteId = params['RouteId']
+          @Status = params['Status']
+          @PreserveHost = params['PreserveHost']
+        end
+      end
+
+      # MCP路由规则的校验结果
+      class AIGWMCPRouteCheckResult < TencentCloud::Common::AbstractModel
+        # @param ConflictRouteId: <p>冲突路由ID</p>
+        # @type ConflictRouteId: String
+        # @param IsConflict: <p>是否冲突</p><p>枚举值：</p><ul><li>true： 冲突</li><li>false： 未冲突</li></ul>
+        # @type IsConflict: Boolean
+        # @param Reason: <p>冲突原因</p>
+        # @type Reason: String
+
+        attr_accessor :ConflictRouteId, :IsConflict, :Reason
+
+        def initialize(conflictrouteid=nil, isconflict=nil, reason=nil)
+          @ConflictRouteId = conflictrouteid
+          @IsConflict = isconflict
+          @Reason = reason
+        end
+
+        def deserialize(params)
+          @ConflictRouteId = params['ConflictRouteId']
+          @IsConflict = params['IsConflict']
+          @Reason = params['Reason']
+        end
+      end
+
+      # MCP 路由列表分页查询结果
+      class AIGWMCPRouteListResult < TencentCloud::Common::AbstractModel
+        # @param DataList: <p>路由列表</p>
+        # @type DataList: Array
+        # @param TotalCount: <p>总数</p>
+        # @type TotalCount: Integer
+
+        attr_accessor :DataList, :TotalCount
+
+        def initialize(datalist=nil, totalcount=nil)
+          @DataList = datalist
+          @TotalCount = totalcount
+        end
+
+        def deserialize(params)
+          unless params['DataList'].nil?
+            @DataList = []
+            params['DataList'].each do |i|
+              aigwmcproute_tmp = AIGWMCPRoute.new
+              aigwmcproute_tmp.deserialize(i)
+              @DataList << aigwmcproute_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+        end
+      end
+
       # MCP Server详情
       class AIGWMCPServer < TencentCloud::Common::AbstractModel
         # @param ServerId: <p>MCP Server ID</p>
@@ -1268,6 +1450,65 @@ module TencentCloud
               aigwmcptoolaclitem_tmp = AIGWMCPToolACLItem.new
               aigwmcptoolaclitem_tmp.deserialize(i)
               @DataList << aigwmcptoolaclitem_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+        end
+      end
+
+      # mcp tool版本信息
+      class AIGWMCPToolVersion < TencentCloud::Common::AbstractModel
+        # @param CreateTime: <p>创建时间</p>
+        # @type CreateTime: String
+        # @param Creator: <p>创建者</p>
+        # @type Creator: String
+        # @param IsActive: <p>是否生效</p>
+        # @type IsActive: Boolean
+        # @param TotalParam: <p>总参数</p>
+        # @type TotalParam: Integer
+        # @param Version: <p>版本号</p>
+        # @type Version: String
+
+        attr_accessor :CreateTime, :Creator, :IsActive, :TotalParam, :Version
+
+        def initialize(createtime=nil, creator=nil, isactive=nil, totalparam=nil, version=nil)
+          @CreateTime = createtime
+          @Creator = creator
+          @IsActive = isactive
+          @TotalParam = totalparam
+          @Version = version
+        end
+
+        def deserialize(params)
+          @CreateTime = params['CreateTime']
+          @Creator = params['Creator']
+          @IsActive = params['IsActive']
+          @TotalParam = params['TotalParam']
+          @Version = params['Version']
+        end
+      end
+
+      # 分页查询返回的mcp tool version列表
+      class AIGWMCPToolVersionList < TencentCloud::Common::AbstractModel
+        # @param MCPToolVersions: <p>mcp. tool 版本详情</p>
+        # @type MCPToolVersions: Array
+        # @param TotalCount: <p>总数</p>
+        # @type TotalCount: Integer
+
+        attr_accessor :MCPToolVersions, :TotalCount
+
+        def initialize(mcptoolversions=nil, totalcount=nil)
+          @MCPToolVersions = mcptoolversions
+          @TotalCount = totalcount
+        end
+
+        def deserialize(params)
+          unless params['MCPToolVersions'].nil?
+            @MCPToolVersions = []
+            params['MCPToolVersions'].each do |i|
+              aigwmcptoolversion_tmp = AIGWMCPToolVersion.new
+              aigwmcptoolversion_tmp.deserialize(i)
+              @MCPToolVersions << aigwmcptoolversion_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -1601,6 +1842,175 @@ module TencentCloud
         def deserialize(params)
           @ParamName = params['ParamName']
           @ParamValue = params['ParamValue']
+        end
+      end
+
+      # AI网关配额
+      class AIGWQuota < TencentCloud::Common::AbstractModel
+        # @param Id: <p>Id</p>
+        # @type Id: String
+        # @param ResourceType: <p>资源类型</p><p>枚举值：</p><ul><li>Consumer： 消费者</li></ul>
+        # @type ResourceType: String
+        # @param ResourceId: <p>资源 id</p>
+        # @type ResourceId: String
+        # @param ResourceName: <p>资源名字</p><p>如消费者名字</p>
+        # @type ResourceName: String
+        # @param QuotaType: <p>配额类型</p><p>枚举值：</p><ul><li>RequestCount： 请求数</li><li>TotalToken： 总 token</li><li>Cost： 成本</li></ul>
+        # @type QuotaType: String
+        # @param PeriodUnit: <p>配额周期单位</p><p>枚举值：</p><ul><li>Day： 天</li><li>Week： 周</li><li>Month： 月</li></ul>
+        # @type PeriodUnit: String
+        # @param QuotaLimit: <p>配额</p>
+        # @type QuotaLimit: Integer
+        # @param Enabled: <p>启用</p>
+        # @type Enabled: Boolean
+        # @param CreateTime: <p>创建时间</p><p>参数格式：YYYY-MM-DD hh:mm:ss</p>
+        # @type CreateTime: String
+        # @param ModifyTime: <p>更新时间</p><p>参数格式：YYYY-MM-DD hh:mm:ss</p>
+        # @type ModifyTime: String
+        # @param Source: <p>配额类型，手动配额还是默认配额</p>
+        # @type Source: String
+        # @param ExceedAction: <p>配额超限行为</p><p>枚举值：</p><ul><li>Reject： 拒绝请求</li><li>AllowOverage： 允许超支</li></ul>
+        # @type ExceedAction: String
+        # @param CacheHitStat: <p>缓存是否计入限额</p><p>枚举值：</p><ul><li>Full： 全量计入</li><li>Exclude： 不计入网关缓存命中部分</li></ul>
+        # @type CacheHitStat: String
+
+        attr_accessor :Id, :ResourceType, :ResourceId, :ResourceName, :QuotaType, :PeriodUnit, :QuotaLimit, :Enabled, :CreateTime, :ModifyTime, :Source, :ExceedAction, :CacheHitStat
+
+        def initialize(id=nil, resourcetype=nil, resourceid=nil, resourcename=nil, quotatype=nil, periodunit=nil, quotalimit=nil, enabled=nil, createtime=nil, modifytime=nil, source=nil, exceedaction=nil, cachehitstat=nil)
+          @Id = id
+          @ResourceType = resourcetype
+          @ResourceId = resourceid
+          @ResourceName = resourcename
+          @QuotaType = quotatype
+          @PeriodUnit = periodunit
+          @QuotaLimit = quotalimit
+          @Enabled = enabled
+          @CreateTime = createtime
+          @ModifyTime = modifytime
+          @Source = source
+          @ExceedAction = exceedaction
+          @CacheHitStat = cachehitstat
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @ResourceType = params['ResourceType']
+          @ResourceId = params['ResourceId']
+          @ResourceName = params['ResourceName']
+          @QuotaType = params['QuotaType']
+          @PeriodUnit = params['PeriodUnit']
+          @QuotaLimit = params['QuotaLimit']
+          @Enabled = params['Enabled']
+          @CreateTime = params['CreateTime']
+          @ModifyTime = params['ModifyTime']
+          @Source = params['Source']
+          @ExceedAction = params['ExceedAction']
+          @CacheHitStat = params['CacheHitStat']
+        end
+      end
+
+      # AI 网关配额详情
+      class AIGWQuotaDetail < TencentCloud::Common::AbstractModel
+        # @param Id: <p>id</p>
+        # @type Id: String
+        # @param ResourceType: <p>资源类型</p><p>枚举值：</p><ul><li>Consumer： 消费者</li></ul>
+        # @type ResourceType: String
+        # @param ResourceId: <p>资源id</p>
+        # @type ResourceId: String
+        # @param ResourceName: <p>资源名字</p>
+        # @type ResourceName: String
+        # @param QuotaType: <p>配额类型</p><p>枚举值：</p><ul><li>RequestCount： 请求数</li><li>TotalToken： token总数</li><li>Cost： 成本</li></ul>
+        # @type QuotaType: String
+        # @param PeriodUnit: <p>配额单位</p><p>枚举值：</p><ul><li>Day： 天</li><li>Week： 周</li><li>Month： 月</li></ul>
+        # @type PeriodUnit: String
+        # @param QuotaLimit: <p>配额</p><p>如果是成本则数值单位是分，如 1000 表示 10.00 元</p>
+        # @type QuotaLimit: Integer
+        # @param Enabled: <p>启用</p>
+        # @type Enabled: Boolean
+        # @param Used: <p>用量</p>
+        # @type Used: Integer
+        # @param UsageRate: <p>使用率</p>
+        # @type UsageRate: Float
+        # @param AlarmLevel: <p>预警级别</p><p>枚举值：</p><ul><li>Normal： 正常</li><li>Warning： 预警</li><li>NearLimit： 临近超限</li><li>Exceeded： 超限</li></ul>
+        # @type AlarmLevel: String
+        # @param Source: <p>配额规则来源</p><p>枚举值：</p><ul><li>Manual： 手动配置</li><li>Default： 默认配额</li></ul>
+        # @type Source: String
+        # @param ExceedAction: <p>配额超限行为</p><p>枚举值：</p><ul><li>Reject： 拒绝请求</li><li>AllowOverage： 允许超支</li></ul>
+        # @type ExceedAction: String
+        # @param CreateTime: <p>创建时间</p><p>参数格式：YYYY-MM-DD hh:mm:ss</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param ModifyTime: <p>更新时间</p><p>参数格式：YYYY-MM-DD hh:mm:ss</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyTime: String
+        # @param CacheHitStat: <p>缓存是否计入限额</p><p>枚举值：</p><ul><li>Full： 全量计入</li><li>Exclude： 不计入网关缓存命中部分</li></ul>
+        # @type CacheHitStat: String
+
+        attr_accessor :Id, :ResourceType, :ResourceId, :ResourceName, :QuotaType, :PeriodUnit, :QuotaLimit, :Enabled, :Used, :UsageRate, :AlarmLevel, :Source, :ExceedAction, :CreateTime, :ModifyTime, :CacheHitStat
+
+        def initialize(id=nil, resourcetype=nil, resourceid=nil, resourcename=nil, quotatype=nil, periodunit=nil, quotalimit=nil, enabled=nil, used=nil, usagerate=nil, alarmlevel=nil, source=nil, exceedaction=nil, createtime=nil, modifytime=nil, cachehitstat=nil)
+          @Id = id
+          @ResourceType = resourcetype
+          @ResourceId = resourceid
+          @ResourceName = resourcename
+          @QuotaType = quotatype
+          @PeriodUnit = periodunit
+          @QuotaLimit = quotalimit
+          @Enabled = enabled
+          @Used = used
+          @UsageRate = usagerate
+          @AlarmLevel = alarmlevel
+          @Source = source
+          @ExceedAction = exceedaction
+          @CreateTime = createtime
+          @ModifyTime = modifytime
+          @CacheHitStat = cachehitstat
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @ResourceType = params['ResourceType']
+          @ResourceId = params['ResourceId']
+          @ResourceName = params['ResourceName']
+          @QuotaType = params['QuotaType']
+          @PeriodUnit = params['PeriodUnit']
+          @QuotaLimit = params['QuotaLimit']
+          @Enabled = params['Enabled']
+          @Used = params['Used']
+          @UsageRate = params['UsageRate']
+          @AlarmLevel = params['AlarmLevel']
+          @Source = params['Source']
+          @ExceedAction = params['ExceedAction']
+          @CreateTime = params['CreateTime']
+          @ModifyTime = params['ModifyTime']
+          @CacheHitStat = params['CacheHitStat']
+        end
+      end
+
+      # AI网关配额列表
+      class AIGWQuotaList < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>总数</p>
+        # @type TotalCount: Integer
+        # @param DataList: <p>配额列表</p>
+        # @type DataList: Array
+
+        attr_accessor :TotalCount, :DataList
+
+        def initialize(totalcount=nil, datalist=nil)
+          @TotalCount = totalcount
+          @DataList = datalist
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['DataList'].nil?
+            @DataList = []
+            params['DataList'].each do |i|
+              aigwquota_tmp = AIGWQuota.new
+              aigwquota_tmp.deserialize(i)
+              @DataList << aigwquota_tmp
+            end
+          end
         end
       end
 
@@ -1991,6 +2401,131 @@ module TencentCloud
         end
       end
 
+      # AI服务来源
+      class CNAPIGwAIServiceSource < TencentCloud::Common::AbstractModel
+        # @param SourceName: <p>服务来源</p>
+        # @type SourceName: String
+        # @param SourceId: <p>服务ID</p>
+        # @type SourceId: String
+        # @param SourceType: <p>来源类型</p>
+        # @type SourceType: String
+        # @param SourceProduct: <p>来源产品</p>
+        # @type SourceProduct: String
+        # @param SourceInfo: <p>来源配置信息</p>
+        # @type SourceInfo: :class:`Tencentcloud::Cngw.v20230418.models.CNAPIGwAIServiceSourceInfo`
+        # @param Description: <p>描述</p>
+        # @type Description: String
+        # @param CreateTime: <p>创建时间</p>
+        # @type CreateTime: String
+        # @param UpdateTime: <p>更新时间</p>
+        # @type UpdateTime: String
+
+        attr_accessor :SourceName, :SourceId, :SourceType, :SourceProduct, :SourceInfo, :Description, :CreateTime, :UpdateTime
+
+        def initialize(sourcename=nil, sourceid=nil, sourcetype=nil, sourceproduct=nil, sourceinfo=nil, description=nil, createtime=nil, updatetime=nil)
+          @SourceName = sourcename
+          @SourceId = sourceid
+          @SourceType = sourcetype
+          @SourceProduct = sourceproduct
+          @SourceInfo = sourceinfo
+          @Description = description
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @SourceName = params['SourceName']
+          @SourceId = params['SourceId']
+          @SourceType = params['SourceType']
+          @SourceProduct = params['SourceProduct']
+          unless params['SourceInfo'].nil?
+            @SourceInfo = CNAPIGwAIServiceSourceInfo.new
+            @SourceInfo.deserialize(params['SourceInfo'])
+          end
+          @Description = params['Description']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # AI的服务来源授权信息
+      class CNAPIGwAIServiceSourceAuth < TencentCloud::Common::AbstractModel
+        # @param Username: <p>账号</p>
+        # @type Username: String
+        # @param Password: <p>密码</p>
+        # @type Password: String
+        # @param AccessToken: <p>接入Token</p>
+        # @type AccessToken: String
+
+        attr_accessor :Username, :Password, :AccessToken
+
+        def initialize(username=nil, password=nil, accesstoken=nil)
+          @Username = username
+          @Password = password
+          @AccessToken = accesstoken
+        end
+
+        def deserialize(params)
+          @Username = params['Username']
+          @Password = params['Password']
+          @AccessToken = params['AccessToken']
+        end
+      end
+
+      # AI 的服务来源配置信息
+      class CNAPIGwAIServiceSourceInfo < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>服务来源实例id</p>
+        # @type InstanceId: String
+        # @param Auth: <p>授权信息</p>
+        # @type Auth: :class:`Tencentcloud::Cngw.v20230418.models.CNAPIGwAIServiceSourceAuth`
+        # @param Addresses: <p>地址列表</p>
+        # @type Addresses: Array
+
+        attr_accessor :InstanceId, :Auth, :Addresses
+
+        def initialize(instanceid=nil, auth=nil, addresses=nil)
+          @InstanceId = instanceid
+          @Auth = auth
+          @Addresses = addresses
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['Auth'].nil?
+            @Auth = CNAPIGwAIServiceSourceAuth.new
+            @Auth.deserialize(params['Auth'])
+          end
+          @Addresses = params['Addresses']
+        end
+      end
+
+      # AI数据源列表
+      class CNAPIGwAIServiceSourceList < TencentCloud::Common::AbstractModel
+        # @param DataList: <p>MCP服务列表</p>
+        # @type DataList: Array
+        # @param TotalCount: <p>总数</p>
+        # @type TotalCount: Integer
+
+        attr_accessor :DataList, :TotalCount
+
+        def initialize(datalist=nil, totalcount=nil)
+          @DataList = datalist
+          @TotalCount = totalcount
+        end
+
+        def deserialize(params)
+          unless params['DataList'].nil?
+            @DataList = []
+            params['DataList'].each do |i|
+              cnapigwaiservicesource_tmp = CNAPIGwAIServiceSource.new
+              cnapigwaiservicesource_tmp.deserialize(i)
+              @DataList << cnapigwaiservicesource_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+        end
+      end
+
       # 消费者结构
       class CNAPIGwConsumer < TencentCloud::Common::AbstractModel
         # @param ConsumerId: <p>消费者 ID。</p>
@@ -2194,6 +2729,101 @@ module TencentCloud
           @UpdateTime = params['UpdateTime']
           @Status = params['Status']
           @CurrentVersion = params['CurrentVersion']
+        end
+      end
+
+      # MCP Tools的导入结果
+      class CNAPIGwMCPToolImportResult < TencentCloud::Common::AbstractModel
+        # @param FailedMessage: <p>导入失败的原因信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailedMessage: String
+        # @param Method: <p>请求方法</p>
+        # @type Method: String
+        # @param Name: <p>MCP Tool 名字</p>
+        # @type Name: String
+        # @param Path: <p>MCP Tool的请求路径</p>
+        # @type Path: String
+        # @param Status: <p>导入结果</p><p>枚举值：</p><ul><li>Waiting： 等待导入</li><li>Success： 导入成功</li><li>Failed： 导入失败</li></ul>
+        # @type Status: String
+        # @param UpstreamUrl: <p>虚拟MCP Server的Tool的完整后端地址</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpstreamUrl: String
+
+        attr_accessor :FailedMessage, :Method, :Name, :Path, :Status, :UpstreamUrl
+
+        def initialize(failedmessage=nil, method=nil, name=nil, path=nil, status=nil, upstreamurl=nil)
+          @FailedMessage = failedmessage
+          @Method = method
+          @Name = name
+          @Path = path
+          @Status = status
+          @UpstreamUrl = upstreamurl
+        end
+
+        def deserialize(params)
+          @FailedMessage = params['FailedMessage']
+          @Method = params['Method']
+          @Name = params['Name']
+          @Path = params['Path']
+          @Status = params['Status']
+          @UpstreamUrl = params['UpstreamUrl']
+        end
+      end
+
+      # MCP Tools导入任务的进度
+      class CNAPIGwMCPToolImportTaskResult < TencentCloud::Common::AbstractModel
+        # @param FailedCount: <p>导入失败的数量</p>
+        # @type FailedCount: Integer
+        # @param ProcessedCount: <p>已处理导入Tool的总数</p>
+        # @type ProcessedCount: Integer
+        # @param SuccessCount: <p>成功导入的Tool数量</p>
+        # @type SuccessCount: Integer
+        # @param TaskEndTime: <p>任务结束时间</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskEndTime: String
+        # @param TaskId: <p>任务ID</p>
+        # @type TaskId: String
+        # @param TaskStartTime: <p>任务开始时间</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskStartTime: String
+        # @param TaskStatus: <p>任务状态</p><p>枚举值：</p><ul><li>Running： 运行中</li><li>End： 结束</li></ul>
+        # @type TaskStatus: String
+        # @param ToolsImportResult: <p>导入结果详情</p>
+        # @type ToolsImportResult: Array
+        # @param TotalCount: <p>待导入Tools的总数</p>
+        # @type TotalCount: Integer
+
+        attr_accessor :FailedCount, :ProcessedCount, :SuccessCount, :TaskEndTime, :TaskId, :TaskStartTime, :TaskStatus, :ToolsImportResult, :TotalCount
+
+        def initialize(failedcount=nil, processedcount=nil, successcount=nil, taskendtime=nil, taskid=nil, taskstarttime=nil, taskstatus=nil, toolsimportresult=nil, totalcount=nil)
+          @FailedCount = failedcount
+          @ProcessedCount = processedcount
+          @SuccessCount = successcount
+          @TaskEndTime = taskendtime
+          @TaskId = taskid
+          @TaskStartTime = taskstarttime
+          @TaskStatus = taskstatus
+          @ToolsImportResult = toolsimportresult
+          @TotalCount = totalcount
+        end
+
+        def deserialize(params)
+          @FailedCount = params['FailedCount']
+          @ProcessedCount = params['ProcessedCount']
+          @SuccessCount = params['SuccessCount']
+          @TaskEndTime = params['TaskEndTime']
+          @TaskId = params['TaskId']
+          @TaskStartTime = params['TaskStartTime']
+          @TaskStatus = params['TaskStatus']
+          unless params['ToolsImportResult'].nil?
+            @ToolsImportResult = []
+            params['ToolsImportResult'].each do |i|
+              cnapigwmcptoolimportresult_tmp = CNAPIGwMCPToolImportResult.new
+              cnapigwmcptoolimportresult_tmp.deserialize(i)
+              @ToolsImportResult << cnapigwmcptoolimportresult_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
         end
       end
 
@@ -2515,6 +3145,152 @@ module TencentCloud
             @QueryParamCredentialConfig = AIGWQueryParamCredentialConfig.new
             @QueryParamCredentialConfig.deserialize(params['QueryParamCredentialConfig'])
           end
+        end
+      end
+
+      # 密钥列表
+      class CNAPIGwSecretKeyList < TencentCloud::Common::AbstractModel
+        # @param SecretKeys: 密钥列表
+        # @type SecretKeys: Array
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+
+        attr_accessor :SecretKeys, :TotalCount
+
+        def initialize(secretkeys=nil, totalcount=nil)
+          @SecretKeys = secretkeys
+          @TotalCount = totalcount
+        end
+
+        def deserialize(params)
+          unless params['SecretKeys'].nil?
+            @SecretKeys = []
+            params['SecretKeys'].each do |i|
+              cnapigwsecretkey_tmp = CNAPIGwSecretKey.new
+              cnapigwsecretkey_tmp.deserialize(i)
+              @SecretKeys << cnapigwsecretkey_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+        end
+      end
+
+      # CheckCloudNativeAPIGatewayMCPRouteMatch请求参数结构体
+      class CheckCloudNativeAPIGatewayMCPRouteMatchRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: <p>网关 ID</p>
+        # @type GatewayId: String
+        # @param ServerId: <p>MCP Server ID</p>
+        # @type ServerId: String
+        # @param ExcludeRouteId: <p>Modify时用于排除自身的Route ID</p>
+        # @type ExcludeRouteId: String
+        # @param HeaderMatch: <p>Head匹配规则</p>
+        # @type HeaderMatch: Array
+        # @param Methods: <p>http method</p>
+        # @type Methods: Array
+        # @param Path: <p>路径</p>
+        # @type Path: String
+        # @param PathMatchType: <p>path的匹配方式</p><p>枚举值：</p><ul><li>Exact： 精确</li><li>Prefix： 前缀</li><li>Regex： 正则</li></ul>
+        # @type PathMatchType: String
+
+        attr_accessor :GatewayId, :ServerId, :ExcludeRouteId, :HeaderMatch, :Methods, :Path, :PathMatchType
+
+        def initialize(gatewayid=nil, serverid=nil, excluderouteid=nil, headermatch=nil, methods=nil, path=nil, pathmatchtype=nil)
+          @GatewayId = gatewayid
+          @ServerId = serverid
+          @ExcludeRouteId = excluderouteid
+          @HeaderMatch = headermatch
+          @Methods = methods
+          @Path = path
+          @PathMatchType = pathmatchtype
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @ServerId = params['ServerId']
+          @ExcludeRouteId = params['ExcludeRouteId']
+          unless params['HeaderMatch'].nil?
+            @HeaderMatch = []
+            params['HeaderMatch'].each do |i|
+              aigwheaderrule_tmp = AIGWHeaderRule.new
+              aigwheaderrule_tmp.deserialize(i)
+              @HeaderMatch << aigwheaderrule_tmp
+            end
+          end
+          @Methods = params['Methods']
+          @Path = params['Path']
+          @PathMatchType = params['PathMatchType']
+        end
+      end
+
+      # CheckCloudNativeAPIGatewayMCPRouteMatch返回参数结构体
+      class CheckCloudNativeAPIGatewayMCPRouteMatchResponse < TencentCloud::Common::AbstractModel
+        # @param Result: <p>是否冲突</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cngw.v20230418.models.AIGWMCPRouteCheckResult`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = AIGWMCPRouteCheckResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CheckCloudNativeAPIGatewayMCPToolVersionExist请求参数结构体
+      class CheckCloudNativeAPIGatewayMCPToolVersionExistRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: <p>网关实例 id</p>
+        # @type GatewayId: String
+        # @param ServerId: <p>MCPserverId</p>
+        # @type ServerId: String
+        # @param ToolId: <p>工具 id</p>
+        # @type ToolId: String
+        # @param ToolVersion: <p>mcp tool版本id</p>
+        # @type ToolVersion: String
+
+        attr_accessor :GatewayId, :ServerId, :ToolId, :ToolVersion
+
+        def initialize(gatewayid=nil, serverid=nil, toolid=nil, toolversion=nil)
+          @GatewayId = gatewayid
+          @ServerId = serverid
+          @ToolId = toolid
+          @ToolVersion = toolversion
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @ServerId = params['ServerId']
+          @ToolId = params['ToolId']
+          @ToolVersion = params['ToolVersion']
+        end
+      end
+
+      # CheckCloudNativeAPIGatewayMCPToolVersionExist返回参数结构体
+      class CheckCloudNativeAPIGatewayMCPToolVersionExistResponse < TencentCloud::Common::AbstractModel
+        # @param Result: <p>版本是否存在</p>
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -3037,6 +3813,123 @@ module TencentCloud
         end
       end
 
+      # CompareCloudNativeAPIGatewayMCPToolVersion请求参数结构体
+      class CompareCloudNativeAPIGatewayMCPToolVersionRequest < TencentCloud::Common::AbstractModel
+        # @param BaseVersion: <p>对比源版本号</p>
+        # @type BaseVersion: String
+        # @param GatewayId: <p>网关实例 id</p>
+        # @type GatewayId: String
+        # @param ServerId: <p>MCPserverId</p>
+        # @type ServerId: String
+        # @param TargetVersion: <p>对比目标版本号</p>
+        # @type TargetVersion: String
+        # @param ToolId: <p>工具 id</p>
+        # @type ToolId: String
+
+        attr_accessor :BaseVersion, :GatewayId, :ServerId, :TargetVersion, :ToolId
+
+        def initialize(baseversion=nil, gatewayid=nil, serverid=nil, targetversion=nil, toolid=nil)
+          @BaseVersion = baseversion
+          @GatewayId = gatewayid
+          @ServerId = serverid
+          @TargetVersion = targetversion
+          @ToolId = toolid
+        end
+
+        def deserialize(params)
+          @BaseVersion = params['BaseVersion']
+          @GatewayId = params['GatewayId']
+          @ServerId = params['ServerId']
+          @TargetVersion = params['TargetVersion']
+          @ToolId = params['ToolId']
+        end
+      end
+
+      # CompareCloudNativeAPIGatewayMCPToolVersion返回参数结构体
+      class CompareCloudNativeAPIGatewayMCPToolVersionResponse < TencentCloud::Common::AbstractModel
+        # @param Result: <p>对比总结</p>
+        # @type Result: :class:`Tencentcloud::Cngw.v20230418.models.AIGWChangeSummary`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = AIGWChangeSummary.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateCloudNativeAPIGatewayAIServiceSource请求参数结构体
+      class CreateCloudNativeAPIGatewayAIServiceSourceRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: <p>实例 ID</p>
+        # @type GatewayId: String
+        # @param SourceType: <p>来源类型:</p><ul><li>MCPRegistry:  mcp 注册中心</li></ul>
+        # @type SourceType: String
+        # @param SourceName: <p>服务来源名字</p>
+        # @type SourceName: String
+        # @param SourceProduct: <p>来源产品：- TSFNacos：TSF Nacos</p>
+        # @type SourceProduct: String
+        # @param SourceInfo: <p>来源详情</p>
+        # @type SourceInfo: :class:`Tencentcloud::Cngw.v20230418.models.CNAPIGwAIServiceSourceInfo`
+        # @param Description: <p>描述</p>
+        # @type Description: String
+
+        attr_accessor :GatewayId, :SourceType, :SourceName, :SourceProduct, :SourceInfo, :Description
+
+        def initialize(gatewayid=nil, sourcetype=nil, sourcename=nil, sourceproduct=nil, sourceinfo=nil, description=nil)
+          @GatewayId = gatewayid
+          @SourceType = sourcetype
+          @SourceName = sourcename
+          @SourceProduct = sourceproduct
+          @SourceInfo = sourceinfo
+          @Description = description
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @SourceType = params['SourceType']
+          @SourceName = params['SourceName']
+          @SourceProduct = params['SourceProduct']
+          unless params['SourceInfo'].nil?
+            @SourceInfo = CNAPIGwAIServiceSourceInfo.new
+            @SourceInfo.deserialize(params['SourceInfo'])
+          end
+          @Description = params['Description']
+        end
+      end
+
+      # CreateCloudNativeAPIGatewayAIServiceSource返回参数结构体
+      class CreateCloudNativeAPIGatewayAIServiceSourceResponse < TencentCloud::Common::AbstractModel
+        # @param Result: <p>创建结果</p>
+        # @type Result: :class:`Tencentcloud::Cngw.v20230418.models.CNAPIGwCreateCommonResult`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = CNAPIGwCreateCommonResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateCloudNativeAPIGatewayConsumerGroup请求参数结构体
       class CreateCloudNativeAPIGatewayConsumerGroupRequest < TencentCloud::Common::AbstractModel
         # @param GatewayId: <p>网关实例id</p>
@@ -3465,6 +4358,85 @@ module TencentCloud
         end
       end
 
+      # CreateCloudNativeAPIGatewayMCPRoute请求参数结构体
+      class CreateCloudNativeAPIGatewayMCPRouteRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: <p>网关ID</p>
+        # @type GatewayId: String
+        # @param ServerId: <p>MCP Server ID</p>
+        # @type ServerId: String
+        # @param Description: <p>描述</p>
+        # @type Description: String
+        # @param HeaderMatch: <p>Header匹配规则</p>
+        # @type HeaderMatch: Array
+        # @param Methods: <p>http method</p>
+        # @type Methods: Array
+        # @param Name: <p>路由名称</p>
+        # @type Name: String
+        # @param Path: <p>路径</p>
+        # @type Path: String
+        # @param PathMatchType: <p>路径匹配规则</p><p>枚举值：</p><ul><li>Exact： 精确</li><li>Prefix： 前缀</li><li>Regex： 正则</li></ul>
+        # @type PathMatchType: String
+        # @param Priority: <p>route优先级</p>
+        # @type Priority: Integer
+
+        attr_accessor :GatewayId, :ServerId, :Description, :HeaderMatch, :Methods, :Name, :Path, :PathMatchType, :Priority
+
+        def initialize(gatewayid=nil, serverid=nil, description=nil, headermatch=nil, methods=nil, name=nil, path=nil, pathmatchtype=nil, priority=nil)
+          @GatewayId = gatewayid
+          @ServerId = serverid
+          @Description = description
+          @HeaderMatch = headermatch
+          @Methods = methods
+          @Name = name
+          @Path = path
+          @PathMatchType = pathmatchtype
+          @Priority = priority
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @ServerId = params['ServerId']
+          @Description = params['Description']
+          unless params['HeaderMatch'].nil?
+            @HeaderMatch = []
+            params['HeaderMatch'].each do |i|
+              aigwheaderrule_tmp = AIGWHeaderRule.new
+              aigwheaderrule_tmp.deserialize(i)
+              @HeaderMatch << aigwheaderrule_tmp
+            end
+          end
+          @Methods = params['Methods']
+          @Name = params['Name']
+          @Path = params['Path']
+          @PathMatchType = params['PathMatchType']
+          @Priority = params['Priority']
+        end
+      end
+
+      # CreateCloudNativeAPIGatewayMCPRoute返回参数结构体
+      class CreateCloudNativeAPIGatewayMCPRouteResponse < TencentCloud::Common::AbstractModel
+        # @param Result: <p>操作结果</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cngw.v20230418.models.AIGWCreateMCPRouteResult`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = AIGWCreateMCPRouteResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateCloudNativeAPIGatewayMCPServer请求参数结构体
       class CreateCloudNativeAPIGatewayMCPServerRequest < TencentCloud::Common::AbstractModel
         # @param GatewayId: <p>实例 ID</p>
@@ -3778,6 +4750,46 @@ module TencentCloud
         end
       end
 
+      # DeleteCloudNativeAPIGatewayAIServiceSource请求参数结构体
+      class DeleteCloudNativeAPIGatewayAIServiceSourceRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: <p>实例 ID</p>
+        # @type GatewayId: String
+        # @param SourceId: <p>服务来源id</p>
+        # @type SourceId: String
+        # @param SourceType: <p>服务来源类型</p><p>枚举值：</p><ul><li>Registry： 普通注册中心</li><li>MCPRegistry： MCP注册中心</li><li>DNS： 域名服务</li></ul>
+        # @type SourceType: String
+
+        attr_accessor :GatewayId, :SourceId, :SourceType
+
+        def initialize(gatewayid=nil, sourceid=nil, sourcetype=nil)
+          @GatewayId = gatewayid
+          @SourceId = sourceid
+          @SourceType = sourcetype
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @SourceId = params['SourceId']
+          @SourceType = params['SourceType']
+        end
+      end
+
+      # DeleteCloudNativeAPIGatewayAIServiceSource返回参数结构体
+      class DeleteCloudNativeAPIGatewayAIServiceSourceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteCloudNativeAPIGatewayConsumerGroup请求参数结构体
       class DeleteCloudNativeAPIGatewayConsumerGroupRequest < TencentCloud::Common::AbstractModel
         # @param GatewayId: 网关实例id
@@ -3930,6 +4942,46 @@ module TencentCloud
         end
       end
 
+      # DeleteCloudNativeAPIGatewayMCPRoute请求参数结构体
+      class DeleteCloudNativeAPIGatewayMCPRouteRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: <p>网关ID</p>
+        # @type GatewayId: String
+        # @param RouteId: <p>路由ID</p>
+        # @type RouteId: String
+        # @param ServerId: <p>MCP Server ID</p>
+        # @type ServerId: String
+
+        attr_accessor :GatewayId, :RouteId, :ServerId
+
+        def initialize(gatewayid=nil, routeid=nil, serverid=nil)
+          @GatewayId = gatewayid
+          @RouteId = routeid
+          @ServerId = serverid
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @RouteId = params['RouteId']
+          @ServerId = params['ServerId']
+        end
+      end
+
+      # DeleteCloudNativeAPIGatewayMCPRoute返回参数结构体
+      class DeleteCloudNativeAPIGatewayMCPRouteResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteCloudNativeAPIGatewayMCPServer请求参数结构体
       class DeleteCloudNativeAPIGatewayMCPServerRequest < TencentCloud::Common::AbstractModel
         # @param GatewayId: <p>云原生API网关实例ID</p>
@@ -4002,6 +5054,54 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteCloudNativeAPIGatewayMCPToolVersion请求参数结构体
+      class DeleteCloudNativeAPIGatewayMCPToolVersionRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: <p>网关实例 id</p>
+        # @type GatewayId: String
+        # @param ServerId: <p>MCPserverId</p>
+        # @type ServerId: String
+        # @param ToolId: <p>工具 id</p>
+        # @type ToolId: String
+        # @param ToolVersion: <p>mcp tool版本</p>
+        # @type ToolVersion: String
+
+        attr_accessor :GatewayId, :ServerId, :ToolId, :ToolVersion
+
+        def initialize(gatewayid=nil, serverid=nil, toolid=nil, toolversion=nil)
+          @GatewayId = gatewayid
+          @ServerId = serverid
+          @ToolId = toolid
+          @ToolVersion = toolversion
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @ServerId = params['ServerId']
+          @ToolId = params['ToolId']
+          @ToolVersion = params['ToolVersion']
+        end
+      end
+
+      # DeleteCloudNativeAPIGatewayMCPToolVersion返回参数结构体
+      class DeleteCloudNativeAPIGatewayMCPToolVersionResponse < TencentCloud::Common::AbstractModel
+        # @param Result: <p>删除mcp tool版本结果</p>
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
           @RequestId = params['RequestId']
         end
       end
@@ -4094,6 +5194,158 @@ module TencentCloud
         def deserialize(params)
           unless params['Result'].nil?
             @Result = KongServiceWithRoutes.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCloudNativeAPIGatewayAIQuotaList请求参数结构体
+      class DescribeCloudNativeAPIGatewayAIQuotaListRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: <p>网关实例Id</p>
+        # @type GatewayId: String
+        # @param Offset: <p>开始位置</p>
+        # @type Offset: Integer
+        # @param Limit: <p>每页数量</p>
+        # @type Limit: Integer
+        # @param Filters: <p>过滤条件</p>
+        # @type Filters: Array
+        # @param AlarmLevels: <p>配额预警级别</p><p>枚举值：</p><ul><li>Normal： 正常</li><li>Warning： 预警</li><li>NearLimit： 临近超限</li><li>Exceeded： 超限</li></ul>
+        # @type AlarmLevels: Array
+
+        attr_accessor :GatewayId, :Offset, :Limit, :Filters, :AlarmLevels
+
+        def initialize(gatewayid=nil, offset=nil, limit=nil, filters=nil, alarmlevels=nil)
+          @GatewayId = gatewayid
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+          @AlarmLevels = alarmlevels
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @AlarmLevels = params['AlarmLevels']
+        end
+      end
+
+      # DescribeCloudNativeAPIGatewayAIQuotaList返回参数结构体
+      class DescribeCloudNativeAPIGatewayAIQuotaListResponse < TencentCloud::Common::AbstractModel
+        # @param Result: <p>配额列表</p>
+        # @type Result: :class:`Tencentcloud::Cngw.v20230418.models.AIGWQuotaList`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = AIGWQuotaList.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCloudNativeAPIGatewayAIQuota请求参数结构体
+      class DescribeCloudNativeAPIGatewayAIQuotaRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: <p>网关实例Id</p>
+        # @type GatewayId: String
+        # @param Id: <p>配额 id</p>
+        # @type Id: String
+
+        attr_accessor :GatewayId, :Id
+
+        def initialize(gatewayid=nil, id=nil)
+          @GatewayId = gatewayid
+          @Id = id
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @Id = params['Id']
+        end
+      end
+
+      # DescribeCloudNativeAPIGatewayAIQuota返回参数结构体
+      class DescribeCloudNativeAPIGatewayAIQuotaResponse < TencentCloud::Common::AbstractModel
+        # @param Result: <p>配额详情</p>
+        # @type Result: :class:`Tencentcloud::Cngw.v20230418.models.AIGWQuotaDetail`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = AIGWQuotaDetail.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCloudNativeAPIGatewayAIServiceSourceList请求参数结构体
+      class DescribeCloudNativeAPIGatewayAIServiceSourceListRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 实例 ID
+        # @type GatewayId: String
+        # @param Limit: 分页大小
+        # @type Limit: Integer
+        # @param Offset: 分页偏移
+        # @type Offset: Integer
+
+        attr_accessor :GatewayId, :Limit, :Offset
+
+        def initialize(gatewayid=nil, limit=nil, offset=nil)
+          @GatewayId = gatewayid
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeCloudNativeAPIGatewayAIServiceSourceList返回参数结构体
+      class DescribeCloudNativeAPIGatewayAIServiceSourceListResponse < TencentCloud::Common::AbstractModel
+        # @param Result: MCP Server 列表结果
+        # @type Result: :class:`Tencentcloud::Cngw.v20230418.models.CNAPIGwAIServiceSourceList`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = CNAPIGwAIServiceSourceList.new
             @Result.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
@@ -4540,6 +5792,58 @@ module TencentCloud
         end
       end
 
+      # DescribeCloudNativeAPIGatewayMCPRouteList请求参数结构体
+      class DescribeCloudNativeAPIGatewayMCPRouteListRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: <p>网关ID</p>
+        # @type GatewayId: String
+        # @param ServerId: <p>MCP Server ID</p>
+        # @type ServerId: String
+        # @param Limit: <p>分页限制</p>
+        # @type Limit: Integer
+        # @param Offset: <p>分页偏移</p>
+        # @type Offset: Integer
+
+        attr_accessor :GatewayId, :ServerId, :Limit, :Offset
+
+        def initialize(gatewayid=nil, serverid=nil, limit=nil, offset=nil)
+          @GatewayId = gatewayid
+          @ServerId = serverid
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @ServerId = params['ServerId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeCloudNativeAPIGatewayMCPRouteList返回参数结构体
+      class DescribeCloudNativeAPIGatewayMCPRouteListResponse < TencentCloud::Common::AbstractModel
+        # @param Result: <p>路由列表信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cngw.v20230418.models.AIGWMCPRouteListResult`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = AIGWMCPRouteListResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCloudNativeAPIGatewayMCPServerACL请求参数结构体
       class DescribeCloudNativeAPIGatewayMCPServerACLRequest < TencentCloud::Common::AbstractModel
         # @param GatewayId: <p>网关实例 ID</p>
@@ -4775,6 +6079,49 @@ module TencentCloud
         end
       end
 
+      # DescribeCloudNativeAPIGatewayMCPToolImportTask请求参数结构体
+      class DescribeCloudNativeAPIGatewayMCPToolImportTaskRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: <p>网关实例ID</p>
+        # @type GatewayId: String
+        # @param MCPServerId: <p>MCP Server ID</p>
+        # @type MCPServerId: String
+
+        attr_accessor :GatewayId, :MCPServerId
+
+        def initialize(gatewayid=nil, mcpserverid=nil)
+          @GatewayId = gatewayid
+          @MCPServerId = mcpserverid
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @MCPServerId = params['MCPServerId']
+        end
+      end
+
+      # DescribeCloudNativeAPIGatewayMCPToolImportTask返回参数结构体
+      class DescribeCloudNativeAPIGatewayMCPToolImportTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Result: <p>导入任务的进度</p>
+        # @type Result: :class:`Tencentcloud::Cngw.v20230418.models.CNAPIGwMCPToolImportTaskResult`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = CNAPIGwMCPToolImportTaskResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCloudNativeAPIGatewayMCPToolList请求参数结构体
       class DescribeCloudNativeAPIGatewayMCPToolListRequest < TencentCloud::Common::AbstractModel
         # @param GatewayId: <p>实例 id</p>
@@ -4866,6 +6213,109 @@ module TencentCloud
         end
       end
 
+      # DescribeCloudNativeAPIGatewayMCPToolVersionList请求参数结构体
+      class DescribeCloudNativeAPIGatewayMCPToolVersionListRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: <p>网关实例 id</p>
+        # @type GatewayId: String
+        # @param ServerId: <p>MCPserverId</p>
+        # @type ServerId: String
+        # @param ToolId: <p>工具 id</p>
+        # @type ToolId: String
+        # @param Limit: <p>分页查询limit</p>
+        # @type Limit: Integer
+        # @param Offset: <p>分页查询偏移</p>
+        # @type Offset: Integer
+
+        attr_accessor :GatewayId, :ServerId, :ToolId, :Limit, :Offset
+
+        def initialize(gatewayid=nil, serverid=nil, toolid=nil, limit=nil, offset=nil)
+          @GatewayId = gatewayid
+          @ServerId = serverid
+          @ToolId = toolid
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @ServerId = params['ServerId']
+          @ToolId = params['ToolId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeCloudNativeAPIGatewayMCPToolVersionList返回参数结构体
+      class DescribeCloudNativeAPIGatewayMCPToolVersionListResponse < TencentCloud::Common::AbstractModel
+        # @param Result: <p>tool版本列表</p>
+        # @type Result: :class:`Tencentcloud::Cngw.v20230418.models.AIGWMCPToolVersionList`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = AIGWMCPToolVersionList.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCloudNativeAPIGatewayMCPToolVersion请求参数结构体
+      class DescribeCloudNativeAPIGatewayMCPToolVersionRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: <p>网关实例 id</p>
+        # @type GatewayId: String
+        # @param ServerId: <p>MCPserverId</p>
+        # @type ServerId: String
+        # @param ToolId: <p>工具 id</p>
+        # @type ToolId: String
+        # @param ToolVersion: <p>tool版本id</p>
+        # @type ToolVersion: String
+
+        attr_accessor :GatewayId, :ServerId, :ToolId, :ToolVersion
+
+        def initialize(gatewayid=nil, serverid=nil, toolid=nil, toolversion=nil)
+          @GatewayId = gatewayid
+          @ServerId = serverid
+          @ToolId = toolid
+          @ToolVersion = toolversion
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @ServerId = params['ServerId']
+          @ToolId = params['ToolId']
+          @ToolVersion = params['ToolVersion']
+        end
+      end
+
+      # DescribeCloudNativeAPIGatewayMCPToolVersion返回参数结构体
+      class DescribeCloudNativeAPIGatewayMCPToolVersionResponse < TencentCloud::Common::AbstractModel
+        # @param Result: <p>tool版本的json snapshot</p>
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCloudNativeAPIGatewayMCPToolsFromFile请求参数结构体
       class DescribeCloudNativeAPIGatewayMCPToolsFromFileRequest < TencentCloud::Common::AbstractModel
         # @param Content: <p>OpenAPI文件内容</p>
@@ -4911,6 +6361,57 @@ module TencentCloud
         def deserialize(params)
           unless params['Result'].nil?
             @Result = CNAPIGwParseMCPToolsResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCloudNativeAPIGatewaySecretKeyList请求参数结构体
+      class DescribeCloudNativeAPIGatewaySecretKeyListRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: <p>实例 ID</p>
+        # @type GatewayId: String
+        # @param Limit: <p>每页条数，范围 [1, 100]，默认 10。</p>
+        # @type Limit: Integer
+        # @param Offset: <p>起始位置，从 0 开始。</p>
+        # @type Offset: Integer
+        # @param ResourceType: <p>密钥归属资源类型。UseToBind=true 时必填。</p><p>枚举值：</p><ul><li>Consumer：消费者</li><li>ModelService：模型服务</li></ul>
+        # @type ResourceType: String
+
+        attr_accessor :GatewayId, :Limit, :Offset, :ResourceType
+
+        def initialize(gatewayid=nil, limit=nil, offset=nil, resourcetype=nil)
+          @GatewayId = gatewayid
+          @Limit = limit
+          @Offset = offset
+          @ResourceType = resourcetype
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @ResourceType = params['ResourceType']
+        end
+      end
+
+      # DescribeCloudNativeAPIGatewaySecretKeyList返回参数结构体
+      class DescribeCloudNativeAPIGatewaySecretKeyListResponse < TencentCloud::Common::AbstractModel
+        # @param Result: <p>密钥列表</p>
+        # @type Result: :class:`Tencentcloud::Cngw.v20230418.models.CNAPIGwSecretKeyList`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = CNAPIGwSecretKeyList.new
             @Result.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
@@ -5109,8 +6610,8 @@ module TencentCloud
 
         attr_accessor :ID, :Name, :Methods, :Paths, :Hosts, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :CreatedTime, :ForceHttps, :ServiceName, :ServiceID, :DestinationPorts, :Headers, :RequestBuffering, :ResponseBuffering, :RegexPriority, :QueryStringParameters, :RouteSource
         extend Gem::Deprecate
-        deprecate :ForceHttps, :none, 2026, 8
-        deprecate :ForceHttps=, :none, 2026, 8
+        deprecate :ForceHttps, :none, 2026, 9
+        deprecate :ForceHttps=, :none, 2026, 9
 
         def initialize(id=nil, name=nil, methods=nil, paths=nil, hosts=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, createdtime=nil, forcehttps=nil, servicename=nil, serviceid=nil, destinationports=nil, headers=nil, requestbuffering=nil, responsebuffering=nil, regexpriority=nil, querystringparameters=nil, routesource=nil)
           @ID = id
@@ -5520,6 +7021,61 @@ module TencentCloud
         end
       end
 
+      # ModifyCloudNativeAPIGatewayAIServiceSource请求参数结构体
+      class ModifyCloudNativeAPIGatewayAIServiceSourceRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: <p>实例 ID</p>
+        # @type GatewayId: String
+        # @param SourceName: <p>服务来源名字</p>
+        # @type SourceName: String
+        # @param SourceType: <p>服务来源类型</p><p>枚举值：</p><ul><li>Registry： 普通注册中心</li><li>MCPRegistry： MCP注册中心</li><li>DNS： 域名服务</li></ul>
+        # @type SourceType: String
+        # @param SourceId: <p>服务来源id</p>
+        # @type SourceId: String
+        # @param Description: <p>描述</p>
+        # @type Description: String
+        # @param SourceInfo: <p>来源信息</p>
+        # @type SourceInfo: :class:`Tencentcloud::Cngw.v20230418.models.CNAPIGwAIServiceSourceInfo`
+
+        attr_accessor :GatewayId, :SourceName, :SourceType, :SourceId, :Description, :SourceInfo
+
+        def initialize(gatewayid=nil, sourcename=nil, sourcetype=nil, sourceid=nil, description=nil, sourceinfo=nil)
+          @GatewayId = gatewayid
+          @SourceName = sourcename
+          @SourceType = sourcetype
+          @SourceId = sourceid
+          @Description = description
+          @SourceInfo = sourceinfo
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @SourceName = params['SourceName']
+          @SourceType = params['SourceType']
+          @SourceId = params['SourceId']
+          @Description = params['Description']
+          unless params['SourceInfo'].nil?
+            @SourceInfo = CNAPIGwAIServiceSourceInfo.new
+            @SourceInfo.deserialize(params['SourceInfo'])
+          end
+        end
+      end
+
+      # ModifyCloudNativeAPIGatewayAIServiceSource返回参数结构体
+      class ModifyCloudNativeAPIGatewayAIServiceSourceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyCloudNativeAPIGatewayConsumerGroup请求参数结构体
       class ModifyCloudNativeAPIGatewayConsumerGroupRequest < TencentCloud::Common::AbstractModel
         # @param GatewayId: 网关实例id
@@ -5890,6 +7446,126 @@ module TencentCloud
       # ModifyCloudNativeAPIGatewayLLMModelService返回参数结构体
       class ModifyCloudNativeAPIGatewayLLMModelServiceResponse < TencentCloud::Common::AbstractModel
         # @param Result: <p>是否成功</p>
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyCloudNativeAPIGatewayMCPRoute请求参数结构体
+      class ModifyCloudNativeAPIGatewayMCPRouteRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: <p>网关ID</p>
+        # @type GatewayId: String
+        # @param RouteId: <p>Route ID</p>
+        # @type RouteId: String
+        # @param ServerId: <p>MCP Server ID</p>
+        # @type ServerId: String
+        # @param Description: <p>描述</p>
+        # @type Description: String
+        # @param HeaderMatch: <p>Header 匹配规则</p>
+        # @type HeaderMatch: Array
+        # @param Methods: <p>http method</p>
+        # @type Methods: Array
+        # @param Path: <p>路径</p>
+        # @type Path: String
+        # @param PathMatchType: <p>匹配规则</p><p>枚举值：</p><ul><li>Exact： 精确</li><li>Prefix： 前缀</li><li>Regex： 正则</li></ul>
+        # @type PathMatchType: String
+        # @param Priority: <p>路由优先级</p>
+        # @type Priority: Integer
+
+        attr_accessor :GatewayId, :RouteId, :ServerId, :Description, :HeaderMatch, :Methods, :Path, :PathMatchType, :Priority
+
+        def initialize(gatewayid=nil, routeid=nil, serverid=nil, description=nil, headermatch=nil, methods=nil, path=nil, pathmatchtype=nil, priority=nil)
+          @GatewayId = gatewayid
+          @RouteId = routeid
+          @ServerId = serverid
+          @Description = description
+          @HeaderMatch = headermatch
+          @Methods = methods
+          @Path = path
+          @PathMatchType = pathmatchtype
+          @Priority = priority
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @RouteId = params['RouteId']
+          @ServerId = params['ServerId']
+          @Description = params['Description']
+          unless params['HeaderMatch'].nil?
+            @HeaderMatch = []
+            params['HeaderMatch'].each do |i|
+              aigwheaderrule_tmp = AIGWHeaderRule.new
+              aigwheaderrule_tmp.deserialize(i)
+              @HeaderMatch << aigwheaderrule_tmp
+            end
+          end
+          @Methods = params['Methods']
+          @Path = params['Path']
+          @PathMatchType = params['PathMatchType']
+          @Priority = params['Priority']
+        end
+      end
+
+      # ModifyCloudNativeAPIGatewayMCPRoute返回参数结构体
+      class ModifyCloudNativeAPIGatewayMCPRouteResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyCloudNativeAPIGatewayMCPRouteStatus请求参数结构体
+      class ModifyCloudNativeAPIGatewayMCPRouteStatusRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: <p>网关ID</p>
+        # @type GatewayId: String
+        # @param RouteId: <p>路由ID</p>
+        # @type RouteId: String
+        # @param ServerId: <p>MCP Server ID</p>
+        # @type ServerId: String
+        # @param Status: <p>启用/禁用状态</p><p>枚举值：</p><ul><li>Enabled： 启用</li><li>Disabled： 禁用</li></ul>
+        # @type Status: String
+
+        attr_accessor :GatewayId, :RouteId, :ServerId, :Status
+
+        def initialize(gatewayid=nil, routeid=nil, serverid=nil, status=nil)
+          @GatewayId = gatewayid
+          @RouteId = routeid
+          @ServerId = serverid
+          @Status = status
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @RouteId = params['RouteId']
+          @ServerId = params['ServerId']
+          @Status = params['Status']
+        end
+      end
+
+      # ModifyCloudNativeAPIGatewayMCPRouteStatus返回参数结构体
+      class ModifyCloudNativeAPIGatewayMCPRouteStatusResponse < TencentCloud::Common::AbstractModel
+        # @param Result: <p>操作结果</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6448,6 +8124,54 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # RollbackCloudNativeAPIGatewayMCPToolVersion请求参数结构体
+      class RollbackCloudNativeAPIGatewayMCPToolVersionRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: <p>网关实例 id</p>
+        # @type GatewayId: String
+        # @param ServerId: <p>MCPserverId</p>
+        # @type ServerId: String
+        # @param ToolId: <p>工具 id</p>
+        # @type ToolId: String
+        # @param ToolVersion: <p>mcp tool版本</p>
+        # @type ToolVersion: String
+
+        attr_accessor :GatewayId, :ServerId, :ToolId, :ToolVersion
+
+        def initialize(gatewayid=nil, serverid=nil, toolid=nil, toolversion=nil)
+          @GatewayId = gatewayid
+          @ServerId = serverid
+          @ToolId = toolid
+          @ToolVersion = toolversion
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @ServerId = params['ServerId']
+          @ToolId = params['ToolId']
+          @ToolVersion = params['ToolVersion']
+        end
+      end
+
+      # RollbackCloudNativeAPIGatewayMCPToolVersion返回参数结构体
+      class RollbackCloudNativeAPIGatewayMCPToolVersionResponse < TencentCloud::Common::AbstractModel
+        # @param Result: <p>操作结果</p>
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
           @RequestId = params['RequestId']
         end
       end

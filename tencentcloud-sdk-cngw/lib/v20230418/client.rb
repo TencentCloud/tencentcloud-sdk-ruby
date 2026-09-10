@@ -101,6 +101,102 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 上传插件前置操作，获取COS相关信息
+
+        # @param request: Request instance for CheckCloudNativeAPIGatewayMCPRouteMatch.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::CheckCloudNativeAPIGatewayMCPRouteMatchRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::CheckCloudNativeAPIGatewayMCPRouteMatchResponse`
+        def CheckCloudNativeAPIGatewayMCPRouteMatch(request)
+          body = send_request('CheckCloudNativeAPIGatewayMCPRouteMatch', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CheckCloudNativeAPIGatewayMCPRouteMatchResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改云原生智能网关MCP Tool
+
+        # @param request: Request instance for CheckCloudNativeAPIGatewayMCPToolVersionExist.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::CheckCloudNativeAPIGatewayMCPToolVersionExistRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::CheckCloudNativeAPIGatewayMCPToolVersionExistResponse`
+        def CheckCloudNativeAPIGatewayMCPToolVersionExist(request)
+          body = send_request('CheckCloudNativeAPIGatewayMCPToolVersionExist', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CheckCloudNativeAPIGatewayMCPToolVersionExistResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改云原生智能网关MCP Tool
+
+        # @param request: Request instance for CompareCloudNativeAPIGatewayMCPToolVersion.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::CompareCloudNativeAPIGatewayMCPToolVersionRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::CompareCloudNativeAPIGatewayMCPToolVersionResponse`
+        def CompareCloudNativeAPIGatewayMCPToolVersion(request)
+          body = send_request('CompareCloudNativeAPIGatewayMCPToolVersion', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CompareCloudNativeAPIGatewayMCPToolVersionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建云原生网关AI服务来源
+
+        # @param request: Request instance for CreateCloudNativeAPIGatewayAIServiceSource.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::CreateCloudNativeAPIGatewayAIServiceSourceRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::CreateCloudNativeAPIGatewayAIServiceSourceResponse`
+        def CreateCloudNativeAPIGatewayAIServiceSource(request)
+          body = send_request('CreateCloudNativeAPIGatewayAIServiceSource', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCloudNativeAPIGatewayAIServiceSourceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建AI网关消费者。
 
         # @param request: Request instance for CreateCloudNativeAPIGatewayConsumer.
@@ -197,6 +293,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 上传插件前置操作，获取COS相关信息
+
+        # @param request: Request instance for CreateCloudNativeAPIGatewayMCPRoute.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::CreateCloudNativeAPIGatewayMCPRouteRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::CreateCloudNativeAPIGatewayMCPRouteResponse`
+        def CreateCloudNativeAPIGatewayMCPRoute(request)
+          body = send_request('CreateCloudNativeAPIGatewayMCPRoute', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCloudNativeAPIGatewayMCPRouteResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建AI网关MCP Server
 
         # @param request: Request instance for CreateCloudNativeAPIGatewayMCPServer.
@@ -255,6 +375,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateCloudNativeAPIGatewaySecretKeyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除云原生网关AI服务来源
+
+        # @param request: Request instance for DeleteCloudNativeAPIGatewayAIServiceSource.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::DeleteCloudNativeAPIGatewayAIServiceSourceRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::DeleteCloudNativeAPIGatewayAIServiceSourceResponse`
+        def DeleteCloudNativeAPIGatewayAIServiceSource(request)
+          body = send_request('DeleteCloudNativeAPIGatewayAIServiceSource', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteCloudNativeAPIGatewayAIServiceSourceResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -365,6 +509,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 上传插件前置操作，获取COS相关信息
+
+        # @param request: Request instance for DeleteCloudNativeAPIGatewayMCPRoute.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::DeleteCloudNativeAPIGatewayMCPRouteRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::DeleteCloudNativeAPIGatewayMCPRouteResponse`
+        def DeleteCloudNativeAPIGatewayMCPRoute(request)
+          body = send_request('DeleteCloudNativeAPIGatewayMCPRoute', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteCloudNativeAPIGatewayMCPRouteResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除AI网关MCP服务
 
         # @param request: Request instance for DeleteCloudNativeAPIGatewayMCPServer.
@@ -413,6 +581,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改云原生智能网关MCP Tool
+
+        # @param request: Request instance for DeleteCloudNativeAPIGatewayMCPToolVersion.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::DeleteCloudNativeAPIGatewayMCPToolVersionRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::DeleteCloudNativeAPIGatewayMCPToolVersionResponse`
+        def DeleteCloudNativeAPIGatewayMCPToolVersion(request)
+          body = send_request('DeleteCloudNativeAPIGatewayMCPToolVersion', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteCloudNativeAPIGatewayMCPToolVersionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除消费者密钥（被绑定时需先解绑）。
 
         # @param request: Request instance for DeleteCloudNativeAPIGatewaySecretKey.
@@ -447,6 +639,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeCNGWServicesWithRoutesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询AI网关配额
+
+        # @param request: Request instance for DescribeCloudNativeAPIGatewayAIQuota.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::DescribeCloudNativeAPIGatewayAIQuotaRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::DescribeCloudNativeAPIGatewayAIQuotaResponse`
+        def DescribeCloudNativeAPIGatewayAIQuota(request)
+          body = send_request('DescribeCloudNativeAPIGatewayAIQuota', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloudNativeAPIGatewayAIQuotaResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询AI配额配置列表
+
+        # @param request: Request instance for DescribeCloudNativeAPIGatewayAIQuotaList.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::DescribeCloudNativeAPIGatewayAIQuotaListRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::DescribeCloudNativeAPIGatewayAIQuotaListResponse`
+        def DescribeCloudNativeAPIGatewayAIQuotaList(request)
+          body = send_request('DescribeCloudNativeAPIGatewayAIQuotaList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloudNativeAPIGatewayAIQuotaListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询云原生网关AI服务来源
+
+        # @param request: Request instance for DescribeCloudNativeAPIGatewayAIServiceSourceList.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::DescribeCloudNativeAPIGatewayAIServiceSourceListRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::DescribeCloudNativeAPIGatewayAIServiceSourceListResponse`
+        def DescribeCloudNativeAPIGatewayAIServiceSourceList(request)
+          body = send_request('DescribeCloudNativeAPIGatewayAIServiceSourceList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloudNativeAPIGatewayAIServiceSourceListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -653,6 +917,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 上传插件前置操作，获取COS相关信息
+
+        # @param request: Request instance for DescribeCloudNativeAPIGatewayMCPRouteList.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::DescribeCloudNativeAPIGatewayMCPRouteListRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::DescribeCloudNativeAPIGatewayMCPRouteListResponse`
+        def DescribeCloudNativeAPIGatewayMCPRouteList(request)
+          body = send_request('DescribeCloudNativeAPIGatewayMCPRouteList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloudNativeAPIGatewayMCPRouteListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询AI 网关MCP服务信息
 
         # @param request: Request instance for DescribeCloudNativeAPIGatewayMCPServer.
@@ -797,6 +1085,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询批量导入MCP Tools的任务进度
+
+        # @param request: Request instance for DescribeCloudNativeAPIGatewayMCPToolImportTask.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::DescribeCloudNativeAPIGatewayMCPToolImportTaskRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::DescribeCloudNativeAPIGatewayMCPToolImportTaskResponse`
+        def DescribeCloudNativeAPIGatewayMCPToolImportTask(request)
+          body = send_request('DescribeCloudNativeAPIGatewayMCPToolImportTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloudNativeAPIGatewayMCPToolImportTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询 AI 网关MCP Tool 列表
 
         # @param request: Request instance for DescribeCloudNativeAPIGatewayMCPToolList.
@@ -807,6 +1119,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeCloudNativeAPIGatewayMCPToolListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改云原生智能网关MCP Tool
+
+        # @param request: Request instance for DescribeCloudNativeAPIGatewayMCPToolVersion.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::DescribeCloudNativeAPIGatewayMCPToolVersionRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::DescribeCloudNativeAPIGatewayMCPToolVersionResponse`
+        def DescribeCloudNativeAPIGatewayMCPToolVersion(request)
+          body = send_request('DescribeCloudNativeAPIGatewayMCPToolVersion', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloudNativeAPIGatewayMCPToolVersionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改云原生智能网关MCP Tool
+
+        # @param request: Request instance for DescribeCloudNativeAPIGatewayMCPToolVersionList.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::DescribeCloudNativeAPIGatewayMCPToolVersionListRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::DescribeCloudNativeAPIGatewayMCPToolVersionListResponse`
+        def DescribeCloudNativeAPIGatewayMCPToolVersionList(request)
+          body = send_request('DescribeCloudNativeAPIGatewayMCPToolVersionList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloudNativeAPIGatewayMCPToolVersionListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -869,6 +1229,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询密钥列表。
+
+        # @param request: Request instance for DescribeCloudNativeAPIGatewaySecretKeyList.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::DescribeCloudNativeAPIGatewaySecretKeyListRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::DescribeCloudNativeAPIGatewaySecretKeyListResponse`
+        def DescribeCloudNativeAPIGatewaySecretKeyList(request)
+          body = send_request('DescribeCloudNativeAPIGatewaySecretKeyList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloudNativeAPIGatewaySecretKeyListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询密钥明文值（KMS 类型密钥不可获取）。
 
         # @param request: Request instance for DescribeCloudNativeAPIGatewaySecretKeyValue.
@@ -879,6 +1263,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeCloudNativeAPIGatewaySecretKeyValueResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改云原生网关AI服务来源
+
+        # @param request: Request instance for ModifyCloudNativeAPIGatewayAIServiceSource.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::ModifyCloudNativeAPIGatewayAIServiceSourceRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::ModifyCloudNativeAPIGatewayAIServiceSourceResponse`
+        def ModifyCloudNativeAPIGatewayAIServiceSource(request)
+          body = send_request('ModifyCloudNativeAPIGatewayAIServiceSource', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyCloudNativeAPIGatewayAIServiceSourceResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -975,6 +1383,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyCloudNativeAPIGatewayLLMModelServiceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 上传插件前置操作，获取COS相关信息
+
+        # @param request: Request instance for ModifyCloudNativeAPIGatewayMCPRoute.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::ModifyCloudNativeAPIGatewayMCPRouteRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::ModifyCloudNativeAPIGatewayMCPRouteResponse`
+        def ModifyCloudNativeAPIGatewayMCPRoute(request)
+          body = send_request('ModifyCloudNativeAPIGatewayMCPRoute', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyCloudNativeAPIGatewayMCPRouteResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 上传插件前置操作，获取COS相关信息
+
+        # @param request: Request instance for ModifyCloudNativeAPIGatewayMCPRouteStatus.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::ModifyCloudNativeAPIGatewayMCPRouteStatusRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::ModifyCloudNativeAPIGatewayMCPRouteStatusResponse`
+        def ModifyCloudNativeAPIGatewayMCPRouteStatus(request)
+          body = send_request('ModifyCloudNativeAPIGatewayMCPRouteStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyCloudNativeAPIGatewayMCPRouteStatusResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1215,6 +1671,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = RemoveCloudNativeAPIGatewayConsumerInGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改云原生智能网关MCP Tool
+
+        # @param request: Request instance for RollbackCloudNativeAPIGatewayMCPToolVersion.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::RollbackCloudNativeAPIGatewayMCPToolVersionRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::RollbackCloudNativeAPIGatewayMCPToolVersionResponse`
+        def RollbackCloudNativeAPIGatewayMCPToolVersion(request)
+          body = send_request('RollbackCloudNativeAPIGatewayMCPToolVersion', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RollbackCloudNativeAPIGatewayMCPToolVersionResponse.new
             model.deserialize(response['Response'])
             model
           else
