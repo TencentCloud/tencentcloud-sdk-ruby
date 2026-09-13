@@ -528,6 +528,26 @@ module TencentCloud
         end
       end
 
+      # 音频分片时间
+      class AudioSegments < TencentCloud::Common::AbstractModel
+        # @param StartTime: <p>该参数用于返回对应语种标签的片段在音频文件内的开始时间，单位为秒。 示例值：0</p>
+        # @type StartTime: Float
+        # @param FinishTime: <p>该参数用于返回对应语种标签的片段在音频文件内的结束时间，单位为秒。 示例值：15</p>
+        # @type FinishTime: Float
+
+        attr_accessor :StartTime, :FinishTime
+
+        def initialize(starttime=nil, finishtime=nil)
+          @StartTime = starttime
+          @FinishTime = finishtime
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @FinishTime = params['FinishTime']
+        end
+      end
+
       # 腾讯云对象存储COS以及第三方云存储的账号信息
       class CloudModerationStorage < TencentCloud::Common::AbstractModel
         # @param Vendor: 腾讯云对象存储COS以及第三方云存储账号信息
@@ -732,6 +752,117 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateAudioModerationSync请求参数结构体
+      class CreateAudioModerationSyncRequest < TencentCloud::Common::AbstractModel
+        # @param Sdkappid: <p>sdkappid app账号</p>
+        # @type Sdkappid: Integer
+        # @param BizType: <p>BizType为策略的具体的编号, GME业务 2_2_3_sdkappid</p>
+        # @type BizType: String
+        # @param DataId: <p>据标识，可以由英文字母、数字、下划线、-、@#组成，不超过64个字符</p>
+        # @type DataId: String
+        # @param FileFormat: <p>音频格式，当FileUrl为空时，必填。音频文件资源格式，当前支持格式：wav、mp3、m4a，请按照实际文件格式填入。 示例值：mp3</p>
+        # @type FileFormat: String
+        # @param FileName: <p>文件名称，可以由英文字母、数字、下划线、-、@#组成，不超过64个字符 示例值：file_name</p>
+        # @type FileName: String
+        # @param FileContent: <p>数据Base64编码，短音频同步接口仅传入可音频内容； 支持范围：文件大小不能超过5M，时长不可超过60s； 支持格式：wav (PCM编码)、mp3、m4a (采样率：16kHz~48kHz，位深：16bit 小端，声道数：单声道/双声道，建议格式：16kHz/16bit/单声道)。 示例值：1</p>
+        # @type FileContent: String
+        # @param FileUrl: <p>音频资源访问链接，与FileContent参数必须二选一输入； 支持范围及格式：同FileContent；</p>
+        # @type FileUrl: String
+
+        attr_accessor :Sdkappid, :BizType, :DataId, :FileFormat, :FileName, :FileContent, :FileUrl
+
+        def initialize(sdkappid=nil, biztype=nil, dataid=nil, fileformat=nil, filename=nil, filecontent=nil, fileurl=nil)
+          @Sdkappid = sdkappid
+          @BizType = biztype
+          @DataId = dataid
+          @FileFormat = fileformat
+          @FileName = filename
+          @FileContent = filecontent
+          @FileUrl = fileurl
+        end
+
+        def deserialize(params)
+          @Sdkappid = params['Sdkappid']
+          @BizType = params['BizType']
+          @DataId = params['DataId']
+          @FileFormat = params['FileFormat']
+          @FileName = params['FileName']
+          @FileContent = params['FileContent']
+          @FileUrl = params['FileUrl']
+        end
+      end
+
+      # CreateAudioModerationSync返回参数结构体
+      class CreateAudioModerationSyncResponse < TencentCloud::Common::AbstractModel
+        # @param DataId: <p>返回传入的DataId</p>
+        # @type DataId: String
+        # @param TaskId: <p>审核返回的任务id</p>
+        # @type TaskId: String
+        # @param FileName: <p>文件名</p>
+        # @type FileName: String
+        # @param MediaType: <p>1：语音。 2：图片。</p>
+        # @type MediaType: Integer
+        # @param Suggest: <p>0：建议通过。 1 ：建议人工重新内容识别。 2：建议屏蔽。</p>
+        # @type Suggest: Integer
+        # @param Rate: <p>置信度分数，取值范围：0（置信度最低）-100（置信度最高 ），越高代表越有可能属于当前返回的标签。 实例值：100</p>
+        # @type Rate: Integer
+        # @param Label: <p>Normal：正常文本  Ad:广告 Porn：色情 Abuse：谩骂 Illegal: 违禁 Polity: 涉政 Terror: 暴恐 Sexy: 性感 Moan: 呻吟/娇喘 QRCode: 二维码 Custom: 自定义</p>
+        # @type Label: String
+        # @param SubLabel: <p>子标签</p>
+        # @type SubLabel: String
+        # @param Audio: <p>音频链接地址</p>
+        # @type Audio: String
+        # @param AudioText: <p>审核识别音频文本</p>
+        # @type AudioText: String
+        # @param Duration: <p>音频时长，单位 ms</p>
+        # @type Duration: Integer
+        # @param CheckDetail: <p>审核明细</p>
+        # @type CheckDetail: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DataId, :TaskId, :FileName, :MediaType, :Suggest, :Rate, :Label, :SubLabel, :Audio, :AudioText, :Duration, :CheckDetail, :RequestId
+
+        def initialize(dataid=nil, taskid=nil, filename=nil, mediatype=nil, suggest=nil, rate=nil, label=nil, sublabel=nil, audio=nil, audiotext=nil, duration=nil, checkdetail=nil, requestid=nil)
+          @DataId = dataid
+          @TaskId = taskid
+          @FileName = filename
+          @MediaType = mediatype
+          @Suggest = suggest
+          @Rate = rate
+          @Label = label
+          @SubLabel = sublabel
+          @Audio = audio
+          @AudioText = audiotext
+          @Duration = duration
+          @CheckDetail = checkdetail
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DataId = params['DataId']
+          @TaskId = params['TaskId']
+          @FileName = params['FileName']
+          @MediaType = params['MediaType']
+          @Suggest = params['Suggest']
+          @Rate = params['Rate']
+          @Label = params['Label']
+          @SubLabel = params['SubLabel']
+          @Audio = params['Audio']
+          @AudioText = params['AudioText']
+          @Duration = params['Duration']
+          unless params['CheckDetail'].nil?
+            @CheckDetail = []
+            params['CheckDetail'].each do |i|
+              moderationcheckdetail_tmp = ModerationCheckDetail.new
+              moderationcheckdetail_tmp.deserialize(i)
+              @CheckDetail << moderationcheckdetail_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -3873,6 +4004,26 @@ module TencentCloud
         end
       end
 
+      # 图片坐标
+      class ImageLocation < TencentCloud::Common::AbstractModel
+        # @param X: <p>该参数用于返回检测框左上角位置的横坐标（x）所在的像素位置，结合剩余参数可唯一确定检测框的大小和位置。 示例值：51</p>
+        # @type X: Float
+        # @param Y: <p>该参数用于返回检测框左上角位置的纵坐标（y）所在的像素位置，结合剩余参数可唯一确定检测框的大小和位置。 示例值：448</p>
+        # @type Y: Float
+
+        attr_accessor :X, :Y
+
+        def initialize(x=nil, y=nil)
+          @X = x
+          @Y = y
+        end
+
+        def deserialize(params)
+          @X = params['X']
+          @Y = params['Y']
+        end
+      end
+
       # 拉流输入源
       class Input < TencentCloud::Common::AbstractModel
         # @param Url: <p>直播拉流地址</p><p>入参限制：字符长度小于2048</p>
@@ -4988,6 +5139,72 @@ module TencentCloud
         end
       end
 
+      # 内容理解明细
+      class ModerationCheckDetail < TencentCloud::Common::AbstractModel
+        # @param Scene: <p>该字段在内容理解回调事件中可直接忽略，仅在第三方审核时存在，检出违规的模型场景，枚举值：Ad/Porn/Abuse/Illegal/Polity/Terror/Sexy/Moan/Custom</p>
+        # @type Scene: String
+        # @param Label: <p>Normal：正常文本  Ad:广告 Porn：色情 Abuse：谩骂 Illegal: 违禁 Polity: 涉政 Terror: 暴恐 Sexy: 性感 Moan: 呻吟/娇喘 QRCode: 二维码 Custom: 自定义</p>
+        # @type Label: String
+        # @param SubLabel: <p>子标签</p>
+        # @type SubLabel: String
+        # @param Suggest: <p>0：建议通过。 1 ：建议人工重新内容识别。 2：建议屏蔽。</p>
+        # @type Suggest: Integer
+        # @param LibName: <p>自定义词库名。</p>
+        # @type LibName: String
+        # @param Keywords: <p>关键词。</p>
+        # @type Keywords: Array
+        # @param Desc: <p>中文二级标签。</p>
+        # @type Desc: String
+        # @param Score: <p>置信度分数，取值范围：0（置信度最低）-100（置信度最高 ），越高代表越有可能属于当前返回的标签。 实例值：100</p>
+        # @type Score: Integer
+        # @param Severity: <p>违规严重程度: 0-不区分 1-轻度 2-严重</p>
+        # @type Severity: Integer
+        # @param SeverityDesc: <p>违规严重程度描述 仅名单内sdkappid返回 负面表达,正面或中性表达,语义模糊</p>
+        # @type SeverityDesc: String
+        # @param AudioSegments: <p>音频切片位置信息。</p>
+        # @type AudioSegments: :class:`Tencentcloud::Trtc.v20190722.models.AudioSegments`
+        # @param ImageLocation: <p>图片命中坐标信息。</p>
+        # @type ImageLocation: :class:`Tencentcloud::Trtc.v20190722.models.ImageLocation`
+
+        attr_accessor :Scene, :Label, :SubLabel, :Suggest, :LibName, :Keywords, :Desc, :Score, :Severity, :SeverityDesc, :AudioSegments, :ImageLocation
+
+        def initialize(scene=nil, label=nil, sublabel=nil, suggest=nil, libname=nil, keywords=nil, desc=nil, score=nil, severity=nil, severitydesc=nil, audiosegments=nil, imagelocation=nil)
+          @Scene = scene
+          @Label = label
+          @SubLabel = sublabel
+          @Suggest = suggest
+          @LibName = libname
+          @Keywords = keywords
+          @Desc = desc
+          @Score = score
+          @Severity = severity
+          @SeverityDesc = severitydesc
+          @AudioSegments = audiosegments
+          @ImageLocation = imagelocation
+        end
+
+        def deserialize(params)
+          @Scene = params['Scene']
+          @Label = params['Label']
+          @SubLabel = params['SubLabel']
+          @Suggest = params['Suggest']
+          @LibName = params['LibName']
+          @Keywords = params['Keywords']
+          @Desc = params['Desc']
+          @Score = params['Score']
+          @Severity = params['Severity']
+          @SeverityDesc = params['SeverityDesc']
+          unless params['AudioSegments'].nil?
+            @AudioSegments = AudioSegments.new
+            @AudioSegments.deserialize(params['AudioSegments'])
+          end
+          unless params['ImageLocation'].nil?
+            @ImageLocation = ImageLocation.new
+            @ImageLocation.deserialize(params['ImageLocation'])
+          end
+        end
+      end
+
       # 云端审核的控制参数。
       class ModerationParams < TencentCloud::Common::AbstractModel
         # @param ModerationType: <p>AI 内容理解任务类型， 1:音频切片理解，2:视频截帧理解，3:音视切片+视频截帧理解  默认值1 </p><p>枚举值：</p><ul><li>1： 音频切片理解</li></ul>
@@ -5445,9 +5662,9 @@ module TencentCloud
 
       # 多音字/生僻字发音纠正词典条目。指定特定词语在本次请求中使用的发音。
       class PronunciationDict < TencentCloud::Common::AbstractModel
-        # @param Word: 需要纠正发音的词语，前后空格自动去除。同一请求中若有重复词语，以最后一条为准。
+        # @param Word: <p>需要纠正发音的词语，同一请求中若有重复词语，以最后一条为准。</p>
         # @type Word: String
-        # @param Pronunciation: 目标发音，支持以下格式：<br>① 带声调数字的拼音（1=阴平，2=阳平，3=上声，4=去声，5=轻声），如 yin2 hang2；<br>② 拼音连写（无空格），如 yin2hang2；<br>③ 文字+拼音混写，如 银hang2；<br>④ 直接文本替换，会将原始文本替换为目标文本
+        # @param Pronunciation: <p>目标发音，支持以下格式：</p><ul><li>带声调数字的拼音（1=阴平，2=阳平，3=上声，4=去声，5=轻声），如 (yin2)(hang2)</li><li>英文音标，如  (rɪˈzjuːm)</li><li>裸文本替换，会将原始文本替换为目标文本</li></ul><p>支持任意格式混排，注意拼音和音标需要被括号包裹</p>
         # @type Pronunciation: String
 
         attr_accessor :Word, :Pronunciation
@@ -8626,7 +8843,7 @@ module TencentCloud
         # @type Volume: Float
         # @param Pitch: <p>音高调节，负值声音更低沉，正值声音更尖锐，0 为原始音高，区间 [-12, 12],  默认0</p>
         # @type Pitch: Integer
-        # @param Emotion: <p>情绪控制，目前仅flow_01_ex模型支持</p><p>枚举值：</p><ul><li>happy： 高兴</li><li>sad： 悲伤</li><li>angry： 愤怒</li><li>fearful： 害怕</li><li>disgusted： 厌恶</li><li>surprised： 惊讶</li><li>calm： 中性</li><li>fluent： 生动</li><li>whisper： 低语</li></ul>
+        # @param Emotion: <p>情绪控制</p><p>枚举值：</p><ul><li>happy： 高兴</li><li>sad： 悲伤</li><li>angry： 愤怒</li><li>fearful： 害怕</li><li>disgusted： 厌恶</li><li>surprised： 惊讶</li><li>calm： 中性</li><li>fluent： 生动</li><li>whisper： 低语</li></ul>
         # @type Emotion: String
 
         attr_accessor :VoiceId, :Speed, :Volume, :Pitch, :Emotion

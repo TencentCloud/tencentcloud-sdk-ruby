@@ -16766,39 +16766,106 @@ module TencentCloud
         end
       end
 
-      # 推理硬件规格信息。
-      class InferenceHardwareSpecification < TencentCloud::Common::AbstractModel
-        # @param Spec: 规格标识。
-        # @type Spec: String
-        # @param Name: 规格名称。
-        # @type Name: String
-        # @param CPUNum: CPU 核数。
-        # @type CPUNum: Float
-        # @param MemSize: 内存大小。单位为 MB。
-        # @type MemSize: Integer
-        # @param GPUNum: GPU 卡数。
+      # 推理服务硬件配置。
+      class InferenceHardwareConfig < TencentCloud::Common::AbstractModel
+        # @param GPUNum: <p>推理服务单个实例分配的 GPU 卡数，当前仅支持整数值，且必须为 <code>HardwareSpecId</code> 对应规格的 <code>AllowedGPUNums</code> 中的可选值。</p><p>若不填充，则使用所选 <code>HardwareSpecId</code> 规格对应的默认 <code>GPUNum</code> 值。</p>
         # @type GPUNum: Float
-        # @param GPUMemSize: 显存大小。单位为 MB。
-        # @type GPUMemSize: Integer
+        # @param CPUNum: <p>推理服务单个实例分配的 CPU 核数，当前仅支持整数值。</p><p>若不填充，则使用所选 <code>HardwareSpecId</code> 规格对应的默认 <code>CPUNum</code> 值。</p>
+        # @type CPUNum: Float
+        # @param MemSize: <p>推理服务单实例分配的内存大小。</p><p>单位：MB</p><p>若不填充，则使用所选 <code>HardwareSpecId</code> 对应规格的默认 <code>MemSize</code> 值；若填充，则必须为 <code>1024</code> 的整数倍。</p>
+        # @type MemSize: Integer
+        # @param DiskSize: <p>推理服务单实例分配的临时磁盘大小。</p><p>单位：MB</p><p>若不填充，则使用所选 <code>HardwareSpecId</code> 对应规格的默认 <code>DiskSize</code> 值；若填充，则必须为 <code>1024</code> 的整数倍。</p>
+        # @type DiskSize: Integer
 
-        attr_accessor :Spec, :Name, :CPUNum, :MemSize, :GPUNum, :GPUMemSize
+        attr_accessor :GPUNum, :CPUNum, :MemSize, :DiskSize
 
-        def initialize(spec=nil, name=nil, cpunum=nil, memsize=nil, gpunum=nil, gpumemsize=nil)
-          @Spec = spec
-          @Name = name
+        def initialize(gpunum=nil, cpunum=nil, memsize=nil, disksize=nil)
+          @GPUNum = gpunum
           @CPUNum = cpunum
           @MemSize = memsize
+          @DiskSize = disksize
+        end
+
+        def deserialize(params)
+          @GPUNum = params['GPUNum']
+          @CPUNum = params['CPUNum']
+          @MemSize = params['MemSize']
+          @DiskSize = params['DiskSize']
+        end
+      end
+
+      # 推理服务资源硬件配置的修改参数。
+      class InferenceHardwareConfigForModify < TencentCloud::Common::AbstractModel
+        # @param CPUNum: <p>推理服务单实例分配的 CPU 核数，当前仅支持整数值。</p><p>若不填充，则不修改。</p>
+        # @type CPUNum: Float
+        # @param MemSize: <p>推理服务单实例分配的内存大小。</p><p>单位：MB</p><p>若不填充，则不修改；若填写，则必须为 <code>1024</code> 的整数倍。</p>
+        # @type MemSize: Integer
+        # @param DiskSize: <p>推理服务单实例分配的临时磁盘大小。</p><p>单位：MB</p><p>若不填充，则不修改；若填充，则必须为 <code>1024</code> 的整数倍。</p>
+        # @type DiskSize: Integer
+
+        attr_accessor :CPUNum, :MemSize, :DiskSize
+
+        def initialize(cpunum=nil, memsize=nil, disksize=nil)
+          @CPUNum = cpunum
+          @MemSize = memsize
+          @DiskSize = disksize
+        end
+
+        def deserialize(params)
+          @CPUNum = params['CPUNum']
+          @MemSize = params['MemSize']
+          @DiskSize = params['DiskSize']
+        end
+      end
+
+      # 推理硬件规格信息。
+      class InferenceHardwareSpecification < TencentCloud::Common::AbstractModel
+        # @param Spec: <p>规格标识。已废弃，参考使用字段 <code>HardwareSpecId</code>。</p>
+        # @type Spec: String
+        # @param HardwareSpecId: <p>规格唯一标识 ID。</p>
+        # @type HardwareSpecId: String
+        # @param Name: <p>规格名称。</p>
+        # @type Name: String
+        # @param GPUNum: <p>规格默认分配的 GPU 卡数。</p>
+        # @type GPUNum: Float
+        # @param CPUNum: <p>规格默认分配的 CPU 核数。</p>
+        # @type CPUNum: Float
+        # @param MemSize: <p>规格默认分配的内存大小。</p><p>单位：MB</p>
+        # @type MemSize: Integer
+        # @param GPUMemSize: <p>规格默认分配的显存大小。</p><p>单位：MB</p>
+        # @type GPUMemSize: Integer
+        # @param DiskSize: <p>规格默认分配的磁盘大小。</p><p>单位：MB</p>
+        # @type DiskSize: Integer
+        # @param AllowedGPUNums: <p>规格当前支持的 GPU 卡数列表。</p><p>若不填充或填充空数组，则仅支持规格默认分配的 GPU 卡数。</p>
+        # @type AllowedGPUNums: Array
+
+        attr_accessor :Spec, :HardwareSpecId, :Name, :GPUNum, :CPUNum, :MemSize, :GPUMemSize, :DiskSize, :AllowedGPUNums
+        extend Gem::Deprecate
+        deprecate :Spec, :none, 2026, 9
+        deprecate :Spec=, :none, 2026, 9
+
+        def initialize(spec=nil, hardwarespecid=nil, name=nil, gpunum=nil, cpunum=nil, memsize=nil, gpumemsize=nil, disksize=nil, allowedgpunums=nil)
+          @Spec = spec
+          @HardwareSpecId = hardwarespecid
+          @Name = name
           @GPUNum = gpunum
+          @CPUNum = cpunum
+          @MemSize = memsize
           @GPUMemSize = gpumemsize
+          @DiskSize = disksize
+          @AllowedGPUNums = allowedgpunums
         end
 
         def deserialize(params)
           @Spec = params['Spec']
+          @HardwareSpecId = params['HardwareSpecId']
           @Name = params['Name']
+          @GPUNum = params['GPUNum']
           @CPUNum = params['CPUNum']
           @MemSize = params['MemSize']
-          @GPUNum = params['GPUNum']
           @GPUMemSize = params['GPUMemSize']
+          @DiskSize = params['DiskSize']
+          @AllowedGPUNums = params['AllowedGPUNums']
         end
       end
 
@@ -16820,24 +16887,33 @@ module TencentCloud
 
       # 推理服务的资源配置。
       class InferenceResourceConfig < TencentCloud::Common::AbstractModel
-        # @param ScalingMode: 扩容缩容的方式。取值有：<li>Auto：根据请求量自动调整实例数量；</li><li>Manual：人工设置固定的实例数量。</li>
+        # @param ScalingMode: <p>扩容缩容的方式。取值有：<li>Auto：根据请求量自动调整实例数量；</li><li>Manual：人工设置固定的实例数量。</li></p>
         # @type ScalingMode: String
-        # @param HardwareSpec: 硬件规格。
+        # @param HardwareSpec: <p>硬件规格标识。已废弃，请参考使用 <code>HardwareSpecId</code>。</p>
         # @type HardwareSpec: String
-        # @param AutoScalingConfig: 推理服务自动伸缩配置。当 ScalingMode 为 Auto 时必填。
+        # @param HardwareSpecId: <p>硬件规格唯一标识 ID，可通过 <code>DescribeInferenceHardwareSpecifications</code> 接口获取当前站点支持的硬件规格。</p><p>系统默认按照所选 <code>HardwareSpecId</code> 对应的硬件规格配置推理服务所需资源；如需调整，可通过 <code>HardwareConfig</code> 自定义硬件资源配置。</p>
+        # @type HardwareSpecId: String
+        # @param HardwareConfig: <p>推理服务硬件配置。</p><p>作为入参时，若未填充则按照所选 <code>HardwareSpecId</code> 规格的默认值配置硬件资源；若填充则优先按照填写值进行配置。</p>
+        # @type HardwareConfig: :class:`Tencentcloud::Teo.v20220901.models.InferenceHardwareConfig`
+        # @param AutoScalingConfig: <p>推理服务自动伸缩配置。当 ScalingMode 为 Auto 时必填。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoScalingConfig: :class:`Tencentcloud::Teo.v20220901.models.InferenceAutoScalingConfig`
-        # @param ManualInstanceConfig: 推理服务人工设置实例配置。当 ScalingMode 为 Manual 时必填。
+        # @param ManualInstanceConfig: <p>推理服务人工设置实例配置。当 ScalingMode 为 Manual 时必填。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ManualInstanceConfig: :class:`Tencentcloud::Teo.v20220901.models.InferenceManualInstanceConfig`
-        # @param Concurrency: 单实例的并发数。默认值为 1。
+        # @param Concurrency: <p>单实例的并发数。默认值为 1。</p>
         # @type Concurrency: Integer
 
-        attr_accessor :ScalingMode, :HardwareSpec, :AutoScalingConfig, :ManualInstanceConfig, :Concurrency
+        attr_accessor :ScalingMode, :HardwareSpec, :HardwareSpecId, :HardwareConfig, :AutoScalingConfig, :ManualInstanceConfig, :Concurrency
+        extend Gem::Deprecate
+        deprecate :HardwareSpec, :none, 2026, 9
+        deprecate :HardwareSpec=, :none, 2026, 9
 
-        def initialize(scalingmode=nil, hardwarespec=nil, autoscalingconfig=nil, manualinstanceconfig=nil, concurrency=nil)
+        def initialize(scalingmode=nil, hardwarespec=nil, hardwarespecid=nil, hardwareconfig=nil, autoscalingconfig=nil, manualinstanceconfig=nil, concurrency=nil)
           @ScalingMode = scalingmode
           @HardwareSpec = hardwarespec
+          @HardwareSpecId = hardwarespecid
+          @HardwareConfig = hardwareconfig
           @AutoScalingConfig = autoscalingconfig
           @ManualInstanceConfig = manualinstanceconfig
           @Concurrency = concurrency
@@ -16846,6 +16922,11 @@ module TencentCloud
         def deserialize(params)
           @ScalingMode = params['ScalingMode']
           @HardwareSpec = params['HardwareSpec']
+          @HardwareSpecId = params['HardwareSpecId']
+          unless params['HardwareConfig'].nil?
+            @HardwareConfig = InferenceHardwareConfig.new
+            @HardwareConfig.deserialize(params['HardwareConfig'])
+          end
           unless params['AutoScalingConfig'].nil?
             @AutoScalingConfig = InferenceAutoScalingConfig.new
             @AutoScalingConfig.deserialize(params['AutoScalingConfig'])
@@ -16860,22 +16941,25 @@ module TencentCloud
 
       # 推理服务资源配置的修改参数。
       class InferenceResourceConfigForModify < TencentCloud::Common::AbstractModel
-        # @param ScalingMode: 扩容缩容的方式。取值有：<li>Auto：根据请求量自动调整实例数量；</li><li>Manual：人工设置固定的实例数量。</li>
+        # @param ScalingMode: <p>扩容缩容的方式。取值有：<li>Auto：根据请求量自动调整实例数量；</li><li>Manual：人工设置固定的实例数量。</li></p>
         # @type ScalingMode: String
-        # @param AutoScalingConfig: 推理服务自动伸缩配置。当 ScalingMode 为 Auto 时必填。
+        # @param AutoScalingConfig: <p>推理服务自动伸缩配置。当 ScalingMode 为 Auto 时必填。</p>
         # @type AutoScalingConfig: :class:`Tencentcloud::Teo.v20220901.models.InferenceAutoScalingConfig`
-        # @param ManualInstanceConfig: 推理服务人工设置实例配置。当 ScalingMode 为 Manual 时必填。
+        # @param ManualInstanceConfig: <p>推理服务人工设置实例配置。当 ScalingMode 为 Manual 时必填。</p>
         # @type ManualInstanceConfig: :class:`Tencentcloud::Teo.v20220901.models.InferenceManualInstanceConfig`
-        # @param Concurrency: 单实例的并发数。默认值为 1。
+        # @param Concurrency: <p>单实例的并发数。默认值为 1。</p>
         # @type Concurrency: Integer
+        # @param HardwareConfig: <p>推理服务的硬件资源配置。</p>
+        # @type HardwareConfig: :class:`Tencentcloud::Teo.v20220901.models.InferenceHardwareConfigForModify`
 
-        attr_accessor :ScalingMode, :AutoScalingConfig, :ManualInstanceConfig, :Concurrency
+        attr_accessor :ScalingMode, :AutoScalingConfig, :ManualInstanceConfig, :Concurrency, :HardwareConfig
 
-        def initialize(scalingmode=nil, autoscalingconfig=nil, manualinstanceconfig=nil, concurrency=nil)
+        def initialize(scalingmode=nil, autoscalingconfig=nil, manualinstanceconfig=nil, concurrency=nil, hardwareconfig=nil)
           @ScalingMode = scalingmode
           @AutoScalingConfig = autoscalingconfig
           @ManualInstanceConfig = manualinstanceconfig
           @Concurrency = concurrency
+          @HardwareConfig = hardwareconfig
         end
 
         def deserialize(params)
@@ -16889,6 +16973,10 @@ module TencentCloud
             @ManualInstanceConfig.deserialize(params['ManualInstanceConfig'])
           end
           @Concurrency = params['Concurrency']
+          unless params['HardwareConfig'].nil?
+            @HardwareConfig = InferenceHardwareConfigForModify.new
+            @HardwareConfig.deserialize(params['HardwareConfig'])
+          end
         end
       end
 

@@ -1903,6 +1903,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # DescribeNDRDataLeakOutAlertDetail -- 查询出站数据泄露风险详情
+
+        # @param request: Request instance for DescribeNDRDataLeakOutAlertDetail.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::DescribeNDRDataLeakOutAlertDetailRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::DescribeNDRDataLeakOutAlertDetailResponse`
+        def DescribeNDRDataLeakOutAlertDetail(request)
+          body = send_request('DescribeNDRDataLeakOutAlertDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeNDRDataLeakOutAlertDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # DescribeNDRDataLeakOutAlertList -- 查询NDR数据泄露出站告警列表
 
         # @param request: Request instance for DescribeNDRDataLeakOutAlertList.

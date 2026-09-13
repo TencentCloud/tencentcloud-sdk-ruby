@@ -5052,10 +5052,12 @@ module TencentCloud
         # @type Seed: Integer
         # @param SceneType: <p>场景类型。取值如下：<li>当 ModelName 为 Hunyuan 时：   3d_panorama 表示全景图；</li><li>其他 ModelName 暂不支持。</li></p>
         # @type SceneType: String
+        # @param ExtInfo: <p>透传参数。</p>
+        # @type ExtInfo: String
 
-        attr_accessor :ModelName, :ModelVersion, :FileInfos, :Prompt, :NegativePrompt, :EnhancePrompt, :GenerationMode, :OutputConfig, :Seed, :SceneType
+        attr_accessor :ModelName, :ModelVersion, :FileInfos, :Prompt, :NegativePrompt, :EnhancePrompt, :GenerationMode, :OutputConfig, :Seed, :SceneType, :ExtInfo
 
-        def initialize(modelname=nil, modelversion=nil, fileinfos=nil, prompt=nil, negativeprompt=nil, enhanceprompt=nil, generationmode=nil, outputconfig=nil, seed=nil, scenetype=nil)
+        def initialize(modelname=nil, modelversion=nil, fileinfos=nil, prompt=nil, negativeprompt=nil, enhanceprompt=nil, generationmode=nil, outputconfig=nil, seed=nil, scenetype=nil, extinfo=nil)
           @ModelName = modelname
           @ModelVersion = modelversion
           @FileInfos = fileinfos
@@ -5066,6 +5068,7 @@ module TencentCloud
           @OutputConfig = outputconfig
           @Seed = seed
           @SceneType = scenetype
+          @ExtInfo = extinfo
         end
 
         def deserialize(params)
@@ -5089,6 +5092,7 @@ module TencentCloud
           end
           @Seed = params['Seed']
           @SceneType = params['SceneType']
+          @ExtInfo = params['ExtInfo']
         end
       end
 
@@ -5773,10 +5777,12 @@ module TencentCloud
         # @type SceneType: String
         # @param Seed: <p>模型随机种子。</p>
         # @type Seed: Integer
+        # @param ExtInfo: <p>透传参数。</p>
+        # @type ExtInfo: String
 
-        attr_accessor :ModelName, :ModelVersion, :FileInfos, :SubjectInfos, :LastFrameFileId, :LastFrameUrl, :Prompt, :NegativePrompt, :EnhancePrompt, :GenerationMode, :OutputConfig, :InputRegion, :SceneType, :Seed
+        attr_accessor :ModelName, :ModelVersion, :FileInfos, :SubjectInfos, :LastFrameFileId, :LastFrameUrl, :Prompt, :NegativePrompt, :EnhancePrompt, :GenerationMode, :OutputConfig, :InputRegion, :SceneType, :Seed, :ExtInfo
 
-        def initialize(modelname=nil, modelversion=nil, fileinfos=nil, subjectinfos=nil, lastframefileid=nil, lastframeurl=nil, prompt=nil, negativeprompt=nil, enhanceprompt=nil, generationmode=nil, outputconfig=nil, inputregion=nil, scenetype=nil, seed=nil)
+        def initialize(modelname=nil, modelversion=nil, fileinfos=nil, subjectinfos=nil, lastframefileid=nil, lastframeurl=nil, prompt=nil, negativeprompt=nil, enhanceprompt=nil, generationmode=nil, outputconfig=nil, inputregion=nil, scenetype=nil, seed=nil, extinfo=nil)
           @ModelName = modelname
           @ModelVersion = modelversion
           @FileInfos = fileinfos
@@ -5791,6 +5797,7 @@ module TencentCloud
           @InputRegion = inputregion
           @SceneType = scenetype
           @Seed = seed
+          @ExtInfo = extinfo
         end
 
         def deserialize(params)
@@ -5825,6 +5832,7 @@ module TencentCloud
           @InputRegion = params['InputRegion']
           @SceneType = params['SceneType']
           @Seed = params['Seed']
+          @ExtInfo = params['ExtInfo']
         end
       end
 

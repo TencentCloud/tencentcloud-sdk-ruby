@@ -415,6 +415,56 @@ module TencentCloud
         end
       end
 
+      # BatchCreateTWeSeeSubscription请求参数结构体
+      class BatchCreateTWeSeeSubscriptionRequest < TencentCloud::Common::AbstractModel
+        # @param Entries: 待开通的订阅列表
+        # @type Entries: Array
+
+        attr_accessor :Entries
+
+        def initialize(entries=nil)
+          @Entries = entries
+        end
+
+        def deserialize(params)
+          unless params['Entries'].nil?
+            @Entries = []
+            params['Entries'].each do |i|
+              seecreatesubscriptionentry_tmp = SeeCreateSubscriptionEntry.new
+              seecreatesubscriptionentry_tmp.deserialize(i)
+              @Entries << seecreatesubscriptionentry_tmp
+            end
+          end
+        end
+      end
+
+      # BatchCreateTWeSeeSubscription返回参数结构体
+      class BatchCreateTWeSeeSubscriptionResponse < TencentCloud::Common::AbstractModel
+        # @param Results: 订阅开通结果列表
+        # @type Results: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Results, :RequestId
+
+        def initialize(results=nil, requestid=nil)
+          @Results = results
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Results'].nil?
+            @Results = []
+            params['Results'].each do |i|
+              seecreatesubscriptionresult_tmp = SeeCreateSubscriptionResult.new
+              seecreatesubscriptionresult_tmp.deserialize(i)
+              @Results << seecreatesubscriptionresult_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # BatchInvokeTWeSeeRecognitionTask请求参数结构体
       class BatchInvokeTWeSeeRecognitionTaskRequest < TencentCloud::Common::AbstractModel
         # @param Inputs: 待执行的 TWeSee 语义理解任务列表
@@ -494,6 +544,56 @@ module TencentCloud
           @BurnMethod = params['BurnMethod']
           @CreateTime = params['CreateTime']
           @ProductName = params['ProductName']
+        end
+      end
+
+      # BatchRenewTWeSeeSubscription请求参数结构体
+      class BatchRenewTWeSeeSubscriptionRequest < TencentCloud::Common::AbstractModel
+        # @param Entries: 待续费的订阅列表
+        # @type Entries: Array
+
+        attr_accessor :Entries
+
+        def initialize(entries=nil)
+          @Entries = entries
+        end
+
+        def deserialize(params)
+          unless params['Entries'].nil?
+            @Entries = []
+            params['Entries'].each do |i|
+              seerenewsubscriptionentry_tmp = SeeRenewSubscriptionEntry.new
+              seerenewsubscriptionentry_tmp.deserialize(i)
+              @Entries << seerenewsubscriptionentry_tmp
+            end
+          end
+        end
+      end
+
+      # BatchRenewTWeSeeSubscription返回参数结构体
+      class BatchRenewTWeSeeSubscriptionResponse < TencentCloud::Common::AbstractModel
+        # @param Results: 订阅续费结果列表
+        # @type Results: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Results, :RequestId
+
+        def initialize(results=nil, requestid=nil)
+          @Results = results
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Results'].nil?
+            @Results = []
+            params['Results'].each do |i|
+              seerenewsubscriptionresult_tmp = SeeRenewSubscriptionResult.new
+              seerenewsubscriptionresult_tmp.deserialize(i)
+              @Results << seerenewsubscriptionresult_tmp
+            end
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -16333,6 +16433,84 @@ module TencentCloud
         end
       end
 
+      # 待开通的 TWeSee 预付费订阅信息
+      class SeeCreateSubscriptionEntry < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品 ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param ServiceType: 算法类型。可选值：
+
+        # - `VID_COMP`：视频理解
+        # - `IMG_COMP`：图片理解
+        # @type ServiceType: String
+        # @param ServiceTier: 套餐规格。可选值：
+
+        # - `BASIC`：基础版
+        # - `ADVANCED`：高级版
+        # @type ServiceTier: String
+        # @param Period: 订阅购买时长，单位：月
+        # @type Period: Integer
+        # @param CustomOrderId: 自定义订单 ID
+        # @type CustomOrderId: String
+        # @param RenewFlag: 续费标识。可选值：
+
+        # - `NOTIFY_AND_MANUAL_RENEW`：到期前通知并手动续费（默认）
+        # - `NOTIFY_AND_AUTO_RENEW`：到期前通知并自动续费
+        # - `DISABLE_NOTIFY_AND_MANUAL_RENEW`：不通知且手动续费
+        # @type RenewFlag: String
+        # @param ChannelId: 通道 ID
+        # @type ChannelId: Integer
+
+        attr_accessor :ProductId, :DeviceName, :ServiceType, :ServiceTier, :Period, :CustomOrderId, :RenewFlag, :ChannelId
+
+        def initialize(productid=nil, devicename=nil, servicetype=nil, servicetier=nil, period=nil, customorderid=nil, renewflag=nil, channelid=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @ServiceType = servicetype
+          @ServiceTier = servicetier
+          @Period = period
+          @CustomOrderId = customorderid
+          @RenewFlag = renewflag
+          @ChannelId = channelid
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @ServiceType = params['ServiceType']
+          @ServiceTier = params['ServiceTier']
+          @Period = params['Period']
+          @CustomOrderId = params['CustomOrderId']
+          @RenewFlag = params['RenewFlag']
+          @ChannelId = params['ChannelId']
+        end
+      end
+
+      # TWeSee 预付费订阅开通结果
+      class SeeCreateSubscriptionResult < TencentCloud::Common::AbstractModel
+        # @param OrderId: 订单 ID
+        # @type OrderId: String
+        # @param Status: 订单状态
+        # @type Status: String
+        # @param ResourceId: 资源 ID
+        # @type ResourceId: String
+
+        attr_accessor :OrderId, :Status, :ResourceId
+
+        def initialize(orderid=nil, status=nil, resourceid=nil)
+          @OrderId = orderid
+          @Status = status
+          @ResourceId = resourceid
+        end
+
+        def deserialize(params)
+          @OrderId = params['OrderId']
+          @Status = params['Status']
+          @ResourceId = params['ResourceId']
+        end
+      end
+
       # TWeSee 任务删除条件
       class SeeDeleteTaskCondition < TencentCloud::Common::AbstractModel
         # @param Type: <p>条件类型。</p><p>枚举值：</p><ul><li>TaskId： 精确匹配任务 ID</li><li>TimeRange： 匹配任务时间范围与指定范围有重合的任务。值的格式为 <code>UnixTimestampStart,UnixTimestampEnd</code>，其中起止时间均为秒级 UNIX 时间戳，且结束时间不早于起始时间</li><li>CreateTimeBefore： 匹配在指定时间前创建的任务。值为秒级 UNIX 时间戳</li><li>COSURI： 精确匹配任务来源 COS URI，值必须以 <code>cos://</code> 开头</li><li>COSURIPrefix： 按前缀匹配任务来源 COS URI，值必须以 <code>cos://</code> 开头</li></ul>
@@ -16520,6 +16698,69 @@ module TencentCloud
         end
       end
 
+      # 待续费的 TWeSee 预付费订阅信息
+      class SeeRenewSubscriptionEntry < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品 ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param ServiceType: 算法类型。可选值：
+
+        # - `VID_COMP`：视频理解
+        # - `IMG_COMP`：图片理解
+        # @type ServiceType: String
+        # @param Period: 续费时长，单位：月
+        # @type Period: Integer
+        # @param CustomOrderId: 自定义订单 ID
+        # @type CustomOrderId: String
+        # @param ChannelId: 通道 ID
+        # @type ChannelId: Integer
+
+        attr_accessor :ProductId, :DeviceName, :ServiceType, :Period, :CustomOrderId, :ChannelId
+
+        def initialize(productid=nil, devicename=nil, servicetype=nil, period=nil, customorderid=nil, channelid=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @ServiceType = servicetype
+          @Period = period
+          @CustomOrderId = customorderid
+          @ChannelId = channelid
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @ServiceType = params['ServiceType']
+          @Period = params['Period']
+          @CustomOrderId = params['CustomOrderId']
+          @ChannelId = params['ChannelId']
+        end
+      end
+
+      # TWeSee 预付费订阅续费结果
+      class SeeRenewSubscriptionResult < TencentCloud::Common::AbstractModel
+        # @param OrderId: 订单 ID
+        # @type OrderId: String
+        # @param Status: 订单状态
+        # @type Status: String
+        # @param ResourceId: 资源 ID
+        # @type ResourceId: String
+
+        attr_accessor :OrderId, :Status, :ResourceId
+
+        def initialize(orderid=nil, status=nil, resourceid=nil)
+          @OrderId = orderid
+          @Status = status
+          @ResourceId = resourceid
+        end
+
+        def deserialize(params)
+          @OrderId = params['OrderId']
+          @Status = params['Status']
+          @ResourceId = params['ResourceId']
+        end
+      end
+
       # TWeSee 统计数据点
       class SeeStatItem < TencentCloud::Common::AbstractModel
         # @param Time: 时间
@@ -16654,10 +16895,12 @@ module TencentCloud
         # @type UpdateTime: Integer
         # @param COSURI: <p>直传 COS 的对象 URI</p>
         # @type COSURI: String
+        # @param InputURL: <p>任务的输入 URL</p>
+        # @type InputURL: String
 
-        attr_accessor :TaskId, :Status, :Metadata, :ServiceCategory, :ServiceType, :ServiceTier, :ComprehensionResult, :CompHighlightResult, :DetectContinuousResult, :FaceRecognitionResult, :SummarizeResult, :CostBasic, :CostAdvanced, :Files, :FilesInfo, :CreateTime, :UpdateTime, :COSURI
+        attr_accessor :TaskId, :Status, :Metadata, :ServiceCategory, :ServiceType, :ServiceTier, :ComprehensionResult, :CompHighlightResult, :DetectContinuousResult, :FaceRecognitionResult, :SummarizeResult, :CostBasic, :CostAdvanced, :Files, :FilesInfo, :CreateTime, :UpdateTime, :COSURI, :InputURL
 
-        def initialize(taskid=nil, status=nil, metadata=nil, servicecategory=nil, servicetype=nil, servicetier=nil, comprehensionresult=nil, comphighlightresult=nil, detectcontinuousresult=nil, facerecognitionresult=nil, summarizeresult=nil, costbasic=nil, costadvanced=nil, files=nil, filesinfo=nil, createtime=nil, updatetime=nil, cosuri=nil)
+        def initialize(taskid=nil, status=nil, metadata=nil, servicecategory=nil, servicetype=nil, servicetier=nil, comprehensionresult=nil, comphighlightresult=nil, detectcontinuousresult=nil, facerecognitionresult=nil, summarizeresult=nil, costbasic=nil, costadvanced=nil, files=nil, filesinfo=nil, createtime=nil, updatetime=nil, cosuri=nil, inputurl=nil)
           @TaskId = taskid
           @Status = status
           @Metadata = metadata
@@ -16676,6 +16919,7 @@ module TencentCloud
           @CreateTime = createtime
           @UpdateTime = updatetime
           @COSURI = cosuri
+          @InputURL = inputurl
         end
 
         def deserialize(params)
@@ -16722,6 +16966,7 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
           @COSURI = params['COSURI']
+          @InputURL = params['InputURL']
         end
       end
 
@@ -18255,10 +18500,14 @@ module TencentCloud
         # @type ChannelId: Integer
         # @param Thumbnail: <p>缩略图路径</p>
         # @type Thumbnail: String
+        # @param Confidence: <p>搜索结果置信度</p><p>枚举值：</p><ul><li>high： 高（精准匹配，或包括性的匹配）</li><li>medium： 中（近义匹配）</li><li>low： 低（模糊匹配，部分要素与用户 Query 可能不符合）</li></ul>
+        # @type Confidence: String
+        # @param TaskInfo: <p>任务信息</p><p>当入参 WithTaskInfo = true 时，出参中会返回任务信息</p>
+        # @type TaskInfo: :class:`Tencentcloud::Iotexplorer.v20190423.models.SeeTaskInfo`
 
-        attr_accessor :Id, :ProductId, :DeviceName, :StartTimeMs, :EndTimeMs, :EventId, :Summary, :ChannelId, :Thumbnail
+        attr_accessor :Id, :ProductId, :DeviceName, :StartTimeMs, :EndTimeMs, :EventId, :Summary, :ChannelId, :Thumbnail, :Confidence, :TaskInfo
 
-        def initialize(id=nil, productid=nil, devicename=nil, starttimems=nil, endtimems=nil, eventid=nil, summary=nil, channelid=nil, thumbnail=nil)
+        def initialize(id=nil, productid=nil, devicename=nil, starttimems=nil, endtimems=nil, eventid=nil, summary=nil, channelid=nil, thumbnail=nil, confidence=nil, taskinfo=nil)
           @Id = id
           @ProductId = productid
           @DeviceName = devicename
@@ -18268,6 +18517,8 @@ module TencentCloud
           @Summary = summary
           @ChannelId = channelid
           @Thumbnail = thumbnail
+          @Confidence = confidence
+          @TaskInfo = taskinfo
         end
 
         def deserialize(params)
@@ -18280,6 +18531,11 @@ module TencentCloud
           @Summary = params['Summary']
           @ChannelId = params['ChannelId']
           @Thumbnail = params['Thumbnail']
+          @Confidence = params['Confidence']
+          unless params['TaskInfo'].nil?
+            @TaskInfo = SeeTaskInfo.new
+            @TaskInfo.deserialize(params['TaskInfo'])
+          end
         end
       end
 

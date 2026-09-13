@@ -6733,6 +6733,205 @@ module TencentCloud
         end
       end
 
+      # DescribeNDRDataLeakOutAlertDetail请求参数结构体
+      class DescribeNDRDataLeakOutAlertDetailRequest < TencentCloud::Common::AbstractModel
+        # @param RiskId: 风险事件ID
+        # @type RiskId: String
+
+        attr_accessor :RiskId
+
+        def initialize(riskid=nil)
+          @RiskId = riskid
+        end
+
+        def deserialize(params)
+          @RiskId = params['RiskId']
+        end
+      end
+
+      # DescribeNDRDataLeakOutAlertDetail返回参数结构体
+      class DescribeNDRDataLeakOutAlertDetailResponse < TencentCloud::Common::AbstractModel
+        # @param RiskID: 风险事件ID
+        # @type RiskID: String
+        # @param InstanceId: 资产实例ID
+        # @type InstanceId: String
+        # @param InstanceName: 资产实例名称
+        # @type InstanceName: String
+        # @param InstanceType: 资产实例类型
+        # @type InstanceType: String
+        # @param Region: 资产所在地域
+        # @type Region: String
+        # @param SrcIP: 源IP
+        # @type SrcIP: String
+        # @param DstIPPort: 目的IP端口
+        # @type DstIPPort: String
+        # @param Hostname: 目的Host
+        # @type Hostname: String
+        # @param DstServiceType: 目的服务类型
+        # @type DstServiceType: String
+        # @param DstServiceName: 目的服务名称
+        # @type DstServiceName: String
+        # @param ApiPattern: 访问API
+        # @type ApiPattern: String
+        # @param DstGeoLocation: 目的IP地理信息
+        # @type DstGeoLocation: String
+        # @param AppProto: 应用层协议
+        # @type AppProto: String
+        # @param LeakTypeSet: 敏感类型集合
+        # @type LeakTypeSet: String
+        # @param EventCount: 事件数量
+        # @type EventCount: Integer
+        # @param LeakDataCount: 敏感数据数量
+        # @type LeakDataCount: Integer
+        # @param Level: 原始风险等级
+        # @type Level: Integer
+        # @param Status: 处置状态
+        # @type Status: Integer
+        # @param Comment: 处置备注
+        # @type Comment: String
+        # @param FirstIdentificationTime: 首次识别时间
+        # @type FirstIdentificationTime: String
+        # @param LatestIdentificationTime: 最近识别时间
+        # @type LatestIdentificationTime: String
+        # @param AnalysisStatus: AI任务分析状态
+        # @type AnalysisStatus: Integer
+        # @param AnalysisFailReason: AI任务失败原因
+        # @type AnalysisFailReason: String
+        # @param LastAnalysisTime: 最近一次AI分析时间
+        # @type LastAnalysisTime: String
+        # @param ApiBizType: API业务类型
+        # @type ApiBizType: String
+        # @param ApiBizDescription: API业务描述
+        # @type ApiBizDescription: String
+        # @param RiskScenario: 风险场景（类型）
+        # @type RiskScenario: String
+        # @param RiskScenarioDetail: 风险场景（类型）描述
+        # @type RiskScenarioDetail: String
+        # @param RiskSummary: 风险总结（概览）
+        # @type RiskSummary: String
+        # @param RiskBasis: 推断依据
+        # @type RiskBasis: String
+        # @param ImpactScope: 风险影响范围
+        # @type ImpactScope: String
+        # @param AiSuggestedLevel: AI建议风险等级
+        # @type AiSuggestedLevel: Integer
+        # @param DisposalSuggestions: 处置建议
+        # @type DisposalSuggestions: Array
+        # @param HttpRequestHeader: http请求头
+        # @type HttpRequestHeader: String
+        # @param HttpRequestBody: http请求体
+        # @type HttpRequestBody: String
+        # @param HttpResponseHeader: http响应头
+        # @type HttpResponseHeader: String
+        # @param HttpResponseBody: http响应体
+        # @type HttpResponseBody: String
+        # @param LeakDataEntries: 敏感数据条目
+        # @type LeakDataEntries: String
+        # @param MaskStatus: 脱敏状态
+        # @type MaskStatus: String
+        # @param HighestLevel: 最高敏感等级
+        # @type HighestLevel: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RiskID, :InstanceId, :InstanceName, :InstanceType, :Region, :SrcIP, :DstIPPort, :Hostname, :DstServiceType, :DstServiceName, :ApiPattern, :DstGeoLocation, :AppProto, :LeakTypeSet, :EventCount, :LeakDataCount, :Level, :Status, :Comment, :FirstIdentificationTime, :LatestIdentificationTime, :AnalysisStatus, :AnalysisFailReason, :LastAnalysisTime, :ApiBizType, :ApiBizDescription, :RiskScenario, :RiskScenarioDetail, :RiskSummary, :RiskBasis, :ImpactScope, :AiSuggestedLevel, :DisposalSuggestions, :HttpRequestHeader, :HttpRequestBody, :HttpResponseHeader, :HttpResponseBody, :LeakDataEntries, :MaskStatus, :HighestLevel, :RequestId
+
+        def initialize(riskid=nil, instanceid=nil, instancename=nil, instancetype=nil, region=nil, srcip=nil, dstipport=nil, hostname=nil, dstservicetype=nil, dstservicename=nil, apipattern=nil, dstgeolocation=nil, appproto=nil, leaktypeset=nil, eventcount=nil, leakdatacount=nil, level=nil, status=nil, comment=nil, firstidentificationtime=nil, latestidentificationtime=nil, analysisstatus=nil, analysisfailreason=nil, lastanalysistime=nil, apibiztype=nil, apibizdescription=nil, riskscenario=nil, riskscenariodetail=nil, risksummary=nil, riskbasis=nil, impactscope=nil, aisuggestedlevel=nil, disposalsuggestions=nil, httprequestheader=nil, httprequestbody=nil, httpresponseheader=nil, httpresponsebody=nil, leakdataentries=nil, maskstatus=nil, highestlevel=nil, requestid=nil)
+          @RiskID = riskid
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @InstanceType = instancetype
+          @Region = region
+          @SrcIP = srcip
+          @DstIPPort = dstipport
+          @Hostname = hostname
+          @DstServiceType = dstservicetype
+          @DstServiceName = dstservicename
+          @ApiPattern = apipattern
+          @DstGeoLocation = dstgeolocation
+          @AppProto = appproto
+          @LeakTypeSet = leaktypeset
+          @EventCount = eventcount
+          @LeakDataCount = leakdatacount
+          @Level = level
+          @Status = status
+          @Comment = comment
+          @FirstIdentificationTime = firstidentificationtime
+          @LatestIdentificationTime = latestidentificationtime
+          @AnalysisStatus = analysisstatus
+          @AnalysisFailReason = analysisfailreason
+          @LastAnalysisTime = lastanalysistime
+          @ApiBizType = apibiztype
+          @ApiBizDescription = apibizdescription
+          @RiskScenario = riskscenario
+          @RiskScenarioDetail = riskscenariodetail
+          @RiskSummary = risksummary
+          @RiskBasis = riskbasis
+          @ImpactScope = impactscope
+          @AiSuggestedLevel = aisuggestedlevel
+          @DisposalSuggestions = disposalsuggestions
+          @HttpRequestHeader = httprequestheader
+          @HttpRequestBody = httprequestbody
+          @HttpResponseHeader = httpresponseheader
+          @HttpResponseBody = httpresponsebody
+          @LeakDataEntries = leakdataentries
+          @MaskStatus = maskstatus
+          @HighestLevel = highestlevel
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RiskID = params['RiskID']
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @InstanceType = params['InstanceType']
+          @Region = params['Region']
+          @SrcIP = params['SrcIP']
+          @DstIPPort = params['DstIPPort']
+          @Hostname = params['Hostname']
+          @DstServiceType = params['DstServiceType']
+          @DstServiceName = params['DstServiceName']
+          @ApiPattern = params['ApiPattern']
+          @DstGeoLocation = params['DstGeoLocation']
+          @AppProto = params['AppProto']
+          @LeakTypeSet = params['LeakTypeSet']
+          @EventCount = params['EventCount']
+          @LeakDataCount = params['LeakDataCount']
+          @Level = params['Level']
+          @Status = params['Status']
+          @Comment = params['Comment']
+          @FirstIdentificationTime = params['FirstIdentificationTime']
+          @LatestIdentificationTime = params['LatestIdentificationTime']
+          @AnalysisStatus = params['AnalysisStatus']
+          @AnalysisFailReason = params['AnalysisFailReason']
+          @LastAnalysisTime = params['LastAnalysisTime']
+          @ApiBizType = params['ApiBizType']
+          @ApiBizDescription = params['ApiBizDescription']
+          @RiskScenario = params['RiskScenario']
+          @RiskScenarioDetail = params['RiskScenarioDetail']
+          @RiskSummary = params['RiskSummary']
+          @RiskBasis = params['RiskBasis']
+          @ImpactScope = params['ImpactScope']
+          @AiSuggestedLevel = params['AiSuggestedLevel']
+          unless params['DisposalSuggestions'].nil?
+            @DisposalSuggestions = []
+            params['DisposalSuggestions'].each do |i|
+              disposalsuggestionitem_tmp = DisposalSuggestionItem.new
+              disposalsuggestionitem_tmp.deserialize(i)
+              @DisposalSuggestions << disposalsuggestionitem_tmp
+            end
+          end
+          @HttpRequestHeader = params['HttpRequestHeader']
+          @HttpRequestBody = params['HttpRequestBody']
+          @HttpResponseHeader = params['HttpResponseHeader']
+          @HttpResponseBody = params['HttpResponseBody']
+          @LeakDataEntries = params['LeakDataEntries']
+          @MaskStatus = params['MaskStatus']
+          @HighestLevel = params['HighestLevel']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeNDRDataLeakOutAlertList请求参数结构体
       class DescribeNDRDataLeakOutAlertListRequest < TencentCloud::Common::AbstractModel
         # @param Limit: 每页条数
@@ -8750,6 +8949,34 @@ module TencentCloud
           end
           @Total = params['Total']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 处置建议-条目
+      class DisposalSuggestionItem < TencentCloud::Common::AbstractModel
+        # @param Action: 处置动作
+        # @type Action: String
+        # @param Target: 处置对象
+        # @type Target: String
+        # @param Priority: 处置优先级
+        # @type Priority: String
+        # @param Suggestion: 处置建议
+        # @type Suggestion: String
+
+        attr_accessor :Action, :Target, :Priority, :Suggestion
+
+        def initialize(action=nil, target=nil, priority=nil, suggestion=nil)
+          @Action = action
+          @Target = target
+          @Priority = priority
+          @Suggestion = suggestion
+        end
+
+        def deserialize(params)
+          @Action = params['Action']
+          @Target = params['Target']
+          @Priority = params['Priority']
+          @Suggestion = params['Suggestion']
         end
       end
 

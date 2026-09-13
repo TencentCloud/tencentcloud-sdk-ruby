@@ -101,6 +101,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 批量开通 TWeSee 预付费订阅
+
+        # @param request: Request instance for BatchCreateTWeSeeSubscription.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::BatchCreateTWeSeeSubscriptionRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::BatchCreateTWeSeeSubscriptionResponse`
+        def BatchCreateTWeSeeSubscription(request)
+          body = send_request('BatchCreateTWeSeeSubscription', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BatchCreateTWeSeeSubscriptionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 批量同步执行 TWeSee 语义理解任务
 
         # @param request: Request instance for BatchInvokeTWeSeeRecognitionTask.
@@ -111,6 +135,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = BatchInvokeTWeSeeRecognitionTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量续费 TWeSee 预付费订阅
+
+        # @param request: Request instance for BatchRenewTWeSeeSubscription.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::BatchRenewTWeSeeSubscriptionRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::BatchRenewTWeSeeSubscriptionResponse`
+        def BatchRenewTWeSeeSubscription(request)
+          body = send_request('BatchRenewTWeSeeSubscription', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BatchRenewTWeSeeSubscriptionResponse.new
             model.deserialize(response['Response'])
             model
           else

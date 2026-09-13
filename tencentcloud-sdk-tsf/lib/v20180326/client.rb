@@ -4236,32 +4236,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 后端服务已经删除这个接口,  API 接口下线处理
-
-        # 重关联业务日志配置
-
-        # @param request: Request instance for ReassociateBusinessLogConfig.
-        # @type request: :class:`Tencentcloud::tsf::V20180326::ReassociateBusinessLogConfigRequest`
-        # @rtype: :class:`Tencentcloud::tsf::V20180326::ReassociateBusinessLogConfigResponse`
-        def ReassociateBusinessLogConfig(request)
-          body = send_request('ReassociateBusinessLogConfig', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = ReassociateBusinessLogConfigResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 发布Api分组
 
         # @param request: Request instance for ReleaseApiGroup.

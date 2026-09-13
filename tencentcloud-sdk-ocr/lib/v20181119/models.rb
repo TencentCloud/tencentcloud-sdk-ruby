@@ -9125,16 +9125,15 @@ module TencentCloud
 
       # RecognizeThaiIDCardOCR请求参数结构体
       class RecognizeThaiIDCardOCRRequest < TencentCloud::Common::AbstractModel
-        # @param ImageBase64: 图片的 Base64 值。要求图片经Base64编码后不超过 10M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。建议卡片部分占据图片2/3以上。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
+        # @param ImageBase64: <p>图片的 Base64 值。要求图片经Base64编码后不超过 7M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。建议卡片部分占据图片2/3以上。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。</p>
         # @type ImageBase64: String
-        # @param BackImageBase64: 卡证背面图片的 Base64 值。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经Base64编码后不超过 10M。图片下载时间不超过 3 秒。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
+        # @param BackImageBase64: <p>卡证背面图片的 Base64 值。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经Base64编码后不超过 7M。图片下载时间不超过 3 秒。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。</p>
         # @type BackImageBase64: String
-        # @param ImageUrl: 图片的 Url 地址。要求图片经Base64编码后不超过 10M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。建议卡片部分占据图片2/3以上。建议图片存储于腾讯云，可保障更高的下载速度和稳定性。
+        # @param ImageUrl: <p>图片的 Url 地址。要求图片经Base64编码后不超过 7M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。建议卡片部分占据图片2/3以上。建议图片存储于腾讯云，可保障更高的下载速度和稳定性。</p>
         # @type ImageUrl: String
-        # @param BackImageUrl: 卡证背面图片的 Url 地址。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经 Base64 编码后不超过 10M。图片下载时间不超过 3 秒。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
+        # @param BackImageUrl: <p>卡证背面图片的 Url 地址。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经 Base64 编码后不超过 7M。图片下载时间不超过 3 秒。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。</p>
         # @type BackImageUrl: String
-        # @param CropPortrait: 图片开关。默认为false，不返回泰国身份证头像照片的base64编码。
-        # 设置为true时，返回旋转矫正后的泰国身份证头像照片的base64编码
+        # @param CropPortrait: <p>图片开关。默认为false，不返回泰国身份证头像照片的base64编码。<br>设置为true时，返回旋转矫正后的泰国身份证头像照片的base64编码</p>
         # @type CropPortrait: Boolean
 
         attr_accessor :ImageBase64, :BackImageBase64, :ImageUrl, :BackImageUrl, :CropPortrait
@@ -9158,47 +9157,41 @@ module TencentCloud
 
       # RecognizeThaiIDCardOCR返回参数结构体
       class RecognizeThaiIDCardOCRResponse < TencentCloud::Common::AbstractModel
-        # @param ID: 身份证号码
+        # @param ID: <p>身份证号码</p>
         # @type ID: String
-        # @param ThaiName: 泰文姓名
+        # @param ThaiName: <p>泰文姓名</p>
         # @type ThaiName: String
-        # @param EnFirstName: 英文姓名
+        # @param EnFirstName: <p>英文姓名</p>
         # @type EnFirstName: String
-        # @param EnLastName: 英文姓名
+        # @param EnLastName: <p>英文姓名</p>
         # @type EnLastName: String
-        # @param IssueDate: 泰文签发日期
+        # @param IssueDate: <p>泰文签发日期</p>
         # @type IssueDate: String
-        # @param ExpirationDate: 泰文到期日期
+        # @param ExpirationDate: <p>泰文到期日期</p>
         # @type ExpirationDate: String
-        # @param EnIssueDate: 英文签发日期
+        # @param EnIssueDate: <p>英文签发日期</p>
         # @type EnIssueDate: String
-        # @param EnExpirationDate: 英文到期日期
+        # @param EnExpirationDate: <p>英文到期日期</p>
         # @type EnExpirationDate: String
-        # @param Birthday: 泰文出生日期
+        # @param Birthday: <p>泰文出生日期</p>
         # @type Birthday: String
-        # @param EnBirthday: 英文出生日期
+        # @param EnBirthday: <p>英文出生日期</p>
         # @type EnBirthday: String
-        # @param Religion: 宗教信仰
+        # @param Religion: <p>宗教信仰</p>
         # @type Religion: String
-        # @param SerialNumber: 序列号
+        # @param SerialNumber: <p>序列号</p>
         # @type SerialNumber: String
-        # @param Address: 地址
+        # @param Address: <p>地址</p>
         # @type Address: String
-        # @param LaserID: 背面号码
+        # @param LaserID: <p>背面号码</p>
         # @type LaserID: String
-        # @param PortraitImage: 证件人像照片抠取
+        # @param PortraitImage: <p>证件人像照片抠取</p>
         # @type PortraitImage: String
-        # @param WarnCardInfos: 告警码
-        # -9101 证件边框不完整告警
-        # -9102 证件复印件告警
-        # -9103 证件翻拍告警
-        # -9107 证件反光告警
-        # -9108 证件模糊告警
-        # -9109 告警能力未开通
+        # @param WarnCardInfos: <p>告警码<br>-9101 证件边框不完整告警<br>-9102 证件复印件告警<br>-9103 证件翻拍告警<br>-9104 证件PS告警<br>-9107 证件反光告警<br>-9108 证件模糊告警<br>-9109 告警能力未开通</p>
         # @type WarnCardInfos: Array
-        # @param AdvancedInfo: 该字段已废弃， 将固定返回"1"，不建议使用。
+        # @param AdvancedInfo: <p>该字段已废弃， 将固定返回&quot;1&quot;，不建议使用。</p>
         # @type AdvancedInfo: String
-        # @param CardCount: 卡证正面图片中，证件主体的数量（仅请求曼谷地域[ap-bangkok]返回）
+        # @param CardCount: <p>卡证正面图片中，证件主体的数量（仅请求曼谷地域[ap-bangkok]返回）</p>
         # @type CardCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

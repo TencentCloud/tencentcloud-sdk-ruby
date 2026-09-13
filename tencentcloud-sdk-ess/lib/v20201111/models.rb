@@ -157,7 +157,7 @@ module TencentCloud
 
       # 合同参与者信息。
       class ApproverInfo < TencentCloud::Common::AbstractModel
-        # @param ApproverType: <p>在指定签署方时，可选择企业B端或个人C端等不同的参与者类型，可选类型如下:<br><strong>0</strong>：企业<br><strong>1</strong>：个人<br><strong>3</strong>：企业静默签署<br>注：<code>类型为3（企业静默签署）时，此接口会默认完成该签署方的签署。静默签署仅进行盖章操作，不能自动签名。</code><br><strong>7</strong>: 个人自动签署，适用于个人自动签场景。<br>注: <code>个人自动签场景为白名单功能，使用前请联系对接的客户经理沟通。</code></p>
+        # @param ApproverType: <p>在指定签署方时，可选择企业B端或个人C端等不同的参与者类型，可选类型如下:<strong>0</strong>：企业<strong>1</strong>：个人<strong>3</strong>：企业“授权签”注：<code>类型为3（企业“授权签”）时，此接口会默认完成该签署方的签署。“授权签”仅进行盖章操作，不能“授权签”名。</code><strong>7</strong>: 个人“授权签”，适用于个人“授权签”场景。注: <code>个人“授权签”场景为白名单功能，使用前请联系对接的客户经理沟通。</code></p>
         # @type ApproverType: Integer
         # @param ApproverName: <p>签署方经办人的姓名。<br>经办人的姓名将用于身份认证和电子签名，请确保填写的姓名为签署方的真实姓名，而非昵称等代名。</p>
         # @type ApproverName: String
@@ -193,7 +193,7 @@ module TencentCloud
         # @type ApproverVerifyTypes: Array
         # @param ApproverSignTypes: <p>【在用文件发起合同场景下才有效，模板发起场景下需要在模板中配置】您可以指定签署方签署合同的认证校验方式，可传递以下值：</p><ul><li>**1**：人脸认证，需进行人脸识别成功后才能签署合同；</li><li>**2**：签署密码，需输入与用户在腾讯电子签设置的密码一致才能校验成功进行合同签署；</li><li>**3**：运营商三要素，需到运营商处比对手机号实名信息（名字、手机号、证件号）校验一致才能成功进行合同签署。（如果是港澳台客户，建议不要选择这个）</li><li>**5**：设备指纹识别，需要对比手机机主预留的指纹信息，校验一致才能成功进行合同签署。（iOS系统暂不支持该校验方式）</li><li>**6**：设备面容识别，需要对比手机机主预留的人脸信息，校验一致才能成功进行合同签署。（Android系统暂不支持该校验方式）</li></ul><p>默认为：<br>1(人脸认证 ),2(签署密码),3(运营商三要素),5(设备指纹识别),6(设备面容识别)</p><p>注：</p><ol><li>用<font color="red">模板创建合同场景</font>, 签署人的认证方式需要在配置模板的时候指定, <font color="red">在创建合同重新指定无效</font></li><li>运营商三要素认证方式对手机号运营商及前缀有限制,可以参考<a href="https://qian.tencent.com/developers/company/mobile_support">运营商支持列表类</a>得到具体的支持说明</li><li>校验方式不允许只包含<font color="red">设备指纹识别</font>和<font color="red">设备面容识别</font>，至少需要再增加一种其他校验方式。</li><li><font color="red">设备指纹识别</font>和<font color="red">设备面容识别</font>只支持小程序使用，其他端暂不支持。</li></ol>
         # @type ApproverSignTypes: Array
-        # @param ApproverNeedSignReview: <p>此签署人（员工或者个人）签署前，是否需要发起方企业审批，取值如下：</p><ul><li>**false**：（默认）不需要审批，直接签署。</li><li>**true**：需要走审批流程。当到对应参与人签署时，会阻塞其签署操作，等待企业内部审批完成。</li></ul>企业可以通过CreateFlowSignReview审批接口通知腾讯电子签平台企业内部审批结果<ul><li>如果企业通知腾讯电子签平台审核通过，签署方可继续签署动作。</li><li>如果企业通知腾讯电子签平台审核未通过，平台将继续阻塞签署方的签署动作，直到企业通知平台审核通过。</li></ul><p>注：<code>此功能可用于与发起方企业内部的审批流程进行关联，支持手动、静默签署合同</code></p><p><img src="https://qcloudimg.tencent-cloud.cn/raw/b14d5188ed0229d1401e74a9a49cab6d.png" alt="image"></p>
+        # @param ApproverNeedSignReview: <p>此签署人（员工或者个人）签署前，是否需要发起方企业审批，取值如下：<ul><li><strong>false</strong>：（默认）不需要审批，直接签署。</li><li><strong>true</strong>：需要走审批流程。当到对应参与人签署时，会阻塞其签署操作，等待企业内部审批完成。</li></ul>企业可以通过CreateFlowSignReview审批接口通知腾讯电子签平台企业内部审批结果<ul><li>如果企业通知腾讯电子签平台审核通过，签署方可继续签署动作。</li><li>如果企业通知腾讯电子签平台审核未通过，平台将继续阻塞签署方的签署动作，直到企业通知平台审核通过。</li></ul>注：<code>此功能可用于与发起方企业内部的审批流程进行关联，支持手动、“授权签”合同</code><img src="https://qcloudimg.tencent-cloud.cn/raw/b14d5188ed0229d1401e74a9a49cab6d.png" alt="image"></p>
         # @type ApproverNeedSignReview: Boolean
         # @param AddSignComponentsLimits: <p>【在用文件发起合同场景下才有效】<br>在调用<a href="https://qian.tencent.com/developers/companyApis/startFlows/CreateFlowByFiles">用PDF文件创建签署流程</a>创建合同时,如果设置了外层参数SignBeanTag=1(允许签署过程中添加签署控件),则可通过此参数明确规定合同所使用的签署控件类型（骑缝章、普通章法人章等）和具体的印章（印章ID或者印章类型）或签名方式。</p><p>注：<a href="https://qian.tencent.com/developers/company/sign_bean_tag">参考文档和使用示例</a></p>
         # @type AddSignComponentsLimits: Array
@@ -334,7 +334,7 @@ module TencentCloud
         # @type NoTransfer: Boolean
         # @param CanEditApprover: <p>允许编辑签署人信息（嵌入式使用） 默认true-可以编辑 false-不可以编辑</p>
         # @type CanEditApprover: Boolean
-        # @param FillType: <p>签署人信息补充类型，默认无需补充。</p><ul><li> **1** :  动态签署人（可发起合同后再补充签署人信息）注：<code>企业自动签不支持动态补充</code></li></ul><p>注：</p><ol><li><code>使用动态签署人能力前，需登录腾讯电子签控制台打开服务开关</code></li><li>此参数在嵌入式场景下无效。</li></ol>
+        # @param FillType: <p>签署人信息补充类型，默认无需补充。<ul><li> <strong>1</strong> :  动态签署人（可发起合同后再补充签署人信息）注：<code>企业“授权签”不支持动态补充</code></li></ul>注：1. <code>使用动态签署人能力前，需登录腾讯电子签控制台打开服务开关</code>2. 此参数在嵌入式场景下无效。</p>
         # @type FillType: Integer
         # @param FlowReadLimit: <p>签署人阅读合同限制参数<br> <br>取值：</p><ul><li> LimitReadTimeAndBottom，阅读合同必须限制阅读时长并且必须阅读到底</li><li> LimitReadTime，阅读合同仅限制阅读时长</li><li> LimitBottom，阅读合同仅限制必须阅读到底</li><li> NoReadTimeAndBottom，阅读合同不限制阅读时长且不限制阅读到底（白名单功能，请联系客户经理开白使用）</li></ul>
         # @type FlowReadLimit: String
@@ -575,7 +575,7 @@ module TencentCloud
         # @type Name: String
         # @param HasAuthUserList: <p>授权员工列表</p>
         # @type HasAuthUserList: Array
-        # @param HasAuthOrganizationList: <p>授权企业列表（企业自动签时，该字段有值）</p>
+        # @param HasAuthOrganizationList: <p>授权企业列表（企业“授权签”时，该字段有值）</p>
         # @type HasAuthOrganizationList: Array
         # @param AuthUserTotal: <p>授权员工列表总数</p>
         # @type AuthUserTotal: Integer
@@ -676,21 +676,21 @@ module TencentCloud
         end
       end
 
-      # 自动签开启、签署相关配置
+      # “授权签”开启、签署相关配置
       class AutoSignConfig < TencentCloud::Common::AbstractModel
-        # @param UserInfo: <p>自动签开通个人用户信息, 包括名字,身份证等</p>
+        # @param UserInfo: <p>“授权签”开通个人用户信息, 包括名字,身份证等</p>
         # @type UserInfo: :class:`Tencentcloud::Ess.v20201111.models.UserThreeFactor`
         # @param CertInfoCallback: <p>是否回调证书信息:</p><ul><li>**false**: 不需要(默认)</li><li>**true**:需要</li></ul><p>注：<code>该字段已经失效，请勿设置此参数。</code></p>
         # @type CertInfoCallback: Boolean
         # @param UserDefineSeal: <p>是否支持用户自定义签名印章:</p><ul><li>**false**: 不能自己定义(默认)</li><li>**true**: 可以自己定义</li></ul>
         # @type UserDefineSeal: Boolean
-        # @param SealImgCallback: <p>回调中是否需要自动签将要使用的印章(签名) 图片的 base64:</p><ul><li>**false**: 不需要(默认)</li><li>**true**: 需要</li></ul>
+        # @param SealImgCallback: <p>回调中是否需要“授权签”将要使用的印章(签名) 图片的 base64:<ul><li><strong>false</strong>: 不需要(默认)</li><li><strong>true</strong>: 需要</li></ul></p>
         # @type SealImgCallback: Boolean
         # @param CallbackUrl: <p>执行结果的回调URL，该URL仅支持HTTP或HTTPS协议，建议采用HTTPS协议以保证数据传输的安全性。<br>腾讯电子签服务器将通过POST方式，application/json格式通知执行结果，请确保外网可以正常访问该URL。<br>回调的相关说明可参考开发者中心的<a href="https://qian.tencent.com/developers/company/callback_types_v2" target="_blank">回调通知</a>模块。</p>
         # @type CallbackUrl: String
         # @param VerifyChannels: <p>开通时候的身份验证方式, 取值为：</p><ul><li>**WEIXINAPP** : 微信人脸识别</li><li>**INSIGHT** : 慧眼人脸识别</li><li>**TELECOM** : 运营商三要素验证</li></ul>注：<ul><li>如果是小程序开通链接，仅支持 WEIXINAPP 。为空默认 WEIXINAPP</li><li>如果是 H5 开通链接，支持传 INSIGHT / TELECOM。为空默认 INSIGHT </li></ul>
         # @type VerifyChannels: Array
-        # @param LicenseType: <p>设置用户自动签合同的扣费方式。</p><ul><li><b>1</b>: (默认)使用合同份额进行扣减</li></ul><p>注：<code>该字段已经失效，请勿设置此参数。</code></p>
+        # @param LicenseType: <p>设置用户“授权签”合同的扣费方式。<ul><li><b>1</b>: (默认)使用合同份额进行扣减</li></ul>注：<code>该字段已经失效，请勿设置此参数。</code></p>
         # @type LicenseType: Integer
         # @param JumpUrl: <p>开通成功后前端页面跳转的url，此字段的用法场景请联系客户经理确认。</p><p>注：<code>仅支持H5开通场景</code>, <code>跳转链接仅支持 https:// , qianapp:// 开头</code></p><p>跳转场景：</p><ul><li>**贵方H5 -&gt; 腾讯电子签H5 -&gt; 贵方H5** : JumpUrl格式: https://YOUR_CUSTOM_URL/xxxx，只需满足 https:// 开头的正确且合规的网址即可。</li><li>**贵方原生App -&gt; 腾讯电子签H5 -&gt; 贵方原生App** : JumpUrl格式: qianapp://YOUR_CUSTOM_URL，只需满足 qianapp:// 开头的URL即可。<code>APP实现方，需要拦截Webview地址跳转，发现url是qianapp:// 开头时跳转到原生页面。</code>APP拦截地址跳转可参考：<a href="https://qian.tencent.com/developers/company/openqianh5/#3-%E8%BF%94%E5%9B%9E%E5%BA%94%E7%94%A8jumpurl%E6%A0%BC%E5%BC%8F">返回应用JumpUrl格式</a></li></ul><p>成功结果返回：<br>若贵方需要在跳转回时通过链接query参数提示开通成功，JumpUrl中的query应携带如下参数：<code>appendResult=qian</code>。这样腾讯电子签H5会在跳转回的url后面会添加query参数提示贵方签署成功，例如： qianapp://YOUR_CUSTOM_URL?action=sign&amp;result=success&amp;from=tencent_ess</p>
         # @type JumpUrl: String
@@ -1181,16 +1181,13 @@ module TencentCloud
 
       # CancelUserAutoSignEnableUrl请求参数结构体
       class CancelUserAutoSignEnableUrlRequest < TencentCloud::Common::AbstractModel
-        # @param Operator: 执行本接口操作的员工信息。
-        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @param Operator: <p>执行本接口操作的员工信息。<br>注: <code>在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。</code></p>
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param SceneKey: 自动签使用的场景值, 可以选择的场景值如下:
-        # <ul><li> **E_PRESCRIPTION_AUTO_SIGN** :  电子处方场景</li><li> **OTHER** :  通用场景</li></ul>
+        # @param SceneKey: <p>“授权签”使用的场景值, 可以选择的场景值如下:<ul><li> <strong>E_PRESCRIPTION_AUTO_SIGN</strong> :  电子处方场景</li><li> <strong>OTHER</strong> :  通用场景</li></ul></p>
         # @type SceneKey: String
-        # @param UserInfo: 预撤销链接的用户信息，包含姓名、证件类型、证件号码等信息。
+        # @param UserInfo: <p>预撤销链接的用户信息，包含姓名、证件类型、证件号码等信息。</p>
         # @type UserInfo: :class:`Tencentcloud::Ess.v20201111.models.UserThreeFactor`
-        # @param Agent: 代理企业和员工的信息。
-        # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        # @param Agent: <p>代理企业和员工的信息。<br>在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。</p>
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
 
         attr_accessor :Operator, :SceneKey, :UserInfo, :Agent
@@ -2218,29 +2215,17 @@ module TencentCloud
 
       # CreateBatchInitOrganizationUrl请求参数结构体
       class CreateBatchInitOrganizationUrlRequest < TencentCloud::Common::AbstractModel
-        # @param Operator: 执行本接口操作的员工信息。
-        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @param Operator: <p>执行本接口操作的员工信息。<br>注: <code>在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。</code></p>
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param OperateTypes: 初始化操作类型
-        # <ul>
-        # <li>CREATE_SEAL : 创建印章</li>
-        # <li>AUTH_JOIN_ORGANIZATION_GROUP : 加入集团企业</li>
-        # <li>OPEN_AUTO_SIGN :开通企业自动签署</li>
-        # <li>PARTNER_AUTO_SIGN_AUTH :合作方企业授权自动签</li>
-        # <li>CHANGE_SUB_ORGANIZATION_ADMIN_AUTH :变更子企业超管授权(**授权后，主企业可变更子企业超管，此功能需联系客户经理开通白名单使用**)</li>
-        # </ul>
+        # @param OperateTypes: <p>初始化操作类型<ul><li>CREATE_SEAL : 创建印章</li><li>AUTH_JOIN_ORGANIZATION_GROUP : 加入集团企业</li><li>OPEN_AUTO_SIGN :开通企业“授权签”</li><li>PARTNER_AUTO_SIGN_AUTH :合作方企业授权“授权签”</li><li>CHANGE_SUB_ORGANIZATION_ADMIN_AUTH :变更子企业超管授权(<strong>授权后，主企业可变更子企业超管，此功能需联系客户经理开通白名单使用</strong>)</li></ul></p>
         # @type OperateTypes: Array
-        # @param OrganizationIds: 批量操作的企业Id列表，最大支持50个
+        # @param OrganizationIds: <p>批量操作的企业Id列表，最大支持50个</p>
         # @type OrganizationIds: Array
-        # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        # @param Agent: <p>代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填</p>
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
-        # @param AuthorizedOrganizationId: 被授权的合作方企业在电子签的企业电子签账号，当操作类型包含 PARTNER_AUTO_SIGN_AUTH （合作方企业授权自动签）时必传。
-
-        # 企业电子签账号可在[电子签的网页端](https://qian.tencent.com/console/company-settings/company-center) ，于企业设置-企业信息菜单栏下复制获取。
-
-        # ![企业电子签账号](https://qcloudimg.tencent-cloud.cn/raw/4e6b30ee92f00671f7f1c5bd127c27db.png)
+        # @param AuthorizedOrganizationId: <p>被授权的合作方企业在电子签的企业电子签账号，当操作类型包含 PARTNER_AUTO_SIGN_AUTH （合作方企业授权“授权签”）时必传。企业电子签账号可在<a href="https://qian.tencent.com/console/company-settings/company-center">电子签的网页端</a> ，于企业设置-企业信息菜单栏下复制获取。<img src="https://qcloudimg.tencent-cloud.cn/raw/4e6b30ee92f00671f7f1c5bd127c27db.png" alt="企业电子签账号"></p>
         # @type AuthorizedOrganizationId: String
-        # @param ChangeAdminAuthAutoSign: 初始化操作类型里含有CHANGE_SUB_ORGANIZATION_ADMIN_AUTH（变更子企业超管授权）操作类型时，授权协议中主企业的签署方是否使用自动签（需操作人有自动签授权）
+        # @param ChangeAdminAuthAutoSign: <p>初始化操作类型里含有CHANGE_SUB_ORGANIZATION_ADMIN_AUTH（变更子企业超管授权）操作类型时，授权协议中主企业的签署方是否使用“授权签”（需操作人有“授权签”授权）</p>
         # @type ChangeAdminAuthAutoSign: Boolean
 
         attr_accessor :Operator, :OperateTypes, :OrganizationIds, :Agent, :AuthorizedOrganizationId, :ChangeAdminAuthAutoSign
@@ -2272,13 +2257,13 @@ module TencentCloud
 
       # CreateBatchInitOrganizationUrl返回参数结构体
       class CreateBatchInitOrganizationUrlResponse < TencentCloud::Common::AbstractModel
-        # @param MiniAppPath: 小程序路径
+        # @param MiniAppPath: <p>小程序路径</p>
         # @type MiniAppPath: String
-        # @param OperateLongUrl: 操作长链
+        # @param OperateLongUrl: <p>操作长链</p>
         # @type OperateLongUrl: String
-        # @param OperateShortUrl: 操作短链
+        # @param OperateShortUrl: <p>操作短链</p>
         # @type OperateShortUrl: String
-        # @param QRCodeUrl: 操作二维码
+        # @param QRCodeUrl: <p>操作二维码</p>
         # @type QRCodeUrl: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3200,7 +3185,7 @@ module TencentCloud
         # @type FlowId: String
         # @param FileNames: <p>文件名列表，单个文件名最大长度200个字符，暂时仅支持单文件发起。设置后流程对应的文件名称当前设置的值。</p>
         # @type FileNames: Array
-        # @param FormFields: <p>电子文档的填写控件的填充内容。具体方式可以参考<a href="https://qian.tencent.com/developers/companyApis/dataTypes/#formfield">FormField</a>结构体的定义。</p><ul><li>支持自动签传递印章，可通过指定自动签控件id，指定印章id来完成</li><li>附件控件支持传入图片、文件资源id，并将内容合成到合同文件中。支持的文件类型有doc、docx、xls、xlsx、html、jpg、jpeg、png、bmp、txt、pdf。需要注意如果传入的资源类型都是图片类型，图片资源会放置在合同文件的末尾，如果传入的资源有非图片类型资源，会将资源放置在附件控件所在页面的下一页。</li></ul>注：只有在控制台编辑模板时，<font color="red">归属给发起方</font>的填写控件（如下图）才能在创建文档的时候进行内容填充。![image](https://qcloudimg.tencent-cloud.cn/raw/a54a76a58c454593d06d8e9883ecc9b3.png)
+        # @param FormFields: <p>电子文档的填写控件的填充内容。具体方式可以参考<a href="https://qian.tencent.com/developers/companyApis/dataTypes/#formfield">FormField</a>结构体的定义。<ul><li>支持“授权签”传递印章，可通过指定“授权签”控件id，指定印章id来完成</li><li>附件控件支持传入图片、文件资源id，并将内容合成到合同文件中。支持的文件类型有doc、docx、xls、xlsx、html、jpg、jpeg、png、bmp、txt、pdf。需要注意如果传入的资源类型都是图片类型，图片资源会放置在合同文件的末尾，如果传入的资源有非图片类型资源，会将资源放置在附件控件所在页面的下一页。</li></ul>注：只有在控制台编辑模板时，<font color="red">归属给发起方</font>的填写控件（如下图）才能在创建文档的时候进行内容填充。<img src="https://qcloudimg.tencent-cloud.cn/raw/a54a76a58c454593d06d8e9883ecc9b3.png" alt="image"></p>
         # @type FormFields: Array
         # @param NeedPreview: <p>是否为预览模式，取值如下：<ul><li> <strong>false</strong>：非预览模式（默认），会产生合同流程并返回合同流程编号FlowId。</li> <li> <strong>true</strong>：预览模式，不产生合同流程，不返回合同流程编号FlowId，而是返回预览链接PreviewUrl，有效期为300秒，用于查看真实发起后合同的样子。 <font color="red">注意： 1.以预览模式创建的合同仅供查看，因此参与方无法进行签署操作;；2.以预览模式调用该接口返回的FlowId为临时Flowld，无法用于发起和拉取信息。</font> </li></ul></p><p><strong>注1</strong>: <code>当使用的模板中存在动态表格控件时，预览结果中没有动态表格的填写内容，动态表格合成完后会触发文档合成完成的回调通知</code><br><strong>注2</strong>: 预览服务按照合同份额 1:2的比例赠送预览次数。例如：购买 100 份合同，将赠送 200 次合同预览额度。当赠送的预览额度使用完后，如需继续使用预览服务，则需要单独购买预览服务额度。</p>
         # @type NeedPreview: Boolean
@@ -3344,15 +3329,15 @@ module TencentCloud
 
       # CreateDynamicFlowApprover请求参数结构体
       class CreateDynamicFlowApproverRequest < TencentCloud::Common::AbstractModel
-        # @param Operator: 执行本接口操作的员工信息。使用此接口时，必须填写userId。支持填入集团子公司经办人 userId 代发合同。注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @param Operator: <p>执行本接口操作的员工信息。使用此接口时，必须填写userId。支持填入集团子公司经办人 userId 代发合同。注: <code>在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。</code></p>
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param FlowId: 合同流程ID，为32位字符串
+        # @param FlowId: <p>合同流程ID，为32位字符串</p>
         # @type FlowId: String
-        # @param Approvers: 合同流程的参与方列表，最多可支持50个参与方，可在列表中指定企业B端签署方和个人C端签署方的联系和认证方式等信息，具体定义可以参考开发者中心的ApproverInfo结构体。如果合同流程是有序签署，Approvers列表中参与人的顺序就是默认的签署顺序，请确保列表中参与人的顺序符合实际签署顺序。
+        # @param Approvers: <p>合同流程的参与方列表，最多可支持50个参与方，可在列表中指定企业B端签署方和个人C端签署方的联系和认证方式等信息，具体定义可以参考开发者中心的ApproverInfo结构体。如果合同流程是有序签署，Approvers列表中参与人的顺序就是默认的签署顺序，请确保列表中参与人的顺序符合实际签署顺序。</p>
         # @type Approvers: Array
-        # @param Agent: 代理企业和员工的信息。在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        # @param Agent: <p>代理企业和员工的信息。在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。</p>
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
-        # @param AutoSignScene: 个人自动签名的使用场景包括以下, 个人自动签署(即ApproverType设置成个人自动签署时)业务此值必传：<ul><li> **E_PRESCRIPTION_AUTO_SIGN**：电子处方单（医疗自动签）  </li><li> **OTHER** :  通用场景</li></ul>注: `个人自动签名场景是白名单功能，使用前请与对接的客户经理联系沟通。`
+        # @param AutoSignScene: <p>个人“授权签”名的使用场景包括以下, 个人“授权签”(即ApproverType设置成个人“授权签”时)业务此值必传：<ul><li> <strong>E_PRESCRIPTION_AUTO_SIGN</strong>：电子处方单（医疗“授权签”）  </li><li> <strong>OTHER</strong> :  通用场景</li></ul>注: <code>个人“授权签”名场景是白名单功能，使用前请与对接的客户经理联系沟通。</code></p>
         # @type AutoSignScene: String
 
         attr_accessor :Operator, :FlowId, :Approvers, :Agent, :AutoSignScene
@@ -3389,9 +3374,9 @@ module TencentCloud
 
       # CreateDynamicFlowApprover返回参数结构体
       class CreateDynamicFlowApproverResponse < TencentCloud::Common::AbstractModel
-        # @param FlowId: 合同流程ID，为32位字符串
+        # @param FlowId: <p>合同流程ID，为32位字符串</p>
         # @type FlowId: String
-        # @param DynamicFlowApproverList: 补充动态合同签署人的结果数组
+        # @param DynamicFlowApproverList: <p>补充动态合同签署人的结果数组</p>
         # @type DynamicFlowApproverList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3610,18 +3595,13 @@ module TencentCloud
 
       # CreateExtendedServiceAuthInfos请求参数结构体
       class CreateExtendedServiceAuthInfosRequest < TencentCloud::Common::AbstractModel
-        # @param Operator: 执行本接口操作的员工信息。
-        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @param Operator: <p>执行本接口操作的员工信息。<br>注: <code>在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。</code></p>
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param UserIds: 本企业员工的id，需要已实名，正常在职员工
+        # @param UserIds: <p>本企业员工的id，需要已实名，正常在职员工</p>
         # @type UserIds: Array
-        # @param ExtendServiceType: 取值
-        # <ul><li>OPEN_SERVER_SIGN：企业自动签</li>
-        # <li>BATCH_SIGN：批量签署</li>
-        # </ul>
+        # @param ExtendServiceType: <p>取值<ul><li>OPEN_SERVER_SIGN：企业“授权签”</li><li>BATCH_SIGN：批量签署</li></ul></p>
         # @type ExtendServiceType: String
-        # @param Agent: 代理企业和员工的信息。
-        # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        # @param Agent: <p>代理企业和员工的信息。<br>在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。</p>
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
 
         attr_accessor :Operator, :UserIds, :ExtendServiceType, :Agent
@@ -3994,9 +3974,9 @@ module TencentCloud
         # @type CustomShowMap: String
         # @param Agent: <p>代理企业和员工的信息。<br>在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。</p>
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
-        # @param AutoSignScene: <p>个人自动签名的使用场景包括以下, 个人自动签署(即ApproverType设置成个人自动签署时)业务此值必传：</p><ul><li> **E_PRESCRIPTION_AUTO_SIGN**：电子处方单（医疗自动签）  </li><li> **OTHER** :  通用场景</li></ul>注: <code>个人自动签名场景是白名单功能，使用前请与对接的客户经理联系沟通。</code>
+        # @param AutoSignScene: <p>个人“授权签”名的使用场景包括以下, 个人“授权签”(即ApproverType设置成个人“授权签”时)业务此值必传：<ul><li> <strong>E_PRESCRIPTION_AUTO_SIGN</strong>：电子处方单（医疗“授权签”）  </li><li> <strong>OTHER</strong> :  通用场景</li></ul>注: <code>个人“授权签”名场景是白名单功能，使用前请与对接的客户经理联系沟通。</code></p>
         # @type AutoSignScene: String
-        # @param NeedSignReview: <p>发起方企业的签署人进行签署操作前，是否需要企业内部走审批流程，取值如下：</p><ul><li> **false**：（默认）不需要审批，直接签署。</li><li> **true**：需要走审批流程。当到对应参与人签署时，会阻塞其签署操作，等待企业内部审批完成。</li></ul>企业可以通过CreateFlowSignReview审批接口通知腾讯电子签平台企业内部审批结果<ul><li> 如果企业通知腾讯电子签平台审核通过，签署方可继续签署动作。</li><li> 如果企业通知腾讯电子签平台审核未通过，平台将继续阻塞签署方的签署动作，直到企业通知平台审核通过。</li></ul>注：<code>此功能可用于与企业内部的审批流程进行关联，支持手动、静默签署合同</code>
+        # @param NeedSignReview: <p>发起方企业的签署人进行签署操作前，是否需要企业内部走审批流程，取值如下：<ul><li> <strong>false</strong>：（默认）不需要审批，直接签署。</li><li> <strong>true</strong>：需要走审批流程。当到对应参与人签署时，会阻塞其签署操作，等待企业内部审批完成。</li></ul>企业可以通过CreateFlowSignReview审批接口通知腾讯电子签平台企业内部审批结果<ul><li> 如果企业通知腾讯电子签平台审核通过，签署方可继续签署动作。</li><li> 如果企业通知腾讯电子签平台审核未通过，平台将继续阻塞签署方的签署动作，直到企业通知平台审核通过。</li></ul>注：<code>此功能可用于与企业内部的审批流程进行关联，支持手动、“授权签”合同</code></p>
         # @type NeedSignReview: Boolean
         # @param FlowDisplayType: <p>在短信通知、填写、签署流程中，若标题、按钮、合同详情等地方存在“合同”字样时，可根据此配置指定文案，可选文案如下：  <ul><li> <b>0</b> :合同（默认值）</li> <li> <b>1</b> :文件</li> <li> <b>2</b> :协议</li><li> <b>3</b> :文书</li></ul>效果如下:<img src="https://qcloudimg.tencent-cloud.cn/raw/e4a2c4d638717cc901d3dbd5137c9bbc.png" alt="FlowDisplayType"></p>
         # @type FlowDisplayType: Integer
@@ -4278,38 +4258,17 @@ module TencentCloud
 
       # CreateFlowGroupByFiles请求参数结构体
       class CreateFlowGroupByFilesRequest < TencentCloud::Common::AbstractModel
-        # @param Operator: 执行本接口操作的员工信息。
-        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @param Operator: <p>执行本接口操作的员工信息。<br>注: <code>在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。</code></p>
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param FlowGroupName: 合同（流程）组名称（可自定义此名称），长度不能超过200，只能由中文、字母、数字和下划线组成。
+        # @param FlowGroupName: <p>合同（流程）组名称（可自定义此名称），长度不能超过200，只能由中文、字母、数字和下划线组成。</p>
         # @type FlowGroupName: String
-        # @param FlowGroupInfos: 合同（流程）组的子合同信息，支持2-50个子合同
+        # @param FlowGroupInfos: <p>合同（流程）组的子合同信息，支持2-50个子合同</p>
         # @type FlowGroupInfos: Array
-        # @param Agent: 代理企业和员工的信息。
-        # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        # @param Agent: <p>代理企业和员工的信息。<br>在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。</p>
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
-        # @param FlowGroupOptions: 合同（流程）组的配置项信息。
-        # 其中包括：
-        # <ul>
-        # <li>是否通知本企业签署方</li>
-        # <li>是否通知其他签署方</li>
-        # </ul>
+        # @param FlowGroupOptions: <p>合同（流程）组的配置项信息。<br>其中包括：</p><ul><li>是否通知本企业签署方</li><li>是否通知其他签署方</li></ul>
         # @type FlowGroupOptions: :class:`Tencentcloud::Ess.v20201111.models.FlowGroupOptions`
-        # @param UserFlowType: 用户自定义合同类型。
-
-        # 自定义合同类型配置的地方如链接图所示。[点击查看自定义合同类型管理的位置](https://qcloudimg.tencent-cloud.cn/raw/36582cea03ae6a2559894844942b5d5c.png)
-
-        # 注意：
-        # 如果传递了自定义合同类型，则每一个子合同设置的自定义合同类型将会失效，已最外层定义的为准。
-        # 例如：
-        # 这份合同组有三个子合同，设置合同类型为<font color="blue">人事/劳务</font>
-        # 第一份子合同设置的合同自定义合同类型是<font color="blue">采购</font>
-        # 第二份和第三份子合同设置的合同自定义合同类型是<font color="blue">人事/劳务</font>
-        # 但最终这个合同组的合同类型是<font color="blue">人事/劳务</font>
-
-
-
-
+        # @param UserFlowType: <p>用户自定义合同类型。</p><p>自定义合同类型配置的地方如链接图所示。<a href="https://qcloudimg.tencent-cloud.cn/raw/36582cea03ae6a2559894844942b5d5c.png">点击查看自定义合同类型管理的位置</a></p><p>注意：<br>如果传递了自定义合同类型，则每一个子合同设置的自定义合同类型将会失效，已最外层定义的为准。<br>例如：<br>这份合同组有三个子合同，设置合同类型为<font color="blue">人事/劳务</font><br>第一份子合同设置的合同自定义合同类型是<font color="blue">采购</font><br>第二份和第三份子合同设置的合同自定义合同类型是<font color="blue">人事/劳务</font><br>但最终这个合同组的合同类型是<font color="blue">人事/劳务</font></p>
         # @type UserFlowType: :class:`Tencentcloud::Ess.v20201111.models.UserFlowType`
 
         attr_accessor :Operator, :FlowGroupName, :FlowGroupInfos, :Agent, :FlowGroupOptions, :UserFlowType
@@ -4354,13 +4313,13 @@ module TencentCloud
 
       # CreateFlowGroupByFiles返回参数结构体
       class CreateFlowGroupByFilesResponse < TencentCloud::Common::AbstractModel
-        # @param FlowGroupId: 合同(流程)组的合同组Id
+        # @param FlowGroupId: <p>合同(流程)组的合同组Id</p>
         # @type FlowGroupId: String
-        # @param FlowIds: 合同(流程)组中子合同列表.
+        # @param FlowIds: <p>合同(流程)组中子合同列表.</p>
         # @type FlowIds: Array
-        # @param Approvers: 合同组签署方信息。
+        # @param Approvers: <p>合同组签署方信息。</p>
         # @type Approvers: Array
-        # @param WorkflowInstanceId: 发起审批流id，仅在发起时指定FlowGroupOptions.FlowGroupNeedWorkflow=true时返回
+        # @param WorkflowInstanceId: <p>发起审批流id，仅在发起时指定FlowGroupOptions.FlowGroupNeedWorkflow=true时返回</p>
         # @type WorkflowInstanceId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4393,27 +4352,17 @@ module TencentCloud
 
       # CreateFlowGroupByTemplates请求参数结构体
       class CreateFlowGroupByTemplatesRequest < TencentCloud::Common::AbstractModel
-        # @param Operator: 执行本接口操作的员工信息。
-        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @param Operator: <p>执行本接口操作的员工信息。<br>注: <code>在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。</code></p>
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param FlowGroupName: 合同（流程）组名称（可自定义此名称），长度不能超过200，只能由中文、字母、数字和下划线组成。
+        # @param FlowGroupName: <p>合同（流程）组名称（可自定义此名称），长度不能超过200，只能由中文、字母、数字和下划线组成。</p>
         # @type FlowGroupName: String
-        # @param FlowGroupInfos: 合同（流程）组的子合同信息，支持2-50个子合同
+        # @param FlowGroupInfos: <p>合同（流程）组的子合同信息，支持2-50个子合同</p>
         # @type FlowGroupInfos: Array
-        # @param Agent: 代理企业和员工的信息。
-        # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        # @param Agent: <p>代理企业和员工的信息。<br>在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。</p>
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
-        # @param FlowGroupOptions: 合同（流程）组的配置项信息。
-        # 其中包括：
-        # <ul>
-        # <li>是否通知本企业签署方</li>
-        # <li>是否通知其他签署方</li>
-        # </ul>
+        # @param FlowGroupOptions: <p>合同（流程）组的配置项信息。<br>其中包括：</p><ul><li>是否通知本企业签署方</li><li>是否通知其他签署方</li></ul>
         # @type FlowGroupOptions: :class:`Tencentcloud::Ess.v20201111.models.FlowGroupOptions`
-        # @param UserFlowType: 用户自定义合同类型。
-        # 自定义合同类型配置的地方如链接图所示。[点击查看自定义合同类型管理的位置](https://qcloudimg.tencent-cloud.cn/raw/36582cea03ae6a2559894844942b5d5c.png)
-
-        # 注意： 如果传递了自定义合同类型，则每一个子合同对应模板上面的自定义合同类型将会失效，已最外层定义的为准。 例如： 这份合同组有三个子合同，设置合同类型为<font color="blue">人事/劳务</font> 第一份子合同选择的模板的合同自定义合同类型是<font color="blue">采购</font> 第二份和第三份子合同选择的模板的合同自定义合同类型是<font color="blue">人事/劳务</font> 但最终这个合同组的合同类型是<font color="blue">人事/劳务</font>
+        # @param UserFlowType: <p>用户自定义合同类型。<br>自定义合同类型配置的地方如链接图所示。<a href="https://qcloudimg.tencent-cloud.cn/raw/36582cea03ae6a2559894844942b5d5c.png">点击查看自定义合同类型管理的位置</a>  </p><p>注意： 如果传递了自定义合同类型，则每一个子合同对应模板上面的自定义合同类型将会失效，已最外层定义的为准。 例如： 这份合同组有三个子合同，设置合同类型为<font color="blue">人事/劳务</font> 第一份子合同选择的模板的合同自定义合同类型是<font color="blue">采购</font> 第二份和第三份子合同选择的模板的合同自定义合同类型是<font color="blue">人事/劳务</font> 但最终这个合同组的合同类型是<font color="blue">人事/劳务</font></p>
         # @type UserFlowType: :class:`Tencentcloud::Ess.v20201111.models.UserFlowType`
 
         attr_accessor :Operator, :FlowGroupName, :FlowGroupInfos, :Agent, :FlowGroupOptions, :UserFlowType
@@ -4458,13 +4407,13 @@ module TencentCloud
 
       # CreateFlowGroupByTemplates返回参数结构体
       class CreateFlowGroupByTemplatesResponse < TencentCloud::Common::AbstractModel
-        # @param FlowGroupId: 合同(流程)组的合同组Id
+        # @param FlowGroupId: <p>合同(流程)组的合同组Id</p>
         # @type FlowGroupId: String
-        # @param FlowIds: 合同(流程)组中子合同列表.
+        # @param FlowIds: <p>合同(流程)组中子合同列表.</p>
         # @type FlowIds: Array
-        # @param Approvers: 合同组签署人信息。
+        # @param Approvers: <p>合同组签署人信息。</p>
         # @type Approvers: Array
-        # @param WorkflowInstanceId: FlowGroupNeedWorkflow
+        # @param WorkflowInstanceId: <p>FlowGroupNeedWorkflow</p>
         # @type WorkflowInstanceId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4848,13 +4797,13 @@ module TencentCloud
         # @type Unordered: Boolean
         # @param CustomShowMap: <p>您可以自定义<strong>腾讯电子签小程序合同列表页</strong>展示的合同内容模板，模板中支持以下变量：</p><ul><li>{合同名称}   </li><li>{发起方企业} </li><li>{发起方姓名} </li><li>{签署方N企业}</li><li>{签署方N姓名}</li></ul>其中，N表示签署方的编号，从1开始，不能超过签署人的数量。<p>例如，如果是腾讯公司张三发给李四名称为“租房合同”的合同，您可以将此字段设置为：<code>合同名称:{合同名称};发起方: {发起方企业}({发起方姓名});签署方:{签署方1姓名}</code>，则小程序中列表页展示此合同为以下样子</p><p>合同名称：租房合同<br>发起方：腾讯公司(张三)<br>签署方：李四</p><p><img src="https://qcloudimg.tencent-cloud.cn/raw/628f0928cac15d2e3bfa6088f53f5998.png" alt="image"></p>
         # @type CustomShowMap: String
-        # @param NeedSignReview: <p>发起方企业的签署人进行签署操作前，是否需要企业内部走审批流程，取值如下：</p><ul><li> **false**：（默认）不需要审批，直接签署。</li><li> **true**：需要走审批流程。当到对应参与人签署时，会阻塞其签署操作，等待企业内部审批完成。</li></ul>企业可以通过CreateFlowSignReview审批接口通知腾讯电子签平台企业内部审批结果<ul><li> 如果企业通知腾讯电子签平台审核通过，签署方可继续签署动作。</li><li> 如果企业通知腾讯电子签平台审核未通过，平台将继续阻塞签署方的签署动作，直到企业通知平台审核通过。</li></ul>注：<code>此功能可用于与企业内部的审批流程进行关联，支持手动、静默签署合同</code>
+        # @param NeedSignReview: <p>发起方企业的签署人进行签署操作前，是否需要企业内部走审批流程，取值如下：<ul><li> <strong>false</strong>：（默认）不需要审批，直接签署。</li><li> <strong>true</strong>：需要走审批流程。当到对应参与人签署时，会阻塞其签署操作，等待企业内部审批完成。</li></ul>企业可以通过CreateFlowSignReview审批接口通知腾讯电子签平台企业内部审批结果<ul><li> 如果企业通知腾讯电子签平台审核通过，签署方可继续签署动作。</li><li> 如果企业通知腾讯电子签平台审核未通过，平台将继续阻塞签署方的签署动作，直到企业通知平台审核通过。</li></ul>注：<code>此功能可用于与企业内部的审批流程进行关联，支持手动、“授权签”合同</code></p>
         # @type NeedSignReview: Boolean
         # @param Agent: <p>代理企业和员工的信息。<br>在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。</p>
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
         # @param CcInfos: <p>合同流程的抄送人列表，最多可支持50个抄送人，抄送人可查看合同内容及签署进度，但无需参与合同签署。</p><p><b>注</b></p><ol><li>抄送人名单中可以包括自然人以及本企业的员工。</li><li>请确保抄送人列表中的成员不与任何签署人重复。</li></ol>
         # @type CcInfos: Array
-        # @param AutoSignScene: <p>个人自动签名的使用场景包括以下, 个人自动签署(即ApproverType设置成个人自动签署时)业务此值必传：</p><ul><li> **E_PRESCRIPTION_AUTO_SIGN**：电子处方单（医疗自动签）  </li><li> **OTHER** :  通用场景</li></ul>注: <code>个人自动签名场景是白名单功能，使用前请与对接的客户经理联系沟通。</code>
+        # @param AutoSignScene: <p>个人“授权签”名的使用场景包括以下, 个人“授权签”(即ApproverType设置成个人“授权签”时)业务此值必传：<ul><li> <strong>E_PRESCRIPTION_AUTO_SIGN</strong>：电子处方单（医疗“授权签”）  </li><li> <strong>OTHER</strong> :  通用场景</li></ul>注: <code>个人“授权签”名场景是白名单功能，使用前请与对接的客户经理联系沟通。</code></p>
         # @type AutoSignScene: String
         # @param RelatedFlowId: <p>暂未开放</p>
         # @type RelatedFlowId: String
@@ -6616,28 +6565,17 @@ module TencentCloud
 
       # CreatePersonAuthCertificateImage请求参数结构体
       class CreatePersonAuthCertificateImageRequest < TencentCloud::Common::AbstractModel
-        # @param Operator: 执行本接口操作的员工信息。
-        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @param Operator: <p>执行本接口操作的员工信息。<br>注: <code>在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。</code></p>
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param UserName: 个人用户名称
+        # @param UserName: <p>个人用户名称</p>
         # @type UserName: String
-        # @param IdCardType: 证件类型，支持以下类型
-        # <ul><li> ID_CARD  : 中国大陆居民身份证 (默认值)</li>
-        # <li> HONGKONG_AND_MACAO  : 中国港澳居民来往内地通行证</li>
-        # <li> HONGKONG_MACAO_AND_TAIWAN  : 中国港澳台居民居住证(格式同中国大陆居民身份证)</li></ul>
+        # @param IdCardType: <p>证件类型，支持以下类型</p><ul><li> ID_CARD  : 中国大陆居民身份证 (默认值)</li><li> HONGKONG_AND_MACAO  : 中国港澳居民来往内地通行证</li><li> HONGKONG_MACAO_AND_TAIWAN  : 中国港澳台居民居住证(格式同中国大陆居民身份证)</li></ul>
         # @type IdCardType: String
-        # @param IdCardNumber: 证件号码，应符合以下规则
-        # <ul><li>中国大陆居民身份证号码应为18位字符串，由数字和大写字母X组成（如存在X，请大写）。</li>
-        # <li>中国港澳居民来往内地通行证号码共11位。第1位为字母，“H”字头签发给中国香港居民，“M”字头签发给中国澳门居民；第2位至第11位为数字。</li>
-        # <li>中国港澳台居民居住证号码编码规则与中国大陆身份证相同，应为18位字符串。</li></ul>
+        # @param IdCardNumber: <p>证件号码，应符合以下规则</p><ul><li>中国大陆居民身份证号码应为18位字符串，由数字和大写字母X组成（如存在X，请大写）。</li><li>中国港澳居民来往内地通行证号码共11位。第1位为字母，“H”字头签发给中国香港居民，“M”字头签发给中国澳门居民；第2位至第11位为数字。</li><li>中国港澳台居民居住证号码编码规则与中国大陆身份证相同，应为18位字符串。</li></ul>
         # @type IdCardNumber: String
-        # @param Agent: 代理企业和员工的信息。
-        # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        # @param Agent: <p>代理企业和员工的信息。<br>在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。</p>
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
-        # @param SceneKey: 自动签使用的场景值, 可以选择的场景值如下:
-        # <ul><li> **E_PRESCRIPTION_AUTO_SIGN** :  电子处方场景</li><li> **OTHER** :  通用场景</li></ul>
-
-        # 注: `不传默认为处方单场景，即E_PRESCRIPTION_AUTO_SIGN`
+        # @param SceneKey: <p>“授权签”使用的场景值, 可以选择的场景值如下:<ul><li> <strong>E_PRESCRIPTION_AUTO_SIGN</strong> :  电子处方场景</li><li> <strong>OTHER</strong> :  通用场景</li></ul>注: <code>不传默认为处方单场景，即E_PRESCRIPTION_AUTO_SIGN</code></p>
         # @type SceneKey: String
 
         attr_accessor :Operator, :UserName, :IdCardType, :IdCardNumber, :Agent, :SceneKey
@@ -6669,20 +6607,15 @@ module TencentCloud
 
       # CreatePersonAuthCertificateImage返回参数结构体
       class CreatePersonAuthCertificateImageResponse < TencentCloud::Common::AbstractModel
-        # @param AuthCertUrl: 个人用户认证证书图片下载URL，`有效期为5分钟`，超过有效期后将无法再下载。
+        # @param AuthCertUrl: <p>个人用户认证证书图片下载URL，<code>有效期为5分钟</code>，超过有效期后将无法再下载。</p>
         # @type AuthCertUrl: String
-        # @param ImageCertId: 个人用户认证证书的编号, 为20位数字组成的字符串,  由腾讯电子签下发此编号 。
-        # 该编号会合成到个人用户证书证明图片。
-
-        # 注: `个人用户认证证书的编号和证明图片绑定, 获取新的证明图片编号会变动`
+        # @param ImageCertId: <p>个人用户认证证书的编号, 为20位数字组成的字符串,  由腾讯电子签下发此编号 。<br>该编号会合成到个人用户证书证明图片。</p><p>注: <code>个人用户认证证书的编号和证明图片绑定, 获取新的证明图片编号会变动</code></p>
         # @type ImageCertId: String
-        # @param SerialNumber: 在数字证书申请过程中，系统会自动生成一个独一无二的序列号。请注意，当证书到期并自动续期时，该序列号将会发生变化。值得注意的是，此序列号不会被合成至个人用户证书的证明图片中。
+        # @param SerialNumber: <p>在数字证书申请过程中，系统会自动生成一个独一无二的序列号。请注意，当证书到期并自动续期时，该序列号将会发生变化。值得注意的是，此序列号不会被合成至个人用户证书的证明图片中。</p>
         # @type SerialNumber: String
-        # @param ValidFrom: CA证书颁发时间，格式为Unix标准时间戳（秒）
-        # 该时间格式化后会合成到个人用户证书证明图片
+        # @param ValidFrom: <p>CA证书颁发时间，格式为Unix标准时间戳（秒）<br>该时间格式化后会合成到个人用户证书证明图片</p>
         # @type ValidFrom: Integer
-        # @param ValidTo: CA证书有效截止时间，格式为Unix标准时间戳（秒）
-        # 该时间格式化后会合成到个人用户证书证明图片
+        # @param ValidTo: <p>CA证书有效截止时间，格式为Unix标准时间戳（秒）<br>该时间格式化后会合成到个人用户证书证明图片</p>
         # @type ValidTo: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6794,99 +6727,49 @@ module TencentCloud
 
       # CreatePrepareFlow请求参数结构体
       class CreatePrepareFlowRequest < TencentCloud::Common::AbstractModel
-        # @param Operator: 执行本接口操作的员工信息。使用此接口时，必须填写userId。
-        # 支持填入集团子公司经办人 userId 代发合同。
-
-        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @param Operator: <p>执行本接口操作的员工信息。使用此接口时，必须填写userId。<br>支持填入集团子公司经办人 userId 代发合同。</p><p>注: <code>在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。</code></p>
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param ResourceId: 资源id，与ResourceType相对应，取值范围：
-        # <ul>
-        # <li>文件Id（通过UploadFiles获取文件资源Id）</li>
-        # <li>模板Id（通过控制台创建模板后获取模板Id）</li>
-        # <li>草稿Id（通过嵌入页面保存草稿后获取草稿Id）</li>
-        # </ul>
-        # 注意：需要同时设置 ResourceType 参数指定资源类型
+        # @param ResourceId: <p>资源id，与ResourceType相对应，取值范围：</p><ul><li>文件Id（通过UploadFiles获取文件资源Id）</li><li>模板Id（通过控制台创建模板后获取模板Id）</li><li>草稿Id（通过嵌入页面保存草稿后获取草稿Id）</li></ul>注意：需要同时设置 ResourceType 参数指定资源类型
         # @type ResourceId: String
-        # @param FlowName: 自定义的合同流程的名称，长度不能超过200个字符，只能由中文汉字、中文标点、英文字母、阿拉伯数字、空格、小括号、中括号、中划线、下划线以及（,）、（;）、（.）、(&)、（+）组成。
-
-        # 该名称还将用于合同签署完成后文件下载的默认文件名称。
+        # @param FlowName: <p>自定义的合同流程的名称，长度不能超过200个字符，只能由中文汉字、中文标点、英文字母、阿拉伯数字、空格、小括号、中括号、中划线、下划线以及（,）、（;）、（.）、(&amp;)、（+）组成。</p><p>该名称还将用于合同签署完成后文件下载的默认文件名称。</p>
         # @type FlowName: String
-        # @param ResourceType: 资源类型，取值有：
-        # <ul><li> **1**：模板</li>
-        # <li> **2**：文件（默认值）</li>
-        # <li> **3**：草稿</li>
-        # </ul>
+        # @param ResourceType: <p>资源类型，取值有：</p><ul><li> **1**：模板</li><li> **2**：文件（默认值）</li><li> **3**：草稿</li></ul>
         # @type ResourceType: Integer
-        # @param Unordered: 合同流程的签署顺序类型：
-        # <ul><li> **false**：(默认)有序签署, 本合同多个参与人需要依次签署 </li>
-        # <li> **true**：无序签署, 本合同多个参与人没有先后签署限制</li></ul>
+        # @param Unordered: <p>合同流程的签署顺序类型：</p><ul><li> **false**：(默认)有序签署, 本合同多个参与人需要依次签署 </li><li> **true**：无序签署, 本合同多个参与人没有先后签署限制</li></ul>
         # @type Unordered: Boolean
-        # @param Deadline: 合同流程的签署截止时间，格式为Unix标准时间戳（秒），如果未设置签署截止时间，则默认为合同流程创建后的365天时截止。
+        # @param Deadline: <p>合同流程的签署截止时间，格式为Unix标准时间戳（秒），如果未设置签署截止时间，则默认为合同流程创建后的365天时截止。</p>
         # @type Deadline: Integer
-        # @param UserFlowTypeId: 用户自定义合同类型Id
-
-        # 该id为电子签企业内的合同类型id， 可以在控制台-合同-自定义合同类型处获取
-        # 注: `该参数如果和FlowType同时传，以该参数优先生效`
+        # @param UserFlowTypeId: <p>用户自定义合同类型Id</p><p>该id为电子签企业内的合同类型id， 可以在控制台-合同-自定义合同类型处获取<br>注: <code>该参数如果和FlowType同时传，以该参数优先生效</code></p>
         # @type UserFlowTypeId: String
-        # @param FlowType: 合同流程的类别分类（可自定义名称，如销售合同/入职合同等），最大长度为200个字符，仅限中文、字母、数字和下划线组成。
+        # @param FlowType: <p>合同流程的类别分类（可自定义名称，如销售合同/入职合同等），最大长度为200个字符，仅限中文、字母、数字和下划线组成。</p>
         # @type FlowType: String
-        # @param Approvers: 合同流程的参与方列表，最多可支持50个参与方，可在列表中指定企业B端签署方和个人C端签署方的联系和认证方式等信息，具体定义可以参考开发者中心的ApproverInfo结构体。
-
-        # 如果合同流程是有序签署，Approvers列表中参与人的顺序就是默认的签署顺序，请确保列表中参与人的顺序符合实际签署顺序。
+        # @param Approvers: <p>合同流程的参与方列表，最多可支持50个参与方，可在列表中指定企业B端签署方和个人C端签署方的联系和认证方式等信息，具体定义可以参考开发者中心的ApproverInfo结构体。</p><p>如果合同流程是有序签署，Approvers列表中参与人的顺序就是默认的签署顺序，请确保列表中参与人的顺序符合实际签署顺序。</p>
         # @type Approvers: Array
-        # @param IntelligentStatus: 开启或者关闭智能添加填写区：
-        # <ul><li> **OPEN**：开启（默认值）</li>
-        # <li> **CLOSE**：关闭</li></ul>
+        # @param IntelligentStatus: <p>开启或者关闭智能添加填写区：</p><ul><li> **OPEN**：开启（默认值）</li><li> **CLOSE**：关闭</li></ul>
         # @type IntelligentStatus: String
-        # @param Components: 该字段已不再使用，请使用InitiatorComponents
+        # @param Components: <p>该字段已不再使用，请使用InitiatorComponents</p>
         # @type Components: :class:`Tencentcloud::Ess.v20201111.models.Component`
-        # @param FlowOption: 发起合同个性化参数
-        # 用于满足创建及页面操作过程中的个性化要求
-        # 具体定制化内容详见数据接口说明
+        # @param FlowOption: <p>发起合同个性化参数<br>用于满足创建及页面操作过程中的个性化要求<br>具体定制化内容详见数据接口说明</p>
         # @type FlowOption: :class:`Tencentcloud::Ess.v20201111.models.CreateFlowOption`
-        # @param NeedSignReview: 发起方企业签署员工，在进行签署操作前，是否需要先通过企业内部审批流程 （签署审核）
-        # 1. **false（默认）**：  无需审批，发起方企业签署员工可直接进行签署操作。
-        # 2. **true**：  需要先走企业内部审批流程。 当流程进展到发起方企业签署员工时，其签署操作会被阻塞，等待企业内部审批结果。
-
-        # 企业应通过 <a href="https://qian.tencent.com/developers/companyApis/operateFlows/CreateFlowSignReview" target="_blank">提交签署流程审批结果</a>审批接口，将内部审批结果通知腾讯电子签平台：
-        # 1. 若通知为“审核通过”，发起方企业签署员工可继续完成签署操作。
-        # 2. 若通知为“审核未通过”，平台将继续阻塞该签署方的签署操作，直到企业再次通知平台审核通过为止。
-
-        # 说明： 此能力可用于与企业内部审批流程打通，适用于手动签署和自动签署两种模式。
+        # @param NeedSignReview: <p>发起方企业签署员工，在进行签署操作前，是否需要先通过企业内部审批流程 （签署审核）1. <strong>false（默认）</strong>：  无需审批，发起方企业签署员工可直接进行签署操作。2. <strong>true</strong>：  需要先走企业内部审批流程。 当流程进展到发起方企业签署员工时，其签署操作会被阻塞，等待企业内部审批结果。企业应通过 <a href="https://qian.tencent.com/developers/companyApis/operateFlows/CreateFlowSignReview" target="_blank">提交签署流程审批结果</a>审批接口，将内部审批结果通知腾讯电子签平台：1. 若通知为“审核通过”，发起方企业签署员工可继续完成签署操作。2. 若通知为“审核未通过”，平台将继续阻塞该签署方的签署操作，直到企业再次通知平台审核通过为止。说明： 此能力可用于与企业内部审批流程打通，适用于手动签署和“授权签”两种模式。</p>
         # @type NeedSignReview: Boolean
-        # @param NeedCreateReview: 发起方在创建合同流程前，是否必须先通过企业内部审批流程 （发起审核）
-
-        # 当设置为 `true` 时：
-        #   1. 您需要在企业内部完成审批，并通过接口 <a href="https://qian.tencent.com/developers/companyApis/operateFlows/CreateFlowSignReview" target="_blank">提交签署流程审批结果</a> 将审批结果回传给腾讯电子签。
-        #   2. 只有当审核状态为“通过”时，合同流程正常发起。
-        #   3. 若未通过或未回传审核结果，发起操作将被阻塞，阻止合同流程。
-
-        # 当设置为 `false` （默认值）时：
-        #   发起方无需经过企业内部审批，可直接发起合同流程。
+        # @param NeedCreateReview: <p>发起方在创建合同流程前，是否必须先通过企业内部审批流程 （发起审核）</p><p>当设置为 <code>true</code> 时：  </p><ol><li>您需要在企业内部完成审批，并通过接口 <a href="https://qian.tencent.com/developers/companyApis/operateFlows/CreateFlowSignReview" target="_blank">提交签署流程审批结果</a> 将审批结果回传给腾讯电子签。 </li><li>只有当审核状态为“通过”时，合同流程正常发起。  </li><li>若未通过或未回传审核结果，发起操作将被阻塞，阻止合同流程。</li></ol><p>当设置为 <code>false</code> （默认值）时：<br>  发起方无需经过企业内部审批，可直接发起合同流程。</p>
         # @type NeedCreateReview: Boolean
-        # @param UserData: 调用方自定义的个性化字段(可自定义此名称)，并以base64方式编码，支持的最大数据大小为 20480长度。
-
-        # 在合同状态变更的回调信息等场景中，该字段的信息将原封不动地透传给贵方。回调的相关说明可参考开发者中心的<a href="https://qian.tencent.com/developers/company/callback_types_v2" target="_blank">回调通知</a>模块。
+        # @param UserData: <p>调用方自定义的个性化字段(可自定义此名称)，并以base64方式编码，支持的最大数据大小为 20480长度。</p><p>在合同状态变更的回调信息等场景中，该字段的信息将原封不动地透传给贵方。回调的相关说明可参考开发者中心的<a href="https://qian.tencent.com/developers/company/callback_types_v2" target="_blank">回调通知</a>模块。</p>
         # @type UserData: String
-        # @param CcInfos: 合同流程的抄送人列表，最多可支持50个抄送人，抄送人可查看合同内容及签署进度，但无需参与合同签署。
+        # @param CcInfos: <p>合同流程的抄送人列表，最多可支持50个抄送人，抄送人可查看合同内容及签署进度，但无需参与合同签署。</p>
         # @type CcInfos: Array
-        # @param FlowId: 合同Id：用于通过一个已发起的合同快速生成一个发起流程web链接
-        # 注: `该参数必须是一个待发起审核的合同id，并且还未审核通过`
+        # @param FlowId: <p>合同Id：用于通过一个已发起的合同快速生成一个发起流程web链接<br>注: <code>该参数必须是一个待发起审核的合同id，并且还未审核通过</code></p>
         # @type FlowId: String
-        # @param Agent: 代理企业和员工的信息。
-        # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        # @param Agent: <p>代理企业和员工的信息。<br>在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。</p>
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
-        # @param InitiatorComponents: 模板或者合同中的填写控件列表，列表中可支持下列多种填写控件，控件的详细定义参考开发者中心的Component结构体
+        # @param InitiatorComponents: <p>模板或者合同中的填写控件列表，列表中可支持下列多种填写控件，控件的详细定义参考开发者中心的Component结构体</p>
         # @type InitiatorComponents: Array
-        # @param FlowDisplayType: 在短信通知、填写、签署流程中，若标题、按钮、合同详情等地方存在“合同”字样时，可根据此配置指定文案，可选文案如下：  <ul><li> <b>0</b> :合同（默认值）</li> <li> <b>1</b> :文件</li> <li> <b>2</b> :协议</li><li> <b>3</b> :文书</li></ul>效果如下:![FlowDisplayType](https://qcloudimg.tencent-cloud.cn/raw/e4a2c4d638717cc901d3dbd5137c9bbc.png)
+        # @param FlowDisplayType: <p>在短信通知、填写、签署流程中，若标题、按钮、合同详情等地方存在“合同”字样时，可根据此配置指定文案，可选文案如下：  <ul><li> <b>0</b> :合同（默认值）</li> <li> <b>1</b> :文件</li> <li> <b>2</b> :协议</li><li> <b>3</b> :文书</li></ul>效果如下:<img src="https://qcloudimg.tencent-cloud.cn/raw/e4a2c4d638717cc901d3dbd5137c9bbc.png" alt="FlowDisplayType"></p>
         # @type FlowDisplayType: Integer
-        # @param SignComponentConfig: <font color="red">此字段已不再使用，请使用 CreateFlowOption 里面的 SignComponentConfig</font>
-        # 签署控件的配置信息，用在嵌入式发起的页面配置，
-        # 包括
-
-        # - 签署控件 是否默认展示日期.
+        # @param SignComponentConfig: <p><font color="red">此字段已不再使用，请使用 CreateFlowOption 里面的 SignComponentConfig</font><br>签署控件的配置信息，用在嵌入式发起的页面配置，<br>包括  </p><ul><li>签署控件 是否默认展示日期.</li></ul>
         # @type SignComponentConfig: :class:`Tencentcloud::Ess.v20201111.models.SignComponentConfig`
-        # @param Workflow: 是否开启嵌入式合同发起时，提交发起审批流，默认：false（不开启），开启后，嵌入式合同发起后，会提交电子签内置审批流
+        # @param Workflow: <p>是否开启嵌入式合同发起时，提交发起审批流，默认：false（不开启），开启后，嵌入式合同发起后，会提交电子签内置审批流</p>
         # @type Workflow: Boolean
 
         attr_accessor :Operator, :ResourceId, :FlowName, :ResourceType, :Unordered, :Deadline, :UserFlowTypeId, :FlowType, :Approvers, :IntelligentStatus, :Components, :FlowOption, :NeedSignReview, :NeedCreateReview, :UserData, :CcInfos, :FlowId, :Agent, :InitiatorComponents, :FlowDisplayType, :SignComponentConfig, :Workflow
@@ -6983,11 +6866,11 @@ module TencentCloud
 
       # CreatePrepareFlow返回参数结构体
       class CreatePrepareFlowResponse < TencentCloud::Common::AbstractModel
-        # @param Url: 发起流程的web页面链接，有效期5分钟
+        # @param Url: <p>发起流程的web页面链接，有效期5分钟</p>
         # @type Url: String
-        # @param FlowId: 创建的合同id（还未实际发起），每次调用会生成新的id，用户可以记录此字段对应后续页面发起的合同，若在页面上未成功发起，则此字段无效。
+        # @param FlowId: <p>创建的合同id（还未实际发起），每次调用会生成新的id，用户可以记录此字段对应后续页面发起的合同，若在页面上未成功发起，则此字段无效。</p>
         # @type FlowId: String
-        # @param DraftId: 临时的草稿id（还未实际保存草稿），用户可以记录此字段对应后续页面保存的草稿，若在页面上未保存草稿，则此字段无效。
+        # @param DraftId: <p>临时的草稿id（还未实际保存草稿），用户可以记录此字段对应后续页面保存的草稿，若在页面上未保存草稿，则此字段无效。</p>
         # @type DraftId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7023,7 +6906,7 @@ module TencentCloud
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param IdCardType: <p>证件类型，支持以下类型</p><ul><li>ID_CARD : 中国大陆居民身份证 (默认值)</li><li>HONGKONG_AND_MACAO : 中国港澳居民来往内地通行证</li><li>HONGKONG_MACAO_AND_TAIWAN : 中国港澳台居民居住证(格式同 中国大陆居民身份证)</li></ul>
         # @type IdCardType: String
-        # @param Mobile: <p>手机号码；当需要开通自动签时，该参数必传</p>
+        # @param Mobile: <p>手机号码；当需要开通“授权签”时，该参数必传</p>
         # @type Mobile: String
         # @param FileId: <p>印章图片文件 id<br>取值：<br>填写的FileId通过UploadFiles接口上传文件获取。</p>
         # @type FileId: String
@@ -7031,7 +6914,7 @@ module TencentCloud
         # @type SealColor: String
         # @param ProcessSeal: <p>是否处理印章，默认不做印章处理。<br>取值如下：</p><ul><li>false：不做任何处理；</li><li>true：做透明化处理和颜色增强。</li></ul>
         # @type ProcessSeal: Boolean
-        # @param SceneKey: <p>自动签使用的场景值, 可以选择的场景值如下:</p><ul><li> **E_PRESCRIPTION_AUTO_SIGN** :  电子处方场景</li><li> **OTHER** :  通用场景</li></ul><p>注: <code>不传默认为处方单场景，即E_PRESCRIPTION_AUTO_SIGN</code></p>
+        # @param SceneKey: <p>“授权签”使用的场景值, 可以选择的场景值如下:<ul><li> <strong>E_PRESCRIPTION_AUTO_SIGN</strong> :  电子处方场景</li><li> <strong>OTHER</strong> :  通用场景</li></ul>注: <code>不传默认为处方单场景，即E_PRESCRIPTION_AUTO_SIGN</code></p>
         # @type SceneKey: String
         # @param LicenseType: <p>该字段已不再使用，设置不生效。</p>
         # @type LicenseType: Integer
@@ -7118,32 +7001,19 @@ module TencentCloud
 
       # CreateReleaseFlow请求参数结构体
       class CreateReleaseFlowRequest < TencentCloud::Common::AbstractModel
-        # @param Operator: 执行本接口操作的员工信息。
-        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @param Operator: <p>执行本接口操作的员工信息。<br>注: <code>在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。</code></p>
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param NeedRelievedFlowId: 待解除的签署流程编号（即原签署流程的编号）。
+        # @param NeedRelievedFlowId: <p>待解除的签署流程编号（即原签署流程的编号）。</p>
         # @type NeedRelievedFlowId: String
-        # @param ReliveInfo: 解除协议内容, 包括解除理由等信息。
+        # @param ReliveInfo: <p>解除协议内容, 包括解除理由等信息。</p>
         # @type ReliveInfo: :class:`Tencentcloud::Ess.v20201111.models.RelieveInfo`
-        # @param Agent: 代理企业和员工的信息。
-        # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        # @param Agent: <p>代理企业和员工的信息。<br>在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。</p>
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
-        # @param ReleasedApprovers: 替换解除协议的签署人， 如不指定新的签署人，将继续使用原流程的签署人作为本解除协议的参与方。 <br/>
-        # 如需更换原合同中的企业端签署人，可通过指定该签署人的RecipientId编号更换此企业端签署人。(可通过接口<a href="https://qian.tencent.com/developers/companyApis/queryFlows/DescribeFlowInfo/">DescribeFlowInfo</a>查询签署人的RecipientId编号)<br/>
-
-        # 注：
-        # 1. 支持更换企业的签署人，不支持更换个人类型的签署人。
-        # 2. 己方企业支持自动签署，他方企业不支持自动签署。
-        # 3. <b>仅将需要替换的签署人添加至此列表</b>，无需替换的签署人无需添加进来。
+        # @param ReleasedApprovers: <p>替换解除协议的签署人， 如不指定新的签署人，将继续使用原流程的签署人作为本解除协议的参与方。 <br>如需更换原合同中的企业端签署人，可通过指定该签署人的RecipientId编号更换此企业端签署人。(可通过接口<a href="https://qian.tencent.com/developers/companyApis/queryFlows/DescribeFlowInfo/">DescribeFlowInfo</a>查询签署人的RecipientId编号)<br>注：1. 支持更换企业的签署人，不支持更换个人类型的签署人。2. 己方企业支持“授权签”，他方企业不支持“授权签”。3. <b>仅将需要替换的签署人添加至此列表</b>，无需替换的签署人无需添加进来。</p>
         # @type ReleasedApprovers: Array
-        # @param Deadline: 合同流程的签署截止时间，格式为Unix标准时间戳（秒），如果未设置签署截止时间，则默认为合同流程创建后的7天时截止。
-        # 如果在签署截止时间前未完成签署，则合同状态会变为已过期，导致合同作废。
+        # @param Deadline: <p>合同流程的签署截止时间，格式为Unix标准时间戳（秒），如果未设置签署截止时间，则默认为合同流程创建后的7天时截止。<br>如果在签署截止时间前未完成签署，则合同状态会变为已过期，导致合同作废。</p>
         # @type Deadline: Integer
-        # @param UserData: 调用方自定义的个性化字段，该字段的值可以是字符串JSON或其他字符串形式，客户可以根据自身需求自定义数据格式并在需要时进行解析。该字段的信息将以Base64编码的形式传输，支持的最大数据大小为20480长度。
-
-        # 在合同状态变更的回调信息等场景中，该字段的信息将原封不动地透传给贵方。
-
-        # 回调的相关说明可参考开发者中心的<a href="https://qian.tencent.com/developers/company/callback_types_v2" target="_blank">回调通知</a>模块。
+        # @param UserData: <p>调用方自定义的个性化字段，该字段的值可以是字符串JSON或其他字符串形式，客户可以根据自身需求自定义数据格式并在需要时进行解析。该字段的信息将以Base64编码的形式传输，支持的最大数据大小为20480长度。</p><p>在合同状态变更的回调信息等场景中，该字段的信息将原封不动地透传给贵方。</p><p>回调的相关说明可参考开发者中心的<a href="https://qian.tencent.com/developers/company/callback_types_v2" target="_blank">回调通知</a>模块。</p>
         # @type UserData: String
 
         attr_accessor :Operator, :NeedRelievedFlowId, :ReliveInfo, :Agent, :ReleasedApprovers, :Deadline, :UserData
@@ -7187,8 +7057,7 @@ module TencentCloud
 
       # CreateReleaseFlow返回参数结构体
       class CreateReleaseFlowResponse < TencentCloud::Common::AbstractModel
-        # @param FlowId: 解除协议流程编号
-        # `注意：这里的流程编号对应的合同是本次发起的解除协议。`
+        # @param FlowId: <p>解除协议流程编号<br><code>注意：这里的流程编号对应的合同是本次发起的解除协议。</code></p>
         # @type FlowId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7863,9 +7732,9 @@ module TencentCloud
       class CreateUserAutoSignEnableUrlRequest < TencentCloud::Common::AbstractModel
         # @param Operator: <p>执行本接口操作的员工信息。<br>注: <code>在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。</code></p>
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param SceneKey: <p>自动签使用的场景值, 可以选择的场景值如下:</p><ul><li> **E_PRESCRIPTION_AUTO_SIGN** :  电子处方场景</li><li> **OTHER** :  通用场景</li></ul>
+        # @param SceneKey: <p>“授权签”使用的场景值, 可以选择的场景值如下:<ul><li> <strong>E_PRESCRIPTION_AUTO_SIGN</strong> :  电子处方场景</li><li> <strong>OTHER</strong> :  通用场景</li></ul></p>
         # @type SceneKey: String
-        # @param AutoSignConfig: <p>自动签开通配置信息, 包括开通的人员的信息等</p>
+        # @param AutoSignConfig: <p>“授权签”开通配置信息, 包括开通的人员的信息等</p>
         # @type AutoSignConfig: :class:`Tencentcloud::Ess.v20201111.models.AutoSignConfig`
         # @param UrlType: <p>生成的链接类型：</p><ul><li> 不传(即为空值) 则会生成小程序端开通链接(默认)</li><li> **H5SIGN** : 生成H5端开通链接</li></ul>
         # @type UrlType: String
@@ -7877,7 +7746,7 @@ module TencentCloud
         # @type ExpiredTime: Integer
         # @param Agent: <p>代理企业和员工的信息。<br>在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。</p>
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
-        # @param UserData: <p>调用方自定义的个性化字段(可自定义此字段的值)，并以base64方式编码，支持的最大数据大小为 20480长度。 在个人自动签的开通、关闭等回调信息场景中，该字段的信息将原封不动地透传给贵方。</p>
+        # @param UserData: <p>调用方自定义的个性化字段(可自定义此字段的值)，并以base64方式编码，支持的最大数据大小为 20480长度。 在个人“授权签”的开通、关闭等回调信息场景中，该字段的信息将原封不动地透传给贵企业。</p>
         # @type UserData: String
         # @param EndPoint: <p>要跳转的链接类型<ul><li> <strong>HTTP</strong>：跳转电子签小程序或者H5的http_url, 短信通知或者H5跳转适合此类型  ，此时返回长链</li><li><strong>HTTP_SHORT_URL</strong>：跳转电子签小程序或者H5的http_url, 短信通知或者H5跳转适合此类型，此时返回短链</li><li><strong>APP</strong>： 第三方APP或小程序跳转电子签小程序的path,  APP或者小程序跳转适合此类型，注意：仅UrlType为空，即获取小程序端开通链接时有效</li></ul></p>
         # @type EndPoint: String
@@ -7922,7 +7791,7 @@ module TencentCloud
 
       # CreateUserAutoSignEnableUrl返回参数结构体
       class CreateUserAutoSignEnableUrlResponse < TencentCloud::Common::AbstractModel
-        # @param Url: <p>个人用户自动签的开通链接, 短链/长链接形式。过期时间受 <code>ExpiredTime</code> 参数控制。</p>
+        # @param Url: <p>个人用户“授权签”的开通链接, 短链/长链接形式。过期时间受 <code>ExpiredTime</code> 参数控制。</p>
         # @type Url: String
         # @param AppId: <p>腾讯电子签小程序的 AppID，用于其他小程序/APP等应用跳转至腾讯电子签小程序使用</p><p>注: <code>如果获取的是H5链接, 则不会返回此值</code></p>
         # @type AppId: String
@@ -7964,9 +7833,9 @@ module TencentCloud
       class CreateUserAutoSignSealUrlRequest < TencentCloud::Common::AbstractModel
         # @param Operator: <p>执行本接口操作的员工信息。<br>注: <code>在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。</code></p>
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param SceneKey: <p>自动签使用的场景值, 可以选择的场景值如下:</p><ul><li> **E_PRESCRIPTION_AUTO_SIGN** :  电子处方场景</li><li> **OTHER** :  通用场景</li></ul>
+        # @param SceneKey: <p>“授权签”使用的场景值, 可以选择的场景值如下:<ul><li> <strong>E_PRESCRIPTION_AUTO_SIGN</strong> :  电子处方场景</li><li> <strong>OTHER</strong> :  通用场景</li></ul></p>
         # @type SceneKey: String
-        # @param UserInfo: <p>自动签开通个人用户信息, 包括名字,身份证等。</p>
+        # @param UserInfo: <p>“授权签”开通个人用户信息, 包括名字,身份证等。</p>
         # @type UserInfo: :class:`Tencentcloud::Ess.v20201111.models.UserThreeFactor`
         # @param Agent: <p>代理企业和员工的信息。<br>在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。</p>
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
@@ -8011,7 +7880,7 @@ module TencentCloud
         # @type AppId: String
         # @param AppOriginalId: <p>腾讯电子签小程序的原始Id，用于其他小程序/APP等应用跳转至腾讯电子签小程序使用。</p>
         # @type AppOriginalId: String
-        # @param Url: <p>个人用户自动签的开通链接, 短链或者长链接形式。过期时间受 <code>ExpiredTime</code> 参数控制。</p>
+        # @param Url: <p>个人用户“授权签”的开通链接, 短链或者长链接形式。过期时间受 <code>ExpiredTime</code> 参数控制。</p>
         # @type Url: String
         # @param Path: <p>腾讯电子签小程序的跳转路径，用于其他小程序/APP等应用跳转至腾讯电子签小程序使用。</p>
         # @type Path: String
@@ -8415,18 +8284,13 @@ module TencentCloud
 
       # DeleteExtendedServiceAuthInfos请求参数结构体
       class DeleteExtendedServiceAuthInfosRequest < TencentCloud::Common::AbstractModel
-        # @param Operator: 执行本接口操作的员工信息。
-        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @param Operator: <p>执行本接口操作的员工信息。<br>注: <code>在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。</code></p>
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param UserIds: 本企业员工的id，需要已实名，正常在职员工
+        # @param UserIds: <p>本企业员工的id，需要已实名，正常在职员工</p>
         # @type UserIds: Array
-        # @param ExtendServiceType: 取值如下所示：
-        # <ul><li>OPEN_SERVER_SIGN：企业自动签</li>
-        # <li>BATCH_SIGN：批量签署</li>
-        # </ul>
+        # @param ExtendServiceType: <p>取值如下所示：<ul><li>OPEN_SERVER_SIGN：企业“授权签”</li><li>BATCH_SIGN：批量签署</li></ul></p>
         # @type ExtendServiceType: String
-        # @param Agent: 代理企业和员工的信息。
-        # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        # @param Agent: <p>代理企业和员工的信息。<br>在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。</p>
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
 
         attr_accessor :Operator, :UserIds, :ExtendServiceType, :Agent
@@ -10111,7 +9975,7 @@ module TencentCloud
       class DescribeExtendedServiceAuthDetailRequest < TencentCloud::Common::AbstractModel
         # @param Operator: <p>执行本接口操作的员工信息。<br>注: <code>在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。</code></p>
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param ExtendServiceType: <p>要查询的扩展服务类型。<br>如下所示：</p><ul><li>OPEN_SERVER_SIGN：企业静默签署</li><li>BATCH_SIGN：批量签署</li></ul>
+        # @param ExtendServiceType: <p>要查询的扩展服务类型。如下所示：<ul><li>OPEN_SERVER_SIGN：企业“授权签”</li><li>BATCH_SIGN：批量签署</li></ul></p>
         # @type ExtendServiceType: String
         # @param Agent: <p>代理企业和员工的信息。<br>在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。</p>
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
@@ -10119,7 +9983,7 @@ module TencentCloud
         # @type Limit: Integer
         # @param Offset: <p>查询结果分页返回，指定从第几页返回数据，和Limit参数配合使用。 注：<code>1.offset从0开始，即第一页为0。</code> <code>2.默认从第一页返回。</code></p>
         # @type Offset: Integer
-        # @param PartnerOrganizationName: <p>查询指定的合作方企业的授权信息，当ExtendServiceType=OPEN_SERVER_SIGN：企业静默签署时有效</p>
+        # @param PartnerOrganizationName: <p>查询指定的合作方企业的授权信息，当ExtendServiceType=OPEN_SERVER_SIGN：企业“授权签”时有效</p>
         # @type PartnerOrganizationName: String
 
         attr_accessor :Operator, :ExtendServiceType, :Agent, :Limit, :Offset, :PartnerOrganizationName
@@ -10174,32 +10038,11 @@ module TencentCloud
 
       # DescribeExtendedServiceAuthInfos请求参数结构体
       class DescribeExtendedServiceAuthInfosRequest < TencentCloud::Common::AbstractModel
-        # @param Operator: 执行本接口操作的员工信息。
-        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @param Operator: <p>执行本接口操作的员工信息。<br>注: <code>在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。</code></p>
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param ExtendServiceType: 要查询的扩展服务类型。
-        # 默认为空，即查询当前支持的所有扩展服务信息。
-        # 若需查询单个扩展服务的开通情况，请传递相应的值，如下所示：
-        # <ul><li>OPEN_SERVER_SIGN：企业自动签署</li>
-        # <li>AUTO_SIGN_CAN_FILL_IN：本企业自动签合同支持签前内容补充</li>
-        # <li>BATCH_SIGN：批量签署</li>
-        # <li>OVERSEA_SIGN：企业与港澳台居民签署合同</li>
-        # <li>AGE_LIMIT_EXPANSION：拓宽签署方年龄限制</li>
-        # <li>MOBILE_CHECK_APPROVER：个人签署方仅校验手机号</li>
-        # <li>HIDE_OPERATOR_DISPLAY：隐藏合同经办人姓名</li>
-        # <li>ORGANIZATION_OCR_FALLBACK：正楷临摹签名失败后更换其他签名类型</li>
-        # <li>ORGANIZATION_FLOW_NOTIFY_TYPE：短信通知签署方</li>
-        # <li>ORGANIZATION_FLOW_EMAIL_NOTIFY：邮件通知签署方</li>
-        # <li>FLOW_APPROVAL：合同审批强制开启</li>
-        # <li>ORGANIZATION_FLOW_PASSWD_NOTIFY：签署密码开通引导</li>
-        # <li>HIDE_ONE_KEY_SIGN：个人签署方手写签名时需逐个手写</li>
-        # <li>SIGN_SIGNATURE_DEFAULT_SET_HANDWRITE：个人签署方手动签名</li>
-        # <li>APP_LOGIN：限制企业员工小程序端登录</li>
-        # <li>PC_LOGIN：限制企业员工网页端登录</li>
-        # </ul>
+        # @param ExtendServiceType: <p>要查询的扩展服务类型。默认为空，即查询当前支持的所有扩展服务信息。若需查询单个扩展服务的开通情况，请传递相应的值，如下所示：<ul><li>OPEN_SERVER_SIGN：企业“授权签”</li><li>AUTO_SIGN_CAN_FILL_IN：本企业“授权签”合同支持签前内容补充</li><li>BATCH_SIGN：批量签署</li><li>OVERSEA_SIGN：企业与港澳台居民签署合同</li><li>AGE_LIMIT_EXPANSION：拓宽签署方年龄限制</li><li>MOBILE_CHECK_APPROVER：个人签署方仅校验手机号</li><li>HIDE_OPERATOR_DISPLAY：隐藏合同经办人姓名</li><li>ORGANIZATION_OCR_FALLBACK：正楷临摹签名失败后更换其他签名类型</li><li>ORGANIZATION_FLOW_NOTIFY_TYPE：短信通知签署方</li><li>ORGANIZATION_FLOW_EMAIL_NOTIFY：邮件通知签署方</li><li>FLOW_APPROVAL：合同审批强制开启</li><li>ORGANIZATION_FLOW_PASSWD_NOTIFY：签署密码开通引导</li><li>HIDE_ONE_KEY_SIGN：个人签署方手写签名时需逐个手写</li><li>SIGN_SIGNATURE_DEFAULT_SET_HANDWRITE：个人签署方手动签名</li><li>APP_LOGIN：限制企业员工小程序端登录</li><li>PC_LOGIN：限制企业员工网页端登录</li></ul></p>
         # @type ExtendServiceType: String
-        # @param Agent: 代理企业和员工的信息。
-        # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        # @param Agent: <p>代理企业和员工的信息。<br>在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。</p>
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
 
         attr_accessor :Operator, :ExtendServiceType, :Agent
@@ -10225,7 +10068,7 @@ module TencentCloud
 
       # DescribeExtendedServiceAuthInfos返回参数结构体
       class DescribeExtendedServiceAuthInfosResponse < TencentCloud::Common::AbstractModel
-        # @param AuthInfoList: 服务开通和授权的信息列表，根据查询类型返回所有支持的扩展服务开通和授权状况，或者返回特定扩展服务的开通和授权状况。
+        # @param AuthInfoList: <p>服务开通和授权的信息列表，根据查询类型返回所有支持的扩展服务开通和授权状况，或者返回特定扩展服务的开通和授权状况。</p>
         # @type AuthInfoList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -11632,19 +11475,13 @@ module TencentCloud
 
       # DescribePersonCertificate请求参数结构体
       class DescribePersonCertificateRequest < TencentCloud::Common::AbstractModel
-        # @param Operator: 执行本接口操作的员工信息。
-        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @param Operator: <p>执行本接口操作的员工信息。<br>注: <code>在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。</code></p>
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param UserInfo: 个人用户的三要素信息：
-        # <ul><li>姓名</li>
-        # <li>证件号</li>
-        # <li>证件类型</li></ul>
+        # @param UserInfo: <p>个人用户的三要素信息：</p><ul><li>姓名</li><li>证件号</li><li>证件类型</li></ul>
         # @type UserInfo: :class:`Tencentcloud::Ess.v20201111.models.UserThreeFactor`
-        # @param Agent: 代理企业和员工的信息。
-        # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        # @param Agent: <p>代理企业和员工的信息。<br>在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。</p>
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
-        # @param SceneKey: 证书使用场景，可以选择的场景值如下:
-        # <ul><li> **E_PRESCRIPTION_AUTO_SIGN** :  电子处方场景</li><li> **OTHER** :  通用场景</li></ul>
+        # @param SceneKey: <p>证书使用场景，可以选择的场景值如下:</p><ul><li> **E_PRESCRIPTION_AUTO_SIGN** :  电子处方场景</li><li> **OTHER** :  通用场景</li></ul>
         # @type SceneKey: String
 
         attr_accessor :Operator, :UserInfo, :Agent, :SceneKey
@@ -11675,7 +11512,7 @@ module TencentCloud
 
       # DescribePersonCertificate返回参数结构体
       class DescribePersonCertificateResponse < TencentCloud::Common::AbstractModel
-        # @param Cert: 证书的Base64
+        # @param Cert: <p>证书的Base64</p>
         # @type Cert: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -11947,7 +11784,7 @@ module TencentCloud
       class DescribeUserAutoSignStatusRequest < TencentCloud::Common::AbstractModel
         # @param Operator: <p>执行本接口操作的员工信息。<br>注: <code>在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。</code></p>
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param SceneKey: <p>自动签使用的场景值, 可以选择的场景值如下:</p><ul><li> **E_PRESCRIPTION_AUTO_SIGN** :  电子处方场景</li><li> **OTHER** :  通用场景</li></ul>
+        # @param SceneKey: <p>“授权签”使用的场景值, 可以选择的场景值如下:<ul><li> <strong>E_PRESCRIPTION_AUTO_SIGN</strong> :  电子处方场景</li><li> <strong>OTHER</strong> :  通用场景</li></ul></p>
         # @type SceneKey: String
         # @param UserInfo: <p>要查询状态的用户信息, 包括名字,身份证等</p>
         # @type UserInfo: :class:`Tencentcloud::Ess.v20201111.models.UserThreeFactor`
@@ -11982,15 +11819,15 @@ module TencentCloud
 
       # DescribeUserAutoSignStatus返回参数结构体
       class DescribeUserAutoSignStatusResponse < TencentCloud::Common::AbstractModel
-        # @param IsOpen: <p>查询用户是否已开通自动签</p>
+        # @param IsOpen: <p>查询用户是否已开通“授权签”</p>
         # @type IsOpen: Boolean
-        # @param LicenseFrom: <p>自动签许可生效时间。当且仅当已通过许可开通自动签时有值。</p><p>值为unix时间戳,单位为秒。</p>
+        # @param LicenseFrom: <p>“授权签”许可生效时间。当且仅当已通过许可开通“授权签”时有值。值为unix时间戳,单位为秒。</p>
         # @type LicenseFrom: Integer
-        # @param LicenseTo: <p>自动签许可到期时间。当且仅当已通过许可开通自动签时有值。</p><p>值为unix时间戳,单位为秒。</p>
+        # @param LicenseTo: <p>“授权签”许可到期时间。当且仅当已通过许可开通“授权签”时有值。值为unix时间戳,单位为秒。</p>
         # @type LicenseTo: Integer
-        # @param LicenseType: <p>设置用户开通自动签时是否绑定个人自动签账号许可。<ul><li><strong>0</strong>: 使用个人自动签账号许可进行开通，个人自动签账号许可有效期1年，注: <code>不可解绑释放更换他人</code></li><li><strong>1</strong>: 不绑定自动签账号许可开通，后续使用合同份额进行合同发起</li></ul></p>
+        # @param LicenseType: <p>设置用户开通“授权签”时是否绑定个人“授权签”账号许可。</p><p>枚举值：</p><ul><li>0： 使用个人“授权签”账号许可进行开通，个人“授权签”账号许可有效期1年，注: 不可解绑释放更换他人</li><li>1： 不绑定“授权签”账号许可开通，后续使用合同份额进行合同发起</li></ul>
         # @type LicenseType: Integer
-        # @param SealId: <p>用户开通自动签指定使用的印章，为空则未设置印章，需重新进入开通链接设置印章。</p>
+        # @param SealId: <p>用户开通“授权签”指定使用的印章，为空则未设置印章，需重新进入开通链接设置印章。</p>
         # @type SealId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -12164,9 +12001,9 @@ module TencentCloud
       class DisableUserAutoSignRequest < TencentCloud::Common::AbstractModel
         # @param Operator: <p>执行本接口操作的员工信息。<br>注: <code>在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。</code></p>
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param SceneKey: <p>自动签使用的场景值, 可以选择的场景值如下:</p><ul><li> **E_PRESCRIPTION_AUTO_SIGN** :  电子处方场景</li><li> **OTHER** :  通用场景</li></ul>
+        # @param SceneKey: <p>“授权签”使用的场景值, 可以选择的场景值如下:<ul><li> <strong>E_PRESCRIPTION_AUTO_SIGN</strong> :  电子处方场景</li><li> <strong>OTHER</strong> :  通用场景</li></ul></p>
         # @type SceneKey: String
-        # @param UserInfo: <p>需要关闭自动签的个人的信息，如姓名，证件信息等。</p>
+        # @param UserInfo: <p>需要关闭“授权签”的个人的信息，如姓名，证件信息等。</p>
         # @type UserInfo: :class:`Tencentcloud::Ess.v20201111.models.UserThreeFactor`
         # @param Agent: <p>代理企业和员工的信息。<br>在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。</p>
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
@@ -12501,32 +12338,17 @@ module TencentCloud
 
       # 扩展服务开通和授权的详细信息
       class ExtendAuthInfo < TencentCloud::Common::AbstractModel
-        # @param Type: 扩展服务的类型，可能是以下值：
-        # <ul><li>OPEN_SERVER_SIGN：企业自动签署</li>
-        # <li>BATCH_SIGN：批量签署</li>
-        # <li>OVERSEA_SIGN：企业与港澳台居民签署合同</li>
-        # <li>AGE_LIMIT_EXPANSION：拓宽签署方年龄限制</li>
-        # <li>MOBILE_CHECK_APPROVER：个人签署方仅校验手机号</li>
-        # <li>HIDE_OPERATOR_DISPLAY：隐藏合同经办人姓名</li>
-        # <li>ORGANIZATION_OCR_FALLBACK：正楷临摹签名失败后更换其他签名类型</li>
-        # <li>ORGANIZATION_FLOW_NOTIFY_TYPE：短信通知签署方</li>
-        # <li>HIDE_ONE_KEY_SIGN：个人签署方手动签字</li>
-        # <li>PAGING_SEAL：骑缝章</li>
-        # <li>ORGANIZATION_FLOW_PASSWD_NOTIFY：签署密码开通引导</li></ul>
+        # @param Type: <p>扩展服务的类型，可能是以下值：<ul><li>OPEN_SERVER_SIGN：企业“授权签”</li><li>BATCH_SIGN：批量签署</li><li>OVERSEA_SIGN：企业与港澳台居民签署合同</li><li>AGE_LIMIT_EXPANSION：拓宽签署方年龄限制</li><li>MOBILE_CHECK_APPROVER：个人签署方仅校验手机号</li><li>HIDE_OPERATOR_DISPLAY：隐藏合同经办人姓名</li><li>ORGANIZATION_OCR_FALLBACK：正楷临摹签名失败后更换其他签名类型</li><li>ORGANIZATION_FLOW_NOTIFY_TYPE：短信通知签署方</li><li>HIDE_ONE_KEY_SIGN：个人签署方手动签字</li><li>PAGING_SEAL：骑缝章</li><li>ORGANIZATION_FLOW_PASSWD_NOTIFY：签署密码开通引导</li></ul></p>
         # @type Type: String
-        # @param Name: 扩展服务的名称
+        # @param Name: <p>扩展服务的名称</p>
         # @type Name: String
-        # @param Status: 扩展服务的开通状态：
-        # <ul>
-        # <li>ENABLE : 已开通</li>
-        # <li>DISABLE : 未开通</li>
-        # </ul>
+        # @param Status: <p>扩展服务的开通状态：</p><ul><li>ENABLE : 已开通</li><li>DISABLE : 未开通</li></ul>
         # @type Status: String
-        # @param OperatorUserId: 操作扩展服务的操作人UserId，员工在腾讯电子签平台的唯一身份标识，为32位字符串。
+        # @param OperatorUserId: <p>操作扩展服务的操作人UserId，员工在腾讯电子签平台的唯一身份标识，为32位字符串。</p>
         # @type OperatorUserId: String
-        # @param OperateOn: 扩展服务的操作时间，格式为Unix标准时间戳（秒）。
+        # @param OperateOn: <p>扩展服务的操作时间，格式为Unix标准时间戳（秒）。</p>
         # @type OperateOn: Integer
-        # @param HasAuthUserList: 该扩展服务若可以授权，此参数对应授权人员的列表
+        # @param HasAuthUserList: <p>该扩展服务若可以授权，此参数对应授权人员的列表</p>
         # @type HasAuthUserList: Array
 
         attr_accessor :Type, :Name, :Status, :OperatorUserId, :OperateOn, :HasAuthUserList
@@ -13086,7 +12908,7 @@ module TencentCloud
         # @type SignOrder: Integer
         # @param ApproveTime: <p>签署人签署时间，时间戳，单位秒</p>
         # @type ApproveTime: Integer
-        # @param ApproveType: <p>签署方类型，ORGANIZATION-企业员工，PERSON-个人，ENTERPRISESERVER-企业静默签</p>
+        # @param ApproveType: <p>签署方类型，ORGANIZATION-企业员工，PERSON-个人，ENTERPRISESERVER-企业“授权签”</p>
         # @type ApproveType: String
         # @param ApproverSource: <p>签署方侧用户来源，如WEWORKAPP-企业微信等</p>
         # @type ApproverSource: String
@@ -13320,9 +13142,9 @@ module TencentCloud
 
       # 创建流程的签署方信息
       class FlowCreateApprover < TencentCloud::Common::AbstractModel
-        # @param ApproverType: <p>在指定签署方时，可以选择企业B端或个人C端等不同的参与者类型，可选类型如下：</p><ul><li> <b>0</b> :企业B端。</li><li> <b>1</b> :个人C端。</li><li> <b>3</b> :企业B端静默（自动）签署，无需签署人参与，自动签署可以参考<a href="https://qian.tencent.com/developers/company/autosign_guide" target="_blank" rel="noopener noreferrer">自动签署使用说明</a>文档。</li><li> <b>7</b> :个人C端自动签署，适用于个人自动签场景。注: <b>个人自动签场景为白名单功能，使用前请联系对接的客户经理沟通。</b> </li></ul>
+        # @param ApproverType: <p>在指定签署方时，可以选择企业B端或个人C端等不同的参与者类型，可选类型如下：<ul><li> <b>0</b> :企业B端。</li><li> <b>1</b> :个人C端。</li><li> <b>3</b> :企业B端静默（自动）签署，无需签署人参与，“授权签”可以参考<a href="https://qian.tencent.com/developers/company/autosign_guide" target="_blank" rel="noopener noreferrer">“授权签”使用说明</a>文档。</li><li> <b>7</b> :个人C端“授权签”，适用于个人“授权签”场景。注: <b>个人“授权签”场景为白名单功能，使用前请联系对接的客户经理沟通。</b> </li></ul></p>
         # @type ApproverType: Integer
-        # @param OrganizationName: <p>组织机构名称。<br>请确认该名称与企业营业执照中注册的名称一致。<br>如果名称中包含英文括号()，请使用中文括号（）代替。</p><p>注: <code>当approverType=0(企业签署方) 或 approverType=3(企业静默签署)时，必须指定</code></p>
+        # @param OrganizationName: <p>组织机构名称。请确认该名称与企业营业执照中注册的名称一致。如果名称中包含英文括号()，请使用中文括号（）代替。注: <code>当approverType=0(企业签署方) 或 approverType=3(企业“授权签”)时，必须指定</code></p>
         # @type OrganizationName: String
         # @param ApproverName: <p>签署方经办人的姓名。<br>经办人的姓名将用于身份认证和电子签名，请确保填写的姓名为签署方的真实姓名，而非昵称等代名。</p><p>在未指定签署人电子签UserId情况下，为必填参数</p>
         # @type ApproverName: String
@@ -13358,7 +13180,7 @@ module TencentCloud
         # @type JumpUrl: String
         # @param SignId: <p>签署人的签署ID</p><ul><li>在CreateFlow、CreatePrepareFlow等发起流程时不需要传入此参数，电子签后台系统会自动生成。</li><li>在CreateFlowSignUrl、CreateBatchQuickSignUrl等生成签署链接时，可以通过查询详情接口获取签署人的SignId，然后可以将此值传入，为该签署人创建签署链接。这样可以避免重复传输姓名、手机号、证件号等其他信息。</li></ul>
         # @type SignId: String
-        # @param ApproverNeedSignReview: <p>此签署人(员工或者个人)签署时，是否需要发起方企业审批，取值如下：</p><ul><li>**false**：（默认）不需要审批，直接签署。</li><li>**true**：需要走审批流程。当到对应参与人签署时，会阻塞其签署操作，等待企业内部审批完成。</li></ul>企业可以通过CreateFlowSignReview审批接口通知腾讯电子签平台企业内部审批结果<ul><li>如果企业通知腾讯电子签平台审核通过，签署方可继续签署动作。</li><li>如果企业通知腾讯电子签平台审核未通过，平台将继续阻塞签署方的签署动作，直到企业通知平台审核通过。</li></ul><p>注：<code>此功能可用于与发起方企业内部的审批流程进行关联，支持手动、静默签署合同</code></p><p><img src="https://qcloudimg.tencent-cloud.cn/raw/b14d5188ed0229d1401e74a9a49cab6d.png" alt="image"></p>
+        # @param ApproverNeedSignReview: <p>此签署人(员工或者个人)签署时，是否需要发起方企业审批，取值如下：<ul><li><strong>false</strong>：（默认）不需要审批，直接签署。</li><li><strong>true</strong>：需要走审批流程。当到对应参与人签署时，会阻塞其签署操作，等待企业内部审批完成。</li></ul>企业可以通过CreateFlowSignReview审批接口通知腾讯电子签平台企业内部审批结果<ul><li>如果企业通知腾讯电子签平台审核通过，签署方可继续签署动作。</li><li>如果企业通知腾讯电子签平台审核未通过，平台将继续阻塞签署方的签署动作，直到企业通知平台审核通过。</li></ul>注：<code>此功能可用于与发起方企业内部的审批流程进行关联，支持手动、“授权签”合同</code><img src="https://qcloudimg.tencent-cloud.cn/raw/b14d5188ed0229d1401e74a9a49cab6d.png" alt="image"></p>
         # @type ApproverNeedSignReview: Boolean
         # @param SignComponents: <p>签署人签署控件， 此参数仅针对文件发起（CreateFlowByFiles）生效</p><p>合同中的签署控件列表，列表中可支持下列多种签署控件,控件的详细定义参考开发者中心的Component结构体</p><ul><li> 个人签名/印章</li><li> 企业印章</li><li> 骑缝章等签署控件</li></ul><p><code>此参数仅针对文件发起设置生效,模板发起合同签署流程, 请以模板配置为主</code></p>
         # @type SignComponents: Array
@@ -13672,9 +13494,9 @@ module TencentCloud
         # @type Unordered: Boolean
         # @param Components: <p>模板或者合同中的填写控件列表，列表中可支持下列多种填写控件，控件的详细定义参考开发者中心的Component结构体</p><ul><li>单行文本控件</li><li>多行文本控件</li><li>勾选框控件</li><li>数字控件</li><li>图片控件</li><li>动态表格等填写控件</li></ul>
         # @type Components: Array
-        # @param NeedSignReview: <p>发起方企业的签署人进行签署操作是否需要企业内部审批。使用此功能需要发起方企业有参与签署。<br>若设置为true，审核结果需通过接口 <a href="https://qian.tencent.com/developers/companyApis/operateFlows/CreateFlowSignReview">CreateFlowSignReview</a> 通知电子签，审核通过后，发起方企业签署人方可进行签署操作，否则会阻塞其签署操作。</p><p>注：企业可以通过此功能与企业内部的审批流程进行关联，支持手动、静默签署合同。<br>示例值：true</p>
+        # @param NeedSignReview: <p>发起方企业的签署人进行签署操作是否需要企业内部审批。使用此功能需要发起方企业有参与签署。若设置为true，审核结果需通过接口 <a href="https://qian.tencent.com/developers/companyApis/operateFlows/CreateFlowSignReview">CreateFlowSignReview</a> 通知电子签，审核通过后，发起方企业签署人方可进行签署操作，否则会阻塞其签署操作。注：企业可以通过此功能与企业内部的审批流程进行关联，支持手动、“授权签”合同。示例值：true</p>
         # @type NeedSignReview: Boolean
-        # @param AutoSignScene: <p>个人自动签场景。发起自动签署时，需设置对应自动签署场景，目前仅支持场景：处方单-E_PRESCRIPTION_AUTO_SIGN</p>
+        # @param AutoSignScene: <p>个人“授权签”场景。发起“授权签”时，需设置对应“授权签”场景，目前仅支持场景：处方单-E_PRESCRIPTION_AUTO_SIGN</p>
         # @type AutoSignScene: String
         # @param FlowDisplayType: <p>在短信通知、填写、签署流程中，若标题、按钮、合同详情等地方存在“合同”字样时，可根据此配置指定文案，可选文案如下：  <ul><li> <b>0</b> :合同（默认值）</li> <li> <b>1</b> :文件</li> <li> <b>2</b> :协议</li><li> <b>3</b> :文书</li></ul>效果如下:<img src="https://qcloudimg.tencent-cloud.cn/raw/e4a2c4d638717cc901d3dbd5137c9bbc.png" alt="FlowDisplayType"></p>
         # @type FlowDisplayType: Integer
@@ -13870,7 +13692,7 @@ module TencentCloud
 
       # 当控件的 ComponentType=‘SIGN_SEAL'时，FormField.ComponentValue填入印章id。
 
-      # * 可用于指定自动签模板未设置自动签印章时，可由接口传入自动签印章
+      # * 可用于指定“授权签”模板未设置“授权签”印章时，可由接口传入“授权签”印章
       # * 若指定的控件上已设置ComponentValue，那以已经设置的ComponentValue为准
 
       # ```
@@ -15129,45 +14951,19 @@ module TencentCloud
 
       # 创建流程的签署方信息
       class MiniAppCreateApproverInfo < TencentCloud::Common::AbstractModel
-        # @param ApproverType: 在指定签署方时，可以选择企业B端或个人C端等不同的参与者类型，可选类型如下：
-
-        # <ul><li> <b>0</b> :企业B端。</li>
-        # <li> <b>1</b> :个人C端。</li>
-        # <li> <b>3</b> :企业B端静默（自动）签署，无需签署人参与，自动签署可以参考<a href="https://qian.tencent.com/developers/company/autosign_guide" target="_blank" rel="noopener noreferrer">自动签署使用说明</a>文档。</li>
-        # <li> <b>7</b> :个人C端自动签署，适用于个人自动签场景。注: <b>个人自动签场景为白名单功能，使用前请联系对接的客户经理沟通。</b> </li></ul>
+        # @param ApproverType: <p>在指定签署方时，可以选择企业B端或个人C端等不同的参与者类型，可选类型如下：<ul><li> <b>0</b> :企业B端。</li><li> <b>1</b> :个人C端。</li><li> <b>3</b> :企业B端静默（自动）签署，无需签署人参与，“授权签”可以参考<a href="https://qian.tencent.com/developers/company/autosign_guide" target="_blank" rel="noopener noreferrer">“授权签”使用说明</a>文档。</li><li> <b>7</b> :个人C端“授权签”，适用于个人“授权签”场景。注: <b>个人“授权签”场景为白名单功能，使用前请联系对接的客户经理沟通。</b> </li></ul></p>
         # @type ApproverType: Integer
-        # @param OrganizationName: 组织机构名称。
-        # 请确认该名称与企业营业执照中注册的名称一致。
-        # 如果名称中包含英文括号()，请使用中文括号（）代替。
-
-        # 注: `当approverType=0(企业签署方) 或 approverType=3(企业静默签署)时，必须指定`
-
+        # @param OrganizationName: <p>组织机构名称。请确认该名称与企业营业执照中注册的名称一致。如果名称中包含英文括号()，请使用中文括号（）代替。注: <code>当approverType=0(企业签署方) 或 approverType=3(企业“授权签”)时，必须指定</code></p>
         # @type OrganizationName: String
-        # @param ApproverName: 签署方经办人的姓名。
-        # 经办人的姓名将用于身份认证和电子签名，请确保填写的姓名为签署方的真实姓名，而非昵称等代名。
-
-        # 在未指定签署人电子签UserId情况下，为必填参数
+        # @param ApproverName: <p>签署方经办人的姓名。<br>经办人的姓名将用于身份认证和电子签名，请确保填写的姓名为签署方的真实姓名，而非昵称等代名。</p><p>在未指定签署人电子签UserId情况下，为必填参数</p>
         # @type ApproverName: String
-        # @param ApproverMobile: 签署方经办人手机号码， 支持中国大陆手机号11位数字(无需加+86前缀或其他字符)。 此手机号用于通知和用户的实名认证等环境，请确认手机号所有方为此合同签署方。
-
-        # 注：`在未指定签署人电子签UserId情况下，为必填参数`
+        # @param ApproverMobile: <p>签署方经办人手机号码， 支持中国大陆手机号11位数字(无需加+86前缀或其他字符)。 此手机号用于通知和用户的实名认证等环境，请确认手机号所有方为此合同签署方。</p><p>注：<code>在未指定签署人电子签UserId情况下，为必填参数</code></p>
         # @type ApproverMobile: String
-        # @param ApproverIdCardType: 证件类型，支持以下类型
-        # <ul><li><b>ID_CARD</b>: 居民身份证 (默认值)</li>
-        # <li><b>HONGKONG_AND_MACAO</b> : 港澳居民来往内地通行证</li>
-        # <li><b>HONGKONG_MACAO_AND_TAIWAN</b> : 港澳台居民居住证(格式同居民身份证)</li></ul>
+        # @param ApproverIdCardType: <p>证件类型，支持以下类型</p><ul><li><b>ID_CARD</b>: 居民身份证 (默认值)</li><li><b>HONGKONG_AND_MACAO</b> : 港澳居民来往内地通行证</li><li><b>HONGKONG_MACAO_AND_TAIWAN</b> : 港澳台居民居住证(格式同居民身份证)</li></ul>
         # @type ApproverIdCardType: String
-        # @param ApproverIdCardNumber: 证件号码，应符合以下规则
-        # <ul><li>中国大陆居民身份证号码应为18位字符串，由数字和大写字母X组成（如存在X，请大写）。</li>
-        # <li>中国港澳居民来往内地通行证号码共11位。第1位为字母，“H”字头签发给中国香港居民，“M”字头签发给中国澳门居民；第2位至第11位为数字。</li>
-        # <li>中国港澳台居民居住证号码编码规则与中国大陆身份证相同，应为18位字符串。</li></ul>
+        # @param ApproverIdCardNumber: <p>证件号码，应符合以下规则</p><ul><li>中国大陆居民身份证号码应为18位字符串，由数字和大写字母X组成（如存在X，请大写）。</li><li>中国港澳居民来往内地通行证号码共11位。第1位为字母，“H”字头签发给中国香港居民，“M”字头签发给中国澳门居民；第2位至第11位为数字。</li><li>中国港澳台居民居住证号码编码规则与中国大陆身份证相同，应为18位字符串。</li></ul>
         # @type ApproverIdCardNumber: String
-        # @param RecipientId: 签署方经办人在模板中配置的参与方ID，与控件绑定，是控件的归属方，ID为32位字符串。
-
-        # <b>模板发起合同时，该参数为必填项，可以通过[查询模板信息接口](https://qian.tencent.com/developers/companyApis/templatesAndFiles/DescribeFlowTemplates)获得。</b>
-        # <b>文件发起合同时，该参数无需传值。</b>
-
-        # 如果开发者后续用合同模板发起合同，建议保存此值，在用合同模板发起合同中需此值绑定对应的签署经办人 。
+        # @param RecipientId: <p>签署方经办人在模板中配置的参与方ID，与控件绑定，是控件的归属方，ID为32位字符串。</p><p><b>模板发起合同时，该参数为必填项，可以通过<a href="https://qian.tencent.com/developers/companyApis/templatesAndFiles/DescribeFlowTemplates">查询模板信息接口</a>获得。</b><br><b>文件发起合同时，该参数无需传值。</b></p><p>如果开发者后续用合同模板发起合同，建议保存此值，在用合同模板发起合同中需此值绑定对应的签署经办人 。</p>
         # @type RecipientId: String
 
         attr_accessor :ApproverType, :OrganizationName, :ApproverName, :ApproverMobile, :ApproverIdCardType, :ApproverIdCardNumber, :RecipientId
@@ -15303,42 +15099,15 @@ module TencentCloud
 
       # ModifyExtendedService请求参数结构体
       class ModifyExtendedServiceRequest < TencentCloud::Common::AbstractModel
-        # @param Operator: 执行本接口操作的员工信息。
-        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @param Operator: <p>执行本接口操作的员工信息。<br>注: <code>在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。</code></p>
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param ServiceType: 要管理的拓展服务类型。
-        # <ul><li>OPEN_SERVER_SIGN：企业自动签署</li>
-        # <li>AUTO_SIGN_CAN_FILL_IN：本企业自动签合同支持签前内容补充</li>
-        # <li>OVERSEA_SIGN：企业与港澳台居民签署合同</li>
-        # <li>AGE_LIMIT_EXPANSION：拓宽签署方年龄限制</li>
-        # <li>MOBILE_CHECK_APPROVER：个人签署方仅校验手机号</li>
-        # <li>HIDE_OPERATOR_DISPLAY：隐藏合同经办人姓名</li>
-        # <li>ORGANIZATION_OCR_FALLBACK：正楷临摹签名失败后更换其他签名类型</li>
-        # <li>ORGANIZATION_FLOW_NOTIFY_TYPE：短信通知签署方</li>
-        # <li>HIDE_ONE_KEY_SIGN：个人签署方手写签名时需逐个手写</li>
-        # <li>SIGN_SIGNATURE_DEFAULT_SET_HANDWRITE：个人签署方手动签名</li>
-        # <li>ORGANIZATION_FLOW_EMAIL_NOTIFY：邮件通知签署方</li>
-        # <li>FLOW_APPROVAL：合同审批强制开启</li>
-        # <li>ORGANIZATION_FLOW_PASSWD_NOTIFY：签署密码开通引导</li>
-        # <li>APP_LOGIN：限制企业员工小程序端登录</li>
-        # <li>PC_LOGIN：限制企业员工网页端登录</li>
-        # </ul>
+        # @param ServiceType: <p>要管理的拓展服务类型。<ul><li>OPEN_SERVER_SIGN：企业“授权签”</li><li>AUTO_SIGN_CAN_FILL_IN：本企业“授权签”合同支持签前内容补充</li><li>OVERSEA_SIGN：企业与港澳台居民签署合同</li><li>AGE_LIMIT_EXPANSION：拓宽签署方年龄限制</li><li>MOBILE_CHECK_APPROVER：个人签署方仅校验手机号</li><li>HIDE_OPERATOR_DISPLAY：隐藏合同经办人姓名</li><li>ORGANIZATION_OCR_FALLBACK：正楷临摹签名失败后更换其他签名类型</li><li>ORGANIZATION_FLOW_NOTIFY_TYPE：短信通知签署方</li><li>HIDE_ONE_KEY_SIGN：个人签署方手写签名时需逐个手写</li><li>SIGN_SIGNATURE_DEFAULT_SET_HANDWRITE：个人签署方手动签名</li><li>ORGANIZATION_FLOW_EMAIL_NOTIFY：邮件通知签署方</li><li>FLOW_APPROVAL：合同审批强制开启</li><li>ORGANIZATION_FLOW_PASSWD_NOTIFY：签署密码开通引导</li><li>APP_LOGIN：限制企业员工小程序端登录</li><li>PC_LOGIN：限制企业员工网页端登录</li></ul></p>
         # @type ServiceType: String
-        # @param Operate: 操作类型
-        # <ul>
-        # <li>OPEN : 开通</li>
-        # <li>CLOSE : 关闭</li>
-        # </ul>
+        # @param Operate: <p>操作类型</p><ul><li>OPEN : 开通</li><li>CLOSE : 关闭</li></ul>
         # @type Operate: String
-        # @param Agent: 代理企业和员工的信息。
-        # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        # @param Agent: <p>代理企业和员工的信息。<br>在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。</p>
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
-        # @param Endpoint: 链接跳转类型，支持以下类型
-        # <ul>
-        # <li>WEIXINAPP : 短链直接跳转到电子签小程序  (默认值)</li>
-        # <li>APP : 第三方APP或小程序跳转电子签小程序</li>
-        # <li>WEIXIN_QRCODE_URL：直接跳转至电子签小程序的二维码链接，无需通过中转页。<font color="red">您需要自行将其转换为二维码，使用微信扫码后可直接进入。请注意，直接点击链接是无效的。</font></li>
-        # </ul>
+        # @param Endpoint: <p>链接跳转类型，支持以下类型</p><ul><li>WEIXINAPP : 短链直接跳转到电子签小程序  (默认值)</li><li>APP : 第三方APP或小程序跳转电子签小程序</li><li>WEIXIN_QRCODE_URL：直接跳转至电子签小程序的二维码链接，无需通过中转页。<font color="red">您需要自行将其转换为二维码，使用微信扫码后可直接进入。请注意，直接点击链接是无效的。</font></li></ul>
         # @type Endpoint: String
 
         attr_accessor :Operator, :ServiceType, :Operate, :Agent, :Endpoint
@@ -15368,16 +15137,7 @@ module TencentCloud
 
       # ModifyExtendedService返回参数结构体
       class ModifyExtendedServiceResponse < TencentCloud::Common::AbstractModel
-        # @param OperateUrl: 操作跳转链接
-        # <ul>
-        # <li><strong>有效期：</strong> 跳转链接的有效期为24小时。</li>
-        # <li><strong>无跳转链接返回的情况：</strong> 如果在操作过程中没有返回跳转链接，这意味着无需进行跳转操作。在这种情况下，服务将会直接被开通或关闭。
-        # <li><strong>有跳转链接返回的情况：</strong> 当操作类型为“OPEN”（开通服务），并且扩展服务类型为以下之一时，  系统将返回一个操作链接。当前操作人（超级管理员或法人）需要点击此链接，以完成服务的开通操作。
-
-        # <ul>
-        # <li><strong>OPEN_SERVER_SIGN</strong>（企业自动签署）</li>
-        # </ul></li></li>
-        # </ul>
+        # @param OperateUrl: <p>操作跳转链接<ul><li><strong>有效期：</strong> 跳转链接的有效期为24小时。</li><li><strong>无跳转链接返回的情况：</strong> 如果在操作过程中没有返回跳转链接，这意味着无需进行跳转操作。在这种情况下，服务将会直接被开通或关闭。</li><li><strong>有跳转链接返回的情况：</strong> 当操作类型为“OPEN”（开通服务），并且扩展服务类型为以下之一时，  系统将返回一个操作链接。当前操作人（超级管理员或法人）需要点击此链接，以完成服务的开通操作。<ul><li><strong>OPEN_SERVER_SIGN</strong>（企业“授权签”）</li></ul></li></ul></p>
         # @type OperateUrl: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -15779,7 +15539,7 @@ module TencentCloud
 
       # 需要进行签署审核的签署人信息
       class NeedReviewApproverInfo < TencentCloud::Common::AbstractModel
-        # @param ApproverType: <p>签署方经办人的类型，支持以下类型</p><ul><li> ORGANIZATION 企业（含企业自动签）</li><li>PERSON 个人（含个人自动签）</li></ul>
+        # @param ApproverType: <p>签署方经办人的类型，支持以下类型<ul><li> ORGANIZATION 企业（含企业“授权签”）</li><li>PERSON 个人（含个人“授权签”）</li></ul></p>
         # @type ApproverType: String
         # @param ApproverName: <p>签署方经办人的姓名。 经办人的姓名将用于身份认证和电子签名，请确保填写的姓名为签署方的真实姓名，而非昵称等代名。</p>
         # @type ApproverName: String
@@ -17134,29 +16894,21 @@ module TencentCloud
       # `注意：目前不支持替换C端（个人身份类型）签署人，但是可以指定C端签署人的签署方自定义控件别名，具体见参数ApproverSignRole描述。`<br/>
       # `注意：当指定C端签署人的签署方自定义控件别名不空时，除RelievedApproverReceiptId参数外，可以只参数ApproverSignRole。`<br/>
       class ReleasedApprover < TencentCloud::Common::AbstractModel
-        # @param Name: 签署人姓名，最大长度50个字。
+        # @param Name: <p>签署人姓名，最大长度50个字。</p>
         # @type Name: String
-        # @param Mobile: 签署人手机号。
+        # @param Mobile: <p>签署人手机号。</p>
         # @type Mobile: String
-        # @param RelievedApproverReceiptId: 要更换的原合同参与人RecipientId编号。(可通过接口<a href="https://qian.tencent.com/developers/companyApis/queryFlows/DescribeFlowInfo/">DescribeFlowInfo</a>查询签署人的RecipientId编号)<br/>
+        # @param RelievedApproverReceiptId: <p>要更换的原合同参与人RecipientId编号。(可通过接口<a href="https://qian.tencent.com/developers/companyApis/queryFlows/DescribeFlowInfo/">DescribeFlowInfo</a>查询签署人的RecipientId编号)<br></p>
         # @type RelievedApproverReceiptId: String
-        # @param ApproverType: 指定签署人类型，目前仅支持
-        # <ul><li> **ORGANIZATION**：企业（默认值）</li>
-        # <li> **ENTERPRISESERVER**：企业静默签</li></ul>
+        # @param ApproverType: <p>指定签署人类型，目前仅支持<ul><li> <strong>ORGANIZATION</strong>：企业（默认值）</li><li> <strong>ENTERPRISESERVER</strong>：企业“授权签”</li></ul></p>
         # @type ApproverType: String
-        # @param ApproverSignComponentType: 签署控件类型，支持自定义企业签署方的签署控件类型
-        # <ul><li> **SIGN_SEAL**：默认为印章控件类型（默认值）</li>
-        # <li> **SIGN_SIGNATURE**：手写签名控件类型</li></ul>
+        # @param ApproverSignComponentType: <p>签署控件类型，支持自定义企业签署方的签署控件类型</p><ul><li> **SIGN_SEAL**：默认为印章控件类型（默认值）</li><li> **SIGN_SIGNATURE**：手写签名控件类型</li></ul>
         # @type ApproverSignComponentType: String
-        # @param ApproverSignRole: 参与方在合同中的角色是按照创建合同的时候来排序的，解除协议默认会将第一个参与人叫`甲方`,第二个叫`乙方`,  第三个叫`丙方`，以此类推。
-
-        # 如果需改动此参与人的角色名字，可用此字段指定，由汉字,英文字符,数字组成，最大20个字。
-
-        # ![image](https://qcloudimg.tencent-cloud.cn/raw/973a820ab66d1ce57082c160c2b2d44a.png)
+        # @param ApproverSignRole: <p>参与方在合同中的角色是按照创建合同的时候来排序的，解除协议默认会将第一个参与人叫<code>甲方</code>,第二个叫<code>乙方</code>,  第三个叫<code>丙方</code>，以此类推。</p><p>如果需改动此参与人的角色名字，可用此字段指定，由汉字,英文字符,数字组成，最大20个字。</p><p><img src="https://qcloudimg.tencent-cloud.cn/raw/973a820ab66d1ce57082c160c2b2d44a.png" alt="image"></p>
         # @type ApproverSignRole: String
-        # @param ApproverSignSealId: 印章Id，签署控件类型为印章时，用于指定本企业签署方在解除协议中使用那个印章进行签署
+        # @param ApproverSignSealId: <p>印章Id，签署控件类型为印章时，用于指定本企业签署方在解除协议中使用那个印章进行签署</p>
         # @type ApproverSignSealId: String
-        # @param RelievedApproverRecipientId: 要更换的原合同参与人RecipientId编号。(可通过接口<a href="https://qian.tencent.com/developers/companyApis/queryFlows/DescribeFlowInfo/">DescribeFlowInfo</a>查询签署人的RecipientId编号)<br/>
+        # @param RelievedApproverRecipientId: <p>要更换的原合同参与人RecipientId编号。(可通过接口<a href="https://qian.tencent.com/developers/companyApis/queryFlows/DescribeFlowInfo/">DescribeFlowInfo</a>查询签署人的RecipientId编号)<br></p>
         # @type RelievedApproverRecipientId: String
 
         attr_accessor :Name, :Mobile, :RelievedApproverReceiptId, :ApproverType, :ApproverSignComponentType, :ApproverSignRole, :ApproverSignSealId, :RelievedApproverRecipientId
@@ -18117,7 +17869,7 @@ module TencentCloud
         # @type CreatedOn: Integer
         # @param Promoter: <p>此模板创建方角色信息。</p><p><a href="https://qcloudimg.tencent-cloud.cn/raw/e082bbcc0d923f8cb723d98382410aa2.png">点击查看在模板中配置的创建方角色的样子</a></p>
         # @type Promoter: :class:`Tencentcloud::Ess.v20201111.models.Recipient`
-        # @param TemplateType: <p>模板类型可以分为以下两种：</p><p><b>1</b>：带有本企业自动签署的模板，即签署过程无需签署人手动操作，系统自动完成签署。<br><b>3</b>：普通模板，即签署人需要手动进行签署操作。</p>
+        # @param TemplateType: <p>模板类型可以分为以下两种：<b>1</b>：带有本企业“授权签”的模板，即签署过程无需签署人手动操作，系统自动完成签署。<b>3</b>：普通模板，即签署人需要手动进行签署操作。</p>
         # @type TemplateType: Integer
         # @param Available: <p>模板可用状态可以分为以下两种：</p><p><b>1</b>：（默认）启用状态，即模板可以正常使用。<br><b>2</b>：停用状态，即模板暂时无法使用。</p><p>可到控制台启停模板</p>
         # @type Available: Integer
@@ -18135,7 +17887,7 @@ module TencentCloud
         # @type Published: Boolean
         # @param ShareTemplateId: <p><b>集体账号场景下</b>： 集团账号分享给子企业的模板的来源模板ID。</p>
         # @type ShareTemplateId: String
-        # @param TemplateSeals: <p>此模板配置的预填印章列表（包括自动签署指定的印章）</p>
+        # @param TemplateSeals: <p>此模板配置的预填印章列表（包括“授权签”指定的印章）</p>
         # @type TemplateSeals: Array
         # @param Seals: <p>模板内部指定的印章列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
