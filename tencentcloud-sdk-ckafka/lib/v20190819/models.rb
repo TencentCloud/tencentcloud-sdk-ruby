@@ -7336,10 +7336,12 @@ module TencentCloud
         # @type RecordMappingMode: String
         # @param Protocol: <p>集群版 ES 连接协议，默认http协议</p><p>枚举值：</p><ul><li>http： http协议</li><li>https： https协议</li></ul>
         # @type Protocol: String
+        # @param SourceDataFormat: <p>用户选择数据订阅任务的数据（如DTS）时，源数据的格式</p><p>枚举值：</p><ul><li>Debezium： Debezium格式json</li><li>Canal： Canal格式json</li></ul>
+        # @type SourceDataFormat: String
 
-        attr_accessor :Resource, :Port, :UserName, :Password, :SelfBuilt, :ServiceVip, :UniqVpcId, :DropInvalidMessage, :Index, :DateFormat, :ContentKey, :DropInvalidJsonMessage, :DocumentIdField, :IndexType, :DropCls, :DatabasePrimaryKey, :DropDlq, :RecordMappingList, :DateField, :RecordMappingMode, :Protocol
+        attr_accessor :Resource, :Port, :UserName, :Password, :SelfBuilt, :ServiceVip, :UniqVpcId, :DropInvalidMessage, :Index, :DateFormat, :ContentKey, :DropInvalidJsonMessage, :DocumentIdField, :IndexType, :DropCls, :DatabasePrimaryKey, :DropDlq, :RecordMappingList, :DateField, :RecordMappingMode, :Protocol, :SourceDataFormat
 
-        def initialize(resource=nil, port=nil, username=nil, password=nil, selfbuilt=nil, servicevip=nil, uniqvpcid=nil, dropinvalidmessage=nil, index=nil, dateformat=nil, contentkey=nil, dropinvalidjsonmessage=nil, documentidfield=nil, indextype=nil, dropcls=nil, databaseprimarykey=nil, dropdlq=nil, recordmappinglist=nil, datefield=nil, recordmappingmode=nil, protocol=nil)
+        def initialize(resource=nil, port=nil, username=nil, password=nil, selfbuilt=nil, servicevip=nil, uniqvpcid=nil, dropinvalidmessage=nil, index=nil, dateformat=nil, contentkey=nil, dropinvalidjsonmessage=nil, documentidfield=nil, indextype=nil, dropcls=nil, databaseprimarykey=nil, dropdlq=nil, recordmappinglist=nil, datefield=nil, recordmappingmode=nil, protocol=nil, sourcedataformat=nil)
           @Resource = resource
           @Port = port
           @UserName = username
@@ -7361,6 +7363,7 @@ module TencentCloud
           @DateField = datefield
           @RecordMappingMode = recordmappingmode
           @Protocol = protocol
+          @SourceDataFormat = sourcedataformat
         end
 
         def deserialize(params)
@@ -7398,6 +7401,7 @@ module TencentCloud
           @DateField = params['DateField']
           @RecordMappingMode = params['RecordMappingMode']
           @Protocol = params['Protocol']
+          @SourceDataFormat = params['SourceDataFormat']
         end
       end
 

@@ -6625,6 +6625,150 @@ module TencentCloud
         end
       end
 
+      # 自定义变量详情。
+      class CustomVariable < TencentCloud::Common::AbstractModel
+        # @param Name: <p>变量名称。需填写完整前缀：user.zone.* 表示站点级自定义变量，user.rule.* 表示规则级自定义变量。前缀后的自定义部分仅支持大小写字母、数字和下划线。变量名称区分大小写，长度不能超过 50 个字符。变量创建成功后，名称不可修改。</p>
+        # @type Name: String
+        # @param InitialValue: <p>变量初始值。支持使用常量字符串、变量以及公式。长度不能超过 255 个字符。</p>
+        # @type InitialValue: String
+        # @param Description: <p>变量描述。长度限制不超过 60 个字符。</p>
+        # @type Description: String
+
+        attr_accessor :Name, :InitialValue, :Description
+
+        def initialize(name=nil, initialvalue=nil, description=nil)
+          @Name = name
+          @InitialValue = initialvalue
+          @Description = description
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @InitialValue = params['InitialValue']
+          @Description = params['Description']
+        end
+      end
+
+      # 自定义变量运算详情。
+      class CustomVariableOperation < TencentCloud::Common::AbstractModel
+        # @param Branches: <p>子规则分支。此列表当前只支持填写一项规则，多填无效。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Branches: Array
+        # @param Description: <p>规则注释。可以填写多个注释。</p>
+        # @type Description: Array
+
+        attr_accessor :Branches, :Description
+
+        def initialize(branches=nil, description=nil)
+          @Branches = branches
+          @Description = description
+        end
+
+        def deserialize(params)
+          unless params['Branches'].nil?
+            @Branches = []
+            params['Branches'].each do |i|
+              customvariableoperationrulebranch_tmp = CustomVariableOperationRuleBranch.new
+              customvariableoperationrulebranch_tmp.deserialize(i)
+              @Branches << customvariableoperationrulebranch_tmp
+            end
+          end
+          @Description = params['Description']
+        end
+      end
+
+      # 自定义变量规则操作。
+      class CustomVariableOperationRuleAction < TencentCloud::Common::AbstractModel
+        # @param Name: <p>操作名称。名称需要与参数结构体对应，例如 Name=Set，则 SetParameters 必填。当前仅支持填写 Set。</p><li>Set：自定义变量设置；</li>
+        # @type Name: String
+        # @param SetParameters: <p>自定义变量设置参数。此参数中若存在多条运算，按照数组的顺序依次执行。当 Name 取值为 Set 时，该参数必填。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SetParameters: :class:`Tencentcloud::Teo.v20220901.models.SetParameters`
+
+        attr_accessor :Name, :SetParameters
+
+        def initialize(name=nil, setparameters=nil)
+          @Name = name
+          @SetParameters = setparameters
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          unless params['SetParameters'].nil?
+            @SetParameters = SetParameters.new
+            @SetParameters.deserialize(params['SetParameters'])
+          end
+        end
+      end
+
+      # 自定义变量运算子规则分支。
+      class CustomVariableOperationRuleBranch < TencentCloud::Common::AbstractModel
+        # @param Condition: <p><a href="https://cloud.tencent.com/document/product/1552/90438#33f65828-c6c6-4b66-a011-25a20b548d5d">匹配条件</a>。</p>
+        # @type Condition: String
+        # @param Actions: <p><a href="https://cloud.tencent.com/document/product/1552/90438#c7bd7e02-9247-4a72-b0e4-11c27cadb198">操作</a>。<br>注意：Actions 和 SubRules 不可同时为空。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Actions: Array
+        # @param SubRules: <p>子规则列表。此列表中若存在多条规则，按照从上往下的顺序依次执行。<br>注意：SubRules 和 Actions 不可同时为空。且当前只支持填写一层 SubRules。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubRules: Array
+
+        attr_accessor :Condition, :Actions, :SubRules
+
+        def initialize(condition=nil, actions=nil, subrules=nil)
+          @Condition = condition
+          @Actions = actions
+          @SubRules = subrules
+        end
+
+        def deserialize(params)
+          @Condition = params['Condition']
+          unless params['Actions'].nil?
+            @Actions = []
+            params['Actions'].each do |i|
+              customvariableoperationruleaction_tmp = CustomVariableOperationRuleAction.new
+              customvariableoperationruleaction_tmp.deserialize(i)
+              @Actions << customvariableoperationruleaction_tmp
+            end
+          end
+          unless params['SubRules'].nil?
+            @SubRules = []
+            params['SubRules'].each do |i|
+              customvariableoperationsubrule_tmp = CustomVariableOperationSubRule.new
+              customvariableoperationsubrule_tmp.deserialize(i)
+              @SubRules << customvariableoperationsubrule_tmp
+            end
+          end
+        end
+      end
+
+      # 自定义变量运算子规则。
+      class CustomVariableOperationSubRule < TencentCloud::Common::AbstractModel
+        # @param Branches: <p>子规则分支</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Branches: Array
+        # @param Description: <p>规则注释。</p>
+        # @type Description: Array
+
+        attr_accessor :Branches, :Description
+
+        def initialize(branches=nil, description=nil)
+          @Branches = branches
+          @Description = description
+        end
+
+        def deserialize(params)
+          unless params['Branches'].nil?
+            @Branches = []
+            params['Branches'].each do |i|
+              customvariableoperationrulebranch_tmp = CustomVariableOperationRuleBranch.new
+              customvariableoperationrulebranch_tmp.deserialize(i)
+              @Branches << customvariableoperationrulebranch_tmp
+            end
+          end
+          @Description = params['Description']
+        end
+      end
+
       # 负载均衡实例 HTTP/HTTPS 健康检查策略下可配置的自定义头部。
       class CustomizedHeader < TencentCloud::Common::AbstractModel
         # @param Key: 自定义头部 Key。
@@ -24799,27 +24943,35 @@ module TencentCloud
 
       # 规则引擎规则详情。
       class RuleEngineItem < TencentCloud::Common::AbstractModel
-        # @param Status: 规则状态。取值有：<li> enable: 启用； </li><li> disable: 未启用。</li>
+        # @param Status: <p>规则状态。取值有：<li> enable: 启用； </li><li> disable: 未启用。</li></p>
         # @type Status: String
-        # @param RuleId: 规则 ID。规则的唯一性标识，当调用 ModifyL7AccRules 时，该参数必填。
+        # @param RuleId: <p>规则 ID。规则的唯一性标识，当调用 ModifyL7AccRule 时，该参数必填。</p>
         # @type RuleId: String
-        # @param RuleName: 规则名称。名称长度限制不超过 255 个字符。
+        # @param RuleName: <p>规则名称。名称长度限制不超过 255 个字符。</p>
         # @type RuleName: String
-        # @param Description: 规则注释。可以填写多个注释。
+        # @param Description: <p>规则注释。可以填写多个注释。</p>
         # @type Description: Array
-        # @param Branches: 子规则分支。此列表当前只支持填写一项规则，多填无效。
+        # @param CustomVariables: <p>规则级自定义变量列表。CustomVariable.Name 需要使用 user.rule. 作为前缀。变量按照数组顺序依次初始化，InitialValue 支持引用站点级自定义变量，以及位于当前变量之前的规则级自定义变量，不支持引用当前变量自身或位于其后的规则级自定义变量。站点级自定义变量可通过 DescribeZoneCustomVariables 接口查询。当 Branches 为空时 CustomVariable 不允许填写，填写无效。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomVariables: Array
+        # @param CustomVariableOperations: <p>规则级自定义变量运算详情。运算中支持引用站点级自定义变量和当前规则已定义的规则级自定义变量。站点级自定义变量可通过 DescribeZoneCustomVariables 接口查询。此列表当前只支持填写一项规则，多填无效。当 Branches 为空时 CustomVariableOperations 不允许填写，填写无效。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomVariableOperations: Array
+        # @param Branches: <p>子规则分支。此列表当前只支持填写一项规则，多填无效。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Branches: Array
-        # @param RulePriority: 规则优先级。仅作为出参使用。
+        # @param RulePriority: <p>规则优先级。仅作为出参使用。</p>
         # @type RulePriority: Integer
 
-        attr_accessor :Status, :RuleId, :RuleName, :Description, :Branches, :RulePriority
+        attr_accessor :Status, :RuleId, :RuleName, :Description, :CustomVariables, :CustomVariableOperations, :Branches, :RulePriority
 
-        def initialize(status=nil, ruleid=nil, rulename=nil, description=nil, branches=nil, rulepriority=nil)
+        def initialize(status=nil, ruleid=nil, rulename=nil, description=nil, customvariables=nil, customvariableoperations=nil, branches=nil, rulepriority=nil)
           @Status = status
           @RuleId = ruleid
           @RuleName = rulename
           @Description = description
+          @CustomVariables = customvariables
+          @CustomVariableOperations = customvariableoperations
           @Branches = branches
           @RulePriority = rulepriority
         end
@@ -24829,6 +24981,22 @@ module TencentCloud
           @RuleId = params['RuleId']
           @RuleName = params['RuleName']
           @Description = params['Description']
+          unless params['CustomVariables'].nil?
+            @CustomVariables = []
+            params['CustomVariables'].each do |i|
+              customvariable_tmp = CustomVariable.new
+              customvariable_tmp.deserialize(i)
+              @CustomVariables << customvariable_tmp
+            end
+          end
+          unless params['CustomVariableOperations'].nil?
+            @CustomVariableOperations = []
+            params['CustomVariableOperations'].each do |i|
+              customvariableoperation_tmp = CustomVariableOperation.new
+              customvariableoperation_tmp.deserialize(i)
+              @CustomVariableOperations << customvariableoperation_tmp
+            end
+          end
           unless params['Branches'].nil?
             @Branches = []
             params['Branches'].each do |i|
@@ -25685,6 +25853,26 @@ module TencentCloud
 
         def deserialize(params)
           @ContentIdentifier = params['ContentIdentifier']
+        end
+      end
+
+      # 自定义变量设置参数。
+      class SetParameters < TencentCloud::Common::AbstractModel
+        # @param Name: <p>自定义变量名称。自定义变量必须先被定义才可进行运算。</p>
+        # @type Name: String
+        # @param Value: <p>自定义变量赋值。支持使用常量字符串、变量以及公式，不支持中文。长度不能超过 1000 个字符。</p>
+        # @type Value: String
+
+        attr_accessor :Name, :Value
+
+        def initialize(name=nil, value=nil)
+          @Name = name
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
         end
       end
 

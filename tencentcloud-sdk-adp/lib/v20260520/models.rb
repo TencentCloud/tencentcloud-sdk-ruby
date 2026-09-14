@@ -3035,6 +3035,46 @@ module TencentCloud
         end
       end
 
+      # 分类可修改字段集合（配合 update_mask 使用）
+      class CategoryModifyFields < TencentCloud::Common::AbstractModel
+        # @param Name: <p>分类名</p>
+        # @type Name: String
+
+        attr_accessor :Name
+
+        def initialize(name=nil)
+          @Name = name
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+        end
+      end
+
+      # 分类路径信息
+      class CategoryPath < TencentCloud::Common::AbstractModel
+        # @param CategoryId: <p>分类 ID</p>
+        # @type CategoryId: String
+        # @param CategoryIdPath: <p>从根节点开始的路径分类 ID 列表</p>
+        # @type CategoryIdPath: Array
+        # @param CategoryNamePath: <p>从根节点开始的路径分类名称列表</p>
+        # @type CategoryNamePath: Array
+
+        attr_accessor :CategoryId, :CategoryIdPath, :CategoryNamePath
+
+        def initialize(categoryid=nil, categoryidpath=nil, categorynamepath=nil)
+          @CategoryId = categoryid
+          @CategoryIdPath = categoryidpath
+          @CategoryNamePath = categorynamepath
+        end
+
+        def deserialize(params)
+          @CategoryId = params['CategoryId']
+          @CategoryIdPath = params['CategoryIdPath']
+          @CategoryNamePath = params['CategoryNamePath']
+        end
+      end
+
       # CategoryPermission
       class CategoryPermission < TencentCloud::Common::AbstractModel
         # @param CanAdd: <p>当前用户是否可新增子分类</p>
@@ -3208,6 +3248,77 @@ module TencentCloud
             @WecomRobot = WecomRobotChannelConfig.new
             @WecomRobot.deserialize(params['WecomRobot'])
           end
+        end
+      end
+
+      # CheckLabel请求参数结构体
+      class CheckLabelRequest < TencentCloud::Common::AbstractModel
+        # @param KbId: <p>所属知识库 ID</p>
+        # @type KbId: String
+        # @param TermList: <p>待校验的标准词列表（数量：1~100）</p>
+        # @type TermList: Array
+        # @param LabelId: <p>标签 ID（在指定标签下校验标准词唯一性）</p>
+        # @type LabelId: String
+
+        attr_accessor :KbId, :TermList, :LabelId
+
+        def initialize(kbid=nil, termlist=nil, labelid=nil)
+          @KbId = kbid
+          @TermList = termlist
+          @LabelId = labelid
+        end
+
+        def deserialize(params)
+          @KbId = params['KbId']
+          @TermList = params['TermList']
+          @LabelId = params['LabelId']
+        end
+      end
+
+      # CheckLabel返回参数结构体
+      class CheckLabelResponse < TencentCloud::Common::AbstractModel
+        # @param CheckList: <p>校验结果列表</p>
+        # @type CheckList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CheckList, :RequestId
+
+        def initialize(checklist=nil, requestid=nil)
+          @CheckList = checklist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CheckList'].nil?
+            @CheckList = []
+            params['CheckList'].each do |i|
+              labeltermcheckresult_tmp = LabelTermCheckResult.new
+              labeltermcheckresult_tmp.deserialize(i)
+              @CheckList << labeltermcheckresult_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 通用校验结果
+      class CheckResult < TencentCloud::Common::AbstractModel
+        # @param Passed: <p>是否通过校验</p>
+        # @type Passed: Boolean
+        # @param Reason: <p>失败原因（passed=false 时填充）</p>
+        # @type Reason: String
+
+        attr_accessor :Passed, :Reason
+
+        def initialize(passed=nil, reason=nil)
+          @Passed = passed
+          @Reason = reason
+        end
+
+        def deserialize(params)
+          @Passed = params['Passed']
+          @Reason = params['Reason']
         end
       end
 
@@ -3413,6 +3524,66 @@ module TencentCloud
         end
       end
 
+      # 冲突 QA（冲突组中的单条 QA 快照）
+      class ConflictQA < TencentCloud::Common::AbstractModel
+        # @param Answer: <p>答案</p>
+        # @type Answer: String
+        # @param EffectiveDomain: <p>知识生效作用域：1=停用，2=仅开发域，3=仅发布域，4=全域<table><tbody><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>KNOWLEDGE_EFFECTIVE_DOMAIN_UNKNOWN</td><td>0</td><td></td></tr><tr><td>KNOWLEDGE_EFFECTIVE_DOMAIN_NONE</td><td>1</td><td>停用</td></tr><tr><td>KNOWLEDGE_EFFECTIVE_DOMAIN_DEV</td><td>2</td><td>仅开发域</td></tr><tr><td>KNOWLEDGE_EFFECTIVE_DOMAIN_RELEASE</td><td>3</td><td>仅发布域</td></tr><tr><td>KNOWLEDGE_EFFECTIVE_DOMAIN_ALL</td><td>4</td><td>全域</td></tr></tbody></table></p>
+        # @type EffectiveDomain: Integer
+        # @param FileName: <p>关联文档名称</p>
+        # @type FileName: String
+        # @param FileType: <p>关联文档类型</p>
+        # @type FileType: String
+        # @param QaId: <p>QA ID</p>
+        # @type QaId: String
+        # @param Question: <p>问题</p>
+        # @type Question: String
+        # @param SourceType: <p>来源类型：1=文档生成，2=批量导入，3=手动录入<table><tbody><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>QA_SOURCE_TYPE_UNKNOWN</td><td>0</td><td></td></tr><tr><td>QA_SOURCE_TYPE_DOC</td><td>1</td><td>文档生成</td></tr><tr><td>QA_SOURCE_TYPE_BATCH_IMPORT</td><td>2</td><td>批量导入</td></tr><tr><td>QA_SOURCE_TYPE_MANUAL</td><td>3</td><td>手动录入</td></tr></tbody></table></p>
+        # @type SourceType: Integer
+        # @param UpdateTime: <p>更新时间（Unix 秒，用于排序判断新旧）</p>
+        # @type UpdateTime: String
+
+        attr_accessor :Answer, :EffectiveDomain, :FileName, :FileType, :QaId, :Question, :SourceType, :UpdateTime
+
+        def initialize(answer=nil, effectivedomain=nil, filename=nil, filetype=nil, qaid=nil, question=nil, sourcetype=nil, updatetime=nil)
+          @Answer = answer
+          @EffectiveDomain = effectivedomain
+          @FileName = filename
+          @FileType = filetype
+          @QaId = qaid
+          @Question = question
+          @SourceType = sourcetype
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @Answer = params['Answer']
+          @EffectiveDomain = params['EffectiveDomain']
+          @FileName = params['FileName']
+          @FileType = params['FileType']
+          @QaId = params['QaId']
+          @Question = params['Question']
+          @SourceType = params['SourceType']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 冲突问摘要信息
+      class ConflictQASummary < TencentCloud::Common::AbstractModel
+        # @param ConflictGroupId: <p>冲突组 ID</p>
+        # @type ConflictGroupId: String
+
+        attr_accessor :ConflictGroupId
+
+        def initialize(conflictgroupid=nil)
+          @ConflictGroupId = conflictgroupid
+        end
+
+        def deserialize(params)
+          @ConflictGroupId = params['ConflictGroupId']
+        end
+      end
+
       # 消耗分类
       class ConsumptionClassification < TencentCloud::Common::AbstractModel
         # @param ConsumptionScene: <p>消耗场景（如推理/训练/评测等）</p>
@@ -3508,6 +3679,30 @@ module TencentCloud
           @ConsumptionPU = params['ConsumptionPU']
           @Usage = params['Usage']
           @UsageUnit = params['UsageUnit']
+        end
+      end
+
+      # 内容过滤配置（图片名称正则/最小宽高），缺省时不启用过滤
+      class ContentFilter < TencentCloud::Common::AbstractModel
+        # @param ImageMinHeight: <p>图片最小高度（像素），小于则过滤；&lt;=0 表示不启用</p>
+        # @type ImageMinHeight: Integer
+        # @param ImageMinWidth: <p>图片最小宽度（像素），小于则过滤；&lt;=0 表示不启用</p>
+        # @type ImageMinWidth: Integer
+        # @param ImageNamePatterns: <p>图片名称过滤规则（用分号 &#39;;&#39; 分隔的多条正则，如 &#39;icon;notice;warning;info.*&#39;）</p>
+        # @type ImageNamePatterns: String
+
+        attr_accessor :ImageMinHeight, :ImageMinWidth, :ImageNamePatterns
+
+        def initialize(imageminheight=nil, imageminwidth=nil, imagenamepatterns=nil)
+          @ImageMinHeight = imageminheight
+          @ImageMinWidth = imageminwidth
+          @ImageNamePatterns = imagenamepatterns
+        end
+
+        def deserialize(params)
+          @ImageMinHeight = params['ImageMinHeight']
+          @ImageMinWidth = params['ImageMinWidth']
+          @ImageNamePatterns = params['ImageNamePatterns']
         end
       end
 
@@ -4377,6 +4572,54 @@ module TencentCloud
         end
       end
 
+      # CreateCategory请求参数结构体
+      class CreateCategoryRequest < TencentCloud::Common::AbstractModel
+        # @param CategoryType: <p>分类类型（不可为 0，取值：1=文档分类，2=问答分类）<table><tbody><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>CATEGORY_TYPE_UNKNOWN</td><td>0</td><td></td></tr><tr><td>CATEGORY_TYPE_DOC</td><td>1</td><td>文档分类</td></tr><tr><td>CATEGORY_TYPE_QA</td><td>2</td><td>问答分类</td></tr></tbody></table></p>
+        # @type CategoryType: Integer
+        # @param KbId: <p>所属知识库 ID</p>
+        # @type KbId: String
+        # @param Name: <p>分类名（长度：1~64 个字符）</p>
+        # @type Name: String
+        # @param ParentCategoryId: <p>父分类 ID</p>
+        # @type ParentCategoryId: String
+
+        attr_accessor :CategoryType, :KbId, :Name, :ParentCategoryId
+
+        def initialize(categorytype=nil, kbid=nil, name=nil, parentcategoryid=nil)
+          @CategoryType = categorytype
+          @KbId = kbid
+          @Name = name
+          @ParentCategoryId = parentcategoryid
+        end
+
+        def deserialize(params)
+          @CategoryType = params['CategoryType']
+          @KbId = params['KbId']
+          @Name = params['Name']
+          @ParentCategoryId = params['ParentCategoryId']
+        end
+      end
+
+      # CreateCategory返回参数结构体
+      class CreateCategoryResponse < TencentCloud::Common::AbstractModel
+        # @param CategoryId: <p>创建成功的分类 ID</p>
+        # @type CategoryId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CategoryId, :RequestId
+
+        def initialize(categoryid=nil, requestid=nil)
+          @CategoryId = categoryid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CategoryId = params['CategoryId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateChannel请求参数结构体
       class CreateChannelRequest < TencentCloud::Common::AbstractModel
         # @param AppId: <p>应用业务ID</p>
@@ -4484,6 +4727,119 @@ module TencentCloud
 
         def deserialize(params)
           @ConversationId = params['ConversationId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateKB请求参数结构体
+      class CreateKBRequest < TencentCloud::Common::AbstractModel
+        # @param KbType: <p>知识库类型（不可为 0，取值：1=默认知识库，2=共享知识库）<table><tbody><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>KB_TYPE_UNKNOWN</td><td>0</td><td></td></tr><tr><td>KB_TYPE_DEFAULT</td><td>1</td><td>默认知识库</td></tr><tr><td>KB_TYPE_SHARED</td><td>2</td><td>共享知识库</td></tr></tbody></table></p>
+        # @type KbType: Integer
+        # @param SpaceId: <p>工作空间 ID</p>
+        # @type SpaceId: String
+        # @param Spec: <p>可写属性</p>
+        # @type Spec: :class:`Tencentcloud::Adp.v20260520.models.KBSpec`
+        # @param SharedSubType: <p>共享子类型：1=普通，2=公众号<table><tbody><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>SHARED_KB_SUB_TYPE_UNKNOWN</td><td>0</td><td></td></tr><tr><td>SHARED_KB_SUB_TYPE_NORMAL</td><td>1</td><td>普通</td></tr><tr><td>SHARED_KB_SUB_TYPE_PUBLIC_ACCOUNT</td><td>2</td><td>公众号</td></tr></tbody></table></p>
+        # @type SharedSubType: Integer
+
+        attr_accessor :KbType, :SpaceId, :Spec, :SharedSubType
+
+        def initialize(kbtype=nil, spaceid=nil, spec=nil, sharedsubtype=nil)
+          @KbType = kbtype
+          @SpaceId = spaceid
+          @Spec = spec
+          @SharedSubType = sharedsubtype
+        end
+
+        def deserialize(params)
+          @KbType = params['KbType']
+          @SpaceId = params['SpaceId']
+          unless params['Spec'].nil?
+            @Spec = KBSpec.new
+            @Spec.deserialize(params['Spec'])
+          end
+          @SharedSubType = params['SharedSubType']
+        end
+      end
+
+      # CreateKB返回参数结构体
+      class CreateKBResponse < TencentCloud::Common::AbstractModel
+        # @param KbId: <p>创建后的知识库 ID</p>
+        # @type KbId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :KbId, :RequestId
+
+        def initialize(kbid=nil, requestid=nil)
+          @KbId = kbid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @KbId = params['KbId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateLabel请求参数结构体
+      class CreateLabelRequest < TencentCloud::Common::AbstractModel
+        # @param KbId: <p>所属知识库 ID</p>
+        # @type KbId: String
+        # @param Name: <p>标签名称（长度不小于 1 个字符）</p>
+        # @type Name: String
+        # @param TermList: <p>标签值（标准词 + 同义词列表），其中 term_id 由后台生成、创建时留空</p>
+        # @type TermList: Array
+
+        attr_accessor :KbId, :Name, :TermList
+
+        def initialize(kbid=nil, name=nil, termlist=nil)
+          @KbId = kbid
+          @Name = name
+          @TermList = termlist
+        end
+
+        def deserialize(params)
+          @KbId = params['KbId']
+          @Name = params['Name']
+          unless params['TermList'].nil?
+            @TermList = []
+            params['TermList'].each do |i|
+              labelterm_tmp = LabelTerm.new
+              labelterm_tmp.deserialize(i)
+              @TermList << labelterm_tmp
+            end
+          end
+        end
+      end
+
+      # CreateLabel返回参数结构体
+      class CreateLabelResponse < TencentCloud::Common::AbstractModel
+        # @param LabelId: <p>标签 ID</p>
+        # @type LabelId: String
+        # @param TermList: <p>标签值（标准词 + 同义词列表，含后台生成的 term_id）</p>
+        # @type TermList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LabelId, :TermList, :RequestId
+
+        def initialize(labelid=nil, termlist=nil, requestid=nil)
+          @LabelId = labelid
+          @TermList = termlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @LabelId = params['LabelId']
+          unless params['TermList'].nil?
+            @TermList = []
+            params['TermList'].each do |i|
+              labelterm_tmp = LabelTerm.new
+              labelterm_tmp.deserialize(i)
+              @TermList << labelterm_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -4601,6 +4957,100 @@ module TencentCloud
         end
       end
 
+      # CreateQAGenerationTask请求参数结构体
+      class CreateQAGenerationTaskRequest < TencentCloud::Common::AbstractModel
+        # @param DocIdList: <p>待生成 QA 的文档 ID 列表（数量：1~20）</p>
+        # @type DocIdList: Array
+        # @param KbId: <p>所属知识库 ID</p>
+        # @type KbId: String
+
+        attr_accessor :DocIdList, :KbId
+
+        def initialize(docidlist=nil, kbid=nil)
+          @DocIdList = docidlist
+          @KbId = kbid
+        end
+
+        def deserialize(params)
+          @DocIdList = params['DocIdList']
+          @KbId = params['KbId']
+        end
+      end
+
+      # CreateQAGenerationTask返回参数结构体
+      class CreateQAGenerationTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskIdList: <p>任务 ID 列表</p>
+        # @type TaskIdList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskIdList, :RequestId
+
+        def initialize(taskidlist=nil, requestid=nil)
+          @TaskIdList = taskidlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskIdList = params['TaskIdList']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateQAList请求参数结构体
+      class CreateQAListRequest < TencentCloud::Common::AbstractModel
+        # @param KbId: <p>所属知识库 ID</p>
+        # @type KbId: String
+        # @param QaList: <p>批量创建（数量：1~20）</p>
+        # @type QaList: Array
+
+        attr_accessor :KbId, :QaList
+
+        def initialize(kbid=nil, qalist=nil)
+          @KbId = kbid
+          @QaList = qalist
+        end
+
+        def deserialize(params)
+          @KbId = params['KbId']
+          unless params['QaList'].nil?
+            @QaList = []
+            params['QaList'].each do |i|
+              qacreatespec_tmp = QACreateSpec.new
+              qacreatespec_tmp.deserialize(i)
+              @QaList << qacreatespec_tmp
+            end
+          end
+        end
+      end
+
+      # CreateQAList返回参数结构体
+      class CreateQAListResponse < TencentCloud::Common::AbstractModel
+        # @param ResultList: <p>批量创建结果</p>
+        # @type ResultList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ResultList, :RequestId
+
+        def initialize(resultlist=nil, requestid=nil)
+          @ResultList = resultlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ResultList'].nil?
+            @ResultList = []
+            params['ResultList'].each do |i|
+              operationresult_tmp = OperationResult.new
+              operationresult_tmp.deserialize(i)
+              @ResultList << operationresult_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateRelease请求参数结构体
       class CreateReleaseRequest < TencentCloud::Common::AbstractModel
         # @param AppId: <p>应用ID</p>
@@ -4667,6 +5117,50 @@ module TencentCloud
         def deserialize(params)
           @NeedApproval = params['NeedApproval']
           @ReleaseId = params['ReleaseId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateSimilarQuestion请求参数结构体
+      class CreateSimilarQuestionRequest < TencentCloud::Common::AbstractModel
+        # @param KbId: <p>所属知识库 ID</p>
+        # @type KbId: String
+        # @param Question: <p>问题</p>
+        # @type Question: String
+        # @param Answer: <p>答案</p>
+        # @type Answer: String
+
+        attr_accessor :KbId, :Question, :Answer
+
+        def initialize(kbid=nil, question=nil, answer=nil)
+          @KbId = kbid
+          @Question = question
+          @Answer = answer
+        end
+
+        def deserialize(params)
+          @KbId = params['KbId']
+          @Question = params['Question']
+          @Answer = params['Answer']
+        end
+      end
+
+      # CreateSimilarQuestion返回参数结构体
+      class CreateSimilarQuestionResponse < TencentCloud::Common::AbstractModel
+        # @param QuestionList: <p>生成的相似问列表</p>
+        # @type QuestionList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :QuestionList, :RequestId
+
+        def initialize(questionlist=nil, requestid=nil)
+          @QuestionList = questionlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @QuestionList = params['QuestionList']
           @RequestId = params['RequestId']
         end
       end
@@ -5034,6 +5528,22 @@ module TencentCloud
         end
       end
 
+      # 数据库检索配置
+      class DBRetrievalConfig < TencentCloud::Common::AbstractModel
+        # @param Enabled: <p>是否启用</p>
+        # @type Enabled: Boolean
+
+        attr_accessor :Enabled
+
+        def initialize(enabled=nil)
+          @Enabled = enabled
+        end
+
+        def deserialize(params)
+          @Enabled = params['Enabled']
+        end
+      end
+
       # DailySchedule
       class DailySchedule < TencentCloud::Common::AbstractModel
         # @param TimeOfDay: 时间
@@ -5047,6 +5557,26 @@ module TencentCloud
 
         def deserialize(params)
           @TimeOfDay = params['TimeOfDay']
+        end
+      end
+
+      # 重复文件处理规则
+      class DeDuplicateStrategy < TencentCloud::Common::AbstractModel
+        # @param CheckType: <p>校验方式：1=按文档内容判断是否相同<table><tbody><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>DUPLICATE_FILE_CHECK_TYPE_UNKNOWN</td><td>0</td><td>未知</td></tr><tr><td>DUPLICATE_FILE_CHECK_TYPE_COS_HASH</td><td>1</td><td>按文档内容（cos_hash）判断是否相同</td></tr></tbody></table></p>
+        # @type CheckType: Integer
+        # @param HandleType: <p>处理方式：1=返回报错，2=跳过并返回重复的文档 ID<table><tbody><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>DUPLICATE_FILE_HANDLE_TYPE_UNKNOWN</td><td>0</td><td>未知</td></tr><tr><td>DUPLICATE_FILE_HANDLE_TYPE_RETURN_ERR</td><td>1</td><td>返回报错</td></tr><tr><td>DUPLICATE_FILE_HANDLE_TYPE_SKIP</td><td>2</td><td>跳过，返回重复的文档 ID</td></tr></tbody></table></p>
+        # @type HandleType: Integer
+
+        attr_accessor :CheckType, :HandleType
+
+        def initialize(checktype=nil, handletype=nil)
+          @CheckType = checktype
+          @HandleType = handletype
+        end
+
+        def deserialize(params)
+          @CheckType = params['CheckType']
+          @HandleType = params['HandleType']
         end
       end
 
@@ -5170,6 +5700,46 @@ module TencentCloud
         end
       end
 
+      # DeleteCategory请求参数结构体
+      class DeleteCategoryRequest < TencentCloud::Common::AbstractModel
+        # @param CategoryId: <p>待删除的分类 ID</p>
+        # @type CategoryId: String
+        # @param CategoryType: <p>分类类型（不可为 0，取值：1=文档分类，2=问答分类）<table><tbody><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>CATEGORY_TYPE_UNKNOWN</td><td>0</td><td></td></tr><tr><td>CATEGORY_TYPE_DOC</td><td>1</td><td>文档分类</td></tr><tr><td>CATEGORY_TYPE_QA</td><td>2</td><td>问答分类</td></tr></tbody></table></p>
+        # @type CategoryType: Integer
+        # @param KbId: <p>所属知识库 ID</p>
+        # @type KbId: String
+
+        attr_accessor :CategoryId, :CategoryType, :KbId
+
+        def initialize(categoryid=nil, categorytype=nil, kbid=nil)
+          @CategoryId = categoryid
+          @CategoryType = categorytype
+          @KbId = kbid
+        end
+
+        def deserialize(params)
+          @CategoryId = params['CategoryId']
+          @CategoryType = params['CategoryType']
+          @KbId = params['KbId']
+        end
+      end
+
+      # DeleteCategory返回参数结构体
+      class DeleteCategoryResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteChannel请求参数结构体
       class DeleteChannelRequest < TencentCloud::Common::AbstractModel
         # @param AppId: <p>应用业务ID</p>
@@ -5262,6 +5832,136 @@ module TencentCloud
         end
       end
 
+      # DeleteDocList请求参数结构体
+      class DeleteDocListRequest < TencentCloud::Common::AbstractModel
+        # @param DocIdList: <p>待删除的文档 ID 列表（数量：1~20）</p>
+        # @type DocIdList: Array
+        # @param KbId: <p>所属知识库 ID</p>
+        # @type KbId: String
+
+        attr_accessor :DocIdList, :KbId
+
+        def initialize(docidlist=nil, kbid=nil)
+          @DocIdList = docidlist
+          @KbId = kbid
+        end
+
+        def deserialize(params)
+          @DocIdList = params['DocIdList']
+          @KbId = params['KbId']
+        end
+      end
+
+      # DeleteDocList返回参数结构体
+      class DeleteDocListResponse < TencentCloud::Common::AbstractModel
+        # @param ResultList: <p>批量删除结果</p>
+        # @type ResultList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ResultList, :RequestId
+
+        def initialize(resultlist=nil, requestid=nil)
+          @ResultList = resultlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ResultList'].nil?
+            @ResultList = []
+            params['ResultList'].each do |i|
+              operationresult_tmp = OperationResult.new
+              operationresult_tmp.deserialize(i)
+              @ResultList << operationresult_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteKB请求参数结构体
+      class DeleteKBRequest < TencentCloud::Common::AbstractModel
+        # @param KbId: <p>知识库 ID</p>
+        # @type KbId: String
+        # @param SpaceId: <p>工作空间 ID</p>
+        # @type SpaceId: String
+
+        attr_accessor :KbId, :SpaceId
+
+        def initialize(kbid=nil, spaceid=nil)
+          @KbId = kbid
+          @SpaceId = spaceid
+        end
+
+        def deserialize(params)
+          @KbId = params['KbId']
+          @SpaceId = params['SpaceId']
+        end
+      end
+
+      # DeleteKB返回参数结构体
+      class DeleteKBResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteLabelList请求参数结构体
+      class DeleteLabelListRequest < TencentCloud::Common::AbstractModel
+        # @param KbId: <p>所属知识库 ID</p>
+        # @type KbId: String
+        # @param LabelIdList: <p>待删除标签 ID 列表（数量：1~20）</p>
+        # @type LabelIdList: Array
+
+        attr_accessor :KbId, :LabelIdList
+
+        def initialize(kbid=nil, labelidlist=nil)
+          @KbId = kbid
+          @LabelIdList = labelidlist
+        end
+
+        def deserialize(params)
+          @KbId = params['KbId']
+          @LabelIdList = params['LabelIdList']
+        end
+      end
+
+      # DeleteLabelList返回参数结构体
+      class DeleteLabelListResponse < TencentCloud::Common::AbstractModel
+        # @param ResultList: <p>批量删除结果</p>
+        # @type ResultList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ResultList, :RequestId
+
+        def initialize(resultlist=nil, requestid=nil)
+          @ResultList = resultlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ResultList'].nil?
+            @ResultList = []
+            params['ResultList'].each do |i|
+              operationresult_tmp = OperationResult.new
+              operationresult_tmp.deserialize(i)
+              @ResultList << operationresult_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteMsgRecordCategory请求参数结构体
       class DeleteMsgRecordCategoryRequest < TencentCloud::Common::AbstractModel
         # @param AppId: <p>应用 ID</p>
@@ -5334,6 +6034,53 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteQAList请求参数结构体
+      class DeleteQAListRequest < TencentCloud::Common::AbstractModel
+        # @param KbId: <p>所属知识库 ID</p>
+        # @type KbId: String
+        # @param QaIdList: <p>待删除的 QA ID 列表（数量：1~20）</p>
+        # @type QaIdList: Array
+
+        attr_accessor :KbId, :QaIdList
+
+        def initialize(kbid=nil, qaidlist=nil)
+          @KbId = kbid
+          @QaIdList = qaidlist
+        end
+
+        def deserialize(params)
+          @KbId = params['KbId']
+          @QaIdList = params['QaIdList']
+        end
+      end
+
+      # DeleteQAList返回参数结构体
+      class DeleteQAListResponse < TencentCloud::Common::AbstractModel
+        # @param ResultList: <p>批量删除结果</p>
+        # @type ResultList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ResultList, :RequestId
+
+        def initialize(resultlist=nil, requestid=nil)
+          @ResultList = resultlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ResultList'].nil?
+            @ResultList = []
+            params['ResultList'].each do |i|
+              operationresult_tmp = OperationResult.new
+              operationresult_tmp.deserialize(i)
+              @ResultList << operationresult_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -6236,6 +6983,83 @@ module TencentCloud
         end
       end
 
+      # DescribeCategoryList请求参数结构体
+      class DescribeCategoryListRequest < TencentCloud::Common::AbstractModel
+        # @param KbId: <p>所属知识库 ID</p>
+        # @type KbId: String
+        # @param FilterList: <p>过滤条件（多个 Filter 之间为 AND 关系，同一 Filter 的多个 Values 为 OR 关系）：CategoryType-分类类型,枚举值,精确匹配(CATEGORY_TYPE_DOC=1/CATEGORY_TYPE_QA=2); ParentCategoryId-父分类ID,精确匹配</p>
+        # @type FilterList: Array
+        # @param PageNumber: <p>分页页码，从 0 开始</p>
+        # @type PageNumber: Integer
+        # @param PageSize: <p>每页数量，默认 10，最大 100</p>
+        # @type PageSize: Integer
+        # @param Query: <p>关键词搜索</p>
+        # @type Query: String
+        # @param SummaryListSwitch: <p>开关配置</p>
+        # @type SummaryListSwitch: :class:`Tencentcloud::Adp.v20260520.models.SummaryListSwitch`
+
+        attr_accessor :KbId, :FilterList, :PageNumber, :PageSize, :Query, :SummaryListSwitch
+
+        def initialize(kbid=nil, filterlist=nil, pagenumber=nil, pagesize=nil, query=nil, summarylistswitch=nil)
+          @KbId = kbid
+          @FilterList = filterlist
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @Query = query
+          @SummaryListSwitch = summarylistswitch
+        end
+
+        def deserialize(params)
+          @KbId = params['KbId']
+          unless params['FilterList'].nil?
+            @FilterList = []
+            params['FilterList'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @FilterList << filter_tmp
+            end
+          end
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @Query = params['Query']
+          unless params['SummaryListSwitch'].nil?
+            @SummaryListSwitch = SummaryListSwitch.new
+            @SummaryListSwitch.deserialize(params['SummaryListSwitch'])
+          end
+        end
+      end
+
+      # DescribeCategoryList返回参数结构体
+      class DescribeCategoryListResponse < TencentCloud::Common::AbstractModel
+        # @param CategoryList: <p>分类列表</p>
+        # @type CategoryList: Array
+        # @param TotalCount: <p>总数</p>
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CategoryList, :TotalCount, :RequestId
+
+        def initialize(categorylist=nil, totalcount=nil, requestid=nil)
+          @CategoryList = categorylist
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CategoryList'].nil?
+            @CategoryList = []
+            params['CategoryList'].each do |i|
+              kbcategory_tmp = KBCategory.new
+              kbcategory_tmp.deserialize(i)
+              @CategoryList << kbcategory_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeChannelList请求参数结构体
       class DescribeChannelListRequest < TencentCloud::Common::AbstractModel
         # @param AppId: <p>应用业务ID</p>
@@ -6422,6 +7246,119 @@ module TencentCloud
               concurrencylimitdetail_tmp = ConcurrencyLimitDetail.new
               concurrencylimitdetail_tmp.deserialize(i)
               @ConcurrencyLimitDetailList << concurrencylimitdetail_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeConflictQA请求参数结构体
+      class DescribeConflictQARequest < TencentCloud::Common::AbstractModel
+        # @param ConflictGroupId: <p>冲突组 ID</p>
+        # @type ConflictGroupId: String
+        # @param KbId: <p>所属知识库 ID</p>
+        # @type KbId: String
+
+        attr_accessor :ConflictGroupId, :KbId
+
+        def initialize(conflictgroupid=nil, kbid=nil)
+          @ConflictGroupId = conflictgroupid
+          @KbId = kbid
+        end
+
+        def deserialize(params)
+          @ConflictGroupId = params['ConflictGroupId']
+          @KbId = params['KbId']
+        end
+      end
+
+      # DescribeConflictQA返回参数结构体
+      class DescribeConflictQAResponse < TencentCloud::Common::AbstractModel
+        # @param ConflictQaList: <p>一个冲突组的详情列表</p>
+        # @type ConflictQaList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ConflictQaList, :RequestId
+
+        def initialize(conflictqalist=nil, requestid=nil)
+          @ConflictQaList = conflictqalist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ConflictQaList'].nil?
+            @ConflictQaList = []
+            params['ConflictQaList'].each do |i|
+              conflictqa_tmp = ConflictQA.new
+              conflictqa_tmp.deserialize(i)
+              @ConflictQaList << conflictqa_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeConflictQASummaryList请求参数结构体
+      class DescribeConflictQASummaryListRequest < TencentCloud::Common::AbstractModel
+        # @param KbId: <p>所属知识库 ID</p>
+        # @type KbId: String
+        # @param FilterList: <p>通用过滤（支持按 status 筛选 PENDING/RESOLVED）</p>
+        # @type FilterList: Array
+        # @param PageNumber: <p>分页页码，从 0 开始</p>
+        # @type PageNumber: Integer
+        # @param PageSize: <p>每页数量，默认 10，最大 100</p>
+        # @type PageSize: Integer
+
+        attr_accessor :KbId, :FilterList, :PageNumber, :PageSize
+
+        def initialize(kbid=nil, filterlist=nil, pagenumber=nil, pagesize=nil)
+          @KbId = kbid
+          @FilterList = filterlist
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          @KbId = params['KbId']
+          unless params['FilterList'].nil?
+            @FilterList = []
+            params['FilterList'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @FilterList << filter_tmp
+            end
+          end
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+        end
+      end
+
+      # DescribeConflictQASummaryList返回参数结构体
+      class DescribeConflictQASummaryListResponse < TencentCloud::Common::AbstractModel
+        # @param ConflictQaList: <p>冲突问列表</p>
+        # @type ConflictQaList: Array
+        # @param TotalCount: <p>总数</p>
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ConflictQaList, :TotalCount, :RequestId
+
+        def initialize(conflictqalist=nil, totalcount=nil, requestid=nil)
+          @ConflictQaList = conflictqalist
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ConflictQaList'].nil?
+            @ConflictQaList = []
+            params['ConflictQaList'].each do |i|
+              conflictqasummary_tmp = ConflictQASummary.new
+              conflictqasummary_tmp.deserialize(i)
+              @ConflictQaList << conflictqasummary_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -6820,6 +7757,471 @@ module TencentCloud
           end
           @Title = params['Title']
           @AgentId = params['AgentId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDoc请求参数结构体
+      class DescribeDocRequest < TencentCloud::Common::AbstractModel
+        # @param DocId: <p>文档 ID</p>
+        # @type DocId: String
+        # @param KbId: <p>所属知识库 ID</p>
+        # @type KbId: String
+        # @param ReadMask: <p>字段掩码：当前支持的 Path：DocLink.CosUrl，其他未列举的字段默认都返回</p>
+        # @type ReadMask: :class:`Tencentcloud::Adp.v20260520.models.FieldMask`
+
+        attr_accessor :DocId, :KbId, :ReadMask
+
+        def initialize(docid=nil, kbid=nil, readmask=nil)
+          @DocId = docid
+          @KbId = kbid
+          @ReadMask = readmask
+        end
+
+        def deserialize(params)
+          @DocId = params['DocId']
+          @KbId = params['KbId']
+          unless params['ReadMask'].nil?
+            @ReadMask = FieldMask.new
+            @ReadMask.deserialize(params['ReadMask'])
+          end
+        end
+      end
+
+      # DescribeDoc返回参数结构体
+      class DescribeDocResponse < TencentCloud::Common::AbstractModel
+        # @param DocLink: <p>文档链接（外部链接 + COS 链接）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DocLink: :class:`Tencentcloud::Adp.v20260520.models.DocLink`
+        # @param ParseConfig: <p>解析配置（分割规则、内容过滤等）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParseConfig: :class:`Tencentcloud::Adp.v20260520.models.DocParseConfig`
+        # @param Summary: <p>文档基础信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Summary: :class:`Tencentcloud::Adp.v20260520.models.DocSummary`
+        # @param Switch: <p>开关配置</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Switch: :class:`Tencentcloud::Adp.v20260520.models.DocSwitch`
+        # @param UpdatePeriod: <p>更新周期配置</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdatePeriod: :class:`Tencentcloud::Adp.v20260520.models.DocUpdatePeriod`
+        # @param UserAccessConfig: <p>用户访问配置</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserAccessConfig: :class:`Tencentcloud::Adp.v20260520.models.UserAccessConfig`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DocLink, :ParseConfig, :Summary, :Switch, :UpdatePeriod, :UserAccessConfig, :RequestId
+
+        def initialize(doclink=nil, parseconfig=nil, summary=nil, switch=nil, updateperiod=nil, useraccessconfig=nil, requestid=nil)
+          @DocLink = doclink
+          @ParseConfig = parseconfig
+          @Summary = summary
+          @Switch = switch
+          @UpdatePeriod = updateperiod
+          @UserAccessConfig = useraccessconfig
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DocLink'].nil?
+            @DocLink = DocLink.new
+            @DocLink.deserialize(params['DocLink'])
+          end
+          unless params['ParseConfig'].nil?
+            @ParseConfig = DocParseConfig.new
+            @ParseConfig.deserialize(params['ParseConfig'])
+          end
+          unless params['Summary'].nil?
+            @Summary = DocSummary.new
+            @Summary.deserialize(params['Summary'])
+          end
+          unless params['Switch'].nil?
+            @Switch = DocSwitch.new
+            @Switch.deserialize(params['Switch'])
+          end
+          unless params['UpdatePeriod'].nil?
+            @UpdatePeriod = DocUpdatePeriod.new
+            @UpdatePeriod.deserialize(params['UpdatePeriod'])
+          end
+          unless params['UserAccessConfig'].nil?
+            @UserAccessConfig = UserAccessConfig.new
+            @UserAccessConfig.deserialize(params['UserAccessConfig'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDocSummaryList请求参数结构体
+      class DescribeDocSummaryListRequest < TencentCloud::Common::AbstractModel
+        # @param KbId: <p>所属知识库 ID</p>
+        # @type KbId: String
+        # @param FilterList: <p>过滤条件（多个 Filter 之间为 AND 关系，同一 Filter 的多个 Values 为 OR 关系）：Status-文档状态,枚举值,精确匹配; CategoryId-分类ID,精确匹配; SourceType-文档来源类型,枚举值,精确匹配; EffectiveDomain-生效作用域,精确匹配; CreateTime-创建时间,Unix秒,BETWEEN 传 [起始秒,结束秒]; UpdateTime-更新时间,Unix秒,BETWEEN 传 [起始秒,结束秒]</p>
+        # @type FilterList: Array
+        # @param PageNumber: <p>分页页码，从 0 开始</p>
+        # @type PageNumber: Integer
+        # @param PageSize: <p>每页数量，默认 10，最大 100</p>
+        # @type PageSize: Integer
+        # @param Query: <p>查询条件（关键词 + 查询范围）</p>
+        # @type Query: :class:`Tencentcloud::Adp.v20260520.models.DocQuery`
+        # @param SummaryListSwitch: <p>开关配置</p>
+        # @type SummaryListSwitch: :class:`Tencentcloud::Adp.v20260520.models.SummaryListSwitch`
+
+        attr_accessor :KbId, :FilterList, :PageNumber, :PageSize, :Query, :SummaryListSwitch
+
+        def initialize(kbid=nil, filterlist=nil, pagenumber=nil, pagesize=nil, query=nil, summarylistswitch=nil)
+          @KbId = kbid
+          @FilterList = filterlist
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @Query = query
+          @SummaryListSwitch = summarylistswitch
+        end
+
+        def deserialize(params)
+          @KbId = params['KbId']
+          unless params['FilterList'].nil?
+            @FilterList = []
+            params['FilterList'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @FilterList << filter_tmp
+            end
+          end
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          unless params['Query'].nil?
+            @Query = DocQuery.new
+            @Query.deserialize(params['Query'])
+          end
+          unless params['SummaryListSwitch'].nil?
+            @SummaryListSwitch = SummaryListSwitch.new
+            @SummaryListSwitch.deserialize(params['SummaryListSwitch'])
+          end
+        end
+      end
+
+      # DescribeDocSummaryList返回参数结构体
+      class DescribeDocSummaryListResponse < TencentCloud::Common::AbstractModel
+        # @param DocList: <p>文档列表</p>
+        # @type DocList: Array
+        # @param TotalCount: <p>总数</p>
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DocList, :TotalCount, :RequestId
+
+        def initialize(doclist=nil, totalcount=nil, requestid=nil)
+          @DocList = doclist
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DocList'].nil?
+            @DocList = []
+            params['DocList'].each do |i|
+              docsummary_tmp = DocSummary.new
+              docsummary_tmp.deserialize(i)
+              @DocList << docsummary_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeKB请求参数结构体
+      class DescribeKBRequest < TencentCloud::Common::AbstractModel
+        # @param KbId: <p>知识库 ID</p>
+        # @type KbId: String
+        # @param SpaceId: <p>工作空间 ID</p>
+        # @type SpaceId: String
+
+        attr_accessor :KbId, :SpaceId
+
+        def initialize(kbid=nil, spaceid=nil)
+          @KbId = kbid
+          @SpaceId = spaceid
+        end
+
+        def deserialize(params)
+          @KbId = params['KbId']
+          @SpaceId = params['SpaceId']
+        end
+      end
+
+      # DescribeKB返回参数结构体
+      class DescribeKBResponse < TencentCloud::Common::AbstractModel
+        # @param AppIdList: <p>关联的应用 ID 列表</p>
+        # @type AppIdList: Array
+        # @param CapacityInfo: <p>容量信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CapacityInfo: :class:`Tencentcloud::Adp.v20260520.models.KBCapacity`
+        # @param EsConfig: <p>ES 配置</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EsConfig: :class:`Tencentcloud::Adp.v20260520.models.ESConfig`
+        # @param ModelConfig: <p>模型配置</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelConfig: :class:`Tencentcloud::Adp.v20260520.models.KBModelConfig`
+        # @param Owner: <p>所有者信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Owner: :class:`Tencentcloud::Adp.v20260520.models.Operator`
+        # @param Summary: <p>知识库摘要信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Summary: :class:`Tencentcloud::Adp.v20260520.models.KBSummary`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AppIdList, :CapacityInfo, :EsConfig, :ModelConfig, :Owner, :Summary, :RequestId
+
+        def initialize(appidlist=nil, capacityinfo=nil, esconfig=nil, modelconfig=nil, owner=nil, summary=nil, requestid=nil)
+          @AppIdList = appidlist
+          @CapacityInfo = capacityinfo
+          @EsConfig = esconfig
+          @ModelConfig = modelconfig
+          @Owner = owner
+          @Summary = summary
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AppIdList = params['AppIdList']
+          unless params['CapacityInfo'].nil?
+            @CapacityInfo = KBCapacity.new
+            @CapacityInfo.deserialize(params['CapacityInfo'])
+          end
+          unless params['EsConfig'].nil?
+            @EsConfig = ESConfig.new
+            @EsConfig.deserialize(params['EsConfig'])
+          end
+          unless params['ModelConfig'].nil?
+            @ModelConfig = KBModelConfig.new
+            @ModelConfig.deserialize(params['ModelConfig'])
+          end
+          unless params['Owner'].nil?
+            @Owner = Operator.new
+            @Owner.deserialize(params['Owner'])
+          end
+          unless params['Summary'].nil?
+            @Summary = KBSummary.new
+            @Summary.deserialize(params['Summary'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeKBSummaryList请求参数结构体
+      class DescribeKBSummaryListRequest < TencentCloud::Common::AbstractModel
+        # @param SpaceId: <p>工作空间 ID</p>
+        # @type SpaceId: String
+        # @param FilterList: <p>通用过滤</p>
+        # @type FilterList: Array
+        # @param PageNumber: <p>分页页码，从 0 开始</p>
+        # @type PageNumber: Integer
+        # @param PageSize: <p>每页数量，默认 10，最大 100</p>
+        # @type PageSize: Integer
+        # @param Query: <p>关键词</p>
+        # @type Query: String
+
+        attr_accessor :SpaceId, :FilterList, :PageNumber, :PageSize, :Query
+
+        def initialize(spaceid=nil, filterlist=nil, pagenumber=nil, pagesize=nil, query=nil)
+          @SpaceId = spaceid
+          @FilterList = filterlist
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @Query = query
+        end
+
+        def deserialize(params)
+          @SpaceId = params['SpaceId']
+          unless params['FilterList'].nil?
+            @FilterList = []
+            params['FilterList'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @FilterList << filter_tmp
+            end
+          end
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @Query = params['Query']
+        end
+      end
+
+      # DescribeKBSummaryList返回参数结构体
+      class DescribeKBSummaryListResponse < TencentCloud::Common::AbstractModel
+        # @param KbList: <p>知识库列表</p>
+        # @type KbList: Array
+        # @param TotalCount: <p>总数</p>
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :KbList, :TotalCount, :RequestId
+
+        def initialize(kblist=nil, totalcount=nil, requestid=nil)
+          @KbList = kblist
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['KbList'].nil?
+            @KbList = []
+            params['KbList'].each do |i|
+              kbsummary_tmp = KBSummary.new
+              kbsummary_tmp.deserialize(i)
+              @KbList << kbsummary_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLabel请求参数结构体
+      class DescribeLabelRequest < TencentCloud::Common::AbstractModel
+        # @param KbId: <p>所属知识库 ID</p>
+        # @type KbId: String
+        # @param LabelId: <p>标签 ID</p>
+        # @type LabelId: String
+        # @param FilterList: <p>通用过滤</p>
+        # @type FilterList: Array
+        # @param LastTermId: <p>滚动加载游标的标准词 ID（首次请求传 0，后续传上一页最后一条的 TermId）</p>
+        # @type LastTermId: String
+        # @param Limit: <p>每次加载数量，默认 10，最大 100</p>
+        # @type Limit: Integer
+        # @param Query: <p>关键词搜索</p>
+        # @type Query: String
+
+        attr_accessor :KbId, :LabelId, :FilterList, :LastTermId, :Limit, :Query
+
+        def initialize(kbid=nil, labelid=nil, filterlist=nil, lasttermid=nil, limit=nil, query=nil)
+          @KbId = kbid
+          @LabelId = labelid
+          @FilterList = filterlist
+          @LastTermId = lasttermid
+          @Limit = limit
+          @Query = query
+        end
+
+        def deserialize(params)
+          @KbId = params['KbId']
+          @LabelId = params['LabelId']
+          unless params['FilterList'].nil?
+            @FilterList = []
+            params['FilterList'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @FilterList << filter_tmp
+            end
+          end
+          @LastTermId = params['LastTermId']
+          @Limit = params['Limit']
+          @Query = params['Query']
+        end
+      end
+
+      # DescribeLabel返回参数结构体
+      class DescribeLabelResponse < TencentCloud::Common::AbstractModel
+        # @param Summary: <p>基础信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Summary: :class:`Tencentcloud::Adp.v20260520.models.LabelSummary`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Summary, :RequestId
+
+        def initialize(summary=nil, requestid=nil)
+          @Summary = summary
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Summary'].nil?
+            @Summary = LabelSummary.new
+            @Summary.deserialize(params['Summary'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLabelSummaryList请求参数结构体
+      class DescribeLabelSummaryListRequest < TencentCloud::Common::AbstractModel
+        # @param KbId: <p>所属知识库 ID</p>
+        # @type KbId: String
+        # @param FilterList: <p>通用过滤</p>
+        # @type FilterList: Array
+        # @param PageNumber: <p>分页页码，从 0 开始</p>
+        # @type PageNumber: Integer
+        # @param PageSize: <p>每页数量，默认 10，最大 100</p>
+        # @type PageSize: Integer
+        # @param Query: <p>关键词搜索</p>
+        # @type Query: String
+        # @param SummaryListSwitch: <p>开关配置</p>
+        # @type SummaryListSwitch: :class:`Tencentcloud::Adp.v20260520.models.SummaryListSwitch`
+
+        attr_accessor :KbId, :FilterList, :PageNumber, :PageSize, :Query, :SummaryListSwitch
+
+        def initialize(kbid=nil, filterlist=nil, pagenumber=nil, pagesize=nil, query=nil, summarylistswitch=nil)
+          @KbId = kbid
+          @FilterList = filterlist
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @Query = query
+          @SummaryListSwitch = summarylistswitch
+        end
+
+        def deserialize(params)
+          @KbId = params['KbId']
+          unless params['FilterList'].nil?
+            @FilterList = []
+            params['FilterList'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @FilterList << filter_tmp
+            end
+          end
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @Query = params['Query']
+          unless params['SummaryListSwitch'].nil?
+            @SummaryListSwitch = SummaryListSwitch.new
+            @SummaryListSwitch.deserialize(params['SummaryListSwitch'])
+          end
+        end
+      end
+
+      # DescribeLabelSummaryList返回参数结构体
+      class DescribeLabelSummaryListResponse < TencentCloud::Common::AbstractModel
+        # @param LabelList: <p>标签列表</p>
+        # @type LabelList: Array
+        # @param TotalCount: <p>总数</p>
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LabelList, :TotalCount, :RequestId
+
+        def initialize(labellist=nil, totalcount=nil, requestid=nil)
+          @LabelList = labellist
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['LabelList'].nil?
+            @LabelList = []
+            params['LabelList'].each do |i|
+              labelsummary_tmp = LabelSummary.new
+              labelsummary_tmp.deserialize(i)
+              @LabelList << labelsummary_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -7274,6 +8676,168 @@ module TencentCloud
               pluginsummary_tmp = PluginSummary.new
               pluginsummary_tmp.deserialize(i)
               @PluginList << pluginsummary_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeQA请求参数结构体
+      class DescribeQARequest < TencentCloud::Common::AbstractModel
+        # @param KbId: <p>所属知识库 ID</p>
+        # @type KbId: String
+        # @param QaId: <p>QA ID</p>
+        # @type QaId: String
+
+        attr_accessor :KbId, :QaId
+
+        def initialize(kbid=nil, qaid=nil)
+          @KbId = kbid
+          @QaId = qaid
+        end
+
+        def deserialize(params)
+          @KbId = params['KbId']
+          @QaId = params['QaId']
+        end
+      end
+
+      # DescribeQA返回参数结构体
+      class DescribeQAResponse < TencentCloud::Common::AbstractModel
+        # @param HighlightList: <p>分片高亮信息</p>
+        # @type HighlightList: Array
+        # @param PageContent: <p>分片内容</p>
+        # @type PageContent: String
+        # @param QuestionDescription: <p>问题描述</p>
+        # @type QuestionDescription: String
+        # @param SimilarQuestionList: <p>相似问列表</p>
+        # @type SimilarQuestionList: Array
+        # @param Summary: <p>基础信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Summary: :class:`Tencentcloud::Adp.v20260520.models.QASummary`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :HighlightList, :PageContent, :QuestionDescription, :SimilarQuestionList, :Summary, :RequestId
+
+        def initialize(highlightlist=nil, pagecontent=nil, questiondescription=nil, similarquestionlist=nil, summary=nil, requestid=nil)
+          @HighlightList = highlightlist
+          @PageContent = pagecontent
+          @QuestionDescription = questiondescription
+          @SimilarQuestionList = similarquestionlist
+          @Summary = summary
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['HighlightList'].nil?
+            @HighlightList = []
+            params['HighlightList'].each do |i|
+              qasegmenthighlight_tmp = QASegmentHighlight.new
+              qasegmenthighlight_tmp.deserialize(i)
+              @HighlightList << qasegmenthighlight_tmp
+            end
+          end
+          @PageContent = params['PageContent']
+          @QuestionDescription = params['QuestionDescription']
+          unless params['SimilarQuestionList'].nil?
+            @SimilarQuestionList = []
+            params['SimilarQuestionList'].each do |i|
+              similarquestion_tmp = SimilarQuestion.new
+              similarquestion_tmp.deserialize(i)
+              @SimilarQuestionList << similarquestion_tmp
+            end
+          end
+          unless params['Summary'].nil?
+            @Summary = QASummary.new
+            @Summary.deserialize(params['Summary'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeQASummaryList请求参数结构体
+      class DescribeQASummaryListRequest < TencentCloud::Common::AbstractModel
+        # @param KbId: <p>所属知识库 ID</p>
+        # @type KbId: String
+        # @param FilterList: <p>过滤条件（多个 Filter 之间为 AND 关系，同一 Filter 的多个 Values 为 OR 关系）：Status-QA状态,枚举值,精确匹配; CategoryId-分类ID,精确匹配; SourceType-QA来源类型,枚举值,精确匹配; EffectiveDomain-生效作用域,精确匹配; DocId-关联文档ID,精确匹配;  CreateTime-创建时间,Unix秒,BETWEEN 传 [起始秒,结束秒]; UpdateTime-更新时间,Unix秒,BETWEEN 传 [起始秒,结束秒]</p>
+        # @type FilterList: Array
+        # @param PageNumber: <p>分页页码，从 0 开始</p>
+        # @type PageNumber: Integer
+        # @param PageSize: <p>每页数量，默认 10，最大 100</p>
+        # @type PageSize: Integer
+        # @param Query: <p>查询条件（关键词 + 查询范围）</p>
+        # @type Query: :class:`Tencentcloud::Adp.v20260520.models.QAQuery`
+        # @param SummaryListSwitch: <p>开关配置</p>
+        # @type SummaryListSwitch: :class:`Tencentcloud::Adp.v20260520.models.SummaryListSwitch`
+
+        attr_accessor :KbId, :FilterList, :PageNumber, :PageSize, :Query, :SummaryListSwitch
+
+        def initialize(kbid=nil, filterlist=nil, pagenumber=nil, pagesize=nil, query=nil, summarylistswitch=nil)
+          @KbId = kbid
+          @FilterList = filterlist
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @Query = query
+          @SummaryListSwitch = summarylistswitch
+        end
+
+        def deserialize(params)
+          @KbId = params['KbId']
+          unless params['FilterList'].nil?
+            @FilterList = []
+            params['FilterList'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @FilterList << filter_tmp
+            end
+          end
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          unless params['Query'].nil?
+            @Query = QAQuery.new
+            @Query.deserialize(params['Query'])
+          end
+          unless params['SummaryListSwitch'].nil?
+            @SummaryListSwitch = SummaryListSwitch.new
+            @SummaryListSwitch.deserialize(params['SummaryListSwitch'])
+          end
+        end
+      end
+
+      # DescribeQASummaryList返回参数结构体
+      class DescribeQASummaryListResponse < TencentCloud::Common::AbstractModel
+        # @param NotAcceptedCount: <p>未采纳数量</p>
+        # @type NotAcceptedCount: Integer
+        # @param PendingVerifyCount: <p>待校验数量</p>
+        # @type PendingVerifyCount: Integer
+        # @param QaList: <p>QA 列表</p>
+        # @type QaList: Array
+        # @param TotalCount: <p>总数</p>
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NotAcceptedCount, :PendingVerifyCount, :QaList, :TotalCount, :RequestId
+
+        def initialize(notacceptedcount=nil, pendingverifycount=nil, qalist=nil, totalcount=nil, requestid=nil)
+          @NotAcceptedCount = notacceptedcount
+          @PendingVerifyCount = pendingverifycount
+          @QaList = qalist
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @NotAcceptedCount = params['NotAcceptedCount']
+          @PendingVerifyCount = params['PendingVerifyCount']
+          unless params['QaList'].nil?
+            @QaList = []
+            params['QaList'].each do |i|
+              qasummary_tmp = QASummary.new
+              qasummary_tmp.deserialize(i)
+              @QaList << qasummary_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -8052,6 +9616,555 @@ module TencentCloud
         end
       end
 
+      # 文档外部链接信息
+      class DocExternalLink < TencentCloud::Common::AbstractModel
+        # @param ExternalUrl: <p>外部链接地址</p>
+        # @type ExternalUrl: String
+        # @param ReplaceOriginEnabled: <p>是否替换原文展示</p>
+        # @type ReplaceOriginEnabled: Boolean
+
+        attr_accessor :ExternalUrl, :ReplaceOriginEnabled
+
+        def initialize(externalurl=nil, replaceoriginenabled=nil)
+          @ExternalUrl = externalurl
+          @ReplaceOriginEnabled = replaceoriginenabled
+        end
+
+        def deserialize(params)
+          @ExternalUrl = params['ExternalUrl']
+          @ReplaceOriginEnabled = params['ReplaceOriginEnabled']
+        end
+      end
+
+      # 文档导入规格（一次性输入的非持久化数据）
+      class DocImportSpec < TencentCloud::Common::AbstractModel
+        # @param FileId: <p>文件 ID（通过文件管理服务获取的文件标识，不可为空）</p>
+        # @type FileId: String
+        # @param CategoryId: <p>归属分类 ID</p>
+        # @type CategoryId: String
+        # @param DeDuplicateStrategyList: <p>重复文件处理规则列表</p>
+        # @type DeDuplicateStrategyList: Array
+        # @param EffectiveDomain: <p>知识生效作用域<table><tbody><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>KNOWLEDGE_EFFECTIVE_DOMAIN_UNKNOWN</td><td>0</td><td></td></tr><tr><td>KNOWLEDGE_EFFECTIVE_DOMAIN_NONE</td><td>1</td><td>停用</td></tr><tr><td>KNOWLEDGE_EFFECTIVE_DOMAIN_DEV</td><td>2</td><td>仅开发域</td></tr><tr><td>KNOWLEDGE_EFFECTIVE_DOMAIN_RELEASE</td><td>3</td><td>仅发布域</td></tr><tr><td>KNOWLEDGE_EFFECTIVE_DOMAIN_ALL</td><td>4</td><td>全域</td></tr></tbody></table></p>
+        # @type EffectiveDomain: Integer
+        # @param ExpirationPolicy: <p>过期策略（有效时间与超过有效时间后的行为）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpirationPolicy: :class:`Tencentcloud::Adp.v20260520.models.ExpirationPolicy`
+        # @param ExternalLink: <p>外部链接</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExternalLink: :class:`Tencentcloud::Adp.v20260520.models.DocExternalLink`
+        # @param LabelRefList: <p>适用范围（标签条件）</p>
+        # @type LabelRefList: Array
+        # @param ParseConfig: <p>解析配置（分割规则、内容过滤等）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParseConfig: :class:`Tencentcloud::Adp.v20260520.models.DocParseConfig`
+        # @param Switch: <p>开关配置</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Switch: :class:`Tencentcloud::Adp.v20260520.models.DocSwitch`
+        # @param UpdatePeriod: <p>更新周期</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdatePeriod: :class:`Tencentcloud::Adp.v20260520.models.DocUpdatePeriod`
+        # @param UserAccessConfig: <p>用户访问配置</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserAccessConfig: :class:`Tencentcloud::Adp.v20260520.models.UserAccessConfig`
+
+        attr_accessor :FileId, :CategoryId, :DeDuplicateStrategyList, :EffectiveDomain, :ExpirationPolicy, :ExternalLink, :LabelRefList, :ParseConfig, :Switch, :UpdatePeriod, :UserAccessConfig
+
+        def initialize(fileid=nil, categoryid=nil, deduplicatestrategylist=nil, effectivedomain=nil, expirationpolicy=nil, externallink=nil, labelreflist=nil, parseconfig=nil, switch=nil, updateperiod=nil, useraccessconfig=nil)
+          @FileId = fileid
+          @CategoryId = categoryid
+          @DeDuplicateStrategyList = deduplicatestrategylist
+          @EffectiveDomain = effectivedomain
+          @ExpirationPolicy = expirationpolicy
+          @ExternalLink = externallink
+          @LabelRefList = labelreflist
+          @ParseConfig = parseconfig
+          @Switch = switch
+          @UpdatePeriod = updateperiod
+          @UserAccessConfig = useraccessconfig
+        end
+
+        def deserialize(params)
+          @FileId = params['FileId']
+          @CategoryId = params['CategoryId']
+          unless params['DeDuplicateStrategyList'].nil?
+            @DeDuplicateStrategyList = []
+            params['DeDuplicateStrategyList'].each do |i|
+              deduplicatestrategy_tmp = DeDuplicateStrategy.new
+              deduplicatestrategy_tmp.deserialize(i)
+              @DeDuplicateStrategyList << deduplicatestrategy_tmp
+            end
+          end
+          @EffectiveDomain = params['EffectiveDomain']
+          unless params['ExpirationPolicy'].nil?
+            @ExpirationPolicy = ExpirationPolicy.new
+            @ExpirationPolicy.deserialize(params['ExpirationPolicy'])
+          end
+          unless params['ExternalLink'].nil?
+            @ExternalLink = DocExternalLink.new
+            @ExternalLink.deserialize(params['ExternalLink'])
+          end
+          unless params['LabelRefList'].nil?
+            @LabelRefList = []
+            params['LabelRefList'].each do |i|
+              labelrefidentity_tmp = LabelRefIdentity.new
+              labelrefidentity_tmp.deserialize(i)
+              @LabelRefList << labelrefidentity_tmp
+            end
+          end
+          unless params['ParseConfig'].nil?
+            @ParseConfig = DocParseConfig.new
+            @ParseConfig.deserialize(params['ParseConfig'])
+          end
+          unless params['Switch'].nil?
+            @Switch = DocSwitch.new
+            @Switch.deserialize(params['Switch'])
+          end
+          unless params['UpdatePeriod'].nil?
+            @UpdatePeriod = DocUpdatePeriod.new
+            @UpdatePeriod.deserialize(params['UpdatePeriod'])
+          end
+          unless params['UserAccessConfig'].nil?
+            @UserAccessConfig = UserAccessConfig.new
+            @UserAccessConfig.deserialize(params['UserAccessConfig'])
+          end
+        end
+      end
+
+      # 文档生命周期信息
+      class DocLifecycle < TencentCloud::Common::AbstractModel
+        # @param CreateTime: <p>创建时间（Unix 秒）</p>
+        # @type CreateTime: String
+        # @param ExpirationPolicy: <p>过期策略（有效时间与超过有效时间后的行为）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpirationPolicy: :class:`Tencentcloud::Adp.v20260520.models.ExpirationPolicy`
+        # @param Status: <p>文档状态：1=解析中，2=解析失败，3=导入失败，4=审核中，5=审核失败，6=学习中，7=学习失败，8=导入完成，9=已过期，10=超量失效，11=超量失效恢复中，12=重命名审核失败，13=重命名申诉失败，14=人工申诉中，15=人工申诉失败<table><tbody><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>DOC_STATUS_UNKNOWN</td><td>0</td><td></td></tr><tr><td>DOC_STATUS_PARSING</td><td>1</td><td>解析中</td></tr><tr><td>DOC_STATUS_PARSE_FAIL</td><td>2</td><td>解析失败</td></tr><tr><td>DOC_STATUS_IMPORT_FAIL</td><td>3</td><td>导入失败</td></tr><tr><td>DOC_STATUS_AUDITING</td><td>4</td><td>审核中</td></tr><tr><td>DOC_STATUS_AUDIT_FAIL</td><td>5</td><td>审核失败</td></tr><tr><td>DOC_STATUS_LEARNING</td><td>6</td><td>学习中</td></tr><tr><td>DOC_STATUS_LEARN_FAIL</td><td>7</td><td>学习失败</td></tr><tr><td>DOC_STATUS_IMPORTED</td><td>8</td><td>导入完成</td></tr><tr><td>DOC_STATUS_EXPIRED</td><td>9</td><td>已过期</td></tr><tr><td>DOC_STATUS_QUOTA_INVALID</td><td>10</td><td>超量失效</td></tr><tr><td>DOC_STATUS_QUOTA_RECOVERING</td><td>11</td><td>超量失效恢复中</td></tr><tr><td>DOC_STATUS_RENAME_AUDIT_FAIL</td><td>12</td><td>重命名审核失败</td></tr><tr><td>DOC_STATUS_RENAME_APPEAL_FAIL</td><td>13</td><td>重命名申诉失败</td></tr><tr><td>DOC_STATUS_MANUAL_APPEALING</td><td>14</td><td>人工申诉中</td></tr><tr><td>DOC_STATUS_MANUAL_APPEAL_FAIL</td><td>15</td><td>人工申诉失败</td></tr></tbody></table></p>
+        # @type Status: Integer
+        # @param StatusDesc: <p>状态描述</p>
+        # @type StatusDesc: String
+        # @param StatusMessage: <p>状态附加信息</p>
+        # @type StatusMessage: String
+        # @param UpdateTime: <p>更新时间（Unix 秒）</p>
+        # @type UpdateTime: String
+
+        attr_accessor :CreateTime, :ExpirationPolicy, :Status, :StatusDesc, :StatusMessage, :UpdateTime
+
+        def initialize(createtime=nil, expirationpolicy=nil, status=nil, statusdesc=nil, statusmessage=nil, updatetime=nil)
+          @CreateTime = createtime
+          @ExpirationPolicy = expirationpolicy
+          @Status = status
+          @StatusDesc = statusdesc
+          @StatusMessage = statusmessage
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @CreateTime = params['CreateTime']
+          unless params['ExpirationPolicy'].nil?
+            @ExpirationPolicy = ExpirationPolicy.new
+            @ExpirationPolicy.deserialize(params['ExpirationPolicy'])
+          end
+          @Status = params['Status']
+          @StatusDesc = params['StatusDesc']
+          @StatusMessage = params['StatusMessage']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 文档链接
+      class DocLink < TencentCloud::Common::AbstractModel
+        # @param CosUrl: <p>COS 链接地址，可用作预览和下载</p>
+        # @type CosUrl: String
+        # @param ExternalLink: <p>外部链接</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExternalLink: :class:`Tencentcloud::Adp.v20260520.models.DocExternalLink`
+
+        attr_accessor :CosUrl, :ExternalLink
+
+        def initialize(cosurl=nil, externallink=nil)
+          @CosUrl = cosurl
+          @ExternalLink = externallink
+        end
+
+        def deserialize(params)
+          @CosUrl = params['CosUrl']
+          unless params['ExternalLink'].nil?
+            @ExternalLink = DocExternalLink.new
+            @ExternalLink.deserialize(params['ExternalLink'])
+          end
+        end
+      end
+
+      # 文档元信息
+      class DocMetadata < TencentCloud::Common::AbstractModel
+        # @param DocCharCount: <p>文档字符数</p>
+        # @type DocCharCount: String
+        # @param FileName: <p>文件名</p>
+        # @type FileName: String
+        # @param FileSize: <p>文件大小（字节）</p>
+        # @type FileSize: String
+        # @param FileType: <p>文件类型/扩展名</p>
+        # @type FileType: String
+        # @param RefFieldNameList: <p>元数据引用字段名列表（用于显示文档哪些分类和属性被设置为元数据）</p>
+        # @type RefFieldNameList: Array
+        # @param SourceDesc: <p>来源描述</p>
+        # @type SourceDesc: String
+        # @param SourceType: <p>文档来源类型：1=本地上传，2=网页链接，3=COS 对接，4=外部导入<table><tbody><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>DOC_SOURCE_TYPE_UNKNOWN</td><td>0</td><td></td></tr><tr><td>DOC_SOURCE_TYPE_LOCAL</td><td>1</td><td>本地上传</td></tr><tr><td>DOC_SOURCE_TYPE_URL</td><td>2</td><td>网页链接</td></tr><tr><td>DOC_SOURCE_TYPE_COS</td><td>3</td><td>COS 对接</td></tr><tr><td>DOC_SOURCE_TYPE_IMPORT</td><td>4</td><td>外部导入</td></tr></tbody></table></p>
+        # @type SourceType: Integer
+
+        attr_accessor :DocCharCount, :FileName, :FileSize, :FileType, :RefFieldNameList, :SourceDesc, :SourceType
+
+        def initialize(doccharcount=nil, filename=nil, filesize=nil, filetype=nil, reffieldnamelist=nil, sourcedesc=nil, sourcetype=nil)
+          @DocCharCount = doccharcount
+          @FileName = filename
+          @FileSize = filesize
+          @FileType = filetype
+          @RefFieldNameList = reffieldnamelist
+          @SourceDesc = sourcedesc
+          @SourceType = sourcetype
+        end
+
+        def deserialize(params)
+          @DocCharCount = params['DocCharCount']
+          @FileName = params['FileName']
+          @FileSize = params['FileSize']
+          @FileType = params['FileType']
+          @RefFieldNameList = params['RefFieldNameList']
+          @SourceDesc = params['SourceDesc']
+          @SourceType = params['SourceType']
+        end
+      end
+
+      # 文档可修改字段集合（配合 update_mask 使用）
+      class DocModifyFields < TencentCloud::Common::AbstractModel
+        # @param CategoryId: <p>归属分类 ID</p>
+        # @type CategoryId: String
+        # @param EffectiveDomain: <p>生效作用域<table><tbody><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>KNOWLEDGE_EFFECTIVE_DOMAIN_UNKNOWN</td><td>0</td><td></td></tr><tr><td>KNOWLEDGE_EFFECTIVE_DOMAIN_NONE</td><td>1</td><td>停用</td></tr><tr><td>KNOWLEDGE_EFFECTIVE_DOMAIN_DEV</td><td>2</td><td>仅开发域</td></tr><tr><td>KNOWLEDGE_EFFECTIVE_DOMAIN_RELEASE</td><td>3</td><td>仅发布域</td></tr><tr><td>KNOWLEDGE_EFFECTIVE_DOMAIN_ALL</td><td>4</td><td>全域</td></tr></tbody></table></p>
+        # @type EffectiveDomain: Integer
+        # @param ExpirationPolicy: <p>过期策略（有效时间与超过有效时间后的行为）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpirationPolicy: :class:`Tencentcloud::Adp.v20260520.models.ExpirationPolicy`
+        # @param ExternalLink: <p>外部链接</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExternalLink: :class:`Tencentcloud::Adp.v20260520.models.DocExternalLink`
+        # @param LabelRefList: <p>标签列表</p>
+        # @type LabelRefList: Array
+        # @param Name: <p>文档名</p>
+        # @type Name: String
+        # @param ParseConfig: <p>解析配置（分割规则、内容过滤等）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParseConfig: :class:`Tencentcloud::Adp.v20260520.models.DocParseConfig`
+        # @param Switch: <p>开关配置</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Switch: :class:`Tencentcloud::Adp.v20260520.models.DocSwitch`
+        # @param UpdatePeriod: <p>更新周期</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdatePeriod: :class:`Tencentcloud::Adp.v20260520.models.DocUpdatePeriod`
+        # @param UserAccessConfig: <p>用户访问配置</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserAccessConfig: :class:`Tencentcloud::Adp.v20260520.models.UserAccessConfig`
+
+        attr_accessor :CategoryId, :EffectiveDomain, :ExpirationPolicy, :ExternalLink, :LabelRefList, :Name, :ParseConfig, :Switch, :UpdatePeriod, :UserAccessConfig
+
+        def initialize(categoryid=nil, effectivedomain=nil, expirationpolicy=nil, externallink=nil, labelreflist=nil, name=nil, parseconfig=nil, switch=nil, updateperiod=nil, useraccessconfig=nil)
+          @CategoryId = categoryid
+          @EffectiveDomain = effectivedomain
+          @ExpirationPolicy = expirationpolicy
+          @ExternalLink = externallink
+          @LabelRefList = labelreflist
+          @Name = name
+          @ParseConfig = parseconfig
+          @Switch = switch
+          @UpdatePeriod = updateperiod
+          @UserAccessConfig = useraccessconfig
+        end
+
+        def deserialize(params)
+          @CategoryId = params['CategoryId']
+          @EffectiveDomain = params['EffectiveDomain']
+          unless params['ExpirationPolicy'].nil?
+            @ExpirationPolicy = ExpirationPolicy.new
+            @ExpirationPolicy.deserialize(params['ExpirationPolicy'])
+          end
+          unless params['ExternalLink'].nil?
+            @ExternalLink = DocExternalLink.new
+            @ExternalLink.deserialize(params['ExternalLink'])
+          end
+          unless params['LabelRefList'].nil?
+            @LabelRefList = []
+            params['LabelRefList'].each do |i|
+              labelrefidentity_tmp = LabelRefIdentity.new
+              labelrefidentity_tmp.deserialize(i)
+              @LabelRefList << labelrefidentity_tmp
+            end
+          end
+          @Name = params['Name']
+          unless params['ParseConfig'].nil?
+            @ParseConfig = DocParseConfig.new
+            @ParseConfig.deserialize(params['ParseConfig'])
+          end
+          unless params['Switch'].nil?
+            @Switch = DocSwitch.new
+            @Switch.deserialize(params['Switch'])
+          end
+          unless params['UpdatePeriod'].nil?
+            @UpdatePeriod = DocUpdatePeriod.new
+            @UpdatePeriod.deserialize(params['UpdatePeriod'])
+          end
+          unless params['UserAccessConfig'].nil?
+            @UserAccessConfig = UserAccessConfig.new
+            @UserAccessConfig.deserialize(params['UserAccessConfig'])
+          end
+        end
+      end
+
+      # 文档操作者信息
+      class DocOperator < TencentCloud::Common::AbstractModel
+        # @param Modifier: <p>修改人</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Modifier: :class:`Tencentcloud::Adp.v20260520.models.Operator`
+        # @param Permission: <p>操作权限</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Permission: :class:`Tencentcloud::Adp.v20260520.models.DocPermission`
+
+        attr_accessor :Modifier, :Permission
+
+        def initialize(modifier=nil, permission=nil)
+          @Modifier = modifier
+          @Permission = permission
+        end
+
+        def deserialize(params)
+          unless params['Modifier'].nil?
+            @Modifier = Operator.new
+            @Modifier.deserialize(params['Modifier'])
+          end
+          unless params['Permission'].nil?
+            @Permission = DocPermission.new
+            @Permission.deserialize(params['Permission'])
+          end
+        end
+      end
+
+      # 文档解析配置
+      class DocParseConfig < TencentCloud::Common::AbstractModel
+        # @param ContentFilter: <p>内容过滤配置</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContentFilter: :class:`Tencentcloud::Adp.v20260520.models.ContentFilter`
+        # @param SplitRule: <p>分割规则</p>
+        # @type SplitRule: String
+
+        attr_accessor :ContentFilter, :SplitRule
+
+        def initialize(contentfilter=nil, splitrule=nil)
+          @ContentFilter = contentfilter
+          @SplitRule = splitrule
+        end
+
+        def deserialize(params)
+          unless params['ContentFilter'].nil?
+            @ContentFilter = ContentFilter.new
+            @ContentFilter.deserialize(params['ContentFilter'])
+          end
+          @SplitRule = params['SplitRule']
+        end
+      end
+
+      # 文档操作权限信息
+      class DocPermission < TencentCloud::Common::AbstractModel
+        # @param CanDelete: <p>是否可删除</p>
+        # @type CanDelete: Boolean
+        # @param CanEdit: <p>是否可编辑</p>
+        # @type CanEdit: Boolean
+        # @param CanRestart: <p>是否可重新生成</p>
+        # @type CanRestart: Boolean
+        # @param CanRetry: <p>是否可重试</p>
+        # @type CanRetry: Boolean
+
+        attr_accessor :CanDelete, :CanEdit, :CanRestart, :CanRetry
+
+        def initialize(candelete=nil, canedit=nil, canrestart=nil, canretry=nil)
+          @CanDelete = candelete
+          @CanEdit = canedit
+          @CanRestart = canrestart
+          @CanRetry = canretry
+        end
+
+        def deserialize(params)
+          @CanDelete = params['CanDelete']
+          @CanEdit = params['CanEdit']
+          @CanRestart = params['CanRestart']
+          @CanRetry = params['CanRetry']
+        end
+      end
+
+      # 文档查询条件
+      class DocQuery < TencentCloud::Common::AbstractModel
+        # @param Query: <p>查询关键词（名称模糊搜索）</p>
+        # @type Query: String
+        # @param QueryScopeList: <p>查询范围（query 作用的字段）：1=文件名，2=标签或标签值；支持多选，缺省时无效</p>
+        # @type QueryScopeList: Array
+
+        attr_accessor :Query, :QueryScopeList
+
+        def initialize(query=nil, queryscopelist=nil)
+          @Query = query
+          @QueryScopeList = queryscopelist
+        end
+
+        def deserialize(params)
+          @Query = params['Query']
+          @QueryScopeList = params['QueryScopeList']
+        end
+      end
+
+      # 文档检索配置
+      class DocRetrievalConfig < TencentCloud::Common::AbstractModel
+        # @param Confidence: <p>置信度阈值</p>
+        # @type Confidence: Float
+        # @param Enabled: <p>是否启用</p>
+        # @type Enabled: Boolean
+        # @param TopN: <p>返回前 N 条</p>
+        # @type TopN: Integer
+
+        attr_accessor :Confidence, :Enabled, :TopN
+
+        def initialize(confidence=nil, enabled=nil, topn=nil)
+          @Confidence = confidence
+          @Enabled = enabled
+          @TopN = topn
+        end
+
+        def deserialize(params)
+          @Confidence = params['Confidence']
+          @Enabled = params['Enabled']
+          @TopN = params['TopN']
+        end
+      end
+
+      # 文档摘要信息
+      class DocSummary < TencentCloud::Common::AbstractModel
+        # @param CategoryPath: <p>所属分类路径（包含分类 ID、从根节点开始的分类 ID 路径和分类名称路径）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CategoryPath: :class:`Tencentcloud::Adp.v20260520.models.CategoryPath`
+        # @param DocId: <p>文档 ID</p>
+        # @type DocId: String
+        # @param KnowledgeScope: <p>知识生效范围（聚合生效作用域 + 标签条件）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KnowledgeScope: :class:`Tencentcloud::Adp.v20260520.models.KnowledgeScope`
+        # @param Lifecycle: <p>生命周期信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Lifecycle: :class:`Tencentcloud::Adp.v20260520.models.DocLifecycle`
+        # @param Metadata: <p>元信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Metadata: :class:`Tencentcloud::Adp.v20260520.models.DocMetadata`
+        # @param OperatorInfo: <p>操作者信息（聚合修改人 + 操作权限）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OperatorInfo: :class:`Tencentcloud::Adp.v20260520.models.DocOperator`
+        # @param TaskStatus: <p>任务状态信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskStatus: :class:`Tencentcloud::Adp.v20260520.models.DocTaskStatus`
+
+        attr_accessor :CategoryPath, :DocId, :KnowledgeScope, :Lifecycle, :Metadata, :OperatorInfo, :TaskStatus
+
+        def initialize(categorypath=nil, docid=nil, knowledgescope=nil, lifecycle=nil, metadata=nil, operatorinfo=nil, taskstatus=nil)
+          @CategoryPath = categorypath
+          @DocId = docid
+          @KnowledgeScope = knowledgescope
+          @Lifecycle = lifecycle
+          @Metadata = metadata
+          @OperatorInfo = operatorinfo
+          @TaskStatus = taskstatus
+        end
+
+        def deserialize(params)
+          unless params['CategoryPath'].nil?
+            @CategoryPath = CategoryPath.new
+            @CategoryPath.deserialize(params['CategoryPath'])
+          end
+          @DocId = params['DocId']
+          unless params['KnowledgeScope'].nil?
+            @KnowledgeScope = KnowledgeScope.new
+            @KnowledgeScope.deserialize(params['KnowledgeScope'])
+          end
+          unless params['Lifecycle'].nil?
+            @Lifecycle = DocLifecycle.new
+            @Lifecycle.deserialize(params['Lifecycle'])
+          end
+          unless params['Metadata'].nil?
+            @Metadata = DocMetadata.new
+            @Metadata.deserialize(params['Metadata'])
+          end
+          unless params['OperatorInfo'].nil?
+            @OperatorInfo = DocOperator.new
+            @OperatorInfo.deserialize(params['OperatorInfo'])
+          end
+          unless params['TaskStatus'].nil?
+            @TaskStatus = DocTaskStatus.new
+            @TaskStatus.deserialize(params['TaskStatus'])
+          end
+        end
+      end
+
+      # 文档开关配置
+      class DocSwitch < TencentCloud::Common::AbstractModel
+        # @param DownloadEnabled: <p>是否可下载</p>
+        # @type DownloadEnabled: Boolean
+        # @param ReferEnabled: <p>是否在参考来源中展示</p>
+        # @type ReferEnabled: Boolean
+
+        attr_accessor :DownloadEnabled, :ReferEnabled
+
+        def initialize(downloadenabled=nil, referenabled=nil)
+          @DownloadEnabled = downloadenabled
+          @ReferEnabled = referenabled
+        end
+
+        def deserialize(params)
+          @DownloadEnabled = params['DownloadEnabled']
+          @ReferEnabled = params['ReferEnabled']
+        end
+      end
+
+      # 文档任务状态信息
+      class DocTaskStatus < TencentCloud::Common::AbstractModel
+        # @param CompletedTaskTypeList: <p>已完成的历史任务类型列表</p>
+        # @type CompletedTaskTypeList: Array
+        # @param OngoingTaskTypeList: <p>正在进行中的任务类型列表</p>
+        # @type OngoingTaskTypeList: Array
+
+        attr_accessor :CompletedTaskTypeList, :OngoingTaskTypeList
+
+        def initialize(completedtasktypelist=nil, ongoingtasktypelist=nil)
+          @CompletedTaskTypeList = completedtasktypelist
+          @OngoingTaskTypeList = ongoingtasktypelist
+        end
+
+        def deserialize(params)
+          @CompletedTaskTypeList = params['CompletedTaskTypeList']
+          @OngoingTaskTypeList = params['OngoingTaskTypeList']
+        end
+      end
+
+      # 文档更新周期配置
+      class DocUpdatePeriod < TencentCloud::Common::AbstractModel
+        # @param Enabled: <p>是否开启周期性更新</p>
+        # @type Enabled: Boolean
+        # @param PeriodHour: <p>更新周期（小时）</p>
+        # @type PeriodHour: Integer
+
+        attr_accessor :Enabled, :PeriodHour
+
+        def initialize(enabled=nil, periodhour=nil)
+          @Enabled = enabled
+          @PeriodHour = periodhour
+        end
+
+        def deserialize(params)
+          @Enabled = params['Enabled']
+          @PeriodHour = params['PeriodHour']
+        end
+      end
+
       # DuplexBilling
       class DuplexBilling < TencentCloud::Common::AbstractModel
         # @param BillingUnit: <table><tbody><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>UNKNOW</td><td>0</td><td></td></tr><tr><td>TOKEN</td><td>1</td><td>按token</td></tr><tr><td>PAGE_COUNT</td><td>2</td><td>按页数</td></tr><tr><td>TIMES</td><td>3</td><td>按次数</td></tr><tr><td>TIMES_THOUSAND</td><td>4</td><td>按千次数</td></tr><tr><td>SECOND</td><td>5</td><td>按时长</td></tr><tr><td>CHARACTER</td><td>6</td><td>按字符数</td></tr><tr><td>CHARACTER_THOUSAND</td><td>7</td><td>按千字符数</td></tr><tr><td>SHEET</td><td>8</td><td>按张</td></tr><tr><td>NUMBER</td><td>9</td><td>按个数</td></tr></tbody></table>
@@ -8084,6 +10197,58 @@ module TencentCloud
         end
       end
 
+      # ES 配置
+      class ESConfig < TencentCloud::Common::AbstractModel
+        # @param CanModify: <p>是否支持修改存储方式</p>
+        # @type CanModify: Boolean
+        # @param EncryptedPassword: <p>ES 密码（加密后）</p>
+        # @type EncryptedPassword: String
+        # @param InstanceId: <p>ES 集群 ID</p>
+        # @type InstanceId: String
+        # @param StorageType: <p>存储类型：1=默认存储，2=自定义存储<table><tbody><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>ES_STORAGE_TYPE_UNKNOWN</td><td>0</td><td></td></tr><tr><td>ES_STORAGE_TYPE_DEFAULT</td><td>1</td><td>默认存储</td></tr><tr><td>ES_STORAGE_TYPE_CUSTOM</td><td>2</td><td>自定义存储</td></tr></tbody></table></p>
+        # @type StorageType: Integer
+        # @param UserName: <p>ES 用户名</p>
+        # @type UserName: String
+
+        attr_accessor :CanModify, :EncryptedPassword, :InstanceId, :StorageType, :UserName
+
+        def initialize(canmodify=nil, encryptedpassword=nil, instanceid=nil, storagetype=nil, username=nil)
+          @CanModify = canmodify
+          @EncryptedPassword = encryptedpassword
+          @InstanceId = instanceid
+          @StorageType = storagetype
+          @UserName = username
+        end
+
+        def deserialize(params)
+          @CanModify = params['CanModify']
+          @EncryptedPassword = params['EncryptedPassword']
+          @InstanceId = params['InstanceId']
+          @StorageType = params['StorageType']
+          @UserName = params['UserName']
+        end
+      end
+
+      # 有效期
+      class EffectivePeriod < TencentCloud::Common::AbstractModel
+        # @param EndTime: <p>有效期结束时间（Unix 秒，0 表示永久有效）</p>
+        # @type EndTime: String
+        # @param StartTime: <p>有效期开始时间（Unix 秒）</p>
+        # @type StartTime: String
+
+        attr_accessor :EndTime, :StartTime
+
+        def initialize(endtime=nil, starttime=nil)
+          @EndTime = endtime
+          @StartTime = starttime
+        end
+
+        def deserialize(params)
+          @EndTime = params['EndTime']
+          @StartTime = params['StartTime']
+        end
+      end
+
       # ExecuteConfig
       class ExecuteConfig < TencentCloud::Common::AbstractModel
         # @param PromptConfig: <p>Prompt配置</p>
@@ -8107,6 +10272,100 @@ module TencentCloud
             @WorkflowConfig = AppTriggerWorkflowExecuteConfig.new
             @WorkflowConfig.deserialize(params['WorkflowConfig'])
           end
+        end
+      end
+
+      # 时效性检索增强配置
+      class ExpirationAwareness < TencentCloud::Common::AbstractModel
+        # @param Enabled: <p>是否启用时效性检索，开启后检索结果会结合知识的有效时间进行排序</p>
+        # @type Enabled: Boolean
+
+        attr_accessor :Enabled
+
+        def initialize(enabled=nil)
+          @Enabled = enabled
+        end
+
+        def deserialize(params)
+          @Enabled = params['Enabled']
+        end
+      end
+
+      # 过期策略（有效时间与超过有效时间后的行为）
+      class ExpirationPolicy < TencentCloud::Common::AbstractModel
+        # @param EffectivePeriod: <p>有效时间</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EffectivePeriod: :class:`Tencentcloud::Adp.v20260520.models.EffectivePeriod`
+        # @param ExpireBehavior: <p>超过有效时间后的行为：1=NOT_RETRIEVABLE 不可被检索，2=RETRIEVABLE 仍可被检索；永久有效时无意义<table><tbody><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>EXPIRE_BEHAVIOR_UNKNOWN</td><td>0</td><td>未指定（服务端按默认处理）</td></tr><tr><td>EXPIRE_BEHAVIOR_NOT_RETRIEVABLE</td><td>1</td><td>不可被检索（到期下架）</td></tr><tr><td>EXPIRE_BEHAVIOR_RETRIEVABLE</td><td>2</td><td>仍可被检索（到期不下架，仅标记时效范围）</td></tr></tbody></table></p>
+        # @type ExpireBehavior: Integer
+
+        attr_accessor :EffectivePeriod, :ExpireBehavior
+
+        def initialize(effectiveperiod=nil, expirebehavior=nil)
+          @EffectivePeriod = effectiveperiod
+          @ExpireBehavior = expirebehavior
+        end
+
+        def deserialize(params)
+          unless params['EffectivePeriod'].nil?
+            @EffectivePeriod = EffectivePeriod.new
+            @EffectivePeriod.deserialize(params['EffectivePeriod'])
+          end
+          @ExpireBehavior = params['ExpireBehavior']
+        end
+      end
+
+      # ExportQA请求参数结构体
+      class ExportQARequest < TencentCloud::Common::AbstractModel
+        # @param KbId: <p>所属知识库 ID</p>
+        # @type KbId: String
+        # @param FilterList: <p>过滤条件（多个 Filter 之间为 AND 关系，同一 Filter 的多个 Values 为 OR 关系）：Status-QA状态,枚举值,精确匹配; CategoryId-分类ID,精确匹配; SourceType-QA来源类型,枚举值,精确匹配; EffectiveDomain-生效作用域,精确匹配; DocId-关联文档ID,精确匹配; CreateTime-创建时间,Unix秒,BETWEEN 传 [起始秒,结束秒]; UpdateTime-更新时间,Unix秒,BETWEEN 传 [起始秒,结束秒]; QaId-QA ID列表,精确匹配,支持多值</p>
+        # @type FilterList: Array
+        # @param Query: <p>查询条件（关键词 + 查询范围），与 DescribeQASummaryList 保持一致</p>
+        # @type Query: :class:`Tencentcloud::Adp.v20260520.models.QAQuery`
+
+        attr_accessor :KbId, :FilterList, :Query
+
+        def initialize(kbid=nil, filterlist=nil, query=nil)
+          @KbId = kbid
+          @FilterList = filterlist
+          @Query = query
+        end
+
+        def deserialize(params)
+          @KbId = params['KbId']
+          unless params['FilterList'].nil?
+            @FilterList = []
+            params['FilterList'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @FilterList << filter_tmp
+            end
+          end
+          unless params['Query'].nil?
+            @Query = QAQuery.new
+            @Query.deserialize(params['Query'])
+          end
+        end
+      end
+
+      # ExportQA返回参数结构体
+      class ExportQAResponse < TencentCloud::Common::AbstractModel
+        # @param ExportTaskId: <p>导出任务 ID（通过 DescribeAsyncTaskStatus 查询完成状态）</p>
+        # @type ExportTaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ExportTaskId, :RequestId
+
+        def initialize(exporttaskid=nil, requestid=nil)
+          @ExportTaskId = exporttaskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ExportTaskId = params['ExportTaskId']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -8280,6 +10539,22 @@ module TencentCloud
         end
       end
 
+      # 最终 rerank 配置
+      class FinalRerankConfig < TencentCloud::Common::AbstractModel
+        # @param ModelName: <p>模型名称</p>
+        # @type ModelName: String
+
+        attr_accessor :ModelName
+
+        def initialize(modelname=nil)
+          @ModelName = modelname
+        end
+
+        def deserialize(params)
+          @ModelName = params['ModelName']
+        end
+      end
+
       # 生成模型配置
       class GenerateModel < TencentCloud::Common::AbstractModel
         # @param Model: 生成模型
@@ -8297,6 +10572,22 @@ module TencentCloud
             @Model = ModelDetailInfo.new
             @Model.deserialize(params['Model'])
           end
+        end
+      end
+
+      # GraphRAG 配置
+      class GraphRAG < TencentCloud::Common::AbstractModel
+        # @param Enabled: <p>是否启用</p>
+        # @type Enabled: Boolean
+
+        attr_accessor :Enabled
+
+        def initialize(enabled=nil)
+          @Enabled = enabled
+        end
+
+        def deserialize(params)
+          @Enabled = params['Enabled']
         end
       end
 
@@ -8325,6 +10616,60 @@ module TencentCloud
           @Id = params['Id']
           @Name = params['Name']
           @StrId = params['StrId']
+        end
+      end
+
+      # ImportDocList请求参数结构体
+      class ImportDocListRequest < TencentCloud::Common::AbstractModel
+        # @param DocList: <p>待导入文档列表（数量：1~20）</p>
+        # @type DocList: Array
+        # @param KbId: <p>知识库 ID</p>
+        # @type KbId: String
+
+        attr_accessor :DocList, :KbId
+
+        def initialize(doclist=nil, kbid=nil)
+          @DocList = doclist
+          @KbId = kbid
+        end
+
+        def deserialize(params)
+          unless params['DocList'].nil?
+            @DocList = []
+            params['DocList'].each do |i|
+              docimportspec_tmp = DocImportSpec.new
+              docimportspec_tmp.deserialize(i)
+              @DocList << docimportspec_tmp
+            end
+          end
+          @KbId = params['KbId']
+        end
+      end
+
+      # ImportDocList返回参数结构体
+      class ImportDocListResponse < TencentCloud::Common::AbstractModel
+        # @param ResultList: <p>批量导入结果</p>
+        # @type ResultList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ResultList, :RequestId
+
+        def initialize(resultlist=nil, requestid=nil)
+          @ResultList = resultlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ResultList'].nil?
+            @ResultList = []
+            params['ResultList'].each do |i|
+              operationresult_tmp = OperationResult.new
+              operationresult_tmp.deserialize(i)
+              @ResultList << operationresult_tmp
+            end
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -8390,6 +10735,720 @@ module TencentCloud
           @StartAt = params['StartAt']
           @Unit = params['Unit']
           @Value = params['Value']
+        end
+      end
+
+      # 知识库容量信息
+      class KBCapacity < TencentCloud::Common::AbstractModel
+        # @param MaxCharSize: <p>最大字符数</p>
+        # @type MaxCharSize: String
+        # @param OverCharSize: <p>超量字符数</p>
+        # @type OverCharSize: String
+        # @param UsedCharSize: <p>已用字符数</p>
+        # @type UsedCharSize: String
+
+        attr_accessor :MaxCharSize, :OverCharSize, :UsedCharSize
+
+        def initialize(maxcharsize=nil, overcharsize=nil, usedcharsize=nil)
+          @MaxCharSize = maxcharsize
+          @OverCharSize = overcharsize
+          @UsedCharSize = usedcharsize
+        end
+
+        def deserialize(params)
+          @MaxCharSize = params['MaxCharSize']
+          @OverCharSize = params['OverCharSize']
+          @UsedCharSize = params['UsedCharSize']
+        end
+      end
+
+      # 知识库分类信息（含元数据配置）
+      class KBCategory < TencentCloud::Common::AbstractModel
+        # @param CanAdd: <p>是否可新增</p>
+        # @type CanAdd: Boolean
+        # @param CanDelete: <p>是否可删除</p>
+        # @type CanDelete: Boolean
+        # @param CanEdit: <p>是否可编辑</p>
+        # @type CanEdit: Boolean
+        # @param CategoryId: <p>分类 ID</p>
+        # @type CategoryId: String
+        # @param ChildList: <p>子分类列表</p>
+        # @type ChildList: Array
+        # @param IsLeaf: <p>是否为叶子节点（无子分类）</p>
+        # @type IsLeaf: Boolean
+        # @param ItemCount: <p>分类对象的数量</p>
+        # @type ItemCount: Integer
+        # @param MetaValue: <p>元数据配置（该分类被设置为元数据时的配置信息）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetaValue: :class:`Tencentcloud::Adp.v20260520.models.MetaValue`
+        # @param Name: <p>分类名称</p>
+        # @type Name: String
+
+        attr_accessor :CanAdd, :CanDelete, :CanEdit, :CategoryId, :ChildList, :IsLeaf, :ItemCount, :MetaValue, :Name
+
+        def initialize(canadd=nil, candelete=nil, canedit=nil, categoryid=nil, childlist=nil, isleaf=nil, itemcount=nil, metavalue=nil, name=nil)
+          @CanAdd = canadd
+          @CanDelete = candelete
+          @CanEdit = canedit
+          @CategoryId = categoryid
+          @ChildList = childlist
+          @IsLeaf = isleaf
+          @ItemCount = itemcount
+          @MetaValue = metavalue
+          @Name = name
+        end
+
+        def deserialize(params)
+          @CanAdd = params['CanAdd']
+          @CanDelete = params['CanDelete']
+          @CanEdit = params['CanEdit']
+          @CategoryId = params['CategoryId']
+          unless params['ChildList'].nil?
+            @ChildList = []
+            params['ChildList'].each do |i|
+              kbcategory_tmp = KBCategory.new
+              kbcategory_tmp.deserialize(i)
+              @ChildList << kbcategory_tmp
+            end
+          end
+          @IsLeaf = params['IsLeaf']
+          @ItemCount = params['ItemCount']
+          unless params['MetaValue'].nil?
+            @MetaValue = MetaValue.new
+            @MetaValue.deserialize(params['MetaValue'])
+          end
+          @Name = params['Name']
+        end
+      end
+
+      # 知识库模型配置
+      class KBModelConfig < TencentCloud::Common::AbstractModel
+        # @param EmbeddingModel: <p>Embedding 模型</p>
+        # @type EmbeddingModel: String
+        # @param QaExtractModel: <p>QA 抽取模型</p>
+        # @type QaExtractModel: String
+        # @param SchemaModel: <p>Schema 生成模型</p>
+        # @type SchemaModel: String
+
+        attr_accessor :EmbeddingModel, :QaExtractModel, :SchemaModel
+
+        def initialize(embeddingmodel=nil, qaextractmodel=nil, schemamodel=nil)
+          @EmbeddingModel = embeddingmodel
+          @QaExtractModel = qaextractmodel
+          @SchemaModel = schemamodel
+        end
+
+        def deserialize(params)
+          @EmbeddingModel = params['EmbeddingModel']
+          @QaExtractModel = params['QaExtractModel']
+          @SchemaModel = params['SchemaModel']
+        end
+      end
+
+      # 知识库修改扩展字段（用于触发特殊操作）
+      class KBModifyExtendFields < TencentCloud::Common::AbstractModel
+        # @param Action: <p>扩展操作：1=触发恢复超量<table><tbody><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>KB_EXTENDED_ACTION_UNKNOWN</td><td>0</td><td></td></tr><tr><td>KB_EXTENDED_ACTION_RESUME_EXCEEDED</td><td>1</td><td>触发恢复超量（将知识库从超量状态恢复为正常状态）</td></tr></tbody></table></p>
+        # @type Action: Integer
+
+        attr_accessor :Action
+
+        def initialize(action=nil)
+          @Action = action
+        end
+
+        def deserialize(params)
+          @Action = params['Action']
+        end
+      end
+
+      # 单个知识库检索配置
+      class KBRetrievalConfig < TencentCloud::Common::AbstractModel
+        # @param DbRetrievalConfig: <p>数据库检索配置</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DbRetrievalConfig: :class:`Tencentcloud::Adp.v20260520.models.DBRetrievalConfig`
+        # @param DocRetrievalConfig: <p>文档检索配置</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DocRetrievalConfig: :class:`Tencentcloud::Adp.v20260520.models.DocRetrievalConfig`
+        # @param KbId: <p>知识库 ID</p>
+        # @type KbId: String
+        # @param OptionConfig: <p>检索可选配置</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OptionConfig: :class:`Tencentcloud::Adp.v20260520.models.RetrievalOption`
+        # @param QaRetrievalConfig: <p>QA 检索配置</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QaRetrievalConfig: :class:`Tencentcloud::Adp.v20260520.models.QARetrievalConfig`
+        # @param RerankConfig: <p>rerank 配置</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RerankConfig: :class:`Tencentcloud::Adp.v20260520.models.RerankConfig`
+        # @param SearchFilterConfig: <p>检索过滤配置</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SearchFilterConfig: :class:`Tencentcloud::Adp.v20260520.models.SearchFilterConfig`
+        # @param StrategyType: <p>检索策略：1=混合，2=语义，3=关键词，4=无<table><tbody><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>SEARCH_STRATEGY_TYPE_UNKNOWN</td><td>0</td><td></td></tr><tr><td>SEARCH_STRATEGY_TYPE_MIXING</td><td>1</td><td>混合检索</td></tr><tr><td>SEARCH_STRATEGY_TYPE_SEMANTIC</td><td>2</td><td>语义检索</td></tr><tr><td>SEARCH_STRATEGY_TYPE_KEYWORD</td><td>3</td><td>关键词检索</td></tr><tr><td>SEARCH_STRATEGY_TYPE_NONE</td><td>4</td><td>无语义/向量检索</td></tr></tbody></table></p>
+        # @type StrategyType: Integer
+        # @param TextToSqlModel: <p>text2sql 模型</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TextToSqlModel: :class:`Tencentcloud::Adp.v20260520.models.ModelDetailInfo`
+
+        attr_accessor :DbRetrievalConfig, :DocRetrievalConfig, :KbId, :OptionConfig, :QaRetrievalConfig, :RerankConfig, :SearchFilterConfig, :StrategyType, :TextToSqlModel
+
+        def initialize(dbretrievalconfig=nil, docretrievalconfig=nil, kbid=nil, optionconfig=nil, qaretrievalconfig=nil, rerankconfig=nil, searchfilterconfig=nil, strategytype=nil, texttosqlmodel=nil)
+          @DbRetrievalConfig = dbretrievalconfig
+          @DocRetrievalConfig = docretrievalconfig
+          @KbId = kbid
+          @OptionConfig = optionconfig
+          @QaRetrievalConfig = qaretrievalconfig
+          @RerankConfig = rerankconfig
+          @SearchFilterConfig = searchfilterconfig
+          @StrategyType = strategytype
+          @TextToSqlModel = texttosqlmodel
+        end
+
+        def deserialize(params)
+          unless params['DbRetrievalConfig'].nil?
+            @DbRetrievalConfig = DBRetrievalConfig.new
+            @DbRetrievalConfig.deserialize(params['DbRetrievalConfig'])
+          end
+          unless params['DocRetrievalConfig'].nil?
+            @DocRetrievalConfig = DocRetrievalConfig.new
+            @DocRetrievalConfig.deserialize(params['DocRetrievalConfig'])
+          end
+          @KbId = params['KbId']
+          unless params['OptionConfig'].nil?
+            @OptionConfig = RetrievalOption.new
+            @OptionConfig.deserialize(params['OptionConfig'])
+          end
+          unless params['QaRetrievalConfig'].nil?
+            @QaRetrievalConfig = QARetrievalConfig.new
+            @QaRetrievalConfig.deserialize(params['QaRetrievalConfig'])
+          end
+          unless params['RerankConfig'].nil?
+            @RerankConfig = RerankConfig.new
+            @RerankConfig.deserialize(params['RerankConfig'])
+          end
+          unless params['SearchFilterConfig'].nil?
+            @SearchFilterConfig = SearchFilterConfig.new
+            @SearchFilterConfig.deserialize(params['SearchFilterConfig'])
+          end
+          @StrategyType = params['StrategyType']
+          unless params['TextToSqlModel'].nil?
+            @TextToSqlModel = ModelDetailInfo.new
+            @TextToSqlModel.deserialize(params['TextToSqlModel'])
+          end
+        end
+      end
+
+      # 知识库可写属性集合（配合 update_mask 使用）
+      class KBSpec < TencentCloud::Common::AbstractModel
+        # @param Description: <p>描述</p>
+        # @type Description: String
+        # @param EsConfig: <p>ES 配置</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EsConfig: :class:`Tencentcloud::Adp.v20260520.models.ESConfig`
+        # @param ModelConfig: <p>模型配置</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelConfig: :class:`Tencentcloud::Adp.v20260520.models.KBModelConfig`
+        # @param Name: <p>知识库名称</p>
+        # @type Name: String
+        # @param OwnerId: <p>所有者 ID</p>
+        # @type OwnerId: String
+
+        attr_accessor :Description, :EsConfig, :ModelConfig, :Name, :OwnerId
+
+        def initialize(description=nil, esconfig=nil, modelconfig=nil, name=nil, ownerid=nil)
+          @Description = description
+          @EsConfig = esconfig
+          @ModelConfig = modelconfig
+          @Name = name
+          @OwnerId = ownerid
+        end
+
+        def deserialize(params)
+          @Description = params['Description']
+          unless params['EsConfig'].nil?
+            @EsConfig = ESConfig.new
+            @EsConfig.deserialize(params['EsConfig'])
+          end
+          unless params['ModelConfig'].nil?
+            @ModelConfig = KBModelConfig.new
+            @ModelConfig.deserialize(params['ModelConfig'])
+          end
+          @Name = params['Name']
+          @OwnerId = params['OwnerId']
+        end
+      end
+
+      # 知识库摘要信息
+      class KBSummary < TencentCloud::Common::AbstractModel
+        # @param AppList: <p>关联的应用列表，仅共享知识库返回</p>
+        # @type AppList: Array
+        # @param CreateTime: <p>创建时间（Unix 秒）</p>
+        # @type CreateTime: String
+        # @param Creator: <p>创建人</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Creator: :class:`Tencentcloud::Adp.v20260520.models.Operator`
+        # @param Description: <p>描述</p>
+        # @type Description: String
+        # @param DocCount: <p>文档数</p>
+        # @type DocCount: Integer
+        # @param IsExceeded: <p>是否超量</p>
+        # @type IsExceeded: Boolean
+        # @param KbId: <p>知识库 ID</p>
+        # @type KbId: String
+        # @param KbType: <p>类型：1=默认知识库，2=共享知识库<table><tbody><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>KB_TYPE_UNKNOWN</td><td>0</td><td></td></tr><tr><td>KB_TYPE_DEFAULT</td><td>1</td><td>默认知识库</td></tr><tr><td>KB_TYPE_SHARED</td><td>2</td><td>共享知识库</td></tr></tbody></table></p>
+        # @type KbType: Integer
+        # @param LatestOperator: <p>最后操作人，仅共享知识库返回</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LatestOperator: :class:`Tencentcloud::Adp.v20260520.models.Operator`
+        # @param Name: <p>知识库名称</p>
+        # @type Name: String
+        # @param ProcessingFlagList: <p>处理中状态列表</p>
+        # @type ProcessingFlagList: Array
+        # @param SharedSubType: <p>共享子类型：1=普通，2=公众号<table><tbody><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>SHARED_KB_SUB_TYPE_UNKNOWN</td><td>0</td><td></td></tr><tr><td>SHARED_KB_SUB_TYPE_NORMAL</td><td>1</td><td>普通</td></tr><tr><td>SHARED_KB_SUB_TYPE_PUBLIC_ACCOUNT</td><td>2</td><td>公众号</td></tr></tbody></table></p>
+        # @type SharedSubType: Integer
+        # @param UpdateTime: <p>更新时间（Unix 秒）</p>
+        # @type UpdateTime: String
+
+        attr_accessor :AppList, :CreateTime, :Creator, :Description, :DocCount, :IsExceeded, :KbId, :KbType, :LatestOperator, :Name, :ProcessingFlagList, :SharedSubType, :UpdateTime
+
+        def initialize(applist=nil, createtime=nil, creator=nil, description=nil, doccount=nil, isexceeded=nil, kbid=nil, kbtype=nil, latestoperator=nil, name=nil, processingflaglist=nil, sharedsubtype=nil, updatetime=nil)
+          @AppList = applist
+          @CreateTime = createtime
+          @Creator = creator
+          @Description = description
+          @DocCount = doccount
+          @IsExceeded = isexceeded
+          @KbId = kbid
+          @KbType = kbtype
+          @LatestOperator = latestoperator
+          @Name = name
+          @ProcessingFlagList = processingflaglist
+          @SharedSubType = sharedsubtype
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          unless params['AppList'].nil?
+            @AppList = []
+            params['AppList'].each do |i|
+              identity_tmp = Identity.new
+              identity_tmp.deserialize(i)
+              @AppList << identity_tmp
+            end
+          end
+          @CreateTime = params['CreateTime']
+          unless params['Creator'].nil?
+            @Creator = Operator.new
+            @Creator.deserialize(params['Creator'])
+          end
+          @Description = params['Description']
+          @DocCount = params['DocCount']
+          @IsExceeded = params['IsExceeded']
+          @KbId = params['KbId']
+          @KbType = params['KbType']
+          unless params['LatestOperator'].nil?
+            @LatestOperator = Operator.new
+            @LatestOperator.deserialize(params['LatestOperator'])
+          end
+          @Name = params['Name']
+          @ProcessingFlagList = params['ProcessingFlagList']
+          @SharedSubType = params['SharedSubType']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 通用键值对
+      class KVPair < TencentCloud::Common::AbstractModel
+        # @param Key: 键
+        # @type Key: String
+        # @param Value: 值
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
+      # 单条检索结果
+      class KnowledgeResult < TencentCloud::Common::AbstractModel
+        # @param Confidence: <p>置信度</p>
+        # @type Confidence: Float
+        # @param KnowledgeType: <p>命中知识类型：1=问答，2=文档片段，3=数据库，4=图谱<table><tbody><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>KNOWLEDGE_SOURCE_TYPE_UNKNOWN</td><td>0</td><td></td></tr><tr><td>KNOWLEDGE_SOURCE_TYPE_QA</td><td>1</td><td>问答</td></tr><tr><td>KNOWLEDGE_SOURCE_TYPE_DOC</td><td>2</td><td>文档片段</td></tr><tr><td>KNOWLEDGE_SOURCE_TYPE_DB</td><td>3</td><td>数据库</td></tr><tr><td>KNOWLEDGE_SOURCE_TYPE_GRAPH</td><td>4</td><td>图谱</td></tr></tbody></table></p>
+        # @type KnowledgeType: Integer
+        # @param RecallTypeList: <p>召回类型列表</p>
+        # @type RecallTypeList: Array
+        # @param ResultPayload: <p>结果负载</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResultPayload: :class:`Tencentcloud::Adp.v20260520.models.SearchResultPayload`
+        # @param ResultType: <p>检索结果类型<table><tbody><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>SEARCH_RESULT_TYPE_UNKNOWN</td><td>0</td><td></td></tr><tr><td>SEARCH_RESULT_TYPE_RETRIEVAL</td><td>1</td><td>普通检索结果</td></tr><tr><td>SEARCH_RESULT_TYPE_TEXT_TO_SQL</td><td>2</td><td>text2sql 结果</td></tr><tr><td>SEARCH_RESULT_TYPE_IMAGE_SEARCH_IMAGE</td><td>3</td><td></td></tr><tr><td>SEARCH_RESULT_TYPE_TEXT_SEARCH_IMAGE</td><td>4</td><td></td></tr></tbody></table></p>
+        # @type ResultType: Integer
+        # @param SimilarQuestionExtra: <p>相似问额外信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SimilarQuestionExtra: :class:`Tencentcloud::Adp.v20260520.models.SimilarQuestionExtra`
+        # @param SnippetProfile: <p>知识片段基础信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SnippetProfile: :class:`Tencentcloud::Adp.v20260520.models.KnowledgeSnippetProfile`
+        # @param SourceInfo: <p>知识来源信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceInfo: :class:`Tencentcloud::Adp.v20260520.models.KnowledgeSource`
+
+        attr_accessor :Confidence, :KnowledgeType, :RecallTypeList, :ResultPayload, :ResultType, :SimilarQuestionExtra, :SnippetProfile, :SourceInfo
+
+        def initialize(confidence=nil, knowledgetype=nil, recalltypelist=nil, resultpayload=nil, resulttype=nil, similarquestionextra=nil, snippetprofile=nil, sourceinfo=nil)
+          @Confidence = confidence
+          @KnowledgeType = knowledgetype
+          @RecallTypeList = recalltypelist
+          @ResultPayload = resultpayload
+          @ResultType = resulttype
+          @SimilarQuestionExtra = similarquestionextra
+          @SnippetProfile = snippetprofile
+          @SourceInfo = sourceinfo
+        end
+
+        def deserialize(params)
+          @Confidence = params['Confidence']
+          @KnowledgeType = params['KnowledgeType']
+          @RecallTypeList = params['RecallTypeList']
+          unless params['ResultPayload'].nil?
+            @ResultPayload = SearchResultPayload.new
+            @ResultPayload.deserialize(params['ResultPayload'])
+          end
+          @ResultType = params['ResultType']
+          unless params['SimilarQuestionExtra'].nil?
+            @SimilarQuestionExtra = SimilarQuestionExtra.new
+            @SimilarQuestionExtra.deserialize(params['SimilarQuestionExtra'])
+          end
+          unless params['SnippetProfile'].nil?
+            @SnippetProfile = KnowledgeSnippetProfile.new
+            @SnippetProfile.deserialize(params['SnippetProfile'])
+          end
+          unless params['SourceInfo'].nil?
+            @SourceInfo = KnowledgeSource.new
+            @SourceInfo.deserialize(params['SourceInfo'])
+          end
+        end
+      end
+
+      # 知识生效范围
+      class KnowledgeScope < TencentCloud::Common::AbstractModel
+        # @param EffectiveDomain: <p>生效作用域<table><tbody><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>KNOWLEDGE_EFFECTIVE_DOMAIN_UNKNOWN</td><td>0</td><td></td></tr><tr><td>KNOWLEDGE_EFFECTIVE_DOMAIN_NONE</td><td>1</td><td>停用</td></tr><tr><td>KNOWLEDGE_EFFECTIVE_DOMAIN_DEV</td><td>2</td><td>仅开发域</td></tr><tr><td>KNOWLEDGE_EFFECTIVE_DOMAIN_RELEASE</td><td>3</td><td>仅发布域</td></tr><tr><td>KNOWLEDGE_EFFECTIVE_DOMAIN_ALL</td><td>4</td><td>全域</td></tr></tbody></table></p>
+        # @type EffectiveDomain: Integer
+        # @param LabelRefList: <p>适用范围（标签条件）</p>
+        # @type LabelRefList: Array
+
+        attr_accessor :EffectiveDomain, :LabelRefList
+
+        def initialize(effectivedomain=nil, labelreflist=nil)
+          @EffectiveDomain = effectivedomain
+          @LabelRefList = labelreflist
+        end
+
+        def deserialize(params)
+          @EffectiveDomain = params['EffectiveDomain']
+          unless params['LabelRefList'].nil?
+            @LabelRefList = []
+            params['LabelRefList'].each do |i|
+              labelref_tmp = LabelRef.new
+              labelref_tmp.deserialize(i)
+              @LabelRefList << labelref_tmp
+            end
+          end
+        end
+      end
+
+      # 知识片段基础信息
+      class KnowledgeSnippetProfile < TencentCloud::Common::AbstractModel
+        # @param Content: <p>内容</p>
+        # @type Content: String
+        # @param DocId: <p>关联文档 ID</p>
+        # @type DocId: String
+        # @param DocName: <p>文档名</p>
+        # @type DocName: String
+        # @param KbId: <p>知识库 ID</p>
+        # @type KbId: String
+        # @param KnowledgeId: <p>知识 ID</p>
+        # @type KnowledgeId: String
+        # @param Question: <p>问题</p>
+        # @type Question: String
+        # @param Title: <p>文档标题</p>
+        # @type Title: String
+
+        attr_accessor :Content, :DocId, :DocName, :KbId, :KnowledgeId, :Question, :Title
+
+        def initialize(content=nil, docid=nil, docname=nil, kbid=nil, knowledgeid=nil, question=nil, title=nil)
+          @Content = content
+          @DocId = docid
+          @DocName = docname
+          @KbId = kbid
+          @KnowledgeId = knowledgeid
+          @Question = question
+          @Title = title
+        end
+
+        def deserialize(params)
+          @Content = params['Content']
+          @DocId = params['DocId']
+          @DocName = params['DocName']
+          @KbId = params['KbId']
+          @KnowledgeId = params['KnowledgeId']
+          @Question = params['Question']
+          @Title = params['Title']
+        end
+      end
+
+      # 知识来源信息
+      class KnowledgeSource < TencentCloud::Common::AbstractModel
+        # @param IsBigData: <p>是否为大数据</p>
+        # @type IsBigData: Boolean
+        # @param IsShared: <p>是否为共享知识库</p>
+        # @type IsShared: Boolean
+        # @param KbName: <p>知识库名</p>
+        # @type KbName: String
+
+        attr_accessor :IsBigData, :IsShared, :KbName
+
+        def initialize(isbigdata=nil, isshared=nil, kbname=nil)
+          @IsBigData = isbigdata
+          @IsShared = isshared
+          @KbName = kbname
+        end
+
+        def deserialize(params)
+          @IsBigData = params['IsBigData']
+          @IsShared = params['IsShared']
+          @KbName = params['KbName']
+        end
+      end
+
+      # 标签可修改字段集合（配合 update_mask 使用）
+      class LabelModifyFields < TencentCloud::Common::AbstractModel
+        # @param Name: <p>标签名称</p>
+        # @type Name: String
+        # @param TermModifyList: <p>标准词增量修改列表（增/改/删）</p>
+        # @type TermModifyList: Array
+
+        attr_accessor :Name, :TermModifyList
+
+        def initialize(name=nil, termmodifylist=nil)
+          @Name = name
+          @TermModifyList = termmodifylist
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          unless params['TermModifyList'].nil?
+            @TermModifyList = []
+            params['TermModifyList'].each do |i|
+              labeltermmodifyitem_tmp = LabelTermModifyItem.new
+              labeltermmodifyitem_tmp.deserialize(i)
+              @TermModifyList << labeltermmodifyitem_tmp
+            end
+          end
+        end
+      end
+
+      # 标签引用（出参用）
+      class LabelRef < TencentCloud::Common::AbstractModel
+        # @param LabelId: <p>标签 ID</p>
+        # @type LabelId: String
+        # @param LabelName: <p>标签名称</p>
+        # @type LabelName: String
+        # @param LabelTermIdList: <p>标签标准词 ID 列表</p>
+        # @type LabelTermIdList: Array
+        # @param LabelTermList: <p>标签标准词列表</p>
+        # @type LabelTermList: Array
+
+        attr_accessor :LabelId, :LabelName, :LabelTermIdList, :LabelTermList
+
+        def initialize(labelid=nil, labelname=nil, labeltermidlist=nil, labeltermlist=nil)
+          @LabelId = labelid
+          @LabelName = labelname
+          @LabelTermIdList = labeltermidlist
+          @LabelTermList = labeltermlist
+        end
+
+        def deserialize(params)
+          @LabelId = params['LabelId']
+          @LabelName = params['LabelName']
+          @LabelTermIdList = params['LabelTermIdList']
+          @LabelTermList = params['LabelTermList']
+        end
+      end
+
+      # 标签引用身份标识（入参用）
+      class LabelRefIdentity < TencentCloud::Common::AbstractModel
+        # @param LabelId: <p>标签 ID</p>
+        # @type LabelId: String
+        # @param LabelTermIdList: <p>标签标准词 ID 列表</p>
+        # @type LabelTermIdList: Array
+
+        attr_accessor :LabelId, :LabelTermIdList
+
+        def initialize(labelid=nil, labeltermidlist=nil)
+          @LabelId = labelid
+          @LabelTermIdList = labeltermidlist
+        end
+
+        def deserialize(params)
+          @LabelId = params['LabelId']
+          @LabelTermIdList = params['LabelTermIdList']
+        end
+      end
+
+      # 标签引用列表
+      class LabelRefIdentityList < TencentCloud::Common::AbstractModel
+        # @param ItemList: <p>标签引用列表</p>
+        # @type ItemList: Array
+
+        attr_accessor :ItemList
+
+        def initialize(itemlist=nil)
+          @ItemList = itemlist
+        end
+
+        def deserialize(params)
+          unless params['ItemList'].nil?
+            @ItemList = []
+            params['ItemList'].each do |i|
+              labelrefidentity_tmp = LabelRefIdentity.new
+              labelrefidentity_tmp.deserialize(i)
+              @ItemList << labelrefidentity_tmp
+            end
+          end
+        end
+      end
+
+      # 标签摘要
+      class LabelSummary < TencentCloud::Common::AbstractModel
+        # @param LabelId: <p>标签 ID</p>
+        # @type LabelId: String
+        # @param MetaValue: <p>元数据配置（该标签被设置为元数据时的配置信息）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetaValue: :class:`Tencentcloud::Adp.v20260520.models.MetaValue`
+        # @param Name: <p>标签名称</p>
+        # @type Name: String
+        # @param RefCount: <p>引用该标签的资源数</p>
+        # @type RefCount: Integer
+        # @param TermList: <p>标签值（标准词 + 同义词列表）</p>
+        # @type TermList: Array
+        # @param TermTotalCount: <p>标签值总数</p>
+        # @type TermTotalCount: Integer
+
+        attr_accessor :LabelId, :MetaValue, :Name, :RefCount, :TermList, :TermTotalCount
+
+        def initialize(labelid=nil, metavalue=nil, name=nil, refcount=nil, termlist=nil, termtotalcount=nil)
+          @LabelId = labelid
+          @MetaValue = metavalue
+          @Name = name
+          @RefCount = refcount
+          @TermList = termlist
+          @TermTotalCount = termtotalcount
+        end
+
+        def deserialize(params)
+          @LabelId = params['LabelId']
+          unless params['MetaValue'].nil?
+            @MetaValue = MetaValue.new
+            @MetaValue.deserialize(params['MetaValue'])
+          end
+          @Name = params['Name']
+          @RefCount = params['RefCount']
+          unless params['TermList'].nil?
+            @TermList = []
+            params['TermList'].each do |i|
+              labelterm_tmp = LabelTerm.new
+              labelterm_tmp.deserialize(i)
+              @TermList << labelterm_tmp
+            end
+          end
+          @TermTotalCount = params['TermTotalCount']
+        end
+      end
+
+      # 标准词（标签值的一项）
+      class LabelTerm < TencentCloud::Common::AbstractModel
+        # @param SynonymList: <p>同义词列表</p>
+        # @type SynonymList: Array
+        # @param Term: <p>标准词</p>
+        # @type Term: String
+        # @param TermId: <p>标准词 ID（由后台生成，创建时不传）</p>
+        # @type TermId: String
+
+        attr_accessor :SynonymList, :Term, :TermId
+
+        def initialize(synonymlist=nil, term=nil, termid=nil)
+          @SynonymList = synonymlist
+          @Term = term
+          @TermId = termid
+        end
+
+        def deserialize(params)
+          @SynonymList = params['SynonymList']
+          @Term = params['Term']
+          @TermId = params['TermId']
+        end
+      end
+
+      # 标准词校验项
+      class LabelTermCheckResult < TencentCloud::Common::AbstractModel
+        # @param CheckResult: <p>校验结果</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CheckResult: :class:`Tencentcloud::Adp.v20260520.models.CheckResult`
+        # @param Term: <p>待校验的标准词</p>
+        # @type Term: String
+        # @param TermId: <p>已存在时返回对应标准词 ID</p>
+        # @type TermId: String
+
+        attr_accessor :CheckResult, :Term, :TermId
+
+        def initialize(checkresult=nil, term=nil, termid=nil)
+          @CheckResult = checkresult
+          @Term = term
+          @TermId = termid
+        end
+
+        def deserialize(params)
+          unless params['CheckResult'].nil?
+            @CheckResult = CheckResult.new
+            @CheckResult.deserialize(params['CheckResult'])
+          end
+          @Term = params['Term']
+          @TermId = params['TermId']
+        end
+      end
+
+      # 标签标准词修改项（增量更新）
+      class LabelTermModifyItem < TencentCloud::Common::AbstractModel
+        # @param ModifyAction: <p>操作类型（不可为 0，取值：1=新增，2=修改，3=删除）<table><tbody><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>MODIFY_ACTION_UNKNOWN</td><td>0</td><td></td></tr><tr><td>MODIFY_ACTION_CREATE</td><td>1</td><td>新增</td></tr><tr><td>MODIFY_ACTION_UPDATE</td><td>2</td><td>修改</td></tr><tr><td>MODIFY_ACTION_DELETE</td><td>3</td><td>删除</td></tr></tbody></table></p>
+        # @type ModifyAction: Integer
+        # @param SynonymList: <p>同义词列表（CREATE 与 UPDATE 时传完整同义词集合，覆盖式更新）</p>
+        # @type SynonymList: Array
+        # @param Term: <p>标准词（CREATE 与 UPDATE 必填，DELETE 可留空）</p>
+        # @type Term: String
+        # @param TermId: <p>标准词 ID（UPDATE 与 DELETE 必填，CREATE 留空由后台生成）</p>
+        # @type TermId: String
+
+        attr_accessor :ModifyAction, :SynonymList, :Term, :TermId
+
+        def initialize(modifyaction=nil, synonymlist=nil, term=nil, termid=nil)
+          @ModifyAction = modifyaction
+          @SynonymList = synonymlist
+          @Term = term
+          @TermId = termid
+        end
+
+        def deserialize(params)
+          @ModifyAction = params['ModifyAction']
+          @SynonymList = params['SynonymList']
+          @Term = params['Term']
+          @TermId = params['TermId']
         end
       end
 
@@ -8600,6 +11659,38 @@ module TencentCloud
 
         def deserialize(params)
           @Enabled = params['Enabled']
+        end
+      end
+
+      # 元数据值
+      class MetaValue < TencentCloud::Common::AbstractModel
+        # @param Name: <p>元数据值名称（仅展示使用）</p>
+        # @type Name: String
+        # @param RefAll: <p>是否引用该类型下的全部值（true 时 ref_value_id 应为 0）</p>
+        # @type RefAll: Boolean
+        # @param RefValueId: <p>元数据引用的业务 ID（属性 ID、分类 ID 等）；ref_all=true 时该字段应为 0</p>
+        # @type RefValueId: String
+        # @param Scene: <p>元数据使用场景：1=仅检索使用，2=检索和生成都使用<table><tbody><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>META_SCENE_UNKNOWN</td><td>0</td><td>未知</td></tr><tr><td>META_SCENE_SEARCH_ONLY</td><td>1</td><td>仅检索使用</td></tr><tr><td>META_SCENE_ALL</td><td>2</td><td>检索和生成都使用</td></tr></tbody></table></p>
+        # @type Scene: Integer
+        # @param ValueType: <p>元数据值类型：1=属性标签，2=文档分类，3=问答分类<table><tbody><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>META_VALUE_TYPE_UNKNOWN</td><td>0</td><td>未知</td></tr><tr><td>META_VALUE_TYPE_TAG</td><td>1</td><td>属性标签</td></tr><tr><td>META_VALUE_TYPE_DOC_CATEGORY</td><td>2</td><td>文档分类</td></tr><tr><td>META_VALUE_TYPE_QA_CATEGORY</td><td>3</td><td>问答分类</td></tr></tbody></table></p>
+        # @type ValueType: Integer
+
+        attr_accessor :Name, :RefAll, :RefValueId, :Scene, :ValueType
+
+        def initialize(name=nil, refall=nil, refvalueid=nil, scene=nil, valuetype=nil)
+          @Name = name
+          @RefAll = refall
+          @RefValueId = refvalueid
+          @Scene = scene
+          @ValueType = valuetype
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @RefAll = params['RefAll']
+          @RefValueId = params['RefValueId']
+          @Scene = params['Scene']
+          @ValueType = params['ValueType']
         end
       end
 
@@ -9282,6 +12373,60 @@ module TencentCloud
         end
       end
 
+      # ModifyCategory请求参数结构体
+      class ModifyCategoryRequest < TencentCloud::Common::AbstractModel
+        # @param CategoryId: <p>待修改的分类 ID（必须大于 0）</p>
+        # @type CategoryId: String
+        # @param CategoryType: <p>分类类型（不可为 0，取值：1=文档分类，2=问答分类）<table><tbody><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>CATEGORY_TYPE_UNKNOWN</td><td>0</td><td></td></tr><tr><td>CATEGORY_TYPE_DOC</td><td>1</td><td>文档分类</td></tr><tr><td>CATEGORY_TYPE_QA</td><td>2</td><td>问答分类</td></tr></tbody></table></p>
+        # @type CategoryType: Integer
+        # @param Fields: <p>修改字段内容（不可为空，与 update_mask 配合使用）</p>
+        # @type Fields: :class:`Tencentcloud::Adp.v20260520.models.CategoryModifyFields`
+        # @param KbId: <p>所属知识库 ID</p>
+        # @type KbId: String
+        # @param UpdateMask: <p>字段掩码：指定要修改的字段（支持的 Paths：Name）</p>
+        # @type UpdateMask: :class:`Tencentcloud::Adp.v20260520.models.FieldMask`
+
+        attr_accessor :CategoryId, :CategoryType, :Fields, :KbId, :UpdateMask
+
+        def initialize(categoryid=nil, categorytype=nil, fields=nil, kbid=nil, updatemask=nil)
+          @CategoryId = categoryid
+          @CategoryType = categorytype
+          @Fields = fields
+          @KbId = kbid
+          @UpdateMask = updatemask
+        end
+
+        def deserialize(params)
+          @CategoryId = params['CategoryId']
+          @CategoryType = params['CategoryType']
+          unless params['Fields'].nil?
+            @Fields = CategoryModifyFields.new
+            @Fields.deserialize(params['Fields'])
+          end
+          @KbId = params['KbId']
+          unless params['UpdateMask'].nil?
+            @UpdateMask = FieldMask.new
+            @UpdateMask.deserialize(params['UpdateMask'])
+          end
+        end
+      end
+
+      # ModifyCategory返回参数结构体
+      class ModifyCategoryResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyChannel请求参数结构体
       class ModifyChannelRequest < TencentCloud::Common::AbstractModel
         # @param AppId: <p>应用业务ID</p>
@@ -9322,6 +12467,54 @@ module TencentCloud
 
       # ModifyChannel返回参数结构体
       class ModifyChannelResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyConflictQA请求参数结构体
+      class ModifyConflictQARequest < TencentCloud::Common::AbstractModel
+        # @param KbId: <p>所属知识库 ID</p>
+        # @type KbId: String
+        # @param ConflictGroupId: <p>冲突组 ID（全局忽略时可不传）</p>
+        # @type ConflictGroupId: String
+        # @param IsIgnoreAll: <p>是否全局忽略（忽略当前KB下所有待处理冲突问）</p>
+        # @type IsIgnoreAll: Boolean
+        # @param QaIdList: <p>决策涉及的 QA ID 列表（KEEP 与 DELETE 必填）</p>
+        # @type QaIdList: Array
+        # @param Resolution: <p>冲突解决策略：1=保留，2=忽略，3=删除（全局忽略时可不传）<table><tbody><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>CONFLICT_RESOLUTION_UNKNOWN</td><td>0</td><td></td></tr><tr><td>CONFLICT_RESOLUTION_KEEP</td><td>1</td><td>保留</td></tr><tr><td>CONFLICT_RESOLUTION_IGNORE</td><td>2</td><td>忽略</td></tr><tr><td>CONFLICT_RESOLUTION_DELETE</td><td>3</td><td>删除</td></tr><tr><td>CONFLICT_RESOLUTION_MERGE</td><td>4</td><td>合并</td></tr><tr><td>CONFLICT_RESOLUTION_REPLACE</td><td>5</td><td>替换</td></tr><tr><td>CONFLICT_RESOLUTION_RENAME</td><td>6</td><td>重命名</td></tr></tbody></table></p>
+        # @type Resolution: Integer
+
+        attr_accessor :KbId, :ConflictGroupId, :IsIgnoreAll, :QaIdList, :Resolution
+
+        def initialize(kbid=nil, conflictgroupid=nil, isignoreall=nil, qaidlist=nil, resolution=nil)
+          @KbId = kbid
+          @ConflictGroupId = conflictgroupid
+          @IsIgnoreAll = isignoreall
+          @QaIdList = qaidlist
+          @Resolution = resolution
+        end
+
+        def deserialize(params)
+          @KbId = params['KbId']
+          @ConflictGroupId = params['ConflictGroupId']
+          @IsIgnoreAll = params['IsIgnoreAll']
+          @QaIdList = params['QaIdList']
+          @Resolution = params['Resolution']
+        end
+      end
+
+      # ModifyConflictQA返回参数结构体
+      class ModifyConflictQAResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -9396,6 +12589,253 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyDocList请求参数结构体
+      class ModifyDocListRequest < TencentCloud::Common::AbstractModel
+        # @param DocIdList: <p>待修改的文档 ID 列表（数量：1~20）</p>
+        # @type DocIdList: Array
+        # @param KbId: <p>所属知识库 ID</p>
+        # @type KbId: String
+        # @param CategoryId: <p>归属分类 ID</p>
+        # @type CategoryId: String
+        # @param EffectiveDomain: <p>生效作用域<table><tbody><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>KNOWLEDGE_EFFECTIVE_DOMAIN_UNKNOWN</td><td>0</td><td></td></tr><tr><td>KNOWLEDGE_EFFECTIVE_DOMAIN_NONE</td><td>1</td><td>停用</td></tr><tr><td>KNOWLEDGE_EFFECTIVE_DOMAIN_DEV</td><td>2</td><td>仅开发域</td></tr><tr><td>KNOWLEDGE_EFFECTIVE_DOMAIN_RELEASE</td><td>3</td><td>仅发布域</td></tr><tr><td>KNOWLEDGE_EFFECTIVE_DOMAIN_ALL</td><td>4</td><td>全域</td></tr></tbody></table></p>
+        # @type EffectiveDomain: Integer
+        # @param ExpirationPolicy: <p>过期策略（有效时间与超过有效时间后的行为）</p>
+        # @type ExpirationPolicy: :class:`Tencentcloud::Adp.v20260520.models.ExpirationPolicy`
+        # @param ExternalLink: <p>外部链接</p>
+        # @type ExternalLink: :class:`Tencentcloud::Adp.v20260520.models.DocExternalLink`
+        # @param LabelRefList: <p>标签列表</p>
+        # @type LabelRefList: :class:`Tencentcloud::Adp.v20260520.models.LabelRefIdentityList`
+        # @param Switch: <p>开关配置</p>
+        # @type Switch: :class:`Tencentcloud::Adp.v20260520.models.DocSwitch`
+
+        attr_accessor :DocIdList, :KbId, :CategoryId, :EffectiveDomain, :ExpirationPolicy, :ExternalLink, :LabelRefList, :Switch
+
+        def initialize(docidlist=nil, kbid=nil, categoryid=nil, effectivedomain=nil, expirationpolicy=nil, externallink=nil, labelreflist=nil, switch=nil)
+          @DocIdList = docidlist
+          @KbId = kbid
+          @CategoryId = categoryid
+          @EffectiveDomain = effectivedomain
+          @ExpirationPolicy = expirationpolicy
+          @ExternalLink = externallink
+          @LabelRefList = labelreflist
+          @Switch = switch
+        end
+
+        def deserialize(params)
+          @DocIdList = params['DocIdList']
+          @KbId = params['KbId']
+          @CategoryId = params['CategoryId']
+          @EffectiveDomain = params['EffectiveDomain']
+          unless params['ExpirationPolicy'].nil?
+            @ExpirationPolicy = ExpirationPolicy.new
+            @ExpirationPolicy.deserialize(params['ExpirationPolicy'])
+          end
+          unless params['ExternalLink'].nil?
+            @ExternalLink = DocExternalLink.new
+            @ExternalLink.deserialize(params['ExternalLink'])
+          end
+          unless params['LabelRefList'].nil?
+            @LabelRefList = LabelRefIdentityList.new
+            @LabelRefList.deserialize(params['LabelRefList'])
+          end
+          unless params['Switch'].nil?
+            @Switch = DocSwitch.new
+            @Switch.deserialize(params['Switch'])
+          end
+        end
+      end
+
+      # ModifyDocList返回参数结构体
+      class ModifyDocListResponse < TencentCloud::Common::AbstractModel
+        # @param ResultList: <p>批量修改结果</p>
+        # @type ResultList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ResultList, :RequestId
+
+        def initialize(resultlist=nil, requestid=nil)
+          @ResultList = resultlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ResultList'].nil?
+            @ResultList = []
+            params['ResultList'].each do |i|
+              operationresult_tmp = OperationResult.new
+              operationresult_tmp.deserialize(i)
+              @ResultList << operationresult_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyDoc请求参数结构体
+      class ModifyDocRequest < TencentCloud::Common::AbstractModel
+        # @param DocId: <p>文档 ID</p>
+        # @type DocId: String
+        # @param Fields: <p>修改字段内容（不可为空，与 update_mask 配合使用）</p>
+        # @type Fields: :class:`Tencentcloud::Adp.v20260520.models.DocModifyFields`
+        # @param KbId: <p>所属知识库 ID</p>
+        # @type KbId: String
+        # @param UpdateMask: <p>字段掩码：指定要修改的字段（支持的 Paths：Name, CategoryId, EffectiveDomain, LabelRefList, ExternalLink, ExpirationPolicy, UpdatePeriod, Switch, ParseConfig, UserAccessConfig）</p>
+        # @type UpdateMask: :class:`Tencentcloud::Adp.v20260520.models.FieldMask`
+
+        attr_accessor :DocId, :Fields, :KbId, :UpdateMask
+
+        def initialize(docid=nil, fields=nil, kbid=nil, updatemask=nil)
+          @DocId = docid
+          @Fields = fields
+          @KbId = kbid
+          @UpdateMask = updatemask
+        end
+
+        def deserialize(params)
+          @DocId = params['DocId']
+          unless params['Fields'].nil?
+            @Fields = DocModifyFields.new
+            @Fields.deserialize(params['Fields'])
+          end
+          @KbId = params['KbId']
+          unless params['UpdateMask'].nil?
+            @UpdateMask = FieldMask.new
+            @UpdateMask.deserialize(params['UpdateMask'])
+          end
+        end
+      end
+
+      # ModifyDoc返回参数结构体
+      class ModifyDocResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyKB请求参数结构体
+      class ModifyKBRequest < TencentCloud::Common::AbstractModel
+        # @param KbId: <p>知识库 ID</p>
+        # @type KbId: String
+        # @param Spec: <p>可写属性（与 update_mask 配合使用）</p>
+        # @type Spec: :class:`Tencentcloud::Adp.v20260520.models.KBSpec`
+        # @param UpdateMask: <p>字段掩码：指定要修改的字段（蛇形字段名），未列出的字段忽略</p>
+        # @type UpdateMask: :class:`Tencentcloud::Adp.v20260520.models.FieldMask`
+        # @param ExtendFields: <p>扩展操作（用于承载无法归类到常规字段修改的特殊操作，例如触发超量恢复等；需在 update_mask 中同时传入 &#39;extend_fields&#39; 才会生效，取值参见 KBExtendedAction：1=触发恢复超量）</p>
+        # @type ExtendFields: :class:`Tencentcloud::Adp.v20260520.models.KBModifyExtendFields`
+
+        attr_accessor :KbId, :Spec, :UpdateMask, :ExtendFields
+
+        def initialize(kbid=nil, spec=nil, updatemask=nil, extendfields=nil)
+          @KbId = kbid
+          @Spec = spec
+          @UpdateMask = updatemask
+          @ExtendFields = extendfields
+        end
+
+        def deserialize(params)
+          @KbId = params['KbId']
+          unless params['Spec'].nil?
+            @Spec = KBSpec.new
+            @Spec.deserialize(params['Spec'])
+          end
+          unless params['UpdateMask'].nil?
+            @UpdateMask = FieldMask.new
+            @UpdateMask.deserialize(params['UpdateMask'])
+          end
+          unless params['ExtendFields'].nil?
+            @ExtendFields = KBModifyExtendFields.new
+            @ExtendFields.deserialize(params['ExtendFields'])
+          end
+        end
+      end
+
+      # ModifyKB返回参数结构体
+      class ModifyKBResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyLabel请求参数结构体
+      class ModifyLabelRequest < TencentCloud::Common::AbstractModel
+        # @param Fields: <p>修改字段内容（不可为空，与 update_mask 配合使用）</p>
+        # @type Fields: :class:`Tencentcloud::Adp.v20260520.models.LabelModifyFields`
+        # @param KbId: <p>所属知识库 ID</p>
+        # @type KbId: String
+        # @param LabelId: <p>待修改的标签 ID</p>
+        # @type LabelId: String
+        # @param UpdateMask: <p>字段掩码：指定要修改的字段（支持的 Paths：Name, TermModifyList）</p>
+        # @type UpdateMask: :class:`Tencentcloud::Adp.v20260520.models.FieldMask`
+
+        attr_accessor :Fields, :KbId, :LabelId, :UpdateMask
+
+        def initialize(fields=nil, kbid=nil, labelid=nil, updatemask=nil)
+          @Fields = fields
+          @KbId = kbid
+          @LabelId = labelid
+          @UpdateMask = updatemask
+        end
+
+        def deserialize(params)
+          unless params['Fields'].nil?
+            @Fields = LabelModifyFields.new
+            @Fields.deserialize(params['Fields'])
+          end
+          @KbId = params['KbId']
+          @LabelId = params['LabelId']
+          unless params['UpdateMask'].nil?
+            @UpdateMask = FieldMask.new
+            @UpdateMask.deserialize(params['UpdateMask'])
+          end
+        end
+      end
+
+      # ModifyLabel返回参数结构体
+      class ModifyLabelResponse < TencentCloud::Common::AbstractModel
+        # @param TermList: <p>修改后的标签值（标准词 + 同义词列表）</p>
+        # @type TermList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TermList, :RequestId
+
+        def initialize(termlist=nil, requestid=nil)
+          @TermList = termlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TermList'].nil?
+            @TermList = []
+            params['TermList'].each do |i|
+              labelterm_tmp = LabelTerm.new
+              labelterm_tmp.deserialize(i)
+              @TermList << labelterm_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -9502,6 +12942,129 @@ module TencentCloud
 
       # ModifyPlugin返回参数结构体
       class ModifyPluginResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyQAList请求参数结构体
+      class ModifyQAListRequest < TencentCloud::Common::AbstractModel
+        # @param KbId: <p>所属知识库 ID</p>
+        # @type KbId: String
+        # @param QaIdList: <p>待修改的 QA ID 列表（数量：1~20）</p>
+        # @type QaIdList: Array
+        # @param CategoryId: <p>分类 ID</p>
+        # @type CategoryId: String
+        # @param EffectiveDomain: <p>生效作用域<table><tbody><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>KNOWLEDGE_EFFECTIVE_DOMAIN_UNKNOWN</td><td>0</td><td></td></tr><tr><td>KNOWLEDGE_EFFECTIVE_DOMAIN_NONE</td><td>1</td><td>停用</td></tr><tr><td>KNOWLEDGE_EFFECTIVE_DOMAIN_DEV</td><td>2</td><td>仅开发域</td></tr><tr><td>KNOWLEDGE_EFFECTIVE_DOMAIN_RELEASE</td><td>3</td><td>仅发布域</td></tr><tr><td>KNOWLEDGE_EFFECTIVE_DOMAIN_ALL</td><td>4</td><td>全域</td></tr></tbody></table></p>
+        # @type EffectiveDomain: Integer
+        # @param ExpirationPolicy: <p>过期策略（有效时间与超过有效时间后的行为）</p>
+        # @type ExpirationPolicy: :class:`Tencentcloud::Adp.v20260520.models.ExpirationPolicy`
+        # @param IsAccepted: <p>是否采纳（校验通过）</p>
+        # @type IsAccepted: Boolean
+        # @param LabelRefList: <p>适用范围（标签条件列表）</p>
+        # @type LabelRefList: :class:`Tencentcloud::Adp.v20260520.models.LabelRefIdentityList`
+
+        attr_accessor :KbId, :QaIdList, :CategoryId, :EffectiveDomain, :ExpirationPolicy, :IsAccepted, :LabelRefList
+
+        def initialize(kbid=nil, qaidlist=nil, categoryid=nil, effectivedomain=nil, expirationpolicy=nil, isaccepted=nil, labelreflist=nil)
+          @KbId = kbid
+          @QaIdList = qaidlist
+          @CategoryId = categoryid
+          @EffectiveDomain = effectivedomain
+          @ExpirationPolicy = expirationpolicy
+          @IsAccepted = isaccepted
+          @LabelRefList = labelreflist
+        end
+
+        def deserialize(params)
+          @KbId = params['KbId']
+          @QaIdList = params['QaIdList']
+          @CategoryId = params['CategoryId']
+          @EffectiveDomain = params['EffectiveDomain']
+          unless params['ExpirationPolicy'].nil?
+            @ExpirationPolicy = ExpirationPolicy.new
+            @ExpirationPolicy.deserialize(params['ExpirationPolicy'])
+          end
+          @IsAccepted = params['IsAccepted']
+          unless params['LabelRefList'].nil?
+            @LabelRefList = LabelRefIdentityList.new
+            @LabelRefList.deserialize(params['LabelRefList'])
+          end
+        end
+      end
+
+      # ModifyQAList返回参数结构体
+      class ModifyQAListResponse < TencentCloud::Common::AbstractModel
+        # @param ResultList: <p>批量修改结果</p>
+        # @type ResultList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ResultList, :RequestId
+
+        def initialize(resultlist=nil, requestid=nil)
+          @ResultList = resultlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ResultList'].nil?
+            @ResultList = []
+            params['ResultList'].each do |i|
+              operationresult_tmp = OperationResult.new
+              operationresult_tmp.deserialize(i)
+              @ResultList << operationresult_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyQA请求参数结构体
+      class ModifyQARequest < TencentCloud::Common::AbstractModel
+        # @param Fields: <p>修改字段内容（与 update_mask 配合使用）</p>
+        # @type Fields: :class:`Tencentcloud::Adp.v20260520.models.QAModifyFields`
+        # @param KbId: <p>所属知识库 ID</p>
+        # @type KbId: String
+        # @param QaId: <p>QA ID</p>
+        # @type QaId: String
+        # @param UpdateMask: <p>字段掩码：指定要修改的字段（支持的 Paths：Question, Answer, CategoryId, DocId, LabelRefList, QuestionDescription, ExpirationPolicy, SimilarQuestionList, EffectiveDomain, IsAccepted）</p>
+        # @type UpdateMask: :class:`Tencentcloud::Adp.v20260520.models.FieldMask`
+
+        attr_accessor :Fields, :KbId, :QaId, :UpdateMask
+
+        def initialize(fields=nil, kbid=nil, qaid=nil, updatemask=nil)
+          @Fields = fields
+          @KbId = kbid
+          @QaId = qaid
+          @UpdateMask = updatemask
+        end
+
+        def deserialize(params)
+          unless params['Fields'].nil?
+            @Fields = QAModifyFields.new
+            @Fields.deserialize(params['Fields'])
+          end
+          @KbId = params['KbId']
+          @QaId = params['QaId']
+          unless params['UpdateMask'].nil?
+            @UpdateMask = FieldMask.new
+            @UpdateMask.deserialize(params['UpdateMask'])
+          end
+        end
+      end
+
+      # ModifyQA返回参数结构体
+      class ModifyQAResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -9967,6 +13530,50 @@ module TencentCloud
 
         def deserialize(params)
           @FireTime = params['FireTime']
+        end
+      end
+
+      # 通用操作结果项
+      class OperationResult < TencentCloud::Common::AbstractModel
+        # @param Id: <p>资源 ID</p>
+        # @type Id: String
+        # @param Reason: <p>失败原因（succeeded=false 时填充）</p>
+        # @type Reason: String
+        # @param Succeeded: <p>是否成功</p>
+        # @type Succeeded: Boolean
+
+        attr_accessor :Id, :Reason, :Succeeded
+
+        def initialize(id=nil, reason=nil, succeeded=nil)
+          @Id = id
+          @Reason = reason
+          @Succeeded = succeeded
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Reason = params['Reason']
+          @Succeeded = params['Succeeded']
+        end
+      end
+
+      # 通用操作人信息
+      class Operator < TencentCloud::Common::AbstractModel
+        # @param UserId: <p>用户 ID</p>
+        # @type UserId: String
+        # @param UserName: <p>用户姓名</p>
+        # @type UserName: String
+
+        attr_accessor :UserId, :UserName
+
+        def initialize(userid=nil, username=nil)
+          @UserId = userid
+          @UserName = username
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+          @UserName = params['UserName']
         end
       end
 
@@ -10457,6 +14064,431 @@ module TencentCloud
         end
       end
 
+      # QA 创建规格（一次性输入的非持久化数据）
+      class QACreateSpec < TencentCloud::Common::AbstractModel
+        # @param Question: <p>问题</p>
+        # @type Question: String
+        # @param Answer: <p>答案</p>
+        # @type Answer: String
+        # @param CategoryId: <p>分类 ID</p>
+        # @type CategoryId: String
+        # @param DocId: <p>关联文档 ID</p>
+        # @type DocId: String
+        # @param EffectiveDomain: <p>知识生效作用域<table><tbody><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>KNOWLEDGE_EFFECTIVE_DOMAIN_UNKNOWN</td><td>0</td><td></td></tr><tr><td>KNOWLEDGE_EFFECTIVE_DOMAIN_NONE</td><td>1</td><td>停用</td></tr><tr><td>KNOWLEDGE_EFFECTIVE_DOMAIN_DEV</td><td>2</td><td>仅开发域</td></tr><tr><td>KNOWLEDGE_EFFECTIVE_DOMAIN_RELEASE</td><td>3</td><td>仅发布域</td></tr><tr><td>KNOWLEDGE_EFFECTIVE_DOMAIN_ALL</td><td>4</td><td>全域</td></tr></tbody></table></p>
+        # @type EffectiveDomain: Integer
+        # @param ExpirationPolicy: <p>过期策略（有效时间与超过有效时间后的行为）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpirationPolicy: :class:`Tencentcloud::Adp.v20260520.models.ExpirationPolicy`
+        # @param LabelRefList: <p>适用范围（标签条件）</p>
+        # @type LabelRefList: Array
+        # @param QuestionDescription: <p>问题描述</p>
+        # @type QuestionDescription: String
+        # @param SimilarQuestionList: <p>相似问列表</p>
+        # @type SimilarQuestionList: Array
+
+        attr_accessor :Question, :Answer, :CategoryId, :DocId, :EffectiveDomain, :ExpirationPolicy, :LabelRefList, :QuestionDescription, :SimilarQuestionList
+
+        def initialize(question=nil, answer=nil, categoryid=nil, docid=nil, effectivedomain=nil, expirationpolicy=nil, labelreflist=nil, questiondescription=nil, similarquestionlist=nil)
+          @Question = question
+          @Answer = answer
+          @CategoryId = categoryid
+          @DocId = docid
+          @EffectiveDomain = effectivedomain
+          @ExpirationPolicy = expirationpolicy
+          @LabelRefList = labelreflist
+          @QuestionDescription = questiondescription
+          @SimilarQuestionList = similarquestionlist
+        end
+
+        def deserialize(params)
+          @Question = params['Question']
+          @Answer = params['Answer']
+          @CategoryId = params['CategoryId']
+          @DocId = params['DocId']
+          @EffectiveDomain = params['EffectiveDomain']
+          unless params['ExpirationPolicy'].nil?
+            @ExpirationPolicy = ExpirationPolicy.new
+            @ExpirationPolicy.deserialize(params['ExpirationPolicy'])
+          end
+          unless params['LabelRefList'].nil?
+            @LabelRefList = []
+            params['LabelRefList'].each do |i|
+              labelrefidentity_tmp = LabelRefIdentity.new
+              labelrefidentity_tmp.deserialize(i)
+              @LabelRefList << labelrefidentity_tmp
+            end
+          end
+          @QuestionDescription = params['QuestionDescription']
+          @SimilarQuestionList = params['SimilarQuestionList']
+        end
+      end
+
+      # QA 生命周期信息
+      class QALifecycle < TencentCloud::Common::AbstractModel
+        # @param CreateTime: <p>创建时间（Unix 秒）</p>
+        # @type CreateTime: String
+        # @param ExpirationPolicy: <p>过期策略（有效时间与超过有效时间后的行为）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpirationPolicy: :class:`Tencentcloud::Adp.v20260520.models.ExpirationPolicy`
+        # @param Status: <p>状态：1=待校验，2=未采纳，3=导入失败，4=审核中，5=审核失败，6=学习中，7=学习失败，8=导入完成，9=已过期，10=超量失效，11=超量失效恢复中，12=人工申诉中，13=人工申诉失败<table><tbody><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>QA_STATUS_UNKNOWN</td><td>0</td><td></td></tr><tr><td>QA_STATUS_PENDING_VERIFY</td><td>1</td><td>待校验</td></tr><tr><td>QA_STATUS_NOT_ACCEPTED</td><td>2</td><td>未采纳</td></tr><tr><td>QA_STATUS_IMPORT_FAIL</td><td>3</td><td>导入失败</td></tr><tr><td>QA_STATUS_AUDITING</td><td>4</td><td>审核中</td></tr><tr><td>QA_STATUS_AUDIT_FAIL</td><td>5</td><td>审核失败</td></tr><tr><td>QA_STATUS_LEARNING</td><td>6</td><td>学习中</td></tr><tr><td>QA_STATUS_LEARN_FAIL</td><td>7</td><td>学习失败</td></tr><tr><td>QA_STATUS_IMPORTED</td><td>8</td><td>导入完成</td></tr><tr><td>QA_STATUS_EXPIRED</td><td>9</td><td>已过期</td></tr><tr><td>QA_STATUS_QUOTA_INVALID</td><td>10</td><td>超量失效</td></tr><tr><td>QA_STATUS_QUOTA_RECOVERING</td><td>11</td><td>超量失效恢复中</td></tr><tr><td>QA_STATUS_MANUAL_APPEALING</td><td>12</td><td>人工申诉中</td></tr><tr><td>QA_STATUS_MANUAL_APPEAL_FAIL</td><td>13</td><td>人工申诉失败</td></tr></tbody></table></p>
+        # @type Status: Integer
+        # @param StatusDesc: <p>状态描述</p>
+        # @type StatusDesc: String
+        # @param StatusMessage: <p>状态附加信息</p>
+        # @type StatusMessage: String
+        # @param UpdateTime: <p>更新时间（Unix 秒）</p>
+        # @type UpdateTime: String
+
+        attr_accessor :CreateTime, :ExpirationPolicy, :Status, :StatusDesc, :StatusMessage, :UpdateTime
+
+        def initialize(createtime=nil, expirationpolicy=nil, status=nil, statusdesc=nil, statusmessage=nil, updatetime=nil)
+          @CreateTime = createtime
+          @ExpirationPolicy = expirationpolicy
+          @Status = status
+          @StatusDesc = statusdesc
+          @StatusMessage = statusmessage
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @CreateTime = params['CreateTime']
+          unless params['ExpirationPolicy'].nil?
+            @ExpirationPolicy = ExpirationPolicy.new
+            @ExpirationPolicy.deserialize(params['ExpirationPolicy'])
+          end
+          @Status = params['Status']
+          @StatusDesc = params['StatusDesc']
+          @StatusMessage = params['StatusMessage']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # QA 元信息
+      class QAMetadata < TencentCloud::Common::AbstractModel
+        # @param Answer: <p>答案</p>
+        # @type Answer: String
+        # @param QaCharCount: <p>问答字符数</p>
+        # @type QaCharCount: String
+        # @param QaSize: <p>问答大小（字节，含相似问）</p>
+        # @type QaSize: String
+        # @param Question: <p>问题</p>
+        # @type Question: String
+        # @param RefFieldNameList: <p>元数据引用字段名列表（用于显示问答哪些分类和属性被设置为元数据）</p>
+        # @type RefFieldNameList: Array
+
+        attr_accessor :Answer, :QaCharCount, :QaSize, :Question, :RefFieldNameList
+
+        def initialize(answer=nil, qacharcount=nil, qasize=nil, question=nil, reffieldnamelist=nil)
+          @Answer = answer
+          @QaCharCount = qacharcount
+          @QaSize = qasize
+          @Question = question
+          @RefFieldNameList = reffieldnamelist
+        end
+
+        def deserialize(params)
+          @Answer = params['Answer']
+          @QaCharCount = params['QaCharCount']
+          @QaSize = params['QaSize']
+          @Question = params['Question']
+          @RefFieldNameList = params['RefFieldNameList']
+        end
+      end
+
+      # QA 可修改字段集合（配合 update_mask 使用）
+      class QAModifyFields < TencentCloud::Common::AbstractModel
+        # @param Answer: <p>答案</p>
+        # @type Answer: String
+        # @param CategoryId: <p>分类 ID</p>
+        # @type CategoryId: String
+        # @param DocId: <p>关联文档 ID</p>
+        # @type DocId: String
+        # @param EffectiveDomain: <p>知识生效作用域<table><tbody><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>KNOWLEDGE_EFFECTIVE_DOMAIN_UNKNOWN</td><td>0</td><td></td></tr><tr><td>KNOWLEDGE_EFFECTIVE_DOMAIN_NONE</td><td>1</td><td>停用</td></tr><tr><td>KNOWLEDGE_EFFECTIVE_DOMAIN_DEV</td><td>2</td><td>仅开发域</td></tr><tr><td>KNOWLEDGE_EFFECTIVE_DOMAIN_RELEASE</td><td>3</td><td>仅发布域</td></tr><tr><td>KNOWLEDGE_EFFECTIVE_DOMAIN_ALL</td><td>4</td><td>全域</td></tr></tbody></table></p>
+        # @type EffectiveDomain: Integer
+        # @param ExpirationPolicy: <p>过期策略（有效时间与超过有效时间后的行为）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpirationPolicy: :class:`Tencentcloud::Adp.v20260520.models.ExpirationPolicy`
+        # @param IsAccepted: <p>是否采纳（校验通过）</p>
+        # @type IsAccepted: Boolean
+        # @param LabelRefList: <p>适用范围（标签条件）</p>
+        # @type LabelRefList: Array
+        # @param Question: <p>问题</p>
+        # @type Question: String
+        # @param QuestionDescription: <p>问题描述</p>
+        # @type QuestionDescription: String
+        # @param SimilarQuestionList: <p>相似问修改列表</p>
+        # @type SimilarQuestionList: Array
+
+        attr_accessor :Answer, :CategoryId, :DocId, :EffectiveDomain, :ExpirationPolicy, :IsAccepted, :LabelRefList, :Question, :QuestionDescription, :SimilarQuestionList
+
+        def initialize(answer=nil, categoryid=nil, docid=nil, effectivedomain=nil, expirationpolicy=nil, isaccepted=nil, labelreflist=nil, question=nil, questiondescription=nil, similarquestionlist=nil)
+          @Answer = answer
+          @CategoryId = categoryid
+          @DocId = docid
+          @EffectiveDomain = effectivedomain
+          @ExpirationPolicy = expirationpolicy
+          @IsAccepted = isaccepted
+          @LabelRefList = labelreflist
+          @Question = question
+          @QuestionDescription = questiondescription
+          @SimilarQuestionList = similarquestionlist
+        end
+
+        def deserialize(params)
+          @Answer = params['Answer']
+          @CategoryId = params['CategoryId']
+          @DocId = params['DocId']
+          @EffectiveDomain = params['EffectiveDomain']
+          unless params['ExpirationPolicy'].nil?
+            @ExpirationPolicy = ExpirationPolicy.new
+            @ExpirationPolicy.deserialize(params['ExpirationPolicy'])
+          end
+          @IsAccepted = params['IsAccepted']
+          unless params['LabelRefList'].nil?
+            @LabelRefList = []
+            params['LabelRefList'].each do |i|
+              labelrefidentity_tmp = LabelRefIdentity.new
+              labelrefidentity_tmp.deserialize(i)
+              @LabelRefList << labelrefidentity_tmp
+            end
+          end
+          @Question = params['Question']
+          @QuestionDescription = params['QuestionDescription']
+          unless params['SimilarQuestionList'].nil?
+            @SimilarQuestionList = []
+            params['SimilarQuestionList'].each do |i|
+              similarquestionmodifyspec_tmp = SimilarQuestionModifySpec.new
+              similarquestionmodifyspec_tmp.deserialize(i)
+              @SimilarQuestionList << similarquestionmodifyspec_tmp
+            end
+          end
+        end
+      end
+
+      # QA 操作者信息
+      class QAOperator < TencentCloud::Common::AbstractModel
+        # @param Modifier: <p>修改人</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Modifier: :class:`Tencentcloud::Adp.v20260520.models.Operator`
+        # @param Permission: <p>操作权限</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Permission: :class:`Tencentcloud::Adp.v20260520.models.QAPermission`
+
+        attr_accessor :Modifier, :Permission
+
+        def initialize(modifier=nil, permission=nil)
+          @Modifier = modifier
+          @Permission = permission
+        end
+
+        def deserialize(params)
+          unless params['Modifier'].nil?
+            @Modifier = Operator.new
+            @Modifier.deserialize(params['Modifier'])
+          end
+          unless params['Permission'].nil?
+            @Permission = QAPermission.new
+            @Permission.deserialize(params['Permission'])
+          end
+        end
+      end
+
+      # QA 操作权限信息
+      class QAPermission < TencentCloud::Common::AbstractModel
+        # @param CanAccept: <p>是否可校验（采纳/不采纳）</p>
+        # @type CanAccept: Boolean
+        # @param CanDelete: <p>是否可删除</p>
+        # @type CanDelete: Boolean
+        # @param CanEdit: <p>是否可编辑</p>
+        # @type CanEdit: Boolean
+
+        attr_accessor :CanAccept, :CanDelete, :CanEdit
+
+        def initialize(canaccept=nil, candelete=nil, canedit=nil)
+          @CanAccept = canaccept
+          @CanDelete = candelete
+          @CanEdit = canedit
+        end
+
+        def deserialize(params)
+          @CanAccept = params['CanAccept']
+          @CanDelete = params['CanDelete']
+          @CanEdit = params['CanEdit']
+        end
+      end
+
+      # QA 查询条件
+      class QAQuery < TencentCloud::Common::AbstractModel
+        # @param Query: <p>查询关键词（模糊搜索）</p>
+        # @type Query: String
+        # @param QueryScopeList: <p>查询范围（query 作用的字段）：1=问题，2=标签或标签值，3=答案；支持多选，缺省时无效</p>
+        # @type QueryScopeList: Array
+
+        attr_accessor :Query, :QueryScopeList
+
+        def initialize(query=nil, queryscopelist=nil)
+          @Query = query
+          @QueryScopeList = queryscopelist
+        end
+
+        def deserialize(params)
+          @Query = params['Query']
+          @QueryScopeList = params['QueryScopeList']
+        end
+      end
+
+      # QA 检索配置
+      class QARetrievalConfig < TencentCloud::Common::AbstractModel
+        # @param Confidence: <p>置信度阈值</p>
+        # @type Confidence: Float
+        # @param Enabled: <p>是否启用</p>
+        # @type Enabled: Boolean
+        # @param TopN: <p>返回前 N 条</p>
+        # @type TopN: Integer
+
+        attr_accessor :Confidence, :Enabled, :TopN
+
+        def initialize(confidence=nil, enabled=nil, topn=nil)
+          @Confidence = confidence
+          @Enabled = enabled
+          @TopN = topn
+        end
+
+        def deserialize(params)
+          @Confidence = params['Confidence']
+          @Enabled = params['Enabled']
+          @TopN = params['TopN']
+        end
+      end
+
+      # QA 分片高亮信息
+      class QASegmentHighlight < TencentCloud::Common::AbstractModel
+        # @param EndPos: <p>高亮结束位置</p>
+        # @type EndPos: String
+        # @param StartPos: <p>高亮起始位置</p>
+        # @type StartPos: String
+
+        attr_accessor :EndPos, :StartPos
+
+        def initialize(endpos=nil, startpos=nil)
+          @EndPos = endpos
+          @StartPos = startpos
+        end
+
+        def deserialize(params)
+          @EndPos = params['EndPos']
+          @StartPos = params['StartPos']
+        end
+      end
+
+      # QA 来源与关联文档信息
+      class QASourceInfo < TencentCloud::Common::AbstractModel
+        # @param DocEffectiveDomain: <p>关联文档的生效作用域<table><tbody><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>KNOWLEDGE_EFFECTIVE_DOMAIN_UNKNOWN</td><td>0</td><td></td></tr><tr><td>KNOWLEDGE_EFFECTIVE_DOMAIN_NONE</td><td>1</td><td>停用</td></tr><tr><td>KNOWLEDGE_EFFECTIVE_DOMAIN_DEV</td><td>2</td><td>仅开发域</td></tr><tr><td>KNOWLEDGE_EFFECTIVE_DOMAIN_RELEASE</td><td>3</td><td>仅发布域</td></tr><tr><td>KNOWLEDGE_EFFECTIVE_DOMAIN_ALL</td><td>4</td><td>全域</td></tr></tbody></table></p>
+        # @type DocEffectiveDomain: Integer
+        # @param DocId: <p>关联文档 ID</p>
+        # @type DocId: String
+        # @param FileName: <p>关联文档名称</p>
+        # @type FileName: String
+        # @param FileType: <p>关联文档类型</p>
+        # @type FileType: String
+        # @param SourceDesc: <p>来源描述</p>
+        # @type SourceDesc: String
+        # @param SourceType: <p>来源类型：1=文档生成，2=批量导入，3=手动录入<table><tbody><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>QA_SOURCE_TYPE_UNKNOWN</td><td>0</td><td></td></tr><tr><td>QA_SOURCE_TYPE_DOC</td><td>1</td><td>文档生成</td></tr><tr><td>QA_SOURCE_TYPE_BATCH_IMPORT</td><td>2</td><td>批量导入</td></tr><tr><td>QA_SOURCE_TYPE_MANUAL</td><td>3</td><td>手动录入</td></tr></tbody></table></p>
+        # @type SourceType: Integer
+
+        attr_accessor :DocEffectiveDomain, :DocId, :FileName, :FileType, :SourceDesc, :SourceType
+
+        def initialize(doceffectivedomain=nil, docid=nil, filename=nil, filetype=nil, sourcedesc=nil, sourcetype=nil)
+          @DocEffectiveDomain = doceffectivedomain
+          @DocId = docid
+          @FileName = filename
+          @FileType = filetype
+          @SourceDesc = sourcedesc
+          @SourceType = sourcetype
+        end
+
+        def deserialize(params)
+          @DocEffectiveDomain = params['DocEffectiveDomain']
+          @DocId = params['DocId']
+          @FileName = params['FileName']
+          @FileType = params['FileType']
+          @SourceDesc = params['SourceDesc']
+          @SourceType = params['SourceType']
+        end
+      end
+
+      # QA 摘要信息
+      class QASummary < TencentCloud::Common::AbstractModel
+        # @param CategoryPath: <p>所属分类路径（包含分类 ID、从根节点开始的分类 ID 路径和分类名称路径）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CategoryPath: :class:`Tencentcloud::Adp.v20260520.models.CategoryPath`
+        # @param KnowledgeScope: <p>知识生效范围</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KnowledgeScope: :class:`Tencentcloud::Adp.v20260520.models.KnowledgeScope`
+        # @param Lifecycle: <p>生命周期信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Lifecycle: :class:`Tencentcloud::Adp.v20260520.models.QALifecycle`
+        # @param Metadata: <p>元信息（问题/答案/大小统计）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Metadata: :class:`Tencentcloud::Adp.v20260520.models.QAMetadata`
+        # @param OperatorInfo: <p>操作者信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OperatorInfo: :class:`Tencentcloud::Adp.v20260520.models.QAOperator`
+        # @param QaId: <p>QA ID</p>
+        # @type QaId: String
+        # @param SimilarQuestion: <p>相似问统计</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SimilarQuestion: :class:`Tencentcloud::Adp.v20260520.models.SimilarQuestionStat`
+        # @param SourceInfo: <p>来源信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceInfo: :class:`Tencentcloud::Adp.v20260520.models.QASourceInfo`
+
+        attr_accessor :CategoryPath, :KnowledgeScope, :Lifecycle, :Metadata, :OperatorInfo, :QaId, :SimilarQuestion, :SourceInfo
+
+        def initialize(categorypath=nil, knowledgescope=nil, lifecycle=nil, metadata=nil, operatorinfo=nil, qaid=nil, similarquestion=nil, sourceinfo=nil)
+          @CategoryPath = categorypath
+          @KnowledgeScope = knowledgescope
+          @Lifecycle = lifecycle
+          @Metadata = metadata
+          @OperatorInfo = operatorinfo
+          @QaId = qaid
+          @SimilarQuestion = similarquestion
+          @SourceInfo = sourceinfo
+        end
+
+        def deserialize(params)
+          unless params['CategoryPath'].nil?
+            @CategoryPath = CategoryPath.new
+            @CategoryPath.deserialize(params['CategoryPath'])
+          end
+          unless params['KnowledgeScope'].nil?
+            @KnowledgeScope = KnowledgeScope.new
+            @KnowledgeScope.deserialize(params['KnowledgeScope'])
+          end
+          unless params['Lifecycle'].nil?
+            @Lifecycle = QALifecycle.new
+            @Lifecycle.deserialize(params['Lifecycle'])
+          end
+          unless params['Metadata'].nil?
+            @Metadata = QAMetadata.new
+            @Metadata.deserialize(params['Metadata'])
+          end
+          unless params['OperatorInfo'].nil?
+            @OperatorInfo = QAOperator.new
+            @OperatorInfo.deserialize(params['OperatorInfo'])
+          end
+          @QaId = params['QaId']
+          unless params['SimilarQuestion'].nil?
+            @SimilarQuestion = SimilarQuestionStat.new
+            @SimilarQuestion.deserialize(params['SimilarQuestion'])
+          end
+          unless params['SourceInfo'].nil?
+            @SourceInfo = QASourceInfo.new
+            @SourceInfo.deserialize(params['SourceInfo'])
+          end
+        end
+      end
+
       # [数据结构定义] 发布记录
       class ReleaseRecord < TencentCloud::Common::AbstractModel
         # @param CanExport: 是否可导出
@@ -10678,6 +14710,26 @@ module TencentCloud
         end
       end
 
+      # 重排配置
+      class RerankConfig < TencentCloud::Common::AbstractModel
+        # @param Enabled: <p>是否启用</p>
+        # @type Enabled: Boolean
+        # @param ModelName: <p>模型名称</p>
+        # @type ModelName: String
+
+        attr_accessor :Enabled, :ModelName
+
+        def initialize(enabled=nil, modelname=nil)
+          @Enabled = enabled
+          @ModelName = modelname
+        end
+
+        def deserialize(params)
+          @Enabled = params['Enabled']
+          @ModelName = params['ModelName']
+        end
+      end
+
       # ResetConversation请求参数结构体
       class ResetConversationRequest < TencentCloud::Common::AbstractModel
         # @param ConversationId: <p>会话 ID</p>
@@ -10841,6 +14893,42 @@ module TencentCloud
         end
       end
 
+      # 检索可选配置
+      class RetrievalOption < TencentCloud::Common::AbstractModel
+        # @param ExpirationAwareness: <p>时效性检索增强配置</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpirationAwareness: :class:`Tencentcloud::Adp.v20260520.models.ExpirationAwareness`
+        # @param GraphRag: <p>GraphRAG配置</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GraphRag: :class:`Tencentcloud::Adp.v20260520.models.GraphRAG`
+        # @param TableEnhancement: <p>表格增强配置</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableEnhancement: :class:`Tencentcloud::Adp.v20260520.models.TableEnhancement`
+
+        attr_accessor :ExpirationAwareness, :GraphRag, :TableEnhancement
+
+        def initialize(expirationawareness=nil, graphrag=nil, tableenhancement=nil)
+          @ExpirationAwareness = expirationawareness
+          @GraphRag = graphrag
+          @TableEnhancement = tableenhancement
+        end
+
+        def deserialize(params)
+          unless params['ExpirationAwareness'].nil?
+            @ExpirationAwareness = ExpirationAwareness.new
+            @ExpirationAwareness.deserialize(params['ExpirationAwareness'])
+          end
+          unless params['GraphRag'].nil?
+            @GraphRag = GraphRAG.new
+            @GraphRag.deserialize(params['GraphRag'])
+          end
+          unless params['TableEnhancement'].nil?
+            @TableEnhancement = TableEnhancement.new
+            @TableEnhancement.deserialize(params['TableEnhancement'])
+          end
+        end
+      end
+
       # RetryRelease请求参数结构体
       class RetryReleaseRequest < TencentCloud::Common::AbstractModel
         # @param AppId: 应用ID
@@ -10977,6 +15065,261 @@ module TencentCloud
         end
       end
 
+      # 检索高级配置
+      class SearchAdvancedConfig < TencentCloud::Common::AbstractModel
+        # @param FinalRerankConfig: <p>最终 rerank 配置</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FinalRerankConfig: :class:`Tencentcloud::Adp.v20260520.models.FinalRerankConfig`
+        # @param KbRetrievalList: <p>各知识库的检索配置</p>
+        # @type KbRetrievalList: Array
+        # @param KnowledgeType: <p>检索知识类型：1=文档和问答，2=拒答<table><tbody><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>SEARCH_KNOWLEDGE_TYPE_UNKNOWN</td><td>0</td><td></td></tr><tr><td>SEARCH_KNOWLEDGE_TYPE_DOC_QA</td><td>1</td><td>文档和问答</td></tr><tr><td>SEARCH_KNOWLEDGE_TYPE_REJECTED_QUESTION</td><td>2</td><td>拒答</td></tr></tbody></table></p>
+        # @type KnowledgeType: Integer
+        # @param RecallCount: <p>最终返回结果数</p>
+        # @type RecallCount: Integer
+
+        attr_accessor :FinalRerankConfig, :KbRetrievalList, :KnowledgeType, :RecallCount
+
+        def initialize(finalrerankconfig=nil, kbretrievallist=nil, knowledgetype=nil, recallcount=nil)
+          @FinalRerankConfig = finalrerankconfig
+          @KbRetrievalList = kbretrievallist
+          @KnowledgeType = knowledgetype
+          @RecallCount = recallcount
+        end
+
+        def deserialize(params)
+          unless params['FinalRerankConfig'].nil?
+            @FinalRerankConfig = FinalRerankConfig.new
+            @FinalRerankConfig.deserialize(params['FinalRerankConfig'])
+          end
+          unless params['KbRetrievalList'].nil?
+            @KbRetrievalList = []
+            params['KbRetrievalList'].each do |i|
+              kbretrievalconfig_tmp = KBRetrievalConfig.new
+              kbretrievalconfig_tmp.deserialize(i)
+              @KbRetrievalList << kbretrievalconfig_tmp
+            end
+          end
+          @KnowledgeType = params['KnowledgeType']
+          @RecallCount = params['RecallCount']
+        end
+      end
+
+      # 检索计费信息
+      class SearchBilling < TencentCloud::Common::AbstractModel
+        # @param BillingTagList: <p>计费标签列表</p>
+        # @type BillingTagList: Array
+        # @param FinanceSubBusinessType: <p>计费子业务类型</p>
+        # @type FinanceSubBusinessType: String
+
+        attr_accessor :BillingTagList, :FinanceSubBusinessType
+
+        def initialize(billingtaglist=nil, financesubbusinesstype=nil)
+          @BillingTagList = billingtaglist
+          @FinanceSubBusinessType = financesubbusinesstype
+        end
+
+        def deserialize(params)
+          unless params['BillingTagList'].nil?
+            @BillingTagList = []
+            params['BillingTagList'].each do |i|
+              kvpair_tmp = KVPair.new
+              kvpair_tmp.deserialize(i)
+              @BillingTagList << kvpair_tmp
+            end
+          end
+          @FinanceSubBusinessType = params['FinanceSubBusinessType']
+        end
+      end
+
+      # 检索请求上下文信息
+      class SearchContext < TencentCloud::Common::AbstractModel
+        # @param CallSource: <p>请求来源<table><tbody><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>CALL_SOURCE_UNSPECIFIED</td><td>0</td><td></td></tr><tr><td>CALL_SOURCE_RAG</td><td>1</td><td>标准模式</td></tr><tr><td>CALL_SOURCE_WORKFLOW</td><td>2</td><td>工作流</td></tr><tr><td>CALL_SOURCE_PLUGIN</td><td>3</td><td>插件</td></tr><tr><td>CALL_SOURCE_OPENCLAW</td><td>4</td><td>openclaw</td></tr><tr><td>CALL_SOURCE_RECALL_TEST</td><td>5</td><td>召回测试</td></tr><tr><td>CALL_SOURCE_RECALL_TEST_DIFF</td><td>6</td><td>召回测试在对比的场景，同样需要触发检索接口。区别这种case前端不需要更新最新配置。因为对比1，2，3 可能最后保存的是2</td></tr></tbody></table></p>
+        # @type CallSource: Integer
+        # @param Domain: <p>adp域：1=开发域，2=生产域<table><tbody><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>ADP_DOMAIN_UNSPECIFIED</td><td>0</td><td>未指定</td></tr><tr><td>ADP_DOMAIN_DEV</td><td>1</td><td>开发域</td></tr><tr><td>ADP_DOMAIN_PROD</td><td>2</td><td>生产域</td></tr></tbody></table></p>
+        # @type Domain: Integer
+        # @param VisitorId: <p>访客 ID</p>
+        # @type VisitorId: String
+
+        attr_accessor :CallSource, :Domain, :VisitorId
+
+        def initialize(callsource=nil, domain=nil, visitorid=nil)
+          @CallSource = callsource
+          @Domain = domain
+          @VisitorId = visitorid
+        end
+
+        def deserialize(params)
+          @CallSource = params['CallSource']
+          @Domain = params['Domain']
+          @VisitorId = params['VisitorId']
+        end
+      end
+
+      # 检索过滤
+      class SearchFilter < TencentCloud::Common::AbstractModel
+        # @param FilterType: <p>检索过滤类型<table><tbody><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>SEARCH_FILTER_TYPE_UNKNOWN</td><td>0</td><td></td></tr><tr><td>SEARCH_FILTER_TYPE_CUSTOMER_LABEL_VALUE</td><td>1</td><td>用户自定义标签值</td></tr><tr><td>SEARCH_FILTER_TYPE_CUSTOMER_LABEL_VALUE_ID</td><td>2</td><td>用户自定义标签值ID</td></tr><tr><td>SEARCH_FILTER_TYPE_DOC_ID</td><td>3</td><td>指定文档 ID 检索</td></tr><tr><td>SEARCH_FILTER_TYPE_DOC_CATEGORY_ID</td><td>4</td><td>指定文档分类 ID 检索</td></tr><tr><td>SEARCH_FILTER_TYPE_DB_TABLE_ID</td><td>5</td><td>指定数据库表 ID 检索</td></tr><tr><td>SEARCH_FILTER_TYPE_KB_SCHEMA_ID</td><td>6</td><td>指定知识库 schema ID</td></tr></tbody></table></p>
+        # @type FilterType: Integer
+        # @param FilterValueList: <p>过滤值列表，根据SearchFilterType取值1：传自定义标签值；2：传自定义标签值ID；3：传文档ID；4：传分类ID</p>
+        # @type FilterValueList: Array
+        # @param LabelId: <p>用户自定义标签 ID</p>
+        # @type LabelId: String
+        # @param LogicOp: <p>逻辑运算符：AND 或 OR<table><tbody><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>LOGIC_OPR_NOOP</td><td>0</td><td></td></tr><tr><td>LOGIC_OPR_AND</td><td>1</td><td></td></tr><tr><td>LOGIC_OPR_OR</td><td>2</td><td></td></tr></tbody></table></p>
+        # @type LogicOp: Integer
+        # @param SearchFilterList: <p>嵌套检索过滤</p>
+        # @type SearchFilterList: Array
+
+        attr_accessor :FilterType, :FilterValueList, :LabelId, :LogicOp, :SearchFilterList
+
+        def initialize(filtertype=nil, filtervaluelist=nil, labelid=nil, logicop=nil, searchfilterlist=nil)
+          @FilterType = filtertype
+          @FilterValueList = filtervaluelist
+          @LabelId = labelid
+          @LogicOp = logicop
+          @SearchFilterList = searchfilterlist
+        end
+
+        def deserialize(params)
+          @FilterType = params['FilterType']
+          @FilterValueList = params['FilterValueList']
+          @LabelId = params['LabelId']
+          @LogicOp = params['LogicOp']
+          unless params['SearchFilterList'].nil?
+            @SearchFilterList = []
+            params['SearchFilterList'].each do |i|
+              searchfilter_tmp = SearchFilter.new
+              searchfilter_tmp.deserialize(i)
+              @SearchFilterList << searchfilter_tmp
+            end
+          end
+        end
+      end
+
+      # 检索过滤配置
+      class SearchFilterConfig < TencentCloud::Common::AbstractModel
+        # @param OnlyRetrievalSelectedLabel: <p>是否仅检索选中标签，true:仅检索带有选中标签的知识，false:同时检索带有选中标签和不带任何标签的知识</p>
+        # @type OnlyRetrievalSelectedLabel: Boolean
+        # @param SearchFilter: <p>检索过滤</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SearchFilter: :class:`Tencentcloud::Adp.v20260520.models.SearchFilter`
+
+        attr_accessor :OnlyRetrievalSelectedLabel, :SearchFilter
+
+        def initialize(onlyretrievalselectedlabel=nil, searchfilter=nil)
+          @OnlyRetrievalSelectedLabel = onlyretrievalselectedlabel
+          @SearchFilter = searchfilter
+        end
+
+        def deserialize(params)
+          @OnlyRetrievalSelectedLabel = params['OnlyRetrievalSelectedLabel']
+          unless params['SearchFilter'].nil?
+            @SearchFilter = SearchFilter.new
+            @SearchFilter.deserialize(params['SearchFilter'])
+          end
+        end
+      end
+
+      # 检索输入
+      class SearchInput < TencentCloud::Common::AbstractModel
+        # @param ImageUrlList: <p>图片 URL 列表</p>
+        # @type ImageUrlList: Array
+        # @param Question: <p>问题</p>
+        # @type Question: String
+        # @param SubQuestionList: <p>拆解的子问题列表</p>
+        # @type SubQuestionList: Array
+
+        attr_accessor :ImageUrlList, :Question, :SubQuestionList
+
+        def initialize(imageurllist=nil, question=nil, subquestionlist=nil)
+          @ImageUrlList = imageurllist
+          @Question = question
+          @SubQuestionList = subquestionlist
+        end
+
+        def deserialize(params)
+          @ImageUrlList = params['ImageUrlList']
+          @Question = params['Question']
+          @SubQuestionList = params['SubQuestionList']
+        end
+      end
+
+      # SearchKnowledge请求参数结构体
+      class SearchKnowledgeRequest < TencentCloud::Common::AbstractModel
+        # @param AdvancedConfig: <p>检索高级配置</p>
+        # @type AdvancedConfig: :class:`Tencentcloud::Adp.v20260520.models.SearchAdvancedConfig`
+        # @param Input: <p>检索输入</p>
+        # @type Input: :class:`Tencentcloud::Adp.v20260520.models.SearchInput`
+        # @param Context: <p>检索上下文</p>
+        # @type Context: :class:`Tencentcloud::Adp.v20260520.models.SearchContext`
+        # @param SearchBilling: <p>计费信息</p>
+        # @type SearchBilling: :class:`Tencentcloud::Adp.v20260520.models.SearchBilling`
+
+        attr_accessor :AdvancedConfig, :Input, :Context, :SearchBilling
+
+        def initialize(advancedconfig=nil, input=nil, context=nil, searchbilling=nil)
+          @AdvancedConfig = advancedconfig
+          @Input = input
+          @Context = context
+          @SearchBilling = searchbilling
+        end
+
+        def deserialize(params)
+          unless params['AdvancedConfig'].nil?
+            @AdvancedConfig = SearchAdvancedConfig.new
+            @AdvancedConfig.deserialize(params['AdvancedConfig'])
+          end
+          unless params['Input'].nil?
+            @Input = SearchInput.new
+            @Input.deserialize(params['Input'])
+          end
+          unless params['Context'].nil?
+            @Context = SearchContext.new
+            @Context.deserialize(params['Context'])
+          end
+          unless params['SearchBilling'].nil?
+            @SearchBilling = SearchBilling.new
+            @SearchBilling.deserialize(params['SearchBilling'])
+          end
+        end
+      end
+
+      # SearchKnowledge返回参数结构体
+      class SearchKnowledgeResponse < TencentCloud::Common::AbstractModel
+        # @param KnowledgeList: <p>检索结果列表</p>
+        # @type KnowledgeList: Array
+        # @param TokenUsageList: <p>消耗的 token 统计</p>
+        # @type TokenUsageList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :KnowledgeList, :TokenUsageList, :RequestId
+
+        def initialize(knowledgelist=nil, tokenusagelist=nil, requestid=nil)
+          @KnowledgeList = knowledgelist
+          @TokenUsageList = tokenusagelist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['KnowledgeList'].nil?
+            @KnowledgeList = []
+            params['KnowledgeList'].each do |i|
+              knowledgeresult_tmp = KnowledgeResult.new
+              knowledgeresult_tmp.deserialize(i)
+              @KnowledgeList << knowledgeresult_tmp
+            end
+          end
+          unless params['TokenUsageList'].nil?
+            @TokenUsageList = []
+            params['TokenUsageList'].each do |i|
+              tokenusage_tmp = TokenUsage.new
+              tokenusage_tmp.deserialize(i)
+              @TokenUsageList << tokenusage_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 搜索资源状态信息
       class SearchResourceStatusInfo < TencentCloud::Common::AbstractModel
         # @param ResourceStatus: 搜索资源状态: AVAILABLE(1)=资源可用, EXHAUSTED(2)=资源已用尽。枚举值: 1:资源可用, 2:资源已用尽
@@ -10990,6 +15333,118 @@ module TencentCloud
 
         def deserialize(params)
           @ResourceStatus = params['ResourceStatus']
+        end
+      end
+
+      # 检索结果负载
+      class SearchResultPayload < TencentCloud::Common::AbstractModel
+        # @param GraphData: <p>图谱附加信息（JSON 字符串）</p>
+        # @type GraphData: String
+        # @param ImageUrlList: <p>命中的图片 URL 列表</p>
+        # @type ImageUrlList: Array
+        # @param SheetInfo: <p>表格附加信息（JSON 字符串）</p>
+        # @type SheetInfo: String
+
+        attr_accessor :GraphData, :ImageUrlList, :SheetInfo
+
+        def initialize(graphdata=nil, imageurllist=nil, sheetinfo=nil)
+          @GraphData = graphdata
+          @ImageUrlList = imageurllist
+          @SheetInfo = sheetinfo
+        end
+
+        def deserialize(params)
+          @GraphData = params['GraphData']
+          @ImageUrlList = params['ImageUrlList']
+          @SheetInfo = params['SheetInfo']
+        end
+      end
+
+      # QA 相似问
+      class SimilarQuestion < TencentCloud::Common::AbstractModel
+        # @param Content: <p>相似问内容</p>
+        # @type Content: String
+        # @param IsAiGenerated: <p>是否 AI 生成</p>
+        # @type IsAiGenerated: Boolean
+        # @param SimilarQuestionId: <p>相似问 ID</p>
+        # @type SimilarQuestionId: String
+
+        attr_accessor :Content, :IsAiGenerated, :SimilarQuestionId
+
+        def initialize(content=nil, isaigenerated=nil, similarquestionid=nil)
+          @Content = content
+          @IsAiGenerated = isaigenerated
+          @SimilarQuestionId = similarquestionid
+        end
+
+        def deserialize(params)
+          @Content = params['Content']
+          @IsAiGenerated = params['IsAiGenerated']
+          @SimilarQuestionId = params['SimilarQuestionId']
+        end
+      end
+
+      # 相似问额外信息
+      class SimilarQuestionExtra < TencentCloud::Common::AbstractModel
+        # @param Content: <p>相似问文本内容</p>
+        # @type Content: String
+        # @param SimilarQuestionId: <p>相似问 ID</p>
+        # @type SimilarQuestionId: String
+
+        attr_accessor :Content, :SimilarQuestionId
+
+        def initialize(content=nil, similarquestionid=nil)
+          @Content = content
+          @SimilarQuestionId = similarquestionid
+        end
+
+        def deserialize(params)
+          @Content = params['Content']
+          @SimilarQuestionId = params['SimilarQuestionId']
+        end
+      end
+
+      # QA 相似问修改项
+      class SimilarQuestionModifySpec < TencentCloud::Common::AbstractModel
+        # @param Content: <p>相似问内容（CREATE 与 UPDATE 必填）</p>
+        # @type Content: String
+        # @param ModifyAction: <p>操作类型：1=新增，2=修改，3=删除<table><tbody><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>MODIFY_ACTION_UNKNOWN</td><td>0</td><td></td></tr><tr><td>MODIFY_ACTION_CREATE</td><td>1</td><td>新增</td></tr><tr><td>MODIFY_ACTION_UPDATE</td><td>2</td><td>修改</td></tr><tr><td>MODIFY_ACTION_DELETE</td><td>3</td><td>删除</td></tr></tbody></table></p>
+        # @type ModifyAction: Integer
+        # @param SimilarQuestionId: <p>相似问 ID（UPDATE 与 DELETE 必填）</p>
+        # @type SimilarQuestionId: String
+
+        attr_accessor :Content, :ModifyAction, :SimilarQuestionId
+
+        def initialize(content=nil, modifyaction=nil, similarquestionid=nil)
+          @Content = content
+          @ModifyAction = modifyaction
+          @SimilarQuestionId = similarquestionid
+        end
+
+        def deserialize(params)
+          @Content = params['Content']
+          @ModifyAction = params['ModifyAction']
+          @SimilarQuestionId = params['SimilarQuestionId']
+        end
+      end
+
+      # QA 相似问统计
+      class SimilarQuestionStat < TencentCloud::Common::AbstractModel
+        # @param SimilarQuestionCount: <p>相似问数量</p>
+        # @type SimilarQuestionCount: Integer
+        # @param SimilarQuestionTips: <p>相似问提示（展示一条相似问样例）</p>
+        # @type SimilarQuestionTips: String
+
+        attr_accessor :SimilarQuestionCount, :SimilarQuestionTips
+
+        def initialize(similarquestioncount=nil, similarquestiontips=nil)
+          @SimilarQuestionCount = similarquestioncount
+          @SimilarQuestionTips = similarquestiontips
+        end
+
+        def deserialize(params)
+          @SimilarQuestionCount = params['SimilarQuestionCount']
+          @SimilarQuestionTips = params['SimilarQuestionTips']
         end
       end
 
@@ -11634,6 +16089,22 @@ module TencentCloud
         end
       end
 
+      # 摘要列表查询通用开关配置
+      class SummaryListSwitch < TencentCloud::Common::AbstractModel
+        # @param ShowMetadataEnabled: <p>是否显示元数据</p>
+        # @type ShowMetadataEnabled: Boolean
+
+        attr_accessor :ShowMetadataEnabled
+
+        def initialize(showmetadataenabled=nil)
+          @ShowMetadataEnabled = showmetadataenabled
+        end
+
+        def deserialize(params)
+          @ShowMetadataEnabled = params['ShowMetadataEnabled']
+        end
+      end
+
       # 支持的文件类型
       class SupportedFileType < TencentCloud::Common::AbstractModel
         # @param Description: 文件类型描述(如"文本文档")
@@ -11675,6 +16146,22 @@ module TencentCloud
         def deserialize(params)
           @Description = params['Description']
           @Name = params['Name']
+        end
+      end
+
+      # 表格增强配置
+      class TableEnhancement < TencentCloud::Common::AbstractModel
+        # @param Enabled: <p>是否启用</p>
+        # @type Enabled: Boolean
+
+        attr_accessor :Enabled
+
+        def initialize(enabled=nil)
+          @Enabled = enabled
+        end
+
+        def deserialize(params)
+          @Enabled = params['Enabled']
         end
       end
 
@@ -11830,6 +16317,34 @@ module TencentCloud
             @Weekly = WeeklySchedule.new
             @Weekly.deserialize(params['Weekly'])
           end
+        end
+      end
+
+      # Token 使用统计
+      class TokenUsage < TencentCloud::Common::AbstractModel
+        # @param CompletionTokens: <p>completion token 数</p>
+        # @type CompletionTokens: Integer
+        # @param ModelName: <p>模型名称</p>
+        # @type ModelName: String
+        # @param PromptTokens: <p>prompt token 数</p>
+        # @type PromptTokens: Integer
+        # @param TotalTokens: <p>总 token 数</p>
+        # @type TotalTokens: Integer
+
+        attr_accessor :CompletionTokens, :ModelName, :PromptTokens, :TotalTokens
+
+        def initialize(completiontokens=nil, modelname=nil, prompttokens=nil, totaltokens=nil)
+          @CompletionTokens = completiontokens
+          @ModelName = modelname
+          @PromptTokens = prompttokens
+          @TotalTokens = totaltokens
+        end
+
+        def deserialize(params)
+          @CompletionTokens = params['CompletionTokens']
+          @ModelName = params['ModelName']
+          @PromptTokens = params['PromptTokens']
+          @TotalTokens = params['TotalTokens']
         end
       end
 
@@ -12221,6 +16736,26 @@ module TencentCloud
           @SourceId = params['SourceId']
           @SourceName = params['SourceName']
           @ViewType = params['ViewType']
+        end
+      end
+
+      # 用户访问配置
+      class UserAccessConfig < TencentCloud::Common::AbstractModel
+        # @param CustomerKnowledgeId: <p>客户自定义知识 ID</p>
+        # @type CustomerKnowledgeId: String
+        # @param IsPublic: <p>文档是否公开</p>
+        # @type IsPublic: Boolean
+
+        attr_accessor :CustomerKnowledgeId, :IsPublic
+
+        def initialize(customerknowledgeid=nil, ispublic=nil)
+          @CustomerKnowledgeId = customerknowledgeid
+          @IsPublic = ispublic
+        end
+
+        def deserialize(params)
+          @CustomerKnowledgeId = params['CustomerKnowledgeId']
+          @IsPublic = params['IsPublic']
         end
       end
 

@@ -8239,7 +8239,7 @@ module TencentCloud
         # @param ServiceVersion: <p>组件版本</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceVersion: String
-        # @param Properties: <p>导出配置参数</p>
+        # @param Properties: <p>导出配置参数 base64格式</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Properties: String
 

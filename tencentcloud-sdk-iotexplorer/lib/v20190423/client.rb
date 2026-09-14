@@ -125,6 +125,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 批量查询 TWeSee 订单状态
+
+        # @param request: Request instance for BatchDescribeTWeSeeOrders.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::BatchDescribeTWeSeeOrdersRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::BatchDescribeTWeSeeOrdersResponse`
+        def BatchDescribeTWeSeeOrders(request)
+          body = send_request('BatchDescribeTWeSeeOrders', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BatchDescribeTWeSeeOrdersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 批量同步执行 TWeSee 语义理解任务
 
         # @param request: Request instance for BatchInvokeTWeSeeRecognitionTask.
@@ -5383,6 +5407,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyTopicRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询、删除或列举 TWeSee 直传对象
+
+        # @param request: Request instance for OperateTWeSeeDirectUploadObject.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::OperateTWeSeeDirectUploadObjectRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::OperateTWeSeeDirectUploadObjectResponse`
+        def OperateTWeSeeDirectUploadObject(request)
+          body = send_request('OperateTWeSeeDirectUploadObject', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = OperateTWeSeeDirectUploadObjectResponse.new
             model.deserialize(response['Response'])
             model
           else

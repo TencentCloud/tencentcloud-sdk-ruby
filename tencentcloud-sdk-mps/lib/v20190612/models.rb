@@ -19952,7 +19952,7 @@ module TencentCloud
         # @type Prompt: String
         # @param ModelName: <p>文档生成视频模型名称</p><p>默认值：Wand</p>
         # @type ModelName: String
-        # @param ModelVersion: <p>文档生成视频模型版本号</p><p>默认值：1.0</p>
+        # @param ModelVersion: <p>文档生成视频模型版本号</p><p>枚举值：</p><ul><li>1.0： 1.0</li><li>1.0-lite： 1.0-lite</li></ul><p>默认值：1.0</p>
         # @type ModelVersion: String
         # @param Ratio: <p>生成视频的宽高比。</p><p>枚举值：</p><ul><li>16:9： 16:9</li><li>9:16： 9:16</li><li>1:1： 1:1</li></ul><p>默认值：16:9</p>
         # @type Ratio: String

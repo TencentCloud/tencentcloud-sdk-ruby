@@ -465,6 +465,120 @@ module TencentCloud
         end
       end
 
+      # 待查询的订单标识。OrderId 和 CustomOrderId 必须且只能填写一个。
+      class BatchDescribeTWeSeeOrdersEntry < TencentCloud::Common::AbstractModel
+        # @param OrderId: <p>订单 ID，与 CustomOrderId 二选一</p>
+        # @type OrderId: String
+        # @param CustomOrderId: <p>自定义订单 ID，与 OrderId 二选一</p>
+        # @type CustomOrderId: String
+
+        attr_accessor :OrderId, :CustomOrderId
+
+        def initialize(orderid=nil, customorderid=nil)
+          @OrderId = orderid
+          @CustomOrderId = customorderid
+        end
+
+        def deserialize(params)
+          @OrderId = params['OrderId']
+          @CustomOrderId = params['CustomOrderId']
+        end
+      end
+
+      # BatchDescribeTWeSeeOrders请求参数结构体
+      class BatchDescribeTWeSeeOrdersRequest < TencentCloud::Common::AbstractModel
+        # @param Entries: 待查询的订单列表，最多 200 条
+        # @type Entries: Array
+
+        attr_accessor :Entries
+
+        def initialize(entries=nil)
+          @Entries = entries
+        end
+
+        def deserialize(params)
+          unless params['Entries'].nil?
+            @Entries = []
+            params['Entries'].each do |i|
+              batchdescribetweseeordersentry_tmp = BatchDescribeTWeSeeOrdersEntry.new
+              batchdescribetweseeordersentry_tmp.deserialize(i)
+              @Entries << batchdescribetweseeordersentry_tmp
+            end
+          end
+        end
+      end
+
+      # BatchDescribeTWeSeeOrders返回参数结构体
+      class BatchDescribeTWeSeeOrdersResponse < TencentCloud::Common::AbstractModel
+        # @param Results: 与请求 Entries 顺序一致的订单查询结果
+        # @type Results: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Results, :RequestId
+
+        def initialize(results=nil, requestid=nil)
+          @Results = results
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Results'].nil?
+            @Results = []
+            params['Results'].each do |i|
+              batchdescribetweseeordersresult_tmp = BatchDescribeTWeSeeOrdersResult.new
+              batchdescribetweseeordersresult_tmp.deserialize(i)
+              @Results << batchdescribetweseeordersresult_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 单个订单的查询结果。查询失败时 ErrorCode 和 ErrorMessage 非空。
+      class BatchDescribeTWeSeeOrdersResult < TencentCloud::Common::AbstractModel
+        # @param OrderId: <p>订单 ID</p>
+        # @type OrderId: String
+        # @param Status: <p>订单状态。</p><p>枚举值：</p><ul><li>DELIVERED： 已发货</li><li>DELIVERING： 发货中</li><li>DELIVER_FAILED： 发货失败</li><li>NOT_DELIVERED： 未发货</li></ul>
+        # @type Status: String
+        # @param ResourceId: <p>资源 ID</p>
+        # @type ResourceId: String
+        # @param Currency: <p>币种</p>
+        # @type Currency: String
+        # @param Price: <p>订单价格</p>
+        # @type Price: String
+        # @param CustomOrderId: <p>自定义订单 ID</p>
+        # @type CustomOrderId: String
+        # @param ErrorCode: <p>单个订单的查询错误码，查询成功时为空</p>
+        # @type ErrorCode: String
+        # @param ErrorMessage: <p>单个订单的查询错误信息，查询成功时为空</p>
+        # @type ErrorMessage: String
+
+        attr_accessor :OrderId, :Status, :ResourceId, :Currency, :Price, :CustomOrderId, :ErrorCode, :ErrorMessage
+
+        def initialize(orderid=nil, status=nil, resourceid=nil, currency=nil, price=nil, customorderid=nil, errorcode=nil, errormessage=nil)
+          @OrderId = orderid
+          @Status = status
+          @ResourceId = resourceid
+          @Currency = currency
+          @Price = price
+          @CustomOrderId = customorderid
+          @ErrorCode = errorcode
+          @ErrorMessage = errormessage
+        end
+
+        def deserialize(params)
+          @OrderId = params['OrderId']
+          @Status = params['Status']
+          @ResourceId = params['ResourceId']
+          @Currency = params['Currency']
+          @Price = params['Price']
+          @CustomOrderId = params['CustomOrderId']
+          @ErrorCode = params['ErrorCode']
+          @ErrorMessage = params['ErrorMessage']
+        end
+      end
+
       # BatchInvokeTWeSeeRecognitionTask请求参数结构体
       class BatchInvokeTWeSeeRecognitionTaskRequest < TencentCloud::Common::AbstractModel
         # @param Inputs: 待执行的 TWeSee 语义理解任务列表
@@ -14751,6 +14865,71 @@ module TencentCloud
         end
       end
 
+      # OperateTWeSeeDirectUploadObject请求参数结构体
+      class OperateTWeSeeDirectUploadObjectRequest < TencentCloud::Common::AbstractModel
+        # @param COSURI: TWeSee 直传对象或目录的 COS URI
+        # @type COSURI: String
+        # @param Operation: 操作类型。可选值：
+
+        # - `HeadObject`：查询对象元数据
+        # - `DeleteObject`：删除对象
+        # - `ListBucket`：列举对象
+        # @type Operation: String
+        # @param ListOptions: 列举对象时使用的分页和目录选项
+        # @type ListOptions: :class:`Tencentcloud::Iotexplorer.v20190423.models.SeeObjectListOptions`
+
+        attr_accessor :COSURI, :Operation, :ListOptions
+
+        def initialize(cosuri=nil, operation=nil, listoptions=nil)
+          @COSURI = cosuri
+          @Operation = operation
+          @ListOptions = listoptions
+        end
+
+        def deserialize(params)
+          @COSURI = params['COSURI']
+          @Operation = params['Operation']
+          unless params['ListOptions'].nil?
+            @ListOptions = SeeObjectListOptions.new
+            @ListOptions.deserialize(params['ListOptions'])
+          end
+        end
+      end
+
+      # OperateTWeSeeDirectUploadObject返回参数结构体
+      class OperateTWeSeeDirectUploadObjectResponse < TencentCloud::Common::AbstractModel
+        # @param ListingResponse: 对象列举结果
+        # @type ListingResponse: :class:`Tencentcloud::Iotexplorer.v20190423.models.SeeObjectListing`
+        # @param ObjectResponse: 对象元数据
+        # @type ObjectResponse: :class:`Tencentcloud::Iotexplorer.v20190423.models.SeeObjectMetadata`
+        # @param Status: 操作结果状态码
+        # @type Status: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ListingResponse, :ObjectResponse, :Status, :RequestId
+
+        def initialize(listingresponse=nil, objectresponse=nil, status=nil, requestid=nil)
+          @ListingResponse = listingresponse
+          @ObjectResponse = objectresponse
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ListingResponse'].nil?
+            @ListingResponse = SeeObjectListing.new
+            @ListingResponse.deserialize(params['ListingResponse'])
+          end
+          unless params['ObjectResponse'].nil?
+            @ObjectResponse = SeeObjectMetadata.new
+            @ObjectResponse.deserialize(params['ObjectResponse'])
+          end
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 升级包类型详细信息
       class OtaModuleInfo < TencentCloud::Common::AbstractModel
         # @param CreateTime: 模块创建时间
@@ -16656,6 +16835,180 @@ module TencentCloud
               @Persons << seetaskpersoninfo_tmp
             end
           end
+        end
+      end
+
+      # TWeSee 直传对象列举选项
+      class SeeObjectListOptions < TencentCloud::Common::AbstractModel
+        # @param Delimiter: 目录分隔符
+        # @type Delimiter: String
+        # @param Marker: 分页标记
+        # @type Marker: String
+        # @param MaxKeys: 单页返回的最大对象数量
+        # @type MaxKeys: Integer
+
+        attr_accessor :Delimiter, :Marker, :MaxKeys
+
+        def initialize(delimiter=nil, marker=nil, maxkeys=nil)
+          @Delimiter = delimiter
+          @Marker = marker
+          @MaxKeys = maxkeys
+        end
+
+        def deserialize(params)
+          @Delimiter = params['Delimiter']
+          @Marker = params['Marker']
+          @MaxKeys = params['MaxKeys']
+        end
+      end
+
+      # TWeSee 直传对象列举结果
+      class SeeObjectListing < TencentCloud::Common::AbstractModel
+        # @param Contents: <p>对象列表</p>
+        # @type Contents: Array
+        # @param CommonPrefixes: <p>子目录路径列表</p>
+        # @type CommonPrefixes: Array
+        # @param Delimiter: <p>本次列举使用的目录分隔符</p>
+        # @type Delimiter: String
+        # @param IsTruncated: <p>是否还有后续分页数据</p>
+        # @type IsTruncated: Boolean
+        # @param Marker: <p>本次列举使用的分页标记</p>
+        # @type Marker: String
+        # @param MaxKeys: <p>本次列举的最大对象数量</p>
+        # @type MaxKeys: Integer
+        # @param NextMarker: <p>下一页的分页标记</p>
+        # @type NextMarker: String
+        # @param Prefix: <p>本次列举的对象路径前缀</p>
+        # @type Prefix: String
+
+        attr_accessor :Contents, :CommonPrefixes, :Delimiter, :IsTruncated, :Marker, :MaxKeys, :NextMarker, :Prefix
+
+        def initialize(contents=nil, commonprefixes=nil, delimiter=nil, istruncated=nil, marker=nil, maxkeys=nil, nextmarker=nil, prefix=nil)
+          @Contents = contents
+          @CommonPrefixes = commonprefixes
+          @Delimiter = delimiter
+          @IsTruncated = istruncated
+          @Marker = marker
+          @MaxKeys = maxkeys
+          @NextMarker = nextmarker
+          @Prefix = prefix
+        end
+
+        def deserialize(params)
+          unless params['Contents'].nil?
+            @Contents = []
+            params['Contents'].each do |i|
+              seeobjectsummary_tmp = SeeObjectSummary.new
+              seeobjectsummary_tmp.deserialize(i)
+              @Contents << seeobjectsummary_tmp
+            end
+          end
+          @CommonPrefixes = params['CommonPrefixes']
+          @Delimiter = params['Delimiter']
+          @IsTruncated = params['IsTruncated']
+          @Marker = params['Marker']
+          @MaxKeys = params['MaxKeys']
+          @NextMarker = params['NextMarker']
+          @Prefix = params['Prefix']
+        end
+      end
+
+      # TWeSee 直传对象元数据
+      class SeeObjectMetadata < TencentCloud::Common::AbstractModel
+        # @param Key: <p>对象 Key</p>
+        # @type Key: String
+        # @param COSURI: <p>对象的 COS URI</p>
+        # @type COSURI: String
+        # @param ContentType: <p>对象的 MIME 类型</p>
+        # @type ContentType: String
+        # @param Size: <p>对象大小，单位：字节</p>
+        # @type Size: Integer
+        # @param ETag: <p>对象的 ETag</p>
+        # @type ETag: String
+        # @param LastModified: <p>对象最后修改时间，秒级 UNIX 时间戳</p>
+        # @type LastModified: Integer
+        # @param Metadata: <p>对象的自定义元数据列表</p>
+        # @type Metadata: Array
+
+        attr_accessor :Key, :COSURI, :ContentType, :Size, :ETag, :LastModified, :Metadata
+
+        def initialize(key=nil, cosuri=nil, contenttype=nil, size=nil, etag=nil, lastmodified=nil, metadata=nil)
+          @Key = key
+          @COSURI = cosuri
+          @ContentType = contenttype
+          @Size = size
+          @ETag = etag
+          @LastModified = lastmodified
+          @Metadata = metadata
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @COSURI = params['COSURI']
+          @ContentType = params['ContentType']
+          @Size = params['Size']
+          @ETag = params['ETag']
+          @LastModified = params['LastModified']
+          unless params['Metadata'].nil?
+            @Metadata = []
+            params['Metadata'].each do |i|
+              seeobjectmetadataentry_tmp = SeeObjectMetadataEntry.new
+              seeobjectmetadataentry_tmp.deserialize(i)
+              @Metadata << seeobjectmetadataentry_tmp
+            end
+          end
+        end
+      end
+
+      # TWeSee 直传对象自定义元数据项
+      class SeeObjectMetadataEntry < TencentCloud::Common::AbstractModel
+        # @param Name: 元数据名称
+        # @type Name: String
+        # @param Value: 元数据值
+        # @type Value: String
+
+        attr_accessor :Name, :Value
+
+        def initialize(name=nil, value=nil)
+          @Name = name
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
+        end
+      end
+
+      # TWeSee 直传对象概要信息
+      class SeeObjectSummary < TencentCloud::Common::AbstractModel
+        # @param Key: <p>对象 Key</p>
+        # @type Key: String
+        # @param COSURI: <p>TWeSee 直传对象或目录的 COS URI</p>
+        # @type COSURI: String
+        # @param Size: <p>对象大小，单位：字节</p>
+        # @type Size: Integer
+        # @param ETag: <p>对象的 ETag</p>
+        # @type ETag: String
+        # @param LastModified: <p>对象最后修改时间，秒级 UNIX 时间戳</p>
+        # @type LastModified: Integer
+
+        attr_accessor :Key, :COSURI, :Size, :ETag, :LastModified
+
+        def initialize(key=nil, cosuri=nil, size=nil, etag=nil, lastmodified=nil)
+          @Key = key
+          @COSURI = cosuri
+          @Size = size
+          @ETag = etag
+          @LastModified = lastmodified
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @COSURI = params['COSURI']
+          @Size = params['Size']
+          @ETag = params['ETag']
+          @LastModified = params['LastModified']
         end
       end
 

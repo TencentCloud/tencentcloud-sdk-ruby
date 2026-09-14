@@ -67,19 +67,19 @@ module TencentCloud
 
       # 可加速地域信息
       class AcceleratorRegionSet < TencentCloud::Common::AbstractModel
-        # @param Name: <p>地域中文名称。</p>
+        # @param Name: <p>地域名称。</p>
         # @type Name: String
         # @param IsAvailable: <p>是否可用；0：不可用，1:可用。</p>
         # @type IsAvailable: Integer
-        # @param Region: <p>地域信息。</p>
+        # @param Region: <p>地域。</p>
         # @type Region: String
         # @param AreaName: <p>地区名称。</p>
         # @type AreaName: String
-        # @param IsChinaMainland: <p>是否中国地域。</p>
+        # @param IsChinaMainland: <p>是否中国地域。1 代表是中国地域，0代表不是中国地域。</p>
         # @type IsChinaMainland: Integer
         # @param SupportIspType: <p>支持IspType类型。</p>
         # @type SupportIspType: Array
-        # @param IsTencentRegion: <p>是否腾讯地域。</p>
+        # @param IsTencentRegion: <p>是否腾讯云地域。1代表是腾讯云地域，0代表不是。</p>
         # @type IsTencentRegion: Integer
 
         attr_accessor :Name, :IsAvailable, :Region, :AreaName, :IsChinaMainland, :SupportIspType, :IsTencentRegion
@@ -404,7 +404,7 @@ module TencentCloud
 
       # CreateGlobalAcceleratorAccessLog请求参数结构体
       class CreateGlobalAcceleratorAccessLogRequest < TencentCloud::Common::AbstractModel
-        # @param GlobalAcceleratorId: <p>GA示例唯一Id</p>
+        # @param GlobalAcceleratorId: <p>GA实例唯一Id</p>
         # @type GlobalAcceleratorId: String
         # @param ListenerId: <p>监听器Id</p>
         # @type ListenerId: String
@@ -1274,7 +1274,7 @@ module TencentCloud
 
       # DescribeAccelerateRegions返回参数结构体
       class DescribeAccelerateRegionsResponse < TencentCloud::Common::AbstractModel
-        # @param AcceleratorRegionSet: 加速地域信息。
+        # @param AcceleratorRegionSet: <p>加速地域信息。</p>
         # @type AcceleratorRegionSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1301,12 +1301,17 @@ module TencentCloud
 
       # DescribeAccessLogParam请求参数结构体
       class DescribeAccessLogParamRequest < TencentCloud::Common::AbstractModel
+        # @param GlobalAcceleratorId: <p>全球加速实例ID。</p>
+        # @type GlobalAcceleratorId: String
 
+        attr_accessor :GlobalAcceleratorId
 
-        def initialize()
+        def initialize(globalacceleratorid=nil)
+          @GlobalAcceleratorId = globalacceleratorid
         end
 
         def deserialize(params)
+          @GlobalAcceleratorId = params['GlobalAcceleratorId']
         end
       end
 
@@ -1450,22 +1455,25 @@ module TencentCloud
 
       # DescribeForwardingPolicy请求参数结构体
       class DescribeForwardingPolicyRequest < TencentCloud::Common::AbstractModel
-        # @param GlobalAcceleratorId: 全球加速实例ID。
+        # @param GlobalAcceleratorId: <p>全球加速实例ID。</p>
         # @type GlobalAcceleratorId: String
-        # @param ListenerId: 监听器ID。
+        # @param ListenerId: <p>监听器ID。</p>
         # @type ListenerId: String
-        # @param Offset: 偏移量，默认为0。
+        # @param Offset: <p>偏移量，默认为0。</p>
         # @type Offset: Integer
-        # @param Limit: 返回数量，默认为20，最大值为100。
+        # @param Limit: <p>返回数量，默认为20，最大值为100。</p>
         # @type Limit: Integer
+        # @param Filters: <p>过滤条件。<li>forwarding-policy-id - String -（过滤条件）策略ID。</li></p>
+        # @type Filters: Array
 
-        attr_accessor :GlobalAcceleratorId, :ListenerId, :Offset, :Limit
+        attr_accessor :GlobalAcceleratorId, :ListenerId, :Offset, :Limit, :Filters
 
-        def initialize(globalacceleratorid=nil, listenerid=nil, offset=nil, limit=nil)
+        def initialize(globalacceleratorid=nil, listenerid=nil, offset=nil, limit=nil, filters=nil)
           @GlobalAcceleratorId = globalacceleratorid
           @ListenerId = listenerid
           @Offset = offset
           @Limit = limit
+          @Filters = filters
         end
 
         def deserialize(params)
@@ -1473,14 +1481,22 @@ module TencentCloud
           @ListenerId = params['ListenerId']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
         end
       end
 
       # DescribeForwardingPolicy返回参数结构体
       class DescribeForwardingPolicyResponse < TencentCloud::Common::AbstractModel
-        # @param ForwardingPolicySet: 符合条件的策略信息。
+        # @param ForwardingPolicySet: <p>符合条件的策略信息。</p>
         # @type ForwardingPolicySet: Array
-        # @param TotalCount: 符合条件的实例个数。
+        # @param TotalCount: <p>符合条件的实例个数。</p>
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1509,25 +1525,28 @@ module TencentCloud
 
       # DescribeForwardingRule请求参数结构体
       class DescribeForwardingRuleRequest < TencentCloud::Common::AbstractModel
-        # @param GlobalAcceleratorId: 全球加速实例ID。
+        # @param GlobalAcceleratorId: <p>全球加速实例ID。</p>
         # @type GlobalAcceleratorId: String
-        # @param ListenerId: 监听器ID。
+        # @param ListenerId: <p>监听器ID。</p>
         # @type ListenerId: String
-        # @param ForwardingPolicyId: 七层转发规则ID。
+        # @param ForwardingPolicyId: <p>七层转发规则ID。</p>
         # @type ForwardingPolicyId: String
-        # @param Offset: 偏移量，默认为0。
+        # @param Offset: <p>偏移量，默认为0。</p>
         # @type Offset: Integer
-        # @param Limit: 返回数量，默认为20，最大值为100。
+        # @param Limit: <p>返回数量，默认为20，最大值为100。</p>
         # @type Limit: Integer
+        # @param Filters: <p>过滤条件。<li>forwarding-rule-id - String -（过滤条件）规则ID。</li></p>
+        # @type Filters: Array
 
-        attr_accessor :GlobalAcceleratorId, :ListenerId, :ForwardingPolicyId, :Offset, :Limit
+        attr_accessor :GlobalAcceleratorId, :ListenerId, :ForwardingPolicyId, :Offset, :Limit, :Filters
 
-        def initialize(globalacceleratorid=nil, listenerid=nil, forwardingpolicyid=nil, offset=nil, limit=nil)
+        def initialize(globalacceleratorid=nil, listenerid=nil, forwardingpolicyid=nil, offset=nil, limit=nil, filters=nil)
           @GlobalAcceleratorId = globalacceleratorid
           @ListenerId = listenerid
           @ForwardingPolicyId = forwardingpolicyid
           @Offset = offset
           @Limit = limit
+          @Filters = filters
         end
 
         def deserialize(params)
@@ -1536,14 +1555,22 @@ module TencentCloud
           @ForwardingPolicyId = params['ForwardingPolicyId']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
         end
       end
 
       # DescribeForwardingRule返回参数结构体
       class DescribeForwardingRuleResponse < TencentCloud::Common::AbstractModel
-        # @param ForwardingRuleSet: 符合条件的规则信息。
+        # @param ForwardingRuleSet: <p>符合条件的规则信息。</p>
         # @type ForwardingRuleSet: Array
-        # @param TotalCount: 符合条件的实例个数。
+        # @param TotalCount: <p>符合条件的实例个数。</p>
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1699,19 +1726,30 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: <p>返回数量。</p><p>取值范围：[1, 200]</p><p>默认值：20</p>
         # @type Limit: Integer
+        # @param Filters: <p>过滤条件。<li>global-accelerator-acl-rule-id - String -（过滤条件）ACL规则ID。</li></p>
+        # @type Filters: Array
 
-        attr_accessor :GlobalAcceleratorAclPolicyId, :Offset, :Limit
+        attr_accessor :GlobalAcceleratorAclPolicyId, :Offset, :Limit, :Filters
 
-        def initialize(globalacceleratoraclpolicyid=nil, offset=nil, limit=nil)
+        def initialize(globalacceleratoraclpolicyid=nil, offset=nil, limit=nil, filters=nil)
           @GlobalAcceleratorAclPolicyId = globalacceleratoraclpolicyid
           @Offset = offset
           @Limit = limit
+          @Filters = filters
         end
 
         def deserialize(params)
           @GlobalAcceleratorAclPolicyId = params['GlobalAcceleratorAclPolicyId']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
         end
       end
 
@@ -1876,7 +1914,7 @@ module TencentCloud
 
       # DescribeTaskResult请求参数结构体
       class DescribeTaskResultRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 异步任务ID。
+        # @param TaskId: <p>异步任务ID。</p>
         # @type TaskId: String
 
         attr_accessor :TaskId
@@ -1892,7 +1930,7 @@ module TencentCloud
 
       # DescribeTaskResult返回参数结构体
       class DescribeTaskResultResponse < TencentCloud::Common::AbstractModel
-        # @param Status: 任务状态。
+        # @param Status: <p>任务状态。</p><p>枚举值：</p><ul><li>SUCCESS： 任务成功。</li><li>FAILURE： 任务失败。</li><li>RUNNING： 任务运行。</li></ul>
         # @type Status: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1946,7 +1984,7 @@ module TencentCloud
         # @type EndpointGroupRegion: String
         # @param EndpointConfigurations: <p>终端节点配置。</p>
         # @type EndpointConfigurations: Array
-        # @param CheckType: <p>检查协议。支持配置&#39;TCP&#39;, &#39;HTTP&#39;, &#39;PING&#39;, &#39;CUSTOM&#39;。</p><p>枚举值：</p><ul><li>TCP： 当终端节点组所在监听器协议是TCP时，可以选择检查协议为TCP。</li><li>HTTP： 当终端节点组所在监听器协议是HTTP或HTTPS时，可以选择检查协议为HTTP。</li><li>PING： 当终端节点组所在监听器协议是UDP时，可以选择检查协议为PING。</li><li>CUSTOM： 当终端节点组所在监听器协议是UDP或TCP时，可以选择检查协议为CUSTOM。</li></ul><p>当开启健康检查时此字段必传。</p>
+        # @param CheckType: <p>检查协议。支持配置&#39;TCP&#39;, &#39;HTTP&#39;, &#39;PING&#39;, &#39;CUSTOM&#39;。</p><p>枚举值：</p><ul><li>TCP： 当终端节点组所在监听器协议是TCP时，可以选择检查协议为TCP。</li><li>HTTP： 当终端节点组所在监听器协议是HTTP或HTTPS时，可以选择检查协议为HTTP。</li><li>PING： 当终端节点组所在监听器协议是UDP时，可以选择检查协议为PING。</li><li>CUSTOM： 当终端节点组所在监听器协议是UDP或TCP时，可以选择检查协议为CUSTOM。</li><li>HTTPS： 当终端节点组所在监听器协议是HTTPS时，可以选择检查协议为HTTPS。</li></ul><p>当开启健康检查时此字段必传。</p>
         # @type CheckType: String
         # @param Description: <p>描述信息。</p><p>默认值：默认值为空，代表不配置描述信息。</p><p>最大长度不能超过100个字节。</p>
         # @type Description: String
@@ -2116,10 +2154,14 @@ module TencentCloud
         # @type CipherPolicyId: String
         # @param HttpVersion: <p>仅HTTPS回源协议支持选择[&#39;HTTP/1.1&#39;, &#39;HTTP/2&#39;]</p><p>枚举值：</p><ul><li>HTTP/1.1： 版本HTTP/1.1</li><li>HTTP/2： 版本HTTP/2</li></ul>
         # @type HttpVersion: String
+        # @param OriginPrivateIps: <p>出终端节点组内网IP</p>
+        # @type OriginPrivateIps: Array
+        # @param OriginPublicCidrs: <p>出终端节点组公网CIDR</p>
+        # @type OriginPublicCidrs: Array
 
-        attr_accessor :GlobalAcceleratorId, :ListenerId, :EndpointGroupId, :Name, :EndpointGroupRegion, :Description, :EndpointConfigurations, :EnableHealthCheck, :ConnectTimeout, :HealthCheckInterval, :UnhealthyThreshold, :HealthyThreshold, :CheckType, :CheckPort, :ContextType, :CheckSendContext, :CheckRecvContext, :CheckDomain, :CheckPath, :CheckMethod, :StatusMask, :EndpointGroupType, :ForwardProtocol, :PortOverrides, :VirtualExistForwardingRuleFlag, :OriginPublicIps, :IspType, :CipherPolicyId, :HttpVersion
+        attr_accessor :GlobalAcceleratorId, :ListenerId, :EndpointGroupId, :Name, :EndpointGroupRegion, :Description, :EndpointConfigurations, :EnableHealthCheck, :ConnectTimeout, :HealthCheckInterval, :UnhealthyThreshold, :HealthyThreshold, :CheckType, :CheckPort, :ContextType, :CheckSendContext, :CheckRecvContext, :CheckDomain, :CheckPath, :CheckMethod, :StatusMask, :EndpointGroupType, :ForwardProtocol, :PortOverrides, :VirtualExistForwardingRuleFlag, :OriginPublicIps, :IspType, :CipherPolicyId, :HttpVersion, :OriginPrivateIps, :OriginPublicCidrs
 
-        def initialize(globalacceleratorid=nil, listenerid=nil, endpointgroupid=nil, name=nil, endpointgroupregion=nil, description=nil, endpointconfigurations=nil, enablehealthcheck=nil, connecttimeout=nil, healthcheckinterval=nil, unhealthythreshold=nil, healthythreshold=nil, checktype=nil, checkport=nil, contexttype=nil, checksendcontext=nil, checkrecvcontext=nil, checkdomain=nil, checkpath=nil, checkmethod=nil, statusmask=nil, endpointgrouptype=nil, forwardprotocol=nil, portoverrides=nil, virtualexistforwardingruleflag=nil, originpublicips=nil, isptype=nil, cipherpolicyid=nil, httpversion=nil)
+        def initialize(globalacceleratorid=nil, listenerid=nil, endpointgroupid=nil, name=nil, endpointgroupregion=nil, description=nil, endpointconfigurations=nil, enablehealthcheck=nil, connecttimeout=nil, healthcheckinterval=nil, unhealthythreshold=nil, healthythreshold=nil, checktype=nil, checkport=nil, contexttype=nil, checksendcontext=nil, checkrecvcontext=nil, checkdomain=nil, checkpath=nil, checkmethod=nil, statusmask=nil, endpointgrouptype=nil, forwardprotocol=nil, portoverrides=nil, virtualexistforwardingruleflag=nil, originpublicips=nil, isptype=nil, cipherpolicyid=nil, httpversion=nil, originprivateips=nil, originpubliccidrs=nil)
           @GlobalAcceleratorId = globalacceleratorid
           @ListenerId = listenerid
           @EndpointGroupId = endpointgroupid
@@ -2149,6 +2191,8 @@ module TencentCloud
           @IspType = isptype
           @CipherPolicyId = cipherpolicyid
           @HttpVersion = httpversion
+          @OriginPrivateIps = originprivateips
+          @OriginPublicCidrs = originpubliccidrs
         end
 
         def deserialize(params)
@@ -2195,6 +2239,8 @@ module TencentCloud
           @IspType = params['IspType']
           @CipherPolicyId = params['CipherPolicyId']
           @HttpVersion = params['HttpVersion']
+          @OriginPrivateIps = params['OriginPrivateIps']
+          @OriginPublicCidrs = params['OriginPublicCidrs']
         end
       end
 
@@ -2347,12 +2393,53 @@ module TencentCloud
 
       # GA访问日志
       class GlobalAcceleratorAccessLog < TencentCloud::Common::AbstractModel
+        # @param LogPushTaskId: <p>日志唯一Id</p>
+        # @type LogPushTaskId: String
+        # @param GlobalAcceleratorId: <p>GA实例唯一Id</p>
+        # @type GlobalAcceleratorId: String
+        # @param ListenerId: <p>监听器唯一Id</p>
+        # @type ListenerId: String
+        # @param EndpointGroupId: <p>终端节点组唯一Id</p>
+        # @type EndpointGroupId: String
+        # @param FlowLogDescription: <p>日志任务描述</p>
+        # @type FlowLogDescription: String
+        # @param CloudRegion: <p>日志所在地域</p>
+        # @type CloudRegion: String
+        # @param CloudLogId: <p>日志主题Id</p>
+        # @type CloudLogId: String
+        # @param CloudLogSetId: <p>日志集Id</p>
+        # @type CloudLogSetId: String
+        # @param FieldKeys: <p>选择日志采集字段</p>
+        # @type FieldKeys: Array
+        # @param Status: <p>日志任务状态</p><p>枚举值：</p><ul><li>active： 运行中</li><li>stopped： 已暂停</li></ul>
+        # @type Status: String
 
+        attr_accessor :LogPushTaskId, :GlobalAcceleratorId, :ListenerId, :EndpointGroupId, :FlowLogDescription, :CloudRegion, :CloudLogId, :CloudLogSetId, :FieldKeys, :Status
 
-        def initialize()
+        def initialize(logpushtaskid=nil, globalacceleratorid=nil, listenerid=nil, endpointgroupid=nil, flowlogdescription=nil, cloudregion=nil, cloudlogid=nil, cloudlogsetid=nil, fieldkeys=nil, status=nil)
+          @LogPushTaskId = logpushtaskid
+          @GlobalAcceleratorId = globalacceleratorid
+          @ListenerId = listenerid
+          @EndpointGroupId = endpointgroupid
+          @FlowLogDescription = flowlogdescription
+          @CloudRegion = cloudregion
+          @CloudLogId = cloudlogid
+          @CloudLogSetId = cloudlogsetid
+          @FieldKeys = fieldkeys
+          @Status = status
         end
 
         def deserialize(params)
+          @LogPushTaskId = params['LogPushTaskId']
+          @GlobalAcceleratorId = params['GlobalAcceleratorId']
+          @ListenerId = params['ListenerId']
+          @EndpointGroupId = params['EndpointGroupId']
+          @FlowLogDescription = params['FlowLogDescription']
+          @CloudRegion = params['CloudRegion']
+          @CloudLogId = params['CloudLogId']
+          @CloudLogSetId = params['CloudLogSetId']
+          @FieldKeys = params['FieldKeys']
+          @Status = params['Status']
         end
       end
 
@@ -2538,47 +2625,47 @@ module TencentCloud
 
       # 监听器信息
       class ListenerSet < TencentCloud::Common::AbstractModel
-        # @param GlobalAcceleratorId: 全球加速实例ID。
+        # @param GlobalAcceleratorId: <p>全球加速实例ID。</p>
         # @type GlobalAcceleratorId: String
-        # @param ListenerId: 监听器ID。
+        # @param ListenerId: <p>监听器ID。</p>
         # @type ListenerId: String
-        # @param Name: 监听器名称。
+        # @param Name: <p>监听器名称。</p>
         # @type Name: String
-        # @param Description: 监听器描述。
+        # @param Description: <p>监听器描述。</p>
         # @type Description: String
-        # @param Protocol: 协议。
+        # @param Protocol: <p>协议。</p>
         # @type Protocol: String
-        # @param PortRanges: 端口范围。
+        # @param PortRanges: <p>端口范围。</p>
         # @type PortRanges: :class:`Tencentcloud::Ga2.v20250115.models.PortRanges`
-        # @param XForwardedForRealIp: 是否打开七层获取源IP方式。
+        # @param XForwardedForRealIp: <p>是否打开七层获取源IP方式。</p>
         # @type XForwardedForRealIp: Boolean
-        # @param ClientAffinity: 开启会话保持。
+        # @param ClientAffinity: <p>开启会话保持。</p>
         # @type ClientAffinity: String
-        # @param ClientAffinityTime: 会话保持时间。
+        # @param ClientAffinityTime: <p>会话保持时间。</p>
         # @type ClientAffinityTime: Integer
-        # @param CertificationType: SSL解析方式。
+        # @param CertificationType: <p>SSL解析方式。</p>
         # @type CertificationType: String
-        # @param ServerCertificates: 服务器证书。
+        # @param ServerCertificates: <p>服务器证书。</p>
         # @type ServerCertificates: Array
-        # @param ClientCaCertificates: 客户端证书。
+        # @param ClientCaCertificates: <p>客户端证书。</p>
         # @type ClientCaCertificates: Array
-        # @param CipherPolicyId: TLS密码套件包。
+        # @param CipherPolicyId: <p>TLS密码套件包。</p>
         # @type CipherPolicyId: String
-        # @param HttpVersion: HTTP版本。
+        # @param HttpVersion: <p>HTTP版本。</p>
         # @type HttpVersion: String
-        # @param RequestTimeout: 请求超时时间。
+        # @param RequestTimeout: <p>请求超时时间。</p>
         # @type RequestTimeout: Integer
-        # @param CreateTime: 创建时间。
+        # @param CreateTime: <p>创建时间。</p>
         # @type CreateTime: String
-        # @param ListenerType: 监听路由类型。
+        # @param ListenerType: <p>监听路由类型。</p>
         # @type ListenerType: String
-        # @param Status: 监听器状态。
+        # @param Status: <p>监听器状态。</p><p>枚举值：</p><ul><li>ACTIVE： 可用。</li><li>CREATING： 创建中。</li><li>DELETING： 删除中。</li><li>CONFIGURING： 修改配置中。</li></ul>
         # @type Status: String
-        # @param EndpointGroupCounts: 所属监听器终端节点组个数。
+        # @param EndpointGroupCounts: <p>所属监听器终端节点组个数。</p>
         # @type EndpointGroupCounts: Integer
-        # @param GetRealIpType: 四层获取源IP方式。
+        # @param GetRealIpType: <p>四层获取源IP方式。</p>
         # @type GetRealIpType: String
-        # @param IdleTimeout: 连接超时时间。
+        # @param IdleTimeout: <p>连接超时时间。</p>
         # @type IdleTimeout: Integer
 
         attr_accessor :GlobalAcceleratorId, :ListenerId, :Name, :Description, :Protocol, :PortRanges, :XForwardedForRealIp, :ClientAffinity, :ClientAffinityTime, :CertificationType, :ServerCertificates, :ClientCaCertificates, :CipherPolicyId, :HttpVersion, :RequestTimeout, :CreateTime, :ListenerType, :Status, :EndpointGroupCounts, :GetRealIpType, :IdleTimeout
@@ -2746,7 +2833,7 @@ module TencentCloud
         # @type UnhealthyThreshold: Integer
         # @param HealthyThreshold: <p>健康阀值。</p><p>取值范围：[1, 10]</p><p>当开启健康检查时，此字段必传。</p>
         # @type HealthyThreshold: Integer
-        # @param CheckType: <p>检查协议。</p><p>入参限制：支持填写：&#39;TCP&#39;, &#39;HTTP&#39;, &#39;PING&#39;, &#39;CUSTOM&#39;。</p><p>1、当监听器是TCP时，可以选CUSTOM+TCP。<br>2、当监听器是UDP时，可以选PING+CUSTOM。<br>3、当监听器是HTTP或HTTPS时，可以选HTTP。</p>
+        # @param CheckType: <p>检查协议。</p><p>入参限制：支持填写：&#39;TCP&#39;, &#39;HTTP&#39;, &#39;PING&#39;, &#39;CUSTOM&#39;,&#39;HTTPS&#39;。</p><p>1、当监听器是TCP时，可以选CUSTOM+TCP。2、当监听器是UDP时，可以选PING+CUSTOM。3、当监听器是HTTP或HTTPS时，可以选HTTP。4、当监听器是HTTS时，可以选HTTPS。</p>
         # @type CheckType: String
         # @param CheckPort: <p>检查端口。</p><p>取值范围：[1, 65535]</p><p>当CheckType是CUSTOM时，此字段必传。</p>
         # @type CheckPort: Integer
@@ -3269,10 +3356,12 @@ module TencentCloud
         # @type ClientCaCertificates: Array
         # @param GetRealIpType: <p>获取源IP方式。</p><p>入参限制：支持选择&#39;ProxyProtocol&#39;, &#39;Close&#39;, &#39;ProxyProtocolV2&#39;, &#39;TOA&#39;。</p><p>TCP监听器才支持此参数修改。</p>
         # @type GetRealIpType: String
+        # @param HttpVersion: <p>HTTPS监听器支持选择版本</p><p>枚举值：</p><ul><li>HTTP/1.1： 版本HTTP/1.1</li><li>HTTP/2： 版本HTTP/2</li></ul>
+        # @type HttpVersion: String
 
-        attr_accessor :GlobalAcceleratorId, :ListenerId, :Name, :Description, :IdleTimeout, :ClientAffinity, :ClientAffinityTime, :RequestTimeout, :XForwardedForRealIp, :CertificationType, :CipherPolicyId, :ServerCertificates, :ClientCaCertificates, :GetRealIpType
+        attr_accessor :GlobalAcceleratorId, :ListenerId, :Name, :Description, :IdleTimeout, :ClientAffinity, :ClientAffinityTime, :RequestTimeout, :XForwardedForRealIp, :CertificationType, :CipherPolicyId, :ServerCertificates, :ClientCaCertificates, :GetRealIpType, :HttpVersion
 
-        def initialize(globalacceleratorid=nil, listenerid=nil, name=nil, description=nil, idletimeout=nil, clientaffinity=nil, clientaffinitytime=nil, requesttimeout=nil, xforwardedforrealip=nil, certificationtype=nil, cipherpolicyid=nil, servercertificates=nil, clientcacertificates=nil, getrealiptype=nil)
+        def initialize(globalacceleratorid=nil, listenerid=nil, name=nil, description=nil, idletimeout=nil, clientaffinity=nil, clientaffinitytime=nil, requesttimeout=nil, xforwardedforrealip=nil, certificationtype=nil, cipherpolicyid=nil, servercertificates=nil, clientcacertificates=nil, getrealiptype=nil, httpversion=nil)
           @GlobalAcceleratorId = globalacceleratorid
           @ListenerId = listenerid
           @Name = name
@@ -3287,6 +3376,7 @@ module TencentCloud
           @ServerCertificates = servercertificates
           @ClientCaCertificates = clientcacertificates
           @GetRealIpType = getrealiptype
+          @HttpVersion = httpversion
         end
 
         def deserialize(params)
@@ -3304,6 +3394,7 @@ module TencentCloud
           @ServerCertificates = params['ServerCertificates']
           @ClientCaCertificates = params['ClientCaCertificates']
           @GetRealIpType = params['GetRealIpType']
+          @HttpVersion = params['HttpVersion']
         end
       end
 

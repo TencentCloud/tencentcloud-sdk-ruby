@@ -2215,13 +2215,13 @@ module TencentCloud
 
       # CreateCLSLogConfig请求参数结构体
       class CreateCLSLogConfigRequest < TencentCloud::Common::AbstractModel
-        # @param LogConfig: 日志采集配置的json表达
+        # @param LogConfig: <p>日志采集配置的json表达</p>
         # @type LogConfig: String
-        # @param ClusterId: 集群ID
+        # @param ClusterId: <p>集群ID</p>
         # @type ClusterId: String
-        # @param LogsetId: CLS日志集ID
+        # @param LogsetId: <p>CLS日志集ID</p>
         # @type LogsetId: String
-        # @param ClusterType: 当前集群类型支持tke（标准集群）、eks（serverless集群）
+        # @param ClusterType: <p>当前集群类型支持tke（标准集群）、eks（serverless集群）</p>
         # @type ClusterType: String
 
         attr_accessor :LogConfig, :ClusterId, :LogsetId, :ClusterType
@@ -3484,11 +3484,11 @@ module TencentCloud
 
       # CreateEksLogConfig请求参数结构体
       class CreateEksLogConfigRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: <p>集群ID</p>
         # @type ClusterId: String
-        # @param LogConfig: 日志采集配置的json表达
+        # @param LogConfig: <p>日志采集配置的json表达</p>
         # @type LogConfig: String
-        # @param LogsetId: 日志集ID
+        # @param LogsetId: <p>日志集ID</p>
         # @type LogsetId: String
 
         attr_accessor :ClusterId, :LogConfig, :LogsetId
@@ -3508,7 +3508,7 @@ module TencentCloud
 
       # CreateEksLogConfig返回参数结构体
       class CreateEksLogConfigResponse < TencentCloud::Common::AbstractModel
-        # @param TopicId: 日志采集topicid
+        # @param TopicId: <p>日志采集topicid</p>
         # @type TopicId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
