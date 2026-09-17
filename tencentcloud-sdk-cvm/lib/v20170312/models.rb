@@ -5547,6 +5547,8 @@ module TencentCloud
         # @type LicenseType: String
         # @param DisableApiTermination: <p>实例销毁保护标志，表示是否允许通过api接口删除实例。取值范围：<br><li>true：表示开启实例保护，不允许通过api接口删除实例</li><li>false：表示关闭实例保护，允许通过api接口删除实例</li><br>默认取值：false。</p>
         # @type DisableApiTermination: Boolean
+        # @param HostName: <p>实例主机名。</p>
+        # @type HostName: String
         # @param DefaultLoginUser: <p>默认登录用户。</p>
         # @type DefaultLoginUser: String
         # @param DefaultLoginPort: <p>默认登录端口。</p>
@@ -5565,12 +5567,12 @@ module TencentCloud
         # @param PartitionNumber: <p>分区置放群组的分区号，具体取决于所选置放群组的分区数量(功能灰度中)</p>
         # @type PartitionNumber: Integer
 
-        attr_accessor :Placement, :InstanceId, :InstanceType, :CPU, :Memory, :RestrictState, :InstanceName, :InstanceChargeType, :SystemDisk, :DataDisks, :PrivateIpAddresses, :PublicIpAddresses, :InternetAccessible, :VirtualPrivateCloud, :ImageId, :RenewFlag, :CreatedTime, :ExpiredTime, :OsName, :SecurityGroupIds, :LoginSettings, :InstanceState, :Tags, :StopChargingMode, :Uuid, :LatestOperation, :LatestOperationState, :LatestOperationRequestId, :DisasterRecoverGroupId, :IPv6Addresses, :CamRoleName, :HpcClusterId, :RdmaIpAddresses, :DedicatedClusterId, :IsolatedSource, :DisasterRecoverGroupIds, :GPUInfo, :LicenseType, :DisableApiTermination, :DefaultLoginUser, :DefaultLoginPort, :LatestOperationErrorMsg, :EnableJumboFrame, :Metadata, :PublicIPv6Addresses, :CpuTopology, :PartitionNumber
+        attr_accessor :Placement, :InstanceId, :InstanceType, :CPU, :Memory, :RestrictState, :InstanceName, :InstanceChargeType, :SystemDisk, :DataDisks, :PrivateIpAddresses, :PublicIpAddresses, :InternetAccessible, :VirtualPrivateCloud, :ImageId, :RenewFlag, :CreatedTime, :ExpiredTime, :OsName, :SecurityGroupIds, :LoginSettings, :InstanceState, :Tags, :StopChargingMode, :Uuid, :LatestOperation, :LatestOperationState, :LatestOperationRequestId, :DisasterRecoverGroupId, :IPv6Addresses, :CamRoleName, :HpcClusterId, :RdmaIpAddresses, :DedicatedClusterId, :IsolatedSource, :DisasterRecoverGroupIds, :GPUInfo, :LicenseType, :DisableApiTermination, :HostName, :DefaultLoginUser, :DefaultLoginPort, :LatestOperationErrorMsg, :EnableJumboFrame, :Metadata, :PublicIPv6Addresses, :CpuTopology, :PartitionNumber
         extend Gem::Deprecate
         deprecate :DisasterRecoverGroupId, :none, 2026, 9
         deprecate :DisasterRecoverGroupId=, :none, 2026, 9
 
-        def initialize(placement=nil, instanceid=nil, instancetype=nil, cpu=nil, memory=nil, restrictstate=nil, instancename=nil, instancechargetype=nil, systemdisk=nil, datadisks=nil, privateipaddresses=nil, publicipaddresses=nil, internetaccessible=nil, virtualprivatecloud=nil, imageid=nil, renewflag=nil, createdtime=nil, expiredtime=nil, osname=nil, securitygroupids=nil, loginsettings=nil, instancestate=nil, tags=nil, stopchargingmode=nil, uuid=nil, latestoperation=nil, latestoperationstate=nil, latestoperationrequestid=nil, disasterrecovergroupid=nil, ipv6addresses=nil, camrolename=nil, hpcclusterid=nil, rdmaipaddresses=nil, dedicatedclusterid=nil, isolatedsource=nil, disasterrecovergroupids=nil, gpuinfo=nil, licensetype=nil, disableapitermination=nil, defaultloginuser=nil, defaultloginport=nil, latestoperationerrormsg=nil, enablejumboframe=nil, metadata=nil, publicipv6addresses=nil, cputopology=nil, partitionnumber=nil)
+        def initialize(placement=nil, instanceid=nil, instancetype=nil, cpu=nil, memory=nil, restrictstate=nil, instancename=nil, instancechargetype=nil, systemdisk=nil, datadisks=nil, privateipaddresses=nil, publicipaddresses=nil, internetaccessible=nil, virtualprivatecloud=nil, imageid=nil, renewflag=nil, createdtime=nil, expiredtime=nil, osname=nil, securitygroupids=nil, loginsettings=nil, instancestate=nil, tags=nil, stopchargingmode=nil, uuid=nil, latestoperation=nil, latestoperationstate=nil, latestoperationrequestid=nil, disasterrecovergroupid=nil, ipv6addresses=nil, camrolename=nil, hpcclusterid=nil, rdmaipaddresses=nil, dedicatedclusterid=nil, isolatedsource=nil, disasterrecovergroupids=nil, gpuinfo=nil, licensetype=nil, disableapitermination=nil, hostname=nil, defaultloginuser=nil, defaultloginport=nil, latestoperationerrormsg=nil, enablejumboframe=nil, metadata=nil, publicipv6addresses=nil, cputopology=nil, partitionnumber=nil)
           @Placement = placement
           @InstanceId = instanceid
           @InstanceType = instancetype
@@ -5610,6 +5612,7 @@ module TencentCloud
           @GPUInfo = gpuinfo
           @LicenseType = licensetype
           @DisableApiTermination = disableapitermination
+          @HostName = hostname
           @DefaultLoginUser = defaultloginuser
           @DefaultLoginPort = defaultloginport
           @LatestOperationErrorMsg = latestoperationerrormsg
@@ -5692,6 +5695,7 @@ module TencentCloud
           end
           @LicenseType = params['LicenseType']
           @DisableApiTermination = params['DisableApiTermination']
+          @HostName = params['HostName']
           @DefaultLoginUser = params['DefaultLoginUser']
           @DefaultLoginPort = params['DefaultLoginPort']
           @LatestOperationErrorMsg = params['LatestOperationErrorMsg']

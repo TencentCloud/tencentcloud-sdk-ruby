@@ -172,10 +172,14 @@ module TencentCloud
         # @type OfflineTime: String
         # @param ProductName: <p>商业化资源归属</p>
         # @type ProductName: String
+        # @param Capabilities: <p>具备能力</p>
+        # @type Capabilities: Array
+        # @param DeploymentFree: <p>是否是免部署实例</p>
+        # @type DeploymentFree: Boolean
 
-        attr_accessor :InstanceId, :InstanceName, :AgentId, :AgentName, :AgentInternalName, :AgentType, :AgentVersion, :Status, :Parameters, :CreateTime, :UpdateTime, :Tags, :DeployPlace, :PolicyIds, :ClawConfig, :InstanceType, :AllowedActions, :LastActiveTime, :Description, :CreatingProgress, :RoleName, :OfflineTime, :ProductName
+        attr_accessor :InstanceId, :InstanceName, :AgentId, :AgentName, :AgentInternalName, :AgentType, :AgentVersion, :Status, :Parameters, :CreateTime, :UpdateTime, :Tags, :DeployPlace, :PolicyIds, :ClawConfig, :InstanceType, :AllowedActions, :LastActiveTime, :Description, :CreatingProgress, :RoleName, :OfflineTime, :ProductName, :Capabilities, :DeploymentFree
 
-        def initialize(instanceid=nil, instancename=nil, agentid=nil, agentname=nil, agentinternalname=nil, agenttype=nil, agentversion=nil, status=nil, parameters=nil, createtime=nil, updatetime=nil, tags=nil, deployplace=nil, policyids=nil, clawconfig=nil, instancetype=nil, allowedactions=nil, lastactivetime=nil, description=nil, creatingprogress=nil, rolename=nil, offlinetime=nil, productname=nil)
+        def initialize(instanceid=nil, instancename=nil, agentid=nil, agentname=nil, agentinternalname=nil, agenttype=nil, agentversion=nil, status=nil, parameters=nil, createtime=nil, updatetime=nil, tags=nil, deployplace=nil, policyids=nil, clawconfig=nil, instancetype=nil, allowedactions=nil, lastactivetime=nil, description=nil, creatingprogress=nil, rolename=nil, offlinetime=nil, productname=nil, capabilities=nil, deploymentfree=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @AgentId = agentid
@@ -199,6 +203,8 @@ module TencentCloud
           @RoleName = rolename
           @OfflineTime = offlinetime
           @ProductName = productname
+          @Capabilities = capabilities
+          @DeploymentFree = deploymentfree
         end
 
         def deserialize(params)
@@ -245,6 +251,28 @@ module TencentCloud
           @RoleName = params['RoleName']
           @OfflineTime = params['OfflineTime']
           @ProductName = params['ProductName']
+          @Capabilities = params['Capabilities']
+          @DeploymentFree = params['DeploymentFree']
+        end
+      end
+
+      # 聊天图片附件列表
+      class Attachments < TencentCloud::Common::AbstractModel
+        # @param CosKey: <p>cos key</p>
+        # @type CosKey: String
+        # @param MimeType: <p>图片类型</p>
+        # @type MimeType: String
+
+        attr_accessor :CosKey, :MimeType
+
+        def initialize(coskey=nil, mimetype=nil)
+          @CosKey = coskey
+          @MimeType = mimetype
+        end
+
+        def deserialize(params)
+          @CosKey = params['CosKey']
+          @MimeType = params['MimeType']
         end
       end
 
@@ -557,15 +585,18 @@ module TencentCloud
         # @type IsHidden: Boolean
         # @param IsChatHidden: <p>是否隐藏会话</p>
         # @type IsChatHidden: Boolean
+        # @param Attachments: <p>传递图片附件</p>
+        # @type Attachments: Array
 
-        attr_accessor :InputContent, :InstanceId, :ChatId, :IsHidden, :IsChatHidden
+        attr_accessor :InputContent, :InstanceId, :ChatId, :IsHidden, :IsChatHidden, :Attachments
 
-        def initialize(inputcontent=nil, instanceid=nil, chatid=nil, ishidden=nil, ischathidden=nil)
+        def initialize(inputcontent=nil, instanceid=nil, chatid=nil, ishidden=nil, ischathidden=nil, attachments=nil)
           @InputContent = inputcontent
           @InstanceId = instanceid
           @ChatId = chatid
           @IsHidden = ishidden
           @IsChatHidden = ischathidden
+          @Attachments = attachments
         end
 
         def deserialize(params)
@@ -574,6 +605,14 @@ module TencentCloud
           @ChatId = params['ChatId']
           @IsHidden = params['IsHidden']
           @IsChatHidden = params['IsChatHidden']
+          unless params['Attachments'].nil?
+            @Attachments = []
+            params['Attachments'].each do |i|
+              attachments_tmp = Attachments.new
+              attachments_tmp.deserialize(i)
+              @Attachments << attachments_tmp
+            end
+          end
         end
       end
 

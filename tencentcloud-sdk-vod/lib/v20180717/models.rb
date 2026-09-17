@@ -2370,13 +2370,13 @@ module TencentCloud
 
       # 物体识别结果片段。
       class AiRecognitionTaskObjectSeqmentItem < TencentCloud::Common::AbstractModel
-        # @param StartTimeOffset: 识别片段起始的偏移时间，单位：秒。
+        # @param StartTimeOffset: <p>识别片段起始的偏移时间，单位：秒。</p>
         # @type StartTimeOffset: Float
-        # @param EndTimeOffset: 识别片段终止的偏移时间，单位：秒。
+        # @param EndTimeOffset: <p>识别片段终止的偏移时间，单位：秒。</p>
         # @type EndTimeOffset: Float
-        # @param Confidence: 识别片段置信度。取值：0~100。
+        # @param Confidence: <p>识别片段置信度。取值：0~100。</p>
         # @type Confidence: Float
-        # @param AreaCoordSet: 识别结果的区域坐标。数组包含 4 个元素 [x1,y1,x2,y2]，依次表示区域左上点、右下点的横纵坐标。
+        # @param AreaCoordSet: <p>识别结果的区域坐标。数组包含 4 个元素 [x1,y1,x2,y2]，依次表示区域左上点、右下点的横纵坐标。</p>
         # @type AreaCoordSet: Array
 
         attr_accessor :StartTimeOffset, :EndTimeOffset, :Confidence, :AreaCoordSet
@@ -3953,14 +3953,11 @@ module TencentCloud
 
       # AI 样本管理，人脸数据操作。
       class AiSampleFaceOperation < TencentCloud::Common::AbstractModel
-        # @param Type: 操作类型，可选值：add（添加）、delete（删除）、reset（重置）。重置操作将清空该人物已有人脸数据，并添加 FaceContents 指定人脸数据。
+        # @param Type: <p>操作类型，可选值：add（添加）、delete（删除）、reset（重置）。重置操作将清空该人物已有人脸数据，并添加 FaceContents 指定人脸数据。</p>
         # @type Type: String
-        # @param FaceIds: 人脸 ID 集合，当 Type为delete 时，该字段必填。
+        # @param FaceIds: <p>人脸 ID 集合，当 Type为delete 时，该字段必填。</p>
         # @type FaceIds: Array
-        # @param FaceContents: 人脸图片 [Base64](https://tools.ietf.org/html/rfc4648) 编码后的字符串集合，仅支持 jpeg、png 图片格式。
-        # <li>当 Type为add 或 reset 时，该字段必填；</li>
-        # <li>数组长度限制：5 张图片。</li>
-        # 注意：图片必须是单人像正面人脸较清晰的照片，像素不低于 200*200。
+        # @param FaceContents: <p>人脸图片 <a href="https://tools.ietf.org/html/rfc4648">Base64</a> 编码后的字符串集合，仅支持 jpeg、png 图片格式。</p><li>当 Type为add 或 reset 时，该字段必填；</li><li>数组长度限制：5 张图片。</li>注意：图片必须是单人像正面人脸较清晰的照片，像素不低于 200*200。
         # @type FaceContents: Array
 
         attr_accessor :Type, :FaceIds, :FaceContents
@@ -4006,21 +4003,21 @@ module TencentCloud
 
       # AI 样本管理，人物信息。
       class AiSamplePerson < TencentCloud::Common::AbstractModel
-        # @param PersonId: 人物 ID。
+        # @param PersonId: <p>人物 ID。</p>
         # @type PersonId: String
-        # @param Name: 人物名称。
+        # @param Name: <p>人物名称。</p>
         # @type Name: String
-        # @param Description: 人物描述。
+        # @param Description: <p>人物描述。</p>
         # @type Description: String
-        # @param FaceInfoSet: 人脸信息。
+        # @param FaceInfoSet: <p>人脸信息。</p>
         # @type FaceInfoSet: Array
-        # @param TagSet: 人物标签。
+        # @param TagSet: <p>人物标签。</p>
         # @type TagSet: Array
-        # @param UsageSet: 应用场景。
+        # @param UsageSet: <p>应用场景。</p>
         # @type UsageSet: Array
-        # @param CreateTime: 创建时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @param CreateTime: <p>创建时间，使用 <a href="https://cloud.tencent.com/document/product/266/11732#I">ISO 日期格式</a>。</p>
         # @type CreateTime: String
-        # @param UpdateTime: 最后修改时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @param UpdateTime: <p>最后修改时间，使用 <a href="https://cloud.tencent.com/document/product/266/11732#I">ISO 日期格式</a>。</p>
         # @type UpdateTime: String
 
         attr_accessor :PersonId, :Name, :Description, :FaceInfoSet, :TagSet, :UsageSet, :CreateTime, :UpdateTime
@@ -4057,9 +4054,9 @@ module TencentCloud
 
       # AI 样本管理，标签操作。
       class AiSampleTagOperation < TencentCloud::Common::AbstractModel
-        # @param Type: 操作类型，可选值：add（添加）、delete（删除）、reset（重置）。
+        # @param Type: <p>操作类型，可选值：add（添加）、delete（删除）、reset（重置）。</p>
         # @type Type: String
-        # @param Tags: 标签，长度限制：128 个字符。
+        # @param Tags: <p>标签，长度限制：128 个字符。</p>
         # @type Tags: Array
 
         attr_accessor :Type, :Tags
@@ -4077,15 +4074,15 @@ module TencentCloud
 
       # AI 样本管理，关键词输出信息。
       class AiSampleWord < TencentCloud::Common::AbstractModel
-        # @param Keyword: 关键词。
+        # @param Keyword: <p>关键词。</p>
         # @type Keyword: String
-        # @param TagSet: 关键词标签。
+        # @param TagSet: <p>关键词标签。</p>
         # @type TagSet: Array
-        # @param UsageSet: 关键词应用场景。
+        # @param UsageSet: <p>关键词应用场景。</p>
         # @type UsageSet: Array
-        # @param CreateTime: 创建时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @param CreateTime: <p>创建时间，使用 <a href="https://cloud.tencent.com/document/product/266/11732#I">ISO 日期格式</a>。</p>
         # @type CreateTime: String
-        # @param UpdateTime: 最后修改时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @param UpdateTime: <p>最后修改时间，使用 <a href="https://cloud.tencent.com/document/product/266/11732#I">ISO 日期格式</a>。</p>
         # @type UpdateTime: String
 
         attr_accessor :Keyword, :TagSet, :UsageSet, :CreateTime, :UpdateTime
@@ -4109,11 +4106,9 @@ module TencentCloud
 
       # AI 样本管理，关键词输入信息。
       class AiSampleWordInfo < TencentCloud::Common::AbstractModel
-        # @param Keyword: 关键词，长度限制：20 个字符。
+        # @param Keyword: <p>关键词，长度限制：20 个字符。</p>
         # @type Keyword: String
-        # @param Tags: 关键词标签
-        # <li>数组长度限制：20 个标签；</li>
-        # <li>单个标签长度限制：128 个字符。</li>
+        # @param Tags: <p>关键词标签</p><li>数组长度限制：20 个标签；</li><li>单个标签长度限制：128 个字符。</li>
         # @type Tags: Array
 
         attr_accessor :Keyword, :Tags
@@ -6015,17 +6010,17 @@ module TencentCloud
 
       # AIGC 生视频任务的用量。
       class AigcVideoTaskUsage < TencentCloud::Common::AbstractModel
-        # @param InputTokens: <p>输入 Token 数目。</p>
+        # @param InputTokens: <p>输入 Token 数目。</p><p>仅使用 GV 的 omni 版本时取值有效。</p>
         # @type InputTokens: Integer
-        # @param ThoughtTokens: <p>思考产生的 Token 数目。</p>
+        # @param ThoughtTokens: <p>思考产生的 Token 数目。</p><p>仅使用 GV 的 omni 版本时取值有效。</p>
         # @type ThoughtTokens: Integer
-        # @param InputImageCount: <p>输入图片数目。</p>
+        # @param InputImageCount: <p>输入图片数目。</p><p>仅使用 Hailuo 的 H3 版本时取值有效。</p>
         # @type InputImageCount: Integer
-        # @param InputSeconds: <p>输入视频的时长。</p><p>单位：秒。</p>
+        # @param InputSeconds: <p>输入视频的时长。</p><p>单位：秒。</p><p>仅使用 Hailuo 的 H3 版本时取值有效。</p>
         # @type InputSeconds: Integer
-        # @param OutputSeconds: <p>输出视频时长。</p><p>单位：秒。</p>
+        # @param OutputSeconds: <p>输出视频时长。</p><p>单位：秒。</p><p>仅使用 Hailuo 的 H3 版本时取值有效。</p>
         # @type OutputSeconds: Integer
-        # @param TotalSeconds: <p>输入输出总时长。</p><p>默认值：秒。</p>
+        # @param TotalSeconds: <p>输入输出总时长。</p><p>默认值：秒。</p><p>仅使用 Hailuo 的 H3 版本时取值有效。</p>
         # @type TotalSeconds: Integer
 
         attr_accessor :InputTokens, :ThoughtTokens, :InputImageCount, :InputSeconds, :OutputSeconds, :TotalSeconds
@@ -6322,28 +6317,15 @@ module TencentCloud
       # 语音全文识别任务控制参数。
       # <font color=red>注意：本参数已不再维护，推荐使用 AsrTranslateConfigure 参数发起语音翻译识别（当 DstLanguage 不填或填空字符串时，则不进行翻译，计费项和语音全文识别一致）。</font>
       class AsrFullTextConfigureInfo < TencentCloud::Common::AbstractModel
-        # @param Switch: 语音全文识别任务开关，可选值：
-        # <li>ON：开启智能语音全文识别任务；</li>
-        # <li>OFF：关闭智能语音全文识别任务。</li>
+        # @param Switch: <p>语音全文识别任务开关，可选值：</p><li>ON：开启智能语音全文识别任务；</li><li>OFF：关闭智能语音全文识别任务。</li>
         # @type Switch: String
-        # @param SubtitleFormats: 生成的字幕文件格式列表，不填或者填空数组表示不生成字幕文件，可选值：
-        # <li>vtt：生成 WebVTT 字幕文件；</li>
-        # <li>srt：生成 SRT 字幕文件。</li><font color=red>注意：</font>云点播媒资信息仅支持添加 vtt 字幕，因此当且仅当 SubtitleFormats 包含 vtt 时，云点播将生成的字幕添加到媒资。
+        # @param SubtitleFormats: <p>生成的字幕文件格式列表，不填或者填空数组表示不生成字幕文件，可选值：</p><li>vtt：生成 WebVTT 字幕文件；</li><li>srt：生成 SRT 字幕文件。</li><font color="red">注意：</font>云点播媒资信息仅支持添加 vtt 字幕，因此当且仅当 SubtitleFormats 包含 vtt 时，云点播将生成的字幕添加到媒资。
         # @type SubtitleFormats: Array
-        # @param SubtitleFormat: 生成的字幕文件格式，不填或者填空字符串表示不生成字幕文件，可选值：
-        # <li>vtt：生成 WebVTT 字幕文件；</li>
-        # <li>srt：生成 SRT 字幕文件。</li>
-        # <font color='red'>注意：此字段已废弃，建议使用 SubtitleFormats。</font>
+        # @param SubtitleFormat: <p>生成的字幕文件格式，不填或者填空字符串表示不生成字幕文件，可选值：</p><li>vtt：生成 WebVTT 字幕文件；</li><li>srt：生成 SRT 字幕文件。</li><font color="red">注意：此字段已废弃，建议使用 SubtitleFormats。</font>
         # @type SubtitleFormat: String
-        # @param SrcLanguage: 媒体源语言，取值范围：
-        # <li>zh：中文普通话；</li>
-        # <li>en：英语；</li>
-        # <li>ja：日语；</li>
-        # <li>zh-ca：粤语。</li>
-        # <font color=red>注意：</font> 填空字符串，或者不填该参数，则自动识别（效果较难保证，推荐填写原始媒体对应的语言，以提高识别的准确率）。
+        # @param SrcLanguage: <p>媒体源语言，取值范围：</p><li>zh：中文普通话；</li><li>en：英语；</li><li>ja：日语；</li><li>zh-ca：粤语。</li><font color="red">注意：</font> 填空字符串，或者不填该参数，则自动识别（效果较难保证，推荐填写原始媒体对应的语言，以提高识别的准确率）。
         # @type SrcLanguage: String
-        # @param SubtitleName: 指定字幕名称，长度限制：64 个字符。该值将用于播放器展示，若不填则云点播自动生成。
-        # <font color=red>注意：</font>仅当 SubtitleFormats 包含 vtt 时，该字段有效。
+        # @param SubtitleName: <p>指定字幕名称，长度限制：64 个字符。该值将用于播放器展示，若不填则云点播自动生成。<br><font color="red">注意：</font>仅当 SubtitleFormats 包含 vtt 时，该字段有效。</p>
         # @type SubtitleName: String
 
         attr_accessor :Switch, :SubtitleFormats, :SubtitleFormat, :SrcLanguage, :SubtitleName
@@ -8413,16 +8395,13 @@ module TencentCloud
 
       # 图片Ocr 文字鉴别信息的任务结果类型
       class ContentReviewOcrResult < TencentCloud::Common::AbstractModel
-        # @param Confidence: Ocr 文字鉴别结果的评分，分值为0到100。
+        # @param Confidence: <p>Ocr 文字鉴别结果的评分，分值为0到100。</p>
         # @type Confidence: Float
-        # @param Suggestion: Ocr 文字鉴别的结果建议，取值范围：
-        # <li>pass；</li>
-        # <li>review；</li>
-        # <li>block。</li>
+        # @param Suggestion: <p>Ocr 文字鉴别的结果建议，取值范围：</p><li>pass；</li><li>review；</li><li>block。</li>
         # @type Suggestion: String
-        # @param KeywordSet: Ocr 文字鉴别的嫌疑关键词列表。
+        # @param KeywordSet: <p>Ocr 文字鉴别的嫌疑关键词列表。</p>
         # @type KeywordSet: Array
-        # @param AreaCoordSet: Ocr 文字鉴别的嫌疑文字出现的区域坐标 (像素级)，[x1, y1, x2, y2]，即左上角坐标、右下角坐标。
+        # @param AreaCoordSet: <p>Ocr 文字鉴别的嫌疑文字出现的区域坐标 (像素级)，[x1, y1, x2, y2]，即左上角坐标、右下角坐标。</p>
         # @type AreaCoordSet: Array
 
         attr_accessor :Confidence, :Suggestion, :KeywordSet, :AreaCoordSet
@@ -9781,6 +9760,126 @@ module TencentCloud
         end
       end
 
+      # CreateAigcHunyuan3DTask请求参数结构体
+      class CreateAigcHunyuan3DTaskRequest < TencentCloud::Common::AbstractModel
+        # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b></p>
+        # @type SubAppId: Integer
+        # @param ImageInfos: <p>生成 3D 模型的参考图片信息。</p><p>入参限制：数组长度最大为1。</p><p>ImageInfos、MultiViewImageInfos、Prompt 三个入参各自互斥，有且只能填写一个。</p>
+        # @type ImageInfos: Array
+        # @param MultiViewImageInfos: <p>用于生成 3D 模型的多视角图片信息。</p><p>入参限制：数组长度必须在2-8之间，且必须包含 front 视角。</p><p>ImageInfos、MultiViewImageInfos、Prompt 三个入参各自互斥，有且只能填写一个。</p>
+        # @type MultiViewImageInfos: Array
+        # @param Prompt: <p>生成 3D 模型的提示词。</p><p>入参限制：最长 1024 个 utf-8 字符。</p><p>ImageInfos、MultiViewImageInfos、Prompt 三个入参各自互斥，有且只能填写一个。</p>
+        # @type Prompt: String
+        # @param GenerateType: <p>生成类型。</p><p>枚举值：</p><ul><li>Normal： 生成完整 3D 资产（几何 + 纹理）；</li><li>Geometry： 只生成几何体（无纹理，输出速度更快）；</li><li>Texture： 只生成纹理（需要填写 MeshInfos）</li></ul><p>默认值：Normal</p>
+        # @type GenerateType: String
+        # @param MeshInfos: <p>用于生成 3D 模型的参考 3D 模型。</p><p>入参限制：当填写 MeshInfos 时，则 GenerateType 取值必须为 Texture（贴纹理场景）。</p>
+        # @type MeshInfos: Array
+        # @param EnablePBR: <p>是否开启输出 PBR 材质。</p><p>枚举值：</p><ul><li>Enabled： 开启；</li><li>Disabled： 关闭。</li></ul><p>默认值：Disabled</p>
+        # @type EnablePBR: String
+        # @param FaceCount: <p>面片数。仅 GenerateType 取值为 Normal  和 Geometry 时生效。</p><p>取值范围：[3000, 1500000]</p><p>默认值：500000</p>
+        # @type FaceCount: Integer
+        # @param KeepUV: <p>是否保留 UV 展开。</p><p>枚举值：</p><ul><li>Enabled： 保留；</li><li>Disabled： 不保留。</li></ul><p>默认值：Disabled</p>
+        # @type KeepUV: String
+        # @param ResultFormat: <p>结果格式。除默认返回的 obj 和 glb 外，附加输出的一种格式。</p><p>枚举值：</p><ul><li>FBX： FBX 格式文件。</li></ul>
+        # @type ResultFormat: String
+        # @param Seed: <p>随机种子，同一 Seed 输入下结果可复现。</p><p>取值范围：[0, 2147483647]</p>
+        # @type Seed: Integer
+        # @param Style: <p>风格控制词。</p>
+        # @type Style: String
+        # @param OutputConfig: <p>任务的输出媒体文件配置。</p>
+        # @type OutputConfig: :class:`Tencentcloud::Vod.v20180717.models.AigcHunyuan3DOutputConfig`
+        # @param SessionId: <p>用于去重的识别码，如果三天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。</p>
+        # @type SessionId: String
+        # @param SessionContext: <p>来源上下文，用于透传用户请求信息，音画质重生完成回调将返回该字段值，最长 1000 个字符。</p>
+        # @type SessionContext: String
+        # @param TasksPriority: <p>任务的优先级，数值越大优先级越高，取值范围是 -10 到 10，不填代表 0。</p>
+        # @type TasksPriority: Integer
+
+        attr_accessor :SubAppId, :ImageInfos, :MultiViewImageInfos, :Prompt, :GenerateType, :MeshInfos, :EnablePBR, :FaceCount, :KeepUV, :ResultFormat, :Seed, :Style, :OutputConfig, :SessionId, :SessionContext, :TasksPriority
+
+        def initialize(subappid=nil, imageinfos=nil, multiviewimageinfos=nil, prompt=nil, generatetype=nil, meshinfos=nil, enablepbr=nil, facecount=nil, keepuv=nil, resultformat=nil, seed=nil, style=nil, outputconfig=nil, sessionid=nil, sessioncontext=nil, taskspriority=nil)
+          @SubAppId = subappid
+          @ImageInfos = imageinfos
+          @MultiViewImageInfos = multiviewimageinfos
+          @Prompt = prompt
+          @GenerateType = generatetype
+          @MeshInfos = meshinfos
+          @EnablePBR = enablepbr
+          @FaceCount = facecount
+          @KeepUV = keepuv
+          @ResultFormat = resultformat
+          @Seed = seed
+          @Style = style
+          @OutputConfig = outputconfig
+          @SessionId = sessionid
+          @SessionContext = sessioncontext
+          @TasksPriority = taskspriority
+        end
+
+        def deserialize(params)
+          @SubAppId = params['SubAppId']
+          unless params['ImageInfos'].nil?
+            @ImageInfos = []
+            params['ImageInfos'].each do |i|
+              aigchunyuan3dreferenceimageinfo_tmp = AigcHunyuan3DReferenceImageInfo.new
+              aigchunyuan3dreferenceimageinfo_tmp.deserialize(i)
+              @ImageInfos << aigchunyuan3dreferenceimageinfo_tmp
+            end
+          end
+          unless params['MultiViewImageInfos'].nil?
+            @MultiViewImageInfos = []
+            params['MultiViewImageInfos'].each do |i|
+              aigchunyuan3dmultiviewimageinfo_tmp = AigcHunyuan3DMultiViewImageInfo.new
+              aigchunyuan3dmultiviewimageinfo_tmp.deserialize(i)
+              @MultiViewImageInfos << aigchunyuan3dmultiviewimageinfo_tmp
+            end
+          end
+          @Prompt = params['Prompt']
+          @GenerateType = params['GenerateType']
+          unless params['MeshInfos'].nil?
+            @MeshInfos = []
+            params['MeshInfos'].each do |i|
+              aigchunyuan3dmeshinfo_tmp = AigcHunyuan3DMeshInfo.new
+              aigchunyuan3dmeshinfo_tmp.deserialize(i)
+              @MeshInfos << aigchunyuan3dmeshinfo_tmp
+            end
+          end
+          @EnablePBR = params['EnablePBR']
+          @FaceCount = params['FaceCount']
+          @KeepUV = params['KeepUV']
+          @ResultFormat = params['ResultFormat']
+          @Seed = params['Seed']
+          @Style = params['Style']
+          unless params['OutputConfig'].nil?
+            @OutputConfig = AigcHunyuan3DOutputConfig.new
+            @OutputConfig.deserialize(params['OutputConfig'])
+          end
+          @SessionId = params['SessionId']
+          @SessionContext = params['SessionContext']
+          @TasksPriority = params['TasksPriority']
+        end
+      end
+
+      # CreateAigcHunyuan3DTask返回参数结构体
+      class CreateAigcHunyuan3DTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务 ID。</p>
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateAigcImageTask请求参数结构体
       class CreateAigcImageTaskRequest < TencentCloud::Common::AbstractModel
         # @param SubAppId: <p><b>点播<a href="https://cloud.tencent.com/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b></p>
@@ -9811,7 +9910,7 @@ module TencentCloud
         # @type SessionContext: String
         # @param TasksPriority: <p>任务的优先级，数值越大优先级越高，取值范围是 -10 到 10，不填代表 0。</p>
         # @type TasksPriority: Integer
-        # @param ExtInfo: <p>保留字段，特殊用途时使用。</p><ul><li><p>Hunyuan 3.0</p><ul><li>支持自由设置分辨率宽高，宽、高均在 [512, 2048] 像素范围内，宽高乘积 ≤ 1024x1024 像素。示例：<code>{&quot;AdditionalParameters&quot;: &quot;{\&quot;size\&quot;:\&quot;728x1024\&quot;}&quot;}</code></li></ul></li><li><p>OG</p><ul><li>支持自由设置分辨率宽高：<ul><li>计算像素大小，需要被16整除</li><li>总像素数必须至少为655,360，且不得超过 8,294,400</li><li>示例：<code>{&quot;AdditionalParameters&quot;: &quot;{\&quot;size\&quot;:\&quot;728*1024\&quot;}&quot;}</code></li></ul></li><li>支持设置透明图层：<ul><li>示例：<code>{&quot;AdditionalParameters&quot;: &quot;{\&quot;background\&quot;:\&quot;transparent\&quot;}&quot;}</code></li></ul></li></ul></li><li><p>Kling</p><ul><li>支持设置扩图参数，示例：<code>{AdditionalParameters&quot;:&quot;{\&quot;down_expansion_ratio\&quot;:0.2,\&quot;left_expansion_ratio\&quot;:0.3,\&quot;right_expansion_ratio\&quot;:0.4,\&quot;up_expansion_ratio\&quot;:0.1}}</code><ul><li>通用约束：<ul><li>取值范围：[0, 2]；</li><li>新图片整体面积不得超过原图片的 3 倍；</li><li>可以通过 <code>Prompt</code> 字段传入正向提示词。</li><li>示例说明：<ul><li>up_expansion_ratio：向上扩充范围，基于原图高度的倍数计算。若原图高 20，参数值为 0.1，则原图顶边距离新图顶边为 20 × 0.1 = 2，该区域为扩图范围。</li><li>down_expansion_ratio：向下扩充范围，基于原图高度的倍数计算。若原图高 20，参数值为 0.2，则原图底边距离新图底边为 20 × 0.2 = 4，该区域为扩图范围。</li><li>left_expansion_ratio：向左扩充范围，基于原图宽度的倍数计算。若原图宽 30，参数值为 0.3，则原图左边距离新图左边为 30 × 0.3 = 9，该区域为扩图范围。</li><li>right_expansion_ratio：向右扩充范围，基于原图宽度的倍数计算。若原图宽 30，参数值为 0.4，则原图右边距离新图右边为 30 × 0.4 = 12，该区域为扩图范围。</li></ul></li></ul></li></ul></li></ul></li></ul>
+        # @param ExtInfo: <p>保留字段，特殊用途时使用。</p><ul><li><p>Hunyuan 3.0</p><ul><li>支持自由设置分辨率宽高，宽、高均在 [512, 2048] 像素范围内，宽高乘积 ≤ 1024x1024 像素。示例：<code>{&quot;AdditionalParameters&quot;: &quot;{\&quot;size\&quot;:\&quot;728x1024\&quot;}&quot;}</code></li></ul></li><li><p>OG</p><ul><li>支持自由设置分辨率宽高：<ul><li>计算像素大小，需要被16整除</li><li>总像素数必须至少为655,360，且不得超过 8,294,400</li><li>示例：<code>{&quot;AdditionalParameters&quot;: &quot;{\&quot;size\&quot;:\&quot;728x1024\&quot;}&quot;}</code></li></ul></li><li>支持设置透明图层：<ul><li>示例：<code>{&quot;AdditionalParameters&quot;: &quot;{\&quot;background\&quot;:\&quot;transparent\&quot;}&quot;}</code></li></ul></li></ul></li><li><p>Kling</p><ul><li>支持设置扩图参数，示例：<code>{&quot;AdditionalParameters&quot;:&quot;{\&quot;down_expansion_ratio\&quot;:0.2,\&quot;left_expansion_ratio\&quot;:0.3,\&quot;right_expansion_ratio\&quot;:0.4,\&quot;up_expansion_ratio\&quot;:0.1}}</code><ul><li>通用约束：<ul><li>取值范围：[0, 2]；</li><li>新图片整体面积不得超过原图片的 3 倍；</li><li>可以通过 <code>Prompt</code> 字段传入正向提示词。</li><li>示例说明：<ul><li>up_expansion_ratio：向上扩充范围，基于原图高度的倍数计算。若原图高 20，参数值为 0.1，则原图顶边距离新图顶边为 20 × 0.1 = 2，该区域为扩图范围。</li><li>down_expansion_ratio：向下扩充范围，基于原图高度的倍数计算。若原图高 20，参数值为 0.2，则原图底边距离新图底边为 20 × 0.2 = 4，该区域为扩图范围。</li><li>left_expansion_ratio：向左扩充范围，基于原图宽度的倍数计算。若原图宽 30，参数值为 0.3，则原图左边距离新图左边为 30 × 0.3 = 9，该区域为扩图范围。</li><li>right_expansion_ratio：向右扩充范围，基于原图宽度的倍数计算。若原图宽 30，参数值为 0.4，则原图右边距离新图右边为 30 × 0.4 = 12，该区域为扩图范围。</li></ul></li></ul></li></ul></li></ul></li></ul>
         # @type ExtInfo: String
 
         attr_accessor :SubAppId, :ModelName, :ModelVersion, :FileInfos, :Prompt, :NegativePrompt, :EnhancePrompt, :OutputConfig, :InputRegion, :SceneType, :Seed, :SessionId, :SessionContext, :TasksPriority, :ExtInfo
@@ -10988,23 +11087,21 @@ module TencentCloud
 
       # 视频截取雪碧图任务，该结构仅用于对 2017 版[截取雪碧图](https://cloud.tencent.com/document/product/266/8101)接口发起的任务。
       class CreateImageSpriteTask2017 < TencentCloud::Common::AbstractModel
-        # @param TaskId: 截图雪碧图任务 ID。
+        # @param TaskId: <p>截图雪碧图任务 ID。</p>
         # @type TaskId: String
-        # @param ErrCode: 错误码
-        # <li>0：成功；</li>
-        # <li>其他值：失败。</li>
+        # @param ErrCode: <p>错误码</p><li>0：成功；</li><li>其他值：失败。</li>
         # @type ErrCode: Integer
-        # @param Message: 错误信息。
+        # @param Message: <p>错误信息。</p>
         # @type Message: String
-        # @param FileId: 截取雪碧图文件 ID。
+        # @param FileId: <p>截取雪碧图文件 ID。</p>
         # @type FileId: String
-        # @param Definition: 雪碧图规格，参见[雪碧图截图模板](https://cloud.tencent.com/document/product/266/33480#.E9.9B.AA.E7.A2.A7.E5.9B.BE.E6.A8.A1.E6.9D.BF)。
+        # @param Definition: <p>雪碧图规格，参见<a href="https://cloud.tencent.com/document/product/266/33480#.E9.9B.AA.E7.A2.A7.E5.9B.BE.E6.A8.A1.E6.9D.BF">雪碧图截图模板</a>。</p>
         # @type Definition: Integer
-        # @param TotalCount: 雪碧图小图总数量。
+        # @param TotalCount: <p>雪碧图小图总数量。</p>
         # @type TotalCount: Integer
-        # @param ImageSpriteUrlSet: 截取雪碧图输出的地址。
+        # @param ImageSpriteUrlSet: <p>截取雪碧图输出的地址。</p>
         # @type ImageSpriteUrlSet: Array
-        # @param WebVttUrl: 雪碧图子图位置与时间关系 WebVtt 文件地址。
+        # @param WebVttUrl: <p>雪碧图子图位置与时间关系 WebVtt 文件地址。</p>
         # @type WebVttUrl: String
 
         attr_accessor :TaskId, :ErrCode, :Message, :FileId, :Definition, :TotalCount, :ImageSpriteUrlSet, :WebVttUrl
@@ -12797,13 +12894,13 @@ module TencentCloud
 
       # 播放统计信息。
       class DailyPlayStatInfo < TencentCloud::Common::AbstractModel
-        # @param Date: 播放媒体文件的日期，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @param Date: <p>播放媒体文件的日期，使用 <a href="https://cloud.tencent.com/document/product/266/11732#I">ISO 日期格式</a>。</p>
         # @type Date: String
-        # @param FileId: 媒体文件ID。
+        # @param FileId: <p>媒体文件ID。</p>
         # @type FileId: String
-        # @param PlayTimes: 播放次数。
+        # @param PlayTimes: <p>播放次数。</p>
         # @type PlayTimes: Integer
-        # @param Traffic: 播放流量，单位：字节。
+        # @param Traffic: <p>播放流量，单位：字节。</p>
         # @type Traffic: Integer
 
         attr_accessor :Date, :FileId, :PlayTimes, :Traffic
@@ -13045,9 +13142,9 @@ module TencentCloud
 
       # DeleteAnimatedGraphicsTemplate请求参数结构体
       class DeleteAnimatedGraphicsTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param Definition: 转动图模板唯一标识。
+        # @param Definition: <p>转动图模板唯一标识。</p>
         # @type Definition: Integer
-        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
+        # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b></p>
         # @type SubAppId: Integer
 
         attr_accessor :Definition, :SubAppId
@@ -14068,9 +14165,9 @@ module TencentCloud
 
       # DeleteWordSamples请求参数结构体
       class DeleteWordSamplesRequest < TencentCloud::Common::AbstractModel
-        # @param Keywords: 关键词，数组长度限制：100 个词。
+        # @param Keywords: <p>关键词，数组长度限制：100 个词。</p>
         # @type Keywords: Array
-        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
+        # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b></p>
         # @type SubAppId: Integer
 
         attr_accessor :Keywords, :SubAppId
@@ -15701,7 +15798,7 @@ module TencentCloud
 
       # DescribeDefaultDistributionConfig请求参数结构体
       class DescribeDefaultDistributionConfigRequest < TencentCloud::Common::AbstractModel
-        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
+        # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b></p>
         # @type SubAppId: Integer
 
         attr_accessor :SubAppId
@@ -15717,13 +15814,13 @@ module TencentCloud
 
       # DescribeDefaultDistributionConfig返回参数结构体
       class DescribeDefaultDistributionConfigResponse < TencentCloud::Common::AbstractModel
-        # @param DomainName: 分发配置的域名(已废弃）。
+        # @param DomainName: <p>分发配置的域名(已废弃）。</p>
         # @type DomainName: String
-        # @param Domain: 分发配置的域名。
+        # @param Domain: <p>分发配置的域名。</p>
         # @type Domain: String
-        # @param Scheme: 分发配置的协议，为 HTTP 或 HTTPS。
+        # @param Scheme: <p>分发配置的协议，为 HTTP 或 HTTPS。</p>
         # @type Scheme: String
-        # @param PlayKey: 播放密钥，由大小写字母（a - Z）或者数字（0 - 9）组成，长度在8 - 20个字符之间。
+        # @param PlayKey: <p>播放密钥，由大小写字母（a - Z）或者数字（0 - 9）组成，长度在8 - 20个字符之间。</p>
         # @type PlayKey: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -16875,24 +16972,19 @@ module TencentCloud
 
       # DescribePersonSamples请求参数结构体
       class DescribePersonSamplesRequest < TencentCloud::Common::AbstractModel
-        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
+        # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b></p>
         # @type SubAppId: Integer
-        # @param Type: 拉取的素材类型，可选值：
-        # <li>UserDefine：用户自定义素材库；</li>
-        # <li>Default：系统默认素材库。</li>
-
-        # 默认值：UserDefine，拉取用户自定义素材库素材。
-        # 说明：如果是拉取系统默认素材库，只能使用素材名字或者素材 ID + 素材名字的方式进行拉取，且五官图片只返回一张。
+        # @param Type: <p>拉取的素材类型，可选值：</p><li>UserDefine：用户自定义素材库；</li><li>Default：系统默认素材库。</li><p>默认值：UserDefine，拉取用户自定义素材库素材。<br>说明：如果是拉取系统默认素材库，只能使用素材名字或者素材 ID + 素材名字的方式进行拉取，且五官图片只返回一张。</p>
         # @type Type: String
-        # @param PersonIds: 素材 ID，数组长度限制：100。
+        # @param PersonIds: <p>素材 ID，数组长度限制：100。</p>
         # @type PersonIds: Array
-        # @param Names: 素材名称，数组长度限制：20。
+        # @param Names: <p>素材名称，数组长度限制：20。</p>
         # @type Names: Array
-        # @param Tags: 素材标签，数组长度限制：20。
+        # @param Tags: <p>素材标签，数组长度限制：20。</p>
         # @type Tags: Array
-        # @param Offset: 分页偏移量，默认值：0。
+        # @param Offset: <p>分页偏移量，默认值：0。</p>
         # @type Offset: Integer
-        # @param Limit: 返回记录条数，默认值：100，最大值：100。
+        # @param Limit: <p>返回记录条数，默认值：100，最大值：100。</p>
         # @type Limit: Integer
 
         attr_accessor :SubAppId, :Type, :PersonIds, :Names, :Tags, :Offset, :Limit
@@ -16920,9 +17012,9 @@ module TencentCloud
 
       # DescribePersonSamples返回参数结构体
       class DescribePersonSamplesResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 符合条件的记录总数。
+        # @param TotalCount: <p>符合条件的记录总数。</p>
         # @type TotalCount: Integer
-        # @param PersonSet: 人物信息。
+        # @param PersonSet: <p>人物信息。</p>
         # @type PersonSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -17376,21 +17468,21 @@ module TencentCloud
 
       # DescribeRoundPlays请求参数结构体
       class DescribeRoundPlaysRequest < TencentCloud::Common::AbstractModel
-        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
+        # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b></p>
         # @type SubAppId: Integer
-        # @param RoundPlayIds: 过滤条件：轮播播单标识，数组长度限制：100。
+        # @param RoundPlayIds: <p>过滤条件：轮播播单标识，数组长度限制：100。</p>
         # @type RoundPlayIds: Array
-        # @param Status: 过滤条件，轮播播单状态，可选值： <li>Enabled：启动状态；</li> <li>Disabled：停止状态。</li>
+        # @param Status: <p>过滤条件，轮播播单状态，可选值： <li>Enabled：启动状态；</li> <li>Disabled：停止状态。</li></p>
         # @type Status: String
-        # @param CreateTime: 过滤条件：轮播播单创建时间。
+        # @param CreateTime: <p>过滤条件：轮播播单创建时间。</p>
         # @type CreateTime: :class:`Tencentcloud::Vod.v20180717.models.TimeRange`
-        # @param UpdateTime: 过滤条件：轮播播单更新时间。
+        # @param UpdateTime: <p>过滤条件：轮播播单更新时间。</p>
         # @type UpdateTime: :class:`Tencentcloud::Vod.v20180717.models.TimeRange`
-        # @param ScrollToken: 翻页标识，分批拉取时使用：当单次请求无法拉取所有数据，接口将会返回 ScrollToken，下一次请求携带该 Token，将会从下一条记录开始获取。
+        # @param ScrollToken: <p>翻页标识，分批拉取时使用：当单次请求无法拉取所有数据，接口将会返回 ScrollToken，下一次请求携带该 Token，将会从下一条记录开始获取。</p>
         # @type ScrollToken: String
-        # @param Offset: 分页偏移量，默认值：0。已经废弃，请根据 ScrollToken 参数进行分批次查询。
+        # @param Offset: <p>分页偏移量，默认值：0。已经废弃，请根据 ScrollToken 参数进行分批次查询。</p>
         # @type Offset: Integer
-        # @param Limit: 返回记录条数，默认值：10，最大值：100。
+        # @param Limit: <p>返回记录条数，默认值：10，最大值：100。</p>
         # @type Limit: Integer
 
         attr_accessor :SubAppId, :RoundPlayIds, :Status, :CreateTime, :UpdateTime, :ScrollToken, :Offset, :Limit
@@ -17429,11 +17521,11 @@ module TencentCloud
 
       # DescribeRoundPlays返回参数结构体
       class DescribeRoundPlaysResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 符合过滤条件的轮播播单总数。已经废弃，分批次查询请请使用 ScrollToken 参数。
+        # @param TotalCount: <p>符合过滤条件的轮播播单总数。已经废弃，分批次查询请请使用 ScrollToken 参数。</p>
         # @type TotalCount: Integer
-        # @param RoundPlaySet: 轮播播单详情列表。
+        # @param RoundPlaySet: <p>轮播播单详情列表。</p>
         # @type RoundPlaySet: Array
-        # @param ScrollToken: 翻页标识，当请求未返回所有数据，该字段表示下一条记录的 ID。当该字段为空，说明已无更多数据。
+        # @param ScrollToken: <p>翻页标识，当请求未返回所有数据，该字段表示下一条记录的 ID。当该字段为空，说明已无更多数据。</p>
         # @type ScrollToken: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -18294,23 +18386,21 @@ module TencentCloud
 
       # DescribeTasks请求参数结构体
       class DescribeTasksRequest < TencentCloud::Common::AbstractModel
-        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
+        # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b></p>
         # @type SubAppId: Integer
-        # @param Status: 过滤条件：任务状态，可选值：WAITING（等待中）、PROCESSING（处理中）、FINISH（已完成）。
+        # @param Status: <p>过滤条件：任务状态，可选值：WAITING（等待中）、PROCESSING（处理中）、FINISH（已完成）。</p>
         # @type Status: String
-        # @param FileId: 过滤条件：文件 ID。
+        # @param FileId: <p>过滤条件：文件 ID。</p>
         # @type FileId: String
-        # @param CreateTime: 过滤条件：任务创建时间。
+        # @param CreateTime: <p>过滤条件：任务创建时间。</p>
         # @type CreateTime: :class:`Tencentcloud::Vod.v20180717.models.TimeRange`
-        # @param FinishTime: 过滤条件：任务结束时间。
+        # @param FinishTime: <p>过滤条件：任务结束时间。</p>
         # @type FinishTime: :class:`Tencentcloud::Vod.v20180717.models.TimeRange`
-        # @param Sort: 排序方式。Sort.Field 可选：
-        # <li> CreateTime 任务创建时间。</li>
-        # <li>FinishTime 任务结束时间。</li>
+        # @param Sort: <p>排序方式。Sort.Field 可选：</p><li> CreateTime 任务创建时间。</li><li>FinishTime 任务结束时间。</li>
         # @type Sort: :class:`Tencentcloud::Vod.v20180717.models.SortBy`
-        # @param Limit: 返回记录条数，默认值：10，最大值：100。
+        # @param Limit: <p>返回记录条数，默认值：10，最大值：100。</p>
         # @type Limit: Integer
-        # @param ScrollToken: 翻页标识，分批拉取时使用：当单次请求无法拉取所有数据，接口将会返回 ScrollToken，下一次请求携带该 Token，将会从下一条记录开始获取。
+        # @param ScrollToken: <p>翻页标识，分批拉取时使用：当单次请求无法拉取所有数据，接口将会返回 ScrollToken，下一次请求携带该 Token，将会从下一条记录开始获取。</p>
         # @type ScrollToken: String
 
         attr_accessor :SubAppId, :Status, :FileId, :CreateTime, :FinishTime, :Sort, :Limit, :ScrollToken
@@ -18349,9 +18439,9 @@ module TencentCloud
 
       # DescribeTasks返回参数结构体
       class DescribeTasksResponse < TencentCloud::Common::AbstractModel
-        # @param TaskSet: 任务概要列表。
+        # @param TaskSet: <p>任务概要列表。</p>
         # @type TaskSet: Array
-        # @param ScrollToken: 翻页标识，当请求未返回所有数据，该字段表示下一条记录的 ID。当该字段为空，说明已无更多数据。
+        # @param ScrollToken: <p>翻页标识，当请求未返回所有数据，该字段表示下一条记录的 ID。当该字段为空，说明已无更多数据。</p>
         # @type ScrollToken: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -20154,17 +20244,17 @@ module TencentCloud
 
       # ExecuteFunction请求参数结构体
       class ExecuteFunctionRequest < TencentCloud::Common::AbstractModel
-        # @param FunctionName: 调用后端接口名称。
+        # @param FunctionName: <p>调用后端接口名称。</p>
         # @type FunctionName: String
-        # @param FunctionArg: 接口参数，具体参数格式调用时与后端协调。
+        # @param FunctionArg: <p>接口参数，具体参数格式调用时与后端协调。</p>
         # @type FunctionArg: String
-        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
+        # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b></p>
         # @type SubAppId: Integer
-        # @param SessionContext: 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。
+        # @param SessionContext: <p>来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。</p>
         # @type SessionContext: String
-        # @param SessionId: 用于去重的识别码，如果七天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
+        # @param SessionId: <p>用于去重的识别码，如果七天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。</p>
         # @type SessionId: String
-        # @param ExtInfo: 保留字段，特殊用途时使用。
+        # @param ExtInfo: <p>保留字段，特殊用途时使用。</p>
         # @type ExtInfo: String
 
         attr_accessor :FunctionName, :FunctionArg, :SubAppId, :SessionContext, :SessionId, :ExtInfo
@@ -20190,7 +20280,7 @@ module TencentCloud
 
       # ExecuteFunction返回参数结构体
       class ExecuteFunctionResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 处理结果打包后的字符串，具体与后台一同协调。
+        # @param Result: <p>处理结果打包后的字符串，具体与后台一同协调。</p>
         # @type Result: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -20696,25 +20786,15 @@ module TencentCloud
 
       # 人脸识别任务控制参数
       class FaceConfigureInfo < TencentCloud::Common::AbstractModel
-        # @param Switch: 人脸识别任务开关，可选值：
-        # <li>ON：开启智能人脸识别任务；</li>
-        # <li>OFF：关闭智能人脸识别任务。</li>
+        # @param Switch: <p>人脸识别任务开关，可选值：</p><li>ON：开启智能人脸识别任务；</li><li>OFF：关闭智能人脸识别任务。</li>
         # @type Switch: String
-        # @param Score: 人脸识别过滤分数，当识别结果达到该分数以上，返回识别结果。默认 95 分。取值范围：0 - 100。
+        # @param Score: <p>人脸识别过滤分数，当识别结果达到该分数以上，返回识别结果。默认 95 分。取值范围：0 - 100。</p>
         # @type Score: Float
-        # @param DefaultLibraryLabelSet: 默认人物过滤标签，指定需要返回的默认人物的标签。如果未填或者为空，则全部默认人物结果都返回。标签可选值：
-        # <li>entertainment：娱乐明星；</li>
-        # <li>sport：体育明星；</li>
-        # <li>politician：相关人物。</li>
+        # @param DefaultLibraryLabelSet: <p>默认人物过滤标签，指定需要返回的默认人物的标签。如果未填或者为空，则全部默认人物结果都返回。标签可选值：</p><li>entertainment：娱乐明星；</li><li>sport：体育明星；</li><li>politician：相关人物。</li>
         # @type DefaultLibraryLabelSet: Array
-        # @param UserDefineLibraryLabelSet: 用户自定义人物过滤标签，指定需要返回的用户自定义人物的标签。如果未填或者为空，则全部自定义人物结果都返回。
-        # 标签个数最多 100 个，每个标签长度最多 16 个字符。
+        # @param UserDefineLibraryLabelSet: <p>用户自定义人物过滤标签，指定需要返回的用户自定义人物的标签。如果未填或者为空，则全部自定义人物结果都返回。<br>标签个数最多 100 个，每个标签长度最多 16 个字符。</p>
         # @type UserDefineLibraryLabelSet: Array
-        # @param FaceLibrary: 人物库选择，可选值：
-        # <li>Default：使用默认人物库；</li>
-        # <li>UserDefine：使用用户自定义人物库。</li>
-        # <li>All：同时使用默认人物库和用户自定义人物库。</li>
-        # 默认值：All，使用系统默认人物库及用户自定义人物库。
+        # @param FaceLibrary: <p>人物库选择，可选值：</p><li>Default：使用默认人物库；</li><li>UserDefine：使用用户自定义人物库。</li><li>All：同时使用默认人物库和用户自定义人物库。</li>默认值：All，使用系统默认人物库及用户自定义人物库。
         # @type FaceLibrary: String
 
         attr_accessor :Switch, :Score, :DefaultLibraryLabelSet, :UserDefineLibraryLabelSet, :FaceLibrary
@@ -20738,24 +20818,15 @@ module TencentCloud
 
       # 人脸识别任务控制参数
       class FaceConfigureInfoForUpdate < TencentCloud::Common::AbstractModel
-        # @param Switch: 人脸识别任务开关，可选值：
-        # <li>ON：开启智能人脸识别任务；</li>
-        # <li>OFF：关闭智能人脸识别任务。</li>
+        # @param Switch: <p>人脸识别任务开关，可选值：</p><li>ON：开启智能人脸识别任务；</li><li>OFF：关闭智能人脸识别任务。</li>
         # @type Switch: String
-        # @param Score: 人脸识别过滤分数，当识别结果达到该分数以上，返回识别结果。取值范围：0-100。
+        # @param Score: <p>人脸识别过滤分数，当识别结果达到该分数以上，返回识别结果。取值范围：0-100。</p>
         # @type Score: Float
-        # @param DefaultLibraryLabelSet: 默认人物过滤标签，指定需要返回的默认人物的标签。如果未填或者为空，则全部默认人物结果都返回。标签可选值：
-        # <li>entertainment：娱乐明星；</li>
-        # <li>sport：体育明星；</li>
-        # <li>politician：相关人物。</li>
+        # @param DefaultLibraryLabelSet: <p>默认人物过滤标签，指定需要返回的默认人物的标签。如果未填或者为空，则全部默认人物结果都返回。标签可选值：</p><li>entertainment：娱乐明星；</li><li>sport：体育明星；</li><li>politician：相关人物。</li>
         # @type DefaultLibraryLabelSet: Array
-        # @param UserDefineLibraryLabelSet: 用户自定义人物过滤标签，指定需要返回的用户自定义人物的标签。如果未填或者为空，则全部自定义人物结果都返回。
-        # 标签个数最多 100 个，每个标签长度最多 16 个字符。
+        # @param UserDefineLibraryLabelSet: <p>用户自定义人物过滤标签，指定需要返回的用户自定义人物的标签。如果未填或者为空，则全部自定义人物结果都返回。<br>标签个数最多 100 个，每个标签长度最多 16 个字符。</p>
         # @type UserDefineLibraryLabelSet: Array
-        # @param FaceLibrary: 人物库选择，可选值：
-        # <li>Default：使用默认人物库；</li>
-        # <li>UserDefine：使用用户自定义人物库。</li>
-        # <li>All：同时使用默认人物库和用户自定义人物库。</li>
+        # @param FaceLibrary: <p>人物库选择，可选值：</p><li>Default：使用默认人物库；</li><li>UserDefine：使用用户自定义人物库。</li><li>All：同时使用默认人物库和用户自定义人物库。</li>
         # @type FaceLibrary: String
 
         attr_accessor :Switch, :Score, :DefaultLibraryLabelSet, :UserDefineLibraryLabelSet, :FaceLibrary
@@ -21049,9 +21120,9 @@ module TencentCloud
 
       # 文件删除任务
       class FileDeleteTask < TencentCloud::Common::AbstractModel
-        # @param FileIdSet: 删除文件 ID 列表。
+        # @param FileIdSet: <p>删除文件 ID 列表。</p>
         # @type FileIdSet: Array
-        # @param FileDeleteResultInfo: 删除文件结果信息列表。
+        # @param FileDeleteResultInfo: <p>删除文件结果信息列表。</p>
         # @type FileDeleteResultInfo: Array
 
         attr_accessor :FileIdSet, :FileDeleteResultInfo
@@ -29390,19 +29461,13 @@ module TencentCloud
 
       # ModifyVodDomainAccelerateConfig请求参数结构体
       class ModifyVodDomainAccelerateConfigRequest < TencentCloud::Common::AbstractModel
-        # @param Domain: 需要设置加速配置的域名。
+        # @param Domain: <p>需要设置加速配置的域名。</p>
         # @type Domain: String
-        # @param Area: 区域，可选值：
-        # <li>Chinese Mainland：中国境内（不包含港澳台）。</li>
-        # <li>Outside Chinese Mainland: 中国境外。</li>
-        # <li>Global: 全球范围。</li>
+        # @param Area: <p>区域，可选值：</p><li>Chinese Mainland：中国境内（不包含港澳台）。</li><li>Outside Chinese Mainland: 中国境外。</li><li>Global: 全球范围。</li>
         # @type Area: String
-        # @param Status: 开启或者关闭所选区域的域名加速，可选值：
-        # <li>Enabled: 开启。</li>
-        # <li>Disabled：关闭。</li>
-        # 开启中国境内加速的域名，需要先[备案域名](/document/product/243/18905)。
+        # @param Status: <p>开启或者关闭所选区域的域名加速，可选值：</p><li>Enabled: 开启。</li><li>Disabled：关闭。</li>开启中国境内加速的域名，需要先[备案域名](/document/product/243/18905)。
         # @type Status: String
-        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
+        # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b></p>
         # @type SubAppId: Integer
 
         attr_accessor :Domain, :Area, :Status, :SubAppId
@@ -29440,17 +29505,17 @@ module TencentCloud
 
       # ModifyVodDomainConfig请求参数结构体
       class ModifyVodDomainConfigRequest < TencentCloud::Common::AbstractModel
-        # @param Domain: 域名。
+        # @param Domain: <p>域名。</p>
         # @type Domain: String
-        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
+        # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b></p>
         # @type SubAppId: Integer
-        # @param RefererAuthPolicy: [Referer 防盗链](/document/product/266/14046)规则。
+        # @param RefererAuthPolicy: <p><a href="/document/product/266/14046">Referer 防盗链</a>规则。</p>
         # @type RefererAuthPolicy: :class:`Tencentcloud::Vod.v20180717.models.RefererAuthPolicy`
-        # @param UrlSignatureAuthPolicy: [Key 防盗链](/document/product/266/14047)规则。
+        # @param UrlSignatureAuthPolicy: <p><a href="/document/product/266/14047">Key 防盗链</a>规则。</p>
         # @type UrlSignatureAuthPolicy: :class:`Tencentcloud::Vod.v20180717.models.UrlSignatureAuthPolicy`
-        # @param QUICConfig: QUIC 配置。
+        # @param QUICConfig: <p>QUIC 配置。</p>
         # @type QUICConfig: :class:`Tencentcloud::Vod.v20180717.models.DomainQUICConfig`
-        # @param IPFilterPolicy: IP 访问限制规则。
+        # @param IPFilterPolicy: <p>IP 访问限制规则。</p>
         # @type IPFilterPolicy: :class:`Tencentcloud::Vod.v20180717.models.IPFilterPolicy`
 
         attr_accessor :Domain, :SubAppId, :RefererAuthPolicy, :UrlSignatureAuthPolicy, :QUICConfig, :IPFilterPolicy
@@ -29976,35 +30041,34 @@ module TencentCloud
 
       # 自定义视频转码参数。
       class OverrideTranscodeParameter < TencentCloud::Common::AbstractModel
-        # @param Container: 封装格式，可选值：mp4、flv、hls、mp3、flac、ogg、m4a、wav。其中，mp3、flac、ogg、m4a、wav 为纯音频文件。
+        # @param Container: <p>封装格式，可选值：mp4、flv、hls、mp3、flac、ogg、m4a、wav。其中，mp3、flac、ogg、m4a、wav 为纯音频文件。</p>
         # @type Container: String
-        # @param RemoveVideo: 是否去除视频数据，取值：
-        # <li>0：保留；<\li>
-        # <li>1：去除。<\li>
+        # @param RemoveVideo: <p>是否去除视频数据，取值：<br>&lt;li&gt;0：保留；&lt;\li&gt;<br>&lt;li&gt;1：去除。&lt;\li&gt;</p>
         # @type RemoveVideo: Integer
-        # @param RemoveAudio: 是否去除音频数据，取值：
-        # <li>0：保留；<\li>
-        # <li>1：去除。<\li>
+        # @param RemoveAudio: <p>是否去除音频数据，取值：<br>&lt;li&gt;0：保留；&lt;\li&gt;<br>&lt;li&gt;1：去除。&lt;\li&gt;</p>
         # @type RemoveAudio: Integer
-        # @param VideoTemplate: 视频流配置参数。
+        # @param VideoTemplate: <p>视频流配置参数。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VideoTemplate: :class:`Tencentcloud::Vod.v20180717.models.VideoTemplateInfoForUpdate`
-        # @param AudioTemplate: 音频流配置参数。
+        # @param AudioTemplate: <p>音频流配置参数。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AudioTemplate: :class:`Tencentcloud::Vod.v20180717.models.AudioTemplateInfoForUpdate`
-        # @param TEHDConfig: 极速高清转码配置参数。
+        # @param TEHDConfig: <p>极速高清转码配置参数。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TEHDConfig: :class:`Tencentcloud::Vod.v20180717.models.TEHDConfigForUpdate`
+        # @param StdExtInfo: <p>标准扩展字段，特殊用途使用。</p>
+        # @type StdExtInfo: String
 
-        attr_accessor :Container, :RemoveVideo, :RemoveAudio, :VideoTemplate, :AudioTemplate, :TEHDConfig
+        attr_accessor :Container, :RemoveVideo, :RemoveAudio, :VideoTemplate, :AudioTemplate, :TEHDConfig, :StdExtInfo
 
-        def initialize(container=nil, removevideo=nil, removeaudio=nil, videotemplate=nil, audiotemplate=nil, tehdconfig=nil)
+        def initialize(container=nil, removevideo=nil, removeaudio=nil, videotemplate=nil, audiotemplate=nil, tehdconfig=nil, stdextinfo=nil)
           @Container = container
           @RemoveVideo = removevideo
           @RemoveAudio = removeaudio
           @VideoTemplate = videotemplate
           @AudioTemplate = audiotemplate
           @TEHDConfig = tehdconfig
+          @StdExtInfo = stdextinfo
         end
 
         def deserialize(params)
@@ -30023,16 +30087,15 @@ module TencentCloud
             @TEHDConfig = TEHDConfigForUpdate.new
             @TEHDConfig.deserialize(params['TEHDConfig'])
           end
+          @StdExtInfo = params['StdExtInfo']
         end
       end
 
       # ParseStreamingManifest请求参数结构体
       class ParseStreamingManifestRequest < TencentCloud::Common::AbstractModel
-        # @param MediaManifestContent: 待解析的索引文件内容。
+        # @param MediaManifestContent: <p>待解析的索引文件内容。</p>
         # @type MediaManifestContent: String
-        # @param ManifestType: 视频索引文件格式。默认 m3u8 格式。
-        # <li>m3u8</li>
-        # <li>mpd</li>
+        # @param ManifestType: <p>视频索引文件格式。默认 m3u8 格式。</p><li>m3u8</li><li>mpd</li>
         # @type ManifestType: String
 
         attr_accessor :MediaManifestContent, :ManifestType
@@ -30050,7 +30113,7 @@ module TencentCloud
 
       # ParseStreamingManifest返回参数结构体
       class ParseStreamingManifestResponse < TencentCloud::Common::AbstractModel
-        # @param MediaSegmentSet: 分片文件列表。
+        # @param MediaSegmentSet: <p>分片文件列表。</p>
         # @type MediaSegmentSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -30413,23 +30476,13 @@ module TencentCloud
 
       # 画面鉴别涉及令人不适宜的信息的任务控制参数
       class PoliticalImgReviewTemplateInfo < TencentCloud::Common::AbstractModel
-        # @param Switch: 画面鉴别涉及令人不适宜的信息的任务开关，可选值：
-        # <li>ON：开启画面鉴别涉及令人不适宜的信息的任务；</li>
-        # <li>OFF：关闭画面鉴别涉及令人不适宜的信息的任务。</li>
+        # @param Switch: <p>画面鉴别涉及令人不适宜的信息的任务开关，可选值：</p><li>ON：开启画面鉴别涉及令人不适宜的信息的任务；</li><li>OFF：关闭画面鉴别涉及令人不适宜的信息的任务。</li>
         # @type Switch: String
-        # @param LabelSet: 画面鉴别涉及令人不适宜的信息的过滤标签，审核结果包含选择的标签则返回结果，如果过滤标签为空，则审核结果全部返回，可选值为：
-        # <li>violation_photo：违规图标；</li>
-        # <li>politician：相关人物；</li>
-        # <li>entertainment：娱乐人物；</li>
-        # <li>sport：体育人物；</li>
-        # <li>entrepreneur：商业人物；</li>
-        # <li>scholar：教育学者；</li>
-        # <li>celebrity：知名人物；</li>
-        # <li>military：相关人物。</li>
+        # @param LabelSet: <p>画面鉴别涉及令人不适宜的信息的过滤标签，审核结果包含选择的标签则返回结果，如果过滤标签为空，则审核结果全部返回，可选值为：</p><li>violation_photo：违规图标；</li><li>politician：相关人物；</li><li>entertainment：娱乐人物；</li><li>sport：体育人物；</li><li>entrepreneur：商业人物；</li><li>scholar：教育学者；</li><li>celebrity：知名人物；</li><li>military：相关人物。</li>
         # @type LabelSet: Array
-        # @param BlockConfidence: 判定涉嫌违规的分数阈值，当审核达到该分数以上，认为涉嫌违规，不填默认为 97 分。取值范围：0~100。
+        # @param BlockConfidence: <p>判定涉嫌违规的分数阈值，当审核达到该分数以上，认为涉嫌违规，不填默认为 97 分。取值范围：0~100。</p>
         # @type BlockConfidence: Integer
-        # @param ReviewConfidence: 判定需人工复核是否违规的分数阈值，当审核达到该分数以上，认为需人工复核，不填默认为 95 分。取值范围：0~100。
+        # @param ReviewConfidence: <p>判定需人工复核是否违规的分数阈值，当审核达到该分数以上，认为需人工复核，不填默认为 95 分。取值范围：0~100。</p>
         # @type ReviewConfidence: Integer
 
         attr_accessor :Switch, :LabelSet, :BlockConfidence, :ReviewConfidence
@@ -30451,23 +30504,13 @@ module TencentCloud
 
       # 画面鉴别涉及令人不适宜的信息的任务控制参数。
       class PoliticalImgReviewTemplateInfoForUpdate < TencentCloud::Common::AbstractModel
-        # @param Switch: 画面鉴别涉及令人不适宜的信息的任务开关，可选值：
-        # <li>ON：开启画面鉴别涉及令人不适宜的信息的任务；</li>
-        # <li>OFF：关闭画面鉴别涉及令人不适宜的信息的任务。</li>
+        # @param Switch: <p>画面鉴别涉及令人不适宜的信息的任务开关，可选值：</p><li>ON：开启画面鉴别涉及令人不适宜的信息的任务；</li><li>OFF：关闭画面鉴别涉及令人不适宜的信息的任务。</li>
         # @type Switch: String
-        # @param LabelSet: 画面鉴别涉及令人不适宜的信息的过滤标签，审核结果包含选择的标签则返回结果，如果过滤标签为空，则审核结果全部返回，可选值为：
-        # <li>violation_photo：违规图标；</li>
-        # <li>politician：相关人物；</li>
-        # <li>entertainment：娱乐人物；</li>
-        # <li>sport：体育人物；</li>
-        # <li>entrepreneur：商业人物；</li>
-        # <li>scholar：教育学者；</li>
-        # <li>celebrity：知名人物；</li>
-        # <li>military：相关人物。</li>
+        # @param LabelSet: <p>画面鉴别涉及令人不适宜的信息的过滤标签，审核结果包含选择的标签则返回结果，如果过滤标签为空，则审核结果全部返回，可选值为：</p><li>violation_photo：违规图标；</li><li>politician：相关人物；</li><li>entertainment：娱乐人物；</li><li>sport：体育人物；</li><li>entrepreneur：商业人物；</li><li>scholar：教育学者；</li><li>celebrity：知名人物；</li><li>military：相关人物。</li>
         # @type LabelSet: Array
-        # @param BlockConfidence: 判定涉嫌违规的分数阈值，当审核达到该分数以上，认为涉嫌违规。取值范围：0~100。
+        # @param BlockConfidence: <p>判定涉嫌违规的分数阈值，当审核达到该分数以上，认为涉嫌违规。取值范围：0~100。</p>
         # @type BlockConfidence: Integer
-        # @param ReviewConfidence: 判定需人工复核是否违规的分数阈值，当审核达到该分数以上，认为需人工复核。取值范围：0~100。
+        # @param ReviewConfidence: <p>判定需人工复核是否违规的分数阈值，当审核达到该分数以上，认为需人工复核。取值范围：0~100。</p>
         # @type ReviewConfidence: Integer
 
         attr_accessor :Switch, :LabelSet, :BlockConfidence, :ReviewConfidence
@@ -30690,19 +30733,13 @@ module TencentCloud
 
       # 画面鉴别涉及令人反感的信息的任务控制参数
       class PornImgReviewTemplateInfo < TencentCloud::Common::AbstractModel
-        # @param Switch: 画面鉴别涉及令人反感的信息的任务开关，可选值：
-        # <li>ON：开启画面鉴别涉及令人反感的信息的任务；</li>
-        # <li>OFF：关闭画面鉴别涉及令人反感的信息的任务。</li>
+        # @param Switch: <p>画面鉴别涉及令人反感的信息的任务开关，可选值：</p><li>ON：开启画面鉴别涉及令人反感的信息的任务；</li><li>OFF：关闭画面鉴别涉及令人反感的信息的任务。</li>
         # @type Switch: String
-        # @param LabelSet: 画面鉴别涉及令人反感的信息的过滤标签，审核结果包含选择的标签则返回结果，如果过滤标签为空，则审核结果全部返回，可选值为：
-        # <li>porn：色情；</li>
-        # <li>vulgar：低俗；</li>
-        # <li>intimacy：亲密行为；</li>
-        # <li>sexy：性感。</li>
+        # @param LabelSet: <p>画面鉴别涉及令人反感的信息的过滤标签，审核结果包含选择的标签则返回结果，如果过滤标签为空，则审核结果全部返回，可选值为：</p><li>porn：色情；</li><li>vulgar：低俗；</li><li>intimacy：亲密行为；</li><li>sexy：性感。</li>
         # @type LabelSet: Array
-        # @param BlockConfidence: 判定涉嫌违规的分数阈值，当审核达到该分数以上，认为涉嫌违规，不填默认为 90 分。取值范围：0~100。
+        # @param BlockConfidence: <p>判定涉嫌违规的分数阈值，当审核达到该分数以上，认为涉嫌违规，不填默认为 90 分。取值范围：0~100。</p>
         # @type BlockConfidence: Integer
-        # @param ReviewConfidence: 判定需人工复核是否违规的分数阈值，当审核达到该分数以上，认为需人工复核，不填默认为 0 分。取值范围：0~100。
+        # @param ReviewConfidence: <p>判定需人工复核是否违规的分数阈值，当审核达到该分数以上，认为需人工复核，不填默认为 0 分。取值范围：0~100。</p>
         # @type ReviewConfidence: Integer
 
         attr_accessor :Switch, :LabelSet, :BlockConfidence, :ReviewConfidence
@@ -30724,19 +30761,13 @@ module TencentCloud
 
       # 画面鉴别涉及令人反感的信息的任务控制参数。
       class PornImgReviewTemplateInfoForUpdate < TencentCloud::Common::AbstractModel
-        # @param Switch: 画面鉴别涉及令人反感的信息的任务开关，可选值：
-        # <li>ON：开启画面鉴别涉及令人反感的信息的任务；</li>
-        # <li>OFF：关闭画面鉴别涉及令人反感的信息的任务。</li>
+        # @param Switch: <p>画面鉴别涉及令人反感的信息的任务开关，可选值：</p><li>ON：开启画面鉴别涉及令人反感的信息的任务；</li><li>OFF：关闭画面鉴别涉及令人反感的信息的任务。</li>
         # @type Switch: String
-        # @param LabelSet: 画面鉴别涉及令人反感的信息的过滤标签，审核结果包含选择的标签则返回结果，如果过滤标签为空，则审核结果全部返回，可选值为：
-        # <li>porn：色情；</li>
-        # <li>vulgar：低俗；</li>
-        # <li>intimacy：亲密行为；</li>
-        # <li>sexy：性感。</li>
+        # @param LabelSet: <p>画面鉴别涉及令人反感的信息的过滤标签，审核结果包含选择的标签则返回结果，如果过滤标签为空，则审核结果全部返回，可选值为：</p><li>porn：色情；</li><li>vulgar：低俗；</li><li>intimacy：亲密行为；</li><li>sexy：性感。</li>
         # @type LabelSet: Array
-        # @param BlockConfidence: 判定涉嫌违规的分数阈值，当审核达到该分数以上，认为涉嫌违规。取值范围：0~100。
+        # @param BlockConfidence: <p>判定涉嫌违规的分数阈值，当审核达到该分数以上，认为涉嫌违规。取值范围：0~100。</p>
         # @type BlockConfidence: Integer
-        # @param ReviewConfidence: 判定需人工复核是否违规的分数阈值，当审核达到该分数以上，认为需人工复核。取值范围：0~100。
+        # @param ReviewConfidence: <p>判定需人工复核是否违规的分数阈值，当审核达到该分数以上，认为需人工复核。取值范围：0~100。</p>
         # @type ReviewConfidence: Integer
 
         attr_accessor :Switch, :LabelSet, :BlockConfidence, :ReviewConfidence
@@ -32366,37 +32397,32 @@ module TencentCloud
 
       # 拉取上传任务信息
       class PullUploadTask < TencentCloud::Common::AbstractModel
-        # @param TaskId: 拉取上传任务 ID。
+        # @param TaskId: <p>拉取上传任务 ID。</p>
         # @type TaskId: String
-        # @param Status: 任务流状态，取值：
-        # <li>PROCESSING：处理中；</li>
-        # <li>FINISH：已完成。</li>
+        # @param Status: <p>任务流状态，取值：</p><li>PROCESSING：处理中；</li><li>FINISH：已完成。</li>
         # @type Status: String
-        # @param ErrCode: 错误码，0 表示成功，其他值表示失败：
-        # <li>40000：输入参数不合法，请检查输入参数；</li>
-        # <li>60000：源文件错误（如视频数据损坏），请确认源文件是否正常；</li>
-        # <li>70000：内部服务错误，建议重试。</li>
+        # @param ErrCode: <p>错误码，0 表示成功，其他值表示失败：</p><li>40000：输入参数不合法，请检查输入参数；</li><li>60000：源文件错误（如视频数据损坏），请确认源文件是否正常；</li><li>70000：内部服务错误，建议重试。</li>
         # @type ErrCode: Integer
-        # @param Message: 错误信息。
+        # @param Message: <p>错误信息。</p>
         # @type Message: String
-        # @param FileId: 拉取上传完成后生成的视频 ID。
+        # @param FileId: <p>拉取上传完成后生成的视频 ID。</p>
         # @type FileId: String
-        # @param MediaBasicInfo: 拉取上传完成后生成的媒体文件基础信息。
+        # @param MediaBasicInfo: <p>拉取上传完成后生成的媒体文件基础信息。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MediaBasicInfo: :class:`Tencentcloud::Vod.v20180717.models.MediaBasicInfo`
-        # @param MetaData: 输出视频的元信息。
+        # @param MetaData: <p>输出视频的元信息。</p>
         # @type MetaData: :class:`Tencentcloud::Vod.v20180717.models.MediaMetaData`
-        # @param FileUrl: 拉取上传完成后生成的播放地址。
+        # @param FileUrl: <p>拉取上传完成后生成的播放地址。</p>
         # @type FileUrl: String
-        # @param ProcedureTaskId: 任务类型为 Procedure 的任务 ID。若[拉取上传](https://cloud.tencent.com/document/api/266/35575)时指定了媒体后续任务操作(Procedure)，当该任务流模板指定了 MediaProcessTask、AiAnalysisTask、AiRecognitionTask 中的一个或多个时发起该任务。
+        # @param ProcedureTaskId: <p>任务类型为 Procedure 的任务 ID。若<a href="https://cloud.tencent.com/document/api/266/35575">拉取上传</a>时指定了媒体后续任务操作(Procedure)，当该任务流模板指定了 MediaProcessTask、AiAnalysisTask、AiRecognitionTask 中的一个或多个时发起该任务。</p>
         # @type ProcedureTaskId: String
-        # @param ReviewAudioVideoTaskId: 任务类型为 ReviewAudioVideo 的任务 ID。若[拉取上传](https://cloud.tencent.com/document/api/266/35575)时指定了媒体后续任务操作(Procedure)，当该任务流模板指定了 ReviewAudioVideoTask 时，发起该任务。
+        # @param ReviewAudioVideoTaskId: <p>任务类型为 ReviewAudioVideo 的任务 ID。若<a href="https://cloud.tencent.com/document/api/266/35575">拉取上传</a>时指定了媒体后续任务操作(Procedure)，当该任务流模板指定了 ReviewAudioVideoTask 时，发起该任务。</p>
         # @type ReviewAudioVideoTaskId: String
-        # @param SessionContext: 来源上下文，用于透传用户请求信息，[URL 拉取视频上传完成](https://cloud.tencent.com/document/product/266/7831)将返回该字段值，最长 1000 个字符。
+        # @param SessionContext: <p>来源上下文，用于透传用户请求信息，<a href="https://cloud.tencent.com/document/product/266/7831">URL 拉取视频上传完成</a>将返回该字段值，最长 1000 个字符。</p>
         # @type SessionContext: String
-        # @param SessionId: 用于去重的识别码，如果七天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
+        # @param SessionId: <p>用于去重的识别码，如果七天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。</p>
         # @type SessionId: String
-        # @param Progress: 拉取上传进度，取值范围 [0-100] 。
+        # @param Progress: <p>拉取上传进度，取值范围 [0-100] 。</p>
         # @type Progress: Integer
 
         attr_accessor :TaskId, :Status, :ErrCode, :Message, :FileId, :MediaBasicInfo, :MetaData, :FileUrl, :ProcedureTaskId, :ReviewAudioVideoTaskId, :SessionContext, :SessionId, :Progress
@@ -32442,9 +32468,9 @@ module TencentCloud
 
       # PushUrlCache请求参数结构体
       class PushUrlCacheRequest < TencentCloud::Common::AbstractModel
-        # @param Urls: 预热的 URL 列表，单次最多指定20个 URL。
+        # @param Urls: <p>预热的 URL 列表，单次最多指定20个 URL。</p>
         # @type Urls: Array
-        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
+        # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b></p>
         # @type SubAppId: Integer
 
         attr_accessor :Urls, :SubAppId
@@ -36550,15 +36576,13 @@ module TencentCloud
 
       # SetVodDomainCertificate请求参数结构体
       class SetVodDomainCertificateRequest < TencentCloud::Common::AbstractModel
-        # @param Domain: 域名。
+        # @param Domain: <p>域名。</p>
         # @type Domain: String
-        # @param Operation: 本次接口调用的操作类型，可选值：
-        # <li>Set：设置域名的 HTTPS 所需证书；</li>
-        # <li>Clear: 清空域名 HTTPS 配置，清空后该域名无法支持 HTTPS 访问。</li>
+        # @param Operation: <p>本次接口调用的操作类型，可选值：</p><li>Set：设置域名的 HTTPS 所需证书；</li><li>Clear: 清空域名 HTTPS 配置，清空后该域名无法支持 HTTPS 访问。</li>
         # @type Operation: String
-        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
+        # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b></p>
         # @type SubAppId: Integer
-        # @param CertID: [腾讯云SSL](/document/product/400/7572) 上传的证书 ID。清空域名 HTTPS 配置时无需填写该字段。
+        # @param CertID: <p><a href="/document/product/400/7572">腾讯云SSL</a> 上传的证书 ID。清空域名 HTTPS 配置时无需填写该字段。</p>
         # @type CertID: String
 
         attr_accessor :Domain, :Operation, :SubAppId, :CertID
@@ -36802,15 +36826,13 @@ module TencentCloud
 
       # 对视频按指定时间点截图任务输入参数类型
       class SnapshotByTimeOffsetTaskInput < TencentCloud::Common::AbstractModel
-        # @param Definition: 指定时间点截图模板 ID。
+        # @param Definition: <p>指定时间点截图模板 ID。</p>
         # @type Definition: Integer
-        # @param ExtTimeOffsetSet: 截图时间点列表，时间点支持 s、% 两种格式：
-        # <li>当字符串以 s 结尾，表示时间点单位为秒，如 3.5s 表示时间点为第3.5秒；</li>
-        # <li>当字符串以 % 结尾，表示时间点为视频时长的百分比大小，如10%表示时间点为视频前第10%的时间。</li>
+        # @param ExtTimeOffsetSet: <p>截图时间点列表，时间点支持 s、% 两种格式：</p><li>当字符串以 s 结尾，表示时间点单位为秒，如 3.5s 表示时间点为第3.5秒；</li><li>当字符串以 % 结尾，表示时间点为视频时长的百分比大小，如10%表示时间点为视频前第10%的时间。</li>
         # @type ExtTimeOffsetSet: Array
-        # @param TimeOffsetSet: 截图时间点列表，单位为<font color=red>毫秒</font>。此参数已不再建议使用，建议您使用 ExtTimeOffsetSet 参数。
+        # @param TimeOffsetSet: <p>截图时间点列表，单位为<font color="red">毫秒</font>。此参数已不再建议使用，建议您使用 ExtTimeOffsetSet 参数。</p>
         # @type TimeOffsetSet: Array
-        # @param WatermarkSet: 水印列表，支持多张图片或文字水印，最大可支持 10 张。
+        # @param WatermarkSet: <p>水印列表，支持多张图片或文字水印，最大可支持 10 张。</p>
         # @type WatermarkSet: Array
 
         attr_accessor :Definition, :ExtTimeOffsetSet, :TimeOffsetSet, :WatermarkSet
@@ -37810,7 +37832,8 @@ module TencentCloud
         # <li>EditMedia：视频编辑任务；</li>
         # <li>ReduceMediaBitrate：降码率任务；</li>
         # <li>WechatDistribute：微信发布任务；</li>
-        # <li>ReviewAudioVideo：音视频审核任务。</li>
+        # <li>ReviewAudioVideo：音视频审核任务；</li>
+        # <li> MPSWorkflowTask：MPS 视频处理任务。</li>
         # 兼容 2017 版的任务类型：
         # <li>Transcode：视频转码任务；</li>
         # <li>SnapshotByTimeOffset：视频截图任务；</li>
@@ -38114,24 +38137,13 @@ module TencentCloud
 
       # 画面鉴别涉及令人不安全的信息的任务控制参数
       class TerrorismImgReviewTemplateInfo < TencentCloud::Common::AbstractModel
-        # @param Switch: 画面鉴别涉及令人不安全的信息的任务开关，可选值：
-        # <li>ON：开启画面鉴别涉及令人不安全的信息的任务；</li>
-        # <li>OFF：关闭画面鉴别涉及令人不安全的信息的任务。</li>
+        # @param Switch: <p>画面鉴别涉及令人不安全的信息的任务开关，可选值：</p><li>ON：开启画面鉴别涉及令人不安全的信息的任务；</li><li>OFF：关闭画面鉴别涉及令人不安全的信息的任务。</li>
         # @type Switch: String
-        # @param LabelSet: 画面鉴别涉及令人不安全的信息的过滤标签，审核结果包含选择的标签则返回结果，如果过滤标签为空，则审核结果全部返回，可选值为：
-        # <li>guns：武器枪支；</li>
-        # <li>crowd：人群聚集；</li>
-        # <li>bloody：血腥画面；</li>
-        # <li>police：警察部队；</li>
-        # <li>banners：暴恐旗帜；</li>
-        # <li>militant：武装分子；</li>
-        # <li>explosion：爆炸火灾；</li>
-        # <li>terrorists：暴恐人物；</li>
-        # <li>scenario：暴恐画面。</li>
+        # @param LabelSet: <p>画面鉴别涉及令人不安全的信息的过滤标签，审核结果包含选择的标签则返回结果，如果过滤标签为空，则审核结果全部返回，可选值为：</p><li>guns：武器枪支；</li><li>crowd：人群聚集；</li><li>bloody：血腥画面；</li><li>police：警察部队；</li><li>banners：暴恐旗帜；</li><li>militant：武装分子；</li><li>explosion：爆炸火灾；</li><li>terrorists：暴恐人物；</li><li>scenario：暴恐画面。</li>
         # @type LabelSet: Array
-        # @param BlockConfidence: 判定涉嫌违规的分数阈值，当审核达到该分数以上，认为涉嫌违规，不填默认为 90 分。取值范围：0~100。
+        # @param BlockConfidence: <p>判定涉嫌违规的分数阈值，当审核达到该分数以上，认为涉嫌违规，不填默认为 90 分。取值范围：0~100。</p>
         # @type BlockConfidence: Integer
-        # @param ReviewConfidence: 判定需人工复核是否违规的分数阈值，当审核达到该分数以上，认为需人工复核，不填默认为 80 分。取值范围：0~100。
+        # @param ReviewConfidence: <p>判定需人工复核是否违规的分数阈值，当审核达到该分数以上，认为需人工复核，不填默认为 80 分。取值范围：0~100。</p>
         # @type ReviewConfidence: Integer
 
         attr_accessor :Switch, :LabelSet, :BlockConfidence, :ReviewConfidence
@@ -38153,24 +38165,13 @@ module TencentCloud
 
       # 画面鉴别涉及令人不安全的信息的任务控制参数。
       class TerrorismImgReviewTemplateInfoForUpdate < TencentCloud::Common::AbstractModel
-        # @param Switch: 画面鉴别涉及令人不安全的信息的任务开关，可选值：
-        # <li>ON：开启画面鉴别涉及令人不安全的信息的任务；</li>
-        # <li>OFF：关闭画面鉴别涉及令人不安全的信息的任务。</li>
+        # @param Switch: <p>画面鉴别涉及令人不安全的信息的任务开关，可选值：</p><li>ON：开启画面鉴别涉及令人不安全的信息的任务；</li><li>OFF：关闭画面鉴别涉及令人不安全的信息的任务。</li>
         # @type Switch: String
-        # @param LabelSet: 画面鉴别涉及令人不安全的信息的过滤标签，审核结果包含选择的标签则返回结果，如果过滤标签为空，则审核结果全部返回，可选值为：
-        # <li>guns：武器枪支；</li>
-        # <li>crowd：人群聚集；</li>
-        # <li>bloody：血腥画面；</li>
-        # <li>police：警察部队；</li>
-        # <li>banners：暴恐旗帜；</li>
-        # <li>militant：武装分子；</li>
-        # <li>explosion：爆炸火灾；</li>
-        # <li>terrorists：暴恐人物；</li>
-        # <li>scenario：暴恐画面。</li>
+        # @param LabelSet: <p>画面鉴别涉及令人不安全的信息的过滤标签，审核结果包含选择的标签则返回结果，如果过滤标签为空，则审核结果全部返回，可选值为：</p><li>guns：武器枪支；</li><li>crowd：人群聚集；</li><li>bloody：血腥画面；</li><li>police：警察部队；</li><li>banners：暴恐旗帜；</li><li>militant：武装分子；</li><li>explosion：爆炸火灾；</li><li>terrorists：暴恐人物；</li><li>scenario：暴恐画面。</li>
         # @type LabelSet: Array
-        # @param BlockConfidence: 判定涉嫌违规的分数阈值，当审核达到该分数以上，认为涉嫌违规。取值范围：0~100。
+        # @param BlockConfidence: <p>判定涉嫌违规的分数阈值，当审核达到该分数以上，认为涉嫌违规。取值范围：0~100。</p>
         # @type BlockConfidence: Integer
-        # @param ReviewConfidence: 判定需人工复核是否违规的分数阈值，当审核达到该分数以上，认为需人工复核。取值范围：0~100。
+        # @param ReviewConfidence: <p>判定需人工复核是否违规的分数阈值，当审核达到该分数以上，认为需人工复核。取值范围：0~100。</p>
         # @type ReviewConfidence: Integer
 
         attr_accessor :Switch, :LabelSet, :BlockConfidence, :ReviewConfidence
@@ -38992,53 +38993,7 @@ module TencentCloud
 
       # 转场操作
       class TransitionOpertion < TencentCloud::Common::AbstractModel
-        # @param Type: 转场类型，取值有：
-        # <ul>
-        # <li>图像的转场操作，用于两个视频片段图像间的转场处理：
-        # <ul>
-        # <li>ImageFadeInFadeOut：图像淡入淡出。 </li>
-        # <li>BowTieHorizontal：水平蝴蝶结。 </li>
-        # <li>BowTieVertical：垂直蝴蝶结。 </li>
-        # <li>ButterflyWaveScrawler：晃动。 </li>
-        # <li>Cannabisleaf：枫叶。 </li>
-        # <li>Circle：弧形收放。 </li>
-        # <li>CircleCrop：圆环聚拢。 </li>
-        # <li>Circleopen：椭圆聚拢。 </li>
-        # <li>Crosswarp：横向翘曲。 </li>
-        # <li>Cube：立方体。 </li>
-        # <li>DoomScreenTransition：幕布。 </li>
-        # <li>Doorway：门廊。 </li>
-        # <li>Dreamy：波浪。 </li>
-        # <li>DreamyZoom：水平聚拢。 </li>
-        # <li>FilmBurn：火烧云。 </li>
-        # <li>GlitchMemories：抖动。 </li>
-        # <li>Heart：心形。 </li>
-        # <li>InvertedPageCurl：翻页。 </li>
-        # <li>Luma：腐蚀。 </li>
-        # <li>Mosaic：九宫格。 </li>
-        # <li>Pinwheel：风车。 </li>
-        # <li>PolarFunction：椭圆扩散。 </li>
-        # <li>PolkaDotsCurtain：弧形扩散。 </li>
-        # <li>Radial：雷达扫描 </li>
-        # <li>RotateScaleFade：上下收放。 </li>
-        # <li>Squeeze：上下聚拢。 </li>
-        # <li>Swap：放大切换。 </li>
-        # <li>Swirl：螺旋。 </li>
-        # <li>UndulatingBurnOutSwirl：水流蔓延。 </li>
-        # <li>Windowblinds：百叶窗。 </li>
-        # <li>WipeDown：向下收起。 </li>
-        # <li>WipeLeft：向左收起。 </li>
-        # <li>WipeRight：向右收起。 </li>
-        # <li>WipeUp：向上收起。 </li>
-        # <li>ZoomInCircles：水波纹。 </li>
-        # </ul>
-        # </li>
-        # <li>音频的转场操作，用于两个音频片段间的转场处理：
-        # <ul>
-        # <li>AudioFadeInFadeOut：声音淡入淡出。 </li>
-        # </ul>
-        # </li>
-        # </ul>
+        # @param Type: <p>转场类型，取值有：</p><ul><li>图像的转场操作，用于两个视频片段图像间的转场处理：<ul><li>ImageFadeInFadeOut：图像淡入淡出。 </li><li>BowTieHorizontal：水平蝴蝶结。 </li><li>BowTieVertical：垂直蝴蝶结。 </li><li>ButterflyWaveScrawler：晃动。 </li><li>Cannabisleaf：枫叶。 </li><li>Circle：弧形收放。 </li><li>CircleCrop：圆环聚拢。 </li><li>Circleopen：椭圆聚拢。 </li><li>Crosswarp：横向翘曲。 </li><li>Cube：立方体。 </li><li>DoomScreenTransition：幕布。 </li><li>Doorway：门廊。 </li><li>Dreamy：波浪。 </li><li>DreamyZoom：水平聚拢。 </li><li>FilmBurn：火烧云。 </li><li>GlitchMemories：抖动。 </li><li>Heart：心形。 </li><li>InvertedPageCurl：翻页。 </li><li>Luma：腐蚀。 </li><li>Mosaic：九宫格。 </li><li>Pinwheel：风车。 </li><li>PolarFunction：椭圆扩散。 </li><li>PolkaDotsCurtain：弧形扩散。 </li><li>Radial：雷达扫描 </li><li>RotateScaleFade：上下收放。 </li><li>Squeeze：上下聚拢。 </li><li>Swap：放大切换。 </li><li>Swirl：螺旋。 </li><li>UndulatingBurnOutSwirl：水流蔓延。 </li><li>Windowblinds：百叶窗。 </li><li>WipeDown：向下收起。 </li><li>WipeLeft：向左收起。 </li><li>WipeRight：向右收起。 </li><li>WipeUp：向上收起。 </li><li>ZoomInCircles：水波纹。 </li></ul></li><li>音频的转场操作，用于两个音频片段间的转场处理：<ul><li>AudioFadeInFadeOut：声音淡入淡出。 </li></ul></li></ul>
         # @type Type: String
 
         attr_accessor :Type

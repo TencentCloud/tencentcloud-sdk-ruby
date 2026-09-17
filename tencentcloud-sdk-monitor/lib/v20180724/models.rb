@@ -14242,37 +14242,39 @@ module TencentCloud
 
       # Prometheus告警规则分组信息
       class PrometheusAlertGroupSet < TencentCloud::Common::AbstractModel
-        # @param GroupId: 告警分组ID，满足正则表达式`alert-[a-z0-9]{8}`
+        # @param GroupId: <p>告警分组ID，满足正则表达式<code>alert-[a-z0-9]{8}</code></p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupId: String
-        # @param GroupName: 告警分组名称
+        # @param GroupName: <p>告警分组名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupName: String
-        # @param AMPReceivers: 腾讯云可观测平台告警模板ID ，返回告警模板转换后的notice ID。
+        # @param AMPReceivers: <p>腾讯云可观测平台告警模板ID ，返回告警模板转换后的notice ID。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AMPReceivers: Array
-        # @param CustomReceiver: 自定义告警模板
+        # @param CustomReceiver: <p>自定义告警模板</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CustomReceiver: :class:`Tencentcloud::Monitor.v20180724.models.PrometheusAlertCustomReceiver`
-        # @param RepeatInterval: 告警通知间隔
+        # @param RepeatInterval: <p>告警通知间隔</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RepeatInterval: String
-        # @param TemplateId: 若告警分组通过模板创建，则返回模板ID
+        # @param TemplateId: <p>若告警分组通过模板创建，则返回模板ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateId: String
-        # @param Rules: 分组内告警规则详情
+        # @param Rules: <p>分组内告警规则详情</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Rules: Array
-        # @param CreatedAt: 分组创建时间
+        # @param CreatedAt: <p>分组创建时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedAt: String
-        # @param UpdatedAt: 分组更新时间
+        # @param UpdatedAt: <p>分组更新时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdatedAt: String
+        # @param LastModifySubAccountUin: <p>最后修改人子账号uin</p>
+        # @type LastModifySubAccountUin: String
 
-        attr_accessor :GroupId, :GroupName, :AMPReceivers, :CustomReceiver, :RepeatInterval, :TemplateId, :Rules, :CreatedAt, :UpdatedAt
+        attr_accessor :GroupId, :GroupName, :AMPReceivers, :CustomReceiver, :RepeatInterval, :TemplateId, :Rules, :CreatedAt, :UpdatedAt, :LastModifySubAccountUin
 
-        def initialize(groupid=nil, groupname=nil, ampreceivers=nil, customreceiver=nil, repeatinterval=nil, templateid=nil, rules=nil, createdat=nil, updatedat=nil)
+        def initialize(groupid=nil, groupname=nil, ampreceivers=nil, customreceiver=nil, repeatinterval=nil, templateid=nil, rules=nil, createdat=nil, updatedat=nil, lastmodifysubaccountuin=nil)
           @GroupId = groupid
           @GroupName = groupname
           @AMPReceivers = ampreceivers
@@ -14282,6 +14284,7 @@ module TencentCloud
           @Rules = rules
           @CreatedAt = createdat
           @UpdatedAt = updatedat
+          @LastModifySubAccountUin = lastmodifysubaccountuin
         end
 
         def deserialize(params)
@@ -14304,6 +14307,7 @@ module TencentCloud
           end
           @CreatedAt = params['CreatedAt']
           @UpdatedAt = params['UpdatedAt']
+          @LastModifySubAccountUin = params['LastModifySubAccountUin']
         end
       end
 

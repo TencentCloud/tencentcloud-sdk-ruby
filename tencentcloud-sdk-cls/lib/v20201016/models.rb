@@ -17,6 +17,88 @@
 module TencentCloud
   module Cls
     module V20201016
+      # 开启告警AI诊断。UserPrompt是给AI诊断告警时使用的提示词，比如请详细分析根因。AnalysisDataScope示例：{"DataScopeType":"CLSLogTopic","DataScopeEntry":[{"Key":"TopicId",Value:"work-topic"},{"Key":"Region",Value:"ap-guangzhou"}]}
+      class AIAnalysis < TencentCloud::Common::AbstractModel
+        # @param Enable: <p>是否开启告警AI诊断</p><p>默认值：false</p>
+        # @type Enable: Boolean
+        # @param HideProcess: <p>是否显示诊断过程</p><p>默认值：false</p>
+        # @type HideProcess: Boolean
+        # @param UserPrompt: <p>AI诊断告警时给AI的提示词</p><p>参数格式：请详细诊断根因</p>
+        # @type UserPrompt: String
+        # @param AnalysisDataScope: <p>AI 分析的数据范围</p>
+        # @type AnalysisDataScope: Array
+
+        attr_accessor :Enable, :HideProcess, :UserPrompt, :AnalysisDataScope
+
+        def initialize(enable=nil, hideprocess=nil, userprompt=nil, analysisdatascope=nil)
+          @Enable = enable
+          @HideProcess = hideprocess
+          @UserPrompt = userprompt
+          @AnalysisDataScope = analysisdatascope
+        end
+
+        def deserialize(params)
+          @Enable = params['Enable']
+          @HideProcess = params['HideProcess']
+          @UserPrompt = params['UserPrompt']
+          unless params['AnalysisDataScope'].nil?
+            @AnalysisDataScope = []
+            params['AnalysisDataScope'].each do |i|
+              aianalysisdatascope_tmp = AIAnalysisDataScope.new
+              aianalysisdatascope_tmp.deserialize(i)
+              @AnalysisDataScope << aianalysisdatascope_tmp
+            end
+          end
+        end
+      end
+
+      # AI 分析的数据范围。DataScopeType值是CLSLogTopic。DataScopeEntry是数组结构，TopicId类型和Region类型是必填。实例： [{"Key":"TopicId",Value:"work-topic"},{"Key":"Region",Value:"ap-guangzhou"}]
+      class AIAnalysisDataScope < TencentCloud::Common::AbstractModel
+        # @param DataScopeEntry: <p>告警AI诊断时查询的数据范围（查询哪些日志主题）</p>
+        # @type DataScopeEntry: Array
+        # @param DataScopeType: <p>告警AI诊断的数据范围类型</p><p>枚举值：</p><ul><li>CLSLogTopic： 日志主题</li></ul><p>默认值：CLSLogTopic</p>
+        # @type DataScopeType: String
+
+        attr_accessor :DataScopeEntry, :DataScopeType
+
+        def initialize(datascopeentry=nil, datascopetype=nil)
+          @DataScopeEntry = datascopeentry
+          @DataScopeType = datascopetype
+        end
+
+        def deserialize(params)
+          unless params['DataScopeEntry'].nil?
+            @DataScopeEntry = []
+            params['DataScopeEntry'].each do |i|
+              aianalysisdatascopeentry_tmp = AIAnalysisDataScopeEntry.new
+              aianalysisdatascopeentry_tmp.deserialize(i)
+              @DataScopeEntry << aianalysisdatascopeentry_tmp
+            end
+          end
+          @DataScopeType = params['DataScopeType']
+        end
+      end
+
+      # AI 分析的数据范围配置，如CLS日志主题配置。Key如果设置为TopicId，Value是对应日志主题topic_id，Key如果设置为Region，Value是地域的英文名，在https://cloud.tencent.com/document/product/614/18940查询。
+      class AIAnalysisDataScopeEntry < TencentCloud::Common::AbstractModel
+        # @param Key: <p>值类型</p><p>枚举值：</p><ul><li>TopicId： 日志主题ID</li><li>Region： 地域</li></ul>
+        # @type Key: String
+        # @param Value: <p>Key如果设置为TopicId，Value是对应日志主题topic_id 在https://cloud.tencent.com/document/product/614/56454 查询，Key如果设置为Region，Value是地域的英文名，在https://cloud.tencent.com/document/product/614/18940查询。</p>
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
       # DataSight访问控制规则
       class AccessControlRule < TencentCloud::Common::AbstractModel
         # @param CidrBlocks: <p>网段或IP，支持IPv4或IPv6。</p>
@@ -265,56 +347,59 @@ module TencentCloud
 
       # 告警策略描述
       class AlarmInfo < TencentCloud::Common::AbstractModel
-        # @param Name: 告警策略名称。
+        # @param Name: <p>告警策略名称。</p>
         # @type Name: String
-        # @param AlarmTargets: 监控对象列表。
+        # @param AlarmTargets: <p>监控对象列表。</p>
         # @type AlarmTargets: Array
-        # @param MonitorTime: 监控任务运行时间点。
+        # @param MonitorTime: <p>监控任务运行时间点。</p>
         # @type MonitorTime: :class:`Tencentcloud::Cls.v20201016.models.MonitorTime`
-        # @param Condition: 是否触发告警的单触发条件。与MultiConditions参数互斥。
+        # @param Condition: <p>是否触发告警的单触发条件。与MultiConditions参数互斥。</p>
         # @type Condition: String
-        # @param TriggerCount: 持续周期。持续满足触发条件TriggerCount个周期后，再进行告警；最小值为1，最大值为10。
+        # @param TriggerCount: <p>持续周期。持续满足触发条件TriggerCount个周期后，再进行告警；最小值为1，最大值为10。</p>
         # @type TriggerCount: Integer
-        # @param AlarmPeriod: 告警重复的周期。单位是min。取值范围是0~1440。
+        # @param AlarmPeriod: <p>告警重复的周期。单位是min。取值范围是0~1440。</p>
         # @type AlarmPeriod: Integer
-        # @param AlarmNoticeIds: 关联的告警通知渠道组列表。-通过[获取通知渠道组列表](https://cloud.tencent.com/document/product/614/56462)获取关联的告警通知渠道组列表，和MonitorNotice互斥
+        # @param AlarmNoticeIds: <p>关联的告警通知渠道组列表。-通过<a href="https://cloud.tencent.com/document/product/614/56462">获取通知渠道组列表</a>获取关联的告警通知渠道组列表，和MonitorNotice互斥</p>
         # @type AlarmNoticeIds: Array
-        # @param Status: 开启状态。
+        # @param Status: <p>开启状态。</p>
         # @type Status: Boolean
-        # @param AlarmId: 告警策略ID。
+        # @param AlarmId: <p>告警策略ID。</p>
         # @type AlarmId: String
-        # @param CreateTime: 创建时间。格式： YYYY-MM-DD HH:MM:SS
+        # @param CreateTime: <p>创建时间。格式： YYYY-MM-DD HH:MM:SS</p>
         # @type CreateTime: String
-        # @param UpdateTime: 最近更新时间。格式： YYYY-MM-DD HH:MM:SS
+        # @param UpdateTime: <p>最近更新时间。格式： YYYY-MM-DD HH:MM:SS</p>
         # @type UpdateTime: String
-        # @param MessageTemplate: 自定义通知模板
+        # @param MessageTemplate: <p>自定义通知模板</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MessageTemplate: String
-        # @param CallBack: 自定义回调模板
+        # @param CallBack: <p>自定义回调模板</p>
         # @type CallBack: :class:`Tencentcloud::Cls.v20201016.models.CallBackInfo`
-        # @param Analysis: 多维分析设置
+        # @param Analysis: <p>多维分析设置</p>
         # @type Analysis: Array
-        # @param GroupTriggerStatus: 分组触发状态。true：开启，false：关闭（默认）
+        # @param GroupTriggerStatus: <p>分组触发状态。true：开启，false：关闭（默认）</p>
         # @type GroupTriggerStatus: Boolean
-        # @param GroupTriggerCondition: 分组触发条件。
+        # @param GroupTriggerCondition: <p>分组触发条件。</p>
         # @type GroupTriggerCondition: Array
-        # @param Tags: 告警策略绑定的标签信息。
+        # @param Tags: <p>告警策略绑定的标签信息。</p>
         # @type Tags: Array
-        # @param MonitorObjectType: 监控对象类型。0:执行语句共用监控对象;1:每个执行语句单独选择监控对象。
+        # @param MonitorObjectType: <p>监控对象类型。0:执行语句共用监控对象;1:每个执行语句单独选择监控对象。</p>
         # @type MonitorObjectType: Integer
-        # @param AlarmLevel: 告警级别。0:警告(Warn);1:提醒(Info);2:紧急 (Critical)。
+        # @param AlarmLevel: <p>告警级别。0:警告(Warn);1:提醒(Info);2:紧急 (Critical)。</p>
         # @type AlarmLevel: Integer
-        # @param Classifications: 告警附加分类字段。
+        # @param Classifications: <p>告警附加分类字段。</p>
         # @type Classifications: Array
-        # @param MultiConditions: 多触发条件。与
-        # Condition互斥。
+        # @param MultiConditions: <p>多触发条件。与<br>Condition互斥。</p>
         # @type MultiConditions: Array
-        # @param MonitorNotice: 腾讯云可观测平台通知渠道相关信息，和AlarmNoticeIds互斥
+        # @param MonitorNotice: <p>腾讯云可观测平台通知渠道相关信息，和AlarmNoticeIds互斥</p>
         # @type MonitorNotice: :class:`Tencentcloud::Cls.v20201016.models.MonitorNotice`
+        # @param AIAnalysis: <p>AI分析内容</p>
+        # @type AIAnalysis: :class:`Tencentcloud::Cls.v20201016.models.AIAnalysis`
+        # @param SubUin: <p>最后修改人的uin信息</p>
+        # @type SubUin: Integer
 
-        attr_accessor :Name, :AlarmTargets, :MonitorTime, :Condition, :TriggerCount, :AlarmPeriod, :AlarmNoticeIds, :Status, :AlarmId, :CreateTime, :UpdateTime, :MessageTemplate, :CallBack, :Analysis, :GroupTriggerStatus, :GroupTriggerCondition, :Tags, :MonitorObjectType, :AlarmLevel, :Classifications, :MultiConditions, :MonitorNotice
+        attr_accessor :Name, :AlarmTargets, :MonitorTime, :Condition, :TriggerCount, :AlarmPeriod, :AlarmNoticeIds, :Status, :AlarmId, :CreateTime, :UpdateTime, :MessageTemplate, :CallBack, :Analysis, :GroupTriggerStatus, :GroupTriggerCondition, :Tags, :MonitorObjectType, :AlarmLevel, :Classifications, :MultiConditions, :MonitorNotice, :AIAnalysis, :SubUin
 
-        def initialize(name=nil, alarmtargets=nil, monitortime=nil, condition=nil, triggercount=nil, alarmperiod=nil, alarmnoticeids=nil, status=nil, alarmid=nil, createtime=nil, updatetime=nil, messagetemplate=nil, callback=nil, analysis=nil, grouptriggerstatus=nil, grouptriggercondition=nil, tags=nil, monitorobjecttype=nil, alarmlevel=nil, classifications=nil, multiconditions=nil, monitornotice=nil)
+        def initialize(name=nil, alarmtargets=nil, monitortime=nil, condition=nil, triggercount=nil, alarmperiod=nil, alarmnoticeids=nil, status=nil, alarmid=nil, createtime=nil, updatetime=nil, messagetemplate=nil, callback=nil, analysis=nil, grouptriggerstatus=nil, grouptriggercondition=nil, tags=nil, monitorobjecttype=nil, alarmlevel=nil, classifications=nil, multiconditions=nil, monitornotice=nil, aianalysis=nil, subuin=nil)
           @Name = name
           @AlarmTargets = alarmtargets
           @MonitorTime = monitortime
@@ -337,6 +422,8 @@ module TencentCloud
           @Classifications = classifications
           @MultiConditions = multiconditions
           @MonitorNotice = monitornotice
+          @AIAnalysis = aianalysis
+          @SubUin = subuin
         end
 
         def deserialize(params)
@@ -406,6 +493,11 @@ module TencentCloud
             @MonitorNotice = MonitorNotice.new
             @MonitorNotice.deserialize(params['MonitorNotice'])
           end
+          unless params['AIAnalysis'].nil?
+            @AIAnalysis = AIAnalysis.new
+            @AIAnalysis.deserialize(params['AIAnalysis'])
+          end
+          @SubUin = params['SubUin']
         end
       end
 
@@ -1092,6 +1184,79 @@ module TencentCloud
               @Configs << metriccollectconfig_tmp
             end
           end
+        end
+      end
+
+      # 跨账号投递任务信息
+      class CLSDeliverTaskInfo < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务id</p>
+        # @type TaskId: String
+        # @param TaskName: <p>任务名称</p>
+        # @type TaskName: String
+        # @param Uin: <p>主账号id</p>
+        # @type Uin: Integer
+        # @param SourceTopicConfig: <p>源主题信息</p>
+        # @type SourceTopicConfig: :class:`Tencentcloud::Cls.v20201016.models.SourceTopicConfig`
+        # @param TargetTopicConfig: <p>目标主题信息</p>
+        # @type TargetTopicConfig: :class:`Tencentcloud::Cls.v20201016.models.TargetTopicConfig`
+        # @param DeliverRule: <p>投递规则</p>
+        # @type DeliverRule: :class:`Tencentcloud::Cls.v20201016.models.DeliverRule`
+        # @param Compliance: <p>合规承诺</p>
+        # @type Compliance: Integer
+        # @param Status: <p>任务状态。</p><p>枚举值：</p><ul><li>0： 运行中</li><li>1： 已暂停</li><li>2： 已完成</li><li>3： 异常</li></ul>
+        # @type Status: Integer
+        # @param Enable: <p>状态 </p><p>枚举值：</p><ul><li>0： 运行</li><li>1： 暂停</li></ul>
+        # @type Enable: Integer
+        # @param Progress: <p>任务进度百分比</p>
+        # @type Progress: Integer
+        # @param HasServicesLog: <p>是否开启投递服务日志。</p><p>枚举值：</p><ul><li>1： 关闭</li><li>2： 开启</li></ul>
+        # @type HasServicesLog: Integer
+        # @param CreateTime: <p>创建时间。</p><p>单位：秒级时间戳</p>
+        # @type CreateTime: Integer
+        # @param UpdateTime: <p>更新时间</p><p>单位：秒级时间戳</p>
+        # @type UpdateTime: Integer
+
+        attr_accessor :TaskId, :TaskName, :Uin, :SourceTopicConfig, :TargetTopicConfig, :DeliverRule, :Compliance, :Status, :Enable, :Progress, :HasServicesLog, :CreateTime, :UpdateTime
+
+        def initialize(taskid=nil, taskname=nil, uin=nil, sourcetopicconfig=nil, targettopicconfig=nil, deliverrule=nil, compliance=nil, status=nil, enable=nil, progress=nil, hasserviceslog=nil, createtime=nil, updatetime=nil)
+          @TaskId = taskid
+          @TaskName = taskname
+          @Uin = uin
+          @SourceTopicConfig = sourcetopicconfig
+          @TargetTopicConfig = targettopicconfig
+          @DeliverRule = deliverrule
+          @Compliance = compliance
+          @Status = status
+          @Enable = enable
+          @Progress = progress
+          @HasServicesLog = hasserviceslog
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @TaskName = params['TaskName']
+          @Uin = params['Uin']
+          unless params['SourceTopicConfig'].nil?
+            @SourceTopicConfig = SourceTopicConfig.new
+            @SourceTopicConfig.deserialize(params['SourceTopicConfig'])
+          end
+          unless params['TargetTopicConfig'].nil?
+            @TargetTopicConfig = TargetTopicConfig.new
+            @TargetTopicConfig.deserialize(params['TargetTopicConfig'])
+          end
+          unless params['DeliverRule'].nil?
+            @DeliverRule = DeliverRule.new
+            @DeliverRule.deserialize(params['DeliverRule'])
+          end
+          @Compliance = params['Compliance']
+          @Status = params['Status']
+          @Enable = params['Enable']
+          @Progress = params['Progress']
+          @HasServicesLog = params['HasServicesLog']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
         end
       end
 
@@ -3144,6 +3309,71 @@ module TencentCloud
       # CreateAlarmShield返回参数结构体
       class CreateAlarmShieldResponse < TencentCloud::Common::AbstractModel
         # @param TaskId: 屏蔽规则ID。
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateCLSDeliverTask请求参数结构体
+      class CreateCLSDeliverTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskName: <p>任务名称</p><p>参数格式：<code>^[a-zA-Z0-9_-]{1,64}$</code></p>
+        # @type TaskName: String
+        # @param SourceTopicConfig: <p>源主题信息</p>
+        # @type SourceTopicConfig: :class:`Tencentcloud::Cls.v20201016.models.SourceTopicConfig`
+        # @param TargetTopicConfig: <p>目标主题信息</p>
+        # @type TargetTopicConfig: :class:`Tencentcloud::Cls.v20201016.models.TargetTopicConfig`
+        # @param DeliverRule: <p>投递规则</p>
+        # @type DeliverRule: :class:`Tencentcloud::Cls.v20201016.models.DeliverRule`
+        # @param Compliance: <p>合规承诺。</p><p>枚举值：</p><ul><li>1： 同意数据跨域传输条款</li></ul>
+        # @type Compliance: Integer
+        # @param HasServicesLog: <p>是否开启投递服务日志。</p><p>枚举值：</p><ul><li>1： 关闭</li><li>2： 开启</li></ul><p>默认值：2</p>
+        # @type HasServicesLog: Integer
+
+        attr_accessor :TaskName, :SourceTopicConfig, :TargetTopicConfig, :DeliverRule, :Compliance, :HasServicesLog
+
+        def initialize(taskname=nil, sourcetopicconfig=nil, targettopicconfig=nil, deliverrule=nil, compliance=nil, hasserviceslog=nil)
+          @TaskName = taskname
+          @SourceTopicConfig = sourcetopicconfig
+          @TargetTopicConfig = targettopicconfig
+          @DeliverRule = deliverrule
+          @Compliance = compliance
+          @HasServicesLog = hasserviceslog
+        end
+
+        def deserialize(params)
+          @TaskName = params['TaskName']
+          unless params['SourceTopicConfig'].nil?
+            @SourceTopicConfig = SourceTopicConfig.new
+            @SourceTopicConfig.deserialize(params['SourceTopicConfig'])
+          end
+          unless params['TargetTopicConfig'].nil?
+            @TargetTopicConfig = TargetTopicConfig.new
+            @TargetTopicConfig.deserialize(params['TargetTopicConfig'])
+          end
+          unless params['DeliverRule'].nil?
+            @DeliverRule = DeliverRule.new
+            @DeliverRule.deserialize(params['DeliverRule'])
+          end
+          @Compliance = params['Compliance']
+          @HasServicesLog = params['HasServicesLog']
+        end
+      end
+
+      # CreateCLSDeliverTask返回参数结构体
+      class CreateCLSDeliverTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务id</p>
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6869,6 +7099,38 @@ module TencentCloud
         end
       end
 
+      # DeleteCLSDeliverTask请求参数结构体
+      class DeleteCLSDeliverTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务id</p>
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DeleteCLSDeliverTask返回参数结构体
+      class DeleteCLSDeliverTaskResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteCloudProductLogCollection请求参数结构体
       class DeleteCloudProductLogCollectionRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: <p>实例ID</p>
@@ -8259,6 +8521,22 @@ module TencentCloud
         end
       end
 
+      # 投递规则
+      class DeliverRule < TencentCloud::Common::AbstractModel
+        # @param DataScope: <p>数据投递范围。</p><p>枚举值：</p><ul><li>1： 历史+新增数据</li><li>2： 自定义时间范围</li><li>3： 仅新增</li></ul><p>本次仅支持3新增数据。后续支持： 2自定义时间范围和1历史+新增数据</p>
+        # @type DataScope: Integer
+
+        attr_accessor :DataScope
+
+        def initialize(datascope=nil)
+          @DataScope = datascope
+        end
+
+        def deserialize(params)
+          @DataScope = params['DataScope']
+        end
+      end
+
       # 返回的内容
       class Delta < TencentCloud::Common::AbstractModel
         # @param Role: <p>角色</p><p>枚举值：</p><ul><li>user： 用户</li><li>assistant： AI助手</li></ul>
@@ -8765,6 +9043,68 @@ module TencentCloud
               @Records << alerthistoryrecord_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCLSDeliverTasks请求参数结构体
+      class DescribeCLSDeliverTasksRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: <ul><li>taskId 按照【任务id】进行过滤。 类型：String 必选：否  </li><li>taskName 按照【任务名称】进行过滤。 类型：String 必选：否  </li><li>sourceLogsetId 按照【源日志集】进行过滤。 类型：String 必选：否  </li><li>targetLogsetId 按照【目标日志集】进行过滤。 类型：String 必选：否<br>每次请求的Filters的上限为10，Filter.Values的上限为10。</li></ul>
+        # @type Filters: Array
+        # @param Offset: <p>分页的偏移量，默认值为0。</p>
+        # @type Offset: Integer
+        # @param Limit: <p>分页单页限制数目，默认值为20，最大值100。</p>
+        # @type Limit: Integer
+
+        attr_accessor :Filters, :Offset, :Limit
+
+        def initialize(filters=nil, offset=nil, limit=nil)
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeCLSDeliverTasks返回参数结构体
+      class DescribeCLSDeliverTasksResponse < TencentCloud::Common::AbstractModel
+        # @param Infos: <p>投递任务信息列表</p>
+        # @type Infos: Array
+        # @param Total: <p>符合条件的任务总数。</p>
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Infos, :Total, :RequestId
+
+        def initialize(infos=nil, total=nil, requestid=nil)
+          @Infos = infos
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Infos'].nil?
+            @Infos = []
+            params['Infos'].each do |i|
+              clsdelivertaskinfo_tmp = CLSDeliverTaskInfo.new
+              clsdelivertaskinfo_tmp.deserialize(i)
+              @Infos << clsdelivertaskinfo_tmp
+            end
+          end
+          @Total = params['Total']
           @RequestId = params['RequestId']
         end
       end
@@ -16538,6 +16878,71 @@ module TencentCloud
         end
       end
 
+      # ModifyCLSDeliverTask请求参数结构体
+      class ModifyCLSDeliverTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务id</p>
+        # @type TaskId: String
+        # @param TaskName: <p>任务名称</p><p>参数格式：<code>^[a-zA-Z0-9_-]{1,64}$</code></p>
+        # @type TaskName: String
+        # @param SourceTopicConfig: <p>源主题信息</p>
+        # @type SourceTopicConfig: :class:`Tencentcloud::Cls.v20201016.models.SourceTopicConfig`
+        # @param TargetTopicConfig: <p>目标主题信息</p>
+        # @type TargetTopicConfig: :class:`Tencentcloud::Cls.v20201016.models.TargetTopicConfig`
+        # @param DeliverRule: <p>投递规则</p>
+        # @type DeliverRule: :class:`Tencentcloud::Cls.v20201016.models.DeliverRule`
+        # @param Enable: <p>状态</p><p>枚举值：</p><ul><li>0： 运行</li><li>1： 暂停</li></ul>
+        # @type Enable: Integer
+        # @param HasServicesLog: <p>是否开启投递服务日志。</p><p>枚举值：</p><ul><li>1： 关闭</li><li>2： 开启</li></ul>
+        # @type HasServicesLog: Integer
+
+        attr_accessor :TaskId, :TaskName, :SourceTopicConfig, :TargetTopicConfig, :DeliverRule, :Enable, :HasServicesLog
+
+        def initialize(taskid=nil, taskname=nil, sourcetopicconfig=nil, targettopicconfig=nil, deliverrule=nil, enable=nil, hasserviceslog=nil)
+          @TaskId = taskid
+          @TaskName = taskname
+          @SourceTopicConfig = sourcetopicconfig
+          @TargetTopicConfig = targettopicconfig
+          @DeliverRule = deliverrule
+          @Enable = enable
+          @HasServicesLog = hasserviceslog
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @TaskName = params['TaskName']
+          unless params['SourceTopicConfig'].nil?
+            @SourceTopicConfig = SourceTopicConfig.new
+            @SourceTopicConfig.deserialize(params['SourceTopicConfig'])
+          end
+          unless params['TargetTopicConfig'].nil?
+            @TargetTopicConfig = TargetTopicConfig.new
+            @TargetTopicConfig.deserialize(params['TargetTopicConfig'])
+          end
+          unless params['DeliverRule'].nil?
+            @DeliverRule = DeliverRule.new
+            @DeliverRule.deserialize(params['DeliverRule'])
+          end
+          @Enable = params['Enable']
+          @HasServicesLog = params['HasServicesLog']
+        end
+      end
+
+      # ModifyCLSDeliverTask返回参数结构体
+      class ModifyCLSDeliverTaskResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyCloudProductLogCollection请求参数结构体
       class ModifyCloudProductLogCollectionRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: <p>实例ID</p>
@@ -22309,6 +22714,53 @@ module TencentCloud
         end
       end
 
+      # 源日志主题配置
+      class SourceTopicConfig < TencentCloud::Common::AbstractModel
+        # @param TopicFilterType: <p>日志主题筛选方式。</p><p>枚举值：</p><ul><li>1： 静态选择</li></ul>
+        # @type TopicFilterType: Integer
+        # @param LogsetId: <p>源日志集id</p>
+        # @type LogsetId: String
+        # @param Topics: <p>源日志主题列表</p><p>TopicFilterType=1时必填</p>
+        # @type Topics: Array
+
+        attr_accessor :TopicFilterType, :LogsetId, :Topics
+
+        def initialize(topicfiltertype=nil, logsetid=nil, topics=nil)
+          @TopicFilterType = topicfiltertype
+          @LogsetId = logsetid
+          @Topics = topics
+        end
+
+        def deserialize(params)
+          @TopicFilterType = params['TopicFilterType']
+          @LogsetId = params['LogsetId']
+          unless params['Topics'].nil?
+            @Topics = []
+            params['Topics'].each do |i|
+              sourcetopicinfo_tmp = SourceTopicInfo.new
+              sourcetopicinfo_tmp.deserialize(i)
+              @Topics << sourcetopicinfo_tmp
+            end
+          end
+        end
+      end
+
+      # 源日志主题信息
+      class SourceTopicInfo < TencentCloud::Common::AbstractModel
+        # @param TopicId: <p>日志主题id</p>
+        # @type TopicId: String
+
+        attr_accessor :TopicId
+
+        def initialize(topicid=nil)
+          @TopicId = topicid
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+        end
+      end
+
       # SplitPartition请求参数结构体
       class SplitPartitionRequest < TencentCloud::Common::AbstractModel
         # @param TopicId: 日志主题Id
@@ -22476,6 +22928,42 @@ module TencentCloud
         def deserialize(params)
           @Key = params['Key']
           @Value = params['Value']
+        end
+      end
+
+      # 目标主题配置
+      class TargetTopicConfig < TencentCloud::Common::AbstractModel
+        # @param AccountType: <p>目标账号类型。</p><p>枚举值：</p><ul><li>1： 当前主账号</li><li>2： 其他主账号</li></ul>
+        # @type AccountType: Integer
+        # @param Region: <p>目标地域</p><p>参数格式：ap-guangzhou</p>
+        # @type Region: String
+        # @param LogsetId: <p>目标日志集id</p>
+        # @type LogsetId: String
+        # @param TopicId: <p>目标日志主题id</p>
+        # @type TopicId: String
+        # @param RoleArn: <p>角色ARN</p><p>AccountType=2时必填</p>
+        # @type RoleArn: String
+        # @param ExternalId: <p>外部ID</p><p>AccountType=2时必填</p>
+        # @type ExternalId: String
+
+        attr_accessor :AccountType, :Region, :LogsetId, :TopicId, :RoleArn, :ExternalId
+
+        def initialize(accounttype=nil, region=nil, logsetid=nil, topicid=nil, rolearn=nil, externalid=nil)
+          @AccountType = accounttype
+          @Region = region
+          @LogsetId = logsetid
+          @TopicId = topicid
+          @RoleArn = rolearn
+          @ExternalId = externalid
+        end
+
+        def deserialize(params)
+          @AccountType = params['AccountType']
+          @Region = params['Region']
+          @LogsetId = params['LogsetId']
+          @TopicId = params['TopicId']
+          @RoleArn = params['RoleArn']
+          @ExternalId = params['ExternalId']
         end
       end
 

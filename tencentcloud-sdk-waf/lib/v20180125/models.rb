@@ -4419,6 +4419,157 @@ module TencentCloud
         end
       end
 
+      # CreateAndUpdateBatchCCRule请求参数结构体
+      class CreateAndUpdateBatchCCRuleRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 名称
+        # @type Name: String
+        # @param RuleId: 规则ID，新增时填0
+        # @type RuleId: Integer
+        # @param Status: 状态
+        # @type Status: Integer
+        # @param Advance: 高级模式（是否使用Session检测），0表示不启用，1表示启用
+        # @type Advance: String
+        # @param Limit: CC检测阈值
+        # @type Limit: String
+        # @param Interval: CC检测周期
+        # @type Interval: String
+        # @param ActionType: 动作，20表示观察，21表示人机识别，22表示拦截，23表示精准拦截，26表示精准人机识别，27表示JS校验
+        # @type ActionType: String
+        # @param Priority: 优先级
+        # @type Priority: Integer
+        # @param ValidTime: 动作有效时间
+        # @type ValidTime: Integer
+        # @param Url: 检测Url
+        # @type Url: String
+        # @param Length: url长度
+        # @type Length: Integer
+        # @param MatchFunc: 匹配方法，0表示等于，1表示前缀匹配，2表示包含，3表示不等于，6表示后缀匹配，7表示不包含
+        # @type MatchFunc: Integer
+        # @param OptionsArr: CC的匹配条件JSON序列化的字符串，示例：[{"key":"Method","args":["=R0VU"],"match":"0","encodeflag":true}] Key可选值为 Method、Post、Referer、Cookie、User-Agent、CustomHeader、CaptchaRisk、CaptchaDeviceRisk、CaptchaScore match可选值为，当Key为Method的时候可选值为0（等于）、3（不等于）。 Key为Post的时候可选值为0（等于）、3（不等于），Key为Cookie的时候可选值为0（等于）、2（包含），3（不等于）、7（不包含）、 当Key为Referer的时候可选值为0（等于）、3（不等于）、1（前缀匹配）、6（后缀匹配）、2（包含）、7（不包含）、12（存在）、5（不存在）、4（内容为空）， 当Key为Cookie的时候可选值为0（等于）、3（不等于）、2（包含）、7（不包含）、12（存在）、5（不存在）、4（内容为空）， 当Key为User-Agent的时候可选值为0（等于）、3（不等于）、1（前缀匹配）、6（后缀匹配）、2（包含）、7（不包含）、12（存在）、5（不存在）、4（内容为空）， 当Key为CustomHeader的时候可选值为0（等于）、3（不等于）、2（包含）、7（不包含）、12（存在）、5（不存在）、4（内容为空）。 Key为IPLocation时，可选值为13（属于）、14（不属于）。 Key为CaptchaRisk时，可选值为0（等于）、3（不等于）、13（属于）、14（不属于）、12（存在）、5（不存在）。 Key为CaptchaDeviceRisk时，可选值为0（等于）、3（不等于）、13（属于）、14（不属于）、12（存在）、5（不存在）。 Key为CaptchaScore时，可选值为15（数值等于）、16（数值不等于）、17（数值大于）、18（数值小于）、19（数值大于等于）、20（数值小于等于）、12（存在）、5（不存在）。args用来表示匹配内容，需要设置encodeflag为true，当Key为Post、Cookie、CustomHeader时，用等号=来分别串接Key和Value，并分别用Base64编码，类似YWJj=YWJj。当Key为Referer、User-Agent时，用等号=来串接Value，类似=YWJj。
+        # @type OptionsArr: String
+        # @param Edition: waf版本，sparta-waf或者clb-waf
+        # @type Edition: String
+        # @param Type: 操作类型
+        # @type Type: Integer
+        # @param EventId: 添加规则的来源事件id
+        # @type EventId: String
+        # @param SessionApplied: 规则需要启用的SessionID
+        # @type SessionApplied: Array
+        # @param LimitMethod: 限频方式
+        # @type LimitMethod: String
+        # @param LogicalOp: 配置方式的逻辑操作符，and或者or
+        # @type LogicalOp: String
+        # @param CelRule: cel表达式
+        # @type CelRule: String
+        # @param ActionRatio: 动作灰度比例，默认值100
+        # @type ActionRatio: Integer
+        # @param PageId: 页面ID
+        # @type PageId: String
+        # @param Domains: 批量规则配置的域名
+        # @type Domains: Array
+        # @param GroupIds: 批量规则配置的防护组
+        # @type GroupIds: Array
+        # @param JobType: 定时生效类型
+        # @type JobType: String
+        # @param JobDateTime: 定时生效配置
+        # @type JobDateTime: :class:`Tencentcloud::Waf.v20180125.models.JobDateTime`
+        # @param CronType: 定时生效类型：month or week
+        # @type CronType: String
+        # @param ExpireTime: 过期时间
+        # @type ExpireTime: Integer
+
+        attr_accessor :Name, :RuleId, :Status, :Advance, :Limit, :Interval, :ActionType, :Priority, :ValidTime, :Url, :Length, :MatchFunc, :OptionsArr, :Edition, :Type, :EventId, :SessionApplied, :LimitMethod, :LogicalOp, :CelRule, :ActionRatio, :PageId, :Domains, :GroupIds, :JobType, :JobDateTime, :CronType, :ExpireTime
+
+        def initialize(name=nil, ruleid=nil, status=nil, advance=nil, limit=nil, interval=nil, actiontype=nil, priority=nil, validtime=nil, url=nil, length=nil, matchfunc=nil, optionsarr=nil, edition=nil, type=nil, eventid=nil, sessionapplied=nil, limitmethod=nil, logicalop=nil, celrule=nil, actionratio=nil, pageid=nil, domains=nil, groupids=nil, jobtype=nil, jobdatetime=nil, crontype=nil, expiretime=nil)
+          @Name = name
+          @RuleId = ruleid
+          @Status = status
+          @Advance = advance
+          @Limit = limit
+          @Interval = interval
+          @ActionType = actiontype
+          @Priority = priority
+          @ValidTime = validtime
+          @Url = url
+          @Length = length
+          @MatchFunc = matchfunc
+          @OptionsArr = optionsarr
+          @Edition = edition
+          @Type = type
+          @EventId = eventid
+          @SessionApplied = sessionapplied
+          @LimitMethod = limitmethod
+          @LogicalOp = logicalop
+          @CelRule = celrule
+          @ActionRatio = actionratio
+          @PageId = pageid
+          @Domains = domains
+          @GroupIds = groupids
+          @JobType = jobtype
+          @JobDateTime = jobdatetime
+          @CronType = crontype
+          @ExpireTime = expiretime
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @RuleId = params['RuleId']
+          @Status = params['Status']
+          @Advance = params['Advance']
+          @Limit = params['Limit']
+          @Interval = params['Interval']
+          @ActionType = params['ActionType']
+          @Priority = params['Priority']
+          @ValidTime = params['ValidTime']
+          @Url = params['Url']
+          @Length = params['Length']
+          @MatchFunc = params['MatchFunc']
+          @OptionsArr = params['OptionsArr']
+          @Edition = params['Edition']
+          @Type = params['Type']
+          @EventId = params['EventId']
+          @SessionApplied = params['SessionApplied']
+          @LimitMethod = params['LimitMethod']
+          @LogicalOp = params['LogicalOp']
+          @CelRule = params['CelRule']
+          @ActionRatio = params['ActionRatio']
+          @PageId = params['PageId']
+          @Domains = params['Domains']
+          @GroupIds = params['GroupIds']
+          @JobType = params['JobType']
+          unless params['JobDateTime'].nil?
+            @JobDateTime = JobDateTime.new
+            @JobDateTime.deserialize(params['JobDateTime'])
+          end
+          @CronType = params['CronType']
+          @ExpireTime = params['ExpireTime']
+        end
+      end
+
+      # CreateAndUpdateBatchCCRule返回参数结构体
+      class CreateAndUpdateBatchCCRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RuleId: cc规则id
+        # @type RuleId: Integer
+        # @param Data: 响应数据
+        # @type Data: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RuleId, :Data, :RequestId
+
+        def initialize(ruleid=nil, data=nil, requestid=nil)
+          @RuleId = ruleid
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateAreaBanRule请求参数结构体
       class CreateAreaBanRuleRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 需要修改的域名
@@ -21947,20 +22098,20 @@ module TencentCloud
         # 		<tr>
         # 			<td>CAPTCHA_RISK（验证码风险）</td>
         # 			<td>不支持参数</td>
-        # 			<td>eq（等于）<br />neq（不等于）<br />belong_to（属于）<br />not_belong_to（不属于）<br />null（不存在）<br />nnull（存在）</td>
-        # 			<td>请输入风险等级值,支持数值范围0-255</td>
+        # 			<td>numeq（数值等于）<br />numneq（数值不等于）<br />belong_to（属于）<br />not_belong_to（不属于）<br />null（不存在）<br />nnull（存在）</td>
+        # 			<td>numeq/numneq：Content 为 0-255 的整数字符串，例如 "10"；belong_to/not_belong_to：Content 为 JSON 字符串数组的序列化字符串，例如 ["1","2"]，最多50个元素，每个值为0-255整数；null/nnull：Content 必须为空字符串。集合格式不能使用普通逗号分隔字符串。</td>
         # 		</tr>
         # 		<tr>
         # 			<td>CAPTCHA_DEVICE_RISK（验证码设备风险）</td>
         # 			<td>不支持参数</td>
-        # 			<td>eq（等于）<br />neq（不等于）<br />belong_to（属于）<br />not_belong_to（不属于）<br />null（不存在）<br />nnull（存在）</td>
-        # 			<td>请输入设备风险代码,支持取值：101、201、301、401、501、601、701</td>
+        # 			<td>numeq（数值等于）<br />numneq（数值不等于）<br />belong_to（属于）<br />not_belong_to（不属于）<br />null（不存在）<br />nnull（存在）</td>
+        # 			<td>numeq/numneq：Content 为单个设备风险代码字符串；belong_to/not_belong_to：Content 为 JSON 字符串数组的序列化字符串，例如 ["101","201"]，最多7个元素；支持取值：101、201、301、401、501、601、701；null/nnull：Content 必须为空字符串。</td>
         # 		</tr>
         # 		<tr>
         # 			<td>CAPTCHAR_SCORE（验证码风险评估分）</td>
         # 			<td>不支持参数</td>
         # 			<td>numeq（数值等于）<br />numneq（数值不等于）<br />numgt（数值大于）<br />numlt（数值小于）<br />numle（数值小于等于）<br />numge（数值大于等于）<br />null（不存在）<br />nnull（存在）</td>
-        # 			<td>请输入评估分数,支持数值范围0-100</td>
+        # 			<td>数值比较时 Content 为 0-100 的整数字符串；null/nnull 时 Content 必须为空字符串。</td>
         # 		</tr>
         # 	</tbody>
         # </table>
@@ -21997,10 +22148,7 @@ module TencentCloud
         #         cel （ CEL表达式）
         #     各匹配字段对应的逻辑符号不同，详见上述匹配字段表格
         # @type CompareFunc: String
-        # @param Content: 匹配内容
-
-        #     目前 当匹配字段为COOKIE（Cookie）时，不需要输入 匹配内容
-        # 其他都需要
+        # @param Content: 匹配内容。请根据 Field 和 CompareFunc 按匹配字段表填写。CAPTCHA_RISK、CAPTCHA_DEVICE_RISK 和 CAPTCHAR_SCORE 使用 null/nnull 时必须传空字符串；数值比较传单个整数字符串；CAPTCHA_RISK、CAPTCHA_DEVICE_RISK 使用 belong_to/not_belong_to 时传 JSON 字符串数组的序列化字符串，数组元素范围和数量限制详见 Field。
         # @type Content: String
         # @param Arg: 匹配参数
 

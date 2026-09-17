@@ -512,6 +512,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用户在购买平台版套餐后，可调用此接口创建平台版套餐环境，将产生一个平台版套餐环境。
+
+        # @param request: Request instance for CreatePlatformEnv.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::CreatePlatformEnvRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::CreatePlatformEnvResponse`
+        def CreatePlatformEnv(request)
+          body = send_request('CreatePlatformEnv', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreatePlatformEnvResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建静态托管资源，包括COS和CDN，异步任务创建，查看创建结果需要根据DescribeStaticStore接口来查看
 
         # @param request: Request instance for CreateStaticStore.
@@ -1638,6 +1662,153 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询平台版资源计费周期。
+        # 云开发平台版资源点都是按月结算的，每个月都有一定的抵扣额度。
+
+        # 例如：
+        #   某个平台版在 2026-01-05 购买了3个月(到期时间: 2026-04-05)，则他可以在以下3个周期内，分别享有40000资源点的额度：
+        #   1. 2026-01-05 ~ 2026-02-05 23:59:59
+        #   2. 2026-02-06 ~ 2026-03-05 23:59:59
+        #   3. 2026-03-06 ~ 2026-04-05 23:59:59
+
+        # 本接口，用于获取平台版当前属于哪个计费周期内。
+
+        # 影响范围：只读查询，不影响平台版资源
+        # 使用场景：控制台资源用量页面/API 主动查询当前计费周期等
+
+        # @param request: Request instance for DescribePlatformAccountCircle.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribePlatformAccountCircleRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribePlatformAccountCircleResponse`
+        def DescribePlatformAccountCircle(request)
+          body = send_request('DescribePlatformAccountCircle', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePlatformAccountCircleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询平台版本资源点模式下的资源点用量
+
+        # @param request: Request instance for DescribePlatformCreditsUsage.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribePlatformCreditsUsageRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribePlatformCreditsUsageResponse`
+        def DescribePlatformCreditsUsage(request)
+          body = send_request('DescribePlatformCreditsUsage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePlatformCreditsUsageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询平台版资源点模式下的资源点用量及原始用量明细
+
+        # @param request: Request instance for DescribePlatformCreditsUsageDetail.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribePlatformCreditsUsageDetailRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribePlatformCreditsUsageDetailResponse`
+        def DescribePlatformCreditsUsageDetail(request)
+          body = send_request('DescribePlatformCreditsUsageDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePlatformCreditsUsageDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询平台版环境资源用量
+
+        # 指定查询范围，按资源类型返回各资源指标的用量及用量明细(按天)
+        # 用量信息包含资源点用量，原始用量值（如流量、调用次数、容量等），原始用量单位等
+
+        # 影响范围：只读查询、不改变资源
+        # 使用场景：控制台用量页/API 查询平台版环境用量
+
+        # @param request: Request instance for DescribePlatformEnvUsage.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribePlatformEnvUsageRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribePlatformEnvUsageResponse`
+        def DescribePlatformEnvUsage(request)
+          body = send_request('DescribePlatformEnvUsage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePlatformEnvUsageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询平台版资源信息列表，返回信息包括
+
+        # 1.平台版基础信息如资源id，所属地域等;
+        # 2.计费相关信息如：购买/过期时间，资源规格，计费状态等;
+        # 3.底层资源信息如：存储，日志，静态托管等资源信息等;
+
+        # 入参支持platformIds，可查询指定平台版套餐信息
+
+        # 影响范围：查询接口，返回当前用户账号下平台版资源信息
+        # 使用场景：控制台展示平台版套餐信息/查平台版资源详情/资源状态
+
+        # @param request: Request instance for DescribePlatforms.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribePlatformsRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribePlatformsResponse`
+        def DescribePlatforms(request)
+          body = send_request('DescribePlatforms', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePlatformsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询指定指标的配额使用量
 
         # @param request: Request instance for DescribeQuotaData.
@@ -1856,6 +2027,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DestroyMySQLResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用户可以调用本接口，删除平台版套餐下的指定平台版环境。
+
+        # @param request: Request instance for DestroyPlatformEnv.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::DestroyPlatformEnvRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::DestroyPlatformEnvResponse`
+        def DestroyPlatformEnv(request)
+          body = send_request('DestroyPlatformEnv', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DestroyPlatformEnvResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2270,6 +2465,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyPGInstanceSpecResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改平台版环境信息
+
+        # @param request: Request instance for ModifyPlatformEnv.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::ModifyPlatformEnvRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::ModifyPlatformEnvResponse`
+        def ModifyPlatformEnv(request)
+          body = send_request('ModifyPlatformEnv', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyPlatformEnvResponse.new
             model.deserialize(response['Response'])
             model
           else

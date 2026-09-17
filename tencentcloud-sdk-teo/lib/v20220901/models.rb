@@ -7272,7 +7272,7 @@ module TencentCloud
       class DeleteCustomErrorPageRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点 ID。
         # @type ZoneId: String
-        # @param PageId: 自定义页面 ID。
+        # @param PageId: 自定义响应页面 ID。
         # @type PageId: String
 
         attr_accessor :ZoneId, :PageId
@@ -9011,17 +9011,13 @@ module TencentCloud
 
       # DescribeCustomErrorPages请求参数结构体
       class DescribeCustomErrorPagesRequest < TencentCloud::Common::AbstractModel
-        # @param ZoneId: 站点 ID。
+        # @param ZoneId: <p>站点 ID。</p>
         # @type ZoneId: String
-        # @param Filters: 过滤条件，Filters.Values 的上限为20，详细的过滤条件Name值如下：
-        # <li>page-id： 按照页面 ID 进行过滤；</li>
-        # <li>name： 按照页面名称进行过滤；</li>
-        # <li>description：按照页面描述过滤；</li>
-        # <li>content-type：按照页面类型过滤。</li>
+        # @param Filters: <p>过滤条件，Filters.Values 的上限为 20，详细的过滤条件Name值如下：<li>page-id： 按照页面 ID 进行过滤；</li><li>name： 按照页面名称进行过滤；</li><li>description：按照页面描述过滤；</li><li>content-type：按照页面类型过滤。</li></p>
         # @type Filters: Array
-        # @param Offset: 分页查询偏移量。默认值：0。
+        # @param Offset: <p>分页查询偏移量。默认值：0。</p>
         # @type Offset: Integer
-        # @param Limit: 分页查询限制数目。默认值：20，最大值：1000。
+        # @param Limit: <p>分页查询限制数目。默认值：20，最大值：1000。</p>
         # @type Limit: Integer
 
         attr_accessor :ZoneId, :Filters, :Offset, :Limit
@@ -9050,9 +9046,9 @@ module TencentCloud
 
       # DescribeCustomErrorPages返回参数结构体
       class DescribeCustomErrorPagesResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 自定义错误页面总数。
+        # @param TotalCount: <p>自定义响应页面总数。</p>
         # @type TotalCount: Integer
-        # @param ErrorPages: 自定义错误页面数据列表。
+        # @param ErrorPages: <p>自定义响应页面数据列表。</p>
         # @type ErrorPages: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

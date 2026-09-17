@@ -326,6 +326,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 新建CLS投递任务
+
+        # @param request: Request instance for CreateCLSDeliverTask.
+        # @type request: :class:`Tencentcloud::cls::V20201016::CreateCLSDeliverTaskRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::CreateCLSDeliverTaskResponse`
+        def CreateCLSDeliverTask(request)
+          body = send_request('CreateCLSDeliverTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCLSDeliverTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 内部云产品接入使用相关接口
 
         # @param request: Request instance for CreateCloudProductLogCollection.
@@ -1302,6 +1326,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteAlarmShieldResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除CLS投递任务
+
+        # @param request: Request instance for DeleteCLSDeliverTask.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DeleteCLSDeliverTaskRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DeleteCLSDeliverTaskResponse`
+        def DeleteCLSDeliverTask(request)
+          body = send_request('DeleteCLSDeliverTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteCLSDeliverTaskResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2358,6 +2406,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAlertRecordHistoryResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取CLS投递任务列表
+
+        # @param request: Request instance for DescribeCLSDeliverTasks.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DescribeCLSDeliverTasksRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DescribeCLSDeliverTasksResponse`
+        def DescribeCLSDeliverTasks(request)
+          body = send_request('DescribeCLSDeliverTasks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCLSDeliverTasksResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -4184,6 +4256,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyAlarmShieldResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改CLS投递任务
+
+        # @param request: Request instance for ModifyCLSDeliverTask.
+        # @type request: :class:`Tencentcloud::cls::V20201016::ModifyCLSDeliverTaskRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::ModifyCLSDeliverTaskResponse`
+        def ModifyCLSDeliverTask(request)
+          body = send_request('ModifyCLSDeliverTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyCLSDeliverTaskResponse.new
             model.deserialize(response['Response'])
             model
           else

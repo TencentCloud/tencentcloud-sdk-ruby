@@ -75,16 +75,11 @@ module TencentCloud
 
       # CreateStorageCredentials请求参数结构体
       class CreateStorageCredentialsRequest < TencentCloud::Common::AbstractModel
-        # @param SubAppId: <b>点播专业版[应用](/document/product/266/14574) ID。</b>
+        # @param SubAppId: <p><b>点播专业版<a href="/document/product/266/14574">应用</a> ID。</b></p>
         # @type SubAppId: Integer
-        # @param Policy: 按照下方语法组装好策略后，先序列化为字符串，再做 URL Encode，结果作为 Policy 字段入参。服务端会对该字段做 URL Decode，并按解析后的策略授予临时访问凭证权限，请按规范传入参数。
-        # 注意：
-        # 1.策略语法参照[访问管理策略](/document/product/598/10603)。
-        # 2.策略中不能包含 principal 元素。
-        # 3.策略的 action 元素仅支持：<li>name/vod:PutObject;</li><li>name/vod:ListParts;</li><li>name/vod:PostObject;</li><li>name/vod:InitiateMultipartUpload;</li><li>name/vod:UploadPart;</li><li>name/vod:CompleteMultipartUpload;</li><li>name/vod:AbortMultipartUpload;</li><li>name/vod:ListMultipartUploads;</li>4.策略的 resource 元素填写格式为：`qcs::vod:[存储地域]:uid/[账号AppID]:prefix//[点播应用ID]/[存储桶ID]/[存储路径]`，其中存储地域、账号 AppID、点播应用 ID、存储桶 ID 和存储路径要按需填写，其他内容不允许改动，例：`qcs:ap-chongqing:vod::uid/1231456789:prefix//1234567890/2ceds3ew323w3mu/file_path`。
+        # @param Policy: <p>按照下方语法组装好策略后，先序列化为字符串，再做 URL Encode，结果作为 Policy 字段入参。服务端会对该字段做 URL Decode，并按解析后的策略授予临时访问凭证权限，请按规范传入参数。<br>注意：<br>1.策略语法参照<a href="/document/product/598/10603">访问管理策略</a>。<br>2.策略中不能包含 principal 元素。<br>3.策略的 action 元素仅支持：<li>name/vod:PutObject;</li><li>name/vod:ListParts;</li><li>name/vod:PostObject;</li><li>name/vod:InitiateMultipartUpload;</li><li>name/vod:UploadPart;</li><li>name/vod:CompleteMultipartUpload;</li><li>name/vod:AbortMultipartUpload;</li><li>name/vod:ListMultipartUploads;</li>4.策略的 resource 元素填写格式为：<code>qcs::vod:[存储地域]:uid/[账号AppID]:prefix//[点播应用ID]/[存储桶ID]/[存储路径]</code>，其中存储地域、账号 AppID、点播应用 ID、存储桶 ID 和存储路径要按需填写，其他内容不允许改动，例：<code>qcs:ap-chongqing:vod::uid/1231456789:prefix//1234567890/2ceds3ew323w3mu/file_path</code>。</p>
         # @type Policy: String
-        # @param DurationSeconds: 指定临时证书的有效期，单位：秒。
-        # 默认 1800 秒，最大 129600 秒。
+        # @param DurationSeconds: <p>指定临时证书的有效期，单位：秒。<br>默认 1800 秒，最大 129600 秒。</p>
         # @type DurationSeconds: Integer
 
         attr_accessor :SubAppId, :Policy, :DurationSeconds
@@ -104,7 +99,7 @@ module TencentCloud
 
       # CreateStorageCredentials返回参数结构体
       class CreateStorageCredentialsResponse < TencentCloud::Common::AbstractModel
-        # @param Credentials: 临时访问凭证。
+        # @param Credentials: <p>临时访问凭证。</p>
         # @type Credentials: :class:`Tencentcloud::Vod.v20240718.models.Credentials`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -175,13 +170,13 @@ module TencentCloud
 
       # 临时访问凭证。
       class Credentials < TencentCloud::Common::AbstractModel
-        # @param AccessKeyId: 访问凭证 ID。
+        # @param AccessKeyId: <p>访问凭证 ID。</p>
         # @type AccessKeyId: String
-        # @param SecretAccessKey: 访问凭证 Key。
+        # @param SecretAccessKey: <p>访问凭证 Key。</p>
         # @type SecretAccessKey: String
-        # @param SessionToken: 访问凭证 Token，长度和绑定的策略有关，最长不超过 4096 字节。
+        # @param SessionToken: <p>访问凭证 Token，长度和绑定的策略有关，最长不超过 4096 字节。</p>
         # @type SessionToken: String
-        # @param Expiration: 访问凭证的过期时间。
+        # @param Expiration: <p>访问凭证的过期时间。</p>
         # @type Expiration: String
 
         attr_accessor :AccessKeyId, :SecretAccessKey, :SessionToken, :Expiration

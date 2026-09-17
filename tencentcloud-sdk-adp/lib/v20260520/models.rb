@@ -180,6 +180,54 @@ module TencentCloud
         end
       end
 
+      # 计费增值包用量信息
+      class AddOnPackageInfo < TencentCloud::Common::AbstractModel
+        # @param AddOnTotal: <p>增值包总量</p>
+        # @type AddOnTotal: Float
+        # @param AddOnUsage: <p>增值包用量</p>
+        # @type AddOnUsage: Float
+        # @param ExclusiveConcurrency: <p>专属并发总数</p>
+        # @type ExclusiveConcurrency: Integer
+        # @param ResourceStatus: <p>资源包状态</p><p>枚举值：</p><ul><li>1： 可使</li><li>2： 已用完</li><li>3： 已过期</li></ul>
+        # @type ResourceStatus: Integer
+        # @param ConcurrencyStatus: <p>专属并发状态</p><p>枚举值：</p><ul><li>1： 可使</li><li>3： 已过期</li></ul>
+        # @type ConcurrencyStatus: Integer
+        # @param ExclusiveTpm: <p>专属tpm</p>
+        # @type ExclusiveTpm: Integer
+        # @param ExclusiveTpmStatus: <p>专属tpm状态</p><p>枚举值：</p><ul><li>1： 可使</li><li>3： 已过期</li></ul>
+        # @type ExclusiveTpmStatus: Integer
+        # @param ExclusiveComputeUnit: <p>专属计算单元</p>
+        # @type ExclusiveComputeUnit: Integer
+        # @param ExclusiveComputeUnitStatus: <p>专属计算单元状态</p><p>枚举值：</p><ul><li>1： 可使</li><li>3： 已过期</li><li>4： 已销毁</li><li>5： 已隔离</li><li>6： 未生效</li><li>7： 暂不可用（套餐包过期时）</li></ul>
+        # @type ExclusiveComputeUnitStatus: Integer
+
+        attr_accessor :AddOnTotal, :AddOnUsage, :ExclusiveConcurrency, :ResourceStatus, :ConcurrencyStatus, :ExclusiveTpm, :ExclusiveTpmStatus, :ExclusiveComputeUnit, :ExclusiveComputeUnitStatus
+
+        def initialize(addontotal=nil, addonusage=nil, exclusiveconcurrency=nil, resourcestatus=nil, concurrencystatus=nil, exclusivetpm=nil, exclusivetpmstatus=nil, exclusivecomputeunit=nil, exclusivecomputeunitstatus=nil)
+          @AddOnTotal = addontotal
+          @AddOnUsage = addonusage
+          @ExclusiveConcurrency = exclusiveconcurrency
+          @ResourceStatus = resourcestatus
+          @ConcurrencyStatus = concurrencystatus
+          @ExclusiveTpm = exclusivetpm
+          @ExclusiveTpmStatus = exclusivetpmstatus
+          @ExclusiveComputeUnit = exclusivecomputeunit
+          @ExclusiveComputeUnitStatus = exclusivecomputeunitstatus
+        end
+
+        def deserialize(params)
+          @AddOnTotal = params['AddOnTotal']
+          @AddOnUsage = params['AddOnUsage']
+          @ExclusiveConcurrency = params['ExclusiveConcurrency']
+          @ResourceStatus = params['ResourceStatus']
+          @ConcurrencyStatus = params['ConcurrencyStatus']
+          @ExclusiveTpm = params['ExclusiveTpm']
+          @ExclusiveTpmStatus = params['ExclusiveTpmStatus']
+          @ExclusiveComputeUnit = params['ExclusiveComputeUnit']
+          @ExclusiveComputeUnitStatus = params['ExclusiveComputeUnitStatus']
+        end
+      end
+
       # Agent高级设置
       class AgentAdvancedConfig < TencentCloud::Common::AbstractModel
         # @param MaxReasoningRound: <p>最大推理轮数</p>
@@ -3304,9 +3352,9 @@ module TencentCloud
 
       # 通用校验结果
       class CheckResult < TencentCloud::Common::AbstractModel
-        # @param Passed: <p>是否通过校验</p>
+        # @param Passed: 是否通过校验
         # @type Passed: Boolean
-        # @param Reason: <p>失败原因（passed=false 时填充）</p>
+        # @param Reason: 失败原因（passed=false 时填充）
         # @type Reason: String
 
         attr_accessor :Passed, :Reason
@@ -8943,6 +8991,47 @@ module TencentCloud
         end
       end
 
+      # DescribeResourceSummary请求参数结构体
+      class DescribeResourceSummaryRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeResourceSummary返回参数结构体
+      class DescribeResourceSummaryResponse < TencentCloud::Common::AbstractModel
+        # @param ResourcePackage: <p>计费套餐包用量信息</p>
+        # @type ResourcePackage: :class:`Tencentcloud::Adp.v20260520.models.ResourcePackageInfo`
+        # @param AddOnPackage: <p>计费增值包用量信息</p>
+        # @type AddOnPackage: :class:`Tencentcloud::Adp.v20260520.models.AddOnPackageInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ResourcePackage, :AddOnPackage, :RequestId
+
+        def initialize(resourcepackage=nil, addonpackage=nil, requestid=nil)
+          @ResourcePackage = resourcepackage
+          @AddOnPackage = addonpackage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ResourcePackage'].nil?
+            @ResourcePackage = ResourcePackageInfo.new
+            @ResourcePackage.deserialize(params['ResourcePackage'])
+          end
+          unless params['AddOnPackage'].nil?
+            @AddOnPackage = AddOnPackageInfo.new
+            @AddOnPackage.deserialize(params['AddOnPackage'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSkillCategoryList请求参数结构体
       class DescribeSkillCategoryListRequest < TencentCloud::Common::AbstractModel
 
@@ -10593,13 +10682,13 @@ module TencentCloud
 
       # 通用身份信息（支持数字 ID 与字符串 ID 两种形态）
       class Identity < TencentCloud::Common::AbstractModel
-        # @param Description: <p>描述</p>
+        # @param Description: 描述
         # @type Description: String
-        # @param Id: <p>数字 ID</p>
+        # @param Id: 数字 ID
         # @type Id: String
-        # @param Name: <p>名称</p>
+        # @param Name: 名称
         # @type Name: String
-        # @param StrId: <p>字符串 ID</p>
+        # @param StrId: 字符串 ID
         # @type StrId: String
 
         attr_accessor :Description, :Id, :Name, :StrId
@@ -10861,6 +10950,30 @@ module TencentCloud
         end
       end
 
+      # 知识库操作权限信息
+      class KBPermission < TencentCloud::Common::AbstractModel
+        # @param CanDelete: <p>是否可删除</p>
+        # @type CanDelete: Boolean
+        # @param CanEdit: <p>是否可编辑</p>
+        # @type CanEdit: Boolean
+        # @param CanView: <p>是否可查看</p>
+        # @type CanView: Boolean
+
+        attr_accessor :CanDelete, :CanEdit, :CanView
+
+        def initialize(candelete=nil, canedit=nil, canview=nil)
+          @CanDelete = candelete
+          @CanEdit = canedit
+          @CanView = canview
+        end
+
+        def deserialize(params)
+          @CanDelete = params['CanDelete']
+          @CanEdit = params['CanEdit']
+          @CanView = params['CanView']
+        end
+      end
+
       # 单个知识库检索配置
       class KBRetrievalConfig < TencentCloud::Common::AbstractModel
         # @param DbRetrievalConfig: <p>数据库检索配置</p>
@@ -11001,6 +11114,9 @@ module TencentCloud
         # @type LatestOperator: :class:`Tencentcloud::Adp.v20260520.models.Operator`
         # @param Name: <p>知识库名称</p>
         # @type Name: String
+        # @param Permission: <p>操作权限</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Permission: :class:`Tencentcloud::Adp.v20260520.models.KBPermission`
         # @param ProcessingFlagList: <p>处理中状态列表</p>
         # @type ProcessingFlagList: Array
         # @param SharedSubType: <p>共享子类型：1=普通，2=公众号<table><tbody><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>SHARED_KB_SUB_TYPE_UNKNOWN</td><td>0</td><td></td></tr><tr><td>SHARED_KB_SUB_TYPE_NORMAL</td><td>1</td><td>普通</td></tr><tr><td>SHARED_KB_SUB_TYPE_PUBLIC_ACCOUNT</td><td>2</td><td>公众号</td></tr></tbody></table></p>
@@ -11008,9 +11124,9 @@ module TencentCloud
         # @param UpdateTime: <p>更新时间（Unix 秒）</p>
         # @type UpdateTime: String
 
-        attr_accessor :AppList, :CreateTime, :Creator, :Description, :DocCount, :IsExceeded, :KbId, :KbType, :LatestOperator, :Name, :ProcessingFlagList, :SharedSubType, :UpdateTime
+        attr_accessor :AppList, :CreateTime, :Creator, :Description, :DocCount, :IsExceeded, :KbId, :KbType, :LatestOperator, :Name, :Permission, :ProcessingFlagList, :SharedSubType, :UpdateTime
 
-        def initialize(applist=nil, createtime=nil, creator=nil, description=nil, doccount=nil, isexceeded=nil, kbid=nil, kbtype=nil, latestoperator=nil, name=nil, processingflaglist=nil, sharedsubtype=nil, updatetime=nil)
+        def initialize(applist=nil, createtime=nil, creator=nil, description=nil, doccount=nil, isexceeded=nil, kbid=nil, kbtype=nil, latestoperator=nil, name=nil, permission=nil, processingflaglist=nil, sharedsubtype=nil, updatetime=nil)
           @AppList = applist
           @CreateTime = createtime
           @Creator = creator
@@ -11021,6 +11137,7 @@ module TencentCloud
           @KbType = kbtype
           @LatestOperator = latestoperator
           @Name = name
+          @Permission = permission
           @ProcessingFlagList = processingflaglist
           @SharedSubType = sharedsubtype
           @UpdateTime = updatetime
@@ -11050,6 +11167,10 @@ module TencentCloud
             @LatestOperator.deserialize(params['LatestOperator'])
           end
           @Name = params['Name']
+          unless params['Permission'].nil?
+            @Permission = KBPermission.new
+            @Permission.deserialize(params['Permission'])
+          end
           @ProcessingFlagList = params['ProcessingFlagList']
           @SharedSubType = params['SharedSubType']
           @UpdateTime = params['UpdateTime']
@@ -11398,12 +11519,12 @@ module TencentCloud
 
       # 标准词校验项
       class LabelTermCheckResult < TencentCloud::Common::AbstractModel
-        # @param CheckResult: <p>校验结果</p>
+        # @param CheckResult: 校验结果
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CheckResult: :class:`Tencentcloud::Adp.v20260520.models.CheckResult`
-        # @param Term: <p>待校验的标准词</p>
+        # @param Term: 待校验的标准词
         # @type Term: String
-        # @param TermId: <p>已存在时返回对应标准词 ID</p>
+        # @param TermId: 已存在时返回对应标准词 ID
         # @type TermId: String
 
         attr_accessor :CheckResult, :Term, :TermId
@@ -11984,39 +12105,41 @@ module TencentCloud
 
       # 模型参数
       class ModelParams < TencentCloud::Common::AbstractModel
-        # @param DeepThinking: 是否开启深度思考
+        # @param DeepThinking: <p>是否开启深度思考</p>
         # @type DeepThinking: String
-        # @param FrequencyPenalty: 频率惩罚
+        # @param FrequencyPenalty: <p>频率惩罚</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FrequencyPenalty: Float
-        # @param MaxTokens: 最大输出长度
+        # @param MaxTokens: <p>最大输出长度</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxTokens: Integer
-        # @param PresencePenalty: 存在惩罚
+        # @param PresencePenalty: <p>存在惩罚</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PresencePenalty: Float
-        # @param ReasoningEffort: 深度思考效果
+        # @param ReasoningEffort: <p>深度思考效果</p>
         # @type ReasoningEffort: String
-        # @param RepetitionPenalty: 重复惩罚
+        # @param RepetitionPenalty: <p>重复惩罚</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RepetitionPenalty: Float
-        # @param ReplyFormat: 输出格式（text、json_object）
+        # @param ReplyFormat: <p>输出格式（text、json_object）</p>
         # @type ReplyFormat: String
-        # @param Seed: seed 随机种子
+        # @param Seed: <p>seed 随机种子</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Seed: Integer
-        # @param StopSequenceList: 停止序列
+        # @param StopSequenceList: <p>停止序列</p>
         # @type StopSequenceList: Array
-        # @param Temperature: 温度
+        # @param Temperature: <p>温度</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Temperature: Float
-        # @param TopP: top_p
+        # @param TopP: <p>top_p</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopP: Float
+        # @param TopK: <p>top_k</p>
+        # @type TopK: Integer
 
-        attr_accessor :DeepThinking, :FrequencyPenalty, :MaxTokens, :PresencePenalty, :ReasoningEffort, :RepetitionPenalty, :ReplyFormat, :Seed, :StopSequenceList, :Temperature, :TopP
+        attr_accessor :DeepThinking, :FrequencyPenalty, :MaxTokens, :PresencePenalty, :ReasoningEffort, :RepetitionPenalty, :ReplyFormat, :Seed, :StopSequenceList, :Temperature, :TopP, :TopK
 
-        def initialize(deepthinking=nil, frequencypenalty=nil, maxtokens=nil, presencepenalty=nil, reasoningeffort=nil, repetitionpenalty=nil, replyformat=nil, seed=nil, stopsequencelist=nil, temperature=nil, topp=nil)
+        def initialize(deepthinking=nil, frequencypenalty=nil, maxtokens=nil, presencepenalty=nil, reasoningeffort=nil, repetitionpenalty=nil, replyformat=nil, seed=nil, stopsequencelist=nil, temperature=nil, topp=nil, topk=nil)
           @DeepThinking = deepthinking
           @FrequencyPenalty = frequencypenalty
           @MaxTokens = maxtokens
@@ -12028,6 +12151,7 @@ module TencentCloud
           @StopSequenceList = stopsequencelist
           @Temperature = temperature
           @TopP = topp
+          @TopK = topk
         end
 
         def deserialize(params)
@@ -12042,6 +12166,7 @@ module TencentCloud
           @StopSequenceList = params['StopSequenceList']
           @Temperature = params['Temperature']
           @TopP = params['TopP']
+          @TopK = params['TopK']
         end
       end
 
@@ -13559,9 +13684,9 @@ module TencentCloud
 
       # 通用操作人信息
       class Operator < TencentCloud::Common::AbstractModel
-        # @param UserId: <p>用户 ID</p>
+        # @param UserId: 用户 ID
         # @type UserId: String
-        # @param UserName: <p>用户姓名</p>
+        # @param UserName: 用户姓名
         # @type UserName: String
 
         attr_accessor :UserId, :UserName
@@ -14807,6 +14932,42 @@ module TencentCloud
           @Label = params['Label']
           @Unit = params['Unit']
           @Value = params['Value']
+        end
+      end
+
+      # 计费套餐包用量信息
+      class ResourcePackageInfo < TencentCloud::Common::AbstractModel
+        # @param PackageType: <p>套餐类型</p><p>枚举值：</p><ul><li>1： 免费版</li><li>2： 专业版</li><li>3： 企业版</li></ul>
+        # @type PackageType: Integer
+        # @param ResourceTotal: <p>资源包总量</p>
+        # @type ResourceTotal: Integer
+        # @param ResourceUsage: <p>资源包用量</p>
+        # @type ResourceUsage: Float
+        # @param KnowledgeCapacity: <p>知识库容量</p>
+        # @type KnowledgeCapacity: Float
+        # @param KnowledgeUsage: <p>知识库用量</p>
+        # @type KnowledgeUsage: Float
+        # @param ResourceStatus: <p>资源包状态</p><p>枚举值：</p><ul><li>1： 正常</li><li>3： 已到期</li><li>4： 即将到期</li></ul>
+        # @type ResourceStatus: Integer
+
+        attr_accessor :PackageType, :ResourceTotal, :ResourceUsage, :KnowledgeCapacity, :KnowledgeUsage, :ResourceStatus
+
+        def initialize(packagetype=nil, resourcetotal=nil, resourceusage=nil, knowledgecapacity=nil, knowledgeusage=nil, resourcestatus=nil)
+          @PackageType = packagetype
+          @ResourceTotal = resourcetotal
+          @ResourceUsage = resourceusage
+          @KnowledgeCapacity = knowledgecapacity
+          @KnowledgeUsage = knowledgeusage
+          @ResourceStatus = resourcestatus
+        end
+
+        def deserialize(params)
+          @PackageType = params['PackageType']
+          @ResourceTotal = params['ResourceTotal']
+          @ResourceUsage = params['ResourceUsage']
+          @KnowledgeCapacity = params['KnowledgeCapacity']
+          @KnowledgeUsage = params['KnowledgeUsage']
+          @ResourceStatus = params['ResourceStatus']
         end
       end
 
@@ -16837,7 +16998,7 @@ module TencentCloud
 
       # 视图范围
       class ViewScope < TencentCloud::Common::AbstractModel
-        # @param ViewType: <p>视图类型；枚举值：VIEW_TYPE_CORP(1) 企业视图、VIEW_TYPE_SPACE(2) 空间视图、VIEW_TYPE_APP(3) 应用视图</p><table><tbody><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>VIEW_TYPE_UNSPECIFIED</td><td>0</td><td>未指定（无效值，请求勿传）</td></tr><tr><td>VIEW_TYPE_CORP</td><td>1</td><td>企业视图</td></tr><tr><td>VIEW_TYPE_SPACE</td><td>2</td><td>空间视图</td></tr><tr><td>VIEW_TYPE_APP</td><td>3</td><td>应用视图</td></tr></tbody></table>
+        # @param ViewType: <p>视图类型；枚举值：VIEW_TYPE_CORP(1) 企业视图、VIEW_TYPE_SPACE(2) 空间视图、VIEW_TYPE_APP(3) 应用视图</p><table><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>VIEW_TYPE_UNSPECIFIED</td><td>0</td><td>未指定（无效值，请求勿传）</td></tr><tr><td>VIEW_TYPE_CORP</td><td>1</td><td>企业视图</td></tr><tr><td>VIEW_TYPE_SPACE</td><td>2</td><td>空间视图</td></tr><tr><td>VIEW_TYPE_APP</td><td>3</td><td>应用视图</td></tr></table>
         # @type ViewType: Integer
         # @param ScopeId: <p>视图范围 ID；VIEW_TYPE_CORP 留空；VIEW_TYPE_SPACE 填 space_id；VIEW_TYPE_APP 填 app_id（uint64 雪花 ID 的十进制字符串）</p>
         # @type ScopeId: String

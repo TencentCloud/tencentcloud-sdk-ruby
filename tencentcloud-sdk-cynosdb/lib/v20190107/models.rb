@@ -296,13 +296,13 @@ module TencentCloud
 
       # AddClusterSlaveZone请求参数结构体
       class AddClusterSlaveZoneRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: <p>集群ID</p>
         # @type ClusterId: String
-        # @param SlaveZone: 从可用区
+        # @param SlaveZone: <p>备可用区</p>
         # @type SlaveZone: String
-        # @param BinlogSyncWay: binlog同步方式。默认值：async。可选值：sync、semisync、async
+        # @param BinlogSyncWay: <p>binlog同步方式。默认值：async。可选值：sync、semisync、async</p>
         # @type BinlogSyncWay: String
-        # @param SemiSyncTimeout: 半同步超时时间，单位ms。为保证业务稳定性，半同步复制存在退化逻辑，当主可用区集群在等待备可用区集群确认事务时若超过该超时时间，复制方式将降为异步复制。最低设置为1000ms，最高支持4294967295ms，默认10000ms。
+        # @param SemiSyncTimeout: <p>半同步超时时间，单位ms。为保证业务稳定性，半同步复制存在退化逻辑，当主可用区集群在等待备可用区集群确认事务时若超过该超时时间，复制方式将降为异步复制。最低设置为1000ms，最高支持4294967295ms，默认10000ms。</p>
         # @type SemiSyncTimeout: Integer
 
         attr_accessor :ClusterId, :SlaveZone, :BinlogSyncWay, :SemiSyncTimeout
@@ -324,7 +324,7 @@ module TencentCloud
 
       # AddClusterSlaveZone返回参数结构体
       class AddClusterSlaveZoneResponse < TencentCloud::Common::AbstractModel
-        # @param FlowId: 异步FlowId
+        # @param FlowId: <p>异步FlowId</p>
         # @type FlowId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -16250,15 +16250,15 @@ module TencentCloud
 
       # ModifyClusterSlaveZone请求参数结构体
       class ModifyClusterSlaveZoneRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群Id
+        # @param ClusterId: <p>集群Id</p>
         # @type ClusterId: String
-        # @param OldSlaveZone: 旧从可用区
+        # @param OldSlaveZone: <p>旧备可用区</p>
         # @type OldSlaveZone: String
-        # @param NewSlaveZone: 新从可用区
+        # @param NewSlaveZone: <p>新备可用区</p>
         # @type NewSlaveZone: String
-        # @param BinlogSyncWay: binlog同步方式。默认值：async。可选值：sync、semisync、async
+        # @param BinlogSyncWay: <p>binlog同步方式。默认值：async。可选值：sync、semisync、async</p>
         # @type BinlogSyncWay: String
-        # @param SemiSyncTimeout: 半同步超时时间，单位ms。为保证业务稳定性，半同步复制存在退化逻辑，当主可用区集群在等待备可用区集群确认事务时若超过该超时时间，复制方式将降为异步复制。最低设置为1000ms，最高支持4294967295ms，默认10000ms。
+        # @param SemiSyncTimeout: <p>半同步超时时间，单位ms。为保证业务稳定性，半同步复制存在退化逻辑，当主可用区集群在等待备可用区集群确认事务时若超过该超时时间，复制方式将降为异步复制。最低设置为1000ms，最高支持4294967295ms，默认10000ms。</p>
         # @type SemiSyncTimeout: Integer
 
         attr_accessor :ClusterId, :OldSlaveZone, :NewSlaveZone, :BinlogSyncWay, :SemiSyncTimeout
@@ -16282,7 +16282,7 @@ module TencentCloud
 
       # ModifyClusterSlaveZone返回参数结构体
       class ModifyClusterSlaveZoneResponse < TencentCloud::Common::AbstractModel
-        # @param FlowId: 异步FlowId
+        # @param FlowId: <p>异步FlowId</p>
         # @type FlowId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -19879,9 +19879,9 @@ module TencentCloud
 
       # RemoveClusterSlaveZone请求参数结构体
       class RemoveClusterSlaveZoneRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: <p>集群ID</p>
         # @type ClusterId: String
-        # @param SlaveZone: 从可用区
+        # @param SlaveZone: <p>备可用区</p>
         # @type SlaveZone: String
 
         attr_accessor :ClusterId, :SlaveZone
@@ -19899,7 +19899,7 @@ module TencentCloud
 
       # RemoveClusterSlaveZone返回参数结构体
       class RemoveClusterSlaveZoneResponse < TencentCloud::Common::AbstractModel
-        # @param FlowId: 异步FlowId
+        # @param FlowId: <p>异步FlowId</p>
         # @type FlowId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

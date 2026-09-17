@@ -1314,7 +1314,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除自定义错误页面。
+        # 删除自定义响应页面。
 
         # @param request: Request instance for DeleteCustomErrorPage.
         # @type request: :class:`Tencentcloud::teo::V20220901::DeleteCustomErrorPageRequest`

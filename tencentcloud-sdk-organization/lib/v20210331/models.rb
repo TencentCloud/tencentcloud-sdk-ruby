@@ -5623,22 +5623,28 @@ module TencentCloud
 
       # 查询某个指定SCP策略关联的目标列表
       class ListTargetsForPolicyNode < TencentCloud::Common::AbstractModel
-        # @param Uin: scp账号uin或节点Id
+        # @param Uin: <p>scp账号uin或节点Id</p>
         # @type Uin: Integer
-        # @param RelatedType: 关联类型 1-节点关联 2-用户关联
+        # @param RelatedType: <p>关联类型 1-节点关联 2-用户关联</p>
         # @type RelatedType: Integer
-        # @param Name: 账号或者节点名称
+        # @param Name: <p>账号或者节点名称</p>
         # @type Name: String
-        # @param AddTime: 绑定时间
+        # @param AddTime: <p>绑定时间</p>
         # @type AddTime: String
+        # @param NodePath: <p>目标对象所属的组织层级名称路径</p>
+        # @type NodePath: Array
+        # @param NodePathIds: <p>对应的组织层级 ID 路径</p>
+        # @type NodePathIds: Array
 
-        attr_accessor :Uin, :RelatedType, :Name, :AddTime
+        attr_accessor :Uin, :RelatedType, :Name, :AddTime, :NodePath, :NodePathIds
 
-        def initialize(uin=nil, relatedtype=nil, name=nil, addtime=nil)
+        def initialize(uin=nil, relatedtype=nil, name=nil, addtime=nil, nodepath=nil, nodepathids=nil)
           @Uin = uin
           @RelatedType = relatedtype
           @Name = name
           @AddTime = addtime
+          @NodePath = nodepath
+          @NodePathIds = nodepathids
         end
 
         def deserialize(params)
@@ -5646,22 +5652,24 @@ module TencentCloud
           @RelatedType = params['RelatedType']
           @Name = params['Name']
           @AddTime = params['AddTime']
+          @NodePath = params['NodePath']
+          @NodePathIds = params['NodePathIds']
         end
       end
 
       # ListTargetsForPolicy请求参数结构体
       class ListTargetsForPolicyRequest < TencentCloud::Common::AbstractModel
-        # @param PolicyId: 策略Id。
+        # @param PolicyId: <p>策略Id。</p>
         # @type PolicyId: Integer
-        # @param Rp: 每页数量。默认值是 20，必须大于 0 且小于或等于 200
+        # @param Rp: <p>每页数量。默认值是 20，必须大于 0 且小于或等于 200</p>
         # @type Rp: Integer
-        # @param Page: 页码。默认值是 1，从 1开始，不能大于 200
+        # @param Page: <p>页码。默认值是 1，从 1开始，不能大于 200</p>
         # @type Page: Integer
-        # @param TargetType: 策略类型。取值范围：All-全部、User-用户、Node-节点
+        # @param TargetType: <p>策略类型。取值范围：All-全部、User-用户、Node-节点</p>
         # @type TargetType: String
-        # @param PolicyType: 策略类型。默认值SERVICE_CONTROL_POLICY，取值范围：SERVICE_CONTROL_POLICY-服务控制策略、TAG_POLICY-标签策略
+        # @param PolicyType: <p>策略类型。默认值SERVICE_CONTROL_POLICY，取值范围：SERVICE_CONTROL_POLICY-服务控制策略、TAG_POLICY-标签策略</p>
         # @type PolicyType: String
-        # @param Keyword: 按照多个策略id搜索，空格隔开。
+        # @param Keyword: <p>按照多个策略id搜索，空格隔开。</p>
         # @type Keyword: String
 
         attr_accessor :PolicyId, :Rp, :Page, :TargetType, :PolicyType, :Keyword
@@ -5687,9 +5695,9 @@ module TencentCloud
 
       # ListTargetsForPolicy返回参数结构体
       class ListTargetsForPolicyResponse < TencentCloud::Common::AbstractModel
-        # @param TotalNum: 总数。
+        # @param TotalNum: <p>总数。</p>
         # @type TotalNum: Integer
-        # @param List: 指定SCP策略关联目标列表。
+        # @param List: <p>指定SCP策略关联目标列表。</p>
         # @type List: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6919,8 +6927,8 @@ module TencentCloud
 
         attr_accessor :ProductResourceId, :ResourceGrantLast
         extend Gem::Deprecate
-        deprecate :ResourceGrantLast, :none, 2026, 8
-        deprecate :ResourceGrantLast=, :none, 2026, 8
+        deprecate :ResourceGrantLast, :none, 2026, 9
+        deprecate :ResourceGrantLast=, :none, 2026, 9
 
         def initialize(productresourceid=nil, resourcegrantlast=nil)
           @ProductResourceId = productresourceid
@@ -7754,8 +7762,8 @@ module TencentCloud
 
         attr_accessor :ResourceId, :ProductResourceId
         extend Gem::Deprecate
-        deprecate :ResourceId, :none, 2026, 8
-        deprecate :ResourceId=, :none, 2026, 8
+        deprecate :ResourceId, :none, 2026, 9
+        deprecate :ResourceId=, :none, 2026, 9
 
         def initialize(resourceid=nil, productresourceid=nil)
           @ResourceId = resourceid

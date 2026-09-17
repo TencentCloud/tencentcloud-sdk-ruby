@@ -17,6 +17,36 @@
 module TencentCloud
   module Rce
     module V20260130
+      # 添加好友事件详情
+      class AddFriendEvent < TencentCloud::Common::AbstractModel
+        # @param ServerId: <p>所属服务器ID，允许空串</p>
+        # @type ServerId: String
+        # @param Sender: <p>发送者信息</p>
+        # @type Sender: :class:`Tencentcloud::Rce.v20260130.models.Sender`
+        # @param Receiver: <p>接收者信息</p>
+        # @type Receiver: :class:`Tencentcloud::Rce.v20260130.models.Receiver`
+
+        attr_accessor :ServerId, :Sender, :Receiver
+
+        def initialize(serverid=nil, sender=nil, receiver=nil)
+          @ServerId = serverid
+          @Sender = sender
+          @Receiver = receiver
+        end
+
+        def deserialize(params)
+          @ServerId = params['ServerId']
+          unless params['Sender'].nil?
+            @Sender = Sender.new
+            @Sender.deserialize(params['Sender'])
+          end
+          unless params['Receiver'].nil?
+            @Receiver = Receiver.new
+            @Receiver.deserialize(params['Receiver'])
+          end
+        end
+      end
+
       # 参加营销活动事件详情
       class AddPromotionEvent < TencentCloud::Common::AbstractModel
         # @param PromotionId: <p>营销活动ID</p>
@@ -413,7 +443,7 @@ module TencentCloud
 
       # AssessRisk请求参数结构体
       class AssessRiskRequest < TencentCloud::Common::AbstractModel
-        # @param EventCode: <p>事件码。用于指定业务接入的场景节点。</p><p> 账号保护产品下的标准事件包含：</p><ul><li> login： 登录<p></p></li> <li>register： 注册 </li><li>sms： 短信 </li><li>logout： 登出 </li><li>modify_account： 修改账号 </li><li>modify_password： 修改密码 </li><li>security_verification： 安全验证</li></ul><p>交易保护产品下的标准事件包含：</p><ul><li>create_order： 创建订单 </li><li>transaction： 交易支付 </li><li>charge_back： 拒付</li></ul><p>营销保护产品下的标准事件包含：</p><ul><li>add_promotion： 参加营销活动 </li><li>redeem： 兑奖 </li><li>withdraw： 提现 </li><li>cust_event： 自定义事件，cust_xxx </li><li>scan_code： 扫码 </li><li>lucky_draw： 抽奖 </li><li>task： 做任务 </li><li>invitation： 邀请 </li><li>claim_red_packet： 领红包 </li><li>browse： 浏览</li></ul><p>自定义事件可与RCE约定后进行风险评估</p>
+        # @param EventCode: <p>事件码。用于指定业务接入的场景节点。</p><p>账号保护产品下的标准事件包含：</p><ul><li>login： 登录</li><li>register： 注册（创建账户）</li><li>sms： 短信</li><li>logout： 登出</li><li>modify_account： 修改账号</li><li>modify_password： 修改密码</li><li>security_verification： 安全验证</li></ul><p>交易保护产品下的标准事件包含：</p><ul><li>create_order： 创建订单</li><li>transaction： 交易支付</li><li>charge_back： 拒付</li></ul><p>营销保护产品下的标准事件包含：</p><ul><li>add_promotion： 参与营销活动</li><li>redeem： 兑奖</li><li>withdraw： 提现</li><li>scan_code： 扫码</li><li>task： 做任务</li><li>claim_red_packet： 领红包</li><li>lucky_draw： 抽奖</li><li>invitation： 邀请</li><li>browse： 浏览</li></ul><p>社群保护产品下的标准事件包含：</p><ul><li>chat： 聊天消息</li><li>modify_role： 编辑角色资料</li><li>add_friend： 添加好友</li><li>modify_guild： 编辑公会资料</li></ul><p>自定义事件以 cust_ 为前缀，可与 RCE 约定后进行风险评估。</p>
         # @type EventCode: String
         # @param EventTime: <p>事件的发生时间</p><p>参数格式：符合ISO 8601标准的带UTC时区的毫秒级时间</p>
         # @type EventTime: String
@@ -445,10 +475,12 @@ module TencentCloud
         # @type QQOpenId: String
         # @param QQAppId: <p>QQ应用ID，当传入QQ开放账号时，该字段必填，QQ分配给网站或应用的AppId，用来唯一标识网站或应用</p>
         # @type QQAppId: String
+        # @param BusinessId: <p>业务序列号，您系统中一次业务动作的流水号</p>
+        # @type BusinessId: String
 
-        attr_accessor :EventCode, :EventTime, :SessionId, :DeviceToken, :UserIp, :EventDetail, :UserId, :UserEmail, :UserPhone, :Browser, :App, :DataAuthorization, :UserPhoneEncrypt, :WeChatOpenId, :QQOpenId, :QQAppId
+        attr_accessor :EventCode, :EventTime, :SessionId, :DeviceToken, :UserIp, :EventDetail, :UserId, :UserEmail, :UserPhone, :Browser, :App, :DataAuthorization, :UserPhoneEncrypt, :WeChatOpenId, :QQOpenId, :QQAppId, :BusinessId
 
-        def initialize(eventcode=nil, eventtime=nil, sessionid=nil, devicetoken=nil, userip=nil, eventdetail=nil, userid=nil, useremail=nil, userphone=nil, browser=nil, app=nil, dataauthorization=nil, userphoneencrypt=nil, wechatopenid=nil, qqopenid=nil, qqappid=nil)
+        def initialize(eventcode=nil, eventtime=nil, sessionid=nil, devicetoken=nil, userip=nil, eventdetail=nil, userid=nil, useremail=nil, userphone=nil, browser=nil, app=nil, dataauthorization=nil, userphoneencrypt=nil, wechatopenid=nil, qqopenid=nil, qqappid=nil, businessid=nil)
           @EventCode = eventcode
           @EventTime = eventtime
           @SessionId = sessionid
@@ -465,6 +497,7 @@ module TencentCloud
           @WeChatOpenId = wechatopenid
           @QQOpenId = qqopenid
           @QQAppId = qqappid
+          @BusinessId = businessid
         end
 
         def deserialize(params)
@@ -496,6 +529,7 @@ module TencentCloud
           @WeChatOpenId = params['WeChatOpenId']
           @QQOpenId = params['QQOpenId']
           @QQAppId = params['QQAppId']
+          @BusinessId = params['BusinessId']
         end
       end
 
@@ -764,6 +798,75 @@ module TencentCloud
               cust_tmp.deserialize(i)
               @Cust << cust_tmp
             end
+          end
+        end
+      end
+
+      # 聊天信息
+      class Chat < TencentCloud::Common::AbstractModel
+        # @param ChatText: <p>聊天文本内容，不含HTML、不含昵称，限2000字符</p>
+        # @type ChatText: String
+        # @param ChannelType: <p>频道类型，枚举值：world-世界 / guild-公会 / single-单聊 / other-其他</p>
+        # @type ChannelType: String
+        # @param GroupId: <p>群/频道唯一ID（单聊时为空）</p>
+        # @type GroupId: String
+        # @param GroupName: <p>群/频道名称</p>
+        # @type GroupName: String
+        # @param GroupAdministrator: <p>群主/管理员ID</p>
+        # @type GroupAdministrator: String
+
+        attr_accessor :ChatText, :ChannelType, :GroupId, :GroupName, :GroupAdministrator
+
+        def initialize(chattext=nil, channeltype=nil, groupid=nil, groupname=nil, groupadministrator=nil)
+          @ChatText = chattext
+          @ChannelType = channeltype
+          @GroupId = groupid
+          @GroupName = groupname
+          @GroupAdministrator = groupadministrator
+        end
+
+        def deserialize(params)
+          @ChatText = params['ChatText']
+          @ChannelType = params['ChannelType']
+          @GroupId = params['GroupId']
+          @GroupName = params['GroupName']
+          @GroupAdministrator = params['GroupAdministrator']
+        end
+      end
+
+      # 聊天消息事件详情
+      class ChatEvent < TencentCloud::Common::AbstractModel
+        # @param ChatInfo: <p>聊天信息</p>
+        # @type ChatInfo: :class:`Tencentcloud::Rce.v20260130.models.Chat`
+        # @param ServerId: <p>所属服务器ID，允许空串</p>
+        # @type ServerId: String
+        # @param Sender: <p>发送者信息</p>
+        # @type Sender: :class:`Tencentcloud::Rce.v20260130.models.Sender`
+        # @param Receiver: <p>接收者信息</p>
+        # @type Receiver: :class:`Tencentcloud::Rce.v20260130.models.Receiver`
+
+        attr_accessor :ChatInfo, :ServerId, :Sender, :Receiver
+
+        def initialize(chatinfo=nil, serverid=nil, sender=nil, receiver=nil)
+          @ChatInfo = chatinfo
+          @ServerId = serverid
+          @Sender = sender
+          @Receiver = receiver
+        end
+
+        def deserialize(params)
+          unless params['ChatInfo'].nil?
+            @ChatInfo = Chat.new
+            @ChatInfo.deserialize(params['ChatInfo'])
+          end
+          @ServerId = params['ServerId']
+          unless params['Sender'].nil?
+            @Sender = Sender.new
+            @Sender.deserialize(params['Sender'])
+          end
+          unless params['Receiver'].nil?
+            @Receiver = Receiver.new
+            @Receiver.deserialize(params['Receiver'])
           end
         end
       end
@@ -1313,10 +1416,18 @@ module TencentCloud
         # @type ClaimRedPacket: :class:`Tencentcloud::Rce.v20260130.models.ClaimRedPacketEvent`
         # @param Browse: <p>浏览</p>
         # @type Browse: :class:`Tencentcloud::Rce.v20260130.models.BrowseEvent`
+        # @param Chat: <p>聊天消息</p>
+        # @type Chat: :class:`Tencentcloud::Rce.v20260130.models.ChatEvent`
+        # @param ModifyRole: <p>编辑角色资料</p>
+        # @type ModifyRole: :class:`Tencentcloud::Rce.v20260130.models.ModifyRoleEvent`
+        # @param AddFriend: <p>添加好友</p>
+        # @type AddFriend: :class:`Tencentcloud::Rce.v20260130.models.AddFriendEvent`
+        # @param ModifyGuild: <p>编辑公会资料</p>
+        # @type ModifyGuild: :class:`Tencentcloud::Rce.v20260130.models.ModifyGuildEvent`
 
-        attr_accessor :Login, :Register, :CreateOrder, :Transaction, :Sms, :ChargeBack, :Logout, :ModifyAccount, :ModifyPassword, :SecurityVerification, :AddPromotion, :Redeem, :Withdraw, :CustEvent, :ScanCode, :LuckyDraw, :Task, :Invitation, :ClaimRedPacket, :Browse
+        attr_accessor :Login, :Register, :CreateOrder, :Transaction, :Sms, :ChargeBack, :Logout, :ModifyAccount, :ModifyPassword, :SecurityVerification, :AddPromotion, :Redeem, :Withdraw, :CustEvent, :ScanCode, :LuckyDraw, :Task, :Invitation, :ClaimRedPacket, :Browse, :Chat, :ModifyRole, :AddFriend, :ModifyGuild
 
-        def initialize(login=nil, register=nil, createorder=nil, transaction=nil, sms=nil, chargeback=nil, logout=nil, modifyaccount=nil, modifypassword=nil, securityverification=nil, addpromotion=nil, redeem=nil, withdraw=nil, custevent=nil, scancode=nil, luckydraw=nil, task=nil, invitation=nil, claimredpacket=nil, browse=nil)
+        def initialize(login=nil, register=nil, createorder=nil, transaction=nil, sms=nil, chargeback=nil, logout=nil, modifyaccount=nil, modifypassword=nil, securityverification=nil, addpromotion=nil, redeem=nil, withdraw=nil, custevent=nil, scancode=nil, luckydraw=nil, task=nil, invitation=nil, claimredpacket=nil, browse=nil, chat=nil, modifyrole=nil, addfriend=nil, modifyguild=nil)
           @Login = login
           @Register = register
           @CreateOrder = createorder
@@ -1337,6 +1448,10 @@ module TencentCloud
           @Invitation = invitation
           @ClaimRedPacket = claimredpacket
           @Browse = browse
+          @Chat = chat
+          @ModifyRole = modifyrole
+          @AddFriend = addfriend
+          @ModifyGuild = modifyguild
         end
 
         def deserialize(params)
@@ -1420,6 +1535,54 @@ module TencentCloud
             @Browse = BrowseEvent.new
             @Browse.deserialize(params['Browse'])
           end
+          unless params['Chat'].nil?
+            @Chat = ChatEvent.new
+            @Chat.deserialize(params['Chat'])
+          end
+          unless params['ModifyRole'].nil?
+            @ModifyRole = ModifyRoleEvent.new
+            @ModifyRole.deserialize(params['ModifyRole'])
+          end
+          unless params['AddFriend'].nil?
+            @AddFriend = AddFriendEvent.new
+            @AddFriend.deserialize(params['AddFriend'])
+          end
+          unless params['ModifyGuild'].nil?
+            @ModifyGuild = ModifyGuildEvent.new
+            @ModifyGuild.deserialize(params['ModifyGuild'])
+          end
+        end
+      end
+
+      # 公会信息
+      class Guild < TencentCloud::Common::AbstractModel
+        # @param GuildId: <p>公会唯一ID</p>
+        # @type GuildId: String
+        # @param GuildName: <p>公会名称，允许空串</p>
+        # @type GuildName: String
+        # @param GuildSignature: <p>公会签名，允许空串</p>
+        # @type GuildSignature: String
+        # @param PresidentUserId: <p>公会会长账号ID</p>
+        # @type PresidentUserId: String
+        # @param PresidentRoleId: <p>公会会长角色ID</p>
+        # @type PresidentRoleId: String
+
+        attr_accessor :GuildId, :GuildName, :GuildSignature, :PresidentUserId, :PresidentRoleId
+
+        def initialize(guildid=nil, guildname=nil, guildsignature=nil, presidentuserid=nil, presidentroleid=nil)
+          @GuildId = guildid
+          @GuildName = guildname
+          @GuildSignature = guildsignature
+          @PresidentUserId = presidentuserid
+          @PresidentRoleId = presidentroleid
+        end
+
+        def deserialize(params)
+          @GuildId = params['GuildId']
+          @GuildName = params['GuildName']
+          @GuildSignature = params['GuildSignature']
+          @PresidentUserId = params['PresidentUserId']
+          @PresidentRoleId = params['PresidentRoleId']
         end
       end
 
@@ -1944,6 +2107,44 @@ module TencentCloud
         end
       end
 
+      # 编辑公会资料事件详情
+      class ModifyGuildEvent < TencentCloud::Common::AbstractModel
+        # @param GuildNameAfter: <p>修改后的公会名，允许空串</p>
+        # @type GuildNameAfter: String
+        # @param GuildSignatureAfter: <p>修改后的公会签名，允许空串</p>
+        # @type GuildSignatureAfter: String
+        # @param ServerId: <p>所属服务器ID，允许空串</p>
+        # @type ServerId: String
+        # @param UserInfo: <p>编辑者账号信息</p>
+        # @type UserInfo: :class:`Tencentcloud::Rce.v20260130.models.User`
+        # @param Guild: <p>公会信息</p>
+        # @type Guild: :class:`Tencentcloud::Rce.v20260130.models.Guild`
+
+        attr_accessor :GuildNameAfter, :GuildSignatureAfter, :ServerId, :UserInfo, :Guild
+
+        def initialize(guildnameafter=nil, guildsignatureafter=nil, serverid=nil, userinfo=nil, guild=nil)
+          @GuildNameAfter = guildnameafter
+          @GuildSignatureAfter = guildsignatureafter
+          @ServerId = serverid
+          @UserInfo = userinfo
+          @Guild = guild
+        end
+
+        def deserialize(params)
+          @GuildNameAfter = params['GuildNameAfter']
+          @GuildSignatureAfter = params['GuildSignatureAfter']
+          @ServerId = params['ServerId']
+          unless params['UserInfo'].nil?
+            @UserInfo = User.new
+            @UserInfo.deserialize(params['UserInfo'])
+          end
+          unless params['Guild'].nil?
+            @Guild = Guild.new
+            @Guild.deserialize(params['Guild'])
+          end
+        end
+      end
+
       # 修改密码事件详情
       class ModifyPasswordEvent < TencentCloud::Common::AbstractModel
         # @param Reason: <p>修改原因</p><p>枚举值：</p><ul><li>user_modify： 用户主动修改</li><li>forgot_password： 忘记密码</li><li>forced_reset： 系统强制重置</li></ul>
@@ -1967,6 +2168,44 @@ module TencentCloud
               cust_tmp.deserialize(i)
               @Cust << cust_tmp
             end
+          end
+        end
+      end
+
+      # 编辑角色资料事件详情
+      class ModifyRoleEvent < TencentCloud::Common::AbstractModel
+        # @param RoleNameAfter: <p>修改后的角色名，允许空串</p>
+        # @type RoleNameAfter: String
+        # @param RoleSignatureAfter: <p>修改后的签名档，允许空串</p>
+        # @type RoleSignatureAfter: String
+        # @param ServerId: <p>所属服务器ID，允许空串</p>
+        # @type ServerId: String
+        # @param UserInfo: <p>编辑者账号信息</p>
+        # @type UserInfo: :class:`Tencentcloud::Rce.v20260130.models.User`
+        # @param RoleInfo: <p>角色信息</p>
+        # @type RoleInfo: :class:`Tencentcloud::Rce.v20260130.models.Role`
+
+        attr_accessor :RoleNameAfter, :RoleSignatureAfter, :ServerId, :UserInfo, :RoleInfo
+
+        def initialize(rolenameafter=nil, rolesignatureafter=nil, serverid=nil, userinfo=nil, roleinfo=nil)
+          @RoleNameAfter = rolenameafter
+          @RoleSignatureAfter = rolesignatureafter
+          @ServerId = serverid
+          @UserInfo = userinfo
+          @RoleInfo = roleinfo
+        end
+
+        def deserialize(params)
+          @RoleNameAfter = params['RoleNameAfter']
+          @RoleSignatureAfter = params['RoleSignatureAfter']
+          @ServerId = params['ServerId']
+          unless params['UserInfo'].nil?
+            @UserInfo = User.new
+            @UserInfo.deserialize(params['UserInfo'])
+          end
+          unless params['RoleInfo'].nil?
+            @RoleInfo = Role.new
+            @RoleInfo.deserialize(params['RoleInfo'])
           end
         end
       end
@@ -2202,6 +2441,36 @@ module TencentCloud
         end
       end
 
+      # 接收者信息
+      class Receiver < TencentCloud::Common::AbstractModel
+        # @param UserId: <p>接收者账号ID</p>
+        # @type UserId: String
+        # @param UserInfo: <p>接收者账号信息</p>
+        # @type UserInfo: :class:`Tencentcloud::Rce.v20260130.models.User`
+        # @param RoleInfo: <p>接收者角色信息</p>
+        # @type RoleInfo: :class:`Tencentcloud::Rce.v20260130.models.Role`
+
+        attr_accessor :UserId, :UserInfo, :RoleInfo
+
+        def initialize(userid=nil, userinfo=nil, roleinfo=nil)
+          @UserId = userid
+          @UserInfo = userinfo
+          @RoleInfo = roleinfo
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+          unless params['UserInfo'].nil?
+            @UserInfo = User.new
+            @UserInfo.deserialize(params['UserInfo'])
+          end
+          unless params['RoleInfo'].nil?
+            @RoleInfo = Role.new
+            @RoleInfo.deserialize(params['RoleInfo'])
+          end
+        end
+      end
+
       # 兑奖事件详情
       class RedeemEvent < TencentCloud::Common::AbstractModel
         # @param PromotionId: <p>营销活动ID</p>
@@ -2322,7 +2591,7 @@ module TencentCloud
 
       # ReportEvent请求参数结构体
       class ReportEventRequest < TencentCloud::Common::AbstractModel
-        # @param EventCode: <p>事件码。用于指定业务接入的场景节点。</p><p> 账号保护产品下的标准事件包含：</p><ul><li> login： 登录<p></p></li> <li>register： 注册 </li><li>sms： 短信 </li><li>logout： 登出 </li><li>modify_account： 修改账号 </li><li>modify_password： 修改密码 </li><li>security_verification： 安全验证</li></ul><p>交易保护产品下的标准事件包含：</p><ul><li>create_order： 创建订单 </li><li>transaction： 交易支付 </li><li>charge_back： 拒付</li></ul><p>营销保护产品下的标准事件包含：</p><ul><li>add_promotion： 参加营销活动 </li><li>redeem： 兑奖 </li><li>withdraw： 提现 </li><li>cust_event： 自定义事件，cust_xxx </li><li>scan_code： 扫码 </li><li>lucky_draw： 抽奖 </li><li>task： 做任务 </li><li>invitation： 邀请 </li><li>claim_red_packet： 领红包 </li><li>browse： 浏览</li></ul><p>自定义事件可与RCE约定后进行风险评估</p>
+        # @param EventCode: <p>事件码。用于指定业务接入的场景节点。</p><p>账号保护产品下的标准事件包含：</p><ul><li>login： 登录</li><li>register： 注册（创建账户）</li><li>sms： 短信</li><li>logout： 登出</li><li>modify_account： 修改账号</li><li>modify_password： 修改密码</li><li>security_verification： 安全验证</li></ul><p>交易保护产品下的标准事件包含：</p><ul><li>create_order： 创建订单</li><li>transaction： 交易支付</li><li>charge_back： 拒付</li></ul><p>营销保护产品下的标准事件包含：</p><ul><li>add_promotion： 参与营销活动</li><li>redeem： 兑奖</li><li>withdraw： 提现</li><li>scan_code： 扫码</li><li>task： 做任务</li><li>claim_red_packet： 领红包</li><li>lucky_draw： 抽奖</li><li>invitation： 邀请</li><li>browse： 浏览</li></ul><p>社群保护产品下的标准事件包含：</p><ul><li>chat： 聊天消息</li><li>modify_role： 编辑角色资料</li><li>add_friend： 添加好友</li><li>modify_guild： 编辑公会资料</li></ul><p>自定义事件以 cust_ 为前缀，可与 RCE 约定后进行风险评估。</p>
         # @type EventCode: String
         # @param EventTime: <p>事件的发生时间</p><p>参数格式：符合ISO 8601标准的带UTC时区的毫秒级时间</p>
         # @type EventTime: String
@@ -2354,10 +2623,12 @@ module TencentCloud
         # @type QQOpenId: String
         # @param QQAppId: <p>QQ应用ID，当传入QQ开放账号时，该字段必填，QQ分配给网站或应用的AppId，用来唯一标识网站或应用</p>
         # @type QQAppId: String
+        # @param BusinessId: <p>业务序列号，您系统中一次业务动作的流水号</p>
+        # @type BusinessId: String
 
-        attr_accessor :EventCode, :EventTime, :SessionId, :DeviceToken, :UserIp, :EventDetail, :UserId, :UserEmail, :UserPhone, :Browser, :App, :DataAuthorization, :UserPhoneEncrypt, :WeChatOpenId, :QQOpenId, :QQAppId
+        attr_accessor :EventCode, :EventTime, :SessionId, :DeviceToken, :UserIp, :EventDetail, :UserId, :UserEmail, :UserPhone, :Browser, :App, :DataAuthorization, :UserPhoneEncrypt, :WeChatOpenId, :QQOpenId, :QQAppId, :BusinessId
 
-        def initialize(eventcode=nil, eventtime=nil, sessionid=nil, devicetoken=nil, userip=nil, eventdetail=nil, userid=nil, useremail=nil, userphone=nil, browser=nil, app=nil, dataauthorization=nil, userphoneencrypt=nil, wechatopenid=nil, qqopenid=nil, qqappid=nil)
+        def initialize(eventcode=nil, eventtime=nil, sessionid=nil, devicetoken=nil, userip=nil, eventdetail=nil, userid=nil, useremail=nil, userphone=nil, browser=nil, app=nil, dataauthorization=nil, userphoneencrypt=nil, wechatopenid=nil, qqopenid=nil, qqappid=nil, businessid=nil)
           @EventCode = eventcode
           @EventTime = eventtime
           @SessionId = sessionid
@@ -2374,6 +2645,7 @@ module TencentCloud
           @WeChatOpenId = wechatopenid
           @QQOpenId = qqopenid
           @QQAppId = qqappid
+          @BusinessId = businessid
         end
 
         def deserialize(params)
@@ -2405,6 +2677,7 @@ module TencentCloud
           @WeChatOpenId = params['WeChatOpenId']
           @QQOpenId = params['QQOpenId']
           @QQAppId = params['QQAppId']
+          @BusinessId = params['BusinessId']
         end
       end
 
@@ -2461,6 +2734,42 @@ module TencentCloud
         def deserialize(params)
           @Id = params['Id']
           @Reason = params['Reason']
+        end
+      end
+
+      # 角色信息
+      class Role < TencentCloud::Common::AbstractModel
+        # @param RoleId: <p>角色ID</p>
+        # @type RoleId: String
+        # @param RoleName: <p>角色名称</p>
+        # @type RoleName: String
+        # @param RoleSignature: <p>个性签名</p>
+        # @type RoleSignature: String
+        # @param RoleLevel: <p>角色等级</p>
+        # @type RoleLevel: String
+        # @param RoleCe: <p>角色总战力</p>
+        # @type RoleCe: Float
+        # @param RoleCreateTime: <p>角色创建时间</p>
+        # @type RoleCreateTime: String
+
+        attr_accessor :RoleId, :RoleName, :RoleSignature, :RoleLevel, :RoleCe, :RoleCreateTime
+
+        def initialize(roleid=nil, rolename=nil, rolesignature=nil, rolelevel=nil, rolece=nil, rolecreatetime=nil)
+          @RoleId = roleid
+          @RoleName = rolename
+          @RoleSignature = rolesignature
+          @RoleLevel = rolelevel
+          @RoleCe = rolece
+          @RoleCreateTime = rolecreatetime
+        end
+
+        def deserialize(params)
+          @RoleId = params['RoleId']
+          @RoleName = params['RoleName']
+          @RoleSignature = params['RoleSignature']
+          @RoleLevel = params['RoleLevel']
+          @RoleCe = params['RoleCe']
+          @RoleCreateTime = params['RoleCreateTime']
         end
       end
 
@@ -2624,6 +2933,32 @@ module TencentCloud
               cust_tmp.deserialize(i)
               @Cust << cust_tmp
             end
+          end
+        end
+      end
+
+      # 发送者信息
+      class Sender < TencentCloud::Common::AbstractModel
+        # @param UserInfo: <p>发送者账号信息</p>
+        # @type UserInfo: :class:`Tencentcloud::Rce.v20260130.models.User`
+        # @param RoleInfo: <p>发送者角色信息</p>
+        # @type RoleInfo: :class:`Tencentcloud::Rce.v20260130.models.Role`
+
+        attr_accessor :UserInfo, :RoleInfo
+
+        def initialize(userinfo=nil, roleinfo=nil)
+          @UserInfo = userinfo
+          @RoleInfo = roleinfo
+        end
+
+        def deserialize(params)
+          unless params['UserInfo'].nil?
+            @UserInfo = User.new
+            @UserInfo.deserialize(params['UserInfo'])
+          end
+          unless params['RoleInfo'].nil?
+            @RoleInfo = Role.new
+            @RoleInfo.deserialize(params['RoleInfo'])
           end
         end
       end
@@ -2804,13 +3139,16 @@ module TencentCloud
         # @type UserPoint: :class:`Tencentcloud::Rce.v20260130.models.CreditPoint`
         # @param UserType: <p>用户类型</p>
         # @type UserType: String
+        # @param IsPaid: <p>是否付费账号</p>
+        # @type IsPaid: Boolean
 
-        attr_accessor :UserLevel, :UserPoint, :UserType
+        attr_accessor :UserLevel, :UserPoint, :UserType, :IsPaid
 
-        def initialize(userlevel=nil, userpoint=nil, usertype=nil)
+        def initialize(userlevel=nil, userpoint=nil, usertype=nil, ispaid=nil)
           @UserLevel = userlevel
           @UserPoint = userpoint
           @UserType = usertype
+          @IsPaid = ispaid
         end
 
         def deserialize(params)
@@ -2820,6 +3158,7 @@ module TencentCloud
             @UserPoint.deserialize(params['UserPoint'])
           end
           @UserType = params['UserType']
+          @IsPaid = params['IsPaid']
         end
       end
 

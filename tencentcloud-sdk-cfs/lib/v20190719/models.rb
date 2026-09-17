@@ -2026,28 +2026,34 @@ module TencentCloud
 
       # DescribeCfsFileSystems请求参数结构体
       class DescribeCfsFileSystemsRequest < TencentCloud::Common::AbstractModel
-        # @param FileSystemId: 文件系统 ID
+        # @param FileSystemId: <p>文件系统 ID</p>
         # @type FileSystemId: String
-        # @param VpcId: 私有网络（VPC） ID
+        # @param VpcId: <p>私有网络（VPC） ID</p>
         # @type VpcId: String
-        # @param SubnetId: 子网 ID
+        # @param SubnetId: <p>子网 ID</p>
         # @type SubnetId: String
-        # @param Offset: Offset 分页码,默认0
+        # @param Offset: <p>Offset 分页码,默认0</p>
         # @type Offset: Integer
-        # @param Limit: Limit 页面大小，默认10
+        # @param Limit: <p>Limit 页面大小，默认10</p>
         # @type Limit: Integer
-        # @param CreationToken: 用户自定义名称
+        # @param CreationToken: <p>用户自定义名称</p>
         # @type CreationToken: String
+        # @param Filters: <p>过滤条件。<br><br><li>Protocol - Array of String - 是否必填：否 -（过滤条件）按协议过滤。(NFS | CIFS | TURBO) </li><br><br><li>StorageType - Array of String - 是否必填：否 -（过滤条件）按存储类型过滤。(SD | HP | TB | TP | THP) </li><br><br><li>LifeCycleState - Array of String - 是否必填：否 -（过滤条件）按生命周期过滤。(creating | create_failed | available | deleting | delete_failed | upgrading | unserviced | expanding) </li><br><br><li>Zone - Array of String - 是否必填：否 -（过滤条件）按可用区过滤。(例如：ap-guangzhou-3) </li><br><br><li>IpAddress - Array of String - 是否必填：否 -（过滤条件）按导出点IP地址过滤。(例如：10.0.0.3) </li><br><br><li>PGroupId - Array of String - 是否必填：否 -（过滤条件）按权限组ID过滤。(例如：pgroup-xxxxxrxt) </li><br><br><li>PGroupName - Array of String - 是否必填：否 -（过滤条件）按权限组名称过滤。(例如：默认权限组) </li><br><br><li>Scenario- Array of String - 是否必填：否 -（过滤条件）按权限组名称过滤。(例如：AgentSandbox) </li></p>
+        # @type Filters: Array
+        # @param Tags: <p>标签</p>
+        # @type Tags: Array
 
-        attr_accessor :FileSystemId, :VpcId, :SubnetId, :Offset, :Limit, :CreationToken
+        attr_accessor :FileSystemId, :VpcId, :SubnetId, :Offset, :Limit, :CreationToken, :Filters, :Tags
 
-        def initialize(filesystemid=nil, vpcid=nil, subnetid=nil, offset=nil, limit=nil, creationtoken=nil)
+        def initialize(filesystemid=nil, vpcid=nil, subnetid=nil, offset=nil, limit=nil, creationtoken=nil, filters=nil, tags=nil)
           @FileSystemId = filesystemid
           @VpcId = vpcid
           @SubnetId = subnetid
           @Offset = offset
           @Limit = limit
           @CreationToken = creationtoken
+          @Filters = filters
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -2057,14 +2063,30 @@ module TencentCloud
           @Offset = params['Offset']
           @Limit = params['Limit']
           @CreationToken = params['CreationToken']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              taginfo_tmp = TagInfo.new
+              taginfo_tmp.deserialize(i)
+              @Tags << taginfo_tmp
+            end
+          end
         end
       end
 
       # DescribeCfsFileSystems返回参数结构体
       class DescribeCfsFileSystemsResponse < TencentCloud::Common::AbstractModel
-        # @param FileSystems: 文件系统信息
+        # @param FileSystems: <p>文件系统信息</p>
         # @type FileSystems: Array
-        # @param TotalCount: 文件系统总数
+        # @param TotalCount: <p>文件系统总数</p>
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3119,10 +3141,16 @@ module TencentCloud
         # @type MetaType: String
         # @param Scenario: <p>业务场景。</p><p>枚举值：</p><ul><li>AgentSandbox： 创建 AgentCFS</li></ul>
         # @type Scenario: String
+        # @param FullDeleteCapacityUsage: <p>过满删除容量占比，0.0 表示关闭</p><p>取值范围：[0.0, 1.0]</p>
+        # @type FullDeleteCapacityUsage: Float
+        # @param FullDeleteMinTtl: <p>过满删除最小存活时间，单位秒</p><p>单位：秒</p>
+        # @type FullDeleteMinTtl: Integer
+        # @param ExpireDeleteTtl: <p>过期删除 TTL，单位秒，0 表示关闭</p><p>单位：秒</p>
+        # @type ExpireDeleteTtl: Integer
 
-        attr_accessor :CreationTime, :CreationToken, :FileSystemId, :LifeCycleState, :SizeByte, :SizeLimit, :ZoneId, :Zone, :Protocol, :StorageType, :StorageResourcePkg, :BandwidthResourcePkg, :PGroup, :FsName, :Encrypted, :KmsKeyId, :AppId, :BandwidthLimit, :AutoSnapshotPolicyId, :SnapStatus, :Capacity, :Tags, :TieringState, :TieringDetail, :AutoScaleUpRule, :Version, :ExstraPerformanceInfo, :MetaType, :Scenario
+        attr_accessor :CreationTime, :CreationToken, :FileSystemId, :LifeCycleState, :SizeByte, :SizeLimit, :ZoneId, :Zone, :Protocol, :StorageType, :StorageResourcePkg, :BandwidthResourcePkg, :PGroup, :FsName, :Encrypted, :KmsKeyId, :AppId, :BandwidthLimit, :AutoSnapshotPolicyId, :SnapStatus, :Capacity, :Tags, :TieringState, :TieringDetail, :AutoScaleUpRule, :Version, :ExstraPerformanceInfo, :MetaType, :Scenario, :FullDeleteCapacityUsage, :FullDeleteMinTtl, :ExpireDeleteTtl
 
-        def initialize(creationtime=nil, creationtoken=nil, filesystemid=nil, lifecyclestate=nil, sizebyte=nil, sizelimit=nil, zoneid=nil, zone=nil, protocol=nil, storagetype=nil, storageresourcepkg=nil, bandwidthresourcepkg=nil, pgroup=nil, fsname=nil, encrypted=nil, kmskeyid=nil, appid=nil, bandwidthlimit=nil, autosnapshotpolicyid=nil, snapstatus=nil, capacity=nil, tags=nil, tieringstate=nil, tieringdetail=nil, autoscaleuprule=nil, version=nil, exstraperformanceinfo=nil, metatype=nil, scenario=nil)
+        def initialize(creationtime=nil, creationtoken=nil, filesystemid=nil, lifecyclestate=nil, sizebyte=nil, sizelimit=nil, zoneid=nil, zone=nil, protocol=nil, storagetype=nil, storageresourcepkg=nil, bandwidthresourcepkg=nil, pgroup=nil, fsname=nil, encrypted=nil, kmskeyid=nil, appid=nil, bandwidthlimit=nil, autosnapshotpolicyid=nil, snapstatus=nil, capacity=nil, tags=nil, tieringstate=nil, tieringdetail=nil, autoscaleuprule=nil, version=nil, exstraperformanceinfo=nil, metatype=nil, scenario=nil, fulldeletecapacityusage=nil, fulldeleteminttl=nil, expiredeletettl=nil)
           @CreationTime = creationtime
           @CreationToken = creationtoken
           @FileSystemId = filesystemid
@@ -3152,6 +3180,9 @@ module TencentCloud
           @ExstraPerformanceInfo = exstraperformanceinfo
           @MetaType = metatype
           @Scenario = scenario
+          @FullDeleteCapacityUsage = fulldeletecapacityusage
+          @FullDeleteMinTtl = fulldeleteminttl
+          @ExpireDeleteTtl = expiredeletettl
         end
 
         def deserialize(params)
@@ -3207,6 +3238,9 @@ module TencentCloud
           end
           @MetaType = params['MetaType']
           @Scenario = params['Scenario']
+          @FullDeleteCapacityUsage = params['FullDeleteCapacityUsage']
+          @FullDeleteMinTtl = params['FullDeleteMinTtl']
+          @ExpireDeleteTtl = params['ExpireDeleteTtl']
         end
       end
 

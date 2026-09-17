@@ -804,11 +804,11 @@ module TencentCloud
 
       # DescribeAddressPoolList请求参数结构体
       class DescribeAddressPoolListRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: 告警过滤条件：PoolName：地址池名称；MonitorId：监控器id
+        # @param Filters: <p>告警过滤条件：PoolName：地址池名称；MonitorId：监控器id</p>
         # @type Filters: Array
-        # @param Offset: 页数
+        # @param Offset: <p>页数</p>
         # @type Offset: Integer
-        # @param Limit: 每页数
+        # @param Limit: <p>每页数</p>
         # @type Limit: Integer
 
         attr_accessor :Filters, :Offset, :Limit
@@ -835,9 +835,9 @@ module TencentCloud
 
       # DescribeAddressPoolList返回参数结构体
       class DescribeAddressPoolListResponse < TencentCloud::Common::AbstractModel
-        # @param AddressPoolSet: 资源组列表
+        # @param AddressPoolSet: <p>资源组列表</p>
         # @type AddressPoolSet: Array
-        # @param TotalCount: 总数
+        # @param TotalCount: <p>总数</p>
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1049,7 +1049,7 @@ module TencentCloud
 
       # DescribeDnsLineList请求参数结构体
       class DescribeDnsLineListRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例id
+        # @param InstanceId: <p>实例id</p>
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -1065,7 +1065,7 @@ module TencentCloud
 
       # DescribeDnsLineList返回参数结构体
       class DescribeDnsLineListResponse < TencentCloud::Common::AbstractModel
-        # @param DnsLineSet: 地址池列表
+        # @param DnsLineSet: <p>地址池列表</p>
         # @type DnsLineSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1263,7 +1263,7 @@ module TencentCloud
 
       # DescribeMonitorDetail请求参数结构体
       class DescribeMonitorDetailRequest < TencentCloud::Common::AbstractModel
-        # @param MonitorId: 监控器id
+        # @param MonitorId: <p>监控器id</p>
         # @type MonitorId: Integer
 
         attr_accessor :MonitorId
@@ -1279,7 +1279,7 @@ module TencentCloud
 
       # DescribeMonitorDetail返回参数结构体
       class DescribeMonitorDetailResponse < TencentCloud::Common::AbstractModel
-        # @param MonitorDetail: 探测规则
+        # @param MonitorDetail: <p>探测规则</p>
         # @type MonitorDetail: :class:`Tencentcloud::Igtm.v20231024.models.MonitorDetail`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1450,13 +1450,13 @@ module TencentCloud
 
       # DescribeStrategyList请求参数结构体
       class DescribeStrategyListRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 id
+        # @param InstanceId: <p>实例 id</p>
         # @type InstanceId: String
-        # @param Offset: 偏移量
+        # @param Offset: <p>偏移量</p>
         # @type Offset: Integer
-        # @param Limit: 每页条数
+        # @param Limit: <p>每页条数</p>
         # @type Limit: Integer
-        # @param Filters: 策略过滤条件：StrategyName：策略名称
+        # @param Filters: <p>策略过滤条件：StrategyName：策略名称</p>
         # @type Filters: Array
 
         attr_accessor :InstanceId, :Offset, :Limit, :Filters
@@ -1485,9 +1485,9 @@ module TencentCloud
 
       # DescribeStrategyList返回参数结构体
       class DescribeStrategyListResponse < TencentCloud::Common::AbstractModel
-        # @param StrategySet: 策略列表
+        # @param StrategySet: <p>策略列表</p>
         # @type StrategySet: Array
-        # @param TotalCount: 总数
+        # @param TotalCount: <p>总数</p>
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2567,8 +2567,8 @@ module TencentCloud
       # 查询时过滤条件。
       class ResourceFilter < TencentCloud::Common::AbstractModel
         # @param Name: 过滤字段名，支持的列表如下：
-        # - type：主资源类型，CDN。
-        # - instanceId：IGTM实例ID。此为必传参数，未传将导致接口查询失败。
+        # - MonitorName：监控器名称。
+        # - MonitorId：监控器名称
         # @type Name: String
         # @param Value: 过滤字段值。
         # @type Value: Array

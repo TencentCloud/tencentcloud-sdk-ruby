@@ -9414,7 +9414,7 @@ module TencentCloud
       class CreateAigcAudioTaskRequest < TencentCloud::Common::AbstractModel
         # @param ModelName: <p>模型名称。生音乐当前支持的模型: GL、MiniMaxMusic、EL、Mureka。</p>
         # @type ModelName: String
-        # @param ModelVersion: <p>指定模型特定版本号。默认使用系统当前所支持的模型稳定版本。模型GL支持的版本号：3.0-clip、3.0-pro。模型MiniMaxMusic支持的版本号：2.0、2.5、2.6， 3.0。模型EL支持的版本号: compose_v2、sound_t2s_v2。模型Mureka支持的版本号: song_8、song_9、song_9.5、instrumental_8、instrumental_9、instrumental_9.5。</p>
+        # @param ModelVersion: <p>指定模型特定版本号。默认使用系统当前所支持的模型稳定版本。<br>模型GL支持的版本号：3.0-clip、3.0-pro。<br>模型MiniMaxMusic支持的版本号：2.0、2.5、2.6， 3.0。<br>模型EL支持的版本号: compose_v2、sound_t2s_v2。<br>模型Mureka支持的版本号: song_8、song_9、song_9.5、instrumental_8、instrumental_9、instrumental_9.5。</p>
         # @type ModelVersion: String
         # @param SceneType: <p>指定场景生音频。音乐: music。</p>
         # @type SceneType: String
@@ -9428,7 +9428,7 @@ module TencentCloud
         # @type StoreCosParam: :class:`Tencentcloud::Mps.v20190612.models.AigcStoreCosParam`
         # @param ExtraParameters: <p>用于传入要求的额外参数。</p>
         # @type ExtraParameters: :class:`Tencentcloud::Mps.v20190612.models.AigcAudioExtraParam`
-        # @param AdditionalParameters: <p>用于传入一些模型需要的特殊场景参数，Json格式序列化成字符串。<br>示例MinimaxMusic模型传入歌词时：<br>{"lyric":{"小马在快乐奔跑，花儿在开放"}}</p><ol><li>MiniMaxMusic生纯音乐参数使用示例: &quot;AdditionalParameters&quot;:&quot;{"is_instrumental":true}&quot;。<br>支持的透传参数有: lyrics，is_instrumental，aigc_watermark，sample_rate，bitrate。</li><li>EL生音乐支持透传的参数有:<br>PromptInfluence，WithTimestamps，CompositionPlan，ForceInstrumental等参数。</li></ol>
+        # @param AdditionalParameters: <p>用于传入一些模型需要的特殊场景参数，Json格式序列化成字符串。<br>示例MinimaxMusic模型传入歌词时：<br>{"lyric":{"小马在快乐奔跑，花儿在开放"}}</p><ol><li>MiniMaxMusic生纯音乐参数使用示例: &quot;AdditionalParameters&quot;:&quot;{"is_instrumental":true}&quot;。<br>支持的透传参数有: lyrics，is_instrumental，aigc_watermark，sample_rate，bitrate。</li><li>EL生音乐支持透传的参数有:<br>PromptInfluence，WithTimestamps，CompositionPlan，ForceInstrumental等参数。</li><li>Mureka模型支持的透传参数有：<br>n: 指定输出音频文件数。<br>非instrumental版本支持：lyrics，gender，reference_id，melody_id。<br>instrumental版本支持：instrumental_id。</li></ol>
         # @type AdditionalParameters: String
         # @param Operator: <p>接口操作者名称。</p>
         # @type Operator: String
@@ -10044,7 +10044,7 @@ module TencentCloud
 
       # 生图任务。
       class CreateImageConfig < TencentCloud::Common::AbstractModel
-        # @param Model: <p>生图模型</p><p>枚举值：</p><ul><li>WAND-create-1.0-lite： 轻量生图模型</li><li>WAND-create-1.0-flash： 质量-速度平衡生图模型</li><li>WAND-create-1.0-pro： 高质量生图模型</li></ul>
+        # @param Model: <p>生图模型</p><p>枚举值：</p><ul><li>scene-image-lite： 场景生图 lite 模型</li></ul>
         # @type Model: String
         # @param Prompt: <p>生图指令</p>
         # @type Prompt: String
@@ -19220,12 +19220,16 @@ module TencentCloud
         # @type Labels: Array
         # @param Scenes: <p>场景</p>
         # @type Scenes: Array
+        # @param PageNum: <p>分页查询页码。从1开始，默认1</p>
+        # @type PageNum: Integer
+        # @param PageSize: <p>页大小。不填默认返回所有符合条件数据</p>
+        # @type PageSize: Integer
         # @param ExtParam: <p>扩展参数，json字符串</p><p>其他筛选条件voiceName String 音色名，模糊匹配labels Array of String 标签，匹配包含这些标签的音色</p>
         # @type ExtParam: String
 
-        attr_accessor :VoiceId, :VoiceType, :VoiceName, :Description, :Gender, :Age, :Languages, :Labels, :Scenes, :ExtParam
+        attr_accessor :VoiceId, :VoiceType, :VoiceName, :Description, :Gender, :Age, :Languages, :Labels, :Scenes, :PageNum, :PageSize, :ExtParam
 
-        def initialize(voiceid=nil, voicetype=nil, voicename=nil, description=nil, gender=nil, age=nil, languages=nil, labels=nil, scenes=nil, extparam=nil)
+        def initialize(voiceid=nil, voicetype=nil, voicename=nil, description=nil, gender=nil, age=nil, languages=nil, labels=nil, scenes=nil, pagenum=nil, pagesize=nil, extparam=nil)
           @VoiceId = voiceid
           @VoiceType = voicetype
           @VoiceName = voicename
@@ -19235,6 +19239,8 @@ module TencentCloud
           @Languages = languages
           @Labels = labels
           @Scenes = scenes
+          @PageNum = pagenum
+          @PageSize = pagesize
           @ExtParam = extparam
         end
 
@@ -19248,6 +19254,8 @@ module TencentCloud
           @Languages = params['Languages']
           @Labels = params['Labels']
           @Scenes = params['Scenes']
+          @PageNum = params['PageNum']
+          @PageSize = params['PageSize']
           @ExtParam = params['ExtParam']
         end
       end
@@ -19950,10 +19958,10 @@ module TencentCloud
         # @type FileUrl: Array
         # @param Prompt: <p>用于生成视频的prompt信息。</p><p>prompt长度限制：2000字符。</p>
         # @type Prompt: String
-        # @param ModelName: <p>文档生成视频模型名称</p><p>默认值：Wand</p>
-        # @type ModelName: String
         # @param ModelVersion: <p>文档生成视频模型版本号</p><p>枚举值：</p><ul><li>1.0： 1.0</li><li>1.0-lite： 1.0-lite</li></ul><p>默认值：1.0</p>
         # @type ModelVersion: String
+        # @param ModelName: <p>文档生成视频模型名称</p><p>枚举值：</p><ul><li>WAND： WAND</li></ul><p>默认值：WAND</p>
+        # @type ModelName: String
         # @param Ratio: <p>生成视频的宽高比。</p><p>枚举值：</p><ul><li>16:9： 16:9</li><li>9:16： 9:16</li><li>1:1： 1:1</li></ul><p>默认值：16:9</p>
         # @type Ratio: String
         # @param Language: <p>生成视频的语言。</p><p>枚举值：</p><ul><li>zh： 中文</li><li>en： 英文</li><li>ja： 日语</li><li>ko： 韩语</li><li>ru： 俄语</li><li>fr： 法语</li><li>es： 西班牙语</li><li>de： 德语</li></ul><p>默认值：zh</p>
@@ -19975,13 +19983,13 @@ module TencentCloud
         # @param EnableCaption: <p>是否开启字幕生成。</p><p>默认值：false</p>
         # @type EnableCaption: Boolean
 
-        attr_accessor :FileUrl, :Prompt, :ModelName, :ModelVersion, :Ratio, :Language, :ReferenceDuration, :EnableTTS, :VoiceId, :PPTXFidelity, :Mode, :Background, :Watermark, :EnableCaption
+        attr_accessor :FileUrl, :Prompt, :ModelVersion, :ModelName, :Ratio, :Language, :ReferenceDuration, :EnableTTS, :VoiceId, :PPTXFidelity, :Mode, :Background, :Watermark, :EnableCaption
 
-        def initialize(fileurl=nil, prompt=nil, modelname=nil, modelversion=nil, ratio=nil, language=nil, referenceduration=nil, enabletts=nil, voiceid=nil, pptxfidelity=nil, mode=nil, background=nil, watermark=nil, enablecaption=nil)
+        def initialize(fileurl=nil, prompt=nil, modelversion=nil, modelname=nil, ratio=nil, language=nil, referenceduration=nil, enabletts=nil, voiceid=nil, pptxfidelity=nil, mode=nil, background=nil, watermark=nil, enablecaption=nil)
           @FileUrl = fileurl
           @Prompt = prompt
-          @ModelName = modelname
           @ModelVersion = modelversion
+          @ModelName = modelname
           @Ratio = ratio
           @Language = language
           @ReferenceDuration = referenceduration
@@ -19997,8 +20005,8 @@ module TencentCloud
         def deserialize(params)
           @FileUrl = params['FileUrl']
           @Prompt = params['Prompt']
-          @ModelName = params['ModelName']
           @ModelVersion = params['ModelVersion']
+          @ModelName = params['ModelName']
           @Ratio = params['Ratio']
           @Language = params['Language']
           @ReferenceDuration = params['ReferenceDuration']
@@ -38995,8 +39003,10 @@ module TencentCloud
       # 多视角图生 3D 场景下，MultiViewImages 数组中的单个视角。
       class ViewImage < TencentCloud::Common::AbstractModel
         # @param ViewType: <p>视角类型</p><p>枚举值：</p><ul><li>front： 正视图 （必填）</li><li>back： 背视图</li><li>left： 左视图</li><li>right： 右视图</li><li>top： 顶视图</li><li>bottom： 底视图</li><li>left_front： 左前 45°</li><li>right_front： 右前 45°</li></ul><p>MultiViewImages 数组长度 ≥ 2 ; 必须包含 front 视角;  同一 ViewType 不允许重复; 每项必须提供 ViewImageUrl</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ViewType: String
         # @param ViewImageUrl: <p>图片 URL（http / https）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ViewImageUrl: String
 
         attr_accessor :ViewType, :ViewImageUrl

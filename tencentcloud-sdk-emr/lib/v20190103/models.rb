@@ -2000,10 +2000,14 @@ module TencentCloud
         # @type ComputeResourceGroupIds: Array
         # @param TerminateProtection: <p>是否开启实例保护</p>
         # @type TerminateProtection: Boolean
+        # @param EnableEmrProxy: <p>是否启用emr-proxy</p><p>枚举值：</p><ul><li>true： 启用</li><li>false： 关闭</li></ul>
+        # @type EnableEmrProxy: Boolean
+        # @param LogStoreID: <p>日志存储服务实例id</p>
+        # @type LogStoreID: String
 
-        attr_accessor :InstanceName, :ClusterClass, :Software, :PlatFormType, :CosBucket, :EksClusterId, :ProductId, :ClientToken, :VPCSettings, :CloudResources, :SgId, :MetaDBInfo, :Tags, :LoginSettings, :ExternalService, :ZoneId, :DefaultMetaVersion, :NeedCdbAudit, :SgIP, :ContainerExtraConf, :EnableSparkAppMonitorInfo, :ComputeResourceGroupIds, :TerminateProtection
+        attr_accessor :InstanceName, :ClusterClass, :Software, :PlatFormType, :CosBucket, :EksClusterId, :ProductId, :ClientToken, :VPCSettings, :CloudResources, :SgId, :MetaDBInfo, :Tags, :LoginSettings, :ExternalService, :ZoneId, :DefaultMetaVersion, :NeedCdbAudit, :SgIP, :ContainerExtraConf, :EnableSparkAppMonitorInfo, :ComputeResourceGroupIds, :TerminateProtection, :EnableEmrProxy, :LogStoreID
 
-        def initialize(instancename=nil, clusterclass=nil, software=nil, platformtype=nil, cosbucket=nil, eksclusterid=nil, productid=nil, clienttoken=nil, vpcsettings=nil, cloudresources=nil, sgid=nil, metadbinfo=nil, tags=nil, loginsettings=nil, externalservice=nil, zoneid=nil, defaultmetaversion=nil, needcdbaudit=nil, sgip=nil, containerextraconf=nil, enablesparkappmonitorinfo=nil, computeresourcegroupids=nil, terminateprotection=nil)
+        def initialize(instancename=nil, clusterclass=nil, software=nil, platformtype=nil, cosbucket=nil, eksclusterid=nil, productid=nil, clienttoken=nil, vpcsettings=nil, cloudresources=nil, sgid=nil, metadbinfo=nil, tags=nil, loginsettings=nil, externalservice=nil, zoneid=nil, defaultmetaversion=nil, needcdbaudit=nil, sgip=nil, containerextraconf=nil, enablesparkappmonitorinfo=nil, computeresourcegroupids=nil, terminateprotection=nil, enableemrproxy=nil, logstoreid=nil)
           @InstanceName = instancename
           @ClusterClass = clusterclass
           @Software = software
@@ -2027,6 +2031,8 @@ module TencentCloud
           @EnableSparkAppMonitorInfo = enablesparkappmonitorinfo
           @ComputeResourceGroupIds = computeresourcegroupids
           @TerminateProtection = terminateprotection
+          @EnableEmrProxy = enableemrproxy
+          @LogStoreID = logstoreid
         end
 
         def deserialize(params)
@@ -2089,6 +2095,8 @@ module TencentCloud
           end
           @ComputeResourceGroupIds = params['ComputeResourceGroupIds']
           @TerminateProtection = params['TerminateProtection']
+          @EnableEmrProxy = params['EnableEmrProxy']
+          @LogStoreID = params['LogStoreID']
         end
       end
 

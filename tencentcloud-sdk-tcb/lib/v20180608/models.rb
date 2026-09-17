@@ -1962,6 +1962,50 @@ module TencentCloud
         end
       end
 
+      # CreatePlatformEnv请求参数结构体
+      class CreatePlatformEnvRequest < TencentCloud::Common::AbstractModel
+        # @param Alias: <p>环境别名</p>
+        # @type Alias: String
+        # @param PlatformId: <p>套餐池标识</p>
+        # @type PlatformId: String
+        # @param ReqKey: <p>幂等键</p>
+        # @type ReqKey: String
+
+        attr_accessor :Alias, :PlatformId, :ReqKey
+
+        def initialize(_alias=nil, platformid=nil, reqkey=nil)
+          @Alias = _alias
+          @PlatformId = platformid
+          @ReqKey = reqkey
+        end
+
+        def deserialize(params)
+          @Alias = params['Alias']
+          @PlatformId = params['PlatformId']
+          @ReqKey = params['ReqKey']
+        end
+      end
+
+      # CreatePlatformEnv返回参数结构体
+      class CreatePlatformEnvResponse < TencentCloud::Common::AbstractModel
+        # @param EnvId: <p>环境id</p>
+        # @type EnvId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :EnvId, :RequestId
+
+        def initialize(envid=nil, requestid=nil)
+          @EnvId = envid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateStaticStore请求参数结构体
       class CreateStaticStoreRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: 环境ID
@@ -2191,6 +2235,30 @@ module TencentCloud
           @NeedRspHeaderLog = params['NeedRspHeaderLog']
           @LogSetId = params['LogSetId']
           @LogTopicId = params['LogTopicId']
+        end
+      end
+
+      # 每日用量详情结构
+      class DailyUsageList < TencentCloud::Common::AbstractModel
+        # @param Credits: <p>资源点用量</p>
+        # @type Credits: Integer
+        # @param Date: <p>资源点用量日期</p><p>参数格式：YYYY-MM-DD</p>
+        # @type Date: String
+        # @param UsageValue: <p>原始资源用量</p>
+        # @type UsageValue: Integer
+
+        attr_accessor :Credits, :Date, :UsageValue
+
+        def initialize(credits=nil, date=nil, usagevalue=nil)
+          @Credits = credits
+          @Date = date
+          @UsageValue = usagevalue
+        end
+
+        def deserialize(params)
+          @Credits = params['Credits']
+          @Date = params['Date']
+          @UsageValue = params['UsageValue']
         end
       end
 
@@ -4825,6 +4893,285 @@ module TencentCloud
         end
       end
 
+      # DescribePlatformAccountCircle请求参数结构体
+      class DescribePlatformAccountCircleRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribePlatformAccountCircle返回参数结构体
+      class DescribePlatformAccountCircleResponse < TencentCloud::Common::AbstractModel
+        # @param StartTime: <p>套餐计费周期开始时间</p>
+        # @type StartTime: String
+        # @param EndTime: <p>套餐计费周期结束时间</p>
+        # @type EndTime: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :StartTime, :EndTime, :RequestId
+
+        def initialize(starttime=nil, endtime=nil, requestid=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePlatformCreditsUsageDetail请求参数结构体
+      class DescribePlatformCreditsUsageDetailRequest < TencentCloud::Common::AbstractModel
+        # @param Modules: <p>模块列表</p><p>枚举值：</p><ul><li>FLEXDB： 文档数据库</li><li>TDSQL： MYSQL数据库</li><li>SCF： 云函数</li><li>AI： 大模型</li><li>EKS： 云托管</li><li>COS： 云存储</li><li>HOSTING： 静态托管</li><li>Auth： 用户权限</li><li>APIInvocation： API调用</li><li>HTTPInvocation： HTTP调用</li><li>VM： 主机</li><li>Workflow： 工作流</li><li>Other： 其他</li><li>PostgreSQL： PostgreSQL</li><li>Token： Token</li></ul>
+        # @type Modules: Array
+        # @param StartDate: <p>开始日期</p><p>参数格式：YYYY-MM-DD</p>
+        # @type StartDate: String
+        # @param EndDate: <p>结束日期</p><p>参数格式：YYYY-MM-DD</p>
+        # @type EndDate: String
+        # @param NeedUsageDetails: <p>是否需要每日用量明细</p>
+        # @type NeedUsageDetails: Boolean
+        # @param PlatformId: <p>平台版套餐id</p>
+        # @type PlatformId: String
+
+        attr_accessor :Modules, :StartDate, :EndDate, :NeedUsageDetails, :PlatformId
+
+        def initialize(modules=nil, startdate=nil, enddate=nil, needusagedetails=nil, platformid=nil)
+          @Modules = modules
+          @StartDate = startdate
+          @EndDate = enddate
+          @NeedUsageDetails = needusagedetails
+          @PlatformId = platformid
+        end
+
+        def deserialize(params)
+          @Modules = params['Modules']
+          @StartDate = params['StartDate']
+          @EndDate = params['EndDate']
+          @NeedUsageDetails = params['NeedUsageDetails']
+          @PlatformId = params['PlatformId']
+        end
+      end
+
+      # DescribePlatformCreditsUsageDetail返回参数结构体
+      class DescribePlatformCreditsUsageDetailResponse < TencentCloud::Common::AbstractModel
+        # @param Usages: <p>用量数据</p>
+        # @type Usages: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Usages, :RequestId
+
+        def initialize(usages=nil, requestid=nil)
+          @Usages = usages
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Usages'].nil?
+            @Usages = []
+            params['Usages'].each do |i|
+              platformpkgcreditsusage_tmp = PlatformPkgCreditsUsage.new
+              platformpkgcreditsusage_tmp.deserialize(i)
+              @Usages << platformpkgcreditsusage_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePlatformCreditsUsage请求参数结构体
+      class DescribePlatformCreditsUsageRequest < TencentCloud::Common::AbstractModel
+        # @param StartDate: <p>开始日期</p><p>参数格式：2025-09-22</p>
+        # @type StartDate: String
+        # @param EndDate: <p>结束日期</p><p>参数格式：2025-09-22</p>
+        # @type EndDate: String
+        # @param PlatformId: <p>平台版套餐id</p>
+        # @type PlatformId: String
+
+        attr_accessor :StartDate, :EndDate, :PlatformId
+
+        def initialize(startdate=nil, enddate=nil, platformid=nil)
+          @StartDate = startdate
+          @EndDate = enddate
+          @PlatformId = platformid
+        end
+
+        def deserialize(params)
+          @StartDate = params['StartDate']
+          @EndDate = params['EndDate']
+          @PlatformId = params['PlatformId']
+        end
+      end
+
+      # DescribePlatformCreditsUsage返回参数结构体
+      class DescribePlatformCreditsUsageResponse < TencentCloud::Common::AbstractModel
+        # @param DeductValueCount: <p>资源点套餐内用量总和</p>
+        # @type DeductValueCount: Float
+        # @param PackageDeductValueCount: <p>资源点资源包用量总和</p>
+        # @type PackageDeductValueCount: Float
+        # @param ReportValueCount: <p>资源点按量用量总和</p>
+        # @type ReportValueCount: Float
+        # @param DailyList: <p>每日消耗具体数据</p>
+        # @type DailyList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DeductValueCount, :PackageDeductValueCount, :ReportValueCount, :DailyList, :RequestId
+
+        def initialize(deductvaluecount=nil, packagedeductvaluecount=nil, reportvaluecount=nil, dailylist=nil, requestid=nil)
+          @DeductValueCount = deductvaluecount
+          @PackageDeductValueCount = packagedeductvaluecount
+          @ReportValueCount = reportvaluecount
+          @DailyList = dailylist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DeductValueCount = params['DeductValueCount']
+          @PackageDeductValueCount = params['PackageDeductValueCount']
+          @ReportValueCount = params['ReportValueCount']
+          unless params['DailyList'].nil?
+            @DailyList = []
+            params['DailyList'].each do |i|
+              platformcreditsusagedaily_tmp = PlatformCreditsUsageDaily.new
+              platformcreditsusagedaily_tmp.deserialize(i)
+              @DailyList << platformcreditsusagedaily_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePlatformEnvUsage请求参数结构体
+      class DescribePlatformEnvUsageRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: <p>环境Id</p>
+        # @type EnvId: String
+        # @param StartDate: <p>查询用量起始时间</p><p>参数格式：YYYY-MM-DD</p>
+        # @type StartDate: String
+        # @param EndDate: <p>查询用量结束时间</p><p>参数格式：YYYY-MM-DD</p>
+        # @type EndDate: String
+        # @param ResourceTypes: <p>资源类型</p><p>枚举值：</p><ul><li>Storage： 云存储</li><li>Function： 云函数</li><li>Database： 数据库</li></ul>
+        # @type ResourceTypes: Array
+        # @param NeedUsageDetails: <p>是否展示用量明细</p>
+        # @type NeedUsageDetails: Boolean
+
+        attr_accessor :EnvId, :StartDate, :EndDate, :ResourceTypes, :NeedUsageDetails
+
+        def initialize(envid=nil, startdate=nil, enddate=nil, resourcetypes=nil, needusagedetails=nil)
+          @EnvId = envid
+          @StartDate = startdate
+          @EndDate = enddate
+          @ResourceTypes = resourcetypes
+          @NeedUsageDetails = needusagedetails
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @StartDate = params['StartDate']
+          @EndDate = params['EndDate']
+          @ResourceTypes = params['ResourceTypes']
+          @NeedUsageDetails = params['NeedUsageDetails']
+        end
+      end
+
+      # DescribePlatformEnvUsage返回参数结构体
+      class DescribePlatformEnvUsageResponse < TencentCloud::Common::AbstractModel
+        # @param Resources: <p>资源用量信息</p>
+        # @type Resources: Array
+        # @param TotalCredits: <p>资源点</p>
+        # @type TotalCredits: Integer
+        # @param CreditsScale: <p>资源点取整倍数</p>
+        # @type CreditsScale: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Resources, :TotalCredits, :CreditsScale, :RequestId
+
+        def initialize(resources=nil, totalcredits=nil, creditsscale=nil, requestid=nil)
+          @Resources = resources
+          @TotalCredits = totalcredits
+          @CreditsScale = creditsscale
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Resources'].nil?
+            @Resources = []
+            params['Resources'].each do |i|
+              platformresusageitem_tmp = PlatformResUsageItem.new
+              platformresusageitem_tmp.deserialize(i)
+              @Resources << platformresusageitem_tmp
+            end
+          end
+          @TotalCredits = params['TotalCredits']
+          @CreditsScale = params['CreditsScale']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePlatforms请求参数结构体
+      class DescribePlatformsRequest < TencentCloud::Common::AbstractModel
+        # @param PlatformIds: <p>平台版套餐id列表</p><p>默认值：若不指定，则分页返回当前账号下所有平台版资源</p>
+        # @type PlatformIds: Array
+        # @param Limit: <p>分页限制</p><p>取值范围：[10, 100]</p><p>默认值：10</p>
+        # @type Limit: Integer
+        # @param Offset: <p>分页偏移量</p><p>默认值：0</p>
+        # @type Offset: Integer
+
+        attr_accessor :PlatformIds, :Limit, :Offset
+
+        def initialize(platformids=nil, limit=nil, offset=nil)
+          @PlatformIds = platformids
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @PlatformIds = params['PlatformIds']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribePlatforms返回参数结构体
+      class DescribePlatformsResponse < TencentCloud::Common::AbstractModel
+        # @param PlatformList: <p>平台版资源列表</p>
+        # @type PlatformList: Array
+        # @param Total: <p>总数</p>
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PlatformList, :Total, :RequestId
+
+        def initialize(platformlist=nil, total=nil, requestid=nil)
+          @PlatformList = platformlist
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['PlatformList'].nil?
+            @PlatformList = []
+            params['PlatformList'].each do |i|
+              platforminfo_tmp = PlatformInfo.new
+              platforminfo_tmp.deserialize(i)
+              @PlatformList << platforminfo_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeQuotaData请求参数结构体
       class DescribeQuotaDataRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: 环境ID
@@ -5411,6 +5758,38 @@ module TencentCloud
           @IsSuccess = params['IsSuccess']
           @TaskId = params['TaskId']
           @TaskName = params['TaskName']
+        end
+      end
+
+      # DestroyPlatformEnv请求参数结构体
+      class DestroyPlatformEnvRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: <p>环境id</p>
+        # @type EnvId: String
+
+        attr_accessor :EnvId
+
+        def initialize(envid=nil)
+          @EnvId = envid
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+        end
+      end
+
+      # DestroyPlatformEnv返回参数结构体
+      class DestroyPlatformEnvResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -6651,6 +7030,7 @@ module TencentCloud
       # 自定义缓存键参数。约束：FullURLCache=on 与 QueryStringSwitch=on 互斥
       # 使用示例：
       # - 整 URL 参与缓存键：{FullURLCache: "on", QueryStringSwitch: "off"}
+      # - 整 URL 不参与缓存键：{FullURLCache: "off", QueryStringSwitch: "off"}
       # - URL 路径 + 仅保留 x/y：{FullURLCache: "off", QueryStringSwitch: "on", QueryStringAction: "includeCustom", QueryStringValues: ["x", "y"]}
       # - URL 路径 + 忽略 debug：{FullURLCache: "off", QueryStringSwitch: "on", QueryStringAction: "excludeCustom", QueryStringValues: ["debug"]}
       class HTTPServiceCacheKeyParams < TencentCloud::Common::AbstractModel
@@ -6660,7 +7040,7 @@ module TencentCloud
         # @type QueryStringSwitch: String
         # @param QueryStringAction: <p>QueryStringSwitch=on 时必填</p><p>枚举值：</p><ul><li>includeCustom： 白名单</li><li>excludeCustom： 黑名单</li></ul>
         # @type QueryStringAction: String
-        # @param QueryStringValues: <p>参数名列表</p><p>入参限制：最多 100 项，单项 1~128 字节</p>
+        # @param QueryStringValues: <p>参数名列表</p><p>入参限制：最多 30 项，单项 1~128 字节</p>
         # @type QueryStringValues: Array
 
         attr_accessor :FullURLCache, :QueryStringSwitch, :QueryStringAction, :QueryStringValues
@@ -6827,7 +7207,7 @@ module TencentCloud
         # @type Domain: String
         # @param DomainType: <p>域名类型。 HTTPSERVICE: HTTP访问服务，CBR: 云托管服务，ANYSERVICE: 任意服务，AI_AGENT: AI agent，VM: 主机，INTEGRATION_CALLBACK: 集成回调</p>
         # @type DomainType: String
-        # @param AccessType: <p>绑定类型。默认DIRECT。DIRECT: 直连到HTTP访问服务， CDN: 接入云开发CDN，CUSTOM: 自定义接入类型（其他CDN或者WAF）</p>
+        # @param AccessType: <p>绑定类型。默认DIRECT。DIRECT: 直连到HTTP访问服务， CDN: 接入云开发CDN，CUSTOM: 自定义接入类型（其他CDN或者WAF）</p><p>枚举值：</p><ul><li>DIRECT： 直连到HTTP访问服务</li><li>CDN： 接入云开发CDN（即将下线）</li><li>EO： 接入云开发EdgeOne</li><li>CUSTOM： 自定义接入类型（其他CDN或者WAF）</li><li>NONE： 不接入，当使用泛域名接入时，可通过NONE来接入子域名，子域名证书及协议继承泛域名</li></ul><p>默认值：DIRECT</p>
         # @type AccessType: String
         # @param CertId: <p>证书ID。当前账户下SSL平台的证书ID</p>
         # @type CertId: String
@@ -6907,7 +7287,7 @@ module TencentCloud
       class HTTPServiceDomainParam < TencentCloud::Common::AbstractModel
         # @param Domain: <p>域名。全局唯一。如果域名在其他环境下占用或者腾讯云CDN占用，可能会导致创建失败</p>
         # @type Domain: String
-        # @param AccessType: <p>绑定类型</p><p>枚举值：</p><ul><li>DIRECT： 直连到HTTP访问服务</li><li>CDN： 接入云开发CDN（即将下线）</li><li>CUSTOM： 自定义接入类型（CDN、EO、WAF等接入）</li><li>EO： 接入云开发EdgeOne</li></ul><p>默认值：DIRECT</p>
+        # @param AccessType: <p>绑定类型</p><p>枚举值：</p><ul><li>DIRECT： 直连到HTTP访问服务</li><li>CDN： 接入云开发CDN（即将下线）</li><li>EO： 接入云开发EdgeOne</li><li>NONE： 不接入，当使用泛域名接入时，可通过NONE来接入子域名，子域名证书及协议继承泛域名</li></ul><p>默认值：DIRECT</p>
         # @type AccessType: String
         # @param CertId: <p>证书ID。当前账户下SSL平台的证书ID，无证书无法使用https访问</p>
         # @type CertId: String
@@ -6961,7 +7341,7 @@ module TencentCloud
       class HTTPServiceExtension < TencentCloud::Common::AbstractModel
         # @param HeadersHandler: <p>添加请求头列表</p>
         # @type HeadersHandler: :class:`Tencentcloud::Tcb.v20180608.models.HTTPServiceHeadersHandler`
-        # @param Cache: <p>HTTPService 缓存配置，包含Cache 节点缓存 / MaxAge 浏览器缓存 / CacheKey 自定义缓存键</p>
+        # @param Cache: <p>HTTPService 缓存配置，仅限自定义域名配置。包含Cache 节点缓存 / MaxAge 浏览器缓存 / CacheKey 自定义缓存键</p>
         # @type Cache: :class:`Tencentcloud::Tcb.v20180608.models.HTTPServiceCacheSet`
 
         attr_accessor :HeadersHandler, :Cache
@@ -7244,7 +7624,7 @@ module TencentCloud
         # @type Target: String
         # @param MatchType: <p>MatchType 字符串匹配类型</p><p>枚举值：</p><ul><li>prefix：  前缀匹配</li><li>suffix： 后缀匹配</li><li>contains： 包含匹配</li><li>exact： 精确匹配</li></ul>
         # @type MatchType: String
-        # @param Values: <p>Values 匹配值集合，Values 内任一命中即认为条件成立（OR 语义）</p><p>入参限制：单项 1~1024 字节，最多 100 条</p>
+        # @param Values: <p>Values 匹配值集合，Values 内任一命中即认为条件成立（OR 语义）</p><p>入参限制：单项 1~1024 字节，最多 30 条</p>
         # @type Values: Array
 
         attr_accessor :Target, :MatchType, :Values
@@ -8665,6 +9045,42 @@ module TencentCloud
         end
       end
 
+      # ModifyPlatformEnv请求参数结构体
+      class ModifyPlatformEnvRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: <p>环境ID</p>
+        # @type EnvId: String
+        # @param Status: <p>环境状态</p><p>枚举值：</p><ul><li>ENABLE： 启用环境</li><li>DISABLE： 禁用环境</li></ul>
+        # @type Status: String
+
+        attr_accessor :EnvId, :Status
+
+        def initialize(envid=nil, status=nil)
+          @EnvId = envid
+          @Status = status
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @Status = params['Status']
+        end
+      end
+
+      # ModifyPlatformEnv返回参数结构体
+      class ModifyPlatformEnvResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyProvider请求参数结构体
       class ModifyProviderRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: 云开发环境 ID，用于唯一标识当前操作所属的云开发环境。
@@ -9426,6 +9842,262 @@ module TencentCloud
           @UnitPrice = params['UnitPrice']
           @PackageType = params['PackageType']
           @ResourceLimit = params['ResourceLimit']
+        end
+      end
+
+      # 平台版资源信息
+      class PlatFormResourceInfo < TencentCloud::Common::AbstractModel
+        # @param ResType: <p>资源类系</p><p>枚举值：</p><ul><li>log： 日志</li><li>storage： 云存储</li><li>hosting： 静态托管</li></ul>
+        # @type ResType: String
+        # @param ResName: <p>资源唯一标识</p>
+        # @type ResName: String
+        # @param Detail: <p>资源详细信息</p>
+        # @type Detail: String
+        # @param Status: <p>资源状态</p><p>枚举值：</p><ul><li>0： 正常</li><li>5： 初始化中</li></ul>
+        # @type Status: Integer
+        # @param PlatformId: <p>资源id</p>
+        # @type PlatformId: Integer
+        # @param Id: <p>对用平台资源id</p>
+        # @type Id: Integer
+
+        attr_accessor :ResType, :ResName, :Detail, :Status, :PlatformId, :Id
+
+        def initialize(restype=nil, resname=nil, detail=nil, status=nil, platformid=nil, id=nil)
+          @ResType = restype
+          @ResName = resname
+          @Detail = detail
+          @Status = status
+          @PlatformId = platformid
+          @Id = id
+        end
+
+        def deserialize(params)
+          @ResType = params['ResType']
+          @ResName = params['ResName']
+          @Detail = params['Detail']
+          @Status = params['Status']
+          @PlatformId = params['PlatformId']
+          @Id = params['Id']
+        end
+      end
+
+      # 平台版本消耗数据
+      class PlatformCreditsUsageDaily < TencentCloud::Common::AbstractModel
+        # @param Date: <p>数据日期</p><p>参数格式：YYYY-MM-DD</p>
+        # @type Date: String
+        # @param DeductValue: <p>资源点套餐内用量</p>
+        # @type DeductValue: Float
+        # @param PackageDeductValue: <p>资源点资源包用量</p>
+        # @type PackageDeductValue: Float
+        # @param ReportValue: <p>资源点按量用量</p>
+        # @type ReportValue: Float
+        # @param OriginCredits: <p>资源点原价消耗</p>
+        # @type OriginCredits: Float
+
+        attr_accessor :Date, :DeductValue, :PackageDeductValue, :ReportValue, :OriginCredits
+
+        def initialize(date=nil, deductvalue=nil, packagedeductvalue=nil, reportvalue=nil, origincredits=nil)
+          @Date = date
+          @DeductValue = deductvalue
+          @PackageDeductValue = packagedeductvalue
+          @ReportValue = reportvalue
+          @OriginCredits = origincredits
+        end
+
+        def deserialize(params)
+          @Date = params['Date']
+          @DeductValue = params['DeductValue']
+          @PackageDeductValue = params['PackageDeductValue']
+          @ReportValue = params['ReportValue']
+          @OriginCredits = params['OriginCredits']
+        end
+      end
+
+      # 平台版资源信息
+      class PlatformInfo < TencentCloud::Common::AbstractModel
+        # @param PlatformId: <p>平台版套餐id</p>
+        # @type PlatformId: String
+        # @param Alias: <p>套餐别名</p>
+        # @type Alias: String
+        # @param PackageId: <p>套餐id</p>
+        # @type PackageId: String
+        # @param BillStatus: <p>计费状态</p><p>枚举值：</p><ul><li>normal： 正常</li><li>isolated： 已隔离</li><li>destroyed： 已销毁</li></ul>
+        # @type BillStatus: String
+        # @param Status: <p>套餐资源状态</p><p>枚举值：</p><ul><li>0： 可用</li><li>5： 发货中</li></ul>
+        # @type Status: Integer
+        # @param Spec: <p>资源配置</p>
+        # @type Spec: String
+        # @param BillTime: <p>购买时间</p><p>参数格式：YYYY-MM-DD hh:mm:ss</p>
+        # @type BillTime: String
+        # @param ExpireTime: <p>套餐过期时间</p><p>参数格式：YYYY-MM-DD hh:mm:ss</p>
+        # @type ExpireTime: String
+        # @param IsAutoRenew: <p>是否自动续费</p><p>枚举值：</p><ul><li>0： 未设置</li><li>1： 自动续费</li><li>2： 设置为到期不续费</li></ul>
+        # @type IsAutoRenew: Integer
+        # @param Resources: <p>资源信息列表</p>
+        # @type Resources: Array
+        # @param Region: <p>所属地域</p><p>枚举值：</p><ul><li>ap-shanghai： 上海</li><li>ap-singapore： 新加坡</li></ul>
+        # @type Region: String
+
+        attr_accessor :PlatformId, :Alias, :PackageId, :BillStatus, :Status, :Spec, :BillTime, :ExpireTime, :IsAutoRenew, :Resources, :Region
+
+        def initialize(platformid=nil, _alias=nil, packageid=nil, billstatus=nil, status=nil, spec=nil, billtime=nil, expiretime=nil, isautorenew=nil, resources=nil, region=nil)
+          @PlatformId = platformid
+          @Alias = _alias
+          @PackageId = packageid
+          @BillStatus = billstatus
+          @Status = status
+          @Spec = spec
+          @BillTime = billtime
+          @ExpireTime = expiretime
+          @IsAutoRenew = isautorenew
+          @Resources = resources
+          @Region = region
+        end
+
+        def deserialize(params)
+          @PlatformId = params['PlatformId']
+          @Alias = params['Alias']
+          @PackageId = params['PackageId']
+          @BillStatus = params['BillStatus']
+          @Status = params['Status']
+          @Spec = params['Spec']
+          @BillTime = params['BillTime']
+          @ExpireTime = params['ExpireTime']
+          @IsAutoRenew = params['IsAutoRenew']
+          unless params['Resources'].nil?
+            @Resources = []
+            params['Resources'].each do |i|
+              platformresourceinfo_tmp = PlatFormResourceInfo.new
+              platformresourceinfo_tmp.deserialize(i)
+              @Resources << platformresourceinfo_tmp
+            end
+          end
+          @Region = params['Region']
+        end
+      end
+
+      # 平台版指标用量信息
+      class PlatformMetricUsageItem < TencentCloud::Common::AbstractModel
+        # @param MetricName: <p>指标名称</p>
+        # @type MetricName: String
+        # @param OriginalResourceType: <p>原始资源类型</p><p>枚举值：</p><ul><li>COS： 对象存储</li></ul>
+        # @type OriginalResourceType: String
+        # @param OriginalMetricName: <p>原始指标</p>
+        # @type OriginalMetricName: String
+        # @param UsageValue: <p>资源用量</p>
+        # @type UsageValue: Integer
+        # @param UsageUnit: <p>资源用量单位</p>
+        # @type UsageUnit: String
+        # @param Credits: <p>资源点</p>
+        # @type Credits: Integer
+        # @param DailyUsageList: <p>用量按日明细列表</p>
+        # @type DailyUsageList: Array
+
+        attr_accessor :MetricName, :OriginalResourceType, :OriginalMetricName, :UsageValue, :UsageUnit, :Credits, :DailyUsageList
+
+        def initialize(metricname=nil, originalresourcetype=nil, originalmetricname=nil, usagevalue=nil, usageunit=nil, credits=nil, dailyusagelist=nil)
+          @MetricName = metricname
+          @OriginalResourceType = originalresourcetype
+          @OriginalMetricName = originalmetricname
+          @UsageValue = usagevalue
+          @UsageUnit = usageunit
+          @Credits = credits
+          @DailyUsageList = dailyusagelist
+        end
+
+        def deserialize(params)
+          @MetricName = params['MetricName']
+          @OriginalResourceType = params['OriginalResourceType']
+          @OriginalMetricName = params['OriginalMetricName']
+          @UsageValue = params['UsageValue']
+          @UsageUnit = params['UsageUnit']
+          @Credits = params['Credits']
+          unless params['DailyUsageList'].nil?
+            @DailyUsageList = []
+            params['DailyUsageList'].each do |i|
+              dailyusagelist_tmp = DailyUsageList.new
+              dailyusagelist_tmp.deserialize(i)
+              @DailyUsageList << dailyusagelist_tmp
+            end
+          end
+        end
+      end
+
+      # 模块内平台版资源点用量及原始用量数据结构
+      class PlatformPkgCreditsUsage < TencentCloud::Common::AbstractModel
+        # @param PlatformId: <p>平台版套餐id</p>
+        # @type PlatformId: String
+        # @param Module: <p>模块</p>
+        # @type Module: String
+        # @param CreditsValue: <p>module总资源点用量</p>
+        # @type CreditsValue: Float
+        # @param MetricUsageDetail: <p>指标用量明细</p>
+        # @type MetricUsageDetail: Array
+        # @param DeductValue: <p>资源点套餐内用量</p>
+        # @type DeductValue: Float
+        # @param PackageDeductValue: <p>资源点资源包用量</p>
+        # @type PackageDeductValue: Float
+        # @param ReportValue: <p>资源点按量用量</p>
+        # @type ReportValue: Float
+
+        attr_accessor :PlatformId, :Module, :CreditsValue, :MetricUsageDetail, :DeductValue, :PackageDeductValue, :ReportValue
+
+        def initialize(platformid=nil, _module=nil, creditsvalue=nil, metricusagedetail=nil, deductvalue=nil, packagedeductvalue=nil, reportvalue=nil)
+          @PlatformId = platformid
+          @Module = _module
+          @CreditsValue = creditsvalue
+          @MetricUsageDetail = metricusagedetail
+          @DeductValue = deductvalue
+          @PackageDeductValue = packagedeductvalue
+          @ReportValue = reportvalue
+        end
+
+        def deserialize(params)
+          @PlatformId = params['PlatformId']
+          @Module = params['Module']
+          @CreditsValue = params['CreditsValue']
+          unless params['MetricUsageDetail'].nil?
+            @MetricUsageDetail = []
+            params['MetricUsageDetail'].each do |i|
+              metricusage_tmp = MetricUsage.new
+              metricusage_tmp.deserialize(i)
+              @MetricUsageDetail << metricusage_tmp
+            end
+          end
+          @DeductValue = params['DeductValue']
+          @PackageDeductValue = params['PackageDeductValue']
+          @ReportValue = params['ReportValue']
+        end
+      end
+
+      # 平台版资源用量信息
+      class PlatformResUsageItem < TencentCloud::Common::AbstractModel
+        # @param ResourceType: <p>资源类型</p><p>枚举值：</p><ul><li>Storage： 云存储</li><li>Function： 云函数</li></ul>
+        # @type ResourceType: String
+        # @param TotalCredits: <p>资源点</p>
+        # @type TotalCredits: Integer
+        # @param Metrics: <p>指标用量信息</p>
+        # @type Metrics: Array
+
+        attr_accessor :ResourceType, :TotalCredits, :Metrics
+
+        def initialize(resourcetype=nil, totalcredits=nil, metrics=nil)
+          @ResourceType = resourcetype
+          @TotalCredits = totalcredits
+          @Metrics = metrics
+        end
+
+        def deserialize(params)
+          @ResourceType = params['ResourceType']
+          @TotalCredits = params['TotalCredits']
+          unless params['Metrics'].nil?
+            @Metrics = []
+            params['Metrics'].each do |i|
+              platformmetricusageitem_tmp = PlatformMetricUsageItem.new
+              platformmetricusageitem_tmp.deserialize(i)
+              @Metrics << platformmetricusageitem_tmp
+            end
+          end
         end
       end
 

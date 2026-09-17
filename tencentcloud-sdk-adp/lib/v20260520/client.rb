@@ -29,7 +29,7 @@ module TencentCloud
         end
 
 
-        # 校验标签下的标准词是否已存在
+        # 校验标签
 
         # @param request: Request instance for CheckLabel.
         # @type request: :class:`Tencentcloud::adp::V20260520::CheckLabelRequest`
@@ -1887,6 +1887,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeReleaseSummaryResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取用户资源套餐和增值包用量信息
+
+        # @param request: Request instance for DescribeResourceSummary.
+        # @type request: :class:`Tencentcloud::adp::V20260520::DescribeResourceSummaryRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::DescribeResourceSummaryResponse`
+        def DescribeResourceSummary(request)
+          body = send_request('DescribeResourceSummary', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeResourceSummaryResponse.new
             model.deserialize(response['Response'])
             model
           else

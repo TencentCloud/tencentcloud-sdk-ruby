@@ -293,32 +293,28 @@ module TencentCloud
 
       # AdjustCdbProxy请求参数结构体
       class AdjustCdbProxyRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID。可通过 [DescribeDBInstances](https://cloud.tencent.com/document/product/236/15872) 接口获取。
+        # @param InstanceId: <p>实例 ID。可通过 <a href="https://cloud.tencent.com/document/product/236/15872">DescribeDBInstances</a> 接口获取。</p>
         # @type InstanceId: String
-        # @param ProxyGroupId: 代理组 ID。可通过 [DescribeCdbProxyInfo](https://cloud.tencent.com/document/api/236/90585) 接口获取。
+        # @param ProxyGroupId: <p>代理组 ID。可通过 <a href="https://cloud.tencent.com/document/api/236/90585">DescribeCdbProxyInfo</a> 接口获取。</p>
         # @type ProxyGroupId: String
-        # @param ProxyNodeCustom: 节点规格配置
-        # 备注：数据库代理支持的节点规格为：2C4000MB、4C8000MB、8C16000MB。
-        # 示例中参数说明：
-        # NodeCount：节点个数
-        # Region：节点地域
-        # Zone：节点可用区
-        # Cpu：单个代理节点核数（单位：核）
-        # Mem：单个代理节点内存数（单位：MB）
+        # @param ProxyNodeCustom: <p>节点规格配置<br>备注：数据库代理支持的节点规格为：2C4000MB、4C8000MB、8C16000MB。<br>示例中参数说明：<br>NodeCount：节点个数<br>Region：节点地域<br>Zone：节点可用区<br>Cpu：单个代理节点核数（单位：核）<br>Mem：单个代理节点内存数（单位：MB）</p>
         # @type ProxyNodeCustom: Array
-        # @param ReloadBalance: 重新负载均衡：auto(自动),manual(手动)
+        # @param ReloadBalance: <p>重新负载均衡：auto(自动),manual(手动)</p>
         # @type ReloadBalance: String
-        # @param UpgradeTime: 升级切换时间：nowTime(升级完成时),timeWindow(维护时间内)
+        # @param UpgradeTime: <p>升级切换时间。</p><p>枚举值：</p><ul><li>nowTime： 升级完成时</li><li>timeWindow： 维护时间内</li><li>rollUpgrade： 滚动升级</li></ul>
         # @type UpgradeTime: String
+        # @param RollUpgradeWaitingTime: <p>滚动升级或平滑变配等待时间</p><p>取值范围：[0, 3600]</p><p>单位：秒</p>
+        # @type RollUpgradeWaitingTime: Integer
 
-        attr_accessor :InstanceId, :ProxyGroupId, :ProxyNodeCustom, :ReloadBalance, :UpgradeTime
+        attr_accessor :InstanceId, :ProxyGroupId, :ProxyNodeCustom, :ReloadBalance, :UpgradeTime, :RollUpgradeWaitingTime
 
-        def initialize(instanceid=nil, proxygroupid=nil, proxynodecustom=nil, reloadbalance=nil, upgradetime=nil)
+        def initialize(instanceid=nil, proxygroupid=nil, proxynodecustom=nil, reloadbalance=nil, upgradetime=nil, rollupgradewaitingtime=nil)
           @InstanceId = instanceid
           @ProxyGroupId = proxygroupid
           @ProxyNodeCustom = proxynodecustom
           @ReloadBalance = reloadbalance
           @UpgradeTime = upgradetime
+          @RollUpgradeWaitingTime = rollupgradewaitingtime
         end
 
         def deserialize(params)
@@ -334,12 +330,13 @@ module TencentCloud
           end
           @ReloadBalance = params['ReloadBalance']
           @UpgradeTime = params['UpgradeTime']
+          @RollUpgradeWaitingTime = params['RollUpgradeWaitingTime']
         end
       end
 
       # AdjustCdbProxy返回参数结构体
       class AdjustCdbProxyResponse < TencentCloud::Common::AbstractModel
-        # @param AsyncRequestId: 异步任务ID
+        # @param AsyncRequestId: <p>异步任务ID</p>
         # @type AsyncRequestId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -14948,25 +14945,28 @@ module TencentCloud
 
       # UpgradeCDBProxyVersion请求参数结构体
       class UpgradeCDBProxyVersionRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID。可通过 [DescribeDBInstances](https://cloud.tencent.com/document/product/236/15872) 接口获取。
+        # @param InstanceId: <p>实例 ID。可通过 <a href="https://cloud.tencent.com/document/product/236/15872">DescribeDBInstances</a> 接口获取。</p>
         # @type InstanceId: String
-        # @param ProxyGroupId: 数据库代理 ID。可通过 [DescribeCdbProxyInfo](https://cloud.tencent.com/document/api/236/90585) 接口获取。
+        # @param ProxyGroupId: <p>数据库代理 ID。可通过 <a href="https://cloud.tencent.com/document/api/236/90585">DescribeCdbProxyInfo</a> 接口获取。</p>
         # @type ProxyGroupId: String
-        # @param SrcProxyVersion: 数据库代理当前版本
+        # @param SrcProxyVersion: <p>数据库代理当前版本</p>
         # @type SrcProxyVersion: String
-        # @param DstProxyVersion: 数据库代理升级版本
+        # @param DstProxyVersion: <p>数据库代理升级版本</p>
         # @type DstProxyVersion: String
-        # @param UpgradeTime: 升级时间 ：nowTime（升级完成时）timeWindow（实例维护时间）
+        # @param UpgradeTime: <p>升级切换时间</p><p>枚举值：</p><ul><li>nowTime： 升级完成时</li><li>timeWindow： 实例维护时间</li><li>rollUpgrade： 滚动升级</li></ul>
         # @type UpgradeTime: String
+        # @param RollUpgradeWaitingTime: <p>滚动升级等待时间</p><p>取值范围：[10, 3600]</p><p>单位：秒</p>
+        # @type RollUpgradeWaitingTime: Integer
 
-        attr_accessor :InstanceId, :ProxyGroupId, :SrcProxyVersion, :DstProxyVersion, :UpgradeTime
+        attr_accessor :InstanceId, :ProxyGroupId, :SrcProxyVersion, :DstProxyVersion, :UpgradeTime, :RollUpgradeWaitingTime
 
-        def initialize(instanceid=nil, proxygroupid=nil, srcproxyversion=nil, dstproxyversion=nil, upgradetime=nil)
+        def initialize(instanceid=nil, proxygroupid=nil, srcproxyversion=nil, dstproxyversion=nil, upgradetime=nil, rollupgradewaitingtime=nil)
           @InstanceId = instanceid
           @ProxyGroupId = proxygroupid
           @SrcProxyVersion = srcproxyversion
           @DstProxyVersion = dstproxyversion
           @UpgradeTime = upgradetime
+          @RollUpgradeWaitingTime = rollupgradewaitingtime
         end
 
         def deserialize(params)
@@ -14975,12 +14975,13 @@ module TencentCloud
           @SrcProxyVersion = params['SrcProxyVersion']
           @DstProxyVersion = params['DstProxyVersion']
           @UpgradeTime = params['UpgradeTime']
+          @RollUpgradeWaitingTime = params['RollUpgradeWaitingTime']
         end
       end
 
       # UpgradeCDBProxyVersion返回参数结构体
       class UpgradeCDBProxyVersionResponse < TencentCloud::Common::AbstractModel
-        # @param AsyncRequestId: 异步处理ID
+        # @param AsyncRequestId: <p>异步处理ID</p>
         # @type AsyncRequestId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -15049,18 +15050,22 @@ module TencentCloud
       class UpgradeDBInstanceEngineVersionResponse < TencentCloud::Common::AbstractModel
         # @param AsyncRequestId: <p>异步任务 ID，可使用 <a href="https://cloud.tencent.com/document/api/236/20410">查询异步任务的执行结果</a> 获取其执行情况。</p>
         # @type AsyncRequestId: String
+        # @param JobId: <p>任务列表ID</p>
+        # @type JobId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :AsyncRequestId, :RequestId
+        attr_accessor :AsyncRequestId, :JobId, :RequestId
 
-        def initialize(asyncrequestid=nil, requestid=nil)
+        def initialize(asyncrequestid=nil, jobid=nil, requestid=nil)
           @AsyncRequestId = asyncrequestid
+          @JobId = jobid
           @RequestId = requestid
         end
 
         def deserialize(params)
           @AsyncRequestId = params['AsyncRequestId']
+          @JobId = params['JobId']
           @RequestId = params['RequestId']
         end
       end

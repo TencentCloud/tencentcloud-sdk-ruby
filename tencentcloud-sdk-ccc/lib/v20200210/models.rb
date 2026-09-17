@@ -4782,12 +4782,14 @@ module TencentCloud
         # @type SysHangupReason: Integer
         # @param SysHangupReasonString: <p>接通后系统挂断原因</p><p><a href="https://cloud.tencent.com/document/product/679/123938">详见</a></p>
         # @type SysHangupReasonString: String
+        # @param EndStatusV2: <p>通话结束状态V2（灰度中）</p>
+        # @type EndStatusV2: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Caller, :Callee, :CallType, :StartTimeStamp, :RingTimestamp, :AcceptTimestamp, :EndedTimestamp, :QueuedTimestamp, :StaffUserId, :EndStatus, :QueuedSkillGroupId, :QueuedSkillGroupName, :RecordURL, :CustomRecordURL, :AsrURL, :VoicemailRecordURL, :VoicemailAsrURL, :IVRKeyPressed, :PostIVRKeyPressed, :HungUpSide, :UUI, :Events, :ServeParticipants, :SysHangupReason, :SysHangupReasonString, :RequestId
+        attr_accessor :Caller, :Callee, :CallType, :StartTimeStamp, :RingTimestamp, :AcceptTimestamp, :EndedTimestamp, :QueuedTimestamp, :StaffUserId, :EndStatus, :QueuedSkillGroupId, :QueuedSkillGroupName, :RecordURL, :CustomRecordURL, :AsrURL, :VoicemailRecordURL, :VoicemailAsrURL, :IVRKeyPressed, :PostIVRKeyPressed, :HungUpSide, :UUI, :Events, :ServeParticipants, :SysHangupReason, :SysHangupReasonString, :EndStatusV2, :RequestId
 
-        def initialize(caller=nil, callee=nil, calltype=nil, starttimestamp=nil, ringtimestamp=nil, accepttimestamp=nil, endedtimestamp=nil, queuedtimestamp=nil, staffuserid=nil, endstatus=nil, queuedskillgroupid=nil, queuedskillgroupname=nil, recordurl=nil, customrecordurl=nil, asrurl=nil, voicemailrecordurl=nil, voicemailasrurl=nil, ivrkeypressed=nil, postivrkeypressed=nil, hungupside=nil, uui=nil, events=nil, serveparticipants=nil, syshangupreason=nil, syshangupreasonstring=nil, requestid=nil)
+        def initialize(caller=nil, callee=nil, calltype=nil, starttimestamp=nil, ringtimestamp=nil, accepttimestamp=nil, endedtimestamp=nil, queuedtimestamp=nil, staffuserid=nil, endstatus=nil, queuedskillgroupid=nil, queuedskillgroupname=nil, recordurl=nil, customrecordurl=nil, asrurl=nil, voicemailrecordurl=nil, voicemailasrurl=nil, ivrkeypressed=nil, postivrkeypressed=nil, hungupside=nil, uui=nil, events=nil, serveparticipants=nil, syshangupreason=nil, syshangupreasonstring=nil, endstatusv2=nil, requestid=nil)
           @Caller = caller
           @Callee = callee
           @CallType = calltype
@@ -4813,6 +4815,7 @@ module TencentCloud
           @ServeParticipants = serveparticipants
           @SysHangupReason = syshangupreason
           @SysHangupReasonString = syshangupreasonstring
+          @EndStatusV2 = endstatusv2
           @RequestId = requestid
         end
 
@@ -4870,6 +4873,7 @@ module TencentCloud
           end
           @SysHangupReason = params['SysHangupReason']
           @SysHangupReasonString = params['SysHangupReasonString']
+          @EndStatusV2 = params['EndStatusV2']
           @RequestId = params['RequestId']
         end
       end
@@ -7821,8 +7825,10 @@ module TencentCloud
         # @type SysHangupReason: Integer
         # @param SysHangupReasonString: <p>接通后系统挂断原因，文字描述信息</p>
         # @type SysHangupReasonString: String
+        # @param EndStatusV2: <p>通话结束状态V2（灰度中）</p>
+        # @type EndStatusV2: Integer
 
-        attr_accessor :Caller, :Callee, :Time, :Direction, :CallType, :Duration, :RecordURL, :RecordId, :SeatUser, :EndStatus, :SkillGroup, :CallerLocation, :IVRDuration, :RingTimestamp, :AcceptTimestamp, :EndedTimestamp, :IVRKeyPressed, :IVRKeyPressedEx, :HungUpSide, :ServeParticipants, :SkillGroupId, :EndStatusString, :StartTimestamp, :QueuedTimestamp, :PostIVRKeyPressed, :PostIVRKeyPressedEx, :QueuedSkillGroupId, :SessionId, :ProtectedCaller, :ProtectedCallee, :Uui, :UUI, :AsrUrl, :AsrStatus, :CustomRecordURL, :Remark, :QueuedSkillGroupName, :VoicemailRecordURL, :VoicemailAsrURL, :AIAgentId, :AIAgentName, :SysHangupReason, :SysHangupReasonString
+        attr_accessor :Caller, :Callee, :Time, :Direction, :CallType, :Duration, :RecordURL, :RecordId, :SeatUser, :EndStatus, :SkillGroup, :CallerLocation, :IVRDuration, :RingTimestamp, :AcceptTimestamp, :EndedTimestamp, :IVRKeyPressed, :IVRKeyPressedEx, :HungUpSide, :ServeParticipants, :SkillGroupId, :EndStatusString, :StartTimestamp, :QueuedTimestamp, :PostIVRKeyPressed, :PostIVRKeyPressedEx, :QueuedSkillGroupId, :SessionId, :ProtectedCaller, :ProtectedCallee, :Uui, :UUI, :AsrUrl, :AsrStatus, :CustomRecordURL, :Remark, :QueuedSkillGroupName, :VoicemailRecordURL, :VoicemailAsrURL, :AIAgentId, :AIAgentName, :SysHangupReason, :SysHangupReasonString, :EndStatusV2
         extend Gem::Deprecate
         deprecate :IVRKeyPressed, :none, 2026, 9
         deprecate :IVRKeyPressed=, :none, 2026, 9
@@ -7831,7 +7837,7 @@ module TencentCloud
         deprecate :Uui, :none, 2026, 9
         deprecate :Uui=, :none, 2026, 9
 
-        def initialize(caller=nil, callee=nil, time=nil, direction=nil, calltype=nil, duration=nil, recordurl=nil, recordid=nil, seatuser=nil, endstatus=nil, skillgroup=nil, callerlocation=nil, ivrduration=nil, ringtimestamp=nil, accepttimestamp=nil, endedtimestamp=nil, ivrkeypressed=nil, ivrkeypressedex=nil, hungupside=nil, serveparticipants=nil, skillgroupid=nil, endstatusstring=nil, starttimestamp=nil, queuedtimestamp=nil, postivrkeypressed=nil, postivrkeypressedex=nil, queuedskillgroupid=nil, sessionid=nil, protectedcaller=nil, protectedcallee=nil, uui=nil, asrurl=nil, asrstatus=nil, customrecordurl=nil, remark=nil, queuedskillgroupname=nil, voicemailrecordurl=nil, voicemailasrurl=nil, aiagentid=nil, aiagentname=nil, syshangupreason=nil, syshangupreasonstring=nil)
+        def initialize(caller=nil, callee=nil, time=nil, direction=nil, calltype=nil, duration=nil, recordurl=nil, recordid=nil, seatuser=nil, endstatus=nil, skillgroup=nil, callerlocation=nil, ivrduration=nil, ringtimestamp=nil, accepttimestamp=nil, endedtimestamp=nil, ivrkeypressed=nil, ivrkeypressedex=nil, hungupside=nil, serveparticipants=nil, skillgroupid=nil, endstatusstring=nil, starttimestamp=nil, queuedtimestamp=nil, postivrkeypressed=nil, postivrkeypressedex=nil, queuedskillgroupid=nil, sessionid=nil, protectedcaller=nil, protectedcallee=nil, uui=nil, asrurl=nil, asrstatus=nil, customrecordurl=nil, remark=nil, queuedskillgroupname=nil, voicemailrecordurl=nil, voicemailasrurl=nil, aiagentid=nil, aiagentname=nil, syshangupreason=nil, syshangupreasonstring=nil, endstatusv2=nil)
           @Caller = caller
           @Callee = callee
           @Time = time
@@ -7874,6 +7880,7 @@ module TencentCloud
           @AIAgentName = aiagentname
           @SysHangupReason = syshangupreason
           @SysHangupReasonString = syshangupreasonstring
+          @EndStatusV2 = endstatusv2
         end
 
         def deserialize(params)
@@ -7950,6 +7957,7 @@ module TencentCloud
           @AIAgentName = params['AIAgentName']
           @SysHangupReason = params['SysHangupReason']
           @SysHangupReasonString = params['SysHangupReasonString']
+          @EndStatusV2 = params['EndStatusV2']
         end
       end
 

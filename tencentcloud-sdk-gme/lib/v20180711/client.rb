@@ -113,6 +113,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 短音频内容理解同步接口
+
+        # @param request: Request instance for CreateAudioModerationSync.
+        # @type request: :class:`Tencentcloud::gme::V20180711::CreateAudioModerationSyncRequest`
+        # @rtype: :class:`Tencentcloud::gme::V20180711::CreateAudioModerationSyncResponse`
+        def CreateAudioModerationSync(request)
+          body = send_request('CreateAudioModerationSync', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAudioModerationSyncResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用户使用该接口可以创建语音消息转文本热句模型，以供识别调用
 
         # @param request: Request instance for CreateCustomization.

@@ -351,49 +351,37 @@ module TencentCloud
 
       # CreateListener请求参数结构体
       class CreateListenerRequest < TencentCloud::Common::AbstractModel
-        # @param DefaultActions: 默认转发规则动作列表。目前监听器仅支持添加 1 个默认转发规则动作。
+        # @param DefaultActions: <p>默认转发规则动作列表。目前监听器仅支持添加 1 个默认转发规则动作。</p>
         # @type DefaultActions: Array
-        # @param ListenerPort: 负载均衡实例前端使用的端口。  取值：1~65535。
+        # @param ListenerPort: <p>负载均衡实例前端使用的端口。  取值：1~65535。</p>
         # @type ListenerPort: Integer
-        # @param ListenerProtocol: 监听协议。  取值：HTTP、HTTPS 或 QUIC。
+        # @param ListenerProtocol: <p>监听协议。  取值：HTTP、HTTPS 或 QUIC。</p>
         # @type ListenerProtocol: String
-        # @param LoadBalancerId: 负载均衡实例 ID，格式为 alb- 后接 8 位字母数字。
+        # @param LoadBalancerId: <p>负载均衡实例 ID，格式为 alb- 后接 8 位字母数字。</p>
         # @type LoadBalancerId: String
-        # @param CaCertificateIds: 监听器配置的CA证书ID列表。目前监听器仅支持添加 1 个 CA 证书。
-        # 当 CaEnabled 参数取值为 true 时，此参数必填。
+        # @param CaCertificateIds: <p>监听器配置的CA证书ID列表。目前监听器仅支持添加 1 个 CA 证书。<br>当 CaEnabled 参数取值为 true 时，此参数必填。</p>
         # @type CaCertificateIds: Array
-        # @param CaEnabled: 是否开启双向认证。
-        # 取值：
-        # true：开启。
-        # false（默认值）：不开启。
+        # @param CaEnabled: <p>是否开启双向认证。<br>取值：<br>true：开启。<br>false（默认值）：不开启。</p>
         # @type CaEnabled: Boolean
-        # @param CertificateIds: 服务器证书 ID 列表。
+        # @param CertificateIds: <p>服务器证书 ID 列表。</p>
         # @type CertificateIds: Array
-        # @param ClientToken: 客户端Token，用于保证请求的幂等性。
-
-        # 从您的客户端生成一个参数值，确保不同请求间该参数值唯一。ClientToken只支持ASCII字符。
+        # @param ClientToken: <p>客户端Token，用于保证请求的幂等性。  </p><p>从您的客户端生成一个参数值，确保不同请求间该参数值唯一。ClientToken只支持ASCII字符。</p>
         # @type ClientToken: String
-        # @param GzipEnabled: 是否开启Gzip压缩。取值:true(默认值):是。false:否
+        # @param GzipEnabled: <p>是否开启Gzip压缩。取值:true(默认值):是。false:否</p>
         # @type GzipEnabled: Boolean
-        # @param Http2Enabled: 是否开启HTTP/2特性。HTTP 协议默认 false，HTTPS 协议默认 true。只有 HTTPS 协议支持此参数。
+        # @param Http2Enabled: <p>是否开启HTTP/2特性。HTTP 协议默认 false，HTTPS 协议默认 true。只有 HTTPS 协议支持此参数。</p>
         # @type Http2Enabled: Boolean
-        # @param IdleTimeout: 连接空闲超时时间。单位：秒。
-        # 取值范围：1~600。
-        # 默认值：15。
-        # 如果在超时时间内一直没有访问请求，负载均衡会断开当前连接，在下次请求到来时创建新的连接。
+        # @param IdleTimeout: <p>连接空闲超时时间。单位：秒。<br>取值范围：1~600。<br>默认值：15。<br>如果在超时时间内一直没有访问请求，负载均衡会断开当前连接，在下次请求到来时创建新的连接。</p>
         # @type IdleTimeout: Integer
-        # @param ListenerName: 自定义监听名称。  长度为 1~255 个字符，必须是中文和无害字符串中的字符，  可包含中文、字母、数字、短划线（-）、正斜线（/）、半角句号（.）、下划线（_）。
+        # @param ListenerName: <p>自定义监听名称。  长度为 1~255 个字符，必须是中文和无害字符串中的字符，  可包含中文、字母、数字、短划线（-）、正斜线（/）、半角句号（.）、下划线（_）。</p>
         # @type ListenerName: String
-        # @param RequestTimeout: 请求超时时间。单位：秒。
-        # 取值：1~600。
-        # 默认值：60。
-        # 如果在超时时间内后端服务器没有返回响应，负载均衡将放弃等待，并给客户端返回HTTP 504错误码。
+        # @param RequestTimeout: <p>连接请求超时时间。单位：秒。取值：1~600。默认值：60。如果在超时时间内后端服务器没有返回响应，负载均衡将放弃等待，并给客户端返回HTTP 504错误码。</p>
         # @type RequestTimeout: Integer
-        # @param SecurityPolicyId: 安全策略 ID，格式为 tls- 后接 8 位字母数字。
+        # @param SecurityPolicyId: <p>安全策略 ID，格式为 tls- 后接 8 位字母数字。</p>
         # @type SecurityPolicyId: String
-        # @param Tags: 标签列表。最大支持20个。
+        # @param Tags: <p>标签列表。最大支持20个。</p>
         # @type Tags: Array
-        # @param XForwardedForConfig: X-Forwarded-For配置
+        # @param XForwardedForConfig: <p>X-Forwarded-For配置</p>
         # @type XForwardedForConfig: :class:`Tencentcloud::Alb.v20251030.models.XForwardedForConfig`
 
         attr_accessor :DefaultActions, :ListenerPort, :ListenerProtocol, :LoadBalancerId, :CaCertificateIds, :CaEnabled, :CertificateIds, :ClientToken, :GzipEnabled, :Http2Enabled, :IdleTimeout, :ListenerName, :RequestTimeout, :SecurityPolicyId, :Tags, :XForwardedForConfig
@@ -456,7 +444,7 @@ module TencentCloud
 
       # CreateListener返回参数结构体
       class CreateListenerResponse < TencentCloud::Common::AbstractModel
-        # @param ListenerId: 监听器 ID，格式为 lst- 后接 8 位字母数字。
+        # @param ListenerId: <p>监听器 ID，格式为 lst- 后接 8 位字母数字。</p>
         # @type ListenerId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1296,9 +1284,9 @@ module TencentCloud
 
       # DescribeListenerDetail请求参数结构体
       class DescribeListenerDetailRequest < TencentCloud::Common::AbstractModel
-        # @param ListenerId: 监听器 ID，格式为 lst- 后接 8 位字母数字。
+        # @param ListenerId: <p>监听器 ID，格式为 lst- 后接 8 位字母数字。</p>
         # @type ListenerId: String
-        # @param LoadBalancerId: 负载均衡实例 ID，格式为 alb- 后接 8 位字母数字。
+        # @param LoadBalancerId: <p>负载均衡实例 ID，格式为 alb- 后接 8 位字母数字。</p>
         # @type LoadBalancerId: String
 
         attr_accessor :ListenerId, :LoadBalancerId
@@ -1316,48 +1304,43 @@ module TencentCloud
 
       # DescribeListenerDetail返回参数结构体
       class DescribeListenerDetailResponse < TencentCloud::Common::AbstractModel
-        # @param CaCertificateIds: 监听器绑定的CA证书ID列表。
+        # @param CaCertificateIds: <p>监听器绑定的CA证书ID列表。</p>
         # @type CaCertificateIds: Array
-        # @param CaEnabled: 是否开启双向认证。
+        # @param CaEnabled: <p>是否开启双向认证。</p>
         # @type CaEnabled: Boolean
-        # @param CertificateIds: 服务器证书 ID 列表。
+        # @param CertificateIds: <p>服务器证书 ID 列表。</p>
         # @type CertificateIds: Array
-        # @param CreateTime: 监听器实例的创建时间。格式：ISO 8601（例如 2025-01-01T08:30:00+08:00）
+        # @param CreateTime: <p>监听器实例的创建时间。格式：ISO 8601（例如 2025-01-01T08:30:00+08:00）</p>
         # @type CreateTime: String
-        # @param DefaultActions: 规则动作列表。
+        # @param DefaultActions: <p>规则动作列表。</p>
         # @type DefaultActions: Array
-        # @param GzipEnabled: 是否启用 Gzip 压缩。
+        # @param GzipEnabled: <p>是否启用 Gzip 压缩。</p>
         # @type GzipEnabled: Boolean
-        # @param Http2Enabled: 是否开启HTTP/2特性。
+        # @param Http2Enabled: <p>是否开启HTTP/2特性。</p>
         # @type Http2Enabled: Boolean
-        # @param IdleTimeout: 指定连接空闲超时时间。单位：秒。
+        # @param IdleTimeout: <p>指定连接空闲超时时间。单位：秒。</p>
         # @type IdleTimeout: Integer
-        # @param ListenerId: 监听器 ID，格式为 lst- 后接 8 位字母数字。
+        # @param ListenerId: <p>监听器 ID，格式为 lst- 后接 8 位字母数字。</p>
         # @type ListenerId: String
-        # @param ListenerName: 自定义监听名称。
+        # @param ListenerName: <p>自定义监听名称。</p>
         # @type ListenerName: String
-        # @param ListenerPort: 负载均衡实例前端使用的端口。
+        # @param ListenerPort: <p>负载均衡实例前端使用的端口。</p>
         # @type ListenerPort: Integer
-        # @param ListenerProtocol: 监听协议。
+        # @param ListenerProtocol: <p>监听协议。</p>
         # @type ListenerProtocol: String
-        # @param ListenerStatus: 监听器状态。取值:=
-
-        # - **Active**: 运行中。
-        # - **Provisioning**：创建中。
-        # - **Configuring**：变配中。
-        # - **ProvisionFailed**：创建失败
+        # @param ListenerStatus: <p>监听器状态。取值:=</p><ul><li><strong>Active</strong>: 运行中。</li><li><strong>Provisioning</strong>：创建中。</li><li><strong>Configuring</strong>：变配中。</li><li><strong>ProvisionFailed</strong>：创建失败</li></ul>
         # @type ListenerStatus: String
-        # @param LoadBalancerId: 负载均衡实例 ID，格式为 alb- 后接 8 位字母数字。
+        # @param LoadBalancerId: <p>负载均衡实例 ID，格式为 alb- 后接 8 位字母数字。</p>
         # @type LoadBalancerId: String
-        # @param ModifyTime: 监听器实例的最后变更时间。格式：ISO 8601（例如 2025-01-01T08:30:00+08:00）
+        # @param ModifyTime: <p>监听器实例的最后变更时间。格式：ISO 8601（例如 2025-01-01T08:30:00+08:00）</p>
         # @type ModifyTime: String
-        # @param RequestTimeout: 请求超时时间。单位：秒。
+        # @param RequestTimeout: <p>连接请求超时时间。单位：秒。</p>
         # @type RequestTimeout: Integer
-        # @param SecurityPolicyId: 安全策略 ID，格式为 tls- 后接 8 位字母数字。
+        # @param SecurityPolicyId: <p>安全策略 ID，格式为 tls- 后接 8 位字母数字。</p>
         # @type SecurityPolicyId: String
-        # @param Tags: 标签。
+        # @param Tags: <p>标签。</p>
         # @type Tags: Array
-        # @param XForwardedForConfig: XForwardedFor配置。
+        # @param XForwardedForConfig: <p>XForwardedFor配置。</p>
         # @type XForwardedForConfig: :class:`Tencentcloud::Alb.v20251030.models.XForwardedForConfig`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2922,40 +2905,35 @@ module TencentCloud
 
       # 监听器简要信息出参
       class ListenerOutput < TencentCloud::Common::AbstractModel
-        # @param CaEnable: 是否开启双向认证。
+        # @param CaEnable: <p>是否开启双向认证。</p>
         # @type CaEnable: Boolean
-        # @param CreateTime: 监听器实例的创建时间。格式：ISO 8601（例如 2025-01-01T08:30:00+08:00）
+        # @param CreateTime: <p>监听器实例的创建时间。格式：ISO 8601（例如 2025-01-01T08:30:00+08:00）</p>
         # @type CreateTime: String
-        # @param GzipEnabled: 是否启用 Gzip 压缩。
+        # @param GzipEnabled: <p>是否启用 Gzip 压缩。</p>
         # @type GzipEnabled: Boolean
-        # @param Http2Enable: 是否启用http2。
+        # @param Http2Enable: <p>是否启用http2。</p>
         # @type Http2Enable: Boolean
-        # @param IdleTimeout: 空闲超时时间。
+        # @param IdleTimeout: <p>空闲超时时间。</p>
         # @type IdleTimeout: Integer
-        # @param ListenerId: 监听器 ID，格式为 lst- 后接 8 位字母数字。
+        # @param ListenerId: <p>监听器 ID，格式为 lst- 后接 8 位字母数字。</p>
         # @type ListenerId: String
-        # @param ListenerName: 监听器名称。
+        # @param ListenerName: <p>监听器名称。</p>
         # @type ListenerName: String
-        # @param ListenerPort: 监听器端口。
+        # @param ListenerPort: <p>监听器端口。</p>
         # @type ListenerPort: Integer
-        # @param ListenerProtocol: 监听器协议。
+        # @param ListenerProtocol: <p>监听器协议。</p>
         # @type ListenerProtocol: String
-        # @param ListenerStatus: 监听器状态。取值:=
-
-        # - **Active**: 运行中。
-        # - **Provisioning**：创建中。
-        # - **Configuring**：变配中。
-        # - **ProvisionFailed**：创建失败
+        # @param ListenerStatus: <p>监听器状态。取值:=</p><ul><li><strong>Active</strong>: 运行中。</li><li><strong>Provisioning</strong>：创建中。</li><li><strong>Configuring</strong>：变配中。</li><li><strong>ProvisionFailed</strong>：创建失败</li></ul>
         # @type ListenerStatus: String
-        # @param ModifyTime: 监听器实例的最后变更时间。格式：ISO 8601（例如 2025-01-01T08:30:00+08:00）
+        # @param ModifyTime: <p>监听器实例的最后变更时间。格式：ISO 8601（例如 2025-01-01T08:30:00+08:00）</p>
         # @type ModifyTime: String
-        # @param RequestTimeout: 请求超时时间。
+        # @param RequestTimeout: <p>连接请求超时时间。</p>
         # @type RequestTimeout: Integer
-        # @param Tags: 标签。
+        # @param Tags: <p>标签。</p>
         # @type Tags: Array
-        # @param TlsSecurityPolicyId: 安全策略 ID。
+        # @param TlsSecurityPolicyId: <p>安全策略 ID。</p>
         # @type TlsSecurityPolicyId: String
-        # @param XForwardedForConfig: XForwardedFor配置。
+        # @param XForwardedForConfig: <p>XForwardedFor配置。</p>
         # @type XForwardedForConfig: :class:`Tencentcloud::Alb.v20251030.models.XForwardedForConfig`
 
         attr_accessor :CaEnable, :CreateTime, :GzipEnabled, :Http2Enable, :IdleTimeout, :ListenerId, :ListenerName, :ListenerPort, :ListenerProtocol, :ListenerStatus, :ModifyTime, :RequestTimeout, :Tags, :TlsSecurityPolicyId, :XForwardedForConfig

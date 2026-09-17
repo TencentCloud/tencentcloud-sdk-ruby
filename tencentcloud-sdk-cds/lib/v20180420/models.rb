@@ -347,29 +347,29 @@ module TencentCloud
 
       # CreateTimerReport请求参数结构体
       class CreateTimerReportRequest < TencentCloud::Common::AbstractModel
-        # @param TplName: 任务名称 不变更为""
+        # @param TplName: <p>任务名称 不变更为&quot;&quot;</p>
         # @type TplName: String
-        # @param CntTime: 执行日期 重复周期为天：无意义周：星期几1-7月每月几号 1-31
+        # @param CntTime: <p>执行日期 重复周期为天：无意义周：星期几1-7月每月几号 1-31</p>
         # @type CntTime: Integer
-        # @param CntCycle: 重复周期
+        # @param CntCycle: <p>重复周期</p>
         # @type CntCycle: Integer
-        # @param Receivers: 发送目标
+        # @param Receivers: <p>发送目标</p>
         # @type Receivers: String
-        # @param CntDay: 时间范围 1:24小时 7:近一周 30:近30天 90:近90天 180:近180天 不变更为0
+        # @param CntDay: <p>时间范围 1:24小时 7:近一周 30:近30天 90:近90天 180:近180天 不变更为0</p>
         # @type CntDay: Integer
-        # @param CntDate: 执行时间 格式15:04 到分钟
+        # @param CntDate: <p>执行时间 格式15:04 到分钟</p>
         # @type CntDate: String
-        # @param Remark: 报告说明
+        # @param Remark: <p>报告说明</p>
         # @type Remark: String
-        # @param TemplateId: 模版Id
+        # @param TemplateId: <p>模板Id</p>
         # @type TemplateId: Integer
-        # @param ReportType: 报表类型
+        # @param ReportType: <p>报表类型</p>
         # @type ReportType: Integer
-        # @param AssetsId: 关联的资产数组
+        # @param AssetsId: <p>关联的资产数组</p>
         # @type AssetsId: Array
-        # @param Notification: 报表通知 1关闭 2开启 不变更为0
+        # @param Notification: <p>报表通知 1关闭 2开启 不变更为0</p>
         # @type Notification: Integer
-        # @param MissionStart: 任务起停 1:关闭 2:开启 单次报表默认为2
+        # @param MissionStart: <p>任务起停 1:关闭 2:开启 单次报表默认为2</p>
         # @type MissionStart: Integer
 
         attr_accessor :TplName, :CntTime, :CntCycle, :Receivers, :CntDay, :CntDate, :Remark, :TemplateId, :ReportType, :AssetsId, :Notification, :MissionStart
@@ -708,27 +708,27 @@ module TencentCloud
 
       # DescribeReportList请求参数结构体
       class DescribeReportListRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 限制数目
+        # @param Limit: <p>限制数目</p>
         # @type Limit: Integer
-        # @param Offset: 偏移量
+        # @param Offset: <p>偏移量</p>
         # @type Offset: Integer
-        # @param Name: 报告名称
+        # @param Name: <p>报告名称</p>
         # @type Name: String
-        # @param StartTime: 开始时间
+        # @param StartTime: <p>开始时间</p>
         # @type StartTime: Integer
-        # @param EndTime: 结束时间
+        # @param EndTime: <p>结束时间</p>
         # @type EndTime: Integer
-        # @param ReportType: 报告类型
+        # @param ReportType: <p>报告类型</p>
         # @type ReportType: Integer
-        # @param ReportStatus: 报告状态
+        # @param ReportStatus: <p>报告状态</p>
         # @type ReportStatus: Integer
-        # @param TemplateId: 报表模版id
+        # @param TemplateId: <p>报表模板id</p>
         # @type TemplateId: Integer
-        # @param Field: 需要排序的字段
+        # @param Field: <p>需要排序的字段</p>
         # @type Field: String
-        # @param Sort: 排序顺序 asc desc
+        # @param Sort: <p>排序顺序 asc desc</p>
         # @type Sort: String
-        # @param CntDay: 时间范围 1:24小时 7:近一周 30:近30天 90:近90天 180:近180天 不变更为0
+        # @param CntDay: <p>时间范围 1:24小时 7:近一周 30:近30天 90:近90天 180:近180天 不变更为0</p>
         # @type CntDay: Integer
 
         attr_accessor :Limit, :Offset, :Name, :StartTime, :EndTime, :ReportType, :ReportStatus, :TemplateId, :Field, :Sort, :CntDay
@@ -764,9 +764,9 @@ module TencentCloud
 
       # DescribeReportList返回参数结构体
       class DescribeReportListResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 总数目
+        # @param TotalCount: <p>总数目</p>
         # @type TotalCount: Integer
-        # @param List: 数据列表
+        # @param List: <p>数据列表</p>
         # @type List: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

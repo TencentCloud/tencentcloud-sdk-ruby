@@ -2653,6 +2653,31 @@ module TencentCloud
         end
       end
 
+      # 腾讯云资源标签键值对
+      class CloudTag < TencentCloud::Common::AbstractModel
+        # @param TagKey: <p>标签键</p>
+        # @type TagKey: String
+        # @param TagValue: <p>标签值</p>
+        # @type TagValue: String
+        # @param Category: <p>标签类型：Custom（自定义）/ System（系统）/ All（全部），仅查询接口返回</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Category: String
+
+        attr_accessor :TagKey, :TagValue, :Category
+
+        def initialize(tagkey=nil, tagvalue=nil, category=nil)
+          @TagKey = tagkey
+          @TagValue = tagvalue
+          @Category = category
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
+          @Category = params['Category']
+        end
+      end
+
       # CLS 日志主题条目
       class ClsTopicItem < TencentCloud::Common::AbstractModel
         # @param TopicId: <p>日志主题 ID</p>
@@ -3002,6 +3027,8 @@ module TencentCloud
         # @type ResourcePartitionName: String
         # @param Queue: <p>默认队列名称</p>
         # @type Queue: String
+        # @param QueueAlias: <p>所属队列别名</p>
+        # @type QueueAlias: String
         # @param JobPackage: <p>作业包URL</p>
         # @type JobPackage: String
         # @param JobPackageName: <p>作业包名称</p>
@@ -3042,9 +3069,9 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Id, :Name, :Description, :Entrypoint, :Image, :ImagePullType, :ImagePullPolicy, :ResourceConfig, :RuntimeEnv, :Catalog, :AutoscalerOptions, :ResourceConfigId, :ResourceConfigChanged, :ResourcePartitionId, :ResourcePartitionName, :Queue, :JobPackage, :JobPackageName, :AppId, :Uin, :CreateTime, :UpdateTime, :JobInstanceCount, :HasRunningJobs, :AdvancedOptions, :GroupId, :ClusterId, :Priority, :Tags, :DispatchStrategy, :SubmissionTarget, :GroupName, :ClusterName, :RequestId
+        attr_accessor :Id, :Name, :Description, :Entrypoint, :Image, :ImagePullType, :ImagePullPolicy, :ResourceConfig, :RuntimeEnv, :Catalog, :AutoscalerOptions, :ResourceConfigId, :ResourceConfigChanged, :ResourcePartitionId, :ResourcePartitionName, :Queue, :QueueAlias, :JobPackage, :JobPackageName, :AppId, :Uin, :CreateTime, :UpdateTime, :JobInstanceCount, :HasRunningJobs, :AdvancedOptions, :GroupId, :ClusterId, :Priority, :Tags, :DispatchStrategy, :SubmissionTarget, :GroupName, :ClusterName, :RequestId
 
-        def initialize(id=nil, name=nil, description=nil, entrypoint=nil, image=nil, imagepulltype=nil, imagepullpolicy=nil, resourceconfig=nil, runtimeenv=nil, catalog=nil, autoscaleroptions=nil, resourceconfigid=nil, resourceconfigchanged=nil, resourcepartitionid=nil, resourcepartitionname=nil, queue=nil, jobpackage=nil, jobpackagename=nil, appid=nil, uin=nil, createtime=nil, updatetime=nil, jobinstancecount=nil, hasrunningjobs=nil, advancedoptions=nil, groupid=nil, clusterid=nil, priority=nil, tags=nil, dispatchstrategy=nil, submissiontarget=nil, groupname=nil, clustername=nil, requestid=nil)
+        def initialize(id=nil, name=nil, description=nil, entrypoint=nil, image=nil, imagepulltype=nil, imagepullpolicy=nil, resourceconfig=nil, runtimeenv=nil, catalog=nil, autoscaleroptions=nil, resourceconfigid=nil, resourceconfigchanged=nil, resourcepartitionid=nil, resourcepartitionname=nil, queue=nil, queuealias=nil, jobpackage=nil, jobpackagename=nil, appid=nil, uin=nil, createtime=nil, updatetime=nil, jobinstancecount=nil, hasrunningjobs=nil, advancedoptions=nil, groupid=nil, clusterid=nil, priority=nil, tags=nil, dispatchstrategy=nil, submissiontarget=nil, groupname=nil, clustername=nil, requestid=nil)
           @Id = id
           @Name = name
           @Description = description
@@ -3061,6 +3088,7 @@ module TencentCloud
           @ResourcePartitionId = resourcepartitionid
           @ResourcePartitionName = resourcepartitionname
           @Queue = queue
+          @QueueAlias = queuealias
           @JobPackage = jobpackage
           @JobPackageName = jobpackagename
           @AppId = appid
@@ -3098,6 +3126,7 @@ module TencentCloud
           @ResourcePartitionId = params['ResourcePartitionId']
           @ResourcePartitionName = params['ResourcePartitionName']
           @Queue = params['Queue']
+          @QueueAlias = params['QueueAlias']
           @JobPackage = params['JobPackage']
           @JobPackageName = params['JobPackageName']
           @AppId = params['AppId']
@@ -4928,6 +4957,8 @@ module TencentCloud
         # @type ResourcePartitionName: String
         # @param Queue: <p>默认队列名称</p>
         # @type Queue: String
+        # @param QueueAlias: <p>所属队列别名</p>
+        # @type QueueAlias: String
         # @param JobPackage: <p>作业包URL</p>
         # @type JobPackage: String
         # @param JobPackageName: <p>作业包名称</p>
@@ -4974,9 +5005,9 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Id, :Name, :Description, :Entrypoint, :Image, :ImagePullType, :ImagePullPolicy, :ResourceConfig, :RuntimeEnv, :Catalog, :AutoscalerOptions, :ResourceConfigId, :ResourceConfigChanged, :ResourcePartitionId, :ResourcePartitionName, :Queue, :JobPackage, :JobPackageName, :JobPackageSource, :AppId, :Uin, :SubAccountUin, :SubAccountName, :CreateTime, :UpdateTime, :JobInstanceCount, :HasRunningJobs, :AdvancedOptions, :GroupId, :ClusterId, :Priority, :Tags, :DispatchStrategy, :SubmissionTarget, :GroupName, :ClusterName, :RequestId
+        attr_accessor :Id, :Name, :Description, :Entrypoint, :Image, :ImagePullType, :ImagePullPolicy, :ResourceConfig, :RuntimeEnv, :Catalog, :AutoscalerOptions, :ResourceConfigId, :ResourceConfigChanged, :ResourcePartitionId, :ResourcePartitionName, :Queue, :QueueAlias, :JobPackage, :JobPackageName, :JobPackageSource, :AppId, :Uin, :SubAccountUin, :SubAccountName, :CreateTime, :UpdateTime, :JobInstanceCount, :HasRunningJobs, :AdvancedOptions, :GroupId, :ClusterId, :Priority, :Tags, :DispatchStrategy, :SubmissionTarget, :GroupName, :ClusterName, :RequestId
 
-        def initialize(id=nil, name=nil, description=nil, entrypoint=nil, image=nil, imagepulltype=nil, imagepullpolicy=nil, resourceconfig=nil, runtimeenv=nil, catalog=nil, autoscaleroptions=nil, resourceconfigid=nil, resourceconfigchanged=nil, resourcepartitionid=nil, resourcepartitionname=nil, queue=nil, jobpackage=nil, jobpackagename=nil, jobpackagesource=nil, appid=nil, uin=nil, subaccountuin=nil, subaccountname=nil, createtime=nil, updatetime=nil, jobinstancecount=nil, hasrunningjobs=nil, advancedoptions=nil, groupid=nil, clusterid=nil, priority=nil, tags=nil, dispatchstrategy=nil, submissiontarget=nil, groupname=nil, clustername=nil, requestid=nil)
+        def initialize(id=nil, name=nil, description=nil, entrypoint=nil, image=nil, imagepulltype=nil, imagepullpolicy=nil, resourceconfig=nil, runtimeenv=nil, catalog=nil, autoscaleroptions=nil, resourceconfigid=nil, resourceconfigchanged=nil, resourcepartitionid=nil, resourcepartitionname=nil, queue=nil, queuealias=nil, jobpackage=nil, jobpackagename=nil, jobpackagesource=nil, appid=nil, uin=nil, subaccountuin=nil, subaccountname=nil, createtime=nil, updatetime=nil, jobinstancecount=nil, hasrunningjobs=nil, advancedoptions=nil, groupid=nil, clusterid=nil, priority=nil, tags=nil, dispatchstrategy=nil, submissiontarget=nil, groupname=nil, clustername=nil, requestid=nil)
           @Id = id
           @Name = name
           @Description = description
@@ -4993,6 +5024,7 @@ module TencentCloud
           @ResourcePartitionId = resourcepartitionid
           @ResourcePartitionName = resourcepartitionname
           @Queue = queue
+          @QueueAlias = queuealias
           @JobPackage = jobpackage
           @JobPackageName = jobpackagename
           @JobPackageSource = jobpackagesource
@@ -5033,6 +5065,7 @@ module TencentCloud
           @ResourcePartitionId = params['ResourcePartitionId']
           @ResourcePartitionName = params['ResourcePartitionName']
           @Queue = params['Queue']
+          @QueueAlias = params['QueueAlias']
           @JobPackage = params['JobPackage']
           @JobPackageName = params['JobPackageName']
           @JobPackageSource = params['JobPackageSource']
@@ -5786,28 +5819,30 @@ module TencentCloud
       class CreatePartitionQueueRequest < TencentCloud::Common::AbstractModel
         # @param PartitionCode: <p>分区编码</p>
         # @type PartitionCode: String
-        # @param QueueName: <p>队列名称</p>
-        # @type QueueName: String
         # @param ResourceUsages: <p>资源规格列表，定义队列的资源类型及大小范围</p>
         # @type ResourceUsages: Array
         # @param QueueType: <p>队列类型：1-独占型，2-共享型</p>
         # @type QueueType: Integer
+        # @param QueueName: <p>队列编码（不可变 code）：透传时按 RFC1123 校验并作为队列的固定标识；未透传时系统自动生成（格式 dlc-rg-xxxxxxxx）。落库后不可修改</p>
+        # @type QueueName: String
+        # @param Alias: <p>队列别名（显示名）：用户可见、可修改；未提供时等于最终 QueueName。可与其它队列重复</p>
+        # @type Alias: String
         # @param Description: <p>队列描述</p>
         # @type Description: String
 
-        attr_accessor :PartitionCode, :QueueName, :ResourceUsages, :QueueType, :Description
+        attr_accessor :PartitionCode, :ResourceUsages, :QueueType, :QueueName, :Alias, :Description
 
-        def initialize(partitioncode=nil, queuename=nil, resourceusages=nil, queuetype=nil, description=nil)
+        def initialize(partitioncode=nil, resourceusages=nil, queuetype=nil, queuename=nil, _alias=nil, description=nil)
           @PartitionCode = partitioncode
-          @QueueName = queuename
           @ResourceUsages = resourceusages
           @QueueType = queuetype
+          @QueueName = queuename
+          @Alias = _alias
           @Description = description
         end
 
         def deserialize(params)
           @PartitionCode = params['PartitionCode']
-          @QueueName = params['QueueName']
           unless params['ResourceUsages'].nil?
             @ResourceUsages = []
             params['ResourceUsages'].each do |i|
@@ -5817,6 +5852,8 @@ module TencentCloud
             end
           end
           @QueueType = params['QueueType']
+          @QueueName = params['QueueName']
+          @Alias = params['Alias']
           @Description = params['Description']
         end
       end
@@ -5825,18 +5862,26 @@ module TencentCloud
       class CreatePartitionQueueResponse < TencentCloud::Common::AbstractModel
         # @param Id: <p>新创建的资源队列ID</p>
         # @type Id: Integer
+        # @param QueueName: <p>最终生效的队列编码（含系统生成场景），与 DescribePartitionQueues 出参的 QueueName 语义一致</p>
+        # @type QueueName: String
+        # @param Alias: <p>队列别名（显示名）</p>
+        # @type Alias: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Id, :RequestId
+        attr_accessor :Id, :QueueName, :Alias, :RequestId
 
-        def initialize(id=nil, requestid=nil)
+        def initialize(id=nil, queuename=nil, _alias=nil, requestid=nil)
           @Id = id
+          @QueueName = queuename
+          @Alias = _alias
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Id = params['Id']
+          @QueueName = params['QueueName']
+          @Alias = params['Alias']
           @RequestId = params['RequestId']
         end
       end
@@ -5897,21 +5942,27 @@ module TencentCloud
         # @param DealName: <p>子订单号</p>
         # @type DealName: String
         # @param BigDealId: <p>大订单号</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BigDealId: String
+        # @param BillId: <p>冻结流水号（后付费返回；预付费为空）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BillId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :DealName, :BigDealId, :RequestId
+        attr_accessor :DealName, :BigDealId, :BillId, :RequestId
 
-        def initialize(dealname=nil, bigdealid=nil, requestid=nil)
+        def initialize(dealname=nil, bigdealid=nil, billid=nil, requestid=nil)
           @DealName = dealname
           @BigDealId = bigdealid
+          @BillId = billid
           @RequestId = requestid
         end
 
         def deserialize(params)
           @DealName = params['DealName']
           @BigDealId = params['BigDealId']
+          @BillId = params['BillId']
           @RequestId = params['RequestId']
         end
       end
@@ -13983,7 +14034,7 @@ module TencentCloud
 
       # DescribePartitionDetail请求参数结构体
       class DescribePartitionDetailRequest < TencentCloud::Common::AbstractModel
-        # @param PartitionCode: 分区编码
+        # @param PartitionCode: <p>分区编码</p>
         # @type PartitionCode: String
 
         attr_accessor :PartitionCode
@@ -13999,7 +14050,7 @@ module TencentCloud
 
       # DescribePartitionDetail返回参数结构体
       class DescribePartitionDetailResponse < TencentCloud::Common::AbstractModel
-        # @param PartitionDetail: 分区详情
+        # @param PartitionDetail: <p>分区详情</p>
         # @type PartitionDetail: :class:`Tencentcloud::Dlc.v20210125.models.PartitionDetail`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -14032,15 +14083,18 @@ module TencentCloud
         # @type Page: Integer
         # @param PageSize: 每页返回数量
         # @type PageSize: Integer
+        # @param ShowResourceQuotas: 是否返回队列实时余量（ResourceQuotas），默认 false 不返回。余量需实时查询 Prometheus，仅在需要时透传 true。Used 为计费 spec 口径（队列内业务容器 Pod limits，经 kube_pod_labels 队列过滤），依赖 kube_pod_labels 指标采集
+        # @type ShowResourceQuotas: Boolean
 
-        attr_accessor :PartitionCode, :SortFields, :Filters, :Page, :PageSize
+        attr_accessor :PartitionCode, :SortFields, :Filters, :Page, :PageSize, :ShowResourceQuotas
 
-        def initialize(partitioncode=nil, sortfields=nil, filters=nil, page=nil, pagesize=nil)
+        def initialize(partitioncode=nil, sortfields=nil, filters=nil, page=nil, pagesize=nil, showresourcequotas=nil)
           @PartitionCode = partitioncode
           @SortFields = sortfields
           @Filters = filters
           @Page = page
           @PageSize = pagesize
+          @ShowResourceQuotas = showresourcequotas
         end
 
         def deserialize(params)
@@ -14063,6 +14117,7 @@ module TencentCloud
           end
           @Page = params['Page']
           @PageSize = params['PageSize']
+          @ShowResourceQuotas = params['ShowResourceQuotas']
         end
       end
 
@@ -18095,14 +18150,13 @@ module TencentCloud
 
       # 流程活动详情
       class FlowActivityDetail < TencentCloud::Common::AbstractModel
-        # @param ActivityCode: <p>活动编码</p>
+        # @param ActivityCode: <p>活动编码；国际站返回英文编码，国内站返回中文描述</p>
         # @type ActivityCode: String
-        # @param Status: <p>活动状态</p>
+        # @param Status: <p>活动状态：1-运行中，2-已完成，-2-失败</p>
         # @type Status: Integer
-        # @param CreateTime: <p>创建时间</p>
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param CreateTime: <p>活动创建时间</p>
         # @type CreateTime: String
-        # @param Duration: <p>耗时（秒）</p>
+        # @param Duration: <p>耗时（秒），活动未完成时省略</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Duration: Integer
 
@@ -18924,6 +18978,8 @@ module TencentCloud
         # @type ResourcePartitionName: String
         # @param Queue: <p>默认队列名称</p>
         # @type Queue: String
+        # @param QueueAlias: <p>所属队列别名</p>
+        # @type QueueAlias: String
         # @param JobPackage: <p>作业包URL</p>
         # @type JobPackage: String
         # @param JobPackageName: <p>作业包名称</p>
@@ -18970,9 +19026,9 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Id, :Name, :Description, :Entrypoint, :Image, :ImagePullType, :ImagePullPolicy, :ResourceConfig, :RuntimeEnv, :Catalog, :AutoscalerOptions, :ResourceConfigId, :ResourceConfigChanged, :ResourcePartitionId, :ResourcePartitionName, :Queue, :JobPackage, :JobPackageName, :JobPackageSource, :AppId, :Uin, :SubAccountUin, :SubAccountName, :CreateTime, :UpdateTime, :JobInstanceCount, :HasRunningJobs, :AdvancedOptions, :GroupId, :ClusterId, :Priority, :Tags, :DispatchStrategy, :SubmissionTarget, :GroupName, :ClusterName, :RequestId
+        attr_accessor :Id, :Name, :Description, :Entrypoint, :Image, :ImagePullType, :ImagePullPolicy, :ResourceConfig, :RuntimeEnv, :Catalog, :AutoscalerOptions, :ResourceConfigId, :ResourceConfigChanged, :ResourcePartitionId, :ResourcePartitionName, :Queue, :QueueAlias, :JobPackage, :JobPackageName, :JobPackageSource, :AppId, :Uin, :SubAccountUin, :SubAccountName, :CreateTime, :UpdateTime, :JobInstanceCount, :HasRunningJobs, :AdvancedOptions, :GroupId, :ClusterId, :Priority, :Tags, :DispatchStrategy, :SubmissionTarget, :GroupName, :ClusterName, :RequestId
 
-        def initialize(id=nil, name=nil, description=nil, entrypoint=nil, image=nil, imagepulltype=nil, imagepullpolicy=nil, resourceconfig=nil, runtimeenv=nil, catalog=nil, autoscaleroptions=nil, resourceconfigid=nil, resourceconfigchanged=nil, resourcepartitionid=nil, resourcepartitionname=nil, queue=nil, jobpackage=nil, jobpackagename=nil, jobpackagesource=nil, appid=nil, uin=nil, subaccountuin=nil, subaccountname=nil, createtime=nil, updatetime=nil, jobinstancecount=nil, hasrunningjobs=nil, advancedoptions=nil, groupid=nil, clusterid=nil, priority=nil, tags=nil, dispatchstrategy=nil, submissiontarget=nil, groupname=nil, clustername=nil, requestid=nil)
+        def initialize(id=nil, name=nil, description=nil, entrypoint=nil, image=nil, imagepulltype=nil, imagepullpolicy=nil, resourceconfig=nil, runtimeenv=nil, catalog=nil, autoscaleroptions=nil, resourceconfigid=nil, resourceconfigchanged=nil, resourcepartitionid=nil, resourcepartitionname=nil, queue=nil, queuealias=nil, jobpackage=nil, jobpackagename=nil, jobpackagesource=nil, appid=nil, uin=nil, subaccountuin=nil, subaccountname=nil, createtime=nil, updatetime=nil, jobinstancecount=nil, hasrunningjobs=nil, advancedoptions=nil, groupid=nil, clusterid=nil, priority=nil, tags=nil, dispatchstrategy=nil, submissiontarget=nil, groupname=nil, clustername=nil, requestid=nil)
           @Id = id
           @Name = name
           @Description = description
@@ -18989,6 +19045,7 @@ module TencentCloud
           @ResourcePartitionId = resourcepartitionid
           @ResourcePartitionName = resourcepartitionname
           @Queue = queue
+          @QueueAlias = queuealias
           @JobPackage = jobpackage
           @JobPackageName = jobpackagename
           @JobPackageSource = jobpackagesource
@@ -19029,6 +19086,7 @@ module TencentCloud
           @ResourcePartitionId = params['ResourcePartitionId']
           @ResourcePartitionName = params['ResourcePartitionName']
           @Queue = params['Queue']
+          @QueueAlias = params['QueueAlias']
           @JobPackage = params['JobPackage']
           @JobPackageName = params['JobPackageName']
           @JobPackageSource = params['JobPackageSource']
@@ -19098,6 +19156,8 @@ module TencentCloud
         # @type ResourcePartitionName: String
         # @param Queue: <p>所属队列名称</p>
         # @type Queue: String
+        # @param QueueAlias: <p>所属队列别名</p>
+        # @type QueueAlias: String
         # @param AppId: <p>应用ID</p>
         # @type AppId: Integer
         # @param Uin: <p>用户UIN</p>
@@ -19145,9 +19205,9 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ExampleId, :CodeArchiveUrl, :Services, :Id, :Type, :Name, :Description, :ResourcePartitionId, :ResourcePartitionName, :Queue, :AppId, :Uin, :SubAccountUin, :Status, :StatusMessage, :ResourceConfig, :ResourceConfigId, :Image, :Catalog, :HistoryUrl, :ImagePullPolicy, :AdvancedOptions, :Priority, :StartTime, :StopTime, :DeleteTime, :Tags, :PersistentWorkDir, :EnableToken, :LabImagePullType, :SubAccountName, :ImagePullType, :RequestId
+        attr_accessor :ExampleId, :CodeArchiveUrl, :Services, :Id, :Type, :Name, :Description, :ResourcePartitionId, :ResourcePartitionName, :Queue, :QueueAlias, :AppId, :Uin, :SubAccountUin, :Status, :StatusMessage, :ResourceConfig, :ResourceConfigId, :Image, :Catalog, :HistoryUrl, :ImagePullPolicy, :AdvancedOptions, :Priority, :StartTime, :StopTime, :DeleteTime, :Tags, :PersistentWorkDir, :EnableToken, :LabImagePullType, :SubAccountName, :ImagePullType, :RequestId
 
-        def initialize(exampleid=nil, codearchiveurl=nil, services=nil, id=nil, type=nil, name=nil, description=nil, resourcepartitionid=nil, resourcepartitionname=nil, queue=nil, appid=nil, uin=nil, subaccountuin=nil, status=nil, statusmessage=nil, resourceconfig=nil, resourceconfigid=nil, image=nil, catalog=nil, historyurl=nil, imagepullpolicy=nil, advancedoptions=nil, priority=nil, starttime=nil, stoptime=nil, deletetime=nil, tags=nil, persistentworkdir=nil, enabletoken=nil, labimagepulltype=nil, subaccountname=nil, imagepulltype=nil, requestid=nil)
+        def initialize(exampleid=nil, codearchiveurl=nil, services=nil, id=nil, type=nil, name=nil, description=nil, resourcepartitionid=nil, resourcepartitionname=nil, queue=nil, queuealias=nil, appid=nil, uin=nil, subaccountuin=nil, status=nil, statusmessage=nil, resourceconfig=nil, resourceconfigid=nil, image=nil, catalog=nil, historyurl=nil, imagepullpolicy=nil, advancedoptions=nil, priority=nil, starttime=nil, stoptime=nil, deletetime=nil, tags=nil, persistentworkdir=nil, enabletoken=nil, labimagepulltype=nil, subaccountname=nil, imagepulltype=nil, requestid=nil)
           @ExampleId = exampleid
           @CodeArchiveUrl = codearchiveurl
           @Services = services
@@ -19158,6 +19218,7 @@ module TencentCloud
           @ResourcePartitionId = resourcepartitionid
           @ResourcePartitionName = resourcepartitionname
           @Queue = queue
+          @QueueAlias = queuealias
           @AppId = appid
           @Uin = uin
           @SubAccountUin = subaccountuin
@@ -19201,6 +19262,7 @@ module TencentCloud
           @ResourcePartitionId = params['ResourcePartitionId']
           @ResourcePartitionName = params['ResourcePartitionName']
           @Queue = params['Queue']
+          @QueueAlias = params['QueueAlias']
           @AppId = params['AppId']
           @Uin = params['Uin']
           @SubAccountUin = params['SubAccountUin']
@@ -20136,6 +20198,8 @@ module TencentCloud
         # @type ResourcePartitionName: String
         # @param Queue: <p>所属队列名称</p>
         # @type Queue: String
+        # @param QueueAlias: <p>所属队列别名</p>
+        # @type QueueAlias: String
         # @param AppId: <p>应用ID</p>
         # @type AppId: Integer
         # @param Uin: <p>用户UIN</p>
@@ -20181,9 +20245,9 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Id, :Type, :Name, :Description, :ResourcePartitionId, :ResourcePartitionName, :Queue, :AppId, :Uin, :SubAccountUin, :SubAccountName, :Status, :StatusMessage, :CreateTime, :GroupId, :GroupName, :ResourceConfig, :Image, :Catalog, :HistoryUrl, :ImagePullPolicy, :ImagePullType, :AdvancedOptions, :Priority, :StartTime, :StopTime, :Tags, :ResourceConfigId, :RequestId
+        attr_accessor :Id, :Type, :Name, :Description, :ResourcePartitionId, :ResourcePartitionName, :Queue, :QueueAlias, :AppId, :Uin, :SubAccountUin, :SubAccountName, :Status, :StatusMessage, :CreateTime, :GroupId, :GroupName, :ResourceConfig, :Image, :Catalog, :HistoryUrl, :ImagePullPolicy, :ImagePullType, :AdvancedOptions, :Priority, :StartTime, :StopTime, :Tags, :ResourceConfigId, :RequestId
 
-        def initialize(id=nil, type=nil, name=nil, description=nil, resourcepartitionid=nil, resourcepartitionname=nil, queue=nil, appid=nil, uin=nil, subaccountuin=nil, subaccountname=nil, status=nil, statusmessage=nil, createtime=nil, groupid=nil, groupname=nil, resourceconfig=nil, image=nil, catalog=nil, historyurl=nil, imagepullpolicy=nil, imagepulltype=nil, advancedoptions=nil, priority=nil, starttime=nil, stoptime=nil, tags=nil, resourceconfigid=nil, requestid=nil)
+        def initialize(id=nil, type=nil, name=nil, description=nil, resourcepartitionid=nil, resourcepartitionname=nil, queue=nil, queuealias=nil, appid=nil, uin=nil, subaccountuin=nil, subaccountname=nil, status=nil, statusmessage=nil, createtime=nil, groupid=nil, groupname=nil, resourceconfig=nil, image=nil, catalog=nil, historyurl=nil, imagepullpolicy=nil, imagepulltype=nil, advancedoptions=nil, priority=nil, starttime=nil, stoptime=nil, tags=nil, resourceconfigid=nil, requestid=nil)
           @Id = id
           @Type = type
           @Name = name
@@ -20191,6 +20255,7 @@ module TencentCloud
           @ResourcePartitionId = resourcepartitionid
           @ResourcePartitionName = resourcepartitionname
           @Queue = queue
+          @QueueAlias = queuealias
           @AppId = appid
           @Uin = uin
           @SubAccountUin = subaccountuin
@@ -20223,6 +20288,7 @@ module TencentCloud
           @ResourcePartitionId = params['ResourcePartitionId']
           @ResourcePartitionName = params['ResourcePartitionName']
           @Queue = params['Queue']
+          @QueueAlias = params['QueueAlias']
           @AppId = params['AppId']
           @Uin = params['Uin']
           @SubAccountUin = params['SubAccountUin']
@@ -20611,6 +20677,8 @@ module TencentCloud
         # @type ResourcePartitionName: String
         # @param Queue: <p>所属队列名称</p>
         # @type Queue: String
+        # @param QueueAlias: <p>所属队列别名</p>
+        # @type QueueAlias: String
         # @param Status: <p>任务状态</p>
         # @type Status: String
         # @param Entrypoint: <p>入口命令</p>
@@ -20662,13 +20730,14 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Id, :ResourcePartitionId, :ResourcePartitionName, :Queue, :Status, :Entrypoint, :JobName, :AppId, :Uin, :SubAccountUin, :HistoryUrl, :RunningTime, :FinishTime, :CreateTime, :ErrorMessage, :RuntimeEnv, :Image, :ResourceConfig, :Catalog, :ImagePullPolicy, :AutoscalerOptions, :SpecId, :SpecName, :AdvancedOptions, :Priority, :Tags, :JobSource, :ClusterName, :RequestId
+        attr_accessor :Id, :ResourcePartitionId, :ResourcePartitionName, :Queue, :QueueAlias, :Status, :Entrypoint, :JobName, :AppId, :Uin, :SubAccountUin, :HistoryUrl, :RunningTime, :FinishTime, :CreateTime, :ErrorMessage, :RuntimeEnv, :Image, :ResourceConfig, :Catalog, :ImagePullPolicy, :AutoscalerOptions, :SpecId, :SpecName, :AdvancedOptions, :Priority, :Tags, :JobSource, :ClusterName, :RequestId
 
-        def initialize(id=nil, resourcepartitionid=nil, resourcepartitionname=nil, queue=nil, status=nil, entrypoint=nil, jobname=nil, appid=nil, uin=nil, subaccountuin=nil, historyurl=nil, runningtime=nil, finishtime=nil, createtime=nil, errormessage=nil, runtimeenv=nil, image=nil, resourceconfig=nil, catalog=nil, imagepullpolicy=nil, autoscaleroptions=nil, specid=nil, specname=nil, advancedoptions=nil, priority=nil, tags=nil, jobsource=nil, clustername=nil, requestid=nil)
+        def initialize(id=nil, resourcepartitionid=nil, resourcepartitionname=nil, queue=nil, queuealias=nil, status=nil, entrypoint=nil, jobname=nil, appid=nil, uin=nil, subaccountuin=nil, historyurl=nil, runningtime=nil, finishtime=nil, createtime=nil, errormessage=nil, runtimeenv=nil, image=nil, resourceconfig=nil, catalog=nil, imagepullpolicy=nil, autoscaleroptions=nil, specid=nil, specname=nil, advancedoptions=nil, priority=nil, tags=nil, jobsource=nil, clustername=nil, requestid=nil)
           @Id = id
           @ResourcePartitionId = resourcepartitionid
           @ResourcePartitionName = resourcepartitionname
           @Queue = queue
+          @QueueAlias = queuealias
           @Status = status
           @Entrypoint = entrypoint
           @JobName = jobname
@@ -20701,6 +20770,7 @@ module TencentCloud
           @ResourcePartitionId = params['ResourcePartitionId']
           @ResourcePartitionName = params['ResourcePartitionName']
           @Queue = params['Queue']
+          @QueueAlias = params['QueueAlias']
           @Status = params['Status']
           @Entrypoint = params['Entrypoint']
           @JobName = params['JobName']
@@ -22005,6 +22075,8 @@ module TencentCloud
         # @type ResourcePartitionName: String
         # @param Queue: <p>默认队列名称</p>
         # @type Queue: String
+        # @param QueueAlias: <p>所属队列别名</p>
+        # @type QueueAlias: String
         # @param GroupId: <p>集群组Id</p>
         # @type GroupId: String
         # @param ClusterId: <p>集群id</p>
@@ -22015,6 +22087,8 @@ module TencentCloud
         # @type JobPackage: String
         # @param JobPackageName: <p>作业包名称</p>
         # @type JobPackageName: String
+        # @param JobPackageSource: <p>作业包来源类型（Local: 本地上传, Cos: 用户自有 COS 桶地址）；缺时按 Local 处理</p>
+        # @type JobPackageSource: String
         # @param Priority: <p>优先级</p>
         # @type Priority: Integer
         # @param AppId: <p>应用ID</p>
@@ -22023,6 +22097,8 @@ module TencentCloud
         # @type Uin: String
         # @param SubAccountUin: <p>子用户UIN</p>
         # @type SubAccountUin: String
+        # @param SubAccountName: <p>子用户名称（由聚合层通过 CAM 接口回填）</p>
+        # @type SubAccountName: String
         # @param CreateTime: <p>创建时间</p>
         # @type CreateTime: Integer
         # @param UpdateTime: <p>更新时间</p>
@@ -22044,9 +22120,9 @@ module TencentCloud
         # @param ClusterName: <p>集群名称</p>
         # @type ClusterName: String
 
-        attr_accessor :Id, :Name, :Description, :Entrypoint, :Image, :ImagePullType, :ImagePullPolicy, :ResourceConfig, :RuntimeEnv, :Catalog, :AutoscalerOptions, :ResourceConfigId, :ResourceConfigChanged, :ResourcePartitionId, :ResourcePartitionName, :Queue, :GroupId, :ClusterId, :ClusterGroup, :JobPackage, :JobPackageName, :Priority, :AppId, :Uin, :SubAccountUin, :CreateTime, :UpdateTime, :JobInstanceCount, :HasRunningJobs, :AdvancedOptions, :Tags, :DispatchStrategy, :SubmissionTarget, :GroupName, :ClusterName
+        attr_accessor :Id, :Name, :Description, :Entrypoint, :Image, :ImagePullType, :ImagePullPolicy, :ResourceConfig, :RuntimeEnv, :Catalog, :AutoscalerOptions, :ResourceConfigId, :ResourceConfigChanged, :ResourcePartitionId, :ResourcePartitionName, :Queue, :QueueAlias, :GroupId, :ClusterId, :ClusterGroup, :JobPackage, :JobPackageName, :JobPackageSource, :Priority, :AppId, :Uin, :SubAccountUin, :SubAccountName, :CreateTime, :UpdateTime, :JobInstanceCount, :HasRunningJobs, :AdvancedOptions, :Tags, :DispatchStrategy, :SubmissionTarget, :GroupName, :ClusterName
 
-        def initialize(id=nil, name=nil, description=nil, entrypoint=nil, image=nil, imagepulltype=nil, imagepullpolicy=nil, resourceconfig=nil, runtimeenv=nil, catalog=nil, autoscaleroptions=nil, resourceconfigid=nil, resourceconfigchanged=nil, resourcepartitionid=nil, resourcepartitionname=nil, queue=nil, groupid=nil, clusterid=nil, clustergroup=nil, jobpackage=nil, jobpackagename=nil, priority=nil, appid=nil, uin=nil, subaccountuin=nil, createtime=nil, updatetime=nil, jobinstancecount=nil, hasrunningjobs=nil, advancedoptions=nil, tags=nil, dispatchstrategy=nil, submissiontarget=nil, groupname=nil, clustername=nil)
+        def initialize(id=nil, name=nil, description=nil, entrypoint=nil, image=nil, imagepulltype=nil, imagepullpolicy=nil, resourceconfig=nil, runtimeenv=nil, catalog=nil, autoscaleroptions=nil, resourceconfigid=nil, resourceconfigchanged=nil, resourcepartitionid=nil, resourcepartitionname=nil, queue=nil, queuealias=nil, groupid=nil, clusterid=nil, clustergroup=nil, jobpackage=nil, jobpackagename=nil, jobpackagesource=nil, priority=nil, appid=nil, uin=nil, subaccountuin=nil, subaccountname=nil, createtime=nil, updatetime=nil, jobinstancecount=nil, hasrunningjobs=nil, advancedoptions=nil, tags=nil, dispatchstrategy=nil, submissiontarget=nil, groupname=nil, clustername=nil)
           @Id = id
           @Name = name
           @Description = description
@@ -22063,15 +22139,18 @@ module TencentCloud
           @ResourcePartitionId = resourcepartitionid
           @ResourcePartitionName = resourcepartitionname
           @Queue = queue
+          @QueueAlias = queuealias
           @GroupId = groupid
           @ClusterId = clusterid
           @ClusterGroup = clustergroup
           @JobPackage = jobpackage
           @JobPackageName = jobpackagename
+          @JobPackageSource = jobpackagesource
           @Priority = priority
           @AppId = appid
           @Uin = uin
           @SubAccountUin = subaccountuin
+          @SubAccountName = subaccountname
           @CreateTime = createtime
           @UpdateTime = updatetime
           @JobInstanceCount = jobinstancecount
@@ -22101,15 +22180,18 @@ module TencentCloud
           @ResourcePartitionId = params['ResourcePartitionId']
           @ResourcePartitionName = params['ResourcePartitionName']
           @Queue = params['Queue']
+          @QueueAlias = params['QueueAlias']
           @GroupId = params['GroupId']
           @ClusterId = params['ClusterId']
           @ClusterGroup = params['ClusterGroup']
           @JobPackage = params['JobPackage']
           @JobPackageName = params['JobPackageName']
+          @JobPackageSource = params['JobPackageSource']
           @Priority = params['Priority']
           @AppId = params['AppId']
           @Uin = params['Uin']
           @SubAccountUin = params['SubAccountUin']
+          @SubAccountName = params['SubAccountName']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
           @JobInstanceCount = params['JobInstanceCount']
@@ -22269,6 +22351,8 @@ module TencentCloud
         # @type ResourcePartitionName: String
         # @param Queue: <p>所属队列名称</p>
         # @type Queue: String
+        # @param QueueAlias: <p>所属队列别名</p>
+        # @type QueueAlias: String
         # @param AppId: <p>应用ID</p>
         # @type AppId: Integer
         # @param Uin: <p>用户UIN</p>
@@ -22323,9 +22407,9 @@ module TencentCloud
         # @param Token: <p>Token 认证密钥（开启 token 认证时由系统生成）</p>
         # @type Token: String
 
-        attr_accessor :ExampleId, :CodeArchiveUrl, :Services, :LabImage, :LabImagePullPolicy, :LabImagePullType, :Id, :Type, :Name, :Description, :ResourcePartitionId, :ResourcePartitionName, :Queue, :AppId, :Uin, :SubAccountUin, :SubAccountName, :Status, :StatusMessage, :CreateTime, :GroupName, :GroupId, :ResourceConfig, :ResourceConfigId, :RuntimeEnv, :Image, :Catalog, :HistoryUrl, :ImagePullPolicy, :ImagePullType, :AdvancedOptions, :Priority, :StartTime, :StopTime, :DeleteTime, :Tags, :PersistentWorkDir, :EnableToken, :Token
+        attr_accessor :ExampleId, :CodeArchiveUrl, :Services, :LabImage, :LabImagePullPolicy, :LabImagePullType, :Id, :Type, :Name, :Description, :ResourcePartitionId, :ResourcePartitionName, :Queue, :QueueAlias, :AppId, :Uin, :SubAccountUin, :SubAccountName, :Status, :StatusMessage, :CreateTime, :GroupName, :GroupId, :ResourceConfig, :ResourceConfigId, :RuntimeEnv, :Image, :Catalog, :HistoryUrl, :ImagePullPolicy, :ImagePullType, :AdvancedOptions, :Priority, :StartTime, :StopTime, :DeleteTime, :Tags, :PersistentWorkDir, :EnableToken, :Token
 
-        def initialize(exampleid=nil, codearchiveurl=nil, services=nil, labimage=nil, labimagepullpolicy=nil, labimagepulltype=nil, id=nil, type=nil, name=nil, description=nil, resourcepartitionid=nil, resourcepartitionname=nil, queue=nil, appid=nil, uin=nil, subaccountuin=nil, subaccountname=nil, status=nil, statusmessage=nil, createtime=nil, groupname=nil, groupid=nil, resourceconfig=nil, resourceconfigid=nil, runtimeenv=nil, image=nil, catalog=nil, historyurl=nil, imagepullpolicy=nil, imagepulltype=nil, advancedoptions=nil, priority=nil, starttime=nil, stoptime=nil, deletetime=nil, tags=nil, persistentworkdir=nil, enabletoken=nil, token=nil)
+        def initialize(exampleid=nil, codearchiveurl=nil, services=nil, labimage=nil, labimagepullpolicy=nil, labimagepulltype=nil, id=nil, type=nil, name=nil, description=nil, resourcepartitionid=nil, resourcepartitionname=nil, queue=nil, queuealias=nil, appid=nil, uin=nil, subaccountuin=nil, subaccountname=nil, status=nil, statusmessage=nil, createtime=nil, groupname=nil, groupid=nil, resourceconfig=nil, resourceconfigid=nil, runtimeenv=nil, image=nil, catalog=nil, historyurl=nil, imagepullpolicy=nil, imagepulltype=nil, advancedoptions=nil, priority=nil, starttime=nil, stoptime=nil, deletetime=nil, tags=nil, persistentworkdir=nil, enabletoken=nil, token=nil)
           @ExampleId = exampleid
           @CodeArchiveUrl = codearchiveurl
           @Services = services
@@ -22339,6 +22423,7 @@ module TencentCloud
           @ResourcePartitionId = resourcepartitionid
           @ResourcePartitionName = resourcepartitionname
           @Queue = queue
+          @QueueAlias = queuealias
           @AppId = appid
           @Uin = uin
           @SubAccountUin = subaccountuin
@@ -22388,6 +22473,7 @@ module TencentCloud
           @ResourcePartitionId = params['ResourcePartitionId']
           @ResourcePartitionName = params['ResourcePartitionName']
           @Queue = params['Queue']
+          @QueueAlias = params['QueueAlias']
           @AppId = params['AppId']
           @Uin = params['Uin']
           @SubAccountUin = params['SubAccountUin']
@@ -26539,8 +26625,10 @@ module TencentCloud
         # @type Id: Integer
         # @param PartitionCode: 分区编码
         # @type PartitionCode: String
-        # @param QueueName: 队列名称
+        # @param QueueName: 队列编码（不可变 code）：与 Id 定位记录的一致性校验键，传入值必须与队列当前 QueueName 一致，不参与更新
         # @type QueueName: String
+        # @param Alias: 队列别名（显示名）：透传时更新，未透传时保持不变。可与其它队列重复
+        # @type Alias: String
         # @param Description: 队列描述
         # @type Description: String
         # @param ResourceUsages: 资源规格列表，定义队列的资源类型及大小范围
@@ -26548,12 +26636,13 @@ module TencentCloud
         # @param QueueType: 队列类型：1-独占型，2-共享型
         # @type QueueType: Integer
 
-        attr_accessor :Id, :PartitionCode, :QueueName, :Description, :ResourceUsages, :QueueType
+        attr_accessor :Id, :PartitionCode, :QueueName, :Alias, :Description, :ResourceUsages, :QueueType
 
-        def initialize(id=nil, partitioncode=nil, queuename=nil, description=nil, resourceusages=nil, queuetype=nil)
+        def initialize(id=nil, partitioncode=nil, queuename=nil, _alias=nil, description=nil, resourceusages=nil, queuetype=nil)
           @Id = id
           @PartitionCode = partitioncode
           @QueueName = queuename
+          @Alias = _alias
           @Description = description
           @ResourceUsages = resourceusages
           @QueueType = queuetype
@@ -26563,6 +26652,7 @@ module TencentCloud
           @Id = params['Id']
           @PartitionCode = params['PartitionCode']
           @QueueName = params['QueueName']
+          @Alias = params['Alias']
           @Description = params['Description']
           unless params['ResourceUsages'].nil?
             @ResourceUsages = []
@@ -28025,6 +28115,9 @@ module TencentCloud
         # @param ResourceQuota: <p>资源配额列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceQuota: Array
+        # @param SchedulableLimitList: <p>各计费项的单 worker/executor 最大可调度资源量列表，用于约束提交作业时可申请的规格上限；仅包含分区已有的非 GPU 计费项，无可返回项时为空数组</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SchedulableLimitList: Array
         # @param PayMode: <p>付费模式</p>
         # @type PayMode: Integer
         # @param RenewFlag: <p>续费标志</p>
@@ -28034,10 +28127,21 @@ module TencentCloud
         # @type Scheduler: String
         # @param Status: <p>状态</p>
         # @type Status: Integer
+        # @param ExpireTime: <p>过期时间</p><p>参数格式：yyyy-MM-dd hh:mm:ss</p>
+        # @type ExpireTime: String
+        # @param IsolatedTimestamp: <p>过期时间</p><p>参数格式：yyyy-MM-dd hh:mm:ss</p>
+        # @type IsolatedTimestamp: String
+        # @param Tags: <p>资源已绑定的标签列表，由标签平台 GetResources 接口实时查询得到</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param ResourcePoolKind: <p>资源池形态：SYSTEM（系统）/ USER（用户）/ EXTERNAL_TKE（纳管外部 TKE 集群）</p>
+        # @type ResourcePoolKind: String
+        # @param ExternalClusterId: <p>纳管外部集群的原始 ID（例如 EMR 实例 ID emr-xxx），仅 EXTERNAL_TKE 等纳管场景有值</p>
+        # @type ExternalClusterId: String
 
-        attr_accessor :PartitionCode, :PartitionName, :Description, :Region, :ProductInfo, :ResourcePoolCode, :ResourceQuota, :PayMode, :RenewFlag, :Scheduler, :Status
+        attr_accessor :PartitionCode, :PartitionName, :Description, :Region, :ProductInfo, :ResourcePoolCode, :ResourceQuota, :SchedulableLimitList, :PayMode, :RenewFlag, :Scheduler, :Status, :ExpireTime, :IsolatedTimestamp, :Tags, :ResourcePoolKind, :ExternalClusterId
 
-        def initialize(partitioncode=nil, partitionname=nil, description=nil, region=nil, productinfo=nil, resourcepoolcode=nil, resourcequota=nil, paymode=nil, renewflag=nil, scheduler=nil, status=nil)
+        def initialize(partitioncode=nil, partitionname=nil, description=nil, region=nil, productinfo=nil, resourcepoolcode=nil, resourcequota=nil, schedulablelimitlist=nil, paymode=nil, renewflag=nil, scheduler=nil, status=nil, expiretime=nil, isolatedtimestamp=nil, tags=nil, resourcepoolkind=nil, externalclusterid=nil)
           @PartitionCode = partitioncode
           @PartitionName = partitionname
           @Description = description
@@ -28045,10 +28149,16 @@ module TencentCloud
           @ProductInfo = productinfo
           @ResourcePoolCode = resourcepoolcode
           @ResourceQuota = resourcequota
+          @SchedulableLimitList = schedulablelimitlist
           @PayMode = paymode
           @RenewFlag = renewflag
           @Scheduler = scheduler
           @Status = status
+          @ExpireTime = expiretime
+          @IsolatedTimestamp = isolatedtimestamp
+          @Tags = tags
+          @ResourcePoolKind = resourcepoolkind
+          @ExternalClusterId = externalclusterid
         end
 
         def deserialize(params)
@@ -28066,10 +28176,30 @@ module TencentCloud
               @ResourceQuota << resourcequota_tmp
             end
           end
+          unless params['SchedulableLimitList'].nil?
+            @SchedulableLimitList = []
+            params['SchedulableLimitList'].each do |i|
+              schedulablelimit_tmp = SchedulableLimit.new
+              schedulablelimit_tmp.deserialize(i)
+              @SchedulableLimitList << schedulablelimit_tmp
+            end
+          end
           @PayMode = params['PayMode']
           @RenewFlag = params['RenewFlag']
           @Scheduler = params['Scheduler']
           @Status = params['Status']
+          @ExpireTime = params['ExpireTime']
+          @IsolatedTimestamp = params['IsolatedTimestamp']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              cloudtag_tmp = CloudTag.new
+              cloudtag_tmp.deserialize(i)
+              @Tags << cloudtag_tmp
+            end
+          end
+          @ResourcePoolKind = params['ResourcePoolKind']
+          @ExternalClusterId = params['ExternalClusterId']
         end
       end
 
@@ -28089,8 +28219,14 @@ module TencentCloud
         # @param ResourceQuota: <p>资源配置（配额）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceQuota: Array
+        # @param SchedulableLimitList: <p>各计费项的单 worker/executor 最大可调度资源量列表，用于约束提交作业时可申请的规格上限；仅包含分区已有的非 GPU 计费项，无可返回项时为空数组</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SchedulableLimitList: Array
         # @param PayMode: <p>计费类型：1-包年包月，0-按量计费</p>
         # @type PayMode: Integer
+        # @param RenewFlag: <p>续费标志：0-默认，1-自动续费，2-不自动续费（仅预付费有效）；按量计费分区无该字段</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RenewFlag: Integer
         # @param CreateTime: <p>创建时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
@@ -28100,20 +28236,34 @@ module TencentCloud
         # @param ExpireTime: <p>过期时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpireTime: String
+        # @param ResourcePoolKind: <p>资源池形态：SYSTEM（系统）/ USER（用户）/ EXTERNAL_TKE（纳管外部 TKE 集群）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourcePoolKind: String
+        # @param ExternalClusterId: <p>纳管外部集群的原始 ID（例如 EMR 实例 ID emr-xxx），仅 EXTERNAL_TKE 等纳管场景有值</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExternalClusterId: String
+        # @param Tags: <p>资源已绑定的标签列表，由标签平台 GetResources 接口实时查询得到；列表场景下仅对当前页分区加载，单分区标签查询失败时降级留空</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
 
-        attr_accessor :Name, :PartitionCode, :Description, :Status, :QueueCount, :ResourceQuota, :PayMode, :CreateTime, :UpdateTime, :ExpireTime
+        attr_accessor :Name, :PartitionCode, :Description, :Status, :QueueCount, :ResourceQuota, :SchedulableLimitList, :PayMode, :RenewFlag, :CreateTime, :UpdateTime, :ExpireTime, :ResourcePoolKind, :ExternalClusterId, :Tags
 
-        def initialize(name=nil, partitioncode=nil, description=nil, status=nil, queuecount=nil, resourcequota=nil, paymode=nil, createtime=nil, updatetime=nil, expiretime=nil)
+        def initialize(name=nil, partitioncode=nil, description=nil, status=nil, queuecount=nil, resourcequota=nil, schedulablelimitlist=nil, paymode=nil, renewflag=nil, createtime=nil, updatetime=nil, expiretime=nil, resourcepoolkind=nil, externalclusterid=nil, tags=nil)
           @Name = name
           @PartitionCode = partitioncode
           @Description = description
           @Status = status
           @QueueCount = queuecount
           @ResourceQuota = resourcequota
+          @SchedulableLimitList = schedulablelimitlist
           @PayMode = paymode
+          @RenewFlag = renewflag
           @CreateTime = createtime
           @UpdateTime = updatetime
           @ExpireTime = expiretime
+          @ResourcePoolKind = resourcepoolkind
+          @ExternalClusterId = externalclusterid
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -28130,10 +28280,29 @@ module TencentCloud
               @ResourceQuota << resourcequota_tmp
             end
           end
+          unless params['SchedulableLimitList'].nil?
+            @SchedulableLimitList = []
+            params['SchedulableLimitList'].each do |i|
+              schedulablelimit_tmp = SchedulableLimit.new
+              schedulablelimit_tmp.deserialize(i)
+              @SchedulableLimitList << schedulablelimit_tmp
+            end
+          end
           @PayMode = params['PayMode']
+          @RenewFlag = params['RenewFlag']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
           @ExpireTime = params['ExpireTime']
+          @ResourcePoolKind = params['ResourcePoolKind']
+          @ExternalClusterId = params['ExternalClusterId']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              cloudtag_tmp = CloudTag.new
+              cloudtag_tmp.deserialize(i)
+              @Tags << cloudtag_tmp
+            end
+          end
         end
       end
 
@@ -28915,11 +29084,16 @@ module TencentCloud
       class QueueInfo < TencentCloud::Common::AbstractModel
         # @param Id: <p>队列ID</p>
         # @type Id: Integer
-        # @param QueueName: <p>队列名称</p>
+        # @param QueueName: <p>不可变的Code</p>
         # @type QueueName: String
+        # @param Alias: <p>队列别名（用户可改显示名）；alias 为空时回落为 QueueName</p>
+        # @type Alias: String
         # @param ResourceUsage: <p>资源用量列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceUsage: Array
+        # @param ResourceQuotas: <p>队列各资源类型的实时余量（总量 / 已用量 / 可用量）。由 Kueue Prometheus 指标实时计算；监控关闭或查询失败时为 null，字段省略不返回</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceQuotas: Array
         # @param Description: <p>队列描述</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
@@ -28928,12 +29102,14 @@ module TencentCloud
         # @param QueueType: <p>队列类型：1-独占型，2-共享型</p>
         # @type QueueType: Integer
 
-        attr_accessor :Id, :QueueName, :ResourceUsage, :Description, :IsDefault, :QueueType
+        attr_accessor :Id, :QueueName, :Alias, :ResourceUsage, :ResourceQuotas, :Description, :IsDefault, :QueueType
 
-        def initialize(id=nil, queuename=nil, resourceusage=nil, description=nil, isdefault=nil, queuetype=nil)
+        def initialize(id=nil, queuename=nil, _alias=nil, resourceusage=nil, resourcequotas=nil, description=nil, isdefault=nil, queuetype=nil)
           @Id = id
           @QueueName = queuename
+          @Alias = _alias
           @ResourceUsage = resourceusage
+          @ResourceQuotas = resourcequotas
           @Description = description
           @IsDefault = isdefault
           @QueueType = queuetype
@@ -28942,6 +29118,7 @@ module TencentCloud
         def deserialize(params)
           @Id = params['Id']
           @QueueName = params['QueueName']
+          @Alias = params['Alias']
           unless params['ResourceUsage'].nil?
             @ResourceUsage = []
             params['ResourceUsage'].each do |i|
@@ -28950,9 +29127,49 @@ module TencentCloud
               @ResourceUsage << resourceusage_tmp
             end
           end
+          unless params['ResourceQuotas'].nil?
+            @ResourceQuotas = []
+            params['ResourceQuotas'].each do |i|
+              queueresourcequota_tmp = QueueResourceQuota.new
+              queueresourcequota_tmp.deserialize(i)
+              @ResourceQuotas << queueresourcequota_tmp
+            end
+          end
           @Description = params['Description']
           @IsDefault = params['IsDefault']
           @QueueType = params['QueueType']
+        end
+      end
+
+      # 队列维度单条资源配额数据（含总量、已用量、可用量）
+      class QueueResourceQuota < TencentCloud::Common::AbstractModel
+        # @param ResourceType: <p>资源类型标识。CPU / HM_CPU 类计费项统一映射为 "CU"；GPU 类计费项取卡型简称（如 "T4"、"H20"）</p>
+        # @type ResourceType: String
+        # @param Unit: <p>资源单位。CU 类为 "core"；GPU 类为 "card"</p>
+        # @type Unit: String
+        # @param Total: <p>配额总量，由 resource_usage 最大值（index 1）× spec 折算得出</p>
+        # @type Total: Float
+        # @param Used: 当前已使用量，计费 spec 口径：队列内业务容器（ray-head/ray-worker）的 Pod limits 之和，经 kube_pod_labels 按 local queue 过滤。依赖 kube_pod_labels 指标采集，未开启时恒为 0
+        # @type Used: Float
+        # @param Available: <p>可用量（总量 - 已使用量，截断至 0）。当 used 超出 total 时（例如配额尚未生效或数据短暂不一致），返回 0 而非负数</p>
+        # @type Available: Float
+
+        attr_accessor :ResourceType, :Unit, :Total, :Used, :Available
+
+        def initialize(resourcetype=nil, unit=nil, total=nil, used=nil, available=nil)
+          @ResourceType = resourcetype
+          @Unit = unit
+          @Total = total
+          @Used = used
+          @Available = available
+        end
+
+        def deserialize(params)
+          @ResourceType = params['ResourceType']
+          @Unit = params['Unit']
+          @Total = params['Total']
+          @Used = params['Used']
+          @Available = params['Available']
         end
       end
 
@@ -28970,6 +29187,8 @@ module TencentCloud
         # @type ResourcePartitionName: String
         # @param Queue: <p>所属队列名称</p>
         # @type Queue: String
+        # @param QueueAlias: <p>所属队列别名</p>
+        # @type QueueAlias: String
         # @param AppId: <p>应用ID</p>
         # @type AppId: Integer
         # @param Uin: <p>用户UIN</p>
@@ -29013,15 +29232,16 @@ module TencentCloud
         # @param Tags: <p>标签列表（TagKey-TagValue）</p>
         # @type Tags: Array
 
-        attr_accessor :Id, :Type, :Name, :ResourcePartitionId, :ResourcePartitionName, :Queue, :AppId, :Uin, :SubAccountUin, :SubAccountName, :Status, :StatusMessage, :CreateTime, :GroupId, :GroupName, :ResourceConfig, :ResourceConfigId, :Image, :Catalog, :HistoryUrl, :ImagePullPolicy, :ImagePullType, :AdvancedOptions, :Priority, :StartTime, :StopTime, :Tags
+        attr_accessor :Id, :Type, :Name, :ResourcePartitionId, :ResourcePartitionName, :Queue, :QueueAlias, :AppId, :Uin, :SubAccountUin, :SubAccountName, :Status, :StatusMessage, :CreateTime, :GroupId, :GroupName, :ResourceConfig, :ResourceConfigId, :Image, :Catalog, :HistoryUrl, :ImagePullPolicy, :ImagePullType, :AdvancedOptions, :Priority, :StartTime, :StopTime, :Tags
 
-        def initialize(id=nil, type=nil, name=nil, resourcepartitionid=nil, resourcepartitionname=nil, queue=nil, appid=nil, uin=nil, subaccountuin=nil, subaccountname=nil, status=nil, statusmessage=nil, createtime=nil, groupid=nil, groupname=nil, resourceconfig=nil, resourceconfigid=nil, image=nil, catalog=nil, historyurl=nil, imagepullpolicy=nil, imagepulltype=nil, advancedoptions=nil, priority=nil, starttime=nil, stoptime=nil, tags=nil)
+        def initialize(id=nil, type=nil, name=nil, resourcepartitionid=nil, resourcepartitionname=nil, queue=nil, queuealias=nil, appid=nil, uin=nil, subaccountuin=nil, subaccountname=nil, status=nil, statusmessage=nil, createtime=nil, groupid=nil, groupname=nil, resourceconfig=nil, resourceconfigid=nil, image=nil, catalog=nil, historyurl=nil, imagepullpolicy=nil, imagepulltype=nil, advancedoptions=nil, priority=nil, starttime=nil, stoptime=nil, tags=nil)
           @Id = id
           @Type = type
           @Name = name
           @ResourcePartitionId = resourcepartitionid
           @ResourcePartitionName = resourcepartitionname
           @Queue = queue
+          @QueueAlias = queuealias
           @AppId = appid
           @Uin = uin
           @SubAccountUin = subaccountuin
@@ -29052,6 +29272,7 @@ module TencentCloud
           @ResourcePartitionId = params['ResourcePartitionId']
           @ResourcePartitionName = params['ResourcePartitionName']
           @Queue = params['Queue']
+          @QueueAlias = params['QueueAlias']
           @AppId = params['AppId']
           @Uin = params['Uin']
           @SubAccountUin = params['SubAccountUin']
@@ -29177,6 +29398,8 @@ module TencentCloud
         # @type ResourcePartitionName: String
         # @param Queue: <p>所属队列名称</p>
         # @type Queue: String
+        # @param QueueAlias: <p>所属队列别名</p>
+        # @type QueueAlias: String
         # @param Status: <p>任务状态</p>
         # @type Status: String
         # @param Entrypoint: <p>入口命令</p>
@@ -29226,13 +29449,14 @@ module TencentCloud
         # @param JobSource: <p>作业来源（如 RAY_JOB / RAY_SERVE / 平台直提交等）</p>
         # @type JobSource: String
 
-        attr_accessor :Id, :ResourcePartitionId, :ResourcePartitionName, :Queue, :Status, :Entrypoint, :JobName, :AppId, :Uin, :SubAccountUin, :SubAccountName, :HistoryUrl, :RunningTime, :FinishTime, :CreateTime, :ErrorMessage, :RuntimeEnv, :Image, :ResourceConfig, :Catalog, :ImagePullPolicy, :AutoscalerOptions, :SpecId, :SpecName, :AdvancedOptions, :Priority, :Tags, :JobSource
+        attr_accessor :Id, :ResourcePartitionId, :ResourcePartitionName, :Queue, :QueueAlias, :Status, :Entrypoint, :JobName, :AppId, :Uin, :SubAccountUin, :SubAccountName, :HistoryUrl, :RunningTime, :FinishTime, :CreateTime, :ErrorMessage, :RuntimeEnv, :Image, :ResourceConfig, :Catalog, :ImagePullPolicy, :AutoscalerOptions, :SpecId, :SpecName, :AdvancedOptions, :Priority, :Tags, :JobSource
 
-        def initialize(id=nil, resourcepartitionid=nil, resourcepartitionname=nil, queue=nil, status=nil, entrypoint=nil, jobname=nil, appid=nil, uin=nil, subaccountuin=nil, subaccountname=nil, historyurl=nil, runningtime=nil, finishtime=nil, createtime=nil, errormessage=nil, runtimeenv=nil, image=nil, resourceconfig=nil, catalog=nil, imagepullpolicy=nil, autoscaleroptions=nil, specid=nil, specname=nil, advancedoptions=nil, priority=nil, tags=nil, jobsource=nil)
+        def initialize(id=nil, resourcepartitionid=nil, resourcepartitionname=nil, queue=nil, queuealias=nil, status=nil, entrypoint=nil, jobname=nil, appid=nil, uin=nil, subaccountuin=nil, subaccountname=nil, historyurl=nil, runningtime=nil, finishtime=nil, createtime=nil, errormessage=nil, runtimeenv=nil, image=nil, resourceconfig=nil, catalog=nil, imagepullpolicy=nil, autoscaleroptions=nil, specid=nil, specname=nil, advancedoptions=nil, priority=nil, tags=nil, jobsource=nil)
           @Id = id
           @ResourcePartitionId = resourcepartitionid
           @ResourcePartitionName = resourcepartitionname
           @Queue = queue
+          @QueueAlias = queuealias
           @Status = status
           @Entrypoint = entrypoint
           @JobName = jobname
@@ -29264,6 +29488,7 @@ module TencentCloud
           @ResourcePartitionId = params['ResourcePartitionId']
           @ResourcePartitionName = params['ResourcePartitionName']
           @Queue = params['Queue']
+          @QueueAlias = params['QueueAlias']
           @Status = params['Status']
           @Entrypoint = params['Entrypoint']
           @JobName = params['JobName']
@@ -30567,6 +30792,26 @@ module TencentCloud
               @Config << kvpair_tmp
             end
           end
+        end
+      end
+
+      # 计费项最大可调度限制
+      class SchedulableLimit < TencentCloud::Common::AbstractModel
+        # @param BillingItem: <p>四层计费项，与 ResourceQuota[].ResourceSpec.BillingItem 同值</p>
+        # @type BillingItem: String
+        # @param MaxSchedulableUnits: <p>该计费项下单 worker/executor 可申请的最大可调度资源量，单位随计费项资源类型：CPU 计费项为 CU 数，GPU 计费项为 GU（卡）数</p>
+        # @type MaxSchedulableUnits: Integer
+
+        attr_accessor :BillingItem, :MaxSchedulableUnits
+
+        def initialize(billingitem=nil, maxschedulableunits=nil)
+          @BillingItem = billingitem
+          @MaxSchedulableUnits = maxschedulableunits
+        end
+
+        def deserialize(params)
+          @BillingItem = params['BillingItem']
+          @MaxSchedulableUnits = params['MaxSchedulableUnits']
         end
       end
 
@@ -34634,6 +34879,8 @@ module TencentCloud
         # @type ResourcePartitionName: String
         # @param Queue: <p>队列名称</p>
         # @type Queue: String
+        # @param QueueAlias: <p>所属队列别名</p>
+        # @type QueueAlias: String
         # @param RuntimeEnv: <p>提交时 runtime_env JSON</p>
         # @type RuntimeEnv: String
         # @param Entrypoint: <p>提交时 entrypoint</p>
@@ -34671,9 +34918,9 @@ module TencentCloud
         # @param ResumeTraining: <p>创建实例时的断点续训意图声明快照（仅详情返回）</p>
         # @type ResumeTraining: Boolean
 
-        attr_accessor :InstanceId, :SpecId, :SpecName, :Priority, :Status, :ErrorMessage, :JobCreateTime, :JobRunningTime, :HistoryUrl, :Creator, :CreateTime, :ResourcePartitionId, :ResourcePartitionName, :Queue, :RuntimeEnv, :Entrypoint, :Image, :ResourceConfig, :Catalog, :AdvancedOptions, :Kind, :CodePackageUrl, :MlFlowConfig, :CheckpointMountInfo, :Mode, :BaseModelUid, :BaseModelName, :Tags, :Datasets, :Checkpoint, :TuningParams, :ResumeTraining
+        attr_accessor :InstanceId, :SpecId, :SpecName, :Priority, :Status, :ErrorMessage, :JobCreateTime, :JobRunningTime, :HistoryUrl, :Creator, :CreateTime, :ResourcePartitionId, :ResourcePartitionName, :Queue, :QueueAlias, :RuntimeEnv, :Entrypoint, :Image, :ResourceConfig, :Catalog, :AdvancedOptions, :Kind, :CodePackageUrl, :MlFlowConfig, :CheckpointMountInfo, :Mode, :BaseModelUid, :BaseModelName, :Tags, :Datasets, :Checkpoint, :TuningParams, :ResumeTraining
 
-        def initialize(instanceid=nil, specid=nil, specname=nil, priority=nil, status=nil, errormessage=nil, jobcreatetime=nil, jobrunningtime=nil, historyurl=nil, creator=nil, createtime=nil, resourcepartitionid=nil, resourcepartitionname=nil, queue=nil, runtimeenv=nil, entrypoint=nil, image=nil, resourceconfig=nil, catalog=nil, advancedoptions=nil, kind=nil, codepackageurl=nil, mlflowconfig=nil, checkpointmountinfo=nil, mode=nil, basemodeluid=nil, basemodelname=nil, tags=nil, datasets=nil, checkpoint=nil, tuningparams=nil, resumetraining=nil)
+        def initialize(instanceid=nil, specid=nil, specname=nil, priority=nil, status=nil, errormessage=nil, jobcreatetime=nil, jobrunningtime=nil, historyurl=nil, creator=nil, createtime=nil, resourcepartitionid=nil, resourcepartitionname=nil, queue=nil, queuealias=nil, runtimeenv=nil, entrypoint=nil, image=nil, resourceconfig=nil, catalog=nil, advancedoptions=nil, kind=nil, codepackageurl=nil, mlflowconfig=nil, checkpointmountinfo=nil, mode=nil, basemodeluid=nil, basemodelname=nil, tags=nil, datasets=nil, checkpoint=nil, tuningparams=nil, resumetraining=nil)
           @InstanceId = instanceid
           @SpecId = specid
           @SpecName = specname
@@ -34688,6 +34935,7 @@ module TencentCloud
           @ResourcePartitionId = resourcepartitionid
           @ResourcePartitionName = resourcepartitionname
           @Queue = queue
+          @QueueAlias = queuealias
           @RuntimeEnv = runtimeenv
           @Entrypoint = entrypoint
           @Image = image
@@ -34723,6 +34971,7 @@ module TencentCloud
           @ResourcePartitionId = params['ResourcePartitionId']
           @ResourcePartitionName = params['ResourcePartitionName']
           @Queue = params['Queue']
+          @QueueAlias = params['QueueAlias']
           @RuntimeEnv = params['RuntimeEnv']
           @Entrypoint = params['Entrypoint']
           @Image = params['Image']
@@ -34810,6 +35059,8 @@ module TencentCloud
         # @param Queue: <p>队列名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Queue: String
+        # @param QueueAlias: <p>所属队列别名</p>
+        # @type QueueAlias: String
         # @param CheckpointMountInfo: <p>Checkpoint 挂载摘要</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CheckpointMountInfo: :class:`Tencentcloud::Dlc.v20210125.models.CheckpointMountInfo`
@@ -34859,9 +35110,9 @@ module TencentCloud
         # @param AdvancedOptions: <p>高级参数 JSON（透传给 Neutrino advanced_options）</p>
         # @type AdvancedOptions: String
 
-        attr_accessor :SpecId, :SpecName, :Description, :Kind, :Entrypoint, :Image, :ImagePullType, :ImagePullPolicy, :CodePackageUrl, :RuntimeEnv, :ResourceConfigId, :ResourceConfig, :ResourcePartitionId, :ResourcePartitionName, :Queue, :CheckpointMountInfo, :Catalog, :Creator, :CreateTime, :UpdateTime, :InstanceCount, :HasRunningInstances, :Priority, :MlFlowConfig, :OutputModelName, :Mode, :BaseModelUid, :BaseModelName, :Datasets, :LastInstanceStatus, :Tags, :Checkpoint, :TuningParams, :ResumeTraining, :AdvancedOptions
+        attr_accessor :SpecId, :SpecName, :Description, :Kind, :Entrypoint, :Image, :ImagePullType, :ImagePullPolicy, :CodePackageUrl, :RuntimeEnv, :ResourceConfigId, :ResourceConfig, :ResourcePartitionId, :ResourcePartitionName, :Queue, :QueueAlias, :CheckpointMountInfo, :Catalog, :Creator, :CreateTime, :UpdateTime, :InstanceCount, :HasRunningInstances, :Priority, :MlFlowConfig, :OutputModelName, :Mode, :BaseModelUid, :BaseModelName, :Datasets, :LastInstanceStatus, :Tags, :Checkpoint, :TuningParams, :ResumeTraining, :AdvancedOptions
 
-        def initialize(specid=nil, specname=nil, description=nil, kind=nil, entrypoint=nil, image=nil, imagepulltype=nil, imagepullpolicy=nil, codepackageurl=nil, runtimeenv=nil, resourceconfigid=nil, resourceconfig=nil, resourcepartitionid=nil, resourcepartitionname=nil, queue=nil, checkpointmountinfo=nil, catalog=nil, creator=nil, createtime=nil, updatetime=nil, instancecount=nil, hasrunninginstances=nil, priority=nil, mlflowconfig=nil, outputmodelname=nil, mode=nil, basemodeluid=nil, basemodelname=nil, datasets=nil, lastinstancestatus=nil, tags=nil, checkpoint=nil, tuningparams=nil, resumetraining=nil, advancedoptions=nil)
+        def initialize(specid=nil, specname=nil, description=nil, kind=nil, entrypoint=nil, image=nil, imagepulltype=nil, imagepullpolicy=nil, codepackageurl=nil, runtimeenv=nil, resourceconfigid=nil, resourceconfig=nil, resourcepartitionid=nil, resourcepartitionname=nil, queue=nil, queuealias=nil, checkpointmountinfo=nil, catalog=nil, creator=nil, createtime=nil, updatetime=nil, instancecount=nil, hasrunninginstances=nil, priority=nil, mlflowconfig=nil, outputmodelname=nil, mode=nil, basemodeluid=nil, basemodelname=nil, datasets=nil, lastinstancestatus=nil, tags=nil, checkpoint=nil, tuningparams=nil, resumetraining=nil, advancedoptions=nil)
           @SpecId = specid
           @SpecName = specname
           @Description = description
@@ -34877,6 +35128,7 @@ module TencentCloud
           @ResourcePartitionId = resourcepartitionid
           @ResourcePartitionName = resourcepartitionname
           @Queue = queue
+          @QueueAlias = queuealias
           @CheckpointMountInfo = checkpointmountinfo
           @Catalog = catalog
           @Creator = creator
@@ -34915,6 +35167,7 @@ module TencentCloud
           @ResourcePartitionId = params['ResourcePartitionId']
           @ResourcePartitionName = params['ResourcePartitionName']
           @Queue = params['Queue']
+          @QueueAlias = params['QueueAlias']
           unless params['CheckpointMountInfo'].nil?
             @CheckpointMountInfo = CheckpointMountInfo.new
             @CheckpointMountInfo.deserialize(params['CheckpointMountInfo'])
@@ -36333,6 +36586,8 @@ module TencentCloud
         # @type ResourcePartitionName: String
         # @param Queue: <p>默认队列名称</p>
         # @type Queue: String
+        # @param QueueAlias: <p>所属队列别名</p>
+        # @type QueueAlias: String
         # @param JobPackage: <p>作业包URL</p>
         # @type JobPackage: String
         # @param JobPackageName: <p>作业包名称</p>
@@ -36379,9 +36634,9 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Id, :Name, :Description, :Entrypoint, :Image, :ImagePullType, :ImagePullPolicy, :ResourceConfig, :RuntimeEnv, :Catalog, :AutoscalerOptions, :ResourceConfigId, :ResourceConfigChanged, :ResourcePartitionId, :ResourcePartitionName, :Queue, :JobPackage, :JobPackageName, :JobPackageSource, :AppId, :Uin, :SubAccountUin, :SubAccountName, :CreateTime, :UpdateTime, :JobInstanceCount, :HasRunningJobs, :AdvancedOptions, :GroupId, :ClusterId, :Priority, :Tags, :DispatchStrategy, :SubmissionTarget, :GroupName, :ClusterName, :RequestId
+        attr_accessor :Id, :Name, :Description, :Entrypoint, :Image, :ImagePullType, :ImagePullPolicy, :ResourceConfig, :RuntimeEnv, :Catalog, :AutoscalerOptions, :ResourceConfigId, :ResourceConfigChanged, :ResourcePartitionId, :ResourcePartitionName, :Queue, :QueueAlias, :JobPackage, :JobPackageName, :JobPackageSource, :AppId, :Uin, :SubAccountUin, :SubAccountName, :CreateTime, :UpdateTime, :JobInstanceCount, :HasRunningJobs, :AdvancedOptions, :GroupId, :ClusterId, :Priority, :Tags, :DispatchStrategy, :SubmissionTarget, :GroupName, :ClusterName, :RequestId
 
-        def initialize(id=nil, name=nil, description=nil, entrypoint=nil, image=nil, imagepulltype=nil, imagepullpolicy=nil, resourceconfig=nil, runtimeenv=nil, catalog=nil, autoscaleroptions=nil, resourceconfigid=nil, resourceconfigchanged=nil, resourcepartitionid=nil, resourcepartitionname=nil, queue=nil, jobpackage=nil, jobpackagename=nil, jobpackagesource=nil, appid=nil, uin=nil, subaccountuin=nil, subaccountname=nil, createtime=nil, updatetime=nil, jobinstancecount=nil, hasrunningjobs=nil, advancedoptions=nil, groupid=nil, clusterid=nil, priority=nil, tags=nil, dispatchstrategy=nil, submissiontarget=nil, groupname=nil, clustername=nil, requestid=nil)
+        def initialize(id=nil, name=nil, description=nil, entrypoint=nil, image=nil, imagepulltype=nil, imagepullpolicy=nil, resourceconfig=nil, runtimeenv=nil, catalog=nil, autoscaleroptions=nil, resourceconfigid=nil, resourceconfigchanged=nil, resourcepartitionid=nil, resourcepartitionname=nil, queue=nil, queuealias=nil, jobpackage=nil, jobpackagename=nil, jobpackagesource=nil, appid=nil, uin=nil, subaccountuin=nil, subaccountname=nil, createtime=nil, updatetime=nil, jobinstancecount=nil, hasrunningjobs=nil, advancedoptions=nil, groupid=nil, clusterid=nil, priority=nil, tags=nil, dispatchstrategy=nil, submissiontarget=nil, groupname=nil, clustername=nil, requestid=nil)
           @Id = id
           @Name = name
           @Description = description
@@ -36398,6 +36653,7 @@ module TencentCloud
           @ResourcePartitionId = resourcepartitionid
           @ResourcePartitionName = resourcepartitionname
           @Queue = queue
+          @QueueAlias = queuealias
           @JobPackage = jobpackage
           @JobPackageName = jobpackagename
           @JobPackageSource = jobpackagesource
@@ -36438,6 +36694,7 @@ module TencentCloud
           @ResourcePartitionId = params['ResourcePartitionId']
           @ResourcePartitionName = params['ResourcePartitionName']
           @Queue = params['Queue']
+          @QueueAlias = params['QueueAlias']
           @JobPackage = params['JobPackage']
           @JobPackageName = params['JobPackageName']
           @JobPackageSource = params['JobPackageSource']

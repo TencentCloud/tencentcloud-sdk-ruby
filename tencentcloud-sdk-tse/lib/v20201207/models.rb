@@ -1081,6 +1081,50 @@ module TencentCloud
         end
       end
 
+      # AgentSkill AI Agent 技能定义
+      class AgentSkill < TencentCloud::Common::AbstractModel
+        # @param Id: <p>agentID</p>
+        # @type Id: String
+        # @param Name: <p>skill名称</p>
+        # @type Name: String
+        # @param Description: <p>描述</p>
+        # @type Description: String
+        # @param Tags: <p>标签</p>
+        # @type Tags: Array
+        # @param Examples: <p>样例</p>
+        # @type Examples: Array
+        # @param InputModes: <p>输入模式</p>
+        # @type InputModes: Array
+        # @param OutputModes: <p>输出模式</p>
+        # @type OutputModes: Array
+        # @param Version: <p>版本</p>
+        # @type Version: String
+
+        attr_accessor :Id, :Name, :Description, :Tags, :Examples, :InputModes, :OutputModes, :Version
+
+        def initialize(id=nil, name=nil, description=nil, tags=nil, examples=nil, inputmodes=nil, outputmodes=nil, version=nil)
+          @Id = id
+          @Name = name
+          @Description = description
+          @Tags = tags
+          @Examples = examples
+          @InputModes = inputmodes
+          @OutputModes = outputmodes
+          @Version = version
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @Description = params['Description']
+          @Tags = params['Tags']
+          @Examples = params['Examples']
+          @InputModes = params['InputModes']
+          @OutputModes = params['OutputModes']
+          @Version = params['Version']
+        end
+      end
+
       # Apollo 环境配置参数
       class ApolloEnvParam < TencentCloud::Common::AbstractModel
         # @param Name: 环境名称
@@ -2865,8 +2909,8 @@ module TencentCloud
 
         attr_accessor :StrategyId, :StrategyName, :CreateTime, :ModifyTime, :Description, :Config, :GatewayId, :CronConfig, :MaxReplicas
         extend Gem::Deprecate
-        deprecate :MaxReplicas, :none, 2026, 8
-        deprecate :MaxReplicas=, :none, 2026, 8
+        deprecate :MaxReplicas, :none, 2026, 9
+        deprecate :MaxReplicas=, :none, 2026, 9
 
         def initialize(strategyid=nil, strategyname=nil, createtime=nil, modifytime=nil, description=nil, config=nil, gatewayid=nil, cronconfig=nil, maxreplicas=nil)
           @StrategyId = strategyid
@@ -2927,16 +2971,16 @@ module TencentCloud
 
         attr_accessor :MaxReplicas, :Metrics, :Enabled, :CreateTime, :ModifyTime, :StrategyId, :AutoScalerId, :Behavior
         extend Gem::Deprecate
-        deprecate :Enabled, :none, 2026, 8
-        deprecate :Enabled=, :none, 2026, 8
-        deprecate :CreateTime, :none, 2026, 8
-        deprecate :CreateTime=, :none, 2026, 8
-        deprecate :ModifyTime, :none, 2026, 8
-        deprecate :ModifyTime=, :none, 2026, 8
-        deprecate :StrategyId, :none, 2026, 8
-        deprecate :StrategyId=, :none, 2026, 8
-        deprecate :AutoScalerId, :none, 2026, 8
-        deprecate :AutoScalerId=, :none, 2026, 8
+        deprecate :Enabled, :none, 2026, 9
+        deprecate :Enabled=, :none, 2026, 9
+        deprecate :CreateTime, :none, 2026, 9
+        deprecate :CreateTime=, :none, 2026, 9
+        deprecate :ModifyTime, :none, 2026, 9
+        deprecate :ModifyTime=, :none, 2026, 9
+        deprecate :StrategyId, :none, 2026, 9
+        deprecate :StrategyId=, :none, 2026, 9
+        deprecate :AutoScalerId, :none, 2026, 9
+        deprecate :AutoScalerId=, :none, 2026, 9
 
         def initialize(maxreplicas=nil, metrics=nil, enabled=nil, createtime=nil, modifytime=nil, strategyid=nil, autoscalerid=nil, behavior=nil)
           @MaxReplicas = maxreplicas
@@ -3057,14 +3101,14 @@ module TencentCloud
 
         attr_accessor :Enabled, :Params, :CreateTime, :ModifyTime, :StrategyId
         extend Gem::Deprecate
-        deprecate :Enabled, :none, 2026, 8
-        deprecate :Enabled=, :none, 2026, 8
-        deprecate :CreateTime, :none, 2026, 8
-        deprecate :CreateTime=, :none, 2026, 8
-        deprecate :ModifyTime, :none, 2026, 8
-        deprecate :ModifyTime=, :none, 2026, 8
-        deprecate :StrategyId, :none, 2026, 8
-        deprecate :StrategyId=, :none, 2026, 8
+        deprecate :Enabled, :none, 2026, 9
+        deprecate :Enabled=, :none, 2026, 9
+        deprecate :CreateTime, :none, 2026, 9
+        deprecate :CreateTime=, :none, 2026, 9
+        deprecate :ModifyTime, :none, 2026, 9
+        deprecate :ModifyTime=, :none, 2026, 9
+        deprecate :StrategyId, :none, 2026, 9
+        deprecate :StrategyId=, :none, 2026, 9
 
         def initialize(enabled=nil, params=nil, createtime=nil, modifytime=nil, strategyid=nil)
           @Enabled = enabled
@@ -3757,10 +3801,10 @@ module TencentCloud
 
         attr_accessor :GatewayId, :StrategyName, :Description, :Config, :CronScalerConfig, :MaxReplicas, :CronConfig
         extend Gem::Deprecate
-        deprecate :CronScalerConfig, :none, 2026, 8
-        deprecate :CronScalerConfig=, :none, 2026, 8
-        deprecate :MaxReplicas, :none, 2026, 8
-        deprecate :MaxReplicas=, :none, 2026, 8
+        deprecate :CronScalerConfig, :none, 2026, 9
+        deprecate :CronScalerConfig=, :none, 2026, 9
+        deprecate :MaxReplicas, :none, 2026, 9
+        deprecate :MaxReplicas=, :none, 2026, 9
 
         def initialize(gatewayid=nil, strategyname=nil, description=nil, config=nil, cronscalerconfig=nil, maxreplicas=nil, cronconfig=nil)
           @GatewayId = gatewayid
@@ -3803,8 +3847,8 @@ module TencentCloud
 
         attr_accessor :Result, :StrategyId, :RequestId
         extend Gem::Deprecate
-        deprecate :Result, :none, 2026, 8
-        deprecate :Result=, :none, 2026, 8
+        deprecate :Result, :none, 2026, 9
+        deprecate :Result=, :none, 2026, 9
 
         def initialize(result=nil, strategyid=nil, requestid=nil)
           @Result = result
@@ -3894,10 +3938,10 @@ module TencentCloud
 
         attr_accessor :GatewayId, :CertId, :BindDomains, :Name, :CertType, :CertUsage, :Key, :Crt
         extend Gem::Deprecate
-        deprecate :Key, :none, 2026, 8
-        deprecate :Key=, :none, 2026, 8
-        deprecate :Crt, :none, 2026, 8
-        deprecate :Crt=, :none, 2026, 8
+        deprecate :Key, :none, 2026, 9
+        deprecate :Key=, :none, 2026, 9
+        deprecate :Crt, :none, 2026, 9
+        deprecate :Crt=, :none, 2026, 9
 
         def initialize(gatewayid=nil, certid=nil, binddomains=nil, name=nil, certtype=nil, certusage=nil, key=nil, crt=nil)
           @GatewayId = gatewayid
@@ -4666,8 +4710,8 @@ module TencentCloud
 
         attr_accessor :GatewayId, :ServiceID, :RouteName, :Methods, :Hosts, :Paths, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :ForceHttps, :DestinationPorts, :Headers, :RequestBuffering, :ResponseBuffering, :RegexPriority, :QueryStringParameters
         extend Gem::Deprecate
-        deprecate :ForceHttps, :none, 2026, 8
-        deprecate :ForceHttps=, :none, 2026, 8
+        deprecate :ForceHttps, :none, 2026, 9
+        deprecate :ForceHttps=, :none, 2026, 9
 
         def initialize(gatewayid=nil, serviceid=nil, routename=nil, methods=nil, hosts=nil, paths=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, forcehttps=nil, destinationports=nil, headers=nil, requestbuffering=nil, responsebuffering=nil, regexpriority=nil, querystringparameters=nil)
           @GatewayId = gatewayid
@@ -11262,8 +11306,8 @@ module TencentCloud
 
         attr_accessor :GatewayId, :Type, :TypeList
         extend Gem::Deprecate
-        deprecate :Type, :none, 2026, 8
-        deprecate :Type=, :none, 2026, 8
+        deprecate :Type, :none, 2026, 9
+        deprecate :Type=, :none, 2026, 9
 
         def initialize(gatewayid=nil, type=nil, typelist=nil)
           @GatewayId = gatewayid
@@ -11636,6 +11680,29 @@ module TencentCloud
           @EnvDesc = params['EnvDesc']
           @ClientBandWidth = params['ClientBandWidth']
           @EnableConfigIntranet = params['EnableConfigIntranet']
+        end
+      end
+
+      # 服务扩展元数据
+      class ExtendedMetadata < TencentCloud::Common::AbstractModel
+        # @param Type: <p>枚举类型</p>
+        # @type Type: String
+        # @param AgentSkill: <p>agent参数</p>
+        # @type AgentSkill: :class:`Tencentcloud::Tse.v20201207.models.AgentSkill`
+
+        attr_accessor :Type, :AgentSkill
+
+        def initialize(type=nil, agentskill=nil)
+          @Type = type
+          @AgentSkill = agentskill
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          unless params['AgentSkill'].nil?
+            @AgentSkill = AgentSkill.new
+            @AgentSkill.deserialize(params['AgentSkill'])
+          end
         end
       end
 
@@ -12418,10 +12485,12 @@ module TencentCloud
         # @type ServiceStatus: Integer
         # @param Type: <p>服务类型</p><p>枚举值：</p><ul><li>0： 微服务（默认）</li><li>1： MCP Server</li><li>2： AI Agent</li></ul>
         # @type Type: Integer
+        # @param ExtendedMetadata: <p>服务元数据</p>
+        # @type ExtendedMetadata: Array
 
-        attr_accessor :Name, :Namespace, :Metadatas, :Comment, :CreateTime, :ModifyTime, :Department, :Business, :HealthyInstanceCount, :TotalInstanceCount, :Id, :Editable, :UserIds, :GroupIds, :RemoveUserIds, :RemoveGroupIds, :ExportTo, :Revision, :SyncToGlobalRegistry, :IsolateInstanceCount, :ServiceStatus, :Type
+        attr_accessor :Name, :Namespace, :Metadatas, :Comment, :CreateTime, :ModifyTime, :Department, :Business, :HealthyInstanceCount, :TotalInstanceCount, :Id, :Editable, :UserIds, :GroupIds, :RemoveUserIds, :RemoveGroupIds, :ExportTo, :Revision, :SyncToGlobalRegistry, :IsolateInstanceCount, :ServiceStatus, :Type, :ExtendedMetadata
 
-        def initialize(name=nil, namespace=nil, metadatas=nil, comment=nil, createtime=nil, modifytime=nil, department=nil, business=nil, healthyinstancecount=nil, totalinstancecount=nil, id=nil, editable=nil, userids=nil, groupids=nil, removeuserids=nil, removegroupids=nil, exportto=nil, revision=nil, synctoglobalregistry=nil, isolateinstancecount=nil, servicestatus=nil, type=nil)
+        def initialize(name=nil, namespace=nil, metadatas=nil, comment=nil, createtime=nil, modifytime=nil, department=nil, business=nil, healthyinstancecount=nil, totalinstancecount=nil, id=nil, editable=nil, userids=nil, groupids=nil, removeuserids=nil, removegroupids=nil, exportto=nil, revision=nil, synctoglobalregistry=nil, isolateinstancecount=nil, servicestatus=nil, type=nil, extendedmetadata=nil)
           @Name = name
           @Namespace = namespace
           @Metadatas = metadatas
@@ -12444,6 +12513,7 @@ module TencentCloud
           @IsolateInstanceCount = isolateinstancecount
           @ServiceStatus = servicestatus
           @Type = type
+          @ExtendedMetadata = extendedmetadata
         end
 
         def deserialize(params)
@@ -12476,6 +12546,14 @@ module TencentCloud
           @IsolateInstanceCount = params['IsolateInstanceCount']
           @ServiceStatus = params['ServiceStatus']
           @Type = params['Type']
+          unless params['ExtendedMetadata'].nil?
+            @ExtendedMetadata = []
+            params['ExtendedMetadata'].each do |i|
+              extendedmetadata_tmp = ExtendedMetadata.new
+              extendedmetadata_tmp.deserialize(i)
+              @ExtendedMetadata << extendedmetadata_tmp
+            end
+          end
         end
       end
 
@@ -12639,10 +12717,12 @@ module TencentCloud
         # @type SyncToGlobalRegistry: Boolean
         # @param Type: <p>服务类型</p><p>枚举值：</p><ul><li>0： 微服务（默认）</li><li>1： MCP Server</li><li>2： AI Agent</li></ul><p>默认值：0</p>
         # @type Type: Integer
+        # @param ExtendedMetadata: <p>拓展服务元数据</p>
+        # @type ExtendedMetadata: Array
 
-        attr_accessor :Name, :Namespace, :Comment, :Metadatas, :Department, :Business, :UserIds, :GroupIds, :RemoveUserIds, :RemoveGroupIds, :ExportTo, :SyncToGlobalRegistry, :Type
+        attr_accessor :Name, :Namespace, :Comment, :Metadatas, :Department, :Business, :UserIds, :GroupIds, :RemoveUserIds, :RemoveGroupIds, :ExportTo, :SyncToGlobalRegistry, :Type, :ExtendedMetadata
 
-        def initialize(name=nil, namespace=nil, comment=nil, metadatas=nil, department=nil, business=nil, userids=nil, groupids=nil, removeuserids=nil, removegroupids=nil, exportto=nil, synctoglobalregistry=nil, type=nil)
+        def initialize(name=nil, namespace=nil, comment=nil, metadatas=nil, department=nil, business=nil, userids=nil, groupids=nil, removeuserids=nil, removegroupids=nil, exportto=nil, synctoglobalregistry=nil, type=nil, extendedmetadata=nil)
           @Name = name
           @Namespace = namespace
           @Comment = comment
@@ -12656,6 +12736,7 @@ module TencentCloud
           @ExportTo = exportto
           @SyncToGlobalRegistry = synctoglobalregistry
           @Type = type
+          @ExtendedMetadata = extendedmetadata
         end
 
         def deserialize(params)
@@ -12679,6 +12760,14 @@ module TencentCloud
           @ExportTo = params['ExportTo']
           @SyncToGlobalRegistry = params['SyncToGlobalRegistry']
           @Type = params['Type']
+          unless params['ExtendedMetadata'].nil?
+            @ExtendedMetadata = []
+            params['ExtendedMetadata'].each do |i|
+              extendedmetadata_tmp = ExtendedMetadata.new
+              extendedmetadata_tmp.deserialize(i)
+              @ExtendedMetadata << extendedmetadata_tmp
+            end
+          end
         end
       end
 
@@ -12898,8 +12987,8 @@ module TencentCloud
 
         attr_accessor :Total, :CertificatesList, :Pages
         extend Gem::Deprecate
-        deprecate :Pages, :none, 2026, 8
-        deprecate :Pages=, :none, 2026, 8
+        deprecate :Pages, :none, 2026, 9
+        deprecate :Pages=, :none, 2026, 9
 
         def initialize(total=nil, certificateslist=nil, pages=nil)
           @Total = total
@@ -13054,8 +13143,8 @@ module TencentCloud
 
         attr_accessor :ID, :Name, :Methods, :Paths, :Hosts, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :CreatedTime, :ForceHttps, :ServiceName, :ServiceID, :DestinationPorts, :Headers, :RequestBuffering, :ResponseBuffering, :RegexPriority, :QueryStringParameters, :RouteSource
         extend Gem::Deprecate
-        deprecate :ForceHttps, :none, 2026, 8
-        deprecate :ForceHttps=, :none, 2026, 8
+        deprecate :ForceHttps, :none, 2026, 9
+        deprecate :ForceHttps=, :none, 2026, 9
 
         def initialize(id=nil, name=nil, methods=nil, paths=nil, hosts=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, createdtime=nil, forcehttps=nil, servicename=nil, serviceid=nil, destinationports=nil, headers=nil, requestbuffering=nil, responsebuffering=nil, regexpriority=nil, querystringparameters=nil, routesource=nil)
           @ID = id
@@ -13951,10 +14040,10 @@ module TencentCloud
 
         attr_accessor :GatewayId, :StrategyId, :StrategyName, :Description, :Config, :CronScalerConfig, :MaxReplicas, :CronConfig
         extend Gem::Deprecate
-        deprecate :CronScalerConfig, :none, 2026, 8
-        deprecate :CronScalerConfig=, :none, 2026, 8
-        deprecate :MaxReplicas, :none, 2026, 8
-        deprecate :MaxReplicas=, :none, 2026, 8
+        deprecate :CronScalerConfig, :none, 2026, 9
+        deprecate :CronScalerConfig=, :none, 2026, 9
+        deprecate :MaxReplicas, :none, 2026, 9
+        deprecate :MaxReplicas=, :none, 2026, 9
 
         def initialize(gatewayid=nil, strategyid=nil, strategyname=nil, description=nil, config=nil, cronscalerconfig=nil, maxreplicas=nil, cronconfig=nil)
           @GatewayId = gatewayid
@@ -14089,10 +14178,10 @@ module TencentCloud
 
         attr_accessor :GatewayId, :Id, :Name, :Key, :Crt, :BindDomains, :CertId, :CertSource
         extend Gem::Deprecate
-        deprecate :Name, :none, 2026, 8
-        deprecate :Name=, :none, 2026, 8
-        deprecate :BindDomains, :none, 2026, 8
-        deprecate :BindDomains=, :none, 2026, 8
+        deprecate :Name, :none, 2026, 9
+        deprecate :Name=, :none, 2026, 9
+        deprecate :BindDomains, :none, 2026, 9
+        deprecate :BindDomains=, :none, 2026, 9
 
         def initialize(gatewayid=nil, id=nil, name=nil, key=nil, crt=nil, binddomains=nil, certid=nil, certsource=nil)
           @GatewayId = gatewayid
@@ -14657,8 +14746,8 @@ module TencentCloud
 
         attr_accessor :GatewayId, :ServiceID, :RouteID, :RouteName, :Methods, :Hosts, :Paths, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :ForceHttps, :DestinationPorts, :Headers, :RequestBuffering, :ResponseBuffering, :RegexPriority, :QueryStringParameters
         extend Gem::Deprecate
-        deprecate :ForceHttps, :none, 2026, 8
-        deprecate :ForceHttps=, :none, 2026, 8
+        deprecate :ForceHttps, :none, 2026, 9
+        deprecate :ForceHttps=, :none, 2026, 9
 
         def initialize(gatewayid=nil, serviceid=nil, routeid=nil, routename=nil, methods=nil, hosts=nil, paths=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, forcehttps=nil, destinationports=nil, headers=nil, requestbuffering=nil, responsebuffering=nil, regexpriority=nil, querystringparameters=nil)
           @GatewayId = gatewayid
@@ -16314,90 +16403,94 @@ module TencentCloud
 
       # 微服务注册引擎实例
       class SREInstance < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: <p>实例ID</p>
         # @type InstanceId: String
-        # @param Name: 名称
+        # @param Name: <p>名称</p>
         # @type Name: String
-        # @param Edition: 版本号
+        # @param Edition: <p>版本号</p>
         # @type Edition: String
-        # @param Status: 状态, 枚举值:creating/create_fail/running/updating/update_fail/restarting/restart_fail/destroying/destroy_fail
+        # @param Status: <p>状态, 枚举值:creating/create_fail/running/updating/update_fail/restarting/restart_fail/destroying/destroy_fail</p>
         # @type Status: String
-        # @param SpecId: 规格ID
+        # @param SpecId: <p>规格ID</p>
         # @type SpecId: String
-        # @param Replica: 副本数
+        # @param Replica: <p>副本数</p>
         # @type Replica: Integer
-        # @param Type: 类型
+        # @param Type: <p>类型</p>
         # @type Type: String
-        # @param VpcId: Vpc iD
+        # @param VpcId: <p>Vpc iD</p>
         # @type VpcId: String
-        # @param SubnetIds: 子网ID
+        # @param SubnetIds: <p>子网ID</p>
         # @type SubnetIds: Array
-        # @param EnableStorage: 是否开启持久化存储
+        # @param EnableStorage: <p>是否开启持久化存储</p>
         # @type EnableStorage: Boolean
-        # @param StorageType: 数据存储方式
+        # @param StorageType: <p>数据存储方式</p>
         # @type StorageType: String
-        # @param StorageCapacity: 云硬盘容量
+        # @param StorageCapacity: <p>云硬盘容量</p>
         # @type StorageCapacity: Integer
-        # @param Paymode: 计费方式
+        # @param Paymode: <p>计费方式</p>
         # @type Paymode: String
-        # @param EKSClusterID: EKS集群的ID
+        # @param EKSClusterID: <p>EKS集群的ID</p>
         # @type EKSClusterID: String
-        # @param CreateTime: 集群创建时间
+        # @param CreateTime: <p>集群创建时间</p>
         # @type CreateTime: String
-        # @param EnvInfos: 环境配置信息列表
+        # @param EnvInfos: <p>环境配置信息列表</p>
         # @type EnvInfos: Array
-        # @param EngineRegion: 引擎所在的区域
+        # @param EngineRegion: <p>引擎所在的区域</p>
         # @type EngineRegion: String
-        # @param EnableInternet: 注册引擎是否开启公网
+        # @param EnableInternet: <p>注册引擎是否开启公网</p>
         # @type EnableInternet: Boolean
-        # @param VpcInfos: 私有网络列表信息
+        # @param VpcInfos: <p>私有网络列表信息</p>
         # @type VpcInfos: Array
-        # @param ServiceGovernanceInfos: 服务治理相关信息列表
+        # @param ServiceGovernanceInfos: <p>服务治理相关信息列表</p>
         # @type ServiceGovernanceInfos: Array
-        # @param Tags: 实例的标签信息
+        # @param Tags: <p>实例的标签信息</p>
         # @type Tags: Array
-        # @param EnableConsoleInternet: 引擎实例是否开启控制台公网访问地址
+        # @param EnableConsoleInternet: <p>引擎实例是否开启控制台公网访问地址</p>
         # @type EnableConsoleInternet: Boolean
-        # @param EnableConsoleIntranet: 引擎实例是否开启控制台内网访问地址
+        # @param EnableConsoleIntranet: <p>引擎实例是否开启控制台内网访问地址</p>
         # @type EnableConsoleIntranet: Boolean
-        # @param ConfigInfoVisible: 引擎实例是否展示参数配置页面
+        # @param ConfigInfoVisible: <p>引擎实例是否展示参数配置页面</p>
         # @type ConfigInfoVisible: Boolean
-        # @param ConsoleDefaultPwd: 引擎实例控制台默认密码
+        # @param ConsoleDefaultPwd: <p>引擎实例控制台默认密码</p>
         # @type ConsoleDefaultPwd: String
-        # @param TradeType: 交易付费类型，0后付费/1预付费
+        # @param TradeType: <p>交易付费类型，0后付费/1预付费</p>
         # @type TradeType: Integer
-        # @param AutoRenewFlag: 自动续费标记：0表示默认状态(用户未设置，即初始状态)， 1表示自动续费，2表示明确不自动续费
+        # @param AutoRenewFlag: <p>自动续费标记：0表示默认状态(用户未设置，即初始状态)， 1表示自动续费，2表示明确不自动续费</p>
         # @type AutoRenewFlag: Integer
-        # @param CurDeadline: 预付费到期时间
+        # @param CurDeadline: <p>预付费到期时间</p>
         # @type CurDeadline: String
-        # @param IsolateTime: 隔离开始时间
+        # @param IsolateTime: <p>隔离开始时间</p>
         # @type IsolateTime: String
-        # @param RegionInfos: 实例地域相关的描述信息
+        # @param RegionInfos: <p>实例地域相关的描述信息</p>
         # @type RegionInfos: Array
-        # @param EKSType: 所在EKS环境，分为common和yunti
+        # @param EKSType: <p>所在EKS环境，分为common和yunti</p>
         # @type EKSType: String
-        # @param FeatureVersion: 引擎的产品版本
+        # @param FeatureVersion: <p>引擎的产品版本</p>
         # @type FeatureVersion: String
-        # @param EnableClientIntranet: 引擎实例是否开启客户端内网访问地址
+        # @param EnableClientIntranet: <p>引擎实例是否开启客户端内网访问地址</p>
         # @type EnableClientIntranet: Boolean
-        # @param StorageOption: 存储额外配置选项
+        # @param StorageOption: <p>存储额外配置选项</p>
         # @type StorageOption: Array
-        # @param ZookeeperRegionInfo: Zookeeper的额外环境数据信息
+        # @param ZookeeperRegionInfo: <p>Zookeeper的额外环境数据信息</p>
         # @type ZookeeperRegionInfo: :class:`Tencentcloud::Tse.v20201207.models.ZookeeperRegionInfo`
-        # @param DeployMode: 部署架构
+        # @param DeployMode: <p>部署架构</p>
         # @type DeployMode: String
-        # @param GlobalType: 全局属性
+        # @param GlobalType: <p>全局属性</p>
         # @type GlobalType: String
-        # @param GroupType: 所属组类型
+        # @param GroupType: <p>所属组类型</p>
         # @type GroupType: String
-        # @param GroupId: 组id
+        # @param GroupId: <p>组id</p>
         # @type GroupId: Array
-        # @param IsMainRegion: 是否为主地域
+        # @param IsMainRegion: <p>是否为主地域</p>
         # @type IsMainRegion: Boolean
+        # @param MutationEnabled: <p>是否禁止变更</p>
+        # @type MutationEnabled: Boolean
+        # @param MaxCapacityLimitEnabled: <p>禁止限流</p>
+        # @type MaxCapacityLimitEnabled: Boolean
 
-        attr_accessor :InstanceId, :Name, :Edition, :Status, :SpecId, :Replica, :Type, :VpcId, :SubnetIds, :EnableStorage, :StorageType, :StorageCapacity, :Paymode, :EKSClusterID, :CreateTime, :EnvInfos, :EngineRegion, :EnableInternet, :VpcInfos, :ServiceGovernanceInfos, :Tags, :EnableConsoleInternet, :EnableConsoleIntranet, :ConfigInfoVisible, :ConsoleDefaultPwd, :TradeType, :AutoRenewFlag, :CurDeadline, :IsolateTime, :RegionInfos, :EKSType, :FeatureVersion, :EnableClientIntranet, :StorageOption, :ZookeeperRegionInfo, :DeployMode, :GlobalType, :GroupType, :GroupId, :IsMainRegion
+        attr_accessor :InstanceId, :Name, :Edition, :Status, :SpecId, :Replica, :Type, :VpcId, :SubnetIds, :EnableStorage, :StorageType, :StorageCapacity, :Paymode, :EKSClusterID, :CreateTime, :EnvInfos, :EngineRegion, :EnableInternet, :VpcInfos, :ServiceGovernanceInfos, :Tags, :EnableConsoleInternet, :EnableConsoleIntranet, :ConfigInfoVisible, :ConsoleDefaultPwd, :TradeType, :AutoRenewFlag, :CurDeadline, :IsolateTime, :RegionInfos, :EKSType, :FeatureVersion, :EnableClientIntranet, :StorageOption, :ZookeeperRegionInfo, :DeployMode, :GlobalType, :GroupType, :GroupId, :IsMainRegion, :MutationEnabled, :MaxCapacityLimitEnabled
 
-        def initialize(instanceid=nil, name=nil, edition=nil, status=nil, specid=nil, replica=nil, type=nil, vpcid=nil, subnetids=nil, enablestorage=nil, storagetype=nil, storagecapacity=nil, paymode=nil, eksclusterid=nil, createtime=nil, envinfos=nil, engineregion=nil, enableinternet=nil, vpcinfos=nil, servicegovernanceinfos=nil, tags=nil, enableconsoleinternet=nil, enableconsoleintranet=nil, configinfovisible=nil, consoledefaultpwd=nil, tradetype=nil, autorenewflag=nil, curdeadline=nil, isolatetime=nil, regioninfos=nil, ekstype=nil, featureversion=nil, enableclientintranet=nil, storageoption=nil, zookeeperregioninfo=nil, deploymode=nil, globaltype=nil, grouptype=nil, groupid=nil, ismainregion=nil)
+        def initialize(instanceid=nil, name=nil, edition=nil, status=nil, specid=nil, replica=nil, type=nil, vpcid=nil, subnetids=nil, enablestorage=nil, storagetype=nil, storagecapacity=nil, paymode=nil, eksclusterid=nil, createtime=nil, envinfos=nil, engineregion=nil, enableinternet=nil, vpcinfos=nil, servicegovernanceinfos=nil, tags=nil, enableconsoleinternet=nil, enableconsoleintranet=nil, configinfovisible=nil, consoledefaultpwd=nil, tradetype=nil, autorenewflag=nil, curdeadline=nil, isolatetime=nil, regioninfos=nil, ekstype=nil, featureversion=nil, enableclientintranet=nil, storageoption=nil, zookeeperregioninfo=nil, deploymode=nil, globaltype=nil, grouptype=nil, groupid=nil, ismainregion=nil, mutationenabled=nil, maxcapacitylimitenabled=nil)
           @InstanceId = instanceid
           @Name = name
           @Edition = edition
@@ -16438,6 +16531,8 @@ module TencentCloud
           @GroupType = grouptype
           @GroupId = groupid
           @IsMainRegion = ismainregion
+          @MutationEnabled = mutationenabled
+          @MaxCapacityLimitEnabled = maxcapacitylimitenabled
         end
 
         def deserialize(params)
@@ -16526,6 +16621,8 @@ module TencentCloud
           @GroupType = params['GroupType']
           @GroupId = params['GroupId']
           @IsMainRegion = params['IsMainRegion']
+          @MutationEnabled = params['MutationEnabled']
+          @MaxCapacityLimitEnabled = params['MaxCapacityLimitEnabled']
         end
       end
 
@@ -16565,30 +16662,34 @@ module TencentCloud
 
       # 服务治理相关的信息
       class ServiceGovernanceInfo < TencentCloud::Common::AbstractModel
-        # @param EngineRegion: 引擎所在的地域
+        # @param EngineRegion: <p>引擎所在的地域</p>
         # @type EngineRegion: String
-        # @param BoundK8SInfos: 服务治理引擎绑定的kubernetes集群信息
+        # @param BoundK8SInfos: <p>服务治理引擎绑定的kubernetes集群信息</p>
         # @type BoundK8SInfos: Array
-        # @param VpcInfos: 服务治理引擎绑定的网络信息
+        # @param VpcInfos: <p>服务治理引擎绑定的网络信息</p>
         # @type VpcInfos: Array
-        # @param AuthOpen: 当前实例鉴权是否开启
+        # @param AuthOpen: <p>当前实例鉴权是否开启</p>
         # @type AuthOpen: Boolean
-        # @param Features: 该实例支持的功能，鉴权就是 Auth
+        # @param Features: <p>该实例支持的功能，鉴权就是 Auth</p>
         # @type Features: Array
-        # @param MainPassword: 主账户名默认为 polaris，该值为主账户的默认密码
+        # @param MainPassword: <p>主账户名默认为 polaris，该值为主账户的默认密码</p>
         # @type MainPassword: String
-        # @param PgwVpcInfos: 服务治理pushgateway引擎绑定的网络信息
+        # @param PgwVpcInfos: <p>服务治理pushgateway引擎绑定的网络信息</p>
         # @type PgwVpcInfos: Array
-        # @param LimiterVpcInfos: 服务治理限流server引擎绑定的网络信息
+        # @param LimiterVpcInfos: <p>服务治理限流server引擎绑定的网络信息</p>
         # @type LimiterVpcInfos: Array
-        # @param CLSTopics: 引擎关联CLS日志主题信息
+        # @param CLSTopics: <p>引擎关联CLS日志主题信息</p>
         # @type CLSTopics: Array
-        # @param SubPassword: 子用户密码
+        # @param SubPassword: <p>子用户密码</p>
         # @type SubPassword: String
+        # @param DisableMutation: <p>是否允许变更</p>
+        # @type DisableMutation: Boolean
+        # @param MaxCapacityLimitEnabled: <p>是否开启限流</p>
+        # @type MaxCapacityLimitEnabled: Boolean
 
-        attr_accessor :EngineRegion, :BoundK8SInfos, :VpcInfos, :AuthOpen, :Features, :MainPassword, :PgwVpcInfos, :LimiterVpcInfos, :CLSTopics, :SubPassword
+        attr_accessor :EngineRegion, :BoundK8SInfos, :VpcInfos, :AuthOpen, :Features, :MainPassword, :PgwVpcInfos, :LimiterVpcInfos, :CLSTopics, :SubPassword, :DisableMutation, :MaxCapacityLimitEnabled
 
-        def initialize(engineregion=nil, boundk8sinfos=nil, vpcinfos=nil, authopen=nil, features=nil, mainpassword=nil, pgwvpcinfos=nil, limitervpcinfos=nil, clstopics=nil, subpassword=nil)
+        def initialize(engineregion=nil, boundk8sinfos=nil, vpcinfos=nil, authopen=nil, features=nil, mainpassword=nil, pgwvpcinfos=nil, limitervpcinfos=nil, clstopics=nil, subpassword=nil, disablemutation=nil, maxcapacitylimitenabled=nil)
           @EngineRegion = engineregion
           @BoundK8SInfos = boundk8sinfos
           @VpcInfos = vpcinfos
@@ -16599,6 +16700,8 @@ module TencentCloud
           @LimiterVpcInfos = limitervpcinfos
           @CLSTopics = clstopics
           @SubPassword = subpassword
+          @DisableMutation = disablemutation
+          @MaxCapacityLimitEnabled = maxcapacitylimitenabled
         end
 
         def deserialize(params)
@@ -16647,6 +16750,8 @@ module TencentCloud
             end
           end
           @SubPassword = params['SubPassword']
+          @DisableMutation = params['DisableMutation']
+          @MaxCapacityLimitEnabled = params['MaxCapacityLimitEnabled']
         end
       end
 
@@ -17189,8 +17294,8 @@ module TencentCloud
 
         attr_accessor :EnableActiveHealthCheck, :ActiveHealthCheck, :EnablePassiveHealthCheck, :PassiveHealthCheck, :Successes, :Failures, :Timeouts, :HealthyHttpStatuses, :UnhealthyHttpStatuses, :IgnoreZeroWeightNodes, :ZeroWeightHeathCheck
         extend Gem::Deprecate
-        deprecate :IgnoreZeroWeightNodes, :none, 2026, 8
-        deprecate :IgnoreZeroWeightNodes=, :none, 2026, 8
+        deprecate :IgnoreZeroWeightNodes, :none, 2026, 9
+        deprecate :IgnoreZeroWeightNodes=, :none, 2026, 9
 
         def initialize(enableactivehealthcheck=nil, activehealthcheck=nil, enablepassivehealthcheck=nil, passivehealthcheck=nil, successes=nil, failures=nil, timeouts=nil, healthyhttpstatuses=nil, unhealthyhttpstatuses=nil, ignorezeroweightnodes=nil, zeroweightheathcheck=nil)
           @EnableActiveHealthCheck = enableactivehealthcheck

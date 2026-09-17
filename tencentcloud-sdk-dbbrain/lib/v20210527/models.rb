@@ -8094,15 +8094,19 @@ module TencentCloud
         end
       end
 
-      # 统计分析维度下的统计数据详情
+      # 统计分析维度下的统计数据详情。
       class StatisticDataInfo < TencentCloud::Common::AbstractModel
         # @param Name: 统计维度的值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param TimeAvg: 平均时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeAvg: Float
         # @param TimeSum: 总时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeSum: Float
         # @param Count: 数量。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Count: Integer
 
         attr_accessor :Name, :TimeAvg, :TimeSum, :Count

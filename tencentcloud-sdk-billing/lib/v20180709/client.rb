@@ -1478,7 +1478,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取代金券相关信息
+        # 获取近两年的代金券信息。
 
         # @param request: Request instance for DescribeVoucherInfo.
         # @type request: :class:`Tencentcloud::billing::V20180709::DescribeVoucherInfoRequest`
@@ -1502,7 +1502,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取代金券使用记录
+        # 获取代金券近两年的使用记录。
 
         # @param request: Request instance for DescribeVoucherUsageDetails.
         # @type request: :class:`Tencentcloud::billing::V20180709::DescribeVoucherUsageDetailsRequest`

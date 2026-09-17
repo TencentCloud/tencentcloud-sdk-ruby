@@ -7420,10 +7420,23 @@ module TencentCloud
         # @type MaxConnection: Integer
         # @param BgpAsn: <p>BGP ASN。</p>
         # @type BgpAsn: Integer
+        # @param IsPrivate: <p>是否是私网类型</p>
+        # @type IsPrivate: Boolean
+        # @param SubnetId: <p>私网唯一ID</p>
+        # @type SubnetId: String
+        # @param BgpEnable: <p>BGP 开关，开启时需指定BgpAsn。</p>
+        # @type BgpEnable: Boolean
+        # @param IpStack: <p>内外层IP协议</p><p>枚举值：</p><ul><li>4in4： IPv4 over IPv4</li><li>6in4： IPv6 over IPv4</li><li>6in6： IPv6 over IPv6</li><li>4in6： IPv4 over IPv6</li></ul><p>默认值：4in4</p>
+        # @type IpStack: String
+        # @param AccessSubnet: <p>CCN类型私网VPN接入网段</p>
+        # @type AccessSubnet: String
 
-        attr_accessor :VpcId, :VpnGatewayName, :InternetMaxBandwidthOut, :InstanceChargeType, :InstanceChargePrepaid, :Zone, :Type, :Tags, :CdcId, :MaxConnection, :BgpAsn
+        attr_accessor :VpcId, :VpnGatewayName, :InternetMaxBandwidthOut, :InstanceChargeType, :InstanceChargePrepaid, :Zone, :Type, :Tags, :CdcId, :MaxConnection, :BgpAsn, :IsPrivate, :SubnetId, :BgpEnable, :IpStack, :AccessSubnet
+        extend Gem::Deprecate
+        deprecate :Zone, :none, 2026, 9
+        deprecate :Zone=, :none, 2026, 9
 
-        def initialize(vpcid=nil, vpngatewayname=nil, internetmaxbandwidthout=nil, instancechargetype=nil, instancechargeprepaid=nil, zone=nil, type=nil, tags=nil, cdcid=nil, maxconnection=nil, bgpasn=nil)
+        def initialize(vpcid=nil, vpngatewayname=nil, internetmaxbandwidthout=nil, instancechargetype=nil, instancechargeprepaid=nil, zone=nil, type=nil, tags=nil, cdcid=nil, maxconnection=nil, bgpasn=nil, isprivate=nil, subnetid=nil, bgpenable=nil, ipstack=nil, accesssubnet=nil)
           @VpcId = vpcid
           @VpnGatewayName = vpngatewayname
           @InternetMaxBandwidthOut = internetmaxbandwidthout
@@ -7435,6 +7448,11 @@ module TencentCloud
           @CdcId = cdcid
           @MaxConnection = maxconnection
           @BgpAsn = bgpasn
+          @IsPrivate = isprivate
+          @SubnetId = subnetid
+          @BgpEnable = bgpenable
+          @IpStack = ipstack
+          @AccessSubnet = accesssubnet
         end
 
         def deserialize(params)
@@ -7459,6 +7477,11 @@ module TencentCloud
           @CdcId = params['CdcId']
           @MaxConnection = params['MaxConnection']
           @BgpAsn = params['BgpAsn']
+          @IsPrivate = params['IsPrivate']
+          @SubnetId = params['SubnetId']
+          @BgpEnable = params['BgpEnable']
+          @IpStack = params['IpStack']
+          @AccessSubnet = params['AccessSubnet']
         end
       end
 
@@ -7541,13 +7564,13 @@ module TencentCloud
 
       # CreateVpnGatewaySslClient请求参数结构体
       class CreateVpnGatewaySslClientRequest < TencentCloud::Common::AbstractModel
-        # @param SslVpnServerId: SSL-VPN-SERVER 实例ID。
+        # @param SslVpnServerId: <p>SSL-VPN-SERVER 实例ID。</p>
         # @type SslVpnServerId: String
-        # @param SslVpnClientName: SSL-VPN-CLIENT实例Name。不可和SslVpnClientNames同时使用。
+        # @param SslVpnClientName: <p>SSL-VPN-CLIENT实例Name。不可和SslVpnClientNames同时使用。</p>
         # @type SslVpnClientName: String
-        # @param SslVpnClientNames: SSL-VPN-CLIENT实例Name数字。批量创建时使用。不可和SslVpnClientName同时使用。
+        # @param SslVpnClientNames: <p>SSL-VPN-CLIENT实例Name数字。批量创建时使用。不可和SslVpnClientName同时使用。</p>
         # @type SslVpnClientNames: Array
-        # @param Tags: 指定绑定的标签列表
+        # @param Tags: <p>指定绑定的标签列表</p>
         # @type Tags: Array
 
         attr_accessor :SslVpnServerId, :SslVpnClientName, :SslVpnClientNames, :Tags
@@ -7576,57 +7599,61 @@ module TencentCloud
 
       # CreateVpnGatewaySslClient返回参数结构体
       class CreateVpnGatewaySslClientResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 异步任务ID。
+        # @param TaskId: <p>异步任务ID。</p>
         # @type TaskId: Integer
-        # @param SslVpnClientId: SSL-VPN client 唯一ID
+        # @param SslVpnClientId: <p>SSL VPN客户端唯一ID</p>
         # @type SslVpnClientId: String
+        # @param SslVpnClientIds: <p>SSL VPN客户端唯一ID</p><p>仅批量场景返回</p>
+        # @type SslVpnClientIds: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskId, :SslVpnClientId, :RequestId
+        attr_accessor :TaskId, :SslVpnClientId, :SslVpnClientIds, :RequestId
 
-        def initialize(taskid=nil, sslvpnclientid=nil, requestid=nil)
+        def initialize(taskid=nil, sslvpnclientid=nil, sslvpnclientids=nil, requestid=nil)
           @TaskId = taskid
           @SslVpnClientId = sslvpnclientid
+          @SslVpnClientIds = sslvpnclientids
           @RequestId = requestid
         end
 
         def deserialize(params)
           @TaskId = params['TaskId']
           @SslVpnClientId = params['SslVpnClientId']
+          @SslVpnClientIds = params['SslVpnClientIds']
           @RequestId = params['RequestId']
         end
       end
 
       # CreateVpnGatewaySslServer请求参数结构体
       class CreateVpnGatewaySslServerRequest < TencentCloud::Common::AbstractModel
-        # @param VpnGatewayId: VPN网关实例ID。
+        # @param VpnGatewayId: <p>VPN网关实例ID。</p>
         # @type VpnGatewayId: String
-        # @param SslVpnServerName: SSL-VPN-SERVER 实例名称，长度不超过60个字节。
+        # @param SslVpnServerName: <p>SSL-VPN-SERVER 实例名称，长度不超过60个字节。</p>
         # @type SslVpnServerName: String
-        # @param RemoteAddress: 客户端地址网段。
+        # @param RemoteAddress: <p>客户端地址网段。</p>
         # @type RemoteAddress: String
-        # @param LocalAddress: 云端地址（CIDR）列表。
+        # @param LocalAddress: <p>云端地址（CIDR）列表。</p>
         # @type LocalAddress: Array
-        # @param SslVpnProtocol: SSL VPN服务端监听协议。当前仅支持 UDP，默认UDP。
+        # @param SslVpnProtocol: <p>SSL VPN服务端监听协议。当前仅支持 UDP，默认UDP。</p>
         # @type SslVpnProtocol: String
-        # @param SslVpnPort: SSL VPN服务端监听协议端口，默认1194。
+        # @param SslVpnPort: <p>SSL VPN服务端监听协议端口，默认9798。</p>
         # @type SslVpnPort: Integer
-        # @param IntegrityAlgorithm: 认证算法。可选 'SHA1'，默认SHA1。
+        # @param IntegrityAlgorithm: <p>认证算法。可选 &#39;SHA1&#39;, &#39;SHA224&#39;, &#39;SHA256&#39;, &#39;SHA384&#39;, &#39;SHA512&#39; 默认SHA1。</p>
         # @type IntegrityAlgorithm: String
-        # @param EncryptAlgorithm: 加密算法。可选 'AES-128-CBC','AES-192-CBC', 'AES-256-CBC', 默认AES-128-CBC。
+        # @param EncryptAlgorithm: <p>加密算法。可选 &#39;AES-128-CBC&#39;,&#39;AES-192-CBC&#39;, &#39;AES-256-CBC&#39;, &#39;AES-128-GCM&#39;, &#39;AES-192-GCM&#39;, &#39;AES-256-GCM&#39;。</p><p>默认值：AES-128-CBC</p>
         # @type EncryptAlgorithm: String
-        # @param Compress: 是否支持压缩。当前不支持压缩，默认False。
+        # @param Compress: <p>是否支持压缩。当前不支持压缩，默认False。</p>
         # @type Compress: Boolean
-        # @param SsoEnabled: 是否开启SSO认证。默认为False。该功能当前需要申请开白使用。
+        # @param SsoEnabled: <p>是否开启SSO认证。默认为False。该功能当前需要申请开白使用。</p>
         # @type SsoEnabled: Boolean
-        # @param AccessPolicyEnabled: 是否开启策略访问控制。默认为False
+        # @param AccessPolicyEnabled: <p>是否开启策略访问控制。默认为False</p>
         # @type AccessPolicyEnabled: Boolean
-        # @param SamlData: SAML-DATA，开启SSO时传。
+        # @param SamlData: <p>SAML-DATA，开启SSO时传。</p>
         # @type SamlData: String
-        # @param Tags: 指定绑定的标签列表
+        # @param Tags: <p>指定绑定的标签列表</p>
         # @type Tags: Array
-        # @param DnsServers: DNS Server 地址
+        # @param DnsServers: <p>DNS Server 地址</p>
         # @type DnsServers: :class:`Tencentcloud::Vpc.v20170312.models.DnsServers`
 
         attr_accessor :VpnGatewayId, :SslVpnServerName, :RemoteAddress, :LocalAddress, :SslVpnProtocol, :SslVpnPort, :IntegrityAlgorithm, :EncryptAlgorithm, :Compress, :SsoEnabled, :AccessPolicyEnabled, :SamlData, :Tags, :DnsServers
@@ -7678,9 +7705,9 @@ module TencentCloud
 
       # CreateVpnGatewaySslServer返回参数结构体
       class CreateVpnGatewaySslServerResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 创建SSL-VPN server 异步任务ID。
+        # @param TaskId: <p>创建SSL-VPN server 异步任务ID。</p>
         # @type TaskId: Integer
-        # @param SslVpnServerId: SSL-VPN-SERVER 唯一ID。
+        # @param SslVpnServerId: <p>SSL-VPN-SERVER 唯一ID。</p>
         # @type SslVpnServerId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7838,25 +7865,31 @@ module TencentCloud
 
       # 对端网关
       class CustomerGateway < TencentCloud::Common::AbstractModel
-        # @param CustomerGatewayId: 用户网关唯一ID
+        # @param CustomerGatewayId: <p>用户网关唯一ID</p>
         # @type CustomerGatewayId: String
-        # @param CustomerGatewayName: 网关名称
+        # @param CustomerGatewayName: <p>网关名称</p>
         # @type CustomerGatewayName: String
-        # @param IpAddress: 公网地址
+        # @param IpAddress: <p>公网地址</p>
         # @type IpAddress: String
-        # @param CreatedTime: 创建时间
+        # @param CreatedTime: <p>创建时间</p>
         # @type CreatedTime: String
-        # @param BgpAsn: BGP ASN。
+        # @param BgpAsn: <p>BGP ASN。</p>
         # @type BgpAsn: Integer
+        # @param VpnConnNum: <p>关联通道数</p>
+        # @type VpnConnNum: Integer
+        # @param TagSet: <p>标签信息</p>
+        # @type TagSet: Array
 
-        attr_accessor :CustomerGatewayId, :CustomerGatewayName, :IpAddress, :CreatedTime, :BgpAsn
+        attr_accessor :CustomerGatewayId, :CustomerGatewayName, :IpAddress, :CreatedTime, :BgpAsn, :VpnConnNum, :TagSet
 
-        def initialize(customergatewayid=nil, customergatewayname=nil, ipaddress=nil, createdtime=nil, bgpasn=nil)
+        def initialize(customergatewayid=nil, customergatewayname=nil, ipaddress=nil, createdtime=nil, bgpasn=nil, vpnconnnum=nil, tagset=nil)
           @CustomerGatewayId = customergatewayid
           @CustomerGatewayName = customergatewayname
           @IpAddress = ipaddress
           @CreatedTime = createdtime
           @BgpAsn = bgpasn
+          @VpnConnNum = vpnconnnum
+          @TagSet = tagset
         end
 
         def deserialize(params)
@@ -7865,6 +7898,15 @@ module TencentCloud
           @IpAddress = params['IpAddress']
           @CreatedTime = params['CreatedTime']
           @BgpAsn = params['BgpAsn']
+          @VpnConnNum = params['VpnConnNum']
+          unless params['TagSet'].nil?
+            @TagSet = []
+            params['TagSet'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @TagSet << tag_tmp
+            end
+          end
         end
       end
 
@@ -11871,16 +11913,13 @@ module TencentCloud
 
       # DescribeCustomerGateways请求参数结构体
       class DescribeCustomerGatewaysRequest < TencentCloud::Common::AbstractModel
-        # @param CustomerGatewayIds: 对端网关ID，例如：cgw-2wqq41m9。每次请求的实例的上限为100。参数不支持同时指定CustomerGatewayIds和Filters。
+        # @param CustomerGatewayIds: <p>对端网关ID，例如：cgw-2wqq41m9。每次请求的实例的上限为100。参数不支持同时指定CustomerGatewayIds和Filters。</p>
         # @type CustomerGatewayIds: Array
-        # @param Filters: 过滤条件，详见下表：实例过滤条件表。每次请求的Filters的上限为10，Filter.Values的上限为5。参数不支持同时指定CustomerGatewayIds和Filters。
-        # <li>customer-gateway-id - String - （过滤条件）用户网关唯一ID形如：`cgw-mgp33pll`。</li>
-        # <li>customer-gateway-name - String - （过滤条件）用户网关名称形如：`test-cgw`。</li>
-        # <li>ip-address - String - （过滤条件）公网地址形如：`58.211.1.12`。</li>
+        # @param Filters: <p>过滤条件，详见下表：实例过滤条件表。每次请求的Filters的上限为10，Filter.Values的上限为5。参数不支持同时指定CustomerGatewayIds和Filters。<li>customer-gateway-id - String - （过滤条件）用户网关唯一ID形如：<code>cgw-mgp33pll</code>。</li><li>customer-gateway-name - String - （过滤条件）用户网关名称形如：<code>test-cgw</code>。</li><li>ip-address - String - （过滤条件）公网地址形如：<code>58.211.1.12</code>。</li><li>ip-version - String - （过滤条件）公网地址类型,可选值[&#39;IPv4&#39;,&#39;IPv6&#39;]。</li></p>
         # @type Filters: Array
-        # @param Offset: 偏移量，默认为0。关于Offset的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/11646)中的相关小节。
+        # @param Offset: <p>偏移量，默认为0。关于Offset的更进一步介绍请参考 API <a href="https://cloud.tencent.com/document/api/213/11646">简介</a>中的相关小节。</p>
         # @type Offset: Integer
-        # @param Limit: 返回数量，默认为20，最大值为100。
+        # @param Limit: <p>返回数量，默认为20，最大值为100。</p>
         # @type Limit: Integer
 
         attr_accessor :CustomerGatewayIds, :Filters, :Offset, :Limit
@@ -11909,9 +11948,9 @@ module TencentCloud
 
       # DescribeCustomerGateways返回参数结构体
       class DescribeCustomerGatewaysResponse < TencentCloud::Common::AbstractModel
-        # @param CustomerGatewaySet: 对端网关对象列表。
+        # @param CustomerGatewaySet: <p>对端网关对象列表。</p>
         # @type CustomerGatewaySet: Array
-        # @param TotalCount: 符合条件的实例数量。
+        # @param TotalCount: <p>符合条件的实例数量。</p>
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -24734,32 +24773,35 @@ module TencentCloud
 
       # ModifyVpnGatewaySslServer请求参数结构体
       class ModifyVpnGatewaySslServerRequest < TencentCloud::Common::AbstractModel
-        # @param SslVpnServerId: SSL-VPN SERVER 实例ID
+        # @param SslVpnServerId: <p>SSL-VPN SERVER 实例ID</p>
         # @type SslVpnServerId: String
-        # @param SslVpnServerName: SSL-VPN SERVER NAME
+        # @param SslVpnServerName: <p>SSL-VPN SERVER NAME</p>
         # @type SslVpnServerName: String
-        # @param LocalAddress: 本端地址
+        # @param LocalAddress: <p>本端地址</p>
         # @type LocalAddress: Array
-        # @param RemoteAddress: 客户端地址
+        # @param RemoteAddress: <p>客户端地址</p>
         # @type RemoteAddress: String
-        # @param SslVpnProtocol: SSL VPN服务端监听协议。当前仅支持 UDP。默认UDP
+        # @param SslVpnProtocol: <p>SSL VPN服务端监听协议。当前仅支持 UDP。默认UDP</p>
         # @type SslVpnProtocol: String
-        # @param SslVpnPort: SSL VPN服务端监听协议端口。
+        # @param SslVpnPort: <p>SSL VPN服务端监听协议端口。</p>
         # @type SslVpnPort: Integer
-        # @param EncryptAlgorithm: 加密算法。可选 'AES-128-CBC','AES-192-CBC', 'AES-256-CBC', 默认AES-128-CBC。
+        # @param EncryptAlgorithm: <p>加密算法。可选值 &#39;AES-128-CBC&#39;, &#39;AES-192-CBC&#39;, &#39;AES-256-CBC&#39;, &#39;AES-128-GCM&#39;, &#39;AES-192-GCM&#39;, &#39;AES-256-GCM&#39;, 默认AES-128-CBC。</p>
         # @type EncryptAlgorithm: String
-        # @param IntegrityAlgorithm: 认证算法。可选 'SHA1'，默认SHA1。
+        # @param IntegrityAlgorithm: <p>认证算法。可选 &#39;SHA1&#39;, &#39;MD5&#39;, &#39;SHA224&#39;, &#39;SHA256&#39;, &#39;SHA384&#39;, &#39;SHA512&#39;，默认SHA1。</p>
         # @type IntegrityAlgorithm: String
-        # @param Compress: 是否支持压缩。当前不支持压缩。默认False。
+        # @param Compress: <p>是否支持压缩。当前不支持压缩。默认False。</p>
         # @type Compress: Boolean
-        # @param SsoEnabled: 是否开启SSO认证。默认为False。该功能当前需要申请开白使用。
+        # @param SsoEnabled: <p>是否开启SSO认证。默认为False。该功能当前需要申请开白使用。</p>
         # @type SsoEnabled: Boolean
-        # @param SamlData: SAML-DATA
+        # @param SamlData: <p>SAML-DATA</p>
         # @type SamlData: String
-        # @param DnsServers: DNS Server地址
+        # @param DnsServers: <p>DNS Server地址</p>
         # @type DnsServers: :class:`Tencentcloud::Vpc.v20170312.models.DnsServers`
 
         attr_accessor :SslVpnServerId, :SslVpnServerName, :LocalAddress, :RemoteAddress, :SslVpnProtocol, :SslVpnPort, :EncryptAlgorithm, :IntegrityAlgorithm, :Compress, :SsoEnabled, :SamlData, :DnsServers
+        extend Gem::Deprecate
+        deprecate :SslVpnProtocol, :none, 2026, 9
+        deprecate :SslVpnProtocol=, :none, 2026, 9
 
         def initialize(sslvpnserverid=nil, sslvpnservername=nil, localaddress=nil, remoteaddress=nil, sslvpnprotocol=nil, sslvpnport=nil, encryptalgorithm=nil, integrityalgorithm=nil, compress=nil, ssoenabled=nil, samldata=nil, dnsservers=nil)
           @SslVpnServerId = sslvpnserverid
@@ -24797,7 +24839,7 @@ module TencentCloud
 
       # ModifyVpnGatewaySslServer返回参数结构体
       class ModifyVpnGatewaySslServerResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 异步任务TASKID
+        # @param TaskId: <p>异步任务TASKID</p>
         # @type TaskId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -31124,10 +31166,12 @@ module TencentCloud
         # @type BgpAsn: Integer
         # @param TagSet: <p>标签列表</p>
         # @type TagSet: Array
+        # @param IsPrivate: <p>私网VPN标识</p>
+        # @type IsPrivate: Boolean
 
-        attr_accessor :VpnGatewayId, :VpcId, :VpnGatewayName, :Type, :State, :PublicIpAddress, :RenewFlag, :InstanceChargeType, :InternetMaxBandwidthOut, :CreatedTime, :ExpiredTime, :IsAddressBlocked, :NewPurchasePlan, :RestrictState, :Zone, :VpnGatewayQuotaSet, :Version, :NetworkInstanceId, :CdcId, :MaxConnection, :BgpAsn, :TagSet
+        attr_accessor :VpnGatewayId, :VpcId, :VpnGatewayName, :Type, :State, :PublicIpAddress, :RenewFlag, :InstanceChargeType, :InternetMaxBandwidthOut, :CreatedTime, :ExpiredTime, :IsAddressBlocked, :NewPurchasePlan, :RestrictState, :Zone, :VpnGatewayQuotaSet, :Version, :NetworkInstanceId, :CdcId, :MaxConnection, :BgpAsn, :TagSet, :IsPrivate
 
-        def initialize(vpngatewayid=nil, vpcid=nil, vpngatewayname=nil, type=nil, state=nil, publicipaddress=nil, renewflag=nil, instancechargetype=nil, internetmaxbandwidthout=nil, createdtime=nil, expiredtime=nil, isaddressblocked=nil, newpurchaseplan=nil, restrictstate=nil, zone=nil, vpngatewayquotaset=nil, version=nil, networkinstanceid=nil, cdcid=nil, maxconnection=nil, bgpasn=nil, tagset=nil)
+        def initialize(vpngatewayid=nil, vpcid=nil, vpngatewayname=nil, type=nil, state=nil, publicipaddress=nil, renewflag=nil, instancechargetype=nil, internetmaxbandwidthout=nil, createdtime=nil, expiredtime=nil, isaddressblocked=nil, newpurchaseplan=nil, restrictstate=nil, zone=nil, vpngatewayquotaset=nil, version=nil, networkinstanceid=nil, cdcid=nil, maxconnection=nil, bgpasn=nil, tagset=nil, isprivate=nil)
           @VpnGatewayId = vpngatewayid
           @VpcId = vpcid
           @VpnGatewayName = vpngatewayname
@@ -31150,6 +31194,7 @@ module TencentCloud
           @MaxConnection = maxconnection
           @BgpAsn = bgpasn
           @TagSet = tagset
+          @IsPrivate = isprivate
         end
 
         def deserialize(params)
@@ -31189,30 +31234,35 @@ module TencentCloud
               @TagSet << tag_tmp
             end
           end
+          @IsPrivate = params['IsPrivate']
         end
       end
 
       # VPN网关配额对象
       class VpnGatewayQuota < TencentCloud::Common::AbstractModel
-        # @param Bandwidth: 带宽配额，单位：Mbps。
+        # @param Bandwidth: <p>带宽配额，单位：Mbps。</p>
         # @type Bandwidth: Integer
-        # @param Cname: 配额中文名称
+        # @param Cname: <p>配额中文名称</p>
         # @type Cname: String
-        # @param Name: 配额英文名称
+        # @param Name: <p>配额英文名称</p>
         # @type Name: String
+        # @param MaxConnection: <p>SSL 连接数可选配额</p>
+        # @type MaxConnection: Array
 
-        attr_accessor :Bandwidth, :Cname, :Name
+        attr_accessor :Bandwidth, :Cname, :Name, :MaxConnection
 
-        def initialize(bandwidth=nil, cname=nil, name=nil)
+        def initialize(bandwidth=nil, cname=nil, name=nil, maxconnection=nil)
           @Bandwidth = bandwidth
           @Cname = cname
           @Name = name
+          @MaxConnection = maxconnection
         end
 
         def deserialize(params)
           @Bandwidth = params['Bandwidth']
           @Cname = params['Cname']
           @Name = params['Name']
+          @MaxConnection = params['MaxConnection']
         end
       end
 

@@ -111,7 +111,7 @@ module TencentCloud
         # @type Token: String
         # @param ExpiresAt: <p>过期时间</p>
         # @type ExpiresAt: String
-        # @param TrafficToken: <p>非管控面（envd）的访问Token</p>
+        # @param TrafficToken: <p>除管控面envd端口(49983)以外端口的访问Token</p>
         # @type TrafficToken: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

@@ -2116,6 +2116,8 @@ module TencentCloud
         # @type ModelImage: :class:`Tencentcloud::Tokenhub.v20260322.models.ModelImage`
         # @param Provider: <p>模型供应商。</p>
         # @type Provider: String
+        # @param ProviderIntroduction: <p>markdown 原生内容的模型提供方详情</p>
+        # @type ProviderIntroduction: String
         # @param Status: <p>模型状态。取值：online（上线）、offline（下线）。</p><p>枚举值：</p><ul><li>online ： 上线</li><li>pre-offline： 预下线</li><li>discontinued： 停止新购</li><li>maintenance： 维护中</li></ul>
         # @type Status: String
         # @param Tags: <p>标签列表。</p>
@@ -2137,9 +2139,9 @@ module TencentCloud
         # @param DiscontinuedAt: <p>停止新购时间</p>
         # @type DiscontinuedAt: String
 
-        attr_accessor :ModelName, :ModelId, :ExtraModelIds, :DisplayName, :Description, :Summary, :ModelType, :Brand, :ModelImage, :Provider, :Status, :Tags, :ModelChargingInfo, :ModelSpec, :ReleaseAt, :RecommendWeight, :ModelAccessInfo, :FreeTrialInfo, :OfflineAt, :DiscontinuedAt
+        attr_accessor :ModelName, :ModelId, :ExtraModelIds, :DisplayName, :Description, :Summary, :ModelType, :Brand, :ModelImage, :Provider, :ProviderIntroduction, :Status, :Tags, :ModelChargingInfo, :ModelSpec, :ReleaseAt, :RecommendWeight, :ModelAccessInfo, :FreeTrialInfo, :OfflineAt, :DiscontinuedAt
 
-        def initialize(modelname=nil, modelid=nil, extramodelids=nil, displayname=nil, description=nil, summary=nil, modeltype=nil, brand=nil, modelimage=nil, provider=nil, status=nil, tags=nil, modelcharginginfo=nil, modelspec=nil, releaseat=nil, recommendweight=nil, modelaccessinfo=nil, freetrialinfo=nil, offlineat=nil, discontinuedat=nil)
+        def initialize(modelname=nil, modelid=nil, extramodelids=nil, displayname=nil, description=nil, summary=nil, modeltype=nil, brand=nil, modelimage=nil, provider=nil, providerintroduction=nil, status=nil, tags=nil, modelcharginginfo=nil, modelspec=nil, releaseat=nil, recommendweight=nil, modelaccessinfo=nil, freetrialinfo=nil, offlineat=nil, discontinuedat=nil)
           @ModelName = modelname
           @ModelId = modelid
           @ExtraModelIds = extramodelids
@@ -2150,6 +2152,7 @@ module TencentCloud
           @Brand = brand
           @ModelImage = modelimage
           @Provider = provider
+          @ProviderIntroduction = providerintroduction
           @Status = status
           @Tags = tags
           @ModelChargingInfo = modelcharginginfo
@@ -2176,6 +2179,7 @@ module TencentCloud
             @ModelImage.deserialize(params['ModelImage'])
           end
           @Provider = params['Provider']
+          @ProviderIntroduction = params['ProviderIntroduction']
           @Status = params['Status']
           @Tags = params['Tags']
           unless params['ModelChargingInfo'].nil?
@@ -2973,42 +2977,33 @@ module TencentCloud
 
       # API Key 额度及用量信息
       class SubPackageBalance < TencentCloud::Common::AbstractModel
-        # @param ExclusiveQuota: 独占额度。单位说明如下：
-        # - 套餐类型为专业套餐，单位取值为积分；
-        # - 套餐类型为轻享套餐，单位取值为 token。
+        # @param ExclusiveQuota: <p>独占额度。单位说明如下：</p><ul><li>套餐类型为专业套餐，单位取值为积分；</li><li>套餐类型为轻享套餐，单位取值为 token。</li></ul>
         # @type ExclusiveQuota: String
-        # @param ExclusiveUsed: 独占额度已用量。单位说明如下：
-        # - 套餐类型为专业套餐，单位取值为积分；
-        # - 套餐类型为轻享套餐，单位取值为 token。
+        # @param ExclusiveUsed: <p>独占额度已用量。单位说明如下：</p><ul><li>套餐类型为专业套餐，单位取值为积分；</li><li>套餐类型为轻享套餐，单位取值为 token。</li></ul>
         # @type ExclusiveUsed: String
-        # @param ExclusiveRemain: 独占额度剩余量。单位说明如下：
-        # - 套餐类型为专业套餐，单位取值为积分；
-        # - 套餐类型为轻享套餐，单位取值为 token。
+        # @param ExclusiveRemain: <p>独占额度剩余量。单位说明如下：</p><ul><li>套餐类型为专业套餐，单位取值为积分；</li><li>套餐类型为轻享套餐，单位取值为 token。</li></ul>
         # @type ExclusiveRemain: String
-        # @param SharedQuota: 共享额度上限，-1 表示不限。单位说明如下：
-        # - 套餐类型为专业套餐，单位取值为积分；
-        # - 套餐类型为轻享套餐，单位取值为 token。
+        # @param SharedQuota: <p>共享额度上限，-1 表示不限。单位说明如下：</p><ul><li>套餐类型为专业套餐，单位取值为积分；</li><li>套餐类型为轻享套餐，单位取值为 token。</li></ul>
         # @type SharedQuota: String
-        # @param SharedUsed: 共享额度已用量。单位说明如下：
-        # - 套餐类型为专业套餐，单位取值为积分；
-        # - 套餐类型为轻享套餐，单位取值为 token。
+        # @param SharedUsed: <p>共享额度已用量。单位说明如下：</p><ul><li>套餐类型为专业套餐，单位取值为积分；</li><li>套餐类型为轻享套餐，单位取值为 token。</li></ul>
         # @type SharedUsed: String
-        # @param SharedRemain: 共享额度剩余量。单位说明如下：
-        # - 套餐类型为专业套餐，单位取值为积分；
-        # - 套餐类型为轻享套餐，单位取值为 token。
+        # @param SharedRemain: <p>共享额度剩余量。单位说明如下：</p><ul><li>套餐类型为专业套餐，单位取值为积分；</li><li>套餐类型为轻享套餐，单位取值为 token。</li></ul>
         # @type SharedRemain: String
-        # @param Status: API Key 额度包状态。取值：0（正常）、1（耗尽）。
+        # @param TotalUsed: <p>当前周期已用总量 exclusive_used + shared_used + overflow_used</p>
+        # @type TotalUsed: String
+        # @param Status: <p>API Key 额度包状态。取值：0（正常）、1（耗尽）。</p>
         # @type Status: Integer
 
-        attr_accessor :ExclusiveQuota, :ExclusiveUsed, :ExclusiveRemain, :SharedQuota, :SharedUsed, :SharedRemain, :Status
+        attr_accessor :ExclusiveQuota, :ExclusiveUsed, :ExclusiveRemain, :SharedQuota, :SharedUsed, :SharedRemain, :TotalUsed, :Status
 
-        def initialize(exclusivequota=nil, exclusiveused=nil, exclusiveremain=nil, sharedquota=nil, sharedused=nil, sharedremain=nil, status=nil)
+        def initialize(exclusivequota=nil, exclusiveused=nil, exclusiveremain=nil, sharedquota=nil, sharedused=nil, sharedremain=nil, totalused=nil, status=nil)
           @ExclusiveQuota = exclusivequota
           @ExclusiveUsed = exclusiveused
           @ExclusiveRemain = exclusiveremain
           @SharedQuota = sharedquota
           @SharedUsed = sharedused
           @SharedRemain = sharedremain
+          @TotalUsed = totalused
           @Status = status
         end
 
@@ -3019,6 +3014,7 @@ module TencentCloud
           @SharedQuota = params['SharedQuota']
           @SharedUsed = params['SharedUsed']
           @SharedRemain = params['SharedRemain']
+          @TotalUsed = params['TotalUsed']
           @Status = params['Status']
         end
       end

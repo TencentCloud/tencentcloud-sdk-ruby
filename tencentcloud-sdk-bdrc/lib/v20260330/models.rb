@@ -5389,25 +5389,29 @@ module TencentCloud
 
       # ModifyCopyPairAttribute请求参数结构体
       class ModifyCopyPairAttributeRequest < TencentCloud::Common::AbstractModel
-        # @param CopyPairId: 要修改属性的复制对id
+        # @param CopyPairId: <p>要修改属性的复制对id</p>
         # @type CopyPairId: String
-        # @param CopyPairType: 要修改的复制对类型，可选值：DISK、INSTANCE、CFS，默认 INSTANCE
+        # @param CopyPairType: <p>要修改的复制对类型，可选值：DISK、INSTANCE、CFS，默认 INSTANCE</p>
         # @type CopyPairType: String
-        # @param CopyPairName: 修改复制对名称（长度最大支持 64 个字符）
+        # @param CopyPairName: <p>修改复制对名称（长度最大支持 64 个字符）</p>
         # @type CopyPairName: String
+        # @param InstanceType: <p>容灾端实例类型（仅容灾端CVM未创建时可修改）</p>
+        # @type InstanceType: String
 
-        attr_accessor :CopyPairId, :CopyPairType, :CopyPairName
+        attr_accessor :CopyPairId, :CopyPairType, :CopyPairName, :InstanceType
 
-        def initialize(copypairid=nil, copypairtype=nil, copypairname=nil)
+        def initialize(copypairid=nil, copypairtype=nil, copypairname=nil, instancetype=nil)
           @CopyPairId = copypairid
           @CopyPairType = copypairtype
           @CopyPairName = copypairname
+          @InstanceType = instancetype
         end
 
         def deserialize(params)
           @CopyPairId = params['CopyPairId']
           @CopyPairType = params['CopyPairType']
           @CopyPairName = params['CopyPairName']
+          @InstanceType = params['InstanceType']
         end
       end
 
