@@ -9638,15 +9638,17 @@ module TencentCloud
         # @type DeviceBandwidth: Integer
         # @param DestroyProtect: <p>实例销毁保护状态，on表示开启保护，否则为关闭保护</p>
         # @type DestroyProtect: String
+        # @param DiskEncryption: <p>云盘版实例才使用该值。 on表示磁盘加密，否则为不加密。</p>
+        # @type DiskEncryption: String
         # @param CpuModel: <p>TDSQL引擎参数</p>
         # @type CpuModel: String
         # @param AnalysisUpgradeVersionInfo: <p>分析引擎实例版本升级信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AnalysisUpgradeVersionInfo: :class:`Tencentcloud::Cdb.v20170320.models.UpgradeAnalysisInstanceVersionInfo`
 
-        attr_accessor :WanStatus, :Zone, :InitFlag, :RoVipInfo, :Memory, :Status, :VpcId, :SlaveInfo, :InstanceId, :Volume, :AutoRenew, :ProtectMode, :RoGroups, :SubnetId, :InstanceType, :ProjectId, :Region, :DeadlineTime, :DeployMode, :TaskStatus, :MasterInfo, :DeviceType, :EngineVersion, :InstanceName, :DrInfo, :WanDomain, :WanPort, :PayType, :CreateTime, :Vip, :Vport, :CdbError, :UniqVpcId, :UniqSubnetId, :PhysicalId, :Cpu, :Qps, :ZoneName, :DeviceClass, :DeployGroupId, :ZoneId, :InstanceNodes, :TagList, :EngineType, :MaxDelayTime, :DiskType, :ExpandCpu, :ClusterInfo, :AnalysisNodeInfos, :DeviceBandwidth, :DestroyProtect, :CpuModel, :AnalysisUpgradeVersionInfo
+        attr_accessor :WanStatus, :Zone, :InitFlag, :RoVipInfo, :Memory, :Status, :VpcId, :SlaveInfo, :InstanceId, :Volume, :AutoRenew, :ProtectMode, :RoGroups, :SubnetId, :InstanceType, :ProjectId, :Region, :DeadlineTime, :DeployMode, :TaskStatus, :MasterInfo, :DeviceType, :EngineVersion, :InstanceName, :DrInfo, :WanDomain, :WanPort, :PayType, :CreateTime, :Vip, :Vport, :CdbError, :UniqVpcId, :UniqSubnetId, :PhysicalId, :Cpu, :Qps, :ZoneName, :DeviceClass, :DeployGroupId, :ZoneId, :InstanceNodes, :TagList, :EngineType, :MaxDelayTime, :DiskType, :ExpandCpu, :ClusterInfo, :AnalysisNodeInfos, :DeviceBandwidth, :DestroyProtect, :DiskEncryption, :CpuModel, :AnalysisUpgradeVersionInfo
 
-        def initialize(wanstatus=nil, zone=nil, initflag=nil, rovipinfo=nil, memory=nil, status=nil, vpcid=nil, slaveinfo=nil, instanceid=nil, volume=nil, autorenew=nil, protectmode=nil, rogroups=nil, subnetid=nil, instancetype=nil, projectid=nil, region=nil, deadlinetime=nil, deploymode=nil, taskstatus=nil, masterinfo=nil, devicetype=nil, engineversion=nil, instancename=nil, drinfo=nil, wandomain=nil, wanport=nil, paytype=nil, createtime=nil, vip=nil, vport=nil, cdberror=nil, uniqvpcid=nil, uniqsubnetid=nil, physicalid=nil, cpu=nil, qps=nil, zonename=nil, deviceclass=nil, deploygroupid=nil, zoneid=nil, instancenodes=nil, taglist=nil, enginetype=nil, maxdelaytime=nil, disktype=nil, expandcpu=nil, clusterinfo=nil, analysisnodeinfos=nil, devicebandwidth=nil, destroyprotect=nil, cpumodel=nil, analysisupgradeversioninfo=nil)
+        def initialize(wanstatus=nil, zone=nil, initflag=nil, rovipinfo=nil, memory=nil, status=nil, vpcid=nil, slaveinfo=nil, instanceid=nil, volume=nil, autorenew=nil, protectmode=nil, rogroups=nil, subnetid=nil, instancetype=nil, projectid=nil, region=nil, deadlinetime=nil, deploymode=nil, taskstatus=nil, masterinfo=nil, devicetype=nil, engineversion=nil, instancename=nil, drinfo=nil, wandomain=nil, wanport=nil, paytype=nil, createtime=nil, vip=nil, vport=nil, cdberror=nil, uniqvpcid=nil, uniqsubnetid=nil, physicalid=nil, cpu=nil, qps=nil, zonename=nil, deviceclass=nil, deploygroupid=nil, zoneid=nil, instancenodes=nil, taglist=nil, enginetype=nil, maxdelaytime=nil, disktype=nil, expandcpu=nil, clusterinfo=nil, analysisnodeinfos=nil, devicebandwidth=nil, destroyprotect=nil, diskencryption=nil, cpumodel=nil, analysisupgradeversioninfo=nil)
           @WanStatus = wanstatus
           @Zone = zone
           @InitFlag = initflag
@@ -9698,6 +9700,7 @@ module TencentCloud
           @AnalysisNodeInfos = analysisnodeinfos
           @DeviceBandwidth = devicebandwidth
           @DestroyProtect = destroyprotect
+          @DiskEncryption = diskencryption
           @CpuModel = cpumodel
           @AnalysisUpgradeVersionInfo = analysisupgradeversioninfo
         end
@@ -9798,6 +9801,7 @@ module TencentCloud
           end
           @DeviceBandwidth = params['DeviceBandwidth']
           @DestroyProtect = params['DestroyProtect']
+          @DiskEncryption = params['DiskEncryption']
           @CpuModel = params['CpuModel']
           unless params['AnalysisUpgradeVersionInfo'].nil?
             @AnalysisUpgradeVersionInfo = UpgradeAnalysisInstanceVersionInfo.new
@@ -12182,11 +12186,11 @@ module TencentCloud
 
       # OpenDBInstanceEncryption请求参数结构体
       class OpenDBInstanceEncryptionRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 云数据库实例 ID。可通过 [DescribeDBInstances](https://cloud.tencent.com/document/product/236/15872) 接口获取。
+        # @param InstanceId: <p>云数据库实例 ID。可通过 <a href="https://cloud.tencent.com/document/product/236/15872">DescribeDBInstances</a> 接口获取。</p>
         # @type InstanceId: String
-        # @param KeyId: 用户自定义密钥 ID，CMK 唯一标识符。该值为空时，将使用腾讯云自动生成的密钥 KMS-CDB。
+        # @param KeyId: <p>用户自定义密钥 ID，CMK 唯一标识符。该值为空时，将使用腾讯云自动生成的密钥 KMS-CDB。</p>
         # @type KeyId: String
-        # @param KeyRegion: 用户自定义密钥的存储地域。如：ap-guangzhou 。KeyId 不为空时，该参数必填。
+        # @param KeyRegion: <p>用户自定义密钥的存储地域。如：ap-guangzhou 。KeyId 不为空时，该参数必填。</p>
         # @type KeyRegion: String
 
         attr_accessor :InstanceId, :KeyId, :KeyRegion
@@ -13918,12 +13922,15 @@ module TencentCloud
         # @type First: :class:`Tencentcloud::Cdb.v20170320.models.SlaveInstanceInfo`
         # @param Second: <p>第二备机信息</p>
         # @type Second: :class:`Tencentcloud::Cdb.v20170320.models.SlaveInstanceInfo`
+        # @param Third: <p>第三备机信息</p>
+        # @type Third: :class:`Tencentcloud::Cdb.v20170320.models.SlaveInstanceInfo`
 
-        attr_accessor :First, :Second
+        attr_accessor :First, :Second, :Third
 
-        def initialize(first=nil, second=nil)
+        def initialize(first=nil, second=nil, third=nil)
           @First = first
           @Second = second
+          @Third = third
         end
 
         def deserialize(params)
@@ -13934,6 +13941,10 @@ module TencentCloud
           unless params['Second'].nil?
             @Second = SlaveInstanceInfo.new
             @Second.deserialize(params['Second'])
+          end
+          unless params['Third'].nil?
+            @Third = SlaveInstanceInfo.new
+            @Third.deserialize(params['Third'])
           end
         end
       end

@@ -834,19 +834,23 @@ module TencentCloud
         # @type InstanceId: String
         # @param Group: <p>消费组</p>
         # @type Group: String
+        # @param Label: <p>消费者标签</p><p>传入 Label 表示只删除该标签路由，不传表示删除完整路由</p>
+        # @type Label: String
 
-        attr_accessor :Topic, :InstanceId, :Group
+        attr_accessor :Topic, :InstanceId, :Group, :Label
 
-        def initialize(topic=nil, instanceid=nil, group=nil)
+        def initialize(topic=nil, instanceid=nil, group=nil, label=nil)
           @Topic = topic
           @InstanceId = instanceid
           @Group = group
+          @Label = label
         end
 
         def deserialize(params)
           @Topic = params['Topic']
           @InstanceId = params['InstanceId']
           @Group = params['Group']
+          @Label = params['Label']
         end
       end
 

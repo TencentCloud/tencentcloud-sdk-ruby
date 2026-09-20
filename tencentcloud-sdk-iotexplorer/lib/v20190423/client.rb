@@ -2155,6 +2155,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询 TWeSee 人员关联的云存事件及 AI 任务
+
+        # @param request: Request instance for DescribeCloudStorageEventsByTWeSeePerson.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DescribeCloudStorageEventsByTWeSeePersonRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DescribeCloudStorageEventsByTWeSeePersonResponse`
+        def DescribeCloudStorageEventsByTWeSeePerson(request)
+          body = send_request('DescribeCloudStorageEventsByTWeSeePerson', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloudStorageEventsByTWeSeePersonResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 拉取云存事件列表
 
         # @param request: Request instance for DescribeCloudStorageEventsWithAITasks.
@@ -3259,6 +3283,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询 TWeSee 直传信息
+
+        # @param request: Request instance for DescribeTWeSeeDirectUploadInfo.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DescribeTWeSeeDirectUploadInfoRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DescribeTWeSeeDirectUploadInfoResponse`
+        def DescribeTWeSeeDirectUploadInfo(request)
+          body = send_request('DescribeTWeSeeDirectUploadInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTWeSeeDirectUploadInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询指定 TWeSee 人脸详情。
 
         # @param request: Request instance for DescribeTWeSeeFace.
@@ -3655,6 +3703,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeVideoLicenseResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 拉取云存日期
+
+        # @param request: Request instance for DescribeVodCloudStorageDate.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DescribeVodCloudStorageDateRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DescribeVodCloudStorageDateResponse`
+        def DescribeVodCloudStorageDate(request)
+          body = send_request('DescribeVodCloudStorageDate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeVodCloudStorageDateResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -4303,6 +4375,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = GetTopicRuleListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取云存事件列表
+
+        # @param request: Request instance for GetVodCloudStorageEventList.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::GetVodCloudStorageEventListRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::GetVodCloudStorageEventListResponse`
+        def GetVodCloudStorageEventList(request)
+          body = send_request('GetVodCloudStorageEventList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetVodCloudStorageEventListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取云存时间轴视频列表
+
+        # @param request: Request instance for GetVodCloudStorageVideoList.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::GetVodCloudStorageVideoListRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::GetVodCloudStorageVideoListResponse`
+        def GetVodCloudStorageVideoList(request)
+          body = send_request('GetVodCloudStorageVideoList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetVodCloudStorageVideoListResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -16410,11 +16410,11 @@ module TencentCloud
 
       # 修改数据库内核版本任务信息
       class ModifyDbVersionData < TencentCloud::Common::AbstractModel
-        # @param OldVersion: 修改前版本
+        # @param OldVersion: <p>修改前版本</p>
         # @type OldVersion: String
-        # @param NewVersion: 修改后版本
+        # @param NewVersion: <p>修改后版本</p>
         # @type NewVersion: String
-        # @param UpgradeType: 升级方式
+        # @param UpgradeType: <p>升级方式</p>
         # @type UpgradeType: String
 
         attr_accessor :OldVersion, :NewVersion, :UpgradeType
@@ -22715,11 +22715,11 @@ module TencentCloud
 
       # UpgradeClusterVersion请求参数结构体
       class UpgradeClusterVersionRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群id
+        # @param ClusterId: <p>集群id</p>
         # @type ClusterId: String
-        # @param CynosVersion: 内核版本
+        # @param CynosVersion: <p>内核版本</p>
         # @type CynosVersion: String
-        # @param UpgradeType: 升级时间类型，可选：upgradeImmediate,upgradeInMaintain
+        # @param UpgradeType: <p>升级时间类型，可选：upgradeImmediate,upgradeInMaintain</p>
         # @type UpgradeType: String
 
         attr_accessor :ClusterId, :CynosVersion, :UpgradeType
@@ -22739,20 +22739,24 @@ module TencentCloud
 
       # UpgradeClusterVersion返回参数结构体
       class UpgradeClusterVersionResponse < TencentCloud::Common::AbstractModel
-        # @param FlowId: 异步任务id
+        # @param FlowId: <p>异步任务id</p>
         # @type FlowId: Integer
+        # @param TaskId: <p>任务 ID</p>
+        # @type TaskId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :FlowId, :RequestId
+        attr_accessor :FlowId, :TaskId, :RequestId
 
-        def initialize(flowid=nil, requestid=nil)
+        def initialize(flowid=nil, taskid=nil, requestid=nil)
           @FlowId = flowid
+          @TaskId = taskid
           @RequestId = requestid
         end
 
         def deserialize(params)
           @FlowId = params['FlowId']
+          @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end
       end

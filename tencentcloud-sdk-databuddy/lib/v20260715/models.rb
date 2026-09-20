@@ -17,6 +17,65 @@
 module TencentCloud
   module Databuddy
     module V20260715
+      # AddConsoleUsers请求参数结构体
+      class AddConsoleUsersRequest < TencentCloud::Common::AbstractModel
+        # @param UserUins: <p>用户 UIN 列表，单次最多100个</p>
+        # @type UserUins: Array
+        # @param RoleIds: <p>角色 ID 列表</p><p>枚举值：</p><ul><li>2001： 控制台管理员</li><li>2002： 控制台成员</li></ul>
+        # @type RoleIds: Array
+
+        attr_accessor :UserUins, :RoleIds
+
+        def initialize(useruins=nil, roleids=nil)
+          @UserUins = useruins
+          @RoleIds = roleids
+        end
+
+        def deserialize(params)
+          @UserUins = params['UserUins']
+          @RoleIds = params['RoleIds']
+        end
+      end
+
+      # AddConsoleUsers返回参数结构体
+      class AddConsoleUsersResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>返回结果</p>
+        # @type Data: :class:`Tencentcloud::Databuddy.v20260715.models.AddConsoleUsersRsp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = AddConsoleUsersRsp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 添加控制台用户响应
+      class AddConsoleUsersRsp < TencentCloud::Common::AbstractModel
+        # @param Status: 操作是否成功
+        # @type Status: Boolean
+
+        attr_accessor :Status
+
+        def initialize(status=nil)
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+        end
+      end
+
       # 高级依赖配置
       class AdvancedDependencyConfig < TencentCloud::Common::AbstractModel
         # @param Operator: 逻辑运算符号OR / AND
@@ -207,6 +266,86 @@ module TencentCloud
           @JobId = params['JobId']
           @OperationId = params['OperationId']
           @Status = params['Status']
+        end
+      end
+
+      # 通用错误信息
+      class CommonFailItem < TencentCloud::Common::AbstractModel
+        # @param Item: <p>uin或者groupId</p>
+        # @type Item: String
+        # @param FailReason: <p>错误信息</p>
+        # @type FailReason: String
+
+        attr_accessor :Item, :FailReason
+
+        def initialize(item=nil, failreason=nil)
+          @Item = item
+          @FailReason = failreason
+        end
+
+        def deserialize(params)
+          @Item = params['Item']
+          @FailReason = params['FailReason']
+        end
+      end
+
+      # 控制台用户信息（规范化，与内部 UserDetailInfo 解耦）
+      class ConsoleUserInfo < TencentCloud::Common::AbstractModel
+        # @param UserUin: 用户 UIN
+        # @type UserUin: String
+        # @param UserName: 用户名
+        # @type UserName: String
+        # @param Nickname: 昵称
+        # @type Nickname: String
+        # @param Roles: 角色列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Roles: Array
+        # @param UserSource: 用户来源，group：用户组、user:用户
+        # @type UserSource: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间
+        # @type UpdateTime: String
+        # @param IsOwner: 是否主账号
+        # @type IsOwner: Boolean
+        # @param UserTag: 0: 普通用户 1: entraId用户
+        # @type UserTag: Integer
+        # @param IsAdmin: 是否具有 admin 权限的子账号
+        # @type IsAdmin: Boolean
+
+        attr_accessor :UserUin, :UserName, :Nickname, :Roles, :UserSource, :CreateTime, :UpdateTime, :IsOwner, :UserTag, :IsAdmin
+
+        def initialize(useruin=nil, username=nil, nickname=nil, roles=nil, usersource=nil, createtime=nil, updatetime=nil, isowner=nil, usertag=nil, isadmin=nil)
+          @UserUin = useruin
+          @UserName = username
+          @Nickname = nickname
+          @Roles = roles
+          @UserSource = usersource
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @IsOwner = isowner
+          @UserTag = usertag
+          @IsAdmin = isadmin
+        end
+
+        def deserialize(params)
+          @UserUin = params['UserUin']
+          @UserName = params['UserName']
+          @Nickname = params['Nickname']
+          unless params['Roles'].nil?
+            @Roles = []
+            params['Roles'].each do |i|
+              rolebasicinfo_tmp = RoleBasicInfo.new
+              rolebasicinfo_tmp.deserialize(i)
+              @Roles << rolebasicinfo_tmp
+            end
+          end
+          @UserSource = params['UserSource']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @IsOwner = params['IsOwner']
+          @UserTag = params['UserTag']
+          @IsAdmin = params['IsAdmin']
         end
       end
 
@@ -1162,124 +1301,127 @@ module TencentCloud
 
       # GetWorkflowTaskRunRsp
       class GetWorkflowTaskRunRsp < TencentCloud::Common::AbstractModel
-        # @param TaskName: 任务名称
+        # @param TaskName: <p>任务名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskName: String
-        # @param WorkflowTaskRunId: 任务运行ID
+        # @param WorkflowTaskRunId: <p>任务运行ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkflowTaskRunId: String
-        # @param RunState: 运行状态。取值参考工作流任务运行状态枚举，如 Pending / Running / Succeeded / Failed / Killed
+        # @param RunState: <p>运行状态。取值参考工作流任务运行状态枚举，如 Pending / Running / Succeeded / Failed / Killed</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunState: String
-        # @param WorkspaceId: 工作空间ID
+        # @param WorkspaceId: <p>工作空间ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkspaceId: String
-        # @param WorkflowId: 工作流ID
+        # @param WorkflowId: <p>工作流ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkflowId: String
-        # @param WorkflowRunId: 工作流运行ID
+        # @param WorkflowRunId: <p>工作流运行ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkflowRunId: String
-        # @param TaskId: 任务ID
+        # @param TaskId: <p>任务ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: String
-        # @param TaskTypeName: 任务类型名称
+        # @param TaskTypeName: <p>任务类型名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskTypeName: String
-        # @param TaskVersionId: 任务版本ID
+        # @param TaskVersionId: <p>任务版本ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskVersionId: String
-        # @param TriggerType: 触发类型 (参考SchedulerTriggerType枚举)
+        # @param TriggerType: <p>触发类型 (参考SchedulerTriggerType枚举)</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TriggerType: String
-        # @param ResourceGroupId: 所属资源组ID
+        # @param ResourceGroupId: <p>所属资源组ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceGroupId: String
-        # @param ErrorCodeString: 错误码
+        # @param ErrorCodeString: <p>错误码</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorCodeString: String
-        # @param RunUserUin: 运行用户UIN
+        # @param RunUserUin: <p>运行用户UIN</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunUserUin: String
-        # @param RunUserName: 运行用户名称
+        # @param RunUserName: <p>运行用户名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunUserName: String
-        # @param CreateUserUin: 创建人UIN
+        # @param CreateUserUin: <p>创建人UIN</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateUserUin: String
-        # @param JobId: 执行平台执行ID
+        # @param JobId: <p>执行平台执行ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobId: String
-        # @param CreateTime: 创建时间，单位：毫秒时间戳
+        # @param CreateTime: <p>创建时间，单位：毫秒时间戳</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
-        # @param UpdateTime: 更新时间，单位：毫秒时间戳
+        # @param UpdateTime: <p>更新时间，单位：毫秒时间戳</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
-        # @param DependenceFinishedTime: 依赖任务完成时间，单位：毫秒时间戳
+        # @param DependenceFinishedTime: <p>依赖任务完成时间，单位：毫秒时间戳</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DependenceFinishedTime: String
-        # @param RunStartTime: 运行开始时间，单位：毫秒时间戳
+        # @param RunStartTime: <p>运行开始时间，单位：毫秒时间戳</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunStartTime: String
-        # @param RunEndTime: 运行结束时间，单位：毫秒时间戳
+        # @param RunEndTime: <p>运行结束时间，单位：毫秒时间戳</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunEndTime: String
-        # @param RunCostTime: 运行时长，单位：秒
+        # @param RunCostTime: <p>运行时长，单位：秒</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunCostTime: String
-        # @param WaitTime: 等待时长（依赖就绪到开始运行的等待耗时），单位：秒
+        # @param WaitTime: <p>等待时长（依赖就绪到开始运行的等待耗时），单位：秒</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WaitTime: String
-        # @param IssueTime: 下发执行平台时间，单位：毫秒时间戳
+        # @param IssueTime: <p>下发执行平台时间，单位：毫秒时间戳</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IssueTime: String
-        # @param TimeZone: 时区
+        # @param TimeZone: <p>时区</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeZone: String
-        # @param DependOnList: 依赖上游任务ID列表
+        # @param DependOnList: <p>依赖上游任务ID列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DependOnList: Array
-        # @param RunParams: 运行参数
+        # @param RunParams: <p>运行参数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunParams: String
-        # @param TaskTypeExtensions: 任务扩展信息，包含脚本路径
+        # @param TaskTypeExtensions: <p>任务扩展信息，包含脚本路径</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskTypeExtensions: String
-        # @param LeftCoordinate: 任务X坐标
+        # @param LeftCoordinate: <p>任务X坐标</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LeftCoordinate: Float
-        # @param TopCoordinate: 任务Y坐标
+        # @param TopCoordinate: <p>任务Y坐标</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopCoordinate: Float
-        # @param RetryTimes: 重试次数
+        # @param RetryTimes: <p>重试次数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RetryTimes: Integer
-        # @param WorkflowName: 工作流名称
+        # @param WorkflowName: <p>工作流名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkflowName: String
-        # @param RerunTimes: 重跑次数
+        # @param RerunTimes: <p>重跑次数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RerunTimes: Integer
-        # @param IsLatestRun: 是否最新一次运行
+        # @param IsLatestRun: <p>是否最新一次运行</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsLatestRun: Boolean
-        # @param ResourceGroupInfoList: 资源组信息列表
+        # @param ResourceGroupInfoList: <p>资源组信息列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceGroupInfoList: Array
-        # @param ErrorMessage: 错误消息
+        # @param ErrorMessage: <p>错误消息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMessage: String
-        # @param RunResult: 运行结果
+        # @param RunResult: <p>运行结果</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunResult: String
-        # @param InnerWorkflowTaskRun: 内嵌工作流任务运行详情（仅限 FOR_EACH 任务，其他任务类型不返回该字段）
+        # @param InnerWorkflowTaskRun: <p>内嵌工作流任务运行详情（仅限 FOR_EACH 任务，其他任务类型不返回该字段）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InnerWorkflowTaskRun: :class:`Tencentcloud::Databuddy.v20260715.models.InnerWorkflowTaskRun`
+        # @param ScheduledTime: <p>计划调度时间</p><p>参数格式：毫秒时间戳（UTC）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScheduledTime: String
 
-        attr_accessor :TaskName, :WorkflowTaskRunId, :RunState, :WorkspaceId, :WorkflowId, :WorkflowRunId, :TaskId, :TaskTypeName, :TaskVersionId, :TriggerType, :ResourceGroupId, :ErrorCodeString, :RunUserUin, :RunUserName, :CreateUserUin, :JobId, :CreateTime, :UpdateTime, :DependenceFinishedTime, :RunStartTime, :RunEndTime, :RunCostTime, :WaitTime, :IssueTime, :TimeZone, :DependOnList, :RunParams, :TaskTypeExtensions, :LeftCoordinate, :TopCoordinate, :RetryTimes, :WorkflowName, :RerunTimes, :IsLatestRun, :ResourceGroupInfoList, :ErrorMessage, :RunResult, :InnerWorkflowTaskRun
+        attr_accessor :TaskName, :WorkflowTaskRunId, :RunState, :WorkspaceId, :WorkflowId, :WorkflowRunId, :TaskId, :TaskTypeName, :TaskVersionId, :TriggerType, :ResourceGroupId, :ErrorCodeString, :RunUserUin, :RunUserName, :CreateUserUin, :JobId, :CreateTime, :UpdateTime, :DependenceFinishedTime, :RunStartTime, :RunEndTime, :RunCostTime, :WaitTime, :IssueTime, :TimeZone, :DependOnList, :RunParams, :TaskTypeExtensions, :LeftCoordinate, :TopCoordinate, :RetryTimes, :WorkflowName, :RerunTimes, :IsLatestRun, :ResourceGroupInfoList, :ErrorMessage, :RunResult, :InnerWorkflowTaskRun, :ScheduledTime
 
-        def initialize(taskname=nil, workflowtaskrunid=nil, runstate=nil, workspaceid=nil, workflowid=nil, workflowrunid=nil, taskid=nil, tasktypename=nil, taskversionid=nil, triggertype=nil, resourcegroupid=nil, errorcodestring=nil, runuseruin=nil, runusername=nil, createuseruin=nil, jobid=nil, createtime=nil, updatetime=nil, dependencefinishedtime=nil, runstarttime=nil, runendtime=nil, runcosttime=nil, waittime=nil, issuetime=nil, timezone=nil, dependonlist=nil, runparams=nil, tasktypeextensions=nil, leftcoordinate=nil, topcoordinate=nil, retrytimes=nil, workflowname=nil, reruntimes=nil, islatestrun=nil, resourcegroupinfolist=nil, errormessage=nil, runresult=nil, innerworkflowtaskrun=nil)
+        def initialize(taskname=nil, workflowtaskrunid=nil, runstate=nil, workspaceid=nil, workflowid=nil, workflowrunid=nil, taskid=nil, tasktypename=nil, taskversionid=nil, triggertype=nil, resourcegroupid=nil, errorcodestring=nil, runuseruin=nil, runusername=nil, createuseruin=nil, jobid=nil, createtime=nil, updatetime=nil, dependencefinishedtime=nil, runstarttime=nil, runendtime=nil, runcosttime=nil, waittime=nil, issuetime=nil, timezone=nil, dependonlist=nil, runparams=nil, tasktypeextensions=nil, leftcoordinate=nil, topcoordinate=nil, retrytimes=nil, workflowname=nil, reruntimes=nil, islatestrun=nil, resourcegroupinfolist=nil, errormessage=nil, runresult=nil, innerworkflowtaskrun=nil, scheduledtime=nil)
           @TaskName = taskname
           @WorkflowTaskRunId = workflowtaskrunid
           @RunState = runstate
@@ -1318,6 +1460,7 @@ module TencentCloud
           @ErrorMessage = errormessage
           @RunResult = runresult
           @InnerWorkflowTaskRun = innerworkflowtaskrun
+          @ScheduledTime = scheduledtime
         end
 
         def deserialize(params)
@@ -1369,6 +1512,7 @@ module TencentCloud
             @InnerWorkflowTaskRun = InnerWorkflowTaskRun.new
             @InnerWorkflowTaskRun.deserialize(params['InnerWorkflowTaskRun'])
           end
+          @ScheduledTime = params['ScheduledTime']
         end
       end
 
@@ -1704,6 +1848,108 @@ module TencentCloud
           @LabelValue = params['LabelValue']
           @LabelKeyId = params['LabelKeyId']
           @LabelValueId = params['LabelValueId']
+        end
+      end
+
+      # ListConsoleUsers请求参数结构体
+      class ListConsoleUsersRequest < TencentCloud::Common::AbstractModel
+        # @param PageNumber: <p>页码，从1开始，默认1</p>
+        # @type PageNumber: Integer
+        # @param PageSize: <p>每页大小，默认10，最小10，最大200</p>
+        # @type PageSize: Integer
+        # @param UserKeyword: <p>用户名称与 UIN 模糊匹配</p>
+        # @type UserKeyword: String
+        # @param RoleIds: <p>用于过滤角色关联的用户</p><p>枚举值：</p><ul><li>2001： 控制台管理员</li><li>2002： 控制台成员</li></ul>
+        # @type RoleIds: Array
+        # @param OrderBys: <p>多字段排序，如 [{Name: &#39;CreateTime&#39;, Direction: &#39;Desc&#39;}, {Name: &#39;UserName&#39;, Direction: &#39;Asc&#39;}]，默认按创建时间降序</p>
+        # @type OrderBys: Array
+
+        attr_accessor :PageNumber, :PageSize, :UserKeyword, :RoleIds, :OrderBys
+
+        def initialize(pagenumber=nil, pagesize=nil, userkeyword=nil, roleids=nil, orderbys=nil)
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @UserKeyword = userkeyword
+          @RoleIds = roleids
+          @OrderBys = orderbys
+        end
+
+        def deserialize(params)
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @UserKeyword = params['UserKeyword']
+          @RoleIds = params['RoleIds']
+          unless params['OrderBys'].nil?
+            @OrderBys = []
+            params['OrderBys'].each do |i|
+              orderby_tmp = OrderBy.new
+              orderby_tmp.deserialize(i)
+              @OrderBys << orderby_tmp
+            end
+          end
+        end
+      end
+
+      # ListConsoleUsers返回参数结构体
+      class ListConsoleUsersResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>控制台用户列表</p>
+        # @type Data: :class:`Tencentcloud::Databuddy.v20260715.models.ListConsoleUsersRsp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ListConsoleUsersRsp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 查询控制台用户列表响应
+      class ListConsoleUsersRsp < TencentCloud::Common::AbstractModel
+        # @param Items: 用户列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+        # @param PageNumber: 当前页码
+        # @type PageNumber: Integer
+        # @param PageSize: 每页大小
+        # @type PageSize: Integer
+        # @param TotalCount: 总记录数
+        # @type TotalCount: Integer
+        # @param TotalPageNumber: 总页数
+        # @type TotalPageNumber: Integer
+
+        attr_accessor :Items, :PageNumber, :PageSize, :TotalCount, :TotalPageNumber
+
+        def initialize(items=nil, pagenumber=nil, pagesize=nil, totalcount=nil, totalpagenumber=nil)
+          @Items = items
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @TotalCount = totalcount
+          @TotalPageNumber = totalpagenumber
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              consoleuserinfo_tmp = ConsoleUserInfo.new
+              consoleuserinfo_tmp.deserialize(i)
+              @Items << consoleuserinfo_tmp
+            end
+          end
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @TotalCount = params['TotalCount']
+          @TotalPageNumber = params['TotalPageNumber']
         end
       end
 
@@ -2211,6 +2457,76 @@ module TencentCloud
         end
       end
 
+      # RemoveConsoleUsers请求参数结构体
+      class RemoveConsoleUsersRequest < TencentCloud::Common::AbstractModel
+        # @param UserUins: <p>必填，待移除的用户 UIN 列表，单次最多10个</p>
+        # @type UserUins: Array
+
+        attr_accessor :UserUins
+
+        def initialize(useruins=nil)
+          @UserUins = useruins
+        end
+
+        def deserialize(params)
+          @UserUins = params['UserUins']
+        end
+      end
+
+      # RemoveConsoleUsers返回参数结构体
+      class RemoveConsoleUsersResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>批量移除控制台用户结果</p>
+        # @type Data: :class:`Tencentcloud::Databuddy.v20260715.models.RemoveConsoleUsersRsp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = RemoveConsoleUsersRsp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 批量移除控制台用户响应
+      class RemoveConsoleUsersRsp < TencentCloud::Common::AbstractModel
+        # @param Status: <p>请求已完成处理；即使部分失败也为 true，逐个结果以 SuccessUins/FailItems 为准</p>
+        # @type Status: Boolean
+        # @param SuccessUins: <p>删除成功的用户 UIN 列表</p>
+        # @type SuccessUins: Array
+        # @param FailItems: <p>失败项列表（Item 为用户 UIN，FailReason 为失败原因）</p>
+        # @type FailItems: Array
+
+        attr_accessor :Status, :SuccessUins, :FailItems
+
+        def initialize(status=nil, successuins=nil, failitems=nil)
+          @Status = status
+          @SuccessUins = successuins
+          @FailItems = failitems
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @SuccessUins = params['SuccessUins']
+          unless params['FailItems'].nil?
+            @FailItems = []
+            params['FailItems'].each do |i|
+              commonfailitem_tmp = CommonFailItem.new
+              commonfailitem_tmp.deserialize(i)
+              @FailItems << commonfailitem_tmp
+            end
+          end
+        end
+      end
+
       # RerunWorkflowRun请求参数结构体
       class RerunWorkflowRunRequest < TencentCloud::Common::AbstractModel
         # @param WorkspaceId: <p>工作空间ID，可通过 ListWorkspaces 获取。必填</p>
@@ -2225,16 +2541,19 @@ module TencentCloud
         # @type AdvancedParams: Array
         # @param TaskIds: <p>本次需要重跑指定的任务ID集合，可通过 ListWorkflowTasks 获取，不传默认重跑该工作流下所有任务</p>
         # @type TaskIds: Array
+        # @param ScheduledTimeConfig: <p>计划调度时间列表配置</p>
+        # @type ScheduledTimeConfig: :class:`Tencentcloud::Databuddy.v20260715.models.ScheduledTimeConfig`
 
-        attr_accessor :WorkspaceId, :WorkflowId, :WorkflowRunId, :RunType, :AdvancedParams, :TaskIds
+        attr_accessor :WorkspaceId, :WorkflowId, :WorkflowRunId, :RunType, :AdvancedParams, :TaskIds, :ScheduledTimeConfig
 
-        def initialize(workspaceid=nil, workflowid=nil, workflowrunid=nil, runtype=nil, advancedparams=nil, taskids=nil)
+        def initialize(workspaceid=nil, workflowid=nil, workflowrunid=nil, runtype=nil, advancedparams=nil, taskids=nil, scheduledtimeconfig=nil)
           @WorkspaceId = workspaceid
           @WorkflowId = workflowid
           @WorkflowRunId = workflowrunid
           @RunType = runtype
           @AdvancedParams = advancedparams
           @TaskIds = taskids
+          @ScheduledTimeConfig = scheduledtimeconfig
         end
 
         def deserialize(params)
@@ -2251,6 +2570,10 @@ module TencentCloud
             end
           end
           @TaskIds = params['TaskIds']
+          unless params['ScheduledTimeConfig'].nil?
+            @ScheduledTimeConfig = ScheduledTimeConfig.new
+            @ScheduledTimeConfig.deserialize(params['ScheduledTimeConfig'])
+          end
         end
       end
 
@@ -2316,6 +2639,46 @@ module TencentCloud
         end
       end
 
+      # 角色基础信息
+      class RoleBasicInfo < TencentCloud::Common::AbstractModel
+        # @param Id: <p>角色ID</p>
+        # @type Id: String
+        # @param Name: <p>角色名称</p>
+        # @type Name: String
+        # @param Description: <p>角色描述</p>
+        # @type Description: String
+        # @param DisplayName: <p>显示名称</p>
+        # @type DisplayName: String
+        # @param RoleType: <p>角色类型</p>
+        # @type RoleType: String
+        # @param Source: <p>角色来源，参考 web_enum_standard.proto -&gt; RoleSource：0=未指定 1=用户直绑 2=用户组继承 3=两者都有</p>
+        # @type Source: Integer
+        # @param GroupNames: <p>继承来源的用户组名称列表，Source=1 时为空</p>
+        # @type GroupNames: Array
+
+        attr_accessor :Id, :Name, :Description, :DisplayName, :RoleType, :Source, :GroupNames
+
+        def initialize(id=nil, name=nil, description=nil, displayname=nil, roletype=nil, source=nil, groupnames=nil)
+          @Id = id
+          @Name = name
+          @Description = description
+          @DisplayName = displayname
+          @RoleType = roletype
+          @Source = source
+          @GroupNames = groupnames
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @Description = params['Description']
+          @DisplayName = params['DisplayName']
+          @RoleType = params['RoleType']
+          @Source = params['Source']
+          @GroupNames = params['GroupNames']
+        end
+      end
+
       # 单个操作项的执行结果。 由 RunWorkflow / RerunWorkflowRun / KillWorkflowRun 共用： RunWorkflow—— WorkflowId / WorkflowName 有值，WorkflowRunId 为空 RerunWorkflowRun —— WorkflowId / WorkflowName / WorkflowRunId 均有值 KillWorkflowRun  —— WorkflowId / WorkflowName / WorkflowRunId 均有值
       class RunActionBrief < TencentCloud::Common::AbstractModel
         # @param WorkflowId: 工作流ID
@@ -2372,16 +2735,19 @@ module TencentCloud
         # @type TaskIds: Array
         # @param IdempotencyToken: <p>幂等令牌。非必填，相同令牌的重复请求只会触发一次运行</p>
         # @type IdempotencyToken: String
+        # @param ScheduledTimeConfig: <p>计划调度时间列表配置</p>
+        # @type ScheduledTimeConfig: :class:`Tencentcloud::Databuddy.v20260715.models.ScheduledTimeConfig`
 
-        attr_accessor :WorkspaceId, :WorkflowId, :RunType, :AdvancedParams, :TaskIds, :IdempotencyToken
+        attr_accessor :WorkspaceId, :WorkflowId, :RunType, :AdvancedParams, :TaskIds, :IdempotencyToken, :ScheduledTimeConfig
 
-        def initialize(workspaceid=nil, workflowid=nil, runtype=nil, advancedparams=nil, taskids=nil, idempotencytoken=nil)
+        def initialize(workspaceid=nil, workflowid=nil, runtype=nil, advancedparams=nil, taskids=nil, idempotencytoken=nil, scheduledtimeconfig=nil)
           @WorkspaceId = workspaceid
           @WorkflowId = workflowid
           @RunType = runtype
           @AdvancedParams = advancedparams
           @TaskIds = taskids
           @IdempotencyToken = idempotencytoken
+          @ScheduledTimeConfig = scheduledtimeconfig
         end
 
         def deserialize(params)
@@ -2398,6 +2764,10 @@ module TencentCloud
           end
           @TaskIds = params['TaskIds']
           @IdempotencyToken = params['IdempotencyToken']
+          unless params['ScheduledTimeConfig'].nil?
+            @ScheduledTimeConfig = ScheduledTimeConfig.new
+            @ScheduledTimeConfig.deserialize(params['ScheduledTimeConfig'])
+          end
         end
       end
 
@@ -2449,6 +2819,43 @@ module TencentCloud
           @LabelKey = params['LabelKey']
           @LabelValue = params['LabelValue']
           @Count = params['Count']
+        end
+      end
+
+      # 计划调度时间配置
+      class ScheduledTimeConfig < TencentCloud::Common::AbstractModel
+        # @param ScheduledTimeZone: <p>调度时区，IANA 时区 ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScheduledTimeZone: String
+        # @param StartTime: <p>调度生效开始时间</p><p>参数格式：毫秒时间戳（UTC）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: String
+        # @param EndTime: <p>调度生效结束时间</p><p>参数格式：毫秒时间戳（UTC）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
+        # @param CycleType: <p>周期类型</p><p>枚举值：</p><ul><li>DAY_CYCLE： 天</li><li>HOUR_CYCLE： 小时</li><li>MINUTE_CYCLE： 分钟</li><li>WEEK_CYCLE： 周</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CycleType: String
+        # @param CycleNum: <p>周期步长</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CycleNum: Integer
+
+        attr_accessor :ScheduledTimeZone, :StartTime, :EndTime, :CycleType, :CycleNum
+
+        def initialize(scheduledtimezone=nil, starttime=nil, endtime=nil, cycletype=nil, cyclenum=nil)
+          @ScheduledTimeZone = scheduledtimezone
+          @StartTime = starttime
+          @EndTime = endtime
+          @CycleType = cycletype
+          @CycleNum = cyclenum
+        end
+
+        def deserialize(params)
+          @ScheduledTimeZone = params['ScheduledTimeZone']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @CycleType = params['CycleType']
+          @CycleNum = params['CycleNum']
         end
       end
 
@@ -2811,6 +3218,65 @@ module TencentCloud
       class UnbindWorkflowBundleRsp < TencentCloud::Common::AbstractModel
         # @param Status: 操作状态，true 表示成功
         # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Boolean
+
+        attr_accessor :Status
+
+        def initialize(status=nil)
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+        end
+      end
+
+      # UpdateConsoleUsers请求参数结构体
+      class UpdateConsoleUsersRequest < TencentCloud::Common::AbstractModel
+        # @param UserUins: <p>用户 UIN 列表，单次最多100个</p>
+        # @type UserUins: Array
+        # @param RoleIds: <p>角色 ID 列表</p><p>枚举值：</p><ul><li>2001： 控制台管理员</li><li>2002： 控制台成员</li></ul>
+        # @type RoleIds: Array
+
+        attr_accessor :UserUins, :RoleIds
+
+        def initialize(useruins=nil, roleids=nil)
+          @UserUins = useruins
+          @RoleIds = roleids
+        end
+
+        def deserialize(params)
+          @UserUins = params['UserUins']
+          @RoleIds = params['RoleIds']
+        end
+      end
+
+      # UpdateConsoleUsers返回参数结构体
+      class UpdateConsoleUsersResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>返回结果</p>
+        # @type Data: :class:`Tencentcloud::Databuddy.v20260715.models.UpdateConsoleUsersRsp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = UpdateConsoleUsersRsp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 修改控制台用户响应
+      class UpdateConsoleUsersRsp < TencentCloud::Common::AbstractModel
+        # @param Status: 操作是否成功
         # @type Status: Boolean
 
         attr_accessor :Status
@@ -3382,106 +3848,109 @@ module TencentCloud
 
       # 工作流运行信息
       class WorkflowRun < TencentCloud::Common::AbstractModel
-        # @param AppId: 主账号ID
+        # @param AppId: <p>主账号ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: String
-        # @param WorkflowName: 工作流名称
+        # @param WorkflowName: <p>工作流名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkflowName: String
-        # @param WorkflowId: 工作流ID
+        # @param WorkflowId: <p>工作流ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkflowId: String
-        # @param WorkflowRunId: 工作流运行ID
+        # @param WorkflowRunId: <p>工作流运行ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkflowRunId: String
-        # @param WorkspaceId: 工作空间ID
+        # @param WorkspaceId: <p>工作空间ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkspaceId: String
-        # @param TriggerType: 触发方式，Scheduler、ManualTrigger、Event (参考SchedulerTriggerType)
+        # @param TriggerType: <p>触发方式，Scheduler、ManualTrigger、Event (参考SchedulerTriggerType)</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TriggerType: String
-        # @param RunStartTime: 运行开始时间，单位：毫秒时间戳
+        # @param RunStartTime: <p>运行开始时间，单位：毫秒时间戳</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunStartTime: String
-        # @param PendingStartTime: pending 状态开始时间，单位：毫秒时间戳
+        # @param PendingStartTime: <p>pending 状态开始时间，单位：毫秒时间戳</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PendingStartTime: String
-        # @param QueueStartTime: queue 状态开始时间，单位：毫秒时间戳
+        # @param QueueStartTime: <p>queue 状态开始时间，单位：毫秒时间戳</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QueueStartTime: String
-        # @param RunEndTime: 运行结束时间，单位：毫秒时间戳
+        # @param RunEndTime: <p>运行结束时间，单位：毫秒时间戳</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunEndTime: String
-        # @param EndTime: 终态时间，运行进入终态时都有值，单位：毫秒时间戳
+        # @param EndTime: <p>终态时间，运行进入终态时都有值，单位：毫秒时间戳</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
-        # @param RunCostTime: 运行时长，单位：秒
+        # @param RunCostTime: <p>运行时长，单位：秒</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunCostTime: String
-        # @param QueueCostTime: 并发排队花费时间，单位：秒
+        # @param QueueCostTime: <p>并发排队花费时间，单位：秒</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QueueCostTime: String
-        # @param PendingCostTime: 等待资源花费时间，单位：秒
+        # @param PendingCostTime: <p>等待资源花费时间，单位：秒</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PendingCostTime: String
-        # @param RunState: 运行状态。取值参考工作流运行状态枚举，如 Pending / Running / Succeeded / Failed / Killed
+        # @param RunState: <p>运行状态。取值参考工作流运行状态枚举，如 Pending / Running / Succeeded / Failed / Killed</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunState: String
-        # @param ResourceGroupIds: 计算资源（任务的资源组ID集合）
+        # @param ResourceGroupIds: <p>计算资源（任务的资源组ID集合）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceGroupIds: Array
-        # @param RunUserUin: 运行用户UIN
+        # @param RunUserUin: <p>运行用户UIN</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunUserUin: String
-        # @param RunUserName: 运行用户名称
+        # @param RunUserName: <p>运行用户名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunUserName: String
-        # @param ErrorCodeString: 错误码
+        # @param ErrorCodeString: <p>错误码</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorCodeString: String
-        # @param WorkflowParams: 运行参数
+        # @param WorkflowParams: <p>运行参数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkflowParams: String
-        # @param WorkflowVersionId: 工作流版本ID
+        # @param WorkflowVersionId: <p>工作流版本ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkflowVersionId: String
-        # @param SupportRerun: 当前工作流是否支持重跑
+        # @param SupportRerun: <p>当前工作流是否支持重跑</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SupportRerun: Boolean
-        # @param CreateTime: 工作流运行创建时间，单位：毫秒时间戳
+        # @param CreateTime: <p>工作流运行创建时间，单位：毫秒时间戳</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
-        # @param RerunTimes: 重跑次数
+        # @param RerunTimes: <p>重跑次数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RerunTimes: Integer
-        # @param SelectedTaskIds: 运行的任务范围，任务ID列表
+        # @param SelectedTaskIds: <p>运行的任务范围，任务ID列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SelectedTaskIds: Array
-        # @param ResourceGroupInfoList: 资源组信息列表
+        # @param ResourceGroupInfoList: <p>资源组信息列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceGroupInfoList: Array
-        # @param LabelList: 标签列表
+        # @param LabelList: <p>标签列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LabelList: Array
-        # @param ParentWorkflowRunId: 父工作流运行ID 【由嵌套工作流触发独有】
+        # @param ParentWorkflowRunId: <p>父工作流运行ID 【由嵌套工作流触发独有】</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParentWorkflowRunId: String
-        # @param ParentWorkflowTaskRunId: 父工作流任务运行ID 【由嵌套工作流触发独有】
+        # @param ParentWorkflowTaskRunId: <p>父工作流任务运行ID 【由嵌套工作流触发独有】</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParentWorkflowTaskRunId: String
-        # @param ParentWorkflowTaskRunName: 父工作流任务运行名称 【由嵌套工作流触发独有】
+        # @param ParentWorkflowTaskRunName: <p>父工作流任务运行名称 【由嵌套工作流触发独有】</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParentWorkflowTaskRunName: String
-        # @param Permission: 权限信息
+        # @param Permission: <p>授权权限类型<br>PERMISSION_TYPE_UNSPECIFIED：未指定权限<br>MANAGE : 管理权限：包含所有操作权限<br>RUN : 运行权限：可执行实体<br>VIEW : 查看权限：可查看实体内容</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Permission: String
-        # @param AdvancedParameters: 工作流高级运行时用户填入的参数
+        # @param AdvancedParameters: <p>工作流高级运行时用户填入的参数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdvancedParameters: Array
+        # @param ScheduledTime: <p>计划调度时间</p><p>参数格式：毫秒时间戳（UTC）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScheduledTime: String
 
-        attr_accessor :AppId, :WorkflowName, :WorkflowId, :WorkflowRunId, :WorkspaceId, :TriggerType, :RunStartTime, :PendingStartTime, :QueueStartTime, :RunEndTime, :EndTime, :RunCostTime, :QueueCostTime, :PendingCostTime, :RunState, :ResourceGroupIds, :RunUserUin, :RunUserName, :ErrorCodeString, :WorkflowParams, :WorkflowVersionId, :SupportRerun, :CreateTime, :RerunTimes, :SelectedTaskIds, :ResourceGroupInfoList, :LabelList, :ParentWorkflowRunId, :ParentWorkflowTaskRunId, :ParentWorkflowTaskRunName, :Permission, :AdvancedParameters
+        attr_accessor :AppId, :WorkflowName, :WorkflowId, :WorkflowRunId, :WorkspaceId, :TriggerType, :RunStartTime, :PendingStartTime, :QueueStartTime, :RunEndTime, :EndTime, :RunCostTime, :QueueCostTime, :PendingCostTime, :RunState, :ResourceGroupIds, :RunUserUin, :RunUserName, :ErrorCodeString, :WorkflowParams, :WorkflowVersionId, :SupportRerun, :CreateTime, :RerunTimes, :SelectedTaskIds, :ResourceGroupInfoList, :LabelList, :ParentWorkflowRunId, :ParentWorkflowTaskRunId, :ParentWorkflowTaskRunName, :Permission, :AdvancedParameters, :ScheduledTime
 
-        def initialize(appid=nil, workflowname=nil, workflowid=nil, workflowrunid=nil, workspaceid=nil, triggertype=nil, runstarttime=nil, pendingstarttime=nil, queuestarttime=nil, runendtime=nil, endtime=nil, runcosttime=nil, queuecosttime=nil, pendingcosttime=nil, runstate=nil, resourcegroupids=nil, runuseruin=nil, runusername=nil, errorcodestring=nil, workflowparams=nil, workflowversionid=nil, supportrerun=nil, createtime=nil, reruntimes=nil, selectedtaskids=nil, resourcegroupinfolist=nil, labellist=nil, parentworkflowrunid=nil, parentworkflowtaskrunid=nil, parentworkflowtaskrunname=nil, permission=nil, advancedparameters=nil)
+        def initialize(appid=nil, workflowname=nil, workflowid=nil, workflowrunid=nil, workspaceid=nil, triggertype=nil, runstarttime=nil, pendingstarttime=nil, queuestarttime=nil, runendtime=nil, endtime=nil, runcosttime=nil, queuecosttime=nil, pendingcosttime=nil, runstate=nil, resourcegroupids=nil, runuseruin=nil, runusername=nil, errorcodestring=nil, workflowparams=nil, workflowversionid=nil, supportrerun=nil, createtime=nil, reruntimes=nil, selectedtaskids=nil, resourcegroupinfolist=nil, labellist=nil, parentworkflowrunid=nil, parentworkflowtaskrunid=nil, parentworkflowtaskrunname=nil, permission=nil, advancedparameters=nil, scheduledtime=nil)
           @AppId = appid
           @WorkflowName = workflowname
           @WorkflowId = workflowid
@@ -3514,6 +3983,7 @@ module TencentCloud
           @ParentWorkflowTaskRunName = parentworkflowtaskrunname
           @Permission = permission
           @AdvancedParameters = advancedparameters
+          @ScheduledTime = scheduledtime
         end
 
         def deserialize(params)
@@ -3570,6 +4040,7 @@ module TencentCloud
               @AdvancedParameters << advancedparameter_tmp
             end
           end
+          @ScheduledTime = params['ScheduledTime']
         end
       end
 
@@ -3954,10 +4425,13 @@ module TencentCloud
         # @param InnerTask: <p>内嵌工作流任务信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InnerTask: :class:`Tencentcloud::Databuddy.v20260715.models.InnerWorkflowTaskBrief`
+        # @param ScheduledTime: <p>计划调度时间</p><p>参数格式：毫秒时间戳，UTC</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScheduledTime: String
 
-        attr_accessor :TaskName, :WorkflowTaskRunId, :RunState, :WorkspaceId, :WorkflowId, :WorkflowRunId, :TaskId, :TaskTypeName, :TaskVersionId, :TriggerType, :ResourceGroupId, :ErrorCodeString, :RunUserUin, :RunUserName, :CreateUserUin, :JobId, :CreateTime, :UpdateTime, :DependenceFinishedTime, :RunStartTime, :RunEndTime, :RunCostTime, :WaitTime, :IssueTime, :TimeZone, :DependOnList, :RunParams, :TaskTypeExtensions, :LeftCoordinate, :TopCoordinate, :RetryTimes, :WorkflowName, :RerunTimes, :IsLatestRun, :ResourceGroupInfoList, :RunResult, :DependOnRunCondition, :AdvancedDependencyConfig, :InnerTask
+        attr_accessor :TaskName, :WorkflowTaskRunId, :RunState, :WorkspaceId, :WorkflowId, :WorkflowRunId, :TaskId, :TaskTypeName, :TaskVersionId, :TriggerType, :ResourceGroupId, :ErrorCodeString, :RunUserUin, :RunUserName, :CreateUserUin, :JobId, :CreateTime, :UpdateTime, :DependenceFinishedTime, :RunStartTime, :RunEndTime, :RunCostTime, :WaitTime, :IssueTime, :TimeZone, :DependOnList, :RunParams, :TaskTypeExtensions, :LeftCoordinate, :TopCoordinate, :RetryTimes, :WorkflowName, :RerunTimes, :IsLatestRun, :ResourceGroupInfoList, :RunResult, :DependOnRunCondition, :AdvancedDependencyConfig, :InnerTask, :ScheduledTime
 
-        def initialize(taskname=nil, workflowtaskrunid=nil, runstate=nil, workspaceid=nil, workflowid=nil, workflowrunid=nil, taskid=nil, tasktypename=nil, taskversionid=nil, triggertype=nil, resourcegroupid=nil, errorcodestring=nil, runuseruin=nil, runusername=nil, createuseruin=nil, jobid=nil, createtime=nil, updatetime=nil, dependencefinishedtime=nil, runstarttime=nil, runendtime=nil, runcosttime=nil, waittime=nil, issuetime=nil, timezone=nil, dependonlist=nil, runparams=nil, tasktypeextensions=nil, leftcoordinate=nil, topcoordinate=nil, retrytimes=nil, workflowname=nil, reruntimes=nil, islatestrun=nil, resourcegroupinfolist=nil, runresult=nil, dependonruncondition=nil, advanceddependencyconfig=nil, innertask=nil)
+        def initialize(taskname=nil, workflowtaskrunid=nil, runstate=nil, workspaceid=nil, workflowid=nil, workflowrunid=nil, taskid=nil, tasktypename=nil, taskversionid=nil, triggertype=nil, resourcegroupid=nil, errorcodestring=nil, runuseruin=nil, runusername=nil, createuseruin=nil, jobid=nil, createtime=nil, updatetime=nil, dependencefinishedtime=nil, runstarttime=nil, runendtime=nil, runcosttime=nil, waittime=nil, issuetime=nil, timezone=nil, dependonlist=nil, runparams=nil, tasktypeextensions=nil, leftcoordinate=nil, topcoordinate=nil, retrytimes=nil, workflowname=nil, reruntimes=nil, islatestrun=nil, resourcegroupinfolist=nil, runresult=nil, dependonruncondition=nil, advanceddependencyconfig=nil, innertask=nil, scheduledtime=nil)
           @TaskName = taskname
           @WorkflowTaskRunId = workflowtaskrunid
           @RunState = runstate
@@ -3997,6 +4471,7 @@ module TencentCloud
           @DependOnRunCondition = dependonruncondition
           @AdvancedDependencyConfig = advanceddependencyconfig
           @InnerTask = innertask
+          @ScheduledTime = scheduledtime
         end
 
         def deserialize(params)
@@ -4052,6 +4527,7 @@ module TencentCloud
             @InnerTask = InnerWorkflowTaskBrief.new
             @InnerTask.deserialize(params['InnerTask'])
           end
+          @ScheduledTime = params['ScheduledTime']
         end
       end
 

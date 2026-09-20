@@ -3214,6 +3214,69 @@ module TencentCloud
         end
       end
 
+      # BooleanResponse
+      class BooleanResponse < TencentCloud::Common::AbstractModel
+        # @param Success: 是否成功
+        # @type Success: Boolean
+        # @param Message: 失败返回提示信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: String
+        # @param BaselineId: 基线Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BaselineId: Integer
+        # @param Code: 错误码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Code: String
+
+        attr_accessor :Success, :Message, :BaselineId, :Code
+
+        def initialize(success=nil, message=nil, baselineid=nil, code=nil)
+          @Success = success
+          @Message = message
+          @BaselineId = baselineid
+          @Code = code
+        end
+
+        def deserialize(params)
+          @Success = params['Success']
+          @Message = params['Message']
+          @BaselineId = params['BaselineId']
+          @Code = params['Code']
+        end
+      end
+
+      # boundle 绑定/解绑操作资源信息
+      class BundleResource < TencentCloud::Common::AbstractModel
+        # @param ResourceType: <p>资源类型，取值范围：</p>
+        # <ul>
+        # <li>WORKFLOW 工作流</li>
+        # <li>TASK 任务</li>
+        # <li>CODE_TEMPLATE 代码模版</li>
+        # <li>RESOURCE 资源信息</li>
+        # <li>EVENT 事件</li>
+        # <li>PROJECT_PARAM 项目参数</li>
+        # </ul>
+        # @type ResourceType: String
+        # @param ResourceId: 资源id
+        # @type ResourceId: String
+        # @param ResourceName: 资源名称
+        # @type ResourceName: String
+
+        attr_accessor :ResourceType, :ResourceId, :ResourceName
+
+        def initialize(resourcetype=nil, resourceid=nil, resourcename=nil)
+          @ResourceType = resourcetype
+          @ResourceId = resourceid
+          @ResourceName = resourcename
+        end
+
+        def deserialize(params)
+          @ResourceType = params['ResourceType']
+          @ResourceId = params['ResourceId']
+          @ResourceName = params['ResourceName']
+        end
+      end
+
       # 实时任务同步速度 字节/s
       class BytesSpeed < TencentCloud::Common::AbstractModel
         # @param NodeType: 节点类型
@@ -43623,6 +43686,61 @@ module TencentCloud
           unless params['Data'].nil?
             @Data = ManualTriggerRecordOpsDto.new
             @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UnbindingResource请求参数结构体
+      class UnbindingResourceRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目id
+        # @type ProjectId: String
+        # @param ResourceList: 资源列表
+        # @type ResourceList: Array
+
+        attr_accessor :ProjectId, :ResourceList
+
+        def initialize(projectid=nil, resourcelist=nil)
+          @ProjectId = projectid
+          @ResourceList = resourcelist
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          unless params['ResourceList'].nil?
+            @ResourceList = []
+            params['ResourceList'].each do |i|
+              bundleresource_tmp = BundleResource.new
+              bundleresource_tmp.deserialize(i)
+              @ResourceList << bundleresource_tmp
+            end
+          end
+        end
+      end
+
+      # UnbindingResource返回参数结构体
+      class UnbindingResourceResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 操作结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              booleanresponse_tmp = BooleanResponse.new
+              booleanresponse_tmp.deserialize(i)
+              @Data << booleanresponse_tmp
+            end
           end
           @RequestId = params['RequestId']
         end

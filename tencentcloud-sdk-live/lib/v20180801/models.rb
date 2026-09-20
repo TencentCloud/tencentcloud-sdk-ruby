@@ -404,6 +404,178 @@ module TencentCloud
         end
       end
 
+      # 直播审核标签分组数据
+      class AuditGroupClassInfo < TencentCloud::Common::AbstractModel
+        # @param GroupClassName: <p>标签组分类中文名。</p>
+        # @type GroupClassName: String
+        # @param GroupClassEname: <p>标签组分类英文名。</p>
+        # @type GroupClassEname: String
+        # @param LabelGroupList: <p>标签组列表。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LabelGroupList: Array
+
+        attr_accessor :GroupClassName, :GroupClassEname, :LabelGroupList
+
+        def initialize(groupclassname=nil, groupclassename=nil, labelgrouplist=nil)
+          @GroupClassName = groupclassname
+          @GroupClassEname = groupclassename
+          @LabelGroupList = labelgrouplist
+        end
+
+        def deserialize(params)
+          @GroupClassName = params['GroupClassName']
+          @GroupClassEname = params['GroupClassEname']
+          unless params['LabelGroupList'].nil?
+            @LabelGroupList = []
+            params['LabelGroupList'].each do |i|
+              auditlabelgroupinfo_tmp = AuditLabelGroupInfo.new
+              auditlabelgroupinfo_tmp.deserialize(i)
+              @LabelGroupList << auditlabelgroupinfo_tmp
+            end
+          end
+        end
+      end
+
+      # 直播审核标签分组信息
+      class AuditGroupInfo < TencentCloud::Common::AbstractModel
+        # @param TagType: <p>标签类型。<br>可取值：TagImage，TagText，TagAudio。</p>
+        # @type TagType: String
+        # @param GroupClassList: <p>标签组分类列表。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupClassList: Array
+
+        attr_accessor :TagType, :GroupClassList
+
+        def initialize(tagtype=nil, groupclasslist=nil)
+          @TagType = tagtype
+          @GroupClassList = groupclasslist
+        end
+
+        def deserialize(params)
+          @TagType = params['TagType']
+          unless params['GroupClassList'].nil?
+            @GroupClassList = []
+            params['GroupClassList'].each do |i|
+              auditgroupclassinfo_tmp = AuditGroupClassInfo.new
+              auditgroupclassinfo_tmp.deserialize(i)
+              @GroupClassList << auditgroupclassinfo_tmp
+            end
+          end
+        end
+      end
+
+      # 向图库提交的图片数据类型。
+      class AuditImage < TencentCloud::Common::AbstractModel
+        # @param Index: <p>提交的图片顺序索引。</p>
+        # @type Index: String
+        # @param Url: <p>图片地址。</p>
+        # @type Url: String
+        # @param Md5: <p>图片 md5 值。</p>
+        # @type Md5: String
+        # @param Name: <p>图片名称。</p>
+        # @type Name: String
+        # @param Label: <p>违规类型。<br>可取值：Normal: 正常 ，Polity: 政治，Porn: 色情，Sexy：性感，Ad: 广告，Illegal: 违法，Abuse: 谩骂，Terror: 暴恐，Spam: 灌水，Moan:呻吟。</p>
+        # @type Label: String
+
+        attr_accessor :Index, :Url, :Md5, :Name, :Label
+
+        def initialize(index=nil, url=nil, md5=nil, name=nil, label=nil)
+          @Index = index
+          @Url = url
+          @Md5 = md5
+          @Name = name
+          @Label = label
+        end
+
+        def deserialize(params)
+          @Index = params['Index']
+          @Url = params['Url']
+          @Md5 = params['Md5']
+          @Name = params['Name']
+          @Label = params['Label']
+        end
+      end
+
+      # 直播审核图库添加图片详细结果。
+      class AuditImageCreateDetail < TencentCloud::Common::AbstractModel
+        # @param Status: 图片上传状态，0 表示成功，其他表示失败。
+        # 10101: url 解码失败。
+        # 10102: url 解析失败。
+        # 10103: url 不是 cos 地址。
+        # 10301: label 不合法。
+        # 20101: 数据入库错误。
+        # 30101: cos 下载图片连接错误。
+        # 30102: cos 下载图片响应错误。
+        # 40101: 优图接口调用错误。
+        # @type Status: Integer
+        # @param ImageId: 上传的图片 Id。
+        # @type ImageId: String
+        # @param Index: 图片上传顺序索引。
+        # @type Index: String
+
+        attr_accessor :Status, :ImageId, :Index
+
+        def initialize(status=nil, imageid=nil, index=nil)
+          @Status = status
+          @ImageId = imageid
+          @Index = index
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @ImageId = params['ImageId']
+          @Index = params['Index']
+        end
+      end
+
+      # 直播审核图库删除图片详细结果。
+      class AuditImageDeleteDetail < TencentCloud::Common::AbstractModel
+        # @param ImageId: <p>图片 Id。</p>
+        # @type ImageId: String
+        # @param Name: <p>图片名称</p>
+        # @type Name: String
+        # @param Status: <p>删除状态。<br>0：成功。<br>10104：原图不存在。<br>40201:  图库删图失败。<br>20201:  图库记录删除失败。</p>
+        # @type Status: Integer
+        # @param Label: <p>违规类型。<br>可取值：Normal: 正常 ，Polity: 政治，Porn: 色情，Sexy：性感，Ad: 广告，Illegal: 违法，Abuse: 谩骂，Terror: 暴恐，Spam: 灌水，Moan:呻吟。</p>
+        # @type Label: String
+        # @param ErrMsg: <p>错误信息。</p>
+        # @type ErrMsg: String
+
+        attr_accessor :ImageId, :Name, :Status, :Label, :ErrMsg
+
+        def initialize(imageid=nil, name=nil, status=nil, label=nil, errmsg=nil)
+          @ImageId = imageid
+          @Name = name
+          @Status = status
+          @Label = label
+          @ErrMsg = errmsg
+        end
+
+        def deserialize(params)
+          @ImageId = params['ImageId']
+          @Name = params['Name']
+          @Status = params['Status']
+          @Label = params['Label']
+          @ErrMsg = params['ErrMsg']
+        end
+      end
+
+      # 直播审核图库图片信息。
+      class AuditImageInfo < TencentCloud::Common::AbstractModel
+        # @param Name: 图片名称。
+        # @type Name: String
+
+        attr_accessor :Name
+
+        def initialize(name=nil)
+          @Name = name
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+        end
+      end
+
       # 直播审核关键词信息
       class AuditKeyword < TencentCloud::Common::AbstractModel
         # @param Content: 关键词内容。
@@ -481,6 +653,66 @@ module TencentCloud
           @Content = params['Content']
           @Label = params['Label']
           @CreateTime = params['CreateTime']
+        end
+      end
+
+      # 直播审核，关键词库信息。
+      class AuditKeywordLibInfo < TencentCloud::Common::AbstractModel
+        # @param LibId: <p>词库 Id。</p>
+        # @type LibId: String
+        # @param Name: <p>自定义词库名称。</p>
+        # @type Name: String
+        # @param Description: <p>自定义词库描述。</p>
+        # @type Description: String
+        # @param CreateTime: <p>创建时间。UTC 格式，例如：2018-11-29T19:00:00Z。<br>注意：</p><ol><li>北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示。</li></ol>
+        # @type CreateTime: String
+        # @param Suggestion: <p>处理建议。<br>可取值：Review 疑似，Block 违规。</p>
+        # @type Suggestion: String
+        # @param MatchType: <p>匹配模式。<br>可取值：ExactMatch 精确匹配， FuzzyMatch 模糊匹配。</p>
+        # @type MatchType: String
+
+        attr_accessor :LibId, :Name, :Description, :CreateTime, :Suggestion, :MatchType
+
+        def initialize(libid=nil, name=nil, description=nil, createtime=nil, suggestion=nil, matchtype=nil)
+          @LibId = libid
+          @Name = name
+          @Description = description
+          @CreateTime = createtime
+          @Suggestion = suggestion
+          @MatchType = matchtype
+        end
+
+        def deserialize(params)
+          @LibId = params['LibId']
+          @Name = params['Name']
+          @Description = params['Description']
+          @CreateTime = params['CreateTime']
+          @Suggestion = params['Suggestion']
+          @MatchType = params['MatchType']
+        end
+      end
+
+      # 直播审核标签组信息。
+      class AuditLabelGroupInfo < TencentCloud::Common::AbstractModel
+        # @param GroupName: <p>标签组中文名。</p>
+        # @type GroupName: String
+        # @param GroupEname: <p>标签组英文名。</p>
+        # @type GroupEname: String
+        # @param GroupMsg: <p>标签组描述。</p>
+        # @type GroupMsg: String
+
+        attr_accessor :GroupName, :GroupEname, :GroupMsg
+
+        def initialize(groupname=nil, groupename=nil, groupmsg=nil)
+          @GroupName = groupname
+          @GroupEname = groupename
+          @GroupMsg = groupmsg
+        end
+
+        def deserialize(params)
+          @GroupName = params['GroupName']
+          @GroupEname = params['GroupEname']
+          @GroupMsg = params['GroupMsg']
         end
       end
 
@@ -2422,6 +2654,56 @@ module TencentCloud
         end
       end
 
+      # CreateAuditImages请求参数结构体
+      class CreateAuditImagesRequest < TencentCloud::Common::AbstractModel
+        # @param Images: <p>样本图片列表。</p>
+        # @type Images: Array
+
+        attr_accessor :Images
+
+        def initialize(images=nil)
+          @Images = images
+        end
+
+        def deserialize(params)
+          unless params['Images'].nil?
+            @Images = []
+            params['Images'].each do |i|
+              auditimage_tmp = AuditImage.new
+              auditimage_tmp.deserialize(i)
+              @Images << auditimage_tmp
+            end
+          end
+        end
+      end
+
+      # CreateAuditImages返回参数结构体
+      class CreateAuditImagesResponse < TencentCloud::Common::AbstractModel
+        # @param Infos: <p>创建图片结果详情。</p>
+        # @type Infos: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Infos, :RequestId
+
+        def initialize(infos=nil, requestid=nil)
+          @Infos = infos
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Infos'].nil?
+            @Infos = []
+            params['Infos'].each do |i|
+              auditimagecreatedetail_tmp = AuditImageCreateDetail.new
+              auditimagecreatedetail_tmp.deserialize(i)
+              @Infos << auditimagecreatedetail_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateAuditKeywordLib请求参数结构体
       class CreateAuditKeywordLibRequest < TencentCloud::Common::AbstractModel
         # @param Name: <p>自定义词库名称。</p>
@@ -2504,7 +2786,7 @@ module TencentCloud
         # @param DupInfos: <p>重复关键词列表。</p>
         # @type DupInfos: Array
         # @param Keywords: <p>新增成功关键词列表</p>
-        # @type Keywords: Array
+        # @type Keywords: :class:`Tencentcloud::Live.v20180801.models.AuditKeywordInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -2528,12 +2810,8 @@ module TencentCloud
             end
           end
           unless params['Keywords'].nil?
-            @Keywords = []
-            params['Keywords'].each do |i|
-              auditkeywordinfo_tmp = AuditKeywordInfo.new
-              auditkeywordinfo_tmp.deserialize(i)
-              @Keywords << auditkeywordinfo_tmp
-            end
+            @Keywords = AuditKeywordInfo.new
+            @Keywords.deserialize(params['Keywords'])
           end
           @RequestId = params['RequestId']
         end
@@ -4863,6 +5141,81 @@ module TencentCloud
         end
       end
 
+      # DeleteAuditImages请求参数结构体
+      class DeleteAuditImagesRequest < TencentCloud::Common::AbstractModel
+        # @param ImageIds: <p>图片 Id 列表。</p>
+        # @type ImageIds: Array
+
+        attr_accessor :ImageIds
+
+        def initialize(imageids=nil)
+          @ImageIds = imageids
+        end
+
+        def deserialize(params)
+          @ImageIds = params['ImageIds']
+        end
+      end
+
+      # DeleteAuditImages返回参数结构体
+      class DeleteAuditImagesResponse < TencentCloud::Common::AbstractModel
+        # @param Infos: <p>创建图片结果详情。</p>
+        # @type Infos: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Infos, :RequestId
+
+        def initialize(infos=nil, requestid=nil)
+          @Infos = infos
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Infos'].nil?
+            @Infos = []
+            params['Infos'].each do |i|
+              auditimagedeletedetail_tmp = AuditImageDeleteDetail.new
+              auditimagedeletedetail_tmp.deserialize(i)
+              @Infos << auditimagedeletedetail_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteAuditKeywordLib请求参数结构体
+      class DeleteAuditKeywordLibRequest < TencentCloud::Common::AbstractModel
+        # @param LibId: <p>词库 Id。</p>
+        # @type LibId: String
+
+        attr_accessor :LibId
+
+        def initialize(libid=nil)
+          @LibId = libid
+        end
+
+        def deserialize(params)
+          @LibId = params['LibId']
+        end
+      end
+
+      # DeleteAuditKeywordLib返回参数结构体
+      class DeleteAuditKeywordLibResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteAuditKeywords请求参数结构体
       class DeleteAuditKeywordsRequest < TencentCloud::Common::AbstractModel
         # @param KeywordIds: 要删除的关键词 Id 列表。
@@ -6164,6 +6517,159 @@ module TencentCloud
               billareainfo_tmp = BillAreaInfo.new
               billareainfo_tmp.deserialize(i)
               @DataInfoList << billareainfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAuditGroupTag请求参数结构体
+      class DescribeAuditGroupTagRequest < TencentCloud::Common::AbstractModel
+        # @param TagType: <p>标签类别。<br>Other：全量，TagText：文字，TagImage：图片，TagAudio：音频。</p>
+        # @type TagType: String
+
+        attr_accessor :TagType
+
+        def initialize(tagtype=nil)
+          @TagType = tagtype
+        end
+
+        def deserialize(params)
+          @TagType = params['TagType']
+        end
+      end
+
+      # DescribeAuditGroupTag返回参数结构体
+      class DescribeAuditGroupTagResponse < TencentCloud::Common::AbstractModel
+        # @param GroupTypeList: <p>标签组分类数据按类型返回。</p>
+        # @type GroupTypeList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :GroupTypeList, :RequestId
+
+        def initialize(grouptypelist=nil, requestid=nil)
+          @GroupTypeList = grouptypelist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['GroupTypeList'].nil?
+            @GroupTypeList = []
+            params['GroupTypeList'].each do |i|
+              auditgroupinfo_tmp = AuditGroupInfo.new
+              auditgroupinfo_tmp.deserialize(i)
+              @GroupTypeList << auditgroupinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAuditImages请求参数结构体
+      class DescribeAuditImagesRequest < TencentCloud::Common::AbstractModel
+        # @param Label: <p>违规类型。<br>可取值：Normal: 正常 ，Polity: 政治，Porn: 色情，Sexy：性感，Ad: 广告，Illegal: 违法，Abuse: 谩骂，Terror: 暴恐，Spam: 灌水，Moan:呻吟。</p>
+        # @type Label: String
+        # @param PageIndex: <p>查询页码。</p>
+        # @type PageIndex: Integer
+        # @param PageSize: <p>查询条目数。</p>
+        # @type PageSize: Integer
+
+        attr_accessor :Label, :PageIndex, :PageSize
+
+        def initialize(label=nil, pageindex=nil, pagesize=nil)
+          @Label = label
+          @PageIndex = pageindex
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          @Label = params['Label']
+          @PageIndex = params['PageIndex']
+          @PageSize = params['PageSize']
+        end
+      end
+
+      # DescribeAuditImages返回参数结构体
+      class DescribeAuditImagesResponse < TencentCloud::Common::AbstractModel
+        # @param Infos: <p>创建图片结果详情。</p>
+        # @type Infos: Array
+        # @param Total: <p>图片总数。</p>
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Infos, :Total, :RequestId
+
+        def initialize(infos=nil, total=nil, requestid=nil)
+          @Infos = infos
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Infos'].nil?
+            @Infos = []
+            params['Infos'].each do |i|
+              auditimageinfo_tmp = AuditImageInfo.new
+              auditimageinfo_tmp.deserialize(i)
+              @Infos << auditimageinfo_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAuditKeywordLibs请求参数结构体
+      class DescribeAuditKeywordLibsRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: <p>获取偏移量。</p>
+        # @type Offset: Integer
+        # @param Limit: <p>获取条数。</p>
+        # @type Limit: Integer
+        # @param Name: <p>根据关键词库名进行模糊查询。<br>传递空字符串时，忽略。</p>
+        # @type Name: String
+
+        attr_accessor :Offset, :Limit, :Name
+
+        def initialize(offset=nil, limit=nil, name=nil)
+          @Offset = offset
+          @Limit = limit
+          @Name = name
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Name = params['Name']
+        end
+      end
+
+      # DescribeAuditKeywordLibs返回参数结构体
+      class DescribeAuditKeywordLibsResponse < TencentCloud::Common::AbstractModel
+        # @param Total: <p>满足条件的关键词库数量。</p>
+        # @type Total: Integer
+        # @param Infos: <p>关键词库信息列表。</p>
+        # @type Infos: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Infos, :RequestId
+
+        def initialize(total=nil, infos=nil, requestid=nil)
+          @Total = total
+          @Infos = infos
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Infos'].nil?
+            @Infos = []
+            params['Infos'].each do |i|
+              auditkeywordlibinfo_tmp = AuditKeywordLibInfo.new
+              auditkeywordlibinfo_tmp.deserialize(i)
+              @Infos << auditkeywordlibinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -13450,6 +13956,50 @@ module TencentCloud
 
         def deserialize(params)
           @Color = params['Color']
+        end
+      end
+
+      # ModifyAuditKeywordLib请求参数结构体
+      class ModifyAuditKeywordLibRequest < TencentCloud::Common::AbstractModel
+        # @param Name: <p>自定义词库名称。</p>
+        # @type Name: String
+        # @param Description: <p>自定义词库描述。</p>
+        # @type Description: String
+        # @param Suggestion: <p>处理建议。<br>可取值：Review 疑似，Block 违规。</p>
+        # @type Suggestion: String
+        # @param LibId: <p>要更新的词库 Id。</p>
+        # @type LibId: String
+
+        attr_accessor :Name, :Description, :Suggestion, :LibId
+
+        def initialize(name=nil, description=nil, suggestion=nil, libid=nil)
+          @Name = name
+          @Description = description
+          @Suggestion = suggestion
+          @LibId = libid
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Description = params['Description']
+          @Suggestion = params['Suggestion']
+          @LibId = params['LibId']
+        end
+      end
+
+      # ModifyAuditKeywordLib返回参数结构体
+      class ModifyAuditKeywordLibResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

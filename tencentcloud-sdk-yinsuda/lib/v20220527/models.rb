@@ -947,9 +947,9 @@ module TencentCloud
 
       # DescribeUserInfo请求参数结构体
       class DescribeUserInfoRequest < TencentCloud::Common::AbstractModel
-        # @param AppName: 应用名称。
+        # @param AppName: <p>应用名称。</p>
         # @type AppName: String
-        # @param UserId: 用户标识。
+        # @param UserId: <p>用户标识。</p>
         # @type UserId: String
 
         attr_accessor :AppName, :UserId
@@ -967,7 +967,7 @@ module TencentCloud
 
       # DescribeUserInfo返回参数结构体
       class DescribeUserInfoResponse < TencentCloud::Common::AbstractModel
-        # @param UserInfo: 用户信息。
+        # @param UserInfo: <p>用户信息。</p>
         # @type UserInfo: :class:`Tencentcloud::Yinsuda.v20220527.models.UserInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1211,26 +1211,22 @@ module TencentCloud
 
       # 歌曲基础信息。
       class KTVMusicBaseInfo < TencentCloud::Common::AbstractModel
-        # @param MusicId: 歌曲Id。
+        # @param MusicId: <p>歌曲Id。</p>
         # @type MusicId: String
-        # @param Name: 歌曲名称。
+        # @param Name: <p>歌曲名称。</p>
         # @type Name: String
-        # @param SingerSet: 歌手名称。
+        # @param SingerSet: <p>歌手名称。</p>
         # @type SingerSet: Array
-        # @param Duration: 播放时长。
+        # @param Duration: <p>播放时长。</p><p>单位：秒</p>
         # @type Duration: Integer
-        # @param SingerImageUrl: 歌手图片链接。
+        # @param SingerImageUrl: <p>歌手图片链接。</p>
         # @type SingerImageUrl: String
-        # @param AlbumInfo: 专辑信息。
+        # @param AlbumInfo: <p>专辑信息。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlbumInfo: :class:`Tencentcloud::Yinsuda.v20220527.models.MusicAlbumInfo`
-        # @param RightSet: 权益列表，取值有：
-        # <li>Play：可播；</li>
-        # <li>Sing：可唱。</li>
+        # @param RightSet: <p>权益列表，取值有：</p><li>Play：可播；</li><li>Sing：可唱。</li>
         # @type RightSet: Array
-        # @param RecommendType: 推荐类型，取值有：
-        # <li>Featured：精选；</li>
-        # <li>Other：其他。</li>
+        # @param RecommendType: <p>推荐类型，取值有：</p><li>Featured：精选；</li><li>Other：其他。</li>
         # @type RecommendType: String
 
         attr_accessor :MusicId, :Name, :SingerSet, :Duration, :SingerImageUrl, :AlbumInfo, :RightSet, :RecommendType

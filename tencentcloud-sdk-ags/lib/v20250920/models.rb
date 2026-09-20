@@ -49,6 +49,32 @@ module TencentCloud
         end
       end
 
+      # 主账号配额总览
+      class AccountQuotaOverview < TencentCloud::Common::AbstractModel
+        # @param Quota: <p>主账号各资源维度的配额上限</p>
+        # @type Quota: :class:`Tencentcloud::Ags.v20250920.models.QuotaResourceInfo`
+        # @param Usage: <p>主账号各资源维度的当前用量</p>
+        # @type Usage: :class:`Tencentcloud::Ags.v20250920.models.QuotaResourceInfo`
+
+        attr_accessor :Quota, :Usage
+
+        def initialize(quota=nil, usage=nil)
+          @Quota = quota
+          @Usage = usage
+        end
+
+        def deserialize(params)
+          unless params['Quota'].nil?
+            @Quota = QuotaResourceInfo.new
+            @Quota.deserialize(params['Quota'])
+          end
+          unless params['Usage'].nil?
+            @Usage = QuotaResourceInfo.new
+            @Usage.deserialize(params['Usage'])
+          end
+        end
+      end
+
       # AcquireDeploymentToken请求参数结构体
       class AcquireDeploymentTokenRequest < TencentCloud::Common::AbstractModel
         # @param DeploymentId: <p>目标 ACTIVE Deployment 的稳定 ID。</p>
@@ -177,6 +203,94 @@ module TencentCloud
         end
       end
 
+      # AppendEvent请求参数结构体
+      class AppendEventRequest < TencentCloud::Common::AbstractModel
+        # @param SpaceId: <p>会话所属空间 ID。</p>
+        # @type SpaceId: String
+        # @param UserId: <p>用户 ID。可通过调用方业务系统接口获取。</p>
+        # @type UserId: String
+        # @param SessionId: <p>会话 ID。可通过 CreateSession 或 DescribeSessions 接口获取。</p>
+        # @type SessionId: String
+        # @param Event: <p>事件内容。</p>
+        # @type Event: :class:`Tencentcloud::Ags.v20250920.models.EventInfo`
+        # @param AgentId: <p>Agent ID。可选。</p>
+        # @type AgentId: String
+
+        attr_accessor :SpaceId, :UserId, :SessionId, :Event, :AgentId
+        extend Gem::Deprecate
+        deprecate :AgentId, :none, 2026, 9
+        deprecate :AgentId=, :none, 2026, 9
+
+        def initialize(spaceid=nil, userid=nil, sessionid=nil, event=nil, agentid=nil)
+          @SpaceId = spaceid
+          @UserId = userid
+          @SessionId = sessionid
+          @Event = event
+          @AgentId = agentid
+        end
+
+        def deserialize(params)
+          @SpaceId = params['SpaceId']
+          @UserId = params['UserId']
+          @SessionId = params['SessionId']
+          unless params['Event'].nil?
+            @Event = EventInfo.new
+            @Event.deserialize(params['Event'])
+          end
+          @AgentId = params['AgentId']
+        end
+      end
+
+      # AppendEvent返回参数结构体
+      class AppendEventResponse < TencentCloud::Common::AbstractModel
+        # @param Event: <p>事件信息。</p>
+        # @type Event: :class:`Tencentcloud::Ags.v20250920.models.EventInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Event, :RequestId
+
+        def initialize(event=nil, requestid=nil)
+          @Event = event
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Event'].nil?
+            @Event = EventInfo.new
+            @Event.deserialize(params['Event'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ApproveRegistryRecord请求参数结构体
+      class ApproveRegistryRecordRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # ApproveRegistryRecord返回参数结构体
+      class ApproveRegistryRecordResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 沙箱工具日志推送CLS相关配置
       class CLSConfig < TencentCloud::Common::AbstractModel
         # @param TopicId: 沙箱工具日志推送所使用的CLS日志主题ID
@@ -190,6 +304,33 @@ module TencentCloud
 
         def deserialize(params)
           @TopicId = params['TopicId']
+        end
+      end
+
+      # CancelRegistryRecord请求参数结构体
+      class CancelRegistryRecordRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # CancelRegistryRecord返回参数结构体
+      class CancelRegistryRecordResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -430,6 +571,60 @@ module TencentCloud
         end
       end
 
+      # CreateRegistryRecord请求参数结构体
+      class CreateRegistryRecordRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # CreateRegistryRecord返回参数结构体
+      class CreateRegistryRecordResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateRegistry请求参数结构体
+      class CreateRegistryRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # CreateRegistry返回参数结构体
+      class CreateRegistryResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateSandboxTool请求参数结构体
       class CreateSandboxToolRequest < TencentCloud::Common::AbstractModel
         # @param ToolName: <p>沙箱工具名称，长度 1-50 字符，支持英文、数字、下划线和连接线。同一 AppId 下沙箱工具名称必须唯一</p>
@@ -536,6 +731,136 @@ module TencentCloud
 
         def deserialize(params)
           @ToolId = params['ToolId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateSession请求参数结构体
+      class CreateSessionRequest < TencentCloud::Common::AbstractModel
+        # @param SpaceId: <p>会话所属空间 ID。</p>
+        # @type SpaceId: String
+        # @param UserId: <p>用户 ID。可通过调用方业务系统接口获取。</p>
+        # @type UserId: String
+        # @param AgentId: <p>Agent ID。可选。</p>
+        # @type AgentId: String
+        # @param SessionId: <p>会话 ID。可通过 CreateSession 或 DescribeSessions 接口获取。</p>
+        # @type SessionId: String
+        # @param Title: <p>会话标题，最大长度 256 字符。</p>
+        # @type Title: String
+        # @param State: <p>初始会话状态。</p>
+        # @type State: :class:`Tencentcloud::Ags.v20250920.models.SessionState`
+        # @param Metadata: <p>创建会话时设置的初始元数据，以键值对数组形式表示。每个元素包含 Metadata 名称和对应值。</p><p>入参限制：本参数可选，最多支持 64 项。Name 不能为空或重复，最大长度为 253 字节；Value 最大长度为 1024 字节，允许为空字符串。Metadata 序列化后的总大小不能超过 64 KiB。</p>
+        # @type Metadata: Array
+
+        attr_accessor :SpaceId, :UserId, :AgentId, :SessionId, :Title, :State, :Metadata
+        extend Gem::Deprecate
+        deprecate :AgentId, :none, 2026, 9
+        deprecate :AgentId=, :none, 2026, 9
+
+        def initialize(spaceid=nil, userid=nil, agentid=nil, sessionid=nil, title=nil, state=nil, metadata=nil)
+          @SpaceId = spaceid
+          @UserId = userid
+          @AgentId = agentid
+          @SessionId = sessionid
+          @Title = title
+          @State = state
+          @Metadata = metadata
+        end
+
+        def deserialize(params)
+          @SpaceId = params['SpaceId']
+          @UserId = params['UserId']
+          @AgentId = params['AgentId']
+          @SessionId = params['SessionId']
+          @Title = params['Title']
+          unless params['State'].nil?
+            @State = SessionState.new
+            @State.deserialize(params['State'])
+          end
+          unless params['Metadata'].nil?
+            @Metadata = []
+            params['Metadata'].each do |i|
+              metadatavar_tmp = MetadataVar.new
+              metadatavar_tmp.deserialize(i)
+              @Metadata << metadatavar_tmp
+            end
+          end
+        end
+      end
+
+      # CreateSession返回参数结构体
+      class CreateSessionResponse < TencentCloud::Common::AbstractModel
+        # @param Session: <p>会话信息。</p>
+        # @type Session: :class:`Tencentcloud::Ags.v20250920.models.SessionInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Session, :RequestId
+
+        def initialize(session=nil, requestid=nil)
+          @Session = session
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Session'].nil?
+            @Session = SessionInfo.new
+            @Session.deserialize(params['Session'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateSessionSpace请求参数结构体
+      class CreateSessionSpaceRequest < TencentCloud::Common::AbstractModel
+        # @param Name: <p>会话空间名称，用于标识会话空间的业务用途。</p><p>入参限制：必填；去除首尾空白后不能为空；最大长度为 128 个字符。</p><p>建议名称包含业务和环境信息，便于识别和管理。</p>
+        # @type Name: String
+        # @param Description: <p>会话空间描述，用于补充说明会话空间的业务用途。</p><p>入参限制：选填；最大长度为 512 个字符。</p><p>未传入时创建为空描述。</p>
+        # @type Description: String
+        # @param Tags: <p>创建 SessionSpace 时为资源绑定标签。</p>
+        # @type Tags: Array
+
+        attr_accessor :Name, :Description, :Tags
+
+        def initialize(name=nil, description=nil, tags=nil)
+          @Name = name
+          @Description = description
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Description = params['Description']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+        end
+      end
+
+      # CreateSessionSpace返回参数结构体
+      class CreateSessionSpaceResponse < TencentCloud::Common::AbstractModel
+        # @param SessionSpace: <p>创建成功后的会话空间完整信息。</p><p>接口成功时一定返回；接口失败时返回 Error，不会返回该字段。</p>
+        # @type SessionSpace: :class:`Tencentcloud::Ags.v20250920.models.SessionSpaceInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SessionSpace, :RequestId
+
+        def initialize(sessionspace=nil, requestid=nil)
+          @SessionSpace = sessionspace
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['SessionSpace'].nil?
+            @SessionSpace = SessionSpaceInfo.new
+            @SessionSpace.deserialize(params['SessionSpace'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -774,6 +1099,60 @@ module TencentCloud
         end
       end
 
+      # DeleteRegistryRecord请求参数结构体
+      class DeleteRegistryRecordRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DeleteRegistryRecord返回参数结构体
+      class DeleteRegistryRecordResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteRegistry请求参数结构体
+      class DeleteRegistryRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DeleteRegistry返回参数结构体
+      class DeleteRegistryResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteSandboxTool请求参数结构体
       class DeleteSandboxToolRequest < TencentCloud::Common::AbstractModel
         # @param ToolId: 沙箱工具ID
@@ -792,6 +1171,85 @@ module TencentCloud
 
       # DeleteSandboxTool返回参数结构体
       class DeleteSandboxToolResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteSession请求参数结构体
+      class DeleteSessionRequest < TencentCloud::Common::AbstractModel
+        # @param SpaceId: <p>会话所属空间 ID。</p>
+        # @type SpaceId: String
+        # @param UserId: <p>用户 ID。可通过调用方业务系统接口获取。</p>
+        # @type UserId: String
+        # @param SessionId: <p>会话 ID。可通过 CreateSession 或 DescribeSessions 接口获取。</p>
+        # @type SessionId: String
+        # @param AgentId: <p>Agent ID。可选。</p>
+        # @type AgentId: String
+
+        attr_accessor :SpaceId, :UserId, :SessionId, :AgentId
+        extend Gem::Deprecate
+        deprecate :AgentId, :none, 2026, 9
+        deprecate :AgentId=, :none, 2026, 9
+
+        def initialize(spaceid=nil, userid=nil, sessionid=nil, agentid=nil)
+          @SpaceId = spaceid
+          @UserId = userid
+          @SessionId = sessionid
+          @AgentId = agentid
+        end
+
+        def deserialize(params)
+          @SpaceId = params['SpaceId']
+          @UserId = params['UserId']
+          @SessionId = params['SessionId']
+          @AgentId = params['AgentId']
+        end
+      end
+
+      # DeleteSession返回参数结构体
+      class DeleteSessionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteSessionSpace请求参数结构体
+      class DeleteSessionSpaceRequest < TencentCloud::Common::AbstractModel
+        # @param SpaceId: <p>需要删除的会话空间唯一标识。</p>
+        # @type SpaceId: String
+
+        attr_accessor :SpaceId
+
+        def initialize(spaceid=nil)
+          @SpaceId = spaceid
+        end
+
+        def deserialize(params)
+          @SpaceId = params['SpaceId']
+        end
+      end
+
+      # DeleteSessionSpace返回参数结构体
+      class DeleteSessionSpaceResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -1021,6 +1479,84 @@ module TencentCloud
         end
       end
 
+      # DescribeEvents请求参数结构体
+      class DescribeEventsRequest < TencentCloud::Common::AbstractModel
+        # @param SpaceId: <p>会话所属空间 ID。</p>
+        # @type SpaceId: String
+        # @param UserId: <p>用户 ID。可通过调用方业务系统接口获取。</p>
+        # @type UserId: String
+        # @param SessionId: <p>会话 ID。可通过 CreateSession 或 DescribeSessions 接口获取。</p>
+        # @type SessionId: String
+        # @param AgentId: <p>Agent ID。可选。</p>
+        # @type AgentId: String
+        # @param Author: <p>事件作者。取值示例：user、assistant、tool。</p>
+        # @type Author: String
+        # @param AfterTimestamp: <p>起始时间，仅返回该时间之后的事件，使用 RFC3339 格式，最大长度 64 字符。</p>
+        # @type AfterTimestamp: String
+        # @param Offset: <p>分页偏移量，默认为 0。</p>
+        # @type Offset: Integer
+        # @param Limit: <p>返回数量，默认为 50，最大值为 200。</p>
+        # @type Limit: Integer
+
+        attr_accessor :SpaceId, :UserId, :SessionId, :AgentId, :Author, :AfterTimestamp, :Offset, :Limit
+        extend Gem::Deprecate
+        deprecate :AgentId, :none, 2026, 9
+        deprecate :AgentId=, :none, 2026, 9
+
+        def initialize(spaceid=nil, userid=nil, sessionid=nil, agentid=nil, author=nil, aftertimestamp=nil, offset=nil, limit=nil)
+          @SpaceId = spaceid
+          @UserId = userid
+          @SessionId = sessionid
+          @AgentId = agentid
+          @Author = author
+          @AfterTimestamp = aftertimestamp
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @SpaceId = params['SpaceId']
+          @UserId = params['UserId']
+          @SessionId = params['SessionId']
+          @AgentId = params['AgentId']
+          @Author = params['Author']
+          @AfterTimestamp = params['AfterTimestamp']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeEvents返回参数结构体
+      class DescribeEventsResponse < TencentCloud::Common::AbstractModel
+        # @param Events: <p>事件列表。</p>
+        # @type Events: Array
+        # @param TotalCount: <p>符合条件的事件总数。</p>
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Events, :TotalCount, :RequestId
+
+        def initialize(events=nil, totalcount=nil, requestid=nil)
+          @Events = events
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Events'].nil?
+            @Events = []
+            params['Events'].each do |i|
+              eventinfo_tmp = EventInfo.new
+              eventinfo_tmp.deserialize(i)
+              @Events << eventinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribePreCacheImageTask请求参数结构体
       class DescribePreCacheImageTaskRequest < TencentCloud::Common::AbstractModel
         # @param Image: <p>镜像地址</p>
@@ -1077,6 +1613,241 @@ module TencentCloud
           @ImageRegistryType = params['ImageRegistryType']
           @Status = params['Status']
           @Message = params['Message']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeQuotaOverview请求参数结构体
+      class DescribeQuotaOverviewRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: <p>分页偏移量，从 0 开始，默认值为 0，必须大于等于 0。</p><p>单位：偏移量</p>
+        # @type Offset: Integer
+        # @param Limit: <p>每页返回的配额组数量</p><p>单位：个</p>
+        # @type Limit: Integer
+        # @param Filters: <p>配额组过滤条件</p>
+        # @type Filters: Array
+
+        attr_accessor :Offset, :Limit, :Filters
+
+        def initialize(offset=nil, limit=nil, filters=nil)
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeQuotaOverview返回参数结构体
+      class DescribeQuotaOverviewResponse < TencentCloud::Common::AbstractModel
+        # @param AccountQuotaOverview: <p>主账号配额上限及全账号当前用量</p>
+        # @type AccountQuotaOverview: :class:`Tencentcloud::Ags.v20250920.models.AccountQuotaOverview`
+        # @param QuotaGroupSet: <p>当前分页下的配额组配额与用量列表。没有数据时返回空数组。</p>
+        # @type QuotaGroupSet: Array
+        # @param TotalCount: <p>满足过滤条件的配额组总数，不受当前分页大小影响。</p><p>单位：个</p>
+        # @type TotalCount: Integer
+        # @param DataTime: <p>本次查询完成时间，格式为 RFC3339</p>
+        # @type DataTime: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AccountQuotaOverview, :QuotaGroupSet, :TotalCount, :DataTime, :RequestId
+
+        def initialize(accountquotaoverview=nil, quotagroupset=nil, totalcount=nil, datatime=nil, requestid=nil)
+          @AccountQuotaOverview = accountquotaoverview
+          @QuotaGroupSet = quotagroupset
+          @TotalCount = totalcount
+          @DataTime = datatime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['AccountQuotaOverview'].nil?
+            @AccountQuotaOverview = AccountQuotaOverview.new
+            @AccountQuotaOverview.deserialize(params['AccountQuotaOverview'])
+          end
+          unless params['QuotaGroupSet'].nil?
+            @QuotaGroupSet = []
+            params['QuotaGroupSet'].each do |i|
+              quotagroupoverview_tmp = QuotaGroupOverview.new
+              quotagroupoverview_tmp.deserialize(i)
+              @QuotaGroupSet << quotagroupoverview_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @DataTime = params['DataTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRegistryAuditLogList请求参数结构体
+      class DescribeRegistryAuditLogListRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeRegistryAuditLogList返回参数结构体
+      class DescribeRegistryAuditLogListResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRegistryList请求参数结构体
+      class DescribeRegistryListRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeRegistryList返回参数结构体
+      class DescribeRegistryListResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRegistryRecordList请求参数结构体
+      class DescribeRegistryRecordListRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeRegistryRecordList返回参数结构体
+      class DescribeRegistryRecordListResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRegistryRecord请求参数结构体
+      class DescribeRegistryRecordRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeRegistryRecord返回参数结构体
+      class DescribeRegistryRecordResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRegistryRecordVersionList请求参数结构体
+      class DescribeRegistryRecordVersionListRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeRegistryRecordVersionList返回参数结构体
+      class DescribeRegistryRecordVersionListResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRegistry请求参数结构体
+      class DescribeRegistryRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeRegistry返回参数结构体
+      class DescribeRegistryResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -1233,6 +2004,250 @@ module TencentCloud
         end
       end
 
+      # DescribeSession请求参数结构体
+      class DescribeSessionRequest < TencentCloud::Common::AbstractModel
+        # @param SpaceId: <p>会话所属空间 ID。</p>
+        # @type SpaceId: String
+        # @param UserId: <p>用户 ID。可通过调用方业务系统接口获取。</p>
+        # @type UserId: String
+        # @param SessionId: <p>会话 ID。可通过 CreateSession 或 DescribeSessions 接口获取。</p>
+        # @type SessionId: String
+        # @param AgentId: <p>Agent ID。可选。</p>
+        # @type AgentId: String
+        # @param NumRecentEvents: <p>返回最近事件数量，默认为 0，最大值为 200。</p>
+        # @type NumRecentEvents: Integer
+        # @param AfterTimestamp: <p>事件起始时间，RFC3339 格式，最大长度 64 字符。</p>
+        # @type AfterTimestamp: String
+
+        attr_accessor :SpaceId, :UserId, :SessionId, :AgentId, :NumRecentEvents, :AfterTimestamp
+        extend Gem::Deprecate
+        deprecate :AgentId, :none, 2026, 9
+        deprecate :AgentId=, :none, 2026, 9
+
+        def initialize(spaceid=nil, userid=nil, sessionid=nil, agentid=nil, numrecentevents=nil, aftertimestamp=nil)
+          @SpaceId = spaceid
+          @UserId = userid
+          @SessionId = sessionid
+          @AgentId = agentid
+          @NumRecentEvents = numrecentevents
+          @AfterTimestamp = aftertimestamp
+        end
+
+        def deserialize(params)
+          @SpaceId = params['SpaceId']
+          @UserId = params['UserId']
+          @SessionId = params['SessionId']
+          @AgentId = params['AgentId']
+          @NumRecentEvents = params['NumRecentEvents']
+          @AfterTimestamp = params['AfterTimestamp']
+        end
+      end
+
+      # DescribeSession返回参数结构体
+      class DescribeSessionResponse < TencentCloud::Common::AbstractModel
+        # @param Session: <p>会话信息。</p>
+        # @type Session: :class:`Tencentcloud::Ags.v20250920.models.SessionInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Session, :RequestId
+
+        def initialize(session=nil, requestid=nil)
+          @Session = session
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Session'].nil?
+            @Session = SessionInfo.new
+            @Session.deserialize(params['Session'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSessionSpace请求参数结构体
+      class DescribeSessionSpaceRequest < TencentCloud::Common::AbstractModel
+        # @param SpaceId: <p>需要查询的会话空间唯一标识。</p><p>入参限制：必填，不能为空。</p><p>可通过 CreateSessionSpace 或 DescribeSessionSpaces 获取，不应自行构造。</p>
+        # @type SpaceId: String
+
+        attr_accessor :SpaceId
+
+        def initialize(spaceid=nil)
+          @SpaceId = spaceid
+        end
+
+        def deserialize(params)
+          @SpaceId = params['SpaceId']
+        end
+      end
+
+      # DescribeSessionSpace返回参数结构体
+      class DescribeSessionSpaceResponse < TencentCloud::Common::AbstractModel
+        # @param SessionSpace: <p>查询到的会话空间信息。</p>
+        # @type SessionSpace: :class:`Tencentcloud::Ags.v20250920.models.SessionSpaceInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SessionSpace, :RequestId
+
+        def initialize(sessionspace=nil, requestid=nil)
+          @SessionSpace = sessionspace
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['SessionSpace'].nil?
+            @SessionSpace = SessionSpaceInfo.new
+            @SessionSpace.deserialize(params['SessionSpace'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSessionSpaces请求参数结构体
+      class DescribeSessionSpacesRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: <p>分页查询的起始偏移量。</p>
+        # @type Offset: Integer
+        # @param Limit: <p>单次分页查询返回的会话空间数量。</p>
+        # @type Limit: Integer
+        # @param Filters: <p>会话空间筛选条件列表，支持按空间 ID 精确匹配、名称精确或模糊匹配、描述模糊匹配。同一 Filter 内多个 Values 之间为 OR，不同 Filter 之间为 AND。不传或传空数组时不增加筛选限制。</p><p>入参限制：Filter.Name 支持 space-id、name、name-like、description-like，不可重复。name 与 name-like 不可同时提供。Values 不可为空数组，筛选值不可为空或纯空白。匹配区分大小写，包含匹配中的 %、_ 按普通字符处理，不具有通配含义。</p><p>例如 Name 为 name-like，Values 为 [&quot;客服&quot;,&quot;测试&quot;]，表示查询名称包含“客服”或“测试”的会话空间。</p>
+        # @type Filters: Array
+
+        attr_accessor :Offset, :Limit, :Filters
+
+        def initialize(offset=nil, limit=nil, filters=nil)
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeSessionSpaces返回参数结构体
+      class DescribeSessionSpacesResponse < TencentCloud::Common::AbstractModel
+        # @param SessionSpaces: <p>会话空间列表。</p>
+        # @type SessionSpaces: Array
+        # @param TotalCount: <p>满足查询条件的会话空间总数。</p>
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SessionSpaces, :TotalCount, :RequestId
+
+        def initialize(sessionspaces=nil, totalcount=nil, requestid=nil)
+          @SessionSpaces = sessionspaces
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['SessionSpaces'].nil?
+            @SessionSpaces = []
+            params['SessionSpaces'].each do |i|
+              sessionspaceinfo_tmp = SessionSpaceInfo.new
+              sessionspaceinfo_tmp.deserialize(i)
+              @SessionSpaces << sessionspaceinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSessions请求参数结构体
+      class DescribeSessionsRequest < TencentCloud::Common::AbstractModel
+        # @param SpaceId: <p>查询的会话空间 ID。</p>
+        # @type SpaceId: String
+        # @param AgentIds: <p>Agent ID 列表，最多支持 100 个。</p>
+        # @type AgentIds: Array
+        # @param UserIds: <p>用户 ID 列表，最多支持 100 个。</p>
+        # @type UserIds: Array
+        # @param Offset: <p>分页偏移量，默认为 0。</p>
+        # @type Offset: Integer
+        # @param Limit: <p>返回数量，默认为 20，最大值为 100。</p>
+        # @type Limit: Integer
+        # @param SessionIds: <p>会话 ID 列表，最多支持 100 个。</p>
+        # @type SessionIds: Array
+        # @param Filters: <p>会话筛选条件列表，支持 Metadata 精确匹配、标题精确匹配和标题模糊匹配。同一 Filter 内多个 Values 之间为 OR，不同 Filter 之间为 AND。不传或传空数组时不增加筛选限制。</p><p>入参限制：最多传入 10 个 Filter，每个 Filter 最多支持 100 个 Values。Filter.Name 不可重复，支持 metadata:MetadataKey、title、title-like；title 与 title-like 不可同时提供。标题筛选值不可为空或纯空白。匹配区分大小写，标题包含匹配中的 %、_ 按普通字符处理，不具有通配含义。</p><p>例如 Name 为 title-like，Values 为 [&quot;客服&quot;,&quot;测试&quot;]，表示查询标题包含“客服”或“测试”的会话。Name 为 metadata:env，Values 为 [&quot;dev&quot;,&quot;test&quot;]，表示按 Metadata env 的值精确筛选。标题条件与 Metadata、SessionIds、UserIds 筛选条件可组合使用，条件之间为 AND。筛选在分页前执行，TotalCount 为符合条件的会话总数。</p>
+        # @type Filters: Array
+
+        attr_accessor :SpaceId, :AgentIds, :UserIds, :Offset, :Limit, :SessionIds, :Filters
+        extend Gem::Deprecate
+        deprecate :AgentIds, :none, 2026, 9
+        deprecate :AgentIds=, :none, 2026, 9
+
+        def initialize(spaceid=nil, agentids=nil, userids=nil, offset=nil, limit=nil, sessionids=nil, filters=nil)
+          @SpaceId = spaceid
+          @AgentIds = agentids
+          @UserIds = userids
+          @Offset = offset
+          @Limit = limit
+          @SessionIds = sessionids
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @SpaceId = params['SpaceId']
+          @AgentIds = params['AgentIds']
+          @UserIds = params['UserIds']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @SessionIds = params['SessionIds']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeSessions返回参数结构体
+      class DescribeSessionsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>符合条件的会话总数。</p>
+        # @type TotalCount: Integer
+        # @param Sessions: <p>会话列表。</p>
+        # @type Sessions: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Sessions, :RequestId
+
+        def initialize(totalcount=nil, sessions=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Sessions = sessions
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Sessions'].nil?
+            @Sessions = []
+            params['Sessions'].each do |i|
+              sessioninfo_tmp = SessionInfo.new
+              sessioninfo_tmp.deserialize(i)
+              @Sessions << sessioninfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 环境变量
       class EnvVar < TencentCloud::Common::AbstractModel
         # @param Name: 环境变量名
@@ -1253,6 +2268,159 @@ module TencentCloud
         end
       end
 
+      # Agent 状态切换事件信息
+      class EventActionsInfo < TencentCloud::Common::AbstractModel
+        # @param StateDelta: 状态增量，JSON 字符串，最大长度 8192 字符。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StateDelta: String
+
+        attr_accessor :StateDelta
+
+        def initialize(statedelta=nil)
+          @StateDelta = statedelta
+        end
+
+        def deserialize(params)
+          @StateDelta = params['StateDelta']
+        end
+      end
+
+      # 事件内容信息
+      class EventContentInfo < TencentCloud::Common::AbstractModel
+        # @param Role: 角色，最大长度 64 字符。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Role: String
+        # @param Parts: 内容片段列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Parts: Array
+
+        attr_accessor :Role, :Parts
+
+        def initialize(role=nil, parts=nil)
+          @Role = role
+          @Parts = parts
+        end
+
+        def deserialize(params)
+          @Role = params['Role']
+          unless params['Parts'].nil?
+            @Parts = []
+            params['Parts'].each do |i|
+              eventpartinfo_tmp = EventPartInfo.new
+              eventpartinfo_tmp.deserialize(i)
+              @Parts << eventpartinfo_tmp
+            end
+          end
+        end
+      end
+
+      # 事件信息
+      class EventInfo < TencentCloud::Common::AbstractModel
+        # @param EventId: <p>事件 ID。为空时由服务生成。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EventId: String
+        # @param InvocationId: <p>调用 ID，最大长度 128 字符。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InvocationId: String
+        # @param Author: <p>事件作者，最大长度 128 字符。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Author: String
+        # @param Content: <p>事件内容。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Content: :class:`Tencentcloud::Ags.v20250920.models.EventContentInfo`
+        # @param Actions: <p>事件动作信息。StateDelta 为 JSON 对象字符串</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Actions: :class:`Tencentcloud::Ags.v20250920.models.EventActionsInfo`
+        # @param Metadata: <p>事件元数据。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Metadata: String
+        # @param Extensions: <p>事件扩展信息 JSON 对象字符串，最大长度 8192 字符。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Extensions: String
+        # @param ErrorCode: <p>错误码，最大长度 128 字符。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorCode: String
+        # @param ErrorMessage: <p>错误信息，最大长度 2048 字符。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMessage: String
+        # @param Timestamp: <p>事件时间。</p>
+        # @type Timestamp: String
+
+        attr_accessor :EventId, :InvocationId, :Author, :Content, :Actions, :Metadata, :Extensions, :ErrorCode, :ErrorMessage, :Timestamp
+
+        def initialize(eventid=nil, invocationid=nil, author=nil, content=nil, actions=nil, metadata=nil, extensions=nil, errorcode=nil, errormessage=nil, timestamp=nil)
+          @EventId = eventid
+          @InvocationId = invocationid
+          @Author = author
+          @Content = content
+          @Actions = actions
+          @Metadata = metadata
+          @Extensions = extensions
+          @ErrorCode = errorcode
+          @ErrorMessage = errormessage
+          @Timestamp = timestamp
+        end
+
+        def deserialize(params)
+          @EventId = params['EventId']
+          @InvocationId = params['InvocationId']
+          @Author = params['Author']
+          unless params['Content'].nil?
+            @Content = EventContentInfo.new
+            @Content.deserialize(params['Content'])
+          end
+          unless params['Actions'].nil?
+            @Actions = EventActionsInfo.new
+            @Actions.deserialize(params['Actions'])
+          end
+          @Metadata = params['Metadata']
+          @Extensions = params['Extensions']
+          @ErrorCode = params['ErrorCode']
+          @ErrorMessage = params['ErrorMessage']
+          @Timestamp = params['Timestamp']
+        end
+      end
+
+      # 多模态内容片段信息
+      class EventPartInfo < TencentCloud::Common::AbstractModel
+        # @param Text: 文本内容，最大长度 8192 字符。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: String
+        # @param Thought: 是否为思考内容。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Thought: Boolean
+        # @param FunctionCall: 工具调用信息，JSON 字符串，最大长度 8192 字符。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FunctionCall: String
+        # @param FunctionResponse: 工具返回信息，JSON 字符串，最大长度 8192 字符。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FunctionResponse: String
+        # @param InlineData: 内联数据。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InlineData: :class:`Tencentcloud::Ags.v20250920.models.InlineDataInfo`
+
+        attr_accessor :Text, :Thought, :FunctionCall, :FunctionResponse, :InlineData
+
+        def initialize(text=nil, thought=nil, functioncall=nil, functionresponse=nil, inlinedata=nil)
+          @Text = text
+          @Thought = thought
+          @FunctionCall = functioncall
+          @FunctionResponse = functionresponse
+          @InlineData = inlinedata
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+          @Thought = params['Thought']
+          @FunctionCall = params['FunctionCall']
+          @FunctionResponse = params['FunctionResponse']
+          unless params['InlineData'].nil?
+            @InlineData = InlineDataInfo.new
+            @InlineData.deserialize(params['InlineData'])
+          end
+        end
+      end
+
       # 过滤列表规则
       class Filter < TencentCloud::Common::AbstractModel
         # @param Name: 属性名称, 若存在多个Filter时，Filter间的关系为逻辑与（AND）关系。
@@ -1270,6 +2438,60 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @Values = params['Values']
+        end
+      end
+
+      # GetSkillPackageDownloadURL请求参数结构体
+      class GetSkillPackageDownloadURLRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # GetSkillPackageDownloadURL返回参数结构体
+      class GetSkillPackageDownloadURLResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetSkillPackageUploadURL请求参数结构体
+      class GetSkillPackageUploadURLRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # GetSkillPackageUploadURL返回参数结构体
+      class GetSkillPackageUploadURLResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -1322,6 +2544,28 @@ module TencentCloud
           @ImageRegistryType = params['ImageRegistryType']
           @SubPath = params['SubPath']
           @Digest = params['Digest']
+        end
+      end
+
+      # 文件内容数据信息
+      class InlineDataInfo < TencentCloud::Common::AbstractModel
+        # @param MimeType: 媒体类型，最大长度 128 字符。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MimeType: String
+        # @param Data: Base64 编码数据，最大长度 8192 字符。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: String
+
+        attr_accessor :MimeType, :Data
+
+        def initialize(mimetype=nil, data=nil)
+          @MimeType = mimetype
+          @Data = data
+        end
+
+        def deserialize(params)
+          @MimeType = params['MimeType']
+          @Data = params['Data']
         end
       end
 
@@ -1472,6 +2716,115 @@ module TencentCloud
         end
       end
 
+      # ModifySession请求参数结构体
+      class ModifySessionRequest < TencentCloud::Common::AbstractModel
+        # @param SpaceId: <p>会话所属的 SessionSpace ID。</p>
+        # @type SpaceId: String
+        # @param UserId: <p>会话所属的用户 ID。</p>
+        # @type UserId: String
+        # @param SessionId: <p>待修改的会话 ID。</p>
+        # @type SessionId: String
+        # @param Title: <p>修改后的会话标题。</p><p>入参限制：本参数可选，最大长度为 255 个字符。</p><p>不传表示保持原会话标题不变，传空字符串表示清空会话标题。Title 与 Metadata 至少传入一项。</p>
+        # @type Title: String
+        # @param Metadata: <p>修改后的完整会话元数据，以键值对数组形式表示。</p><p>入参限制：本参数可选，最多支持 64 项。Name 不能为空或重复，最大长度为 253 字节；Value 最大长度为 1024 字节，允许为空字符串。Metadata 序列化后的总大小不能超过 64 KiB。</p><p>不传表示保持原 Metadata 不变；传空数组表示清空全部 Metadata；传非空数组表示使用传入内容全量覆盖原 Metadata。Metadata 与 Title 至少传入一项。</p>
+        # @type Metadata: Array
+
+        attr_accessor :SpaceId, :UserId, :SessionId, :Title, :Metadata
+
+        def initialize(spaceid=nil, userid=nil, sessionid=nil, title=nil, metadata=nil)
+          @SpaceId = spaceid
+          @UserId = userid
+          @SessionId = sessionid
+          @Title = title
+          @Metadata = metadata
+        end
+
+        def deserialize(params)
+          @SpaceId = params['SpaceId']
+          @UserId = params['UserId']
+          @SessionId = params['SessionId']
+          @Title = params['Title']
+          unless params['Metadata'].nil?
+            @Metadata = []
+            params['Metadata'].each do |i|
+              metadatavar_tmp = MetadataVar.new
+              metadatavar_tmp.deserialize(i)
+              @Metadata << metadatavar_tmp
+            end
+          end
+        end
+      end
+
+      # ModifySession返回参数结构体
+      class ModifySessionResponse < TencentCloud::Common::AbstractModel
+        # @param Session: <p>修改后的完整会话信息。</p>
+        # @type Session: :class:`Tencentcloud::Ags.v20250920.models.SessionInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Session, :RequestId
+
+        def initialize(session=nil, requestid=nil)
+          @Session = session
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Session'].nil?
+            @Session = SessionInfo.new
+            @Session.deserialize(params['Session'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifySessionSpace请求参数结构体
+      class ModifySessionSpaceRequest < TencentCloud::Common::AbstractModel
+        # @param SpaceId: <p>需要修改的会话空间唯一标识。</p>
+        # @type SpaceId: String
+        # @param Name: <p>修改后的会话空间名称。</p>
+        # @type Name: String
+        # @param Description: <p>修改后的会话空间描述。</p>
+        # @type Description: String
+
+        attr_accessor :SpaceId, :Name, :Description
+
+        def initialize(spaceid=nil, name=nil, description=nil)
+          @SpaceId = spaceid
+          @Name = name
+          @Description = description
+        end
+
+        def deserialize(params)
+          @SpaceId = params['SpaceId']
+          @Name = params['Name']
+          @Description = params['Description']
+        end
+      end
+
+      # ModifySessionSpace返回参数结构体
+      class ModifySessionSpaceResponse < TencentCloud::Common::AbstractModel
+        # @param SessionSpace: <p>修改后的会话空间信息。</p>
+        # @type SessionSpace: :class:`Tencentcloud::Ags.v20250920.models.SessionSpaceInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SessionSpace, :RequestId
+
+        def initialize(sessionspace=nil, requestid=nil)
+          @SessionSpace = sessionspace
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['SessionSpace'].nil?
+            @SessionSpace = SessionSpaceInfo.new
+            @SessionSpace.deserialize(params['SessionSpace'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 沙箱实例存储挂载配置可选项，用于覆盖沙箱工具的存储配置的部分选项，并提供子路径挂载配置。
       class MountOption < TencentCloud::Common::AbstractModel
         # @param Name: 指定沙箱工具中的存储配置名称
@@ -1603,6 +2956,33 @@ module TencentCloud
         end
       end
 
+      # PreviewRegistryRecord请求参数结构体
+      class PreviewRegistryRecordRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # PreviewRegistryRecord返回参数结构体
+      class PreviewRegistryRecordResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 健康检查探针配置
       class ProbeConfiguration < TencentCloud::Common::AbstractModel
         # @param HttpGet: HTTP GET 探测配置
@@ -1639,6 +3019,110 @@ module TencentCloud
           @ProbePeriodMs = params['ProbePeriodMs']
           @SuccessThreshold = params['SuccessThreshold']
           @FailureThreshold = params['FailureThreshold']
+        end
+      end
+
+      # 配额组资源信息
+      class QuotaGroupOverview < TencentCloud::Common::AbstractModel
+        # @param Tag: <p>配额组关联的标签键值</p>
+        # @type Tag: :class:`Tencentcloud::Ags.v20250920.models.Tag`
+        # @param Name: <p>配额组名称</p>
+        # @type Name: String
+        # @param Quota: <p>配额组各资源维度的配额上限</p>
+        # @type Quota: :class:`Tencentcloud::Ags.v20250920.models.QuotaResourceInfo`
+        # @param Usage: <p>配额组各资源维度的当前用量</p>
+        # @type Usage: :class:`Tencentcloud::Ags.v20250920.models.QuotaResourceInfo`
+        # @param CreateTime: <p>创建时间</p><p>参数格式：RFC3339 格式</p>
+        # @type CreateTime: String
+        # @param UpdateTime: <p>最后更新时间</p><p>参数格式：RFC3339 格式</p>
+        # @type UpdateTime: String
+
+        attr_accessor :Tag, :Name, :Quota, :Usage, :CreateTime, :UpdateTime
+
+        def initialize(tag=nil, name=nil, quota=nil, usage=nil, createtime=nil, updatetime=nil)
+          @Tag = tag
+          @Name = name
+          @Quota = quota
+          @Usage = usage
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          unless params['Tag'].nil?
+            @Tag = Tag.new
+            @Tag.deserialize(params['Tag'])
+          end
+          @Name = params['Name']
+          unless params['Quota'].nil?
+            @Quota = QuotaResourceInfo.new
+            @Quota.deserialize(params['Quota'])
+          end
+          unless params['Usage'].nil?
+            @Usage = QuotaResourceInfo.new
+            @Usage.deserialize(params['Usage'])
+          end
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 主账号资源信息
+      class QuotaResourceInfo < TencentCloud::Common::AbstractModel
+        # @param SandboxTools: <p>沙箱工具配额或当前用量</p><p>单位：个</p>
+        # @type SandboxTools: Integer
+        # @param SandboxInstances: <p>沙箱实例配额或当前用量</p><p>单位：个</p>
+        # @type SandboxInstances: Integer
+        # @param PausedInstances: <p>暂停实例配额或当前用量</p><p>单位：个</p>
+        # @type PausedInstances: Integer
+        # @param CPUCores: <p>暂停实例配额或当前用量。目前只在主账号中返回</p><p>单位：核</p>
+        # @type CPUCores: Float
+        # @param MemoryGiB: <p>内存配额或当前用量</p><p>单位：GiB</p>
+        # @type MemoryGiB: Float
+
+        attr_accessor :SandboxTools, :SandboxInstances, :PausedInstances, :CPUCores, :MemoryGiB
+
+        def initialize(sandboxtools=nil, sandboxinstances=nil, pausedinstances=nil, cpucores=nil, memorygib=nil)
+          @SandboxTools = sandboxtools
+          @SandboxInstances = sandboxinstances
+          @PausedInstances = pausedinstances
+          @CPUCores = cpucores
+          @MemoryGiB = memorygib
+        end
+
+        def deserialize(params)
+          @SandboxTools = params['SandboxTools']
+          @SandboxInstances = params['SandboxInstances']
+          @PausedInstances = params['PausedInstances']
+          @CPUCores = params['CPUCores']
+          @MemoryGiB = params['MemoryGiB']
+        end
+      end
+
+      # RejectRegistryRecord请求参数结构体
+      class RejectRegistryRecordRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # RejectRegistryRecord返回参数结构体
+      class RejectRegistryRecordResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -1929,6 +3413,127 @@ module TencentCloud
         end
       end
 
+      # 会话信息
+      class SessionInfo < TencentCloud::Common::AbstractModel
+        # @param SessionId: <p>会话 ID。</p>
+        # @type SessionId: String
+        # @param SpaceId: <p>会话所属空间 ID。</p>
+        # @type SpaceId: String
+        # @param State: <p>Session 快照状态</p>
+        # @type State: :class:`Tencentcloud::Ags.v20250920.models.SessionState`
+        # @param Metadata: <p>会话元数据，以键值对数组形式表示。每个元素包含 Metadata 名称和对应值，最多支持 64 项。</p>
+        # @type Metadata: Array
+        # @param AgentId: <p>Agent ID。</p>
+        # @type AgentId: String
+        # @param UserId: <p>用户 ID。</p>
+        # @type UserId: String
+        # @param Title: <p>会话标题。</p>
+        # @type Title: String
+        # @param EventCount: <p>事件数量。</p>
+        # @type EventCount: Integer
+        # @param CreateTime: <p>创建时间。</p>
+        # @type CreateTime: String
+        # @param UpdateTime: <p>更新时间。</p>
+        # @type UpdateTime: String
+
+        attr_accessor :SessionId, :SpaceId, :State, :Metadata, :AgentId, :UserId, :Title, :EventCount, :CreateTime, :UpdateTime
+        extend Gem::Deprecate
+        deprecate :AgentId, :none, 2026, 9
+        deprecate :AgentId=, :none, 2026, 9
+
+        def initialize(sessionid=nil, spaceid=nil, state=nil, metadata=nil, agentid=nil, userid=nil, title=nil, eventcount=nil, createtime=nil, updatetime=nil)
+          @SessionId = sessionid
+          @SpaceId = spaceid
+          @State = state
+          @Metadata = metadata
+          @AgentId = agentid
+          @UserId = userid
+          @Title = title
+          @EventCount = eventcount
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @SessionId = params['SessionId']
+          @SpaceId = params['SpaceId']
+          unless params['State'].nil?
+            @State = SessionState.new
+            @State.deserialize(params['State'])
+          end
+          unless params['Metadata'].nil?
+            @Metadata = []
+            params['Metadata'].each do |i|
+              metadatavar_tmp = MetadataVar.new
+              metadatavar_tmp.deserialize(i)
+              @Metadata << metadatavar_tmp
+            end
+          end
+          @AgentId = params['AgentId']
+          @UserId = params['UserId']
+          @Title = params['Title']
+          @EventCount = params['EventCount']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 描述会话空间的完整信息。会话空间是用户状态、会话和事件的上级资源及隔离边界，同一个会话只能属于一个会话空间。
+      class SessionSpaceInfo < TencentCloud::Common::AbstractModel
+        # @param SpaceId: <p>会话空间唯一标识，由服务端生成，最大长度为 128 个字符。调用方不应自行构造或解析。</p>
+        # @type SpaceId: String
+        # @param Name: <p>会话空间名称，用于标识会话空间的业务用途，最大长度为 128 个字符。</p>
+        # @type Name: String
+        # @param Description: <p>会话空间描述，用于说明业务用途和使用范围，最大长度为 512 个字符。为空时该字段可能不返回</p>
+        # @type Description: String
+        # @param Status: <p>会话空间当前状态。</p><p>枚举值：</p><ul><li>Active： 正常可用</li><li>Deleting： 正在删除</li></ul>
+        # @type Status: String
+        # @param Default: <p>是否为系统默认会话空间。true 表示默认会话空间，false 表示普通会话空间。默认会话空间不允许删除。</p>
+        # @type Default: Boolean
+        # @param CreateTime: <p>会话空间创建时间，采用 ISO 8601/RFC 3339 格式。</p>
+        # @type CreateTime: String
+        # @param UpdateTime: <p>会话空间最后更新时间，采用 ISO 8601/RFC 3339 格式。</p>
+        # @type UpdateTime: String
+
+        attr_accessor :SpaceId, :Name, :Description, :Status, :Default, :CreateTime, :UpdateTime
+
+        def initialize(spaceid=nil, name=nil, description=nil, status=nil, default=nil, createtime=nil, updatetime=nil)
+          @SpaceId = spaceid
+          @Name = name
+          @Description = description
+          @Status = status
+          @Default = default
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @SpaceId = params['SpaceId']
+          @Name = params['Name']
+          @Description = params['Description']
+          @Status = params['Status']
+          @Default = params['Default']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # Session 快照状态
+      class SessionState < TencentCloud::Common::AbstractModel
+        # @param CustomState: <p>自定义状态 JSON 对象字符串</p>
+        # @type CustomState: String
+
+        attr_accessor :CustomState
+
+        def initialize(customstate=nil)
+          @CustomState = customstate
+        end
+
+        def deserialize(params)
+          @CustomState = params['CustomState']
+        end
+      end
+
       # StartSandboxInstance请求参数结构体
       class StartSandboxInstanceRequest < TencentCloud::Common::AbstractModel
         # @param ToolId: <p>沙箱工具 ID，与 ToolName 至少有一个要填</p>
@@ -2117,6 +3722,33 @@ module TencentCloud
         end
       end
 
+      # SyncRegistryRecord请求参数结构体
+      class SyncRegistryRecordRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # SyncRegistryRecord返回参数结构体
+      class SyncRegistryRecordResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 标签
       class Tag < TencentCloud::Common::AbstractModel
         # @param Key: 标签键
@@ -2134,6 +3766,60 @@ module TencentCloud
         def deserialize(params)
           @Key = params['Key']
           @Value = params['Value']
+        end
+      end
+
+      # UpdateRegistryRecord请求参数结构体
+      class UpdateRegistryRecordRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # UpdateRegistryRecord返回参数结构体
+      class UpdateRegistryRecordResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateRegistry请求参数结构体
+      class UpdateRegistryRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # UpdateRegistry返回参数结构体
+      class UpdateRegistryResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

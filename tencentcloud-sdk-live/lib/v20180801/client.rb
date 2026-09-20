@@ -343,6 +343,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 直播审核图库添加图片，添加到预设库，图库不需要创建。
+
+        # @param request: Request instance for CreateAuditImages.
+        # @type request: :class:`Tencentcloud::live::V20180801::CreateAuditImagesRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::CreateAuditImagesResponse`
+        def CreateAuditImages(request)
+          body = send_request('CreateAuditImages', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAuditImagesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建关键词库，直播审核功能使用。
 
         # @param request: Request instance for CreateAuditKeywordLib.
@@ -1193,6 +1217,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 直播审核图库删除图片。
+
+        # @param request: Request instance for DeleteAuditImages.
+        # @type request: :class:`Tencentcloud::live::V20180801::DeleteAuditImagesRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DeleteAuditImagesResponse`
+        def DeleteAuditImages(request)
+          body = send_request('DeleteAuditImages', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAuditImagesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除关键词库，直播审核功能使用。
+
+        # @param request: Request instance for DeleteAuditKeywordLib.
+        # @type request: :class:`Tencentcloud::live::V20180801::DeleteAuditKeywordLibRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DeleteAuditKeywordLibResponse`
+        def DeleteAuditKeywordLib(request)
+          body = send_request('DeleteAuditKeywordLib', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAuditKeywordLibResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除关键词信息。
 
         # @param request: Request instance for DeleteAuditKeywords.
@@ -2002,6 +2074,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAreaBillBandwidthAndFluxListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取标签组分类数据，直播审核中。
+
+        # @param request: Request instance for DescribeAuditGroupTag.
+        # @type request: :class:`Tencentcloud::live::V20180801::DescribeAuditGroupTagRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeAuditGroupTagResponse`
+        def DescribeAuditGroupTag(request)
+          body = send_request('DescribeAuditGroupTag', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAuditGroupTagResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 直播审核图库获取图片。
+
+        # @param request: Request instance for DescribeAuditImages.
+        # @type request: :class:`Tencentcloud::live::V20180801::DescribeAuditImagesRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeAuditImagesResponse`
+        def DescribeAuditImages(request)
+          body = send_request('DescribeAuditImages', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAuditImagesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取关键词库列表，直播审核功能使用。
+
+        # @param request: Request instance for DescribeAuditKeywordLibs.
+        # @type request: :class:`Tencentcloud::live::V20180801::DescribeAuditKeywordLibsRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeAuditKeywordLibsResponse`
+        def DescribeAuditKeywordLibs(request)
+          body = send_request('DescribeAuditKeywordLibs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAuditKeywordLibsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -4678,6 +4822,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = InsertTaskTemporaryFilesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新关键词库信息，直播审核功能使用。
+
+        # @param request: Request instance for ModifyAuditKeywordLib.
+        # @type request: :class:`Tencentcloud::live::V20180801::ModifyAuditKeywordLibRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::ModifyAuditKeywordLibResponse`
+        def ModifyAuditKeywordLib(request)
+          body = send_request('ModifyAuditKeywordLib', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAuditKeywordLibResponse.new
             model.deserialize(response['Response'])
             model
           else

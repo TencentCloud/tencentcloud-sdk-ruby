@@ -5572,6 +5572,73 @@ module TencentCloud
         end
       end
 
+      # DescribeCloudStorageEventsByTWeSeePerson请求参数结构体
+      class DescribeCloudStorageEventsByTWeSeePersonRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: <p>产品 ID</p>
+        # @type ProductId: String
+        # @param DeviceName: <p>设备名称</p>
+        # @type DeviceName: String
+        # @param PersonId: <p>人员 ID</p>
+        # @type PersonId: String
+        # @param Limit: <p>分页拉取数量，取值范围为 1-100</p>
+        # @type Limit: Integer
+        # @param Offset: <p>分页拉取偏移</p>
+        # @type Offset: Integer
+        # @param ChannelId: <p>通道 ID，非 NVR 设备不填，NVR 设备必填</p>
+        # @type ChannelId: Integer
+
+        attr_accessor :ProductId, :DeviceName, :PersonId, :Limit, :Offset, :ChannelId
+
+        def initialize(productid=nil, devicename=nil, personid=nil, limit=nil, offset=nil, channelid=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @PersonId = personid
+          @Limit = limit
+          @Offset = offset
+          @ChannelId = channelid
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @PersonId = params['PersonId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @ChannelId = params['ChannelId']
+        end
+      end
+
+      # DescribeCloudStorageEventsByTWeSeePerson返回参数结构体
+      class DescribeCloudStorageEventsByTWeSeePersonResponse < TencentCloud::Common::AbstractModel
+        # @param Events: <p>人员关联的云存事件列表</p>
+        # @type Events: Array
+        # @param Total: <p>人员关联的云存事件总数</p>
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Events, :Total, :RequestId
+
+        def initialize(events=nil, total=nil, requestid=nil)
+          @Events = events
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Events'].nil?
+            @Events = []
+            params['Events'].each do |i|
+              cloudstorageeventwithaitasks_tmp = CloudStorageEventWithAITasks.new
+              cloudstorageeventwithaitasks_tmp.deserialize(i)
+              @Events << cloudstorageeventwithaitasks_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCloudStorageEvents请求参数结构体
       class DescribeCloudStorageEventsRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品ID
@@ -8273,6 +8340,74 @@ module TencentCloud
         end
       end
 
+      # DescribeTWeSeeDirectUploadInfo请求参数结构体
+      class DescribeTWeSeeDirectUploadInfoRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: <p>产品 ID</p>
+        # @type ProductId: String
+        # @param DeviceName: <p>设备名称</p>
+        # @type DeviceName: String
+        # @param ServiceType: <p>服务类型。</p><p>枚举值：</p><ul><li>VID_COMP： 视频理解</li><li>IMG_COMP： 图片理解</li></ul>
+        # @type ServiceType: String
+        # @param UploadMethod: <p>上传方式。</p><p>枚举值：</p><ul><li>single： 单文件上传</li><li>manifest： 上传源文件与 Manifest（先上传多个源文件，然后上传 Manifest JSON 触发分析）</li></ul><p>默认值：single</p>
+        # @type UploadMethod: String
+        # @param UploadTarget: <p>上传目标，固定取值为 <code>stream</code>，不填时默认为 <code>stream</code></p><p>枚举值：</p><ul><li>stream： 上传到指定设备（加载对应设备的 ComprehensionConfig 等配置）</li></ul><p>默认值：stream</p>
+        # @type UploadTarget: String
+        # @param ChannelId: <p>通道 ID，非 NVR 设备不填，NVR 设备必填</p>
+        # @type ChannelId: Integer
+
+        attr_accessor :ProductId, :DeviceName, :ServiceType, :UploadMethod, :UploadTarget, :ChannelId
+
+        def initialize(productid=nil, devicename=nil, servicetype=nil, uploadmethod=nil, uploadtarget=nil, channelid=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @ServiceType = servicetype
+          @UploadMethod = uploadmethod
+          @UploadTarget = uploadtarget
+          @ChannelId = channelid
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @ServiceType = params['ServiceType']
+          @UploadMethod = params['UploadMethod']
+          @UploadTarget = params['UploadTarget']
+          @ChannelId = params['ChannelId']
+        end
+      end
+
+      # DescribeTWeSeeDirectUploadInfo返回参数结构体
+      class DescribeTWeSeeDirectUploadInfoResponse < TencentCloud::Common::AbstractModel
+        # @param COSURI: <p>TWeSee 直传目录的 COS URI</p>
+        # @type COSURI: String
+        # @param StorageBucket: <p>TWeSee 直传存储桶</p>
+        # @type StorageBucket: String
+        # @param StoragePath: <p>TWeSee 直传目录路径</p>
+        # @type StoragePath: String
+        # @param StorageRegion: <p>TWeSee 直传存储地域</p>
+        # @type StorageRegion: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :COSURI, :StorageBucket, :StoragePath, :StorageRegion, :RequestId
+
+        def initialize(cosuri=nil, storagebucket=nil, storagepath=nil, storageregion=nil, requestid=nil)
+          @COSURI = cosuri
+          @StorageBucket = storagebucket
+          @StoragePath = storagepath
+          @StorageRegion = storageregion
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @COSURI = params['COSURI']
+          @StorageBucket = params['StorageBucket']
+          @StoragePath = params['StoragePath']
+          @StorageRegion = params['StorageRegion']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTWeSeeFace请求参数结构体
       class DescribeTWeSeeFaceRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品 ID
@@ -9195,6 +9330,58 @@ module TencentCloud
               @License << videolicenseentity_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeVodCloudStorageDate请求参数结构体
+      class DescribeVodCloudStorageDateRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: <p>产品id</p>
+        # @type ProductId: String
+        # @param DeviceName: <p>设备名</p>
+        # @type DeviceName: String
+        # @param ChannelId: <p>通道id</p>
+        # @type ChannelId: String
+        # @param UserId: <p>用户id</p>
+        # @type UserId: String
+        # @param TimeZone: <p>时区</p>
+        # @type TimeZone: String
+
+        attr_accessor :ProductId, :DeviceName, :ChannelId, :UserId, :TimeZone
+
+        def initialize(productid=nil, devicename=nil, channelid=nil, userid=nil, timezone=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @ChannelId = channelid
+          @UserId = userid
+          @TimeZone = timezone
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @ChannelId = params['ChannelId']
+          @UserId = params['UserId']
+          @TimeZone = params['TimeZone']
+        end
+      end
+
+      # DescribeVodCloudStorageDate返回参数结构体
+      class DescribeVodCloudStorageDateResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>日期数据</p>
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
           @RequestId = params['RequestId']
         end
       end
@@ -11432,6 +11619,200 @@ module TencentCloud
               @Rules << topicruleinfo_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetVodCloudStorageEventList请求参数结构体
+      class GetVodCloudStorageEventListRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: <p>产品id</p>
+        # @type ProductId: String
+        # @param DeviceName: <p>设备名</p>
+        # @type DeviceName: String
+        # @param Date: <p>日期</p><p>参数格式：格式 yyyy-MM-dd</p>
+        # @type Date: String
+        # @param Context: <p>分页游标，首页为空。</p>
+        # @type Context: String
+        # @param Size: <p>分页大小</p><p>取值范围：[10, 100]</p><p>默认值：10</p>
+        # @type Size: Integer
+        # @param ChannelId: <p>通道id</p>
+        # @type ChannelId: Integer
+        # @param UserId: <p>用户id</p>
+        # @type UserId: String
+        # @param TimeZone: <p>时区</p>
+        # @type TimeZone: String
+        # @param ExpireSec: <p>非加密 URL 签名有效期</p><p>单位：秒</p>
+        # @type ExpireSec: Integer
+        # @param Platform: <p>请求平台：0 Android，1 小程序，2 iOS，3 鸿蒙</p>
+        # @type Platform: Integer
+
+        attr_accessor :ProductId, :DeviceName, :Date, :Context, :Size, :ChannelId, :UserId, :TimeZone, :ExpireSec, :Platform
+
+        def initialize(productid=nil, devicename=nil, date=nil, context=nil, size=nil, channelid=nil, userid=nil, timezone=nil, expiresec=nil, platform=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @Date = date
+          @Context = context
+          @Size = size
+          @ChannelId = channelid
+          @UserId = userid
+          @TimeZone = timezone
+          @ExpireSec = expiresec
+          @Platform = platform
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @Date = params['Date']
+          @Context = params['Context']
+          @Size = params['Size']
+          @ChannelId = params['ChannelId']
+          @UserId = params['UserId']
+          @TimeZone = params['TimeZone']
+          @ExpireSec = params['ExpireSec']
+          @Platform = params['Platform']
+        end
+      end
+
+      # GetVodCloudStorageEventList返回参数结构体
+      class GetVodCloudStorageEventListResponse < TencentCloud::Common::AbstractModel
+        # @param Events: <p>事件列表</p>
+        # @type Events: Array
+        # @param Listover: <p>数据是否已完整</p>
+        # @type Listover: Boolean
+        # @param Context: <p>下一页游标</p>
+        # @type Context: String
+        # @param Total: <p>总数</p>
+        # @type Total: Integer
+        # @param VodAppId: <p>加密播放器使用的 VOD 子应用 ID</p>
+        # @type VodAppId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Events, :Listover, :Context, :Total, :VodAppId, :RequestId
+
+        def initialize(events=nil, listover=nil, context=nil, total=nil, vodappid=nil, requestid=nil)
+          @Events = events
+          @Listover = listover
+          @Context = context
+          @Total = total
+          @VodAppId = vodappid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Events'].nil?
+            @Events = []
+            params['Events'].each do |i|
+              vodcloudstorageevent_tmp = VodCloudStorageEvent.new
+              vodcloudstorageevent_tmp.deserialize(i)
+              @Events << vodcloudstorageevent_tmp
+            end
+          end
+          @Listover = params['Listover']
+          @Context = params['Context']
+          @Total = params['Total']
+          @VodAppId = params['VodAppId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetVodCloudStorageVideoList请求参数结构体
+      class GetVodCloudStorageVideoListRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: <p>产品id</p>
+        # @type ProductId: String
+        # @param DeviceName: <p>设备名称</p>
+        # @type DeviceName: String
+        # @param Date: <p>日期</p><p>参数格式：格式 yyyy-MM-dd</p>
+        # @type Date: String
+        # @param ChannelId: <p>通道id</p>
+        # @type ChannelId: Integer
+        # @param StartTime: <p>开始时间；与 EndTime 必须同时填或同时省略</p><p>单位：秒</p>
+        # @type StartTime: Integer
+        # @param EndTime: <p>结束时间</p><p>单位：秒</p>
+        # @type EndTime: Integer
+        # @param UserId: <p>用户id</p>
+        # @type UserId: String
+        # @param TimeZone: <p>时区</p>
+        # @type TimeZone: String
+        # @param ExpireSec: <p>非加密文件的防盗链 URL 有效期</p><p>单位：秒</p>
+        # @type ExpireSec: Integer
+        # @param Platform: <p>0 Android，1 小程序，2 iOS，3 鸿蒙</p>
+        # @type Platform: Integer
+        # @param Context: <p>分页游标；首页传空，之后原样回填上一页响应的 Context</p>
+        # @type Context: String
+        # @param Size: <p>每页视频条数；&lt;=0 或不填默认 10，&gt;100 按 100 计</p>
+        # @type Size: Integer
+
+        attr_accessor :ProductId, :DeviceName, :Date, :ChannelId, :StartTime, :EndTime, :UserId, :TimeZone, :ExpireSec, :Platform, :Context, :Size
+
+        def initialize(productid=nil, devicename=nil, date=nil, channelid=nil, starttime=nil, endtime=nil, userid=nil, timezone=nil, expiresec=nil, platform=nil, context=nil, size=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @Date = date
+          @ChannelId = channelid
+          @StartTime = starttime
+          @EndTime = endtime
+          @UserId = userid
+          @TimeZone = timezone
+          @ExpireSec = expiresec
+          @Platform = platform
+          @Context = context
+          @Size = size
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @Date = params['Date']
+          @ChannelId = params['ChannelId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @UserId = params['UserId']
+          @TimeZone = params['TimeZone']
+          @ExpireSec = params['ExpireSec']
+          @Platform = params['Platform']
+          @Context = params['Context']
+          @Size = params['Size']
+        end
+      end
+
+      # GetVodCloudStorageVideoList返回参数结构体
+      class GetVodCloudStorageVideoListResponse < TencentCloud::Common::AbstractModel
+        # @param VodAppId: <p>播放器使用的 VOD 子应用 ID</p>
+        # @type VodAppId: String
+        # @param VideoList: <p>视频列表</p>
+        # @type VideoList: Array
+        # @param Listover: <p>是否已拉完</p>
+        # @type Listover: Boolean
+        # @param Context: <p>下一页游标</p>
+        # @type Context: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :VodAppId, :VideoList, :Listover, :Context, :RequestId
+
+        def initialize(vodappid=nil, videolist=nil, listover=nil, context=nil, requestid=nil)
+          @VodAppId = vodappid
+          @VideoList = videolist
+          @Listover = listover
+          @Context = context
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @VodAppId = params['VodAppId']
+          unless params['VideoList'].nil?
+            @VideoList = []
+            params['VideoList'].each do |i|
+              videolist_tmp = VideoList.new
+              videolist_tmp.deserialize(i)
+              @VideoList << videolist_tmp
+            end
+          end
+          @Listover = params['Listover']
+          @Context = params['Context']
           @RequestId = params['RequestId']
         end
       end
@@ -19689,6 +20070,42 @@ module TencentCloud
         end
       end
 
+      # 加密云存视频列表数据
+      class VideoList < TencentCloud::Common::AbstractModel
+        # @param Psign: <p>用于播放加密视频</p>
+        # @type Psign: String
+        # @param StartTime: <p>开始时间</p>
+        # @type StartTime: Integer
+        # @param EndTime: <p>结束时间</p>
+        # @type EndTime: Integer
+        # @param Url: <p>播放url</p>
+        # @type Url: String
+        # @param StreamType: <p>视频类型</p>
+        # @type StreamType: String
+        # @param FileId: <p>点播文件id</p>
+        # @type FileId: String
+
+        attr_accessor :Psign, :StartTime, :EndTime, :Url, :StreamType, :FileId
+
+        def initialize(psign=nil, starttime=nil, endtime=nil, url=nil, streamtype=nil, fileid=nil)
+          @Psign = psign
+          @StartTime = starttime
+          @EndTime = endtime
+          @Url = url
+          @StreamType = streamtype
+          @FileId = fileid
+        end
+
+        def deserialize(params)
+          @Psign = params['Psign']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Url = params['Url']
+          @StreamType = params['StreamType']
+          @FileId = params['FileId']
+        end
+      end
+
       # TWeSee 语义理解自定义标签请求
       class VisionCustomDetectQuery < TencentCloud::Common::AbstractModel
         # @param Key: 自定义标签的标识符
@@ -19963,6 +20380,49 @@ module TencentCloud
             end
           end
           @SummaryPrompt = params['SummaryPrompt']
+        end
+      end
+
+      # 加密云存事件数据
+      class VodCloudStorageEvent < TencentCloud::Common::AbstractModel
+        # @param EventId: <p>事件id</p>
+        # @type EventId: String
+        # @param ThumbnailUrl: <p>缩略图url</p>
+        # @type ThumbnailUrl: String
+        # @param EventStartTime: <p>事件开始时间</p>
+        # @type EventStartTime: Integer
+        # @param EventEndTime: <p>事件结束时间</p>
+        # @type EventEndTime: Integer
+        # @param VideoList: <p>视频相关信息</p>
+        # @type VideoList: Array
+        # @param IsStaticEvent: <p>是否为图片事件</p><p>枚举值：</p><ul><li>true： 图片事件</li><li>false： 视频事件</li></ul>
+        # @type IsStaticEvent: Boolean
+
+        attr_accessor :EventId, :ThumbnailUrl, :EventStartTime, :EventEndTime, :VideoList, :IsStaticEvent
+
+        def initialize(eventid=nil, thumbnailurl=nil, eventstarttime=nil, eventendtime=nil, videolist=nil, isstaticevent=nil)
+          @EventId = eventid
+          @ThumbnailUrl = thumbnailurl
+          @EventStartTime = eventstarttime
+          @EventEndTime = eventendtime
+          @VideoList = videolist
+          @IsStaticEvent = isstaticevent
+        end
+
+        def deserialize(params)
+          @EventId = params['EventId']
+          @ThumbnailUrl = params['ThumbnailUrl']
+          @EventStartTime = params['EventStartTime']
+          @EventEndTime = params['EventEndTime']
+          unless params['VideoList'].nil?
+            @VideoList = []
+            params['VideoList'].each do |i|
+              videolist_tmp = VideoList.new
+              videolist_tmp.deserialize(i)
+              @VideoList << videolist_tmp
+            end
+          end
+          @IsStaticEvent = params['IsStaticEvent']
         end
       end
 

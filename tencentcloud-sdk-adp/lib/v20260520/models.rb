@@ -6588,6 +6588,98 @@ module TencentCloud
         end
       end
 
+      # DescribeAppStatisticsOverview请求参数结构体
+      class DescribeAppStatisticsOverviewRequest < TencentCloud::Common::AbstractModel
+        # @param AppType: <p>应用类型。可选值：APP_TYPE_RAG（RAG）、APP_TYPE_WORKFLOW（Workflow）、APP_TYPE_CLAW（Claw）、APP_TYPE_MULTIAGENT（MultiAgent）；本期仅 APP_TYPE_RAG 生效，其余为预留值，传入将返回 InvalidParameter</p><table><tbody><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>APP_TYPE_UNSPECIFIED</td><td>0</td><td>未指定（无效值，请求勿传）</td></tr><tr><td>APP_TYPE_RAG</td><td>1</td><td>RAG（本期唯一支持）</td></tr><tr><td>APP_TYPE_WORKFLOW</td><td>2</td><td>Workflow（预留，暂不支持）</td></tr><tr><td>APP_TYPE_CLAW</td><td>3</td><td>Claw（预留，暂不支持）</td></tr><tr><td>APP_TYPE_MULTIAGENT</td><td>4</td><td>MultiAgent（预留，暂不支持）</td></tr></tbody></table>
+        # @type AppType: Integer
+        # @param TimeRange: <p>查询时间范围（Unix 秒）</p>
+        # @type TimeRange: :class:`Tencentcloud::Adp.v20260520.models.TimeRange`
+        # @param ViewScope: <p>视图范围：应用视图（VIEW_TYPE_APP），scope_id 填应用 ID（uint64 雪花 ID 的十进制字符串）</p>
+        # @type ViewScope: :class:`Tencentcloud::Adp.v20260520.models.ViewScope`
+        # @param SpaceId: <p>空间 ID</p><p>参数格式：<p>空间 ID</p></p><p>默认值：default_space</p>
+        # @type SpaceId: String
+        # @param AppId: <p>应用 ID</p><p>参数格式：</p><p>应用 ID</p><p></p><p>参考值：2099767969573745984</p>
+        # @type AppId: String
+        # @param FilterList: <p>扩展过滤。Filter 组合规则：多项 AND，同项 value_list OR。支持 Name：space_id（空间 ID）、channel_type（调用方式/渠道类型，取值参考 trpc.adp.common.v2.ChannelType 枚举名）；channel_type 不传时按全部渠道聚合</p>
+        # @type FilterList: Array
+
+        attr_accessor :AppType, :TimeRange, :ViewScope, :SpaceId, :AppId, :FilterList
+
+        def initialize(apptype=nil, timerange=nil, viewscope=nil, spaceid=nil, appid=nil, filterlist=nil)
+          @AppType = apptype
+          @TimeRange = timerange
+          @ViewScope = viewscope
+          @SpaceId = spaceid
+          @AppId = appid
+          @FilterList = filterlist
+        end
+
+        def deserialize(params)
+          @AppType = params['AppType']
+          unless params['TimeRange'].nil?
+            @TimeRange = TimeRange.new
+            @TimeRange.deserialize(params['TimeRange'])
+          end
+          unless params['ViewScope'].nil?
+            @ViewScope = ViewScope.new
+            @ViewScope.deserialize(params['ViewScope'])
+          end
+          @SpaceId = params['SpaceId']
+          @AppId = params['AppId']
+          unless params['FilterList'].nil?
+            @FilterList = []
+            params['FilterList'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @FilterList << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeAppStatisticsOverview返回参数结构体
+      class DescribeAppStatisticsOverviewResponse < TencentCloud::Common::AbstractModel
+        # @param AvgFirstTokenTime: <p>首 tokens 平均耗时（毫秒）</p>
+        # @type AvgFirstTokenTime: String
+        # @param AvgTotalTokenTime: <p>总 tokens 平均耗时（毫秒）</p>
+        # @type AvgTotalTokenTime: String
+        # @param CallSuccessRate: <p>应用调用成功率（百分比，0~100）</p>
+        # @type CallSuccessRate: Float
+        # @param ReplyTypeDistributionList: <p>回复类型分布列表；按 app_type 统计，已补全所有回复方式并按固定顺序返回，无数据的回复方式 call_count 为 0</p>
+        # @type ReplyTypeDistributionList: Array
+        # @param TotalCallCount: <p>总调用次数</p>
+        # @type TotalCallCount: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AvgFirstTokenTime, :AvgTotalTokenTime, :CallSuccessRate, :ReplyTypeDistributionList, :TotalCallCount, :RequestId
+
+        def initialize(avgfirsttokentime=nil, avgtotaltokentime=nil, callsuccessrate=nil, replytypedistributionlist=nil, totalcallcount=nil, requestid=nil)
+          @AvgFirstTokenTime = avgfirsttokentime
+          @AvgTotalTokenTime = avgtotaltokentime
+          @CallSuccessRate = callsuccessrate
+          @ReplyTypeDistributionList = replytypedistributionlist
+          @TotalCallCount = totalcallcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AvgFirstTokenTime = params['AvgFirstTokenTime']
+          @AvgTotalTokenTime = params['AvgTotalTokenTime']
+          @CallSuccessRate = params['CallSuccessRate']
+          unless params['ReplyTypeDistributionList'].nil?
+            @ReplyTypeDistributionList = []
+            params['ReplyTypeDistributionList'].each do |i|
+              distribution_tmp = Distribution.new
+              distribution_tmp.deserialize(i)
+              @ReplyTypeDistributionList << distribution_tmp
+            end
+          end
+          @TotalCallCount = params['TotalCallCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeAppSummaryList请求参数结构体
       class DescribeAppSummaryListRequest < TencentCloud::Common::AbstractModel
         # @param SpaceId: 空间ID(必填)
@@ -9702,6 +9794,30 @@ module TencentCloud
         def deserialize(params)
           @AppKey = params['AppKey']
           @AppSecret = params['AppSecret']
+        end
+      end
+
+      # 回复类型分布项
+      class Distribution < TencentCloud::Common::AbstractModel
+        # @param CallCount: <p>该回复方式的调用次数</p>
+        # @type CallCount: String
+        # @param Percentage: <p>该回复方式在总调用次数中的占比（百分比，0~100，保留两位小数；无数据时全为 0，有数据时各项之和为 100）</p>
+        # @type Percentage: Float
+        # @param ReplyName: <p>回复方式名称（已按请求语言国际化；i18n 缺失时兜底为 reply_method 的枚举名）</p>
+        # @type ReplyName: String
+
+        attr_accessor :CallCount, :Percentage, :ReplyName
+
+        def initialize(callcount=nil, percentage=nil, replyname=nil)
+          @CallCount = callcount
+          @Percentage = percentage
+          @ReplyName = replyname
+        end
+
+        def deserialize(params)
+          @CallCount = params['CallCount']
+          @Percentage = params['Percentage']
+          @ReplyName = params['ReplyName']
         end
       end
 

@@ -939,6 +939,10 @@ module TencentCloud
         # @type TargetPath: String
         # @param TargetHosts: <p>目标服务器</p>
         # @type TargetHosts: Array
+        # @param Provider: <p>模型提供商</p><p>枚举值：</p><ul><li>tencentTokenHub： 腾讯云TokenHub</li><li>tiONE： TI-ONE应用</li><li>default： 其他</li></ul>
+        # @type Provider: String
+        # @param ApiKeys: <p>Provider=tencentTokenHub时对应的密钥</p>
+        # @type ApiKeys: Array
         # @param CredentialID: <p>凭据ID</p>
         # @type CredentialID: String
         # @param CheckTargetCertsError: <p>https时，是否检查证书合法</p>
@@ -950,14 +954,16 @@ module TencentCloud
         # @param Description: <p>描述</p>
         # @type Description: String
 
-        attr_accessor :InstanceID, :Name, :HttpProtocolType, :TargetPath, :TargetHosts, :CredentialID, :CheckTargetCertsError, :HttpProtocolVersion, :ModelID, :Description
+        attr_accessor :InstanceID, :Name, :HttpProtocolType, :TargetPath, :TargetHosts, :Provider, :ApiKeys, :CredentialID, :CheckTargetCertsError, :HttpProtocolVersion, :ModelID, :Description
 
-        def initialize(instanceid=nil, name=nil, httpprotocoltype=nil, targetpath=nil, targethosts=nil, credentialid=nil, checktargetcertserror=nil, httpprotocolversion=nil, modelid=nil, description=nil)
+        def initialize(instanceid=nil, name=nil, httpprotocoltype=nil, targetpath=nil, targethosts=nil, provider=nil, apikeys=nil, credentialid=nil, checktargetcertserror=nil, httpprotocolversion=nil, modelid=nil, description=nil)
           @InstanceID = instanceid
           @Name = name
           @HttpProtocolType = httpprotocoltype
           @TargetPath = targetpath
           @TargetHosts = targethosts
+          @Provider = provider
+          @ApiKeys = apikeys
           @CredentialID = credentialid
           @CheckTargetCertsError = checktargetcertserror
           @HttpProtocolVersion = httpprotocolversion
@@ -978,6 +984,8 @@ module TencentCloud
               @TargetHosts << targethostdto_tmp
             end
           end
+          @Provider = params['Provider']
+          @ApiKeys = params['ApiKeys']
           @CredentialID = params['CredentialID']
           @CheckTargetCertsError = params['CheckTargetCertsError']
           @HttpProtocolVersion = params['HttpProtocolVersion']
@@ -2757,6 +2765,8 @@ module TencentCloud
         # @type InstanceID: String
         # @param ID: <p>模型ID</p>
         # @type ID: String
+        # @param Provider: <p>模型提供商</p>
+        # @type Provider: String
         # @param Name: <p>模型名称</p>
         # @type Name: String
         # @param CredentialID: <p>凭据ID</p>
@@ -2784,13 +2794,14 @@ module TencentCloud
         # @param Description: <p>描述</p>
         # @type Description: String
 
-        attr_accessor :AppID, :Uin, :InstanceID, :ID, :Name, :CredentialID, :CredentialName, :HttpProtocolType, :CheckTargetCertsError, :HttpProtocolVersion, :TargetPath, :TargetHosts, :ModelServiceCount, :CreateTime, :LastUpdateTime, :ModelID, :Description
+        attr_accessor :AppID, :Uin, :InstanceID, :ID, :Provider, :Name, :CredentialID, :CredentialName, :HttpProtocolType, :CheckTargetCertsError, :HttpProtocolVersion, :TargetPath, :TargetHosts, :ModelServiceCount, :CreateTime, :LastUpdateTime, :ModelID, :Description
 
-        def initialize(appid=nil, uin=nil, instanceid=nil, id=nil, name=nil, credentialid=nil, credentialname=nil, httpprotocoltype=nil, checktargetcertserror=nil, httpprotocolversion=nil, targetpath=nil, targethosts=nil, modelservicecount=nil, createtime=nil, lastupdatetime=nil, modelid=nil, description=nil)
+        def initialize(appid=nil, uin=nil, instanceid=nil, id=nil, provider=nil, name=nil, credentialid=nil, credentialname=nil, httpprotocoltype=nil, checktargetcertserror=nil, httpprotocolversion=nil, targetpath=nil, targethosts=nil, modelservicecount=nil, createtime=nil, lastupdatetime=nil, modelid=nil, description=nil)
           @AppID = appid
           @Uin = uin
           @InstanceID = instanceid
           @ID = id
+          @Provider = provider
           @Name = name
           @CredentialID = credentialid
           @CredentialName = credentialname
@@ -2811,6 +2822,7 @@ module TencentCloud
           @Uin = params['Uin']
           @InstanceID = params['InstanceID']
           @ID = params['ID']
+          @Provider = params['Provider']
           @Name = params['Name']
           @CredentialID = params['CredentialID']
           @CredentialName = params['CredentialName']

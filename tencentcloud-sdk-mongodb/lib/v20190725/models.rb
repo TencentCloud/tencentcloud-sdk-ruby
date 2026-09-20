@@ -533,6 +533,70 @@ module TencentCloud
         end
       end
 
+      # CheckDBInstanceElasticCpuScalable请求参数结构体
+      class CheckDBInstanceElasticCpuScalableRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例ID</p>
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # CheckDBInstanceElasticCpuScalable返回参数结构体
+      class CheckDBInstanceElasticCpuScalableResponse < TencentCloud::Common::AbstractModel
+        # @param Scalable: <p>是否可以进行弹性CPU扩容</p>
+        # @type Scalable: Boolean
+        # @param IsScaled: <p>当前是否处于扩容状态</p>
+        # @type IsScaled: Boolean
+        # @param IsLocked: <p>实例是否被锁定（有流程在执行）</p>
+        # @type IsLocked: Boolean
+        # @param Reason: <p>不可扩容的原因</p>
+        # @type Reason: String
+        # @param MaxExtraCpu: <p>最大可扩容的CPU核数，MIN(最小分片CPU核数, 24)</p>
+        # @type MaxExtraCpu: Integer
+        # @param ExtraCpu: <p>当前扩容的CPU核数（如果处于扩容状态）</p>
+        # @type ExtraCpu: Integer
+        # @param TriggerType: <p>扩容触发类型: 1-手动, 2-周期, 3-一次性时间段, 4-监控</p>
+        # @type TriggerType: Integer
+        # @param ScaleUpTime: <p>扩容时间</p>
+        # @type ScaleUpTime: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Scalable, :IsScaled, :IsLocked, :Reason, :MaxExtraCpu, :ExtraCpu, :TriggerType, :ScaleUpTime, :RequestId
+
+        def initialize(scalable=nil, isscaled=nil, islocked=nil, reason=nil, maxextracpu=nil, extracpu=nil, triggertype=nil, scaleuptime=nil, requestid=nil)
+          @Scalable = scalable
+          @IsScaled = isscaled
+          @IsLocked = islocked
+          @Reason = reason
+          @MaxExtraCpu = maxextracpu
+          @ExtraCpu = extracpu
+          @TriggerType = triggertype
+          @ScaleUpTime = scaleuptime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Scalable = params['Scalable']
+          @IsScaled = params['IsScaled']
+          @IsLocked = params['IsLocked']
+          @Reason = params['Reason']
+          @MaxExtraCpu = params['MaxExtraCpu']
+          @ExtraCpu = params['ExtraCpu']
+          @TriggerType = params['TriggerType']
+          @ScaleUpTime = params['ScaleUpTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 客户端连接信息，包括客户端IP和连接数
       class ClientConnection < TencentCloud::Common::AbstractModel
         # @param IP: 连接的客户端 IP。

@@ -15102,10 +15102,14 @@ module TencentCloud
         # @type Capability: String
         # @param EndpointPath: <p>端点路径</p>
         # @type EndpointPath: String
+        # @param HealthCheckMethod: <p>健康检查方式</p><p>枚举值：</p><ul><li>Service： 探测服务可用性</li><li>Model： 探测模型可用性</li></ul>
+        # @type HealthCheckMethod: String
+        # @param HealthCheckPath: <p>健康检查路径。仅HealthCheckMethod为Service时生效。</p>
+        # @type HealthCheckPath: String
 
-        attr_accessor :Models, :ProviderKey, :ProviderKeyId, :AccessType, :ModelProvider, :ModelProtocol, :ApiBase, :HostHeader, :ServiceProviderId, :VerifySSL, :HealthCheckProtocol, :CMRPrivateNetworkTunnelId, :Capability, :EndpointPath
+        attr_accessor :Models, :ProviderKey, :ProviderKeyId, :AccessType, :ModelProvider, :ModelProtocol, :ApiBase, :HostHeader, :ServiceProviderId, :VerifySSL, :HealthCheckProtocol, :CMRPrivateNetworkTunnelId, :Capability, :EndpointPath, :HealthCheckMethod, :HealthCheckPath
 
-        def initialize(models=nil, providerkey=nil, providerkeyid=nil, accesstype=nil, modelprovider=nil, modelprotocol=nil, apibase=nil, hostheader=nil, serviceproviderid=nil, verifyssl=nil, healthcheckprotocol=nil, cmrprivatenetworktunnelid=nil, capability=nil, endpointpath=nil)
+        def initialize(models=nil, providerkey=nil, providerkeyid=nil, accesstype=nil, modelprovider=nil, modelprotocol=nil, apibase=nil, hostheader=nil, serviceproviderid=nil, verifyssl=nil, healthcheckprotocol=nil, cmrprivatenetworktunnelid=nil, capability=nil, endpointpath=nil, healthcheckmethod=nil, healthcheckpath=nil)
           @Models = models
           @ProviderKey = providerkey
           @ProviderKeyId = providerkeyid
@@ -15120,6 +15124,8 @@ module TencentCloud
           @CMRPrivateNetworkTunnelId = cmrprivatenetworktunnelid
           @Capability = capability
           @EndpointPath = endpointpath
+          @HealthCheckMethod = healthcheckmethod
+          @HealthCheckPath = healthcheckpath
         end
 
         def deserialize(params)
@@ -15137,6 +15143,8 @@ module TencentCloud
           @CMRPrivateNetworkTunnelId = params['CMRPrivateNetworkTunnelId']
           @Capability = params['Capability']
           @EndpointPath = params['EndpointPath']
+          @HealthCheckMethod = params['HealthCheckMethod']
+          @HealthCheckPath = params['HealthCheckPath']
         end
       end
 

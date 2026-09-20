@@ -293,30 +293,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 绑定集群负责人
-
-        # @param request: Request instance for BindClusterOwner.
-        # @type request: :class:`Tencentcloud::csip::V20221121::BindClusterOwnerRequest`
-        # @rtype: :class:`Tencentcloud::csip::V20221121::BindClusterOwnerResponse`
-        def BindClusterOwner(request)
-          body = send_request('BindClusterOwner', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = BindClusterOwnerResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 取消已永久忽略的EDR多行为告警，从AI-Link永久忽略白名单移除对应主机+规则记录，并将告警状态恢复为待处理（PENDING）
 
         # @param request: Request instance for CancelEdrAlertIgnore.
@@ -6655,30 +6631,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeClusterInstallCommandResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 查询集群列表
-
-        # @param request: Request instance for DescribeClusterListV2.
-        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeClusterListV2Request`
-        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeClusterListV2Response`
-        def DescribeClusterListV2(request)
-          body = send_request('DescribeClusterListV2', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeClusterListV2Response.new
             model.deserialize(response['Response'])
             model
           else
@@ -13053,7 +13005,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询 Skill 安全检测计费信息，包括订单状态、总配额、已消耗配额、到期时间、支付模式等。无订单时返回零值（仅含 TimeNow 和 BetaEndTime）。试用订单通过 ModifyTrialStatus(Module=9) 领取，正式订单通过计费系统创建。
+        # 查询 Skill 安全检测计费信息，包括订单状态、总配额、已消耗配额、到期时间、支付模式等。无订单时返回零值（仅含 TimeNow 和 BetaEndTime）。试用订单通过 ModifyTrialStatus(Module=9) 领取，正式订单通过计费系统创建。后付费资源信息通过 PostPayStatus、PostPayResourceId、PostPayBeginTime 返回，与预付费订单字段相互独立，二者可同时有效（预付额度耗尽后溢出用量进入后付费）。
 
         # @param request: Request instance for DescribeSkillScanPayInfo.
         # @type request: :class:`Tencentcloud::csip::V20221121::DescribeSkillScanPayInfoRequest`
@@ -13087,6 +13039,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeSkillScanResultResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 分页查询 Skill 扫描任务列表，返回每个任务的 Skill 名称、消耗次数与上传时间，按上传时间倒序排列。默认查询本月数据，可通过 StartTime / EndTime 指定时间范围。
+
+        # @param request: Request instance for DescribeSkillScanTaskList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeSkillScanTaskListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeSkillScanTaskListResponse`
+        def DescribeSkillScanTaskList(request)
+          body = send_request('DescribeSkillScanTaskList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSkillScanTaskListResponse.new
             model.deserialize(response['Response'])
             model
           else

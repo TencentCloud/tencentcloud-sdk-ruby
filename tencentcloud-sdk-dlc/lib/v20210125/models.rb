@@ -22256,11 +22256,11 @@ module TencentCloud
         end
       end
 
-      # 配置格式
+      # 通用键值对 POJO（替代各 DTO 中重复定义的 PropEntry / KVPair / PropertyEntry）。
       class KVPair < TencentCloud::Common::AbstractModel
-        # @param Key: <p>配置的key值</p>
+        # @param Key: 配置的key值
         # @type Key: String
-        # @param Value: <p>配置的value值</p>
+        # @param Value: 配置的value值
         # @type Value: String
 
         attr_accessor :Key, :Value

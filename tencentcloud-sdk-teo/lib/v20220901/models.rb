@@ -4996,24 +4996,19 @@ module TencentCloud
 
       # CreateLoadBalancer请求参数结构体
       class CreateLoadBalancerRequest < TencentCloud::Common::AbstractModel
-        # @param ZoneId: 站点 ID。
+        # @param ZoneId: <p>站点 ID。</p>
         # @type ZoneId: String
-        # @param Name: 实例名称，可输入 1-200 个字符，允许字符为 a-z，A-Z，0-9，_，-。
+        # @param Name: <p>实例名称，可输入 1-200 个字符，允许字符为 a-z，A-Z，0-9，_，-。</p>
         # @type Name: String
-        # @param Type: 实例类型，取值有：
-        # <li>HTTP：HTTP 专用型，支持添加 HTTP 专用型和通用型源站组，仅支持被站点加速相关服务引用（如域名服务和规则引擎）；</li>
-        # <li>GENERAL：通用型，仅支持添加通用型源站组，能被站点加速服务（如域名服务和规则引擎）和四层代理引用。</li>
+        # @param Type: <p>实例类型，取值有：</p><li>HTTP_V2：HTTP 专用型（V2），支持添加 HTTP 专用型和通用型源站组，仅支持被站点加速相关服务引用（如域名服务和规则引擎）。该实例类型支持选择发起探测的区域，可显著降低探测请求量但对源站的健康感知灵敏度更低；</li><li>HTTP：HTTP 专用型（V1），支持添加 HTTP 专用型和通用型源站组，仅支持被站点加速相关服务引用（如域名服务和规则引擎）。该实例类型不支持选择发起探测的区域，探测请求量较大但对源站的健康感知灵敏度更高；</li><li>GENERAL：通用型，仅支持添加通用型源站组，能被站点加速服务（如域名服务和规则引擎）和四层代理引用。该实例类型不支持选择发起探测的区域，探测请求量较大但对源站的健康感知灵敏度更高。</li>
         # @type Type: String
-        # @param OriginGroups: 源站组列表及其对应的容灾调度优先级。详情请参考 [快速创建负载均衡实例](https://cloud.tencent.com/document/product/1552/104223) 中的示例场景。
+        # @param OriginGroups: <p>源站组列表及其对应的容灾调度优先级。详情请参考 <a href="https://cloud.tencent.com/document/product/1552/104223">快速创建负载均衡实例</a> 中的示例场景。</p>
         # @type OriginGroups: Array
-        # @param HealthChecker: 健康检查策略。详情请参考 [健康检查策略介绍](https://cloud.tencent.com/document/product/1552/104228)。不填写时，默认为不启用健康检查。
+        # @param HealthChecker: <p>健康检查策略。详情请参考 <a href="https://cloud.tencent.com/document/product/1552/104228">健康检查策略介绍</a>。不填写时，默认为不启用健康检查。</p>
         # @type HealthChecker: :class:`Tencentcloud::Teo.v20220901.models.HealthChecker`
-        # @param SteeringPolicy: 源站组间的流量调度策略，取值有：
-        # <li>Pritory：按优先级顺序进行故障转移。</li>默认值为 Pritory。
+        # @param SteeringPolicy: <p>源站组间的流量调度策略，取值有：</p><li>Pritory：按优先级顺序进行故障转移。</li>默认值为 Pritory。
         # @type SteeringPolicy: String
-        # @param FailoverPolicy: 实际访问某源站失败时的请求重试策略，详情请参考 [请求重试策略介绍](https://cloud.tencent.com/document/product/1552/104227)，取值有：
-        # <li>OtherOriginGroup：单次请求失败后，请求优先重试下一优先级源站组；</li>
-        # <li>OtherRecordInOriginGroup：单次请求失败后，请求优先重试同源站组内的其他源站。</li>默认值为 OtherRecordInOriginGroup。
+        # @param FailoverPolicy: <p>实际访问某源站失败时的请求重试策略，详情请参考 <a href="https://cloud.tencent.com/document/product/1552/104227">请求重试策略介绍</a>，取值有：</p><li>OtherOriginGroup：单次请求失败后，请求优先重试下一优先级源站组；</li><li>OtherRecordInOriginGroup：单次请求失败后，请求优先重试同源站组内的其他源站。</li>默认值为 OtherRecordInOriginGroup。
         # @type FailoverPolicy: String
 
         attr_accessor :ZoneId, :Name, :Type, :OriginGroups, :HealthChecker, :SteeringPolicy, :FailoverPolicy
@@ -5051,7 +5046,7 @@ module TencentCloud
 
       # CreateLoadBalancer返回参数结构体
       class CreateLoadBalancerResponse < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 负载均衡实例 ID。
+        # @param InstanceId: <p>负载均衡实例 ID。</p>
         # @type InstanceId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -8644,6 +8639,72 @@ module TencentCloud
               ruleenginecustomaction_tmp = RuleEngineCustomAction.new
               ruleenginecustomaction_tmp.deserialize(i)
               @CustomActionSet << ruleenginecustomaction_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAvailableOriginACLFamily请求参数结构体
+      class DescribeAvailableOriginACLFamilyRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: <p>站点ID。</p>
+        # @type ZoneId: String
+        # @param Filters: <p>过滤条件，Filters.Values 的上限为 20。该参数不填写时，返回当前站点下所有可用版本。源站防护的 IP 段控制域包含标准控制域和精简控制域。标准控制域和精简控制域主要区别在于提供的回源 IP 网段数量差异，后者数量更少,但是使用上有限制，如需使用请联系技术支持。具体取值说明如下：<br>详细的过滤条件如下：<br>OriginACLFamily：按照控制域进行过滤；</p><li>gaz：标准全球可用区控制域；</li><li>mlc：标准中国大陆可用区控制域；</li><li>emc：标准全球(不含中国大陆)可用区控制域；</li><li>plat-gaz：精简全球可用区控制域；</li><li>plat-mlc：精简中国大陆可用区控制域；</li><li>plat-emc：精简全球(不含中国大陆)可用区控制域；</li><li>plat-specific-gaz：定制版控全球可用区制域；</li><li>plat-specific-mlc：定制版控中国大陆可用区控制域；</li><li>plat-specific-emc：定制版控全球（不含中国大陆）可用区控制域。</li>
+        # @type Filters: Array
+        # @param Offset: <p>分页查询偏移量，默认为 0。</p>
+        # @type Offset: Integer
+        # @param Limit: <p>分页查询限制数目，默认值：20，最大值：100。</p>
+        # @type Limit: Integer
+
+        attr_accessor :ZoneId, :Filters, :Offset, :Limit
+
+        def initialize(zoneid=nil, filters=nil, offset=nil, limit=nil)
+          @ZoneId = zoneid
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeAvailableOriginACLFamily返回参数结构体
+      class DescribeAvailableOriginACLFamilyResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>源站防护 IP 段详细信息总数。</p>
+        # @type TotalCount: Integer
+        # @param OriginACLFamilyInfos: <p>回源 IP 网段详细信息列表。</p>
+        # @type OriginACLFamilyInfos: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :OriginACLFamilyInfos, :RequestId
+
+        def initialize(totalcount=nil, originaclfamilyinfos=nil, requestid=nil)
+          @TotalCount = totalcount
+          @OriginACLFamilyInfos = originaclfamilyinfos
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['OriginACLFamilyInfos'].nil?
+            @OriginACLFamilyInfos = []
+            params['OriginACLFamilyInfos'].each do |i|
+              originaclfamilyinfo_tmp = OriginACLFamilyInfo.new
+              originaclfamilyinfo_tmp.deserialize(i)
+              @OriginACLFamilyInfos << originaclfamilyinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -15977,45 +16038,38 @@ module TencentCloud
 
       # 负载均衡实例健康检查策略。
       class HealthChecker < TencentCloud::Common::AbstractModel
-        # @param Type: 健康检查策略，取值有：
-        # <li>HTTP；</li>
-        # <li>HTTPS；</li>
-        # <li>TCP；</li>
-        # <li>UDP；</li>
-        # <li>ICMP Ping；</li>
-        # <li>NoCheck。</li>
-        # 注意：NoCheck 表示不启用健康检查策略。
+        # @param Type: <p>健康检查策略，取值有：</p><li>HTTP；</li><li>HTTPS；</li><li>TCP；</li><li>UDP；</li><li>ICMP Ping；</li><li>NoCheck。</li>注意：NoCheck 表示不启用健康检查策略。
         # @type Type: String
-        # @param Port: 检查端口。当 Type=HTTP 或 Type=HTTPS 或 Type=TCP 或 Type=UDP 时为必填。
+        # @param Port: <p>检查端口。当 Type=HTTP 或 Type=HTTPS 或 Type=TCP 或 Type=UDP 时为必填。</p>
         # @type Port: Integer
-        # @param Interval: 检查频率，表示多久发起一次健康检查任务，单位为秒。可配置 10-600 秒。
+        # @param Interval: <p>检查频率，表示多久发起一次健康检查任务，单位为秒。可配置 10-600 秒。</p>
         # @type Interval: Integer
-        # @param Timeout: 每一次健康检查的超时时间，若健康检查消耗时间大于此值，则检查结果判定为“不健康”， 单位为秒，默认值为 5s，取值必须小于 Interval。
+        # @param Timeout: <p>每一次健康检查的超时时间，若健康检查消耗时间大于此值，则检查结果判定为“不健康”， 单位为秒，默认值为 5s，取值必须小于 Interval。</p>
         # @type Timeout: Integer
-        # @param HealthThreshold: 健康阈值，表示连续几次健康检查结果为"健康"，则判断源站为"健康"，单位为次，默认 3 次，最小取值 1 次。
+        # @param HealthThreshold: <p>健康阈值，表示连续几次健康检查结果为&quot;健康&quot;，则判断源站为&quot;健康&quot;，单位为次，默认 3 次，最小取值 1 次。</p>
         # @type HealthThreshold: Integer
-        # @param CriticalThreshold: 不健康阈值，表示连续几次健康检查结果为"不健康"，则判断源站为"不健康"，单位为次，默认 2 次。
+        # @param CriticalThreshold: <p>不健康阈值，表示连续几次健康检查结果为&quot;不健康&quot;，则判断源站为&quot;不健康&quot;，单位为次，默认 2 次。</p>
         # @type CriticalThreshold: Integer
-        # @param Path: 该参数仅当 Type=HTTP 或 Type=HTTPS 时有效，表示探测路径，需要填写完整的 host/path，不包含协议部分，例如：www.example.com/test。
+        # @param Path: <p>该参数仅当 Type=HTTP 或 Type=HTTPS 时有效，表示探测路径，需要填写完整的 host/path，不包含协议部分，例如：www.example.com/test。</p>
         # @type Path: String
-        # @param Method: 该参数仅当 Type=HTTP 或 Type=HTTPS 时有效，表示请求方法，取值有：
-        # <li>GET；</li>
-        # <li>HEAD。</li>
+        # @param Method: <p>该参数仅当 Type=HTTP 或 Type=HTTPS 时有效，表示请求方法，取值有：</p><li>GET；</li><li>HEAD。</li>
         # @type Method: String
-        # @param ExpectedCodes: 该参数仅当 Type=HTTP 或 Type=HTTPS 时有效，表示探测节点向源站发起健康检查时，响应哪些状态码可用于认定探测结果为健康。
+        # @param ExpectedCodes: <p>该参数仅当 Type=HTTP 或 Type=HTTPS 时有效，表示探测节点向源站发起健康检查时，响应哪些状态码可用于认定探测结果为健康。</p>
         # @type ExpectedCodes: Array
-        # @param Headers: 该参数仅当 Type=HTTP 或 Type=HTTPS 时有效，表示探测请求携带的自定义  HTTP 请求头，至多可配置 10 个。
+        # @param Headers: <p>该参数仅当 Type=HTTP 或 Type=HTTPS 时有效，表示探测请求携带的自定义  HTTP 请求头，至多可配置 10 个。</p>
         # @type Headers: Array
-        # @param FollowRedirect: 该参数仅当 Type=HTTP 或 Type=HTTPS 时有效，表示是否启用遵循 301/302 重定向。启用后，301/302 默认为"健康"的状态码，默认跳转 3 次。
+        # @param FollowRedirect: <p>该参数仅当 Type=HTTP 或 Type=HTTPS 时有效，表示是否启用遵循 301/302 重定向。启用后，301/302 默认为&quot;健康&quot;的状态码，默认跳转 3 次。</p>
         # @type FollowRedirect: String
-        # @param SendContext: 该参数仅当 Type=UDP 时有效，表示健康检查发送的内容。只允许 ASCII 可见字符，最大长度限制 500 个字符。
+        # @param SendContext: <p>该参数仅当 Type=UDP 时有效，表示健康检查发送的内容。只允许 ASCII 可见字符，最大长度限制 500 个字符。</p>
         # @type SendContext: String
-        # @param RecvContext: 该参数仅当 Type=UDP 时有效，表示健康检查期望源站返回结果。只允许 ASCII 可见字符，最大长度限制 500 个字符。
+        # @param RecvContext: <p>该参数仅当 Type=UDP 时有效，表示健康检查期望源站返回结果。只允许 ASCII 可见字符，最大长度限制 500 个字符。</p>
         # @type RecvContext: String
+        # @param ProbeCluster: <p>健康检查探测集群。指定本负载均衡实例发起健康探测的集群区域范围，探测集群地区分布详见<a href="https://cloud.tencent.com/document/product/1552/104228">健康检查策略介绍</a>，仅 HTTP 专用型（V2）版本负载均衡实例支持设置。取值有：<br>global：由全球所有区域的探测集群发起探测，包括中国大陆区域以及非中国大陆区域，各个区域的集群独立维护各自的探测结果；<br>mainland_china：仅由中国大陆区域的探测集群发起探测，当前中国大陆区域共用一个探测集群，探测结果由中国大陆区域的探测集群维护，其他区域跟随中国大陆区域的集群的探测结果；<br>overseas：仅由非中国大陆区域的探测集群发起探测，当前非中国大陆区域包含多个地区的探测集群，探测结果由各个地区的探测集群独立维护，中国大陆区域的探测结果由所有其他地区的探测集群的探测结果汇总生成。<br>默认为 global。</p>
+        # @type ProbeCluster: String
 
-        attr_accessor :Type, :Port, :Interval, :Timeout, :HealthThreshold, :CriticalThreshold, :Path, :Method, :ExpectedCodes, :Headers, :FollowRedirect, :SendContext, :RecvContext
+        attr_accessor :Type, :Port, :Interval, :Timeout, :HealthThreshold, :CriticalThreshold, :Path, :Method, :ExpectedCodes, :Headers, :FollowRedirect, :SendContext, :RecvContext, :ProbeCluster
 
-        def initialize(type=nil, port=nil, interval=nil, timeout=nil, healththreshold=nil, criticalthreshold=nil, path=nil, method=nil, expectedcodes=nil, headers=nil, followredirect=nil, sendcontext=nil, recvcontext=nil)
+        def initialize(type=nil, port=nil, interval=nil, timeout=nil, healththreshold=nil, criticalthreshold=nil, path=nil, method=nil, expectedcodes=nil, headers=nil, followredirect=nil, sendcontext=nil, recvcontext=nil, probecluster=nil)
           @Type = type
           @Port = port
           @Interval = interval
@@ -16029,6 +16083,7 @@ module TencentCloud
           @FollowRedirect = followredirect
           @SendContext = sendcontext
           @RecvContext = recvcontext
+          @ProbeCluster = probecluster
         end
 
         def deserialize(params)
@@ -16052,6 +16107,7 @@ module TencentCloud
           @FollowRedirect = params['FollowRedirect']
           @SendContext = params['SendContext']
           @RecvContext = params['RecvContext']
+          @ProbeCluster = params['ProbeCluster']
         end
       end
 
@@ -18217,35 +18273,27 @@ module TencentCloud
 
       # 负载均衡实例信息。
       class LoadBalancer < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID。
+        # @param InstanceId: <p>实例 ID。</p>
         # @type InstanceId: String
-        # @param Name: 实例名称，可输入 1-200 个字符，允许字符为 a-z，A-Z，0-9，_，-。
+        # @param Name: <p>实例名称，可输入 1-200 个字符，允许字符为 a-z，A-Z，0-9，_，-。</p>
         # @type Name: String
-        # @param Type: 实例类型，取值有：
-        # <li>HTTP：HTTP 专用型，支持添加 HTTP 专用型和通用型源站组，仅支持被站点加速相关服务引用（如域名服务和规则引擎）；</li>
-        # <li>GENERAL：通用型，仅支持添加通用型源站组，能被站点加速服务（如域名服务和规则引擎）和四层代理引用。</li>
+        # @param Type: <p>实例类型，取值有：</p><li>HTTP_V2：HTTP 专用型（V2），支持添加 HTTP 专用型和通用型源站组，仅支持被站点加速相关服务引用（如域名服务和规则引擎）。该实例类型支持选择发起探测的区域，可显著降低探测请求量但对源站的健康感知灵敏度更低；</li><li>HTTP：HTTP 专用型（V1），支持添加 HTTP 专用型和通用型源站组，仅支持被站点加速相关服务引用（如域名服务和规则引擎）。该实例类型不支持选择发起探测的区域，探测请求量较大但对源站的健康感知灵敏度更高；</li><li>GENERAL：通用型，仅支持添加通用型源站组，能被站点加速服务（如域名服务和规则引擎）和四层代理引用。该实例类型不支持选择发起探测的区域，探测请求量较大但对源站的健康感知灵敏度更高。</li>
         # @type Type: String
-        # @param HealthChecker: 健康检查策略。详情请参考 [健康检查策略介绍](https://cloud.tencent.com/document/product/1552/104228)。
+        # @param HealthChecker: <p>健康检查策略。详情请参考 <a href="https://cloud.tencent.com/document/product/1552/104228">健康检查策略介绍</a>。</p>
         # @type HealthChecker: :class:`Tencentcloud::Teo.v20220901.models.HealthChecker`
-        # @param SteeringPolicy: 源站组间的流量调度策略，取值有：
-        # <li>Pritory：按优先级顺序进行故障转移 。</li>
+        # @param SteeringPolicy: <p>源站组间的流量调度策略，取值有：</p><li>Pritory：按优先级顺序进行故障转移 。</li>
         # @type SteeringPolicy: String
-        # @param FailoverPolicy: 实际访问某源站失败时的请求重试策略，详情请参考 [请求重试策略介绍](https://cloud.tencent.com/document/product/1552/104227)，取值有：
-        # <li>OtherOriginGroup：单次请求失败后，请求优先重试下一优先级源站组；</li>
-        # <li>OtherRecordInOriginGroup：单次请求失败后，请求优先重试同源站组内的其他源站。</li>
+        # @param FailoverPolicy: <p>实际访问某源站失败时的请求重试策略，详情请参考 <a href="https://cloud.tencent.com/document/product/1552/104227">请求重试策略介绍</a>，取值有：</p><li>OtherOriginGroup：单次请求失败后，请求优先重试下一优先级源站组；</li><li>OtherRecordInOriginGroup：单次请求失败后，请求优先重试同源站组内的其他源站。</li>
         # @type FailoverPolicy: String
-        # @param OriginGroupHealthStatus: 源站组健康状态。
+        # @param OriginGroupHealthStatus: <p>源站组健康状态。</p>
         # @type OriginGroupHealthStatus: Array
-        # @param Status: 负载均衡状态，取值有：
-        # <li>Pending：部署中；</li>
-        # <li>Deleting：删除中；</li>
-        # <li>Running：已生效。</li>
+        # @param Status: <p>负载均衡状态，取值有：</p><li>Pending：部署中；</li><li>Deleting：删除中；</li><li>Running：已生效。</li>
         # @type Status: String
-        # @param L4UsedList: 该负载均衡实例绑的四层代理实例的列表。
+        # @param L4UsedList: <p>该负载均衡实例绑的四层代理实例的列表。</p>
         # @type L4UsedList: Array
-        # @param L7UsedList: 该负载均衡实例绑定的七层域名列表。
+        # @param L7UsedList: <p>该负载均衡实例绑定的七层域名列表。</p>
         # @type L7UsedList: Array
-        # @param References: 负载均衡被引用实例的列表。
+        # @param References: <p>负载均衡被引用实例的列表。</p>
         # @type References: Array
 
         attr_accessor :InstanceId, :Name, :Type, :HealthChecker, :SteeringPolicy, :FailoverPolicy, :OriginGroupHealthStatus, :Status, :L4UsedList, :L7UsedList, :References
@@ -22185,6 +22233,56 @@ module TencentCloud
           @Type = params['Type']
           @Instances = params['Instances']
           @OperationMode = params['OperationMode']
+        end
+      end
+
+      # 回源 IP 网段版本信息。
+      class OriginACLFamilyInfo < TencentCloud::Common::AbstractModel
+        # @param Version: 源站防护版本号。
+        # 格式说明：
+        # 标准版本：
+        # <li>gaz-xxxxx：全球；</li>
+        # <li>mlc-xxxxx：中国；</li>
+        # <li>emc-xxxxx：海外(全球不含中国)；</li>
+        # 精简版(平台级版本)：
+        # <li>plat-gaz-xxxxxx：精简全球版；</li>
+        # <li>plat-mlc-xxxxxx：精简中国版；</li>
+        # <li>plat-emc-xxxxxx：精简海外(全球不含中国)版；</li>
+        # 缩写说明：
+        # <li>gaz：Global AZ Availability Zone;</li>
+        # <li>mlc：mainlandChina;</li>
+        # <li>emc：Exclude mainlandChina.</li>
+        # @type Version: String
+        # @param ActiveTime: 版本生效时间，时间是北京时间 UTC+8， 遵循 ISO 8601 标准的日期和时间格式。
+        # @type ActiveTime: String
+        # @param EntireAddresses: 回源 IP 网段详情。
+        # @type EntireAddresses: :class:`Tencentcloud::Teo.v20220901.models.Addresses`
+        # @param OriginACLFamily: 源站防护回源ACL控制域。取值说明如下：
+        # <li>gaz：标准全球可用区控制域；</li>
+        # <li>mlc：标准中国大陆可用区控制域；</li>
+        # <li>emc：标准全球(不含中国大陆)可用区控制域；</li>
+        # <li>plat-gaz：精简全球可用区控制域；</li>
+        # <li>plat-mlc：精简中国大陆可用区控制域；</li>
+        # <li>plat-emc：精简全球(不含中国大陆)可用区控制域；</li>
+        # @type OriginACLFamily: String
+
+        attr_accessor :Version, :ActiveTime, :EntireAddresses, :OriginACLFamily
+
+        def initialize(version=nil, activetime=nil, entireaddresses=nil, originaclfamily=nil)
+          @Version = version
+          @ActiveTime = activetime
+          @EntireAddresses = entireaddresses
+          @OriginACLFamily = originaclfamily
+        end
+
+        def deserialize(params)
+          @Version = params['Version']
+          @ActiveTime = params['ActiveTime']
+          unless params['EntireAddresses'].nil?
+            @EntireAddresses = Addresses.new
+            @EntireAddresses.deserialize(params['EntireAddresses'])
+          end
+          @OriginACLFamily = params['OriginACLFamily']
         end
       end
 

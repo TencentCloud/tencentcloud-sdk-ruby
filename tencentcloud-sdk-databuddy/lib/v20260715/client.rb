@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 添加控制台用户
+
+        # @param request: Request instance for AddConsoleUsers.
+        # @type request: :class:`Tencentcloud::databuddy::V20260715::AddConsoleUsersRequest`
+        # @rtype: :class:`Tencentcloud::databuddy::V20260715::AddConsoleUsersResponse`
+        def AddConsoleUsers(request)
+          body = send_request('AddConsoleUsers', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AddConsoleUsersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 在Studio（统一开发 IDE）的工作空间文件树中新建一个文件（Notebook/SQL/Python等），创建成功后返回文件的完整元信息。
 
         # **前置条件**
@@ -286,6 +310,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询控制台用户列表
+
+        # @param request: Request instance for ListConsoleUsers.
+        # @type request: :class:`Tencentcloud::databuddy::V20260715::ListConsoleUsersRequest`
+        # @rtype: :class:`Tencentcloud::databuddy::V20260715::ListConsoleUsersResponse`
+        def ListConsoleUsers(request)
+          body = send_request('ListConsoleUsers', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListConsoleUsersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 工作流运行列表
 
         # @param request: Request instance for ListWorkflowRuns.
@@ -344,6 +392,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ListWorkflowsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # <p>批量移除控制台用户（单次最多10个；前置校验任一不满足整体拒绝；执行阶段单个失败不中断后续删除，成败以 SuccessUins/FailItems 为准）</p>
+
+        # @param request: Request instance for RemoveConsoleUsers.
+        # @type request: :class:`Tencentcloud::databuddy::V20260715::RemoveConsoleUsersRequest`
+        # @rtype: :class:`Tencentcloud::databuddy::V20260715::RemoveConsoleUsersResponse`
+        def RemoveConsoleUsers(request)
+          body = send_request('RemoveConsoleUsers', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RemoveConsoleUsersResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -417,6 +489,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UnbindWorkflowBundleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改控制台用户角色
+
+        # @param request: Request instance for UpdateConsoleUsers.
+        # @type request: :class:`Tencentcloud::databuddy::V20260715::UpdateConsoleUsersRequest`
+        # @rtype: :class:`Tencentcloud::databuddy::V20260715::UpdateConsoleUsersResponse`
+        def UpdateConsoleUsers(request)
+          body = send_request('UpdateConsoleUsers', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateConsoleUsersResponse.new
             model.deserialize(response['Response'])
             model
           else

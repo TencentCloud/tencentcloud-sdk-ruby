@@ -7218,6 +7218,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 解绑bundle绑定的资源
+
+        # @param request: Request instance for UnbindingResource.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::UnbindingResourceRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::UnbindingResourceResponse`
+        def UnbindingResource(request)
+          body = send_request('UnbindingResource', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UnbindingResourceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 商业化版本：执行资源组/资源包解除绑定项目
 
         # @param request: Request instance for UnboundProjectExecutorResource.

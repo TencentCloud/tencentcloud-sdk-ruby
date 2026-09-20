@@ -4488,13 +4488,13 @@ module TencentCloud
 
       # HKIDCardOCR请求参数结构体
       class HKIDCardOCRRequest < TencentCloud::Common::AbstractModel
-        # @param ReturnHeadImage: 是否返回人像照片。
+        # @param ReturnHeadImage: <p>是否返回人像照片。</p>
         # @type ReturnHeadImage: Boolean
-        # @param DetectFake: 是否鉴伪。
+        # @param DetectFake: <p>是否鉴伪。</p>
         # @type DetectFake: Boolean
-        # @param ImageBase64: 图片的 Base64 值。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经Base64编码后不超过 10M。图片下载时间不超过 3 秒。
+        # @param ImageBase64: <p>图片的 Base64 值。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经Base64编码后不超过 10M。图片下载时间不超过 3 秒。</p>
         # @type ImageBase64: String
-        # @param ImageUrl: 图片的 Url 地址。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经 Base64 编码后不超过 10M。图片下载时间不超过 3 秒。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
+        # @param ImageUrl: <p>图片的 Url 地址。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经 Base64 编码后不超过 10M。图片下载时间不超过 3 秒。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。</p>
         # @type ImageUrl: String
 
         attr_accessor :ReturnHeadImage, :DetectFake, :ImageBase64, :ImageUrl
@@ -4519,46 +4519,40 @@ module TencentCloud
 
       # HKIDCardOCR返回参数结构体
       class HKIDCardOCRResponse < TencentCloud::Common::AbstractModel
-        # @param CnName: 中文姓名
+        # @param CnName: <p>中文姓名</p>
         # @type CnName: String
-        # @param EnName: 英文姓名
+        # @param EnName: <p>英文姓名</p>
         # @type EnName: String
-        # @param TelexCode: 中文姓名对应电码
+        # @param TelexCode: <p>中文姓名对应电码</p>
         # @type TelexCode: String
-        # @param Sex: 性别 ：“男M”或“女F”
+        # @param Sex: <p>性别 ：“男M”或“女F”</p>
         # @type Sex: String
-        # @param Birthday: 出生日期
+        # @param Birthday: <p>出生日期</p>
         # @type Birthday: String
-        # @param Permanent: 永久性居民身份证。
-        # 0：非永久；
-        # 1：永久；
-        # -1：未知。
+        # @param Permanent: <p>永久性居民身份证。<br>0：非永久；<br>1：永久；<br>-1：未知。</p>
         # @type Permanent: Integer
-        # @param IdNum: 身份证号码
+        # @param IdNum: <p>身份证号码</p>
         # @type IdNum: String
-        # @param Symbol: 证件符号，出生日期下的符号，例如"***AZ"
+        # @param Symbol: <p>证件符号，出生日期下的符号，例如&quot;***AZ&quot;</p>
         # @type Symbol: String
-        # @param FirstIssueDate: 首次签发日期
+        # @param FirstIssueDate: <p>首次签发日期</p>
         # @type FirstIssueDate: String
-        # @param CurrentIssueDate: 最近领用日期
+        # @param CurrentIssueDate: <p>最近领用日期</p>
         # @type CurrentIssueDate: String
-        # @param FakeDetectResult: 真假判断。
-        # 0：无法判断（图像模糊、不完整、反光、过暗等导致无法判断）；
-        # 1：假；
-        # 2：真。
+        # @param FakeDetectResult: <p>真假判断。<br>0：无法判断（图像模糊、不完整、反光、过暗等导致无法判断）；<br>1：假；<br>2：真。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FakeDetectResult: Integer
-        # @param HeadImage: Base64编码的证件左侧人像大图
+        # @param HeadImage: <p>Base64编码的证件左侧人像大图</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HeadImage: String
-        # @param SmallHeadImage: Base64编码的证件右侧人像小图
+        # @param SmallHeadImage: <p>Base64编码的证件右侧人像小图</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SmallHeadImage: String
-        # @param WarningCode: 该字段已废弃， 将固定返回空数组，不建议使用。
+        # @param WarningCode: <p>该字段已废弃， 将固定返回空数组，不建议使用。</p>
         # @type WarningCode: Array
-        # @param WarnCardInfos: 该字段仅对国际站请求起作用，国内站该字段将固定返回空数组。国际站告警码如下：    告警码-9101 证件边框不完整告警-9102 证件复印件告警-9103 证件翻拍告警-9104 证件PS告警-9107 证件反光告警-9108 证件模糊告警-9109 告警能力未开通
+        # @param WarnCardInfos: <p>该字段仅对国际站请求起作用，国内站该字段将固定返回空数组。国际站告警码如下：    告警码-9101 证件边框不完整告警-9102 证件复印件告警-9103 证件翻拍告警-9104 证件PS告警-9107 证件反光告警-9108 证件模糊告警-9109 告警能力未开通</p>
         # @type WarnCardInfos: Array
-        # @param WindowEmbeddedText: 证件透明视窗内的文本信息
+        # @param WindowEmbeddedText: <p>证件透明视窗内的文本信息</p>
         # @type WindowEmbeddedText: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

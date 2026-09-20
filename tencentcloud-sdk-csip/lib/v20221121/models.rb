@@ -3049,15 +3049,18 @@ module TencentCloud
         # @type OtherAssetCount: Integer
         # @param AzureAssetCount: <p>微软云资产数量</p>
         # @type AzureAssetCount: Integer
+        # @param TceAssetCount: <p>腾讯TCE专有云资产数量</p>
+        # @type TceAssetCount: Integer
 
-        attr_accessor :TencentAssetCount, :AliAssetCount, :AwsAssetCount, :OtherAssetCount, :AzureAssetCount
+        attr_accessor :TencentAssetCount, :AliAssetCount, :AwsAssetCount, :OtherAssetCount, :AzureAssetCount, :TceAssetCount
 
-        def initialize(tencentassetcount=nil, aliassetcount=nil, awsassetcount=nil, otherassetcount=nil, azureassetcount=nil)
+        def initialize(tencentassetcount=nil, aliassetcount=nil, awsassetcount=nil, otherassetcount=nil, azureassetcount=nil, tceassetcount=nil)
           @TencentAssetCount = tencentassetcount
           @AliAssetCount = aliassetcount
           @AwsAssetCount = awsassetcount
           @OtherAssetCount = otherassetcount
           @AzureAssetCount = azureassetcount
+          @TceAssetCount = tceassetcount
         end
 
         def deserialize(params)
@@ -3066,6 +3069,7 @@ module TencentCloud
           @AwsAssetCount = params['AwsAssetCount']
           @OtherAssetCount = params['OtherAssetCount']
           @AzureAssetCount = params['AzureAssetCount']
+          @TceAssetCount = params['TceAssetCount']
         end
       end
 
@@ -5861,50 +5865,6 @@ module TencentCloud
         end
       end
 
-      # BindClusterOwner请求参数结构体
-      class BindClusterOwnerRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterAssetIds: <p>集群资产id</p>
-        # @type ClusterAssetIds: Array
-        # @param MemberId: <p>集团账号的成员id</p>
-        # @type MemberId: Array
-        # @param OwnerName: <p>负责人名称</p>
-        # @type OwnerName: String
-        # @param ClusterCaMD5List: <p>集群CAMD5值</p>
-        # @type ClusterCaMD5List: Array
-
-        attr_accessor :ClusterAssetIds, :MemberId, :OwnerName, :ClusterCaMD5List
-
-        def initialize(clusterassetids=nil, memberid=nil, ownername=nil, clustercamd5list=nil)
-          @ClusterAssetIds = clusterassetids
-          @MemberId = memberid
-          @OwnerName = ownername
-          @ClusterCaMD5List = clustercamd5list
-        end
-
-        def deserialize(params)
-          @ClusterAssetIds = params['ClusterAssetIds']
-          @MemberId = params['MemberId']
-          @OwnerName = params['OwnerName']
-          @ClusterCaMD5List = params['ClusterCaMD5List']
-        end
-      end
-
-      # BindClusterOwner返回参数结构体
-      class BindClusterOwnerResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
       # 标准阻断模式规则
       class BruteAttackRule < TencentCloud::Common::AbstractModel
         # @param TimeRange: <p>爆破事件发生的时间范围，单位：秒</p>
@@ -7850,16 +7810,16 @@ module TencentCloud
 
         attr_accessor :AppID, :AssetId, :ContainerId, :ContainerName, :RunStatus, :NodeId, :NodeType, :PodUid, :PodName, :ImageId, :ImageName, :IsolateStatus, :RiskEventCriticalCount, :RiskEventHighCount, :RiskEventMiddleCount, :RiskEventLowCount, :CreateTime, :AlarmCount
         extend Gem::Deprecate
-        deprecate :AssetId, :none, 2026, 8
-        deprecate :AssetId=, :none, 2026, 8
-        deprecate :RiskEventCriticalCount, :none, 2026, 8
-        deprecate :RiskEventCriticalCount=, :none, 2026, 8
-        deprecate :RiskEventHighCount, :none, 2026, 8
-        deprecate :RiskEventHighCount=, :none, 2026, 8
-        deprecate :RiskEventMiddleCount, :none, 2026, 8
-        deprecate :RiskEventMiddleCount=, :none, 2026, 8
-        deprecate :RiskEventLowCount, :none, 2026, 8
-        deprecate :RiskEventLowCount=, :none, 2026, 8
+        deprecate :AssetId, :none, 2026, 9
+        deprecate :AssetId=, :none, 2026, 9
+        deprecate :RiskEventCriticalCount, :none, 2026, 9
+        deprecate :RiskEventCriticalCount=, :none, 2026, 9
+        deprecate :RiskEventHighCount, :none, 2026, 9
+        deprecate :RiskEventHighCount=, :none, 2026, 9
+        deprecate :RiskEventMiddleCount, :none, 2026, 9
+        deprecate :RiskEventMiddleCount=, :none, 2026, 9
+        deprecate :RiskEventLowCount, :none, 2026, 9
+        deprecate :RiskEventLowCount=, :none, 2026, 9
 
         def initialize(appid=nil, assetid=nil, containerid=nil, containername=nil, runstatus=nil, nodeid=nil, nodetype=nil, poduid=nil, podname=nil, imageid=nil, imagename=nil, isolatestatus=nil, riskeventcriticalcount=nil, riskeventhighcount=nil, riskeventmiddlecount=nil, riskeventlowcount=nil, createtime=nil, alarmcount=nil)
           @AppID = appid
@@ -8036,30 +7996,30 @@ module TencentCloud
 
         attr_accessor :AppID, :AssetId, :ClusterId, :ClusterName, :ClusterType, :AlarmEventCriticalCount, :AlarmEventHighCount, :AlarmEventMiddleCount, :AlarmEventLowCount, :RiskEventCriticalCount, :RiskEventHighCount, :RiskEventMiddleCount, :RiskEventLowCount, :NodeCount, :OfflineNodeCount, :UninstallNodeCount, :TotalCoresCount, :DefendCoresCount, :AuditLogSwitchStatus, :DefendStatus, :RunStatus, :Region, :Version, :LastAssetSyncTime, :LastRiskCheckTime, :RiskStatus, :Tags, :OwnerName, :FailMessage, :RunSubStatus, :AccessedStatus, :AccessedSubStatus, :ClusterCaMD5, :AssetSyncStatus, :RiskConfigCount, :AccessFailedMessage, :RegionName, :RegionNameEn, :UnboundUltimateNodeCount
         extend Gem::Deprecate
-        deprecate :AssetId, :none, 2026, 8
-        deprecate :AssetId=, :none, 2026, 8
-        deprecate :AlarmEventCriticalCount, :none, 2026, 8
-        deprecate :AlarmEventCriticalCount=, :none, 2026, 8
-        deprecate :AlarmEventHighCount, :none, 2026, 8
-        deprecate :AlarmEventHighCount=, :none, 2026, 8
-        deprecate :AlarmEventMiddleCount, :none, 2026, 8
-        deprecate :AlarmEventMiddleCount=, :none, 2026, 8
-        deprecate :AlarmEventLowCount, :none, 2026, 8
-        deprecate :AlarmEventLowCount=, :none, 2026, 8
-        deprecate :RiskEventCriticalCount, :none, 2026, 8
-        deprecate :RiskEventCriticalCount=, :none, 2026, 8
-        deprecate :RiskEventHighCount, :none, 2026, 8
-        deprecate :RiskEventHighCount=, :none, 2026, 8
-        deprecate :RiskEventMiddleCount, :none, 2026, 8
-        deprecate :RiskEventMiddleCount=, :none, 2026, 8
-        deprecate :RiskEventLowCount, :none, 2026, 8
-        deprecate :RiskEventLowCount=, :none, 2026, 8
-        deprecate :DefendCoresCount, :none, 2026, 8
-        deprecate :DefendCoresCount=, :none, 2026, 8
-        deprecate :RiskConfigCount, :none, 2026, 8
-        deprecate :RiskConfigCount=, :none, 2026, 8
-        deprecate :AccessFailedMessage, :none, 2026, 8
-        deprecate :AccessFailedMessage=, :none, 2026, 8
+        deprecate :AssetId, :none, 2026, 9
+        deprecate :AssetId=, :none, 2026, 9
+        deprecate :AlarmEventCriticalCount, :none, 2026, 9
+        deprecate :AlarmEventCriticalCount=, :none, 2026, 9
+        deprecate :AlarmEventHighCount, :none, 2026, 9
+        deprecate :AlarmEventHighCount=, :none, 2026, 9
+        deprecate :AlarmEventMiddleCount, :none, 2026, 9
+        deprecate :AlarmEventMiddleCount=, :none, 2026, 9
+        deprecate :AlarmEventLowCount, :none, 2026, 9
+        deprecate :AlarmEventLowCount=, :none, 2026, 9
+        deprecate :RiskEventCriticalCount, :none, 2026, 9
+        deprecate :RiskEventCriticalCount=, :none, 2026, 9
+        deprecate :RiskEventHighCount, :none, 2026, 9
+        deprecate :RiskEventHighCount=, :none, 2026, 9
+        deprecate :RiskEventMiddleCount, :none, 2026, 9
+        deprecate :RiskEventMiddleCount=, :none, 2026, 9
+        deprecate :RiskEventLowCount, :none, 2026, 9
+        deprecate :RiskEventLowCount=, :none, 2026, 9
+        deprecate :DefendCoresCount, :none, 2026, 9
+        deprecate :DefendCoresCount=, :none, 2026, 9
+        deprecate :RiskConfigCount, :none, 2026, 9
+        deprecate :RiskConfigCount=, :none, 2026, 9
+        deprecate :AccessFailedMessage, :none, 2026, 9
+        deprecate :AccessFailedMessage=, :none, 2026, 9
 
         def initialize(appid=nil, assetid=nil, clusterid=nil, clustername=nil, clustertype=nil, alarmeventcriticalcount=nil, alarmeventhighcount=nil, alarmeventmiddlecount=nil, alarmeventlowcount=nil, riskeventcriticalcount=nil, riskeventhighcount=nil, riskeventmiddlecount=nil, riskeventlowcount=nil, nodecount=nil, offlinenodecount=nil, uninstallnodecount=nil, totalcorescount=nil, defendcorescount=nil, auditlogswitchstatus=nil, defendstatus=nil, runstatus=nil, region=nil, version=nil, lastassetsynctime=nil, lastriskchecktime=nil, riskstatus=nil, tags=nil, ownername=nil, failmessage=nil, runsubstatus=nil, accessedstatus=nil, accessedsubstatus=nil, clustercamd5=nil, assetsyncstatus=nil, riskconfigcount=nil, accessfailedmessage=nil, regionname=nil, regionnameen=nil, unboundultimatenodecount=nil)
           @AppID = appid
@@ -8170,8 +8130,8 @@ module TencentCloud
 
         attr_accessor :AppID, :Name, :Label, :CreateTime, :AssetId, :UniqueID
         extend Gem::Deprecate
-        deprecate :AssetId, :none, 2026, 8
-        deprecate :AssetId=, :none, 2026, 8
+        deprecate :AssetId, :none, 2026, 9
+        deprecate :AssetId=, :none, 2026, 9
 
         def initialize(appid=nil, name=nil, label=nil, createtime=nil, assetid=nil, uniqueid=nil)
           @AppID = appid
@@ -8232,8 +8192,8 @@ module TencentCloud
 
         attr_accessor :AssetId, :AppID, :NodeId, :NodeName, :PublicIP, :InternalIP, :NodeType, :CoresCount, :Tags, :RunStatus, :IsNew, :UniqueID, :ClientStatus, :InstanceId
         extend Gem::Deprecate
-        deprecate :AssetId, :none, 2026, 8
-        deprecate :AssetId=, :none, 2026, 8
+        deprecate :AssetId, :none, 2026, 9
+        deprecate :AssetId=, :none, 2026, 9
 
         def initialize(assetid=nil, appid=nil, nodeid=nil, nodename=nil, publicip=nil, internalip=nil, nodetype=nil, corescount=nil, tags=nil, runstatus=nil, isnew=nil, uniqueid=nil, clientstatus=nil, instanceid=nil)
           @AssetId = assetid
@@ -8325,26 +8285,26 @@ module TencentCloud
 
         attr_accessor :AssetId, :AppID, :PodUid, :PodName, :PodIPs, :RunStatus, :DefendCoresCount, :NodeId, :NodeType, :WorkloadName, :WorkloadType, :Namespace, :CreateTime, :UniqueID, :RiskEventCriticalCount, :RiskEventHighCount, :RiskEventMiddleCount, :RiskEventLowCount, :AlarmEventCriticalCount, :AlarmEventHighCount, :AlarmEventMiddleCount, :AlarmEventLowCount, :ContainerList, :AlarmCount, :CoresCount
         extend Gem::Deprecate
-        deprecate :AssetId, :none, 2026, 8
-        deprecate :AssetId=, :none, 2026, 8
-        deprecate :DefendCoresCount, :none, 2026, 8
-        deprecate :DefendCoresCount=, :none, 2026, 8
-        deprecate :RiskEventCriticalCount, :none, 2026, 8
-        deprecate :RiskEventCriticalCount=, :none, 2026, 8
-        deprecate :RiskEventHighCount, :none, 2026, 8
-        deprecate :RiskEventHighCount=, :none, 2026, 8
-        deprecate :RiskEventMiddleCount, :none, 2026, 8
-        deprecate :RiskEventMiddleCount=, :none, 2026, 8
-        deprecate :RiskEventLowCount, :none, 2026, 8
-        deprecate :RiskEventLowCount=, :none, 2026, 8
-        deprecate :AlarmEventCriticalCount, :none, 2026, 8
-        deprecate :AlarmEventCriticalCount=, :none, 2026, 8
-        deprecate :AlarmEventHighCount, :none, 2026, 8
-        deprecate :AlarmEventHighCount=, :none, 2026, 8
-        deprecate :AlarmEventMiddleCount, :none, 2026, 8
-        deprecate :AlarmEventMiddleCount=, :none, 2026, 8
-        deprecate :AlarmEventLowCount, :none, 2026, 8
-        deprecate :AlarmEventLowCount=, :none, 2026, 8
+        deprecate :AssetId, :none, 2026, 9
+        deprecate :AssetId=, :none, 2026, 9
+        deprecate :DefendCoresCount, :none, 2026, 9
+        deprecate :DefendCoresCount=, :none, 2026, 9
+        deprecate :RiskEventCriticalCount, :none, 2026, 9
+        deprecate :RiskEventCriticalCount=, :none, 2026, 9
+        deprecate :RiskEventHighCount, :none, 2026, 9
+        deprecate :RiskEventHighCount=, :none, 2026, 9
+        deprecate :RiskEventMiddleCount, :none, 2026, 9
+        deprecate :RiskEventMiddleCount=, :none, 2026, 9
+        deprecate :RiskEventLowCount, :none, 2026, 9
+        deprecate :RiskEventLowCount=, :none, 2026, 9
+        deprecate :AlarmEventCriticalCount, :none, 2026, 9
+        deprecate :AlarmEventCriticalCount=, :none, 2026, 9
+        deprecate :AlarmEventHighCount, :none, 2026, 9
+        deprecate :AlarmEventHighCount=, :none, 2026, 9
+        deprecate :AlarmEventMiddleCount, :none, 2026, 9
+        deprecate :AlarmEventMiddleCount=, :none, 2026, 9
+        deprecate :AlarmEventLowCount, :none, 2026, 9
+        deprecate :AlarmEventLowCount=, :none, 2026, 9
 
         def initialize(assetid=nil, appid=nil, poduid=nil, podname=nil, podips=nil, runstatus=nil, defendcorescount=nil, nodeid=nil, nodetype=nil, workloadname=nil, workloadtype=nil, namespace=nil, createtime=nil, uniqueid=nil, riskeventcriticalcount=nil, riskeventhighcount=nil, riskeventmiddlecount=nil, riskeventlowcount=nil, alarmeventcriticalcount=nil, alarmeventhighcount=nil, alarmeventmiddlecount=nil, alarmeventlowcount=nil, containerlist=nil, alarmcount=nil, corescount=nil)
           @AssetId = assetid
@@ -8437,8 +8397,8 @@ module TencentCloud
 
         attr_accessor :AppID, :AssetId, :Name, :SelectorLabel, :Namespace, :CreateTime, :ServiceUniqueID, :ServiceType, :ClusterIP, :ExternalIP, :Ports
         extend Gem::Deprecate
-        deprecate :AssetId, :none, 2026, 8
-        deprecate :AssetId=, :none, 2026, 8
+        deprecate :AssetId, :none, 2026, 9
+        deprecate :AssetId=, :none, 2026, 9
 
         def initialize(appid=nil, assetid=nil, name=nil, selectorlabel=nil, namespace=nil, createtime=nil, serviceuniqueid=nil, servicetype=nil, clusterip=nil, externalip=nil, ports=nil)
           @AppID = appid
@@ -10098,8 +10058,8 @@ module TencentCloud
 
         attr_accessor :CategoryId, :CategoryName, :RuleSet
         extend Gem::Deprecate
-        deprecate :RuleSet, :none, 2026, 8
-        deprecate :RuleSet=, :none, 2026, 8
+        deprecate :RuleSet, :none, 2026, 9
+        deprecate :RuleSet=, :none, 2026, 9
 
         def initialize(categoryid=nil, categoryname=nil, ruleset=nil)
           @CategoryId = categoryid
@@ -11557,10 +11517,12 @@ module TencentCloud
         # @type Order: String
         # @param By: <p>排序字段</p>
         # @type By: String
+        # @param AssetTagIDs: <p>资产标签ID</p>
+        # @type AssetTagIDs: Array
 
-        attr_accessor :StandardID, :MemberId, :Filters, :Limit, :Offset, :Order, :By
+        attr_accessor :StandardID, :MemberId, :Filters, :Limit, :Offset, :Order, :By, :AssetTagIDs
 
-        def initialize(standardid=nil, memberid=nil, filters=nil, limit=nil, offset=nil, order=nil, by=nil)
+        def initialize(standardid=nil, memberid=nil, filters=nil, limit=nil, offset=nil, order=nil, by=nil, assettagids=nil)
           @StandardID = standardid
           @MemberId = memberid
           @Filters = filters
@@ -11568,6 +11530,7 @@ module TencentCloud
           @Offset = offset
           @Order = order
           @By = by
+          @AssetTagIDs = assettagids
         end
 
         def deserialize(params)
@@ -11585,6 +11548,7 @@ module TencentCloud
           @Offset = params['Offset']
           @Order = params['Order']
           @By = params['By']
+          @AssetTagIDs = params['AssetTagIDs']
         end
       end
 
@@ -11624,10 +11588,12 @@ module TencentCloud
         # @type By: String
         # @param StandardIDs: <p>规范ID</p>
         # @type StandardIDs: Array
+        # @param AssetTagIDs: <p>资产标签ID</p>
+        # @type AssetTagIDs: Array
 
-        attr_accessor :MemberId, :Filters, :Limit, :Offset, :Order, :By, :StandardIDs
+        attr_accessor :MemberId, :Filters, :Limit, :Offset, :Order, :By, :StandardIDs, :AssetTagIDs
 
-        def initialize(memberid=nil, filters=nil, limit=nil, offset=nil, order=nil, by=nil, standardids=nil)
+        def initialize(memberid=nil, filters=nil, limit=nil, offset=nil, order=nil, by=nil, standardids=nil, assettagids=nil)
           @MemberId = memberid
           @Filters = filters
           @Limit = limit
@@ -11635,6 +11601,7 @@ module TencentCloud
           @Order = order
           @By = by
           @StandardIDs = standardids
+          @AssetTagIDs = assettagids
         end
 
         def deserialize(params)
@@ -11652,6 +11619,7 @@ module TencentCloud
           @Order = params['Order']
           @By = params['By']
           @StandardIDs = params['StandardIDs']
+          @AssetTagIDs = params['AssetTagIDs']
         end
       end
 
@@ -11894,8 +11862,8 @@ module TencentCloud
 
         attr_accessor :MemberId, :ClusterAssetIds, :ClusterCaMD5List
         extend Gem::Deprecate
-        deprecate :ClusterAssetIds, :none, 2026, 8
-        deprecate :ClusterAssetIds=, :none, 2026, 8
+        deprecate :ClusterAssetIds, :none, 2026, 9
+        deprecate :ClusterAssetIds=, :none, 2026, 9
 
         def initialize(memberid=nil, clusterassetids=nil, clustercamd5list=nil)
           @MemberId = memberid
@@ -15901,7 +15869,7 @@ module TencentCloud
 
       # CreateScanStatisticExportJob请求参数结构体
       class CreateScanStatisticExportJobRequest < TencentCloud::Common::AbstractModel
-        # @param MemberId: 集团账号的成员id
+        # @param MemberId: <p>集团账号的成员id</p>
         # @type MemberId: Array
         # @param Filter: 过滤内容
         # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
@@ -16626,10 +16594,12 @@ module TencentCloud
         # @type StandardTerms: Array
         # @param AssetTypeIconURL: <p>资产类型图标</p>
         # @type AssetTypeIconURL: String
+        # @param EnableDefault: <p>规则默认开启状态</p>
+        # @type EnableDefault: Integer
 
-        attr_accessor :RuleID, :Provider, :RiskTitle, :Classify, :Severity, :Status, :RelatedUinCount, :PolicyEnableCount, :AssetType, :IsFree, :CheckType, :StandardTerms, :AssetTypeIconURL
+        attr_accessor :RuleID, :Provider, :RiskTitle, :Classify, :Severity, :Status, :RelatedUinCount, :PolicyEnableCount, :AssetType, :IsFree, :CheckType, :StandardTerms, :AssetTypeIconURL, :EnableDefault
 
-        def initialize(ruleid=nil, provider=nil, risktitle=nil, classify=nil, severity=nil, status=nil, relateduincount=nil, policyenablecount=nil, assettype=nil, isfree=nil, checktype=nil, standardterms=nil, assettypeiconurl=nil)
+        def initialize(ruleid=nil, provider=nil, risktitle=nil, classify=nil, severity=nil, status=nil, relateduincount=nil, policyenablecount=nil, assettype=nil, isfree=nil, checktype=nil, standardterms=nil, assettypeiconurl=nil, enabledefault=nil)
           @RuleID = ruleid
           @Provider = provider
           @RiskTitle = risktitle
@@ -16643,6 +16613,7 @@ module TencentCloud
           @CheckType = checktype
           @StandardTerms = standardterms
           @AssetTypeIconURL = assettypeiconurl
+          @EnableDefault = enabledefault
         end
 
         def deserialize(params)
@@ -16666,6 +16637,7 @@ module TencentCloud
             end
           end
           @AssetTypeIconURL = params['AssetTypeIconURL']
+          @EnableDefault = params['EnableDefault']
         end
       end
 
@@ -17208,8 +17180,8 @@ module TencentCloud
 
         attr_accessor :MemberId, :OperatedMemberId, :ClusterAssetIds, :ClusterCaMD5List
         extend Gem::Deprecate
-        deprecate :ClusterAssetIds, :none, 2026, 8
-        deprecate :ClusterAssetIds=, :none, 2026, 8
+        deprecate :ClusterAssetIds, :none, 2026, 9
+        deprecate :ClusterAssetIds=, :none, 2026, 9
 
         def initialize(memberid=nil, operatedmemberid=nil, clusterassetids=nil, clustercamd5list=nil)
           @MemberId = memberid
@@ -19352,10 +19324,10 @@ module TencentCloud
 
         attr_accessor :AILinkEnable, :RuleScopeDeep, :RuleScopeBalanced, :RuleScopePrecise, :Scope, :Quuids, :ExcludeQuuids, :AutoInclude, :TagIDs, :TCSSScope, :ClusterIDs, :ExcludeClusterIDs, :InstanceIds, :ExcludeInstanceIds, :RequestId
         extend Gem::Deprecate
-        deprecate :Quuids, :none, 2026, 8
-        deprecate :Quuids=, :none, 2026, 8
-        deprecate :ExcludeQuuids, :none, 2026, 8
-        deprecate :ExcludeQuuids=, :none, 2026, 8
+        deprecate :Quuids, :none, 2026, 9
+        deprecate :Quuids=, :none, 2026, 9
+        deprecate :ExcludeQuuids, :none, 2026, 9
+        deprecate :ExcludeQuuids=, :none, 2026, 9
 
         def initialize(ailinkenable=nil, rulescopedeep=nil, rulescopebalanced=nil, rulescopeprecise=nil, scope=nil, quuids=nil, excludequuids=nil, autoinclude=nil, tagids=nil, tcssscope=nil, clusterids=nil, excludeclusterids=nil, instanceids=nil, excludeinstanceids=nil, requestid=nil)
           @AILinkEnable = ailinkenable
@@ -22975,17 +22947,21 @@ module TencentCloud
         # @type MemberId: Array
         # @param StandardIDs: <p>规范ID</p>
         # @type StandardIDs: Array
+        # @param AssetTagIDs: <p>资产标签ID</p>
+        # @type AssetTagIDs: Array
 
-        attr_accessor :MemberId, :StandardIDs
+        attr_accessor :MemberId, :StandardIDs, :AssetTagIDs
 
-        def initialize(memberid=nil, standardids=nil)
+        def initialize(memberid=nil, standardids=nil, assettagids=nil)
           @MemberId = memberid
           @StandardIDs = standardids
+          @AssetTagIDs = assettagids
         end
 
         def deserialize(params)
           @MemberId = params['MemberId']
           @StandardIDs = params['StandardIDs']
+          @AssetTagIDs = params['AssetTagIDs']
         end
       end
 
@@ -24128,18 +24104,22 @@ module TencentCloud
       class DescribeCWPExposePathResponse < TencentCloud::Common::AbstractModel
         # @param Content: <p>云边界分析路径节点内容</p>
         # @type Content: String
+        # @param PathCount: <p>互联网节点数量</p>
+        # @type PathCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Content, :RequestId
+        attr_accessor :Content, :PathCount, :RequestId
 
-        def initialize(content=nil, requestid=nil)
+        def initialize(content=nil, pathcount=nil, requestid=nil)
           @Content = content
+          @PathCount = pathcount
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Content = params['Content']
+          @PathCount = params['PathCount']
           @RequestId = params['RequestId']
         end
       end
@@ -25661,14 +25641,14 @@ module TencentCloud
 
         attr_accessor :AppID, :ContainerId, :Cmd, :CreateTime, :RunStatus, :IsolateStatus, :RiskEventCriticalCount, :RiskEventHighCount, :RiskEventMiddleCount, :RiskEventLowCount, :ImageName, :ImageId, :ImageSize, :ImageCreateTime, :NodeName, :NodeInternalIP, :NodeRunStatus, :Mounts, :NetworkName, :NetworkMode, :NetworkId, :EndpointId, :Gateway, :IPv4, :IPv6, :MAC, :ContainerName, :NodeInstanceId, :NodeType, :NodeUniqueID, :ClusterCaMD5, :EnableLinkImage, :RequestId
         extend Gem::Deprecate
-        deprecate :RiskEventCriticalCount, :none, 2026, 8
-        deprecate :RiskEventCriticalCount=, :none, 2026, 8
-        deprecate :RiskEventHighCount, :none, 2026, 8
-        deprecate :RiskEventHighCount=, :none, 2026, 8
-        deprecate :RiskEventMiddleCount, :none, 2026, 8
-        deprecate :RiskEventMiddleCount=, :none, 2026, 8
-        deprecate :RiskEventLowCount, :none, 2026, 8
-        deprecate :RiskEventLowCount=, :none, 2026, 8
+        deprecate :RiskEventCriticalCount, :none, 2026, 9
+        deprecate :RiskEventCriticalCount=, :none, 2026, 9
+        deprecate :RiskEventHighCount, :none, 2026, 9
+        deprecate :RiskEventHighCount=, :none, 2026, 9
+        deprecate :RiskEventMiddleCount, :none, 2026, 9
+        deprecate :RiskEventMiddleCount=, :none, 2026, 9
+        deprecate :RiskEventLowCount, :none, 2026, 9
+        deprecate :RiskEventLowCount=, :none, 2026, 9
 
         def initialize(appid=nil, containerid=nil, cmd=nil, createtime=nil, runstatus=nil, isolatestatus=nil, riskeventcriticalcount=nil, riskeventhighcount=nil, riskeventmiddlecount=nil, riskeventlowcount=nil, imagename=nil, imageid=nil, imagesize=nil, imagecreatetime=nil, nodename=nil, nodeinternalip=nil, noderunstatus=nil, mounts=nil, networkname=nil, networkmode=nil, networkid=nil, endpointid=nil, gateway=nil, ipv4=nil, ipv6=nil, mac=nil, containername=nil, nodeinstanceid=nil, nodetype=nil, nodeuniqueid=nil, clustercamd5=nil, enablelinkimage=nil, requestid=nil)
           @AppID = appid
@@ -25763,8 +25743,8 @@ module TencentCloud
 
         attr_accessor :ClusterAssetId, :MemberId, :Filter, :ClusterCaMD5
         extend Gem::Deprecate
-        deprecate :ClusterAssetId, :none, 2026, 8
-        deprecate :ClusterAssetId=, :none, 2026, 8
+        deprecate :ClusterAssetId, :none, 2026, 9
+        deprecate :ClusterAssetId=, :none, 2026, 9
 
         def initialize(clusterassetid=nil, memberid=nil, filter=nil, clustercamd5=nil)
           @ClusterAssetId = clusterassetid
@@ -25979,8 +25959,8 @@ module TencentCloud
 
         attr_accessor :ClusterAssetId, :MemberId, :ClusterCaMD5
         extend Gem::Deprecate
-        deprecate :ClusterAssetId, :none, 2026, 8
-        deprecate :ClusterAssetId=, :none, 2026, 8
+        deprecate :ClusterAssetId, :none, 2026, 9
+        deprecate :ClusterAssetId=, :none, 2026, 9
 
         def initialize(clusterassetid=nil, memberid=nil, clustercamd5=nil)
           @ClusterAssetId = clusterassetid
@@ -26141,60 +26121,6 @@ module TencentCloud
         end
       end
 
-      # DescribeClusterListV2请求参数结构体
-      class DescribeClusterListV2Request < TencentCloud::Common::AbstractModel
-        # @param MemberId: <p>集团账号的成员id</p>
-        # @type MemberId: Array
-        # @param Filter: <p>通用过滤条件列表。支持的过滤字段：<br>ClusterId：集群ID，精确匹配。<br>ClusterName：集群名称，模糊匹配。<br>ClusterType：集群类型，精确匹配。取值：TKE_MANAGED_CLUSTER（腾讯云标准集群）、TKE_INDEPENDENT_CLUSTER（标准集群Master自维护）、TKE_SERVERLESS_CLUSTER（Serverless集群）、TKE_EDGE_CLUSTER（边缘集群）、SELF_BUILT（腾讯云内自建）、SELF_BUILT_OTHER（非腾讯云自建/混合云）。<br>RunStatus：集群运行状态，精确匹配。取值：Running（运行中）、Exception（异常）、Unknown（未知）。<br>AccessedStatus：接入状态，精确匹配。取值：AccessedNone（未接入）、AccessedInstalling（接入中）、AccessedException（接入异常）、AccessedInstalled（已接入）。<br>DefendStatus：防护状态，精确匹配。取值：Enabled（已防护）、Partial（部分防护）、Disabled（未防护）。<br>RiskStatus：风险检查状态，精确匹配。<br>RiskLevel：风险等级，精确匹配。取值：CRITICAL、HIGH、MEDIUM、LOW、NONE（无风险）。<br>HasHighRisk：仅筛选含高危及以上风险的集群，无需填入 value，传入 HasHighRisk 即生效。<br>Region：地域，精确匹配。<br>OwnerName：负责人，模糊匹配。<br>ClusterAssetIds：集群资产ID，精确匹配。<br>ExcludeClusterAssetIds：排除的集群资产ID，精确排除。</p>
-        # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
-
-        attr_accessor :MemberId, :Filter
-
-        def initialize(memberid=nil, filter=nil)
-          @MemberId = memberid
-          @Filter = filter
-        end
-
-        def deserialize(params)
-          @MemberId = params['MemberId']
-          unless params['Filter'].nil?
-            @Filter = Filter.new
-            @Filter.deserialize(params['Filter'])
-          end
-        end
-      end
-
-      # DescribeClusterListV2返回参数结构体
-      class DescribeClusterListV2Response < TencentCloud::Common::AbstractModel
-        # @param TotalCount: <p>总数</p>
-        # @type TotalCount: Integer
-        # @param List: <p>列表</p>
-        # @type List: Array
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :TotalCount, :List, :RequestId
-
-        def initialize(totalcount=nil, list=nil, requestid=nil)
-          @TotalCount = totalcount
-          @List = list
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @TotalCount = params['TotalCount']
-          unless params['List'].nil?
-            @List = []
-            params['List'].each do |i|
-              clusterlistitem_tmp = ClusterListItem.new
-              clusterlistitem_tmp.deserialize(i)
-              @List << clusterlistitem_tmp
-            end
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DescribeClusterNamespaceList请求参数结构体
       class DescribeClusterNamespaceListRequest < TencentCloud::Common::AbstractModel
         # @param ClusterAssetId: <p>集群资产 id</p>
@@ -26208,8 +26134,8 @@ module TencentCloud
 
         attr_accessor :ClusterAssetId, :Filter, :MemberId, :ClusterCaMD5
         extend Gem::Deprecate
-        deprecate :ClusterAssetId, :none, 2026, 8
-        deprecate :ClusterAssetId=, :none, 2026, 8
+        deprecate :ClusterAssetId, :none, 2026, 9
+        deprecate :ClusterAssetId=, :none, 2026, 9
 
         def initialize(clusterassetid=nil, filter=nil, memberid=nil, clustercamd5=nil)
           @ClusterAssetId = clusterassetid
@@ -26273,8 +26199,8 @@ module TencentCloud
 
         attr_accessor :ClusterAssetId, :MemberId, :Filter, :ClusterCaMD5
         extend Gem::Deprecate
-        deprecate :ClusterAssetId, :none, 2026, 8
-        deprecate :ClusterAssetId=, :none, 2026, 8
+        deprecate :ClusterAssetId, :none, 2026, 9
+        deprecate :ClusterAssetId=, :none, 2026, 9
 
         def initialize(clusterassetid=nil, memberid=nil, filter=nil, clustercamd5=nil)
           @ClusterAssetId = clusterassetid
@@ -26616,8 +26542,8 @@ module TencentCloud
 
         attr_accessor :ClusterAssetId, :MemberId, :Filter, :ClusterCaMD5
         extend Gem::Deprecate
-        deprecate :ClusterAssetId, :none, 2026, 8
-        deprecate :ClusterAssetId=, :none, 2026, 8
+        deprecate :ClusterAssetId, :none, 2026, 9
+        deprecate :ClusterAssetId=, :none, 2026, 9
 
         def initialize(clusterassetid=nil, memberid=nil, filter=nil, clustercamd5=nil)
           @ClusterAssetId = clusterassetid
@@ -26687,8 +26613,8 @@ module TencentCloud
 
         attr_accessor :ClusterAssetId, :MemberId, :Filter, :ClusterCaMD5, :PodUniqueID
         extend Gem::Deprecate
-        deprecate :ClusterAssetId, :none, 2026, 8
-        deprecate :ClusterAssetId=, :none, 2026, 8
+        deprecate :ClusterAssetId, :none, 2026, 9
+        deprecate :ClusterAssetId=, :none, 2026, 9
 
         def initialize(clusterassetid=nil, memberid=nil, filter=nil, clustercamd5=nil, poduniqueid=nil)
           @ClusterAssetId = clusterassetid
@@ -26826,38 +26752,38 @@ module TencentCloud
 
         attr_accessor :TotalClusterCount, :AlarmClusterCount, :RiskClusterCount, :TotalNodeCount, :TotalCoreCount, :AlarmEventCount, :CriticalAlarmEventCount, :HighAlarmEventCount, :MiddleAlarmEventCount, :LowAlarmEventCount, :RiskEventCount, :CriticalRiskEventCount, :HighRiskEventCount, :MiddleRiskEventCount, :LowRiskEventCount, :UsedCoreQuota, :PurchasedCoreQuota, :ElasticCoreQuota, :UnprotectedCoreCount, :ProtectedCoreCount, :UnprotectedClusterCount, :ProtectedClusterCount, :TkeClusterCount, :SelfBuiltClusterCount, :CriticalAlarmClusterCount, :HighAlarmClusterCount, :CriticalRiskClusterCount, :HighRiskClusterCount, :UnboundUltimateNodeCount, :RequestId
         extend Gem::Deprecate
-        deprecate :AlarmClusterCount, :none, 2026, 8
-        deprecate :AlarmClusterCount=, :none, 2026, 8
-        deprecate :RiskClusterCount, :none, 2026, 8
-        deprecate :RiskClusterCount=, :none, 2026, 8
-        deprecate :AlarmEventCount, :none, 2026, 8
-        deprecate :AlarmEventCount=, :none, 2026, 8
-        deprecate :CriticalAlarmEventCount, :none, 2026, 8
-        deprecate :CriticalAlarmEventCount=, :none, 2026, 8
-        deprecate :HighAlarmEventCount, :none, 2026, 8
-        deprecate :HighAlarmEventCount=, :none, 2026, 8
-        deprecate :MiddleAlarmEventCount, :none, 2026, 8
-        deprecate :MiddleAlarmEventCount=, :none, 2026, 8
-        deprecate :LowAlarmEventCount, :none, 2026, 8
-        deprecate :LowAlarmEventCount=, :none, 2026, 8
-        deprecate :RiskEventCount, :none, 2026, 8
-        deprecate :RiskEventCount=, :none, 2026, 8
-        deprecate :CriticalRiskEventCount, :none, 2026, 8
-        deprecate :CriticalRiskEventCount=, :none, 2026, 8
-        deprecate :HighRiskEventCount, :none, 2026, 8
-        deprecate :HighRiskEventCount=, :none, 2026, 8
-        deprecate :MiddleRiskEventCount, :none, 2026, 8
-        deprecate :MiddleRiskEventCount=, :none, 2026, 8
-        deprecate :LowRiskEventCount, :none, 2026, 8
-        deprecate :LowRiskEventCount=, :none, 2026, 8
-        deprecate :CriticalAlarmClusterCount, :none, 2026, 8
-        deprecate :CriticalAlarmClusterCount=, :none, 2026, 8
-        deprecate :HighAlarmClusterCount, :none, 2026, 8
-        deprecate :HighAlarmClusterCount=, :none, 2026, 8
-        deprecate :CriticalRiskClusterCount, :none, 2026, 8
-        deprecate :CriticalRiskClusterCount=, :none, 2026, 8
-        deprecate :HighRiskClusterCount, :none, 2026, 8
-        deprecate :HighRiskClusterCount=, :none, 2026, 8
+        deprecate :AlarmClusterCount, :none, 2026, 9
+        deprecate :AlarmClusterCount=, :none, 2026, 9
+        deprecate :RiskClusterCount, :none, 2026, 9
+        deprecate :RiskClusterCount=, :none, 2026, 9
+        deprecate :AlarmEventCount, :none, 2026, 9
+        deprecate :AlarmEventCount=, :none, 2026, 9
+        deprecate :CriticalAlarmEventCount, :none, 2026, 9
+        deprecate :CriticalAlarmEventCount=, :none, 2026, 9
+        deprecate :HighAlarmEventCount, :none, 2026, 9
+        deprecate :HighAlarmEventCount=, :none, 2026, 9
+        deprecate :MiddleAlarmEventCount, :none, 2026, 9
+        deprecate :MiddleAlarmEventCount=, :none, 2026, 9
+        deprecate :LowAlarmEventCount, :none, 2026, 9
+        deprecate :LowAlarmEventCount=, :none, 2026, 9
+        deprecate :RiskEventCount, :none, 2026, 9
+        deprecate :RiskEventCount=, :none, 2026, 9
+        deprecate :CriticalRiskEventCount, :none, 2026, 9
+        deprecate :CriticalRiskEventCount=, :none, 2026, 9
+        deprecate :HighRiskEventCount, :none, 2026, 9
+        deprecate :HighRiskEventCount=, :none, 2026, 9
+        deprecate :MiddleRiskEventCount, :none, 2026, 9
+        deprecate :MiddleRiskEventCount=, :none, 2026, 9
+        deprecate :LowRiskEventCount, :none, 2026, 9
+        deprecate :LowRiskEventCount=, :none, 2026, 9
+        deprecate :CriticalAlarmClusterCount, :none, 2026, 9
+        deprecate :CriticalAlarmClusterCount=, :none, 2026, 9
+        deprecate :HighAlarmClusterCount, :none, 2026, 9
+        deprecate :HighAlarmClusterCount=, :none, 2026, 9
+        deprecate :CriticalRiskClusterCount, :none, 2026, 9
+        deprecate :CriticalRiskClusterCount=, :none, 2026, 9
+        deprecate :HighRiskClusterCount, :none, 2026, 9
+        deprecate :HighRiskClusterCount=, :none, 2026, 9
 
         def initialize(totalclustercount=nil, alarmclustercount=nil, riskclustercount=nil, totalnodecount=nil, totalcorecount=nil, alarmeventcount=nil, criticalalarmeventcount=nil, highalarmeventcount=nil, middlealarmeventcount=nil, lowalarmeventcount=nil, riskeventcount=nil, criticalriskeventcount=nil, highriskeventcount=nil, middleriskeventcount=nil, lowriskeventcount=nil, usedcorequota=nil, purchasedcorequota=nil, elasticcorequota=nil, unprotectedcorecount=nil, protectedcorecount=nil, unprotectedclustercount=nil, protectedclustercount=nil, tkeclustercount=nil, selfbuiltclustercount=nil, criticalalarmclustercount=nil, highalarmclustercount=nil, criticalriskclustercount=nil, highriskclustercount=nil, unboundultimatenodecount=nil, requestid=nil)
           @TotalClusterCount = totalclustercount
@@ -28369,8 +28295,8 @@ module TencentCloud
 
         attr_accessor :Total, :Data, :DataSet, :RequestId
         extend Gem::Deprecate
-        deprecate :Data, :none, 2026, 8
-        deprecate :Data=, :none, 2026, 8
+        deprecate :Data, :none, 2026, 9
+        deprecate :Data=, :none, 2026, 9
 
         def initialize(total=nil, data=nil, dataset=nil, requestid=nil)
           @Total = total
@@ -30262,25 +30188,28 @@ module TencentCloud
 
       # DescribeDspmAssetFieldList请求参数结构体
       class DescribeDspmAssetFieldListRequest < TencentCloud::Common::AbstractModel
-        # @param AssetId: 资产实例id
+        # @param AssetId: <p>资产实例id</p>
         # @type AssetId: String
-        # @param DbName: 数据库名称
+        # @param DbName: <p>数据库名称</p>
         # @type DbName: String
-        # @param TableName: 表名
+        # @param TableName: <p>表名</p>
         # @type TableName: String
         # @param MemberId: <p>集团账号的成员id</p>
         # @type MemberId: Array
-        # @param Filter: 筛选项
+        # @param Filter: <p>筛选项</p>
         # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+        # @param SchemaName: <p>SchemaName</p>
+        # @type SchemaName: String
 
-        attr_accessor :AssetId, :DbName, :TableName, :MemberId, :Filter
+        attr_accessor :AssetId, :DbName, :TableName, :MemberId, :Filter, :SchemaName
 
-        def initialize(assetid=nil, dbname=nil, tablename=nil, memberid=nil, filter=nil)
+        def initialize(assetid=nil, dbname=nil, tablename=nil, memberid=nil, filter=nil, schemaname=nil)
           @AssetId = assetid
           @DbName = dbname
           @TableName = tablename
           @MemberId = memberid
           @Filter = filter
+          @SchemaName = schemaname
         end
 
         def deserialize(params)
@@ -30292,14 +30221,15 @@ module TencentCloud
             @Filter = Filter.new
             @Filter.deserialize(params['Filter'])
           end
+          @SchemaName = params['SchemaName']
         end
       end
 
       # DescribeDspmAssetFieldList返回参数结构体
       class DescribeDspmAssetFieldListResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 总数
+        # @param TotalCount: <p>总数</p>
         # @type TotalCount: Integer
-        # @param DataSet: 结果集
+        # @param DataSet: <p>结果集</p>
         # @type DataSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -30654,20 +30584,23 @@ module TencentCloud
 
       # DescribeDspmAssetTableList请求参数结构体
       class DescribeDspmAssetTableListRequest < TencentCloud::Common::AbstractModel
-        # @param AssetId: 资产实例id
+        # @param AssetId: <p>资产实例id</p>
         # @type AssetId: String
-        # @param DbName: 数据库名称
+        # @param DbName: <p>数据库名称</p>
         # @type DbName: String
+        # @param SchemaName: <p>Schema名称</p>
+        # @type SchemaName: String
         # @param MemberId: <p>集团账号的成员id</p>
         # @type MemberId: Array
-        # @param Filter: 筛选项
+        # @param Filter: <p>筛选项</p>
         # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
 
-        attr_accessor :AssetId, :DbName, :MemberId, :Filter
+        attr_accessor :AssetId, :DbName, :SchemaName, :MemberId, :Filter
 
-        def initialize(assetid=nil, dbname=nil, memberid=nil, filter=nil)
+        def initialize(assetid=nil, dbname=nil, schemaname=nil, memberid=nil, filter=nil)
           @AssetId = assetid
           @DbName = dbname
+          @SchemaName = schemaname
           @MemberId = memberid
           @Filter = filter
         end
@@ -30675,6 +30608,7 @@ module TencentCloud
         def deserialize(params)
           @AssetId = params['AssetId']
           @DbName = params['DbName']
+          @SchemaName = params['SchemaName']
           @MemberId = params['MemberId']
           unless params['Filter'].nil?
             @Filter = Filter.new
@@ -30685,9 +30619,9 @@ module TencentCloud
 
       # DescribeDspmAssetTableList返回参数结构体
       class DescribeDspmAssetTableListResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 总数
+        # @param TotalCount: <p>总数</p>
         # @type TotalCount: Integer
-        # @param DataSet: 结果集
+        # @param DataSet: <p>结果集</p>
         # @type DataSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -32937,7 +32871,7 @@ module TencentCloud
         # @type Limit: Integer
         # @param Offset: <p>偏移量</p>
         # @type Offset: Integer
-        # @param LoginType: <p>登陆状态(0 全部 1 成功 2 失败)</p>
+        # @param LoginType: <p>登录状态</p><p>枚举值：</p><ul><li>0： 全部</li><li>1： 成功</li><li>2： 失败</li></ul>
         # @type LoginType: Integer
         # @param DbName: <p>数据库端口</p>
         # @type DbName: String
@@ -33882,7 +33816,7 @@ module TencentCloud
       class DescribeEdrAlertListRequest < TencentCloud::Common::AbstractModel
         # @param MemberId: <p>集团账号的成员id</p>
         # @type MemberId: Array
-        # @param Filters: <p>PolicyType - int - 是否必填：否 - 策略类型PolicyName - string - 是否必填：否 - 策略名称Domain - string - 是否必填：否 - 域名(先对域名做urlencode,再base64)PolicyAction- int - 是否必填：否 - 策略动作IsEnabled - int - 是否必填：否 - 是否生效</p>
+        # @param Filters: <p>过滤条件，支持的 Name 如下：<br/>【资源属性过滤】（前缀模糊，后端自动反查资产后按实例过滤）<br/>InstanceName - string - 是否必填：否 - 资产名称（前缀匹配）<br/>InstanceID - string - 是否必填：否 - 实例ID（前缀匹配）<br/>IP - string - 是否必填：否 - IP地址，支持内网/外网IP（前缀匹配）<br/>Tags - string - 是否必填：否 - 腾讯云标签，格式 tagKey$tagValue（仅单账号场景生效）<br/>CSIPTag - string - 是否必填：否 - 安全中心标签名称（前缀匹配，按语言环境匹配中/英文字段）<br/>AssetTagIds - string - 是否必填：否 - 安全中心资产标签ID（精确匹配，多个标签ID之间为或关系；标签ID可通过资产中心标签树接口 DescribeAssetTagTree 获取）<br/>【容器维度过滤】（前缀模糊，命中后仅返回容器告警）<br/>ClusterName - string - 是否必填：否 - 集群名称（前缀匹配）<br/>ContainerName - string - 是否必填：否 - 容器名称（前缀匹配）<br/>【告警字段过滤】（精确匹配，支持多值）<br/>Status - int - 是否必填：否 - 处理状态<br/>Level - int - 是否必填：否 - 威胁等级<br/>AlertCategory - string - 是否必填：否 - 告警大类<br/>AlertSubType - string - 是否必填：否 - 告警子类型<br/>AttackStage - string - 是否必填：否 - 攻击阶段<br/>DetectMode - string - 是否必填：否 - 检测模式<br/>AlertSource - string - 是否必填：否 - 告警来源（HOST/CONTAINER）<br/>AlertId - string - 是否必填：否 - 告警ID<br/>InstanceId - string - 是否必填：否 - 实例ID（精确匹配）<br/>ContainerId - string - 是否必填：否 - 容器ID（精确匹配）<br/>ClusterId - string - 是否必填：否 - 集群ID（精确匹配）<br/>【时间范围】<br/>StartTime - string - 是否必填：否 - 开始时间，格式 2006-01-02 15:04:05（默认近180天）<br/>EndTime - string - 是否必填：否 - 结束时间，格式 2006-01-02 15:04:05（默认当前时间）</p>
         # @type Filters: Array
         # @param Limit: <p>限制条数,默认10,最大100</p>
         # @type Limit: Integer
@@ -34516,13 +34450,13 @@ module TencentCloud
       class DescribeExposePathRequest < TencentCloud::Common::AbstractModel
         # @param MemberId: <p>集团账号的成员id</p>
         # @type MemberId: Array
-        # @param AssetId: 资产ID
+        # @param AssetId: <p>资产ID</p>
         # @type AssetId: String
-        # @param Ip: 资产IP
+        # @param Ip: <p>资产IP</p>
         # @type Ip: String
-        # @param Domain: 资产域名
+        # @param Domain: <p>资产域名</p>
         # @type Domain: String
-        # @param Port: 端口或端口范围
+        # @param Port: <p>端口或端口范围</p>
         # @type Port: String
 
         attr_accessor :MemberId, :AssetId, :Ip, :Domain, :Port
@@ -34546,20 +34480,24 @@ module TencentCloud
 
       # DescribeExposePath返回参数结构体
       class DescribeExposePathResponse < TencentCloud::Common::AbstractModel
-        # @param Content: 云边界分析路径节点内容
+        # @param Content: <p>云边界分析路径节点内容</p>
         # @type Content: String
+        # @param PathCount: <p>互联网节点数量</p>
+        # @type PathCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Content, :RequestId
+        attr_accessor :Content, :PathCount, :RequestId
 
-        def initialize(content=nil, requestid=nil)
+        def initialize(content=nil, pathcount=nil, requestid=nil)
           @Content = content
+          @PathCount = pathcount
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Content = params['Content']
+          @PathCount = params['PathCount']
           @RequestId = params['RequestId']
         end
       end
@@ -42750,7 +42688,7 @@ module TencentCloud
 
       # DescribeScanStatistic请求参数结构体
       class DescribeScanStatisticRequest < TencentCloud::Common::AbstractModel
-        # @param MemberId: 集团账号的成员id
+        # @param MemberId: <p>集团账号的成员id</p>
         # @type MemberId: Array
         # @param TaskLogId: 体检任务id
         # @type TaskLogId: String
@@ -43620,12 +43558,18 @@ module TencentCloud
         # @type Uin: String
         # @param NickName: <p>租户昵称</p>
         # @type NickName: String
+        # @param PostPayStatus: <p>后付费资源状态<br>枚举值：<br>0：未开通<br>1：正常<br>2：隔离</p>
+        # @type PostPayStatus: Integer
+        # @param PostPayResourceId: <p>后付费资源ID，未开通后付费时为空</p>
+        # @type PostPayResourceId: String
+        # @param PostPayBeginTime: <p>后付费资源开通时间，未开通后付费时为空。格式 YYYY-MM-DD HH:mm:ss</p>
+        # @type PostPayBeginTime: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :AppID, :OrderStatus, :TotalQuota, :UsedCount, :PayMode, :AutoRenew, :ResourceId, :TimeSpan, :TimeUnit, :BeginTime, :EndTime, :BetaEndTime, :TimeNow, :Uin, :NickName, :RequestId
+        attr_accessor :AppID, :OrderStatus, :TotalQuota, :UsedCount, :PayMode, :AutoRenew, :ResourceId, :TimeSpan, :TimeUnit, :BeginTime, :EndTime, :BetaEndTime, :TimeNow, :Uin, :NickName, :PostPayStatus, :PostPayResourceId, :PostPayBeginTime, :RequestId
 
-        def initialize(appid=nil, orderstatus=nil, totalquota=nil, usedcount=nil, paymode=nil, autorenew=nil, resourceid=nil, timespan=nil, timeunit=nil, begintime=nil, endtime=nil, betaendtime=nil, timenow=nil, uin=nil, nickname=nil, requestid=nil)
+        def initialize(appid=nil, orderstatus=nil, totalquota=nil, usedcount=nil, paymode=nil, autorenew=nil, resourceid=nil, timespan=nil, timeunit=nil, begintime=nil, endtime=nil, betaendtime=nil, timenow=nil, uin=nil, nickname=nil, postpaystatus=nil, postpayresourceid=nil, postpaybegintime=nil, requestid=nil)
           @AppID = appid
           @OrderStatus = orderstatus
           @TotalQuota = totalquota
@@ -43641,6 +43585,9 @@ module TencentCloud
           @TimeNow = timenow
           @Uin = uin
           @NickName = nickname
+          @PostPayStatus = postpaystatus
+          @PostPayResourceId = postpayresourceid
+          @PostPayBeginTime = postpaybegintime
           @RequestId = requestid
         end
 
@@ -43660,6 +43607,9 @@ module TencentCloud
           @TimeNow = params['TimeNow']
           @Uin = params['Uin']
           @NickName = params['NickName']
+          @PostPayStatus = params['PostPayStatus']
+          @PostPayResourceId = params['PostPayResourceId']
+          @PostPayBeginTime = params['PostPayBeginTime']
           @RequestId = params['RequestId']
         end
       end
@@ -43720,6 +43670,86 @@ module TencentCloud
           unless params['Data'].nil?
             @Data = SkillScanItem.new
             @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSkillScanTaskList请求参数结构体
+      class DescribeSkillScanTaskListRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移量，默认 0
+        # @type Offset: Integer
+        # @param Limit: 每页数量，默认 10，上限 200
+        # @type Limit: Integer
+        # @param StartTime: 开始时间，筛选上传时间不早于该时刻的任务
+        # 参数格式：YYYY-MM-DD HH:mm:ss
+        # 最大长度：128 字符
+        # 使用约束：StartTime 与 EndTime 要么同时传入，要么都不传；都不传时默认查询本月数据
+        # @type StartTime: String
+        # @param EndTime: 结束时间，筛选上传时间不晚于该时刻的任务
+        # 参数格式：YYYY-MM-DD HH:mm:ss
+        # 最大长度：128 字符
+        # 建议与 StartTime 同时传入；未传入时默认使用当前时间作为结束时间
+        # @type EndTime: String
+        # @param Order: 排序方式
+        # 最大长度：128 字符
+        # 枚举值：
+        # ASC：升序
+        # DESC：降序（默认）
+        # @type Order: String
+        # @param By: 排序字段
+        # 最大长度：128 字符
+        # 枚举值：
+        # InsertTime：上传时间（默认）
+        # @type By: String
+
+        attr_accessor :Offset, :Limit, :StartTime, :EndTime, :Order, :By
+
+        def initialize(offset=nil, limit=nil, starttime=nil, endtime=nil, order=nil, by=nil)
+          @Offset = offset
+          @Limit = limit
+          @StartTime = starttime
+          @EndTime = endtime
+          @Order = order
+          @By = by
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Order = params['Order']
+          @By = params['By']
+        end
+      end
+
+      # DescribeSkillScanTaskList返回参数结构体
+      class DescribeSkillScanTaskListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数量
+        # @type TotalCount: Integer
+        # @param TaskList: 扫描任务列表，按上传时间倒序排列
+        # @type TaskList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :TaskList, :RequestId
+
+        def initialize(totalcount=nil, tasklist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @TaskList = tasklist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['TaskList'].nil?
+            @TaskList = []
+            params['TaskList'].each do |i|
+              skillscantaskitem_tmp = SkillScanTaskItem.new
+              skillscantaskitem_tmp.deserialize(i)
+              @TaskList << skillscantaskitem_tmp
+            end
           end
           @RequestId = params['RequestId']
         end
@@ -49837,12 +49867,12 @@ module TencentCloud
 
         attr_accessor :UnprocessedRisk, :ConfigurationRisk, :BaselineDeviation, :LeakDetection, :SQLBehaviorAnomaly, :PermissionAnomaly, :LoginBehaviorAnomaly, :AttackSurfaceRisk, :AccountSensitiveOperation, :UnprocessedAlarm, :NumOfNewAlarmEvent, :NumOfNewConfigRisk
         extend Gem::Deprecate
-        deprecate :ConfigurationRisk, :none, 2026, 8
-        deprecate :ConfigurationRisk=, :none, 2026, 8
-        deprecate :BaselineDeviation, :none, 2026, 8
-        deprecate :BaselineDeviation=, :none, 2026, 8
-        deprecate :LeakDetection, :none, 2026, 8
-        deprecate :LeakDetection=, :none, 2026, 8
+        deprecate :ConfigurationRisk, :none, 2026, 9
+        deprecate :ConfigurationRisk=, :none, 2026, 9
+        deprecate :BaselineDeviation, :none, 2026, 9
+        deprecate :BaselineDeviation=, :none, 2026, 9
+        deprecate :LeakDetection, :none, 2026, 9
+        deprecate :LeakDetection=, :none, 2026, 9
 
         def initialize(unprocessedrisk=nil, configurationrisk=nil, baselinedeviation=nil, leakdetection=nil, sqlbehavioranomaly=nil, permissionanomaly=nil, loginbehavioranomaly=nil, attacksurfacerisk=nil, accountsensitiveoperation=nil, unprocessedalarm=nil, numofnewalarmevent=nil, numofnewconfigrisk=nil)
           @UnprocessedRisk = unprocessedrisk
@@ -50033,12 +50063,12 @@ module TencentCloud
 
         attr_accessor :Date, :UncontrolledAccount, :ConfigurationRisk, :BaselineRisk, :LeakDetectionRisk, :SQLBehaviorAnomaly, :PermissionAnomaly, :LoginBehaviorAnomaly, :AttackSurfaceRisk, :AccountSensitiveOperation
         extend Gem::Deprecate
-        deprecate :ConfigurationRisk, :none, 2026, 8
-        deprecate :ConfigurationRisk=, :none, 2026, 8
-        deprecate :BaselineRisk, :none, 2026, 8
-        deprecate :BaselineRisk=, :none, 2026, 8
-        deprecate :LeakDetectionRisk, :none, 2026, 8
-        deprecate :LeakDetectionRisk=, :none, 2026, 8
+        deprecate :ConfigurationRisk, :none, 2026, 9
+        deprecate :ConfigurationRisk=, :none, 2026, 9
+        deprecate :BaselineRisk, :none, 2026, 9
+        deprecate :BaselineRisk=, :none, 2026, 9
+        deprecate :LeakDetectionRisk, :none, 2026, 9
+        deprecate :LeakDetectionRisk=, :none, 2026, 9
 
         def initialize(date=nil, uncontrolledaccount=nil, configurationrisk=nil, baselinerisk=nil, leakdetectionrisk=nil, sqlbehavioranomaly=nil, permissionanomaly=nil, loginbehavioranomaly=nil, attacksurfacerisk=nil, accountsensitiveoperation=nil)
           @Date = date
@@ -54014,10 +54044,12 @@ module TencentCloud
         # @type RegionInfo: :class:`Tencentcloud::Csip.v20221121.models.RegionInfo`
         # @param UserName: <p>镜像仓库用户名</p>
         # @type UserName: String
+        # @param ConnStatus: <p>连接状态</p><p>枚举值：</p><ul><li>status_connected： 连接成功</li><li>status_connecting： 连接中</li><li>status_connect_failed： 连接失败</li><li>status_partial_failed： 部分连接失败</li></ul>
+        # @type ConnStatus: String
 
-        attr_accessor :RegistryId, :Name, :RegistryType, :Url, :NetType, :RegistryRegion, :RegistryVersion, :InstanceID, :LatestSyncTime, :SyncSolution, :SyncMode, :ConnDetectDetail, :ConnDetectType, :OwnerAccountName, :OwnerAppId, :OwnerUin, :SyncStatus, :SyncFailReason, :RegionInfo, :UserName
+        attr_accessor :RegistryId, :Name, :RegistryType, :Url, :NetType, :RegistryRegion, :RegistryVersion, :InstanceID, :LatestSyncTime, :SyncSolution, :SyncMode, :ConnDetectDetail, :ConnDetectType, :OwnerAccountName, :OwnerAppId, :OwnerUin, :SyncStatus, :SyncFailReason, :RegionInfo, :UserName, :ConnStatus
 
-        def initialize(registryid=nil, name=nil, registrytype=nil, url=nil, nettype=nil, registryregion=nil, registryversion=nil, instanceid=nil, latestsynctime=nil, syncsolution=nil, syncmode=nil, conndetectdetail=nil, conndetecttype=nil, owneraccountname=nil, ownerappid=nil, owneruin=nil, syncstatus=nil, syncfailreason=nil, regioninfo=nil, username=nil)
+        def initialize(registryid=nil, name=nil, registrytype=nil, url=nil, nettype=nil, registryregion=nil, registryversion=nil, instanceid=nil, latestsynctime=nil, syncsolution=nil, syncmode=nil, conndetectdetail=nil, conndetecttype=nil, owneraccountname=nil, ownerappid=nil, owneruin=nil, syncstatus=nil, syncfailreason=nil, regioninfo=nil, username=nil, connstatus=nil)
           @RegistryId = registryid
           @Name = name
           @RegistryType = registrytype
@@ -54038,6 +54070,7 @@ module TencentCloud
           @SyncFailReason = syncfailreason
           @RegionInfo = regioninfo
           @UserName = username
+          @ConnStatus = connstatus
         end
 
         def deserialize(params)
@@ -54071,6 +54104,7 @@ module TencentCloud
             @RegionInfo.deserialize(params['RegionInfo'])
           end
           @UserName = params['UserName']
+          @ConnStatus = params['ConnStatus']
         end
       end
 
@@ -57240,10 +57274,10 @@ module TencentCloud
 
         attr_accessor :AILinkEnable, :MemberId, :RuleScopeDeep, :RuleScopeBalanced, :RuleScopePrecise, :Scope, :Quuids, :ExcludeQuuids, :AutoInclude, :TagIDs, :TCSSScope, :ClusterIDs, :ExcludeClusterIDs, :InstanceIds, :ExcludeInstanceIds
         extend Gem::Deprecate
-        deprecate :Quuids, :none, 2026, 8
-        deprecate :Quuids=, :none, 2026, 8
-        deprecate :ExcludeQuuids, :none, 2026, 8
-        deprecate :ExcludeQuuids=, :none, 2026, 8
+        deprecate :Quuids, :none, 2026, 9
+        deprecate :Quuids=, :none, 2026, 9
+        deprecate :ExcludeQuuids, :none, 2026, 9
+        deprecate :ExcludeQuuids=, :none, 2026, 9
 
         def initialize(ailinkenable=nil, memberid=nil, rulescopedeep=nil, rulescopebalanced=nil, rulescopeprecise=nil, scope=nil, quuids=nil, excludequuids=nil, autoinclude=nil, tagids=nil, tcssscope=nil, clusterids=nil, excludeclusterids=nil, instanceids=nil, excludeinstanceids=nil)
           @AILinkEnable = ailinkenable
@@ -58420,8 +58454,8 @@ module TencentCloud
 
         attr_accessor :DefendStatus, :UnbindHostLicense, :ClusterAssetIds, :OperatedMemberId, :MemberId, :ClusterCaMD5List
         extend Gem::Deprecate
-        deprecate :ClusterAssetIds, :none, 2026, 8
-        deprecate :ClusterAssetIds=, :none, 2026, 8
+        deprecate :ClusterAssetIds, :none, 2026, 9
+        deprecate :ClusterAssetIds=, :none, 2026, 9
 
         def initialize(defendstatus=nil, unbindhostlicense=nil, clusterassetids=nil, operatedmemberid=nil, memberid=nil, clustercamd5list=nil)
           @DefendStatus = defendstatus
@@ -59265,23 +59299,23 @@ module TencentCloud
 
       # ModifyDspmCkafkaSave请求参数结构体
       class ModifyDspmCkafkaSaveRequest < TencentCloud::Common::AbstractModel
-        # @param VipType: 接入类型，当前支持 1和7, 类型vip网络类型（1:外网TGW 2:基础网络 3:VPC网络 4:支撑网络(idc 环境) 5:SSL外网访问方式访问 6:黑石环境vpc 7:支撑网络(cvm 环境）
+        # @param VipType: <p>接入类型，当前支持 1和7</p><p>枚举值：</p><ul><li>1： 外网TGW</li><li>2： 基础网络</li><li>3： VPC网络</li><li>4： idc环境-支撑网络</li><li>5： SSL外网访问方式访问</li><li>6： 黑石环境vpc</li><li>7： cvm环境-支撑网络</li></ul>
         # @type VipType: Integer
-        # @param RegionId: 实例的地域
+        # @param RegionId: <p>实例的地域</p>
         # @type RegionId: String
-        # @param InstanceId: 实例的id
+        # @param InstanceId: <p>实例的id</p>
         # @type InstanceId: String
-        # @param InstanceName: 实例名称
+        # @param InstanceName: <p>实例名称</p>
         # @type InstanceName: String
-        # @param RouteInfo: 实例的接入信息
+        # @param RouteInfo: <p>实例的接入信息</p>
         # @type RouteInfo: :class:`Tencentcloud::Csip.v20221121.models.RouteInfo`
-        # @param Username: 接入为域名的时候，有效
+        # @param Username: <p>接入为域名的时候，有效</p>
         # @type Username: String
-        # @param Password: 接入为域名的时候，有效
+        # @param Password: <p>接入为域名的时候，有效</p>
         # @type Password: String
-        # @param LogDeliveryInfo: 日志投递的主题配置
+        # @param LogDeliveryInfo: <p>日志投递的主题配置</p>
         # @type LogDeliveryInfo: Array
-        # @param IsOverwrite: 已存在配置时是否覆盖，默认 false（不覆盖，保持兼容）
+        # @param IsOverwrite: <p>已存在配置时是否覆盖，默认 false（不覆盖，保持兼容）</p>
         # @type IsOverwrite: Boolean
         # @param MemberId: <p>集团账号的成员id</p>
         # @type MemberId: Array
@@ -67999,6 +68033,31 @@ module TencentCloud
         def deserialize(params)
           @RuleID = params['RuleID']
           @Description = params['Description']
+        end
+      end
+
+      # Skill 扫描任务列表项
+      class SkillScanTaskItem < TencentCloud::Common::AbstractModel
+        # @param InsertTime: 上传时间
+        # 参数格式：YYYY-MM-DDTHH:mm:ssZ（ISO8601格式）
+        # @type InsertTime: String
+        # @param SkillName: Skill 名称
+        # @type SkillName: String
+        # @param DeductCount: 消耗次数（总消耗次数）
+        # @type DeductCount: Integer
+
+        attr_accessor :InsertTime, :SkillName, :DeductCount
+
+        def initialize(inserttime=nil, skillname=nil, deductcount=nil)
+          @InsertTime = inserttime
+          @SkillName = skillname
+          @DeductCount = deductcount
+        end
+
+        def deserialize(params)
+          @InsertTime = params['InsertTime']
+          @SkillName = params['SkillName']
+          @DeductCount = params['DeductCount']
         end
       end
 

@@ -1085,6 +1085,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询应用视图下的调用统计总览，包含总调用次数、调用成功率、总tokens平均耗时及首tokens平均耗时；RAG 应用额外返回各回复方式的调用次数及占比，用于绘制饼图
+
+        # @param request: Request instance for DescribeAppStatisticsOverview.
+        # @type request: :class:`Tencentcloud::adp::V20260520::DescribeAppStatisticsOverviewRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::DescribeAppStatisticsOverviewResponse`
+        def DescribeAppStatisticsOverview(request)
+          body = send_request('DescribeAppStatisticsOverview', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAppStatisticsOverviewResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取应用摘要列表
 
         # @param request: Request instance for DescribeAppSummaryList.
