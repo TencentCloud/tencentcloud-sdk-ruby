@@ -289,6 +289,126 @@ module TencentCloud
         end
       end
 
+      # 控制台用户组信息（对外标准版，与内部 UserGroupRoleInfo 解耦）
+      class ConsoleGroupInfo < TencentCloud::Common::AbstractModel
+        # @param GroupId: 用户组 ID
+        # @type GroupId: String
+        # @param GroupName: 用户组名称
+        # @type GroupName: String
+        # @param Roles: 角色列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Roles: Array
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间
+        # @type UpdateTime: String
+        # @param UserCount: 用户组下用户数量
+        # @type UserCount: Integer
+        # @param GroupType: 用户组类型。取值为枚举数值的字符串形式："0"=控制台系统类型（包含全部user）、"1"=控制台自定义类型、"2"=工作空间系统类型、"3"=工作空间自定义类型
+        # @type GroupType: String
+
+        attr_accessor :GroupId, :GroupName, :Roles, :CreateTime, :UpdateTime, :UserCount, :GroupType
+
+        def initialize(groupid=nil, groupname=nil, roles=nil, createtime=nil, updatetime=nil, usercount=nil, grouptype=nil)
+          @GroupId = groupid
+          @GroupName = groupname
+          @Roles = roles
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @UserCount = usercount
+          @GroupType = grouptype
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @GroupName = params['GroupName']
+          unless params['Roles'].nil?
+            @Roles = []
+            params['Roles'].each do |i|
+              rolebasicinfo_tmp = RoleBasicInfo.new
+              rolebasicinfo_tmp.deserialize(i)
+              @Roles << rolebasicinfo_tmp
+            end
+          end
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @UserCount = params['UserCount']
+          @GroupType = params['GroupType']
+        end
+      end
+
+      # 控制台用户组成员信息（对外标准版，与内部 GroupUserInfo 解耦）
+      class ConsoleGroupUserInfo < TencentCloud::Common::AbstractModel
+        # @param UserUin: 用户 UIN
+        # @type UserUin: String
+        # @param UserName: 用户名
+        # @type UserName: String
+        # @param Nickname: 昵称
+        # @type Nickname: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间
+        # @type UpdateTime: String
+
+        attr_accessor :UserUin, :UserName, :Nickname, :CreateTime, :UpdateTime
+
+        def initialize(useruin=nil, username=nil, nickname=nil, createtime=nil, updatetime=nil)
+          @UserUin = useruin
+          @UserName = username
+          @Nickname = nickname
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @UserUin = params['UserUin']
+          @UserName = params['UserName']
+          @Nickname = params['Nickname']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 控制台角色信息（对外标准版，与内部 Role 解耦）
+      class ConsoleRoleInfo < TencentCloud::Common::AbstractModel
+        # @param BasicInfo: 角色基本信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BasicInfo: :class:`Tencentcloud::Databuddy.v20260715.models.RoleBasicInfo`
+        # @param MetaData: 角色元信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetaData: :class:`Tencentcloud::Databuddy.v20260715.models.RoleMetaData`
+        # @param Permissions: 角色权限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Permissions: Array
+
+        attr_accessor :BasicInfo, :MetaData, :Permissions
+
+        def initialize(basicinfo=nil, metadata=nil, permissions=nil)
+          @BasicInfo = basicinfo
+          @MetaData = metadata
+          @Permissions = permissions
+        end
+
+        def deserialize(params)
+          unless params['BasicInfo'].nil?
+            @BasicInfo = RoleBasicInfo.new
+            @BasicInfo.deserialize(params['BasicInfo'])
+          end
+          unless params['MetaData'].nil?
+            @MetaData = RoleMetaData.new
+            @MetaData.deserialize(params['MetaData'])
+          end
+          unless params['Permissions'].nil?
+            @Permissions = []
+            params['Permissions'].each do |i|
+              rolepermission_tmp = RolePermission.new
+              rolepermission_tmp.deserialize(i)
+              @Permissions << rolepermission_tmp
+            end
+          end
+        end
+      end
+
       # 控制台用户信息（规范化，与内部 UserDetailInfo 解耦）
       class ConsoleUserInfo < TencentCloud::Common::AbstractModel
         # @param UserUin: 用户 UIN
@@ -346,6 +466,69 @@ module TencentCloud
           @IsOwner = params['IsOwner']
           @UserTag = params['UserTag']
           @IsAdmin = params['IsAdmin']
+        end
+      end
+
+      # CreateConsoleGroup请求参数结构体
+      class CreateConsoleGroupRequest < TencentCloud::Common::AbstractModel
+        # @param GroupName: <p>用户组名称</p>
+        # @type GroupName: String
+        # @param GroupNickname: <p>用户组别名</p>
+        # @type GroupNickname: String
+        # @param Description: <p>用户组描述</p>
+        # @type Description: String
+
+        attr_accessor :GroupName, :GroupNickname, :Description
+
+        def initialize(groupname=nil, groupnickname=nil, description=nil)
+          @GroupName = groupname
+          @GroupNickname = groupnickname
+          @Description = description
+        end
+
+        def deserialize(params)
+          @GroupName = params['GroupName']
+          @GroupNickname = params['GroupNickname']
+          @Description = params['Description']
+        end
+      end
+
+      # CreateConsoleGroup返回参数结构体
+      class CreateConsoleGroupResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>返回结果</p>
+        # @type Data: :class:`Tencentcloud::Databuddy.v20260715.models.CreateConsoleGroupRsp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = CreateConsoleGroupRsp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 创建控制台用户组响应
+      class CreateConsoleGroupRsp < TencentCloud::Common::AbstractModel
+        # @param GroupId: 创建成功的用户组 ID
+        # @type GroupId: String
+
+        attr_accessor :GroupId
+
+        def initialize(groupid=nil)
+          @GroupId = groupid
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
         end
       end
 
@@ -569,6 +752,61 @@ module TencentCloud
 
         def deserialize(params)
           @WorkflowId = params['WorkflowId']
+        end
+      end
+
+      # DeleteConsoleGroups请求参数结构体
+      class DeleteConsoleGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param GroupIds: <p>要删除的用户组 ID 列表</p>
+        # @type GroupIds: Array
+
+        attr_accessor :GroupIds
+
+        def initialize(groupids=nil)
+          @GroupIds = groupids
+        end
+
+        def deserialize(params)
+          @GroupIds = params['GroupIds']
+        end
+      end
+
+      # DeleteConsoleGroups返回参数结构体
+      class DeleteConsoleGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>返回结果</p>
+        # @type Data: :class:`Tencentcloud::Databuddy.v20260715.models.DeleteConsoleGroupsRsp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DeleteConsoleGroupsRsp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 删除控制台用户组响应
+      class DeleteConsoleGroupsRsp < TencentCloud::Common::AbstractModel
+        # @param Status: 操作是否成功
+        # @type Status: Boolean
+
+        attr_accessor :Status
+
+        def initialize(status=nil)
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
         end
       end
 
@@ -1322,7 +1560,7 @@ module TencentCloud
         # @param TaskId: <p>任务ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: String
-        # @param TaskTypeName: <p>任务类型名称</p>
+        # @param TaskTypeName: 任务类型名称，请参考数据结构TaskType中TaskTypeName字段描述
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskTypeName: String
         # @param TaskVersionId: <p>任务版本ID</p>
@@ -1376,7 +1614,7 @@ module TencentCloud
         # @param TimeZone: <p>时区</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeZone: String
-        # @param DependOnList: <p>依赖上游任务ID列表</p>
+        # @param DependOnList: <p>依赖上游任务ID列表。保留字段，暂时返回为[]</p><p>保留字段，暂时返回为[]</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DependOnList: Array
         # @param RunParams: <p>运行参数</p>
@@ -1524,7 +1762,7 @@ module TencentCloud
         # @param TaskName: 任务名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskName: String
-        # @param TaskTypeName: 任务类型名称
+        # @param TaskTypeName: 任务类型名称，请参考数据结构TaskType中TaskTypeName字段描述
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskTypeName: String
 
@@ -1848,6 +2086,301 @@ module TencentCloud
           @LabelValue = params['LabelValue']
           @LabelKeyId = params['LabelKeyId']
           @LabelValueId = params['LabelValueId']
+        end
+      end
+
+      # ListConsoleGroupUsers请求参数结构体
+      class ListConsoleGroupUsersRequest < TencentCloud::Common::AbstractModel
+        # @param GroupId: <p>用户组 ID</p>
+        # @type GroupId: String
+        # @param UserKeyword: <p>用户名称或 UIN 模糊匹配</p>
+        # @type UserKeyword: String
+        # @param UserUins: <p>通过 UIN 批量查询用户信息</p>
+        # @type UserUins: Array
+        # @param OrderBys: <p>多字段排序，如 [{Name: &#39;CreateTime&#39;, Direction: &#39;DESC&#39;}, {Name: &#39;UserName&#39;, Direction: &#39;ASC&#39;}]，默认按创建时间降序</p>
+        # @type OrderBys: Array
+        # @param PageNumber: <p>页码，从1开始，默认1</p>
+        # @type PageNumber: Integer
+        # @param PageSize: <p>每页大小，默认10，最小10，最大200</p>
+        # @type PageSize: Integer
+
+        attr_accessor :GroupId, :UserKeyword, :UserUins, :OrderBys, :PageNumber, :PageSize
+
+        def initialize(groupid=nil, userkeyword=nil, useruins=nil, orderbys=nil, pagenumber=nil, pagesize=nil)
+          @GroupId = groupid
+          @UserKeyword = userkeyword
+          @UserUins = useruins
+          @OrderBys = orderbys
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @UserKeyword = params['UserKeyword']
+          @UserUins = params['UserUins']
+          unless params['OrderBys'].nil?
+            @OrderBys = []
+            params['OrderBys'].each do |i|
+              orderby_tmp = OrderBy.new
+              orderby_tmp.deserialize(i)
+              @OrderBys << orderby_tmp
+            end
+          end
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+        end
+      end
+
+      # ListConsoleGroupUsers返回参数结构体
+      class ListConsoleGroupUsersResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>返回结果</p>
+        # @type Data: :class:`Tencentcloud::Databuddy.v20260715.models.ListConsoleGroupUsersRsp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ListConsoleGroupUsersRsp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 查询控制台用户组成员列表响应
+      class ListConsoleGroupUsersRsp < TencentCloud::Common::AbstractModel
+        # @param Items: 用户组成员列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+        # @param PageNumber: 当前页码
+        # @type PageNumber: Integer
+        # @param PageSize: 每页大小
+        # @type PageSize: Integer
+        # @param TotalCount: 总记录数
+        # @type TotalCount: Integer
+        # @param TotalPageNumber: 总页数
+        # @type TotalPageNumber: Integer
+
+        attr_accessor :Items, :PageNumber, :PageSize, :TotalCount, :TotalPageNumber
+
+        def initialize(items=nil, pagenumber=nil, pagesize=nil, totalcount=nil, totalpagenumber=nil)
+          @Items = items
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @TotalCount = totalcount
+          @TotalPageNumber = totalpagenumber
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              consolegroupuserinfo_tmp = ConsoleGroupUserInfo.new
+              consolegroupuserinfo_tmp.deserialize(i)
+              @Items << consolegroupuserinfo_tmp
+            end
+          end
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @TotalCount = params['TotalCount']
+          @TotalPageNumber = params['TotalPageNumber']
+        end
+      end
+
+      # ListConsoleGroups请求参数结构体
+      class ListConsoleGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param PageNumber: <p>页码，从1开始，默认1</p>
+        # @type PageNumber: Integer
+        # @param PageSize: <p>每页大小，默认10，最小10，最大200</p>
+        # @type PageSize: Integer
+        # @param GroupIds: <p>通过用户组 ID 批量查询</p>
+        # @type GroupIds: Array
+        # @param GroupKeyword: <p>用户组名称模糊匹配</p>
+        # @type GroupKeyword: String
+        # @param OrderBys: <p>多字段排序，如 [{Name: &#39;CreateTime&#39;, Direction: &#39;Desc&#39;}, {Name: &#39;UserName&#39;, Direction: &#39;Asc&#39;}]，默认按创建时间降序</p>
+        # @type OrderBys: Array
+
+        attr_accessor :PageNumber, :PageSize, :GroupIds, :GroupKeyword, :OrderBys
+
+        def initialize(pagenumber=nil, pagesize=nil, groupids=nil, groupkeyword=nil, orderbys=nil)
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @GroupIds = groupids
+          @GroupKeyword = groupkeyword
+          @OrderBys = orderbys
+        end
+
+        def deserialize(params)
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @GroupIds = params['GroupIds']
+          @GroupKeyword = params['GroupKeyword']
+          unless params['OrderBys'].nil?
+            @OrderBys = []
+            params['OrderBys'].each do |i|
+              orderby_tmp = OrderBy.new
+              orderby_tmp.deserialize(i)
+              @OrderBys << orderby_tmp
+            end
+          end
+        end
+      end
+
+      # ListConsoleGroups返回参数结构体
+      class ListConsoleGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>返回结果</p>
+        # @type Data: :class:`Tencentcloud::Databuddy.v20260715.models.ListConsoleGroupsRsp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ListConsoleGroupsRsp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 查询控制台用户组列表响应
+      class ListConsoleGroupsRsp < TencentCloud::Common::AbstractModel
+        # @param Items: 用户组列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+        # @param PageNumber: 当前页码
+        # @type PageNumber: Integer
+        # @param PageSize: 每页大小
+        # @type PageSize: Integer
+        # @param TotalCount: 总记录数
+        # @type TotalCount: Integer
+        # @param TotalPageNumber: 总页数
+        # @type TotalPageNumber: Integer
+
+        attr_accessor :Items, :PageNumber, :PageSize, :TotalCount, :TotalPageNumber
+
+        def initialize(items=nil, pagenumber=nil, pagesize=nil, totalcount=nil, totalpagenumber=nil)
+          @Items = items
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @TotalCount = totalcount
+          @TotalPageNumber = totalpagenumber
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              consolegroupinfo_tmp = ConsoleGroupInfo.new
+              consolegroupinfo_tmp.deserialize(i)
+              @Items << consolegroupinfo_tmp
+            end
+          end
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @TotalCount = params['TotalCount']
+          @TotalPageNumber = params['TotalPageNumber']
+        end
+      end
+
+      # ListConsoleRoles请求参数结构体
+      class ListConsoleRolesRequest < TencentCloud::Common::AbstractModel
+        # @param PageNumber: <p>页码，从1开始，默认1</p>
+        # @type PageNumber: Integer
+        # @param PageSize: <p>每页大小，默认10，最小10，最大200</p>
+        # @type PageSize: Integer
+        # @param RoleKeyword: <p>角色名称或描述模糊匹配</p>
+        # @type RoleKeyword: String
+
+        attr_accessor :PageNumber, :PageSize, :RoleKeyword
+
+        def initialize(pagenumber=nil, pagesize=nil, rolekeyword=nil)
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @RoleKeyword = rolekeyword
+        end
+
+        def deserialize(params)
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @RoleKeyword = params['RoleKeyword']
+        end
+      end
+
+      # ListConsoleRoles返回参数结构体
+      class ListConsoleRolesResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>返回结果</p>
+        # @type Data: :class:`Tencentcloud::Databuddy.v20260715.models.ListConsoleRolesRsp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ListConsoleRolesRsp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 查询控制台角色列表响应
+      class ListConsoleRolesRsp < TencentCloud::Common::AbstractModel
+        # @param Items: 角色列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+        # @param PageNumber: 当前页码
+        # @type PageNumber: Integer
+        # @param PageSize: 每页大小
+        # @type PageSize: Integer
+        # @param TotalCount: 总记录数
+        # @type TotalCount: Integer
+        # @param TotalPageNumber: 总页数
+        # @type TotalPageNumber: Integer
+
+        attr_accessor :Items, :PageNumber, :PageSize, :TotalCount, :TotalPageNumber
+
+        def initialize(items=nil, pagenumber=nil, pagesize=nil, totalcount=nil, totalpagenumber=nil)
+          @Items = items
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @TotalCount = totalcount
+          @TotalPageNumber = totalpagenumber
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              consoleroleinfo_tmp = ConsoleRoleInfo.new
+              consoleroleinfo_tmp.deserialize(i)
+              @Items << consoleroleinfo_tmp
+            end
+          end
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @TotalCount = params['TotalCount']
+          @TotalPageNumber = params['TotalPageNumber']
         end
       end
 
@@ -2603,24 +3136,13 @@ module TencentCloud
 
       # 资源组信息
       class ResourceGroupInfo < TencentCloud::Common::AbstractModel
-        # @param ResourceGroupId: 资源组ID
+        # @param ResourceGroupId: <p>资源组ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceGroupId: String
-        # @param ResourceGroupName: 资源组名称
+        # @param ResourceGroupName: <p>资源组名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceGroupName: String
-        # @param ResourceGroupStatus: 资源组状态
-        # COMPUTE_RESOURCE_STATUS_UNSPECIFIED 未指定
-        # COMPUTE_RESOURCE_STATUS_PENDING_CREATE 待创建
-        # COMPUTE_RESOURCE_STATUS_CREATING 创建中
-        # COMPUTE_RESOURCE_STATUS_RUNNING 运行中
-        # COMPUTE_RESOURCE_STATUS_STOPPED 已停止
-        # COMPUTE_RESOURCE_STATUS_STOPPING 停止中
-        # COMPUTE_RESOURCE_STATUS_STARTING 启动中
-        # COMPUTE_RESOURCE_STATUS_UPDATING 更新中
-        # COMPUTE_RESOURCE_STATUS_DELETING 删除中
-        # COMPUTE_RESOURCE_STATUS_DELETED 已删除
-        # COMPUTE_RESOURCE_STATUS_FAILED  失败
+        # @param ResourceGroupStatus: <p>资源组状态</p><p>参数格式：0 // 未指定 1 // 待创建 2 // 创建中 3 // 运行中 4 // 已停止 5 // 停止中 6 // 启动中 7 // 更新中 8 // 删除中 9 // 已删除 10 // 用户主动启动 / 自动启动（有任务提交且自动启停开启） 11 // 可用: 仅存在于数据计算型 12 // 不可用: 仅存在于数据计算型 13 // 失败</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceGroupStatus: String
 
@@ -2676,6 +3198,54 @@ module TencentCloud
           @RoleType = params['RoleType']
           @Source = params['Source']
           @GroupNames = params['GroupNames']
+        end
+      end
+
+      # 角色元数据
+      class RoleMetaData < TencentCloud::Common::AbstractModel
+        # @param Creator: 创建者
+        # @type Creator: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param Updater: 更新者
+        # @type Updater: String
+        # @param UpdateTime: 更新时间
+        # @type UpdateTime: String
+
+        attr_accessor :Creator, :CreateTime, :Updater, :UpdateTime
+
+        def initialize(creator=nil, createtime=nil, updater=nil, updatetime=nil)
+          @Creator = creator
+          @CreateTime = createtime
+          @Updater = updater
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @Creator = params['Creator']
+          @CreateTime = params['CreateTime']
+          @Updater = params['Updater']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 角色权限
+      class RolePermission < TencentCloud::Common::AbstractModel
+        # @param ModuleId: 模块ID
+        # @type ModuleId: String
+        # @param Permissions: 权限点
+        # @type Permissions: String
+
+        attr_accessor :ModuleId, :Permissions
+
+        def initialize(moduleid=nil, permissions=nil)
+          @ModuleId = moduleid
+          @Permissions = permissions
+        end
+
+        def deserialize(params)
+          @ModuleId = params['ModuleId']
+          @Permissions = params['Permissions']
         end
       end
 
@@ -2899,14 +3469,13 @@ module TencentCloud
 
       # 任务运行条件规则
       class TaskRunConditionRule < TencentCloud::Common::AbstractModel
-        # @param UpstreamTaskId: 上游任务ID
+        # @param UpstreamTaskId: <p>上游任务ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpstreamTaskId: String
-        # @param UpstreamTaskName: 上游任务名称
+        # @param UpstreamTaskName: <p>上游任务名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpstreamTaskName: String
-        # @param AllowedStates: 任务可运行条件
-        # 支持的状态值： - SUCCESS: 成功 - FAILED: 失败 - UPSTREAM_FAILED: 上游失败 - EXCLUDED: 排除运行
+        # @param AllowedStates: <p>任务可运行条件<br>支持的状态值： - SUCCESS: 成功 - FAILED: 失败 - UPSTREAM_FAILED: 上游失败 - EXCLUDED: 排除运行</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AllowedStates: Array
 
@@ -3218,6 +3787,81 @@ module TencentCloud
       class UnbindWorkflowBundleRsp < TencentCloud::Common::AbstractModel
         # @param Status: 操作状态，true 表示成功
         # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Boolean
+
+        attr_accessor :Status
+
+        def initialize(status=nil)
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+        end
+      end
+
+      # UpdateConsoleGroup请求参数结构体
+      class UpdateConsoleGroupRequest < TencentCloud::Common::AbstractModel
+        # @param GroupId: <p>用户组 ID</p>
+        # @type GroupId: String
+        # @param OperType: <p>修改标识：USER_GROUP_OPER_TYPE_ADD_USER(1)=添加成员、USER_GROUP_OPER_TYPE_DELETE_USER(2)=删除成员、USER_GROUP_OPER_TYPE_BASIC_INFO(3)=基础信息（别名和描述）</p>
+        # @type OperType: Integer
+        # @param GroupName: <p>用户组名称</p>
+        # @type GroupName: String
+        # @param GroupNickname: <p>用户组别名</p>
+        # @type GroupNickname: String
+        # @param Description: <p>用户组描述</p>
+        # @type Description: String
+        # @param UserUins: <p>成员 UIN 列表（OperType 为添加/删除成员时使用）</p>
+        # @type UserUins: Array
+
+        attr_accessor :GroupId, :OperType, :GroupName, :GroupNickname, :Description, :UserUins
+
+        def initialize(groupid=nil, opertype=nil, groupname=nil, groupnickname=nil, description=nil, useruins=nil)
+          @GroupId = groupid
+          @OperType = opertype
+          @GroupName = groupname
+          @GroupNickname = groupnickname
+          @Description = description
+          @UserUins = useruins
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @OperType = params['OperType']
+          @GroupName = params['GroupName']
+          @GroupNickname = params['GroupNickname']
+          @Description = params['Description']
+          @UserUins = params['UserUins']
+        end
+      end
+
+      # UpdateConsoleGroup返回参数结构体
+      class UpdateConsoleGroupResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>返回结果</p>
+        # @type Data: :class:`Tencentcloud::Databuddy.v20260715.models.UpdateConsoleGroupRsp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = UpdateConsoleGroupRsp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 修改控制台用户组响应
+      class UpdateConsoleGroupRsp < TencentCloud::Common::AbstractModel
+        # @param Status: 操作是否成功
         # @type Status: Boolean
 
         attr_accessor :Status
@@ -3744,7 +4388,7 @@ module TencentCloud
         # @param ResourceGroupInfoList: <p>资源组信息列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceGroupInfoList: Array
-        # @param Permission: <p>工作流权限信息</p>
+        # @param Permission: <p>授权权限类型<br>PERMISSION_TYPE_UNSPECIFIED：未指定权限<br>MANAGE : 管理权限：包含所有操作权限<br>RUN : 运行权限：可执行实体<br>VIEW : 查看权限：可查看实体内容</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Permission: String
         # @param BundleId: <p>工作流绑定的 Bundle 唯一标识，未绑定时为空</p>
@@ -3890,7 +4534,7 @@ module TencentCloud
         # @param PendingCostTime: <p>等待资源花费时间，单位：秒</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PendingCostTime: String
-        # @param RunState: <p>运行状态。取值参考工作流运行状态枚举，如 Pending / Running / Succeeded / Failed / Killed</p>
+        # @param RunState: <p>运行状态。CREATE(&quot;初始化&quot;),     QUEUED(&quot;等待中&quot;),     PENDING(&quot;准备中&quot;),     RUNNING(&quot;运行中&quot;),     SKIPPED(&quot;跳过运行&quot;),     SUCCESS(&quot;成功&quot;),     FAILED(&quot;失败&quot;),     TERMINATING(&quot;终止中&quot;),     TERMINATED(&quot;终止&quot;),     CANCELLED(&quot;被手动终止&quot;)等</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunState: String
         # @param ResourceGroupIds: <p>计算资源（任务的资源组ID集合）</p>
@@ -4215,43 +4859,43 @@ module TencentCloud
 
       # 工作流列表项中的工作流任务节点简要信息
       class WorkflowTaskNodeBrief < TencentCloud::Common::AbstractModel
-        # @param WorkflowId: 工作流ID
+        # @param WorkflowId: <p>工作流ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkflowId: String
-        # @param TaskId: 任务ID
+        # @param TaskId: <p>任务ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: String
-        # @param TaskName: 任务名称
+        # @param TaskName: <p>任务名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskName: String
-        # @param TaskTypeName: 任务类型名称
+        # @param TaskTypeName: <p>任务类型名称，请参考数据结构TaskType中TaskTypeName字段描述</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskTypeName: String
-        # @param DependOnList: 任务依赖列表
+        # @param DependOnList: <p>任务依赖列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DependOnList: Array
-        # @param ResourceGroupId: 任务资源组ID
+        # @param ResourceGroupId: <p>任务资源组ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceGroupId: String
-        # @param ResourceGroupName: 任务资源组名称
+        # @param ResourceGroupName: <p>任务资源组名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceGroupName: String
-        # @param LeftCoordinate: 任务X坐标
+        # @param LeftCoordinate: <p>任务X坐标</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LeftCoordinate: Float
-        # @param TopCoordinate: 任务Y坐标
+        # @param TopCoordinate: <p>任务Y坐标</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopCoordinate: Float
-        # @param TaskRetryStrategy: 任务重试策略
+        # @param TaskRetryStrategy: <p>任务重试策略</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskRetryStrategy: :class:`Tencentcloud::Databuddy.v20260715.models.TaskRetryStrategy`
-        # @param DependOnRunCondition: 依赖运行条件
+        # @param DependOnRunCondition: <p>任依赖运行条件</p><ul><li>ALL_SUCCESS: 全部成功：所有上游依赖任务均已执行并成功</li><li>ONE_SUCCESS: 至少一个成功：至少有一个上游依赖任务成功</li><li>NONE_FAILED: 目前没有失败：没有依赖任务失败，并且至少有一个依赖任务在运行中</li><li>ALL_DONE: 全部完成：所有上游依赖任务均已执行并完成（无论成功或失败</li><li>ONE_FAILED: 至少一个失败：至少有一个上游依赖任务失败</li><li>ALL_FAILED: 全部失败：所有上游依赖任务都失败</li><li>ALL_DONE_AT_LEAST_ONE_SUCCESS：上游全部完成至少一个成功: 所有上游依赖任务都达到终态时，进行依赖判断，至少有一个成功，则依赖判断成功，否则就是跳过运行</li><li>ALL_SKIPPED：上游全部完成，没有跳过运行: 所有上游依赖任务都达到终态时，进行依赖判断, 如果上游状态全部都是成功、失败、上游失败状态，则依赖判断成功，否则为跳过运行</li><li>ONE_DONE：至少一个完成：上游只要有一个完成了，就进行依赖判断，且依赖判断成功，否则还是等待上游</li><li>ALL_DONE_NONE_FAILED_AT_LEAST_ONE_SUCCESS：上游全部完成，没有失败，至少有一个成功: 所有上游依赖任务都达到终态时，进行依赖判断，上游没有一个失败且至少有一个成功的情况下，依赖判断成功，否则就是跳过运行</li><li>NONE_SKIPPED：上游全部完成，没有跳过运行: 所有上游依赖任务都达到终态时，进行依赖判断, 如果上游状态全部都是成功、失败、上游失败状态，则依赖判断成功，否则为跳过运行</li><li>ALL_DONE_AT_LEAST_ONE_FAILED：上游全部完成至少一个失败: 所有上游依赖任务都达到终态时，进行依赖判断，至少有一个失败，则依赖判断成功，否则就是跳过运行</li><li>ADVANCED:运行条件为高级模式时配置</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DependOnRunCondition: String
-        # @param AdvancedDependencyConfig: 高级依赖配置
+        # @param AdvancedDependencyConfig: <p>高级依赖配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdvancedDependencyConfig: :class:`Tencentcloud::Databuddy.v20260715.models.AdvancedDependencyConfig`
-        # @param InnerTask: 内嵌工作流任务节点
+        # @param InnerTask: <p>内嵌工作流任务节点</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InnerTask: :class:`Tencentcloud::Databuddy.v20260715.models.WorkflowTaskNodeBrief`
 
@@ -4329,7 +4973,7 @@ module TencentCloud
         # @param TaskId: <p>任务ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: String
-        # @param TaskTypeName: <p>任务类型名称</p>
+        # @param TaskTypeName: 任务类型名称，请参考数据结构TaskType中TaskTypeName字段描述
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskTypeName: String
         # @param TaskVersionId: <p>任务版本ID</p>
@@ -4383,7 +5027,7 @@ module TencentCloud
         # @param TimeZone: <p>时区</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeZone: String
-        # @param DependOnList: <p>依赖上游任务ID列表</p>
+        # @param DependOnList: <p>依赖上游任务ID列表。保留字段，暂时返回为[]</p><p>保留字段，暂时返回为[]</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DependOnList: Array
         # @param RunParams: <p>运行参数</p>
@@ -4416,7 +5060,7 @@ module TencentCloud
         # @param RunResult: <p>运行结果</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunResult: String
-        # @param DependOnRunCondition: <p>依赖运行条件</p>
+        # @param DependOnRunCondition: <p>任务依赖运行条件</p><p>ALL_SUCCESS: 全部成功：所有上游依赖任务均已执行并成功<br>ONE_SUCCESS: 至少一个成功：至少有一个上游依赖任务成功<br>NONE_FAILED: 目前没有失败：没有依赖任务失败，并且至少有一个依赖任务在运行中<br>ALL_DONE: 全部完成：所有上游依赖任务均已执行并完成（无论成功或失败<br>ONE_FAILED: 至少一个失败：至少有一个上游依赖任务失败<br>ALL_FAILED: 全部失败：所有上游依赖任务都失败<br>ALL_DONE_AT_LEAST_ONE_SUCCESS：上游全部完成至少一个成功: 所有上游依赖任务都达到终态时，进行依赖判断，至少有一个成功，则依赖判断成功，否则就是跳过运行<br>ALL_SKIPPED：上游全部完成，没有跳过运行: 所有上游依赖任务都达到终态时，进行依赖判断, 如果上游状态全部都是成功、失败、上游失败状态，则依赖判断成功，否则为跳过运行<br>ONE_DONE：至少一个完成：上游只要有一个完成了，就进行依赖判断，且依赖判断成功，否则还是等待上游<br>ALL_DONE_NONE_FAILED_AT_LEAST_ONE_SUCCESS：上游全部完成，没有失败，至少有一个成功: 所有上游依赖任务都达到终态时，进行依赖判断，上游没有一个失败且至少有一个成功的情况下，依赖判断成功，否则就是跳过运行<br>NONE_SKIPPED：上游全部完成，没有跳过运行: 所有上游依赖任务都达到终态时，进行依赖判断, 如果上游状态全部都是成功、失败、上游失败状态，则依赖判断成功，否则为跳过运行<br>ALL_DONE_AT_LEAST_ONE_FAILED：上游全部完成至少一个失败: 所有上游依赖任务都达到终态时，进行依赖判断，至少有一个失败，则依赖判断成功，否则就是跳过运行<br>ADVANCED:运行条件为高级模式时配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DependOnRunCondition: String
         # @param AdvancedDependencyConfig: <p>高级依赖配置</p>
@@ -4550,44 +5194,37 @@ module TencentCloud
 
       # 工作流调度配置。
       class WorkflowTriggerConfiguration < TencentCloud::Common::AbstractModel
-        # @param TriggerId: 调度配置ID，创建时无需传入，由服务端生成
+        # @param TriggerId: <p>调度配置ID，创建时无需传入，由服务端生成</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TriggerId: String
-        # @param SchedulerStatus: 调度状态 启动：START，暂停：PAUSE
+        # @param SchedulerStatus: <p>调度状态 启动：START，暂停：PAUSE</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SchedulerStatus: String
-        # @param TriggerMode: 触发方式，
-        # - 定时触发：TIME_TRIGGER
-        # - 持续运行：CONTINUE_RUN
-
-        # 注意：
-        # - TIME_TRIGGER 模式下，SchedulerStatus、SchedulerTimeZone、StartTime、EndTime、ConfigMode、CycleType、CrontabExpression 必填；
-        # - CONTINUE_RUN 模式下，AdvancedConfig必填；
+        # @param TriggerMode: <p>触发方式，</p><ul><li>定时触发：TIME_TRIGGER</li><li>持续运行：CONTINUE_RUN</li></ul><p>注意：</p><ul><li>TIME_TRIGGER 模式下，SchedulerStatus、SchedulerTimeZone、StartTime、EndTime、ConfigMode、CycleType、CrontabExpression 必填；</li><li>CONTINUE_RUN 模式下，AdvancedConfig必填；</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TriggerMode: String
-        # @param SchedulerTimeZone: 调度时区
+        # @param SchedulerTimeZone: <p>调度时区</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SchedulerTimeZone: String
-        # @param StartTime: 调度生效时间，单位：毫秒时间戳。必须小于 EndTime
+        # @param StartTime: <p>调度生效时间，单位：毫秒时间戳。必须小于 EndTime</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
-        # @param EndTime: 调度结束时间，单位：毫秒时间戳。必须大于 StartTime
+        # @param EndTime: <p>调度结束时间，单位：毫秒时间戳。必须大于 StartTime</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
-        # @param ConfigMode: 配置方式，常规：COMMON，CRON表达式：CRON_EXPRESSION
+        # @param ConfigMode: <p>配置方式，常规：COMMON，CRON表达式：CRON_EXPRESSION</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConfigMode: String
-        # @param CycleType: 周期类型：支持的类型为 ONEOFF_CYCLE: 一次性 YEAR_CYCLE: 年 MONTH_CYCLE: 月 WEEK_CYCLE: 周 DAY_CYCLE: 天
-        # HOUR_CYCLE: 小时 MINUTE_CYCLE: 分钟 CRONTAB_CYCLE: crontab表达式类型
+        # @param CycleType: <p>周期类型：支持的类型为 ONEOFF_CYCLE: 一次性 YEAR_CYCLE: 年 MONTH_CYCLE: 月 WEEK_CYCLE: 周 DAY_CYCLE: 天<br>HOUR_CYCLE: 小时 MINUTE_CYCLE: 分钟 CRONTAB_CYCLE: crontab表达式类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CycleType: String
-        # @param CrontabExpression: cron表达式
+        # @param CrontabExpression: <p>cron表达式</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CrontabExpression: String
-        # @param ExtraInfo: Json格式，对账使用
+        # @param ExtraInfo: <p>Json格式，对账使用</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtraInfo: String
-        # @param AdvancedConfig: 高级配置
+        # @param AdvancedConfig: <p>高级配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdvancedConfig: :class:`Tencentcloud::Databuddy.v20260715.models.WorkflowTriggerAdvancedConfiguration`
 

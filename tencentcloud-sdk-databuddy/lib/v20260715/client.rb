@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建控制台用户组
+
+        # @param request: Request instance for CreateConsoleGroup.
+        # @type request: :class:`Tencentcloud::databuddy::V20260715::CreateConsoleGroupRequest`
+        # @rtype: :class:`Tencentcloud::databuddy::V20260715::CreateConsoleGroupResponse`
+        def CreateConsoleGroup(request)
+          body = send_request('CreateConsoleGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateConsoleGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 在Studio（统一开发 IDE）的工作空间文件树中新建一个文件（Notebook/SQL/Python等），创建成功后返回文件的完整元信息。
 
         # **前置条件**
@@ -94,6 +118,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateWorkflowResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除控制台用户组
+
+        # @param request: Request instance for DeleteConsoleGroups.
+        # @type request: :class:`Tencentcloud::databuddy::V20260715::DeleteConsoleGroupsRequest`
+        # @rtype: :class:`Tencentcloud::databuddy::V20260715::DeleteConsoleGroupsResponse`
+        def DeleteConsoleGroups(request)
+          body = send_request('DeleteConsoleGroups', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteConsoleGroupsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -310,6 +358,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询控制台用户组成员列表
+
+        # @param request: Request instance for ListConsoleGroupUsers.
+        # @type request: :class:`Tencentcloud::databuddy::V20260715::ListConsoleGroupUsersRequest`
+        # @rtype: :class:`Tencentcloud::databuddy::V20260715::ListConsoleGroupUsersResponse`
+        def ListConsoleGroupUsers(request)
+          body = send_request('ListConsoleGroupUsers', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListConsoleGroupUsersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询控制台用户组列表
+
+        # @param request: Request instance for ListConsoleGroups.
+        # @type request: :class:`Tencentcloud::databuddy::V20260715::ListConsoleGroupsRequest`
+        # @rtype: :class:`Tencentcloud::databuddy::V20260715::ListConsoleGroupsResponse`
+        def ListConsoleGroups(request)
+          body = send_request('ListConsoleGroups', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListConsoleGroupsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询控制台角色列表
+
+        # @param request: Request instance for ListConsoleRoles.
+        # @type request: :class:`Tencentcloud::databuddy::V20260715::ListConsoleRolesRequest`
+        # @rtype: :class:`Tencentcloud::databuddy::V20260715::ListConsoleRolesResponse`
+        def ListConsoleRoles(request)
+          body = send_request('ListConsoleRoles', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListConsoleRolesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询控制台用户列表
 
         # @param request: Request instance for ListConsoleUsers.
@@ -489,6 +609,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UnbindWorkflowBundleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改控制台用户组
+
+        # @param request: Request instance for UpdateConsoleGroup.
+        # @type request: :class:`Tencentcloud::databuddy::V20260715::UpdateConsoleGroupRequest`
+        # @rtype: :class:`Tencentcloud::databuddy::V20260715::UpdateConsoleGroupResponse`
+        def UpdateConsoleGroup(request)
+          body = send_request('UpdateConsoleGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateConsoleGroupResponse.new
             model.deserialize(response['Response'])
             model
           else

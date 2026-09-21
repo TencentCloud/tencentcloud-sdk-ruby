@@ -19,41 +19,41 @@ module TencentCloud
     module V20230517
       # 增加设备接口返回数据
       class AddDeviceData < TencentCloud::Common::AbstractModel
-        # @param DeviceId: 设备iD
+        # @param DeviceId: <p>设备iD</p>
         # @type DeviceId: String
-        # @param Code: 设备编码（国标设备即我们为设备生成的20位国标编码，rtmp 设备为10 位设备编码）
+        # @param Code: <p>设备编码（国标设备即我们为设备生成的20位国标编码，rtmp 设备为10 位设备编码）</p>
         # @type Code: String
-        # @param Name: 设备名称
+        # @param Name: <p>设备名称</p>
         # @type Name: String
-        # @param AccessProtocol: 设备接入协议，1:RTMP,2:GB,3:GW
+        # @param AccessProtocol: <p>设备接入协议，1:RTMP,2:GB</p><p>枚举值：</p><ul><li>1： RTMP</li><li>2： GB</li><li>6： ISUP</li></ul>
         # @type AccessProtocol: Integer
-        # @param Type: 设备类型，1:IPC,2:NVR
+        # @param Type: <p>设备类型，1:IPC,2:NVR</p>
         # @type Type: Integer
-        # @param ClusterId: 设备接入服务节点ID
+        # @param ClusterId: <p>设备接入服务节点ID</p>
         # @type ClusterId: String
-        # @param ClusterName: 设备接入服务节点名称
+        # @param ClusterName: <p>设备接入服务节点名称</p>
         # @type ClusterName: String
-        # @param TransportProtocol: 设备流传输协议，1:UDP,2:TCP
+        # @param TransportProtocol: <p>设备流传输协议，1:UDP,2:TCP</p>
         # @type TransportProtocol: Integer
-        # @param Password: 设备密码
+        # @param Password: <p>设备密码</p>
         # @type Password: String
-        # @param Description: 设备描述
+        # @param Description: <p>设备描述</p>
         # @type Description: String
-        # @param Status: 设备状态，0:未注册,1:在线,2:离线,3:禁用
+        # @param Status: <p>设备状态，0:未注册,1:在线,2:离线,3:禁用</p>
         # @type Status: Integer
-        # @param OrganizationId: 设备所属组织ID
+        # @param OrganizationId: <p>设备所属组织ID</p>
         # @type OrganizationId: Integer
-        # @param GatewayId: 设备接入网关ID，从查询网关列表接口中获取（仅网关接入需要）
+        # @param GatewayId: <p>设备接入网关ID（已不再使用，保留用于兼容，可忽略）</p>
         # @type GatewayId: String
-        # @param ProtocolType: 网关接入协议类型，1.海康SDK，2.大华SDK，3.宇视SDK，4.Onvif（仅网关接入需要）
+        # @param ProtocolType: <p>网关接入协议类型（已不再使用，保留用于兼容，可忽略）</p>
         # @type ProtocolType: Integer
-        # @param Ip: 设备接入IP（仅网关接入需要）
+        # @param Ip: <p>设备接入IP（已不再使用，保留用于兼容，可忽略）</p>
         # @type Ip: String
-        # @param Port: 设备Port（仅网关接入需要）
+        # @param Port: <p>设备Port（已不再使用，保留用于兼容，可忽略）</p>
         # @type Port: Integer
-        # @param Username: 设备用户名（仅网关接入需要）
+        # @param Username: <p>设备用户名（已不再使用，保留用于兼容，可忽略）</p>
         # @type Username: String
-        # @param AppId: 用户ID
+        # @param AppId: <p>用户ID</p>
         # @type AppId: Integer
 
         attr_accessor :DeviceId, :Code, :Name, :AccessProtocol, :Type, :ClusterId, :ClusterName, :TransportProtocol, :Password, :Description, :Status, :OrganizationId, :GatewayId, :ProtocolType, :Ip, :Port, :Username, :AppId
@@ -789,37 +789,37 @@ module TencentCloud
 
       # AddUserDevice请求参数结构体
       class AddUserDeviceRequest < TencentCloud::Common::AbstractModel
-        # @param Name: 设备名称，仅支持中文、英文、数字、空格、中英文括号、_、-, 长度不超过128位；（设备名称无需全局唯一，可以重复）
+        # @param Name: <p>设备名称，仅支持中文、英文、数字、空格、中英文括号、_、-, 长度不超过128位；（设备名称无需全局唯一，可以重复）</p>
         # @type Name: String
-        # @param AccessProtocol: 设备接入协议（1:RTMP,2:GB,3:GW,6:ISUP）
+        # @param AccessProtocol: <p>设备接入协议（1:RTMP,2:GB,6:ISUP）</p><p>枚举值：</p><ul><li>1： RTMP</li><li>2： GB</li><li>6： ISUP</li></ul><p>默认值：2</p>
         # @type AccessProtocol: Integer
-        # @param Type: 设备类型，1:IPC,2:NVR；（若设备接入协议选择RTMP,IVCP，则设备类型只能选择IPC）
+        # @param Type: <p>设备类型，1:IPC,2:NVR；（若设备接入协议选择RTMP，则设备类型只能选择IPC）</p><p>枚举值：</p><ul><li>1： IPC</li><li>2： NVR</li></ul>
         # @type Type: Integer
-        # @param OrganizationId: 设备所属组织ID，从查询组织接口DescribeOrganization中获取
+        # @param OrganizationId: <p>设备所属组织ID，从查询组织接口DescribeOrganization中获取</p>
         # @type OrganizationId: String
-        # @param ClusterId: 设备接入服务节点ID（从查询设备可用服务节点接口DescribeDeviceRegion中获取的Value字段）
+        # @param ClusterId: <p>设备接入服务节点ID（从查询设备可用服务节点接口DescribeRegionDomain中获取的Value字段）</p>
         # @type ClusterId: String
-        # @param TransportProtocol: 设备流传输协议，1:UDP,2:TCP；(国标设备有效，不填写则默认UDP协议)
+        # @param TransportProtocol: <p>设备流传输协议，1:UDP,2:TCP；(国标设备有效，不填写则默认UDP协议)</p>
         # @type TransportProtocol: Integer
-        # @param Password: 设备密码（国标，网关设备必填，长度为1-64个字符）
+        # @param Password: <p>设备密码（国标设备必填，长度为1-64个字符）</p>
         # @type Password: String
-        # @param Description: 设备描述，长度不超过128个字符
+        # @param Description: <p>设备描述，长度不超过128个字符</p>
         # @type Description: String
-        # @param GatewayId: 设备接入网关ID，从查询网关列表接口中ListGateways获取（仅网关接入需要）
+        # @param GatewayId: <p>设备接入网关ID（已不再使用，保留用于兼容，可忽略）</p>
         # @type GatewayId: String
-        # @param ProtocolType: 网关接入协议类型（从查询网关接入协议接口DescribeGatewayProtocol中获取）1.海康SDK，2.大华SDK，3.宇视SDK，4.Onvif（仅网关接入需要）
+        # @param ProtocolType: <p>网关接入协议类型（已不再使用，保留用于兼容，可忽略）</p>
         # @type ProtocolType: Integer
-        # @param Ip: 设备接入IP（仅网关接入需要）
+        # @param Ip: <p>设备接入IP（已不再使用，保留用于兼容，可忽略）</p>
         # @type Ip: String
-        # @param Port: 设备端口（仅网关接入需要）
+        # @param Port: <p>设备端口（已不再使用，保留用于兼容，可忽略）</p><p>取值范围：[1, 65535]</p><p>单位： 端口</p>
         # @type Port: Integer
-        # @param Username: 设备用户名（仅网关接入需要）
+        # @param Username: <p>设备用户名（已不再使用，保留用于兼容，可忽略）</p>
         # @type Username: String
-        # @param SNCode: 设备 SN，仅IVCP 协议设备需要
+        # @param SNCode: <p>设备 SN（已不再使用，保留用于兼容，可忽略）</p>
         # @type SNCode: String
-        # @param AppName: RTMP推流地址自定义AppName（仅RTMP需要，支持英文、数字、_、-、.、长度不超过64位）
+        # @param AppName: <p>RTMP推流地址自定义AppName（仅RTMP需要，支持英文、数字、_、-、.、长度不超过64位）</p>
         # @type AppName: String
-        # @param StreamName: RTMP推流地址自定义StreamName（仅RTMP需要，支持英文、数字、_、-、.、长度不超过64位）
+        # @param StreamName: <p>RTMP推流地址自定义StreamName（仅RTMP需要，支持英文、数字、_、-、.、长度不超过64位）</p>
         # @type StreamName: String
 
         attr_accessor :Name, :AccessProtocol, :Type, :OrganizationId, :ClusterId, :TransportProtocol, :Password, :Description, :GatewayId, :ProtocolType, :Ip, :Port, :Username, :SNCode, :AppName, :StreamName
@@ -865,7 +865,7 @@ module TencentCloud
 
       # AddUserDevice返回参数结构体
       class AddUserDeviceResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 增加设备返回数据
+        # @param Data: <p>增加设备返回数据</p>
         # @type Data: :class:`Tencentcloud::Iss.v20230517.models.AddDeviceData`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -936,9 +936,9 @@ module TencentCloud
 
       # BatchOperateDevice请求参数结构体
       class BatchOperateDeviceRequest < TencentCloud::Common::AbstractModel
-        # @param DeviceIds: 设备 ID 数组（从获取设备列表接口ListDevices中获取）
+        # @param DeviceIds: <p>设备 ID 数组（从获取设备列表接口ListDevices中获取）</p><p>取值参考：<a href="https://cloud.tencent.com/document/api/1344/95871">ListDevices</a></p>
         # @type DeviceIds: Array
-        # @param Cmd: 操作命令（enable：启用；disable：禁用；delete：删除；sync：同步设备通道；upgrade：固件升级；reset：恢复出厂设置；reboot：重启）
+        # @param Cmd: <p>操作命令</p><p>枚举值：</p><ul><li>enable： 启用</li><li>disable： 禁用</li><li>delete： 删除</li><li>sync： 同步设备通道</li></ul>
         # @type Cmd: String
 
         attr_accessor :DeviceIds, :Cmd
@@ -956,7 +956,7 @@ module TencentCloud
 
       # BatchOperateDevice返回参数结构体
       class BatchOperateDeviceResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 返回结果
+        # @param Data: <p>返回结果</p>
         # @type Data: :class:`Tencentcloud::Iss.v20230517.models.BatchOperateDeviceData`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1921,7 +1921,7 @@ module TencentCloud
         # @type Code: String
         # @param Name: <p>设备名称</p>
         # @type Name: String
-        # @param AccessProtocol: <p>设备接入协议，1:RTMP,2:GB,3:GW</p>
+        # @param AccessProtocol: <p>设备接入协议，1:RTMP,2:GB</p><p>枚举值：</p><ul><li>1： RTMP</li><li>2： GB</li></ul>
         # @type AccessProtocol: Integer
         # @param Type: <p>设备类型，1:IPC,2:NVR</p>
         # @type Type: Integer
@@ -1949,19 +1949,19 @@ module TencentCloud
         # @type Status: Integer
         # @param OrganizationId: <p>设备所属组织ID</p>
         # @type OrganizationId: String
-        # @param GatewayId: <p>设备接入网关ID，从查询网关列表接口中获取（仅网关接入需要）</p>
+        # @param GatewayId: <p>设备接入网关ID（已不再使用，保留用于兼容，可忽略）</p>
         # @type GatewayId: String
-        # @param GatewayName: <p>设备所属网关名称</p>
+        # @param GatewayName: <p>设备所属网关名称（已不再使用，保留用于兼容，可忽略）</p>
         # @type GatewayName: String
-        # @param ProtocolTypeName: <p>设备网关协议名称</p>
+        # @param ProtocolTypeName: <p>设备网关协议名称（已不再使用，保留用于兼容，可忽略）</p>
         # @type ProtocolTypeName: String
-        # @param ProtocolType: <p>网关接入协议类型，1.海康SDK，2.大华SDK，3.宇视SDK，4.Onvif（仅网关接入需要）</p>
+        # @param ProtocolType: <p>网关接入协议类型（已不再使用，保留用于兼容，可忽略）</p>
         # @type ProtocolType: Integer
-        # @param Ip: <p>设备接入IP</p>
+        # @param Ip: <p>设备接入IP（已不再使用，保留用于兼容，可忽略）</p>
         # @type Ip: String
-        # @param Port: <p>设备Port</p>
+        # @param Port: <p>设备Port（已不再使用，保留用于兼容，可忽略）</p>
         # @type Port: Integer
-        # @param Username: <p>设备用户名</p>
+        # @param Username: <p>设备用户名（已不再使用，保留用于兼容，可忽略）</p>
         # @type Username: String
         # @param Region: <p>设备地域</p>
         # @type Region: String
@@ -1979,10 +1979,16 @@ module TencentCloud
         # @type SilentFrameSwitch: Integer
         # @param PushStreamSecureUrl: <p>Rtmp设备安全认证推流地址(仅rtmp设备有效)</p>
         # @type PushStreamSecureUrl: String
+        # @param SipFQDN: <p>国标SIP域名</p>
+        # @type SipFQDN: String
+        # @param SipCarrierEndpoints: <p>国标SIP三网IP地址</p>
+        # @type SipCarrierEndpoints: :class:`Tencentcloud::Iss.v20230517.models.SipCarrierEndpoints`
+        # @param TimeSyncSwitch: <p>国标校时开关</p><p>枚举值：</p><ul><li>0： 关闭</li><li>1： 开启</li></ul><p>默认值： 1</p>
+        # @type TimeSyncSwitch: Integer
 
-        attr_accessor :DeviceId, :Code, :Name, :AccessProtocol, :Type, :ClusterId, :ClusterName, :TransportProtocol, :Password, :Description, :SipId, :SipDomain, :SipIp, :SipPort, :PushStreamUrl, :Status, :OrganizationId, :GatewayId, :GatewayName, :ProtocolTypeName, :ProtocolType, :Ip, :Port, :Username, :Region, :Manufacturer, :AudioSwitch, :SubscribeSwitch, :AppName, :StreamName, :SilentFrameSwitch, :PushStreamSecureUrl
+        attr_accessor :DeviceId, :Code, :Name, :AccessProtocol, :Type, :ClusterId, :ClusterName, :TransportProtocol, :Password, :Description, :SipId, :SipDomain, :SipIp, :SipPort, :PushStreamUrl, :Status, :OrganizationId, :GatewayId, :GatewayName, :ProtocolTypeName, :ProtocolType, :Ip, :Port, :Username, :Region, :Manufacturer, :AudioSwitch, :SubscribeSwitch, :AppName, :StreamName, :SilentFrameSwitch, :PushStreamSecureUrl, :SipFQDN, :SipCarrierEndpoints, :TimeSyncSwitch
 
-        def initialize(deviceid=nil, code=nil, name=nil, accessprotocol=nil, type=nil, clusterid=nil, clustername=nil, transportprotocol=nil, password=nil, description=nil, sipid=nil, sipdomain=nil, sipip=nil, sipport=nil, pushstreamurl=nil, status=nil, organizationid=nil, gatewayid=nil, gatewayname=nil, protocoltypename=nil, protocoltype=nil, ip=nil, port=nil, username=nil, region=nil, manufacturer=nil, audioswitch=nil, subscribeswitch=nil, appname=nil, streamname=nil, silentframeswitch=nil, pushstreamsecureurl=nil)
+        def initialize(deviceid=nil, code=nil, name=nil, accessprotocol=nil, type=nil, clusterid=nil, clustername=nil, transportprotocol=nil, password=nil, description=nil, sipid=nil, sipdomain=nil, sipip=nil, sipport=nil, pushstreamurl=nil, status=nil, organizationid=nil, gatewayid=nil, gatewayname=nil, protocoltypename=nil, protocoltype=nil, ip=nil, port=nil, username=nil, region=nil, manufacturer=nil, audioswitch=nil, subscribeswitch=nil, appname=nil, streamname=nil, silentframeswitch=nil, pushstreamsecureurl=nil, sipfqdn=nil, sipcarrierendpoints=nil, timesyncswitch=nil)
           @DeviceId = deviceid
           @Code = code
           @Name = name
@@ -2015,6 +2021,9 @@ module TencentCloud
           @StreamName = streamname
           @SilentFrameSwitch = silentframeswitch
           @PushStreamSecureUrl = pushstreamsecureurl
+          @SipFQDN = sipfqdn
+          @SipCarrierEndpoints = sipcarrierendpoints
+          @TimeSyncSwitch = timesyncswitch
         end
 
         def deserialize(params)
@@ -2050,6 +2059,12 @@ module TencentCloud
           @StreamName = params['StreamName']
           @SilentFrameSwitch = params['SilentFrameSwitch']
           @PushStreamSecureUrl = params['PushStreamSecureUrl']
+          @SipFQDN = params['SipFQDN']
+          unless params['SipCarrierEndpoints'].nil?
+            @SipCarrierEndpoints = SipCarrierEndpoints.new
+            @SipCarrierEndpoints.deserialize(params['SipCarrierEndpoints'])
+          end
+          @TimeSyncSwitch = params['TimeSyncSwitch']
         end
       end
 
@@ -5291,6 +5306,38 @@ module TencentCloud
         end
       end
 
+      # 多运营商的国标服务器IP地址
+      class SipCarrierEndpoints < TencentCloud::Common::AbstractModel
+        # @param CT: <p>电信IP</p>
+        # @type CT: String
+        # @param CU: <p>联通IP</p>
+        # @type CU: String
+        # @param CMCC: <p>移动IP</p>
+        # @type CMCC: String
+        # @param BGP: <p>腾讯网络IP</p>
+        # @type BGP: String
+        # @param CAP: <p>中小运营商IP</p>
+        # @type CAP: String
+
+        attr_accessor :CT, :CU, :CMCC, :BGP, :CAP
+
+        def initialize(ct=nil, cu=nil, cmcc=nil, bgp=nil, cap=nil)
+          @CT = ct
+          @CU = cu
+          @CMCC = cmcc
+          @BGP = bgp
+          @CAP = cap
+        end
+
+        def deserialize(params)
+          @CT = params['CT']
+          @CU = params['CU']
+          @CMCC = params['CMCC']
+          @BGP = params['BGP']
+          @CAP = params['CAP']
+        end
+      end
+
       # 子任务详情
       class SubTaskData < TencentCloud::Common::AbstractModel
         # @param SubTaskId: 子任务ID
@@ -5477,41 +5524,41 @@ module TencentCloud
 
       # 修改设备接口返回数据
       class UpdateDeviceData < TencentCloud::Common::AbstractModel
-        # @param DeviceId: 设备ID
+        # @param DeviceId: <p>设备ID</p>
         # @type DeviceId: String
-        # @param Code: 设备编码（国标设备即我们为设备生成的20位国标编码，rtmp 设备为10 位设备编码）
+        # @param Code: <p>设备编码（国标设备即我们为设备生成的20位国标编码，rtmp 设备为10 位设备编码）</p>
         # @type Code: String
-        # @param Name: 设备名称
+        # @param Name: <p>设备名称</p>
         # @type Name: String
-        # @param AccessProtocol: 设备接入协议，1:RTMP,2:GB,3:GW
+        # @param AccessProtocol: <p>设备接入协议，1:RTMP,2:GB</p><p>枚举值：</p><ul><li>1： RTMP</li><li>2： GB</li></ul>
         # @type AccessProtocol: Integer
-        # @param Type: 设备类型，1:IPC,2:NVR
+        # @param Type: <p>设备类型，1:IPC,2:NVR</p>
         # @type Type: Integer
-        # @param ClusterId: 设备接入服务节点ID
+        # @param ClusterId: <p>设备接入服务节点ID</p>
         # @type ClusterId: String
-        # @param ClusterName: 设备接入服务节点名称
+        # @param ClusterName: <p>设备接入服务节点名称</p>
         # @type ClusterName: String
-        # @param TransportProtocol: 设备流传输协议，1:UDP,2:TCP
+        # @param TransportProtocol: <p>设备流传输协议，1:UDP,2:TCP</p>
         # @type TransportProtocol: Integer
-        # @param Password: 设备密码
+        # @param Password: <p>设备密码</p>
         # @type Password: String
-        # @param Description: 设备描述
+        # @param Description: <p>设备描述</p>
         # @type Description: String
-        # @param Status: 设备状态，0:未注册,1:在线,2:离线,3:禁用
+        # @param Status: <p>设备状态，0:未注册,1:在线,2:离线,3:禁用</p>
         # @type Status: Integer
-        # @param OrganizationId: 设备所属组织ID
+        # @param OrganizationId: <p>设备所属组织ID</p>
         # @type OrganizationId: Integer
-        # @param GatewayId: 设备接入网关ID，从查询网关列表接口中获取（仅网关接入需要）
+        # @param GatewayId: <p>设备接入网关ID（已不再使用，保留用于兼容，可忽略）</p>
         # @type GatewayId: String
-        # @param ProtocolType: 网关接入协议类型，1.海康SDK，2.大华SDK，3.宇视SDK，4.Onvif（仅网关接入需要）
+        # @param ProtocolType: <p>网关接入协议类型（已不再使用，保留用于兼容，可忽略）</p>
         # @type ProtocolType: Integer
-        # @param Ip: 设备接入IP
+        # @param Ip: <p>设备接入IP</p>
         # @type Ip: String
-        # @param Port: 设备Port
+        # @param Port: <p>设备Port</p>
         # @type Port: Integer
-        # @param Username: 设备用户名
+        # @param Username: <p>设备用户名</p>
         # @type Username: String
-        # @param AppId: 用户Id
+        # @param AppId: <p>用户Id</p>
         # @type AppId: Integer
 
         attr_accessor :DeviceId, :Code, :Name, :AccessProtocol, :Type, :ClusterId, :ClusterName, :TransportProtocol, :Password, :Description, :Status, :OrganizationId, :GatewayId, :ProtocolType, :Ip, :Port, :Username, :AppId
@@ -6190,34 +6237,36 @@ module TencentCloud
 
       # UpdateUserDevice请求参数结构体
       class UpdateUserDeviceRequest < TencentCloud::Common::AbstractModel
-        # @param DeviceId: 设备ID（从获取设备列表接口ListDevices中获取）
+        # @param DeviceId: <p>设备ID（从获取设备列表接口ListDevices中获取）</p><p>取值参考：<a href="https://cloud.tencent.com/document/api/1344/95871">ListDevices</a></p>
         # @type DeviceId: String
-        # @param Name: 设备名称（仅支持中文、英文、数字、空格、中英文括号、_、-, 长度不超过128位）
+        # @param Name: <p>设备名称（仅支持中文、英文、数字、空格、中英文括号、_、-, 长度不超过128位）</p>
         # @type Name: String
-        # @param TransportProtocol: 设备流传输协议，仅国标设备有效，填0则不做更改（1:UDP,2:TCP）
+        # @param TransportProtocol: <p>设备流传输协议，仅国标设备有效，填0则不做更改（1:UDP,2:TCP）</p>
         # @type TransportProtocol: Integer
-        # @param Password: 设备密码（仅国标，网关设备支持，长度不超过 64 位）
+        # @param Password: <p>设备密码（仅国标设备支持，长度不超过 64 位）</p>
         # @type Password: String
-        # @param Description: 设备描述（长度不超过128位）
+        # @param Description: <p>设备描述（长度不超过128位）</p>
         # @type Description: String
-        # @param Ip: 设备接入Ip（仅网关接入支持）
+        # @param Ip: <p>设备接入IP（已不再使用，保留用于兼容，可忽略）</p>
         # @type Ip: String
-        # @param Port: 设备Port（仅网关接入支持）
+        # @param Port: <p>设备Port（已不再使用，保留用于兼容，可忽略）</p>
         # @type Port: Integer
-        # @param Username: 设备用户名（仅网关接入支持）
+        # @param Username: <p>设备用户名（已不再使用，保留用于兼容，可忽略）</p>
         # @type Username: String
-        # @param ProtocolType: 网关设备接入协议（仅网关接入支持）
+        # @param ProtocolType: <p>网关设备接入协议（已不再使用，保留用于兼容，可忽略）</p>
         # @type ProtocolType: Integer
-        # @param AudioSwitch: 音频关开（0：关闭；1：开启）默认开启，关闭时丢弃音频
+        # @param AudioSwitch: <p>音频关开（0：关闭；1：开启）默认开启，关闭时丢弃音频</p>
         # @type AudioSwitch: Integer
-        # @param SubscribeSwitch: 订阅开关（0：关闭；1：开启）默认开启，开启状态下会订阅设备通道变化，仅国标NVR设备有效
+        # @param SubscribeSwitch: <p>订阅开关（0：关闭；1：开启）默认开启，开启状态下会订阅设备通道变化，仅国标NVR设备有效</p>
         # @type SubscribeSwitch: Integer
-        # @param SilentFrameSwitch: 是否开启静音帧（0：关闭；1 开启）
+        # @param SilentFrameSwitch: <p>是否开启静音帧（0：关闭；1 开启）</p>
         # @type SilentFrameSwitch: Integer
+        # @param TimeSyncSwitch: <p>时钟同步开关（仅国标设备生效）</p><p>枚举值：</p><ul><li>0： 关闭</li><li>1： 开启</li></ul><p>默认值： 1</p>
+        # @type TimeSyncSwitch: Integer
 
-        attr_accessor :DeviceId, :Name, :TransportProtocol, :Password, :Description, :Ip, :Port, :Username, :ProtocolType, :AudioSwitch, :SubscribeSwitch, :SilentFrameSwitch
+        attr_accessor :DeviceId, :Name, :TransportProtocol, :Password, :Description, :Ip, :Port, :Username, :ProtocolType, :AudioSwitch, :SubscribeSwitch, :SilentFrameSwitch, :TimeSyncSwitch
 
-        def initialize(deviceid=nil, name=nil, transportprotocol=nil, password=nil, description=nil, ip=nil, port=nil, username=nil, protocoltype=nil, audioswitch=nil, subscribeswitch=nil, silentframeswitch=nil)
+        def initialize(deviceid=nil, name=nil, transportprotocol=nil, password=nil, description=nil, ip=nil, port=nil, username=nil, protocoltype=nil, audioswitch=nil, subscribeswitch=nil, silentframeswitch=nil, timesyncswitch=nil)
           @DeviceId = deviceid
           @Name = name
           @TransportProtocol = transportprotocol
@@ -6230,6 +6279,7 @@ module TencentCloud
           @AudioSwitch = audioswitch
           @SubscribeSwitch = subscribeswitch
           @SilentFrameSwitch = silentframeswitch
+          @TimeSyncSwitch = timesyncswitch
         end
 
         def deserialize(params)
@@ -6245,12 +6295,13 @@ module TencentCloud
           @AudioSwitch = params['AudioSwitch']
           @SubscribeSwitch = params['SubscribeSwitch']
           @SilentFrameSwitch = params['SilentFrameSwitch']
+          @TimeSyncSwitch = params['TimeSyncSwitch']
         end
       end
 
       # UpdateUserDevice返回参数结构体
       class UpdateUserDeviceResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 返回数据
+        # @param Data: <p>返回数据</p>
         # @type Data: :class:`Tencentcloud::Iss.v20230517.models.UpdateDeviceData`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

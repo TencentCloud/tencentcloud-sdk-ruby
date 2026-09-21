@@ -5407,6 +5407,94 @@ module TencentCloud
         end
       end
 
+      # DescribeTopSpaceTablesV2请求参数结构体
+      class DescribeTopSpaceTablesV2Request < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例ID。</p>
+        # @type InstanceId: String
+        # @param Product: <p>服务产品类型，支持值包括：mysql（云数据库 MySQL）、cynosdb（TDSQL-C MySQL 版）、mongodb（云数据库 MongoDB）、postgres（云数据库 PostgreSQL）、dcdb（TDSQL MySQL 版）、tdsql（TDSQL）、mariadb（云数据库 MariaDB）。</p>
+        # @type Product: String
+        # @param Date: <p>查询日期，格式：yyyy-MM-dd。默认当天。</p>
+        # @type Date: String
+        # @param SortBy: <p>排序字段。MySQL/PG/TDSQL 系列支持：PhysicalFileSize/DataLength/IndexLength/TotalLength/DataFree/FragRatio/TableRows，默认 PhysicalFileSize。MongoDB 支持：Collection.CollectionSize/Collection.StorageSize/Collection.Size/Collection.AvgObjSize/Collection.Count/Collection.TotalIndexSize，默认 Collection.CollectionSize。</p>
+        # @type SortBy: String
+        # @param Limit: <p>返回数量，默认20，最大100。</p>
+        # @type Limit: Integer
+
+        attr_accessor :InstanceId, :Product, :Date, :SortBy, :Limit
+
+        def initialize(instanceid=nil, product=nil, date=nil, sortby=nil, limit=nil)
+          @InstanceId = instanceid
+          @Product = product
+          @Date = date
+          @SortBy = sortby
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Product = params['Product']
+          @Date = params['Date']
+          @SortBy = params['SortBy']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeTopSpaceTablesV2返回参数结构体
+      class DescribeTopSpaceTablesV2Response < TencentCloud::Common::AbstractModel
+        # @param MysqlObjects: <p>MySQL/PG/TDSQL 系列产品表级空间对象列表。当产品为 mysql/cynosdb/tdsql/dcdb/mariadb/postgres 时返回。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MysqlObjects: Array
+        # @param PostgresObjects: <p>PostgreSQL 产品表级空间对象列表。当产品为 postgres 时返回。字段语义与 MySQL 不同：使用 RelationSize / TableSize / IndexSize / TotalRelationSize / TableBloat 等 PG 特有指标。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PostgresObjects: Array
+        # @param MongodbObjects: <p>MongoDB 产品表级（集合级）空间对象列表。当产品为 mongodb 时返回。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MongodbObjects: Array
+        # @param Timestamp: <p>数据采集时间戳（秒）。</p>
+        # @type Timestamp: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MysqlObjects, :PostgresObjects, :MongodbObjects, :Timestamp, :RequestId
+
+        def initialize(mysqlobjects=nil, postgresobjects=nil, mongodbobjects=nil, timestamp=nil, requestid=nil)
+          @MysqlObjects = mysqlobjects
+          @PostgresObjects = postgresobjects
+          @MongodbObjects = mongodbobjects
+          @Timestamp = timestamp
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['MysqlObjects'].nil?
+            @MysqlObjects = []
+            params['MysqlObjects'].each do |i|
+              mysqlspaceobjectitem_tmp = MysqlSpaceObjectItem.new
+              mysqlspaceobjectitem_tmp.deserialize(i)
+              @MysqlObjects << mysqlspaceobjectitem_tmp
+            end
+          end
+          unless params['PostgresObjects'].nil?
+            @PostgresObjects = []
+            params['PostgresObjects'].each do |i|
+              postgresspaceobjectitem_tmp = PostgresSpaceObjectItem.new
+              postgresspaceobjectitem_tmp.deserialize(i)
+              @PostgresObjects << postgresspaceobjectitem_tmp
+            end
+          end
+          unless params['MongodbObjects'].nil?
+            @MongodbObjects = []
+            params['MongodbObjects'].each do |i|
+              mongodbtablespaceitem_tmp = MongoDBTableSpaceItem.new
+              mongodbtablespaceitem_tmp.deserialize(i)
+              @MongodbObjects << mongodbtablespaceitem_tmp
+            end
+          end
+          @Timestamp = params['Timestamp']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeUserAutonomyProfile请求参数结构体
       class DescribeUserAutonomyProfileRequest < TencentCloud::Common::AbstractModel
         # @param ProfileType: 配置类型，为需要配置的功能枚举值，目前包含一下枚举值：AutonomyGlobal（自治功能全局配置）、RedisAutoScaleUp（Redis自治扩容配置）。
@@ -6721,6 +6809,78 @@ module TencentCloud
         end
       end
 
+      # MongoDB 集合级空间使用明细，包含集合的存储、索引、碎片等各维度指标。
+      class MongoCollectionDetail < TencentCloud::Common::AbstractModel
+        # @param CollStats: <p>集合命名空间，格式为 db.collection。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CollStats: String
+        # @param CollectionSize: <p>集合逻辑大小（字节，未压缩）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CollectionSize: Integer
+        # @param DataFree: <p>集合已分配但未使用的空间（字节）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataFree: Integer
+        # @param SpaceRatio: <p>空间利用率（百分比字符串）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SpaceRatio: String
+        # @param FragRatio: <p>碎片率（百分比字符串）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FragRatio: String
+        # @param Size: <p>集合数据大小（字节）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Size: Integer
+        # @param TotalIndexSize: <p>所有索引占用大小（字节）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalIndexSize: Integer
+        # @param AvgObjSize: <p>平均文档大小（字节）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AvgObjSize: Integer
+        # @param StorageSize: <p>集合实际占用存储大小（字节，压缩后）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StorageSize: Integer
+        # @param Count: <p>文档数量。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Count: Integer
+        # @param CompressionRatio: <p>压缩率（百分比字符串）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CompressionRatio: String
+        # @param FileReuseBytes: <p>可复用文件空间（字节）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileReuseBytes: Integer
+
+        attr_accessor :CollStats, :CollectionSize, :DataFree, :SpaceRatio, :FragRatio, :Size, :TotalIndexSize, :AvgObjSize, :StorageSize, :Count, :CompressionRatio, :FileReuseBytes
+
+        def initialize(collstats=nil, collectionsize=nil, datafree=nil, spaceratio=nil, fragratio=nil, size=nil, totalindexsize=nil, avgobjsize=nil, storagesize=nil, count=nil, compressionratio=nil, filereusebytes=nil)
+          @CollStats = collstats
+          @CollectionSize = collectionsize
+          @DataFree = datafree
+          @SpaceRatio = spaceratio
+          @FragRatio = fragratio
+          @Size = size
+          @TotalIndexSize = totalindexsize
+          @AvgObjSize = avgobjsize
+          @StorageSize = storagesize
+          @Count = count
+          @CompressionRatio = compressionratio
+          @FileReuseBytes = filereusebytes
+        end
+
+        def deserialize(params)
+          @CollStats = params['CollStats']
+          @CollectionSize = params['CollectionSize']
+          @DataFree = params['DataFree']
+          @SpaceRatio = params['SpaceRatio']
+          @FragRatio = params['FragRatio']
+          @Size = params['Size']
+          @TotalIndexSize = params['TotalIndexSize']
+          @AvgObjSize = params['AvgObjSize']
+          @StorageSize = params['StorageSize']
+          @Count = params['Count']
+          @CompressionRatio = params['CompressionRatio']
+          @FileReuseBytes = params['FileReuseBytes']
+        end
+      end
+
       # Mongodb索引项
       class MongoDBIndex < TencentCloud::Common::AbstractModel
         # @param ClusterId: 实例id。
@@ -6863,6 +7023,51 @@ module TencentCloud
               mongodbprocessitem_tmp.deserialize(i)
               @Data << mongodbprocessitem_tmp
             end
+          end
+        end
+      end
+
+      # MongoDB 产品表级（集合级）空间对象项，描述单个集合的空间使用统计信息。
+      class MongoDBTableSpaceItem < TencentCloud::Common::AbstractModel
+        # @param AppId: <p>应用 Id（AppId）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppId: Integer
+        # @param InstanceId: <p>实例 Id。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param Db: <p>数据库名。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Db: String
+        # @param Timestamp: <p>数据采集时间戳（毫秒）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Timestamp: Integer
+        # @param SizeOnDisk: <p>磁盘占用大小（字节）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SizeOnDisk: Integer
+        # @param Collection: <p>集合级空间使用明细。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Collection: :class:`Tencentcloud::Dbbrain.v20210527.models.MongoCollectionDetail`
+
+        attr_accessor :AppId, :InstanceId, :Db, :Timestamp, :SizeOnDisk, :Collection
+
+        def initialize(appid=nil, instanceid=nil, db=nil, timestamp=nil, sizeondisk=nil, collection=nil)
+          @AppId = appid
+          @InstanceId = instanceid
+          @Db = db
+          @Timestamp = timestamp
+          @SizeOnDisk = sizeondisk
+          @Collection = collection
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @InstanceId = params['InstanceId']
+          @Db = params['Db']
+          @Timestamp = params['Timestamp']
+          @SizeOnDisk = params['SizeOnDisk']
+          unless params['Collection'].nil?
+            @Collection = MongoCollectionDetail.new
+            @Collection.deserialize(params['Collection'])
           end
         end
       end
@@ -7018,6 +7223,68 @@ module TencentCloud
         end
       end
 
+      # MySQL 系列产品空间对象项。库级查询时不包含 TableName/Engine 字段；表级查询时包含全部字段。
+      class MysqlSpaceObjectItem < TencentCloud::Common::AbstractModel
+        # @param TableSchema: <p>数据库名。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableSchema: String
+        # @param TableName: <p>表名（Level=TABLE时返回）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableName: String
+        # @param Engine: <p>存储引擎（Level=TABLE时返回）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Engine: String
+        # @param TableRows: <p>行数。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableRows: Integer
+        # @param TotalLength: <p>总使用空间（MB）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalLength: Float
+        # @param DataLength: <p>数据空间（MB）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataLength: Float
+        # @param IndexLength: <p>索引空间（MB）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndexLength: Float
+        # @param DataFree: <p>碎片空间（MB）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataFree: Float
+        # @param FragRatio: <p>碎片率（%）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FragRatio: Float
+        # @param PhysicalFileSize: <p>物理文件大小（MB）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PhysicalFileSize: Float
+
+        attr_accessor :TableSchema, :TableName, :Engine, :TableRows, :TotalLength, :DataLength, :IndexLength, :DataFree, :FragRatio, :PhysicalFileSize
+
+        def initialize(tableschema=nil, tablename=nil, engine=nil, tablerows=nil, totallength=nil, datalength=nil, indexlength=nil, datafree=nil, fragratio=nil, physicalfilesize=nil)
+          @TableSchema = tableschema
+          @TableName = tablename
+          @Engine = engine
+          @TableRows = tablerows
+          @TotalLength = totallength
+          @DataLength = datalength
+          @IndexLength = indexlength
+          @DataFree = datafree
+          @FragRatio = fragratio
+          @PhysicalFileSize = physicalfilesize
+        end
+
+        def deserialize(params)
+          @TableSchema = params['TableSchema']
+          @TableName = params['TableName']
+          @Engine = params['Engine']
+          @TableRows = params['TableRows']
+          @TotalLength = params['TotalLength']
+          @DataLength = params['DataLength']
+          @IndexLength = params['IndexLength']
+          @DataFree = params['DataFree']
+          @FragRatio = params['FragRatio']
+          @PhysicalFileSize = params['PhysicalFileSize']
+        end
+      end
+
       # OpenAuditService请求参数结构体
       class OpenAuditServiceRequest < TencentCloud::Common::AbstractModel
         # @param Product: 服务产品类型，支持值包括： "dcdb" - 云数据库 Tdsql， "mariadb" - 云数据库 MariaDB。
@@ -7067,6 +7334,63 @@ module TencentCloud
         def deserialize(params)
           @TaskId = params['TaskId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # PostgreSQL 产品空间对象项。字段语义与 MySQL 不同：使用 pg_relation_size / pg_total_relation_size 等 PG 特有指标。库级查询时不包含 TableSchema/TableName 字段；表级查询时包含全部字段。
+      class PostgresSpaceObjectItem < TencentCloud::Common::AbstractModel
+        # @param TableCatalog: <p>数据库名（PostgreSQL 顶层 catalog）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableCatalog: String
+        # @param TableSchema: <p>Schema 名（Level=TABLE 时返回）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableSchema: String
+        # @param TableName: <p>表名（Level=TABLE 时返回）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableName: String
+        # @param RelationSize: <p>表本身大小（MB），对应 pg_relation_size。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RelationSize: Float
+        # @param TableSize: <p>表数据大小（MB），含 TOAST 但不含索引，对应 pg_table_size。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableSize: Float
+        # @param IndexSize: <p>索引大小（MB），对应 pg_indexes_size。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndexSize: Float
+        # @param TotalRelationSize: <p>总大小（MB），含数据、索引、TOAST，对应 pg_total_relation_size。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalRelationSize: Float
+        # @param TableBloat: <p>表膨胀率（PostgreSQL 特有指标）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableBloat: Float
+        # @param TableRows: <p>表行数。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableRows: Integer
+
+        attr_accessor :TableCatalog, :TableSchema, :TableName, :RelationSize, :TableSize, :IndexSize, :TotalRelationSize, :TableBloat, :TableRows
+
+        def initialize(tablecatalog=nil, tableschema=nil, tablename=nil, relationsize=nil, tablesize=nil, indexsize=nil, totalrelationsize=nil, tablebloat=nil, tablerows=nil)
+          @TableCatalog = tablecatalog
+          @TableSchema = tableschema
+          @TableName = tablename
+          @RelationSize = relationsize
+          @TableSize = tablesize
+          @IndexSize = indexsize
+          @TotalRelationSize = totalrelationsize
+          @TableBloat = tablebloat
+          @TableRows = tablerows
+        end
+
+        def deserialize(params)
+          @TableCatalog = params['TableCatalog']
+          @TableSchema = params['TableSchema']
+          @TableName = params['TableName']
+          @RelationSize = params['RelationSize']
+          @TableSize = params['TableSize']
+          @IndexSize = params['IndexSize']
+          @TotalRelationSize = params['TotalRelationSize']
+          @TableBloat = params['TableBloat']
+          @TableRows = params['TableRows']
         end
       end
 
@@ -7877,10 +8201,12 @@ module TencentCloud
         # @type RowsExamined: Integer
         # @param RowsSent: 返回行数
         # @type RowsSent: Integer
+        # @param InstanceId: 
+        # @type InstanceId: String
 
-        attr_accessor :Timestamp, :SqlText, :Database, :UserName, :UserHost, :QueryTime, :LockTime, :RowsExamined, :RowsSent
+        attr_accessor :Timestamp, :SqlText, :Database, :UserName, :UserHost, :QueryTime, :LockTime, :RowsExamined, :RowsSent, :InstanceId
 
-        def initialize(timestamp=nil, sqltext=nil, database=nil, username=nil, userhost=nil, querytime=nil, locktime=nil, rowsexamined=nil, rowssent=nil)
+        def initialize(timestamp=nil, sqltext=nil, database=nil, username=nil, userhost=nil, querytime=nil, locktime=nil, rowsexamined=nil, rowssent=nil, instanceid=nil)
           @Timestamp = timestamp
           @SqlText = sqltext
           @Database = database
@@ -7890,6 +8216,7 @@ module TencentCloud
           @LockTime = locktime
           @RowsExamined = rowsexamined
           @RowsSent = rowssent
+          @InstanceId = instanceid
         end
 
         def deserialize(params)
@@ -7902,6 +8229,7 @@ module TencentCloud
           @LockTime = params['LockTime']
           @RowsExamined = params['RowsExamined']
           @RowsSent = params['RowsSent']
+          @InstanceId = params['InstanceId']
         end
       end
 
@@ -7957,10 +8285,14 @@ module TencentCloud
         # @type RowsExaminedAvg: Float
         # @param Md5: SQL模板的MD5值
         # @type Md5: String
+        # @param SqlType: 
+        # @type SqlType: String
+        # @param InstanceId: 
+        # @type InstanceId: String
 
-        attr_accessor :LockTime, :LockTimeMax, :LockTimeMin, :RowsExamined, :RowsExaminedMax, :RowsExaminedMin, :QueryTime, :QueryTimeMax, :QueryTimeMin, :RowsSent, :RowsSentMax, :RowsSentMin, :ExecTimes, :SqlTemplate, :SqlText, :Schema, :QueryTimeRatio, :LockTimeRatio, :RowsExaminedRatio, :RowsSentRatio, :QueryTimeAvg, :RowsSentAvg, :LockTimeAvg, :RowsExaminedAvg, :Md5
+        attr_accessor :LockTime, :LockTimeMax, :LockTimeMin, :RowsExamined, :RowsExaminedMax, :RowsExaminedMin, :QueryTime, :QueryTimeMax, :QueryTimeMin, :RowsSent, :RowsSentMax, :RowsSentMin, :ExecTimes, :SqlTemplate, :SqlText, :Schema, :QueryTimeRatio, :LockTimeRatio, :RowsExaminedRatio, :RowsSentRatio, :QueryTimeAvg, :RowsSentAvg, :LockTimeAvg, :RowsExaminedAvg, :Md5, :SqlType, :InstanceId
 
-        def initialize(locktime=nil, locktimemax=nil, locktimemin=nil, rowsexamined=nil, rowsexaminedmax=nil, rowsexaminedmin=nil, querytime=nil, querytimemax=nil, querytimemin=nil, rowssent=nil, rowssentmax=nil, rowssentmin=nil, exectimes=nil, sqltemplate=nil, sqltext=nil, schema=nil, querytimeratio=nil, locktimeratio=nil, rowsexaminedratio=nil, rowssentratio=nil, querytimeavg=nil, rowssentavg=nil, locktimeavg=nil, rowsexaminedavg=nil, md5=nil)
+        def initialize(locktime=nil, locktimemax=nil, locktimemin=nil, rowsexamined=nil, rowsexaminedmax=nil, rowsexaminedmin=nil, querytime=nil, querytimemax=nil, querytimemin=nil, rowssent=nil, rowssentmax=nil, rowssentmin=nil, exectimes=nil, sqltemplate=nil, sqltext=nil, schema=nil, querytimeratio=nil, locktimeratio=nil, rowsexaminedratio=nil, rowssentratio=nil, querytimeavg=nil, rowssentavg=nil, locktimeavg=nil, rowsexaminedavg=nil, md5=nil, sqltype=nil, instanceid=nil)
           @LockTime = locktime
           @LockTimeMax = locktimemax
           @LockTimeMin = locktimemin
@@ -7986,6 +8318,8 @@ module TencentCloud
           @LockTimeAvg = locktimeavg
           @RowsExaminedAvg = rowsexaminedavg
           @Md5 = md5
+          @SqlType = sqltype
+          @InstanceId = instanceid
         end
 
         def deserialize(params)
@@ -8014,6 +8348,8 @@ module TencentCloud
           @LockTimeAvg = params['LockTimeAvg']
           @RowsExaminedAvg = params['RowsExaminedAvg']
           @Md5 = params['Md5']
+          @SqlType = params['SqlType']
+          @InstanceId = params['InstanceId']
         end
       end
 

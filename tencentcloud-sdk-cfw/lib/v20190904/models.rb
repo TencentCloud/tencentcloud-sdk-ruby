@@ -3777,9 +3777,9 @@ module TencentCloud
         # @type Index: String
         # @param Filters: <p>过滤条件组合</p>
         # @type Filters: Array
-        # @param StartTime: <p>检索的起始时间，可不传</p>
+        # @param StartTime: <p>检索的起始时间，规则创建时间，可不传</p><p>参数格式：2022-07-27 16:00:00</p>
         # @type StartTime: String
-        # @param EndTime: <p>检索的截止时间，可不传</p>
+        # @param EndTime: <p>检索的截止时间，规则创建时间，可不传</p><p>参数格式：2022-07-27 16:00:00</p>
         # @type EndTime: String
         # @param Order: <p>desc：降序；asc：升序。根据By字段的值进行排序，这里传参的话则By也必须有值，默认为asc</p>
         # @type Order: String
@@ -7067,9 +7067,9 @@ module TencentCloud
         # @type Index: String
         # @param Filters: <p>过滤条件组合，Direction 为0时表述查询出向规则，为1时表示查询入向规则</p>
         # @type Filters: Array
-        # @param StartTime: <p>检索的起始时间，可不传</p>
+        # @param StartTime: <p>检索的起始时间，规则创建时间，可不传</p><p>参数格式：2022-07-27 16:00:00</p>
         # @type StartTime: String
-        # @param EndTime: <p>检索的截止时间，可不传</p>
+        # @param EndTime: <p>检索的截止时间，规则创建时间，可不传</p><p>参数格式：2022-07-27 16:00:00</p>
         # @type EndTime: String
         # @param Order: <p>desc：降序；asc：升序。根据By字段的值进行排序，这里传参的话则By也必须有值，默认为asc</p>
         # @type Order: String
@@ -8679,9 +8679,9 @@ module TencentCloud
         # @type Index: String
         # @param Filters: <p>过滤条件组合</p>
         # @type Filters: Array
-        # @param StartTime: <p>检索的起始时间，可不传</p>
+        # @param StartTime: <p>检索的起始时间，规则创建时间，可不传</p><p>参数格式：2022-07-27 16:00:00</p>
         # @type StartTime: String
-        # @param EndTime: <p>检索的截止时间，可不传</p>
+        # @param EndTime: <p>检索的截止时间，规则创建时间，可不传</p><p>参数格式：2022-07-27 16:00:00</p>
         # @type EndTime: String
         # @param Order: <p>desc：降序；asc：升序。根据By字段的值进行排序，这里传参的话则By也必须有值</p>
         # @type Order: String

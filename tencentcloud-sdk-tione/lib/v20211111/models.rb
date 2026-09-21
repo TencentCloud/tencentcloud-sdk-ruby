@@ -1022,10 +1022,12 @@ module TencentCloud
         # @type ResourceSupplyAttribute: :class:`Tencentcloud::Tione.v20211111.models.ResourceSupplyAttribute`
         # @param InferTemplateId: <p>推理模板 ID</p>
         # @type InferTemplateId: String
+        # @param Priority: <p>服务的优先级</p><p>取值范围：[0, 9]</p>
+        # @type Priority: Integer
 
-        attr_accessor :TiProjectId, :ServiceGroupId, :ServiceGroupName, :ServiceDescription, :ChargeType, :ResourceGroupId, :ModelInfo, :ImageInfo, :Env, :Resources, :InstanceType, :ScaleMode, :Replicas, :HorizontalPodAutoscaler, :LogEnable, :LogConfig, :AuthorizationEnable, :Tags, :NewVersion, :CronScaleJobs, :ScaleStrategy, :HybridBillingPrepaidReplicas, :CreateSource, :ModelHotUpdateEnable, :ScheduledAction, :VolumeMount, :ServiceLimit, :CallbackUrl, :ModelTurboEnable, :ServiceCategory, :Command, :ServiceEIP, :CommandBase64, :ServicePort, :DeployType, :InstancePerReplicas, :TerminationGracePeriodSeconds, :PreStopCommand, :GrpcEnable, :HealthProbe, :RollingUpdate, :Sidecar, :VolumeMounts, :SchedulingStrategy, :GatewayLogConfig, :GatewayConfig, :ResourceSupplyAttribute, :InferTemplateId
+        attr_accessor :TiProjectId, :ServiceGroupId, :ServiceGroupName, :ServiceDescription, :ChargeType, :ResourceGroupId, :ModelInfo, :ImageInfo, :Env, :Resources, :InstanceType, :ScaleMode, :Replicas, :HorizontalPodAutoscaler, :LogEnable, :LogConfig, :AuthorizationEnable, :Tags, :NewVersion, :CronScaleJobs, :ScaleStrategy, :HybridBillingPrepaidReplicas, :CreateSource, :ModelHotUpdateEnable, :ScheduledAction, :VolumeMount, :ServiceLimit, :CallbackUrl, :ModelTurboEnable, :ServiceCategory, :Command, :ServiceEIP, :CommandBase64, :ServicePort, :DeployType, :InstancePerReplicas, :TerminationGracePeriodSeconds, :PreStopCommand, :GrpcEnable, :HealthProbe, :RollingUpdate, :Sidecar, :VolumeMounts, :SchedulingStrategy, :GatewayLogConfig, :GatewayConfig, :ResourceSupplyAttribute, :InferTemplateId, :Priority
 
-        def initialize(tiprojectid=nil, servicegroupid=nil, servicegroupname=nil, servicedescription=nil, chargetype=nil, resourcegroupid=nil, modelinfo=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, scalemode=nil, replicas=nil, horizontalpodautoscaler=nil, logenable=nil, logconfig=nil, authorizationenable=nil, tags=nil, newversion=nil, cronscalejobs=nil, scalestrategy=nil, hybridbillingprepaidreplicas=nil, createsource=nil, modelhotupdateenable=nil, scheduledaction=nil, volumemount=nil, servicelimit=nil, callbackurl=nil, modelturboenable=nil, servicecategory=nil, command=nil, serviceeip=nil, commandbase64=nil, serviceport=nil, deploytype=nil, instanceperreplicas=nil, terminationgraceperiodseconds=nil, prestopcommand=nil, grpcenable=nil, healthprobe=nil, rollingupdate=nil, sidecar=nil, volumemounts=nil, schedulingstrategy=nil, gatewaylogconfig=nil, gatewayconfig=nil, resourcesupplyattribute=nil, infertemplateid=nil)
+        def initialize(tiprojectid=nil, servicegroupid=nil, servicegroupname=nil, servicedescription=nil, chargetype=nil, resourcegroupid=nil, modelinfo=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, scalemode=nil, replicas=nil, horizontalpodautoscaler=nil, logenable=nil, logconfig=nil, authorizationenable=nil, tags=nil, newversion=nil, cronscalejobs=nil, scalestrategy=nil, hybridbillingprepaidreplicas=nil, createsource=nil, modelhotupdateenable=nil, scheduledaction=nil, volumemount=nil, servicelimit=nil, callbackurl=nil, modelturboenable=nil, servicecategory=nil, command=nil, serviceeip=nil, commandbase64=nil, serviceport=nil, deploytype=nil, instanceperreplicas=nil, terminationgraceperiodseconds=nil, prestopcommand=nil, grpcenable=nil, healthprobe=nil, rollingupdate=nil, sidecar=nil, volumemounts=nil, schedulingstrategy=nil, gatewaylogconfig=nil, gatewayconfig=nil, resourcesupplyattribute=nil, infertemplateid=nil, priority=nil)
           @TiProjectId = tiprojectid
           @ServiceGroupId = servicegroupid
           @ServiceGroupName = servicegroupname
@@ -1074,6 +1076,7 @@ module TencentCloud
           @GatewayConfig = gatewayconfig
           @ResourceSupplyAttribute = resourcesupplyattribute
           @InferTemplateId = infertemplateid
+          @Priority = priority
         end
 
         def deserialize(params)
@@ -1198,6 +1201,7 @@ module TencentCloud
             @ResourceSupplyAttribute.deserialize(params['ResourceSupplyAttribute'])
           end
           @InferTemplateId = params['InferTemplateId']
+          @Priority = params['Priority']
         end
       end
 
@@ -2769,8 +2773,8 @@ module TencentCloud
 
         attr_accessor :ServiceId, :TiProjectId, :ServiceCategory
         extend Gem::Deprecate
-        deprecate :ServiceCategory, :none, 2026, 8
-        deprecate :ServiceCategory=, :none, 2026, 8
+        deprecate :ServiceCategory, :none, 2026, 9
+        deprecate :ServiceCategory=, :none, 2026, 9
 
         def initialize(serviceid=nil, tiprojectid=nil, servicecategory=nil)
           @ServiceId = serviceid
@@ -3109,27 +3113,19 @@ module TencentCloud
 
       # DescribeBillingResourceGroup请求参数结构体
       class DescribeBillingResourceGroupRequest < TencentCloud::Common::AbstractModel
-        # @param ResourceGroupId: 资源组id, 取值为创建资源组接口(CreateBillingResourceGroup)响应中的ResourceGroupId
+        # @param ResourceGroupId: <p>资源组id, 取值为创建资源组接口(CreateBillingResourceGroup)响应中的ResourceGroupId</p>
         # @type ResourceGroupId: String
         # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
         # @type TiProjectId: String
-        # @param Filters: 过滤条件
-        # 注意:
-        # 1. Filter.Name 只支持以下枚举值:
-        #     InstanceId (资源组节点id)
-        #     InstanceStatus (资源组节点状态)
-        # 2. Filter.Values: 长度为1且Filter.Fuzzy=true时，支持模糊查询; 不为1时，精确查询
-        # 3. Filter.Negative: 是否取反，默认为false
-        # 4. Filter.Fuzzy: 是否模糊查询，默认为false
-        # 5. 每次请求的Filters的上限为10，Filter.Values的上限为100
+        # @param Filters: <p>过滤条件<br>注意: </p><ol><li>Filter.Name 只支持以下枚举值:<br> InstanceId (资源组节点id)<br> InstanceStatus (资源组节点状态)</li><li>Filter.Values: 长度为1且Filter.Fuzzy=true时，支持模糊查询; 不为1时，精确查询</li><li>Filter.Negative: 是否取反，默认为false</li><li>Filter.Fuzzy: 是否模糊查询，默认为false</li><li>每次请求的Filters的上限为10，Filter.Values的上限为100</li></ol>
         # @type Filters: Array
-        # @param Offset: 分页查询起始位置，如：Limit为10，第一页Offset为0，第二页Offset为10...即每页左边为闭区间; 默认0
+        # @param Offset: <p>分页查询起始位置，如：Limit为10，第一页Offset为0，第二页Offset为10...即每页左边为闭区间; 默认0</p>
         # @type Offset: Integer
-        # @param Limit: 分页查询每页大小，默认20
+        # @param Limit: <p>分页查询每页大小，默认20</p>
         # @type Limit: Integer
-        # @param Order: 排序方向; 枚举值: ASC | DESC；默认DESC
+        # @param Order: <p>排序方向; 枚举值: ASC | DESC；默认DESC</p>
         # @type Order: String
-        # @param OrderField: 排序字段; 枚举值: CreateTime (创建时间) ｜ ExpireTime (到期时间)；默认CreateTime
+        # @param OrderField: <p>排序字段; 枚举值: CreateTime (创建时间) ｜ ExpireTime (到期时间)；默认CreateTime</p>
         # @type OrderField: String
 
         attr_accessor :ResourceGroupId, :TiProjectId, :Filters, :Offset, :Limit, :Order, :OrderField
@@ -3164,13 +3160,13 @@ module TencentCloud
 
       # DescribeBillingResourceGroup返回参数结构体
       class DescribeBillingResourceGroupResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 资源组节点总数； 注意接口是分页拉取的，total是指资源组节点总数，不是本次返回中InstanceSet数组的大小
+        # @param TotalCount: <p>资源组节点总数； 注意接口是分页拉取的，total是指资源组节点总数，不是本次返回中InstanceSet数组的大小</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
-        # @param InstanceSet: 资源组节点信息
+        # @param InstanceSet: <p>资源组节点信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceSet: Array
-        # @param ResourceGroupSWType: 资源组纳管类型
+        # @param ResourceGroupSWType: <p>资源组纳管类型</p>
         # @type ResourceGroupSWType: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4187,8 +4183,8 @@ module TencentCloud
 
         attr_accessor :ServiceGroupId, :TiProjectId, :ServiceCategory
         extend Gem::Deprecate
-        deprecate :ServiceCategory, :none, 2026, 8
-        deprecate :ServiceCategory=, :none, 2026, 8
+        deprecate :ServiceCategory, :none, 2026, 9
+        deprecate :ServiceCategory=, :none, 2026, 9
 
         def initialize(servicegroupid=nil, tiprojectid=nil, servicecategory=nil)
           @ServiceGroupId = servicegroupid
@@ -4274,8 +4270,8 @@ module TencentCloud
 
         attr_accessor :ServiceGroupId, :TiProjectId, :ServiceCategory
         extend Gem::Deprecate
-        deprecate :ServiceCategory, :none, 2026, 8
-        deprecate :ServiceCategory=, :none, 2026, 8
+        deprecate :ServiceCategory, :none, 2026, 9
+        deprecate :ServiceCategory=, :none, 2026, 9
 
         def initialize(servicegroupid=nil, tiprojectid=nil, servicecategory=nil)
           @ServiceGroupId = servicegroupid
@@ -4335,8 +4331,8 @@ module TencentCloud
 
         attr_accessor :TiProjectId, :Offset, :Limit, :Order, :OrderField, :Filters, :TagFilters, :ServiceCategory
         extend Gem::Deprecate
-        deprecate :ServiceCategory, :none, 2026, 8
-        deprecate :ServiceCategory=, :none, 2026, 8
+        deprecate :ServiceCategory, :none, 2026, 9
+        deprecate :ServiceCategory=, :none, 2026, 9
 
         def initialize(tiprojectid=nil, offset=nil, limit=nil, order=nil, orderfield=nil, filters=nil, tagfilters=nil, servicecategory=nil)
           @TiProjectId = tiprojectid
@@ -4476,8 +4472,8 @@ module TencentCloud
 
         attr_accessor :ServiceId, :TiProjectId, :ServiceCategory
         extend Gem::Deprecate
-        deprecate :ServiceCategory, :none, 2026, 8
-        deprecate :ServiceCategory=, :none, 2026, 8
+        deprecate :ServiceCategory, :none, 2026, 9
+        deprecate :ServiceCategory=, :none, 2026, 9
 
         def initialize(serviceid=nil, tiprojectid=nil, servicecategory=nil)
           @ServiceId = serviceid
@@ -5587,10 +5583,10 @@ module TencentCloud
 
       # 环境变量
       class EnvVar < TencentCloud::Common::AbstractModel
-        # @param Name: 环境变量key
+        # @param Name: <p>环境变量key</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
-        # @param Value: 环境变量value
+        # @param Value: <p>环境变量value</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
@@ -7414,10 +7410,12 @@ module TencentCloud
         # @type TargetProjectId: Integer
         # @param InferTemplateId: <p>推理模板 ID，在内置大模型场景下使用</p>
         # @type InferTemplateId: String
+        # @param Priority: <p>服务的优先级</p><p>取值范围：[0, 9]</p>
+        # @type Priority: Integer
 
-        attr_accessor :ServiceId, :TiProjectId, :ModelInfo, :ImageInfo, :Env, :Resources, :InstanceType, :ScaleMode, :Replicas, :HorizontalPodAutoscaler, :LogEnable, :LogConfig, :ServiceAction, :ServiceDescription, :ScaleStrategy, :CronScaleJobs, :HybridBillingPrepaidReplicas, :ModelHotUpdateEnable, :ScheduledAction, :ServiceLimit, :VolumeMount, :ModelTurboEnable, :Command, :ServiceEIP, :CommandBase64, :ServicePort, :InstancePerReplicas, :TerminationGracePeriodSeconds, :PreStopCommand, :GrpcEnable, :HealthProbe, :RollingUpdate, :Sidecar, :ResourceGroupId, :VolumeMounts, :SchedulingStrategy, :TargetProjectId, :InferTemplateId
+        attr_accessor :ServiceId, :TiProjectId, :ModelInfo, :ImageInfo, :Env, :Resources, :InstanceType, :ScaleMode, :Replicas, :HorizontalPodAutoscaler, :LogEnable, :LogConfig, :ServiceAction, :ServiceDescription, :ScaleStrategy, :CronScaleJobs, :HybridBillingPrepaidReplicas, :ModelHotUpdateEnable, :ScheduledAction, :ServiceLimit, :VolumeMount, :ModelTurboEnable, :Command, :ServiceEIP, :CommandBase64, :ServicePort, :InstancePerReplicas, :TerminationGracePeriodSeconds, :PreStopCommand, :GrpcEnable, :HealthProbe, :RollingUpdate, :Sidecar, :ResourceGroupId, :VolumeMounts, :SchedulingStrategy, :TargetProjectId, :InferTemplateId, :Priority
 
-        def initialize(serviceid=nil, tiprojectid=nil, modelinfo=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, scalemode=nil, replicas=nil, horizontalpodautoscaler=nil, logenable=nil, logconfig=nil, serviceaction=nil, servicedescription=nil, scalestrategy=nil, cronscalejobs=nil, hybridbillingprepaidreplicas=nil, modelhotupdateenable=nil, scheduledaction=nil, servicelimit=nil, volumemount=nil, modelturboenable=nil, command=nil, serviceeip=nil, commandbase64=nil, serviceport=nil, instanceperreplicas=nil, terminationgraceperiodseconds=nil, prestopcommand=nil, grpcenable=nil, healthprobe=nil, rollingupdate=nil, sidecar=nil, resourcegroupid=nil, volumemounts=nil, schedulingstrategy=nil, targetprojectid=nil, infertemplateid=nil)
+        def initialize(serviceid=nil, tiprojectid=nil, modelinfo=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, scalemode=nil, replicas=nil, horizontalpodautoscaler=nil, logenable=nil, logconfig=nil, serviceaction=nil, servicedescription=nil, scalestrategy=nil, cronscalejobs=nil, hybridbillingprepaidreplicas=nil, modelhotupdateenable=nil, scheduledaction=nil, servicelimit=nil, volumemount=nil, modelturboenable=nil, command=nil, serviceeip=nil, commandbase64=nil, serviceport=nil, instanceperreplicas=nil, terminationgraceperiodseconds=nil, prestopcommand=nil, grpcenable=nil, healthprobe=nil, rollingupdate=nil, sidecar=nil, resourcegroupid=nil, volumemounts=nil, schedulingstrategy=nil, targetprojectid=nil, infertemplateid=nil, priority=nil)
           @ServiceId = serviceid
           @TiProjectId = tiprojectid
           @ModelInfo = modelinfo
@@ -7456,6 +7454,7 @@ module TencentCloud
           @SchedulingStrategy = schedulingstrategy
           @TargetProjectId = targetprojectid
           @InferTemplateId = infertemplateid
+          @Priority = priority
         end
 
         def deserialize(params)
@@ -7554,6 +7553,7 @@ module TencentCloud
           @SchedulingStrategy = params['SchedulingStrategy']
           @TargetProjectId = params['TargetProjectId']
           @InferTemplateId = params['InferTemplateId']
+          @Priority = params['Priority']
         end
       end
 
@@ -8629,8 +8629,8 @@ module TencentCloud
 
         attr_accessor :Name, :Uid, :ChargeType, :Phase, :IP, :CreateTime, :Containers, :ContainerInfos, :CrossTenantENIInfo, :Status, :StartScheduleTime, :Message, :NodeIP, :NodeId, :ResourceGroupId, :ResourceGroupName, :ResourceInfo
         extend Gem::Deprecate
-        deprecate :Containers, :none, 2026, 8
-        deprecate :Containers=, :none, 2026, 8
+        deprecate :Containers, :none, 2026, 9
+        deprecate :Containers=, :none, 2026, 9
 
         def initialize(name=nil, uid=nil, chargetype=nil, phase=nil, ip=nil, createtime=nil, containers=nil, containerinfos=nil, crosstenanteniinfo=nil, status=nil, startscheduletime=nil, message=nil, nodeip=nil, nodeid=nil, resourcegroupid=nil, resourcegroupname=nil, resourceinfo=nil)
           @Name = name
@@ -9581,38 +9581,37 @@ module TencentCloud
 
       # 描述资源信息
       class ResourceInfo < TencentCloud::Common::AbstractModel
-        # @param Cpu: 处理器资源, 单位为1/1000核
+        # @param Cpu: <p>处理器资源, 单位为1/1000核</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Cpu: Integer
-        # @param Memory: 内存资源, 单位为1M
+        # @param Memory: <p>内存资源, 单位为1M</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Memory: Integer
-        # @param Gpu: Gpu卡个数资源, 单位为0.01单位的GpuType.
-        # Gpu=100表示使用了“一张”gpu卡, 但此处的“一张”卡有可能是虚拟化后的1/4卡, 也有可能是整张卡. 取决于实例的机型
-        # 例1 实例的机型带有1张虚拟gpu卡, 每张虚拟gpu卡对应1/4张实际T4卡, 则此时 GpuType=T4, Gpu=100, RealGpu=25.
-        # 例2 实例的机型带有4张gpu整卡, 每张卡对应1张实际T4卡, 则 此时 GpuType=T4, Gpu=400, RealGpu=400.
+        # @param Gpu: <p>Gpu卡个数资源, 单位为0.01单位的GpuType.<br>Gpu=100表示使用了“一张”gpu卡, 但此处的“一张”卡有可能是虚拟化后的1/4卡, 也有可能是整张卡. 取决于实例的机型<br>例1 实例的机型带有1张虚拟gpu卡, 每张虚拟gpu卡对应1/4张实际T4卡, 则此时 GpuType=T4, Gpu=100, RealGpu=25.<br>例2 实例的机型带有4张gpu整卡, 每张卡对应1张实际T4卡, 则 此时 GpuType=T4, Gpu=400, RealGpu=400.</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Gpu: Integer
-        # @param GpuType: Gpu卡型号 T4或者V100。仅展示当前 GPU 卡型号，若存在多类型同时使用，则参考 RealGpuDetailSet 的值。
+        # @param GpuType: <p>Gpu卡型号 T4或者V100。仅展示当前 GPU 卡型号，若存在多类型同时使用，则参考 RealGpuDetailSet 的值。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GpuType: String
-        # @param RealGpu: 创建或更新时无需填写，仅展示需要关注
-        # 后付费非整卡实例对应的实际的Gpu卡资源, 表示gpu资源对应实际的gpu卡个数.
-        # RealGpu=100表示实际使用了一张gpu卡, 对应实际的实例机型, 有可能代表带有1/4卡的实例4个, 或者带有1/2卡的实例2个, 或者带有1卡的实力1个.
+        # @param RealGpu: <p>创建或更新时无需填写，仅展示需要关注<br>后付费非整卡实例对应的实际的Gpu卡资源, 表示gpu资源对应实际的gpu卡个数.<br>RealGpu=100表示实际使用了一张gpu卡, 对应实际的实例机型, 有可能代表带有1/4卡的实例4个, 或者带有1/2卡的实例2个, 或者带有1卡的实力1个.</p>
         # @type RealGpu: Integer
-        # @param RealGpuDetailSet: 创建或更新时无需填写，仅展示需要关注。详细的GPU使用信息。
+        # @param RealGpuDetailSet: <p>创建或更新时无需填写，仅展示需要关注。详细的GPU使用信息。</p>
         # @type RealGpuDetailSet: Array
-        # @param EnableRDMA: 是否开启rdma
+        # @param EnableRDMA: <p>是否开启rdma</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableRDMA: Boolean
-        # @param RootDisk: root disk size(GB)
+        # @param RdmaNumber: <p>rdma number</p>
+        # @type RdmaNumber: Integer
+        # @param RootDisk: <p>root disk size(GB)</p>
         # @type RootDisk: Integer
-        # @param DataDisk: data disk size(GB)
+        # @param DataDisk: <p>data disk size(GB)</p>
         # @type DataDisk: Integer
+        # @param Rdma: <p>rdma</p><p>取值范围：[0, 99]</p>
+        # @type Rdma: Integer
 
-        attr_accessor :Cpu, :Memory, :Gpu, :GpuType, :RealGpu, :RealGpuDetailSet, :EnableRDMA, :RootDisk, :DataDisk
+        attr_accessor :Cpu, :Memory, :Gpu, :GpuType, :RealGpu, :RealGpuDetailSet, :EnableRDMA, :RdmaNumber, :RootDisk, :DataDisk, :Rdma
 
-        def initialize(cpu=nil, memory=nil, gpu=nil, gputype=nil, realgpu=nil, realgpudetailset=nil, enablerdma=nil, rootdisk=nil, datadisk=nil)
+        def initialize(cpu=nil, memory=nil, gpu=nil, gputype=nil, realgpu=nil, realgpudetailset=nil, enablerdma=nil, rdmanumber=nil, rootdisk=nil, datadisk=nil, rdma=nil)
           @Cpu = cpu
           @Memory = memory
           @Gpu = gpu
@@ -9620,8 +9619,10 @@ module TencentCloud
           @RealGpu = realgpu
           @RealGpuDetailSet = realgpudetailset
           @EnableRDMA = enablerdma
+          @RdmaNumber = rdmanumber
           @RootDisk = rootdisk
           @DataDisk = datadisk
+          @Rdma = rdma
         end
 
         def deserialize(params)
@@ -9639,8 +9640,10 @@ module TencentCloud
             end
           end
           @EnableRDMA = params['EnableRDMA']
+          @RdmaNumber = params['RdmaNumber']
           @RootDisk = params['RootDisk']
           @DataDisk = params['DataDisk']
+          @Rdma = params['Rdma']
         end
       end
 
@@ -9771,22 +9774,22 @@ module TencentCloud
 
       # notebook ssh端口配置
       class SSHConfig < TencentCloud::Common::AbstractModel
-        # @param Enable: 是否开启ssh
+        # @param Enable: <p>是否开启ssh</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Enable: Boolean
-        # @param PublicKey: 公钥信息
+        # @param PublicKey: <p>公钥信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublicKey: String
-        # @param Port: 端口号
+        # @param Port: <p>端口号</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: Integer
-        # @param LoginCommand: 登录命令
+        # @param LoginCommand: <p>登录命令</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LoginCommand: String
-        # @param IsAddressChanged: 登录地址是否改变
+        # @param IsAddressChanged: <p>登录地址是否改变</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsAddressChanged: Boolean
-        # @param PodSSHInfo: POD访问信息
+        # @param PodSSHInfo: <p>POD访问信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PodSSHInfo: :class:`Tencentcloud::Tione.v20211111.models.PodSSHInfo`
 
@@ -9986,10 +9989,10 @@ module TencentCloud
 
         attr_accessor :ServiceGroupId, :ServiceId, :ServiceGroupName, :ServiceDescription, :ServiceInfo, :ClusterId, :Region, :Namespace, :ChargeType, :ResourceGroupId, :ResourceGroupName, :Tags, :IngressName, :CreatedBy, :CreateTime, :UpdateTime, :Uin, :SubUin, :AppId, :BusinessStatus, :ServiceLimit, :ScheduledAction, :CreateFailedReason, :Status, :BillingInfo, :Weight, :CreateSource, :Version, :LatestVersion, :ResourceGroupSWType, :ArchiveStatus, :DeployType, :InstancePerReplicas, :MonitorSource, :SubUinName, :SchedulingPolicy, :ExternalResourceGroups, :ProjectId, :Changer, :ChangerName, :ResourceSupplyAttribute
         extend Gem::Deprecate
-        deprecate :ServiceLimit, :none, 2026, 8
-        deprecate :ServiceLimit=, :none, 2026, 8
-        deprecate :ScheduledAction, :none, 2026, 8
-        deprecate :ScheduledAction=, :none, 2026, 8
+        deprecate :ServiceLimit, :none, 2026, 9
+        deprecate :ServiceLimit=, :none, 2026, 9
+        deprecate :ScheduledAction, :none, 2026, 9
+        deprecate :ScheduledAction=, :none, 2026, 9
 
         def initialize(servicegroupid=nil, serviceid=nil, servicegroupname=nil, servicedescription=nil, serviceinfo=nil, clusterid=nil, region=nil, namespace=nil, chargetype=nil, resourcegroupid=nil, resourcegroupname=nil, tags=nil, ingressname=nil, createdby=nil, createtime=nil, updatetime=nil, uin=nil, subuin=nil, appid=nil, businessstatus=nil, servicelimit=nil, scheduledaction=nil, createfailedreason=nil, status=nil, billinginfo=nil, weight=nil, createsource=nil, version=nil, latestversion=nil, resourcegroupswtype=nil, archivestatus=nil, deploytype=nil, instanceperreplicas=nil, monitorsource=nil, subuinname=nil, schedulingpolicy=nil, externalresourcegroups=nil, projectid=nil, changer=nil, changername=nil, resourcesupplyattribute=nil)
           @ServiceGroupId = servicegroupid
@@ -10550,10 +10553,10 @@ module TencentCloud
 
         attr_accessor :Replicas, :ImageInfo, :Env, :Resources, :InstanceType, :ModelInfo, :LogEnable, :LogConfig, :AuthorizationEnable, :HorizontalPodAutoscaler, :Status, :Weight, :ResourceTotal, :OldReplicas, :HybridBillingPrepaidReplicas, :OldHybridBillingPrepaidReplicas, :ModelHotUpdateEnable, :InstanceAlias, :ScaleMode, :CronScaleJobs, :ScaleStrategy, :ScheduledAction, :PodList, :Pods, :PodInfos, :ServiceLimit, :ModelTurboEnable, :VolumeMount, :InferCodeInfo, :Command, :ServiceEIP, :ServicePort, :TerminationGracePeriodSeconds, :PreStopCommand, :GrpcEnable, :HealthProbe, :RollingUpdate, :InstancePerReplicas, :VolumeMounts, :SchedulingStrategy, :NodeCount, :InferTemplateId
         extend Gem::Deprecate
-        deprecate :PodList, :none, 2026, 8
-        deprecate :PodList=, :none, 2026, 8
-        deprecate :Pods, :none, 2026, 8
-        deprecate :Pods=, :none, 2026, 8
+        deprecate :PodList, :none, 2026, 9
+        deprecate :PodList=, :none, 2026, 9
+        deprecate :Pods, :none, 2026, 9
+        deprecate :Pods=, :none, 2026, 9
 
         def initialize(replicas=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, modelinfo=nil, logenable=nil, logconfig=nil, authorizationenable=nil, horizontalpodautoscaler=nil, status=nil, weight=nil, resourcetotal=nil, oldreplicas=nil, hybridbillingprepaidreplicas=nil, oldhybridbillingprepaidreplicas=nil, modelhotupdateenable=nil, instancealias=nil, scalemode=nil, cronscalejobs=nil, scalestrategy=nil, scheduledaction=nil, podlist=nil, pods=nil, podinfos=nil, servicelimit=nil, modelturboenable=nil, volumemount=nil, infercodeinfo=nil, command=nil, serviceeip=nil, serviceport=nil, terminationgraceperiodseconds=nil, prestopcommand=nil, grpcenable=nil, healthprobe=nil, rollingupdate=nil, instanceperreplicas=nil, volumemounts=nil, schedulingstrategy=nil, nodecount=nil, infertemplateid=nil)
           @Replicas = replicas
@@ -12165,8 +12168,8 @@ module TencentCloud
 
         attr_accessor :Replicas, :UpdatedReplicas, :ReadyReplicas, :AvailableReplicas, :UnavailableReplicas, :Status, :StatefulSetCondition, :Conditions, :Reason
         extend Gem::Deprecate
-        deprecate :StatefulSetCondition, :none, 2026, 8
-        deprecate :StatefulSetCondition=, :none, 2026, 8
+        deprecate :StatefulSetCondition, :none, 2026, 9
+        deprecate :StatefulSetCondition=, :none, 2026, 9
 
         def initialize(replicas=nil, updatedreplicas=nil, readyreplicas=nil, availablereplicas=nil, unavailablereplicas=nil, status=nil, statefulsetcondition=nil, conditions=nil, reason=nil)
           @Replicas = replicas
@@ -12226,8 +12229,8 @@ module TencentCloud
 
         attr_accessor :TiProjectId, :Name, :Description, :CreateTime, :ResourceGroups, :ActionType, :Status
         extend Gem::Deprecate
-        deprecate :ResourceGroups, :none, 2026, 8
-        deprecate :ResourceGroups=, :none, 2026, 8
+        deprecate :ResourceGroups, :none, 2026, 9
+        deprecate :ResourceGroups=, :none, 2026, 9
 
         def initialize(tiprojectid=nil, name=nil, description=nil, createtime=nil, resourcegroups=nil, actiontype=nil, status=nil)
           @TiProjectId = tiprojectid

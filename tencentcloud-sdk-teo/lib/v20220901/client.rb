@@ -3914,6 +3914,32 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口用于查询站点级自定义变量配置，包括变量定义和变量运算。未配置时，变量定义和变量运算均返回空列表。
+
+        # 如需查询规则级自定义变量，请调用 DescribeL7AccRules 接口。
+
+        # @param request: Request instance for DescribeZoneCustomVariables.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeZoneCustomVariablesRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeZoneCustomVariablesResponse`
+        def DescribeZoneCustomVariables(request)
+          body = send_request('DescribeZoneCustomVariables', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeZoneCustomVariablesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口为旧版，EdgeOne 已对规则引擎相关接口全面升级，详情请参考 [DescribeL7AccSetting](https://cloud.tencent.com/document/product/1552/115819)。
 
         # @param request: Request instance for DescribeZoneSetting.
@@ -5484,6 +5510,32 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyZoneResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口用于管理站点级自定义变量，支持创建、修改和删除变量定义及变量运算。提交的列表将覆盖对应的现有配置；如需清空配置，请传入空列表。未传入的配置项保持不变。变量定义和变量运算的默认值均为空。
+
+        # 规则级自定义变量相关操作，请调用 CreateL7AccRules 或 ModifyL7AccRule 接口。
+
+        # @param request: Request instance for ModifyZoneCustomVariables.
+        # @type request: :class:`Tencentcloud::teo::V20220901::ModifyZoneCustomVariablesRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::ModifyZoneCustomVariablesResponse`
+        def ModifyZoneCustomVariables(request)
+          body = send_request('ModifyZoneCustomVariables', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyZoneCustomVariablesResponse.new
             model.deserialize(response['Response'])
             model
           else

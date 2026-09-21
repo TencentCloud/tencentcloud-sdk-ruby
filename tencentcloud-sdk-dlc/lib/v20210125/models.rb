@@ -31343,112 +31343,116 @@ module TencentCloud
 
       # spark作业详情。
       class SparkJobInfo < TencentCloud::Common::AbstractModel
-        # @param JobId: spark作业ID
+        # @param JobId: <p>spark作业ID</p>
         # @type JobId: String
-        # @param JobName: spark作业名
+        # @param JobName: <p>spark作业名</p>
         # @type JobName: String
-        # @param JobType: spark作业类型，可去1或者2，1表示batch作业， 2表示streaming作业
+        # @param JobType: <p>spark作业类型，可去1或者2，1表示batch作业， 2表示streaming作业</p>
         # @type JobType: Integer
-        # @param DataEngine: 引擎名
+        # @param DataEngine: <p>引擎名</p>
         # @type DataEngine: String
-        # @param Eni: 该字段已下线，请使用字段Datasource
+        # @param Eni: <p>该字段已下线，请使用字段Datasource</p>
         # @type Eni: String
-        # @param IsLocal: 程序包是否本地上传，cos或者lakefs
+        # @param IsLocal: <p>程序包是否本地上传，cos或者lakefs</p>
         # @type IsLocal: String
-        # @param JobFile: 程序包路径
+        # @param JobFile: <p>程序包路径</p>
         # @type JobFile: String
-        # @param RoleArn: 角色ID
+        # @param RoleArn: <p>角色ID</p>
         # @type RoleArn: Integer
-        # @param MainClass: spark作业运行主类
+        # @param MainClass: <p>spark作业运行主类</p>
         # @type MainClass: String
-        # @param CmdArgs: 命令行参数，spark作业命令行参数，空格分隔
+        # @param CmdArgs: <p>命令行参数，spark作业命令行参数，空格分隔</p>
         # @type CmdArgs: String
-        # @param JobConf: spark原生配置，换行符分隔
+        # @param JobConf: <p>spark原生配置，换行符分隔</p>
         # @type JobConf: String
-        # @param IsLocalJars: 依赖jars是否本地上传，cos或者lakefs
+        # @param IsLocalJars: <p>依赖jars是否本地上传，cos或者lakefs</p>
         # @type IsLocalJars: String
-        # @param JobJars: spark作业依赖jars，逗号分隔
+        # @param JobJars: <p>spark作业依赖jars，逗号分隔</p>
         # @type JobJars: String
-        # @param IsLocalFiles: 依赖文件是否本地上传，cos或者lakefs
+        # @param IsLocalFiles: <p>依赖文件是否本地上传，cos或者lakefs</p>
         # @type IsLocalFiles: String
-        # @param JobFiles: spark作业依赖文件，逗号分隔
+        # @param JobFiles: <p>spark作业依赖文件，逗号分隔</p>
         # @type JobFiles: String
-        # @param JobDriverSize: spark作业driver资源大小
+        # @param JobDriverSize: <p>spark作业driver资源大小</p>
         # @type JobDriverSize: String
-        # @param JobExecutorSize: spark作业executor资源大小
+        # @param JobExecutorSize: <p>spark作业executor资源大小</p>
         # @type JobExecutorSize: String
-        # @param JobExecutorNums: spark作业executor个数
+        # @param JobExecutorNums: <p>spark作业executor个数</p>
         # @type JobExecutorNums: Integer
-        # @param JobMaxAttempts: spark流任务最大重试次数
+        # @param JobMaxAttempts: <p>spark流任务最大重试次数</p>
         # @type JobMaxAttempts: Integer
-        # @param JobCreator: spark作业创建者
+        # @param JobCreator: <p>spark作业创建者</p>
         # @type JobCreator: String
-        # @param JobCreateTime: spark作业创建时间
+        # @param JobCreateTime: <p>spark作业创建时间</p>
         # @type JobCreateTime: Integer
-        # @param JobUpdateTime: spark作业更新时间
+        # @param JobUpdateTime: <p>spark作业更新时间</p>
         # @type JobUpdateTime: Integer
-        # @param CurrentTaskId: spark作业最近任务ID
+        # @param CurrentTaskId: <p>spark作业最近任务ID</p>
         # @type CurrentTaskId: String
-        # @param JobStatus: spark作业最近运行状态，初始化：0，运行中：1，成功：2，数据写入中： 3， 排队中： 4， 失败： -1， 已删除： -3，已过期： -5
+        # @param JobStatus: <p>spark作业最近运行状态，初始化：0，运行中：1，成功：2，数据写入中： 3， 排队中： 4， 失败： -1， 已删除： -3，已过期： -5</p>
         # @type JobStatus: Integer
-        # @param StreamingStat: spark流作业统计
+        # @param StreamingStat: <p>spark流作业统计</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StreamingStat: :class:`Tencentcloud::Dlc.v20210125.models.StreamingStatistics`
-        # @param DataSource: 数据源名
+        # @param DataSource: <p>数据源名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataSource: String
-        # @param IsLocalPythonFiles: pyspark：依赖上传方式，1、cos；2、lakefs（控制台使用，该方式不支持直接接口调用）
+        # @param IsLocalPythonFiles: <p>pyspark：依赖上传方式，1、cos；2、lakefs（控制台使用，该方式不支持直接接口调用）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsLocalPythonFiles: String
-        # @param AppPythonFiles: 注：该返回值已废弃
+        # @param AppPythonFiles: <p>注：该返回值已废弃</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppPythonFiles: String
-        # @param IsLocalArchives: archives：依赖上传方式，1、cos；2、lakefs（控制台使用，该方式不支持直接接口调用）
+        # @param IsLocalArchives: <p>archives：依赖上传方式，1、cos；2、lakefs（控制台使用，该方式不支持直接接口调用）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsLocalArchives: String
-        # @param JobArchives: archives：依赖资源
+        # @param JobArchives: <p>archives：依赖资源</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobArchives: String
-        # @param SparkImage: Spark Image 版本
+        # @param SparkImage: <p>Spark Image 版本</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SparkImage: String
-        # @param JobPythonFiles: pyspark：python依赖, 除py文件外，还支持zip/egg等归档格式，多文件以逗号分隔
+        # @param JobPythonFiles: <p>pyspark：python依赖, 除py文件外，还支持zip/egg等归档格式，多文件以逗号分隔</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobPythonFiles: String
-        # @param TaskNum: 当前job正在运行或准备运行的任务个数
+        # @param TaskNum: <p>当前job正在运行或准备运行的任务个数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskNum: Integer
-        # @param DataEngineStatus: 引擎状态：-100（默认：未知状态），-2~11：引擎正常状态；
+        # @param DataEngineStatus: <p>引擎状态：-100（默认：未知状态），-2~11：引擎正常状态；</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataEngineStatus: Integer
-        # @param JobExecutorMaxNumbers: 指定的Executor数量（最大值），默认为1，当开启动态分配有效，若未开启，则该值等于JobExecutorNums
+        # @param JobExecutorMaxNumbers: <p>指定的Executor数量（最大值），默认为1，当开启动态分配有效，若未开启，则该值等于JobExecutorNums</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobExecutorMaxNumbers: Integer
-        # @param SparkImageVersion: 镜像版本
+        # @param SparkImageVersion: <p>镜像版本</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SparkImageVersion: String
-        # @param SessionId: 查询脚本关联id
+        # @param SessionId: <p>查询脚本关联id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SessionId: String
-        # @param DataEngineClusterType: spark_emr_livy
+        # @param DataEngineClusterType: <p>spark_emr_livy</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataEngineClusterType: String
-        # @param DataEngineImageVersion: Spark 3.2-EMR
+        # @param DataEngineImageVersion: <p>Spark 3.2-EMR</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataEngineImageVersion: String
-        # @param IsInherit: 任务资源配置是否继承集群模板，0（默认）不继承，1：继承
+        # @param IsInherit: <p>任务资源配置是否继承集群模板，0（默认）不继承，1：继承</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsInherit: Integer
-        # @param IsSessionStarted: 是否使用session脚本的sql运行任务：false：否，true：是
+        # @param IsSessionStarted: <p>是否使用session脚本的sql运行任务：false：否，true：是</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsSessionStarted: Boolean
-        # @param EngineTypeDetail: 引擎详细类型：SparkSQL、PrestoSQL、SparkBatch、StandardSpark、StandardPresto
+        # @param EngineTypeDetail: <p>引擎详细类型：SparkSQL、PrestoSQL、SparkBatch、StandardSpark、StandardPresto</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EngineTypeDetail: String
+        # @param DependencyPackages: <p>标准引擎依赖包</p>
+        # @type DependencyPackages: Array
+        # @param RunAsIdentity: <p>作业运行鉴权身份</p>
+        # @type RunAsIdentity: String
 
-        attr_accessor :JobId, :JobName, :JobType, :DataEngine, :Eni, :IsLocal, :JobFile, :RoleArn, :MainClass, :CmdArgs, :JobConf, :IsLocalJars, :JobJars, :IsLocalFiles, :JobFiles, :JobDriverSize, :JobExecutorSize, :JobExecutorNums, :JobMaxAttempts, :JobCreator, :JobCreateTime, :JobUpdateTime, :CurrentTaskId, :JobStatus, :StreamingStat, :DataSource, :IsLocalPythonFiles, :AppPythonFiles, :IsLocalArchives, :JobArchives, :SparkImage, :JobPythonFiles, :TaskNum, :DataEngineStatus, :JobExecutorMaxNumbers, :SparkImageVersion, :SessionId, :DataEngineClusterType, :DataEngineImageVersion, :IsInherit, :IsSessionStarted, :EngineTypeDetail
+        attr_accessor :JobId, :JobName, :JobType, :DataEngine, :Eni, :IsLocal, :JobFile, :RoleArn, :MainClass, :CmdArgs, :JobConf, :IsLocalJars, :JobJars, :IsLocalFiles, :JobFiles, :JobDriverSize, :JobExecutorSize, :JobExecutorNums, :JobMaxAttempts, :JobCreator, :JobCreateTime, :JobUpdateTime, :CurrentTaskId, :JobStatus, :StreamingStat, :DataSource, :IsLocalPythonFiles, :AppPythonFiles, :IsLocalArchives, :JobArchives, :SparkImage, :JobPythonFiles, :TaskNum, :DataEngineStatus, :JobExecutorMaxNumbers, :SparkImageVersion, :SessionId, :DataEngineClusterType, :DataEngineImageVersion, :IsInherit, :IsSessionStarted, :EngineTypeDetail, :DependencyPackages, :RunAsIdentity
 
-        def initialize(jobid=nil, jobname=nil, jobtype=nil, dataengine=nil, eni=nil, islocal=nil, jobfile=nil, rolearn=nil, mainclass=nil, cmdargs=nil, jobconf=nil, islocaljars=nil, jobjars=nil, islocalfiles=nil, jobfiles=nil, jobdriversize=nil, jobexecutorsize=nil, jobexecutornums=nil, jobmaxattempts=nil, jobcreator=nil, jobcreatetime=nil, jobupdatetime=nil, currenttaskid=nil, jobstatus=nil, streamingstat=nil, datasource=nil, islocalpythonfiles=nil, apppythonfiles=nil, islocalarchives=nil, jobarchives=nil, sparkimage=nil, jobpythonfiles=nil, tasknum=nil, dataenginestatus=nil, jobexecutormaxnumbers=nil, sparkimageversion=nil, sessionid=nil, dataengineclustertype=nil, dataengineimageversion=nil, isinherit=nil, issessionstarted=nil, enginetypedetail=nil)
+        def initialize(jobid=nil, jobname=nil, jobtype=nil, dataengine=nil, eni=nil, islocal=nil, jobfile=nil, rolearn=nil, mainclass=nil, cmdargs=nil, jobconf=nil, islocaljars=nil, jobjars=nil, islocalfiles=nil, jobfiles=nil, jobdriversize=nil, jobexecutorsize=nil, jobexecutornums=nil, jobmaxattempts=nil, jobcreator=nil, jobcreatetime=nil, jobupdatetime=nil, currenttaskid=nil, jobstatus=nil, streamingstat=nil, datasource=nil, islocalpythonfiles=nil, apppythonfiles=nil, islocalarchives=nil, jobarchives=nil, sparkimage=nil, jobpythonfiles=nil, tasknum=nil, dataenginestatus=nil, jobexecutormaxnumbers=nil, sparkimageversion=nil, sessionid=nil, dataengineclustertype=nil, dataengineimageversion=nil, isinherit=nil, issessionstarted=nil, enginetypedetail=nil, dependencypackages=nil, runasidentity=nil)
           @JobId = jobid
           @JobName = jobname
           @JobType = jobtype
@@ -31491,6 +31495,8 @@ module TencentCloud
           @IsInherit = isinherit
           @IsSessionStarted = issessionstarted
           @EngineTypeDetail = enginetypedetail
+          @DependencyPackages = dependencypackages
+          @RunAsIdentity = runasidentity
         end
 
         def deserialize(params)
@@ -31539,6 +31545,15 @@ module TencentCloud
           @IsInherit = params['IsInherit']
           @IsSessionStarted = params['IsSessionStarted']
           @EngineTypeDetail = params['EngineTypeDetail']
+          unless params['DependencyPackages'].nil?
+            @DependencyPackages = []
+            params['DependencyPackages'].each do |i|
+              dependencypackage_tmp = DependencyPackage.new
+              dependencypackage_tmp.deserialize(i)
+              @DependencyPackages << dependencypackage_tmp
+            end
+          end
+          @RunAsIdentity = params['RunAsIdentity']
         end
       end
 

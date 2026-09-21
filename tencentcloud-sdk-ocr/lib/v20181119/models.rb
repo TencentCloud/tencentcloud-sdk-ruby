@@ -7206,21 +7206,15 @@ module TencentCloud
         # @type PassDateEnd: String
         # @param TaxClassifyCode: <p>税收分类编码</p>
         # @type TaxClassifyCode: String
-        # @param CarType: <p>通行费车牌号</p>
-        # @type CarType: String
-        # @param PlateNumber: <p>通行费车辆类型</p>
-        # @type PlateNumber: String
 
-        attr_accessor :NumberPlate, :Type, :PassDateBegin, :PassDateEnd, :TaxClassifyCode, :CarType, :PlateNumber
+        attr_accessor :NumberPlate, :Type, :PassDateBegin, :PassDateEnd, :TaxClassifyCode
 
-        def initialize(numberplate=nil, type=nil, passdatebegin=nil, passdateend=nil, taxclassifycode=nil, cartype=nil, platenumber=nil)
+        def initialize(numberplate=nil, type=nil, passdatebegin=nil, passdateend=nil, taxclassifycode=nil)
           @NumberPlate = numberplate
           @Type = type
           @PassDateBegin = passdatebegin
           @PassDateEnd = passdateend
           @TaxClassifyCode = taxclassifycode
-          @CarType = cartype
-          @PlateNumber = platenumber
         end
 
         def deserialize(params)
@@ -7229,8 +7223,6 @@ module TencentCloud
           @PassDateBegin = params['PassDateBegin']
           @PassDateEnd = params['PassDateEnd']
           @TaxClassifyCode = params['TaxClassifyCode']
-          @CarType = params['CarType']
-          @PlateNumber = params['PlateNumber']
         end
       end
 

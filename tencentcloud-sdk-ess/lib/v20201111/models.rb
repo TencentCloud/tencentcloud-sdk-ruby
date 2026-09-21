@@ -1393,46 +1393,31 @@ module TencentCloud
 
       # 合同对比差异结果详情。
       class ComparisonDetail < TencentCloud::Common::AbstractModel
-        # @param ComparisonPointId: 合同对比差异点唯一ID。
+        # @param ComparisonPointId: <p>合同对比差异点唯一ID。</p>
         # @type ComparisonPointId: String
-        # @param ComparisonType: 对比前后差异类型，具体如下：
-        # <ul><li> **add**：新增</li>
-        # <li> **change**：变更</li>
-        # <li> **delete**：删除</li>
-        # </ul>
+        # @param ComparisonType: <p>对比前后差异类型，具体如下：</p><ul><li> **add**：新增</li><li> **change**：变更</li><li> **delete**：删除</li></ul>
         # @type ComparisonType: String
-        # @param ContentType: 对比内容类型，具体如下：
-        # <ul><li> **text**：文本</li>
-        # <li> **table**：表格</li>
-        # <li> **picture**：图片</li>
-        # </ul>
+        # @param ContentType: <p>对比内容类型，具体如下：</p><ul><li> **text**：文本</li><li> **table**：表格</li><li> **picture**：图片</li></ul>
         # @type ContentType: String
-        # @param OriginText: 原文文本。
+        # @param OriginText: <p>原文文本。</p>
         # @type OriginText: String
-        # @param DiffText: 对比文本。
+        # @param DiffText: <p>对比文本。</p>
         # @type DiffText: String
-        # @param FormatType: 合同文本的格式类型。
-        # 类型如下：
-        # <ul><li> **0**：段落（正文）</li>
-        # <li> **1**：标点符号</li>
-        # <li> **2**：页眉页脚</li>
-        # <li> **3**：目录</li>
-        # <li> **4**：印章</li>
-        # <li> **5**：序号</li>
-        # <li> **6**：水印</li>
-        # <li> **7**：下划线内容（填写区）</li>
-        # </ul>
+        # @param FormatType: <p>合同文本的格式类型。<br>类型如下：</p><ul><li> **0**：段落（正文）</li><li> **1**：标点符号</li><li> **2**：页眉页脚</li><li> **3**：目录</li><li> **4**：印章</li><li> **5**：序号</li><li> **6**：水印</li><li> **7**：下划线内容（填写区）</li></ul>
         # @type FormatType: Integer
+        # @param PageNumber: <p>页码：对比点所在页码。</p>
+        # @type PageNumber: Integer
 
-        attr_accessor :ComparisonPointId, :ComparisonType, :ContentType, :OriginText, :DiffText, :FormatType
+        attr_accessor :ComparisonPointId, :ComparisonType, :ContentType, :OriginText, :DiffText, :FormatType, :PageNumber
 
-        def initialize(comparisonpointid=nil, comparisontype=nil, contenttype=nil, origintext=nil, difftext=nil, formattype=nil)
+        def initialize(comparisonpointid=nil, comparisontype=nil, contenttype=nil, origintext=nil, difftext=nil, formattype=nil, pagenumber=nil)
           @ComparisonPointId = comparisonpointid
           @ComparisonType = comparisontype
           @ContentType = contenttype
           @OriginText = origintext
           @DiffText = difftext
           @FormatType = formattype
+          @PageNumber = pagenumber
         end
 
         def deserialize(params)
@@ -1442,6 +1427,7 @@ module TencentCloud
           @OriginText = params['OriginText']
           @DiffText = params['DiffText']
           @FormatType = params['FormatType']
+          @PageNumber = params['PageNumber']
         end
       end
 
@@ -16217,44 +16203,40 @@ module TencentCloud
 
       # 合同文件验签单个结果结构体
       class PdfVerifyResult < TencentCloud::Common::AbstractModel
-        # @param VerifyResult: 验签结果。0-签名域未签名；1-验签成功； 3-验签失败；4-未找到签名域：文件内没有签名域；5-签名值格式不正确。
+        # @param VerifyResult: <p>验签结果。0-签名域未签名；1-验签成功； 3-验签失败；4-未找到签名域：文件内没有签名域；5-签名值格式不正确。</p>
         # @type VerifyResult: Integer
-        # @param SignPlatform: 签署平台
-        # 如果文件是在腾讯电子签平台签署，则为**腾讯电子签**，
-        # 如果文件不在腾讯电子签平台签署，则为**其他平台**。
+        # @param SignPlatform: <p>签署平台<br>如果文件是在腾讯电子签平台签署，则为<strong>腾讯电子签</strong>，<br>如果文件不在腾讯电子签平台签署，则为<strong>其他平台</strong>。</p>
         # @type SignPlatform: String
-        # @param SignerName: 申请证书的主体的名字
-
-        # 如果是在腾讯电子签平台签署, 则对应的主体的名字个数如下
-        # **企业**:  ESS@企业名称@编码
-        # **个人**: ESS@个人姓名@证件号@808854
-
-        # 如果在其他平台签署的, 主体的名字参考其他平台的说明
+        # @param SignerName: <p>申请证书的主体的名字</p><p>如果是在腾讯电子签平台签署, 则对应的主体的名字个数如下<br><strong>企业</strong>:  ESS@企业名称@编码<br><strong>个人</strong>: ESS@个人姓名@证件号@808854</p><p>如果在其他平台签署的, 主体的名字参考其他平台的说明</p>
         # @type SignerName: String
-        # @param SignTime: 签署时间的Unix时间戳，单位毫秒
+        # @param SignTime: <p>签署时间的Unix时间戳，单位毫秒</p>
         # @type SignTime: Integer
-        # @param SignAlgorithm: 证书签名算法,  如SHA1withRSA等算法
+        # @param SignAlgorithm: <p>证书签名算法,  如SHA1withRSA等算法</p>
         # @type SignAlgorithm: String
-        # @param CertSn: 在数字证书申请过程中，系统会自动生成一个独一无二的序列号。
+        # @param CertSn: <p>在数字证书申请过程中，系统会自动生成一个独一无二的序列号。</p>
         # @type CertSn: String
-        # @param CertNotBefore: 证书起始时间的Unix时间戳，单位毫秒
+        # @param CertNotBefore: <p>证书起始时间的Unix时间戳，单位毫秒</p>
         # @type CertNotBefore: Integer
-        # @param CertNotAfter: 证书过期时间的时间戳，单位毫秒
+        # @param CertNotAfter: <p>证书过期时间的时间戳，单位毫秒</p>
         # @type CertNotAfter: Integer
-        # @param ComponentPosX: 签名域横坐标，单位px
+        # @param ComponentPosX: <p>签名域横坐标，单位px</p>
         # @type ComponentPosX: Float
-        # @param ComponentPosY: 签名域纵坐标，单位px
+        # @param ComponentPosY: <p>签名域纵坐标，单位px</p>
         # @type ComponentPosY: Float
-        # @param ComponentWidth: 签名域宽度，单位px
+        # @param ComponentWidth: <p>签名域宽度，单位px</p>
         # @type ComponentWidth: Float
-        # @param ComponentHeight: 签名域高度，单位px
+        # @param ComponentHeight: <p>签名域高度，单位px</p>
         # @type ComponentHeight: Float
-        # @param ComponentPage: 签名域所在页码，1～N
+        # @param ComponentPage: <p>签名域所在页码，1～N</p>
         # @type ComponentPage: Integer
+        # @param CertProvider: <p>证书颁发机构</p>
+        # @type CertProvider: String
+        # @param IsTimestampTrust: <p>是否有可信时间戳</p>
+        # @type IsTimestampTrust: Boolean
 
-        attr_accessor :VerifyResult, :SignPlatform, :SignerName, :SignTime, :SignAlgorithm, :CertSn, :CertNotBefore, :CertNotAfter, :ComponentPosX, :ComponentPosY, :ComponentWidth, :ComponentHeight, :ComponentPage
+        attr_accessor :VerifyResult, :SignPlatform, :SignerName, :SignTime, :SignAlgorithm, :CertSn, :CertNotBefore, :CertNotAfter, :ComponentPosX, :ComponentPosY, :ComponentWidth, :ComponentHeight, :ComponentPage, :CertProvider, :IsTimestampTrust
 
-        def initialize(verifyresult=nil, signplatform=nil, signername=nil, signtime=nil, signalgorithm=nil, certsn=nil, certnotbefore=nil, certnotafter=nil, componentposx=nil, componentposy=nil, componentwidth=nil, componentheight=nil, componentpage=nil)
+        def initialize(verifyresult=nil, signplatform=nil, signername=nil, signtime=nil, signalgorithm=nil, certsn=nil, certnotbefore=nil, certnotafter=nil, componentposx=nil, componentposy=nil, componentwidth=nil, componentheight=nil, componentpage=nil, certprovider=nil, istimestamptrust=nil)
           @VerifyResult = verifyresult
           @SignPlatform = signplatform
           @SignerName = signername
@@ -16268,6 +16250,8 @@ module TencentCloud
           @ComponentWidth = componentwidth
           @ComponentHeight = componentheight
           @ComponentPage = componentpage
+          @CertProvider = certprovider
+          @IsTimestampTrust = istimestamptrust
         end
 
         def deserialize(params)
@@ -16284,6 +16268,8 @@ module TencentCloud
           @ComponentWidth = params['ComponentWidth']
           @ComponentHeight = params['ComponentHeight']
           @ComponentPage = params['ComponentPage']
+          @CertProvider = params['CertProvider']
+          @IsTimestampTrust = params['IsTimestampTrust']
         end
       end
 

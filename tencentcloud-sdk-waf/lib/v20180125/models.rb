@@ -6174,7 +6174,7 @@ module TencentCloud
 
       # DeleteExport请求参数结构体
       class DeleteExportRequest < TencentCloud::Common::AbstractModel
-        # @param ExportId: 日志导出ID
+        # @param ExportId: <p>日志导出ID，可以通过DescribeExports接口获取</p>
         # @type ExportId: String
 
         attr_accessor :ExportId
@@ -6400,7 +6400,7 @@ module TencentCloud
 
       # DeleteOwaspWhiteRule请求参数结构体
       class DeleteOwaspWhiteRuleRequest < TencentCloud::Common::AbstractModel
-        # @param Ids: 规则白名单ID列表
+        # @param Ids: 规则白名单ID列表，可通过 [DescribeOwaspWhiteRule](https://cloud.tencent.com/document/product/627/122155) 接口获取
         # @type Ids: Array
         # @param Domain: 域名
         # @type Domain: String
@@ -11043,7 +11043,7 @@ module TencentCloud
 
       # DescribePostCLSFlows请求参数结构体
       class DescribePostCLSFlowsRequest < TencentCloud::Common::AbstractModel
-        # @param LogType: 1-访问日志，2-攻击日志，默认为访问日志。
+        # @param LogType: <p>1-访问日志，2-攻击日志，默认为访问日志。</p>
         # @type LogType: Integer
 
         attr_accessor :LogType
@@ -11059,7 +11059,7 @@ module TencentCloud
 
       # DescribePostCLSFlows返回参数结构体
       class DescribePostCLSFlowsResponse < TencentCloud::Common::AbstractModel
-        # @param PostCLSFlows: 客户的投递流列表
+        # @param PostCLSFlows: <p>客户的投递流列表</p>
         # @type PostCLSFlows: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -12477,9 +12477,9 @@ module TencentCloud
 
       # DestroyPostCKafkaFlow请求参数结构体
       class DestroyPostCKafkaFlowRequest < TencentCloud::Common::AbstractModel
-        # @param FlowId: 投递流的流ID
+        # @param FlowId: <p>投递流的流ID，可以通过DescribePostCKafkaFlows接口获取</p>
         # @type FlowId: Integer
-        # @param LogType: 1-访问日志，2-攻击日志，默认为访问日志。
+        # @param LogType: <p>1-访问日志，2-攻击日志，默认为访问日志。</p>
         # @type LogType: Integer
 
         attr_accessor :FlowId, :LogType
@@ -14248,11 +14248,11 @@ module TencentCloud
 
       # CLB-WAF删除域名参数
       class HostDel < TencentCloud::Common::AbstractModel
-        # @param Domain: 域名
+        # @param Domain: <p>域名</p>
         # @type Domain: String
-        # @param DomainId: 域名ID
+        # @param DomainId: <p>域名ID，使用DescribeDomains接口可以查询获取</p>
         # @type DomainId: String
-        # @param InstanceID: 实例类型
+        # @param InstanceID: <p>实例类型</p>
         # @type InstanceID: String
 
         attr_accessor :Domain, :DomainId, :InstanceID

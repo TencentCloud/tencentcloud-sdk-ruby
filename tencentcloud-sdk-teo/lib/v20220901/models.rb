@@ -13628,6 +13628,60 @@ module TencentCloud
         end
       end
 
+      # DescribeZoneCustomVariables请求参数结构体
+      class DescribeZoneCustomVariablesRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: <p>站点 ID。</p>
+        # @type ZoneId: String
+
+        attr_accessor :ZoneId
+
+        def initialize(zoneid=nil)
+          @ZoneId = zoneid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+        end
+      end
+
+      # DescribeZoneCustomVariables返回参数结构体
+      class DescribeZoneCustomVariablesResponse < TencentCloud::Common::AbstractModel
+        # @param CustomVariables: <p>站点级自定义变量列表。</p>
+        # @type CustomVariables: Array
+        # @param CustomVariableOperations: <p>站点级自定义变量运算规则。</p>
+        # @type CustomVariableOperations: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CustomVariables, :CustomVariableOperations, :RequestId
+
+        def initialize(customvariables=nil, customvariableoperations=nil, requestid=nil)
+          @CustomVariables = customvariables
+          @CustomVariableOperations = customvariableoperations
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CustomVariables'].nil?
+            @CustomVariables = []
+            params['CustomVariables'].each do |i|
+              customvariable_tmp = CustomVariable.new
+              customvariable_tmp.deserialize(i)
+              @CustomVariables << customvariable_tmp
+            end
+          end
+          unless params['CustomVariableOperations'].nil?
+            @CustomVariableOperations = []
+            params['CustomVariableOperations'].each do |i|
+              customvariableoperation_tmp = CustomVariableOperation.new
+              customvariableoperation_tmp.deserialize(i)
+              @CustomVariableOperations << customvariableoperation_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeZoneSetting请求参数结构体
       class DescribeZoneSettingRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点ID。
@@ -21301,6 +21355,60 @@ module TencentCloud
         end
       end
 
+      # ModifyZoneCustomVariables请求参数结构体
+      class ModifyZoneCustomVariablesRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: <p>站点 ID。</p>
+        # @type ZoneId: String
+        # @param CustomVariables: <p>站点级自定义变量列表。CustomVariable.Name 需要使用 user.zone. 作为前缀。变量按照数组顺序依次初始化，InitialValue 仅支持引用位于当前变量之前的变量，不支持引用当前变量自身或位于当前变量之后的变量。</p>
+        # @type CustomVariables: Array
+        # @param CustomVariableOperations: <p>站点级自定义变量运算规则。运算中支持引用已定义的站点级自定义变量。此列表当前只支持填写一项规则，多填无效。</p>
+        # @type CustomVariableOperations: Array
+
+        attr_accessor :ZoneId, :CustomVariables, :CustomVariableOperations
+
+        def initialize(zoneid=nil, customvariables=nil, customvariableoperations=nil)
+          @ZoneId = zoneid
+          @CustomVariables = customvariables
+          @CustomVariableOperations = customvariableoperations
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          unless params['CustomVariables'].nil?
+            @CustomVariables = []
+            params['CustomVariables'].each do |i|
+              customvariable_tmp = CustomVariable.new
+              customvariable_tmp.deserialize(i)
+              @CustomVariables << customvariable_tmp
+            end
+          end
+          unless params['CustomVariableOperations'].nil?
+            @CustomVariableOperations = []
+            params['CustomVariableOperations'].each do |i|
+              customvariableoperation_tmp = CustomVariableOperation.new
+              customvariableoperation_tmp.deserialize(i)
+              @CustomVariableOperations << customvariableoperation_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyZoneCustomVariables返回参数结构体
+      class ModifyZoneCustomVariablesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyZone请求参数结构体
       class ModifyZoneRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点 ID。
@@ -25972,19 +26080,17 @@ module TencentCloud
 
       # 共享CNAME明细
       class SharedCNAMEInfo < TencentCloud::Common::AbstractModel
-        # @param Type: 共享CNAME类型：取值范围如下：
-        # <li>custom：由用户创建的自定义共享CNAME</li>
-        # <li>ip-ssl：IP SSL类型的共享CNAME</li>
+        # @param Type: <p>共享CNAME类型：取值范围如下：</p><li>custom：由用户创建的自定义共享CNAME</li><li>ip-ssl：IP SSL类型的共享CNAME</li><li>zero-rating：免流类型的共享CNAME</li><li>preset：预置资源类型的共享CNAME</li>
         # @type Type: String
-        # @param SharedCNAME: 共享CNAME名称。
+        # @param SharedCNAME: <p>共享CNAME名称。</p>
         # @type SharedCNAME: String
-        # @param Description: 描述。
+        # @param Description: <p>描述。</p>
         # @type Description: String
-        # @param IPSSLConfig: 当type为ip-ssl时，展示该共享CNAME关联的 IP SSL 配置信息。
+        # @param IPSSLConfig: <p>当type为ip-ssl时，展示该共享CNAME关联的 IP SSL 配置信息。</p>
         # @type IPSSLConfig: :class:`Tencentcloud::Teo.v20220901.models.IPSSLConfig`
-        # @param BindDomainCount: 共享CNAME绑定的加速域名数量。
+        # @param BindDomainCount: <p>共享CNAME绑定的加速域名数量。</p>
         # @type BindDomainCount: Integer
-        # @param AccelerationDomains: 加入该共享CNAME的加速域名列表。当加入的域名数量超过100个时，只返回前100个加速域名。
+        # @param AccelerationDomains: <p>加入该共享CNAME的加速域名列表。当加入的域名数量超过100个时，只返回前100个加速域名。</p>
         # @type AccelerationDomains: Array
 
         attr_accessor :Type, :SharedCNAME, :Description, :IPSSLConfig, :BindDomainCount, :AccelerationDomains

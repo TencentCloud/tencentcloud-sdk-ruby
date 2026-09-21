@@ -4468,36 +4468,42 @@ module TencentCloud
 
       # 日志备份
       class BackupLog < TencentCloud::Common::AbstractModel
-        # @param Id: 索引
+        # @param Id: <p>索引</p>
         # @type Id: Integer
-        # @param IndexStartTime: 索引开始时间
+        # @param IndexStartTime: <p>索引开始时间</p>
         # @type IndexStartTime: Integer
-        # @param IndexEndTime: 索引结束时间
+        # @param IndexEndTime: <p>索引结束时间</p>
         # @type IndexEndTime: Integer
-        # @param BackupSize: 备份后压缩的大小，单位M
+        # @param BackupSize: <p>备份后压缩的大小，单位M</p>
         # @type BackupSize: Integer
-        # @param Status: 日志状态 0备份未完成， 1备份文件，2恢复中，3已恢复，4.已删除
+        # @param Status: <p>日志状态 0备份未完成， 1备份文件，2恢复中，3已恢复，4.已删除</p>
         # @type Status: Integer
-        # @param RestoreProcessRemindTime: 恢复剩余的分钟数，分钟，需要前端转换
+        # @param RestoreProcessRemindTime: <p>恢复剩余的分钟数，分钟，需要前端转换</p>
         # @type RestoreProcessRemindTime: Integer
-        # @param RestoreRemindTime: 恢复日志保留的时间
+        # @param RestoreRemindTime: <p>恢复日志保留的时间</p>
         # @type RestoreRemindTime: Integer
-        # @param RestoreIndexSize: 恢复索引大小
+        # @param RestoreIndexSize: <p>恢复索引大小</p>
         # @type RestoreIndexSize: Integer
-        # @param RestoreEndTime: 恢复日志执行结束时间
+        # @param RestoreEndTime: <p>恢复日志执行结束时间</p>
         # @type RestoreEndTime: Integer
-        # @param AppId: 备份所属的appId
+        # @param AppId: <p>备份所属的appId</p>
         # @type AppId: Integer
-        # @param AssetId: 备份所属的资产ID
+        # @param AssetId: <p>备份所属的资产ID</p>
         # @type AssetId: Integer
-        # @param NickName: 账号昵称
+        # @param NickName: <p>账号昵称</p>
         # @type NickName: String
-        # @param Uin: 资产所属账号uin
+        # @param Uin: <p>资产所属账号uin</p>
         # @type Uin: String
+        # @param InstanceId: <p>实例ID</p>
+        # @type InstanceId: String
+        # @param InstanceName: <p>实例名称</p>
+        # @type InstanceName: String
+        # @param AssetType: <p>实例类型</p><p>枚举值：</p><ul><li>cdb：  cdb</li><li>mariadb： mariadb</li></ul>
+        # @type AssetType: String
 
-        attr_accessor :Id, :IndexStartTime, :IndexEndTime, :BackupSize, :Status, :RestoreProcessRemindTime, :RestoreRemindTime, :RestoreIndexSize, :RestoreEndTime, :AppId, :AssetId, :NickName, :Uin
+        attr_accessor :Id, :IndexStartTime, :IndexEndTime, :BackupSize, :Status, :RestoreProcessRemindTime, :RestoreRemindTime, :RestoreIndexSize, :RestoreEndTime, :AppId, :AssetId, :NickName, :Uin, :InstanceId, :InstanceName, :AssetType
 
-        def initialize(id=nil, indexstarttime=nil, indexendtime=nil, backupsize=nil, status=nil, restoreprocessremindtime=nil, restoreremindtime=nil, restoreindexsize=nil, restoreendtime=nil, appid=nil, assetid=nil, nickname=nil, uin=nil)
+        def initialize(id=nil, indexstarttime=nil, indexendtime=nil, backupsize=nil, status=nil, restoreprocessremindtime=nil, restoreremindtime=nil, restoreindexsize=nil, restoreendtime=nil, appid=nil, assetid=nil, nickname=nil, uin=nil, instanceid=nil, instancename=nil, assettype=nil)
           @Id = id
           @IndexStartTime = indexstarttime
           @IndexEndTime = indexendtime
@@ -4511,6 +4517,9 @@ module TencentCloud
           @AssetId = assetid
           @NickName = nickname
           @Uin = uin
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @AssetType = assettype
         end
 
         def deserialize(params)
@@ -4527,6 +4536,9 @@ module TencentCloud
           @AssetId = params['AssetId']
           @NickName = params['NickName']
           @Uin = params['Uin']
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @AssetType = params['AssetType']
         end
       end
 

@@ -1920,14 +1920,23 @@ module TencentCloud
         # @type InputCoefficient: Float
         # @param OutputCoefficient: <p>输出积分系数。</p><p>取值范围：[1, 5000]</p><p>默认值：100</p>
         # @type OutputCoefficient: Float
+        # @param InputImageCoefficient: <p>输入图片系数</p>
+        # @type InputImageCoefficient: Float
+        # @param InputVideoSecondCoefficient: <p>输入视频每秒系数</p>
+        # @type InputVideoSecondCoefficient: Float
+        # @param OutputVideoSecondCoefficient: <p>输出视频每秒系数</p>
+        # @type OutputVideoSecondCoefficient: Float
 
-        attr_accessor :InputCachedCoefficient, :InputCacheCreationCoefficient, :InputCoefficient, :OutputCoefficient
+        attr_accessor :InputCachedCoefficient, :InputCacheCreationCoefficient, :InputCoefficient, :OutputCoefficient, :InputImageCoefficient, :InputVideoSecondCoefficient, :OutputVideoSecondCoefficient
 
-        def initialize(inputcachedcoefficient=nil, inputcachecreationcoefficient=nil, inputcoefficient=nil, outputcoefficient=nil)
+        def initialize(inputcachedcoefficient=nil, inputcachecreationcoefficient=nil, inputcoefficient=nil, outputcoefficient=nil, inputimagecoefficient=nil, inputvideosecondcoefficient=nil, outputvideosecondcoefficient=nil)
           @InputCachedCoefficient = inputcachedcoefficient
           @InputCacheCreationCoefficient = inputcachecreationcoefficient
           @InputCoefficient = inputcoefficient
           @OutputCoefficient = outputcoefficient
+          @InputImageCoefficient = inputimagecoefficient
+          @InputVideoSecondCoefficient = inputvideosecondcoefficient
+          @OutputVideoSecondCoefficient = outputvideosecondcoefficient
         end
 
         def deserialize(params)
@@ -1935,6 +1944,83 @@ module TencentCloud
           @InputCacheCreationCoefficient = params['InputCacheCreationCoefficient']
           @InputCoefficient = params['InputCoefficient']
           @OutputCoefficient = params['OutputCoefficient']
+          @InputImageCoefficient = params['InputImageCoefficient']
+          @InputVideoSecondCoefficient = params['InputVideoSecondCoefficient']
+          @OutputVideoSecondCoefficient = params['OutputVideoSecondCoefficient']
+        end
+      end
+
+      # 峰谷计费配置
+      class CoefficientScheduleRule < TencentCloud::Common::AbstractModel
+        # @param Weekdays: <p>1～7，表示周一至周日</p>
+        # @type Weekdays: Array
+        # @param StartTime: <p>00:00～23:59，固定 UTC+8，窗口左闭</p><p>参数格式：HH:mm</p>
+        # @type StartTime: String
+        # @param EndTime: <p>大于 StartTime，最大 24:00，窗口右开；跨午夜拆分并调整星期</p><p>参数格式：HH:mm</p>
+        # @type EndTime: String
+        # @param Multiplier: <p>有限非负数，建议最多 6 位小数；0 免费、0.5 半价、1 原价，可大于 1；倍率计算后的价格须在服务支持的数值范围内</p>
+        # @type Multiplier: Float
+
+        attr_accessor :Weekdays, :StartTime, :EndTime, :Multiplier
+
+        def initialize(weekdays=nil, starttime=nil, endtime=nil, multiplier=nil)
+          @Weekdays = weekdays
+          @StartTime = starttime
+          @EndTime = endtime
+          @Multiplier = multiplier
+        end
+
+        def deserialize(params)
+          @Weekdays = params['Weekdays']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Multiplier = params['Multiplier']
+        end
+      end
+
+      # 积分分档配置
+      class CoefficientTier < TencentCloud::Common::AbstractModel
+        # @param Condition: <p>积分分级条件</p>
+        # @type Condition: :class:`Tencentcloud::Clb.v20180317.models.CoefficientTierCondition`
+        # @param Coefficient: <p>积分系数</p>
+        # @type Coefficient: :class:`Tencentcloud::Clb.v20180317.models.Coefficient`
+
+        attr_accessor :Condition, :Coefficient
+
+        def initialize(condition=nil, coefficient=nil)
+          @Condition = condition
+          @Coefficient = coefficient
+        end
+
+        def deserialize(params)
+          unless params['Condition'].nil?
+            @Condition = CoefficientTierCondition.new
+            @Condition.deserialize(params['Condition'])
+          end
+          unless params['Coefficient'].nil?
+            @Coefficient = Coefficient.new
+            @Coefficient.deserialize(params['Coefficient'])
+          end
+        end
+      end
+
+      # 积分分档匹配条件
+      class CoefficientTierCondition < TencentCloud::Common::AbstractModel
+        # @param InputTokensAbove: <p>仅 chat；单位 K Token（1K=1000 Token）；非负整数，最大 2147483647；非空数组首条必须为 0，数组内严格递增、无重复；输入总 Token 严格超过阈值×1000，取满足条件的最大阈值，整单选价</p>
+        # @type InputTokensAbove: Integer
+        # @param Resolution: <p>video 仅 480p／720p／768p／1024p／1080p／2k／4k，统一小写；只校验全局枚举，不校验模型支持子集；列表内不重复</p>
+        # @type Resolution: String
+
+        attr_accessor :InputTokensAbove, :Resolution
+
+        def initialize(inputtokensabove=nil, resolution=nil)
+          @InputTokensAbove = inputtokensabove
+          @Resolution = resolution
+        end
+
+        def deserialize(params)
+          @InputTokensAbove = params['InputTokensAbove']
+          @Resolution = params['Resolution']
         end
       end
 
@@ -5887,13 +5973,13 @@ module TencentCloud
 
       # DescribeModelAliases请求参数结构体
       class DescribeModelAliasesRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: <p>过滤条件</p><p>支持的过滤键：</p><ul><li>ModelAliasName：按模型别名过滤。</li></ul>
+        # @param Filters: <p>过滤条件</p><p></p>- ModelAliasName：模型别名<p></p><p></p>- Capability：输出模态<p></p>
         # @type Filters: Array
         # @param Limit: <p>每页数量，取值范围：[1, 100]，默认值：20。</p>
         # @type Limit: Integer
         # @param Offset: <p>分页偏移量，默认值：0。</p>
         # @type Offset: Integer
-        # @param Sort: <p>排序条件。支持按 InputCoefficient、InputCachedCoefficient 或 OutputCoefficient 排序，Order 支持 ASC、DESC。不传或传空数组时，默认按 OutputCoefficient 降序排列。最多支持 3 个排序条件，排序字段不可重复。</p>
+        # @param Sort: <p>排序条件。支持按 InputCoefficient 或 OutputCoefficient 排序，Order 支持 ASC、DESC。不传或传空数组时，默认按 OutputCoefficient 降序排列。最多支持 2 个排序条件，排序字段不可重复。</p>
         # @type Sort: Array
 
         attr_accessor :Filters, :Limit, :Offset, :Sort
@@ -9895,18 +9981,24 @@ module TencentCloud
         # @type Source: String
         # @param Status: <p>状态</p><p>枚举值：</p><ul><li>Active： 正常可用</li><li>Configuring： 变配中</li><li>ConfigureFailed： 变配失败</li></ul>
         # @type Status: String
-        # @param Capability: <p>模型能力</p>
+        # @param Capability: <p>模型输出模态</p><p>枚举值：</p><ul><li>chat ： 文本</li><li>embedding： 向量</li><li>rerank： 重排序</li><li>video： 视频</li></ul>
         # @type Capability: String
+        # @param CoefficientTiers: <p>分级积分系数配置</p>
+        # @type CoefficientTiers: Array
+        # @param CoefficientSchedule: <p>峰谷积分系数配置</p>
+        # @type CoefficientSchedule: Array
 
-        attr_accessor :Coefficient, :ModelAliasName, :ServiceProviderCoefficientSet, :Source, :Status, :Capability
+        attr_accessor :Coefficient, :ModelAliasName, :ServiceProviderCoefficientSet, :Source, :Status, :Capability, :CoefficientTiers, :CoefficientSchedule
 
-        def initialize(coefficient=nil, modelaliasname=nil, serviceprovidercoefficientset=nil, source=nil, status=nil, capability=nil)
+        def initialize(coefficient=nil, modelaliasname=nil, serviceprovidercoefficientset=nil, source=nil, status=nil, capability=nil, coefficienttiers=nil, coefficientschedule=nil)
           @Coefficient = coefficient
           @ModelAliasName = modelaliasname
           @ServiceProviderCoefficientSet = serviceprovidercoefficientset
           @Source = source
           @Status = status
           @Capability = capability
+          @CoefficientTiers = coefficienttiers
+          @CoefficientSchedule = coefficientschedule
         end
 
         def deserialize(params)
@@ -9926,6 +10018,22 @@ module TencentCloud
           @Source = params['Source']
           @Status = params['Status']
           @Capability = params['Capability']
+          unless params['CoefficientTiers'].nil?
+            @CoefficientTiers = []
+            params['CoefficientTiers'].each do |i|
+              coefficienttier_tmp = CoefficientTier.new
+              coefficienttier_tmp.deserialize(i)
+              @CoefficientTiers << coefficienttier_tmp
+            end
+          end
+          unless params['CoefficientSchedule'].nil?
+            @CoefficientSchedule = []
+            params['CoefficientSchedule'].each do |i|
+              coefficientschedulerule_tmp = CoefficientScheduleRule.new
+              coefficientschedulerule_tmp.deserialize(i)
+              @CoefficientSchedule << coefficientschedulerule_tmp
+            end
+          end
         end
       end
 
@@ -11686,32 +11794,54 @@ module TencentCloud
 
       # ModifyModelAliasAttributes请求参数结构体
       class ModifyModelAliasAttributesRequest < TencentCloud::Common::AbstractModel
-        # @param Coefficient: <p>模型积分系数配置。</p><p>必填，包含 <code>InputCoefficient</code> 和 <code>OutputCoefficient</code>。</p><p><code>InputCoefficient</code> 为输入积分系数。</p><p><code>OutputCoefficient</code> 为输出积分系数。</p><p>取值范围：[1, 200]，最多支持 1 位小数。</p>
-        # @type Coefficient: :class:`Tencentcloud::Clb.v20180317.models.Coefficient`
         # @param ModelAliasNames: <p>模型别名</p>
         # @type ModelAliasNames: Array
+        # @param Coefficient: <p>基础积分系数配置，选填。不传时保留原配置。各系数字段均为选填，取值范围为 [0, 5000]，最多支持 6 位小数，0 表示零价。传入本参数时，至少填写一项有效系数，不能传空对象。</p>
+        # @type Coefficient: :class:`Tencentcloud::Clb.v20180317.models.Coefficient`
         # @param ServiceProviderIds: <p>BYOK 实例（ServiceProvider）ID 列表。</p><p>可选，数组。传入时按 ServiceProvider 维度修改：把同一份 Coefficient 批量应用到数组内每一个实例（覆盖配置，仅作用于这些实例），此时 <code>ModelAliasNames</code> 只能传 1 个别名（即 1 别名 × N ServiceProvider）；数组需去重、非空、上限 100，任一实例不归属/不存在/该实例下无该别名将整批返回错误。不传时按 ModelAlias（账号）维度修改，作用于该别名下未单独配置覆盖的全部实例。</p>
         # @type ServiceProviderIds: Array
-        # @param Capability: <p>模型能力</p>
+        # @param Capability: <p>模型输出模态</p><p>枚举值：</p><ul><li>chat： 文本</li><li>embedding： 向量</li><li>video： 视频</li><li>rerank： 重排序</li></ul>
         # @type Capability: String
+        # @param CoefficientTiers: <p>积分梯度设置</p>
+        # @type CoefficientTiers: Array
+        # @param CoefficientSchedule: <p>积分峰谷设置</p>
+        # @type CoefficientSchedule: Array
 
-        attr_accessor :Coefficient, :ModelAliasNames, :ServiceProviderIds, :Capability
+        attr_accessor :ModelAliasNames, :Coefficient, :ServiceProviderIds, :Capability, :CoefficientTiers, :CoefficientSchedule
 
-        def initialize(coefficient=nil, modelaliasnames=nil, serviceproviderids=nil, capability=nil)
-          @Coefficient = coefficient
+        def initialize(modelaliasnames=nil, coefficient=nil, serviceproviderids=nil, capability=nil, coefficienttiers=nil, coefficientschedule=nil)
           @ModelAliasNames = modelaliasnames
+          @Coefficient = coefficient
           @ServiceProviderIds = serviceproviderids
           @Capability = capability
+          @CoefficientTiers = coefficienttiers
+          @CoefficientSchedule = coefficientschedule
         end
 
         def deserialize(params)
+          @ModelAliasNames = params['ModelAliasNames']
           unless params['Coefficient'].nil?
             @Coefficient = Coefficient.new
             @Coefficient.deserialize(params['Coefficient'])
           end
-          @ModelAliasNames = params['ModelAliasNames']
           @ServiceProviderIds = params['ServiceProviderIds']
           @Capability = params['Capability']
+          unless params['CoefficientTiers'].nil?
+            @CoefficientTiers = []
+            params['CoefficientTiers'].each do |i|
+              coefficienttier_tmp = CoefficientTier.new
+              coefficienttier_tmp.deserialize(i)
+              @CoefficientTiers << coefficienttier_tmp
+            end
+          end
+          unless params['CoefficientSchedule'].nil?
+            @CoefficientSchedule = []
+            params['CoefficientSchedule'].each do |i|
+              coefficientschedulerule_tmp = CoefficientScheduleRule.new
+              coefficientschedulerule_tmp.deserialize(i)
+              @CoefficientSchedule << coefficientschedulerule_tmp
+            end
+          end
         end
       end
 
@@ -13931,13 +14061,19 @@ module TencentCloud
         # @type ServiceProviderId: String
         # @param ServiceProviderName: <p>BYOK 实例（ServiceProvider）名称。</p>
         # @type ServiceProviderName: String
+        # @param CoefficientTiers: <p>分级积分系数设置</p>
+        # @type CoefficientTiers: Array
+        # @param CoefficientSchedule: <p>峰谷积分系数设置</p>
+        # @type CoefficientSchedule: Array
 
-        attr_accessor :Coefficient, :ServiceProviderId, :ServiceProviderName
+        attr_accessor :Coefficient, :ServiceProviderId, :ServiceProviderName, :CoefficientTiers, :CoefficientSchedule
 
-        def initialize(coefficient=nil, serviceproviderid=nil, serviceprovidername=nil)
+        def initialize(coefficient=nil, serviceproviderid=nil, serviceprovidername=nil, coefficienttiers=nil, coefficientschedule=nil)
           @Coefficient = coefficient
           @ServiceProviderId = serviceproviderid
           @ServiceProviderName = serviceprovidername
+          @CoefficientTiers = coefficienttiers
+          @CoefficientSchedule = coefficientschedule
         end
 
         def deserialize(params)
@@ -13947,6 +14083,22 @@ module TencentCloud
           end
           @ServiceProviderId = params['ServiceProviderId']
           @ServiceProviderName = params['ServiceProviderName']
+          unless params['CoefficientTiers'].nil?
+            @CoefficientTiers = []
+            params['CoefficientTiers'].each do |i|
+              coefficienttier_tmp = CoefficientTier.new
+              coefficienttier_tmp.deserialize(i)
+              @CoefficientTiers << coefficienttier_tmp
+            end
+          end
+          unless params['CoefficientSchedule'].nil?
+            @CoefficientSchedule = []
+            params['CoefficientSchedule'].each do |i|
+              coefficientschedulerule_tmp = CoefficientScheduleRule.new
+              coefficientschedulerule_tmp.deserialize(i)
+              @CoefficientSchedule << coefficientschedulerule_tmp
+            end
+          end
         end
       end
 

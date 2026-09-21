@@ -413,6 +413,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(GetServicePodLogs)用于查询推理服务Pod日志
+
+        # @param request: Request instance for GetServicePodLogs.
+        # @type request: :class:`Tencentcloud::hai::V20230812::GetServicePodLogsRequest`
+        # @rtype: :class:`Tencentcloud::hai::V20230812::GetServicePodLogsResponse`
+        def GetServicePodLogs(request)
+          body = send_request('GetServicePodLogs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetServicePodLogsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 (InquirePriceRunInstances) 用于实例询价。
 
         # @param request: Request instance for InquirePriceRunInstances.
