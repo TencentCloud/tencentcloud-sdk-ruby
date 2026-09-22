@@ -503,10 +503,14 @@ module TencentCloud
         # @type Description: String
         # @param UsePlatformAccount: <p>企业版是否使用平台大账号模式发货</p>
         # @type UsePlatformAccount: Boolean
+        # @param DeploymentFree: <p>是否是免部署实例</p>
+        # @type DeploymentFree: Boolean
+        # @param EnableMemory: <p>是否支持记忆</p>
+        # @type EnableMemory: Boolean
 
-        attr_accessor :AgentId, :AgentVersion, :InstanceName, :Parameters, :Tags, :InstanceType, :TemplateId, :Skills, :SoulId, :Description, :UsePlatformAccount
+        attr_accessor :AgentId, :AgentVersion, :InstanceName, :Parameters, :Tags, :InstanceType, :TemplateId, :Skills, :SoulId, :Description, :UsePlatformAccount, :DeploymentFree, :EnableMemory
 
-        def initialize(agentid=nil, agentversion=nil, instancename=nil, parameters=nil, tags=nil, instancetype=nil, templateid=nil, skills=nil, soulid=nil, description=nil, useplatformaccount=nil)
+        def initialize(agentid=nil, agentversion=nil, instancename=nil, parameters=nil, tags=nil, instancetype=nil, templateid=nil, skills=nil, soulid=nil, description=nil, useplatformaccount=nil, deploymentfree=nil, enablememory=nil)
           @AgentId = agentid
           @AgentVersion = agentversion
           @InstanceName = instancename
@@ -518,6 +522,8 @@ module TencentCloud
           @SoulId = soulid
           @Description = description
           @UsePlatformAccount = useplatformaccount
+          @DeploymentFree = deploymentfree
+          @EnableMemory = enablememory
         end
 
         def deserialize(params)
@@ -546,6 +552,8 @@ module TencentCloud
           @SoulId = params['SoulId']
           @Description = params['Description']
           @UsePlatformAccount = params['UsePlatformAccount']
+          @DeploymentFree = params['DeploymentFree']
+          @EnableMemory = params['EnableMemory']
         end
       end
 

@@ -1212,27 +1212,44 @@ module TencentCloud
 
       # GetServicePodLogs请求参数结构体
       class GetServicePodLogsRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceId: <p>服务Id</p>
+        # @type ServiceId: String
+        # @param PodName: <p>Pod名称</p>
+        # @type PodName: String
+        # @param TailLines: <p>日志行数</p>
+        # @type TailLines: String
 
+        attr_accessor :ServiceId, :PodName, :TailLines
 
-        def initialize()
+        def initialize(serviceid=nil, podname=nil, taillines=nil)
+          @ServiceId = serviceid
+          @PodName = podname
+          @TailLines = taillines
         end
 
         def deserialize(params)
+          @ServiceId = params['ServiceId']
+          @PodName = params['PodName']
+          @TailLines = params['TailLines']
         end
       end
 
       # GetServicePodLogs返回参数结构体
       class GetServicePodLogsResponse < TencentCloud::Common::AbstractModel
+        # @param LogLines: <p>日志内容</p>
+        # @type LogLines: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :LogLines, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(loglines=nil, requestid=nil)
+          @LogLines = loglines
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @LogLines = params['LogLines']
           @RequestId = params['RequestId']
         end
       end

@@ -363,6 +363,37 @@ module TencentCloud
         end
       end
 
+      # 账号保护配置。
+      class AccountProtectionSettings < TencentCloud::Common::AbstractModel
+        # @param Enabled: <p>账号保护功能开关。</p><p>枚举值：</p><ul><li>on： 开启；</li><li>off： 关闭。</li></ul><p>默认值：off。</p>
+        # @type Enabled: String
+        # @param RequestPurpose: <p>请求目的。用于标识请求所属的业务操作场景。</p> <p>枚举值：</p> <ul> <li>ACCOUNT.CHANGE_PASSWORD：在已知原密码的情况下修改密码的请求；</li> <li>ACCOUNT.CHANGE_SECURITY_QUESTION：修改账号安全问题的请求；</li> <li>ACCOUNT.CHECK_EXISTENCE：校验账号是否已存在的请求，常见于登录或注册页面输入邮箱、手机号后的预校验；</li> <li>ACCOUNT.LOGIN：登录账号的请求；</li> <li>ACCOUNT.REGISTER：注册新账号的请求；</li> <li>ACCOUNT.RESET_PASSWORD：重置密码的请求，通常通过邮箱或短信验证身份后设置新密码；</li> <li>ACCOUNT.UPDATE：修改账号关联信息的请求，例如手机号、邮箱、支付卡号、收货地址等；</li> <li>ASSET.CHECK_GIFTCARD_BALANCE：通过卡号等信息查询礼品卡余额的请求；</li> <li>ASSET.CHECK_LOYALTY_POINTS：查询账号积分余额的请求；</li> <li>ASSET.REDEEM_CODE：使用兑换码兑换权益的请求；</li> <li>BROWSE.QUERY：站内搜索商品或服务的请求；</li> <li>PAYMENT.ADD_TO_CART：将商品加入购物车的请求；</li> <li>PAYMENT.GET_METHODS：获取账号已绑定支付方式列表的请求；</li> <li>PAYMENT.MAKE_PAYMENT：提交支付、结算或转账的请求。</li> </ul>
+        # @type RequestPurpose: String
+        # @param UserIDSource: <p>用户标识在请求来源中的位置，其中 key 替换为实际的参数名称。</p><p>取值有：</p><ul><li>http.request.cookies["key"]：从 Cookie 中获取名称为 key 的 Cookie 值；</li><li>http.request.headers["key"]：从请求头中获取名称为 key 的头部值；</li><li>http.request.uri.args["key"]：从 URL 查询参数中获取名称为 key 的参数值。</li></ul>
+        # @type UserIDSource: String
+        # @param UserRiskProfile: <p>用户风险等级配置。</p>
+        # @type UserRiskProfile: :class:`Tencentcloud::Teo.v20220901.models.UserRiskProfile`
+
+        attr_accessor :Enabled, :RequestPurpose, :UserIDSource, :UserRiskProfile
+
+        def initialize(enabled=nil, requestpurpose=nil, useridsource=nil, userriskprofile=nil)
+          @Enabled = enabled
+          @RequestPurpose = requestpurpose
+          @UserIDSource = useridsource
+          @UserRiskProfile = userriskprofile
+        end
+
+        def deserialize(params)
+          @Enabled = params['Enabled']
+          @RequestPurpose = params['RequestPurpose']
+          @UserIDSource = params['UserIDSource']
+          unless params['UserRiskProfile'].nil?
+            @UserRiskProfile = UserRiskProfile.new
+            @UserRiskProfile.deserialize(params['UserRiskProfile'])
+          end
+        end
+      end
+
       # 精准防护条件
       class AclCondition < TencentCloud::Common::AbstractModel
         # @param MatchFrom: 匹配字段，取值有：
@@ -3027,34 +3058,37 @@ module TencentCloud
 
       # 客户端认证规则
       class ClientAttestationRule < TencentCloud::Common::AbstractModel
-        # @param Id: 客户端认证规则的 ID。<br>通过规则 ID 可支持不同的规则配置操作：<br> <li> <b>增加</b>新规则：ID 为空或不指定 ID 参数；</li><li> <b>修改</b>已有规则：指定需要更新/修改的规则 ID；</li><li> <b>删除</b>已有规则：BotManagement 参数中，ClientAttestationRule 列表中未包含的已有规则将被删除。</li>
+        # @param Id: <p>客户端认证规则的 ID。<br>通过规则 ID 可支持不同的规则配置操作：<br> <li> <b>增加</b>新规则：ID 为空或不指定 ID 参数；</li><li> <b>修改</b>已有规则：指定需要更新/修改的规则 ID；</li><li> <b>删除</b>已有规则：BotManagement 参数中，ClientAttestationRule 列表中未包含的已有规则将被删除。</li></p>
         # @type Id: String
-        # @param Name: 客户端认证规则的名称。
+        # @param Name: <p>客户端认证规则的名称。</p>
         # @type Name: String
-        # @param Enabled: 规则是否开启。取值有：<li>on：开启；</li><li>off：关闭。</li>
+        # @param Enabled: <p>规则是否开启。取值有：<li>on：开启；</li><li>off：关闭。</li></p>
         # @type Enabled: String
-        # @param Priority: 规则的优先级，数值越小越优先执行，范围是 0 ~ 100，默认为 0。
+        # @param Priority: <p>规则的优先级，数值越小越优先执行，范围是 0 ~ 100，默认为 0。</p>
         # @type Priority: Integer
-        # @param Condition: 规则的具体内容，需符合表达式语法，详细规范参见产品文档。
+        # @param Condition: <p>规则的具体内容，需符合表达式语法，详细规范参见产品文档。</p>
         # @type Condition: String
-        # @param AttesterId: 客户端认证选项 ID。
+        # @param AttesterId: <p>客户端认证选项 ID。</p>
         # @type AttesterId: String
-        # @param DeviceProfiles: 客户端设备配置。若 ClientAttestationRules 参数中，未指定 DeviceProfiles 参数值：保持已有客户端设备配置，不做修改。
-        # @type DeviceProfiles: Array
-        # @param InvalidAttestationAction: 客户端认证未通过的处置方式。SecurityAction 的 Name 取值支持：<li>Deny：拦截；</li><li>Monitor：观察；</li><li>Redirect：重定向；</li><li>Challenge：挑战。</li>默认值为 Monitor。
+        # @param InvalidAttestationAction: <p>客户端认证未通过的处置方式。SecurityAction.Name 取值范围如下：</p><ul><li>Allow：放行，其中 AllowActionParameters 支持 MinDelayTime 和 MaxDelayTime 配置；</li><li>Deny：拦截，其中 DenyActionParameters 中支持 BlockIp、ReturnCustomPage 和 Stall 配置；</li><li>Monitor：观察；</li><li>Challenge：挑战，其中 ChallengeActionParameters.ChallengeOption 支持 JSChallenge、ManagedChallenge、InterstitialChallenge 和 InlineChallenge；</li><li>Redirect：重定向至URL。</li></ul>
         # @type InvalidAttestationAction: :class:`Tencentcloud::Teo.v20220901.models.SecurityAction`
+        # @param DeviceProfiles: <p>客户端设备配置。若 ClientAttestationRules 参数中，未指定 DeviceProfiles 参数值：保持已有客户端设备配置，不做修改。</p>
+        # @type DeviceProfiles: Array
+        # @param AccountProtectionSettings: <p>账号保护配置。</p>
+        # @type AccountProtectionSettings: :class:`Tencentcloud::Teo.v20220901.models.AccountProtectionSettings`
 
-        attr_accessor :Id, :Name, :Enabled, :Priority, :Condition, :AttesterId, :DeviceProfiles, :InvalidAttestationAction
+        attr_accessor :Id, :Name, :Enabled, :Priority, :Condition, :AttesterId, :InvalidAttestationAction, :DeviceProfiles, :AccountProtectionSettings
 
-        def initialize(id=nil, name=nil, enabled=nil, priority=nil, condition=nil, attesterid=nil, deviceprofiles=nil, invalidattestationaction=nil)
+        def initialize(id=nil, name=nil, enabled=nil, priority=nil, condition=nil, attesterid=nil, invalidattestationaction=nil, deviceprofiles=nil, accountprotectionsettings=nil)
           @Id = id
           @Name = name
           @Enabled = enabled
           @Priority = priority
           @Condition = condition
           @AttesterId = attesterid
-          @DeviceProfiles = deviceprofiles
           @InvalidAttestationAction = invalidattestationaction
+          @DeviceProfiles = deviceprofiles
+          @AccountProtectionSettings = accountprotectionsettings
         end
 
         def deserialize(params)
@@ -3064,6 +3098,10 @@ module TencentCloud
           @Priority = params['Priority']
           @Condition = params['Condition']
           @AttesterId = params['AttesterId']
+          unless params['InvalidAttestationAction'].nil?
+            @InvalidAttestationAction = SecurityAction.new
+            @InvalidAttestationAction.deserialize(params['InvalidAttestationAction'])
+          end
           unless params['DeviceProfiles'].nil?
             @DeviceProfiles = []
             params['DeviceProfiles'].each do |i|
@@ -3072,9 +3110,9 @@ module TencentCloud
               @DeviceProfiles << deviceprofile_tmp
             end
           end
-          unless params['InvalidAttestationAction'].nil?
-            @InvalidAttestationAction = SecurityAction.new
-            @InvalidAttestationAction.deserialize(params['InvalidAttestationAction'])
+          unless params['AccountProtectionSettings'].nil?
+            @AccountProtectionSettings = AccountProtectionSettings.new
+            @AccountProtectionSettings.deserialize(params['AccountProtectionSettings'])
           end
         end
       end
@@ -14085,15 +14123,15 @@ module TencentCloud
 
       # 客户端设备配置
       class DeviceProfile < TencentCloud::Common::AbstractModel
-        # @param ClientType: 客户端设备类型。取值有：<li>iOS；</li><li>Android；</li><li>WebView；</li><li>WeChatMiniProgram。</li>
+        # @param ClientType: <p>客户端设备类型。取值有：<li>iOS；</li><li>Android；</li><li>WebView；</li><li>WeChatMiniProgram。</li></p>
         # @type ClientType: String
-        # @param HighRiskMinScore: 判定请求为高风险的最低值，取值范围为 1～99。数值越大请求风险越高越接近 Bot 客户端发起的请求。默认值为 50，对应含义 51～100 为高风险。
+        # @param HighRiskMinScore: <p>高风险请求的最低风险分数。分数大于等于该值时，判定为高风险。</p><p>取值范围：[2, 99]</p><p>默认值：50</p>
         # @type HighRiskMinScore: Integer
-        # @param HighRiskRequestAction: 高风险请求的处置方式。SecurityAction 的 Name 取值支持：<li>Deny：拦截；</li><li>Monitor：观察；</li><li>Redirect：重定向；</li><li>Challenge：挑战。</li>默认值为 Monitor。
+        # @param HighRiskRequestAction: <p>高风险请求的处置方式。SecurityAction 的 Name 取值支持：<li>Deny：拦截；</li><li>Monitor：观察；</li><li>Redirect：重定向；</li><li>Challenge：挑战。</li>默认值为 Monitor。</p>
         # @type HighRiskRequestAction: :class:`Tencentcloud::Teo.v20220901.models.SecurityAction`
-        # @param MediumRiskMinScore: 判定请求为中风险的最低值，取值范围为 1～99。数值越大请求风险越高越接近 Bot 客户端发起的请求。默认值为 15，对应含义 16～50 为中风险。
+        # @param MediumRiskMinScore: <p>中风险请求的最低风险分数。分数大于等于该值且小于 HighRiskMinScore 时，判定为中风险；低于该值时，判定为低风险。</p><p>取值范围：[1, 98]</p><p>默认值：15</p>
         # @type MediumRiskMinScore: Integer
-        # @param MediumRiskRequestAction: 中风险请求的处置方式。SecurityAction 的 Name 取值支持：<li>Deny：拦截；</li><li>Monitor：观察；</li><li>Redirect：重定向；</li><li>Challenge：挑战。</li>默认值为 Monitor。
+        # @param MediumRiskRequestAction: <p>中风险请求的处置方式。SecurityAction 的 Name 取值支持：<li>Deny：拦截；</li><li>Monitor：观察；</li><li>Redirect：重定向；</li><li>Challenge：挑战。</li>默认值为 Monitor。</p>
         # @type MediumRiskRequestAction: :class:`Tencentcloud::Teo.v20220901.models.SecurityAction`
 
         attr_accessor :ClientType, :HighRiskMinScore, :HighRiskRequestAction, :MediumRiskMinScore, :MediumRiskRequestAction
@@ -25771,28 +25809,54 @@ module TencentCloud
         end
       end
 
+      # 回源请求携带安全头部配置，配置生效后将携带对应 keyname 的请求头部回源。
+      class SecurityHeadersToOrigin < TencentCloud::Common::AbstractModel
+        # @param BotIdentificationHeaders: <p>Bot 标识信息回源头部配置。</p><p>枚举值：</p><ul><li>EO-Bot-Botnet-ID： 基于 Bot 请求特征生成的识别标识。</li></ul>
+        # @type BotIdentificationHeaders: Array
+        # @param BotManagementHeaders: <p>高级 Bot 管理模块识别结果回源头部配置。</p><p>枚举值：</p><ul><li>EO-Bot-Client-Attestation： 高级 Bot 管理 - 客户端认证模块认证票据校验结果；</li><li>EO-Bot-Client-Risk： 高级 Bot 管理 - 客户端认证模块设备风险评估结果；</li><li>EO-Bot-Intelligence： 高级 Bot 管理 - Bot 智能分析模块识别结果；</li><li>EO-Bot-IP-Reputation： 高级 Bot 管理 - 客户端画像分析识别结果；</li><li>EO-Bot-Known-Tool： 高级 Bot 管理 - 基础特征管理 - UA 特征规则模块识别结果；</li><li>EO-Bot-Search-Engine： 高级 Bot 管理 - 基础特征管理 - 搜索引擎规则模块识别结果；</li><li>EO-Bot-Source-IDC： 高级 Bot 管理 - 基础特征管理 - IDC 规则模块识别结果；</li><li>EO-Bot-User-Risk： 高级 Bot 管理 - 客户端认证模块账号风险评估结果。</li></ul>
+        # @type BotManagementHeaders: Array
+        # @param ClientFingerprintHeaders: <p>客户端指纹信息回源头部配置。</p><p>枚举值：</p><ul><li>EO-Bot-Fingerprint： 客户端指纹信息。</li></ul>
+        # @type ClientFingerprintHeaders: Array
+
+        attr_accessor :BotIdentificationHeaders, :BotManagementHeaders, :ClientFingerprintHeaders
+
+        def initialize(botidentificationheaders=nil, botmanagementheaders=nil, clientfingerprintheaders=nil)
+          @BotIdentificationHeaders = botidentificationheaders
+          @BotManagementHeaders = botmanagementheaders
+          @ClientFingerprintHeaders = clientfingerprintheaders
+        end
+
+        def deserialize(params)
+          @BotIdentificationHeaders = params['BotIdentificationHeaders']
+          @BotManagementHeaders = params['BotManagementHeaders']
+          @ClientFingerprintHeaders = params['ClientFingerprintHeaders']
+        end
+      end
+
       # 安全策略配置
       class SecurityPolicy < TencentCloud::Common::AbstractModel
-        # @param CustomRules: 自定义规则配置。
+        # @param CustomRules: <p>自定义规则配置。</p>
         # @type CustomRules: :class:`Tencentcloud::Teo.v20220901.models.CustomRules`
-        # @param ManagedRules: 托管规则配置。
+        # @param ManagedRules: <p>托管规则配置。</p>
         # @type ManagedRules: :class:`Tencentcloud::Teo.v20220901.models.ManagedRules`
-        # @param HttpDDoSProtection: HTTP DDOS 防护配置。
+        # @param HttpDDoSProtection: <p>HTTP DDOS 防护配置。</p>
         # @type HttpDDoSProtection: :class:`Tencentcloud::Teo.v20220901.models.HttpDDoSProtection`
-        # @param RateLimitingRules: 速率限制规则配置。
+        # @param RateLimitingRules: <p>速率限制规则配置。</p>
         # @type RateLimitingRules: :class:`Tencentcloud::Teo.v20220901.models.RateLimitingRules`
-        # @param ExceptionRules: 例外规则配置。
+        # @param ExceptionRules: <p>例外规则配置。</p>
         # @type ExceptionRules: :class:`Tencentcloud::Teo.v20220901.models.ExceptionRules`
-        # @param BotManagement: Bot 管理配置。
+        # @param BotManagement: <p>Bot 管理配置。</p>
         # @type BotManagement: :class:`Tencentcloud::Teo.v20220901.models.BotManagement`
-        # @param BotManagementLite: 基础 Bot 管理配置。
+        # @param BotManagementLite: <p>基础 Bot 管理配置。</p>
         # @type BotManagementLite: :class:`Tencentcloud::Teo.v20220901.models.BotManagementLite`
-        # @param DefaultDenySecurityActionParameters: 默认拦截动作配置。
+        # @param DefaultDenySecurityActionParameters: <p>默认拦截动作配置。</p>
         # @type DefaultDenySecurityActionParameters: :class:`Tencentcloud::Teo.v20220901.models.DefaultDenySecurityActionParameters`
+        # @param SecurityHeadersToOrigin: <p>回源请求携带安全头部配置，配置生效后将携带对应 keyname 的请求头部回源。</p>
+        # @type SecurityHeadersToOrigin: :class:`Tencentcloud::Teo.v20220901.models.SecurityHeadersToOrigin`
 
-        attr_accessor :CustomRules, :ManagedRules, :HttpDDoSProtection, :RateLimitingRules, :ExceptionRules, :BotManagement, :BotManagementLite, :DefaultDenySecurityActionParameters
+        attr_accessor :CustomRules, :ManagedRules, :HttpDDoSProtection, :RateLimitingRules, :ExceptionRules, :BotManagement, :BotManagementLite, :DefaultDenySecurityActionParameters, :SecurityHeadersToOrigin
 
-        def initialize(customrules=nil, managedrules=nil, httpddosprotection=nil, ratelimitingrules=nil, exceptionrules=nil, botmanagement=nil, botmanagementlite=nil, defaultdenysecurityactionparameters=nil)
+        def initialize(customrules=nil, managedrules=nil, httpddosprotection=nil, ratelimitingrules=nil, exceptionrules=nil, botmanagement=nil, botmanagementlite=nil, defaultdenysecurityactionparameters=nil, securityheaderstoorigin=nil)
           @CustomRules = customrules
           @ManagedRules = managedrules
           @HttpDDoSProtection = httpddosprotection
@@ -25801,6 +25865,7 @@ module TencentCloud
           @BotManagement = botmanagement
           @BotManagementLite = botmanagementlite
           @DefaultDenySecurityActionParameters = defaultdenysecurityactionparameters
+          @SecurityHeadersToOrigin = securityheaderstoorigin
         end
 
         def deserialize(params)
@@ -25835,6 +25900,10 @@ module TencentCloud
           unless params['DefaultDenySecurityActionParameters'].nil?
             @DefaultDenySecurityActionParameters = DefaultDenySecurityActionParameters.new
             @DefaultDenySecurityActionParameters.deserialize(params['DefaultDenySecurityActionParameters'])
+          end
+          unless params['SecurityHeadersToOrigin'].nil?
+            @SecurityHeadersToOrigin = SecurityHeadersToOrigin.new
+            @SecurityHeadersToOrigin.deserialize(params['SecurityHeadersToOrigin'])
           end
         end
       end
@@ -27385,6 +27454,40 @@ module TencentCloud
           @Action = params['Action']
           @Value = params['Value']
           @Regex = params['Regex']
+        end
+      end
+
+      # 用户风险等级配置。风险分数范围为 0～100，分数越高表示风险越高。
+      class UserRiskProfile < TencentCloud::Common::AbstractModel
+        # @param HighRiskMinScore: <p>高风险请求的最低风险分数。分数大于等于该值时，判定为高风险。</p><p>取值范围：[2, 99]</p><p>默认值：50</p>
+        # @type HighRiskMinScore: Integer
+        # @param HighRiskRequestAction: <p>高风险请求的处置方式。SecurityAction 的 Name 取值支持：<li>Deny：拦截；</li><li>Monitor：观察；</li><li>Redirect：重定向；</li><li>Challenge：挑战。</li>默认值：Monitor</p>
+        # @type HighRiskRequestAction: :class:`Tencentcloud::Teo.v20220901.models.SecurityAction`
+        # @param MediumRiskMinScore: <p>中风险请求的最低风险分数。分数大于等于该值且小于 HighRiskMinScore 时，判定为中风险；低于该值时，判定为低风险。</p><p>取值范围：[1, 98]</p><p>默认值：15</p>
+        # @type MediumRiskMinScore: Integer
+        # @param MediumRiskRequestAction: <p>中风险请求的处置方式。SecurityAction 的 Name 取值支持：<li>Deny：拦截；</li><li>Monitor：观察；</li><li>Redirect：重定向；</li><li>Challenge：挑战。</li>默认值：Monitor</p>
+        # @type MediumRiskRequestAction: :class:`Tencentcloud::Teo.v20220901.models.SecurityAction`
+
+        attr_accessor :HighRiskMinScore, :HighRiskRequestAction, :MediumRiskMinScore, :MediumRiskRequestAction
+
+        def initialize(highriskminscore=nil, highriskrequestaction=nil, mediumriskminscore=nil, mediumriskrequestaction=nil)
+          @HighRiskMinScore = highriskminscore
+          @HighRiskRequestAction = highriskrequestaction
+          @MediumRiskMinScore = mediumriskminscore
+          @MediumRiskRequestAction = mediumriskrequestaction
+        end
+
+        def deserialize(params)
+          @HighRiskMinScore = params['HighRiskMinScore']
+          unless params['HighRiskRequestAction'].nil?
+            @HighRiskRequestAction = SecurityAction.new
+            @HighRiskRequestAction.deserialize(params['HighRiskRequestAction'])
+          end
+          @MediumRiskMinScore = params['MediumRiskMinScore']
+          unless params['MediumRiskRequestAction'].nil?
+            @MediumRiskRequestAction = SecurityAction.new
+            @MediumRiskRequestAction.deserialize(params['MediumRiskRequestAction'])
+          end
         end
       end
 

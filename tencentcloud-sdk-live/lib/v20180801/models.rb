@@ -716,6 +716,86 @@ module TencentCloud
         end
       end
 
+      # 审核模板。
+      class AuditTemplate < TencentCloud::Common::AbstractModel
+        # @param TemplateId: <p>模板 ID 。<br>CreateAuditTemplate 时，此参数不传或传 0 。</p><p>ModifyAuditTemplate 时，此参数必传。</p>
+        # @type TemplateId: Integer
+        # @param TemplateName: <p>模板名称。<br>CreateAuditTemplate 必填。</p>
+        # @type TemplateName: String
+        # @param Description: <p>描述信息。<br>CreateAuditTemplate 必填。</p>
+        # @type Description: String
+        # @param CosBucket: <p>Cos Bucket名称。<br>CreateAuditTemplate 必填。</p>
+        # @type CosBucket: String
+        # @param CosRegion: <p>Cos 地域。<br>CreateAuditTemplate 必填。</p>
+        # @type CosRegion: String
+        # @param CosFilePath: <p>Cos 完整文件名（包括前缀）。CreateAuditTemplate 必填。</p>
+        # @type CosFilePath: String
+        # @param AuditImage: <p>是否启用图片审核。<br>CreateAuditTemplate 必填。</p>
+        # @type AuditImage: Boolean
+        # @param AuditAudio: <p>是否启用音频审核。<br>CreateAuditTemplate 必填。</p>
+        # @type AuditAudio: Boolean
+        # @param SnapshotInterval: <p>截图间隔，1-60秒。<br>CreateAuditTemplate 必填。</p>
+        # @type SnapshotInterval: Integer
+        # @param AudioInterval: <p>音频间隔，1-60秒。<br>CreateAuditTemplate 必填。</p>
+        # @type AudioInterval: Integer
+        # @param EnableFailoverCos: <p>是否开启 Cos 容灾。<br>CreateAuditTemplate 必填。</p>
+        # @type EnableFailoverCos: Boolean
+        # @param FailoverCosBucket: <p>容灾 Cos Bucket 。<br>CreateAuditTemplate 必填。</p>
+        # @type FailoverCosBucket: String
+        # @param FailoverCosRegion: <p>容灾 Cos 地域。<br>CreateAuditTemplate 必填。</p>
+        # @type FailoverCosRegion: String
+        # @param SceneInfos: <p>场景策略配置信息。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SceneInfos: Array
+        # @param AuditText: <p>1：表示启用音频文本识别。0 ：不启用。默认 0 。</p>
+        # @type AuditText: Integer
+
+        attr_accessor :TemplateId, :TemplateName, :Description, :CosBucket, :CosRegion, :CosFilePath, :AuditImage, :AuditAudio, :SnapshotInterval, :AudioInterval, :EnableFailoverCos, :FailoverCosBucket, :FailoverCosRegion, :SceneInfos, :AuditText
+
+        def initialize(templateid=nil, templatename=nil, description=nil, cosbucket=nil, cosregion=nil, cosfilepath=nil, auditimage=nil, auditaudio=nil, snapshotinterval=nil, audiointerval=nil, enablefailovercos=nil, failovercosbucket=nil, failovercosregion=nil, sceneinfos=nil, audittext=nil)
+          @TemplateId = templateid
+          @TemplateName = templatename
+          @Description = description
+          @CosBucket = cosbucket
+          @CosRegion = cosregion
+          @CosFilePath = cosfilepath
+          @AuditImage = auditimage
+          @AuditAudio = auditaudio
+          @SnapshotInterval = snapshotinterval
+          @AudioInterval = audiointerval
+          @EnableFailoverCos = enablefailovercos
+          @FailoverCosBucket = failovercosbucket
+          @FailoverCosRegion = failovercosregion
+          @SceneInfos = sceneinfos
+          @AuditText = audittext
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          @TemplateName = params['TemplateName']
+          @Description = params['Description']
+          @CosBucket = params['CosBucket']
+          @CosRegion = params['CosRegion']
+          @CosFilePath = params['CosFilePath']
+          @AuditImage = params['AuditImage']
+          @AuditAudio = params['AuditAudio']
+          @SnapshotInterval = params['SnapshotInterval']
+          @AudioInterval = params['AudioInterval']
+          @EnableFailoverCos = params['EnableFailoverCos']
+          @FailoverCosBucket = params['FailoverCosBucket']
+          @FailoverCosRegion = params['FailoverCosRegion']
+          unless params['SceneInfos'].nil?
+            @SceneInfos = []
+            params['SceneInfos'].each do |i|
+              cmsscenedetail_tmp = CMSSceneDetail.new
+              cmsscenedetail_tmp.deserialize(i)
+              @SceneInfos << cmsscenedetail_tmp
+            end
+          end
+          @AuditText = params['AuditText']
+        end
+      end
+
       # AuthenticateDomainOwner请求参数结构体
       class AuthenticateDomainOwnerRequest < TencentCloud::Common::AbstractModel
         # @param DomainName: 要验证的域名。
@@ -1304,6 +1384,65 @@ module TencentCloud
           @Bandwidth = params['Bandwidth']
           @Flux = params['Flux']
           @PeakTime = params['PeakTime']
+        end
+      end
+
+      # 天御内容安全 策略基本信息。
+      class CMSBizInfo < TencentCloud::Common::AbstractModel
+        # @param StrategyType: <p>策略类型，可选值：<br>Text：文本ShortAudio：音频<br>Image:<br>图片。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StrategyType: String
+        # @param BizType: <p>策略标识（自动生成）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BizType: String
+        # @param Status: <p>策略开通状态。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Boolean
+        # @param StrategyConfig: <p>策略配置。<br>json字符串。</p><p>具体取值方式如下：举例：色情：&quot;{"ability":{"asr_text":true,"audio":true},"asr_text_labels":{"porn":["OVR","Pornography","PornographyObscene"]},"audio_labels":{},"user_text_libs":["320fb40e-9305-4b00-a191-945c219b5cc0"]}&quot;    可选项： {     value: &#39;OVR&#39;,     text: t(&#39;低俗语音识别&#39;),     msg: t(&#39;示例：呻吟、娇喘、娇喘等性暗示相关的语音&#39;),   },   {     value: &#39;Pornography&#39;,     text: t(&#39;严重色情&#39;),     msg: t(&#39;性行为、性器官等相关描述&#39;),   },   {     value: &#39;PornographyObscene&#39;,     text: t(&#39;色情低俗&#39;),     msg: t(&#39;低俗行为、性暗示等相关描述&#39;),   }</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StrategyConfig: String
+
+        attr_accessor :StrategyType, :BizType, :Status, :StrategyConfig
+
+        def initialize(strategytype=nil, biztype=nil, status=nil, strategyconfig=nil)
+          @StrategyType = strategytype
+          @BizType = biztype
+          @Status = status
+          @StrategyConfig = strategyconfig
+        end
+
+        def deserialize(params)
+          @StrategyType = params['StrategyType']
+          @BizType = params['BizType']
+          @Status = params['Status']
+          @StrategyConfig = params['StrategyConfig']
+        end
+      end
+
+      # 直播审核（内容安全）场景明细。
+      class CMSSceneDetail < TencentCloud::Common::AbstractModel
+        # @param BizInfos: <p>策略信息</p>
+        # @type BizInfos: Array
+        # @param SceneID: <p>SceneID 。</p>
+        # @type SceneID: String
+
+        attr_accessor :BizInfos, :SceneID
+
+        def initialize(bizinfos=nil, sceneid=nil)
+          @BizInfos = bizinfos
+          @SceneID = sceneid
+        end
+
+        def deserialize(params)
+          unless params['BizInfos'].nil?
+            @BizInfos = []
+            params['BizInfos'].each do |i|
+              cmsbizinfo_tmp = CMSBizInfo.new
+              cmsbizinfo_tmp.deserialize(i)
+              @BizInfos << cmsbizinfo_tmp
+            end
+          end
+          @SceneID = params['SceneID']
         end
       end
 
@@ -2817,6 +2956,89 @@ module TencentCloud
         end
       end
 
+      # CreateAuditRule请求参数结构体
+      class CreateAuditRuleRequest < TencentCloud::Common::AbstractModel
+        # @param DomainName: <p>推流域名。</p>
+        # @type DomainName: String
+        # @param AppName: <p>推流路径，与推流和播放地址中的AppName 保持一致。</p>
+        # @type AppName: String
+        # @param TemplateId: <p>审核模板 ID。</p>
+        # @type TemplateId: Integer
+        # @param StreamName: <p>流名称。 不传默认为空。</p>
+        # @type StreamName: String
+
+        attr_accessor :DomainName, :AppName, :TemplateId, :StreamName
+
+        def initialize(domainname=nil, appname=nil, templateid=nil, streamname=nil)
+          @DomainName = domainname
+          @AppName = appname
+          @TemplateId = templateid
+          @StreamName = streamname
+        end
+
+        def deserialize(params)
+          @DomainName = params['DomainName']
+          @AppName = params['AppName']
+          @TemplateId = params['TemplateId']
+          @StreamName = params['StreamName']
+        end
+      end
+
+      # CreateAuditRule返回参数结构体
+      class CreateAuditRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateAuditTemplate请求参数结构体
+      class CreateAuditTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param AuditTemplate: <p>审核模板。</p>
+        # @type AuditTemplate: :class:`Tencentcloud::Live.v20180801.models.AuditTemplate`
+
+        attr_accessor :AuditTemplate
+
+        def initialize(audittemplate=nil)
+          @AuditTemplate = audittemplate
+        end
+
+        def deserialize(params)
+          unless params['AuditTemplate'].nil?
+            @AuditTemplate = AuditTemplate.new
+            @AuditTemplate.deserialize(params['AuditTemplate'])
+          end
+        end
+      end
+
+      # CreateAuditTemplate返回参数结构体
+      class CreateAuditTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param TemplateId: <p>模板 ID 。</p>
+        # @type TemplateId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TemplateId, :RequestId
+
+        def initialize(templateid=nil, requestid=nil)
+          @TemplateId = templateid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateCasterInputPushUrl请求参数结构体
       class CreateCasterInputPushUrlRequest < TencentCloud::Common::AbstractModel
         # @param CasterId: 导播台ID
@@ -4100,6 +4322,82 @@ module TencentCloud
         end
       end
 
+      # CreateLiveSmartEraseTemplate请求参数结构体
+      class CreateLiveSmartEraseTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateName: <p>模板名称。长度上限：100字节。</p>
+        # @type TemplateName: String
+        # @param Type: <p>擦除类型，如&quot;illegal audio|illegal image|logo|privacy protection 。</p>
+        # @type Type: String
+        # @param Description: <p>描述信息。<br>长度上限：1024字节。<br>仅支持中文、英文、数字、_、-。</p>
+        # @type Description: String
+        # @param AuditConfId: <p>关联的审核模板id, 表audio_conf 。</p>
+        # @type AuditConfId: Integer
+        # @param ImageBizType: <p>天御图片审核策略BizType  Image 。</p>
+        # @type ImageBizType: String
+        # @param AudioBizType: <p>天御音频审核策略BizType  ShortAudio 。</p>
+        # @type AudioBizType: String
+        # @param AudioTextBizType: <p>天御音频文本审核策略BizType  ShortAudio 。</p>
+        # @type AudioTextBizType: String
+        # @param DisplayMode: <p>展示模式，取值 1:延时稳态展示; 3.实时动态展示。默认1 。</p>
+        # @type DisplayMode: Integer
+        # @param DisplayDelayTime: <p>字幕延迟展示时间,单位毫秒。默认10000。</p>
+        # @type DisplayDelayTime: Integer
+        # @param PrivacyProtection: <p>隐私保护可选的类型名，包括人脸模糊、车牌模糊</p><p>枚举值：</p><ul><li>blur face： 人脸模糊</li><li>blur license plate： 车牌模糊</li><li>blur face|blur license plate： 复选</li></ul>
+        # @type PrivacyProtection: String
+        # @param AudioErasureMode: <p>音频处理可选项：静音擦除、哔音擦除，默认选择静音擦除</p><p>枚举值：</p><ul><li>0： 静音</li><li>1： 哔音</li></ul><p>默认值：0</p>
+        # @type AudioErasureMode: Integer
+
+        attr_accessor :TemplateName, :Type, :Description, :AuditConfId, :ImageBizType, :AudioBizType, :AudioTextBizType, :DisplayMode, :DisplayDelayTime, :PrivacyProtection, :AudioErasureMode
+
+        def initialize(templatename=nil, type=nil, description=nil, auditconfid=nil, imagebiztype=nil, audiobiztype=nil, audiotextbiztype=nil, displaymode=nil, displaydelaytime=nil, privacyprotection=nil, audioerasuremode=nil)
+          @TemplateName = templatename
+          @Type = type
+          @Description = description
+          @AuditConfId = auditconfid
+          @ImageBizType = imagebiztype
+          @AudioBizType = audiobiztype
+          @AudioTextBizType = audiotextbiztype
+          @DisplayMode = displaymode
+          @DisplayDelayTime = displaydelaytime
+          @PrivacyProtection = privacyprotection
+          @AudioErasureMode = audioerasuremode
+        end
+
+        def deserialize(params)
+          @TemplateName = params['TemplateName']
+          @Type = params['Type']
+          @Description = params['Description']
+          @AuditConfId = params['AuditConfId']
+          @ImageBizType = params['ImageBizType']
+          @AudioBizType = params['AudioBizType']
+          @AudioTextBizType = params['AudioTextBizType']
+          @DisplayMode = params['DisplayMode']
+          @DisplayDelayTime = params['DisplayDelayTime']
+          @PrivacyProtection = params['PrivacyProtection']
+          @AudioErasureMode = params['AudioErasureMode']
+        end
+      end
+
+      # CreateLiveSmartEraseTemplate返回参数结构体
+      class CreateLiveSmartEraseTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param TemplateId: <p>模板Id。</p>
+        # @type TemplateId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TemplateId, :RequestId
+
+        def initialize(templateid=nil, requestid=nil)
+          @TemplateId = templateid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateLiveSnapshotRule请求参数结构体
       class CreateLiveSnapshotRuleRequest < TencentCloud::Common::AbstractModel
         # @param DomainName: 推流域名。
@@ -5263,6 +5561,78 @@ module TencentCloud
               @Infos << auditkeyworddeletedetail_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteAuditRule请求参数结构体
+      class DeleteAuditRuleRequest < TencentCloud::Common::AbstractModel
+        # @param DomainName: <p>推流域名。</p>
+        # @type DomainName: String
+        # @param AppName: <p>推流路径，与推流和播放地址中的AppName保持一致。</p>
+        # @type AppName: String
+        # @param StreamName: <p>流名称 。 不传默认为空。</p>
+        # @type StreamName: String
+
+        attr_accessor :DomainName, :AppName, :StreamName
+
+        def initialize(domainname=nil, appname=nil, streamname=nil)
+          @DomainName = domainname
+          @AppName = appname
+          @StreamName = streamname
+        end
+
+        def deserialize(params)
+          @DomainName = params['DomainName']
+          @AppName = params['AppName']
+          @StreamName = params['StreamName']
+        end
+      end
+
+      # DeleteAuditRule返回参数结构体
+      class DeleteAuditRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteAuditTemplate请求参数结构体
+      class DeleteAuditTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateId: <p>审核模板 ID 。</p>
+        # @type TemplateId: Integer
+
+        attr_accessor :TemplateId
+
+        def initialize(templateid=nil)
+          @TemplateId = templateid
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+        end
+      end
+
+      # DeleteAuditTemplate返回参数结构体
+      class DeleteAuditTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -6734,6 +7104,151 @@ module TencentCloud
               auditkeywordinfo_tmp = AuditKeywordInfo.new
               auditkeywordinfo_tmp.deserialize(i)
               @Infos << auditkeywordinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAuditRules请求参数结构体
+      class DescribeAuditRulesRequest < TencentCloud::Common::AbstractModel
+        # @param DomainName: <p>域名。</p>
+        # @type DomainName: String
+        # @param TemplateId: <p>审核模板 ID 。</p>
+        # @type TemplateId: Integer
+        # @param AppName: <p>AppName 。</p>
+        # @type AppName: String
+        # @param StreamName: <p>流 ID 。</p>
+        # @type StreamName: String
+
+        attr_accessor :DomainName, :TemplateId, :AppName, :StreamName
+
+        def initialize(domainname=nil, templateid=nil, appname=nil, streamname=nil)
+          @DomainName = domainname
+          @TemplateId = templateid
+          @AppName = appname
+          @StreamName = streamname
+        end
+
+        def deserialize(params)
+          @DomainName = params['DomainName']
+          @TemplateId = params['TemplateId']
+          @AppName = params['AppName']
+          @StreamName = params['StreamName']
+        end
+      end
+
+      # DescribeAuditRules返回参数结构体
+      class DescribeAuditRulesResponse < TencentCloud::Common::AbstractModel
+        # @param Rules: <p>规则信息列表。</p>
+        # @type Rules: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Rules, :RequestId
+
+        def initialize(rules=nil, requestid=nil)
+          @Rules = rules
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              ruleinfo_tmp = RuleInfo.new
+              ruleinfo_tmp.deserialize(i)
+              @Rules << ruleinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAuditTemplate请求参数结构体
+      class DescribeAuditTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateId: <p>模板 ID 。</p>
+        # @type TemplateId: Integer
+
+        attr_accessor :TemplateId
+
+        def initialize(templateid=nil)
+          @TemplateId = templateid
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+        end
+      end
+
+      # DescribeAuditTemplate返回参数结构体
+      class DescribeAuditTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param AuditTemplate: <p>审核模板。</p>
+        # @type AuditTemplate: :class:`Tencentcloud::Live.v20180801.models.AuditTemplate`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AuditTemplate, :RequestId
+
+        def initialize(audittemplate=nil, requestid=nil)
+          @AuditTemplate = audittemplate
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['AuditTemplate'].nil?
+            @AuditTemplate = AuditTemplate.new
+            @AuditTemplate.deserialize(params['AuditTemplate'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAuditTemplates请求参数结构体
+      class DescribeAuditTemplatesRequest < TencentCloud::Common::AbstractModel
+        # @param WithTextAudit: <p>是否过滤出文本审核，false不过滤，true过滤。</p>
+        # @type WithTextAudit: Boolean
+        # @param PageNum: <p>页码。</p>
+        # @type PageNum: Integer
+        # @param PageSize: <p>每页数量。</p><p>取值范围：[5, 100]</p>
+        # @type PageSize: Integer
+
+        attr_accessor :WithTextAudit, :PageNum, :PageSize
+
+        def initialize(withtextaudit=nil, pagenum=nil, pagesize=nil)
+          @WithTextAudit = withtextaudit
+          @PageNum = pagenum
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          @WithTextAudit = params['WithTextAudit']
+          @PageNum = params['PageNum']
+          @PageSize = params['PageSize']
+        end
+      end
+
+      # DescribeAuditTemplates返回参数结构体
+      class DescribeAuditTemplatesResponse < TencentCloud::Common::AbstractModel
+        # @param AuditTemplates: <p>审核模板列表。</p>
+        # @type AuditTemplates: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AuditTemplates, :RequestId
+
+        def initialize(audittemplates=nil, requestid=nil)
+          @AuditTemplates = audittemplates
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['AuditTemplates'].nil?
+            @AuditTemplates = []
+            params['AuditTemplates'].each do |i|
+              audittemplate_tmp = AuditTemplate.new
+              audittemplate_tmp.deserialize(i)
+              @AuditTemplates << audittemplate_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -13999,6 +14514,45 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyAuditTemplate请求参数结构体
+      class ModifyAuditTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param AuditTemplate: <p>审核模板。</p>
+        # @type AuditTemplate: :class:`Tencentcloud::Live.v20180801.models.AuditTemplate`
+
+        attr_accessor :AuditTemplate
+
+        def initialize(audittemplate=nil)
+          @AuditTemplate = audittemplate
+        end
+
+        def deserialize(params)
+          unless params['AuditTemplate'].nil?
+            @AuditTemplate = AuditTemplate.new
+            @AuditTemplate.deserialize(params['AuditTemplate'])
+          end
+        end
+      end
+
+      # ModifyAuditTemplate返回参数结构体
+      class ModifyAuditTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param TemplateId: <p>模板 ID 。</p>
+        # @type TemplateId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TemplateId, :RequestId
+
+        def initialize(templateid=nil, requestid=nil)
+          @TemplateId = templateid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
           @RequestId = params['RequestId']
         end
       end

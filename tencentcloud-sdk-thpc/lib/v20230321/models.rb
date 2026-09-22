@@ -4275,7 +4275,7 @@ module TencentCloud
 
       # 队列信息概览。
       class QueueOverview < TencentCloud::Common::AbstractModel
-        # @param QueueName: 队列名称。
+        # @param QueueName: <p>队列名称。</p>
         # @type QueueName: String
 
         attr_accessor :QueueName

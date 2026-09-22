@@ -1958,6 +1958,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeTaskResult）用于查询任务结果。
+
+        # @param request: Request instance for DescribeTaskResult.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeTaskResultRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribeTaskResultResponse`
+        def DescribeTaskResult(request)
+          body = send_request('DescribeTaskResult', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTaskResultResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询tcb用户列表
 
         # @param request: Request instance for DescribeUserList.
@@ -2778,6 +2802,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改 PG 实例用户角色密码。
+
+        # @param request: Request instance for ResetPGAccountPassword.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::ResetPGAccountPasswordRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::ResetPGAccountPasswordResponse`
+        def ResetPGAccountPassword(request)
+          body = send_request('ResetPGAccountPassword', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ResetPGAccountPasswordResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（RunCommands）用于执行文档型数据库命令。
 
         # @param request: Request instance for RunCommands.
@@ -2979,6 +3027,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpdateTableResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（UpgradePGInstanceToDedicated）用于共享PG升级独享PG。
+
+        # @param request: Request instance for UpgradePGInstanceToDedicated.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::UpgradePGInstanceToDedicatedRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::UpgradePGInstanceToDedicatedResponse`
+        def UpgradePGInstanceToDedicated(request)
+          body = send_request('UpgradePGInstanceToDedicated', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpgradePGInstanceToDedicatedResponse.new
             model.deserialize(response['Response'])
             model
           else

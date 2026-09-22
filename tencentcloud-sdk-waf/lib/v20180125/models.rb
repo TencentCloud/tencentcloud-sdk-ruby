@@ -13332,36 +13332,35 @@ module TencentCloud
 
       # 日志导出信息
       class ExportInfo < TencentCloud::Common::AbstractModel
-        # @param TopicId: 日志主题ID
+        # @param TopicId: <p>日志主题ID</p>
         # @type TopicId: String
-        # @param ExportId: 日志导出任务ID
+        # @param ExportId: <p>日志导出任务ID</p>
         # @type ExportId: String
-        # @param Query: 日志导出查询语句
+        # @param Query: <p>日志导出查询语句</p>
         # @type Query: String
-        # @param FileName: 日志导出文件名
+        # @param FileName: <p>日志导出文件名</p>
         # @type FileName: String
-        # @param FileSize: 日志文件大小
+        # @param FileSize: <p>日志文件大小</p><p>单位：字节</p>
         # @type FileSize: Integer
-        # @param Order: 日志导出时间排序
+        # @param Order: <p>日志导出时间排序</p>
         # @type Order: String
-        # @param Format: 日志导出格式
+        # @param Format: <p>日志导出格式</p>
         # @type Format: String
-        # @param Count: 日志导出数量
+        # @param Count: <p>日志导出数量</p>
         # @type Count: Integer
-        # @param Status: 日志下载状态。Processing:导出正在进行中，Completed:导出完成，Failed:导出失败，Expired:日志导出已过期(三天有效期), Queuing 排队中
+        # @param Status: <p>日志下载状态。Processing:导出正在进行中，Completed:导出完成，Failed:导出失败，Expired:日志导出已过期(三天有效期), Queuing 排队中</p>
         # @type Status: String
-        # @param From: 日志导出起始时间
+        # @param From: <p>日志导出起始时间</p>
         # @type From: Integer
-        # @param To: 日志导出结束时间
+        # @param To: <p>日志导出结束时间</p>
         # @type To: Integer
-        # @param CosPath: 日志导出路径,有效期一个小时，请尽快使用该路径下载。
+        # @param CosPath: <p>日志导出路径,有效期一个小时，请尽快使用该路径下载。</p>
         # @type CosPath: String
-        # @param CreateTime: 日志导出创建时间
+        # @param CreateTime: <p>日志导出创建时间</p>
         # @type CreateTime: String
-        # @param SyntaxRule: 语法规则。 默认值为0。
-        # 0：Lucene语法，1：CQL语法。
+        # @param SyntaxRule: <p>语法规则。 默认值为0。<br>0：Lucene语法，1：CQL语法。</p>
         # @type SyntaxRule: Integer
-        # @param DerivedFields: 导出字段
+        # @param DerivedFields: <p>导出字段</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DerivedFields: Array
 

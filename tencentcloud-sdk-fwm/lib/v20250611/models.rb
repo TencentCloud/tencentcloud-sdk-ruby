@@ -461,7 +461,7 @@ module TencentCloud
         # @param Values: 筛选值列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Values: Array
-        # @param OperatorType: 操作类型：1-精确匹配 9-模糊匹配
+        # @param OperatorType: 操作类型：1=精确匹配，7=in，9=模糊匹配
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OperatorType: Integer
 
@@ -2448,15 +2448,15 @@ module TencentCloud
 
       # 成员信息
       class MemberInfo < TencentCloud::Common::AbstractModel
-        # @param AppId: <p>成员AppId</p>
+        # @param AppId: 成员 AppId
         # @type AppId: String
-        # @param Uin: <p>成员Uin</p>
+        # @param Uin: 成员 Uin
         # @type Uin: String
-        # @param Nickname: <p>成员昵称</p>
+        # @param Nickname: 成员昵称
         # @type Nickname: String
-        # @param MemberId: <p>成员Id</p>
+        # @param MemberId: 成员 ID（个人场景为空）
         # @type MemberId: String
-        # @param NodeName: <p>所属部门</p>
+        # @param NodeName: 所属部门
         # @type NodeName: String
 
         attr_accessor :AppId, :Uin, :Nickname, :MemberId, :NodeName

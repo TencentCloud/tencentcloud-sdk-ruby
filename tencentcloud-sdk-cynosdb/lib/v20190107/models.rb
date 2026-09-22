@@ -5539,10 +5539,16 @@ module TencentCloud
         # @type DbMode: String
         # @param MasterZone: <p>集群的读写实例所在可用区</p>
         # @type MasterZone: String
+        # @param RealZone: <p>实例的真实可用区</p>
+        # @type RealZone: String
+        # @param SlaveZones: <p>备可用区列表</p>
+        # @type SlaveZones: Array
+        # @param StorageVersion: <p>存储版本</p><p>枚举值：</p><ul><li>1.0： 1.0版本存储</li><li>2.0： 2.0版本存储</li></ul>
+        # @type StorageVersion: String
 
-        attr_accessor :Uin, :AppId, :ClusterId, :ClusterName, :InstanceId, :InstanceName, :ProjectId, :Region, :Zone, :Status, :StatusDesc, :ServerlessStatus, :DbType, :DbVersion, :Cpu, :Memory, :Storage, :InstanceType, :InstanceRole, :UpdateTime, :CreateTime, :PayMode, :PeriodEndTime, :NetType, :VpcId, :SubnetId, :Vip, :Vport, :WanDomain, :Charset, :CynosVersion, :RenewFlag, :MinCpu, :MaxCpu, :DbMode, :MasterZone
+        attr_accessor :Uin, :AppId, :ClusterId, :ClusterName, :InstanceId, :InstanceName, :ProjectId, :Region, :Zone, :Status, :StatusDesc, :ServerlessStatus, :DbType, :DbVersion, :Cpu, :Memory, :Storage, :InstanceType, :InstanceRole, :UpdateTime, :CreateTime, :PayMode, :PeriodEndTime, :NetType, :VpcId, :SubnetId, :Vip, :Vport, :WanDomain, :Charset, :CynosVersion, :RenewFlag, :MinCpu, :MaxCpu, :DbMode, :MasterZone, :RealZone, :SlaveZones, :StorageVersion
 
-        def initialize(uin=nil, appid=nil, clusterid=nil, clustername=nil, instanceid=nil, instancename=nil, projectid=nil, region=nil, zone=nil, status=nil, statusdesc=nil, serverlessstatus=nil, dbtype=nil, dbversion=nil, cpu=nil, memory=nil, storage=nil, instancetype=nil, instancerole=nil, updatetime=nil, createtime=nil, paymode=nil, periodendtime=nil, nettype=nil, vpcid=nil, subnetid=nil, vip=nil, vport=nil, wandomain=nil, charset=nil, cynosversion=nil, renewflag=nil, mincpu=nil, maxcpu=nil, dbmode=nil, masterzone=nil)
+        def initialize(uin=nil, appid=nil, clusterid=nil, clustername=nil, instanceid=nil, instancename=nil, projectid=nil, region=nil, zone=nil, status=nil, statusdesc=nil, serverlessstatus=nil, dbtype=nil, dbversion=nil, cpu=nil, memory=nil, storage=nil, instancetype=nil, instancerole=nil, updatetime=nil, createtime=nil, paymode=nil, periodendtime=nil, nettype=nil, vpcid=nil, subnetid=nil, vip=nil, vport=nil, wandomain=nil, charset=nil, cynosversion=nil, renewflag=nil, mincpu=nil, maxcpu=nil, dbmode=nil, masterzone=nil, realzone=nil, slavezones=nil, storageversion=nil)
           @Uin = uin
           @AppId = appid
           @ClusterId = clusterid
@@ -5579,6 +5585,9 @@ module TencentCloud
           @MaxCpu = maxcpu
           @DbMode = dbmode
           @MasterZone = masterzone
+          @RealZone = realzone
+          @SlaveZones = slavezones
+          @StorageVersion = storageversion
         end
 
         def deserialize(params)
@@ -5618,6 +5627,9 @@ module TencentCloud
           @MaxCpu = params['MaxCpu']
           @DbMode = params['DbMode']
           @MasterZone = params['MasterZone']
+          @RealZone = params['RealZone']
+          @SlaveZones = params['SlaveZones']
+          @StorageVersion = params['StorageVersion']
         end
       end
 

@@ -5706,16 +5706,20 @@ module TencentCloud
 
       # CreateResourceGraph返回参数结构体
       class CreateResourceGraphResponse < TencentCloud::Common::AbstractModel
+        # @param ResourceGraphId: <p>资源图谱id</p>
+        # @type ResourceGraphId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :ResourceGraphId, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(resourcegraphid=nil, requestid=nil)
+          @ResourceGraphId = resourcegraphid
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @ResourceGraphId = params['ResourceGraphId']
           @RequestId = params['RequestId']
         end
       end
@@ -8583,6 +8587,40 @@ module TencentCloud
               toolcall_tmp = ToolCall.new
               toolcall_tmp.deserialize(i)
               @ToolCalls << toolcall_tmp
+            end
+          end
+        end
+      end
+
+      # 拓扑图（节点 + 边）
+      class DependencyTopology < TencentCloud::Common::AbstractModel
+        # @param Nodes: 节点列表
+        # @type Nodes: Array
+        # @param Edges: 边列表
+        # @type Edges: Array
+
+        attr_accessor :Nodes, :Edges
+
+        def initialize(nodes=nil, edges=nil)
+          @Nodes = nodes
+          @Edges = edges
+        end
+
+        def deserialize(params)
+          unless params['Nodes'].nil?
+            @Nodes = []
+            params['Nodes'].each do |i|
+              topologynode_tmp = TopologyNode.new
+              topologynode_tmp.deserialize(i)
+              @Nodes << topologynode_tmp
+            end
+          end
+          unless params['Edges'].nil?
+            @Edges = []
+            params['Edges'].each do |i|
+              topologyedge_tmp = TopologyEdge.new
+              topologyedge_tmp.deserialize(i)
+              @Edges << topologyedge_tmp
             end
           end
         end
@@ -12295,19 +12333,34 @@ module TencentCloud
 
       # DescribeResourceGraphEntities返回参数结构体
       class DescribeResourceGraphEntitiesResponse < TencentCloud::Common::AbstractModel
+        # @param EntityInfos: <p>实体列表</p>
+        # @type EntityInfos: Array
+        # @param HasMore: <p>是否还有下一页</p><p>枚举值：</p><ul><li>0： 没有下一页</li><li>1： 还有下一页</li></ul>
+        # @type HasMore: Integer
         # @param NextCursor: <p>分页的游标，有值则下次分页请求原样带上，无值则表示无下一页</p>
         # @type NextCursor: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :NextCursor, :RequestId
+        attr_accessor :EntityInfos, :HasMore, :NextCursor, :RequestId
 
-        def initialize(nextcursor=nil, requestid=nil)
+        def initialize(entityinfos=nil, hasmore=nil, nextcursor=nil, requestid=nil)
+          @EntityInfos = entityinfos
+          @HasMore = hasmore
           @NextCursor = nextcursor
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['EntityInfos'].nil?
+            @EntityInfos = []
+            params['EntityInfos'].each do |i|
+              entityinfo_tmp = EntityInfo.new
+              entityinfo_tmp.deserialize(i)
+              @EntityInfos << entityinfo_tmp
+            end
+          end
+          @HasMore = params['HasMore']
           @NextCursor = params['NextCursor']
           @RequestId = params['RequestId']
         end
@@ -12351,16 +12404,23 @@ module TencentCloud
 
       # DescribeResourceGraphEntityDependency返回参数结构体
       class DescribeResourceGraphEntityDependencyResponse < TencentCloud::Common::AbstractModel
+        # @param Topology: <p>拓扑图（节点 + 边）</p>
+        # @type Topology: :class:`Tencentcloud::Cls.v20201016.models.DependencyTopology`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Topology, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(topology=nil, requestid=nil)
+          @Topology = topology
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['Topology'].nil?
+            @Topology = DependencyTopology.new
+            @Topology.deserialize(params['Topology'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -12395,16 +12455,23 @@ module TencentCloud
 
       # DescribeResourceGraphEntityDetail返回参数结构体
       class DescribeResourceGraphEntityDetailResponse < TencentCloud::Common::AbstractModel
+        # @param EntityInfo: <p>实体信息</p>
+        # @type EntityInfo: :class:`Tencentcloud::Cls.v20201016.models.EntityInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :EntityInfo, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(entityinfo=nil, requestid=nil)
+          @EntityInfo = entityinfo
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['EntityInfo'].nil?
+            @EntityInfo = EntityInfo.new
+            @EntityInfo.deserialize(params['EntityInfo'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -12675,27 +12742,62 @@ module TencentCloud
 
       # DescribeResourceGraphs请求参数结构体
       class DescribeResourceGraphsRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: <ul><li>ResourceGraphId 按【资源图谱 ID】精确匹配。类型：String。必选：否</li><li>Name 按【资源图谱名称】模糊匹配。类型：String。必选：否</li><li>Status 按【状态】模糊匹配。类型：int。必选：否；0：初始化中；1：就绪；2：创建失败；3：删除中；5：删除失败</li><li>tagKey 按照【标签键】进行过滤。类型：String。必选：否</li><li>tag:tagKey 按照【标签键值对】进行过滤。tagKey 使用具体的标签键进行替换，例如 tag:exampleKey。类型：String。必选：否</li></ul>注意：每次请求的 Filters 上限 10，Filter.Values 上限 100。
+        # @type Filters: Array
+        # @param Offset: <p>分页偏移量</p><p>默认值：0</p>
+        # @type Offset: Integer
+        # @param Limit: <p>分页单页数量</p><p>取值范围：[0, 100]</p><p>默认值：20</p>
+        # @type Limit: Integer
 
+        attr_accessor :Filters, :Offset, :Limit
 
-        def initialize()
+        def initialize(filters=nil, offset=nil, limit=nil)
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
         end
 
         def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
         end
       end
 
       # DescribeResourceGraphs返回参数结构体
       class DescribeResourceGraphsResponse < TencentCloud::Common::AbstractModel
+        # @param ResourceGraphInfos: <p>资源图谱信息</p>
+        # @type ResourceGraphInfos: Array
+        # @param TotalCount: <p>总数</p>
+        # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :ResourceGraphInfos, :TotalCount, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(resourcegraphinfos=nil, totalcount=nil, requestid=nil)
+          @ResourceGraphInfos = resourcegraphinfos
+          @TotalCount = totalcount
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['ResourceGraphInfos'].nil?
+            @ResourceGraphInfos = []
+            params['ResourceGraphInfos'].each do |i|
+              resourcegraphinfo_tmp = ResourceGraphInfo.new
+              resourcegraphinfo_tmp.deserialize(i)
+              @ResourceGraphInfos << resourcegraphinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -13916,6 +14018,95 @@ module TencentCloud
         def deserialize(params)
           @Mode = params['Mode']
           @ProcessNames = params['ProcessNames']
+        end
+      end
+
+      # 实体动态属性 KV
+      class EntityAttribute < TencentCloud::Common::AbstractModel
+        # @param Key: 属性 key
+        # @type Key: String
+        # @param Value: 属性 value
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
+      # 实体详情
+      class EntityInfo < TencentCloud::Common::AbstractModel
+        # @param EntityId: <p>实体 ID</p>
+        # @type EntityId: String
+        # @param Domain: <p>实体所属域</p><p>默认值：实体所在域，如TC，App</p>
+        # @type Domain: String
+        # @param Product: <p>实体所属产品</p><p>参数格式：实体归属的产品，如CDB, Application</p>
+        # @type Product: String
+        # @param EntityName: <p>实体名称</p>
+        # @type EntityName: String
+        # @param EntityClassName: <p>实体类名称</p><p>参数格式：TC.CDB.Instance</p>
+        # @type EntityClassName: String
+        # @param Attributes: <p>动态属性（base 在前 + 字典序）</p>
+        # @type Attributes: Array
+        # @param Tags: <p>标签列表</p>
+        # @type Tags: Array
+        # @param RelatedLogTopics: <p>关联日志主题</p>
+        # @type RelatedLogTopics: Array
+        # @param ResourceId: <p> 实体资源ID </p>
+        # @type ResourceId: String
+
+        attr_accessor :EntityId, :Domain, :Product, :EntityName, :EntityClassName, :Attributes, :Tags, :RelatedLogTopics, :ResourceId
+
+        def initialize(entityid=nil, domain=nil, product=nil, entityname=nil, entityclassname=nil, attributes=nil, tags=nil, relatedlogtopics=nil, resourceid=nil)
+          @EntityId = entityid
+          @Domain = domain
+          @Product = product
+          @EntityName = entityname
+          @EntityClassName = entityclassname
+          @Attributes = attributes
+          @Tags = tags
+          @RelatedLogTopics = relatedlogtopics
+          @ResourceId = resourceid
+        end
+
+        def deserialize(params)
+          @EntityId = params['EntityId']
+          @Domain = params['Domain']
+          @Product = params['Product']
+          @EntityName = params['EntityName']
+          @EntityClassName = params['EntityClassName']
+          unless params['Attributes'].nil?
+            @Attributes = []
+            params['Attributes'].each do |i|
+              entityattribute_tmp = EntityAttribute.new
+              entityattribute_tmp.deserialize(i)
+              @Attributes << entityattribute_tmp
+            end
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          unless params['RelatedLogTopics'].nil?
+            @RelatedLogTopics = []
+            params['RelatedLogTopics'].each do |i|
+              relatedtopicitem_tmp = RelatedTopicItem.new
+              relatedtopicitem_tmp.deserialize(i)
+              @RelatedLogTopics << relatedtopicitem_tmp
+            end
+          end
+          @ResourceId = params['ResourceId']
         end
       end
 
@@ -21268,6 +21459,34 @@ module TencentCloud
         end
       end
 
+      # 已关联主题
+      class RelatedTopicItem < TencentCloud::Common::AbstractModel
+        # @param TopicId: <p>主题 ID</p>
+        # @type TopicId: String
+        # @param Region: <p>主题地域</p>
+        # @type Region: String
+        # @param LogType: <p>日志类型</p><p>枚举值：</p><ul><li>Auditlog： 审计日志</li><li>Eventlog： 事件日志</li><li>ComponentLog： 组件日志</li></ul>
+        # @type LogType: String
+        # @param BizType: <p>日志类型， 0: 日志主题 ; 1: 指标主题</p><p>枚举值：</p><ul><li>0： 日志主题</li><li>1： 指标主题</li></ul>
+        # @type BizType: Integer
+
+        attr_accessor :TopicId, :Region, :LogType, :BizType
+
+        def initialize(topicid=nil, region=nil, logtype=nil, biztype=nil)
+          @TopicId = topicid
+          @Region = region
+          @LogType = logtype
+          @BizType = biztype
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          @Region = params['Region']
+          @LogType = params['LogType']
+          @BizType = params['BizType']
+        end
+      end
+
       # 工作区关联的日志集
       class RelationLogset < TencentCloud::Common::AbstractModel
         # @param LogsetId: <p>日志集id</p>
@@ -21537,6 +21756,71 @@ module TencentCloud
           @Region = params['Region']
           @LogType = params['LogType']
           @BizType = params['BizType']
+        end
+      end
+
+      # 资源图谱基本信息
+      class ResourceGraphInfo < TencentCloud::Common::AbstractModel
+        # @param ResourceGraphId: <p>资源图谱id</p>
+        # @type ResourceGraphId: String
+        # @param Name: <p>工作区名称</p>
+        # @type Name: String
+        # @param Description: <p>工作区描述</p>
+        # @type Description: String
+        # @param Status: <p>工作区状态</p><p>枚举值：</p><ul><li>0： 初始化中</li><li>1： 成功</li><li>2： 失败</li><li>3： 删除中</li><li>4： 已删除</li><li>5： 删除失败</li></ul>
+        # @type Status: Integer
+        # @param CreateTime: <p>创建时间</p>
+        # @type CreateTime: Integer
+        # @param UpdateTime: <p>更新时间</p>
+        # @type UpdateTime: Integer
+        # @param RelationLogset: <p>关联的日志集</p>
+        # @type RelationLogset: :class:`Tencentcloud::Cls.v20201016.models.RelationLogset`
+        # @param RelationTopics: <p>关联的topic</p>
+        # @type RelationTopics: Array
+        # @param Tags: <p>工作区绑定的标签信息</p>
+        # @type Tags: Array
+
+        attr_accessor :ResourceGraphId, :Name, :Description, :Status, :CreateTime, :UpdateTime, :RelationLogset, :RelationTopics, :Tags
+
+        def initialize(resourcegraphid=nil, name=nil, description=nil, status=nil, createtime=nil, updatetime=nil, relationlogset=nil, relationtopics=nil, tags=nil)
+          @ResourceGraphId = resourcegraphid
+          @Name = name
+          @Description = description
+          @Status = status
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @RelationLogset = relationlogset
+          @RelationTopics = relationtopics
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @ResourceGraphId = params['ResourceGraphId']
+          @Name = params['Name']
+          @Description = params['Description']
+          @Status = params['Status']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          unless params['RelationLogset'].nil?
+            @RelationLogset = RelationLogset.new
+            @RelationLogset.deserialize(params['RelationLogset'])
+          end
+          unless params['RelationTopics'].nil?
+            @RelationTopics = []
+            params['RelationTopics'].each do |i|
+              relationtopic_tmp = RelationTopic.new
+              relationtopic_tmp.deserialize(i)
+              @RelationTopics << relationtopic_tmp
+            end
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -23363,6 +23647,66 @@ module TencentCloud
               @PartitionOffsets << partitionoffsetinfo_tmp
             end
           end
+        end
+      end
+
+      # 拓扑边
+      class TopologyEdge < TencentCloud::Common::AbstractModel
+        # @param SrcEntityId: <p>源实体 ID</p>
+        # @type SrcEntityId: String
+        # @param DstEntityId: <p>目的实体 ID</p>
+        # @type DstEntityId: String
+        # @param RelationType: <p>关系类型：contains / same_as / calls</p><p>枚举值：</p><ul><li>contains： 包含关系，A 包含 B</li><li>same_as： 等价关系，A 等价 B</li><li>calls： 调用关系， A 调用 B</li></ul><p>默认值：-</p>
+        # @type RelationType: String
+
+        attr_accessor :SrcEntityId, :DstEntityId, :RelationType
+
+        def initialize(srcentityid=nil, dstentityid=nil, relationtype=nil)
+          @SrcEntityId = srcentityid
+          @DstEntityId = dstentityid
+          @RelationType = relationtype
+        end
+
+        def deserialize(params)
+          @SrcEntityId = params['SrcEntityId']
+          @DstEntityId = params['DstEntityId']
+          @RelationType = params['RelationType']
+        end
+      end
+
+      # 拓扑节点
+      class TopologyNode < TencentCloud::Common::AbstractModel
+        # @param EntityId: <p>实体 ID</p>
+        # @type EntityId: String
+        # @param Name: <p>实体名称</p>
+        # @type Name: String
+        # @param Domain: <p>实体所属域</p>
+        # @type Domain: String
+        # @param Product: <p>实体所在产品</p>
+        # @type Product: String
+        # @param EntityClassName: <p>实体类型</p>
+        # @type EntityClassName: String
+        # @param Depth: <p>距离中心节点深度</p>
+        # @type Depth: Integer
+
+        attr_accessor :EntityId, :Name, :Domain, :Product, :EntityClassName, :Depth
+
+        def initialize(entityid=nil, name=nil, domain=nil, product=nil, entityclassname=nil, depth=nil)
+          @EntityId = entityid
+          @Name = name
+          @Domain = domain
+          @Product = product
+          @EntityClassName = entityclassname
+          @Depth = depth
+        end
+
+        def deserialize(params)
+          @EntityId = params['EntityId']
+          @Name = params['Name']
+          @Domain = params['Domain']
+          @Product = params['Product']
+          @EntityClassName = params['EntityClassName']
+          @Depth = params['Depth']
         end
       end
 

@@ -5564,6 +5564,81 @@ module TencentCloud
         end
       end
 
+      # DescribeTaskResult请求参数结构体
+      class DescribeTaskResultRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: <p>云开发环境ID</p>
+        # @type EnvId: String
+        # @param TaskId: <p>任务ID</p>
+        # @type TaskId: String
+
+        attr_accessor :EnvId, :TaskId
+
+        def initialize(envid=nil, taskid=nil)
+          @EnvId = envid
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeTaskResult返回参数结构体
+      class DescribeTaskResultResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务ID</p>
+        # @type TaskId: String
+        # @param TaskType: <p>任务类型</p><p>枚举值：</p><ul><li>PGUserMigration： PG Migrate 任务</li></ul>
+        # @type TaskType: String
+        # @param Status: <p>任务状态</p><p>枚举值：</p><ul><li>Failed： 失败</li><li>Succeed： 成功</li><li>Accepted： 已接收</li><li>Running： 运行中</li></ul>
+        # @type Status: String
+        # @param Phase: <p>当前步骤</p>
+        # @type Phase: String
+        # @param Reason: <p>失败原因</p>
+        # @type Reason: String
+        # @param CreatedAt: <p>创建时间</p><p>参数格式：2026-05-26T11:26:14+08:00</p>
+        # @type CreatedAt: String
+        # @param UpdatedAt: <p>最后更新时间</p><p>参数格式：2026-05-26T11:26:14+08:00</p>
+        # @type UpdatedAt: String
+        # @param Params: <p>任务参数</p>
+        # @type Params: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :TaskType, :Status, :Phase, :Reason, :CreatedAt, :UpdatedAt, :Params, :RequestId
+
+        def initialize(taskid=nil, tasktype=nil, status=nil, phase=nil, reason=nil, createdat=nil, updatedat=nil, params=nil, requestid=nil)
+          @TaskId = taskid
+          @TaskType = tasktype
+          @Status = status
+          @Phase = phase
+          @Reason = reason
+          @CreatedAt = createdat
+          @UpdatedAt = updatedat
+          @Params = params
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @TaskType = params['TaskType']
+          @Status = params['Status']
+          @Phase = params['Phase']
+          @Reason = params['Reason']
+          @CreatedAt = params['CreatedAt']
+          @UpdatedAt = params['UpdatedAt']
+          unless params['Params'].nil?
+            @Params = []
+            params['Params'].each do |i|
+              objectkv_tmp = ObjectKV.new
+              objectkv_tmp.deserialize(i)
+              @Params << objectkv_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeUserList请求参数结构体
       class DescribeUserListRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: <p>环境id</p>
@@ -9565,6 +9640,26 @@ module TencentCloud
         end
       end
 
+      # Key-Value类型，模拟的 object 类型
+      class ObjectKV < TencentCloud::Common::AbstractModel
+        # @param Key: object 的 key
+        # @type Key: String
+        # @param Value: object key 对应的 value
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
       # 订单信息
       class OrderInfo < TencentCloud::Common::AbstractModel
         # @param TranId: 订单号
@@ -10775,6 +10870,42 @@ module TencentCloud
         end
       end
 
+      # ResetPGAccountPassword请求参数结构体
+      class ResetPGAccountPasswordRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: <p>环境ID</p>
+        # @type EnvId: String
+        # @param Password: <p>要设置的密码</p><p>入参限制：长度8 ~ 32位，不能以&quot; / &quot;开头; 必须包含以下四项，字符种类:  小写字母： [a ~ z] 大写字母：[A ～ Z] 数字：0 - 9 特殊字符：()~!@#$%^&amp;*-+=_|{}[]:&lt;&gt;,.?/` 示例值：A8b!C2d#E4f&amp;</p>
+        # @type Password: String
+
+        attr_accessor :EnvId, :Password
+
+        def initialize(envid=nil, password=nil)
+          @EnvId = envid
+          @Password = password
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @Password = params['Password']
+        end
+      end
+
+      # ResetPGAccountPassword返回参数结构体
+      class ResetPGAccountPasswordResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 资源权限
       class ResourcePermission < TencentCloud::Common::AbstractModel
         # @param ResourceType: 资源类型。
@@ -11815,6 +11946,62 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpgradePGInstanceToDedicated请求参数结构体
+      class UpgradePGInstanceToDedicatedRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: <p>云开发环境ID</p>
+        # @type EnvId: String
+        # @param SwitchTag: <p>切换时机</p><p>枚举值：</p><ul><li>0： 立即切换</li><li>1： 指定时间切换</li></ul>
+        # @type SwitchTag: Integer
+        # @param SwitchStartTime: <p>切换开始时间</p><p>参数格式：15:04:05</p>
+        # @type SwitchStartTime: String
+        # @param SwitchEndTime: <p>切换结束时间</p><p>参数格式：15:04:05</p>
+        # @type SwitchEndTime: String
+        # @param SpecCode: <p>PG 规格</p>
+        # @type SpecCode: String
+        # @param Storage: <p>存储空间大小</p>
+        # @type Storage: Integer
+
+        attr_accessor :EnvId, :SwitchTag, :SwitchStartTime, :SwitchEndTime, :SpecCode, :Storage
+
+        def initialize(envid=nil, switchtag=nil, switchstarttime=nil, switchendtime=nil, speccode=nil, storage=nil)
+          @EnvId = envid
+          @SwitchTag = switchtag
+          @SwitchStartTime = switchstarttime
+          @SwitchEndTime = switchendtime
+          @SpecCode = speccode
+          @Storage = storage
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @SwitchTag = params['SwitchTag']
+          @SwitchStartTime = params['SwitchStartTime']
+          @SwitchEndTime = params['SwitchEndTime']
+          @SpecCode = params['SpecCode']
+          @Storage = params['Storage']
+        end
+      end
+
+      # UpgradePGInstanceToDedicated返回参数结构体
+      class UpgradePGInstanceToDedicatedResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务ID</p><p>可通过DescribeTaskResult 接口查询进度</p>
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end
       end

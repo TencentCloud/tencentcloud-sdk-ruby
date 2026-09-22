@@ -415,6 +415,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建审核规则。
+
+        # @param request: Request instance for CreateAuditRule.
+        # @type request: :class:`Tencentcloud::live::V20180801::CreateAuditRuleRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::CreateAuditRuleResponse`
+        def CreateAuditRule(request)
+          body = send_request('CreateAuditRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAuditRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建单个审核模板。
+
+        # @param request: Request instance for CreateAuditTemplate.
+        # @type request: :class:`Tencentcloud::live::V20180801::CreateAuditTemplateRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::CreateAuditTemplateResponse`
+        def CreateAuditTemplate(request)
+          body = send_request('CreateAuditTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAuditTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口用来创建新的导播台
 
         # @param request: Request instance for CreateCaster.
@@ -878,6 +926,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建直播智能擦除模板。
+
+        # @param request: Request instance for CreateLiveSmartEraseTemplate.
+        # @type request: :class:`Tencentcloud::live::V20180801::CreateLiveSmartEraseTemplateRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::CreateLiveSmartEraseTemplateResponse`
+        def CreateLiveSmartEraseTemplate(request)
+          body = send_request('CreateLiveSmartEraseTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateLiveSmartEraseTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建截图规则，需要先调用[CreateLiveSnapshotTemplate](/document/product/267/32624)接口创建截图模板，然后将返回的模板 ID 绑定到流进行使用。
         # <br>截图相关文档：[直播截图](/document/product/267/32737)。
         # 注意：单个域名仅支持关联一个截图模板。
@@ -1275,6 +1347,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteAuditKeywordsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除审核规则。
+
+        # @param request: Request instance for DeleteAuditRule.
+        # @type request: :class:`Tencentcloud::live::V20180801::DeleteAuditRuleRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DeleteAuditRuleResponse`
+        def DeleteAuditRule(request)
+          body = send_request('DeleteAuditRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAuditRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除审核模板。
+
+        # @param request: Request instance for DeleteAuditTemplate.
+        # @type request: :class:`Tencentcloud::live::V20180801::DeleteAuditTemplateRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DeleteAuditTemplateResponse`
+        def DeleteAuditTemplate(request)
+          body = send_request('DeleteAuditTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAuditTemplateResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2170,6 +2290,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAuditKeywordsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取审核规则列表。
+
+        # @param request: Request instance for DescribeAuditRules.
+        # @type request: :class:`Tencentcloud::live::V20180801::DescribeAuditRulesRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeAuditRulesResponse`
+        def DescribeAuditRules(request)
+          body = send_request('DescribeAuditRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAuditRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取单个审核模板。
+
+        # @param request: Request instance for DescribeAuditTemplate.
+        # @type request: :class:`Tencentcloud::live::V20180801::DescribeAuditTemplateRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeAuditTemplateResponse`
+        def DescribeAuditTemplate(request)
+          body = send_request('DescribeAuditTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAuditTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 返回当前用户的审核模板列表。
+
+        # @param request: Request instance for DescribeAuditTemplates.
+        # @type request: :class:`Tencentcloud::live::V20180801::DescribeAuditTemplatesRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeAuditTemplatesResponse`
+        def DescribeAuditTemplates(request)
+          body = send_request('DescribeAuditTemplates', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAuditTemplatesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -4846,6 +5038,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyAuditKeywordLibResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改审核模板。
+
+        # @param request: Request instance for ModifyAuditTemplate.
+        # @type request: :class:`Tencentcloud::live::V20180801::ModifyAuditTemplateRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::ModifyAuditTemplateResponse`
+        def ModifyAuditTemplate(request)
+          body = send_request('ModifyAuditTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAuditTemplateResponse.new
             model.deserialize(response['Response'])
             model
           else

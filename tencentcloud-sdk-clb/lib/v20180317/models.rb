@@ -441,15 +441,15 @@ module TencentCloud
 
       # AutoRewrite请求参数结构体
       class AutoRewriteRequest < TencentCloud::Common::AbstractModel
-        # @param LoadBalancerId: 负载均衡实例ID。
+        # @param LoadBalancerId: <p>负载均衡实例ID。</p>
         # @type LoadBalancerId: String
-        # @param ListenerId: HTTPS:443监听器的ID。
+        # @param ListenerId: <p>HTTPS:443监听器的ID。</p>
         # @type ListenerId: String
-        # @param Domains: HTTPS:443监听器下需要重定向的域名，若不填，则对HTTPS:443监听器下的所有域名都设置重定向。
+        # @param Domains: <p>HTTPS:443监听器下需要重定向的域名，若不填，则对HTTPS:443监听器下的所有域名都设置重定向。</p>
         # @type Domains: Array
-        # @param RewriteCodes: 重定向状态码，可取值301,302,307。
+        # @param RewriteCodes: <p>重定向状态码，可取值301,302,307。</p><p>默认值：302</p>
         # @type RewriteCodes: Array
-        # @param TakeUrls: 重定向是否携带匹配的URL。
+        # @param TakeUrls: <p>重定向是否携带匹配的URL。</p>
         # @type TakeUrls: Array
 
         attr_accessor :LoadBalancerId, :ListenerId, :Domains, :RewriteCodes, :TakeUrls
@@ -14130,15 +14130,21 @@ module TencentCloud
         # @type HealthCheckMaxTokens: Integer
         # @param HealthCheckProtocol: <p>健康检查协议</p><p>枚举值：</p><ul><li>chat： 表示/chat/completion协议</li><li>messages： 表示/v1/messages协议</li><li>responses： 表示/v1/messages协议</li></ul>
         # @type HealthCheckProtocol: String
+        # @param HealthCheckPath: <p>健康检查路径。仅HealthCheckMethod为Service时生效。</p>
+        # @type HealthCheckPath: String
+        # @param HealthCheckMethod: <p>健康检查方式。</p><p>枚举值：</p><ul><li>Service： 探测服务可用性</li><li>Model： 探测模型可用性</li></ul>
+        # @type HealthCheckMethod: String
 
-        attr_accessor :HealthCheckEnabled, :HealthCheckInterval, :HealthCheckUnhealthyThreshold, :HealthCheckMaxTokens, :HealthCheckProtocol
+        attr_accessor :HealthCheckEnabled, :HealthCheckInterval, :HealthCheckUnhealthyThreshold, :HealthCheckMaxTokens, :HealthCheckProtocol, :HealthCheckPath, :HealthCheckMethod
 
-        def initialize(healthcheckenabled=nil, healthcheckinterval=nil, healthcheckunhealthythreshold=nil, healthcheckmaxtokens=nil, healthcheckprotocol=nil)
+        def initialize(healthcheckenabled=nil, healthcheckinterval=nil, healthcheckunhealthythreshold=nil, healthcheckmaxtokens=nil, healthcheckprotocol=nil, healthcheckpath=nil, healthcheckmethod=nil)
           @HealthCheckEnabled = healthcheckenabled
           @HealthCheckInterval = healthcheckinterval
           @HealthCheckUnhealthyThreshold = healthcheckunhealthythreshold
           @HealthCheckMaxTokens = healthcheckmaxtokens
           @HealthCheckProtocol = healthcheckprotocol
+          @HealthCheckPath = healthcheckpath
+          @HealthCheckMethod = healthcheckmethod
         end
 
         def deserialize(params)
@@ -14147,6 +14153,8 @@ module TencentCloud
           @HealthCheckUnhealthyThreshold = params['HealthCheckUnhealthyThreshold']
           @HealthCheckMaxTokens = params['HealthCheckMaxTokens']
           @HealthCheckProtocol = params['HealthCheckProtocol']
+          @HealthCheckPath = params['HealthCheckPath']
+          @HealthCheckMethod = params['HealthCheckMethod']
         end
       end
 
@@ -14159,19 +14167,26 @@ module TencentCloud
         # @param HealthCheckUnhealthyThreshold: <p>不健康阈值。表示当模型连续多少次不健康时认为该模型不健康。</p><p>取值范围：[1, 10]</p><p>默认值：1</p>
         # @type HealthCheckUnhealthyThreshold: Integer
         # @param HealthCheckMaxTokens: <p>健康检查使用的最大Token数量。部分模型如gpt系列可能仅支持大于等于16。</p><p>默认值：1</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HealthCheckMaxTokens: Integer
         # @param HealthCheckProtocol: <p>健康检查协议</p><p>枚举值：</p><ul><li>chat： 表示/chat/completion协议</li><li>messages： 表示/v1/messages协议</li><li>responses： 表示/v1/messages协议</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HealthCheckProtocol: String
+        # @param HealthCheckPath: <p>健康检查路径。仅HealthCheckMethod为Service时生效。</p>
+        # @type HealthCheckPath: String
+        # @param HealthCheckMethod: <p>健康检查方式。</p>
+        # @type HealthCheckMethod: String
 
-        attr_accessor :HealthCheckEnabled, :HealthCheckInterval, :HealthCheckUnhealthyThreshold, :HealthCheckMaxTokens, :HealthCheckProtocol
+        attr_accessor :HealthCheckEnabled, :HealthCheckInterval, :HealthCheckUnhealthyThreshold, :HealthCheckMaxTokens, :HealthCheckProtocol, :HealthCheckPath, :HealthCheckMethod
 
-        def initialize(healthcheckenabled=nil, healthcheckinterval=nil, healthcheckunhealthythreshold=nil, healthcheckmaxtokens=nil, healthcheckprotocol=nil)
+        def initialize(healthcheckenabled=nil, healthcheckinterval=nil, healthcheckunhealthythreshold=nil, healthcheckmaxtokens=nil, healthcheckprotocol=nil, healthcheckpath=nil, healthcheckmethod=nil)
           @HealthCheckEnabled = healthcheckenabled
           @HealthCheckInterval = healthcheckinterval
           @HealthCheckUnhealthyThreshold = healthcheckunhealthythreshold
           @HealthCheckMaxTokens = healthcheckmaxtokens
           @HealthCheckProtocol = healthcheckprotocol
+          @HealthCheckPath = healthcheckpath
+          @HealthCheckMethod = healthcheckmethod
         end
 
         def deserialize(params)
@@ -14180,6 +14195,8 @@ module TencentCloud
           @HealthCheckUnhealthyThreshold = params['HealthCheckUnhealthyThreshold']
           @HealthCheckMaxTokens = params['HealthCheckMaxTokens']
           @HealthCheckProtocol = params['HealthCheckProtocol']
+          @HealthCheckPath = params['HealthCheckPath']
+          @HealthCheckMethod = params['HealthCheckMethod']
         end
       end
 
