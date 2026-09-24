@@ -2866,7 +2866,7 @@ module TencentCloud
         # @type CMRPrivateNetworkTunnelId: String
         # @param HealthCheckConfigs: <p>健康检查配置</p>
         # @type HealthCheckConfigs: Array
-        # @param Capability: <p>模型输出模态</p>
+        # @param Capability: <p>模型输出模态</p><p>枚举值：</p><ul><li>chat： 文本</li><li>embedding： 向量</li><li>video： 视频</li><li>rerank： 重排序</li></ul>
         # @type Capability: String
         # @param EndpointPath: <p>请求后缀</p>
         # @type EndpointPath: String
@@ -3016,12 +3016,18 @@ module TencentCloud
         # @type EipAddressId: String
         # @param Bandwidth: <p>单位</p><p>取值范围：[1, 2048]</p><p>单位：Mbps</p>
         # @type Bandwidth: Integer
-        # @param EmbeddingConfig: <p>Embedding 配置</p>
+        # @param EmbeddingConfig: <p>Embedding 调度配置</p>
         # @type EmbeddingConfig: :class:`Tencentcloud::Clb.v20180317.models.EmbeddingConfig`
+        # @param VideoConfig: <p>Video 配置</p>
+        # @type VideoConfig: :class:`Tencentcloud::Clb.v20180317.models.VideoConfig`
+        # @param RerankConfig: <p>Rerank 调度配置</p>
+        # @type RerankConfig: :class:`Tencentcloud::Clb.v20180317.models.RerankConfig`
+        # @param DecisionsConfig: <p>Decisions 调度配置</p>
+        # @type DecisionsConfig: :class:`Tencentcloud::Clb.v20180317.models.DecisionsConfig`
 
-        attr_accessor :ModelRouterType, :BudgetId, :CertId, :ClusterInfo, :ModelRouterName, :NetworkType, :Port, :RateLimitConfig, :RouterSetting, :Schema, :SubnetId, :Tags, :VpcId, :ModelRouterBillingConfig, :ClientToken, :EipAddressId, :Bandwidth, :EmbeddingConfig
+        attr_accessor :ModelRouterType, :BudgetId, :CertId, :ClusterInfo, :ModelRouterName, :NetworkType, :Port, :RateLimitConfig, :RouterSetting, :Schema, :SubnetId, :Tags, :VpcId, :ModelRouterBillingConfig, :ClientToken, :EipAddressId, :Bandwidth, :EmbeddingConfig, :VideoConfig, :RerankConfig, :DecisionsConfig
 
-        def initialize(modelroutertype=nil, budgetid=nil, certid=nil, clusterinfo=nil, modelroutername=nil, networktype=nil, port=nil, ratelimitconfig=nil, routersetting=nil, schema=nil, subnetid=nil, tags=nil, vpcid=nil, modelrouterbillingconfig=nil, clienttoken=nil, eipaddressid=nil, bandwidth=nil, embeddingconfig=nil)
+        def initialize(modelroutertype=nil, budgetid=nil, certid=nil, clusterinfo=nil, modelroutername=nil, networktype=nil, port=nil, ratelimitconfig=nil, routersetting=nil, schema=nil, subnetid=nil, tags=nil, vpcid=nil, modelrouterbillingconfig=nil, clienttoken=nil, eipaddressid=nil, bandwidth=nil, embeddingconfig=nil, videoconfig=nil, rerankconfig=nil, decisionsconfig=nil)
           @ModelRouterType = modelroutertype
           @BudgetId = budgetid
           @CertId = certid
@@ -3040,6 +3046,9 @@ module TencentCloud
           @EipAddressId = eipaddressid
           @Bandwidth = bandwidth
           @EmbeddingConfig = embeddingconfig
+          @VideoConfig = videoconfig
+          @RerankConfig = rerankconfig
+          @DecisionsConfig = decisionsconfig
         end
 
         def deserialize(params)
@@ -3082,6 +3091,18 @@ module TencentCloud
           unless params['EmbeddingConfig'].nil?
             @EmbeddingConfig = EmbeddingConfig.new
             @EmbeddingConfig.deserialize(params['EmbeddingConfig'])
+          end
+          unless params['VideoConfig'].nil?
+            @VideoConfig = VideoConfig.new
+            @VideoConfig.deserialize(params['VideoConfig'])
+          end
+          unless params['RerankConfig'].nil?
+            @RerankConfig = RerankConfig.new
+            @RerankConfig.deserialize(params['RerankConfig'])
+          end
+          unless params['DecisionsConfig'].nil?
+            @DecisionsConfig = DecisionsConfig.new
+            @DecisionsConfig.deserialize(params['DecisionsConfig'])
           end
         end
       end
@@ -3540,6 +3561,36 @@ module TencentCloud
           @InstanceId = params['InstanceId']
           @InstanceName = params['InstanceName']
           @Region = params['Region']
+        end
+      end
+
+      # DecisionsConfig配置。
+      class DecisionsConfig < TencentCloud::Common::AbstractModel
+        # @param RoutingStrategy: <p>模型内路由策略</p><p>枚举值：</p><ul><li>SimpleShuffle： 简单随机路由</li><li>LeastBusy： 最低繁忙路由</li><li>LatencyBasedRouting： 最低延迟路由</li><li>UsageBasedRouting： 用量均衡路由</li><li>CostBasedRouting： 最低积分路由</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RoutingStrategy: String
+        # @param RoutingStrategyArgs: <p>路由参数</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RoutingStrategyArgs: :class:`Tencentcloud::Clb.v20180317.models.RoutingStrategyArgs`
+        # @param NumRetries: <p>CMR实例级别模型组内请求重试次数</p><p>取值范围：[0, 5]</p><p>默认值：2</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NumRetries: Integer
+
+        attr_accessor :RoutingStrategy, :RoutingStrategyArgs, :NumRetries
+
+        def initialize(routingstrategy=nil, routingstrategyargs=nil, numretries=nil)
+          @RoutingStrategy = routingstrategy
+          @RoutingStrategyArgs = routingstrategyargs
+          @NumRetries = numretries
+        end
+
+        def deserialize(params)
+          @RoutingStrategy = params['RoutingStrategy']
+          unless params['RoutingStrategyArgs'].nil?
+            @RoutingStrategyArgs = RoutingStrategyArgs.new
+            @RoutingStrategyArgs.deserialize(params['RoutingStrategyArgs'])
+          end
+          @NumRetries = params['NumRetries']
         end
       end
 
@@ -6052,16 +6103,19 @@ module TencentCloud
         # @type Limit: Integer
         # @param Offset: <p>翻页偏移量</p><p>默认值：0</p>
         # @type Offset: Integer
-        # @param Capability: <p>模型输出模态</p>
+        # @param Capability: <p>模型输出模态</p><p>枚举值：</p><ul><li>chat： 文本</li><li>embedding： 向量</li><li>video： 视频</li><li>rerank： 重排序</li></ul>
         # @type Capability: String
+        # @param Capabilities: <p>模型输出模态</p><p>枚举值：</p><ul><li>chat： 文本</li><li>embedding： 向量</li><li>rerank： 重排序</li><li>video： 视频</li></ul>
+        # @type Capabilities: Array
 
-        attr_accessor :ModelRouterId, :Limit, :Offset, :Capability
+        attr_accessor :ModelRouterId, :Limit, :Offset, :Capability, :Capabilities
 
-        def initialize(modelrouterid=nil, limit=nil, offset=nil, capability=nil)
+        def initialize(modelrouterid=nil, limit=nil, offset=nil, capability=nil, capabilities=nil)
           @ModelRouterId = modelrouterid
           @Limit = limit
           @Offset = offset
           @Capability = capability
+          @Capabilities = capabilities
         end
 
         def deserialize(params)
@@ -6069,6 +6123,7 @@ module TencentCloud
           @Limit = params['Limit']
           @Offset = params['Offset']
           @Capability = params['Capability']
+          @Capabilities = params['Capabilities']
         end
       end
 
@@ -7762,13 +7817,13 @@ module TencentCloud
 
       # embedding配置。
       class EmbeddingConfig < TencentCloud::Common::AbstractModel
-        # @param RoutingStrategy: <p>模型内路由策略</p>
+        # @param RoutingStrategy: <p>模型内路由策略</p><p>枚举值：</p><ul><li>SimpleShuffle： 简单随机路由</li><li>LeastBusy： 最低繁忙路由</li><li>LatencyBasedRouting： 最低延迟路由</li><li>UsageBasedRouting： 用量均衡路由</li><li>CostBasedRouting： 最低积分路由</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RoutingStrategy: String
         # @param RoutingStrategyArgs: <p>路由参数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RoutingStrategyArgs: :class:`Tencentcloud::Clb.v20180317.models.RoutingStrategyArgs`
-        # @param NumRetries: <p>同一模型请求重试次数</p>
+        # @param NumRetries: <p>CMR实例级别模型组内请求重试次数</p><p>取值范围：[0, 5]</p><p>默认值：2</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NumRetries: Integer
 
@@ -10047,7 +10102,7 @@ module TencentCloud
         # @type ServiceProviders: Array
         # @param Type: <p>模型类型</p>
         # @type Type: String
-        # @param Capability: <p>输出模态</p>
+        # @param Capability: <p>输出模态</p><p>枚举值：</p><ul><li>chat： 文本</li><li>embedding： 向量</li><li>video： 视频</li><li>rerank： 重排序</li></ul>
         # @type Capability: String
 
         attr_accessor :InputModalitiesUnion, :ModelName, :ServiceProviders, :Type, :Capability
@@ -10203,7 +10258,7 @@ module TencentCloud
         # @type CMRPrivateNetworkTunnelName: String
         # @param HealthCheckConfigs: <p>健康检查配置</p>
         # @type HealthCheckConfigs: Array
-        # @param Capability: <p>模型输出模态</p>
+        # @param Capability: <p>模型输出模态</p><p>枚举值：</p><ul><li>chat： 文本</li><li>embedding： 向量</li><li>video： 视频</li><li>rerank： 重排序</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Capability: String
         # @param EndpointPath: <p>请求后缀</p>
@@ -10443,12 +10498,22 @@ module TencentCloud
         # @type EipAddressId: String
         # @param BillingConfig: <p>计费信息</p>
         # @type BillingConfig: :class:`Tencentcloud::Clb.v20180317.models.ModelRouterBillingConfigOutput`
-        # @param EmbeddingConfig: <p>Embedding配置</p>
+        # @param EmbeddingConfig: <p>Embedding调度配置</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EmbeddingConfig: :class:`Tencentcloud::Clb.v20180317.models.EmbeddingConfig`
+        # @param LoadBalancerId: <p>CMR关联的负载均衡实例id</p>
+        # @type LoadBalancerId: String
+        # @param VideoConfig: <p>视频模型设置</p>
+        # @type VideoConfig: :class:`Tencentcloud::Clb.v20180317.models.VideoConfig`
+        # @param RerankConfig: <p>Rerank调度配置</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RerankConfig: :class:`Tencentcloud::Clb.v20180317.models.RerankConfig`
+        # @param DecisionsConfig: <p>决策模型设置</p>
+        # @type DecisionsConfig: :class:`Tencentcloud::Clb.v20180317.models.DecisionsConfig`
 
-        attr_accessor :BudgetId, :BudgetName, :ClusterInfo, :CreatedTime, :CreditUsageSet, :Domain, :ModelRouterId, :ModelRouterName, :ModelRouterType, :ModifiedTime, :NetworkType, :RateLimitConfig, :RouterSetting, :SecurityGroups, :SecurityStatus, :ServiceEndPoints, :Status, :SubnetId, :Tags, :TradeStatus, :Vip, :VpcId, :Bandwidth, :EipAddressId, :BillingConfig, :EmbeddingConfig
+        attr_accessor :BudgetId, :BudgetName, :ClusterInfo, :CreatedTime, :CreditUsageSet, :Domain, :ModelRouterId, :ModelRouterName, :ModelRouterType, :ModifiedTime, :NetworkType, :RateLimitConfig, :RouterSetting, :SecurityGroups, :SecurityStatus, :ServiceEndPoints, :Status, :SubnetId, :Tags, :TradeStatus, :Vip, :VpcId, :Bandwidth, :EipAddressId, :BillingConfig, :EmbeddingConfig, :LoadBalancerId, :VideoConfig, :RerankConfig, :DecisionsConfig
 
-        def initialize(budgetid=nil, budgetname=nil, clusterinfo=nil, createdtime=nil, creditusageset=nil, domain=nil, modelrouterid=nil, modelroutername=nil, modelroutertype=nil, modifiedtime=nil, networktype=nil, ratelimitconfig=nil, routersetting=nil, securitygroups=nil, securitystatus=nil, serviceendpoints=nil, status=nil, subnetid=nil, tags=nil, tradestatus=nil, vip=nil, vpcid=nil, bandwidth=nil, eipaddressid=nil, billingconfig=nil, embeddingconfig=nil)
+        def initialize(budgetid=nil, budgetname=nil, clusterinfo=nil, createdtime=nil, creditusageset=nil, domain=nil, modelrouterid=nil, modelroutername=nil, modelroutertype=nil, modifiedtime=nil, networktype=nil, ratelimitconfig=nil, routersetting=nil, securitygroups=nil, securitystatus=nil, serviceendpoints=nil, status=nil, subnetid=nil, tags=nil, tradestatus=nil, vip=nil, vpcid=nil, bandwidth=nil, eipaddressid=nil, billingconfig=nil, embeddingconfig=nil, loadbalancerid=nil, videoconfig=nil, rerankconfig=nil, decisionsconfig=nil)
           @BudgetId = budgetid
           @BudgetName = budgetname
           @ClusterInfo = clusterinfo
@@ -10475,6 +10540,10 @@ module TencentCloud
           @EipAddressId = eipaddressid
           @BillingConfig = billingconfig
           @EmbeddingConfig = embeddingconfig
+          @LoadBalancerId = loadbalancerid
+          @VideoConfig = videoconfig
+          @RerankConfig = rerankconfig
+          @DecisionsConfig = decisionsconfig
         end
 
         def deserialize(params)
@@ -10539,6 +10608,19 @@ module TencentCloud
           unless params['EmbeddingConfig'].nil?
             @EmbeddingConfig = EmbeddingConfig.new
             @EmbeddingConfig.deserialize(params['EmbeddingConfig'])
+          end
+          @LoadBalancerId = params['LoadBalancerId']
+          unless params['VideoConfig'].nil?
+            @VideoConfig = VideoConfig.new
+            @VideoConfig.deserialize(params['VideoConfig'])
+          end
+          unless params['RerankConfig'].nil?
+            @RerankConfig = RerankConfig.new
+            @RerankConfig.deserialize(params['RerankConfig'])
+          end
+          unless params['DecisionsConfig'].nil?
+            @DecisionsConfig = DecisionsConfig.new
+            @DecisionsConfig.deserialize(params['DecisionsConfig'])
           end
         end
       end
@@ -11930,14 +12012,20 @@ module TencentCloud
         # @type RouterSetting: :class:`Tencentcloud::Clb.v20180317.models.RouterSettingWithFallBack`
         # @param Bandwidth: <p>带宽</p><p>取值范围：[1, 2048]</p><p>单位：Mbps</p>
         # @type Bandwidth: Integer
-        # @param Capability: <p>模型输出模态</p>
+        # @param Capability: <p>模型输出模态</p><p>枚举值：</p><ul><li>chat： 文本</li><li>embedding： 向量</li><li>video： 视频</li><li>rerank： 重排序</li></ul>
         # @type Capability: String
-        # @param EmbeddingConfig: <p>embedding 模态配置</p>
+        # @param EmbeddingConfig: <p>Embedding 调度配置</p><p>传入该参数时，必须传Capability为embedding</p>
         # @type EmbeddingConfig: :class:`Tencentcloud::Clb.v20180317.models.EmbeddingConfig`
+        # @param VideoConfig: <p>Video 调度配置</p>
+        # @type VideoConfig: :class:`Tencentcloud::Clb.v20180317.models.VideoConfig`
+        # @param RerankConfig: <p>Rerank 调度配置</p><p>传入该参数时，必须传Capability为rerank</p>
+        # @type RerankConfig: :class:`Tencentcloud::Clb.v20180317.models.RerankConfig`
+        # @param DecisionsConfig: <p>Decisions 调度配置</p>
+        # @type DecisionsConfig: :class:`Tencentcloud::Clb.v20180317.models.DecisionsConfig`
 
-        attr_accessor :ModelRouterId, :CertId, :ModelRouterName, :RateLimitConfig, :RouterSetting, :Bandwidth, :Capability, :EmbeddingConfig
+        attr_accessor :ModelRouterId, :CertId, :ModelRouterName, :RateLimitConfig, :RouterSetting, :Bandwidth, :Capability, :EmbeddingConfig, :VideoConfig, :RerankConfig, :DecisionsConfig
 
-        def initialize(modelrouterid=nil, certid=nil, modelroutername=nil, ratelimitconfig=nil, routersetting=nil, bandwidth=nil, capability=nil, embeddingconfig=nil)
+        def initialize(modelrouterid=nil, certid=nil, modelroutername=nil, ratelimitconfig=nil, routersetting=nil, bandwidth=nil, capability=nil, embeddingconfig=nil, videoconfig=nil, rerankconfig=nil, decisionsconfig=nil)
           @ModelRouterId = modelrouterid
           @CertId = certid
           @ModelRouterName = modelroutername
@@ -11946,6 +12034,9 @@ module TencentCloud
           @Bandwidth = bandwidth
           @Capability = capability
           @EmbeddingConfig = embeddingconfig
+          @VideoConfig = videoconfig
+          @RerankConfig = rerankconfig
+          @DecisionsConfig = decisionsconfig
         end
 
         def deserialize(params)
@@ -11965,6 +12056,18 @@ module TencentCloud
           unless params['EmbeddingConfig'].nil?
             @EmbeddingConfig = EmbeddingConfig.new
             @EmbeddingConfig.deserialize(params['EmbeddingConfig'])
+          end
+          unless params['VideoConfig'].nil?
+            @VideoConfig = VideoConfig.new
+            @VideoConfig.deserialize(params['VideoConfig'])
+          end
+          unless params['RerankConfig'].nil?
+            @RerankConfig = RerankConfig.new
+            @RerankConfig.deserialize(params['RerankConfig'])
+          end
+          unless params['DecisionsConfig'].nil?
+            @DecisionsConfig = DecisionsConfig.new
+            @DecisionsConfig.deserialize(params['DecisionsConfig'])
           end
         end
       end
@@ -13285,6 +13388,36 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # Rerank调度配置。
+      class RerankConfig < TencentCloud::Common::AbstractModel
+        # @param RoutingStrategy: <p>L2路由策略</p><p>枚举值：</p><ul><li>SimpleShuffle： 简单随机路由</li><li>LeastBusy： 最低繁忙路由</li><li>LatencyBasedRouting： 最低延迟路由</li><li>UsageBasedRouting： 用量均衡路由</li><li>CostBasedRouting： 最低积分路由</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RoutingStrategy: String
+        # @param RoutingStrategyArgs: <p>L2路由算法参数</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RoutingStrategyArgs: :class:`Tencentcloud::Clb.v20180317.models.RoutingStrategyArgs`
+        # @param NumRetries: <p>CMR实例级别模型组内请求重试次数</p><p>取值范围：[0, 5]</p><p>默认值：2</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NumRetries: Integer
+
+        attr_accessor :RoutingStrategy, :RoutingStrategyArgs, :NumRetries
+
+        def initialize(routingstrategy=nil, routingstrategyargs=nil, numretries=nil)
+          @RoutingStrategy = routingstrategy
+          @RoutingStrategyArgs = routingstrategyargs
+          @NumRetries = numretries
+        end
+
+        def deserialize(params)
+          @RoutingStrategy = params['RoutingStrategy']
+          unless params['RoutingStrategyArgs'].nil?
+            @RoutingStrategyArgs = RoutingStrategyArgs.new
+            @RoutingStrategyArgs.deserialize(params['RoutingStrategyArgs'])
+          end
+          @NumRetries = params['NumRetries']
         end
       end
 
@@ -15267,7 +15400,7 @@ module TencentCloud
         # @type HealthCheckProtocol: String
         # @param CMRPrivateNetworkTunnelId: <p>    CMR 私网管道ID </p>
         # @type CMRPrivateNetworkTunnelId: String
-        # @param Capability: <p>对应模型的能力</p><p>枚举值：</p><ul><li>chat： 生文能力</li><li>embedding： 向量能力</li></ul>
+        # @param Capability: <p>对应模型的能力</p><p>枚举值：</p><ul><li>chat： 生文能力</li><li>embedding： 向量能力</li><li>rerank： 重排序能力</li><li>video： 生视频能力</li></ul>
         # @type Capability: String
         # @param EndpointPath: <p>端点路径</p>
         # @type EndpointPath: String
@@ -15480,6 +15613,36 @@ module TencentCloud
           end
           @CreatedTime = params['CreatedTime']
           @ModifiedTime = params['ModifiedTime']
+        end
+      end
+
+      # video配置。
+      class VideoConfig < TencentCloud::Common::AbstractModel
+        # @param RoutingStrategy: <p>模型内路由策略</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RoutingStrategy: String
+        # @param RoutingStrategyArgs: <p>路由参数</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RoutingStrategyArgs: :class:`Tencentcloud::Clb.v20180317.models.RoutingStrategyArgs`
+        # @param NumRetries: <p>同一模型请求重试次数</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NumRetries: Integer
+
+        attr_accessor :RoutingStrategy, :RoutingStrategyArgs, :NumRetries
+
+        def initialize(routingstrategy=nil, routingstrategyargs=nil, numretries=nil)
+          @RoutingStrategy = routingstrategy
+          @RoutingStrategyArgs = routingstrategyargs
+          @NumRetries = numretries
+        end
+
+        def deserialize(params)
+          @RoutingStrategy = params['RoutingStrategy']
+          unless params['RoutingStrategyArgs'].nil?
+            @RoutingStrategyArgs = RoutingStrategyArgs.new
+            @RoutingStrategyArgs.deserialize(params['RoutingStrategyArgs'])
+          end
+          @NumRetries = params['NumRetries']
         end
       end
 

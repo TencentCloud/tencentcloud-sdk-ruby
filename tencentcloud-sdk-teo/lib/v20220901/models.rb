@@ -4710,6 +4710,50 @@ module TencentCloud
         end
       end
 
+      # CreateInferenceDomain请求参数结构体
+      class CreateInferenceDomainRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: <p>站点 ID。</p>
+        # @type ZoneId: String
+        # @param ServiceId: <p>推理服务ID。</p>
+        # @type ServiceId: String
+        # @param Domain: <p>推理服务域名。</p>
+        # @type Domain: String
+        # @param AuthSwitch: <p>推理任务请求鉴权开关。</p><p>枚举值：</p><ul><li>Off： 关闭鉴权；</li><li>On： 开启鉴权。</li></ul><p>默认值：On。</p>
+        # @type AuthSwitch: String
+
+        attr_accessor :ZoneId, :ServiceId, :Domain, :AuthSwitch
+
+        def initialize(zoneid=nil, serviceid=nil, domain=nil, authswitch=nil)
+          @ZoneId = zoneid
+          @ServiceId = serviceid
+          @Domain = domain
+          @AuthSwitch = authswitch
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @ServiceId = params['ServiceId']
+          @Domain = params['Domain']
+          @AuthSwitch = params['AuthSwitch']
+        end
+      end
+
+      # CreateInferenceDomain返回参数结构体
+      class CreateInferenceDomainResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateInferenceService请求参数结构体
       class CreateInferenceServiceRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: <p>站点 ID。</p>
@@ -8387,31 +8431,19 @@ module TencentCloud
 
       # DescribeAccelerationDomains请求参数结构体
       class DescribeAccelerationDomainsRequest < TencentCloud::Common::AbstractModel
-        # @param ZoneId: 加速域名所属站点 ID。
+        # @param ZoneId: <p>加速域名所属站点 ID。</p>
         # @type ZoneId: String
-        # @param Offset: 分页查询偏移量，默认为 0。
+        # @param Offset: <p>分页查询偏移量，默认为 0。</p>
         # @type Offset: Integer
-        # @param Limit: 分页查询限制数目，默认值：20，上限：200。
+        # @param Limit: <p>分页查询限制数目，默认值：20，上限：200。</p>
         # @type Limit: Integer
-        # @param Filters: 过滤条件，Filters.Values 的上限为 20。该参数不填写时，返回当前 zone-id 下所有域名信息。详细的过滤条件如下：
-        # <li>domain-name：按照加速域名进行过滤；</li>
-        # <li>origin-type：按照源站类型进行过滤；</li>
-        # <li>origin：按照主源站地址进行过滤；</li>
-        # <li>backup-origin： 按照备用源站地址进行过滤；</li>
-        # <li>domain-cname：按照 CNAME 进行过滤；</li>
-        # <li>share-cname：按照共享 CNAME 进行过滤；</li>
+        # @param Filters: <p>过滤条件，Filters.Values 的上限为 20。该参数不填写时，返回当前 zone-id 下所有域名信息。详细的过滤条件如下：</p><li>domain-name：按照加速域名进行过滤；</li><li>origin-type：按照源站类型进行过滤；</li><li>origin：按照主源站地址进行过滤；</li><li>backup-origin： 按照备用源站地址进行过滤；</li><li>domain-cname：按照 CNAME 进行过滤；</li><li>share-cname：按照共享 CNAME 进行过滤；</li>
         # @type Filters: Array
-        # @param Order: 可根据该字段对返回结果进行排序，取值有：
-        # <li>created_on：加速域名创建时间；</li>
-        # <li>domain-name：加速域名。</li>不填写时，默认对返回结果按照 domain-name 排序。
+        # @param Order: <p>可根据该字段对返回结果进行排序，取值有：</p><li>created_on：加速域名创建时间；</li><li>domain-name：加速域名。</li>不填写时，默认对返回结果按照 domain-name 排序。
         # @type Order: String
-        # @param Direction: 排序方向，如果是字段值为数字，则根据数字大小排序；如果字段值为文本，则根据 ascill 码的大小排序。取值有：
-        # <li>asc：升序排列；</li>
-        # <li>desc：降序排列。</li>不填写使用默认值 asc。
+        # @param Direction: <p>排序方向，如果是字段值为数字，则根据数字大小排序；如果字段值为文本，则根据 ASCII 码的大小排序。取值有：</p><li>asc：升序排列；</li><li>desc：降序排列。</li>不填写使用默认值 asc。
         # @type Direction: String
-        # @param Match: 匹配方式，取值有：
-        # <li>all：返回匹配所有查询条件的加速域名；</li>
-        # <li>any：返回匹配任意一个查询条件的加速域名。</li>不填写时默认值为 all。
+        # @param Match: <p>匹配方式，取值有：</p><li>all：返回匹配所有查询条件的加速域名；</li><li>any：返回匹配任意一个查询条件的加速域名。</li>不填写时默认值为 all。
         # @type Match: String
 
         attr_accessor :ZoneId, :Offset, :Limit, :Filters, :Order, :Direction, :Match
@@ -8446,9 +8478,9 @@ module TencentCloud
 
       # DescribeAccelerationDomains返回参数结构体
       class DescribeAccelerationDomainsResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 符合查询条件的加速域名个数。
+        # @param TotalCount: <p>符合查询条件的加速域名个数。</p>
         # @type TotalCount: Integer
-        # @param AccelerationDomains: 符合查询条件的所有加速域名的信息。
+        # @param AccelerationDomains: <p>符合查询条件的所有加速域名的信息。</p>
         # @type AccelerationDomains: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -10429,6 +10461,73 @@ module TencentCloud
               inferenceapitoken_tmp = InferenceAPIToken.new
               inferenceapitoken_tmp.deserialize(i)
               @Tokens << inferenceapitoken_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeInferenceDomains请求参数结构体
+      class DescribeInferenceDomainsRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: <p>站点 ID。</p>
+        # @type ZoneId: String
+        # @param ServiceId: <p>推理服务 ID。</p>
+        # @type ServiceId: String
+        # @param SortBy: <p>排序字段。</p><p>枚举值：</p><ul><li>CreateTime： 域名创建时间；</li><li>UpdateTime： 域名修改时间。</li></ul><p>默认值：CreateTime。</p>
+        # @type SortBy: String
+        # @param SortOrder: <p>排序方式。</p><p>枚举值：</p><ul><li>Asc： 升序方式；</li><li>Desc： 降序方式。</li></ul><p>默认值：Desc。</p>
+        # @type SortOrder: String
+        # @param Offset: <p>分页查询偏移量。</p><p>默认值：0。</p>
+        # @type Offset: Integer
+        # @param Limit: <p>分页查询限制数目。</p><p>默认值：20。</p><p>最大值：200。</p>
+        # @type Limit: Integer
+
+        attr_accessor :ZoneId, :ServiceId, :SortBy, :SortOrder, :Offset, :Limit
+
+        def initialize(zoneid=nil, serviceid=nil, sortby=nil, sortorder=nil, offset=nil, limit=nil)
+          @ZoneId = zoneid
+          @ServiceId = serviceid
+          @SortBy = sortby
+          @SortOrder = sortorder
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @ServiceId = params['ServiceId']
+          @SortBy = params['SortBy']
+          @SortOrder = params['SortOrder']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeInferenceDomains返回参数结构体
+      class DescribeInferenceDomainsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>推理服务域名总数。</p>
+        # @type TotalCount: Integer
+        # @param Domains: <p>推理服务域名列表。</p>
+        # @type Domains: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Domains, :RequestId
+
+        def initialize(totalcount=nil, domains=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Domains = domains
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Domains'].nil?
+            @Domains = []
+            params['Domains'].each do |i|
+              inferencedomain_tmp = InferenceDomain.new
+              inferencedomain_tmp.deserialize(i)
+              @Domains << inferencedomain_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -16012,7 +16111,7 @@ module TencentCloud
 
       # 七层回源超时配置。
       class HTTPUpstreamTimeoutParameters < TencentCloud::Common::AbstractModel
-        # @param ResponseTimeout: HTTP 应答超时时间，单位为秒，取值：5～600。
+        # @param ResponseTimeout: <p>HTTP 应答超时时间。</p><p>取值范围：[5, 600]</p><p>单位：秒</p><p>默认值：15</p>
         # @type ResponseTimeout: Integer
 
         attr_accessor :ResponseTimeout
@@ -16203,6 +16302,61 @@ module TencentCloud
         end
       end
 
+      # https 服务端证书配置
+      class HostCertInfo < TencentCloud::Common::AbstractModel
+        # @param CertId: 服务器证书 ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CertId: String
+        # @param Alias: 证书备注名。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Alias: String
+        # @param Type: 证书类型，取值有：
+        # <li>default：默认证书；</lil>
+        # <li>upload：用户上传；</li>
+        # <li>managed：腾讯云托管。</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param ExpireTime: 证书过期时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpireTime: String
+        # @param DeployTime: 证书部署时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeployTime: String
+        # @param SignAlgo: 签名算法。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SignAlgo: String
+        # @param Status: 证书状态，取值有：
+        # <li>deployed：已部署；</li>
+        # <li>processing：部署中；</li>
+        # <li>applying：申请中；</li>
+        # <li>failed：申请失败；</li>
+        # <li>issued：绑定失败。</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+
+        attr_accessor :CertId, :Alias, :Type, :ExpireTime, :DeployTime, :SignAlgo, :Status
+
+        def initialize(certid=nil, _alias=nil, type=nil, expiretime=nil, deploytime=nil, signalgo=nil, status=nil)
+          @CertId = certid
+          @Alias = _alias
+          @Type = type
+          @ExpireTime = expiretime
+          @DeployTime = deploytime
+          @SignAlgo = signalgo
+          @Status = status
+        end
+
+        def deserialize(params)
+          @CertId = params['CertId']
+          @Alias = params['Alias']
+          @Type = params['Type']
+          @ExpireTime = params['ExpireTime']
+          @DeployTime = params['DeployTime']
+          @SignAlgo = params['SignAlgo']
+          @Status = params['Status']
+        end
+      end
+
       # Host Header 重写配置参数。
       class HostHeaderParameters < TencentCloud::Common::AbstractModel
         # @param Action: 执行动作，取值有：
@@ -16275,6 +16429,52 @@ module TencentCloud
             @Policy.deserialize(params['Policy'])
           end
           @TemplateId = params['TemplateId']
+        end
+      end
+
+      # 域名证书配置
+      class HostsCertificate < TencentCloud::Common::AbstractModel
+        # @param Host: 域名。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Host: String
+        # @param Mode: 配置证书的模式，取值有：
+        # <li>disable：不配置证书；</li>
+        # <li>eofreecert：配置 EdgeOne 免费证书；</li>
+        # <li>sslcert：配置 SSL 证书；</li>
+        # @type Mode: String
+        # @param HostCertInfo: 服务端证书配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HostCertInfo: Array
+        # @param ApplyType: 申请类型，取值有：
+        # <li>apply：托管EdgeOne；</li>
+        # <li>none：不托管EdgeOne。</li>不填，默认取值为none。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplyType: String
+
+        attr_accessor :Host, :Mode, :HostCertInfo, :ApplyType
+        extend Gem::Deprecate
+        deprecate :ApplyType, :none, 2026, 9
+        deprecate :ApplyType=, :none, 2026, 9
+
+        def initialize(host=nil, mode=nil, hostcertinfo=nil, applytype=nil)
+          @Host = host
+          @Mode = mode
+          @HostCertInfo = hostcertinfo
+          @ApplyType = applytype
+        end
+
+        def deserialize(params)
+          @Host = params['Host']
+          @Mode = params['Mode']
+          unless params['HostCertInfo'].nil?
+            @HostCertInfo = []
+            params['HostCertInfo'].each do |i|
+              hostcertinfo_tmp = HostCertInfo.new
+              hostcertinfo_tmp.deserialize(i)
+              @HostCertInfo << hostcertinfo_tmp
+            end
+          end
+          @ApplyType = params['ApplyType']
         end
       end
 
@@ -17031,6 +17231,56 @@ module TencentCloud
               @EnvironmentVariables << inferenceenvironmentvariable_tmp
             end
           end
+        end
+      end
+
+      # 推理服务的域名信息。
+      class InferenceDomain < TencentCloud::Common::AbstractModel
+        # @param Domain: <p>域名名称。</p>
+        # @type Domain: String
+        # @param Status: <p>域名状态。</p><p>枚举值：</p><ul><li>Online： 已生效；</li><li>Process： 部署中；</li><li>Offline： 已停用；</li><li>Init： 未生效，待激活站点。</li></ul>
+        # @type Status: String
+        # @param AuthSwitch: <p>推理任务请求鉴权开关。</p><p>枚举值：</p><ul><li>Off： 关闭鉴权；</li><li>On： 开启鉴权。</li></ul><p>默认值：On。</p>
+        # @type AuthSwitch: String
+        # @param Cname: <p>CNAME 地址。</p><p>校验域名 CNAME 配置状态，请参考<a href="https://cloud.tencent.com/document/api/1552/94491"> CheckCnameStatus </a>接口。</p>
+        # @type Cname: String
+        # @param OwnershipVerification: <p>域名需进行归属权验证才能继续提供服务时，该对象会携带对应验证方式所需要的信息。</p><p>验证归属权，请参考<a href="https://cloud.tencent.com/document/api/1552/98879"> VerifyOwnership </a>接口。</p>
+        # @type OwnershipVerification: :class:`Tencentcloud::Teo.v20220901.models.OwnershipVerification`
+        # @param Certificate: <p>域名证书信息。</p><p>申请免费证书，请参考 <a href="https://cloud.tencent.com/document/api/1552/124807">ApplyFreeCertificate</a> 接口；<br>检查免费证书申请结果，请参考 <a href="https://cloud.tencent.com/document/api/1552/124806">CheckFreeCertificateVerification</a> 接口；<br>配置域名证书，请参考 <a href="https://cloud.tencent.com/document/api/1552/80764">ModifyHostsCertificate</a> 接口。</p>
+        # @type Certificate: :class:`Tencentcloud::Teo.v20220901.models.HostsCertificate`
+        # @param CreateTime: <p>创建时间。</p>
+        # @type CreateTime: String
+        # @param UpdateTime: <p>修改时间。</p>
+        # @type UpdateTime: String
+
+        attr_accessor :Domain, :Status, :AuthSwitch, :Cname, :OwnershipVerification, :Certificate, :CreateTime, :UpdateTime
+
+        def initialize(domain=nil, status=nil, authswitch=nil, cname=nil, ownershipverification=nil, certificate=nil, createtime=nil, updatetime=nil)
+          @Domain = domain
+          @Status = status
+          @AuthSwitch = authswitch
+          @Cname = cname
+          @OwnershipVerification = ownershipverification
+          @Certificate = certificate
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Status = params['Status']
+          @AuthSwitch = params['AuthSwitch']
+          @Cname = params['Cname']
+          unless params['OwnershipVerification'].nil?
+            @OwnershipVerification = OwnershipVerification.new
+            @OwnershipVerification.deserialize(params['OwnershipVerification'])
+          end
+          unless params['Certificate'].nil?
+            @Certificate = HostsCertificate.new
+            @Certificate.deserialize(params['Certificate'])
+          end
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
         end
       end
 
@@ -22276,6 +22526,50 @@ module TencentCloud
 
         def deserialize(params)
           @Switch = params['Switch']
+        end
+      end
+
+      # OperateInferenceDomain请求参数结构体
+      class OperateInferenceDomainRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: <p>站点 ID。</p>
+        # @type ZoneId: String
+        # @param ServiceId: <p>推理服务 ID。</p>
+        # @type ServiceId: String
+        # @param Domain: <p>推理服务域名。</p>
+        # @type Domain: String
+        # @param Operation: <p>操作类型。</p><p>枚举值：</p><ul><li>Resume： 启用域名；</li><li>Stop： 停用域名；</li><li>Delete： 删除域名。</li></ul>
+        # @type Operation: String
+
+        attr_accessor :ZoneId, :ServiceId, :Domain, :Operation
+
+        def initialize(zoneid=nil, serviceid=nil, domain=nil, operation=nil)
+          @ZoneId = zoneid
+          @ServiceId = serviceid
+          @Domain = domain
+          @Operation = operation
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @ServiceId = params['ServiceId']
+          @Domain = params['Domain']
+          @Operation = params['Operation']
+        end
+      end
+
+      # OperateInferenceDomain返回参数结构体
+      class OperateInferenceDomainResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -28237,12 +28531,48 @@ module TencentCloud
         end
       end
 
+      # 站点级自定义变量配置，包括变量定义和变量运算。
+      class ZoneCustomVariables < TencentCloud::Common::AbstractModel
+        # @param CustomVariables: <p>站点级自定义变量列表。CustomVariable.Name 需要使用 user.zone. 作为前缀。变量按照数组顺序依次初始化，InitialValue 仅支持引用位于当前变量之前的变量，不支持引用当前变量自身或位于当前变量之后的变量。</p>
+        # @type CustomVariables: Array
+        # @param CustomVariableOperations: <p>站点级自定义变量运算规则。运算中支持引用已定义的站点级自定义变量。此列表当前只支持填写一项规则，多填无效。</p>
+        # @type CustomVariableOperations: Array
+
+        attr_accessor :CustomVariables, :CustomVariableOperations
+
+        def initialize(customvariables=nil, customvariableoperations=nil)
+          @CustomVariables = customvariables
+          @CustomVariableOperations = customvariableoperations
+        end
+
+        def deserialize(params)
+          unless params['CustomVariables'].nil?
+            @CustomVariables = []
+            params['CustomVariables'].each do |i|
+              customvariable_tmp = CustomVariable.new
+              customvariable_tmp.deserialize(i)
+              @CustomVariables << customvariable_tmp
+            end
+          end
+          unless params['CustomVariableOperations'].nil?
+            @CustomVariableOperations = []
+            params['CustomVariableOperations'].each do |i|
+              customvariableoperation_tmp = CustomVariableOperation.new
+              customvariableoperation_tmp.deserialize(i)
+              @CustomVariableOperations << customvariableoperation_tmp
+            end
+          end
+        end
+      end
+
       # 站点完整配置结构。
       class ZoneFullConfig < TencentCloud::Common::AbstractModel
         # @param FormatVersion: <p>语法版本，当前默认为 1.0，输入其他值将会报错。</p>
         # @type FormatVersion: String
         # @param ZoneConfig: <p>站点级配置，包含「站点加速」中所有配置项，且所有项均为必选，否则配置无效。</p>
         # @type ZoneConfig: :class:`Tencentcloud::Teo.v20220901.models.ZoneConfig`
+        # @param ZoneCustomVariables: <p>站点级自定义变量配置，包括变量定义和变量运算。</p>
+        # @type ZoneCustomVariables: :class:`Tencentcloud::Teo.v20220901.models.ZoneCustomVariables`
         # @param Rules: <p>规则级配置，包含「规则引擎」中所有规则，且数组可为空，表示不启用任何规则。</p>
         # @type Rules: Array
         # @param WebSecurity: <p>Web 安全防护配置，对应控制台中「安全防护 - Web 防护」里支持的功能。</p>
@@ -28250,11 +28580,12 @@ module TencentCloud
         # @param FunctionTriggers: <p>边缘函数触发规则配置，包含触发「边缘函数」中所有规则，且数组可为空，表示不启用任何规则。</p>
         # @type FunctionTriggers: Array
 
-        attr_accessor :FormatVersion, :ZoneConfig, :Rules, :WebSecurity, :FunctionTriggers
+        attr_accessor :FormatVersion, :ZoneConfig, :ZoneCustomVariables, :Rules, :WebSecurity, :FunctionTriggers
 
-        def initialize(formatversion=nil, zoneconfig=nil, rules=nil, websecurity=nil, functiontriggers=nil)
+        def initialize(formatversion=nil, zoneconfig=nil, zonecustomvariables=nil, rules=nil, websecurity=nil, functiontriggers=nil)
           @FormatVersion = formatversion
           @ZoneConfig = zoneconfig
+          @ZoneCustomVariables = zonecustomvariables
           @Rules = rules
           @WebSecurity = websecurity
           @FunctionTriggers = functiontriggers
@@ -28265,6 +28596,10 @@ module TencentCloud
           unless params['ZoneConfig'].nil?
             @ZoneConfig = ZoneConfig.new
             @ZoneConfig.deserialize(params['ZoneConfig'])
+          end
+          unless params['ZoneCustomVariables'].nil?
+            @ZoneCustomVariables = ZoneCustomVariables.new
+            @ZoneCustomVariables.deserialize(params['ZoneCustomVariables'])
           end
           unless params['Rules'].nil?
             @Rules = []

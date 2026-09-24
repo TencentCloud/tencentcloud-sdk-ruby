@@ -17,6 +17,26 @@
 module TencentCloud
   module Ioa
     module V20220601
+      # 账户标识项(目录MenuId+登录账号UserId)，用于以(菜单目录、登录账号)代替账号Id标识账户
+      class AccountUserIdItem < TencentCloud::Common::AbstractModel
+        # @param MenuId: <p>Comment: 账号所在目录ID(MenuId)，与accounts表menu_id一致，用于同一登录账号在不同目录下去重;Required:true</p>
+        # @type MenuId: Integer
+        # @param UserId: <p>Comment: 登录账号(UserId)，对应DescribeLocalAccount -&gt; UserId;Required:true</p>
+        # @type UserId: String
+
+        attr_accessor :MenuId, :UserId
+
+        def initialize(menuid=nil, userid=nil)
+          @MenuId = menuid
+          @UserId = userid
+        end
+
+        def deserialize(params)
+          @MenuId = params['MenuId']
+          @UserId = params['UserId']
+        end
+      end
+
       # 按版本聚合后的软件列表
       class AggrCategorySoftDetailRow < TencentCloud::Common::AbstractModel
         # @param ID: ID
@@ -235,6 +255,126 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 绑定账户虚拟组响应数据
+      class BindVirtualAccountData < TencentCloud::Common::AbstractModel
+        # @param FailItems: <p>绑定失败明细（含失败原因）</p>
+        # @type FailItems: Array
+        # @param SuccessItems: <p>绑定成功明细（含幂等场景：已存在绑定的账号也归入成功）</p>
+        # @type SuccessItems: Array
+
+        attr_accessor :FailItems, :SuccessItems
+
+        def initialize(failitems=nil, successitems=nil)
+          @FailItems = failitems
+          @SuccessItems = successitems
+        end
+
+        def deserialize(params)
+          unless params['FailItems'].nil?
+            @FailItems = []
+            params['FailItems'].each do |i|
+              bindvirtualaccountresultdata_tmp = BindVirtualAccountResultData.new
+              bindvirtualaccountresultdata_tmp.deserialize(i)
+              @FailItems << bindvirtualaccountresultdata_tmp
+            end
+          end
+          unless params['SuccessItems'].nil?
+            @SuccessItems = []
+            params['SuccessItems'].each do |i|
+              bindvirtualaccountresultdata_tmp = BindVirtualAccountResultData.new
+              bindvirtualaccountresultdata_tmp.deserialize(i)
+              @SuccessItems << bindvirtualaccountresultdata_tmp
+            end
+          end
+        end
+      end
+
+      # 绑定虚拟组结果明细项
+      class BindVirtualAccountResultData < TencentCloud::Common::AbstractModel
+        # @param AccountId: <p>账号Id（通过AccountIdList传入时回显）</p>
+        # @type AccountId: Integer
+        # @param MenuId: <p>目录ID（通过AccountUserList传入时回显，否则为0）</p>
+        # @type MenuId: Integer
+        # @param Reason: <p>失败原因，仅失败项有值：ACCOUNT_NOT_FOUND / ACCOUNT_NOT_IN_GROUP / DB_ERROR</p>
+        # @type Reason: String
+        # @param UserId: <p>登录账号（通过AccountUserList传入时回显，否则为空）</p>
+        # @type UserId: String
+
+        attr_accessor :AccountId, :MenuId, :Reason, :UserId
+
+        def initialize(accountid=nil, menuid=nil, reason=nil, userid=nil)
+          @AccountId = accountid
+          @MenuId = menuid
+          @Reason = reason
+          @UserId = userid
+        end
+
+        def deserialize(params)
+          @AccountId = params['AccountId']
+          @MenuId = params['MenuId']
+          @Reason = params['Reason']
+          @UserId = params['UserId']
+        end
+      end
+
+      # BindVirtualAccounts请求参数结构体
+      class BindVirtualAccountsRequest < TencentCloud::Common::AbstractModel
+        # @param VirtualGroupId: <p>Comment: 虚拟组id;Required:true</p>
+        # @type VirtualGroupId: Integer
+        # @param AccountIdList: <p>Comment: 要绑定的账户Id集合，这里的Id指的是DescribeLocalAccountsData结构体里返回的Id;Required:true</p>
+        # @type AccountIdList: Array
+        # @param AccountUserList: <p>Comment: 要绑定的账户(目录MenuId+登录账号UserId)集合，与AccountIdList二选一或并用，查不到的账号会被跳过;Required:false</p>
+        # @type AccountUserList: Array
+        # @param DomainInstanceId: Comment: 管理域实例ID，用于CAM管理域权限分配。若企业未进行管理域的划分，可直接传入根域"1"，此时表示针对当前企业的全部设备和账号进行接口CRUD，具体CRUD的影响范围限制于相应接口的入参。
+        # @type DomainInstanceId: String
+
+        attr_accessor :VirtualGroupId, :AccountIdList, :AccountUserList, :DomainInstanceId
+
+        def initialize(virtualgroupid=nil, accountidlist=nil, accountuserlist=nil, domaininstanceid=nil)
+          @VirtualGroupId = virtualgroupid
+          @AccountIdList = accountidlist
+          @AccountUserList = accountuserlist
+          @DomainInstanceId = domaininstanceid
+        end
+
+        def deserialize(params)
+          @VirtualGroupId = params['VirtualGroupId']
+          @AccountIdList = params['AccountIdList']
+          unless params['AccountUserList'].nil?
+            @AccountUserList = []
+            params['AccountUserList'].each do |i|
+              accountuseriditem_tmp = AccountUserIdItem.new
+              accountuseriditem_tmp.deserialize(i)
+              @AccountUserList << accountuseriditem_tmp
+            end
+          end
+          @DomainInstanceId = params['DomainInstanceId']
+        end
+      end
+
+      # BindVirtualAccounts返回参数结构体
+      class BindVirtualAccountsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>业务响应数据</p>
+        # @type Data: :class:`Tencentcloud::Ioa.v20220601.models.BindVirtualAccountData`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = BindVirtualAccountData.new
+            @Data.deserialize(params['Data'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -971,6 +1111,43 @@ module TencentCloud
         def deserialize(params)
           @ResourceType = params['ResourceType']
           @ResourceId = params['ResourceId']
+        end
+      end
+
+      # 多OU组信息
+      class DescribeAccountAccountGroupsData < TencentCloud::Common::AbstractModel
+        # @param AccountGroupId: <p>组Id(只支持32位)</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccountGroupId: Integer
+        # @param AccountGroupName: <p>组名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccountGroupName: String
+        # @param MasterFlag: <p>主组标识(只支持32位)</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MasterFlag: Integer
+        # @param AccountGroupNamePaths: <p>组路径</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccountGroupNamePaths: Array
+        # @param AccountGroupPathIds: <p>组路径Id(只支持32位)</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccountGroupPathIds: Array
+
+        attr_accessor :AccountGroupId, :AccountGroupName, :MasterFlag, :AccountGroupNamePaths, :AccountGroupPathIds
+
+        def initialize(accountgroupid=nil, accountgroupname=nil, masterflag=nil, accountgroupnamepaths=nil, accountgrouppathids=nil)
+          @AccountGroupId = accountgroupid
+          @AccountGroupName = accountgroupname
+          @MasterFlag = masterflag
+          @AccountGroupNamePaths = accountgroupnamepaths
+          @AccountGroupPathIds = accountgrouppathids
+        end
+
+        def deserialize(params)
+          @AccountGroupId = params['AccountGroupId']
+          @AccountGroupName = params['AccountGroupName']
+          @MasterFlag = params['MasterFlag']
+          @AccountGroupNamePaths = params['AccountGroupNamePaths']
+          @AccountGroupPathIds = params['AccountGroupPathIds']
         end
       end
 
@@ -3008,6 +3185,77 @@ module TencentCloud
         end
       end
 
+      # 终端安全信息
+      class DescribeDeviceSecurityInfoData < TencentCloud::Common::AbstractModel
+        # @param FirewallStatus: <p>防火墙状态</p><p>枚举值：</p><ul><li>0：未开启</li><li>1：已开启</li></ul>
+        # @type FirewallStatus: Integer
+        # @param RealTimeProtectionStatus: <p>实时防护状态</p><p>枚举值：</p><ul><li>0：未开启</li><li>1：部分开启</li><li>2：已开启</li><li>-1：未知</li></ul>
+        # @type RealTimeProtectionStatus: Integer
+        # @param SysRepVersion: <p>系统修复引擎版本</p>
+        # @type SysRepVersion: String
+        # @param VirusVer: <p>病毒库版本</p>
+        # @type VirusVer: String
+        # @param VulVersion: <p>漏洞库版本</p>
+        # @type VulVersion: String
+
+        attr_accessor :FirewallStatus, :RealTimeProtectionStatus, :SysRepVersion, :VirusVer, :VulVersion
+
+        def initialize(firewallstatus=nil, realtimeprotectionstatus=nil, sysrepversion=nil, virusver=nil, vulversion=nil)
+          @FirewallStatus = firewallstatus
+          @RealTimeProtectionStatus = realtimeprotectionstatus
+          @SysRepVersion = sysrepversion
+          @VirusVer = virusver
+          @VulVersion = vulversion
+        end
+
+        def deserialize(params)
+          @FirewallStatus = params['FirewallStatus']
+          @RealTimeProtectionStatus = params['RealTimeProtectionStatus']
+          @SysRepVersion = params['SysRepVersion']
+          @VirusVer = params['VirusVer']
+          @VulVersion = params['VulVersion']
+        end
+      end
+
+      # DescribeDeviceSecurityInfo请求参数结构体
+      class DescribeDeviceSecurityInfoRequest < TencentCloud::Common::AbstractModel
+        # @param Mid: <p>设备唯一标识符</p>
+        # @type Mid: String
+
+        attr_accessor :Mid
+
+        def initialize(mid=nil)
+          @Mid = mid
+        end
+
+        def deserialize(params)
+          @Mid = params['Mid']
+        end
+      end
+
+      # DescribeDeviceSecurityInfo返回参数结构体
+      class DescribeDeviceSecurityInfoResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>终端安全信息</p>
+        # @type Data: :class:`Tencentcloud::Ioa.v20220601.models.DescribeDeviceSecurityInfoData`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DescribeDeviceSecurityInfoData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 查询返回终端自定义分组的Data数据
       class DescribeDeviceVirtualGroupsPageRsp < TencentCloud::Common::AbstractModel
         # @param Page: 分页公共对象
@@ -3466,6 +3714,79 @@ module TencentCloud
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeProfileFieldsMenu请求参数结构体
+      class DescribeProfileFieldsMenuRequest < TencentCloud::Common::AbstractModel
+        # @param OnlyRule: <p>查找自动填写字段</p>
+        # @type OnlyRule: Boolean
+        # @param DomainInstanceId: 管理域实例ID，用于CAM管理域权限分配。若企业未进行管理域的划分，可直接传入根域"1"，此时表示针对当前企业的全部设备和账号进行接口CRUD，具体CRUD的影响范围限制于相应接口的入参。
+        # @type DomainInstanceId: String
+
+        attr_accessor :OnlyRule, :DomainInstanceId
+
+        def initialize(onlyrule=nil, domaininstanceid=nil)
+          @OnlyRule = onlyrule
+          @DomainInstanceId = domaininstanceid
+        end
+
+        def deserialize(params)
+          @OnlyRule = params['OnlyRule']
+          @DomainInstanceId = params['DomainInstanceId']
+        end
+      end
+
+      # DescribeProfileFieldsMenu返回参数结构体
+      class DescribeProfileFieldsMenuResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>描述字段数据</p>
+        # @type Data: :class:`Tencentcloud::Ioa.v20220601.models.DescribeProfileFieldsRspData`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DescribeProfileFieldsRspData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 描述字段数据
+      class DescribeProfileFieldsRspData < TencentCloud::Common::AbstractModel
+        # @param Item: <p>详情item</p>
+        # @type Item: Array
+        # @param ProfileTips: <p>profile开关配置</p>
+        # @type ProfileTips: :class:`Tencentcloud::Ioa.v20220601.models.ProfileTips`
+
+        attr_accessor :Item, :ProfileTips
+
+        def initialize(item=nil, profiletips=nil)
+          @Item = item
+          @ProfileTips = profiletips
+        end
+
+        def deserialize(params)
+          unless params['Item'].nil?
+            @Item = []
+            params['Item'].each do |i|
+              profilefielditem_tmp = ProfileFieldItem.new
+              profilefielditem_tmp.deserialize(i)
+              @Item << profilefielditem_tmp
+            end
+          end
+          unless params['ProfileTips'].nil?
+            @ProfileTips = ProfileTips.new
+            @ProfileTips.deserialize(params['ProfileTips'])
+          end
         end
       end
 
@@ -3944,6 +4265,183 @@ module TencentCloud
         end
       end
 
+      # 列表虚拟组的账户分页数据集合
+      class DescribeVirtualAccountsData < TencentCloud::Common::AbstractModel
+        # @param Id: <p>Id(只支持32位)</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: Integer
+        # @param UserId: <p>用户账号</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserId: String
+        # @param UserName: <p>用户名</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserName: String
+        # @param AccountGroupId: <p>账户分组Id(只支持32位)</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccountGroupId: Integer
+        # @param GroupName: <p>账户组名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupName: String
+        # @param AccountId: <p>关联服务器名称(只支持32位)</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccountId: Integer
+        # @param Source: <p>账户源(只支持32位)</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Source: Integer
+        # @param Status: <p>状态(只支持32位)</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param NamePath: <p>账户namepath</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NamePath: String
+        # @param ExtraInfo: <p>账户扩展信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExtraInfo: String
+        # @param Itime: <p>创建时间</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Itime: String
+        # @param Utime: <p>更新时间</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Utime: String
+        # @param AccountGroups: <p>多OU组信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccountGroups: Array
+        # @param PcBindNum: <p>绑定PC端数量</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PcBindNum: Integer
+        # @param MobileBindNum: <p>绑定移动端数量</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MobileBindNum: Integer
+
+        attr_accessor :Id, :UserId, :UserName, :AccountGroupId, :GroupName, :AccountId, :Source, :Status, :NamePath, :ExtraInfo, :Itime, :Utime, :AccountGroups, :PcBindNum, :MobileBindNum
+
+        def initialize(id=nil, userid=nil, username=nil, accountgroupid=nil, groupname=nil, accountid=nil, source=nil, status=nil, namepath=nil, extrainfo=nil, itime=nil, utime=nil, accountgroups=nil, pcbindnum=nil, mobilebindnum=nil)
+          @Id = id
+          @UserId = userid
+          @UserName = username
+          @AccountGroupId = accountgroupid
+          @GroupName = groupname
+          @AccountId = accountid
+          @Source = source
+          @Status = status
+          @NamePath = namepath
+          @ExtraInfo = extrainfo
+          @Itime = itime
+          @Utime = utime
+          @AccountGroups = accountgroups
+          @PcBindNum = pcbindnum
+          @MobileBindNum = mobilebindnum
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @UserId = params['UserId']
+          @UserName = params['UserName']
+          @AccountGroupId = params['AccountGroupId']
+          @GroupName = params['GroupName']
+          @AccountId = params['AccountId']
+          @Source = params['Source']
+          @Status = params['Status']
+          @NamePath = params['NamePath']
+          @ExtraInfo = params['ExtraInfo']
+          @Itime = params['Itime']
+          @Utime = params['Utime']
+          unless params['AccountGroups'].nil?
+            @AccountGroups = []
+            params['AccountGroups'].each do |i|
+              describeaccountaccountgroupsdata_tmp = DescribeAccountAccountGroupsData.new
+              describeaccountaccountgroupsdata_tmp.deserialize(i)
+              @AccountGroups << describeaccountaccountgroupsdata_tmp
+            end
+          end
+          @PcBindNum = params['PcBindNum']
+          @MobileBindNum = params['MobileBindNum']
+        end
+      end
+
+      # 业务响应数据
+      class DescribeVirtualAccountsPageData < TencentCloud::Common::AbstractModel
+        # @param Page: <p>分页公共对象</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Page: :class:`Tencentcloud::Ioa.v20220601.models.Paging`
+        # @param Items: <p>列表虚拟组的账户分页数据集合</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+
+        attr_accessor :Page, :Items
+
+        def initialize(page=nil, items=nil)
+          @Page = page
+          @Items = items
+        end
+
+        def deserialize(params)
+          unless params['Page'].nil?
+            @Page = Paging.new
+            @Page.deserialize(params['Page'])
+          end
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              describevirtualaccountsdata_tmp = DescribeVirtualAccountsData.new
+              describevirtualaccountsdata_tmp.deserialize(i)
+              @Items << describevirtualaccountsdata_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeVirtualAccounts请求参数结构体
+      class DescribeVirtualAccountsRequest < TencentCloud::Common::AbstractModel
+        # @param VirtualGroupId: <p>账户虚拟组Id(只支持32位)</p>
+        # @type VirtualGroupId: Integer
+        # @param DomainInstanceId: 管理域实例ID，用于CAM管理域权限分配。若企业未进行管理域的划分，可直接传入根域"1"，此时表示针对当前企业的全部设备和账号进行接口CRUD，具体CRUD的影响范围限制于相应接口的入参。
+        # @type DomainInstanceId: String
+        # @param Condition: <p>滤条件、分页参数</p><li>UserName - String - 是否必填：否 - 操作符: eq,like  - 排序支持：否- 按用户名称过滤。</li><li>UserId - String - 是否必填：否 - 操作符: eq,like  - 排序支持：否- 按用户账号过滤。</li><li>Phone - String - 是否必填：否 - 操作符: eq,like  - 排序支持：否- 按电话过滤。</li>
+        # @type Condition: :class:`Tencentcloud::Ioa.v20220601.models.Condition`
+
+        attr_accessor :VirtualGroupId, :DomainInstanceId, :Condition
+
+        def initialize(virtualgroupid=nil, domaininstanceid=nil, condition=nil)
+          @VirtualGroupId = virtualgroupid
+          @DomainInstanceId = domaininstanceid
+          @Condition = condition
+        end
+
+        def deserialize(params)
+          @VirtualGroupId = params['VirtualGroupId']
+          @DomainInstanceId = params['DomainInstanceId']
+          unless params['Condition'].nil?
+            @Condition = Condition.new
+            @Condition.deserialize(params['Condition'])
+          end
+        end
+      end
+
+      # DescribeVirtualAccounts返回参数结构体
+      class DescribeVirtualAccountsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>业务响应数据</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Ioa.v20220601.models.DescribeVirtualAccountsPageData`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DescribeVirtualAccountsPageData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 返回的具体Data数据
       class DescribeVirtualDevicesPageRsp < TencentCloud::Common::AbstractModel
         # @param Paging: 数据分页信息
@@ -4116,6 +4614,8 @@ module TencentCloud
         # @type NGNNewStrategyVer: String
         # @param HostName: <p>宿主机名称（需要宿主机也安装iOA才能显示）</p>
         # @type HostName: String
+        # @param Profiles: <p>信息登记数据</p>
+        # @type Profiles: Array
         # @param BaseBoardSn: <p>主板序列号</p>
         # @type BaseBoardSn: String
         # @param AccountUsers: <p>绑定账户名称</p>
@@ -4134,14 +4634,16 @@ module TencentCloud
         # @type ScreenRecordingPermission: Integer
         # @param DiskAccessPermission: <p>是否开启磁盘访问权限，仅macOS， 0： 未开启、 1： 开启</p>
         # @type DiskAccessPermission: Integer
+        # @param InstallationStatus: <p>安装状态（私有化：0: 已安装 1: 已卸载 ）（SaaS及一体化：0: 未知 1: 已安装 2: 已卸载）</p>
+        # @type InstallationStatus: Integer
         # @param RemarkName: <p>终端备注名</p>
         # @type RemarkName: String
         # @param BiosUuid: <p>BiosUUID（启动盘标识符）</p>
         # @type BiosUuid: String
 
-        attr_accessor :Id, :Mid, :Name, :GroupId, :OsType, :Ip, :OnlineStatus, :Version, :StrVersion, :Itime, :ConnActiveTime, :Locked, :LocalIpList, :HostId, :GroupName, :GroupNamePath, :CriticalVulListCount, :Os, :OsBits, :OsVersion, :OsLanguage, :OsInstallDate, :ComputerName, :DomainName, :MacAddr, :VulCount, :RiskCount, :VirusVer, :VulVersion, :SysRepVersion, :VulCriticalList, :Tags, :UserName, :FirewallStatus, :SerialNum, :DeviceStrategyVer, :NGNStrategyVer, :IOAUserName, :DeviceNewStrategyVer, :NGNNewStrategyVer, :HostName, :BaseBoardSn, :AccountUsers, :IdentityStrategyVer, :IdentityNewStrategyVer, :AccountGroupName, :AccountName, :AccountGroupId, :ScreenRecordingPermission, :DiskAccessPermission, :RemarkName, :BiosUuid
+        attr_accessor :Id, :Mid, :Name, :GroupId, :OsType, :Ip, :OnlineStatus, :Version, :StrVersion, :Itime, :ConnActiveTime, :Locked, :LocalIpList, :HostId, :GroupName, :GroupNamePath, :CriticalVulListCount, :Os, :OsBits, :OsVersion, :OsLanguage, :OsInstallDate, :ComputerName, :DomainName, :MacAddr, :VulCount, :RiskCount, :VirusVer, :VulVersion, :SysRepVersion, :VulCriticalList, :Tags, :UserName, :FirewallStatus, :SerialNum, :DeviceStrategyVer, :NGNStrategyVer, :IOAUserName, :DeviceNewStrategyVer, :NGNNewStrategyVer, :HostName, :Profiles, :BaseBoardSn, :AccountUsers, :IdentityStrategyVer, :IdentityNewStrategyVer, :AccountGroupName, :AccountName, :AccountGroupId, :ScreenRecordingPermission, :DiskAccessPermission, :InstallationStatus, :RemarkName, :BiosUuid
 
-        def initialize(id=nil, mid=nil, name=nil, groupid=nil, ostype=nil, ip=nil, onlinestatus=nil, version=nil, strversion=nil, itime=nil, connactivetime=nil, locked=nil, localiplist=nil, hostid=nil, groupname=nil, groupnamepath=nil, criticalvullistcount=nil, os=nil, osbits=nil, osversion=nil, oslanguage=nil, osinstalldate=nil, computername=nil, domainname=nil, macaddr=nil, vulcount=nil, riskcount=nil, virusver=nil, vulversion=nil, sysrepversion=nil, vulcriticallist=nil, tags=nil, username=nil, firewallstatus=nil, serialnum=nil, devicestrategyver=nil, ngnstrategyver=nil, ioausername=nil, devicenewstrategyver=nil, ngnnewstrategyver=nil, hostname=nil, baseboardsn=nil, accountusers=nil, identitystrategyver=nil, identitynewstrategyver=nil, accountgroupname=nil, accountname=nil, accountgroupid=nil, screenrecordingpermission=nil, diskaccesspermission=nil, remarkname=nil, biosuuid=nil)
+        def initialize(id=nil, mid=nil, name=nil, groupid=nil, ostype=nil, ip=nil, onlinestatus=nil, version=nil, strversion=nil, itime=nil, connactivetime=nil, locked=nil, localiplist=nil, hostid=nil, groupname=nil, groupnamepath=nil, criticalvullistcount=nil, os=nil, osbits=nil, osversion=nil, oslanguage=nil, osinstalldate=nil, computername=nil, domainname=nil, macaddr=nil, vulcount=nil, riskcount=nil, virusver=nil, vulversion=nil, sysrepversion=nil, vulcriticallist=nil, tags=nil, username=nil, firewallstatus=nil, serialnum=nil, devicestrategyver=nil, ngnstrategyver=nil, ioausername=nil, devicenewstrategyver=nil, ngnnewstrategyver=nil, hostname=nil, profiles=nil, baseboardsn=nil, accountusers=nil, identitystrategyver=nil, identitynewstrategyver=nil, accountgroupname=nil, accountname=nil, accountgroupid=nil, screenrecordingpermission=nil, diskaccesspermission=nil, installationstatus=nil, remarkname=nil, biosuuid=nil)
           @Id = id
           @Mid = mid
           @Name = name
@@ -4183,6 +4685,7 @@ module TencentCloud
           @DeviceNewStrategyVer = devicenewstrategyver
           @NGNNewStrategyVer = ngnnewstrategyver
           @HostName = hostname
+          @Profiles = profiles
           @BaseBoardSn = baseboardsn
           @AccountUsers = accountusers
           @IdentityStrategyVer = identitystrategyver
@@ -4192,6 +4695,7 @@ module TencentCloud
           @AccountGroupId = accountgroupid
           @ScreenRecordingPermission = screenrecordingpermission
           @DiskAccessPermission = diskaccesspermission
+          @InstallationStatus = installationstatus
           @RemarkName = remarkname
           @BiosUuid = biosuuid
         end
@@ -4238,6 +4742,14 @@ module TencentCloud
           @DeviceNewStrategyVer = params['DeviceNewStrategyVer']
           @NGNNewStrategyVer = params['NGNNewStrategyVer']
           @HostName = params['HostName']
+          unless params['Profiles'].nil?
+            @Profiles = []
+            params['Profiles'].each do |i|
+              deviceprofile_tmp = DeviceProfile.new
+              deviceprofile_tmp.deserialize(i)
+              @Profiles << deviceprofile_tmp
+            end
+          end
           @BaseBoardSn = params['BaseBoardSn']
           @AccountUsers = params['AccountUsers']
           @IdentityStrategyVer = params['IdentityStrategyVer']
@@ -4247,6 +4759,7 @@ module TencentCloud
           @AccountGroupId = params['AccountGroupId']
           @ScreenRecordingPermission = params['ScreenRecordingPermission']
           @DiskAccessPermission = params['DiskAccessPermission']
+          @InstallationStatus = params['InstallationStatus']
           @RemarkName = params['RemarkName']
           @BiosUuid = params['BiosUuid']
         end
@@ -4483,6 +4996,50 @@ module TencentCloud
           @Path = params['Path']
           @ProcessId = params['ProcessId']
           @User = params['User']
+        end
+      end
+
+      # 信息登记数据
+      class DeviceProfile < TencentCloud::Common::AbstractModel
+        # @param Value: <p>值</p>
+        # @type Value: String
+        # @param FieldId: <p>属性ID(只支持32位)</p>
+        # @type FieldId: Integer
+        # @param Mid: <p>设备唯一标识码</p>
+        # @type Mid: String
+        # @param Title: <p>名称</p>
+        # @type Title: String
+        # @param Type: <p>类型(只支持32位)</p>
+        # @type Type: Integer
+        # @param Options: <p>可选数据</p>
+        # @type Options: String
+        # @param IsMust: <p>必填数据</p>
+        # @type IsMust: String
+        # @param IsCustom: <p>必填数据</p>
+        # @type IsCustom: String
+
+        attr_accessor :Value, :FieldId, :Mid, :Title, :Type, :Options, :IsMust, :IsCustom
+
+        def initialize(value=nil, fieldid=nil, mid=nil, title=nil, type=nil, options=nil, ismust=nil, iscustom=nil)
+          @Value = value
+          @FieldId = fieldid
+          @Mid = mid
+          @Title = title
+          @Type = type
+          @Options = options
+          @IsMust = ismust
+          @IsCustom = iscustom
+        end
+
+        def deserialize(params)
+          @Value = params['Value']
+          @FieldId = params['FieldId']
+          @Mid = params['Mid']
+          @Title = params['Title']
+          @Type = params['Type']
+          @Options = params['Options']
+          @IsMust = params['IsMust']
+          @IsCustom = params['IsCustom']
         end
       end
 
@@ -5610,6 +6167,30 @@ module TencentCloud
         end
       end
 
+      # 多项选择数据
+      class OptionsItem < TencentCloud::Common::AbstractModel
+        # @param ValueCh: <p>中文值</p>
+        # @type ValueCh: String
+        # @param ValueEn: <p>英文值</p>
+        # @type ValueEn: String
+        # @param OptionKey: <p>每一项的Key值</p>
+        # @type OptionKey: Integer
+
+        attr_accessor :ValueCh, :ValueEn, :OptionKey
+
+        def initialize(valuech=nil, valueen=nil, optionkey=nil)
+          @ValueCh = valuech
+          @ValueEn = valueen
+          @OptionKey = optionkey
+        end
+
+        def deserialize(params)
+          @ValueCh = params['ValueCh']
+          @ValueEn = params['ValueEn']
+          @OptionKey = params['OptionKey']
+        end
+      end
+
       # 页码
       class Paging < TencentCloud::Common::AbstractModel
         # @param PageSize: 每页条数
@@ -5635,6 +6216,109 @@ module TencentCloud
           @PageNum = params['PageNum']
           @PageCount = params['PageCount']
           @Total = params['Total']
+        end
+      end
+
+      # 登记信息数据
+      class ProfileFieldItem < TencentCloud::Common::AbstractModel
+        # @param Id: <p>键值id</p>
+        # @type Id: Integer
+        # @param Key: <p>排序key(只支持32位)</p>
+        # @type Key: Integer
+        # @param Title: <p>名称</p>
+        # @type Title: String
+        # @param Type: <p>输入类型(只支持32位)</p>
+        # @type Type: Integer
+        # @param IsMust: <p>是否必选(只支持32位)</p>
+        # @type IsMust: Integer
+        # @param IsShow: <p>是否显示(只支持32位)</p>
+        # @type IsShow: Integer
+        # @param IsCustom: <p>是否自定义(只支持32位)</p>
+        # @type IsCustom: Integer
+        # @param NextOptionKey: <p>下一个选项key(只支持32位)</p>
+        # @type NextOptionKey: Integer
+        # @param Options: <p>选项数据</p>
+        # @type Options: String
+        # @param IsReplace: <p>是否覆盖(只支持32位)</p>
+        # @type IsReplace: Integer
+        # @param GroupEditable: <p>是否可以修改分组</p>
+        # @type GroupEditable: Boolean
+        # @param HasRules: <p>是否有规则</p>
+        # @type HasRules: Boolean
+        # @param RuleId: <p>规则id</p>
+        # @type RuleId: Integer
+        # @param TitleEn: <p>名称-英文</p>
+        # @type TitleEn: String
+        # @param OptionsEn: <p>选项数据-英文</p>
+        # @type OptionsEn: String
+        # @param OptionsItem: <p>选项数据(包含中英文)</p>
+        # @type OptionsItem: Array
+
+        attr_accessor :Id, :Key, :Title, :Type, :IsMust, :IsShow, :IsCustom, :NextOptionKey, :Options, :IsReplace, :GroupEditable, :HasRules, :RuleId, :TitleEn, :OptionsEn, :OptionsItem
+
+        def initialize(id=nil, key=nil, title=nil, type=nil, ismust=nil, isshow=nil, iscustom=nil, nextoptionkey=nil, options=nil, isreplace=nil, groupeditable=nil, hasrules=nil, ruleid=nil, titleen=nil, optionsen=nil, optionsitem=nil)
+          @Id = id
+          @Key = key
+          @Title = title
+          @Type = type
+          @IsMust = ismust
+          @IsShow = isshow
+          @IsCustom = iscustom
+          @NextOptionKey = nextoptionkey
+          @Options = options
+          @IsReplace = isreplace
+          @GroupEditable = groupeditable
+          @HasRules = hasrules
+          @RuleId = ruleid
+          @TitleEn = titleen
+          @OptionsEn = optionsen
+          @OptionsItem = optionsitem
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Key = params['Key']
+          @Title = params['Title']
+          @Type = params['Type']
+          @IsMust = params['IsMust']
+          @IsShow = params['IsShow']
+          @IsCustom = params['IsCustom']
+          @NextOptionKey = params['NextOptionKey']
+          @Options = params['Options']
+          @IsReplace = params['IsReplace']
+          @GroupEditable = params['GroupEditable']
+          @HasRules = params['HasRules']
+          @RuleId = params['RuleId']
+          @TitleEn = params['TitleEn']
+          @OptionsEn = params['OptionsEn']
+          unless params['OptionsItem'].nil?
+            @OptionsItem = []
+            params['OptionsItem'].each do |i|
+              optionsitem_tmp = OptionsItem.new
+              optionsitem_tmp.deserialize(i)
+              @OptionsItem << optionsitem_tmp
+            end
+          end
+        end
+      end
+
+      # profile开关配置
+      class ProfileTips < TencentCloud::Common::AbstractModel
+        # @param Id: 配置id
+        # @type Id: Integer
+        # @param Value: 各开关值(json)
+        # @type Value: String
+
+        attr_accessor :Id, :Value
+
+        def initialize(id=nil, value=nil)
+          @Id = id
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Value = params['Value']
         end
       end
 
@@ -5889,6 +6573,98 @@ module TencentCloud
         def deserialize(params)
           @Field = params['Field']
           @Order = params['Order']
+        end
+      end
+
+      # 取消绑定账户虚拟组响应数据
+      class UnbindVirtualAccountData < TencentCloud::Common::AbstractModel
+        # @param FailItems: <p>解绑失败明细（含失败原因）</p>
+        # @type FailItems: Array
+        # @param SuccessItems: <p>解绑成功明细（含幂等场景：本就未绑定的账号也归入成功）</p>
+        # @type SuccessItems: Array
+
+        attr_accessor :FailItems, :SuccessItems
+
+        def initialize(failitems=nil, successitems=nil)
+          @FailItems = failitems
+          @SuccessItems = successitems
+        end
+
+        def deserialize(params)
+          unless params['FailItems'].nil?
+            @FailItems = []
+            params['FailItems'].each do |i|
+              bindvirtualaccountresultdata_tmp = BindVirtualAccountResultData.new
+              bindvirtualaccountresultdata_tmp.deserialize(i)
+              @FailItems << bindvirtualaccountresultdata_tmp
+            end
+          end
+          unless params['SuccessItems'].nil?
+            @SuccessItems = []
+            params['SuccessItems'].each do |i|
+              bindvirtualaccountresultdata_tmp = BindVirtualAccountResultData.new
+              bindvirtualaccountresultdata_tmp.deserialize(i)
+              @SuccessItems << bindvirtualaccountresultdata_tmp
+            end
+          end
+        end
+      end
+
+      # UnbindVirtualAccounts请求参数结构体
+      class UnbindVirtualAccountsRequest < TencentCloud::Common::AbstractModel
+        # @param VirtualGroupId: <p>Comment: 虚拟组id;Required:true</p>
+        # @type VirtualGroupId: Integer
+        # @param AccountIdList: <p>Comment: 要取消绑定的账户Id集合，这里的Id指的是DescribeLocalAccountsData结构体里返回的Id;Required:true</p>
+        # @type AccountIdList: Array
+        # @param AccountUserList: <p>Comment: 要取消绑定的账户(目录MenuId+登录账号UserId)集合，与AccountIdList二选一或并用，查不到的账号会被跳过;Required:false</p>
+        # @type AccountUserList: Array
+        # @param DomainInstanceId: Comment: 管理域实例ID，用于CAM管理域权限分配。若企业未进行管理域的划分，可直接传入根域"1"，此时表示针对当前企业的全部设备和账号进行接口CRUD，具体CRUD的影响范围限制于相应接口的入参。
+        # @type DomainInstanceId: String
+
+        attr_accessor :VirtualGroupId, :AccountIdList, :AccountUserList, :DomainInstanceId
+
+        def initialize(virtualgroupid=nil, accountidlist=nil, accountuserlist=nil, domaininstanceid=nil)
+          @VirtualGroupId = virtualgroupid
+          @AccountIdList = accountidlist
+          @AccountUserList = accountuserlist
+          @DomainInstanceId = domaininstanceid
+        end
+
+        def deserialize(params)
+          @VirtualGroupId = params['VirtualGroupId']
+          @AccountIdList = params['AccountIdList']
+          unless params['AccountUserList'].nil?
+            @AccountUserList = []
+            params['AccountUserList'].each do |i|
+              accountuseriditem_tmp = AccountUserIdItem.new
+              accountuseriditem_tmp.deserialize(i)
+              @AccountUserList << accountuseriditem_tmp
+            end
+          end
+          @DomainInstanceId = params['DomainInstanceId']
+        end
+      end
+
+      # UnbindVirtualAccounts返回参数结构体
+      class UnbindVirtualAccountsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>业务响应数据</p>
+        # @type Data: :class:`Tencentcloud::Ioa.v20220601.models.UnbindVirtualAccountData`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = UnbindVirtualAccountData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 

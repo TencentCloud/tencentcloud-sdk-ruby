@@ -81,23 +81,23 @@ module TencentCloud
 
       # AddUser请求参数结构体
       class AddUserRequest < TencentCloud::Common::AbstractModel
-        # @param Name: 子用户用户名
+        # @param Name: <p>子用户用户名</p>
         # @type Name: String
-        # @param Remark: 子用户备注
+        # @param Remark: <p>子用户备注</p>
         # @type Remark: String
-        # @param ConsoleLogin: 子用户是否可以登录控制台。传0子用户无法登录控制台，传1子用户可以登录控制台。
+        # @param ConsoleLogin: <p>子用户是否可以登录控制台。传0子用户无法登录控制台，传1子用户可以登录控制台。</p>
         # @type ConsoleLogin: Integer
-        # @param UseApi: 是否生成子用户密钥。传0不生成子用户密钥，传1生成子用户密钥。
+        # @param UseApi: <p>是否生成子用户密钥。传0不生成子用户密钥，传1生成子用户密钥。</p>
         # @type UseApi: Integer
-        # @param Password: 子用户控制台登录密码，若未进行密码规则设置则默认密码规则为8位以上同时包含大小写字母、数字和特殊字符。只有可以登录控制台时才有效，如果传空并且上面指定允许登录控制台，则自动生成随机密码，随机密码规则为32位包含大小写字母、数字和特殊字符。
+        # @param Password: <p>子用户控制台登录密码，若未进行密码规则设置则默认密码规则为8位以上同时包含大小写字母、数字和特殊字符。只有可以登录控制台时才有效，如果传空并且上面指定允许登录控制台，则自动生成随机密码，随机密码规则为32位包含大小写字母、数字和特殊字符。</p>
         # @type Password: String
-        # @param NeedResetPassword: 子用户是否要在下次登录时重置密码。传0子用户下次登录控制台不需重置密码，传1子用户下次登录控制台需要重置密码。
+        # @param NeedResetPassword: <p>子用户是否要在下次登录时重置密码。传0子用户下次登录控制台不需重置密码，传1子用户下次登录控制台需要重置密码。</p>
         # @type NeedResetPassword: Integer
-        # @param PhoneNum: 手机号
+        # @param PhoneNum: <p>手机号</p>
         # @type PhoneNum: String
-        # @param CountryCode: 区号
+        # @param CountryCode: <p>区号</p>
         # @type CountryCode: String
-        # @param Email: 邮箱
+        # @param Email: <p>邮箱</p>
         # @type Email: String
 
         attr_accessor :Name, :Remark, :ConsoleLogin, :UseApi, :Password, :NeedResetPassword, :PhoneNum, :CountryCode, :Email
@@ -129,30 +129,33 @@ module TencentCloud
 
       # AddUser返回参数结构体
       class AddUserResponse < TencentCloud::Common::AbstractModel
-        # @param Uin: 子用户 UIN
+        # @param Uin: <p>子用户 UIN</p>
         # @type Uin: Integer
-        # @param Name: 子用户用户名
+        # @param Name: <p>子用户用户名</p>
         # @type Name: String
-        # @param Password: 如果输入参数组合为自动生成随机密码，则返回生成的密码
+        # @param Password: <p>如果输入参数组合为自动生成随机密码，则返回生成的密码</p>
         # @type Password: String
-        # @param SecretId: 子用户密钥 ID
+        # @param SecretId: <p>子用户密钥 ID</p>
         # @type SecretId: String
-        # @param SecretKey: 子用户密钥 Key
+        # @param SecretKey: <p>子用户密钥 Key</p>
         # @type SecretKey: String
-        # @param Uid: 子用户 UID
+        # @param Uid: <p>子用户 UID</p>
         # @type Uid: Integer
+        # @param PhoneNumVerifyLink: <p>手机号验证地址。</p>
+        # @type PhoneNumVerifyLink: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Uin, :Name, :Password, :SecretId, :SecretKey, :Uid, :RequestId
+        attr_accessor :Uin, :Name, :Password, :SecretId, :SecretKey, :Uid, :PhoneNumVerifyLink, :RequestId
 
-        def initialize(uin=nil, name=nil, password=nil, secretid=nil, secretkey=nil, uid=nil, requestid=nil)
+        def initialize(uin=nil, name=nil, password=nil, secretid=nil, secretkey=nil, uid=nil, phonenumverifylink=nil, requestid=nil)
           @Uin = uin
           @Name = name
           @Password = password
           @SecretId = secretid
           @SecretKey = secretkey
           @Uid = uid
+          @PhoneNumVerifyLink = phonenumverifylink
           @RequestId = requestid
         end
 
@@ -163,6 +166,7 @@ module TencentCloud
           @SecretId = params['SecretId']
           @SecretKey = params['SecretKey']
           @Uid = params['Uid']
+          @PhoneNumVerifyLink = params['PhoneNumVerifyLink']
           @RequestId = params['RequestId']
         end
       end
@@ -741,48 +745,52 @@ module TencentCloud
 
       # CreateMessageReceiver请求参数结构体
       class CreateMessageReceiverRequest < TencentCloud::Common::AbstractModel
-        # @param Name: 消息接收人的用户名
+        # @param Name: <p>消息接收人的用户名</p>
         # @type Name: String
-        # @param CountryCode: 手机号国际区号，国内为86
+        # @param CountryCode: <p>手机号国际区号，国内为86</p>
         # @type CountryCode: String
-        # @param PhoneNumber: 手机号码, 例如：132****2492
-        # @type PhoneNumber: String
-        # @param Email: 邮箱，例如：57*****@qq.com
+        # @param Email: <p>邮箱，例如：57<strong>*</strong>@qq.com</p>
         # @type Email: String
-        # @param Remark: 消息接收人的备注，选填
+        # @param PhoneNumber: <p>手机号码, 例如：132****2492</p>
+        # @type PhoneNumber: String
+        # @param Remark: <p>消息接收人的备注，选填</p>
         # @type Remark: String
 
-        attr_accessor :Name, :CountryCode, :PhoneNumber, :Email, :Remark
+        attr_accessor :Name, :CountryCode, :Email, :PhoneNumber, :Remark
 
-        def initialize(name=nil, countrycode=nil, phonenumber=nil, email=nil, remark=nil)
+        def initialize(name=nil, countrycode=nil, email=nil, phonenumber=nil, remark=nil)
           @Name = name
           @CountryCode = countrycode
-          @PhoneNumber = phonenumber
           @Email = email
+          @PhoneNumber = phonenumber
           @Remark = remark
         end
 
         def deserialize(params)
           @Name = params['Name']
           @CountryCode = params['CountryCode']
-          @PhoneNumber = params['PhoneNumber']
           @Email = params['Email']
+          @PhoneNumber = params['PhoneNumber']
           @Remark = params['Remark']
         end
       end
 
       # CreateMessageReceiver返回参数结构体
       class CreateMessageReceiverResponse < TencentCloud::Common::AbstractModel
+        # @param PhoneNumVerifyLink: <p>手机号验证地址。</p>
+        # @type PhoneNumVerifyLink: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :PhoneNumVerifyLink, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(phonenumverifylink=nil, requestid=nil)
+          @PhoneNumVerifyLink = phonenumverifylink
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @PhoneNumVerifyLink = params['PhoneNumVerifyLink']
           @RequestId = params['RequestId']
         end
       end
@@ -2284,8 +2292,8 @@ module TencentCloud
 
         attr_accessor :Policies, :Roles, :Idps, :User, :Group, :Member, :IdentityProviders, :RequestId
         extend Gem::Deprecate
-        deprecate :Idps, :none, 2026, 8
-        deprecate :Idps=, :none, 2026, 8
+        deprecate :Idps, :none, 2026, 9
+        deprecate :Idps=, :none, 2026, 9
 
         def initialize(policies=nil, roles=nil, idps=nil, user=nil, group=nil, member=nil, identityproviders=nil, requestid=nil)
           @Policies = policies

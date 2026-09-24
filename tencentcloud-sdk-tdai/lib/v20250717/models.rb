@@ -176,10 +176,12 @@ module TencentCloud
         # @type Capabilities: Array
         # @param DeploymentFree: <p>是否是免部署实例</p>
         # @type DeploymentFree: Boolean
+        # @param AgentMem: <p>agent memory 服务详情</p>
+        # @type AgentMem: :class:`Tencentcloud::Tdai.v20250717.models.AgentMemInfo`
 
-        attr_accessor :InstanceId, :InstanceName, :AgentId, :AgentName, :AgentInternalName, :AgentType, :AgentVersion, :Status, :Parameters, :CreateTime, :UpdateTime, :Tags, :DeployPlace, :PolicyIds, :ClawConfig, :InstanceType, :AllowedActions, :LastActiveTime, :Description, :CreatingProgress, :RoleName, :OfflineTime, :ProductName, :Capabilities, :DeploymentFree
+        attr_accessor :InstanceId, :InstanceName, :AgentId, :AgentName, :AgentInternalName, :AgentType, :AgentVersion, :Status, :Parameters, :CreateTime, :UpdateTime, :Tags, :DeployPlace, :PolicyIds, :ClawConfig, :InstanceType, :AllowedActions, :LastActiveTime, :Description, :CreatingProgress, :RoleName, :OfflineTime, :ProductName, :Capabilities, :DeploymentFree, :AgentMem
 
-        def initialize(instanceid=nil, instancename=nil, agentid=nil, agentname=nil, agentinternalname=nil, agenttype=nil, agentversion=nil, status=nil, parameters=nil, createtime=nil, updatetime=nil, tags=nil, deployplace=nil, policyids=nil, clawconfig=nil, instancetype=nil, allowedactions=nil, lastactivetime=nil, description=nil, creatingprogress=nil, rolename=nil, offlinetime=nil, productname=nil, capabilities=nil, deploymentfree=nil)
+        def initialize(instanceid=nil, instancename=nil, agentid=nil, agentname=nil, agentinternalname=nil, agenttype=nil, agentversion=nil, status=nil, parameters=nil, createtime=nil, updatetime=nil, tags=nil, deployplace=nil, policyids=nil, clawconfig=nil, instancetype=nil, allowedactions=nil, lastactivetime=nil, description=nil, creatingprogress=nil, rolename=nil, offlinetime=nil, productname=nil, capabilities=nil, deploymentfree=nil, agentmem=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @AgentId = agentid
@@ -205,6 +207,7 @@ module TencentCloud
           @ProductName = productname
           @Capabilities = capabilities
           @DeploymentFree = deploymentfree
+          @AgentMem = agentmem
         end
 
         def deserialize(params)
@@ -253,6 +256,38 @@ module TencentCloud
           @ProductName = params['ProductName']
           @Capabilities = params['Capabilities']
           @DeploymentFree = params['DeploymentFree']
+          unless params['AgentMem'].nil?
+            @AgentMem = AgentMemInfo.new
+            @AgentMem.deserialize(params['AgentMem'])
+          end
+        end
+      end
+
+      # AGM 记忆服务开通信息
+      class AgentMemInfo < TencentCloud::Common::AbstractModel
+        # @param MemInstanceId: <p>Memory实例ID</p>
+        # @type MemInstanceId: String
+        # @param Status: <p>1=active, 0=disabled（软删/关闭/下线历史行）</p>
+        # @type Status: Integer
+        # @param InstallStatus: <p>0=待安装,1=成功,2=失败待重试,3=开启中,4=关闭中/已关闭</p>
+        # @type InstallStatus: Integer
+        # @param MemStatus: <p>creating/online/isolated/error/</p>
+        # @type MemStatus: String
+
+        attr_accessor :MemInstanceId, :Status, :InstallStatus, :MemStatus
+
+        def initialize(meminstanceid=nil, status=nil, installstatus=nil, memstatus=nil)
+          @MemInstanceId = meminstanceid
+          @Status = status
+          @InstallStatus = installstatus
+          @MemStatus = memstatus
+        end
+
+        def deserialize(params)
+          @MemInstanceId = params['MemInstanceId']
+          @Status = params['Status']
+          @InstallStatus = params['InstallStatus']
+          @MemStatus = params['MemStatus']
         end
       end
 

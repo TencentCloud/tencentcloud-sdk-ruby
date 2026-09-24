@@ -4603,22 +4603,19 @@ module TencentCloud
 
       # DescribeSlowLogQueryTimeStats请求参数结构体
       class DescribeSlowLogQueryTimeStatsRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID。可通过 [DescribeDiagDBInstances](https://cloud.tencent.com/document/api/1130/57798) 接口获取。
+        # @param InstanceId: <p>实例 ID。可通过 <a href="https://cloud.tencent.com/document/api/1130/57798">DescribeDiagDBInstances</a> 接口获取。</p>
         # @type InstanceId: String
-        # @param StartTime: 开始时间，如“2019-09-10 12:13:14”，截止时间与开始时间的间隔小于7天。
+        # @param StartTime: <p>开始时间，如“2019-09-10 12:13:14”，截止时间与开始时间的间隔小于7天。</p>
         # @type StartTime: String
-        # @param EndTime: 截止时间，如“2019-09-11 10:13:14”，截止时间与开始时间的间隔小于7天。
+        # @param EndTime: <p>截止时间，如“2019-09-11 10:13:14”，截止时间与开始时间的间隔小于7天。</p>
         # @type EndTime: String
-        # @param Product: "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 TDSQL-C for MySQL，"redis" - 云数据库 Redis，"mongodb" - 云数据库 MongoDB，默认为"mysql"。
+        # @param Product: <p>&quot;mysql&quot; - 云数据库 MySQL， &quot;cynosdb&quot; - 云数据库 TDSQL-C for MySQL，&quot;redis&quot; - 云数据库 Redis，&quot;mongodb&quot; - 云数据库 MongoDB，&quot;sqlserver&quot; - 云数据库 SQL Server，默认为&quot;mysql&quot;。</p>
         # @type Product: String
-        # @param InstanceProxyId: Proxy节点ID。
+        # @param InstanceProxyId: <p>Proxy节点ID。</p>
         # @type InstanceProxyId: String
-        # @param InstanceNodeId: 实例节点ID。
+        # @param InstanceNodeId: <p>实例节点ID。</p>
         # @type InstanceNodeId: String
-        # @param Type: 查询类型，目前支持值：mongod，mongos。
-        # 其中：
-        # mongod - MongoDB的数据存储节点
-        # mongos - MongoDB的路由节点
+        # @param Type: <p>查询类型，目前支持值：mongod，mongos。<br>其中：<br>mongod - MongoDB的数据存储节点<br>mongos - MongoDB的路由节点</p>
         # @type Type: String
 
         attr_accessor :InstanceId, :StartTime, :EndTime, :Product, :InstanceProxyId, :InstanceNodeId, :Type
@@ -4646,9 +4643,9 @@ module TencentCloud
 
       # DescribeSlowLogQueryTimeStats返回参数结构体
       class DescribeSlowLogQueryTimeStatsResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 符合条件的记录总数。
+        # @param TotalCount: <p>符合条件的记录总数。</p>
         # @type TotalCount: Integer
-        # @param Items: 慢日志 top sql 列表。
+        # @param Items: <p>慢日志 top sql 列表。</p>
         # @type Items: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4771,7 +4768,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param SchemaList: <p>数据库名称数组。</p>
         # @type SchemaList: Array
-        # @param Product: <p>服务产品类型，支持值包括： &quot;mysql&quot; - 云数据库 MySQL， &quot;cynosdb&quot; - 云数据库 CynosDB  for MySQL， &quot;tdstore&quot; - 云数据库TDSQL Boundless，默认为&quot;mysql&quot;。</p>
+        # @param Product: <p>服务产品类型，支持值包括： &quot;mysql&quot; - 云数据库 MySQL， &quot;cynosdb&quot; - 云数据库 CynosDB  for MySQL， &quot;tdstore&quot; - 云数据库TDSQL Boundless，&quot;sqlserver&quot; - 云数据库 SQL Server，默认为&quot;mysql&quot;。</p>
         # @type Product: String
 
         attr_accessor :InstanceId, :StartTime, :EndTime, :SortBy, :OrderBy, :Limit, :Offset, :SchemaList, :Product
@@ -4841,19 +4838,19 @@ module TencentCloud
 
       # DescribeSlowLogUserHostStats请求参数结构体
       class DescribeSlowLogUserHostStatsRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID。可通过 [DescribeDiagDBInstances](https://cloud.tencent.com/document/api/1130/57798) 接口获取。
+        # @param InstanceId: <p>实例 ID。可通过 <a href="https://cloud.tencent.com/document/api/1130/57798">DescribeDiagDBInstances</a> 接口获取。</p>
         # @type InstanceId: String
-        # @param StartTime: 查询范围的开始时间，格式: "yyyy-MM-dd'T'HH:mm:ssXXX"。
+        # @param StartTime: <p>查询范围的开始时间，格式: &quot;yyyy-MM-dd&#39;T&#39;HH:mm:ssXXX&quot;。</p>
         # @type StartTime: String
-        # @param EndTime: 查询范围的结束时间，格式: "yyyy-MM-dd'T'HH:mm:ssXXX"。
+        # @param EndTime: <p>查询范围的结束时间，格式: &quot;yyyy-MM-dd&#39;T&#39;HH:mm:ssXXX&quot;。</p>
         # @type EndTime: String
-        # @param Product: 服务产品类型，支持值："mysql" - 云数据库 MySQL；"cynosdb" - 云数据库 TDSQL-C for MySQL，默认为"mysql"。
+        # @param Product: <p>服务产品类型，支持值：&quot;mysql&quot; - 云数据库 MySQL；&quot;cynosdb&quot; - 云数据库 TDSQL-C for MySQL，&quot;sqlserver&quot; - 云数据库 SQL Server，默认为&quot;mysql&quot;。</p>
         # @type Product: String
-        # @param Md5: SQL模板的MD5值
+        # @param Md5: <p>SQL模板的MD5值</p>
         # @type Md5: String
-        # @param InstanceProxyId: 仅Redis产品使用；实例Proxy ID。
+        # @param InstanceProxyId: <p>仅Redis产品使用；实例Proxy ID。</p>
         # @type InstanceProxyId: String
-        # @param Cmd: 仅Redis产品使用；命令。
+        # @param Cmd: <p>仅Redis产品使用；命令。</p>
         # @type Cmd: String
 
         attr_accessor :InstanceId, :StartTime, :EndTime, :Product, :Md5, :InstanceProxyId, :Cmd
@@ -4881,13 +4878,13 @@ module TencentCloud
 
       # DescribeSlowLogUserHostStats返回参数结构体
       class DescribeSlowLogUserHostStatsResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 来源地址数目。
+        # @param TotalCount: <p>来源地址数目。</p>
         # @type TotalCount: Integer
-        # @param Items: 各来源地址的慢日志占比详情列表。
+        # @param Items: <p>各来源地址的慢日志占比详情列表。</p>
         # @type Items: Array
-        # @param UserNameItems: 各来源用户名的慢日志占比详情列表。
+        # @param UserNameItems: <p>各来源用户名的慢日志占比详情列表。</p>
         # @type UserNameItems: Array
-        # @param UserTotalCount: 来源用户数目。
+        # @param UserTotalCount: <p>来源用户数目。</p>
         # @type UserTotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4927,7 +4924,7 @@ module TencentCloud
 
       # DescribeSlowLogs请求参数结构体
       class DescribeSlowLogsRequest < TencentCloud::Common::AbstractModel
-        # @param Product: <p>服务产品类型，支持值包括： &quot;mysql&quot; - 云数据库 MySQL， &quot;cynosdb&quot; - 云数据库 CynosDB for MySQL，&quot;tdstore&quot; - 云数据库TDSQL Boundless，默认为&quot;mysql&quot;。</p>
+        # @param Product: <p>服务产品类型，支持值包括： &quot;mysql&quot; - 云数据库 MySQL， &quot;cynosdb&quot; - 云数据库 CynosDB for MySQL，&quot;tdstore&quot; - 云数据库TDSQL Boundless，&quot;sqlserver&quot; - 云数据库 SQL Server， 默认为&quot;mysql&quot;。</p>
         # @type Product: String
         # @param InstanceId: <p>实例 ID。可通过 <a href="https://cloud.tencent.com/document/api/1130/57798">DescribeDiagDBInstances</a> 接口获取。</p>
         # @type InstanceId: String
@@ -8203,10 +8200,14 @@ module TencentCloud
         # @type RowsSent: Integer
         # @param InstanceId: 
         # @type InstanceId: String
+        # @param ClientAppName: 
+        # @type ClientAppName: String
+        # @param ClientHostName: 
+        # @type ClientHostName: String
 
-        attr_accessor :Timestamp, :SqlText, :Database, :UserName, :UserHost, :QueryTime, :LockTime, :RowsExamined, :RowsSent, :InstanceId
+        attr_accessor :Timestamp, :SqlText, :Database, :UserName, :UserHost, :QueryTime, :LockTime, :RowsExamined, :RowsSent, :InstanceId, :ClientAppName, :ClientHostName
 
-        def initialize(timestamp=nil, sqltext=nil, database=nil, username=nil, userhost=nil, querytime=nil, locktime=nil, rowsexamined=nil, rowssent=nil, instanceid=nil)
+        def initialize(timestamp=nil, sqltext=nil, database=nil, username=nil, userhost=nil, querytime=nil, locktime=nil, rowsexamined=nil, rowssent=nil, instanceid=nil, clientappname=nil, clienthostname=nil)
           @Timestamp = timestamp
           @SqlText = sqltext
           @Database = database
@@ -8217,6 +8218,8 @@ module TencentCloud
           @RowsExamined = rowsexamined
           @RowsSent = rowssent
           @InstanceId = instanceid
+          @ClientAppName = clientappname
+          @ClientHostName = clienthostname
         end
 
         def deserialize(params)
@@ -8230,6 +8233,8 @@ module TencentCloud
           @RowsExamined = params['RowsExamined']
           @RowsSent = params['RowsSent']
           @InstanceId = params['InstanceId']
+          @ClientAppName = params['ClientAppName']
+          @ClientHostName = params['ClientHostName']
         end
       end
 

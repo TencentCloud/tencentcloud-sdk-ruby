@@ -266,27 +266,51 @@ module TencentCloud
 
       # ApproveRegistryRecord请求参数结构体
       class ApproveRegistryRecordRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: <p>父 Registry ID。</p>
+        # @type RegistryId: String
+        # @param RecordId: <p>Record ID。</p>
+        # @type RecordId: String
+        # @param VersionId: <p>Version ID。</p>
+        # @type VersionId: String
+        # @param Comment: <p>动作留言；非空。</p>
+        # @type Comment: String
 
+        attr_accessor :RegistryId, :RecordId, :VersionId, :Comment
 
-        def initialize()
+        def initialize(registryid=nil, recordid=nil, versionid=nil, comment=nil)
+          @RegistryId = registryid
+          @RecordId = recordid
+          @VersionId = versionid
+          @Comment = comment
         end
 
         def deserialize(params)
+          @RegistryId = params['RegistryId']
+          @RecordId = params['RecordId']
+          @VersionId = params['VersionId']
+          @Comment = params['Comment']
         end
       end
 
       # ApproveRegistryRecord返回参数结构体
       class ApproveRegistryRecordResponse < TencentCloud::Common::AbstractModel
+        # @param Version: <p>更新后的 Version。</p>
+        # @type Version: :class:`Tencentcloud::Ags.v20250920.models.CloudRecordVersion`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Version, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(version=nil, requestid=nil)
+          @Version = version
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['Version'].nil?
+            @Version = CloudRecordVersion.new
+            @Version.deserialize(params['Version'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -309,27 +333,51 @@ module TencentCloud
 
       # CancelRegistryRecord请求参数结构体
       class CancelRegistryRecordRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: <p>父 Registry ID。</p>
+        # @type RegistryId: String
+        # @param RecordId: <p>Record ID。</p>
+        # @type RecordId: String
+        # @param VersionId: <p>Version ID。</p>
+        # @type VersionId: String
+        # @param Comment: <p>动作留言；非空。</p>
+        # @type Comment: String
 
+        attr_accessor :RegistryId, :RecordId, :VersionId, :Comment
 
-        def initialize()
+        def initialize(registryid=nil, recordid=nil, versionid=nil, comment=nil)
+          @RegistryId = registryid
+          @RecordId = recordid
+          @VersionId = versionid
+          @Comment = comment
         end
 
         def deserialize(params)
+          @RegistryId = params['RegistryId']
+          @RecordId = params['RecordId']
+          @VersionId = params['VersionId']
+          @Comment = params['Comment']
         end
       end
 
       # CancelRegistryRecord返回参数结构体
       class CancelRegistryRecordResponse < TencentCloud::Common::AbstractModel
+        # @param Version: <p>更新后的 Version。</p>
+        # @type Version: :class:`Tencentcloud::Ags.v20250920.models.CloudRecordVersion`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Version, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(version=nil, requestid=nil)
+          @Version = version
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['Version'].nil?
+            @Version = CloudRecordVersion.new
+            @Version.deserialize(params['Version'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -351,6 +399,556 @@ module TencentCloud
         def deserialize(params)
           @FileSystemId = params['FileSystemId']
           @Path = params['Path']
+        end
+      end
+
+      # Agent Record 内容来源。Type 判别 MANUAL 与 URL_IMPORT。
+      class CloudAgentSourceInput < TencentCloud::Common::AbstractModel
+        # @param Type: <p>来源类型。MANUAL：直接提交 Agent Descriptors JSON 文本；URL_IMPORT：从远端 Agent Card / AGUI 端点导入。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Descriptors: <p>Type=MANUAL 时必填；值为通用 JSON object 文本；A2A 标准校验或 AGUI/CUSTOM 规则由后端执行。（JSON 字符串形式）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Descriptors: String
+        # @param EndpointURL: <p>A2A：Agent Card URL；AGUI：Runtime Endpoint URL。Type=URL_IMPORT 时必填，HTTPS。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndpointURL: String
+
+        attr_accessor :Type, :Descriptors, :EndpointURL
+
+        def initialize(type=nil, descriptors=nil, endpointurl=nil)
+          @Type = type
+          @Descriptors = descriptors
+          @EndpointURL = endpointurl
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Descriptors = params['Descriptors']
+          @EndpointURL = params['EndpointURL']
+        end
+      end
+
+      # 审计日志条目。记录 Registry / Record / Version 维度的动作。
+      class CloudAuditLog < TencentCloud::Common::AbstractModel
+        # @param AuditLogId: <p>审计日志 ID。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuditLogId: String
+        # @param RegistryId: <p>所属 Registry ID。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegistryId: String
+        # @param Actor: <p>动作发起者（主账号 UIN 或子账号 UIN）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Actor: String
+        # @param Action: <p>Action 名称，等同 X-TC-Action。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Action: String
+        # @param Details: <p>动作脱敏摘要对象；使用云 API 字段命名，字段随 Action 而变；不包含凭据、预签名 URL 或完整 Descriptor。（JSON 字符串形式）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Details: String
+        # @param CreateTime: <p>动作发生时间。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param RecordId: <p>关联 Record ID；仅 Record / Version 相关动作。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecordId: String
+        # @param VersionId: <p>关联 Version ID；仅 Version 相关动作。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VersionId: String
+
+        attr_accessor :AuditLogId, :RegistryId, :Actor, :Action, :Details, :CreateTime, :RecordId, :VersionId
+
+        def initialize(auditlogid=nil, registryid=nil, actor=nil, action=nil, details=nil, createtime=nil, recordid=nil, versionid=nil)
+          @AuditLogId = auditlogid
+          @RegistryId = registryid
+          @Actor = actor
+          @Action = action
+          @Details = details
+          @CreateTime = createtime
+          @RecordId = recordid
+          @VersionId = versionid
+        end
+
+        def deserialize(params)
+          @AuditLogId = params['AuditLogId']
+          @RegistryId = params['RegistryId']
+          @Actor = params['Actor']
+          @Action = params['Action']
+          @Details = params['Details']
+          @CreateTime = params['CreateTime']
+          @RecordId = params['RecordId']
+          @VersionId = params['VersionId']
+        end
+      end
+
+      # 通用过滤条件。Name 为字段名，Values 为字段候选值；字段间 AND、Values 内 OR。
+      class CloudFilter < TencentCloud::Common::AbstractModel
+        # @param Name: <p>过滤字段名。DescribeRegistryList 支持 <code>name</code> / <code>search</code>（模糊搜索）与 <code>archived</code> / <code>status</code>（true / false / all）；DescribeRegistryRecordList 支持 <code>name</code> / <code>search</code>（模糊）、<code>descriptor-type</code>、<code>lifecycle-status</code>（精确）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Values: <p>过滤字段候选值列表；至少 1 项。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Values: Array
+
+        attr_accessor :Name, :Values
+
+        def initialize(name=nil, values=nil)
+          @Name = name
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Values = params['Values']
+        end
+      end
+
+      # MCP Record 内容来源。Type 判别 MANUAL 与 URL_IMPORT。
+      class CloudMCPSourceInput < TencentCloud::Common::AbstractModel
+        # @param Type: <p>来源类型。MANUAL：直接提交 MCP Descriptors JSON 文本；URL_IMPORT：从远端 MCP server.json URL 导入。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Descriptors: <p>Type=MANUAL 时必填；值为完整 MCP server.json 对象的 JSON 文本；完整 MCP 2025-12-11 标准校验由后端执行。（JSON 字符串形式）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Descriptors: String
+        # @param EndpointURL: <p>远端 MCP server.json URL；HTTPS。Type=URL_IMPORT 时必填。Version 从远端 initialize.serverInfo.version 观测获得，无需请求参数。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndpointURL: String
+
+        attr_accessor :Type, :Descriptors, :EndpointURL
+
+        def initialize(type=nil, descriptors=nil, endpointurl=nil)
+          @Type = type
+          @Descriptors = descriptors
+          @EndpointURL = endpointurl
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Descriptors = params['Descriptors']
+          @EndpointURL = params['EndpointURL']
+        end
+      end
+
+      # Registry Record 对象。Record 只保存元数据；协议描述符与内容状态请通过 Version 相关接口获取。
+      class CloudRecord < TencentCloud::Common::AbstractModel
+        # @param RecordId: <p>Record ID；格式 <code>rec-</code> + 8 位小写字母/数字。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecordId: String
+        # @param RegistryId: <p>所属 Registry ID。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegistryId: String
+        # @param Name: <p>Record 名称；同一 Registry 内可重复。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Description: <p>描述。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param DescriptorType: <p>协议描述符类型；创建后不可变。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DescriptorType: String
+        # @param LifecycleStatus: <p>生命周期状态。ACTIVE：可用；DELETED：软删除墓碑，不再参与常规查询、下发或版本配额。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LifecycleStatus: String
+        # @param AppId: <p>所属租户 AppId。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppId: Integer
+        # @param CreatorUin: <p>创建者主账号 UIN。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatorUin: String
+        # @param CreatorSubAccountUin: <p>创建者子账号 UIN；主账号直接创建时为空。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatorSubAccountUin: String
+        # @param CreateTime: <p>创建时间，ISO 8601 UTC。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param UpdateTime: <p>最近一次更新时间。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param VersionCount: <p>Record 下未删除 Version 数量。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VersionCount: Integer
+        # @param LabelSet: <p>Record 下所有 Label Name（含未绑定 Label），包括系统 Label（stable / latest）和自定义 Label。仅名称，不含 VersionId、更新时间或操作者。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LabelSet: Array
+
+        attr_accessor :RecordId, :RegistryId, :Name, :Description, :DescriptorType, :LifecycleStatus, :AppId, :CreatorUin, :CreatorSubAccountUin, :CreateTime, :UpdateTime, :VersionCount, :LabelSet
+
+        def initialize(recordid=nil, registryid=nil, name=nil, description=nil, descriptortype=nil, lifecyclestatus=nil, appid=nil, creatoruin=nil, creatorsubaccountuin=nil, createtime=nil, updatetime=nil, versioncount=nil, labelset=nil)
+          @RecordId = recordid
+          @RegistryId = registryid
+          @Name = name
+          @Description = description
+          @DescriptorType = descriptortype
+          @LifecycleStatus = lifecyclestatus
+          @AppId = appid
+          @CreatorUin = creatoruin
+          @CreatorSubAccountUin = creatorsubaccountuin
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @VersionCount = versioncount
+          @LabelSet = labelset
+        end
+
+        def deserialize(params)
+          @RecordId = params['RecordId']
+          @RegistryId = params['RegistryId']
+          @Name = params['Name']
+          @Description = params['Description']
+          @DescriptorType = params['DescriptorType']
+          @LifecycleStatus = params['LifecycleStatus']
+          @AppId = params['AppId']
+          @CreatorUin = params['CreatorUin']
+          @CreatorSubAccountUin = params['CreatorSubAccountUin']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @VersionCount = params['VersionCount']
+          @LabelSet = params['LabelSet']
+        end
+      end
+
+      # Record Label 变更操作项。Operation=SET 时可携带 VersionId；DELETE 时禁止 VersionId。
+      class CloudRecordLabelMutation < TencentCloud::Common::AbstractModel
+        # @param Operation: <p>操作类型。SET：创建或移动 Label；DELETE：删除自定义 Label（stable/latest 保留 Label 禁止删除）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Operation: String
+        # @param Name: <p>Label 名称，长度 1..63，格式 ^[a-z][a-z0-9._-]{0,62}$，按小写规范化。stable、latest 为系统保留 Label。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param VersionId: <p>目标 Version ID。SET 时可选：省略表示未绑定（自定义 Label 允许，stable 禁止）；DELETE 时禁止携带。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VersionId: String
+        # @param Reason: <p>变更原因，最大 1024 字符，可选。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Reason: String
+
+        attr_accessor :Operation, :Name, :VersionId, :Reason
+
+        def initialize(operation=nil, name=nil, versionid=nil, reason=nil)
+          @Operation = operation
+          @Name = name
+          @VersionId = versionid
+          @Reason = reason
+        end
+
+        def deserialize(params)
+          @Operation = params['Operation']
+          @Name = params['Name']
+          @VersionId = params['VersionId']
+          @Reason = params['Reason']
+        end
+      end
+
+      # Record 的一个不可变 Version 快照；记录了描述符、来源配置与审批状态。
+      class CloudRecordVersion < TencentCloud::Common::AbstractModel
+        # @param VersionId: <p>Version ID；格式 <code>rv-</code> + 8 位小写字母/数字。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VersionId: String
+        # @param RecordId: <p>所属 Record ID。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecordId: String
+        # @param Revision: <p>Version 递增序号（1 起）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Revision: Integer
+        # @param Status: <p>Version 状态。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param ApprovalMode: <p>审批模式；创建时锁定，后续变更 Registry 审批模式不影响本 Version。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApprovalMode: String
+        # @param AppId: <p>所属租户 AppId。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppId: Integer
+        # @param CreatorUin: <p>创建者主账号 UIN。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatorUin: String
+        # @param CreateTime: <p>创建时间。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param UpdateTime: <p>最近一次更新时间。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param VersionName: <p>Version 别名（可选）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VersionName: String
+        # @param Descriptors: <p>协议描述符对象。（JSON 字符串形式）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Descriptors: String
+        # @param SourceType: <p>内容来源。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceType: String
+        # @param SourceConfig: <p>规范化来源配置对象。（JSON 字符串形式）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceConfig: String
+        # @param ContentStatus: <p>内容状态。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContentStatus: String
+        # @param ContentSHA256: <p>READY 内容 SHA-256。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContentSHA256: String
+        # @param ContentSizeBytes: <p>READY 内容字节数。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContentSizeBytes: Integer
+        # @param ConfigSHA256: <p>配置内容规范化后的 SHA-256（用于幂等去重）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigSHA256: String
+        # @param CreatorSubAccountUin: <p>创建者子账号 UIN。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatorSubAccountUin: String
+        # @param ApprovalActions: <p>Version 历次审批动作。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApprovalActions: Array
+        # @param ContentReadyTime: <p>TAR 内容成功校验、完成物化并进入 READY 的时间；MANUAL / URL_IMPORT 或尚未 READY 的 TAR_PACKAGE 均为空。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContentReadyTime: String
+        # @param ChangeLog: <p>本次 Version 的变更原因，最大 4096 字符；不可修改。Revision 1 或未填写时返回空字符串。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChangeLog: String
+        # @param LabelSet: <p>当前绑定该 Version 的 Label Name 列表（例如 stable / latest 或自定义 Label 名称）。未绑定 Label 不在此返回。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LabelSet: Array
+
+        attr_accessor :VersionId, :RecordId, :Revision, :Status, :ApprovalMode, :AppId, :CreatorUin, :CreateTime, :UpdateTime, :VersionName, :Descriptors, :SourceType, :SourceConfig, :ContentStatus, :ContentSHA256, :ContentSizeBytes, :ConfigSHA256, :CreatorSubAccountUin, :ApprovalActions, :ContentReadyTime, :ChangeLog, :LabelSet
+
+        def initialize(versionid=nil, recordid=nil, revision=nil, status=nil, approvalmode=nil, appid=nil, creatoruin=nil, createtime=nil, updatetime=nil, versionname=nil, descriptors=nil, sourcetype=nil, sourceconfig=nil, contentstatus=nil, contentsha256=nil, contentsizebytes=nil, configsha256=nil, creatorsubaccountuin=nil, approvalactions=nil, contentreadytime=nil, changelog=nil, labelset=nil)
+          @VersionId = versionid
+          @RecordId = recordid
+          @Revision = revision
+          @Status = status
+          @ApprovalMode = approvalmode
+          @AppId = appid
+          @CreatorUin = creatoruin
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @VersionName = versionname
+          @Descriptors = descriptors
+          @SourceType = sourcetype
+          @SourceConfig = sourceconfig
+          @ContentStatus = contentstatus
+          @ContentSHA256 = contentsha256
+          @ContentSizeBytes = contentsizebytes
+          @ConfigSHA256 = configsha256
+          @CreatorSubAccountUin = creatorsubaccountuin
+          @ApprovalActions = approvalactions
+          @ContentReadyTime = contentreadytime
+          @ChangeLog = changelog
+          @LabelSet = labelset
+        end
+
+        def deserialize(params)
+          @VersionId = params['VersionId']
+          @RecordId = params['RecordId']
+          @Revision = params['Revision']
+          @Status = params['Status']
+          @ApprovalMode = params['ApprovalMode']
+          @AppId = params['AppId']
+          @CreatorUin = params['CreatorUin']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @VersionName = params['VersionName']
+          @Descriptors = params['Descriptors']
+          @SourceType = params['SourceType']
+          @SourceConfig = params['SourceConfig']
+          @ContentStatus = params['ContentStatus']
+          @ContentSHA256 = params['ContentSHA256']
+          @ContentSizeBytes = params['ContentSizeBytes']
+          @ConfigSHA256 = params['ConfigSHA256']
+          @CreatorSubAccountUin = params['CreatorSubAccountUin']
+          unless params['ApprovalActions'].nil?
+            @ApprovalActions = []
+            params['ApprovalActions'].each do |i|
+              cloudversionapprovalaction_tmp = CloudVersionApprovalAction.new
+              cloudversionapprovalaction_tmp.deserialize(i)
+              @ApprovalActions << cloudversionapprovalaction_tmp
+            end
+          end
+          @ContentReadyTime = params['ContentReadyTime']
+          @ChangeLog = params['ChangeLog']
+          @LabelSet = params['LabelSet']
+        end
+      end
+
+      # Registry 对象。包含注册中心的基本信息与 Record 计数。
+      class CloudRegistry < TencentCloud::Common::AbstractModel
+        # @param RegistryId: <p>Registry ID；格式 <code>reg-</code> + 8 位小写字母/数字。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegistryId: String
+        # @param Name: <p>Registry 同一 AppId + Region 唯一名称。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Description: <p>描述。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param ApprovalMode: <p>审批模式；AUTO 自动通过，MANUAL 需人工审批；创建时确定，不可修改。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApprovalMode: String
+        # @param Region: <p>Registry 所在腾讯云地域，如 <code>ap-guangzhou</code>。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param Status: <p>Registry 状态。ACTIVE / ARCHIVED。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param CreateTime: <p>创建时间，ISO 8601 UTC，如 <code>2026-08-11T10:00:00Z</code>。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param UpdateTime: <p>最近一次更新时间，ISO 8601 UTC。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param RecordCount: <p>Registry 下 Record 总数。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecordCount: Integer
+        # @param Tags: <p>权威读取的腾讯云自定义标签，按 Key、Value 稳定排序；无标签时固定返回空数组，不返回 null。</p>
+        # @type Tags: Array
+        # @param PublishedRecordCount: <p>Stable Label 已绑定的 Record 数量。Approved Version 数量和可对外消费的 Record 数量已不再等价。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublishedRecordCount: Integer
+        # @param AppId: <p>所属租户 AppId。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppId: Integer
+        # @param CreatorUin: <p>创建者主账号 UIN。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatorUin: String
+        # @param CreatorSubAccountUin: <p>创建者子账号 UIN；主账号直接创建时为空字符串。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatorSubAccountUin: String
+
+        attr_accessor :RegistryId, :Name, :Description, :ApprovalMode, :Region, :Status, :CreateTime, :UpdateTime, :RecordCount, :Tags, :PublishedRecordCount, :AppId, :CreatorUin, :CreatorSubAccountUin
+
+        def initialize(registryid=nil, name=nil, description=nil, approvalmode=nil, region=nil, status=nil, createtime=nil, updatetime=nil, recordcount=nil, tags=nil, publishedrecordcount=nil, appid=nil, creatoruin=nil, creatorsubaccountuin=nil)
+          @RegistryId = registryid
+          @Name = name
+          @Description = description
+          @ApprovalMode = approvalmode
+          @Region = region
+          @Status = status
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @RecordCount = recordcount
+          @Tags = tags
+          @PublishedRecordCount = publishedrecordcount
+          @AppId = appid
+          @CreatorUin = creatoruin
+          @CreatorSubAccountUin = creatorsubaccountuin
+        end
+
+        def deserialize(params)
+          @RegistryId = params['RegistryId']
+          @Name = params['Name']
+          @Description = params['Description']
+          @ApprovalMode = params['ApprovalMode']
+          @Region = params['Region']
+          @Status = params['Status']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @RecordCount = params['RecordCount']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              cloudtag_tmp = CloudTag.new
+              cloudtag_tmp.deserialize(i)
+              @Tags << cloudtag_tmp
+            end
+          end
+          @PublishedRecordCount = params['PublishedRecordCount']
+          @AppId = params['AppId']
+          @CreatorUin = params['CreatorUin']
+          @CreatorSubAccountUin = params['CreatorSubAccountUin']
+        end
+      end
+
+      # AGENT_SKILLS 内容来源。Type 判别 MANUAL 与 TAR_PACKAGE 两种模式。
+      class CloudSkillSourceInput < TencentCloud::Common::AbstractModel
+        # @param Type: <p>来源类型。MANUAL：直接提交 SKILL.md 文本；TAR_PACKAGE：由服务端签发 COS PUT 预签名 URL，客户端上传后由服务端异步校验。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param SkillMd: <p>SKILL.md 原文；Type=MANUAL 时必填非空；Type=TAR_PACKAGE 时不得提供。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SkillMd: String
+
+        attr_accessor :Type, :SkillMd
+
+        def initialize(type=nil, skillmd=nil)
+          @Type = type
+          @SkillMd = skillmd
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @SkillMd = params['SkillMd']
+        end
+      end
+
+      # 腾讯云自定义标签。
+      class CloudTag < TencentCloud::Common::AbstractModel
+        # @param Key: <p>自定义标签键；不可使用 qcs:、project 或项目预留前缀，且不可包含首尾空格。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param Value: <p>自定义标签值，不可包含首尾空格。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
+      # Version 一次审批动作条目。
+      class CloudVersionApprovalAction < TencentCloud::Common::AbstractModel
+        # @param ActionId: <p>动作 ID。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ActionId: String
+        # @param ActionType: <p>动作类型。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ActionType: String
+        # @param ActorType: <p>动作发起者类型。USER 用户；SYSTEM 系统自动通过。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ActorType: String
+        # @param ActorUin: <p>发起者主账号 UIN。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ActorUin: String
+        # @param ActorSubAccountUin: <p>发起者子账号 UIN。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ActorSubAccountUin: String
+        # @param Comment: <p>动作留言。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Comment: String
+        # @param CreateTime: <p>发生时间。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param RequestId: <p>对应云 API 请求的 RequestId。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RequestId: String
+
+        attr_accessor :ActionId, :ActionType, :ActorType, :ActorUin, :ActorSubAccountUin, :Comment, :CreateTime, :RequestId
+
+        def initialize(actionid=nil, actiontype=nil, actortype=nil, actoruin=nil, actorsubaccountuin=nil, comment=nil, createtime=nil, requestid=nil)
+          @ActionId = actionid
+          @ActionType = actiontype
+          @ActorType = actortype
+          @ActorUin = actoruin
+          @ActorSubAccountUin = actorsubaccountuin
+          @Comment = comment
+          @CreateTime = createtime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ActionId = params['ActionId']
+          @ActionType = params['ActionType']
+          @ActorType = params['ActorType']
+          @ActorUin = params['ActorUin']
+          @ActorSubAccountUin = params['ActorSubAccountUin']
+          @Comment = params['Comment']
+          @CreateTime = params['CreateTime']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -573,54 +1171,169 @@ module TencentCloud
 
       # CreateRegistryRecord请求参数结构体
       class CreateRegistryRecordRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: <p>所属 Registry ID。</p>
+        # @type RegistryId: String
+        # @param Name: <p>Record 名称，长度 1..255，同一租户、Registry 内按规范化 Name 唯一（大小写不敏感）；软删除后允许复用。</p>
+        # @type Name: String
+        # @param DescriptorType: <p>协议描述符类型。MCP / A2A / AGUI / CUSTOM / AGENT_SKILLS。Record 创建后不可修改。</p>
+        # @type DescriptorType: String
+        # @param Description: <p>Record 描述，最大 4096 字符，可选，默认空。</p>
+        # @type Description: String
+        # @param VersionName: <p>Revision 1 的展示名称，可选。</p>
+        # @type VersionName: String
+        # @param MCPSource: <p>DescriptorType=MCP 时必填，其他类型禁止。</p>
+        # @type MCPSource: :class:`Tencentcloud::Ags.v20250920.models.CloudMCPSourceInput`
+        # @param AgentSource: <p>DescriptorType=A2A 或 AGUI 时必填，其他类型禁止。</p>
+        # @type AgentSource: :class:`Tencentcloud::Ags.v20250920.models.CloudAgentSourceInput`
+        # @param SkillSource: <p>DescriptorType=AGENT_SKILLS 时必填，其他类型禁止。</p>
+        # @type SkillSource: :class:`Tencentcloud::Ags.v20250920.models.CloudSkillSourceInput`
+        # @param CustomDescriptors: <p>DescriptorType=CUSTOM 时必填，其他类型禁止。内容必须是 JSON object 字符串；服务端解析后写入 CloudRecordVersion.Descriptors，Version 的 SourceType 固定为 MANUAL、SourceConfig 固定为空对象。</p>
+        # @type CustomDescriptors: String
 
+        attr_accessor :RegistryId, :Name, :DescriptorType, :Description, :VersionName, :MCPSource, :AgentSource, :SkillSource, :CustomDescriptors
 
-        def initialize()
+        def initialize(registryid=nil, name=nil, descriptortype=nil, description=nil, versionname=nil, mcpsource=nil, agentsource=nil, skillsource=nil, customdescriptors=nil)
+          @RegistryId = registryid
+          @Name = name
+          @DescriptorType = descriptortype
+          @Description = description
+          @VersionName = versionname
+          @MCPSource = mcpsource
+          @AgentSource = agentsource
+          @SkillSource = skillsource
+          @CustomDescriptors = customdescriptors
         end
 
         def deserialize(params)
+          @RegistryId = params['RegistryId']
+          @Name = params['Name']
+          @DescriptorType = params['DescriptorType']
+          @Description = params['Description']
+          @VersionName = params['VersionName']
+          unless params['MCPSource'].nil?
+            @MCPSource = CloudMCPSourceInput.new
+            @MCPSource.deserialize(params['MCPSource'])
+          end
+          unless params['AgentSource'].nil?
+            @AgentSource = CloudAgentSourceInput.new
+            @AgentSource.deserialize(params['AgentSource'])
+          end
+          unless params['SkillSource'].nil?
+            @SkillSource = CloudSkillSourceInput.new
+            @SkillSource.deserialize(params['SkillSource'])
+          end
+          @CustomDescriptors = params['CustomDescriptors']
         end
       end
 
       # CreateRegistryRecord返回参数结构体
       class CreateRegistryRecordResponse < TencentCloud::Common::AbstractModel
+        # @param RecordId: <p>新 Record ID。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecordId: String
+        # @param Record: <p>新建的 Record 详情。</p>
+        # @type Record: :class:`Tencentcloud::Ags.v20250920.models.CloudRecord`
+        # @param Version: <p>本次创建的 Revision 1 Version 详情。</p>
+        # @type Version: :class:`Tencentcloud::Ags.v20250920.models.CloudRecordVersion`
+        # @param UploadURL: <p>SkillSource.Type=TAR_PACKAGE 时返回：TAR 包上传预签名 URL。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UploadURL: String
+        # @param ExpireTime: <p>SkillSource.Type=TAR_PACKAGE 时返回：UploadURL 过期时间，ISO 8601 UTC。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpireTime: String
+        # @param ContentStatus: <p>SkillSource.Type=TAR_PACKAGE 时返回：Version 内容当前状态（UPLOADING 等）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContentStatus: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :RecordId, :Record, :Version, :UploadURL, :ExpireTime, :ContentStatus, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(recordid=nil, record=nil, version=nil, uploadurl=nil, expiretime=nil, contentstatus=nil, requestid=nil)
+          @RecordId = recordid
+          @Record = record
+          @Version = version
+          @UploadURL = uploadurl
+          @ExpireTime = expiretime
+          @ContentStatus = contentstatus
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @RecordId = params['RecordId']
+          unless params['Record'].nil?
+            @Record = CloudRecord.new
+            @Record.deserialize(params['Record'])
+          end
+          unless params['Version'].nil?
+            @Version = CloudRecordVersion.new
+            @Version.deserialize(params['Version'])
+          end
+          @UploadURL = params['UploadURL']
+          @ExpireTime = params['ExpireTime']
+          @ContentStatus = params['ContentStatus']
           @RequestId = params['RequestId']
         end
       end
 
       # CreateRegistry请求参数结构体
       class CreateRegistryRequest < TencentCloud::Common::AbstractModel
+        # @param Name: <p>同一 AppId + Region 唯一、长度 1–255</p>
+        # @type Name: String
+        # @param Description: <p>描述文本；最长 4096。</p>
+        # @type Description: String
+        # @param ApprovalMode: <p>审批模式；创建时确定，创建后不可修改；省略时默认为 AUTO，枚举值区分大小写。</p>
+        # @type ApprovalMode: String
+        # @param Tags: <p>创建时绑定的腾讯云自定义标签；Key 不可重复；最多 10 个。</p>
+        # @type Tags: Array
 
+        attr_accessor :Name, :Description, :ApprovalMode, :Tags
 
-        def initialize()
+        def initialize(name=nil, description=nil, approvalmode=nil, tags=nil)
+          @Name = name
+          @Description = description
+          @ApprovalMode = approvalmode
+          @Tags = tags
         end
 
         def deserialize(params)
+          @Name = params['Name']
+          @Description = params['Description']
+          @ApprovalMode = params['ApprovalMode']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              cloudtag_tmp = CloudTag.new
+              cloudtag_tmp.deserialize(i)
+              @Tags << cloudtag_tmp
+            end
+          end
         end
       end
 
       # CreateRegistry返回参数结构体
       class CreateRegistryResponse < TencentCloud::Common::AbstractModel
+        # @param RegistryId: <p>创建成功的 Registry ID。</p>
+        # @type RegistryId: String
+        # @param Registry: <p>Registry 详细信息。</p>
+        # @type Registry: :class:`Tencentcloud::Ags.v20250920.models.CloudRegistry`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :RegistryId, :Registry, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(registryid=nil, registry=nil, requestid=nil)
+          @RegistryId = registryid
+          @Registry = registry
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @RegistryId = params['RegistryId']
+          unless params['Registry'].nil?
+            @Registry = CloudRegistry.new
+            @Registry.deserialize(params['Registry'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1101,12 +1814,29 @@ module TencentCloud
 
       # DeleteRegistryRecord请求参数结构体
       class DeleteRegistryRecordRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: <p>父 Registry ID。</p>
+        # @type RegistryId: String
+        # @param RecordId: <p>Record ID。</p>
+        # @type RecordId: String
+        # @param VersionId: <p>可选。传入时只删除 Record 下指定 Version（软删除）；省略时删除整个 Record。显式传入空字符串或 null 返回 InvalidParameter.VersionId，不得回退为删除整个 Record。</p>
+        # @type VersionId: String
+        # @param Reason: <p>删除原因，最大 1024 字符。删除单个 Version 时必填；删除整个 Record 时可选。</p>
+        # @type Reason: String
 
+        attr_accessor :RegistryId, :RecordId, :VersionId, :Reason
 
-        def initialize()
+        def initialize(registryid=nil, recordid=nil, versionid=nil, reason=nil)
+          @RegistryId = registryid
+          @RecordId = recordid
+          @VersionId = versionid
+          @Reason = reason
         end
 
         def deserialize(params)
+          @RegistryId = params['RegistryId']
+          @RecordId = params['RecordId']
+          @VersionId = params['VersionId']
+          @Reason = params['Reason']
         end
       end
 
@@ -1128,12 +1858,17 @@ module TencentCloud
 
       # DeleteRegistry请求参数结构体
       class DeleteRegistryRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: <p>Registry ID。</p>
+        # @type RegistryId: String
 
+        attr_accessor :RegistryId
 
-        def initialize()
+        def initialize(registryid=nil)
+          @RegistryId = registryid
         end
 
         def deserialize(params)
+          @RegistryId = params['RegistryId']
         end
       end
 
@@ -1692,162 +2427,385 @@ module TencentCloud
 
       # DescribeRegistryAuditLogList请求参数结构体
       class DescribeRegistryAuditLogListRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: <p>父 Registry ID。</p>
+        # @type RegistryId: String
+        # @param RecordId: <p>Record ID。</p>
+        # @type RecordId: String
+        # @param VersionId: <p>Version ID；仅过滤 Version 维度动作，可选。</p>
+        # @type VersionId: String
+        # @param ActionFilter: <p>Action 精确过滤（如 <code>record.version.create</code>），可选。</p>
+        # @type ActionFilter: String
+        # @param Actor: <p>发起者过滤（主账号 UIN 或子账号 UIN），可选。</p>
+        # @type Actor: String
+        # @param StartTime: <p>起始时间；ISO 8601，可选。</p>
+        # @type StartTime: String
+        # @param EndTime: <p>结束时间；ISO 8601，可选。</p>
+        # @type EndTime: String
+        # @param Offset: <p>分页起始偏移，默认 0。</p>
+        # @type Offset: Integer
+        # @param Limit: <p>分页条数，默认 20，最大 100。</p>
+        # @type Limit: Integer
 
+        attr_accessor :RegistryId, :RecordId, :VersionId, :ActionFilter, :Actor, :StartTime, :EndTime, :Offset, :Limit
 
-        def initialize()
+        def initialize(registryid=nil, recordid=nil, versionid=nil, actionfilter=nil, actor=nil, starttime=nil, endtime=nil, offset=nil, limit=nil)
+          @RegistryId = registryid
+          @RecordId = recordid
+          @VersionId = versionid
+          @ActionFilter = actionfilter
+          @Actor = actor
+          @StartTime = starttime
+          @EndTime = endtime
+          @Offset = offset
+          @Limit = limit
         end
 
         def deserialize(params)
+          @RegistryId = params['RegistryId']
+          @RecordId = params['RecordId']
+          @VersionId = params['VersionId']
+          @ActionFilter = params['ActionFilter']
+          @Actor = params['Actor']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
         end
       end
 
       # DescribeRegistryAuditLogList返回参数结构体
       class DescribeRegistryAuditLogListResponse < TencentCloud::Common::AbstractModel
+        # @param AuditLogSet: <p>Record 维度的审计日志。</p>
+        # @type AuditLogSet: Array
+        # @param TotalCount: <p>符合条件的总数。</p>
+        # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :AuditLogSet, :TotalCount, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(auditlogset=nil, totalcount=nil, requestid=nil)
+          @AuditLogSet = auditlogset
+          @TotalCount = totalcount
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['AuditLogSet'].nil?
+            @AuditLogSet = []
+            params['AuditLogSet'].each do |i|
+              cloudauditlog_tmp = CloudAuditLog.new
+              cloudauditlog_tmp.deserialize(i)
+              @AuditLogSet << cloudauditlog_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
 
       # DescribeRegistryList请求参数结构体
       class DescribeRegistryListRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: <p>分页起始偏移，默认 0。</p>
+        # @type Offset: Integer
+        # @param Limit: <p>分页条数，默认 20，最大 100。</p>
+        # @type Limit: Integer
+        # @param Filters: <p>过滤条件。Name 支持：<code>name</code>/<code>search</code>（模糊）、<code>archived</code>/<code>status</code>（true/false/all）、<code>tag-key</code> 和 <code>tag:&lt;key&gt;</code>；最多 6 个标签过滤组，每个标签过滤组最多 10 个 Values，同 Key 多值为 OR，不同 Key 为 AND。</p>
+        # @type Filters: Array
 
+        attr_accessor :Offset, :Limit, :Filters
 
-        def initialize()
+        def initialize(offset=nil, limit=nil, filters=nil)
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
         end
 
         def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              cloudfilter_tmp = CloudFilter.new
+              cloudfilter_tmp.deserialize(i)
+              @Filters << cloudfilter_tmp
+            end
+          end
         end
       end
 
       # DescribeRegistryList返回参数结构体
       class DescribeRegistryListResponse < TencentCloud::Common::AbstractModel
+        # @param RegistrySet: <p>Registry 对象数组。</p>
+        # @type RegistrySet: Array
+        # @param TotalCount: <p>符合条件的总数。</p>
+        # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :RegistrySet, :TotalCount, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(registryset=nil, totalcount=nil, requestid=nil)
+          @RegistrySet = registryset
+          @TotalCount = totalcount
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['RegistrySet'].nil?
+            @RegistrySet = []
+            params['RegistrySet'].each do |i|
+              cloudregistry_tmp = CloudRegistry.new
+              cloudregistry_tmp.deserialize(i)
+              @RegistrySet << cloudregistry_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
 
       # DescribeRegistryRecordList请求参数结构体
       class DescribeRegistryRecordListRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: <p>父 Registry ID。</p>
+        # @type RegistryId: String
+        # @param Offset: <p>分页起始偏移，默认 0。</p>
+        # @type Offset: Integer
+        # @param Limit: <p>分页条数，默认 20，最大 100。</p>
+        # @type Limit: Integer
+        # @param Filters: <p>过滤条件。支持 Filter.Name：<code>name</code>/<code>search</code>（按 Record Name 模糊搜索）；其他名称返回 <code>InvalidParameter.Filters.Name</code>。</p>
+        # @type Filters: Array
 
+        attr_accessor :RegistryId, :Offset, :Limit, :Filters
 
-        def initialize()
+        def initialize(registryid=nil, offset=nil, limit=nil, filters=nil)
+          @RegistryId = registryid
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
         end
 
         def deserialize(params)
+          @RegistryId = params['RegistryId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              cloudfilter_tmp = CloudFilter.new
+              cloudfilter_tmp.deserialize(i)
+              @Filters << cloudfilter_tmp
+            end
+          end
         end
       end
 
       # DescribeRegistryRecordList返回参数结构体
       class DescribeRegistryRecordListResponse < TencentCloud::Common::AbstractModel
+        # @param RecordSet: <p>Record 对象数组。</p>
+        # @type RecordSet: Array
+        # @param TotalCount: <p>符合条件的总数。</p>
+        # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :RecordSet, :TotalCount, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(recordset=nil, totalcount=nil, requestid=nil)
+          @RecordSet = recordset
+          @TotalCount = totalcount
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['RecordSet'].nil?
+            @RecordSet = []
+            params['RecordSet'].each do |i|
+              cloudrecord_tmp = CloudRecord.new
+              cloudrecord_tmp.deserialize(i)
+              @RecordSet << cloudrecord_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
 
       # DescribeRegistryRecord请求参数结构体
       class DescribeRegistryRecordRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: <p>父 Registry ID。</p>
+        # @type RegistryId: String
+        # @param RecordId: <p>Record ID。</p>
+        # @type RecordId: String
+        # @param VersionId: <p>Version ID，与 Label 互斥。指定时返回该 Version；均省略时等价于 Label=stable。</p>
+        # @type VersionId: String
+        # @param Label: <p>Label 名称，与 VersionId 互斥。指定时返回 Label 当前指向的 Version；均省略时等价于 stable。</p>
+        # @type Label: String
 
+        attr_accessor :RegistryId, :RecordId, :VersionId, :Label
 
-        def initialize()
+        def initialize(registryid=nil, recordid=nil, versionid=nil, label=nil)
+          @RegistryId = registryid
+          @RecordId = recordid
+          @VersionId = versionid
+          @Label = label
         end
 
         def deserialize(params)
+          @RegistryId = params['RegistryId']
+          @RecordId = params['RecordId']
+          @VersionId = params['VersionId']
+          @Label = params['Label']
         end
       end
 
       # DescribeRegistryRecord返回参数结构体
       class DescribeRegistryRecordResponse < TencentCloud::Common::AbstractModel
+        # @param Record: <p>Record 元数据和全部 Label。</p>
+        # @type Record: :class:`Tencentcloud::Ags.v20250920.models.CloudRecord`
+        # @param Version: <p>根据 VersionId / Label 解析得到的完整 Version。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Version: :class:`Tencentcloud::Ags.v20250920.models.CloudRecordVersion`
+        # @param ResolvedBy: <p>解析方式：DEFAULT_STABLE / LABEL / VERSION_ID。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResolvedBy: String
+        # @param ResolvedLabel: <p>通过 Label 解析（ResolvedBy=LABEL 或 DEFAULT_STABLE）时返回该 Label 名称，例如 stable。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResolvedLabel: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Record, :Version, :ResolvedBy, :ResolvedLabel, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(record=nil, version=nil, resolvedby=nil, resolvedlabel=nil, requestid=nil)
+          @Record = record
+          @Version = version
+          @ResolvedBy = resolvedby
+          @ResolvedLabel = resolvedlabel
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['Record'].nil?
+            @Record = CloudRecord.new
+            @Record.deserialize(params['Record'])
+          end
+          unless params['Version'].nil?
+            @Version = CloudRecordVersion.new
+            @Version.deserialize(params['Version'])
+          end
+          @ResolvedBy = params['ResolvedBy']
+          @ResolvedLabel = params['ResolvedLabel']
           @RequestId = params['RequestId']
         end
       end
 
       # DescribeRegistryRecordVersionList请求参数结构体
       class DescribeRegistryRecordVersionListRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: <p>父 Registry ID。</p>
+        # @type RegistryId: String
+        # @param RecordId: <p>Record ID。</p>
+        # @type RecordId: String
+        # @param Offset: <p>分页起始偏移，默认 0。</p>
+        # @type Offset: Integer
+        # @param Limit: <p>分页条数，默认 20，最大 100。</p>
+        # @type Limit: Integer
+        # @param Filters: <p>过滤条件。支持：status（按 Version 状态：PREPARING/PENDING_APPROVAL/APPROVED/REJECTED/CANCELED，多值 OR）、source_type（按内容来源：MANUAL/URL_IMPORT/TAR_PACKAGE，多值 OR）。</p>
+        # @type Filters: Array
 
+        attr_accessor :RegistryId, :RecordId, :Offset, :Limit, :Filters
 
-        def initialize()
+        def initialize(registryid=nil, recordid=nil, offset=nil, limit=nil, filters=nil)
+          @RegistryId = registryid
+          @RecordId = recordid
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
         end
 
         def deserialize(params)
+          @RegistryId = params['RegistryId']
+          @RecordId = params['RecordId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              cloudfilter_tmp = CloudFilter.new
+              cloudfilter_tmp.deserialize(i)
+              @Filters << cloudfilter_tmp
+            end
+          end
         end
       end
 
       # DescribeRegistryRecordVersionList返回参数结构体
       class DescribeRegistryRecordVersionListResponse < TencentCloud::Common::AbstractModel
+        # @param VersionSet: <p>Version 对象数组。</p>
+        # @type VersionSet: Array
+        # @param TotalCount: <p>符合条件的总数。</p>
+        # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :VersionSet, :TotalCount, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(versionset=nil, totalcount=nil, requestid=nil)
+          @VersionSet = versionset
+          @TotalCount = totalcount
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['VersionSet'].nil?
+            @VersionSet = []
+            params['VersionSet'].each do |i|
+              cloudrecordversion_tmp = CloudRecordVersion.new
+              cloudrecordversion_tmp.deserialize(i)
+              @VersionSet << cloudrecordversion_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
 
       # DescribeRegistry请求参数结构体
       class DescribeRegistryRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: <p>Registry ID。</p>
+        # @type RegistryId: String
 
+        attr_accessor :RegistryId
 
-        def initialize()
+        def initialize(registryid=nil)
+          @RegistryId = registryid
         end
 
         def deserialize(params)
+          @RegistryId = params['RegistryId']
         end
       end
 
       # DescribeRegistry返回参数结构体
       class DescribeRegistryResponse < TencentCloud::Common::AbstractModel
+        # @param Registry: <p>Registry 详情。</p>
+        # @type Registry: :class:`Tencentcloud::Ags.v20250920.models.CloudRegistry`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Registry, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(registry=nil, requestid=nil)
+          @Registry = registry
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['Registry'].nil?
+            @Registry = CloudRegistry.new
+            @Registry.deserialize(params['Registry'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -2443,54 +3401,119 @@ module TencentCloud
 
       # GetSkillPackageDownloadURL请求参数结构体
       class GetSkillPackageDownloadURLRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: <p>父 Registry ID。</p>
+        # @type RegistryId: String
+        # @param RecordId: <p>Record ID；必须 AGENT_SKILLS 且 ContentStatus=READY。</p>
+        # @type RecordId: String
+        # @param VersionId: <p>可选。指定要下载的 Version；与 Label 互斥；均省略时使用 Stable。</p>
+        # @type VersionId: String
+        # @param Label: <p>可选。指定要下载的 Label 目标；与 VersionId 互斥；均省略时使用 Stable。</p>
+        # @type Label: String
 
+        attr_accessor :RegistryId, :RecordId, :VersionId, :Label
 
-        def initialize()
+        def initialize(registryid=nil, recordid=nil, versionid=nil, label=nil)
+          @RegistryId = registryid
+          @RecordId = recordid
+          @VersionId = versionid
+          @Label = label
         end
 
         def deserialize(params)
+          @RegistryId = params['RegistryId']
+          @RecordId = params['RecordId']
+          @VersionId = params['VersionId']
+          @Label = params['Label']
         end
       end
 
       # GetSkillPackageDownloadURL返回参数结构体
       class GetSkillPackageDownloadURLResponse < TencentCloud::Common::AbstractModel
+        # @param DownloadURL: <p>COS GET 预签名 URL；带 response-content-disposition；默认 TTL 5 分钟；bearer 凭证禁止持久化。</p>
+        # @type DownloadURL: String
+        # @param ExpireTime: <p>URL 过期时间。</p>
+        # @type ExpireTime: String
+        # @param SHA256: <p>服务端记录的 SHA-256；下载后应本地自检。</p>
+        # @type SHA256: String
+        # @param ResolvedVersionId: <p>解析出的 Version ID（Stable Version）。</p>
+        # @type ResolvedVersionId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :DownloadURL, :ExpireTime, :SHA256, :ResolvedVersionId, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(downloadurl=nil, expiretime=nil, sha256=nil, resolvedversionid=nil, requestid=nil)
+          @DownloadURL = downloadurl
+          @ExpireTime = expiretime
+          @SHA256 = sha256
+          @ResolvedVersionId = resolvedversionid
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @DownloadURL = params['DownloadURL']
+          @ExpireTime = params['ExpireTime']
+          @SHA256 = params['SHA256']
+          @ResolvedVersionId = params['ResolvedVersionId']
           @RequestId = params['RequestId']
         end
       end
 
       # GetSkillPackageUploadURL请求参数结构体
       class GetSkillPackageUploadURLRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: <p>父 Registry ID。</p>
+        # @type RegistryId: String
+        # @param RecordId: <p>Record ID。</p>
+        # @type RecordId: String
+        # @param VersionId: <p>Version ID；格式 <code>rv-</code> + 8 位小写字母/数字。</p>
+        # @type VersionId: String
 
+        attr_accessor :RegistryId, :RecordId, :VersionId
 
-        def initialize()
+        def initialize(registryid=nil, recordid=nil, versionid=nil)
+          @RegistryId = registryid
+          @RecordId = recordid
+          @VersionId = versionid
         end
 
         def deserialize(params)
+          @RegistryId = params['RegistryId']
+          @RecordId = params['RecordId']
+          @VersionId = params['VersionId']
         end
       end
 
       # GetSkillPackageUploadURL返回参数结构体
       class GetSkillPackageUploadURLResponse < TencentCloud::Common::AbstractModel
+        # @param Version: <p>Version 详情（Revision 不变）。</p>
+        # @type Version: :class:`Tencentcloud::Ags.v20250920.models.CloudRecordVersion`
+        # @param UploadURL: <p>新的 COS PUT 预签名 URL。</p>
+        # @type UploadURL: String
+        # @param ContentStatus: <p>重试后的内容状态。</p>
+        # @type ContentStatus: String
+        # @param ExpireTime: <p>UploadURL 过期时间。</p>
+        # @type ExpireTime: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Version, :UploadURL, :ContentStatus, :ExpireTime, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(version=nil, uploadurl=nil, contentstatus=nil, expiretime=nil, requestid=nil)
+          @Version = version
+          @UploadURL = uploadurl
+          @ContentStatus = contentstatus
+          @ExpireTime = expiretime
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['Version'].nil?
+            @Version = CloudRecordVersion.new
+            @Version.deserialize(params['Version'])
+          end
+          @UploadURL = params['UploadURL']
+          @ContentStatus = params['ContentStatus']
+          @ExpireTime = params['ExpireTime']
           @RequestId = params['RequestId']
         end
       end
@@ -2958,27 +3981,52 @@ module TencentCloud
 
       # PreviewRegistryRecord请求参数结构体
       class PreviewRegistryRecordRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: <p>父 Registry ID。</p>
+        # @type RegistryId: String
+        # @param RecordId: <p>Record ID。</p>
+        # @type RecordId: String
+        # @param VersionId: <p>可选。指定要预览的目标 Version；与 Label 互斥；均省略时使用 Stable。</p>
+        # @type VersionId: String
+        # @param Label: <p>可选。指定要预览的目标 Label；与 VersionId 互斥；均省略时使用 Stable。</p>
+        # @type Label: String
 
+        attr_accessor :RegistryId, :RecordId, :VersionId, :Label
 
-        def initialize()
+        def initialize(registryid=nil, recordid=nil, versionid=nil, label=nil)
+          @RegistryId = registryid
+          @RecordId = recordid
+          @VersionId = versionid
+          @Label = label
         end
 
         def deserialize(params)
+          @RegistryId = params['RegistryId']
+          @RecordId = params['RecordId']
+          @VersionId = params['VersionId']
+          @Label = params['Label']
         end
       end
 
       # PreviewRegistryRecord返回参数结构体
       class PreviewRegistryRecordResponse < TencentCloud::Common::AbstractModel
+        # @param PreviewResult: <p>只读元数据预览结果对象（JSON 字符串形式）。字段：StatusCode（远端 HTTP 状态码，必返）、Body（远端响应体截断字符串，必返）、HasUpdate（Boolean，必返；远端内容按 Sync 相同的规范化规则处理后是否与请求 Version 配置不同；Error 非空时固定返回 false，此时不表示远端没有变化）、Error（调用错误信息，可选）。</p>
+        # @type PreviewResult: String
+        # @param ResolvedVersionId: <p>实际预览的 Version ID（由 VersionId / Label 解析得到）。</p>
+        # @type ResolvedVersionId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :PreviewResult, :ResolvedVersionId, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(previewresult=nil, resolvedversionid=nil, requestid=nil)
+          @PreviewResult = previewresult
+          @ResolvedVersionId = resolvedversionid
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @PreviewResult = params['PreviewResult']
+          @ResolvedVersionId = params['ResolvedVersionId']
           @RequestId = params['RequestId']
         end
       end
@@ -3101,27 +4149,51 @@ module TencentCloud
 
       # RejectRegistryRecord请求参数结构体
       class RejectRegistryRecordRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: <p>父 Registry ID。</p>
+        # @type RegistryId: String
+        # @param RecordId: <p>Record ID。</p>
+        # @type RecordId: String
+        # @param VersionId: <p>Version ID。</p>
+        # @type VersionId: String
+        # @param Comment: <p>动作留言；非空。</p>
+        # @type Comment: String
 
+        attr_accessor :RegistryId, :RecordId, :VersionId, :Comment
 
-        def initialize()
+        def initialize(registryid=nil, recordid=nil, versionid=nil, comment=nil)
+          @RegistryId = registryid
+          @RecordId = recordid
+          @VersionId = versionid
+          @Comment = comment
         end
 
         def deserialize(params)
+          @RegistryId = params['RegistryId']
+          @RecordId = params['RecordId']
+          @VersionId = params['VersionId']
+          @Comment = params['Comment']
         end
       end
 
       # RejectRegistryRecord返回参数结构体
       class RejectRegistryRecordResponse < TencentCloud::Common::AbstractModel
+        # @param Version: <p>更新后的 Version。</p>
+        # @type Version: :class:`Tencentcloud::Ags.v20250920.models.CloudRecordVersion`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Version, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(version=nil, requestid=nil)
+          @Version = version
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['Version'].nil?
+            @Version = CloudRecordVersion.new
+            @Version.deserialize(params['Version'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -3724,27 +4796,87 @@ module TencentCloud
 
       # SyncRegistryRecord请求参数结构体
       class SyncRegistryRecordRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: <p>父 Registry ID。</p>
+        # @type RegistryId: String
+        # @param RecordId: <p>Record ID。</p>
+        # @type RecordId: String
+        # @param VersionId: <p>可选。指定要同步的目标 Version；与 Label 互斥；均省略时使用 Stable。</p>
+        # @type VersionId: String
+        # @param Label: <p>可选。指定要同步的目标 Label；与 VersionId 互斥；均省略时使用 Stable。Label 在请求开始时只解析一次。</p>
+        # @type Label: String
+        # @param ChangeLog: <p>可选，最大 4096 字符。若同步创建新 Version，将写入新 Version 的 ChangeLog；省略时保存为空。</p>
+        # @type ChangeLog: String
 
+        attr_accessor :RegistryId, :RecordId, :VersionId, :Label, :ChangeLog
 
-        def initialize()
+        def initialize(registryid=nil, recordid=nil, versionid=nil, label=nil, changelog=nil)
+          @RegistryId = registryid
+          @RecordId = recordid
+          @VersionId = versionid
+          @Label = label
+          @ChangeLog = changelog
         end
 
         def deserialize(params)
+          @RegistryId = params['RegistryId']
+          @RecordId = params['RecordId']
+          @VersionId = params['VersionId']
+          @Label = params['Label']
+          @ChangeLog = params['ChangeLog']
         end
       end
 
       # SyncRegistryRecord返回参数结构体
       class SyncRegistryRecordResponse < TencentCloud::Common::AbstractModel
+        # @param SyncStatus: <p>同步结果：UNCHANGED（远端无变化）/ VERSION_CREATED（远端有变化，已生成新 Version）/ FAILED（同步失败）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SyncStatus: String
+        # @param ResolvedVersionId: <p>作为同步来源解析出的 Version ID（可能由 Label 解析而来）；不为空。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResolvedVersionId: String
+        # @param CreatedVersion: <p>SyncStatus=VERSION_CREATED 时返回：本次新建的 Version。</p>
+        # @type CreatedVersion: :class:`Tencentcloud::Ags.v20250920.models.CloudRecordVersion`
+        # @param Record: <p>SyncStatus=VERSION_CREATED 时返回：同步后的最新 Record。</p>
+        # @type Record: :class:`Tencentcloud::Ags.v20250920.models.CloudRecord`
+        # @param LastSyncTime: <p>最后一次同步时间，ISO 8601 UTC。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastSyncTime: String
+        # @param ErrorCode: <p>失败错误码；SyncStatus=FAILED 时返回。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorCode: String
+        # @param ErrorMessage: <p>失败错误信息；SyncStatus=FAILED 时返回。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMessage: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :SyncStatus, :ResolvedVersionId, :CreatedVersion, :Record, :LastSyncTime, :ErrorCode, :ErrorMessage, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(syncstatus=nil, resolvedversionid=nil, createdversion=nil, record=nil, lastsynctime=nil, errorcode=nil, errormessage=nil, requestid=nil)
+          @SyncStatus = syncstatus
+          @ResolvedVersionId = resolvedversionid
+          @CreatedVersion = createdversion
+          @Record = record
+          @LastSyncTime = lastsynctime
+          @ErrorCode = errorcode
+          @ErrorMessage = errormessage
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @SyncStatus = params['SyncStatus']
+          @ResolvedVersionId = params['ResolvedVersionId']
+          unless params['CreatedVersion'].nil?
+            @CreatedVersion = CloudRecordVersion.new
+            @CreatedVersion.deserialize(params['CreatedVersion'])
+          end
+          unless params['Record'].nil?
+            @Record = CloudRecord.new
+            @Record.deserialize(params['Record'])
+          end
+          @LastSyncTime = params['LastSyncTime']
+          @ErrorCode = params['ErrorCode']
+          @ErrorMessage = params['ErrorMessage']
           @RequestId = params['RequestId']
         end
       end
@@ -3771,54 +4903,156 @@ module TencentCloud
 
       # UpdateRegistryRecord请求参数结构体
       class UpdateRegistryRecordRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: <p>Registry ID。</p>
+        # @type RegistryId: String
+        # @param RecordId: <p>Record ID。</p>
+        # @type RecordId: String
+        # @param Description: <p>Record 描述，可选。Record 更新模式下允许，允许空字符串清空；Version 创建模式禁止。</p>
+        # @type Description: String
+        # @param VersionName: <p>新 Version 的展示名，可选。仅 Version 创建模式允许。</p>
+        # @type VersionName: String
+        # @param ChangeLog: <p>新 Version 的变更原因，最大 4096 字符，可选。仅 Version 创建模式允许。</p>
+        # @type ChangeLog: String
+        # @param MCPSource: <p>Version 创建模式：现有 Record 的 DescriptorType=MCP 时可提交。</p>
+        # @type MCPSource: :class:`Tencentcloud::Ags.v20250920.models.CloudMCPSourceInput`
+        # @param AgentSource: <p>Version 创建模式：现有 Record 的 DescriptorType=A2A 或 AGUI 时可提交。</p>
+        # @type AgentSource: :class:`Tencentcloud::Ags.v20250920.models.CloudAgentSourceInput`
+        # @param SkillSource: <p>Version 创建模式：现有 Record 的 DescriptorType=AGENT_SKILLS 时可提交。</p>
+        # @type SkillSource: :class:`Tencentcloud::Ags.v20250920.models.CloudSkillSourceInput`
+        # @param CustomDescriptors: <p>Version 创建模式：现有 Record 的 DescriptorType=CUSTOM 时可提交，必须是 JSON object 字符串。</p>
+        # @type CustomDescriptors: String
+        # @param LabelMutations: <p>Record 更新模式：Label 变更列表，最多 32 条，同一次请求中 Label Name 不可重复。</p>
+        # @type LabelMutations: Array
 
+        attr_accessor :RegistryId, :RecordId, :Description, :VersionName, :ChangeLog, :MCPSource, :AgentSource, :SkillSource, :CustomDescriptors, :LabelMutations
 
-        def initialize()
+        def initialize(registryid=nil, recordid=nil, description=nil, versionname=nil, changelog=nil, mcpsource=nil, agentsource=nil, skillsource=nil, customdescriptors=nil, labelmutations=nil)
+          @RegistryId = registryid
+          @RecordId = recordid
+          @Description = description
+          @VersionName = versionname
+          @ChangeLog = changelog
+          @MCPSource = mcpsource
+          @AgentSource = agentsource
+          @SkillSource = skillsource
+          @CustomDescriptors = customdescriptors
+          @LabelMutations = labelmutations
         end
 
         def deserialize(params)
+          @RegistryId = params['RegistryId']
+          @RecordId = params['RecordId']
+          @Description = params['Description']
+          @VersionName = params['VersionName']
+          @ChangeLog = params['ChangeLog']
+          unless params['MCPSource'].nil?
+            @MCPSource = CloudMCPSourceInput.new
+            @MCPSource.deserialize(params['MCPSource'])
+          end
+          unless params['AgentSource'].nil?
+            @AgentSource = CloudAgentSourceInput.new
+            @AgentSource.deserialize(params['AgentSource'])
+          end
+          unless params['SkillSource'].nil?
+            @SkillSource = CloudSkillSourceInput.new
+            @SkillSource.deserialize(params['SkillSource'])
+          end
+          @CustomDescriptors = params['CustomDescriptors']
+          unless params['LabelMutations'].nil?
+            @LabelMutations = []
+            params['LabelMutations'].each do |i|
+              cloudrecordlabelmutation_tmp = CloudRecordLabelMutation.new
+              cloudrecordlabelmutation_tmp.deserialize(i)
+              @LabelMutations << cloudrecordlabelmutation_tmp
+            end
+          end
         end
       end
 
       # UpdateRegistryRecord返回参数结构体
       class UpdateRegistryRecordResponse < TencentCloud::Common::AbstractModel
+        # @param Record: <p>更新后的 Record。</p>
+        # @type Record: :class:`Tencentcloud::Ags.v20250920.models.CloudRecord`
+        # @param Version: <p>Version 创建模式返回：本次创建的新 Version。</p>
+        # @type Version: :class:`Tencentcloud::Ags.v20250920.models.CloudRecordVersion`
+        # @param UploadURL: <p>Version 创建模式且 SkillSource.Type=TAR_PACKAGE 时返回。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UploadURL: String
+        # @param ExpireTime: <p>Version 创建模式且 SkillSource.Type=TAR_PACKAGE 时返回。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpireTime: String
+        # @param ContentStatus: <p>Version 创建模式且 SkillSource.Type=TAR_PACKAGE 时返回。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContentStatus: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Record, :Version, :UploadURL, :ExpireTime, :ContentStatus, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(record=nil, version=nil, uploadurl=nil, expiretime=nil, contentstatus=nil, requestid=nil)
+          @Record = record
+          @Version = version
+          @UploadURL = uploadurl
+          @ExpireTime = expiretime
+          @ContentStatus = contentstatus
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['Record'].nil?
+            @Record = CloudRecord.new
+            @Record.deserialize(params['Record'])
+          end
+          unless params['Version'].nil?
+            @Version = CloudRecordVersion.new
+            @Version.deserialize(params['Version'])
+          end
+          @UploadURL = params['UploadURL']
+          @ExpireTime = params['ExpireTime']
+          @ContentStatus = params['ContentStatus']
           @RequestId = params['RequestId']
         end
       end
 
       # UpdateRegistry请求参数结构体
       class UpdateRegistryRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: <p>Registry ID。</p>
+        # @type RegistryId: String
+        # @param Description: <p>新的描述；必填；最长 4096。</p>
+        # @type Description: String
 
+        attr_accessor :RegistryId, :Description
 
-        def initialize()
+        def initialize(registryid=nil, description=nil)
+          @RegistryId = registryid
+          @Description = description
         end
 
         def deserialize(params)
+          @RegistryId = params['RegistryId']
+          @Description = params['Description']
         end
       end
 
       # UpdateRegistry返回参数结构体
       class UpdateRegistryResponse < TencentCloud::Common::AbstractModel
+        # @param Registry: <p>更新后的 Registry 详情。</p>
+        # @type Registry: :class:`Tencentcloud::Ags.v20250920.models.CloudRegistry`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Registry, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(registry=nil, requestid=nil)
+          @Registry = registry
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['Registry'].nil?
+            @Registry = CloudRegistry.new
+            @Registry.deserialize(params['Registry'])
+          end
           @RequestId = params['RequestId']
         end
       end

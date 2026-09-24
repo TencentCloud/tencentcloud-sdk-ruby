@@ -10972,19 +10972,25 @@ module TencentCloud
         # @type ConsumerContent: :class:`Tencentcloud::Cls.v20201016.models.KafkaConsumerContent`
         # @param HasServicesLog: <p>是否开启投递服务日志。1：关闭，2：开启。</p>
         # @type HasServicesLog: Integer
+        # @param EnableInternetConsume: <p>外网消费开关。</p>
+        # @type EnableInternetConsume: Boolean
+        # @param EnableIntranetConsume: <p>内网消费开关。</p>
+        # @type EnableIntranetConsume: Boolean
         # @param ScopeType: <p>消费范围类型，0:最新，1:历史+最新</p>
         # @type ScopeType: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Status, :TopicID, :Compression, :ConsumerContent, :HasServicesLog, :ScopeType, :RequestId
+        attr_accessor :Status, :TopicID, :Compression, :ConsumerContent, :HasServicesLog, :EnableInternetConsume, :EnableIntranetConsume, :ScopeType, :RequestId
 
-        def initialize(status=nil, topicid=nil, compression=nil, consumercontent=nil, hasserviceslog=nil, scopetype=nil, requestid=nil)
+        def initialize(status=nil, topicid=nil, compression=nil, consumercontent=nil, hasserviceslog=nil, enableinternetconsume=nil, enableintranetconsume=nil, scopetype=nil, requestid=nil)
           @Status = status
           @TopicID = topicid
           @Compression = compression
           @ConsumerContent = consumercontent
           @HasServicesLog = hasserviceslog
+          @EnableInternetConsume = enableinternetconsume
+          @EnableIntranetConsume = enableintranetconsume
           @ScopeType = scopetype
           @RequestId = requestid
         end
@@ -10998,6 +11004,8 @@ module TencentCloud
             @ConsumerContent.deserialize(params['ConsumerContent'])
           end
           @HasServicesLog = params['HasServicesLog']
+          @EnableInternetConsume = params['EnableInternetConsume']
+          @EnableIntranetConsume = params['EnableIntranetConsume']
           @ScopeType = params['ScopeType']
           @RequestId = params['RequestId']
         end
@@ -18362,16 +18370,22 @@ module TencentCloud
         # @type ConsumerContent: :class:`Tencentcloud::Cls.v20201016.models.KafkaConsumerContent`
         # @param HasServicesLog: <p>是否开启投递服务日志。1：关闭，2：开启。</p>
         # @type HasServicesLog: Integer
+        # @param EnableInternetConsume: <p>外网消费开关。</p>
+        # @type EnableInternetConsume: Boolean
+        # @param EnableIntranetConsume: <p>内网消费开关。</p>
+        # @type EnableIntranetConsume: Boolean
         # @param ScopeType: <p>消费范围类型，0:最新，1:历史+最新</p>
         # @type ScopeType: Integer
 
-        attr_accessor :FromTopicId, :Compression, :ConsumerContent, :HasServicesLog, :ScopeType
+        attr_accessor :FromTopicId, :Compression, :ConsumerContent, :HasServicesLog, :EnableInternetConsume, :EnableIntranetConsume, :ScopeType
 
-        def initialize(fromtopicid=nil, compression=nil, consumercontent=nil, hasserviceslog=nil, scopetype=nil)
+        def initialize(fromtopicid=nil, compression=nil, consumercontent=nil, hasserviceslog=nil, enableinternetconsume=nil, enableintranetconsume=nil, scopetype=nil)
           @FromTopicId = fromtopicid
           @Compression = compression
           @ConsumerContent = consumercontent
           @HasServicesLog = hasserviceslog
+          @EnableInternetConsume = enableinternetconsume
+          @EnableIntranetConsume = enableintranetconsume
           @ScopeType = scopetype
         end
 
@@ -18383,6 +18397,8 @@ module TencentCloud
             @ConsumerContent.deserialize(params['ConsumerContent'])
           end
           @HasServicesLog = params['HasServicesLog']
+          @EnableInternetConsume = params['EnableInternetConsume']
+          @EnableIntranetConsume = params['EnableIntranetConsume']
           @ScopeType = params['ScopeType']
         end
       end
@@ -20676,16 +20692,22 @@ module TencentCloud
         # @type ConsumerContent: :class:`Tencentcloud::Cls.v20201016.models.KafkaConsumerContent`
         # @param HasServicesLog: <p>是否开启投递服务日志。1：关闭，2：开启。 默认值：2</p>
         # @type HasServicesLog: Integer
+        # @param EnableInternetConsume: <p>外网消费开关，默认开启</p>
+        # @type EnableInternetConsume: Boolean
+        # @param EnableIntranetConsume: <p>内网消费开关，默认开启</p>
+        # @type EnableIntranetConsume: Boolean
         # @param ScopeType: <p>消费范围类型，0:最新；1:历史+最新；默认值:0</p>
         # @type ScopeType: Integer
 
-        attr_accessor :FromTopicId, :Compression, :ConsumerContent, :HasServicesLog, :ScopeType
+        attr_accessor :FromTopicId, :Compression, :ConsumerContent, :HasServicesLog, :EnableInternetConsume, :EnableIntranetConsume, :ScopeType
 
-        def initialize(fromtopicid=nil, compression=nil, consumercontent=nil, hasserviceslog=nil, scopetype=nil)
+        def initialize(fromtopicid=nil, compression=nil, consumercontent=nil, hasserviceslog=nil, enableinternetconsume=nil, enableintranetconsume=nil, scopetype=nil)
           @FromTopicId = fromtopicid
           @Compression = compression
           @ConsumerContent = consumercontent
           @HasServicesLog = hasserviceslog
+          @EnableInternetConsume = enableinternetconsume
+          @EnableIntranetConsume = enableintranetconsume
           @ScopeType = scopetype
         end
 
@@ -20697,6 +20719,8 @@ module TencentCloud
             @ConsumerContent.deserialize(params['ConsumerContent'])
           end
           @HasServicesLog = params['HasServicesLog']
+          @EnableInternetConsume = params['EnableInternetConsume']
+          @EnableIntranetConsume = params['EnableIntranetConsume']
           @ScopeType = params['ScopeType']
         end
       end

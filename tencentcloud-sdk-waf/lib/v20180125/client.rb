@@ -4424,6 +4424,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 接口无用，没有人调用
+
         # 修改实例的QPS弹性计费开关
 
         # @param request: Request instance for ModifyInstanceElasticMode.

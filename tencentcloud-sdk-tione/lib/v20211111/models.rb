@@ -5589,17 +5589,21 @@ module TencentCloud
         # @param Value: <p>环境变量value</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
+        # @param IsPrivate: <p>是否对外不可见,true 表示该环境变量的 Value 为敏感值.</p>
+        # @type IsPrivate: Boolean
 
-        attr_accessor :Name, :Value
+        attr_accessor :Name, :Value, :IsPrivate
 
-        def initialize(name=nil, value=nil)
+        def initialize(name=nil, value=nil, isprivate=nil)
           @Name = name
           @Value = value
+          @IsPrivate = isprivate
         end
 
         def deserialize(params)
           @Name = params['Name']
           @Value = params['Value']
+          @IsPrivate = params['IsPrivate']
         end
       end
 
@@ -8474,9 +8478,9 @@ module TencentCloud
 
       # 键值对
       class Option < TencentCloud::Common::AbstractModel
-        # @param Name: 指标名
+        # @param Name: <p>指标名</p>
         # @type Name: String
-        # @param Value: 指标值
+        # @param Value: <p>指标值</p>
         # @type Value: Integer
 
         attr_accessor :Name, :Value

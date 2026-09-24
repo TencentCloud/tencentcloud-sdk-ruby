@@ -869,7 +869,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询 AI 网关Token 消耗统计
+        # 查询 AI 网关Token 消耗统计（消费者消费金额数据）
 
         # @param request: Request instance for DescribeCloudNativeAPIGatewayLLMTokenUsageList.
         # @type request: :class:`Tencentcloud::cngw::V20230418::DescribeCloudNativeAPIGatewayLLMTokenUsageListRequest`
@@ -893,7 +893,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询 AI 网关Token 消耗统计汇总
+        # 查询 AI 网关Token 消耗统计汇总含（消费者消费金额数据）
 
         # @param request: Request instance for DescribeCloudNativeAPIGatewayLLMTokenUsageStatistics.
         # @type request: :class:`Tencentcloud::cngw::V20230418::DescribeCloudNativeAPIGatewayLLMTokenUsageStatisticsRequest`

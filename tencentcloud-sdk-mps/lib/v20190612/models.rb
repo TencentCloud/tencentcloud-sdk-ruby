@@ -31048,29 +31048,27 @@ module TencentCloud
 
       # 媒体质检模板详情
       class QualityControlTemplate < TencentCloud::Common::AbstractModel
-        # @param Definition: 媒体质检模板唯一标识。
+        # @param Definition: <p>媒体质检模板唯一标识。</p>
         # @type Definition: Integer
-        # @param Name: 媒体质检模板名称。
+        # @param Name: <p>媒体质检模板名称。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
-        # @param Comment: 模板描述信息。
+        # @param Comment: <p>模板描述信息。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Comment: String
-        # @param Type: 模板类型，取值：
-        # <li>Preset：系统预置模板；</li>
-        # <li>Custom：用户自定义模板。</li>
+        # @param Type: <p>模板类型，取值：</p><li>Preset：系统预置模板；</li><li>Custom：用户自定义模板。</li>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
-        # @param QualityControlItemSet: 媒体质检配置参数。
+        # @param QualityControlItemSet: <p>媒体质检配置参数。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QualityControlItemSet: Array
-        # @param CreateTime: 模板创建时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        # @param CreateTime: <p>模板创建时间，使用 <a href="https://cloud.tencent.com/document/product/862/37710#52">ISO 日期格式</a>。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
-        # @param UpdateTime: 模板最后修改时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        # @param UpdateTime: <p>模板最后修改时间，使用 <a href="https://cloud.tencent.com/document/product/862/37710#52">ISO 日期格式</a>。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
-        # @param Strategy: 媒体质检的抽检策略。
+        # @param Strategy: <p>媒体质检的抽检策略。</p>
         # @type Strategy: :class:`Tencentcloud::Mps.v20190612.models.QualityControlStrategy`
 
         attr_accessor :Definition, :Name, :Comment, :Type, :QualityControlItemSet, :CreateTime, :UpdateTime, :Strategy

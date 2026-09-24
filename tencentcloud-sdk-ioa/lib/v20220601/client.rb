@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 关联账户到虚拟组上，支持批量，私有化调用path为：capi/Assets/BindVirtualAccount，从7.x版本开始支持
+
+        # @param request: Request instance for BindVirtualAccounts.
+        # @type request: :class:`Tencentcloud::ioa::V20220601::BindVirtualAccountsRequest`
+        # @rtype: :class:`Tencentcloud::ioa::V20220601::BindVirtualAccountsResponse`
+        def BindVirtualAccounts(request)
+          body = send_request('BindVirtualAccounts', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BindVirtualAccountsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建业务资源，会对一些必填参数进行校验和参数合法性校验，创建业务资源时，先调用下校验相同业务资源接口，看资源是不是有冲突。创建时也会做校验，但没有返回对应的异常信息，私有化调用path为：capi/GatewayResource/CreateBusinessResource
 
         # @param request: Request instance for CreateBusinessResource.
@@ -631,6 +655,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询指定终端的病毒库版本、漏洞库版本、系统修复引擎版本、防火墙状态和实时防护状态
+
+        # @param request: Request instance for DescribeDeviceSecurityInfo.
+        # @type request: :class:`Tencentcloud::ioa::V20220601::DescribeDeviceSecurityInfoRequest`
+        # @rtype: :class:`Tencentcloud::ioa::V20220601::DescribeDeviceSecurityInfoResponse`
+        def DescribeDeviceSecurityInfo(request)
+          body = send_request('DescribeDeviceSecurityInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDeviceSecurityInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询终端自定义分组列表，私有化调用path为：/capi/Assets/Device/DescribeDeviceVirtualGroups
 
         # @param request: Request instance for DescribeDeviceVirtualGroups.
@@ -713,6 +761,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeLocalAccountsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询终端描述字段数据,私有化调用path为：capi/Assets/Device/DescribeProfileFieldsMenu
+
+        # @param request: Request instance for DescribeProfileFieldsMenu.
+        # @type request: :class:`Tencentcloud::ioa::V20220601::DescribeProfileFieldsMenuRequest`
+        # @rtype: :class:`Tencentcloud::ioa::V20220601::DescribeProfileFieldsMenuResponse`
+        def DescribeProfileFieldsMenu(request)
+          body = send_request('DescribeProfileFieldsMenu', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeProfileFieldsMenuResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -857,6 +929,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeSoftwareInformationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 列表虚拟组的账户，私有化调用path为：/capi/Assets/AccountVirtualGroup/DescribeVirtualAccounts，从7.x版本开始支持
+
+        # @param request: Request instance for DescribeVirtualAccounts.
+        # @type request: :class:`Tencentcloud::ioa::V20220601::DescribeVirtualAccountsRequest`
+        # @rtype: :class:`Tencentcloud::ioa::V20220601::DescribeVirtualAccountsResponse`
+        def DescribeVirtualAccounts(request)
+          body = send_request('DescribeVirtualAccounts', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeVirtualAccountsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1097,6 +1193,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyVirtualDeviceGroupsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 取消关联账户到虚拟组上，支持批量，私有化调用path为：capi/Assets/UnbindVirtualAccount，从7.x版本开始支持
+
+        # @param request: Request instance for UnbindVirtualAccounts.
+        # @type request: :class:`Tencentcloud::ioa::V20220601::UnbindVirtualAccountsRequest`
+        # @rtype: :class:`Tencentcloud::ioa::V20220601::UnbindVirtualAccountsResponse`
+        def UnbindVirtualAccounts(request)
+          body = send_request('UnbindVirtualAccounts', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UnbindVirtualAccountsResponse.new
             model.deserialize(response['Response'])
             model
           else

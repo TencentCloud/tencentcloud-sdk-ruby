@@ -8347,26 +8347,23 @@ module TencentCloud
 
       # SearchTaskResult请求参数结构体
       class SearchTaskResultRequest < TencentCloud::Common::AbstractModel
-        # @param StartTime: 搜索区间的开始时间
+        # @param StartTime: <p>搜索区间的开始时间，缺省时取结束时间前7天（含结束时间当日）</p>
         # @type StartTime: String
-        # @param EndTime: 搜索区间的结束时间
+        # @param EndTime: <p>搜索区间的结束时间。未指定时，默认取当前时间</p>
         # @type EndTime: String
-        # @param OperationId: 运维任务ID
+        # @param OperationId: <p>运维任务ID</p>
         # @type OperationId: String
-        # @param Name: 运维任务名称
+        # @param Name: <p>运维任务名称</p>
         # @type Name: String
-        # @param UserName: 用户名，长度不超过20
+        # @param UserName: <p>用户名，长度不超过20</p>
         # @type UserName: String
-        # @param RealName: 姓名，长度不超过20
+        # @param RealName: <p>姓名，长度不超过20</p>
         # @type RealName: String
-        # @param TaskType: 任务类型
-        # 1 手工运维任务
-        # 2 定时任务
-        # 3 账号推送任务
+        # @param TaskType: <p>任务类型<br>1 手工运维任务<br>2 定时任务<br>3 账号推送任务</p>
         # @type TaskType: Array
-        # @param Offset: 查询偏移
+        # @param Offset: <p>查询偏移</p>
         # @type Offset: Integer
-        # @param Limit: 分页的页内记录数，默认为20，最大200
+        # @param Limit: <p>分页的页内记录数，默认为20，最大200</p>
         # @type Limit: Integer
 
         attr_accessor :StartTime, :EndTime, :OperationId, :Name, :UserName, :RealName, :TaskType, :Offset, :Limit
@@ -8398,9 +8395,9 @@ module TencentCloud
 
       # SearchTaskResult返回参数结构体
       class SearchTaskResultResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 记录数
+        # @param TotalCount: <p>记录数</p>
         # @type TotalCount: Integer
-        # @param TaskResult: 运维任务执行结果
+        # @param TaskResult: <p>运维任务执行结果</p>
         # @type TaskResult: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

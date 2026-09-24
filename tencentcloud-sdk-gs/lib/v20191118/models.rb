@@ -287,8 +287,8 @@ module TencentCloud
 
         attr_accessor :AndroidAppId, :Name, :AndroidAppVersion, :PackageName, :PackageVersion, :PackageLabel, :VersionName
         extend Gem::Deprecate
-        deprecate :PackageVersion, :none, 2026, 8
-        deprecate :PackageVersion=, :none, 2026, 8
+        deprecate :PackageVersion, :none, 2026, 9
+        deprecate :PackageVersion=, :none, 2026, 9
 
         def initialize(androidappid=nil, name=nil, androidappversion=nil, packagename=nil, packageversion=nil, packagelabel=nil, versionname=nil)
           @AndroidAppId = androidappid
@@ -2178,8 +2178,8 @@ module TencentCloud
 
         attr_accessor :Total, :Labels, :AndroidInstanceLabels, :RequestId
         extend Gem::Deprecate
-        deprecate :Labels, :none, 2026, 8
-        deprecate :Labels=, :none, 2026, 8
+        deprecate :Labels, :none, 2026, 9
+        deprecate :Labels=, :none, 2026, 9
 
         def initialize(total=nil, labels=nil, androidinstancelabels=nil, requestid=nil)
           @Total = total
@@ -2392,26 +2392,21 @@ module TencentCloud
 
       # DescribeAndroidInstances请求参数结构体
       class DescribeAndroidInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param Offset: 偏移量，默认为 0
+        # @param Offset: <p>偏移量，默认为 0</p>
         # @type Offset: Integer
-        # @param Limit: 限制量，默认为20，最大值为100
+        # @param Limit: <p>限制量，默认为20，最大值为100</p>
         # @type Limit: Integer
-        # @param AndroidInstanceIds: 实例ID。每次请求的实例的上限为100。
+        # @param AndroidInstanceIds: <p>实例ID。每次请求的实例的上限为100。</p>
         # @type AndroidInstanceIds: Array
-        # @param AndroidInstanceRegion: 实例地域。目前还不支持按地域进行聚合查询
+        # @param AndroidInstanceRegion: <p>实例地域。目前还不支持按地域进行聚合查询</p>
         # @type AndroidInstanceRegion: String
-        # @param AndroidInstanceZone: 实例可用区
+        # @param AndroidInstanceZone: <p>实例可用区</p>
         # @type AndroidInstanceZone: String
-        # @param AndroidInstanceGroupIds: 实例分组 ID 列表
+        # @param AndroidInstanceGroupIds: <p>实例分组 ID 列表</p>
         # @type AndroidInstanceGroupIds: Array
-        # @param LabelSelector: 实例标签选择器
+        # @param LabelSelector: <p>实例标签选择器</p>
         # @type LabelSelector: Array
-        # @param Filters: 字段过滤器。Filter 的 Name 有以下值：
-        # Name：实例名称
-        # UserId：实例用户ID
-        # HostSerialNumber：宿主机序列号
-        # HostServerSerialNumber：机箱序列号
-        # AndroidInstanceModel：实例型号
+        # @param Filters: <p>字段过滤器。Filter 的 Name 有以下值：<br>Name：实例名称<br>UserId：实例用户ID<br>HostSerialNumber：宿主机序列号<br>HostServerSerialNumber：机箱序列号<br>AndroidInstanceModel：实例型号</p>
         # @type Filters: Array
 
         attr_accessor :Offset, :Limit, :AndroidInstanceIds, :AndroidInstanceRegion, :AndroidInstanceZone, :AndroidInstanceGroupIds, :LabelSelector, :Filters
@@ -2455,9 +2450,9 @@ module TencentCloud
 
       # DescribeAndroidInstances返回参数结构体
       class DescribeAndroidInstancesResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 实例总数量
+        # @param TotalCount: <p>实例总数量</p>
         # @type TotalCount: Integer
-        # @param AndroidInstances: 实例列表
+        # @param AndroidInstances: <p>实例列表</p>
         # @type AndroidInstances: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

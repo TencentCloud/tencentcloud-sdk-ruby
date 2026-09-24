@@ -637,15 +637,19 @@ module TencentCloud
       class DescribeDeployTemplatesRequest < TencentCloud::Common::AbstractModel
         # @param ModelId: 模型ID
         # @type ModelId: String
+        # @param ServiceId: 可选。传入当前推理服务 ID 时，仅返回与该服务占用兼容的模板：同一 Scene、卡型家族兼容、机数相等、非机密计算。
+        # @type ServiceId: String
 
-        attr_accessor :ModelId
+        attr_accessor :ModelId, :ServiceId
 
-        def initialize(modelid=nil)
+        def initialize(modelid=nil, serviceid=nil)
           @ModelId = modelid
+          @ServiceId = serviceid
         end
 
         def deserialize(params)
           @ModelId = params['ModelId']
+          @ServiceId = params['ServiceId']
         end
       end
 
@@ -803,14 +807,17 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 返回量，不得大于100，默认为20
         # @type Limit: Integer
+        # @param ServiceId: 可选。传入当前推理服务 ID 时，仅返回与该服务同一 Scene、且至少有一条兼容重装模板的模型。自定义部署、机密计算、具身智能服务返回空列表。
+        # @type ServiceId: String
 
-        attr_accessor :ModelIds, :Filters, :Offset, :Limit
+        attr_accessor :ModelIds, :Filters, :Offset, :Limit, :ServiceId
 
-        def initialize(modelids=nil, filters=nil, offset=nil, limit=nil)
+        def initialize(modelids=nil, filters=nil, offset=nil, limit=nil, serviceid=nil)
           @ModelIds = modelids
           @Filters = filters
           @Offset = offset
           @Limit = limit
+          @ServiceId = serviceid
         end
 
         def deserialize(params)
@@ -825,6 +832,7 @@ module TencentCloud
           end
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @ServiceId = params['ServiceId']
         end
       end
 

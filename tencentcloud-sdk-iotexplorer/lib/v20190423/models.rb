@@ -661,6 +661,77 @@ module TencentCloud
         end
       end
 
+      # BatchPublishMessage请求参数结构体
+      class BatchPublishMessageRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: <p>产品名称</p>
+        # @type ProductId: String
+        # @param DeviceNames: <p>设备名称</p>
+        # @type DeviceNames: Array
+        # @param Topic: <p>主题</p>
+        # @type Topic: String
+        # @param Payload: <p>消息体</p>
+        # @type Payload: String
+        # @param Qos: <p>服务质量</p>
+        # @type Qos: Integer
+        # @param PayloadEncoding: <p>消息体编码</p>
+        # @type PayloadEncoding: String
+
+        attr_accessor :ProductId, :DeviceNames, :Topic, :Payload, :Qos, :PayloadEncoding
+
+        def initialize(productid=nil, devicenames=nil, topic=nil, payload=nil, qos=nil, payloadencoding=nil)
+          @ProductId = productid
+          @DeviceNames = devicenames
+          @Topic = topic
+          @Payload = payload
+          @Qos = qos
+          @PayloadEncoding = payloadencoding
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceNames = params['DeviceNames']
+          @Topic = params['Topic']
+          @Payload = params['Payload']
+          @Qos = params['Qos']
+          @PayloadEncoding = params['PayloadEncoding']
+        end
+      end
+
+      # BatchPublishMessage返回参数结构体
+      class BatchPublishMessageResponse < TencentCloud::Common::AbstractModel
+        # @param Total: <p>批量推送总数</p>
+        # @type Total: Integer
+        # @param SuccessCount: <p>成功数量</p>
+        # @type SuccessCount: Integer
+        # @param Failures: <p>失败明细</p>
+        # @type Failures: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :SuccessCount, :Failures, :RequestId
+
+        def initialize(total=nil, successcount=nil, failures=nil, requestid=nil)
+          @Total = total
+          @SuccessCount = successcount
+          @Failures = failures
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          @SuccessCount = params['SuccessCount']
+          unless params['Failures'].nil?
+            @Failures = []
+            params['Failures'].each do |i|
+              deviceresult_tmp = DeviceResult.new
+              deviceresult_tmp.deserialize(i)
+              @Failures << deviceresult_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # BatchRenewTWeSeeSubscription请求参数结构体
       class BatchRenewTWeSeeSubscriptionRequest < TencentCloud::Common::AbstractModel
         # @param Entries: 待续费的订阅列表
@@ -713,44 +784,48 @@ module TencentCloud
 
       # BatchUpdateFirmware请求参数结构体
       class BatchUpdateFirmwareRequest < TencentCloud::Common::AbstractModel
-        # @param ProductID: 产品ID
+        # @param ProductID: <p>产品ID</p>
         # @type ProductID: String
-        # @param FirmwareVersion: 固件新版本号
+        # @param FirmwareVersion: <p>固件新版本号</p>
         # @type FirmwareVersion: String
-        # @param FirmwareOriVersion: 固件原版本号
+        # @param FirmwareOriVersion: <p>固件原版本号</p>
         # @type FirmwareOriVersion: String
-        # @param UpgradeMethod: 升级方式，0 静默升级  1 用户确认升级。 不填默认为静默升级方式
+        # @param UpgradeMethod: <p>升级方式，0 静默升级  1 用户确认升级。 不填默认为静默升级方式</p>
         # @type UpgradeMethod: Integer
-        # @param FileName: 设备列表文件名称，根据文件列表升级固件需要填写此参数
+        # @param FileName: <p>设备列表文件名称，根据文件列表升级固件需要填写此参数</p>
         # @type FileName: String
-        # @param FileMd5: 设备列表的文件md5值
+        # @param FileMd5: <p>设备列表的文件md5值</p>
         # @type FileMd5: String
-        # @param FileSize: 设备列表的文件大小值
+        # @param FileSize: <p>设备列表的文件大小值</p>
         # @type FileSize: Integer
-        # @param DeviceNames: 需要升级的设备名称列表
+        # @param DeviceNames: <p>需要升级的设备名称列表</p>
         # @type DeviceNames: Array
-        # @param TimeoutInterval: 固件升级任务，默认超时时间。 最小取值120秒，最大为900秒
+        # @param TimeoutInterval: <p>固件升级任务，默认超时时间。 最小取值120秒，最大为900秒</p>
         # @type TimeoutInterval: Integer
-        # @param Type: 固件升级任务类型，默认静态升级值为空或1，动态升级值为7
+        # @param Type: <p>固件升级任务类型，默认静态升级值为空或1，动态升级值为7</p>
         # @type Type: Integer
-        # @param DelayTime: 任务延迟时间
+        # @param DelayTime: <p>任务延迟时间</p>
         # @type DelayTime: Integer
-        # @param OverrideMode: 是否覆盖，0不覆盖，1覆盖
+        # @param OverrideMode: <p>是否覆盖，0不覆盖，1覆盖</p>
         # @type OverrideMode: Integer
-        # @param MaxRetryNum: 失败重试次数
+        # @param MaxRetryNum: <p>失败重试次数</p>
         # @type MaxRetryNum: Integer
-        # @param RetryInterval: 重试间隔min
+        # @param RetryInterval: <p>重试间隔min</p>
         # @type RetryInterval: Integer
-        # @param FwType: 固件模块
+        # @param FwType: <p>固件模块</p>
         # @type FwType: String
-        # @param TaskUserDefine: 用户自定义信息
+        # @param TaskUserDefine: <p>用户自定义信息</p>
         # @type TaskUserDefine: String
-        # @param RateLimit: 每分钟下发设备量
+        # @param RateLimit: <p>每分钟下发设备量</p>
         # @type RateLimit: Integer
+        # @param EndTime: <p>任务截止时间，Unix 时间戳（单位：秒）。传入 0 或不传表示不设截止，任务按原重试/超时策略执行完毕。</p><p>单位：秒</p>
+        # @type EndTime: Integer
+        # @param StartTime: <p>任务开始调度时间，Unix 时间戳（单位：秒）。传入 0 或不传时任务立即创建执行，与 DelayTime 同时传入时，本参数优先生效。</p><p>单位：秒</p>
+        # @type StartTime: Integer
 
-        attr_accessor :ProductID, :FirmwareVersion, :FirmwareOriVersion, :UpgradeMethod, :FileName, :FileMd5, :FileSize, :DeviceNames, :TimeoutInterval, :Type, :DelayTime, :OverrideMode, :MaxRetryNum, :RetryInterval, :FwType, :TaskUserDefine, :RateLimit
+        attr_accessor :ProductID, :FirmwareVersion, :FirmwareOriVersion, :UpgradeMethod, :FileName, :FileMd5, :FileSize, :DeviceNames, :TimeoutInterval, :Type, :DelayTime, :OverrideMode, :MaxRetryNum, :RetryInterval, :FwType, :TaskUserDefine, :RateLimit, :EndTime, :StartTime
 
-        def initialize(productid=nil, firmwareversion=nil, firmwareoriversion=nil, upgrademethod=nil, filename=nil, filemd5=nil, filesize=nil, devicenames=nil, timeoutinterval=nil, type=nil, delaytime=nil, overridemode=nil, maxretrynum=nil, retryinterval=nil, fwtype=nil, taskuserdefine=nil, ratelimit=nil)
+        def initialize(productid=nil, firmwareversion=nil, firmwareoriversion=nil, upgrademethod=nil, filename=nil, filemd5=nil, filesize=nil, devicenames=nil, timeoutinterval=nil, type=nil, delaytime=nil, overridemode=nil, maxretrynum=nil, retryinterval=nil, fwtype=nil, taskuserdefine=nil, ratelimit=nil, endtime=nil, starttime=nil)
           @ProductID = productid
           @FirmwareVersion = firmwareversion
           @FirmwareOriVersion = firmwareoriversion
@@ -768,6 +843,8 @@ module TencentCloud
           @FwType = fwtype
           @TaskUserDefine = taskuserdefine
           @RateLimit = ratelimit
+          @EndTime = endtime
+          @StartTime = starttime
         end
 
         def deserialize(params)
@@ -788,12 +865,14 @@ module TencentCloud
           @FwType = params['FwType']
           @TaskUserDefine = params['TaskUserDefine']
           @RateLimit = params['RateLimit']
+          @EndTime = params['EndTime']
+          @StartTime = params['StartTime']
         end
       end
 
       # BatchUpdateFirmware返回参数结构体
       class BatchUpdateFirmwareResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务Id
+        # @param TaskId: <p>任务Id</p>
         # @type TaskId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5584,17 +5663,23 @@ module TencentCloud
         # @type Limit: Integer
         # @param Offset: <p>分页拉取偏移</p>
         # @type Offset: Integer
+        # @param StartTime: <p>起始时间（Unix 时间戳）</p><p>单位：秒</p>
+        # @type StartTime: Integer
+        # @param EndTime: <p>结束时间（Unix 时间戳）</p><p>单位：秒</p>
+        # @type EndTime: Integer
         # @param ChannelId: <p>通道 ID，非 NVR 设备不填，NVR 设备必填</p>
         # @type ChannelId: Integer
 
-        attr_accessor :ProductId, :DeviceName, :PersonId, :Limit, :Offset, :ChannelId
+        attr_accessor :ProductId, :DeviceName, :PersonId, :Limit, :Offset, :StartTime, :EndTime, :ChannelId
 
-        def initialize(productid=nil, devicename=nil, personid=nil, limit=nil, offset=nil, channelid=nil)
+        def initialize(productid=nil, devicename=nil, personid=nil, limit=nil, offset=nil, starttime=nil, endtime=nil, channelid=nil)
           @ProductId = productid
           @DeviceName = devicename
           @PersonId = personid
           @Limit = limit
           @Offset = offset
+          @StartTime = starttime
+          @EndTime = endtime
           @ChannelId = channelid
         end
 
@@ -5604,6 +5689,8 @@ module TencentCloud
           @PersonId = params['PersonId']
           @Limit = params['Limit']
           @Offset = params['Offset']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
           @ChannelId = params['ChannelId']
         end
       end
@@ -5614,14 +5701,17 @@ module TencentCloud
         # @type Events: Array
         # @param Total: <p>人员关联的云存事件总数</p>
         # @type Total: Integer
+        # @param VideoURL: <p>视频播放URL</p>
+        # @type VideoURL: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Events, :Total, :RequestId
+        attr_accessor :Events, :Total, :VideoURL, :RequestId
 
-        def initialize(events=nil, total=nil, requestid=nil)
+        def initialize(events=nil, total=nil, videourl=nil, requestid=nil)
           @Events = events
           @Total = total
+          @VideoURL = videourl
           @RequestId = requestid
         end
 
@@ -5635,6 +5725,7 @@ module TencentCloud
             end
           end
           @Total = params['Total']
+          @VideoURL = params['VideoURL']
           @RequestId = params['RequestId']
         end
       end
@@ -7134,11 +7225,11 @@ module TencentCloud
 
       # DescribeFirmwareTask请求参数结构体
       class DescribeFirmwareTaskRequest < TencentCloud::Common::AbstractModel
-        # @param ProductID: 产品ID
+        # @param ProductID: <p>产品ID</p>
         # @type ProductID: String
-        # @param FirmwareVersion: 固件版本号
+        # @param FirmwareVersion: <p>固件版本号</p>
         # @type FirmwareVersion: String
-        # @param TaskId: 固件任务ID
+        # @param TaskId: <p>固件任务ID</p>
         # @type TaskId: Integer
 
         attr_accessor :ProductID, :FirmwareVersion, :TaskId
@@ -7158,50 +7249,54 @@ module TencentCloud
 
       # DescribeFirmwareTask返回参数结构体
       class DescribeFirmwareTaskResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 固件任务ID
+        # @param TaskId: <p>固件任务ID</p>
         # @type TaskId: Integer
-        # @param Status: 固件任务状态
+        # @param Status: <p>固件任务状态</p>
         # @type Status: Integer
-        # @param CreateTime: 固件任务创建时间，单位：秒
+        # @param CreateTime: <p>固件任务创建时间，单位：秒</p>
         # @type CreateTime: Integer
-        # @param Type: 固件任务升级类型
+        # @param Type: <p>固件任务升级类型</p>
         # @type Type: Integer
-        # @param ProductName: 产品名称
+        # @param ProductName: <p>产品名称</p>
         # @type ProductName: String
-        # @param UpgradeMode: 固件任务升级模式。originalVersion（按版本号升级）、filename（提交文件升级）、devicenames（按设备名称升级）
+        # @param UpgradeMode: <p>固件任务升级模式。originalVersion（按版本号升级）、filename（提交文件升级）、devicenames（按设备名称升级）</p>
         # @type UpgradeMode: String
-        # @param ProductId: 产品ID
+        # @param ProductId: <p>产品ID</p>
         # @type ProductId: String
-        # @param OriginalVersion: 原始固件版本号，在UpgradeMode是originalVersion升级模式下会返回
+        # @param OriginalVersion: <p>原始固件版本号，在UpgradeMode是originalVersion升级模式下会返回</p>
         # @type OriginalVersion: String
-        # @param CreateUserId: 创建账号ID
+        # @param CreateUserId: <p>创建账号ID</p>
         # @type CreateUserId: Integer
-        # @param CreatorNickName: 创建账号ID昵称
+        # @param CreatorNickName: <p>创建账号ID昵称</p>
         # @type CreatorNickName: String
-        # @param DelayTime: 延迟时间
+        # @param DelayTime: <p>延迟时间</p>
         # @type DelayTime: Integer
-        # @param TimeoutInterval: 超时时间
+        # @param TimeoutInterval: <p>超时时间</p>
         # @type TimeoutInterval: Integer
-        # @param UpgradeMethod: 静默升级or用户确认升级
+        # @param UpgradeMethod: <p>静默升级or用户确认升级</p>
         # @type UpgradeMethod: Integer
-        # @param MaxRetryNum: 最大重试次数
+        # @param MaxRetryNum: <p>最大重试次数</p>
         # @type MaxRetryNum: Integer
-        # @param FwType: 固件类型
+        # @param FwType: <p>固件类型</p>
         # @type FwType: String
-        # @param RetryInterval: 重试间隔时间单位min
+        # @param RetryInterval: <p>重试间隔时间单位min</p>
         # @type RetryInterval: Integer
-        # @param OverrideMode: 是否覆盖任务
+        # @param OverrideMode: <p>是否覆盖任务</p>
         # @type OverrideMode: Integer
-        # @param TaskUserDefine: 用户自定义消息
+        # @param TaskUserDefine: <p>用户自定义消息</p>
         # @type TaskUserDefine: String
-        # @param RateLimit: 每分钟发送设备量
+        # @param RateLimit: <p>每分钟发送设备量</p>
         # @type RateLimit: Integer
+        # @param EndTime: <p>任务截止时间，Unix 时间戳（单位：秒）。传入 0 或不传表示不设截止，任务按原重试/超时策略执行完毕。 </p><p>单位：秒</p>
+        # @type EndTime: Integer
+        # @param StartTime: <p>任务开始调度时间，Unix 时间戳（单位：秒）。传入 0 或不传时任务立即创建执行，与 DelayTime 同时传入时，本参数优先生效。 </p><p>单位：秒</p>
+        # @type StartTime: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskId, :Status, :CreateTime, :Type, :ProductName, :UpgradeMode, :ProductId, :OriginalVersion, :CreateUserId, :CreatorNickName, :DelayTime, :TimeoutInterval, :UpgradeMethod, :MaxRetryNum, :FwType, :RetryInterval, :OverrideMode, :TaskUserDefine, :RateLimit, :RequestId
+        attr_accessor :TaskId, :Status, :CreateTime, :Type, :ProductName, :UpgradeMode, :ProductId, :OriginalVersion, :CreateUserId, :CreatorNickName, :DelayTime, :TimeoutInterval, :UpgradeMethod, :MaxRetryNum, :FwType, :RetryInterval, :OverrideMode, :TaskUserDefine, :RateLimit, :EndTime, :StartTime, :RequestId
 
-        def initialize(taskid=nil, status=nil, createtime=nil, type=nil, productname=nil, upgrademode=nil, productid=nil, originalversion=nil, createuserid=nil, creatornickname=nil, delaytime=nil, timeoutinterval=nil, upgrademethod=nil, maxretrynum=nil, fwtype=nil, retryinterval=nil, overridemode=nil, taskuserdefine=nil, ratelimit=nil, requestid=nil)
+        def initialize(taskid=nil, status=nil, createtime=nil, type=nil, productname=nil, upgrademode=nil, productid=nil, originalversion=nil, createuserid=nil, creatornickname=nil, delaytime=nil, timeoutinterval=nil, upgrademethod=nil, maxretrynum=nil, fwtype=nil, retryinterval=nil, overridemode=nil, taskuserdefine=nil, ratelimit=nil, endtime=nil, starttime=nil, requestid=nil)
           @TaskId = taskid
           @Status = status
           @CreateTime = createtime
@@ -7221,6 +7316,8 @@ module TencentCloud
           @OverrideMode = overridemode
           @TaskUserDefine = taskuserdefine
           @RateLimit = ratelimit
+          @EndTime = endtime
+          @StartTime = starttime
           @RequestId = requestid
         end
 
@@ -7244,6 +7341,8 @@ module TencentCloud
           @OverrideMode = params['OverrideMode']
           @TaskUserDefine = params['TaskUserDefine']
           @RateLimit = params['RateLimit']
+          @EndTime = params['EndTime']
+          @StartTime = params['StartTime']
           @RequestId = params['RequestId']
         end
       end
@@ -9706,6 +9805,34 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @Longitude = params['Longitude']
           @Latitude = params['Latitude']
+        end
+      end
+
+      # 批处理发布消息请求单台设备下发结果(仅失败情况下显示具体情况)
+      class DeviceResult < TencentCloud::Common::AbstractModel
+        # @param DeviceName: <p>设备名称</p>
+        # @type DeviceName: String
+        # @param Status: <p>设备状态</p><p>枚举值：</p><ul><li>SUCCESS： 下发成功    </li><li>PENDING： 存入离线存储</li><li>OFFLINE： 设备离线</li><li>FAILED： 下发失败</li><li>TIMEOUT： 下发超时</li></ul>
+        # @type Status: String
+        # @param ErrCode: <p>错误码</p>
+        # @type ErrCode: Integer
+        # @param ErrMsg: <p>错误信息</p>
+        # @type ErrMsg: String
+
+        attr_accessor :DeviceName, :Status, :ErrCode, :ErrMsg
+
+        def initialize(devicename=nil, status=nil, errcode=nil, errmsg=nil)
+          @DeviceName = devicename
+          @Status = status
+          @ErrCode = errcode
+          @ErrMsg = errmsg
+        end
+
+        def deserialize(params)
+          @DeviceName = params['DeviceName']
+          @Status = params['Status']
+          @ErrCode = params['ErrCode']
+          @ErrMsg = params['ErrMsg']
         end
       end
 
@@ -16918,10 +17045,14 @@ module TencentCloud
         # @type EnableFaceDetection: Boolean
         # @param InputRotateDegree: <p>画面旋转角度</p><p>枚举值：</p><ul><li>0： 不旋转</li><li>90： 顺时针旋转90度</li><li>-90： 逆时针旋转90度</li><li>180： 旋转180度</li></ul><p>默认值：0</p>
         # @type InputRotateDegree: Integer
+        # @param EnableExtendedOutput: <p>开启扩展字段输出</p><p>枚举值：</p><ul><li>true： 开启</li><li>false： 关闭</li></ul><p>默认值：false</p>
+        # @type EnableExtendedOutput: Boolean
+        # @param ExtendedOutputPrompts: <p>自定义扩展输出的提示词（目前仅支持覆盖 custom）</p>
+        # @type ExtendedOutputPrompts: Array
 
-        attr_accessor :DetectTypes, :EnableSearch, :OutputLang, :AlternativeOutputLang, :MultiCameraLayout, :CustomDetectQueries, :MaxDuration, :EnableKeywords, :SummaryPrompt, :EnableFaceDetection, :InputRotateDegree
+        attr_accessor :DetectTypes, :EnableSearch, :OutputLang, :AlternativeOutputLang, :MultiCameraLayout, :CustomDetectQueries, :MaxDuration, :EnableKeywords, :SummaryPrompt, :EnableFaceDetection, :InputRotateDegree, :EnableExtendedOutput, :ExtendedOutputPrompts
 
-        def initialize(detecttypes=nil, enablesearch=nil, outputlang=nil, alternativeoutputlang=nil, multicameralayout=nil, customdetectqueries=nil, maxduration=nil, enablekeywords=nil, summaryprompt=nil, enablefacedetection=nil, inputrotatedegree=nil)
+        def initialize(detecttypes=nil, enablesearch=nil, outputlang=nil, alternativeoutputlang=nil, multicameralayout=nil, customdetectqueries=nil, maxduration=nil, enablekeywords=nil, summaryprompt=nil, enablefacedetection=nil, inputrotatedegree=nil, enableextendedoutput=nil, extendedoutputprompts=nil)
           @DetectTypes = detecttypes
           @EnableSearch = enablesearch
           @OutputLang = outputlang
@@ -16933,6 +17064,8 @@ module TencentCloud
           @SummaryPrompt = summaryprompt
           @EnableFaceDetection = enablefacedetection
           @InputRotateDegree = inputrotatedegree
+          @EnableExtendedOutput = enableextendedoutput
+          @ExtendedOutputPrompts = extendedoutputprompts
         end
 
         def deserialize(params)
@@ -16954,6 +17087,15 @@ module TencentCloud
           @SummaryPrompt = params['SummaryPrompt']
           @EnableFaceDetection = params['EnableFaceDetection']
           @InputRotateDegree = params['InputRotateDegree']
+          @EnableExtendedOutput = params['EnableExtendedOutput']
+          unless params['ExtendedOutputPrompts'].nil?
+            @ExtendedOutputPrompts = []
+            params['ExtendedOutputPrompts'].each do |i|
+              seeextendedoutputprompt_tmp = SeeExtendedOutputPrompt.new
+              seeextendedoutputprompt_tmp.deserialize(i)
+              @ExtendedOutputPrompts << seeextendedoutputprompt_tmp
+            end
+          end
         end
       end
 
@@ -16971,16 +17113,19 @@ module TencentCloud
         # @type ErrorMsg: String
         # @param Keywords: <p>生成的关键词列表</p><p>当配置 <code>EnableKeywords</code> 为 true 时返回</p>
         # @type Keywords: Array
+        # @param ExtendedOutput: <p>模型输出的扩展字段文本</p>
+        # @type ExtendedOutput: Array
 
-        attr_accessor :DetectedClassifications, :Summary, :AlternativeSummary, :ErrorCode, :ErrorMsg, :Keywords
+        attr_accessor :DetectedClassifications, :Summary, :AlternativeSummary, :ErrorCode, :ErrorMsg, :Keywords, :ExtendedOutput
 
-        def initialize(detectedclassifications=nil, summary=nil, alternativesummary=nil, errorcode=nil, errormsg=nil, keywords=nil)
+        def initialize(detectedclassifications=nil, summary=nil, alternativesummary=nil, errorcode=nil, errormsg=nil, keywords=nil, extendedoutput=nil)
           @DetectedClassifications = detectedclassifications
           @Summary = summary
           @AlternativeSummary = alternativesummary
           @ErrorCode = errorcode
           @ErrorMsg = errormsg
           @Keywords = keywords
+          @ExtendedOutput = extendedoutput
         end
 
         def deserialize(params)
@@ -16990,6 +17135,14 @@ module TencentCloud
           @ErrorCode = params['ErrorCode']
           @ErrorMsg = params['ErrorMsg']
           @Keywords = params['Keywords']
+          unless params['ExtendedOutput'].nil?
+            @ExtendedOutput = []
+            params['ExtendedOutput'].each do |i|
+              seeextendedoutput_tmp = SeeExtendedOutput.new
+              seeextendedoutput_tmp.deserialize(i)
+              @ExtendedOutput << seeextendedoutput_tmp
+            end
+          end
         end
       end
 
@@ -17136,23 +17289,67 @@ module TencentCloud
         end
       end
 
-      # TWeSee 处理云存事件 EventId 的过滤规则配置
+      # TWeSee 处理云存事件的触发条件配置
       class SeeEventIdFilterConfig < TencentCloud::Common::AbstractModel
-        # @param IncludeOnly: 包含的云存事件 ID 集合
+        # @param IncludeOnly: <p>包含的云存事件 ID 集合</p>
         # @type IncludeOnly: Array
-        # @param Exclude: 排除的云存事件 ID 集合
+        # @param Exclude: <p>排除的云存事件 ID 集合</p>
         # @type Exclude: Array
+        # @param TriggerAt: <p>触发分析的时机</p><p>枚举值：</p><ul><li>end： 在云存事件结束时触发视频理解</li><li>start： 在云存事件开始时触发视频理解</li><li>image_and_video： 上传云存事件缩略图后触发图片理解，并且在云存事件结束时触发视频理解</li></ul><p>默认值：end</p>
+        # @type TriggerAt: String
 
-        attr_accessor :IncludeOnly, :Exclude
+        attr_accessor :IncludeOnly, :Exclude, :TriggerAt
 
-        def initialize(includeonly=nil, exclude=nil)
+        def initialize(includeonly=nil, exclude=nil, triggerat=nil)
           @IncludeOnly = includeonly
           @Exclude = exclude
+          @TriggerAt = triggerat
         end
 
         def deserialize(params)
           @IncludeOnly = params['IncludeOnly']
           @Exclude = params['Exclude']
+          @TriggerAt = params['TriggerAt']
+        end
+      end
+
+      # TWeSee 扩展输出字段
+      class SeeExtendedOutput < TencentCloud::Common::AbstractModel
+        # @param Key: <p>提示词标识符</p><p>枚举值：</p><ul><li>overview： 内容概述</li><li>scene： 场景关键词</li><li>events： 事件关键词</li><li>objects： 物品关键词</li></ul>
+        # @type Key: String
+        # @param Output: <p>模型输出的扩展内容文本</p>
+        # @type Output: String
+
+        attr_accessor :Key, :Output
+
+        def initialize(key=nil, output=nil)
+          @Key = key
+          @Output = output
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Output = params['Output']
+        end
+      end
+
+      # TWeSee 扩展输出提示词
+      class SeeExtendedOutputPrompt < TencentCloud::Common::AbstractModel
+        # @param Key: <p>提示词标识符</p><p>枚举值：</p><ul><li>custom： 自定义</li></ul>
+        # @type Key: String
+        # @param Prompt: <p>提示词内容</p>
+        # @type Prompt: String
+
+        attr_accessor :Key, :Prompt
+
+        def initialize(key=nil, prompt=nil)
+          @Key = key
+          @Prompt = prompt
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Prompt = params['Prompt']
         end
       end
 

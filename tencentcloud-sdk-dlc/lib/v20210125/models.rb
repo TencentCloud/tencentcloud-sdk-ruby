@@ -1216,6 +1216,42 @@ module TencentCloud
         end
       end
 
+      # tcc 审计信息
+      class Audit < TencentCloud::Common::AbstractModel
+        # @param Creator: <p>创建者</p>
+        # @type Creator: String
+        # @param LastModifier: <p>最后修改者</p>
+        # @type LastModifier: String
+        # @param CreatedAt: <p>创建时间戳</p>
+        # @type CreatedAt: Integer
+        # @param LastModifiedAt: <p>最后修改时间戳</p>
+        # @type LastModifiedAt: Integer
+        # @param LastModifiedTime: <p>最后修改时间（已废弃）</p><p>参数格式：2024-11-01 11:01:01</p>
+        # @type LastModifiedTime: String
+        # @param CreatedTime: <p>创建时间（已废弃）</p><p>参数格式：2024-11-01 11:01:01</p>
+        # @type CreatedTime: String
+
+        attr_accessor :Creator, :LastModifier, :CreatedAt, :LastModifiedAt, :LastModifiedTime, :CreatedTime
+
+        def initialize(creator=nil, lastmodifier=nil, createdat=nil, lastmodifiedat=nil, lastmodifiedtime=nil, createdtime=nil)
+          @Creator = creator
+          @LastModifier = lastmodifier
+          @CreatedAt = createdat
+          @LastModifiedAt = lastmodifiedat
+          @LastModifiedTime = lastmodifiedtime
+          @CreatedTime = createdtime
+        end
+
+        def deserialize(params)
+          @Creator = params['Creator']
+          @LastModifier = params['LastModifier']
+          @CreatedAt = params['CreatedAt']
+          @LastModifiedAt = params['LastModifiedAt']
+          @LastModifiedTime = params['LastModifiedTime']
+          @CreatedTime = params['CreatedTime']
+        end
+      end
+
       # spark session batch SQL的消耗信息
       class BatchSQLCostInfo < TencentCloud::Common::AbstractModel
         # @param BatchId: 任务id
@@ -1707,6 +1743,26 @@ module TencentCloud
         end
       end
 
+      # tcc BucketPartitioning定义
+      class BucketPartitioning < TencentCloud::Common::AbstractModel
+        # @param FieldNames: <p>分桶字段</p>
+        # @type FieldNames: Array
+        # @param NumBuckets: <p>分桶数</p>
+        # @type NumBuckets: Integer
+
+        attr_accessor :FieldNames, :NumBuckets
+
+        def initialize(fieldnames=nil, numbuckets=nil)
+          @FieldNames = fieldnames
+          @NumBuckets = numbuckets
+        end
+
+        def deserialize(params)
+          @FieldNames = params['FieldNames']
+          @NumBuckets = params['NumBuckets']
+        end
+      end
+
       # chdfs产品vpc信息
       class CHDFSProductVpcInfo < TencentCloud::Common::AbstractModel
         # @param VpcId: vpc id
@@ -2052,6 +2108,174 @@ module TencentCloud
             @Instance.deserialize(params['Instance'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 数据目录配置
+      class CatalogConfig < TencentCloud::Common::AbstractModel
+        # @param Id: <p>数据目录唯一 ID</p>
+        # @type Id: String
+        # @param Name: <p>数据目录名字</p>
+        # @type Name: String
+        # @param Type: <p>数据目录类型</p><p>枚举值：</p><ul><li>LAKEHOUSE： LAKEHOUSE类型</li></ul>
+        # @type Type: String
+        # @param Comment: <p>数据目录描述信息</p>
+        # @type Comment: String
+        # @param Status: <p>状态</p><p>枚举值：</p><ul><li>2： 连接成功</li></ul>
+        # @type Status: Integer
+        # @param Properties: <p>数据目录属性</p>
+        # @type Properties: Array
+        # @param Connection: <p>连接信息</p>
+        # @type Connection: :class:`Tencentcloud::Dlc.v20210125.models.ConnectionConfig`
+        # @param Operator: <p>操作人 uin</p>
+        # @type Operator: String
+        # @param Message: <p>连接日志</p>
+        # @type Message: String
+        # @param Audit: <p>审计信息</p>
+        # @type Audit: :class:`Tencentcloud::Dlc.v20210125.models.Audit`
+        # @param CreateTime: <p>创建时间（已废弃）</p><p>参数格式：2024-01-01 12:00:00</p>
+        # @type CreateTime: String
+        # @param UpdateTime: <p>更新时间（已废弃）</p><p>参数格式：2024-01-01 12:00:00</p>
+        # @type UpdateTime: String
+
+        attr_accessor :Id, :Name, :Type, :Comment, :Status, :Properties, :Connection, :Operator, :Message, :Audit, :CreateTime, :UpdateTime
+
+        def initialize(id=nil, name=nil, type=nil, comment=nil, status=nil, properties=nil, connection=nil, operator=nil, message=nil, audit=nil, createtime=nil, updatetime=nil)
+          @Id = id
+          @Name = name
+          @Type = type
+          @Comment = comment
+          @Status = status
+          @Properties = properties
+          @Connection = connection
+          @Operator = operator
+          @Message = message
+          @Audit = audit
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @Type = params['Type']
+          @Comment = params['Comment']
+          @Status = params['Status']
+          unless params['Properties'].nil?
+            @Properties = []
+            params['Properties'].each do |i|
+              kvpair_tmp = KVPair.new
+              kvpair_tmp.deserialize(i)
+              @Properties << kvpair_tmp
+            end
+          end
+          unless params['Connection'].nil?
+            @Connection = ConnectionConfig.new
+            @Connection.deserialize(params['Connection'])
+          end
+          @Operator = params['Operator']
+          @Message = params['Message']
+          unless params['Audit'].nil?
+            @Audit = Audit.new
+            @Audit.deserialize(params['Audit'])
+          end
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # tcc TableInfo定义
+      class CatalogTaleInfo < TencentCloud::Common::AbstractModel
+        # @param Name: <p>表名称</p>
+        # @type Name: String
+        # @param Comment: <p>描述</p>
+        # @type Comment: String
+        # @param Columns: <p>字段信息</p>
+        # @type Columns: Array
+        # @param Properties: <p>属性值</p>
+        # @type Properties: Array
+        # @param Partitioning: <p>分区</p>
+        # @type Partitioning: Array
+        # @param Indexes: <p>索引</p>
+        # @type Indexes: Array
+        # @param Audit: <p>编辑者/审计信息</p>
+        # @type Audit: :class:`Tencentcloud::Dlc.v20210125.models.Audit`
+        # @param CatalogName: <p>数据目录名称</p>
+        # @type CatalogName: String
+        # @param SchemaName: <p>数据库名称</p>
+        # @type SchemaName: String
+        # @param TableFormat: <p>表格式</p>
+        # @type TableFormat: String
+        # @param FormatType: <p>表格式类型</p><p>枚举值：</p><ul><li>v2： TcIceberg v2版本</li></ul>
+        # @type FormatType: String
+        # @param TableType: <p>表类型</p><p>枚举值：</p><ul><li>Managed： 内部表</li></ul>
+        # @type TableType: String
+        # @param TableMode: <p>场景类型</p><p>枚举值：</p><ul><li>REALTIME： 实时类型</li></ul>
+        # @type TableMode: String
+
+        attr_accessor :Name, :Comment, :Columns, :Properties, :Partitioning, :Indexes, :Audit, :CatalogName, :SchemaName, :TableFormat, :FormatType, :TableType, :TableMode
+
+        def initialize(name=nil, comment=nil, columns=nil, properties=nil, partitioning=nil, indexes=nil, audit=nil, catalogname=nil, schemaname=nil, tableformat=nil, formattype=nil, tabletype=nil, tablemode=nil)
+          @Name = name
+          @Comment = comment
+          @Columns = columns
+          @Properties = properties
+          @Partitioning = partitioning
+          @Indexes = indexes
+          @Audit = audit
+          @CatalogName = catalogname
+          @SchemaName = schemaname
+          @TableFormat = tableformat
+          @FormatType = formattype
+          @TableType = tabletype
+          @TableMode = tablemode
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Comment = params['Comment']
+          unless params['Columns'].nil?
+            @Columns = []
+            params['Columns'].each do |i|
+              columninfo_tmp = ColumnInfo.new
+              columninfo_tmp.deserialize(i)
+              @Columns << columninfo_tmp
+            end
+          end
+          unless params['Properties'].nil?
+            @Properties = []
+            params['Properties'].each do |i|
+              kvpair_tmp = KVPair.new
+              kvpair_tmp.deserialize(i)
+              @Properties << kvpair_tmp
+            end
+          end
+          unless params['Partitioning'].nil?
+            @Partitioning = []
+            params['Partitioning'].each do |i|
+              partitioning_tmp = Partitioning.new
+              partitioning_tmp.deserialize(i)
+              @Partitioning << partitioning_tmp
+            end
+          end
+          unless params['Indexes'].nil?
+            @Indexes = []
+            params['Indexes'].each do |i|
+              indexinfo_tmp = IndexInfo.new
+              indexinfo_tmp.deserialize(i)
+              @Indexes << indexinfo_tmp
+            end
+          end
+          unless params['Audit'].nil?
+            @Audit = Audit.new
+            @Audit.deserialize(params['Audit'])
+          end
+          @CatalogName = params['CatalogName']
+          @SchemaName = params['SchemaName']
+          @TableFormat = params['TableFormat']
+          @FormatType = params['FormatType']
+          @TableType = params['TableType']
+          @TableMode = params['TableMode']
         end
       end
 
@@ -2678,6 +2902,26 @@ module TencentCloud
         end
       end
 
+      # 日志条目。
+      class ClsLogEntry < TencentCloud::Common::AbstractModel
+        # @param Time: <p>Unix 毫秒时间戳。</p>
+        # @type Time: Integer
+        # @param LogJson: <p>日志 JSON 字符串。</p>
+        # @type LogJson: String
+
+        attr_accessor :Time, :LogJson
+
+        def initialize(time=nil, logjson=nil)
+          @Time = time
+          @LogJson = logjson
+        end
+
+        def deserialize(params)
+          @Time = params['Time']
+          @LogJson = params['LogJson']
+        end
+      end
+
       # CLS 日志主题条目
       class ClsTopicItem < TencentCloud::Common::AbstractModel
         # @param TopicId: <p>日志主题 ID</p>
@@ -2906,6 +3150,42 @@ module TencentCloud
         end
       end
 
+      # tcc table列定义
+      class ColumnInfo < TencentCloud::Common::AbstractModel
+        # @param Name: <p>字段名</p>
+        # @type Name: String
+        # @param Type: <p>字段类型</p><p>枚举值：</p><ul><li>integer： 数值类型</li></ul>
+        # @type Type: String
+        # @param Comment: <p>字段描述</p>
+        # @type Comment: String
+        # @param FieldSetting: <p>字段设置（已废弃）</p>
+        # @type FieldSetting: String
+        # @param IsPrimaryKey: <p>是否为主键（已废弃）</p><p>枚举值：</p><ul><li>true： 是主键</li></ul>
+        # @type IsPrimaryKey: Boolean
+        # @param TypeText: <p>字段类型 sqlType 格式</p>
+        # @type TypeText: String
+
+        attr_accessor :Name, :Type, :Comment, :FieldSetting, :IsPrimaryKey, :TypeText
+
+        def initialize(name=nil, type=nil, comment=nil, fieldsetting=nil, isprimarykey=nil, typetext=nil)
+          @Name = name
+          @Type = type
+          @Comment = comment
+          @FieldSetting = fieldsetting
+          @IsPrimaryKey = isprimarykey
+          @TypeText = typetext
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Type = params['Type']
+          @Comment = params['Comment']
+          @FieldSetting = params['FieldSetting']
+          @IsPrimaryKey = params['IsPrimaryKey']
+          @TypeText = params['TypeText']
+        end
+      end
+
       # 任务公共指标
       class CommonMetrics < TencentCloud::Common::AbstractModel
         # @param CreateTaskTime: 创建任务时长，单位：ms
@@ -2970,6 +3250,67 @@ module TencentCloud
           @AffectedRows = params['AffectedRows']
           @ProcessedBytes = params['ProcessedBytes']
           @ProcessedRows = params['ProcessedRows']
+        end
+      end
+
+      # tcc链接信息
+      class ConnectionConfig < TencentCloud::Common::AbstractModel
+        # @param MysqlConnection: <p>mysql数据源连接信息</p>
+        # @type MysqlConnection: :class:`Tencentcloud::Dlc.v20210125.models.MysqlConnection`
+        # @param EmrHiveConnection: <p>hive数据源连接信息</p>
+        # @type EmrHiveConnection: :class:`Tencentcloud::Dlc.v20210125.models.HiveConnection`
+        # @param TCHouseDConnection: <p>doris数据源连接信息</p>
+        # @type TCHouseDConnection: :class:`Tencentcloud::Dlc.v20210125.models.DorisConnection`
+        # @param VolumeConnection: <p>数据卷连接信息</p>
+        # @type VolumeConnection: :class:`Tencentcloud::Dlc.v20210125.models.VolumeConnection`
+        # @param LakeHouseConnection: <p>lakehouse连接信息</p>
+        # @type LakeHouseConnection: :class:`Tencentcloud::Dlc.v20210125.models.LakeHouseConnection`
+        # @param PostgreSQLConnection: <p>PostgreSQL数据源连接信息</p>
+        # @type PostgreSQLConnection: :class:`Tencentcloud::Dlc.v20210125.models.PostgreSQLConnection`
+        # @param DlcConnection: <p>dlc数据源连接信息</p>
+        # @type DlcConnection: :class:`Tencentcloud::Dlc.v20210125.models.DlcConnection`
+
+        attr_accessor :MysqlConnection, :EmrHiveConnection, :TCHouseDConnection, :VolumeConnection, :LakeHouseConnection, :PostgreSQLConnection, :DlcConnection
+
+        def initialize(mysqlconnection=nil, emrhiveconnection=nil, tchousedconnection=nil, volumeconnection=nil, lakehouseconnection=nil, postgresqlconnection=nil, dlcconnection=nil)
+          @MysqlConnection = mysqlconnection
+          @EmrHiveConnection = emrhiveconnection
+          @TCHouseDConnection = tchousedconnection
+          @VolumeConnection = volumeconnection
+          @LakeHouseConnection = lakehouseconnection
+          @PostgreSQLConnection = postgresqlconnection
+          @DlcConnection = dlcconnection
+        end
+
+        def deserialize(params)
+          unless params['MysqlConnection'].nil?
+            @MysqlConnection = MysqlConnection.new
+            @MysqlConnection.deserialize(params['MysqlConnection'])
+          end
+          unless params['EmrHiveConnection'].nil?
+            @EmrHiveConnection = HiveConnection.new
+            @EmrHiveConnection.deserialize(params['EmrHiveConnection'])
+          end
+          unless params['TCHouseDConnection'].nil?
+            @TCHouseDConnection = DorisConnection.new
+            @TCHouseDConnection.deserialize(params['TCHouseDConnection'])
+          end
+          unless params['VolumeConnection'].nil?
+            @VolumeConnection = VolumeConnection.new
+            @VolumeConnection.deserialize(params['VolumeConnection'])
+          end
+          unless params['LakeHouseConnection'].nil?
+            @LakeHouseConnection = LakeHouseConnection.new
+            @LakeHouseConnection.deserialize(params['LakeHouseConnection'])
+          end
+          unless params['PostgreSQLConnection'].nil?
+            @PostgreSQLConnection = PostgreSQLConnection.new
+            @PostgreSQLConnection.deserialize(params['PostgreSQLConnection'])
+          end
+          unless params['DlcConnection'].nil?
+            @DlcConnection = DlcConnection.new
+            @DlcConnection.deserialize(params['DlcConnection'])
+          end
         end
       end
 
@@ -4812,6 +5153,228 @@ module TencentCloud
 
         def deserialize(params)
           @Execution = params['Execution']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateJobDefinition请求参数结构体
+      class CreateJobDefinitionRequest < TencentCloud::Common::AbstractModel
+        # @param Name: <p>作业定义名称。必填，trim 后非空。</p>
+        # @type Name: String
+        # @param Description: <p>作业定义描述。</p>
+        # @type Description: String
+        # @param MajorType: <p>引擎大类，非必传，缺省 SPARK；当前仅支持 SPARK。</p>
+        # @type MajorType: String
+        # @param MinorType: <p>作业子类型，SPARK_SQL / SPARK_BATCH / SPARK_STREAM，必填；决定 Entrypoint 字段的校验规则。</p>
+        # @type MinorType: String
+        # @param CheckpointLocation: <p>流作业 checkpoint 路径（如 cosn://bucket/path/checkpoint）。MinorType=SPARK_STREAM 时必填；同一作业的多次运行必须复用同一路径，变更等于重置消费进度。</p>
+        # @type CheckpointLocation: String
+        # @param PartitionCode: <p>资源分区代码，仅 RunMode=JOB 可传（QueueName 非空时必填）；RunMode=WAREHOUSE 时禁止传（被仓库反查值覆盖）。</p>
+        # @type PartitionCode: String
+        # @param QueueName: <p>队列名称，仅 RunMode=JOB 可传且须与 PartitionCode 成对；RunMode=WAREHOUSE 时禁止传。</p>
+        # @type QueueName: String
+        # @param RuntimeCode: <p>运行时/镜像编码（可选值见 DescribeSparkRuntimes）。RunMode=JOB 新建时必填（无基座继承语义）；克隆场景可省略（继承源定义快照）；RunMode=WAREHOUSE 时忽略。</p>
+        # @type RuntimeCode: String
+        # @param SysCatalogVersion: <p>内置 Catalog 版本码（取值为 DescribeSysCatalogList 返回的目录子类型）。RunMode=JOB 新建时条件必填：未传时若可用（enabled）SysCatalog 唯一则自动选中，多个/零个报错；克隆场景可省略（继承源定义快照）；RunMode=WAREHOUSE 时禁止传。</p>
+        # @type SysCatalogVersion: String
+        # @param CustomProperties: <p>自定义 Spark conf（JSON 字符串，亦接受多行 key=value 文本，归一化为 JSON 存储、出参恒为 JSON），作为 SPARK_CUSTOM 配置通道落库，两种运行模式均生效。</p>
+        # @type CustomProperties: String
+        # @param EnvVars: <p>环境变量（KEY=VALUE）列表。仅 RunMode=JOB 可传；RunMode=WAREHOUSE 时禁止传。</p>
+        # @type EnvVars: Array
+        # @param RunMode: <p>运行模式，必填。可选值：WAREHOUSE（提交到计算仓库执行）/ JOB（按 Spec 独享资源）。两种模式的参数集严格隔离，详见各字段说明。</p>
+        # @type RunMode: String
+        # @param WarehouseId: <p>计算仓库 ID。RunMode=WAREHOUSE 时必填（仓库需可启动）；RunMode=JOB 时禁止传。</p>
+        # @type WarehouseId: String
+
+        attr_accessor :Name, :Description, :MajorType, :MinorType, :CheckpointLocation, :PartitionCode, :QueueName, :RuntimeCode, :SysCatalogVersion, :CustomProperties, :EnvVars, :RunMode, :WarehouseId
+
+        def initialize(name=nil, description=nil, majortype=nil, minortype=nil, checkpointlocation=nil, partitioncode=nil, queuename=nil, runtimecode=nil, syscatalogversion=nil, customproperties=nil, envvars=nil, runmode=nil, warehouseid=nil)
+          @Name = name
+          @Description = description
+          @MajorType = majortype
+          @MinorType = minortype
+          @CheckpointLocation = checkpointlocation
+          @PartitionCode = partitioncode
+          @QueueName = queuename
+          @RuntimeCode = runtimecode
+          @SysCatalogVersion = syscatalogversion
+          @CustomProperties = customproperties
+          @EnvVars = envvars
+          @RunMode = runmode
+          @WarehouseId = warehouseid
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Description = params['Description']
+          @MajorType = params['MajorType']
+          @MinorType = params['MinorType']
+          @CheckpointLocation = params['CheckpointLocation']
+          @PartitionCode = params['PartitionCode']
+          @QueueName = params['QueueName']
+          @RuntimeCode = params['RuntimeCode']
+          @SysCatalogVersion = params['SysCatalogVersion']
+          @CustomProperties = params['CustomProperties']
+          unless params['EnvVars'].nil?
+            @EnvVars = []
+            params['EnvVars'].each do |i|
+              kvpair_tmp = KVPair.new
+              kvpair_tmp.deserialize(i)
+              @EnvVars << kvpair_tmp
+            end
+          end
+          @RunMode = params['RunMode']
+          @WarehouseId = params['WarehouseId']
+        end
+      end
+
+      # CreateJobDefinition返回参数结构体
+      class CreateJobDefinitionResponse < TencentCloud::Common::AbstractModel
+        # @param JobDefinitionId: <p>作业定义唯一标识符（ID）。</p>
+        # @type JobDefinitionId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobDefinitionId, :RequestId
+
+        def initialize(jobdefinitionid=nil, requestid=nil)
+          @JobDefinitionId = jobdefinitionid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobDefinitionId = params['JobDefinitionId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateJobFromDefinition请求参数结构体
+      class CreateJobFromDefinitionRequest < TencentCloud::Common::AbstractModel
+        # @param JobDefinitionId: <p>作业定义 ID（由 CreateJobDefinition 返回）。必填。</p>
+        # @type JobDefinitionId: String
+
+        attr_accessor :JobDefinitionId
+
+        def initialize(jobdefinitionid=nil)
+          @JobDefinitionId = jobdefinitionid
+        end
+
+        def deserialize(params)
+          @JobDefinitionId = params['JobDefinitionId']
+        end
+      end
+
+      # CreateJobFromDefinition返回参数结构体
+      class CreateJobFromDefinitionResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: <p>作业唯一标识符（ID）。</p>
+        # @type JobId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :RequestId
+
+        def initialize(jobid=nil, requestid=nil)
+          @JobId = jobid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateJob请求参数结构体
+      class CreateJobRequest < TencentCloud::Common::AbstractModel
+        # @param JobName: <p>作业名称，长度 ≤256；可省略，省略时服务端回退为 JobId。</p>
+        # @type JobName: String
+        # @param CheckpointLocation: <p>流作业 checkpoint 路径（如 cosn://bucket/path/checkpoint）。MinorType=SPARK_STREAM 时必填；同一作业的多次运行必须复用同一路径，变更等于重置消费进度。</p>
+        # @type CheckpointLocation: String
+        # @param MajorType: <p>引擎大类，非必传，缺省 SPARK；当前仅支持 SPARK。</p>
+        # @type MajorType: String
+        # @param MinorType: <p>作业子类型，决定入口形态：SPARK_SQL（SQL 作业，Entrypoint.Statement 必填）/ SPARK_BATCH（批处理作业，Entrypoint.EntryFile 必填）/ SPARK_STREAM（流作业，EntryFile 与 CheckpointLocation 必填）。</p>
+        # @type MinorType: String
+        # @param FlowId: <p>工作流实例关联 ID（长度 ≤64）：同一工作流/会话的多条 SQL 作业传相同 FlowId，可共享同一 Spark 会话、复用已就绪引擎。MinorType=SPARK_SQL 时必填；FlowId 非空时必须同时传 ExecutionId。WAREHOUSE 模式下 FlowId 即会话句柄（一个 FlowId 只对应一个会话）：会话过期或已销毁后须换新 FlowId，否则返回 FailedOperation.FlowIdNotExists。</p>
+        # @type FlowId: String
+        # @param ExecutionId: <p>工作流内部执行标识（长度 ≤64），同一 FlowId 下每次提交须唯一（如自增序号/UUID）。用于重复提交防重：同一账号下命中未删除的同 (FlowId, ExecutionId) 作业时返回 FailedOperation.FlowExecutionConflict。FlowId 非空时必填（SPARK_SQL 因 FlowId 必填而必填）。</p>
+        # @type ExecutionId: String
+        # @param RunMode: <p>运行模式，必填。WAREHOUSE / JOB.</p>
+        # @type RunMode: String
+        # @param WarehouseId: <p>计算仓库 ID。RunMode=WAREHOUSE 时必填（仓库需处于 RUNNING，或 STOPPED 且 AutoStart 开启（提交后冷启动拉起））；RunMode=JOB 时必须为空。</p>
+        # @type WarehouseId: String
+        # @param RuntimeCode: <p>运行时/镜像编码（可选值见 DescribeSparkRuntimes）。RunMode=JOB 时必填；RunMode=WAREHOUSE 时忽略。</p>
+        # @type RuntimeCode: String
+        # @param SysCatalogVersion: <p>内置 Catalog 版本码（取值为 DescribeSysCatalogList 返回的目录子类型）。RunMode=JOB 时条件必填：未传时若可用（enabled）SysCatalog 唯一则自动选中，多个/零个报错；RunMode=WAREHOUSE 时禁止传。</p>
+        # @type SysCatalogVersion: String
+        # @param PartitionCode: <p>资源分区代码，仅 RunMode=JOB 可传（QueueName 非空时必填）；RunMode=WAREHOUSE 时禁止传。</p>
+        # @type PartitionCode: String
+        # @param QueueName: <p>队列名称，必须与 PartitionCode 成对使用（RunMode=JOB 下可选）；RunMode=WAREHOUSE 下被仓库反查值覆盖，无需传。</p>
+        # @type QueueName: String
+        # @param CustomProperties: <p>自定义 Spark conf（JSON 字符串，亦接受多行 key=value 文本，归一化为 JSON 存储、出参恒为 JSON），作为 SPARK_CUSTOM 配置通道落库，两种运行模式均生效。</p>
+        # @type CustomProperties: String
+        # @param EnvVars: <p>环境变量（KEY=VALUE）列表。仅 RunMode=JOB 可传；RunMode=WAREHOUSE 时禁止传。</p>
+        # @type EnvVars: Array
+
+        attr_accessor :JobName, :CheckpointLocation, :MajorType, :MinorType, :FlowId, :ExecutionId, :RunMode, :WarehouseId, :RuntimeCode, :SysCatalogVersion, :PartitionCode, :QueueName, :CustomProperties, :EnvVars
+
+        def initialize(jobname=nil, checkpointlocation=nil, majortype=nil, minortype=nil, flowid=nil, executionid=nil, runmode=nil, warehouseid=nil, runtimecode=nil, syscatalogversion=nil, partitioncode=nil, queuename=nil, customproperties=nil, envvars=nil)
+          @JobName = jobname
+          @CheckpointLocation = checkpointlocation
+          @MajorType = majortype
+          @MinorType = minortype
+          @FlowId = flowid
+          @ExecutionId = executionid
+          @RunMode = runmode
+          @WarehouseId = warehouseid
+          @RuntimeCode = runtimecode
+          @SysCatalogVersion = syscatalogversion
+          @PartitionCode = partitioncode
+          @QueueName = queuename
+          @CustomProperties = customproperties
+          @EnvVars = envvars
+        end
+
+        def deserialize(params)
+          @JobName = params['JobName']
+          @CheckpointLocation = params['CheckpointLocation']
+          @MajorType = params['MajorType']
+          @MinorType = params['MinorType']
+          @FlowId = params['FlowId']
+          @ExecutionId = params['ExecutionId']
+          @RunMode = params['RunMode']
+          @WarehouseId = params['WarehouseId']
+          @RuntimeCode = params['RuntimeCode']
+          @SysCatalogVersion = params['SysCatalogVersion']
+          @PartitionCode = params['PartitionCode']
+          @QueueName = params['QueueName']
+          @CustomProperties = params['CustomProperties']
+          unless params['EnvVars'].nil?
+            @EnvVars = []
+            params['EnvVars'].each do |i|
+              kvpair_tmp = KVPair.new
+              kvpair_tmp.deserialize(i)
+              @EnvVars << kvpair_tmp
+            end
+          end
+        end
+      end
+
+      # CreateJob返回参数结构体
+      class CreateJobResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: <p>作业唯一标识符（ID）。</p>
+        # @type JobId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :RequestId
+
+        def initialize(jobid=nil, requestid=nil)
+          @JobId = jobid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
           @RequestId = params['RequestId']
         end
       end
@@ -11134,6 +11697,262 @@ module TencentCloud
         end
       end
 
+      # DescribeCatalogTableInfo请求参数结构体
+      class DescribeCatalogTableInfoRequest < TencentCloud::Common::AbstractModel
+        # @param CatalogName: <p>Catalog名称</p>
+        # @type CatalogName: String
+        # @param SchemaName: <p>Schema名称</p>
+        # @type SchemaName: String
+        # @param TableName: <p>Table名称</p>
+        # @type TableName: String
+
+        attr_accessor :CatalogName, :SchemaName, :TableName
+
+        def initialize(catalogname=nil, schemaname=nil, tablename=nil)
+          @CatalogName = catalogname
+          @SchemaName = schemaname
+          @TableName = tablename
+        end
+
+        def deserialize(params)
+          @CatalogName = params['CatalogName']
+          @SchemaName = params['SchemaName']
+          @TableName = params['TableName']
+        end
+      end
+
+      # DescribeCatalogTableInfo返回参数结构体
+      class DescribeCatalogTableInfoResponse < TencentCloud::Common::AbstractModel
+        # @param Table: <p>Table详细信息</p>
+        # @type Table: :class:`Tencentcloud::Dlc.v20210125.models.CatalogTaleInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Table, :RequestId
+
+        def initialize(table=nil, requestid=nil)
+          @Table = table
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Table'].nil?
+            @Table = CatalogTaleInfo.new
+            @Table.deserialize(params['Table'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCatalogTableNamesPage请求参数结构体
+      class DescribeCatalogTableNamesPageRequest < TencentCloud::Common::AbstractModel
+        # @param CatalogName: <p>catalog名称</p>
+        # @type CatalogName: String
+        # @param SchemaName: <p>Schema名称</p>
+        # @type SchemaName: String
+        # @param Limit: <p>每页大小</p>
+        # @type Limit: Integer
+        # @param Offset: <p>页数</p>
+        # @type Offset: Integer
+        # @param SnapshotBased: <p>是否基于快照</p>
+        # @type SnapshotBased: Boolean
+        # @param SnapshotId: <p>快照id</p>
+        # @type SnapshotId: String
+        # @param TableNamePattern: <p>table匹配规则</p>
+        # @type TableNamePattern: String
+
+        attr_accessor :CatalogName, :SchemaName, :Limit, :Offset, :SnapshotBased, :SnapshotId, :TableNamePattern
+
+        def initialize(catalogname=nil, schemaname=nil, limit=nil, offset=nil, snapshotbased=nil, snapshotid=nil, tablenamepattern=nil)
+          @CatalogName = catalogname
+          @SchemaName = schemaname
+          @Limit = limit
+          @Offset = offset
+          @SnapshotBased = snapshotbased
+          @SnapshotId = snapshotid
+          @TableNamePattern = tablenamepattern
+        end
+
+        def deserialize(params)
+          @CatalogName = params['CatalogName']
+          @SchemaName = params['SchemaName']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @SnapshotBased = params['SnapshotBased']
+          @SnapshotId = params['SnapshotId']
+          @TableNamePattern = params['TableNamePattern']
+        end
+      end
+
+      # DescribeCatalogTableNamesPage返回参数结构体
+      class DescribeCatalogTableNamesPageResponse < TencentCloud::Common::AbstractModel
+        # @param TableNames: <p>table名字列表</p>
+        # @type TableNames: Array
+        # @param TotalCount: <p>table总数</p>
+        # @type TotalCount: Integer
+        # @param SnapshotId: <p>快照id</p>
+        # @type SnapshotId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TableNames, :TotalCount, :SnapshotId, :RequestId
+
+        def initialize(tablenames=nil, totalcount=nil, snapshotid=nil, requestid=nil)
+          @TableNames = tablenames
+          @TotalCount = totalcount
+          @SnapshotId = snapshotid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TableNames'].nil?
+            @TableNames = []
+            params['TableNames'].each do |i|
+              nameidentifier_tmp = NameIdentifier.new
+              nameidentifier_tmp.deserialize(i)
+              @TableNames << nameidentifier_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @SnapshotId = params['SnapshotId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCatalogTableNames请求参数结构体
+      class DescribeCatalogTableNamesRequest < TencentCloud::Common::AbstractModel
+        # @param CatalogName: <p>Catalog名称</p>
+        # @type CatalogName: String
+        # @param SchemaName: <p>Schema名称</p>
+        # @type SchemaName: String
+
+        attr_accessor :CatalogName, :SchemaName
+
+        def initialize(catalogname=nil, schemaname=nil)
+          @CatalogName = catalogname
+          @SchemaName = schemaname
+        end
+
+        def deserialize(params)
+          @CatalogName = params['CatalogName']
+          @SchemaName = params['SchemaName']
+        end
+      end
+
+      # DescribeCatalogTableNames返回参数结构体
+      class DescribeCatalogTableNamesResponse < TencentCloud::Common::AbstractModel
+        # @param TableNames: <p>Table名称列表</p>
+        # @type TableNames: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TableNames, :RequestId
+
+        def initialize(tablenames=nil, requestid=nil)
+          @TableNames = tablenames
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TableNames'].nil?
+            @TableNames = []
+            params['TableNames'].each do |i|
+              nameidentifier_tmp = NameIdentifier.new
+              nameidentifier_tmp.deserialize(i)
+              @TableNames << nameidentifier_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCatalogs请求参数结构体
+      class DescribeCatalogsRequest < TencentCloud::Common::AbstractModel
+        # @param CatalogId: <p>数据目录 ID</p>
+        # @type CatalogId: String
+        # @param Name: <p>数据目录名称</p>
+        # @type Name: String
+        # @param Operator: <p>操作人 uin</p>
+        # @type Operator: String
+        # @param Sort: <p>排序字段，支持 CreateTime / UpdateTime（默认 UpdateTime）</p>
+        # @type Sort: String
+        # @param Asc: <p>true:升序（默认）/ false:降序</p>
+        # @type Asc: String
+        # @param Limit: <p>分页大小</p>
+        # @type Limit: Integer
+        # @param Offset: <p>分页偏移</p>
+        # @type Offset: Integer
+        # @param Status: <p>状态：0 注册中 / 1 待测试 / 2 连接成功 / 3 连接失败 / 4 删除中 / 5 已删除</p><p>枚举值：</p><ul><li>0： 注册中</li></ul>
+        # @type Status: Integer
+        # @param Type: <p>数据目录类型</p><p>枚举值：</p><ul><li>LAKEHOUSE： lakehouse类型</li></ul>
+        # @type Type: String
+        # @param CreatedAfter: <p>在这个时间之后创建（时间戳）</p>
+        # @type CreatedAfter: Integer
+        # @param CreatedBefore: <p>在这个时间之前创建（时间戳）</p>
+        # @type CreatedBefore: Integer
+
+        attr_accessor :CatalogId, :Name, :Operator, :Sort, :Asc, :Limit, :Offset, :Status, :Type, :CreatedAfter, :CreatedBefore
+
+        def initialize(catalogid=nil, name=nil, operator=nil, sort=nil, asc=nil, limit=nil, offset=nil, status=nil, type=nil, createdafter=nil, createdbefore=nil)
+          @CatalogId = catalogid
+          @Name = name
+          @Operator = operator
+          @Sort = sort
+          @Asc = asc
+          @Limit = limit
+          @Offset = offset
+          @Status = status
+          @Type = type
+          @CreatedAfter = createdafter
+          @CreatedBefore = createdbefore
+        end
+
+        def deserialize(params)
+          @CatalogId = params['CatalogId']
+          @Name = params['Name']
+          @Operator = params['Operator']
+          @Sort = params['Sort']
+          @Asc = params['Asc']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Status = params['Status']
+          @Type = params['Type']
+          @CreatedAfter = params['CreatedAfter']
+          @CreatedBefore = params['CreatedBefore']
+        end
+      end
+
+      # DescribeCatalogs返回参数结构体
+      class DescribeCatalogsResponse < TencentCloud::Common::AbstractModel
+        # @param Catalogs: <p>Catalog详细信息列表</p>
+        # @type Catalogs: Array
+        # @param Total: <p>Catalog总数</p>
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Catalogs, :Total, :RequestId
+
+        def initialize(catalogs=nil, total=nil, requestid=nil)
+          @Catalogs = catalogs
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Catalogs'].nil?
+            @Catalogs = []
+            params['Catalogs'].each do |i|
+              catalogconfig_tmp = CatalogConfig.new
+              catalogconfig_tmp.deserialize(i)
+              @Catalogs << catalogconfig_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeClsTopics请求参数结构体
       class DescribeClsTopicsRequest < TencentCloud::Common::AbstractModel
         # @param TopicName: <p>日志主题名称（模糊匹配），可为空</p>
@@ -12969,6 +13788,417 @@ module TencentCloud
         end
       end
 
+      # DescribeJobDefinitionDetail请求参数结构体
+      class DescribeJobDefinitionDetailRequest < TencentCloud::Common::AbstractModel
+        # @param JobDefinitionId: <p>作业定义 ID。必填。</p>
+        # @type JobDefinitionId: String
+
+        attr_accessor :JobDefinitionId
+
+        def initialize(jobdefinitionid=nil)
+          @JobDefinitionId = jobdefinitionid
+        end
+
+        def deserialize(params)
+          @JobDefinitionId = params['JobDefinitionId']
+        end
+      end
+
+      # DescribeJobDefinitionDetail返回参数结构体
+      class DescribeJobDefinitionDetailResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeJobDefinitions请求参数结构体
+      class DescribeJobDefinitionsRequest < TencentCloud::Common::AbstractModel
+        # @param Page: <p>页码，从1开始，默认为1.</p>
+        # @type Page: Integer
+        # @param PageSize: <p>每页返回数量，默认为10.</p>
+        # @type PageSize: Integer
+        # @param Filters: <p>高级过滤条件列表，元素 Name 为过滤字段名（PascalCase，可用字段与操作符约束见各接口 Filters 说明），Values 为过滤值列表；未列入白名单或非 PascalCase 的 Name 报 InvalidParameter。</p>
+        # @type Filters: Array
+        # @param SortFields: <p>排序字段列表，元素 Field 为排序字段名（PascalCase，与响应字段命名对齐，可用字段见各接口 SortFields 说明），Order 为排序方向（ASC/DESC，不传默认 DESC）；未列入白名单或非 PascalCase 的 Field 报 InvalidParameter。</p>
+        # @type SortFields: Array
+        # @param CreateTimeStart: <p>创建时间下限（Unix 毫秒时间戳）。</p>
+        # @type CreateTimeStart: Integer
+        # @param CreateTimeEnd: <p>创建时间上限（Unix 毫秒时间戳）。</p>
+        # @type CreateTimeEnd: Integer
+        # @param InstanceTimeRange: <p>作业实例计数时间窗口（毫秒时长）。不传时默认 7 天。</p>
+        # @type InstanceTimeRange: Integer
+
+        attr_accessor :Page, :PageSize, :Filters, :SortFields, :CreateTimeStart, :CreateTimeEnd, :InstanceTimeRange
+
+        def initialize(page=nil, pagesize=nil, filters=nil, sortfields=nil, createtimestart=nil, createtimeend=nil, instancetimerange=nil)
+          @Page = page
+          @PageSize = pagesize
+          @Filters = filters
+          @SortFields = sortfields
+          @CreateTimeStart = createtimestart
+          @CreateTimeEnd = createtimeend
+          @InstanceTimeRange = instancetimerange
+        end
+
+        def deserialize(params)
+          @Page = params['Page']
+          @PageSize = params['PageSize']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          unless params['SortFields'].nil?
+            @SortFields = []
+            params['SortFields'].each do |i|
+              sortfield_tmp = SortField.new
+              sortfield_tmp.deserialize(i)
+              @SortFields << sortfield_tmp
+            end
+          end
+          @CreateTimeStart = params['CreateTimeStart']
+          @CreateTimeEnd = params['CreateTimeEnd']
+          @InstanceTimeRange = params['InstanceTimeRange']
+        end
+      end
+
+      # DescribeJobDefinitions返回参数结构体
+      class DescribeJobDefinitionsResponse < TencentCloud::Common::AbstractModel
+        # @param Total: <p>总记录数.</p>
+        # @type Total: Integer
+        # @param Items: <p>作业定义列表项。</p>
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Items, :RequestId
+
+        def initialize(total=nil, items=nil, requestid=nil)
+          @Total = total
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              jobdefinitioniteminfo_tmp = JobDefinitionItemInfo.new
+              jobdefinitioniteminfo_tmp.deserialize(i)
+              @Items << jobdefinitioniteminfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeJobDetail请求参数结构体
+      class DescribeJobDetailRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: <p>作业唯一标识符（ID）。必填。</p>
+        # @type JobId: String
+
+        attr_accessor :JobId
+
+        def initialize(jobid=nil)
+          @JobId = jobid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+        end
+      end
+
+      # DescribeJobDetail返回参数结构体
+      class DescribeJobDetailResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeJobList请求参数结构体
+      class DescribeJobListRequest < TencentCloud::Common::AbstractModel
+        # @param Page: <p>页码，从1开始，默认为1.</p>
+        # @type Page: Integer
+        # @param PageSize: <p>每页返回数量，默认为10.</p>
+        # @type PageSize: Integer
+        # @param Filters: <p>高级过滤条件列表，元素 Name 为过滤字段名（PascalCase，可用字段与操作符约束见各接口 Filters 说明），Values 为过滤值列表；未列入白名单或非 PascalCase 的 Name 报 InvalidParameter。</p>
+        # @type Filters: Array
+        # @param SortFields: <p>排序字段列表，元素 Field 为排序字段名（PascalCase，与响应字段命名对齐，可用字段见各接口 SortFields 说明），Order 为排序方向（ASC/DESC，不传默认 DESC）；未列入白名单或非 PascalCase 的 Field 报 InvalidParameter。</p>
+        # @type SortFields: Array
+        # @param CreateTimeStart: <p>创建时间下限（Unix 毫秒时间戳）。</p>
+        # @type CreateTimeStart: Integer
+        # @param CreateTimeEnd: <p>创建时间上限（Unix 毫秒时间戳）。</p>
+        # @type CreateTimeEnd: Integer
+
+        attr_accessor :Page, :PageSize, :Filters, :SortFields, :CreateTimeStart, :CreateTimeEnd
+
+        def initialize(page=nil, pagesize=nil, filters=nil, sortfields=nil, createtimestart=nil, createtimeend=nil)
+          @Page = page
+          @PageSize = pagesize
+          @Filters = filters
+          @SortFields = sortfields
+          @CreateTimeStart = createtimestart
+          @CreateTimeEnd = createtimeend
+        end
+
+        def deserialize(params)
+          @Page = params['Page']
+          @PageSize = params['PageSize']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          unless params['SortFields'].nil?
+            @SortFields = []
+            params['SortFields'].each do |i|
+              sortfield_tmp = SortField.new
+              sortfield_tmp.deserialize(i)
+              @SortFields << sortfield_tmp
+            end
+          end
+          @CreateTimeStart = params['CreateTimeStart']
+          @CreateTimeEnd = params['CreateTimeEnd']
+        end
+      end
+
+      # DescribeJobList返回参数结构体
+      class DescribeJobListResponse < TencentCloud::Common::AbstractModel
+        # @param Total: <p>总记录数.</p>
+        # @type Total: Integer
+        # @param Items: <p>作业摘要列表。</p>
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Items, :RequestId
+
+        def initialize(total=nil, items=nil, requestid=nil)
+          @Total = total
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              jobbriefinfo_tmp = JobBriefInfo.new
+              jobbriefinfo_tmp.deserialize(i)
+              @Items << jobbriefinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeJobLog请求参数结构体
+      class DescribeJobLogRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: <p>作业 ID（必填）。</p>
+        # @type JobId: String
+        # @param LogType: <p>日志类型（必填）。可选值：SPARK_SQL_OPERATION / SPARK_BATCH_OPERATION / SPARK_LAUNCH / SPARK_DRIVER_STDOUT / SPARK_DRIVER_LOG4J / SPARK_EXECUTOR_STDOUT / SPARK_EXECUTOR_LOG4J。</p>
+        # @type LogType: String
+        # @param StatementIndex: <p>Statement 序号（1-based，仅 LogType=SPARK_SQL_OPERATION 时可传），定位多语句作业中的具体语句。</p>
+        # @type StatementIndex: Integer
+        # @param Cursor: <p>分页游标（首页不传，后续页原样透传上一响应的 Cursor；不透明，无需解析）。无法续读时以 HasMore=false 终止分页。</p>
+        # @type Cursor: String
+        # @param Limit: <p>返回上限（行数），范围 [1, 1000]。</p>
+        # @type Limit: Integer
+        # @param Keyword: <p>关键词过滤。</p>
+        # @type Keyword: String
+        # @param PodName: <p>Pod 名称过滤。</p>
+        # @type PodName: String
+        # @param LogLevel: <p>日志级别过滤。取值：ERROR / WARN / INFO / DEBUG / TRACE，非法值拒绝。</p>
+        # @type LogLevel: String
+        # @param From: <p>起始时间，Unix 毫秒。</p>
+        # @type From: Integer
+        # @param To: <p>结束时间，Unix 毫秒。</p>
+        # @type To: Integer
+
+        attr_accessor :JobId, :LogType, :StatementIndex, :Cursor, :Limit, :Keyword, :PodName, :LogLevel, :From, :To
+
+        def initialize(jobid=nil, logtype=nil, statementindex=nil, cursor=nil, limit=nil, keyword=nil, podname=nil, loglevel=nil, from=nil, to=nil)
+          @JobId = jobid
+          @LogType = logtype
+          @StatementIndex = statementindex
+          @Cursor = cursor
+          @Limit = limit
+          @Keyword = keyword
+          @PodName = podname
+          @LogLevel = loglevel
+          @From = from
+          @To = to
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @LogType = params['LogType']
+          @StatementIndex = params['StatementIndex']
+          @Cursor = params['Cursor']
+          @Limit = params['Limit']
+          @Keyword = params['Keyword']
+          @PodName = params['PodName']
+          @LogLevel = params['LogLevel']
+          @From = params['From']
+          @To = params['To']
+        end
+      end
+
+      # DescribeJobLog返回参数结构体
+      class DescribeJobLogResponse < TencentCloud::Common::AbstractModel
+        # @param Lines: <p>日志行数据。</p>
+        # @type Lines: Array
+        # @param Cursor: <p>下一页游标（不透明令牌，原样透传回请求即可；无更多日志时不返回）。</p>
+        # @type Cursor: String
+        # @param HasMore: <p>是否还有更多日志。</p>
+        # @type HasMore: Boolean
+        # @param Results: <p>日志条目列表。</p>
+        # @type Results: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Lines, :Cursor, :HasMore, :Results, :RequestId
+
+        def initialize(lines=nil, cursor=nil, hasmore=nil, results=nil, requestid=nil)
+          @Lines = lines
+          @Cursor = cursor
+          @HasMore = hasmore
+          @Results = results
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Lines = params['Lines']
+          @Cursor = params['Cursor']
+          @HasMore = params['HasMore']
+          unless params['Results'].nil?
+            @Results = []
+            params['Results'].each do |i|
+              clslogentry_tmp = ClsLogEntry.new
+              clslogentry_tmp.deserialize(i)
+              @Results << clslogentry_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeJobResult请求参数结构体
+      class DescribeJobResultRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: <p>作业唯一标识符（ID）。必填。</p>
+        # @type JobId: String
+        # @param Page: <p>页码，从1开始，默认为1.</p>
+        # @type Page: Integer
+        # @param PageSize: <p>每页返回数量，默认为10.</p>
+        # @type PageSize: Integer
+        # @param StatementIndex: <p>Statement 序号（1-based），多语句作业时指定；缺省为 0，取整作业第一个结果集.</p>
+        # @type StatementIndex: Integer
+
+        attr_accessor :JobId, :Page, :PageSize, :StatementIndex
+
+        def initialize(jobid=nil, page=nil, pagesize=nil, statementindex=nil)
+          @JobId = jobid
+          @Page = page
+          @PageSize = pagesize
+          @StatementIndex = statementindex
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @Page = params['Page']
+          @PageSize = params['PageSize']
+          @StatementIndex = params['StatementIndex']
+        end
+      end
+
+      # DescribeJobResult返回参数结构体
+      class DescribeJobResultResponse < TencentCloud::Common::AbstractModel
+        # @param Total: <p>总记录数.</p>
+        # @type Total: Integer
+        # @param JobId: <p>作业 ID。</p>
+        # @type JobId: String
+        # @param State: <p>结果状态（对客）：SUCCEEDED（结果集可用，含 0 行——DDL/DML 等无结果集语句亦归入此类，message 说明）/ UNAVAILABLE（终态无结果：statement 已失败或取消）/ ERROR（结果集拉取出错）/ NOT_READY（结果未就绪）/ NOT_SUPPORTED（作业形态不产出结果集）。</p>
+        # @type State: String
+        # @param Message: <p>状态描述（SUCCEEDED 0 行时为无结果集说明；ERROR 为错误信息；UNAVAILABLE 为 statement 失败/取消原因）。</p>
+        # @type Message: String
+        # @param Columns: <p>列定义列表（按结果集列顺序；State=SUCCEEDED 才有）。</p>
+        # @type Columns: Array
+        # @param TotalRows: <p>结果集全量行数（未按在线展示上限封顶）。Total 为在线可见行数，二者不等说明仅部分行可内联查看，完整结果通过 Download 获取。</p>
+        # @type TotalRows: Integer
+        # @param Rows: <p>行数据（State=SUCCEEDED 才有），每行为 {"Values": [单元格值...]} 数组。</p>
+        # @type Rows: Array
+        # @param Truncated: <p>本页内容是否因响应大小限制被截断（单元格/行超限，结果集仅 1 行时也可能触发）。行数超过在线展示上限不由本标记表达，以 TotalRows > Total 判断，完整结果通过 Download 获取.</p>
+        # @type Truncated: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :JobId, :State, :Message, :Columns, :TotalRows, :Rows, :Truncated, :RequestId
+
+        def initialize(total=nil, jobid=nil, state=nil, message=nil, columns=nil, totalrows=nil, rows=nil, truncated=nil, requestid=nil)
+          @Total = total
+          @JobId = jobid
+          @State = state
+          @Message = message
+          @Columns = columns
+          @TotalRows = totalrows
+          @Rows = rows
+          @Truncated = truncated
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          @JobId = params['JobId']
+          @State = params['State']
+          @Message = params['Message']
+          unless params['Columns'].nil?
+            @Columns = []
+            params['Columns'].each do |i|
+              resultcolumn_tmp = ResultColumn.new
+              resultcolumn_tmp.deserialize(i)
+              @Columns << resultcolumn_tmp
+            end
+          end
+          @TotalRows = params['TotalRows']
+          unless params['Rows'].nil?
+            @Rows = []
+            params['Rows'].each do |i|
+              resultrow_tmp = ResultRow.new
+              resultrow_tmp.deserialize(i)
+              @Rows << resultrow_tmp
+            end
+          end
+          @Truncated = params['Truncated']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeLakeFsDirSummary请求参数结构体
       class DescribeLakeFsDirSummaryRequest < TencentCloud::Common::AbstractModel
 
@@ -14511,6 +15741,77 @@ module TencentCloud
               @SaleResourceInfoList << resourcesaleinfo_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSchemaNamesPage请求参数结构体
+      class DescribeSchemaNamesPageRequest < TencentCloud::Common::AbstractModel
+        # @param CatalogName: <p>数据目录名称</p>
+        # @type CatalogName: String
+        # @param Limit: <p>分页大小</p>
+        # @type Limit: Integer
+        # @param Offset: <p>分页偏移</p>
+        # @type Offset: Integer
+        # @param SnapshotBased: <p>是否快照分页</p>
+        # @type SnapshotBased: Boolean
+        # @param SnapshotId: <p>快照 ID</p>
+        # @type SnapshotId: String
+        # @param SchemaNamePattern: <p>SQL查询格式匹配</p>
+        # @type SchemaNamePattern: String
+
+        attr_accessor :CatalogName, :Limit, :Offset, :SnapshotBased, :SnapshotId, :SchemaNamePattern
+
+        def initialize(catalogname=nil, limit=nil, offset=nil, snapshotbased=nil, snapshotid=nil, schemanamepattern=nil)
+          @CatalogName = catalogname
+          @Limit = limit
+          @Offset = offset
+          @SnapshotBased = snapshotbased
+          @SnapshotId = snapshotid
+          @SchemaNamePattern = schemanamepattern
+        end
+
+        def deserialize(params)
+          @CatalogName = params['CatalogName']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @SnapshotBased = params['SnapshotBased']
+          @SnapshotId = params['SnapshotId']
+          @SchemaNamePattern = params['SchemaNamePattern']
+        end
+      end
+
+      # DescribeSchemaNamesPage返回参数结构体
+      class DescribeSchemaNamesPageResponse < TencentCloud::Common::AbstractModel
+        # @param SchemaNames: <p>数据库名称列表</p>
+        # @type SchemaNames: Array
+        # @param TotalCount: <p>总数</p>
+        # @type TotalCount: Integer
+        # @param SnapshotId: <p>快照 ID</p>
+        # @type SnapshotId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SchemaNames, :TotalCount, :SnapshotId, :RequestId
+
+        def initialize(schemanames=nil, totalcount=nil, snapshotid=nil, requestid=nil)
+          @SchemaNames = schemanames
+          @TotalCount = totalcount
+          @SnapshotId = snapshotid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['SchemaNames'].nil?
+            @SchemaNames = []
+            params['SchemaNames'].each do |i|
+              nameidentifier_tmp = NameIdentifier.new
+              nameidentifier_tmp.deserialize(i)
+              @SchemaNames << nameidentifier_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @SnapshotId = params['SnapshotId']
           @RequestId = params['RequestId']
         end
       end
@@ -17108,6 +18409,79 @@ module TencentCloud
         end
       end
 
+      # DescribeWarehouses请求参数结构体
+      class DescribeWarehousesRequest < TencentCloud::Common::AbstractModel
+        # @param Page: <p>页码，从1开始，默认为1.</p>
+        # @type Page: Integer
+        # @param PageSize: <p>每页返回数量，默认为10.</p>
+        # @type PageSize: Integer
+        # @param Filters: <p>高级过滤条件列表，元素 Name 为过滤字段名（PascalCase，可用字段与操作符约束见各接口 Filters 说明），Values 为过滤值列表；未列入白名单或非 PascalCase 的 Name 报 InvalidParameter。</p>
+        # @type Filters: Array
+        # @param SortFields: <p>排序字段列表，元素 Field 为排序字段名（PascalCase，与响应字段命名对齐，可用字段见各接口 SortFields 说明），Order 为排序方向（ASC/DESC，不传默认 DESC）；未列入白名单或非 PascalCase 的 Field 报 InvalidParameter。</p>
+        # @type SortFields: Array
+
+        attr_accessor :Page, :PageSize, :Filters, :SortFields
+
+        def initialize(page=nil, pagesize=nil, filters=nil, sortfields=nil)
+          @Page = page
+          @PageSize = pagesize
+          @Filters = filters
+          @SortFields = sortfields
+        end
+
+        def deserialize(params)
+          @Page = params['Page']
+          @PageSize = params['PageSize']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          unless params['SortFields'].nil?
+            @SortFields = []
+            params['SortFields'].each do |i|
+              sortfield_tmp = SortField.new
+              sortfield_tmp.deserialize(i)
+              @SortFields << sortfield_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeWarehouses返回参数结构体
+      class DescribeWarehousesResponse < TencentCloud::Common::AbstractModel
+        # @param Total: <p>总记录数.</p>
+        # @type Total: Integer
+        # @param WarehouseList: <p>计算仓库列表。</p>
+        # @type WarehouseList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :WarehouseList, :RequestId
+
+        def initialize(total=nil, warehouselist=nil, requestid=nil)
+          @Total = total
+          @WarehouseList = warehouselist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['WarehouseList'].nil?
+            @WarehouseList = []
+            params['WarehouseList'].each do |i|
+              warehouseinfo_tmp = WarehouseInfo.new
+              warehouseinfo_tmp.deserialize(i)
+              @WarehouseList << warehouseinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeWorkGroupInfo请求参数结构体
       class DescribeWorkGroupInfoRequest < TencentCloud::Common::AbstractModel
         # @param WorkGroupId: <p>工作组Id</p>
@@ -17352,6 +18726,65 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # tcc DlcConnection定义
+      class DlcConnection < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例id</p>
+        # @type InstanceId: String
+        # @param InstanceName: <p>实例名称</p>
+        # @type InstanceName: String
+
+        attr_accessor :InstanceId, :InstanceName
+
+        def initialize(instanceid=nil, instancename=nil)
+          @InstanceId = instanceid
+          @InstanceName = instancename
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+        end
+      end
+
+      # tcc doris连接信息
+      class DorisConnection < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例id</p>
+        # @type InstanceId: String
+        # @param InstanceName: <p>实例名称</p>
+        # @type InstanceName: String
+        # @param JDBCUrl: <p>JDBC连接地址</p>
+        # @type JDBCUrl: String
+        # @param User: <p>账号</p>
+        # @type User: String
+        # @param Password: <p>密码</p>
+        # @type Password: String
+        # @param NetWork: <p>网络信息</p>
+        # @type NetWork: :class:`Tencentcloud::Dlc.v20210125.models.NetWork`
+
+        attr_accessor :InstanceId, :InstanceName, :JDBCUrl, :User, :Password, :NetWork
+
+        def initialize(instanceid=nil, instancename=nil, jdbcurl=nil, user=nil, password=nil, network=nil)
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @JDBCUrl = jdbcurl
+          @User = user
+          @Password = password
+          @NetWork = network
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @JDBCUrl = params['JDBCUrl']
+          @User = params['User']
+          @Password = params['Password']
+          unless params['NetWork'].nil?
+            @NetWork = NetWork.new
+            @NetWork.deserialize(params['NetWork'])
+          end
         end
       end
 
@@ -21136,6 +22569,41 @@ module TencentCloud
         end
       end
 
+      # tcc hive连接信息
+      class HiveConnection < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例id</p>
+        # @type InstanceId: String
+        # @param InstanceName: <p>实例名称</p>
+        # @type InstanceName: String
+        # @param MetaStoreUrl: <p>元数据url</p>
+        # @type MetaStoreUrl: String
+        # @param NetWork: <p>网络信息</p>
+        # @type NetWork: :class:`Tencentcloud::Dlc.v20210125.models.NetWork`
+        # @param HiveVersion: <p>hive版本</p>
+        # @type HiveVersion: String
+
+        attr_accessor :InstanceId, :InstanceName, :MetaStoreUrl, :NetWork, :HiveVersion
+
+        def initialize(instanceid=nil, instancename=nil, metastoreurl=nil, network=nil, hiveversion=nil)
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @MetaStoreUrl = metastoreurl
+          @NetWork = network
+          @HiveVersion = hiveversion
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @MetaStoreUrl = params['MetaStoreUrl']
+          unless params['NetWork'].nil?
+            @NetWork = NetWork.new
+            @NetWork.deserialize(params['NetWork'])
+          end
+          @HiveVersion = params['HiveVersion']
+        end
+      end
+
       # hive类型数据源的信息
       class HiveInfo < TencentCloud::Common::AbstractModel
         # @param MetaStoreUrl: hive metastore的地址
@@ -21534,6 +23002,30 @@ module TencentCloud
         end
       end
 
+      # tcc IndexInfo定义
+      class IndexInfo < TencentCloud::Common::AbstractModel
+        # @param Name: <p>索引名称</p>
+        # @type Name: String
+        # @param Type: <p>索引类型</p><p>枚举值：</p><ul><li>primary_key： 主键</li></ul>
+        # @type Type: String
+        # @param FieldNames: <p>索引字段</p>
+        # @type FieldNames: Array
+
+        attr_accessor :Name, :Type, :FieldNames
+
+        def initialize(name=nil, type=nil, fieldnames=nil)
+          @Name = name
+          @Type = type
+          @FieldNames = fieldnames
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Type = params['Type']
+          @FieldNames = params['FieldNames']
+        end
+      end
+
       # 推理引擎具体信息
       class InferenceEngineInfo < TencentCloud::Common::AbstractModel
         # @param EngineId: <p>引擎标识符</p>
@@ -21925,6 +23417,170 @@ module TencentCloud
         def deserialize(params)
           @Ip = params['Ip']
           @Port = params['Port']
+        end
+      end
+
+      # 入站作业摘要（DescribeJobList.Items[] 元素）.
+      class JobBriefInfo < TencentCloud::Common::AbstractModel
+        # @param JobId: <p>作业唯一标识.</p>
+        # @type JobId: String
+        # @param JobName: <p>作业名称.</p>
+        # @type JobName: String
+        # @param CreatorSubUin: <p>创建/提交者子账号 UIN。</p>
+        # @type CreatorSubUin: String
+        # @param State: <p>作业状态.</p>
+        # @type State: String
+        # @param MajorType: <p>引擎大类.</p>
+        # @type MajorType: String
+        # @param MinorType: <p>引擎子类型.</p>
+        # @type MinorType: String
+        # @param RunMode: <p>运行模式（WAREHOUSE / JOB）.</p>
+        # @type RunMode: String
+        # @param WarehouseId: <p>计算仓库 ID，RunMode=WAREHOUSE 时非空.</p>
+        # @type WarehouseId: String
+        # @param PartitionCode: <p>资源分区编码.</p>
+        # @type PartitionCode: String
+        # @param PartitionName: <p>资源分区展示名（解析不到时为空）.</p>
+        # @type PartitionName: String
+        # @param QueueName: <p>队列名称.</p>
+        # @type QueueName: String
+        # @param CheckpointLocation: <p>流作业 checkpoint 路径（MinorType=SPARK_STREAM 时非空）。同一流作业的多次运行必须复用同一路径，变更等于重置消费进度。</p>
+        # @type CheckpointLocation: String
+        # @param CreateTime: <p>创建时间（Unix 毫秒时间戳）.</p>
+        # @type CreateTime: Integer
+        # @param SubmitTime: <p>提交时间（Unix 毫秒时间戳）.</p>
+        # @type SubmitTime: Integer
+        # @param FinishTime: <p>完成时间（Unix 毫秒时间戳）.</p>
+        # @type FinishTime: Integer
+        # @param RunningTimeMs: <p>运行时长（毫秒）.</p>
+        # @type RunningTimeMs: Integer
+        # @param WarehouseName: <p>计算仓库名称（列表整页批量反查填充；warehouse 模式下非空）.</p>
+        # @type WarehouseName: String
+
+        attr_accessor :JobId, :JobName, :CreatorSubUin, :State, :MajorType, :MinorType, :RunMode, :WarehouseId, :PartitionCode, :PartitionName, :QueueName, :CheckpointLocation, :CreateTime, :SubmitTime, :FinishTime, :RunningTimeMs, :WarehouseName
+
+        def initialize(jobid=nil, jobname=nil, creatorsubuin=nil, state=nil, majortype=nil, minortype=nil, runmode=nil, warehouseid=nil, partitioncode=nil, partitionname=nil, queuename=nil, checkpointlocation=nil, createtime=nil, submittime=nil, finishtime=nil, runningtimems=nil, warehousename=nil)
+          @JobId = jobid
+          @JobName = jobname
+          @CreatorSubUin = creatorsubuin
+          @State = state
+          @MajorType = majortype
+          @MinorType = minortype
+          @RunMode = runmode
+          @WarehouseId = warehouseid
+          @PartitionCode = partitioncode
+          @PartitionName = partitionname
+          @QueueName = queuename
+          @CheckpointLocation = checkpointlocation
+          @CreateTime = createtime
+          @SubmitTime = submittime
+          @FinishTime = finishtime
+          @RunningTimeMs = runningtimems
+          @WarehouseName = warehousename
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @JobName = params['JobName']
+          @CreatorSubUin = params['CreatorSubUin']
+          @State = params['State']
+          @MajorType = params['MajorType']
+          @MinorType = params['MinorType']
+          @RunMode = params['RunMode']
+          @WarehouseId = params['WarehouseId']
+          @PartitionCode = params['PartitionCode']
+          @PartitionName = params['PartitionName']
+          @QueueName = params['QueueName']
+          @CheckpointLocation = params['CheckpointLocation']
+          @CreateTime = params['CreateTime']
+          @SubmitTime = params['SubmitTime']
+          @FinishTime = params['FinishTime']
+          @RunningTimeMs = params['RunningTimeMs']
+          @WarehouseName = params['WarehouseName']
+        end
+      end
+
+      # 作业定义列表项 POJO（精简版）.
+      class JobDefinitionItemInfo < TencentCloud::Common::AbstractModel
+        # @param JobDefinitionId: <p>作业定义唯一标识符（ID）。</p>
+        # @type JobDefinitionId: String
+        # @param Name: <p>作业定义名称。</p>
+        # @type Name: String
+        # @param Description: <p>作业定义描述。</p>
+        # @type Description: String
+        # @param MajorType: <p>作业主类型。</p>
+        # @type MajorType: String
+        # @param MinorType: <p>作业子类型。</p>
+        # @type MinorType: String
+        # @param CheckpointLocation: <p>流作业 checkpoint 路径（MinorType=SPARK_STREAM 时非空）。同一流作业的多次运行必须复用同一路径，变更等于重置消费进度。</p>
+        # @type CheckpointLocation: String
+        # @param CreatorSubUin: <p>创建者（子账号 UIN）。</p>
+        # @type CreatorSubUin: String
+        # @param CreateTime: <p>创建时间（Unix 毫秒时间戳）。</p>
+        # @type CreateTime: Integer
+        # @param UpdateTime: <p>更新时间（Unix 毫秒时间戳）。</p>
+        # @type UpdateTime: Integer
+        # @param PartitionCode: <p>分区编码。</p>
+        # @type PartitionCode: String
+        # @param PartitionName: <p>分区展示名（解析不到时为空）。</p>
+        # @type PartitionName: String
+        # @param QueueName: <p>队列名称。</p>
+        # @type QueueName: String
+        # @param RunMode: <p>运行模式: JOB | WAREHOUSE.</p>
+        # @type RunMode: String
+        # @param WarehouseId: <p>计算仓库 ID, RunMode=WAREHOUSE 时非空.</p>
+        # @type WarehouseId: String
+        # @param InstanceCount: <p>请求时间窗口（InstanceTimeRange，默认 7 天）内的作业实例数。</p>
+        # @type InstanceCount: Integer
+        # @param RuntimeCode: <p>运行时/镜像编码（可选值见 DescribeSparkRuntimes）。JOB 模式取定义自身配置，WAREHOUSE 模式取所属计算仓库运行时；解析不到时为空。</p>
+        # @type RuntimeCode: String
+        # @param RuntimeName: <p>运行时展示名（如 Spark 3.5.5），与 RuntimeCode 配套；解析不到时为空。</p>
+        # @type RuntimeName: String
+        # @param WarehouseName: <p>计算仓库名称（列表整页按去重后的仓库反查填充；warehouse 模式下非空，仓库已销毁时仍回填历史名称）。</p>
+        # @type WarehouseName: String
+
+        attr_accessor :JobDefinitionId, :Name, :Description, :MajorType, :MinorType, :CheckpointLocation, :CreatorSubUin, :CreateTime, :UpdateTime, :PartitionCode, :PartitionName, :QueueName, :RunMode, :WarehouseId, :InstanceCount, :RuntimeCode, :RuntimeName, :WarehouseName
+
+        def initialize(jobdefinitionid=nil, name=nil, description=nil, majortype=nil, minortype=nil, checkpointlocation=nil, creatorsubuin=nil, createtime=nil, updatetime=nil, partitioncode=nil, partitionname=nil, queuename=nil, runmode=nil, warehouseid=nil, instancecount=nil, runtimecode=nil, runtimename=nil, warehousename=nil)
+          @JobDefinitionId = jobdefinitionid
+          @Name = name
+          @Description = description
+          @MajorType = majortype
+          @MinorType = minortype
+          @CheckpointLocation = checkpointlocation
+          @CreatorSubUin = creatorsubuin
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @PartitionCode = partitioncode
+          @PartitionName = partitionname
+          @QueueName = queuename
+          @RunMode = runmode
+          @WarehouseId = warehouseid
+          @InstanceCount = instancecount
+          @RuntimeCode = runtimecode
+          @RuntimeName = runtimename
+          @WarehouseName = warehousename
+        end
+
+        def deserialize(params)
+          @JobDefinitionId = params['JobDefinitionId']
+          @Name = params['Name']
+          @Description = params['Description']
+          @MajorType = params['MajorType']
+          @MinorType = params['MinorType']
+          @CheckpointLocation = params['CheckpointLocation']
+          @CreatorSubUin = params['CreatorSubUin']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @PartitionCode = params['PartitionCode']
+          @PartitionName = params['PartitionName']
+          @QueueName = params['QueueName']
+          @RunMode = params['RunMode']
+          @WarehouseId = params['WarehouseId']
+          @InstanceCount = params['InstanceCount']
+          @RuntimeCode = params['RuntimeCode']
+          @RuntimeName = params['RuntimeName']
+          @WarehouseName = params['WarehouseName']
         end
       end
 
@@ -22631,6 +24287,52 @@ module TencentCloud
               kvpair_tmp.deserialize(i)
               @Configuration << kvpair_tmp
             end
+          end
+        end
+      end
+
+      # tcc lakehouse 连接信息
+      class LakeHouseConnection < TencentCloud::Common::AbstractModel
+        # @param MetastoreEndpointServiceId: <p>元数据服务id</p>
+        # @type MetastoreEndpointServiceId: String
+        # @param EndpointServiceId: <p>endpoint服务id</p>
+        # @type EndpointServiceId: String
+        # @param MetaStoreUrl: <p>元数据url</p>
+        # @type MetaStoreUrl: String
+        # @param RangerConnection: <p>ranger信息</p>
+        # @type RangerConnection: :class:`Tencentcloud::Dlc.v20210125.models.RangerConnection`
+        # @param HiveVersion: <p>hive版本</p>
+        # @type HiveVersion: String
+        # @param Location: <p>存储位置</p>
+        # @type Location: String
+        # @param NetWork: <p>网络信息</p>
+        # @type NetWork: :class:`Tencentcloud::Dlc.v20210125.models.NetWork`
+
+        attr_accessor :MetastoreEndpointServiceId, :EndpointServiceId, :MetaStoreUrl, :RangerConnection, :HiveVersion, :Location, :NetWork
+
+        def initialize(metastoreendpointserviceid=nil, endpointserviceid=nil, metastoreurl=nil, rangerconnection=nil, hiveversion=nil, location=nil, network=nil)
+          @MetastoreEndpointServiceId = metastoreendpointserviceid
+          @EndpointServiceId = endpointserviceid
+          @MetaStoreUrl = metastoreurl
+          @RangerConnection = rangerconnection
+          @HiveVersion = hiveversion
+          @Location = location
+          @NetWork = network
+        end
+
+        def deserialize(params)
+          @MetastoreEndpointServiceId = params['MetastoreEndpointServiceId']
+          @EndpointServiceId = params['EndpointServiceId']
+          @MetaStoreUrl = params['MetaStoreUrl']
+          unless params['RangerConnection'].nil?
+            @RangerConnection = RangerConnection.new
+            @RangerConnection.deserialize(params['RangerConnection'])
+          end
+          @HiveVersion = params['HiveVersion']
+          @Location = params['Location']
+          unless params['NetWork'].nil?
+            @NetWork = NetWork.new
+            @NetWork.deserialize(params['NetWork'])
           end
         end
       end
@@ -24575,6 +26277,71 @@ module TencentCloud
         end
       end
 
+      # tcc ListPartition定义
+      class ListPartition < TencentCloud::Common::AbstractModel
+        # @param Name: <p>分区名</p>
+        # @type Name: String
+        # @param Lists: <p>分区列表</p>
+        # @type Lists: Array
+        # @param Properties: <p>属性</p>
+        # @type Properties: Array
+
+        attr_accessor :Name, :Lists, :Properties
+
+        def initialize(name=nil, lists=nil, properties=nil)
+          @Name = name
+          @Lists = lists
+          @Properties = properties
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          unless params['Lists'].nil?
+            @Lists = []
+            params['Lists'].each do |i|
+              literal_tmp = Literal.new
+              literal_tmp.deserialize(i)
+              @Lists << literal_tmp
+            end
+          end
+          unless params['Properties'].nil?
+            @Properties = []
+            params['Properties'].each do |i|
+              kvpair_tmp = KVPair.new
+              kvpair_tmp.deserialize(i)
+              @Properties << kvpair_tmp
+            end
+          end
+        end
+      end
+
+      # tcc ListPartitioning分区定义
+      class ListPartitioning < TencentCloud::Common::AbstractModel
+        # @param FieldNames: <p>分区字段</p>
+        # @type FieldNames: Array
+        # @param Assignments: <p>分区列表信息</p>
+        # @type Assignments: Array
+
+        attr_accessor :FieldNames, :Assignments
+
+        def initialize(fieldnames=nil, assignments=nil)
+          @FieldNames = fieldnames
+          @Assignments = assignments
+        end
+
+        def deserialize(params)
+          @FieldNames = params['FieldNames']
+          unless params['Assignments'].nil?
+            @Assignments = []
+            params['Assignments'].each do |i|
+              listpartition_tmp = ListPartition.new
+              listpartition_tmp.deserialize(i)
+              @Assignments << listpartition_tmp
+            end
+          end
+        end
+      end
+
       # ListRayClusterJobs请求参数结构体
       class ListRayClusterJobsRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID（必填）
@@ -25465,6 +27232,26 @@ module TencentCloud
           @PageSize = params['PageSize']
           @TotalPages = params['TotalPages']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # tcc Literal定义
+      class Literal < TencentCloud::Common::AbstractModel
+        # @param Value: <p>数值</p>
+        # @type Value: String
+        # @param DataType: <p>类型</p><p>枚举值：</p><ul><li>integer： 整数类型</li></ul>
+        # @type DataType: String
+
+        attr_accessor :Value, :DataType
+
+        def initialize(value=nil, datatype=nil)
+          @Value = value
+          @DataType = datatype
+        end
+
+        def deserialize(params)
+          @Value = params['Value']
+          @DataType = params['DataType']
         end
       end
 
@@ -26376,6 +28163,97 @@ module TencentCloud
 
       # ModifyGovernEventRule返回参数结构体
       class ModifyGovernEventRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyJobDefinition请求参数结构体
+      class ModifyJobDefinitionRequest < TencentCloud::Common::AbstractModel
+        # @param JobDefinitionId: <p>作业定义 ID。必填。</p>
+        # @type JobDefinitionId: String
+        # @param Name: <p>作业定义名称。创建后不可修改：仅接受与当前名称相同的值（回显），传不同值报错；不传表示不修改。</p>
+        # @type Name: String
+        # @param Description: <p>修改后的作业定义描述。</p>
+        # @type Description: String
+        # @param MajorType: <p>引擎大类（当前仅支持 SPARK）。</p>
+        # @type MajorType: String
+        # @param MinorType: <p>作业子类型，SPARK_SQL / SPARK_BATCH / SPARK_STREAM；非必填。</p>
+        # @type MinorType: String
+        # @param CheckpointLocation: <p>流作业 checkpoint 路径（如 cosn://bucket/path/checkpoint），非必填，传了即覆盖。SPARK_STREAM 定义必须非空；变更等于重置消费进度。</p>
+        # @type CheckpointLocation: String
+        # @param PartitionCode: <p>资源分区代码，仅目标 RunMode=JOB 可传（QueueName 非空时必填）；目标 RunMode=WAREHOUSE 时禁止传。</p>
+        # @type PartitionCode: String
+        # @param QueueName: <p>队列名称，仅目标 RunMode=JOB 可传且须与 PartitionCode 成对；目标 RunMode=WAREHOUSE 时禁止传。</p>
+        # @type QueueName: String
+        # @param RuntimeCode: <p>运行时/镜像编码，可选（null=沿用当前值）。仅对 JOB 模式定义生效；目标 RunMode=WAREHOUSE 时禁止传。</p>
+        # @type RuntimeCode: String
+        # @param SysCatalogVersion: <p>内置 Catalog 版本码（取值为 DescribeSysCatalogList 返回的目录子类型），可选（null=沿用当前值）。</p>
+        # @type SysCatalogVersion: String
+        # @param CustomProperties: <p>自定义 Spark conf（JSON 字符串，亦接受多行 key=value 文本，归一化为 JSON 存储、出参恒为 JSON），非必填，传了即整串覆盖。</p>
+        # @type CustomProperties: String
+        # @param EnvVars: <p>环境变量（KEY=VALUE）列表，非必填，传了即整体覆盖。仅对 JOB 模式定义生效；目标 RunMode=WAREHOUSE 时禁止传。</p>
+        # @type EnvVars: Array
+        # @param RunMode: <p>目标运行模式：WAREHOUSE / JOB；未传=保持不变。切换模式时两种模式的参数集严格隔离（切换 WAREHOUSE 须提供 WarehouseId 且禁传 JOB 模式专属字段，反之亦然）。</p>
+        # @type RunMode: String
+        # @param WarehouseId: <p>计算仓库 ID。仅目标 RunMode=WAREHOUSE 时可传（必填）；未传 RunMode 或目标为 JOB 时禁止传。</p>
+        # @type WarehouseId: String
+
+        attr_accessor :JobDefinitionId, :Name, :Description, :MajorType, :MinorType, :CheckpointLocation, :PartitionCode, :QueueName, :RuntimeCode, :SysCatalogVersion, :CustomProperties, :EnvVars, :RunMode, :WarehouseId
+
+        def initialize(jobdefinitionid=nil, name=nil, description=nil, majortype=nil, minortype=nil, checkpointlocation=nil, partitioncode=nil, queuename=nil, runtimecode=nil, syscatalogversion=nil, customproperties=nil, envvars=nil, runmode=nil, warehouseid=nil)
+          @JobDefinitionId = jobdefinitionid
+          @Name = name
+          @Description = description
+          @MajorType = majortype
+          @MinorType = minortype
+          @CheckpointLocation = checkpointlocation
+          @PartitionCode = partitioncode
+          @QueueName = queuename
+          @RuntimeCode = runtimecode
+          @SysCatalogVersion = syscatalogversion
+          @CustomProperties = customproperties
+          @EnvVars = envvars
+          @RunMode = runmode
+          @WarehouseId = warehouseid
+        end
+
+        def deserialize(params)
+          @JobDefinitionId = params['JobDefinitionId']
+          @Name = params['Name']
+          @Description = params['Description']
+          @MajorType = params['MajorType']
+          @MinorType = params['MinorType']
+          @CheckpointLocation = params['CheckpointLocation']
+          @PartitionCode = params['PartitionCode']
+          @QueueName = params['QueueName']
+          @RuntimeCode = params['RuntimeCode']
+          @SysCatalogVersion = params['SysCatalogVersion']
+          @CustomProperties = params['CustomProperties']
+          unless params['EnvVars'].nil?
+            @EnvVars = []
+            params['EnvVars'].each do |i|
+              kvpair_tmp = KVPair.new
+              kvpair_tmp.deserialize(i)
+              @EnvVars << kvpair_tmp
+            end
+          end
+          @RunMode = params['RunMode']
+          @WarehouseId = params['WarehouseId']
+        end
+      end
+
+      # ModifyJobDefinition返回参数结构体
+      class ModifyJobDefinitionResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -27362,6 +29240,45 @@ module TencentCloud
         end
       end
 
+      # tcc mysql连接信息
+      class MysqlConnection < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例id</p>
+        # @type InstanceId: String
+        # @param InstanceName: <p>实例名称</p>
+        # @type InstanceName: String
+        # @param JDBCUrl: <p>JDBC连接地址</p>
+        # @type JDBCUrl: String
+        # @param User: <p>账号</p>
+        # @type User: String
+        # @param Password: <p>密码</p>
+        # @type Password: String
+        # @param NetWork: <p>网络信息</p>
+        # @type NetWork: :class:`Tencentcloud::Dlc.v20210125.models.NetWork`
+
+        attr_accessor :InstanceId, :InstanceName, :JDBCUrl, :User, :Password, :NetWork
+
+        def initialize(instanceid=nil, instancename=nil, jdbcurl=nil, user=nil, password=nil, network=nil)
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @JDBCUrl = jdbcurl
+          @User = user
+          @Password = password
+          @NetWork = network
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @JDBCUrl = params['JDBCUrl']
+          @User = params['User']
+          @Password = params['Password']
+          unless params['NetWork'].nil?
+            @NetWork = NetWork.new
+            @NetWork.deserialize(params['NetWork'])
+          end
+        end
+      end
+
       # Mysql类型数据源信息
       class MysqlInfo < TencentCloud::Common::AbstractModel
         # @param JdbcUrl: 连接mysql的jdbc url
@@ -27404,6 +29321,26 @@ module TencentCloud
           @DbName = params['DbName']
           @InstanceId = params['InstanceId']
           @InstanceName = params['InstanceName']
+        end
+      end
+
+      # tcc 通用命名标识
+      class NameIdentifier < TencentCloud::Common::AbstractModel
+        # @param Name: <p>名称</p>
+        # @type Name: String
+        # @param Namespace: <p>命名空间</p>
+        # @type Namespace: Array
+
+        attr_accessor :Name, :Namespace
+
+        def initialize(name=nil, namespace=nil)
+          @Name = name
+          @Namespace = namespace
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Namespace = params['Namespace']
         end
       end
 
@@ -28306,6 +30243,85 @@ module TencentCloud
         end
       end
 
+      # tcc Partition分区定义
+      class Partitioning < TencentCloud::Common::AbstractModel
+        # @param Strategy: <p>转换策略</p>
+        # @type Strategy: String
+        # @param YearPartitioning: <p>按年分区策略</p>
+        # @type YearPartitioning: :class:`Tencentcloud::Dlc.v20210125.models.SingleFieldPartitioning`
+        # @param MonthPartitioning: <p>按月分区策略</p>
+        # @type MonthPartitioning: :class:`Tencentcloud::Dlc.v20210125.models.SingleFieldPartitioning`
+        # @param DayPartitioning: <p>按天分区策略</p>
+        # @type DayPartitioning: :class:`Tencentcloud::Dlc.v20210125.models.SingleFieldPartitioning`
+        # @param HourPartitioning: <p>按小时分区策略</p>
+        # @type HourPartitioning: :class:`Tencentcloud::Dlc.v20210125.models.SingleFieldPartitioning`
+        # @param IdentityPartitioning: <p>按字段分区策略</p>
+        # @type IdentityPartitioning: :class:`Tencentcloud::Dlc.v20210125.models.SingleFieldPartitioning`
+        # @param ListPartitioning: <p>列表分区策略</p>
+        # @type ListPartitioning: :class:`Tencentcloud::Dlc.v20210125.models.ListPartitioning`
+        # @param RangePartitioning: <p>范围分区策略</p>
+        # @type RangePartitioning: :class:`Tencentcloud::Dlc.v20210125.models.RangePartitioning`
+        # @param BucketPartitioning: <p>分桶分区策略</p>
+        # @type BucketPartitioning: :class:`Tencentcloud::Dlc.v20210125.models.BucketPartitioning`
+        # @param TruncatePartitioning: <p>截断分区策略</p>
+        # @type TruncatePartitioning: :class:`Tencentcloud::Dlc.v20210125.models.TruncatePartitioning`
+
+        attr_accessor :Strategy, :YearPartitioning, :MonthPartitioning, :DayPartitioning, :HourPartitioning, :IdentityPartitioning, :ListPartitioning, :RangePartitioning, :BucketPartitioning, :TruncatePartitioning
+
+        def initialize(strategy=nil, yearpartitioning=nil, monthpartitioning=nil, daypartitioning=nil, hourpartitioning=nil, identitypartitioning=nil, listpartitioning=nil, rangepartitioning=nil, bucketpartitioning=nil, truncatepartitioning=nil)
+          @Strategy = strategy
+          @YearPartitioning = yearpartitioning
+          @MonthPartitioning = monthpartitioning
+          @DayPartitioning = daypartitioning
+          @HourPartitioning = hourpartitioning
+          @IdentityPartitioning = identitypartitioning
+          @ListPartitioning = listpartitioning
+          @RangePartitioning = rangepartitioning
+          @BucketPartitioning = bucketpartitioning
+          @TruncatePartitioning = truncatepartitioning
+        end
+
+        def deserialize(params)
+          @Strategy = params['Strategy']
+          unless params['YearPartitioning'].nil?
+            @YearPartitioning = SingleFieldPartitioning.new
+            @YearPartitioning.deserialize(params['YearPartitioning'])
+          end
+          unless params['MonthPartitioning'].nil?
+            @MonthPartitioning = SingleFieldPartitioning.new
+            @MonthPartitioning.deserialize(params['MonthPartitioning'])
+          end
+          unless params['DayPartitioning'].nil?
+            @DayPartitioning = SingleFieldPartitioning.new
+            @DayPartitioning.deserialize(params['DayPartitioning'])
+          end
+          unless params['HourPartitioning'].nil?
+            @HourPartitioning = SingleFieldPartitioning.new
+            @HourPartitioning.deserialize(params['HourPartitioning'])
+          end
+          unless params['IdentityPartitioning'].nil?
+            @IdentityPartitioning = SingleFieldPartitioning.new
+            @IdentityPartitioning.deserialize(params['IdentityPartitioning'])
+          end
+          unless params['ListPartitioning'].nil?
+            @ListPartitioning = ListPartitioning.new
+            @ListPartitioning.deserialize(params['ListPartitioning'])
+          end
+          unless params['RangePartitioning'].nil?
+            @RangePartitioning = RangePartitioning.new
+            @RangePartitioning.deserialize(params['RangePartitioning'])
+          end
+          unless params['BucketPartitioning'].nil?
+            @BucketPartitioning = BucketPartitioning.new
+            @BucketPartitioning.deserialize(params['BucketPartitioning'])
+          end
+          unless params['TruncatePartitioning'].nil?
+            @TruncatePartitioning = TruncatePartitioning.new
+            @TruncatePartitioning.deserialize(params['TruncatePartitioning'])
+          end
+        end
+      end
+
       # PauseStandardEngineResourceGroups请求参数结构体
       class PauseStandardEngineResourceGroupsRequest < TencentCloud::Common::AbstractModel
         # @param EngineResourceGroupNames: 标准引擎资源组名称
@@ -28609,6 +30625,53 @@ module TencentCloud
               @Worker << workerspecdto_tmp
             end
           end
+        end
+      end
+
+      # tcc PostgreSQL连接信息
+      class PostgreSQLConnection < TencentCloud::Common::AbstractModel
+        # @param Ip: <p>IP地址</p>
+        # @type Ip: String
+        # @param Port: <p>端口</p>
+        # @type Port: String
+        # @param User: <p>用户名</p>
+        # @type User: String
+        # @param Password: <p>密码</p>
+        # @type Password: String
+        # @param InstanceId: <p>实例ID</p>
+        # @type InstanceId: String
+        # @param InstanceName: <p>实例名字</p>
+        # @type InstanceName: String
+        # @param NetWork: <p>网络信息</p>
+        # @type NetWork: :class:`Tencentcloud::Dlc.v20210125.models.NetWork`
+        # @param Database: <p>数据库</p>
+        # @type Database: String
+
+        attr_accessor :Ip, :Port, :User, :Password, :InstanceId, :InstanceName, :NetWork, :Database
+
+        def initialize(ip=nil, port=nil, user=nil, password=nil, instanceid=nil, instancename=nil, network=nil, database=nil)
+          @Ip = ip
+          @Port = port
+          @User = user
+          @Password = password
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @NetWork = network
+          @Database = database
+        end
+
+        def deserialize(params)
+          @Ip = params['Ip']
+          @Port = params['Port']
+          @User = params['User']
+          @Password = params['Password']
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          unless params['NetWork'].nil?
+            @NetWork = NetWork.new
+            @NetWork.deserialize(params['NetWork'])
+          end
+          @Database = params['Database']
         end
       end
 
@@ -29170,6 +31233,102 @@ module TencentCloud
           @Total = params['Total']
           @Used = params['Used']
           @Available = params['Available']
+        end
+      end
+
+      # tcc RangePartition定义
+      class RangePartition < TencentCloud::Common::AbstractModel
+        # @param Name: <p>分区名</p>
+        # @type Name: String
+        # @param Lower: <p>下界</p>
+        # @type Lower: :class:`Tencentcloud::Dlc.v20210125.models.Literal`
+        # @param Upper: <p>上界</p>
+        # @type Upper: :class:`Tencentcloud::Dlc.v20210125.models.Literal`
+        # @param Properties: <p>属性</p>
+        # @type Properties: Array
+
+        attr_accessor :Name, :Lower, :Upper, :Properties
+
+        def initialize(name=nil, lower=nil, upper=nil, properties=nil)
+          @Name = name
+          @Lower = lower
+          @Upper = upper
+          @Properties = properties
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          unless params['Lower'].nil?
+            @Lower = Literal.new
+            @Lower.deserialize(params['Lower'])
+          end
+          unless params['Upper'].nil?
+            @Upper = Literal.new
+            @Upper.deserialize(params['Upper'])
+          end
+          unless params['Properties'].nil?
+            @Properties = []
+            params['Properties'].each do |i|
+              kvpair_tmp = KVPair.new
+              kvpair_tmp.deserialize(i)
+              @Properties << kvpair_tmp
+            end
+          end
+        end
+      end
+
+      # tcc RangePartitioning定义
+      class RangePartitioning < TencentCloud::Common::AbstractModel
+        # @param FieldName: <p>字段名</p>
+        # @type FieldName: String
+        # @param Assignments: <p>分区信息</p>
+        # @type Assignments: Array
+
+        attr_accessor :FieldName, :Assignments
+
+        def initialize(fieldname=nil, assignments=nil)
+          @FieldName = fieldname
+          @Assignments = assignments
+        end
+
+        def deserialize(params)
+          @FieldName = params['FieldName']
+          unless params['Assignments'].nil?
+            @Assignments = []
+            params['Assignments'].each do |i|
+              rangepartition_tmp = RangePartition.new
+              rangepartition_tmp.deserialize(i)
+              @Assignments << rangepartition_tmp
+            end
+          end
+        end
+      end
+
+      # tcc ranger连接信息
+      class RangerConnection < TencentCloud::Common::AbstractModel
+        # @param ServiceName: <p>服务名称</p>
+        # @type ServiceName: String
+        # @param ServiceUrl: <p>服务url</p>
+        # @type ServiceUrl: String
+        # @param UserName: <p>用户名</p>
+        # @type UserName: String
+        # @param Password: <p>密码</p>
+        # @type Password: String
+
+        attr_accessor :ServiceName, :ServiceUrl, :UserName, :Password
+
+        def initialize(servicename=nil, serviceurl=nil, username=nil, password=nil)
+          @ServiceName = servicename
+          @ServiceUrl = serviceurl
+          @UserName = username
+          @Password = password
+        end
+
+        def deserialize(params)
+          @ServiceName = params['ServiceName']
+          @ServiceUrl = params['ServiceUrl']
+          @UserName = params['UserName']
+          @Password = params['Password']
         end
       end
 
@@ -30514,6 +32673,50 @@ module TencentCloud
         end
       end
 
+      # 结果集列定义（DescribeJobResult.Columns 的元素）.
+      class ResultColumn < TencentCloud::Common::AbstractModel
+        # @param Name: <p>列名。</p>
+        # @type Name: String
+        # @param DataType: <p>列数据类型（如 int / string）。</p>
+        # @type DataType: String
+        # @param Comment: <p>列注释。</p>
+        # @type Comment: String
+        # @param Nullable: <p>是否可为 NULL。</p>
+        # @type Nullable: Boolean
+
+        attr_accessor :Name, :DataType, :Comment, :Nullable
+
+        def initialize(name=nil, datatype=nil, comment=nil, nullable=nil)
+          @Name = name
+          @DataType = datatype
+          @Comment = comment
+          @Nullable = nullable
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @DataType = params['DataType']
+          @Comment = params['Comment']
+          @Nullable = params['Nullable']
+        end
+      end
+
+      # 结果集单行数据（DescribeJobResult.Rows 的元素）.
+      class ResultRow < TencentCloud::Common::AbstractModel
+        # @param Values: <p>本行的单元格值列表，与 SchemaJson 列定义顺序一一对应；NULL 值以 null 表示.</p>
+        # @type Values: Array
+
+        attr_accessor :Values
+
+        def initialize(values=nil)
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Values = params['Values']
+        end
+      end
+
       # ResumeTrainingJobInstance请求参数结构体
       class ResumeTrainingJobInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: <p>训练实例ID</p>
@@ -31052,6 +33255,22 @@ module TencentCloud
             @Metrics = CheckpointMetrics.new
             @Metrics.deserialize(params['Metrics'])
           end
+        end
+      end
+
+      # tcc SingleFieldPartitioning定义
+      class SingleFieldPartitioning < TencentCloud::Common::AbstractModel
+        # @param FieldName: <p>分区字段</p>
+        # @type FieldName: String
+
+        attr_accessor :FieldName
+
+        def initialize(fieldname=nil)
+          @FieldName = fieldname
+        end
+
+        def deserialize(params)
+          @FieldName = params['FieldName']
         end
       end
 
@@ -35425,6 +37644,26 @@ module TencentCloud
         end
       end
 
+      # tcc TruncatePartitioning定义
+      class TruncatePartitioning < TencentCloud::Common::AbstractModel
+        # @param Width: <p>截取长度</p>
+        # @type Width: Integer
+        # @param FieldName: <p>字段名</p>
+        # @type FieldName: String
+
+        attr_accessor :Width, :FieldName
+
+        def initialize(width=nil, fieldname=nil)
+          @Width = width
+          @FieldName = fieldname
+        end
+
+        def deserialize(params)
+          @Width = params['Width']
+          @FieldName = params['FieldName']
+        end
+      end
+
       # 通用的键值对数据结构
       class TypeKVPair < TencentCloud::Common::AbstractModel
         # @param Key: <p>key值</p>
@@ -38409,6 +40648,22 @@ module TencentCloud
         end
       end
 
+      # tcc volume 连接信息
+      class VolumeConnection < TencentCloud::Common::AbstractModel
+        # @param Location: <p>存储路径</p>
+        # @type Location: String
+
+        attr_accessor :Location
+
+        def initialize(location=nil)
+          @Location = location
+        end
+
+        def deserialize(params)
+          @Location = params['Location']
+        end
+      end
+
       # VPC子网信息
       class VpcCidrBlock < TencentCloud::Common::AbstractModel
         # @param CidrId: 子网Id
@@ -38454,6 +40709,101 @@ module TencentCloud
           @VpcCidrBlock = params['VpcCidrBlock']
           @RuleId = params['RuleId']
           @AccessGroupId = params['AccessGroupId']
+        end
+      end
+
+      # 计算仓库基础信息（对外 API 响应，DescribeWarehouses 列表结构）.
+      class WarehouseInfo < TencentCloud::Common::AbstractModel
+        # @param WarehouseId: <p>仓库 id（格式 "dlc-wh-xxxxxxxx"）.</p>
+        # @type WarehouseId: String
+        # @param Name: <p>仓库名称，租户内唯一。</p>
+        # @type Name: String
+        # @param CreatorSubUin: <p>创建者子账号 UIN。</p>
+        # @type CreatorSubUin: String
+        # @param Description: <p>仓库描述信息。</p>
+        # @type Description: String
+        # @param State: <p>fermion 合并后的单一状态。取值：STARTING / RUNNING / STOPPING / STOPPED / UPDATING / UNAVAILABLE / DESTROYING（销毁中，只读：不接受任何生命周期操作）。</p>
+        # @type State: String
+        # @param PartitionCode: <p>资源池编码.</p>
+        # @type PartitionCode: String
+        # @param PartitionName: <p>资源池展示名（解析不到时为空）.</p>
+        # @type PartitionName: String
+        # @param QueueName: <p>资源组/队列名。</p>
+        # @type QueueName: String
+        # @param CreateTime: <p>创建时间（毫秒时间戳）。</p>
+        # @type CreateTime: Integer
+        # @param UpdateTime: <p>最后更新时间（毫秒时间戳）。</p>
+        # @type UpdateTime: Integer
+        # @param ActiveClusters: <p>活跃集群数（describe 与 list 均返回）。集群明细等完整快照仅 DescribeWarehouseDetail 的 Observability 返回。</p>
+        # @type ActiveClusters: Integer
+        # @param MinClusters: <p>最小集群数（即最小实例数下限；describe 与 list 均返回）.</p>
+        # @type MinClusters: Integer
+        # @param MaxClusters: <p>最大集群数（即最大实例数上限；describe 与 list 均返回）.</p>
+        # @type MaxClusters: Integer
+        # @param RuntimeCode: <p>运行时/镜像.</p>
+        # @type RuntimeCode: String
+        # @param RuntimeName: <p>运行时展示名（如 Spark 3.5.5），与 RuntimeCode 配套；解析不到时为空.</p>
+        # @type RuntimeName: String
+        # @param SysCatalogVersion: <p>Catalog 版本码.</p>
+        # @type SysCatalogVersion: String
+        # @param EnvVars: <p>环境变量.</p>
+        # @type EnvVars: Array
+        # @param RuntimeConf: <p>静态运行参数（RuntimeConf）：spark.* KV 的 JSON 字符串（如 "{\"spark.sql.shuffle.partitions\":\"400\"}"），spark-submit 时生效。</p>
+        # @type RuntimeConf: String
+        # @param DynamicProperties: <p>动态参数（DynamicProperties）：spark.* KV 的 JSON 字符串，运行期生效（会话级，openSession 弱注入，即改即生效）。</p>
+        # @type DynamicProperties: String
+
+        attr_accessor :WarehouseId, :Name, :CreatorSubUin, :Description, :State, :PartitionCode, :PartitionName, :QueueName, :CreateTime, :UpdateTime, :ActiveClusters, :MinClusters, :MaxClusters, :RuntimeCode, :RuntimeName, :SysCatalogVersion, :EnvVars, :RuntimeConf, :DynamicProperties
+
+        def initialize(warehouseid=nil, name=nil, creatorsubuin=nil, description=nil, state=nil, partitioncode=nil, partitionname=nil, queuename=nil, createtime=nil, updatetime=nil, activeclusters=nil, minclusters=nil, maxclusters=nil, runtimecode=nil, runtimename=nil, syscatalogversion=nil, envvars=nil, runtimeconf=nil, dynamicproperties=nil)
+          @WarehouseId = warehouseid
+          @Name = name
+          @CreatorSubUin = creatorsubuin
+          @Description = description
+          @State = state
+          @PartitionCode = partitioncode
+          @PartitionName = partitionname
+          @QueueName = queuename
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @ActiveClusters = activeclusters
+          @MinClusters = minclusters
+          @MaxClusters = maxclusters
+          @RuntimeCode = runtimecode
+          @RuntimeName = runtimename
+          @SysCatalogVersion = syscatalogversion
+          @EnvVars = envvars
+          @RuntimeConf = runtimeconf
+          @DynamicProperties = dynamicproperties
+        end
+
+        def deserialize(params)
+          @WarehouseId = params['WarehouseId']
+          @Name = params['Name']
+          @CreatorSubUin = params['CreatorSubUin']
+          @Description = params['Description']
+          @State = params['State']
+          @PartitionCode = params['PartitionCode']
+          @PartitionName = params['PartitionName']
+          @QueueName = params['QueueName']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @ActiveClusters = params['ActiveClusters']
+          @MinClusters = params['MinClusters']
+          @MaxClusters = params['MaxClusters']
+          @RuntimeCode = params['RuntimeCode']
+          @RuntimeName = params['RuntimeName']
+          @SysCatalogVersion = params['SysCatalogVersion']
+          unless params['EnvVars'].nil?
+            @EnvVars = []
+            params['EnvVars'].each do |i|
+              kvpair_tmp = KVPair.new
+              kvpair_tmp.deserialize(i)
+              @EnvVars << kvpair_tmp
+            end
+          end
+          @RuntimeConf = params['RuntimeConf']
+          @DynamicProperties = params['DynamicProperties']
         end
       end
 

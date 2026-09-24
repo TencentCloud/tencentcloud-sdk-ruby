@@ -31416,60 +31416,72 @@ module TencentCloud
 
       # 登录审计列表实体
       class HostLoginList < TencentCloud::Common::AbstractModel
-        # @param Id: 记录Id
+        # @param Id: <p>记录Id</p>
         # @type Id: Integer
-        # @param Uuid: 主机Uuid
+        # @param Uuid: <p>主机Uuid</p>
         # @type Uuid: String
-        # @param MachineIp: 主机ip
+        # @param MachineIp: <p>主机ip</p>
         # @type MachineIp: String
-        # @param MachineName: 主机名
+        # @param MachineName: <p>主机名</p>
         # @type MachineName: String
-        # @param UserName: 用户名
+        # @param UserName: <p>用户名</p>
         # @type UserName: String
-        # @param SrcIp: 来源ip
+        # @param SrcIp: <p>来源ip</p>
         # @type SrcIp: String
-        # @param Status: 1:正常登录；2异地登录； 5已加白； 14：已处理；15：已忽略。
+        # @param Status: <p>1:正常登录；2异地登录； 5已加白； 14：已处理；15：已忽略。</p>
         # @type Status: Integer
-        # @param Country: 国家id
+        # @param Country: <p>国家id</p>
         # @type Country: Integer
-        # @param City: 城市id
+        # @param City: <p>城市id</p>
         # @type City: Integer
-        # @param Province: 省份id
+        # @param Province: <p>省份id</p>
         # @type Province: Integer
-        # @param LoginTime: 登录时间
+        # @param LoginTime: <p>登录时间</p>
         # @type LoginTime: String
-        # @param ModifyTime: 修改时间
+        # @param ModifyTime: <p>修改时间</p>
         # @type ModifyTime: String
-        # @param IsRiskArea: 是否命中异地登录异常  1表示命中此类异常, 0表示未命中
+        # @param IsRiskArea: <p>是否命中异地登录异常  1表示命中此类异常, 0表示未命中</p>
         # @type IsRiskArea: Integer
-        # @param IsRiskUser: 是否命中异常用户异常 1表示命中此类异常, 0表示未命中
+        # @param IsRiskUser: <p>是否命中异常用户异常 1表示命中此类异常, 0表示未命中</p>
         # @type IsRiskUser: Integer
-        # @param IsRiskTime: 是否命中异常时间异常 1表示命中此类异常, 0表示未命中
+        # @param IsRiskTime: <p>是否命中异常时间异常 1表示命中此类异常, 0表示未命中</p>
         # @type IsRiskTime: Integer
-        # @param IsRiskSrcIp: 是否命中异常IP异常 1表示命中此类异常, 0表示未命中
+        # @param IsRiskSrcIp: <p>是否命中异常IP异常 1表示命中此类异常, 0表示未命中</p>
         # @type IsRiskSrcIp: Integer
-        # @param RiskLevel: 危险等级：
-        # 0 高危
-        # 1 可疑
+        # @param RiskLevel: <p>危险等级：<br>0 高危<br>1 可疑</p>
         # @type RiskLevel: Integer
-        # @param Location: 位置名称
+        # @param Location: <p>位置名称</p>
         # @type Location: String
-        # @param Quuid: 主机quuid
+        # @param Quuid: <p>主机quuid</p>
         # @type Quuid: String
-        # @param Desc: 高危信息说明：
-        # ABROAD - 境外IP；
-        # XTI - 威胁情报
+        # @param Desc: <p>高危信息说明：<br>ABROAD - 境外IP；<br>XTI - 威胁情报</p>
         # @type Desc: String
-        # @param MachineExtraInfo: 附加信息
+        # @param MachineExtraInfo: <p>附加信息</p>
         # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
-        # @param Port: 请求目的端口
+        # @param Port: <p>请求目的端口</p>
         # @type Port: Integer
-        # @param IPAnalyse: ip分析
+        # @param IPAnalyse: <p>ip分析</p>
         # @type IPAnalyse: :class:`Tencentcloud::Cwp.v20180228.models.IPAnalyse`
+        # @param HitRule: <p>命中策略ID</p><p>枚举值：</p><ul><li>risk_login_1： 威胁情报</li><li>risk_login_2： 密码破解成功后登录</li><li>risk_login_3： 弱口令账户登录</li><li>risk_login_4： 非法账户登录</li><li>risk_login_5： 登录后存在入侵行为</li><li>risk_login_101： 海外IP登录</li><li>risk_login_102： 非常用登录地登录</li><li>risk_login_103： 非工作时间登录</li></ul>
+        # @type HitRule: String
+        # @param HitRuleName: <p>命中策略名</p>
+        # @type HitRuleName: String
+        # @param AlertCount: <p>告警数量</p>
+        # @type AlertCount: Integer
+        # @param FirstDiscoverTime: <p>首次发现时间</p><p>参数格式：YYYY-MM-DD HH:MM:SS</p>
+        # @type FirstDiscoverTime: String
+        # @param LastDiscoverTime: <p>最近发现时间</p><p>参数格式：YYYY-MM-DD HH:MM:SS</p>
+        # @type LastDiscoverTime: String
+        # @param HarmDescribe: <p>危害描述</p>
+        # @type HarmDescribe: String
+        # @param SuggestScheme: <p>修复建议</p>
+        # @type SuggestScheme: String
+        # @param RecentLoginList: <p>最近登录历史</p>
+        # @type RecentLoginList: Array
 
-        attr_accessor :Id, :Uuid, :MachineIp, :MachineName, :UserName, :SrcIp, :Status, :Country, :City, :Province, :LoginTime, :ModifyTime, :IsRiskArea, :IsRiskUser, :IsRiskTime, :IsRiskSrcIp, :RiskLevel, :Location, :Quuid, :Desc, :MachineExtraInfo, :Port, :IPAnalyse
+        attr_accessor :Id, :Uuid, :MachineIp, :MachineName, :UserName, :SrcIp, :Status, :Country, :City, :Province, :LoginTime, :ModifyTime, :IsRiskArea, :IsRiskUser, :IsRiskTime, :IsRiskSrcIp, :RiskLevel, :Location, :Quuid, :Desc, :MachineExtraInfo, :Port, :IPAnalyse, :HitRule, :HitRuleName, :AlertCount, :FirstDiscoverTime, :LastDiscoverTime, :HarmDescribe, :SuggestScheme, :RecentLoginList
 
-        def initialize(id=nil, uuid=nil, machineip=nil, machinename=nil, username=nil, srcip=nil, status=nil, country=nil, city=nil, province=nil, logintime=nil, modifytime=nil, isriskarea=nil, isriskuser=nil, isrisktime=nil, isrisksrcip=nil, risklevel=nil, location=nil, quuid=nil, desc=nil, machineextrainfo=nil, port=nil, ipanalyse=nil)
+        def initialize(id=nil, uuid=nil, machineip=nil, machinename=nil, username=nil, srcip=nil, status=nil, country=nil, city=nil, province=nil, logintime=nil, modifytime=nil, isriskarea=nil, isriskuser=nil, isrisktime=nil, isrisksrcip=nil, risklevel=nil, location=nil, quuid=nil, desc=nil, machineextrainfo=nil, port=nil, ipanalyse=nil, hitrule=nil, hitrulename=nil, alertcount=nil, firstdiscovertime=nil, lastdiscovertime=nil, harmdescribe=nil, suggestscheme=nil, recentloginlist=nil)
           @Id = id
           @Uuid = uuid
           @MachineIp = machineip
@@ -31493,6 +31505,14 @@ module TencentCloud
           @MachineExtraInfo = machineextrainfo
           @Port = port
           @IPAnalyse = ipanalyse
+          @HitRule = hitrule
+          @HitRuleName = hitrulename
+          @AlertCount = alertcount
+          @FirstDiscoverTime = firstdiscovertime
+          @LastDiscoverTime = lastdiscovertime
+          @HarmDescribe = harmdescribe
+          @SuggestScheme = suggestscheme
+          @RecentLoginList = recentloginlist
         end
 
         def deserialize(params)
@@ -31524,6 +31544,21 @@ module TencentCloud
           unless params['IPAnalyse'].nil?
             @IPAnalyse = IPAnalyse.new
             @IPAnalyse.deserialize(params['IPAnalyse'])
+          end
+          @HitRule = params['HitRule']
+          @HitRuleName = params['HitRuleName']
+          @AlertCount = params['AlertCount']
+          @FirstDiscoverTime = params['FirstDiscoverTime']
+          @LastDiscoverTime = params['LastDiscoverTime']
+          @HarmDescribe = params['HarmDescribe']
+          @SuggestScheme = params['SuggestScheme']
+          unless params['RecentLoginList'].nil?
+            @RecentLoginList = []
+            params['RecentLoginList'].each do |i|
+              recentloginitem_tmp = RecentLoginItem.new
+              recentloginitem_tmp.deserialize(i)
+              @RecentLoginList << recentloginitem_tmp
+            end
           end
         end
       end
@@ -39540,6 +39575,30 @@ module TencentCloud
           @VulVulsName = params['VulVulsName']
           @CveID = params['CveID']
           @SupportDefense = params['SupportDefense']
+        end
+      end
+
+      # 异常登陆历史记录
+      class RecentLoginItem < TencentCloud::Common::AbstractModel
+        # @param LoginTime: <p>登录时间</p><p>参数格式：YYYY-MM-DD HH:MM:SS</p>
+        # @type LoginTime: String
+        # @param LoginType: <p>登录方式</p><p>枚举值：</p><ul><li>0： 无效用户</li><li>1： 密码错误</li><li>2： 密码登录</li><li>3： 密钥登录</li><li>4： PAM 认证失败（sshd）</li><li>5： PAM 认证失败（tty）</li><li>6： 键盘交互登录</li><li>7： 键盘交互认证失败</li><li>8： PAM 认证失败</li></ul>
+        # @type LoginType: Integer
+        # @param LoginTypeDesc: <p>登录方式描述</p>
+        # @type LoginTypeDesc: String
+
+        attr_accessor :LoginTime, :LoginType, :LoginTypeDesc
+
+        def initialize(logintime=nil, logintype=nil, logintypedesc=nil)
+          @LoginTime = logintime
+          @LoginType = logintype
+          @LoginTypeDesc = logintypedesc
+        end
+
+        def deserialize(params)
+          @LoginTime = params['LoginTime']
+          @LoginType = params['LoginType']
+          @LoginTypeDesc = params['LoginTypeDesc']
         end
       end
 

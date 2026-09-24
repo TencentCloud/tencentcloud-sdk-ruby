@@ -573,6 +573,34 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建推理服务域名，用于通过自定义域名访问推理服务，一个推理服务下最多支持创建 5 个自定义域名。
+        # 创建成功后，还需完成以下步骤，域名才能正常对外提供访问：
+        # 1. 校验域名 CNAME 配置状态，请参考 [CheckCnameStatus](https://cloud.tencent.com/document/api/1552/94491) 接口；
+        # 2. 验证归属权，请参考 [VerifyOwnership](https://cloud.tencent.com/document/api/1552/98879) 接口；
+        # 3. 配置域名证书，请参考 [ModifyHostsCertificate](https://cloud.tencent.com/document/api/1552/80764) 接口。
+
+        # @param request: Request instance for CreateInferenceDomain.
+        # @type request: :class:`Tencentcloud::teo::V20220901::CreateInferenceDomainRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::CreateInferenceDomainResponse`
+        def CreateInferenceDomain(request)
+          body = send_request('CreateInferenceDomain', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateInferenceDomainResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建推理服务，支持设置服务名称、监听端口、容器镜像配置和资源配置，创建成功后提供推理访问地址。
 
         # @param request: Request instance for CreateInferenceService.
@@ -2687,6 +2715,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeInferenceAPITokensResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询推理服务域名列表，返回域名的Cname地址、归属权验证和证书等相关信息。
+
+        # @param request: Request instance for DescribeInferenceDomains.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeInferenceDomainsRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeInferenceDomainsResponse`
+        def DescribeInferenceDomains(request)
+          body = send_request('DescribeInferenceDomains', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInferenceDomainsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -5608,6 +5660,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyZoneWorkModeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 操作推理服务域名，支持停止、启用和删除推理服务域名，删除后的资源不可恢复。
+
+        # @param request: Request instance for OperateInferenceDomain.
+        # @type request: :class:`Tencentcloud::teo::V20220901::OperateInferenceDomainRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::OperateInferenceDomainResponse`
+        def OperateInferenceDomain(request)
+          body = send_request('OperateInferenceDomain', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = OperateInferenceDomainResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -991,17 +991,44 @@ module TencentCloud
         # @type Model: String
         # @param Vendor: <p>模型厂商</p>
         # @type Vendor: String
+        # @param DisplayName: <p>展示名称</p>
+        # @type DisplayName: String
+        # @param Description: <p>模型描述</p>
+        # @type Description: String
+        # @param ContextWindow: <p>上下文窗口大小，单位 token</p>
+        # @type ContextWindow: Integer
+        # @param IconUrl: <p>模型图标 URL</p>
+        # @type IconUrl: String
+        # @param CreditMultiplier: <p>计费倍率</p>
+        # @type CreditMultiplier: Float
+        # @param Thinking: <p>思考配置</p>
+        # @type Thinking: :class:`Tencentcloud::Dataagent.v20250513.models.Thinking`
 
-        attr_accessor :Model, :Vendor
+        attr_accessor :Model, :Vendor, :DisplayName, :Description, :ContextWindow, :IconUrl, :CreditMultiplier, :Thinking
 
-        def initialize(model=nil, vendor=nil)
+        def initialize(model=nil, vendor=nil, displayname=nil, description=nil, contextwindow=nil, iconurl=nil, creditmultiplier=nil, thinking=nil)
           @Model = model
           @Vendor = vendor
+          @DisplayName = displayname
+          @Description = description
+          @ContextWindow = contextwindow
+          @IconUrl = iconurl
+          @CreditMultiplier = creditmultiplier
+          @Thinking = thinking
         end
 
         def deserialize(params)
           @Model = params['Model']
           @Vendor = params['Vendor']
+          @DisplayName = params['DisplayName']
+          @Description = params['Description']
+          @ContextWindow = params['ContextWindow']
+          @IconUrl = params['IconUrl']
+          @CreditMultiplier = params['CreditMultiplier']
+          unless params['Thinking'].nil?
+            @Thinking = Thinking.new
+            @Thinking.deserialize(params['Thinking'])
+          end
         end
       end
 
@@ -1588,6 +1615,34 @@ module TencentCloud
         def deserialize(params)
           @SessionId = params['SessionId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 模型思考强度
+      class Thinking < TencentCloud::Common::AbstractModel
+        # @param Mode: <p>模式</p><p>枚举值：</p><ul><li>toggle： 可开关</li><li>always_on： 固定开启</li><li>always_off： 固定关闭</li><li>unconfigured： 未配置</li></ul>
+        # @type Mode: String
+        # @param DefaultEnabled: <p>默认是否开启思考</p>
+        # @type DefaultEnabled: Boolean
+        # @param EffortOptions: <p>思考强度可选项，如 [&quot;high&quot;,&quot;max&quot;]</p>
+        # @type EffortOptions: Array
+        # @param DefaultEffort: <p>默认思考强度</p>
+        # @type DefaultEffort: String
+
+        attr_accessor :Mode, :DefaultEnabled, :EffortOptions, :DefaultEffort
+
+        def initialize(mode=nil, defaultenabled=nil, effortoptions=nil, defaulteffort=nil)
+          @Mode = mode
+          @DefaultEnabled = defaultenabled
+          @EffortOptions = effortoptions
+          @DefaultEffort = defaulteffort
+        end
+
+        def deserialize(params)
+          @Mode = params['Mode']
+          @DefaultEnabled = params['DefaultEnabled']
+          @EffortOptions = params['EffortOptions']
+          @DefaultEffort = params['DefaultEffort']
         end
       end
 

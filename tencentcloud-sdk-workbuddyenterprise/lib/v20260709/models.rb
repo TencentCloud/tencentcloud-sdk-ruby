@@ -1880,6 +1880,33 @@ module TencentCloud
         end
       end
 
+      # DescribeUserAccessToken请求参数结构体
+      class DescribeUserAccessTokenRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeUserAccessToken返回参数结构体
+      class DescribeUserAccessTokenResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 全局专家计数
       class ExpertCounts < TencentCloud::Common::AbstractModel
         # @param Builtin: <p>内置专家数</p>

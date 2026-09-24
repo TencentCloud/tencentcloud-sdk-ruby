@@ -757,7 +757,7 @@ module TencentCloud
 
       # DeleteConsoleGroups请求参数结构体
       class DeleteConsoleGroupsRequest < TencentCloud::Common::AbstractModel
-        # @param GroupIds: <p>要删除的用户组 ID 列表</p>
+        # @param GroupIds: <p>要删除的用户组 ID 列表，单次最多100个</p>
         # @type GroupIds: Array
 
         attr_accessor :GroupIds
@@ -2097,11 +2097,11 @@ module TencentCloud
         # @type UserKeyword: String
         # @param UserUins: <p>通过 UIN 批量查询用户信息</p>
         # @type UserUins: Array
-        # @param OrderBys: <p>多字段排序，如 [{Name: &#39;CreateTime&#39;, Direction: &#39;DESC&#39;}, {Name: &#39;UserName&#39;, Direction: &#39;ASC&#39;}]，默认按创建时间降序</p>
+        # @param OrderBys: <p>多字段排序，如 [{Name: &#39;CreateTime&#39;, Direction: &#39;Desc&#39;}, {Name: &#39;UserName&#39;, Direction: &#39;Asc&#39;}]，默认按创建时间降序</p>
         # @type OrderBys: Array
         # @param PageNumber: <p>页码，从1开始，默认1</p>
         # @type PageNumber: Integer
-        # @param PageSize: <p>每页大小，默认10，最小10，最大200</p>
+        # @param PageSize: <p>每页大小，默认10，最小10，最大100</p>
         # @type PageSize: Integer
 
         attr_accessor :GroupId, :UserKeyword, :UserUins, :OrderBys, :PageNumber, :PageSize
@@ -2199,7 +2199,7 @@ module TencentCloud
       class ListConsoleGroupsRequest < TencentCloud::Common::AbstractModel
         # @param PageNumber: <p>页码，从1开始，默认1</p>
         # @type PageNumber: Integer
-        # @param PageSize: <p>每页大小，默认10，最小10，最大200</p>
+        # @param PageSize: <p>每页大小，默认10，最小10，最大100</p>
         # @type PageSize: Integer
         # @param GroupIds: <p>通过用户组 ID 批量查询</p>
         # @type GroupIds: Array
@@ -2301,7 +2301,7 @@ module TencentCloud
       class ListConsoleRolesRequest < TencentCloud::Common::AbstractModel
         # @param PageNumber: <p>页码，从1开始，默认1</p>
         # @type PageNumber: Integer
-        # @param PageSize: <p>每页大小，默认10，最小10，最大200</p>
+        # @param PageSize: <p>每页大小，默认10，最小10，最大100</p>
         # @type PageSize: Integer
         # @param RoleKeyword: <p>角色名称或描述模糊匹配</p>
         # @type RoleKeyword: String
@@ -2388,7 +2388,7 @@ module TencentCloud
       class ListConsoleUsersRequest < TencentCloud::Common::AbstractModel
         # @param PageNumber: <p>页码，从1开始，默认1</p>
         # @type PageNumber: Integer
-        # @param PageSize: <p>每页大小，默认10，最小10，最大200</p>
+        # @param PageSize: <p>每页大小，默认10，最小10，最大100</p>
         # @type PageSize: Integer
         # @param UserKeyword: <p>用户名称与 UIN 模糊匹配</p>
         # @type UserKeyword: String
@@ -3810,7 +3810,7 @@ module TencentCloud
         # @type GroupNickname: String
         # @param Description: <p>用户组描述</p>
         # @type Description: String
-        # @param UserUins: <p>成员 UIN 列表（OperType 为添加/删除成员时使用）</p>
+        # @param UserUins: <p>成员 UIN 列表（OperType 为添加/删除成员时使用），单次最多100个</p>
         # @type UserUins: Array
 
         attr_accessor :GroupId, :OperType, :GroupName, :GroupNickname, :Description, :UserUins
