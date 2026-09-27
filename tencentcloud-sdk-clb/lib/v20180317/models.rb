@@ -2235,14 +2235,17 @@ module TencentCloud
         # @type Tiers: Array
         # @param RouterDescribe: <p>意图路由描述。</p>
         # @type RouterDescribe: String
+        # @param DecisionModelConfig: <p>意图路由使用决策模型配置</p>
+        # @type DecisionModelConfig: :class:`Tencentcloud::Clb.v20180317.models.IntentRouterDecisionModelConfig`
 
-        attr_accessor :ModelRouterId, :RouteName, :Tiers, :RouterDescribe
+        attr_accessor :ModelRouterId, :RouteName, :Tiers, :RouterDescribe, :DecisionModelConfig
 
-        def initialize(modelrouterid=nil, routename=nil, tiers=nil, routerdescribe=nil)
+        def initialize(modelrouterid=nil, routename=nil, tiers=nil, routerdescribe=nil, decisionmodelconfig=nil)
           @ModelRouterId = modelrouterid
           @RouteName = routename
           @Tiers = tiers
           @RouterDescribe = routerdescribe
+          @DecisionModelConfig = decisionmodelconfig
         end
 
         def deserialize(params)
@@ -2257,6 +2260,10 @@ module TencentCloud
             end
           end
           @RouterDescribe = params['RouterDescribe']
+          unless params['DecisionModelConfig'].nil?
+            @DecisionModelConfig = IntentRouterDecisionModelConfig.new
+            @DecisionModelConfig.deserialize(params['DecisionModelConfig'])
+          end
         end
       end
 
@@ -8484,6 +8491,22 @@ module TencentCloud
         end
       end
 
+      # 意图路由使用决策模型配置
+      class IntentRouterDecisionModelConfig < TencentCloud::Common::AbstractModel
+        # @param Enabled: <p>是否开启使用决策模型</p>
+        # @type Enabled: Boolean
+
+        attr_accessor :Enabled
+
+        def initialize(enabled=nil)
+          @Enabled = enabled
+        end
+
+        def deserialize(params)
+          @Enabled = params['Enabled']
+        end
+      end
+
       # 意图路由摘要信息对象（不含分层详情）。
       class IntentRouterItem < TencentCloud::Common::AbstractModel
         # @param CreatedTime: <p>创建时间（ISO 8601格式）。</p>
@@ -8498,18 +8521,21 @@ module TencentCloud
         # @type Status: String
         # @param Tiers: <p>分层配置列表。</p>
         # @type Tiers: Array
+        # @param DecisionModelConfig: <p>意图路由使用决策模型配置</p>
+        # @type DecisionModelConfig: :class:`Tencentcloud::Clb.v20180317.models.IntentRouterDecisionModelConfig`
         # @param UpdatedTime: <p>更新时间（ISO 8601格式）。</p>
         # @type UpdatedTime: String
 
-        attr_accessor :CreatedTime, :IntentRouterId, :RouteName, :RouterDescribe, :Status, :Tiers, :UpdatedTime
+        attr_accessor :CreatedTime, :IntentRouterId, :RouteName, :RouterDescribe, :Status, :Tiers, :DecisionModelConfig, :UpdatedTime
 
-        def initialize(createdtime=nil, intentrouterid=nil, routename=nil, routerdescribe=nil, status=nil, tiers=nil, updatedtime=nil)
+        def initialize(createdtime=nil, intentrouterid=nil, routename=nil, routerdescribe=nil, status=nil, tiers=nil, decisionmodelconfig=nil, updatedtime=nil)
           @CreatedTime = createdtime
           @IntentRouterId = intentrouterid
           @RouteName = routename
           @RouterDescribe = routerdescribe
           @Status = status
           @Tiers = tiers
+          @DecisionModelConfig = decisionmodelconfig
           @UpdatedTime = updatedtime
         end
 
@@ -8526,6 +8552,10 @@ module TencentCloud
               intentroutertieritem_tmp.deserialize(i)
               @Tiers << intentroutertieritem_tmp
             end
+          end
+          unless params['DecisionModelConfig'].nil?
+            @DecisionModelConfig = IntentRouterDecisionModelConfig.new
+            @DecisionModelConfig.deserialize(params['DecisionModelConfig'])
           end
           @UpdatedTime = params['UpdatedTime']
         end
@@ -11369,17 +11399,20 @@ module TencentCloud
         # @type RouteName: String
         # @param RouterDescribe: <p>意图路由描述。</p>
         # @type RouterDescribe: String
-        # @param Tiers: <p>新的分层配置列表（全量替换）。</p><p>选填；不传则不修改。传入时必须为完整分层集合：复杂度分层须包含全部 4 个分层 SIMPLE/MEDIUM/COMPLEX/REASONING；语义分层须包含 default 及各语义 Tier（取决于实例所用协议，且不可跨协议变更）。每个分层至少包含一个模型，模型名称必须是已关联到该实例的模型。</p>
+        # @param Tiers: <p>新的分层配置列表（全量替换）。</p><p>选填；传入时必须包含全部4个分层：SIMPLE、MEDIUM、COMPLEX、REASONING。每个分层至少包含一个模型，模型名称必须是已关联到该实例的模型。不传则不修改。</p>
         # @type Tiers: Array
+        # @param DecisionModelConfig: <p>意图路由使用决策模型配置</p>
+        # @type DecisionModelConfig: :class:`Tencentcloud::Clb.v20180317.models.IntentRouterDecisionModelConfig`
 
-        attr_accessor :IntentRouterId, :ModelRouterId, :RouteName, :RouterDescribe, :Tiers
+        attr_accessor :IntentRouterId, :ModelRouterId, :RouteName, :RouterDescribe, :Tiers, :DecisionModelConfig
 
-        def initialize(intentrouterid=nil, modelrouterid=nil, routename=nil, routerdescribe=nil, tiers=nil)
+        def initialize(intentrouterid=nil, modelrouterid=nil, routename=nil, routerdescribe=nil, tiers=nil, decisionmodelconfig=nil)
           @IntentRouterId = intentrouterid
           @ModelRouterId = modelrouterid
           @RouteName = routename
           @RouterDescribe = routerdescribe
           @Tiers = tiers
+          @DecisionModelConfig = decisionmodelconfig
         end
 
         def deserialize(params)
@@ -11394,6 +11427,10 @@ module TencentCloud
               tieritem_tmp.deserialize(i)
               @Tiers << tieritem_tmp
             end
+          end
+          unless params['DecisionModelConfig'].nil?
+            @DecisionModelConfig = IntentRouterDecisionModelConfig.new
+            @DecisionModelConfig.deserialize(params['DecisionModelConfig'])
           end
         end
       end
