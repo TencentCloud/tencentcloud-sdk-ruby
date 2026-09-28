@@ -202,6 +202,104 @@ module TencentCloud
         end
       end
 
+      # airflow cfs dag目录源配置
+      class AirflowCfsSource < TencentCloud::Common::AbstractModel
+        # @param FileSystemId: <p>cfs实例id</p>
+        # @type FileSystemId: String
+        # @param Directory: <p>cfs实例挂载目录</p>
+        # @type Directory: String
+
+        attr_accessor :FileSystemId, :Directory
+
+        def initialize(filesystemid=nil, directory=nil)
+          @FileSystemId = filesystemid
+          @Directory = directory
+        end
+
+        def deserialize(params)
+          @FileSystemId = params['FileSystemId']
+          @Directory = params['Directory']
+        end
+      end
+
+      # airflow dag源目录来源
+      class AirflowDagSourceInput < TencentCloud::Common::AbstractModel
+        # @param Enabled: <p>是否支持dag共享源</p>
+        # @type Enabled: Boolean
+        # @param Type: <p>dag源类型</p><p>枚举值：</p><ul><li>CFS： CFS</li><li>GIT： Git</li></ul>
+        # @type Type: String
+        # @param Cfs: <p>cfs实例DAG源配置</p>
+        # @type Cfs: :class:`Tencentcloud::Emr.v20190103.models.AirflowCfsSource`
+        # @param Git: <p>Git型DAG源配置</p>
+        # @type Git: :class:`Tencentcloud::Emr.v20190103.models.AirflowGitSource`
+
+        attr_accessor :Enabled, :Type, :Cfs, :Git
+
+        def initialize(enabled=nil, type=nil, cfs=nil, git=nil)
+          @Enabled = enabled
+          @Type = type
+          @Cfs = cfs
+          @Git = git
+        end
+
+        def deserialize(params)
+          @Enabled = params['Enabled']
+          @Type = params['Type']
+          unless params['Cfs'].nil?
+            @Cfs = AirflowCfsSource.new
+            @Cfs.deserialize(params['Cfs'])
+          end
+          unless params['Git'].nil?
+            @Git = AirflowGitSource.new
+            @Git.deserialize(params['Git'])
+          end
+        end
+      end
+
+      # airflow git鉴权配置
+      class AirflowGitCredentialInput < TencentCloud::Common::AbstractModel
+        # @param Username: <p>用户名</p>
+        # @type Username: String
+        # @param Token: <p>用户凭证</p>
+        # @type Token: String
+
+        attr_accessor :Username, :Token
+
+        def initialize(username=nil, token=nil)
+          @Username = username
+          @Token = token
+        end
+
+        def deserialize(params)
+          @Username = params['Username']
+          @Token = params['Token']
+        end
+      end
+
+      # airflow dag目录git源配置
+      class AirflowGitSource < TencentCloud::Common::AbstractModel
+        # @param RepositoryUrl: <p>git仓库URL</p>
+        # @type RepositoryUrl: String
+        # @param Ref: <p>DAG跟踪分支/TAG</p>
+        # @type Ref: String
+        # @param Directory: <p>DAG挂载目录</p>
+        # @type Directory: String
+
+        attr_accessor :RepositoryUrl, :Ref, :Directory
+
+        def initialize(repositoryurl=nil, ref=nil, directory=nil)
+          @RepositoryUrl = repositoryurl
+          @Ref = ref
+          @Directory = directory
+        end
+
+        def deserialize(params)
+          @RepositoryUrl = params['RepositoryUrl']
+          @Ref = params['Ref']
+          @Directory = params['Directory']
+        end
+      end
+
       # 资源描述
       class AllNodeResourceSpec < TencentCloud::Common::AbstractModel
         # @param MasterResourceSpec: 描述Master节点资源
@@ -2004,10 +2102,14 @@ module TencentCloud
         # @type EnableEmrProxy: Boolean
         # @param LogStoreID: <p>日志存储服务实例id</p>
         # @type LogStoreID: String
+        # @param AirflowDagSource: <p>airflow目录源</p>
+        # @type AirflowDagSource: :class:`Tencentcloud::Emr.v20190103.models.AirflowDagSourceInput`
+        # @param AirflowGitCredential: <p>airflow源凭证</p>
+        # @type AirflowGitCredential: :class:`Tencentcloud::Emr.v20190103.models.AirflowGitCredentialInput`
 
-        attr_accessor :InstanceName, :ClusterClass, :Software, :PlatFormType, :CosBucket, :EksClusterId, :ProductId, :ClientToken, :VPCSettings, :CloudResources, :SgId, :MetaDBInfo, :Tags, :LoginSettings, :ExternalService, :ZoneId, :DefaultMetaVersion, :NeedCdbAudit, :SgIP, :ContainerExtraConf, :EnableSparkAppMonitorInfo, :ComputeResourceGroupIds, :TerminateProtection, :EnableEmrProxy, :LogStoreID
+        attr_accessor :InstanceName, :ClusterClass, :Software, :PlatFormType, :CosBucket, :EksClusterId, :ProductId, :ClientToken, :VPCSettings, :CloudResources, :SgId, :MetaDBInfo, :Tags, :LoginSettings, :ExternalService, :ZoneId, :DefaultMetaVersion, :NeedCdbAudit, :SgIP, :ContainerExtraConf, :EnableSparkAppMonitorInfo, :ComputeResourceGroupIds, :TerminateProtection, :EnableEmrProxy, :LogStoreID, :AirflowDagSource, :AirflowGitCredential
 
-        def initialize(instancename=nil, clusterclass=nil, software=nil, platformtype=nil, cosbucket=nil, eksclusterid=nil, productid=nil, clienttoken=nil, vpcsettings=nil, cloudresources=nil, sgid=nil, metadbinfo=nil, tags=nil, loginsettings=nil, externalservice=nil, zoneid=nil, defaultmetaversion=nil, needcdbaudit=nil, sgip=nil, containerextraconf=nil, enablesparkappmonitorinfo=nil, computeresourcegroupids=nil, terminateprotection=nil, enableemrproxy=nil, logstoreid=nil)
+        def initialize(instancename=nil, clusterclass=nil, software=nil, platformtype=nil, cosbucket=nil, eksclusterid=nil, productid=nil, clienttoken=nil, vpcsettings=nil, cloudresources=nil, sgid=nil, metadbinfo=nil, tags=nil, loginsettings=nil, externalservice=nil, zoneid=nil, defaultmetaversion=nil, needcdbaudit=nil, sgip=nil, containerextraconf=nil, enablesparkappmonitorinfo=nil, computeresourcegroupids=nil, terminateprotection=nil, enableemrproxy=nil, logstoreid=nil, airflowdagsource=nil, airflowgitcredential=nil)
           @InstanceName = instancename
           @ClusterClass = clusterclass
           @Software = software
@@ -2033,6 +2135,8 @@ module TencentCloud
           @TerminateProtection = terminateprotection
           @EnableEmrProxy = enableemrproxy
           @LogStoreID = logstoreid
+          @AirflowDagSource = airflowdagsource
+          @AirflowGitCredential = airflowgitcredential
         end
 
         def deserialize(params)
@@ -2097,6 +2201,14 @@ module TencentCloud
           @TerminateProtection = params['TerminateProtection']
           @EnableEmrProxy = params['EnableEmrProxy']
           @LogStoreID = params['LogStoreID']
+          unless params['AirflowDagSource'].nil?
+            @AirflowDagSource = AirflowDagSourceInput.new
+            @AirflowDagSource.deserialize(params['AirflowDagSource'])
+          end
+          unless params['AirflowGitCredential'].nil?
+            @AirflowGitCredential = AirflowGitCredentialInput.new
+            @AirflowGitCredential.deserialize(params['AirflowGitCredential'])
+          end
         end
       end
 

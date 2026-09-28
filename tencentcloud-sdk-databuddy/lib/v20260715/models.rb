@@ -610,6 +610,83 @@ module TencentCloud
         end
       end
 
+      # CreateFolder请求参数结构体
+      class CreateFolderRequest < TencentCloud::Common::AbstractModel
+        # @param WorkspaceId: <p>工作空间名称</p>
+        # @type WorkspaceId: String
+        # @param FolderName: <p>文件夹名称</p>
+        # @type FolderName: String
+        # @param FolderType: <p>文件夹类型</p><p>枚举值：</p><ul><li>FOLDER： 文件夹</li><li>GIT_FOLDER： git文件夹</li></ul>
+        # @type FolderType: String
+        # @param ParentFolder: <p>父节点</p>
+        # @type ParentFolder: :class:`Tencentcloud::Databuddy.v20260715.models.FolderLocator`
+        # @param GitConfig: <p>git配置，FolderType=GIT_FOLDER 时必填</p>
+        # @type GitConfig: :class:`Tencentcloud::Databuddy.v20260715.models.GitRepoConfig`
+
+        attr_accessor :WorkspaceId, :FolderName, :FolderType, :ParentFolder, :GitConfig
+
+        def initialize(workspaceid=nil, foldername=nil, foldertype=nil, parentfolder=nil, gitconfig=nil)
+          @WorkspaceId = workspaceid
+          @FolderName = foldername
+          @FolderType = foldertype
+          @ParentFolder = parentfolder
+          @GitConfig = gitconfig
+        end
+
+        def deserialize(params)
+          @WorkspaceId = params['WorkspaceId']
+          @FolderName = params['FolderName']
+          @FolderType = params['FolderType']
+          unless params['ParentFolder'].nil?
+            @ParentFolder = FolderLocator.new
+            @ParentFolder.deserialize(params['ParentFolder'])
+          end
+          unless params['GitConfig'].nil?
+            @GitConfig = GitRepoConfig.new
+            @GitConfig.deserialize(params['GitConfig'])
+          end
+        end
+      end
+
+      # CreateFolder返回参数结构体
+      class CreateFolderResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>创建文件夹结果</p>
+        # @type Data: :class:`Tencentcloud::Databuddy.v20260715.models.CreateFolderRsp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = CreateFolderRsp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 创建文件夹回包
+      class CreateFolderRsp < TencentCloud::Common::AbstractModel
+        # @param FolderId: <p>文件夹 ID</p>
+        # @type FolderId: String
+
+        attr_accessor :FolderId
+
+        def initialize(folderid=nil)
+          @FolderId = folderid
+        end
+
+        def deserialize(params)
+          @FolderId = params['FolderId']
+        end
+      end
+
       # CreateWorkflow请求参数结构体
       class CreateWorkflowRequest < TencentCloud::Common::AbstractModel
         # @param WorkspaceId: <p>工作空间ID，可通过 ListWorkspaces 获取。必填</p>
@@ -755,6 +832,69 @@ module TencentCloud
         end
       end
 
+      # CreateWorkspace请求参数结构体
+      class CreateWorkspaceRequest < TencentCloud::Common::AbstractModel
+        # @param WorkspaceName: <p>工作空间名称，max_len=128</p>
+        # @type WorkspaceName: String
+        # @param WorkspaceRegion: <p>工作空间地域（如 ap-guangzhou），max_len=64</p>
+        # @type WorkspaceRegion: String
+        # @param Description: <p>工作空间描述，max_len=300</p>
+        # @type Description: String
+
+        attr_accessor :WorkspaceName, :WorkspaceRegion, :Description
+
+        def initialize(workspacename=nil, workspaceregion=nil, description=nil)
+          @WorkspaceName = workspacename
+          @WorkspaceRegion = workspaceregion
+          @Description = description
+        end
+
+        def deserialize(params)
+          @WorkspaceName = params['WorkspaceName']
+          @WorkspaceRegion = params['WorkspaceRegion']
+          @Description = params['Description']
+        end
+      end
+
+      # CreateWorkspace返回参数结构体
+      class CreateWorkspaceResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>创建成功的工作空间ID</p>
+        # @type Data: :class:`Tencentcloud::Databuddy.v20260715.models.CreateWorkspaceRsp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = CreateWorkspaceRsp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 创建工作空间响应
+      class CreateWorkspaceRsp < TencentCloud::Common::AbstractModel
+        # @param WorkspaceId: 创建成功的工作空间ID
+        # @type WorkspaceId: String
+
+        attr_accessor :WorkspaceId
+
+        def initialize(workspaceid=nil)
+          @WorkspaceId = workspaceid
+        end
+
+        def deserialize(params)
+          @WorkspaceId = params['WorkspaceId']
+        end
+      end
+
       # DeleteConsoleGroups请求参数结构体
       class DeleteConsoleGroupsRequest < TencentCloud::Common::AbstractModel
         # @param GroupIds: <p>要删除的用户组 ID 列表，单次最多100个</p>
@@ -880,6 +1020,72 @@ module TencentCloud
         end
       end
 
+      # DeleteFolder请求参数结构体
+      class DeleteFolderRequest < TencentCloud::Common::AbstractModel
+        # @param WorkspaceId: <p>工作空间id</p>
+        # @type WorkspaceId: String
+        # @param Folder: <p>待删除的文件夹</p>
+        # @type Folder: :class:`Tencentcloud::Databuddy.v20260715.models.FolderLocator`
+        # @param ForceDelete: <p>软删除还是从回收站硬删除</p><p>枚举值：</p><ul><li>false： 软删除到回收站</li><li>true： 从回收站硬删除</li></ul>
+        # @type ForceDelete: Boolean
+
+        attr_accessor :WorkspaceId, :Folder, :ForceDelete
+
+        def initialize(workspaceid=nil, folder=nil, forcedelete=nil)
+          @WorkspaceId = workspaceid
+          @Folder = folder
+          @ForceDelete = forcedelete
+        end
+
+        def deserialize(params)
+          @WorkspaceId = params['WorkspaceId']
+          unless params['Folder'].nil?
+            @Folder = FolderLocator.new
+            @Folder.deserialize(params['Folder'])
+          end
+          @ForceDelete = params['ForceDelete']
+        end
+      end
+
+      # DeleteFolder返回参数结构体
+      class DeleteFolderResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>删除文件夹结果</p>
+        # @type Data: :class:`Tencentcloud::Databuddy.v20260715.models.DeleteFolderRsp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DeleteFolderRsp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 删除文件夹回包
+      class DeleteFolderRsp < TencentCloud::Common::AbstractModel
+        # @param Status: <p>删除文件夹状态</p>
+        # @type Status: Boolean
+
+        attr_accessor :Status
+
+        def initialize(status=nil)
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+        end
+      end
+
       # DeleteWorkflow请求参数结构体
       class DeleteWorkflowRequest < TencentCloud::Common::AbstractModel
         # @param WorkspaceId: <p>工作空间ID，可通过 ListWorkspaces 获取。必填</p>
@@ -928,6 +1134,61 @@ module TencentCloud
       class DeleteWorkflowRsp < TencentCloud::Common::AbstractModel
         # @param Status: 删除状态，true 表示成功
         # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Boolean
+
+        attr_accessor :Status
+
+        def initialize(status=nil)
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+        end
+      end
+
+      # DeleteWorkspace请求参数结构体
+      class DeleteWorkspaceRequest < TencentCloud::Common::AbstractModel
+        # @param WorkspaceId: <p>工作空间ID</p>
+        # @type WorkspaceId: String
+
+        attr_accessor :WorkspaceId
+
+        def initialize(workspaceid=nil)
+          @WorkspaceId = workspaceid
+        end
+
+        def deserialize(params)
+          @WorkspaceId = params['WorkspaceId']
+        end
+      end
+
+      # DeleteWorkspace返回参数结构体
+      class DeleteWorkspaceResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>操作结果</p>
+        # @type Data: :class:`Tencentcloud::Databuddy.v20260715.models.DeleteWorkspaceRsp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DeleteWorkspaceRsp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 删除工作空间响应
+      class DeleteWorkspaceRsp < TencentCloud::Common::AbstractModel
+        # @param Status: 操作是否成功
         # @type Status: Boolean
 
         attr_accessor :Status
@@ -1150,6 +1411,114 @@ module TencentCloud
         end
       end
 
+      # 文件元数据
+      class FileMeta < TencentCloud::Common::AbstractModel
+        # @param FileId: <p>文件id</p>
+        # @type FileId: String
+        # @param FileName: <p>文件/文件夹名称</p>
+        # @type FileName: String
+        # @param FileType: <p>文件类型</p>
+        # @type FileType: String
+        # @param CreateTime: <p>创建时间，毫秒秒级时间戳</p><p>参数格式：时间戳</p>
+        # @type CreateTime: String
+        # @param UpdateTime: <p>更新时间</p><p>参数格式：时间戳字符串</p>
+        # @type UpdateTime: String
+        # @param AllowActions: <p>acl权限类型</p>
+        # @type AllowActions: Array
+        # @param IsFavorite: <p>是否收藏</p>
+        # @type IsFavorite: Boolean
+        # @param PathName: <p>文件path</p>
+        # @type PathName: String
+        # @param IsSystemGenerated: <p>是否系统创建</p>
+        # @type IsSystemGenerated: Boolean
+
+        attr_accessor :FileId, :FileName, :FileType, :CreateTime, :UpdateTime, :AllowActions, :IsFavorite, :PathName, :IsSystemGenerated
+
+        def initialize(fileid=nil, filename=nil, filetype=nil, createtime=nil, updatetime=nil, allowactions=nil, isfavorite=nil, pathname=nil, issystemgenerated=nil)
+          @FileId = fileid
+          @FileName = filename
+          @FileType = filetype
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @AllowActions = allowactions
+          @IsFavorite = isfavorite
+          @PathName = pathname
+          @IsSystemGenerated = issystemgenerated
+        end
+
+        def deserialize(params)
+          @FileId = params['FileId']
+          @FileName = params['FileName']
+          @FileType = params['FileType']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @AllowActions = params['AllowActions']
+          @IsFavorite = params['IsFavorite']
+          @PathName = params['PathName']
+          @IsSystemGenerated = params['IsSystemGenerated']
+        end
+      end
+
+      # 文件节点
+      class FileNode < TencentCloud::Common::AbstractModel
+        # @param Node: <p>当前节点</p>
+        # @type Node: :class:`Tencentcloud::Databuddy.v20260715.models.FileMeta`
+        # @param Parent: <p>父节点</p>
+        # @type Parent: :class:`Tencentcloud::Databuddy.v20260715.models.FileMeta`
+        # @param Creator: <p>创建人</p>
+        # @type Creator: :class:`Tencentcloud::Databuddy.v20260715.models.UserInfo`
+        # @param Owner: <p>拥有者</p>
+        # @type Owner: :class:`Tencentcloud::Databuddy.v20260715.models.UserInfo`
+        # @param NodeType: <p>节点类型</p>
+        # @type NodeType: String
+        # @param OriginPath: <p>原始路径</p>
+        # @type OriginPath: String
+        # @param DeleteTime: <p>回收时间</p>
+        # @type DeleteTime: String
+        # @param GitConfig: <p>文件git配置</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GitConfig: :class:`Tencentcloud::Databuddy.v20260715.models.GitRepoConfig`
+
+        attr_accessor :Node, :Parent, :Creator, :Owner, :NodeType, :OriginPath, :DeleteTime, :GitConfig
+
+        def initialize(node=nil, parent=nil, creator=nil, owner=nil, nodetype=nil, originpath=nil, deletetime=nil, gitconfig=nil)
+          @Node = node
+          @Parent = parent
+          @Creator = creator
+          @Owner = owner
+          @NodeType = nodetype
+          @OriginPath = originpath
+          @DeleteTime = deletetime
+          @GitConfig = gitconfig
+        end
+
+        def deserialize(params)
+          unless params['Node'].nil?
+            @Node = FileMeta.new
+            @Node.deserialize(params['Node'])
+          end
+          unless params['Parent'].nil?
+            @Parent = FileMeta.new
+            @Parent.deserialize(params['Parent'])
+          end
+          unless params['Creator'].nil?
+            @Creator = UserInfo.new
+            @Creator.deserialize(params['Creator'])
+          end
+          unless params['Owner'].nil?
+            @Owner = UserInfo.new
+            @Owner.deserialize(params['Owner'])
+          end
+          @NodeType = params['NodeType']
+          @OriginPath = params['OriginPath']
+          @DeleteTime = params['DeleteTime']
+          unless params['GitConfig'].nil?
+            @GitConfig = GitRepoConfig.new
+            @GitConfig.deserialize(params['GitConfig'])
+          end
+        end
+      end
+
       # Notebook/Python单元格输出配置
       class FileOutputConf < TencentCloud::Common::AbstractModel
         # @param CellId: 单元格 ID
@@ -1198,6 +1567,26 @@ module TencentCloud
           @StorageType = params['StorageType']
           @StoragePath = params['StoragePath']
           @Content = params['Content']
+        end
+      end
+
+      # 文件夹定位器
+      class FolderLocator < TencentCloud::Common::AbstractModel
+        # @param FolderId: <p>节点id</p>
+        # @type FolderId: String
+        # @param PathName: <p>节点path</p>
+        # @type PathName: String
+
+        attr_accessor :FolderId, :PathName
+
+        def initialize(folderid=nil, pathname=nil)
+          @FolderId = folderid
+          @PathName = pathname
+        end
+
+        def deserialize(params)
+          @FolderId = params['FolderId']
+          @PathName = params['PathName']
         end
       end
 
@@ -1258,6 +1647,71 @@ module TencentCloud
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # GetFolder请求参数结构体
+      class GetFolderRequest < TencentCloud::Common::AbstractModel
+        # @param WorkspaceId: <p>工作空间id</p>
+        # @type WorkspaceId: String
+        # @param Folder: <p>文件夹定位</p>
+        # @type Folder: :class:`Tencentcloud::Databuddy.v20260715.models.FolderLocator`
+
+        attr_accessor :WorkspaceId, :Folder
+
+        def initialize(workspaceid=nil, folder=nil)
+          @WorkspaceId = workspaceid
+          @Folder = folder
+        end
+
+        def deserialize(params)
+          @WorkspaceId = params['WorkspaceId']
+          unless params['Folder'].nil?
+            @Folder = FolderLocator.new
+            @Folder.deserialize(params['Folder'])
+          end
+        end
+      end
+
+      # GetFolder返回参数结构体
+      class GetFolderResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>文件夹详情结果</p>
+        # @type Data: :class:`Tencentcloud::Databuddy.v20260715.models.GetFolderRsp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = GetFolderRsp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 获取文件夹回包
+      class GetFolderRsp < TencentCloud::Common::AbstractModel
+        # @param Folder: <p>文件夹信息</p>
+        # @type Folder: :class:`Tencentcloud::Databuddy.v20260715.models.FileNode`
+
+        attr_accessor :Folder
+
+        def initialize(folder=nil)
+          @Folder = folder
+        end
+
+        def deserialize(params)
+          unless params['Folder'].nil?
+            @Folder = FileNode.new
+            @Folder.deserialize(params['Folder'])
+          end
         end
       end
 
@@ -1751,6 +2205,96 @@ module TencentCloud
             @InnerWorkflowTaskRun.deserialize(params['InnerWorkflowTaskRun'])
           end
           @ScheduledTime = params['ScheduledTime']
+        end
+      end
+
+      # GetWorkspace请求参数结构体
+      class GetWorkspaceRequest < TencentCloud::Common::AbstractModel
+        # @param WorkspaceId: <p>工作空间ID</p>
+        # @type WorkspaceId: String
+
+        attr_accessor :WorkspaceId
+
+        def initialize(workspaceid=nil)
+          @WorkspaceId = workspaceid
+        end
+
+        def deserialize(params)
+          @WorkspaceId = params['WorkspaceId']
+        end
+      end
+
+      # GetWorkspace返回参数结构体
+      class GetWorkspaceResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>工作空间详情</p>
+        # @type Data: :class:`Tencentcloud::Databuddy.v20260715.models.GetWorkspaceRsp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = GetWorkspaceRsp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 查询工作空间详情响应
+      class GetWorkspaceRsp < TencentCloud::Common::AbstractModel
+        # @param WorkspaceInfo: 工作空间详情
+        # @type WorkspaceInfo: :class:`Tencentcloud::Databuddy.v20260715.models.WorkspaceInfo`
+
+        attr_accessor :WorkspaceInfo
+
+        def initialize(workspaceinfo=nil)
+          @WorkspaceInfo = workspaceinfo
+        end
+
+        def deserialize(params)
+          unless params['WorkspaceInfo'].nil?
+            @WorkspaceInfo = WorkspaceInfo.new
+            @WorkspaceInfo.deserialize(params['WorkspaceInfo'])
+          end
+        end
+      end
+
+      # git配置
+      class GitRepoConfig < TencentCloud::Common::AbstractModel
+        # @param SparseCheckout: <p>检出规则</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SparseCheckout: :class:`Tencentcloud::Databuddy.v20260715.models.SparseCheckoutConfig`
+        # @param RepoUrl: <p>Git 仓库地址</p>
+        # @type RepoUrl: String
+        # @param Branch: <p>分支名</p>
+        # @type Branch: String
+        # @param AuthConfigName: <p>关联的 gitAuth 配置名称</p>
+        # @type AuthConfigName: String
+
+        attr_accessor :SparseCheckout, :RepoUrl, :Branch, :AuthConfigName
+
+        def initialize(sparsecheckout=nil, repourl=nil, branch=nil, authconfigname=nil)
+          @SparseCheckout = sparsecheckout
+          @RepoUrl = repourl
+          @Branch = branch
+          @AuthConfigName = authconfigname
+        end
+
+        def deserialize(params)
+          unless params['SparseCheckout'].nil?
+            @SparseCheckout = SparseCheckoutConfig.new
+            @SparseCheckout.deserialize(params['SparseCheckout'])
+          end
+          @RepoUrl = params['RepoUrl']
+          @Branch = params['Branch']
+          @AuthConfigName = params['AuthConfigName']
         end
       end
 
@@ -2477,6 +3021,126 @@ module TencentCloud
               consoleuserinfo_tmp = ConsoleUserInfo.new
               consoleuserinfo_tmp.deserialize(i)
               @Items << consoleuserinfo_tmp
+            end
+          end
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @TotalCount = params['TotalCount']
+          @TotalPageNumber = params['TotalPageNumber']
+        end
+      end
+
+      # ListFiles请求参数结构体
+      class ListFilesRequest < TencentCloud::Common::AbstractModel
+        # @param WorkspaceId: <p>工作空间id</p>
+        # @type WorkspaceId: String
+        # @param Parent: <p>父目录，不填默认查询根节点</p>
+        # @type Parent: :class:`Tencentcloud::Databuddy.v20260715.models.FolderLocator`
+        # @param FileTypes: <p>按文件类型过滤</p>
+        # @type FileTypes: Array
+        # @param NameKeyword: <p>文件名模糊匹配</p>
+        # @type NameKeyword: String
+        # @param OwnerUserUins: <p>按所有者UIN过滤，多值为或关系</p>
+        # @type OwnerUserUins: Array
+        # @param OnlyFolder: <p>是否只列出文件夹，默认 false</p>
+        # @type OnlyFolder: Boolean
+        # @param OrderBys: <p>排序字段列表，如创建时间 [{Name: &#39;CreateTime&#39;, Direction: &#39;DESC&#39;}]，文件名称 [{Name: &#39;Name&#39;, Direction: &#39;ASC&#39;}]</p>
+        # @type OrderBys: Array
+        # @param PageNumber: <p>页码，默认1，最小值1</p>
+        # @type PageNumber: Integer
+        # @param PageSize: <p>每页条数，默认10，最小值10，最大值100</p><p>取值范围：[10, 100]</p>
+        # @type PageSize: Integer
+
+        attr_accessor :WorkspaceId, :Parent, :FileTypes, :NameKeyword, :OwnerUserUins, :OnlyFolder, :OrderBys, :PageNumber, :PageSize
+
+        def initialize(workspaceid=nil, parent=nil, filetypes=nil, namekeyword=nil, owneruseruins=nil, onlyfolder=nil, orderbys=nil, pagenumber=nil, pagesize=nil)
+          @WorkspaceId = workspaceid
+          @Parent = parent
+          @FileTypes = filetypes
+          @NameKeyword = namekeyword
+          @OwnerUserUins = owneruseruins
+          @OnlyFolder = onlyfolder
+          @OrderBys = orderbys
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          @WorkspaceId = params['WorkspaceId']
+          unless params['Parent'].nil?
+            @Parent = FolderLocator.new
+            @Parent.deserialize(params['Parent'])
+          end
+          @FileTypes = params['FileTypes']
+          @NameKeyword = params['NameKeyword']
+          @OwnerUserUins = params['OwnerUserUins']
+          @OnlyFolder = params['OnlyFolder']
+          unless params['OrderBys'].nil?
+            @OrderBys = []
+            params['OrderBys'].each do |i|
+              orderby_tmp = OrderBy.new
+              orderby_tmp.deserialize(i)
+              @OrderBys << orderby_tmp
+            end
+          end
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+        end
+      end
+
+      # ListFiles返回参数结构体
+      class ListFilesResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>文件列表结果</p>
+        # @type Data: :class:`Tencentcloud::Databuddy.v20260715.models.ListFilesRsp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ListFilesRsp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 查询文件信息结果
+      class ListFilesRsp < TencentCloud::Common::AbstractModel
+        # @param Items: <p>文件/文件夹节点列表</p>
+        # @type Items: Array
+        # @param PageNumber: <p>当前页码</p>
+        # @type PageNumber: Integer
+        # @param PageSize: <p>每页条数</p>
+        # @type PageSize: Integer
+        # @param TotalCount: <p>总条数</p>
+        # @type TotalCount: Integer
+        # @param TotalPageNumber: <p>总页数</p>
+        # @type TotalPageNumber: Integer
+
+        attr_accessor :Items, :PageNumber, :PageSize, :TotalCount, :TotalPageNumber
+
+        def initialize(items=nil, pagenumber=nil, pagesize=nil, totalcount=nil, totalpagenumber=nil)
+          @Items = items
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @TotalCount = totalcount
+          @TotalPageNumber = totalpagenumber
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              filenode_tmp = FileNode.new
+              filenode_tmp.deserialize(i)
+              @Items << filenode_tmp
             end
           end
           @PageNumber = params['PageNumber']
@@ -3429,6 +4093,61 @@ module TencentCloud
         end
       end
 
+      # git检出规则
+      class SparseCheckoutConfig < TencentCloud::Common::AbstractModel
+        # @param Enabled: <p>是否启用稀疏检出</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Enabled: Boolean
+        # @param ConeMode: <p>是否使用 cone 模式（推荐 true，按目录匹配更高效）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConeMode: Boolean
+        # @param Patterns: <p>稀疏检出路径列表（如 [&quot;src/module-a/&quot;, &quot;docs/&quot;]）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Patterns: Array
+
+        attr_accessor :Enabled, :ConeMode, :Patterns
+
+        def initialize(enabled=nil, conemode=nil, patterns=nil)
+          @Enabled = enabled
+          @ConeMode = conemode
+          @Patterns = patterns
+        end
+
+        def deserialize(params)
+          @Enabled = params['Enabled']
+          @ConeMode = params['ConeMode']
+          @Patterns = params['Patterns']
+        end
+      end
+
+      # 用户基础展示信息
+      class StandardUserInfo < TencentCloud::Common::AbstractModel
+        # @param UserUin: 用户UIN
+        # @type UserUin: String
+        # @param UserName: 用户名
+        # @type UserName: String
+        # @param Nickname: 昵称
+        # @type Nickname: String
+        # @param UserTag: 0: 普通用户 1: entraId用户
+        # @type UserTag: String
+
+        attr_accessor :UserUin, :UserName, :Nickname, :UserTag
+
+        def initialize(useruin=nil, username=nil, nickname=nil, usertag=nil)
+          @UserUin = useruin
+          @UserName = username
+          @Nickname = nickname
+          @UserTag = usertag
+        end
+
+        def deserialize(params)
+          @UserUin = params['UserUin']
+          @UserName = params['UserName']
+          @Nickname = params['Nickname']
+          @UserTag = params['UserTag']
+        end
+      end
+
       # 任务重试策略
       class TaskRetryStrategy < TencentCloud::Common::AbstractModel
         # @param MaxRetryTimes: 最多重试次数，默认3
@@ -4018,6 +4737,83 @@ module TencentCloud
         end
       end
 
+      # UpdateFolder请求参数结构体
+      class UpdateFolderRequest < TencentCloud::Common::AbstractModel
+        # @param WorkspaceId: <p>工作空间ID</p>
+        # @type WorkspaceId: String
+        # @param Folder: <p>待更新文件夹</p>
+        # @type Folder: :class:`Tencentcloud::Databuddy.v20260715.models.FolderLocator`
+        # @param OperationType: <p>操作类型</p><p>枚举值：</p><ul><li>1： 重命名</li><li>2： 移动</li></ul>
+        # @type OperationType: String
+        # @param FolderName: <p>重命名后的文件名，OperationType = 1时生效</p>
+        # @type FolderName: String
+        # @param TargetParent: <p>移动的目的文件夹，OperationType = 2时生效</p>
+        # @type TargetParent: :class:`Tencentcloud::Databuddy.v20260715.models.FolderLocator`
+
+        attr_accessor :WorkspaceId, :Folder, :OperationType, :FolderName, :TargetParent
+
+        def initialize(workspaceid=nil, folder=nil, operationtype=nil, foldername=nil, targetparent=nil)
+          @WorkspaceId = workspaceid
+          @Folder = folder
+          @OperationType = operationtype
+          @FolderName = foldername
+          @TargetParent = targetparent
+        end
+
+        def deserialize(params)
+          @WorkspaceId = params['WorkspaceId']
+          unless params['Folder'].nil?
+            @Folder = FolderLocator.new
+            @Folder.deserialize(params['Folder'])
+          end
+          @OperationType = params['OperationType']
+          @FolderName = params['FolderName']
+          unless params['TargetParent'].nil?
+            @TargetParent = FolderLocator.new
+            @TargetParent.deserialize(params['TargetParent'])
+          end
+        end
+      end
+
+      # UpdateFolder返回参数结构体
+      class UpdateFolderResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>更新文件夹结果</p>
+        # @type Data: :class:`Tencentcloud::Databuddy.v20260715.models.UpdateFolderRsp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = UpdateFolderRsp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 更新文件夹回包
+      class UpdateFolderRsp < TencentCloud::Common::AbstractModel
+        # @param Status: <p>更新文件夹结果，true为成功</p>
+        # @type Status: Boolean
+
+        attr_accessor :Status
+
+        def initialize(status=nil)
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+        end
+      end
+
       # UpdateWorkflow请求参数结构体
       class UpdateWorkflowRequest < TencentCloud::Common::AbstractModel
         # @param WorkspaceId: <p>工作空间ID，可通过 ListWorkspaces 获取。必填</p>
@@ -4087,6 +4883,97 @@ module TencentCloud
 
         def deserialize(params)
           @Status = params['Status']
+        end
+      end
+
+      # UpdateWorkspace请求参数结构体
+      class UpdateWorkspaceRequest < TencentCloud::Common::AbstractModel
+        # @param WorkspaceId: <p>工作空间ID</p>
+        # @type WorkspaceId: String
+        # @param WorkspaceName: <p>工作空间名称，max_len=128</p>
+        # @type WorkspaceName: String
+        # @param Description: <p>工作空间描述，max_len=300</p>
+        # @type Description: String
+
+        attr_accessor :WorkspaceId, :WorkspaceName, :Description
+
+        def initialize(workspaceid=nil, workspacename=nil, description=nil)
+          @WorkspaceId = workspaceid
+          @WorkspaceName = workspacename
+          @Description = description
+        end
+
+        def deserialize(params)
+          @WorkspaceId = params['WorkspaceId']
+          @WorkspaceName = params['WorkspaceName']
+          @Description = params['Description']
+        end
+      end
+
+      # UpdateWorkspace返回参数结构体
+      class UpdateWorkspaceResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>操作结果</p>
+        # @type Data: :class:`Tencentcloud::Databuddy.v20260715.models.UpdateWorkspaceRsp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = UpdateWorkspaceRsp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 修改工作空间响应
+      class UpdateWorkspaceRsp < TencentCloud::Common::AbstractModel
+        # @param Status: 操作是否成功
+        # @type Status: Boolean
+
+        attr_accessor :Status
+
+        def initialize(status=nil)
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+        end
+      end
+
+      # 用户基本信息
+      class UserInfo < TencentCloud::Common::AbstractModel
+        # @param UserUin: <p>uin</p>
+        # @type UserUin: String
+        # @param UserName: <p>子用户名称</p>
+        # @type UserName: String
+        # @param Nickname: <p>子用户昵称</p>
+        # @type Nickname: String
+        # @param UserTag: <p>0: 普通用户 1: entraId用户</p>
+        # @type UserTag: String
+
+        attr_accessor :UserUin, :UserName, :Nickname, :UserTag
+
+        def initialize(useruin=nil, username=nil, nickname=nil, usertag=nil)
+          @UserUin = useruin
+          @UserName = username
+          @Nickname = nickname
+          @UserTag = usertag
+        end
+
+        def deserialize(params)
+          @UserUin = params['UserUin']
+          @UserName = params['UserName']
+          @Nickname = params['Nickname']
+          @UserTag = params['UserTag']
         end
       end
 
@@ -5257,6 +6144,61 @@ module TencentCloud
             @AdvancedConfig = WorkflowTriggerAdvancedConfiguration.new
             @AdvancedConfig.deserialize(params['AdvancedConfig'])
           end
+        end
+      end
+
+      # 工作空间信息
+      class WorkspaceInfo < TencentCloud::Common::AbstractModel
+        # @param WorkspaceId: 工作空间ID
+        # @type WorkspaceId: String
+        # @param WorkspaceName: 工作空间名称
+        # @type WorkspaceName: String
+        # @param Description: 工作空间描述
+        # @type Description: String
+        # @param WorkspaceRegion: 工作空间地域（如 ap-guangzhou）
+        # @type WorkspaceRegion: String
+        # @param Status: 工作空间状态：0=未指定 1=创建中 2=创建失败 3=正常运行中 4=已删除
+        # @type Status: Integer
+        # @param ErrorReason: 失败原因（Status=2 创建失败时有值）
+        # @type ErrorReason: String
+        # @param Creator: 创建者信息
+        # @type Creator: :class:`Tencentcloud::Databuddy.v20260715.models.StandardUserInfo`
+        # @param CreateTime: 创建时间，毫秒时间戳
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间，毫秒时间戳
+        # @type UpdateTime: String
+        # @param HasAccess: 当前用户是否拥有该工作空间的访问权限
+        # @type HasAccess: Boolean
+
+        attr_accessor :WorkspaceId, :WorkspaceName, :Description, :WorkspaceRegion, :Status, :ErrorReason, :Creator, :CreateTime, :UpdateTime, :HasAccess
+
+        def initialize(workspaceid=nil, workspacename=nil, description=nil, workspaceregion=nil, status=nil, errorreason=nil, creator=nil, createtime=nil, updatetime=nil, hasaccess=nil)
+          @WorkspaceId = workspaceid
+          @WorkspaceName = workspacename
+          @Description = description
+          @WorkspaceRegion = workspaceregion
+          @Status = status
+          @ErrorReason = errorreason
+          @Creator = creator
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @HasAccess = hasaccess
+        end
+
+        def deserialize(params)
+          @WorkspaceId = params['WorkspaceId']
+          @WorkspaceName = params['WorkspaceName']
+          @Description = params['Description']
+          @WorkspaceRegion = params['WorkspaceRegion']
+          @Status = params['Status']
+          @ErrorReason = params['ErrorReason']
+          unless params['Creator'].nil?
+            @Creator = StandardUserInfo.new
+            @Creator.deserialize(params['Creator'])
+          end
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @HasAccess = params['HasAccess']
         end
       end
 

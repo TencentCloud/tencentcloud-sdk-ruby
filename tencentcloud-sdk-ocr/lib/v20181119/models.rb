@@ -9169,15 +9169,19 @@ module TencentCloud
         # @type AdvancedInfo: String
         # @param CardCount: <p>卡证正面图片中，证件主体的数量（仅请求曼谷地域[ap-bangkok]返回）</p>
         # @type CardCount: Integer
+        # @param ThaiFirstName: <p>泰文姓名</p>
+        # @type ThaiFirstName: String
+        # @param ThaiLastName: <p>泰文姓名</p>
+        # @type ThaiLastName: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ID, :ThaiName, :EnFirstName, :EnLastName, :IssueDate, :ExpirationDate, :EnIssueDate, :EnExpirationDate, :Birthday, :EnBirthday, :Religion, :SerialNumber, :Address, :LaserID, :PortraitImage, :WarnCardInfos, :AdvancedInfo, :CardCount, :RequestId
+        attr_accessor :ID, :ThaiName, :EnFirstName, :EnLastName, :IssueDate, :ExpirationDate, :EnIssueDate, :EnExpirationDate, :Birthday, :EnBirthday, :Religion, :SerialNumber, :Address, :LaserID, :PortraitImage, :WarnCardInfos, :AdvancedInfo, :CardCount, :ThaiFirstName, :ThaiLastName, :RequestId
         extend Gem::Deprecate
         deprecate :AdvancedInfo, :none, 2026, 9
         deprecate :AdvancedInfo=, :none, 2026, 9
 
-        def initialize(id=nil, thainame=nil, enfirstname=nil, enlastname=nil, issuedate=nil, expirationdate=nil, enissuedate=nil, enexpirationdate=nil, birthday=nil, enbirthday=nil, religion=nil, serialnumber=nil, address=nil, laserid=nil, portraitimage=nil, warncardinfos=nil, advancedinfo=nil, cardcount=nil, requestid=nil)
+        def initialize(id=nil, thainame=nil, enfirstname=nil, enlastname=nil, issuedate=nil, expirationdate=nil, enissuedate=nil, enexpirationdate=nil, birthday=nil, enbirthday=nil, religion=nil, serialnumber=nil, address=nil, laserid=nil, portraitimage=nil, warncardinfos=nil, advancedinfo=nil, cardcount=nil, thaifirstname=nil, thailastname=nil, requestid=nil)
           @ID = id
           @ThaiName = thainame
           @EnFirstName = enfirstname
@@ -9196,6 +9200,8 @@ module TencentCloud
           @WarnCardInfos = warncardinfos
           @AdvancedInfo = advancedinfo
           @CardCount = cardcount
+          @ThaiFirstName = thaifirstname
+          @ThaiLastName = thailastname
           @RequestId = requestid
         end
 
@@ -9218,6 +9224,8 @@ module TencentCloud
           @WarnCardInfos = params['WarnCardInfos']
           @AdvancedInfo = params['AdvancedInfo']
           @CardCount = params['CardCount']
+          @ThaiFirstName = params['ThaiFirstName']
+          @ThaiLastName = params['ThaiLastName']
           @RequestId = params['RequestId']
         end
       end

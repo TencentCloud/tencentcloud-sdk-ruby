@@ -1123,7 +1123,7 @@ module TencentCloud
 
       # CreatePreCacheImageTask请求参数结构体
       class CreatePreCacheImageTaskRequest < TencentCloud::Common::AbstractModel
-        # @param Image: <p>镜像地址</p>
+        # @param Image: <p>镜像地址。仅支持 repository:tag、repository@sha256:&lt;64 位摘要&gt; 或 repository:tag@sha256:&lt;64 位摘要&gt;。</p>
         # @type Image: String
         # @param ImageRegistryType: <p>镜像仓库类型：<code>enterprise</code>、<code>personal</code>、<code>custom</code></p><p>枚举值：</p><ul><li>enterprise： tcr 企业容器镜像服务</li><li>personal： ccr 个人容器镜像服务</li></ul>
         # @type ImageRegistryType: String
@@ -1149,15 +1149,18 @@ module TencentCloud
         # @type ImageDigest: String
         # @param ImageRegistryType: <p>镜像仓库类型：<code>enterprise</code>、<code>personal</code>。</p>
         # @type ImageRegistryType: String
+        # @param PreCacheImageId: <p>镜像预热ID</p>
+        # @type PreCacheImageId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Image, :ImageDigest, :ImageRegistryType, :RequestId
+        attr_accessor :Image, :ImageDigest, :ImageRegistryType, :PreCacheImageId, :RequestId
 
-        def initialize(image=nil, imagedigest=nil, imageregistrytype=nil, requestid=nil)
+        def initialize(image=nil, imagedigest=nil, imageregistrytype=nil, precacheimageid=nil, requestid=nil)
           @Image = image
           @ImageDigest = imagedigest
           @ImageRegistryType = imageregistrytype
+          @PreCacheImageId = precacheimageid
           @RequestId = requestid
         end
 
@@ -1165,6 +1168,7 @@ module TencentCloud
           @Image = params['Image']
           @ImageDigest = params['ImageDigest']
           @ImageRegistryType = params['ImageRegistryType']
+          @PreCacheImageId = params['PreCacheImageId']
           @RequestId = params['RequestId']
         end
       end
@@ -2296,23 +2300,27 @@ module TencentCloud
       class DescribePreCacheImageTaskRequest < TencentCloud::Common::AbstractModel
         # @param Image: <p>镜像地址</p>
         # @type Image: String
-        # @param ImageDigest: <p>镜像 Digest</p>
-        # @type ImageDigest: String
         # @param ImageRegistryType: <p>镜像仓库类型：<code>enterprise</code>、<code>personal</code>、<code>custom</code> 。</p><p>枚举值：</p><ul><li>enterprise： tcr 企业容器镜像服务</li><li>personal： ccr 个人容器镜像服务</li></ul>
         # @type ImageRegistryType: String
+        # @param ImageDigest: <p>镜像 Digest</p>
+        # @type ImageDigest: String
+        # @param PreCacheImageId: <p>镜像预热ID，只能ID或三元组（Image、ImageDigest、ImageRegistrytype）二选一查询</p>
+        # @type PreCacheImageId: String
 
-        attr_accessor :Image, :ImageDigest, :ImageRegistryType
+        attr_accessor :Image, :ImageRegistryType, :ImageDigest, :PreCacheImageId
 
-        def initialize(image=nil, imagedigest=nil, imageregistrytype=nil)
+        def initialize(image=nil, imageregistrytype=nil, imagedigest=nil, precacheimageid=nil)
           @Image = image
-          @ImageDigest = imagedigest
           @ImageRegistryType = imageregistrytype
+          @ImageDigest = imagedigest
+          @PreCacheImageId = precacheimageid
         end
 
         def deserialize(params)
           @Image = params['Image']
-          @ImageDigest = params['ImageDigest']
           @ImageRegistryType = params['ImageRegistryType']
+          @ImageDigest = params['ImageDigest']
+          @PreCacheImageId = params['PreCacheImageId']
         end
       end
 
@@ -2328,17 +2336,32 @@ module TencentCloud
         # @type Status: String
         # @param Message: <p>镜像预热状态描述</p>
         # @type Message: String
+        # @param CreateTime: <p>镜像预热创建时间</p>
+        # @type CreateTime: String
+        # @param PreCacheImageId: <p>镜像预热ID</p>
+        # @type PreCacheImageId: String
+        # @param SourceType: <p>镜像预热资源的来源类型，取值为 EXPLICIT、AUTO</p><p>枚举值：</p><ul><li>EXPLICIT： 手动创建</li><li>AUTO： 自动创建</li><li>TCR_AUTO： TCR自动预热</li></ul>
+        # @type SourceType: String
+        # @param CachedImageSizeBytes: <p>镜像预热存储大小</p><p>单位：Byte</p>
+        # @type CachedImageSizeBytes: Integer
+        # @param LastUsedTime: <p>该预热镜像最近一次被沙箱实例使用时间</p>
+        # @type LastUsedTime: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Image, :ImageDigest, :ImageRegistryType, :Status, :Message, :RequestId
+        attr_accessor :Image, :ImageDigest, :ImageRegistryType, :Status, :Message, :CreateTime, :PreCacheImageId, :SourceType, :CachedImageSizeBytes, :LastUsedTime, :RequestId
 
-        def initialize(image=nil, imagedigest=nil, imageregistrytype=nil, status=nil, message=nil, requestid=nil)
+        def initialize(image=nil, imagedigest=nil, imageregistrytype=nil, status=nil, message=nil, createtime=nil, precacheimageid=nil, sourcetype=nil, cachedimagesizebytes=nil, lastusedtime=nil, requestid=nil)
           @Image = image
           @ImageDigest = imagedigest
           @ImageRegistryType = imageregistrytype
           @Status = status
           @Message = message
+          @CreateTime = createtime
+          @PreCacheImageId = precacheimageid
+          @SourceType = sourcetype
+          @CachedImageSizeBytes = cachedimagesizebytes
+          @LastUsedTime = lastusedtime
           @RequestId = requestid
         end
 
@@ -2348,6 +2371,11 @@ module TencentCloud
           @ImageRegistryType = params['ImageRegistryType']
           @Status = params['Status']
           @Message = params['Message']
+          @CreateTime = params['CreateTime']
+          @PreCacheImageId = params['PreCacheImageId']
+          @SourceType = params['SourceType']
+          @CachedImageSizeBytes = params['CachedImageSizeBytes']
+          @LastUsedTime = params['LastUsedTime']
           @RequestId = params['RequestId']
         end
       end

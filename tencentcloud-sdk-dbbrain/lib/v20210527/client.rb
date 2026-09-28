@@ -1061,6 +1061,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询实例的死锁事件列表
+
+        # @param request: Request instance for DescribeDeadLockLogs.
+        # @type request: :class:`Tencentcloud::dbbrain::V20210527::DescribeDeadLockLogsRequest`
+        # @rtype: :class:`Tencentcloud::dbbrain::V20210527::DescribeDeadLockLogsResponse`
+        def DescribeDeadLockLogs(request)
+          body = send_request('DescribeDeadLockLogs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDeadLockLogsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取实例信息列表。Region统一选择广州。
 
         # @param request: Request instance for DescribeDiagDBInstances.

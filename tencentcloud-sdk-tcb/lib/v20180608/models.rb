@@ -615,6 +615,34 @@ module TencentCloud
         end
       end
 
+      # 构建产物信息
+      class BuildArtifactInfo < TencentCloud::Common::AbstractModel
+        # @param Type: <p>产物类型</p>
+        # @type Type: String
+        # @param Name: <p>产物名称</p>
+        # @type Name: String
+        # @param Status: <p>产物状态</p>
+        # @type Status: String
+        # @param ContentJson: <p>扩展详情 Json</p>
+        # @type ContentJson: String
+
+        attr_accessor :Type, :Name, :Status, :ContentJson
+
+        def initialize(type=nil, name=nil, status=nil, contentjson=nil)
+          @Type = type
+          @Name = name
+          @Status = status
+          @ContentJson = contentjson
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Name = params['Name']
+          @Status = params['Status']
+          @ContentJson = params['ContentJson']
+        end
+      end
+
       # 构建命令
       class BuildCommands < TencentCloud::Common::AbstractModel
         # @param InstallCmd: <p>平台生成默认 install step 时执行</p>
@@ -636,6 +664,26 @@ module TencentCloud
           @InstallCmd = params['InstallCmd']
           @BuildCmd = params['BuildCmd']
           @DeployCmd = params['DeployCmd']
+        end
+      end
+
+      # 构建上下文
+      class BuildContext < TencentCloud::Common::AbstractModel
+        # @param Path: <p>构建路径</p>
+        # @type Path: String
+        # @param OutPut: <p>构建产物输出路径</p>
+        # @type OutPut: String
+
+        attr_accessor :Path, :OutPut
+
+        def initialize(path=nil, output=nil)
+          @Path = path
+          @OutPut = output
+        end
+
+        def deserialize(params)
+          @Path = params['Path']
+          @OutPut = params['OutPut']
         end
       end
 
@@ -677,10 +725,12 @@ module TencentCloud
         # @type CosTimestamp: String
         # @param CosSuffix: <p>仅 Type=zip/cos 时使用。zip 文件后缀，默认 .zip；与 CosTimestamp 配合定位 COS 对象</p>
         # @type CosSuffix: String
+        # @param PackageFileName: <p>zip 包名称</p>
+        # @type PackageFileName: String
 
-        attr_accessor :Type, :Repo, :Ref, :Channel, :IsPrivate, :CodeUrlWithAuth, :CosTimestamp, :CosSuffix
+        attr_accessor :Type, :Repo, :Ref, :Channel, :IsPrivate, :CodeUrlWithAuth, :CosTimestamp, :CosSuffix, :PackageFileName
 
-        def initialize(type=nil, repo=nil, ref=nil, channel=nil, isprivate=nil, codeurlwithauth=nil, costimestamp=nil, cossuffix=nil)
+        def initialize(type=nil, repo=nil, ref=nil, channel=nil, isprivate=nil, codeurlwithauth=nil, costimestamp=nil, cossuffix=nil, packagefilename=nil)
           @Type = type
           @Repo = repo
           @Ref = ref
@@ -689,6 +739,7 @@ module TencentCloud
           @CodeUrlWithAuth = codeurlwithauth
           @CosTimestamp = costimestamp
           @CosSuffix = cossuffix
+          @PackageFileName = packagefilename
         end
 
         def deserialize(params)
@@ -700,6 +751,7 @@ module TencentCloud
           @CodeUrlWithAuth = params['CodeUrlWithAuth']
           @CosTimestamp = params['CosTimestamp']
           @CosSuffix = params['CosSuffix']
+          @PackageFileName = params['PackageFileName']
         end
       end
 
@@ -778,30 +830,152 @@ module TencentCloud
         end
       end
 
+      # 云应用过滤
+      class CloudAppFilter < TencentCloud::Common::AbstractModel
+        # @param ServiceNameList: <p>云应用过滤列表</p>
+        # @type ServiceNameList: Array
+
+        attr_accessor :ServiceNameList
+
+        def initialize(servicenamelist=nil)
+          @ServiceNameList = servicenamelist
+        end
+
+        def deserialize(params)
+          @ServiceNameList = params['ServiceNameList']
+        end
+      end
+
+      # 云应用关联服务
+      class CloudAppLinkService < TencentCloud::Common::AbstractModel
+        # @param ServiceType: <p>服务类型</p><p>枚举值：</p><ul><li>http-function： HTTP 云函数</li><li>function： 普通云函数</li><li>static-hosting： 静态托管</li></ul>
+        # @type ServiceType: String
+        # @param ServiceName: <p>服务名称</p>
+        # @type ServiceName: String
+        # @param Identifier: <p>服务身份</p>
+        # @type Identifier: String
+        # @param Action: <p>服务动作</p>
+        # @type Action: String
+        # @param Command: <p>服务构建命令</p>
+        # @type Command: :class:`Tencentcloud::Tcb.v20180608.models.BuildCommands`
+        # @param BuildContext: <p>服务构建部署上下文</p>
+        # @type BuildContext: :class:`Tencentcloud::Tcb.v20180608.models.BuildContext`
+
+        attr_accessor :ServiceType, :ServiceName, :Identifier, :Action, :Command, :BuildContext
+
+        def initialize(servicetype=nil, servicename=nil, identifier=nil, action=nil, command=nil, buildcontext=nil)
+          @ServiceType = servicetype
+          @ServiceName = servicename
+          @Identifier = identifier
+          @Action = action
+          @Command = command
+          @BuildContext = buildcontext
+        end
+
+        def deserialize(params)
+          @ServiceType = params['ServiceType']
+          @ServiceName = params['ServiceName']
+          @Identifier = params['Identifier']
+          @Action = params['Action']
+          unless params['Command'].nil?
+            @Command = BuildCommands.new
+            @Command.deserialize(params['Command'])
+          end
+          unless params['BuildContext'].nil?
+            @BuildContext = BuildContext.new
+            @BuildContext.deserialize(params['BuildContext'])
+          end
+        end
+      end
+
+      # 云应用资源信息
+      class CloudAppResourceItem < TencentCloud::Common::AbstractModel
+        # @param ServiceName: <p>服务名称</p>
+        # @type ServiceName: String
+        # @param ServiceType: <p>服务类型</p><p>枚举值：</p><ul><li>http-function： HTTP 云函数</li><li>function： 普通云函数</li><li>static-hosting： 静态托管</li></ul>
+        # @type ServiceType: String
+        # @param DeployedRef: <p>服务部署版本</p>
+        # @type DeployedRef: String
+        # @param DiffCategory: <p>服务动作</p>
+        # @type DiffCategory: String
+        # @param Status: <p>服务状态</p>
+        # @type Status: String
+
+        attr_accessor :ServiceName, :ServiceType, :DeployedRef, :DiffCategory, :Status
+
+        def initialize(servicename=nil, servicetype=nil, deployedref=nil, diffcategory=nil, status=nil)
+          @ServiceName = servicename
+          @ServiceType = servicetype
+          @DeployedRef = deployedref
+          @DiffCategory = diffcategory
+          @Status = status
+        end
+
+        def deserialize(params)
+          @ServiceName = params['ServiceName']
+          @ServiceType = params['ServiceType']
+          @DeployedRef = params['DeployedRef']
+          @DiffCategory = params['DiffCategory']
+          @Status = params['Status']
+        end
+      end
+
+      # 云应用路由
+      class CloudAppRoute < TencentCloud::Common::AbstractModel
+        # @param Source: <p>服务跟路由</p>
+        # @type Source: String
+        # @param ServiceType: <p>服务类型</p><p>枚举值：</p><ul><li>http-function： HTTP 云函数</li><li>function： 普通云函数</li><li>static-hosting： 静态托管</li></ul>
+        # @type ServiceType: String
+        # @param ServiceName: <p>服务名称</p>
+        # @type ServiceName: String
+        # @param TargetPath: <p>目标路径，暂不支持</p>
+        # @type TargetPath: String
+
+        attr_accessor :Source, :ServiceType, :ServiceName, :TargetPath
+
+        def initialize(source=nil, servicetype=nil, servicename=nil, targetpath=nil)
+          @Source = source
+          @ServiceType = servicetype
+          @ServiceName = servicename
+          @TargetPath = targetpath
+        end
+
+        def deserialize(params)
+          @Source = params['Source']
+          @ServiceType = params['ServiceType']
+          @ServiceName = params['ServiceName']
+          @TargetPath = params['TargetPath']
+        end
+      end
+
       # 部署服务信息
       class CloudAppServiceItem < TencentCloud::Common::AbstractModel
-        # @param ServiceName: 服务名
+        # @param ServiceName: <p>服务名</p>
         # @type ServiceName: String
-        # @param Framework: 框架名
+        # @param Framework: <p>框架名</p>
         # @type Framework: String
-        # @param Domain: 域名
+        # @param Domain: <p>域名</p>
         # @type Domain: String
-        # @param AppPath: 应用路径
+        # @param AppPath: <p>应用路径</p>
         # @type AppPath: String
-        # @param CreateTime: 服务创建时间
+        # @param CreateTime: <p>服务创建时间</p>
         # @type CreateTime: String
-        # @param LatestVersionName: 最新版本名
+        # @param LatestVersionName: <p>最新版本名</p>
         # @type LatestVersionName: String
-        # @param LatestStatus: 最新版本状态
+        # @param LatestStatus: <p>最新版本状态</p>
         # @type LatestStatus: String
-        # @param LatestBuildTime: 最新版本构建时间
+        # @param LatestBuildTime: <p>最新版本构建时间</p>
         # @type LatestBuildTime: String
-        # @param DeployType: 部署类型
+        # @param DeployType: <p>部署类型</p>
         # @type DeployType: String
+        # @param BuildConfig: <p>构建配置</p>
+        # @type BuildConfig: String
+        # @param CurrentVersion: <p>当前流量版本</p>
+        # @type CurrentVersion: String
 
-        attr_accessor :ServiceName, :Framework, :Domain, :AppPath, :CreateTime, :LatestVersionName, :LatestStatus, :LatestBuildTime, :DeployType
+        attr_accessor :ServiceName, :Framework, :Domain, :AppPath, :CreateTime, :LatestVersionName, :LatestStatus, :LatestBuildTime, :DeployType, :BuildConfig, :CurrentVersion
 
-        def initialize(servicename=nil, framework=nil, domain=nil, apppath=nil, createtime=nil, latestversionname=nil, lateststatus=nil, latestbuildtime=nil, deploytype=nil)
+        def initialize(servicename=nil, framework=nil, domain=nil, apppath=nil, createtime=nil, latestversionname=nil, lateststatus=nil, latestbuildtime=nil, deploytype=nil, buildconfig=nil, currentversion=nil)
           @ServiceName = servicename
           @Framework = framework
           @Domain = domain
@@ -811,6 +985,8 @@ module TencentCloud
           @LatestStatus = lateststatus
           @LatestBuildTime = latestbuildtime
           @DeployType = deploytype
+          @BuildConfig = buildconfig
+          @CurrentVersion = currentversion
         end
 
         def deserialize(params)
@@ -823,6 +999,27 @@ module TencentCloud
           @LatestStatus = params['LatestStatus']
           @LatestBuildTime = params['LatestBuildTime']
           @DeployType = params['DeployType']
+          @BuildConfig = params['BuildConfig']
+          @CurrentVersion = params['CurrentVersion']
+        end
+      end
+
+      # 云应用触发器
+      class CloudAppTrigger < TencentCloud::Common::AbstractModel
+        # @param Webhook: <p>webhook 配置</p>
+        # @type Webhook: :class:`Tencentcloud::Tcb.v20180608.models.CloudAppWebHook`
+
+        attr_accessor :Webhook
+
+        def initialize(webhook=nil)
+          @Webhook = webhook
+        end
+
+        def deserialize(params)
+          unless params['Webhook'].nil?
+            @Webhook = CloudAppWebHook.new
+            @Webhook.deserialize(params['Webhook'])
+          end
         end
       end
 
@@ -845,10 +1042,20 @@ module TencentCloud
         # @param Steps: <p>构建步骤</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Steps: Array
+        # @param Snapshot: <p>服务版本部署快照</p>
+        # @type Snapshot: String
+        # @param VersionDomain: <p>服务版本域名</p>
+        # @type VersionDomain: String
+        # @param TrafficPercent: <p>服务版本流量</p>
+        # @type TrafficPercent: Integer
+        # @param Resources: <p>服务资源</p>
+        # @type Resources: Array
+        # @param Artifacts: <p>服务产物列表</p>
+        # @type Artifacts: Array
 
-        attr_accessor :VersionName, :BuildType, :BuildId, :Status, :Framework, :StaticConfig, :BuildTime, :Steps
+        attr_accessor :VersionName, :BuildType, :BuildId, :Status, :Framework, :StaticConfig, :BuildTime, :Steps, :Snapshot, :VersionDomain, :TrafficPercent, :Resources, :Artifacts
 
-        def initialize(versionname=nil, buildtype=nil, buildid=nil, status=nil, framework=nil, staticconfig=nil, buildtime=nil, steps=nil)
+        def initialize(versionname=nil, buildtype=nil, buildid=nil, status=nil, framework=nil, staticconfig=nil, buildtime=nil, steps=nil, snapshot=nil, versiondomain=nil, trafficpercent=nil, resources=nil, artifacts=nil)
           @VersionName = versionname
           @BuildType = buildtype
           @BuildId = buildid
@@ -857,6 +1064,11 @@ module TencentCloud
           @StaticConfig = staticconfig
           @BuildTime = buildtime
           @Steps = steps
+          @Snapshot = snapshot
+          @VersionDomain = versiondomain
+          @TrafficPercent = trafficpercent
+          @Resources = resources
+          @Artifacts = artifacts
         end
 
         def deserialize(params)
@@ -878,6 +1090,49 @@ module TencentCloud
               @Steps << buildstepstatus_tmp
             end
           end
+          @Snapshot = params['Snapshot']
+          @VersionDomain = params['VersionDomain']
+          @TrafficPercent = params['TrafficPercent']
+          unless params['Resources'].nil?
+            @Resources = []
+            params['Resources'].each do |i|
+              cloudappresourceitem_tmp = CloudAppResourceItem.new
+              cloudappresourceitem_tmp.deserialize(i)
+              @Resources << cloudappresourceitem_tmp
+            end
+          end
+          unless params['Artifacts'].nil?
+            @Artifacts = []
+            params['Artifacts'].each do |i|
+              buildartifactinfo_tmp = BuildArtifactInfo.new
+              buildartifactinfo_tmp.deserialize(i)
+              @Artifacts << buildartifactinfo_tmp
+            end
+          end
+        end
+      end
+
+      # 云应用 WebHook 配置
+      class CloudAppWebHook < TencentCloud::Common::AbstractModel
+        # @param Enabled: <p>开启 webhook 触发</p>
+        # @type Enabled: Boolean
+        # @param Branches: <p>触发分支</p>
+        # @type Branches: Array
+        # @param Events: <p>触发事件</p>
+        # @type Events: Array
+
+        attr_accessor :Enabled, :Branches, :Events
+
+        def initialize(enabled=nil, branches=nil, events=nil)
+          @Enabled = enabled
+          @Branches = branches
+          @Events = events
+        end
+
+        def deserialize(params)
+          @Enabled = params['Enabled']
+          @Branches = params['Branches']
+          @Events = params['Events']
         end
       end
 
@@ -1357,10 +1612,26 @@ module TencentCloud
         # @type Secrets: Array
         # @param NodeJsVersion: <p>选择 NodeRuntime 版本: 16,18,20,22,24 等</p>
         # @type NodeJsVersion: String
+        # @param Trigger: <p>暂不支持：Webhook 触发器功能尚未对外开放，客户端传入的 Trigger 字段会被平台静默忽略（仅日志告警，不拒绝请求）</p>
+        # @type Trigger: :class:`Tencentcloud::Tcb.v20180608.models.CloudAppTrigger`
+        # @param ServiceList: <p>服务列表</p>
+        # @type ServiceList: Array
+        # @param WorkingDir: <p>全局工作目录</p>
+        # @type WorkingDir: String
+        # @param Routes: <p>路由列表</p>
+        # @type Routes: Array
+        # @param PromoteType: <p>部署类型</p>
+        # @type PromoteType: String
+        # @param ClientToken: <p>发布 Token 校验</p>
+        # @type ClientToken: String
+        # @param PreDeployCommand: <p>前置执行命令</p>
+        # @type PreDeployCommand: String
+        # @param PostDeployCommand: <p>后置执行命令</p>
+        # @type PostDeployCommand: String
 
-        attr_accessor :EnvId, :ServiceName, :DeployType, :BuildType, :StaticConfig, :Source, :Commands, :Env, :CustomSteps, :Secrets, :NodeJsVersion
+        attr_accessor :EnvId, :ServiceName, :DeployType, :BuildType, :StaticConfig, :Source, :Commands, :Env, :CustomSteps, :Secrets, :NodeJsVersion, :Trigger, :ServiceList, :WorkingDir, :Routes, :PromoteType, :ClientToken, :PreDeployCommand, :PostDeployCommand
 
-        def initialize(envid=nil, servicename=nil, deploytype=nil, buildtype=nil, staticconfig=nil, source=nil, commands=nil, env=nil, customsteps=nil, secrets=nil, nodejsversion=nil)
+        def initialize(envid=nil, servicename=nil, deploytype=nil, buildtype=nil, staticconfig=nil, source=nil, commands=nil, env=nil, customsteps=nil, secrets=nil, nodejsversion=nil, trigger=nil, servicelist=nil, workingdir=nil, routes=nil, promotetype=nil, clienttoken=nil, predeploycommand=nil, postdeploycommand=nil)
           @EnvId = envid
           @ServiceName = servicename
           @DeployType = deploytype
@@ -1372,6 +1643,14 @@ module TencentCloud
           @CustomSteps = customsteps
           @Secrets = secrets
           @NodeJsVersion = nodejsversion
+          @Trigger = trigger
+          @ServiceList = servicelist
+          @WorkingDir = workingdir
+          @Routes = routes
+          @PromoteType = promotetype
+          @ClientToken = clienttoken
+          @PreDeployCommand = predeploycommand
+          @PostDeployCommand = postdeploycommand
         end
 
         def deserialize(params)
@@ -1416,6 +1695,31 @@ module TencentCloud
             end
           end
           @NodeJsVersion = params['NodeJsVersion']
+          unless params['Trigger'].nil?
+            @Trigger = CloudAppTrigger.new
+            @Trigger.deserialize(params['Trigger'])
+          end
+          unless params['ServiceList'].nil?
+            @ServiceList = []
+            params['ServiceList'].each do |i|
+              cloudapplinkservice_tmp = CloudAppLinkService.new
+              cloudapplinkservice_tmp.deserialize(i)
+              @ServiceList << cloudapplinkservice_tmp
+            end
+          end
+          @WorkingDir = params['WorkingDir']
+          unless params['Routes'].nil?
+            @Routes = []
+            params['Routes'].each do |i|
+              cloudapproute_tmp = CloudAppRoute.new
+              cloudapproute_tmp.deserialize(i)
+              @Routes << cloudapproute_tmp
+            end
+          end
+          @PromoteType = params['PromoteType']
+          @ClientToken = params['ClientToken']
+          @PreDeployCommand = params['PreDeployCommand']
+          @PostDeployCommand = params['PostDeployCommand']
         end
       end
 
@@ -2002,6 +2306,52 @@ module TencentCloud
 
         def deserialize(params)
           @EnvId = params['EnvId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreatePlatformHTTPServiceRoute请求参数结构体
+      class CreatePlatformHTTPServiceRouteRequest < TencentCloud::Common::AbstractModel
+        # @param PlatformId: <p>平台id</p>
+        # @type PlatformId: String
+        # @param Domain: <p>域名路由信息</p>
+        # @type Domain: :class:`Tencentcloud::Tcb.v20180608.models.HTTPServiceDomainParam`
+
+        attr_accessor :PlatformId, :Domain
+
+        def initialize(platformid=nil, domain=nil)
+          @PlatformId = platformid
+          @Domain = domain
+        end
+
+        def deserialize(params)
+          @PlatformId = params['PlatformId']
+          unless params['Domain'].nil?
+            @Domain = HTTPServiceDomainParam.new
+            @Domain.deserialize(params['Domain'])
+          end
+        end
+      end
+
+      # CreatePlatformHTTPServiceRoute返回参数结构体
+      class CreatePlatformHTTPServiceRouteResponse < TencentCloud::Common::AbstractModel
+        # @param OwnershipVerification: <p>归属权校验不通过返回信息，根据校验信息配置dns或者文件验证，可通过VerifyHTTPServiceRoute接口验证归属权是否通过</p>
+        # @type OwnershipVerification: :class:`Tencentcloud::Tcb.v20180608.models.OwnershipVerificationInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :OwnershipVerification, :RequestId
+
+        def initialize(ownershipverification=nil, requestid=nil)
+          @OwnershipVerification = ownershipverification
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['OwnershipVerification'].nil?
+            @OwnershipVerification = OwnershipVerificationInfo.new
+            @OwnershipVerification.deserialize(params['OwnershipVerification'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -2597,6 +2947,46 @@ module TencentCloud
 
       # DeleteHTTPServiceRoute返回参数结构体
       class DeleteHTTPServiceRouteResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeletePlatformHTTPServiceRoute请求参数结构体
+      class DeletePlatformHTTPServiceRouteRequest < TencentCloud::Common::AbstractModel
+        # @param PlatformId: <p>平台id</p>
+        # @type PlatformId: String
+        # @param Domain: <p>域名</p>
+        # @type Domain: String
+        # @param Paths: <p>路径列表。为空则表示删除此域名和所有路由</p>
+        # @type Paths: Array
+
+        attr_accessor :PlatformId, :Domain, :Paths
+
+        def initialize(platformid=nil, domain=nil, paths=nil)
+          @PlatformId = platformid
+          @Domain = domain
+          @Paths = paths
+        end
+
+        def deserialize(params)
+          @PlatformId = params['PlatformId']
+          @Domain = params['Domain']
+          @Paths = params['Paths']
+        end
+      end
+
+      # DeletePlatformHTTPServiceRoute返回参数结构体
+      class DeletePlatformHTTPServiceRouteResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -3221,12 +3611,18 @@ module TencentCloud
         # @type LatestBuildTime: String
         # @param DeployType: <p>部署类型</p>
         # @type DeployType: String
+        # @param BuildConfig: <p>构建配置</p>
+        # @type BuildConfig: String
+        # @param CurrentVersion: <p>当前服务流量版本</p>
+        # @type CurrentVersion: String
+        # @param PreviewDomain: <p>版本关联默认域名</p>
+        # @type PreviewDomain: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ServiceName, :Framework, :Domain, :AppPath, :CreateTime, :LatestVersionName, :LatestStatus, :LatestBuildTime, :DeployType, :RequestId
+        attr_accessor :ServiceName, :Framework, :Domain, :AppPath, :CreateTime, :LatestVersionName, :LatestStatus, :LatestBuildTime, :DeployType, :BuildConfig, :CurrentVersion, :PreviewDomain, :RequestId
 
-        def initialize(servicename=nil, framework=nil, domain=nil, apppath=nil, createtime=nil, latestversionname=nil, lateststatus=nil, latestbuildtime=nil, deploytype=nil, requestid=nil)
+        def initialize(servicename=nil, framework=nil, domain=nil, apppath=nil, createtime=nil, latestversionname=nil, lateststatus=nil, latestbuildtime=nil, deploytype=nil, buildconfig=nil, currentversion=nil, previewdomain=nil, requestid=nil)
           @ServiceName = servicename
           @Framework = framework
           @Domain = domain
@@ -3236,6 +3632,9 @@ module TencentCloud
           @LatestStatus = lateststatus
           @LatestBuildTime = latestbuildtime
           @DeployType = deploytype
+          @BuildConfig = buildconfig
+          @CurrentVersion = currentversion
+          @PreviewDomain = previewdomain
           @RequestId = requestid
         end
 
@@ -3249,6 +3648,9 @@ module TencentCloud
           @LatestStatus = params['LatestStatus']
           @LatestBuildTime = params['LatestBuildTime']
           @DeployType = params['DeployType']
+          @BuildConfig = params['BuildConfig']
+          @CurrentVersion = params['CurrentVersion']
+          @PreviewDomain = params['PreviewDomain']
           @RequestId = params['RequestId']
         end
       end
@@ -3265,15 +3667,18 @@ module TencentCloud
         # @type PageSize: Integer
         # @param PageNo: <p>页号</p>
         # @type PageNo: Integer
+        # @param Filter: <p>服务过滤</p>
+        # @type Filter: :class:`Tencentcloud::Tcb.v20180608.models.CloudAppFilter`
 
-        attr_accessor :EnvId, :DeployType, :SearchKey, :PageSize, :PageNo
+        attr_accessor :EnvId, :DeployType, :SearchKey, :PageSize, :PageNo, :Filter
 
-        def initialize(envid=nil, deploytype=nil, searchkey=nil, pagesize=nil, pageno=nil)
+        def initialize(envid=nil, deploytype=nil, searchkey=nil, pagesize=nil, pageno=nil, filter=nil)
           @EnvId = envid
           @DeployType = deploytype
           @SearchKey = searchkey
           @PageSize = pagesize
           @PageNo = pageno
+          @Filter = filter
         end
 
         def deserialize(params)
@@ -3282,6 +3687,10 @@ module TencentCloud
           @SearchKey = params['SearchKey']
           @PageSize = params['PageSize']
           @PageNo = params['PageNo']
+          unless params['Filter'].nil?
+            @Filter = CloudAppFilter.new
+            @Filter.deserialize(params['Filter'])
+          end
         end
       end
 
@@ -3427,12 +3836,22 @@ module TencentCloud
         # @type BuildTime: String
         # @param Steps: <p>[]BuildStepStatus 的 JSON 序列化</p>
         # @type Steps: Array
+        # @param Snapshot: <p>服务版本快照</p>
+        # @type Snapshot: String
+        # @param TrafficPercent: <p>服务版本流量比例</p>
+        # @type TrafficPercent: Integer
+        # @param VersionDomain: <p>服务版本域名</p>
+        # @type VersionDomain: String
+        # @param Resources: <p>服务管理资源列表</p>
+        # @type Resources: Array
+        # @param Artifacts: <p>[]ArtifactInfo 的 JSON 序列化</p>
+        # @type Artifacts: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :BuildType, :BuildId, :Status, :Framework, :StaticConfig, :BuildTime, :Steps, :RequestId
+        attr_accessor :BuildType, :BuildId, :Status, :Framework, :StaticConfig, :BuildTime, :Steps, :Snapshot, :TrafficPercent, :VersionDomain, :Resources, :Artifacts, :RequestId
 
-        def initialize(buildtype=nil, buildid=nil, status=nil, framework=nil, staticconfig=nil, buildtime=nil, steps=nil, requestid=nil)
+        def initialize(buildtype=nil, buildid=nil, status=nil, framework=nil, staticconfig=nil, buildtime=nil, steps=nil, snapshot=nil, trafficpercent=nil, versiondomain=nil, resources=nil, artifacts=nil, requestid=nil)
           @BuildType = buildtype
           @BuildId = buildid
           @Status = status
@@ -3440,6 +3859,11 @@ module TencentCloud
           @StaticConfig = staticconfig
           @BuildTime = buildtime
           @Steps = steps
+          @Snapshot = snapshot
+          @TrafficPercent = trafficpercent
+          @VersionDomain = versiondomain
+          @Resources = resources
+          @Artifacts = artifacts
           @RequestId = requestid
         end
 
@@ -3459,6 +3883,25 @@ module TencentCloud
               buildstepstatus_tmp = BuildStepStatus.new
               buildstepstatus_tmp.deserialize(i)
               @Steps << buildstepstatus_tmp
+            end
+          end
+          @Snapshot = params['Snapshot']
+          @TrafficPercent = params['TrafficPercent']
+          @VersionDomain = params['VersionDomain']
+          unless params['Resources'].nil?
+            @Resources = []
+            params['Resources'].each do |i|
+              cloudappresourceitem_tmp = CloudAppResourceItem.new
+              cloudappresourceitem_tmp.deserialize(i)
+              @Resources << cloudappresourceitem_tmp
+            end
+          end
+          unless params['Artifacts'].nil?
+            @Artifacts = []
+            params['Artifacts'].each do |i|
+              buildartifactinfo_tmp = BuildArtifactInfo.new
+              buildartifactinfo_tmp.deserialize(i)
+              @Artifacts << buildartifactinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -5113,6 +5556,76 @@ module TencentCloud
           end
           @TotalCredits = params['TotalCredits']
           @CreditsScale = params['CreditsScale']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePlatformHTTPServiceRoute请求参数结构体
+      class DescribePlatformHTTPServiceRouteRequest < TencentCloud::Common::AbstractModel
+        # @param PlatformId: <p>平台id</p>
+        # @type PlatformId: String
+        # @param Filters: <p>过滤条件。Key的含义参考对应字段，Value精确匹配。可过滤: Domain、Path、DomainType、UpstreamResourceType。可过滤的Values单条不超过100</p>
+        # @type Filters: Array
+        # @param Offset: <p>分页偏移量。默认 0</p>
+        # @type Offset: Integer
+        # @param Limit: <p>分页限制。默认20，最大值1000</p>
+        # @type Limit: Integer
+
+        attr_accessor :PlatformId, :Filters, :Offset, :Limit
+
+        def initialize(platformid=nil, filters=nil, offset=nil, limit=nil)
+          @PlatformId = platformid
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @PlatformId = params['PlatformId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribePlatformHTTPServiceRoute返回参数结构体
+      class DescribePlatformHTTPServiceRouteResponse < TencentCloud::Common::AbstractModel
+        # @param Domains: <p>域名路由信息列表</p>
+        # @type Domains: Array
+        # @param OriginDomain: <p>自定义接入的源站域名（HTTPService接入层域名）</p>
+        # @type OriginDomain: String
+        # @param TotalCount: <p>域名总数，分页查询使用总数判断是否已经拉取到所有数据</p>
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Domains, :OriginDomain, :TotalCount, :RequestId
+
+        def initialize(domains=nil, origindomain=nil, totalcount=nil, requestid=nil)
+          @Domains = domains
+          @OriginDomain = origindomain
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Domains'].nil?
+            @Domains = []
+            params['Domains'].each do |i|
+              httpservicedomain_tmp = HTTPServiceDomain.new
+              httpservicedomain_tmp.deserialize(i)
+              @Domains << httpservicedomain_tmp
+            end
+          end
+          @OriginDomain = params['OriginDomain']
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -9156,6 +9669,45 @@ module TencentCloud
         end
       end
 
+      # ModifyPlatformHTTPServiceRoute请求参数结构体
+      class ModifyPlatformHTTPServiceRouteRequest < TencentCloud::Common::AbstractModel
+        # @param PlatformId: <p>平台id</p>
+        # @type PlatformId: String
+        # @param Domain: <p>域名路由信息</p>
+        # @type Domain: :class:`Tencentcloud::Tcb.v20180608.models.HTTPServiceDomainParam`
+
+        attr_accessor :PlatformId, :Domain
+
+        def initialize(platformid=nil, domain=nil)
+          @PlatformId = platformid
+          @Domain = domain
+        end
+
+        def deserialize(params)
+          @PlatformId = params['PlatformId']
+          unless params['Domain'].nil?
+            @Domain = HTTPServiceDomainParam.new
+            @Domain.deserialize(params['Domain'])
+          end
+        end
+      end
+
+      # ModifyPlatformHTTPServiceRoute返回参数结构体
+      class ModifyPlatformHTTPServiceRouteResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyProvider请求参数结构体
       class ModifyProviderRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: 云开发环境 ID，用于唯一标识当前操作所属的云开发环境。
@@ -11774,9 +12326,9 @@ module TencentCloud
         # @type Role: String
         # @param InstallDependency: <p>在线依赖安装，TRUE 表示安装，仅支持 Node.js 函数。 </p><p>默认值：FALSE</p>
         # @type InstallDependency: String
-        # @param ClsTopicId: <p>日志投递到的cls日志集ID</p>
+        # @param ClsTopicId: <p>日志投递到的cls Topic ID</p>
         # @type ClsTopicId: String
-        # @param ClsLogsetId: <p>日志投递到的cls Topic ID</p>
+        # @param ClsLogsetId: <p>日志投递到的cls日志集ID</p>
         # @type ClsLogsetId: String
         # @param Publish: <p>在更新时是否同步发布新版本</p><p>默认值：FALSE</p>
         # @type Publish: String
@@ -12224,6 +12776,112 @@ module TencentCloud
 
       # VerifyHTTPServiceRoute返回参数结构体
       class VerifyHTTPServiceRouteResponse < TencentCloud::Common::AbstractModel
+        # @param Passed: <p>前置校验总开关。所有启用的检查项均为 PASS 或 SKIPPED 时为 true，任一检查项为 FAIL 时为 false。当为 false 时，前端应根据各 CheckItem 的 Code 精确渲染错误提示和操作指引；当为 true 时可继续调用 CreateHTTPServiceRoute 完成创建。 示例值：false</p>
+        # @type Passed: Boolean
+        # @param Ownership: <p>域名归属权校验结果</p>
+        # @type Ownership: :class:`Tencentcloud::Tcb.v20180608.models.VerifyHTTPServiceRouteCheckItem`
+        # @param Cert: <p>证书校验结果；CertId 为空时 Status=SKIPPED</p>
+        # @type Cert: :class:`Tencentcloud::Tcb.v20180608.models.VerifyHTTPServiceRouteCheckItem`
+        # @param Quota: <p>域名/路径数量配额校验结果</p>
+        # @type Quota: :class:`Tencentcloud::Tcb.v20180608.models.VerifyHTTPServiceRouteCheckItem`
+        # @param RouteConflict: <p>同域名下路由路径冲突校验结果</p>
+        # @type RouteConflict: :class:`Tencentcloud::Tcb.v20180608.models.VerifyHTTPServiceRouteCheckItem`
+        # @param DomainConflict: <p>域名被其他环境占用校验结果</p>
+        # @type DomainConflict: :class:`Tencentcloud::Tcb.v20180608.models.VerifyHTTPServiceRouteCheckItem`
+        # @param InternalAccount: <p>内部域名且非内部账号校验结果</p>
+        # @type InternalAccount: :class:`Tencentcloud::Tcb.v20180608.models.VerifyHTTPServiceRouteCheckItem`
+        # @param Blacklist: <p>域名黑名单校验结果</p>
+        # @type Blacklist: :class:`Tencentcloud::Tcb.v20180608.models.VerifyHTTPServiceRouteCheckItem`
+        # @param CDNResource: <p>AccessType=CDN 时 CDN 资源存在性 / 状态校验结果（含 ICP 未备案的提示）</p>
+        # @type CDNResource: :class:`Tencentcloud::Tcb.v20180608.models.VerifyHTTPServiceRouteCheckItem`
+        # @param EO: <p>AccessType=EO 时的 EdgeOne 预检结果（域名冲突/备案/归属权）</p>
+        # @type EO: :class:`Tencentcloud::Tcb.v20180608.models.VerifyHTTPServiceRouteCheckItem`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Passed, :Ownership, :Cert, :Quota, :RouteConflict, :DomainConflict, :InternalAccount, :Blacklist, :CDNResource, :EO, :RequestId
+
+        def initialize(passed=nil, ownership=nil, cert=nil, quota=nil, routeconflict=nil, domainconflict=nil, internalaccount=nil, blacklist=nil, cdnresource=nil, eo=nil, requestid=nil)
+          @Passed = passed
+          @Ownership = ownership
+          @Cert = cert
+          @Quota = quota
+          @RouteConflict = routeconflict
+          @DomainConflict = domainconflict
+          @InternalAccount = internalaccount
+          @Blacklist = blacklist
+          @CDNResource = cdnresource
+          @EO = eo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Passed = params['Passed']
+          unless params['Ownership'].nil?
+            @Ownership = VerifyHTTPServiceRouteCheckItem.new
+            @Ownership.deserialize(params['Ownership'])
+          end
+          unless params['Cert'].nil?
+            @Cert = VerifyHTTPServiceRouteCheckItem.new
+            @Cert.deserialize(params['Cert'])
+          end
+          unless params['Quota'].nil?
+            @Quota = VerifyHTTPServiceRouteCheckItem.new
+            @Quota.deserialize(params['Quota'])
+          end
+          unless params['RouteConflict'].nil?
+            @RouteConflict = VerifyHTTPServiceRouteCheckItem.new
+            @RouteConflict.deserialize(params['RouteConflict'])
+          end
+          unless params['DomainConflict'].nil?
+            @DomainConflict = VerifyHTTPServiceRouteCheckItem.new
+            @DomainConflict.deserialize(params['DomainConflict'])
+          end
+          unless params['InternalAccount'].nil?
+            @InternalAccount = VerifyHTTPServiceRouteCheckItem.new
+            @InternalAccount.deserialize(params['InternalAccount'])
+          end
+          unless params['Blacklist'].nil?
+            @Blacklist = VerifyHTTPServiceRouteCheckItem.new
+            @Blacklist.deserialize(params['Blacklist'])
+          end
+          unless params['CDNResource'].nil?
+            @CDNResource = VerifyHTTPServiceRouteCheckItem.new
+            @CDNResource.deserialize(params['CDNResource'])
+          end
+          unless params['EO'].nil?
+            @EO = VerifyHTTPServiceRouteCheckItem.new
+            @EO.deserialize(params['EO'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # VerifyPlatformHTTPServiceRoute请求参数结构体
+      class VerifyPlatformHTTPServiceRouteRequest < TencentCloud::Common::AbstractModel
+        # @param PlatformId: <p>平台id</p>
+        # @type PlatformId: String
+        # @param Domain: <p>域名路由信息</p>
+        # @type Domain: :class:`Tencentcloud::Tcb.v20180608.models.HTTPServiceDomainParam`
+
+        attr_accessor :PlatformId, :Domain
+
+        def initialize(platformid=nil, domain=nil)
+          @PlatformId = platformid
+          @Domain = domain
+        end
+
+        def deserialize(params)
+          @PlatformId = params['PlatformId']
+          unless params['Domain'].nil?
+            @Domain = HTTPServiceDomainParam.new
+            @Domain.deserialize(params['Domain'])
+          end
+        end
+      end
+
+      # VerifyPlatformHTTPServiceRoute返回参数结构体
+      class VerifyPlatformHTTPServiceRouteResponse < TencentCloud::Common::AbstractModel
         # @param Passed: <p>前置校验总开关。所有启用的检查项均为 PASS 或 SKIPPED 时为 true，任一检查项为 FAIL 时为 false。当为 false 时，前端应根据各 CheckItem 的 Code 精确渲染错误提示和操作指引；当为 true 时可继续调用 CreateHTTPServiceRoute 完成创建。 示例值：false</p>
         # @type Passed: Boolean
         # @param Ownership: <p>域名归属权校验结果</p>

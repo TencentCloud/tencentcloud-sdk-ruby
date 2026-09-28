@@ -1766,16 +1766,21 @@ module TencentCloud
 
       # CreateExportTask返回参数结构体
       class CreateExportTaskResponse < TencentCloud::Common::AbstractModel
+        # @param FileName: <p>下载文件名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileName: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :FileName, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(filename=nil, requestid=nil)
+          @FileName = filename
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @FileName = params['FileName']
           @RequestId = params['RequestId']
         end
       end
@@ -2799,8 +2804,8 @@ module TencentCloud
 
         attr_accessor :IsSubscribed, :CollationName, :IsAutoCleanupOn, :IsBrokerEnabled, :IsCdcEnabled, :IsDbChainingOn, :IsEncrypted, :IsFulltextEnabled, :IsMirroring, :IsPublished, :IsReadCommittedSnapshotOn, :IsTrustworthyOn, :MirroringState, :Name, :RecoveryModelDesc, :RetentionPeriod, :StateDesc, :UserAccessDesc, :CreateTime, :IsFullTextEnabled, :IsAvailabilityGroups, :AGSyncState
         extend Gem::Deprecate
-        deprecate :IsFulltextEnabled, :none, 2026, 7
-        deprecate :IsFulltextEnabled=, :none, 2026, 7
+        deprecate :IsFulltextEnabled, :none, 2026, 9
+        deprecate :IsFulltextEnabled=, :none, 2026, 9
 
         def initialize(issubscribed=nil, collationname=nil, isautocleanupon=nil, isbrokerenabled=nil, iscdcenabled=nil, isdbchainingon=nil, isencrypted=nil, ismirroring=nil, ispublished=nil, isreadcommittedsnapshoton=nil, istrustworthyon=nil, mirroringstate=nil, name=nil, recoverymodeldesc=nil, retentionperiod=nil, statedesc=nil, useraccessdesc=nil, createtime=nil, isfulltextenabled=nil, isavailabilitygroups=nil, agsyncstate=nil)
           @IsSubscribed = issubscribed
@@ -7236,8 +7241,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :Slowlogs, :SlowLogs, :RequestId
         extend Gem::Deprecate
-        deprecate :Slowlogs, :none, 2026, 7
-        deprecate :Slowlogs=, :none, 2026, 7
+        deprecate :Slowlogs, :none, 2026, 9
+        deprecate :Slowlogs=, :none, 2026, 9
 
         def initialize(totalcount=nil, slowlogs=nil, requestid=nil)
           @TotalCount = totalcount
@@ -7461,8 +7466,8 @@ module TencentCloud
 
         attr_accessor :BucketName, :Region, :Path, :TmpSecretId, :TmpSecretKey, :XCosSecurityToken, :StartTime, :ExpiredTime, :CosSecurityToken, :RequestId
         extend Gem::Deprecate
-        deprecate :XCosSecurityToken, :none, 2026, 7
-        deprecate :XCosSecurityToken=, :none, 2026, 7
+        deprecate :XCosSecurityToken, :none, 2026, 9
+        deprecate :XCosSecurityToken=, :none, 2026, 9
 
         def initialize(bucketname=nil, region=nil, path=nil, tmpsecretid=nil, tmpsecretkey=nil, xcossecuritytoken=nil, starttime=nil, expiredtime=nil, cossecuritytoken=nil, requestid=nil)
           @BucketName = bucketname
@@ -7540,8 +7545,8 @@ module TencentCloud
 
         attr_accessor :BucketName, :Region, :Path, :TmpSecretId, :TmpSecretKey, :XCosSecurityToken, :StartTime, :ExpiredTime, :CosSecurityToken, :RequestId
         extend Gem::Deprecate
-        deprecate :XCosSecurityToken, :none, 2026, 7
-        deprecate :XCosSecurityToken=, :none, 2026, 7
+        deprecate :XCosSecurityToken, :none, 2026, 9
+        deprecate :XCosSecurityToken=, :none, 2026, 9
 
         def initialize(bucketname=nil, region=nil, path=nil, tmpsecretid=nil, tmpsecretkey=nil, xcossecuritytoken=nil, starttime=nil, expiredtime=nil, cossecuritytoken=nil, requestid=nil)
           @BucketName = bucketname
@@ -7893,10 +7898,19 @@ module TencentCloud
         # @param AsyncRequestId: <p>req</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AsyncRequestId: Integer
+        # @param LogStartTime: <p>日志开始时间</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogStartTime: String
+        # @param LogEndTime: <p>日志结束时间</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogEndTime: String
+        # @param LogFilter: <p>日志过滤条件</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogFilter: String
 
-        attr_accessor :FileName, :Status, :FileSize, :CreateTime, :DownloadUrl, :ErrMsg, :Progress, :FinishTime, :AsyncRequestId
+        attr_accessor :FileName, :Status, :FileSize, :CreateTime, :DownloadUrl, :ErrMsg, :Progress, :FinishTime, :AsyncRequestId, :LogStartTime, :LogEndTime, :LogFilter
 
-        def initialize(filename=nil, status=nil, filesize=nil, createtime=nil, downloadurl=nil, errmsg=nil, progress=nil, finishtime=nil, asyncrequestid=nil)
+        def initialize(filename=nil, status=nil, filesize=nil, createtime=nil, downloadurl=nil, errmsg=nil, progress=nil, finishtime=nil, asyncrequestid=nil, logstarttime=nil, logendtime=nil, logfilter=nil)
           @FileName = filename
           @Status = status
           @FileSize = filesize
@@ -7906,6 +7920,9 @@ module TencentCloud
           @Progress = progress
           @FinishTime = finishtime
           @AsyncRequestId = asyncrequestid
+          @LogStartTime = logstarttime
+          @LogEndTime = logendtime
+          @LogFilter = logfilter
         end
 
         def deserialize(params)
@@ -7918,6 +7935,9 @@ module TencentCloud
           @Progress = params['Progress']
           @FinishTime = params['FinishTime']
           @AsyncRequestId = params['AsyncRequestId']
+          @LogStartTime = params['LogStartTime']
+          @LogEndTime = params['LogEndTime']
+          @LogFilter = params['LogFilter']
         end
       end
 
@@ -8585,112 +8605,115 @@ module TencentCloud
 
       # 日志结果
       class LogResult < TencentCloud::Common::AbstractModel
-        # @param Timestamp: 时间戳
+        # @param Timestamp: <p>时间戳</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Timestamp: Integer
-        # @param Category: 错误类别
+        # @param Category: <p>错误类别</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Category: String
-        # @param ClientAppName: 客户端应用程序名称
+        # @param ClientAppName: <p>客户端应用程序名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClientAppName: String
-        # @param ClientHostName: 客户端主机名
+        # @param ClientHostName: <p>客户端主机名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClientHostName: String
-        # @param CpuTime: CPU 时间
+        # @param CpuTime: <p>CPU 时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CpuTime: Integer
-        # @param DatabaseId: 数据库 ID
+        # @param DatabaseId: <p>数据库 ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DatabaseId: Integer
-        # @param DatabaseName: 数据库名称
+        # @param DatabaseName: <p>数据库名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DatabaseName: String
-        # @param Duration: 执行时间
+        # @param Duration: <p>执行时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Duration: Integer
-        # @param ErrorNumber: 错误编号
+        # @param ErrorNumber: <p>错误编号</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorNumber: Integer
-        # @param IsIntercepted: 是否被拦截
+        # @param IsIntercepted: <p>是否被拦截</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsIntercepted: String
-        # @param LastRowCount: 最后行计数
+        # @param LastRowCount: <p>最后行计数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastRowCount: Integer
-        # @param LogicalReads: 逻辑读取
+        # @param LogicalReads: <p>逻辑读取</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogicalReads: Integer
-        # @param Message: 消息
+        # @param Message: <p>消息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Message: String
-        # @param ObjectId: 对象 ID
+        # @param ObjectId: <p>对象 ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ObjectId: Integer
-        # @param ObjectName: 对象名称
+        # @param ObjectName: <p>对象名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ObjectName: String
-        # @param ObjectType: 对象类型
+        # @param ObjectType: <p>对象类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ObjectType: String
-        # @param OutputParameters: 输出参数
+        # @param OutputParameters: <p>输出参数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutputParameters: String
-        # @param ParameterizedPlanHandle: 参数化计划句柄
+        # @param ParameterizedPlanHandle: <p>参数化计划句柄</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParameterizedPlanHandle: String
-        # @param PhysicalReads: 物理读取
+        # @param PhysicalReads: <p>物理读取</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PhysicalReads: Integer
-        # @param Result: 结果
+        # @param Result: <p>结果</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: String
-        # @param RowCount: 行计数
+        # @param RowCount: <p>行计数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RowCount: Integer
-        # @param ServerPrincipalName: 服务器主体名称
+        # @param ServerPrincipalName: <p>服务器主体名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServerPrincipalName: String
-        # @param SessionServerPrincipalName: 会话服务器主体名称
+        # @param SessionServerPrincipalName: <p>会话服务器主体名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SessionServerPrincipalName: String
-        # @param Severity: 严重性
+        # @param Severity: <p>严重性</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Severity: Integer
-        # @param SourceDatabaseId: 源数据库 ID
+        # @param SourceDatabaseId: <p>源数据库 ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceDatabaseId: Integer
-        # @param SqlText: SQL 文本
+        # @param SqlText: <p>SQL 文本</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SqlText: String
-        # @param State: 状态
+        # @param State: <p>状态</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type State: Integer
-        # @param Statement: 语句
+        # @param Statement: <p>语句</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Statement: String
-        # @param SystemThreadId: 系统线程 ID
+        # @param SystemThreadId: <p>系统线程 ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SystemThreadId: Integer
-        # @param TransactionId: 事务 ID
+        # @param TransactionId: <p>事务 ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TransactionId: Integer
-        # @param UserDefined: 用户定义
+        # @param UserDefined: <p>用户定义</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserDefined: String
-        # @param UserName: 用户名
+        # @param UserName: <p>用户名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserName: String
-        # @param Writes: 写入
+        # @param Writes: <p>写入</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Writes: Integer
-        # @param Destination: 目标
+        # @param Destination: <p>目标</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Destination: String
+        # @param EventName: <p>事件名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EventName: String
 
-        attr_accessor :Timestamp, :Category, :ClientAppName, :ClientHostName, :CpuTime, :DatabaseId, :DatabaseName, :Duration, :ErrorNumber, :IsIntercepted, :LastRowCount, :LogicalReads, :Message, :ObjectId, :ObjectName, :ObjectType, :OutputParameters, :ParameterizedPlanHandle, :PhysicalReads, :Result, :RowCount, :ServerPrincipalName, :SessionServerPrincipalName, :Severity, :SourceDatabaseId, :SqlText, :State, :Statement, :SystemThreadId, :TransactionId, :UserDefined, :UserName, :Writes, :Destination
+        attr_accessor :Timestamp, :Category, :ClientAppName, :ClientHostName, :CpuTime, :DatabaseId, :DatabaseName, :Duration, :ErrorNumber, :IsIntercepted, :LastRowCount, :LogicalReads, :Message, :ObjectId, :ObjectName, :ObjectType, :OutputParameters, :ParameterizedPlanHandle, :PhysicalReads, :Result, :RowCount, :ServerPrincipalName, :SessionServerPrincipalName, :Severity, :SourceDatabaseId, :SqlText, :State, :Statement, :SystemThreadId, :TransactionId, :UserDefined, :UserName, :Writes, :Destination, :EventName
 
-        def initialize(timestamp=nil, category=nil, clientappname=nil, clienthostname=nil, cputime=nil, databaseid=nil, databasename=nil, duration=nil, errornumber=nil, isintercepted=nil, lastrowcount=nil, logicalreads=nil, message=nil, objectid=nil, objectname=nil, objecttype=nil, outputparameters=nil, parameterizedplanhandle=nil, physicalreads=nil, result=nil, rowcount=nil, serverprincipalname=nil, sessionserverprincipalname=nil, severity=nil, sourcedatabaseid=nil, sqltext=nil, state=nil, statement=nil, systemthreadid=nil, transactionid=nil, userdefined=nil, username=nil, writes=nil, destination=nil)
+        def initialize(timestamp=nil, category=nil, clientappname=nil, clienthostname=nil, cputime=nil, databaseid=nil, databasename=nil, duration=nil, errornumber=nil, isintercepted=nil, lastrowcount=nil, logicalreads=nil, message=nil, objectid=nil, objectname=nil, objecttype=nil, outputparameters=nil, parameterizedplanhandle=nil, physicalreads=nil, result=nil, rowcount=nil, serverprincipalname=nil, sessionserverprincipalname=nil, severity=nil, sourcedatabaseid=nil, sqltext=nil, state=nil, statement=nil, systemthreadid=nil, transactionid=nil, userdefined=nil, username=nil, writes=nil, destination=nil, eventname=nil)
           @Timestamp = timestamp
           @Category = category
           @ClientAppName = clientappname
@@ -8725,6 +8748,7 @@ module TencentCloud
           @UserName = username
           @Writes = writes
           @Destination = destination
+          @EventName = eventname
         end
 
         def deserialize(params)
@@ -8762,6 +8786,7 @@ module TencentCloud
           @UserName = params['UserName']
           @Writes = params['Writes']
           @Destination = params['Destination']
+          @EventName = params['EventName']
         end
       end
 
@@ -9396,8 +9421,8 @@ module TencentCloud
 
         attr_accessor :Errno, :Msg, :Code, :RequestId
         extend Gem::Deprecate
-        deprecate :Errno, :none, 2026, 7
-        deprecate :Errno=, :none, 2026, 7
+        deprecate :Errno, :none, 2026, 9
+        deprecate :Errno=, :none, 2026, 9
 
         def initialize(errno=nil, msg=nil, code=nil, requestid=nil)
           @Errno = errno

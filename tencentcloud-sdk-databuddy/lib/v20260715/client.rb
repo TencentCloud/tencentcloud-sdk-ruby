@@ -108,6 +108,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建文件夹
+
+        # @param request: Request instance for CreateFolder.
+        # @type request: :class:`Tencentcloud::databuddy::V20260715::CreateFolderRequest`
+        # @rtype: :class:`Tencentcloud::databuddy::V20260715::CreateFolderResponse`
+        def CreateFolder(request)
+          body = send_request('CreateFolder', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateFolderResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建工作流
 
         # @param request: Request instance for CreateWorkflow.
@@ -118,6 +142,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateWorkflowResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建工作空间
+
+        # @param request: Request instance for CreateWorkspace.
+        # @type request: :class:`Tencentcloud::databuddy::V20260715::CreateWorkspaceRequest`
+        # @rtype: :class:`Tencentcloud::databuddy::V20260715::CreateWorkspaceResponse`
+        def CreateWorkspace(request)
+          body = send_request('CreateWorkspace', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateWorkspaceResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -197,6 +245,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除文件夹
+
+        # @param request: Request instance for DeleteFolder.
+        # @type request: :class:`Tencentcloud::databuddy::V20260715::DeleteFolderRequest`
+        # @rtype: :class:`Tencentcloud::databuddy::V20260715::DeleteFolderResponse`
+        def DeleteFolder(request)
+          body = send_request('DeleteFolder', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteFolderResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除工作流
 
         # @param request: Request instance for DeleteWorkflow.
@@ -207,6 +279,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteWorkflowResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除工作空间
+
+        # @param request: Request instance for DeleteWorkspace.
+        # @type request: :class:`Tencentcloud::databuddy::V20260715::DeleteWorkspaceRequest`
+        # @rtype: :class:`Tencentcloud::databuddy::V20260715::DeleteWorkspaceResponse`
+        def DeleteWorkspace(request)
+          body = send_request('DeleteWorkspace', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteWorkspaceResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -248,6 +344,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = GetFileResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取文件夹详情
+
+        # @param request: Request instance for GetFolder.
+        # @type request: :class:`Tencentcloud::databuddy::V20260715::GetFolderRequest`
+        # @rtype: :class:`Tencentcloud::databuddy::V20260715::GetFolderResponse`
+        def GetFolder(request)
+          body = send_request('GetFolder', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetFolderResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -320,6 +440,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = GetWorkflowTaskRunResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询工作空间详情
+
+        # @param request: Request instance for GetWorkspace.
+        # @type request: :class:`Tencentcloud::databuddy::V20260715::GetWorkspaceRequest`
+        # @rtype: :class:`Tencentcloud::databuddy::V20260715::GetWorkspaceResponse`
+        def GetWorkspace(request)
+          body = send_request('GetWorkspace', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetWorkspaceResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -440,6 +584,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ListConsoleUsersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取文件夹和文件列表
+
+        # @param request: Request instance for ListFiles.
+        # @type request: :class:`Tencentcloud::databuddy::V20260715::ListFilesRequest`
+        # @rtype: :class:`Tencentcloud::databuddy::V20260715::ListFilesResponse`
+        def ListFiles(request)
+          body = send_request('ListFiles', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListFilesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -714,6 +882,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 更新文件夹（支持重命名+移动）
+
+        # @param request: Request instance for UpdateFolder.
+        # @type request: :class:`Tencentcloud::databuddy::V20260715::UpdateFolderRequest`
+        # @rtype: :class:`Tencentcloud::databuddy::V20260715::UpdateFolderResponse`
+        def UpdateFolder(request)
+          body = send_request('UpdateFolder', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateFolderResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 更新工作流
 
         # @param request: Request instance for UpdateWorkflow.
@@ -724,6 +916,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpdateWorkflowResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改工作空间
+
+        # @param request: Request instance for UpdateWorkspace.
+        # @type request: :class:`Tencentcloud::databuddy::V20260715::UpdateWorkspaceRequest`
+        # @rtype: :class:`Tencentcloud::databuddy::V20260715::UpdateWorkspaceResponse`
+        def UpdateWorkspace(request)
+          body = send_request('UpdateWorkspace', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateWorkspaceResponse.new
             model.deserialize(response['Response'])
             model
           else

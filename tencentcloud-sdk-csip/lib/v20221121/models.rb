@@ -64474,10 +64474,12 @@ module TencentCloud
         # @type CloudTags: Array
         # @param TotalCount: <p>总数</p>
         # @type TotalCount: Integer
+        # @param ProjectIds: <p>项目ID</p>
+        # @type ProjectIds: Array
 
-        attr_accessor :Module, :SubModule, :AssetRange, :InstanceIds, :ExcludedInstanceIds, :TagIds, :CloudTags, :TotalCount
+        attr_accessor :Module, :SubModule, :AssetRange, :InstanceIds, :ExcludedInstanceIds, :TagIds, :CloudTags, :TotalCount, :ProjectIds
 
-        def initialize(_module=nil, submodule=nil, assetrange=nil, instanceids=nil, excludedinstanceids=nil, tagids=nil, cloudtags=nil, totalcount=nil)
+        def initialize(_module=nil, submodule=nil, assetrange=nil, instanceids=nil, excludedinstanceids=nil, tagids=nil, cloudtags=nil, totalcount=nil, projectids=nil)
           @Module = _module
           @SubModule = submodule
           @AssetRange = assetrange
@@ -64486,6 +64488,7 @@ module TencentCloud
           @TagIds = tagids
           @CloudTags = cloudtags
           @TotalCount = totalcount
+          @ProjectIds = projectids
         end
 
         def deserialize(params)
@@ -64497,6 +64500,7 @@ module TencentCloud
           @TagIds = params['TagIds']
           @CloudTags = params['CloudTags']
           @TotalCount = params['TotalCount']
+          @ProjectIds = params['ProjectIds']
         end
       end
 
@@ -73697,30 +73701,28 @@ module TencentCloud
 
       # 通知资产范围
       class WebhookAssetScope < TencentCloud::Common::AbstractModel
-        # @param AssetRange: 资产范围类型（对齐 NotifyAssetRange）
-        # 枚举值：
-        # 1：全部主机（可剔除）
-        # 2：自选主机
-        # 3：按标签选择
+        # @param AssetRange: <p>资产范围类型（对齐 NotifyAssetRange）<br>枚举值：<br>1：全部主机（可剔除）<br>2：自选主机<br>3：按标签选择</p>
         # @type AssetRange: Integer
-        # @param InstanceIds: 选中的主机 quuid 列表，仅 AssetRange=2 生效
+        # @param InstanceIds: <p>选中的主机 quuid 列表，仅 AssetRange=2 生效</p>
         # @type InstanceIds: Array
-        # @param ExcludedInstanceIds: 排除的主机 quuid 列表，仅 AssetRange=1 生效
+        # @param ExcludedInstanceIds: <p>排除的主机 quuid 列表，仅 AssetRange=1 生效</p>
         # @type ExcludedInstanceIds: Array
-        # @param TagIds: 安全中心标签 ID 列表，仅 AssetRange=3 生效
+        # @param TagIds: <p>安全中心标签 ID 列表，仅 AssetRange=3 生效</p>
         # @type TagIds: Array
-        # @param CloudTags: 腾讯云标签列表，仅 AssetRange=3 生效
-        # 入参限制：AssetRange=3 时 TagIds + CloudTags 不能同时为空
+        # @param CloudTags: <p>腾讯云标签列表，仅 AssetRange=3 生效<br>入参限制：AssetRange=3 时 TagIds + CloudTags 不能同时为空</p>
         # @type CloudTags: Array
+        # @param ProjectIds: <p>项目ID</p>
+        # @type ProjectIds: Array
 
-        attr_accessor :AssetRange, :InstanceIds, :ExcludedInstanceIds, :TagIds, :CloudTags
+        attr_accessor :AssetRange, :InstanceIds, :ExcludedInstanceIds, :TagIds, :CloudTags, :ProjectIds
 
-        def initialize(assetrange=nil, instanceids=nil, excludedinstanceids=nil, tagids=nil, cloudtags=nil)
+        def initialize(assetrange=nil, instanceids=nil, excludedinstanceids=nil, tagids=nil, cloudtags=nil, projectids=nil)
           @AssetRange = assetrange
           @InstanceIds = instanceids
           @ExcludedInstanceIds = excludedinstanceids
           @TagIds = tagids
           @CloudTags = cloudtags
+          @ProjectIds = projectids
         end
 
         def deserialize(params)
@@ -73729,6 +73731,7 @@ module TencentCloud
           @ExcludedInstanceIds = params['ExcludedInstanceIds']
           @TagIds = params['TagIds']
           @CloudTags = params['CloudTags']
+          @ProjectIds = params['ProjectIds']
         end
       end
 

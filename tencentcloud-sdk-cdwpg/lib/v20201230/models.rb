@@ -63,25 +63,25 @@ module TencentCloud
 
       # 磁盘规格
       class CBSSpec < TencentCloud::Common::AbstractModel
-        # @param DiskType: 盘类型
-        # @type DiskType: String
-        # @param DiskSize: 大小
-        # @type DiskSize: Integer
         # @param DiskCount: 个数
         # @type DiskCount: Integer
+        # @param DiskSize: 大小
+        # @type DiskSize: Integer
+        # @param DiskType: 盘类型
+        # @type DiskType: String
 
-        attr_accessor :DiskType, :DiskSize, :DiskCount
+        attr_accessor :DiskCount, :DiskSize, :DiskType
 
-        def initialize(disktype=nil, disksize=nil, diskcount=nil)
-          @DiskType = disktype
-          @DiskSize = disksize
+        def initialize(diskcount=nil, disksize=nil, disktype=nil)
           @DiskCount = diskcount
+          @DiskSize = disksize
+          @DiskType = disktype
         end
 
         def deserialize(params)
-          @DiskType = params['DiskType']
-          @DiskSize = params['DiskSize']
           @DiskCount = params['DiskCount']
+          @DiskSize = params['DiskSize']
+          @DiskType = params['DiskType']
         end
       end
 
@@ -111,32 +111,32 @@ module TencentCloud
 
       # 云原生资源规格描述信息
       class CNResourceSpec < TencentCloud::Common::AbstractModel
-        # @param Type: 节点类型
-        # @type Type: String
-        # @param SpecName: 机型
-        # @type SpecName: String
         # @param Count: 节点个数
         # @type Count: Integer
         # @param DiskSpec: 磁盘信息
         # @type DiskSpec: :class:`Tencentcloud::Cdwpg.v20201230.models.CBSSpec`
+        # @param SpecName: 机型
+        # @type SpecName: String
+        # @param Type: 节点类型
+        # @type Type: String
 
-        attr_accessor :Type, :SpecName, :Count, :DiskSpec
+        attr_accessor :Count, :DiskSpec, :SpecName, :Type
 
-        def initialize(type=nil, specname=nil, count=nil, diskspec=nil)
-          @Type = type
-          @SpecName = specname
+        def initialize(count=nil, diskspec=nil, specname=nil, type=nil)
           @Count = count
           @DiskSpec = diskspec
+          @SpecName = specname
+          @Type = type
         end
 
         def deserialize(params)
-          @Type = params['Type']
-          @SpecName = params['SpecName']
           @Count = params['Count']
           unless params['DiskSpec'].nil?
             @DiskSpec = CBSSpec.new
             @DiskSpec.deserialize(params['DiskSpec'])
           end
+          @SpecName = params['SpecName']
+          @Type = params['Type']
         end
       end
 
@@ -148,27 +148,27 @@ module TencentCloud
         # @type TimeSpan: Integer
         # @param TimeUnit: 时间单位，一般为h和m
         # @type TimeUnit: String
-        # @param PayMode: 计费类型0-按量计费，1-包年包月
-        # @type PayMode: Integer
         # @param ChargeType: PREPAID、POSTPAID_BY_HOUR
         # @type ChargeType: String
+        # @param PayMode: 计费类型0-按量计费，1-包年包月
+        # @type PayMode: Integer
 
-        attr_accessor :RenewFlag, :TimeSpan, :TimeUnit, :PayMode, :ChargeType
+        attr_accessor :RenewFlag, :TimeSpan, :TimeUnit, :ChargeType, :PayMode
 
-        def initialize(renewflag=nil, timespan=nil, timeunit=nil, paymode=nil, chargetype=nil)
+        def initialize(renewflag=nil, timespan=nil, timeunit=nil, chargetype=nil, paymode=nil)
           @RenewFlag = renewflag
           @TimeSpan = timespan
           @TimeUnit = timeunit
-          @PayMode = paymode
           @ChargeType = chargetype
+          @PayMode = paymode
         end
 
         def deserialize(params)
           @RenewFlag = params['RenewFlag']
           @TimeSpan = params['TimeSpan']
           @TimeUnit = params['TimeUnit']
-          @PayMode = params['PayMode']
           @ChargeType = params['ChargeType']
+          @PayMode = params['PayMode']
         end
       end
 
@@ -269,8 +269,8 @@ module TencentCloud
 
         attr_accessor :InstanceName, :Zone, :UserVPCId, :UserSubnetId, :ChargeProperties, :AdminPassword, :Resources, :Tags, :ProductVersion, :TagItems
         extend Gem::Deprecate
-        deprecate :Tags, :none, 2026, 4
-        deprecate :Tags=, :none, 2026, 4
+        deprecate :Tags, :none, 2026, 9
+        deprecate :Tags=, :none, 2026, 9
 
         def initialize(instancename=nil, zone=nil, uservpcid=nil, usersubnetid=nil, chargeproperties=nil, adminpassword=nil, resources=nil, tags=nil, productversion=nil, tagitems=nil)
           @InstanceName = instancename
@@ -787,68 +787,83 @@ module TencentCloud
 
       # DescribeInstanceState请求参数结构体
       class DescribeInstanceStateRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 集群实例名称
+        # @param InstanceId: <p>集群实例名称</p>
         # @type InstanceId: String
+        # @param InstanceIds: <p>集群实例名称列表（批量查询，优先于 InstanceId；上限100，超出截断）</p>
+        # @type InstanceIds: Array
 
-        attr_accessor :InstanceId
+        attr_accessor :InstanceId, :InstanceIds
 
-        def initialize(instanceid=nil)
+        def initialize(instanceid=nil, instanceids=nil)
           @InstanceId = instanceid
+          @InstanceIds = instanceids
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
+          @InstanceIds = params['InstanceIds']
         end
       end
 
       # DescribeInstanceState返回参数结构体
       class DescribeInstanceStateResponse < TencentCloud::Common::AbstractModel
-        # @param InstanceState: 集群状态，例如：Serving
-        # @type InstanceState: String
-        # @param FlowCreateTime: 集群操作创建时间
-        # @type FlowCreateTime: String
-        # @param FlowName: 集群操作名称
-        # @type FlowName: String
-        # @param FlowProgress: 集群操作进度
-        # @type FlowProgress: Float
-        # @param InstanceStateDesc: 集群状态描述，例如：运行中
-        # @type InstanceStateDesc: String
-        # @param FlowMsg: 集群流程错误信息，例如：“创建失败，资源不足”
-        # @type FlowMsg: String
-        # @param ProcessName: 当前步骤的名称，例如：”购买资源中“
-        # @type ProcessName: String
-        # @param BackupStatus: 集群备份任务开启状态
-        # @type BackupStatus: Integer
-        # @param BackupOpenStatus: 集群备份任务开启状态2
+        # @param BackupOpenStatus: <p>集群备份任务开启状态2</p>
         # @type BackupOpenStatus: Integer
+        # @param BackupStatus: <p>集群备份任务开启状态</p>
+        # @type BackupStatus: Integer
+        # @param FlowCreateTime: <p>集群操作创建时间</p>
+        # @type FlowCreateTime: String
+        # @param FlowMsg: <p>集群流程错误信息，例如：“创建失败，资源不足”</p>
+        # @type FlowMsg: String
+        # @param FlowName: <p>集群操作名称</p>
+        # @type FlowName: String
+        # @param FlowProgress: <p>集群操作进度</p>
+        # @type FlowProgress: Float
+        # @param InstanceState: <p>集群状态，例如：Serving</p>
+        # @type InstanceState: String
+        # @param InstanceStateDesc: <p>集群状态描述，例如：运行中</p>
+        # @type InstanceStateDesc: String
+        # @param ProcessName: <p>当前步骤的名称，例如：”购买资源中“</p>
+        # @type ProcessName: String
+        # @param InstanceStates: <p>批量实例状态列表（InstanceIds 入参时返回，每项含 InstanceId 与状态字段）</p>
+        # @type InstanceStates: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :InstanceState, :FlowCreateTime, :FlowName, :FlowProgress, :InstanceStateDesc, :FlowMsg, :ProcessName, :BackupStatus, :BackupOpenStatus, :RequestId
+        attr_accessor :BackupOpenStatus, :BackupStatus, :FlowCreateTime, :FlowMsg, :FlowName, :FlowProgress, :InstanceState, :InstanceStateDesc, :ProcessName, :InstanceStates, :RequestId
 
-        def initialize(instancestate=nil, flowcreatetime=nil, flowname=nil, flowprogress=nil, instancestatedesc=nil, flowmsg=nil, processname=nil, backupstatus=nil, backupopenstatus=nil, requestid=nil)
-          @InstanceState = instancestate
+        def initialize(backupopenstatus=nil, backupstatus=nil, flowcreatetime=nil, flowmsg=nil, flowname=nil, flowprogress=nil, instancestate=nil, instancestatedesc=nil, processname=nil, instancestates=nil, requestid=nil)
+          @BackupOpenStatus = backupopenstatus
+          @BackupStatus = backupstatus
           @FlowCreateTime = flowcreatetime
+          @FlowMsg = flowmsg
           @FlowName = flowname
           @FlowProgress = flowprogress
+          @InstanceState = instancestate
           @InstanceStateDesc = instancestatedesc
-          @FlowMsg = flowmsg
           @ProcessName = processname
-          @BackupStatus = backupstatus
-          @BackupOpenStatus = backupopenstatus
+          @InstanceStates = instancestates
           @RequestId = requestid
         end
 
         def deserialize(params)
-          @InstanceState = params['InstanceState']
+          @BackupOpenStatus = params['BackupOpenStatus']
+          @BackupStatus = params['BackupStatus']
           @FlowCreateTime = params['FlowCreateTime']
+          @FlowMsg = params['FlowMsg']
           @FlowName = params['FlowName']
           @FlowProgress = params['FlowProgress']
+          @InstanceState = params['InstanceState']
           @InstanceStateDesc = params['InstanceStateDesc']
-          @FlowMsg = params['FlowMsg']
           @ProcessName = params['ProcessName']
-          @BackupStatus = params['BackupStatus']
-          @BackupOpenStatus = params['BackupOpenStatus']
+          unless params['InstanceStates'].nil?
+            @InstanceStates = []
+            params['InstanceStates'].each do |i|
+              instancestateitem_tmp = InstanceStateItem.new
+              instancestateitem_tmp.deserialize(i)
+              @InstanceStates << instancestateitem_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1772,6 +1787,58 @@ module TencentCloud
           @BackupStatus = params['BackupStatus']
           @RequestId = params['RequestId']
           @BackupOpenStatus = params['BackupOpenStatus']
+        end
+      end
+
+      # 批量实例状态项
+      class InstanceStateItem < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>集群实例名称</p>
+        # @type InstanceId: String
+        # @param InstanceState: <p>集群状态，例如：Serving</p>
+        # @type InstanceState: String
+        # @param InstanceStateDesc: <p>集群状态描述，例如：运行中</p>
+        # @type InstanceStateDesc: String
+        # @param BackupStatus: <p>集群备份任务开启状态</p>
+        # @type BackupStatus: Integer
+        # @param BackupOpenStatus: <p>集群备份任务开启状态2</p>
+        # @type BackupOpenStatus: Integer
+        # @param FlowCreateTime: <p>集群操作创建时间</p>
+        # @type FlowCreateTime: String
+        # @param FlowName: <p>集群操作名称</p>
+        # @type FlowName: String
+        # @param FlowProgress: <p>集群操作进度</p>
+        # @type FlowProgress: Float
+        # @param FlowMsg: <p>集群流程错误信息</p>
+        # @type FlowMsg: String
+        # @param ProcessName: <p>当前步骤的名称</p>
+        # @type ProcessName: String
+
+        attr_accessor :InstanceId, :InstanceState, :InstanceStateDesc, :BackupStatus, :BackupOpenStatus, :FlowCreateTime, :FlowName, :FlowProgress, :FlowMsg, :ProcessName
+
+        def initialize(instanceid=nil, instancestate=nil, instancestatedesc=nil, backupstatus=nil, backupopenstatus=nil, flowcreatetime=nil, flowname=nil, flowprogress=nil, flowmsg=nil, processname=nil)
+          @InstanceId = instanceid
+          @InstanceState = instancestate
+          @InstanceStateDesc = instancestatedesc
+          @BackupStatus = backupstatus
+          @BackupOpenStatus = backupopenstatus
+          @FlowCreateTime = flowcreatetime
+          @FlowName = flowname
+          @FlowProgress = flowprogress
+          @FlowMsg = flowmsg
+          @ProcessName = processname
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @InstanceState = params['InstanceState']
+          @InstanceStateDesc = params['InstanceStateDesc']
+          @BackupStatus = params['BackupStatus']
+          @BackupOpenStatus = params['BackupOpenStatus']
+          @FlowCreateTime = params['FlowCreateTime']
+          @FlowName = params['FlowName']
+          @FlowProgress = params['FlowProgress']
+          @FlowMsg = params['FlowMsg']
+          @ProcessName = params['ProcessName']
         end
       end
 

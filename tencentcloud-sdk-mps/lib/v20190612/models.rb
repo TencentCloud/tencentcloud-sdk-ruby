@@ -3006,6 +3006,44 @@ module TencentCloud
         end
       end
 
+      # 图片处理图层融合配置
+      class AiComposeConfig < TencentCloud::Common::AbstractModel
+        # @param Switch: <p>能力配置开关。</p><li>ON：开启（默认值）；</li><li>OFF：关闭。</li>
+        # @type Switch: String
+        # @param Model: <p>合成模型。可选值：compose-1.0-lite（默认值，可不传）。</p>
+        # @type Model: String
+        # @param Canvas: <p>画布定义。可省略：省略时取 ZIndex 最小的图层（底层图层）的自然尺寸。</p>
+        # @type Canvas: :class:`Tencentcloud::Mps.v20190612.models.ImageComposeCanvas`
+        # @param Layers: <p>图层列表，图层的唯一来源。至少 1 层、最多 20 层。</p>
+        # @type Layers: Array
+
+        attr_accessor :Switch, :Model, :Canvas, :Layers
+
+        def initialize(switch=nil, model=nil, canvas=nil, layers=nil)
+          @Switch = switch
+          @Model = model
+          @Canvas = canvas
+          @Layers = layers
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @Model = params['Model']
+          unless params['Canvas'].nil?
+            @Canvas = ImageComposeCanvas.new
+            @Canvas.deserialize(params['Canvas'])
+          end
+          unless params['Layers'].nil?
+            @Layers = []
+            params['Layers'].each do |i|
+              imagecomposelayer_tmp = ImageComposeLayer.new
+              imagecomposelayer_tmp.deserialize(i)
+              @Layers << imagecomposelayer_tmp
+            end
+          end
+        end
+      end
+
       # 内容审核结果
       class AiContentReviewResult < TencentCloud::Common::AbstractModel
         # @param Type: 任务的类型，可以取的值有：
@@ -3294,7 +3332,7 @@ module TencentCloud
         # @type PanelResolution: String
         # @param CustomVariables: <p>用户自定义变量。</p>
         # @type CustomVariables: Array
-        # @param Model: <p>模型名称。</p><p>枚举值：</p><ul><li>WAND-suite-1.0-flash： WAND-suite-1.0-flash</li></ul>
+        # @param Model: <p>模型名称。</p><p>枚举值：</p><ul><li>suite-1.0-flash： suite-1.0-flash</li></ul>
         # @type Model: String
 
         attr_accessor :Mode, :Definition, :Recipe, :Language, :PanelRatio, :PanelResolution, :CustomVariables, :Model
@@ -22247,6 +22285,61 @@ module TencentCloud
         end
       end
 
+      # 图片处理图层融合功能画布参数
+      class ImageComposeCanvas < TencentCloud::Common::AbstractModel
+        # @param Width: <p>画布宽度，取值范围 [1, 10240]，需与 Height 同时设置。</p>
+        # @type Width: Integer
+        # @param Height: <p>画布高度，取值范围 [1, 10240]，需与 Width 同时设置。</p>
+        # @type Height: Integer
+        # @param Background: <p>画布底色，统一为 8 位十六进制 #RRGGBBAA（含 alpha），原样作为画布底色。缺省 #00000000（全透明）。示例：#FFFFFFFF 不透明白、#FFFFFF80 半透明白。</p><p>输出格式不支持透明通道时（如 JPEG），透明区域按该底色的 RGB 塌陷；缺省值会得到黑底，需要白底请显式传    #FFFFFFFF。</p>
+        # @type Background: String
+
+        attr_accessor :Width, :Height, :Background
+
+        def initialize(width=nil, height=nil, background=nil)
+          @Width = width
+          @Height = height
+          @Background = background
+        end
+
+        def deserialize(params)
+          @Width = params['Width']
+          @Height = params['Height']
+          @Background = params['Background']
+        end
+      end
+
+      # 图片处理图层融合功能图层数据结构
+      class ImageComposeLayer < TencentCloud::Common::AbstractModel
+        # @param ZIndex: <p>图层堆叠顺序，必填。同一请求内不可重复，数值越大越靠上（建议从 0 开始连续编号）。</p>
+        # @type ZIndex: Integer
+        # @param InputInfo: <p>图层图片来源，必填。支持 URL / COS / AWS-S3 / VOD。</p>
+        # @type InputInfo: :class:`Tencentcloud::Mps.v20190612.models.MediaInputInfo`
+        # @param BoundingBox: <p>图层在画布中的位置与尺寸，必填。长度为 4 的数组 [X1, Y1, X2, Y2]：左上角 + 右下角坐标，要求 X2 &gt; X1、Y2 &gt;    Y1。</p><p>两种语义（与图片擦除能力的 BoundingBox 对齐）：</p><ul><li>像素：坐标值，取值范围 [-10240,    10240]，允许为负或超出画布（超出部分被裁掉）；</li><li>比例：各值 ∈ [-1, 1]，按画布宽高换算（x 乘画布宽、y    乘画布高）。</li></ul><p>图层会缩放填满该矩形；超出画布的部分一律裁掉，输出尺寸恒等于画布尺寸。</p>
+        # @type BoundingBox: Array
+        # @param BoundingBoxUnitType: <p>坐标单位，与图片擦除能力对齐。取值：</p><ul><li>0：自动判定（不传时的默认值）；</li><li>1：比例；</li><li>2：像素。</li></ul><p>自动判定规则：四个值全部大于 1 按像素解释、全部不大于 1 按比例解释；混合取值会返回InvalidParameter，建议始终显式指定。</p>
+        # @type BoundingBoxUnitType: Integer
+
+        attr_accessor :ZIndex, :InputInfo, :BoundingBox, :BoundingBoxUnitType
+
+        def initialize(zindex=nil, inputinfo=nil, boundingbox=nil, boundingboxunittype=nil)
+          @ZIndex = zindex
+          @InputInfo = inputinfo
+          @BoundingBox = boundingbox
+          @BoundingBoxUnitType = boundingboxunittype
+        end
+
+        def deserialize(params)
+          @ZIndex = params['ZIndex']
+          unless params['InputInfo'].nil?
+            @InputInfo = MediaInputInfo.new
+            @InputInfo.deserialize(params['InputInfo'])
+          end
+          @BoundingBox = params['BoundingBox']
+          @BoundingBoxUnitType = params['BoundingBoxUnitType']
+        end
+      end
+
       # 图片降噪配置
       class ImageDenoiseConfig < TencentCloud::Common::AbstractModel
         # @param Switch: 能力配置开关，可选值：
@@ -22896,10 +22989,12 @@ module TencentCloud
         # @type UnderstandImageConfig: :class:`Tencentcloud::Mps.v20190612.models.UnderstandImageConfig`
         # @param ImageQualityConfig: <p>图片质量评估配置</p>
         # @type ImageQualityConfig: :class:`Tencentcloud::Mps.v20190612.models.ImageQualityConfig`
+        # @param AiComposeConfig: <p>图层融合配置。</p>
+        # @type AiComposeConfig: :class:`Tencentcloud::Mps.v20190612.models.AiComposeConfig`
 
-        attr_accessor :EncodeConfig, :EnhanceConfig, :EraseConfig, :BlindWatermarkConfig, :BeautyConfig, :TransformConfig, :AiTryOnConfig, :AiPosterSuiteConfig, :CreateImageConfig, :AiCutoutConfig, :AiExpansionConfig, :AiStoryboardConfig, :UnderstandImageConfig, :ImageQualityConfig
+        attr_accessor :EncodeConfig, :EnhanceConfig, :EraseConfig, :BlindWatermarkConfig, :BeautyConfig, :TransformConfig, :AiTryOnConfig, :AiPosterSuiteConfig, :CreateImageConfig, :AiCutoutConfig, :AiExpansionConfig, :AiStoryboardConfig, :UnderstandImageConfig, :ImageQualityConfig, :AiComposeConfig
 
-        def initialize(encodeconfig=nil, enhanceconfig=nil, eraseconfig=nil, blindwatermarkconfig=nil, beautyconfig=nil, transformconfig=nil, aitryonconfig=nil, aipostersuiteconfig=nil, createimageconfig=nil, aicutoutconfig=nil, aiexpansionconfig=nil, aistoryboardconfig=nil, understandimageconfig=nil, imagequalityconfig=nil)
+        def initialize(encodeconfig=nil, enhanceconfig=nil, eraseconfig=nil, blindwatermarkconfig=nil, beautyconfig=nil, transformconfig=nil, aitryonconfig=nil, aipostersuiteconfig=nil, createimageconfig=nil, aicutoutconfig=nil, aiexpansionconfig=nil, aistoryboardconfig=nil, understandimageconfig=nil, imagequalityconfig=nil, aicomposeconfig=nil)
           @EncodeConfig = encodeconfig
           @EnhanceConfig = enhanceconfig
           @EraseConfig = eraseconfig
@@ -22914,6 +23009,7 @@ module TencentCloud
           @AiStoryboardConfig = aistoryboardconfig
           @UnderstandImageConfig = understandimageconfig
           @ImageQualityConfig = imagequalityconfig
+          @AiComposeConfig = aicomposeconfig
         end
 
         def deserialize(params)
@@ -22972,6 +23068,10 @@ module TencentCloud
           unless params['ImageQualityConfig'].nil?
             @ImageQualityConfig = ImageQualityConfig.new
             @ImageQualityConfig.deserialize(params['ImageQualityConfig'])
+          end
+          unless params['AiComposeConfig'].nil?
+            @AiComposeConfig = AiComposeConfig.new
+            @AiComposeConfig.deserialize(params['AiComposeConfig'])
           end
         end
       end

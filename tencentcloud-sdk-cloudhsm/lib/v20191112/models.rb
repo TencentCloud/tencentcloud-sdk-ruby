@@ -460,12 +460,16 @@ module TencentCloud
         # @type PqcFlag: Integer
         # @param DeployEnv: <p>环境</p><p>默认值：cloud</p><p>cloud或者cdc</p>
         # @type DeployEnv: String
+        # @param ClusterId: <p>集群id</p>
+        # @type ClusterId: String
+        # @param ClusterRole: <p>集群角色</p>
+        # @type ClusterRole: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ResourceId, :ResourceName, :Status, :Vip, :VpcId, :SubnetId, :Model, :VsmType, :RegionId, :ZoneId, :ExpireTime, :SgList, :SubnetName, :RegionName, :ZoneName, :Expired, :RemainSeconds, :VpcName, :VpcCidrBlock, :SubnetCidrBlock, :Tags, :RenewFlag, :Manufacturer, :PqcFlag, :DeployEnv, :RequestId
+        attr_accessor :ResourceId, :ResourceName, :Status, :Vip, :VpcId, :SubnetId, :Model, :VsmType, :RegionId, :ZoneId, :ExpireTime, :SgList, :SubnetName, :RegionName, :ZoneName, :Expired, :RemainSeconds, :VpcName, :VpcCidrBlock, :SubnetCidrBlock, :Tags, :RenewFlag, :Manufacturer, :PqcFlag, :DeployEnv, :ClusterId, :ClusterRole, :RequestId
 
-        def initialize(resourceid=nil, resourcename=nil, status=nil, vip=nil, vpcid=nil, subnetid=nil, model=nil, vsmtype=nil, regionid=nil, zoneid=nil, expiretime=nil, sglist=nil, subnetname=nil, regionname=nil, zonename=nil, expired=nil, remainseconds=nil, vpcname=nil, vpccidrblock=nil, subnetcidrblock=nil, tags=nil, renewflag=nil, manufacturer=nil, pqcflag=nil, deployenv=nil, requestid=nil)
+        def initialize(resourceid=nil, resourcename=nil, status=nil, vip=nil, vpcid=nil, subnetid=nil, model=nil, vsmtype=nil, regionid=nil, zoneid=nil, expiretime=nil, sglist=nil, subnetname=nil, regionname=nil, zonename=nil, expired=nil, remainseconds=nil, vpcname=nil, vpccidrblock=nil, subnetcidrblock=nil, tags=nil, renewflag=nil, manufacturer=nil, pqcflag=nil, deployenv=nil, clusterid=nil, clusterrole=nil, requestid=nil)
           @ResourceId = resourceid
           @ResourceName = resourcename
           @Status = status
@@ -491,6 +495,8 @@ module TencentCloud
           @Manufacturer = manufacturer
           @PqcFlag = pqcflag
           @DeployEnv = deployenv
+          @ClusterId = clusterid
+          @ClusterRole = clusterrole
           @RequestId = requestid
         end
 
@@ -534,34 +540,39 @@ module TencentCloud
           @Manufacturer = params['Manufacturer']
           @PqcFlag = params['PqcFlag']
           @DeployEnv = params['DeployEnv']
+          @ClusterId = params['ClusterId']
+          @ClusterRole = params['ClusterRole']
           @RequestId = params['RequestId']
         end
       end
 
       # DescribeVsms请求参数结构体
       class DescribeVsmsRequest < TencentCloud::Common::AbstractModel
-        # @param Offset: 偏移
+        # @param Offset: <p>偏移</p>
         # @type Offset: Integer
-        # @param Limit: 最大数量
+        # @param Limit: <p>最大数量</p>
         # @type Limit: Integer
-        # @param SearchWord: 资源ID或者资源名字模糊查询的关键字
+        # @param SearchWord: <p>资源ID或者资源名字模糊查询的关键字</p>
         # @type SearchWord: String
-        # @param TagFilters: 标签过滤条件
+        # @param TagFilters: <p>标签过滤条件</p>
         # @type TagFilters: Array
-        # @param Manufacturer: 设备所属的厂商名称，根据厂商来进行筛选
+        # @param Manufacturer: <p>设备所属的厂商名称，根据厂商来进行筛选</p>
         # @type Manufacturer: String
-        # @param HsmType: Hsm服务类型，可选virtualization、physical、GHSM、EHSM、SHSM、all
+        # @param HsmType: <p>Hsm服务类型，可选virtualization、physical、GHSM、EHSM、SHSM、all</p>
         # @type HsmType: String
+        # @param ClusterId: <p>集群id</p>
+        # @type ClusterId: String
 
-        attr_accessor :Offset, :Limit, :SearchWord, :TagFilters, :Manufacturer, :HsmType
+        attr_accessor :Offset, :Limit, :SearchWord, :TagFilters, :Manufacturer, :HsmType, :ClusterId
 
-        def initialize(offset=nil, limit=nil, searchword=nil, tagfilters=nil, manufacturer=nil, hsmtype=nil)
+        def initialize(offset=nil, limit=nil, searchword=nil, tagfilters=nil, manufacturer=nil, hsmtype=nil, clusterid=nil)
           @Offset = offset
           @Limit = limit
           @SearchWord = searchword
           @TagFilters = tagfilters
           @Manufacturer = manufacturer
           @HsmType = hsmtype
+          @ClusterId = clusterid
         end
 
         def deserialize(params)
@@ -578,14 +589,15 @@ module TencentCloud
           end
           @Manufacturer = params['Manufacturer']
           @HsmType = params['HsmType']
+          @ClusterId = params['ClusterId']
         end
       end
 
       # DescribeVsms返回参数结构体
       class DescribeVsmsResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 获取实例的总个数
+        # @param TotalCount: <p>获取实例的总个数</p>
         # @type TotalCount: Integer
-        # @param VsmList: 资源信息
+        # @param VsmList: <p>资源信息</p>
         # @type VsmList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -679,9 +691,9 @@ module TencentCloud
 
       # GetVsmMonitorInfo请求参数结构体
       class GetVsmMonitorInfoRequest < TencentCloud::Common::AbstractModel
-        # @param ResourceId: 资源Id
+        # @param ResourceId: <p>资源Id</p>
         # @type ResourceId: String
-        # @param ResourceName: 资源名称
+        # @param ResourceName: <p>资源名称</p>
         # @type ResourceName: String
 
         attr_accessor :ResourceId, :ResourceName
@@ -699,20 +711,35 @@ module TencentCloud
 
       # GetVsmMonitorInfo返回参数结构体
       class GetVsmMonitorInfoResponse < TencentCloud::Common::AbstractModel
-        # @param MonitorInfo: VSM监控信息
+        # @param MonitorInfo: <p>VSM监控信息</p>
         # @type MonitorInfo: Array
+        # @param DigestList: <p>vsm摘要列表</p>
+        # @type DigestList: Array
+        # @param InitStatus: <p>初始化状态</p>
+        # @type InitStatus: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :MonitorInfo, :RequestId
+        attr_accessor :MonitorInfo, :DigestList, :InitStatus, :RequestId
 
-        def initialize(monitorinfo=nil, requestid=nil)
+        def initialize(monitorinfo=nil, digestlist=nil, initstatus=nil, requestid=nil)
           @MonitorInfo = monitorinfo
+          @DigestList = digestlist
+          @InitStatus = initstatus
           @RequestId = requestid
         end
 
         def deserialize(params)
           @MonitorInfo = params['MonitorInfo']
+          unless params['DigestList'].nil?
+            @DigestList = []
+            params['DigestList'].each do |i|
+              vsmdigestitem_tmp = VsmDigestItem.new
+              vsmdigestitem_tmp.deserialize(i)
+              @DigestList << vsmdigestitem_tmp
+            end
+          end
+          @InitStatus = params['InitStatus']
           @RequestId = params['RequestId']
         end
       end
@@ -985,10 +1012,16 @@ module TencentCloud
         # @type PqcFlag: Integer
         # @param DeployEnv: <p>环境</p><p>默认值：cloud</p><p>cloud或者cdc</p>
         # @type DeployEnv: String
+        # @param Version: <p>vsm版本号</p>
+        # @type Version: String
+        # @param ClusterId: <p>集群id</p>
+        # @type ClusterId: String
+        # @param ClusterRole: <p>集群角色，0-未加入集群 1-主 2-从</p>
+        # @type ClusterRole: Integer
 
-        attr_accessor :ResourceId, :ResourceName, :Status, :Vip, :VpcId, :SubnetId, :Model, :VsmType, :RegionId, :ZoneId, :ExpireTime, :RegionName, :ZoneName, :SgList, :SubnetName, :Expired, :RemainSeconds, :VpcName, :CreateUin, :RenewFlag, :Tags, :Manufacturer, :AlarmStatus, :PqcStatus, :PqcFlag, :DeployEnv
+        attr_accessor :ResourceId, :ResourceName, :Status, :Vip, :VpcId, :SubnetId, :Model, :VsmType, :RegionId, :ZoneId, :ExpireTime, :RegionName, :ZoneName, :SgList, :SubnetName, :Expired, :RemainSeconds, :VpcName, :CreateUin, :RenewFlag, :Tags, :Manufacturer, :AlarmStatus, :PqcStatus, :PqcFlag, :DeployEnv, :Version, :ClusterId, :ClusterRole
 
-        def initialize(resourceid=nil, resourcename=nil, status=nil, vip=nil, vpcid=nil, subnetid=nil, model=nil, vsmtype=nil, regionid=nil, zoneid=nil, expiretime=nil, regionname=nil, zonename=nil, sglist=nil, subnetname=nil, expired=nil, remainseconds=nil, vpcname=nil, createuin=nil, renewflag=nil, tags=nil, manufacturer=nil, alarmstatus=nil, pqcstatus=nil, pqcflag=nil, deployenv=nil)
+        def initialize(resourceid=nil, resourcename=nil, status=nil, vip=nil, vpcid=nil, subnetid=nil, model=nil, vsmtype=nil, regionid=nil, zoneid=nil, expiretime=nil, regionname=nil, zonename=nil, sglist=nil, subnetname=nil, expired=nil, remainseconds=nil, vpcname=nil, createuin=nil, renewflag=nil, tags=nil, manufacturer=nil, alarmstatus=nil, pqcstatus=nil, pqcflag=nil, deployenv=nil, version=nil, clusterid=nil, clusterrole=nil)
           @ResourceId = resourceid
           @ResourceName = resourcename
           @Status = status
@@ -1015,6 +1048,9 @@ module TencentCloud
           @PqcStatus = pqcstatus
           @PqcFlag = pqcflag
           @DeployEnv = deployenv
+          @Version = version
+          @ClusterId = clusterid
+          @ClusterRole = clusterrole
         end
 
         def deserialize(params)
@@ -1058,6 +1094,9 @@ module TencentCloud
           @PqcStatus = params['PqcStatus']
           @PqcFlag = params['PqcFlag']
           @DeployEnv = params['DeployEnv']
+          @Version = params['Version']
+          @ClusterId = params['ClusterId']
+          @ClusterRole = params['ClusterRole']
         end
       end
 
@@ -1300,6 +1339,26 @@ module TencentCloud
           @VpcId = params['VpcId']
           @CreatedTime = params['CreatedTime']
           @IsDefault = params['IsDefault']
+        end
+      end
+
+      # VSM摘要信息
+      class VsmDigestItem < TencentCloud::Common::AbstractModel
+        # @param DigestVer: <p>计数</p>
+        # @type DigestVer: Integer
+        # @param Value: <p>摘要值</p>
+        # @type Value: String
+
+        attr_accessor :DigestVer, :Value
+
+        def initialize(digestver=nil, value=nil)
+          @DigestVer = digestver
+          @Value = value
+        end
+
+        def deserialize(params)
+          @DigestVer = params['DigestVer']
+          @Value = params['Value']
         end
       end
 

@@ -235,12 +235,16 @@ module TencentCloud
         # @type FileMD5: String
         # @param RecognitionResults: <p>该字段用于返回仅识别图片元素的模型结果；包括：场景模型命中的标签、置信度和位置信息</p>
         # @type RecognitionResults: Array
+        # @param StoreUrl: <p>转存地址，开启转存能力返回转存地址</p>
+        # @type StoreUrl: String
+        # @param Reason: <p>命中原因，大模型提召回输出原因内容</p>
+        # @type Reason: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Suggestion, :Label, :SubLabel, :Score, :LabelResults, :ObjectResults, :OcrResults, :LibResults, :DataId, :BizType, :Extra, :FileMD5, :RecognitionResults, :RequestId
+        attr_accessor :Suggestion, :Label, :SubLabel, :Score, :LabelResults, :ObjectResults, :OcrResults, :LibResults, :DataId, :BizType, :Extra, :FileMD5, :RecognitionResults, :StoreUrl, :Reason, :RequestId
 
-        def initialize(suggestion=nil, label=nil, sublabel=nil, score=nil, labelresults=nil, objectresults=nil, ocrresults=nil, libresults=nil, dataid=nil, biztype=nil, extra=nil, filemd5=nil, recognitionresults=nil, requestid=nil)
+        def initialize(suggestion=nil, label=nil, sublabel=nil, score=nil, labelresults=nil, objectresults=nil, ocrresults=nil, libresults=nil, dataid=nil, biztype=nil, extra=nil, filemd5=nil, recognitionresults=nil, storeurl=nil, reason=nil, requestid=nil)
           @Suggestion = suggestion
           @Label = label
           @SubLabel = sublabel
@@ -254,6 +258,8 @@ module TencentCloud
           @Extra = extra
           @FileMD5 = filemd5
           @RecognitionResults = recognitionresults
+          @StoreUrl = storeurl
+          @Reason = reason
           @RequestId = requestid
         end
 
@@ -306,6 +312,8 @@ module TencentCloud
               @RecognitionResults << recognitionresult_tmp
             end
           end
+          @StoreUrl = params['StoreUrl']
+          @Reason = params['Reason']
           @RequestId = params['RequestId']
         end
       end
