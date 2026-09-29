@@ -1781,6 +1781,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取SQL查询任务的数据结果。直接返回预览数据结果，而非预览结果文件路径。不传 JobExecutionId 时返回该任务下全部子查询的结果数组。返回数据总大小不超过 10MB。任务处于非终态（QUEUED/RUNNING）时不报错，返回当前 Status 与空的 Results 数组，并通过 StatusMessage 说明原因，调用方应采用指数退避策略轮询直至进入终态。
+
+        # @param request: Request instance for GetSQLRunResult.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::GetSQLRunResultRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::GetSQLRunResultResponse`
+        def GetSQLRunResult(request)
+          body = send_request('GetSQLRunResult', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetSQLRunResultResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询脚本详情
 
         # @param request: Request instance for GetSQLScript.

@@ -926,6 +926,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建直播智能擦除规则。
+
+        # @param request: Request instance for CreateLiveSmartEraseRule.
+        # @type request: :class:`Tencentcloud::live::V20180801::CreateLiveSmartEraseRuleRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::CreateLiveSmartEraseRuleResponse`
+        def CreateLiveSmartEraseRule(request)
+          body = send_request('CreateLiveSmartEraseRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateLiveSmartEraseRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建直播智能擦除模板。
 
         # @param request: Request instance for CreateLiveSmartEraseTemplate.
@@ -1832,6 +1856,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteLiveRecordTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除直播智能擦除规则。
+
+        # @param request: Request instance for DeleteLiveSmartEraseRule.
+        # @type request: :class:`Tencentcloud::live::V20180801::DeleteLiveSmartEraseRuleRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DeleteLiveSmartEraseRuleResponse`
+        def DeleteLiveSmartEraseRule(request)
+          body = send_request('DeleteLiveSmartEraseRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteLiveSmartEraseRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除直播智能擦除模板。
+
+        # @param request: Request instance for DeleteLiveSmartEraseTemplate.
+        # @type request: :class:`Tencentcloud::live::V20180801::DeleteLiveSmartEraseTemplateRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DeleteLiveSmartEraseTemplateResponse`
+        def DeleteLiveSmartEraseTemplate(request)
+          body = send_request('DeleteLiveSmartEraseTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteLiveSmartEraseTemplateResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -3683,6 +3755,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取直播智能擦除规则列表。
+
+        # @param request: Request instance for DescribeLiveSmartEraseRules.
+        # @type request: :class:`Tencentcloud::live::V20180801::DescribeLiveSmartEraseRulesRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeLiveSmartEraseRulesResponse`
+        def DescribeLiveSmartEraseRules(request)
+          body = send_request('DescribeLiveSmartEraseRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLiveSmartEraseRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取单个直播智能擦除模板
+
+        # @param request: Request instance for DescribeLiveSmartEraseTemplate.
+        # @type request: :class:`Tencentcloud::live::V20180801::DescribeLiveSmartEraseTemplateRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeLiveSmartEraseTemplateResponse`
+        def DescribeLiveSmartEraseTemplate(request)
+          body = send_request('DescribeLiveSmartEraseTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLiveSmartEraseTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取直播智能擦除模板。
+
+        # @param request: Request instance for DescribeLiveSmartEraseTemplates.
+        # @type request: :class:`Tencentcloud::live::V20180801::DescribeLiveSmartEraseTemplatesRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeLiveSmartEraseTemplatesResponse`
+        def DescribeLiveSmartEraseTemplates(request)
+          body = send_request('DescribeLiveSmartEraseTemplates', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLiveSmartEraseTemplatesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取截图规则列表
 
         # @param request: Request instance for DescribeLiveSnapshotRules.
@@ -5476,6 +5620,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyLiveRecordTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改直播智能擦除模板。
+
+        # @param request: Request instance for ModifyLiveSmartEraseTemplate.
+        # @type request: :class:`Tencentcloud::live::V20180801::ModifyLiveSmartEraseTemplateRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::ModifyLiveSmartEraseTemplateResponse`
+        def ModifyLiveSmartEraseTemplate(request)
+          body = send_request('ModifyLiveSmartEraseTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyLiveSmartEraseTemplateResponse.new
             model.deserialize(response['Response'])
             model
           else

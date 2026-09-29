@@ -4322,6 +4322,50 @@ module TencentCloud
         end
       end
 
+      # CreateLiveSmartEraseRule请求参数结构体
+      class CreateLiveSmartEraseRuleRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateId: <p>模板 ID。</p>
+        # @type TemplateId: Integer
+        # @param DomainName: <p>推流域名。</p>
+        # @type DomainName: String
+        # @param AppName: <p>推流路径，与推流和播放地址中的AppName保持一致，默认为 live。</p>
+        # @type AppName: String
+        # @param StreamName: <p>流名称。<br>注：如果本参数设置为非空字符串，规则将只对此推流起作用。</p>
+        # @type StreamName: String
+
+        attr_accessor :TemplateId, :DomainName, :AppName, :StreamName
+
+        def initialize(templateid=nil, domainname=nil, appname=nil, streamname=nil)
+          @TemplateId = templateid
+          @DomainName = domainname
+          @AppName = appname
+          @StreamName = streamname
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          @DomainName = params['DomainName']
+          @AppName = params['AppName']
+          @StreamName = params['StreamName']
+        end
+      end
+
+      # CreateLiveSmartEraseRule返回参数结构体
+      class CreateLiveSmartEraseRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateLiveSmartEraseTemplate请求参数结构体
       class CreateLiveSmartEraseTemplateRequest < TencentCloud::Common::AbstractModel
         # @param TemplateName: <p>模板名称。长度上限：100字节。</p>
@@ -6270,6 +6314,82 @@ module TencentCloud
 
       # DeleteLiveRecordTemplate返回参数结构体
       class DeleteLiveRecordTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteLiveSmartEraseRule请求参数结构体
+      class DeleteLiveSmartEraseRuleRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateId: <p>直播智能擦除模板id。</p>
+        # @type TemplateId: Integer
+        # @param DomainName: <p>推流域名。<br>域名+AppName+StreamName唯一标识单个转码规则，如需删除需要强匹配，例如AppName为空也需要传空字符串进行强匹配。</p>
+        # @type DomainName: String
+        # @param AppName: <p>，与推流和播放地址中的AppName保持一致，默认为 live。域名+AppName+StreamName唯一标识单个转码规则，如需删除需要强匹配，例如AppName为空也需要传空字符串进行强匹配。推流路径</p>
+        # @type AppName: String
+        # @param StreamName: <p>流名称。<br>域名+AppName+StreamName唯一标识单个转码规则，如需删除需要强匹配，例如AppName为空也需要传空字符串进行强匹配。</p>
+        # @type StreamName: String
+
+        attr_accessor :TemplateId, :DomainName, :AppName, :StreamName
+
+        def initialize(templateid=nil, domainname=nil, appname=nil, streamname=nil)
+          @TemplateId = templateid
+          @DomainName = domainname
+          @AppName = appname
+          @StreamName = streamname
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          @DomainName = params['DomainName']
+          @AppName = params['AppName']
+          @StreamName = params['StreamName']
+        end
+      end
+
+      # DeleteLiveSmartEraseRule返回参数结构体
+      class DeleteLiveSmartEraseRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteLiveSmartEraseTemplate请求参数结构体
+      class DeleteLiveSmartEraseTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateId: <p>模板 ID。</p>
+        # @type TemplateId: Integer
+
+        attr_accessor :TemplateId
+
+        def initialize(templateid=nil)
+          @TemplateId = templateid
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+        end
+      end
+
+      # DeleteLiveSmartEraseTemplate返回参数结构体
+      class DeleteLiveSmartEraseTemplateResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -10030,6 +10150,121 @@ module TencentCloud
               recordtemplateinfo_tmp = RecordTemplateInfo.new
               recordtemplateinfo_tmp.deserialize(i)
               @Templates << recordtemplateinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLiveSmartEraseRules请求参数结构体
+      class DescribeLiveSmartEraseRulesRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeLiveSmartEraseRules返回参数结构体
+      class DescribeLiveSmartEraseRulesResponse < TencentCloud::Common::AbstractModel
+        # @param Rules: <p>规则信息列表。</p>
+        # @type Rules: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Rules, :RequestId
+
+        def initialize(rules=nil, requestid=nil)
+          @Rules = rules
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              ruleinfo_tmp = RuleInfo.new
+              ruleinfo_tmp.deserialize(i)
+              @Rules << ruleinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLiveSmartEraseTemplate请求参数结构体
+      class DescribeLiveSmartEraseTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateId: <p>模板id。</p>
+        # @type TemplateId: Integer
+
+        attr_accessor :TemplateId
+
+        def initialize(templateid=nil)
+          @TemplateId = templateid
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+        end
+      end
+
+      # DescribeLiveSmartEraseTemplate返回参数结构体
+      class DescribeLiveSmartEraseTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param Template: <p>直播智能擦除模板信息。</p>
+        # @type Template: :class:`Tencentcloud::Live.v20180801.models.SmartEraseTemplate`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Template, :RequestId
+
+        def initialize(template=nil, requestid=nil)
+          @Template = template
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Template'].nil?
+            @Template = SmartEraseTemplate.new
+            @Template.deserialize(params['Template'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLiveSmartEraseTemplates请求参数结构体
+      class DescribeLiveSmartEraseTemplatesRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeLiveSmartEraseTemplates返回参数结构体
+      class DescribeLiveSmartEraseTemplatesResponse < TencentCloud::Common::AbstractModel
+        # @param Templates: <p>直播智能擦除模板信息。</p>
+        # @type Templates: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Templates, :RequestId
+
+        def initialize(templates=nil, requestid=nil)
+          @Templates = templates
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Templates'].nil?
+            @Templates = []
+            params['Templates'].each do |i|
+              smarterasetemplate_tmp = SmartEraseTemplate.new
+              smarterasetemplate_tmp.deserialize(i)
+              @Templates << smarterasetemplate_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -15650,6 +15885,82 @@ module TencentCloud
         end
       end
 
+      # ModifyLiveSmartEraseTemplate请求参数结构体
+      class ModifyLiveSmartEraseTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateId: <p>模板id。</p>
+        # @type TemplateId: Integer
+        # @param TemplateName: <p>模板名称。长度上限：100字节。</p>
+        # @type TemplateName: String
+        # @param Type: <p>擦除类型，如&quot;illegal audio|illegal image|logo|privacy protection 。</p>
+        # @type Type: String
+        # @param AuditConfId: <p>关联的审核模板id, 表audio_conf 。</p><p>取值为DescribeAuditTemplates返回的TemplateId</p>
+        # @type AuditConfId: Integer
+        # @param Description: <p>描述信息。<br>长度上限：1024字节。<br>仅支持中文、英文、数字、_、-。</p>
+        # @type Description: String
+        # @param ImageBizType: <p>天御图片审核策略BizType Image 。</p><p>取值为DescribeAuditTemplates返回的SceneInfos下BizInfos里面的对应的StrategyType为&quot;Image&quot;的BizType值</p>
+        # @type ImageBizType: String
+        # @param AudioBizType: <p>天御音频审核策略BizType ShortAudio 。</p><p>取值为DescribeAuditTemplates返回的SceneInfos下BizInfos里面的对应的StrategyType为&quot;ShortAudio&quot;的BizType值</p>
+        # @type AudioBizType: String
+        # @param AudioTextBizType: <p>天御音频文本审核策略BizType ShortAudio</p><p>取值为DescribeAuditTemplates返回的SceneInfos下BizInfos里面的对应的StrategyType为&quot;Text&quot;的BizType值</p>
+        # @type AudioTextBizType: String
+        # @param DisplayMode: <p>展示模式，取值 1:延时稳态展示; 3.实时动态展示。默认1 。</p>
+        # @type DisplayMode: Integer
+        # @param DisplayDelayTime: <p>字幕延迟展示时间,单位毫秒。默认10000。</p>
+        # @type DisplayDelayTime: Integer
+        # @param PrivacyProtection: <p>擦除类型选择“隐私保护”后，该项可见</p><p>枚举值：</p><ul><li>blur face： 人脸模糊</li><li>license plate： 车牌模糊</li></ul>
+        # @type PrivacyProtection: String
+        # @param AudioErasureMode: <p>仅当擦除类型选择了违规音频，该项可见</p><p>枚举值：</p><ul><li>0： 静音</li><li>1： 哔音</li></ul><p>默认值：0</p>
+        # @type AudioErasureMode: Integer
+
+        attr_accessor :TemplateId, :TemplateName, :Type, :AuditConfId, :Description, :ImageBizType, :AudioBizType, :AudioTextBizType, :DisplayMode, :DisplayDelayTime, :PrivacyProtection, :AudioErasureMode
+
+        def initialize(templateid=nil, templatename=nil, type=nil, auditconfid=nil, description=nil, imagebiztype=nil, audiobiztype=nil, audiotextbiztype=nil, displaymode=nil, displaydelaytime=nil, privacyprotection=nil, audioerasuremode=nil)
+          @TemplateId = templateid
+          @TemplateName = templatename
+          @Type = type
+          @AuditConfId = auditconfid
+          @Description = description
+          @ImageBizType = imagebiztype
+          @AudioBizType = audiobiztype
+          @AudioTextBizType = audiotextbiztype
+          @DisplayMode = displaymode
+          @DisplayDelayTime = displaydelaytime
+          @PrivacyProtection = privacyprotection
+          @AudioErasureMode = audioerasuremode
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          @TemplateName = params['TemplateName']
+          @Type = params['Type']
+          @AuditConfId = params['AuditConfId']
+          @Description = params['Description']
+          @ImageBizType = params['ImageBizType']
+          @AudioBizType = params['AudioBizType']
+          @AudioTextBizType = params['AudioTextBizType']
+          @DisplayMode = params['DisplayMode']
+          @DisplayDelayTime = params['DisplayDelayTime']
+          @PrivacyProtection = params['PrivacyProtection']
+          @AudioErasureMode = params['AudioErasureMode']
+        end
+      end
+
+      # ModifyLiveSmartEraseTemplate返回参数结构体
+      class ModifyLiveSmartEraseTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyLiveSnapshotTemplate请求参数结构体
       class ModifyLiveSnapshotTemplateRequest < TencentCloud::Common::AbstractModel
         # @param TemplateId: 模板 ID。
@@ -17979,6 +18290,74 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 直播智能擦除模板。
+      class SmartEraseTemplate < TencentCloud::Common::AbstractModel
+        # @param TemplateId: <p>模板id。</p>
+        # @type TemplateId: Integer
+        # @param TemplateName: <p>模板名称。</p>
+        # @type TemplateName: String
+        # @param Description: <p>模板描述。</p>
+        # @type Description: String
+        # @param Type: <p>擦除类型，如&quot;illegal audio|illegal image|logo|privacy protection 。</p>
+        # @type Type: String
+        # @param AuditConfId: <p>关联的审核模板id, 表audio_conf 。</p><p>取值为DescribeAuditTemplates接口返回的AuditTemplates里面的TemplateId字段</p>
+        # @type AuditConfId: Integer
+        # @param ImageBizType: <p>天御图片审核策略BizType  Image 。</p><p>取值为DescribeAuditTemplates返回的SceneInfos下BizInfos里面的对应的StrategyType为&quot;Image&quot;的BizType值</p>
+        # @type ImageBizType: String
+        # @param AudioBizType: <p>天御音频审核策略BizType  ShortAudio 。</p><p>取值为DescribeAuditTemplates返回的SceneInfos下BizInfos里面的对应的StrategyType为&quot;ShortAudio&quot;的BizType值</p>
+        # @type AudioBizType: String
+        # @param AudioTextBizType: <p>天御音频文本审核策略BizType  ShortAudio 。</p><p>取值为DescribeAuditTemplates返回的SceneInfos下BizInfos里面的对应的StrategyType为&quot;Text&quot;的BizType值</p>
+        # @type AudioTextBizType: String
+        # @param CreateTime: <p>模板创建时间。</p>
+        # @type CreateTime: String
+        # @param UpdateTime: <p>模板修改时间。</p>
+        # @type UpdateTime: String
+        # @param DisplayMode: <p>展示模式，取值 1:延时稳态展示; 3.实时动态展示。默认1 。</p>
+        # @type DisplayMode: Integer
+        # @param DisplayDelayTime: <p>字幕延迟展示时间,单位毫秒。默认10000。</p>
+        # @type DisplayDelayTime: Integer
+        # @param PrivacyProtection: <p>仅当擦除类型选择了违规音频，该项可见</p><p>枚举值：</p><ul><li>blur face： 人脸模糊</li><li>blur license plate： 车牌模糊</li></ul>
+        # @type PrivacyProtection: String
+        # @param AudioErasureMode: <p>仅当擦除类型选择了“隐私保护”后，该项可见</p><p>枚举值：</p><ul><li>0： 静音</li><li>1： 哔音</li></ul>
+        # @type AudioErasureMode: Integer
+
+        attr_accessor :TemplateId, :TemplateName, :Description, :Type, :AuditConfId, :ImageBizType, :AudioBizType, :AudioTextBizType, :CreateTime, :UpdateTime, :DisplayMode, :DisplayDelayTime, :PrivacyProtection, :AudioErasureMode
+
+        def initialize(templateid=nil, templatename=nil, description=nil, type=nil, auditconfid=nil, imagebiztype=nil, audiobiztype=nil, audiotextbiztype=nil, createtime=nil, updatetime=nil, displaymode=nil, displaydelaytime=nil, privacyprotection=nil, audioerasuremode=nil)
+          @TemplateId = templateid
+          @TemplateName = templatename
+          @Description = description
+          @Type = type
+          @AuditConfId = auditconfid
+          @ImageBizType = imagebiztype
+          @AudioBizType = audiobiztype
+          @AudioTextBizType = audiotextbiztype
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @DisplayMode = displaymode
+          @DisplayDelayTime = displaydelaytime
+          @PrivacyProtection = privacyprotection
+          @AudioErasureMode = audioerasuremode
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          @TemplateName = params['TemplateName']
+          @Description = params['Description']
+          @Type = params['Type']
+          @AuditConfId = params['AuditConfId']
+          @ImageBizType = params['ImageBizType']
+          @AudioBizType = params['AudioBizType']
+          @AudioTextBizType = params['AudioTextBizType']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @DisplayMode = params['DisplayMode']
+          @DisplayDelayTime = params['DisplayDelayTime']
+          @PrivacyProtection = params['PrivacyProtection']
+          @AudioErasureMode = params['AudioErasureMode']
         end
       end
 

@@ -502,7 +502,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询控制台用户组成员列表
+        # 查询控制台用户组成员列表，该接口为控制台级接口，仅支持在中心地域调用：国内站请传入 ap-guangzhou，国际站请传入 ap-singapore；其他地域调用将返回 UnsupportedRegion。
 
         # @param request: Request instance for ListConsoleGroupUsers.
         # @type request: :class:`Tencentcloud::databuddy::V20260715::ListConsoleGroupUsersRequest`
@@ -526,7 +526,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询控制台用户组列表
+        # 查询控制台用户组列表，该接口为控制台级接口，仅支持在中心地域调用：国内站请传入 ap-guangzhou，国际站请传入 ap-singapore；其他地域调用将返回 UnsupportedRegion。
 
         # @param request: Request instance for ListConsoleGroups.
         # @type request: :class:`Tencentcloud::databuddy::V20260715::ListConsoleGroupsRequest`
@@ -550,7 +550,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询控制台角色列表
+        # 查询控制台角色列表，该接口为控制台级接口，仅支持在中心地域调用：国内站请传入 ap-guangzhou，国际站请传入 ap-singapore；其他地域调用将返回 UnsupportedRegion。
 
         # @param request: Request instance for ListConsoleRoles.
         # @type request: :class:`Tencentcloud::databuddy::V20260715::ListConsoleRolesRequest`
@@ -574,7 +574,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询控制台用户列表
+        # 查询控制台用户列表，该接口为控制台级接口，仅支持在中心地域调用：国内站请传入 ap-guangzhou，国际站请传入 ap-singapore；其他地域调用将返回 UnsupportedRegion。
 
         # @param request: Request instance for ListConsoleUsers.
         # @type request: :class:`Tencentcloud::databuddy::V20260715::ListConsoleUsersRequest`

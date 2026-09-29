@@ -2635,7 +2635,7 @@ module TencentCloud
 
       # ListConsoleGroupUsers请求参数结构体
       class ListConsoleGroupUsersRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: <p>用户组 ID</p>
+        # @param GroupId: <p>用户组 ID，可通过 ListConsoleGroups 接口获取</p>
         # @type GroupId: String
         # @param UserKeyword: <p>用户名称或 UIN 模糊匹配</p>
         # @type UserKeyword: String
@@ -2745,7 +2745,7 @@ module TencentCloud
         # @type PageNumber: Integer
         # @param PageSize: <p>每页大小，默认10，最小10，最大100</p>
         # @type PageSize: Integer
-        # @param GroupIds: <p>通过用户组 ID 批量查询</p>
+        # @param GroupIds: <p>通过用户组ID批量查询；用户组ID可通过 ListConsoleGroups 接口获取</p>
         # @type GroupIds: Array
         # @param GroupKeyword: <p>用户组名称模糊匹配</p>
         # @type GroupKeyword: String
@@ -2936,7 +2936,7 @@ module TencentCloud
         # @type PageSize: Integer
         # @param UserKeyword: <p>用户名称与 UIN 模糊匹配</p>
         # @type UserKeyword: String
-        # @param RoleIds: <p>用于过滤角色关联的用户</p><p>枚举值：</p><ul><li>2001： 控制台管理员</li><li>2002： 控制台成员</li></ul>
+        # @param RoleIds: <p>用于过滤角色关联的用户</p><p>枚举值：</p><ul><li>2001： 控制台管理员</li><li>2002： 控制台成员</li></ul><p>可通过 ListConsoleRoles 接口获取</p>
         # @type RoleIds: Array
         # @param OrderBys: <p>多字段排序，如 [{Name: &#39;CreateTime&#39;, Direction: &#39;Desc&#39;}, {Name: &#39;UserName&#39;, Direction: &#39;Asc&#39;}]，默认按创建时间降序</p>
         # @type OrderBys: Array
@@ -3827,7 +3827,7 @@ module TencentCloud
 
       # 角色基础信息
       class RoleBasicInfo < TencentCloud::Common::AbstractModel
-        # @param Id: <p>角色ID</p>
+        # @param Id: <p>角色ID，可通过 ListWorkspaceRoles / ListConsoleRoles 接口获取；创建/更新角色时无需填写（由系统自动生成，创建成功后从响应 Data.RoleId 获取）</p>
         # @type Id: String
         # @param Name: <p>角色名称</p>
         # @type Name: String
@@ -3835,11 +3835,11 @@ module TencentCloud
         # @type Description: String
         # @param DisplayName: <p>显示名称</p>
         # @type DisplayName: String
-        # @param RoleType: <p>角色类型</p>
+        # @param RoleType: <p>角色类型：workspace=工作空间系统角色，workspace_custom=工作空间自定义角色，console=控制台角色；查询时返回，创建时无需填写（系统固定创建自定义角色）</p>
         # @type RoleType: String
-        # @param Source: <p>角色来源，参考 web_enum_standard.proto -&gt; RoleSource：0=未指定 1=用户直绑 2=用户组继承 3=两者都有</p>
+        # @param Source: <p>角色来源（查询侧字段，创建时无需填写）：0=未指定，1=用户直绑，2=用户组继承，3=两者都有</p>
         # @type Source: Integer
-        # @param GroupNames: <p>继承来源的用户组名称列表，Source=1 时为空</p>
+        # @param GroupNames: <p>继承来源的用户组名称列表（查询侧字段，创建时无需填写），Source=1 时为空</p>
         # @type GroupNames: Array
 
         attr_accessor :Id, :Name, :Description, :DisplayName, :RoleType, :Source, :GroupNames
@@ -3895,9 +3895,9 @@ module TencentCloud
 
       # 角色权限
       class RolePermission < TencentCloud::Common::AbstractModel
-        # @param ModuleId: 模块ID
+        # @param ModuleId: <p>模块ID，须为当前租户已开通的功能模块（叶子节点）的模块ID（层级编码字符串，如 101=快速开始、109=工作流、116101103=工作空间管理_角色权限），非法值返回 InvalidParameterValue；模块清单可通过控制台「工作空间设置-角色权限」页面查看</p>
         # @type ModuleId: String
-        # @param Permissions: 权限点
+        # @param Permissions: <p>模块访问权限，单值：R=只读，RW=读写，RWD=读写删除，N=无权限</p>
         # @type Permissions: String
 
         attr_accessor :ModuleId, :Permissions

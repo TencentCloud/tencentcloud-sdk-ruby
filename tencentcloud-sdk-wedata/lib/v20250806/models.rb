@@ -7217,6 +7217,53 @@ module TencentCloud
         end
       end
 
+      # GetSQLRunResult请求参数结构体
+      class GetSQLRunResultRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目ID
+        # @type ProjectId: String
+        # @param JobId: 查询任务ID，由 RunSQLScript 返回
+        # @type JobId: String
+        # @param JobExecutionId: 子查询任务运行ID。不传则返回该任务下全部子查询的结果
+        # @type JobExecutionId: String
+
+        attr_accessor :ProjectId, :JobId, :JobExecutionId
+
+        def initialize(projectid=nil, jobid=nil, jobexecutionid=nil)
+          @ProjectId = projectid
+          @JobId = jobid
+          @JobExecutionId = jobexecutionid
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @JobId = params['JobId']
+          @JobExecutionId = params['JobExecutionId']
+        end
+      end
+
+      # GetSQLRunResult返回参数结构体
+      class GetSQLRunResultResponse < TencentCloud::Common::AbstractModel
+        # @param Data: SQL查询结果
+        # @type Data: :class:`Tencentcloud::Wedata.v20250806.models.SqlRunResult`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = SqlRunResult.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GetSQLScript请求参数结构体
       class GetSQLScriptRequest < TencentCloud::Common::AbstractModel
         # @param ScriptId: 探索脚本Id
@@ -18195,6 +18242,28 @@ module TencentCloud
         end
       end
 
+      # 查询结果字段信息
+      class ResultColumnInfo < TencentCloud::Common::AbstractModel
+        # @param ColumnName: 字段名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ColumnName: String
+        # @param ColumnType: 字段类型，如 int、string、bigint 等
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ColumnType: String
+
+        attr_accessor :ColumnName, :ColumnType
+
+        def initialize(columnname=nil, columntype=nil)
+          @ColumnName = columnname
+          @ColumnType = columntype
+        end
+
+        def deserialize(params)
+          @ColumnName = params['ColumnName']
+          @ColumnType = params['ColumnType']
+        end
+      end
+
       # RevokeDataSourceAuthorization请求参数结构体
       class RevokeDataSourceAuthorizationRequest < TencentCloud::Common::AbstractModel
         # @param DataSourceId: 数据源id
@@ -18767,6 +18836,133 @@ module TencentCloud
 
         def deserialize(params)
           @FolderId = params['FolderId']
+        end
+      end
+
+      # 单个子查询（对应一条 SQL 语句）的查询结果
+      class SqlRunExecutionResult < TencentCloud::Common::AbstractModel
+        # @param JobExecutionId: 子查询任务运行ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JobExecutionId: String
+        # @param Status: 子查询状态：SUCCESS、FAILED、TERMINATED、CANCELED 等
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param Columns: 结果集字段信息；非查询类语句（INSERT/CREATE 等）为空列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Columns: Array
+        # @param Rows: 结果数据行，每个元素的 Values 顺序与 Columns 一致
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Rows: Array
+        # @param Total: 本子查询的预览结果行数。预览行数上限遵循「项目管理-数据分析配置-单次运行的预览行数上限」，由执行平台在结果产出阶段截断
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param CostMs: 本子查询耗时，单位毫秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CostMs: Integer
+        # @param Truncated: 本子查询结果是否不完整。返回数据总大小超过 10MB、或结果文件已被清理导致读取不完整时为 true
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Truncated: Boolean
+
+        attr_accessor :JobExecutionId, :Status, :Columns, :Rows, :Total, :CostMs, :Truncated
+
+        def initialize(jobexecutionid=nil, status=nil, columns=nil, rows=nil, total=nil, costms=nil, truncated=nil)
+          @JobExecutionId = jobexecutionid
+          @Status = status
+          @Columns = columns
+          @Rows = rows
+          @Total = total
+          @CostMs = costms
+          @Truncated = truncated
+        end
+
+        def deserialize(params)
+          @JobExecutionId = params['JobExecutionId']
+          @Status = params['Status']
+          unless params['Columns'].nil?
+            @Columns = []
+            params['Columns'].each do |i|
+              resultcolumninfo_tmp = ResultColumnInfo.new
+              resultcolumninfo_tmp.deserialize(i)
+              @Columns << resultcolumninfo_tmp
+            end
+          end
+          unless params['Rows'].nil?
+            @Rows = []
+            params['Rows'].each do |i|
+              sqlrunresultrow_tmp = SqlRunResultRow.new
+              sqlrunresultrow_tmp.deserialize(i)
+              @Rows << sqlrunresultrow_tmp
+            end
+          end
+          @Total = params['Total']
+          @CostMs = params['CostMs']
+          @Truncated = params['Truncated']
+        end
+      end
+
+      # GetSQLRunResult 出参：一个查询任务下全部（或指定）子查询的结果集合
+      class SqlRunResult < TencentCloud::Common::AbstractModel
+        # @param JobId: 查询任务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JobId: String
+        # @param Status: 查询任务状态。终态取值：SUCCESS（成功）、FAILED（失败）、TERMINATED（已终止）、CANCELED（已取消）；非终态取值：QUEUED（排队中）、RUNNING（执行中）。非终态时不报错，Results 返回空数组，调用方应指数退避轮询直至进入终态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param StatusMessage: 当前状态的可读说明，任意状态下均有值。用于说明 Results 为空的具体原因并给出下一步动作建议：任务未完成时提示稍后以相同 JobId 重试；任务失败/终止/取消时提示无结果数据及后续处理；成功且结果被截断时提示缩小查询范围。命名上与云API错误响应的 Error.Message 区分，本字段描述的是业务状态而非错误信息。随 Language 参数国际化
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StatusMessage: String
+        # @param CostMs: 查询任务总耗时，单位毫秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CostMs: Integer
+        # @param Truncated: 是否存在结果不完整的子查询。任一子查询的 Truncated 为 true 时本字段为 true
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Truncated: Boolean
+        # @param Results: 各子查询的结果列表，顺序与 SQL 语句执行顺序一致
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Results: Array
+
+        attr_accessor :JobId, :Status, :StatusMessage, :CostMs, :Truncated, :Results
+
+        def initialize(jobid=nil, status=nil, statusmessage=nil, costms=nil, truncated=nil, results=nil)
+          @JobId = jobid
+          @Status = status
+          @StatusMessage = statusmessage
+          @CostMs = costms
+          @Truncated = truncated
+          @Results = results
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @Status = params['Status']
+          @StatusMessage = params['StatusMessage']
+          @CostMs = params['CostMs']
+          @Truncated = params['Truncated']
+          unless params['Results'].nil?
+            @Results = []
+            params['Results'].each do |i|
+              sqlrunexecutionresult_tmp = SqlRunExecutionResult.new
+              sqlrunexecutionresult_tmp.deserialize(i)
+              @Results << sqlrunexecutionresult_tmp
+            end
+          end
+        end
+      end
+
+      # 查询结果的单行数据。云API 数据结构不支持二维数组，故将一行数据包装为对象。
+      class SqlRunResultRow < TencentCloud::Common::AbstractModel
+        # @param Values: 该行各单元格取值，顺序与 Columns 一致。均为字符串：底层预览结果为 CSV 格式不携带类型信息，字段真实类型参见 Columns[].ColumnType
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Values: Array
+
+        attr_accessor :Values
+
+        def initialize(values=nil)
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Values = params['Values']
         end
       end
 
