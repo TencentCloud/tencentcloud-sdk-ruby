@@ -11850,6 +11850,33 @@ module TencentCloud
         end
       end
 
+      # DescribeOriginWhiteIpList请求参数结构体
+      class DescribeOriginWhiteIpListRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeOriginWhiteIpList返回参数结构体
+      class DescribeOriginWhiteIpListResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribePlayErrorCodeDetailInfoList请求参数结构体
       class DescribePlayErrorCodeDetailInfoListRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 起始时间，

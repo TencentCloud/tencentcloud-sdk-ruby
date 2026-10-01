@@ -4475,6 +4475,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取直播源站的拉流IP白名单列表
+
+        # @param request: Request instance for DescribeOriginWhiteIpList.
+        # @type request: :class:`Tencentcloud::live::V20180801::DescribeOriginWhiteIpListRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeOriginWhiteIpListResponse`
+        def DescribeOriginWhiteIpList(request)
+          body = send_request('DescribeOriginWhiteIpList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeOriginWhiteIpListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
         # 查询下行播放错误码信息，某段时间内1分钟粒度的各http错误码出现的次数，包括4xx，5xx。
 
