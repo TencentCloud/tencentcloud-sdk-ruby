@@ -269,6 +269,48 @@ module TencentCloud
         end
       end
 
+      # 审计信息
+      class Audit < TencentCloud::Common::AbstractModel
+        # @param Creator: 创建者。注意：此字段可能返回null，表示取不到有效值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Creator: String
+        # @param CreatedAt: 创建时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatedAt: String
+        # @param LastModifier: 最后修改者。注意：此字段可能返回null，表示取不到有效值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastModifier: String
+        # @param LastModifiedAt: 最后修改时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastModifiedAt: String
+        # @param CreatorName: 创建者名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatorName: String
+        # @param LastModifierName: 最后修改者名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastModifierName: String
+
+        attr_accessor :Creator, :CreatedAt, :LastModifier, :LastModifiedAt, :CreatorName, :LastModifierName
+
+        def initialize(creator=nil, createdat=nil, lastmodifier=nil, lastmodifiedat=nil, creatorname=nil, lastmodifiername=nil)
+          @Creator = creator
+          @CreatedAt = createdat
+          @LastModifier = lastmodifier
+          @LastModifiedAt = lastmodifiedat
+          @CreatorName = creatorname
+          @LastModifierName = lastmodifiername
+        end
+
+        def deserialize(params)
+          @Creator = params['Creator']
+          @CreatedAt = params['CreatedAt']
+          @LastModifier = params['LastModifier']
+          @LastModifiedAt = params['LastModifiedAt']
+          @CreatorName = params['CreatorName']
+          @LastModifierName = params['LastModifierName']
+        end
+      end
+
       # 通用错误信息
       class CommonFailItem < TencentCloud::Common::AbstractModel
         # @param Item: <p>uin或者groupId</p>
@@ -286,6 +328,44 @@ module TencentCloud
         def deserialize(params)
           @Item = params['Item']
           @FailReason = params['FailReason']
+        end
+      end
+
+      # 通用标签信息（用于查询展示场景），适用于表标签、字段标签等各类资产标签的轻量展示，供GetTable等接口返回使用
+      class CommonTagInfo < TencentCloud::Common::AbstractModel
+        # @param LabelId: 标签ID
+        # @type LabelId: String
+        # @param LabelName: 标签名称
+        # @type LabelName: String
+        # @param LabelValueId: 标签值ID，属性标签（LabelType=3）可为0
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LabelValueId: String
+        # @param LabelValue: 标签值，脱敏标签（LabelType=4）时可为空
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LabelValue: String
+        # @param Type: 标签类型，取值参考LabelType枚举定义：1-治理标签，2-自定义标签，3-属性标签，4-脱敏标签
+        # @type Type: Integer
+        # @param Deleted: 标签是否已删除。true表示该LabelId在meta_biz_label中查不到记录，标签已被物理删除；false（默认）表示标签仍存在
+        # @type Deleted: Boolean
+
+        attr_accessor :LabelId, :LabelName, :LabelValueId, :LabelValue, :Type, :Deleted
+
+        def initialize(labelid=nil, labelname=nil, labelvalueid=nil, labelvalue=nil, type=nil, deleted=nil)
+          @LabelId = labelid
+          @LabelName = labelname
+          @LabelValueId = labelvalueid
+          @LabelValue = labelvalue
+          @Type = type
+          @Deleted = deleted
+        end
+
+        def deserialize(params)
+          @LabelId = params['LabelId']
+          @LabelName = params['LabelName']
+          @LabelValueId = params['LabelValueId']
+          @LabelValue = params['LabelValue']
+          @Type = params['Type']
+          @Deleted = params['Deleted']
         end
       end
 
@@ -466,6 +546,83 @@ module TencentCloud
           @IsOwner = params['IsOwner']
           @UserTag = params['UserTag']
           @IsAdmin = params['IsAdmin']
+        end
+      end
+
+      # CreateCatalog请求参数结构体
+      class CreateCatalogRequest < TencentCloud::Common::AbstractModel
+        # @param Name: catalog名称
+        # @type Name: String
+        # @param Type: catalog类型, 可选值TABLE、MODEL、VOLUME
+        # @type Type: String
+        # @param WorkspaceId: 工作空间唯一id
+        # @type WorkspaceId: String
+        # @param Comment: 描述
+        # @type Comment: String
+        # @param ConnectionId: connection 的 ID
+        # @type ConnectionId: String
+        # @param CatalogSource: 数据目录来源，可选（融合版新增字段），取值参考 CatalogSourceEnum：METALAKE（专业版）/ CONNECTION（分析版），不传时默认按 METALAKE 处理
+        # @type CatalogSource: String
+
+        attr_accessor :Name, :Type, :WorkspaceId, :Comment, :ConnectionId, :CatalogSource
+
+        def initialize(name=nil, type=nil, workspaceid=nil, comment=nil, connectionid=nil, catalogsource=nil)
+          @Name = name
+          @Type = type
+          @WorkspaceId = workspaceid
+          @Comment = comment
+          @ConnectionId = connectionid
+          @CatalogSource = catalogsource
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Type = params['Type']
+          @WorkspaceId = params['WorkspaceId']
+          @Comment = params['Comment']
+          @ConnectionId = params['ConnectionId']
+          @CatalogSource = params['CatalogSource']
+        end
+      end
+
+      # CreateCatalog返回参数结构体
+      class CreateCatalogResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 创建catalog响应
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Databuddy.v20260715.models.CreateCatalogRsp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = CreateCatalogRsp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 创建数据目录的响应
+      class CreateCatalogRsp < TencentCloud::Common::AbstractModel
+        # @param CatalogId: 新创建的数据目录的id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CatalogId: String
+
+        attr_accessor :CatalogId
+
+        def initialize(catalogid=nil)
+          @CatalogId = catalogid
+        end
+
+        def deserialize(params)
+          @CatalogId = params['CatalogId']
         end
       end
 
@@ -687,6 +844,82 @@ module TencentCloud
         end
       end
 
+      # CreateSchema请求参数结构体
+      class CreateSchemaRequest < TencentCloud::Common::AbstractModel
+        # @param CatalogName: catalog名称
+        # @type CatalogName: String
+        # @param Name: schema名称
+        # @type Name: String
+        # @param Comment: 描述
+        # @type Comment: String
+        # @param WorkspaceId: 调用时所在workspace唯一id
+        # @type WorkspaceId: String
+        # @param ConnectionId: 数据源连接ID，可选（融合版新增字段）。分析版catalog不支持创建schema，传入非空时服务端返回ANA_CATALOG_NOT_SUPPORTED错误
+        # @type ConnectionId: String
+
+        attr_accessor :CatalogName, :Name, :Comment, :WorkspaceId, :ConnectionId
+
+        def initialize(catalogname=nil, name=nil, comment=nil, workspaceid=nil, connectionid=nil)
+          @CatalogName = catalogname
+          @Name = name
+          @Comment = comment
+          @WorkspaceId = workspaceid
+          @ConnectionId = connectionid
+        end
+
+        def deserialize(params)
+          @CatalogName = params['CatalogName']
+          @Name = params['Name']
+          @Comment = params['Comment']
+          @WorkspaceId = params['WorkspaceId']
+          @ConnectionId = params['ConnectionId']
+        end
+      end
+
+      # CreateSchema返回参数结构体
+      class CreateSchemaResponse < TencentCloud::Common::AbstractModel
+        # @param Data: schema信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Databuddy.v20260715.models.CreateSchemaRsp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = CreateSchemaRsp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 创建schema的响应
+      class CreateSchemaRsp < TencentCloud::Common::AbstractModel
+        # @param Schema: schema信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Schema: :class:`Tencentcloud::Databuddy.v20260715.models.Schema`
+
+        attr_accessor :Schema
+
+        def initialize(schema=nil)
+          @Schema = schema
+        end
+
+        def deserialize(params)
+          unless params['Schema'].nil?
+            @Schema = Schema.new
+            @Schema.deserialize(params['Schema'])
+          end
+        end
+      end
+
       # CreateWorkflow请求参数结构体
       class CreateWorkflowRequest < TencentCloud::Common::AbstractModel
         # @param WorkspaceId: <p>工作空间ID，可通过 ListWorkspaces 获取。必填</p>
@@ -879,6 +1112,84 @@ module TencentCloud
         end
       end
 
+      # CreateWorkspaceRole请求参数结构体
+      class CreateWorkspaceRoleRequest < TencentCloud::Common::AbstractModel
+        # @param WorkspaceId: <p>工作空间id</p>
+        # @type WorkspaceId: String
+        # @param BasicInfo: <p>角色基础信息</p>
+        # @type BasicInfo: :class:`Tencentcloud::Databuddy.v20260715.models.RoleBasicInfo`
+        # @param Permissions: <p>角色权限</p>
+        # @type Permissions: Array
+
+        attr_accessor :WorkspaceId, :BasicInfo, :Permissions
+
+        def initialize(workspaceid=nil, basicinfo=nil, permissions=nil)
+          @WorkspaceId = workspaceid
+          @BasicInfo = basicinfo
+          @Permissions = permissions
+        end
+
+        def deserialize(params)
+          @WorkspaceId = params['WorkspaceId']
+          unless params['BasicInfo'].nil?
+            @BasicInfo = RoleBasicInfo.new
+            @BasicInfo.deserialize(params['BasicInfo'])
+          end
+          unless params['Permissions'].nil?
+            @Permissions = []
+            params['Permissions'].each do |i|
+              rolepermission_tmp = RolePermission.new
+              rolepermission_tmp.deserialize(i)
+              @Permissions << rolepermission_tmp
+            end
+          end
+        end
+      end
+
+      # CreateWorkspaceRole返回参数结构体
+      class CreateWorkspaceRoleResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>创建工作空间角色返回</p>
+        # @type Data: :class:`Tencentcloud::Databuddy.v20260715.models.CreateWorkspaceRoleResult`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = CreateWorkspaceRoleResult.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 创建工作空间角色结果
+      class CreateWorkspaceRoleResult < TencentCloud::Common::AbstractModel
+        # @param RoleId: 角色id
+        # @type RoleId: String
+        # @param Status: 创建工作空间角色是否成功
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Boolean
+
+        attr_accessor :RoleId, :Status
+
+        def initialize(roleid=nil, status=nil)
+          @RoleId = roleid
+          @Status = status
+        end
+
+        def deserialize(params)
+          @RoleId = params['RoleId']
+          @Status = params['Status']
+        end
+      end
+
       # 创建工作空间响应
       class CreateWorkspaceRsp < TencentCloud::Common::AbstractModel
         # @param WorkspaceId: 创建成功的工作空间ID
@@ -892,6 +1203,71 @@ module TencentCloud
 
         def deserialize(params)
           @WorkspaceId = params['WorkspaceId']
+        end
+      end
+
+      # DeleteCatalog请求参数结构体
+      class DeleteCatalogRequest < TencentCloud::Common::AbstractModel
+        # @param CatalogName: 数据目录名
+        # @type CatalogName: String
+        # @param WorkspaceId: 调用时所在workspace唯一id
+        # @type WorkspaceId: String
+        # @param ConnectionId: 数据源连接ID，可选（融合版新增字段）。非空→走分析版路径，空/缺省→走专业版TcLake路径
+        # @type ConnectionId: String
+
+        attr_accessor :CatalogName, :WorkspaceId, :ConnectionId
+
+        def initialize(catalogname=nil, workspaceid=nil, connectionid=nil)
+          @CatalogName = catalogname
+          @WorkspaceId = workspaceid
+          @ConnectionId = connectionid
+        end
+
+        def deserialize(params)
+          @CatalogName = params['CatalogName']
+          @WorkspaceId = params['WorkspaceId']
+          @ConnectionId = params['ConnectionId']
+        end
+      end
+
+      # DeleteCatalog返回参数结构体
+      class DeleteCatalogResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 操作结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Databuddy.v20260715.models.DeleteCatalogRsp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DeleteCatalogRsp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 删除数据目录描述的响应
+      class DeleteCatalogRsp < TencentCloud::Common::AbstractModel
+        # @param Result: 操作结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Boolean
+
+        attr_accessor :Result
+
+        def initialize(result=nil)
+          @Result = result
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
         end
       end
 
@@ -1086,6 +1462,75 @@ module TencentCloud
         end
       end
 
+      # DeleteSchema请求参数结构体
+      class DeleteSchemaRequest < TencentCloud::Common::AbstractModel
+        # @param CatalogName: 数据目录名
+        # @type CatalogName: String
+        # @param SchemaName: 数据库名
+        # @type SchemaName: String
+        # @param WorkspaceId: 调用时所在workspace唯一id
+        # @type WorkspaceId: String
+        # @param ConnectionId: 数据源连接ID，可选（融合版新增字段）。分析版catalog不支持删除schema，传入非空时服务端返回ANA_CATALOG_NOT_SUPPORTED错误
+        # @type ConnectionId: String
+
+        attr_accessor :CatalogName, :SchemaName, :WorkspaceId, :ConnectionId
+
+        def initialize(catalogname=nil, schemaname=nil, workspaceid=nil, connectionid=nil)
+          @CatalogName = catalogname
+          @SchemaName = schemaname
+          @WorkspaceId = workspaceid
+          @ConnectionId = connectionid
+        end
+
+        def deserialize(params)
+          @CatalogName = params['CatalogName']
+          @SchemaName = params['SchemaName']
+          @WorkspaceId = params['WorkspaceId']
+          @ConnectionId = params['ConnectionId']
+        end
+      end
+
+      # DeleteSchema返回参数结构体
+      class DeleteSchemaResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 操作结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Databuddy.v20260715.models.DeleteSchemaRsp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DeleteSchemaRsp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 删除Schema的响应
+      class DeleteSchemaRsp < TencentCloud::Common::AbstractModel
+        # @param Result: 操作结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Boolean
+
+        attr_accessor :Result
+
+        def initialize(result=nil)
+          @Result = result
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+        end
+      end
+
       # DeleteWorkflow请求参数结构体
       class DeleteWorkflowRequest < TencentCloud::Common::AbstractModel
         # @param WorkspaceId: <p>工作空间ID，可通过 ListWorkspaces 获取。必填</p>
@@ -1186,6 +1631,65 @@ module TencentCloud
         end
       end
 
+      # DeleteWorkspaceRole请求参数结构体
+      class DeleteWorkspaceRoleRequest < TencentCloud::Common::AbstractModel
+        # @param WorkspaceId: 工作空间ID
+        # @type WorkspaceId: String
+        # @param RoleId: 角色ID
+        # @type RoleId: String
+
+        attr_accessor :WorkspaceId, :RoleId
+
+        def initialize(workspaceid=nil, roleid=nil)
+          @WorkspaceId = workspaceid
+          @RoleId = roleid
+        end
+
+        def deserialize(params)
+          @WorkspaceId = params['WorkspaceId']
+          @RoleId = params['RoleId']
+        end
+      end
+
+      # DeleteWorkspaceRole返回参数结构体
+      class DeleteWorkspaceRoleResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 删除工作空间角色结果
+        # @type Data: :class:`Tencentcloud::Databuddy.v20260715.models.DeleteWorkspaceRoleResult`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DeleteWorkspaceRoleResult.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 删除工作空间角色结果
+      class DeleteWorkspaceRoleResult < TencentCloud::Common::AbstractModel
+        # @param Status: 删除工作空间角色是否成功
+        # @type Status: Boolean
+
+        attr_accessor :Status
+
+        def initialize(status=nil)
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+        end
+      end
+
       # 删除工作空间响应
       class DeleteWorkspaceRsp < TencentCloud::Common::AbstractModel
         # @param Status: 操作是否成功
@@ -1221,6 +1725,50 @@ module TencentCloud
         def deserialize(params)
           @TaskId = params['TaskId']
           @TaskName = params['TaskName']
+        end
+      end
+
+      # 数据获取选项，用于get/list请求中控制响应返回哪些额外内容
+      class FetchOption < TencentCloud::Common::AbstractModel
+        # @param FetchPermissions: <p>是否在响应中返回权限列表，默认false</p>
+        # @type FetchPermissions: Boolean
+        # @param FetchFeatureTableDetail: <p>是否获取特征表详情，当AssetType为TABLE时有效</p>
+        # @type FetchFeatureTableDetail: Boolean
+        # @param FilterPermissions: <p>按权限过滤，传入权限列表，仅返回当前用户拥有指定权限的实体。例如传入[&quot;SELECT_TABLE&quot;]则仅返回当前用户有SELECT_TABLE权限的实体。只对list接口生效，为空时不进行权限过滤</p>
+        # @type FilterPermissions: Array
+        # @param FetchOwners: <p>是否在响应中返回负责人信息。不传或为true时返回负责人信息（默认返回），显式传false时不返回</p>
+        # @type FetchOwners: Boolean
+        # @param FetchUserInfo: <p>是否将用户Uin转换为用户名(userName)。影响范围：Audit中的CreatorName/LastModifierName、MetaOwner中的OwnerName。不传或为true时执行转换（默认转换），显式传false时不转换</p>
+        # @type FetchUserInfo: Boolean
+        # @param FetchMask: <p>是否返回字段脱敏策略信息，默认不返回，传true则会查询表字段对应的字段脱敏策略信息</p>
+        # @type FetchMask: Boolean
+        # @param FetchTags: <p>是否返回标签信息，默认不返回。传true时，GetTable/ListTables/GetCatalog/ListCatalogs/GetSchema/ListSchemas/GetView/ListViews/GetFunction/ListFunctions/GetVolume/ListVolumes/GetModel/ListModels等接口会在对应实体中返回标签（Tags）字段</p>
+        # @type FetchTags: Boolean
+        # @param FetchDimensions: <p>是否返回字段关联的字典维度信息，默认不传，不返回</p>
+        # @type FetchDimensions: Boolean
+
+        attr_accessor :FetchPermissions, :FetchFeatureTableDetail, :FilterPermissions, :FetchOwners, :FetchUserInfo, :FetchMask, :FetchTags, :FetchDimensions
+
+        def initialize(fetchpermissions=nil, fetchfeaturetabledetail=nil, filterpermissions=nil, fetchowners=nil, fetchuserinfo=nil, fetchmask=nil, fetchtags=nil, fetchdimensions=nil)
+          @FetchPermissions = fetchpermissions
+          @FetchFeatureTableDetail = fetchfeaturetabledetail
+          @FilterPermissions = filterpermissions
+          @FetchOwners = fetchowners
+          @FetchUserInfo = fetchuserinfo
+          @FetchMask = fetchmask
+          @FetchTags = fetchtags
+          @FetchDimensions = fetchdimensions
+        end
+
+        def deserialize(params)
+          @FetchPermissions = params['FetchPermissions']
+          @FetchFeatureTableDetail = params['FetchFeatureTableDetail']
+          @FilterPermissions = params['FilterPermissions']
+          @FetchOwners = params['FetchOwners']
+          @FetchUserInfo = params['FetchUserInfo']
+          @FetchMask = params['FetchMask']
+          @FetchTags = params['FetchTags']
+          @FetchDimensions = params['FetchDimensions']
         end
       end
 
@@ -2545,6 +3093,28 @@ module TencentCloud
         end
       end
 
+      # 扩展信息键值对
+      class KVPair < TencentCloud::Common::AbstractModel
+        # @param Key: 键
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param Value: 值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
       # KillWorkflowRun请求参数结构体
       class KillWorkflowRunRequest < TencentCloud::Common::AbstractModel
         # @param WorkspaceId: <p>工作空间ID，可通过 ListWorkspaces 获取。必填</p>
@@ -3150,6 +3720,98 @@ module TencentCloud
         end
       end
 
+      # ListSchemas请求参数结构体
+      class ListSchemasRequest < TencentCloud::Common::AbstractModel
+        # @param CatalogName: <p>数据目录名</p>
+        # @type CatalogName: String
+        # @param MaxResults: <p>最大结果条数</p>
+        # @type MaxResults: Integer
+        # @param PageToken: <p>分页token</p>
+        # @type PageToken: String
+        # @param WorkspaceId: <p>调用时所在workspace唯一id</p>
+        # @type WorkspaceId: String
+        # @param FetchOption: <p>数据获取选项，可选，控制是否返回权限信息及按权限过滤</p>
+        # @type FetchOption: :class:`Tencentcloud::Databuddy.v20260715.models.FetchOption`
+        # @param ConnectionId: 数据源连接ID，可选（融合版新增字段）。非空→走分析版路径，空/缺省→走专业版TcLake路径
+        # @type ConnectionId: String
+
+        attr_accessor :CatalogName, :MaxResults, :PageToken, :WorkspaceId, :FetchOption, :ConnectionId
+
+        def initialize(catalogname=nil, maxresults=nil, pagetoken=nil, workspaceid=nil, fetchoption=nil, connectionid=nil)
+          @CatalogName = catalogname
+          @MaxResults = maxresults
+          @PageToken = pagetoken
+          @WorkspaceId = workspaceid
+          @FetchOption = fetchoption
+          @ConnectionId = connectionid
+        end
+
+        def deserialize(params)
+          @CatalogName = params['CatalogName']
+          @MaxResults = params['MaxResults']
+          @PageToken = params['PageToken']
+          @WorkspaceId = params['WorkspaceId']
+          unless params['FetchOption'].nil?
+            @FetchOption = FetchOption.new
+            @FetchOption.deserialize(params['FetchOption'])
+          end
+          @ConnectionId = params['ConnectionId']
+        end
+      end
+
+      # ListSchemas返回参数结构体
+      class ListSchemasResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>操作结果</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Databuddy.v20260715.models.ListSchemasRsp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ListSchemasRsp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 获取schema列表响应
+      class ListSchemasRsp < TencentCloud::Common::AbstractModel
+        # @param Items: schema列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+        # @param NextPageToken: 下页分页token
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NextPageToken: String
+
+        attr_accessor :Items, :NextPageToken
+
+        def initialize(items=nil, nextpagetoken=nil)
+          @Items = items
+          @NextPageToken = nextpagetoken
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              schema_tmp = Schema.new
+              schema_tmp.deserialize(i)
+              @Items << schema_tmp
+            end
+          end
+          @NextPageToken = params['NextPageToken']
+        end
+      end
+
       # ListWorkflowRuns请求参数结构体
       class ListWorkflowRunsRequest < TencentCloud::Common::AbstractModel
         # @param WorkspaceId: <p>工作空间ID，可通过 ListWorkspaces 获取。必填</p>
@@ -3546,6 +4208,155 @@ module TencentCloud
         end
       end
 
+      # ListWorkspaces请求参数结构体
+      class ListWorkspacesRequest < TencentCloud::Common::AbstractModel
+        # @param WorkspaceId: <p>工作空间ID精确匹配</p>
+        # @type WorkspaceId: String
+        # @param WorkspaceKeyword: <p>工作空间名称模糊匹配</p>
+        # @type WorkspaceKeyword: String
+        # @param StatusList: <p>工作空间状态过滤（多选）：0=未指定 1=创建中 2=创建失败 3=正常运行中 4=已删除</p>
+        # @type StatusList: Array
+        # @param OrderBys: <p>多字段排序，如 [{Name: 'CreateTime', Direction: 'Desc'}]；传入单个即单字段排序，默认按创建时间降序</p>
+        # @type OrderBys: Array
+        # @param PageNumber: <p>页码，从1开始，默认1</p>
+        # @type PageNumber: Integer
+        # @param PageSize: <p>每页大小，默认10，最小10，最大100</p>
+        # @type PageSize: Integer
+        # @param WorkspaceRegion: <p>工作空间地域过滤（多选），如 ap-guangzhou</p>
+        # @type WorkspaceRegion: Array
+        # @param Creator: <p>创建者UIN过滤（多选）</p>
+        # @type Creator: Array
+
+        attr_accessor :WorkspaceId, :WorkspaceKeyword, :StatusList, :OrderBys, :PageNumber, :PageSize, :WorkspaceRegion, :Creator
+
+        def initialize(workspaceid=nil, workspacekeyword=nil, statuslist=nil, orderbys=nil, pagenumber=nil, pagesize=nil, workspaceregion=nil, creator=nil)
+          @WorkspaceId = workspaceid
+          @WorkspaceKeyword = workspacekeyword
+          @StatusList = statuslist
+          @OrderBys = orderbys
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @WorkspaceRegion = workspaceregion
+          @Creator = creator
+        end
+
+        def deserialize(params)
+          @WorkspaceId = params['WorkspaceId']
+          @WorkspaceKeyword = params['WorkspaceKeyword']
+          @StatusList = params['StatusList']
+          unless params['OrderBys'].nil?
+            @OrderBys = []
+            params['OrderBys'].each do |i|
+              orderby_tmp = OrderBy.new
+              orderby_tmp.deserialize(i)
+              @OrderBys << orderby_tmp
+            end
+          end
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @WorkspaceRegion = params['WorkspaceRegion']
+          @Creator = params['Creator']
+        end
+      end
+
+      # ListWorkspaces返回参数结构体
+      class ListWorkspacesResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>工作空间列表</p>
+        # @type Data: :class:`Tencentcloud::Databuddy.v20260715.models.ListWorkspacesRsp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ListWorkspacesRsp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 查询工作空间列表响应
+      class ListWorkspacesRsp < TencentCloud::Common::AbstractModel
+        # @param Items: <p>工作空间列表</p>
+        # @type Items: Array
+        # @param PageNumber: <p>当前页码</p>
+        # @type PageNumber: Integer
+        # @param PageSize: <p>每页大小</p>
+        # @type PageSize: Integer
+        # @param TotalCount: <p>总记录数</p>
+        # @type TotalCount: Integer
+        # @param TotalPageNumber: <p>总页数</p>
+        # @type TotalPageNumber: Integer
+        # @param IsConsoleAdmin: <p>是否控制台管理员</p>
+        # @type IsConsoleAdmin: Boolean
+
+        attr_accessor :Items, :PageNumber, :PageSize, :TotalCount, :TotalPageNumber, :IsConsoleAdmin
+
+        def initialize(items=nil, pagenumber=nil, pagesize=nil, totalcount=nil, totalpagenumber=nil, isconsoleadmin=nil)
+          @Items = items
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @TotalCount = totalcount
+          @TotalPageNumber = totalpagenumber
+          @IsConsoleAdmin = isconsoleadmin
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              workspaceinfo_tmp = WorkspaceInfo.new
+              workspaceinfo_tmp.deserialize(i)
+              @Items << workspaceinfo_tmp
+            end
+          end
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @TotalCount = params['TotalCount']
+          @TotalPageNumber = params['TotalPageNumber']
+          @IsConsoleAdmin = params['IsConsoleAdmin']
+        end
+      end
+
+      # 元数据责任人信息数据结构
+      class MetaOwner < TencentCloud::Common::AbstractModel
+        # @param FullName: 元数据名称（全名）:catalog.schema.table
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FullName: String
+        # @param OwnerType: 所有者类型:User
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OwnerType: String
+        # @param Owner: 所有者:唯一标识(uin)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Owner: String
+        # @param OwnerName: 所有者名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OwnerName: String
+
+        attr_accessor :FullName, :OwnerType, :Owner, :OwnerName
+
+        def initialize(fullname=nil, ownertype=nil, owner=nil, ownername=nil)
+          @FullName = fullname
+          @OwnerType = ownertype
+          @Owner = owner
+          @OwnerName = ownername
+        end
+
+        def deserialize(params)
+          @FullName = params['FullName']
+          @OwnerType = params['OwnerType']
+          @Owner = params['Owner']
+          @OwnerName = params['OwnerName']
+        end
+      end
+
       # 监控指标配置
       class MonitorMetricBrief < TencentCloud::Common::AbstractModel
         # @param MonitorMetricId: 监控指标 ID，创建时无需传入，由服务端生成
@@ -3651,6 +4462,30 @@ module TencentCloud
           @ParamId = params['ParamId']
           @ParamKey = params['ParamKey']
           @ParamValue = params['ParamValue']
+        end
+      end
+
+      # 实体权限信息，用于在get/list接口中返回当前用户对实体的权限列表
+      class PermissionDetail < TencentCloud::Common::AbstractModel
+        # @param Permissions: 当前用户对该实体拥有的权限列表
+        # @type Permissions: Array
+        # @param CatalogWorkspacePrivilege: catalog在工作空间上的权限信息（可选）。取值：WORKSPACE_READONLY（只读）或WORKSPACE_READWRITE（读写）
+        # @type CatalogWorkspacePrivilege: String
+        # @param DenyPrivilegeList: deny权限总列表（用户deny ∪ 角色deny ∪ 继承deny，已去重，已从Permissions中排除）
+        # @type DenyPrivilegeList: Array
+
+        attr_accessor :Permissions, :CatalogWorkspacePrivilege, :DenyPrivilegeList
+
+        def initialize(permissions=nil, catalogworkspaceprivilege=nil, denyprivilegelist=nil)
+          @Permissions = permissions
+          @CatalogWorkspacePrivilege = catalogworkspaceprivilege
+          @DenyPrivilegeList = denyprivilegelist
+        end
+
+        def deserialize(params)
+          @Permissions = params['Permissions']
+          @CatalogWorkspacePrivilege = params['CatalogWorkspacePrivilege']
+          @DenyPrivilegeList = params['DenyPrivilegeList']
         end
       end
 
@@ -4093,6 +4928,74 @@ module TencentCloud
         end
       end
 
+      # Schema信息
+      class Schema < TencentCloud::Common::AbstractModel
+        # @param Name: <p>schema名称</p>
+        # @type Name: String
+        # @param Comment: <p>描述。注意：此字段可能返回null，表示取不到有效值</p>
+        # @type Comment: String
+        # @param Properties: <p>属性。注意：此字段可能返回null，表示取不到有效值</p>
+        # @type Properties: Array
+        # @param Audit: <p>审计信息。注意：此字段可能返回null，表示取不到有效值</p>
+        # @type Audit: :class:`Tencentcloud::Databuddy.v20260715.models.Audit`
+        # @param MetaOwner: <p>owner信息</p>
+        # @type MetaOwner: :class:`Tencentcloud::Databuddy.v20260715.models.MetaOwner`
+        # @param AssetGuid: <p>资产全局唯一ID，通过WedataAssetUIDUtils.generateUID生成</p>
+        # @type AssetGuid: String
+        # @param PermissionDetail: <p>当前用户对该schema的权限信息。注意：此字段可能返回null，请求中未开启FetchPermissions时不返回</p>
+        # @type PermissionDetail: :class:`Tencentcloud::Databuddy.v20260715.models.PermissionDetail`
+        # @param Tags: <p>标签信息列表。注意：此字段可能返回null，请求中未开启FetchTags时不返回</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+
+        attr_accessor :Name, :Comment, :Properties, :Audit, :MetaOwner, :AssetGuid, :PermissionDetail, :Tags
+
+        def initialize(name=nil, comment=nil, properties=nil, audit=nil, metaowner=nil, assetguid=nil, permissiondetail=nil, tags=nil)
+          @Name = name
+          @Comment = comment
+          @Properties = properties
+          @Audit = audit
+          @MetaOwner = metaowner
+          @AssetGuid = assetguid
+          @PermissionDetail = permissiondetail
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Comment = params['Comment']
+          unless params['Properties'].nil?
+            @Properties = []
+            params['Properties'].each do |i|
+              kvpair_tmp = KVPair.new
+              kvpair_tmp.deserialize(i)
+              @Properties << kvpair_tmp
+            end
+          end
+          unless params['Audit'].nil?
+            @Audit = Audit.new
+            @Audit.deserialize(params['Audit'])
+          end
+          unless params['MetaOwner'].nil?
+            @MetaOwner = MetaOwner.new
+            @MetaOwner.deserialize(params['MetaOwner'])
+          end
+          @AssetGuid = params['AssetGuid']
+          unless params['PermissionDetail'].nil?
+            @PermissionDetail = PermissionDetail.new
+            @PermissionDetail.deserialize(params['PermissionDetail'])
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              commontaginfo_tmp = CommonTagInfo.new
+              commontaginfo_tmp.deserialize(i)
+              @Tags << commontaginfo_tmp
+            end
+          end
+        end
+      end
+
       # git检出规则
       class SparseCheckoutConfig < TencentCloud::Common::AbstractModel
         # @param Enabled: <p>是否启用稀疏检出</p>
@@ -4145,6 +5048,124 @@ module TencentCloud
           @UserName = params['UserName']
           @Nickname = params['Nickname']
           @UserTag = params['UserTag']
+        end
+      end
+
+      # StartCompute请求参数结构体
+      class StartComputeRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 计算资源 ID
+        # @type ResourceId: String
+        # @param WorkspaceId: 工作空间 ID
+        # @type WorkspaceId: String
+
+        attr_accessor :ResourceId, :WorkspaceId
+
+        def initialize(resourceid=nil, workspaceid=nil)
+          @ResourceId = resourceid
+          @WorkspaceId = workspaceid
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @WorkspaceId = params['WorkspaceId']
+        end
+      end
+
+      # StartCompute返回参数结构体
+      class StartComputeResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 启动计算资源返回结果
+        # @type Data: :class:`Tencentcloud::Databuddy.v20260715.models.StartComputeRsp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = StartComputeRsp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 启动计算资源返回结果
+      class StartComputeRsp < TencentCloud::Common::AbstractModel
+        # @param Status: 操作是否成功
+        # @type Status: Boolean
+
+        attr_accessor :Status
+
+        def initialize(status=nil)
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+        end
+      end
+
+      # StopCompute请求参数结构体
+      class StopComputeRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 计算资源 ID
+        # @type ResourceId: String
+        # @param WorkspaceId: 工作空间 ID
+        # @type WorkspaceId: String
+
+        attr_accessor :ResourceId, :WorkspaceId
+
+        def initialize(resourceid=nil, workspaceid=nil)
+          @ResourceId = resourceid
+          @WorkspaceId = workspaceid
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @WorkspaceId = params['WorkspaceId']
+        end
+      end
+
+      # StopCompute返回参数结构体
+      class StopComputeResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 停止计算资源返回结果
+        # @type Data: :class:`Tencentcloud::Databuddy.v20260715.models.StopComputeRsp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = StopComputeRsp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 停止计算资源返回结果
+      class StopComputeRsp < TencentCloud::Common::AbstractModel
+        # @param Status: 操作是否成功
+        # @type Status: Boolean
+
+        attr_accessor :Status
+
+        def initialize(status=nil)
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
         end
       end
 
@@ -4930,6 +5951,79 @@ module TencentCloud
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateWorkspaceRole请求参数结构体
+      class UpdateWorkspaceRoleRequest < TencentCloud::Common::AbstractModel
+        # @param WorkspaceId: 工作空间ID
+        # @type WorkspaceId: String
+        # @param BasicInfo: 角色信息
+        # @type BasicInfo: :class:`Tencentcloud::Databuddy.v20260715.models.RoleBasicInfo`
+        # @param Permissions: 功能点权限
+        # @type Permissions: Array
+
+        attr_accessor :WorkspaceId, :BasicInfo, :Permissions
+
+        def initialize(workspaceid=nil, basicinfo=nil, permissions=nil)
+          @WorkspaceId = workspaceid
+          @BasicInfo = basicinfo
+          @Permissions = permissions
+        end
+
+        def deserialize(params)
+          @WorkspaceId = params['WorkspaceId']
+          unless params['BasicInfo'].nil?
+            @BasicInfo = RoleBasicInfo.new
+            @BasicInfo.deserialize(params['BasicInfo'])
+          end
+          unless params['Permissions'].nil?
+            @Permissions = []
+            params['Permissions'].each do |i|
+              rolepermission_tmp = RolePermission.new
+              rolepermission_tmp.deserialize(i)
+              @Permissions << rolepermission_tmp
+            end
+          end
+        end
+      end
+
+      # UpdateWorkspaceRole返回参数结构体
+      class UpdateWorkspaceRoleResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 更新工作空间角色结果
+        # @type Data: :class:`Tencentcloud::Databuddy.v20260715.models.UpdateWorkspaceRoleResult`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = UpdateWorkspaceRoleResult.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 更新工作空间角色结果
+      class UpdateWorkspaceRoleResult < TencentCloud::Common::AbstractModel
+        # @param Status: 更新工作空间角色是否成功
+        # @type Status: Boolean
+
+        attr_accessor :Status
+
+        def initialize(status=nil)
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
         end
       end
 

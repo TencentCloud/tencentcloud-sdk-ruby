@@ -11852,12 +11852,17 @@ module TencentCloud
 
       # DescribeOriginWhiteIpList请求参数结构体
       class DescribeOriginWhiteIpListRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: <p>播放域名</p>
+        # @type Domain: String
 
+        attr_accessor :Domain
 
-        def initialize()
+        def initialize(domain=nil)
+          @Domain = domain
         end
 
         def deserialize(params)
+          @Domain = params['Domain']
         end
       end
 
