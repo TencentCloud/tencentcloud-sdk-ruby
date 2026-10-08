@@ -3563,8 +3563,8 @@ module TencentCloud
 
         attr_accessor :SegmentSet, :SubtitlePath, :OutputStorage
         extend Gem::Deprecate
-        deprecate :OutputStorage, :none, 2026, 9
-        deprecate :OutputStorage=, :none, 2026, 9
+        deprecate :OutputStorage, :none, 2026, 10
+        deprecate :OutputStorage=, :none, 2026, 10
 
         def initialize(segmentset=nil, subtitlepath=nil, outputstorage=nil)
           @SegmentSet = segmentset
@@ -10663,8 +10663,8 @@ module TencentCloud
 
         attr_accessor :OutputName, :Description, :Protocol, :OutputRegion, :OutputType, :OutputKind, :SRTSettings, :RTMPSettings, :RTPSettings, :AllowIpList, :MaxConcurrent, :SecurityGroupIds, :Zones, :RISTSettings, :PidSelector, :StreamSelector
         extend Gem::Deprecate
-        deprecate :PidSelector, :none, 2026, 9
-        deprecate :PidSelector=, :none, 2026, 9
+        deprecate :PidSelector, :none, 2026, 10
+        deprecate :PidSelector=, :none, 2026, 10
 
         def initialize(outputname=nil, description=nil, protocol=nil, outputregion=nil, outputtype=nil, outputkind=nil, srtsettings=nil, rtmpsettings=nil, rtpsettings=nil, allowiplist=nil, maxconcurrent=nil, securitygroupids=nil, zones=nil, ristsettings=nil, pidselector=nil, streamselector=nil)
           @OutputName = outputname
@@ -16037,8 +16037,8 @@ module TencentCloud
 
         attr_accessor :OutputId, :OutputName, :OutputType, :OutputKind, :Description, :Protocol, :OutputAddressList, :OutputRegion, :SRTSettings, :RTPSettings, :RTMPSettings, :RTMPPullSettings, :AllowIpList, :RTSPPullSettings, :HLSPullSettings, :MaxConcurrent, :SecurityGroupIds, :Zones, :RISTSettings, :PidSelector, :StreamUrls, :StreamSelector, :State
         extend Gem::Deprecate
-        deprecate :PidSelector, :none, 2026, 9
-        deprecate :PidSelector=, :none, 2026, 9
+        deprecate :PidSelector, :none, 2026, 10
+        deprecate :PidSelector=, :none, 2026, 10
 
         def initialize(outputid=nil, outputname=nil, outputtype=nil, outputkind=nil, description=nil, protocol=nil, outputaddresslist=nil, outputregion=nil, srtsettings=nil, rtpsettings=nil, rtmpsettings=nil, rtmppullsettings=nil, allowiplist=nil, rtsppullsettings=nil, hlspullsettings=nil, maxconcurrent=nil, securitygroupids=nil, zones=nil, ristsettings=nil, pidselector=nil, streamurls=nil, streamselector=nil, state=nil)
           @OutputId = outputid
@@ -20915,8 +20915,8 @@ module TencentCloud
 
         attr_accessor :TaskType, :EvaluationTypeSet, :EvaluationRangeType, :ContrastInfoSet, :ContrastMediaSet, :ContrastTemplateSet, :StartTime, :EndTime, :StartFrameIndex, :EndFrameIndex, :ResolutionAlignmentMode, :BitrateSet, :VCRFSet
         extend Gem::Deprecate
-        deprecate :ContrastInfoSet, :none, 2026, 9
-        deprecate :ContrastInfoSet=, :none, 2026, 9
+        deprecate :ContrastInfoSet, :none, 2026, 10
+        deprecate :ContrastInfoSet=, :none, 2026, 10
 
         def initialize(tasktype=nil, evaluationtypeset=nil, evaluationrangetype=nil, contrastinfoset=nil, contrastmediaset=nil, contrasttemplateset=nil, starttime=nil, endtime=nil, startframeindex=nil, endframeindex=nil, resolutionalignmentmode=nil, bitrateset=nil, vcrfset=nil)
           @TaskType = tasktype
@@ -24026,10 +24026,10 @@ module TencentCloud
 
         attr_accessor :QualityControlResults, :DiagnoseResults, :QualityControlResultSet, :DiagnoseResultSet
         extend Gem::Deprecate
-        deprecate :QualityControlResults, :none, 2026, 9
-        deprecate :QualityControlResults=, :none, 2026, 9
-        deprecate :DiagnoseResults, :none, 2026, 9
-        deprecate :DiagnoseResults=, :none, 2026, 9
+        deprecate :QualityControlResults, :none, 2026, 10
+        deprecate :QualityControlResults=, :none, 2026, 10
+        deprecate :DiagnoseResults, :none, 2026, 10
+        deprecate :DiagnoseResults=, :none, 2026, 10
 
         def initialize(qualitycontrolresults=nil, diagnoseresults=nil, qualitycontrolresultset=nil, diagnoseresultset=nil)
           @QualityControlResults = qualitycontrolresults
@@ -27355,8 +27355,8 @@ module TencentCloud
 
         attr_accessor :OutputId, :OutputName, :Description, :Protocol, :OutputKind, :SRTSettings, :RTPSettings, :RTMPSettings, :AllowIpList, :MaxConcurrent, :SecurityGroupIds, :Zones, :RISTSettings, :OutputType, :PidSelector, :StreamSelector
         extend Gem::Deprecate
-        deprecate :PidSelector, :none, 2026, 9
-        deprecate :PidSelector=, :none, 2026, 9
+        deprecate :PidSelector, :none, 2026, 10
+        deprecate :PidSelector=, :none, 2026, 10
 
         def initialize(outputid=nil, outputname=nil, description=nil, protocol=nil, outputkind=nil, srtsettings=nil, rtpsettings=nil, rtmpsettings=nil, allowiplist=nil, maxconcurrent=nil, securitygroupids=nil, zones=nil, ristsettings=nil, outputtype=nil, pidselector=nil, streamselector=nil)
           @OutputId = outputid
@@ -31234,17 +31234,47 @@ module TencentCloud
         # @type ErrorMessage: String
         # @param ResultFile3Ds: <p>仅 Status=DONE 时有值，产物文件列表</p>
         # @type ResultFile3Ds: Array
+        # @param TaskId: <p>任务ID</p>
+        # @type TaskId: String
+        # @param TaskType: <p>任务类型</p><p>枚举值：</p><ul><li>text_to_3d： 文生3D</li><li>image_to_3d： 图生3D</li><li>multiview_to_3d： 多视图生3D</li><li>mesh_to_texture： 网格生纹理</li><li>mesh_to_geometry： 网格生几何</li></ul>
+        # @type TaskType: String
+        # @param Prompt: <p>输入的Prompt</p>
+        # @type Prompt: String
+        # @param RefImage: <p>图生3D场景下输入的图片URL</p>
+        # @type RefImage: String
+        # @param MultiViewImages: <p>多图生3D场景下输入的图片信息</p>
+        # @type MultiViewImages: Array
+        # @param CreateTime: <p>任务创建时间</p>
+        # @type CreateTime: String
+        # @param UpdateTime: <p>任务更新时间</p>
+        # @type UpdateTime: String
+        # @param FaceCount: <p>提交任务的目标面数</p>
+        # @type FaceCount: Integer
+        # @param GenerateType: <p>生成类型</p><p>枚举值：</p><ul><li>Normal： 生成完整 3D 资产（几何 + 纹理）</li><li>Geometry： 只生成几何体（无纹理，输出速度更快）</li><li>Texture： 只生成纹理（需要传 MeshUrl）</li></ul><p>默认值：Normal</p>
+        # @type GenerateType: String
+        # @param QueuePosition: <p>任务在队列中的位置，数值越小越靠前；</p>
+        # @type QueuePosition: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Status, :Progress, :ErrorCode, :ErrorMessage, :ResultFile3Ds, :RequestId
+        attr_accessor :Status, :Progress, :ErrorCode, :ErrorMessage, :ResultFile3Ds, :TaskId, :TaskType, :Prompt, :RefImage, :MultiViewImages, :CreateTime, :UpdateTime, :FaceCount, :GenerateType, :QueuePosition, :RequestId
 
-        def initialize(status=nil, progress=nil, errorcode=nil, errormessage=nil, resultfile3ds=nil, requestid=nil)
+        def initialize(status=nil, progress=nil, errorcode=nil, errormessage=nil, resultfile3ds=nil, taskid=nil, tasktype=nil, prompt=nil, refimage=nil, multiviewimages=nil, createtime=nil, updatetime=nil, facecount=nil, generatetype=nil, queueposition=nil, requestid=nil)
           @Status = status
           @Progress = progress
           @ErrorCode = errorcode
           @ErrorMessage = errormessage
           @ResultFile3Ds = resultfile3ds
+          @TaskId = taskid
+          @TaskType = tasktype
+          @Prompt = prompt
+          @RefImage = refimage
+          @MultiViewImages = multiviewimages
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @FaceCount = facecount
+          @GenerateType = generatetype
+          @QueuePosition = queueposition
           @RequestId = requestid
         end
 
@@ -31261,6 +31291,23 @@ module TencentCloud
               @ResultFile3Ds << file3d_tmp
             end
           end
+          @TaskId = params['TaskId']
+          @TaskType = params['TaskType']
+          @Prompt = params['Prompt']
+          @RefImage = params['RefImage']
+          unless params['MultiViewImages'].nil?
+            @MultiViewImages = []
+            params['MultiViewImages'].each do |i|
+              viewimage_tmp = ViewImage.new
+              viewimage_tmp.deserialize(i)
+              @MultiViewImages << viewimage_tmp
+            end
+          end
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @FaceCount = params['FaceCount']
+          @GenerateType = params['GenerateType']
+          @QueuePosition = params['QueuePosition']
           @RequestId = params['RequestId']
         end
       end
@@ -35317,10 +35364,12 @@ module TencentCloud
         # @type Seed: Integer
         # @param Style: <p>风格控制词</p>
         # @type Style: String
+        # @param StoreCosParam: <p>客户自己申请创建的COS存储桶</p>
+        # @type StoreCosParam: :class:`Tencentcloud::Mps.v20190612.models.AigcStoreCosParam`
 
-        attr_accessor :Prompt, :ImageUrl, :MultiViewImages, :GenerateType, :MeshUrl, :EnablePBR, :FaceCount, :KeepUV, :ResultFormat, :Seed, :Style
+        attr_accessor :Prompt, :ImageUrl, :MultiViewImages, :GenerateType, :MeshUrl, :EnablePBR, :FaceCount, :KeepUV, :ResultFormat, :Seed, :Style, :StoreCosParam
 
-        def initialize(prompt=nil, imageurl=nil, multiviewimages=nil, generatetype=nil, meshurl=nil, enablepbr=nil, facecount=nil, keepuv=nil, resultformat=nil, seed=nil, style=nil)
+        def initialize(prompt=nil, imageurl=nil, multiviewimages=nil, generatetype=nil, meshurl=nil, enablepbr=nil, facecount=nil, keepuv=nil, resultformat=nil, seed=nil, style=nil, storecosparam=nil)
           @Prompt = prompt
           @ImageUrl = imageurl
           @MultiViewImages = multiviewimages
@@ -35332,6 +35381,7 @@ module TencentCloud
           @ResultFormat = resultformat
           @Seed = seed
           @Style = style
+          @StoreCosParam = storecosparam
         end
 
         def deserialize(params)
@@ -35353,6 +35403,10 @@ module TencentCloud
           @ResultFormat = params['ResultFormat']
           @Seed = params['Seed']
           @Style = params['Style']
+          unless params['StoreCosParam'].nil?
+            @StoreCosParam = AigcStoreCosParam.new
+            @StoreCosParam.deserialize(params['StoreCosParam'])
+          end
         end
       end
 

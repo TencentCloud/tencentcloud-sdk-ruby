@@ -3946,8 +3946,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Angel, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2026, 9
-        deprecate :Angel=, :none, 2026, 9
+        deprecate :Angel, :none, 2026, 10
+        deprecate :Angel=, :none, 2026, 10
 
         def initialize(textdetections=nil, angel=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
@@ -4053,8 +4053,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Language, :Angel, :PdfPageSize, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2026, 9
-        deprecate :Angel=, :none, 2026, 9
+        deprecate :Angel, :none, 2026, 10
+        deprecate :Angel=, :none, 2026, 10
 
         def initialize(textdetections=nil, language=nil, angel=nil, pdfpagesize=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
@@ -4150,8 +4150,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Angel, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2026, 9
-        deprecate :Angel=, :none, 2026, 9
+        deprecate :Angel, :none, 2026, 10
+        deprecate :Angel=, :none, 2026, 10
 
         def initialize(textdetections=nil, angel=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
@@ -4297,8 +4297,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Angel, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2026, 9
-        deprecate :Angel=, :none, 2026, 9
+        deprecate :Angel, :none, 2026, 10
+        deprecate :Angel=, :none, 2026, 10
 
         def initialize(textdetections=nil, angel=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
@@ -4499,8 +4499,8 @@ module TencentCloud
 
         attr_accessor :ReturnHeadImage, :DetectFake, :ImageBase64, :ImageUrl
         extend Gem::Deprecate
-        deprecate :DetectFake, :none, 2026, 9
-        deprecate :DetectFake=, :none, 2026, 9
+        deprecate :DetectFake, :none, 2026, 10
+        deprecate :DetectFake=, :none, 2026, 10
 
         def initialize(returnheadimage=nil, detectfake=nil, imagebase64=nil, imageurl=nil)
           @ReturnHeadImage = returnheadimage
@@ -4559,10 +4559,10 @@ module TencentCloud
 
         attr_accessor :CnName, :EnName, :TelexCode, :Sex, :Birthday, :Permanent, :IdNum, :Symbol, :FirstIssueDate, :CurrentIssueDate, :FakeDetectResult, :HeadImage, :SmallHeadImage, :WarningCode, :WarnCardInfos, :WindowEmbeddedText, :RequestId
         extend Gem::Deprecate
-        deprecate :FakeDetectResult, :none, 2026, 9
-        deprecate :FakeDetectResult=, :none, 2026, 9
-        deprecate :WarningCode, :none, 2026, 9
-        deprecate :WarningCode=, :none, 2026, 9
+        deprecate :FakeDetectResult, :none, 2026, 10
+        deprecate :FakeDetectResult=, :none, 2026, 10
+        deprecate :WarningCode, :none, 2026, 10
+        deprecate :WarningCode=, :none, 2026, 10
 
         def initialize(cnname=nil, enname=nil, telexcode=nil, sex=nil, birthday=nil, permanent=nil, idnum=nil, symbol=nil, firstissuedate=nil, currentissuedate=nil, fakedetectresult=nil, headimage=nil, smallheadimage=nil, warningcode=nil, warncardinfos=nil, windowembeddedtext=nil, requestid=nil)
           @CnName = cnname
@@ -4909,8 +4909,8 @@ module TencentCloud
 
         attr_accessor :ImageBase64, :ImageUrl, :CardSide, :Config, :EnableRecognitionRectify, :EnableReflectDetail, :EnableDateVerify, :CardWarnType
         extend Gem::Deprecate
-        deprecate :EnableDateVerify, :none, 2026, 9
-        deprecate :EnableDateVerify=, :none, 2026, 9
+        deprecate :EnableDateVerify, :none, 2026, 10
+        deprecate :EnableDateVerify=, :none, 2026, 10
 
         def initialize(imagebase64=nil, imageurl=nil, cardside=nil, config=nil, enablerecognitionrectify=nil, enablereflectdetail=nil, enabledateverify=nil, cardwarntype=nil)
           @ImageBase64 = imagebase64
@@ -5712,10 +5712,10 @@ module TencentCloud
 
         attr_accessor :ID, :Name, :Address, :Sex, :Warn, :Image, :AdvancedInfo, :Type, :Birthday, :MyKadNumber, :WarnCardInfos, :RequestId
         extend Gem::Deprecate
-        deprecate :Warn, :none, 2026, 9
-        deprecate :Warn=, :none, 2026, 9
-        deprecate :AdvancedInfo, :none, 2026, 9
-        deprecate :AdvancedInfo=, :none, 2026, 9
+        deprecate :Warn, :none, 2026, 10
+        deprecate :Warn=, :none, 2026, 10
+        deprecate :AdvancedInfo, :none, 2026, 10
+        deprecate :AdvancedInfo=, :none, 2026, 10
 
         def initialize(id=nil, name=nil, address=nil, sex=nil, warn=nil, image=nil, advancedinfo=nil, type=nil, birthday=nil, mykadnumber=nil, warncardinfos=nil, requestid=nil)
           @ID = id
@@ -5817,10 +5817,10 @@ module TencentCloud
 
         attr_accessor :ID, :Name, :DateOfBirth, :Sex, :DateOfExpiration, :IssuingCountry, :Nationality, :Warn, :Image, :AdvancedInfo, :CodeSet, :CodeCrc, :Surname, :GivenName, :Type, :PassportRecognizeInfos, :WarnCardInfos, :CardCount, :RequestId
         extend Gem::Deprecate
-        deprecate :Warn, :none, 2026, 9
-        deprecate :Warn=, :none, 2026, 9
-        deprecate :AdvancedInfo, :none, 2026, 9
-        deprecate :AdvancedInfo=, :none, 2026, 9
+        deprecate :Warn, :none, 2026, 10
+        deprecate :Warn=, :none, 2026, 10
+        deprecate :AdvancedInfo, :none, 2026, 10
+        deprecate :AdvancedInfo=, :none, 2026, 10
 
         def initialize(id=nil, name=nil, dateofbirth=nil, sex=nil, dateofexpiration=nil, issuingcountry=nil, nationality=nil, warn=nil, image=nil, advancedinfo=nil, codeset=nil, codecrc=nil, surname=nil, givenname=nil, type=nil, passportrecognizeinfos=nil, warncardinfos=nil, cardcount=nil, requestid=nil)
           @ID = id
@@ -6795,7 +6795,7 @@ module TencentCloud
       class MultimodalDocParseRequest < TencentCloud::Common::AbstractModel
         # @param FileUrl: <p>文件的 Url 地址，支持FileType参数对应的文件格式及大小。文件下载时间不超过3秒。文件存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议文件存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。</p>
         # @type FileUrl: String
-        # @param FileType: <p>支持解析的文件类型。</p><p>1：PDF 文档；</p><p>2：Word 文档（.doc / .docx）；</p><p>3：PPT 演示文稿（.ppt / .pptx）；</p><p>4：Excel 表格（.xls / .xlsx）；</p><p>5：Markdown 文档（.md）；</p><p>6：纯文本文件（.txt）；</p><p>7：图片文件（.png / .jpg / .jpeg 等）；</p><p>8：WPS 文档；</p><p>0：未知文件类型。</p><p></p><p>支持的文件大小：</p><p>PDF/WORD/PPT支持150M且300页以内、EXCEL支持10M以内、TXT支持10M以内、图片文件支持70M以内。</p><p></p><p>默认值：1</p>
+        # @param FileType: <p>支持解析的文件类型。</p><p>1：PDF 文档；</p><p>2：Word 文档（.doc / .docx）；</p><p>3：PPT 演示文稿（.ppt / .pptx）；</p><p>4：Excel 表格（.xls / .xlsx）；</p><p>5：Markdown 文档（.md）；</p><p>6：纯文本文件（.txt）；</p><p>7：图片文件（.png / .jpg / .jpeg 等）；</p><p>8：WPS 文档；</p><p>支持的文件大小：</p><p>PDF/WORD/PPT支持150M且300页以内、EXCEL支持10M以内、TXT支持10M以内、图片文件支持30M以内。</p><p></p><p>默认值：1</p>
         # @type FileType: Integer
         # @param ResultType: <p>输出格式。</p><p>1：json格式</p><p>2：markdown格式</p><p>3：xml格式</p><p>9：json+markdown+xml格式</p><p></p><p>默认值：9</p>
         # @type ResultType: Integer
@@ -9178,8 +9178,8 @@ module TencentCloud
 
         attr_accessor :ID, :ThaiName, :EnFirstName, :EnLastName, :IssueDate, :ExpirationDate, :EnIssueDate, :EnExpirationDate, :Birthday, :EnBirthday, :Religion, :SerialNumber, :Address, :LaserID, :PortraitImage, :WarnCardInfos, :AdvancedInfo, :CardCount, :ThaiFirstName, :ThaiLastName, :RequestId
         extend Gem::Deprecate
-        deprecate :AdvancedInfo, :none, 2026, 9
-        deprecate :AdvancedInfo=, :none, 2026, 9
+        deprecate :AdvancedInfo, :none, 2026, 10
+        deprecate :AdvancedInfo=, :none, 2026, 10
 
         def initialize(id=nil, thainame=nil, enfirstname=nil, enlastname=nil, issuedate=nil, expirationdate=nil, enissuedate=nil, enexpirationdate=nil, birthday=nil, enbirthday=nil, religion=nil, serialnumber=nil, address=nil, laserid=nil, portraitimage=nil, warncardinfos=nil, advancedinfo=nil, cardcount=nil, thaifirstname=nil, thailastname=nil, requestid=nil)
           @ID = id
@@ -10746,8 +10746,8 @@ module TencentCloud
 
         attr_accessor :ImageBase64, :ImageUrl, :PdfPageNumber, :ItemNames, :EnableCoord, :FileStartPageNumber, :FileEndPageNumber, :ModelConfig
         extend Gem::Deprecate
-        deprecate :PdfPageNumber, :none, 2026, 9
-        deprecate :PdfPageNumber=, :none, 2026, 9
+        deprecate :PdfPageNumber, :none, 2026, 10
+        deprecate :PdfPageNumber=, :none, 2026, 10
 
         def initialize(imagebase64=nil, imageurl=nil, pdfpagenumber=nil, itemnames=nil, enablecoord=nil, filestartpagenumber=nil, fileendpagenumber=nil, modelconfig=nil)
           @ImageBase64 = imagebase64
@@ -10874,10 +10874,10 @@ module TencentCloud
 
         attr_accessor :ImageBase64, :ImageUrl, :PdfPageNumber, :BoolSingleQuestion, :EnableDeepThink, :QuestionConfigMap, :ReferenceAnswer, :ImageBase64List, :ImageUrlList, :AssistMarkType, :AnswerAssistMap
         extend Gem::Deprecate
-        deprecate :BoolSingleQuestion, :none, 2026, 9
-        deprecate :BoolSingleQuestion=, :none, 2026, 9
-        deprecate :EnableDeepThink, :none, 2026, 9
-        deprecate :EnableDeepThink=, :none, 2026, 9
+        deprecate :BoolSingleQuestion, :none, 2026, 10
+        deprecate :BoolSingleQuestion=, :none, 2026, 10
+        deprecate :EnableDeepThink, :none, 2026, 10
+        deprecate :EnableDeepThink=, :none, 2026, 10
 
         def initialize(imagebase64=nil, imageurl=nil, pdfpagenumber=nil, boolsinglequestion=nil, enabledeepthink=nil, questionconfigmap=nil, referenceanswer=nil, imagebase64list=nil, imageurllist=nil, assistmarktype=nil, answerassistmap=nil)
           @ImageBase64 = imagebase64
