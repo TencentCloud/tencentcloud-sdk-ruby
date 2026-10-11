@@ -329,6 +329,46 @@ module TencentCloud
         end
       end
 
+      # CancelPolicyRuleExecuteRecord请求参数结构体
+      class CancelPolicyRuleExecuteRecordRequest < TencentCloud::Common::AbstractModel
+        # @param RuleId: <p>规则id</p>
+        # @type RuleId: String
+        # @param FileSystemId: <p>文件系统ID</p>
+        # @type FileSystemId: String
+        # @param RecordId: <p>执行记录id</p>
+        # @type RecordId: String
+
+        attr_accessor :RuleId, :FileSystemId, :RecordId
+
+        def initialize(ruleid=nil, filesystemid=nil, recordid=nil)
+          @RuleId = ruleid
+          @FileSystemId = filesystemid
+          @RecordId = recordid
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+          @FileSystemId = params['FileSystemId']
+          @RecordId = params['RecordId']
+        end
+      end
+
+      # CancelPolicyRuleExecuteRecord返回参数结构体
+      class CancelPolicyRuleExecuteRecordResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 付费信息详情
       class ChargeAttribute < TencentCloud::Common::AbstractModel
         # @param CurDeadline: 到期时间
@@ -530,10 +570,10 @@ module TencentCloud
 
         attr_accessor :TaskType, :Bucket, :FileSystemId, :TaskPath, :TaskName, :IsTaskPathAbsolute, :RepositoryType, :TextLocation, :EnableDataFlowSubPath, :DataFlowSubPath, :EnableCustomDestPath, :CustomDestPath, :OutputBucket, :OutputPrefix, :EnableCustomSrcPath, :CustomSrcPath
         extend Gem::Deprecate
-        deprecate :EnableDataFlowSubPath, :none, 2026, 9
-        deprecate :EnableDataFlowSubPath=, :none, 2026, 9
-        deprecate :DataFlowSubPath, :none, 2026, 9
-        deprecate :DataFlowSubPath=, :none, 2026, 9
+        deprecate :EnableDataFlowSubPath, :none, 2026, 10
+        deprecate :EnableDataFlowSubPath=, :none, 2026, 10
+        deprecate :DataFlowSubPath, :none, 2026, 10
+        deprecate :DataFlowSubPath=, :none, 2026, 10
 
         def initialize(tasktype=nil, bucket=nil, filesystemid=nil, taskpath=nil, taskname=nil, istaskpathabsolute=nil, repositorytype=nil, textlocation=nil, enabledataflowsubpath=nil, dataflowsubpath=nil, enablecustomdestpath=nil, customdestpath=nil, outputbucket=nil, outputprefix=nil, enablecustomsrcpath=nil, customsrcpath=nil)
           @TaskType = tasktype
@@ -619,8 +659,8 @@ module TencentCloud
 
         attr_accessor :Name, :Description, :VpcId, :SubnetId, :Zone, :Type, :Tag, :GooseFSxBuildElements, :SecurityGroupId, :ClusterPort
         extend Gem::Deprecate
-        deprecate :Type, :none, 2026, 9
-        deprecate :Type=, :none, 2026, 9
+        deprecate :Type, :none, 2026, 10
+        deprecate :Type=, :none, 2026, 10
 
         def initialize(name=nil, description=nil, vpcid=nil, subnetid=nil, zone=nil, type=nil, tag=nil, goosefsxbuildelements=nil, securitygroupid=nil, clusterport=nil)
           @Name = name
@@ -774,6 +814,79 @@ module TencentCloud
 
         def deserialize(params)
           @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreatePolicyRule请求参数结构体
+      class CreatePolicyRuleRequest < TencentCloud::Common::AbstractModel
+        # @param FileSystemId: <p>文件系统id</p>
+        # @type FileSystemId: String
+        # @param ScanDir: <p>扫描目录</p>
+        # @type ScanDir: String
+        # @param Name: <p>规则名称</p>
+        # @type Name: String
+        # @param Execution: <p>执行计划</p>
+        # @type Execution: :class:`Tencentcloud::Goosefs.v20220519.models.ExecutionPlan`
+        # @param PolicyRuleSet: <p>过滤规则</p>
+        # @type PolicyRuleSet: Array
+        # @param EnableManifest: <p>是否输出清单</p>
+        # @type EnableManifest: Boolean
+        # @param Manifest: <p>清单配置</p>
+        # @type Manifest: :class:`Tencentcloud::Goosefs.v20220519.models.ManifestAttr`
+
+        attr_accessor :FileSystemId, :ScanDir, :Name, :Execution, :PolicyRuleSet, :EnableManifest, :Manifest
+
+        def initialize(filesystemid=nil, scandir=nil, name=nil, execution=nil, policyruleset=nil, enablemanifest=nil, manifest=nil)
+          @FileSystemId = filesystemid
+          @ScanDir = scandir
+          @Name = name
+          @Execution = execution
+          @PolicyRuleSet = policyruleset
+          @EnableManifest = enablemanifest
+          @Manifest = manifest
+        end
+
+        def deserialize(params)
+          @FileSystemId = params['FileSystemId']
+          @ScanDir = params['ScanDir']
+          @Name = params['Name']
+          unless params['Execution'].nil?
+            @Execution = ExecutionPlan.new
+            @Execution.deserialize(params['Execution'])
+          end
+          unless params['PolicyRuleSet'].nil?
+            @PolicyRuleSet = []
+            params['PolicyRuleSet'].each do |i|
+              policyruleoperator_tmp = PolicyRuleOperator.new
+              policyruleoperator_tmp.deserialize(i)
+              @PolicyRuleSet << policyruleoperator_tmp
+            end
+          end
+          @EnableManifest = params['EnableManifest']
+          unless params['Manifest'].nil?
+            @Manifest = ManifestAttr.new
+            @Manifest.deserialize(params['Manifest'])
+          end
+        end
+      end
+
+      # CreatePolicyRule返回参数结构体
+      class CreatePolicyRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RuleId: <p>规则id</p>
+        # @type RuleId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RuleId, :RequestId
+
+        def initialize(ruleid=nil, requestid=nil)
+          @RuleId = ruleid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
           @RequestId = params['RequestId']
         end
       end
@@ -981,6 +1094,42 @@ module TencentCloud
 
       # DeleteFileset返回参数结构体
       class DeleteFilesetResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeletePolicyRule请求参数结构体
+      class DeletePolicyRuleRequest < TencentCloud::Common::AbstractModel
+        # @param RuleId: <p>规则id</p>
+        # @type RuleId: String
+        # @param FileSystemId: <p>文件系统ID</p>
+        # @type FileSystemId: String
+
+        attr_accessor :RuleId, :FileSystemId
+
+        def initialize(ruleid=nil, filesystemid=nil)
+          @RuleId = ruleid
+          @FileSystemId = filesystemid
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+          @FileSystemId = params['FileSystemId']
+        end
+      end
+
+      # DeletePolicyRule返回参数结构体
+      class DeletePolicyRuleResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -1451,6 +1600,120 @@ module TencentCloud
         end
       end
 
+      # DescribePolicyRuleExecuteRecord请求参数结构体
+      class DescribePolicyRuleExecuteRecordRequest < TencentCloud::Common::AbstractModel
+        # @param FileSystemId: <p>文件系统ID</p>
+        # @type FileSystemId: String
+        # @param Offset: <p>偏移量</p>
+        # @type Offset: Integer
+        # @param Limit: <p>最大返回数量</p>
+        # @type Limit: Integer
+        # @param RuleId: <p>规则id</p>
+        # @type RuleId: String
+
+        attr_accessor :FileSystemId, :Offset, :Limit, :RuleId
+
+        def initialize(filesystemid=nil, offset=nil, limit=nil, ruleid=nil)
+          @FileSystemId = filesystemid
+          @Offset = offset
+          @Limit = limit
+          @RuleId = ruleid
+        end
+
+        def deserialize(params)
+          @FileSystemId = params['FileSystemId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @RuleId = params['RuleId']
+        end
+      end
+
+      # DescribePolicyRuleExecuteRecord返回参数结构体
+      class DescribePolicyRuleExecuteRecordResponse < TencentCloud::Common::AbstractModel
+        # @param RuleExecuteList: <p>执行记录详情</p>
+        # @type RuleExecuteList: Array
+        # @param TotalCount: <p>任务总数</p>
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RuleExecuteList, :TotalCount, :RequestId
+
+        def initialize(ruleexecutelist=nil, totalcount=nil, requestid=nil)
+          @RuleExecuteList = ruleexecutelist
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['RuleExecuteList'].nil?
+            @RuleExecuteList = []
+            params['RuleExecuteList'].each do |i|
+              ruleexecuteattribute_tmp = RuleExecuteAttribute.new
+              ruleexecuteattribute_tmp.deserialize(i)
+              @RuleExecuteList << ruleexecuteattribute_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePolicyRule请求参数结构体
+      class DescribePolicyRuleRequest < TencentCloud::Common::AbstractModel
+        # @param FileSystemId: <p>文件系统ID</p>
+        # @type FileSystemId: String
+        # @param Offset: <p>偏移量</p>
+        # @type Offset: Integer
+        # @param Limit: <p>最大返回数量</p>
+        # @type Limit: Integer
+
+        attr_accessor :FileSystemId, :Offset, :Limit
+
+        def initialize(filesystemid=nil, offset=nil, limit=nil)
+          @FileSystemId = filesystemid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @FileSystemId = params['FileSystemId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribePolicyRule返回参数结构体
+      class DescribePolicyRuleResponse < TencentCloud::Common::AbstractModel
+        # @param PolicyRuleTaskList: <p>规则任务详情</p>
+        # @type PolicyRuleTaskList: Array
+        # @param TotalCount: <p>任务总数</p>
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PolicyRuleTaskList, :TotalCount, :RequestId
+
+        def initialize(policyruletasklist=nil, totalcount=nil, requestid=nil)
+          @PolicyRuleTaskList = policyruletasklist
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['PolicyRuleTaskList'].nil?
+            @PolicyRuleTaskList = []
+            params['PolicyRuleTaskList'].each do |i|
+              policyruletaskattribute_tmp = PolicyRuleTaskAttribute.new
+              policyruletaskattribute_tmp.deserialize(i)
+              @PolicyRuleTaskList << policyruletaskattribute_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DetachFileSystemBucket请求参数结构体
       class DetachFileSystemBucketRequest < TencentCloud::Common::AbstractModel
         # @param FileSystemId: 文件系统ID
@@ -1473,6 +1736,42 @@ module TencentCloud
 
       # DetachFileSystemBucket返回参数结构体
       class DetachFileSystemBucketResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DisablePolicyRule请求参数结构体
+      class DisablePolicyRuleRequest < TencentCloud::Common::AbstractModel
+        # @param RuleId: <p>规则ID</p>
+        # @type RuleId: String
+        # @param FileSystemId: <p>文件系统ID</p>
+        # @type FileSystemId: String
+
+        attr_accessor :RuleId, :FileSystemId
+
+        def initialize(ruleid=nil, filesystemid=nil)
+          @RuleId = ruleid
+          @FileSystemId = filesystemid
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+          @FileSystemId = params['FileSystemId']
+        end
+      end
+
+      # DisablePolicyRule返回参数结构体
+      class DisablePolicyRuleResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -1523,27 +1822,132 @@ module TencentCloud
         end
       end
 
+      # EnablePolicyRule请求参数结构体
+      class EnablePolicyRuleRequest < TencentCloud::Common::AbstractModel
+        # @param RuleId: <p>规则ID</p>
+        # @type RuleId: String
+        # @param FileSystemId: <p>文件系统ID</p>
+        # @type FileSystemId: String
+
+        attr_accessor :RuleId, :FileSystemId
+
+        def initialize(ruleid=nil, filesystemid=nil)
+          @RuleId = ruleid
+          @FileSystemId = filesystemid
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+          @FileSystemId = params['FileSystemId']
+        end
+      end
+
+      # EnablePolicyRule返回参数结构体
+      class EnablePolicyRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 周期执行启动配置
+      class ExecutePeriodAttribute < TencentCloud::Common::AbstractModel
+        # @param PeriodType: <p>选择的周期类型</p><p>枚举值：</p><ul><li>DAY： 每天执行 </li><li>WEEK： 每周执行</li><li>MONTH： 每月执行</li></ul>
+        # @type PeriodType: String
+        # @param StartWeekday: <p>选择每周执行时必填，需要选择周几,0-6 分别是周日到周六</p><p>取值范围：[0, 6]</p><p>默认值：0</p>
+        # @type StartWeekday: Integer
+        # @param StartDate: <p>选择每月执行时必填，1-28日选择一天</p><p>取值范围：[1, 28]</p><p>默认值：1</p>
+        # @type StartDate: Integer
+        # @param StartMinute: <p>周期中的时间点，取值0~59</p><p>取值范围：[0, 59]</p>
+        # @type StartMinute: Integer
+        # @param StartHour: <p>24小时周期开始的小时数，取值0~23</p><p>取值范围：[0, 23]</p><p>默认值：1</p>
+        # @type StartHour: Integer
+
+        attr_accessor :PeriodType, :StartWeekday, :StartDate, :StartMinute, :StartHour
+
+        def initialize(periodtype=nil, startweekday=nil, startdate=nil, startminute=nil, starthour=nil)
+          @PeriodType = periodtype
+          @StartWeekday = startweekday
+          @StartDate = startdate
+          @StartMinute = startminute
+          @StartHour = starthour
+        end
+
+        def deserialize(params)
+          @PeriodType = params['PeriodType']
+          @StartWeekday = params['StartWeekday']
+          @StartDate = params['StartDate']
+          @StartMinute = params['StartMinute']
+          @StartHour = params['StartHour']
+        end
+      end
+
+      # 执行时间
+      class ExecutionPlan < TencentCloud::Common::AbstractModel
+        # @param ExecuteMode: <p>执行类型</p><p>枚举值：</p><ul><li>scheduled： 指定时间执行</li><li>periodic： 周期执行</li></ul>
+        # @type ExecuteMode: String
+        # @param ExecuteAt: <p>任务执行时间</p><p>参数格式：2026-07-23 08:30</p><p>入参限制：只有立即执行或者指定时间执行时设置，周期执行不需要设置</p><p>默认值：当前时间</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecuteAt: String
+        # @param ExecutePeriod: <p>周期执行的时间设置</p><p>入参限制：选择周期执行时必填</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecutePeriod: :class:`Tencentcloud::Goosefs.v20220519.models.ExecutePeriodAttribute`
+        # @param WaitTime: <p>任务等待时间</p><p>取值范围：[1, 500]</p><p>单位：H</p><p>默认值：12</p><p>任务执行的等待时间，超过时间任务未启动，自动取消</p>
+        # @type WaitTime: Integer
+
+        attr_accessor :ExecuteMode, :ExecuteAt, :ExecutePeriod, :WaitTime
+
+        def initialize(executemode=nil, executeat=nil, executeperiod=nil, waittime=nil)
+          @ExecuteMode = executemode
+          @ExecuteAt = executeat
+          @ExecutePeriod = executeperiod
+          @WaitTime = waittime
+        end
+
+        def deserialize(params)
+          @ExecuteMode = params['ExecuteMode']
+          @ExecuteAt = params['ExecuteAt']
+          unless params['ExecutePeriod'].nil?
+            @ExecutePeriod = ExecutePeriodAttribute.new
+            @ExecutePeriod.deserialize(params['ExecutePeriod'])
+          end
+          @WaitTime = params['WaitTime']
+        end
+      end
+
       # ExpandCapacity请求参数结构体
       class ExpandCapacityRequest < TencentCloud::Common::AbstractModel
         # @param FileSystemId: 文件系统ID
         # @type FileSystemId: String
-        # @param ExpandedCapacity: 新增扩容的系统容量
+        # @param ExpandedCapacity: 新增扩容的系统容量(单位 GiB)
         # @type ExpandedCapacity: Integer
         # @param ModifyType: 容量修改类型：add/sub
         # @type ModifyType: String
+        # @param RapidExpansion: 是否是快速扩容,只针对部分model有效
+        # @type RapidExpansion: Boolean
 
-        attr_accessor :FileSystemId, :ExpandedCapacity, :ModifyType
+        attr_accessor :FileSystemId, :ExpandedCapacity, :ModifyType, :RapidExpansion
 
-        def initialize(filesystemid=nil, expandedcapacity=nil, modifytype=nil)
+        def initialize(filesystemid=nil, expandedcapacity=nil, modifytype=nil, rapidexpansion=nil)
           @FileSystemId = filesystemid
           @ExpandedCapacity = expandedcapacity
           @ModifyType = modifytype
+          @RapidExpansion = rapidexpansion
         end
 
         def deserialize(params)
           @FileSystemId = params['FileSystemId']
           @ExpandedCapacity = params['ExpandedCapacity']
           @ModifyType = params['ModifyType']
+          @RapidExpansion = params['RapidExpansion']
         end
       end
 
@@ -1757,8 +2161,8 @@ module TencentCloud
 
         attr_accessor :Model, :Capacity, :MappedBucketList
         extend Gem::Deprecate
-        deprecate :MappedBucketList, :none, 2026, 9
-        deprecate :MappedBucketList=, :none, 2026, 9
+        deprecate :MappedBucketList, :none, 2026, 10
+        deprecate :MappedBucketList=, :none, 2026, 10
 
         def initialize(model=nil, capacity=nil, mappedbucketlist=nil)
           @Model = model
@@ -2037,6 +2441,34 @@ module TencentCloud
         end
       end
 
+      # 清单配置
+      class ManifestAttr < TencentCloud::Common::AbstractModel
+        # @param Bucket: <p>桶名字</p>
+        # @type Bucket: String
+        # @param Prefix: <p>目录前缀</p>
+        # @type Prefix: String
+        # @param Attributes: <p>文件属性</p>
+        # @type Attributes: Array
+        # @param Region: <p>桶所在地域</p><p>桶所在的地域，可以不填，认为是实例所在地域</p>
+        # @type Region: String
+
+        attr_accessor :Bucket, :Prefix, :Attributes, :Region
+
+        def initialize(bucket=nil, prefix=nil, attributes=nil, region=nil)
+          @Bucket = bucket
+          @Prefix = prefix
+          @Attributes = attributes
+          @Region = region
+        end
+
+        def deserialize(params)
+          @Bucket = params['Bucket']
+          @Prefix = params['Prefix']
+          @Attributes = params['Attributes']
+          @Region = params['Region']
+        end
+      end
+
       # 关联的对象Bucket, 并将其映射到文件系统某个路径上
       class MappedBucket < TencentCloud::Common::AbstractModel
         # @param BucketName: 对象存储Bucket名
@@ -2256,6 +2688,97 @@ module TencentCloud
         end
       end
 
+      # Policy扫描规则
+      class PolicyRuleOperator < TencentCloud::Common::AbstractModel
+        # @param Key: <p>规则名</p><p>枚举值：</p><ul><li>CREATION_TIME_DAYS： 创建时间，比较的value 是days，数字整数。判断条件均为与“今天”相差。例如 CREATION_TIME &gt; 5，指的是创建时间-今天大于5天，即5天前（以及更早）创建的文件</li><li>CHANGE_TIME_DAYS： 元数据修改时间，比较的value 是days，数字整数。判断条件均为与“今天”相差。例如 CHANGE_TIME &gt; 5，指的是元数据修改时间-今天大于5天，即5天前以及更早修改元数据的文件</li><li>MODIFICATION_TIME_DAYS： 数据修改时间，比较的value 是days，数字整数。判断条件均为与“今天”相差。例如 MODIFICATION_TIME &gt; 5，指的是数据修改时间-今天大于5天，即5天前（以及更早）修改的文件</li><li>ACCESS_TIME_DAYS： 访问时间，比较的value 是days，数字整数。判断条件均为与“今天”相差。例如 ACCESS_TIME &gt; 5，指的是访问时间-今天大于5天，即5天前（以及更早）访问的文件</li><li>CREATION_TIME_DATE： 创建时间，比较的value 是date,日期，格式为YYYY-MM-DD。判断条件均为与value对应的日期的对比。例如 CREATION_TIME &gt; 2026-06-01，指的是创建时间晚于2026年6月1日</li><li>CHANGE_TIME_DATE： 元数据修改时间，比较的value 是date,日期，格式为YYYY-MM-DD。判断条件均为与value对应的日期的对比。例如 CHANGE_TIME &gt; 2026-06-01，指的是元数据修改晚于2026年6月1日</li><li>MODIFICATION_TIME_DATE： 数据修改时间，比较的value 是date,日期，格式为YYYY-MM-DD。判断条件均为与value对应的日期的对比。例如 MODIFICATION_TIME &gt; 2026-06-01，指的是数据修改时间晚于2026年6月1日</li><li>ACCESS_TIME_DATE： 访问时间，比较的value 是date,日期，格式为YYYY-MM-DD。判断条件均为与value对应的日期的对比。例如 ACCESS_TIME &gt; 2026-06-01，指的是访问时间晚于2026年6月1日</li><li>FILE_SIZE： 文件大小，数字，单位byte，整数，0 ～ 64位整数最大值</li></ul>
+        # @type Key: String
+        # @param Operator: <p>比较关系</p><p>枚举值：</p><ul><li>&gt;：  大于</li><li>&gt;=： 大于等于</li><li>=： 相等</li><li>&lt;： 小于</li><li>&lt;=： 小于等于</li></ul>
+        # @type Operator: String
+        # @param Value: <p>比较值</p><p>如果Key是CREATION_TIME_DAYS、CHANGE_TIME_DAYS、MODIFICATION_TIME_DAYS、ACCESS_TIME_DAYS时，值是整数；<br>如果Key是CREATION_TIME_DATE、CHANGE_TIME_DATE、MODIFICATION_TIME_DATE、ACCESS_TIME_DATE时，值是日期，格式是YYYY-MM-DD；<br>如果Key是FILE_SIZE，值是整数，单位是byte</p>
+        # @type Value: String
+
+        attr_accessor :Key, :Operator, :Value
+
+        def initialize(key=nil, operator=nil, value=nil)
+          @Key = key
+          @Operator = operator
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Operator = params['Operator']
+          @Value = params['Value']
+        end
+      end
+
+      # 扫描规则信息
+      class PolicyRuleTaskAttribute < TencentCloud::Common::AbstractModel
+        # @param RuleId: <p>规则id</p>
+        # @type RuleId: String
+        # @param Name: <p>规则名称</p>
+        # @type Name: String
+        # @param ScanDir: <p>扫描目录</p>
+        # @type ScanDir: String
+        # @param Execution: <p>执行计划</p>
+        # @type Execution: :class:`Tencentcloud::Goosefs.v20220519.models.ExecutionPlan`
+        # @param PolicyRuleSet: <p>扫描规则</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PolicyRuleSet: Array
+        # @param EnableManifest: <p>是否输出清单</p>
+        # @type EnableManifest: Boolean
+        # @param Manifest: <p>输出清单配置</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Manifest: :class:`Tencentcloud::Goosefs.v20220519.models.ManifestAttr`
+        # @param Status: <p>任务状态</p><p>枚举值：</p><ul><li>0： 启用（enable）</li><li>1： 禁用（disable）</li></ul><p>默认值：0</p>
+        # @type Status: Integer
+        # @param CreateTime: <p>创建时间</p>
+        # @type CreateTime: String
+        # @param ModifyTime: <p>修改时间</p>
+        # @type ModifyTime: String
+
+        attr_accessor :RuleId, :Name, :ScanDir, :Execution, :PolicyRuleSet, :EnableManifest, :Manifest, :Status, :CreateTime, :ModifyTime
+
+        def initialize(ruleid=nil, name=nil, scandir=nil, execution=nil, policyruleset=nil, enablemanifest=nil, manifest=nil, status=nil, createtime=nil, modifytime=nil)
+          @RuleId = ruleid
+          @Name = name
+          @ScanDir = scandir
+          @Execution = execution
+          @PolicyRuleSet = policyruleset
+          @EnableManifest = enablemanifest
+          @Manifest = manifest
+          @Status = status
+          @CreateTime = createtime
+          @ModifyTime = modifytime
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+          @Name = params['Name']
+          @ScanDir = params['ScanDir']
+          unless params['Execution'].nil?
+            @Execution = ExecutionPlan.new
+            @Execution.deserialize(params['Execution'])
+          end
+          unless params['PolicyRuleSet'].nil?
+            @PolicyRuleSet = []
+            params['PolicyRuleSet'].each do |i|
+              policyruleoperator_tmp = PolicyRuleOperator.new
+              policyruleoperator_tmp.deserialize(i)
+              @PolicyRuleSet << policyruleoperator_tmp
+            end
+          end
+          @EnableManifest = params['EnableManifest']
+          unless params['Manifest'].nil?
+            @Manifest = ManifestAttr.new
+            @Manifest.deserialize(params['Manifest'])
+          end
+          @Status = params['Status']
+          @CreateTime = params['CreateTime']
+          @ModifyTime = params['ModifyTime']
+        end
+      end
+
       # QueryClientNodeMountCommand请求参数结构体
       class QueryClientNodeMountCommandRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 客户端集群ID
@@ -2411,6 +2934,46 @@ module TencentCloud
         def deserialize(params)
           @RoleName = params['RoleName']
           @Token = params['Token']
+        end
+      end
+
+      # 扫描规则执行信息
+      class RuleExecuteAttribute < TencentCloud::Common::AbstractModel
+        # @param RecordId: <p>执行id</p>
+        # @type RecordId: String
+        # @param StartTime: <p>开始执行时间</p>
+        # @type StartTime: String
+        # @param EndTime: <p>执行结束时间</p>
+        # @type EndTime: String
+        # @param Status: <p>执行状态</p><p>枚举值：</p><ul><li>0： 等待中</li><li>1： 执行中</li><li>2： 已完成</li><li>3： 已跳过</li></ul><p>默认值：0</p><p>已跳过是指任务排队超过了任务的等待时间会自动跳过</p>
+        # @type Status: Integer
+        # @param Capacity: <p>存储量</p><p>单位：GB</p><p>默认值：0</p><p>不足1G按照1G 统计</p>
+        # @type Capacity: Integer
+        # @param FileCount: <p>文件数</p>
+        # @type FileCount: Integer
+        # @param ManifestUrl: <p>文件清单路径</p><p>参数格式：http://xxx/xxx/xx</p>
+        # @type ManifestUrl: String
+
+        attr_accessor :RecordId, :StartTime, :EndTime, :Status, :Capacity, :FileCount, :ManifestUrl
+
+        def initialize(recordid=nil, starttime=nil, endtime=nil, status=nil, capacity=nil, filecount=nil, manifesturl=nil)
+          @RecordId = recordid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Status = status
+          @Capacity = capacity
+          @FileCount = filecount
+          @ManifestUrl = manifesturl
+        end
+
+        def deserialize(params)
+          @RecordId = params['RecordId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Status = params['Status']
+          @Capacity = params['Capacity']
+          @FileCount = params['FileCount']
+          @ManifestUrl = params['ManifestUrl']
         end
       end
 

@@ -12702,14 +12702,14 @@ module TencentCloud
 
         attr_accessor :AlarmNotifyPeriod, :AlarmNotifyType, :EventID, :RuleID, :MetricName, :Description
         extend Gem::Deprecate
-        deprecate :AlarmNotifyPeriod, :none, 2026, 9
-        deprecate :AlarmNotifyPeriod=, :none, 2026, 9
-        deprecate :AlarmNotifyType, :none, 2026, 9
-        deprecate :AlarmNotifyType=, :none, 2026, 9
-        deprecate :EventID, :none, 2026, 9
-        deprecate :EventID=, :none, 2026, 9
-        deprecate :RuleID, :none, 2026, 9
-        deprecate :RuleID=, :none, 2026, 9
+        deprecate :AlarmNotifyPeriod, :none, 2026, 10
+        deprecate :AlarmNotifyPeriod=, :none, 2026, 10
+        deprecate :AlarmNotifyType, :none, 2026, 10
+        deprecate :AlarmNotifyType=, :none, 2026, 10
+        deprecate :EventID, :none, 2026, 10
+        deprecate :EventID=, :none, 2026, 10
+        deprecate :RuleID, :none, 2026, 10
+        deprecate :RuleID=, :none, 2026, 10
 
         def initialize(alarmnotifyperiod=nil, alarmnotifytype=nil, eventid=nil, ruleid=nil, metricname=nil, description=nil)
           @AlarmNotifyPeriod = alarmnotifyperiod
@@ -13004,23 +13004,25 @@ module TencentCloud
 
       # ModifyPrometheusConfig请求参数结构体
       class ModifyPrometheusConfigRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例id
+        # @param InstanceId: <p>实例id</p>
         # @type InstanceId: String
-        # @param ClusterType: 集群类型
+        # @param ClusterType: <p>集群类型</p>
         # @type ClusterType: String
-        # @param ClusterId: 集群id
+        # @param ClusterId: <p>集群id</p>
         # @type ClusterId: String
-        # @param ServiceMonitors: ServiceMonitors配置
+        # @param ServiceMonitors: <p>ServiceMonitors配置</p>
         # @type ServiceMonitors: Array
-        # @param PodMonitors: PodMonitors配置
+        # @param PodMonitors: <p>PodMonitors配置</p>
         # @type PodMonitors: Array
-        # @param RawJobs: prometheus原生Job配置
+        # @param RawJobs: <p>prometheus原生Job配置</p>
         # @type RawJobs: Array
-        # @param UpdateImage: 0: 更新实例组件镜像版本；
-        # 1: 不更新实例组件镜像版本
+        # @param UpdateImage: <p>0: 更新实例组件镜像版本；<br>1: 不更新实例组件镜像版本</p><p>取值范围：[0, 1]</p><p>默认值：0</p>
         # @type UpdateImage: Integer
 
         attr_accessor :InstanceId, :ClusterType, :ClusterId, :ServiceMonitors, :PodMonitors, :RawJobs, :UpdateImage
+        extend Gem::Deprecate
+        deprecate :UpdateImage, :none, 2026, 10
+        deprecate :UpdateImage=, :none, 2026, 10
 
         def initialize(instanceid=nil, clustertype=nil, clusterid=nil, servicemonitors=nil, podmonitors=nil, rawjobs=nil, updateimage=nil)
           @InstanceId = instanceid
@@ -16020,10 +16022,10 @@ module TencentCloud
 
         attr_accessor :URL, :URLRelabelConfig, :BasicAuth, :MaxBlockSize, :Label, :Headers, :RemoteWriteType
         extend Gem::Deprecate
-        deprecate :MaxBlockSize, :none, 2026, 9
-        deprecate :MaxBlockSize=, :none, 2026, 9
-        deprecate :Label, :none, 2026, 9
-        deprecate :Label=, :none, 2026, 9
+        deprecate :MaxBlockSize, :none, 2026, 10
+        deprecate :MaxBlockSize=, :none, 2026, 10
+        deprecate :Label, :none, 2026, 10
+        deprecate :Label=, :none, 2026, 10
 
         def initialize(url=nil, urlrelabelconfig=nil, basicauth=nil, maxblocksize=nil, label=nil, headers=nil, remotewritetype=nil)
           @URL = url

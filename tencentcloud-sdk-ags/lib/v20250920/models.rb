@@ -218,8 +218,8 @@ module TencentCloud
 
         attr_accessor :SpaceId, :UserId, :SessionId, :Event, :AgentId
         extend Gem::Deprecate
-        deprecate :AgentId, :none, 2026, 9
-        deprecate :AgentId=, :none, 2026, 9
+        deprecate :AgentId, :none, 2026, 10
+        deprecate :AgentId=, :none, 2026, 10
 
         def initialize(spaceid=nil, userid=nil, sessionid=nil, event=nil, agentid=nil)
           @SpaceId = spaceid
@@ -1342,6 +1342,68 @@ module TencentCloud
         end
       end
 
+      # CreateSandboxSnapshot请求参数结构体
+      class CreateSandboxSnapshotRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>待制作快照的沙箱实例 ID</p>
+        # @type InstanceId: String
+        # @param SnapshotName: <p>快照名称</p>
+        # @type SnapshotName: String
+        # @param Memory: <p>制作快照时是否包含内存状态</p>
+        # @type Memory: Boolean
+        # @param Tags: <p>云资源标签</p>
+        # @type Tags: Array
+        # @param ClientToken: <p>幂等 token</p>
+        # @type ClientToken: String
+
+        attr_accessor :InstanceId, :SnapshotName, :Memory, :Tags, :ClientToken
+
+        def initialize(instanceid=nil, snapshotname=nil, memory=nil, tags=nil, clienttoken=nil)
+          @InstanceId = instanceid
+          @SnapshotName = snapshotname
+          @Memory = memory
+          @Tags = tags
+          @ClientToken = clienttoken
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @SnapshotName = params['SnapshotName']
+          @Memory = params['Memory']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          @ClientToken = params['ClientToken']
+        end
+      end
+
+      # CreateSandboxSnapshot返回参数结构体
+      class CreateSandboxSnapshotResponse < TencentCloud::Common::AbstractModel
+        # @param Snapshot: <p>沙箱快照</p>
+        # @type Snapshot: :class:`Tencentcloud::Ags.v20250920.models.SandboxSnapshot`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Snapshot, :RequestId
+
+        def initialize(snapshot=nil, requestid=nil)
+          @Snapshot = snapshot
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Snapshot'].nil?
+            @Snapshot = SandboxSnapshot.new
+            @Snapshot.deserialize(params['Snapshot'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateSandboxTool请求参数结构体
       class CreateSandboxToolRequest < TencentCloud::Common::AbstractModel
         # @param ToolName: <p>沙箱工具名称，长度 1-50 字符，支持英文、数字、下划线和连接线。同一 AppId 下沙箱工具名称必须唯一</p>
@@ -1471,8 +1533,8 @@ module TencentCloud
 
         attr_accessor :SpaceId, :UserId, :AgentId, :SessionId, :Title, :State, :Metadata
         extend Gem::Deprecate
-        deprecate :AgentId, :none, 2026, 9
-        deprecate :AgentId=, :none, 2026, 9
+        deprecate :AgentId, :none, 2026, 10
+        deprecate :AgentId=, :none, 2026, 10
 
         def initialize(spaceid=nil, userid=nil, agentid=nil, sessionid=nil, title=nil, state=nil, metadata=nil)
           @SpaceId = spaceid
@@ -1892,6 +1954,38 @@ module TencentCloud
         end
       end
 
+      # DeleteSandboxSnapshot请求参数结构体
+      class DeleteSandboxSnapshotRequest < TencentCloud::Common::AbstractModel
+        # @param SnapshotId: <p>待删除的沙箱快照 ID</p>
+        # @type SnapshotId: String
+
+        attr_accessor :SnapshotId
+
+        def initialize(snapshotid=nil)
+          @SnapshotId = snapshotid
+        end
+
+        def deserialize(params)
+          @SnapshotId = params['SnapshotId']
+        end
+      end
+
+      # DeleteSandboxSnapshot返回参数结构体
+      class DeleteSandboxSnapshotResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteSandboxTool请求参数结构体
       class DeleteSandboxToolRequest < TencentCloud::Common::AbstractModel
         # @param ToolId: 沙箱工具ID
@@ -1937,8 +2031,8 @@ module TencentCloud
 
         attr_accessor :SpaceId, :UserId, :SessionId, :AgentId
         extend Gem::Deprecate
-        deprecate :AgentId, :none, 2026, 9
-        deprecate :AgentId=, :none, 2026, 9
+        deprecate :AgentId, :none, 2026, 10
+        deprecate :AgentId=, :none, 2026, 10
 
         def initialize(spaceid=nil, userid=nil, sessionid=nil, agentid=nil)
           @SpaceId = spaceid
@@ -2239,8 +2333,8 @@ module TencentCloud
 
         attr_accessor :SpaceId, :UserId, :SessionId, :AgentId, :Author, :AfterTimestamp, :Offset, :Limit
         extend Gem::Deprecate
-        deprecate :AgentId, :none, 2026, 9
-        deprecate :AgentId=, :none, 2026, 9
+        deprecate :AgentId, :none, 2026, 10
+        deprecate :AgentId=, :none, 2026, 10
 
         def initialize(spaceid=nil, userid=nil, sessionid=nil, agentid=nil, author=nil, aftertimestamp=nil, offset=nil, limit=nil)
           @SpaceId = spaceid
@@ -2924,6 +3018,84 @@ module TencentCloud
         end
       end
 
+      # DescribeSandboxSnapshotList请求参数结构体
+      class DescribeSandboxSnapshotListRequest < TencentCloud::Common::AbstractModel
+        # @param SnapshotIds: <p>待查询的沙箱快照 ID 列表</p>
+        # @type SnapshotIds: Array
+        # @param Filters: <p>过滤条件</p>
+        # @type Filters: Array
+        # @param Offset: <p>偏移量，与 NextToken 参数互斥</p>
+        # @type Offset: Integer
+        # @param Limit: <p>返回数量上限</p>
+        # @type Limit: Integer
+        # @param NextToken: <p>分页偏移 token，与 Offset 参数互斥</p>
+        # @type NextToken: String
+        # @param MaxResults: <p>每次调用返回的最大结果数。如果查询返回的时候有NextToken返回，您可以使用NextToken值获取更多页结果， 当NextToke返回空或者返回的结果数量小于MaxResults时，表示没有更多数据了。允许的最大页面大小为 100。</p>
+        # @type MaxResults: Integer
+
+        attr_accessor :SnapshotIds, :Filters, :Offset, :Limit, :NextToken, :MaxResults
+
+        def initialize(snapshotids=nil, filters=nil, offset=nil, limit=nil, nexttoken=nil, maxresults=nil)
+          @SnapshotIds = snapshotids
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+          @NextToken = nexttoken
+          @MaxResults = maxresults
+        end
+
+        def deserialize(params)
+          @SnapshotIds = params['SnapshotIds']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @NextToken = params['NextToken']
+          @MaxResults = params['MaxResults']
+        end
+      end
+
+      # DescribeSandboxSnapshotList返回参数结构体
+      class DescribeSandboxSnapshotListResponse < TencentCloud::Common::AbstractModel
+        # @param SnapshotSet: <p>查询到的沙箱快照列表</p>
+        # @type SnapshotSet: Array
+        # @param TotalCount: <p>查询到的沙箱快照数量</p>
+        # @type TotalCount: Integer
+        # @param NextToken: <p>分页偏移 token，可用于下一次查询</p>
+        # @type NextToken: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SnapshotSet, :TotalCount, :NextToken, :RequestId
+
+        def initialize(snapshotset=nil, totalcount=nil, nexttoken=nil, requestid=nil)
+          @SnapshotSet = snapshotset
+          @TotalCount = totalcount
+          @NextToken = nexttoken
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['SnapshotSet'].nil?
+            @SnapshotSet = []
+            params['SnapshotSet'].each do |i|
+              sandboxsnapshot_tmp = SandboxSnapshot.new
+              sandboxsnapshot_tmp.deserialize(i)
+              @SnapshotSet << sandboxsnapshot_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @NextToken = params['NextToken']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSandboxToolList请求参数结构体
       class DescribeSandboxToolListRequest < TencentCloud::Common::AbstractModel
         # @param ToolIds: 沙箱工具ID列表，指定要查询的工具。如果为空则查询所有工具。最大支持100个ID
@@ -3007,8 +3179,8 @@ module TencentCloud
 
         attr_accessor :SpaceId, :UserId, :SessionId, :AgentId, :NumRecentEvents, :AfterTimestamp
         extend Gem::Deprecate
-        deprecate :AgentId, :none, 2026, 9
-        deprecate :AgentId=, :none, 2026, 9
+        deprecate :AgentId, :none, 2026, 10
+        deprecate :AgentId=, :none, 2026, 10
 
         def initialize(spaceid=nil, userid=nil, sessionid=nil, agentid=nil, numrecentevents=nil, aftertimestamp=nil)
           @SpaceId = spaceid
@@ -3172,8 +3344,8 @@ module TencentCloud
 
         attr_accessor :SpaceId, :AgentIds, :UserIds, :Offset, :Limit, :SessionIds, :Filters
         extend Gem::Deprecate
-        deprecate :AgentIds, :none, 2026, 9
-        deprecate :AgentIds=, :none, 2026, 9
+        deprecate :AgentIds, :none, 2026, 10
+        deprecate :AgentIds=, :none, 2026, 10
 
         def initialize(spaceid=nil, agentids=nil, userids=nil, offset=nil, limit=nil, sessionids=nil, filters=nil)
           @SpaceId = spaceid
@@ -4383,6 +4555,61 @@ module TencentCloud
         end
       end
 
+      # 沙箱快照
+      class SandboxSnapshot < TencentCloud::Common::AbstractModel
+        # @param SnapshotId: <p>沙箱快照 ID</p>
+        # @type SnapshotId: String
+        # @param SnapshotName: <p>沙箱快照名称</p>
+        # @type SnapshotName: String
+        # @param SourceInstanceId: <p>源沙箱实例 ID，沙箱快照由其派生</p>
+        # @type SourceInstanceId: String
+        # @param MemoryIncluded: <p>制作快照时是否包含内存状态</p>
+        # @type MemoryIncluded: Boolean
+        # @param Status: <p>沙箱快照状态</p><p>枚举值：</p><ul><li>ACTIVE： 可用</li><li>DELETING： 删除中</li><li>DELETED： 已删除</li></ul>
+        # @type Status: String
+        # @param StatusReason: <p>用于说明沙箱快照处于该状态的原因</p>
+        # @type StatusReason: String
+        # @param Tags: <p>云资源标签</p>
+        # @type Tags: Array
+        # @param CreateTime: <p>创建时间</p><p>参数格式：ISO8601</p>
+        # @type CreateTime: String
+        # @param UpdateTime: <p>更新时间</p><p>参数格式：ISO8601</p>
+        # @type UpdateTime: String
+
+        attr_accessor :SnapshotId, :SnapshotName, :SourceInstanceId, :MemoryIncluded, :Status, :StatusReason, :Tags, :CreateTime, :UpdateTime
+
+        def initialize(snapshotid=nil, snapshotname=nil, sourceinstanceid=nil, memoryincluded=nil, status=nil, statusreason=nil, tags=nil, createtime=nil, updatetime=nil)
+          @SnapshotId = snapshotid
+          @SnapshotName = snapshotname
+          @SourceInstanceId = sourceinstanceid
+          @MemoryIncluded = memoryincluded
+          @Status = status
+          @StatusReason = statusreason
+          @Tags = tags
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @SnapshotId = params['SnapshotId']
+          @SnapshotName = params['SnapshotName']
+          @SourceInstanceId = params['SourceInstanceId']
+          @MemoryIncluded = params['MemoryIncluded']
+          @Status = params['Status']
+          @StatusReason = params['StatusReason']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
       # 沙箱工具结构体
       class SandboxTool < TencentCloud::Common::AbstractModel
         # @param ToolId: <p>沙箱工具唯一标识符</p>
@@ -4538,8 +4765,8 @@ module TencentCloud
 
         attr_accessor :SessionId, :SpaceId, :State, :Metadata, :AgentId, :UserId, :Title, :EventCount, :CreateTime, :UpdateTime
         extend Gem::Deprecate
-        deprecate :AgentId, :none, 2026, 9
-        deprecate :AgentId=, :none, 2026, 9
+        deprecate :AgentId, :none, 2026, 10
+        deprecate :AgentId=, :none, 2026, 10
 
         def initialize(sessionid=nil, spaceid=nil, state=nil, metadata=nil, agentid=nil, userid=nil, title=nil, eventcount=nil, createtime=nil, updatetime=nil)
           @SessionId = sessionid
@@ -4640,6 +4867,8 @@ module TencentCloud
         # @type ToolId: String
         # @param ToolName: <p>沙箱工具名称，与 ToolId 至少有一个要填</p>
         # @type ToolName: String
+        # @param SourceInstanceId: <p>待克隆的源沙箱 ID</p>
+        # @type SourceInstanceId: String
         # @param Timeout: <p>超时时间，超过这个时间就自动回收实例。支持格式：5m、300s、1h 等，默认 5m。最小 30s，最大 24h</p>
         # @type Timeout: String
         # @param ClientToken: <p>幂等性 Token，长度不超过 64 字符</p>
@@ -4653,11 +4882,12 @@ module TencentCloud
         # @param Metadata: <p>沙箱元数据</p>
         # @type Metadata: Array
 
-        attr_accessor :ToolId, :ToolName, :Timeout, :ClientToken, :MountOptions, :CustomConfiguration, :AuthMode, :Metadata
+        attr_accessor :ToolId, :ToolName, :SourceInstanceId, :Timeout, :ClientToken, :MountOptions, :CustomConfiguration, :AuthMode, :Metadata
 
-        def initialize(toolid=nil, toolname=nil, timeout=nil, clienttoken=nil, mountoptions=nil, customconfiguration=nil, authmode=nil, metadata=nil)
+        def initialize(toolid=nil, toolname=nil, sourceinstanceid=nil, timeout=nil, clienttoken=nil, mountoptions=nil, customconfiguration=nil, authmode=nil, metadata=nil)
           @ToolId = toolid
           @ToolName = toolname
+          @SourceInstanceId = sourceinstanceid
           @Timeout = timeout
           @ClientToken = clienttoken
           @MountOptions = mountoptions
@@ -4669,6 +4899,7 @@ module TencentCloud
         def deserialize(params)
           @ToolId = params['ToolId']
           @ToolName = params['ToolName']
+          @SourceInstanceId = params['SourceInstanceId']
           @Timeout = params['Timeout']
           @ClientToken = params['ClientToken']
           unless params['MountOptions'].nil?

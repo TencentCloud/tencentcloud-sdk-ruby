@@ -1443,6 +1443,146 @@ module TencentCloud
         end
       end
 
+      # 列表账户虚拟组分页数据集
+      class DescribeAccountVirtualGroupsData < TencentCloud::Common::AbstractModel
+        # @param Id: <p>id(只支持32位)</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: Integer
+        # @param AccountGroupId: <p>分组id(只支持32位)</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccountGroupId: Integer
+        # @param Name: <p>账户虚拟组名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Description: <p>描述</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param SourceType: <p>源类型，手动、自动(只支持32位)</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceType: Integer
+        # @param ExtraInfo: <p>扩展信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExtraInfo: String
+        # @param UserTotal: <p>用户总数</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserTotal: Integer
+        # @param Itime: <p>创建时间</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Itime: String
+        # @param Utime: <p>最后更新时间</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Utime: String
+
+        attr_accessor :Id, :AccountGroupId, :Name, :Description, :SourceType, :ExtraInfo, :UserTotal, :Itime, :Utime
+
+        def initialize(id=nil, accountgroupid=nil, name=nil, description=nil, sourcetype=nil, extrainfo=nil, usertotal=nil, itime=nil, utime=nil)
+          @Id = id
+          @AccountGroupId = accountgroupid
+          @Name = name
+          @Description = description
+          @SourceType = sourcetype
+          @ExtraInfo = extrainfo
+          @UserTotal = usertotal
+          @Itime = itime
+          @Utime = utime
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @AccountGroupId = params['AccountGroupId']
+          @Name = params['Name']
+          @Description = params['Description']
+          @SourceType = params['SourceType']
+          @ExtraInfo = params['ExtraInfo']
+          @UserTotal = params['UserTotal']
+          @Itime = params['Itime']
+          @Utime = params['Utime']
+        end
+      end
+
+      # 业务响应数据
+      class DescribeAccountVirtualGroupsPageData < TencentCloud::Common::AbstractModel
+        # @param Page: <p>分页公共对象</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Page: :class:`Tencentcloud::Ioa.v20220601.models.Paging`
+        # @param Items: <p>列表账户虚拟组分页数据集</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+
+        attr_accessor :Page, :Items
+
+        def initialize(page=nil, items=nil)
+          @Page = page
+          @Items = items
+        end
+
+        def deserialize(params)
+          unless params['Page'].nil?
+            @Page = Paging.new
+            @Page.deserialize(params['Page'])
+          end
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              describeaccountvirtualgroupsdata_tmp = DescribeAccountVirtualGroupsData.new
+              describeaccountvirtualgroupsdata_tmp.deserialize(i)
+              @Items << describeaccountvirtualgroupsdata_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeAccountVirtualGroups请求参数结构体
+      class DescribeAccountVirtualGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param DomainInstanceId: 管理域实例ID，用于CAM管理域权限分配。若企业未进行管理域的划分，可直接传入根域"1"，此时表示针对当前企业的全部设备和账号进行接口CRUD，具体CRUD的影响范围限制于相应接口的入参。
+        # @type DomainInstanceId: String
+        # @param Condition: <p>滤条件、分页参数</p><li>Name - String - 是否必填：否 - 操作符: eq,like  - 排序支持：否- 按账号虚拟组名称过滤。</li>
+        # @type Condition: :class:`Tencentcloud::Ioa.v20220601.models.Condition`
+        # @param AccountGroupId: <p>顶层目录分组ID，表示要查询哪个目录下的虚拟组</p>
+        # @type AccountGroupId: Integer
+
+        attr_accessor :DomainInstanceId, :Condition, :AccountGroupId
+
+        def initialize(domaininstanceid=nil, condition=nil, accountgroupid=nil)
+          @DomainInstanceId = domaininstanceid
+          @Condition = condition
+          @AccountGroupId = accountgroupid
+        end
+
+        def deserialize(params)
+          @DomainInstanceId = params['DomainInstanceId']
+          unless params['Condition'].nil?
+            @Condition = Condition.new
+            @Condition.deserialize(params['Condition'])
+          end
+          @AccountGroupId = params['AccountGroupId']
+        end
+      end
+
+      # DescribeAccountVirtualGroups返回参数结构体
+      class DescribeAccountVirtualGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>业务响应数据</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Ioa.v20220601.models.DescribeAccountVirtualGroupsPageData`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DescribeAccountVirtualGroupsPageData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 业务响应数据
       class DescribeAggrSoftCategorySoftListData < TencentCloud::Common::AbstractModel
         # @param Page: 分页公共对象

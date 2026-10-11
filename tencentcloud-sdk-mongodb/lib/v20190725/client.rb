@@ -270,6 +270,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建数据库角色
+
+        # @param request: Request instance for CreateInstanceRole.
+        # @type request: :class:`Tencentcloud::mongodb::V20190725::CreateInstanceRoleRequest`
+        # @rtype: :class:`Tencentcloud::mongodb::V20190725::CreateInstanceRoleResponse`
+        def CreateInstanceRole(request)
+          body = send_request('CreateInstanceRole', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateInstanceRoleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建数据库账号
+
+        # @param request: Request instance for CreateInstanceUser.
+        # @type request: :class:`Tencentcloud::mongodb::V20190725::CreateInstanceUserRequest`
+        # @rtype: :class:`Tencentcloud::mongodb::V20190725::CreateInstanceUserResponse`
+        def CreateInstanceUser(request)
+          body = send_request('CreateInstanceUser', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateInstanceUserResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建日志下载任务
 
         # @param request: Request instance for CreateLogDownloadTask.
@@ -376,6 +424,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteDBBackupsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除角色
+
+        # @param request: Request instance for DeleteInstanceRole.
+        # @type request: :class:`Tencentcloud::mongodb::V20190725::DeleteInstanceRoleRequest`
+        # @rtype: :class:`Tencentcloud::mongodb::V20190725::DeleteInstanceRoleResponse`
+        def DeleteInstanceRole(request)
+          body = send_request('DeleteInstanceRole', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteInstanceRoleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除数据库账号。
+
+        # @param request: Request instance for DeleteInstanceUser.
+        # @type request: :class:`Tencentcloud::mongodb::V20190725::DeleteInstanceUserRequest`
+        # @rtype: :class:`Tencentcloud::mongodb::V20190725::DeleteInstanceUserResponse`
+        def DeleteInstanceUser(request)
+          body = send_request('DeleteInstanceUser', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteInstanceUserResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -920,6 +1016,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取角色列表
+
+        # @param request: Request instance for DescribeInstanceRoles.
+        # @type request: :class:`Tencentcloud::mongodb::V20190725::DescribeInstanceRolesRequest`
+        # @rtype: :class:`Tencentcloud::mongodb::V20190725::DescribeInstanceRolesResponse`
+        def DescribeInstanceRoles(request)
+          body = send_request('DescribeInstanceRoles', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInstanceRolesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查看实例SSL开启状态
 
         # @param request: Request instance for DescribeInstanceSSL.
@@ -930,6 +1050,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeInstanceSSLResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取账号列表
+
+        # @param request: Request instance for DescribeInstanceUsers.
+        # @type request: :class:`Tencentcloud::mongodb::V20190725::DescribeInstanceUsersRequest`
+        # @rtype: :class:`Tencentcloud::mongodb::V20190725::DescribeInstanceUsersResponse`
+        def DescribeInstanceUsers(request)
+          body = send_request('DescribeInstanceUsers', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInstanceUsersResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2109,6 +2253,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = TerminateDBInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新数据库角色
+
+        # @param request: Request instance for UpdateInstanceRole.
+        # @type request: :class:`Tencentcloud::mongodb::V20190725::UpdateInstanceRoleRequest`
+        # @rtype: :class:`Tencentcloud::mongodb::V20190725::UpdateInstanceRoleResponse`
+        def UpdateInstanceRole(request)
+          body = send_request('UpdateInstanceRole', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateInstanceRoleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新数据库账号
+
+        # @param request: Request instance for UpdateInstanceUser.
+        # @type request: :class:`Tencentcloud::mongodb::V20190725::UpdateInstanceUserRequest`
+        # @rtype: :class:`Tencentcloud::mongodb::V20190725::UpdateInstanceUserResponse`
+        def UpdateInstanceUser(request)
+          body = send_request('UpdateInstanceUser', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateInstanceUserResponse.new
             model.deserialize(response['Response'])
             model
           else

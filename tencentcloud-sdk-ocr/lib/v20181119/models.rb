@@ -1830,6 +1830,73 @@ module TencentCloud
         end
       end
 
+      # DescribeMultimodalDocParseJob请求参数结构体
+      class DescribeMultimodalDocParseJobRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>解析任务ID。由创建任务接口返回。</p>
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeMultimodalDocParseJob返回参数结构体
+      class DescribeMultimodalDocParseJobResponse < TencentCloud::Common::AbstractModel
+        # @param Status: <p>任务状态。取值：</p><ul><li>Created：已创建，等待处理</li><li>Processing：处理中</li><li>Success：成功</li><li>Failed：失败</li><li>Unknown：未知</li></ul>
+        # @type Status: String
+        # @param ErrorCode: <p>任务执行错误码。当任务状态不为 Failed 时，该值为“”。</p>
+        # @type ErrorCode: String
+        # @param ErrorMessage: <p>任务执行错误信息。当任务状态不为 Failed 时，该值为“”。</p>
+        # @type ErrorMessage: String
+        # @param ResultUrl: <p>结果的临时下载地址。文件类型为 zip 压缩包，下载链接有效期 30 分钟。压缩包内包含 <em>.md、</em>.json 以及 images 文件夹。仅当任务状态为 Success 时返回该字段。</p>
+        # @type ResultUrl: String
+        # @param FailedPages: <p>解析失败的页码列表。仅当任务状态为 Success 时返回该字段。</p>
+        # @type FailedPages: Array
+        # @param SuccessPageNum: <p>解析成功页数。</p>
+        # @type SuccessPageNum: Integer
+        # @param FailPageNum: <p>解析失败页数。</p>
+        # @type FailPageNum: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :ErrorCode, :ErrorMessage, :ResultUrl, :FailedPages, :SuccessPageNum, :FailPageNum, :RequestId
+
+        def initialize(status=nil, errorcode=nil, errormessage=nil, resulturl=nil, failedpages=nil, successpagenum=nil, failpagenum=nil, requestid=nil)
+          @Status = status
+          @ErrorCode = errorcode
+          @ErrorMessage = errormessage
+          @ResultUrl = resulturl
+          @FailedPages = failedpages
+          @SuccessPageNum = successpagenum
+          @FailPageNum = failpagenum
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @ErrorCode = params['ErrorCode']
+          @ErrorMessage = params['ErrorMessage']
+          @ResultUrl = params['ResultUrl']
+          unless params['FailedPages'].nil?
+            @FailedPages = []
+            params['FailedPages'].each do |i|
+              reconstructdocumentfailedpage_tmp = ReconstructDocumentFailedPage.new
+              reconstructdocumentfailedpage_tmp.deserialize(i)
+              @FailedPages << reconstructdocumentfailedpage_tmp
+            end
+          end
+          @SuccessPageNum = params['SuccessPageNum']
+          @FailPageNum = params['FailPageNum']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeQuestionMarkAgentJob请求参数结构体
       class DescribeQuestionMarkAgentJobRequest < TencentCloud::Common::AbstractModel
         # @param JobId: 任务唯一ID。由服务端生成。
@@ -8246,13 +8313,13 @@ module TencentCloud
 
       # 推理输出配置
       class ReasoningConfig < TencentCloud::Common::AbstractModel
-        # @param OutputMode: <p>实际使用的推理输出模式：enum 或 string。</p>
+        # @param OutputMode: <p>推理输出模式。可选值：enum（枚举值输出）、string（自由文本输出）。<br>enum：VLM 必须从 EnumValues 中选择一个值输出，适用于二值判断或分类决策。<br>string：VLM 输出自由文本，适用于需要自然语言解释的场景。</p>
         # @type OutputMode: String
-        # @param EnumValues: <p>枚举值集合，仅在 OutputMode=enum 时生效。  VLM 输出必须精确命中此集合中的某个值。</p>
+        # @param EnumValues: <p>枚举值集合，仅在 OutputMode=enum 时生效，设置后VLM推理结果必须精确命中此集合中的某个值，否则会返回“输出偏离枚举值”，Prompt中的指令应与枚举值匹配。</p>
         # @type EnumValues: Array
-        # @param MaxLength: <p>文本输出最大长度，仅在 OutputMode=string 时生效。</p><p>取值范围：[1, 500]</p><p>默认值：200</p>
+        # @param MaxLength: <p>文本输出最大长度，仅在 OutputMode=string 时生效。</p><p>取值范围：[1, 500]</p>
         # @type MaxLength: Integer
-        # @param EnableImageInput: <p>是否在推理调用时向 VLM 传入原图进行多模态理解。  true（默认）：VLM 同时接收原图和渲染后的 Prompt，具备多模态理解能力，可直接&quot;看&quot;图片内容进行推理。  false：不传入原图，仅以渲染后的 Prompt（含变量注入值）进行纯文本推理。适用于推理逻辑完全基于结构化出参字段（如水印文字、置信度比较等）的场景，可降低推理延迟和计费成本。  建议：当 ReasoningPrompt 中未涉及&quot;观察图片&quot;、&quot;直接看图&quot;等多模态指令，且推理规则完全基于 ${变量名} 引用的文字结果时，可设为 false 以优化性能。</p>
+        # @param EnableImageInput: <p>是否在推理时向 VLM 传入原图进行多模态理解，不传入时默认为true。<br>true：VLM 同时接收原图和渲染后的 Prompt，具备多模态理解能力，可直接&quot;看&quot;图片内容进行推理。<br>false：不传入原图，仅以渲染后的 Prompt（含变量注入值）进行纯文本推理，适用于推理逻辑完全基于结构化出参字段（如水印文字、置信度比较等）的场景。<br>建议：当 ReasoningPrompt 中未涉及&quot;观察图片&quot;、&quot;分析图片&quot;等多模态指令，推理规则完全基于 ${变量名} 引用的文字结果时，可设为 false 以获得更低的延迟。</p>
         # @type EnableImageInput: Boolean
 
         attr_accessor :OutputMode, :EnumValues, :MaxLength, :EnableImageInput
@@ -8276,13 +8343,13 @@ module TencentCloud
       class ReasoningResult < TencentCloud::Common::AbstractModel
         # @param OutputMode: <p>实际使用的推理输出模式：enum 或 string。</p>
         # @type OutputMode: String
-        # @param EnumValue: <p>枚举模式下的推理结果值。当 OutputMode=enum 时返回，必定命中请求中 EnumValues 的某个值。 若 VLM 输出无法匹配任何枚举值，则返回 <strong>UNCERTAIN</strong>。</p>
+        # @param EnumValue: <p>枚举模式下的推理结果值。当 OutputMode=enum 时返回，取值对应请求中配置的 EnumValues。</p>
         # @type EnumValue: String
-        # @param TextValue: <p>文本模式下的推理结果值。当 OutputMode=string 时返回。 若 VLM 无法得出结论，则返回 <strong>UNCERTAIN</strong>。</p>
+        # @param TextValue: <p>文本模式下的推理结果值。当 OutputMode=string 时返回，以文本形式描述推理结论。</p>
         # @type TextValue: String
-        # @param RawOutput: <p>VLM 原始输出文本（未经过结构化校验）。</p>
+        # @param RawOutput: <p>VLM 原始输出文本（未经过结构化校验）。该字段仅用于调试，生产环境可忽略。</p>
         # @type RawOutput: String
-        # @param RenderedPrompt: <p>变量替换后的实际 Prompt（脱敏后）。</p>
+        # @param RenderedPrompt: <p>变量替换后的用户 Prompt 文本。该字段仅用于调试，生产环境可忽略。</p>
         # @type RenderedPrompt: String
 
         attr_accessor :OutputMode, :EnumValue, :TextValue, :RawOutput, :RenderedPrompt
@@ -9350,6 +9417,22 @@ module TencentCloud
         end
       end
 
+      # 解析失败的页数
+      class ReconstructDocumentFailedPage < TencentCloud::Common::AbstractModel
+        # @param PageNumber: <p>解析失败页数。</p>
+        # @type PageNumber: Integer
+
+        attr_accessor :PageNumber
+
+        def initialize(pagenumber=nil)
+          @PageNumber = pagenumber
+        end
+
+        def deserialize(params)
+          @PageNumber = params['PageNumber']
+        end
+      end
+
       # 矩形坐标
       class Rect < TencentCloud::Common::AbstractModel
         # @param X: <p>左上角x</p>
@@ -9450,6 +9533,26 @@ module TencentCloud
           @ApiRequestId = params['ApiRequestId']
           @ApiErrorCode = params['ApiErrorCode']
           @WarnCodes = params['WarnCodes']
+        end
+      end
+
+      # 重排序结果
+      class RerankResult < TencentCloud::Common::AbstractModel
+        # @param Index: 文档在输入 Docs 列表中的索引，从 0 开始，用于回溯原文档。
+        # @type Index: Integer
+        # @param Score: 文档与查询内容的相关性得分，数值越大越相关。
+        # @type Score: Float
+
+        attr_accessor :Index, :Score
+
+        def initialize(index=nil, score=nil)
+          @Index = index
+          @Score = score
+        end
+
+        def deserialize(params)
+          @Index = params['Index']
+          @Score = params['Score']
         end
       end
 
@@ -9915,6 +10018,57 @@ module TencentCloud
           @StartDate = params['StartDate']
           @EndDate = params['EndDate']
           @ReleaseDate = params['ReleaseDate']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # RunRerank请求参数结构体
+      class RunRerankRequest < TencentCloud::Common::AbstractModel
+        # @param Model: <p>选择模型。<br>0：Rerank-2b<br>1：Rerank-0.6b</p>
+        # @type Model: String
+        # @param Query: <p>查询内容。用于匹配的query，即用户检索意图。</p>
+        # @type Query: String
+        # @param Docs: <p>文档内容列表。</p>
+        # @type Docs: Array
+
+        attr_accessor :Model, :Query, :Docs
+
+        def initialize(model=nil, query=nil, docs=nil)
+          @Model = model
+          @Query = query
+          @Docs = docs
+        end
+
+        def deserialize(params)
+          @Model = params['Model']
+          @Query = params['Query']
+          @Docs = params['Docs']
+        end
+      end
+
+      # RunRerank返回参数结构体
+      class RunRerankResponse < TencentCloud::Common::AbstractModel
+        # @param Results: <p>重排序后的结果列表，按相关性得分从高到低排列。</p>
+        # @type Results: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Results, :RequestId
+
+        def initialize(results=nil, requestid=nil)
+          @Results = results
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Results'].nil?
+            @Results = []
+            params['Results'].each do |i|
+              rerankresult_tmp = RerankResult.new
+              rerankresult_tmp.deserialize(i)
+              @Results << rerankresult_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -10843,6 +10997,70 @@ module TencentCloud
 
         def deserialize(params)
           @JobIds = params['JobIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # SubmitMultimodalDocParseJob请求参数结构体
+      class SubmitMultimodalDocParseJobRequest < TencentCloud::Common::AbstractModel
+        # @param FileType: <p>支持解析的文件类型。取值：</p><ul><li>1：PDF 文档</li><li>2：Word 文档（.doc/.docx）</li><li>3：PPT 演示文稿（.ppt/.pptx）</li><li>4：Excel 表格（.xls/.xlsx）</li><li>5：Markdown 文档（.md）</li><li>6：纯文本文件（.txt）</li><li>7：图片文件（.png/.jpg/.jpeg 等）</li><li>8：WPS 文档<br>支持的文件大小：PDF/WORD/PPT 支持 150M 且 300 页。</li></ul>
+        # @type FileType: Integer
+        # @param FileUrl: <p>文件的 Url 地址，支持 FileType 参数对应的文件格式及大小。文件下载时间不超过 3 秒。文件存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议文件存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。</p>
+        # @type FileUrl: String
+        # @param FileBase64: <p>文件的 Base64 值。支持 FileType 参数对应的文件格式，支持的文件大小不超过 8M。文件下载时间不超过 3 秒。<br>文件的 FileUrl、FileBase64 必须提供一个，如果都提供，只使用 FileUrl。</p>
+        # @type FileBase64: String
+        # @param ResultType: <p>输出格式。<br>1：json格式<br>2：markdown格式<br>3：xml格式<br>9：json+markdown+xml格式</p>
+        # @type ResultType: Integer
+        # @param EnableSubImg: <p>是否开启子图提取，默认为 false。</p>
+        # @type EnableSubImg: Boolean
+        # @param FileStartPageNumber: <p>文档的起始页码。用来指定识别的起始页码，识别的页码包含当前值，不填时默认从文档第一页开始解析。本参数与 FileEndPageNumber 可分开填写，也可只填其中一个。</p>
+        # @type FileStartPageNumber: Integer
+        # @param FileEndPageNumber: <p>文档的结束页码。用来指定识别的结束页码，识别的页码包含当前值，不填时默认解析到文档最后一页。本参数与 FileStartPageNumber 可分开填写，也可只填其中一个。</p>
+        # @type FileEndPageNumber: Integer
+        # @param TaskType: <p>任务类型，默认为 0。取值：</p><ul><li>0：默认</li><li>1：Free OCR</li><li>2：OCR</li><li>3：表格识别</li><li>4：代码识别</li></ul>
+        # @type TaskType: Integer
+
+        attr_accessor :FileType, :FileUrl, :FileBase64, :ResultType, :EnableSubImg, :FileStartPageNumber, :FileEndPageNumber, :TaskType
+
+        def initialize(filetype=nil, fileurl=nil, filebase64=nil, resulttype=nil, enablesubimg=nil, filestartpagenumber=nil, fileendpagenumber=nil, tasktype=nil)
+          @FileType = filetype
+          @FileUrl = fileurl
+          @FileBase64 = filebase64
+          @ResultType = resulttype
+          @EnableSubImg = enablesubimg
+          @FileStartPageNumber = filestartpagenumber
+          @FileEndPageNumber = fileendpagenumber
+          @TaskType = tasktype
+        end
+
+        def deserialize(params)
+          @FileType = params['FileType']
+          @FileUrl = params['FileUrl']
+          @FileBase64 = params['FileBase64']
+          @ResultType = params['ResultType']
+          @EnableSubImg = params['EnableSubImg']
+          @FileStartPageNumber = params['FileStartPageNumber']
+          @FileEndPageNumber = params['FileEndPageNumber']
+          @TaskType = params['TaskType']
+        end
+      end
+
+      # SubmitMultimodalDocParseJob返回参数结构体
+      class SubmitMultimodalDocParseJobResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务唯一 ID。30天内可以通过DescribeMultimodalDocParseJob接口查询TaskId对应的处理结果。</p>
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end
       end
@@ -14752,15 +14970,15 @@ module TencentCloud
       class VerifyScenePhotoRequest < TencentCloud::Common::AbstractModel
         # @param Scene: <p>场景类型参数，如果场景无法细分请选用该大类的第一个子类，目前支持以下类型：<br><strong>经营场所照</strong><br>0101 门头照<br>0102 店内照<br>0103 流动经营照    </p><p><strong>车牌业务照</strong><br>0201 车牌</p>
         # @type Scene: String
-        # @param Mode: <p>鉴伪模式，目前支持以下模式，对应支持不同的入参、出参。<br>Image：图像鉴伪模式，根据图像分析输出告警提示，支持推理，支持区域篡改提示、AIGC合成提示、屏幕翻拍提示、截图提示、文字水印提示、水印内容、模板图片提示、VLM 推理结果。每次调用按1次调用计费。<br>Video：视频鉴伪模式，根据视频分析输出告警提示，不支持推理，支持屏幕翻拍提示。每次调用按1次调用计费。<br>Hybrid：混合鉴伪模式，综合图像、视频分析输出告警提示，支持推理，支持区域篡改提示、AIGC合成提示、屏幕翻拍提示、截图提示、文字水印提示、水印内容、模板图片提示、VLM 推理结果。每次调用按2次调用计费。</p>
+        # @param Mode: <p>鉴伪模式，目前支持以下模式，对应支持不同的入参、出参，默认值为Image。<br>Image：图像鉴伪模式，根据图像分析输出告警提示，支持自定义推理，支持区域篡改提示、AIGC合成提示、屏幕翻拍提示、截图提示、文字水印提示、水印内容、模板图片提示、VLM 推理结果。<strong>每次调用按1次调用计费</strong>。<br>Video：视频鉴伪模式，根据视频分析输出告警提示，不支持自定义推理，支持屏幕翻拍提示。<strong>每次调用按1次调用计费</strong>。<br>Hybrid：混合鉴伪模式，综合图像、视频分析输出告警提示，支持自定义推理，支持区域篡改提示、AIGC合成提示、屏幕翻拍提示、截图提示、文字水印提示、水印内容、模板图片提示、VLM 推理结果。<strong>每次调用按2次调用计费</strong>。</p>
         # @type Mode: String
-        # @param VideoUrl: <p>视频的 Url 地址。格式支持：xxxxxx。要求视频不超过 100M。建议视频时长不小于1s。</p>
+        # @param VideoUrl: <p>视频的 Url 地址。格式支持：mp4、avi、mov、mkv、webm，要求视频不超过 100M。建议视频时长不小于1s。</p>
         # @type VideoUrl: String
         # @param ImageUrl: <p>图片的 Url 地址。要求图片经Base64编码后不超过 10M。</p>
         # @type ImageUrl: String
         # @param ImageBase64: <p>图片的 Base64 值。要求图片经Base64编码后不超过 10M。</p>
         # @type ImageBase64: String
-        # @param ReasoningPrompt: <p>推理 Prompt 模板，默认使用 VLM 对图片进行理解推理，同时支持使用 ${变量名} 进行推理。传入该参数即开启推理流程。</p><p>入参限制：长度限制：1–2000 字符</p>
+        # @param ReasoningPrompt: <p>推理 Prompt 模板，默认使用 VLM 对图片进行理解推理，同时支持使用 ${变量名} 进行推理。传入该参数即开启推理流程。</p><p>入参限制：长度限制：1–3000 字符</p>
         # @type ReasoningPrompt: String
         # @param ReasoningConfig: <p>推理输出配置。当 ReasoningPrompt 传入时建议同步传入，未传入时使用默认配置（OutputMode=enum, EnumValues=[&quot;true&quot;,&quot;false&quot;], EnableImageInput=true）。</p>
         # @type ReasoningConfig: :class:`Tencentcloud::Ocr.v20181119.models.ReasoningConfig`

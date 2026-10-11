@@ -159,31 +159,57 @@ module TencentCloud
         end
       end
 
-      # serverless实例的资源范围
+      # 实例变配的资源范围
       # ResourceType 为 cpu 时表示 ccu
       # 为 nodecount 时表示节点数范围
+      # 为 disk 表示磁盘容量范围（单位 GB）
+      # ScaleUpEnabled 为是否打开升配
+      # ScaleDownEnabled 为是否打开降配
+      # ThresholdPercent 为触发阈值（%）
+      # Step 为变配步长
       class AutoScalingConfig < TencentCloud::Common::AbstractModel
-        # @param RangeMin: <p>ccu最小值</p>
+        # @param RangeMin: <p>最小值</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RangeMin: Float
-        # @param RangeMax: <p>ccu最大值</p>
+        # @param RangeMax: <p>最大值</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RangeMax: Float
-        # @param ResourceType: <p>返回的 range 参数对应的资源类型</p><p>枚举值：</p><ul><li>cpu： 返回的是 cpu 调整返回限制，当不存在mem限制时代表 ccu</li><li>nodecount： 返回的是水平扩缩容的节点数限制范围</li></ul>
+        # @param ResourceType: <p>返回的 range 参数对应的资源类型</p><p>枚举值：</p><ul><li>cpu： 返回的是 cpu 调整返回限制，当不存在mem限制时代表 ccu</li><li>nodecount： 返回的是水平扩缩容的节点数限制范围</li><li>datadisk： 返回的是磁盘扩容的容量限制范围</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceType: String
+        # @param ScaleUpEnabled: <p>是否允许升配</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScaleUpEnabled: Boolean
+        # @param ScaleDownEnabled: <p>是否允许降配</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScaleDownEnabled: Boolean
+        # @param ThresholdPercent: <p>触发阈值（%）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ThresholdPercent: Integer
+        # @param Step: <p>变配步长</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Step: Float
 
-        attr_accessor :RangeMin, :RangeMax, :ResourceType
+        attr_accessor :RangeMin, :RangeMax, :ResourceType, :ScaleUpEnabled, :ScaleDownEnabled, :ThresholdPercent, :Step
 
-        def initialize(rangemin=nil, rangemax=nil, resourcetype=nil)
+        def initialize(rangemin=nil, rangemax=nil, resourcetype=nil, scaleupenabled=nil, scaledownenabled=nil, thresholdpercent=nil, step=nil)
           @RangeMin = rangemin
           @RangeMax = rangemax
           @ResourceType = resourcetype
+          @ScaleUpEnabled = scaleupenabled
+          @ScaleDownEnabled = scaledownenabled
+          @ThresholdPercent = thresholdpercent
+          @Step = step
         end
 
         def deserialize(params)
           @RangeMin = params['RangeMin']
           @RangeMax = params['RangeMax']
           @ResourceType = params['ResourceType']
+          @ScaleUpEnabled = params['ScaleUpEnabled']
+          @ScaleDownEnabled = params['ScaleDownEnabled']
+          @ThresholdPercent = params['ThresholdPercent']
+          @Step = params['Step']
         end
       end
 
@@ -3378,17 +3404,21 @@ module TencentCloud
         # @type FullReplications: Integer
         # @param IsExclusiveInstance: <p>独享实例</p>
         # @type IsExclusiveInstance: Integer
+        # @param Zones: <p>可用区组合列表</p>
+        # @type Zones: Array
 
-        attr_accessor :FullReplications, :IsExclusiveInstance
+        attr_accessor :FullReplications, :IsExclusiveInstance, :Zones
 
-        def initialize(fullreplications=nil, isexclusiveinstance=nil)
+        def initialize(fullreplications=nil, isexclusiveinstance=nil, zones=nil)
           @FullReplications = fullreplications
           @IsExclusiveInstance = isexclusiveinstance
+          @Zones = zones
         end
 
         def deserialize(params)
           @FullReplications = params['FullReplications']
           @IsExclusiveInstance = params['IsExclusiveInstance']
+          @Zones = params['Zones']
         end
       end
 
@@ -3957,30 +3987,30 @@ module TencentCloud
 
         attr_accessor :ComputeNodeNum, :Zone, :CreateVersion, :InitParams, :Status, :InstanceId, :StorageNodeNum, :ResourceTags, :InstanceName, :Cpu, :VpcId, :Mem, :Vip, :SubnetId, :Vport, :Disk, :CreateTime, :Region, :StatusDesc, :MCCpu, :MCMem, :ComputerNodeCpu, :ComputerNodeMem, :StorageNodeCpu, :StorageNodeMem, :MCNum, :RenewFlag, :PayMode, :AccountTag, :InstanceType, :StorageType, :DestroyedAt, :ExpireAt, :IsolatedAt, :IsolatedFrom, :Replications, :FullReplications, :AppId, :SubAccountUin, :Uin, :Zones, :Nodes, :BinlogStatus, :CdcNodeCpu, :CdcNodeMem, :CdcNodeNum, :AZMode, :StandbyFlag, :StandbySecondaryNum, :ColumnarNodeCpu, :ColumnarNodeMem, :ColumnarNodeNum, :ColumnarNodeDisk, :ColumnarNodeStorageType, :InstanceCategory, :ExclusiveClusterId, :SQLMode, :InstanceMode, :ClusterId, :AutoScaleConfig, :AnalysisMode, :AnalysisRelationInfos, :AnalysisInstanceInfo, :AutoScaleConfigs
         extend Gem::Deprecate
-        deprecate :ComputeNodeNum, :none, 2026, 9
-        deprecate :ComputeNodeNum=, :none, 2026, 9
-        deprecate :Cpu, :none, 2026, 9
-        deprecate :Cpu=, :none, 2026, 9
-        deprecate :Mem, :none, 2026, 9
-        deprecate :Mem=, :none, 2026, 9
-        deprecate :MCCpu, :none, 2026, 9
-        deprecate :MCCpu=, :none, 2026, 9
-        deprecate :MCMem, :none, 2026, 9
-        deprecate :MCMem=, :none, 2026, 9
-        deprecate :ComputerNodeCpu, :none, 2026, 9
-        deprecate :ComputerNodeCpu=, :none, 2026, 9
-        deprecate :ComputerNodeMem, :none, 2026, 9
-        deprecate :ComputerNodeMem=, :none, 2026, 9
-        deprecate :MCNum, :none, 2026, 9
-        deprecate :MCNum=, :none, 2026, 9
-        deprecate :CdcNodeCpu, :none, 2026, 9
-        deprecate :CdcNodeCpu=, :none, 2026, 9
-        deprecate :CdcNodeMem, :none, 2026, 9
-        deprecate :CdcNodeMem=, :none, 2026, 9
-        deprecate :CdcNodeNum, :none, 2026, 9
-        deprecate :CdcNodeNum=, :none, 2026, 9
-        deprecate :ClusterId, :none, 2026, 9
-        deprecate :ClusterId=, :none, 2026, 9
+        deprecate :ComputeNodeNum, :none, 2026, 10
+        deprecate :ComputeNodeNum=, :none, 2026, 10
+        deprecate :Cpu, :none, 2026, 10
+        deprecate :Cpu=, :none, 2026, 10
+        deprecate :Mem, :none, 2026, 10
+        deprecate :Mem=, :none, 2026, 10
+        deprecate :MCCpu, :none, 2026, 10
+        deprecate :MCCpu=, :none, 2026, 10
+        deprecate :MCMem, :none, 2026, 10
+        deprecate :MCMem=, :none, 2026, 10
+        deprecate :ComputerNodeCpu, :none, 2026, 10
+        deprecate :ComputerNodeCpu=, :none, 2026, 10
+        deprecate :ComputerNodeMem, :none, 2026, 10
+        deprecate :ComputerNodeMem=, :none, 2026, 10
+        deprecate :MCNum, :none, 2026, 10
+        deprecate :MCNum=, :none, 2026, 10
+        deprecate :CdcNodeCpu, :none, 2026, 10
+        deprecate :CdcNodeCpu=, :none, 2026, 10
+        deprecate :CdcNodeMem, :none, 2026, 10
+        deprecate :CdcNodeMem=, :none, 2026, 10
+        deprecate :CdcNodeNum, :none, 2026, 10
+        deprecate :CdcNodeNum=, :none, 2026, 10
+        deprecate :ClusterId, :none, 2026, 10
+        deprecate :ClusterId=, :none, 2026, 10
 
         def initialize(computenodenum=nil, zone=nil, createversion=nil, initparams=nil, status=nil, instanceid=nil, storagenodenum=nil, resourcetags=nil, instancename=nil, cpu=nil, vpcid=nil, mem=nil, vip=nil, subnetid=nil, vport=nil, disk=nil, createtime=nil, region=nil, statusdesc=nil, mccpu=nil, mcmem=nil, computernodecpu=nil, computernodemem=nil, storagenodecpu=nil, storagenodemem=nil, mcnum=nil, renewflag=nil, paymode=nil, accounttag=nil, instancetype=nil, storagetype=nil, destroyedat=nil, expireat=nil, isolatedat=nil, isolatedfrom=nil, replications=nil, fullreplications=nil, appid=nil, subaccountuin=nil, uin=nil, zones=nil, nodes=nil, binlogstatus=nil, cdcnodecpu=nil, cdcnodemem=nil, cdcnodenum=nil, azmode=nil, standbyflag=nil, standbysecondarynum=nil, columnarnodecpu=nil, columnarnodemem=nil, columnarnodenum=nil, columnarnodedisk=nil, columnarnodestoragetype=nil, instancecategory=nil, exclusiveclusterid=nil, sqlmode=nil, instancemode=nil, clusterid=nil, autoscaleconfig=nil, analysismode=nil, analysisrelationinfos=nil, analysisinstanceinfo=nil, autoscaleconfigs=nil)
           @ComputeNodeNum = computenodenum
@@ -4850,17 +4880,25 @@ module TencentCloud
         # @type InstanceId: String
         # @param Enabled: <p>是否启用SSL</p>
         # @type Enabled: Boolean
+        # @param CertificateType: <p>证书类型</p><p>枚举值：</p><ul><li>Cloud： 云端证书</li><li>Custom： 自定义证书</li></ul>
+        # @type CertificateType: String
+        # @param CertificateId: <p>腾讯云SSL证书服务的证书ID</p>
+        # @type CertificateId: String
 
-        attr_accessor :InstanceId, :Enabled
+        attr_accessor :InstanceId, :Enabled, :CertificateType, :CertificateId
 
-        def initialize(instanceid=nil, enabled=nil)
+        def initialize(instanceid=nil, enabled=nil, certificatetype=nil, certificateid=nil)
           @InstanceId = instanceid
           @Enabled = enabled
+          @CertificateType = certificatetype
+          @CertificateId = certificateid
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @Enabled = params['Enabled']
+          @CertificateType = params['CertificateType']
+          @CertificateId = params['CertificateId']
         end
       end
 

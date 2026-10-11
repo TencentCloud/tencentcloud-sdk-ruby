@@ -11971,8 +11971,8 @@ module TencentCloud
 
         attr_accessor :EnvId, :CdnDomain, :Bucket, :Regoin, :Status, :Region
         extend Gem::Deprecate
-        deprecate :Regoin, :none, 2026, 9
-        deprecate :Regoin=, :none, 2026, 9
+        deprecate :Regoin, :none, 2026, 10
+        deprecate :Regoin=, :none, 2026, 10
 
         def initialize(envid=nil, cdndomain=nil, bucket=nil, regoin=nil, status=nil, region=nil)
           @EnvId = envid

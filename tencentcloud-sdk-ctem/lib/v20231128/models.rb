@@ -4794,10 +4794,14 @@ module TencentCloud
         # @type CloudAssetStatus: Integer
         # @param AggregationCount: <p>聚合视角下该组真实子项总数；非聚合视角为 0</p>
         # @type AggregationCount: Integer
+        # @param Status: <p>状态</p>
+        # @type Status: String
+        # @param LastCheckTime: <p>最近检测时间</p>
+        # @type LastCheckTime: String
 
-        attr_accessor :Id, :Url, :Title, :Code, :ContentLength, :DisplayToolCommon, :Ip, :AIRating, :AIAnalysis, :RiskLevel, :Suggestion, :IsCloudAsset, :CloudAssetStatus, :AggregationCount
+        attr_accessor :Id, :Url, :Title, :Code, :ContentLength, :DisplayToolCommon, :Ip, :AIRating, :AIAnalysis, :RiskLevel, :Suggestion, :IsCloudAsset, :CloudAssetStatus, :AggregationCount, :Status, :LastCheckTime
 
-        def initialize(id=nil, url=nil, title=nil, code=nil, contentlength=nil, displaytoolcommon=nil, ip=nil, airating=nil, aianalysis=nil, risklevel=nil, suggestion=nil, iscloudasset=nil, cloudassetstatus=nil, aggregationcount=nil)
+        def initialize(id=nil, url=nil, title=nil, code=nil, contentlength=nil, displaytoolcommon=nil, ip=nil, airating=nil, aianalysis=nil, risklevel=nil, suggestion=nil, iscloudasset=nil, cloudassetstatus=nil, aggregationcount=nil, status=nil, lastchecktime=nil)
           @Id = id
           @Url = url
           @Title = title
@@ -4812,6 +4816,8 @@ module TencentCloud
           @IsCloudAsset = iscloudasset
           @CloudAssetStatus = cloudassetstatus
           @AggregationCount = aggregationcount
+          @Status = status
+          @LastCheckTime = lastchecktime
         end
 
         def deserialize(params)
@@ -4832,6 +4838,8 @@ module TencentCloud
           @IsCloudAsset = params['IsCloudAsset']
           @CloudAssetStatus = params['CloudAssetStatus']
           @AggregationCount = params['AggregationCount']
+          @Status = params['Status']
+          @LastCheckTime = params['LastCheckTime']
         end
       end
 
@@ -5903,10 +5911,14 @@ module TencentCloud
         # @type CloudAssetStatus: Integer
         # @param AggregationCount: <p>聚合视角下该组真实子项总数；非聚合视角为 0</p>
         # @type AggregationCount: Integer
+        # @param Status: <p>状态</p>
+        # @type Status: String
+        # @param LastCheckTime: <p>最近检测时间</p>
+        # @type LastCheckTime: String
 
-        attr_accessor :Id, :Type, :Source, :Value, :DisplayToolCommon, :IsCloudAsset, :CloudAssetStatus, :AggregationCount
+        attr_accessor :Id, :Type, :Source, :Value, :DisplayToolCommon, :IsCloudAsset, :CloudAssetStatus, :AggregationCount, :Status, :LastCheckTime
 
-        def initialize(id=nil, type=nil, source=nil, value=nil, displaytoolcommon=nil, iscloudasset=nil, cloudassetstatus=nil, aggregationcount=nil)
+        def initialize(id=nil, type=nil, source=nil, value=nil, displaytoolcommon=nil, iscloudasset=nil, cloudassetstatus=nil, aggregationcount=nil, status=nil, lastchecktime=nil)
           @Id = id
           @Type = type
           @Source = source
@@ -5915,6 +5927,8 @@ module TencentCloud
           @IsCloudAsset = iscloudasset
           @CloudAssetStatus = cloudassetstatus
           @AggregationCount = aggregationcount
+          @Status = status
+          @LastCheckTime = lastchecktime
         end
 
         def deserialize(params)
@@ -5929,6 +5943,8 @@ module TencentCloud
           @IsCloudAsset = params['IsCloudAsset']
           @CloudAssetStatus = params['CloudAssetStatus']
           @AggregationCount = params['AggregationCount']
+          @Status = params['Status']
+          @LastCheckTime = params['LastCheckTime']
         end
       end
 

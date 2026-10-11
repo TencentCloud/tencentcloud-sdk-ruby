@@ -19,11 +19,11 @@ module TencentCloud
     module V20190422
       # 云联网描述信息
       class CCN < TencentCloud::Common::AbstractModel
-        # @param VpcId: 私有网络 ID
+        # @param VpcId: <p>私有网络 ID</p>
         # @type VpcId: String
-        # @param SubnetId: 子网 ID
+        # @param SubnetId: <p>子网 ID</p>
         # @type SubnetId: String
-        # @param CcnId: 云联网 ID，如 ccn-rahigzjd
+        # @param CcnId: <p>云联网 ID，如 ccn-rahigzjd</p>
         # @type CcnId: String
 
         attr_accessor :VpcId, :SubnetId, :CcnId
@@ -730,56 +730,89 @@ module TencentCloud
 
       # session集群信息
       class ClusterSession < TencentCloud::Common::AbstractModel
-        # @param ClusterGroupSerialId: 集群SerialId
+        # @param ClusterGroupSerialId: <p>集群SerialId</p>
         # @type ClusterGroupSerialId: String
-        # @param AppId: 创建者appId
+        # @param AppId: <p>创建者appId</p>
         # @type AppId: Integer
-        # @param OwnerUin: 创建者主账号
+        # @param OwnerUin: <p>创建者主账号</p>
         # @type OwnerUin: String
-        # @param CreatorUin: 创建者账号
+        # @param CreatorUin: <p>创建者账号</p>
         # @type CreatorUin: String
-        # @param Region: 区域
+        # @param Region: <p>区域</p>
         # @type Region: String
-        # @param Zone: zone
+        # @param Zone: <p>zone</p>
         # @type Zone: String
-        # @param Status: Session集群状态
+        # @param Status: <p>Session集群状态</p>
         # @type Status: Integer
-        # @param CuNum: Session集群消耗的cu数量
+        # @param CuNum: <p>Session集群消耗的cu数量</p>
         # @type CuNum: Float
-        # @param FlinkVersion: Session集群的Flink版本
+        # @param FlinkVersion: <p>Session集群的Flink版本</p>
         # @type FlinkVersion: String
-        # @param WebUIUrl: session集群FlinkUi地址
+        # @param WebUIUrl: <p>session集群FlinkUi地址</p>
         # @type WebUIUrl: String
-        # @param Properties: session集群高级参数
+        # @param Properties: <p>session集群高级参数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Properties: Array
-        # @param ResourceRefs: 引用资源
+        # @param ResourceRefs: <p>引用资源</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceRefs: Array
-        # @param JobManagerCuSpec: JobManager的规格
+        # @param JobManagerCuSpec: <p>JobManager的规格</p>
         # @type JobManagerCuSpec: Float
-        # @param TaskManagerCuSpec: TaskManager的规格
+        # @param TaskManagerCuSpec: <p>TaskManager的规格</p>
         # @type TaskManagerCuSpec: Float
-        # @param TaskManagerNum: TaskManager启动的数量
+        # @param TaskManagerNum: <p>TaskManager启动的数量</p>
         # @type TaskManagerNum: Integer
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # @type CreateTime: String
-        # @param UpdateTime: 更新时间
+        # @param UpdateTime: <p>更新时间</p>
         # @type UpdateTime: String
-        # @param JobManagerCpu: JobManagerCpu
+        # @param JobManagerCpu: <p>JobManagerCpu</p>
         # @type JobManagerCpu: Float
-        # @param JobManagerMem: JobManagerMem
+        # @param JobManagerMem: <p>JobManagerMem</p>
         # @type JobManagerMem: Float
-        # @param TaskManagerCpu: TaskManagerCpu
+        # @param TaskManagerCpu: <p>TaskManagerCpu</p>
         # @type TaskManagerCpu: Float
-        # @param TaskManagerMem: TaskManagerMem
+        # @param TaskManagerMem: <p>TaskManagerMem</p>
         # @type TaskManagerMem: Float
-        # @param JdkVersion: jdk版本
+        # @param JdkVersion: <p>jdk版本</p>
         # @type JdkVersion: String
+        # @param Description: <p>描述</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param Name: <p>名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param SerialId: <p>session集群SerialId</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SerialId: String
+        # @param ClusterGroupName: <p>集群名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterGroupName: String
+        # @param TotalCpu: <p>cu</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCpu: Float
+        # @param TotalMem: <p>使用Mem</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalMem: Float
+        # @param WorkSpaceId: <p>空间Id</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WorkSpaceId: String
+        # @param WorkSpaceName: <p>空间名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WorkSpaceName: String
+        # @param Tags: <p>标签列表</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param LogConfig: <p>采集日志配置</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogConfig: String
+        # @param UpdateUin: <p>更新用户</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateUin: String
 
-        attr_accessor :ClusterGroupSerialId, :AppId, :OwnerUin, :CreatorUin, :Region, :Zone, :Status, :CuNum, :FlinkVersion, :WebUIUrl, :Properties, :ResourceRefs, :JobManagerCuSpec, :TaskManagerCuSpec, :TaskManagerNum, :CreateTime, :UpdateTime, :JobManagerCpu, :JobManagerMem, :TaskManagerCpu, :TaskManagerMem, :JdkVersion
+        attr_accessor :ClusterGroupSerialId, :AppId, :OwnerUin, :CreatorUin, :Region, :Zone, :Status, :CuNum, :FlinkVersion, :WebUIUrl, :Properties, :ResourceRefs, :JobManagerCuSpec, :TaskManagerCuSpec, :TaskManagerNum, :CreateTime, :UpdateTime, :JobManagerCpu, :JobManagerMem, :TaskManagerCpu, :TaskManagerMem, :JdkVersion, :Description, :Name, :SerialId, :ClusterGroupName, :TotalCpu, :TotalMem, :WorkSpaceId, :WorkSpaceName, :Tags, :LogConfig, :UpdateUin
 
-        def initialize(clustergroupserialid=nil, appid=nil, owneruin=nil, creatoruin=nil, region=nil, zone=nil, status=nil, cunum=nil, flinkversion=nil, webuiurl=nil, properties=nil, resourcerefs=nil, jobmanagercuspec=nil, taskmanagercuspec=nil, taskmanagernum=nil, createtime=nil, updatetime=nil, jobmanagercpu=nil, jobmanagermem=nil, taskmanagercpu=nil, taskmanagermem=nil, jdkversion=nil)
+        def initialize(clustergroupserialid=nil, appid=nil, owneruin=nil, creatoruin=nil, region=nil, zone=nil, status=nil, cunum=nil, flinkversion=nil, webuiurl=nil, properties=nil, resourcerefs=nil, jobmanagercuspec=nil, taskmanagercuspec=nil, taskmanagernum=nil, createtime=nil, updatetime=nil, jobmanagercpu=nil, jobmanagermem=nil, taskmanagercpu=nil, taskmanagermem=nil, jdkversion=nil, description=nil, name=nil, serialid=nil, clustergroupname=nil, totalcpu=nil, totalmem=nil, workspaceid=nil, workspacename=nil, tags=nil, logconfig=nil, updateuin=nil)
           @ClusterGroupSerialId = clustergroupserialid
           @AppId = appid
           @OwnerUin = owneruin
@@ -802,6 +835,17 @@ module TencentCloud
           @TaskManagerCpu = taskmanagercpu
           @TaskManagerMem = taskmanagermem
           @JdkVersion = jdkversion
+          @Description = description
+          @Name = name
+          @SerialId = serialid
+          @ClusterGroupName = clustergroupname
+          @TotalCpu = totalcpu
+          @TotalMem = totalmem
+          @WorkSpaceId = workspaceid
+          @WorkSpaceName = workspacename
+          @Tags = tags
+          @LogConfig = logconfig
+          @UpdateUin = updateuin
         end
 
         def deserialize(params)
@@ -841,6 +885,24 @@ module TencentCloud
           @TaskManagerCpu = params['TaskManagerCpu']
           @TaskManagerMem = params['TaskManagerMem']
           @JdkVersion = params['JdkVersion']
+          @Description = params['Description']
+          @Name = params['Name']
+          @SerialId = params['SerialId']
+          @ClusterGroupName = params['ClusterGroupName']
+          @TotalCpu = params['TotalCpu']
+          @TotalMem = params['TotalMem']
+          @WorkSpaceId = params['WorkSpaceId']
+          @WorkSpaceName = params['WorkSpaceName']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          @LogConfig = params['LogConfig']
+          @UpdateUin = params['UpdateUin']
         end
       end
 
@@ -6206,10 +6268,16 @@ module TencentCloud
         # @type Remark: String
         # @param IsolationPolicyVersion: <p>集群隔离时间，0为7天，1为15天</p>
         # @type IsolationPolicyVersion: Integer
+        # @param SecurityGroupIds: <p>安全组信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecurityGroupIds: Array
+        # @param CCNs: <p>网络信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CCNs: Array
 
-        attr_accessor :SetatsSerialId, :Status, :Warehouse, :MasterInfo, :WorkerInfo, :Tags, :AutoRenewFlag, :ExpireTime, :SecondsUntilExpiry, :CreateTime, :ManagerUrl, :IsolatedTime, :OwnerClusterGroupSerialId, :Type, :SetatsUiUrl, :ImageVersion, :WebUIType, :Name, :Remark, :IsolationPolicyVersion
+        attr_accessor :SetatsSerialId, :Status, :Warehouse, :MasterInfo, :WorkerInfo, :Tags, :AutoRenewFlag, :ExpireTime, :SecondsUntilExpiry, :CreateTime, :ManagerUrl, :IsolatedTime, :OwnerClusterGroupSerialId, :Type, :SetatsUiUrl, :ImageVersion, :WebUIType, :Name, :Remark, :IsolationPolicyVersion, :SecurityGroupIds, :CCNs
 
-        def initialize(setatsserialid=nil, status=nil, warehouse=nil, masterinfo=nil, workerinfo=nil, tags=nil, autorenewflag=nil, expiretime=nil, secondsuntilexpiry=nil, createtime=nil, managerurl=nil, isolatedtime=nil, ownerclustergroupserialid=nil, type=nil, setatsuiurl=nil, imageversion=nil, webuitype=nil, name=nil, remark=nil, isolationpolicyversion=nil)
+        def initialize(setatsserialid=nil, status=nil, warehouse=nil, masterinfo=nil, workerinfo=nil, tags=nil, autorenewflag=nil, expiretime=nil, secondsuntilexpiry=nil, createtime=nil, managerurl=nil, isolatedtime=nil, ownerclustergroupserialid=nil, type=nil, setatsuiurl=nil, imageversion=nil, webuitype=nil, name=nil, remark=nil, isolationpolicyversion=nil, securitygroupids=nil, ccns=nil)
           @SetatsSerialId = setatsserialid
           @Status = status
           @Warehouse = warehouse
@@ -6230,6 +6298,8 @@ module TencentCloud
           @Name = name
           @Remark = remark
           @IsolationPolicyVersion = isolationpolicyversion
+          @SecurityGroupIds = securitygroupids
+          @CCNs = ccns
         end
 
         def deserialize(params)
@@ -6269,6 +6339,15 @@ module TencentCloud
           @Name = params['Name']
           @Remark = params['Remark']
           @IsolationPolicyVersion = params['IsolationPolicyVersion']
+          @SecurityGroupIds = params['SecurityGroupIds']
+          unless params['CCNs'].nil?
+            @CCNs = []
+            params['CCNs'].each do |i|
+              ccn_tmp = CCN.new
+              ccn_tmp.deserialize(i)
+              @CCNs << ccn_tmp
+            end
+          end
         end
       end
 
@@ -7157,10 +7236,13 @@ module TencentCloud
         # @type Properties: Array
         # @param HiveCatalogType: <p>hive cata 类型</p>
         # @type HiveCatalogType: Integer
+        # @param StorageSerialId: <p>流湖托管通serialId</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StorageSerialId: String
 
-        attr_accessor :Status, :Location, :CatalogType, :Uri, :WarehouseUrl, :Authentication, :ResourceRefs, :HiveUri, :Properties, :HiveCatalogType
+        attr_accessor :Status, :Location, :CatalogType, :Uri, :WarehouseUrl, :Authentication, :ResourceRefs, :HiveUri, :Properties, :HiveCatalogType, :StorageSerialId
 
-        def initialize(status=nil, location=nil, catalogtype=nil, uri=nil, warehouseurl=nil, authentication=nil, resourcerefs=nil, hiveuri=nil, properties=nil, hivecatalogtype=nil)
+        def initialize(status=nil, location=nil, catalogtype=nil, uri=nil, warehouseurl=nil, authentication=nil, resourcerefs=nil, hiveuri=nil, properties=nil, hivecatalogtype=nil, storageserialid=nil)
           @Status = status
           @Location = location
           @CatalogType = catalogtype
@@ -7171,6 +7253,7 @@ module TencentCloud
           @HiveUri = hiveuri
           @Properties = properties
           @HiveCatalogType = hivecatalogtype
+          @StorageSerialId = storageserialid
         end
 
         def deserialize(params)
@@ -7198,6 +7281,7 @@ module TencentCloud
             end
           end
           @HiveCatalogType = params['HiveCatalogType']
+          @StorageSerialId = params['StorageSerialId']
         end
       end
 

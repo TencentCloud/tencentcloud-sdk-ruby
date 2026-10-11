@@ -3205,6 +3205,34 @@ module TencentCloud
         end
       end
 
+      # 智能图层拆分配置。
+      class AiDecomposeConfig < TencentCloud::Common::AbstractModel
+        # @param Switch: <p>能力配置开关。</p><p>枚举值：</p><ul><li>ON： 开启图层分离功能。</li><li>OFF： 关闭图层分离功能。</li></ul><p>默认值：ON</p>
+        # @type Switch: String
+        # @param Layers: <p>预期拆层数量。</p><p>取值范围：[2, 17]</p>
+        # @type Layers: Integer
+        # @param Prompt: <p>提示词。</p>
+        # @type Prompt: String
+        # @param Model: <p>模型名称。</p><p>枚举值：</p><ul><li>decompose-1.0-flash： 1.0版本 flash模型</li></ul>
+        # @type Model: String
+
+        attr_accessor :Switch, :Layers, :Prompt, :Model
+
+        def initialize(switch=nil, layers=nil, prompt=nil, model=nil)
+          @Switch = switch
+          @Layers = layers
+          @Prompt = prompt
+          @Model = model
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @Layers = params['Layers']
+          @Prompt = params['Prompt']
+          @Model = params['Model']
+        end
+      end
+
       # Ai自动生成漫剧的输入
       class AiDramaInput < TencentCloud::Common::AbstractModel
         # @param Script: <p>ai漫剧剧本</p><p>参数格式：无</p><p>入参限制：无</p>
@@ -6591,26 +6619,30 @@ module TencentCloud
 
       # 音频增强配置
       class AudioEnhanceConfig < TencentCloud::Common::AbstractModel
-        # @param Denoise: 音频降噪配置。
+        # @param Denoise: <p>音频降噪配置。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Denoise: :class:`Tencentcloud::Mps.v20190612.models.AudioDenoiseConfig`
-        # @param Separate: 音频分离配置。
+        # @param Separate: <p>音频分离配置。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Separate: :class:`Tencentcloud::Mps.v20190612.models.AudioSeparateConfig`
-        # @param VolumeBalance: 音量均衡配置。
+        # @param VolumeBalance: <p>音量均衡配置。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VolumeBalance: :class:`Tencentcloud::Mps.v20190612.models.VolumeBalanceConfig`
-        # @param Beautify: 音频美化配置。
+        # @param Beautify: <p>音频美化配置。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Beautify: :class:`Tencentcloud::Mps.v20190612.models.AudioBeautifyConfig`
+        # @param AudioEnhanceEdit: <p>音频增强编辑。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AudioEnhanceEdit: :class:`Tencentcloud::Mps.v20190612.models.AudioEnhanceEditConfig`
 
-        attr_accessor :Denoise, :Separate, :VolumeBalance, :Beautify
+        attr_accessor :Denoise, :Separate, :VolumeBalance, :Beautify, :AudioEnhanceEdit
 
-        def initialize(denoise=nil, separate=nil, volumebalance=nil, beautify=nil)
+        def initialize(denoise=nil, separate=nil, volumebalance=nil, beautify=nil, audioenhanceedit=nil)
           @Denoise = denoise
           @Separate = separate
           @VolumeBalance = volumebalance
           @Beautify = beautify
+          @AudioEnhanceEdit = audioenhanceedit
         end
 
         def deserialize(params)
@@ -6630,6 +6662,30 @@ module TencentCloud
             @Beautify = AudioBeautifyConfig.new
             @Beautify.deserialize(params['Beautify'])
           end
+          unless params['AudioEnhanceEdit'].nil?
+            @AudioEnhanceEdit = AudioEnhanceEditConfig.new
+            @AudioEnhanceEdit.deserialize(params['AudioEnhanceEdit'])
+          end
+        end
+      end
+
+      # 音频增强编辑
+      class AudioEnhanceEditConfig < TencentCloud::Common::AbstractModel
+        # @param Switch: <p>能力配置开关</p><p>枚举值：</p><ul><li>ON： 开启</li><li>OFF： 关闭</li></ul><p>默认值：OFF</p>
+        # @type Switch: String
+        # @param Type: <p>音频编辑类型</p><p>枚举值：</p><ul><li>restore： 修复</li></ul><p>默认值：restore</p>
+        # @type Type: String
+
+        attr_accessor :Switch, :Type
+
+        def initialize(switch=nil, type=nil)
+          @Switch = switch
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @Type = params['Type']
         end
       end
 
@@ -13861,7 +13917,7 @@ module TencentCloud
 
       # DeleteWordSamples请求参数结构体
       class DeleteWordSamplesRequest < TencentCloud::Common::AbstractModel
-        # @param Keywords: 关键词，数组长度限制：100 个词。
+        # @param Keywords: <p>关键词，数组长度限制：100 个词。</p>
         # @type Keywords: Array
 
         attr_accessor :Keywords
@@ -14950,7 +15006,7 @@ module TencentCloud
 
       # DescribeContentReviewTemplates请求参数结构体
       class DescribeContentReviewTemplatesRequest < TencentCloud::Common::AbstractModel
-        # @param Definitions: 智能审核模板唯一标识过滤条件，数组长度限制：50。
+        # @param Definitions: 智能审核模板唯一标识过滤条件，数组长度限制：100。
         # @type Definitions: Array
         # @param Offset: 分页偏移量，默认值：0。
         # @type Offset: Integer
@@ -19851,6 +19907,27 @@ module TencentCloud
         end
       end
 
+      # 大模型增强-专业版
+      class DiffusionEnhanceV2Config < TencentCloud::Common::AbstractModel
+        # @param Switch: <p>能力配置开关</p><p>枚举值：</p><ul><li>ON： 开启</li><li>OFF： 关闭</li></ul><p>默认值：OFF</p>
+        # @type Switch: String
+        # @param Type: <p>强度类型</p><p>枚举值：</p><ul><li>weak： 弱</li><li>normal： 中</li><li>strong： 强</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+
+        attr_accessor :Switch, :Type
+
+        def initialize(switch=nil, type=nil)
+          @Switch = switch
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @Type = params['Type']
+        end
+      end
+
       # DisableSchedule请求参数结构体
       class DisableScheduleRequest < TencentCloud::Common::AbstractModel
         # @param ScheduleId: 编排唯一表示。
@@ -22991,10 +23068,12 @@ module TencentCloud
         # @type ImageQualityConfig: :class:`Tencentcloud::Mps.v20190612.models.ImageQualityConfig`
         # @param AiComposeConfig: <p>图层融合配置。</p>
         # @type AiComposeConfig: :class:`Tencentcloud::Mps.v20190612.models.AiComposeConfig`
+        # @param AiDecomposeConfig: <p>图层分离配置。</p>
+        # @type AiDecomposeConfig: :class:`Tencentcloud::Mps.v20190612.models.AiDecomposeConfig`
 
-        attr_accessor :EncodeConfig, :EnhanceConfig, :EraseConfig, :BlindWatermarkConfig, :BeautyConfig, :TransformConfig, :AiTryOnConfig, :AiPosterSuiteConfig, :CreateImageConfig, :AiCutoutConfig, :AiExpansionConfig, :AiStoryboardConfig, :UnderstandImageConfig, :ImageQualityConfig, :AiComposeConfig
+        attr_accessor :EncodeConfig, :EnhanceConfig, :EraseConfig, :BlindWatermarkConfig, :BeautyConfig, :TransformConfig, :AiTryOnConfig, :AiPosterSuiteConfig, :CreateImageConfig, :AiCutoutConfig, :AiExpansionConfig, :AiStoryboardConfig, :UnderstandImageConfig, :ImageQualityConfig, :AiComposeConfig, :AiDecomposeConfig
 
-        def initialize(encodeconfig=nil, enhanceconfig=nil, eraseconfig=nil, blindwatermarkconfig=nil, beautyconfig=nil, transformconfig=nil, aitryonconfig=nil, aipostersuiteconfig=nil, createimageconfig=nil, aicutoutconfig=nil, aiexpansionconfig=nil, aistoryboardconfig=nil, understandimageconfig=nil, imagequalityconfig=nil, aicomposeconfig=nil)
+        def initialize(encodeconfig=nil, enhanceconfig=nil, eraseconfig=nil, blindwatermarkconfig=nil, beautyconfig=nil, transformconfig=nil, aitryonconfig=nil, aipostersuiteconfig=nil, createimageconfig=nil, aicutoutconfig=nil, aiexpansionconfig=nil, aistoryboardconfig=nil, understandimageconfig=nil, imagequalityconfig=nil, aicomposeconfig=nil, aidecomposeconfig=nil)
           @EncodeConfig = encodeconfig
           @EnhanceConfig = enhanceconfig
           @EraseConfig = eraseconfig
@@ -23010,6 +23089,7 @@ module TencentCloud
           @UnderstandImageConfig = understandimageconfig
           @ImageQualityConfig = imagequalityconfig
           @AiComposeConfig = aicomposeconfig
+          @AiDecomposeConfig = aidecomposeconfig
         end
 
         def deserialize(params)
@@ -23072,6 +23152,10 @@ module TencentCloud
           unless params['AiComposeConfig'].nil?
             @AiComposeConfig = AiComposeConfig.new
             @AiComposeConfig.deserialize(params['AiComposeConfig'])
+          end
+          unless params['AiDecomposeConfig'].nil?
+            @AiDecomposeConfig = AiDecomposeConfig.new
+            @AiDecomposeConfig.deserialize(params['AiDecomposeConfig'])
           end
         end
       end
@@ -38535,10 +38619,13 @@ module TencentCloud
         # @param AiRestoration: <p>大模型修复配置。注意大模型、综合增强、去毛刺三项里最多配置一项。且不可与超分、降噪同时开启。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AiRestoration: :class:`Tencentcloud::Mps.v20190612.models.AiRestorationConfig`
+        # @param DiffusionEnhanceV2: <p>大模型增强专业版配置。注意大模型、综合增强、去毛刺三项里最多配置一项。且不可与超分、降噪同时开启。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiffusionEnhanceV2: :class:`Tencentcloud::Mps.v20190612.models.DiffusionEnhanceV2Config`
 
-        attr_accessor :FrameRate, :SuperResolution, :Hdr, :Denoise, :ImageQualityEnhance, :ColorEnhance, :LowLightEnhance, :ScratchRepair, :ArtifactRepair, :EnhanceSceneType, :DiffusionEnhance, :FrameRateWithDen, :AiRestoration
+        attr_accessor :FrameRate, :SuperResolution, :Hdr, :Denoise, :ImageQualityEnhance, :ColorEnhance, :LowLightEnhance, :ScratchRepair, :ArtifactRepair, :EnhanceSceneType, :DiffusionEnhance, :FrameRateWithDen, :AiRestoration, :DiffusionEnhanceV2
 
-        def initialize(framerate=nil, superresolution=nil, hdr=nil, denoise=nil, imagequalityenhance=nil, colorenhance=nil, lowlightenhance=nil, scratchrepair=nil, artifactrepair=nil, enhancescenetype=nil, diffusionenhance=nil, frameratewithden=nil, airestoration=nil)
+        def initialize(framerate=nil, superresolution=nil, hdr=nil, denoise=nil, imagequalityenhance=nil, colorenhance=nil, lowlightenhance=nil, scratchrepair=nil, artifactrepair=nil, enhancescenetype=nil, diffusionenhance=nil, frameratewithden=nil, airestoration=nil, diffusionenhancev2=nil)
           @FrameRate = framerate
           @SuperResolution = superresolution
           @Hdr = hdr
@@ -38552,6 +38639,7 @@ module TencentCloud
           @DiffusionEnhance = diffusionenhance
           @FrameRateWithDen = frameratewithden
           @AiRestoration = airestoration
+          @DiffusionEnhanceV2 = diffusionenhancev2
         end
 
         def deserialize(params)
@@ -38603,6 +38691,10 @@ module TencentCloud
           unless params['AiRestoration'].nil?
             @AiRestoration = AiRestorationConfig.new
             @AiRestoration.deserialize(params['AiRestoration'])
+          end
+          unless params['DiffusionEnhanceV2'].nil?
+            @DiffusionEnhanceV2 = DiffusionEnhanceV2Config.new
+            @DiffusionEnhanceV2.deserialize(params['DiffusionEnhanceV2'])
           end
         end
       end

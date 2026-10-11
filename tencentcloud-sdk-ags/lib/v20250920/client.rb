@@ -272,6 +272,31 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建沙箱快照
+        # 该接口属于 Runtime Snapshot API ，当前为预览版本（Beta）。接口后续可能发生不兼容变更或被弃用，不保证向后兼容。接入方需关注后续版本及变更说明，并根据需要调整调用代码。
+
+        # @param request: Request instance for CreateSandboxSnapshot.
+        # @type request: :class:`Tencentcloud::ags::V20250920::CreateSandboxSnapshotRequest`
+        # @rtype: :class:`Tencentcloud::ags::V20250920::CreateSandboxSnapshotResponse`
+        def CreateSandboxSnapshot(request)
+          body = send_request('CreateSandboxSnapshot', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateSandboxSnapshotResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建沙箱工具
 
         # @param request: Request instance for CreateSandboxTool.
@@ -429,6 +454,31 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteRegistryRecordResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除沙箱快照
+        # 该接口属于 Runtime Snapshot API ，当前为预览版本（Beta）。接口后续可能发生不兼容变更或被弃用，不保证向后兼容。接入方需关注后续版本及变更说明，并根据需要调整调用代码。
+
+        # @param request: Request instance for DeleteSandboxSnapshot.
+        # @type request: :class:`Tencentcloud::ags::V20250920::DeleteSandboxSnapshotRequest`
+        # @rtype: :class:`Tencentcloud::ags::V20250920::DeleteSandboxSnapshotResponse`
+        def DeleteSandboxSnapshot(request)
+          body = send_request('DeleteSandboxSnapshot', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteSandboxSnapshotResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -816,6 +866,31 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeSandboxInstanceListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询沙箱快照
+        # 该接口属于 Runtime Snapshot API ，当前为预览版本（Beta）。接口后续可能发生不兼容变更或被弃用，不保证向后兼容。请关注后续版本及变更说明，并根据需要调整调用代码。
+
+        # @param request: Request instance for DescribeSandboxSnapshotList.
+        # @type request: :class:`Tencentcloud::ags::V20250920::DescribeSandboxSnapshotListRequest`
+        # @rtype: :class:`Tencentcloud::ags::V20250920::DescribeSandboxSnapshotListResponse`
+        def DescribeSandboxSnapshotList(request)
+          body = send_request('DescribeSandboxSnapshotList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSandboxSnapshotListResponse.new
             model.deserialize(response['Response'])
             model
           else

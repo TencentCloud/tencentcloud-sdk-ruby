@@ -341,6 +341,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 列表账户虚拟组，支持分页，名称搜索，私有化调用path为：capi/Assets/DescribeAccountVirtualGroups，从7.x版本开始支持
+
+        # @param request: Request instance for DescribeAccountVirtualGroups.
+        # @type request: :class:`Tencentcloud::ioa::V20220601::DescribeAccountVirtualGroupsRequest`
+        # @rtype: :class:`Tencentcloud::ioa::V20220601::DescribeAccountVirtualGroupsResponse`
+        def DescribeAccountVirtualGroups(request)
+          body = send_request('DescribeAccountVirtualGroups', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAccountVirtualGroupsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 聚合的分类软件列表
 
         # @param request: Request instance for DescribeAggrSoftCategorySoftList.

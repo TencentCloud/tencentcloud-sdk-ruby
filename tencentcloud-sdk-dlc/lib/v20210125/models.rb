@@ -4218,8 +4218,8 @@ module TencentCloud
 
         attr_accessor :EngineType, :DataEngineName, :ClusterType, :Mode, :AutoResume, :MinClusters, :MaxClusters, :DefaultDataEngine, :CidrBlock, :Message, :Size, :PayMode, :TimeSpan, :TimeUnit, :AutoRenew, :Tags, :AutoSuspend, :CrontabResumeSuspend, :CrontabResumeSuspendStrategy, :EngineExecType, :MaxConcurrency, :TolerableQueueTime, :AutoSuspendTime, :ResourceType, :DataEngineConfigPairs, :ImageVersionName, :MainClusterName, :ElasticSwitch, :ElasticLimit, :SessionResourceTemplate, :AutoAuthorization, :EngineNetworkId, :EngineGeneration
         extend Gem::Deprecate
-        deprecate :DefaultDataEngine, :none, 2026, 9
-        deprecate :DefaultDataEngine=, :none, 2026, 9
+        deprecate :DefaultDataEngine, :none, 2026, 10
+        deprecate :DefaultDataEngine=, :none, 2026, 10
 
         def initialize(enginetype=nil, dataenginename=nil, clustertype=nil, mode=nil, autoresume=nil, minclusters=nil, maxclusters=nil, defaultdataengine=nil, cidrblock=nil, message=nil, size=nil, paymode=nil, timespan=nil, timeunit=nil, autorenew=nil, tags=nil, autosuspend=nil, crontabresumesuspend=nil, crontabresumesuspendstrategy=nil, engineexectype=nil, maxconcurrency=nil, tolerablequeuetime=nil, autosuspendtime=nil, resourcetype=nil, dataengineconfigpairs=nil, imageversionname=nil, mainclustername=nil, elasticswitch=nil, elasticlimit=nil, sessionresourcetemplate=nil, autoauthorization=nil, enginenetworkid=nil, enginegeneration=nil)
           @EngineType = enginetype
@@ -5310,14 +5310,20 @@ module TencentCloud
         # @type PartitionCode: String
         # @param QueueName: <p>队列名称，必须与 PartitionCode 成对使用（RunMode=JOB 下可选）；RunMode=WAREHOUSE 下被仓库反查值覆盖，无需传。</p>
         # @type QueueName: String
+        # @param Spec: <p>集群规格配置。RunMode=JOB 时必填（MajorType 对应引擎字段须非空、其余引擎字段须为空）；RunMode=WAREHOUSE 时忽略。</p>
+        # @type Spec: :class:`Tencentcloud::Dlc.v20210125.models.Spec`
         # @param CustomProperties: <p>自定义 Spark conf（JSON 字符串，亦接受多行 key=value 文本，归一化为 JSON 存储、出参恒为 JSON），作为 SPARK_CUSTOM 配置通道落库，两种运行模式均生效。</p>
         # @type CustomProperties: String
+        # @param Dependencies: <p>依赖管理（jars / files / archives / pyFiles）。仅 RunMode=JOB 可传；RunMode=WAREHOUSE 时禁止传。</p>
+        # @type Dependencies: :class:`Tencentcloud::Dlc.v20210125.models.EngineConfigDependencies`
         # @param EnvVars: <p>环境变量（KEY=VALUE）列表。仅 RunMode=JOB 可传；RunMode=WAREHOUSE 时禁止传。</p>
         # @type EnvVars: Array
+        # @param Entrypoint: <p>入口点配置，必填。SPARK_SQL 时 Statement 必填（≤1MB）；SPARK_BATCH 时 Statement 或 EntryFile 至少其一（EntryFile 须匹配路径前缀白名单）。</p>
+        # @type Entrypoint: :class:`Tencentcloud::Dlc.v20210125.models.EntrypointInfo`
 
-        attr_accessor :JobName, :CheckpointLocation, :MajorType, :MinorType, :FlowId, :ExecutionId, :RunMode, :WarehouseId, :RuntimeCode, :SysCatalogVersion, :PartitionCode, :QueueName, :CustomProperties, :EnvVars
+        attr_accessor :JobName, :CheckpointLocation, :MajorType, :MinorType, :FlowId, :ExecutionId, :RunMode, :WarehouseId, :RuntimeCode, :SysCatalogVersion, :PartitionCode, :QueueName, :Spec, :CustomProperties, :Dependencies, :EnvVars, :Entrypoint
 
-        def initialize(jobname=nil, checkpointlocation=nil, majortype=nil, minortype=nil, flowid=nil, executionid=nil, runmode=nil, warehouseid=nil, runtimecode=nil, syscatalogversion=nil, partitioncode=nil, queuename=nil, customproperties=nil, envvars=nil)
+        def initialize(jobname=nil, checkpointlocation=nil, majortype=nil, minortype=nil, flowid=nil, executionid=nil, runmode=nil, warehouseid=nil, runtimecode=nil, syscatalogversion=nil, partitioncode=nil, queuename=nil, spec=nil, customproperties=nil, dependencies=nil, envvars=nil, entrypoint=nil)
           @JobName = jobname
           @CheckpointLocation = checkpointlocation
           @MajorType = majortype
@@ -5330,8 +5336,11 @@ module TencentCloud
           @SysCatalogVersion = syscatalogversion
           @PartitionCode = partitioncode
           @QueueName = queuename
+          @Spec = spec
           @CustomProperties = customproperties
+          @Dependencies = dependencies
           @EnvVars = envvars
+          @Entrypoint = entrypoint
         end
 
         def deserialize(params)
@@ -5347,7 +5356,15 @@ module TencentCloud
           @SysCatalogVersion = params['SysCatalogVersion']
           @PartitionCode = params['PartitionCode']
           @QueueName = params['QueueName']
+          unless params['Spec'].nil?
+            @Spec = Spec.new
+            @Spec.deserialize(params['Spec'])
+          end
           @CustomProperties = params['CustomProperties']
+          unless params['Dependencies'].nil?
+            @Dependencies = EngineConfigDependencies.new
+            @Dependencies.deserialize(params['Dependencies'])
+          end
           unless params['EnvVars'].nil?
             @EnvVars = []
             params['EnvVars'].each do |i|
@@ -5355,6 +5372,10 @@ module TencentCloud
               kvpair_tmp.deserialize(i)
               @EnvVars << kvpair_tmp
             end
+          end
+          unless params['Entrypoint'].nil?
+            @Entrypoint = EntrypointInfo.new
+            @Entrypoint.deserialize(params['Entrypoint'])
           end
         end
       end
@@ -13923,16 +13944,23 @@ module TencentCloud
 
       # DescribeJobDetail返回参数结构体
       class DescribeJobDetailResponse < TencentCloud::Common::AbstractModel
+        # @param JobDetail: <p>作业详情，JSON 嵌套在 JobDetail 键下。</p>
+        # @type JobDetail: :class:`Tencentcloud::Dlc.v20210125.models.JobDetailInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :JobDetail, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(jobdetail=nil, requestid=nil)
+          @JobDetail = jobdetail
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['JobDetail'].nil?
+            @JobDetail = JobDetailInfo.new
+            @JobDetail.deserialize(params['JobDetail'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -14153,14 +14181,16 @@ module TencentCloud
         # @type TotalRows: Integer
         # @param Rows: <p>行数据（State=SUCCEEDED 才有），每行为 {"Values": [单元格值...]} 数组。</p>
         # @type Rows: Array
-        # @param Truncated: <p>本页内容是否因响应大小限制被截断（单元格/行超限，结果集仅 1 行时也可能触发）。行数超过在线展示上限不由本标记表达，以 TotalRows > Total 判断，完整结果通过 Download 获取.</p>
+        # @param Download: <p>下载链接（结果集可用时按需返回；结果过大无法内联展示时仅返回 Download）。</p>
+        # @type Download: :class:`Tencentcloud::Dlc.v20210125.models.DownloadInfo`
+        # @param Truncated: <p>本页内容是否因响应大小限制被截断（单元格/行超限，结果集仅 1 行时也可能触发）。行数超过在线展示上限不由本标记表达，以 TotalRows &gt; Total 判断，完整结果通过 Download 获取.</p>
         # @type Truncated: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Total, :JobId, :State, :Message, :Columns, :TotalRows, :Rows, :Truncated, :RequestId
+        attr_accessor :Total, :JobId, :State, :Message, :Columns, :TotalRows, :Rows, :Download, :Truncated, :RequestId
 
-        def initialize(total=nil, jobid=nil, state=nil, message=nil, columns=nil, totalrows=nil, rows=nil, truncated=nil, requestid=nil)
+        def initialize(total=nil, jobid=nil, state=nil, message=nil, columns=nil, totalrows=nil, rows=nil, download=nil, truncated=nil, requestid=nil)
           @Total = total
           @JobId = jobid
           @State = state
@@ -14168,6 +14198,7 @@ module TencentCloud
           @Columns = columns
           @TotalRows = totalrows
           @Rows = rows
+          @Download = download
           @Truncated = truncated
           @RequestId = requestid
         end
@@ -14193,6 +14224,10 @@ module TencentCloud
               resultrow_tmp.deserialize(i)
               @Rows << resultrow_tmp
             end
+          end
+          unless params['Download'].nil?
+            @Download = DownloadInfo.new
+            @Download.deserialize(params['Download'])
           end
           @Truncated = params['Truncated']
           @RequestId = params['RequestId']
@@ -18788,6 +18823,34 @@ module TencentCloud
         end
       end
 
+      # 入站下载信息（结果集 / 日志通用）.
+      class DownloadInfo < TencentCloud::Common::AbstractModel
+        # @param Url: <p>下载链接地址.</p>
+        # @type Url: String
+        # @param Format: <p>文件格式（如 CSV / JSON）.</p>
+        # @type Format: String
+        # @param Size: <p>文件大小（字节）.</p>
+        # @type Size: Integer
+        # @param ExpireSeconds: <p>链接有效时长（秒）.</p>
+        # @type ExpireSeconds: Integer
+
+        attr_accessor :Url, :Format, :Size, :ExpireSeconds
+
+        def initialize(url=nil, format=nil, size=nil, expireseconds=nil)
+          @Url = url
+          @Format = format
+          @Size = size
+          @ExpireSeconds = expireseconds
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
+          @Format = params['Format']
+          @Size = params['Size']
+          @ExpireSeconds = params['ExpireSeconds']
+        end
+      end
+
       # DropDMSDatabase请求参数结构体
       class DropDMSDatabaseRequest < TencentCloud::Common::AbstractModel
         # @param Name: 数据库名称
@@ -19095,6 +19158,34 @@ module TencentCloud
         end
       end
 
+      # 引擎依赖管理，对应 Spark 的 --jars / --files / --archives / --py-files 四类资源。每条 JAR 要么 COS 路径（cos:///cosn://），要么 Maven GAV（group:artifact:version）；files/archives/pyFiles 是 COS 路径列表（pyFiles 支持 .py/.zip/.egg/.whl）。
+      class EngineConfigDependencies < TencentCloud::Common::AbstractModel
+        # @param Jars: <p>JAR 列表：每行一个 COS 路径或 Maven GAV。</p>
+        # @type Jars: Array
+        # @param Files: <p>files 列表：COS 路径，下载到 executor 工作目录（不解压）。</p>
+        # @type Files: Array
+        # @param Archives: <p>archives 列表：COS 路径，下载并解压到 executor 工作目录。</p>
+        # @type Archives: Array
+        # @param PyFiles: <p>pyFiles 列表：COS 路径（.py/.zip/.egg/.whl），等价 Spark --py-files。</p>
+        # @type PyFiles: Array
+
+        attr_accessor :Jars, :Files, :Archives, :PyFiles
+
+        def initialize(jars=nil, files=nil, archives=nil, pyfiles=nil)
+          @Jars = jars
+          @Files = files
+          @Archives = archives
+          @PyFiles = pyfiles
+        end
+
+        def deserialize(params)
+          @Jars = params['Jars']
+          @Files = params['Files']
+          @Archives = params['Archives']
+          @PyFiles = params['PyFiles']
+        end
+      end
+
       # 引擎网络信息
       class EngineNetworkInfo < TencentCloud::Common::AbstractModel
         # @param EngineNetworkName: 引擎网络名字
@@ -19211,6 +19302,34 @@ module TencentCloud
           @SparkImageVersion = params['SparkImageVersion']
           @SparkImageType = params['SparkImageType']
           @SparkImageTag = params['SparkImageTag']
+        end
+      end
+
+      # 入站作业入口（Entrypoint）.
+      class EntrypointInfo < TencentCloud::Common::AbstractModel
+        # @param Statement: <p>SQL 语句文本，须为 Base64 编码的 UTF-8 文本。仅 SPARK_SQL 模式可传且必填（解码后 ≤1MB）；SPARK_BATCH 模式禁止传。</p>
+        # @type Statement: String
+        # @param EntryFile: <p>作业文件路径（JAR/Python），须匹配配置的路径前缀白名单。以 .py 结尾判定为 Python 入口（EntryPoint 禁传），否则为 JAR 入口（EntryPoint 必填）。</p>
+        # @type EntryFile: String
+        # @param EntryPoint: <p>入口类名（main class 全限定名）。JAR 入口（EntryFile 非 .py 结尾）必填；Python 入口（.py 结尾）禁传；SPARK_SQL 模式禁止传。</p>
+        # @type EntryPoint: String
+        # @param MainArgs: <p>主方法参数列表（JSON 数组字符串），仅 SPARK_BATCH 模式可传；SPARK_SQL 模式禁止传。</p>
+        # @type MainArgs: String
+
+        attr_accessor :Statement, :EntryFile, :EntryPoint, :MainArgs
+
+        def initialize(statement=nil, entryfile=nil, entrypoint=nil, mainargs=nil)
+          @Statement = statement
+          @EntryFile = entryfile
+          @EntryPoint = entrypoint
+          @MainArgs = mainargs
+        end
+
+        def deserialize(params)
+          @Statement = params['Statement']
+          @EntryFile = params['EntryFile']
+          @EntryPoint = params['EntryPoint']
+          @MainArgs = params['MainArgs']
         end
       end
 
@@ -23581,6 +23700,137 @@ module TencentCloud
           @RuntimeCode = params['RuntimeCode']
           @RuntimeName = params['RuntimeName']
           @WarehouseName = params['WarehouseName']
+        end
+      end
+
+      # 作业详情 POJO.
+      class JobDetailInfo < TencentCloud::Common::AbstractModel
+        # @param JobId: <p>作业唯一标识.</p>
+        # @type JobId: String
+        # @param JobName: <p>作业名称.</p>
+        # @type JobName: String
+        # @param CreatorSubUin: <p>创建/提交者子账号 UIN。</p>
+        # @type CreatorSubUin: String
+        # @param State: <p>作业状态.</p>
+        # @type State: String
+        # @param MajorType: <p>引擎大类.</p>
+        # @type MajorType: String
+        # @param MinorType: <p>引擎子类型.</p>
+        # @type MinorType: String
+        # @param RunMode: <p>运行模式（WAREHOUSE / JOB）.</p>
+        # @type RunMode: String
+        # @param WarehouseId: <p>计算仓库 ID，RunMode=WAREHOUSE 时非空.</p>
+        # @type WarehouseId: String
+        # @param PartitionCode: <p>资源分区编码.</p>
+        # @type PartitionCode: String
+        # @param PartitionName: <p>资源分区展示名（解析不到时为空）.</p>
+        # @type PartitionName: String
+        # @param QueueName: <p>队列名称.</p>
+        # @type QueueName: String
+        # @param CheckpointLocation: <p>流作业 checkpoint 路径（MinorType=SPARK_STREAM 时非空）。同一流作业的多次运行必须复用同一路径，变更等于重置消费进度。</p>
+        # @type CheckpointLocation: String
+        # @param CreateTime: <p>创建时间（Unix 毫秒时间戳）.</p>
+        # @type CreateTime: Integer
+        # @param SubmitTime: <p>提交时间（Unix 毫秒时间戳）.</p>
+        # @type SubmitTime: Integer
+        # @param FinishTime: <p>完成时间（Unix 毫秒时间戳）.</p>
+        # @type FinishTime: Integer
+        # @param RunningTimeMs: <p>运行时长（毫秒）.</p>
+        # @type RunningTimeMs: Integer
+        # @param WarehouseName: <p>计算仓库名称（详情接口反查填充，warehouse 模式下非空）.</p>
+        # @type WarehouseName: String
+        # @param FlowId: <p>流程 ID。</p>
+        # @type FlowId: String
+        # @param ExecutionId: <p>执行 ID。</p>
+        # @type ExecutionId: String
+        # @param JobSource: <p>作业来源。</p>
+        # @type JobSource: String
+        # @param WaitingTimeMs: <p>排队等待时长（毫秒）。</p>
+        # @type WaitingTimeMs: Integer
+        # @param HistoryUrl: <p>Spark UI 历史链接。</p>
+        # @type HistoryUrl: String
+        # @param ErrorMessage: <p>失败时的错误信息。</p>
+        # @type ErrorMessage: String
+        # @param CustomProperties: <p>自定义 Spark conf（JSON 字符串，由 job_config 组装）.</p>
+        # @type CustomProperties: String
+        # @param EnvVars: <p>环境变量.</p>
+        # @type EnvVars: Array
+        # @param RuntimeCode: <p>运行时/镜像。</p>
+        # @type RuntimeCode: String
+        # @param RuntimeName: <p>运行时展示名（如 Spark 3.5.5），与 RuntimeCode 配套；解析不到时为空。</p>
+        # @type RuntimeName: String
+        # @param SysCatalogVersion: <p>Catalog 版本码。</p>
+        # @type SysCatalogVersion: String
+
+        attr_accessor :JobId, :JobName, :CreatorSubUin, :State, :MajorType, :MinorType, :RunMode, :WarehouseId, :PartitionCode, :PartitionName, :QueueName, :CheckpointLocation, :CreateTime, :SubmitTime, :FinishTime, :RunningTimeMs, :WarehouseName, :FlowId, :ExecutionId, :JobSource, :WaitingTimeMs, :HistoryUrl, :ErrorMessage, :CustomProperties, :EnvVars, :RuntimeCode, :RuntimeName, :SysCatalogVersion
+
+        def initialize(jobid=nil, jobname=nil, creatorsubuin=nil, state=nil, majortype=nil, minortype=nil, runmode=nil, warehouseid=nil, partitioncode=nil, partitionname=nil, queuename=nil, checkpointlocation=nil, createtime=nil, submittime=nil, finishtime=nil, runningtimems=nil, warehousename=nil, flowid=nil, executionid=nil, jobsource=nil, waitingtimems=nil, historyurl=nil, errormessage=nil, customproperties=nil, envvars=nil, runtimecode=nil, runtimename=nil, syscatalogversion=nil)
+          @JobId = jobid
+          @JobName = jobname
+          @CreatorSubUin = creatorsubuin
+          @State = state
+          @MajorType = majortype
+          @MinorType = minortype
+          @RunMode = runmode
+          @WarehouseId = warehouseid
+          @PartitionCode = partitioncode
+          @PartitionName = partitionname
+          @QueueName = queuename
+          @CheckpointLocation = checkpointlocation
+          @CreateTime = createtime
+          @SubmitTime = submittime
+          @FinishTime = finishtime
+          @RunningTimeMs = runningtimems
+          @WarehouseName = warehousename
+          @FlowId = flowid
+          @ExecutionId = executionid
+          @JobSource = jobsource
+          @WaitingTimeMs = waitingtimems
+          @HistoryUrl = historyurl
+          @ErrorMessage = errormessage
+          @CustomProperties = customproperties
+          @EnvVars = envvars
+          @RuntimeCode = runtimecode
+          @RuntimeName = runtimename
+          @SysCatalogVersion = syscatalogversion
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @JobName = params['JobName']
+          @CreatorSubUin = params['CreatorSubUin']
+          @State = params['State']
+          @MajorType = params['MajorType']
+          @MinorType = params['MinorType']
+          @RunMode = params['RunMode']
+          @WarehouseId = params['WarehouseId']
+          @PartitionCode = params['PartitionCode']
+          @PartitionName = params['PartitionName']
+          @QueueName = params['QueueName']
+          @CheckpointLocation = params['CheckpointLocation']
+          @CreateTime = params['CreateTime']
+          @SubmitTime = params['SubmitTime']
+          @FinishTime = params['FinishTime']
+          @RunningTimeMs = params['RunningTimeMs']
+          @WarehouseName = params['WarehouseName']
+          @FlowId = params['FlowId']
+          @ExecutionId = params['ExecutionId']
+          @JobSource = params['JobSource']
+          @WaitingTimeMs = params['WaitingTimeMs']
+          @HistoryUrl = params['HistoryUrl']
+          @ErrorMessage = params['ErrorMessage']
+          @CustomProperties = params['CustomProperties']
+          unless params['EnvVars'].nil?
+            @EnvVars = []
+            params['EnvVars'].each do |i|
+              kvpair_tmp = KVPair.new
+              kvpair_tmp.deserialize(i)
+              @EnvVars << kvpair_tmp
+            end
+          end
+          @RuntimeCode = params['RuntimeCode']
+          @RuntimeName = params['RuntimeName']
+          @SysCatalogVersion = params['SysCatalogVersion']
         end
       end
 
@@ -33321,8 +33571,8 @@ module TencentCloud
 
         attr_accessor :LifecycleEnable, :Expiration, :DropTable, :ExpiredField, :ExpiredFieldFormat
         extend Gem::Deprecate
-        deprecate :DropTable, :none, 2026, 9
-        deprecate :DropTable=, :none, 2026, 9
+        deprecate :DropTable, :none, 2026, 10
+        deprecate :DropTable=, :none, 2026, 10
 
         def initialize(lifecycleenable=nil, expiration=nil, droptable=nil, expiredfield=nil, expiredfieldformat=nil)
           @LifecycleEnable = lifecycleenable
@@ -33776,6 +34026,42 @@ module TencentCloud
         end
       end
 
+      # Spark 集群资源规格（CU 维度），Spec.Spark 平铺字段载体。
+      class SparkJobSpec < TencentCloud::Common::AbstractModel
+        # @param DriverCU: <p>Driver 资源规格（CU 数）.</p>
+        # @type DriverCU: Integer
+        # @param ExecutorCU: <p>Executor 资源规格（CU 数）.</p>
+        # @type ExecutorCU: Integer
+        # @param ExecutorNum: <p>Executor 实例数量（弹性伸缩关闭时的固定数量）.</p>
+        # @type ExecutorNum: Integer
+        # @param DynamicAllocation: <p>是否开启弹性扩缩容.</p>
+        # @type DynamicAllocation: Boolean
+        # @param MinExecutors: <p>弹性扩缩容最小 Executor 数.</p>
+        # @type MinExecutors: Integer
+        # @param MaxExecutors: <p>弹性扩缩容最大 Executor 数.</p>
+        # @type MaxExecutors: Integer
+
+        attr_accessor :DriverCU, :ExecutorCU, :ExecutorNum, :DynamicAllocation, :MinExecutors, :MaxExecutors
+
+        def initialize(drivercu=nil, executorcu=nil, executornum=nil, dynamicallocation=nil, minexecutors=nil, maxexecutors=nil)
+          @DriverCU = drivercu
+          @ExecutorCU = executorcu
+          @ExecutorNum = executornum
+          @DynamicAllocation = dynamicallocation
+          @MinExecutors = minexecutors
+          @MaxExecutors = maxexecutors
+        end
+
+        def deserialize(params)
+          @DriverCU = params['DriverCU']
+          @ExecutorCU = params['ExecutorCU']
+          @ExecutorNum = params['ExecutorNum']
+          @DynamicAllocation = params['DynamicAllocation']
+          @MinExecutors = params['MinExecutors']
+          @MaxExecutors = params['MaxExecutors']
+        end
+      end
+
       # Spark监控数据
       class SparkMonitorMetrics < TencentCloud::Common::AbstractModel
         # @param ShuffleWriteBytesCos: shuffle写溢出到COS数据量，单位：byte
@@ -33935,6 +34221,26 @@ module TencentCloud
           @State = params['State']
           @ApplicationId = params['ApplicationId']
           @ApplicationStartTime = params['ApplicationStartTime']
+        end
+      end
+
+      # 作业资源规格（跨引擎平铺载体；字段须与请求 MajorType 匹配）。
+      class Spec < TencentCloud::Common::AbstractModel
+        # @param Spark: <p>SPARK 资源规格（CU 维度）；MajorType=SPARK 时必填，其余引擎字段须为空。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Spark: :class:`Tencentcloud::Dlc.v20210125.models.SparkJobSpec`
+
+        attr_accessor :Spark
+
+        def initialize(spark=nil)
+          @Spark = spark
+        end
+
+        def deserialize(params)
+          unless params['Spark'].nil?
+            @Spark = SparkJobSpec.new
+            @Spark.deserialize(params['Spark'])
+          end
         end
       end
 
@@ -35974,10 +36280,10 @@ module TencentCloud
 
         attr_accessor :DatabaseName, :TableName, :DatasourceConnectionName, :TableComment, :Type, :TableFormat, :UserAlias, :UserSubUin, :GovernPolicy, :DbGovernPolicyIsDisable, :SmartPolicy, :PrimaryKeys
         extend Gem::Deprecate
-        deprecate :GovernPolicy, :none, 2026, 9
-        deprecate :GovernPolicy=, :none, 2026, 9
-        deprecate :DbGovernPolicyIsDisable, :none, 2026, 9
-        deprecate :DbGovernPolicyIsDisable=, :none, 2026, 9
+        deprecate :GovernPolicy, :none, 2026, 10
+        deprecate :GovernPolicy=, :none, 2026, 10
+        deprecate :DbGovernPolicyIsDisable, :none, 2026, 10
+        deprecate :DbGovernPolicyIsDisable=, :none, 2026, 10
 
         def initialize(databasename=nil, tablename=nil, datasourceconnectionname=nil, tablecomment=nil, type=nil, tableformat=nil, useralias=nil, usersubuin=nil, governpolicy=nil, dbgovernpolicyisdisable=nil, smartpolicy=nil, primarykeys=nil)
           @DatabaseName = databasename
@@ -36419,10 +36725,12 @@ module TencentCloud
         # @type QueueTime: Integer
         # @param ResourceGroupType: <p>资源组类型</p>
         # @type ResourceGroupType: String
+        # @param Tag: <p>任务标签</p><p>参数格式：任意字符串</p>
+        # @type Tag: String
 
-        attr_accessor :DatabaseName, :DataAmount, :Id, :UsedTime, :OutputPath, :CreateTime, :State, :SQLType, :SQL, :ResultExpired, :RowAffectInfo, :DataSet, :Error, :Percentage, :OutputMessage, :TaskType, :ProgressDetail, :UpdateTime, :DataEngineId, :OperateUin, :DataEngineName, :InputType, :InputConf, :DataNumber, :CanDownload, :UserAlias, :SparkJobName, :SparkJobId, :SparkJobFile, :UiUrl, :TotalTime, :CmdArgs, :ImageVersion, :DriverSize, :ExecutorSize, :ExecutorNums, :ExecutorMaxNumbers, :CommonMetrics, :SparkMonitorMetrics, :PrestoMonitorMetrics, :ResultFormat, :EngineTypeDetail, :ResourceGroupName, :Source, :SourceExtra, :CreatorUin, :CreatorAlias, :CustomizedConf, :TaskTimeSum, :StageStartTime, :InputRecordsSum, :AnalysisStatusType, :OutputRecordsSum, :OutputBytesSum, :OutputFilesNum, :OutputSmallFilesNum, :ShuffleReadRecordsSum, :ShuffleReadBytesSum, :SparkAppId, :TaskCategory, :TaskName, :EngineType, :EngineHasListenerConfig, :ResourceGroupId, :JobTimeSum, :LaunchTime, :GpuDriverSize, :GpuExecutorSize, :ShuffleWriteBytesSum, :ActiveCore, :QueueTime, :ResourceGroupType
+        attr_accessor :DatabaseName, :DataAmount, :Id, :UsedTime, :OutputPath, :CreateTime, :State, :SQLType, :SQL, :ResultExpired, :RowAffectInfo, :DataSet, :Error, :Percentage, :OutputMessage, :TaskType, :ProgressDetail, :UpdateTime, :DataEngineId, :OperateUin, :DataEngineName, :InputType, :InputConf, :DataNumber, :CanDownload, :UserAlias, :SparkJobName, :SparkJobId, :SparkJobFile, :UiUrl, :TotalTime, :CmdArgs, :ImageVersion, :DriverSize, :ExecutorSize, :ExecutorNums, :ExecutorMaxNumbers, :CommonMetrics, :SparkMonitorMetrics, :PrestoMonitorMetrics, :ResultFormat, :EngineTypeDetail, :ResourceGroupName, :Source, :SourceExtra, :CreatorUin, :CreatorAlias, :CustomizedConf, :TaskTimeSum, :StageStartTime, :InputRecordsSum, :AnalysisStatusType, :OutputRecordsSum, :OutputBytesSum, :OutputFilesNum, :OutputSmallFilesNum, :ShuffleReadRecordsSum, :ShuffleReadBytesSum, :SparkAppId, :TaskCategory, :TaskName, :EngineType, :EngineHasListenerConfig, :ResourceGroupId, :JobTimeSum, :LaunchTime, :GpuDriverSize, :GpuExecutorSize, :ShuffleWriteBytesSum, :ActiveCore, :QueueTime, :ResourceGroupType, :Tag
 
-        def initialize(databasename=nil, dataamount=nil, id=nil, usedtime=nil, outputpath=nil, createtime=nil, state=nil, sqltype=nil, sql=nil, resultexpired=nil, rowaffectinfo=nil, dataset=nil, error=nil, percentage=nil, outputmessage=nil, tasktype=nil, progressdetail=nil, updatetime=nil, dataengineid=nil, operateuin=nil, dataenginename=nil, inputtype=nil, inputconf=nil, datanumber=nil, candownload=nil, useralias=nil, sparkjobname=nil, sparkjobid=nil, sparkjobfile=nil, uiurl=nil, totaltime=nil, cmdargs=nil, imageversion=nil, driversize=nil, executorsize=nil, executornums=nil, executormaxnumbers=nil, commonmetrics=nil, sparkmonitormetrics=nil, prestomonitormetrics=nil, resultformat=nil, enginetypedetail=nil, resourcegroupname=nil, source=nil, sourceextra=nil, creatoruin=nil, creatoralias=nil, customizedconf=nil, tasktimesum=nil, stagestarttime=nil, inputrecordssum=nil, analysisstatustype=nil, outputrecordssum=nil, outputbytessum=nil, outputfilesnum=nil, outputsmallfilesnum=nil, shufflereadrecordssum=nil, shufflereadbytessum=nil, sparkappid=nil, taskcategory=nil, taskname=nil, enginetype=nil, enginehaslistenerconfig=nil, resourcegroupid=nil, jobtimesum=nil, launchtime=nil, gpudriversize=nil, gpuexecutorsize=nil, shufflewritebytessum=nil, activecore=nil, queuetime=nil, resourcegrouptype=nil)
+        def initialize(databasename=nil, dataamount=nil, id=nil, usedtime=nil, outputpath=nil, createtime=nil, state=nil, sqltype=nil, sql=nil, resultexpired=nil, rowaffectinfo=nil, dataset=nil, error=nil, percentage=nil, outputmessage=nil, tasktype=nil, progressdetail=nil, updatetime=nil, dataengineid=nil, operateuin=nil, dataenginename=nil, inputtype=nil, inputconf=nil, datanumber=nil, candownload=nil, useralias=nil, sparkjobname=nil, sparkjobid=nil, sparkjobfile=nil, uiurl=nil, totaltime=nil, cmdargs=nil, imageversion=nil, driversize=nil, executorsize=nil, executornums=nil, executormaxnumbers=nil, commonmetrics=nil, sparkmonitormetrics=nil, prestomonitormetrics=nil, resultformat=nil, enginetypedetail=nil, resourcegroupname=nil, source=nil, sourceextra=nil, creatoruin=nil, creatoralias=nil, customizedconf=nil, tasktimesum=nil, stagestarttime=nil, inputrecordssum=nil, analysisstatustype=nil, outputrecordssum=nil, outputbytessum=nil, outputfilesnum=nil, outputsmallfilesnum=nil, shufflereadrecordssum=nil, shufflereadbytessum=nil, sparkappid=nil, taskcategory=nil, taskname=nil, enginetype=nil, enginehaslistenerconfig=nil, resourcegroupid=nil, jobtimesum=nil, launchtime=nil, gpudriversize=nil, gpuexecutorsize=nil, shufflewritebytessum=nil, activecore=nil, queuetime=nil, resourcegrouptype=nil, tag=nil)
           @DatabaseName = databasename
           @DataAmount = dataamount
           @Id = id
@@ -36495,6 +36803,7 @@ module TencentCloud
           @ActiveCore = activecore
           @QueueTime = queuetime
           @ResourceGroupType = resourcegrouptype
+          @Tag = tag
         end
 
         def deserialize(params)
@@ -36579,6 +36888,7 @@ module TencentCloud
           @ActiveCore = params['ActiveCore']
           @QueueTime = params['QueueTime']
           @ResourceGroupType = params['ResourceGroupType']
+          @Tag = params['Tag']
         end
       end
 

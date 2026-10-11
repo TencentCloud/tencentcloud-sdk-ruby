@@ -74,10 +74,10 @@ module TencentCloud
 
         attr_accessor :Account, :LoginAccount, :LoginPassword, :DeviceId, :InstanceId, :Password, :PrivateKey, :PrivateKeyPassword, :Exe, :Drivers, :Width, :Height, :IntranetAccess, :AutoManageAccessCredential
         extend Gem::Deprecate
-        deprecate :LoginAccount, :none, 2026, 9
-        deprecate :LoginAccount=, :none, 2026, 9
-        deprecate :LoginPassword, :none, 2026, 9
-        deprecate :LoginPassword=, :none, 2026, 9
+        deprecate :LoginAccount, :none, 2026, 10
+        deprecate :LoginAccount=, :none, 2026, 10
+        deprecate :LoginPassword, :none, 2026, 10
+        deprecate :LoginPassword=, :none, 2026, 10
 
         def initialize(account=nil, loginaccount=nil, loginpassword=nil, deviceid=nil, instanceid=nil, password=nil, privatekey=nil, privatekeypassword=nil, exe=nil, drivers=nil, width=nil, height=nil, intranetaccess=nil, automanageaccesscredential=nil)
           @Account = account
@@ -4568,71 +4568,71 @@ module TencentCloud
 
       # 资产信息
       class Device < TencentCloud::Common::AbstractModel
-        # @param Id: 资产ID
+        # @param Id: <p>资产ID</p>
         # @type Id: Integer
-        # @param InstanceId: 实例ID，对应CVM、CDB等实例ID
+        # @param InstanceId: <p>实例ID，对应CVM、CDB等实例ID</p>
         # @type InstanceId: String
-        # @param Name: 资产名
+        # @param Name: <p>资产名</p>
         # @type Name: String
-        # @param PublicIp: 公网IP
+        # @param PublicIp: <p>公网IP</p>
         # @type PublicIp: String
-        # @param PrivateIp: 内网IP
+        # @param PrivateIp: <p>内网IP</p>
         # @type PrivateIp: String
-        # @param ApCode: 地域编码
+        # @param ApCode: <p>地域编码</p>
         # @type ApCode: String
-        # @param ApName: 地域名称
+        # @param ApName: <p>地域名称</p>
         # @type ApName: String
-        # @param OsName: 操作系统名称
+        # @param OsName: <p>操作系统名称</p>
         # @type OsName: String
-        # @param Kind: 资产类型 1 - Linux, 2 - Windows, 3 - MySQL, 4 - SQLServer
+        # @param Kind: <p>资产类型 1 - Linux, 2 - Windows, 3 - MySQL, 4 - SQLServer</p>
         # @type Kind: Integer
-        # @param Port: 管理端口
+        # @param Port: <p>管理端口</p>
         # @type Port: Integer
-        # @param GroupSet: 所属资产组列表
+        # @param GroupSet: <p>所属资产组列表</p>
         # @type GroupSet: Array
-        # @param AccountCount: 资产绑定的账号数
+        # @param AccountCount: <p>资产绑定的账号数</p>
         # @type AccountCount: Integer
-        # @param VpcId: VPC ID
+        # @param VpcId: <p>VPC ID</p>
         # @type VpcId: String
-        # @param SubnetId: 子网ID
+        # @param SubnetId: <p>子网ID</p>
         # @type SubnetId: String
-        # @param Resource: 堡垒机服务信息，注意没有绑定服务时为null
+        # @param Resource: <p>堡垒机服务信息，注意没有绑定服务时为null</p>
         # @type Resource: :class:`Tencentcloud::Bh.v20230418.models.Resource`
-        # @param Department: 资产所属部门
+        # @param Department: <p>资产所属部门</p>
         # @type Department: :class:`Tencentcloud::Bh.v20230418.models.Department`
-        # @param IpPortSet: 数据库资产的多节点
+        # @param IpPortSet: <p>数据库资产的多节点</p>
         # @type IpPortSet: Array
-        # @param DomainId: 网络域Id
+        # @param DomainId: <p>网络域Id</p>
         # @type DomainId: String
-        # @param DomainName: 网络域名称
+        # @param DomainName: <p>网络域名称</p>
         # @type DomainName: String
-        # @param EnableSSL: 是否启用SSL，仅支持Redis资产。0：禁用 1：启用
+        # @param EnableSSL: <p>是否启用SSL，仅支持Redis资产。0：禁用 1：启用</p>
         # @type EnableSSL: Integer
-        # @param SSLCertName: 已上传的SSL证书名称
+        # @param SSLCertName: <p>已上传的SSL证书名称</p>
         # @type SSLCertName: String
-        # @param IOAId: IOA侧的资源ID
+        # @param IOAId: <p>IOA侧的资源ID</p>
         # @type IOAId: Integer
-        # @param ManageDimension: K8S集群托管维度。1-集群，2-命名空间，3-工作负载
+        # @param ManageDimension: <p>K8S集群托管维度。1-集群，2-命名空间，3-工作负载</p>
         # @type ManageDimension: Integer
-        # @param ManageAccountId: K8S集群托管账号id
+        # @param ManageAccountId: <p>K8S集群托管账号id</p>
         # @type ManageAccountId: Integer
-        # @param Namespace: K8S集群命名空间
+        # @param Namespace: <p>K8S集群命名空间</p>
         # @type Namespace: String
-        # @param Workload: K8S集群工作负载
+        # @param Workload: <p>K8S集群工作负载</p>
         # @type Workload: String
-        # @param SyncPodCount: K8S集群pod已同步数量
+        # @param SyncPodCount: <p>K8S集群pod已同步数量</p>
         # @type SyncPodCount: Integer
-        # @param TotalPodCount: K8S集群pod总数量
+        # @param TotalPodCount: <p>K8S集群pod总数量</p>
         # @type TotalPodCount: Integer
-        # @param CloudAccountId: 云账号id
+        # @param CloudAccountId: <p>云账号id</p>
         # @type CloudAccountId: Integer
-        # @param CloudAccountName: 云账号名称
+        # @param CloudAccountName: <p>云账号名称</p>
         # @type CloudAccountName: String
-        # @param ProviderType: 云厂商类型1-腾讯云，2-阿里云
+        # @param ProviderType: <p>云厂商类型1-腾讯云，2-阿里云</p>
         # @type ProviderType: Integer
-        # @param ProviderName: 云厂商名称
+        # @param ProviderName: <p>云厂商名称</p>
         # @type ProviderName: String
-        # @param SyncCloudDeviceStatus: 同步的云资产状态，标记同步的资产的状态情况，0-已删除,1-正常,2-已隔离,3-已过期
+        # @param SyncCloudDeviceStatus: <p>同步的云资产状态，标记同步的资产的状态情况，0-已删除,1-正常,2-已隔离,3-已过期</p>
         # @type SyncCloudDeviceStatus: Integer
 
         attr_accessor :Id, :InstanceId, :Name, :PublicIp, :PrivateIp, :ApCode, :ApName, :OsName, :Kind, :Port, :GroupSet, :AccountCount, :VpcId, :SubnetId, :Resource, :Department, :IpPortSet, :DomainId, :DomainName, :EnableSSL, :SSLCertName, :IOAId, :ManageDimension, :ManageAccountId, :Namespace, :Workload, :SyncPodCount, :TotalPodCount, :CloudAccountId, :CloudAccountName, :ProviderType, :ProviderName, :SyncCloudDeviceStatus
@@ -5044,8 +5044,8 @@ module TencentCloud
 
         attr_accessor :ResourceId, :VpcId, :VpcName, :VpcRegion, :VpcCidrBlock, :SubnetId, :DomainName, :IntranetSubnets
         extend Gem::Deprecate
-        deprecate :SubnetId, :none, 2026, 9
-        deprecate :SubnetId=, :none, 2026, 9
+        deprecate :SubnetId, :none, 2026, 10
+        deprecate :SubnetId=, :none, 2026, 10
 
         def initialize(resourceid=nil, vpcid=nil, vpcname=nil, vpcregion=nil, vpccidrblock=nil, subnetid=nil, domainname=nil, intranetsubnets=nil)
           @ResourceId = resourceid
@@ -6389,8 +6389,8 @@ module TencentCloud
 
         attr_accessor :ResourceId, :Status, :ResourceEdition, :ResourceNode, :AutoRenewFlag, :PackageBandwidth, :PackageNode, :LogDelivery
         extend Gem::Deprecate
-        deprecate :Status, :none, 2026, 9
-        deprecate :Status=, :none, 2026, 9
+        deprecate :Status, :none, 2026, 10
+        deprecate :Status=, :none, 2026, 10
 
         def initialize(resourceid=nil, status=nil, resourceedition=nil, resourcenode=nil, autorenewflag=nil, packagebandwidth=nil, packagenode=nil, logdelivery=nil)
           @ResourceId = resourceid
@@ -7098,8 +7098,8 @@ module TencentCloud
 
         attr_accessor :ResourceId, :ApCode, :SvArgs, :VpcId, :Nodes, :RenewFlag, :ExpireTime, :Status, :ResourceName, :Pid, :CreateTime, :ProductCode, :SubProductCode, :Zone, :Expired, :Deployed, :VpcName, :VpcCidrBlock, :SubnetId, :SubnetName, :CidrBlock, :PublicIpSet, :PrivateIpSet, :ModuleSet, :UsedNodes, :ExtendPoints, :PackageBandwidth, :PackageNode, :LogDeliveryArgs, :ClbSet, :DomainCount, :UsedDomainCount, :EnabledDomainCount, :Trial, :LogDelivery, :CdcClusterId, :DeployModel, :IntranetAccess, :IntranetPrivateIpSet, :IntranetVpcId, :IntranetSubnetId, :IntranetSubnetIdSet, :IntranetVpcCidr, :DomainName, :ShareClb, :OpenClbId, :LbVipIsp, :TUICmdPort, :TUIDirectPort, :WebAccess, :ClientAccess, :ExternalAccess, :IOAResource, :PackageIOAUserCount, :PackageIOABandwidth, :IOAResourceId, :ResourceEdition, :TimeUnit, :TimeSpan, :PayMode, :BillingRegion, :BillingZone, :DeployCvmCount, :ResourceZoneSet
         extend Gem::Deprecate
-        deprecate :IntranetSubnetId, :none, 2026, 9
-        deprecate :IntranetSubnetId=, :none, 2026, 9
+        deprecate :IntranetSubnetId, :none, 2026, 10
+        deprecate :IntranetSubnetId=, :none, 2026, 10
 
         def initialize(resourceid=nil, apcode=nil, svargs=nil, vpcid=nil, nodes=nil, renewflag=nil, expiretime=nil, status=nil, resourcename=nil, pid=nil, createtime=nil, productcode=nil, subproductcode=nil, zone=nil, expired=nil, deployed=nil, vpcname=nil, vpccidrblock=nil, subnetid=nil, subnetname=nil, cidrblock=nil, publicipset=nil, privateipset=nil, moduleset=nil, usednodes=nil, extendpoints=nil, packagebandwidth=nil, packagenode=nil, logdeliveryargs=nil, clbset=nil, domaincount=nil, useddomaincount=nil, enableddomaincount=nil, trial=nil, logdelivery=nil, cdcclusterid=nil, deploymodel=nil, intranetaccess=nil, intranetprivateipset=nil, intranetvpcid=nil, intranetsubnetid=nil, intranetsubnetidset=nil, intranetvpccidr=nil, domainname=nil, shareclb=nil, openclbid=nil, lbvipisp=nil, tuicmdport=nil, tuidirectport=nil, webaccess=nil, clientaccess=nil, externalaccess=nil, ioaresource=nil, packageioausercount=nil, packageioabandwidth=nil, ioaresourceid=nil, resourceedition=nil, timeunit=nil, timespan=nil, paymode=nil, billingregion=nil, billingzone=nil, deploycvmcount=nil, resourcezoneset=nil)
           @ResourceId = resourceid
@@ -8710,8 +8710,8 @@ module TencentCloud
 
         attr_accessor :Id, :InstanceId, :Name, :ApCode, :PublicIp, :PrivateIp, :Status, :Reason, :ExitCode, :StartTime, :EndTime, :StdOut, :StdErr, :DeviceName, :Account
         extend Gem::Deprecate
-        deprecate :Name, :none, 2026, 9
-        deprecate :Name=, :none, 2026, 9
+        deprecate :Name, :none, 2026, 10
+        deprecate :Name=, :none, 2026, 10
 
         def initialize(id=nil, instanceid=nil, name=nil, apcode=nil, publicip=nil, privateip=nil, status=nil, reason=nil, exitcode=nil, starttime=nil, endtime=nil, stdout=nil, stderr=nil, devicename=nil, account=nil)
           @Id = id

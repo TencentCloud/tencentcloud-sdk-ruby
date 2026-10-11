@@ -1933,6 +1933,61 @@ module TencentCloud
         end
       end
 
+      # DescribeClientEvents请求参数结构体
+      class DescribeClientEventsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群id
+        # @type InstanceId: String
+        # @param StartTime: 开始时间
+        # @type StartTime: Integer
+        # @param EndTime: 结束时间
+        # @type EndTime: Integer
+        # @param ClientId: 客户端id
+        # @type ClientId: String
+
+        attr_accessor :InstanceId, :StartTime, :EndTime, :ClientId
+
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, clientid=nil)
+          @InstanceId = instanceid
+          @StartTime = starttime
+          @EndTime = endtime
+          @ClientId = clientid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @ClientId = params['ClientId']
+        end
+      end
+
+      # DescribeClientEvents返回参数结构体
+      class DescribeClientEventsResponse < TencentCloud::Common::AbstractModel
+        # @param Events: 轨迹
+        # @type Events: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Events, :RequestId
+
+        def initialize(events=nil, requestid=nil)
+          @Events = events
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Events'].nil?
+            @Events = []
+            params['Events'].each do |i|
+              eventitem_tmp = EventItem.new
+              eventitem_tmp.deserialize(i)
+              @Events << eventitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeClientList请求参数结构体
       class DescribeClientListRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: <p>腾讯云MQTT实例ID，从 <a href="https://cloud.tencent.com/document/api/1778/111029">DescribeInstanceList</a>接口或控制台获得。</p>
@@ -2712,8 +2767,8 @@ module TencentCloud
 
         attr_accessor :InstanceType, :InstanceId, :InstanceName, :TopicNum, :TopicNumLimit, :TpsLimit, :CreatedTime, :Remark, :InstanceStatus, :SkuCode, :MaxSubscriptionPerClient, :AuthorizationPolicyLimit, :ClientNumLimit, :DeviceCertificateProvisionType, :AutomaticActivation, :RenewFlag, :PayMode, :ExpiryTime, :DestroyTime, :X509Mode, :MaxCaNum, :RegistrationCode, :MaxSubscription, :AuthorizationPolicy, :SharedSubscriptionGroupLimit, :MaxTopicFilterPerSharedSubscriptionGroup, :AutoSubscriptionPolicyLimit, :MaxTopicFilterPerAutoSubscriptionPolicy, :UseDefaultServerCert, :TrustedCaLimit, :ServerCertLimit, :TopicPrefixSlashLimit, :MessageRate, :TransportLayerSecurity, :MessageEnrichmentRuleLimit, :BlockRuleLimit, :DeleteProtect, :EventDialect, :HashMessagePolicy, :RequestId
         extend Gem::Deprecate
-        deprecate :MaxTopicFilterPerSharedSubscriptionGroup, :none, 2026, 9
-        deprecate :MaxTopicFilterPerSharedSubscriptionGroup=, :none, 2026, 9
+        deprecate :MaxTopicFilterPerSharedSubscriptionGroup, :none, 2026, 10
+        deprecate :MaxTopicFilterPerSharedSubscriptionGroup=, :none, 2026, 10
 
         def initialize(instancetype=nil, instanceid=nil, instancename=nil, topicnum=nil, topicnumlimit=nil, tpslimit=nil, createdtime=nil, remark=nil, instancestatus=nil, skucode=nil, maxsubscriptionperclient=nil, authorizationpolicylimit=nil, clientnumlimit=nil, devicecertificateprovisiontype=nil, automaticactivation=nil, renewflag=nil, paymode=nil, expirytime=nil, destroytime=nil, x509mode=nil, maxcanum=nil, registrationcode=nil, maxsubscription=nil, authorizationpolicy=nil, sharedsubscriptiongrouplimit=nil, maxtopicfilterpersharedsubscriptiongroup=nil, autosubscriptionpolicylimit=nil, maxtopicfilterperautosubscriptionpolicy=nil, usedefaultservercert=nil, trustedcalimit=nil, servercertlimit=nil, topicprefixslashlimit=nil, messagerate=nil, transportlayersecurity=nil, messageenrichmentrulelimit=nil, blockrulelimit=nil, deleteprotect=nil, eventdialect=nil, hashmessagepolicy=nil, requestid=nil)
           @InstanceType = instancetype
@@ -3906,6 +3961,67 @@ module TencentCloud
         end
       end
 
+      # 客户端事件信息详情
+      class EventInfo < TencentCloud::Common::AbstractModel
+        # @param Key: 事件信息key
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param Value: 事件信息值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
+      # 事件
+      class EventItem < TencentCloud::Common::AbstractModel
+        # @param Timestamp: <p>创建时间</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Timestamp: Integer
+        # @param Event: <p>事件</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Event: String
+        # @param ClientId: <p>发消息或者收消息的clientid</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClientId: String
+        # @param Info: <p>事件的相关信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Info: Array
+
+        attr_accessor :Timestamp, :Event, :ClientId, :Info
+
+        def initialize(timestamp=nil, event=nil, clientid=nil, info=nil)
+          @Timestamp = timestamp
+          @Event = event
+          @ClientId = clientid
+          @Info = info
+        end
+
+        def deserialize(params)
+          @Timestamp = params['Timestamp']
+          @Event = params['Event']
+          @ClientId = params['ClientId']
+          unless params['Info'].nil?
+            @Info = []
+            params['Info'].each do |i|
+              eventinfo_tmp = EventInfo.new
+              eventinfo_tmp.deserialize(i)
+              @Info << eventinfo_tmp
+            end
+          end
+        end
+      end
+
       # 查询过滤器
       class Filter < TencentCloud::Common::AbstractModel
         # @param Name: 过滤条件名
@@ -4301,8 +4417,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :InstanceName, :Version, :InstanceType, :InstanceStatus, :TopicNumLimit, :Remark, :TopicNum, :SkuCode, :TpsLimit, :CreateTime, :MaxSubscriptionPerClient, :ClientNumLimit, :RenewFlag, :PayMode, :ExpiryTime, :DestroyTime, :AuthorizationPolicyLimit, :MaxCaNum, :MaxSubscription, :SharedSubscriptionGroupLimit, :MaxTopicFilterPerSharedSubscriptionGroup, :AutoSubscriptionPolicyLimit, :MaxTopicFilterPerAutoSubscriptionPolicy, :DeleteProtect
         extend Gem::Deprecate
-        deprecate :MaxTopicFilterPerSharedSubscriptionGroup, :none, 2026, 9
-        deprecate :MaxTopicFilterPerSharedSubscriptionGroup=, :none, 2026, 9
+        deprecate :MaxTopicFilterPerSharedSubscriptionGroup, :none, 2026, 10
+        deprecate :MaxTopicFilterPerSharedSubscriptionGroup=, :none, 2026, 10
 
         def initialize(instanceid=nil, instancename=nil, version=nil, instancetype=nil, instancestatus=nil, topicnumlimit=nil, remark=nil, topicnum=nil, skucode=nil, tpslimit=nil, createtime=nil, maxsubscriptionperclient=nil, clientnumlimit=nil, renewflag=nil, paymode=nil, expirytime=nil, destroytime=nil, authorizationpolicylimit=nil, maxcanum=nil, maxsubscription=nil, sharedsubscriptiongrouplimit=nil, maxtopicfilterpersharedsubscriptiongroup=nil, autosubscriptionpolicylimit=nil, maxtopicfilterperautosubscriptionpolicy=nil, deleteprotect=nil)
           @InstanceId = instanceid
@@ -4419,12 +4535,12 @@ module TencentCloud
 
         attr_accessor :MsgId, :Tags, :Keys, :ProducerAddr, :ProduceTime, :DeadLetterResendTimes, :DeadLetterResendSuccessTimes, :SubTopic, :Qos
         extend Gem::Deprecate
-        deprecate :DeadLetterResendTimes, :none, 2026, 9
-        deprecate :DeadLetterResendTimes=, :none, 2026, 9
-        deprecate :DeadLetterResendSuccessTimes, :none, 2026, 9
-        deprecate :DeadLetterResendSuccessTimes=, :none, 2026, 9
-        deprecate :SubTopic, :none, 2026, 9
-        deprecate :SubTopic=, :none, 2026, 9
+        deprecate :DeadLetterResendTimes, :none, 2026, 10
+        deprecate :DeadLetterResendTimes=, :none, 2026, 10
+        deprecate :DeadLetterResendSuccessTimes, :none, 2026, 10
+        deprecate :DeadLetterResendSuccessTimes=, :none, 2026, 10
+        deprecate :SubTopic, :none, 2026, 10
+        deprecate :SubTopic=, :none, 2026, 10
 
         def initialize(msgid=nil, tags=nil, keys=nil, produceraddr=nil, producetime=nil, deadletterresendtimes=nil, deadletterresendsuccesstimes=nil, subtopic=nil, qos=nil)
           @MsgId = msgid
@@ -5129,8 +5245,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :Algorithm, :From, :Secret, :PublicKey, :Status, :Remark, :Text
         extend Gem::Deprecate
-        deprecate :Text, :none, 2026, 9
-        deprecate :Text=, :none, 2026, 9
+        deprecate :Text, :none, 2026, 10
+        deprecate :Text=, :none, 2026, 10
 
         def initialize(instanceid=nil, algorithm=nil, from=nil, secret=nil, publickey=nil, status=nil, remark=nil, text=nil)
           @InstanceId = instanceid

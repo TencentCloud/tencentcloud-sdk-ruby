@@ -2839,6 +2839,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（UpgradeInstanceProductVersion）用于升级实例类型，可从通用 I 型升级到通用 II 型。
+
+        # @param request: Request instance for UpgradeInstanceProductVersion.
+        # @type request: :class:`Tencentcloud::redis::V20180412::UpgradeInstanceProductVersionRequest`
+        # @rtype: :class:`Tencentcloud::redis::V20180412::UpgradeInstanceProductVersionResponse`
+        def UpgradeInstanceProductVersion(request)
+          body = send_request('UpgradeInstanceProductVersion', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpgradeInstanceProductVersionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（UpgradeInstanceVersion）用于将当前实例升级到更高版本，或者将当前标准架构升级至集群架构。
 
         # @param request: Request instance for UpgradeInstanceVersion.

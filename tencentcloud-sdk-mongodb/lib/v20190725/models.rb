@@ -1318,6 +1318,154 @@ module TencentCloud
         end
       end
 
+      # CreateInstanceRole请求参数结构体
+      class CreateInstanceRoleRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例id</p>
+        # @type InstanceId: String
+        # @param RoleName: <p>角色名</p>
+        # @type RoleName: String
+        # @param Database: <p>角色所属db</p>
+        # @type Database: String
+        # @param Privileges: <p>权限</p>
+        # @type Privileges: Array
+        # @param InheritedRoles: <p>继承角色</p>
+        # @type InheritedRoles: Array
+
+        attr_accessor :InstanceId, :RoleName, :Database, :Privileges, :InheritedRoles
+
+        def initialize(instanceid=nil, rolename=nil, database=nil, privileges=nil, inheritedroles=nil)
+          @InstanceId = instanceid
+          @RoleName = rolename
+          @Database = database
+          @Privileges = privileges
+          @InheritedRoles = inheritedroles
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @RoleName = params['RoleName']
+          @Database = params['Database']
+          unless params['Privileges'].nil?
+            @Privileges = []
+            params['Privileges'].each do |i|
+              roleprivilege_tmp = RolePrivilege.new
+              roleprivilege_tmp.deserialize(i)
+              @Privileges << roleprivilege_tmp
+            end
+          end
+          unless params['InheritedRoles'].nil?
+            @InheritedRoles = []
+            params['InheritedRoles'].each do |i|
+              role_tmp = Role.new
+              role_tmp.deserialize(i)
+              @InheritedRoles << role_tmp
+            end
+          end
+        end
+      end
+
+      # CreateInstanceRole返回参数结构体
+      class CreateInstanceRoleResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务id</p>
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateInstanceUser请求参数结构体
+      class CreateInstanceUserRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例id</p>
+        # @type InstanceId: String
+        # @param UserName: <p>用户名</p>
+        # @type UserName: String
+        # @param Password: <p>密码</p>
+        # @type Password: String
+        # @param EncryptedPassword: <p>加密后的密码（与Password二选一）</p>
+        # @type EncryptedPassword: String
+        # @param Database: <p>认证数据库（用户所属数据库）</p>
+        # @type Database: String
+        # @param Roles: <p>角色列表（新方式，可包含内置角色和自定义角色）</p>
+        # @type Roles: Array
+        # @param AuthRole: <p>权限列表（旧方式）</p>
+        # @type AuthRole: Array
+        # @param Description: <p>自定义描述</p>
+        # @type Description: String
+        # @param EnablePasswordRotation: <p>是否开启密码轮转（0-不开启，1-开启）</p>
+        # @type EnablePasswordRotation: Integer
+
+        attr_accessor :InstanceId, :UserName, :Password, :EncryptedPassword, :Database, :Roles, :AuthRole, :Description, :EnablePasswordRotation
+
+        def initialize(instanceid=nil, username=nil, password=nil, encryptedpassword=nil, database=nil, roles=nil, authrole=nil, description=nil, enablepasswordrotation=nil)
+          @InstanceId = instanceid
+          @UserName = username
+          @Password = password
+          @EncryptedPassword = encryptedpassword
+          @Database = database
+          @Roles = roles
+          @AuthRole = authrole
+          @Description = description
+          @EnablePasswordRotation = enablepasswordrotation
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @UserName = params['UserName']
+          @Password = params['Password']
+          @EncryptedPassword = params['EncryptedPassword']
+          @Database = params['Database']
+          unless params['Roles'].nil?
+            @Roles = []
+            params['Roles'].each do |i|
+              role_tmp = Role.new
+              role_tmp.deserialize(i)
+              @Roles << role_tmp
+            end
+          end
+          unless params['AuthRole'].nil?
+            @AuthRole = []
+            params['AuthRole'].each do |i|
+              auth_tmp = Auth.new
+              auth_tmp.deserialize(i)
+              @AuthRole << auth_tmp
+            end
+          end
+          @Description = params['Description']
+          @EnablePasswordRotation = params['EnablePasswordRotation']
+        end
+      end
+
+      # CreateInstanceUser返回参数结构体
+      class CreateInstanceUserResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: <p>异步任务ID</p>
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateLogDownloadTask请求参数结构体
       class CreateLogDownloadTaskRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -1686,6 +1834,94 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteInstanceRole请求参数结构体
+      class DeleteInstanceRoleRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例id</p>
+        # @type InstanceId: String
+        # @param RoleName: <p>角色名</p>
+        # @type RoleName: String
+        # @param Database: <p>角色所属数据库</p>
+        # @type Database: String
+
+        attr_accessor :InstanceId, :RoleName, :Database
+
+        def initialize(instanceid=nil, rolename=nil, database=nil)
+          @InstanceId = instanceid
+          @RoleName = rolename
+          @Database = database
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @RoleName = params['RoleName']
+          @Database = params['Database']
+        end
+      end
+
+      # DeleteInstanceRole返回参数结构体
+      class DeleteInstanceRoleResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务id</p>
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteInstanceUser请求参数结构体
+      class DeleteInstanceUserRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例ID</p>
+        # @type InstanceId: String
+        # @param UserName: <p>用户名</p>
+        # @type UserName: String
+        # @param Database: <p>认证数据库</p>
+        # @type Database: String
+
+        attr_accessor :InstanceId, :UserName, :Database
+
+        def initialize(instanceid=nil, username=nil, database=nil)
+          @InstanceId = instanceid
+          @UserName = username
+          @Database = database
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @UserName = params['UserName']
+          @Database = params['Database']
+        end
+      end
+
+      # DeleteInstanceUser返回参数结构体
+      class DeleteInstanceUserResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: <p>流程ID</p>
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
           @RequestId = params['RequestId']
         end
       end
@@ -3303,6 +3539,85 @@ module TencentCloud
         end
       end
 
+      # DescribeInstanceRoles请求参数结构体
+      class DescribeInstanceRolesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例id</p>
+        # @type InstanceId: String
+        # @param Database: <p>数据库名，为空则查询所有数据库的角色</p>
+        # @type Database: String
+        # @param RoleType: <p>角色类型：builtin_database-内置数据库角色，builtin_cluster-内置集群角色，custom-自定义角色，为空则查询所有</p>
+        # @type RoleType: Array
+        # @param RoleName: <p>角色名称，为空则查询所有角色</p>
+        # @type RoleName: String
+        # @param SearchKey: <p>通用搜索关键字，模糊匹配继承角色和权限相关数据库名、角色名、Action名等</p>
+        # @type SearchKey: String
+        # @param OrderBy: <p>排序字段，支持：RoleName，默认为 RoleName</p>
+        # @type OrderBy: String
+        # @param OrderType: <p>排序方式：asc-升序，desc-降序，默认为 asc</p>
+        # @type OrderType: String
+        # @param Offset: <p>分页偏移量，默认为 0</p>
+        # @type Offset: Integer
+        # @param Limit: <p>每页数量，默认为 20，最大 100</p>
+        # @type Limit: Integer
+
+        attr_accessor :InstanceId, :Database, :RoleType, :RoleName, :SearchKey, :OrderBy, :OrderType, :Offset, :Limit
+
+        def initialize(instanceid=nil, database=nil, roletype=nil, rolename=nil, searchkey=nil, orderby=nil, ordertype=nil, offset=nil, limit=nil)
+          @InstanceId = instanceid
+          @Database = database
+          @RoleType = roletype
+          @RoleName = rolename
+          @SearchKey = searchkey
+          @OrderBy = orderby
+          @OrderType = ordertype
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Database = params['Database']
+          @RoleType = params['RoleType']
+          @RoleName = params['RoleName']
+          @SearchKey = params['SearchKey']
+          @OrderBy = params['OrderBy']
+          @OrderType = params['OrderType']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeInstanceRoles返回参数结构体
+      class DescribeInstanceRolesResponse < TencentCloud::Common::AbstractModel
+        # @param Total: <p>总数</p>
+        # @type Total: Integer
+        # @param Roles: <p>角色列表</p>
+        # @type Roles: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Roles, :RequestId
+
+        def initialize(total=nil, roles=nil, requestid=nil)
+          @Total = total
+          @Roles = roles
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Roles'].nil?
+            @Roles = []
+            params['Roles'].each do |i|
+              roleinfo_tmp = RoleInfo.new
+              roleinfo_tmp.deserialize(i)
+              @Roles << roleinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeInstanceSSL请求参数结构体
       class DescribeInstanceSSLRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: <p>实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同</p>
@@ -3346,6 +3661,77 @@ module TencentCloud
           @Status = params['Status']
           @ExpiredTime = params['ExpiredTime']
           @CertUrl = params['CertUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeInstanceUsers请求参数结构体
+      class DescribeInstanceUsersRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例ID</p>
+        # @type InstanceId: String
+        # @param UserName: <p>用户名，为空则查询所有用户</p>
+        # @type UserName: String
+        # @param Database: <p>数据库名，为空则查询所有数据库的账号</p>
+        # @type Database: String
+        # @param OrderBy: <p>排序字段，可选值：UserName；不传则默认按 UserName 排序</p>
+        # @type OrderBy: String
+        # @param OrderType: <p>排序方式，可选值：asc（升序）、desc（降序），默认 asc</p>
+        # @type OrderType: String
+        # @param Offset: <p>分页偏移量，默认为 0</p>
+        # @type Offset: Integer
+        # @param Limit: <p>每页数量，默认为 20，最大 100</p>
+        # @type Limit: Integer
+
+        attr_accessor :InstanceId, :UserName, :Database, :OrderBy, :OrderType, :Offset, :Limit
+
+        def initialize(instanceid=nil, username=nil, database=nil, orderby=nil, ordertype=nil, offset=nil, limit=nil)
+          @InstanceId = instanceid
+          @UserName = username
+          @Database = database
+          @OrderBy = orderby
+          @OrderType = ordertype
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @UserName = params['UserName']
+          @Database = params['Database']
+          @OrderBy = params['OrderBy']
+          @OrderType = params['OrderType']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeInstanceUsers返回参数结构体
+      class DescribeInstanceUsersResponse < TencentCloud::Common::AbstractModel
+        # @param Users: <p>账号列表</p>
+        # @type Users: Array
+        # @param Total: <p>总数</p>
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Users, :Total, :RequestId
+
+        def initialize(users=nil, total=nil, requestid=nil)
+          @Users = users
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Users'].nil?
+            @Users = []
+            params['Users'].each do |i|
+              instanceuserinfo_tmp = InstanceUserInfo.new
+              instanceuserinfo_tmp.deserialize(i)
+              @Users << instanceuserinfo_tmp
+            end
+          end
+          @Total = params['Total']
           @RequestId = params['RequestId']
         end
       end
@@ -5145,6 +5531,68 @@ module TencentCloud
         end
       end
 
+      # 账号信息
+      class InstanceUserInfo < TencentCloud::Common::AbstractModel
+        # @param UserName: <p>用户名</p>
+        # @type UserName: String
+        # @param Database: <p>认证数据库</p>
+        # @type Database: String
+        # @param Roles: <p>角色列表（新方式）</p>
+        # @type Roles: Array
+        # @param AuthRole: <p>权限列表（老方式）</p>
+        # @type AuthRole: Array
+        # @param CreateTime: <p>创建时间</p>
+        # @type CreateTime: String
+        # @param UpdateTime: <p>更新时间</p>
+        # @type UpdateTime: String
+        # @param ConsolePassUpdateTime: <p>控制台密码更新时间</p>
+        # @type ConsolePassUpdateTime: String
+        # @param EnablePasswordRotation: <p>是否开启密码轮转</p>
+        # @type EnablePasswordRotation: Integer
+        # @param Description: <p>自定义描述</p>
+        # @type Description: String
+
+        attr_accessor :UserName, :Database, :Roles, :AuthRole, :CreateTime, :UpdateTime, :ConsolePassUpdateTime, :EnablePasswordRotation, :Description
+
+        def initialize(username=nil, database=nil, roles=nil, authrole=nil, createtime=nil, updatetime=nil, consolepassupdatetime=nil, enablepasswordrotation=nil, description=nil)
+          @UserName = username
+          @Database = database
+          @Roles = roles
+          @AuthRole = authrole
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @ConsolePassUpdateTime = consolepassupdatetime
+          @EnablePasswordRotation = enablepasswordrotation
+          @Description = description
+        end
+
+        def deserialize(params)
+          @UserName = params['UserName']
+          @Database = params['Database']
+          unless params['Roles'].nil?
+            @Roles = []
+            params['Roles'].each do |i|
+              role_tmp = Role.new
+              role_tmp.deserialize(i)
+              @Roles << role_tmp
+            end
+          end
+          unless params['AuthRole'].nil?
+            @AuthRole = []
+            params['AuthRole'].each do |i|
+              auth_tmp = Auth.new
+              auth_tmp.deserialize(i)
+              @AuthRole << auth_tmp
+            end
+          end
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @ConsolePassUpdateTime = params['ConsolePassUpdateTime']
+          @EnablePasswordRotation = params['EnablePasswordRotation']
+          @Description = params['Description']
+        end
+      end
+
       # IsolateDBInstance请求参数结构体
       class IsolateDBInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制需隔离的实例 ID。
@@ -5695,8 +6143,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :Memory, :Volume, :OplogSize, :NodeNum, :ReplicateSetNum, :InMaintenance, :MongosMemory, :AddNodeList, :RemoveNodeList, :Cpu, :MachineCode, :ModifyShardList
         extend Gem::Deprecate
-        deprecate :OplogSize, :none, 2026, 9
-        deprecate :OplogSize=, :none, 2026, 9
+        deprecate :OplogSize, :none, 2026, 10
+        deprecate :OplogSize=, :none, 2026, 10
 
         def initialize(instanceid=nil, memory=nil, volume=nil, oplogsize=nil, nodenum=nil, replicatesetnum=nil, inmaintenance=nil, mongosmemory=nil, addnodelist=nil, removenodelist=nil, cpu=nil, machinecode=nil, modifyshardlist=nil)
           @InstanceId = instanceid
@@ -6632,6 +7080,119 @@ module TencentCloud
         end
       end
 
+      # 角色
+      class Role < TencentCloud::Common::AbstractModel
+        # @param RoleName: <p>角色名</p>
+        # @type RoleName: String
+        # @param Database: <p>角色所属db</p>
+        # @type Database: String
+
+        attr_accessor :RoleName, :Database
+
+        def initialize(rolename=nil, database=nil)
+          @RoleName = rolename
+          @Database = database
+        end
+
+        def deserialize(params)
+          @RoleName = params['RoleName']
+          @Database = params['Database']
+        end
+      end
+
+      # 角色详细信息
+      class RoleInfo < TencentCloud::Common::AbstractModel
+        # @param RoleName: <p>角色名称</p>
+        # @type RoleName: String
+        # @param Database: <p>角色所属数据库</p>
+        # @type Database: String
+        # @param RoleType: <p>角色类型：builtin_database-内置数据库角色，builtin_cluster-内置集群角色，custom-自定义角色</p>
+        # @type RoleType: String
+        # @param Privileges: <p>授予的权限</p>
+        # @type Privileges: Array
+        # @param InheritedRoles: <p>继承的角色</p>
+        # @type InheritedRoles: Array
+
+        attr_accessor :RoleName, :Database, :RoleType, :Privileges, :InheritedRoles
+
+        def initialize(rolename=nil, database=nil, roletype=nil, privileges=nil, inheritedroles=nil)
+          @RoleName = rolename
+          @Database = database
+          @RoleType = roletype
+          @Privileges = privileges
+          @InheritedRoles = inheritedroles
+        end
+
+        def deserialize(params)
+          @RoleName = params['RoleName']
+          @Database = params['Database']
+          @RoleType = params['RoleType']
+          unless params['Privileges'].nil?
+            @Privileges = []
+            params['Privileges'].each do |i|
+              roleprivilege_tmp = RolePrivilege.new
+              roleprivilege_tmp.deserialize(i)
+              @Privileges << roleprivilege_tmp
+            end
+          end
+          unless params['InheritedRoles'].nil?
+            @InheritedRoles = []
+            params['InheritedRoles'].each do |i|
+              role_tmp = Role.new
+              role_tmp.deserialize(i)
+              @InheritedRoles << role_tmp
+            end
+          end
+        end
+      end
+
+      # 角色权限
+      class RolePrivilege < TencentCloud::Common::AbstractModel
+        # @param Resource: <p>资源</p>
+        # @type Resource: :class:`Tencentcloud::Mongodb.v20190725.models.RoleResource`
+        # @param Actions: <p>动作</p>
+        # @type Actions: Array
+
+        attr_accessor :Resource, :Actions
+
+        def initialize(resource=nil, actions=nil)
+          @Resource = resource
+          @Actions = actions
+        end
+
+        def deserialize(params)
+          unless params['Resource'].nil?
+            @Resource = RoleResource.new
+            @Resource.deserialize(params['Resource'])
+          end
+          @Actions = params['Actions']
+        end
+      end
+
+      # 角色资源
+      class RoleResource < TencentCloud::Common::AbstractModel
+        # @param Cluster: <p>是否集群级资源</p>
+        # @type Cluster: Boolean
+        # @param Database: <p>db名</p>
+        # @type Database: String
+        # @param Collection: <p>collection名</p>
+        # @type Collection: String
+
+        attr_accessor :Cluster, :Database, :Collection
+
+        def initialize(cluster=nil, database=nil, collection=nil)
+          @Cluster = cluster
+          @Database = database
+          @Collection = collection
+        end
+
+        def deserialize(params)
+          @Cluster = params['Cluster']
+          @Database = params['Database']
+          @Collection = params['Collection']
+        end
+      end
+
       # ScaleDownDBInstanceCpu请求参数结构体
       class ScaleDownDBInstanceCpuRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: <p>实例ID</p>
@@ -7383,6 +7944,150 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateInstanceRole请求参数结构体
+      class UpdateInstanceRoleRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例ID</p>
+        # @type InstanceId: String
+        # @param RoleName: <p>角色名称</p>
+        # @type RoleName: String
+        # @param Database: <p>角色所属数据库</p>
+        # @type Database: String
+        # @param Privileges: <p>角色权限列表，不传则不修改</p>
+        # @type Privileges: Array
+        # @param InheritedRoles: <p>角色列表，不传则不修改</p>
+        # @type InheritedRoles: Array
+
+        attr_accessor :InstanceId, :RoleName, :Database, :Privileges, :InheritedRoles
+
+        def initialize(instanceid=nil, rolename=nil, database=nil, privileges=nil, inheritedroles=nil)
+          @InstanceId = instanceid
+          @RoleName = rolename
+          @Database = database
+          @Privileges = privileges
+          @InheritedRoles = inheritedroles
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @RoleName = params['RoleName']
+          @Database = params['Database']
+          unless params['Privileges'].nil?
+            @Privileges = []
+            params['Privileges'].each do |i|
+              roleprivilege_tmp = RolePrivilege.new
+              roleprivilege_tmp.deserialize(i)
+              @Privileges << roleprivilege_tmp
+            end
+          end
+          unless params['InheritedRoles'].nil?
+            @InheritedRoles = []
+            params['InheritedRoles'].each do |i|
+              role_tmp = Role.new
+              role_tmp.deserialize(i)
+              @InheritedRoles << role_tmp
+            end
+          end
+        end
+      end
+
+      # UpdateInstanceRole返回参数结构体
+      class UpdateInstanceRoleResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务id</p>
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateInstanceUser请求参数结构体
+      class UpdateInstanceUserRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例ID</p>
+        # @type InstanceId: String
+        # @param UserName: <p>用户名</p>
+        # @type UserName: String
+        # @param Database: <p>认证数据库</p>
+        # @type Database: String
+        # @param Password: <p>新密码（可选，为空则不修改密码）</p>
+        # @type Password: String
+        # @param EncryptedPassword: <p>加密后的密码（可选，与Password二选一）</p>
+        # @type EncryptedPassword: String
+        # @param Roles: <p>新的角色列表（可选，为空则不修改角色）</p>
+        # @type Roles: Array
+        # @param AuthRole: <p>新的权限列表（可选，为空则不修改权限）</p>
+        # @type AuthRole: Array
+        # @param Description: <p>用户描述（可选，为空则不修改描述）</p>
+        # @type Description: String
+
+        attr_accessor :InstanceId, :UserName, :Database, :Password, :EncryptedPassword, :Roles, :AuthRole, :Description
+
+        def initialize(instanceid=nil, username=nil, database=nil, password=nil, encryptedpassword=nil, roles=nil, authrole=nil, description=nil)
+          @InstanceId = instanceid
+          @UserName = username
+          @Database = database
+          @Password = password
+          @EncryptedPassword = encryptedpassword
+          @Roles = roles
+          @AuthRole = authrole
+          @Description = description
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @UserName = params['UserName']
+          @Database = params['Database']
+          @Password = params['Password']
+          @EncryptedPassword = params['EncryptedPassword']
+          unless params['Roles'].nil?
+            @Roles = []
+            params['Roles'].each do |i|
+              role_tmp = Role.new
+              role_tmp.deserialize(i)
+              @Roles << role_tmp
+            end
+          end
+          unless params['AuthRole'].nil?
+            @AuthRole = []
+            params['AuthRole'].each do |i|
+              auth_tmp = Auth.new
+              auth_tmp.deserialize(i)
+              @AuthRole << auth_tmp
+            end
+          end
+          @Description = params['Description']
+        end
+      end
+
+      # UpdateInstanceUser返回参数结构体
+      class UpdateInstanceUserResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: <p>流程ID</p>
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
           @RequestId = params['RequestId']
         end
       end

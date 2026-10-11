@@ -197,6 +197,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 取消正在执行的扫描任务，正在扫描的任务取消后没有结果
+
+        # @param request: Request instance for CancelPolicyRuleExecuteRecord.
+        # @type request: :class:`Tencentcloud::goosefs::V20220519::CancelPolicyRuleExecuteRecordRequest`
+        # @rtype: :class:`Tencentcloud::goosefs::V20220519::CancelPolicyRuleExecuteRecordResponse`
+        def CancelPolicyRuleExecuteRecord(request)
+          body = send_request('CancelPolicyRuleExecuteRecord', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CancelPolicyRuleExecuteRecordResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建数据流通任务,包括从将文件系统的数据上传到存储桶下, 以及从存储桶下载到文件系统里。
 
         # @param request: Request instance for CreateDataRepositoryTask.
@@ -293,6 +317,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建数据洞察任务
+
+        # @param request: Request instance for CreatePolicyRule.
+        # @type request: :class:`Tencentcloud::goosefs::V20220519::CreatePolicyRuleRequest`
+        # @rtype: :class:`Tencentcloud::goosefs::V20220519::CreatePolicyRuleResponse`
+        def CreatePolicyRule(request)
+          body = send_request('CreatePolicyRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreatePolicyRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 为客户端节点删除跨vpc子网访问能力
 
         # @param request: Request instance for DeleteCrossVpcSubnetSupportForClientNode.
@@ -375,6 +423,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteFilesetResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除扫描规则
+
+        # @param request: Request instance for DeletePolicyRule.
+        # @type request: :class:`Tencentcloud::goosefs::V20220519::DeletePolicyRuleRequest`
+        # @rtype: :class:`Tencentcloud::goosefs::V20220519::DeletePolicyRuleResponse`
+        def DeletePolicyRule(request)
+          body = send_request('DeletePolicyRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeletePolicyRuleResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -629,6 +701,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 列出所有的扫描规则
+
+        # @param request: Request instance for DescribePolicyRule.
+        # @type request: :class:`Tencentcloud::goosefs::V20220519::DescribePolicyRuleRequest`
+        # @rtype: :class:`Tencentcloud::goosefs::V20220519::DescribePolicyRuleResponse`
+        def DescribePolicyRule(request)
+          body = send_request('DescribePolicyRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePolicyRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 列出指定扫描规则的执行记录
+
+        # @param request: Request instance for DescribePolicyRuleExecuteRecord.
+        # @type request: :class:`Tencentcloud::goosefs::V20220519::DescribePolicyRuleExecuteRecordRequest`
+        # @rtype: :class:`Tencentcloud::goosefs::V20220519::DescribePolicyRuleExecuteRecordResponse`
+        def DescribePolicyRuleExecuteRecord(request)
+          body = send_request('DescribePolicyRuleExecuteRecord', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePolicyRuleExecuteRecordResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 解绑文件系统与Bucket的映射
 
         # @param request: Request instance for DetachFileSystemBucket.
@@ -639,6 +759,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DetachFileSystemBucketResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 禁用扫描任务
+
+        # @param request: Request instance for DisablePolicyRule.
+        # @type request: :class:`Tencentcloud::goosefs::V20220519::DisablePolicyRuleRequest`
+        # @rtype: :class:`Tencentcloud::goosefs::V20220519::DisablePolicyRuleResponse`
+        def DisablePolicyRule(request)
+          body = send_request('DisablePolicyRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DisablePolicyRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 启用扫描任务
+
+        # @param request: Request instance for EnablePolicyRule.
+        # @type request: :class:`Tencentcloud::goosefs::V20220519::EnablePolicyRuleRequest`
+        # @rtype: :class:`Tencentcloud::goosefs::V20220519::EnablePolicyRuleResponse`
+        def EnablePolicyRule(request)
+          body = send_request('EnablePolicyRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = EnablePolicyRuleResponse.new
             model.deserialize(response['Response'])
             model
           else

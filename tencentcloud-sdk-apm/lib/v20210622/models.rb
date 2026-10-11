@@ -1323,6 +1323,40 @@ module TencentCloud
         end
       end
 
+      # 接口参数列表
+      class ChartData < TencentCloud::Common::AbstractModel
+        # @param Series: <p>接口参数id列表</p>
+        # @type Series: Array
+        # @param YAxis: <p>接口参数列表</p>
+        # @type YAxis: Array
+
+        attr_accessor :Series, :YAxis
+
+        def initialize(series=nil, yaxis=nil)
+          @Series = series
+          @YAxis = yaxis
+        end
+
+        def deserialize(params)
+          unless params['Series'].nil?
+            @Series = []
+            params['Series'].each do |i|
+              series_tmp = Series.new
+              series_tmp.deserialize(i)
+              @Series << series_tmp
+            end
+          end
+          unless params['YAxis'].nil?
+            @YAxis = []
+            params['YAxis'].each do |i|
+              yaxis_tmp = YAxis.new
+              yaxis_tmp.deserialize(i)
+              @YAxis << yaxis_tmp
+            end
+          end
+        end
+      end
+
       # 包含了视图中节点组件类型的数量
       class ComponentTopologyView < TencentCloud::Common::AbstractModel
         # @param Service: 服务纬度的节点数量
@@ -1369,8 +1403,8 @@ module TencentCloud
 
         attr_accessor :Name, :Description, :TraceDuration, :Tags, :SpanDailyCounters, :PayMode, :Free
         extend Gem::Deprecate
-        deprecate :SpanDailyCounters, :none, 2026, 9
-        deprecate :SpanDailyCounters=, :none, 2026, 9
+        deprecate :SpanDailyCounters, :none, 2026, 10
+        deprecate :SpanDailyCounters=, :none, 2026, 10
 
         def initialize(name=nil, description=nil, traceduration=nil, tags=nil, spandailycounters=nil, paymode=nil, free=nil)
           @Name = name
@@ -1661,8 +1695,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :AgentType, :NetworkMode, :LanguageEnvironment, :ReportMethod
         extend Gem::Deprecate
-        deprecate :ReportMethod, :none, 2026, 9
-        deprecate :ReportMethod=, :none, 2026, 9
+        deprecate :ReportMethod, :none, 2026, 10
+        deprecate :ReportMethod=, :none, 2026, 10
 
         def initialize(instanceid=nil, agenttype=nil, networkmode=nil, languageenvironment=nil, reportmethod=nil)
           @InstanceId = instanceid
@@ -3079,6 +3113,84 @@ module TencentCloud
         end
       end
 
+      # DescribeSpanTreeByID请求参数结构体
+      class DescribeSpanTreeByIDRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>业务系统 ID</p>
+        # @type InstanceId: String
+        # @param Filters: <p>TraceID</p>
+        # @type Filters: Array
+        # @param StartTime: <p>Span查询开始时间戳（单位:秒）</p>
+        # @type StartTime: Integer
+        # @param EndTime: <p>Span查询结束时间戳（单位:秒）</p>
+        # @type EndTime: Integer
+        # @param IsFold: <p>代表请求的是否为完整瀑布图</p>
+        # @type IsFold: Boolean
+        # @param EntrySpanSelected: <p>开启关键调用视图</p>
+        # @type EntrySpanSelected: Boolean
+        # @param FocusSpanId: <p>关注的SpanId</p>
+        # @type FocusSpanId: String
+        # @param FilterViewTagKeyList: <p>过滤视图的Tag列表</p>
+        # @type FilterViewTagKeyList: Array
+        # @param EnableResourceLink: <p>是否开启云资源关联</p>
+        # @type EnableResourceLink: Boolean
+
+        attr_accessor :InstanceId, :Filters, :StartTime, :EndTime, :IsFold, :EntrySpanSelected, :FocusSpanId, :FilterViewTagKeyList, :EnableResourceLink
+
+        def initialize(instanceid=nil, filters=nil, starttime=nil, endtime=nil, isfold=nil, entryspanselected=nil, focusspanid=nil, filterviewtagkeylist=nil, enableresourcelink=nil)
+          @InstanceId = instanceid
+          @Filters = filters
+          @StartTime = starttime
+          @EndTime = endtime
+          @IsFold = isfold
+          @EntrySpanSelected = entryspanselected
+          @FocusSpanId = focusspanid
+          @FilterViewTagKeyList = filterviewtagkeylist
+          @EnableResourceLink = enableresourcelink
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @IsFold = params['IsFold']
+          @EntrySpanSelected = params['EntrySpanSelected']
+          @FocusSpanId = params['FocusSpanId']
+          @FilterViewTagKeyList = params['FilterViewTagKeyList']
+          @EnableResourceLink = params['EnableResourceLink']
+        end
+      end
+
+      # DescribeSpanTreeByID返回参数结构体
+      class DescribeSpanTreeByIDResponse < TencentCloud::Common::AbstractModel
+        # @param SpanTreeView: <p>树形图</p>
+        # @type SpanTreeView: :class:`Tencentcloud::Apm.v20210622.models.SpanTreeView`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SpanTreeView, :RequestId
+
+        def initialize(spantreeview=nil, requestid=nil)
+          @SpanTreeView = spantreeview
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['SpanTreeView'].nil?
+            @SpanTreeView = SpanTreeView.new
+            @SpanTreeView.deserialize(params['SpanTreeView'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTagValues请求参数结构体
       class DescribeTagValuesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 业务系统 ID
@@ -3314,6 +3426,26 @@ module TencentCloud
             @OverviewStats.deserialize(params['OverviewStats'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 错误Span的数据项
+      class ErrorSpan < TencentCloud::Common::AbstractModel
+        # @param SpanID: <p>异常SpanId</p>
+        # @type SpanID: String
+        # @param ErrorMessage: <p>异常信息</p>
+        # @type ErrorMessage: String
+
+        attr_accessor :SpanID, :ErrorMessage
+
+        def initialize(spanid=nil, errormessage=nil)
+          @SpanID = spanid
+          @ErrorMessage = errormessage
+        end
+
+        def deserialize(params)
+          @SpanID = params['SpanID']
+          @ErrorMessage = params['ErrorMessage']
         end
       end
 
@@ -4365,11 +4497,11 @@ module TencentCloud
 
       # 查询
       class QueryMetricItem < TencentCloud::Common::AbstractModel
-        # @param MetricName: 指标名
+        # @param MetricName: <p>指标名</p>
         # @type MetricName: String
-        # @param Compares: 同比，现支持 CompareByYesterday (与昨天相比)和CompareByLastWeek (与上周相比)
+        # @param Compares: <p>同比，现支持 CompareByYesterday (与昨天相比)和CompareByLastWeek (与上周相比)</p>
         # @type Compares: Array
-        # @param Compare: 同比，已弃用，不建议使用
+        # @param Compare: <p>同比，已弃用，不建议使用</p>
         # @type Compare: String
 
         attr_accessor :MetricName, :Compares, :Compare
@@ -4449,7 +4581,7 @@ module TencentCloud
 
       # 视图方案勾选情况
       class Selectors < TencentCloud::Common::AbstractModel
-        # @param Component: 组件勾选情况
+        # @param Component: <p>组件勾选情况</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Component: Array
 
@@ -4461,6 +4593,31 @@ module TencentCloud
 
         def deserialize(params)
           @Component = params['Component']
+        end
+      end
+
+      # 耗时消耗时间
+      class Series < TencentCloud::Common::AbstractModel
+        # @param Data: 耗时列表信息
+        # @type Data: Array
+        # @param Stack: 描述
+        # @type Stack: String
+        # @param Name: 字段名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+
+        attr_accessor :Data, :Stack, :Name
+
+        def initialize(data=nil, stack=nil, name=nil)
+          @Data = data
+          @Stack = stack
+          @Name = name
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @Stack = params['Stack']
+          @Name = params['Name']
         end
       end
 
@@ -4755,6 +4912,83 @@ module TencentCloud
         end
       end
 
+      # 树形结构
+      class SpanTreeView < TencentCloud::Common::AbstractModel
+        # @param TreeData: 树结构json串
+        # @type TreeData: String
+        # @param ChartData: 列表
+        # @type ChartData: :class:`Tencentcloud::Apm.v20210622.models.ChartData`
+        # @param TraceOverview: Trace概览信息
+        # @type TraceOverview: :class:`Tencentcloud::Apm.v20210622.models.TraceOverview`
+        # @param CompressedTreeData: 压缩编码后的树结构json串
+        # @type CompressedTreeData: String
+        # @param CntExceeded: 整条链路的 span 数量是否超过限制
+        # @type CntExceeded: Boolean
+        # @param QueryTimeout: 是否有内部查询超时
+        # @type QueryTimeout: Boolean
+        # @param SpanTotalCnt: 链路中 span 总数量
+        # @type SpanTotalCnt: Integer
+        # @param FilterViewTagValues: 过滤视图的标签值列表
+        # @type FilterViewTagValues: Array
+
+        attr_accessor :TreeData, :ChartData, :TraceOverview, :CompressedTreeData, :CntExceeded, :QueryTimeout, :SpanTotalCnt, :FilterViewTagValues
+
+        def initialize(treedata=nil, chartdata=nil, traceoverview=nil, compressedtreedata=nil, cntexceeded=nil, querytimeout=nil, spantotalcnt=nil, filterviewtagvalues=nil)
+          @TreeData = treedata
+          @ChartData = chartdata
+          @TraceOverview = traceoverview
+          @CompressedTreeData = compressedtreedata
+          @CntExceeded = cntexceeded
+          @QueryTimeout = querytimeout
+          @SpanTotalCnt = spantotalcnt
+          @FilterViewTagValues = filterviewtagvalues
+        end
+
+        def deserialize(params)
+          @TreeData = params['TreeData']
+          unless params['ChartData'].nil?
+            @ChartData = ChartData.new
+            @ChartData.deserialize(params['ChartData'])
+          end
+          unless params['TraceOverview'].nil?
+            @TraceOverview = TraceOverview.new
+            @TraceOverview.deserialize(params['TraceOverview'])
+          end
+          @CompressedTreeData = params['CompressedTreeData']
+          @CntExceeded = params['CntExceeded']
+          @QueryTimeout = params['QueryTimeout']
+          @SpanTotalCnt = params['SpanTotalCnt']
+          unless params['FilterViewTagValues'].nil?
+            @FilterViewTagValues = []
+            params['FilterViewTagValues'].each do |i|
+              tagvalues_tmp = TagValues.new
+              tagvalues_tmp.deserialize(i)
+              @FilterViewTagValues << tagvalues_tmp
+            end
+          end
+        end
+      end
+
+      # 维度值（值为List）
+      class TagValues < TencentCloud::Common::AbstractModel
+        # @param Key: 维度键
+        # @type Key: String
+        # @param Values: 维度值
+        # @type Values: Array
+
+        attr_accessor :Key, :Values
+
+        def initialize(key=nil, values=nil)
+          @Key = key
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Values = params['Values']
+        end
+      end
+
       # TerminateApmInstance请求参数结构体
       class TerminateApmInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 业务系统ID
@@ -4789,19 +5023,19 @@ module TencentCloud
 
       # tke资源元数据
       class TkeMeta < TencentCloud::Common::AbstractModel
-        # @param Region: 地域
+        # @param Region: <p>地域</p>
         # @type Region: String
-        # @param ClusterID: 集群ID
+        # @param ClusterID: <p>集群ID</p>
         # @type ClusterID: String
-        # @param PodName: pod name
+        # @param PodName: <p>pod name</p>
         # @type PodName: String
-        # @param Namespace: 命名空间
+        # @param Namespace: <p>命名空间</p>
         # @type Namespace: String
-        # @param Deployment: 工作负载
+        # @param Deployment: <p>工作负载</p>
         # @type Deployment: String
-        # @param PodIP: pod ip
+        # @param PodIP: <p>pod ip</p>
         # @type PodIP: String
-        # @param NodeIP: node ip
+        # @param NodeIP: <p>node ip</p>
         # @type NodeIP: String
 
         attr_accessor :Region, :ClusterID, :PodName, :Namespace, :Deployment, :PodIP, :NodeIP
@@ -5054,6 +5288,85 @@ module TencentCloud
           @Healthy = params['Healthy']
           @Warning = params['Warning']
           @Error = params['Error']
+        end
+      end
+
+      # Trace概览查询
+      class TraceOverview < TencentCloud::Common::AbstractModel
+        # @param Status: <p>traceID调用状态</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param TraceID: <p>TraceId查询</p>
+        # @type TraceID: String
+        # @param ErrorMsg: <p>错误信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMsg: String
+        # @param ServiceName: <p>服务名</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceName: String
+        # @param Duration: <p>耗时</p>
+        # @type Duration: Integer
+        # @param Operation: <p>接口名</p>
+        # @type Operation: String
+        # @param StartTime: <p>开始时间（微秒）</p>
+        # @type StartTime: Integer
+        # @param ApplicationCount: <p>应用数</p>
+        # @type ApplicationCount: Integer
+        # @param ErrorSpans: <p>异常Span列表</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorSpans: Array
+
+        attr_accessor :Status, :TraceID, :ErrorMsg, :ServiceName, :Duration, :Operation, :StartTime, :ApplicationCount, :ErrorSpans
+
+        def initialize(status=nil, traceid=nil, errormsg=nil, servicename=nil, duration=nil, operation=nil, starttime=nil, applicationcount=nil, errorspans=nil)
+          @Status = status
+          @TraceID = traceid
+          @ErrorMsg = errormsg
+          @ServiceName = servicename
+          @Duration = duration
+          @Operation = operation
+          @StartTime = starttime
+          @ApplicationCount = applicationcount
+          @ErrorSpans = errorspans
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @TraceID = params['TraceID']
+          @ErrorMsg = params['ErrorMsg']
+          @ServiceName = params['ServiceName']
+          @Duration = params['Duration']
+          @Operation = params['Operation']
+          @StartTime = params['StartTime']
+          @ApplicationCount = params['ApplicationCount']
+          unless params['ErrorSpans'].nil?
+            @ErrorSpans = []
+            params['ErrorSpans'].each do |i|
+              errorspan_tmp = ErrorSpan.new
+              errorspan_tmp.deserialize(i)
+              @ErrorSpans << errorspan_tmp
+            end
+          end
+        end
+      end
+
+      # 接口列表
+      class YAxis < TencentCloud::Common::AbstractModel
+        # @param Keys: <p>接口列表</p>
+        # @type Keys: Array
+        # @param Data: <p>接口列表</p>
+        # @type Data: Array
+
+        attr_accessor :Keys, :Data
+
+        def initialize(keys=nil, data=nil)
+          @Keys = keys
+          @Data = data
+        end
+
+        def deserialize(params)
+          @Keys = params['Keys']
+          @Data = params['Data']
         end
       end
 

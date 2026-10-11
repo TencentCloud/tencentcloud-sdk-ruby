@@ -277,45 +277,48 @@ module TencentCloud
 
       # 单个告警通知历史
       class AlarmNotifyHistory < TencentCloud::Common::AbstractModel
-        # @param NotifyId: 通知的唯一ID
+        # @param NotifyId: <p>通知的唯一ID</p>
         # @type NotifyId: String
-        # @param PolicyId: 告警策略ID
+        # @param PolicyId: <p>告警策略ID</p>
         # @type PolicyId: String
-        # @param SessionId: 告警周期iD
+        # @param SessionId: <p>告警周期iD</p>
         # @type SessionId: String
-        # @param NotifyTime: 通知时间 unix秒级时间戳
+        # @param NotifyTime: <p>通知时间 unix秒级时间戳</p>
         # @type NotifyTime: Integer
-        # @param TriggerTime: 触发时间 unix秒级时间戳
+        # @param TriggerTime: <p>触发时间 unix秒级时间戳</p>
         # @type TriggerTime: Integer
-        # @param TriggerLevel: 告警级别 None 非分级告警级别; Note 提示级别; Warn 严重级别; Serious 紧急级别
+        # @param TriggerLevel: <p>告警级别 None 非分级告警级别; Note 提示级别; Warn 严重级别; Serious 紧急级别</p>
         # @type TriggerLevel: String
-        # @param AlarmContent: 告警内容
+        # @param AlarmContent: <p>告警内容</p>
         # @type AlarmContent: String
-        # @param AlarmObject: 告警对象
+        # @param AlarmObject: <p>告警对象</p>
         # @type AlarmObject: String
-        # @param ChannelSet: 本次告警通知涉及到的渠道合集
+        # @param ChannelSet: <p>本次告警通知涉及到的渠道合集</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChannelSet: Array
-        # @param ChannelsReceivers: 渠道的接收人信息
+        # @param ChannelsReceivers: <p>渠道的接收人信息</p>
         # @type ChannelsReceivers: Array
-        # @param PolicyName: 告警策略名称
+        # @param PolicyName: <p>告警策略名称</p>
         # @type PolicyName: String
-        # @param PromeInstanceID: Prometheus实例ID, 仅当 MT_PROME 时有效
+        # @param PromeInstanceID: <p>Prometheus实例ID, 仅当 MT_PROME 时有效</p>
         # @type PromeInstanceID: String
-        # @param PromeInstanceRegion: Prometheus实例所在的地域, 仅当 MT_PROME 时有效
+        # @param PromeInstanceRegion: <p>Prometheus实例所在的地域, 仅当 MT_PROME 时有效</p>
         # @type PromeInstanceRegion: String
-        # @param Notices: 通知模板相关的配置信息
+        # @param Notices: <p>通知模板相关的配置信息</p>
         # @type Notices: Array
-        # @param TriggerStatus: 告警触发状态  Trigger 告警状态触发; Recovery 告警状态恢复
+        # @param TriggerStatus: <p>告警触发状态  Trigger 告警状态触发; Recovery 告警状态恢复</p>
         # @type TriggerStatus: String
-        # @param PromeConsoleURL: 与当前Prometheus通知历史相关控制台页面地址，仅当 MR_PROME 时有效
+        # @param PromeConsoleURL: <p>与当前Prometheus通知历史相关控制台页面地址，仅当 MR_PROME 时有效</p>
         # @type PromeConsoleURL: String
-        # @param Labels: 告警的lable
+        # @param Labels: <p>告警的lable</p>
         # @type Labels: Array
+        # @param ReceiverGroups: <p>该条通知实际执行的接收人/组明细。一条元素对应通知模板里的一条渠道发送规则</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReceiverGroups: Array
 
-        attr_accessor :NotifyId, :PolicyId, :SessionId, :NotifyTime, :TriggerTime, :TriggerLevel, :AlarmContent, :AlarmObject, :ChannelSet, :ChannelsReceivers, :PolicyName, :PromeInstanceID, :PromeInstanceRegion, :Notices, :TriggerStatus, :PromeConsoleURL, :Labels
+        attr_accessor :NotifyId, :PolicyId, :SessionId, :NotifyTime, :TriggerTime, :TriggerLevel, :AlarmContent, :AlarmObject, :ChannelSet, :ChannelsReceivers, :PolicyName, :PromeInstanceID, :PromeInstanceRegion, :Notices, :TriggerStatus, :PromeConsoleURL, :Labels, :ReceiverGroups
 
-        def initialize(notifyid=nil, policyid=nil, sessionid=nil, notifytime=nil, triggertime=nil, triggerlevel=nil, alarmcontent=nil, alarmobject=nil, channelset=nil, channelsreceivers=nil, policyname=nil, promeinstanceid=nil, promeinstanceregion=nil, notices=nil, triggerstatus=nil, promeconsoleurl=nil, labels=nil)
+        def initialize(notifyid=nil, policyid=nil, sessionid=nil, notifytime=nil, triggertime=nil, triggerlevel=nil, alarmcontent=nil, alarmobject=nil, channelset=nil, channelsreceivers=nil, policyname=nil, promeinstanceid=nil, promeinstanceregion=nil, notices=nil, triggerstatus=nil, promeconsoleurl=nil, labels=nil, receivergroups=nil)
           @NotifyId = notifyid
           @PolicyId = policyid
           @SessionId = sessionid
@@ -333,6 +336,7 @@ module TencentCloud
           @TriggerStatus = triggerstatus
           @PromeConsoleURL = promeconsoleurl
           @Labels = labels
+          @ReceiverGroups = receivergroups
         end
 
         def deserialize(params)
@@ -372,6 +376,14 @@ module TencentCloud
               alarmlable_tmp = AlarmLable.new
               alarmlable_tmp.deserialize(i)
               @Labels << alarmlable_tmp
+            end
+          end
+          unless params['ReceiverGroups'].nil?
+            @ReceiverGroups = []
+            params['ReceiverGroups'].each do |i|
+              receivergroup_tmp = ReceiverGroup.new
+              receivergroup_tmp.deserialize(i)
+              @ReceiverGroups << receivergroup_tmp
             end
           end
         end
@@ -471,30 +483,99 @@ module TencentCloud
         end
       end
 
-      # 接受人详情信息
+      # 消息正文
+      class ChannelContent < TencentCloud::Common::AbstractModel
+        # @param SubChannel: <p>本段正文所属的渠道或子渠道全名</p><p>枚举值：</p><ul><li>QCloudYehe_site： 腾讯云野鹤，站内信</li><li>QCloudYehe_email： 腾讯云野鹤，电子邮件</li><li>QCloudYehe_sms： 腾讯云野鹤，短信</li><li>QCloudYehe_wechat： 腾讯云野鹤，微信</li><li>QCloudYehe_voice： 腾讯云野鹤，语音</li><li>QCloudYehe_qywx： 腾讯云野鹤，企业微信</li><li>QCloudYehe_andon： 腾讯云野鹤，安灯</li><li>TOF_weWorkMessage： TOF，企业微信消息</li><li>TOF_email： TOF，企业邮箱</li><li>TOF_phoneCall： TOF，电话</li><li>WeWork： 企业微信机器人</li><li>WebHook： 自定义 WebHook</li><li>FeiShu： 飞书</li><li>DingDing： 钉钉</li><li>Slack： Slack</li><li>GoogleChat： Google Chat</li><li>Teams： Teams</li><li>TeamsWorkflow： Teams Workflow</li><li>PagerDuty： PagerDuty</li><li>CLS： 日志服务 CLS</li><li>AS： 弹性伸缩</li><li>TCSYehe： TCS 野鹤。正文的 SubChannel 取渠道名本身</li><li>SCF： 云函数。不返回 Contents</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubChannel: String
+        # @param Content: <p>该渠道实际发送的消息正文，由 Ark 按写时捕获的内容还原</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Content: String
+
+        attr_accessor :SubChannel, :Content
+
+        def initialize(subchannel=nil, content=nil)
+          @SubChannel = subchannel
+          @Content = content
+        end
+
+        def deserialize(params)
+          @SubChannel = params['SubChannel']
+          @Content = params['Content']
+        end
+      end
+
+      # 接受人详情信息和通知详情页展示
       class ChannelsReceivers < TencentCloud::Common::AbstractModel
-        # @param ChannelName: 通知渠道名称
+        # @param ChannelName: <p>通知渠道名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChannelName: String
-        # @param Receivers: 接收者
+        # @param Receivers: <p>接收者</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Receivers: Array
-        # @param SendStatus: 发送结果,0-无效,1-成功,2-失败,3-无需发送
+        # @param SendStatus: <p>发送结果,0-无效,1-成功,2-失败,3-无需发送</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SendStatus: String
+        # @param SendStatusCode: <p>参数定义 渠道返回的原始状态码。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SendStatusCode: String
+        # @param SendTime: <p>Ark 发起该渠道调用的时间</p><p>单位：Unix 秒级时间戳</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SendTime: Integer
+        # @param SubChannels: <p>该渠道本次实际发送的子渠道全名，格式为 父渠道_子渠道</p><p>枚举值：</p><ul><li>QCloudYehe_site： 腾讯云野鹤，站内信</li><li>QCloudYehe_email： 腾讯云野鹤，电子邮件</li><li>QCloudYehe_sms： 腾讯云野鹤，短信</li><li>QCloudYehe_wechat： 腾讯云野鹤，微信</li><li>QCloudYehe_voice： 腾讯云野鹤，语音</li><li>QCloudYehe_qywx： 腾讯云野鹤，企业微信</li><li>QCloudYehe_andon： 腾讯云野鹤，安灯</li><li>TOF_weWorkMessage： TOF，企业微信消息</li><li>TOF_email： TOF，企业邮箱</li><li>TOF_phoneCall： TOF，电话</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubChannels: Array
+        # @param ExecDetail: <p>该渠道本次执行情况的文字描述</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecDetail: String
+        # @param RealDeliverStatus: <p>短信真实投递状态，来自野鹤 smsStatus 回调的 reportStatus 原值</p><p>枚举值：</p><ul><li>SUCCESS： 短信已真实送达</li><li>FAIL： 短信真实投递失败，失败原因见 RealDeliverErrMsg</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RealDeliverStatus: String
+        # @param RealDeliverTime: <p>用户真实收到短信的时间，取野鹤回调 userReceiverTime 原文字符串</p><p>参数格式：YYYY-MM-DD HH:mm:ss</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RealDeliverTime: String
+        # @param RealDeliverErrMsg: <p>短信真实投递回执中的结果码，取野鹤回调 errmsg 原值</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RealDeliverErrMsg: String
+        # @param Contents: <p>该渠道下各子渠道的消息正文明细</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Contents: Array
 
-        attr_accessor :ChannelName, :Receivers, :SendStatus
+        attr_accessor :ChannelName, :Receivers, :SendStatus, :SendStatusCode, :SendTime, :SubChannels, :ExecDetail, :RealDeliverStatus, :RealDeliverTime, :RealDeliverErrMsg, :Contents
 
-        def initialize(channelname=nil, receivers=nil, sendstatus=nil)
+        def initialize(channelname=nil, receivers=nil, sendstatus=nil, sendstatuscode=nil, sendtime=nil, subchannels=nil, execdetail=nil, realdeliverstatus=nil, realdelivertime=nil, realdelivererrmsg=nil, contents=nil)
           @ChannelName = channelname
           @Receivers = receivers
           @SendStatus = sendstatus
+          @SendStatusCode = sendstatuscode
+          @SendTime = sendtime
+          @SubChannels = subchannels
+          @ExecDetail = execdetail
+          @RealDeliverStatus = realdeliverstatus
+          @RealDeliverTime = realdelivertime
+          @RealDeliverErrMsg = realdelivererrmsg
+          @Contents = contents
         end
 
         def deserialize(params)
           @ChannelName = params['ChannelName']
           @Receivers = params['Receivers']
           @SendStatus = params['SendStatus']
+          @SendStatusCode = params['SendStatusCode']
+          @SendTime = params['SendTime']
+          @SubChannels = params['SubChannels']
+          @ExecDetail = params['ExecDetail']
+          @RealDeliverStatus = params['RealDeliverStatus']
+          @RealDeliverTime = params['RealDeliverTime']
+          @RealDeliverErrMsg = params['RealDeliverErrMsg']
+          unless params['Contents'].nil?
+            @Contents = []
+            params['Contents'].each do |i|
+              channelcontent_tmp = ChannelContent.new
+              channelcontent_tmp.deserialize(i)
+              @Contents << channelcontent_tmp
+            end
+          end
         end
       end
 
@@ -1310,24 +1391,26 @@ module TencentCloud
 
       # DescribeAlarmNotifyHistories请求参数结构体
       class DescribeAlarmNotifyHistoriesRequest < TencentCloud::Common::AbstractModel
-        # @param MonitorType: 监控类型
+        # @param MonitorType: <p>监控类型</p>
         # @type MonitorType: String
-        # @param QueryBaseTime: 起始时间点，unix秒级时间戳
+        # @param QueryBaseTime: <p>起始时间点，unix秒级时间戳</p>
         # @type QueryBaseTime: Integer
-        # @param QueryBeforeSeconds: 从 QueryBaseTime 开始，需要查询往前多久的时间，单位秒
+        # @param QueryBeforeSeconds: <p>从 QueryBaseTime 开始，需要查询往前多久的时间，单位秒</p>
         # @type QueryBeforeSeconds: Integer
-        # @param PageParams: 分页参数
+        # @param PageParams: <p>分页参数</p>
         # @type PageParams: :class:`Tencentcloud::Monitor.v20230616.models.PageByNoParams`
-        # @param Namespace: 当监控类型为 MT_QCE 时候需要填写，归属的命名空间
+        # @param Namespace: <p>当监控类型为 MT_QCE 时候需要填写，归属的命名空间</p>
         # @type Namespace: String
-        # @param ModelName: 当监控类型为 MT_QCE 时候需要填写， 告警策略类型
+        # @param ModelName: <p>当监控类型为 MT_QCE 时候需要填写， 告警策略类型</p>
         # @type ModelName: String
-        # @param PolicyId: 查询某个策略的通知历史
+        # @param PolicyId: <p>查询某个策略的通知历史</p>
         # @type PolicyId: String
+        # @param NotifyId: <p>详情页展示所需id</p>
+        # @type NotifyId: String
 
-        attr_accessor :MonitorType, :QueryBaseTime, :QueryBeforeSeconds, :PageParams, :Namespace, :ModelName, :PolicyId
+        attr_accessor :MonitorType, :QueryBaseTime, :QueryBeforeSeconds, :PageParams, :Namespace, :ModelName, :PolicyId, :NotifyId
 
-        def initialize(monitortype=nil, querybasetime=nil, querybeforeseconds=nil, pageparams=nil, namespace=nil, modelname=nil, policyid=nil)
+        def initialize(monitortype=nil, querybasetime=nil, querybeforeseconds=nil, pageparams=nil, namespace=nil, modelname=nil, policyid=nil, notifyid=nil)
           @MonitorType = monitortype
           @QueryBaseTime = querybasetime
           @QueryBeforeSeconds = querybeforeseconds
@@ -1335,6 +1418,7 @@ module TencentCloud
           @Namespace = namespace
           @ModelName = modelname
           @PolicyId = policyid
+          @NotifyId = notifyid
         end
 
         def deserialize(params)
@@ -1348,14 +1432,15 @@ module TencentCloud
           @Namespace = params['Namespace']
           @ModelName = params['ModelName']
           @PolicyId = params['PolicyId']
+          @NotifyId = params['NotifyId']
         end
       end
 
       # DescribeAlarmNotifyHistories返回参数结构体
       class DescribeAlarmNotifyHistoriesResponse < TencentCloud::Common::AbstractModel
-        # @param AlarmNotifyHistoryList: 告警历史
+        # @param AlarmNotifyHistoryList: <p>告警历史</p>
         # @type AlarmNotifyHistoryList: Array
-        # @param PageResult: 分页情况
+        # @param PageResult: <p>分页情况</p>
         # @type PageResult: :class:`Tencentcloud::Monitor.v20230616.models.PageByNoResult`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3412,10 +3497,10 @@ module TencentCloud
 
       # 分页请求参数
       class PageByNoParams < TencentCloud::Common::AbstractModel
-        # @param PerPage: 每个分页的数量是多少
+        # @param PerPage: <p>每个分页的数量是多少</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PerPage: Integer
-        # @param PageNo: 第几个分页，从1开始
+        # @param PageNo: <p>第几个分页，从1开始</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PageNo: String
 
@@ -3451,8 +3536,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :TotalPage, :CurrentPageNo, :IsEnd, :End
         extend Gem::Deprecate
-        deprecate :IsEnd, :none, 2026, 8
-        deprecate :IsEnd=, :none, 2026, 8
+        deprecate :IsEnd, :none, 2026, 10
+        deprecate :IsEnd=, :none, 2026, 10
 
         def initialize(totalcount=nil, totalpage=nil, currentpageno=nil, isend=nil, _end=nil)
           @TotalCount = totalcount
@@ -3782,6 +3867,63 @@ module TencentCloud
           @AlarmObjectTmpl = params['AlarmObjectTmpl']
           @AlarmRegionTmpl = params['AlarmRegionTmpl']
           @AlarmTimeTmpl = params['AlarmTimeTmpl']
+        end
+      end
+
+      # 承载消息接收人/组明细
+      class ReceiverGroup < TencentCloud::Common::AbstractModel
+        # @param ReceiverType: <p>本条发送规则的接收者类型</p><p>枚举值：</p><ul><li>UIDs： 按用户 UID</li><li>UINs： 按账号 UIN</li><li>Group： 按用户分组。ReceiverIds 为分组 ID</li><li>Oncall： 按值班表，且未被发送时的真实接收人覆盖</li><li>RtxName： 发送时解析出的员工 RTX 英文名</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReceiverType: String
+        # @param ReceiverIds: <p>本条规则配置的原始接收者 ID 列表。具体是哪一种 ID，由 ReceiverType 决定</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReceiverIds: Array
+        # @param Names: <p>接收者展示名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Names: Array
+        # @param MemberIds: <p>用户分组展开后的成员用户 ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MemberIds: Array
+        # @param WeekDay: <p>该规则允许通知的星期。语义与 time.Weekday 一致</p><p>枚举值：</p><ul><li>0： 周日</li><li>1： 周一</li><li>2： 周二</li><li>3： 周三</li><li>4： 周四</li><li>5： 周五</li><li>6： 周六</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WeekDay: Array
+        # @param DayStartSeconds: <p>通知时段相对当日零点的秒数偏移，需配合 TimeZoneName 解读</p><p>单位：秒</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DayStartSeconds: Integer
+        # @param DayEndSeconds: <p>通知时段相对当日零点的秒数偏移，需配合 TimeZoneName 解读</p><p>单位：秒</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DayEndSeconds: Integer
+        # @param TimeZoneName: <p>DayStartSeconds、DayEndSeconds 所属时区</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimeZoneName: String
+        # @param ChannelNames: <p>该规则实际发送的接收渠道全名列表</p><p>枚举值：</p><ul><li>QCloudYehe_site： 腾讯云野鹤，站内信</li><li>QCloudYehe_email： 腾讯云野鹤，电子邮件</li><li>QCloudYehe_sms： 腾讯云野鹤，短信</li><li>QCloudYehe_wechat： 腾讯云野鹤，微信</li><li>QCloudYehe_voice： 腾讯云野鹤，语音</li><li>QCloudYehe_qywx： 腾讯云野鹤，企业微信</li><li>QCloudYehe_andon： 腾讯云野鹤，安灯</li><li>TOF_weWorkMessage： TOF，企业微信消息</li><li>TOF_email： TOF，企业邮箱</li><li>TOF_phoneCall： TOF，电话</li><li>WeWork： 企业微信机器人</li><li>WebHook： 自定义 WebHook</li><li>FeiShu： 飞书</li><li>DingDing： 钉钉</li><li>Slack： Slack</li><li>GoogleChat： Google Chat</li><li>Teams： Teams</li><li>TeamsWorkflow： Teams Workflow</li><li>PagerDuty： PagerDuty</li><li>CLS： 日志服务 CLS</li><li>AS： 弹性伸缩</li><li>TCSYehe： TCS 野鹤。正文的 SubChannel 取渠道名本身</li><li>SCF： 云函数。不返回 Contents</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChannelNames: Array
+
+        attr_accessor :ReceiverType, :ReceiverIds, :Names, :MemberIds, :WeekDay, :DayStartSeconds, :DayEndSeconds, :TimeZoneName, :ChannelNames
+
+        def initialize(receivertype=nil, receiverids=nil, names=nil, memberids=nil, weekday=nil, daystartseconds=nil, dayendseconds=nil, timezonename=nil, channelnames=nil)
+          @ReceiverType = receivertype
+          @ReceiverIds = receiverids
+          @Names = names
+          @MemberIds = memberids
+          @WeekDay = weekday
+          @DayStartSeconds = daystartseconds
+          @DayEndSeconds = dayendseconds
+          @TimeZoneName = timezonename
+          @ChannelNames = channelnames
+        end
+
+        def deserialize(params)
+          @ReceiverType = params['ReceiverType']
+          @ReceiverIds = params['ReceiverIds']
+          @Names = params['Names']
+          @MemberIds = params['MemberIds']
+          @WeekDay = params['WeekDay']
+          @DayStartSeconds = params['DayStartSeconds']
+          @DayEndSeconds = params['DayEndSeconds']
+          @TimeZoneName = params['TimeZoneName']
+          @ChannelNames = params['ChannelNames']
         end
       end
 

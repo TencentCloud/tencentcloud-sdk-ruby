@@ -626,6 +626,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询trace详情接口信息
+
+        # @param request: Request instance for DescribeSpanTreeByID.
+        # @type request: :class:`Tencentcloud::apm::V20210622::DescribeSpanTreeByIDRequest`
+        # @rtype: :class:`Tencentcloud::apm::V20210622::DescribeSpanTreeByIDResponse`
+        def DescribeSpanTreeByID(request)
+          body = send_request('DescribeSpanTreeByID', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSpanTreeByIDResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 根据维度名和过滤条件，查询维度数据.
 
         # @param request: Request instance for DescribeTagValues.
