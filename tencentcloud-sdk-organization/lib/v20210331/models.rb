@@ -525,6 +525,61 @@ module TencentCloud
         end
       end
 
+      # AuditPermissionApplyOrder请求参数结构体
+      class AuditPermissionApplyOrderRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: <p>空间 ID</p>
+        # @type ZoneId: String
+        # @param ApplyId: <p>申请单 ID</p>
+        # @type ApplyId: String
+        # @param AuditResult: <p>审批结果</p><p>枚举值：</p><ul><li>Approve： 通过</li><li>Reject： 拒绝</li></ul>
+        # @type AuditResult: String
+        # @param AuditOpinion: <p>审批意见</p>
+        # @type AuditOpinion: String
+
+        attr_accessor :ZoneId, :ApplyId, :AuditResult, :AuditOpinion
+
+        def initialize(zoneid=nil, applyid=nil, auditresult=nil, auditopinion=nil)
+          @ZoneId = zoneid
+          @ApplyId = applyid
+          @AuditResult = auditresult
+          @AuditOpinion = auditopinion
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @ApplyId = params['ApplyId']
+          @AuditResult = params['AuditResult']
+          @AuditOpinion = params['AuditOpinion']
+        end
+      end
+
+      # AuditPermissionApplyOrder返回参数结构体
+      class AuditPermissionApplyOrderResponse < TencentCloud::Common::AbstractModel
+        # @param Tasks: <p>同步任务列表</p>
+        # @type Tasks: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Tasks, :RequestId
+
+        def initialize(tasks=nil, requestid=nil)
+          @Tasks = tasks
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Tasks'].nil?
+            @Tasks = []
+            params['Tasks'].each do |i|
+              taskinfo_tmp = TaskInfo.new
+              taskinfo_tmp.deserialize(i)
+              @Tasks << taskinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 互信主体主要信息
       class AuthNode < TencentCloud::Common::AbstractModel
         # @param RelationId: 互信主体关系ID
@@ -6927,8 +6982,8 @@ module TencentCloud
 
         attr_accessor :ProductResourceId, :ResourceGrantLast
         extend Gem::Deprecate
-        deprecate :ResourceGrantLast, :none, 2026, 9
-        deprecate :ResourceGrantLast=, :none, 2026, 9
+        deprecate :ResourceGrantLast, :none, 2026, 10
+        deprecate :ResourceGrantLast=, :none, 2026, 10
 
         def initialize(productresourceid=nil, resourcegrantlast=nil)
           @ProductResourceId = productresourceid
@@ -7762,8 +7817,8 @@ module TencentCloud
 
         attr_accessor :ResourceId, :ProductResourceId
         extend Gem::Deprecate
-        deprecate :ResourceId, :none, 2026, 9
-        deprecate :ResourceId=, :none, 2026, 9
+        deprecate :ResourceId, :none, 2026, 10
+        deprecate :ResourceId=, :none, 2026, 10
 
         def initialize(resourceid=nil, productresourceid=nil)
           @ResourceId = resourceid

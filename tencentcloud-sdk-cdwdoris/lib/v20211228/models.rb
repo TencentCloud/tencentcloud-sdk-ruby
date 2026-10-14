@@ -710,8 +710,8 @@ module TencentCloud
 
         attr_accessor :ComputeGroupId, :FileName, :FileConf, :KeyConf, :OriParam, :NeedRestart, :FilePath, :FileKeyValues, :FileKeyValuesNew
         extend Gem::Deprecate
-        deprecate :FileKeyValues, :none, 2026, 9
-        deprecate :FileKeyValues=, :none, 2026, 9
+        deprecate :FileKeyValues, :none, 2026, 10
+        deprecate :FileKeyValues=, :none, 2026, 10
 
         def initialize(computegroupid=nil, filename=nil, fileconf=nil, keyconf=nil, oriparam=nil, needrestart=nil, filepath=nil, filekeyvalues=nil, filekeyvaluesnew=nil)
           @ComputeGroupId = computegroupid
@@ -961,20 +961,20 @@ module TencentCloud
 
         attr_accessor :InstanceId, :OperationType, :ScheduleId, :WeekDays, :ExecuteHour, :BackUpTables, :BackupType, :DorisSourceInfo, :BackupTimeType, :RestoreType, :AuthType, :CosSourceInfo, :ScheduleName, :ScheduleInfo, :UpdateStatus, :CosBucket, :SnapshotRemainPolicy, :DataRemoteRegion, :BucketType, :EnableSecurityLock, :GracePeriod
         extend Gem::Deprecate
-        deprecate :WeekDays, :none, 2026, 9
-        deprecate :WeekDays=, :none, 2026, 9
-        deprecate :ExecuteHour, :none, 2026, 9
-        deprecate :ExecuteHour=, :none, 2026, 9
-        deprecate :BackupType, :none, 2026, 9
-        deprecate :BackupType=, :none, 2026, 9
-        deprecate :DorisSourceInfo, :none, 2026, 9
-        deprecate :DorisSourceInfo=, :none, 2026, 9
-        deprecate :RestoreType, :none, 2026, 9
-        deprecate :RestoreType=, :none, 2026, 9
-        deprecate :AuthType, :none, 2026, 9
-        deprecate :AuthType=, :none, 2026, 9
-        deprecate :CosSourceInfo, :none, 2026, 9
-        deprecate :CosSourceInfo=, :none, 2026, 9
+        deprecate :WeekDays, :none, 2026, 10
+        deprecate :WeekDays=, :none, 2026, 10
+        deprecate :ExecuteHour, :none, 2026, 10
+        deprecate :ExecuteHour=, :none, 2026, 10
+        deprecate :BackupType, :none, 2026, 10
+        deprecate :BackupType=, :none, 2026, 10
+        deprecate :DorisSourceInfo, :none, 2026, 10
+        deprecate :DorisSourceInfo=, :none, 2026, 10
+        deprecate :RestoreType, :none, 2026, 10
+        deprecate :RestoreType=, :none, 2026, 10
+        deprecate :AuthType, :none, 2026, 10
+        deprecate :AuthType=, :none, 2026, 10
+        deprecate :CosSourceInfo, :none, 2026, 10
+        deprecate :CosSourceInfo=, :none, 2026, 10
 
         def initialize(instanceid=nil, operationtype=nil, scheduleid=nil, weekdays=nil, executehour=nil, backuptables=nil, backuptype=nil, dorissourceinfo=nil, backuptimetype=nil, restoretype=nil, authtype=nil, cossourceinfo=nil, schedulename=nil, scheduleinfo=nil, updatestatus=nil, cosbucket=nil, snapshotremainpolicy=nil, dataremoteregion=nil, buckettype=nil, enablesecuritylock=nil, graceperiod=nil)
           @InstanceId = instanceid
@@ -1159,10 +1159,10 @@ module TencentCloud
 
         attr_accessor :Zone, :FeSpec, :BeSpec, :HaFlag, :UserVPCId, :UserSubnetId, :ProductVersion, :ChargeProperties, :InstanceName, :DorisUserPwd, :Tags, :HaType, :CaseSensitive, :EnableMultiZones, :UserMultiZoneInfos, :UserMultiZoneInfoArr, :IsSSC, :SSCCU, :CacheDiskSize, :CacheDataDiskSize, :DiskEncrypt
         extend Gem::Deprecate
-        deprecate :UserMultiZoneInfos, :none, 2026, 9
-        deprecate :UserMultiZoneInfos=, :none, 2026, 9
-        deprecate :CacheDiskSize, :none, 2026, 9
-        deprecate :CacheDiskSize=, :none, 2026, 9
+        deprecate :UserMultiZoneInfos, :none, 2026, 10
+        deprecate :UserMultiZoneInfos=, :none, 2026, 10
+        deprecate :CacheDiskSize, :none, 2026, 10
+        deprecate :CacheDiskSize=, :none, 2026, 10
 
         def initialize(zone=nil, fespec=nil, bespec=nil, haflag=nil, uservpcid=nil, usersubnetid=nil, productversion=nil, chargeproperties=nil, instancename=nil, dorisuserpwd=nil, tags=nil, hatype=nil, casesensitive=nil, enablemultizones=nil, usermultizoneinfos=nil, usermultizoneinfoarr=nil, isssc=nil, ssccu=nil, cachedisksize=nil, cachedatadisksize=nil, diskencrypt=nil)
           @Zone = zone
@@ -2876,8 +2876,8 @@ module TencentCloud
 
         attr_accessor :InstanceID, :Input
         extend Gem::Deprecate
-        deprecate :InstanceID, :none, 2026, 9
-        deprecate :InstanceID=, :none, 2026, 9
+        deprecate :InstanceID, :none, 2026, 10
+        deprecate :InstanceID=, :none, 2026, 10
 
         def initialize(instanceid=nil, input=nil)
           @InstanceID = instanceid
@@ -3747,148 +3747,142 @@ module TencentCloud
 
       # 实例描述信息
       class InstanceInfo < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 集群实例ID, "cdwdoris-xxxx" 字符串类型
+        # @param InstanceId: <p>集群实例ID, &quot;cdwdoris-xxxx&quot; 字符串类型</p>
         # @type InstanceId: String
-        # @param InstanceName: 集群实例名称
+        # @param InstanceName: <p>集群实例名称</p>
         # @type InstanceName: String
-        # @param Status: 状态,
-        # Init  创建中
-        # Serving   运行中
-        # Isolated   已隔离
-        # Changing  变更中
+        # @param Status: <p>状态,<br>Init  创建中<br>Serving   运行中<br>Isolated   已隔离<br>Changing  变更中</p>
         # @type Status: String
-        # @param Version: 版本
+        # @param Version: <p>版本</p>
         # @type Version: String
-        # @param Region: 地域, ap-guangzhou
+        # @param Region: <p>地域, ap-guangzhou</p>
         # @type Region: String
-        # @param Zone: 可用区， ap-guangzhou-3
+        # @param Zone: <p>可用区， ap-guangzhou-3</p>
         # @type Zone: String
-        # @param VpcId: 私有网络名称
+        # @param VpcId: <p>私有网络名称</p>
         # @type VpcId: String
-        # @param SubnetId: 子网名称
+        # @param SubnetId: <p>子网名称</p>
         # @type SubnetId: String
-        # @param PayMode: 付费类型，"hour", "prepay"
+        # @param PayMode: <p>付费类型，&quot;hour&quot;, &quot;prepay&quot;</p>
         # @type PayMode: String
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # @type CreateTime: String
-        # @param ExpireTime: 过期时间
+        # @param ExpireTime: <p>过期时间</p>
         # @type ExpireTime: String
-        # @param MasterSummary: 数据节点描述信息
+        # @param MasterSummary: <p>数据节点描述信息</p>
         # @type MasterSummary: :class:`Tencentcloud::Cdwdoris.v20211228.models.NodesSummary`
-        # @param CoreSummary: zookeeper节点描述信息
+        # @param CoreSummary: <p>zookeeper节点描述信息</p>
         # @type CoreSummary: :class:`Tencentcloud::Cdwdoris.v20211228.models.NodesSummary`
-        # @param HA: 高可用，"true" "false"
+        # @param HA: <p>高可用，&quot;true&quot; &quot;false&quot;</p>
         # @type HA: String
-        # @param HaType: 高可用类型：
-        # 0：非高可用
-        # 1：读高可用
-        # 2：读写高可用。
+        # @param HaType: <p>高可用类型：<br>0：非高可用<br>1：读高可用<br>2：读写高可用。</p>
         # @type HaType: Integer
-        # @param AccessInfo: 访问地址，例如 "10.0.0.1:9000"
+        # @param AccessInfo: <p>访问地址，例如 &quot;10.0.0.1:9000&quot;</p>
         # @type AccessInfo: String
-        # @param Id: 记录ID，数值型
+        # @param Id: <p>记录ID，数值型</p>
         # @type Id: Integer
-        # @param RegionId: regionId, 表示地域
+        # @param RegionId: <p>regionId, 表示地域</p>
         # @type RegionId: Integer
-        # @param ZoneDesc: 可用区说明，例如 "广州三区"
+        # @param ZoneDesc: <p>可用区说明，例如 &quot;广州三区&quot;</p>
         # @type ZoneDesc: String
-        # @param FlowMsg: 错误流程说明信息
+        # @param FlowMsg: <p>错误流程说明信息</p>
         # @type FlowMsg: String
-        # @param StatusDesc: 状态描述，例如“运行中”等
+        # @param StatusDesc: <p>状态描述，例如“运行中”等</p>
         # @type StatusDesc: String
-        # @param RenewFlag: 自动续费标记
+        # @param RenewFlag: <p>自动续费标记</p>
         # @type RenewFlag: Boolean
-        # @param Tags: 标签列表
+        # @param Tags: <p>标签列表</p>
         # @type Tags: Array
-        # @param Monitor: 监控信息
+        # @param Monitor: <p>监控信息</p>
         # @type Monitor: String
-        # @param HasClsTopic: 是否开通日志
+        # @param HasClsTopic: <p>是否开通日志</p>
         # @type HasClsTopic: Boolean
-        # @param ClsTopicId: 日志主题ID
+        # @param ClsTopicId: <p>日志主题ID</p>
         # @type ClsTopicId: String
-        # @param ClsLogSetId: 日志集ID
+        # @param ClsLogSetId: <p>日志集ID</p>
         # @type ClsLogSetId: String
-        # @param EnableXMLConfig: 是否支持xml配置管理
+        # @param EnableXMLConfig: <p>是否支持xml配置管理</p>
         # @type EnableXMLConfig: Integer
-        # @param RegionDesc: 区域
+        # @param RegionDesc: <p>区域</p>
         # @type RegionDesc: String
-        # @param Eip: 弹性网卡地址
+        # @param Eip: <p>弹性网卡地址</p>
         # @type Eip: String
-        # @param CosMoveFactor: 冷热分层系数
+        # @param CosMoveFactor: <p>冷热分层系数</p>
         # @type CosMoveFactor: Integer
-        # @param Kind: external/local/yunti
+        # @param Kind: <p>external/local/yunti</p>
         # @type Kind: String
-        # @param CosBucketName: cos桶
+        # @param CosBucketName: <p>cos桶</p>
         # @type CosBucketName: String
-        # @param CanAttachCbs: cbs
+        # @param CanAttachCbs: <p>cbs</p>
         # @type CanAttachCbs: Boolean
-        # @param BuildVersion: 小版本
+        # @param BuildVersion: <p>小版本</p>
         # @type BuildVersion: String
-        # @param Components: 组件信息
-        # 注：这里返回类型实际为map[string]struct类型，并非显示的string类型，可以参考“示例值”进行数据的解析。
+        # @param Components: <p>组件信息<br>注：这里返回类型实际为map[string]struct类型，并非显示的string类型，可以参考“示例值”进行数据的解析。</p>
         # @type Components: String
-        # @param IfExistCatalog: 判断审计日志表是否有catalog字段
+        # @param IfExistCatalog: <p>判断审计日志表是否有catalog字段</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IfExistCatalog: Integer
-        # @param Characteristic: 页面特性，用于前端屏蔽一些页面入口
+        # @param Characteristic: <p>页面特性，用于前端屏蔽一些页面入口</p>
         # @type Characteristic: Array
-        # @param RestartTimeout: 超时时间 单位s
+        # @param RestartTimeout: <p>超时时间 单位s</p>
         # @type RestartTimeout: String
-        # @param GraceShutdownWaitSeconds: 内核优雅重启超时时间，如果为-1说明未设置
+        # @param GraceShutdownWaitSeconds: <p>内核优雅重启超时时间，如果为-1说明未设置</p>
         # @type GraceShutdownWaitSeconds: String
-        # @param CaseSensitive: 表名大小写是否敏感，0：敏感；1：不敏感，以小写进行比较；2：不敏感，表名改为以小写存储
+        # @param CaseSensitive: <p>表名大小写是否敏感，0：敏感；1：不敏感，以小写进行比较；2：不敏感，表名改为以小写存储</p>
         # @type CaseSensitive: Integer
-        # @param IsWhiteSGs: 用户是否可以绑定安全组
+        # @param IsWhiteSGs: <p>用户是否可以绑定安全组</p>
         # @type IsWhiteSGs: Boolean
-        # @param BindSGs: 已绑定的安全组信息
+        # @param BindSGs: <p>已绑定的安全组信息</p>
         # @type BindSGs: Array
-        # @param EnableMultiZones: 是否为多可用区
+        # @param EnableMultiZones: <p>是否为多可用区</p>
         # @type EnableMultiZones: Boolean
-        # @param UserNetworkInfos: 用户可用区和子网信息
+        # @param UserNetworkInfos: <p>用户可用区和子网信息</p>
         # @type UserNetworkInfos: String
-        # @param EnableCoolDown: 是否启用冷热分层。0：未开启 1：已开启
+        # @param EnableCoolDown: <p>是否启用冷热分层。0：未开启 1：已开启</p>
         # @type EnableCoolDown: Integer
-        # @param CoolDownBucket: 冷热分层使用COS桶
+        # @param CoolDownBucket: <p>冷热分层使用COS桶</p>
         # @type CoolDownBucket: String
-        # @param Details: 实例扩展信息
+        # @param Details: <p>实例扩展信息</p>
         # @type Details: :class:`Tencentcloud::Cdwdoris.v20211228.models.InstanceDetail`
-        # @param EnableDlc: 是否启用DLC 0:关闭 1:开启
+        # @param EnableDlc: <p>是否启用DLC 0:关闭 1:开启</p>
         # @type EnableDlc: Integer
-        # @param AccountType: 账户类型 0:普通用户 1:CAM用户
+        # @param AccountType: <p>账户类型 0:普通用户 1:CAM用户</p>
         # @type AccountType: Integer
-        # @param MonitorMode: 监控模式 0: 老监控 1：新监控
+        # @param MonitorMode: <p>监控模式 0: 老监控 1：新监控</p>
         # @type MonitorMode: Integer
-        # @param CNSummary: cn节点信息
+        # @param CNSummary: <p>cn节点信息</p>
         # @type CNSummary: :class:`Tencentcloud::Cdwdoris.v20211228.models.NodesSummary`
-        # @param ComputeGroupCount: 计算组个数
+        # @param ComputeGroupCount: <p>计算组个数</p>
         # @type ComputeGroupCount: Integer
-        # @param CosStorageSize: 存算分离cos存储数据
+        # @param CosStorageSize: <p>存算分离cos存储数据</p>
         # @type CosStorageSize: Float
-        # @param IsMasterNonVM: 存算分离的指标 当是true 不支持新建计算组
+        # @param IsMasterNonVM: <p>存算分离的指标 当是true 不支持新建计算组</p>
         # @type IsMasterNonVM: Boolean
-        # @param CosPkgCapacity: Cos容量包大小
+        # @param CosPkgCapacity: <p>Cos容量包大小</p>
         # @type CosPkgCapacity: Integer
-        # @param UseManagedBucket: 集群是否使用托管桶
+        # @param UseManagedBucket: <p>集群是否使用托管桶</p>
         # @type UseManagedBucket: Boolean
-        # @param InstanceType: 集群类型
+        # @param InstanceType: <p>集群类型</p>
         # @type InstanceType: String
-        # @param MasterInstance: 对应主集群
+        # @param MasterInstance: <p>对应主集群</p>
         # @type MasterInstance: String
-        # @param SlaveInstances: 对应备集群
+        # @param SlaveInstances: <p>对应备集群</p>
         # @type SlaveInstances: Array
-        # @param SyncerIp: ccr服务部署节点ip
+        # @param SyncerIp: <p>ccr服务部署节点ip</p>
         # @type SyncerIp: String
-        # @param EnableSqlConv: 是否支持sql convertor
+        # @param EnableSqlConv: <p>是否支持sql convertor</p>
         # @type EnableSqlConv: Integer
-        # @param TimeZone: 集群时区，默认+08:00
+        # @param TimeZone: <p>集群时区，默认+08:00</p>
         # @type TimeZone: String
+        # @param CacheDiskType: <p>缓存盘介质：任一计算组为单副本SSD即ELASTIC_REMOTE_SSD（不支持变配多可用区部署等），否则为默认计算组介质；非存算分离为空</p>
+        # @type CacheDiskType: String
 
-        attr_accessor :InstanceId, :InstanceName, :Status, :Version, :Region, :Zone, :VpcId, :SubnetId, :PayMode, :CreateTime, :ExpireTime, :MasterSummary, :CoreSummary, :HA, :HaType, :AccessInfo, :Id, :RegionId, :ZoneDesc, :FlowMsg, :StatusDesc, :RenewFlag, :Tags, :Monitor, :HasClsTopic, :ClsTopicId, :ClsLogSetId, :EnableXMLConfig, :RegionDesc, :Eip, :CosMoveFactor, :Kind, :CosBucketName, :CanAttachCbs, :BuildVersion, :Components, :IfExistCatalog, :Characteristic, :RestartTimeout, :GraceShutdownWaitSeconds, :CaseSensitive, :IsWhiteSGs, :BindSGs, :EnableMultiZones, :UserNetworkInfos, :EnableCoolDown, :CoolDownBucket, :Details, :EnableDlc, :AccountType, :MonitorMode, :CNSummary, :ComputeGroupCount, :CosStorageSize, :IsMasterNonVM, :CosPkgCapacity, :UseManagedBucket, :InstanceType, :MasterInstance, :SlaveInstances, :SyncerIp, :EnableSqlConv, :TimeZone
+        attr_accessor :InstanceId, :InstanceName, :Status, :Version, :Region, :Zone, :VpcId, :SubnetId, :PayMode, :CreateTime, :ExpireTime, :MasterSummary, :CoreSummary, :HA, :HaType, :AccessInfo, :Id, :RegionId, :ZoneDesc, :FlowMsg, :StatusDesc, :RenewFlag, :Tags, :Monitor, :HasClsTopic, :ClsTopicId, :ClsLogSetId, :EnableXMLConfig, :RegionDesc, :Eip, :CosMoveFactor, :Kind, :CosBucketName, :CanAttachCbs, :BuildVersion, :Components, :IfExistCatalog, :Characteristic, :RestartTimeout, :GraceShutdownWaitSeconds, :CaseSensitive, :IsWhiteSGs, :BindSGs, :EnableMultiZones, :UserNetworkInfos, :EnableCoolDown, :CoolDownBucket, :Details, :EnableDlc, :AccountType, :MonitorMode, :CNSummary, :ComputeGroupCount, :CosStorageSize, :IsMasterNonVM, :CosPkgCapacity, :UseManagedBucket, :InstanceType, :MasterInstance, :SlaveInstances, :SyncerIp, :EnableSqlConv, :TimeZone, :CacheDiskType
         extend Gem::Deprecate
-        deprecate :IfExistCatalog, :none, 2026, 9
-        deprecate :IfExistCatalog=, :none, 2026, 9
+        deprecate :IfExistCatalog, :none, 2026, 10
+        deprecate :IfExistCatalog=, :none, 2026, 10
 
-        def initialize(instanceid=nil, instancename=nil, status=nil, version=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, paymode=nil, createtime=nil, expiretime=nil, mastersummary=nil, coresummary=nil, ha=nil, hatype=nil, accessinfo=nil, id=nil, regionid=nil, zonedesc=nil, flowmsg=nil, statusdesc=nil, renewflag=nil, tags=nil, monitor=nil, hasclstopic=nil, clstopicid=nil, clslogsetid=nil, enablexmlconfig=nil, regiondesc=nil, eip=nil, cosmovefactor=nil, kind=nil, cosbucketname=nil, canattachcbs=nil, buildversion=nil, components=nil, ifexistcatalog=nil, characteristic=nil, restarttimeout=nil, graceshutdownwaitseconds=nil, casesensitive=nil, iswhitesgs=nil, bindsgs=nil, enablemultizones=nil, usernetworkinfos=nil, enablecooldown=nil, cooldownbucket=nil, details=nil, enabledlc=nil, accounttype=nil, monitormode=nil, cnsummary=nil, computegroupcount=nil, cosstoragesize=nil, ismasternonvm=nil, cospkgcapacity=nil, usemanagedbucket=nil, instancetype=nil, masterinstance=nil, slaveinstances=nil, syncerip=nil, enablesqlconv=nil, timezone=nil)
+        def initialize(instanceid=nil, instancename=nil, status=nil, version=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, paymode=nil, createtime=nil, expiretime=nil, mastersummary=nil, coresummary=nil, ha=nil, hatype=nil, accessinfo=nil, id=nil, regionid=nil, zonedesc=nil, flowmsg=nil, statusdesc=nil, renewflag=nil, tags=nil, monitor=nil, hasclstopic=nil, clstopicid=nil, clslogsetid=nil, enablexmlconfig=nil, regiondesc=nil, eip=nil, cosmovefactor=nil, kind=nil, cosbucketname=nil, canattachcbs=nil, buildversion=nil, components=nil, ifexistcatalog=nil, characteristic=nil, restarttimeout=nil, graceshutdownwaitseconds=nil, casesensitive=nil, iswhitesgs=nil, bindsgs=nil, enablemultizones=nil, usernetworkinfos=nil, enablecooldown=nil, cooldownbucket=nil, details=nil, enabledlc=nil, accounttype=nil, monitormode=nil, cnsummary=nil, computegroupcount=nil, cosstoragesize=nil, ismasternonvm=nil, cospkgcapacity=nil, usemanagedbucket=nil, instancetype=nil, masterinstance=nil, slaveinstances=nil, syncerip=nil, enablesqlconv=nil, timezone=nil, cachedisktype=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Status = status
@@ -3952,6 +3946,7 @@ module TencentCloud
           @SyncerIp = syncerip
           @EnableSqlConv = enablesqlconv
           @TimeZone = timezone
+          @CacheDiskType = cachedisktype
         end
 
         def deserialize(params)
@@ -4037,6 +4032,7 @@ module TencentCloud
           @SyncerIp = params['SyncerIp']
           @EnableSqlConv = params['EnableSqlConv']
           @TimeZone = params['TimeZone']
+          @CacheDiskType = params['CacheDiskType']
         end
       end
 
@@ -5082,18 +5078,18 @@ module TencentCloud
 
         attr_accessor :InstanceId, :BackUpJobId, :ReplicationNum, :ReserveSourceConfig, :RecoverType, :CosSourceInfo, :ScheduleType, :NextTime, :ScheduleName, :OperationType, :RecoverScope, :RecoverDatabase, :ReserveStoragePolicy
         extend Gem::Deprecate
-        deprecate :RecoverType, :none, 2026, 9
-        deprecate :RecoverType=, :none, 2026, 9
-        deprecate :CosSourceInfo, :none, 2026, 9
-        deprecate :CosSourceInfo=, :none, 2026, 9
-        deprecate :ScheduleType, :none, 2026, 9
-        deprecate :ScheduleType=, :none, 2026, 9
-        deprecate :NextTime, :none, 2026, 9
-        deprecate :NextTime=, :none, 2026, 9
-        deprecate :ScheduleName, :none, 2026, 9
-        deprecate :ScheduleName=, :none, 2026, 9
-        deprecate :OperationType, :none, 2026, 9
-        deprecate :OperationType=, :none, 2026, 9
+        deprecate :RecoverType, :none, 2026, 10
+        deprecate :RecoverType=, :none, 2026, 10
+        deprecate :CosSourceInfo, :none, 2026, 10
+        deprecate :CosSourceInfo=, :none, 2026, 10
+        deprecate :ScheduleType, :none, 2026, 10
+        deprecate :ScheduleType=, :none, 2026, 10
+        deprecate :NextTime, :none, 2026, 10
+        deprecate :NextTime=, :none, 2026, 10
+        deprecate :ScheduleName, :none, 2026, 10
+        deprecate :ScheduleName=, :none, 2026, 10
+        deprecate :OperationType, :none, 2026, 10
+        deprecate :OperationType=, :none, 2026, 10
 
         def initialize(instanceid=nil, backupjobid=nil, replicationnum=nil, reservesourceconfig=nil, recovertype=nil, cossourceinfo=nil, scheduletype=nil, nexttime=nil, schedulename=nil, operationtype=nil, recoverscope=nil, recoverdatabase=nil, reservestoragepolicy=nil)
           @InstanceId = instanceid
@@ -5359,30 +5355,32 @@ module TencentCloud
 
       # 资源规格描述信息
       class ResourceSpec < TencentCloud::Common::AbstractModel
-        # @param Name: 规格名称，例如“SCH1"
+        # @param Name: <p>规格名称，例如“SCH1&quot;</p>
         # @type Name: String
-        # @param Cpu: cpu核数
+        # @param Cpu: <p>cpu核数</p>
         # @type Cpu: Integer
-        # @param Mem: 内存大小，单位G
+        # @param Mem: <p>内存大小，单位G</p>
         # @type Mem: Integer
-        # @param Type: 分类标记，STANDARD/BIGDATA/HIGHIO分别表示标准型/大数据型/高IO
+        # @param Type: <p>分类标记，STANDARD/BIGDATA/HIGHIO分别表示标准型/大数据型/高IO</p>
         # @type Type: String
-        # @param SystemDisk: 系统盘描述信息
+        # @param SystemDisk: <p>系统盘描述信息</p>
         # @type SystemDisk: :class:`Tencentcloud::Cdwdoris.v20211228.models.DiskSpec`
-        # @param DataDisk: 数据盘描述信息
+        # @param DataDisk: <p>数据盘描述信息</p>
         # @type DataDisk: :class:`Tencentcloud::Cdwdoris.v20211228.models.DiskSpec`
-        # @param MaxNodeSize: 最大节点数目限制
+        # @param MaxNodeSize: <p>最大节点数目限制</p>
         # @type MaxNodeSize: Integer
-        # @param Available: 是否可用，false代表售罄
+        # @param Available: <p>是否可用，false代表售罄</p>
         # @type Available: Boolean
-        # @param ComputeSpecDesc: 规格描述信息
+        # @param ComputeSpecDesc: <p>规格描述信息</p>
         # @type ComputeSpecDesc: String
-        # @param InstanceQuota: cvm库存
+        # @param InstanceQuota: <p>cvm库存</p>
         # @type InstanceQuota: Integer
+        # @param ComputeGroupSuffix: <p>计算组ID自定义后缀。1到8位小写字母、数字或连字符，首尾须为字母或数字；不传则随机生成8位后缀。最终计算组ID格式为实例ID-后缀，同时作为内核计算组名</p>
+        # @type ComputeGroupSuffix: String
 
-        attr_accessor :Name, :Cpu, :Mem, :Type, :SystemDisk, :DataDisk, :MaxNodeSize, :Available, :ComputeSpecDesc, :InstanceQuota
+        attr_accessor :Name, :Cpu, :Mem, :Type, :SystemDisk, :DataDisk, :MaxNodeSize, :Available, :ComputeSpecDesc, :InstanceQuota, :ComputeGroupSuffix
 
-        def initialize(name=nil, cpu=nil, mem=nil, type=nil, systemdisk=nil, datadisk=nil, maxnodesize=nil, available=nil, computespecdesc=nil, instancequota=nil)
+        def initialize(name=nil, cpu=nil, mem=nil, type=nil, systemdisk=nil, datadisk=nil, maxnodesize=nil, available=nil, computespecdesc=nil, instancequota=nil, computegroupsuffix=nil)
           @Name = name
           @Cpu = cpu
           @Mem = mem
@@ -5393,6 +5391,7 @@ module TencentCloud
           @Available = available
           @ComputeSpecDesc = computespecdesc
           @InstanceQuota = instancequota
+          @ComputeGroupSuffix = computegroupsuffix
         end
 
         def deserialize(params)
@@ -5412,6 +5411,7 @@ module TencentCloud
           @Available = params['Available']
           @ComputeSpecDesc = params['ComputeSpecDesc']
           @InstanceQuota = params['InstanceQuota']
+          @ComputeGroupSuffix = params['ComputeGroupSuffix']
         end
       end
 

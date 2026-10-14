@@ -58,8 +58,8 @@ module TencentCloud
 
         attr_accessor :Notes, :Host, :User, :ModifyTime, :ModifyPasswordTime, :CreateTime, :MaxUserConnections, :OpenCam
         extend Gem::Deprecate
-        deprecate :CreateTime, :none, 2026, 9
-        deprecate :CreateTime=, :none, 2026, 9
+        deprecate :CreateTime, :none, 2026, 10
+        deprecate :CreateTime=, :none, 2026, 10
 
         def initialize(notes=nil, host=nil, user=nil, modifytime=nil, modifypasswordtime=nil, createtime=nil, maxuserconnections=nil, opencam=nil)
           @Notes = notes
@@ -439,8 +439,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :StartTime, :EndTime, :AggregationConditions, :AuditLogFilter, :LogFilter
         extend Gem::Deprecate
-        deprecate :AuditLogFilter, :none, 2026, 9
-        deprecate :AuditLogFilter=, :none, 2026, 9
+        deprecate :AuditLogFilter, :none, 2026, 10
+        deprecate :AuditLogFilter=, :none, 2026, 10
 
         def initialize(instanceid=nil, starttime=nil, endtime=nil, aggregationconditions=nil, auditlogfilter=nil, logfilter=nil)
           @InstanceId = instanceid
@@ -1104,10 +1104,10 @@ module TencentCloud
 
         attr_accessor :ExpandThreshold, :ShrinkThreshold, :ExpandPeriod, :ShrinkPeriod, :ExpandSecondPeriod, :ShrinkSecondPeriod
         extend Gem::Deprecate
-        deprecate :ExpandPeriod, :none, 2026, 9
-        deprecate :ExpandPeriod=, :none, 2026, 9
-        deprecate :ShrinkPeriod, :none, 2026, 9
-        deprecate :ShrinkPeriod=, :none, 2026, 9
+        deprecate :ExpandPeriod, :none, 2026, 10
+        deprecate :ExpandPeriod=, :none, 2026, 10
+        deprecate :ShrinkPeriod, :none, 2026, 10
+        deprecate :ShrinkPeriod=, :none, 2026, 10
 
         def initialize(expandthreshold=nil, shrinkthreshold=nil, expandperiod=nil, shrinkperiod=nil, expandsecondperiod=nil, shrinksecondperiod=nil)
           @ExpandThreshold = expandthreshold
@@ -1424,8 +1424,8 @@ module TencentCloud
 
         attr_accessor :Name, :Size, :Date, :IntranetUrl, :InternetUrl, :Type, :BinlogStartTime, :BinlogFinishTime, :Region, :Status, :RemoteInfo, :CosStorageType, :InstanceId, :Progress
         extend Gem::Deprecate
-        deprecate :InstanceId, :none, 2026, 9
-        deprecate :InstanceId=, :none, 2026, 9
+        deprecate :InstanceId, :none, 2026, 10
+        deprecate :InstanceId=, :none, 2026, 10
 
         def initialize(name=nil, size=nil, date=nil, intraneturl=nil, interneturl=nil, type=nil, binlogstarttime=nil, binlogfinishtime=nil, region=nil, status=nil, remoteinfo=nil, cosstoragetype=nil, instanceid=nil, progress=nil)
           @Name = name
@@ -2367,8 +2367,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :StartTime, :EndTime, :Order, :OrderBy, :Filter, :LogFilter, :ColumnFilter
         extend Gem::Deprecate
-        deprecate :Filter, :none, 2026, 9
-        deprecate :Filter=, :none, 2026, 9
+        deprecate :Filter, :none, 2026, 10
+        deprecate :Filter=, :none, 2026, 10
 
         def initialize(instanceid=nil, starttime=nil, endtime=nil, order=nil, orderby=nil, filter=nil, logfilter=nil, columnfilter=nil)
           @InstanceId = instanceid
@@ -2915,8 +2915,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :SpecifiedRollbackTime, :SpecifiedBackupId, :UniqVpcId, :UniqSubnetId, :Memory, :Volume, :InstanceName, :SecurityGroup, :ResourceTags, :Cpu, :ProtectMode, :DeployMode, :SlaveZone, :BackupZone, :DeviceType, :InstanceNodes, :DeployGroupId, :DryRun, :CageId, :ProjectId, :PayType, :Period, :ClusterTopology, :SrcRegion, :SpecifiedSubBackupId, :MasterZone, :Zone, :FourthZone
         extend Gem::Deprecate
-        deprecate :MasterZone, :none, 2026, 9
-        deprecate :MasterZone=, :none, 2026, 9
+        deprecate :MasterZone, :none, 2026, 10
+        deprecate :MasterZone=, :none, 2026, 10
 
         def initialize(instanceid=nil, specifiedrollbacktime=nil, specifiedbackupid=nil, uniqvpcid=nil, uniqsubnetid=nil, memory=nil, volume=nil, instancename=nil, securitygroup=nil, resourcetags=nil, cpu=nil, protectmode=nil, deploymode=nil, slavezone=nil, backupzone=nil, devicetype=nil, instancenodes=nil, deploygroupid=nil, dryrun=nil, cageid=nil, projectid=nil, paytype=nil, period=nil, clustertopology=nil, srcregion=nil, specifiedsubbackupid=nil, masterzone=nil, zone=nil, fourthzone=nil)
           @InstanceId = instanceid
@@ -5164,10 +5164,10 @@ module TencentCloud
 
         attr_accessor :StartTimeMin, :StartTimeMax, :BackupExpireDays, :BackupMethod, :BinlogExpireDays, :BackupTimeWindow, :EnableBackupPeriodSave, :BackupPeriodSaveDays, :BackupPeriodSaveInterval, :BackupPeriodSaveCount, :StartBackupPeriodSaveDate, :EnableBackupArchive, :BackupArchiveDays, :EnableBinlogArchive, :BinlogArchiveDays, :EnableBackupStandby, :BackupStandbyDays, :EnableBinlogStandby, :BinlogStandbyDays, :RequestId
         extend Gem::Deprecate
-        deprecate :StartTimeMin, :none, 2026, 9
-        deprecate :StartTimeMin=, :none, 2026, 9
-        deprecate :StartTimeMax, :none, 2026, 9
-        deprecate :StartTimeMax=, :none, 2026, 9
+        deprecate :StartTimeMin, :none, 2026, 10
+        deprecate :StartTimeMin=, :none, 2026, 10
+        deprecate :StartTimeMax, :none, 2026, 10
+        deprecate :StartTimeMax=, :none, 2026, 10
 
         def initialize(starttimemin=nil, starttimemax=nil, backupexpiredays=nil, backupmethod=nil, binlogexpiredays=nil, backuptimewindow=nil, enablebackupperiodsave=nil, backupperiodsavedays=nil, backupperiodsaveinterval=nil, backupperiodsavecount=nil, startbackupperiodsavedate=nil, enablebackuparchive=nil, backuparchivedays=nil, enablebinlogarchive=nil, binlogarchivedays=nil, enablebackupstandby=nil, backupstandbydays=nil, enablebinlogstandby=nil, binlogstandbydays=nil, requestid=nil)
           @StartTimeMin = starttimemin
@@ -5478,33 +5478,41 @@ module TencentCloud
 
       # DescribeBackups请求参数结构体
       class DescribeBackupsRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv。与云数据库控制台页面中显示的实例 ID 相同。
+        # @param InstanceId: <p>实例 ID，格式如：cdb-c1nl9rpv。与云数据库控制台页面中显示的实例 ID 相同。</p>
         # @type InstanceId: String
-        # @param Offset: 偏移量，最小值为0。
+        # @param Offset: <p>偏移量，最小值为0。</p>
         # @type Offset: Integer
-        # @param Limit: 分页大小，默认值为20，最小值为1，最大值为1000。
+        # @param Limit: <p>分页大小，默认值为20，最小值为1，最大值为1000。</p>
         # @type Limit: Integer
+        # @param MinStartTime: <p>备份开始时间，筛选大于等于此值，时间格式：2016-03-17 02:10:37</p>
+        # @type MinStartTime: String
+        # @param MaxStartTime: <p>备份开始时间，筛选小于等于此值，时间格式：2016-03-17 02:10:37</p>
+        # @type MaxStartTime: String
 
-        attr_accessor :InstanceId, :Offset, :Limit
+        attr_accessor :InstanceId, :Offset, :Limit, :MinStartTime, :MaxStartTime
 
-        def initialize(instanceid=nil, offset=nil, limit=nil)
+        def initialize(instanceid=nil, offset=nil, limit=nil, minstarttime=nil, maxstarttime=nil)
           @InstanceId = instanceid
           @Offset = offset
           @Limit = limit
+          @MinStartTime = minstarttime
+          @MaxStartTime = maxstarttime
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @MinStartTime = params['MinStartTime']
+          @MaxStartTime = params['MaxStartTime']
         end
       end
 
       # DescribeBackups返回参数结构体
       class DescribeBackupsResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 符合查询条件的实例总数。
+        # @param TotalCount: <p>符合查询条件的实例总数。</p>
         # @type TotalCount: Integer
-        # @param Items: 符合查询条件的备份信息详情。
+        # @param Items: <p>符合查询条件的备份信息详情。</p>
         # @type Items: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7867,8 +7875,8 @@ module TencentCloud
 
         attr_accessor :Count, :CustomConf, :WeightRule, :CustomConfInfo, :RequestId
         extend Gem::Deprecate
-        deprecate :CustomConf, :none, 2026, 9
-        deprecate :CustomConf=, :none, 2026, 9
+        deprecate :CustomConf, :none, 2026, 10
+        deprecate :CustomConf=, :none, 2026, 10
 
         def initialize(count=nil, customconf=nil, weightrule=nil, customconfinfo=nil, requestid=nil)
           @Count = count
@@ -9890,8 +9898,8 @@ module TencentCloud
 
         attr_accessor :AsyncRequestId, :RequestId
         extend Gem::Deprecate
-        deprecate :AsyncRequestId, :none, 2026, 9
-        deprecate :AsyncRequestId=, :none, 2026, 9
+        deprecate :AsyncRequestId, :none, 2026, 10
+        deprecate :AsyncRequestId=, :none, 2026, 10
 
         def initialize(asyncrequestid=nil, requestid=nil)
           @AsyncRequestId = asyncrequestid
@@ -10295,8 +10303,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :NewPassword, :Accounts, :SkipValidatePassword
         extend Gem::Deprecate
-        deprecate :SkipValidatePassword, :none, 2026, 9
-        deprecate :SkipValidatePassword=, :none, 2026, 9
+        deprecate :SkipValidatePassword, :none, 2026, 10
+        deprecate :SkipValidatePassword=, :none, 2026, 10
 
         def initialize(instanceid=nil, newpassword=nil, accounts=nil, skipvalidatepassword=nil)
           @InstanceId = instanceid
@@ -10634,8 +10642,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :LogExpireDay, :HighLogExpireDay, :AuditAll, :AuditRuleFilters, :RuleTemplateIds
         extend Gem::Deprecate
-        deprecate :AuditRuleFilters, :none, 2026, 9
-        deprecate :AuditRuleFilters=, :none, 2026, 9
+        deprecate :AuditRuleFilters, :none, 2026, 10
+        deprecate :AuditRuleFilters=, :none, 2026, 10
 
         def initialize(instanceid=nil, logexpireday=nil, highlogexpireday=nil, auditall=nil, auditrulefilters=nil, ruletemplateids=nil)
           @InstanceId = instanceid
@@ -11398,8 +11406,8 @@ module TencentCloud
 
         attr_accessor :AsyncRequestId, :RequestId
         extend Gem::Deprecate
-        deprecate :AsyncRequestId, :none, 2026, 9
-        deprecate :AsyncRequestId=, :none, 2026, 9
+        deprecate :AsyncRequestId, :none, 2026, 10
+        deprecate :AsyncRequestId=, :none, 2026, 10
 
         def initialize(asyncrequestid=nil, requestid=nil)
           @AsyncRequestId = asyncrequestid
@@ -11907,8 +11915,8 @@ module TencentCloud
 
         attr_accessor :RoGroupId, :RoGroupInfo, :RoWeightValues, :IsBalanceRoLoad, :ReplicationDelayTime
         extend Gem::Deprecate
-        deprecate :ReplicationDelayTime, :none, 2026, 9
-        deprecate :ReplicationDelayTime=, :none, 2026, 9
+        deprecate :ReplicationDelayTime, :none, 2026, 10
+        deprecate :ReplicationDelayTime=, :none, 2026, 10
 
         def initialize(rogroupid=nil, rogroupinfo=nil, roweightvalues=nil, isbalanceroload=nil, replicationdelaytime=nil)
           @RoGroupId = rogroupid
@@ -12139,8 +12147,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :LogExpireDay, :HighLogExpireDay, :AuditRuleFilters, :RuleTemplateIds, :AuditAll
         extend Gem::Deprecate
-        deprecate :AuditRuleFilters, :none, 2026, 9
-        deprecate :AuditRuleFilters=, :none, 2026, 9
+        deprecate :AuditRuleFilters, :none, 2026, 10
+        deprecate :AuditRuleFilters=, :none, 2026, 10
 
         def initialize(instanceid=nil, logexpireday=nil, highlogexpireday=nil, auditrulefilters=nil, ruletemplateids=nil, auditall=nil)
           @InstanceId = instanceid
@@ -12419,8 +12427,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :ParamName, :OldValue, :NewValue, :IsSucess, :ModifyTime, :IsSuccess
         extend Gem::Deprecate
-        deprecate :IsSucess, :none, 2026, 9
-        deprecate :IsSucess=, :none, 2026, 9
+        deprecate :IsSucess, :none, 2026, 10
+        deprecate :IsSucess=, :none, 2026, 10
 
         def initialize(instanceid=nil, paramname=nil, oldvalue=nil, newvalue=nil, issucess=nil, modifytime=nil, issuccess=nil)
           @InstanceId = instanceid
@@ -14488,8 +14496,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :DstSlave, :ForceSwitch, :WaitSwitch, :DstNodeId
         extend Gem::Deprecate
-        deprecate :ForceSwitch, :none, 2026, 9
-        deprecate :ForceSwitch=, :none, 2026, 9
+        deprecate :ForceSwitch, :none, 2026, 10
+        deprecate :ForceSwitch=, :none, 2026, 10
 
         def initialize(instanceid=nil, dstslave=nil, forceswitch=nil, waitswitch=nil, dstnodeid=nil)
           @InstanceId = instanceid

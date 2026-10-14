@@ -208,6 +208,163 @@ module TencentCloud
         end
       end
 
+      # DB 层审计日志单条明细。字段由 DruidCommonUtil#changeLogsTdsqlDB 和 BusinessCodeUtils 固定输出。LogType=All 时额外追加 FlowTime。
+      class AuditDBLogItem < TencentCloud::Common::AbstractModel
+        # @param Timestamp: <p>SQL 执行时间点（格式化字符串，yyyy-MM-dd HH:mm:ss）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Timestamp: String
+        # @param ClusterId: <p>集群 ID。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterId: String
+        # @param AffectRows: <p>影响行数。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AffectRows: Integer
+        # @param CheckRows: <p>扫描行数。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CheckRows: Integer
+        # @param CpuTime: <p>CPU 耗时（微秒）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CpuTime: Integer
+        # @param SetHost: <p>后端 Set Host（源字段 dbHost）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SetHost: String
+        # @param DBName: <p>SQL 执行所在的数据库名。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DBName: String
+        # @param ErrCode: <p>SQL 执行返回的错误码，0 表示成功。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrCode: String
+        # @param ExecTime: <p>SQL 执行耗时（微秒）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecTime: Integer
+        # @param Host: <p>客户端来源 IP。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Host: String
+        # @param SetName: <p>Set 名称（源字段 instanceId）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SetName: String
+        # @param IoWaitTime: <p>IO 等待时间（微秒）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IoWaitTime: Integer
+        # @param LockWaitTime: <p>锁等待时间（微秒）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LockWaitTime: Integer
+        # @param SqlStartTimeNs: <p>SQL 开始时间（纳秒级时间戳）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SqlStartTimeNs: Integer
+        # @param QueryId: <p>查询 ID（用于关联查询）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QueryId: String
+        # @param QueryNo: <p>查询序号（同一事务内 SQL 的序列号）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QueryNo: Integer
+        # @param SentRows: <p>返回行数（扫描结果集行数）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SentRows: Integer
+        # @param Sql: <p>执行的 SQL 语句原文。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Sql: String
+        # @param SqlTemplateId: <p>SQL 模板 ID。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SqlTemplateId: String
+        # @param SqlType: <p>SQL 类型（如 Select、Insert、Update、Delete 等）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SqlType: String
+        # @param Tables: <p>涉及的表。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tables: String
+        # @param ThreadId: <p>线程 ID。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ThreadId: String
+        # @param SqlStartTime: <p>SQL 开始时间（毫秒级时间戳）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SqlStartTime: Integer
+        # @param TrxLivingTime: <p>事务存活时间（微秒）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TrxLivingTime: Integer
+        # @param User: <p>执行 SQL 的数据库用户名。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type User: String
+        # @param TrxId: <p>事务 ID。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TrxId: String
+        # @param InternalXId: <p>内部 XID。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InternalXId: String
+        # @param BusinessCode: <p>业务码（由业务侧 SQL 注释中 i/o/p 等 KV 提取）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BusinessCode: String
+        # @param FlowTime: <p>网关流转耗时（毫秒），仅 LogType=All 时由 Gateway 日志关联后返回；LogType=DB 时该字段不下发。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowTime: Integer
+
+        attr_accessor :Timestamp, :ClusterId, :AffectRows, :CheckRows, :CpuTime, :SetHost, :DBName, :ErrCode, :ExecTime, :Host, :SetName, :IoWaitTime, :LockWaitTime, :SqlStartTimeNs, :QueryId, :QueryNo, :SentRows, :Sql, :SqlTemplateId, :SqlType, :Tables, :ThreadId, :SqlStartTime, :TrxLivingTime, :User, :TrxId, :InternalXId, :BusinessCode, :FlowTime
+
+        def initialize(timestamp=nil, clusterid=nil, affectrows=nil, checkrows=nil, cputime=nil, sethost=nil, dbname=nil, errcode=nil, exectime=nil, host=nil, setname=nil, iowaittime=nil, lockwaittime=nil, sqlstarttimens=nil, queryid=nil, queryno=nil, sentrows=nil, sql=nil, sqltemplateid=nil, sqltype=nil, tables=nil, threadid=nil, sqlstarttime=nil, trxlivingtime=nil, user=nil, trxid=nil, internalxid=nil, businesscode=nil, flowtime=nil)
+          @Timestamp = timestamp
+          @ClusterId = clusterid
+          @AffectRows = affectrows
+          @CheckRows = checkrows
+          @CpuTime = cputime
+          @SetHost = sethost
+          @DBName = dbname
+          @ErrCode = errcode
+          @ExecTime = exectime
+          @Host = host
+          @SetName = setname
+          @IoWaitTime = iowaittime
+          @LockWaitTime = lockwaittime
+          @SqlStartTimeNs = sqlstarttimens
+          @QueryId = queryid
+          @QueryNo = queryno
+          @SentRows = sentrows
+          @Sql = sql
+          @SqlTemplateId = sqltemplateid
+          @SqlType = sqltype
+          @Tables = tables
+          @ThreadId = threadid
+          @SqlStartTime = sqlstarttime
+          @TrxLivingTime = trxlivingtime
+          @User = user
+          @TrxId = trxid
+          @InternalXId = internalxid
+          @BusinessCode = businesscode
+          @FlowTime = flowtime
+        end
+
+        def deserialize(params)
+          @Timestamp = params['Timestamp']
+          @ClusterId = params['ClusterId']
+          @AffectRows = params['AffectRows']
+          @CheckRows = params['CheckRows']
+          @CpuTime = params['CpuTime']
+          @SetHost = params['SetHost']
+          @DBName = params['DBName']
+          @ErrCode = params['ErrCode']
+          @ExecTime = params['ExecTime']
+          @Host = params['Host']
+          @SetName = params['SetName']
+          @IoWaitTime = params['IoWaitTime']
+          @LockWaitTime = params['LockWaitTime']
+          @SqlStartTimeNs = params['SqlStartTimeNs']
+          @QueryId = params['QueryId']
+          @QueryNo = params['QueryNo']
+          @SentRows = params['SentRows']
+          @Sql = params['Sql']
+          @SqlTemplateId = params['SqlTemplateId']
+          @SqlType = params['SqlType']
+          @Tables = params['Tables']
+          @ThreadId = params['ThreadId']
+          @SqlStartTime = params['SqlStartTime']
+          @TrxLivingTime = params['TrxLivingTime']
+          @User = params['User']
+          @TrxId = params['TrxId']
+          @InternalXId = params['InternalXId']
+          @BusinessCode = params['BusinessCode']
+          @FlowTime = params['FlowTime']
+        end
+      end
+
       # 实例详细信息
       class AuditInstance < TencentCloud::Common::AbstractModel
         # @param AuditStatus: 审计状态，已开通审计为：YES，未开通审计为：ON。
@@ -411,6 +568,276 @@ module TencentCloud
           @SentRows = params['SentRows']
           @AffectRows = params['AffectRows']
           @ExecTime = params['ExecTime']
+        end
+      end
+
+      # 审计日志查询过滤条件集合。所有字段均可选。注意：MultiSql 、 ExcludeMultiSql 以 JSON 字符串承载二维数组（云 API 平台不支持二维数组），示例：[[a,b]] 表示 (a OR b)。
+      class AuditLogQueryFilter < TencentCloud::Common::AbstractModel
+        # @param SqlType: <p>SQL 类型列表，取值如 SELECT、INSERT、UPDATE、DELETE 等。</p>
+        # @type SqlType: Array
+        # @param ExecTime: <p>执行耗时范围（毫秒），长度为 2 的数组：[最小值, 最大值]。</p>
+        # @type ExecTime: Array
+        # @param IoWaitTime: <p>IO 等待耗时范围（毫秒），长度为 2 的数组。</p>
+        # @type IoWaitTime: Array
+        # @param CpuTime: <p>CPU 耗时范围（毫秒），长度为 2 的数组。</p>
+        # @type CpuTime: Array
+        # @param LockWaitTime: <p>锁等待耗时范围（毫秒），长度为 2 的数组。</p>
+        # @type LockWaitTime: Array
+        # @param ErrCode: <p>SQL 执行错误码，例如 0 表示成功。</p>
+        # @type ErrCode: String
+        # @param ErrInfo: <p>错误信息。</p>
+        # @type ErrInfo: String
+        # @param DBName: <p>数据库名列表。</p>
+        # @type DBName: Array
+        # @param User: <p>用户名列表。</p>
+        # @type User: Array
+        # @param Host: <p>来源 IP 列表。</p>
+        # @type Host: Array
+        # @param ThreadId: <p>线程 ID 列表。</p>
+        # @type ThreadId: Array
+        # @param ProxyHostList: <p>代理节点 Host 列表。</p>
+        # @type ProxyHostList: Array
+        # @param SetHostList: <p>后端 Set Host 列表。</p>
+        # @type SetHostList: Array
+        # @param SetIdList: <p>后端 Set ID 列表。</p>
+        # @type SetIdList: Array
+        # @param MultiSql: <p>多 SQL 关键词条件，JSON 字符串，内部为二维数组：第一级为 AND，第二级为 OR。注意云 API 平台不支持二维数组，此处用字符串承载，服务端自动解析。</p>
+        # @type MultiSql: String
+        # @param ExcludeMultiSql: <p>排除的多 SQL 关键词条件，JSON 字符串，结构同 MultiSql。</p>
+        # @type ExcludeMultiSql: String
+        # @param SqlTemplateId: <p>SQL 模板 ID。</p>
+        # @type SqlTemplateId: String
+        # @param SqlStartTime: <p>SQL 开始时间，示例：2026-10-10 11:05:06.002211</p><p>参数格式：YYYY-MM-DD hh:mm:ss.SSSSSS</p>
+        # @type SqlStartTime: String
+        # @param QueryId: <p>查询 ID，关联查询时使用（LogType=All 时必填）。</p>
+        # @type QueryId: String
+
+        attr_accessor :SqlType, :ExecTime, :IoWaitTime, :CpuTime, :LockWaitTime, :ErrCode, :ErrInfo, :DBName, :User, :Host, :ThreadId, :ProxyHostList, :SetHostList, :SetIdList, :MultiSql, :ExcludeMultiSql, :SqlTemplateId, :SqlStartTime, :QueryId
+
+        def initialize(sqltype=nil, exectime=nil, iowaittime=nil, cputime=nil, lockwaittime=nil, errcode=nil, errinfo=nil, dbname=nil, user=nil, host=nil, threadid=nil, proxyhostlist=nil, sethostlist=nil, setidlist=nil, multisql=nil, excludemultisql=nil, sqltemplateid=nil, sqlstarttime=nil, queryid=nil)
+          @SqlType = sqltype
+          @ExecTime = exectime
+          @IoWaitTime = iowaittime
+          @CpuTime = cputime
+          @LockWaitTime = lockwaittime
+          @ErrCode = errcode
+          @ErrInfo = errinfo
+          @DBName = dbname
+          @User = user
+          @Host = host
+          @ThreadId = threadid
+          @ProxyHostList = proxyhostlist
+          @SetHostList = sethostlist
+          @SetIdList = setidlist
+          @MultiSql = multisql
+          @ExcludeMultiSql = excludemultisql
+          @SqlTemplateId = sqltemplateid
+          @SqlStartTime = sqlstarttime
+          @QueryId = queryid
+        end
+
+        def deserialize(params)
+          @SqlType = params['SqlType']
+          @ExecTime = params['ExecTime']
+          @IoWaitTime = params['IoWaitTime']
+          @CpuTime = params['CpuTime']
+          @LockWaitTime = params['LockWaitTime']
+          @ErrCode = params['ErrCode']
+          @ErrInfo = params['ErrInfo']
+          @DBName = params['DBName']
+          @User = params['User']
+          @Host = params['Host']
+          @ThreadId = params['ThreadId']
+          @ProxyHostList = params['ProxyHostList']
+          @SetHostList = params['SetHostList']
+          @SetIdList = params['SetIdList']
+          @MultiSql = params['MultiSql']
+          @ExcludeMultiSql = params['ExcludeMultiSql']
+          @SqlTemplateId = params['SqlTemplateId']
+          @SqlStartTime = params['SqlStartTime']
+          @QueryId = params['QueryId']
+        end
+      end
+
+      # Proxy 层审计日志单条明细。字段由 DruidCommonUtil#changeLogsTdsqlProxy 和 BusinessCodeUtils 固定输出。
+      class AuditProxyLogItem < TencentCloud::Common::AbstractModel
+        # @param Timestamp: <p>SQL 执行时间点（格式化字符串，yyyy-MM-dd HH:mm:ss）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Timestamp: String
+        # @param ClusterId: <p>集群 ID（dcdb/mariadb 集群标识，与 InstanceId 相同）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterId: String
+        # @param AffectRows: <p>影响行数。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AffectRows: Integer
+        # @param Autocommit: <p>是否自动提交。1 表示开启，0 表示关闭。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Autocommit: String
+        # @param ComType: <p>MySQL 网络协议命令类型（如 COM_QUERY、COM_CONNECT 等）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ComType: String
+        # @param ConnTc: <p>新建连接耗时。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConnTc: Integer
+        # @param DBHost: <p>后端 DB 实例地址（多个用英文逗号分隔）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DBHost: String
+        # @param DBName: <p>SQL 执行所在的数据库名。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DBName: String
+        # @param ErrCode: <p>SQL 执行返回的错误码，0 表示成功。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrCode: String
+        # @param ErrInfo: <p>错误信息。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrInfo: String
+        # @param ExecTime: <p>SQL 执行耗时（微秒）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecTime: Integer
+        # @param HoldConns: <p>请求结束后仍占用的连接数（非事务请求通常为 0）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HoldConns: String
+        # @param Host: <p>客户端来源 IP。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Host: String
+        # @param Mc: <p>是否开启全局一致性读（0 否、1 是）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Mc: String
+        # @param SqlStartTimeUs: <p>SQL 开始时间（微秒精度中的微秒部分）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SqlStartTimeUs: Integer
+        # @param NewConnNum: <p>本次请求新建的连接数。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NewConnNum: Integer
+        # @param ProxyHost: <p>Proxy 代理节点地址。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProxyHost: String
+        # @param ProxyId: <p>Proxy ID。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProxyId: String
+        # @param QueryId: <p>查询 ID（用于关联查询）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QueryId: String
+        # @param SentRows: <p>返回行数（扫描结果集行数）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SentRows: Integer
+        # @param Splited: <p>是否为 Proxy 改写后的查询：0 原始查询，1 改写后查询。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Splited: Integer
+        # @param Sql: <p>执行的 SQL 语句原文。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Sql: String
+        # @param SqlTemplate: <p>SQL 模板。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SqlTemplate: String
+        # @param SqlTemplateId: <p>SQL 模板 ID。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SqlTemplateId: String
+        # @param SqlType: <p>SQL 类型（如 Select、Insert、Create、Login、Set 等）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SqlType: String
+        # @param Tables: <p>涉及的表（多表以英文逗号分隔）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tables: String
+        # @param ThreadId: <p>线程 ID。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ThreadId: String
+        # @param SqlStartTime: <p>SQL 开始时间（毫秒级时间戳）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SqlStartTime: Integer
+        # @param User: <p>执行 SQL 的数据库用户名。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type User: String
+        # @param HostPort: <p>客户端连接的 HostPort。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HostPort: String
+        # @param ProxyThread: <p>Proxy 节点处理线程 ID。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProxyThread: String
+        # @param DbHostNum: <p>后端 DB Host 数量。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DbHostNum: String
+        # @param BusinessCode: <p>业务码（由业务侧 SQL 注释中 i/o/p 等 KV 提取）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BusinessCode: String
+        # @param BusinessTag: <p>业务标签（根据业务码后置补齐）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BusinessTag: String
+
+        attr_accessor :Timestamp, :ClusterId, :AffectRows, :Autocommit, :ComType, :ConnTc, :DBHost, :DBName, :ErrCode, :ErrInfo, :ExecTime, :HoldConns, :Host, :Mc, :SqlStartTimeUs, :NewConnNum, :ProxyHost, :ProxyId, :QueryId, :SentRows, :Splited, :Sql, :SqlTemplate, :SqlTemplateId, :SqlType, :Tables, :ThreadId, :SqlStartTime, :User, :HostPort, :ProxyThread, :DbHostNum, :BusinessCode, :BusinessTag
+
+        def initialize(timestamp=nil, clusterid=nil, affectrows=nil, autocommit=nil, comtype=nil, conntc=nil, dbhost=nil, dbname=nil, errcode=nil, errinfo=nil, exectime=nil, holdconns=nil, host=nil, mc=nil, sqlstarttimeus=nil, newconnnum=nil, proxyhost=nil, proxyid=nil, queryid=nil, sentrows=nil, splited=nil, sql=nil, sqltemplate=nil, sqltemplateid=nil, sqltype=nil, tables=nil, threadid=nil, sqlstarttime=nil, user=nil, hostport=nil, proxythread=nil, dbhostnum=nil, businesscode=nil, businesstag=nil)
+          @Timestamp = timestamp
+          @ClusterId = clusterid
+          @AffectRows = affectrows
+          @Autocommit = autocommit
+          @ComType = comtype
+          @ConnTc = conntc
+          @DBHost = dbhost
+          @DBName = dbname
+          @ErrCode = errcode
+          @ErrInfo = errinfo
+          @ExecTime = exectime
+          @HoldConns = holdconns
+          @Host = host
+          @Mc = mc
+          @SqlStartTimeUs = sqlstarttimeus
+          @NewConnNum = newconnnum
+          @ProxyHost = proxyhost
+          @ProxyId = proxyid
+          @QueryId = queryid
+          @SentRows = sentrows
+          @Splited = splited
+          @Sql = sql
+          @SqlTemplate = sqltemplate
+          @SqlTemplateId = sqltemplateid
+          @SqlType = sqltype
+          @Tables = tables
+          @ThreadId = threadid
+          @SqlStartTime = sqlstarttime
+          @User = user
+          @HostPort = hostport
+          @ProxyThread = proxythread
+          @DbHostNum = dbhostnum
+          @BusinessCode = businesscode
+          @BusinessTag = businesstag
+        end
+
+        def deserialize(params)
+          @Timestamp = params['Timestamp']
+          @ClusterId = params['ClusterId']
+          @AffectRows = params['AffectRows']
+          @Autocommit = params['Autocommit']
+          @ComType = params['ComType']
+          @ConnTc = params['ConnTc']
+          @DBHost = params['DBHost']
+          @DBName = params['DBName']
+          @ErrCode = params['ErrCode']
+          @ErrInfo = params['ErrInfo']
+          @ExecTime = params['ExecTime']
+          @HoldConns = params['HoldConns']
+          @Host = params['Host']
+          @Mc = params['Mc']
+          @SqlStartTimeUs = params['SqlStartTimeUs']
+          @NewConnNum = params['NewConnNum']
+          @ProxyHost = params['ProxyHost']
+          @ProxyId = params['ProxyId']
+          @QueryId = params['QueryId']
+          @SentRows = params['SentRows']
+          @Splited = params['Splited']
+          @Sql = params['Sql']
+          @SqlTemplate = params['SqlTemplate']
+          @SqlTemplateId = params['SqlTemplateId']
+          @SqlType = params['SqlType']
+          @Tables = params['Tables']
+          @ThreadId = params['ThreadId']
+          @SqlStartTime = params['SqlStartTime']
+          @User = params['User']
+          @HostPort = params['HostPort']
+          @ProxyThread = params['ProxyThread']
+          @DbHostNum = params['DbHostNum']
+          @BusinessCode = params['BusinessCode']
+          @BusinessTag = params['BusinessTag']
         end
       end
 
@@ -2562,6 +2989,117 @@ module TencentCloud
         end
       end
 
+      # DescribeDBAuditLogs请求参数结构体
+      class DescribeDBAuditLogsRequest < TencentCloud::Common::AbstractModel
+        # @param Product: <p>服务产品类型。当前  云 API 仅支持：dcdb、mariadb（cdb、cynosdb 已切至中台）。</p>
+        # @type Product: String
+        # @param StartTime: <p>开始时间，格式 yyyy-MM-dd HH:mm:ss。</p>
+        # @type StartTime: String
+        # @param EndTime: <p>结束时间，格式 yyyy-MM-dd HH:mm:ss。</p>
+        # @type EndTime: String
+        # @param InstanceId: <p>实例 ID，必填。dcdb、mariadb 场景以实例维度查询审计日志。</p>
+        # @type InstanceId: String
+        # @param LogType: <p>日志类型：Proxy 代理日志，DB 数据库日志，All 全部。</p>
+        # @type LogType: String
+        # @param SortBy: <p>排序字段，默认 Timestamp。</p>
+        # @type SortBy: String
+        # @param OrderBy: <p>排序方式：ASC 升序，DESC 降序。默认 DESC。</p>
+        # @type OrderBy: String
+        # @param Offset: <p>偏移量，默认 0。</p>
+        # @type Offset: Integer
+        # @param Limit: <p>返回数量，默认 20，最大 100。</p>
+        # @type Limit: Integer
+        # @param SqlStartTime: <p>SQL 开始时间（毫秒级时间戳），根据 QueryId 关联查询时使用。</p>
+        # @type SqlStartTime: Integer
+        # @param Filter: <p>审计日志查询过滤条件集合。</p>
+        # @type Filter: :class:`Tencentcloud::Dbbrain.v20210527.models.AuditLogQueryFilter`
+        # @param ClusterId: <p>集群 ID，dcdb 产品以集群维度查询审计日志</p>
+        # @type ClusterId: String
+
+        attr_accessor :Product, :StartTime, :EndTime, :InstanceId, :LogType, :SortBy, :OrderBy, :Offset, :Limit, :SqlStartTime, :Filter, :ClusterId
+
+        def initialize(product=nil, starttime=nil, endtime=nil, instanceid=nil, logtype=nil, sortby=nil, orderby=nil, offset=nil, limit=nil, sqlstarttime=nil, filter=nil, clusterid=nil)
+          @Product = product
+          @StartTime = starttime
+          @EndTime = endtime
+          @InstanceId = instanceid
+          @LogType = logtype
+          @SortBy = sortby
+          @OrderBy = orderby
+          @Offset = offset
+          @Limit = limit
+          @SqlStartTime = sqlstarttime
+          @Filter = filter
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @Product = params['Product']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @InstanceId = params['InstanceId']
+          @LogType = params['LogType']
+          @SortBy = params['SortBy']
+          @OrderBy = params['OrderBy']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @SqlStartTime = params['SqlStartTime']
+          unless params['Filter'].nil?
+            @Filter = AuditLogQueryFilter.new
+            @Filter.deserialize(params['Filter'])
+          end
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DescribeDBAuditLogs返回参数结构体
+      class DescribeDBAuditLogsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>满足条件的总条数。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param FilteredRecords: <p>过滤后记录数。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FilteredRecords: Integer
+        # @param ProxyLogs: <p>Proxy 层审计日志列表。LogType=Proxy 或 All 时返回，字段结构参见 AuditProxyLogItem。</p>
+        # @type ProxyLogs: Array
+        # @param DBLogs: <p>DB 层审计日志列表。LogType=DB 或 All 时返回，字段结构参见 AuditDBLogItem。</p>
+        # @type DBLogs: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :FilteredRecords, :ProxyLogs, :DBLogs, :RequestId
+
+        def initialize(totalcount=nil, filteredrecords=nil, proxylogs=nil, dblogs=nil, requestid=nil)
+          @TotalCount = totalcount
+          @FilteredRecords = filteredrecords
+          @ProxyLogs = proxylogs
+          @DBLogs = dblogs
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @FilteredRecords = params['FilteredRecords']
+          unless params['ProxyLogs'].nil?
+            @ProxyLogs = []
+            params['ProxyLogs'].each do |i|
+              auditproxylogitem_tmp = AuditProxyLogItem.new
+              auditproxylogitem_tmp.deserialize(i)
+              @ProxyLogs << auditproxylogitem_tmp
+            end
+          end
+          unless params['DBLogs'].nil?
+            @DBLogs = []
+            params['DBLogs'].each do |i|
+              auditdblogitem_tmp = AuditDBLogItem.new
+              auditdblogitem_tmp.deserialize(i)
+              @DBLogs << auditdblogitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDBAutonomyAction请求参数结构体
       class DescribeDBAutonomyActionRequest < TencentCloud::Common::AbstractModel
         # @param ActionId: 自治任务ID。可通过 [DescribeDBAutonomyActions](https://cloud.tencent.com/document/product/1130/116974) 接口获取。
@@ -3347,6 +3885,84 @@ module TencentCloud
         end
       end
 
+      # DescribeDatabaseObjectV2请求参数结构体
+      class DescribeDatabaseObjectV2Request < TencentCloud::Common::AbstractModel
+        # @param Product: <p>服务产品类型。取值：sqlserver（云数据库 Sqlserver）。</p>
+        # @type Product: String
+        # @param ObjectType: <p>查询对象类型。</p><p>枚举值：</p><ul><li>TableDDL： 建表+索引DDL</li><li>TableStatistics： 表空间统计</li></ul>
+        # @type ObjectType: String
+        # @param InstanceId: <p>实例 ID。SQLServer: mssql-xxxx。</p>
+        # @type InstanceId: String
+        # @param TableSchema: <p>库名（catalog）。TableStatistics 时必填；TableDDL 时可选。</p>
+        # @type TableSchema: String
+        # @param TableName: <p>当产品为sqlserver时，表名/视图名，支持 schema.table 格式，未带 schema 默认 dbo</p>
+        # @type TableName: String
+
+        attr_accessor :Product, :ObjectType, :InstanceId, :TableSchema, :TableName
+
+        def initialize(product=nil, objecttype=nil, instanceid=nil, tableschema=nil, tablename=nil)
+          @Product = product
+          @ObjectType = objecttype
+          @InstanceId = instanceid
+          @TableSchema = tableschema
+          @TableName = tablename
+        end
+
+        def deserialize(params)
+          @Product = params['Product']
+          @ObjectType = params['ObjectType']
+          @InstanceId = params['InstanceId']
+          @TableSchema = params['TableSchema']
+          @TableName = params['TableName']
+        end
+      end
+
+      # DescribeDatabaseObjectV2返回参数结构体
+      class DescribeDatabaseObjectV2Response < TencentCloud::Common::AbstractModel
+        # @param IndexDDLs: <p>索引 DDL 列表，每项为一条 CREATE INDEX 语句，无索引时为空数组。</p>
+        # @type IndexDDLs: Array
+        # @param TableDDL: <p>建表 DDL 语句，对象不存在时为空串。</p>
+        # @type TableDDL: String
+        # @param TableName: <p>表名。</p>
+        # @type TableName: String
+        # @param TableSchema: <p>库名。</p>
+        # @type TableSchema: String
+        # @param TableStatistics: <p>表空间统计。</p>
+        # @type TableStatistics: :class:`Tencentcloud::Dbbrain.v20210527.models.TableStatistics`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :IndexDDLs, :TableDDL, :TableName, :TableSchema, :TableStatistics, :RequestId
+
+        def initialize(indexddls=nil, tableddl=nil, tablename=nil, tableschema=nil, tablestatistics=nil, requestid=nil)
+          @IndexDDLs = indexddls
+          @TableDDL = tableddl
+          @TableName = tablename
+          @TableSchema = tableschema
+          @TableStatistics = tablestatistics
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['IndexDDLs'].nil?
+            @IndexDDLs = []
+            params['IndexDDLs'].each do |i|
+              indexddlinfo_tmp = IndexDDLInfo.new
+              indexddlinfo_tmp.deserialize(i)
+              @IndexDDLs << indexddlinfo_tmp
+            end
+          end
+          @TableDDL = params['TableDDL']
+          @TableName = params['TableName']
+          @TableSchema = params['TableSchema']
+          unless params['TableStatistics'].nil?
+            @TableStatistics = TableStatistics.new
+            @TableStatistics.deserialize(params['TableStatistics'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDeadLockLogs请求参数结构体
       class DescribeDeadLockLogsRequest < TencentCloud::Common::AbstractModel
         # @param Product: <p>服务产品类型。取值：sqlserver（云数据库 Sqlserver）。</p>
@@ -4101,7 +4717,7 @@ module TencentCloud
 
       # DescribeProxyProcessStatistics请求参数结构体
       class DescribeProxyProcessStatisticsRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID 。
+        # @param InstanceId: 实例 ID。可通过 [DescribeDiagDBInstances](https://cloud.tencent.com/document/api/1130/57798) 接口获取。
         # @type InstanceId: String
         # @param InstanceProxyId: 该实例下需要查询的某一个 ProxyID 。
         # @type InstanceProxyId: String
@@ -4112,8 +4728,17 @@ module TencentCloud
         # @param Offset: 偏移量，默认0。
         # @type Offset: Integer
         # @param SortBy: 按照某字段排序。支持值包括："AllConn"，"ActiveConn"，"Ip"。
+        # 其中：
+
+        # - AllConn ：表示总连接数（活跃连接 + 非活跃连接）
+        # - ActiveConn：表示活跃连接数
+        # - Ip：表示 IP 地址
         # @type SortBy: String
         # @param OrderDirection: 排序方向。支持值包括："DESC"，"ASC"。
+        # 其中：
+
+        # - DESC：降序
+        # - ASC：升序
         # @type OrderDirection: String
 
         attr_accessor :InstanceId, :InstanceProxyId, :Limit, :Product, :Offset, :SortBy, :OrderDirection
@@ -6392,6 +7017,26 @@ module TencentCloud
             end
           end
           @HealthLevelVersion = params['HealthLevelVersion']
+        end
+      end
+
+      # 索引详细信息
+      class IndexDDLInfo < TencentCloud::Common::AbstractModel
+        # @param IndexName: <p>索引名称。</p>
+        # @type IndexName: String
+        # @param DDL: <p>创建索引语句。</p>
+        # @type DDL: String
+
+        attr_accessor :IndexName, :DDL
+
+        def initialize(indexname=nil, ddl=nil)
+          @IndexName = indexname
+          @DDL = ddl
+        end
+
+        def deserialize(params)
+          @IndexName = params['IndexName']
+          @DDL = params['DDL']
         end
       end
 
@@ -9064,6 +9709,66 @@ module TencentCloud
             @SeriesData = MonitorFloatMetricSeriesData.new
             @SeriesData.deserialize(params['SeriesData'])
           end
+        end
+      end
+
+      # 表统计信息明细
+      class TableStatistics < TencentCloud::Common::AbstractModel
+        # @param TableName: <p>表名。</p>
+        # @type TableName: String
+        # @param TableSchema: <p>Schema 名。</p>
+        # @type TableSchema: String
+        # @param DatabaseName: <p>库名（catalog）。</p>
+        # @type DatabaseName: String
+        # @param Engine: <p>存储引擎。</p>
+        # @type Engine: String
+        # @param DataLength: <p>数据空间。</p><p>单位：MB</p>
+        # @type DataLength: Float
+        # @param IndexLength: <p>索引空间。</p><p>单位：MB</p>
+        # @type IndexLength: Float
+        # @param TotalLength: <p>总分配空间。</p><p>单位：MB</p>
+        # @type TotalLength: Float
+        # @param UsedLength: <p>已用空间。</p><p>单位：MB</p>
+        # @type UsedLength: Float
+        # @param DataFree: <p>碎片空间。</p><p>单位：MB</p>
+        # @type DataFree: Float
+        # @param TableRows: <p>行数。</p>
+        # @type TableRows: Integer
+        # @param FragRatio: <p>碎片率（%）。</p>
+        # @type FragRatio: Float
+        # @param PhysicalFileSize: <p>物理文件大小。</p><p>单位：MB</p>
+        # @type PhysicalFileSize: Float
+
+        attr_accessor :TableName, :TableSchema, :DatabaseName, :Engine, :DataLength, :IndexLength, :TotalLength, :UsedLength, :DataFree, :TableRows, :FragRatio, :PhysicalFileSize
+
+        def initialize(tablename=nil, tableschema=nil, databasename=nil, engine=nil, datalength=nil, indexlength=nil, totallength=nil, usedlength=nil, datafree=nil, tablerows=nil, fragratio=nil, physicalfilesize=nil)
+          @TableName = tablename
+          @TableSchema = tableschema
+          @DatabaseName = databasename
+          @Engine = engine
+          @DataLength = datalength
+          @IndexLength = indexlength
+          @TotalLength = totallength
+          @UsedLength = usedlength
+          @DataFree = datafree
+          @TableRows = tablerows
+          @FragRatio = fragratio
+          @PhysicalFileSize = physicalfilesize
+        end
+
+        def deserialize(params)
+          @TableName = params['TableName']
+          @TableSchema = params['TableSchema']
+          @DatabaseName = params['DatabaseName']
+          @Engine = params['Engine']
+          @DataLength = params['DataLength']
+          @IndexLength = params['IndexLength']
+          @TotalLength = params['TotalLength']
+          @UsedLength = params['UsedLength']
+          @DataFree = params['DataFree']
+          @TableRows = params['TableRows']
+          @FragRatio = params['FragRatio']
+          @PhysicalFileSize = params['PhysicalFileSize']
         end
       end
 

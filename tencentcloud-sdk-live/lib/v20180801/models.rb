@@ -12907,6 +12907,203 @@ module TencentCloud
         end
       end
 
+      # DescribeStreamPackageIngestStatistics请求参数结构体
+      class DescribeStreamPackageIngestStatisticsRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: <p>查询起始时间，RFC3339 格式，如2026-08-24T00:00:00+08:00</p>
+        # @type StartTime: String
+        # @param EndTime: <p>查询结束时间，RFC3339 格式，如 2026-08-24T00:00:00+08:00；必须晚于 StartTime</p>
+        # @type EndTime: String
+        # @param ChannelIds: <p>频道ID列表，不传则查全部频道</p>
+        # @type ChannelIds: Array
+        # @param Types: <p>频道类型过滤，枚举值：LiveChannel、SSAI、FASTChannel</p>
+        # @type Types: Array
+        # @param Dimension: <p>维度，false(默认): summary 汇总模式；true: detail 明细模式（按时间拆分），当为false时粒度不生效</p>
+        # @type Dimension: Boolean
+        # @param Granularity: <p>时间粒度（分钟），支持5（默认）/ 60 / 1440</p>
+        # @type Granularity: Integer
+
+        attr_accessor :StartTime, :EndTime, :ChannelIds, :Types, :Dimension, :Granularity
+
+        def initialize(starttime=nil, endtime=nil, channelids=nil, types=nil, dimension=nil, granularity=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @ChannelIds = channelids
+          @Types = types
+          @Dimension = dimension
+          @Granularity = granularity
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @ChannelIds = params['ChannelIds']
+          @Types = params['Types']
+          @Dimension = params['Dimension']
+          @Granularity = params['Granularity']
+        end
+      end
+
+      # DescribeStreamPackageIngestStatistics返回参数结构体
+      class DescribeStreamPackageIngestStatisticsResponse < TencentCloud::Common::AbstractModel
+        # @param DataInfoList: <p>输入流量数据</p>
+        # @type DataInfoList: Array
+        # @param TotalIngest: <p>总输入用量</p>
+        # @type TotalIngest: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DataInfoList, :TotalIngest, :RequestId
+
+        def initialize(datainfolist=nil, totalingest=nil, requestid=nil)
+          @DataInfoList = datainfolist
+          @TotalIngest = totalingest
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DataInfoList'].nil?
+            @DataInfoList = []
+            params['DataInfoList'].each do |i|
+              ingeststatisticsdatainfo_tmp = IngestStatisticsDataInfo.new
+              ingeststatisticsdatainfo_tmp.deserialize(i)
+              @DataInfoList << ingeststatisticsdatainfo_tmp
+            end
+          end
+          @TotalIngest = params['TotalIngest']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeStreamPackageOutputStatistics请求参数结构体
+      class DescribeStreamPackageOutputStatisticsRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: <p>查询起始时间，RFC3339 格式，如 2026-08-24T00:00:00+08:00</p>
+        # @type StartTime: String
+        # @param EndTime: <p>查询结束时间，RFC3339 格式，如 2026-08-24T00:00:00+08:00；必须晚于 StartTime</p>
+        # @type EndTime: String
+        # @param ChannelIds: <p>频道ID列表，不传则查全部频道</p>
+        # @type ChannelIds: Array
+        # @param Types: <p>频道类型过滤，枚举值：LiveChannel</p>
+        # @type Types: Array
+        # @param Dimension: <p>维度，false(默认): summary 汇总模式；true: detail 明细模式（按时间拆分），当为false时粒度不生效</p>
+        # @type Dimension: Boolean
+        # @param Granularity: <p>时间粒度（分钟），支持5（默认）/ 60 / 1440</p>
+        # @type Granularity: Integer
+
+        attr_accessor :StartTime, :EndTime, :ChannelIds, :Types, :Dimension, :Granularity
+
+        def initialize(starttime=nil, endtime=nil, channelids=nil, types=nil, dimension=nil, granularity=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @ChannelIds = channelids
+          @Types = types
+          @Dimension = dimension
+          @Granularity = granularity
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @ChannelIds = params['ChannelIds']
+          @Types = params['Types']
+          @Dimension = params['Dimension']
+          @Granularity = params['Granularity']
+        end
+      end
+
+      # DescribeStreamPackageOutputStatistics返回参数结构体
+      class DescribeStreamPackageOutputStatisticsResponse < TencentCloud::Common::AbstractModel
+        # @param DataInfoList: <p>输出流量统计</p>
+        # @type DataInfoList: Array
+        # @param TotalOutput: <p>输出总用量</p>
+        # @type TotalOutput: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DataInfoList, :TotalOutput, :RequestId
+
+        def initialize(datainfolist=nil, totaloutput=nil, requestid=nil)
+          @DataInfoList = datainfolist
+          @TotalOutput = totaloutput
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DataInfoList'].nil?
+            @DataInfoList = []
+            params['DataInfoList'].each do |i|
+              outputstatisticsdatainfo_tmp = OutputStatisticsDataInfo.new
+              outputstatisticsdatainfo_tmp.deserialize(i)
+              @DataInfoList << outputstatisticsdatainfo_tmp
+            end
+          end
+          @TotalOutput = params['TotalOutput']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeStreamPackageRemuxStatistics请求参数结构体
+      class DescribeStreamPackageRemuxStatisticsRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: <p>查询起始时间，RFC3339 格式，如 2026-08-24T00:00:00+08:00</p>
+        # @type StartTime: String
+        # @param EndTime: <p>查询结束时间，RFC3339 格式，如 2026-08-24T00:00:00+08:00；必须晚于 StartTime</p>
+        # @type EndTime: String
+        # @param ChannelIds: <p>频道ID列表，不传则查全部频道</p>
+        # @type ChannelIds: Array
+        # @param Dimension: <p>维度，false(默认): summary 汇总模式；true: detail 明细模式（按时间拆分），当为false时粒度不生效</p>
+        # @type Dimension: Boolean
+        # @param Granularity: <p>时间粒度（分钟），支持5（默认）/ 60 / 1440</p>
+        # @type Granularity: Integer
+
+        attr_accessor :StartTime, :EndTime, :ChannelIds, :Dimension, :Granularity
+
+        def initialize(starttime=nil, endtime=nil, channelids=nil, dimension=nil, granularity=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @ChannelIds = channelids
+          @Dimension = dimension
+          @Granularity = granularity
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @ChannelIds = params['ChannelIds']
+          @Dimension = params['Dimension']
+          @Granularity = params['Granularity']
+        end
+      end
+
+      # DescribeStreamPackageRemuxStatistics返回参数结构体
+      class DescribeStreamPackageRemuxStatisticsResponse < TencentCloud::Common::AbstractModel
+        # @param DataInfoList: <p>封装用量数据</p>
+        # @type DataInfoList: Array
+        # @param TotalRemux: <p>封装总用量</p>
+        # @type TotalRemux: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DataInfoList, :TotalRemux, :RequestId
+
+        def initialize(datainfolist=nil, totalremux=nil, requestid=nil)
+          @DataInfoList = datainfolist
+          @TotalRemux = totalremux
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DataInfoList'].nil?
+            @DataInfoList = []
+            params['DataInfoList'].each do |i|
+              remuxstatisticsdatainfo_tmp = RemuxStatisticsDataInfo.new
+              remuxstatisticsdatainfo_tmp.deserialize(i)
+              @DataInfoList << remuxstatisticsdatainfo_tmp
+            end
+          end
+          @TotalRemux = params['TotalRemux']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeStreamPlayInfoList请求参数结构体
       class DescribeStreamPlayInfoListRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: <p>起始时间点，接口查询支持两种时间格式：<br>1）YYYY-MM-DDThh:mm:ssZ：UTC时间格式，详见IOS日期格式说明文档: https://cloud.tencent.com/document/product/266/11732#I<br>2）yyyy-MM-dd HH:mm:ss：使用此格式时，默认代表北京时间。<br>开始时间和结束时间的格式需要保持一致。</p>
@@ -14109,6 +14306,34 @@ module TencentCloud
         def deserialize(params)
           @HttpStatus = params['HttpStatus']
           @Num = params['Num']
+        end
+      end
+
+      # IngestStatisticsDataInfo
+      class IngestStatisticsDataInfo < TencentCloud::Common::AbstractModel
+        # @param Ingest: <p>输入用量</p>
+        # @type Ingest: Integer
+        # @param Time: <p>时间</p>
+        # @type Time: String
+        # @param ChannelId: <p>频道Id</p>
+        # @type ChannelId: String
+        # @param Type: <p>频道类型</p>
+        # @type Type: String
+
+        attr_accessor :Ingest, :Time, :ChannelId, :Type
+
+        def initialize(ingest=nil, time=nil, channelid=nil, type=nil)
+          @Ingest = ingest
+          @Time = time
+          @ChannelId = channelid
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Ingest = params['Ingest']
+          @Time = params['Time']
+          @ChannelId = params['ChannelId']
+          @Type = params['Type']
         end
       end
 
@@ -16760,6 +16985,34 @@ module TencentCloud
         end
       end
 
+      # OutputStatisticsDataInfo
+      class OutputStatisticsDataInfo < TencentCloud::Common::AbstractModel
+        # @param Output: <p>输出用量</p>
+        # @type Output: Integer
+        # @param Time: <p>时间</p>
+        # @type Time: String
+        # @param ChannelId: <p>频道Id</p>
+        # @type ChannelId: String
+        # @param Type: <p>类型</p>
+        # @type Type: String
+
+        attr_accessor :Output, :Time, :ChannelId, :Type
+
+        def initialize(output=nil, time=nil, channelid=nil, type=nil)
+          @Output = output
+          @Time = time
+          @ChannelId = channelid
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Output = params['Output']
+          @Time = params['Time']
+          @ChannelId = params['ChannelId']
+          @Type = params['Type']
+        end
+      end
+
       # 查询当前垫片流的信息
       class PadStreamInfo < TencentCloud::Common::AbstractModel
         # @param StreamName: 流名称。
@@ -17893,6 +18146,30 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # RemuxStatisticsDataInfo
+      class RemuxStatisticsDataInfo < TencentCloud::Common::AbstractModel
+        # @param Remux: <p>转封装用量</p>
+        # @type Remux: Integer
+        # @param Time: <p>时间</p>
+        # @type Time: String
+        # @param ChannelId: <p>频道Id</p>
+        # @type ChannelId: String
+
+        attr_accessor :Remux, :Time, :ChannelId
+
+        def initialize(remux=nil, time=nil, channelid=nil)
+          @Remux = remux
+          @Time = time
+          @ChannelId = channelid
+        end
+
+        def deserialize(params)
+          @Remux = params['Remux']
+          @Time = params['Time']
+          @ChannelId = params['ChannelId']
         end
       end
 

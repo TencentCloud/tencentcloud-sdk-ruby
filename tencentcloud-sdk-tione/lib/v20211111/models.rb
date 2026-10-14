@@ -812,6 +812,8 @@ module TencentCloud
       class CreateExportRequest < TencentCloud::Common::AbstractModel
         # @param Service: 服务类型，TRAIN为任务式建模, NOTEBOOK为Notebook, INFER为在线服务, BATCH为批量预测枚举值：- TRAIN- NOTEBOOK- INFER- BATCH
         # @type Service: String
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
+        # @type TiProjectId: String
         # @param ServiceId: 服务ID，和Service参数对应，不同Service的服务ID获取方式不同，具体如下：- Service类型为TRAIN：  调用[DescribeTrainingTask接口](/document/product/851/75089)查询训练任务详情，ServiceId为接口返回值中Response.TrainingTaskDetail.LatestInstanceId- Service类型为NOTEBOOK：  调用[DescribeNotebook接口](/document/product/851/95662)查询Notebook详情，ServiceId为接口返回值中Response.NotebookDetail.PodName- Service类型为INFER：  调用[DescribeModelServiceGroup接口](/document/product/851/82285)查询服务组详情，ServiceId为接口返回值中Response.ServiceGroup.Services.ServiceId- Service类型为BATCH：  调用[DescribeBatchTask接口](/document/product/851/80180)查询跑批任务详情，ServiceId为接口返回值中Response.BatchTaskDetail.LatestInstanceId
         # @type ServiceId: String
         # @param StartTime: 日志查询开始时间（RFC3339格式的时间字符串），默认值为当前时间的前一个小时
@@ -831,10 +833,11 @@ module TencentCloud
         # @param Type: 日志类型： PLATFORM_INIT, PLATFORM_SANITY_CHECK, USER
         # @type Type: String
 
-        attr_accessor :Service, :ServiceId, :StartTime, :EndTime, :Format, :PodName, :JobCategory, :InstanceType, :InstanceId, :Type
+        attr_accessor :Service, :TiProjectId, :ServiceId, :StartTime, :EndTime, :Format, :PodName, :JobCategory, :InstanceType, :InstanceId, :Type
 
-        def initialize(service=nil, serviceid=nil, starttime=nil, endtime=nil, format=nil, podname=nil, jobcategory=nil, instancetype=nil, instanceid=nil, type=nil)
+        def initialize(service=nil, tiprojectid=nil, serviceid=nil, starttime=nil, endtime=nil, format=nil, podname=nil, jobcategory=nil, instancetype=nil, instanceid=nil, type=nil)
           @Service = service
+          @TiProjectId = tiprojectid
           @ServiceId = serviceid
           @StartTime = starttime
           @EndTime = endtime
@@ -848,6 +851,7 @@ module TencentCloud
 
         def deserialize(params)
           @Service = params['Service']
+          @TiProjectId = params['TiProjectId']
           @ServiceId = params['ServiceId']
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
@@ -2658,15 +2662,19 @@ module TencentCloud
       class DeleteExportRequest < TencentCloud::Common::AbstractModel
         # @param ExportId: 日志下载任务的ID
         # @type ExportId: String
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
+        # @type TiProjectId: String
 
-        attr_accessor :ExportId
+        attr_accessor :ExportId, :TiProjectId
 
-        def initialize(exportid=nil)
+        def initialize(exportid=nil, tiprojectid=nil)
           @ExportId = exportid
+          @TiProjectId = tiprojectid
         end
 
         def deserialize(params)
           @ExportId = params['ExportId']
+          @TiProjectId = params['TiProjectId']
         end
       end
 
@@ -3838,7 +3846,7 @@ module TencentCloud
       class DescribeExportRequest < TencentCloud::Common::AbstractModel
         # @param ExportId: <p>日志下载任务的ID</p>
         # @type ExportId: String
-        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
         # @type TiProjectId: String
 
         attr_accessor :ExportId, :TiProjectId
@@ -3937,7 +3945,7 @@ module TencentCloud
       class DescribeLogsRequest < TencentCloud::Common::AbstractModel
         # @param Service: <p>服务类型，TRAIN为任务式建模, NOTEBOOK为Notebook, INFER为在线服务, BATCH为批量预测<br>枚举值：</p><ul><li>TRAIN</li><li>NOTEBOOK</li><li>INFER</li><li>BATCH</li></ul>
         # @type Service: String
-        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
         # @type TiProjectId: String
         # @param StartTime: <p>日志查询开始时间（RFC3339格式的时间字符串），默认值为当前时间的前一个小时</p>
         # @type StartTime: String
@@ -5443,7 +5451,7 @@ module TencentCloud
 
       # DescribeWorkspaces请求参数结构体
       class DescribeWorkspacesRequest < TencentCloud::Common::AbstractModel
-        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
         # @type TiProjectId: String
         # @param Filters: <p>过滤条件</p>
         # @type Filters: Array

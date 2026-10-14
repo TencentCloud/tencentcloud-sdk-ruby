@@ -162,19 +162,22 @@ module TencentCloud
 
       # 用来描述ckafka投递目标
       class CkafkaTargetParams < TencentCloud::Common::AbstractModel
-        # @param TopicName: 要投递到的ckafka topic
+        # @param TopicName: <p>要投递到的ckafka topic</p>
         # @type TopicName: String
-        # @param RetryPolicy: 重试策略
+        # @param RetryPolicy: <p>重试策略</p>
         # @type RetryPolicy: :class:`Tencentcloud::Eb.v20210416.models.RetryPolicy`
-        # @param EventDeliveryFormat: 事件投递kafka时的协议格式；目前只支持两种格式：1.CloudEvent(完整的cloudevent消息协议)2.CloudEventDataKey(cloudevent协议中的data字段内容)
+        # @param EventDeliveryFormat: <p>事件投递kafka时的协议格式；目前只支持两种格式：1.CloudEvent(完整的cloudevent消息协议)2.CloudEventDataKey(cloudevent协议中的data字段内容)</p>
         # @type EventDeliveryFormat: String
+        # @param TimeFormat: <p>事件顶层Time参数投递格式</p><p>枚举值：</p><ul><li>RFC3339： 将时间戳转换成 YYYY-MM-DDTHH:mm:ssZ 格式</li></ul>
+        # @type TimeFormat: String
 
-        attr_accessor :TopicName, :RetryPolicy, :EventDeliveryFormat
+        attr_accessor :TopicName, :RetryPolicy, :EventDeliveryFormat, :TimeFormat
 
-        def initialize(topicname=nil, retrypolicy=nil, eventdeliveryformat=nil)
+        def initialize(topicname=nil, retrypolicy=nil, eventdeliveryformat=nil, timeformat=nil)
           @TopicName = topicname
           @RetryPolicy = retrypolicy
           @EventDeliveryFormat = eventdeliveryformat
+          @TimeFormat = timeformat
         end
 
         def deserialize(params)
@@ -184,6 +187,7 @@ module TencentCloud
             @RetryPolicy.deserialize(params['RetryPolicy'])
           end
           @EventDeliveryFormat = params['EventDeliveryFormat']
+          @TimeFormat = params['TimeFormat']
         end
       end
 

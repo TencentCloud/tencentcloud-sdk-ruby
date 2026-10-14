@@ -293,6 +293,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 审批用户权限申请
+
+        # @param request: Request instance for AuditPermissionApplyOrder.
+        # @type request: :class:`Tencentcloud::organization::V20210331::AuditPermissionApplyOrderRequest`
+        # @rtype: :class:`Tencentcloud::organization::V20210331::AuditPermissionApplyOrderResponse`
+        def AuditPermissionApplyOrder(request)
+          body = send_request('AuditPermissionApplyOrder', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AuditPermissionApplyOrderResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 绑定组织成员和组织管理员子账号的授权关系
 
         # @param request: Request instance for BindOrganizationMemberAuthAccount.

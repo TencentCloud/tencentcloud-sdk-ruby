@@ -6673,7 +6673,7 @@ module TencentCloud
       class AudioEnhanceEditConfig < TencentCloud::Common::AbstractModel
         # @param Switch: <p>能力配置开关</p><p>枚举值：</p><ul><li>ON： 开启</li><li>OFF： 关闭</li></ul><p>默认值：OFF</p>
         # @type Switch: String
-        # @param Type: <p>音频编辑类型</p><p>枚举值：</p><ul><li>restore： 修复</li></ul><p>默认值：restore</p>
+        # @param Type: <p>音频编辑类型</p><p>枚举值：</p><ul><li>restore： 修复</li></ul><p>开关开启时，必须显式指定枚举值</p>
         # @type Type: String
 
         attr_accessor :Switch, :Type
@@ -9699,9 +9699,9 @@ module TencentCloud
 
       # CreateAigcVideoTask请求参数结构体
       class CreateAigcVideoTaskRequest < TencentCloud::Common::AbstractModel
-        # @param ModelName: <p>模型名称。<br>当前支持的模型列表:<br>Hunyuan，<br>Hailuo，<br>Kling，<br>Vidu，<br>PixVerse，<br>Mingmou，<br>H2。</p>
+        # @param ModelName: <p>模型名称。<br>当前支持的模型列表:<br>Hunyuan，<br>wand-vega-video，<br>Hailuo，<br>Kling，<br>Vidu，<br>PixVerse，<br>Mingmou，<br>H2。</p>
         # @type ModelName: String
-        # @param ModelVersion: <p>指定模型特定版本号。默认使用系统当前所支持的模型稳定版本。</p><ol><li>Hunyuan，可选 [1.5]。</li><li>Hailuo，可选 [02、2.3、2.3-fast]。</li><li>Kling，可选 [1.6、2.0、2.1、2.5、O1、2.6、3.0、3.0-Omni]。</li><li>Vidu，可选 [q2、q2-pro、q2-turbo、q3-pro、q3-turbo、q3、q3-mix]。</li><li>PixVerse，可选 [v5.6、v6、c1]。</li><li>H2，可选 [1.0]。</li></ol>
+        # @param ModelVersion: <p>指定模型特定版本号。默认使用系统当前所支持的模型稳定版本。</p><ol><li>Hunyuan，可选 [1.5]。</li><li>wand-vega-video, 可选[1.0-lite]。</li><li>Hailuo，可选 [02、2.3、2.3-fast]。</li><li>Kling，可选 [1.6、2.0、2.1、2.5、O1、2.6、3.0、3.0-Omni]。</li><li>Vidu，可选 [q2、q2-pro、q2-turbo、q3-pro、q3-turbo、q3、q3-mix]。</li><li>PixVerse，可选 [v5.6、v6、c1]。</li><li>H2，可选 [1.0]。</li></ol>
         # @type ModelVersion: String
         # @param SceneType: <p>指定场景生成视频。<br>注意：仅部分模型支持指定场景。</p><ol><li>Kling支持：动作控制，motion_control；数字人，avatar_i2v；对口型，lip_sync。</li><li>Mingmou支持：横转竖，land2port。</li><li>Vidu支持：特效模板，template_effect。</li><li>Hunyuan支持: 3d世界模型, 3d_scene；涉及的返回文件非视频。</li></ol>
         # @type SceneType: String
@@ -9713,9 +9713,9 @@ module TencentCloud
         # @type EnhancePrompt: Boolean
         # @param ImageUrl: <p>用于指导视频生成的图片 URL。该URL需外网可访问。<br>注意：</p><ol><li>推荐图片大小不超过10M，不同模型大小限制不相同，可查看相应模型官网获取更完整描述。</li><li>支持的图片格式：jpeg、png。</li></ol>
         # @type ImageUrl: String
-        # @param LastImageUrl: <p>模型将以此参数传入的图片作为尾帧画面来生成视频。<br>支持此参数的模型：</p><ol><li>Kling，2.0、O1、3.0、3.0-Omni 支持首尾帧。</li><li>Kling，1.6、2.1、2.5、2.6 在 Resolution:1080P 的情况下支持首尾帧。</li><li>Vidu，q2-pro、q2-turbo、q3-pro、q3-turbo 支持首尾帧。</li><li>PixVerse，v5.6、v6、c1 支持首尾帧。</li><li>Hailuo，02 支持首尾帧。</li></ol><p>注意：</p><ol><li>推荐图片大小不超过10M，各模型限制不同。</li><li>支持的图片格式：jpeg、png。</li></ol>
+        # @param LastImageUrl: <p>模型将以此参数传入的图片作为尾帧画面来生成视频。<br>支持此参数的模型：</p><ol><li>Kling，2.0、O1、3.0、3.0-Omni 支持首尾帧。</li><li>Kling，1.6、2.1、2.5、2.6 在 Resolution:1080P 的情况下支持首尾帧。</li><li>Vidu，q2-pro、q2-turbo、q3-pro、q3-turbo 支持首尾帧。</li><li>PixVerse，v5.6、v6、c1 支持首尾帧。</li><li>Hailuo，02 支持首尾帧。</li><li>wand-vega-video，1.0-lite 支持首尾帧。</li></ol><p>注意：</p><ol><li>推荐图片大小不超过10M，各模型限制不同。</li><li>支持的图片格式：jpeg、png。</li></ol>
         # @type LastImageUrl: String
-        # @param ImageInfos: <p>包含多张素材资源图片的列表，用于描述模型在生成视频时要使用的资源图片。</p><p>支持多图输入的模型：</p><ol><li>Vidu，q2、q2-pro、q3-turbo、q3、q3-mix 支持多图参考生视频。支持上传 1-7 张图片，可通过 ImageInfos 里面的 ReferenceType 作为主体 id 来传入。</li><li>Kling，O1、3.0-Omni、1.6 支持多图参考生视频。<ol><li>Kling 1.6 支持上传 1-4 张图片。</li><li>Kling O1、3.0-Omni 支持上传 1-7 张图片。当有参考视频时，支持上传 0-4 张图片。</li></ol></li><li>PixVerse，v5.6、v6、c1 支持多图参考生视频。支持上传 1-7 张图片，需要通过 ImageInfos 里面的 Text 字段传入图片名称。</li><li>H2，1.0 支持多图参数生视频。支持上传 1-9 张图片。当有参考视频时，支持上传 0-5 张图片。</li></ol><p>注意：</p><ol><li>图片大小不超过10M。</li><li>支持的图片格式：jpeg、png。</li></ol>
+        # @param ImageInfos: <p>包含多张素材资源图片的列表，用于描述模型在生成视频时要使用的资源图片。</p><p>支持多图输入的模型：</p><ol><li>Vidu，q2、q2-pro、q3-turbo、q3、q3-mix 支持多图参考生视频。支持上传 1-7 张图片，可通过 ImageInfos 里面的 ReferenceType 作为主体 id 来传入。</li><li>wand-vega-video，1.0-lite支持最多9张参考图。</li><li>Kling，O1、3.0-Omni、1.6 支持多图参考生视频。<ol><li>Kling 1.6 支持上传 1-4 张图片。</li><li>Kling O1、3.0-Omni 支持上传 1-7 张图片。当有参考视频时，支持上传 0-4 张图片。</li></ol></li><li>PixVerse，v5.6、v6、c1 支持多图参考生视频。支持上传 1-7 张图片，需要通过 ImageInfos 里面的 Text 字段传入图片名称。</li><li>H2，1.0 支持多图参数生视频。支持上传 1-9 张图片。当有参考视频时，支持上传 0-5 张图片。</li></ol><p>注意：</p><ol><li>图片大小不超过10M。</li><li>支持的图片格式：jpeg、png。</li></ol>
         # @type ImageInfos: Array
         # @param VideoInfos: <p>目前仅 Kling O1、Kling 3.0-Omni、Vidu q2-pro、H2 1.0 支持参考视频信息传入。</p><ol><li>Kling O1、3.0-Omni 可作为特征参考视频，也可作为待编辑视频，默认为待编辑视频；可选择性保留视频原声。</li><li>Vidu q2-pro 支持视频参考。</li><li>H2 1.0 支持视频参考。</li></ol>
         # @type VideoInfos: Array
@@ -9723,7 +9723,7 @@ module TencentCloud
         # @type AudioInfos: Array
         # @param SubjectInfos: <p>主体信息。</p>
         # @type SubjectInfos: Array
-        # @param Duration: <p>生成视频的时长。<br>注意：</p><ol><li>Kling，默认：5 秒。<ul><li>O1 支持 3-10 秒。</li><li>3.0-Omni 支持 3-15 秒，当使用视频参考时只支持 3-10 秒。</li><li>3.0 支持 3-15 秒。</li><li>其他版本支持 5、10 秒。</li></ul></li><li>Hailuo 的 std 模式可支持 6、10 秒，其他仅 6 秒。默认：6 秒。</li><li>Vidu，默认：5 秒。<ul><li>q3-pro、q3-turbo、q3、q3-mix 支持 3-16 秒。</li><li>q2-pro、q2-turbo、q2 支持 1-10 秒。 </li></ul></li><li>PixVerse，默认：5 秒。<ul><li>v5.6 支持 5、8、10 秒。</li><li>v6、c1 支持 1-15 秒。</li></ul></li><li>H2，支持 3-15 秒，默认 ：5 秒。</li></ol>
+        # @param Duration: <p>生成视频的时长。<br>注意：</p><ol><li>Kling，默认：5 秒。<ul><li>O1 支持 3-10 秒。</li><li>3.0-Omni 支持 3-15 秒，当使用视频参考时只支持 3-10 秒。</li><li>3.0 支持 3-15 秒。</li><li>其他版本支持 5、10 秒。</li></ul></li><li>wand-vega-video, 1.0-lite支持：4-15秒。</li><li>Hailuo 的 std 模式可支持 6、10 秒，其他仅 6 秒。默认：6 秒。</li><li>Vidu，默认：5 秒。<ul><li>q3-pro、q3-turbo、q3、q3-mix 支持 3-16 秒。</li><li>q2-pro、q2-turbo、q2 支持 1-10 秒。 </li></ul></li><li>PixVerse，默认：5 秒。<ul><li>v5.6 支持 5、8、10 秒。</li><li>v6、c1 支持 1-15 秒。</li></ul></li><li>H2，支持 3-15 秒，默认 ：5 秒。</li></ol>
         # @type Duration: Integer
         # @param ExtraParameters: <p>用于传入要求的额外参数。</p>
         # @type ExtraParameters: :class:`Tencentcloud::Mps.v20190612.models.AigcVideoExtraParam`
@@ -11745,9 +11745,9 @@ module TencentCloud
 
       # CreateStreamLinkInput请求参数结构体
       class CreateStreamLinkInputRequest < TencentCloud::Common::AbstractModel
-        # @param FlowId: 媒体传输流ID。
+        # @param FlowId: <p>媒体传输流ID。</p>
         # @type FlowId: String
-        # @param InputGroup: 流的输入组。
+        # @param InputGroup: <p>流的输入组。</p>
         # @type InputGroup: Array
 
         attr_accessor :FlowId, :InputGroup
@@ -11772,7 +11772,7 @@ module TencentCloud
 
       # CreateStreamLinkInput返回参数结构体
       class CreateStreamLinkInputResponse < TencentCloud::Common::AbstractModel
-        # @param Info: 创建的Flow信息。
+        # @param Info: <p>创建的Flow信息。</p>
         # @type Info: :class:`Tencentcloud::Mps.v20190612.models.DescribeFlow`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -17211,7 +17211,7 @@ module TencentCloud
 
       # DescribeStreamLinkEvent请求参数结构体
       class DescribeStreamLinkEventRequest < TencentCloud::Common::AbstractModel
-        # @param EventId: 媒体传输事件ID。
+        # @param EventId: <p>媒体传输事件ID。</p>
         # @type EventId: String
 
         attr_accessor :EventId
@@ -17227,7 +17227,7 @@ module TencentCloud
 
       # DescribeStreamLinkEvent返回参数结构体
       class DescribeStreamLinkEventResponse < TencentCloud::Common::AbstractModel
-        # @param Info: 媒体传输事件的配置信息。
+        # @param Info: <p>媒体传输事件的配置信息。</p>
         # @type Info: :class:`Tencentcloud::Mps.v20190612.models.DescribeEvent`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -17250,9 +17250,9 @@ module TencentCloud
 
       # DescribeStreamLinkEvents请求参数结构体
       class DescribeStreamLinkEventsRequest < TencentCloud::Common::AbstractModel
-        # @param PageNum: 当前页数，默认1。
+        # @param PageNum: <p>当前页数，默认1。</p>
         # @type PageNum: Integer
-        # @param PageSize: 每页大小，默认10。
+        # @param PageSize: <p>每页大小，默认10。</p>
         # @type PageSize: Integer
 
         attr_accessor :PageNum, :PageSize
@@ -17270,15 +17270,15 @@ module TencentCloud
 
       # DescribeStreamLinkEvents返回参数结构体
       class DescribeStreamLinkEventsResponse < TencentCloud::Common::AbstractModel
-        # @param Infos: 媒体传输事件的配置信息列表。
+        # @param Infos: <p>媒体传输事件的配置信息列表。</p>
         # @type Infos: Array
-        # @param PageNum: 当前页数。
+        # @param PageNum: <p>当前页数。</p>
         # @type PageNum: Integer
-        # @param PageSize: 每页大小。
+        # @param PageSize: <p>每页大小。</p>
         # @type PageSize: Integer
-        # @param TotalNum: 总数量。
+        # @param TotalNum: <p>总数量。</p>
         # @type TotalNum: Integer
-        # @param TotalPage: 总页数。
+        # @param TotalPage: <p>总页数。</p>
         # @type TotalPage: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -19543,16 +19543,13 @@ module TencentCloud
 
       # DescribeWorkflows请求参数结构体
       class DescribeWorkflowsRequest < TencentCloud::Common::AbstractModel
-        # @param WorkflowIds: 工作流 ID 过滤条件，数组长度限制：100。
+        # @param WorkflowIds: <p>工作流 ID 过滤条件，数组长度限制：100。</p>
         # @type WorkflowIds: Array
-        # @param Status: 工作流状态，取值范围：
-        # <li>Enabled：已启用，</li>
-        # <li>Disabled：已禁用。</li>
-        # 不填此参数，则不区分工作流状态。
+        # @param Status: <p>工作流状态，取值范围：</p><li>Enabled：已启用，</li><li>Disabled：已禁用。</li>不填此参数，则不区分工作流状态。
         # @type Status: String
-        # @param Offset: 分页偏移量，默认值：0。
+        # @param Offset: <p>分页偏移量，默认值：0。</p>
         # @type Offset: Integer
-        # @param Limit: 返回记录条数，默认值：10，最大值：100。
+        # @param Limit: <p>返回记录条数，默认值：10，最大值：100。</p>
         # @type Limit: Integer
 
         attr_accessor :WorkflowIds, :Status, :Offset, :Limit
@@ -19574,9 +19571,9 @@ module TencentCloud
 
       # DescribeWorkflows返回参数结构体
       class DescribeWorkflowsResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 符合过滤条件的记录总数。
+        # @param TotalCount: <p>符合过滤条件的记录总数。</p>
         # @type TotalCount: Integer
-        # @param WorkflowInfoSet: 工作流信息数组。
+        # @param WorkflowInfoSet: <p>工作流信息数组。</p>
         # @type WorkflowInfoSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

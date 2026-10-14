@@ -30718,7 +30718,7 @@ module TencentCloud
         # @type Database: String
         # @param Catalog: <p>需要授权的数据源名称，管理员级别下只支持填  * （代表该级别全部资源）；数据源级别和数据库级别鉴权的情况下，只支持填COSDataCatalog或者*；在数据表级别鉴权下可以填写用户自定义数据源。不填情况下默认为DataLakeCatalog。注意：如果是对用户自定义数据源进行鉴权，DLC能够管理的权限是用户接入数据源的时候提供的账户的子集。</p>
         # @type Catalog: String
-        # @param Table: <p>需要授权的表名，填 * 代表当前Database下所有表。当授权类型为管理员级别时，只允许填“*”，当授权类型为数据连接级别、数据库级别时只允许填空，其他类型下可以任意指定数据表。</p>
+        # @param Table: <p>需要授权的表名，填 * 代表当前Database有表（TClake场景下暂不支持通配符）。当授权类型为管理员级别时，只允许填“*”，当授权类型为数据连接级别、数据库级别时只允许填空，其他类型下可以任意指定数据表。</p>
         # @type Table: String
         # @param Operation: <p>授权的权限操作，对于不同级别的鉴权提供不同操作。管理员权限：ALL，不填默认为ALL；数据连接级鉴权：CREATE；数据库级别鉴权：ALL、CREATE、ALTER、DROP；数据表权限：ALL、SELECT、INSERT、ALTER、DELETE、DROP、UPDATE。注意：在数据表权限下，指定的数据源不为COSDataCatalog的时候，只支持SELECT操作。</p>
         # @type Operation: String
@@ -41040,6 +41040,9 @@ module TencentCloud
         # @type PartitionName: String
         # @param QueueName: <p>资源组/队列名。</p>
         # @type QueueName: String
+        # @param ProfileDetail: <p>规格详情（profile 完整基础信息，describe 与 list 均返回）.</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProfileDetail: :class:`Tencentcloud::Dlc.v20210125.models.WarehouseProfileBriefInfo`
         # @param CreateTime: <p>创建时间（毫秒时间戳）。</p>
         # @type CreateTime: Integer
         # @param UpdateTime: <p>最后更新时间（毫秒时间戳）。</p>
@@ -41063,9 +41066,9 @@ module TencentCloud
         # @param DynamicProperties: <p>动态参数（DynamicProperties）：spark.* KV 的 JSON 字符串，运行期生效（会话级，openSession 弱注入，即改即生效）。</p>
         # @type DynamicProperties: String
 
-        attr_accessor :WarehouseId, :Name, :CreatorSubUin, :Description, :State, :PartitionCode, :PartitionName, :QueueName, :CreateTime, :UpdateTime, :ActiveClusters, :MinClusters, :MaxClusters, :RuntimeCode, :RuntimeName, :SysCatalogVersion, :EnvVars, :RuntimeConf, :DynamicProperties
+        attr_accessor :WarehouseId, :Name, :CreatorSubUin, :Description, :State, :PartitionCode, :PartitionName, :QueueName, :ProfileDetail, :CreateTime, :UpdateTime, :ActiveClusters, :MinClusters, :MaxClusters, :RuntimeCode, :RuntimeName, :SysCatalogVersion, :EnvVars, :RuntimeConf, :DynamicProperties
 
-        def initialize(warehouseid=nil, name=nil, creatorsubuin=nil, description=nil, state=nil, partitioncode=nil, partitionname=nil, queuename=nil, createtime=nil, updatetime=nil, activeclusters=nil, minclusters=nil, maxclusters=nil, runtimecode=nil, runtimename=nil, syscatalogversion=nil, envvars=nil, runtimeconf=nil, dynamicproperties=nil)
+        def initialize(warehouseid=nil, name=nil, creatorsubuin=nil, description=nil, state=nil, partitioncode=nil, partitionname=nil, queuename=nil, profiledetail=nil, createtime=nil, updatetime=nil, activeclusters=nil, minclusters=nil, maxclusters=nil, runtimecode=nil, runtimename=nil, syscatalogversion=nil, envvars=nil, runtimeconf=nil, dynamicproperties=nil)
           @WarehouseId = warehouseid
           @Name = name
           @CreatorSubUin = creatorsubuin
@@ -41074,6 +41077,7 @@ module TencentCloud
           @PartitionCode = partitioncode
           @PartitionName = partitionname
           @QueueName = queuename
+          @ProfileDetail = profiledetail
           @CreateTime = createtime
           @UpdateTime = updatetime
           @ActiveClusters = activeclusters
@@ -41096,6 +41100,10 @@ module TencentCloud
           @PartitionCode = params['PartitionCode']
           @PartitionName = params['PartitionName']
           @QueueName = params['QueueName']
+          unless params['ProfileDetail'].nil?
+            @ProfileDetail = WarehouseProfileBriefInfo.new
+            @ProfileDetail.deserialize(params['ProfileDetail'])
+          end
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
           @ActiveClusters = params['ActiveClusters']
@@ -41114,6 +41122,38 @@ module TencentCloud
           end
           @RuntimeConf = params['RuntimeConf']
           @DynamicProperties = params['DynamicProperties']
+        end
+      end
+
+      # Warehouse Profile 对外基础信息（对外 API 精简视图）.
+      class WarehouseProfileBriefInfo < TencentCloud::Common::AbstractModel
+        # @param ProfileCode: <p>规格编码（常见 XS / S / M / L / XL，租户自定义编码亦合法）.</p>
+        # @type ProfileCode: String
+        # @param ProfileName: <p>规格名称.</p>
+        # @type ProfileName: String
+        # @param Description: <p>规格描述.</p>
+        # @type Description: String
+        # @param Spec: <p>规格展示文案（后端渲染后的字符串，如 "4CU"；前端直接展示，不做二次拼装）.</p>
+        # @type Spec: String
+        # @param Scenario: <p>适用场景描述.</p>
+        # @type Scenario: String
+
+        attr_accessor :ProfileCode, :ProfileName, :Description, :Spec, :Scenario
+
+        def initialize(profilecode=nil, profilename=nil, description=nil, spec=nil, scenario=nil)
+          @ProfileCode = profilecode
+          @ProfileName = profilename
+          @Description = description
+          @Spec = spec
+          @Scenario = scenario
+        end
+
+        def deserialize(params)
+          @ProfileCode = params['ProfileCode']
+          @ProfileName = params['ProfileName']
+          @Description = params['Description']
+          @Spec = params['Spec']
+          @Scenario = params['Scenario']
         end
       end
 

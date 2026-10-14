@@ -495,45 +495,62 @@ module TencentCloud
 
       # 容器日志采集配置
       class CollectorTarget < TencentCloud::Common::AbstractModel
-        # @param TargetName: 采集配置名称
+        # @param TargetName: <p>采集配置名称</p>
         # @type TargetName: String
-        # @param Namespaces: 命名空间列表，包括Include包含和Exclude不包含选项，两者都为空时等同于全部命名空间(包含当前所有的以及未来创建的)。
+        # @param Namespaces: <p>命名空间列表，包括Include包含和Exclude不包含选项，两者都为空时等同于全部命名空间(包含当前所有的以及未来创建的)。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Namespaces: :class:`Tencentcloud::Es.v20180416.models.Namespaces`
-        # @param PodLabels: Pod标签列表
+        # @param PodLabels: <p>Pod标签列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PodLabels: Array
-        # @param ContainerName: 容器名称，支持小写字母、数字、连接符-、下划线_，最多支持63个字符
+        # @param ContainerName: <p>容器名称，支持小写字母、数字、连接符-、下划线_，最多支持63个字符</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContainerName: String
-        # @param IndexPrefix: ES索引名称前缀，如果当前采集配置下的容器日志输出到ES集群，则使用该字段作为ES索引名称的前缀，支持大小写字母、数字、连接符-、下划线_，最多支持50个字符
+        # @param IndexPrefix: <p>ES索引名称前缀，如果当前采集配置下的容器日志输出到ES集群，则使用该字段作为ES索引名称的前缀，支持大小写字母、数字、连接符-、下划线_，最多支持50个字符</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IndexPrefix: String
-        # @param LogFilters: 日志内容过滤，以逗号分隔，支持大小写字母、数字、连接符-、下划线_以及逗号，最多支持50个字符
+        # @param LogFilters: <p>日志内容过滤，以逗号分隔，支持大小写字母、数字、连接符-、下划线_以及逗号，最多支持50个字符</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogFilters: String
-        # @param ConfigContent: 高级配置，可自定义采集规则，最多支持2048个字符
+        # @param ConfigContent: <p>高级配置，可自定义采集规则，最多支持2048个字符</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConfigContent: String
-        # @param KafkaTopic: Ckafka实例的Topic
+        # @param KafkaTopic: <p>Ckafka实例的Topic</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KafkaTopic: String
-        # @param IndexAlias: ES索引名称，如果当前采集配置下的容器日志输出到ES集群，则使用该字段作为ES索引名称，支持大小写字母、数字、连接符-、下划线_，最多支持50个字符
+        # @param IndexAlias: <p>ES索引名称，如果当前采集配置下的容器日志输出到ES集群，则使用该字段作为ES索引名称，支持大小写字母、数字、连接符-、下划线_，最多支持50个字符</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IndexAlias: String
-        # @param InputType: /
+        # @param InputType: <p>/</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InputType: String
-        # @param InputPath: 日志采集host路径
+        # @param InputPath: <p>日志采集host路径</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InputPath: String
-        # @param InputsTailFiles: inputs.tail_files
+        # @param InputsTailFiles: <p>inputs.tail_files</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InputsTailFiles: Boolean
+        # @param InputsMultiLineEnabled: <p>开关inputs.multitline</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InputsMultiLineEnabled: Boolean
+        # @param InputsMultiLineType: <p>inputs.multiline.type</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InputsMultiLineType: String
+        # @param InputsMultiLinePattern: <p>inputs.multiline.pattern</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InputsMultiLinePattern: String
+        # @param InputsMultiLineNegate: <p>inputs.multiline.negate</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InputsMultiLineNegate: Boolean
+        # @param InputsMultiLineMatch: <p>inputs.multiline.match</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InputsMultiLineMatch: String
+        # @param TkeCollectType: <p>按空间采集时 tke 的采集类型，默认为 container，支持 container、filestream</p>
+        # @type TkeCollectType: String
 
-        attr_accessor :TargetName, :Namespaces, :PodLabels, :ContainerName, :IndexPrefix, :LogFilters, :ConfigContent, :KafkaTopic, :IndexAlias, :InputType, :InputPath, :InputsTailFiles
+        attr_accessor :TargetName, :Namespaces, :PodLabels, :ContainerName, :IndexPrefix, :LogFilters, :ConfigContent, :KafkaTopic, :IndexAlias, :InputType, :InputPath, :InputsTailFiles, :InputsMultiLineEnabled, :InputsMultiLineType, :InputsMultiLinePattern, :InputsMultiLineNegate, :InputsMultiLineMatch, :TkeCollectType
 
-        def initialize(targetname=nil, namespaces=nil, podlabels=nil, containername=nil, indexprefix=nil, logfilters=nil, configcontent=nil, kafkatopic=nil, indexalias=nil, inputtype=nil, inputpath=nil, inputstailfiles=nil)
+        def initialize(targetname=nil, namespaces=nil, podlabels=nil, containername=nil, indexprefix=nil, logfilters=nil, configcontent=nil, kafkatopic=nil, indexalias=nil, inputtype=nil, inputpath=nil, inputstailfiles=nil, inputsmultilineenabled=nil, inputsmultilinetype=nil, inputsmultilinepattern=nil, inputsmultilinenegate=nil, inputsmultilinematch=nil, tkecollecttype=nil)
           @TargetName = targetname
           @Namespaces = namespaces
           @PodLabels = podlabels
@@ -546,6 +563,12 @@ module TencentCloud
           @InputType = inputtype
           @InputPath = inputpath
           @InputsTailFiles = inputstailfiles
+          @InputsMultiLineEnabled = inputsmultilineenabled
+          @InputsMultiLineType = inputsmultilinetype
+          @InputsMultiLinePattern = inputsmultilinepattern
+          @InputsMultiLineNegate = inputsmultilinenegate
+          @InputsMultiLineMatch = inputsmultilinematch
+          @TkeCollectType = tkecollecttype
         end
 
         def deserialize(params)
@@ -571,6 +594,12 @@ module TencentCloud
           @InputType = params['InputType']
           @InputPath = params['InputPath']
           @InputsTailFiles = params['InputsTailFiles']
+          @InputsMultiLineEnabled = params['InputsMultiLineEnabled']
+          @InputsMultiLineType = params['InputsMultiLineType']
+          @InputsMultiLinePattern = params['InputsMultiLinePattern']
+          @InputsMultiLineNegate = params['InputsMultiLineNegate']
+          @InputsMultiLineMatch = params['InputsMultiLineMatch']
+          @TkeCollectType = params['TkeCollectType']
         end
       end
 
@@ -2975,36 +3004,38 @@ module TencentCloud
 
       # DescribeInstances请求参数结构体
       class DescribeInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param Zone: 集群实例所属可用区，不传则默认所有可用区
+        # @param Zone: <p>集群实例所属可用区，不传则默认所有可用区</p>
         # @type Zone: String
-        # @param InstanceIds: 集群实例ID列表
+        # @param InstanceIds: <p>集群实例ID列表</p>
         # @type InstanceIds: Array
-        # @param InstanceNames: 集群实例名称列表
+        # @param InstanceNames: <p>集群实例名称列表</p>
         # @type InstanceNames: Array
-        # @param Offset: 分页起始值, 默认值0
+        # @param Offset: <p>分页起始值, 默认值0</p>
         # @type Offset: Integer
-        # @param Limit: 分页大小，默认值20
+        # @param Limit: <p>分页大小，默认值20</p>
         # @type Limit: Integer
-        # @param OrderByKey: 排序字段<li>1：实例ID</li><li>2：实例名称</li><li>3：可用区</li><li>4：创建时间</li>若orderByKey未传递则按创建时间降序排序
+        # @param OrderByKey: <p>排序字段<li>1：实例ID</li><li>2：实例名称</li><li>3：可用区</li><li>4：创建时间</li>若orderByKey未传递则按创建时间降序排序</p>
         # @type OrderByKey: Integer
-        # @param OrderByType: 排序方式<li>0：升序</li><li>1：降序</li>若传递了orderByKey未传递orderByType, 则默认升序
+        # @param OrderByType: <p>排序方式<li>0：升序</li><li>1：降序</li>若传递了orderByKey未传递orderByType, 则默认升序</p>
         # @type OrderByType: Integer
-        # @param TagList: 节点标签信息列表
+        # @param TagList: <p>节点标签信息列表</p>
         # @type TagList: Array
-        # @param IpList: 私有网络vip列表
+        # @param IpList: <p>私有网络vip列表</p>
         # @type IpList: Array
-        # @param ZoneList: 可用区列表
+        # @param NodeIps: <p>集群节点IP列表</p>
+        # @type NodeIps: Array
+        # @param ZoneList: <p>可用区列表</p>
         # @type ZoneList: Array
-        # @param HealthStatus: 健康状态筛列表:0表示绿色，1表示黄色，2表示红色,-1表示未知
+        # @param HealthStatus: <p>健康状态筛列表:0表示绿色，1表示黄色，2表示红色,-1表示未知</p>
         # @type HealthStatus: Array
-        # @param VpcIds: Vpc列表 筛选项
+        # @param VpcIds: <p>Vpc列表 筛选项</p>
         # @type VpcIds: Array
-        # @param CdcId: cdc集群id
+        # @param CdcId: <p>cdc集群id</p>
         # @type CdcId: String
 
-        attr_accessor :Zone, :InstanceIds, :InstanceNames, :Offset, :Limit, :OrderByKey, :OrderByType, :TagList, :IpList, :ZoneList, :HealthStatus, :VpcIds, :CdcId
+        attr_accessor :Zone, :InstanceIds, :InstanceNames, :Offset, :Limit, :OrderByKey, :OrderByType, :TagList, :IpList, :NodeIps, :ZoneList, :HealthStatus, :VpcIds, :CdcId
 
-        def initialize(zone=nil, instanceids=nil, instancenames=nil, offset=nil, limit=nil, orderbykey=nil, orderbytype=nil, taglist=nil, iplist=nil, zonelist=nil, healthstatus=nil, vpcids=nil, cdcid=nil)
+        def initialize(zone=nil, instanceids=nil, instancenames=nil, offset=nil, limit=nil, orderbykey=nil, orderbytype=nil, taglist=nil, iplist=nil, nodeips=nil, zonelist=nil, healthstatus=nil, vpcids=nil, cdcid=nil)
           @Zone = zone
           @InstanceIds = instanceids
           @InstanceNames = instancenames
@@ -3014,6 +3045,7 @@ module TencentCloud
           @OrderByType = orderbytype
           @TagList = taglist
           @IpList = iplist
+          @NodeIps = nodeips
           @ZoneList = zonelist
           @HealthStatus = healthstatus
           @VpcIds = vpcids
@@ -3037,6 +3069,7 @@ module TencentCloud
             end
           end
           @IpList = params['IpList']
+          @NodeIps = params['NodeIps']
           @ZoneList = params['ZoneList']
           @HealthStatus = params['HealthStatus']
           @VpcIds = params['VpcIds']
@@ -3046,9 +3079,9 @@ module TencentCloud
 
       # DescribeInstances返回参数结构体
       class DescribeInstancesResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 返回的实例个数
+        # @param TotalCount: <p>返回的实例个数</p>
         # @type TotalCount: Integer
-        # @param InstanceList: 实例详细信息列表
+        # @param InstanceList: <p>实例详细信息列表</p>
         # @type InstanceList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5022,10 +5055,12 @@ module TencentCloud
         # @type SubEventType: Integer
         # @param SubEventName: <p>子事件名称</p>
         # @type SubEventName: String
+        # @param EventScope: <p>事件范围</p><p>枚举值：</p><ul><li>0： 实例级</li><li>1： 账号级</li></ul>
+        # @type EventScope: Integer
 
-        attr_accessor :EventType, :EventTaskId, :EventName, :EventImportance, :EventContent, :InstanceId, :InstanceName, :NodeId, :NodeRole, :EventStatus, :StartTime, :EndTime, :SubEventType, :SubEventName
+        attr_accessor :EventType, :EventTaskId, :EventName, :EventImportance, :EventContent, :InstanceId, :InstanceName, :NodeId, :NodeRole, :EventStatus, :StartTime, :EndTime, :SubEventType, :SubEventName, :EventScope
 
-        def initialize(eventtype=nil, eventtaskid=nil, eventname=nil, eventimportance=nil, eventcontent=nil, instanceid=nil, instancename=nil, nodeid=nil, noderole=nil, eventstatus=nil, starttime=nil, endtime=nil, subeventtype=nil, subeventname=nil)
+        def initialize(eventtype=nil, eventtaskid=nil, eventname=nil, eventimportance=nil, eventcontent=nil, instanceid=nil, instancename=nil, nodeid=nil, noderole=nil, eventstatus=nil, starttime=nil, endtime=nil, subeventtype=nil, subeventname=nil, eventscope=nil)
           @EventType = eventtype
           @EventTaskId = eventtaskid
           @EventName = eventname
@@ -5040,6 +5075,7 @@ module TencentCloud
           @EndTime = endtime
           @SubEventType = subeventtype
           @SubEventName = subeventname
+          @EventScope = eventscope
         end
 
         def deserialize(params)
@@ -5057,6 +5093,7 @@ module TencentCloud
           @EndTime = params['EndTime']
           @SubEventType = params['SubEventType']
           @SubEventName = params['SubEventName']
+          @EventScope = params['EventScope']
         end
       end
 
@@ -5196,6 +5233,42 @@ module TencentCloud
           @ShardId = params['ShardId']
           @Reason = params['Reason']
           @Status = params['Status']
+        end
+      end
+
+      # 机型族下单个机型族的资源可用性明细
+      class FamilyResourceStat < TencentCloud::Common::AbstractModel
+        # @param InsFamily: <p>机型族，如 &quot;SA5&quot;</p>
+        # @type InsFamily: String
+        # @param CvmAvailable: <p>CVM资源是否有货</p>
+        # @type CvmAvailable: Boolean
+        # @param SysDiskAvailable: <p>系统盘资源是否有货</p>
+        # @type SysDiskAvailable: Boolean
+        # @param DiskAvailable: <p>该盘型数据盘资源是否有货</p>
+        # @type DiskAvailable: Boolean
+        # @param Purchasable: <p>三类资源是否全部有货(可直接购买)</p>
+        # @type Purchasable: Boolean
+        # @param MissingResources: <p>缺少的资源，取值 CVM/SYSDISK/DISK；为空表示不缺</p>
+        # @type MissingResources: Array
+
+        attr_accessor :InsFamily, :CvmAvailable, :SysDiskAvailable, :DiskAvailable, :Purchasable, :MissingResources
+
+        def initialize(insfamily=nil, cvmavailable=nil, sysdiskavailable=nil, diskavailable=nil, purchasable=nil, missingresources=nil)
+          @InsFamily = insfamily
+          @CvmAvailable = cvmavailable
+          @SysDiskAvailable = sysdiskavailable
+          @DiskAvailable = diskavailable
+          @Purchasable = purchasable
+          @MissingResources = missingresources
+        end
+
+        def deserialize(params)
+          @InsFamily = params['InsFamily']
+          @CvmAvailable = params['CvmAvailable']
+          @SysDiskAvailable = params['SysDiskAvailable']
+          @DiskAvailable = params['DiskAvailable']
+          @Purchasable = params['Purchasable']
+          @MissingResources = params['MissingResources']
         end
       end
 
@@ -6911,108 +6984,136 @@ module TencentCloud
 
       # Logstash节点规格资源描述
       class LogstashNodeTypeResource < TencentCloud::Common::AbstractModel
-        # @param NodeTypeName: 规格名称
+        # @param NodeTypeName: <p>规格名称</p>
         # @type NodeTypeName: String
-        # @param Available: 是否可售
+        # @param Available: <p>是否可售</p>
         # @type Available: Boolean
-        # @param NodeTypeInfo: 规格信息
+        # @param NodeTypeInfo: <p>规格信息</p>
         # @type NodeTypeInfo: :class:`Tencentcloud::Es.v20180416.models.NodeTypeInfo`
-        # @param SsdAvailable: SSD盘是否可售
+        # @param SsdAvailable: <p>SSD盘是否可售</p>
         # @type SsdAvailable: Boolean
-        # @param SsdDiskSizeRange: SSD磁盘取值范围
+        # @param SsdDiskSizeRange: <p>SSD磁盘取值范围</p>
         # @type SsdDiskSizeRange: :class:`Tencentcloud::Es.v20180416.models.DiskSizeRange`
-        # @param SataAvailable: SATA盘是否可售
+        # @param SsdSoldOutDetail: <p>SSD云硬盘售罄明细</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SsdSoldOutDetail: Array
+        # @param SataAvailable: <p>SATA盘是否可售</p>
         # @type SataAvailable: Boolean
-        # @param SataDiskSizeRange: SATA磁盘取值范围
+        # @param SataDiskSizeRange: <p>SATA磁盘取值范围</p>
         # @type SataDiskSizeRange: :class:`Tencentcloud::Es.v20180416.models.DiskSizeRange`
-        # @param SsdSoldOutReason: SSD机型售罄原因
+        # @param SsdSoldOutReason: <p>SSD机型售罄原因</p>
         # @type SsdSoldOutReason: String
-        # @param SataSoldOutReason: SATA机型售罄原因
+        # @param SataSoldOutReason: <p>SATA机型售罄原因</p>
         # @type SataSoldOutReason: String
-        # @param LocalDiskInfo: 本地盘信息
+        # @param SataSoldOutDetail: <p>高性能云硬盘售罄明细</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SataSoldOutDetail: Array
+        # @param LocalDiskInfo: <p>本地盘信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LocalDiskInfo: :class:`Tencentcloud::Es.v20180416.models.LocalDiskInfo`
-        # @param DiskCountRange: 云盘块数取值范围
+        # @param DiskCountRange: <p>云盘块数取值范围</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiskCountRange: :class:`Tencentcloud::Es.v20180416.models.DiskCountRange`
-        # @param HSsdAvailable: 增强型SSD是否可用
+        # @param HSsdAvailable: <p>增强型SSD是否可用</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HSsdAvailable: Boolean
-        # @param HSsdSoldOutReason: 增强型SSD机型售罄原因
+        # @param HSsdSoldOutReason: <p>增强型SSD机型售罄原因</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HSsdSoldOutReason: String
-        # @param HSsdDiskSizeRange: 增强型SSD磁盘取值范围
+        # @param HSsdSoldOutDetail: <p>增强型SSD售罄明细</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HSsdSoldOutDetail: Array
+        # @param HSsdDiskSizeRange: <p>增强型SSD磁盘取值范围</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HSsdDiskSizeRange: :class:`Tencentcloud::Es.v20180416.models.DiskSizeRange`
-        # @param ThroughputAvailable: 吞吐型云盘是否可用
+        # @param ThroughputAvailable: <p>吞吐型云盘是否可用</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ThroughputAvailable: Boolean
-        # @param ThroughputSoldOutReason: 吞吐型云盘售罄原因
+        # @param ThroughputSoldOutReason: <p>吞吐型云盘售罄原因</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ThroughputSoldOutReason: String
-        # @param ThroughputDiskSizeRange: 吞吐型云盘取值范围
+        # @param ThroughputSoldOutDetail: <p>吞吐型云硬盘售罄</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ThroughputSoldOutDetail: Array
+        # @param ThroughputDiskSizeRange: <p>吞吐型云盘取值范围</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ThroughputDiskSizeRange: :class:`Tencentcloud::Es.v20180416.models.DiskSizeRange`
-        # @param BigDataAvailable: BigData盘是否可售
+        # @param BigDataAvailable: <p>BigData盘是否可售</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BigDataAvailable: Boolean
-        # @param BigDataSoldOutReason: BigData盘售罄原因
+        # @param BigDataSoldOutReason: <p>BigData盘售罄原因</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BigDataSoldOutReason: String
-        # @param BigDataDiskSizeRange: BigData磁盘取值范围
+        # @param BigDataSoldOutDetail: <p>大数据型云硬盘售罄明细</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BigDataSoldOutDetail: Array
+        # @param BigDataDiskSizeRange: <p>BigData磁盘取值范围</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BigDataDiskSizeRange: :class:`Tencentcloud::Es.v20180416.models.DiskSizeRange`
-        # @param HighIOAvailable: HighIO盘是否可售
+        # @param HighIOAvailable: <p>HighIO盘是否可售</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HighIOAvailable: Boolean
-        # @param HighIOSoldOutReason: HighIO盘售罄原因
+        # @param HighIOSoldOutReason: <p>HighIO盘售罄原因</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HighIOSoldOutReason: String
-        # @param HighIODiskSizeRange: HighIO磁盘取值范围
+        # @param HighIOSoldOutDetail: <p>高IO型云硬盘售罄明细</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HighIOSoldOutDetail: Array
+        # @param HighIODiskSizeRange: <p>HighIO磁盘取值范围</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HighIODiskSizeRange: :class:`Tencentcloud::Es.v20180416.models.DiskSizeRange`
-        # @param BssdAvailable: Bssd盘是否可售
+        # @param BssdAvailable: <p>Bssd盘是否可售</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BssdAvailable: Boolean
-        # @param BssdSoldOutReason: Bssd盘售罄原因
+        # @param BssdSoldOutReason: <p>Bssd盘售罄原因</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BssdSoldOutReason: String
-        # @param BssdDiskSizeRange: Bssd盘取值范围
+        # @param BssdDiskSizeRange: <p>Bssd盘取值范围</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BssdDiskSizeRange: :class:`Tencentcloud::Es.v20180416.models.DiskSizeRange`
-        # @param GpuInfo: GpuInfo
+        # @param BssdSoldOutDetail: <p>通用型SSD云硬盘售罄明细</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BssdSoldOutDetail: Array
+        # @param GpuInfo: <p>GpuInfo</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GpuInfo: :class:`Tencentcloud::Es.v20180416.models.GpuInfo`
 
-        attr_accessor :NodeTypeName, :Available, :NodeTypeInfo, :SsdAvailable, :SsdDiskSizeRange, :SataAvailable, :SataDiskSizeRange, :SsdSoldOutReason, :SataSoldOutReason, :LocalDiskInfo, :DiskCountRange, :HSsdAvailable, :HSsdSoldOutReason, :HSsdDiskSizeRange, :ThroughputAvailable, :ThroughputSoldOutReason, :ThroughputDiskSizeRange, :BigDataAvailable, :BigDataSoldOutReason, :BigDataDiskSizeRange, :HighIOAvailable, :HighIOSoldOutReason, :HighIODiskSizeRange, :BssdAvailable, :BssdSoldOutReason, :BssdDiskSizeRange, :GpuInfo
+        attr_accessor :NodeTypeName, :Available, :NodeTypeInfo, :SsdAvailable, :SsdDiskSizeRange, :SsdSoldOutDetail, :SataAvailable, :SataDiskSizeRange, :SsdSoldOutReason, :SataSoldOutReason, :SataSoldOutDetail, :LocalDiskInfo, :DiskCountRange, :HSsdAvailable, :HSsdSoldOutReason, :HSsdSoldOutDetail, :HSsdDiskSizeRange, :ThroughputAvailable, :ThroughputSoldOutReason, :ThroughputSoldOutDetail, :ThroughputDiskSizeRange, :BigDataAvailable, :BigDataSoldOutReason, :BigDataSoldOutDetail, :BigDataDiskSizeRange, :HighIOAvailable, :HighIOSoldOutReason, :HighIOSoldOutDetail, :HighIODiskSizeRange, :BssdAvailable, :BssdSoldOutReason, :BssdDiskSizeRange, :BssdSoldOutDetail, :GpuInfo
 
-        def initialize(nodetypename=nil, available=nil, nodetypeinfo=nil, ssdavailable=nil, ssddisksizerange=nil, sataavailable=nil, satadisksizerange=nil, ssdsoldoutreason=nil, satasoldoutreason=nil, localdiskinfo=nil, diskcountrange=nil, hssdavailable=nil, hssdsoldoutreason=nil, hssddisksizerange=nil, throughputavailable=nil, throughputsoldoutreason=nil, throughputdisksizerange=nil, bigdataavailable=nil, bigdatasoldoutreason=nil, bigdatadisksizerange=nil, highioavailable=nil, highiosoldoutreason=nil, highiodisksizerange=nil, bssdavailable=nil, bssdsoldoutreason=nil, bssddisksizerange=nil, gpuinfo=nil)
+        def initialize(nodetypename=nil, available=nil, nodetypeinfo=nil, ssdavailable=nil, ssddisksizerange=nil, ssdsoldoutdetail=nil, sataavailable=nil, satadisksizerange=nil, ssdsoldoutreason=nil, satasoldoutreason=nil, satasoldoutdetail=nil, localdiskinfo=nil, diskcountrange=nil, hssdavailable=nil, hssdsoldoutreason=nil, hssdsoldoutdetail=nil, hssddisksizerange=nil, throughputavailable=nil, throughputsoldoutreason=nil, throughputsoldoutdetail=nil, throughputdisksizerange=nil, bigdataavailable=nil, bigdatasoldoutreason=nil, bigdatasoldoutdetail=nil, bigdatadisksizerange=nil, highioavailable=nil, highiosoldoutreason=nil, highiosoldoutdetail=nil, highiodisksizerange=nil, bssdavailable=nil, bssdsoldoutreason=nil, bssddisksizerange=nil, bssdsoldoutdetail=nil, gpuinfo=nil)
           @NodeTypeName = nodetypename
           @Available = available
           @NodeTypeInfo = nodetypeinfo
           @SsdAvailable = ssdavailable
           @SsdDiskSizeRange = ssddisksizerange
+          @SsdSoldOutDetail = ssdsoldoutdetail
           @SataAvailable = sataavailable
           @SataDiskSizeRange = satadisksizerange
           @SsdSoldOutReason = ssdsoldoutreason
           @SataSoldOutReason = satasoldoutreason
+          @SataSoldOutDetail = satasoldoutdetail
           @LocalDiskInfo = localdiskinfo
           @DiskCountRange = diskcountrange
           @HSsdAvailable = hssdavailable
           @HSsdSoldOutReason = hssdsoldoutreason
+          @HSsdSoldOutDetail = hssdsoldoutdetail
           @HSsdDiskSizeRange = hssddisksizerange
           @ThroughputAvailable = throughputavailable
           @ThroughputSoldOutReason = throughputsoldoutreason
+          @ThroughputSoldOutDetail = throughputsoldoutdetail
           @ThroughputDiskSizeRange = throughputdisksizerange
           @BigDataAvailable = bigdataavailable
           @BigDataSoldOutReason = bigdatasoldoutreason
+          @BigDataSoldOutDetail = bigdatasoldoutdetail
           @BigDataDiskSizeRange = bigdatadisksizerange
           @HighIOAvailable = highioavailable
           @HighIOSoldOutReason = highiosoldoutreason
+          @HighIOSoldOutDetail = highiosoldoutdetail
           @HighIODiskSizeRange = highiodisksizerange
           @BssdAvailable = bssdavailable
           @BssdSoldOutReason = bssdsoldoutreason
           @BssdDiskSizeRange = bssddisksizerange
+          @BssdSoldOutDetail = bssdsoldoutdetail
           @GpuInfo = gpuinfo
         end
 
@@ -7028,6 +7129,14 @@ module TencentCloud
             @SsdDiskSizeRange = DiskSizeRange.new
             @SsdDiskSizeRange.deserialize(params['SsdDiskSizeRange'])
           end
+          unless params['SsdSoldOutDetail'].nil?
+            @SsdSoldOutDetail = []
+            params['SsdSoldOutDetail'].each do |i|
+              familyresourcestat_tmp = FamilyResourceStat.new
+              familyresourcestat_tmp.deserialize(i)
+              @SsdSoldOutDetail << familyresourcestat_tmp
+            end
+          end
           @SataAvailable = params['SataAvailable']
           unless params['SataDiskSizeRange'].nil?
             @SataDiskSizeRange = DiskSizeRange.new
@@ -7035,6 +7144,14 @@ module TencentCloud
           end
           @SsdSoldOutReason = params['SsdSoldOutReason']
           @SataSoldOutReason = params['SataSoldOutReason']
+          unless params['SataSoldOutDetail'].nil?
+            @SataSoldOutDetail = []
+            params['SataSoldOutDetail'].each do |i|
+              familyresourcestat_tmp = FamilyResourceStat.new
+              familyresourcestat_tmp.deserialize(i)
+              @SataSoldOutDetail << familyresourcestat_tmp
+            end
+          end
           unless params['LocalDiskInfo'].nil?
             @LocalDiskInfo = LocalDiskInfo.new
             @LocalDiskInfo.deserialize(params['LocalDiskInfo'])
@@ -7045,24 +7162,56 @@ module TencentCloud
           end
           @HSsdAvailable = params['HSsdAvailable']
           @HSsdSoldOutReason = params['HSsdSoldOutReason']
+          unless params['HSsdSoldOutDetail'].nil?
+            @HSsdSoldOutDetail = []
+            params['HSsdSoldOutDetail'].each do |i|
+              familyresourcestat_tmp = FamilyResourceStat.new
+              familyresourcestat_tmp.deserialize(i)
+              @HSsdSoldOutDetail << familyresourcestat_tmp
+            end
+          end
           unless params['HSsdDiskSizeRange'].nil?
             @HSsdDiskSizeRange = DiskSizeRange.new
             @HSsdDiskSizeRange.deserialize(params['HSsdDiskSizeRange'])
           end
           @ThroughputAvailable = params['ThroughputAvailable']
           @ThroughputSoldOutReason = params['ThroughputSoldOutReason']
+          unless params['ThroughputSoldOutDetail'].nil?
+            @ThroughputSoldOutDetail = []
+            params['ThroughputSoldOutDetail'].each do |i|
+              familyresourcestat_tmp = FamilyResourceStat.new
+              familyresourcestat_tmp.deserialize(i)
+              @ThroughputSoldOutDetail << familyresourcestat_tmp
+            end
+          end
           unless params['ThroughputDiskSizeRange'].nil?
             @ThroughputDiskSizeRange = DiskSizeRange.new
             @ThroughputDiskSizeRange.deserialize(params['ThroughputDiskSizeRange'])
           end
           @BigDataAvailable = params['BigDataAvailable']
           @BigDataSoldOutReason = params['BigDataSoldOutReason']
+          unless params['BigDataSoldOutDetail'].nil?
+            @BigDataSoldOutDetail = []
+            params['BigDataSoldOutDetail'].each do |i|
+              familyresourcestat_tmp = FamilyResourceStat.new
+              familyresourcestat_tmp.deserialize(i)
+              @BigDataSoldOutDetail << familyresourcestat_tmp
+            end
+          end
           unless params['BigDataDiskSizeRange'].nil?
             @BigDataDiskSizeRange = DiskSizeRange.new
             @BigDataDiskSizeRange.deserialize(params['BigDataDiskSizeRange'])
           end
           @HighIOAvailable = params['HighIOAvailable']
           @HighIOSoldOutReason = params['HighIOSoldOutReason']
+          unless params['HighIOSoldOutDetail'].nil?
+            @HighIOSoldOutDetail = []
+            params['HighIOSoldOutDetail'].each do |i|
+              familyresourcestat_tmp = FamilyResourceStat.new
+              familyresourcestat_tmp.deserialize(i)
+              @HighIOSoldOutDetail << familyresourcestat_tmp
+            end
+          end
           unless params['HighIODiskSizeRange'].nil?
             @HighIODiskSizeRange = DiskSizeRange.new
             @HighIODiskSizeRange.deserialize(params['HighIODiskSizeRange'])
@@ -7072,6 +7221,14 @@ module TencentCloud
           unless params['BssdDiskSizeRange'].nil?
             @BssdDiskSizeRange = DiskSizeRange.new
             @BssdDiskSizeRange.deserialize(params['BssdDiskSizeRange'])
+          end
+          unless params['BssdSoldOutDetail'].nil?
+            @BssdSoldOutDetail = []
+            params['BssdSoldOutDetail'].each do |i|
+              familyresourcestat_tmp = FamilyResourceStat.new
+              familyresourcestat_tmp.deserialize(i)
+              @BssdSoldOutDetail << familyresourcestat_tmp
+            end
           end
           unless params['GpuInfo'].nil?
             @GpuInfo = GpuInfo.new
@@ -7804,95 +7961,123 @@ module TencentCloud
 
       # 节点规格资源描述
       class NodeTypeResource < TencentCloud::Common::AbstractModel
-        # @param NodeTypeName: 规格名称
+        # @param NodeTypeName: <p>规格名称</p>
         # @type NodeTypeName: String
-        # @param Available: 是否可售
+        # @param Available: <p>是否可售</p>
         # @type Available: Boolean
-        # @param NodeTypeInfo: 规格信息
+        # @param NodeTypeInfo: <p>规格信息</p>
         # @type NodeTypeInfo: :class:`Tencentcloud::Es.v20180416.models.NodeTypeInfo`
-        # @param SsdAvailable: SSD盘是否可售
+        # @param SsdAvailable: <p>SSD盘是否可售</p>
         # @type SsdAvailable: Boolean
-        # @param SsdDiskSizeRange: SSD磁盘取值范围
+        # @param SsdDiskSizeRange: <p>SSD磁盘取值范围</p>
         # @type SsdDiskSizeRange: :class:`Tencentcloud::Es.v20180416.models.DiskSizeRange`
-        # @param SataAvailable: SATA盘是否可售
-        # @type SataAvailable: Boolean
-        # @param SataDiskSizeRange: SATA磁盘取值范围
-        # @type SataDiskSizeRange: :class:`Tencentcloud::Es.v20180416.models.DiskSizeRange`
-        # @param SsdSoldOutReason: SSD机型售罄原因
+        # @param SsdSoldOutReason: <p>SSD机型售罄原因</p>
         # @type SsdSoldOutReason: String
-        # @param SataSoldOutReason: SATA机型售罄原因
+        # @param SsdSoldOutDetail: <p>SSD云硬盘售罄明细</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SsdSoldOutDetail: Array
+        # @param SataAvailable: <p>SATA盘是否可售</p>
+        # @type SataAvailable: Boolean
+        # @param SataDiskSizeRange: <p>SATA磁盘取值范围</p>
+        # @type SataDiskSizeRange: :class:`Tencentcloud::Es.v20180416.models.DiskSizeRange`
+        # @param SataSoldOutReason: <p>SATA机型售罄原因</p>
         # @type SataSoldOutReason: String
-        # @param LocalDiskInfo: 本地盘信息
+        # @param SataSoldOutDetail: <p>高性能云硬盘售罄明细</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SataSoldOutDetail: Array
+        # @param LocalDiskInfo: <p>本地盘信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LocalDiskInfo: :class:`Tencentcloud::Es.v20180416.models.LocalDiskInfo`
-        # @param DiskCountRange: 云盘块数取值范围
+        # @param DiskCountRange: <p>云盘块数取值范围</p>
         # @type DiskCountRange: :class:`Tencentcloud::Es.v20180416.models.DiskCountRange`
-        # @param HSsdAvailable: HSSD盘是否可售
+        # @param HSsdAvailable: <p>HSSD盘是否可售</p>
         # @type HSsdAvailable: Boolean
-        # @param HSsdSoldOutReason: HSSD机型售罄原因
-        # @type HSsdSoldOutReason: String
-        # @param HSsdDiskSizeRange: HSSD磁盘取值范围
+        # @param HSsdDiskSizeRange: <p>HSSD磁盘取值范围</p>
         # @type HSsdDiskSizeRange: :class:`Tencentcloud::Es.v20180416.models.DiskSizeRange`
-        # @param ThroughputAvailable: Throughput盘是否可售
+        # @param HSsdSoldOutReason: <p>HSSD机型售罄原因</p>
+        # @type HSsdSoldOutReason: String
+        # @param HSsdSoldOutDetail: <p>增强型SSD售罄明细</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HSsdSoldOutDetail: Array
+        # @param ThroughputAvailable: <p>Throughput盘是否可售</p>
         # @type ThroughputAvailable: Boolean
-        # @param ThroughputSoldOutReason: Throughput机型售罄原因
-        # @type ThroughputSoldOutReason: String
-        # @param ThroughputDiskSizeRange: Throughput磁盘取值范围
+        # @param ThroughputDiskSizeRange: <p>Throughput磁盘取值范围</p>
         # @type ThroughputDiskSizeRange: :class:`Tencentcloud::Es.v20180416.models.DiskSizeRange`
-        # @param BigDataAvailable: BigData盘是否可售
+        # @param ThroughputSoldOutReason: <p>Throughput机型售罄原因</p>
+        # @type ThroughputSoldOutReason: String
+        # @param ThroughputSoldOutDetail: <p>吞吐型云硬盘售罄</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ThroughputSoldOutDetail: Array
+        # @param BigDataAvailable: <p>BigData盘是否可售</p>
         # @type BigDataAvailable: Boolean
-        # @param BigDataSoldOutReason: BigData盘售罄原因
-        # @type BigDataSoldOutReason: String
-        # @param BigDataDiskSizeRange: BigData磁盘取值范围
+        # @param BigDataDiskSizeRange: <p>BigData磁盘取值范围</p>
         # @type BigDataDiskSizeRange: :class:`Tencentcloud::Es.v20180416.models.DiskSizeRange`
-        # @param HighIOAvailable: HighIO盘是否可售
+        # @param BigDataSoldOutReason: <p>BigData盘售罄原因</p>
+        # @type BigDataSoldOutReason: String
+        # @param BigDataSoldOutDetail: <p>大数据型云硬盘售罄明细</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BigDataSoldOutDetail: Array
+        # @param HighIOAvailable: <p>HighIO盘是否可售</p>
         # @type HighIOAvailable: Boolean
-        # @param HighIOSoldOutReason: HighIO盘售罄原因
+        # @param HighIOSoldOutReason: <p>HighIO盘售罄原因</p>
         # @type HighIOSoldOutReason: String
-        # @param HighIODiskSizeRange: HighIO磁盘取值范围
+        # @param HighIODiskSizeRange: <p>HighIO磁盘取值范围</p>
         # @type HighIODiskSizeRange: :class:`Tencentcloud::Es.v20180416.models.DiskSizeRange`
-        # @param BssdAvailable: Bssd盘是否可售
+        # @param HighIOSoldOutDetail: <p>高IO型云硬盘售罄明细</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HighIOSoldOutDetail: Array
+        # @param BssdAvailable: <p>Bssd盘是否可售</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BssdAvailable: Boolean
-        # @param BssdSoldOutReason: Bssd盘售罄原因
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type BssdSoldOutReason: String
-        # @param BssdDiskSizeRange: Bssd盘取值范围
+        # @param BssdDiskSizeRange: <p>Bssd盘取值范围</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BssdDiskSizeRange: :class:`Tencentcloud::Es.v20180416.models.DiskSizeRange`
-        # @param GpuInfo: 节点Gpu信息
+        # @param BssdSoldOutReason: <p>Bssd盘售罄原因</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BssdSoldOutReason: String
+        # @param BssdSoldOutDetail: <p>通用型SSD云硬盘售罄明细</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BssdSoldOutDetail: Array
+        # @param GpuInfo: <p>节点Gpu信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GpuInfo: :class:`Tencentcloud::Es.v20180416.models.GpuInfo`
 
-        attr_accessor :NodeTypeName, :Available, :NodeTypeInfo, :SsdAvailable, :SsdDiskSizeRange, :SataAvailable, :SataDiskSizeRange, :SsdSoldOutReason, :SataSoldOutReason, :LocalDiskInfo, :DiskCountRange, :HSsdAvailable, :HSsdSoldOutReason, :HSsdDiskSizeRange, :ThroughputAvailable, :ThroughputSoldOutReason, :ThroughputDiskSizeRange, :BigDataAvailable, :BigDataSoldOutReason, :BigDataDiskSizeRange, :HighIOAvailable, :HighIOSoldOutReason, :HighIODiskSizeRange, :BssdAvailable, :BssdSoldOutReason, :BssdDiskSizeRange, :GpuInfo
+        attr_accessor :NodeTypeName, :Available, :NodeTypeInfo, :SsdAvailable, :SsdDiskSizeRange, :SsdSoldOutReason, :SsdSoldOutDetail, :SataAvailable, :SataDiskSizeRange, :SataSoldOutReason, :SataSoldOutDetail, :LocalDiskInfo, :DiskCountRange, :HSsdAvailable, :HSsdDiskSizeRange, :HSsdSoldOutReason, :HSsdSoldOutDetail, :ThroughputAvailable, :ThroughputDiskSizeRange, :ThroughputSoldOutReason, :ThroughputSoldOutDetail, :BigDataAvailable, :BigDataDiskSizeRange, :BigDataSoldOutReason, :BigDataSoldOutDetail, :HighIOAvailable, :HighIOSoldOutReason, :HighIODiskSizeRange, :HighIOSoldOutDetail, :BssdAvailable, :BssdDiskSizeRange, :BssdSoldOutReason, :BssdSoldOutDetail, :GpuInfo
 
-        def initialize(nodetypename=nil, available=nil, nodetypeinfo=nil, ssdavailable=nil, ssddisksizerange=nil, sataavailable=nil, satadisksizerange=nil, ssdsoldoutreason=nil, satasoldoutreason=nil, localdiskinfo=nil, diskcountrange=nil, hssdavailable=nil, hssdsoldoutreason=nil, hssddisksizerange=nil, throughputavailable=nil, throughputsoldoutreason=nil, throughputdisksizerange=nil, bigdataavailable=nil, bigdatasoldoutreason=nil, bigdatadisksizerange=nil, highioavailable=nil, highiosoldoutreason=nil, highiodisksizerange=nil, bssdavailable=nil, bssdsoldoutreason=nil, bssddisksizerange=nil, gpuinfo=nil)
+        def initialize(nodetypename=nil, available=nil, nodetypeinfo=nil, ssdavailable=nil, ssddisksizerange=nil, ssdsoldoutreason=nil, ssdsoldoutdetail=nil, sataavailable=nil, satadisksizerange=nil, satasoldoutreason=nil, satasoldoutdetail=nil, localdiskinfo=nil, diskcountrange=nil, hssdavailable=nil, hssddisksizerange=nil, hssdsoldoutreason=nil, hssdsoldoutdetail=nil, throughputavailable=nil, throughputdisksizerange=nil, throughputsoldoutreason=nil, throughputsoldoutdetail=nil, bigdataavailable=nil, bigdatadisksizerange=nil, bigdatasoldoutreason=nil, bigdatasoldoutdetail=nil, highioavailable=nil, highiosoldoutreason=nil, highiodisksizerange=nil, highiosoldoutdetail=nil, bssdavailable=nil, bssddisksizerange=nil, bssdsoldoutreason=nil, bssdsoldoutdetail=nil, gpuinfo=nil)
           @NodeTypeName = nodetypename
           @Available = available
           @NodeTypeInfo = nodetypeinfo
           @SsdAvailable = ssdavailable
           @SsdDiskSizeRange = ssddisksizerange
+          @SsdSoldOutReason = ssdsoldoutreason
+          @SsdSoldOutDetail = ssdsoldoutdetail
           @SataAvailable = sataavailable
           @SataDiskSizeRange = satadisksizerange
-          @SsdSoldOutReason = ssdsoldoutreason
           @SataSoldOutReason = satasoldoutreason
+          @SataSoldOutDetail = satasoldoutdetail
           @LocalDiskInfo = localdiskinfo
           @DiskCountRange = diskcountrange
           @HSsdAvailable = hssdavailable
-          @HSsdSoldOutReason = hssdsoldoutreason
           @HSsdDiskSizeRange = hssddisksizerange
+          @HSsdSoldOutReason = hssdsoldoutreason
+          @HSsdSoldOutDetail = hssdsoldoutdetail
           @ThroughputAvailable = throughputavailable
-          @ThroughputSoldOutReason = throughputsoldoutreason
           @ThroughputDiskSizeRange = throughputdisksizerange
+          @ThroughputSoldOutReason = throughputsoldoutreason
+          @ThroughputSoldOutDetail = throughputsoldoutdetail
           @BigDataAvailable = bigdataavailable
-          @BigDataSoldOutReason = bigdatasoldoutreason
           @BigDataDiskSizeRange = bigdatadisksizerange
+          @BigDataSoldOutReason = bigdatasoldoutreason
+          @BigDataSoldOutDetail = bigdatasoldoutdetail
           @HighIOAvailable = highioavailable
           @HighIOSoldOutReason = highiosoldoutreason
           @HighIODiskSizeRange = highiodisksizerange
+          @HighIOSoldOutDetail = highiosoldoutdetail
           @BssdAvailable = bssdavailable
-          @BssdSoldOutReason = bssdsoldoutreason
           @BssdDiskSizeRange = bssddisksizerange
+          @BssdSoldOutReason = bssdsoldoutreason
+          @BssdSoldOutDetail = bssdsoldoutdetail
           @GpuInfo = gpuinfo
         end
 
@@ -7908,13 +8093,29 @@ module TencentCloud
             @SsdDiskSizeRange = DiskSizeRange.new
             @SsdDiskSizeRange.deserialize(params['SsdDiskSizeRange'])
           end
+          @SsdSoldOutReason = params['SsdSoldOutReason']
+          unless params['SsdSoldOutDetail'].nil?
+            @SsdSoldOutDetail = []
+            params['SsdSoldOutDetail'].each do |i|
+              familyresourcestat_tmp = FamilyResourceStat.new
+              familyresourcestat_tmp.deserialize(i)
+              @SsdSoldOutDetail << familyresourcestat_tmp
+            end
+          end
           @SataAvailable = params['SataAvailable']
           unless params['SataDiskSizeRange'].nil?
             @SataDiskSizeRange = DiskSizeRange.new
             @SataDiskSizeRange.deserialize(params['SataDiskSizeRange'])
           end
-          @SsdSoldOutReason = params['SsdSoldOutReason']
           @SataSoldOutReason = params['SataSoldOutReason']
+          unless params['SataSoldOutDetail'].nil?
+            @SataSoldOutDetail = []
+            params['SataSoldOutDetail'].each do |i|
+              familyresourcestat_tmp = FamilyResourceStat.new
+              familyresourcestat_tmp.deserialize(i)
+              @SataSoldOutDetail << familyresourcestat_tmp
+            end
+          end
           unless params['LocalDiskInfo'].nil?
             @LocalDiskInfo = LocalDiskInfo.new
             @LocalDiskInfo.deserialize(params['LocalDiskInfo'])
@@ -7924,22 +8125,46 @@ module TencentCloud
             @DiskCountRange.deserialize(params['DiskCountRange'])
           end
           @HSsdAvailable = params['HSsdAvailable']
-          @HSsdSoldOutReason = params['HSsdSoldOutReason']
           unless params['HSsdDiskSizeRange'].nil?
             @HSsdDiskSizeRange = DiskSizeRange.new
             @HSsdDiskSizeRange.deserialize(params['HSsdDiskSizeRange'])
           end
+          @HSsdSoldOutReason = params['HSsdSoldOutReason']
+          unless params['HSsdSoldOutDetail'].nil?
+            @HSsdSoldOutDetail = []
+            params['HSsdSoldOutDetail'].each do |i|
+              familyresourcestat_tmp = FamilyResourceStat.new
+              familyresourcestat_tmp.deserialize(i)
+              @HSsdSoldOutDetail << familyresourcestat_tmp
+            end
+          end
           @ThroughputAvailable = params['ThroughputAvailable']
-          @ThroughputSoldOutReason = params['ThroughputSoldOutReason']
           unless params['ThroughputDiskSizeRange'].nil?
             @ThroughputDiskSizeRange = DiskSizeRange.new
             @ThroughputDiskSizeRange.deserialize(params['ThroughputDiskSizeRange'])
           end
+          @ThroughputSoldOutReason = params['ThroughputSoldOutReason']
+          unless params['ThroughputSoldOutDetail'].nil?
+            @ThroughputSoldOutDetail = []
+            params['ThroughputSoldOutDetail'].each do |i|
+              familyresourcestat_tmp = FamilyResourceStat.new
+              familyresourcestat_tmp.deserialize(i)
+              @ThroughputSoldOutDetail << familyresourcestat_tmp
+            end
+          end
           @BigDataAvailable = params['BigDataAvailable']
-          @BigDataSoldOutReason = params['BigDataSoldOutReason']
           unless params['BigDataDiskSizeRange'].nil?
             @BigDataDiskSizeRange = DiskSizeRange.new
             @BigDataDiskSizeRange.deserialize(params['BigDataDiskSizeRange'])
+          end
+          @BigDataSoldOutReason = params['BigDataSoldOutReason']
+          unless params['BigDataSoldOutDetail'].nil?
+            @BigDataSoldOutDetail = []
+            params['BigDataSoldOutDetail'].each do |i|
+              familyresourcestat_tmp = FamilyResourceStat.new
+              familyresourcestat_tmp.deserialize(i)
+              @BigDataSoldOutDetail << familyresourcestat_tmp
+            end
           end
           @HighIOAvailable = params['HighIOAvailable']
           @HighIOSoldOutReason = params['HighIOSoldOutReason']
@@ -7947,11 +8172,27 @@ module TencentCloud
             @HighIODiskSizeRange = DiskSizeRange.new
             @HighIODiskSizeRange.deserialize(params['HighIODiskSizeRange'])
           end
+          unless params['HighIOSoldOutDetail'].nil?
+            @HighIOSoldOutDetail = []
+            params['HighIOSoldOutDetail'].each do |i|
+              familyresourcestat_tmp = FamilyResourceStat.new
+              familyresourcestat_tmp.deserialize(i)
+              @HighIOSoldOutDetail << familyresourcestat_tmp
+            end
+          end
           @BssdAvailable = params['BssdAvailable']
-          @BssdSoldOutReason = params['BssdSoldOutReason']
           unless params['BssdDiskSizeRange'].nil?
             @BssdDiskSizeRange = DiskSizeRange.new
             @BssdDiskSizeRange.deserialize(params['BssdDiskSizeRange'])
+          end
+          @BssdSoldOutReason = params['BssdSoldOutReason']
+          unless params['BssdSoldOutDetail'].nil?
+            @BssdSoldOutDetail = []
+            params['BssdSoldOutDetail'].each do |i|
+              familyresourcestat_tmp = FamilyResourceStat.new
+              familyresourcestat_tmp.deserialize(i)
+              @BssdSoldOutDetail << familyresourcestat_tmp
+            end
           end
           unless params['GpuInfo'].nil?
             @GpuInfo = GpuInfo.new
@@ -8675,13 +8916,13 @@ module TencentCloud
 
       # RestartInstance请求参数结构体
       class RestartInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: <p>实例ID</p>
         # @type InstanceId: String
-        # @param ForceRestart: 是否强制重启<li>true：强制重启</li><li>false：不强制重启</li>默认false
+        # @param ForceRestart: <p>是否强制重启<li>true：强制重启</li><li>false：不强制重启</li>默认false</p>
         # @type ForceRestart: Boolean
-        # @param RestartMode: 重启模式：0 滚动重启； 1 全量重启
+        # @param RestartMode: <p>重启模式：0 滚动重启； 1 全量重启</p>
         # @type RestartMode: Integer
-        # @param UpgradeKernel: 重启时选择是否升级内核patch版本
+        # @param UpgradeKernel: <p>重启时选择是否升级内核patch版本</p>
         # @type UpgradeKernel: Boolean
 
         attr_accessor :InstanceId, :ForceRestart, :RestartMode, :UpgradeKernel

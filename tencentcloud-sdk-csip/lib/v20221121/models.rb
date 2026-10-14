@@ -7822,16 +7822,16 @@ module TencentCloud
 
         attr_accessor :AppID, :AssetId, :ContainerId, :ContainerName, :RunStatus, :NodeId, :NodeType, :PodUid, :PodName, :ImageId, :ImageName, :IsolateStatus, :RiskEventCriticalCount, :RiskEventHighCount, :RiskEventMiddleCount, :RiskEventLowCount, :CreateTime, :AlarmCount
         extend Gem::Deprecate
-        deprecate :AssetId, :none, 2026, 9
-        deprecate :AssetId=, :none, 2026, 9
-        deprecate :RiskEventCriticalCount, :none, 2026, 9
-        deprecate :RiskEventCriticalCount=, :none, 2026, 9
-        deprecate :RiskEventHighCount, :none, 2026, 9
-        deprecate :RiskEventHighCount=, :none, 2026, 9
-        deprecate :RiskEventMiddleCount, :none, 2026, 9
-        deprecate :RiskEventMiddleCount=, :none, 2026, 9
-        deprecate :RiskEventLowCount, :none, 2026, 9
-        deprecate :RiskEventLowCount=, :none, 2026, 9
+        deprecate :AssetId, :none, 2026, 10
+        deprecate :AssetId=, :none, 2026, 10
+        deprecate :RiskEventCriticalCount, :none, 2026, 10
+        deprecate :RiskEventCriticalCount=, :none, 2026, 10
+        deprecate :RiskEventHighCount, :none, 2026, 10
+        deprecate :RiskEventHighCount=, :none, 2026, 10
+        deprecate :RiskEventMiddleCount, :none, 2026, 10
+        deprecate :RiskEventMiddleCount=, :none, 2026, 10
+        deprecate :RiskEventLowCount, :none, 2026, 10
+        deprecate :RiskEventLowCount=, :none, 2026, 10
 
         def initialize(appid=nil, assetid=nil, containerid=nil, containername=nil, runstatus=nil, nodeid=nil, nodetype=nil, poduid=nil, podname=nil, imageid=nil, imagename=nil, isolatestatus=nil, riskeventcriticalcount=nil, riskeventhighcount=nil, riskeventmiddlecount=nil, riskeventlowcount=nil, createtime=nil, alarmcount=nil)
           @AppID = appid
@@ -8008,30 +8008,30 @@ module TencentCloud
 
         attr_accessor :AppID, :AssetId, :ClusterId, :ClusterName, :ClusterType, :AlarmEventCriticalCount, :AlarmEventHighCount, :AlarmEventMiddleCount, :AlarmEventLowCount, :RiskEventCriticalCount, :RiskEventHighCount, :RiskEventMiddleCount, :RiskEventLowCount, :NodeCount, :OfflineNodeCount, :UninstallNodeCount, :TotalCoresCount, :DefendCoresCount, :AuditLogSwitchStatus, :DefendStatus, :RunStatus, :Region, :Version, :LastAssetSyncTime, :LastRiskCheckTime, :RiskStatus, :Tags, :OwnerName, :FailMessage, :RunSubStatus, :AccessedStatus, :AccessedSubStatus, :ClusterCaMD5, :AssetSyncStatus, :RiskConfigCount, :AccessFailedMessage, :RegionName, :RegionNameEn, :UnboundUltimateNodeCount
         extend Gem::Deprecate
-        deprecate :AssetId, :none, 2026, 9
-        deprecate :AssetId=, :none, 2026, 9
-        deprecate :AlarmEventCriticalCount, :none, 2026, 9
-        deprecate :AlarmEventCriticalCount=, :none, 2026, 9
-        deprecate :AlarmEventHighCount, :none, 2026, 9
-        deprecate :AlarmEventHighCount=, :none, 2026, 9
-        deprecate :AlarmEventMiddleCount, :none, 2026, 9
-        deprecate :AlarmEventMiddleCount=, :none, 2026, 9
-        deprecate :AlarmEventLowCount, :none, 2026, 9
-        deprecate :AlarmEventLowCount=, :none, 2026, 9
-        deprecate :RiskEventCriticalCount, :none, 2026, 9
-        deprecate :RiskEventCriticalCount=, :none, 2026, 9
-        deprecate :RiskEventHighCount, :none, 2026, 9
-        deprecate :RiskEventHighCount=, :none, 2026, 9
-        deprecate :RiskEventMiddleCount, :none, 2026, 9
-        deprecate :RiskEventMiddleCount=, :none, 2026, 9
-        deprecate :RiskEventLowCount, :none, 2026, 9
-        deprecate :RiskEventLowCount=, :none, 2026, 9
-        deprecate :DefendCoresCount, :none, 2026, 9
-        deprecate :DefendCoresCount=, :none, 2026, 9
-        deprecate :RiskConfigCount, :none, 2026, 9
-        deprecate :RiskConfigCount=, :none, 2026, 9
-        deprecate :AccessFailedMessage, :none, 2026, 9
-        deprecate :AccessFailedMessage=, :none, 2026, 9
+        deprecate :AssetId, :none, 2026, 10
+        deprecate :AssetId=, :none, 2026, 10
+        deprecate :AlarmEventCriticalCount, :none, 2026, 10
+        deprecate :AlarmEventCriticalCount=, :none, 2026, 10
+        deprecate :AlarmEventHighCount, :none, 2026, 10
+        deprecate :AlarmEventHighCount=, :none, 2026, 10
+        deprecate :AlarmEventMiddleCount, :none, 2026, 10
+        deprecate :AlarmEventMiddleCount=, :none, 2026, 10
+        deprecate :AlarmEventLowCount, :none, 2026, 10
+        deprecate :AlarmEventLowCount=, :none, 2026, 10
+        deprecate :RiskEventCriticalCount, :none, 2026, 10
+        deprecate :RiskEventCriticalCount=, :none, 2026, 10
+        deprecate :RiskEventHighCount, :none, 2026, 10
+        deprecate :RiskEventHighCount=, :none, 2026, 10
+        deprecate :RiskEventMiddleCount, :none, 2026, 10
+        deprecate :RiskEventMiddleCount=, :none, 2026, 10
+        deprecate :RiskEventLowCount, :none, 2026, 10
+        deprecate :RiskEventLowCount=, :none, 2026, 10
+        deprecate :DefendCoresCount, :none, 2026, 10
+        deprecate :DefendCoresCount=, :none, 2026, 10
+        deprecate :RiskConfigCount, :none, 2026, 10
+        deprecate :RiskConfigCount=, :none, 2026, 10
+        deprecate :AccessFailedMessage, :none, 2026, 10
+        deprecate :AccessFailedMessage=, :none, 2026, 10
 
         def initialize(appid=nil, assetid=nil, clusterid=nil, clustername=nil, clustertype=nil, alarmeventcriticalcount=nil, alarmeventhighcount=nil, alarmeventmiddlecount=nil, alarmeventlowcount=nil, riskeventcriticalcount=nil, riskeventhighcount=nil, riskeventmiddlecount=nil, riskeventlowcount=nil, nodecount=nil, offlinenodecount=nil, uninstallnodecount=nil, totalcorescount=nil, defendcorescount=nil, auditlogswitchstatus=nil, defendstatus=nil, runstatus=nil, region=nil, version=nil, lastassetsynctime=nil, lastriskchecktime=nil, riskstatus=nil, tags=nil, ownername=nil, failmessage=nil, runsubstatus=nil, accessedstatus=nil, accessedsubstatus=nil, clustercamd5=nil, assetsyncstatus=nil, riskconfigcount=nil, accessfailedmessage=nil, regionname=nil, regionnameen=nil, unboundultimatenodecount=nil)
           @AppID = appid
@@ -8142,8 +8142,8 @@ module TencentCloud
 
         attr_accessor :AppID, :Name, :Label, :CreateTime, :AssetId, :UniqueID
         extend Gem::Deprecate
-        deprecate :AssetId, :none, 2026, 9
-        deprecate :AssetId=, :none, 2026, 9
+        deprecate :AssetId, :none, 2026, 10
+        deprecate :AssetId=, :none, 2026, 10
 
         def initialize(appid=nil, name=nil, label=nil, createtime=nil, assetid=nil, uniqueid=nil)
           @AppID = appid
@@ -8204,8 +8204,8 @@ module TencentCloud
 
         attr_accessor :AssetId, :AppID, :NodeId, :NodeName, :PublicIP, :InternalIP, :NodeType, :CoresCount, :Tags, :RunStatus, :IsNew, :UniqueID, :ClientStatus, :InstanceId
         extend Gem::Deprecate
-        deprecate :AssetId, :none, 2026, 9
-        deprecate :AssetId=, :none, 2026, 9
+        deprecate :AssetId, :none, 2026, 10
+        deprecate :AssetId=, :none, 2026, 10
 
         def initialize(assetid=nil, appid=nil, nodeid=nil, nodename=nil, publicip=nil, internalip=nil, nodetype=nil, corescount=nil, tags=nil, runstatus=nil, isnew=nil, uniqueid=nil, clientstatus=nil, instanceid=nil)
           @AssetId = assetid
@@ -8297,26 +8297,26 @@ module TencentCloud
 
         attr_accessor :AssetId, :AppID, :PodUid, :PodName, :PodIPs, :RunStatus, :DefendCoresCount, :NodeId, :NodeType, :WorkloadName, :WorkloadType, :Namespace, :CreateTime, :UniqueID, :RiskEventCriticalCount, :RiskEventHighCount, :RiskEventMiddleCount, :RiskEventLowCount, :AlarmEventCriticalCount, :AlarmEventHighCount, :AlarmEventMiddleCount, :AlarmEventLowCount, :ContainerList, :AlarmCount, :CoresCount
         extend Gem::Deprecate
-        deprecate :AssetId, :none, 2026, 9
-        deprecate :AssetId=, :none, 2026, 9
-        deprecate :DefendCoresCount, :none, 2026, 9
-        deprecate :DefendCoresCount=, :none, 2026, 9
-        deprecate :RiskEventCriticalCount, :none, 2026, 9
-        deprecate :RiskEventCriticalCount=, :none, 2026, 9
-        deprecate :RiskEventHighCount, :none, 2026, 9
-        deprecate :RiskEventHighCount=, :none, 2026, 9
-        deprecate :RiskEventMiddleCount, :none, 2026, 9
-        deprecate :RiskEventMiddleCount=, :none, 2026, 9
-        deprecate :RiskEventLowCount, :none, 2026, 9
-        deprecate :RiskEventLowCount=, :none, 2026, 9
-        deprecate :AlarmEventCriticalCount, :none, 2026, 9
-        deprecate :AlarmEventCriticalCount=, :none, 2026, 9
-        deprecate :AlarmEventHighCount, :none, 2026, 9
-        deprecate :AlarmEventHighCount=, :none, 2026, 9
-        deprecate :AlarmEventMiddleCount, :none, 2026, 9
-        deprecate :AlarmEventMiddleCount=, :none, 2026, 9
-        deprecate :AlarmEventLowCount, :none, 2026, 9
-        deprecate :AlarmEventLowCount=, :none, 2026, 9
+        deprecate :AssetId, :none, 2026, 10
+        deprecate :AssetId=, :none, 2026, 10
+        deprecate :DefendCoresCount, :none, 2026, 10
+        deprecate :DefendCoresCount=, :none, 2026, 10
+        deprecate :RiskEventCriticalCount, :none, 2026, 10
+        deprecate :RiskEventCriticalCount=, :none, 2026, 10
+        deprecate :RiskEventHighCount, :none, 2026, 10
+        deprecate :RiskEventHighCount=, :none, 2026, 10
+        deprecate :RiskEventMiddleCount, :none, 2026, 10
+        deprecate :RiskEventMiddleCount=, :none, 2026, 10
+        deprecate :RiskEventLowCount, :none, 2026, 10
+        deprecate :RiskEventLowCount=, :none, 2026, 10
+        deprecate :AlarmEventCriticalCount, :none, 2026, 10
+        deprecate :AlarmEventCriticalCount=, :none, 2026, 10
+        deprecate :AlarmEventHighCount, :none, 2026, 10
+        deprecate :AlarmEventHighCount=, :none, 2026, 10
+        deprecate :AlarmEventMiddleCount, :none, 2026, 10
+        deprecate :AlarmEventMiddleCount=, :none, 2026, 10
+        deprecate :AlarmEventLowCount, :none, 2026, 10
+        deprecate :AlarmEventLowCount=, :none, 2026, 10
 
         def initialize(assetid=nil, appid=nil, poduid=nil, podname=nil, podips=nil, runstatus=nil, defendcorescount=nil, nodeid=nil, nodetype=nil, workloadname=nil, workloadtype=nil, namespace=nil, createtime=nil, uniqueid=nil, riskeventcriticalcount=nil, riskeventhighcount=nil, riskeventmiddlecount=nil, riskeventlowcount=nil, alarmeventcriticalcount=nil, alarmeventhighcount=nil, alarmeventmiddlecount=nil, alarmeventlowcount=nil, containerlist=nil, alarmcount=nil, corescount=nil)
           @AssetId = assetid
@@ -8409,8 +8409,8 @@ module TencentCloud
 
         attr_accessor :AppID, :AssetId, :Name, :SelectorLabel, :Namespace, :CreateTime, :ServiceUniqueID, :ServiceType, :ClusterIP, :ExternalIP, :Ports
         extend Gem::Deprecate
-        deprecate :AssetId, :none, 2026, 9
-        deprecate :AssetId=, :none, 2026, 9
+        deprecate :AssetId, :none, 2026, 10
+        deprecate :AssetId=, :none, 2026, 10
 
         def initialize(appid=nil, assetid=nil, name=nil, selectorlabel=nil, namespace=nil, createtime=nil, serviceuniqueid=nil, servicetype=nil, clusterip=nil, externalip=nil, ports=nil)
           @AppID = appid
@@ -10070,8 +10070,8 @@ module TencentCloud
 
         attr_accessor :CategoryId, :CategoryName, :RuleSet
         extend Gem::Deprecate
-        deprecate :RuleSet, :none, 2026, 9
-        deprecate :RuleSet=, :none, 2026, 9
+        deprecate :RuleSet, :none, 2026, 10
+        deprecate :RuleSet=, :none, 2026, 10
 
         def initialize(categoryid=nil, categoryname=nil, ruleset=nil)
           @CategoryId = categoryid
@@ -11874,8 +11874,8 @@ module TencentCloud
 
         attr_accessor :MemberId, :ClusterAssetIds, :ClusterCaMD5List
         extend Gem::Deprecate
-        deprecate :ClusterAssetIds, :none, 2026, 9
-        deprecate :ClusterAssetIds=, :none, 2026, 9
+        deprecate :ClusterAssetIds, :none, 2026, 10
+        deprecate :ClusterAssetIds=, :none, 2026, 10
 
         def initialize(memberid=nil, clusterassetids=nil, clustercamd5list=nil)
           @MemberId = memberid
@@ -17192,8 +17192,8 @@ module TencentCloud
 
         attr_accessor :MemberId, :OperatedMemberId, :ClusterAssetIds, :ClusterCaMD5List
         extend Gem::Deprecate
-        deprecate :ClusterAssetIds, :none, 2026, 9
-        deprecate :ClusterAssetIds=, :none, 2026, 9
+        deprecate :ClusterAssetIds, :none, 2026, 10
+        deprecate :ClusterAssetIds=, :none, 2026, 10
 
         def initialize(memberid=nil, operatedmemberid=nil, clusterassetids=nil, clustercamd5list=nil)
           @MemberId = memberid
@@ -19336,10 +19336,10 @@ module TencentCloud
 
         attr_accessor :AILinkEnable, :RuleScopeDeep, :RuleScopeBalanced, :RuleScopePrecise, :Scope, :Quuids, :ExcludeQuuids, :AutoInclude, :TagIDs, :TCSSScope, :ClusterIDs, :ExcludeClusterIDs, :InstanceIds, :ExcludeInstanceIds, :RequestId
         extend Gem::Deprecate
-        deprecate :Quuids, :none, 2026, 9
-        deprecate :Quuids=, :none, 2026, 9
-        deprecate :ExcludeQuuids, :none, 2026, 9
-        deprecate :ExcludeQuuids=, :none, 2026, 9
+        deprecate :Quuids, :none, 2026, 10
+        deprecate :Quuids=, :none, 2026, 10
+        deprecate :ExcludeQuuids, :none, 2026, 10
+        deprecate :ExcludeQuuids=, :none, 2026, 10
 
         def initialize(ailinkenable=nil, rulescopedeep=nil, rulescopebalanced=nil, rulescopeprecise=nil, scope=nil, quuids=nil, excludequuids=nil, autoinclude=nil, tagids=nil, tcssscope=nil, clusterids=nil, excludeclusterids=nil, instanceids=nil, excludeinstanceids=nil, requestid=nil)
           @AILinkEnable = ailinkenable
@@ -25653,14 +25653,14 @@ module TencentCloud
 
         attr_accessor :AppID, :ContainerId, :Cmd, :CreateTime, :RunStatus, :IsolateStatus, :RiskEventCriticalCount, :RiskEventHighCount, :RiskEventMiddleCount, :RiskEventLowCount, :ImageName, :ImageId, :ImageSize, :ImageCreateTime, :NodeName, :NodeInternalIP, :NodeRunStatus, :Mounts, :NetworkName, :NetworkMode, :NetworkId, :EndpointId, :Gateway, :IPv4, :IPv6, :MAC, :ContainerName, :NodeInstanceId, :NodeType, :NodeUniqueID, :ClusterCaMD5, :EnableLinkImage, :RequestId
         extend Gem::Deprecate
-        deprecate :RiskEventCriticalCount, :none, 2026, 9
-        deprecate :RiskEventCriticalCount=, :none, 2026, 9
-        deprecate :RiskEventHighCount, :none, 2026, 9
-        deprecate :RiskEventHighCount=, :none, 2026, 9
-        deprecate :RiskEventMiddleCount, :none, 2026, 9
-        deprecate :RiskEventMiddleCount=, :none, 2026, 9
-        deprecate :RiskEventLowCount, :none, 2026, 9
-        deprecate :RiskEventLowCount=, :none, 2026, 9
+        deprecate :RiskEventCriticalCount, :none, 2026, 10
+        deprecate :RiskEventCriticalCount=, :none, 2026, 10
+        deprecate :RiskEventHighCount, :none, 2026, 10
+        deprecate :RiskEventHighCount=, :none, 2026, 10
+        deprecate :RiskEventMiddleCount, :none, 2026, 10
+        deprecate :RiskEventMiddleCount=, :none, 2026, 10
+        deprecate :RiskEventLowCount, :none, 2026, 10
+        deprecate :RiskEventLowCount=, :none, 2026, 10
 
         def initialize(appid=nil, containerid=nil, cmd=nil, createtime=nil, runstatus=nil, isolatestatus=nil, riskeventcriticalcount=nil, riskeventhighcount=nil, riskeventmiddlecount=nil, riskeventlowcount=nil, imagename=nil, imageid=nil, imagesize=nil, imagecreatetime=nil, nodename=nil, nodeinternalip=nil, noderunstatus=nil, mounts=nil, networkname=nil, networkmode=nil, networkid=nil, endpointid=nil, gateway=nil, ipv4=nil, ipv6=nil, mac=nil, containername=nil, nodeinstanceid=nil, nodetype=nil, nodeuniqueid=nil, clustercamd5=nil, enablelinkimage=nil, requestid=nil)
           @AppID = appid
@@ -25755,8 +25755,8 @@ module TencentCloud
 
         attr_accessor :ClusterAssetId, :MemberId, :Filter, :ClusterCaMD5
         extend Gem::Deprecate
-        deprecate :ClusterAssetId, :none, 2026, 9
-        deprecate :ClusterAssetId=, :none, 2026, 9
+        deprecate :ClusterAssetId, :none, 2026, 10
+        deprecate :ClusterAssetId=, :none, 2026, 10
 
         def initialize(clusterassetid=nil, memberid=nil, filter=nil, clustercamd5=nil)
           @ClusterAssetId = clusterassetid
@@ -25971,8 +25971,8 @@ module TencentCloud
 
         attr_accessor :ClusterAssetId, :MemberId, :ClusterCaMD5
         extend Gem::Deprecate
-        deprecate :ClusterAssetId, :none, 2026, 9
-        deprecate :ClusterAssetId=, :none, 2026, 9
+        deprecate :ClusterAssetId, :none, 2026, 10
+        deprecate :ClusterAssetId=, :none, 2026, 10
 
         def initialize(clusterassetid=nil, memberid=nil, clustercamd5=nil)
           @ClusterAssetId = clusterassetid
@@ -26146,8 +26146,8 @@ module TencentCloud
 
         attr_accessor :ClusterAssetId, :Filter, :MemberId, :ClusterCaMD5
         extend Gem::Deprecate
-        deprecate :ClusterAssetId, :none, 2026, 9
-        deprecate :ClusterAssetId=, :none, 2026, 9
+        deprecate :ClusterAssetId, :none, 2026, 10
+        deprecate :ClusterAssetId=, :none, 2026, 10
 
         def initialize(clusterassetid=nil, filter=nil, memberid=nil, clustercamd5=nil)
           @ClusterAssetId = clusterassetid
@@ -26211,8 +26211,8 @@ module TencentCloud
 
         attr_accessor :ClusterAssetId, :MemberId, :Filter, :ClusterCaMD5
         extend Gem::Deprecate
-        deprecate :ClusterAssetId, :none, 2026, 9
-        deprecate :ClusterAssetId=, :none, 2026, 9
+        deprecate :ClusterAssetId, :none, 2026, 10
+        deprecate :ClusterAssetId=, :none, 2026, 10
 
         def initialize(clusterassetid=nil, memberid=nil, filter=nil, clustercamd5=nil)
           @ClusterAssetId = clusterassetid
@@ -26554,8 +26554,8 @@ module TencentCloud
 
         attr_accessor :ClusterAssetId, :MemberId, :Filter, :ClusterCaMD5
         extend Gem::Deprecate
-        deprecate :ClusterAssetId, :none, 2026, 9
-        deprecate :ClusterAssetId=, :none, 2026, 9
+        deprecate :ClusterAssetId, :none, 2026, 10
+        deprecate :ClusterAssetId=, :none, 2026, 10
 
         def initialize(clusterassetid=nil, memberid=nil, filter=nil, clustercamd5=nil)
           @ClusterAssetId = clusterassetid
@@ -26625,8 +26625,8 @@ module TencentCloud
 
         attr_accessor :ClusterAssetId, :MemberId, :Filter, :ClusterCaMD5, :PodUniqueID
         extend Gem::Deprecate
-        deprecate :ClusterAssetId, :none, 2026, 9
-        deprecate :ClusterAssetId=, :none, 2026, 9
+        deprecate :ClusterAssetId, :none, 2026, 10
+        deprecate :ClusterAssetId=, :none, 2026, 10
 
         def initialize(clusterassetid=nil, memberid=nil, filter=nil, clustercamd5=nil, poduniqueid=nil)
           @ClusterAssetId = clusterassetid
@@ -26764,38 +26764,38 @@ module TencentCloud
 
         attr_accessor :TotalClusterCount, :AlarmClusterCount, :RiskClusterCount, :TotalNodeCount, :TotalCoreCount, :AlarmEventCount, :CriticalAlarmEventCount, :HighAlarmEventCount, :MiddleAlarmEventCount, :LowAlarmEventCount, :RiskEventCount, :CriticalRiskEventCount, :HighRiskEventCount, :MiddleRiskEventCount, :LowRiskEventCount, :UsedCoreQuota, :PurchasedCoreQuota, :ElasticCoreQuota, :UnprotectedCoreCount, :ProtectedCoreCount, :UnprotectedClusterCount, :ProtectedClusterCount, :TkeClusterCount, :SelfBuiltClusterCount, :CriticalAlarmClusterCount, :HighAlarmClusterCount, :CriticalRiskClusterCount, :HighRiskClusterCount, :UnboundUltimateNodeCount, :RequestId
         extend Gem::Deprecate
-        deprecate :AlarmClusterCount, :none, 2026, 9
-        deprecate :AlarmClusterCount=, :none, 2026, 9
-        deprecate :RiskClusterCount, :none, 2026, 9
-        deprecate :RiskClusterCount=, :none, 2026, 9
-        deprecate :AlarmEventCount, :none, 2026, 9
-        deprecate :AlarmEventCount=, :none, 2026, 9
-        deprecate :CriticalAlarmEventCount, :none, 2026, 9
-        deprecate :CriticalAlarmEventCount=, :none, 2026, 9
-        deprecate :HighAlarmEventCount, :none, 2026, 9
-        deprecate :HighAlarmEventCount=, :none, 2026, 9
-        deprecate :MiddleAlarmEventCount, :none, 2026, 9
-        deprecate :MiddleAlarmEventCount=, :none, 2026, 9
-        deprecate :LowAlarmEventCount, :none, 2026, 9
-        deprecate :LowAlarmEventCount=, :none, 2026, 9
-        deprecate :RiskEventCount, :none, 2026, 9
-        deprecate :RiskEventCount=, :none, 2026, 9
-        deprecate :CriticalRiskEventCount, :none, 2026, 9
-        deprecate :CriticalRiskEventCount=, :none, 2026, 9
-        deprecate :HighRiskEventCount, :none, 2026, 9
-        deprecate :HighRiskEventCount=, :none, 2026, 9
-        deprecate :MiddleRiskEventCount, :none, 2026, 9
-        deprecate :MiddleRiskEventCount=, :none, 2026, 9
-        deprecate :LowRiskEventCount, :none, 2026, 9
-        deprecate :LowRiskEventCount=, :none, 2026, 9
-        deprecate :CriticalAlarmClusterCount, :none, 2026, 9
-        deprecate :CriticalAlarmClusterCount=, :none, 2026, 9
-        deprecate :HighAlarmClusterCount, :none, 2026, 9
-        deprecate :HighAlarmClusterCount=, :none, 2026, 9
-        deprecate :CriticalRiskClusterCount, :none, 2026, 9
-        deprecate :CriticalRiskClusterCount=, :none, 2026, 9
-        deprecate :HighRiskClusterCount, :none, 2026, 9
-        deprecate :HighRiskClusterCount=, :none, 2026, 9
+        deprecate :AlarmClusterCount, :none, 2026, 10
+        deprecate :AlarmClusterCount=, :none, 2026, 10
+        deprecate :RiskClusterCount, :none, 2026, 10
+        deprecate :RiskClusterCount=, :none, 2026, 10
+        deprecate :AlarmEventCount, :none, 2026, 10
+        deprecate :AlarmEventCount=, :none, 2026, 10
+        deprecate :CriticalAlarmEventCount, :none, 2026, 10
+        deprecate :CriticalAlarmEventCount=, :none, 2026, 10
+        deprecate :HighAlarmEventCount, :none, 2026, 10
+        deprecate :HighAlarmEventCount=, :none, 2026, 10
+        deprecate :MiddleAlarmEventCount, :none, 2026, 10
+        deprecate :MiddleAlarmEventCount=, :none, 2026, 10
+        deprecate :LowAlarmEventCount, :none, 2026, 10
+        deprecate :LowAlarmEventCount=, :none, 2026, 10
+        deprecate :RiskEventCount, :none, 2026, 10
+        deprecate :RiskEventCount=, :none, 2026, 10
+        deprecate :CriticalRiskEventCount, :none, 2026, 10
+        deprecate :CriticalRiskEventCount=, :none, 2026, 10
+        deprecate :HighRiskEventCount, :none, 2026, 10
+        deprecate :HighRiskEventCount=, :none, 2026, 10
+        deprecate :MiddleRiskEventCount, :none, 2026, 10
+        deprecate :MiddleRiskEventCount=, :none, 2026, 10
+        deprecate :LowRiskEventCount, :none, 2026, 10
+        deprecate :LowRiskEventCount=, :none, 2026, 10
+        deprecate :CriticalAlarmClusterCount, :none, 2026, 10
+        deprecate :CriticalAlarmClusterCount=, :none, 2026, 10
+        deprecate :HighAlarmClusterCount, :none, 2026, 10
+        deprecate :HighAlarmClusterCount=, :none, 2026, 10
+        deprecate :CriticalRiskClusterCount, :none, 2026, 10
+        deprecate :CriticalRiskClusterCount=, :none, 2026, 10
+        deprecate :HighRiskClusterCount, :none, 2026, 10
+        deprecate :HighRiskClusterCount=, :none, 2026, 10
 
         def initialize(totalclustercount=nil, alarmclustercount=nil, riskclustercount=nil, totalnodecount=nil, totalcorecount=nil, alarmeventcount=nil, criticalalarmeventcount=nil, highalarmeventcount=nil, middlealarmeventcount=nil, lowalarmeventcount=nil, riskeventcount=nil, criticalriskeventcount=nil, highriskeventcount=nil, middleriskeventcount=nil, lowriskeventcount=nil, usedcorequota=nil, purchasedcorequota=nil, elasticcorequota=nil, unprotectedcorecount=nil, protectedcorecount=nil, unprotectedclustercount=nil, protectedclustercount=nil, tkeclustercount=nil, selfbuiltclustercount=nil, criticalalarmclustercount=nil, highalarmclustercount=nil, criticalriskclustercount=nil, highriskclustercount=nil, unboundultimatenodecount=nil, requestid=nil)
           @TotalClusterCount = totalclustercount
@@ -28307,8 +28307,8 @@ module TencentCloud
 
         attr_accessor :Total, :Data, :DataSet, :RequestId
         extend Gem::Deprecate
-        deprecate :Data, :none, 2026, 9
-        deprecate :Data=, :none, 2026, 9
+        deprecate :Data, :none, 2026, 10
+        deprecate :Data=, :none, 2026, 10
 
         def initialize(total=nil, data=nil, dataset=nil, requestid=nil)
           @Total = total
@@ -49879,12 +49879,12 @@ module TencentCloud
 
         attr_accessor :UnprocessedRisk, :ConfigurationRisk, :BaselineDeviation, :LeakDetection, :SQLBehaviorAnomaly, :PermissionAnomaly, :LoginBehaviorAnomaly, :AttackSurfaceRisk, :AccountSensitiveOperation, :UnprocessedAlarm, :NumOfNewAlarmEvent, :NumOfNewConfigRisk
         extend Gem::Deprecate
-        deprecate :ConfigurationRisk, :none, 2026, 9
-        deprecate :ConfigurationRisk=, :none, 2026, 9
-        deprecate :BaselineDeviation, :none, 2026, 9
-        deprecate :BaselineDeviation=, :none, 2026, 9
-        deprecate :LeakDetection, :none, 2026, 9
-        deprecate :LeakDetection=, :none, 2026, 9
+        deprecate :ConfigurationRisk, :none, 2026, 10
+        deprecate :ConfigurationRisk=, :none, 2026, 10
+        deprecate :BaselineDeviation, :none, 2026, 10
+        deprecate :BaselineDeviation=, :none, 2026, 10
+        deprecate :LeakDetection, :none, 2026, 10
+        deprecate :LeakDetection=, :none, 2026, 10
 
         def initialize(unprocessedrisk=nil, configurationrisk=nil, baselinedeviation=nil, leakdetection=nil, sqlbehavioranomaly=nil, permissionanomaly=nil, loginbehavioranomaly=nil, attacksurfacerisk=nil, accountsensitiveoperation=nil, unprocessedalarm=nil, numofnewalarmevent=nil, numofnewconfigrisk=nil)
           @UnprocessedRisk = unprocessedrisk
@@ -50075,12 +50075,12 @@ module TencentCloud
 
         attr_accessor :Date, :UncontrolledAccount, :ConfigurationRisk, :BaselineRisk, :LeakDetectionRisk, :SQLBehaviorAnomaly, :PermissionAnomaly, :LoginBehaviorAnomaly, :AttackSurfaceRisk, :AccountSensitiveOperation
         extend Gem::Deprecate
-        deprecate :ConfigurationRisk, :none, 2026, 9
-        deprecate :ConfigurationRisk=, :none, 2026, 9
-        deprecate :BaselineRisk, :none, 2026, 9
-        deprecate :BaselineRisk=, :none, 2026, 9
-        deprecate :LeakDetectionRisk, :none, 2026, 9
-        deprecate :LeakDetectionRisk=, :none, 2026, 9
+        deprecate :ConfigurationRisk, :none, 2026, 10
+        deprecate :ConfigurationRisk=, :none, 2026, 10
+        deprecate :BaselineRisk, :none, 2026, 10
+        deprecate :BaselineRisk=, :none, 2026, 10
+        deprecate :LeakDetectionRisk, :none, 2026, 10
+        deprecate :LeakDetectionRisk=, :none, 2026, 10
 
         def initialize(date=nil, uncontrolledaccount=nil, configurationrisk=nil, baselinerisk=nil, leakdetectionrisk=nil, sqlbehavioranomaly=nil, permissionanomaly=nil, loginbehavioranomaly=nil, attacksurfacerisk=nil, accountsensitiveoperation=nil)
           @Date = date
@@ -53605,16 +53605,19 @@ module TencentCloud
         # @type OwnerAppId: Integer
         # @param OwnerUin: <p>镜像所属账号uin</p>
         # @type OwnerUin: String
+        # @param SuperNodeHostCount: <p>镜像关联超级节点数</p>
+        # @type SuperNodeHostCount: Integer
 
-        attr_accessor :Id, :HostCount, :ContainerCount, :OwnerAccountName, :OwnerAppId, :OwnerUin
+        attr_accessor :Id, :HostCount, :ContainerCount, :OwnerAccountName, :OwnerAppId, :OwnerUin, :SuperNodeHostCount
 
-        def initialize(id=nil, hostcount=nil, containercount=nil, owneraccountname=nil, ownerappid=nil, owneruin=nil)
+        def initialize(id=nil, hostcount=nil, containercount=nil, owneraccountname=nil, ownerappid=nil, owneruin=nil, supernodehostcount=nil)
           @Id = id
           @HostCount = hostcount
           @ContainerCount = containercount
           @OwnerAccountName = owneraccountname
           @OwnerAppId = ownerappid
           @OwnerUin = owneruin
+          @SuperNodeHostCount = supernodehostcount
         end
 
         def deserialize(params)
@@ -53624,6 +53627,7 @@ module TencentCloud
           @OwnerAccountName = params['OwnerAccountName']
           @OwnerAppId = params['OwnerAppId']
           @OwnerUin = params['OwnerUin']
+          @SuperNodeHostCount = params['SuperNodeHostCount']
         end
       end
 
@@ -57286,10 +57290,10 @@ module TencentCloud
 
         attr_accessor :AILinkEnable, :MemberId, :RuleScopeDeep, :RuleScopeBalanced, :RuleScopePrecise, :Scope, :Quuids, :ExcludeQuuids, :AutoInclude, :TagIDs, :TCSSScope, :ClusterIDs, :ExcludeClusterIDs, :InstanceIds, :ExcludeInstanceIds
         extend Gem::Deprecate
-        deprecate :Quuids, :none, 2026, 9
-        deprecate :Quuids=, :none, 2026, 9
-        deprecate :ExcludeQuuids, :none, 2026, 9
-        deprecate :ExcludeQuuids=, :none, 2026, 9
+        deprecate :Quuids, :none, 2026, 10
+        deprecate :Quuids=, :none, 2026, 10
+        deprecate :ExcludeQuuids, :none, 2026, 10
+        deprecate :ExcludeQuuids=, :none, 2026, 10
 
         def initialize(ailinkenable=nil, memberid=nil, rulescopedeep=nil, rulescopebalanced=nil, rulescopeprecise=nil, scope=nil, quuids=nil, excludequuids=nil, autoinclude=nil, tagids=nil, tcssscope=nil, clusterids=nil, excludeclusterids=nil, instanceids=nil, excludeinstanceids=nil)
           @AILinkEnable = ailinkenable
@@ -58466,8 +58470,8 @@ module TencentCloud
 
         attr_accessor :DefendStatus, :UnbindHostLicense, :ClusterAssetIds, :OperatedMemberId, :MemberId, :ClusterCaMD5List
         extend Gem::Deprecate
-        deprecate :ClusterAssetIds, :none, 2026, 9
-        deprecate :ClusterAssetIds=, :none, 2026, 9
+        deprecate :ClusterAssetIds, :none, 2026, 10
+        deprecate :ClusterAssetIds=, :none, 2026, 10
 
         def initialize(defendstatus=nil, unbindhostlicense=nil, clusterassetids=nil, operatedmemberid=nil, memberid=nil, clustercamd5list=nil)
           @DefendStatus = defendstatus

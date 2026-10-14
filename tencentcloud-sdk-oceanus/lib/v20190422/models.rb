@@ -6274,10 +6274,13 @@ module TencentCloud
         # @param CCNs: <p>网络信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CCNs: Array
+        # @param ClusterGroupSerialId: <p>挂靠的宿主集群</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterGroupSerialId: String
 
-        attr_accessor :SetatsSerialId, :Status, :Warehouse, :MasterInfo, :WorkerInfo, :Tags, :AutoRenewFlag, :ExpireTime, :SecondsUntilExpiry, :CreateTime, :ManagerUrl, :IsolatedTime, :OwnerClusterGroupSerialId, :Type, :SetatsUiUrl, :ImageVersion, :WebUIType, :Name, :Remark, :IsolationPolicyVersion, :SecurityGroupIds, :CCNs
+        attr_accessor :SetatsSerialId, :Status, :Warehouse, :MasterInfo, :WorkerInfo, :Tags, :AutoRenewFlag, :ExpireTime, :SecondsUntilExpiry, :CreateTime, :ManagerUrl, :IsolatedTime, :OwnerClusterGroupSerialId, :Type, :SetatsUiUrl, :ImageVersion, :WebUIType, :Name, :Remark, :IsolationPolicyVersion, :SecurityGroupIds, :CCNs, :ClusterGroupSerialId
 
-        def initialize(setatsserialid=nil, status=nil, warehouse=nil, masterinfo=nil, workerinfo=nil, tags=nil, autorenewflag=nil, expiretime=nil, secondsuntilexpiry=nil, createtime=nil, managerurl=nil, isolatedtime=nil, ownerclustergroupserialid=nil, type=nil, setatsuiurl=nil, imageversion=nil, webuitype=nil, name=nil, remark=nil, isolationpolicyversion=nil, securitygroupids=nil, ccns=nil)
+        def initialize(setatsserialid=nil, status=nil, warehouse=nil, masterinfo=nil, workerinfo=nil, tags=nil, autorenewflag=nil, expiretime=nil, secondsuntilexpiry=nil, createtime=nil, managerurl=nil, isolatedtime=nil, ownerclustergroupserialid=nil, type=nil, setatsuiurl=nil, imageversion=nil, webuitype=nil, name=nil, remark=nil, isolationpolicyversion=nil, securitygroupids=nil, ccns=nil, clustergroupserialid=nil)
           @SetatsSerialId = setatsserialid
           @Status = status
           @Warehouse = warehouse
@@ -6300,6 +6303,7 @@ module TencentCloud
           @IsolationPolicyVersion = isolationpolicyversion
           @SecurityGroupIds = securitygroupids
           @CCNs = ccns
+          @ClusterGroupSerialId = clustergroupserialid
         end
 
         def deserialize(params)
@@ -6348,6 +6352,7 @@ module TencentCloud
               @CCNs << ccn_tmp
             end
           end
+          @ClusterGroupSerialId = params['ClusterGroupSerialId']
         end
       end
 

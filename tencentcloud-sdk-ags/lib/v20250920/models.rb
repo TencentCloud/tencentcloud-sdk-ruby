@@ -1878,6 +1878,50 @@ module TencentCloud
         end
       end
 
+      # DeletePreCacheImage请求参数结构体
+      class DeletePreCacheImageRequest < TencentCloud::Common::AbstractModel
+        # @param Image: <p>镜像地址</p>
+        # @type Image: String
+        # @param ImageDigest: <p>镜像仓库配置</p>
+        # @type ImageDigest: String
+        # @param ImageRegistryType: <p>镜像仓库类型：<code>enterprise</code>、<code>personal</code>、<code>custom</code> 。</p><p>枚举值：</p><ul><li>enterprise： tcr 企业容器镜像服务</li><li>personal： ccr 个人容器镜像服务</li></ul>
+        # @type ImageRegistryType: String
+        # @param PreCacheImageId: <p>镜像预热ID</p>
+        # @type PreCacheImageId: String
+
+        attr_accessor :Image, :ImageDigest, :ImageRegistryType, :PreCacheImageId
+
+        def initialize(image=nil, imagedigest=nil, imageregistrytype=nil, precacheimageid=nil)
+          @Image = image
+          @ImageDigest = imagedigest
+          @ImageRegistryType = imageregistrytype
+          @PreCacheImageId = precacheimageid
+        end
+
+        def deserialize(params)
+          @Image = params['Image']
+          @ImageDigest = params['ImageDigest']
+          @ImageRegistryType = params['ImageRegistryType']
+          @PreCacheImageId = params['PreCacheImageId']
+        end
+      end
+
+      # DeletePreCacheImage返回参数结构体
+      class DeletePreCacheImageResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteRegistryRecord请求参数结构体
       class DeleteRegistryRecordRequest < TencentCloud::Common::AbstractModel
         # @param RegistryId: <p>父 Registry ID。</p>
@@ -2386,6 +2430,76 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePreCacheImageList请求参数结构体
+      class DescribePreCacheImageListRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: <p>查询过滤条件。支持 Image, ImageDigest, ImageRegistryType, Status, SourceType；不同 Filter 之间为 AND，同一 Filter 的 Values 之间为 OR。</p>
+        # @type Filters: Array
+        # @param MaxResults: <p>返回数据列数</p><p>取值范围：[1, 100]</p><p>默认值：20</p>
+        # @type MaxResults: Integer
+        # @param NextToken: <p>NextToken是每个页面唯一的分页令牌。使用返回的令牌再次调用以检索下一页。需要保持所有其他参数不变。</p>
+        # @type NextToken: String
+        # @param NeedTotalCount: <p>默认 false；仅控制是否返回精确总数</p>
+        # @type NeedTotalCount: Boolean
+
+        attr_accessor :Filters, :MaxResults, :NextToken, :NeedTotalCount
+
+        def initialize(filters=nil, maxresults=nil, nexttoken=nil, needtotalcount=nil)
+          @Filters = filters
+          @MaxResults = maxresults
+          @NextToken = nexttoken
+          @NeedTotalCount = needtotalcount
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @MaxResults = params['MaxResults']
+          @NextToken = params['NextToken']
+          @NeedTotalCount = params['NeedTotalCount']
+        end
+      end
+
+      # DescribePreCacheImageList返回参数结构体
+      class DescribePreCacheImageListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>镜像预热总数</p>
+        # @type TotalCount: Integer
+        # @param PreCacheImageList: <p>镜像预热列表</p>
+        # @type PreCacheImageList: Array
+        # @param NextToken: <p>如果NextToken返回非空字符串 ，表示还有更多可用结果。 NextToken是每个页面唯一的分页令牌。使用返回的令牌再次调用以检索下一页。需要保持所有其他参数不变。</p>
+        # @type NextToken: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :PreCacheImageList, :NextToken, :RequestId
+
+        def initialize(totalcount=nil, precacheimagelist=nil, nexttoken=nil, requestid=nil)
+          @TotalCount = totalcount
+          @PreCacheImageList = precacheimagelist
+          @NextToken = nexttoken
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['PreCacheImageList'].nil?
+            @PreCacheImageList = []
+            params['PreCacheImageList'].each do |i|
+              precacheimage_tmp = PreCacheImage.new
+              precacheimage_tmp.deserialize(i)
+              @PreCacheImageList << precacheimage_tmp
+            end
+          end
+          @NextToken = params['NextToken']
           @RequestId = params['RequestId']
         end
       end
@@ -4179,6 +4293,54 @@ module TencentCloud
         end
       end
 
+      # 镜像预热产物
+      class PreCacheImage < TencentCloud::Common::AbstractModel
+        # @param Image: <p>镜像地址</p>
+        # @type Image: String
+        # @param ImageDigest: <p>镜像 Digest</p>
+        # @type ImageDigest: String
+        # @param ImageRegistryType: <p>镜像仓库类型：<code>enterprise</code>、<code>personal</code>、<code>custom</code> 。</p><p>枚举值：</p><ul><li>enterprise： tcr 企业容器镜像服务</li><li>personal： ccr 个人容器镜像服务</li></ul>
+        # @type ImageRegistryType: String
+        # @param Status: <p>镜像预热状态</p>
+        # @type Status: String
+        # @param CreateTime: <p>镜像预热创建时间</p>
+        # @type CreateTime: String
+        # @param PreCacheImageId: <p>镜像预热ID</p>
+        # @type PreCacheImageId: String
+        # @param SourceType: <p>镜像预热来源</p><p>枚举值：</p><ul><li>AUTO： Sandbox Tool / Instance 自动预热</li><li>EXPLICIT： 手动预热</li><li>TCR_AUTO： TCR自动预热</li></ul>
+        # @type SourceType: String
+        # @param CachedImageSizeBytes: <p>镜像预热存储大小</p><p>单位：Byte</p>
+        # @type CachedImageSizeBytes: Integer
+        # @param LastUsedTime: <p>该预热镜像最近一次被沙箱实例使用时间</p>
+        # @type LastUsedTime: String
+
+        attr_accessor :Image, :ImageDigest, :ImageRegistryType, :Status, :CreateTime, :PreCacheImageId, :SourceType, :CachedImageSizeBytes, :LastUsedTime
+
+        def initialize(image=nil, imagedigest=nil, imageregistrytype=nil, status=nil, createtime=nil, precacheimageid=nil, sourcetype=nil, cachedimagesizebytes=nil, lastusedtime=nil)
+          @Image = image
+          @ImageDigest = imagedigest
+          @ImageRegistryType = imageregistrytype
+          @Status = status
+          @CreateTime = createtime
+          @PreCacheImageId = precacheimageid
+          @SourceType = sourcetype
+          @CachedImageSizeBytes = cachedimagesizebytes
+          @LastUsedTime = lastusedtime
+        end
+
+        def deserialize(params)
+          @Image = params['Image']
+          @ImageDigest = params['ImageDigest']
+          @ImageRegistryType = params['ImageRegistryType']
+          @Status = params['Status']
+          @CreateTime = params['CreateTime']
+          @PreCacheImageId = params['PreCacheImageId']
+          @SourceType = params['SourceType']
+          @CachedImageSizeBytes = params['CachedImageSizeBytes']
+          @LastUsedTime = params['LastUsedTime']
+        end
+      end
+
       # PreviewRegistryRecord请求参数结构体
       class PreviewRegistryRecordRequest < TencentCloud::Common::AbstractModel
         # @param RegistryId: <p>父 Registry ID。</p>
@@ -4869,6 +5031,8 @@ module TencentCloud
         # @type ToolName: String
         # @param SourceInstanceId: <p>待克隆的源沙箱 ID</p>
         # @type SourceInstanceId: String
+        # @param SnapshotId: <p>待启动的沙箱快照 ID</p>
+        # @type SnapshotId: String
         # @param Timeout: <p>超时时间，超过这个时间就自动回收实例。支持格式：5m、300s、1h 等，默认 5m。最小 30s，最大 24h</p>
         # @type Timeout: String
         # @param ClientToken: <p>幂等性 Token，长度不超过 64 字符</p>
@@ -4882,12 +5046,13 @@ module TencentCloud
         # @param Metadata: <p>沙箱元数据</p>
         # @type Metadata: Array
 
-        attr_accessor :ToolId, :ToolName, :SourceInstanceId, :Timeout, :ClientToken, :MountOptions, :CustomConfiguration, :AuthMode, :Metadata
+        attr_accessor :ToolId, :ToolName, :SourceInstanceId, :SnapshotId, :Timeout, :ClientToken, :MountOptions, :CustomConfiguration, :AuthMode, :Metadata
 
-        def initialize(toolid=nil, toolname=nil, sourceinstanceid=nil, timeout=nil, clienttoken=nil, mountoptions=nil, customconfiguration=nil, authmode=nil, metadata=nil)
+        def initialize(toolid=nil, toolname=nil, sourceinstanceid=nil, snapshotid=nil, timeout=nil, clienttoken=nil, mountoptions=nil, customconfiguration=nil, authmode=nil, metadata=nil)
           @ToolId = toolid
           @ToolName = toolname
           @SourceInstanceId = sourceinstanceid
+          @SnapshotId = snapshotid
           @Timeout = timeout
           @ClientToken = clienttoken
           @MountOptions = mountoptions
@@ -4900,6 +5065,7 @@ module TencentCloud
           @ToolId = params['ToolId']
           @ToolName = params['ToolName']
           @SourceInstanceId = params['SourceInstanceId']
+          @SnapshotId = params['SnapshotId']
           @Timeout = params['Timeout']
           @ClientToken = params['ClientToken']
           unless params['MountOptions'].nil?

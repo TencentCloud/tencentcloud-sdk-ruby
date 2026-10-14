@@ -2691,16 +2691,18 @@ module TencentCloud
       class CcnPolicyBasedRoutingRule < TencentCloud::Common::AbstractModel
         # @param PolicyBasedRoutingNextHopId: <p>策略路由下一跳ID</p>
         # @type PolicyBasedRoutingNextHopId: String
-        # @param InstanceType: <p>实例类型[VPC,DIRECTCONNECT,VPNGW]</p>
-        # @type InstanceType: String
-        # @param InstanceId: <p>实例ID</p>
-        # @type InstanceId: String
         # @param SourceCidrBlock: <p>源地址CIDR</p>
         # @type SourceCidrBlock: String
         # @param DestinationCidrBlock: <p>目的地址CIDR</p>
         # @type DestinationCidrBlock: String
         # @param Priority: <p>优先级</p>
         # @type Priority: Integer
+        # @param InstanceType: <p>实例类型[VPC,DIRECTCONNECT,VPNGW]</p>
+        # @type InstanceType: String
+        # @param InstanceId: <p>实例ID</p>
+        # @type InstanceId: String
+        # @param InstanceRegion: <p>实例所在地域</p>
+        # @type InstanceRegion: String
         # @param Description: <p>描述</p>
         # @type Description: String
         # @param PolicyBasedRoutingRuleId: <p>策略路由匹配策略ID</p>
@@ -2710,15 +2712,16 @@ module TencentCloud
         # @param DestinationInstanceId: <p>目的端实例ID</p>
         # @type DestinationInstanceId: String
 
-        attr_accessor :PolicyBasedRoutingNextHopId, :InstanceType, :InstanceId, :SourceCidrBlock, :DestinationCidrBlock, :Priority, :Description, :PolicyBasedRoutingRuleId, :DestinationInstanceType, :DestinationInstanceId
+        attr_accessor :PolicyBasedRoutingNextHopId, :SourceCidrBlock, :DestinationCidrBlock, :Priority, :InstanceType, :InstanceId, :InstanceRegion, :Description, :PolicyBasedRoutingRuleId, :DestinationInstanceType, :DestinationInstanceId
 
-        def initialize(policybasedroutingnexthopid=nil, instancetype=nil, instanceid=nil, sourcecidrblock=nil, destinationcidrblock=nil, priority=nil, description=nil, policybasedroutingruleid=nil, destinationinstancetype=nil, destinationinstanceid=nil)
+        def initialize(policybasedroutingnexthopid=nil, sourcecidrblock=nil, destinationcidrblock=nil, priority=nil, instancetype=nil, instanceid=nil, instanceregion=nil, description=nil, policybasedroutingruleid=nil, destinationinstancetype=nil, destinationinstanceid=nil)
           @PolicyBasedRoutingNextHopId = policybasedroutingnexthopid
-          @InstanceType = instancetype
-          @InstanceId = instanceid
           @SourceCidrBlock = sourcecidrblock
           @DestinationCidrBlock = destinationcidrblock
           @Priority = priority
+          @InstanceType = instancetype
+          @InstanceId = instanceid
+          @InstanceRegion = instanceregion
           @Description = description
           @PolicyBasedRoutingRuleId = policybasedroutingruleid
           @DestinationInstanceType = destinationinstancetype
@@ -2727,11 +2730,12 @@ module TencentCloud
 
         def deserialize(params)
           @PolicyBasedRoutingNextHopId = params['PolicyBasedRoutingNextHopId']
-          @InstanceType = params['InstanceType']
-          @InstanceId = params['InstanceId']
           @SourceCidrBlock = params['SourceCidrBlock']
           @DestinationCidrBlock = params['DestinationCidrBlock']
           @Priority = params['Priority']
+          @InstanceType = params['InstanceType']
+          @InstanceId = params['InstanceId']
+          @InstanceRegion = params['InstanceRegion']
           @Description = params['Description']
           @PolicyBasedRoutingRuleId = params['PolicyBasedRoutingRuleId']
           @DestinationInstanceType = params['DestinationInstanceType']

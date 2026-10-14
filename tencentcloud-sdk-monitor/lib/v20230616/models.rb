@@ -421,10 +421,19 @@ module TencentCloud
         # @param StoragePath: <p>用于解析调用下载接口</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StoragePath: String
+        # @param SourceType: <p>来源类型</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceType: String
+        # @param SourceName: <p>来源名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceName: String
+        # @param ExecutionSummary: <p>预览摘要</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecutionSummary: String
 
-        attr_accessor :ArtifactId, :Name, :MimeType, :SizeBytes, :IsGlobal, :CreatedAt, :UpdatedAt, :AgentId, :SkillId, :StoragePath
+        attr_accessor :ArtifactId, :Name, :MimeType, :SizeBytes, :IsGlobal, :CreatedAt, :UpdatedAt, :AgentId, :SkillId, :StoragePath, :SourceType, :SourceName, :ExecutionSummary
 
-        def initialize(artifactid=nil, name=nil, mimetype=nil, sizebytes=nil, isglobal=nil, createdat=nil, updatedat=nil, agentid=nil, skillid=nil, storagepath=nil)
+        def initialize(artifactid=nil, name=nil, mimetype=nil, sizebytes=nil, isglobal=nil, createdat=nil, updatedat=nil, agentid=nil, skillid=nil, storagepath=nil, sourcetype=nil, sourcename=nil, executionsummary=nil)
           @ArtifactId = artifactid
           @Name = name
           @MimeType = mimetype
@@ -435,6 +444,9 @@ module TencentCloud
           @AgentId = agentid
           @SkillId = skillid
           @StoragePath = storagepath
+          @SourceType = sourcetype
+          @SourceName = sourcename
+          @ExecutionSummary = executionsummary
         end
 
         def deserialize(params)
@@ -448,6 +460,9 @@ module TencentCloud
           @AgentId = params['AgentId']
           @SkillId = params['SkillId']
           @StoragePath = params['StoragePath']
+          @SourceType = params['SourceType']
+          @SourceName = params['SourceName']
+          @ExecutionSummary = params['ExecutionSummary']
         end
       end
 
@@ -2388,15 +2403,21 @@ module TencentCloud
         # @type MimeTypes: Array
         # @param OrderDirection: <p>排序</p><p>枚举值：</p><ul><li>ASC： 正序</li><li>DESC： 倒序</li></ul>
         # @type OrderDirection: String
+        # @param AgentId: <p>数字分身ID</p>
+        # @type AgentId: String
+        # @param NameKeyword: <p>模糊搜索制品信息</p>
+        # @type NameKeyword: String
 
-        attr_accessor :PerPage, :PageNo, :SessionIds, :MimeTypes, :OrderDirection
+        attr_accessor :PerPage, :PageNo, :SessionIds, :MimeTypes, :OrderDirection, :AgentId, :NameKeyword
 
-        def initialize(perpage=nil, pageno=nil, sessionids=nil, mimetypes=nil, orderdirection=nil)
+        def initialize(perpage=nil, pageno=nil, sessionids=nil, mimetypes=nil, orderdirection=nil, agentid=nil, namekeyword=nil)
           @PerPage = perpage
           @PageNo = pageno
           @SessionIds = sessionids
           @MimeTypes = mimetypes
           @OrderDirection = orderdirection
+          @AgentId = agentid
+          @NameKeyword = namekeyword
         end
 
         def deserialize(params)
@@ -2405,6 +2426,8 @@ module TencentCloud
           @SessionIds = params['SessionIds']
           @MimeTypes = params['MimeTypes']
           @OrderDirection = params['OrderDirection']
+          @AgentId = params['AgentId']
+          @NameKeyword = params['NameKeyword']
         end
       end
 

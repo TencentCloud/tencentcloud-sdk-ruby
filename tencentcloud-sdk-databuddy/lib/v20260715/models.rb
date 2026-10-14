@@ -4857,12 +4857,12 @@ module TencentCloud
       class ListSchemasRequest < TencentCloud::Common::AbstractModel
         # @param CatalogName: <p>数据目录名</p>
         # @type CatalogName: String
+        # @param WorkspaceId: <p>调用时所在workspace唯一id</p>
+        # @type WorkspaceId: String
         # @param MaxResults: <p>最大结果条数</p>
         # @type MaxResults: Integer
         # @param PageToken: <p>分页token</p>
         # @type PageToken: String
-        # @param WorkspaceId: <p>调用时所在workspace唯一id</p>
-        # @type WorkspaceId: String
         # @param FetchOption: <p>数据获取选项，可选，控制是否返回权限信息及按权限过滤</p>
         # @type FetchOption: :class:`Tencentcloud::Databuddy.v20260715.models.FetchOption`
         # @param ConnectionId: 数据源连接ID，可选（融合版新增字段）。非空→走分析版路径，空/缺省→走专业版TcLake路径
@@ -4870,13 +4870,13 @@ module TencentCloud
         # @param CatalogSource: 数据目录来源，可选（Setats融合新增字段）。取值：METALAKE（专业版tclake）/ CONNECTION（分析版Linked Catalog）/ SETATS（Setats元数据）。路由优先级：显式非空CatalogSource > 非空ConnectionId（视为CONNECTION）> 默认METALAKE；CatalogSource非空时ConnectionId将被忽略。
         # @type CatalogSource: String
 
-        attr_accessor :CatalogName, :MaxResults, :PageToken, :WorkspaceId, :FetchOption, :ConnectionId, :CatalogSource
+        attr_accessor :CatalogName, :WorkspaceId, :MaxResults, :PageToken, :FetchOption, :ConnectionId, :CatalogSource
 
-        def initialize(catalogname=nil, maxresults=nil, pagetoken=nil, workspaceid=nil, fetchoption=nil, connectionid=nil, catalogsource=nil)
+        def initialize(catalogname=nil, workspaceid=nil, maxresults=nil, pagetoken=nil, fetchoption=nil, connectionid=nil, catalogsource=nil)
           @CatalogName = catalogname
+          @WorkspaceId = workspaceid
           @MaxResults = maxresults
           @PageToken = pagetoken
-          @WorkspaceId = workspaceid
           @FetchOption = fetchoption
           @ConnectionId = connectionid
           @CatalogSource = catalogsource
@@ -4884,9 +4884,9 @@ module TencentCloud
 
         def deserialize(params)
           @CatalogName = params['CatalogName']
+          @WorkspaceId = params['WorkspaceId']
           @MaxResults = params['MaxResults']
           @PageToken = params['PageToken']
-          @WorkspaceId = params['WorkspaceId']
           unless params['FetchOption'].nil?
             @FetchOption = FetchOption.new
             @FetchOption.deserialize(params['FetchOption'])
@@ -4955,12 +4955,12 @@ module TencentCloud
         # @type CatalogName: String
         # @param SchemaName: <p>数据库名</p>
         # @type SchemaName: String
+        # @param WorkspaceId: <p>调用时所在workspace唯一id</p>
+        # @type WorkspaceId: String
         # @param MaxResults: <p>最大结果条数</p>
         # @type MaxResults: Integer
         # @param PageToken: <p>分页token</p>
         # @type PageToken: String
-        # @param WorkspaceId: <p>调用时所在workspace唯一id</p>
-        # @type WorkspaceId: String
         # @param FetchOption: <p>数据获取选项，可选，控制是否返回权限信息及按权限过滤</p>
         # @type FetchOption: :class:`Tencentcloud::Databuddy.v20260715.models.FetchOption`
         # @param ConnectionId: 数据源连接ID，可选（融合版新增字段）。非空→走分析版路径，空/缺省→走专业版TcLake路径
@@ -4968,14 +4968,14 @@ module TencentCloud
         # @param CatalogSource: 数据目录来源，可选（Setats融合新增字段）。取值：METALAKE（专业版tclake）/ CONNECTION（分析版Linked Catalog）/ SETATS（Setats元数据）。路由优先级：显式非空CatalogSource > 非空ConnectionId（视为CONNECTION）> 默认METALAKE；CatalogSource非空时ConnectionId将被忽略。
         # @type CatalogSource: String
 
-        attr_accessor :CatalogName, :SchemaName, :MaxResults, :PageToken, :WorkspaceId, :FetchOption, :ConnectionId, :CatalogSource
+        attr_accessor :CatalogName, :SchemaName, :WorkspaceId, :MaxResults, :PageToken, :FetchOption, :ConnectionId, :CatalogSource
 
-        def initialize(catalogname=nil, schemaname=nil, maxresults=nil, pagetoken=nil, workspaceid=nil, fetchoption=nil, connectionid=nil, catalogsource=nil)
+        def initialize(catalogname=nil, schemaname=nil, workspaceid=nil, maxresults=nil, pagetoken=nil, fetchoption=nil, connectionid=nil, catalogsource=nil)
           @CatalogName = catalogname
           @SchemaName = schemaname
+          @WorkspaceId = workspaceid
           @MaxResults = maxresults
           @PageToken = pagetoken
-          @WorkspaceId = workspaceid
           @FetchOption = fetchoption
           @ConnectionId = connectionid
           @CatalogSource = catalogsource
@@ -4984,9 +4984,9 @@ module TencentCloud
         def deserialize(params)
           @CatalogName = params['CatalogName']
           @SchemaName = params['SchemaName']
+          @WorkspaceId = params['WorkspaceId']
           @MaxResults = params['MaxResults']
           @PageToken = params['PageToken']
-          @WorkspaceId = params['WorkspaceId']
           unless params['FetchOption'].nil?
             @FetchOption = FetchOption.new
             @FetchOption.deserialize(params['FetchOption'])

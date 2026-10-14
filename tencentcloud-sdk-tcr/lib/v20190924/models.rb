@@ -1355,19 +1355,25 @@ module TencentCloud
 
       # CreateWebhookTrigger请求参数结构体
       class CreateWebhookTriggerRequest < TencentCloud::Common::AbstractModel
-        # @param RegistryId: 实例 Id
+        # @param RegistryId: <p>实例 Id</p>
         # @type RegistryId: String
-        # @param Trigger: 触发器参数
+        # @param Trigger: <p>触发器参数</p>
         # @type Trigger: :class:`Tencentcloud::Tcr.v20190924.models.WebhookTrigger`
-        # @param Namespace: 命名空间
+        # @param Namespace: <p>命名空间</p>
         # @type Namespace: String
+        # @param Product: <p>产品名称，非空时创建的 webhook 将被隐藏</p>
+        # @type Product: String
+        # @param PreheatRegion: <p>预热目标地域，AGS 镜像预热的目标地域，非 AGS 触发器为空</p>
+        # @type PreheatRegion: String
 
-        attr_accessor :RegistryId, :Trigger, :Namespace
+        attr_accessor :RegistryId, :Trigger, :Namespace, :Product, :PreheatRegion
 
-        def initialize(registryid=nil, trigger=nil, namespace=nil)
+        def initialize(registryid=nil, trigger=nil, namespace=nil, product=nil, preheatregion=nil)
           @RegistryId = registryid
           @Trigger = trigger
           @Namespace = namespace
+          @Product = product
+          @PreheatRegion = preheatregion
         end
 
         def deserialize(params)
@@ -1377,12 +1383,14 @@ module TencentCloud
             @Trigger.deserialize(params['Trigger'])
           end
           @Namespace = params['Namespace']
+          @Product = params['Product']
+          @PreheatRegion = params['PreheatRegion']
         end
       end
 
       # CreateWebhookTrigger返回参数结构体
       class CreateWebhookTriggerResponse < TencentCloud::Common::AbstractModel
-        # @param Trigger: 新建的触发器
+        # @param Trigger: <p>新建的触发器</p>
         # @type Trigger: :class:`Tencentcloud::Tcr.v20190924.models.WebhookTrigger`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6681,13 +6689,19 @@ module TencentCloud
         # @type Trigger: :class:`Tencentcloud::Tcr.v20190924.models.WebhookTrigger`
         # @param Namespace: <p>命名空间</p>
         # @type Namespace: String
+        # @param Product: <p>产品名称，非空时创建的 webhook 将被隐藏</p>
+        # @type Product: String
+        # @param PreheatRegion: <p>预热目标地域，AGS 镜像预热的目标地域，非 AGS 触发器为空</p>
+        # @type PreheatRegion: String
 
-        attr_accessor :RegistryId, :Trigger, :Namespace
+        attr_accessor :RegistryId, :Trigger, :Namespace, :Product, :PreheatRegion
 
-        def initialize(registryid=nil, trigger=nil, namespace=nil)
+        def initialize(registryid=nil, trigger=nil, namespace=nil, product=nil, preheatregion=nil)
           @RegistryId = registryid
           @Trigger = trigger
           @Namespace = namespace
+          @Product = product
+          @PreheatRegion = preheatregion
         end
 
         def deserialize(params)
@@ -6697,6 +6711,8 @@ module TencentCloud
             @Trigger.deserialize(params['Trigger'])
           end
           @Namespace = params['Namespace']
+          @Product = params['Product']
+          @PreheatRegion = params['PreheatRegion']
         end
       end
 
@@ -8837,10 +8853,16 @@ module TencentCloud
         # @param NamespaceName: <p>触发器所属命名空间名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NamespaceName: String
+        # @param Product: <p>触发器所属产品类型：ags 为镜像预热，apparate 为镜像加速，普通 webhook 为空</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Product: String
+        # @param PreheatRegion: <p>预热目标地域，AGS 镜像预热的目标地域，非 AGS 触发器为空</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PreheatRegion: String
 
-        attr_accessor :Name, :Targets, :EventTypes, :Condition, :Enabled, :Id, :Description, :NamespaceId, :NamespaceName
+        attr_accessor :Name, :Targets, :EventTypes, :Condition, :Enabled, :Id, :Description, :NamespaceId, :NamespaceName, :Product, :PreheatRegion
 
-        def initialize(name=nil, targets=nil, eventtypes=nil, condition=nil, enabled=nil, id=nil, description=nil, namespaceid=nil, namespacename=nil)
+        def initialize(name=nil, targets=nil, eventtypes=nil, condition=nil, enabled=nil, id=nil, description=nil, namespaceid=nil, namespacename=nil, product=nil, preheatregion=nil)
           @Name = name
           @Targets = targets
           @EventTypes = eventtypes
@@ -8850,6 +8872,8 @@ module TencentCloud
           @Description = description
           @NamespaceId = namespaceid
           @NamespaceName = namespacename
+          @Product = product
+          @PreheatRegion = preheatregion
         end
 
         def deserialize(params)
@@ -8869,6 +8893,8 @@ module TencentCloud
           @Description = params['Description']
           @NamespaceId = params['NamespaceId']
           @NamespaceName = params['NamespaceName']
+          @Product = params['Product']
+          @PreheatRegion = params['PreheatRegion']
         end
       end
 

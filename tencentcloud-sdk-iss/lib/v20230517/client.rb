@@ -224,6 +224,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 批量添加截图配置的通道
+
+        # @param request: Request instance for BatchAddVideoSnapshotConfigChannel.
+        # @type request: :class:`Tencentcloud::iss::V20230517::BatchAddVideoSnapshotConfigChannelRequest`
+        # @rtype: :class:`Tencentcloud::iss::V20230517::BatchAddVideoSnapshotConfigChannelResponse`
+        def BatchAddVideoSnapshotConfigChannel(request)
+          body = send_request('BatchAddVideoSnapshotConfigChannel', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BatchAddVideoSnapshotConfigChannelResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量关联视觉理解计划通道
+
+        # @param request: Request instance for BatchAssignVLPlanChannels.
+        # @type request: :class:`Tencentcloud::iss::V20230517::BatchAssignVLPlanChannelsRequest`
+        # @rtype: :class:`Tencentcloud::iss::V20230517::BatchAssignVLPlanChannelsResponse`
+        def BatchAssignVLPlanChannels(request)
+          body = send_request('BatchAssignVLPlanChannels', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BatchAssignVLPlanChannelsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用于批量删除本地录像下载失败的任务
 
         # @param request: Request instance for BatchDeleteVideoDownloadTask.
@@ -234,6 +282,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = BatchDeleteVideoDownloadTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量获取视觉理解计划源素材 URL
+
+        # @param request: Request instance for BatchGetVLPlanSourceFileURL.
+        # @type request: :class:`Tencentcloud::iss::V20230517::BatchGetVLPlanSourceFileURLRequest`
+        # @rtype: :class:`Tencentcloud::iss::V20230517::BatchGetVLPlanSourceFileURLResponse`
+        def BatchGetVLPlanSourceFileURL(request)
+          body = send_request('BatchGetVLPlanSourceFileURL', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BatchGetVLPlanSourceFileURLResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量获取截图图片URL
+
+        # @param request: Request instance for BatchGetVideoSnapshotImageUrl.
+        # @type request: :class:`Tencentcloud::iss::V20230517::BatchGetVideoSnapshotImageUrlRequest`
+        # @rtype: :class:`Tencentcloud::iss::V20230517::BatchGetVideoSnapshotImageUrlResponse`
+        def BatchGetVideoSnapshotImageUrl(request)
+          body = send_request('BatchGetVideoSnapshotImageUrl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BatchGetVideoSnapshotImageUrlResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -440,6 +536,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建视觉理解计划
+
+        # @param request: Request instance for CreateVLPlan.
+        # @type request: :class:`Tencentcloud::iss::V20230517::CreateVLPlanRequest`
+        # @rtype: :class:`Tencentcloud::iss::V20230517::CreateVLPlanResponse`
+        def CreateVLPlan(request)
+          body = send_request('CreateVLPlan', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateVLPlanResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建视觉理解模板
+
+        # @param request: Request instance for CreateVLTemplate.
+        # @type request: :class:`Tencentcloud::iss::V20230517::CreateVLTemplateRequest`
+        # @rtype: :class:`Tencentcloud::iss::V20230517::CreateVLTemplateResponse`
+        def CreateVLTemplate(request)
+          body = send_request('CreateVLTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateVLTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建本地录像下载任务
 
         # @param request: Request instance for CreateVideoDownloadTask.
@@ -450,6 +594,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateVideoDownloadTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建截图配置
+
+        # @param request: Request instance for CreateVideoSnapshotConfig.
+        # @type request: :class:`Tencentcloud::iss::V20230517::CreateVideoSnapshotConfigRequest`
+        # @rtype: :class:`Tencentcloud::iss::V20230517::CreateVideoSnapshotConfigResponse`
+        def CreateVideoSnapshotConfig(request)
+          body = send_request('CreateVideoSnapshotConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateVideoSnapshotConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建截图模板
+
+        # @param request: Request instance for CreateVideoSnapshotTemplate.
+        # @type request: :class:`Tencentcloud::iss::V20230517::CreateVideoSnapshotTemplateRequest`
+        # @rtype: :class:`Tencentcloud::iss::V20230517::CreateVideoSnapshotTemplateResponse`
+        def CreateVideoSnapshotTemplate(request)
+          body = send_request('CreateVideoSnapshotTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateVideoSnapshotTemplateResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -666,6 +858,102 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteUserDeviceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除视觉理解计划
+
+        # @param request: Request instance for DeleteVLPlan.
+        # @type request: :class:`Tencentcloud::iss::V20230517::DeleteVLPlanRequest`
+        # @rtype: :class:`Tencentcloud::iss::V20230517::DeleteVLPlanResponse`
+        def DeleteVLPlan(request)
+          body = send_request('DeleteVLPlan', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteVLPlanResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除视觉理解模板
+
+        # @param request: Request instance for DeleteVLTemplate.
+        # @type request: :class:`Tencentcloud::iss::V20230517::DeleteVLTemplateRequest`
+        # @rtype: :class:`Tencentcloud::iss::V20230517::DeleteVLTemplateResponse`
+        def DeleteVLTemplate(request)
+          body = send_request('DeleteVLTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteVLTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除截图配置
+
+        # @param request: Request instance for DeleteVideoSnapshotConfig.
+        # @type request: :class:`Tencentcloud::iss::V20230517::DeleteVideoSnapshotConfigRequest`
+        # @rtype: :class:`Tencentcloud::iss::V20230517::DeleteVideoSnapshotConfigResponse`
+        def DeleteVideoSnapshotConfig(request)
+          body = send_request('DeleteVideoSnapshotConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteVideoSnapshotConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除截图模板
+
+        # @param request: Request instance for DeleteVideoSnapshotTemplate.
+        # @type request: :class:`Tencentcloud::iss::V20230517::DeleteVideoSnapshotTemplateRequest`
+        # @rtype: :class:`Tencentcloud::iss::V20230517::DeleteVideoSnapshotTemplateResponse`
+        def DeleteVideoSnapshotTemplate(request)
+          body = send_request('DeleteVideoSnapshotTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteVideoSnapshotTemplateResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1161,6 +1449,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询视觉理解计划详情
+
+        # @param request: Request instance for DescribeVLPlan.
+        # @type request: :class:`Tencentcloud::iss::V20230517::DescribeVLPlanRequest`
+        # @rtype: :class:`Tencentcloud::iss::V20230517::DescribeVLPlanResponse`
+        def DescribeVLPlan(request)
+          body = send_request('DescribeVLPlan', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeVLPlanResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询视觉理解计划结果详情
+
+        # @param request: Request instance for DescribeVLPlanResult.
+        # @type request: :class:`Tencentcloud::iss::V20230517::DescribeVLPlanResultRequest`
+        # @rtype: :class:`Tencentcloud::iss::V20230517::DescribeVLPlanResultResponse`
+        def DescribeVLPlanResult(request)
+          body = send_request('DescribeVLPlanResult', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeVLPlanResultResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询视觉理解模板详情
+
+        # @param request: Request instance for DescribeVLTemplate.
+        # @type request: :class:`Tencentcloud::iss::V20230517::DescribeVLTemplateRequest`
+        # @rtype: :class:`Tencentcloud::iss::V20230517::DescribeVLTemplateResponse`
+        def DescribeVLTemplate(request)
+          body = send_request('DescribeVLTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeVLTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用于获取视频通道的码率信息
 
         # @param request: Request instance for DescribeVideoBitRate.
@@ -1195,6 +1555,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeVideoDownloadUrlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取截图配置详情
+
+        # @param request: Request instance for DescribeVideoSnapshotConfig.
+        # @type request: :class:`Tencentcloud::iss::V20230517::DescribeVideoSnapshotConfigRequest`
+        # @rtype: :class:`Tencentcloud::iss::V20230517::DescribeVideoSnapshotConfigResponse`
+        def DescribeVideoSnapshotConfig(request)
+          body = send_request('DescribeVideoSnapshotConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeVideoSnapshotConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取截图模板详情
+
+        # @param request: Request instance for DescribeVideoSnapshotTemplate.
+        # @type request: :class:`Tencentcloud::iss::V20230517::DescribeVideoSnapshotTemplateRequest`
+        # @rtype: :class:`Tencentcloud::iss::V20230517::DescribeVideoSnapshotTemplateResponse`
+        def DescribeVideoSnapshotTemplate(request)
+          body = send_request('DescribeVideoSnapshotTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeVideoSnapshotTemplateResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1545,6 +1953,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取视觉理解计划列表
+
+        # @param request: Request instance for ListVLPlans.
+        # @type request: :class:`Tencentcloud::iss::V20230517::ListVLPlansRequest`
+        # @rtype: :class:`Tencentcloud::iss::V20230517::ListVLPlansResponse`
+        def ListVLPlans(request)
+          body = send_request('ListVLPlans', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListVLPlansResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取视觉理解模板列表
+
+        # @param request: Request instance for ListVLTemplates.
+        # @type request: :class:`Tencentcloud::iss::V20230517::ListVLTemplatesRequest`
+        # @rtype: :class:`Tencentcloud::iss::V20230517::ListVLTemplatesResponse`
+        def ListVLTemplates(request)
+          body = send_request('ListVLTemplates', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListVLTemplatesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询本店里录像下载任务列表
 
         # @param request: Request instance for ListVideoDownloadTask.
@@ -1555,6 +2011,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ListVideoDownloadTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取截图模板详情列表
+
+        # @param request: Request instance for ListVideoSnapshotTemplate.
+        # @type request: :class:`Tencentcloud::iss::V20230517::ListVideoSnapshotTemplateRequest`
+        # @rtype: :class:`Tencentcloud::iss::V20230517::ListVideoSnapshotTemplateResponse`
+        def ListVideoSnapshotTemplate(request)
+          body = send_request('ListVideoSnapshotTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListVideoSnapshotTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改视觉理解计划
+
+        # @param request: Request instance for ModifyVLPlan.
+        # @type request: :class:`Tencentcloud::iss::V20230517::ModifyVLPlanRequest`
+        # @rtype: :class:`Tencentcloud::iss::V20230517::ModifyVLPlanResponse`
+        def ModifyVLPlan(request)
+          body = send_request('ModifyVLPlan', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyVLPlanResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新截图配置
+
+        # @param request: Request instance for ModifyVideoSnapshotConfig.
+        # @type request: :class:`Tencentcloud::iss::V20230517::ModifyVideoSnapshotConfigRequest`
+        # @rtype: :class:`Tencentcloud::iss::V20230517::ModifyVideoSnapshotConfigResponse`
+        def ModifyVideoSnapshotConfig(request)
+          body = send_request('ModifyVideoSnapshotConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyVideoSnapshotConfigResponse.new
             model.deserialize(response['Response'])
             model
           else

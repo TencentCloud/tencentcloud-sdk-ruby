@@ -2987,8 +2987,6 @@ module TencentCloud
 
       # 列表展示的应用型负载均衡实例结构。
       class LoadBalancer < TencentCloud::Common::AbstractModel
-        # @param AccessLogConfig: 访问日志配置结构。
-        # @type AccessLogConfig: :class:`Tencentcloud::Alb.v20251030.models.AccessLogConfig`
         # @param AddressIpVersion: IP 地址版本，取值 IPv4 或 IPv6。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AddressIpVersion: String
@@ -3039,10 +3037,9 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
 
-        attr_accessor :AccessLogConfig, :AddressIpVersion, :AddressType, :CreateTime, :DeletionProtection, :Domain, :LoadBalancerBillingConfig, :LoadBalancerId, :LoadBalancerName, :LoadBalancerOperationLocks, :LoadBalancerStatus, :ModificationProtection, :Tags, :VpcId
+        attr_accessor :AddressIpVersion, :AddressType, :CreateTime, :DeletionProtection, :Domain, :LoadBalancerBillingConfig, :LoadBalancerId, :LoadBalancerName, :LoadBalancerOperationLocks, :LoadBalancerStatus, :ModificationProtection, :Tags, :VpcId
 
-        def initialize(accesslogconfig=nil, addressipversion=nil, addresstype=nil, createtime=nil, deletionprotection=nil, domain=nil, loadbalancerbillingconfig=nil, loadbalancerid=nil, loadbalancername=nil, loadbalanceroperationlocks=nil, loadbalancerstatus=nil, modificationprotection=nil, tags=nil, vpcid=nil)
-          @AccessLogConfig = accesslogconfig
+        def initialize(addressipversion=nil, addresstype=nil, createtime=nil, deletionprotection=nil, domain=nil, loadbalancerbillingconfig=nil, loadbalancerid=nil, loadbalancername=nil, loadbalanceroperationlocks=nil, loadbalancerstatus=nil, modificationprotection=nil, tags=nil, vpcid=nil)
           @AddressIpVersion = addressipversion
           @AddressType = addresstype
           @CreateTime = createtime
@@ -3059,10 +3056,6 @@ module TencentCloud
         end
 
         def deserialize(params)
-          unless params['AccessLogConfig'].nil?
-            @AccessLogConfig = AccessLogConfig.new
-            @AccessLogConfig.deserialize(params['AccessLogConfig'])
-          end
           @AddressIpVersion = params['AddressIpVersion']
           @AddressType = params['AddressType']
           @CreateTime = params['CreateTime']
@@ -3316,14 +3309,11 @@ module TencentCloud
 
       # 修改保护状态信息。
       class ModificationProtectionInfo < TencentCloud::Common::AbstractModel
-        # @param ModificationProtectionEnabled: 是否开启修改保护。开启后，可防止实例被意外修改或删除。
-        # - true：开启修改保护
-        # - false：关闭修改保护
+        # @param ModificationProtectionEnabled: <p>是否开启修改保护。开启后，可防止实例被意外修改或删除。</p><ul><li>true：开启修改保护</li><li>false：关闭修改保护</li></ul>
         # @type ModificationProtectionEnabled: Boolean
-        # @param OperatorUin: 1238716123
+        # @param OperatorUin: <p>1238716123</p>
         # @type OperatorUin: String
-        # @param Reason: 开启修改保护的原因说明。
-        # 长度为 1~255 个字符，必须是中文和无害字符串中的字符， 可包含中文、字母、数字、短划线（-）、正斜线（/）、半角句号（.）、下划线（_）。
+        # @param Reason: <p>开启修改保护的原因说明。<br>长度为 1~255 个字符，必须是中文和无害字符串中的字符， 可包含中文、字母、数字、短划线（-）、正斜线（/）、半角句号（.）、下划线（_）。</p>
         # @type Reason: String
 
         attr_accessor :ModificationProtectionEnabled, :OperatorUin, :Reason

@@ -1414,7 +1414,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除边缘函数，删除后函数无法恢复，关联的触发规则会一并删除。
+        # 删除边缘函数，删除后函数无法恢复，关联的触发规则，环境变量和副本会一并删除。
 
         # @param request: Request instance for DeleteFunction.
         # @type request: :class:`Tencentcloud::teo::V20220901::DeleteFunctionRequest`
@@ -4318,7 +4318,7 @@ module TencentCloud
         end
 
         # 操作边缘函数运行环境，支持环境变量的相关设置。
-        # 设置环境变量后，可在函数代码中使用，具体参考 [边缘函数引入环境变量](https://cloud.tencent.com/document/product/1552/109151#0151fd9a-8b0e-407b-ae37-54553a60ded6)。
+        # 设置环境变量后，可在函数代码和函数副本代码中使用，具体参考 [边缘函数引入环境变量](https://cloud.tencent.com/document/product/1552/109151#0151fd9a-8b0e-407b-ae37-54553a60ded6)。
 
         # @param request: Request instance for HandleFunctionRuntimeEnvironment.
         # @type request: :class:`Tencentcloud::teo::V20220901::HandleFunctionRuntimeEnvironmentRequest`

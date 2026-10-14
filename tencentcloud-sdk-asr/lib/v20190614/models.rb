@@ -295,8 +295,8 @@ module TencentCloud
 
         attr_accessor :ModelName, :TextUrl, :ModelType, :TagInfos
         extend Gem::Deprecate
-        deprecate :TagInfos, :none, 2026, 9
-        deprecate :TagInfos=, :none, 2026, 9
+        deprecate :TagInfos, :none, 2026, 10
+        deprecate :TagInfos=, :none, 2026, 10
 
         def initialize(modelname=nil, texturl=nil, modeltype=nil, taginfos=nil)
           @ModelName = modelname
@@ -388,8 +388,8 @@ module TencentCloud
 
         attr_accessor :EngineModelType, :ChannelNum, :ResTextFormat, :SourceType, :Data, :DataLen, :Url, :CallbackUrl, :SpeakerDiarization, :SpeakerNumber, :HotwordId, :ReinforceHotword, :CustomizationId, :EmotionRecognition, :EmotionalEnergy, :ConvertNumMode, :FilterDirty, :FilterPunc, :FilterModal, :SentenceMaxLength, :Extra, :HotwordList, :KeyWordLibIdList, :ReplaceTextId, :SpeakerRoles
         extend Gem::Deprecate
-        deprecate :ReinforceHotword, :none, 2026, 9
-        deprecate :ReinforceHotword=, :none, 2026, 9
+        deprecate :ReinforceHotword, :none, 2026, 10
+        deprecate :ReinforceHotword=, :none, 2026, 10
 
         def initialize(enginemodeltype=nil, channelnum=nil, restextformat=nil, sourcetype=nil, data=nil, datalen=nil, url=nil, callbackurl=nil, speakerdiarization=nil, speakernumber=nil, hotwordid=nil, reinforcehotword=nil, customizationid=nil, emotionrecognition=nil, emotionalenergy=nil, convertnummode=nil, filterdirty=nil, filterpunc=nil, filtermodal=nil, sentencemaxlength=nil, extra=nil, hotwordlist=nil, keywordlibidlist=nil, replacetextid=nil, speakerroles=nil)
           @EngineModelType = enginemodeltype
@@ -787,8 +787,8 @@ module TencentCloud
 
         attr_accessor :TagInfos, :Offset, :Limit
         extend Gem::Deprecate
-        deprecate :TagInfos, :none, 2026, 9
-        deprecate :TagInfos=, :none, 2026, 9
+        deprecate :TagInfos, :none, 2026, 10
+        deprecate :TagInfos=, :none, 2026, 10
 
         def initialize(taginfos=nil, offset=nil, limit=nil)
           @TagInfos = taginfos
@@ -912,8 +912,8 @@ module TencentCloud
 
         attr_accessor :TagInfos, :Limit, :Offset
         extend Gem::Deprecate
-        deprecate :TagInfos, :none, 2026, 9
-        deprecate :TagInfos=, :none, 2026, 9
+        deprecate :TagInfos, :none, 2026, 10
+        deprecate :TagInfos=, :none, 2026, 10
 
         def initialize(taginfos=nil, limit=nil, offset=nil)
           @TagInfos = taginfos
@@ -1213,8 +1213,8 @@ module TencentCloud
 
         attr_accessor :ModelName, :DictName, :ModelId, :ModelType, :ServiceType, :ModelState, :AtUpdated, :TagInfos
         extend Gem::Deprecate
-        deprecate :TagInfos, :none, 2026, 9
-        deprecate :TagInfos=, :none, 2026, 9
+        deprecate :TagInfos, :none, 2026, 10
+        deprecate :TagInfos=, :none, 2026, 10
 
         def initialize(modelname=nil, dictname=nil, modelid=nil, modeltype=nil, servicetype=nil, modelstate=nil, atupdated=nil, taginfos=nil)
           @ModelName = modelname
@@ -1503,14 +1503,14 @@ module TencentCloud
 
         attr_accessor :EngSerViceType, :SourceType, :VoiceFormat, :ProjectId, :SubServiceType, :Url, :UsrAudioKey, :Data, :DataLen, :WordInfo, :FilterDirty, :FilterModal, :FilterPunc, :ConvertNumMode, :HotwordId, :CustomizationId, :ReinforceHotword, :HotwordList, :InputSampleRate, :ReplaceTextId
         extend Gem::Deprecate
-        deprecate :ProjectId, :none, 2026, 9
-        deprecate :ProjectId=, :none, 2026, 9
-        deprecate :SubServiceType, :none, 2026, 9
-        deprecate :SubServiceType=, :none, 2026, 9
-        deprecate :UsrAudioKey, :none, 2026, 9
-        deprecate :UsrAudioKey=, :none, 2026, 9
-        deprecate :ReinforceHotword, :none, 2026, 9
-        deprecate :ReinforceHotword=, :none, 2026, 9
+        deprecate :ProjectId, :none, 2026, 10
+        deprecate :ProjectId=, :none, 2026, 10
+        deprecate :SubServiceType, :none, 2026, 10
+        deprecate :SubServiceType=, :none, 2026, 10
+        deprecate :UsrAudioKey, :none, 2026, 10
+        deprecate :UsrAudioKey=, :none, 2026, 10
+        deprecate :ReinforceHotword, :none, 2026, 10
+        deprecate :ReinforceHotword=, :none, 2026, 10
 
         def initialize(engservicetype=nil, sourcetype=nil, voiceformat=nil, projectid=nil, subservicetype=nil, url=nil, usraudiokey=nil, data=nil, datalen=nil, wordinfo=nil, filterdirty=nil, filtermodal=nil, filterpunc=nil, convertnummode=nil, hotwordid=nil, customizationid=nil, reinforcehotword=nil, hotwordlist=nil, inputsamplerate=nil, replacetextid=nil)
           @EngSerViceType = engservicetype
@@ -2274,16 +2274,19 @@ module TencentCloud
         # @type GroupId: String
         # @param AudioUrl: <p>声纹cos url 注意:仅支持腾讯云cos url 地址</p>
         # @type AudioUrl: String
+        # @param QualityCheck: <p>是否对注册/更新的音频做质量检测。开启后使用质检专用引擎提取特征，对音频进行多说话人、信噪比、截幅等检查，不合格返回对应错误码；关闭时不做这些检查，沿用常规注册流。默认false</p><p>默认值：false</p>
+        # @type QualityCheck: Boolean
 
-        attr_accessor :VoiceFormat, :SampleRate, :Data, :SpeakerNick, :GroupId, :AudioUrl
+        attr_accessor :VoiceFormat, :SampleRate, :Data, :SpeakerNick, :GroupId, :AudioUrl, :QualityCheck
 
-        def initialize(voiceformat=nil, samplerate=nil, data=nil, speakernick=nil, groupid=nil, audiourl=nil)
+        def initialize(voiceformat=nil, samplerate=nil, data=nil, speakernick=nil, groupid=nil, audiourl=nil, qualitycheck=nil)
           @VoiceFormat = voiceformat
           @SampleRate = samplerate
           @Data = data
           @SpeakerNick = speakernick
           @GroupId = groupid
           @AudioUrl = audiourl
+          @QualityCheck = qualitycheck
         end
 
         def deserialize(params)
@@ -2293,6 +2296,7 @@ module TencentCloud
           @SpeakerNick = params['SpeakerNick']
           @GroupId = params['GroupId']
           @AudioUrl = params['AudioUrl']
+          @QualityCheck = params['QualityCheck']
         end
       end
 

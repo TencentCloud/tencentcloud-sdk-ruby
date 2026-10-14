@@ -773,6 +773,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询指定实例在时间窗口内的审计日志明细，支持按 SQL 类型、执行耗时、错误码、关键词等多条件过滤。当前仅支持 dcdb、mariadb 产品（cdb、cynosdb 已切至中台）。注意 Filter.MultiSql 与 Filter.ExcludeMultiSql 需以 JSON 字符串形式传递二维数组内容，例如 [["a","b"]] 表示 (a OR b)，服务端会自动解析。
+
+        # @param request: Request instance for DescribeDBAuditLogs.
+        # @type request: :class:`Tencentcloud::dbbrain::V20210527::DescribeDBAuditLogsRequest`
+        # @rtype: :class:`Tencentcloud::dbbrain::V20210527::DescribeDBAuditLogsResponse`
+        def DescribeDBAuditLogs(request)
+          body = send_request('DescribeDBAuditLogs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDBAuditLogsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 自治中心-查询自治事件任务详情。
 
         # @param request: Request instance for DescribeDBAutonomyAction.
@@ -1047,6 +1071,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDatabaseAutonomyStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询指定 SELECT SQL 在实例上的执行计划，常用于慢 SQL 分析、SQL 优化等场景。仅支持 SELECT 类语句
+
+        # @param request: Request instance for DescribeDatabaseObjectV2.
+        # @type request: :class:`Tencentcloud::dbbrain::V20210527::DescribeDatabaseObjectV2Request`
+        # @rtype: :class:`Tencentcloud::dbbrain::V20210527::DescribeDatabaseObjectV2Response`
+        def DescribeDatabaseObjectV2(request)
+          body = send_request('DescribeDatabaseObjectV2', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDatabaseObjectV2Response.new
             model.deserialize(response['Response'])
             model
           else

@@ -17,6 +17,29 @@
 module TencentCloud
   module Rce
     module V20260130
+      # 账号安全详情（账号保护）
+      class AccountSecurityEvent < TencentCloud::Common::AbstractModel
+        # @param Cust: <p>与RCE约定的定制化信息，为K:V 格式的对象数组，示例：[{&quot;Key&quot;: &quot;ApproverName&quot;, &quot;Value&quot;: &quot;bob&quot;},{&quot;Key&quot;:&quot;ApproverPhone&quot;,&quot;Value&quot;: &quot;+86131****5678&quot;}]</p>
+        # @type Cust: Array
+
+        attr_accessor :Cust
+
+        def initialize(cust=nil)
+          @Cust = cust
+        end
+
+        def deserialize(params)
+          unless params['Cust'].nil?
+            @Cust = []
+            params['Cust'].each do |i|
+              cust_tmp = Cust.new
+              cust_tmp.deserialize(i)
+              @Cust << cust_tmp
+            end
+          end
+        end
+      end
+
       # 添加好友事件详情
       class AddFriendEvent < TencentCloud::Common::AbstractModel
         # @param ServerId: <p>所属服务器ID，允许空串</p>
@@ -622,6 +645,41 @@ module TencentCloud
           @Phone = params['Phone']
           @Email = params['Email']
           @Recipient = params['Recipient']
+        end
+      end
+
+      # 预约事件详情（营销保护）
+      class BookingEvent < TencentCloud::Common::AbstractModel
+        # @param BookingScene: <p>预约场景。例如：预订机票、预订酒店</p>
+        # @type BookingScene: String
+        # @param BookingTime: <p>预约时间。要求符合ISO-8601标准的带时区的毫秒级时间，格式&quot;YYYY-MM-DDTHH:mm:ss.sssZ&quot; ，例如&quot;2025-10-19T09:11:10.145+08:00&quot;。</p>
+        # @type BookingTime: String
+        # @param BookingId: <p>预约单唯一ID。</p>
+        # @type BookingId: String
+        # @param Cust: <p>与RCE-PRO约定的定制化信息。为K:V 格式的对象数组。<br>示例：[{&quot;Key&quot;: &quot;ApproverName&quot;, &quot;Value&quot;: &quot;bob&quot;},{&quot;Key&quot;:&quot;ApproverPhone&quot;,&quot;Value&quot;: &quot;+86131****5678&quot;}]</p>
+        # @type Cust: Array
+
+        attr_accessor :BookingScene, :BookingTime, :BookingId, :Cust
+
+        def initialize(bookingscene=nil, bookingtime=nil, bookingid=nil, cust=nil)
+          @BookingScene = bookingscene
+          @BookingTime = bookingtime
+          @BookingId = bookingid
+          @Cust = cust
+        end
+
+        def deserialize(params)
+          @BookingScene = params['BookingScene']
+          @BookingTime = params['BookingTime']
+          @BookingId = params['BookingId']
+          unless params['Cust'].nil?
+            @Cust = []
+            params['Cust'].each do |i|
+              cust_tmp = Cust.new
+              cust_tmp.deserialize(i)
+              @Cust << cust_tmp
+            end
+          end
         end
       end
 
@@ -1424,10 +1482,16 @@ module TencentCloud
         # @type AddFriend: :class:`Tencentcloud::Rce.v20260130.models.AddFriendEvent`
         # @param ModifyGuild: <p>编辑公会资料</p>
         # @type ModifyGuild: :class:`Tencentcloud::Rce.v20260130.models.ModifyGuildEvent`
+        # @param Search: <p>搜索</p>
+        # @type Search: :class:`Tencentcloud::Rce.v20260130.models.SearchEvent`
+        # @param Booking: <p>预约</p>
+        # @type Booking: :class:`Tencentcloud::Rce.v20260130.models.BookingEvent`
+        # @param AccountSecurity: <p>账号安全</p>
+        # @type AccountSecurity: :class:`Tencentcloud::Rce.v20260130.models.AccountSecurityEvent`
 
-        attr_accessor :Login, :Register, :CreateOrder, :Transaction, :Sms, :ChargeBack, :Logout, :ModifyAccount, :ModifyPassword, :SecurityVerification, :AddPromotion, :Redeem, :Withdraw, :CustEvent, :ScanCode, :LuckyDraw, :Task, :Invitation, :ClaimRedPacket, :Browse, :Chat, :ModifyRole, :AddFriend, :ModifyGuild
+        attr_accessor :Login, :Register, :CreateOrder, :Transaction, :Sms, :ChargeBack, :Logout, :ModifyAccount, :ModifyPassword, :SecurityVerification, :AddPromotion, :Redeem, :Withdraw, :CustEvent, :ScanCode, :LuckyDraw, :Task, :Invitation, :ClaimRedPacket, :Browse, :Chat, :ModifyRole, :AddFriend, :ModifyGuild, :Search, :Booking, :AccountSecurity
 
-        def initialize(login=nil, register=nil, createorder=nil, transaction=nil, sms=nil, chargeback=nil, logout=nil, modifyaccount=nil, modifypassword=nil, securityverification=nil, addpromotion=nil, redeem=nil, withdraw=nil, custevent=nil, scancode=nil, luckydraw=nil, task=nil, invitation=nil, claimredpacket=nil, browse=nil, chat=nil, modifyrole=nil, addfriend=nil, modifyguild=nil)
+        def initialize(login=nil, register=nil, createorder=nil, transaction=nil, sms=nil, chargeback=nil, logout=nil, modifyaccount=nil, modifypassword=nil, securityverification=nil, addpromotion=nil, redeem=nil, withdraw=nil, custevent=nil, scancode=nil, luckydraw=nil, task=nil, invitation=nil, claimredpacket=nil, browse=nil, chat=nil, modifyrole=nil, addfriend=nil, modifyguild=nil, search=nil, booking=nil, accountsecurity=nil)
           @Login = login
           @Register = register
           @CreateOrder = createorder
@@ -1452,6 +1516,9 @@ module TencentCloud
           @ModifyRole = modifyrole
           @AddFriend = addfriend
           @ModifyGuild = modifyguild
+          @Search = search
+          @Booking = booking
+          @AccountSecurity = accountsecurity
         end
 
         def deserialize(params)
@@ -1550,6 +1617,18 @@ module TencentCloud
           unless params['ModifyGuild'].nil?
             @ModifyGuild = ModifyGuildEvent.new
             @ModifyGuild.deserialize(params['ModifyGuild'])
+          end
+          unless params['Search'].nil?
+            @Search = SearchEvent.new
+            @Search.deserialize(params['Search'])
+          end
+          unless params['Booking'].nil?
+            @Booking = BookingEvent.new
+            @Booking.deserialize(params['Booking'])
+          end
+          unless params['AccountSecurity'].nil?
+            @AccountSecurity = AccountSecurityEvent.new
+            @AccountSecurity.deserialize(params['AccountSecurity'])
           end
         end
       end
@@ -2890,6 +2969,45 @@ module TencentCloud
               risklabel_tmp = RiskLabel.new
               risklabel_tmp.deserialize(i)
               @RiskLabels << risklabel_tmp
+            end
+          end
+        end
+      end
+
+      # 查询事件详情（营销保护）
+      class SearchEvent < TencentCloud::Common::AbstractModel
+        # @param SearchScene: <p>查询场景。例如：查询航班、查询库存等。</p>
+        # @type SearchScene: String
+        # @param SearchParam: <p>查询参数。查询时输入的参数。</p>
+        # @type SearchParam: String
+        # @param ReferPageUrl: <p>上一个网页URL</p>
+        # @type ReferPageUrl: String
+        # @param GuestId: <p>游客账号ID</p>
+        # @type GuestId: String
+        # @param Cust: <p>与RCE-PRO约定的定制化信息。为K:V 格式的对象数组。<br>示例：[{&quot;Key&quot;: &quot;ApproverName&quot;, &quot;Value&quot;: &quot;bob&quot;},{&quot;Key&quot;:&quot;ApproverPhone&quot;,&quot;Value&quot;: &quot;+86131****5678&quot;}]</p>
+        # @type Cust: Array
+
+        attr_accessor :SearchScene, :SearchParam, :ReferPageUrl, :GuestId, :Cust
+
+        def initialize(searchscene=nil, searchparam=nil, referpageurl=nil, guestid=nil, cust=nil)
+          @SearchScene = searchscene
+          @SearchParam = searchparam
+          @ReferPageUrl = referpageurl
+          @GuestId = guestid
+          @Cust = cust
+        end
+
+        def deserialize(params)
+          @SearchScene = params['SearchScene']
+          @SearchParam = params['SearchParam']
+          @ReferPageUrl = params['ReferPageUrl']
+          @GuestId = params['GuestId']
+          unless params['Cust'].nil?
+            @Cust = []
+            params['Cust'].each do |i|
+              cust_tmp = Cust.new
+              cust_tmp.deserialize(i)
+              @Cust << cust_tmp
             end
           end
         end

@@ -1037,6 +1037,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除大模型内容防护规则
+
+        # @param request: Request instance for DeleteLLMContentRule.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DeleteLLMContentRuleRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DeleteLLMContentRuleResponse`
+        def DeleteLLMContentRule(request)
+          body = send_request('DeleteLLMContentRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteLLMContentRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除词库列表
+
+        # @param request: Request instance for DeleteLLMKeywordLibrary.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DeleteLLMKeywordLibraryRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DeleteLLMKeywordLibraryResponse`
+        def DeleteLLMKeywordLibrary(request)
+          body = send_request('DeleteLLMKeywordLibrary', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteLLMKeywordLibraryResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 解除门神规则的状态锁
 
         # @param request: Request instance for DeleteOwaspRuleStatus.
@@ -2405,6 +2453,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取LLM大模型内容防护规则
+
+        # @param request: Request instance for DescribeLLMContentRuleList.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeLLMContentRuleListRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeLLMContentRuleListResponse`
+        def DescribeLLMContentRuleList(request)
+          body = send_request('DescribeLLMContentRuleList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLLMContentRuleListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 大模型请求内容和响应内容审核接口
 
         # @param request: Request instance for DescribeLLMContentSecCheck.
@@ -2415,6 +2487,102 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeLLMContentSecCheckResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询关键词列表
+
+        # @param request: Request instance for DescribeLLMKeywordLibrary.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeLLMKeywordLibraryRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeLLMKeywordLibraryResponse`
+        def DescribeLLMKeywordLibrary(request)
+          body = send_request('DescribeLLMKeywordLibrary', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLLMKeywordLibraryResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询sdk接入配置
+
+        # @param request: Request instance for DescribeLLMSdkAccess.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeLLMSdkAccessRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeLLMSdkAccessResponse`
+        def DescribeLLMSdkAccess(request)
+          body = send_request('DescribeLLMSdkAccess', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLLMSdkAccessResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询 DLP 规则
+
+        # @param request: Request instance for DescribeLLMWafDLPRules.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeLLMWafDLPRulesRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeLLMWafDLPRulesResponse`
+        def DescribeLLMWafDLPRules(request)
+          body = send_request('DescribeLLMWafDLPRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLLMWafDLPRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询 LLM 规则请求
+
+        # @param request: Request instance for DescribeLLMWafProtectRules.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeLLMWafProtectRulesRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeLLMWafProtectRulesResponse`
+        def DescribeLLMWafProtectRules(request)
+          body = send_request('DescribeLLMWafProtectRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLLMWafProtectRulesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -3377,6 +3545,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = EnableRateLimitsV2Response.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 导出词库文件
+
+        # @param request: Request instance for ExportLLMKeywordLib.
+        # @type request: :class:`Tencentcloud::waf::V20180125::ExportLLMKeywordLibRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::ExportLLMKeywordLibResponse`
+        def ExportLLMKeywordLib(request)
+          body = send_request('ExportLLMKeywordLib', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ExportLLMKeywordLibResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -4532,6 +4724,150 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyIpAccessControlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新大模型内容安全规则
+
+        # @param request: Request instance for ModifyLLMContentRule.
+        # @type request: :class:`Tencentcloud::waf::V20180125::ModifyLLMContentRuleRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::ModifyLLMContentRuleResponse`
+        def ModifyLLMContentRule(request)
+          body = send_request('ModifyLLMContentRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyLLMContentRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 切换大模型内容防护规则开关
+
+        # @param request: Request instance for ModifyLLMContentRuleStatus.
+        # @type request: :class:`Tencentcloud::waf::V20180125::ModifyLLMContentRuleStatusRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::ModifyLLMContentRuleStatusResponse`
+        def ModifyLLMContentRuleStatus(request)
+          body = send_request('ModifyLLMContentRuleStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyLLMContentRuleStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用户修改自定义词库
+
+        # @param request: Request instance for ModifyLLMKeywordLibrary.
+        # @type request: :class:`Tencentcloud::waf::V20180125::ModifyLLMKeywordLibraryRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::ModifyLLMKeywordLibraryResponse`
+        def ModifyLLMKeywordLibrary(request)
+          body = send_request('ModifyLLMKeywordLibrary', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyLLMKeywordLibraryResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改大模型防护的模块开关状态，支持总开关及各子模块独立开关的开启/关闭操作。开启前需确保实例已购买大模型防护能力，未购买时开启操作会返回 AuthFailure.ErrCodeNoPurchased 错误。
+
+        # @param request: Request instance for ModifyLLMStatus.
+        # @type request: :class:`Tencentcloud::waf::V20180125::ModifyLLMStatusRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::ModifyLLMStatusResponse`
+        def ModifyLLMStatus(request)
+          body = send_request('ModifyLLMStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyLLMStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改llmwaf DLP 规则
+
+        # @param request: Request instance for ModifyLLMWafDLPRule.
+        # @type request: :class:`Tencentcloud::waf::V20180125::ModifyLLMWafDLPRuleRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::ModifyLLMWafDLPRuleResponse`
+        def ModifyLLMWafDLPRule(request)
+          body = send_request('ModifyLLMWafDLPRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyLLMWafDLPRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改 LLM 规则
+
+        # @param request: Request instance for ModifyLLMWafProtectRule.
+        # @type request: :class:`Tencentcloud::waf::V20180125::ModifyLLMWafProtectRuleRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::ModifyLLMWafProtectRuleResponse`
+        def ModifyLLMWafProtectRule(request)
+          body = send_request('ModifyLLMWafProtectRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyLLMWafProtectRuleResponse.new
             model.deserialize(response['Response'])
             model
           else

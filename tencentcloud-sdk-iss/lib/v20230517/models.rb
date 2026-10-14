@@ -886,6 +886,86 @@ module TencentCloud
         end
       end
 
+      # BatchAddVideoSnapshotConfigChannel请求参数结构体
+      class BatchAddVideoSnapshotConfigChannelRequest < TencentCloud::Common::AbstractModel
+        # @param ConfigId: <p>截图配置Id</p>
+        # @type ConfigId: String
+        # @param Channels: <p>通道Id列表</p>
+        # @type Channels: Array
+
+        attr_accessor :ConfigId, :Channels
+
+        def initialize(configid=nil, channels=nil)
+          @ConfigId = configid
+          @Channels = channels
+        end
+
+        def deserialize(params)
+          @ConfigId = params['ConfigId']
+          @Channels = params['Channels']
+        end
+      end
+
+      # BatchAddVideoSnapshotConfigChannel返回参数结构体
+      class BatchAddVideoSnapshotConfigChannelResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # BatchAssignVLPlanChannels请求参数结构体
+      class BatchAssignVLPlanChannelsRequest < TencentCloud::Common::AbstractModel
+        # @param VLPlanId: <p>计划 ID</p>
+        # @type VLPlanId: String
+        # @param Cmd: <p>操作命令：1=关联，2=解绑</p>
+        # @type Cmd: Integer
+        # @param ChannelIds: <p>通道 ID 列表，最多 500 个；与 OrganizationIds 至少传一个（Cmd=1 时）</p>
+        # @type ChannelIds: Array
+        # @param OrganizationIds: <p>组织 ID 列表（仅 Cmd=1 时有效，Cmd=2 时不允许传入）；展开该组织下所有通道参与关联，与 ChannelIds 取并集去重</p>
+        # @type OrganizationIds: Array
+
+        attr_accessor :VLPlanId, :Cmd, :ChannelIds, :OrganizationIds
+
+        def initialize(vlplanid=nil, cmd=nil, channelids=nil, organizationids=nil)
+          @VLPlanId = vlplanid
+          @Cmd = cmd
+          @ChannelIds = channelids
+          @OrganizationIds = organizationids
+        end
+
+        def deserialize(params)
+          @VLPlanId = params['VLPlanId']
+          @Cmd = params['Cmd']
+          @ChannelIds = params['ChannelIds']
+          @OrganizationIds = params['OrganizationIds']
+        end
+      end
+
+      # BatchAssignVLPlanChannels返回参数结构体
+      class BatchAssignVLPlanChannelsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # BatchDeleteVideoDownloadTask请求参数结构体
       class BatchDeleteVideoDownloadTaskRequest < TencentCloud::Common::AbstractModel
         # @param DownloadTaskIds: 本地录像下载任务 ID 列表
@@ -914,6 +994,127 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # BatchGetVLPlanSourceFileURL请求参数结构体
+      class BatchGetVLPlanSourceFileURLRequest < TencentCloud::Common::AbstractModel
+        # @param VLPlanResultIds: <p>分析结果 ID 列表，最多 200 个</p>
+        # @type VLPlanResultIds: Array
+        # @param Expire: <p>URL 有效期（秒），范围 [60, 86400]，默认 600</p>
+        # @type Expire: Integer
+
+        attr_accessor :VLPlanResultIds, :Expire
+
+        def initialize(vlplanresultids=nil, expire=nil)
+          @VLPlanResultIds = vlplanresultids
+          @Expire = expire
+        end
+
+        def deserialize(params)
+          @VLPlanResultIds = params['VLPlanResultIds']
+          @Expire = params['Expire']
+        end
+      end
+
+      # BatchGetVLPlanSourceFileURL返回参数结构体
+      class BatchGetVLPlanSourceFileURLResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>URL 列表</p>
+        # @type Data: Array
+        # @param TotalCount: <p>总数量</p>
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :TotalCount, :RequestId
+
+        def initialize(data=nil, totalcount=nil, requestid=nil)
+          @Data = data
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              vlplanresultsnapshotimageurlinfo_tmp = VLPlanResultSnapshotImageUrlInfo.new
+              vlplanresultsnapshotimageurlinfo_tmp.deserialize(i)
+              @Data << vlplanresultsnapshotimageurlinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 批量获取截图图片URL列表信息
+      class BatchGetVideoSnapshotImageUrlData < TencentCloud::Common::AbstractModel
+        # @param Images: <p>图片Url信息</p>
+        # @type Images: Array
+        # @param ImageUrlExpires: <p>图片Url有效期</p><p>单位：秒</p><p>默认值：600</p>
+        # @type ImageUrlExpires: Integer
+
+        attr_accessor :Images, :ImageUrlExpires
+
+        def initialize(images=nil, imageurlexpires=nil)
+          @Images = images
+          @ImageUrlExpires = imageurlexpires
+        end
+
+        def deserialize(params)
+          unless params['Images'].nil?
+            @Images = []
+            params['Images'].each do |i|
+              imageurlinfo_tmp = ImageUrlInfo.new
+              imageurlinfo_tmp.deserialize(i)
+              @Images << imageurlinfo_tmp
+            end
+          end
+          @ImageUrlExpires = params['ImageUrlExpires']
+        end
+      end
+
+      # BatchGetVideoSnapshotImageUrl请求参数结构体
+      class BatchGetVideoSnapshotImageUrlRequest < TencentCloud::Common::AbstractModel
+        # @param ImageIds: <p>图片Id</p>
+        # @type ImageIds: Array
+        # @param ImageUrlExpires: <p>图片URL有效期，单位：秒</p><p>取值范围：[60, 86400]</p><p>默认值：600</p>
+        # @type ImageUrlExpires: Integer
+
+        attr_accessor :ImageIds, :ImageUrlExpires
+
+        def initialize(imageids=nil, imageurlexpires=nil)
+          @ImageIds = imageids
+          @ImageUrlExpires = imageurlexpires
+        end
+
+        def deserialize(params)
+          @ImageIds = params['ImageIds']
+          @ImageUrlExpires = params['ImageUrlExpires']
+        end
+      end
+
+      # BatchGetVideoSnapshotImageUrl返回参数结构体
+      class BatchGetVideoSnapshotImageUrlResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>截图图片URL结果列表</p>
+        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.BatchGetVideoSnapshotImageUrlData`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = BatchGetVideoSnapshotImageUrlData.new
+            @Data.deserialize(params['Data'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1041,6 +1242,30 @@ module TencentCloud
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 截图结果的回调地址配置
+      class CallbackURL < TencentCloud::Common::AbstractModel
+        # @param Url: <p>图片回调地址</p>
+        # @type Url: String
+        # @param Token: <p>Token</p>
+        # @type Token: String
+        # @param Enable: <p>是否开启</p>
+        # @type Enable: Boolean
+
+        attr_accessor :Url, :Token, :Enable
+
+        def initialize(url=nil, token=nil, enable=nil)
+          @Url = url
+          @Token = token
+          @Enable = enable
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
+          @Token = params['Token']
+          @Enable = params['Enable']
         end
       end
 
@@ -1404,6 +1629,137 @@ module TencentCloud
         end
       end
 
+      # CreateVLPlan请求参数结构体
+      class CreateVLPlanRequest < TencentCloud::Common::AbstractModel
+        # @param Name: <p>计划名称，仅支持中文/英文/数字/_/-，最长 32 个字符</p>
+        # @type Name: String
+        # @param VLTemplateId: <p>关联的视觉理解模板 ID</p>
+        # @type VLTemplateId: String
+        # @param Describe: <p>计划描述，最长 256 个字符</p>
+        # @type Describe: String
+        # @param FileExpires: <p>截图文件存储天数，范围 [7, 1080]；图片模式必填，视频模式不传</p>
+        # @type FileExpires: Integer
+        # @param Callback: <p>回调通知配置</p>
+        # @type Callback: :class:`Tencentcloud::Iss.v20230517.models.CallbackURL`
+
+        attr_accessor :Name, :VLTemplateId, :Describe, :FileExpires, :Callback
+
+        def initialize(name=nil, vltemplateid=nil, describe=nil, fileexpires=nil, callback=nil)
+          @Name = name
+          @VLTemplateId = vltemplateid
+          @Describe = describe
+          @FileExpires = fileexpires
+          @Callback = callback
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @VLTemplateId = params['VLTemplateId']
+          @Describe = params['Describe']
+          @FileExpires = params['FileExpires']
+          unless params['Callback'].nil?
+            @Callback = CallbackURL.new
+            @Callback.deserialize(params['Callback'])
+          end
+        end
+      end
+
+      # CreateVLPlan返回参数结构体
+      class CreateVLPlanResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>视觉理解计划信息</p>
+        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.VLPlanInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = VLPlanInfo.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateVLTemplate请求参数结构体
+      class CreateVLTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param AIModel: <p>AI 模型</p><p>枚举值：</p><ul><li>ivc-vl-1.0： 视图大模型</li></ul>
+        # @type AIModel: String
+        # @param Name: <p>模板名称，仅支持中文/英文/数字/_/-，最长 32 个字符</p>
+        # @type Name: String
+        # @param Prompt: <p>提示词，最大 2MB</p>
+        # @type Prompt: String
+        # @param AnalysisMode: <p>分析模式</p><p>枚举值：</p><ul><li>image： 图片模式</li><li>video： 视频模式</li></ul>
+        # @type AnalysisMode: String
+        # @param Times: <p>生效时段列表，最多 100 条</p>
+        # @type Times: Array
+        # @param Describe: <p>模板描述，最长 256 个字符</p>
+        # @type Describe: String
+        # @param ImageConfig: <p>图片场景配置（AnalysisMode=image 时必填）</p>
+        # @type ImageConfig: :class:`Tencentcloud::Iss.v20230517.models.ImageSceneInfo`
+
+        attr_accessor :AIModel, :Name, :Prompt, :AnalysisMode, :Times, :Describe, :ImageConfig
+
+        def initialize(aimodel=nil, name=nil, prompt=nil, analysismode=nil, times=nil, describe=nil, imageconfig=nil)
+          @AIModel = aimodel
+          @Name = name
+          @Prompt = prompt
+          @AnalysisMode = analysismode
+          @Times = times
+          @Describe = describe
+          @ImageConfig = imageconfig
+        end
+
+        def deserialize(params)
+          @AIModel = params['AIModel']
+          @Name = params['Name']
+          @Prompt = params['Prompt']
+          @AnalysisMode = params['AnalysisMode']
+          unless params['Times'].nil?
+            @Times = []
+            params['Times'].each do |i|
+              effectivetime_tmp = EffectiveTime.new
+              effectivetime_tmp.deserialize(i)
+              @Times << effectivetime_tmp
+            end
+          end
+          @Describe = params['Describe']
+          unless params['ImageConfig'].nil?
+            @ImageConfig = ImageSceneInfo.new
+            @ImageConfig.deserialize(params['ImageConfig'])
+          end
+        end
+      end
+
+      # CreateVLTemplate返回参数结构体
+      class CreateVLTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>视觉理解模板信息</p>
+        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.VLTemplateInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = VLTemplateInfo.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateVideoDownloadTask请求参数结构体
       class CreateVideoDownloadTaskRequest < TencentCloud::Common::AbstractModel
         # @param ChannelId: 通道ID
@@ -1461,6 +1817,125 @@ module TencentCloud
         def deserialize(params)
           unless params['Data'].nil?
             @Data = VideoDownloadTaskData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateVideoSnapshotConfig请求参数结构体
+      class CreateVideoSnapshotConfigRequest < TencentCloud::Common::AbstractModel
+        # @param Name: <p>截图配置名称</p><p>入参限制：中文、英文、数字、“-”、“_” 长度不超过128个字符</p>
+        # @type Name: String
+        # @param TemplateId: <p>截图模板Id</p>
+        # @type TemplateId: String
+        # @param FileExpires: <p>图片文件的热存储天数</p><p>枚举值：</p><ul><li>7： 7天</li><li>15： 15天</li><li>30： 30天</li><li>60： 60天</li><li>90： 90天</li><li>180： 180天</li><li>270： 270天</li><li>360： 360天</li><li>540： 540天</li><li>720： 720天</li><li>900： 900天</li><li>1080： 1080天</li></ul>
+        # @type FileExpires: Integer
+        # @param Callback: <p>截图结果回调地址</p>
+        # @type Callback: :class:`Tencentcloud::Iss.v20230517.models.CallbackURL`
+
+        attr_accessor :Name, :TemplateId, :FileExpires, :Callback
+
+        def initialize(name=nil, templateid=nil, fileexpires=nil, callback=nil)
+          @Name = name
+          @TemplateId = templateid
+          @FileExpires = fileexpires
+          @Callback = callback
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @TemplateId = params['TemplateId']
+          @FileExpires = params['FileExpires']
+          unless params['Callback'].nil?
+            @Callback = CallbackURL.new
+            @Callback.deserialize(params['Callback'])
+          end
+        end
+      end
+
+      # CreateVideoSnapshotConfig返回参数结构体
+      class CreateVideoSnapshotConfigResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>截图配置信息</p>
+        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.VideoSnapshotConfigInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = VideoSnapshotConfigInfo.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateVideoSnapshotTemplate请求参数结构体
+      class CreateVideoSnapshotTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param Name: <p>模板名称： 中文、英文、数字、“-”、“_” 长度不超过128个字符</p>
+        # @type Name: String
+        # @param Type: <p>截图类型： 1-实时截帧 2-低频截帧<br>注意：实时截帧在生效时段期间一直拉取实时流， 低频截帧在生效时段期间按需拉取实时流，每次拉流的最短持续时间不低于1分钟</p><p>枚举值：</p><ul><li>1： 实时截帧</li><li>2： 低频截帧</li></ul>
+        # @type Type: Integer
+        # @param Interval: <p>截帧频率： Type = 1时，取值[5, 180]秒 Type = 2时 取值[30, 36000]秒</p>
+        # @type Interval: Integer
+        # @param Times: <p>生效时段，注：数组大小不超过100个且每个时间段不低于1分钟</p>
+        # @type Times: Array
+        # @param MultiMode: <p>多张模式</p>
+        # @type MultiMode: :class:`Tencentcloud::Iss.v20230517.models.MultiVideoSnapshotMode`
+
+        attr_accessor :Name, :Type, :Interval, :Times, :MultiMode
+
+        def initialize(name=nil, type=nil, interval=nil, times=nil, multimode=nil)
+          @Name = name
+          @Type = type
+          @Interval = interval
+          @Times = times
+          @MultiMode = multimode
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Type = params['Type']
+          @Interval = params['Interval']
+          unless params['Times'].nil?
+            @Times = []
+            params['Times'].each do |i|
+              effectivetime_tmp = EffectiveTime.new
+              effectivetime_tmp.deserialize(i)
+              @Times << effectivetime_tmp
+            end
+          end
+          unless params['MultiMode'].nil?
+            @MultiMode = MultiVideoSnapshotMode.new
+            @MultiMode.deserialize(params['MultiMode'])
+          end
+        end
+      end
+
+      # CreateVideoSnapshotTemplate返回参数结构体
+      class CreateVideoSnapshotTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>截图模板信息</p>
+        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.VideoSnapshotTemplateInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = VideoSnapshotTemplateInfo.new
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
@@ -1741,6 +2216,134 @@ module TencentCloud
 
       # DeleteUserDevice返回参数结构体
       class DeleteUserDeviceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteVLPlan请求参数结构体
+      class DeleteVLPlanRequest < TencentCloud::Common::AbstractModel
+        # @param VLPlanId: <p>计划 ID</p>
+        # @type VLPlanId: String
+
+        attr_accessor :VLPlanId
+
+        def initialize(vlplanid=nil)
+          @VLPlanId = vlplanid
+        end
+
+        def deserialize(params)
+          @VLPlanId = params['VLPlanId']
+        end
+      end
+
+      # DeleteVLPlan返回参数结构体
+      class DeleteVLPlanResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteVLTemplate请求参数结构体
+      class DeleteVLTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param VLTemplateId: <p>模板 ID</p>
+        # @type VLTemplateId: String
+
+        attr_accessor :VLTemplateId
+
+        def initialize(vltemplateid=nil)
+          @VLTemplateId = vltemplateid
+        end
+
+        def deserialize(params)
+          @VLTemplateId = params['VLTemplateId']
+        end
+      end
+
+      # DeleteVLTemplate返回参数结构体
+      class DeleteVLTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteVideoSnapshotConfig请求参数结构体
+      class DeleteVideoSnapshotConfigRequest < TencentCloud::Common::AbstractModel
+        # @param ConfigId: <p>截图配置Id</p>
+        # @type ConfigId: String
+
+        attr_accessor :ConfigId
+
+        def initialize(configid=nil)
+          @ConfigId = configid
+        end
+
+        def deserialize(params)
+          @ConfigId = params['ConfigId']
+        end
+      end
+
+      # DeleteVideoSnapshotConfig返回参数结构体
+      class DeleteVideoSnapshotConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteVideoSnapshotTemplate请求参数结构体
+      class DeleteVideoSnapshotTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateId: <p>截图模板Id</p>
+        # @type TemplateId: String
+
+        attr_accessor :TemplateId
+
+        def initialize(templateid=nil)
+          @TemplateId = templateid
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+        end
+      end
+
+      # DeleteVideoSnapshotTemplate返回参数结构体
+      class DeleteVideoSnapshotTemplateResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -3237,6 +3840,123 @@ module TencentCloud
         end
       end
 
+      # DescribeVLPlan请求参数结构体
+      class DescribeVLPlanRequest < TencentCloud::Common::AbstractModel
+        # @param VLPlanId: <p>计划 ID</p>
+        # @type VLPlanId: String
+
+        attr_accessor :VLPlanId
+
+        def initialize(vlplanid=nil)
+          @VLPlanId = vlplanid
+        end
+
+        def deserialize(params)
+          @VLPlanId = params['VLPlanId']
+        end
+      end
+
+      # DescribeVLPlan返回参数结构体
+      class DescribeVLPlanResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>视觉理解计划信息</p>
+        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.VLPlanInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = VLPlanInfo.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeVLPlanResult请求参数结构体
+      class DescribeVLPlanResultRequest < TencentCloud::Common::AbstractModel
+        # @param VLPlanResultId: <p>分析结果 ID</p>
+        # @type VLPlanResultId: String
+
+        attr_accessor :VLPlanResultId
+
+        def initialize(vlplanresultid=nil)
+          @VLPlanResultId = vlplanresultid
+        end
+
+        def deserialize(params)
+          @VLPlanResultId = params['VLPlanResultId']
+        end
+      end
+
+      # DescribeVLPlanResult返回参数结构体
+      class DescribeVLPlanResultResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>分析结果详情</p>
+        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.VLPlanResultDetailInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = VLPlanResultDetailInfo.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeVLTemplate请求参数结构体
+      class DescribeVLTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param VLTemplateId: <p>模板 ID</p>
+        # @type VLTemplateId: String
+
+        attr_accessor :VLTemplateId
+
+        def initialize(vltemplateid=nil)
+          @VLTemplateId = vltemplateid
+        end
+
+        def deserialize(params)
+          @VLTemplateId = params['VLTemplateId']
+        end
+      end
+
+      # DescribeVLTemplate返回参数结构体
+      class DescribeVLTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>视觉理解模板信息</p>
+        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.VLTemplateInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = VLTemplateInfo.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 查询视频通道码率的返回结果列表
       class DescribeVideoBitRateList < TencentCloud::Common::AbstractModel
         # @param BitRates: 通道码率列表
@@ -3402,6 +4122,108 @@ module TencentCloud
         end
       end
 
+      # DescribeVideoSnapshotConfig请求参数结构体
+      class DescribeVideoSnapshotConfigRequest < TencentCloud::Common::AbstractModel
+        # @param ConfigId: <p>截图配置Id</p>
+        # @type ConfigId: String
+
+        attr_accessor :ConfigId
+
+        def initialize(configid=nil)
+          @ConfigId = configid
+        end
+
+        def deserialize(params)
+          @ConfigId = params['ConfigId']
+        end
+      end
+
+      # DescribeVideoSnapshotConfig返回参数结构体
+      class DescribeVideoSnapshotConfigResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>截图配置详情结果</p>
+        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.VideoSnapshotConfigInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = VideoSnapshotConfigInfo.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeVideoSnapshotTemplate请求参数结构体
+      class DescribeVideoSnapshotTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateId: <p>截图模板Id</p>
+        # @type TemplateId: String
+
+        attr_accessor :TemplateId
+
+        def initialize(templateid=nil)
+          @TemplateId = templateid
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+        end
+      end
+
+      # DescribeVideoSnapshotTemplate返回参数结构体
+      class DescribeVideoSnapshotTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>截图模板详情</p>
+        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.VideoSnapshotTemplateInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = VideoSnapshotTemplateInfo.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 生效时段
+      class EffectiveTime < TencentCloud::Common::AbstractModel
+        # @param BeginTime: <p>开始时间</p><p>参数格式：hh:mm:ss</p>
+        # @type BeginTime: String
+        # @param EndTime: <p>结束时间</p><p>参数格式：hh:mm:ss</p>
+        # @type EndTime: String
+        # @param WeekDay: <p>重复周期： 1-周一 2-周二 3-周三 4-周四 5-周五 6-周六 7-周日</p><p>取值范围：[1, 7]</p>
+        # @type WeekDay: Integer
+
+        attr_accessor :BeginTime, :EndTime, :WeekDay
+
+        def initialize(begintime=nil, endtime=nil, weekday=nil)
+          @BeginTime = begintime
+          @EndTime = endtime
+          @WeekDay = weekday
+        end
+
+        def deserialize(params)
+          @BeginTime = params['BeginTime']
+          @EndTime = params['EndTime']
+          @WeekDay = params['WeekDay']
+        end
+      end
+
       # 抓拍结果信息
       class GBDeviceSnapInfo < TencentCloud::Common::AbstractModel
         # @param FileName: 文件名称
@@ -3455,6 +4277,58 @@ module TencentCloud
 
         def deserialize(params)
           @OutputData = params['OutputData']
+        end
+      end
+
+      # 图片场景配置
+      class ImageSceneInfo < TencentCloud::Common::AbstractModel
+        # @param Type: <p>截图类型</p><p>枚举值：</p><ul><li>1：实时截帧</li><li>2：低频截帧</li></ul>
+        # @type Type: Integer
+        # @param Interval: <p>截帧频率</p><p>Type=1时取值[5, 180]秒，Type=2时取值[30, 36000]秒</p>
+        # @type Interval: Integer
+        # @param MultiMode: <p>多张截图模式</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MultiMode: :class:`Tencentcloud::Iss.v20230517.models.MultiSnapshotMode`
+
+        attr_accessor :Type, :Interval, :MultiMode
+
+        def initialize(type=nil, interval=nil, multimode=nil)
+          @Type = type
+          @Interval = interval
+          @MultiMode = multimode
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Interval = params['Interval']
+          unless params['MultiMode'].nil?
+            @MultiMode = MultiSnapshotMode.new
+            @MultiMode.deserialize(params['MultiMode'])
+          end
+        end
+      end
+
+      # 图片下载URL信息
+      class ImageUrlInfo < TencentCloud::Common::AbstractModel
+        # @param ImageId: <p>图片Id</p>
+        # @type ImageId: String
+        # @param ImageUrl: <p>图片Url</p>
+        # @type ImageUrl: String
+        # @param ErrorMessage: <p>错误信息</p><p>说明获取图片url失败的原因</p>
+        # @type ErrorMessage: String
+
+        attr_accessor :ImageId, :ImageUrl, :ErrorMessage
+
+        def initialize(imageid=nil, imageurl=nil, errormessage=nil)
+          @ImageId = imageid
+          @ImageUrl = imageurl
+          @ErrorMessage = errormessage
+        end
+
+        def deserialize(params)
+          @ImageId = params['ImageId']
+          @ImageUrl = params['ImageUrl']
+          @ErrorMessage = params['ErrorMessage']
         end
       end
 
@@ -4599,6 +5473,124 @@ module TencentCloud
         end
       end
 
+      # ListVLPlans请求参数结构体
+      class ListVLPlansRequest < TencentCloud::Common::AbstractModel
+        # @param Name: <p>计划名称，精确匹配</p>
+        # @type Name: String
+        # @param PageNumber: <p>页码，默认 1</p>
+        # @type PageNumber: Integer
+        # @param PageSize: <p>每页数量，默认 20，最大 200</p>
+        # @type PageSize: Integer
+
+        attr_accessor :Name, :PageNumber, :PageSize
+
+        def initialize(name=nil, pagenumber=nil, pagesize=nil)
+          @Name = name
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+        end
+      end
+
+      # ListVLPlans返回参数结构体
+      class ListVLPlansResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>计划列表</p>
+        # @type Data: Array
+        # @param TotalCount: <p>总数量</p>
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :TotalCount, :RequestId
+
+        def initialize(data=nil, totalcount=nil, requestid=nil)
+          @Data = data
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              vlplaninfo_tmp = VLPlanInfo.new
+              vlplaninfo_tmp.deserialize(i)
+              @Data << vlplaninfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ListVLTemplates请求参数结构体
+      class ListVLTemplatesRequest < TencentCloud::Common::AbstractModel
+        # @param Name: <p>模板名称，精确匹配</p>
+        # @type Name: String
+        # @param AnalysisMode: <p>分析模式过滤，image / video</p>
+        # @type AnalysisMode: String
+        # @param CaptureType: <p>截图类型过滤（仅 AnalysisMode=image 时生效）：realtime / low</p>
+        # @type CaptureType: String
+        # @param PageNumber: <p>页码，默认 1</p>
+        # @type PageNumber: Integer
+        # @param PageSize: <p>每页数量，默认 20，最大 200</p>
+        # @type PageSize: Integer
+
+        attr_accessor :Name, :AnalysisMode, :CaptureType, :PageNumber, :PageSize
+
+        def initialize(name=nil, analysismode=nil, capturetype=nil, pagenumber=nil, pagesize=nil)
+          @Name = name
+          @AnalysisMode = analysismode
+          @CaptureType = capturetype
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @AnalysisMode = params['AnalysisMode']
+          @CaptureType = params['CaptureType']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+        end
+      end
+
+      # ListVLTemplates返回参数结构体
+      class ListVLTemplatesResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>模板列表</p>
+        # @type Data: Array
+        # @param TotalCount: <p>总数量</p>
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :TotalCount, :RequestId
+
+        def initialize(data=nil, totalcount=nil, requestid=nil)
+          @Data = data
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              vltemplateinfo_tmp = VLTemplateInfo.new
+              vltemplateinfo_tmp.deserialize(i)
+              @Data << vltemplateinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 本地录像下载任务列表
       class ListVideoDownloadTaskData < TencentCloud::Common::AbstractModel
         # @param List: 任务列表
@@ -4698,6 +5690,276 @@ module TencentCloud
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 获取截图模板详情列表
+      class ListVideoSnapshotTemplateData < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>总数</p>
+        # @type TotalCount: Integer
+        # @param Sort: <p>排序参数</p>
+        # @type Sort: String
+        # @param Order: <p>排序顺序</p>
+        # @type Order: String
+        # @param PageNumber: <p>页码</p>
+        # @type PageNumber: Integer
+        # @param PageSize: <p>每页数目</p>
+        # @type PageSize: Integer
+        # @param List: <p>截图模板列表</p>
+        # @type List: Array
+
+        attr_accessor :TotalCount, :Sort, :Order, :PageNumber, :PageSize, :List
+
+        def initialize(totalcount=nil, sort=nil, order=nil, pagenumber=nil, pagesize=nil, list=nil)
+          @TotalCount = totalcount
+          @Sort = sort
+          @Order = order
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @List = list
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @Sort = params['Sort']
+          @Order = params['Order']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              videosnapshottemplateinfo_tmp = VideoSnapshotTemplateInfo.new
+              videosnapshottemplateinfo_tmp.deserialize(i)
+              @List << videosnapshottemplateinfo_tmp
+            end
+          end
+        end
+      end
+
+      # ListVideoSnapshotTemplate请求参数结构体
+      class ListVideoSnapshotTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param Name: <p>模板名称</p>
+        # @type Name: String
+        # @param Type: <p>截图类型</p><p>枚举值：</p><ul><li>1： 实时截帧</li><li>2： 低频截帧</li></ul>
+        # @type Type: Integer
+        # @param Sort: <p>排序参数</p><p>默认值：update_time</p>
+        # @type Sort: String
+        # @param Order: <p>排序顺序</p><p>枚举值：</p><ul><li>desc： 降序</li><li>asc： 生序</li></ul><p>默认值：desc</p>
+        # @type Order: String
+        # @param PageNumber: <p>页码</p><p>默认值：1</p>
+        # @type PageNumber: Integer
+        # @param PageSize: <p>每页数目</p><p>默认值：20</p>
+        # @type PageSize: Integer
+
+        attr_accessor :Name, :Type, :Sort, :Order, :PageNumber, :PageSize
+
+        def initialize(name=nil, type=nil, sort=nil, order=nil, pagenumber=nil, pagesize=nil)
+          @Name = name
+          @Type = type
+          @Sort = sort
+          @Order = order
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Type = params['Type']
+          @Sort = params['Sort']
+          @Order = params['Order']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+        end
+      end
+
+      # ListVideoSnapshotTemplate返回参数结构体
+      class ListVideoSnapshotTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>截图模板结果列表</p>
+        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.ListVideoSnapshotTemplateData`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ListVideoSnapshotTemplateData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyVLPlan请求参数结构体
+      class ModifyVLPlanRequest < TencentCloud::Common::AbstractModel
+        # @param VLPlanId: <p>计划 ID</p>
+        # @type VLPlanId: String
+        # @param Name: <p>新计划名称</p>
+        # @type Name: String
+        # @param Describe: <p>新计划描述</p>
+        # @type Describe: String
+        # @param VLTemplateId: <p>新关联视觉理解模板 ID</p>
+        # @type VLTemplateId: String
+        # @param FileExpires: <p>新存储天数，范围 [7, 1080]，0 表示不修改</p>
+        # @type FileExpires: Integer
+        # @param Callback: <p>新回调配置</p>
+        # @type Callback: :class:`Tencentcloud::Iss.v20230517.models.CallbackURL`
+
+        attr_accessor :VLPlanId, :Name, :Describe, :VLTemplateId, :FileExpires, :Callback
+
+        def initialize(vlplanid=nil, name=nil, describe=nil, vltemplateid=nil, fileexpires=nil, callback=nil)
+          @VLPlanId = vlplanid
+          @Name = name
+          @Describe = describe
+          @VLTemplateId = vltemplateid
+          @FileExpires = fileexpires
+          @Callback = callback
+        end
+
+        def deserialize(params)
+          @VLPlanId = params['VLPlanId']
+          @Name = params['Name']
+          @Describe = params['Describe']
+          @VLTemplateId = params['VLTemplateId']
+          @FileExpires = params['FileExpires']
+          unless params['Callback'].nil?
+            @Callback = CallbackURL.new
+            @Callback.deserialize(params['Callback'])
+          end
+        end
+      end
+
+      # ModifyVLPlan返回参数结构体
+      class ModifyVLPlanResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>视觉理解计划信息</p>
+        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.VLPlanInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = VLPlanInfo.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyVideoSnapshotConfig请求参数结构体
+      class ModifyVideoSnapshotConfigRequest < TencentCloud::Common::AbstractModel
+        # @param ConfigId: <p>截图配置Id</p>
+        # @type ConfigId: String
+        # @param Name: <p>截图配置名称</p><p>入参限制：中文、英文、数字、“-”、“_” 长度不超过128个字符</p>
+        # @type Name: String
+        # @param TemplateId: <p>截图模板Id</p>
+        # @type TemplateId: String
+        # @param FileExpires: <p>图片文件的热存储天数</p><p>枚举值：</p><ul><li>7： 7天</li><li>15： 15天</li><li>30： 30天</li><li>60： 60天</li><li>90： 90天</li><li>180： 180天</li><li>270： 270天</li><li>360： 360天</li><li>540： 540天</li><li>720： 720天</li><li>900： 900天</li><li>1080： 1080天</li></ul>
+        # @type FileExpires: Integer
+        # @param Callback: <p>回调配置</p>
+        # @type Callback: :class:`Tencentcloud::Iss.v20230517.models.CallbackURL`
+
+        attr_accessor :ConfigId, :Name, :TemplateId, :FileExpires, :Callback
+
+        def initialize(configid=nil, name=nil, templateid=nil, fileexpires=nil, callback=nil)
+          @ConfigId = configid
+          @Name = name
+          @TemplateId = templateid
+          @FileExpires = fileexpires
+          @Callback = callback
+        end
+
+        def deserialize(params)
+          @ConfigId = params['ConfigId']
+          @Name = params['Name']
+          @TemplateId = params['TemplateId']
+          @FileExpires = params['FileExpires']
+          unless params['Callback'].nil?
+            @Callback = CallbackURL.new
+            @Callback.deserialize(params['Callback'])
+          end
+        end
+      end
+
+      # ModifyVideoSnapshotConfig返回参数结构体
+      class ModifyVideoSnapshotConfigResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>截图配置信息</p>
+        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.VideoSnapshotConfigInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = VideoSnapshotConfigInfo.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 多张截图模式
+      class MultiSnapshotMode < TencentCloud::Common::AbstractModel
+        # @param Enable: <p>是否启用多张模式</p><p>false时为单张模式，忽略Interval、Total参数</p><p>默认值：false</p>
+        # @type Enable: Boolean
+        # @param Interval: <p>截帧间隔</p><p>取值范围：[10, 600]</p><p>单位：秒</p>
+        # @type Interval: Integer
+        # @param Total: <p>截帧张数</p><p>取值范围：[1, 10]</p>
+        # @type Total: Integer
+
+        attr_accessor :Enable, :Interval, :Total
+
+        def initialize(enable=nil, interval=nil, total=nil)
+          @Enable = enable
+          @Interval = interval
+          @Total = total
+        end
+
+        def deserialize(params)
+          @Enable = params['Enable']
+          @Interval = params['Interval']
+          @Total = params['Total']
+        end
+      end
+
+      # 多张模式参数
+      class MultiVideoSnapshotMode < TencentCloud::Common::AbstractModel
+        # @param Enable: <p>是否启用多张模式， false时，为单张模式，忽略Interval、Total参数</p><p>默认值：false</p>
+        # @type Enable: Boolean
+        # @param Interval: <p>截帧间隔</p><p>取值范围：[10, 600]</p><p>单位：秒</p>
+        # @type Interval: Integer
+        # @param Total: <p>截帧张数</p><p>取值范围：[1, 10]</p>
+        # @type Total: Integer
+
+        attr_accessor :Enable, :Interval, :Total
+
+        def initialize(enable=nil, interval=nil, total=nil)
+          @Enable = enable
+          @Interval = interval
+          @Total = total
+        end
+
+        def deserialize(params)
+          @Enable = params['Enable']
+          @Interval = params['Interval']
+          @Total = params['Total']
         end
       end
 
@@ -6322,42 +7584,285 @@ module TencentCloud
         end
       end
 
+      # 视觉理解计划信息
+      class VLPlanInfo < TencentCloud::Common::AbstractModel
+        # @param VLPlanId: <p>计划ID</p>
+        # @type VLPlanId: String
+        # @param Name: <p>计划名称</p>
+        # @type Name: String
+        # @param Describe: <p>计划描述</p>
+        # @type Describe: String
+        # @param VLTemplateId: <p>视觉理解模板ID</p>
+        # @type VLTemplateId: String
+        # @param Callback: <p>回调通知配置</p>
+        # @type Callback: :class:`Tencentcloud::Iss.v20230517.models.CallbackURL`
+        # @param FileExpires: <p>文件过期时间（秒）</p>
+        # @type FileExpires: Integer
+        # @param ChannelCount: <p>计划包含的通道数量</p>
+        # @type ChannelCount: Integer
+        # @param CreatedAt: <p>创建时间</p>
+        # @type CreatedAt: String
+        # @param UpdatedAt: <p>最近一次更新时间</p>
+        # @type UpdatedAt: String
+
+        attr_accessor :VLPlanId, :Name, :Describe, :VLTemplateId, :Callback, :FileExpires, :ChannelCount, :CreatedAt, :UpdatedAt
+
+        def initialize(vlplanid=nil, name=nil, describe=nil, vltemplateid=nil, callback=nil, fileexpires=nil, channelcount=nil, createdat=nil, updatedat=nil)
+          @VLPlanId = vlplanid
+          @Name = name
+          @Describe = describe
+          @VLTemplateId = vltemplateid
+          @Callback = callback
+          @FileExpires = fileexpires
+          @ChannelCount = channelcount
+          @CreatedAt = createdat
+          @UpdatedAt = updatedat
+        end
+
+        def deserialize(params)
+          @VLPlanId = params['VLPlanId']
+          @Name = params['Name']
+          @Describe = params['Describe']
+          @VLTemplateId = params['VLTemplateId']
+          unless params['Callback'].nil?
+            @Callback = CallbackURL.new
+            @Callback.deserialize(params['Callback'])
+          end
+          @FileExpires = params['FileExpires']
+          @ChannelCount = params['ChannelCount']
+          @CreatedAt = params['CreatedAt']
+          @UpdatedAt = params['UpdatedAt']
+        end
+      end
+
+      # 视觉理解计划结果详情
+      class VLPlanResultDetailInfo < TencentCloud::Common::AbstractModel
+        # @param VLPlanResultId: <p>分析结果 ID</p>
+        # @type VLPlanResultId: String
+        # @param MediaType: <p>媒体类型，当前固定为 image</p>
+        # @type MediaType: String
+        # @param VLPlanId: <p>所属分析计划 ID</p>
+        # @type VLPlanId: String
+        # @param VLPlanName: <p>计划名称</p>
+        # @type VLPlanName: String
+        # @param ChannelId: <p>通道 ID</p>
+        # @type ChannelId: String
+        # @param ChannelName: <p>通道名称</p>
+        # @type ChannelName: String
+        # @param DeviceId: <p>设备 ID</p>
+        # @type DeviceId: String
+        # @param DeviceName: <p>设备名称</p>
+        # @type DeviceName: String
+        # @param OrganizationId: <p>所属组织 ID</p>
+        # @type OrganizationId: String
+        # @param OrganizationName: <p>所属组织名称</p>
+        # @type OrganizationName: String
+        # @param VLResultTimestamp: <p>分析时间戳（秒）</p>
+        # @type VLResultTimestamp: Integer
+        # @param SnapshotTimestamp: <p>图片模式截图时间戳（秒）</p>
+        # @type SnapshotTimestamp: Integer
+        # @param VideoStartTimestamp: <p>视频片段开始时间戳（秒）</p>
+        # @type VideoStartTimestamp: Integer
+        # @param VideoEndTimestamp: <p>视频片段结束时间戳（秒）</p>
+        # @type VideoEndTimestamp: Integer
+        # @param BilledFrameCount: <p>视频模式计费帧数</p>
+        # @type BilledFrameCount: Integer
+        # @param Content: <p>AI 分析结果内容（JSON 字符串）</p>
+        # @type Content: String
+        # @param ImageUrl: <p>截图临时下载 URL（有效期 300 秒）</p>
+        # @type ImageUrl: String
+        # @param ImageUrlExpire: <p>截图 URL 有效期（秒）</p>
+        # @type ImageUrlExpire: Integer
+        # @param CreatedAt: <p>创建时间，格式 2006-01-02 15:04:05</p>
+        # @type CreatedAt: String
+        # @param UpdatedAt: <p>更新时间，格式 2006-01-02 15:04:05</p>
+        # @type UpdatedAt: String
+
+        attr_accessor :VLPlanResultId, :MediaType, :VLPlanId, :VLPlanName, :ChannelId, :ChannelName, :DeviceId, :DeviceName, :OrganizationId, :OrganizationName, :VLResultTimestamp, :SnapshotTimestamp, :VideoStartTimestamp, :VideoEndTimestamp, :BilledFrameCount, :Content, :ImageUrl, :ImageUrlExpire, :CreatedAt, :UpdatedAt
+
+        def initialize(vlplanresultid=nil, mediatype=nil, vlplanid=nil, vlplanname=nil, channelid=nil, channelname=nil, deviceid=nil, devicename=nil, organizationid=nil, organizationname=nil, vlresulttimestamp=nil, snapshottimestamp=nil, videostarttimestamp=nil, videoendtimestamp=nil, billedframecount=nil, content=nil, imageurl=nil, imageurlexpire=nil, createdat=nil, updatedat=nil)
+          @VLPlanResultId = vlplanresultid
+          @MediaType = mediatype
+          @VLPlanId = vlplanid
+          @VLPlanName = vlplanname
+          @ChannelId = channelid
+          @ChannelName = channelname
+          @DeviceId = deviceid
+          @DeviceName = devicename
+          @OrganizationId = organizationid
+          @OrganizationName = organizationname
+          @VLResultTimestamp = vlresulttimestamp
+          @SnapshotTimestamp = snapshottimestamp
+          @VideoStartTimestamp = videostarttimestamp
+          @VideoEndTimestamp = videoendtimestamp
+          @BilledFrameCount = billedframecount
+          @Content = content
+          @ImageUrl = imageurl
+          @ImageUrlExpire = imageurlexpire
+          @CreatedAt = createdat
+          @UpdatedAt = updatedat
+        end
+
+        def deserialize(params)
+          @VLPlanResultId = params['VLPlanResultId']
+          @MediaType = params['MediaType']
+          @VLPlanId = params['VLPlanId']
+          @VLPlanName = params['VLPlanName']
+          @ChannelId = params['ChannelId']
+          @ChannelName = params['ChannelName']
+          @DeviceId = params['DeviceId']
+          @DeviceName = params['DeviceName']
+          @OrganizationId = params['OrganizationId']
+          @OrganizationName = params['OrganizationName']
+          @VLResultTimestamp = params['VLResultTimestamp']
+          @SnapshotTimestamp = params['SnapshotTimestamp']
+          @VideoStartTimestamp = params['VideoStartTimestamp']
+          @VideoEndTimestamp = params['VideoEndTimestamp']
+          @BilledFrameCount = params['BilledFrameCount']
+          @Content = params['Content']
+          @ImageUrl = params['ImageUrl']
+          @ImageUrlExpire = params['ImageUrlExpire']
+          @CreatedAt = params['CreatedAt']
+          @UpdatedAt = params['UpdatedAt']
+        end
+      end
+
+      # 视觉理解计划源素材 URL 信息
+      class VLPlanResultSnapshotImageUrlInfo < TencentCloud::Common::AbstractModel
+        # @param VLPlanResultId: <p>分析结果 ID</p>
+        # @type VLPlanResultId: String
+        # @param SourceFileURL: <p>源素材下载 URL（失败时为空）</p>
+        # @type SourceFileURL: String
+        # @param Expire: <p>URL 有效期（秒，失败时为 0）</p>
+        # @type Expire: Integer
+        # @param ErrMsg: <p>错误信息（失败时有值）</p>
+        # @type ErrMsg: String
+
+        attr_accessor :VLPlanResultId, :SourceFileURL, :Expire, :ErrMsg
+
+        def initialize(vlplanresultid=nil, sourcefileurl=nil, expire=nil, errmsg=nil)
+          @VLPlanResultId = vlplanresultid
+          @SourceFileURL = sourcefileurl
+          @Expire = expire
+          @ErrMsg = errmsg
+        end
+
+        def deserialize(params)
+          @VLPlanResultId = params['VLPlanResultId']
+          @SourceFileURL = params['SourceFileURL']
+          @Expire = params['Expire']
+          @ErrMsg = params['ErrMsg']
+        end
+      end
+
+      # 视觉理解模板信息
+      class VLTemplateInfo < TencentCloud::Common::AbstractModel
+        # @param VLTemplateId: <p>模板ID</p>
+        # @type VLTemplateId: String
+        # @param AIModel: <p>AI 模型</p><p>枚举值：</p><ul><li>IVC-G： 视图默认大模型</li></ul>
+        # @type AIModel: String
+        # @param Name: <p>AI场景名称</p>
+        # @type Name: String
+        # @param Describe: <p>AI场景描述</p>
+        # @type Describe: String
+        # @param Prompt: <p>提示词</p>
+        # @type Prompt: String
+        # @param AnalysisMode: <p>分析模式</p><p>枚举值：</p><ul><li>image： 图片模式</li><li>video： 视频模式</li></ul>
+        # @type AnalysisMode: String
+        # @param ImageConfig: <p>图片场景配置</p>
+        # @type ImageConfig: :class:`Tencentcloud::Iss.v20230517.models.ImageSceneInfo`
+        # @param Times: <p>生效时段列表</p>
+        # @type Times: Array
+        # @param CreatedAt: <p>创建时间</p>
+        # @type CreatedAt: String
+        # @param UpdatedAt: <p>最近一次更新时间</p>
+        # @type UpdatedAt: String
+        # @param IsUsed: <p>是否关联到视觉理解计划</p>
+        # @type IsUsed: Boolean
+        # @param VideoConfig: <p>视频场景配置</p>
+        # @type VideoConfig: :class:`Tencentcloud::Iss.v20230517.models.VideoSceneInfo`
+
+        attr_accessor :VLTemplateId, :AIModel, :Name, :Describe, :Prompt, :AnalysisMode, :ImageConfig, :Times, :CreatedAt, :UpdatedAt, :IsUsed, :VideoConfig
+
+        def initialize(vltemplateid=nil, aimodel=nil, name=nil, describe=nil, prompt=nil, analysismode=nil, imageconfig=nil, times=nil, createdat=nil, updatedat=nil, isused=nil, videoconfig=nil)
+          @VLTemplateId = vltemplateid
+          @AIModel = aimodel
+          @Name = name
+          @Describe = describe
+          @Prompt = prompt
+          @AnalysisMode = analysismode
+          @ImageConfig = imageconfig
+          @Times = times
+          @CreatedAt = createdat
+          @UpdatedAt = updatedat
+          @IsUsed = isused
+          @VideoConfig = videoconfig
+        end
+
+        def deserialize(params)
+          @VLTemplateId = params['VLTemplateId']
+          @AIModel = params['AIModel']
+          @Name = params['Name']
+          @Describe = params['Describe']
+          @Prompt = params['Prompt']
+          @AnalysisMode = params['AnalysisMode']
+          unless params['ImageConfig'].nil?
+            @ImageConfig = ImageSceneInfo.new
+            @ImageConfig.deserialize(params['ImageConfig'])
+          end
+          unless params['Times'].nil?
+            @Times = []
+            params['Times'].each do |i|
+              effectivetime_tmp = EffectiveTime.new
+              effectivetime_tmp.deserialize(i)
+              @Times << effectivetime_tmp
+            end
+          end
+          @CreatedAt = params['CreatedAt']
+          @UpdatedAt = params['UpdatedAt']
+          @IsUsed = params['IsUsed']
+          unless params['VideoConfig'].nil?
+            @VideoConfig = VideoSceneInfo.new
+            @VideoConfig.deserialize(params['VideoConfig'])
+          end
+        end
+      end
+
       # 本地录像下载任务
       class VideoDownloadTask < TencentCloud::Common::AbstractModel
-        # @param DownloadTaskId: 下载任务 ID
+        # @param DownloadTaskId: <p>下载任务 ID</p>
         # @type DownloadTaskId: String
-        # @param ChannelId: 通道 ID
+        # @param ChannelId: <p>通道 ID</p>
         # @type ChannelId: String
-        # @param ChannelName: 通道名称
+        # @param ChannelName: <p>通道名称</p>
         # @type ChannelName: String
-        # @param ChannelCode: 通道编码
+        # @param ChannelCode: <p>通道编码</p>
         # @type ChannelCode: String
-        # @param DeviceName: 设备名称
+        # @param DeviceName: <p>设备名称</p>
         # @type DeviceName: String
-        # @param DeviceCode: 设备编码
+        # @param DeviceCode: <p>设备编码</p>
         # @type DeviceCode: String
-        # @param Status: 任务状态（0：未执行；1：执行中；2 任务完成；
-        # 3：任务失败）
+        # @param Status: <p>任务状态（0：未执行；1：执行中；2 任务完成；<br>3：任务失败）</p>
         # @type Status: Integer
-        # @param VideoTimeSection: 下载录像时间段
+        # @param VideoTimeSection: <p>下载录像时间段</p>
         # @type VideoTimeSection: String
-        # @param Scale: 倍速
+        # @param Scale: <p>倍速</p>
         # @type Scale: Integer
-        # @param DownloadTime: 下载时长
+        # @param DownloadTime: <p>下载时长</p><p>单位：秒</p>
         # @type DownloadTime: Integer
-        # @param VideoSize: 录像大小
+        # @param VideoSize: <p>录像大小</p><p>单位：字节（Byte）</p>
         # @type VideoSize: Integer
-        # @param StartTime: 任务开始时间
+        # @param StartTime: <p>任务开始时间</p>
         # @type StartTime: String
-        # @param EndTime: 任务结束时间
+        # @param EndTime: <p>任务结束时间</p>
         # @type EndTime: String
-        # @param FileDownloadUrl: 文件下载地址
+        # @param FileDownloadUrl: <p>文件下载地址</p>
         # @type FileDownloadUrl: String
-        # @param FailedReason: 失败原因
+        # @param FailedReason: <p>失败原因</p>
         # @type FailedReason: String
-        # @param Expire: 生命周期规则，热存天数
+        # @param Expire: <p>生命周期规则，热存天数</p>
         # @type Expire: Integer
-        # @param PreviewUrl: mp4预览地址
+        # @param PreviewUrl: <p>mp4预览地址</p>
         # @type PreviewUrl: String
 
         attr_accessor :DownloadTaskId, :ChannelId, :ChannelName, :ChannelCode, :DeviceName, :DeviceCode, :Status, :VideoTimeSection, :Scale, :DownloadTime, :VideoSize, :StartTime, :EndTime, :FileDownloadUrl, :FailedReason, :Expire, :PreviewUrl
@@ -6416,6 +7921,143 @@ module TencentCloud
 
         def deserialize(params)
           @DownloadTaskId = params['DownloadTaskId']
+        end
+      end
+
+      # 视频场景配置（预留）
+      class VideoSceneInfo < TencentCloud::Common::AbstractModel
+        # @param Interval: <p>分析间隔（秒）：每隔多少秒触发一次分析（滑动步长）</p>
+        # @type Interval: Integer
+        # @param Duration: <p>分析片段时长（秒）：单次送入模型的视频窗口长度，范围 [5, 12800]</p>
+        # @type Duration: Integer
+        # @param Fps: <p>抽帧率，默认 1，范围 [0.1, 1]，每隔 1/Fps 秒抽 1 帧送模型</p>
+        # @type Fps: Float
+
+        attr_accessor :Interval, :Duration, :Fps
+
+        def initialize(interval=nil, duration=nil, fps=nil)
+          @Interval = interval
+          @Duration = duration
+          @Fps = fps
+        end
+
+        def deserialize(params)
+          @Interval = params['Interval']
+          @Duration = params['Duration']
+          @Fps = params['Fps']
+        end
+      end
+
+      # 截图配置信息
+      class VideoSnapshotConfigInfo < TencentCloud::Common::AbstractModel
+        # @param ConfigId: <p>截图配置Id</p>
+        # @type ConfigId: String
+        # @param Name: <p>截图配置名称</p>
+        # @type Name: String
+        # @param TemplateId: <p>截图模板Id</p>
+        # @type TemplateId: String
+        # @param TemplateName: <p>截图模板名称</p>
+        # @type TemplateName: String
+        # @param Type: <p>截图类型</p><p>枚举值：</p><ul><li>1： 实时截帧</li><li>2： 低频截帧</li></ul>
+        # @type Type: Integer
+        # @param FileExpires: <p>图片存储天数</p><p>单位：天</p>
+        # @type FileExpires: Integer
+        # @param Callback: <p>回调配置</p>
+        # @type Callback: :class:`Tencentcloud::Iss.v20230517.models.CallbackURL`
+        # @param RelatedChannelCount: <p>截图配置关联的通道数</p>
+        # @type RelatedChannelCount: Integer
+        # @param CreateTime: <p>创建时间</p>
+        # @type CreateTime: String
+        # @param UpdateTime: <p>最近一次更新时间</p>
+        # @type UpdateTime: String
+
+        attr_accessor :ConfigId, :Name, :TemplateId, :TemplateName, :Type, :FileExpires, :Callback, :RelatedChannelCount, :CreateTime, :UpdateTime
+
+        def initialize(configid=nil, name=nil, templateid=nil, templatename=nil, type=nil, fileexpires=nil, callback=nil, relatedchannelcount=nil, createtime=nil, updatetime=nil)
+          @ConfigId = configid
+          @Name = name
+          @TemplateId = templateid
+          @TemplateName = templatename
+          @Type = type
+          @FileExpires = fileexpires
+          @Callback = callback
+          @RelatedChannelCount = relatedchannelcount
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @ConfigId = params['ConfigId']
+          @Name = params['Name']
+          @TemplateId = params['TemplateId']
+          @TemplateName = params['TemplateName']
+          @Type = params['Type']
+          @FileExpires = params['FileExpires']
+          unless params['Callback'].nil?
+            @Callback = CallbackURL.new
+            @Callback.deserialize(params['Callback'])
+          end
+          @RelatedChannelCount = params['RelatedChannelCount']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 截图模板信息
+      class VideoSnapshotTemplateInfo < TencentCloud::Common::AbstractModel
+        # @param TemplateId: <p>截图模板Id</p>
+        # @type TemplateId: String
+        # @param Name: <p>截图模板名称</p>
+        # @type Name: String
+        # @param Type: <p>截图类型</p><p>枚举值：</p><ul><li>1： 实时截帧</li><li>2： 低频截帧</li></ul>
+        # @type Type: Integer
+        # @param Interval: <p>截帧频率</p>
+        # @type Interval: Integer
+        # @param MultiMode: <p>多张模式</p>
+        # @type MultiMode: :class:`Tencentcloud::Iss.v20230517.models.MultiVideoSnapshotMode`
+        # @param Times: <p>生效时段</p>
+        # @type Times: Array
+        # @param RelatedConfigCount: <p>模板关联的配置数</p>
+        # @type RelatedConfigCount: Integer
+        # @param CreateTime: <p>创建时间</p>
+        # @type CreateTime: String
+        # @param UpdateTime: <p>最近一次更新时间</p>
+        # @type UpdateTime: String
+
+        attr_accessor :TemplateId, :Name, :Type, :Interval, :MultiMode, :Times, :RelatedConfigCount, :CreateTime, :UpdateTime
+
+        def initialize(templateid=nil, name=nil, type=nil, interval=nil, multimode=nil, times=nil, relatedconfigcount=nil, createtime=nil, updatetime=nil)
+          @TemplateId = templateid
+          @Name = name
+          @Type = type
+          @Interval = interval
+          @MultiMode = multimode
+          @Times = times
+          @RelatedConfigCount = relatedconfigcount
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          @Name = params['Name']
+          @Type = params['Type']
+          @Interval = params['Interval']
+          unless params['MultiMode'].nil?
+            @MultiMode = MultiVideoSnapshotMode.new
+            @MultiMode.deserialize(params['MultiMode'])
+          end
+          unless params['Times'].nil?
+            @Times = []
+            params['Times'].each do |i|
+              effectivetime_tmp = EffectiveTime.new
+              effectivetime_tmp.deserialize(i)
+              @Times << effectivetime_tmp
+            end
+          end
+          @RelatedConfigCount = params['RelatedConfigCount']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
         end
       end
 

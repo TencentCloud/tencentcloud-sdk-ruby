@@ -8952,6 +8952,102 @@ module TencentCloud
         end
       end
 
+      # DescribeVpcFwIpStat请求参数结构体
+      class DescribeVpcFwIpStatRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: <p>每页条数</p>
+        # @type Limit: Integer
+        # @param Offset: <p>偏移值</p>
+        # @type Offset: Integer
+        # @param FwGroupId: <p>防火墙组ID</p>
+        # @type FwGroupId: String
+        # @param FwInsId: <p>防火墙的实例id</p>
+        # @type FwInsId: String
+        # @param TimeType: <p>选择的时间区间 1:1小时内，2: 24 小时 ，3：7天， 4：1个月</p>
+        # @type TimeType: Integer
+        # @param Filters: <p>过滤条件组合</p>
+        # @type Filters: Array
+        # @param StartTime: <p>检索的起始时间，可不传</p>
+        # @type StartTime: String
+        # @param EndTime: <p>检索的截止时间，可不传</p>
+        # @type EndTime: String
+        # @param Order: <p>desc：降序；asc：升序。根据By字段的值进行排序，这里传参的话则By也必须有值</p>
+        # @type Order: String
+        # @param By: <p>排序所用到的字段</p>
+        # @type By: String
+
+        attr_accessor :Limit, :Offset, :FwGroupId, :FwInsId, :TimeType, :Filters, :StartTime, :EndTime, :Order, :By
+
+        def initialize(limit=nil, offset=nil, fwgroupid=nil, fwinsid=nil, timetype=nil, filters=nil, starttime=nil, endtime=nil, order=nil, by=nil)
+          @Limit = limit
+          @Offset = offset
+          @FwGroupId = fwgroupid
+          @FwInsId = fwinsid
+          @TimeType = timetype
+          @Filters = filters
+          @StartTime = starttime
+          @EndTime = endtime
+          @Order = order
+          @By = by
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @FwGroupId = params['FwGroupId']
+          @FwInsId = params['FwInsId']
+          @TimeType = params['TimeType']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              commonfilter_tmp = CommonFilter.new
+              commonfilter_tmp.deserialize(i)
+              @Filters << commonfilter_tmp
+            end
+          end
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Order = params['Order']
+          @By = params['By']
+        end
+      end
+
+      # DescribeVpcFwIpStat返回参数结构体
+      class DescribeVpcFwIpStatResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>单台cvm峰值带宽统计列表</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+        # @param Total: <p>总行数</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param Status: <p>异步查询状态，1查询执行中，0查询已结束</p>
+        # @type Status: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Total, :Status, :RequestId
+
+        def initialize(data=nil, total=nil, status=nil, requestid=nil)
+          @Data = data
+          @Total = total
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              fwgroupipflowstat_tmp = FwGroupIpFlowStat.new
+              fwgroupipflowstat_tmp.deserialize(i)
+              @Data << fwgroupipflowstat_tmp
+            end
+          end
+          @Total = params['Total']
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 处置建议-条目
       class DisposalSuggestionItem < TencentCloud::Common::AbstractModel
         # @param Action: 处置动作
@@ -9820,6 +9916,68 @@ module TencentCloud
         def deserialize(params)
           @FwGroupId = params['FwGroupId']
           @FwGroupName = params['FwGroupName']
+        end
+      end
+
+      # VPC防火墙状态监控图
+      class FwGroupIpFlowStat < TencentCloud::Common::AbstractModel
+        # @param Ip: IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ip: String
+        # @param InstanceId: 实例ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param InstanceName: 实例名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceName: String
+        # @param VpcId: VPCID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param VpcName: VPC 名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcName: String
+        # @param FlowMax: 峰值流量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowMax: Integer
+        # @param FlowAvg: 均值带宽
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowAvg: Float
+        # @param TcRuleStatus: 限速状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TcRuleStatus: Integer
+        # @param FwInsId: 防火墙ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FwInsId: String
+        # @param IpVersion: 0 IPV4 , 1 IPV6
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IpVersion: Integer
+
+        attr_accessor :Ip, :InstanceId, :InstanceName, :VpcId, :VpcName, :FlowMax, :FlowAvg, :TcRuleStatus, :FwInsId, :IpVersion
+
+        def initialize(ip=nil, instanceid=nil, instancename=nil, vpcid=nil, vpcname=nil, flowmax=nil, flowavg=nil, tcrulestatus=nil, fwinsid=nil, ipversion=nil)
+          @Ip = ip
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @VpcId = vpcid
+          @VpcName = vpcname
+          @FlowMax = flowmax
+          @FlowAvg = flowavg
+          @TcRuleStatus = tcrulestatus
+          @FwInsId = fwinsid
+          @IpVersion = ipversion
+        end
+
+        def deserialize(params)
+          @Ip = params['Ip']
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @VpcId = params['VpcId']
+          @VpcName = params['VpcName']
+          @FlowMax = params['FlowMax']
+          @FlowAvg = params['FlowAvg']
+          @TcRuleStatus = params['TcRuleStatus']
+          @FwInsId = params['FwInsId']
+          @IpVersion = params['IpVersion']
         end
       end
 

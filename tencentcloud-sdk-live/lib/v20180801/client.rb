@@ -4823,6 +4823,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # DescribeStreamPackageIngestStatistics
+
+        # @param request: Request instance for DescribeStreamPackageIngestStatistics.
+        # @type request: :class:`Tencentcloud::live::V20180801::DescribeStreamPackageIngestStatisticsRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeStreamPackageIngestStatisticsResponse`
+        def DescribeStreamPackageIngestStatistics(request)
+          body = send_request('DescribeStreamPackageIngestStatistics', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeStreamPackageIngestStatisticsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询媒体包装输出用量信息
+
+        # @param request: Request instance for DescribeStreamPackageOutputStatistics.
+        # @type request: :class:`Tencentcloud::live::V20180801::DescribeStreamPackageOutputStatisticsRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeStreamPackageOutputStatisticsResponse`
+        def DescribeStreamPackageOutputStatistics(request)
+          body = send_request('DescribeStreamPackageOutputStatistics', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeStreamPackageOutputStatisticsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # DescribeStreamPackageRemuxStatistics
+
+        # @param request: Request instance for DescribeStreamPackageRemuxStatistics.
+        # @type request: :class:`Tencentcloud::live::V20180801::DescribeStreamPackageRemuxStatisticsRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeStreamPackageRemuxStatisticsResponse`
+        def DescribeStreamPackageRemuxStatistics(request)
+          body = send_request('DescribeStreamPackageRemuxStatistics', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeStreamPackageRemuxStatisticsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
         # 查询播放数据，支持按流名称查询详细播放数据，也可按播放域名查询详细总数据，数据延迟4分钟左右。
 

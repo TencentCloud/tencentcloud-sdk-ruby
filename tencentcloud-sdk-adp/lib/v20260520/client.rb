@@ -557,6 +557,31 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口用来创建工作流的异步运行实例，创建成功后工作流会在后台异步运行，接口返回工作流运行实例ID（WorkflowRunId）等信息。后面可通过调用DescribeWorkflowRun接口查工作流运行的详情。
+        # 注意：工作流的异步运行是基于应用的，需要先把对应的应用配置成“单工作流模式”，才能创建成功。
+
+        # @param request: Request instance for CreateWorkflowRun.
+        # @type request: :class:`Tencentcloud::adp::V20260520::CreateWorkflowRunRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::CreateWorkflowRunResponse`
+        def CreateWorkflowRun(request)
+          body = send_request('CreateWorkflowRun', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateWorkflowRunResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建工作空间凭证
 
         # @param request: Request instance for CreateWorkspaceCredential.
@@ -1781,6 +1806,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # DescribeNodeBatchRun
+
+        # @param request: Request instance for DescribeNodeBatchRun.
+        # @type request: :class:`Tencentcloud::adp::V20260520::DescribeNodeBatchRunRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::DescribeNodeBatchRunResponse`
+        def DescribeNodeBatchRun(request)
+          body = send_request('DescribeNodeBatchRun', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeNodeBatchRunResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查看工作流节点运行详情
+
+        # @param request: Request instance for DescribeNodeRunDetail.
+        # @type request: :class:`Tencentcloud::adp::V20260520::DescribeNodeRunDetailRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::DescribeNodeRunDetailResponse`
+        def DescribeNodeRunDetail(request)
+          body = send_request('DescribeNodeRunDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeNodeRunDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取插件详情
 
         # @param request: Request instance for DescribePlugin.
@@ -2175,6 +2248,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeVariableListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询工作流运行详情
+
+        # @param request: Request instance for DescribeWorkflowRun.
+        # @type request: :class:`Tencentcloud::adp::V20260520::DescribeWorkflowRunRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::DescribeWorkflowRunResponse`
+        def DescribeWorkflowRun(request)
+          body = send_request('DescribeWorkflowRun', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeWorkflowRunResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询工作流运行实例列表
+
+        # @param request: Request instance for DescribeWorkflowRunSummaryList.
+        # @type request: :class:`Tencentcloud::adp::V20260520::DescribeWorkflowRunSummaryListRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::DescribeWorkflowRunSummaryListResponse`
+        def DescribeWorkflowRunSummaryList(request)
+          body = send_request('DescribeWorkflowRunSummaryList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeWorkflowRunSummaryListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2814,6 +2935,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 继续运行等待输入的工作流异步运行实例
+
+        # @param request: Request instance for ResumeWorkflowRun.
+        # @type request: :class:`Tencentcloud::adp::V20260520::ResumeWorkflowRunRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::ResumeWorkflowRunResponse`
+        def ResumeWorkflowRun(request)
+          body = send_request('ResumeWorkflowRun', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ResumeWorkflowRunResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 重试发布(发布暂停之后再次重新发布)
 
         # @param request: Request instance for RetryRelease.
@@ -2886,6 +3031,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # SaveWorkflowDebugContext
+
+        # @param request: Request instance for SaveWorkflowDebugContext.
+        # @type request: :class:`Tencentcloud::adp::V20260520::SaveWorkflowDebugContextRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::SaveWorkflowDebugContextResponse`
+        def SaveWorkflowDebugContext(request)
+          body = send_request('SaveWorkflowDebugContext', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SaveWorkflowDebugContextResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # SaveWorkflowToolNodeOutput
+
+        # @param request: Request instance for SaveWorkflowToolNodeOutput.
+        # @type request: :class:`Tencentcloud::adp::V20260520::SaveWorkflowToolNodeOutputRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::SaveWorkflowToolNodeOutputResponse`
+        def SaveWorkflowToolNodeOutput(request)
+          body = send_request('SaveWorkflowToolNodeOutput', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SaveWorkflowToolNodeOutputResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 知识检索
 
         # @param request: Request instance for SearchKnowledge.
@@ -2896,6 +3089,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SearchKnowledgeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量停止正在进行的工作流运行实例。
+
+        # @param request: Request instance for StopWorkflowRunList.
+        # @type request: :class:`Tencentcloud::adp::V20260520::StopWorkflowRunListRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::StopWorkflowRunListResponse`
+        def StopWorkflowRunList(request)
+          body = send_request('StopWorkflowRunList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StopWorkflowRunListResponse.new
             model.deserialize(response['Response'])
             model
           else
