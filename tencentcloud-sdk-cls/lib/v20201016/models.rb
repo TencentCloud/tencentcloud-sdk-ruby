@@ -1072,17 +1072,21 @@ module TencentCloud
         # @param SecretKey: <p>匿名登录账号secretKey</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecretKey: String
+        # @param RoleArn: <p>角色的资源描述，可在<a href="https://console.cloud.tencent.com/cam/role">访问管理</a>，点击角色名获取。<br>普通角色：<br>qcs::cam::uin/12345678:role/4611686018427397919、qcs::cam::uin/12345678:roleName/testRoleName<br>服务角色：<br>qcs::cam::uin/12345678:role/tencentcloudServiceRole/4611686018427397920、qcs::cam::uin/12345678:role/tencentcloudServiceRoleName/testServiceRoleName</p><p>DataSight将扮演此角色，使用此角色的临时密钥来发起API请求。</p>
+        # @type RoleArn: String
 
-        attr_accessor :SecretId, :SecretKey
+        attr_accessor :SecretId, :SecretKey, :RoleArn
 
-        def initialize(secretid=nil, secretkey=nil)
+        def initialize(secretid=nil, secretkey=nil, rolearn=nil)
           @SecretId = secretid
           @SecretKey = secretkey
+          @RoleArn = rolearn
         end
 
         def deserialize(params)
           @SecretId = params['SecretId']
           @SecretKey = params['SecretKey']
+          @RoleArn = params['RoleArn']
         end
       end
 
@@ -1162,19 +1166,23 @@ module TencentCloud
         # @param SecretKey: <p>Auth角色对应权限SecretKey</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecretKey: String
+        # @param RoleArn: <p>角色的资源描述，可在<a href="https://console.cloud.tencent.com/cam/role">访问管理</a>，点击角色名获取。<br>普通角色：<br>qcs::cam::uin/12345678:role/4611686018427397919、qcs::cam::uin/12345678:roleName/testRoleName<br>服务角色：<br>qcs::cam::uin/12345678:role/tencentcloudServiceRole/4611686018427397920、qcs::cam::uin/12345678:role/tencentcloudServiceRoleName/testServiceRoleName</p><p>DataSight将扮演此角色，使用此角色的临时密钥来发起API请求。</p>
+        # @type RoleArn: String
 
-        attr_accessor :RoleName, :SecretId, :SecretKey
+        attr_accessor :RoleName, :SecretId, :SecretKey, :RoleArn
 
-        def initialize(rolename=nil, secretid=nil, secretkey=nil)
+        def initialize(rolename=nil, secretid=nil, secretkey=nil, rolearn=nil)
           @RoleName = rolename
           @SecretId = secretid
           @SecretKey = secretkey
+          @RoleArn = rolearn
         end
 
         def deserialize(params)
           @RoleName = params['RoleName']
           @SecretId = params['SecretId']
           @SecretKey = params['SecretKey']
+          @RoleArn = params['RoleArn']
         end
       end
 
@@ -2314,15 +2322,18 @@ module TencentCloud
         # @param Email: <p>电子邮箱，用于发送验证码</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Email: String
+        # @param RoleArn: <p>角色的资源描述，可在<a href="https://console.cloud.tencent.com/cam/role">访问管理</a>，点击角色名获取。<br>普通角色：<br>qcs::cam::uin/12345678:role/4611686018427397919、qcs::cam::uin/12345678:roleName/testRoleName<br>服务角色：<br>qcs::cam::uin/12345678:role/tencentcloudServiceRole/4611686018427397920、qcs::cam::uin/12345678:role/tencentcloudServiceRoleName/testServiceRoleName</p><p>DataSight将扮演此角色，使用此角色的临时密钥来发起API请求。</p>
+        # @type RoleArn: String
 
-        attr_accessor :UserName, :Password, :SecretId, :SecretKey, :Email
+        attr_accessor :UserName, :Password, :SecretId, :SecretKey, :Email, :RoleArn
 
-        def initialize(username=nil, password=nil, secretid=nil, secretkey=nil, email=nil)
+        def initialize(username=nil, password=nil, secretid=nil, secretkey=nil, email=nil, rolearn=nil)
           @UserName = username
           @Password = password
           @SecretId = secretid
           @SecretKey = secretkey
           @Email = email
+          @RoleArn = rolearn
         end
 
         def deserialize(params)
@@ -2331,6 +2342,7 @@ module TencentCloud
           @SecretId = params['SecretId']
           @SecretKey = params['SecretKey']
           @Email = params['Email']
+          @RoleArn = params['RoleArn']
         end
       end
 
@@ -3755,9 +3767,9 @@ module TencentCloud
         # @type LoginMode: Integer
         # @param DomainPrefix: <p>自定义域名前缀</p>
         # @type DomainPrefix: String
-        # @param Accounts: <p>用户账号信息</p><p>“账号密码鉴权”登录方式必传</p>
+        # @param Accounts: <p>用户账号信息</p><p>“账号密码鉴权”登录方式必传。<br>SecretId + SecretKey 或 RoleArn需要传其中一种。</p>
         # @type Accounts: Array
-        # @param AnonymousLogin: <p>匿名登录账号信息</p><p>“匿名登录”登录方式必传</p>
+        # @param AnonymousLogin: <p>匿名登录账号信息</p><p>“匿名登录”登录方式必传。<br>SecretId + SecretKey 或 RoleArn需要传其中一种。</p>
         # @type AnonymousLogin: :class:`Tencentcloud::Cls.v20201016.models.AnonymousLoginInfo`
         # @param IntranetType: <p>内网类型，默认为0</p>
         # @type IntranetType: Integer
@@ -3767,7 +3779,7 @@ module TencentCloud
         # @type VpcId: String
         # @param SubnetId: <p>内网子网SubnetId</p>
         # @type SubnetId: String
-        # @param AuthRoles: <p>Auth角色信息</p><p>“第三方认证登录”登录方式必传</p>
+        # @param AuthRoles: <p>Auth角色信息</p><p>“第三方认证登录”登录方式必传。<br>SecretId + SecretKey 或 RoleArn需要传其中一种。</p>
         # @type AuthRoles: Array
         # @param Tags: <p>标签描述列表，通过指定该参数可以同时绑定标签到相应的日志主题。最大支持10个标签键值对，同一个资源只能绑定到同一个标签键下。</p>
         # @type Tags: Array
@@ -17467,9 +17479,9 @@ module TencentCloud
         # @type LoginMode: Integer
         # @param DomainPrefix: <p>自定义域名前缀</p>
         # @type DomainPrefix: String
-        # @param Accounts: <p>用户账号信息</p><p>“账号密码鉴权”登录方式必传</p>
+        # @param Accounts: <p>用户账号信息</p><p>“账号密码鉴权”登录方式必传。<br>如果SecretId、SecretKey、RoleArn都不传，表示不修改这部分鉴权信息。</p>
         # @type Accounts: Array
-        # @param AnonymousLogin: <p>匿名登录账号信息</p><p>“匿名登录”登录方式必传</p>
+        # @param AnonymousLogin: <p>匿名登录账号信息</p><p>“匿名登录”登录方式必传。<br>如果SecretId、SecretKey、RoleArn都不传，表示不修改这部分鉴权信息。</p>
         # @type AnonymousLogin: :class:`Tencentcloud::Cls.v20201016.models.AnonymousLoginInfo`
         # @param IntranetType: <p>内网类型，默认为0</p>
         # @type IntranetType: Integer
@@ -17479,7 +17491,7 @@ module TencentCloud
         # @type VpcId: String
         # @param SubnetId: <p>内网子网SubnetId</p>
         # @type SubnetId: String
-        # @param AuthRoles: <p>Auth用户角色信息</p><p>“第三方认证登录”登录方式必传</p>
+        # @param AuthRoles: <p>Auth用户角色信息</p><p>“第三方认证登录”登录方式必传。<br>如果SecretId、SecretKey、RoleArn都不传，表示不修改这部分鉴权信息。</p>
         # @type AuthRoles: Array
         # @param HideParams: <p>自定义隐藏参数</p>
         # @type HideParams: Array

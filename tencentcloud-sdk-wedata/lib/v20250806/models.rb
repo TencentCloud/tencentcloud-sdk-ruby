@@ -2351,28 +2351,30 @@ module TencentCloud
 
       # CreateResourceGroup请求参数结构体
       class CreateResourceGroupRequest < TencentCloud::Common::AbstractModel
-        # @param Name: 资源组名称。创建通用资源组的名称，必须以字母开头，可包含字母、数字、下划线（_），最多 64 个字符。
+        # @param Name: <p>资源组名称。创建通用资源组的名称，必须以字母开头，可包含字母、数字、下划线（_），最多 64 个字符。</p>
         # @type Name: String
-        # @param Type: 开通的资源组信息
+        # @param Type: <p>开通的资源组信息</p>
         # @type Type: :class:`Tencentcloud::Wedata.v20250806.models.ResourceType`
-        # @param AutoRenewEnabled: 是否自动续费
+        # @param AutoRenewEnabled: <p>是否自动续费</p>
         # @type AutoRenewEnabled: Boolean
-        # @param PurchasePeriod: 购买时长，单位月
+        # @param PurchasePeriod: <p>购买时长，单位月</p>
         # @type PurchasePeriod: Integer
-        # @param VpcId: vpcId
+        # @param VpcId: <p>vpcId</p>
         # @type VpcId: String
-        # @param SubNet: 子网
+        # @param SubNet: <p>子网</p>
         # @type SubNet: String
-        # @param ResourceRegion: 资源购买地域
+        # @param ResourceRegion: <p>资源购买地域</p>
         # @type ResourceRegion: String
-        # @param AssociatedProjectId: 关联项目空间项目id
+        # @param AssociatedProjectId: <p>关联项目空间项目id</p>
         # @type AssociatedProjectId: String
-        # @param Description: 资源组描述
+        # @param Description: <p>资源组描述</p>
         # @type Description: String
+        # @param Tags: <p>标签值</p>
+        # @type Tags: Array
 
-        attr_accessor :Name, :Type, :AutoRenewEnabled, :PurchasePeriod, :VpcId, :SubNet, :ResourceRegion, :AssociatedProjectId, :Description
+        attr_accessor :Name, :Type, :AutoRenewEnabled, :PurchasePeriod, :VpcId, :SubNet, :ResourceRegion, :AssociatedProjectId, :Description, :Tags
 
-        def initialize(name=nil, type=nil, autorenewenabled=nil, purchaseperiod=nil, vpcid=nil, subnet=nil, resourceregion=nil, associatedprojectid=nil, description=nil)
+        def initialize(name=nil, type=nil, autorenewenabled=nil, purchaseperiod=nil, vpcid=nil, subnet=nil, resourceregion=nil, associatedprojectid=nil, description=nil, tags=nil)
           @Name = name
           @Type = type
           @AutoRenewEnabled = autorenewenabled
@@ -2382,6 +2384,7 @@ module TencentCloud
           @ResourceRegion = resourceregion
           @AssociatedProjectId = associatedprojectid
           @Description = description
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -2397,12 +2400,20 @@ module TencentCloud
           @ResourceRegion = params['ResourceRegion']
           @AssociatedProjectId = params['AssociatedProjectId']
           @Description = params['Description']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              resourcetag_tmp = ResourceTag.new
+              resourcetag_tmp.deserialize(i)
+              @Tags << resourcetag_tmp
+            end
+          end
         end
       end
 
       # CreateResourceGroup返回参数结构体
       class CreateResourceGroupResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 是否开启成功
+        # @param Data: <p>是否开启成功</p>
         # @type Data: :class:`Tencentcloud::Wedata.v20250806.models.ResourceResult`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -8684,14 +8695,22 @@ module TencentCloud
         # @type DownStreamCount: Integer
         # @param UpStreamCount: 下游数量
         # @type UpStreamCount: Integer
+        # @param SourceColumnName: 查询字段名（本次请求携带的字段名，用于聚合）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceColumnName: String
+        # @param ColumnName: 当前结果字段名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ColumnName: String
 
-        attr_accessor :Resource, :Relation, :DownStreamCount, :UpStreamCount
+        attr_accessor :Resource, :Relation, :DownStreamCount, :UpStreamCount, :SourceColumnName, :ColumnName
 
-        def initialize(resource=nil, relation=nil, downstreamcount=nil, upstreamcount=nil)
+        def initialize(resource=nil, relation=nil, downstreamcount=nil, upstreamcount=nil, sourcecolumnname=nil, columnname=nil)
           @Resource = resource
           @Relation = relation
           @DownStreamCount = downstreamcount
           @UpStreamCount = upstreamcount
+          @SourceColumnName = sourcecolumnname
+          @ColumnName = columnname
         end
 
         def deserialize(params)
@@ -8705,6 +8724,8 @@ module TencentCloud
           end
           @DownStreamCount = params['DownStreamCount']
           @UpStreamCount = params['UpStreamCount']
+          @SourceColumnName = params['SourceColumnName']
+          @ColumnName = params['ColumnName']
         end
       end
 
@@ -15003,15 +15024,17 @@ module TencentCloud
         # @type ProjectOwnerUin: String
         # @param Status: <p>项目状态：0：禁用，1：启用，-3:禁用中，2：启用中</p>
         # @type Status: Integer
+        # @param DisplayStatus: <p>项目状态枚举：ENABLED 正常、UNABLED 已禁用、ENABLING 启用中、UNABLING 禁用中、REMOVING 删除中、DELETED 已删除</p>
+        # @type DisplayStatus: String
         # @param ProjectModel: <p>项目模式，SIMPLE：简单模式 STANDARD：标准模式</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectModel: String
         # @param WorkspaceExt: <p>项目的额外配置参数，{Key: &quot;scheduleMode&quot;, Value: &quot;task|workflow&quot;}</p>
         # @type WorkspaceExt: Array
 
-        attr_accessor :ProjectId, :ProjectName, :DisplayName, :Description, :CreateTime, :CreatorUin, :ProjectOwnerUin, :Status, :ProjectModel, :WorkspaceExt
+        attr_accessor :ProjectId, :ProjectName, :DisplayName, :Description, :CreateTime, :CreatorUin, :ProjectOwnerUin, :Status, :DisplayStatus, :ProjectModel, :WorkspaceExt
 
-        def initialize(projectid=nil, projectname=nil, displayname=nil, description=nil, createtime=nil, creatoruin=nil, projectowneruin=nil, status=nil, projectmodel=nil, workspaceext=nil)
+        def initialize(projectid=nil, projectname=nil, displayname=nil, description=nil, createtime=nil, creatoruin=nil, projectowneruin=nil, status=nil, displaystatus=nil, projectmodel=nil, workspaceext=nil)
           @ProjectId = projectid
           @ProjectName = projectname
           @DisplayName = displayname
@@ -15020,6 +15043,7 @@ module TencentCloud
           @CreatorUin = creatoruin
           @ProjectOwnerUin = projectowneruin
           @Status = status
+          @DisplayStatus = displaystatus
           @ProjectModel = projectmodel
           @WorkspaceExt = workspaceext
         end
@@ -15033,6 +15057,7 @@ module TencentCloud
           @CreatorUin = params['CreatorUin']
           @ProjectOwnerUin = params['ProjectOwnerUin']
           @Status = params['Status']
+          @DisplayStatus = params['DisplayStatus']
           @ProjectModel = params['ProjectModel']
           unless params['WorkspaceExt'].nil?
             @WorkspaceExt = []
@@ -18190,6 +18215,26 @@ module TencentCloud
 
         def deserialize(params)
           @Status = params['Status']
+        end
+      end
+
+      # 资源组标签数据
+      class ResourceTag < TencentCloud::Common::AbstractModel
+        # @param TagKey: <p>标签键</p>
+        # @type TagKey: String
+        # @param TagValue: <p>标签值</p>
+        # @type TagValue: String
+
+        attr_accessor :TagKey, :TagValue
+
+        def initialize(tagkey=nil, tagvalue=nil)
+          @TagKey = tagkey
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
         end
       end
 

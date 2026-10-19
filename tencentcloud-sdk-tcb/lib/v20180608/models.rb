@@ -8619,17 +8619,37 @@ module TencentCloud
         # @param EnUS: <p>英文</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnUS: String
+        # @param SubjectZhCN: <p>中文主题</p><p>入参限制：长度限制100字符以内，仅允许：{{.VerificationCode}}、{{.Usage}}、{{.Email}}、{{.ExpireMinutes}}、{{.ConfirmationURL}}，未知变量拒绝</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubjectZhCN: String
+        # @param SubjectEnUS: <p>英文主题</p><p>入参限制：长度限制100字符以内，仅允许：{{.VerificationCode}}、{{.Usage}}、{{.Email}}、{{.ExpireMinutes}}、{{.ConfirmationURL}}，未知变量拒绝</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubjectEnUS: String
+        # @param SenderNameZhCN: <p>中文发件人</p><p>入参限制：长度限制50字符以内，静态纯文本，不支持变量</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SenderNameZhCN: String
+        # @param SenderNameEnUS: <p>英文发件人</p><p>默认值：长度限制50字符以内，静态纯文本，不支持变量</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SenderNameEnUS: String
 
-        attr_accessor :ZhCN, :EnUS
+        attr_accessor :ZhCN, :EnUS, :SubjectZhCN, :SubjectEnUS, :SenderNameZhCN, :SenderNameEnUS
 
-        def initialize(zhcn=nil, enus=nil)
+        def initialize(zhcn=nil, enus=nil, subjectzhcn=nil, subjectenus=nil, sendernamezhcn=nil, sendernameenus=nil)
           @ZhCN = zhcn
           @EnUS = enus
+          @SubjectZhCN = subjectzhcn
+          @SubjectEnUS = subjectenus
+          @SenderNameZhCN = sendernamezhcn
+          @SenderNameEnUS = sendernameenus
         end
 
         def deserialize(params)
           @ZhCN = params['ZhCN']
           @EnUS = params['EnUS']
+          @SubjectZhCN = params['SubjectZhCN']
+          @SubjectEnUS = params['SubjectEnUS']
+          @SenderNameZhCN = params['SenderNameZhCN']
+          @SenderNameEnUS = params['SenderNameEnUS']
         end
       end
 

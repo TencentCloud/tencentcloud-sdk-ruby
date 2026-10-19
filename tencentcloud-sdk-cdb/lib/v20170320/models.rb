@@ -3904,9 +3904,9 @@ module TencentCloud
 
       # DeleteAccounts请求参数结构体
       class DeleteAccountsRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
+        # @param InstanceId: <p>实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。</p>
         # @type InstanceId: String
-        # @param Accounts: 云数据库账号。
+        # @param Accounts: <p>云数据库账号。</p>
         # @type Accounts: Array
 
         attr_accessor :InstanceId, :Accounts
@@ -3931,7 +3931,7 @@ module TencentCloud
 
       # DeleteAccounts返回参数结构体
       class DeleteAccountsResponse < TencentCloud::Common::AbstractModel
-        # @param AsyncRequestId: 异步任务的请求 ID，可使用此 ID 查询异步任务的执行结果。
+        # @param AsyncRequestId: <p>异步任务的请求 ID，可使用此 ID 查询异步任务的执行结果。</p>
         # @type AsyncRequestId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4456,19 +4456,19 @@ module TencentCloud
 
       # DescribeAccounts请求参数结构体
       class DescribeAccountsRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
+        # @param InstanceId: <p>实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。</p>
         # @type InstanceId: String
-        # @param Offset: 记录偏移量，默认值为0。
+        # @param Offset: <p>记录偏移量，默认值为0。</p>
         # @type Offset: Integer
-        # @param Limit: 单次请求返回的数量，默认值为20，最小值为1，最大值为100。
+        # @param Limit: <p>单次请求返回的数量，默认值为20，最小值为1，最大值为100。</p>
         # @type Limit: Integer
-        # @param AccountRegexp: 匹配账号名的正则表达式，规则同 MySQL 官网。
+        # @param AccountRegexp: <p>匹配账号名的正则表达式，规则同 MySQL 官网。</p>
         # @type AccountRegexp: String
-        # @param SortBy: 默认无排序，支持：ASC、DESC、asc、desc
+        # @param SortBy: <p>默认无排序，支持：ASC、DESC、asc、desc</p>
         # @type SortBy: String
-        # @param OrderBy: 待排序的时间字段，可选：CreateTime(账号创建时间)、ModifyTime(账号更新时间)、ModifyPasswordTime(密码修改时间)
+        # @param OrderBy: <p>待排序的时间字段，可选：CreateTime(账号创建时间)、ModifyTime(账号更新时间)、ModifyPasswordTime(密码修改时间)</p>
         # @type OrderBy: String
-        # @param HostRegexp: 匹配账号主机地址（Host）的正则表达式，规则同 MySQL 官网
+        # @param HostRegexp: <p>匹配账号主机地址（Host）的正则表达式，规则同 MySQL 官网</p>
         # @type HostRegexp: String
 
         attr_accessor :InstanceId, :Offset, :Limit, :AccountRegexp, :SortBy, :OrderBy, :HostRegexp
@@ -4496,11 +4496,11 @@ module TencentCloud
 
       # DescribeAccounts返回参数结构体
       class DescribeAccountsResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 符合查询条件的账号数量。
+        # @param TotalCount: <p>符合查询条件的账号数量。</p>
         # @type TotalCount: Integer
-        # @param Items: 符合查询条件的账号详细信息。
+        # @param Items: <p>符合查询条件的账号详细信息。</p>
         # @type Items: Array
-        # @param MaxUserConnections: 用户可设置实例最大连接数。
+        # @param MaxUserConnections: <p>用户可设置实例最大连接数。</p>
         # @type MaxUserConnections: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

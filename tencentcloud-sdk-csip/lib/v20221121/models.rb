@@ -4667,10 +4667,12 @@ module TencentCloud
         # @type CheckAssetType: String
         # @param Scanned: <p>该基线类别是否被扫描过</p>
         # @type Scanned: Boolean
+        # @param AppID: <p>自定义策略情况下策略的appid</p>
+        # @type AppID: Integer
 
-        attr_accessor :ParentCategoryID, :PolicyID, :Name, :Description, :ConfItemCount, :PassItemCount, :NotPassItemCount, :NotPassItemRiskLevelStatistic, :PassRate, :CategoryStatistic, :PolicyType, :CheckAssetType, :Scanned
+        attr_accessor :ParentCategoryID, :PolicyID, :Name, :Description, :ConfItemCount, :PassItemCount, :NotPassItemCount, :NotPassItemRiskLevelStatistic, :PassRate, :CategoryStatistic, :PolicyType, :CheckAssetType, :Scanned, :AppID
 
-        def initialize(parentcategoryid=nil, policyid=nil, name=nil, description=nil, confitemcount=nil, passitemcount=nil, notpassitemcount=nil, notpassitemrisklevelstatistic=nil, passrate=nil, categorystatistic=nil, policytype=nil, checkassettype=nil, scanned=nil)
+        def initialize(parentcategoryid=nil, policyid=nil, name=nil, description=nil, confitemcount=nil, passitemcount=nil, notpassitemcount=nil, notpassitemrisklevelstatistic=nil, passrate=nil, categorystatistic=nil, policytype=nil, checkassettype=nil, scanned=nil, appid=nil)
           @ParentCategoryID = parentcategoryid
           @PolicyID = policyid
           @Name = name
@@ -4684,6 +4686,7 @@ module TencentCloud
           @PolicyType = policytype
           @CheckAssetType = checkassettype
           @Scanned = scanned
+          @AppID = appid
         end
 
         def deserialize(params)
@@ -4714,6 +4717,7 @@ module TencentCloud
           @PolicyType = params['PolicyType']
           @CheckAssetType = params['CheckAssetType']
           @Scanned = params['Scanned']
+          @AppID = params['AppID']
         end
       end
 
@@ -5121,10 +5125,12 @@ module TencentCloud
         # @type ScanFailedCount: Integer
         # @param ScanTotalCount: <p>子任务总数</p>
         # @type ScanTotalCount: Integer
+        # @param PolicyList: <p>检测的策略列表</p>
+        # @type PolicyList: Array
 
-        attr_accessor :JobID, :ID, :Status, :Appid, :TaskType, :StartTime, :FinishTime, :CheckAssetType, :ErrCode, :ErrMessage, :Solution, :ScanSuccessCount, :ScanFailedCount, :ScanTotalCount
+        attr_accessor :JobID, :ID, :Status, :Appid, :TaskType, :StartTime, :FinishTime, :CheckAssetType, :ErrCode, :ErrMessage, :Solution, :ScanSuccessCount, :ScanFailedCount, :ScanTotalCount, :PolicyList
 
-        def initialize(jobid=nil, id=nil, status=nil, appid=nil, tasktype=nil, starttime=nil, finishtime=nil, checkassettype=nil, errcode=nil, errmessage=nil, solution=nil, scansuccesscount=nil, scanfailedcount=nil, scantotalcount=nil)
+        def initialize(jobid=nil, id=nil, status=nil, appid=nil, tasktype=nil, starttime=nil, finishtime=nil, checkassettype=nil, errcode=nil, errmessage=nil, solution=nil, scansuccesscount=nil, scanfailedcount=nil, scantotalcount=nil, policylist=nil)
           @JobID = jobid
           @ID = id
           @Status = status
@@ -5139,6 +5145,7 @@ module TencentCloud
           @ScanSuccessCount = scansuccesscount
           @ScanFailedCount = scanfailedcount
           @ScanTotalCount = scantotalcount
+          @PolicyList = policylist
         end
 
         def deserialize(params)
@@ -5156,6 +5163,14 @@ module TencentCloud
           @ScanSuccessCount = params['ScanSuccessCount']
           @ScanFailedCount = params['ScanFailedCount']
           @ScanTotalCount = params['ScanTotalCount']
+          unless params['PolicyList'].nil?
+            @PolicyList = []
+            params['PolicyList'].each do |i|
+              baselinepolicybrief_tmp = BaselinePolicyBrief.new
+              baselinepolicybrief_tmp.deserialize(i)
+              @PolicyList << baselinepolicybrief_tmp
+            end
+          end
         end
       end
 
@@ -5316,6 +5331,30 @@ module TencentCloud
           @LatestCycleScanTime = params['LatestCycleScanTime']
           @TagIDList = params['TagIDList']
           @CloudTagList = params['CloudTagList']
+        end
+      end
+
+      # 基线策略简要信息
+      class BaselinePolicyBrief < TencentCloud::Common::AbstractModel
+        # @param ID: <p>基线策略 ID。</p>
+        # @type ID: Integer
+        # @param PolicyName: <p>基线策略名称。</p>
+        # @type PolicyName: String
+        # @param IsSystem: <p>是否为系统内置策略。true 是，false 否（用户自定义策略）。</p>
+        # @type IsSystem: Boolean
+
+        attr_accessor :ID, :PolicyName, :IsSystem
+
+        def initialize(id=nil, policyname=nil, issystem=nil)
+          @ID = id
+          @PolicyName = policyname
+          @IsSystem = issystem
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @PolicyName = params['PolicyName']
+          @IsSystem = params['IsSystem']
         end
       end
 
@@ -23346,12 +23385,21 @@ module TencentCloud
 
       # DescribeCSCPayInfo请求参数结构体
       class DescribeCSCPayInfoRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+        # @param NeedQuotaUsed: <p>是否返回配额已使用量。默认为 false：不采集用量，QuotaList 中的 QuotaUsed 恒为 0；需要展示已用量的调用方显式传 true。只关心订单状态、到期时间或配额购买数量的调用方无需传入</p>
+        # @type NeedQuotaUsed: Boolean
 
+        attr_accessor :MemberId, :NeedQuotaUsed
 
-        def initialize()
+        def initialize(memberid=nil, needquotaused=nil)
+          @MemberId = memberid
+          @NeedQuotaUsed = needquotaused
         end
 
         def deserialize(params)
+          @MemberId = params['MemberId']
+          @NeedQuotaUsed = params['NeedQuotaUsed']
         end
       end
 
@@ -23385,12 +23433,14 @@ module TencentCloud
         # @type NewUser: Integer
         # @param QuotaList: <p>用户计费信息，Key为L4</p>
         # @type QuotaList: Array
+        # @param QuotaUsedError: <p>配额用量查询失败提示。仅请求参数 NeedQuotaUsed 为 true 时可能非空：此时订单信息仍正常返回，QuotaList 中的 QuotaUsed 恒为 0；查询正常或未请求用量时为空字符串</p>
+        # @type QuotaUsedError: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :AppID, :OrderStatus, :PayMode, :BeginTime, :EndTime, :AutoRenew, :TimeSpan, :TimeUnit, :ResourceId, :TimeNow, :Uin, :NickName, :NewUser, :QuotaList, :RequestId
+        attr_accessor :AppID, :OrderStatus, :PayMode, :BeginTime, :EndTime, :AutoRenew, :TimeSpan, :TimeUnit, :ResourceId, :TimeNow, :Uin, :NickName, :NewUser, :QuotaList, :QuotaUsedError, :RequestId
 
-        def initialize(appid=nil, orderstatus=nil, paymode=nil, begintime=nil, endtime=nil, autorenew=nil, timespan=nil, timeunit=nil, resourceid=nil, timenow=nil, uin=nil, nickname=nil, newuser=nil, quotalist=nil, requestid=nil)
+        def initialize(appid=nil, orderstatus=nil, paymode=nil, begintime=nil, endtime=nil, autorenew=nil, timespan=nil, timeunit=nil, resourceid=nil, timenow=nil, uin=nil, nickname=nil, newuser=nil, quotalist=nil, quotausederror=nil, requestid=nil)
           @AppID = appid
           @OrderStatus = orderstatus
           @PayMode = paymode
@@ -23405,6 +23455,7 @@ module TencentCloud
           @NickName = nickname
           @NewUser = newuser
           @QuotaList = quotalist
+          @QuotaUsedError = quotausederror
           @RequestId = requestid
         end
 
@@ -23430,6 +23481,7 @@ module TencentCloud
               @QuotaList << orderquotainfo_tmp
             end
           end
+          @QuotaUsedError = params['QuotaUsedError']
           @RequestId = params['RequestId']
         end
       end
@@ -33366,16 +33418,19 @@ module TencentCloud
         # @type Order: String
         # @param By: <p>可选排序列: [ModifyTime]</p>
         # @type By: String
+        # @param FileOperationRules: <p>文件操作规则，ContentType=file_operation 时填充（文件路径正则 AND 动作多选或）</p>
+        # @type FileOperationRules: :class:`Tencentcloud::Csip.v20221121.models.RuleContentFileOperation`
 
-        attr_accessor :MemberId, :Filters, :Limit, :Offset, :Order, :By
+        attr_accessor :MemberId, :Filters, :Limit, :Offset, :Order, :By, :FileOperationRules
 
-        def initialize(memberid=nil, filters=nil, limit=nil, offset=nil, order=nil, by=nil)
+        def initialize(memberid=nil, filters=nil, limit=nil, offset=nil, order=nil, by=nil, fileoperationrules=nil)
           @MemberId = memberid
           @Filters = filters
           @Limit = limit
           @Offset = offset
           @Order = order
           @By = by
+          @FileOperationRules = fileoperationrules
         end
 
         def deserialize(params)
@@ -33392,6 +33447,10 @@ module TencentCloud
           @Offset = params['Offset']
           @Order = params['Order']
           @By = params['By']
+          unless params['FileOperationRules'].nil?
+            @FileOperationRules = RuleContentFileOperation.new
+            @FileOperationRules.deserialize(params['FileOperationRules'])
+          end
         end
       end
 
@@ -50640,10 +50699,12 @@ module TencentCloud
         # @type ConditionMatches: Array
         # @param TagItems: <p>安全中心标签</p>
         # @type TagItems: Array
+        # @param FileOperationRules: <p>文件操作规则，ContentType=file_operation 时填充（文件路径正则 AND 动作多选或）</p>
+        # @type FileOperationRules: :class:`Tencentcloud::Csip.v20221121.models.RuleContentFileOperation`
 
-        attr_accessor :RuleID, :RuleType, :Name, :Description, :ContentType, :Action, :Level, :DetectMode, :DetectType, :AttackStage, :CWPScope, :QUUIDS, :Status, :CreateTime, :ModifyTime, :SupportBlock, :Md5List, :FileName, :FileDirectory, :Domains, :OutboundIP, :InboundIP, :CmdLineRules, :TCSSScope, :ImageIDs, :ImageNamesRegex, :Confidence, :ExcludeQUUIDS, :ExcludeImageIDs, :ProcessNetworkRules, :AppID, :InstanceIDs, :ExcludeInstanceIDs, :ClusterIDs, :ExcludeClusterIDs, :ConditionMatches, :TagItems
+        attr_accessor :RuleID, :RuleType, :Name, :Description, :ContentType, :Action, :Level, :DetectMode, :DetectType, :AttackStage, :CWPScope, :QUUIDS, :Status, :CreateTime, :ModifyTime, :SupportBlock, :Md5List, :FileName, :FileDirectory, :Domains, :OutboundIP, :InboundIP, :CmdLineRules, :TCSSScope, :ImageIDs, :ImageNamesRegex, :Confidence, :ExcludeQUUIDS, :ExcludeImageIDs, :ProcessNetworkRules, :AppID, :InstanceIDs, :ExcludeInstanceIDs, :ClusterIDs, :ExcludeClusterIDs, :ConditionMatches, :TagItems, :FileOperationRules
 
-        def initialize(ruleid=nil, ruletype=nil, name=nil, description=nil, contenttype=nil, action=nil, level=nil, detectmode=nil, detecttype=nil, attackstage=nil, cwpscope=nil, quuids=nil, status=nil, createtime=nil, modifytime=nil, supportblock=nil, md5list=nil, filename=nil, filedirectory=nil, domains=nil, outboundip=nil, inboundip=nil, cmdlinerules=nil, tcssscope=nil, imageids=nil, imagenamesregex=nil, confidence=nil, excludequuids=nil, excludeimageids=nil, processnetworkrules=nil, appid=nil, instanceids=nil, excludeinstanceids=nil, clusterids=nil, excludeclusterids=nil, conditionmatches=nil, tagitems=nil)
+        def initialize(ruleid=nil, ruletype=nil, name=nil, description=nil, contenttype=nil, action=nil, level=nil, detectmode=nil, detecttype=nil, attackstage=nil, cwpscope=nil, quuids=nil, status=nil, createtime=nil, modifytime=nil, supportblock=nil, md5list=nil, filename=nil, filedirectory=nil, domains=nil, outboundip=nil, inboundip=nil, cmdlinerules=nil, tcssscope=nil, imageids=nil, imagenamesregex=nil, confidence=nil, excludequuids=nil, excludeimageids=nil, processnetworkrules=nil, appid=nil, instanceids=nil, excludeinstanceids=nil, clusterids=nil, excludeclusterids=nil, conditionmatches=nil, tagitems=nil, fileoperationrules=nil)
           @RuleID = ruleid
           @RuleType = ruletype
           @Name = name
@@ -50681,6 +50742,7 @@ module TencentCloud
           @ExcludeClusterIDs = excludeclusterids
           @ConditionMatches = conditionmatches
           @TagItems = tagitems
+          @FileOperationRules = fileoperationrules
         end
 
         def deserialize(params)
@@ -50740,6 +50802,10 @@ module TencentCloud
               edrruletagitem_tmp.deserialize(i)
               @TagItems << edrruletagitem_tmp
             end
+          end
+          unless params['FileOperationRules'].nil?
+            @FileOperationRules = RuleContentFileOperation.new
+            @FileOperationRules.deserialize(params['FileOperationRules'])
           end
         end
       end
@@ -51838,14 +51904,17 @@ module TencentCloud
         # @type Order: String
         # @param By: <p>排序列，ModifyTime</p>
         # @type By: String
+        # @param FileOperationRules: <p>文件操作规则，ContentType=file_operation 时填充（文件路径正则 AND 动作多选或）</p>
+        # @type FileOperationRules: :class:`Tencentcloud::Csip.v20221121.models.RuleContentFileOperation`
 
-        attr_accessor :MemberId, :Filters, :Order, :By
+        attr_accessor :MemberId, :Filters, :Order, :By, :FileOperationRules
 
-        def initialize(memberid=nil, filters=nil, order=nil, by=nil)
+        def initialize(memberid=nil, filters=nil, order=nil, by=nil, fileoperationrules=nil)
           @MemberId = memberid
           @Filters = filters
           @Order = order
           @By = by
+          @FileOperationRules = fileoperationrules
         end
 
         def deserialize(params)
@@ -51860,6 +51929,10 @@ module TencentCloud
           end
           @Order = params['Order']
           @By = params['By']
+          unless params['FileOperationRules'].nil?
+            @FileOperationRules = RuleContentFileOperation.new
+            @FileOperationRules.deserialize(params['FileOperationRules'])
+          end
         end
       end
 
@@ -55849,10 +55922,12 @@ module TencentCloud
         # @type BeginTime: String
         # @param EndTime: <p>最晚到期时间（格式：2006-01-02 15:04:05）</p>
         # @type EndTime: String
+        # @param OrderType: <p>订单类型</p><p>枚举值：</p><ul><li>PURCHASED： 正式订单</li><li>TRIAL： 试用订单</li></ul>
+        # @type OrderType: String
 
-        attr_accessor :ResourceId, :LicenseType, :Name, :Category, :TotalNum, :UsedNum, :RemainNum, :BeginTime, :EndTime
+        attr_accessor :ResourceId, :LicenseType, :Name, :Category, :TotalNum, :UsedNum, :RemainNum, :BeginTime, :EndTime, :OrderType
 
-        def initialize(resourceid=nil, licensetype=nil, name=nil, category=nil, totalnum=nil, usednum=nil, remainnum=nil, begintime=nil, endtime=nil)
+        def initialize(resourceid=nil, licensetype=nil, name=nil, category=nil, totalnum=nil, usednum=nil, remainnum=nil, begintime=nil, endtime=nil, ordertype=nil)
           @ResourceId = resourceid
           @LicenseType = licensetype
           @Name = name
@@ -55862,6 +55937,7 @@ module TencentCloud
           @RemainNum = remainnum
           @BeginTime = begintime
           @EndTime = endtime
+          @OrderType = ordertype
         end
 
         def deserialize(params)
@@ -55874,6 +55950,7 @@ module TencentCloud
           @RemainNum = params['RemainNum']
           @BeginTime = params['BeginTime']
           @EndTime = params['EndTime']
+          @OrderType = params['OrderType']
         end
       end
 
@@ -60306,10 +60383,12 @@ module TencentCloud
         # @type ImageIDsWithAppId: Array
         # @param ConditionMatches: <p>容器条件匹配</p>
         # @type ConditionMatches: Array
+        # @param FileOperationRules: <p>文件操作规则，ContentType=file_operation 时填充（文件路径正则 AND 动作多选或）</p>
+        # @type FileOperationRules: :class:`Tencentcloud::Csip.v20221121.models.RuleContentFileOperation`
 
-        attr_accessor :RuleType, :AlertAction, :CWPScope, :TCSSScope, :Status, :MemberId, :Name, :ContentType, :Level, :DetectMode, :AttackStage, :RuleID, :Description, :DealOldEvents, :Md5List, :FileName, :FileDirectory, :CmdLineRules, :Domains, :OutboundIP, :InboundIP, :ImageIDs, :ProcessNetworkRules, :TargetAppIDs, :Target, :InstanceIDsWithAppId, :ExcludeInstanceIDsWithAppId, :TagIDs, :ClusterIDsWithAppId, :ExcludeClusterIDsWithAppId, :ImageIDsWithAppId, :ConditionMatches
+        attr_accessor :RuleType, :AlertAction, :CWPScope, :TCSSScope, :Status, :MemberId, :Name, :ContentType, :Level, :DetectMode, :AttackStage, :RuleID, :Description, :DealOldEvents, :Md5List, :FileName, :FileDirectory, :CmdLineRules, :Domains, :OutboundIP, :InboundIP, :ImageIDs, :ProcessNetworkRules, :TargetAppIDs, :Target, :InstanceIDsWithAppId, :ExcludeInstanceIDsWithAppId, :TagIDs, :ClusterIDsWithAppId, :ExcludeClusterIDsWithAppId, :ImageIDsWithAppId, :ConditionMatches, :FileOperationRules
 
-        def initialize(ruletype=nil, alertaction=nil, cwpscope=nil, tcssscope=nil, status=nil, memberid=nil, name=nil, contenttype=nil, level=nil, detectmode=nil, attackstage=nil, ruleid=nil, description=nil, dealoldevents=nil, md5list=nil, filename=nil, filedirectory=nil, cmdlinerules=nil, domains=nil, outboundip=nil, inboundip=nil, imageids=nil, processnetworkrules=nil, targetappids=nil, target=nil, instanceidswithappid=nil, excludeinstanceidswithappid=nil, tagids=nil, clusteridswithappid=nil, excludeclusteridswithappid=nil, imageidswithappid=nil, conditionmatches=nil)
+        def initialize(ruletype=nil, alertaction=nil, cwpscope=nil, tcssscope=nil, status=nil, memberid=nil, name=nil, contenttype=nil, level=nil, detectmode=nil, attackstage=nil, ruleid=nil, description=nil, dealoldevents=nil, md5list=nil, filename=nil, filedirectory=nil, cmdlinerules=nil, domains=nil, outboundip=nil, inboundip=nil, imageids=nil, processnetworkrules=nil, targetappids=nil, target=nil, instanceidswithappid=nil, excludeinstanceidswithappid=nil, tagids=nil, clusteridswithappid=nil, excludeclusteridswithappid=nil, imageidswithappid=nil, conditionmatches=nil, fileoperationrules=nil)
           @RuleType = ruletype
           @AlertAction = alertaction
           @CWPScope = cwpscope
@@ -60342,6 +60421,7 @@ module TencentCloud
           @ExcludeClusterIDsWithAppId = excludeclusteridswithappid
           @ImageIDsWithAppId = imageidswithappid
           @ConditionMatches = conditionmatches
+          @FileOperationRules = fileoperationrules
         end
 
         def deserialize(params)
@@ -60427,6 +60507,10 @@ module TencentCloud
               conditionmatch_tmp.deserialize(i)
               @ConditionMatches << conditionmatch_tmp
             end
+          end
+          unless params['FileOperationRules'].nil?
+            @FileOperationRules = RuleContentFileOperation.new
+            @FileOperationRules.deserialize(params['FileOperationRules'])
           end
         end
       end
@@ -64706,28 +64790,29 @@ module TencentCloud
 
       # 订单配额信息
       class OrderQuotaInfo < TencentCloud::Common::AbstractModel
-        # @param QuotaKey: 配额键
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param QuotaKey: <p>配额键</p>
         # @type QuotaKey: String
-        # @param QuotaNum: 配额总量
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param QuotaNum: <p>配额总量</p>
         # @type QuotaNum: Integer
-        # @param QuotaUsed: 配额已使用量
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param QuotaUsed: <p>配额已使用量（含共享给其他账号的消耗）。仅请求参数 NeedQuotaUsed 为 true 时采集；未传或为 false 时恒为 0；用量查询失败时恒为 0，错误提示见响应 QuotaUsedError 字段</p>
         # @type QuotaUsed: Integer
+        # @param QuotaGranted: <p>赠送配额。仅 CSPM 存在赠送额度，其余计费项为 0</p>
+        # @type QuotaGranted: Integer
 
-        attr_accessor :QuotaKey, :QuotaNum, :QuotaUsed
+        attr_accessor :QuotaKey, :QuotaNum, :QuotaUsed, :QuotaGranted
 
-        def initialize(quotakey=nil, quotanum=nil, quotaused=nil)
+        def initialize(quotakey=nil, quotanum=nil, quotaused=nil, quotagranted=nil)
           @QuotaKey = quotakey
           @QuotaNum = quotanum
           @QuotaUsed = quotaused
+          @QuotaGranted = quotagranted
         end
 
         def deserialize(params)
           @QuotaKey = params['QuotaKey']
           @QuotaNum = params['QuotaNum']
           @QuotaUsed = params['QuotaUsed']
+          @QuotaGranted = params['QuotaGranted']
         end
       end
 
@@ -66513,6 +66598,40 @@ module TencentCloud
             @AncestorProcess = RuleContentProcessInfo.new
             @AncestorProcess.deserialize(params['AncestorProcess'])
           end
+        end
+      end
+
+      # EDR文件操作规则（ContentType=file_operation，高危命令聚合降噪新增）
+      class RuleContentFileOperation < TencentCloud::Common::AbstractModel
+        # @param Process: <p>当前进程命令行信息（可选，未配置时该维度不参与匹配）</p>
+        # @type Process: :class:`Tencentcloud::Csip.v20221121.models.RuleContentProcessInfo`
+        # @param ParentProcess: <p>父进程命令行信息（可选，未配置时该维度不参与匹配）</p>
+        # @type ParentProcess: :class:`Tencentcloud::Csip.v20221121.models.RuleContentProcessInfo`
+        # @param FilePath: <p>目标文件路径（正则）</p>
+        # @type FilePath: String
+        # @param FileActions: <p>动作列表（多选为或关系）：read-读 write-写 rename-重命名 delete-删除 truncate-清空内容</p>
+        # @type FileActions: Array
+
+        attr_accessor :Process, :ParentProcess, :FilePath, :FileActions
+
+        def initialize(process=nil, parentprocess=nil, filepath=nil, fileactions=nil)
+          @Process = process
+          @ParentProcess = parentprocess
+          @FilePath = filepath
+          @FileActions = fileactions
+        end
+
+        def deserialize(params)
+          unless params['Process'].nil?
+            @Process = RuleContentProcessInfo.new
+            @Process.deserialize(params['Process'])
+          end
+          unless params['ParentProcess'].nil?
+            @ParentProcess = RuleContentProcessInfo.new
+            @ParentProcess.deserialize(params['ParentProcess'])
+          end
+          @FilePath = params['FilePath']
+          @FileActions = params['FileActions']
         end
       end
 
@@ -73801,14 +73920,17 @@ module TencentCloud
         # @type Levels: Array
         # @param Items: <p>处理状态等</p>
         # @type Items: Array
+        # @param Options: <p>可选项</p>
+        # @type Options: Array
 
-        attr_accessor :Module, :SubModule, :Levels, :Items
+        attr_accessor :Module, :SubModule, :Levels, :Items, :Options
 
-        def initialize(_module=nil, submodule=nil, levels=nil, items=nil)
+        def initialize(_module=nil, submodule=nil, levels=nil, items=nil, options=nil)
           @Module = _module
           @SubModule = submodule
           @Levels = levels
           @Items = items
+          @Options = options
         end
 
         def deserialize(params)
@@ -73816,6 +73938,7 @@ module TencentCloud
           @SubModule = params['SubModule']
           @Levels = params['Levels']
           @Items = params['Items']
+          @Options = params['Options']
         end
       end
 

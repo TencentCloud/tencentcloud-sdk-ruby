@@ -2476,9 +2476,9 @@ module TencentCloud
 
       # DescribeGeneralApmApplicationConfig请求参数结构体
       class DescribeGeneralApmApplicationConfigRequest < TencentCloud::Common::AbstractModel
-        # @param ServiceName: 应用名
+        # @param ServiceName: <p>应用名</p>
         # @type ServiceName: String
-        # @param InstanceId: 业务系统ID
+        # @param InstanceId: <p>业务系统ID</p>
         # @type InstanceId: String
 
         attr_accessor :ServiceName, :InstanceId
@@ -2496,7 +2496,7 @@ module TencentCloud
 
       # DescribeGeneralApmApplicationConfig返回参数结构体
       class DescribeGeneralApmApplicationConfigResponse < TencentCloud::Common::AbstractModel
-        # @param ApmApplicationConfigView: 应用配置项
+        # @param ApmApplicationConfigView: <p>应用配置项</p>
         # @type ApmApplicationConfigView: :class:`Tencentcloud::Apm.v20210622.models.ApmApplicationConfigView`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

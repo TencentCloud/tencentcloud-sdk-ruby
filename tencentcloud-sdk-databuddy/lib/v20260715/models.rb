@@ -5057,7 +5057,7 @@ module TencentCloud
         # @type PageNumber: Integer
         # @param PageSize: <p>每页大小。非必填，默认 10，取值范围 [10, 200]</p>
         # @type PageSize: Integer
-        # @param WorkflowId: <p>工作流ID，精确匹配。非必填，单值</p>
+        # @param WorkflowId: <p>工作流ID，精确匹配。非必填，单值</p><p>取值参考：<a href="https://cloud.tencent.com/document/api/1835/138002">ListWorkflows</a> 返回值 <code>Data</code></p>
         # @type WorkflowId: String
         # @param WorkflowNameKeyword: <p>工作流名称关键字，对 WorkflowName 做模糊匹配。非必填，单值</p>
         # @type WorkflowNameKeyword: String
@@ -5326,7 +5326,7 @@ module TencentCloud
         # @type WorkflowNameKeyword: String
         # @param WorkflowNames: <p>工作流名称，精确匹配。非必填，多选（多个值之间为 OR 关系）</p>
         # @type WorkflowNames: Array
-        # @param WorkflowIds: <p>工作流ID，精确匹配。非必填，多选（多个值之间为 OR 关系）</p>
+        # @param WorkflowIds: <p>工作流ID，精确匹配。非必填，多选（多个值之间为 OR 关系）</p><p>取值参考：<a href="https://cloud.tencent.com/document/api/1835/138002">ListWorkflows</a> 返回值 <code>Data</code></p>
         # @type WorkflowIds: Array
         # @param RunUserUins: <p>工作流运行人UIN，精确匹配。非必填，多选（多个值之间为 OR 关系）</p>
         # @type RunUserUins: Array
@@ -5334,9 +5334,9 @@ module TencentCloud
         # @type LabelKeyIds: Array
         # @param LabelValueIds: <p>标签值ID，精确匹配，可通过标签相关接口获取。非必填，多选（多个值之间为 OR 关系）</p>
         # @type LabelValueIds: Array
-        # @param QuickSelectionType: <p>快速筛选类型。非必填，单值</p><p>对齐老云 API（wedata/2025-10-10）文档示例值：</p><ul><li>MY_FAVORITE：我收藏的</li><li>MY_OWNER：我负责的</li><li>MY_AUTHORITY：我有权限</li><li>WorkflowId：支持多个工作流ID筛选</li></ul><p>后端实现现状：当前仅 MY_FAVORITE 生效（设置 favoriteUserUin 过滤当前用户收藏），MY_OWNER / MY_AUTHORITY 暂未在 Service 层实现，传入会被忽略（按全量返回）。</p>
+        # @param QuickSelectionType: <p>快速筛选类型。非必填，单值，当前仅支持 MY_FAVORITE（我收藏的）</p>
         # @type QuickSelectionType: String
-        # @param OrderBys: <p>排序条件，多个之间按数组顺序表示优先级。非必填。<br>可排序字段白名单：CreateTime</p>
+        # @param OrderBys: <p>排序条件，多个之间按数组顺序表示优先级。非必填。可排序字段白名单：CreateTime</p>
         # @type OrderBys: Array
 
         attr_accessor :WorkspaceId, :PageNumber, :PageSize, :WorkflowNameKeyword, :WorkflowNames, :WorkflowIds, :RunUserUins, :LabelKeyIds, :LabelValueIds, :QuickSelectionType, :OrderBys
@@ -7149,13 +7149,13 @@ module TencentCloud
 
       # 标签值信息
       class TagValueInfo < TencentCloud::Common::AbstractModel
-        # @param TagValueId: 标签值ID
+        # @param TagValueId: <p>标签值ID。ID 模式写接口（UpdateWorkspaceUsersTags / UpdateWorkspaceGroupsTags）中必填，可通过 ListTags 接口出参 Items[].TagValues[].TagValueId 获取，也可通过 CreateTagValues 创建后获取；按名称模式接口（AttachWorkspaceUserTags / DetachWorkspaceUserTags）中无需传入；查询接口出参中回填。ID 不存在或已删除时接口报错 TagValueNotExist</p>
         # @type TagValueId: String
-        # @param TagValue: 标签值内容，查询时填充，写入时不传
+        # @param TagValue: <p>标签值内容。按名称模式接口（AttachWorkspaceUserTags / DetachWorkspaceUserTags）中必填；ID 模式写接口（UpdateWorkspaceUsersTags / UpdateWorkspaceGroupsTags）中无需传入，服务端忽略；查询接口出参中回填</p>
         # @type TagValue: String
-        # @param Source: 标签来源，参考 web_enum_standard.proto -> TagSource：0=未指定 1=用户直绑 2=用户组继承 3=两者都有，查询时填充，写入时不传
+        # @param Source: <p>标签来源，枚举值：0=未指定 1=用户直绑 2=用户组继承 3=两者都有。仅查询接口出参中返回；所有写接口均无需传入，服务端忽略</p>
         # @type Source: Integer
-        # @param GroupNames: 继承来源的用户组名称列表，Source=1 时为空，查询时填充，写入时不传
+        # @param GroupNames: <p>继承来源的用户组名称列表（标签来源 Source=1 用户直绑时为空）。仅查询接口出参中返回；所有写接口均无需传入，服务端忽略</p>
         # @type GroupNames: Array
 
         attr_accessor :TagValueId, :TagValue, :Source, :GroupNames
@@ -8205,11 +8205,11 @@ module TencentCloud
 
       # 用户/用户组标签维度信息（用户管理域独立结构，与通用 TagInfo 解耦，仅供用户/用户组标签接口使用）
       class UserTagInfo < TencentCloud::Common::AbstractModel
-        # @param TagId: <p>标签维度ID</p>
+        # @param TagId: <p>标签维度ID。ID 模式写接口（UpdateWorkspaceUsersTags / UpdateWorkspaceGroupsTags）中必填，可通过 ListTags 接口出参 Items[].TagId 获取，也可通过 CreateTags 创建后获取；按名称模式接口（AttachWorkspaceUserTags / DetachWorkspaceUserTags）中无需传入；查询接口出参中回填。ID 不存在或已删除时接口报错 TagNotExist</p>
         # @type TagId: String
-        # @param TagName: <p>标签名称，查询时填充，写入时不传</p>
+        # @param TagName: <p>标签名称。按名称模式接口（AttachWorkspaceUserTags / DetachWorkspaceUserTags）中必填；ID 模式写接口（UpdateWorkspaceUsersTags / UpdateWorkspaceGroupsTags）中无需传入，服务端忽略；查询接口出参中回填</p>
         # @type TagName: String
-        # @param Values: <p>该维度下绑定的所有标签值</p>
+        # @param Values: <p>该标签维度下绑定的标签值集合，元素结构见 TagValueInfo。ID 模式写接口中元素 TagValueId 必填；按名称模式接口中元素 TagValue 必填；查询接口出参中回填</p>
         # @type Values: Array
 
         attr_accessor :TagId, :TagName, :Values

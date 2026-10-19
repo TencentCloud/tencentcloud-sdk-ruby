@@ -981,63 +981,65 @@ module TencentCloud
 
       # 审批列表信息
       class Apply < TencentCloud::Common::AbstractModel
-        # @param ApplicantId: 申请人id
+        # @param ApplicantId: <p>申请人id</p>
         # @type ApplicantId: String
-        # @param ApplicantName: 申请人名称
+        # @param ApplicantName: <p>申请人名称</p>
         # @type ApplicantName: String
-        # @param Remark: 审批备注
+        # @param Remark: <p>审批备注</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
-        # @param ApproveClassification: 审批分类key
+        # @param ApproveClassification: <p>审批分类key</p>
         # @type ApproveClassification: String
-        # @param ApproveId: 审批单id
+        # @param ApproveId: <p>审批单id</p>
         # @type ApproveId: String
-        # @param ApproveType: 审批类型key
+        # @param ApproveType: <p>审批类型key</p>
         # @type ApproveType: String
-        # @param Reason: 申请原因
+        # @param Reason: <p>申请原因</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Reason: String
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # @type CreateTime: String
-        # @param ApproveTime: 审批时间
+        # @param ApproveTime: <p>审批时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApproveTime: String
-        # @param ApproveClassificationName: 审批分类名称
+        # @param ApproveClassificationName: <p>审批分类名称</p>
         # @type ApproveClassificationName: String
-        # @param Status: 状态
+        # @param Status: <p>状态</p>
         # @type Status: String
-        # @param ApproveTypeName: 审批类型名称
+        # @param ApproveTypeName: <p>审批类型名称</p>
         # @type ApproveTypeName: String
-        # @param ErrorMessage: 审批异常或者失败信息
+        # @param ErrorMessage: <p>审批异常或者失败信息</p>
         # @type ErrorMessage: String
-        # @param ApplyName: 申请名称
+        # @param ApplyName: <p>申请名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplyName: String
-        # @param ApproverId: 审批人id
+        # @param ApproverId: <p>审批人id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApproverId: String
-        # @param ApproverName: 审批人名称
+        # @param ApproverName: <p>审批人名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApproverName: String
-        # @param ApproveProjectName: 审批所属项目
+        # @param ApproveProjectName: <p>审批所属项目</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApproveProjectName: String
-        # @param ApplyId: 审批id
+        # @param ApplyId: <p>审批id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplyId: String
-        # @param Metadata: 扩展字段
+        # @param Metadata: <p>扩展字段</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Metadata: String
-        # @param CreateTimestamp: 创建时间
+        # @param CreateTimestamp: <p>创建时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTimestamp: Integer
-        # @param ApproveTimestamp: 审批时间
+        # @param ApproveTimestamp: <p>审批时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApproveTimestamp: Integer
+        # @param ApproveCode: <p>审批扩展码</p>
+        # @type ApproveCode: String
 
-        attr_accessor :ApplicantId, :ApplicantName, :Remark, :ApproveClassification, :ApproveId, :ApproveType, :Reason, :CreateTime, :ApproveTime, :ApproveClassificationName, :Status, :ApproveTypeName, :ErrorMessage, :ApplyName, :ApproverId, :ApproverName, :ApproveProjectName, :ApplyId, :Metadata, :CreateTimestamp, :ApproveTimestamp
+        attr_accessor :ApplicantId, :ApplicantName, :Remark, :ApproveClassification, :ApproveId, :ApproveType, :Reason, :CreateTime, :ApproveTime, :ApproveClassificationName, :Status, :ApproveTypeName, :ErrorMessage, :ApplyName, :ApproverId, :ApproverName, :ApproveProjectName, :ApplyId, :Metadata, :CreateTimestamp, :ApproveTimestamp, :ApproveCode
 
-        def initialize(applicantid=nil, applicantname=nil, remark=nil, approveclassification=nil, approveid=nil, approvetype=nil, reason=nil, createtime=nil, approvetime=nil, approveclassificationname=nil, status=nil, approvetypename=nil, errormessage=nil, applyname=nil, approverid=nil, approvername=nil, approveprojectname=nil, applyid=nil, metadata=nil, createtimestamp=nil, approvetimestamp=nil)
+        def initialize(applicantid=nil, applicantname=nil, remark=nil, approveclassification=nil, approveid=nil, approvetype=nil, reason=nil, createtime=nil, approvetime=nil, approveclassificationname=nil, status=nil, approvetypename=nil, errormessage=nil, applyname=nil, approverid=nil, approvername=nil, approveprojectname=nil, applyid=nil, metadata=nil, createtimestamp=nil, approvetimestamp=nil, approvecode=nil)
           @ApplicantId = applicantid
           @ApplicantName = applicantname
           @Remark = remark
@@ -1059,6 +1061,7 @@ module TencentCloud
           @Metadata = metadata
           @CreateTimestamp = createtimestamp
           @ApproveTimestamp = approvetimestamp
+          @ApproveCode = approvecode
         end
 
         def deserialize(params)
@@ -1083,6 +1086,7 @@ module TencentCloud
           @Metadata = params['Metadata']
           @CreateTimestamp = params['CreateTimestamp']
           @ApproveTimestamp = params['ApproveTimestamp']
+          @ApproveCode = params['ApproveCode']
         end
       end
 
@@ -29738,82 +29742,84 @@ module TencentCloud
 
       # ModifyTaskInfoDs请求参数结构体
       class ModifyTaskInfoDsRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目Id
+        # @param ProjectId: <p>项目Id</p>
         # @type ProjectId: String
-        # @param TaskId: 任务ID
+        # @param TaskId: <p>任务ID</p>
         # @type TaskId: String
-        # @param DelayTime: 执行时间，单位分钟，天/周/月/年调度才有。比如天调度，每天的02:00点执行一次，delayTime就是120分钟
+        # @param DelayTime: <p>执行时间，单位分钟，天/周/月/年调度才有。比如天调度，每天的02:00点执行一次，delayTime就是120分钟</p>
         # @type DelayTime: Integer
-        # @param StartupTime: 启动时间：该字段已废弃，无需填写
+        # @param StartupTime: <p>启动时间：该字段已废弃，无需填写</p>
         # @type StartupTime: Integer
-        # @param SelfDepend: 自依赖类型  1:有序串行 一次一个 排队  2: 无序串行 一次一个 不排队 3:并行 一次多个；暂不支持其他值
+        # @param SelfDepend: <p>自依赖类型  1:有序串行 一次一个 排队  2: 无序串行 一次一个 不排队 3:并行 一次多个；暂不支持其他值</p>
         # @type SelfDepend: Integer
-        # @param StartTime: 生效开始时间，格式 yyyy-MM-dd HH:mm:ss
+        # @param StartTime: <p>生效开始时间，格式 yyyy-MM-dd HH:mm:ss</p>
         # @type StartTime: String
-        # @param EndTime: 生效结束时间，格式 yyyy-MM-dd HH:mm:ss
+        # @param EndTime: <p>生效结束时间，格式 yyyy-MM-dd HH:mm:ss</p>
         # @type EndTime: String
-        # @param TaskAction: 调度配置-弹性周期配置，小时/周/月/年调度才有，小时任务指定每天的0点3点4点跑，则为 0,3,4。设置该值时，请把CycleStep字段设置为1（如果原始值不为1）。
+        # @param TaskAction: <p>调度配置-弹性周期配置，小时/周/月/年调度才有，小时任务指定每天的0点3点4点跑，则为 0,3,4。设置该值时，请把CycleStep字段设置为1（如果原始值不为1）。</p>
         # @type TaskAction: String
-        # @param CycleType: 周期类型  0:crontab类型, 1:分钟，2:小时，3:天，4:周，5:月，6:一次性，7:用户驱动，10:弹性周期 周,11:弹性周期 月,12:年,13:即时触发Instant类型，与正常周期调度任务逻辑隔离
+        # @param CycleType: <p>周期类型  0:crontab类型, 1:分钟，2:小时，3:天，4:周，5:月，6:一次性，7:用户驱动，10:弹性周期 周,11:弹性周期 月,12:年,13:即时触发Instant类型，与正常周期调度任务逻辑隔离</p>
         # @type CycleType: Integer
-        # @param CycleStep: 小时和分钟任务才有；分钟任务：5、10、15、20、30，表示每隔5【或其他值】分钟执行一次；小时任务：1、2、3、4、5、6、7、8、9、10、11、12，表示每隔1【或其他值】小时执行一次。该值大于1时，请把TaskAction字段设置为空字符串。
+        # @param CycleStep: <p>小时和分钟任务才有；分钟任务：5、10、15、20、30，表示每隔5【或其他值】分钟执行一次；小时任务：1、2、3、4、5、6、7、8、9、10、11、12，表示每隔1【或其他值】小时执行一次。该值大于1时，请把TaskAction字段设置为空字符串。</p>
         # @type CycleStep: Integer
-        # @param CrontabExpression: cron表达式  周期类型为crontab调度才需要
+        # @param CrontabExpression: <p>cron表达式  周期类型为crontab调度才需要</p>
         # @type CrontabExpression: String
-        # @param ExecutionStartTime: 执行时间左闭区间，格式：HH:mm  小时调度才有，例如小时任务, 每日固定区间生效
+        # @param ExecutionStartTime: <p>执行时间左闭区间，格式：HH:mm  小时调度才有，例如小时任务, 每日固定区间生效</p>
         # @type ExecutionStartTime: String
-        # @param ExecutionEndTime: 执行时间右闭区间，格式：HH:mm  小时调度才有，例如小时任务, 每日固定区间生效
+        # @param ExecutionEndTime: <p>执行时间右闭区间，格式：HH:mm  小时调度才有，例如小时任务, 每日固定区间生效</p>
         # @type ExecutionEndTime: String
-        # @param TaskName: 任务名，该字段废弃，请勿使用该字段重命名任务
+        # @param TaskName: <p>任务名，该字段废弃，请勿使用该字段重命名任务</p>
         # @type TaskName: String
-        # @param RetryWait: 失败重试间隔,单位分钟，创建任务的时候已经给了默认值
+        # @param RetryWait: <p>失败重试间隔,单位分钟，创建任务的时候已经给了默认值</p>
         # @type RetryWait: Integer
-        # @param TryLimit: 失败重试次数，创建任务的时候已经给了默认值
+        # @param TryLimit: <p>失败重试次数，创建任务的时候已经给了默认值</p>
         # @type TryLimit: Integer
-        # @param Retriable: 是否可重试，0代码不可重试，1代表可以重试；暂不支持其他值
+        # @param Retriable: <p>是否可重试，0代码不可重试，1代表可以重试；暂不支持其他值</p>
         # @type Retriable: Integer
-        # @param RunPriority: 运行优先级，4高 5中 6低；暂不支持其他值
+        # @param RunPriority: <p>运行优先级，4高 5中 6低；暂不支持其他值</p>
         # @type RunPriority: Integer
-        # @param TaskExt: 任务的扩展配置
+        # @param TaskExt: <p>任务的扩展配置</p>
         # @type TaskExt: Array
-        # @param ResourceGroup: 执行资源组Id，需要去资源管理服务上创建调度资源组，并且绑定cvm机器
+        # @param ResourceGroup: <p>执行资源组Id，需要去资源管理服务上创建调度资源组，并且绑定cvm机器</p>
         # @type ResourceGroup: String
-        # @param YarnQueue: 资源池队列名称
+        # @param YarnQueue: <p>资源池队列名称</p>
         # @type YarnQueue: String
-        # @param BrokerIp: 资源组下具体执行机，any 表示可以跑在任意一台。
+        # @param BrokerIp: <p>资源组下具体执行机，any 表示可以跑在任意一台。</p>
         # @type BrokerIp: String
-        # @param InCharge: 责任人，多个责任人请用分号隔开
+        # @param InCharge: <p>责任人，多个责任人请用分号隔开</p>
         # @type InCharge: String
-        # @param Notes: 任务备注
+        # @param Notes: <p>任务备注</p>
         # @type Notes: String
-        # @param TaskParamInfos: 任务参数
+        # @param TaskParamInfos: <p>任务参数</p>
         # @type TaskParamInfos: Array
-        # @param SourceServer: 源数据源Id
+        # @param SourceServer: <p>源数据源Id</p>
         # @type SourceServer: String
-        # @param TargetServer: 目标数据源Id
+        # @param TargetServer: <p>目标数据源Id</p>
         # @type TargetServer: String
-        # @param DependencyWorkflow: 是否支持工作流依赖 yes / no 默认 no
+        # @param DependencyWorkflow: <p>是否支持工作流依赖 yes / no 默认 no</p>
         # @type DependencyWorkflow: String
-        # @param DependencyConfigDTOs: 依赖配置,仅可修改上游任务实例配置方法
+        # @param DependencyConfigDTOs: <p>依赖配置,仅可修改上游任务实例配置方法</p>
         # @type DependencyConfigDTOs: Array
-        # @param ExecutionTTL: 运行耗时超时时间分钟数
+        # @param ExecutionTTL: <p>运行耗时超时时间分钟数</p>
         # @type ExecutionTTL: Integer
-        # @param ScriptChange: 脚本是否改变
+        # @param ScriptChange: <p>脚本是否改变</p>
         # @type ScriptChange: Boolean
-        # @param ScheduleTimeZone: 任务时区，仅支持整数时区配置
+        # @param ScheduleTimeZone: <p>任务时区，仅支持整数时区配置</p>
         # @type ScheduleTimeZone: String
-        # @param ScheduleRunType: 0 正常调度 1 空跑调度；暂不支持其他值
+        # @param ScheduleRunType: <p>0 正常调度 1 空跑调度；暂不支持其他值</p>
         # @type ScheduleRunType: Integer
-        # @param ConcurrentStrategy: 0 并发度达到上限时，本次排队等待 1 并发度达到上限时，本次不执行，直接kill；暂不支持其他值
+        # @param ConcurrentStrategy: <p>0 并发度达到上限时，本次排队等待 1 并发度达到上限时，本次不执行，直接kill；暂不支持其他值</p>
         # @type ConcurrentStrategy: Integer
-        # @param RegisterDsEventPublisherRequest: shell任务发布事件
+        # @param RegisterDsEventPublisherRequest: <p>shell任务发布事件</p>
         # @type RegisterDsEventPublisherRequest: :class:`Tencentcloud::Wedata.v20210820.models.RegisterDsEventPublisherReq`
-        # @param Content: base64编码后脚本内容
+        # @param Content: <p>base64编码后脚本内容</p>
         # @type Content: String
+        # @param MinuteOffset: <p>分钟任务相位偏移</p>
+        # @type MinuteOffset: Integer
 
-        attr_accessor :ProjectId, :TaskId, :DelayTime, :StartupTime, :SelfDepend, :StartTime, :EndTime, :TaskAction, :CycleType, :CycleStep, :CrontabExpression, :ExecutionStartTime, :ExecutionEndTime, :TaskName, :RetryWait, :TryLimit, :Retriable, :RunPriority, :TaskExt, :ResourceGroup, :YarnQueue, :BrokerIp, :InCharge, :Notes, :TaskParamInfos, :SourceServer, :TargetServer, :DependencyWorkflow, :DependencyConfigDTOs, :ExecutionTTL, :ScriptChange, :ScheduleTimeZone, :ScheduleRunType, :ConcurrentStrategy, :RegisterDsEventPublisherRequest, :Content
+        attr_accessor :ProjectId, :TaskId, :DelayTime, :StartupTime, :SelfDepend, :StartTime, :EndTime, :TaskAction, :CycleType, :CycleStep, :CrontabExpression, :ExecutionStartTime, :ExecutionEndTime, :TaskName, :RetryWait, :TryLimit, :Retriable, :RunPriority, :TaskExt, :ResourceGroup, :YarnQueue, :BrokerIp, :InCharge, :Notes, :TaskParamInfos, :SourceServer, :TargetServer, :DependencyWorkflow, :DependencyConfigDTOs, :ExecutionTTL, :ScriptChange, :ScheduleTimeZone, :ScheduleRunType, :ConcurrentStrategy, :RegisterDsEventPublisherRequest, :Content, :MinuteOffset
 
-        def initialize(projectid=nil, taskid=nil, delaytime=nil, startuptime=nil, selfdepend=nil, starttime=nil, endtime=nil, taskaction=nil, cycletype=nil, cyclestep=nil, crontabexpression=nil, executionstarttime=nil, executionendtime=nil, taskname=nil, retrywait=nil, trylimit=nil, retriable=nil, runpriority=nil, taskext=nil, resourcegroup=nil, yarnqueue=nil, brokerip=nil, incharge=nil, notes=nil, taskparaminfos=nil, sourceserver=nil, targetserver=nil, dependencyworkflow=nil, dependencyconfigdtos=nil, executionttl=nil, scriptchange=nil, scheduletimezone=nil, scheduleruntype=nil, concurrentstrategy=nil, registerdseventpublisherrequest=nil, content=nil)
+        def initialize(projectid=nil, taskid=nil, delaytime=nil, startuptime=nil, selfdepend=nil, starttime=nil, endtime=nil, taskaction=nil, cycletype=nil, cyclestep=nil, crontabexpression=nil, executionstarttime=nil, executionendtime=nil, taskname=nil, retrywait=nil, trylimit=nil, retriable=nil, runpriority=nil, taskext=nil, resourcegroup=nil, yarnqueue=nil, brokerip=nil, incharge=nil, notes=nil, taskparaminfos=nil, sourceserver=nil, targetserver=nil, dependencyworkflow=nil, dependencyconfigdtos=nil, executionttl=nil, scriptchange=nil, scheduletimezone=nil, scheduleruntype=nil, concurrentstrategy=nil, registerdseventpublisherrequest=nil, content=nil, minuteoffset=nil)
           @ProjectId = projectid
           @TaskId = taskid
           @DelayTime = delaytime
@@ -29850,6 +29856,7 @@ module TencentCloud
           @ConcurrentStrategy = concurrentstrategy
           @RegisterDsEventPublisherRequest = registerdseventpublisherrequest
           @Content = content
+          @MinuteOffset = minuteoffset
         end
 
         def deserialize(params)
@@ -29913,12 +29920,13 @@ module TencentCloud
             @RegisterDsEventPublisherRequest.deserialize(params['RegisterDsEventPublisherRequest'])
           end
           @Content = params['Content']
+          @MinuteOffset = params['MinuteOffset']
         end
       end
 
       # ModifyTaskInfoDs返回参数结构体
       class ModifyTaskInfoDsResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 执行结果
+        # @param Data: <p>执行结果</p>
         # @type Data: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -33333,57 +33341,58 @@ module TencentCloud
 
       # RenewWorkflowSchedulerInfoDs请求参数结构体
       class RenewWorkflowSchedulerInfoDsRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目ID
+        # @param ProjectId: <p>项目ID</p>
         # @type ProjectId: String
-        # @param WorkflowId: 工作流ID
+        # @param WorkflowId: <p>工作流ID</p>
         # @type WorkflowId: String
-        # @param DelayTime: 延迟时间
+        # @param DelayTime: <p>延迟时间</p>
         # @type DelayTime: Integer
-        # @param StartupTime: 启动时间
+        # @param StartupTime: <p>启动时间</p>
         # @type StartupTime: Integer
-        # @param SelfDepend: 任务依赖
+        # @param SelfDepend: <p>任务依赖</p>
         # @type SelfDepend: String
-        # @param StartTime: 开始时间
+        # @param StartTime: <p>开始时间</p>
         # @type StartTime: String
-        # @param EndTime: 结束时间
+        # @param EndTime: <p>结束时间</p>
         # @type EndTime: String
-        # @param TaskAction: 指定运行时间
+        # @param TaskAction: <p>指定运行时间</p>
         # @type TaskAction: String
-        # @param CycleType: 调度周期时间单位
+        # @param CycleType: <p>调度周期时间单位</p>
         # @type CycleType: String
-        # @param CycleStep: 调度周期
+        # @param CycleStep: <p>调度周期</p>
         # @type CycleStep: Integer
-        # @param ExecutionStartTime: 执行时间左闭区间
+        # @param ExecutionStartTime: <p>执行时间左闭区间</p>
         # @type ExecutionStartTime: String
-        # @param ExecutionEndTime: 执行时间右闭区间
+        # @param ExecutionEndTime: <p>执行时间右闭区间</p>
         # @type ExecutionEndTime: String
-        # @param InstanceInitStrategy: 任务初始化策略，T_PLUS_1、T_PLUS_0、T_MINUS_1
+        # @param InstanceInitStrategy: <p>任务初始化策略，T_PLUS_1、T_PLUS_0、T_MINUS_1</p>
         # @type InstanceInitStrategy: String
-        # @param DependencyWorkflow: 工作流依赖，yes or no
+        # @param DependencyWorkflow: <p>工作流依赖，yes or no</p>
         # @type DependencyWorkflow: String
-        # @param CrontabExpression: CrontabExpression
+        # @param CrontabExpression: <p>CrontabExpression</p>
         # @type CrontabExpression: String
-        # @param ModifyCycleValue: 0：不修改
-        # 1：将任务的上游依赖配置改为默认值
+        # @param ModifyCycleValue: <p>0：不修改<br>1：将任务的上游依赖配置改为默认值</p>
         # @type ModifyCycleValue: String
-        # @param CalendarOpen: 是否开启日历调度 1 开启 0关闭
+        # @param CalendarOpen: <p>是否开启日历调度 1 开启 0关闭</p>
         # @type CalendarOpen: String
-        # @param CalendarName: 日历名称
+        # @param CalendarName: <p>日历名称</p>
         # @type CalendarName: String
-        # @param CalendarId: 日历id
+        # @param CalendarId: <p>日历id</p>
         # @type CalendarId: String
-        # @param ScheduleTimeZone: 时区
+        # @param ScheduleTimeZone: <p>时区</p>
         # @type ScheduleTimeZone: String
-        # @param ClearLink: 是否自动清理不支持的任务链接
+        # @param ClearLink: <p>是否自动清理不支持的任务链接</p>
         # @type ClearLink: Boolean
-        # @param MainCyclicConfig: ModifyCycleValue为1的时候生效，表示默认修改的上游依赖-时间维度
+        # @param MainCyclicConfig: <p>ModifyCycleValue为1的时候生效，表示默认修改的上游依赖-时间维度</p>
         # @type MainCyclicConfig: String
-        # @param SubordinateCyclicConfig: ModifyCycleValue为1的时候生效，表示默认修改的上游依赖-实例范围
+        # @param SubordinateCyclicConfig: <p>ModifyCycleValue为1的时候生效，表示默认修改的上游依赖-实例范围</p>
         # @type SubordinateCyclicConfig: String
+        # @param MinuteOffset: <p>分钟任务相位偏移</p>
+        # @type MinuteOffset: Integer
 
-        attr_accessor :ProjectId, :WorkflowId, :DelayTime, :StartupTime, :SelfDepend, :StartTime, :EndTime, :TaskAction, :CycleType, :CycleStep, :ExecutionStartTime, :ExecutionEndTime, :InstanceInitStrategy, :DependencyWorkflow, :CrontabExpression, :ModifyCycleValue, :CalendarOpen, :CalendarName, :CalendarId, :ScheduleTimeZone, :ClearLink, :MainCyclicConfig, :SubordinateCyclicConfig
+        attr_accessor :ProjectId, :WorkflowId, :DelayTime, :StartupTime, :SelfDepend, :StartTime, :EndTime, :TaskAction, :CycleType, :CycleStep, :ExecutionStartTime, :ExecutionEndTime, :InstanceInitStrategy, :DependencyWorkflow, :CrontabExpression, :ModifyCycleValue, :CalendarOpen, :CalendarName, :CalendarId, :ScheduleTimeZone, :ClearLink, :MainCyclicConfig, :SubordinateCyclicConfig, :MinuteOffset
 
-        def initialize(projectid=nil, workflowid=nil, delaytime=nil, startuptime=nil, selfdepend=nil, starttime=nil, endtime=nil, taskaction=nil, cycletype=nil, cyclestep=nil, executionstarttime=nil, executionendtime=nil, instanceinitstrategy=nil, dependencyworkflow=nil, crontabexpression=nil, modifycyclevalue=nil, calendaropen=nil, calendarname=nil, calendarid=nil, scheduletimezone=nil, clearlink=nil, maincyclicconfig=nil, subordinatecyclicconfig=nil)
+        def initialize(projectid=nil, workflowid=nil, delaytime=nil, startuptime=nil, selfdepend=nil, starttime=nil, endtime=nil, taskaction=nil, cycletype=nil, cyclestep=nil, executionstarttime=nil, executionendtime=nil, instanceinitstrategy=nil, dependencyworkflow=nil, crontabexpression=nil, modifycyclevalue=nil, calendaropen=nil, calendarname=nil, calendarid=nil, scheduletimezone=nil, clearlink=nil, maincyclicconfig=nil, subordinatecyclicconfig=nil, minuteoffset=nil)
           @ProjectId = projectid
           @WorkflowId = workflowid
           @DelayTime = delaytime
@@ -33407,6 +33416,7 @@ module TencentCloud
           @ClearLink = clearlink
           @MainCyclicConfig = maincyclicconfig
           @SubordinateCyclicConfig = subordinatecyclicconfig
+          @MinuteOffset = minuteoffset
         end
 
         def deserialize(params)
@@ -33433,12 +33443,13 @@ module TencentCloud
           @ClearLink = params['ClearLink']
           @MainCyclicConfig = params['MainCyclicConfig']
           @SubordinateCyclicConfig = params['SubordinateCyclicConfig']
+          @MinuteOffset = params['MinuteOffset']
         end
       end
 
       # RenewWorkflowSchedulerInfoDs返回参数结构体
       class RenewWorkflowSchedulerInfoDsResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 数据
+        # @param Data: <p>数据</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.BatchResultDs`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。

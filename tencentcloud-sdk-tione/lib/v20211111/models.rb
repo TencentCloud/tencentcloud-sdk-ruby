@@ -397,7 +397,7 @@ module TencentCloud
         # @type Model: String
         # @param Messages: <p>输入对话历史。旧的对话在前，数组中最后一项应该为这次的问题。</p>
         # @type Messages: Array
-        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
         # @type TiProjectId: String
         # @param Temperature: <p>仅当模型为自行部署的开源大模型时生效。采样随机值，默认值为0.7，取值范围[0,2]。较高的值(如0.8)将使输出更加随机，而较低的值(如0.2)将使输出更加确定。建议仅修改此参数或TopP，但不建议两者都修改。</p>
         # @type Temperature: Float
@@ -888,7 +888,7 @@ module TencentCloud
       class CreateModelServiceAuthTokenRequest < TencentCloud::Common::AbstractModel
         # @param ServiceGroupId: <p>服务组 id</p>
         # @type ServiceGroupId: String
-        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
         # @type TiProjectId: String
         # @param Name: <p>token 名称</p>
         # @type Name: String
@@ -930,7 +930,7 @@ module TencentCloud
 
       # CreateModelService请求参数结构体
       class CreateModelServiceRequest < TencentCloud::Common::AbstractModel
-        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
         # @type TiProjectId: String
         # @param ServiceGroupId: <p>新增版本时需要填写</p>
         # @type ServiceGroupId: String
@@ -1278,19 +1278,25 @@ module TencentCloud
 
       # CreateNotebookImage请求参数结构体
       class CreateNotebookImageRequest < TencentCloud::Common::AbstractModel
-        # @param ImageInfo: 镜像信息
+        # @param ImageInfo: <p>镜像信息</p>
         # @type ImageInfo: :class:`Tencentcloud::Tione.v20211111.models.ImageInfo`
-        # @param NotebookId: notebook id
+        # @param NotebookId: <p>notebook id</p>
         # @type NotebookId: String
-        # @param Kernels: 要保存的kernel数组
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
+        # @type TiProjectId: String
+        # @param Kernels: <p>要保存的kernel数组</p>
         # @type Kernels: Array
+        # @param RegisterToImageCenter: <p>是否保存到镜像中心</p>
+        # @type RegisterToImageCenter: Boolean
 
-        attr_accessor :ImageInfo, :NotebookId, :Kernels
+        attr_accessor :ImageInfo, :NotebookId, :TiProjectId, :Kernels, :RegisterToImageCenter
 
-        def initialize(imageinfo=nil, notebookid=nil, kernels=nil)
+        def initialize(imageinfo=nil, notebookid=nil, tiprojectid=nil, kernels=nil, registertoimagecenter=nil)
           @ImageInfo = imageinfo
           @NotebookId = notebookid
+          @TiProjectId = tiprojectid
           @Kernels = kernels
+          @RegisterToImageCenter = registertoimagecenter
         end
 
         def deserialize(params)
@@ -1299,7 +1305,9 @@ module TencentCloud
             @ImageInfo.deserialize(params['ImageInfo'])
           end
           @NotebookId = params['NotebookId']
+          @TiProjectId = params['TiProjectId']
           @Kernels = params['Kernels']
+          @RegisterToImageCenter = params['RegisterToImageCenter']
         end
       end
 
@@ -1487,15 +1495,19 @@ module TencentCloud
       class CreatePresignedNotebookUrlRequest < TencentCloud::Common::AbstractModel
         # @param Id: Notebook ID
         # @type Id: String
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
+        # @type TiProjectId: String
 
-        attr_accessor :Id
+        attr_accessor :Id, :TiProjectId
 
-        def initialize(id=nil)
+        def initialize(id=nil, tiprojectid=nil)
           @Id = id
+          @TiProjectId = tiprojectid
         end
 
         def deserialize(params)
           @Id = params['Id']
+          @TiProjectId = params['TiProjectId']
         end
       end
 
@@ -1692,7 +1704,7 @@ module TencentCloud
         # @type ChargeType: String
         # @param ResourceConfigInfos: <p>资源配置，需填写对应算力规格ID和节点数量，算力规格ID查询接口为DescribeBillingSpecsPrice，eg：[{&quot;Role&quot;:&quot;WORKER&quot;, &quot;InstanceType&quot;: &quot;TI.S.MEDIUM.POST&quot;, &quot;InstanceNum&quot;: 1}]</p>
         # @type ResourceConfigInfos: Array
-        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
         # @type TiProjectId: String
         # @param FrameworkName: <p>训练框架名称，通过DescribeTrainingFrameworks接口查询，eg：SPARK、PYSPARK、TENSORFLOW、PYTORCH</p>
         # @type FrameworkName: String
@@ -2745,7 +2757,7 @@ module TencentCloud
       class DeleteModelServiceAuthTokenRequest < TencentCloud::Common::AbstractModel
         # @param ServiceGroupId: <p>服务组 id</p>
         # @type ServiceGroupId: String
-        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
         # @type TiProjectId: String
         # @param AuthTokenValue: <p>token 值</p>
         # @type AuthTokenValue: String
@@ -2785,7 +2797,7 @@ module TencentCloud
       class DeleteModelServiceGroupRequest < TencentCloud::Common::AbstractModel
         # @param ServiceGroupId: 服务id
         # @type ServiceGroupId: String
-        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
         # @type TiProjectId: String
 
         attr_accessor :ServiceGroupId, :TiProjectId
@@ -2821,7 +2833,7 @@ module TencentCloud
       class DeleteModelServiceRequest < TencentCloud::Common::AbstractModel
         # @param ServiceId: 服务id
         # @type ServiceId: String
-        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
         # @type TiProjectId: String
         # @param ServiceCategory: 服务分类
         # @type ServiceCategory: String
@@ -2904,15 +2916,19 @@ module TencentCloud
       class DeleteNotebookRequest < TencentCloud::Common::AbstractModel
         # @param Id: notebook id
         # @type Id: String
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
+        # @type TiProjectId: String
 
-        attr_accessor :Id
+        attr_accessor :Id, :TiProjectId
 
-        def initialize(id=nil)
+        def initialize(id=nil, tiprojectid=nil)
           @Id = id
+          @TiProjectId = tiprojectid
         end
 
         def deserialize(params)
           @Id = params['Id']
+          @TiProjectId = params['TiProjectId']
         end
       end
 
@@ -3020,7 +3036,7 @@ module TencentCloud
       class DeleteTrainingTaskRequest < TencentCloud::Common::AbstractModel
         # @param Id: 训练任务ID
         # @type Id: String
-        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
         # @type TiProjectId: String
 
         attr_accessor :Id, :TiProjectId
@@ -3142,7 +3158,7 @@ module TencentCloud
       class DescribeBillingResourceGroupAttachedWorkspacesRequest < TencentCloud::Common::AbstractModel
         # @param ResourceGroupId: <p>资源组ID</p>
         # @type ResourceGroupId: String
-        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
         # @type TiProjectId: String
 
         attr_accessor :ResourceGroupId, :TiProjectId
@@ -3352,7 +3368,7 @@ module TencentCloud
         # @type ResourceGroupId: String
         # @param ResourceInstanceId: 资源组节点id
         # @type ResourceInstanceId: String
-        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
         # @type TiProjectId: String
 
         attr_accessor :ResourceGroupId, :ResourceInstanceId, :TiProjectId
@@ -3402,11 +3418,14 @@ module TencentCloud
       class DescribeBillingSpecsPriceRequest < TencentCloud::Common::AbstractModel
         # @param SpecsParam: 询价参数，支持批量询价
         # @type SpecsParam: Array
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
+        # @type TiProjectId: String
 
-        attr_accessor :SpecsParam
+        attr_accessor :SpecsParam, :TiProjectId
 
-        def initialize(specsparam=nil)
+        def initialize(specsparam=nil, tiprojectid=nil)
           @SpecsParam = specsparam
+          @TiProjectId = tiprojectid
         end
 
         def deserialize(params)
@@ -3418,6 +3437,7 @@ module TencentCloud
               @SpecsParam << specunit_tmp
             end
           end
+          @TiProjectId = params['TiProjectId']
         end
       end
 
@@ -3452,7 +3472,7 @@ module TencentCloud
       class DescribeBillingSpecsRequest < TencentCloud::Common::AbstractModel
         # @param ChargeType: <p>付费模式：POSTPAID_BY_HOUR按量计费、PREPAID包年包月</p>
         # @type ChargeType: String
-        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
         # @type TiProjectId: String
         # @param TaskType: <p>枚举值：空、TRAIN、NOTEBOOK、INFERENCE或EMS</p>
         # @type TaskType: String
@@ -3791,49 +3811,32 @@ module TencentCloud
 
       # DescribeEvents请求参数结构体
       class DescribeEventsRequest < TencentCloud::Common::AbstractModel
-        # @param Service: 服务类型，TRAIN为任务式建模, NOTEBOOK为Notebook, INFER为在线服务, BATCH为批量预测
-        # 枚举值：
-        # - TRAIN
-        # - NOTEBOOK
-        # - INFER
-        # - BATCH
+        # @param Service: <p>服务类型，TRAIN为任务式建模, NOTEBOOK为Notebook, INFER为在线服务, BATCH为批量预测<br>枚举值：</p><ul><li>TRAIN</li><li>NOTEBOOK</li><li>INFER</li><li>BATCH</li></ul>
         # @type Service: String
-        # @param ServiceId: 服务ID，和Service参数对应，不同Service的服务ID获取方式不同，具体如下：
-        # - Service类型为TRAIN：
-        #   调用[DescribeTrainingTask接口](/document/product/851/75089)查询训练任务详情，ServiceId为接口返回值中Response.TrainingTaskDetail.LatestInstanceId
-        # - Service类型为NOTEBOOK：
-        #   调用[DescribeNotebook接口](/document/product/851/95662)查询Notebook详情，ServiceId为接口返回值中Response.NotebookDetail.PodName
-        # - Service类型为INFER：
-        #   调用[DescribeModelServiceGroup接口](/document/product/851/82285)查询服务组详情，ServiceId为接口返回值中Response.ServiceGroup.Services.ServiceId
-        # - Service类型为BATCH：
-        #   调用[DescribeBatchTask接口](/document/product/851/80180)查询跑批任务详情，ServiceId为接口返回值中Response.BatchTaskDetail.LatestInstanceId
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
+        # @type TiProjectId: String
+        # @param ServiceId: <p>服务ID，和Service参数对应，不同Service的服务ID获取方式不同，具体如下：</p><ul><li>Service类型为TRAIN：<br>调用<a href="/document/product/851/75089">DescribeTrainingTask接口</a>查询训练任务详情，ServiceId为接口返回值中Response.TrainingTaskDetail.LatestInstanceId</li><li>Service类型为NOTEBOOK：<br>调用<a href="/document/product/851/95662">DescribeNotebook接口</a>查询Notebook详情，ServiceId为接口返回值中Response.NotebookDetail.PodName</li><li>Service类型为INFER：<br>调用<a href="/document/product/851/82285">DescribeModelServiceGroup接口</a>查询服务组详情，ServiceId为接口返回值中Response.ServiceGroup.Services.ServiceId</li><li>Service类型为BATCH：<br>调用<a href="/document/product/851/80180">DescribeBatchTask接口</a>查询跑批任务详情，ServiceId为接口返回值中Response.BatchTaskDetail.LatestInstanceId</li></ul>
         # @type ServiceId: String
-        # @param StartTime: 查询事件最早发生的时间（RFC3339格式的时间字符串），默认值为当前时间的前一天
+        # @param StartTime: <p>查询事件最早发生的时间（RFC3339格式的时间字符串），默认值为当前时间的前一天</p>
         # @type StartTime: String
-        # @param EndTime: 查询事件最晚发生的时间（RFC3339格式的时间字符串），默认值为当前时间
+        # @param EndTime: <p>查询事件最晚发生的时间（RFC3339格式的时间字符串），默认值为当前时间</p>
         # @type EndTime: String
-        # @param Limit: 分页Limit，默认值为100，最大值为100
+        # @param Limit: <p>分页Limit，默认值为100，最大值为100</p>
         # @type Limit: Integer
-        # @param Offset: 分页Offset，默认值为0
+        # @param Offset: <p>分页Offset，默认值为0</p>
         # @type Offset: Integer
-        # @param Order: 排列顺序（可选值为ASC, DESC ），默认为DESC
+        # @param Order: <p>排列顺序（可选值为ASC, DESC ），默认为DESC</p>
         # @type Order: String
-        # @param OrderField: 排序的依据字段（可选值为FirstTimestamp, LastTimestamp），默认值为LastTimestamp
+        # @param OrderField: <p>排序的依据字段（可选值为FirstTimestamp, LastTimestamp），默认值为LastTimestamp</p>
         # @type OrderField: String
-        # @param Filters: 过滤条件
-        # 注意:
-        # 1. Filter.Name：目前支持ResourceKind（按事件关联的资源类型过滤）；Type（按事件类型过滤）
-        # 2. Filter.Values：
-        # 对于Name为ResourceKind，Values的可选取值为Deployment, Replicaset, Pod等K8S资源类型；
-        # 对于Name为Type，Values的可选取值仅为Normal或者Warning；
-        # Values为多个的时候表示同时满足
-        # 3. Filter. Negative和Filter. Fuzzy没有使用
+        # @param Filters: <p>过滤条件<br>注意: </p><ol><li>Filter.Name：目前支持ResourceKind（按事件关联的资源类型过滤）；Type（按事件类型过滤）</li><li>Filter.Values：<br>对于Name为ResourceKind，Values的可选取值为Deployment, Replicaset, Pod等K8S资源类型；<br>对于Name为Type，Values的可选取值仅为Normal或者Warning；<br>Values为多个的时候表示同时满足</li><li>Filter. Negative和Filter. Fuzzy没有使用</li></ol>
         # @type Filters: Array
 
-        attr_accessor :Service, :ServiceId, :StartTime, :EndTime, :Limit, :Offset, :Order, :OrderField, :Filters
+        attr_accessor :Service, :TiProjectId, :ServiceId, :StartTime, :EndTime, :Limit, :Offset, :Order, :OrderField, :Filters
 
-        def initialize(service=nil, serviceid=nil, starttime=nil, endtime=nil, limit=nil, offset=nil, order=nil, orderfield=nil, filters=nil)
+        def initialize(service=nil, tiprojectid=nil, serviceid=nil, starttime=nil, endtime=nil, limit=nil, offset=nil, order=nil, orderfield=nil, filters=nil)
           @Service = service
+          @TiProjectId = tiprojectid
           @ServiceId = serviceid
           @StartTime = starttime
           @EndTime = endtime
@@ -3846,6 +3849,7 @@ module TencentCloud
 
         def deserialize(params)
           @Service = params['Service']
+          @TiProjectId = params['TiProjectId']
           @ServiceId = params['ServiceId']
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
@@ -3866,10 +3870,10 @@ module TencentCloud
 
       # DescribeEvents返回参数结构体
       class DescribeEventsResponse < TencentCloud::Common::AbstractModel
-        # @param Events: 事件的列表
+        # @param Events: <p>事件的列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Events: Array
-        # @param TotalCount: 此次查询的事件的个数
+        # @param TotalCount: <p>此次查询的事件的个数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -4247,7 +4251,7 @@ module TencentCloud
       class DescribeModelServiceCallInfoRequest < TencentCloud::Common::AbstractModel
         # @param ServiceGroupId: 服务组id
         # @type ServiceGroupId: String
-        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
         # @type TiProjectId: String
         # @param ServiceCategory: 服务分类
         # @type ServiceCategory: String
@@ -4334,7 +4338,7 @@ module TencentCloud
       class DescribeModelServiceGroupRequest < TencentCloud::Common::AbstractModel
         # @param ServiceGroupId: 服务组ID
         # @type ServiceGroupId: String
-        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
         # @type TiProjectId: String
         # @param ServiceCategory: 服务分类
         # @type ServiceCategory: String
@@ -4383,7 +4387,7 @@ module TencentCloud
 
       # DescribeModelServiceGroups请求参数结构体
       class DescribeModelServiceGroupsRequest < TencentCloud::Common::AbstractModel
-        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
         # @type TiProjectId: String
         # @param Offset: <p>偏移量，默认为0</p>
         # @type Offset: Integer
@@ -4536,7 +4540,7 @@ module TencentCloud
       class DescribeModelServiceRequest < TencentCloud::Common::AbstractModel
         # @param ServiceId: 服务id
         # @type ServiceId: String
-        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
         # @type TiProjectId: String
         # @param ServiceCategory: 服务分类
         # @type ServiceCategory: String
@@ -4766,7 +4770,7 @@ module TencentCloud
       class DescribeNotebookRequest < TencentCloud::Common::AbstractModel
         # @param Id: notebook id
         # @type Id: String
-        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
         # @type TiProjectId: String
 
         attr_accessor :Id, :TiProjectId
@@ -4807,30 +4811,19 @@ module TencentCloud
 
       # DescribeNotebooks请求参数结构体
       class DescribeNotebooksRequest < TencentCloud::Common::AbstractModel
-        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
         # @type TiProjectId: String
-        # @param Offset: 偏移量，默认为0
+        # @param Offset: <p>偏移量，默认为0</p>
         # @type Offset: Integer
-        # @param Limit: 每页返回的实例数，默认为10
+        # @param Limit: <p>每页返回的实例数，默认为 10，最小值 0，最大值 100</p>
         # @type Limit: Integer
-        # @param Order: 输出列表的排列顺序。取值范围：ASC：升序排列 DESC：降序排列。默认为DESC
+        # @param Order: <p>输出列表的排列顺序。取值范围：ASC：升序排列 DESC：降序排列。默认为DESC</p>
         # @type Order: String
-        # @param OrderField: 根据哪个字段排序，如：CreateTime、UpdateTime，默认为UpdateTime
+        # @param OrderField: <p>根据哪个字段排序，如：CreateTime、UpdateTime，默认为UpdateTime</p>
         # @type OrderField: String
-        # @param Filters: 过滤器，eg：[{ "Name": "Id", "Values": ["nb-123456789"] }]
-
-        # 取值范围
-        # Name（名称）：notebook1
-        # Id（notebook ID）：nb-123456789
-        # Status（状态）：Starting / Running / Stopped / Stopping / Failed / SubmitFailed
-        # Creator（创建者 uin）：100014761913
-        # ChargeType（计费类型）：PREPAID（预付费）/ POSTPAID_BY_HOUR（后付费）
-        # ChargeStatus（计费状态）：NOT_BILLING（未开始计费）/ BILLING（计费中）/ BILLING_STORAGE（存储计费中）/ARREARS_STOP（欠费停止）
-        # DefaultCodeRepoId（默认代码仓库ID）：cr-123456789
-        # AdditionalCodeRepoId（关联代码仓库ID）：cr-123456789
-        # LifecycleScriptId（生命周期ID）：ls-12312312311312
+        # @param Filters: <p>过滤器，eg：[{ &quot;Name&quot;: &quot;Id&quot;, &quot;Values&quot;: [&quot;nb-123456789&quot;] }]</p><p>取值范围<br>Name（名称）：notebook1<br>Id（notebook ID）：nb-123456789<br>Status（状态）：Starting / Running / Stopped / Stopping / Failed / SubmitFailed<br>Creator（创建者 uin）：100014761913<br>ChargeType（计费类型）：PREPAID（预付费）/ POSTPAID_BY_HOUR（后付费）<br>ChargeStatus（计费状态）：NOT_BILLING（未开始计费）/ BILLING（计费中）/ BILLING_STORAGE（存储计费中）/ARREARS_STOP（欠费停止）<br>DefaultCodeRepoId（默认代码仓库ID）：cr-123456789<br>AdditionalCodeRepoId（关联代码仓库ID）：cr-123456789<br>LifecycleScriptId（生命周期ID）：ls-12312312311312</p>
         # @type Filters: Array
-        # @param TagFilters: 标签过滤器，eg：[{ "TagKey": "TagKeyA", "TagValue": ["TagValueA"] }]
+        # @param TagFilters: <p>标签过滤器，eg：[{ &quot;TagKey&quot;: &quot;TagKeyA&quot;, &quot;TagValue&quot;: [&quot;TagValueA&quot;] }]</p>
         # @type TagFilters: Array
 
         attr_accessor :TiProjectId, :Offset, :Limit, :Order, :OrderField, :Filters, :TagFilters
@@ -4872,9 +4865,9 @@ module TencentCloud
 
       # DescribeNotebooks返回参数结构体
       class DescribeNotebooksResponse < TencentCloud::Common::AbstractModel
-        # @param NotebookSet: notebook详情
+        # @param NotebookSet: <p>notebook详情</p>
         # @type NotebookSet: Array
-        # @param TotalCount: 总条数
+        # @param TotalCount: <p>总条数</p>
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5043,6 +5036,8 @@ module TencentCloud
 
       # DescribePublicAlgoVersionList请求参数结构体
       class DescribePublicAlgoVersionListRequest < TencentCloud::Common::AbstractModel
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
+        # @type TiProjectId: String
         # @param Filters: 过滤器
         # @type Filters: Array
         # @param Offset: 偏移量
@@ -5052,9 +5047,10 @@ module TencentCloud
         # @param NeedsAggregate: 是否需要聚合
         # @type NeedsAggregate: Boolean
 
-        attr_accessor :Filters, :Offset, :Limit, :NeedsAggregate
+        attr_accessor :TiProjectId, :Filters, :Offset, :Limit, :NeedsAggregate
 
-        def initialize(filters=nil, offset=nil, limit=nil, needsaggregate=nil)
+        def initialize(tiprojectid=nil, filters=nil, offset=nil, limit=nil, needsaggregate=nil)
+          @TiProjectId = tiprojectid
           @Filters = filters
           @Offset = offset
           @Limit = limit
@@ -5062,6 +5058,7 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @TiProjectId = params['TiProjectId']
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
@@ -5123,6 +5120,8 @@ module TencentCloud
 
       # DescribeSubAccountLinuxUserInfos请求参数结构体
       class DescribeSubAccountLinuxUserInfosRequest < TencentCloud::Common::AbstractModel
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
+        # @type TiProjectId: String
         # @param Offset: 分页偏移量（0 表示全量）
         # @type Offset: Integer
         # @param Limit: 每页数量（0 表示全量）
@@ -5130,15 +5129,17 @@ module TencentCloud
         # @param Filters: 过滤条件
         # @type Filters: Array
 
-        attr_accessor :Offset, :Limit, :Filters
+        attr_accessor :TiProjectId, :Offset, :Limit, :Filters
 
-        def initialize(offset=nil, limit=nil, filters=nil)
+        def initialize(tiprojectid=nil, offset=nil, limit=nil, filters=nil)
+          @TiProjectId = tiprojectid
           @Offset = offset
           @Limit = limit
           @Filters = filters
         end
 
         def deserialize(params)
+          @TiProjectId = params['TiProjectId']
           @Offset = params['Offset']
           @Limit = params['Limit']
           unless params['Filters'].nil?
@@ -5288,15 +5289,19 @@ module TencentCloud
       class DescribeTrainingTaskPodUrlRequest < TencentCloud::Common::AbstractModel
         # @param PodName: 任务实例名
         # @type PodName: String
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
+        # @type TiProjectId: String
 
-        attr_accessor :PodName
+        attr_accessor :PodName, :TiProjectId
 
-        def initialize(podname=nil)
+        def initialize(podname=nil, tiprojectid=nil)
           @PodName = podname
+          @TiProjectId = tiprojectid
         end
 
         def deserialize(params)
           @PodName = params['PodName']
+          @TiProjectId = params['TiProjectId']
         end
       end
 
@@ -5324,7 +5329,7 @@ module TencentCloud
       class DescribeTrainingTaskPodsRequest < TencentCloud::Common::AbstractModel
         # @param Id: 训练任务ID
         # @type Id: String
-        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
         # @type TiProjectId: String
 
         attr_accessor :Id, :TiProjectId
@@ -5379,7 +5384,7 @@ module TencentCloud
       class DescribeTrainingTaskRequest < TencentCloud::Common::AbstractModel
         # @param Id: 训练任务ID
         # @type Id: String
-        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
         # @type TiProjectId: String
         # @param InstanceId: 训练任务实例ID
         # @type InstanceId: String
@@ -5424,7 +5429,7 @@ module TencentCloud
 
       # DescribeTrainingTasks请求参数结构体
       class DescribeTrainingTasksRequest < TencentCloud::Common::AbstractModel
-        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
         # @type TiProjectId: String
         # @param Filters: 过滤器，eg：[{ "Name": "Id", "Values": ["train-23091792777383936"] }]
 
@@ -5646,20 +5651,24 @@ module TencentCloud
         # @type TaskId: String
         # @param LogEnable: 是否开启CLS日志投递
         # @type LogEnable: Boolean
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
+        # @type TiProjectId: String
         # @param LogConfig: 日志配置
         # @type LogConfig: :class:`Tencentcloud::Tione.v20211111.models.LogConfig`
 
-        attr_accessor :TaskId, :LogEnable, :LogConfig
+        attr_accessor :TaskId, :LogEnable, :TiProjectId, :LogConfig
 
-        def initialize(taskid=nil, logenable=nil, logconfig=nil)
+        def initialize(taskid=nil, logenable=nil, tiprojectid=nil, logconfig=nil)
           @TaskId = taskid
           @LogEnable = logenable
+          @TiProjectId = tiprojectid
           @LogConfig = logconfig
         end
 
         def deserialize(params)
           @TaskId = params['TaskId']
           @LogEnable = params['LogEnable']
+          @TiProjectId = params['TiProjectId']
           unless params['LogConfig'].nil?
             @LogConfig = LogConfig.new
             @LogConfig.deserialize(params['LogConfig'])
@@ -7375,7 +7384,7 @@ module TencentCloud
       class ModifyModelServiceAuthTokenRequest < TencentCloud::Common::AbstractModel
         # @param ServiceGroupId: <p>服务组 id</p>
         # @type ServiceGroupId: String
-        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
         # @type TiProjectId: String
         # @param NeedReset: <p>是否需要重置，如果为 true，重置 token 值</p>
         # @type NeedReset: Boolean
@@ -7422,18 +7431,22 @@ module TencentCloud
       class ModifyModelServiceAuthorizationRequest < TencentCloud::Common::AbstractModel
         # @param ServiceGroupId: 服务组Id
         # @type ServiceGroupId: String
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
+        # @type TiProjectId: String
         # @param AuthorizationEnable: 是否开启鉴权,true表示开启
         # @type AuthorizationEnable: Boolean
 
-        attr_accessor :ServiceGroupId, :AuthorizationEnable
+        attr_accessor :ServiceGroupId, :TiProjectId, :AuthorizationEnable
 
-        def initialize(servicegroupid=nil, authorizationenable=nil)
+        def initialize(servicegroupid=nil, tiprojectid=nil, authorizationenable=nil)
           @ServiceGroupId = servicegroupid
+          @TiProjectId = tiprojectid
           @AuthorizationEnable = authorizationenable
         end
 
         def deserialize(params)
           @ServiceGroupId = params['ServiceGroupId']
+          @TiProjectId = params['TiProjectId']
           @AuthorizationEnable = params['AuthorizationEnable']
         end
       end
@@ -7458,7 +7471,7 @@ module TencentCloud
       class ModifyModelServiceRequest < TencentCloud::Common::AbstractModel
         # @param ServiceId: <p>服务id</p>
         # @type ServiceId: String
-        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
         # @type TiProjectId: String
         # @param ModelInfo: <p>模型信息，需要挂载模型时填写</p>
         # @type ModelInfo: :class:`Tencentcloud::Tione.v20211111.models.ModelInfo`
@@ -7721,6 +7734,8 @@ module TencentCloud
         # @type RootAccess: Boolean
         # @param LogEnable: <p>是否上报日志</p>
         # @type LogEnable: Boolean
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
+        # @type TiProjectId: String
         # @param ResourceGroupId: <p>资源组ID(for预付费)</p>
         # @type ResourceGroupId: String
         # @param VpcId: <p>（不允许修改）Vpc-Id</p>
@@ -7758,9 +7773,9 @@ module TencentCloud
         # @param Description: <p>描述</p>
         # @type Description: String
 
-        attr_accessor :Id, :Name, :ChargeType, :ResourceConf, :AutoStopping, :DirectInternetAccess, :RootAccess, :LogEnable, :ResourceGroupId, :VpcId, :SubnetId, :VolumeSizeInGB, :VolumeSourceType, :VolumeSourceCFS, :LogConfig, :LifecycleScriptId, :DefaultCodeRepoId, :AdditionalCodeRepoIds, :AutomaticStopTime, :Tags, :DataConfigs, :ImageInfo, :ImageType, :SSHConfig, :Envs, :Description
+        attr_accessor :Id, :Name, :ChargeType, :ResourceConf, :AutoStopping, :DirectInternetAccess, :RootAccess, :LogEnable, :TiProjectId, :ResourceGroupId, :VpcId, :SubnetId, :VolumeSizeInGB, :VolumeSourceType, :VolumeSourceCFS, :LogConfig, :LifecycleScriptId, :DefaultCodeRepoId, :AdditionalCodeRepoIds, :AutomaticStopTime, :Tags, :DataConfigs, :ImageInfo, :ImageType, :SSHConfig, :Envs, :Description
 
-        def initialize(id=nil, name=nil, chargetype=nil, resourceconf=nil, autostopping=nil, directinternetaccess=nil, rootaccess=nil, logenable=nil, resourcegroupid=nil, vpcid=nil, subnetid=nil, volumesizeingb=nil, volumesourcetype=nil, volumesourcecfs=nil, logconfig=nil, lifecyclescriptid=nil, defaultcoderepoid=nil, additionalcoderepoids=nil, automaticstoptime=nil, tags=nil, dataconfigs=nil, imageinfo=nil, imagetype=nil, sshconfig=nil, envs=nil, description=nil)
+        def initialize(id=nil, name=nil, chargetype=nil, resourceconf=nil, autostopping=nil, directinternetaccess=nil, rootaccess=nil, logenable=nil, tiprojectid=nil, resourcegroupid=nil, vpcid=nil, subnetid=nil, volumesizeingb=nil, volumesourcetype=nil, volumesourcecfs=nil, logconfig=nil, lifecyclescriptid=nil, defaultcoderepoid=nil, additionalcoderepoids=nil, automaticstoptime=nil, tags=nil, dataconfigs=nil, imageinfo=nil, imagetype=nil, sshconfig=nil, envs=nil, description=nil)
           @Id = id
           @Name = name
           @ChargeType = chargetype
@@ -7769,6 +7784,7 @@ module TencentCloud
           @DirectInternetAccess = directinternetaccess
           @RootAccess = rootaccess
           @LogEnable = logenable
+          @TiProjectId = tiprojectid
           @ResourceGroupId = resourcegroupid
           @VpcId = vpcid
           @SubnetId = subnetid
@@ -7801,6 +7817,7 @@ module TencentCloud
           @DirectInternetAccess = params['DirectInternetAccess']
           @RootAccess = params['RootAccess']
           @LogEnable = params['LogEnable']
+          @TiProjectId = params['TiProjectId']
           @ResourceGroupId = params['ResourceGroupId']
           @VpcId = params['VpcId']
           @SubnetId = params['SubnetId']
@@ -7875,18 +7892,22 @@ module TencentCloud
       class ModifyNotebookTagsRequest < TencentCloud::Common::AbstractModel
         # @param Id: Notebook Id
         # @type Id: String
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
+        # @type TiProjectId: String
         # @param Tags: Notebook修改标签集合
         # @type Tags: Array
 
-        attr_accessor :Id, :Tags
+        attr_accessor :Id, :TiProjectId, :Tags
 
-        def initialize(id=nil, tags=nil)
+        def initialize(id=nil, tiprojectid=nil, tags=nil)
           @Id = id
+          @TiProjectId = tiprojectid
           @Tags = tags
         end
 
         def deserialize(params)
           @Id = params['Id']
+          @TiProjectId = params['TiProjectId']
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
@@ -7920,12 +7941,15 @@ module TencentCloud
         # @type ServiceGroupId: String
         # @param Weights: 权重设置
         # @type Weights: Array
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
+        # @type TiProjectId: String
 
-        attr_accessor :ServiceGroupId, :Weights
+        attr_accessor :ServiceGroupId, :Weights, :TiProjectId
 
-        def initialize(servicegroupid=nil, weights=nil)
+        def initialize(servicegroupid=nil, weights=nil, tiprojectid=nil)
           @ServiceGroupId = servicegroupid
           @Weights = weights
+          @TiProjectId = tiprojectid
         end
 
         def deserialize(params)
@@ -7938,6 +7962,7 @@ module TencentCloud
               @Weights << weightentry_tmp
             end
           end
+          @TiProjectId = params['TiProjectId']
         end
       end
 
@@ -10468,10 +10493,13 @@ module TencentCloud
         # @type Changer: String
         # @param ChangerName: <p>变更服务的子账户名称</p>
         # @type ChangerName: String
+        # @param SmartRouter: <p>智能路由（SmartRouter）配置与运行时状态。未开启时该字段为空</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SmartRouter: :class:`Tencentcloud::Tione.v20211111.models.SmartRouter`
 
-        attr_accessor :ServiceGroupId, :ServiceGroupName, :CreatedBy, :CreateTime, :UpdateTime, :Uin, :ServiceCount, :RunningServiceCount, :Services, :Status, :Tags, :LatestVersion, :BusinessStatus, :BillingInfo, :CreateSource, :WeightUpdateStatus, :ReplicasCount, :AvailableReplicasCount, :SubUin, :AppId, :AuthorizationEnable, :AuthTokens, :MonitorSource, :SubUinName, :GatewayLogConfig, :GatewayConfig, :Changer, :ChangerName
+        attr_accessor :ServiceGroupId, :ServiceGroupName, :CreatedBy, :CreateTime, :UpdateTime, :Uin, :ServiceCount, :RunningServiceCount, :Services, :Status, :Tags, :LatestVersion, :BusinessStatus, :BillingInfo, :CreateSource, :WeightUpdateStatus, :ReplicasCount, :AvailableReplicasCount, :SubUin, :AppId, :AuthorizationEnable, :AuthTokens, :MonitorSource, :SubUinName, :GatewayLogConfig, :GatewayConfig, :Changer, :ChangerName, :SmartRouter
 
-        def initialize(servicegroupid=nil, servicegroupname=nil, createdby=nil, createtime=nil, updatetime=nil, uin=nil, servicecount=nil, runningservicecount=nil, services=nil, status=nil, tags=nil, latestversion=nil, businessstatus=nil, billinginfo=nil, createsource=nil, weightupdatestatus=nil, replicascount=nil, availablereplicascount=nil, subuin=nil, appid=nil, authorizationenable=nil, authtokens=nil, monitorsource=nil, subuinname=nil, gatewaylogconfig=nil, gatewayconfig=nil, changer=nil, changername=nil)
+        def initialize(servicegroupid=nil, servicegroupname=nil, createdby=nil, createtime=nil, updatetime=nil, uin=nil, servicecount=nil, runningservicecount=nil, services=nil, status=nil, tags=nil, latestversion=nil, businessstatus=nil, billinginfo=nil, createsource=nil, weightupdatestatus=nil, replicascount=nil, availablereplicascount=nil, subuin=nil, appid=nil, authorizationenable=nil, authtokens=nil, monitorsource=nil, subuinname=nil, gatewaylogconfig=nil, gatewayconfig=nil, changer=nil, changername=nil, smartrouter=nil)
           @ServiceGroupId = servicegroupid
           @ServiceGroupName = servicegroupname
           @CreatedBy = createdby
@@ -10500,6 +10528,7 @@ module TencentCloud
           @GatewayConfig = gatewayconfig
           @Changer = changer
           @ChangerName = changername
+          @SmartRouter = smartrouter
         end
 
         def deserialize(params)
@@ -10558,6 +10587,10 @@ module TencentCloud
           end
           @Changer = params['Changer']
           @ChangerName = params['ChangerName']
+          unless params['SmartRouter'].nil?
+            @SmartRouter = SmartRouter.new
+            @SmartRouter.deserialize(params['SmartRouter'])
+          end
         end
       end
 
@@ -10891,6 +10924,196 @@ module TencentCloud
         end
       end
 
+      # 智能路由完整对象（挂在 ServiceGroup 的 44 号）
+      class SmartRouter < TencentCloud::Common::AbstractModel
+        # @param Enabled: 智能路由开关状态（true=已开启，false=未开启/已停止）
+        # @type Enabled: Boolean
+        # @param ServiceGroupId: 绑定的服务组 ID（一对一）
+        # @type ServiceGroupId: String
+        # @param ComponentList: 组件列表（gateway + scheduler；repeated 为未来扩展预留）
+        # @type ComponentList: Array
+        # @param Creator: 创建人
+        # @type Creator: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间
+        # @type UpdateTime: String
+
+        attr_accessor :Enabled, :ServiceGroupId, :ComponentList, :Creator, :CreateTime, :UpdateTime
+
+        def initialize(enabled=nil, servicegroupid=nil, componentlist=nil, creator=nil, createtime=nil, updatetime=nil)
+          @Enabled = enabled
+          @ServiceGroupId = servicegroupid
+          @ComponentList = componentlist
+          @Creator = creator
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @Enabled = params['Enabled']
+          @ServiceGroupId = params['ServiceGroupId']
+          unless params['ComponentList'].nil?
+            @ComponentList = []
+            params['ComponentList'].each do |i|
+              smartroutercomponent_tmp = SmartRouterComponent.new
+              smartroutercomponent_tmp.deserialize(i)
+              @ComponentList << smartroutercomponent_tmp
+            end
+          end
+          @Creator = params['Creator']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 智能路由组件（运行时视图，对齐 ModelService.RoleSpec + ServiceInfo.Status）
+      class SmartRouterComponent < TencentCloud::Common::AbstractModel
+        # @param Name: <p>组件名称：{ServiceGroupId}-gateway / {ServiceGroupId}-scheduler</p>
+        # @type Name: String
+        # @param Type: <p>组件类型：&quot;Gateway&quot; / &quot;Scheduler&quot;</p>
+        # @type Type: String
+        # @param ImageInfo: <p>组件镜像（从 K8s Deployment 实时查询）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageInfo: :class:`Tencentcloud::Tione.v20211111.models.ImageInfo`
+        # @param ResourceConfig: <p>期望配置（Replicas/Cpu/Memory/Env）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceConfig: :class:`Tencentcloud::Tione.v20211111.models.SmartRouterResourceConfig`
+        # @param Status: <p>组件状态：CREATING 创建中 / CREATE_FAILED 创建失败 / Normal 正常运行中 / Stopped 已停止 / Stopping 停止中 / Abnormal 异常 / Pending 启动中 / Waiting 就绪中</p>
+        # @type Status: String
+        # @param ResourceSpec: <p>资源规格（查询时回显用户创建/修改时的资源选择）。公有云场景展示：ChargeType / Zone / ResourceSupplyAttribute；内网版场景展示：QueueId</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceSpec: :class:`Tencentcloud::Tione.v20211111.models.SmartRouterResourceSpec`
+        # @param BusinessStatus: <p>业务状态（组件级计费状态，Gateway/Scheduler 独立判定）：Billing 计费中 / Normal 正常（未计费或已停止计费）/ WhitelistUsing 白名单使用中（免计费）</p>
+        # @type BusinessStatus: String
+        # @param BillingInfo: <p>费用信息（组件级计费明细 JSON 字符串，格式与 Service.BillingInfo 一致，前端可复用同一渲染逻辑）</p>
+        # @type BillingInfo: String
+
+        attr_accessor :Name, :Type, :ImageInfo, :ResourceConfig, :Status, :ResourceSpec, :BusinessStatus, :BillingInfo
+
+        def initialize(name=nil, type=nil, imageinfo=nil, resourceconfig=nil, status=nil, resourcespec=nil, businessstatus=nil, billinginfo=nil)
+          @Name = name
+          @Type = type
+          @ImageInfo = imageinfo
+          @ResourceConfig = resourceconfig
+          @Status = status
+          @ResourceSpec = resourcespec
+          @BusinessStatus = businessstatus
+          @BillingInfo = billinginfo
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Type = params['Type']
+          unless params['ImageInfo'].nil?
+            @ImageInfo = ImageInfo.new
+            @ImageInfo.deserialize(params['ImageInfo'])
+          end
+          unless params['ResourceConfig'].nil?
+            @ResourceConfig = SmartRouterResourceConfig.new
+            @ResourceConfig.deserialize(params['ResourceConfig'])
+          end
+          @Status = params['Status']
+          unless params['ResourceSpec'].nil?
+            @ResourceSpec = SmartRouterResourceSpec.new
+            @ResourceSpec.deserialize(params['ResourceSpec'])
+          end
+          @BusinessStatus = params['BusinessStatus']
+          @BillingInfo = params['BillingInfo']
+        end
+      end
+
+      # Gateway（Envoy）与 Scheduler（EPP）资源配置（字段完全一致，合并为统一类型）
+      class SmartRouterResourceConfig < TencentCloud::Common::AbstractModel
+        # @param Replicas: <p>副本数，最小 1，建议 &gt;=2 以确保高可用；Scheduler（EPP）默认 2（保障 EPP 高可用与 Gossip 同步）</p>
+        # @type Replicas: Integer
+        # @param Cpu: <p>处理器资源，单位为 1/1000 核（milliCPU），与 EMS 一致</p>
+        # @type Cpu: Integer
+        # @param Memory: <p>内存资源，单位为 1MB，与 EMS 一致</p>
+        # @type Memory: Integer
+        # @param Env: <p>自定义环境变量，用于覆盖 Deployment 内置默认环境变量。Gateway 典型用途：覆盖 BACKEND_SERVICE_HOST 等；Scheduler 典型用途：覆盖 LRU_CAPACITY、BLOCK_SIZE_TOKENS 等</p>
+        # @type Env: Array
+        # @param InstanceType: <p>实例类型/规格，用于指定组件运行的机器规格</p>
+        # @type InstanceType: String
+        # @param Sidecar: <p>sidecar 容器配置，复用推理服务同款 SidecarSpec；未设置或 ImageInfo.ImageUrl 为空时不创建 sidecar 容器。sidecar 容器环境变量与组件主容器保持一致，不单独下发</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Sidecar: :class:`Tencentcloud::Tione.v20211111.models.SidecarSpec`
+
+        attr_accessor :Replicas, :Cpu, :Memory, :Env, :InstanceType, :Sidecar
+
+        def initialize(replicas=nil, cpu=nil, memory=nil, env=nil, instancetype=nil, sidecar=nil)
+          @Replicas = replicas
+          @Cpu = cpu
+          @Memory = memory
+          @Env = env
+          @InstanceType = instancetype
+          @Sidecar = sidecar
+        end
+
+        def deserialize(params)
+          @Replicas = params['Replicas']
+          @Cpu = params['Cpu']
+          @Memory = params['Memory']
+          unless params['Env'].nil?
+            @Env = []
+            params['Env'].each do |i|
+              envvar_tmp = EnvVar.new
+              envvar_tmp.deserialize(i)
+              @Env << envvar_tmp
+            end
+          end
+          @InstanceType = params['InstanceType']
+          unless params['Sidecar'].nil?
+            @Sidecar = SidecarSpec.new
+            @Sidecar.deserialize(params['Sidecar'])
+          end
+        end
+      end
+
+      # 智能路由资源规格（整个智能路由实例共享，Gateway/Scheduler 两个组件使用同一套资源池）。对应推理服务 CreateModelServiceRequest 顶层的 ChargeType/Zone/QueueId 等字段语义。
+      class SmartRouterResourceSpec < TencentCloud::Common::AbstractModel
+        # @param ChargeType: <p>付费模式：PREPAID（预付费）/ POSTPAID_BY_HOUR（后付费）。不传则默认 POSTPAID_BY_HOUR</p>
+        # @type ChargeType: String
+        # @param ResourceGroupId: <p>预付费资源组 ID（ChargeType=PREPAID 时必填）</p>
+        # @type ResourceGroupId: String
+        # @param ResourceGroupName: <p>预付费资源组名称（output only，ChargeType=PREPAID 时有值，查询时回显）</p>
+        # @type ResourceGroupName: String
+        # @param Zone: <p>可用区（如 ap-guangzhou-3），公有云场景用于指定机器来源</p>
+        # @type Zone: String
+        # @param QueueId: <p>资源队列 ID（内网版使用，标识任务所属的调度队列）</p>
+        # @type QueueId: String
+        # @param Priority: <p>服务的优先级，可选范围 [0,9]，默认 0（内网版/私有化使用）</p>
+        # @type Priority: Integer
+        # @param ResourceSupplyAttribute: <p>资源供应属性（潮汐/竞价等供应模式），公有云场景用于指定机器来源类型。仅区分供应来源，计费/部署/伸缩仍按后付费处理（ChargeType 恒为 POSTPAID_BY_HOUR）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceSupplyAttribute: :class:`Tencentcloud::Tione.v20211111.models.ResourceSupplyAttribute`
+
+        attr_accessor :ChargeType, :ResourceGroupId, :ResourceGroupName, :Zone, :QueueId, :Priority, :ResourceSupplyAttribute
+
+        def initialize(chargetype=nil, resourcegroupid=nil, resourcegroupname=nil, zone=nil, queueid=nil, priority=nil, resourcesupplyattribute=nil)
+          @ChargeType = chargetype
+          @ResourceGroupId = resourcegroupid
+          @ResourceGroupName = resourcegroupname
+          @Zone = zone
+          @QueueId = queueid
+          @Priority = priority
+          @ResourceSupplyAttribute = resourcesupplyattribute
+        end
+
+        def deserialize(params)
+          @ChargeType = params['ChargeType']
+          @ResourceGroupId = params['ResourceGroupId']
+          @ResourceGroupName = params['ResourceGroupName']
+          @Zone = params['Zone']
+          @QueueId = params['QueueId']
+          @Priority = params['Priority']
+          unless params['ResourceSupplyAttribute'].nil?
+            @ResourceSupplyAttribute = ResourceSupplyAttribute.new
+            @ResourceSupplyAttribute.deserialize(params['ResourceSupplyAttribute'])
+          end
+        end
+      end
+
       # 计费项内容
       class Spec < TencentCloud::Common::AbstractModel
         # @param SpecId: <p>计费项标签</p>
@@ -11019,15 +11242,19 @@ module TencentCloud
       class StartNotebookRequest < TencentCloud::Common::AbstractModel
         # @param Id: notebook id
         # @type Id: String
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
+        # @type TiProjectId: String
 
-        attr_accessor :Id
+        attr_accessor :Id, :TiProjectId
 
-        def initialize(id=nil)
+        def initialize(id=nil, tiprojectid=nil)
           @Id = id
+          @TiProjectId = tiprojectid
         end
 
         def deserialize(params)
           @Id = params['Id']
+          @TiProjectId = params['TiProjectId']
         end
       end
 
@@ -11051,7 +11278,7 @@ module TencentCloud
       class StartTrainingTaskRequest < TencentCloud::Common::AbstractModel
         # @param Id: 训练任务ID
         # @type Id: String
-        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
         # @type TiProjectId: String
 
         attr_accessor :Id, :TiProjectId
@@ -11175,15 +11402,19 @@ module TencentCloud
       class StopNotebookRequest < TencentCloud::Common::AbstractModel
         # @param Id: notebook id
         # @type Id: String
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
+        # @type TiProjectId: String
 
-        attr_accessor :Id
+        attr_accessor :Id, :TiProjectId
 
-        def initialize(id=nil)
+        def initialize(id=nil, tiprojectid=nil)
           @Id = id
+          @TiProjectId = tiprojectid
         end
 
         def deserialize(params)
           @Id = params['Id']
+          @TiProjectId = params['TiProjectId']
         end
       end
 
@@ -11207,7 +11438,7 @@ module TencentCloud
       class StopTrainingTaskRequest < TencentCloud::Common::AbstractModel
         # @param Id: 训练任务ID
         # @type Id: String
-        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
         # @type TiProjectId: String
 
         attr_accessor :Id, :TiProjectId
@@ -12149,16 +12380,20 @@ module TencentCloud
 
       # UpdateSubAccountLinuxUserInfo请求参数结构体
       class UpdateSubAccountLinuxUserInfoRequest < TencentCloud::Common::AbstractModel
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
+        # @type TiProjectId: String
         # @param SubAccountList: 子账号信息列表
         # @type SubAccountList: Array
 
-        attr_accessor :SubAccountList
+        attr_accessor :TiProjectId, :SubAccountList
 
-        def initialize(subaccountlist=nil)
+        def initialize(tiprojectid=nil, subaccountlist=nil)
+          @TiProjectId = tiprojectid
           @SubAccountList = subaccountlist
         end
 
         def deserialize(params)
+          @TiProjectId = params['TiProjectId']
           unless params['SubAccountList'].nil?
             @SubAccountList = []
             params['SubAccountList'].each do |i|

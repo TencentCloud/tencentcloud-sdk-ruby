@@ -3124,6 +3124,54 @@ module TencentCloud
         end
       end
 
+      # CallMCPTool请求参数结构体
+      class CallMCPToolRequest < TencentCloud::Common::AbstractModel
+        # @param PluginId: <p>能力边界：一次请求只能调该 plugin 上的工具</p>
+        # @type PluginId: String
+        # @param ThreadId: <p>agent-exec 侧 thread</p>
+        # @type ThreadId: String
+        # @param ToolName: <p>工具名，用于在 plugin 配置的 tool_list 中定位 tool_id</p>
+        # @type ToolName: String
+        # @param Arguments: <p>JSON：工具入参原文，原样透传给 MCP Server</p>
+        # @type Arguments: String
+
+        attr_accessor :PluginId, :ThreadId, :ToolName, :Arguments
+
+        def initialize(pluginid=nil, threadid=nil, toolname=nil, arguments=nil)
+          @PluginId = pluginid
+          @ThreadId = threadid
+          @ToolName = toolname
+          @Arguments = arguments
+        end
+
+        def deserialize(params)
+          @PluginId = params['PluginId']
+          @ThreadId = params['ThreadId']
+          @ToolName = params['ToolName']
+          @Arguments = params['Arguments']
+        end
+      end
+
+      # CallMCPTool返回参数结构体
+      class CallMCPToolResponse < TencentCloud::Common::AbstractModel
+        # @param Result: <p>JSON：完整 CallToolResult 原文，含 structuredContent / isError / _meta</p>
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 调用来源
       class CallSource < TencentCloud::Common::AbstractModel
         # @param SubjectId: <p>调用主体 ID，含义由 subject_type 决定（如 app_id、kb_id 等）</p>
@@ -12529,6 +12577,43 @@ module TencentCloud
         end
       end
 
+      # MCP ResourceContents，chat-manage 侧不解析内部字段，仅结构透传
+      class MCPResourceContents < TencentCloud::Common::AbstractModel
+        # @param Blob: <p>二进制内容，与 text 二选一</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Blob: String
+        # @param Meta: <p>JSON：单个资源的 _meta 原文</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Meta: String
+        # @param MimeType: <p>MIME 类型，MCP App 的 HTML 为 text/html;profile=mcp-app</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MimeType: String
+        # @param Text: <p>文本内容，与 blob 二选一</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: String
+        # @param Uri: <p>资源 URI</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uri: String
+
+        attr_accessor :Blob, :Meta, :MimeType, :Text, :Uri
+
+        def initialize(blob=nil, meta=nil, mimetype=nil, text=nil, uri=nil)
+          @Blob = blob
+          @Meta = meta
+          @MimeType = mimetype
+          @Text = text
+          @Uri = uri
+        end
+
+        def deserialize(params)
+          @Blob = params['Blob']
+          @Meta = params['Meta']
+          @MimeType = params['MimeType']
+          @Text = params['Text']
+          @Uri = params['Uri']
+        end
+      end
+
       # MCPToolConfig
       class MCPToolConfig < TencentCloud::Common::AbstractModel
         # @param Inputs: <p>输入参数</p>
@@ -15731,6 +15816,61 @@ module TencentCloud
             @SourceInfo = QASourceInfo.new
             @SourceInfo.deserialize(params['SourceInfo'])
           end
+        end
+      end
+
+      # ReadMCPResource请求参数结构体
+      class ReadMCPResourceRequest < TencentCloud::Common::AbstractModel
+        # @param PluginId: <p>能力边界：一次请求只能读该 plugin 的资源</p>
+        # @type PluginId: String
+        # @param ThreadId: <p>agent-exec 侧 thread</p>
+        # @type ThreadId: String
+        # @param Uri: <p>资源 URI，来源 tool 的 _meta.ui.resourceUri</p>
+        # @type Uri: String
+
+        attr_accessor :PluginId, :ThreadId, :Uri
+
+        def initialize(pluginid=nil, threadid=nil, uri=nil)
+          @PluginId = pluginid
+          @ThreadId = threadid
+          @Uri = uri
+        end
+
+        def deserialize(params)
+          @PluginId = params['PluginId']
+          @ThreadId = params['ThreadId']
+          @Uri = params['Uri']
+        end
+      end
+
+      # ReadMCPResource返回参数结构体
+      class ReadMCPResourceResponse < TencentCloud::Common::AbstractModel
+        # @param Contents: <p>MCP resources/read 返回的资源内容</p>
+        # @type Contents: Array
+        # @param ResourceMeta: <p>JSON：Resource 的 _meta 原文，MCP App 场景 Host 依据 ui.csp 强制 CSP 策略</p>
+        # @type ResourceMeta: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Contents, :ResourceMeta, :RequestId
+
+        def initialize(contents=nil, resourcemeta=nil, requestid=nil)
+          @Contents = contents
+          @ResourceMeta = resourcemeta
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Contents'].nil?
+            @Contents = []
+            params['Contents'].each do |i|
+              mcpresourcecontents_tmp = MCPResourceContents.new
+              mcpresourcecontents_tmp.deserialize(i)
+              @Contents << mcpresourcecontents_tmp
+            end
+          end
+          @ResourceMeta = params['ResourceMeta']
+          @RequestId = params['RequestId']
         end
       end
 

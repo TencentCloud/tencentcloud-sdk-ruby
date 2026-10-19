@@ -369,6 +369,30 @@ module TencentCloud
         end
       end
 
+      # 试题识别结果-答案元素内容
+      class AnswerElement < TencentCloud::Common::AbstractModel
+        # @param IsCorrect: <p>答案是否正确</p>
+        # @type IsCorrect: Boolean
+        # @param AnswerAnalysis: <p>答案分析结果</p>
+        # @type AnswerAnalysis: String
+        # @param RightAnswer: <p>返回正确答案内容</p>
+        # @type RightAnswer: String
+
+        attr_accessor :IsCorrect, :AnswerAnalysis, :RightAnswer
+
+        def initialize(iscorrect=nil, answeranalysis=nil, rightanswer=nil)
+          @IsCorrect = iscorrect
+          @AnswerAnalysis = answeranalysis
+          @RightAnswer = rightanswer
+        end
+
+        def deserialize(params)
+          @IsCorrect = params['IsCorrect']
+          @AnswerAnalysis = params['AnswerAnalysis']
+          @RightAnswer = params['RightAnswer']
+        end
+      end
+
       # 单题所有答案区域批改信息
       class AnswerInfo < TencentCloud::Common::AbstractModel
         # @param HandwriteInfo: 手写答案内容，比如选择题的手写的选项、填空题的手写内容
@@ -1887,7 +1911,7 @@ module TencentCloud
 
       # DescribeQuestionMarkAgentJob请求参数结构体
       class DescribeQuestionMarkAgentJobRequest < TencentCloud::Common::AbstractModel
-        # @param JobId: 任务唯一ID。由服务端生成。
+        # @param JobId: <p>任务唯一ID。由服务端生成。</p>
         # @type JobId: String
 
         attr_accessor :JobId
@@ -1903,27 +1927,30 @@ module TencentCloud
 
       # DescribeQuestionMarkAgentJob返回参数结构体
       class DescribeQuestionMarkAgentJobResponse < TencentCloud::Common::AbstractModel
-        # @param ErrorCode: 任务执行错误码。当任务状态不为 FAIL 时，该值为""。
+        # @param ErrorCode: <p>任务执行错误码。当任务状态不为 FAIL 时，该值为&quot;&quot;。</p>
         # @type ErrorCode: String
-        # @param ErrorMessage: 任务执行错误信息。当任务状态不为 FAIL 时，该值为""。
+        # @param ErrorMessage: <p>任务执行错误信息。当任务状态不为 FAIL 时，该值为&quot;&quot;。</p>
         # @type ErrorMessage: String
-        # @param JobStatus: 任务状态。WAIT：等待中，RUN：执行中，FAIL：任务失败，DONE：任务成功
+        # @param JobStatus: <p>任务状态。WAIT：等待中，RUN：执行中，FAIL：任务失败，DONE：任务成功</p>
         # @type JobStatus: String
-        # @param Angle: 图片旋转角度(角度制)，文本的水平方向为 0；顺时针为正，逆时针为负。
+        # @param Angle: <p>图片旋转角度(角度制)，文本的水平方向为 0；顺时针为正，逆时针为负。</p>
         # @type Angle: Float
-        # @param MarkInfos: 试题批改信息
+        # @param MarkInfos: <p>试题批改信息  （该字段后续废弃，使用QuestionInfo兼容多页批改场景）</p>
         # @type MarkInfos: Array
+        # @param QuestionInfo: <p>试题批改信息。</p>
+        # @type QuestionInfo: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ErrorCode, :ErrorMessage, :JobStatus, :Angle, :MarkInfos, :RequestId
+        attr_accessor :ErrorCode, :ErrorMessage, :JobStatus, :Angle, :MarkInfos, :QuestionInfo, :RequestId
 
-        def initialize(errorcode=nil, errormessage=nil, jobstatus=nil, angle=nil, markinfos=nil, requestid=nil)
+        def initialize(errorcode=nil, errormessage=nil, jobstatus=nil, angle=nil, markinfos=nil, questioninfo=nil, requestid=nil)
           @ErrorCode = errorcode
           @ErrorMessage = errormessage
           @JobStatus = jobstatus
           @Angle = angle
           @MarkInfos = markinfos
+          @QuestionInfo = questioninfo
           @RequestId = requestid
         end
 
@@ -1938,6 +1965,14 @@ module TencentCloud
               markinfo_tmp = MarkInfo.new
               markinfo_tmp.deserialize(i)
               @MarkInfos << markinfo_tmp
+            end
+          end
+          unless params['QuestionInfo'].nil?
+            @QuestionInfo = []
+            params['QuestionInfo'].each do |i|
+              questioninfo_tmp = QuestionInfo.new
+              questioninfo_tmp.deserialize(i)
+              @QuestionInfo << questioninfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -2877,16 +2912,19 @@ module TencentCloud
         # @type Index: Integer
         # @param PageIndex: <p>元素所在页</p><p>单位：页</p><p>默认值：1</p>
         # @type PageIndex: Integer
+        # @param AnswerElement: <p>批改时答案的额外数据</p>
+        # @type AnswerElement: :class:`Tencentcloud::Ocr.v20181119.models.AnswerElement`
 
-        attr_accessor :Text, :Coord, :GroupType, :ResultList, :Index, :PageIndex
+        attr_accessor :Text, :Coord, :GroupType, :ResultList, :Index, :PageIndex, :AnswerElement
 
-        def initialize(text=nil, coord=nil, grouptype=nil, resultlist=nil, index=nil, pageindex=nil)
+        def initialize(text=nil, coord=nil, grouptype=nil, resultlist=nil, index=nil, pageindex=nil, answerelement=nil)
           @Text = text
           @Coord = coord
           @GroupType = grouptype
           @ResultList = resultlist
           @Index = index
           @PageIndex = pageindex
+          @AnswerElement = answerelement
         end
 
         def deserialize(params)
@@ -2906,6 +2944,10 @@ module TencentCloud
           end
           @Index = params['Index']
           @PageIndex = params['PageIndex']
+          unless params['AnswerElement'].nil?
+            @AnswerElement = AnswerElement.new
+            @AnswerElement.deserialize(params['AnswerElement'])
+          end
         end
       end
 
@@ -7909,10 +7951,12 @@ module TencentCloud
         # @type OrgWidth: Integer
         # @param ImageBase64: <p>预处理后的图片base64编码</p>
         # @type ImageBase64: String
+        # @param ReturnImageUrl: <p>预处理后的图片URL,如果开启了图像切边矫正，后续的坐标都是基于当前图片返回的坐标</p>
+        # @type ReturnImageUrl: String
 
-        attr_accessor :Angle, :Height, :Width, :ResultList, :OrgHeight, :OrgWidth, :ImageBase64
+        attr_accessor :Angle, :Height, :Width, :ResultList, :OrgHeight, :OrgWidth, :ImageBase64, :ReturnImageUrl
 
-        def initialize(angle=nil, height=nil, width=nil, resultlist=nil, orgheight=nil, orgwidth=nil, imagebase64=nil)
+        def initialize(angle=nil, height=nil, width=nil, resultlist=nil, orgheight=nil, orgwidth=nil, imagebase64=nil, returnimageurl=nil)
           @Angle = angle
           @Height = height
           @Width = width
@@ -7920,6 +7964,7 @@ module TencentCloud
           @OrgHeight = orgheight
           @OrgWidth = orgwidth
           @ImageBase64 = imagebase64
+          @ReturnImageUrl = returnimageurl
         end
 
         def deserialize(params)
@@ -7937,6 +7982,7 @@ module TencentCloud
           @OrgHeight = params['OrgHeight']
           @OrgWidth = params['OrgWidth']
           @ImageBase64 = params['ImageBase64']
+          @ReturnImageUrl = params['ReturnImageUrl']
         end
       end
 
@@ -9797,10 +9843,16 @@ module TencentCloud
         # @type Coord: Array
         # @param CoordPageIndex: <p>多坐标返回，显示坐标所在页</p><p>默认值：[]</p>
         # @type CoordPageIndex: Array
+        # @param RightAnswer: <p>返回正确答案内容</p>
+        # @type RightAnswer: String
+        # @param Subject: <p>学科（如语文、数学、英语）</p>
+        # @type Subject: String
+        # @param KnowledgePoints: <p>返回题目的知识点内容</p>
+        # @type KnowledgePoints: Array
 
-        attr_accessor :Question, :Option, :Figure, :Table, :Answer, :Parse, :Coord, :CoordPageIndex
+        attr_accessor :Question, :Option, :Figure, :Table, :Answer, :Parse, :Coord, :CoordPageIndex, :RightAnswer, :Subject, :KnowledgePoints
 
-        def initialize(question=nil, option=nil, figure=nil, table=nil, answer=nil, parse=nil, coord=nil, coordpageindex=nil)
+        def initialize(question=nil, option=nil, figure=nil, table=nil, answer=nil, parse=nil, coord=nil, coordpageindex=nil, rightanswer=nil, subject=nil, knowledgepoints=nil)
           @Question = question
           @Option = option
           @Figure = figure
@@ -9809,6 +9861,9 @@ module TencentCloud
           @Parse = parse
           @Coord = coord
           @CoordPageIndex = coordpageindex
+          @RightAnswer = rightanswer
+          @Subject = subject
+          @KnowledgePoints = knowledgepoints
         end
 
         def deserialize(params)
@@ -9869,6 +9924,9 @@ module TencentCloud
             end
           end
           @CoordPageIndex = params['CoordPageIndex']
+          @RightAnswer = params['RightAnswer']
+          @Subject = params['Subject']
+          @KnowledgePoints = params['KnowledgePoints']
         end
       end
 
@@ -11037,33 +11095,35 @@ module TencentCloud
         # @type ImageBase64: String
         # @param ImageUrl: <p>图片/PDF的 Url 地址。要求图片经Base64编码后不超过10M，分辨率建议600*800以上，支持PNG、JPG、JPEG、BMP、PDF格式。图片下载时间不超过 3 秒。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。  示例值：https://ocr-demo-1254418846.cos.ap-guangzhou.myqcloud.com/general/GeneralAccurateOCR/GeneralAccurateOCR1.jpg</p>
         # @type ImageUrl: String
-        # @param PdfPageNumber: <p>需要识别的PDF页面的对应页码，仅支持PDF单页识别，默认值为1。</p>
+        # @param PdfPageNumber: <p>不传则默认识别整个PDF，如果识别单页则输入指定页码</p>
         # @type PdfPageNumber: Integer
         # @param BoolSingleQuestion: <p>表示整张试卷批改需要先切题，默认为false</p>
         # @type BoolSingleQuestion: Boolean
         # @param EnableDeepThink: <p>默认false 表示关闭深度思考  true 表示打开深度思考，更深层次推理分析，速度更慢</p>
         # @type EnableDeepThink: Boolean
-        # @param QuestionConfigMap: <p>题目信息输出配置，当key对应为true表示开启配置开关。</p><p>当key为KnowledgePoints value为true 表示输出每道题结构信息中输出知识点内容；<br>当key为TrueAnswer value为true 表示输出每道题的正确答案 ；<br>当key为StepCorrection value为true表示启用步骤级批改；</p><p>当key为DisableAnswerAnalysis value为true表示不输出答案解析；</p><p>当key为OutputSubQuestionsAndCoords value为true表示输出子题干和插图坐标；</p><p>当key为UseCoordAssist value为true表示使用精调坐标辅助模型，false表示默认模型坐标（性能更优）；</p><p>参数格式：{&quot;KnowledgePoints&quot;:true,&quot;TrueAnswer&quot;:true}</p>
+        # @param QuestionConfigMap: <p>题目信息输出配置，当key对应为true表示开启配置开关。<br>当key为KnowledgePoints value为true 表示输出每道题结构信息中输出知识点内容；<br>当key为TrueAnswer value为true 表示输出每道题的正确答案 ；<br>当key为StepCorrection value为true表示启用步骤级批改；<br>当key为DisableAnswerAnalysis value为true表示不输出答案解析；<br>当key为OutputSubQuestionsAndCoords value为true表示输出子题干和插图坐标；<br>当key为UseCoordAssist value为true表示使用精调坐标辅助模型，false表示默认模型坐标（性能更优）；</p>
         # @type QuestionConfigMap: String
-        # @param ReferenceAnswer: <p>仅有单题有效，如果切题有多题则不生效，单题批改的时候作为参考答案输入到批改模型中</p>
+        # @param ReferenceAnswer: <p>【废除字段】<br>仅有单题有效，如果切题有多题则不生效，单题批改的时候作为参考答案输入到批改模型中</p>
         # @type ReferenceAnswer: String
-        # @param ImageBase64List: <p>批量base64图片入口，每个base64参考单独ImageBase64参数规则。</p><ol><li>当AssistMarkType为2时，用于提供题目相关的辅助批改图片信息.ImageBase64List.N/ImageUrlList.N来输入答题试卷和含正确解析试卷，最多两张</li><li>当AssistMarkType不为2时，ImageBase64List.N/ImageUrlList.N图片会执行拼接逻辑（解决单题跨页场景）</li></ol>
+        # @param ImageBase64List: <p>批量base64图片入口，每个base64参考单独ImageBase64参数规则。</p><ol><li>当AssistMarkType为2时，用于提供题目相关的辅助批改图片信息.ImageBase64List.N/ImageUrlList.N来输入答题试卷和含正确解析试卷，最多两张</li><li>当AssistMarkType不为2时，ImageBase64List.N/ImageUrlList.N图片会执行多图同时批改逻辑（解决单题跨页场景）</li></ol>
         # @type ImageBase64List: Array
-        # @param ImageUrlList: <p>批量ImageUrl图片入口，每个ImageUrl参考单独ImageUrl参数规则。</p><ol><li>当AssistMarkType为2时，用于提供题目相关的辅助批改图片信息.ImageBase64List.N/ImageUrlList.N 来输入答题试卷和含正确解析试卷，最多两张</li><li>当AssistMarkType不为2时，ImageBase64List.N/ImageUrlList.N图片会执行拼接逻辑（解决单题跨页场景）</li></ol>
+        # @param ImageUrlList: <p>批量ImageUrl图片入口，每个ImageUrl参考单独ImageUrl参数规则。</p><ol><li>当AssistMarkType为2时，用于提供题目相关的辅助批改图片信息.ImageBase64List.N/ImageUrlList.N 来输入答题试卷和含正确解析试卷，最多两张</li><li>当AssistMarkType不为2时，ImageBase64List.N/ImageUrlList.N图片会执行多图同时批改逻辑（解决单题跨页场景）</li></ol>
         # @type ImageUrlList: Array
         # @param AssistMarkType: <p>辅助批改类型</p><p>枚举值：</p><ul><li>0： 无辅助批改，直接模型批改</li><li>1： 单题文本辅助批改，配合AnswerAssistMap使用</li><li>2： 整页辅助批改，待批改试卷使用ImageUrl/ImageBase64，答案部分使用ImageBase64List.N/ImageUrlList.N</li></ul><p>默认值：0</p>
         # @type AssistMarkType: Integer
         # @param AnswerAssistMap: <p>单题辅助批改文本内容列表，当AssistMarkType为1时生效，用于提供题目相关的辅助文本信息。</p><ol><li>当key为ReferenceAnswer，value可以输入单题的辅助答案文本。</li><li>当key为QuestionAuxStem，value可以输入单题的辅助题干。</li></ol>
         # @type AnswerAssistMap: String
+        # @param EnableImageCrop: <p>是否开启切边、弯曲矫正、方向矫正，开启则批改之前先做图片前处理，图片url地址返回在查询接口的QuestionInfo-&gt; ReturnImageUr中l,默认为false不开启<br>示例值：false</p>
+        # @type EnableImageCrop: Boolean
 
-        attr_accessor :ImageBase64, :ImageUrl, :PdfPageNumber, :BoolSingleQuestion, :EnableDeepThink, :QuestionConfigMap, :ReferenceAnswer, :ImageBase64List, :ImageUrlList, :AssistMarkType, :AnswerAssistMap
+        attr_accessor :ImageBase64, :ImageUrl, :PdfPageNumber, :BoolSingleQuestion, :EnableDeepThink, :QuestionConfigMap, :ReferenceAnswer, :ImageBase64List, :ImageUrlList, :AssistMarkType, :AnswerAssistMap, :EnableImageCrop
         extend Gem::Deprecate
         deprecate :BoolSingleQuestion, :none, 2026, 10
         deprecate :BoolSingleQuestion=, :none, 2026, 10
         deprecate :EnableDeepThink, :none, 2026, 10
         deprecate :EnableDeepThink=, :none, 2026, 10
 
-        def initialize(imagebase64=nil, imageurl=nil, pdfpagenumber=nil, boolsinglequestion=nil, enabledeepthink=nil, questionconfigmap=nil, referenceanswer=nil, imagebase64list=nil, imageurllist=nil, assistmarktype=nil, answerassistmap=nil)
+        def initialize(imagebase64=nil, imageurl=nil, pdfpagenumber=nil, boolsinglequestion=nil, enabledeepthink=nil, questionconfigmap=nil, referenceanswer=nil, imagebase64list=nil, imageurllist=nil, assistmarktype=nil, answerassistmap=nil, enableimagecrop=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
           @PdfPageNumber = pdfpagenumber
@@ -11075,6 +11135,7 @@ module TencentCloud
           @ImageUrlList = imageurllist
           @AssistMarkType = assistmarktype
           @AnswerAssistMap = answerassistmap
+          @EnableImageCrop = enableimagecrop
         end
 
         def deserialize(params)
@@ -11089,6 +11150,7 @@ module TencentCloud
           @ImageUrlList = params['ImageUrlList']
           @AssistMarkType = params['AssistMarkType']
           @AnswerAssistMap = params['AnswerAssistMap']
+          @EnableImageCrop = params['EnableImageCrop']
         end
       end
 
@@ -11100,7 +11162,7 @@ module TencentCloud
         # @type QuestionInfo: Array
         # @param QuestionCount: <p>题目切题数量，作为计费题目数总量</p>
         # @type QuestionCount: String
-        # @param OriginalImageUrl: <p>客户图片url</p>
+        # @param OriginalImageUrl: <p>废弃字段</p>
         # @type OriginalImageUrl: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -11139,19 +11201,23 @@ module TencentCloud
         # @type ImageBase64List: Array
         # @param ModelType: <p>选择切题模型</p><p>枚举值：</p><ul><li>youtu_crop： 轻量化切题模型，运算速度更快，适合常规切题</li><li>youtu_crop_pro： 属于切题精调大模型，针对双栏、跨栏等复杂版式识别精度大幅提升，但推理耗时更长</li></ul><p>默认值：youtu_crop</p>
         # @type ModelType: String
+        # @param EnableImageCrop: <p>是否开启切边、弯曲矫正、方向矫正，开启则批改之前先做图片前处理，图片url地址返回在查询接口的QuestionInfo-&gt; ReturnImageUr中l,默认为false不开启</p>
+        # @type EnableImageCrop: Boolean
 
-        attr_accessor :ImageUrlList, :ImageBase64List, :ModelType
+        attr_accessor :ImageUrlList, :ImageBase64List, :ModelType, :EnableImageCrop
 
-        def initialize(imageurllist=nil, imagebase64list=nil, modeltype=nil)
+        def initialize(imageurllist=nil, imagebase64list=nil, modeltype=nil, enableimagecrop=nil)
           @ImageUrlList = imageurllist
           @ImageBase64List = imagebase64list
           @ModelType = modeltype
+          @EnableImageCrop = enableimagecrop
         end
 
         def deserialize(params)
           @ImageUrlList = params['ImageUrlList']
           @ImageBase64List = params['ImageBase64List']
           @ModelType = params['ModelType']
+          @EnableImageCrop = params['EnableImageCrop']
         end
       end
 

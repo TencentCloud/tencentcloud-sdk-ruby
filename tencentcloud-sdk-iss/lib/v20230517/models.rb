@@ -1449,44 +1449,41 @@ module TencentCloud
 
       # 获取开流地址返回数据
       class ControlDeviceStreamData < TencentCloud::Common::AbstractModel
-        # @param Flv: flv 流地址
+        # @param Flv: <p>flv 流地址</p>
         # @type Flv: String
-        # @param Hls: hls 流地址
+        # @param Hls: <p>hls 流地址</p>
         # @type Hls: String
-        # @param Rtmp: rtmp 流地址
+        # @param Rtmp: <p>rtmp 流地址</p>
         # @type Rtmp: String
+        # @param FMp4: <p>fmp4地址</p>
+        # @type FMp4: String
 
-        attr_accessor :Flv, :Hls, :Rtmp
+        attr_accessor :Flv, :Hls, :Rtmp, :FMp4
 
-        def initialize(flv=nil, hls=nil, rtmp=nil)
+        def initialize(flv=nil, hls=nil, rtmp=nil, fmp4=nil)
           @Flv = flv
           @Hls = hls
           @Rtmp = rtmp
+          @FMp4 = fmp4
         end
 
         def deserialize(params)
           @Flv = params['Flv']
           @Hls = params['Hls']
           @Rtmp = params['Rtmp']
+          @FMp4 = params['FMp4']
         end
       end
 
       # ControlDeviceStream请求参数结构体
       class ControlDeviceStreamRequest < TencentCloud::Common::AbstractModel
-        # @param ChannelId: 通道 ID（从通道查询接口DescribeDeviceChannel中获取）
+        # @param ChannelId: <p>通道 ID（从通道查询接口DescribeDeviceChannel中获取）</p>
         # @type ChannelId: String
-        # @param StreamType: 流类型（1:主码流；
-        # 2:子码流（不可以和 Resolution 同时下发））
+        # @param StreamType: <p>流类型（1:主码流；<br>2:子码流（不可以和 Resolution 同时下发））</p>
         # @type StreamType: String
-        # @param Resolution: 分辨率（1:QCIF；
-        # 2:CIF；
-        # 3:4CIF；
-        # 4:D1；
-        # 5:720P；
-        # 6:1080P/I；
-        # 自定义的19201080等等（需设备支持）（不可以和 StreamType 同时下发））
+        # @param Resolution: <p>分辨率（1:QCIF；<br>2:CIF；<br>3:4CIF；<br>4:D1；<br>5:720P；<br>6:1080P/I；<br>自定义的19201080等等（需设备支持）（不可以和 StreamType 同时下发））</p>
         # @type Resolution: String
-        # @param IsInternal: 是否内网
+        # @param IsInternal: <p>是否内网</p>
         # @type IsInternal: Boolean
 
         attr_accessor :ChannelId, :StreamType, :Resolution, :IsInternal
@@ -1508,7 +1505,7 @@ module TencentCloud
 
       # ControlDeviceStream返回参数结构体
       class ControlDeviceStreamResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 返回数据
+        # @param Data: <p>返回数据</p>
         # @type Data: :class:`Tencentcloud::Iss.v20230517.models.ControlDeviceStreamData`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5997,33 +5994,37 @@ module TencentCloud
 
       # 本地录像播放url数据结构
       class PlayRecordData < TencentCloud::Common::AbstractModel
-        # @param Flv: 录像播放地址
+        # @param Flv: <p>flv录像播放地址</p>
         # @type Flv: String
+        # @param FMp4: <p>fmp4录像播放地址</p>
+        # @type FMp4: String
 
-        attr_accessor :Flv
+        attr_accessor :Flv, :FMp4
 
-        def initialize(flv=nil)
+        def initialize(flv=nil, fmp4=nil)
           @Flv = flv
+          @FMp4 = fmp4
         end
 
         def deserialize(params)
           @Flv = params['Flv']
+          @FMp4 = params['FMp4']
         end
       end
 
       # PlayRecord请求参数结构体
       class PlayRecordRequest < TencentCloud::Common::AbstractModel
-        # @param ChannelId: 通道 ID（从查询通道DescribeDeviceChannel接口中获取）
+        # @param ChannelId: <p>通道 ID（从查询通道DescribeDeviceChannel接口中获取）</p>
         # @type ChannelId: String
-        # @param Start: 起始时间
+        # @param Start: <p>起始时间</p>
         # @type Start: Integer
-        # @param End:  结束时间
+        # @param End: <p>结束时间</p>
         # @type End: Integer
-        # @param StreamType: 流类型（1:主码流；2:子码流（不可以和 Resolution 同时下发））
+        # @param StreamType: <p>流类型（1:主码流；2:子码流（不可以和 Resolution 同时下发））</p>
         # @type StreamType: Integer
-        # @param Resolution: 分辨率（1:QCIF；2:CIF； 3:4CIF； 4:D1； 5:720P； 6:1080P/I； 自定义的19201080等等（需设备支持）（不可以和 StreamType 同时下发））
+        # @param Resolution: <p>分辨率（1:QCIF；2:CIF； 3:4CIF； 4:D1； 5:720P； 6:1080P/I； 自定义的19201080等等（需设备支持）（不可以和 StreamType 同时下发））</p>
         # @type Resolution: String
-        # @param IsInternal: 是否内网
+        # @param IsInternal: <p>是否内网</p>
         # @type IsInternal: Boolean
 
         attr_accessor :ChannelId, :Start, :End, :StreamType, :Resolution, :IsInternal
@@ -6049,7 +6050,7 @@ module TencentCloud
 
       # PlayRecord返回参数结构体
       class PlayRecordResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 返回结果
+        # @param Data: <p>返回结果</p>
         # @type Data: :class:`Tencentcloud::Iss.v20230517.models.PlayRecordData`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

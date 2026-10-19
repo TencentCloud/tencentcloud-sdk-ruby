@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 用户在 MCP App iframe 内触发的工具调用
+
+        # @param request: Request instance for CallMCPTool.
+        # @type request: :class:`Tencentcloud::adp::V20260520::CallMCPToolRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::CallMCPToolResponse`
+        def CallMCPTool(request)
+          body = send_request('CallMCPTool', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CallMCPToolResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 校验标签
 
         # @param request: Request instance for CheckLabel.
@@ -2848,6 +2872,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = PauseAppTriggerResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 读取 MCP UI 资源（HTML），供前端 iframe 加载 MCP App 界面
+
+        # @param request: Request instance for ReadMCPResource.
+        # @type request: :class:`Tencentcloud::adp::V20260520::ReadMCPResourceRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::ReadMCPResourceResponse`
+        def ReadMCPResource(request)
+          body = send_request('ReadMCPResource', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ReadMCPResourceResponse.new
             model.deserialize(response['Response'])
             model
           else

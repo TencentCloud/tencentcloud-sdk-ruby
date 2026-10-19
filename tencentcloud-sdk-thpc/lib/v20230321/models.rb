@@ -5114,14 +5114,18 @@ module TencentCloud
         # @param EnableMultiZone: <p>是否启用多可用区扩容。未传时保持已持久化的分区策略，局部更新不得覆盖。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableMultiZone: Boolean
+        # @param EnableJobLoadAutoscaling: <p>是否开启按作业负载自动伸缩。开启后扩容数量由队列中排队作业的实际资源需求（节点数 / GPU 卡数）决定；关闭（默认）时按 DesiredCapacity 配额收敛。仅支持 Slurm 集群与同构队列，由服务端校验。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableJobLoadAutoscaling: Boolean
 
-        attr_accessor :InstanceFamilies, :GpuCountPerNode, :EnableMixedGpuCount, :EnableMultiZone
+        attr_accessor :InstanceFamilies, :GpuCountPerNode, :EnableMixedGpuCount, :EnableMultiZone, :EnableJobLoadAutoscaling
 
-        def initialize(instancefamilies=nil, gpucountpernode=nil, enablemixedgpucount=nil, enablemultizone=nil)
+        def initialize(instancefamilies=nil, gpucountpernode=nil, enablemixedgpucount=nil, enablemultizone=nil, enablejobloadautoscaling=nil)
           @InstanceFamilies = instancefamilies
           @GpuCountPerNode = gpucountpernode
           @EnableMixedGpuCount = enablemixedgpucount
           @EnableMultiZone = enablemultizone
+          @EnableJobLoadAutoscaling = enablejobloadautoscaling
         end
 
         def deserialize(params)
@@ -5129,6 +5133,7 @@ module TencentCloud
           @GpuCountPerNode = params['GpuCountPerNode']
           @EnableMixedGpuCount = params['EnableMixedGpuCount']
           @EnableMultiZone = params['EnableMultiZone']
+          @EnableJobLoadAutoscaling = params['EnableJobLoadAutoscaling']
         end
       end
 

@@ -6131,6 +6131,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 视频深度估计接口。输入视频，输出灰度深度视频，白色为近、黑色为远。深度值为单视频内归一化的相对深度。输出存储由 OutputConfig 控制，默认临时存储 7 天后过期。任务提交成功后返回任务 ID，可通过 DescribeTaskDetail 查询结果
+
+        # @param request: Request instance for VideoDepthEstimation.
+        # @type request: :class:`Tencentcloud::vod::V20180717::VideoDepthEstimationRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::VideoDepthEstimationResponse`
+        def VideoDepthEstimation(request)
+          body = send_request('VideoDepthEstimation', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = VideoDepthEstimationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 将点播视频发布到微信小程序，供微信小程序播放器播放。
         # 本接口支持发布原始视频和转码后视频。
 

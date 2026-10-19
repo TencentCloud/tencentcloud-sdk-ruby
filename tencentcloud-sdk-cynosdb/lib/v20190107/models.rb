@@ -19884,29 +19884,29 @@ module TencentCloud
 
       # redo日志详情
       class RedoLogItem < TencentCloud::Common::AbstractModel
-        # @param FileName: 文件名
+        # @param FileName: <p>文件名</p>
         # @type FileName: String
-        # @param FileSize: 文件大小
+        # @param FileSize: <p>文件大小</p>
         # @type FileSize: Integer
-        # @param BackupTime: 备份时间
+        # @param BackupTime: <p>备份时间</p>
         # @type BackupTime: String
-        # @param RedoLogId: redoLogId
+        # @param RedoLogId: <p>redoLogId</p>
         # @type RedoLogId: Integer
-        # @param RedoCrossRegions: 跨地域信息
+        # @param RedoCrossRegions: <p>跨地域信息</p>
         # @type RedoCrossRegions: Array
-        # @param Status: 状态
+        # @param Status: <p>状态</p>
         # @type Status: String
-        # @param StartTime: 开始时间
+        # @param StartTime: <p>开始时间</p>
         # @type StartTime: String
-        # @param FinishTime: 完成时间
+        # @param FinishTime: <p>完成时间</p>
         # @type FinishTime: String
-        # @param VaultInfos: 保险箱信息
+        # @param VaultInfos: <p>保险箱信息</p>
         # @type VaultInfos: Array
-        # @param CopyStatus: 备份投递状态
+        # @param CopyStatus: <p>备份投递状态</p>
         # @type CopyStatus: String
-        # @param EncryptKeyId: 加密秘钥key
+        # @param EncryptKeyId: <p>加密秘钥key</p>
         # @type EncryptKeyId: String
-        # @param EncryptRegion: 加密秘钥地域
+        # @param EncryptRegion: <p>加密秘钥地域</p>
         # @type EncryptRegion: String
 
         attr_accessor :FileName, :FileSize, :BackupTime, :RedoLogId, :RedoCrossRegions, :Status, :StartTime, :FinishTime, :VaultInfos, :CopyStatus, :EncryptKeyId, :EncryptRegion

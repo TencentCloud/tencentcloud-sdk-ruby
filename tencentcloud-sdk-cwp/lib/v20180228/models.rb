@@ -3998,54 +3998,60 @@ module TencentCloud
 
       # 高危命令数据(新)
       class BashEventNew < TencentCloud::Common::AbstractModel
-        # @param Id: 数据ID
+        # @param Id: <p>数据ID</p>
         # @type Id: Integer
-        # @param Uuid: 主机安全ID
+        # @param Uuid: <p>主机安全ID</p>
         # @type Uuid: String
-        # @param Quuid: 主机ID
+        # @param Quuid: <p>主机ID</p>
         # @type Quuid: String
-        # @param HostIp: 主机内网IP
+        # @param HostIp: <p>主机内网IP</p>
         # @type HostIp: String
-        # @param User: 执行用户名
+        # @param User: <p>执行用户名</p>
         # @type User: String
-        # @param Platform: 平台类型
+        # @param Platform: <p>平台类型</p>
         # @type Platform: Integer
-        # @param BashCmd: 执行命令
+        # @param BashCmd: <p>执行命令</p>
         # @type BashCmd: String
-        # @param RuleId: 规则ID
+        # @param RuleId: <p>规则ID</p>
         # @type RuleId: Integer
-        # @param RuleName: 规则名称
+        # @param RuleName: <p>规则名称</p>
         # @type RuleName: String
-        # @param RuleLevel: 规则等级：1-高 2-中 3-低
+        # @param RuleLevel: <p>规则等级：1-高 2-中 3-低</p>
         # @type RuleLevel: Integer
-        # @param Status: 处理状态： 0 = 待处理 1= 已处理, 2 = 已加白， 3 = 已忽略
+        # @param Status: <p>处理状态： 0 = 待处理 1= 已处理, 2 = 已加白， 3 = 已忽略</p>
         # @type Status: Integer
-        # @param CreateTime: 发生时间
+        # @param CreateTime: <p>发生时间</p>
         # @type CreateTime: String
-        # @param MachineName: 主机名
+        # @param MachineName: <p>主机名</p>
         # @type MachineName: String
-        # @param DetectBy: 0: bash日志 1: 实时监控(雷霆版)
+        # @param DetectBy: <p>0: bash日志 1: 实时监控(雷霆版)</p>
         # @type DetectBy: Integer
-        # @param Pid: 进程id
+        # @param Pid: <p>进程id</p>
         # @type Pid: String
-        # @param Exe: 进程名称
+        # @param Exe: <p>进程名称</p>
         # @type Exe: String
-        # @param ModifyTime: 处理时间
+        # @param ModifyTime: <p>处理时间</p>
         # @type ModifyTime: String
-        # @param RuleCategory: 规则类别  0=系统规则，1=用户规则
+        # @param RuleCategory: <p>规则类别  0=系统规则，1=用户规则</p>
         # @type RuleCategory: Integer
-        # @param RegexBashCmd: 转义后的正则表达式
+        # @param RegexBashCmd: <p>转义后的正则表达式</p>
         # @type RegexBashCmd: String
-        # @param RegexExe: 转义后的正则表达式
+        # @param RegexExe: <p>转义后的正则表达式</p>
         # @type RegexExe: String
-        # @param MachineType: 0:普通 1:专业版 2:旗舰版
+        # @param MachineType: <p>0:普通 1:专业版 2:旗舰版</p>
         # @type MachineType: Integer
-        # @param MachineExtraInfo: 机器额外信息
+        # @param MachineExtraInfo: <p>机器额外信息</p>
         # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
+        # @param EventCount: <p>告警次数：同一聚合维度当天的告警命中次数，老数据为空</p>
+        # @type EventCount: Integer
+        # @param FirstDetectTime: <p>首次发现时间（格式 yyyy-MM-dd HH:mm:ss）</p>
+        # @type FirstDetectTime: String
+        # @param LatestDetectTime: <p>最近发现时间（格式 yyyy-MM-dd HH:mm:ss）</p>
+        # @type LatestDetectTime: String
 
-        attr_accessor :Id, :Uuid, :Quuid, :HostIp, :User, :Platform, :BashCmd, :RuleId, :RuleName, :RuleLevel, :Status, :CreateTime, :MachineName, :DetectBy, :Pid, :Exe, :ModifyTime, :RuleCategory, :RegexBashCmd, :RegexExe, :MachineType, :MachineExtraInfo
+        attr_accessor :Id, :Uuid, :Quuid, :HostIp, :User, :Platform, :BashCmd, :RuleId, :RuleName, :RuleLevel, :Status, :CreateTime, :MachineName, :DetectBy, :Pid, :Exe, :ModifyTime, :RuleCategory, :RegexBashCmd, :RegexExe, :MachineType, :MachineExtraInfo, :EventCount, :FirstDetectTime, :LatestDetectTime
 
-        def initialize(id=nil, uuid=nil, quuid=nil, hostip=nil, user=nil, platform=nil, bashcmd=nil, ruleid=nil, rulename=nil, rulelevel=nil, status=nil, createtime=nil, machinename=nil, detectby=nil, pid=nil, exe=nil, modifytime=nil, rulecategory=nil, regexbashcmd=nil, regexexe=nil, machinetype=nil, machineextrainfo=nil)
+        def initialize(id=nil, uuid=nil, quuid=nil, hostip=nil, user=nil, platform=nil, bashcmd=nil, ruleid=nil, rulename=nil, rulelevel=nil, status=nil, createtime=nil, machinename=nil, detectby=nil, pid=nil, exe=nil, modifytime=nil, rulecategory=nil, regexbashcmd=nil, regexexe=nil, machinetype=nil, machineextrainfo=nil, eventcount=nil, firstdetecttime=nil, latestdetecttime=nil)
           @Id = id
           @Uuid = uuid
           @Quuid = quuid
@@ -4068,6 +4074,9 @@ module TencentCloud
           @RegexExe = regexexe
           @MachineType = machinetype
           @MachineExtraInfo = machineextrainfo
+          @EventCount = eventcount
+          @FirstDetectTime = firstdetecttime
+          @LatestDetectTime = latestdetecttime
         end
 
         def deserialize(params)
@@ -4096,6 +4105,9 @@ module TencentCloud
             @MachineExtraInfo = MachineExtraInfo.new
             @MachineExtraInfo.deserialize(params['MachineExtraInfo'])
           end
+          @EventCount = params['EventCount']
+          @FirstDetectTime = params['FirstDetectTime']
+          @LatestDetectTime = params['LatestDetectTime']
         end
       end
 
@@ -4217,66 +4229,92 @@ module TencentCloud
 
       # 高危命令数据详情(新)
       class BashEventsInfoNew < TencentCloud::Common::AbstractModel
-        # @param Id: 数据ID
+        # @param Id: <p>数据ID</p>
         # @type Id: Integer
-        # @param Uuid: 主机安全ID
+        # @param Uuid: <p>主机安全ID</p>
         # @type Uuid: String
-        # @param Quuid: 主机ID
+        # @param Quuid: <p>主机ID</p>
         # @type Quuid: String
-        # @param HostIp: 主机内网IP
+        # @param HostIp: <p>主机内网IP</p>
         # @type HostIp: String
-        # @param Platform: 平台类型
+        # @param Platform: <p>平台类型</p>
         # @type Platform: Integer
-        # @param BashCmd: 执行命令
+        # @param BashCmd: <p>执行命令</p>
         # @type BashCmd: String
-        # @param RuleId: 规则ID,等于0表示已规则已被删除或生效范围已修改
+        # @param RuleId: <p>规则ID,等于0表示已规则已被删除或生效范围已修改</p>
         # @type RuleId: Integer
-        # @param RuleName: 规则名称
+        # @param RuleName: <p>规则名称</p>
         # @type RuleName: String
-        # @param RuleLevel: 规则等级：1-高 2-中 3-低
+        # @param RuleLevel: <p>规则等级：1-高 2-中 3-低</p>
         # @type RuleLevel: Integer
-        # @param Status: 处理状态： 0 = 待处理 1= 已处理, 2 = 已加白， 3= 已忽略
+        # @param Status: <p>处理状态： 0 = 待处理 1= 已处理, 2 = 已加白， 3= 已忽略</p>
         # @type Status: Integer
-        # @param CreateTime: 发生时间
+        # @param CreateTime: <p>发生时间</p>
         # @type CreateTime: String
-        # @param MachineName: 主机名
+        # @param MachineName: <p>主机名</p>
         # @type MachineName: String
-        # @param Exe: 进程名称
+        # @param Exe: <p>进程名称</p>
         # @type Exe: String
-        # @param ModifyTime: 处理时间
+        # @param ModifyTime: <p>处理时间</p>
         # @type ModifyTime: String
-        # @param RuleCategory: 规则类别  0=系统规则，1=用户规则
+        # @param RuleCategory: <p>规则类别  0=系统规则，1=用户规则</p>
         # @type RuleCategory: Integer
-        # @param RegexBashCmd: 自动生成的正则表达式
+        # @param RegexBashCmd: <p>自动生成的正则表达式</p>
         # @type RegexBashCmd: String
-        # @param PsTree: 进程树 json  pid:进程id，exe:文件路径 ，account:进程所属用组和用户 ,cmdline:执行命令，ssh_service: SSH服务ip, ssh_soure:登录源
+        # @param PsTree: <p>进程树 json  pid:进程id，exe:文件路径 ，account:进程所属用组和用户 ,cmdline:执行命令，ssh_service: SSH服务ip, ssh_soure:登录源</p>
         # @type PsTree: String
-        # @param SuggestScheme: 建议方案
+        # @param SuggestScheme: <p>建议方案</p>
         # @type SuggestScheme: String
-        # @param HarmDescribe: 描述
+        # @param HarmDescribe: <p>描述</p>
         # @type HarmDescribe: String
-        # @param Tags: 标签
+        # @param Tags: <p>标签</p>
         # @type Tags: Array
-        # @param References: 参考链接
+        # @param References: <p>参考链接</p>
         # @type References: Array
-        # @param MachineWanIp: 主机外网ip
+        # @param MachineWanIp: <p>主机外网ip</p>
         # @type MachineWanIp: String
-        # @param MachineStatus: 主机在线状态 OFFLINE  ONLINE
+        # @param MachineStatus: <p>主机在线状态 OFFLINE  ONLINE</p>
         # @type MachineStatus: String
-        # @param User: 登录用户
+        # @param User: <p>登录用户</p>
         # @type User: String
-        # @param Pid: 进程号
+        # @param Pid: <p>进程号</p>
         # @type Pid: String
-        # @param MachineType: 0:普通 1:专业版 2:旗舰版
+        # @param MachineType: <p>0:普通 1:专业版 2:旗舰版</p>
         # @type MachineType: Integer
-        # @param DetectBy: 检测来源 0:bash日志 1:实时监控
+        # @param DetectBy: <p>检测来源 0:bash日志 1:实时监控</p>
         # @type DetectBy: Integer
-        # @param BashCmdDecoded: 执行命令(解码后)
+        # @param BashCmdDecoded: <p>执行命令(解码后)</p>
         # @type BashCmdDecoded: String
+        # @param EventCount: <p>告警次数：同一聚合维度当天的告警命中次数，老数据为空</p>
+        # @type EventCount: Integer
+        # @param FirstDetectTime: <p>首次发现时间（格式 yyyy-MM-dd HH:mm:ss）</p>
+        # @type FirstDetectTime: String
+        # @param LatestDetectTime: <p>最近发现时间（格式 yyyy-MM-dd HH:mm:ss）</p>
+        # @type LatestDetectTime: String
+        # @param FileProcessMd5: <p>进程MD5（文件监控行为独有）</p>
+        # @type FileProcessMd5: String
+        # @param FileAction: <p>动作：进程对文件的操作，如 读/写/重命名/删除/清空内容（文件监控行为独有）</p>
+        # @type FileAction: String
+        # @param FilePath: <p>文件路径（文件监控行为独有）</p>
+        # @type FilePath: String
+        # @param FileMd5: <p>文件MD5（文件监控行为独有）</p>
+        # @type FileMd5: String
+        # @param FileName: <p>文件名称（文件监控行为独有）</p>
+        # @type FileName: String
+        # @param FileSize: <p>文件大小（文件监控行为独有）</p>
+        # @type FileSize: String
+        # @param FileModifyTime: <p>文件修改时间（文件监控行为独有）</p>
+        # @type FileModifyTime: String
+        # @param FilePermission: <p>文件权限（文件监控行为独有）</p>
+        # @type FilePermission: String
+        # @param FileAccessTime: <p>文件访问时间</p>
+        # @type FileAccessTime: String
+        # @param BashType: <p>高危命令事件类型</p><p>枚举值：</p><ul><li>filemon： 文件监控事件</li><li>connect： 外联行为事件</li><li>process： 进程启动事件</li></ul>
+        # @type BashType: String
 
-        attr_accessor :Id, :Uuid, :Quuid, :HostIp, :Platform, :BashCmd, :RuleId, :RuleName, :RuleLevel, :Status, :CreateTime, :MachineName, :Exe, :ModifyTime, :RuleCategory, :RegexBashCmd, :PsTree, :SuggestScheme, :HarmDescribe, :Tags, :References, :MachineWanIp, :MachineStatus, :User, :Pid, :MachineType, :DetectBy, :BashCmdDecoded
+        attr_accessor :Id, :Uuid, :Quuid, :HostIp, :Platform, :BashCmd, :RuleId, :RuleName, :RuleLevel, :Status, :CreateTime, :MachineName, :Exe, :ModifyTime, :RuleCategory, :RegexBashCmd, :PsTree, :SuggestScheme, :HarmDescribe, :Tags, :References, :MachineWanIp, :MachineStatus, :User, :Pid, :MachineType, :DetectBy, :BashCmdDecoded, :EventCount, :FirstDetectTime, :LatestDetectTime, :FileProcessMd5, :FileAction, :FilePath, :FileMd5, :FileName, :FileSize, :FileModifyTime, :FilePermission, :FileAccessTime, :BashType
 
-        def initialize(id=nil, uuid=nil, quuid=nil, hostip=nil, platform=nil, bashcmd=nil, ruleid=nil, rulename=nil, rulelevel=nil, status=nil, createtime=nil, machinename=nil, exe=nil, modifytime=nil, rulecategory=nil, regexbashcmd=nil, pstree=nil, suggestscheme=nil, harmdescribe=nil, tags=nil, references=nil, machinewanip=nil, machinestatus=nil, user=nil, pid=nil, machinetype=nil, detectby=nil, bashcmddecoded=nil)
+        def initialize(id=nil, uuid=nil, quuid=nil, hostip=nil, platform=nil, bashcmd=nil, ruleid=nil, rulename=nil, rulelevel=nil, status=nil, createtime=nil, machinename=nil, exe=nil, modifytime=nil, rulecategory=nil, regexbashcmd=nil, pstree=nil, suggestscheme=nil, harmdescribe=nil, tags=nil, references=nil, machinewanip=nil, machinestatus=nil, user=nil, pid=nil, machinetype=nil, detectby=nil, bashcmddecoded=nil, eventcount=nil, firstdetecttime=nil, latestdetecttime=nil, fileprocessmd5=nil, fileaction=nil, filepath=nil, filemd5=nil, filename=nil, filesize=nil, filemodifytime=nil, filepermission=nil, fileaccesstime=nil, bashtype=nil)
           @Id = id
           @Uuid = uuid
           @Quuid = quuid
@@ -4305,6 +4343,19 @@ module TencentCloud
           @MachineType = machinetype
           @DetectBy = detectby
           @BashCmdDecoded = bashcmddecoded
+          @EventCount = eventcount
+          @FirstDetectTime = firstdetecttime
+          @LatestDetectTime = latestdetecttime
+          @FileProcessMd5 = fileprocessmd5
+          @FileAction = fileaction
+          @FilePath = filepath
+          @FileMd5 = filemd5
+          @FileName = filename
+          @FileSize = filesize
+          @FileModifyTime = filemodifytime
+          @FilePermission = filepermission
+          @FileAccessTime = fileaccesstime
+          @BashType = bashtype
         end
 
         def deserialize(params)
@@ -4336,49 +4387,64 @@ module TencentCloud
           @MachineType = params['MachineType']
           @DetectBy = params['DetectBy']
           @BashCmdDecoded = params['BashCmdDecoded']
+          @EventCount = params['EventCount']
+          @FirstDetectTime = params['FirstDetectTime']
+          @LatestDetectTime = params['LatestDetectTime']
+          @FileProcessMd5 = params['FileProcessMd5']
+          @FileAction = params['FileAction']
+          @FilePath = params['FilePath']
+          @FileMd5 = params['FileMd5']
+          @FileName = params['FileName']
+          @FileSize = params['FileSize']
+          @FileModifyTime = params['FileModifyTime']
+          @FilePermission = params['FilePermission']
+          @FileAccessTime = params['FileAccessTime']
+          @BashType = params['BashType']
         end
       end
 
       # 高危命令策略
       class BashPolicy < TencentCloud::Common::AbstractModel
-        # @param Name: 策略名称
+        # @param Name: <p>策略名称</p>
         # @type Name: String
-        # @param Enable: 1:有效 0:无效
+        # @param Enable: <p>1:有效 0:无效</p>
         # @type Enable: Integer
-        # @param White: 0:黑名单 1:白名单
+        # @param White: <p>0:黑名单 1:白名单</p>
         # @type White: Integer
-        # @param BashAction: 0:告警 1:白名单 2:拦截
+        # @param BashAction: <p>0:告警 1:白名单 2:拦截</p>
         # @type BashAction: Integer
-        # @param Rule: 正则表达式 base64 加密,该字段废弃,如果写入则自动替换为Rules.Process.CmdLine
+        # @param Rule: <p>正则表达式 base64 加密,该字段废弃,如果写入则自动替换为Rules.Process.CmdLine</p>
         # @type Rule: String
-        # @param Level: 危险等级(0:无，1: 高危 2:中危 3: 低危)
+        # @param Level: <p>危险等级(0:无，1: 高危 2:中危 3: 低危)</p>
         # @type Level: Integer
-        # @param Scope: 生效范围（0:一组quuid 1:所有专业版(包含旗舰版) 2:所有旗舰版 3:所有主机）
+        # @param Scope: <p>生效范围（0:一组quuid 1:所有专业版(包含旗舰版) 2:所有旗舰版 3:所有主机）</p>
         # @type Scope: Integer
-        # @param Id: 策略ID
+        # @param Id: <p>策略ID</p>
         # @type Id: Integer
-        # @param Descript: 策略描述
+        # @param Descript: <p>策略描述</p>
         # @type Descript: String
-        # @param EventId: 事件列表点击“加入白名单”时,需要传EventId 事件的id
+        # @param EventId: <p>事件列表点击“加入白名单”时,需要传EventId 事件的id</p>
         # @type EventId: Integer
-        # @param DealOldEvents: 是否处理旧事件为白名单 0=不处理 1=处理
+        # @param DealOldEvents: <p>是否处理旧事件为白名单 0=不处理 1=处理</p>
         # @type DealOldEvents: Integer
-        # @param Quuids: 生效主机的QUUID集合
+        # @param Quuids: <p>生效主机的QUUID集合</p>
         # @type Quuids: Array
-        # @param Category: 策略类型，0:系统  1:用户
+        # @param Category: <p>策略类型，0:系统  1:用户</p>
         # @type Category: Integer
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # @type CreateTime: String
-        # @param ModifyTime: 修改时间
+        # @param ModifyTime: <p>修改时间</p>
         # @type ModifyTime: String
-        # @param Uuids: 老版本兼容可能会用到
+        # @param Uuids: <p>老版本兼容可能会用到</p>
         # @type Uuids: Array
-        # @param Rules: 规则表达式
+        # @param Rules: <p>规则表达式</p>
         # @type Rules: :class:`Tencentcloud::Cwp.v20180228.models.PolicyRules`
+        # @param MatchType: <p>匹配类型：0-命令行（默认） 1-文件操作</p>
+        # @type MatchType: Integer
 
-        attr_accessor :Name, :Enable, :White, :BashAction, :Rule, :Level, :Scope, :Id, :Descript, :EventId, :DealOldEvents, :Quuids, :Category, :CreateTime, :ModifyTime, :Uuids, :Rules
+        attr_accessor :Name, :Enable, :White, :BashAction, :Rule, :Level, :Scope, :Id, :Descript, :EventId, :DealOldEvents, :Quuids, :Category, :CreateTime, :ModifyTime, :Uuids, :Rules, :MatchType
 
-        def initialize(name=nil, enable=nil, white=nil, bashaction=nil, rule=nil, level=nil, scope=nil, id=nil, descript=nil, eventid=nil, dealoldevents=nil, quuids=nil, category=nil, createtime=nil, modifytime=nil, uuids=nil, rules=nil)
+        def initialize(name=nil, enable=nil, white=nil, bashaction=nil, rule=nil, level=nil, scope=nil, id=nil, descript=nil, eventid=nil, dealoldevents=nil, quuids=nil, category=nil, createtime=nil, modifytime=nil, uuids=nil, rules=nil, matchtype=nil)
           @Name = name
           @Enable = enable
           @White = white
@@ -4396,6 +4462,7 @@ module TencentCloud
           @ModifyTime = modifytime
           @Uuids = uuids
           @Rules = rules
+          @MatchType = matchtype
         end
 
         def deserialize(params)
@@ -4419,6 +4486,7 @@ module TencentCloud
             @Rules = PolicyRules.new
             @Rules.deserialize(params['Rules'])
           end
+          @MatchType = params['MatchType']
         end
       end
 
@@ -4459,8 +4527,8 @@ module TencentCloud
 
         attr_accessor :Id, :Uuid, :Name, :Level, :Rule, :Decription, :Operator, :IsGlobal, :Status, :CreateTime, :ModifyTime, :Hostip, :Uuids, :White, :DealOldEvents, :Description
         extend Gem::Deprecate
-        deprecate :Decription, :none, 2026, 9
-        deprecate :Decription=, :none, 2026, 9
+        deprecate :Decription, :none, 2026, 10
+        deprecate :Decription=, :none, 2026, 10
 
         def initialize(id=nil, uuid=nil, name=nil, level=nil, rule=nil, decription=nil, operator=nil, isglobal=nil, status=nil, createtime=nil, modifytime=nil, hostip=nil, uuids=nil, white=nil, dealoldevents=nil, description=nil)
           @Id = id
@@ -17374,16 +17442,16 @@ module TencentCloud
 
         attr_accessor :MachineCnt, :TencentCloudMachineCnt, :AliCloudMachineCnt, :BaiduCloudMachineCnt, :IDCMachineCnt, :OtherCloudMachineCnt, :ProtectMachineCnt, :BaseMachineCnt, :SpecialtyMachineCnt, :FlagshipMachineCnt, :RiskMachineCnt, :CompareYesterdayRiskMachineCnt, :CompareYesterdayNotProtectMachineCnt, :CompareYesterdayDeadlineMachineCnt, :DeadlineMachineCnt, :NotProtectMachineCnt, :LHGeneralDiscountCnt, :CompareYesterdayMachineCnt, :MachineDestroyAfterOfflineHours, :CloudFrom, :RequestId
         extend Gem::Deprecate
-        deprecate :TencentCloudMachineCnt, :none, 2026, 9
-        deprecate :TencentCloudMachineCnt=, :none, 2026, 9
-        deprecate :AliCloudMachineCnt, :none, 2026, 9
-        deprecate :AliCloudMachineCnt=, :none, 2026, 9
-        deprecate :BaiduCloudMachineCnt, :none, 2026, 9
-        deprecate :BaiduCloudMachineCnt=, :none, 2026, 9
-        deprecate :IDCMachineCnt, :none, 2026, 9
-        deprecate :IDCMachineCnt=, :none, 2026, 9
-        deprecate :OtherCloudMachineCnt, :none, 2026, 9
-        deprecate :OtherCloudMachineCnt=, :none, 2026, 9
+        deprecate :TencentCloudMachineCnt, :none, 2026, 10
+        deprecate :TencentCloudMachineCnt=, :none, 2026, 10
+        deprecate :AliCloudMachineCnt, :none, 2026, 10
+        deprecate :AliCloudMachineCnt=, :none, 2026, 10
+        deprecate :BaiduCloudMachineCnt, :none, 2026, 10
+        deprecate :BaiduCloudMachineCnt=, :none, 2026, 10
+        deprecate :IDCMachineCnt, :none, 2026, 10
+        deprecate :IDCMachineCnt=, :none, 2026, 10
+        deprecate :OtherCloudMachineCnt, :none, 2026, 10
+        deprecate :OtherCloudMachineCnt=, :none, 2026, 10
 
         def initialize(machinecnt=nil, tencentcloudmachinecnt=nil, alicloudmachinecnt=nil, baiducloudmachinecnt=nil, idcmachinecnt=nil, othercloudmachinecnt=nil, protectmachinecnt=nil, basemachinecnt=nil, specialtymachinecnt=nil, flagshipmachinecnt=nil, riskmachinecnt=nil, compareyesterdayriskmachinecnt=nil, compareyesterdaynotprotectmachinecnt=nil, compareyesterdaydeadlinemachinecnt=nil, deadlinemachinecnt=nil, notprotectmachinecnt=nil, lhgeneraldiscountcnt=nil, compareyesterdaymachinecnt=nil, machinedestroyafterofflinehours=nil, cloudfrom=nil, requestid=nil)
           @MachineCnt = machinecnt
@@ -28894,10 +28962,10 @@ module TencentCloud
 
         attr_accessor :Filters, :Fileds, :Fields, :Where
         extend Gem::Deprecate
-        deprecate :Fileds, :none, 2026, 9
-        deprecate :Fileds=, :none, 2026, 9
-        deprecate :Fields, :none, 2026, 9
-        deprecate :Fields=, :none, 2026, 9
+        deprecate :Fileds, :none, 2026, 10
+        deprecate :Fileds=, :none, 2026, 10
+        deprecate :Fields, :none, 2026, 10
+        deprecate :Fields=, :none, 2026, 10
 
         def initialize(filters=nil, fileds=nil, fields=nil, where=nil)
           @Filters = filters
@@ -37201,19 +37269,25 @@ module TencentCloud
 
       # 策略规则表达式
       class PolicyRules < TencentCloud::Common::AbstractModel
-        # @param Process: 进程
+        # @param Process: <p>进程</p>
         # @type Process: :class:`Tencentcloud::Cwp.v20180228.models.CommandLine`
-        # @param PProcess: 父进程
+        # @param PProcess: <p>父进程</p>
         # @type PProcess: :class:`Tencentcloud::Cwp.v20180228.models.CommandLine`
-        # @param AProcess: 祖先进程
+        # @param AProcess: <p>祖先进程</p>
         # @type AProcess: :class:`Tencentcloud::Cwp.v20180228.models.CommandLine`
+        # @param FilePath: <p>目标文件路径（匹配类型=文件操作时有效）</p>
+        # @type FilePath: String
+        # @param FileActions: <p>动作列表（匹配类型=文件操作时有效，多选为或关系）：read-读 write-写 rename-重命名 delete-删除 truncate-清空内容</p>
+        # @type FileActions: Array
 
-        attr_accessor :Process, :PProcess, :AProcess
+        attr_accessor :Process, :PProcess, :AProcess, :FilePath, :FileActions
 
-        def initialize(process=nil, pprocess=nil, aprocess=nil)
+        def initialize(process=nil, pprocess=nil, aprocess=nil, filepath=nil, fileactions=nil)
           @Process = process
           @PProcess = pprocess
           @AProcess = aprocess
+          @FilePath = filepath
+          @FileActions = fileactions
         end
 
         def deserialize(params)
@@ -37229,6 +37303,8 @@ module TencentCloud
             @AProcess = CommandLine.new
             @AProcess.deserialize(params['AProcess'])
           end
+          @FilePath = params['FilePath']
+          @FileActions = params['FileActions']
         end
       end
 

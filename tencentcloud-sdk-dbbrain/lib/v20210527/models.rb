@@ -984,6 +984,218 @@ module TencentCloud
         end
       end
 
+      # 阻塞日志扁平明细行：一次blocked_process_report（blocker→blocked边）在某一次monitorLoop内被lock monitor捕获的瞬时数据。
+      class BlockingLogItem < TencentCloud::Common::AbstractModel
+        # @param ReportTime: <p>本条明细行上报时间（事件时间，__time；时区UTC+8），格式：yyyy-MM-dd HH:mm:ss。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReportTime: String
+        # @param MonitorLoop: <p>监控轮次ID（同一实例内唯一标识一次采集快照，可透传至DescribeBlockingLockTree下钻查看完整阻塞树）。文本承载数值。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MonitorLoop: String
+        # @param DurationMs: <p>被阻塞方的等待时长（毫秒）。来源：Kafka顶层Fields.duration÷1000（微秒→毫秒），来自SQL Server内核XEvent事件的duration字段。与BlockedWaitTimeMs来源不同但通常非常接近（非严格相等，两者为同一事件的两个独立快照）；仅为OrderBy=durationMs排序别名保留。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DurationMs: Integer
+        # @param DatabaseName: <p>阻塞发生所在的数据库名称。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatabaseName: String
+        # @param DatabaseId: <p>阻塞发生所在的数据库 ID（Fields.database_id，对应 SQL Server sys.databases.database_id）。可配合 DatabaseName 使用：ID 稳定、Name 易读；Name 在重命名场景下会变化，ID 则不会。采样为空时该字段不返回。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatabaseId: Integer
+        # @param ObjectId: <p>阻塞锁资源归属的对象 ID（Fields.object_id，对应 SQL Server sys.objects.object_id）。标识具体的表/视图/存储过程等用户对象；可结合 sys.objects 元数据查询对象名。采样为空时该字段不返回。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ObjectId: Integer
+        # @param IndexId: <p>阻塞锁资源归属的索引 ID（Fields.index_id，对应 SQL Server sys.indexes.index_id）。常见取值：0=堆（无聚集索引）、1=聚集索引、&gt;1=非聚集索引；&gt;250 通常为系统内部索引（如全文/XML/空间索引），诊断时按&quot;是否为用户索引&quot;判断即可。采样为空时该字段不返回。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndexId: Integer
+        # @param RootCause: <p>根因分类（与枚举BlockingRootCause一一对应）。取值：C1_LONG_QUERY=长查询正常运行阻塞；C2_SLEEPING_UNCOMMITTED=休眠会话且存在未提交事务；C3_CLIENT_NOT_FETCHING=客户端未取完结果行；C4_APP_DEADLOCK=应用层分布式死锁；C5_ROLLBACK=会话正在rollback；C6_ORPHAN_TRANSACTION=孤立事务；UNKNOWN=未识别。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RootCause: String
+        # @param RootCauseDesc: <p>根因分类的可读中文描述（服务端已完成中文化，前端可直接展示；与RootCause代号一一对应，例如C1_LONG_QUERY→&quot;长查询正常运行阻塞，考虑优化SQL/索引&quot;，未识别或空值统一返回&quot;未识别&quot;）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RootCauseDesc: String
+        # @param BlockingSessionId: <p>头阻塞会话 ID（对应 SQL Server sys.dm_exec_sessions.session_id，即 SPID）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockingSessionId: Integer
+        # @param BlockingLoginName: <p>头阻塞会话数据库用户。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockingLoginName: String
+        # @param BlockingHostName: <p>头阻塞会话客户端主机。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockingHostName: String
+        # @param BlockingClientApp: <p>头阻塞会话客户端应用名。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockingClientApp: String
+        # @param BlockingStatus: <p>头阻塞会话运行时状态（SQL Server sys.dm_exec_sessions.status文本），常见取值：running / sleeping / suspended / background。sleeping+trancount&gt;0是C2_SLEEPING_UNCOMMITTED（休眠会话持未提交事务）的直接证据。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockingStatus: String
+        # @param BlockingIsolationLevel: <p>头阻塞会话事务隔离级别（SQL Server原生取值：read uncommitted / read committed / repeatable read / serializable / snapshot）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockingIsolationLevel: String
+        # @param BlockingTransactionName: <p>头阻塞会话当前显式事务名（XEvent transactionname，如user_transaction / implicit_transaction）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockingTransactionName: String
+        # @param BlockingTranCount: <p>头阻塞会话当前显式事务嵌套层数（XEvent trancount）。&gt;0表示持有显式事务；与BlockingStatus=sleeping组合是C2_SLEEPING_UNCOMMITTED（休眠会话持未提交事务）的直接证据。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockingTranCount: Integer
+        # @param BlockingLastTranStarted: <p>头阻塞会话显式事务BEGIN TRAN时刻（XEvent lasttranstarted，SQL Server服务端本地时区的ISO 8601字符串，无时区后缀）。该字段代表事务持锁开始时刻：ReportTime-BlockingLastTranStarted≈事务持锁时长，用于C1_LONG_QUERY / C6_ORPHAN_TRANSACTION根因复核；在多语句事务场景下比lastbatchstarted更稳定（不会被每个新batch刷新）。值为空表示XML未提供该属性（blocking-process侧常见）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockingLastTranStarted: String
+        # @param BlockingInputBuffer: <p>头阻塞会话正在执行的SQL原文（对应DBCC INPUTBUFFER返回内容，单条最长16KB，超长截断）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockingInputBuffer: String
+        # @param BlockingSqlTemplate: <p>头阻塞SQL归一化模板。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockingSqlTemplate: String
+        # @param BlockingSqlMd5: <p>头阻塞SQL模板MD5。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockingSqlMd5: String
+        # @param BlockingLockMode: <p>头阻塞会话持有或请求的锁模式（SQL Server原生lock_mode枚举；blocker通常不处于等锁状态，该字段多为空）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockingLockMode: String
+        # @param BlockingWaitTimeMs: <p>头阻塞会话自身的等待时长（毫秒）。多数场景为0。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockingWaitTimeMs: Integer
+        # @param BlockedSessionId: <p>被阻塞会话 ID（对应 SQL Server sys.dm_exec_sessions.session_id，即 SPID）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockedSessionId: Integer
+        # @param BlockedTransactionId: <p>被阻塞会话事务ID（SQL Server transaction_id，bigint）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockedTransactionId: Integer
+        # @param BlockedWaitTimeMs: <p>被阻塞会话等待时长（毫秒）。来源：XML &lt;blocked-process&gt;&lt;process waittime&gt;属性（来自ys.dm_os_waiting_tasks.wait_duration_ms在report生成瞬间的快照）。与DurationMs来源不同但通常非常接近；仅为OrderBy=blockedWaitTimeMs排序别名保留。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockedWaitTimeMs: Integer
+        # @param BlockedLockMode: <p>被阻塞会话正在等待的锁模式（SQL Server原生lock_mode枚举，常见取值：S、U、X、IS、IU、IX、SIU、SIX、UIX、Sch-S、Sch-M）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockedLockMode: String
+        # @param BlockedWaitResource: <p>被阻塞会话等待资源。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockedWaitResource: String
+        # @param BlockedLoginName: <p>被阻塞会话数据库用户。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockedLoginName: String
+        # @param BlockedHostName: <p>被阻塞会话客户端主机。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockedHostName: String
+        # @param BlockedClientApp: <p>被阻塞会话客户端应用名。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockedClientApp: String
+        # @param BlockedStatus: <p>被阻塞会话运行时状态（SQL Server sys.dm_exec_sessions.status文本），常见取值：running / sleeping / suspended / background。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockedStatus: String
+        # @param BlockedIsolationLevel: <p>被阻塞会话事务隔离级别（SQL Server原生取值：read uncommitted / read committed / repeatable read / serializable / snapshot）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockedIsolationLevel: String
+        # @param BlockedTransactionName: <p>被阻塞会话当前显式事务名（XEvent transactionname）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockedTransactionName: String
+        # @param BlockedTranCount: <p>被阻塞会话当前显式事务嵌套层数（XEvent trancount）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockedTranCount: Integer
+        # @param BlockedLastTranStarted: <p>被阻塞会话显式事务BEGIN TRAN时刻（XEvent lasttranstarted，SQL Server服务端本地时区的ISO 8601字符串，无时区后缀）。该字段代表事务开始时刻，在多语句事务场景下比lastbatchstarted更稳定。咨视值1900-01-01T00:00:00表示未知。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockedLastTranStarted: String
+        # @param BlockedInputBuffer: <p>被阻塞会话正在执行的SQL原文（对应DBCC INPUTBUFFER返回内容，单条最长16KB，超长截断）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockedInputBuffer: String
+        # @param BlockedSqlTemplate: <p>被阻塞SQL归一化模板。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockedSqlTemplate: String
+        # @param BlockedSqlMd5: <p>被阻塞SQL模板MD5。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockedSqlMd5: String
+        # @param BlockedProcessXml: <p>被阻塞方 blocked_process_report 原始 XML 文本（含完整执行计划、等待链、死锁明细等原始现场；字段体积较大，KB 级起步）。仅当请求参数 WithXml=true 时才返回；默认 false 时该字段省略，不出现在响应体中。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockedProcessXml: String
+
+        attr_accessor :ReportTime, :MonitorLoop, :DurationMs, :DatabaseName, :DatabaseId, :ObjectId, :IndexId, :RootCause, :RootCauseDesc, :BlockingSessionId, :BlockingLoginName, :BlockingHostName, :BlockingClientApp, :BlockingStatus, :BlockingIsolationLevel, :BlockingTransactionName, :BlockingTranCount, :BlockingLastTranStarted, :BlockingInputBuffer, :BlockingSqlTemplate, :BlockingSqlMd5, :BlockingLockMode, :BlockingWaitTimeMs, :BlockedSessionId, :BlockedTransactionId, :BlockedWaitTimeMs, :BlockedLockMode, :BlockedWaitResource, :BlockedLoginName, :BlockedHostName, :BlockedClientApp, :BlockedStatus, :BlockedIsolationLevel, :BlockedTransactionName, :BlockedTranCount, :BlockedLastTranStarted, :BlockedInputBuffer, :BlockedSqlTemplate, :BlockedSqlMd5, :BlockedProcessXml
+
+        def initialize(reporttime=nil, monitorloop=nil, durationms=nil, databasename=nil, databaseid=nil, objectid=nil, indexid=nil, rootcause=nil, rootcausedesc=nil, blockingsessionid=nil, blockingloginname=nil, blockinghostname=nil, blockingclientapp=nil, blockingstatus=nil, blockingisolationlevel=nil, blockingtransactionname=nil, blockingtrancount=nil, blockinglasttranstarted=nil, blockinginputbuffer=nil, blockingsqltemplate=nil, blockingsqlmd5=nil, blockinglockmode=nil, blockingwaittimems=nil, blockedsessionid=nil, blockedtransactionid=nil, blockedwaittimems=nil, blockedlockmode=nil, blockedwaitresource=nil, blockedloginname=nil, blockedhostname=nil, blockedclientapp=nil, blockedstatus=nil, blockedisolationlevel=nil, blockedtransactionname=nil, blockedtrancount=nil, blockedlasttranstarted=nil, blockedinputbuffer=nil, blockedsqltemplate=nil, blockedsqlmd5=nil, blockedprocessxml=nil)
+          @ReportTime = reporttime
+          @MonitorLoop = monitorloop
+          @DurationMs = durationms
+          @DatabaseName = databasename
+          @DatabaseId = databaseid
+          @ObjectId = objectid
+          @IndexId = indexid
+          @RootCause = rootcause
+          @RootCauseDesc = rootcausedesc
+          @BlockingSessionId = blockingsessionid
+          @BlockingLoginName = blockingloginname
+          @BlockingHostName = blockinghostname
+          @BlockingClientApp = blockingclientapp
+          @BlockingStatus = blockingstatus
+          @BlockingIsolationLevel = blockingisolationlevel
+          @BlockingTransactionName = blockingtransactionname
+          @BlockingTranCount = blockingtrancount
+          @BlockingLastTranStarted = blockinglasttranstarted
+          @BlockingInputBuffer = blockinginputbuffer
+          @BlockingSqlTemplate = blockingsqltemplate
+          @BlockingSqlMd5 = blockingsqlmd5
+          @BlockingLockMode = blockinglockmode
+          @BlockingWaitTimeMs = blockingwaittimems
+          @BlockedSessionId = blockedsessionid
+          @BlockedTransactionId = blockedtransactionid
+          @BlockedWaitTimeMs = blockedwaittimems
+          @BlockedLockMode = blockedlockmode
+          @BlockedWaitResource = blockedwaitresource
+          @BlockedLoginName = blockedloginname
+          @BlockedHostName = blockedhostname
+          @BlockedClientApp = blockedclientapp
+          @BlockedStatus = blockedstatus
+          @BlockedIsolationLevel = blockedisolationlevel
+          @BlockedTransactionName = blockedtransactionname
+          @BlockedTranCount = blockedtrancount
+          @BlockedLastTranStarted = blockedlasttranstarted
+          @BlockedInputBuffer = blockedinputbuffer
+          @BlockedSqlTemplate = blockedsqltemplate
+          @BlockedSqlMd5 = blockedsqlmd5
+          @BlockedProcessXml = blockedprocessxml
+        end
+
+        def deserialize(params)
+          @ReportTime = params['ReportTime']
+          @MonitorLoop = params['MonitorLoop']
+          @DurationMs = params['DurationMs']
+          @DatabaseName = params['DatabaseName']
+          @DatabaseId = params['DatabaseId']
+          @ObjectId = params['ObjectId']
+          @IndexId = params['IndexId']
+          @RootCause = params['RootCause']
+          @RootCauseDesc = params['RootCauseDesc']
+          @BlockingSessionId = params['BlockingSessionId']
+          @BlockingLoginName = params['BlockingLoginName']
+          @BlockingHostName = params['BlockingHostName']
+          @BlockingClientApp = params['BlockingClientApp']
+          @BlockingStatus = params['BlockingStatus']
+          @BlockingIsolationLevel = params['BlockingIsolationLevel']
+          @BlockingTransactionName = params['BlockingTransactionName']
+          @BlockingTranCount = params['BlockingTranCount']
+          @BlockingLastTranStarted = params['BlockingLastTranStarted']
+          @BlockingInputBuffer = params['BlockingInputBuffer']
+          @BlockingSqlTemplate = params['BlockingSqlTemplate']
+          @BlockingSqlMd5 = params['BlockingSqlMd5']
+          @BlockingLockMode = params['BlockingLockMode']
+          @BlockingWaitTimeMs = params['BlockingWaitTimeMs']
+          @BlockedSessionId = params['BlockedSessionId']
+          @BlockedTransactionId = params['BlockedTransactionId']
+          @BlockedWaitTimeMs = params['BlockedWaitTimeMs']
+          @BlockedLockMode = params['BlockedLockMode']
+          @BlockedWaitResource = params['BlockedWaitResource']
+          @BlockedLoginName = params['BlockedLoginName']
+          @BlockedHostName = params['BlockedHostName']
+          @BlockedClientApp = params['BlockedClientApp']
+          @BlockedStatus = params['BlockedStatus']
+          @BlockedIsolationLevel = params['BlockedIsolationLevel']
+          @BlockedTransactionName = params['BlockedTransactionName']
+          @BlockedTranCount = params['BlockedTranCount']
+          @BlockedLastTranStarted = params['BlockedLastTranStarted']
+          @BlockedInputBuffer = params['BlockedInputBuffer']
+          @BlockedSqlTemplate = params['BlockedSqlTemplate']
+          @BlockedSqlMd5 = params['BlockedSqlMd5']
+          @BlockedProcessXml = params['BlockedProcessXml']
+        end
+      end
+
       # CancelDBAutonomyAction请求参数结构体
       class CancelDBAutonomyActionRequest < TencentCloud::Common::AbstractModel
         # @param ActionId: 自治任务ID。
@@ -2888,6 +3100,145 @@ module TencentCloud
               auditlogfile_tmp = AuditLogFile.new
               auditlogfile_tmp.deserialize(i)
               @Items << auditlogfile_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBlockingLogs请求参数结构体
+      class DescribeBlockingLogsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例ID。</p>
+        # @type InstanceId: String
+        # @param Product: <p>服务产品类型，固定为sqlserver。</p>
+        # @type Product: String
+        # @param StartTime: <p>查询起始时间（服务端时区 UTC+8），格式：yyyy-MM-dd HH:mm:ss。必须在最近 30 天内，否则返回 InvalidParameterValue。</p>
+        # @type StartTime: String
+        # @param EndTime: <p>查询结束时间（服务端时区 UTC+8），格式：yyyy-MM-dd HH:mm:ss，需大于 StartTime。单次查询跨度必须 ≤ 1 天（24 小时），否则返回 InvalidParameterValue。大跨度趋势场景请改用 DescribeBlockingTrend。</p>
+        # @type EndTime: String
+        # @param RootCause: <p>根因过滤（可选），支持：C1_LONG_QUERY=长事务查询持锁；C2_SLEEP_UNCOMMITTED=sleeping会话持未提交事务；C3_LOCK_ESCALATION=锁升级；C4_HIGH_CONCURRENCY=高并发争用；C5_INDEX_MISS=索引缺失导致大范围锁；C6_ORPHAN_TRAN=孤儿事务。</p>
+        # @type RootCause: String
+        # @param BlockingSqlMd5: <p>头SQL（blocker）MD5过滤（可选）。</p>
+        # @type BlockingSqlMd5: String
+        # @param BlockedSqlMd5: <p>被阻塞SQL（blocked）MD5过滤（可选）。</p>
+        # @type BlockedSqlMd5: String
+        # @param DatabaseNames: <p>数据库名列表过滤（可选），按阻塞事件所在数据库名过滤；列表内任意匹配即命中，最多50项。多库实例场景下推荐用本字段定位阻塞所在库。</p>
+        # @type DatabaseNames: Array
+        # @param BlockingSessionIds: <p>头阻塞会话 ID（SPID）列表过滤（可选），列表内任意匹配即命中，最多50项。</p>
+        # @type BlockingSessionIds: Array
+        # @param BlockedSessionIds: <p>被阻塞会话 ID（SPID）列表过滤（可选），列表内任意匹配即命中，最多50项。</p>
+        # @type BlockedSessionIds: Array
+        # @param BlockingLoginNames: <p>头阻塞登录名列表过滤（可选），列表内任意匹配即命中，最多50项。</p>
+        # @type BlockingLoginNames: Array
+        # @param BlockedLoginNames: <p>被阻塞登录名列表过滤（可选），列表内任意匹配即命中，最多50项。</p>
+        # @type BlockedLoginNames: Array
+        # @param BlockingHostNames: <p>头阻塞客户端主机列表过滤（可选），列表内任意匹配即命中，最多50项。</p>
+        # @type BlockingHostNames: Array
+        # @param BlockedHostNames: <p>被阻塞客户端主机列表过滤（可选），列表内任意匹配即命中，最多50项。</p>
+        # @type BlockedHostNames: Array
+        # @param BlockingClientApps: <p>头阻塞客户端应用列表过滤（可选），列表内任意匹配即命中，最多50项。</p>
+        # @type BlockingClientApps: Array
+        # @param BlockedClientApps: <p>被阻塞客户端应用列表过滤（可选），列表内任意匹配即命中，最多50项。</p>
+        # @type BlockedClientApps: Array
+        # @param BlockedLockModes: <p>被阻塞方等待锁模式列表过滤（可选），SQL Server原生lock_mode枚举，常见取值（非穷尽）：S、U、X、IS、IU、IX、SIU、SIX、UIX、Sch-S、Sch-M；serializable隔离级别下还可能出现RangeS-S / RangeS-U / RangeX-X / RangeI-N系列。列表内任意匹配即命中，最多50项。</p>
+        # @type BlockedLockModes: Array
+        # @param DurationMsMin: <p>被阻塞方等待时长下限（毫秒，含），用于筛选慢阻塞（可选）。</p>
+        # @type DurationMsMin: Integer
+        # @param DurationMsMax: <p>被阻塞方等待时长上限（毫秒，含），用于筛选阻塞时长不超过某值的记录（可选）。</p>
+        # @type DurationMsMax: Integer
+        # @param OrderBy: <p>排序字段（可选），支持reportTime（按明细行上报时间，默认）/ durationMs（按链路阻塞时长）/ blockedWaitTimeMs（按被阻塞方等待时长）/ blockingWaitTimeMs（按头阻塞自身等待时长）。</p>
+        # @type OrderBy: String
+        # @param OrderDirection: <p>排序方向（可选），支持desc（默认，倒序）/ asc（正序）。</p>
+        # @type OrderDirection: String
+        # @param Limit: <p>返回条数上限，默认20，最大100。</p>
+        # @type Limit: Integer
+        # @param Offset: <p>偏移量，默认 0。</p>
+        # @type Offset: Integer
+        # @param WithXml: <p>是否返回原始 blocked_process_report XML（可选，默认 false 不返回）。该字段体积较大（KB 级起步，含完整执行计划/等待链/死锁明细等原始上下文），常规列表展示不需要，仅在需要查看完整 XML 现场（如线下诊断、离线分析）时将本参数置为 true 按需拉取。</p>
+        # @type WithXml: Boolean
+
+        attr_accessor :InstanceId, :Product, :StartTime, :EndTime, :RootCause, :BlockingSqlMd5, :BlockedSqlMd5, :DatabaseNames, :BlockingSessionIds, :BlockedSessionIds, :BlockingLoginNames, :BlockedLoginNames, :BlockingHostNames, :BlockedHostNames, :BlockingClientApps, :BlockedClientApps, :BlockedLockModes, :DurationMsMin, :DurationMsMax, :OrderBy, :OrderDirection, :Limit, :Offset, :WithXml
+
+        def initialize(instanceid=nil, product=nil, starttime=nil, endtime=nil, rootcause=nil, blockingsqlmd5=nil, blockedsqlmd5=nil, databasenames=nil, blockingsessionids=nil, blockedsessionids=nil, blockingloginnames=nil, blockedloginnames=nil, blockinghostnames=nil, blockedhostnames=nil, blockingclientapps=nil, blockedclientapps=nil, blockedlockmodes=nil, durationmsmin=nil, durationmsmax=nil, orderby=nil, orderdirection=nil, limit=nil, offset=nil, withxml=nil)
+          @InstanceId = instanceid
+          @Product = product
+          @StartTime = starttime
+          @EndTime = endtime
+          @RootCause = rootcause
+          @BlockingSqlMd5 = blockingsqlmd5
+          @BlockedSqlMd5 = blockedsqlmd5
+          @DatabaseNames = databasenames
+          @BlockingSessionIds = blockingsessionids
+          @BlockedSessionIds = blockedsessionids
+          @BlockingLoginNames = blockingloginnames
+          @BlockedLoginNames = blockedloginnames
+          @BlockingHostNames = blockinghostnames
+          @BlockedHostNames = blockedhostnames
+          @BlockingClientApps = blockingclientapps
+          @BlockedClientApps = blockedclientapps
+          @BlockedLockModes = blockedlockmodes
+          @DurationMsMin = durationmsmin
+          @DurationMsMax = durationmsmax
+          @OrderBy = orderby
+          @OrderDirection = orderdirection
+          @Limit = limit
+          @Offset = offset
+          @WithXml = withxml
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Product = params['Product']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @RootCause = params['RootCause']
+          @BlockingSqlMd5 = params['BlockingSqlMd5']
+          @BlockedSqlMd5 = params['BlockedSqlMd5']
+          @DatabaseNames = params['DatabaseNames']
+          @BlockingSessionIds = params['BlockingSessionIds']
+          @BlockedSessionIds = params['BlockedSessionIds']
+          @BlockingLoginNames = params['BlockingLoginNames']
+          @BlockedLoginNames = params['BlockedLoginNames']
+          @BlockingHostNames = params['BlockingHostNames']
+          @BlockedHostNames = params['BlockedHostNames']
+          @BlockingClientApps = params['BlockingClientApps']
+          @BlockedClientApps = params['BlockedClientApps']
+          @BlockedLockModes = params['BlockedLockModes']
+          @DurationMsMin = params['DurationMsMin']
+          @DurationMsMax = params['DurationMsMax']
+          @OrderBy = params['OrderBy']
+          @OrderDirection = params['OrderDirection']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @WithXml = params['WithXml']
+        end
+      end
+
+      # DescribeBlockingLogs返回参数结构体
+      class DescribeBlockingLogsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>满足条件的阻塞明细总条数。</p>
+        # @type TotalCount: Integer
+        # @param Items: <p>阻塞明细行列表（按OrderBy / OrderDirection排序）。</p>
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Items, :RequestId
+
+        def initialize(totalcount=nil, items=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              blockinglogitem_tmp = BlockingLogItem.new
+              blockinglogitem_tmp.deserialize(i)
+              @Items << blockinglogitem_tmp
             end
           end
           @RequestId = params['RequestId']

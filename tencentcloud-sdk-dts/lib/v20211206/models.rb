@@ -5303,10 +5303,12 @@ module TencentCloud
         # @type MigrateWay: String
         # @param RateLimit: <p>迁移配置阶段限速相关参数</p>
         # @type RateLimit: :class:`Tencentcloud::Dts.v20211206.models.RateLimit`
+        # @param SkipDdlOnError: <p>跳过报错的DDL策略</p>
+        # @type SkipDdlOnError: :class:`Tencentcloud::Dts.v20211206.models.SkipDdlOnError`
 
-        attr_accessor :DatabaseTable, :MigrateType, :Consistency, :IsMigrateAccount, :IsOverrideRoot, :IsDstReadOnly, :ExtraAttr, :MigrateWay, :RateLimit
+        attr_accessor :DatabaseTable, :MigrateType, :Consistency, :IsMigrateAccount, :IsOverrideRoot, :IsDstReadOnly, :ExtraAttr, :MigrateWay, :RateLimit, :SkipDdlOnError
 
-        def initialize(databasetable=nil, migratetype=nil, consistency=nil, ismigrateaccount=nil, isoverrideroot=nil, isdstreadonly=nil, extraattr=nil, migrateway=nil, ratelimit=nil)
+        def initialize(databasetable=nil, migratetype=nil, consistency=nil, ismigrateaccount=nil, isoverrideroot=nil, isdstreadonly=nil, extraattr=nil, migrateway=nil, ratelimit=nil, skipddlonerror=nil)
           @DatabaseTable = databasetable
           @MigrateType = migratetype
           @Consistency = consistency
@@ -5316,6 +5318,7 @@ module TencentCloud
           @ExtraAttr = extraattr
           @MigrateWay = migrateway
           @RateLimit = ratelimit
+          @SkipDdlOnError = skipddlonerror
         end
 
         def deserialize(params)
@@ -5343,6 +5346,10 @@ module TencentCloud
           unless params['RateLimit'].nil?
             @RateLimit = RateLimit.new
             @RateLimit.deserialize(params['RateLimit'])
+          end
+          unless params['SkipDdlOnError'].nil?
+            @SkipDdlOnError = SkipDdlOnError.new
+            @SkipDdlOnError.deserialize(params['SkipDdlOnError'])
           end
         end
       end
@@ -6319,10 +6326,12 @@ module TencentCloud
         # @type FilterBeginCommit: Boolean
         # @param FilterCheckpoint: <p>同步到kafka链路是否过滤掉checkpoint消息。目前仅mysql2kafka链路支持</p>
         # @type FilterCheckpoint: Boolean
+        # @param SkipDdlOnError: <p>跳过报错的DDL策略</p>
+        # @type SkipDdlOnError: :class:`Tencentcloud::Dts.v20211206.models.SkipDdlOnError`
 
-        attr_accessor :InitType, :DealOfExistSameTable, :ConflictHandleType, :AddAdditionalColumn, :OpTypes, :ConflictHandleOption, :DdlOptions, :KafkaOption, :RateLimitOption, :AutoRetryTimeRangeMinutes, :StartPosition, :FilterBeginCommit, :FilterCheckpoint
+        attr_accessor :InitType, :DealOfExistSameTable, :ConflictHandleType, :AddAdditionalColumn, :OpTypes, :ConflictHandleOption, :DdlOptions, :KafkaOption, :RateLimitOption, :AutoRetryTimeRangeMinutes, :StartPosition, :FilterBeginCommit, :FilterCheckpoint, :SkipDdlOnError
 
-        def initialize(inittype=nil, dealofexistsametable=nil, conflicthandletype=nil, addadditionalcolumn=nil, optypes=nil, conflicthandleoption=nil, ddloptions=nil, kafkaoption=nil, ratelimitoption=nil, autoretrytimerangeminutes=nil, startposition=nil, filterbegincommit=nil, filtercheckpoint=nil)
+        def initialize(inittype=nil, dealofexistsametable=nil, conflicthandletype=nil, addadditionalcolumn=nil, optypes=nil, conflicthandleoption=nil, ddloptions=nil, kafkaoption=nil, ratelimitoption=nil, autoretrytimerangeminutes=nil, startposition=nil, filterbegincommit=nil, filtercheckpoint=nil, skipddlonerror=nil)
           @InitType = inittype
           @DealOfExistSameTable = dealofexistsametable
           @ConflictHandleType = conflicthandletype
@@ -6336,6 +6345,7 @@ module TencentCloud
           @StartPosition = startposition
           @FilterBeginCommit = filterbegincommit
           @FilterCheckpoint = filtercheckpoint
+          @SkipDdlOnError = skipddlonerror
         end
 
         def deserialize(params)
@@ -6368,6 +6378,10 @@ module TencentCloud
           @StartPosition = params['StartPosition']
           @FilterBeginCommit = params['FilterBeginCommit']
           @FilterCheckpoint = params['FilterCheckpoint']
+          unless params['SkipDdlOnError'].nil?
+            @SkipDdlOnError = SkipDdlOnError.new
+            @SkipDdlOnError.deserialize(params['SkipDdlOnError'])
+          end
         end
       end
 
@@ -7104,6 +7118,26 @@ module TencentCloud
         def deserialize(params)
           @Message = params['Message']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 跳过报错DDL的策略
+      class SkipDdlOnError < TencentCloud::Common::AbstractModel
+        # @param Tables: <p>按表名跳过，支持精确 &quot;db.tbl&quot;、库通配 &quot;db.*&quot;、表通配 &quot;<em>.tbl&quot;、全通配 &quot;</em>&quot;</p>
+        # @type Tables: Array
+        # @param ErrorCodes: <p>按 MySQL 错误码（1~65535）跳过</p><p>取值范围：[1, 65535]</p>
+        # @type ErrorCodes: Array
+
+        attr_accessor :Tables, :ErrorCodes
+
+        def initialize(tables=nil, errorcodes=nil)
+          @Tables = tables
+          @ErrorCodes = errorcodes
+        end
+
+        def deserialize(params)
+          @Tables = params['Tables']
+          @ErrorCodes = params['ErrorCodes']
         end
       end
 
