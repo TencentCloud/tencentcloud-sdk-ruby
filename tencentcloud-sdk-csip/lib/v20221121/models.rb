@@ -48682,6 +48682,8 @@ module TencentCloud
         # @type TotalAuditLogs: Integer
         # @param LogDeliveryDisableReason: <p>日志审计禁止开通的原因，可选值：VersionNotSupportLogSubscription, InstanceIsUpgrading, CdbRuleAuditEnabled, AssetNotExists</p>
         # @type LogDeliveryDisableReason: String
+        # @param LogDeliveryDisableMessage: <p>日志审计禁止开通时的详细说明</p>
+        # @type LogDeliveryDisableMessage: String
         # @param OldestOnlineLogTimestamp: <p>在线日志的起始时间戳，精确到秒</p>
         # @type OldestOnlineLogTimestamp: Integer
         # @param NewestOnlineLogTimestamp: <p>在线日志的最新时间戳，精确到秒</p>
@@ -48702,10 +48704,12 @@ module TencentCloud
         # @param ClusterName: <p>集群名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterName: String
+        # @param DbVersion: <p>数据库版本</p>
+        # @type DbVersion: String
 
-        attr_accessor :AssetId, :AssetType, :Name, :AccountCount, :PublicIp, :PrivateIp, :WanDomain, :Region, :VpcId, :VpcName, :SubnetId, :SubnetName, :Status, :CreateTime, :Manager, :BindIdentify, :IsManager, :RiskCount, :SafetyAdvice, :LogDeliveryStatus, :LogDeliverySupported, :DataScanInfo, :AppId, :NickName, :Uin, :SecurityAnalyseStatus, :TotalAuditLogs, :LogDeliveryDisableReason, :OldestOnlineLogTimestamp, :NewestOnlineLogTimestamp, :OperationErrorMsg, :AccountOptSupported, :InstanceType, :ClusterType, :IdentifyScanSupported, :ClusterId, :ClusterName
+        attr_accessor :AssetId, :AssetType, :Name, :AccountCount, :PublicIp, :PrivateIp, :WanDomain, :Region, :VpcId, :VpcName, :SubnetId, :SubnetName, :Status, :CreateTime, :Manager, :BindIdentify, :IsManager, :RiskCount, :SafetyAdvice, :LogDeliveryStatus, :LogDeliverySupported, :DataScanInfo, :AppId, :NickName, :Uin, :SecurityAnalyseStatus, :TotalAuditLogs, :LogDeliveryDisableReason, :LogDeliveryDisableMessage, :OldestOnlineLogTimestamp, :NewestOnlineLogTimestamp, :OperationErrorMsg, :AccountOptSupported, :InstanceType, :ClusterType, :IdentifyScanSupported, :ClusterId, :ClusterName, :DbVersion
 
-        def initialize(assetid=nil, assettype=nil, name=nil, accountcount=nil, publicip=nil, privateip=nil, wandomain=nil, region=nil, vpcid=nil, vpcname=nil, subnetid=nil, subnetname=nil, status=nil, createtime=nil, manager=nil, bindidentify=nil, ismanager=nil, riskcount=nil, safetyadvice=nil, logdeliverystatus=nil, logdeliverysupported=nil, datascaninfo=nil, appid=nil, nickname=nil, uin=nil, securityanalysestatus=nil, totalauditlogs=nil, logdeliverydisablereason=nil, oldestonlinelogtimestamp=nil, newestonlinelogtimestamp=nil, operationerrormsg=nil, accountoptsupported=nil, instancetype=nil, clustertype=nil, identifyscansupported=nil, clusterid=nil, clustername=nil)
+        def initialize(assetid=nil, assettype=nil, name=nil, accountcount=nil, publicip=nil, privateip=nil, wandomain=nil, region=nil, vpcid=nil, vpcname=nil, subnetid=nil, subnetname=nil, status=nil, createtime=nil, manager=nil, bindidentify=nil, ismanager=nil, riskcount=nil, safetyadvice=nil, logdeliverystatus=nil, logdeliverysupported=nil, datascaninfo=nil, appid=nil, nickname=nil, uin=nil, securityanalysestatus=nil, totalauditlogs=nil, logdeliverydisablereason=nil, logdeliverydisablemessage=nil, oldestonlinelogtimestamp=nil, newestonlinelogtimestamp=nil, operationerrormsg=nil, accountoptsupported=nil, instancetype=nil, clustertype=nil, identifyscansupported=nil, clusterid=nil, clustername=nil, dbversion=nil)
           @AssetId = assetid
           @AssetType = assettype
           @Name = name
@@ -48734,6 +48738,7 @@ module TencentCloud
           @SecurityAnalyseStatus = securityanalysestatus
           @TotalAuditLogs = totalauditlogs
           @LogDeliveryDisableReason = logdeliverydisablereason
+          @LogDeliveryDisableMessage = logdeliverydisablemessage
           @OldestOnlineLogTimestamp = oldestonlinelogtimestamp
           @NewestOnlineLogTimestamp = newestonlinelogtimestamp
           @OperationErrorMsg = operationerrormsg
@@ -48743,6 +48748,7 @@ module TencentCloud
           @IdentifyScanSupported = identifyscansupported
           @ClusterId = clusterid
           @ClusterName = clustername
+          @DbVersion = dbversion
         end
 
         def deserialize(params)
@@ -48787,6 +48793,7 @@ module TencentCloud
           @SecurityAnalyseStatus = params['SecurityAnalyseStatus']
           @TotalAuditLogs = params['TotalAuditLogs']
           @LogDeliveryDisableReason = params['LogDeliveryDisableReason']
+          @LogDeliveryDisableMessage = params['LogDeliveryDisableMessage']
           @OldestOnlineLogTimestamp = params['OldestOnlineLogTimestamp']
           @NewestOnlineLogTimestamp = params['NewestOnlineLogTimestamp']
           @OperationErrorMsg = params['OperationErrorMsg']
@@ -48796,6 +48803,7 @@ module TencentCloud
           @IdentifyScanSupported = params['IdentifyScanSupported']
           @ClusterId = params['ClusterId']
           @ClusterName = params['ClusterName']
+          @DbVersion = params['DbVersion']
         end
       end
 
@@ -49852,32 +49860,36 @@ module TencentCloud
 
       # Dspm 风险统计数
       class DspmRiskCount < TencentCloud::Common::AbstractModel
-        # @param UnprocessedRisk: 待处理风险个数
+        # @param UnprocessedRisk: <p>待处理风险个数</p>
         # @type UnprocessedRisk: Integer
-        # @param ConfigurationRisk: 配置风险个数
+        # @param ConfigurationRisk: <p>配置风险个数</p>
         # @type ConfigurationRisk: Integer
-        # @param BaselineDeviation: 基线风险个数
+        # @param BaselineDeviation: <p>基线风险个数</p>
         # @type BaselineDeviation: Integer
-        # @param LeakDetection: 泄露风险个数
+        # @param LeakDetection: <p>泄露风险个数</p>
         # @type LeakDetection: Integer
-        # @param SQLBehaviorAnomaly: SQL行为异常风险个数
+        # @param SQLBehaviorAnomaly: <p>SQL行为异常风险个数</p>
         # @type SQLBehaviorAnomaly: Integer
-        # @param PermissionAnomaly: 权限异常风险个数
+        # @param PermissionAnomaly: <p>权限异常风险个数</p>
         # @type PermissionAnomaly: Integer
-        # @param LoginBehaviorAnomaly: 登录行为异常风险个数
+        # @param LoginBehaviorAnomaly: <p>登录行为异常风险个数</p>
         # @type LoginBehaviorAnomaly: Integer
-        # @param AttackSurfaceRisk: 攻击面风险个数
+        # @param AttackSurfaceRisk: <p>攻击面风险个数</p>
         # @type AttackSurfaceRisk: Integer
-        # @param AccountSensitiveOperation: 账号敏感操作个数
+        # @param AccountSensitiveOperation: <p>账号敏感操作个数</p>
         # @type AccountSensitiveOperation: Integer
-        # @param UnprocessedAlarm: 待处理告警个数
+        # @param UnprocessedAlarm: <p>待处理告警个数</p>
         # @type UnprocessedAlarm: Integer
-        # @param NumOfNewAlarmEvent: 新增事件告警
+        # @param NumOfNewAlarmEvent: <p>新增事件告警</p>
         # @type NumOfNewAlarmEvent: Integer
-        # @param NumOfNewConfigRisk: 新增配置风险
+        # @param NumOfNewConfigRisk: <p>新增配置风险</p>
         # @type NumOfNewConfigRisk: Integer
+        # @param AccountRisk: <p>账号风险条数</p>
+        # @type AccountRisk: Integer
+        # @param ConfigRisk: <p>配置风险条数</p>
+        # @type ConfigRisk: Integer
 
-        attr_accessor :UnprocessedRisk, :ConfigurationRisk, :BaselineDeviation, :LeakDetection, :SQLBehaviorAnomaly, :PermissionAnomaly, :LoginBehaviorAnomaly, :AttackSurfaceRisk, :AccountSensitiveOperation, :UnprocessedAlarm, :NumOfNewAlarmEvent, :NumOfNewConfigRisk
+        attr_accessor :UnprocessedRisk, :ConfigurationRisk, :BaselineDeviation, :LeakDetection, :SQLBehaviorAnomaly, :PermissionAnomaly, :LoginBehaviorAnomaly, :AttackSurfaceRisk, :AccountSensitiveOperation, :UnprocessedAlarm, :NumOfNewAlarmEvent, :NumOfNewConfigRisk, :AccountRisk, :ConfigRisk
         extend Gem::Deprecate
         deprecate :ConfigurationRisk, :none, 2026, 10
         deprecate :ConfigurationRisk=, :none, 2026, 10
@@ -49886,7 +49898,7 @@ module TencentCloud
         deprecate :LeakDetection, :none, 2026, 10
         deprecate :LeakDetection=, :none, 2026, 10
 
-        def initialize(unprocessedrisk=nil, configurationrisk=nil, baselinedeviation=nil, leakdetection=nil, sqlbehavioranomaly=nil, permissionanomaly=nil, loginbehavioranomaly=nil, attacksurfacerisk=nil, accountsensitiveoperation=nil, unprocessedalarm=nil, numofnewalarmevent=nil, numofnewconfigrisk=nil)
+        def initialize(unprocessedrisk=nil, configurationrisk=nil, baselinedeviation=nil, leakdetection=nil, sqlbehavioranomaly=nil, permissionanomaly=nil, loginbehavioranomaly=nil, attacksurfacerisk=nil, accountsensitiveoperation=nil, unprocessedalarm=nil, numofnewalarmevent=nil, numofnewconfigrisk=nil, accountrisk=nil, configrisk=nil)
           @UnprocessedRisk = unprocessedrisk
           @ConfigurationRisk = configurationrisk
           @BaselineDeviation = baselinedeviation
@@ -49899,6 +49911,8 @@ module TencentCloud
           @UnprocessedAlarm = unprocessedalarm
           @NumOfNewAlarmEvent = numofnewalarmevent
           @NumOfNewConfigRisk = numofnewconfigrisk
+          @AccountRisk = accountrisk
+          @ConfigRisk = configrisk
         end
 
         def deserialize(params)
@@ -49914,6 +49928,8 @@ module TencentCloud
           @UnprocessedAlarm = params['UnprocessedAlarm']
           @NumOfNewAlarmEvent = params['NumOfNewAlarmEvent']
           @NumOfNewConfigRisk = params['NumOfNewConfigRisk']
+          @AccountRisk = params['AccountRisk']
+          @ConfigRisk = params['ConfigRisk']
         end
       end
 
@@ -64844,60 +64860,62 @@ module TencentCloud
 
       # 集团账号成员详情
       class OrganizationUserInfo < TencentCloud::Common::AbstractModel
-        # @param Uin: 成员账号Uin
+        # @param Uin: <p>成员账号Uin</p>
         # @type Uin: String
-        # @param NickName: 成员账号名称
+        # @param NickName: <p>成员账号名称</p>
         # @type NickName: String
-        # @param NodeName: 部门节点名称，账号所属部门
+        # @param NodeName: <p>部门节点名称，账号所属部门</p>
         # @type NodeName: String
-        # @param AssetCount: 资产数量
+        # @param AssetCount: <p>资产数量</p>
         # @type AssetCount: Integer
-        # @param RiskCount: 风险数量
+        # @param RiskCount: <p>风险数量</p>
         # @type RiskCount: Integer
-        # @param AttackCount: 攻击数量
+        # @param AttackCount: <p>攻击数量</p>
         # @type AttackCount: Integer
-        # @param Role: Member/Admin/;成员或者管理员
+        # @param Role: <p>Member/Admin/;成员或者管理员</p>
         # @type Role: String
-        # @param MemberId: 成员账号id
+        # @param MemberId: <p>成员账号id</p>
         # @type MemberId: String
-        # @param AppId: 成员账号Appid
+        # @param AppId: <p>成员账号Appid</p>
         # @type AppId: String
-        # @param JoinType: 账号加入方式,create/invite
+        # @param JoinType: <p>账号加入方式,create/invite</p>
         # @type JoinType: String
-        # @param CFWProtect: 空则未开启，否则不同字符串对应不同版本，common为通用，不区分版本
+        # @param CFWProtect: <p>空则未开启，否则不同字符串对应不同版本，common为通用，不区分版本</p>
         # @type CFWProtect: String
-        # @param WAFProtect: 空则未开启，否则不同字符串对应不同版本，common为通用，不区分版本
+        # @param WAFProtect: <p>空则未开启，否则不同字符串对应不同版本，common为通用，不区分版本</p>
         # @type WAFProtect: String
-        # @param CWPProtect: 空则未开启，否则不同字符串对应不同版本，common为通用，不区分版本
+        # @param CWPProtect: <p>空则未开启，否则不同字符串对应不同版本，common为通用，不区分版本</p>
         # @type CWPProtect: String
-        # @param Enable: 1启用，0未启用
+        # @param Enable: <p>1启用，0未启用</p>
         # @type Enable: Integer
-        # @param CSIPProtect: "Free"       //免费版  "Advanced"   //高级版 "Enterprise" //企业版 "Ultimate"   //旗舰版
+        # @param CSIPProtect: <p>&quot;Free&quot;       //免费版  &quot;Advanced&quot;   //高级版 &quot;Enterprise&quot; //企业版 &quot;Ultimate&quot;   //旗舰版</p>
         # @type CSIPProtect: String
-        # @param QuotaConsumer: 1为配额消耗者
+        # @param QuotaConsumer: <p>1为配额消耗者</p>
         # @type QuotaConsumer: Integer
-        # @param CloudType: 账户类型，0为腾讯云账户，1为AWS账户
+        # @param CloudType: <p>账户类型，0为腾讯云账户，1为AWS账户</p>
         # @type CloudType: Integer
-        # @param SyncFrequency: 0为缺省值，1为10分钟，2为1小时，3为24小时
+        # @param SyncFrequency: <p>0为缺省值，1为10分钟，2为1小时，3为24小时</p>
         # @type SyncFrequency: Integer
-        # @param IsExpired: 多云账户是否过期
+        # @param IsExpired: <p>多云账户是否过期</p>
         # @type IsExpired: Boolean
-        # @param PermissionList: 多云账户 权限列表
+        # @param PermissionList: <p>多云账户 权限列表</p>
         # @type PermissionList: Array
-        # @param AuthType: 1
+        # @param AuthType: <p>账户权限类型</p><p>枚举值：</p><ul><li>1： 认证类型-Root账号AKSK</li><li>2： 认证类型-子账号AKSK</li><li>3： 认证类型-角色</li></ul>
         # @type AuthType: Integer
-        # @param TcMemberType: 0 腾讯云集团账户
-        # 1 腾讯云接入账户
-        # 2 非腾讯云
+        # @param TcMemberType: <p>0 腾讯云集团账户<br>1 腾讯云接入账户<br>2 非腾讯云</p>
         # @type TcMemberType: Integer
-        # @param SubUserCount: 子账号数量
+        # @param SubUserCount: <p>子账号数量</p>
         # @type SubUserCount: Integer
-        # @param JoinTypeInfo: 加入方式详细信息
+        # @param JoinTypeInfo: <p>加入方式详细信息</p>
         # @type JoinTypeInfo: String
+        # @param SharedModules: <p>被共享模块列表</p><p>枚举值：</p><ul><li>AKSK： 云API异常监测</li><li>SDL： 日志分析</li><li>CSPM： 云安全态势管理</li><li>CWP： 主机安全</li><li>COS_AUDIT： COS审计</li><li>IMAGE_SCAN： 容器镜像扫描</li><li>SKILL_SCAN： Skill安全检测</li><li>SKILL_SCAN_POST： Skill安全检测(后付费)</li><li>DSPM： 数据安全态势管理</li></ul><p>默认值：[]</p>
+        # @type SharedModules: Array
+        # @param SecurityScore: <p>安全分</p>
+        # @type SecurityScore: Integer
 
-        attr_accessor :Uin, :NickName, :NodeName, :AssetCount, :RiskCount, :AttackCount, :Role, :MemberId, :AppId, :JoinType, :CFWProtect, :WAFProtect, :CWPProtect, :Enable, :CSIPProtect, :QuotaConsumer, :CloudType, :SyncFrequency, :IsExpired, :PermissionList, :AuthType, :TcMemberType, :SubUserCount, :JoinTypeInfo
+        attr_accessor :Uin, :NickName, :NodeName, :AssetCount, :RiskCount, :AttackCount, :Role, :MemberId, :AppId, :JoinType, :CFWProtect, :WAFProtect, :CWPProtect, :Enable, :CSIPProtect, :QuotaConsumer, :CloudType, :SyncFrequency, :IsExpired, :PermissionList, :AuthType, :TcMemberType, :SubUserCount, :JoinTypeInfo, :SharedModules, :SecurityScore
 
-        def initialize(uin=nil, nickname=nil, nodename=nil, assetcount=nil, riskcount=nil, attackcount=nil, role=nil, memberid=nil, appid=nil, jointype=nil, cfwprotect=nil, wafprotect=nil, cwpprotect=nil, enable=nil, csipprotect=nil, quotaconsumer=nil, cloudtype=nil, syncfrequency=nil, isexpired=nil, permissionlist=nil, authtype=nil, tcmembertype=nil, subusercount=nil, jointypeinfo=nil)
+        def initialize(uin=nil, nickname=nil, nodename=nil, assetcount=nil, riskcount=nil, attackcount=nil, role=nil, memberid=nil, appid=nil, jointype=nil, cfwprotect=nil, wafprotect=nil, cwpprotect=nil, enable=nil, csipprotect=nil, quotaconsumer=nil, cloudtype=nil, syncfrequency=nil, isexpired=nil, permissionlist=nil, authtype=nil, tcmembertype=nil, subusercount=nil, jointypeinfo=nil, sharedmodules=nil, securityscore=nil)
           @Uin = uin
           @NickName = nickname
           @NodeName = nodename
@@ -64922,6 +64940,8 @@ module TencentCloud
           @TcMemberType = tcmembertype
           @SubUserCount = subusercount
           @JoinTypeInfo = jointypeinfo
+          @SharedModules = sharedmodules
+          @SecurityScore = securityscore
         end
 
         def deserialize(params)
@@ -64949,6 +64969,8 @@ module TencentCloud
           @TcMemberType = params['TcMemberType']
           @SubUserCount = params['SubUserCount']
           @JoinTypeInfo = params['JoinTypeInfo']
+          @SharedModules = params['SharedModules']
+          @SecurityScore = params['SecurityScore']
         end
       end
 
@@ -71459,32 +71481,36 @@ module TencentCloud
 
       # 账号dspm信息
       class UserDspmInfo < TencentCloud::Common::AbstractModel
-        # @param AppID: APPID
+        # @param AppID: <p>APPID</p>
         # @type AppID: Integer
-        # @param Uin: UIN
+        # @param Uin: <p>UIN</p>
         # @type Uin: String
-        # @param NickName: 账号昵称
+        # @param NickName: <p>账号昵称</p>
         # @type NickName: String
-        # @param AssetNum: 账号下数据库资产数量
+        # @param AssetNum: <p>账号下数据库资产数量</p>
         # @type AssetNum: Integer
-        # @param UsedAssetNum: 账号下开启安全分析数据库资产数量
+        # @param UsedAssetNum: <p>账号下开启安全分析数据库资产数量</p>
         # @type UsedAssetNum: Integer
-        # @param IsShared: 是否被共享，1-被共享，2-未被共享
+        # @param IsShared: <p>是否被共享，1-被共享，2-未被共享</p>
         # @type IsShared: Integer
-        # @param IsSelfBuy: 是否单独购买，1-单独购买，2-未单独购买
+        # @param IsSelfBuy: <p>是否单独购买，1-单独购买，2-未单独购买</p>
         # @type IsSelfBuy: Integer
-        # @param ShareFromAppID: 配额来源账号
+        # @param ShareFromAppID: <p>配额来源账号</p>
         # @type ShareFromAppID: Integer
-        # @param CloudType: 云类型（0：腾讯云 1:亚马逊云 2:微软云 3:谷歌云 4:阿里云 5:华为云）
+        # @param CloudType: <p>云类型（0：腾讯云 1:亚马逊云 2:微软云 3:谷歌云 4:阿里云 5:华为云）</p>
         # @type CloudType: Integer
-        # @param IsIsolating: 账号是否隔离中
+        # @param IsIsolating: <p>账号是否隔离中</p>
         # @type IsIsolating: Boolean
-        # @param IsDataCleaning: 是否正在数据清理
+        # @param IsDataCleaning: <p>是否正在数据清理</p>
         # @type IsDataCleaning: Boolean
+        # @param Role: <p>集团账号角色（member-普通成员/admin-管理员/delegatedAdmin-委派管理员），非集团账号为空</p>
+        # @type Role: String
+        # @param NodeName: <p>所属部门名称，未分配部门或非集团账号为空</p>
+        # @type NodeName: String
 
-        attr_accessor :AppID, :Uin, :NickName, :AssetNum, :UsedAssetNum, :IsShared, :IsSelfBuy, :ShareFromAppID, :CloudType, :IsIsolating, :IsDataCleaning
+        attr_accessor :AppID, :Uin, :NickName, :AssetNum, :UsedAssetNum, :IsShared, :IsSelfBuy, :ShareFromAppID, :CloudType, :IsIsolating, :IsDataCleaning, :Role, :NodeName
 
-        def initialize(appid=nil, uin=nil, nickname=nil, assetnum=nil, usedassetnum=nil, isshared=nil, isselfbuy=nil, sharefromappid=nil, cloudtype=nil, isisolating=nil, isdatacleaning=nil)
+        def initialize(appid=nil, uin=nil, nickname=nil, assetnum=nil, usedassetnum=nil, isshared=nil, isselfbuy=nil, sharefromappid=nil, cloudtype=nil, isisolating=nil, isdatacleaning=nil, role=nil, nodename=nil)
           @AppID = appid
           @Uin = uin
           @NickName = nickname
@@ -71496,6 +71522,8 @@ module TencentCloud
           @CloudType = cloudtype
           @IsIsolating = isisolating
           @IsDataCleaning = isdatacleaning
+          @Role = role
+          @NodeName = nodename
         end
 
         def deserialize(params)
@@ -71510,6 +71538,8 @@ module TencentCloud
           @CloudType = params['CloudType']
           @IsIsolating = params['IsIsolating']
           @IsDataCleaning = params['IsDataCleaning']
+          @Role = params['Role']
+          @NodeName = params['NodeName']
         end
       end
 

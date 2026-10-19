@@ -5241,6 +5241,74 @@ module TencentCloud
         end
       end
 
+      # DescribeFileCertificate请求参数结构体
+      class DescribeFileCertificateRequest < TencentCloud::Common::AbstractModel
+        # @param Timeout: 超时时间，不填默认是 5 分钟
+        # @type Timeout: Integer
+        # @param FileType: bucket类型，不填默认1:web，2:app
+        # @type FileType: Integer
+        # @param ID: ProjectID
+        # @type ID: Integer
+        # @param RegionID: reigon对应的id
+        # @type RegionID: Integer
+
+        attr_accessor :Timeout, :FileType, :ID, :RegionID
+
+        def initialize(timeout=nil, filetype=nil, id=nil, regionid=nil)
+          @Timeout = timeout
+          @FileType = filetype
+          @ID = id
+          @RegionID = regionid
+        end
+
+        def deserialize(params)
+          @Timeout = params['Timeout']
+          @FileType = params['FileType']
+          @ID = params['ID']
+          @RegionID = params['RegionID']
+        end
+      end
+
+      # DescribeFileCertificate返回参数结构体
+      class DescribeFileCertificateResponse < TencentCloud::Common::AbstractModel
+        # @param SecretKey: 临时密钥key
+        # @type SecretKey: String
+        # @param SecretID: 临时密钥 id
+        # @type SecretID: String
+        # @param SessionToken: 临时密钥临时 token
+        # @type SessionToken: String
+        # @param StartTime: 开始时间戳
+        # @type StartTime: Integer
+        # @param ExpiredTime: 过期时间戳
+        # @type ExpiredTime: Integer
+        # @param BucketAddress: 桶地址
+        # @type BucketAddress: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SecretKey, :SecretID, :SessionToken, :StartTime, :ExpiredTime, :BucketAddress, :RequestId
+
+        def initialize(secretkey=nil, secretid=nil, sessiontoken=nil, starttime=nil, expiredtime=nil, bucketaddress=nil, requestid=nil)
+          @SecretKey = secretkey
+          @SecretID = secretid
+          @SessionToken = sessiontoken
+          @StartTime = starttime
+          @ExpiredTime = expiredtime
+          @BucketAddress = bucketaddress
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SecretKey = params['SecretKey']
+          @SecretID = params['SecretID']
+          @SessionToken = params['SessionToken']
+          @StartTime = params['StartTime']
+          @ExpiredTime = params['ExpiredTime']
+          @BucketAddress = params['BucketAddress']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeIssuesDistribution请求参数结构体
       class DescribeIssuesDistributionRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: <p>产品Id</p>
@@ -5817,8 +5885,8 @@ module TencentCloud
 
         attr_accessor :Limit, :Offset, :Filters, :IsDemo
         extend Gem::Deprecate
-        deprecate :IsDemo, :none, 2026, 7
-        deprecate :IsDemo=, :none, 2026, 7
+        deprecate :IsDemo, :none, 2026, 10
+        deprecate :IsDemo=, :none, 2026, 10
 
         def initialize(limit=nil, offset=nil, filters=nil, isdemo=nil)
           @Limit = limit
@@ -6682,8 +6750,8 @@ module TencentCloud
 
         attr_accessor :EndTime, :StartTime, :ID, :IsDemo, :IDList
         extend Gem::Deprecate
-        deprecate :IsDemo, :none, 2026, 7
-        deprecate :IsDemo=, :none, 2026, 7
+        deprecate :IsDemo, :none, 2026, 10
+        deprecate :IsDemo=, :none, 2026, 10
 
         def initialize(endtime=nil, starttime=nil, id=nil, isdemo=nil, idlist=nil)
           @EndTime = endtime
@@ -6874,12 +6942,12 @@ module TencentCloud
 
         attr_accessor :ChargeStatuses, :ChargeTypes, :Limit, :Offset, :AreaIds, :InstanceStatuses, :InstanceIds, :Filters, :IsDemo
         extend Gem::Deprecate
-        deprecate :InstanceStatuses, :none, 2026, 7
-        deprecate :InstanceStatuses=, :none, 2026, 7
-        deprecate :InstanceIds, :none, 2026, 7
-        deprecate :InstanceIds=, :none, 2026, 7
-        deprecate :IsDemo, :none, 2026, 7
-        deprecate :IsDemo=, :none, 2026, 7
+        deprecate :InstanceStatuses, :none, 2026, 10
+        deprecate :InstanceStatuses=, :none, 2026, 10
+        deprecate :InstanceIds, :none, 2026, 10
+        deprecate :InstanceIds=, :none, 2026, 10
+        deprecate :IsDemo, :none, 2026, 10
+        deprecate :IsDemo=, :none, 2026, 10
 
         def initialize(chargestatuses=nil, chargetypes=nil, limit=nil, offset=nil, areaids=nil, instancestatuses=nil, instanceids=nil, filters=nil, isdemo=nil)
           @ChargeStatuses = chargestatuses

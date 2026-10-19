@@ -269,6 +269,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # llmwaf-sdk新增接入配置接口
+
+        # @param request: Request instance for AddLLMSdkAccess.
+        # @type request: :class:`Tencentcloud::waf::V20180125::AddLLMSdkAccessRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::AddLLMSdkAccessResponse`
+        def AddLLMSdkAccess(request)
+          body = send_request('AddLLMSdkAccess', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AddLLMSdkAccessResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 添加SaaS型WAF防护域名
 
         # @param request: Request instance for AddSpartaProtection.
@@ -1335,6 +1359,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAccessIndexResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询后付费实例列表（仅 Edition=llm-sdk-waf）。请求参数与 DescribeInstances 一致；仅返回 tb_instance_conf 基础数据，不含套餐/标签等扩展信息。
+
+        # @param request: Request instance for DescribeAfterPayInstances.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeAfterPayInstancesRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeAfterPayInstancesResponse`
+        def DescribeAfterPayInstances(request)
+          body = send_request('DescribeAfterPayInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAfterPayInstancesResponse.new
             model.deserialize(response['Response'])
             model
           else

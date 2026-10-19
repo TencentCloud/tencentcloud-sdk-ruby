@@ -7613,7 +7613,7 @@ module TencentCloud
         # @type AspectRatio: String
         # @param Resolution: <p>分辨率。支持720p（默认）/1080p/2k/4k</p>
         # @type Resolution: String
-        # @param ModelTier: <p>模型等级。flagship（默认）、standard</p>
+        # @param ModelTier: <p>模式。flagship（高级版，默认）、standard（标准版）、depthcrafter(深度提取)</p>
         # @type ModelTier: String
 
         attr_accessor :Duration, :AspectRatio, :Resolution, :ModelTier
@@ -7764,7 +7764,7 @@ module TencentCloud
       class CloneViralRequest < TencentCloud::Common::AbstractModel
         # @param VideoUrl: <p>爆款视频Url</p>
         # @type VideoUrl: String
-        # @param Product: <p>产品信息</p>
+        # @param Product: <p>产品信息。除深度提取外，其他模式必填</p>
         # @type Product: :class:`Tencentcloud::Mps.v20190612.models.CloneViralProduct`
         # @param AIGCParam: <p>AIGC生视频相关参数</p>
         # @type AIGCParam: :class:`Tencentcloud::Mps.v20190612.models.CloneViralAIGC`

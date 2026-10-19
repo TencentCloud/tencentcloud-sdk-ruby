@@ -21,7 +21,7 @@ module TencentCloud
       class AddConsoleUsersRequest < TencentCloud::Common::AbstractModel
         # @param UserUins: <p>用户 UIN 列表，单次最多100个</p>
         # @type UserUins: Array
-        # @param RoleIds: <p>角色 ID 列表</p><p>枚举值：</p><ul><li>2001： 控制台管理员</li><li>2002： 控制台成员</li></ul>
+        # @param RoleIds: <p>角色 ID 列表</p><p>枚举值：</p><ul><li>2001： 控制台管理员</li><li>2002： 控制台成员</li></ul><p>可通过 ListConsoleRoles 接口获取</p>
         # @type RoleIds: Array
 
         attr_accessor :UserUins, :RoleIds
@@ -78,11 +78,11 @@ module TencentCloud
 
       # AddWorkspaceGroups请求参数结构体
       class AddWorkspaceGroupsRequest < TencentCloud::Common::AbstractModel
-        # @param GroupIds: 用户组ID，可通过 ListWorkspaceGroups 接口获取
+        # @param GroupIds: <p>用户组ID，可通过 ListConsoleGroups 接口获取</p>
         # @type GroupIds: Array
-        # @param WorkspaceId: 工作空间ID
+        # @param WorkspaceId: <p>工作空间ID</p>
         # @type WorkspaceId: String
-        # @param RoleIds: 角色ID，可通过 ListWorkspaceRoles 接口获取
+        # @param RoleIds: <p>角色ID，可通过 ListWorkspaceRoles 接口获取</p>
         # @type RoleIds: Array
 
         attr_accessor :GroupIds, :WorkspaceId, :RoleIds
@@ -102,7 +102,7 @@ module TencentCloud
 
       # AddWorkspaceGroups返回参数结构体
       class AddWorkspaceGroupsResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 添加结果
+        # @param Data: <p>添加结果</p>
         # @type Data: :class:`Tencentcloud::Databuddy.v20260715.models.PlatformStatusRsp`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

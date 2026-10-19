@@ -29,7 +29,7 @@ module TencentCloud
         end
 
 
-        # 添加控制台用户
+        # 添加控制台用户，该接口为控制台级接口，仅支持在中心地域调用：国内站请传入 ap-guangzhou，国际站请传入 ap-singapore；其他地域调用将返回 UnsupportedRegion。
 
         # @param request: Request instance for AddConsoleUsers.
         # @type request: :class:`Tencentcloud::databuddy::V20260715::AddConsoleUsersRequest`
@@ -125,7 +125,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建控制台用户组
+        # 创建控制台用户组，该接口为控制台级接口，仅支持在中心地域调用：国内站请传入 ap-guangzhou，国际站请传入 ap-singapore；其他地域调用将返回 UnsupportedRegion。
 
         # @param request: Request instance for CreateConsoleGroup.
         # @type request: :class:`Tencentcloud::databuddy::V20260715::CreateConsoleGroupRequest`
@@ -252,7 +252,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建工作空间
+        # 创建工作空间，该接口为控制台级接口，仅支持在中心地域调用：国内站请传入 ap-guangzhou，国际站请传入 ap-singapore；其他地域调用将返回 UnsupportedRegion。
 
         # @param request: Request instance for CreateWorkspace.
         # @type request: :class:`Tencentcloud::databuddy::V20260715::CreateWorkspaceRequest`
@@ -324,7 +324,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除控制台用户组
+        # 删除控制台用户组，该接口为控制台级接口，仅支持在中心地域调用：国内站请传入 ap-guangzhou，国际站请传入 ap-singapore；其他地域调用将返回 UnsupportedRegion。
 
         # @param request: Request instance for DeleteConsoleGroups.
         # @type request: :class:`Tencentcloud::databuddy::V20260715::DeleteConsoleGroupsRequest`
@@ -1150,7 +1150,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询工作空间列表
+        # 查询工作空间列表，该接口为控制台级接口，仅支持在中心地域调用：国内站请传入 ap-guangzhou，国际站请传入 ap-singapore；其他地域调用将返回 UnsupportedRegion。
 
         # @param request: Request instance for ListWorkspaces.
         # @type request: :class:`Tencentcloud::databuddy::V20260715::ListWorkspacesRequest`
@@ -1174,7 +1174,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # <p>批量移除控制台用户（单次最多10个；前置校验任一不满足整体拒绝；执行阶段单个失败不中断后续删除，成败以 SuccessUins/FailItems 为准）</p>
+        # <p>批量移除控制台用户（单次最多10个；前置校验任一不满足整体拒绝；执行阶段单个失败不中断后续删除，成败以 SuccessUins/FailItems 为准），该接口为控制台级接口，仅支持在中心地域调用：国内站请传入 ap-guangzhou，国际站请传入 ap-singapore；其他地域调用将返回 UnsupportedRegion。</p>
 
         # @param request: Request instance for RemoveConsoleUsers.
         # @type request: :class:`Tencentcloud::databuddy::V20260715::RemoveConsoleUsersRequest`
@@ -1343,7 +1343,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改控制台用户组
+        # 修改控制台用户组，该接口为控制台级接口，仅支持在中心地域调用：国内站请传入 ap-guangzhou，国际站请传入 ap-singapore；其他地域调用将返回 UnsupportedRegion。
 
         # @param request: Request instance for UpdateConsoleGroup.
         # @type request: :class:`Tencentcloud::databuddy::V20260715::UpdateConsoleGroupRequest`
@@ -1367,7 +1367,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改控制台用户角色
+        # 修改控制台用户角色，该接口为控制台级接口，仅支持在中心地域调用：国内站请传入 ap-guangzhou，国际站请传入 ap-singapore；其他地域调用将返回 UnsupportedRegion。
 
         # @param request: Request instance for UpdateConsoleUsers.
         # @type request: :class:`Tencentcloud::databuddy::V20260715::UpdateConsoleUsersRequest`
@@ -1482,7 +1482,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改工作空间
+        # 修改工作空间，该接口为控制台级接口，仅支持在中心地域调用：国内站请传入 ap-guangzhou，国际站请传入 ap-singapore；其他地域调用将返回 UnsupportedRegion。
 
         # @param request: Request instance for UpdateWorkspace.
         # @type request: :class:`Tencentcloud::databuddy::V20260715::UpdateWorkspaceRequest`

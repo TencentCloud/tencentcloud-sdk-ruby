@@ -1039,6 +1039,50 @@ module TencentCloud
         end
       end
 
+      # AddLLMSdkAccess请求参数结构体
+      class AddLLMSdkAccessRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 要接入的应用名称
+        # @type Name: String
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param Remark: 备注
+        # @type Remark: String
+
+        attr_accessor :Name, :InstanceId, :Remark
+
+        def initialize(name=nil, instanceid=nil, remark=nil)
+          @Name = name
+          @InstanceId = instanceid
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @InstanceId = params['InstanceId']
+          @Remark = params['Remark']
+        end
+      end
+
+      # AddLLMSdkAccess返回参数结构体
+      class AddLLMSdkAccessResponse < TencentCloud::Common::AbstractModel
+        # @param Domain: 服务id
+        # @type Domain: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Domain, :RequestId
+
+        def initialize(domain=nil, requestid=nil)
+          @Domain = domain
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AddSpartaProtection请求参数结构体
       class AddSpartaProtectionRequest < TencentCloud::Common::AbstractModel
         # @param Domain: <p>需要防护的域名</p>
@@ -1302,6 +1346,116 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 后付费实例（Edition=llm-sdk-waf）的基础信息，仅包含 tb_instance_conf 基础字段
+      class AfterPayInstanceInfo < TencentCloud::Common::AbstractModel
+        # @param AppId: <p>用户appid</p>
+        # @type AppId: Integer
+        # @param InstanceId: <p>实例唯一ID</p>
+        # @type InstanceId: String
+        # @param InstanceName: <p>实例名称</p>
+        # @type InstanceName: String
+        # @param ResourceIds: <p>实例对应资源ID，计费使用</p>
+        # @type ResourceIds: String
+        # @param Edition: <p>实例版本，后付费实例固定为 llm-sdk-waf</p>
+        # @type Edition: String
+        # @param Region: <p>实例所属地域</p>
+        # @type Region: String
+        # @param PayMode: <p>付费模式，后付费实例为 0</p>
+        # @type PayMode: Integer
+        # @param ValidTime: <p>实例过期时间</p>
+        # @type ValidTime: String
+        # @param BeginTime: <p>实例开始时间</p>
+        # @type BeginTime: String
+        # @param BillingItem: <p>计费项</p>
+        # @type BillingItem: String
+        # @param RenewFlag: <p>自动续费标识。<br>0：关闭<br>1：开启</p>
+        # @type RenewFlag: Integer
+        # @param Level: <p>实例套餐版本</p>
+        # @type Level: Integer
+        # @param ModifyTime: <p>实例修改时间</p>
+        # @type ModifyTime: String
+        # @param SubDomainLimit: <p>域名数量上限</p>
+        # @type SubDomainLimit: Integer
+        # @param MainDomainLimit: <p>主域名数量上限</p>
+        # @type MainDomainLimit: Integer
+        # @param ElasticBilling: <p>qps弹性计费上限</p>
+        # @type ElasticBilling: Integer
+        # @param AttackLogPost: <p>攻击日志投递开关</p>
+        # @type AttackLogPost: Integer
+        # @param APISecurity: <p>api安全是否购买</p>
+        # @type APISecurity: Integer
+        # @param IsAPISecurityTrial: <p>是否api 安全试用</p>
+        # @type IsAPISecurityTrial: Integer
+        # @param FreeDelayFlag: <p>实例延期释放标识</p>
+        # @type FreeDelayFlag: Integer
+        # @param BasicFlag: <p>1是基础2025版本；0不是</p>
+        # @type BasicFlag: Integer
+        # @param LLMPkg: <p>大模型安全「后付费」资源信息，结构与内容与 DescribeInstances 的 InstanceDetail.LLMPkg 保持一致</p>
+        # @type LLMPkg: :class:`Tencentcloud::Waf.v20180125.models.LLMPkg`
+        # @param LLMTokenUsage: <p>LLM实例当天4个计费模块token消耗量及近7天趋势（仅后付费llm-sdk-waf实例返回）</p>
+        # @type LLMTokenUsage: :class:`Tencentcloud::Waf.v20180125.models.LLMTokenUsage`
+
+        attr_accessor :AppId, :InstanceId, :InstanceName, :ResourceIds, :Edition, :Region, :PayMode, :ValidTime, :BeginTime, :BillingItem, :RenewFlag, :Level, :ModifyTime, :SubDomainLimit, :MainDomainLimit, :ElasticBilling, :AttackLogPost, :APISecurity, :IsAPISecurityTrial, :FreeDelayFlag, :BasicFlag, :LLMPkg, :LLMTokenUsage
+
+        def initialize(appid=nil, instanceid=nil, instancename=nil, resourceids=nil, edition=nil, region=nil, paymode=nil, validtime=nil, begintime=nil, billingitem=nil, renewflag=nil, level=nil, modifytime=nil, subdomainlimit=nil, maindomainlimit=nil, elasticbilling=nil, attacklogpost=nil, apisecurity=nil, isapisecuritytrial=nil, freedelayflag=nil, basicflag=nil, llmpkg=nil, llmtokenusage=nil)
+          @AppId = appid
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @ResourceIds = resourceids
+          @Edition = edition
+          @Region = region
+          @PayMode = paymode
+          @ValidTime = validtime
+          @BeginTime = begintime
+          @BillingItem = billingitem
+          @RenewFlag = renewflag
+          @Level = level
+          @ModifyTime = modifytime
+          @SubDomainLimit = subdomainlimit
+          @MainDomainLimit = maindomainlimit
+          @ElasticBilling = elasticbilling
+          @AttackLogPost = attacklogpost
+          @APISecurity = apisecurity
+          @IsAPISecurityTrial = isapisecuritytrial
+          @FreeDelayFlag = freedelayflag
+          @BasicFlag = basicflag
+          @LLMPkg = llmpkg
+          @LLMTokenUsage = llmtokenusage
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @ResourceIds = params['ResourceIds']
+          @Edition = params['Edition']
+          @Region = params['Region']
+          @PayMode = params['PayMode']
+          @ValidTime = params['ValidTime']
+          @BeginTime = params['BeginTime']
+          @BillingItem = params['BillingItem']
+          @RenewFlag = params['RenewFlag']
+          @Level = params['Level']
+          @ModifyTime = params['ModifyTime']
+          @SubDomainLimit = params['SubDomainLimit']
+          @MainDomainLimit = params['MainDomainLimit']
+          @ElasticBilling = params['ElasticBilling']
+          @AttackLogPost = params['AttackLogPost']
+          @APISecurity = params['APISecurity']
+          @IsAPISecurityTrial = params['IsAPISecurityTrial']
+          @FreeDelayFlag = params['FreeDelayFlag']
+          @BasicFlag = params['BasicFlag']
+          unless params['LLMPkg'].nil?
+            @LLMPkg = LLMPkg.new
+            @LLMPkg.deserialize(params['LLMPkg'])
+          end
+          unless params['LLMTokenUsage'].nil?
+            @LLMTokenUsage = LLMTokenUsage.new
+            @LLMTokenUsage.deserialize(params['LLMTokenUsage'])
+          end
         end
       end
 
@@ -6963,6 +7117,72 @@ module TencentCloud
             @Rule.deserialize(params['Rule'])
           end
           @ModifyTime = params['ModifyTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAfterPayInstances请求参数结构体
+      class DescribeAfterPayInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 容量
+        # @type Limit: Integer
+        # @param Filters: 过滤数组
+        # @type Filters: Array
+        # @param FreeDelayFlag: 释放延期标识
+        # @type FreeDelayFlag: Integer
+
+        attr_accessor :Offset, :Limit, :Filters, :FreeDelayFlag
+
+        def initialize(offset=nil, limit=nil, filters=nil, freedelayflag=nil)
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+          @FreeDelayFlag = freedelayflag
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filtersitemnew_tmp = FiltersItemNew.new
+              filtersitemnew_tmp.deserialize(i)
+              @Filters << filtersitemnew_tmp
+            end
+          end
+          @FreeDelayFlag = params['FreeDelayFlag']
+        end
+      end
+
+      # DescribeAfterPayInstances返回参数结构体
+      class DescribeAfterPayInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param Instances: 后付费实例列表
+        # @type Instances: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Instances, :RequestId
+
+        def initialize(total=nil, instances=nil, requestid=nil)
+          @Total = total
+          @Instances = instances
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Instances'].nil?
+            @Instances = []
+            params['Instances'].each do |i|
+              afterpayinstanceinfo_tmp = AfterPayInstanceInfo.new
+              afterpayinstanceinfo_tmp.deserialize(i)
+              @Instances << afterpayinstanceinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -15930,6 +16150,26 @@ module TencentCloud
         end
       end
 
+      # 近7天图片送检趋势的单日数据点
+      class LLMImageTrendItem < TencentCloud::Common::AbstractModel
+        # @param DayTime: <p>YYYYMMDD 格式日期</p>
+        # @type DayTime: String
+        # @param ImageUsage: <p>当日图片送检量（单位：张）</p>
+        # @type ImageUsage: Integer
+
+        attr_accessor :DayTime, :ImageUsage
+
+        def initialize(daytime=nil, imageusage=nil)
+          @DayTime = daytime
+          @ImageUsage = imageusage
+        end
+
+        def deserialize(params)
+          @DayTime = params['DayTime']
+          @ImageUsage = params['ImageUsage']
+        end
+      end
+
       # LLM waf 自定义词库实体
       class LLMKeywordLibrary < TencentCloud::Common::AbstractModel
         # @param Name: 词库名
@@ -16133,7 +16373,7 @@ module TencentCloud
         # @type Name: String
         # @param Remark: <p>备注</p>
         # @type Remark: String
-        # @param SdkSource: <p>SDK接入来源，tokenhub 表示通过 TokenHub 创建，空字符串表示通过控制台创建</p>
+        # @param SdkSource: <p>SDK接入来源，可不填</p>
         # @type SdkSource: String
         # @param MainStatus: <p>总开关</p>
         # @type MainStatus: Boolean
@@ -16161,12 +16401,14 @@ module TencentCloud
         # @type SkillsStatus: Boolean
         # @param IntentStatus: <p>意图识别检测开关</p>
         # @type IntentStatus: Boolean
+        # @param UrlDetectStatus: <p>恶意URL检测开关</p>
+        # @type UrlDetectStatus: Boolean
         # @param EffectiveRules: <p>生效规则数量</p>
         # @type EffectiveRules: Integer
 
-        attr_accessor :Domain, :Name, :Remark, :SdkSource, :MainStatus, :LimitRuleStatus, :ContentRuleStatus, :CreateTime, :UpdateTime, :LimitRuleCount, :ContentRuleCount, :ToolCallStatus, :LLMProtectStatus, :ContentComplianceStatus, :DLPStatus, :SkillsStatus, :IntentStatus, :EffectiveRules
+        attr_accessor :Domain, :Name, :Remark, :SdkSource, :MainStatus, :LimitRuleStatus, :ContentRuleStatus, :CreateTime, :UpdateTime, :LimitRuleCount, :ContentRuleCount, :ToolCallStatus, :LLMProtectStatus, :ContentComplianceStatus, :DLPStatus, :SkillsStatus, :IntentStatus, :UrlDetectStatus, :EffectiveRules
 
-        def initialize(domain=nil, name=nil, remark=nil, sdksource=nil, mainstatus=nil, limitrulestatus=nil, contentrulestatus=nil, createtime=nil, updatetime=nil, limitrulecount=nil, contentrulecount=nil, toolcallstatus=nil, llmprotectstatus=nil, contentcompliancestatus=nil, dlpstatus=nil, skillsstatus=nil, intentstatus=nil, effectiverules=nil)
+        def initialize(domain=nil, name=nil, remark=nil, sdksource=nil, mainstatus=nil, limitrulestatus=nil, contentrulestatus=nil, createtime=nil, updatetime=nil, limitrulecount=nil, contentrulecount=nil, toolcallstatus=nil, llmprotectstatus=nil, contentcompliancestatus=nil, dlpstatus=nil, skillsstatus=nil, intentstatus=nil, urldetectstatus=nil, effectiverules=nil)
           @Domain = domain
           @Name = name
           @Remark = remark
@@ -16184,6 +16426,7 @@ module TencentCloud
           @DLPStatus = dlpstatus
           @SkillsStatus = skillsstatus
           @IntentStatus = intentstatus
+          @UrlDetectStatus = urldetectstatus
           @EffectiveRules = effectiverules
         end
 
@@ -16205,6 +16448,7 @@ module TencentCloud
           @DLPStatus = params['DLPStatus']
           @SkillsStatus = params['SkillsStatus']
           @IntentStatus = params['IntentStatus']
+          @UrlDetectStatus = params['UrlDetectStatus']
           @EffectiveRules = params['EffectiveRules']
         end
       end
@@ -16226,6 +16470,76 @@ module TencentCloud
         def deserialize(params)
           @Label = params['Label']
           @Level = params['Level']
+        end
+      end
+
+      # 近7天token总量趋势的单日数据点
+      class LLMTokenTrendItem < TencentCloud::Common::AbstractModel
+        # @param DayTime: <p>YYYYMMDD 格式日期</p>
+        # @type DayTime: String
+        # @param TokenUsage: <p>当日token总用量</p>
+        # @type TokenUsage: Integer
+
+        attr_accessor :DayTime, :TokenUsage
+
+        def initialize(daytime=nil, tokenusage=nil)
+          @DayTime = daytime
+          @TokenUsage = tokenusage
+        end
+
+        def deserialize(params)
+          @DayTime = params['DayTime']
+          @TokenUsage = params['TokenUsage']
+        end
+      end
+
+      # LLM实例当天4个计费模块的token消耗量及近7天趋势（均为实例维度）
+      class LLMTokenUsage < TencentCloud::Common::AbstractModel
+        # @param PromptUsage: <p>今日提示词攻击防护 token 消耗量</p>
+        # @type PromptUsage: Integer
+        # @param ContentTextUsage: <p>今日内容安全文本检测 token 消耗量</p>
+        # @type ContentTextUsage: Integer
+        # @param SensitiveDataUsage: <p>今日敏感数据检测 token 消耗量</p>
+        # @type SensitiveDataUsage: Integer
+        # @param ContentImageUsage: <p>今日图片送检量（单位：张）</p>
+        # @type ContentImageUsage: Integer
+        # @param TokenTrend: <p>该实例近7天token总量趋势（按天，缺失日期补0）</p>
+        # @type TokenTrend: Array
+        # @param ImageTrend: <p>该实例近7天图片送检趋势（按天，缺失日期补0）</p>
+        # @type ImageTrend: Array
+
+        attr_accessor :PromptUsage, :ContentTextUsage, :SensitiveDataUsage, :ContentImageUsage, :TokenTrend, :ImageTrend
+
+        def initialize(promptusage=nil, contenttextusage=nil, sensitivedatausage=nil, contentimageusage=nil, tokentrend=nil, imagetrend=nil)
+          @PromptUsage = promptusage
+          @ContentTextUsage = contenttextusage
+          @SensitiveDataUsage = sensitivedatausage
+          @ContentImageUsage = contentimageusage
+          @TokenTrend = tokentrend
+          @ImageTrend = imagetrend
+        end
+
+        def deserialize(params)
+          @PromptUsage = params['PromptUsage']
+          @ContentTextUsage = params['ContentTextUsage']
+          @SensitiveDataUsage = params['SensitiveDataUsage']
+          @ContentImageUsage = params['ContentImageUsage']
+          unless params['TokenTrend'].nil?
+            @TokenTrend = []
+            params['TokenTrend'].each do |i|
+              llmtokentrenditem_tmp = LLMTokenTrendItem.new
+              llmtokentrenditem_tmp.deserialize(i)
+              @TokenTrend << llmtokentrenditem_tmp
+            end
+          end
+          unless params['ImageTrend'].nil?
+            @ImageTrend = []
+            params['ImageTrend'].each do |i|
+              llmimagetrenditem_tmp = LLMImageTrendItem.new
+              llmimagetrenditem_tmp.deserialize(i)
+              @ImageTrend << llmimagetrenditem_tmp
+            end
+          end
         end
       end
 

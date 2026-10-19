@@ -3605,45 +3605,46 @@ module TencentCloud
 
       # DescribeDevices请求参数结构体
       class DescribeDevicesRequest < TencentCloud::Common::AbstractModel
-        # @param IdSet: 资产ID集合
+        # @param IdSet: <p>资产ID集合</p>
         # @type IdSet: Array
-        # @param Name: 资产名或资产IP，模糊查询
+        # @param Name: <p>资产名或资产IP，模糊查询</p>
         # @type Name: String
-        # @param Ip: 暂未使用
+        # @param Ip: <p>暂未使用</p>
         # @type Ip: String
-        # @param ApCodeSet: 地域码集合
+        # @param ApCodeSet: <p>地域码集合</p>
         # @type ApCodeSet: Array
-        # @param Kind: 操作系统类型, 1 - Linux, 2 - Windows, 3 - MySQL, 4 - SQLServer
+        # @param Kind: <p>操作系统类型, 1 - Linux, 2 - Windows, 3 - MySQL, 4 - SQLServer</p>
         # @type Kind: Integer
-        # @param Offset: 分页偏移位置，默认值为0
+        # @param Offset: <p>分页偏移位置，默认值为0</p>
         # @type Offset: Integer
-        # @param Limit: 每页条目数量，默认20
+        # @param Limit: <p>每页条目数量</p><p>取值范围：[0, 500]</p><p>默认值：20</p>
         # @type Limit: Integer
-        # @param AuthorizedUserIdSet: 有该资产访问权限的用户ID集合
+        # @param AuthorizedUserIdSet: <p>有该资产访问权限的用户ID集合</p>
         # @type AuthorizedUserIdSet: Array
-        # @param ResourceIdSet: 过滤条件，资产绑定的堡垒机服务ID集合
+        # @param ResourceIdSet: <p>过滤条件，资产绑定的堡垒机服务ID集合</p>
         # @type ResourceIdSet: Array
-        # @param KindSet: 可提供按照多种类型过滤, 1 - Linux, 2 - Windows, 3 - MySQL, 4 - SQLServer
+        # @param KindSet: <p>可提供按照多种类型过滤, 1 - Linux, 2 - Windows, 3 - MySQL, 4 - SQLServer</p>
         # @type KindSet: Array
-        # @param ManagedAccount: 资产是否包含托管账号。1，包含；0，不包含
+        # @param ManagedAccount: <p>资产是否包含托管账号。1，包含；0，不包含</p>
         # @type ManagedAccount: String
-        # @param DepartmentId: 过滤条件，可按照部门ID进行过滤
+        # @param DepartmentId: <p>过滤条件，可按照部门ID进行过滤</p>
         # @type DepartmentId: String
-        # @param AccountIdSet: 资产所属云账号id
+        # @param AccountIdSet: <p>资产所属云账号id</p>
         # @type AccountIdSet: Array
-        # @param ProviderTypeSet: 云厂商类型，1-腾讯云，2-阿里云
+        # @param ProviderTypeSet: <p>云厂商类型，1-腾讯云，2-阿里云</p>
         # @type ProviderTypeSet: Array
-        # @param CloudDeviceStatusSet: 同步的云资产状态，标记同步的资产的状态情况，0-已删除,1-正常,2-已隔离,3-已过期
+        # @param CloudDeviceStatusSet: <p>同步的云资产状态，标记同步的资产的状态情况，0-已删除,1-正常,2-已隔离,3-已过期</p>
         # @type CloudDeviceStatusSet: Array
-        # @param TagFilters: 过滤条件，可按照标签键、标签进行过滤。如果同时指定标签键和标签过滤条件，它们之间为“AND”的关系
+        # @param TagFilters: <p>过滤条件，可按照标签键、标签进行过滤。如果同时指定标签键和标签过滤条件，它们之间为“AND”的关系</p>
         # @type TagFilters: Array
-        # @param Filters: 过滤数组。支持的Name：
-        # BindingStatus 绑定状态
+        # @param Filters: <p>过滤数组。支持的Name：<br>BindingStatus 绑定状态</p>
         # @type Filters: Array
+        # @param OwnerAppIds: <p>所属成员 AppId</p>
+        # @type OwnerAppIds: Array
 
-        attr_accessor :IdSet, :Name, :Ip, :ApCodeSet, :Kind, :Offset, :Limit, :AuthorizedUserIdSet, :ResourceIdSet, :KindSet, :ManagedAccount, :DepartmentId, :AccountIdSet, :ProviderTypeSet, :CloudDeviceStatusSet, :TagFilters, :Filters
+        attr_accessor :IdSet, :Name, :Ip, :ApCodeSet, :Kind, :Offset, :Limit, :AuthorizedUserIdSet, :ResourceIdSet, :KindSet, :ManagedAccount, :DepartmentId, :AccountIdSet, :ProviderTypeSet, :CloudDeviceStatusSet, :TagFilters, :Filters, :OwnerAppIds
 
-        def initialize(idset=nil, name=nil, ip=nil, apcodeset=nil, kind=nil, offset=nil, limit=nil, authorizeduseridset=nil, resourceidset=nil, kindset=nil, managedaccount=nil, departmentid=nil, accountidset=nil, providertypeset=nil, clouddevicestatusset=nil, tagfilters=nil, filters=nil)
+        def initialize(idset=nil, name=nil, ip=nil, apcodeset=nil, kind=nil, offset=nil, limit=nil, authorizeduseridset=nil, resourceidset=nil, kindset=nil, managedaccount=nil, departmentid=nil, accountidset=nil, providertypeset=nil, clouddevicestatusset=nil, tagfilters=nil, filters=nil, ownerappids=nil)
           @IdSet = idset
           @Name = name
           @Ip = ip
@@ -3661,6 +3662,7 @@ module TencentCloud
           @CloudDeviceStatusSet = clouddevicestatusset
           @TagFilters = tagfilters
           @Filters = filters
+          @OwnerAppIds = ownerappids
         end
 
         def deserialize(params)
@@ -3695,14 +3697,15 @@ module TencentCloud
               @Filters << filter_tmp
             end
           end
+          @OwnerAppIds = params['OwnerAppIds']
         end
       end
 
       # DescribeDevices返回参数结构体
       class DescribeDevicesResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 资产总数
+        # @param TotalCount: <p>资产总数</p>
         # @type TotalCount: Integer
-        # @param DeviceSet: 资产信息列表
+        # @param DeviceSet: <p>资产信息列表</p>
         # @type DeviceSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4102,15 +4105,15 @@ module TencentCloud
 
       # DescribeResources请求参数结构体
       class DescribeResourcesRequest < TencentCloud::Common::AbstractModel
-        # @param ApCode: 地域码, 如: ap-guangzhou
+        # @param ApCode: <p>地域码, 如: ap-guangzhou</p>
         # @type ApCode: String
-        # @param VpcId: 按照堡垒机开通的 VPC 实例ID查询
+        # @param VpcId: <p>按照堡垒机开通的 VPC 实例ID查询</p>
         # @type VpcId: String
-        # @param ResourceIds: 资源ID集合，当传入ID集合时忽略 ApCode 和 VpcId
+        # @param ResourceIds: <p>资源ID集合，当传入ID集合时忽略 ApCode 和 VpcId</p>
         # @type ResourceIds: Array
-        # @param Limit: 每页条目数量
+        # @param Limit: <p>每页条目数量</p>
         # @type Limit: Integer
-        # @param Offset: 分页偏移位置
+        # @param Offset: <p>分页偏移位置</p>
         # @type Offset: Integer
 
         attr_accessor :ApCode, :VpcId, :ResourceIds, :Limit, :Offset
@@ -4134,9 +4137,9 @@ module TencentCloud
 
       # DescribeResources返回参数结构体
       class DescribeResourcesResponse < TencentCloud::Common::AbstractModel
-        # @param ResourceSet: 堡垒机资源列表
+        # @param ResourceSet: <p>堡垒机资源列表</p>
         # @type ResourceSet: Array
-        # @param TotalCount: 堡垒机资源数量
+        # @param TotalCount: <p>堡垒机资源数量</p>
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4634,10 +4637,16 @@ module TencentCloud
         # @type ProviderName: String
         # @param SyncCloudDeviceStatus: <p>同步的云资产状态，标记同步的资产的状态情况，0-已删除,1-正常,2-已隔离,3-已过期</p>
         # @type SyncCloudDeviceStatus: Integer
+        # @param OwnerAppId: <p>所属账号 AppId</p>
+        # @type OwnerAppId: Integer
+        # @param OwnerAccountUin: <p>所属账号 UIN</p>
+        # @type OwnerAccountUin: String
+        # @param OwnerAccountName: <p>所属账号展示名</p>
+        # @type OwnerAccountName: String
 
-        attr_accessor :Id, :InstanceId, :Name, :PublicIp, :PrivateIp, :ApCode, :ApName, :OsName, :Kind, :Port, :GroupSet, :AccountCount, :VpcId, :SubnetId, :Resource, :Department, :IpPortSet, :DomainId, :DomainName, :EnableSSL, :SSLCertName, :IOAId, :ManageDimension, :ManageAccountId, :Namespace, :Workload, :SyncPodCount, :TotalPodCount, :CloudAccountId, :CloudAccountName, :ProviderType, :ProviderName, :SyncCloudDeviceStatus
+        attr_accessor :Id, :InstanceId, :Name, :PublicIp, :PrivateIp, :ApCode, :ApName, :OsName, :Kind, :Port, :GroupSet, :AccountCount, :VpcId, :SubnetId, :Resource, :Department, :IpPortSet, :DomainId, :DomainName, :EnableSSL, :SSLCertName, :IOAId, :ManageDimension, :ManageAccountId, :Namespace, :Workload, :SyncPodCount, :TotalPodCount, :CloudAccountId, :CloudAccountName, :ProviderType, :ProviderName, :SyncCloudDeviceStatus, :OwnerAppId, :OwnerAccountUin, :OwnerAccountName
 
-        def initialize(id=nil, instanceid=nil, name=nil, publicip=nil, privateip=nil, apcode=nil, apname=nil, osname=nil, kind=nil, port=nil, groupset=nil, accountcount=nil, vpcid=nil, subnetid=nil, resource=nil, department=nil, ipportset=nil, domainid=nil, domainname=nil, enablessl=nil, sslcertname=nil, ioaid=nil, managedimension=nil, manageaccountid=nil, namespace=nil, workload=nil, syncpodcount=nil, totalpodcount=nil, cloudaccountid=nil, cloudaccountname=nil, providertype=nil, providername=nil, syncclouddevicestatus=nil)
+        def initialize(id=nil, instanceid=nil, name=nil, publicip=nil, privateip=nil, apcode=nil, apname=nil, osname=nil, kind=nil, port=nil, groupset=nil, accountcount=nil, vpcid=nil, subnetid=nil, resource=nil, department=nil, ipportset=nil, domainid=nil, domainname=nil, enablessl=nil, sslcertname=nil, ioaid=nil, managedimension=nil, manageaccountid=nil, namespace=nil, workload=nil, syncpodcount=nil, totalpodcount=nil, cloudaccountid=nil, cloudaccountname=nil, providertype=nil, providername=nil, syncclouddevicestatus=nil, ownerappid=nil, owneraccountuin=nil, owneraccountname=nil)
           @Id = id
           @InstanceId = instanceid
           @Name = name
@@ -4671,6 +4680,9 @@ module TencentCloud
           @ProviderType = providertype
           @ProviderName = providername
           @SyncCloudDeviceStatus = syncclouddevicestatus
+          @OwnerAppId = ownerappid
+          @OwnerAccountUin = owneraccountuin
+          @OwnerAccountName = owneraccountname
         end
 
         def deserialize(params)
@@ -4720,6 +4732,9 @@ module TencentCloud
           @ProviderType = params['ProviderType']
           @ProviderName = params['ProviderName']
           @SyncCloudDeviceStatus = params['SyncCloudDeviceStatus']
+          @OwnerAppId = params['OwnerAppId']
+          @OwnerAccountUin = params['OwnerAccountUin']
+          @OwnerAccountName = params['OwnerAccountName']
         end
       end
 
@@ -7095,13 +7110,15 @@ module TencentCloud
         # @type DeployCvmCount: Integer
         # @param ResourceZoneSet: <p>堡垒机实例的可用区信息</p>
         # @type ResourceZoneSet: Array
+        # @param OrgAccountQuota: <p>多账号额度</p>
+        # @type OrgAccountQuota: Integer
 
-        attr_accessor :ResourceId, :ApCode, :SvArgs, :VpcId, :Nodes, :RenewFlag, :ExpireTime, :Status, :ResourceName, :Pid, :CreateTime, :ProductCode, :SubProductCode, :Zone, :Expired, :Deployed, :VpcName, :VpcCidrBlock, :SubnetId, :SubnetName, :CidrBlock, :PublicIpSet, :PrivateIpSet, :ModuleSet, :UsedNodes, :ExtendPoints, :PackageBandwidth, :PackageNode, :LogDeliveryArgs, :ClbSet, :DomainCount, :UsedDomainCount, :EnabledDomainCount, :Trial, :LogDelivery, :CdcClusterId, :DeployModel, :IntranetAccess, :IntranetPrivateIpSet, :IntranetVpcId, :IntranetSubnetId, :IntranetSubnetIdSet, :IntranetVpcCidr, :DomainName, :ShareClb, :OpenClbId, :LbVipIsp, :TUICmdPort, :TUIDirectPort, :WebAccess, :ClientAccess, :ExternalAccess, :IOAResource, :PackageIOAUserCount, :PackageIOABandwidth, :IOAResourceId, :ResourceEdition, :TimeUnit, :TimeSpan, :PayMode, :BillingRegion, :BillingZone, :DeployCvmCount, :ResourceZoneSet
+        attr_accessor :ResourceId, :ApCode, :SvArgs, :VpcId, :Nodes, :RenewFlag, :ExpireTime, :Status, :ResourceName, :Pid, :CreateTime, :ProductCode, :SubProductCode, :Zone, :Expired, :Deployed, :VpcName, :VpcCidrBlock, :SubnetId, :SubnetName, :CidrBlock, :PublicIpSet, :PrivateIpSet, :ModuleSet, :UsedNodes, :ExtendPoints, :PackageBandwidth, :PackageNode, :LogDeliveryArgs, :ClbSet, :DomainCount, :UsedDomainCount, :EnabledDomainCount, :Trial, :LogDelivery, :CdcClusterId, :DeployModel, :IntranetAccess, :IntranetPrivateIpSet, :IntranetVpcId, :IntranetSubnetId, :IntranetSubnetIdSet, :IntranetVpcCidr, :DomainName, :ShareClb, :OpenClbId, :LbVipIsp, :TUICmdPort, :TUIDirectPort, :WebAccess, :ClientAccess, :ExternalAccess, :IOAResource, :PackageIOAUserCount, :PackageIOABandwidth, :IOAResourceId, :ResourceEdition, :TimeUnit, :TimeSpan, :PayMode, :BillingRegion, :BillingZone, :DeployCvmCount, :ResourceZoneSet, :OrgAccountQuota
         extend Gem::Deprecate
         deprecate :IntranetSubnetId, :none, 2026, 10
         deprecate :IntranetSubnetId=, :none, 2026, 10
 
-        def initialize(resourceid=nil, apcode=nil, svargs=nil, vpcid=nil, nodes=nil, renewflag=nil, expiretime=nil, status=nil, resourcename=nil, pid=nil, createtime=nil, productcode=nil, subproductcode=nil, zone=nil, expired=nil, deployed=nil, vpcname=nil, vpccidrblock=nil, subnetid=nil, subnetname=nil, cidrblock=nil, publicipset=nil, privateipset=nil, moduleset=nil, usednodes=nil, extendpoints=nil, packagebandwidth=nil, packagenode=nil, logdeliveryargs=nil, clbset=nil, domaincount=nil, useddomaincount=nil, enableddomaincount=nil, trial=nil, logdelivery=nil, cdcclusterid=nil, deploymodel=nil, intranetaccess=nil, intranetprivateipset=nil, intranetvpcid=nil, intranetsubnetid=nil, intranetsubnetidset=nil, intranetvpccidr=nil, domainname=nil, shareclb=nil, openclbid=nil, lbvipisp=nil, tuicmdport=nil, tuidirectport=nil, webaccess=nil, clientaccess=nil, externalaccess=nil, ioaresource=nil, packageioausercount=nil, packageioabandwidth=nil, ioaresourceid=nil, resourceedition=nil, timeunit=nil, timespan=nil, paymode=nil, billingregion=nil, billingzone=nil, deploycvmcount=nil, resourcezoneset=nil)
+        def initialize(resourceid=nil, apcode=nil, svargs=nil, vpcid=nil, nodes=nil, renewflag=nil, expiretime=nil, status=nil, resourcename=nil, pid=nil, createtime=nil, productcode=nil, subproductcode=nil, zone=nil, expired=nil, deployed=nil, vpcname=nil, vpccidrblock=nil, subnetid=nil, subnetname=nil, cidrblock=nil, publicipset=nil, privateipset=nil, moduleset=nil, usednodes=nil, extendpoints=nil, packagebandwidth=nil, packagenode=nil, logdeliveryargs=nil, clbset=nil, domaincount=nil, useddomaincount=nil, enableddomaincount=nil, trial=nil, logdelivery=nil, cdcclusterid=nil, deploymodel=nil, intranetaccess=nil, intranetprivateipset=nil, intranetvpcid=nil, intranetsubnetid=nil, intranetsubnetidset=nil, intranetvpccidr=nil, domainname=nil, shareclb=nil, openclbid=nil, lbvipisp=nil, tuicmdport=nil, tuidirectport=nil, webaccess=nil, clientaccess=nil, externalaccess=nil, ioaresource=nil, packageioausercount=nil, packageioabandwidth=nil, ioaresourceid=nil, resourceedition=nil, timeunit=nil, timespan=nil, paymode=nil, billingregion=nil, billingzone=nil, deploycvmcount=nil, resourcezoneset=nil, orgaccountquota=nil)
           @ResourceId = resourceid
           @ApCode = apcode
           @SvArgs = svargs
@@ -7166,6 +7183,7 @@ module TencentCloud
           @BillingZone = billingzone
           @DeployCvmCount = deploycvmcount
           @ResourceZoneSet = resourcezoneset
+          @OrgAccountQuota = orgaccountquota
         end
 
         def deserialize(params)
@@ -7247,6 +7265,7 @@ module TencentCloud
               @ResourceZoneSet << resourcedeployzone_tmp
             end
           end
+          @OrgAccountQuota = params['OrgAccountQuota']
         end
       end
 

@@ -4264,19 +4264,22 @@ module TencentCloud
 
       # 规则健康检查状态
       class RuleHealthStatusInfo < TencentCloud::Common::AbstractModel
-        # @param IsDefaultRule: 是否为默认转发规则。
+        # @param IsDefaultRule: <p>是否为默认转发规则。</p>
         # @type IsDefaultRule: String
-        # @param RuleId: 转发规则 ID，格式为 rule- 后接 8 位字母数字。
+        # @param RuleId: <p>转发规则 ID，格式为 rule- 后接 8 位字母数字。</p>
         # @type RuleId: String
-        # @param TargetGroupHealthInfos: 目标组健康状态。
+        # @param TargetGroupHealthInfos: <p>目标组健康状态。</p>
         # @type TargetGroupHealthInfos: Array
+        # @param Priority: <p>优先级，值越小优先级越高，取值范围：1~10000。</p>
+        # @type Priority: Integer
 
-        attr_accessor :IsDefaultRule, :RuleId, :TargetGroupHealthInfos
+        attr_accessor :IsDefaultRule, :RuleId, :TargetGroupHealthInfos, :Priority
 
-        def initialize(isdefaultrule=nil, ruleid=nil, targetgrouphealthinfos=nil)
+        def initialize(isdefaultrule=nil, ruleid=nil, targetgrouphealthinfos=nil, priority=nil)
           @IsDefaultRule = isdefaultrule
           @RuleId = ruleid
           @TargetGroupHealthInfos = targetgrouphealthinfos
+          @Priority = priority
         end
 
         def deserialize(params)
@@ -4290,6 +4293,7 @@ module TencentCloud
               @TargetGroupHealthInfos << targetgrouphealthinfo_tmp
             end
           end
+          @Priority = params['Priority']
         end
       end
 

@@ -18034,7 +18034,7 @@ module TencentCloud
 
       # DescribeTaskDetail返回参数结构体
       class DescribeTaskDetailResponse < TencentCloud::Common::AbstractModel
-        # @param TaskType: <p>任务类型，取值：<li>Procedure：视频处理任务；</li><li>EditMedia：视频编辑任务；</li><li>SplitMedia：视频拆条任务；</li><li>ComposeMedia：制作媒体文件任务；</li><li>WechatPublish：微信发布任务；</li><li>WechatMiniProgramPublish：微信小程序视频发布任务；</li><li>PullUpload：拉取上传媒体文件任务；</li><li>FastClipMedia：快速剪辑任务；</li><li>RemoveWatermarkTask：智能去除水印任务；</li><li>DescribeFileAttributesTask：获取文件属性任务；</li><li>RebuildMedia：音画质重生任务（不推荐使用）；</li><li>ReviewAudioVideo：音视频审核任务；</li><li>ExtractTraceWatermark：提取溯源水印任务；</li><li>ExtractCopyRightWatermark：提取版权水印任务；</li><li>QualityInspect：音画质检测任务；</li><li>QualityEnhance：音画质重生任务；</li><li>ComplexAdaptiveDynamicStreaming：复杂自适应码流任务；</li><li>ProcessMediaByMPS：MPS 视频处理任务；</li><li>AigcImageTask：AIGC 生图任务；</li><li>SceneAigcImageTask：场景化 AIGC 生图任务；</li><li>AigcVideoTask：AIGC 生视频任务；</li><li>AigcAudioTask：AIGC 生音频任务；</li><li>ImportMediaKnowledge：导入媒体知识任务。</li><li>SceneAigcVideoTask：场景化 AIGC 生视频任务；</li><li> ExtractBlindWatermark：提取数字水印任务。</li><li> ExtractBlindWatermark：提取数字水印任务。</li><li> CreateAigcAdvancedCustomElement：创建自定义主体任务</li><li>CreateAigcCustomVoice：创建自定义音色任务</li><li>CreateAigcSubject：创建主体任务</li><li>AigcVideoRedrawTask：AIGC 视频转绘任务</li><li>CreateAigcAudioClone：AIGC 声音复刻任务</li><li>DescribeAigcFaceInfoAsync：异步获取 AIGC 人脸信息任务</li><li>WandAsrTask：WAND 语音识别</li><li>AigcHunyuan3DTask：AIGC 混元 3D 任务</li><li>DesignVoiceAsync：音色设计</li><li>CloneVoiceAsync：音色克隆</li><li>TextToSpeechAsync：语音生成</li><li>VideoDubbingAsync：视频翻译配音</li></p>
+        # @param TaskType: <p>任务类型，取值：<li>Procedure：视频处理任务；</li><li>EditMedia：视频编辑任务；</li><li>SplitMedia：视频拆条任务；</li><li>ComposeMedia：制作媒体文件任务；</li><li>WechatPublish：微信发布任务；</li><li>WechatMiniProgramPublish：微信小程序视频发布任务；</li><li>PullUpload：拉取上传媒体文件任务；</li><li>FastClipMedia：快速剪辑任务；</li><li>RemoveWatermarkTask：智能去除水印任务；</li><li>DescribeFileAttributesTask：获取文件属性任务；</li><li>RebuildMedia：音画质重生任务（不推荐使用）；</li><li>ReviewAudioVideo：音视频审核任务；</li><li>ExtractTraceWatermark：提取溯源水印任务；</li><li>ExtractCopyRightWatermark：提取版权水印任务；</li><li>QualityInspect：音画质检测任务；</li><li>QualityEnhance：音画质重生任务；</li><li>ComplexAdaptiveDynamicStreaming：复杂自适应码流任务；</li><li>ProcessMediaByMPS：MPS 视频处理任务；</li><li>AigcImageTask：AIGC 生图任务；</li><li>SceneAigcImageTask：场景化 AIGC 生图任务；</li><li>AigcVideoTask：AIGC 生视频任务；</li><li>AigcAudioTask：AIGC 生音频任务；</li><li>ImportMediaKnowledge：导入媒体知识任务。</li><li>SceneAigcVideoTask：场景化 AIGC 生视频任务；</li><li> ExtractBlindWatermark：提取数字水印任务。</li><li> ExtractBlindWatermark：提取数字水印任务。</li><li> CreateAigcAdvancedCustomElement：创建自定义主体任务</li><li>CreateAigcCustomVoice：创建自定义音色任务</li><li>CreateAigcSubject：创建主体任务</li><li>AigcVideoRedrawTask：AIGC 视频转绘任务</li><li>CreateAigcAudioClone：AIGC 声音复刻任务</li><li>DescribeAigcFaceInfoAsync：异步获取 AIGC 人脸信息任务</li><li>WandAsrTask：WAND 语音识别</li><li>AigcHunyuan3DTask：AIGC 混元 3D 任务</li><li>DesignVoiceAsync：音色设计</li><li>CloneVoiceAsync：音色克隆</li><li>TextToSpeechAsync：语音生成</li><li>VideoDubbingAsync：视频翻译配音</li><li>VideoDepthEstimation: 视频深度估计任务</li></p>
         # @type TaskType: String
         # @param Status: <p>任务状态，取值：</p><li>WAITING：等待中；</li><li>PROCESSING：处理中；</li><li>FINISH：已完成；</li><li>ABORTED：已终止。</li>
         # @type Status: String
@@ -18150,12 +18150,14 @@ module TencentCloud
         # @type TextToSpeechAsyncTask: :class:`Tencentcloud::Vod.v20180717.models.TextToSpeechAsyncTask`
         # @param VideoDubbingAsyncTask: <p>视频翻译配音，仅当 TaskType 为VideoDubbingAsync，该字段有值。</p>
         # @type VideoDubbingAsyncTask: :class:`Tencentcloud::Vod.v20180717.models.VideoDubbingAsyncTask`
+        # @param VideoDepthEstimationTask: <p>视频深度估算任务，仅当 TaskType 为VideoDepthEstimation，该字段有值。</p>
+        # @type VideoDepthEstimationTask: :class:`Tencentcloud::Vod.v20180717.models.VideoDepthEstimationTask`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskType, :Status, :CreateTime, :BeginProcessTime, :FinishTime, :ProcedureTask, :EditMediaTask, :WechatPublishTask, :ComposeMediaTask, :SplitMediaTask, :WechatMiniProgramPublishTask, :PullUploadTask, :TranscodeTask, :ConcatTask, :ClipTask, :CreateImageSpriteTask, :SnapshotByTimeOffsetTask, :RemoveWatermarkTask, :RebuildMediaTask, :ExtractTraceWatermarkTask, :ExtractCopyRightWatermarkTask, :ReviewAudioVideoTask, :ReduceMediaBitrateTask, :DescribeFileAttributesTask, :QualityInspectTask, :QualityEnhanceTask, :ComplexAdaptiveDynamicStreamingTask, :ProcessMediaByMPSTask, :AigcImageTask, :AigcVideoTask, :ImportMediaKnowledge, :SceneAigcImageTask, :SceneAigcVideoTask, :ProcessImageAsyncTask, :ExtractBlindWatermarkTask, :CreateAigcAdvancedCustomElementTask, :CreateAigcCustomVoiceTask, :CreateAigcSubjectTask, :AigcVideoRedrawTask, :AigcAudioTask, :CreateAigcAudioCloneTask, :DescribeAigcFaceInfoAsyncTask, :AigcHunyuan3DTask, :DesignVoiceAsyncTask, :CloneVoiceAsyncTask, :TextToSpeechAsyncTask, :VideoDubbingAsyncTask, :RequestId
+        attr_accessor :TaskType, :Status, :CreateTime, :BeginProcessTime, :FinishTime, :ProcedureTask, :EditMediaTask, :WechatPublishTask, :ComposeMediaTask, :SplitMediaTask, :WechatMiniProgramPublishTask, :PullUploadTask, :TranscodeTask, :ConcatTask, :ClipTask, :CreateImageSpriteTask, :SnapshotByTimeOffsetTask, :RemoveWatermarkTask, :RebuildMediaTask, :ExtractTraceWatermarkTask, :ExtractCopyRightWatermarkTask, :ReviewAudioVideoTask, :ReduceMediaBitrateTask, :DescribeFileAttributesTask, :QualityInspectTask, :QualityEnhanceTask, :ComplexAdaptiveDynamicStreamingTask, :ProcessMediaByMPSTask, :AigcImageTask, :AigcVideoTask, :ImportMediaKnowledge, :SceneAigcImageTask, :SceneAigcVideoTask, :ProcessImageAsyncTask, :ExtractBlindWatermarkTask, :CreateAigcAdvancedCustomElementTask, :CreateAigcCustomVoiceTask, :CreateAigcSubjectTask, :AigcVideoRedrawTask, :AigcAudioTask, :CreateAigcAudioCloneTask, :DescribeAigcFaceInfoAsyncTask, :AigcHunyuan3DTask, :DesignVoiceAsyncTask, :CloneVoiceAsyncTask, :TextToSpeechAsyncTask, :VideoDubbingAsyncTask, :VideoDepthEstimationTask, :RequestId
 
-        def initialize(tasktype=nil, status=nil, createtime=nil, beginprocesstime=nil, finishtime=nil, proceduretask=nil, editmediatask=nil, wechatpublishtask=nil, composemediatask=nil, splitmediatask=nil, wechatminiprogrampublishtask=nil, pulluploadtask=nil, transcodetask=nil, concattask=nil, cliptask=nil, createimagespritetask=nil, snapshotbytimeoffsettask=nil, removewatermarktask=nil, rebuildmediatask=nil, extracttracewatermarktask=nil, extractcopyrightwatermarktask=nil, reviewaudiovideotask=nil, reducemediabitratetask=nil, describefileattributestask=nil, qualityinspecttask=nil, qualityenhancetask=nil, complexadaptivedynamicstreamingtask=nil, processmediabympstask=nil, aigcimagetask=nil, aigcvideotask=nil, importmediaknowledge=nil, sceneaigcimagetask=nil, sceneaigcvideotask=nil, processimageasynctask=nil, extractblindwatermarktask=nil, createaigcadvancedcustomelementtask=nil, createaigccustomvoicetask=nil, createaigcsubjecttask=nil, aigcvideoredrawtask=nil, aigcaudiotask=nil, createaigcaudioclonetask=nil, describeaigcfaceinfoasynctask=nil, aigchunyuan3dtask=nil, designvoiceasynctask=nil, clonevoiceasynctask=nil, texttospeechasynctask=nil, videodubbingasynctask=nil, requestid=nil)
+        def initialize(tasktype=nil, status=nil, createtime=nil, beginprocesstime=nil, finishtime=nil, proceduretask=nil, editmediatask=nil, wechatpublishtask=nil, composemediatask=nil, splitmediatask=nil, wechatminiprogrampublishtask=nil, pulluploadtask=nil, transcodetask=nil, concattask=nil, cliptask=nil, createimagespritetask=nil, snapshotbytimeoffsettask=nil, removewatermarktask=nil, rebuildmediatask=nil, extracttracewatermarktask=nil, extractcopyrightwatermarktask=nil, reviewaudiovideotask=nil, reducemediabitratetask=nil, describefileattributestask=nil, qualityinspecttask=nil, qualityenhancetask=nil, complexadaptivedynamicstreamingtask=nil, processmediabympstask=nil, aigcimagetask=nil, aigcvideotask=nil, importmediaknowledge=nil, sceneaigcimagetask=nil, sceneaigcvideotask=nil, processimageasynctask=nil, extractblindwatermarktask=nil, createaigcadvancedcustomelementtask=nil, createaigccustomvoicetask=nil, createaigcsubjecttask=nil, aigcvideoredrawtask=nil, aigcaudiotask=nil, createaigcaudioclonetask=nil, describeaigcfaceinfoasynctask=nil, aigchunyuan3dtask=nil, designvoiceasynctask=nil, clonevoiceasynctask=nil, texttospeechasynctask=nil, videodubbingasynctask=nil, videodepthestimationtask=nil, requestid=nil)
           @TaskType = tasktype
           @Status = status
           @CreateTime = createtime
@@ -18203,6 +18205,7 @@ module TencentCloud
           @CloneVoiceAsyncTask = clonevoiceasynctask
           @TextToSpeechAsyncTask = texttospeechasynctask
           @VideoDubbingAsyncTask = videodubbingasynctask
+          @VideoDepthEstimationTask = videodepthestimationtask
           @RequestId = requestid
         end
 
@@ -18379,6 +18382,10 @@ module TencentCloud
           unless params['VideoDubbingAsyncTask'].nil?
             @VideoDubbingAsyncTask = VideoDubbingAsyncTask.new
             @VideoDubbingAsyncTask.deserialize(params['VideoDubbingAsyncTask'])
+          end
+          unless params['VideoDepthEstimationTask'].nil?
+            @VideoDepthEstimationTask = VideoDepthEstimationTask.new
+            @VideoDepthEstimationTask.deserialize(params['VideoDepthEstimationTask'])
           end
           @RequestId = params['RequestId']
         end
@@ -39568,6 +39575,127 @@ module TencentCloud
         def deserialize(params)
           @Switch = params['Switch']
           @Type = params['Type']
+        end
+      end
+
+      # 视频深度估计任务的输入信息。
+      class VideoDepthEstimationInput < TencentCloud::Common::AbstractModel
+        # @param Url: <p>输入视频的 URL，支持以下三种形式：</p><li>以 <code>http://</code> 或 <code>https://</code> 开头的网络地址；</li><li><code>vod://</code> 开头的点播媒体文件 ID，例如 <code>vod://5285890815916760123</code>；</li><li><code>data:video/&lt;ext&gt;;base64,</code> 开头的 base64 编码视频数据。</li>
+        # @type Url: String
+        # @param FileId: <p>输入视频的媒体文件 ID，仅当 Url 以 <code>vod://</code> 开头时有值。</p>
+        # @type FileId: String
+
+        attr_accessor :Url, :FileId
+
+        def initialize(url=nil, fileid=nil)
+          @Url = url
+          @FileId = fileid
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
+          @FileId = params['FileId']
+        end
+      end
+
+      # 视频深度估计任务的输出信息。
+      class VideoDepthEstimationOutput < TencentCloud::Common::AbstractModel
+        # @param StorageMode: <p>输出文件的存储模式，取值：</p><li>Temporary：临时存储，文件默认 7 天后删除；</li><li>Permanent：永久存储，保存到点播媒资库。</li>
+        # @type StorageMode: String
+        # @param MediaName: <p>输出文件的媒体名称，仅 StorageMode 为 Permanent 时有值。</p>
+        # @type MediaName: String
+        # @param ExpireTime: <p>输出文件的过期时间，超过该时间文件将被删除，默认为永久不过期，格式按照 ISO 8601 标准表示，详见 <a href="https://cloud.tencent.com/document/product/266/11732#I">ISO 日期格式说明</a>。<br><font color="red">注意：</font>StorageMode 为 Temporary 时，该字段为文件生成时间加 7 天。</p>
+        # @type ExpireTime: String
+        # @param FileType: <p>输出文件的类型，取值 mp4。</p>
+        # @type FileType: String
+        # @param FileId: <p>输出文件的媒体文件 ID，仅 StorageMode 为 Permanent 时有值。</p>
+        # @type FileId: String
+        # @param FileUrl: <p>输出文件的播放地址。</p>
+        # @type FileUrl: String
+        # @param MetaData: <p>输出视频的元信息。</p>
+        # @type MetaData: :class:`Tencentcloud::Vod.v20180717.models.MediaMetaData`
+
+        attr_accessor :StorageMode, :MediaName, :ExpireTime, :FileType, :FileId, :FileUrl, :MetaData
+
+        def initialize(storagemode=nil, medianame=nil, expiretime=nil, filetype=nil, fileid=nil, fileurl=nil, metadata=nil)
+          @StorageMode = storagemode
+          @MediaName = medianame
+          @ExpireTime = expiretime
+          @FileType = filetype
+          @FileId = fileid
+          @FileUrl = fileurl
+          @MetaData = metadata
+        end
+
+        def deserialize(params)
+          @StorageMode = params['StorageMode']
+          @MediaName = params['MediaName']
+          @ExpireTime = params['ExpireTime']
+          @FileType = params['FileType']
+          @FileId = params['FileId']
+          @FileUrl = params['FileUrl']
+          unless params['MetaData'].nil?
+            @MetaData = MediaMetaData.new
+            @MetaData.deserialize(params['MetaData'])
+          end
+        end
+      end
+
+      # 视频深度估计任务信息。
+      class VideoDepthEstimationTask < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务 ID。</p>
+        # @type TaskId: String
+        # @param Status: <p>任务状态，取值：</p><li>WAITING：等待中；</li><li>PROCESSING：处理中；</li><li>FINISH：已完成。</li><p></p>
+        # @type Status: String
+        # @param ErrCode: <p>错误码，0 表示成功，其他值表示失败：</p><li>40000：输入参数不合法，请检查输入参数；</li><li>60000：源文件错误（如视频数据损坏），请确认源文件是否正常；</li><li>70000：内部服务错误，建议重试。</li>
+        # @type ErrCode: Integer
+        # @param ErrCodeExt: <p>错误码，空字符串表示成功，其他值表示失败，取值请参考 <a href="https://cloud.tencent.com/document/product/266/50368#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81">视频处理类错误码</a> 列表。</p>
+        # @type ErrCodeExt: String
+        # @param Message: <p>错误信息。</p>
+        # @type Message: String
+        # @param Progress: <p>任务进度，取值范围 [0-100] 。</p>
+        # @type Progress: Integer
+        # @param Input: <p>视频深度估计任务的输入信息。</p>
+        # @type Input: :class:`Tencentcloud::Vod.v20180717.models.VideoDepthEstimationInput`
+        # @param Output: <p>视频深度估计任务的输出信息。</p>
+        # @type Output: :class:`Tencentcloud::Vod.v20180717.models.VideoDepthEstimationOutput`
+        # @param SessionContext: <p>来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。</p>
+        # @type SessionContext: String
+        # @param SessionId: <p>用于去重的识别码，如果七天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。</p>
+        # @type SessionId: String
+
+        attr_accessor :TaskId, :Status, :ErrCode, :ErrCodeExt, :Message, :Progress, :Input, :Output, :SessionContext, :SessionId
+
+        def initialize(taskid=nil, status=nil, errcode=nil, errcodeext=nil, message=nil, progress=nil, input=nil, output=nil, sessioncontext=nil, sessionid=nil)
+          @TaskId = taskid
+          @Status = status
+          @ErrCode = errcode
+          @ErrCodeExt = errcodeext
+          @Message = message
+          @Progress = progress
+          @Input = input
+          @Output = output
+          @SessionContext = sessioncontext
+          @SessionId = sessionid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Status = params['Status']
+          @ErrCode = params['ErrCode']
+          @ErrCodeExt = params['ErrCodeExt']
+          @Message = params['Message']
+          @Progress = params['Progress']
+          unless params['Input'].nil?
+            @Input = VideoDepthEstimationInput.new
+            @Input.deserialize(params['Input'])
+          end
+          unless params['Output'].nil?
+            @Output = VideoDepthEstimationOutput.new
+            @Output.deserialize(params['Output'])
+          end
+          @SessionContext = params['SessionContext']
+          @SessionId = params['SessionId']
         end
       end
 

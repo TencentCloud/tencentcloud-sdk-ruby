@@ -605,6 +605,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeBackupEncryptConfig）用于查询实例 备份加密相关信息，包括开启状态、加密密钥等。
+
+        # @param request: Request instance for DescribeBackupEncryptConfig.
+        # @type request: :class:`Tencentcloud::redis::V20180412::DescribeBackupEncryptConfigRequest`
+        # @rtype: :class:`Tencentcloud::redis::V20180412::DescribeBackupEncryptConfigResponse`
+        def DescribeBackupEncryptConfig(request)
+          body = send_request('DescribeBackupEncryptConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBackupEncryptConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeBackupUrl）用于查询备份 Rdb 文件的下载地址。
 
         # @param request: Request instance for DescribeBackupUrl.
@@ -2081,6 +2105,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyBackupDownloadRestrictionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（ModifyBackupEncrypt）用于开启 /关闭备份加密，修改备份密钥功能。
+
+        # @param request: Request instance for ModifyBackupEncrypt.
+        # @type request: :class:`Tencentcloud::redis::V20180412::ModifyBackupEncryptRequest`
+        # @rtype: :class:`Tencentcloud::redis::V20180412::ModifyBackupEncryptResponse`
+        def ModifyBackupEncrypt(request)
+          body = send_request('ModifyBackupEncrypt', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyBackupEncryptResponse.new
             model.deserialize(response['Response'])
             model
           else

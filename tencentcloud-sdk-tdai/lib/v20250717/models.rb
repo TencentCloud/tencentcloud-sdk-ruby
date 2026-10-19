@@ -178,10 +178,12 @@ module TencentCloud
         # @type DeploymentFree: Boolean
         # @param AgentMem: <p>agent memory 服务详情</p>
         # @type AgentMem: :class:`Tencentcloud::Tdai.v20250717.models.AgentMemInfo`
+        # @param MemInstanceId: <p>关联的 memory（AGM）实例ID（仅免部署实例有值）</p>
+        # @type MemInstanceId: String
 
-        attr_accessor :InstanceId, :InstanceName, :AgentId, :AgentName, :AgentInternalName, :AgentType, :AgentVersion, :Status, :Parameters, :CreateTime, :UpdateTime, :Tags, :DeployPlace, :PolicyIds, :ClawConfig, :InstanceType, :AllowedActions, :LastActiveTime, :Description, :CreatingProgress, :RoleName, :OfflineTime, :ProductName, :Capabilities, :DeploymentFree, :AgentMem
+        attr_accessor :InstanceId, :InstanceName, :AgentId, :AgentName, :AgentInternalName, :AgentType, :AgentVersion, :Status, :Parameters, :CreateTime, :UpdateTime, :Tags, :DeployPlace, :PolicyIds, :ClawConfig, :InstanceType, :AllowedActions, :LastActiveTime, :Description, :CreatingProgress, :RoleName, :OfflineTime, :ProductName, :Capabilities, :DeploymentFree, :AgentMem, :MemInstanceId
 
-        def initialize(instanceid=nil, instancename=nil, agentid=nil, agentname=nil, agentinternalname=nil, agenttype=nil, agentversion=nil, status=nil, parameters=nil, createtime=nil, updatetime=nil, tags=nil, deployplace=nil, policyids=nil, clawconfig=nil, instancetype=nil, allowedactions=nil, lastactivetime=nil, description=nil, creatingprogress=nil, rolename=nil, offlinetime=nil, productname=nil, capabilities=nil, deploymentfree=nil, agentmem=nil)
+        def initialize(instanceid=nil, instancename=nil, agentid=nil, agentname=nil, agentinternalname=nil, agenttype=nil, agentversion=nil, status=nil, parameters=nil, createtime=nil, updatetime=nil, tags=nil, deployplace=nil, policyids=nil, clawconfig=nil, instancetype=nil, allowedactions=nil, lastactivetime=nil, description=nil, creatingprogress=nil, rolename=nil, offlinetime=nil, productname=nil, capabilities=nil, deploymentfree=nil, agentmem=nil, meminstanceid=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @AgentId = agentid
@@ -208,6 +210,7 @@ module TencentCloud
           @Capabilities = capabilities
           @DeploymentFree = deploymentfree
           @AgentMem = agentmem
+          @MemInstanceId = meminstanceid
         end
 
         def deserialize(params)
@@ -260,6 +263,7 @@ module TencentCloud
             @AgentMem = AgentMemInfo.new
             @AgentMem.deserialize(params['AgentMem'])
           end
+          @MemInstanceId = params['MemInstanceId']
         end
       end
 
@@ -1481,6 +1485,8 @@ module TencentCloud
         # @type CreditUsage: Float
         # @param CreditLimit: <p>Memory 实例 Credit 的最大使用数量。</p>
         # @type CreditLimit: Float
+        # @param Compressed: <p>是否开启压缩</p>
+        # @type Compressed: Boolean
         # @param AccessUrl: <p>Memory 实例的内网访问地址。</p>
         # @type AccessUrl: String
         # @param WanAccessUrl: <p>Memory 实例的外网访问地址。</p>
@@ -1496,9 +1502,9 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :SpaceId, :Name, :Description, :AppId, :Region, :ResourceTags, :Status, :PayMode, :AutoRenew, :Version, :MemoryUsage, :MemoryLimit, :CreditUsage, :CreditLimit, :AccessUrl, :WanAccessUrl, :CreatedAt, :ExpiredAt, :IsolatedAt, :DestroyAt, :RequestId
+        attr_accessor :SpaceId, :Name, :Description, :AppId, :Region, :ResourceTags, :Status, :PayMode, :AutoRenew, :Version, :MemoryUsage, :MemoryLimit, :CreditUsage, :CreditLimit, :Compressed, :AccessUrl, :WanAccessUrl, :CreatedAt, :ExpiredAt, :IsolatedAt, :DestroyAt, :RequestId
 
-        def initialize(spaceid=nil, name=nil, description=nil, appid=nil, region=nil, resourcetags=nil, status=nil, paymode=nil, autorenew=nil, version=nil, memoryusage=nil, memorylimit=nil, creditusage=nil, creditlimit=nil, accessurl=nil, wanaccessurl=nil, createdat=nil, expiredat=nil, isolatedat=nil, destroyat=nil, requestid=nil)
+        def initialize(spaceid=nil, name=nil, description=nil, appid=nil, region=nil, resourcetags=nil, status=nil, paymode=nil, autorenew=nil, version=nil, memoryusage=nil, memorylimit=nil, creditusage=nil, creditlimit=nil, compressed=nil, accessurl=nil, wanaccessurl=nil, createdat=nil, expiredat=nil, isolatedat=nil, destroyat=nil, requestid=nil)
           @SpaceId = spaceid
           @Name = name
           @Description = description
@@ -1513,6 +1519,7 @@ module TencentCloud
           @MemoryLimit = memorylimit
           @CreditUsage = creditusage
           @CreditLimit = creditlimit
+          @Compressed = compressed
           @AccessUrl = accessurl
           @WanAccessUrl = wanaccessurl
           @CreatedAt = createdat
@@ -1544,6 +1551,7 @@ module TencentCloud
           @MemoryLimit = params['MemoryLimit']
           @CreditUsage = params['CreditUsage']
           @CreditLimit = params['CreditLimit']
+          @Compressed = params['Compressed']
           @AccessUrl = params['AccessUrl']
           @WanAccessUrl = params['WanAccessUrl']
           @CreatedAt = params['CreatedAt']
@@ -1871,6 +1879,8 @@ module TencentCloud
         # @type MemoryUsage: Integer
         # @param CreditUsage: <p>当月积分数</p>
         # @type CreditUsage: Float
+        # @param Compressed: <p>是否开启压缩</p>
+        # @type Compressed: Boolean
         # @param ResourceTags: <p>资源标签</p>
         # @type ResourceTags: Array
         # @param Version: <p>版本号</p>
@@ -1884,9 +1894,9 @@ module TencentCloud
         # @param DestroyAt: <p>到期销毁时间</p>
         # @type DestroyAt: String
 
-        attr_accessor :SpaceId, :Name, :Description, :Status, :Region, :PayMode, :AutoRenew, :MemoryUsage, :CreditUsage, :ResourceTags, :Version, :CreatedAt, :IsolatedAt, :ExpiredAt, :DestroyAt
+        attr_accessor :SpaceId, :Name, :Description, :Status, :Region, :PayMode, :AutoRenew, :MemoryUsage, :CreditUsage, :Compressed, :ResourceTags, :Version, :CreatedAt, :IsolatedAt, :ExpiredAt, :DestroyAt
 
-        def initialize(spaceid=nil, name=nil, description=nil, status=nil, region=nil, paymode=nil, autorenew=nil, memoryusage=nil, creditusage=nil, resourcetags=nil, version=nil, createdat=nil, isolatedat=nil, expiredat=nil, destroyat=nil)
+        def initialize(spaceid=nil, name=nil, description=nil, status=nil, region=nil, paymode=nil, autorenew=nil, memoryusage=nil, creditusage=nil, compressed=nil, resourcetags=nil, version=nil, createdat=nil, isolatedat=nil, expiredat=nil, destroyat=nil)
           @SpaceId = spaceid
           @Name = name
           @Description = description
@@ -1896,6 +1906,7 @@ module TencentCloud
           @AutoRenew = autorenew
           @MemoryUsage = memoryusage
           @CreditUsage = creditusage
+          @Compressed = compressed
           @ResourceTags = resourcetags
           @Version = version
           @CreatedAt = createdat
@@ -1914,6 +1925,7 @@ module TencentCloud
           @AutoRenew = params['AutoRenew']
           @MemoryUsage = params['MemoryUsage']
           @CreditUsage = params['CreditUsage']
+          @Compressed = params['Compressed']
           unless params['ResourceTags'].nil?
             @ResourceTags = []
             params['ResourceTags'].each do |i|
@@ -2028,19 +2040,23 @@ module TencentCloud
         # @type Name: String
         # @param Description: <p>指定修改后的实例描述。最多支持 200 个字符。</p>
         # @type Description: String
+        # @param Compressed: <p>是否开启压缩</p>
+        # @type Compressed: Boolean
 
-        attr_accessor :SpaceId, :Name, :Description
+        attr_accessor :SpaceId, :Name, :Description, :Compressed
 
-        def initialize(spaceid=nil, name=nil, description=nil)
+        def initialize(spaceid=nil, name=nil, description=nil, compressed=nil)
           @SpaceId = spaceid
           @Name = name
           @Description = description
+          @Compressed = compressed
         end
 
         def deserialize(params)
           @SpaceId = params['SpaceId']
           @Name = params['Name']
           @Description = params['Description']
+          @Compressed = params['Compressed']
         end
       end
 

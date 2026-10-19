@@ -1360,8 +1360,8 @@ module TencentCloud
 
         attr_accessor :ConfigId, :ConfigName, :ConfigPath, :ConfigDesc, :ConfigTags, :ConfigPipeline, :ConfigCreateTime, :ConfigUpdateTime, :ConfigSchema, :ConfigAssociatedGroups, :ConfigAssociatedGroupList, :FilebeatConfigEnable, :FilebeatCloseTimeout, :FilebeatIgnoreOlder, :FilebeatHarvesterLimit, :FilebeatCloseInactive, :FilebeatCleanInactive, :CustomMultilinePattern
         extend Gem::Deprecate
-        deprecate :ConfigAssociatedGroups, :none, 2026, 9
-        deprecate :ConfigAssociatedGroups=, :none, 2026, 9
+        deprecate :ConfigAssociatedGroups, :none, 2026, 10
+        deprecate :ConfigAssociatedGroups=, :none, 2026, 10
 
         def initialize(configid=nil, configname=nil, configpath=nil, configdesc=nil, configtags=nil, configpipeline=nil, configcreatetime=nil, configupdatetime=nil, configschema=nil, configassociatedgroups=nil, configassociatedgrouplist=nil, filebeatconfigenable=nil, filebeatclosetimeout=nil, filebeatignoreolder=nil, filebeatharvesterlimit=nil, filebeatcloseinactive=nil, filebeatcleaninactive=nil, custommultilinepattern=nil)
           @ConfigId = configid
@@ -3673,45 +3673,45 @@ module TencentCloud
 
       # CreateApplication请求参数结构体
       class CreateApplicationRequest < TencentCloud::Common::AbstractModel
-        # @param ApplicationName: 应用名称，最长60字符
+        # @param ApplicationName: <p>应用名称，最长60字符</p>
         # @type ApplicationName: String
-        # @param ApplicationType: 应用类型，V：虚拟机应用；C：容器应用；S：serverless应用
+        # @param ApplicationType: <p>应用类型，V：虚拟机应用；C：容器应用；S：serverless应用</p>
         # @type ApplicationType: String
-        # @param MicroserviceType: 应用微服务类型，M：service mesh应用；N：普通应用；G：网关应用
+        # @param MicroserviceType: <p>应用微服务类型，M：service mesh应用；N：普通应用；G：网关应用</p>
         # @type MicroserviceType: String
-        # @param ApplicationDesc: 应用描述
+        # @param ApplicationDesc: <p>应用描述</p>
         # @type ApplicationDesc: String
-        # @param ApplicationLogConfig: 应用日志配置项，废弃参数
+        # @param ApplicationLogConfig: <p>应用日志配置项，废弃参数</p>
         # @type ApplicationLogConfig: String
-        # @param ApplicationResourceType: 应用资源类型，废弃参数
+        # @param ApplicationResourceType: <p>应用资源类型，废弃参数</p>
         # @type ApplicationResourceType: String
-        # @param ApplicationRuntimeType: 应用runtime类型
+        # @param ApplicationRuntimeType: <p>应用runtime类型</p>
         # @type ApplicationRuntimeType: String
-        # @param ProgramId: 【数据集ID】。可通过调用[DescribePrograms](https://cloud.tencent.com/document/product/649/73477)查询已创建的数据集列表或登录[控制台](https://console.cloud.tencent.com/tsf/privilege?rid=1&tab=program&roleId=role-a26486wy)进行查看；也可以调用[CreateProgram](https://cloud.tencent.com/document/product/649/108544)创建新的数据集。
+        # @param ProgramId: <p>【数据集ID】。可通过调用<a href="https://cloud.tencent.com/document/product/649/73477">DescribePrograms</a>查询已创建的数据集列表或登录<a href="https://console.cloud.tencent.com/tsf/privilege?rid=1&amp;tab=program&amp;roleId=role-a26486wy">控制台</a>进行查看；也可以调用<a href="https://cloud.tencent.com/document/product/649/108544">CreateProgram</a>创建新的数据集。</p>
         # @type ProgramId: String
-        # @param ServiceConfigList: 服务配置信息列表
+        # @param ServiceConfigList: <p>服务配置信息列表</p>
         # @type ServiceConfigList: Array
-        # @param IgnoreCreateImageRepository: 忽略创建镜像仓库
+        # @param IgnoreCreateImageRepository: <p>忽略创建镜像仓库</p>
         # @type IgnoreCreateImageRepository: Boolean
-        # @param ProgramIdList: 数据集id列表
+        # @param ProgramIdList: <p>数据集id列表</p>
         # @type ProgramIdList: Array
-        # @param ApmInstanceId: apm业务系统id
+        # @param ApmInstanceId: <p>apm业务系统id</p>
         # @type ApmInstanceId: String
-        # @param ProgramLanguage: 编程语言:  Java；C/C++；Python；Go；Other
+        # @param ProgramLanguage: <p>编程语言:  Java；C/C++；Python；Go；Other</p>
         # @type ProgramLanguage: String
-        # @param FrameworkType: 开发框架-SpringCloud/Dubbo/Go-GRPC/Other
+        # @param FrameworkType: <p>开发框架-SpringCloud/Dubbo/Go-GRPC/Other</p>
         # @type FrameworkType: String
-        # @param ServiceGovernanceConfig: 注册配置治理
+        # @param ServiceGovernanceConfig: <p>注册配置治理，关闭注册配置治理或者使用北极星注册中心时必须传值</p>
         # @type ServiceGovernanceConfig: :class:`Tencentcloud::Tsf.v20180326.models.ServiceGovernanceConfig`
-        # @param CreateSameNameImageRepository: 是否创建并关联同名镜像仓库
+        # @param CreateSameNameImageRepository: <p>是否创建并关联同名镜像仓库</p>
         # @type CreateSameNameImageRepository: Boolean
 
         attr_accessor :ApplicationName, :ApplicationType, :MicroserviceType, :ApplicationDesc, :ApplicationLogConfig, :ApplicationResourceType, :ApplicationRuntimeType, :ProgramId, :ServiceConfigList, :IgnoreCreateImageRepository, :ProgramIdList, :ApmInstanceId, :ProgramLanguage, :FrameworkType, :ServiceGovernanceConfig, :CreateSameNameImageRepository
         extend Gem::Deprecate
-        deprecate :ApplicationLogConfig, :none, 2026, 9
-        deprecate :ApplicationLogConfig=, :none, 2026, 9
-        deprecate :ApplicationResourceType, :none, 2026, 9
-        deprecate :ApplicationResourceType=, :none, 2026, 9
+        deprecate :ApplicationLogConfig, :none, 2026, 10
+        deprecate :ApplicationLogConfig=, :none, 2026, 10
+        deprecate :ApplicationResourceType, :none, 2026, 10
+        deprecate :ApplicationResourceType=, :none, 2026, 10
 
         def initialize(applicationname=nil, applicationtype=nil, microservicetype=nil, applicationdesc=nil, applicationlogconfig=nil, applicationresourcetype=nil, applicationruntimetype=nil, programid=nil, serviceconfiglist=nil, ignorecreateimagerepository=nil, programidlist=nil, apminstanceid=nil, programlanguage=nil, frameworktype=nil, servicegovernanceconfig=nil, createsamenameimagerepository=nil)
           @ApplicationName = applicationname
@@ -3764,7 +3764,7 @@ module TencentCloud
 
       # CreateApplication返回参数结构体
       class CreateApplicationResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 应用ID
+        # @param Result: <p>应用ID</p>
         # @type Result: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6895,12 +6895,12 @@ module TencentCloud
 
         attr_accessor :GroupId, :TagName, :InstanceNum, :Server, :Reponame, :CpuLimit, :MemLimit, :JvmOpts, :CpuRequest, :MemRequest, :DoNotStart, :RepoName, :UpdateType, :UpdateIvl, :AgentCpuRequest, :AgentCpuLimit, :AgentMemRequest, :AgentMemLimit, :IstioCpuRequest, :IstioCpuLimit, :IstioMemRequest, :IstioMemLimit, :MaxSurge, :MaxUnavailable, :HealthCheckSettings, :Envs, :ServiceSetting, :DeployAgent, :SchedulingStrategy, :IncrementalDeployment, :RepoType, :VolumeInfos, :VolumeMountInfos, :VolumeInfoList, :VolumeMountInfoList, :VolumeClean, :AgentProfileList, :WarmupSetting
         extend Gem::Deprecate
-        deprecate :Reponame, :none, 2026, 9
-        deprecate :Reponame=, :none, 2026, 9
-        deprecate :VolumeInfos, :none, 2026, 9
-        deprecate :VolumeInfos=, :none, 2026, 9
-        deprecate :VolumeMountInfos, :none, 2026, 9
-        deprecate :VolumeMountInfos=, :none, 2026, 9
+        deprecate :Reponame, :none, 2026, 10
+        deprecate :Reponame=, :none, 2026, 10
+        deprecate :VolumeInfos, :none, 2026, 10
+        deprecate :VolumeInfos=, :none, 2026, 10
+        deprecate :VolumeMountInfos, :none, 2026, 10
+        deprecate :VolumeMountInfos=, :none, 2026, 10
 
         def initialize(groupid=nil, tagname=nil, instancenum=nil, server=nil, cpulimit=nil, memlimit=nil, jvmopts=nil, cpurequest=nil, memrequest=nil, donotstart=nil, reponame=nil, updatetype=nil, updateivl=nil, agentcpurequest=nil, agentcpulimit=nil, agentmemrequest=nil, agentmemlimit=nil, istiocpurequest=nil, istiocpulimit=nil, istiomemrequest=nil, istiomemlimit=nil, maxsurge=nil, maxunavailable=nil, healthchecksettings=nil, envs=nil, servicesetting=nil, deployagent=nil, schedulingstrategy=nil, incrementaldeployment=nil, repotype=nil, volumeinfos=nil, volumemountinfos=nil, volumeinfolist=nil, volumemountinfolist=nil, volumeclean=nil, agentprofilelist=nil, warmupsetting=nil)
           @GroupId = groupid
@@ -14215,8 +14215,8 @@ module TencentCloud
 
         attr_accessor :Reponame, :Repotype, :TagCount, :IsPublic, :IsUserFavor, :IsQcloudOfficial, :FavorCount, :PullCount, :Description, :CreationTime, :UpdateTime, :TcrRepoInfo, :TcrBindingId, :ApplicationId, :ApplicationName, :ApplicationNameReal, :Public, :CreateMode, :RepoName, :RepoType
         extend Gem::Deprecate
-        deprecate :ApplicationName, :none, 2026, 9
-        deprecate :ApplicationName=, :none, 2026, 9
+        deprecate :ApplicationName, :none, 2026, 10
+        deprecate :ApplicationName=, :none, 2026, 10
 
         def initialize(reponame=nil, repotype=nil, tagcount=nil, ispublic=nil, isuserfavor=nil, isqcloudofficial=nil, favorcount=nil, pullcount=nil, description=nil, creationtime=nil, updatetime=nil, tcrrepoinfo=nil, tcrbindingid=nil, applicationid=nil, applicationname=nil, applicationnamereal=nil, public=nil, createmode=nil, reponame=nil, repotype=nil)
           @Reponame = reponame
@@ -18322,11 +18322,11 @@ module TencentCloud
 
       # 注册配置治理信息
       class ServiceGovernanceConfig < TencentCloud::Common::AbstractModel
-        # @param EnableGovernance: 是否开启服务注册治理
+        # @param EnableGovernance: <p>是否开启服务注册治理</p><p>枚举值：</p><ul><li>true： 使用Consul或者北极星服务注册治理</li><li>false： 不使用服务注册治理</li></ul>
         # @type EnableGovernance: Boolean
-        # @param GovernanceType: 服务治理类型（枚举：SHARE表示共享型、EXCLUSIVE表示独占型）
+        # @param GovernanceType: <p>服务治理类型</p><p>枚举值：</p><ul><li>SHARE： 使用Consul注册中心</li><li>EXCLUSIVE： 使用北极星注册中心</li></ul>
         # @type GovernanceType: String
-        # @param ExclusiveInstances: 独享实例列表
+        # @param ExclusiveInstances: <p>北极星实例列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExclusiveInstances: Array
 
@@ -19136,8 +19136,8 @@ module TencentCloud
 
         attr_accessor :ThreadCount, :ThreadActive, :DeamonThreadCount, :DaemonThreadCount
         extend Gem::Deprecate
-        deprecate :DeamonThreadCount, :none, 2026, 9
-        deprecate :DeamonThreadCount=, :none, 2026, 9
+        deprecate :DeamonThreadCount, :none, 2026, 10
+        deprecate :DeamonThreadCount=, :none, 2026, 10
 
         def initialize(threadcount=nil, threadactive=nil, deamonthreadcount=nil, daemonthreadcount=nil)
           @ThreadCount = threadcount

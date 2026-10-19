@@ -281,10 +281,14 @@ module TencentCloud
         # @type CrossAccountStatus: Integer
         # @param CrossAccountPeerId: <p>跨账号关联ID</p>
         # @type CrossAccountPeerId: String
+        # @param SpanStatusConfig: <p>自定义 Span 状态配置</p>
+        # @type SpanStatusConfig: :class:`Tencentcloud::Apm.v20210622.models.SpanStatusConfig`
+        # @param EnableSpanStatusConfig: <p>应用级自定义 Span 状态开关</p>
+        # @type EnableSpanStatusConfig: Boolean
 
-        attr_accessor :InstanceKey, :ServiceName, :UrlConvergenceSwitch, :UrlConvergenceThreshold, :UrlConvergence, :ExceptionFilter, :ErrorCodeFilter, :Components, :UrlExclude, :LogSource, :LogRegion, :IsRelatedLog, :LogTopicID, :IgnoreOperationName, :LogSet, :TraceRateLimit, :EnableSnapshot, :SnapshotTimeout, :AgentEnable, :InstrumentList, :TraceSquash, :EventEnable, :AgentOperationConfigView, :EnableLogConfig, :ServiceID, :EnableDashboardConfig, :IsRelatedDashboard, :DashboardTopicID, :EnableSecurityConfig, :IsInstrumentationVulnerabilityScan, :IsSqlInjectionAnalysis, :IsRemoteCommandExecutionAnalysis, :IsMemoryHijackingAnalysis, :LogIndexType, :LogTraceIdKey, :IsDeleteAnyFileAnalysis, :IsReadAnyFileAnalysis, :IsUploadAnyFileAnalysis, :IsIncludeAnyFileAnalysis, :IsDirectoryTraversalAnalysis, :IsTemplateEngineInjectionAnalysis, :IsScriptEngineInjectionAnalysis, :IsExpressionInjectionAnalysis, :IsJNDIInjectionAnalysis, :IsJNIInjectionAnalysis, :IsWebshellBackdoorAnalysis, :IsDeserializationAnalysis, :UrlAutoConvergenceEnable, :UrlLongSegmentThreshold, :UrlNumberSegmentThreshold, :DisableMemoryUsed, :DisableCpuUsed, :DbStatementParametersEnabled, :SlowSQLThresholds, :EnableDesensitizationRule, :DesensitizationRule, :LogSpanIdKey, :AutoProfilingConfig, :EnableThresholdConfig, :ErrRateThreshold, :ResponseDurationWarningThreshold, :UseDefaultFuseConfig, :AnalysisAutoEnable, :EnableHeadSampler, :HeadSamplerType, :HeadSamplerArg, :CrossAccountStatus, :CrossAccountPeerId
+        attr_accessor :InstanceKey, :ServiceName, :UrlConvergenceSwitch, :UrlConvergenceThreshold, :UrlConvergence, :ExceptionFilter, :ErrorCodeFilter, :Components, :UrlExclude, :LogSource, :LogRegion, :IsRelatedLog, :LogTopicID, :IgnoreOperationName, :LogSet, :TraceRateLimit, :EnableSnapshot, :SnapshotTimeout, :AgentEnable, :InstrumentList, :TraceSquash, :EventEnable, :AgentOperationConfigView, :EnableLogConfig, :ServiceID, :EnableDashboardConfig, :IsRelatedDashboard, :DashboardTopicID, :EnableSecurityConfig, :IsInstrumentationVulnerabilityScan, :IsSqlInjectionAnalysis, :IsRemoteCommandExecutionAnalysis, :IsMemoryHijackingAnalysis, :LogIndexType, :LogTraceIdKey, :IsDeleteAnyFileAnalysis, :IsReadAnyFileAnalysis, :IsUploadAnyFileAnalysis, :IsIncludeAnyFileAnalysis, :IsDirectoryTraversalAnalysis, :IsTemplateEngineInjectionAnalysis, :IsScriptEngineInjectionAnalysis, :IsExpressionInjectionAnalysis, :IsJNDIInjectionAnalysis, :IsJNIInjectionAnalysis, :IsWebshellBackdoorAnalysis, :IsDeserializationAnalysis, :UrlAutoConvergenceEnable, :UrlLongSegmentThreshold, :UrlNumberSegmentThreshold, :DisableMemoryUsed, :DisableCpuUsed, :DbStatementParametersEnabled, :SlowSQLThresholds, :EnableDesensitizationRule, :DesensitizationRule, :LogSpanIdKey, :AutoProfilingConfig, :EnableThresholdConfig, :ErrRateThreshold, :ResponseDurationWarningThreshold, :UseDefaultFuseConfig, :AnalysisAutoEnable, :EnableHeadSampler, :HeadSamplerType, :HeadSamplerArg, :CrossAccountStatus, :CrossAccountPeerId, :SpanStatusConfig, :EnableSpanStatusConfig
 
-        def initialize(instancekey=nil, servicename=nil, urlconvergenceswitch=nil, urlconvergencethreshold=nil, urlconvergence=nil, exceptionfilter=nil, errorcodefilter=nil, components=nil, urlexclude=nil, logsource=nil, logregion=nil, isrelatedlog=nil, logtopicid=nil, ignoreoperationname=nil, logset=nil, traceratelimit=nil, enablesnapshot=nil, snapshottimeout=nil, agentenable=nil, instrumentlist=nil, tracesquash=nil, eventenable=nil, agentoperationconfigview=nil, enablelogconfig=nil, serviceid=nil, enabledashboardconfig=nil, isrelateddashboard=nil, dashboardtopicid=nil, enablesecurityconfig=nil, isinstrumentationvulnerabilityscan=nil, issqlinjectionanalysis=nil, isremotecommandexecutionanalysis=nil, ismemoryhijackinganalysis=nil, logindextype=nil, logtraceidkey=nil, isdeleteanyfileanalysis=nil, isreadanyfileanalysis=nil, isuploadanyfileanalysis=nil, isincludeanyfileanalysis=nil, isdirectorytraversalanalysis=nil, istemplateengineinjectionanalysis=nil, isscriptengineinjectionanalysis=nil, isexpressioninjectionanalysis=nil, isjndiinjectionanalysis=nil, isjniinjectionanalysis=nil, iswebshellbackdooranalysis=nil, isdeserializationanalysis=nil, urlautoconvergenceenable=nil, urllongsegmentthreshold=nil, urlnumbersegmentthreshold=nil, disablememoryused=nil, disablecpuused=nil, dbstatementparametersenabled=nil, slowsqlthresholds=nil, enabledesensitizationrule=nil, desensitizationrule=nil, logspanidkey=nil, autoprofilingconfig=nil, enablethresholdconfig=nil, errratethreshold=nil, responsedurationwarningthreshold=nil, usedefaultfuseconfig=nil, analysisautoenable=nil, enableheadsampler=nil, headsamplertype=nil, headsamplerarg=nil, crossaccountstatus=nil, crossaccountpeerid=nil)
+        def initialize(instancekey=nil, servicename=nil, urlconvergenceswitch=nil, urlconvergencethreshold=nil, urlconvergence=nil, exceptionfilter=nil, errorcodefilter=nil, components=nil, urlexclude=nil, logsource=nil, logregion=nil, isrelatedlog=nil, logtopicid=nil, ignoreoperationname=nil, logset=nil, traceratelimit=nil, enablesnapshot=nil, snapshottimeout=nil, agentenable=nil, instrumentlist=nil, tracesquash=nil, eventenable=nil, agentoperationconfigview=nil, enablelogconfig=nil, serviceid=nil, enabledashboardconfig=nil, isrelateddashboard=nil, dashboardtopicid=nil, enablesecurityconfig=nil, isinstrumentationvulnerabilityscan=nil, issqlinjectionanalysis=nil, isremotecommandexecutionanalysis=nil, ismemoryhijackinganalysis=nil, logindextype=nil, logtraceidkey=nil, isdeleteanyfileanalysis=nil, isreadanyfileanalysis=nil, isuploadanyfileanalysis=nil, isincludeanyfileanalysis=nil, isdirectorytraversalanalysis=nil, istemplateengineinjectionanalysis=nil, isscriptengineinjectionanalysis=nil, isexpressioninjectionanalysis=nil, isjndiinjectionanalysis=nil, isjniinjectionanalysis=nil, iswebshellbackdooranalysis=nil, isdeserializationanalysis=nil, urlautoconvergenceenable=nil, urllongsegmentthreshold=nil, urlnumbersegmentthreshold=nil, disablememoryused=nil, disablecpuused=nil, dbstatementparametersenabled=nil, slowsqlthresholds=nil, enabledesensitizationrule=nil, desensitizationrule=nil, logspanidkey=nil, autoprofilingconfig=nil, enablethresholdconfig=nil, errratethreshold=nil, responsedurationwarningthreshold=nil, usedefaultfuseconfig=nil, analysisautoenable=nil, enableheadsampler=nil, headsamplertype=nil, headsamplerarg=nil, crossaccountstatus=nil, crossaccountpeerid=nil, spanstatusconfig=nil, enablespanstatusconfig=nil)
           @InstanceKey = instancekey
           @ServiceName = servicename
           @UrlConvergenceSwitch = urlconvergenceswitch
@@ -353,6 +357,8 @@ module TencentCloud
           @HeadSamplerArg = headsamplerarg
           @CrossAccountStatus = crossaccountstatus
           @CrossAccountPeerId = crossaccountpeerid
+          @SpanStatusConfig = spanstatusconfig
+          @EnableSpanStatusConfig = enablespanstatusconfig
         end
 
         def deserialize(params)
@@ -444,6 +450,11 @@ module TencentCloud
           @HeadSamplerArg = params['HeadSamplerArg']
           @CrossAccountStatus = params['CrossAccountStatus']
           @CrossAccountPeerId = params['CrossAccountPeerId']
+          unless params['SpanStatusConfig'].nil?
+            @SpanStatusConfig = SpanStatusConfig.new
+            @SpanStatusConfig.deserialize(params['SpanStatusConfig'])
+          end
+          @EnableSpanStatusConfig = params['EnableSpanStatusConfig']
         end
       end
 
@@ -894,10 +905,12 @@ module TencentCloud
         # @type CrossAccountPeerId: String
         # @param TokenDisplayProtection: <p>开启Token展示安全保护</p><p>单位：是、否</p>
         # @type TokenDisplayProtection: Integer
+        # @param SpanStatusConfig: <p>自定义 Span 状态配置</p>
+        # @type SpanStatusConfig: :class:`Tencentcloud::Apm.v20210622.models.SpanStatusConfig`
 
-        attr_accessor :InstanceId, :Name, :Description, :Status, :Region, :Tags, :AppId, :CreateUin, :AmountOfUsedStorage, :ServiceCount, :CountOfReportSpanPerDay, :TraceDuration, :SpanDailyCounters, :BillingInstance, :ErrRateThreshold, :SampleRate, :ErrorSample, :SlowRequestSavedThreshold, :LogRegion, :LogSource, :IsRelatedLog, :LogTopicID, :ClientCount, :TotalCount, :LogSet, :MetricDuration, :CustomShowTags, :PayMode, :PayModeEffective, :ResponseDurationWarningThreshold, :Free, :DefaultTSF, :IsRelatedDashboard, :DashboardTopicID, :IsInstrumentationVulnerabilityScan, :IsSqlInjectionAnalysis, :StopReason, :IsRemoteCommandExecutionAnalysis, :IsMemoryHijackingAnalysis, :LogIndexType, :LogTraceIdKey, :IsDeleteAnyFileAnalysis, :IsReadAnyFileAnalysis, :IsUploadAnyFileAnalysis, :IsIncludeAnyFileAnalysis, :IsDirectoryTraversalAnalysis, :IsTemplateEngineInjectionAnalysis, :IsScriptEngineInjectionAnalysis, :IsExpressionInjectionAnalysis, :IsJNDIInjectionAnalysis, :IsJNIInjectionAnalysis, :IsWebshellBackdoorAnalysis, :IsDeserializationAnalysis, :Token, :UrlLongSegmentThreshold, :UrlNumberSegmentThreshold, :LogSpanIdKey, :DisableAiAbility, :CrossAccountStatus, :CrossAccountPeerId, :TokenDisplayProtection
+        attr_accessor :InstanceId, :Name, :Description, :Status, :Region, :Tags, :AppId, :CreateUin, :AmountOfUsedStorage, :ServiceCount, :CountOfReportSpanPerDay, :TraceDuration, :SpanDailyCounters, :BillingInstance, :ErrRateThreshold, :SampleRate, :ErrorSample, :SlowRequestSavedThreshold, :LogRegion, :LogSource, :IsRelatedLog, :LogTopicID, :ClientCount, :TotalCount, :LogSet, :MetricDuration, :CustomShowTags, :PayMode, :PayModeEffective, :ResponseDurationWarningThreshold, :Free, :DefaultTSF, :IsRelatedDashboard, :DashboardTopicID, :IsInstrumentationVulnerabilityScan, :IsSqlInjectionAnalysis, :StopReason, :IsRemoteCommandExecutionAnalysis, :IsMemoryHijackingAnalysis, :LogIndexType, :LogTraceIdKey, :IsDeleteAnyFileAnalysis, :IsReadAnyFileAnalysis, :IsUploadAnyFileAnalysis, :IsIncludeAnyFileAnalysis, :IsDirectoryTraversalAnalysis, :IsTemplateEngineInjectionAnalysis, :IsScriptEngineInjectionAnalysis, :IsExpressionInjectionAnalysis, :IsJNDIInjectionAnalysis, :IsJNIInjectionAnalysis, :IsWebshellBackdoorAnalysis, :IsDeserializationAnalysis, :Token, :UrlLongSegmentThreshold, :UrlNumberSegmentThreshold, :LogSpanIdKey, :DisableAiAbility, :CrossAccountStatus, :CrossAccountPeerId, :TokenDisplayProtection, :SpanStatusConfig
 
-        def initialize(instanceid=nil, name=nil, description=nil, status=nil, region=nil, tags=nil, appid=nil, createuin=nil, amountofusedstorage=nil, servicecount=nil, countofreportspanperday=nil, traceduration=nil, spandailycounters=nil, billinginstance=nil, errratethreshold=nil, samplerate=nil, errorsample=nil, slowrequestsavedthreshold=nil, logregion=nil, logsource=nil, isrelatedlog=nil, logtopicid=nil, clientcount=nil, totalcount=nil, logset=nil, metricduration=nil, customshowtags=nil, paymode=nil, paymodeeffective=nil, responsedurationwarningthreshold=nil, free=nil, defaulttsf=nil, isrelateddashboard=nil, dashboardtopicid=nil, isinstrumentationvulnerabilityscan=nil, issqlinjectionanalysis=nil, stopreason=nil, isremotecommandexecutionanalysis=nil, ismemoryhijackinganalysis=nil, logindextype=nil, logtraceidkey=nil, isdeleteanyfileanalysis=nil, isreadanyfileanalysis=nil, isuploadanyfileanalysis=nil, isincludeanyfileanalysis=nil, isdirectorytraversalanalysis=nil, istemplateengineinjectionanalysis=nil, isscriptengineinjectionanalysis=nil, isexpressioninjectionanalysis=nil, isjndiinjectionanalysis=nil, isjniinjectionanalysis=nil, iswebshellbackdooranalysis=nil, isdeserializationanalysis=nil, token=nil, urllongsegmentthreshold=nil, urlnumbersegmentthreshold=nil, logspanidkey=nil, disableaiability=nil, crossaccountstatus=nil, crossaccountpeerid=nil, tokendisplayprotection=nil)
+        def initialize(instanceid=nil, name=nil, description=nil, status=nil, region=nil, tags=nil, appid=nil, createuin=nil, amountofusedstorage=nil, servicecount=nil, countofreportspanperday=nil, traceduration=nil, spandailycounters=nil, billinginstance=nil, errratethreshold=nil, samplerate=nil, errorsample=nil, slowrequestsavedthreshold=nil, logregion=nil, logsource=nil, isrelatedlog=nil, logtopicid=nil, clientcount=nil, totalcount=nil, logset=nil, metricduration=nil, customshowtags=nil, paymode=nil, paymodeeffective=nil, responsedurationwarningthreshold=nil, free=nil, defaulttsf=nil, isrelateddashboard=nil, dashboardtopicid=nil, isinstrumentationvulnerabilityscan=nil, issqlinjectionanalysis=nil, stopreason=nil, isremotecommandexecutionanalysis=nil, ismemoryhijackinganalysis=nil, logindextype=nil, logtraceidkey=nil, isdeleteanyfileanalysis=nil, isreadanyfileanalysis=nil, isuploadanyfileanalysis=nil, isincludeanyfileanalysis=nil, isdirectorytraversalanalysis=nil, istemplateengineinjectionanalysis=nil, isscriptengineinjectionanalysis=nil, isexpressioninjectionanalysis=nil, isjndiinjectionanalysis=nil, isjniinjectionanalysis=nil, iswebshellbackdooranalysis=nil, isdeserializationanalysis=nil, token=nil, urllongsegmentthreshold=nil, urlnumbersegmentthreshold=nil, logspanidkey=nil, disableaiability=nil, crossaccountstatus=nil, crossaccountpeerid=nil, tokendisplayprotection=nil, spanstatusconfig=nil)
           @InstanceId = instanceid
           @Name = name
           @Description = description
@@ -959,6 +972,7 @@ module TencentCloud
           @CrossAccountStatus = crossaccountstatus
           @CrossAccountPeerId = crossaccountpeerid
           @TokenDisplayProtection = tokendisplayprotection
+          @SpanStatusConfig = spanstatusconfig
         end
 
         def deserialize(params)
@@ -1030,6 +1044,10 @@ module TencentCloud
           @CrossAccountStatus = params['CrossAccountStatus']
           @CrossAccountPeerId = params['CrossAccountPeerId']
           @TokenDisplayProtection = params['TokenDisplayProtection']
+          unless params['SpanStatusConfig'].nil?
+            @SpanStatusConfig = SpanStatusConfig.new
+            @SpanStatusConfig.deserialize(params['SpanStatusConfig'])
+          end
         end
       end
 
@@ -3449,6 +3467,28 @@ module TencentCloud
         end
       end
 
+      # 具体单个配置
+      class ErrorSpanConf < TencentCloud::Common::AbstractModel
+        # @param ErrorObjectPatterns: <p>错误类型匹配规则列表</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorObjectPatterns: Array
+        # @param ErrorCodes: <p>错误码匹配规则列表</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorCodes: Array
+
+        attr_accessor :ErrorObjectPatterns, :ErrorCodes
+
+        def initialize(errorobjectpatterns=nil, errorcodes=nil)
+          @ErrorObjectPatterns = errorobjectpatterns
+          @ErrorCodes = errorcodes
+        end
+
+        def deserialize(params)
+          @ErrorObjectPatterns = params['ErrorObjectPatterns']
+          @ErrorCodes = params['ErrorCodes']
+        end
+      end
+
       # 查询过滤参数
       class Filter < TencentCloud::Common::AbstractModel
         # @param Type: <p>过滤方式（=, !=, in）</p>
@@ -3686,10 +3726,14 @@ module TencentCloud
         # @type CrossAccountStatus: Integer
         # @param CrossAccountPeerId: <p>跨账号关联ID</p>
         # @type CrossAccountPeerId: String
+        # @param EnableSpanStatusConfig: <p>应用级自定义 Span 状态开关</p>
+        # @type EnableSpanStatusConfig: Boolean
+        # @param SpanStatusConfig: <p>自定义 Span 状态配置</p>
+        # @type SpanStatusConfig: :class:`Tencentcloud::Apm.v20210622.models.SpanStatusConfig`
 
-        attr_accessor :InstanceId, :ServiceName, :UrlConvergenceSwitch, :UrlConvergenceThreshold, :ExceptionFilter, :UrlConvergence, :ErrorCodeFilter, :UrlExclude, :IsRelatedLog, :LogRegion, :LogTopicID, :LogSet, :LogSource, :IgnoreOperationName, :EnableSnapshot, :SnapshotTimeout, :AgentEnable, :TraceSquash, :EventEnable, :InstrumentList, :AgentOperationConfigView, :EnableLogConfig, :EnableDashboardConfig, :IsRelatedDashboard, :DashboardTopicID, :LogIndexType, :LogTraceIdKey, :EnableSecurityConfig, :IsSqlInjectionAnalysis, :IsInstrumentationVulnerabilityScan, :IsRemoteCommandExecutionAnalysis, :IsMemoryHijackingAnalysis, :IsDeleteAnyFileAnalysis, :IsReadAnyFileAnalysis, :IsUploadAnyFileAnalysis, :IsIncludeAnyFileAnalysis, :IsDirectoryTraversalAnalysis, :IsTemplateEngineInjectionAnalysis, :IsScriptEngineInjectionAnalysis, :IsExpressionInjectionAnalysis, :IsJNDIInjectionAnalysis, :IsJNIInjectionAnalysis, :IsWebshellBackdoorAnalysis, :IsDeserializationAnalysis, :UrlAutoConvergenceEnable, :UrlLongSegmentThreshold, :UrlNumberSegmentThreshold, :DisableMemoryUsed, :DisableCpuUsed, :DbStatementParametersEnabled, :SlowSQLThresholds, :EnableDesensitizationRule, :DesensitizationRule, :LogSpanIdKey, :AutoProfilingConfig, :EnableThresholdConfig, :ErrRateThreshold, :ResponseDurationWarningThreshold, :UseDefaultFuseConfig, :EnableHeadSampler, :HeadSamplerType, :HeadSamplerArg, :CrossAccountStatus, :CrossAccountPeerId
+        attr_accessor :InstanceId, :ServiceName, :UrlConvergenceSwitch, :UrlConvergenceThreshold, :ExceptionFilter, :UrlConvergence, :ErrorCodeFilter, :UrlExclude, :IsRelatedLog, :LogRegion, :LogTopicID, :LogSet, :LogSource, :IgnoreOperationName, :EnableSnapshot, :SnapshotTimeout, :AgentEnable, :TraceSquash, :EventEnable, :InstrumentList, :AgentOperationConfigView, :EnableLogConfig, :EnableDashboardConfig, :IsRelatedDashboard, :DashboardTopicID, :LogIndexType, :LogTraceIdKey, :EnableSecurityConfig, :IsSqlInjectionAnalysis, :IsInstrumentationVulnerabilityScan, :IsRemoteCommandExecutionAnalysis, :IsMemoryHijackingAnalysis, :IsDeleteAnyFileAnalysis, :IsReadAnyFileAnalysis, :IsUploadAnyFileAnalysis, :IsIncludeAnyFileAnalysis, :IsDirectoryTraversalAnalysis, :IsTemplateEngineInjectionAnalysis, :IsScriptEngineInjectionAnalysis, :IsExpressionInjectionAnalysis, :IsJNDIInjectionAnalysis, :IsJNIInjectionAnalysis, :IsWebshellBackdoorAnalysis, :IsDeserializationAnalysis, :UrlAutoConvergenceEnable, :UrlLongSegmentThreshold, :UrlNumberSegmentThreshold, :DisableMemoryUsed, :DisableCpuUsed, :DbStatementParametersEnabled, :SlowSQLThresholds, :EnableDesensitizationRule, :DesensitizationRule, :LogSpanIdKey, :AutoProfilingConfig, :EnableThresholdConfig, :ErrRateThreshold, :ResponseDurationWarningThreshold, :UseDefaultFuseConfig, :EnableHeadSampler, :HeadSamplerType, :HeadSamplerArg, :CrossAccountStatus, :CrossAccountPeerId, :EnableSpanStatusConfig, :SpanStatusConfig
 
-        def initialize(instanceid=nil, servicename=nil, urlconvergenceswitch=nil, urlconvergencethreshold=nil, exceptionfilter=nil, urlconvergence=nil, errorcodefilter=nil, urlexclude=nil, isrelatedlog=nil, logregion=nil, logtopicid=nil, logset=nil, logsource=nil, ignoreoperationname=nil, enablesnapshot=nil, snapshottimeout=nil, agentenable=nil, tracesquash=nil, eventenable=nil, instrumentlist=nil, agentoperationconfigview=nil, enablelogconfig=nil, enabledashboardconfig=nil, isrelateddashboard=nil, dashboardtopicid=nil, logindextype=nil, logtraceidkey=nil, enablesecurityconfig=nil, issqlinjectionanalysis=nil, isinstrumentationvulnerabilityscan=nil, isremotecommandexecutionanalysis=nil, ismemoryhijackinganalysis=nil, isdeleteanyfileanalysis=nil, isreadanyfileanalysis=nil, isuploadanyfileanalysis=nil, isincludeanyfileanalysis=nil, isdirectorytraversalanalysis=nil, istemplateengineinjectionanalysis=nil, isscriptengineinjectionanalysis=nil, isexpressioninjectionanalysis=nil, isjndiinjectionanalysis=nil, isjniinjectionanalysis=nil, iswebshellbackdooranalysis=nil, isdeserializationanalysis=nil, urlautoconvergenceenable=nil, urllongsegmentthreshold=nil, urlnumbersegmentthreshold=nil, disablememoryused=nil, disablecpuused=nil, dbstatementparametersenabled=nil, slowsqlthresholds=nil, enabledesensitizationrule=nil, desensitizationrule=nil, logspanidkey=nil, autoprofilingconfig=nil, enablethresholdconfig=nil, errratethreshold=nil, responsedurationwarningthreshold=nil, usedefaultfuseconfig=nil, enableheadsampler=nil, headsamplertype=nil, headsamplerarg=nil, crossaccountstatus=nil, crossaccountpeerid=nil)
+        def initialize(instanceid=nil, servicename=nil, urlconvergenceswitch=nil, urlconvergencethreshold=nil, exceptionfilter=nil, urlconvergence=nil, errorcodefilter=nil, urlexclude=nil, isrelatedlog=nil, logregion=nil, logtopicid=nil, logset=nil, logsource=nil, ignoreoperationname=nil, enablesnapshot=nil, snapshottimeout=nil, agentenable=nil, tracesquash=nil, eventenable=nil, instrumentlist=nil, agentoperationconfigview=nil, enablelogconfig=nil, enabledashboardconfig=nil, isrelateddashboard=nil, dashboardtopicid=nil, logindextype=nil, logtraceidkey=nil, enablesecurityconfig=nil, issqlinjectionanalysis=nil, isinstrumentationvulnerabilityscan=nil, isremotecommandexecutionanalysis=nil, ismemoryhijackinganalysis=nil, isdeleteanyfileanalysis=nil, isreadanyfileanalysis=nil, isuploadanyfileanalysis=nil, isincludeanyfileanalysis=nil, isdirectorytraversalanalysis=nil, istemplateengineinjectionanalysis=nil, isscriptengineinjectionanalysis=nil, isexpressioninjectionanalysis=nil, isjndiinjectionanalysis=nil, isjniinjectionanalysis=nil, iswebshellbackdooranalysis=nil, isdeserializationanalysis=nil, urlautoconvergenceenable=nil, urllongsegmentthreshold=nil, urlnumbersegmentthreshold=nil, disablememoryused=nil, disablecpuused=nil, dbstatementparametersenabled=nil, slowsqlthresholds=nil, enabledesensitizationrule=nil, desensitizationrule=nil, logspanidkey=nil, autoprofilingconfig=nil, enablethresholdconfig=nil, errratethreshold=nil, responsedurationwarningthreshold=nil, usedefaultfuseconfig=nil, enableheadsampler=nil, headsamplertype=nil, headsamplerarg=nil, crossaccountstatus=nil, crossaccountpeerid=nil, enablespanstatusconfig=nil, spanstatusconfig=nil)
           @InstanceId = instanceid
           @ServiceName = servicename
           @UrlConvergenceSwitch = urlconvergenceswitch
@@ -3754,6 +3798,8 @@ module TencentCloud
           @HeadSamplerArg = headsamplerarg
           @CrossAccountStatus = crossaccountstatus
           @CrossAccountPeerId = crossaccountpeerid
+          @EnableSpanStatusConfig = enablespanstatusconfig
+          @SpanStatusConfig = spanstatusconfig
         end
 
         def deserialize(params)
@@ -3841,6 +3887,11 @@ module TencentCloud
           @HeadSamplerArg = params['HeadSamplerArg']
           @CrossAccountStatus = params['CrossAccountStatus']
           @CrossAccountPeerId = params['CrossAccountPeerId']
+          @EnableSpanStatusConfig = params['EnableSpanStatusConfig']
+          unless params['SpanStatusConfig'].nil?
+            @SpanStatusConfig = SpanStatusConfig.new
+            @SpanStatusConfig.deserialize(params['SpanStatusConfig'])
+          end
         end
       end
 
@@ -4014,10 +4065,12 @@ module TencentCloud
         # @type CrossAccountPeerId: String
         # @param TokenDisplayProtection: <p>是否开启Token 展示安全保护</p><p>单位：0：不开启，1：开启</p><p>默认值：0</p>
         # @type TokenDisplayProtection: Integer
+        # @param SpanStatusConfig: <p>自定义 Span 状态配置</p>
+        # @type SpanStatusConfig: :class:`Tencentcloud::Apm.v20210622.models.SpanStatusConfig`
 
-        attr_accessor :InstanceId, :Name, :Tags, :Description, :TraceDuration, :OpenBilling, :SpanDailyCounters, :ErrRateThreshold, :SampleRate, :ErrorSample, :SlowRequestSavedThreshold, :IsRelatedLog, :LogRegion, :LogTopicID, :LogSet, :LogSource, :CustomShowTags, :PayMode, :ResponseDurationWarningThreshold, :Free, :IsRelatedDashboard, :DashboardTopicID, :IsSqlInjectionAnalysis, :IsInstrumentationVulnerabilityScan, :IsRemoteCommandExecutionAnalysis, :IsMemoryHijackingAnalysis, :LogIndexType, :LogTraceIdKey, :IsDeleteAnyFileAnalysis, :IsReadAnyFileAnalysis, :IsUploadAnyFileAnalysis, :IsIncludeAnyFileAnalysis, :IsDirectoryTraversalAnalysis, :IsTemplateEngineInjectionAnalysis, :IsScriptEngineInjectionAnalysis, :IsExpressionInjectionAnalysis, :IsJNDIInjectionAnalysis, :IsJNIInjectionAnalysis, :IsWebshellBackdoorAnalysis, :IsDeserializationAnalysis, :UrlLongSegmentThreshold, :UrlNumberSegmentThreshold, :LogSpanIdKey, :EnableHeadSampler, :HeadSamplerType, :HeadSamplerArg, :DisableAiAbility, :CrossAccountStatus, :CrossAccountPeerId, :TokenDisplayProtection
+        attr_accessor :InstanceId, :Name, :Tags, :Description, :TraceDuration, :OpenBilling, :SpanDailyCounters, :ErrRateThreshold, :SampleRate, :ErrorSample, :SlowRequestSavedThreshold, :IsRelatedLog, :LogRegion, :LogTopicID, :LogSet, :LogSource, :CustomShowTags, :PayMode, :ResponseDurationWarningThreshold, :Free, :IsRelatedDashboard, :DashboardTopicID, :IsSqlInjectionAnalysis, :IsInstrumentationVulnerabilityScan, :IsRemoteCommandExecutionAnalysis, :IsMemoryHijackingAnalysis, :LogIndexType, :LogTraceIdKey, :IsDeleteAnyFileAnalysis, :IsReadAnyFileAnalysis, :IsUploadAnyFileAnalysis, :IsIncludeAnyFileAnalysis, :IsDirectoryTraversalAnalysis, :IsTemplateEngineInjectionAnalysis, :IsScriptEngineInjectionAnalysis, :IsExpressionInjectionAnalysis, :IsJNDIInjectionAnalysis, :IsJNIInjectionAnalysis, :IsWebshellBackdoorAnalysis, :IsDeserializationAnalysis, :UrlLongSegmentThreshold, :UrlNumberSegmentThreshold, :LogSpanIdKey, :EnableHeadSampler, :HeadSamplerType, :HeadSamplerArg, :DisableAiAbility, :CrossAccountStatus, :CrossAccountPeerId, :TokenDisplayProtection, :SpanStatusConfig
 
-        def initialize(instanceid=nil, name=nil, tags=nil, description=nil, traceduration=nil, openbilling=nil, spandailycounters=nil, errratethreshold=nil, samplerate=nil, errorsample=nil, slowrequestsavedthreshold=nil, isrelatedlog=nil, logregion=nil, logtopicid=nil, logset=nil, logsource=nil, customshowtags=nil, paymode=nil, responsedurationwarningthreshold=nil, free=nil, isrelateddashboard=nil, dashboardtopicid=nil, issqlinjectionanalysis=nil, isinstrumentationvulnerabilityscan=nil, isremotecommandexecutionanalysis=nil, ismemoryhijackinganalysis=nil, logindextype=nil, logtraceidkey=nil, isdeleteanyfileanalysis=nil, isreadanyfileanalysis=nil, isuploadanyfileanalysis=nil, isincludeanyfileanalysis=nil, isdirectorytraversalanalysis=nil, istemplateengineinjectionanalysis=nil, isscriptengineinjectionanalysis=nil, isexpressioninjectionanalysis=nil, isjndiinjectionanalysis=nil, isjniinjectionanalysis=nil, iswebshellbackdooranalysis=nil, isdeserializationanalysis=nil, urllongsegmentthreshold=nil, urlnumbersegmentthreshold=nil, logspanidkey=nil, enableheadsampler=nil, headsamplertype=nil, headsamplerarg=nil, disableaiability=nil, crossaccountstatus=nil, crossaccountpeerid=nil, tokendisplayprotection=nil)
+        def initialize(instanceid=nil, name=nil, tags=nil, description=nil, traceduration=nil, openbilling=nil, spandailycounters=nil, errratethreshold=nil, samplerate=nil, errorsample=nil, slowrequestsavedthreshold=nil, isrelatedlog=nil, logregion=nil, logtopicid=nil, logset=nil, logsource=nil, customshowtags=nil, paymode=nil, responsedurationwarningthreshold=nil, free=nil, isrelateddashboard=nil, dashboardtopicid=nil, issqlinjectionanalysis=nil, isinstrumentationvulnerabilityscan=nil, isremotecommandexecutionanalysis=nil, ismemoryhijackinganalysis=nil, logindextype=nil, logtraceidkey=nil, isdeleteanyfileanalysis=nil, isreadanyfileanalysis=nil, isuploadanyfileanalysis=nil, isincludeanyfileanalysis=nil, isdirectorytraversalanalysis=nil, istemplateengineinjectionanalysis=nil, isscriptengineinjectionanalysis=nil, isexpressioninjectionanalysis=nil, isjndiinjectionanalysis=nil, isjniinjectionanalysis=nil, iswebshellbackdooranalysis=nil, isdeserializationanalysis=nil, urllongsegmentthreshold=nil, urlnumbersegmentthreshold=nil, logspanidkey=nil, enableheadsampler=nil, headsamplertype=nil, headsamplerarg=nil, disableaiability=nil, crossaccountstatus=nil, crossaccountpeerid=nil, tokendisplayprotection=nil, spanstatusconfig=nil)
           @InstanceId = instanceid
           @Name = name
           @Tags = tags
@@ -4068,6 +4121,7 @@ module TencentCloud
           @CrossAccountStatus = crossaccountstatus
           @CrossAccountPeerId = crossaccountpeerid
           @TokenDisplayProtection = tokendisplayprotection
+          @SpanStatusConfig = spanstatusconfig
         end
 
         def deserialize(params)
@@ -4128,6 +4182,10 @@ module TencentCloud
           @CrossAccountStatus = params['CrossAccountStatus']
           @CrossAccountPeerId = params['CrossAccountPeerId']
           @TokenDisplayProtection = params['TokenDisplayProtection']
+          unless params['SpanStatusConfig'].nil?
+            @SpanStatusConfig = SpanStatusConfig.new
+            @SpanStatusConfig.deserialize(params['SpanStatusConfig'])
+          end
         end
       end
 
@@ -4883,6 +4941,35 @@ module TencentCloud
           @RefType = params['RefType']
           @SpanID = params['SpanID']
           @TraceID = params['TraceID']
+        end
+      end
+
+      # https://iwiki.woa.com/p/4035597532
+      # 自定义 Span 状态
+      class SpanStatusConfig < TencentCloud::Common::AbstractModel
+        # @param MarkAsError: <p>标记为错误规则组</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MarkAsError: :class:`Tencentcloud::Apm.v20210622.models.ErrorSpanConf`
+        # @param MarkAsOk: <p>标记为正常规则组</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MarkAsOk: :class:`Tencentcloud::Apm.v20210622.models.ErrorSpanConf`
+
+        attr_accessor :MarkAsError, :MarkAsOk
+
+        def initialize(markaserror=nil, markasok=nil)
+          @MarkAsError = markaserror
+          @MarkAsOk = markasok
+        end
+
+        def deserialize(params)
+          unless params['MarkAsError'].nil?
+            @MarkAsError = ErrorSpanConf.new
+            @MarkAsError.deserialize(params['MarkAsError'])
+          end
+          unless params['MarkAsOk'].nil?
+            @MarkAsOk = ErrorSpanConf.new
+            @MarkAsOk.deserialize(params['MarkAsOk'])
+          end
         end
       end
 

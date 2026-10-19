@@ -105,8 +105,6 @@ module TencentCloud
 
         attr_accessor :AppId, :ProxyAppId, :ProxyOrganizationId, :ProxyOperator
         extend Gem::Deprecate
-        deprecate :AppId, :none, 2026, 10
-        deprecate :AppId=, :none, 2026, 10
         deprecate :ProxyAppId, :none, 2026, 10
         deprecate :ProxyAppId=, :none, 2026, 10
         deprecate :ProxyOperator, :none, 2026, 10
@@ -3259,25 +3257,28 @@ module TencentCloud
 
       # CreateDraftContractByPromptsTask请求参数结构体
       class CreateDraftContractByPromptsTaskRequest < TencentCloud::Common::AbstractModel
-        # @param Operator: 执行本接口操作的员工信息。 注: 在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。
+        # @param Operator: <p>执行本接口操作的员工信息。 注: 在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。</p>
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param Requirement: 起草要求，范围要求 5-1000 字
+        # @param Requirement: <p>起草要求，范围要求 5-1000 字</p>
         # @type Requirement: String
-        # @param ReferenceTemplateId: 参考模板文件资源id（PDF/Word格式），大小不超过1M，通过[上传文件](https://qian.tencent.com/developers/companyApis/templatesAndFiles/UploadFiles)接口来获取。
+        # @param ReferenceTemplateId: <p>参考模板文件资源id（PDF/Word格式），大小不超过1M，通过<a href="https://qian.tencent.com/developers/companyApis/templatesAndFiles/UploadFiles">上传文件</a>接口来获取。</p>
         # @type ReferenceTemplateId: String
-        # @param RequirementFileIds: 相关规定文件资源id列表（PDF/Word格式），最多3个文件，每个大小不超过1M，通过[上传文件](https://qian.tencent.com/developers/companyApis/templatesAndFiles/UploadFiles)接口来获取。
+        # @param RequirementFileIds: <p>相关规定文件资源id列表（PDF/Word格式），最多3个文件，每个大小不超过1M，通过<a href="https://qian.tencent.com/developers/companyApis/templatesAndFiles/UploadFiles">上传文件</a>接口来获取。</p>
         # @type RequirementFileIds: Array
-        # @param ContractLanguage: 起草合同的语言要求（zh，en）默认zh
+        # @param ContractLanguage: <p>起草合同的语言要求（zh，en）默认zh</p>
         # @type ContractLanguage: String
+        # @param ReviewTaskId: <p>审查任务id，仅支持传入1个，通过<a href="https://qian.tencent.com/developers/companyApis/%E5%90%88%E5%90%8C%E6%99%BA%E8%83%BD%E7%9B%B8%E5%85%B3%E6%8E%A5%E5%8F%A3/CreateBatchContractReviewTask/">批量创建合同审查任务</a>接口来获取。</p>
+        # @type ReviewTaskId: String
 
-        attr_accessor :Operator, :Requirement, :ReferenceTemplateId, :RequirementFileIds, :ContractLanguage
+        attr_accessor :Operator, :Requirement, :ReferenceTemplateId, :RequirementFileIds, :ContractLanguage, :ReviewTaskId
 
-        def initialize(operator=nil, requirement=nil, referencetemplateid=nil, requirementfileids=nil, contractlanguage=nil)
+        def initialize(operator=nil, requirement=nil, referencetemplateid=nil, requirementfileids=nil, contractlanguage=nil, reviewtaskid=nil)
           @Operator = operator
           @Requirement = requirement
           @ReferenceTemplateId = referencetemplateid
           @RequirementFileIds = requirementfileids
           @ContractLanguage = contractlanguage
+          @ReviewTaskId = reviewtaskid
         end
 
         def deserialize(params)
@@ -3289,12 +3290,13 @@ module TencentCloud
           @ReferenceTemplateId = params['ReferenceTemplateId']
           @RequirementFileIds = params['RequirementFileIds']
           @ContractLanguage = params['ContractLanguage']
+          @ReviewTaskId = params['ReviewTaskId']
         end
       end
 
       # CreateDraftContractByPromptsTask返回参数结构体
       class CreateDraftContractByPromptsTaskResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 起草任务id
+        # @param TaskId: <p>起草任务id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。

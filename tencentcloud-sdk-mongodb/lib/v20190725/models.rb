@@ -5965,17 +5965,15 @@ module TencentCloud
 
       # ModifyDBInstanceNetworkAddress请求参数结构体
       class ModifyDBInstanceNetworkAddressRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 指定需修改网络的实例 ID。例如：cmgo-p8vn****。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
+        # @param InstanceId: <p>指定需修改网络的实例 ID。例如：cmgo-p8vn****。请登录 <a href="https://console.cloud.tencent.com/mongodb">MongoDB 控制台</a>在实例列表复制实例 ID。</p>
         # @type InstanceId: String
-        # @param OldIpExpiredTime: 原 IP 地址保留时长。
-        # - 单位为分钟，0表示立即回收原 IP 地址。
-        # - 原 IP 将在约定时间后释放，在释放前原 IP和新 IP均可访问。
+        # @param OldIpExpiredTime: <p>原 IP 地址保留时长。</p><ul><li>单位为分钟，0表示立即回收原 IP 地址。</li><li>原 IP 将在约定时间后释放，在释放前原 IP和新 IP均可访问。</li></ul>
         # @type OldIpExpiredTime: Integer
-        # @param NewUniqVpcId: 切换后的私有网络 ID，若实例当前为基础网络，该字段无需配置。请通过接口 [DescribeDBInstances](https://cloud.tencent.com/document/product/240/38568) 获取私有网络 ID。
+        # @param NewUniqVpcId: <p>切换后的私有网络 ID，若实例当前为基础网络，该字段无需配置。请通过接口 <a href="https://cloud.tencent.com/document/product/240/38568">DescribeDBInstances</a> 获取私有网络 ID。</p>
         # @type NewUniqVpcId: String
-        # @param NewUniqSubnetId: 切换后私有网络的子网 ID。若实例当前为基础网络，该字段无需配置。请通过接口 [DescribeDBInstances](https://cloud.tencent.com/document/product/240/38568) 获取私有网络的子网 ID。
+        # @param NewUniqSubnetId: <p>切换后私有网络的子网 ID。若实例当前为基础网络，该字段无需配置。请通过接口 <a href="https://cloud.tencent.com/document/product/240/38568">DescribeDBInstances</a> 获取私有网络的子网 ID。</p>
         # @type NewUniqSubnetId: String
-        # @param NetworkAddresses: IP 地址信息，包含新 IP 地址与 原 IP 地址。
+        # @param NetworkAddresses: <p>IP 地址信息，包含新 IP 地址与 原 IP 地址。</p>
         # @type NetworkAddresses: Array
 
         attr_accessor :InstanceId, :OldIpExpiredTime, :NewUniqVpcId, :NewUniqSubnetId, :NetworkAddresses
@@ -6006,7 +6004,7 @@ module TencentCloud
 
       # ModifyDBInstanceNetworkAddress返回参数结构体
       class ModifyDBInstanceNetworkAddressResponse < TencentCloud::Common::AbstractModel
-        # @param FlowId: 修改网络异步流程任务ID。
+        # @param FlowId: <p>修改网络异步流程任务ID。</p>
         # @type FlowId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6353,21 +6351,25 @@ module TencentCloud
 
       # 修改数据库地址
       class ModifyNetworkAddress < TencentCloud::Common::AbstractModel
-        # @param NewIPAddress: 新IP地址。
+        # @param NewIPAddress: <p>新IP地址。</p>
         # @type NewIPAddress: String
-        # @param OldIpAddress: 原IP地址。
+        # @param OldIpAddress: <p>原IP地址。</p>
         # @type OldIpAddress: String
+        # @param NodeType: <p>在副本集时，修改网络需要传此字段，用于标识该ip地址为主节点或者hidden节点</p><p>枚举值：</p><ul><li>PRIMARY： 主节点</li><li>HIDDEN： hidden节点</li></ul>
+        # @type NodeType: String
 
-        attr_accessor :NewIPAddress, :OldIpAddress
+        attr_accessor :NewIPAddress, :OldIpAddress, :NodeType
 
-        def initialize(newipaddress=nil, oldipaddress=nil)
+        def initialize(newipaddress=nil, oldipaddress=nil, nodetype=nil)
           @NewIPAddress = newipaddress
           @OldIpAddress = oldipaddress
+          @NodeType = nodetype
         end
 
         def deserialize(params)
           @NewIPAddress = params['NewIPAddress']
           @OldIpAddress = params['OldIpAddress']
+          @NodeType = params['NodeType']
         end
       end
 

@@ -736,22 +736,15 @@ module TencentCloud
 
       # BizLicenseOCR请求参数结构体
       class BizLicenseOCRRequest < TencentCloud::Common::AbstractModel
-        # @param ImageBase64: 图片的 Base64 值。
-        # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
-        # 支持的图片大小：所下载图片经Base64编码后不超过 7M。图片下载时间不超过 3 秒。
-        # 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
+        # @param ImageBase64: <p>图片的 Base64 值。<br>支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。<br>支持的图片大小：所下载图片经Base64编码后不超过 7M。图片下载时间不超过 3 秒。<br>图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。</p>
         # @type ImageBase64: String
-        # @param ImageUrl: 图片的 Url 地址。
-        # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
-        # 支持的图片大小：所下载图片经 Base64 编码后不超过 7M。图片下载时间不超过 3 秒。
-        # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。
-        # 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
+        # @param ImageUrl: <p>图片的 Url 地址。<br>支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。<br>支持的图片大小：所下载图片经 Base64 编码后不超过 7M。图片下载时间不超过 3 秒。<br>图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。<br>非腾讯云存储的 Url 速度和稳定性可能受一定影响。</p>
         # @type ImageUrl: String
-        # @param EnableCopyWarn: 是否返回告警码，默认为false
+        # @param EnableCopyWarn: <p>是否返回告警码，默认为false</p>
         # @type EnableCopyWarn: Boolean
-        # @param EnablePeriodComplete: 是否返回自动拼接的有效期，默认为true
+        # @param EnablePeriodComplete: <p>是否返回自动拼接的有效期，默认为true</p>
         # @type EnablePeriodComplete: Boolean
-        # @param EnableBusinessCertificate: 是否支持营业类证件识别（包括营业执照和非营业执照的其他证件），默认为false
+        # @param EnableBusinessCertificate: <p>是否支持营业类证件识别（包括营业执照和非营业执照的其他证件），默认为false</p>
         # @type EnableBusinessCertificate: Boolean
 
         attr_accessor :ImageBase64, :ImageUrl, :EnableCopyWarn, :EnablePeriodComplete, :EnableBusinessCertificate
@@ -775,58 +768,53 @@ module TencentCloud
 
       # BizLicenseOCR返回参数结构体
       class BizLicenseOCRResponse < TencentCloud::Common::AbstractModel
-        # @param RegNum: 统一社会信用代码（三合一之前为注册号）
+        # @param RegNum: <p>统一社会信用代码（三合一之前为注册号）</p>
         # @type RegNum: String
-        # @param Name: 公司名称
+        # @param Name: <p>公司名称</p>
         # @type Name: String
-        # @param Capital: 注册资本
+        # @param Capital: <p>注册资本</p>
         # @type Capital: String
-        # @param Person: 法定代表人
+        # @param Person: <p>法定代表人</p>
         # @type Person: String
-        # @param Address: 地址
+        # @param Address: <p>地址</p>
         # @type Address: String
-        # @param Business: 经营范围
+        # @param Business: <p>经营范围</p>
         # @type Business: String
-        # @param Type: 主体类型
+        # @param Type: <p>主体类型</p>
         # @type Type: String
-        # @param Period: 营业期限
+        # @param Period: <p>营业期限</p>
         # @type Period: String
-        # @param ComposingForm: 组成形式
+        # @param ComposingForm: <p>组成形式</p>
         # @type ComposingForm: String
-        # @param SetDate: 成立日期
+        # @param SetDate: <p>成立日期</p>
         # @type SetDate: String
-        # @param RecognizeWarnCode: Code 告警码列表和释义：
-        # -9102 黑白复印件告警
-        # -9104 翻拍件告警
+        # @param RecognizeWarnCode: <p>Code 告警码列表和释义：<br>-9102 黑白复印件告警<br>-9104 翻拍件告警<br>-9108 经营范围识别异常告警（由于文字过小、模糊、反光、遮挡或明显倾斜等情况导致未能正常识别）</p>
         # @type RecognizeWarnCode: Array
-        # @param RecognizeWarnMsg: 告警码说明：
-        # WARN_COPY_CARD 黑白复印件告警
-        # WARN_RESHOOT_CARD翻拍件告警
+        # @param RecognizeWarnMsg: <p>告警码说明：<br>WARN_COPY_CARD 黑白复印件告警<br>WARN_RESHOOT_CARD翻拍件告警<br>WARN_EARLY_STOP 经营范围识别异常告警</p>
         # @type RecognizeWarnMsg: Array
-        # @param IsDuplication: 是否为副本。1为是，-1为不是。
+        # @param IsDuplication: <p>是否为副本。1为是，-1为不是。</p>
         # @type IsDuplication: Integer
-        # @param RegistrationDate: 登记日期
+        # @param RegistrationDate: <p>登记日期</p>
         # @type RegistrationDate: String
-        # @param Angle:  图片旋转角度(角度制)，文本的水平方向为0度；顺时针为正，角度范围是0-360度
-
+        # @param Angle: <p>图片旋转角度(角度制)，文本的水平方向为0度；顺时针为正，角度范围是0-360度</p>
         # @type Angle: Float
-        # @param NationalEmblem: 是否有国徽。false为没有，true为有。
+        # @param NationalEmblem: <p>是否有国徽。false为没有，true为有。</p>
         # @type NationalEmblem: Boolean
-        # @param QRCode: 是否有二维码。false为没有，true为有。
+        # @param QRCode: <p>是否有二维码。false为没有，true为有。</p>
         # @type QRCode: Boolean
-        # @param Seal: 是否有印章。false为没有，true为有。
+        # @param Seal: <p>是否有印章。false为没有，true为有。</p>
         # @type Seal: Boolean
-        # @param Title: 标题
+        # @param Title: <p>标题</p>
         # @type Title: String
-        # @param SerialNumber: 编号
+        # @param SerialNumber: <p>编号</p>
         # @type SerialNumber: String
-        # @param RegistrationAuthority: 登记机关
+        # @param RegistrationAuthority: <p>登记机关</p>
         # @type RegistrationAuthority: String
-        # @param Electronic: 是否是电子营业执照。false为没有，true为有。
+        # @param Electronic: <p>是否是电子营业执照。false为没有，true为有。</p>
         # @type Electronic: Boolean
-        # @param BusinessCertificate: 非营业执照的营业类证件识别结果，将以结构化形式呈现。
+        # @param BusinessCertificate: <p>非营业执照的营业类证件识别结果，将以结构化形式呈现。</p>
         # @type BusinessCertificate: Array
-        # @param Important: 重要提示字段
+        # @param Important: <p>重要提示字段</p>
         # @type Important: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -8639,26 +8627,15 @@ module TencentCloud
 
       # RecognizeGeneralCardWarn请求参数结构体
       class RecognizeGeneralCardWarnRequest < TencentCloud::Common::AbstractModel
-        # @param ImageUrl: 图片链接
+        # @param ImageUrl: <p>图片链接</p>
         # @type ImageUrl: String
-        # @param ImageBase64: 图片base64
+        # @param ImageBase64: <p>图片base64</p>
         # @type ImageBase64: String
-        # @param CardType: 卡证类型参数，包含以下范围：
-        # General：通用卡证
-        # IDCard：身份证
-        # Passport：护照
-        # BankCard：银行卡
-        # VehicleLicense：行驶证
-        # DriverLicense：驾驶证
-        # BizLicense：营业执照
-        # HmtResidentPermit：港澳台居住证
-        # ForeignPermanentResident：外国人永居证
-        # MainlandPermit：港澳台来往内地通行证
-        # SocialSecurityCard：社保卡
+        # @param CardType: <p>卡证类型参数，选填，不填则默认为General，枚举值：<br>（如输入图片的卡证类型明确，建议填入，可降低请求耗时）</p><p>General：系统自动分类/其他类型<br>IDCard：身份证<br>Passport：护照<br>BankCard：银行卡<br>VehicleLicense：行驶证<br>DriverLicense：驾驶证<br>BizLicense：营业执照<br>HmtResidentPermit：港澳台居住证<br>ForeignPermanentResident：外国人永居证<br>MainlandPermit：港澳台来往内地通行证<br>SocialSecurityCard：社保卡</p>
         # @type CardType: String
-        # @param IsPdf: 是否开启PDF识别，默认值为false，开启后可同时支持图片和PDF的识别。
+        # @param IsPdf: <p>是否开启PDF识别，默认值为false，开启后可同时支持图片和PDF的识别。</p>
         # @type IsPdf: Boolean
-        # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
+        # @param PdfPageNumber: <p>需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。</p>
         # @type PdfPageNumber: Integer
 
         attr_accessor :ImageUrl, :ImageBase64, :CardType, :IsPdf, :PdfPageNumber
@@ -8682,40 +8659,29 @@ module TencentCloud
 
       # RecognizeGeneralCardWarn返回参数结构体
       class RecognizeGeneralCardWarnResponse < TencentCloud::Common::AbstractModel
-        # @param CardType: 卡证类型参数，包含以下范围：
-        # General：通用卡证
-        # IDCard：身份证
-        # Passport：护照
-        # BankCard：银行卡
-        # VehicleLicense：行驶证
-        # DriverLicense：驾驶证
-        # BizLicense：营业执照
-        # HmtResidentPermit：港澳台居住证
-        # ForeignPermanentResident：外国人永居证
-        # MainlandPermit：港澳台来往内地通行证
-        # SocialSecurityCard：社保卡
+        # @param CardType: <p>卡证类型参数，枚举值：<br>（如入参CardType未填或填入General，返回自动分类的卡证类型，未能分类的其他类型返回General；如入参CardType填入General以外的值，则不进行自动分类、返回相同的值）</p><p>General：其他类型<br>IDCard：身份证<br>Passport：护照<br>BankCard：银行卡<br>VehicleLicense：行驶证<br>DriverLicense：驾驶证<br>BizLicense：营业执照<br>HmtResidentPermit：港澳台居住证<br>ForeignPermanentResident：外国人永居证<br>MainlandPermit：港澳台来往内地通行证<br>SocialSecurityCard：社保卡</p>
         # @type CardType: String
-        # @param Blur: 模糊信息
+        # @param Blur: <p>模糊信息</p>
         # @type Blur: :class:`Tencentcloud::Ocr.v20181119.models.GeneralCardWarnInfo`
-        # @param BorderIncomplete: 边框不完整信息
+        # @param BorderIncomplete: <p>边框不完整信息</p>
         # @type BorderIncomplete: :class:`Tencentcloud::Ocr.v20181119.models.GeneralCardWarnInfo`
-        # @param Copy: 复印件信息
+        # @param Copy: <p>复印件信息</p>
         # @type Copy: :class:`Tencentcloud::Ocr.v20181119.models.GeneralCardWarnInfo`
-        # @param Ps: ps篡改信息
+        # @param Ps: <p>ps篡改信息</p>
         # @type Ps: :class:`Tencentcloud::Ocr.v20181119.models.GeneralCardWarnInfo`
-        # @param Reflection: 反光信息
+        # @param Reflection: <p>反光信息</p>
         # @type Reflection: :class:`Tencentcloud::Ocr.v20181119.models.GeneralCardWarnInfo`
-        # @param Reprint: 翻拍件信息
+        # @param Reprint: <p>翻拍件信息</p>
         # @type Reprint: :class:`Tencentcloud::Ocr.v20181119.models.GeneralCardWarnInfo`
-        # @param Screenshot: 是否截图
+        # @param Screenshot: <p>是否截图</p>
         # @type Screenshot: :class:`Tencentcloud::Ocr.v20181119.models.GeneralCardWarnInfo`
-        # @param Cover: 是否遮挡
+        # @param Cover: <p>是否遮挡</p>
         # @type Cover: :class:`Tencentcloud::Ocr.v20181119.models.GeneralCardWarnInfo`
-        # @param Overlap: 是否重叠
+        # @param Overlap: <p>是否重叠</p>
         # @type Overlap: :class:`Tencentcloud::Ocr.v20181119.models.GeneralCardWarnInfo`
-        # @param Watermark: 是否水印
+        # @param Watermark: <p>是否水印</p>
         # @type Watermark: :class:`Tencentcloud::Ocr.v20181119.models.GeneralCardWarnInfo`
-        # @param Electron: 是否电子证照（目前仅支持电子身份证、电子营业执照识别
+        # @param Electron: <p>是否电子证照（目前仅支持电子身份证、电子营业执照识别</p>
         # @type Electron: :class:`Tencentcloud::Ocr.v20181119.models.GeneralCardWarnInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

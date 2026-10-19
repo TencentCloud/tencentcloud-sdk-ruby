@@ -544,14 +544,14 @@ module TencentCloud
 
         attr_accessor :DedicatedClusterId, :DedicatedClusterTypeId, :SupportedStorageType, :SupportedUplinkSpeed, :SupportedInstanceFamily, :Weight, :PowerDraw, :OrderStatus, :CreateTime, :DedicatedClusterOrderId, :Action, :DedicatedClusterOrderItems, :Cpu, :Mem, :Gpu, :PayStatus, :PayType, :TimeUnit, :TimeSpan, :OrderType, :CheckStatus, :DeliverExpectTime, :DeliverFinishTime, :CheckExpectTime, :CheckFinishTime, :OrderSLA, :OrderPayPlan
         extend Gem::Deprecate
-        deprecate :DedicatedClusterTypeId, :none, 2026, 7
-        deprecate :DedicatedClusterTypeId=, :none, 2026, 7
-        deprecate :SupportedStorageType, :none, 2026, 7
-        deprecate :SupportedStorageType=, :none, 2026, 7
-        deprecate :SupportedUplinkSpeed, :none, 2026, 7
-        deprecate :SupportedUplinkSpeed=, :none, 2026, 7
-        deprecate :SupportedInstanceFamily, :none, 2026, 7
-        deprecate :SupportedInstanceFamily=, :none, 2026, 7
+        deprecate :DedicatedClusterTypeId, :none, 2026, 10
+        deprecate :DedicatedClusterTypeId=, :none, 2026, 10
+        deprecate :SupportedStorageType, :none, 2026, 10
+        deprecate :SupportedStorageType=, :none, 2026, 10
+        deprecate :SupportedUplinkSpeed, :none, 2026, 10
+        deprecate :SupportedUplinkSpeed=, :none, 2026, 10
+        deprecate :SupportedInstanceFamily, :none, 2026, 10
+        deprecate :SupportedInstanceFamily=, :none, 2026, 10
 
         def initialize(dedicatedclusterid=nil, dedicatedclustertypeid=nil, supportedstoragetype=nil, supporteduplinkspeed=nil, supportedinstancefamily=nil, weight=nil, powerdraw=nil, orderstatus=nil, createtime=nil, dedicatedclusterorderid=nil, action=nil, dedicatedclusterorderitems=nil, cpu=nil, mem=nil, gpu=nil, paystatus=nil, paytype=nil, timeunit=nil, timespan=nil, ordertype=nil, checkstatus=nil, deliverexpecttime=nil, deliverfinishtime=nil, checkexpecttime=nil, checkfinishtime=nil, ordersla=nil, orderpayplan=nil)
           @DedicatedClusterId = dedicatedclusterid
@@ -1488,6 +1488,33 @@ module TencentCloud
         end
       end
 
+      # DescribeEdgeHostVm请求参数结构体
+      class DescribeEdgeHostVmRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeEdgeHostVm返回参数结构体
+      class DescribeEdgeHostVmResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSitesDetail请求参数结构体
       class DescribeSitesDetailRequest < TencentCloud::Common::AbstractModel
         # @param SiteIds: 按照站点id过滤
@@ -1685,8 +1712,8 @@ module TencentCloud
 
         attr_accessor :HostIp, :ServiceType, :HostStatus, :HostType, :CpuAvailable, :CpuTotal, :MemAvailable, :MemTotal, :RunTime, :ExpireTime, :HostId
         extend Gem::Deprecate
-        deprecate :HostIp, :none, 2026, 7
-        deprecate :HostIp=, :none, 2026, 7
+        deprecate :HostIp, :none, 2026, 10
+        deprecate :HostIp=, :none, 2026, 10
 
         def initialize(hostip=nil, servicetype=nil, hoststatus=nil, hosttype=nil, cpuavailable=nil, cputotal=nil, memavailable=nil, memtotal=nil, runtime=nil, expiretime=nil, hostid=nil)
           @HostIp = hostip

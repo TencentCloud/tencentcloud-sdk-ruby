@@ -425,8 +425,8 @@ module TencentCloud
 
         attr_accessor :DealId, :InstanceIds, :DealName, :RequestId
         extend Gem::Deprecate
-        deprecate :DealId, :none, 2026, 9
-        deprecate :DealId=, :none, 2026, 9
+        deprecate :DealId, :none, 2026, 10
+        deprecate :DealId=, :none, 2026, 10
 
         def initialize(dealid=nil, instanceids=nil, dealname=nil, requestid=nil)
           @DealId = dealid
@@ -648,8 +648,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :BackupSet, :BackupRecord, :RequestId
         extend Gem::Deprecate
-        deprecate :BackupSet, :none, 2026, 9
-        deprecate :BackupSet=, :none, 2026, 9
+        deprecate :BackupSet, :none, 2026, 10
+        deprecate :BackupSet=, :none, 2026, 10
 
         def initialize(totalcount=nil, backupset=nil, backuprecord=nil, requestid=nil)
           @TotalCount = totalcount
@@ -752,8 +752,8 @@ module TencentCloud
 
         attr_accessor :DealIds, :DealName
         extend Gem::Deprecate
-        deprecate :DealIds, :none, 2026, 9
-        deprecate :DealIds=, :none, 2026, 9
+        deprecate :DealIds, :none, 2026, 10
+        deprecate :DealIds=, :none, 2026, 10
 
         def initialize(dealids=nil, dealname=nil)
           @DealIds = dealids
@@ -1124,8 +1124,8 @@ module TencentCloud
 
         attr_accessor :Limit, :Offset, :InstanceId, :OrderBy, :OrderType, :VpcIds, :SubnetIds, :ProjectIds, :SearchKey, :InstanceName, :UniqVpcIds, :UniqSubnetIds, :Status, :AutoRenew, :BillingMode, :Type, :SearchKeys, :TypeList, :MonitorVersion, :InstanceTags, :TagKeys, :TagList
         extend Gem::Deprecate
-        deprecate :InstanceTags, :none, 2026, 9
-        deprecate :InstanceTags=, :none, 2026, 9
+        deprecate :InstanceTags, :none, 2026, 10
+        deprecate :InstanceTags=, :none, 2026, 10
 
         def initialize(limit=nil, offset=nil, instanceid=nil, orderby=nil, ordertype=nil, vpcids=nil, subnetids=nil, projectids=nil, searchkey=nil, instancename=nil, uniqvpcids=nil, uniqsubnetids=nil, status=nil, autorenew=nil, billingmode=nil, type=nil, searchkeys=nil, typelist=nil, monitorversion=nil, instancetags=nil, tagkeys=nil, taglist=nil)
           @Limit = limit
@@ -1689,8 +1689,8 @@ module TencentCloud
 
         attr_accessor :DealId, :DealName, :RequestId
         extend Gem::Deprecate
-        deprecate :DealId, :none, 2026, 9
-        deprecate :DealId=, :none, 2026, 9
+        deprecate :DealId, :none, 2026, 10
+        deprecate :DealId=, :none, 2026, 10
 
         def initialize(dealid=nil, dealname=nil, requestid=nil)
           @DealId = dealid
@@ -2429,6 +2429,9 @@ module TencentCloud
         # @type ClientLimit: Integer
 
         attr_accessor :InstanceId, :Bandwidth, :ClientLimit
+        extend Gem::Deprecate
+        deprecate :Bandwidth, :none, 2026, 10
+        deprecate :Bandwidth=, :none, 2026, 10
 
         def initialize(instanceid=nil, bandwidth=nil, clientlimit=nil)
           @InstanceId = instanceid
@@ -2960,8 +2963,8 @@ module TencentCloud
 
         attr_accessor :DealId, :DealName, :RequestId
         extend Gem::Deprecate
-        deprecate :DealId, :none, 2026, 9
-        deprecate :DealId=, :none, 2026, 9
+        deprecate :DealId, :none, 2026, 10
+        deprecate :DealId=, :none, 2026, 10
 
         def initialize(dealid=nil, dealname=nil, requestid=nil)
           @DealId = dealid
@@ -3373,8 +3376,8 @@ module TencentCloud
 
         attr_accessor :DealId, :DealName, :RequestId
         extend Gem::Deprecate
-        deprecate :DealId, :none, 2026, 9
-        deprecate :DealId=, :none, 2026, 9
+        deprecate :DealId, :none, 2026, 10
+        deprecate :DealId=, :none, 2026, 10
 
         def initialize(dealid=nil, dealname=nil, requestid=nil)
           @DealId = dealid

@@ -7890,6 +7890,53 @@ module TencentCloud
         end
       end
 
+      # DescribeOverviewResourceQuota请求参数结构体
+      class DescribeOverviewResourceQuotaRequest < TencentCloud::Common::AbstractModel
+        # @param Scene: <p>返回视图范围</p><p>默认值：不传该参数时，默认返回完整的资源与配额详情数据</p>
+        # @type Scene: String
+
+        attr_accessor :Scene
+
+        def initialize(scene=nil)
+          @Scene = scene
+        end
+
+        def deserialize(params)
+          @Scene = params['Scene']
+        end
+      end
+
+      # DescribeOverviewResourceQuota返回参数结构体
+      class DescribeOverviewResourceQuotaResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>资源与配额详情数据</p><p>包含详情字段和能力标识，具体字段含义见关联数据结构说明。访问控制规则同时提供汇总字段及按互联网边界、NAT边界、VPC边界拆分的字段。</p>
+        # @type Data: :class:`Tencentcloud::Cfw.v20190904.models.OverviewResourceQuotaDataLite`
+        # @param ReturnCode: <p>返回代码</p>
+        # @type ReturnCode: Integer
+        # @param ReturnMsg: <p>返回状态字符</p>
+        # @type ReturnMsg: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :ReturnCode, :ReturnMsg, :RequestId
+
+        def initialize(data=nil, returncode=nil, returnmsg=nil, requestid=nil)
+          @Data = data
+          @ReturnCode = returncode
+          @ReturnMsg = returnmsg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = OverviewResourceQuotaDataLite.new
+            @Data.deserialize(params['Data'])
+          end
+          @ReturnCode = params['ReturnCode']
+          @ReturnMsg = params['ReturnMsg']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeResourceGroupNew请求参数结构体
       class DescribeResourceGroupNewRequest < TencentCloud::Common::AbstractModel
         # @param QueryType: 查询类型 网络结构-vpc，业务识别-resource ，资源标签-tag
@@ -13381,6 +13428,634 @@ module TencentCloud
         end
       end
 
+      # 概览封禁列表配额
+      class OverviewBlockListQuota < TencentCloud::Common::AbstractModel
+        # @param TotalCnt: <p>封禁列表总配额数量。</p>
+        # @type TotalCnt: Integer
+        # @param UsedCnt: <p>封禁列表已使用数量。</p>
+        # @type UsedCnt: Integer
+        # @param InUsedCnt: <p>入站方向已使用的封禁列表记录。</p>
+        # @type InUsedCnt: Integer
+        # @param OutUsedCnt: <p>出方向封禁列表已使用数量。</p>
+        # @type OutUsedCnt: Integer
+
+        attr_accessor :TotalCnt, :UsedCnt, :InUsedCnt, :OutUsedCnt
+
+        def initialize(totalcnt=nil, usedcnt=nil, inusedcnt=nil, outusedcnt=nil)
+          @TotalCnt = totalcnt
+          @UsedCnt = usedcnt
+          @InUsedCnt = inusedcnt
+          @OutUsedCnt = outusedcnt
+        end
+
+        def deserialize(params)
+          @TotalCnt = params['TotalCnt']
+          @UsedCnt = params['UsedCnt']
+          @InUsedCnt = params['InUsedCnt']
+          @OutUsedCnt = params['OutUsedCnt']
+        end
+      end
+
+      # 概览封禁列表配额详情
+      class OverviewBlockListQuotaDetail < TencentCloud::Common::AbstractModel
+        # @param TotalCnt: <p>封禁列表总配额数量。</p>
+        # @type TotalCnt: Integer
+        # @param UsedCnt: <p>封禁列表已使用数量。</p>
+        # @type UsedCnt: Integer
+        # @param RemainCnt: <p>封禁列表剩余配额数量。</p>
+        # @type RemainCnt: Integer
+        # @param BaseTotalCnt: <p>基础配额总数量。</p>
+        # @type BaseTotalCnt: Integer
+        # @param BaseUsedCnt: <p>基础配额已使用数量。</p>
+        # @type BaseUsedCnt: Integer
+        # @param BaseRemainCnt: <p>基础配额剩余数量。</p>
+        # @type BaseRemainCnt: Integer
+        # @param ExtensionTotalCnt: <p>扩容配额总数量。</p>
+        # @type ExtensionTotalCnt: Integer
+        # @param ExtensionUsedCnt: <p>扩容配额已使用数量。</p>
+        # @type ExtensionUsedCnt: Integer
+        # @param ExtensionRemainCnt: <p>扩容配额剩余数量。</p>
+        # @type ExtensionRemainCnt: Integer
+
+        attr_accessor :TotalCnt, :UsedCnt, :RemainCnt, :BaseTotalCnt, :BaseUsedCnt, :BaseRemainCnt, :ExtensionTotalCnt, :ExtensionUsedCnt, :ExtensionRemainCnt
+
+        def initialize(totalcnt=nil, usedcnt=nil, remaincnt=nil, basetotalcnt=nil, baseusedcnt=nil, baseremaincnt=nil, extensiontotalcnt=nil, extensionusedcnt=nil, extensionremaincnt=nil)
+          @TotalCnt = totalcnt
+          @UsedCnt = usedcnt
+          @RemainCnt = remaincnt
+          @BaseTotalCnt = basetotalcnt
+          @BaseUsedCnt = baseusedcnt
+          @BaseRemainCnt = baseremaincnt
+          @ExtensionTotalCnt = extensiontotalcnt
+          @ExtensionUsedCnt = extensionusedcnt
+          @ExtensionRemainCnt = extensionremaincnt
+        end
+
+        def deserialize(params)
+          @TotalCnt = params['TotalCnt']
+          @UsedCnt = params['UsedCnt']
+          @RemainCnt = params['RemainCnt']
+          @BaseTotalCnt = params['BaseTotalCnt']
+          @BaseUsedCnt = params['BaseUsedCnt']
+          @BaseRemainCnt = params['BaseRemainCnt']
+          @ExtensionTotalCnt = params['ExtensionTotalCnt']
+          @ExtensionUsedCnt = params['ExtensionUsedCnt']
+          @ExtensionRemainCnt = params['ExtensionRemainCnt']
+        end
+      end
+
+      # 概览通用规则配额详情
+      class OverviewCommonRuleQuotaDetail < TencentCloud::Common::AbstractModel
+        # @param AllowedNum: <p>允许使用的规则总数。</p>
+        # @type AllowedNum: Integer
+        # @param UsedNum: <p>已使用规则数量。</p>
+        # @type UsedNum: Integer
+        # @param RemainQuota: <p>剩余规则配额数量。</p>
+        # @type RemainQuota: Integer
+        # @param RemainExtensionNum: <p>剩余扩容规则数量。</p>
+        # @type RemainExtensionNum: Integer
+        # @param InTotal: <p>入方向规则总数。</p>
+        # @type InTotal: Integer
+        # @param InEnableNum: <p>入方向启用规则数。</p>
+        # @type InEnableNum: Integer
+        # @param OutTotal: <p>出方向规则总数。</p>
+        # @type OutTotal: Integer
+        # @param OutEnableNum: <p>出方向启用规则数。</p>
+        # @type OutEnableNum: Integer
+
+        attr_accessor :AllowedNum, :UsedNum, :RemainQuota, :RemainExtensionNum, :InTotal, :InEnableNum, :OutTotal, :OutEnableNum
+
+        def initialize(allowednum=nil, usednum=nil, remainquota=nil, remainextensionnum=nil, intotal=nil, inenablenum=nil, outtotal=nil, outenablenum=nil)
+          @AllowedNum = allowednum
+          @UsedNum = usednum
+          @RemainQuota = remainquota
+          @RemainExtensionNum = remainextensionnum
+          @InTotal = intotal
+          @InEnableNum = inenablenum
+          @OutTotal = outtotal
+          @OutEnableNum = outenablenum
+        end
+
+        def deserialize(params)
+          @AllowedNum = params['AllowedNum']
+          @UsedNum = params['UsedNum']
+          @RemainQuota = params['RemainQuota']
+          @RemainExtensionNum = params['RemainExtensionNum']
+          @InTotal = params['InTotal']
+          @InEnableNum = params['InEnableNum']
+          @OutTotal = params['OutTotal']
+          @OutEnableNum = params['OutEnableNum']
+        end
+      end
+
+      # 概览东西向带宽详情
+      class OverviewEastWestDetail < TencentCloud::Common::AbstractModel
+        # @param TotalMbps: <p>东西向总带宽，单位为 Mbps。</p><p>单位：Mbps</p>
+        # @type TotalMbps: Integer
+        # @param UsedBps: <p>当前已使用流量，单位为 bps。</p><p>单位：bps</p>
+        # @type UsedBps: Integer
+        # @param UsagePercent: <p>当前带宽使用率。</p><p>单位：%</p>
+        # @type UsagePercent: Float
+        # @param AllocatedBandwidthUsedMbps: <p>已分配并使用的带宽，单位为 Mbps。</p><p>单位：Mbps</p>
+        # @type AllocatedBandwidthUsedMbps: Integer
+        # @param CanUsedBandwidthMbps: <p>当前仍可使用带宽，单位为 Mbps。</p><p>单位：Mbps</p>
+        # @type CanUsedBandwidthMbps: Integer
+        # @param ClusterModeWidthMbps: <p>集群模式带宽，单位为 Mbps。</p><p>单位：Mbps</p>
+        # @type ClusterModeWidthMbps: Integer
+        # @param MasterSlaveModeWidthMbps: <p>主备模式带宽，单位为 Mbps。</p><p>单位：Mbps</p>
+        # @type MasterSlaveModeWidthMbps: Integer
+        # @param SameRegionFwInsId: <p>同地域防火墙实例 ID。</p>
+        # @type SameRegionFwInsId: String
+        # @param SameRegionFwInsName: <p>同地域防火墙实例名称。</p>
+        # @type SameRegionFwInsName: String
+        # @param SameRegionMaxFlowBps: <p>同地域防火墙实例峰值流量，单位为 bps。</p><p>单位：bps</p>
+        # @type SameRegionMaxFlowBps: Integer
+        # @param DiffRegionFwInsId: <p>跨地域防火墙实例 ID。</p>
+        # @type DiffRegionFwInsId: String
+        # @param DiffRegionFwInsName: <p>跨地域防火墙实例名称。</p>
+        # @type DiffRegionFwInsName: String
+        # @param DiffRegionMaxFlowBps: <p>跨地域防火墙实例峰值流量，单位为 bps。</p><p>单位：bps</p>
+        # @type DiffRegionMaxFlowBps: Integer
+        # @param FwGroupId: <p>防火墙实例组 ID。</p>
+        # @type FwGroupId: String
+        # @param FwGroupName: <p>防火墙实例组名称。</p>
+        # @type FwGroupName: String
+        # @param FwGroupMaxFlowBps: <p>防火墙实例组峰值流量，单位为 bps。</p><p>单位：bps</p>
+        # @type FwGroupMaxFlowBps: Integer
+        # @param FwInsId: <p>防火墙实例 ID。</p>
+        # @type FwInsId: String
+        # @param FwInsName: <p>防火墙实例名称。</p>
+        # @type FwInsName: String
+        # @param FwInsMaxFlowBps: <p>防火墙实例峰值流量，单位为 bps。</p><p>单位：bps</p>
+        # @type FwInsMaxFlowBps: Integer
+        # @param ClusterVpcMaxFlowBps: <p>集群 VPC 峰值流量，单位为 bps。</p><p>单位：bps</p>
+        # @type ClusterVpcMaxFlowBps: Integer
+
+        attr_accessor :TotalMbps, :UsedBps, :UsagePercent, :AllocatedBandwidthUsedMbps, :CanUsedBandwidthMbps, :ClusterModeWidthMbps, :MasterSlaveModeWidthMbps, :SameRegionFwInsId, :SameRegionFwInsName, :SameRegionMaxFlowBps, :DiffRegionFwInsId, :DiffRegionFwInsName, :DiffRegionMaxFlowBps, :FwGroupId, :FwGroupName, :FwGroupMaxFlowBps, :FwInsId, :FwInsName, :FwInsMaxFlowBps, :ClusterVpcMaxFlowBps
+
+        def initialize(totalmbps=nil, usedbps=nil, usagepercent=nil, allocatedbandwidthusedmbps=nil, canusedbandwidthmbps=nil, clustermodewidthmbps=nil, masterslavemodewidthmbps=nil, sameregionfwinsid=nil, sameregionfwinsname=nil, sameregionmaxflowbps=nil, diffregionfwinsid=nil, diffregionfwinsname=nil, diffregionmaxflowbps=nil, fwgroupid=nil, fwgroupname=nil, fwgroupmaxflowbps=nil, fwinsid=nil, fwinsname=nil, fwinsmaxflowbps=nil, clustervpcmaxflowbps=nil)
+          @TotalMbps = totalmbps
+          @UsedBps = usedbps
+          @UsagePercent = usagepercent
+          @AllocatedBandwidthUsedMbps = allocatedbandwidthusedmbps
+          @CanUsedBandwidthMbps = canusedbandwidthmbps
+          @ClusterModeWidthMbps = clustermodewidthmbps
+          @MasterSlaveModeWidthMbps = masterslavemodewidthmbps
+          @SameRegionFwInsId = sameregionfwinsid
+          @SameRegionFwInsName = sameregionfwinsname
+          @SameRegionMaxFlowBps = sameregionmaxflowbps
+          @DiffRegionFwInsId = diffregionfwinsid
+          @DiffRegionFwInsName = diffregionfwinsname
+          @DiffRegionMaxFlowBps = diffregionmaxflowbps
+          @FwGroupId = fwgroupid
+          @FwGroupName = fwgroupname
+          @FwGroupMaxFlowBps = fwgroupmaxflowbps
+          @FwInsId = fwinsid
+          @FwInsName = fwinsname
+          @FwInsMaxFlowBps = fwinsmaxflowbps
+          @ClusterVpcMaxFlowBps = clustervpcmaxflowbps
+        end
+
+        def deserialize(params)
+          @TotalMbps = params['TotalMbps']
+          @UsedBps = params['UsedBps']
+          @UsagePercent = params['UsagePercent']
+          @AllocatedBandwidthUsedMbps = params['AllocatedBandwidthUsedMbps']
+          @CanUsedBandwidthMbps = params['CanUsedBandwidthMbps']
+          @ClusterModeWidthMbps = params['ClusterModeWidthMbps']
+          @MasterSlaveModeWidthMbps = params['MasterSlaveModeWidthMbps']
+          @SameRegionFwInsId = params['SameRegionFwInsId']
+          @SameRegionFwInsName = params['SameRegionFwInsName']
+          @SameRegionMaxFlowBps = params['SameRegionMaxFlowBps']
+          @DiffRegionFwInsId = params['DiffRegionFwInsId']
+          @DiffRegionFwInsName = params['DiffRegionFwInsName']
+          @DiffRegionMaxFlowBps = params['DiffRegionMaxFlowBps']
+          @FwGroupId = params['FwGroupId']
+          @FwGroupName = params['FwGroupName']
+          @FwGroupMaxFlowBps = params['FwGroupMaxFlowBps']
+          @FwInsId = params['FwInsId']
+          @FwInsName = params['FwInsName']
+          @FwInsMaxFlowBps = params['FwInsMaxFlowBps']
+          @ClusterVpcMaxFlowBps = params['ClusterVpcMaxFlowBps']
+        end
+      end
+
+      # 概览日志存储详情
+      class OverviewLogStorageDetail < TencentCloud::Common::AbstractModel
+        # @param UsedBytes: <p>日志已使用存储容量，单位为 Byte。</p><p>单位：Byte</p>
+        # @type UsedBytes: Integer
+        # @param TotalBytes: <p>日志总存储容量，单位为 Byte。</p><p>单位：Byte</p>
+        # @type TotalBytes: Integer
+        # @param StorageDay: <p>日志保留天数。</p><p>单位：天</p>
+        # @type StorageDay: Integer
+        # @param NDRStorageDay: <p>NDR 日志保留天数。</p><p>单位：天</p>
+        # @type NDRStorageDay: Integer
+        # @param AclSize: <p>访问控制日志占用容量，单位为 Byte。</p><p>单位：Byte</p>
+        # @type AclSize: Integer
+        # @param IdsSize: <p>入侵检测日志占用容量，单位为 Byte。</p><p>单位：Byte</p>
+        # @type IdsSize: Integer
+        # @param NetFlowSize: <p>流量日志占用容量，单位为 Byte。</p><p>单位：Byte</p>
+        # @type NetFlowSize: Integer
+        # @param OperateSize: <p>操作日志占用容量，单位为 Byte。</p><p>单位：Byte</p>
+        # @type OperateSize: Integer
+        # @param NDRRiskSize: <p>NDR 风险日志占用容量，单位为 Byte。</p><p>单位：Byte</p>
+        # @type NDRRiskSize: Integer
+        # @param NDRNetFlowSize: <p>NDR 流量日志占用容量，单位为 Byte。</p><p>单位：Byte</p>
+        # @type NDRNetFlowSize: Integer
+        # @param PayMode: <p>日志存储计费模式标识。</p>
+        # @type PayMode: Integer
+        # @param ArrearsStopWriting: <p>是否因欠费停止写入日志的状态标识。</p>
+        # @type ArrearsStopWriting: Integer
+
+        attr_accessor :UsedBytes, :TotalBytes, :StorageDay, :NDRStorageDay, :AclSize, :IdsSize, :NetFlowSize, :OperateSize, :NDRRiskSize, :NDRNetFlowSize, :PayMode, :ArrearsStopWriting
+
+        def initialize(usedbytes=nil, totalbytes=nil, storageday=nil, ndrstorageday=nil, aclsize=nil, idssize=nil, netflowsize=nil, operatesize=nil, ndrrisksize=nil, ndrnetflowsize=nil, paymode=nil, arrearsstopwriting=nil)
+          @UsedBytes = usedbytes
+          @TotalBytes = totalbytes
+          @StorageDay = storageday
+          @NDRStorageDay = ndrstorageday
+          @AclSize = aclsize
+          @IdsSize = idssize
+          @NetFlowSize = netflowsize
+          @OperateSize = operatesize
+          @NDRRiskSize = ndrrisksize
+          @NDRNetFlowSize = ndrnetflowsize
+          @PayMode = paymode
+          @ArrearsStopWriting = arrearsstopwriting
+        end
+
+        def deserialize(params)
+          @UsedBytes = params['UsedBytes']
+          @TotalBytes = params['TotalBytes']
+          @StorageDay = params['StorageDay']
+          @NDRStorageDay = params['NDRStorageDay']
+          @AclSize = params['AclSize']
+          @IdsSize = params['IdsSize']
+          @NetFlowSize = params['NetFlowSize']
+          @OperateSize = params['OperateSize']
+          @NDRRiskSize = params['NDRRiskSize']
+          @NDRNetFlowSize = params['NDRNetFlowSize']
+          @PayMode = params['PayMode']
+          @ArrearsStopWriting = params['ArrearsStopWriting']
+        end
+      end
+
+      # 概览 NDR 带宽详情
+      class OverviewNDRDetail < TencentCloud::Common::AbstractModel
+        # @param Status: <p>NDR 能力或服务状态标识。</p>
+        # @type Status: Integer
+        # @param TotalMbps: <p>NDR 总带宽，单位为 Mbps。</p><p>单位：Mbps</p>
+        # @type TotalMbps: Integer
+        # @param InMaxBps: <p>入方向峰值流量，单位为 bps。</p><p>单位：bps</p>
+        # @type InMaxBps: Integer
+        # @param OutMaxBps: <p>出方向峰值流量，单位为 bps。</p><p>单位：bps</p>
+        # @type OutMaxBps: Integer
+        # @param MaxFlowBps: <p>总体峰值流量，单位为 bps。</p><p>单位：bps</p>
+        # @type MaxFlowBps: Integer
+        # @param FlowPercent: <p>当前流量使用率。</p><p>单位：%</p>
+        # @type FlowPercent: Float
+
+        attr_accessor :Status, :TotalMbps, :InMaxBps, :OutMaxBps, :MaxFlowBps, :FlowPercent
+
+        def initialize(status=nil, totalmbps=nil, inmaxbps=nil, outmaxbps=nil, maxflowbps=nil, flowpercent=nil)
+          @Status = status
+          @TotalMbps = totalmbps
+          @InMaxBps = inmaxbps
+          @OutMaxBps = outmaxbps
+          @MaxFlowBps = maxflowbps
+          @FlowPercent = flowpercent
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @TotalMbps = params['TotalMbps']
+          @InMaxBps = params['InMaxBps']
+          @OutMaxBps = params['OutMaxBps']
+          @MaxFlowBps = params['MaxFlowBps']
+          @FlowPercent = params['FlowPercent']
+        end
+      end
+
+      # 概览南北向带宽详情
+      class OverviewNorthSouthDetail < TencentCloud::Common::AbstractModel
+        # @param InternetBandwidthTotalMbps: <p>南北向互联网总带宽，单位为 Mbps。</p><p>单位：Mbps</p>
+        # @type InternetBandwidthTotalMbps: Float
+        # @param NetMaxFlowBps: <p>南北向网络峰值流量，单位为 bps。</p><p>单位：bps</p>
+        # @type NetMaxFlowBps: Float
+        # @param SerialBandwidthTotalMbps: <p>串行接入总带宽，单位为 Mbps。</p><p>单位：Mbps</p>
+        # @type SerialBandwidthTotalMbps: Integer
+        # @param NatBandwidthTotalMbps: <p>NAT 防火墙总带宽，单位为 Mbps。</p><p>单位：Mbps</p>
+        # @type NatBandwidthTotalMbps: Integer
+        # @param BypassOnlyBandwidthMbps: <p>仅旁路接入带宽，单位为 Mbps。</p><p>单位：Mbps</p>
+        # @type BypassOnlyBandwidthMbps: Integer
+        # @param UnusedBandwidthMbps: <p>未使用带宽，单位为 Mbps。</p><p>单位：Mbps</p>
+        # @type UnusedBandwidthMbps: Integer
+        # @param CanUsedBandwidthMbps: <p>当前仍可使用带宽，单位为 Mbps。</p><p>单位：Mbps</p>
+        # @type CanUsedBandwidthMbps: Integer
+        # @param MaxSerialRegion: <p>串行链路峰值流量最高的地域名称。</p>
+        # @type MaxSerialRegion: String
+        # @param SerialRegionInFlowMax: <p>峰值最高地域的入站流量峰值，单位为 bps。</p><p>单位：bps</p>
+        # @type SerialRegionInFlowMax: Integer
+        # @param SerialRegionOutFlowMax: <p>峰值最高地域的出方向最大流量，单位为 bps。</p><p>单位：bps</p>
+        # @type SerialRegionOutFlowMax: Integer
+
+        attr_accessor :InternetBandwidthTotalMbps, :NetMaxFlowBps, :SerialBandwidthTotalMbps, :NatBandwidthTotalMbps, :BypassOnlyBandwidthMbps, :UnusedBandwidthMbps, :CanUsedBandwidthMbps, :MaxSerialRegion, :SerialRegionInFlowMax, :SerialRegionOutFlowMax
+
+        def initialize(internetbandwidthtotalmbps=nil, netmaxflowbps=nil, serialbandwidthtotalmbps=nil, natbandwidthtotalmbps=nil, bypassonlybandwidthmbps=nil, unusedbandwidthmbps=nil, canusedbandwidthmbps=nil, maxserialregion=nil, serialregioninflowmax=nil, serialregionoutflowmax=nil)
+          @InternetBandwidthTotalMbps = internetbandwidthtotalmbps
+          @NetMaxFlowBps = netmaxflowbps
+          @SerialBandwidthTotalMbps = serialbandwidthtotalmbps
+          @NatBandwidthTotalMbps = natbandwidthtotalmbps
+          @BypassOnlyBandwidthMbps = bypassonlybandwidthmbps
+          @UnusedBandwidthMbps = unusedbandwidthmbps
+          @CanUsedBandwidthMbps = canusedbandwidthmbps
+          @MaxSerialRegion = maxserialregion
+          @SerialRegionInFlowMax = serialregioninflowmax
+          @SerialRegionOutFlowMax = serialregionoutflowmax
+        end
+
+        def deserialize(params)
+          @InternetBandwidthTotalMbps = params['InternetBandwidthTotalMbps']
+          @NetMaxFlowBps = params['NetMaxFlowBps']
+          @SerialBandwidthTotalMbps = params['SerialBandwidthTotalMbps']
+          @NatBandwidthTotalMbps = params['NatBandwidthTotalMbps']
+          @BypassOnlyBandwidthMbps = params['BypassOnlyBandwidthMbps']
+          @UnusedBandwidthMbps = params['UnusedBandwidthMbps']
+          @CanUsedBandwidthMbps = params['CanUsedBandwidthMbps']
+          @MaxSerialRegion = params['MaxSerialRegion']
+          @SerialRegionInFlowMax = params['SerialRegionInFlowMax']
+          @SerialRegionOutFlowMax = params['SerialRegionOutFlowMax']
+        end
+      end
+
+      # 概览资源与配额详情
+      class OverviewQuotaDetail < TencentCloud::Common::AbstractModel
+        # @param PublicIpUsed: <p>已使用公网 IP 数量。</p>
+        # @type PublicIpUsed: Integer
+        # @param PublicIpTotal: <p>公网 IP 总配额数量。</p>
+        # @type PublicIpTotal: Integer
+        # @param CommonInstanceTotal: <p>通用实例总配额数量。</p>
+        # @type CommonInstanceTotal: Integer
+        # @param CommonInstanceRemain: <p>通用实例剩余配额数量。</p>
+        # @type CommonInstanceRemain: Integer
+        # @param CommonInstanceUsed: <p>通用实例已使用数量。</p>
+        # @type CommonInstanceUsed: Integer
+        # @param AccessControlRuleUsed: <p>访问控制规则已使用数量。</p>
+        # @type AccessControlRuleUsed: Integer
+        # @param AccessControlRuleTotal: <p>访问控制规则总配额数量。</p>
+        # @type AccessControlRuleTotal: Integer
+        # @param SerialRegionUsed: <p>已使用串行地域数量。</p>
+        # @type SerialRegionUsed: Integer
+        # @param NatInstanceUsed: <p>已使用 NAT 防火墙实例数量。</p>
+        # @type NatInstanceUsed: Integer
+        # @param VpcInstanceUsed: <p>已使用 VPC 防火墙实例数量。</p>
+        # @type VpcInstanceUsed: Integer
+        # @param BorderRuleQuota: <p>边界规则配额详情。</p>
+        # @type BorderRuleQuota: :class:`Tencentcloud::Cfw.v20190904.models.OverviewCommonRuleQuotaDetail`
+        # @param NatRuleQuota: <p>NAT 规则配额详情。</p>
+        # @type NatRuleQuota: :class:`Tencentcloud::Cfw.v20190904.models.OverviewCommonRuleQuotaDetail`
+        # @param VpcRuleQuota: <p>VPC 规则配额详情。</p>
+        # @type VpcRuleQuota: :class:`Tencentcloud::Cfw.v20190904.models.OverviewVpcRuleQuotaDetail`
+        # @param BlockListQuota: <p>封禁列表配额统计信息。</p>
+        # @type BlockListQuota: :class:`Tencentcloud::Cfw.v20190904.models.OverviewBlockListQuota`
+        # @param BlockIpCount: <p>封禁 IP 总数量。</p>
+        # @type BlockIpCount: Integer
+        # @param BlockIpUsed: <p>已使用封禁 IP 数量。</p>
+        # @type BlockIpUsed: Integer
+        # @param BlockIpTotal: <p>封禁 IP 总配额数量。</p>
+        # @type BlockIpTotal: Integer
+        # @param BlockListQuotaDetail: <p>封禁列表基础包与扩容包配额详情。</p>
+        # @type BlockListQuotaDetail: :class:`Tencentcloud::Cfw.v20190904.models.OverviewBlockListQuotaDetail`
+        # @param SgRuleQuotaUsed: <p>安全组规则已使用数量。</p>
+        # @type SgRuleQuotaUsed: Integer
+        # @param SgRuleQuotaTotal: <p>安全组规则总配额数量。</p>
+        # @type SgRuleQuotaTotal: Integer
+        # @param TotalExtensionUsed: <p>总扩容资源已使用数量。</p>
+        # @type TotalExtensionUsed: Integer
+        # @param TotalExtensionNum: <p>总扩容资源配额数量。</p>
+        # @type TotalExtensionNum: Integer
+        # @param AddressTemplateUsed: <p>地址模板已使用数量。</p>
+        # @type AddressTemplateUsed: Integer
+        # @param AddressTemplateTotal: <p>地址模板总配额数量。</p>
+        # @type AddressTemplateTotal: Integer
+        # @param HoneyPotUsed: <p>蜜罐已使用数量。</p>
+        # @type HoneyPotUsed: Integer
+        # @param HoneyPotTotal: <p>蜜罐总配额数量。</p>
+        # @type HoneyPotTotal: Integer
+
+        attr_accessor :PublicIpUsed, :PublicIpTotal, :CommonInstanceTotal, :CommonInstanceRemain, :CommonInstanceUsed, :AccessControlRuleUsed, :AccessControlRuleTotal, :SerialRegionUsed, :NatInstanceUsed, :VpcInstanceUsed, :BorderRuleQuota, :NatRuleQuota, :VpcRuleQuota, :BlockListQuota, :BlockIpCount, :BlockIpUsed, :BlockIpTotal, :BlockListQuotaDetail, :SgRuleQuotaUsed, :SgRuleQuotaTotal, :TotalExtensionUsed, :TotalExtensionNum, :AddressTemplateUsed, :AddressTemplateTotal, :HoneyPotUsed, :HoneyPotTotal
+
+        def initialize(publicipused=nil, publiciptotal=nil, commoninstancetotal=nil, commoninstanceremain=nil, commoninstanceused=nil, accesscontrolruleused=nil, accesscontrolruletotal=nil, serialregionused=nil, natinstanceused=nil, vpcinstanceused=nil, borderrulequota=nil, natrulequota=nil, vpcrulequota=nil, blocklistquota=nil, blockipcount=nil, blockipused=nil, blockiptotal=nil, blocklistquotadetail=nil, sgrulequotaused=nil, sgrulequotatotal=nil, totalextensionused=nil, totalextensionnum=nil, addresstemplateused=nil, addresstemplatetotal=nil, honeypotused=nil, honeypottotal=nil)
+          @PublicIpUsed = publicipused
+          @PublicIpTotal = publiciptotal
+          @CommonInstanceTotal = commoninstancetotal
+          @CommonInstanceRemain = commoninstanceremain
+          @CommonInstanceUsed = commoninstanceused
+          @AccessControlRuleUsed = accesscontrolruleused
+          @AccessControlRuleTotal = accesscontrolruletotal
+          @SerialRegionUsed = serialregionused
+          @NatInstanceUsed = natinstanceused
+          @VpcInstanceUsed = vpcinstanceused
+          @BorderRuleQuota = borderrulequota
+          @NatRuleQuota = natrulequota
+          @VpcRuleQuota = vpcrulequota
+          @BlockListQuota = blocklistquota
+          @BlockIpCount = blockipcount
+          @BlockIpUsed = blockipused
+          @BlockIpTotal = blockiptotal
+          @BlockListQuotaDetail = blocklistquotadetail
+          @SgRuleQuotaUsed = sgrulequotaused
+          @SgRuleQuotaTotal = sgrulequotatotal
+          @TotalExtensionUsed = totalextensionused
+          @TotalExtensionNum = totalextensionnum
+          @AddressTemplateUsed = addresstemplateused
+          @AddressTemplateTotal = addresstemplatetotal
+          @HoneyPotUsed = honeypotused
+          @HoneyPotTotal = honeypottotal
+        end
+
+        def deserialize(params)
+          @PublicIpUsed = params['PublicIpUsed']
+          @PublicIpTotal = params['PublicIpTotal']
+          @CommonInstanceTotal = params['CommonInstanceTotal']
+          @CommonInstanceRemain = params['CommonInstanceRemain']
+          @CommonInstanceUsed = params['CommonInstanceUsed']
+          @AccessControlRuleUsed = params['AccessControlRuleUsed']
+          @AccessControlRuleTotal = params['AccessControlRuleTotal']
+          @SerialRegionUsed = params['SerialRegionUsed']
+          @NatInstanceUsed = params['NatInstanceUsed']
+          @VpcInstanceUsed = params['VpcInstanceUsed']
+          unless params['BorderRuleQuota'].nil?
+            @BorderRuleQuota = OverviewCommonRuleQuotaDetail.new
+            @BorderRuleQuota.deserialize(params['BorderRuleQuota'])
+          end
+          unless params['NatRuleQuota'].nil?
+            @NatRuleQuota = OverviewCommonRuleQuotaDetail.new
+            @NatRuleQuota.deserialize(params['NatRuleQuota'])
+          end
+          unless params['VpcRuleQuota'].nil?
+            @VpcRuleQuota = OverviewVpcRuleQuotaDetail.new
+            @VpcRuleQuota.deserialize(params['VpcRuleQuota'])
+          end
+          unless params['BlockListQuota'].nil?
+            @BlockListQuota = OverviewBlockListQuota.new
+            @BlockListQuota.deserialize(params['BlockListQuota'])
+          end
+          @BlockIpCount = params['BlockIpCount']
+          @BlockIpUsed = params['BlockIpUsed']
+          @BlockIpTotal = params['BlockIpTotal']
+          unless params['BlockListQuotaDetail'].nil?
+            @BlockListQuotaDetail = OverviewBlockListQuotaDetail.new
+            @BlockListQuotaDetail.deserialize(params['BlockListQuotaDetail'])
+          end
+          @SgRuleQuotaUsed = params['SgRuleQuotaUsed']
+          @SgRuleQuotaTotal = params['SgRuleQuotaTotal']
+          @TotalExtensionUsed = params['TotalExtensionUsed']
+          @TotalExtensionNum = params['TotalExtensionNum']
+          @AddressTemplateUsed = params['AddressTemplateUsed']
+          @AddressTemplateTotal = params['AddressTemplateTotal']
+          @HoneyPotUsed = params['HoneyPotUsed']
+          @HoneyPotTotal = params['HoneyPotTotal']
+        end
+      end
+
+      # 资源与配额详情返回数据，包含详情字段和能力标识
+      class OverviewResourceQuotaDataLite < TencentCloud::Common::AbstractModel
+        # @param Detail: <p>资源与配额详情核心数据，包含南北向带宽、东西向带宽、NDR 带宽、资源配额和日志存储信息。</p>
+        # @type Detail: :class:`Tencentcloud::Cfw.v20190904.models.OverviewResourceQuotaDetail`
+        # @param VolumeUsageDetail: <p>纯按量计费使用情况</p>
+        # @type VolumeUsageDetail: :class:`Tencentcloud::Cfw.v20190904.models.VolumeUsageDetail`
+
+        attr_accessor :Detail, :VolumeUsageDetail
+
+        def initialize(detail=nil, volumeusagedetail=nil)
+          @Detail = detail
+          @VolumeUsageDetail = volumeusagedetail
+        end
+
+        def deserialize(params)
+          unless params['Detail'].nil?
+            @Detail = OverviewResourceQuotaDetail.new
+            @Detail.deserialize(params['Detail'])
+          end
+          unless params['VolumeUsageDetail'].nil?
+            @VolumeUsageDetail = VolumeUsageDetail.new
+            @VolumeUsageDetail.deserialize(params['VolumeUsageDetail'])
+          end
+        end
+      end
+
+      # 概览资源与配额详情字段
+      class OverviewResourceQuotaDetail < TencentCloud::Common::AbstractModel
+        # @param NorthSouthDetail: <p>南北向带宽与流量详情数据。</p>
+        # @type NorthSouthDetail: :class:`Tencentcloud::Cfw.v20190904.models.OverviewNorthSouthDetail`
+        # @param EastWestDetail: <p>东西向带宽与流量详情数据。</p>
+        # @type EastWestDetail: :class:`Tencentcloud::Cfw.v20190904.models.OverviewEastWestDetail`
+        # @param NDRDetail: <p>NDR 带宽与流量详情数据。</p>
+        # @type NDRDetail: :class:`Tencentcloud::Cfw.v20190904.models.OverviewNDRDetail`
+        # @param QuotaDetail: <p>账号下资源、实例、规则和扩容配额详情数据。</p>
+        # @type QuotaDetail: :class:`Tencentcloud::Cfw.v20190904.models.OverviewQuotaDetail`
+        # @param LogStorageDetail: <p>日志存储使用量、保留天数和各类日志容量详情数据。</p>
+        # @type LogStorageDetail: :class:`Tencentcloud::Cfw.v20190904.models.OverviewLogStorageDetail`
+
+        attr_accessor :NorthSouthDetail, :EastWestDetail, :NDRDetail, :QuotaDetail, :LogStorageDetail
+
+        def initialize(northsouthdetail=nil, eastwestdetail=nil, ndrdetail=nil, quotadetail=nil, logstoragedetail=nil)
+          @NorthSouthDetail = northsouthdetail
+          @EastWestDetail = eastwestdetail
+          @NDRDetail = ndrdetail
+          @QuotaDetail = quotadetail
+          @LogStorageDetail = logstoragedetail
+        end
+
+        def deserialize(params)
+          unless params['NorthSouthDetail'].nil?
+            @NorthSouthDetail = OverviewNorthSouthDetail.new
+            @NorthSouthDetail.deserialize(params['NorthSouthDetail'])
+          end
+          unless params['EastWestDetail'].nil?
+            @EastWestDetail = OverviewEastWestDetail.new
+            @EastWestDetail.deserialize(params['EastWestDetail'])
+          end
+          unless params['NDRDetail'].nil?
+            @NDRDetail = OverviewNDRDetail.new
+            @NDRDetail.deserialize(params['NDRDetail'])
+          end
+          unless params['QuotaDetail'].nil?
+            @QuotaDetail = OverviewQuotaDetail.new
+            @QuotaDetail.deserialize(params['QuotaDetail'])
+          end
+          unless params['LogStorageDetail'].nil?
+            @LogStorageDetail = OverviewLogStorageDetail.new
+            @LogStorageDetail.deserialize(params['LogStorageDetail'])
+          end
+        end
+      end
+
+      # 概览 VPC 规则配额详情
+      class OverviewVpcRuleQuotaDetail < TencentCloud::Common::AbstractModel
+        # @param AllowedNum: <p>允许使用的规则总数。</p>
+        # @type AllowedNum: Integer
+        # @param UsedNum: <p>已使用规则数量。</p>
+        # @type UsedNum: Integer
+        # @param RemainQuota: <p>剩余规则配额数量。</p>
+        # @type RemainQuota: Integer
+        # @param RemainExtensionNum: <p>剩余扩容规则数量。</p>
+        # @type RemainExtensionNum: Integer
+        # @param GlobalRuleNum: <p>全局规则总数。</p>
+        # @type GlobalRuleNum: Integer
+        # @param GlobalEnableRuleNum: <p>当前已启用的全局规则条目。</p>
+        # @type GlobalEnableRuleNum: Integer
+        # @param EdgeRuleNum: <p>边界规则总数。</p>
+        # @type EdgeRuleNum: Integer
+        # @param EdgeEnableRuleNum: <p>边界启用规则数。</p>
+        # @type EdgeEnableRuleNum: Integer
+        # @param V4RuleTotal: <p>IPv4 规则总数。</p>
+        # @type V4RuleTotal: Integer
+        # @param V4EnableRuleTotal: <p>当前已启用的 IPv4 规则条目。</p>
+        # @type V4EnableRuleTotal: Integer
+        # @param V6RuleTotal: <p>IPv6 规则总数。</p>
+        # @type V6RuleTotal: Integer
+        # @param V6EnableRuleTotal: <p>当前已启用的 IPv6 规则条目。</p>
+        # @type V6EnableRuleTotal: Integer
+        # @param IsSwitchEnable: <p>VPC 防火墙开关状态标识。</p>
+        # @type IsSwitchEnable: Integer
+
+        attr_accessor :AllowedNum, :UsedNum, :RemainQuota, :RemainExtensionNum, :GlobalRuleNum, :GlobalEnableRuleNum, :EdgeRuleNum, :EdgeEnableRuleNum, :V4RuleTotal, :V4EnableRuleTotal, :V6RuleTotal, :V6EnableRuleTotal, :IsSwitchEnable
+
+        def initialize(allowednum=nil, usednum=nil, remainquota=nil, remainextensionnum=nil, globalrulenum=nil, globalenablerulenum=nil, edgerulenum=nil, edgeenablerulenum=nil, v4ruletotal=nil, v4enableruletotal=nil, v6ruletotal=nil, v6enableruletotal=nil, isswitchenable=nil)
+          @AllowedNum = allowednum
+          @UsedNum = usednum
+          @RemainQuota = remainquota
+          @RemainExtensionNum = remainextensionnum
+          @GlobalRuleNum = globalrulenum
+          @GlobalEnableRuleNum = globalenablerulenum
+          @EdgeRuleNum = edgerulenum
+          @EdgeEnableRuleNum = edgeenablerulenum
+          @V4RuleTotal = v4ruletotal
+          @V4EnableRuleTotal = v4enableruletotal
+          @V6RuleTotal = v6ruletotal
+          @V6EnableRuleTotal = v6enableruletotal
+          @IsSwitchEnable = isswitchenable
+        end
+
+        def deserialize(params)
+          @AllowedNum = params['AllowedNum']
+          @UsedNum = params['UsedNum']
+          @RemainQuota = params['RemainQuota']
+          @RemainExtensionNum = params['RemainExtensionNum']
+          @GlobalRuleNum = params['GlobalRuleNum']
+          @GlobalEnableRuleNum = params['GlobalEnableRuleNum']
+          @EdgeRuleNum = params['EdgeRuleNum']
+          @EdgeEnableRuleNum = params['EdgeEnableRuleNum']
+          @V4RuleTotal = params['V4RuleTotal']
+          @V4EnableRuleTotal = params['V4EnableRuleTotal']
+          @V6RuleTotal = params['V6RuleTotal']
+          @V6EnableRuleTotal = params['V6EnableRuleTotal']
+          @IsSwitchEnable = params['IsSwitchEnable']
+        end
+      end
+
       # 策略路由预编排配额报告
       class PolicyRoutePreCheckReport < TencentCloud::Common::AbstractModel
         # @param NextHopCount: 本次编排生成的下一跳数量
@@ -15329,6 +16004,38 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 纯按量计费版本使用详情
+      class VolumeUsageDetail < TencentCloud::Common::AbstractModel
+        # @param PublicIpUsed: <p>防护IP数</p><p>默认值：0</p>
+        # @type PublicIpUsed: Integer
+        # @param InstanceUsed: <p>防护实例数</p><p>默认值：0</p>
+        # @type InstanceUsed: Integer
+        # @param StatDate: <p>统计日期</p>
+        # @type StatDate: String
+        # @param TodayTrafficGB: <p>处理流量</p>
+        # @type TodayTrafficGB: Float
+        # @param ProtectDays: <p>防护天数</p>
+        # @type ProtectDays: Integer
+
+        attr_accessor :PublicIpUsed, :InstanceUsed, :StatDate, :TodayTrafficGB, :ProtectDays
+
+        def initialize(publicipused=nil, instanceused=nil, statdate=nil, todaytrafficgb=nil, protectdays=nil)
+          @PublicIpUsed = publicipused
+          @InstanceUsed = instanceused
+          @StatDate = statdate
+          @TodayTrafficGB = todaytrafficgb
+          @ProtectDays = protectdays
+        end
+
+        def deserialize(params)
+          @PublicIpUsed = params['PublicIpUsed']
+          @InstanceUsed = params['InstanceUsed']
+          @StatDate = params['StatDate']
+          @TodayTrafficGB = params['TodayTrafficGB']
+          @ProtectDays = params['ProtectDays']
         end
       end
 

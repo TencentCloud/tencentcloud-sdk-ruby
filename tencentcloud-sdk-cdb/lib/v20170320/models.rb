@@ -14538,23 +14538,27 @@ module TencentCloud
 
       # SwitchDrInstanceToMaster请求参数结构体
       class SwitchDrInstanceToMasterRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 灾备实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
+        # @param InstanceId: <p>灾备实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。</p>
         # @type InstanceId: String
+        # @param IgnoreSyncDelay: <p>忽略同步延迟的阈值，不填默认为0表示完全等待追平</p><p>取值范围：[0, 104857600]</p><p>默认值：0</p>
+        # @type IgnoreSyncDelay: Integer
 
-        attr_accessor :InstanceId
+        attr_accessor :InstanceId, :IgnoreSyncDelay
 
-        def initialize(instanceid=nil)
+        def initialize(instanceid=nil, ignoresyncdelay=nil)
           @InstanceId = instanceid
+          @IgnoreSyncDelay = ignoresyncdelay
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
+          @IgnoreSyncDelay = params['IgnoreSyncDelay']
         end
       end
 
       # SwitchDrInstanceToMaster返回参数结构体
       class SwitchDrInstanceToMasterResponse < TencentCloud::Common::AbstractModel
-        # @param AsyncRequestId: 异步任务的请求ID，可使用此ID查询异步任务的执行结果。
+        # @param AsyncRequestId: <p>异步任务的请求ID，可使用此ID查询异步任务的执行结果。</p>
         # @type AsyncRequestId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

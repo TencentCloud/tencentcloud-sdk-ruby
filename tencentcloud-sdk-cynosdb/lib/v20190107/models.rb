@@ -383,8 +383,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :Cpu, :Memory, :ReadOnlyCount, :DeviceType, :InstanceGrpId, :VpcId, :SubnetId, :Port, :InstanceName, :AutoVoucher, :DbType, :OrderSource, :DealMode, :ParamTemplateId, :InstanceParams, :SecurityGroupIds, :UpgradeProxy
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2026, 9
-        deprecate :InstanceGrpId=, :none, 2026, 9
+        deprecate :InstanceGrpId, :none, 2026, 10
+        deprecate :InstanceGrpId=, :none, 2026, 10
 
         def initialize(clusterid=nil, cpu=nil, memory=nil, readonlycount=nil, devicetype=nil, instancegrpid=nil, vpcid=nil, subnetid=nil, port=nil, instancename=nil, autovoucher=nil, dbtype=nil, ordersource=nil, dealmode=nil, paramtemplateid=nil, instanceparams=nil, securitygroupids=nil, upgradeproxy=nil)
           @ClusterId = clusterid
@@ -454,8 +454,8 @@ module TencentCloud
 
         attr_accessor :TranId, :DealNames, :ResourceIds, :BigDealIds, :RequestId
         extend Gem::Deprecate
-        deprecate :ResourceIds, :none, 2026, 9
-        deprecate :ResourceIds=, :none, 2026, 9
+        deprecate :ResourceIds, :none, 2026, 10
+        deprecate :ResourceIds=, :none, 2026, 10
 
         def initialize(tranid=nil, dealnames=nil, resourceids=nil, bigdealids=nil, requestid=nil)
           @TranId = tranid
@@ -756,8 +756,8 @@ module TencentCloud
 
         attr_accessor :InstanceIds, :SecurityGroupIds, :Zone
         extend Gem::Deprecate
-        deprecate :Zone, :none, 2026, 9
-        deprecate :Zone=, :none, 2026, 9
+        deprecate :Zone, :none, 2026, 10
+        deprecate :Zone=, :none, 2026, 10
 
         def initialize(instanceids=nil, securitygroupids=nil, zone=nil)
           @InstanceIds = instanceids
@@ -1799,10 +1799,10 @@ module TencentCloud
 
         attr_accessor :ID, :AppId, :ClusterId, :Region, :CreateTime, :DelayTime, :ErrMsg, :FlowId, :Input, :InstanceGrpId, :InstanceGroupId, :InstanceId, :ObjectId, :ObjectType, :Operator, :Output, :Status, :TaskType, :TriggerTaskId, :UpdateTime, :StartTime, :EndTime, :ClusterName, :InstanceName, :Process, :ModifyParamsData, :CreateClustersData, :RollbackData, :ModifyInstanceData, :ManualBackupData, :ModifyDbVersionData, :ClusterSlaveData, :SwitchClusterLogBin, :ModifyInstanceParamsData, :TaskMaintainInfo, :InstanceCLSDeliveryInfos, :TaskProgressInfo, :GdnTaskInfo, :VaultId, :VaultName, :AIOptimizerTaskData
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2026, 9
-        deprecate :InstanceGrpId=, :none, 2026, 9
-        deprecate :ModifyParamsData, :none, 2026, 9
-        deprecate :ModifyParamsData=, :none, 2026, 9
+        deprecate :InstanceGrpId, :none, 2026, 10
+        deprecate :InstanceGrpId=, :none, 2026, 10
+        deprecate :ModifyParamsData, :none, 2026, 10
+        deprecate :ModifyParamsData=, :none, 2026, 10
 
         def initialize(id=nil, appid=nil, clusterid=nil, region=nil, createtime=nil, delaytime=nil, errmsg=nil, flowid=nil, input=nil, instancegrpid=nil, instancegroupid=nil, instanceid=nil, objectid=nil, objecttype=nil, operator=nil, output=nil, status=nil, tasktype=nil, triggertaskid=nil, updatetime=nil, starttime=nil, endtime=nil, clustername=nil, instancename=nil, process=nil, modifyparamsdata=nil, createclustersdata=nil, rollbackdata=nil, modifyinstancedata=nil, manualbackupdata=nil, modifydbversiondata=nil, clusterslavedata=nil, switchclusterlogbin=nil, modifyinstanceparamsdata=nil, taskmaintaininfo=nil, instanceclsdeliveryinfos=nil, taskprogressinfo=nil, gdntaskinfo=nil, vaultid=nil, vaultname=nil, aioptimizertaskdata=nil)
           @ID = id
@@ -2546,8 +2546,8 @@ module TencentCloud
 
         attr_accessor :InstanceGrpId, :InstanceGroupId, :InstanceId
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2026, 9
-        deprecate :InstanceGrpId=, :none, 2026, 9
+        deprecate :InstanceGrpId, :none, 2026, 10
+        deprecate :InstanceGrpId=, :none, 2026, 10
 
         def initialize(instancegrpid=nil, instancegroupid=nil, instanceid=nil)
           @InstanceGrpId = instancegrpid
@@ -2584,6 +2584,14 @@ module TencentCloud
 
       # 集群实例信息
       class ClusterInstanceDetail < TencentCloud::Common::AbstractModel
+        # @param Uin: <p>用户Uin</p>
+        # @type Uin: String
+        # @param AppId: <p>用户AppId</p>
+        # @type AppId: Integer
+        # @param ClusterId: <p>集群ID</p>
+        # @type ClusterId: String
+        # @param ClusterName: <p>集群名称</p>
+        # @type ClusterName: String
         # @param InstanceId: <p>实例ID</p>
         # @type InstanceId: String
         # @param InstanceName: <p>实例名称</p>
@@ -2596,6 +2604,14 @@ module TencentCloud
         # @type InstanceStatusDesc: String
         # @param InstanceCpu: <p>cpu核数</p>
         # @type InstanceCpu: Integer
+        # @param Cpu: <p>Cpu</p><p>单位：核</p>
+        # @type Cpu: Integer
+        # @param MinCpu: <p>serverless实例cpu下限</p><p>单位：核</p>
+        # @type MinCpu: Float
+        # @param MaxCpu: <p>serverless实例cpu上限</p><p>单位：核</p>
+        # @type MaxCpu: Float
+        # @param Memory: <p>内存</p><p>单位：GB</p>
+        # @type Memory: Integer
         # @param InstanceMemory: <p>内存</p>
         # @type InstanceMemory: Integer
         # @param InstanceStorage: <p>硬盘</p>
@@ -2608,8 +2624,6 @@ module TencentCloud
         # @type MaintainDuration: Integer
         # @param MaintainWeekDays: <p>可以执行的时间，枚举值：[&quot;Mon&quot;,&quot;Tue&quot;,&quot;Wed&quot;,&quot;Thu&quot;,&quot;Fri&quot;, &quot;Sat&quot;, &quot;Sun&quot;]</p>
         # @type MaintainWeekDays: Array
-        # @param ServerlessStatus: <p>serverless实例子状态</p>
-        # @type ServerlessStatus: String
         # @param InstanceTasks: <p>实例任务信息</p>
         # @type InstanceTasks: Array
         # @param InstanceDeviceType: <p>实例机器类型</p><ol><li>common，通用型。</li><li>exclusive，独享型。</li></ol>
@@ -2620,47 +2634,176 @@ module TencentCloud
         # @type DbMode: String
         # @param NodeList: <p>节点列表<br>说明：仅当要查询的资源为 LibraDB 时，此参数才会返回值。</p>
         # @type NodeList: Array
+        # @param ServerlessStatus: <p>serverless实例子状态</p>
+        # @type ServerlessStatus: String
         # @param AIOptimizerStatus: <p>AI优化器状态</p>
         # @type AIOptimizerStatus: :class:`Tencentcloud::Cynosdb.v20190107.models.AIOptimizerStatus`
+        # @param ProjectId: <p>项目ID</p>
+        # @type ProjectId: Integer
+        # @param Region: <p>地域</p>
+        # @type Region: String
+        # @param Zone: <p>可用区</p>
+        # @type Zone: String
+        # @param PhysicalZone: <p>实例所在的物理可用区</p>
+        # @type PhysicalZone: String
+        # @param Status: <p>实例状态</p><p>枚举值：</p><ul><li>creating： 创建中</li><li>running： 运行中</li><li>isolating： 隔离中</li><li>isolated： 已隔离</li><li>activating： 恢复中</li><li>offlining： 下线中</li><li>offlined： 已下线</li></ul>
+        # @type Status: String
+        # @param StatusDesc: <p>实例状态中文描述</p>
+        # @type StatusDesc: String
+        # @param DbType: <p>数据库类型</p>
+        # @type DbType: String
+        # @param DbVersion: <p>数据库版本</p>
+        # @type DbVersion: String
+        # @param Storage: <p>存储量</p><p>单位：GB</p>
+        # @type Storage: Integer
+        # @param StorageId: <p>预付费存储Id</p>
+        # @type StorageId: String
+        # @param StoragePayMode: <p>存储付费类型</p><p>枚举值：</p><ul><li>0： 后付费</li><li>1： 预付费</li></ul>
+        # @type StoragePayMode: Integer
+        # @param CreateTime: <p>创建时间</p>
+        # @type CreateTime: String
+        # @param UpdateTime: <p>更新时间</p>
+        # @type UpdateTime: String
+        # @param IsolateTime: <p>隔离时间</p>
+        # @type IsolateTime: String
+        # @param DestroyTime: <p>实例销毁时间</p>
+        # @type DestroyTime: String
+        # @param DestroyDeadlineText: <p>销毁期限</p>
+        # @type DestroyDeadlineText: String
+        # @param PeriodEndTime: <p>实例过期时间</p>
+        # @type PeriodEndTime: String
+        # @param VpcId: <p>VPC网络ID</p>
+        # @type VpcId: String
+        # @param SubnetId: <p>子网ID</p>
+        # @type SubnetId: String
+        # @param Vip: <p>实例内网IP</p>
+        # @type Vip: String
+        # @param Vport: <p>实例内网端口</p>
+        # @type Vport: Integer
+        # @param NetType: <p>网络类型</p>
+        # @type NetType: Integer
+        # @param WanIP: <p>外网IP</p>
+        # @type WanIP: String
+        # @param WanPort: <p>外网端口</p>
+        # @type WanPort: Integer
+        # @param WanStatus: <p>外网开启状态</p>
+        # @type WanStatus: String
+        # @param WanDomain: <p>实例外网域名</p>
+        # @type WanDomain: String
+        # @param InstanceNetInfo: <p>实例的网络信息</p>
+        # @type InstanceNetInfo: Array
+        # @param PayMode: <p>付费模式</p><p>枚举值：</p><ul><li>0： 后付费</li><li>1： 预付费</li></ul>
+        # @type PayMode: Integer
+        # @param ProcessingTask: <p>正在处理的任务</p>
+        # @type ProcessingTask: String
+        # @param RenewFlag: <p>续费标志</p>
+        # @type RenewFlag: Integer
+        # @param Tasks: <p>任务</p>
+        # @type Tasks: Array
+        # @param IsFreeze: <p>是否冻结</p>
+        # @type IsFreeze: String
+        # @param ResourceTags: <p>资源标签</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceTags: Array
+        # @param InstanceAbility: <p>当前实例支持的能力</p>
+        # @type InstanceAbility: :class:`Tencentcloud::Cynosdb.v20190107.models.InstanceAbility`
+        # @param DeviceType: <p>实例机器类型</p><p>枚举值：</p><ul><li>common： 通用型</li><li>exclusive： 独享型</li></ul>
+        # @type DeviceType: String
+        # @param GdnId: <p>全球数据库唯一标识</p>
+        # @type GdnId: String
 
-        attr_accessor :InstanceId, :InstanceName, :InstanceType, :InstanceStatus, :InstanceStatusDesc, :InstanceCpu, :InstanceMemory, :InstanceStorage, :InstanceRole, :MaintainStartTime, :MaintainDuration, :MaintainWeekDays, :ServerlessStatus, :InstanceTasks, :InstanceDeviceType, :InstanceStorageType, :DbMode, :NodeList, :AIOptimizerStatus
+        attr_accessor :Uin, :AppId, :ClusterId, :ClusterName, :InstanceId, :InstanceName, :InstanceType, :InstanceStatus, :InstanceStatusDesc, :InstanceCpu, :Cpu, :MinCpu, :MaxCpu, :Memory, :InstanceMemory, :InstanceStorage, :InstanceRole, :MaintainStartTime, :MaintainDuration, :MaintainWeekDays, :InstanceTasks, :InstanceDeviceType, :InstanceStorageType, :DbMode, :NodeList, :ServerlessStatus, :AIOptimizerStatus, :ProjectId, :Region, :Zone, :PhysicalZone, :Status, :StatusDesc, :DbType, :DbVersion, :Storage, :StorageId, :StoragePayMode, :CreateTime, :UpdateTime, :IsolateTime, :DestroyTime, :DestroyDeadlineText, :PeriodEndTime, :VpcId, :SubnetId, :Vip, :Vport, :NetType, :WanIP, :WanPort, :WanStatus, :WanDomain, :InstanceNetInfo, :PayMode, :ProcessingTask, :RenewFlag, :Tasks, :IsFreeze, :ResourceTags, :InstanceAbility, :DeviceType, :GdnId
+        extend Gem::Deprecate
+        deprecate :InstanceCpu, :none, 2026, 10
+        deprecate :InstanceCpu=, :none, 2026, 10
 
-        def initialize(instanceid=nil, instancename=nil, instancetype=nil, instancestatus=nil, instancestatusdesc=nil, instancecpu=nil, instancememory=nil, instancestorage=nil, instancerole=nil, maintainstarttime=nil, maintainduration=nil, maintainweekdays=nil, serverlessstatus=nil, instancetasks=nil, instancedevicetype=nil, instancestoragetype=nil, dbmode=nil, nodelist=nil, aioptimizerstatus=nil)
+        def initialize(uin=nil, appid=nil, clusterid=nil, clustername=nil, instanceid=nil, instancename=nil, instancetype=nil, instancestatus=nil, instancestatusdesc=nil, instancecpu=nil, cpu=nil, mincpu=nil, maxcpu=nil, memory=nil, instancememory=nil, instancestorage=nil, instancerole=nil, maintainstarttime=nil, maintainduration=nil, maintainweekdays=nil, instancetasks=nil, instancedevicetype=nil, instancestoragetype=nil, dbmode=nil, nodelist=nil, serverlessstatus=nil, aioptimizerstatus=nil, projectid=nil, region=nil, zone=nil, physicalzone=nil, status=nil, statusdesc=nil, dbtype=nil, dbversion=nil, storage=nil, storageid=nil, storagepaymode=nil, createtime=nil, updatetime=nil, isolatetime=nil, destroytime=nil, destroydeadlinetext=nil, periodendtime=nil, vpcid=nil, subnetid=nil, vip=nil, vport=nil, nettype=nil, wanip=nil, wanport=nil, wanstatus=nil, wandomain=nil, instancenetinfo=nil, paymode=nil, processingtask=nil, renewflag=nil, tasks=nil, isfreeze=nil, resourcetags=nil, instanceability=nil, devicetype=nil, gdnid=nil)
+          @Uin = uin
+          @AppId = appid
+          @ClusterId = clusterid
+          @ClusterName = clustername
           @InstanceId = instanceid
           @InstanceName = instancename
           @InstanceType = instancetype
           @InstanceStatus = instancestatus
           @InstanceStatusDesc = instancestatusdesc
           @InstanceCpu = instancecpu
+          @Cpu = cpu
+          @MinCpu = mincpu
+          @MaxCpu = maxcpu
+          @Memory = memory
           @InstanceMemory = instancememory
           @InstanceStorage = instancestorage
           @InstanceRole = instancerole
           @MaintainStartTime = maintainstarttime
           @MaintainDuration = maintainduration
           @MaintainWeekDays = maintainweekdays
-          @ServerlessStatus = serverlessstatus
           @InstanceTasks = instancetasks
           @InstanceDeviceType = instancedevicetype
           @InstanceStorageType = instancestoragetype
           @DbMode = dbmode
           @NodeList = nodelist
+          @ServerlessStatus = serverlessstatus
           @AIOptimizerStatus = aioptimizerstatus
+          @ProjectId = projectid
+          @Region = region
+          @Zone = zone
+          @PhysicalZone = physicalzone
+          @Status = status
+          @StatusDesc = statusdesc
+          @DbType = dbtype
+          @DbVersion = dbversion
+          @Storage = storage
+          @StorageId = storageid
+          @StoragePayMode = storagepaymode
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @IsolateTime = isolatetime
+          @DestroyTime = destroytime
+          @DestroyDeadlineText = destroydeadlinetext
+          @PeriodEndTime = periodendtime
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @Vip = vip
+          @Vport = vport
+          @NetType = nettype
+          @WanIP = wanip
+          @WanPort = wanport
+          @WanStatus = wanstatus
+          @WanDomain = wandomain
+          @InstanceNetInfo = instancenetinfo
+          @PayMode = paymode
+          @ProcessingTask = processingtask
+          @RenewFlag = renewflag
+          @Tasks = tasks
+          @IsFreeze = isfreeze
+          @ResourceTags = resourcetags
+          @InstanceAbility = instanceability
+          @DeviceType = devicetype
+          @GdnId = gdnid
         end
 
         def deserialize(params)
+          @Uin = params['Uin']
+          @AppId = params['AppId']
+          @ClusterId = params['ClusterId']
+          @ClusterName = params['ClusterName']
           @InstanceId = params['InstanceId']
           @InstanceName = params['InstanceName']
           @InstanceType = params['InstanceType']
           @InstanceStatus = params['InstanceStatus']
           @InstanceStatusDesc = params['InstanceStatusDesc']
           @InstanceCpu = params['InstanceCpu']
+          @Cpu = params['Cpu']
+          @MinCpu = params['MinCpu']
+          @MaxCpu = params['MaxCpu']
+          @Memory = params['Memory']
           @InstanceMemory = params['InstanceMemory']
           @InstanceStorage = params['InstanceStorage']
           @InstanceRole = params['InstanceRole']
           @MaintainStartTime = params['MaintainStartTime']
           @MaintainDuration = params['MaintainDuration']
           @MaintainWeekDays = params['MaintainWeekDays']
-          @ServerlessStatus = params['ServerlessStatus']
           unless params['InstanceTasks'].nil?
             @InstanceTasks = []
             params['InstanceTasks'].each do |i|
@@ -2673,10 +2816,71 @@ module TencentCloud
           @InstanceStorageType = params['InstanceStorageType']
           @DbMode = params['DbMode']
           @NodeList = params['NodeList']
+          @ServerlessStatus = params['ServerlessStatus']
           unless params['AIOptimizerStatus'].nil?
             @AIOptimizerStatus = AIOptimizerStatus.new
             @AIOptimizerStatus.deserialize(params['AIOptimizerStatus'])
           end
+          @ProjectId = params['ProjectId']
+          @Region = params['Region']
+          @Zone = params['Zone']
+          @PhysicalZone = params['PhysicalZone']
+          @Status = params['Status']
+          @StatusDesc = params['StatusDesc']
+          @DbType = params['DbType']
+          @DbVersion = params['DbVersion']
+          @Storage = params['Storage']
+          @StorageId = params['StorageId']
+          @StoragePayMode = params['StoragePayMode']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @IsolateTime = params['IsolateTime']
+          @DestroyTime = params['DestroyTime']
+          @DestroyDeadlineText = params['DestroyDeadlineText']
+          @PeriodEndTime = params['PeriodEndTime']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @Vip = params['Vip']
+          @Vport = params['Vport']
+          @NetType = params['NetType']
+          @WanIP = params['WanIP']
+          @WanPort = params['WanPort']
+          @WanStatus = params['WanStatus']
+          @WanDomain = params['WanDomain']
+          unless params['InstanceNetInfo'].nil?
+            @InstanceNetInfo = []
+            params['InstanceNetInfo'].each do |i|
+              instancenetinfo_tmp = InstanceNetInfo.new
+              instancenetinfo_tmp.deserialize(i)
+              @InstanceNetInfo << instancenetinfo_tmp
+            end
+          end
+          @PayMode = params['PayMode']
+          @ProcessingTask = params['ProcessingTask']
+          @RenewFlag = params['RenewFlag']
+          unless params['Tasks'].nil?
+            @Tasks = []
+            params['Tasks'].each do |i|
+              objecttask_tmp = ObjectTask.new
+              objecttask_tmp.deserialize(i)
+              @Tasks << objecttask_tmp
+            end
+          end
+          @IsFreeze = params['IsFreeze']
+          unless params['ResourceTags'].nil?
+            @ResourceTags = []
+            params['ResourceTags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @ResourceTags << tag_tmp
+            end
+          end
+          unless params['InstanceAbility'].nil?
+            @InstanceAbility = InstanceAbility.new
+            @InstanceAbility.deserialize(params['InstanceAbility'])
+          end
+          @DeviceType = params['DeviceType']
+          @GdnId = params['GdnId']
         end
       end
 
@@ -3113,8 +3317,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :StartTime, :EndTime, :Order, :OrderBy, :Filter, :LogFilter, :ColumnFilter
         extend Gem::Deprecate
-        deprecate :Filter, :none, 2026, 9
-        deprecate :Filter=, :none, 2026, 9
+        deprecate :Filter, :none, 2026, 10
+        deprecate :Filter=, :none, 2026, 10
 
         def initialize(instanceid=nil, starttime=nil, endtime=nil, order=nil, orderby=nil, filter=nil, logfilter=nil, columnfilter=nil)
           @InstanceId = instanceid
@@ -4296,10 +4500,12 @@ module TencentCloud
         # @type InstanceWeights: Array
         # @param LoadBalanceMode: <p>负载均衡模式</p><p>枚举值：</p><ul><li>static： 静态负载</li><li>dynamic： 动态负载</li></ul>
         # @type LoadBalanceMode: String
+        # @param TransAllSplit: <p>是否开启事务全拆分。在一个事务中将事务写前和写后的读拆分到不同的实例上去执行。</p>
+        # @type TransAllSplit: Boolean
 
-        attr_accessor :ClusterId, :UniqueVpcId, :UniqueSubnetId, :ConnectionPoolType, :OpenConnectionPool, :ConnectionPoolTimeOut, :SecurityGroupIds, :Description, :Vip, :WeightMode, :AutoAddRo, :FailOver, :ConsistencyType, :RwType, :ConsistencyTimeOut, :TransSplit, :AccessMode, :InstanceWeights, :LoadBalanceMode
+        attr_accessor :ClusterId, :UniqueVpcId, :UniqueSubnetId, :ConnectionPoolType, :OpenConnectionPool, :ConnectionPoolTimeOut, :SecurityGroupIds, :Description, :Vip, :WeightMode, :AutoAddRo, :FailOver, :ConsistencyType, :RwType, :ConsistencyTimeOut, :TransSplit, :AccessMode, :InstanceWeights, :LoadBalanceMode, :TransAllSplit
 
-        def initialize(clusterid=nil, uniquevpcid=nil, uniquesubnetid=nil, connectionpooltype=nil, openconnectionpool=nil, connectionpooltimeout=nil, securitygroupids=nil, description=nil, vip=nil, weightmode=nil, autoaddro=nil, failover=nil, consistencytype=nil, rwtype=nil, consistencytimeout=nil, transsplit=nil, accessmode=nil, instanceweights=nil, loadbalancemode=nil)
+        def initialize(clusterid=nil, uniquevpcid=nil, uniquesubnetid=nil, connectionpooltype=nil, openconnectionpool=nil, connectionpooltimeout=nil, securitygroupids=nil, description=nil, vip=nil, weightmode=nil, autoaddro=nil, failover=nil, consistencytype=nil, rwtype=nil, consistencytimeout=nil, transsplit=nil, accessmode=nil, instanceweights=nil, loadbalancemode=nil, transallsplit=nil)
           @ClusterId = clusterid
           @UniqueVpcId = uniquevpcid
           @UniqueSubnetId = uniquesubnetid
@@ -4319,6 +4525,7 @@ module TencentCloud
           @AccessMode = accessmode
           @InstanceWeights = instanceweights
           @LoadBalanceMode = loadbalancemode
+          @TransAllSplit = transallsplit
         end
 
         def deserialize(params)
@@ -4348,6 +4555,7 @@ module TencentCloud
             end
           end
           @LoadBalanceMode = params['LoadBalanceMode']
+          @TransAllSplit = params['TransAllSplit']
         end
       end
 
@@ -6957,8 +7165,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :StartTime, :EndTime, :Order, :OrderBy, :Filter, :Limit, :Offset, :LogFilter
         extend Gem::Deprecate
-        deprecate :Filter, :none, 2026, 9
-        deprecate :Filter=, :none, 2026, 9
+        deprecate :Filter, :none, 2026, 10
+        deprecate :Filter=, :none, 2026, 10
 
         def initialize(instanceid=nil, starttime=nil, endtime=nil, order=nil, orderby=nil, filter=nil, limit=nil, offset=nil, logfilter=nil)
           @InstanceId = instanceid
@@ -8328,8 +8536,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :InstanceGrpInfoList, :InstanceGroupInfoList, :RequestId
         extend Gem::Deprecate
-        deprecate :InstanceGrpInfoList, :none, 2026, 9
-        deprecate :InstanceGrpInfoList=, :none, 2026, 9
+        deprecate :InstanceGrpInfoList, :none, 2026, 10
+        deprecate :InstanceGrpInfoList=, :none, 2026, 10
 
         def initialize(totalcount=nil, instancegrpinfolist=nil, instancegroupinfolist=nil, requestid=nil)
           @TotalCount = totalcount
@@ -8940,8 +9148,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :InstanceGroupId
         extend Gem::Deprecate
-        deprecate :InstanceId, :none, 2026, 9
-        deprecate :InstanceId=, :none, 2026, 9
+        deprecate :InstanceId, :none, 2026, 10
+        deprecate :InstanceId=, :none, 2026, 10
 
         def initialize(instanceid=nil, instancegroupid=nil)
           @InstanceId = instanceid
@@ -12338,8 +12546,8 @@ module TencentCloud
 
         attr_accessor :InstanceIds, :SecurityGroupIds, :Zone
         extend Gem::Deprecate
-        deprecate :Zone, :none, 2026, 9
-        deprecate :Zone=, :none, 2026, 9
+        deprecate :Zone, :none, 2026, 10
+        deprecate :Zone=, :none, 2026, 10
 
         def initialize(instanceids=nil, securitygroupids=nil, zone=nil)
           @InstanceIds = instanceids
@@ -17267,10 +17475,12 @@ module TencentCloud
         # @type ApQueryToOtherNode: Boolean
         # @param LoadBalanceMode: <p>负载均衡模式</p><p>枚举值：</p><ul><li>static： 静态负载</li><li>dynamic： 动态负载</li></ul>
         # @type LoadBalanceMode: String
+        # @param TransAllSplit: <p>是否开启事务全拆分。在一个事务中将事务写前和写后的读拆分到不同的实例上去执行。</p>
+        # @type TransAllSplit: Boolean
 
-        attr_accessor :ClusterId, :ProxyGroupId, :ConsistencyType, :ConsistencyTimeOut, :WeightMode, :InstanceWeights, :FailOver, :AutoAddRo, :OpenRw, :RwType, :TransSplit, :AccessMode, :OpenConnectionPool, :ConnectionPoolType, :ConnectionPoolTimeOut, :ApNodeAsRoNode, :ApQueryToOtherNode, :LoadBalanceMode
+        attr_accessor :ClusterId, :ProxyGroupId, :ConsistencyType, :ConsistencyTimeOut, :WeightMode, :InstanceWeights, :FailOver, :AutoAddRo, :OpenRw, :RwType, :TransSplit, :AccessMode, :OpenConnectionPool, :ConnectionPoolType, :ConnectionPoolTimeOut, :ApNodeAsRoNode, :ApQueryToOtherNode, :LoadBalanceMode, :TransAllSplit
 
-        def initialize(clusterid=nil, proxygroupid=nil, consistencytype=nil, consistencytimeout=nil, weightmode=nil, instanceweights=nil, failover=nil, autoaddro=nil, openrw=nil, rwtype=nil, transsplit=nil, accessmode=nil, openconnectionpool=nil, connectionpooltype=nil, connectionpooltimeout=nil, apnodeasronode=nil, apquerytoothernode=nil, loadbalancemode=nil)
+        def initialize(clusterid=nil, proxygroupid=nil, consistencytype=nil, consistencytimeout=nil, weightmode=nil, instanceweights=nil, failover=nil, autoaddro=nil, openrw=nil, rwtype=nil, transsplit=nil, accessmode=nil, openconnectionpool=nil, connectionpooltype=nil, connectionpooltimeout=nil, apnodeasronode=nil, apquerytoothernode=nil, loadbalancemode=nil, transallsplit=nil)
           @ClusterId = clusterid
           @ProxyGroupId = proxygroupid
           @ConsistencyType = consistencytype
@@ -17289,6 +17499,7 @@ module TencentCloud
           @ApNodeAsRoNode = apnodeasronode
           @ApQueryToOtherNode = apquerytoothernode
           @LoadBalanceMode = loadbalancemode
+          @TransAllSplit = transallsplit
         end
 
         def deserialize(params)
@@ -17317,6 +17528,7 @@ module TencentCloud
           @ApNodeAsRoNode = params['ApNodeAsRoNode']
           @ApQueryToOtherNode = params['ApQueryToOtherNode']
           @LoadBalanceMode = params['LoadBalanceMode']
+          @TransAllSplit = params['TransAllSplit']
         end
       end
 
@@ -17546,8 +17758,8 @@ module TencentCloud
 
         attr_accessor :FlowId, :TaskId, :RequestId
         extend Gem::Deprecate
-        deprecate :FlowId, :none, 2026, 9
-        deprecate :FlowId=, :none, 2026, 9
+        deprecate :FlowId, :none, 2026, 10
+        deprecate :FlowId=, :none, 2026, 10
 
         def initialize(flowid=nil, taskid=nil, requestid=nil)
           @FlowId = flowid
@@ -17702,8 +17914,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :InstanceGrpId, :InstanceGroupId, :Vip, :Vport, :DbType, :OldIpReserveHours
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2026, 9
-        deprecate :InstanceGrpId=, :none, 2026, 9
+        deprecate :InstanceGrpId, :none, 2026, 10
+        deprecate :InstanceGrpId=, :none, 2026, 10
 
         def initialize(clusterid=nil, instancegrpid=nil, instancegroupid=nil, vip=nil, vport=nil, dbtype=nil, oldipreservehours=nil)
           @ClusterId = clusterid
@@ -18164,8 +18376,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :LogExpireDay, :HighLogExpireDay, :AuditRuleFilters, :RuleTemplateIds, :AuditAll
         extend Gem::Deprecate
-        deprecate :AuditRuleFilters, :none, 2026, 9
-        deprecate :AuditRuleFilters=, :none, 2026, 9
+        deprecate :AuditRuleFilters, :none, 2026, 10
+        deprecate :AuditRuleFilters=, :none, 2026, 10
 
         def initialize(instanceid=nil, logexpireday=nil, highlogexpireday=nil, auditrulefilters=nil, ruletemplateids=nil, auditall=nil)
           @InstanceId = instanceid
@@ -18476,8 +18688,8 @@ module TencentCloud
 
         attr_accessor :InstanceGrpId, :InstanceId, :InstanceGroupId
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2026, 9
-        deprecate :InstanceGrpId=, :none, 2026, 9
+        deprecate :InstanceGrpId, :none, 2026, 10
+        deprecate :InstanceGrpId=, :none, 2026, 10
 
         def initialize(instancegrpid=nil, instanceid=nil, instancegroupid=nil)
           @InstanceGrpId = instancegrpid
@@ -19101,8 +19313,8 @@ module TencentCloud
 
         attr_accessor :ProxyCount, :Cpu, :Mem, :ConnectionPoolType, :OpenConnectionPool, :ConnectionPoolTimeOut, :Description, :ProxyZones
         extend Gem::Deprecate
-        deprecate :ProxyCount, :none, 2026, 9
-        deprecate :ProxyCount=, :none, 2026, 9
+        deprecate :ProxyCount, :none, 2026, 10
+        deprecate :ProxyCount=, :none, 2026, 10
 
         def initialize(proxycount=nil, cpu=nil, mem=nil, connectionpooltype=nil, openconnectionpool=nil, connectionpooltimeout=nil, description=nil, proxyzones=nil)
           @ProxyCount = proxycount
@@ -19396,10 +19608,12 @@ module TencentCloud
         # @type ApQueryToOtherNode: Boolean
         # @param LoadBalanceMode: <p>自动负载</p><p>枚举值：</p><ul><li>static： 静态负载</li><li>dynamic： 动态负载</li></ul>
         # @type LoadBalanceMode: String
+        # @param TransAllSplit: <p>是否开启事务全拆分。在一个事务中将事务写前和写后的读拆分到不同的实例上去执行。</p>
+        # @type TransAllSplit: Boolean
 
-        attr_accessor :ConsistencyType, :ConsistencyTimeOut, :WeightMode, :FailOver, :AutoAddRo, :InstanceWeights, :OpenRw, :RwType, :TransSplit, :AccessMode, :ApNodeAsRoNode, :ApQueryToOtherNode, :LoadBalanceMode
+        attr_accessor :ConsistencyType, :ConsistencyTimeOut, :WeightMode, :FailOver, :AutoAddRo, :InstanceWeights, :OpenRw, :RwType, :TransSplit, :AccessMode, :ApNodeAsRoNode, :ApQueryToOtherNode, :LoadBalanceMode, :TransAllSplit
 
-        def initialize(consistencytype=nil, consistencytimeout=nil, weightmode=nil, failover=nil, autoaddro=nil, instanceweights=nil, openrw=nil, rwtype=nil, transsplit=nil, accessmode=nil, apnodeasronode=nil, apquerytoothernode=nil, loadbalancemode=nil)
+        def initialize(consistencytype=nil, consistencytimeout=nil, weightmode=nil, failover=nil, autoaddro=nil, instanceweights=nil, openrw=nil, rwtype=nil, transsplit=nil, accessmode=nil, apnodeasronode=nil, apquerytoothernode=nil, loadbalancemode=nil, transallsplit=nil)
           @ConsistencyType = consistencytype
           @ConsistencyTimeOut = consistencytimeout
           @WeightMode = weightmode
@@ -19413,6 +19627,7 @@ module TencentCloud
           @ApNodeAsRoNode = apnodeasronode
           @ApQueryToOtherNode = apquerytoothernode
           @LoadBalanceMode = loadbalancemode
+          @TransAllSplit = transallsplit
         end
 
         def deserialize(params)
@@ -19436,6 +19651,7 @@ module TencentCloud
           @ApNodeAsRoNode = params['ApNodeAsRoNode']
           @ApQueryToOtherNode = params['ApQueryToOtherNode']
           @LoadBalanceMode = params['LoadBalanceMode']
+          @TransAllSplit = params['TransAllSplit']
         end
       end
 
@@ -19598,8 +19814,8 @@ module TencentCloud
 
         attr_accessor :Values, :Names, :ExactMatch, :Name, :Operator
         extend Gem::Deprecate
-        deprecate :Operator, :none, 2026, 9
-        deprecate :Operator=, :none, 2026, 9
+        deprecate :Operator, :none, 2026, 10
+        deprecate :Operator=, :none, 2026, 10
 
         def initialize(values=nil, names=nil, exactmatch=nil, name=nil, operator=nil)
           @Values = values

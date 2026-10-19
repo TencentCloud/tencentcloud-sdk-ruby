@@ -692,7 +692,7 @@ module TencentCloud
         # @type Protocol: String
         # @param IdleTimeout: <p>连接空闲等待时间。</p><p>1、HTTP/HTTPS监听器，默认值为15，支持范围为1-60；<br>2、TCP监听器，默认值为900，支持范围为10-900；<br>3、UDP监听器，默认值为20，支持范围为10-20；</p>
         # @type IdleTimeout: Integer
-        # @param GetRealIpType: <p>四层获取源IP方式，支持&#39;TOA&#39;, &#39;ProxyProtocol&#39;, &#39;ProxyProtocolV2&#39;。</p><p>需要开启四层获取源IP方式，才填写此参数。</p>
+        # @param GetRealIpType: <p>四层获取源IP方式。</p><p>枚举值：</p><ul><li>TOA： TOA</li><li>ProxyProtocol： ProxyProtocol</li><li>ProxyProtocolV2： ProxyProtocolV2</li></ul><p>需要开启四层获取源IP方式，才填写此参数。</p>
         # @type GetRealIpType: String
         # @param ClientAffinity: <p>是否开启会话保持。支持配置&#39;Open&#39;, &#39;Close&#39;。</p><p>枚举值：</p><ul><li>Open： 开启。</li><li>Close： 关闭。</li></ul><p>仅支持4层监听器 ，7层不支持修改</p>
         # @type ClientAffinity: String
@@ -909,13 +909,13 @@ module TencentCloud
 
       # DeleteForwardingRule请求参数结构体
       class DeleteForwardingRuleRequest < TencentCloud::Common::AbstractModel
-        # @param GlobalAcceleratorId: 全球加速实例ID。
+        # @param GlobalAcceleratorId: <p>全球加速实例ID。</p>
         # @type GlobalAcceleratorId: String
-        # @param ListenerId: 监听器ID。
+        # @param ListenerId: <p>监听器ID。</p>
         # @type ListenerId: String
-        # @param ForwardingPolicyId: 策略ID。
+        # @param ForwardingPolicyId: <p>七层转发策略ID。</p>
         # @type ForwardingPolicyId: String
-        # @param ForwardingRuleId: 七层转发规则ID。
+        # @param ForwardingRuleId: <p>七层转发规则ID。</p>
         # @type ForwardingRuleId: String
 
         attr_accessor :GlobalAcceleratorId, :ListenerId, :ForwardingPolicyId, :ForwardingRuleId
@@ -937,7 +937,7 @@ module TencentCloud
 
       # DeleteForwardingRule返回参数结构体
       class DeleteForwardingRuleResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 异步任务ID。
+        # @param TaskId: <p>异步任务ID。</p>
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -959,7 +959,7 @@ module TencentCloud
       class DeleteGlobalAcceleratorAccessLogRequest < TencentCloud::Common::AbstractModel
         # @param LogPushTaskId: <p>日志唯一Id</p>
         # @type LogPushTaskId: String
-        # @param GlobalAcceleratorId: <p>GA实例唯一Id</p>
+        # @param GlobalAcceleratorId: <p>全球加速实例ID</p>
         # @type GlobalAcceleratorId: String
 
         attr_accessor :LogPushTaskId, :GlobalAcceleratorId
@@ -1033,11 +1033,11 @@ module TencentCloud
 
       # DeleteGlobalAcceleratorAclRule请求参数结构体
       class DeleteGlobalAcceleratorAclRuleRequest < TencentCloud::Common::AbstractModel
-        # @param GlobalAcceleratorId: 全球加速实例ID。
+        # @param GlobalAcceleratorId: <p>全球加速实例ID。</p>
         # @type GlobalAcceleratorId: String
-        # @param GlobalAcceleratorAclPolicyId: 安全策略ID
+        # @param GlobalAcceleratorAclPolicyId: <p>访问控制策略ID</p>
         # @type GlobalAcceleratorAclPolicyId: String
-        # @param GlobalAcceleratorAclRuleIds: Acl规则ID。
+        # @param GlobalAcceleratorAclRuleIds: <p>访问规则ID</p>
         # @type GlobalAcceleratorAclRuleIds: Array
 
         attr_accessor :GlobalAcceleratorId, :GlobalAcceleratorAclPolicyId, :GlobalAcceleratorAclRuleIds
@@ -1057,7 +1057,7 @@ module TencentCloud
 
       # DeleteGlobalAcceleratorAclRule返回参数结构体
       class DeleteGlobalAcceleratorAclRuleResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 异步任务ID。
+        # @param TaskId: <p>异步任务ID。</p>
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1395,7 +1395,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: <p>返回数量，默认为10，最大值为10。</p>
         # @type Limit: Integer
-        # @param Filters: <p>过滤条件。  endpoint-group-id- String -（过滤条件）终端节点组实例ID。endpoint-group-type- String -（过滤条件）终端节点组实例类型。</p>
+        # @param Filters: <p>过滤条件。  endpoint-group-id- String -（过滤条件）终端节点组实例ID。endpoint-group-type- String -（过滤条件）终端节点组实例类型。listener-id- String -（过滤条件）监听器实例ID。endpoint-group-name- String -（过滤条件）终端节点组名称。</p>
         # @type Filters: Array
 
         attr_accessor :GlobalAcceleratorId, :Offset, :Limit, :Filters
@@ -1790,7 +1790,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: <p>返回数量。</p><p>取值范围：[1, 200]</p><p>默认值：20</p>
         # @type Limit: Integer
-        # @param Filters: <p>过滤条件。<li>global-accelerator-id - String -（过滤条件）全球加速实例ID。</li> <li>global-accelerator-state - String -（过滤条件）全球加速实例状态。</li></p>
+        # @param Filters: <p>过滤条件。<li>global-accelerator-id - String -（过滤条件）全球加速实例ID。</li> <li>global-accelerator-state - String -（过滤条件）全球加速实例状态。</li><li>global-accelerator-name - String -（过滤条件）全球加速实例名称。</li></p>
         # @type Filters: Array
 
         attr_accessor :Offset, :Limit, :Filters
@@ -2248,7 +2248,7 @@ module TencentCloud
       class Filter < TencentCloud::Common::AbstractModel
         # @param Name: 属性名称, 若存在多个Filter时，Filter间的关系为逻辑与（AND）关系。
         # @type Name: String
-        # @param Values: 属性值, 若同一个Filter存在多个Values，同一Filter下Values间的关系为逻辑或（OR）关系。当值类型为布尔类型时，可直接取值为字符串"TRUE"或 "FALSE"。
+        # @param Values: 属性值, 若同一个Filter存在多个Values，同一Filter下Values间的关系为逻辑或（OR）关系。
         # @type Values: Array
 
         attr_accessor :Name, :Values
@@ -2775,7 +2775,7 @@ module TencentCloud
         # @type LogPushTaskId: String
         # @param Status: <p>状态（启动START， 停止STOP）</p><p>枚举值：</p><ul><li>START： 启动</li><li>STOP： 停止</li></ul>
         # @type Status: String
-        # @param GlobalAcceleratorId: <p>GA实例唯一Id</p>
+        # @param GlobalAcceleratorId: <p>全球加速实例ID。</p>
         # @type GlobalAcceleratorId: String
 
         attr_accessor :LogPushTaskId, :Status, :GlobalAcceleratorId

@@ -427,23 +427,27 @@ module TencentCloud
 
       # CreateAccessCert请求参数结构体
       class CreateAccessCertRequest < TencentCloud::Common::AbstractModel
-        # @param CertDesc: 证书描述，不超过64字符
+        # @param CertDesc: <p>证书描述，不超过64字符</p>
         # @type CertDesc: String
+        # @param Type: <p>凭证类型</p><p>枚举值：</p><ul><li>ssh： 通用系列文件系统凭证</li><li>gss： Turbo系列文件系统凭证</li></ul><p>默认值：ssh</p>
+        # @type Type: String
 
-        attr_accessor :CertDesc
+        attr_accessor :CertDesc, :Type
 
-        def initialize(certdesc=nil)
+        def initialize(certdesc=nil, type=nil)
           @CertDesc = certdesc
+          @Type = type
         end
 
         def deserialize(params)
           @CertDesc = params['CertDesc']
+          @Type = params['Type']
         end
       end
 
       # CreateAccessCert返回参数结构体
       class CreateAccessCertResponse < TencentCloud::Common::AbstractModel
-        # @param CertId: 凭证唯一标识
+        # @param CertId: <p>凭证唯一标识</p>
         # @type CertId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

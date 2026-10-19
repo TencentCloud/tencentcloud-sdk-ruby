@@ -573,9 +573,9 @@ module TencentCloud
 
       # CreateEdgeAclRule请求参数结构体
       class CreateEdgeAclRuleRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 规则组ID
+        # @param GroupId: <p>规则组ID</p>
         # @type GroupId: String
-        # @param Rules: 规则列表
+        # @param Rules: <p>规则列表</p>
         # @type Rules: Array
 
         attr_accessor :GroupId, :Rules
@@ -600,16 +600,20 @@ module TencentCloud
 
       # CreateEdgeAclRule返回参数结构体
       class CreateEdgeAclRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RuleIds: <p>规则Id列表</p>
+        # @type RuleIds: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :RuleIds, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(ruleids=nil, requestid=nil)
+          @RuleIds = ruleids
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @RuleIds = params['RuleIds']
           @RequestId = params['RequestId']
         end
       end
@@ -667,9 +671,9 @@ module TencentCloud
 
       # CreateNatAclRule请求参数结构体
       class CreateNatAclRuleRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 规则组ID
+        # @param GroupId: <p>规则组ID</p>
         # @type GroupId: String
-        # @param Rules: 规则列表
+        # @param Rules: <p>规则列表</p>
         # @type Rules: Array
 
         attr_accessor :GroupId, :Rules
@@ -694,16 +698,60 @@ module TencentCloud
 
       # CreateNatAclRule返回参数结构体
       class CreateNatAclRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RuleIds: <p>规则Id列表</p>
+        # @type RuleIds: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :RuleIds, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(ruleids=nil, requestid=nil)
+          @RuleIds = ruleids
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @RuleIds = params['RuleIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateRuleGroup请求参数结构体
+      class CreateRuleGroupRequest < TencentCloud::Common::AbstractModel
+        # @param GroupName: <p>规则组名称，不可为空，最长50字符（按字符数计，中文按1个字符计）</p>
+        # @type GroupName: String
+        # @param Product: <p>规则组归属产品。enterprise_sg-企业安全组，cfw_vpc_acl-VPC边界防火墙，cfw_nat_acl-NAT边界防火墙，cfw_edge_acl-互联网边界防火墙。必填，不接受 all</p>
+        # @type Product: String
+
+        attr_accessor :GroupName, :Product
+
+        def initialize(groupname=nil, product=nil)
+          @GroupName = groupname
+          @Product = product
+        end
+
+        def deserialize(params)
+          @GroupName = params['GroupName']
+          @Product = params['Product']
+        end
+      end
+
+      # CreateRuleGroup返回参数结构体
+      class CreateRuleGroupResponse < TencentCloud::Common::AbstractModel
+        # @param GroupId: <p>创建成功的规则组唯一标识，fwmrg- 前缀</p>
+        # @type GroupId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :GroupId, :RequestId
+
+        def initialize(groupid=nil, requestid=nil)
+          @GroupId = groupid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
           @RequestId = params['RequestId']
         end
       end
@@ -761,9 +809,9 @@ module TencentCloud
 
       # CreateSecurityGroupRule请求参数结构体
       class CreateSecurityGroupRuleRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 规则组Id
+        # @param GroupId: <p>规则组Id</p>
         # @type GroupId: String
-        # @param Rules: 规则列表
+        # @param Rules: <p>规则列表</p>
         # @type Rules: Array
 
         attr_accessor :GroupId, :Rules
@@ -788,31 +836,35 @@ module TencentCloud
 
       # CreateSecurityGroupRule返回参数结构体
       class CreateSecurityGroupRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RuleIds: <p>规则Id列表</p>
+        # @type RuleIds: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :RuleIds, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(ruleids=nil, requestid=nil)
+          @RuleIds = ruleids
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @RuleIds = params['RuleIds']
           @RequestId = params['RequestId']
         end
       end
 
       # CreateStrategy请求参数结构体
       class CreateStrategyRequest < TencentCloud::Common::AbstractModel
-        # @param Product: 产品类型
+        # @param Product: <p>产品类型</p>
         # @type Product: String
-        # @param ReceiveAccount: 下发账号
+        # @param ReceiveAccount: <p>下发账号</p>
         # @type ReceiveAccount: Array
-        # @param PreStrategy: 前区规则组
+        # @param PreStrategy: <p>前区规则组</p>
         # @type PreStrategy: Array
-        # @param PostStrategy: 后区规则组
+        # @param PostStrategy: <p>后区规则组</p>
         # @type PostStrategy: Array
-        # @param ReceiveGroup: 下发账号组
+        # @param ReceiveGroup: <p>下发账号组</p>
         # @type ReceiveGroup: Array
 
         attr_accessor :Product, :ReceiveAccount, :PreStrategy, :PostStrategy, :ReceiveGroup
@@ -850,16 +902,20 @@ module TencentCloud
 
       # CreateStrategy返回参数结构体
       class CreateStrategyResponse < TencentCloud::Common::AbstractModel
+        # @param StrategyIds: <p>策略Id列表</p>
+        # @type StrategyIds: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :StrategyIds, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(strategyids=nil, requestid=nil)
+          @StrategyIds = strategyids
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @StrategyIds = params['StrategyIds']
           @RequestId = params['RequestId']
         end
       end
@@ -917,9 +973,9 @@ module TencentCloud
 
       # CreateVpcAclRule请求参数结构体
       class CreateVpcAclRuleRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 规则组ID
+        # @param GroupId: <p>规则组ID</p>
         # @type GroupId: String
-        # @param Rules: 规则列表
+        # @param Rules: <p>规则列表</p>
         # @type Rules: Array
 
         attr_accessor :GroupId, :Rules
@@ -944,16 +1000,20 @@ module TencentCloud
 
       # CreateVpcAclRule返回参数结构体
       class CreateVpcAclRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RuleIds: <p>规则Id列表</p>
+        # @type RuleIds: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :RuleIds, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(ruleids=nil, requestid=nil)
+          @RuleIds = ruleids
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @RuleIds = params['RuleIds']
           @RequestId = params['RequestId']
         end
       end
@@ -2335,10 +2395,14 @@ module TencentCloud
         # @type UpdateTime: String
         # @param DnsParseCnt: 域名数
         # @type DnsParseCnt: Integer
+        # @param HitCount: 命中次数。该规则在所有已下发成员账号下的累计命中次数合计，直接采用云防火墙返回值，不做时间窗口换算；从未命中时为 0
+        # @type HitCount: Integer
+        # @param LastHitTime: 最近命中时间。取该规则在所有已下发成员账号中最新的命中时间；从未命中时为 "-"
+        # @type LastHitTime: String
 
-        attr_accessor :RuleId, :Sequence, :Direction, :SourceContent, :SourceType, :SourceName, :TargetContent, :TargetType, :TargetName, :Port, :Protocol, :RuleAction, :Description, :Scope, :CountryName, :CityName, :ParamTemplateId, :ParamTemplateName, :Invalid, :BelongMember, :CountryCode, :CityCode, :IsRegion, :CloudCode, :IsCloud, :InstanceName, :CountryKey, :CityKey, :CreateTime, :UpdateTime, :DnsParseCnt
+        attr_accessor :RuleId, :Sequence, :Direction, :SourceContent, :SourceType, :SourceName, :TargetContent, :TargetType, :TargetName, :Port, :Protocol, :RuleAction, :Description, :Scope, :CountryName, :CityName, :ParamTemplateId, :ParamTemplateName, :Invalid, :BelongMember, :CountryCode, :CityCode, :IsRegion, :CloudCode, :IsCloud, :InstanceName, :CountryKey, :CityKey, :CreateTime, :UpdateTime, :DnsParseCnt, :HitCount, :LastHitTime
 
-        def initialize(ruleid=nil, sequence=nil, direction=nil, sourcecontent=nil, sourcetype=nil, sourcename=nil, targetcontent=nil, targettype=nil, targetname=nil, port=nil, protocol=nil, ruleaction=nil, description=nil, scope=nil, countryname=nil, cityname=nil, paramtemplateid=nil, paramtemplatename=nil, invalid=nil, belongmember=nil, countrycode=nil, citycode=nil, isregion=nil, cloudcode=nil, iscloud=nil, instancename=nil, countrykey=nil, citykey=nil, createtime=nil, updatetime=nil, dnsparsecnt=nil)
+        def initialize(ruleid=nil, sequence=nil, direction=nil, sourcecontent=nil, sourcetype=nil, sourcename=nil, targetcontent=nil, targettype=nil, targetname=nil, port=nil, protocol=nil, ruleaction=nil, description=nil, scope=nil, countryname=nil, cityname=nil, paramtemplateid=nil, paramtemplatename=nil, invalid=nil, belongmember=nil, countrycode=nil, citycode=nil, isregion=nil, cloudcode=nil, iscloud=nil, instancename=nil, countrykey=nil, citykey=nil, createtime=nil, updatetime=nil, dnsparsecnt=nil, hitcount=nil, lasthittime=nil)
           @RuleId = ruleid
           @Sequence = sequence
           @Direction = direction
@@ -2370,6 +2434,8 @@ module TencentCloud
           @CreateTime = createtime
           @UpdateTime = updatetime
           @DnsParseCnt = dnsparsecnt
+          @HitCount = hitcount
+          @LastHitTime = lasthittime
         end
 
         def deserialize(params)
@@ -2407,6 +2473,8 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
           @DnsParseCnt = params['DnsParseCnt']
+          @HitCount = params['HitCount']
+          @LastHitTime = params['LastHitTime']
         end
       end
 
@@ -3062,10 +3130,14 @@ module TencentCloud
         # @type UpdateTime: String
         # @param DnsParseCnt: 域名数
         # @type DnsParseCnt: Integer
+        # @param HitCount: 命中次数。该规则在所有已下发成员账号下的累计命中次数合计，直接采用云防火墙返回值，不做时间窗口换算；从未命中时为 0
+        # @type HitCount: Integer
+        # @param LastHitTime: 最近命中时间。取该规则在所有已下发成员账号中最新的命中时间；从未命中时为 "-"
+        # @type LastHitTime: String
 
-        attr_accessor :RuleId, :Sequence, :Direction, :SourceContent, :SourceType, :SourceName, :TargetContent, :TargetType, :TargetName, :Port, :Protocol, :RuleAction, :Description, :Scope, :ScopeDesc, :FwInsId, :CountryName, :CityName, :CountryCode, :CityCode, :CountryKey, :CityKey, :IsRegion, :CloudCode, :IsCloud, :ParamTemplateId, :ParamTemplateName, :Invalid, :BelongMember, :CreateTime, :UpdateTime, :DnsParseCnt
+        attr_accessor :RuleId, :Sequence, :Direction, :SourceContent, :SourceType, :SourceName, :TargetContent, :TargetType, :TargetName, :Port, :Protocol, :RuleAction, :Description, :Scope, :ScopeDesc, :FwInsId, :CountryName, :CityName, :CountryCode, :CityCode, :CountryKey, :CityKey, :IsRegion, :CloudCode, :IsCloud, :ParamTemplateId, :ParamTemplateName, :Invalid, :BelongMember, :CreateTime, :UpdateTime, :DnsParseCnt, :HitCount, :LastHitTime
 
-        def initialize(ruleid=nil, sequence=nil, direction=nil, sourcecontent=nil, sourcetype=nil, sourcename=nil, targetcontent=nil, targettype=nil, targetname=nil, port=nil, protocol=nil, ruleaction=nil, description=nil, scope=nil, scopedesc=nil, fwinsid=nil, countryname=nil, cityname=nil, countrycode=nil, citycode=nil, countrykey=nil, citykey=nil, isregion=nil, cloudcode=nil, iscloud=nil, paramtemplateid=nil, paramtemplatename=nil, invalid=nil, belongmember=nil, createtime=nil, updatetime=nil, dnsparsecnt=nil)
+        def initialize(ruleid=nil, sequence=nil, direction=nil, sourcecontent=nil, sourcetype=nil, sourcename=nil, targetcontent=nil, targettype=nil, targetname=nil, port=nil, protocol=nil, ruleaction=nil, description=nil, scope=nil, scopedesc=nil, fwinsid=nil, countryname=nil, cityname=nil, countrycode=nil, citycode=nil, countrykey=nil, citykey=nil, isregion=nil, cloudcode=nil, iscloud=nil, paramtemplateid=nil, paramtemplatename=nil, invalid=nil, belongmember=nil, createtime=nil, updatetime=nil, dnsparsecnt=nil, hitcount=nil, lasthittime=nil)
           @RuleId = ruleid
           @Sequence = sequence
           @Direction = direction
@@ -3098,6 +3170,8 @@ module TencentCloud
           @CreateTime = createtime
           @UpdateTime = updatetime
           @DnsParseCnt = dnsparsecnt
+          @HitCount = hitcount
+          @LastHitTime = lasthittime
         end
 
         def deserialize(params)
@@ -3136,6 +3210,8 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
           @DnsParseCnt = params['DnsParseCnt']
+          @HitCount = params['HitCount']
+          @LastHitTime = params['LastHitTime']
         end
       end
 
@@ -3255,34 +3331,36 @@ module TencentCloud
 
       # 集团概览
       class OrganSummary < TencentCloud::Common::AbstractModel
-        # @param GroupName: 集团名称
+        # @param GroupName: <p>集团名称</p>
         # @type GroupName: String
-        # @param AdminInfo: 管理员账号信息
+        # @param AdminInfo: <p>管理员账号信息</p>
         # @type AdminInfo: :class:`Tencentcloud::Fwm.v20250611.models.MemberInfo`
-        # @param AdminCount: 管理员/委派管理员数量
+        # @param AdminCount: <p>管理员/委派管理员数量</p>
         # @type AdminCount: Integer
-        # @param JoinedMemberCount: 已接入成员数
+        # @param JoinedMemberCount: <p>已接入成员数</p>
         # @type JoinedMemberCount: Integer
-        # @param MemberLimit: 接入成员上限（-1表示无上限）
+        # @param MemberLimit: <p>接入成员上限（-1表示无上限）</p>
         # @type MemberLimit: Integer
-        # @param MemberLimitDisplay: 接入成员上限显示
+        # @param MemberLimitDisplay: <p>接入成员上限显示</p>
         # @type MemberLimitDisplay: String
-        # @param CfwSharerCount: 规格共享者数量
+        # @param CfwSharerCount: <p>规格共享者数量</p>
         # @type CfwSharerCount: Integer
-        # @param CfwUserCount: 规格使用者数量
+        # @param CfwUserCount: <p>规格使用者数量</p>
         # @type CfwUserCount: Integer
-        # @param Departments: 部门名称列表
+        # @param Departments: <p>部门名称列表</p>
         # @type Departments: Array
-        # @param ManagedMemberCount: 纳管账号数
+        # @param ManagedMemberCount: <p>纳管账号数</p>
         # @type ManagedMemberCount: Integer
-        # @param ManagedProductCount: 纳管产品数
+        # @param ManagedProductCount: <p>纳管产品数</p>
         # @type ManagedProductCount: Integer
-        # @param CfwManageCount: 纳管账号数
+        # @param CfwManageCount: <p>纳管账号数</p>
         # @type CfwManageCount: Integer
+        # @param FwmShareUserQuota: <p>规格共享总配额</p>
+        # @type FwmShareUserQuota: Integer
 
-        attr_accessor :GroupName, :AdminInfo, :AdminCount, :JoinedMemberCount, :MemberLimit, :MemberLimitDisplay, :CfwSharerCount, :CfwUserCount, :Departments, :ManagedMemberCount, :ManagedProductCount, :CfwManageCount
+        attr_accessor :GroupName, :AdminInfo, :AdminCount, :JoinedMemberCount, :MemberLimit, :MemberLimitDisplay, :CfwSharerCount, :CfwUserCount, :Departments, :ManagedMemberCount, :ManagedProductCount, :CfwManageCount, :FwmShareUserQuota
 
-        def initialize(groupname=nil, admininfo=nil, admincount=nil, joinedmembercount=nil, memberlimit=nil, memberlimitdisplay=nil, cfwsharercount=nil, cfwusercount=nil, departments=nil, managedmembercount=nil, managedproductcount=nil, cfwmanagecount=nil)
+        def initialize(groupname=nil, admininfo=nil, admincount=nil, joinedmembercount=nil, memberlimit=nil, memberlimitdisplay=nil, cfwsharercount=nil, cfwusercount=nil, departments=nil, managedmembercount=nil, managedproductcount=nil, cfwmanagecount=nil, fwmshareuserquota=nil)
           @GroupName = groupname
           @AdminInfo = admininfo
           @AdminCount = admincount
@@ -3295,6 +3373,7 @@ module TencentCloud
           @ManagedMemberCount = managedmembercount
           @ManagedProductCount = managedproductcount
           @CfwManageCount = cfwmanagecount
+          @FwmShareUserQuota = fwmshareuserquota
         end
 
         def deserialize(params)
@@ -3313,6 +3392,7 @@ module TencentCloud
           @ManagedMemberCount = params['ManagedMemberCount']
           @ManagedProductCount = params['ManagedProductCount']
           @CfwManageCount = params['CfwManageCount']
+          @FwmShareUserQuota = params['FwmShareUserQuota']
         end
       end
 
@@ -3564,6 +3644,7 @@ module TencentCloud
         # @param Id: <p>规则id  等同RuleUuid</p>
         # @type Id: Integer
         # @param DnsParseCount: <p>域名解析的IP统计</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DnsParseCount: :class:`Tencentcloud::Fwm.v20250611.models.SgDnsParseCount`
         # @param Scope: <p>规则生效范围</p>
         # @type Scope: String
@@ -4168,10 +4249,14 @@ module TencentCloud
         # @type DnsParseCnt: Integer
         # @param FwGroupName: 防火墙组名称
         # @type FwGroupName: String
+        # @param HitCount: 命中次数。该规则在所有已下发成员账号下的累计命中次数合计，直接采用云防火墙返回值，不做时间窗口换算；从未命中时为 0
+        # @type HitCount: Integer
+        # @param LastHitTime: 最近命中时间。取该规则在所有已下发成员账号中最新的命中时间；从未命中时为 "-"
+        # @type LastHitTime: String
 
-        attr_accessor :RuleId, :Sequence, :IpVersion, :SourceContent, :SourceType, :SourceName, :DestContent, :DestType, :DestName, :Protocol, :Port, :ParamTemplateId, :ParamTemplateName, :RuleAction, :Description, :EdgeId, :FwGroupId, :Invalid, :BelongMember, :CreateTime, :UpdateTime, :DnsParseCnt, :FwGroupName
+        attr_accessor :RuleId, :Sequence, :IpVersion, :SourceContent, :SourceType, :SourceName, :DestContent, :DestType, :DestName, :Protocol, :Port, :ParamTemplateId, :ParamTemplateName, :RuleAction, :Description, :EdgeId, :FwGroupId, :Invalid, :BelongMember, :CreateTime, :UpdateTime, :DnsParseCnt, :FwGroupName, :HitCount, :LastHitTime
 
-        def initialize(ruleid=nil, sequence=nil, ipversion=nil, sourcecontent=nil, sourcetype=nil, sourcename=nil, destcontent=nil, desttype=nil, destname=nil, protocol=nil, port=nil, paramtemplateid=nil, paramtemplatename=nil, ruleaction=nil, description=nil, edgeid=nil, fwgroupid=nil, invalid=nil, belongmember=nil, createtime=nil, updatetime=nil, dnsparsecnt=nil, fwgroupname=nil)
+        def initialize(ruleid=nil, sequence=nil, ipversion=nil, sourcecontent=nil, sourcetype=nil, sourcename=nil, destcontent=nil, desttype=nil, destname=nil, protocol=nil, port=nil, paramtemplateid=nil, paramtemplatename=nil, ruleaction=nil, description=nil, edgeid=nil, fwgroupid=nil, invalid=nil, belongmember=nil, createtime=nil, updatetime=nil, dnsparsecnt=nil, fwgroupname=nil, hitcount=nil, lasthittime=nil)
           @RuleId = ruleid
           @Sequence = sequence
           @IpVersion = ipversion
@@ -4195,6 +4280,8 @@ module TencentCloud
           @UpdateTime = updatetime
           @DnsParseCnt = dnsparsecnt
           @FwGroupName = fwgroupname
+          @HitCount = hitcount
+          @LastHitTime = lasthittime
         end
 
         def deserialize(params)
@@ -4224,6 +4311,8 @@ module TencentCloud
           @UpdateTime = params['UpdateTime']
           @DnsParseCnt = params['DnsParseCnt']
           @FwGroupName = params['FwGroupName']
+          @HitCount = params['HitCount']
+          @LastHitTime = params['LastHitTime']
         end
       end
 

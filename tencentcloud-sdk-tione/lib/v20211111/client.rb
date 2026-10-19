@@ -224,6 +224,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 保存镜像
+
+        # @param request: Request instance for CreateNotebookImage.
+        # @type request: :class:`Tencentcloud::tione::V20211111::CreateNotebookImageRequest`
+        # @rtype: :class:`Tencentcloud::tione::V20211111::CreateNotebookImageResponse`
+        def CreateNotebookImage(request)
+          body = send_request('CreateNotebookImage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateNotebookImageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 生成Notebook访问链接
 
         # @param request: Request instance for CreatePresignedNotebookUrl.

@@ -1775,6 +1775,54 @@ module TencentCloud
         end
       end
 
+      # DescribeBackupEncryptConfig请求参数结构体
+      class DescribeBackupEncryptConfigRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例 ID，请登录<a href="https://console.cloud.tencent.com/redis/instance/list">Redis控制台</a>在实例列表复制实例 ID。</p>
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeBackupEncryptConfig返回参数结构体
+      class DescribeBackupEncryptConfigResponse < TencentCloud::Common::AbstractModel
+        # @param BackupEncrypt: <p>备份是否加密</p><p>枚举值：</p><ul><li>true： 加密</li><li>false： 不加密</li></ul>
+        # @type BackupEncrypt: Boolean
+        # @param EncryptKeyType: <p>加密密钥类型。</p><p>枚举值：</p><ul><li>0： 腾讯云托管（默认）</li><li>1： 用户自定义 KMS 密钥</li></ul>
+        # @type EncryptKeyType: Integer
+        # @param KmsKeyId: <p>KMS的密钥ID。</p><p>参数格式：xxxxxxx-xxxx-xxxx-xxxx-xxxxxxx</p>
+        # @type KmsKeyId: String
+        # @param KmsRegion: <p>KMS地域信息。</p><p>参数格式：ap-xxxx</p>
+        # @type KmsRegion: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BackupEncrypt, :EncryptKeyType, :KmsKeyId, :KmsRegion, :RequestId
+
+        def initialize(backupencrypt=nil, encryptkeytype=nil, kmskeyid=nil, kmsregion=nil, requestid=nil)
+          @BackupEncrypt = backupencrypt
+          @EncryptKeyType = encryptkeytype
+          @KmsKeyId = kmskeyid
+          @KmsRegion = kmsregion
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @BackupEncrypt = params['BackupEncrypt']
+          @EncryptKeyType = params['EncryptKeyType']
+          @KmsKeyId = params['KmsKeyId']
+          @KmsRegion = params['KmsRegion']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeBackupUrl请求参数结构体
       class DescribeBackupUrlRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID，请登录[Redis控制台](https://console.cloud.tencent.com/redis/instance/list)在实例列表复制实例 ID。
@@ -7059,6 +7107,54 @@ module TencentCloud
 
       # ModifyBackupDownloadRestriction返回参数结构体
       class ModifyBackupDownloadRestrictionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyBackupEncrypt请求参数结构体
+      class ModifyBackupEncryptRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例 ID，请登录Redis控制台在实例列表复制实例 ID。</p>
+        # @type InstanceId: String
+        # @param BackupEncrypt: <p>是否开启备份加密。</p><p>默认值：false</p>
+        # @type BackupEncrypt: Boolean
+        # @param EncryptKeyType: <p>加密密钥类型。</p><p>枚举值：</p><ul><li>0： 腾讯云托管（默认）</li><li>1： 用户自定义 KMS 密钥</li></ul><p>默认值：0</p>
+        # @type EncryptKeyType: Integer
+        # @param KmsKeyId: <p>KMS的密钥ID。</p><p>参数格式：xxxxxxx-xxxx-xxxx-xxxx-xxxxxxx</p>
+        # @type KmsKeyId: String
+        # @param KmsRegion: <p>地域信息。</p><p>参数格式：ap-xxxx</p><p>取值参考：<a href="https://cloud.tencent.com/document/api/573/34406#.E5.9C.B0.E5.9F.9F.E5.88.97.E8.A1.A8">KMS支持的地域列表</a></p>
+        # @type KmsRegion: String
+
+        attr_accessor :InstanceId, :BackupEncrypt, :EncryptKeyType, :KmsKeyId, :KmsRegion
+
+        def initialize(instanceid=nil, backupencrypt=nil, encryptkeytype=nil, kmskeyid=nil, kmsregion=nil)
+          @InstanceId = instanceid
+          @BackupEncrypt = backupencrypt
+          @EncryptKeyType = encryptkeytype
+          @KmsKeyId = kmskeyid
+          @KmsRegion = kmsregion
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @BackupEncrypt = params['BackupEncrypt']
+          @EncryptKeyType = params['EncryptKeyType']
+          @KmsKeyId = params['KmsKeyId']
+          @KmsRegion = params['KmsRegion']
+        end
+      end
+
+      # ModifyBackupEncrypt返回参数结构体
+      class ModifyBackupEncryptResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

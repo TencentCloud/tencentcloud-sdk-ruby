@@ -3170,8 +3170,8 @@ module TencentCloud
 
         attr_accessor :Name, :AlarmTargets, :MonitorTime, :TriggerCount, :AlarmPeriod, :Condition, :AlarmLevel, :MultiConditions, :Status, :Enable, :MessageTemplate, :CallBack, :Analysis, :GroupTriggerStatus, :GroupTriggerCondition, :Tags, :MonitorObjectType, :Classifications, :AlarmNoticeIds, :MonitorNotice
         extend Gem::Deprecate
-        deprecate :Enable, :none, 2026, 9
-        deprecate :Enable=, :none, 2026, 9
+        deprecate :Enable, :none, 2026, 10
+        deprecate :Enable=, :none, 2026, 10
 
         def initialize(name=nil, alarmtargets=nil, monitortime=nil, triggercount=nil, alarmperiod=nil, condition=nil, alarmlevel=nil, multiconditions=nil, status=nil, enable=nil, messagetemplate=nil, callback=nil, analysis=nil, grouptriggerstatus=nil, grouptriggercondition=nil, tags=nil, monitorobjecttype=nil, classifications=nil, alarmnoticeids=nil, monitornotice=nil)
           @Name = name
@@ -3575,8 +3575,8 @@ module TencentCloud
 
         attr_accessor :Name, :TopicId, :Type, :LogType, :ConfigFlag, :LogsetId, :LogsetName, :TopicName, :HostFile, :ContainerFile, :ContainerStdout, :LogFormat, :ExtractRule, :ExcludePaths, :UserDefineRule, :GroupId, :GroupIds, :CollectInfos, :AdvancedConfig
         extend Gem::Deprecate
-        deprecate :LogFormat, :none, 2026, 9
-        deprecate :LogFormat=, :none, 2026, 9
+        deprecate :LogFormat, :none, 2026, 10
+        deprecate :LogFormat=, :none, 2026, 10
 
         def initialize(name=nil, topicid=nil, type=nil, logtype=nil, configflag=nil, logsetid=nil, logsetname=nil, topicname=nil, hostfile=nil, containerfile=nil, containerstdout=nil, logformat=nil, extractrule=nil, excludepaths=nil, userdefinerule=nil, groupid=nil, groupids=nil, collectinfos=nil, advancedconfig=nil)
           @Name = name
@@ -6783,7 +6783,7 @@ module TencentCloud
         # @type RoleARN: String
         # @param ExternalId: <p>外部ID值，可以在被投递账号的角色-载体里找到该值</p>
         # @type ExternalId: String
-        # @param TopicName: <p>topic名称</p>
+        # @param TopicName: <p>目标日志主题的名称,当DataTransformType=1(前置加工任务)时, 该值和源日志主题名称的值相同.</p>
         # @type TopicName: String
         # @param LogsetName: <p>日志集的名称</p>
         # @type LogsetName: String
@@ -6850,59 +6850,53 @@ module TencentCloud
 
       # 数据加工任务基本详情
       class DataTransformTaskInfo < TencentCloud::Common::AbstractModel
-        # @param Name: 数据加工任务名称
+        # @param Name: <p>数据加工任务名称</p>
         # @type Name: String
-        # @param TaskId: 数据加工任务id
+        # @param TaskId: <p>数据加工任务id</p>
         # @type TaskId: String
-        # @param EnableFlag: 任务启用状态，默认为1，正常开启,  2关闭
+        # @param EnableFlag: <p>任务启用状态，默认为1，正常开启,  2关闭</p>
         # @type EnableFlag: Integer
-        # @param Type: 加工任务类型，1： DSL(使用自定义加工语言的加工任务)， 2：SQL(使用sql的加工任务)
+        # @param Type: <p>加工任务类型，1： DSL(使用自定义加工语言的加工任务)， 2：SQL(使用sql的加工任务)</p>
         # @type Type: Integer
-        # @param SrcTopicId: 源日志主题
+        # @param SrcTopicId: <p>源日志主题ID,当DataTransformType=1,代表当前任务的类型是前置加工任务,该值和目标日志主题的ID值相同.</p>
         # @type SrcTopicId: String
-        # @param Status: 当前加工任务状态（1准备中/2运行中/3停止中/4已停止）
+        # @param Status: <p>当前加工任务状态（1准备中/2运行中/3停止中/4已停止）</p>
         # @type Status: Integer
-        # @param CreateTime: 创建时间
-        # 时间格式：yyyy-MM-dd HH:mm:ss
+        # @param CreateTime: <p>创建时间<br>时间格式：yyyy-MM-dd HH:mm:ss</p>
         # @type CreateTime: String
-        # @param UpdateTime: 最近修改时间
-        # 时间格式：yyyy-MM-dd HH:mm:ss
+        # @param UpdateTime: <p>最近修改时间<br>时间格式：yyyy-MM-dd HH:mm:ss</p>
         # @type UpdateTime: String
-        # @param LastEnableTime: 最后启用时间，如果需要重建集群，修改该时间
-        # 时间格式：yyyy-MM-dd HH:mm:ss
+        # @param LastEnableTime: <p>最后启用时间，如果需要重建集群，修改该时间<br>时间格式：yyyy-MM-dd HH:mm:ss</p>
         # @type LastEnableTime: String
-        # @param SrcTopicName: 日志主题名称
+        # @param SrcTopicName: <p>源日志主题名称,当DataTransformType=1,代表当前任务的类型是前置加工任务,该值和目标日志主题名称的值相同.</p>
         # @type SrcTopicName: String
-        # @param LogsetId: 日志集id
+        # @param LogsetId: <p>日志集id</p>
         # @type LogsetId: String
-        # @param DstResources: 加工任务目的topic_id以及别名
+        # @param DstResources: <p>加工任务目的topic_id以及别名</p>
         # @type DstResources: Array
-        # @param EtlContent: 加工逻辑函数。
+        # @param EtlContent: <p>加工逻辑函数。</p>
         # @type EtlContent: String
-        # @param BackupTopicID: 兜底topic_id
+        # @param BackupTopicID: <p>兜底topic_id</p>
         # @type BackupTopicID: String
-        # @param BackupGiveUpData: 超限之后是否丢弃日志数据
+        # @param BackupGiveUpData: <p>超限之后是否丢弃日志数据</p>
         # @type BackupGiveUpData: Boolean
-        # @param HasServicesLog: 是否开启投递服务日志。 1关闭,2开启
+        # @param HasServicesLog: <p>是否开启投递服务日志。 1关闭,2开启</p>
         # @type HasServicesLog: Integer
-        # @param TaskDstCount: 任务目标日志主题数量
+        # @param TaskDstCount: <p>任务目标日志主题数量</p>
         # @type TaskDstCount: Integer
-        # @param DataTransformType: 数据加工类型。0：标准加工任务；1：前置加工任务。
+        # @param DataTransformType: <p>数据加工类型。0：标准加工任务；1：前置加工任务。当该值=1时, 源日志主题和目标日志主题的名称和ID相同.</p><p>枚举值：</p><ul><li>1： 前置加工任务</li><li>0： 标准加工任务</li></ul>
         # @type DataTransformType: Integer
-        # @param KeepFailureLog: 保留失败日志状态。 1:不保留，2:保留
+        # @param KeepFailureLog: <p>保留失败日志状态。 1:不保留，2:保留</p>
         # @type KeepFailureLog: Integer
-        # @param FailureLogKey: 失败日志的字段名称
+        # @param FailureLogKey: <p>失败日志的字段名称</p>
         # @type FailureLogKey: String
-        # @param ProcessFromTimestamp: 指定加工数据的开始时间，秒级时间戳。
-        # - 日志主题生命周期内的任意时间范围，如果超出了生命周期,只处理生命周期内有数据的部分。
+        # @param ProcessFromTimestamp: <p>指定加工数据的开始时间，秒级时间戳。</p><ul><li>日志主题生命周期内的任意时间范围，如果超出了生命周期,只处理生命周期内有数据的部分。</li></ul>
         # @type ProcessFromTimestamp: Integer
-        # @param ProcessToTimestamp: 指定加工数据的结束时间，秒级时间戳。
-        # 1. 不可指定未来的时间
-        # 2. 不填则表示持续执行
+        # @param ProcessToTimestamp: <p>指定加工数据的结束时间，秒级时间戳。</p><ol><li>不可指定未来的时间</li><li>不填则表示持续执行</li></ol>
         # @type ProcessToTimestamp: Integer
-        # @param DataTransformSqlDataSources: sql数据源信息
+        # @param DataTransformSqlDataSources: <p>sql数据源信息</p>
         # @type DataTransformSqlDataSources: Array
-        # @param EnvInfos: 环境变量
+        # @param EnvInfos: <p>环境变量</p>
         # @type EnvInfos: Array
 
         attr_accessor :Name, :TaskId, :EnableFlag, :Type, :SrcTopicId, :Status, :CreateTime, :UpdateTime, :LastEnableTime, :SrcTopicName, :LogsetId, :DstResources, :EtlContent, :BackupTopicID, :BackupGiveUpData, :HasServicesLog, :TaskDstCount, :DataTransformType, :KeepFailureLog, :FailureLogKey, :ProcessFromTimestamp, :ProcessToTimestamp, :DataTransformSqlDataSources, :EnvInfos
@@ -14890,8 +14884,8 @@ module TencentCloud
 
         attr_accessor :From, :To, :Query, :QueryString, :Limit, :Context, :Sort, :UseNewAnalysis
         extend Gem::Deprecate
-        deprecate :Query, :none, 2026, 9
-        deprecate :Query=, :none, 2026, 9
+        deprecate :Query, :none, 2026, 10
+        deprecate :Query=, :none, 2026, 10
 
         def initialize(from=nil, to=nil, query=nil, querystring=nil, limit=nil, context=nil, sort=nil, usenewanalysis=nil)
           @From = from
@@ -16932,8 +16926,8 @@ module TencentCloud
 
         attr_accessor :AlarmId, :Name, :MonitorTime, :Condition, :AlarmLevel, :MultiConditions, :TriggerCount, :AlarmPeriod, :AlarmTargets, :Status, :Enable, :MessageTemplate, :CallBack, :Analysis, :GroupTriggerStatus, :GroupTriggerCondition, :Tags, :MonitorObjectType, :Classifications, :AlarmNoticeIds, :MonitorNotice
         extend Gem::Deprecate
-        deprecate :Enable, :none, 2026, 9
-        deprecate :Enable=, :none, 2026, 9
+        deprecate :Enable, :none, 2026, 10
+        deprecate :Enable=, :none, 2026, 10
 
         def initialize(alarmid=nil, name=nil, monitortime=nil, condition=nil, alarmlevel=nil, multiconditions=nil, triggercount=nil, alarmperiod=nil, alarmtargets=nil, status=nil, enable=nil, messagetemplate=nil, callback=nil, analysis=nil, grouptriggerstatus=nil, grouptriggercondition=nil, tags=nil, monitorobjecttype=nil, classifications=nil, alarmnoticeids=nil, monitornotice=nil)
           @AlarmId = alarmid
@@ -17304,8 +17298,8 @@ module TencentCloud
 
         attr_accessor :ConfigExtraId, :Name, :TopicId, :HostFile, :ContainerFile, :ContainerStdout, :LogType, :LogFormat, :ExtractRule, :ExcludePaths, :UserDefineRule, :Type, :GroupId, :ConfigFlag, :LogsetId, :LogsetName, :TopicName, :AdvancedConfig
         extend Gem::Deprecate
-        deprecate :LogFormat, :none, 2026, 9
-        deprecate :LogFormat=, :none, 2026, 9
+        deprecate :LogFormat, :none, 2026, 10
+        deprecate :LogFormat=, :none, 2026, 10
 
         def initialize(configextraid=nil, name=nil, topicid=nil, hostfile=nil, containerfile=nil, containerstdout=nil, logtype=nil, logformat=nil, extractrule=nil, excludepaths=nil, userdefinerule=nil, type=nil, groupid=nil, configflag=nil, logsetid=nil, logsetname=nil, topicname=nil, advancedconfig=nil)
           @ConfigExtraId = configextraid
@@ -20971,8 +20965,8 @@ module TencentCloud
 
         attr_accessor :LogContent, :LineNum, :DstTopicId, :FailReason, :Time, :DstTopicName
         extend Gem::Deprecate
-        deprecate :DstTopicName, :none, 2026, 9
-        deprecate :DstTopicName=, :none, 2026, 9
+        deprecate :DstTopicName, :none, 2026, 10
+        deprecate :DstTopicName=, :none, 2026, 10
 
         def initialize(logcontent=nil, linenum=nil, dsttopicid=nil, failreason=nil, time=nil, dsttopicname=nil)
           @LogContent = logcontent
@@ -22550,10 +22544,10 @@ module TencentCloud
 
         attr_accessor :From, :To, :QueryString, :QuerySyntax, :TopicId, :Topics, :Sort, :Limit, :Offset, :Context, :SamplingRate, :UseNewAnalysis, :HighLight, :Query, :SyntaxRule
         extend Gem::Deprecate
-        deprecate :Query, :none, 2026, 9
-        deprecate :Query=, :none, 2026, 9
-        deprecate :SyntaxRule, :none, 2026, 9
-        deprecate :SyntaxRule=, :none, 2026, 9
+        deprecate :Query, :none, 2026, 10
+        deprecate :Query=, :none, 2026, 10
+        deprecate :SyntaxRule, :none, 2026, 10
+        deprecate :SyntaxRule=, :none, 2026, 10
 
         def initialize(from=nil, to=nil, querystring=nil, querysyntax=nil, topicid=nil, topics=nil, sort=nil, limit=nil, offset=nil, context=nil, samplingrate=nil, usenewanalysis=nil, highlight=nil, query=nil, syntaxrule=nil)
           @From = from
@@ -23748,8 +23742,8 @@ module TencentCloud
 
         attr_accessor :TopicId, :HashKey, :CompressType
         extend Gem::Deprecate
-        deprecate :HashKey, :none, 2026, 9
-        deprecate :HashKey=, :none, 2026, 9
+        deprecate :HashKey, :none, 2026, 10
+        deprecate :HashKey=, :none, 2026, 10
 
         def initialize(topicid=nil, hashkey=nil, compresstype=nil)
           @TopicId = topicid
@@ -23926,10 +23920,10 @@ module TencentCloud
 
         attr_accessor :CallbackType, :Url, :WebCallbackId, :Method, :NoticeContentId, :RemindType, :Mobiles, :UserIds, :Headers, :Body, :Index
         extend Gem::Deprecate
-        deprecate :Headers, :none, 2026, 9
-        deprecate :Headers=, :none, 2026, 9
-        deprecate :Body, :none, 2026, 9
-        deprecate :Body=, :none, 2026, 9
+        deprecate :Headers, :none, 2026, 10
+        deprecate :Headers=, :none, 2026, 10
+        deprecate :Body, :none, 2026, 10
+        deprecate :Body=, :none, 2026, 10
 
         def initialize(callbacktype=nil, url=nil, webcallbackid=nil, method=nil, noticecontentid=nil, remindtype=nil, mobiles=nil, userids=nil, headers=nil, body=nil, index=nil)
           @CallbackType = callbacktype

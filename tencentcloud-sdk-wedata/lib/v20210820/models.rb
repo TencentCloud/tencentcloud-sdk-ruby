@@ -3397,8 +3397,8 @@ module TencentCloud
 
         attr_accessor :ProjectId, :AlarmRegularName, :TaskId, :Id, :TaskType, :MonitorType
         extend Gem::Deprecate
-        deprecate :TaskId, :none, 2026, 9
-        deprecate :TaskId=, :none, 2026, 9
+        deprecate :TaskId, :none, 2026, 10
+        deprecate :TaskId=, :none, 2026, 10
 
         def initialize(projectid=nil, alarmregularname=nil, taskid=nil, id=nil, tasktype=nil, monitortype=nil)
           @ProjectId = projectid
@@ -11896,12 +11896,12 @@ module TencentCloud
 
         attr_accessor :ProjectId, :Category, :PageNumber, :PageSize, :EventName, :EventType, :EventSubType, :EventBroadcastType, :Status, :CreationTimeStart, :CreationTimeEnd, :EventTriggeredTimeStart, :EventTriggeredTimeEnd, :LogTimeStart, :LogTimeEnd, :Dimension, :TimeToLive, :SortItem, :SortType, :ConsumeCount
         extend Gem::Deprecate
-        deprecate :EventType, :none, 2026, 9
-        deprecate :EventType=, :none, 2026, 9
-        deprecate :EventBroadcastType, :none, 2026, 9
-        deprecate :EventBroadcastType=, :none, 2026, 9
-        deprecate :Status, :none, 2026, 9
-        deprecate :Status=, :none, 2026, 9
+        deprecate :EventType, :none, 2026, 10
+        deprecate :EventType=, :none, 2026, 10
+        deprecate :EventBroadcastType, :none, 2026, 10
+        deprecate :EventBroadcastType=, :none, 2026, 10
+        deprecate :Status, :none, 2026, 10
+        deprecate :Status=, :none, 2026, 10
 
         def initialize(projectid=nil, category=nil, pagenumber=nil, pagesize=nil, eventname=nil, eventtype=nil, eventsubtype=nil, eventbroadcasttype=nil, status=nil, creationtimestart=nil, creationtimeend=nil, eventtriggeredtimestart=nil, eventtriggeredtimeend=nil, logtimestart=nil, logtimeend=nil, dimension=nil, timetolive=nil, sortitem=nil, sorttype=nil, consumecount=nil)
           @ProjectId = projectid
@@ -20194,8 +20194,8 @@ module TencentCloud
 
         attr_accessor :DimType, :Count, :QualityDim
         extend Gem::Deprecate
-        deprecate :DimType, :none, 2026, 9
-        deprecate :DimType=, :none, 2026, 9
+        deprecate :DimType, :none, 2026, 10
+        deprecate :DimType=, :none, 2026, 10
 
         def initialize(dimtype=nil, count=nil, qualitydim=nil)
           @DimType = dimtype
@@ -30005,8 +30005,8 @@ module TencentCloud
 
         attr_accessor :ProjectId, :TaskId, :DelayTime, :StartupTime, :SelfDepend, :StartTime, :EndTime, :TaskAction, :CycleType, :CycleStep, :CrontabExpression, :ExecutionStartTime, :ExecutionEndTime, :TaskName, :RetryWait, :TryLimit, :Retriable, :RunPriority, :TaskExt, :ResourceGroup, :YarnQueue, :BrokerIp, :InCharge, :Notes, :TaskParamInfos, :SourceServer, :TargetServer, :DependencyWorkflow, :DependencyConfigDTOs, :ExecutionTTL, :ScriptChange, :InChargeIds
         extend Gem::Deprecate
-        deprecate :InCharge, :none, 2026, 9
-        deprecate :InCharge=, :none, 2026, 9
+        deprecate :InCharge, :none, 2026, 10
+        deprecate :InCharge=, :none, 2026, 10
 
         def initialize(projectid=nil, taskid=nil, delaytime=nil, startuptime=nil, selfdepend=nil, starttime=nil, endtime=nil, taskaction=nil, cycletype=nil, cyclestep=nil, crontabexpression=nil, executionstarttime=nil, executionendtime=nil, taskname=nil, retrywait=nil, trylimit=nil, retriable=nil, runpriority=nil, taskext=nil, resourcegroup=nil, yarnqueue=nil, brokerip=nil, incharge=nil, notes=nil, taskparaminfos=nil, sourceserver=nil, targetserver=nil, dependencyworkflow=nil, dependencyconfigdtos=nil, executionttl=nil, scriptchange=nil, inchargeids=nil)
           @ProjectId = projectid
@@ -32797,12 +32797,12 @@ module TencentCloud
 
         attr_accessor :ProjectId, :Name, :EventSubType, :TimeToLive, :TimeUnit, :Owner, :Description, :EventType, :EventBroadcastType, :DimensionFormat, :ValidConsumeCount
         extend Gem::Deprecate
-        deprecate :EventType, :none, 2026, 9
-        deprecate :EventType=, :none, 2026, 9
-        deprecate :EventBroadcastType, :none, 2026, 9
-        deprecate :EventBroadcastType=, :none, 2026, 9
-        deprecate :DimensionFormat, :none, 2026, 9
-        deprecate :DimensionFormat=, :none, 2026, 9
+        deprecate :EventType, :none, 2026, 10
+        deprecate :EventType=, :none, 2026, 10
+        deprecate :EventBroadcastType, :none, 2026, 10
+        deprecate :EventBroadcastType=, :none, 2026, 10
+        deprecate :DimensionFormat, :none, 2026, 10
+        deprecate :DimensionFormat=, :none, 2026, 10
 
         def initialize(projectid=nil, name=nil, eventsubtype=nil, timetolive=nil, timeunit=nil, owner=nil, description=nil, eventtype=nil, eventbroadcasttype=nil, dimensionformat=nil, validconsumecount=nil)
           @ProjectId = projectid
@@ -40710,10 +40710,13 @@ module TencentCloud
         # @param Privilege: <p>用户对该资源的最高权限</p><p>枚举值：</p><ul><li>NO_PERMISSIONS： 无权限</li><li>CAN_VIEW： 只读权限</li><li>CAN_MANAGE： 管理权限</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Privilege: String
+        # @param MinuteOffset: <p>分钟任务相位偏移</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MinuteOffset: Integer
 
-        attr_accessor :TaskId, :VirtualTaskId, :VirtualFlag, :TaskName, :WorkflowId, :RealWorkflowId, :WorkflowName, :FolderId, :FolderName, :CreateTime, :LastUpdate, :Status, :InCharge, :InChargeId, :StartTime, :EndTime, :ExecutionStartTime, :ExecutionEndTime, :ProjectId, :ProjectIdent, :ProjectName, :CycleType, :CycleStep, :CrontabExpression, :DelayTime, :StartupTime, :RetryWait, :Retriable, :TaskAction, :TryLimit, :RunPriority, :TaskType, :BrokerIp, :ClusterId, :MinDateTime, :MaxDateTime, :ExecutionTTL, :SelfDepend, :LeftCoordinate, :TopCoordinate, :TaskExt, :Properties, :Notes, :InstanceInitStrategy, :YarnQueue, :Alarms, :Alarm, :ScriptChange, :Submit, :LastSchedulerCommitTime, :NormalizedJobStartTime, :RecoverFreezeStartTime, :SourceServer, :TargetServer, :Tasks, :Creater, :DependencyRel, :DependencyWorkflow, :EventListenerConfig, :EventPublisherConfig, :DependencyConfigList, :VirtualTaskStatus, :RecycleTips, :RecycleUser, :NewOrUpdate, :Params, :TaskLinkInfo, :ImportResult, :ImportErrMsg, :ContentType, :TaskAutoSubmit, :ProductName, :OwnId, :UserId, :TenantId, :UpdateUser, :UpdateTime, :UpdateUserId, :SchedulerDesc, :ResourceGroup, :VersionDesc, :LinkId, :UserFileId, :SourceServiceId, :SourceServiceType, :TargetServiceId, :TargetServiceType, :ParamInList, :ParamOutList, :TaskFolderId, :MaxRetryAttempts, :ResourceGroupName, :SourceServiceName, :TaskRegisterOutputTable, :CycleDependencyConfigList, :Warning, :ScheduleRunType, :ConcurrentStrategy, :ScheduleTimeZone, :TemplateId, :AllowRedoType, :BundleId, :BundleInfo, :AllowDownstreamDependency, :DependencyTriggerPolicy, :LastUpdateTimestamp, :Privilege
+        attr_accessor :TaskId, :VirtualTaskId, :VirtualFlag, :TaskName, :WorkflowId, :RealWorkflowId, :WorkflowName, :FolderId, :FolderName, :CreateTime, :LastUpdate, :Status, :InCharge, :InChargeId, :StartTime, :EndTime, :ExecutionStartTime, :ExecutionEndTime, :ProjectId, :ProjectIdent, :ProjectName, :CycleType, :CycleStep, :CrontabExpression, :DelayTime, :StartupTime, :RetryWait, :Retriable, :TaskAction, :TryLimit, :RunPriority, :TaskType, :BrokerIp, :ClusterId, :MinDateTime, :MaxDateTime, :ExecutionTTL, :SelfDepend, :LeftCoordinate, :TopCoordinate, :TaskExt, :Properties, :Notes, :InstanceInitStrategy, :YarnQueue, :Alarms, :Alarm, :ScriptChange, :Submit, :LastSchedulerCommitTime, :NormalizedJobStartTime, :RecoverFreezeStartTime, :SourceServer, :TargetServer, :Tasks, :Creater, :DependencyRel, :DependencyWorkflow, :EventListenerConfig, :EventPublisherConfig, :DependencyConfigList, :VirtualTaskStatus, :RecycleTips, :RecycleUser, :NewOrUpdate, :Params, :TaskLinkInfo, :ImportResult, :ImportErrMsg, :ContentType, :TaskAutoSubmit, :ProductName, :OwnId, :UserId, :TenantId, :UpdateUser, :UpdateTime, :UpdateUserId, :SchedulerDesc, :ResourceGroup, :VersionDesc, :LinkId, :UserFileId, :SourceServiceId, :SourceServiceType, :TargetServiceId, :TargetServiceType, :ParamInList, :ParamOutList, :TaskFolderId, :MaxRetryAttempts, :ResourceGroupName, :SourceServiceName, :TaskRegisterOutputTable, :CycleDependencyConfigList, :Warning, :ScheduleRunType, :ConcurrentStrategy, :ScheduleTimeZone, :TemplateId, :AllowRedoType, :BundleId, :BundleInfo, :AllowDownstreamDependency, :DependencyTriggerPolicy, :LastUpdateTimestamp, :Privilege, :MinuteOffset
 
-        def initialize(taskid=nil, virtualtaskid=nil, virtualflag=nil, taskname=nil, workflowid=nil, realworkflowid=nil, workflowname=nil, folderid=nil, foldername=nil, createtime=nil, lastupdate=nil, status=nil, incharge=nil, inchargeid=nil, starttime=nil, endtime=nil, executionstarttime=nil, executionendtime=nil, projectid=nil, projectident=nil, projectname=nil, cycletype=nil, cyclestep=nil, crontabexpression=nil, delaytime=nil, startuptime=nil, retrywait=nil, retriable=nil, taskaction=nil, trylimit=nil, runpriority=nil, tasktype=nil, brokerip=nil, clusterid=nil, mindatetime=nil, maxdatetime=nil, executionttl=nil, selfdepend=nil, leftcoordinate=nil, topcoordinate=nil, taskext=nil, properties=nil, notes=nil, instanceinitstrategy=nil, yarnqueue=nil, alarms=nil, alarm=nil, scriptchange=nil, submit=nil, lastschedulercommittime=nil, normalizedjobstarttime=nil, recoverfreezestarttime=nil, sourceserver=nil, targetserver=nil, tasks=nil, creater=nil, dependencyrel=nil, dependencyworkflow=nil, eventlistenerconfig=nil, eventpublisherconfig=nil, dependencyconfiglist=nil, virtualtaskstatus=nil, recycletips=nil, recycleuser=nil, neworupdate=nil, params=nil, tasklinkinfo=nil, importresult=nil, importerrmsg=nil, contenttype=nil, taskautosubmit=nil, productname=nil, ownid=nil, userid=nil, tenantid=nil, updateuser=nil, updatetime=nil, updateuserid=nil, schedulerdesc=nil, resourcegroup=nil, versiondesc=nil, linkid=nil, userfileid=nil, sourceserviceid=nil, sourceservicetype=nil, targetserviceid=nil, targetservicetype=nil, paraminlist=nil, paramoutlist=nil, taskfolderid=nil, maxretryattempts=nil, resourcegroupname=nil, sourceservicename=nil, taskregisteroutputtable=nil, cycledependencyconfiglist=nil, warning=nil, scheduleruntype=nil, concurrentstrategy=nil, scheduletimezone=nil, templateid=nil, allowredotype=nil, bundleid=nil, bundleinfo=nil, allowdownstreamdependency=nil, dependencytriggerpolicy=nil, lastupdatetimestamp=nil, privilege=nil)
+        def initialize(taskid=nil, virtualtaskid=nil, virtualflag=nil, taskname=nil, workflowid=nil, realworkflowid=nil, workflowname=nil, folderid=nil, foldername=nil, createtime=nil, lastupdate=nil, status=nil, incharge=nil, inchargeid=nil, starttime=nil, endtime=nil, executionstarttime=nil, executionendtime=nil, projectid=nil, projectident=nil, projectname=nil, cycletype=nil, cyclestep=nil, crontabexpression=nil, delaytime=nil, startuptime=nil, retrywait=nil, retriable=nil, taskaction=nil, trylimit=nil, runpriority=nil, tasktype=nil, brokerip=nil, clusterid=nil, mindatetime=nil, maxdatetime=nil, executionttl=nil, selfdepend=nil, leftcoordinate=nil, topcoordinate=nil, taskext=nil, properties=nil, notes=nil, instanceinitstrategy=nil, yarnqueue=nil, alarms=nil, alarm=nil, scriptchange=nil, submit=nil, lastschedulercommittime=nil, normalizedjobstarttime=nil, recoverfreezestarttime=nil, sourceserver=nil, targetserver=nil, tasks=nil, creater=nil, dependencyrel=nil, dependencyworkflow=nil, eventlistenerconfig=nil, eventpublisherconfig=nil, dependencyconfiglist=nil, virtualtaskstatus=nil, recycletips=nil, recycleuser=nil, neworupdate=nil, params=nil, tasklinkinfo=nil, importresult=nil, importerrmsg=nil, contenttype=nil, taskautosubmit=nil, productname=nil, ownid=nil, userid=nil, tenantid=nil, updateuser=nil, updatetime=nil, updateuserid=nil, schedulerdesc=nil, resourcegroup=nil, versiondesc=nil, linkid=nil, userfileid=nil, sourceserviceid=nil, sourceservicetype=nil, targetserviceid=nil, targetservicetype=nil, paraminlist=nil, paramoutlist=nil, taskfolderid=nil, maxretryattempts=nil, resourcegroupname=nil, sourceservicename=nil, taskregisteroutputtable=nil, cycledependencyconfiglist=nil, warning=nil, scheduleruntype=nil, concurrentstrategy=nil, scheduletimezone=nil, templateid=nil, allowredotype=nil, bundleid=nil, bundleinfo=nil, allowdownstreamdependency=nil, dependencytriggerpolicy=nil, lastupdatetimestamp=nil, privilege=nil, minuteoffset=nil)
           @TaskId = taskid
           @VirtualTaskId = virtualtaskid
           @VirtualFlag = virtualflag
@@ -40821,6 +40824,7 @@ module TencentCloud
           @DependencyTriggerPolicy = dependencytriggerpolicy
           @LastUpdateTimestamp = lastupdatetimestamp
           @Privilege = privilege
+          @MinuteOffset = minuteoffset
         end
 
         def deserialize(params)
@@ -41000,6 +41004,7 @@ module TencentCloud
           @DependencyTriggerPolicy = params['DependencyTriggerPolicy']
           @LastUpdateTimestamp = params['LastUpdateTimestamp']
           @Privilege = params['Privilege']
+          @MinuteOffset = params['MinuteOffset']
         end
       end
 
@@ -45217,10 +45222,13 @@ module TencentCloud
         # @param Privilege: <p>用户对该资源的最高权限</p><p>枚举值：</p><ul><li>NO_PERMISSIONS： 无权限</li><li>CAN_VIEW： 只读权限</li><li>CAN_MANAGE： 管理权限</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Privilege: String
+        # @param MinuteOffset: <p>分钟任务相位偏移</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MinuteOffset: Integer
 
-        attr_accessor :ProjectId, :WorkflowId, :CreateTime, :Creater, :ModifyTime, :DelayTime, :StartupTime, :SelfDepend, :StartTime, :EndTime, :TaskAction, :CycleType, :CycleStep, :CrontabExpression, :ExecutionStartTime, :ExecutionEndTime, :InstanceInitStrategy, :DependencyWorkflow, :SchedulerDesc, :FirstSubmitTime, :LatestSubmitTime, :CalendarOpen, :CalendarName, :CalendarId, :ScheduleTimeZone, :Privilege
+        attr_accessor :ProjectId, :WorkflowId, :CreateTime, :Creater, :ModifyTime, :DelayTime, :StartupTime, :SelfDepend, :StartTime, :EndTime, :TaskAction, :CycleType, :CycleStep, :CrontabExpression, :ExecutionStartTime, :ExecutionEndTime, :InstanceInitStrategy, :DependencyWorkflow, :SchedulerDesc, :FirstSubmitTime, :LatestSubmitTime, :CalendarOpen, :CalendarName, :CalendarId, :ScheduleTimeZone, :Privilege, :MinuteOffset
 
-        def initialize(projectid=nil, workflowid=nil, createtime=nil, creater=nil, modifytime=nil, delaytime=nil, startuptime=nil, selfdepend=nil, starttime=nil, endtime=nil, taskaction=nil, cycletype=nil, cyclestep=nil, crontabexpression=nil, executionstarttime=nil, executionendtime=nil, instanceinitstrategy=nil, dependencyworkflow=nil, schedulerdesc=nil, firstsubmittime=nil, latestsubmittime=nil, calendaropen=nil, calendarname=nil, calendarid=nil, scheduletimezone=nil, privilege=nil)
+        def initialize(projectid=nil, workflowid=nil, createtime=nil, creater=nil, modifytime=nil, delaytime=nil, startuptime=nil, selfdepend=nil, starttime=nil, endtime=nil, taskaction=nil, cycletype=nil, cyclestep=nil, crontabexpression=nil, executionstarttime=nil, executionendtime=nil, instanceinitstrategy=nil, dependencyworkflow=nil, schedulerdesc=nil, firstsubmittime=nil, latestsubmittime=nil, calendaropen=nil, calendarname=nil, calendarid=nil, scheduletimezone=nil, privilege=nil, minuteoffset=nil)
           @ProjectId = projectid
           @WorkflowId = workflowid
           @CreateTime = createtime
@@ -45247,6 +45255,7 @@ module TencentCloud
           @CalendarId = calendarid
           @ScheduleTimeZone = scheduletimezone
           @Privilege = privilege
+          @MinuteOffset = minuteoffset
         end
 
         def deserialize(params)
@@ -45276,6 +45285,7 @@ module TencentCloud
           @CalendarId = params['CalendarId']
           @ScheduleTimeZone = params['ScheduleTimeZone']
           @Privilege = params['Privilege']
+          @MinuteOffset = params['MinuteOffset']
         end
       end
 

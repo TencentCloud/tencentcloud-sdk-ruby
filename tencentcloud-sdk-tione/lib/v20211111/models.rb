@@ -624,7 +624,7 @@ module TencentCloud
 
       # CreateDataSource请求参数结构体
       class CreateDataSourceRequest < TencentCloud::Common::AbstractModel
-        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
         # @type TiProjectId: String
         # @param Name: 数据源名称
         # @type Name: String
@@ -696,7 +696,7 @@ module TencentCloud
       class CreateDatasetRequest < TencentCloud::Common::AbstractModel
         # @param DatasetName: <p>数据集名称，不超过60个字符，仅支持中英文、数字、下划线&quot;_&quot;、短横&quot;-&quot;，只能以中英文、数字开头</p>
         # @type DatasetName: String
-        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
         # @type TiProjectId: String
         # @param DatasetType: <p>数据集类型</p><p>枚举值：</p><ul><li>TYPE_DATASET_IMAGE： 图片</li><li>TYPE_DATASET_LLM： 大模型</li><li>TYPE_DATASET_TABLE： 表格</li><li>TYPE_DATASET_OTHER： 其他</li></ul>
         # @type DatasetType: String
@@ -1238,7 +1238,7 @@ module TencentCloud
         # @type Type: String
         # @param StorageId: 存储实例ID
         # @type StorageId: String
-        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
         # @type TiProjectId: String
         # @param LimitMount: 限制开关是否开启，只有开启时才有限制，默认关闭
         # @type LimitMount: Boolean
@@ -1262,6 +1262,49 @@ module TencentCloud
 
       # CreateMountLimit返回参数结构体
       class CreateMountLimitResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateNotebookImage请求参数结构体
+      class CreateNotebookImageRequest < TencentCloud::Common::AbstractModel
+        # @param ImageInfo: 镜像信息
+        # @type ImageInfo: :class:`Tencentcloud::Tione.v20211111.models.ImageInfo`
+        # @param NotebookId: notebook id
+        # @type NotebookId: String
+        # @param Kernels: 要保存的kernel数组
+        # @type Kernels: Array
+
+        attr_accessor :ImageInfo, :NotebookId, :Kernels
+
+        def initialize(imageinfo=nil, notebookid=nil, kernels=nil)
+          @ImageInfo = imageinfo
+          @NotebookId = notebookid
+          @Kernels = kernels
+        end
+
+        def deserialize(params)
+          unless params['ImageInfo'].nil?
+            @ImageInfo = ImageInfo.new
+            @ImageInfo.deserialize(params['ImageInfo'])
+          end
+          @NotebookId = params['NotebookId']
+          @Kernels = params['Kernels']
+        end
+      end
+
+      # CreateNotebookImage返回参数结构体
+      class CreateNotebookImageResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -1485,6 +1528,8 @@ module TencentCloud
         # @type ImportMethod: String
         # @param ReasoningEnvironmentSource: 推理环境来源（SYSTEM/CUSTOM）
         # @type ReasoningEnvironmentSource: String
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
+        # @type TiProjectId: String
         # @param TrainingModelName: 模型名称，不超过60个字符，仅支持中英文、数字、下划线"_"、短横"-"，只能以中英文、数字开头
         # @type TrainingModelName: String
         # @param Tags: 标签配置
@@ -1536,11 +1581,12 @@ module TencentCloud
         # @param IsQAT: 是否QAT模型
         # @type IsQAT: Boolean
 
-        attr_accessor :ImportMethod, :ReasoningEnvironmentSource, :TrainingModelName, :Tags, :TrainingJobName, :TrainingModelCosPath, :AlgorithmFramework, :ReasoningEnvironment, :TrainingModelIndex, :TrainingModelVersion, :ReasoningImageInfo, :ModelMoveMode, :TrainingJobId, :TrainingModelId, :ModelOutputPath, :TrainingModelSource, :TrainingPreference, :AutoMLTaskId, :TrainingJobVersion, :ModelVersionType, :ModelFormat, :ReasoningEnvironmentId, :AutoClean, :MaxReservedModels, :ModelCleanPeriod, :IsQAT
+        attr_accessor :ImportMethod, :ReasoningEnvironmentSource, :TiProjectId, :TrainingModelName, :Tags, :TrainingJobName, :TrainingModelCosPath, :AlgorithmFramework, :ReasoningEnvironment, :TrainingModelIndex, :TrainingModelVersion, :ReasoningImageInfo, :ModelMoveMode, :TrainingJobId, :TrainingModelId, :ModelOutputPath, :TrainingModelSource, :TrainingPreference, :AutoMLTaskId, :TrainingJobVersion, :ModelVersionType, :ModelFormat, :ReasoningEnvironmentId, :AutoClean, :MaxReservedModels, :ModelCleanPeriod, :IsQAT
 
-        def initialize(importmethod=nil, reasoningenvironmentsource=nil, trainingmodelname=nil, tags=nil, trainingjobname=nil, trainingmodelcospath=nil, algorithmframework=nil, reasoningenvironment=nil, trainingmodelindex=nil, trainingmodelversion=nil, reasoningimageinfo=nil, modelmovemode=nil, trainingjobid=nil, trainingmodelid=nil, modeloutputpath=nil, trainingmodelsource=nil, trainingpreference=nil, automltaskid=nil, trainingjobversion=nil, modelversiontype=nil, modelformat=nil, reasoningenvironmentid=nil, autoclean=nil, maxreservedmodels=nil, modelcleanperiod=nil, isqat=nil)
+        def initialize(importmethod=nil, reasoningenvironmentsource=nil, tiprojectid=nil, trainingmodelname=nil, tags=nil, trainingjobname=nil, trainingmodelcospath=nil, algorithmframework=nil, reasoningenvironment=nil, trainingmodelindex=nil, trainingmodelversion=nil, reasoningimageinfo=nil, modelmovemode=nil, trainingjobid=nil, trainingmodelid=nil, modeloutputpath=nil, trainingmodelsource=nil, trainingpreference=nil, automltaskid=nil, trainingjobversion=nil, modelversiontype=nil, modelformat=nil, reasoningenvironmentid=nil, autoclean=nil, maxreservedmodels=nil, modelcleanperiod=nil, isqat=nil)
           @ImportMethod = importmethod
           @ReasoningEnvironmentSource = reasoningenvironmentsource
+          @TiProjectId = tiprojectid
           @TrainingModelName = trainingmodelname
           @Tags = tags
           @TrainingJobName = trainingjobname
@@ -1570,6 +1616,7 @@ module TencentCloud
         def deserialize(params)
           @ImportMethod = params['ImportMethod']
           @ReasoningEnvironmentSource = params['ReasoningEnvironmentSource']
+          @TiProjectId = params['TiProjectId']
           @TrainingModelName = params['TrainingModelName']
           unless params['Tags'].nil?
             @Tags = []
@@ -2580,7 +2627,7 @@ module TencentCloud
 
       # DeleteDataSource请求参数结构体
       class DeleteDataSourceRequest < TencentCloud::Common::AbstractModel
-        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
         # @type TiProjectId: String
         # @param Id: 数据源ID
         # @type Id: String
@@ -2620,7 +2667,7 @@ module TencentCloud
         # @type DatasetId: String
         # @param DeleteLabelEnable: <p>是否删除cos标签文件</p>
         # @type DeleteLabelEnable: Boolean
-        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
         # @type TiProjectId: String
 
         attr_accessor :DatasetId, :DeleteLabelEnable, :TiProjectId
@@ -2889,21 +2936,25 @@ module TencentCloud
       class DeleteTrainingModelRequest < TencentCloud::Common::AbstractModel
         # @param TrainingModelId: 模型ID
         # @type TrainingModelId: String
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
+        # @type TiProjectId: String
         # @param EnableDeleteCos: 是否同步清理cos
         # @type EnableDeleteCos: Boolean
         # @param ModelVersionType: 删除模型类型，枚举值：NORMAL 普通，ACCELERATE 加速，不传则删除所有
         # @type ModelVersionType: String
 
-        attr_accessor :TrainingModelId, :EnableDeleteCos, :ModelVersionType
+        attr_accessor :TrainingModelId, :TiProjectId, :EnableDeleteCos, :ModelVersionType
 
-        def initialize(trainingmodelid=nil, enabledeletecos=nil, modelversiontype=nil)
+        def initialize(trainingmodelid=nil, tiprojectid=nil, enabledeletecos=nil, modelversiontype=nil)
           @TrainingModelId = trainingmodelid
+          @TiProjectId = tiprojectid
           @EnableDeleteCos = enabledeletecos
           @ModelVersionType = modelversiontype
         end
 
         def deserialize(params)
           @TrainingModelId = params['TrainingModelId']
+          @TiProjectId = params['TiProjectId']
           @EnableDeleteCos = params['EnableDeleteCos']
           @ModelVersionType = params['ModelVersionType']
         end
@@ -2929,18 +2980,22 @@ module TencentCloud
       class DeleteTrainingModelVersionRequest < TencentCloud::Common::AbstractModel
         # @param TrainingModelVersionId: 模型版本ID
         # @type TrainingModelVersionId: String
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
+        # @type TiProjectId: String
         # @param EnableDeleteCos: 是否同步清理cos
         # @type EnableDeleteCos: Boolean
 
-        attr_accessor :TrainingModelVersionId, :EnableDeleteCos
+        attr_accessor :TrainingModelVersionId, :TiProjectId, :EnableDeleteCos
 
-        def initialize(trainingmodelversionid=nil, enabledeletecos=nil)
+        def initialize(trainingmodelversionid=nil, tiprojectid=nil, enabledeletecos=nil)
           @TrainingModelVersionId = trainingmodelversionid
+          @TiProjectId = tiprojectid
           @EnableDeleteCos = enabledeletecos
         end
 
         def deserialize(params)
           @TrainingModelVersionId = params['TrainingModelVersionId']
+          @TiProjectId = params['TiProjectId']
           @EnableDeleteCos = params['EnableDeleteCos']
         end
       end
@@ -3003,7 +3058,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 页面大小，默认为10
         # @type Limit: Integer
-        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
         # @type TiProjectId: String
         # @param Filters: 过滤条件数组，支持数据集ID，标注场景、任务状态、数据集名称、人物名称的过滤，后面两个支持模糊查询
         # @type Filters: Array
@@ -3500,7 +3555,7 @@ module TencentCloud
 
       # DescribeDataSource请求参数结构体
       class DescribeDataSourceRequest < TencentCloud::Common::AbstractModel
-        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
         # @type TiProjectId: String
         # @param Id: 数据源id
         # @type Id: String
@@ -3543,7 +3598,7 @@ module TencentCloud
 
       # DescribeDataSources请求参数结构体
       class DescribeDataSourcesRequest < TencentCloud::Common::AbstractModel
-        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
         # @type TiProjectId: String
         # @param Filters: 过滤条件
         # @type Filters: Array
@@ -3628,7 +3683,7 @@ module TencentCloud
 
       # DescribeDatasets请求参数结构体
       class DescribeDatasetsRequest < TencentCloud::Common::AbstractModel
-        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
         # @type TiProjectId: String
         # @param DatasetIds: <p>数据集id列表</p>
         # @type DatasetIds: Array
@@ -4047,32 +4102,36 @@ module TencentCloud
 
       # DescribeModelAccelerateTask请求参数结构体
       class DescribeModelAccelerateTaskRequest < TencentCloud::Common::AbstractModel
-        # @param ModelAccTaskId: 模型加速任务ID
+        # @param ModelAccTaskId: <p>模型加速任务ID</p>
         # @type ModelAccTaskId: String
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
+        # @type TiProjectId: String
 
-        attr_accessor :ModelAccTaskId
+        attr_accessor :ModelAccTaskId, :TiProjectId
 
-        def initialize(modelacctaskid=nil)
+        def initialize(modelacctaskid=nil, tiprojectid=nil)
           @ModelAccTaskId = modelacctaskid
+          @TiProjectId = tiprojectid
         end
 
         def deserialize(params)
           @ModelAccTaskId = params['ModelAccTaskId']
+          @TiProjectId = params['TiProjectId']
         end
       end
 
       # DescribeModelAccelerateTask返回参数结构体
       class DescribeModelAccelerateTaskResponse < TencentCloud::Common::AbstractModel
-        # @param ModelAccelerateTask: 模型加速任务详情
+        # @param ModelAccelerateTask: <p>模型加速任务详情</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModelAccelerateTask: :class:`Tencentcloud::Tione.v20211111.models.ModelAccelerateTask`
-        # @param ModelAccRuntimeInSecond: 模型加速时长，单位s
+        # @param ModelAccRuntimeInSecond: <p>模型加速时长，单位s</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModelAccRuntimeInSecond: Integer
-        # @param ModelAccStartTime: 模型加速任务开始时间
+        # @param ModelAccStartTime: <p>模型加速任务开始时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModelAccStartTime: String
-        # @param ModelAccEndTime: 模型加速任务结束时间
+        # @param ModelAccEndTime: <p>模型加速任务结束时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModelAccEndTime: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -4102,6 +4161,8 @@ module TencentCloud
 
       # DescribeModelAccelerateVersions请求参数结构体
       class DescribeModelAccelerateVersionsRequest < TencentCloud::Common::AbstractModel
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
+        # @type TiProjectId: String
         # @param Filters: 过滤条件
         #     Filter.Name: 枚举值: ModelJobName (任务名称)|TrainingModelVersionId (模型版本id)
         #     Filter.Values: 当长度为1时，支持模糊查询; 不为1时，精确查询
@@ -4118,9 +4179,10 @@ module TencentCloud
         # @param TrainingModelId: 模型ID
         # @type TrainingModelId: String
 
-        attr_accessor :Filters, :OrderField, :Order, :Offset, :Limit, :TrainingModelId
+        attr_accessor :TiProjectId, :Filters, :OrderField, :Order, :Offset, :Limit, :TrainingModelId
 
-        def initialize(filters=nil, orderfield=nil, order=nil, offset=nil, limit=nil, trainingmodelid=nil)
+        def initialize(tiprojectid=nil, filters=nil, orderfield=nil, order=nil, offset=nil, limit=nil, trainingmodelid=nil)
+          @TiProjectId = tiprojectid
           @Filters = filters
           @OrderField = orderfield
           @Order = order
@@ -4130,6 +4192,7 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @TiProjectId = params['TiProjectId']
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
@@ -4523,7 +4586,7 @@ module TencentCloud
       class DescribeMountInstanceRequest < TencentCloud::Common::AbstractModel
         # @param Type: 数据源类型英文名
         # @type Type: String
-        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
         # @type TiProjectId: String
         # @param StorageId: 存储实例ID
         # @type StorageId: String
@@ -4570,7 +4633,7 @@ module TencentCloud
       class DescribeMountInstancesRequest < TencentCloud::Common::AbstractModel
         # @param Type: 数据源类型英文名
         # @type Type: String
-        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
         # @type TiProjectId: String
         # @param Offset: 偏移量
         # @type Offset: Integer
@@ -4627,7 +4690,7 @@ module TencentCloud
 
       # DescribeMountLimits请求参数结构体
       class DescribeMountLimitsRequest < TencentCloud::Common::AbstractModel
-        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
         # @type TiProjectId: String
         # @param Filters: 过滤条件
         # @type Filters: Array
@@ -4840,6 +4903,8 @@ module TencentCloud
 
       # DescribePlatformImages请求参数结构体
       class DescribePlatformImagesRequest < TencentCloud::Common::AbstractModel
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
+        # @type TiProjectId: String
         # @param Filters: 过滤器,  Name支持ImageId/ImageName/SupportDataPipeline/AllowSaveAllContent/ImageRange，其中ImageRange支持枚举值Train,Inference,Notebook
         # @type Filters: Array
         # @param Offset: 偏移信息
@@ -4847,15 +4912,17 @@ module TencentCloud
         # @param Limit: 返回数量, 默认100
         # @type Limit: Integer
 
-        attr_accessor :Filters, :Offset, :Limit
+        attr_accessor :TiProjectId, :Filters, :Offset, :Limit
 
-        def initialize(filters=nil, offset=nil, limit=nil)
+        def initialize(tiprojectid=nil, filters=nil, offset=nil, limit=nil)
+          @TiProjectId = tiprojectid
           @Filters = filters
           @Offset = offset
           @Limit = limit
         end
 
         def deserialize(params)
+          @TiProjectId = params['TiProjectId']
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
@@ -4902,7 +4969,7 @@ module TencentCloud
 
       # DescribePresetImageList请求参数结构体
       class DescribePresetImageListRequest < TencentCloud::Common::AbstractModel
-        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
         # @type TiProjectId: String
         # @param Filters: <p>业务过滤表达式</p>
         # @type Filters: Array
@@ -5118,23 +5185,27 @@ module TencentCloud
 
       # DescribeTrainingModelVersion请求参数结构体
       class DescribeTrainingModelVersionRequest < TencentCloud::Common::AbstractModel
-        # @param TrainingModelVersionId: 模型版本ID
+        # @param TrainingModelVersionId: <p>模型版本ID</p>
         # @type TrainingModelVersionId: String
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
+        # @type TiProjectId: String
 
-        attr_accessor :TrainingModelVersionId
+        attr_accessor :TrainingModelVersionId, :TiProjectId
 
-        def initialize(trainingmodelversionid=nil)
+        def initialize(trainingmodelversionid=nil, tiprojectid=nil)
           @TrainingModelVersionId = trainingmodelversionid
+          @TiProjectId = tiprojectid
         end
 
         def deserialize(params)
           @TrainingModelVersionId = params['TrainingModelVersionId']
+          @TiProjectId = params['TiProjectId']
         end
       end
 
       # DescribeTrainingModelVersion返回参数结构体
       class DescribeTrainingModelVersionResponse < TencentCloud::Common::AbstractModel
-        # @param TrainingModelVersion: 模型版本
+        # @param TrainingModelVersion: <p>模型版本</p>
         # @type TrainingModelVersion: :class:`Tencentcloud::Tione.v20211111.models.TrainingModelVersionDTO`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5157,28 +5228,24 @@ module TencentCloud
 
       # DescribeTrainingModelVersions请求参数结构体
       class DescribeTrainingModelVersionsRequest < TencentCloud::Common::AbstractModel
-        # @param TrainingModelId: 模型ID
+        # @param TrainingModelId: <p>模型ID</p>
         # @type TrainingModelId: String
-        # @param Filters: 过滤条件
-        # Filter.Name: 枚举值:
-        #     TrainingModelVersionId (模型版本ID)
-        #     ModelVersionType (模型版本类型) 其值支持: NORMAL(通用) ACCELERATE (加速)
-        #     ModelFormat（模型格式）其值Filter.Values支持：
-        # TORCH_SCRIPT/PYTORCH/DETECTRON2/SAVED_MODEL/FROZEN_GRAPH/PMML
-        #     AlgorithmFramework (算法框架) 其值Filter.Values支持：TENSORFLOW/PYTORCH/DETECTRON2
-        # Filter.Values: 当长度为1时，支持模糊查询; 不为1时，精确查询
-        # 每次请求的Filters的上限为10，Filter.Values的上限为100
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
+        # @type TiProjectId: String
+        # @param Filters: <p>过滤条件<br>Filter.Name: 枚举值:<br>    TrainingModelVersionId (模型版本ID)<br>    ModelVersionType (模型版本类型) 其值支持: NORMAL(通用) ACCELERATE (加速)<br>    ModelFormat（模型格式）其值Filter.Values支持：<br>TORCH_SCRIPT/PYTORCH/DETECTRON2/SAVED_MODEL/FROZEN_GRAPH/PMML<br>    AlgorithmFramework (算法框架) 其值Filter.Values支持：TENSORFLOW/PYTORCH/DETECTRON2<br>Filter.Values: 当长度为1时，支持模糊查询; 不为1时，精确查询<br>每次请求的Filters的上限为10，Filter.Values的上限为100</p>
         # @type Filters: Array
 
-        attr_accessor :TrainingModelId, :Filters
+        attr_accessor :TrainingModelId, :TiProjectId, :Filters
 
-        def initialize(trainingmodelid=nil, filters=nil)
+        def initialize(trainingmodelid=nil, tiprojectid=nil, filters=nil)
           @TrainingModelId = trainingmodelid
+          @TiProjectId = tiprojectid
           @Filters = filters
         end
 
         def deserialize(params)
           @TrainingModelId = params['TrainingModelId']
+          @TiProjectId = params['TiProjectId']
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
@@ -5192,7 +5259,7 @@ module TencentCloud
 
       # DescribeTrainingModelVersions返回参数结构体
       class DescribeTrainingModelVersionsResponse < TencentCloud::Common::AbstractModel
-        # @param TrainingModelVersions: 模型版本列表
+        # @param TrainingModelVersions: <p>模型版本列表</p>
         # @type TrainingModelVersions: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -11060,26 +11127,30 @@ module TencentCloud
 
       # StopModelAccelerateTask请求参数结构体
       class StopModelAccelerateTaskRequest < TencentCloud::Common::AbstractModel
-        # @param ModelAccTaskId: 模型加速任务ID
+        # @param ModelAccTaskId: <p>模型加速任务ID</p>
         # @type ModelAccTaskId: String
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
+        # @type TiProjectId: String
 
-        attr_accessor :ModelAccTaskId
+        attr_accessor :ModelAccTaskId, :TiProjectId
 
-        def initialize(modelacctaskid=nil)
+        def initialize(modelacctaskid=nil, tiprojectid=nil)
           @ModelAccTaskId = modelacctaskid
+          @TiProjectId = tiprojectid
         end
 
         def deserialize(params)
           @ModelAccTaskId = params['ModelAccTaskId']
+          @TiProjectId = params['TiProjectId']
         end
       end
 
       # StopModelAccelerateTask返回参数结构体
       class StopModelAccelerateTaskResponse < TencentCloud::Common::AbstractModel
-        # @param ModelAccTaskId: 模型加速任务ID
+        # @param ModelAccTaskId: <p>模型加速任务ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModelAccTaskId: String
-        # @param AsyncTaskId: 异步任务ID
+        # @param AsyncTaskId: <p>异步任务ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AsyncTaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -11983,7 +12054,7 @@ module TencentCloud
 
       # UpdateDataSource请求参数结构体
       class UpdateDataSourceRequest < TencentCloud::Common::AbstractModel
-        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
         # @type TiProjectId: String
         # @param Id: 数据源ID
         # @type Id: String
@@ -12040,7 +12111,7 @@ module TencentCloud
         # @type StorageId: String
         # @param LimitMount: 限制开关是否开启，只有开启时才有限制，默认关闭
         # @type LimitMount: Boolean
-        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
         # @type TiProjectId: String
 
         attr_accessor :Type, :StorageId, :LimitMount, :TiProjectId

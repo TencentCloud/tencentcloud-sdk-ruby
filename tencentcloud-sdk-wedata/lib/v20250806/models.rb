@@ -2901,25 +2901,27 @@ module TencentCloud
         # @type DependencyTriggerPolicy: String
         # @param AllowDownstreamDependency: <p>是否允许下游依赖 1允许 0不允许</p><p>取值范围：[0, 1]</p><p>默认值：1</p>
         # @type AllowDownstreamDependency: Integer
+        # @param MinuteOffset: <p>分钟任务相位偏移</p>
+        # @type MinuteOffset: Integer
 
-        attr_accessor :CycleType, :ScheduleTimeZone, :CrontabExpression, :StartTime, :EndTime, :ExecutionStartTime, :ExecutionEndTime, :CalendarOpen, :CalendarId, :SelfDepend, :UpstreamDependencyConfigList, :EventListenerList, :AllowRedoType, :ParamTaskOutList, :ParamTaskInList, :TaskOutputRegistryList, :InitStrategy, :ScheduleRunType, :RunPriority, :RetryWait, :MaxRetryAttempts, :ExecutionTTL, :WaitExecutionTotalTTL, :ScheduleType, :RunPriorityType, :RetryWaitMinute, :MaxRetryNumber, :ExecutionTTLMinute, :WaitExecutionTotalTTLMinute, :DependencyTriggerPolicy, :AllowDownstreamDependency
+        attr_accessor :CycleType, :ScheduleTimeZone, :CrontabExpression, :StartTime, :EndTime, :ExecutionStartTime, :ExecutionEndTime, :CalendarOpen, :CalendarId, :SelfDepend, :UpstreamDependencyConfigList, :EventListenerList, :AllowRedoType, :ParamTaskOutList, :ParamTaskInList, :TaskOutputRegistryList, :InitStrategy, :ScheduleRunType, :RunPriority, :RetryWait, :MaxRetryAttempts, :ExecutionTTL, :WaitExecutionTotalTTL, :ScheduleType, :RunPriorityType, :RetryWaitMinute, :MaxRetryNumber, :ExecutionTTLMinute, :WaitExecutionTotalTTLMinute, :DependencyTriggerPolicy, :AllowDownstreamDependency, :MinuteOffset
         extend Gem::Deprecate
-        deprecate :ScheduleRunType, :none, 2026, 9
-        deprecate :ScheduleRunType=, :none, 2026, 9
-        deprecate :RunPriority, :none, 2026, 9
-        deprecate :RunPriority=, :none, 2026, 9
-        deprecate :RetryWait, :none, 2026, 9
-        deprecate :RetryWait=, :none, 2026, 9
-        deprecate :MaxRetryAttempts, :none, 2026, 9
-        deprecate :MaxRetryAttempts=, :none, 2026, 9
-        deprecate :ExecutionTTL, :none, 2026, 9
-        deprecate :ExecutionTTL=, :none, 2026, 9
-        deprecate :WaitExecutionTotalTTL, :none, 2026, 9
-        deprecate :WaitExecutionTotalTTL=, :none, 2026, 9
-        deprecate :AllowDownstreamDependency, :none, 2026, 9
-        deprecate :AllowDownstreamDependency=, :none, 2026, 9
+        deprecate :ScheduleRunType, :none, 2026, 10
+        deprecate :ScheduleRunType=, :none, 2026, 10
+        deprecate :RunPriority, :none, 2026, 10
+        deprecate :RunPriority=, :none, 2026, 10
+        deprecate :RetryWait, :none, 2026, 10
+        deprecate :RetryWait=, :none, 2026, 10
+        deprecate :MaxRetryAttempts, :none, 2026, 10
+        deprecate :MaxRetryAttempts=, :none, 2026, 10
+        deprecate :ExecutionTTL, :none, 2026, 10
+        deprecate :ExecutionTTL=, :none, 2026, 10
+        deprecate :WaitExecutionTotalTTL, :none, 2026, 10
+        deprecate :WaitExecutionTotalTTL=, :none, 2026, 10
+        deprecate :AllowDownstreamDependency, :none, 2026, 10
+        deprecate :AllowDownstreamDependency=, :none, 2026, 10
 
-        def initialize(cycletype=nil, scheduletimezone=nil, crontabexpression=nil, starttime=nil, endtime=nil, executionstarttime=nil, executionendtime=nil, calendaropen=nil, calendarid=nil, selfdepend=nil, upstreamdependencyconfiglist=nil, eventlistenerlist=nil, allowredotype=nil, paramtaskoutlist=nil, paramtaskinlist=nil, taskoutputregistrylist=nil, initstrategy=nil, scheduleruntype=nil, runpriority=nil, retrywait=nil, maxretryattempts=nil, executionttl=nil, waitexecutiontotalttl=nil, scheduletype=nil, runprioritytype=nil, retrywaitminute=nil, maxretrynumber=nil, executionttlminute=nil, waitexecutiontotalttlminute=nil, dependencytriggerpolicy=nil, allowdownstreamdependency=nil)
+        def initialize(cycletype=nil, scheduletimezone=nil, crontabexpression=nil, starttime=nil, endtime=nil, executionstarttime=nil, executionendtime=nil, calendaropen=nil, calendarid=nil, selfdepend=nil, upstreamdependencyconfiglist=nil, eventlistenerlist=nil, allowredotype=nil, paramtaskoutlist=nil, paramtaskinlist=nil, taskoutputregistrylist=nil, initstrategy=nil, scheduleruntype=nil, runpriority=nil, retrywait=nil, maxretryattempts=nil, executionttl=nil, waitexecutiontotalttl=nil, scheduletype=nil, runprioritytype=nil, retrywaitminute=nil, maxretrynumber=nil, executionttlminute=nil, waitexecutiontotalttlminute=nil, dependencytriggerpolicy=nil, allowdownstreamdependency=nil, minuteoffset=nil)
           @CycleType = cycletype
           @ScheduleTimeZone = scheduletimezone
           @CrontabExpression = crontabexpression
@@ -2951,6 +2953,7 @@ module TencentCloud
           @WaitExecutionTotalTTLMinute = waitexecutiontotalttlminute
           @DependencyTriggerPolicy = dependencytriggerpolicy
           @AllowDownstreamDependency = allowdownstreamdependency
+          @MinuteOffset = minuteoffset
         end
 
         def deserialize(params)
@@ -3020,6 +3023,7 @@ module TencentCloud
           @WaitExecutionTotalTTLMinute = params['WaitExecutionTotalTTLMinute']
           @DependencyTriggerPolicy = params['DependencyTriggerPolicy']
           @AllowDownstreamDependency = params['AllowDownstreamDependency']
+          @MinuteOffset = params['MinuteOffset']
         end
       end
 
@@ -20783,25 +20787,28 @@ module TencentCloud
         # @param AllowDownstreamDependency: <p>是否允许下游依赖 1允许 0不允许</p><p>取值范围：[0, 1]</p><p>默认值：1</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AllowDownstreamDependency: Integer
+        # @param MinuteOffset: <p>分钟任务相位偏移</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MinuteOffset: Integer
 
-        attr_accessor :CycleType, :ScheduleTimeZone, :CrontabExpression, :StartTime, :EndTime, :ExecutionStartTime, :ExecutionEndTime, :CalendarOpen, :CalendarId, :CalendarName, :SelfDepend, :UpstreamDependencyConfigList, :DownstreamDependencyConfigList, :EventListenerList, :AllowRedoType, :ParamTaskOutList, :ParamTaskInList, :TaskOutputRegistryList, :InitStrategy, :ScheduleRunType, :DownStreamDependencyConfigList, :RunPriority, :RetryWait, :MaxRetryAttempts, :ExecutionTTL, :WaitExecutionTotalTTL, :ScheduleType, :RunPriorityType, :RetryWaitMinute, :MaxRetryNumber, :ExecutionTTLMinute, :WaitExecutionTotalTTLMinute, :DependencyTriggerPolicy, :AllowDownstreamDependency
+        attr_accessor :CycleType, :ScheduleTimeZone, :CrontabExpression, :StartTime, :EndTime, :ExecutionStartTime, :ExecutionEndTime, :CalendarOpen, :CalendarId, :CalendarName, :SelfDepend, :UpstreamDependencyConfigList, :DownstreamDependencyConfigList, :EventListenerList, :AllowRedoType, :ParamTaskOutList, :ParamTaskInList, :TaskOutputRegistryList, :InitStrategy, :ScheduleRunType, :DownStreamDependencyConfigList, :RunPriority, :RetryWait, :MaxRetryAttempts, :ExecutionTTL, :WaitExecutionTotalTTL, :ScheduleType, :RunPriorityType, :RetryWaitMinute, :MaxRetryNumber, :ExecutionTTLMinute, :WaitExecutionTotalTTLMinute, :DependencyTriggerPolicy, :AllowDownstreamDependency, :MinuteOffset
         extend Gem::Deprecate
-        deprecate :ScheduleRunType, :none, 2026, 9
-        deprecate :ScheduleRunType=, :none, 2026, 9
-        deprecate :DownStreamDependencyConfigList, :none, 2026, 9
-        deprecate :DownStreamDependencyConfigList=, :none, 2026, 9
-        deprecate :RunPriority, :none, 2026, 9
-        deprecate :RunPriority=, :none, 2026, 9
-        deprecate :RetryWait, :none, 2026, 9
-        deprecate :RetryWait=, :none, 2026, 9
-        deprecate :MaxRetryAttempts, :none, 2026, 9
-        deprecate :MaxRetryAttempts=, :none, 2026, 9
-        deprecate :ExecutionTTL, :none, 2026, 9
-        deprecate :ExecutionTTL=, :none, 2026, 9
-        deprecate :WaitExecutionTotalTTL, :none, 2026, 9
-        deprecate :WaitExecutionTotalTTL=, :none, 2026, 9
+        deprecate :ScheduleRunType, :none, 2026, 10
+        deprecate :ScheduleRunType=, :none, 2026, 10
+        deprecate :DownStreamDependencyConfigList, :none, 2026, 10
+        deprecate :DownStreamDependencyConfigList=, :none, 2026, 10
+        deprecate :RunPriority, :none, 2026, 10
+        deprecate :RunPriority=, :none, 2026, 10
+        deprecate :RetryWait, :none, 2026, 10
+        deprecate :RetryWait=, :none, 2026, 10
+        deprecate :MaxRetryAttempts, :none, 2026, 10
+        deprecate :MaxRetryAttempts=, :none, 2026, 10
+        deprecate :ExecutionTTL, :none, 2026, 10
+        deprecate :ExecutionTTL=, :none, 2026, 10
+        deprecate :WaitExecutionTotalTTL, :none, 2026, 10
+        deprecate :WaitExecutionTotalTTL=, :none, 2026, 10
 
-        def initialize(cycletype=nil, scheduletimezone=nil, crontabexpression=nil, starttime=nil, endtime=nil, executionstarttime=nil, executionendtime=nil, calendaropen=nil, calendarid=nil, calendarname=nil, selfdepend=nil, upstreamdependencyconfiglist=nil, downstreamdependencyconfiglist=nil, eventlistenerlist=nil, allowredotype=nil, paramtaskoutlist=nil, paramtaskinlist=nil, taskoutputregistrylist=nil, initstrategy=nil, scheduleruntype=nil, runpriority=nil, retrywait=nil, maxretryattempts=nil, executionttl=nil, waitexecutiontotalttl=nil, scheduletype=nil, runprioritytype=nil, retrywaitminute=nil, maxretrynumber=nil, executionttlminute=nil, waitexecutiontotalttlminute=nil, dependencytriggerpolicy=nil, allowdownstreamdependency=nil)
+        def initialize(cycletype=nil, scheduletimezone=nil, crontabexpression=nil, starttime=nil, endtime=nil, executionstarttime=nil, executionendtime=nil, calendaropen=nil, calendarid=nil, calendarname=nil, selfdepend=nil, upstreamdependencyconfiglist=nil, downstreamdependencyconfiglist=nil, eventlistenerlist=nil, allowredotype=nil, paramtaskoutlist=nil, paramtaskinlist=nil, taskoutputregistrylist=nil, initstrategy=nil, scheduleruntype=nil, runpriority=nil, retrywait=nil, maxretryattempts=nil, executionttl=nil, waitexecutiontotalttl=nil, scheduletype=nil, runprioritytype=nil, retrywaitminute=nil, maxretrynumber=nil, executionttlminute=nil, waitexecutiontotalttlminute=nil, dependencytriggerpolicy=nil, allowdownstreamdependency=nil, minuteoffset=nil)
           @CycleType = cycletype
           @ScheduleTimeZone = scheduletimezone
           @CrontabExpression = crontabexpression
@@ -20835,6 +20842,7 @@ module TencentCloud
           @WaitExecutionTotalTTLMinute = waitexecutiontotalttlminute
           @DependencyTriggerPolicy = dependencytriggerpolicy
           @AllowDownstreamDependency = allowdownstreamdependency
+          @MinuteOffset = minuteoffset
         end
 
         def deserialize(params)
@@ -20913,6 +20921,7 @@ module TencentCloud
           @WaitExecutionTotalTTLMinute = params['WaitExecutionTotalTTLMinute']
           @DependencyTriggerPolicy = params['DependencyTriggerPolicy']
           @AllowDownstreamDependency = params['AllowDownstreamDependency']
+          @MinuteOffset = params['MinuteOffset']
         end
       end
 
@@ -24899,54 +24908,49 @@ module TencentCloud
 
       # 工作流统一调度出参
       class WorkflowSchedulerConfiguration < TencentCloud::Common::AbstractModel
-        # @param ScheduleTimeZone: 时区
+        # @param ScheduleTimeZone: <p>时区</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScheduleTimeZone: String
-        # @param CycleType: 周期类型：支持的类型为
-        # ONEOFF_CYCLE: 一次性
-        # YEAR_CYCLE: 年
-        # MONTH_CYCLE: 月
-        # WEEK_CYCLE: 周
-        # DAY_CYCLE: 天
-        # HOUR_CYCLE: 小时
-        # MINUTE_CYCLE: 分钟
-        # CRONTAB_CYCLE: crontab表达式类型
+        # @param CycleType: <p>周期类型：支持的类型为<br>ONEOFF_CYCLE: 一次性<br>YEAR_CYCLE: 年<br>MONTH_CYCLE: 月<br>WEEK_CYCLE: 周<br>DAY_CYCLE: 天<br>HOUR_CYCLE: 小时<br>MINUTE_CYCLE: 分钟<br>CRONTAB_CYCLE: crontab表达式类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CycleType: String
-        # @param SelfDepend: 自依赖, 默认值 serial, 取值为：parallel(并行), serial(串行), orderly(有序)
+        # @param SelfDepend: <p>自依赖, 默认值 serial, 取值为：parallel(并行), serial(串行), orderly(有序)</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SelfDepend: String
-        # @param StartTime: 生效开始时间
+        # @param StartTime: <p>生效开始时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
-        # @param EndTime: 生效结束时间
+        # @param EndTime: <p>生效结束时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
-        # @param DependencyWorkflow: 工作流依赖，yes or no
+        # @param DependencyWorkflow: <p>工作流依赖，yes or no</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DependencyWorkflow: String
-        # @param ExecutionStartTime: 执行时间左闭区间，示例：00:00
+        # @param ExecutionStartTime: <p>执行时间左闭区间，示例：00:00</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecutionStartTime: String
-        # @param ExecutionEndTime: 执行时间右闭区间，示例：23:59
+        # @param ExecutionEndTime: <p>执行时间右闭区间，示例：23:59</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecutionEndTime: String
-        # @param CrontabExpression: cron表达式
+        # @param CrontabExpression: <p>cron表达式</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CrontabExpression: String
-        # @param CalendarOpen: 是否开启日历调度 1 开启 0关闭
+        # @param CalendarOpen: <p>是否开启日历调度 1 开启 0关闭</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CalendarOpen: String
-        # @param CalendarName: 日历名称
+        # @param CalendarName: <p>日历名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CalendarName: String
-        # @param CalendarId: 日历id
+        # @param CalendarId: <p>日历id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CalendarId: String
+        # @param MinuteOffset: <p>分钟任务相位偏移</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MinuteOffset: Integer
 
-        attr_accessor :ScheduleTimeZone, :CycleType, :SelfDepend, :StartTime, :EndTime, :DependencyWorkflow, :ExecutionStartTime, :ExecutionEndTime, :CrontabExpression, :CalendarOpen, :CalendarName, :CalendarId
+        attr_accessor :ScheduleTimeZone, :CycleType, :SelfDepend, :StartTime, :EndTime, :DependencyWorkflow, :ExecutionStartTime, :ExecutionEndTime, :CrontabExpression, :CalendarOpen, :CalendarName, :CalendarId, :MinuteOffset
 
-        def initialize(scheduletimezone=nil, cycletype=nil, selfdepend=nil, starttime=nil, endtime=nil, dependencyworkflow=nil, executionstarttime=nil, executionendtime=nil, crontabexpression=nil, calendaropen=nil, calendarname=nil, calendarid=nil)
+        def initialize(scheduletimezone=nil, cycletype=nil, selfdepend=nil, starttime=nil, endtime=nil, dependencyworkflow=nil, executionstarttime=nil, executionendtime=nil, crontabexpression=nil, calendaropen=nil, calendarname=nil, calendarid=nil, minuteoffset=nil)
           @ScheduleTimeZone = scheduletimezone
           @CycleType = cycletype
           @SelfDepend = selfdepend
@@ -24959,6 +24963,7 @@ module TencentCloud
           @CalendarOpen = calendaropen
           @CalendarName = calendarname
           @CalendarId = calendarid
+          @MinuteOffset = minuteoffset
         end
 
         def deserialize(params)
@@ -24974,6 +24979,7 @@ module TencentCloud
           @CalendarOpen = params['CalendarOpen']
           @CalendarName = params['CalendarName']
           @CalendarId = params['CalendarId']
+          @MinuteOffset = params['MinuteOffset']
         end
       end
 
@@ -25108,89 +25114,42 @@ module TencentCloud
       # | YEAR_CYCLE       | DAY_CYCLE        | 自定义   | LIST_DAY             | 列表(天)                    | 无                                | 逗号分隔的整数，如-1,0 |
       # | MONTH_CYCLE      | MINUTE_CYCLE     | 自定义   | LIST_MINUTE          | 列表(分钟)                  | 无                                | 逗号分隔的整数，如-1,0 |
       class WorkflowSchedulerConfigurationInfo < TencentCloud::Common::AbstractModel
-        # @param ScheduleTimeZone: 时区
+        # @param ScheduleTimeZone: <p>时区</p>
         # @type ScheduleTimeZone: String
-        # @param CycleType: 周期类型：支持的类型为
-        # ONEOFF_CYCLE: 一次性
-        # YEAR_CYCLE: 年
-        # MONTH_CYCLE: 月
-        # WEEK_CYCLE: 周
-        # DAY_CYCLE: 天
-        # HOUR_CYCLE: 小时
-        # MINUTE_CYCLE: 分钟
-        # CRONTAB_CYCLE: crontab表达式类型
+        # @param CycleType: <p>周期类型：支持的类型为<br>ONEOFF_CYCLE: 一次性<br>YEAR_CYCLE: 年<br>MONTH_CYCLE: 月<br>WEEK_CYCLE: 周<br>DAY_CYCLE: 天<br>HOUR_CYCLE: 小时<br>MINUTE_CYCLE: 分钟<br>CRONTAB_CYCLE: crontab表达式类型</p>
         # @type CycleType: String
-        # @param SelfDepend: 自依赖, 默认值 serial, 取值为：parallel(并行), serial(串行), orderly(有序)
+        # @param SelfDepend: <p>自依赖, 默认值 serial, 取值为：parallel(并行), serial(串行), orderly(有序)</p>
         # @type SelfDepend: String
-        # @param StartTime: 生效开始时间
+        # @param StartTime: <p>生效开始时间</p>
         # @type StartTime: String
-        # @param EndTime: 生效结束时间
+        # @param EndTime: <p>生效结束时间</p>
         # @type EndTime: String
-        # @param CrontabExpression: cron表达式
+        # @param CrontabExpression: <p>cron表达式</p>
         # @type CrontabExpression: String
-        # @param DependencyWorkflow: 工作流依赖，yes or no
+        # @param DependencyWorkflow: <p>工作流依赖，yes or no</p>
         # @type DependencyWorkflow: String
-        # @param ModifyCycleValue: 0：不修改 1：将任务的上游依赖配置改为默认值
+        # @param ModifyCycleValue: <p>0：不修改 1：将任务的上游依赖配置改为默认值</p>
         # @type ModifyCycleValue: String
-        # @param ClearLink: 工作流存在跨工作流依赖且使用cron表达式调度。如果保存统一调度，会断开不支持的依赖关系
+        # @param ClearLink: <p>工作流存在跨工作流依赖且使用cron表达式调度。如果保存统一调度，会断开不支持的依赖关系</p>
         # @type ClearLink: Boolean
-        # @param MainCyclicConfig: ModifyCycleValue为1的时候生效，表示默认修改的上游依赖-时间维度，取值为：
-        # * CRONTAB
-        # * DAY
-        # * HOUR
-        # * LIST_DAY
-        # * LIST_HOUR
-        # * LIST_MINUTE
-        # * MINUTE
-        # * MONTH
-        # * RANGE_DAY
-        # * RANGE_HOUR
-        # * RANGE_MINUTE
-        # * WEEK
-        # * YEAR
-
-        # https://capi.woa.com/object/detail?product=wedata&env=api_dev&version=2025-08-06&name=WorkflowSchedulerConfigurationInfo
+        # @param MainCyclicConfig: <p>ModifyCycleValue为1的时候生效，表示默认修改的上游依赖-时间维度，取值为：</p><ul><li>CRONTAB</li><li>DAY</li><li>HOUR</li><li>LIST_DAY</li><li>LIST_HOUR</li><li>LIST_MINUTE</li><li>MINUTE</li><li>MONTH</li><li>RANGE_DAY</li><li>RANGE_HOUR</li><li>RANGE_MINUTE</li><li>WEEK</li><li>YEAR</li></ul><p>https://capi.woa.com/object/detail?product=wedata&amp;env=api_dev&amp;version=2025-08-06&amp;name=WorkflowSchedulerConfigurationInfo</p>
         # @type MainCyclicConfig: String
-        # @param SubordinateCyclicConfig: ModifyCycleValue为1的时候生效，表示默认修改的上游依赖-实例范围
-        # 取值为：
-        # * ALL_DAY_OF_YEAR
-        # * ALL_MONTH_OF_YEAR
-        # * CURRENT
-        # * CURRENT_DAY
-        # * CURRENT_HOUR
-        # * CURRENT_MINUTE
-        # * CURRENT_MONTH
-        # * CURRENT_WEEK
-        # * CURRENT_YEAR
-        # * PREVIOUS_BEGIN_OF_MONTH
-        # * PREVIOUS_DAY
-        # * PREVIOUS_DAY_LATER_OFFSET_HOUR
-        # * PREVIOUS_DAY_LATER_OFFSET_MINUTE
-        # * PREVIOUS_END_OF_MONTH
-        # * PREVIOUS_FRIDAY
-        # * PREVIOUS_HOUR
-        # * PREVIOUS_HOUR_CYCLE
-        # * PREVIOUS_HOUR_LATER_OFFSET_MINUTE
-        # * PREVIOUS_MINUTE_CYCLE
-        # * PREVIOUS_MONTH
-        # * PREVIOUS_WEEK
-        # * PREVIOUS_WEEKEND
-        # * RECENT_DATE
-
-        # https://capi.woa.com/object/detail?product=wedata&env=api_dev&version=2025-08-06&name=WorkflowSchedulerConfigurationInfo
+        # @param SubordinateCyclicConfig: <p>ModifyCycleValue为1的时候生效，表示默认修改的上游依赖-实例范围<br>取值为：</p><ul><li>ALL_DAY_OF_YEAR</li><li>ALL_MONTH_OF_YEAR</li><li>CURRENT</li><li>CURRENT_DAY</li><li>CURRENT_HOUR</li><li>CURRENT_MINUTE</li><li>CURRENT_MONTH</li><li>CURRENT_WEEK</li><li>CURRENT_YEAR</li><li>PREVIOUS_BEGIN_OF_MONTH</li><li>PREVIOUS_DAY</li><li>PREVIOUS_DAY_LATER_OFFSET_HOUR</li><li>PREVIOUS_DAY_LATER_OFFSET_MINUTE</li><li>PREVIOUS_END_OF_MONTH</li><li>PREVIOUS_FRIDAY</li><li>PREVIOUS_HOUR</li><li>PREVIOUS_HOUR_CYCLE</li><li>PREVIOUS_HOUR_LATER_OFFSET_MINUTE</li><li>PREVIOUS_MINUTE_CYCLE</li><li>PREVIOUS_MONTH</li><li>PREVIOUS_WEEK</li><li>PREVIOUS_WEEKEND</li><li>RECENT_DATE</li></ul><p>https://capi.woa.com/object/detail?product=wedata&amp;env=api_dev&amp;version=2025-08-06&amp;name=WorkflowSchedulerConfigurationInfo</p>
         # @type SubordinateCyclicConfig: String
-        # @param ExecutionStartTime: 执行时间左闭区间，示例：00:00，只有周期类型为MINUTE_CYCLE才需要填入
+        # @param ExecutionStartTime: <p>执行时间左闭区间，示例：00:00，只有周期类型为MINUTE_CYCLE才需要填入</p>
         # @type ExecutionStartTime: String
-        # @param ExecutionEndTime: 执行时间右闭区间，示例：23:59，只有周期类型为MINUTE_CYCLE才需要填入
+        # @param ExecutionEndTime: <p>执行时间右闭区间，示例：23:59，只有周期类型为MINUTE_CYCLE才需要填入</p>
         # @type ExecutionEndTime: String
-        # @param CalendarOpen: 是否开启日历调度 1 开启 0关闭
+        # @param CalendarOpen: <p>是否开启日历调度 1 开启 0关闭</p>
         # @type CalendarOpen: String
-        # @param CalendarId: 日历id
+        # @param CalendarId: <p>日历id</p>
         # @type CalendarId: String
+        # @param MinuteOffset: <p>分钟任务相位偏移</p>
+        # @type MinuteOffset: Integer
 
-        attr_accessor :ScheduleTimeZone, :CycleType, :SelfDepend, :StartTime, :EndTime, :CrontabExpression, :DependencyWorkflow, :ModifyCycleValue, :ClearLink, :MainCyclicConfig, :SubordinateCyclicConfig, :ExecutionStartTime, :ExecutionEndTime, :CalendarOpen, :CalendarId
+        attr_accessor :ScheduleTimeZone, :CycleType, :SelfDepend, :StartTime, :EndTime, :CrontabExpression, :DependencyWorkflow, :ModifyCycleValue, :ClearLink, :MainCyclicConfig, :SubordinateCyclicConfig, :ExecutionStartTime, :ExecutionEndTime, :CalendarOpen, :CalendarId, :MinuteOffset
 
-        def initialize(scheduletimezone=nil, cycletype=nil, selfdepend=nil, starttime=nil, endtime=nil, crontabexpression=nil, dependencyworkflow=nil, modifycyclevalue=nil, clearlink=nil, maincyclicconfig=nil, subordinatecyclicconfig=nil, executionstarttime=nil, executionendtime=nil, calendaropen=nil, calendarid=nil)
+        def initialize(scheduletimezone=nil, cycletype=nil, selfdepend=nil, starttime=nil, endtime=nil, crontabexpression=nil, dependencyworkflow=nil, modifycyclevalue=nil, clearlink=nil, maincyclicconfig=nil, subordinatecyclicconfig=nil, executionstarttime=nil, executionendtime=nil, calendaropen=nil, calendarid=nil, minuteoffset=nil)
           @ScheduleTimeZone = scheduletimezone
           @CycleType = cycletype
           @SelfDepend = selfdepend
@@ -25206,6 +25165,7 @@ module TencentCloud
           @ExecutionEndTime = executionendtime
           @CalendarOpen = calendaropen
           @CalendarId = calendarid
+          @MinuteOffset = minuteoffset
         end
 
         def deserialize(params)
@@ -25224,6 +25184,7 @@ module TencentCloud
           @ExecutionEndTime = params['ExecutionEndTime']
           @CalendarOpen = params['CalendarOpen']
           @CalendarId = params['CalendarId']
+          @MinuteOffset = params['MinuteOffset']
         end
       end
 

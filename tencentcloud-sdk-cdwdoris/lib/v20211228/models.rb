@@ -1154,7 +1154,7 @@ module TencentCloud
         # @type CacheDiskSize: String
         # @param CacheDataDiskSize: <p>缓存盘大小</p>
         # @type CacheDataDiskSize: Integer
-        # @param DiskEncrypt: <p>磁盘加密</p>
+        # @param DiskEncrypt: <p>磁盘加密</p><p>默认为0不加密，1表示加密</p>
         # @type DiskEncrypt: Integer
 
         attr_accessor :Zone, :FeSpec, :BeSpec, :HaFlag, :UserVPCId, :UserSubnetId, :ProductVersion, :ChargeProperties, :InstanceName, :DorisUserPwd, :Tags, :HaType, :CaseSensitive, :EnableMultiZones, :UserMultiZoneInfos, :UserMultiZoneInfoArr, :IsSSC, :SSCCU, :CacheDiskSize, :CacheDataDiskSize, :DiskEncrypt

@@ -437,6 +437,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询专属集群宿主机上的虚机信息
+
+        # @param request: Request instance for DescribeEdgeHostVm.
+        # @type request: :class:`Tencentcloud::cdc::V20201214::DescribeEdgeHostVmRequest`
+        # @rtype: :class:`Tencentcloud::cdc::V20201214::DescribeEdgeHostVmResponse`
+        def DescribeEdgeHostVm(request)
+          body = send_request('DescribeEdgeHostVm', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeEdgeHostVmResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询站点列表
 
         # @param request: Request instance for DescribeSites.

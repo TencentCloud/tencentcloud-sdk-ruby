@@ -27098,17 +27098,21 @@ module TencentCloud
 
       # EdgeOne 人机校验认证实例信息。
       class TCEOCaptchaOption < TencentCloud::Common::AbstractModel
-        # @param CaptchaMode: EdgeOne 人机校验模式，取值有：<li> Invisible：无感验证；</li><li>Adaptive：自适应交互验证。</li>
+        # @param CaptchaMode: <p>浏览器端 WebView 人机校验交互模式。</p><p>枚举值：</p><ul><li>Invisible： 无感验证</li><li>Adaptive： 自适应交互验证</li></ul><p>默认值：Invisible</p>
         # @type CaptchaMode: String
+        # @param MobileCaptchaMode: <p>移动端原生 App 人机校验交互模式。</p><p>枚举值：</p><ul><li>Invisible： 无感验证</li><li>Visible： 交互验证</li></ul><p>默认值：Invisible</p>
+        # @type MobileCaptchaMode: String
 
-        attr_accessor :CaptchaMode
+        attr_accessor :CaptchaMode, :MobileCaptchaMode
 
-        def initialize(captchamode=nil)
+        def initialize(captchamode=nil, mobilecaptchamode=nil)
           @CaptchaMode = captchamode
+          @MobileCaptchaMode = mobilecaptchamode
         end
 
         def deserialize(params)
           @CaptchaMode = params['CaptchaMode']
+          @MobileCaptchaMode = params['MobileCaptchaMode']
         end
       end
 

@@ -2263,6 +2263,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询云防火墙概览页资源与配额详情信息，返回带宽配额、实例与规则配额、日志存储信息及相关能力标识。
+
+        # @param request: Request instance for DescribeOverviewResourceQuota.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::DescribeOverviewResourceQuotaRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::DescribeOverviewResourceQuotaResponse`
+        def DescribeOverviewResourceQuota(request)
+          body = send_request('DescribeOverviewResourceQuota', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeOverviewResourceQuotaResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # DescribeResourceGroup资产中心资产树信息
 
         # @param request: Request instance for DescribeResourceGroup.

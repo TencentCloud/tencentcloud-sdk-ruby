@@ -382,6 +382,26 @@ module TencentCloud
         end
       end
 
+      # 可以添加到正在运行的容器中或从中移除的 POSIX POSIX capabilities。
+      class Capabilities < TencentCloud::Common::AbstractModel
+        # @param Add: <p>要添加的capabilities</p><p>取值参考：[&quot;SYS_ADMIN&quot;]</p>
+        # @type Add: Array
+        # @param Drop: <p>要移除的capabilities</p><p>取值参考：[&quot;ALL&quot;]</p>
+        # @type Drop: Array
+
+        attr_accessor :Add, :Drop
+
+        def initialize(add=nil, drop=nil)
+          @Add = add
+          @Drop = drop
+        end
+
+        def deserialize(params)
+          @Add = params['Add']
+          @Drop = params['Drop']
+        end
+      end
+
       # 文件存储配置
       class CfsStorageSource < TencentCloud::Common::AbstractModel
         # @param FileSystemId: CFS资源ID
@@ -1664,10 +1684,12 @@ module TencentCloud
         # @type Probe: :class:`Tencentcloud::Ags.v20250920.models.ProbeConfiguration`
         # @param DNSConfig: <p>沙箱 DNS 配置</p>
         # @type DNSConfig: :class:`Tencentcloud::Ags.v20250920.models.DNSConfig`
+        # @param SecurityContext: <p>沙箱安全上下文</p>
+        # @type SecurityContext: :class:`Tencentcloud::Ags.v20250920.models.SecurityContext`
 
-        attr_accessor :Image, :ImageRegistryType, :Command, :Args, :Env, :Ports, :Resources, :Probe, :DNSConfig
+        attr_accessor :Image, :ImageRegistryType, :Command, :Args, :Env, :Ports, :Resources, :Probe, :DNSConfig, :SecurityContext
 
-        def initialize(image=nil, imageregistrytype=nil, command=nil, args=nil, env=nil, ports=nil, resources=nil, probe=nil, dnsconfig=nil)
+        def initialize(image=nil, imageregistrytype=nil, command=nil, args=nil, env=nil, ports=nil, resources=nil, probe=nil, dnsconfig=nil, securitycontext=nil)
           @Image = image
           @ImageRegistryType = imageregistrytype
           @Command = command
@@ -1677,6 +1699,7 @@ module TencentCloud
           @Resources = resources
           @Probe = probe
           @DNSConfig = dnsconfig
+          @SecurityContext = securitycontext
         end
 
         def deserialize(params)
@@ -1712,6 +1735,10 @@ module TencentCloud
             @DNSConfig = DNSConfig.new
             @DNSConfig.deserialize(params['DNSConfig'])
           end
+          unless params['SecurityContext'].nil?
+            @SecurityContext = SecurityContext.new
+            @SecurityContext.deserialize(params['SecurityContext'])
+          end
         end
       end
 
@@ -1737,10 +1764,12 @@ module TencentCloud
         # @type Probe: :class:`Tencentcloud::Ags.v20250920.models.ProbeConfiguration`
         # @param DNSConfig: <p>沙箱 DNS 配置</p>
         # @type DNSConfig: :class:`Tencentcloud::Ags.v20250920.models.DNSConfig`
+        # @param SecurityContext: <p>沙箱安全上下文</p>
+        # @type SecurityContext: :class:`Tencentcloud::Ags.v20250920.models.SecurityContext`
 
-        attr_accessor :Image, :ImageRegistryType, :ImageDigest, :Command, :Args, :Env, :Ports, :Resources, :Probe, :DNSConfig
+        attr_accessor :Image, :ImageRegistryType, :ImageDigest, :Command, :Args, :Env, :Ports, :Resources, :Probe, :DNSConfig, :SecurityContext
 
-        def initialize(image=nil, imageregistrytype=nil, imagedigest=nil, command=nil, args=nil, env=nil, ports=nil, resources=nil, probe=nil, dnsconfig=nil)
+        def initialize(image=nil, imageregistrytype=nil, imagedigest=nil, command=nil, args=nil, env=nil, ports=nil, resources=nil, probe=nil, dnsconfig=nil, securitycontext=nil)
           @Image = image
           @ImageRegistryType = imageregistrytype
           @ImageDigest = imagedigest
@@ -1751,6 +1780,7 @@ module TencentCloud
           @Resources = resources
           @Probe = probe
           @DNSConfig = dnsconfig
+          @SecurityContext = securitycontext
         end
 
         def deserialize(params)
@@ -1786,6 +1816,10 @@ module TencentCloud
           unless params['DNSConfig'].nil?
             @DNSConfig = DNSConfig.new
             @DNSConfig.deserialize(params['DNSConfig'])
+          end
+          unless params['SecurityContext'].nil?
+            @SecurityContext = SecurityContext.new
+            @SecurityContext.deserialize(params['SecurityContext'])
           end
         end
       end
@@ -4902,6 +4936,29 @@ module TencentCloud
         end
       end
 
+      # SecurityContext 包含将应用于容器的安全配置。
+      class SecurityContext < TencentCloud::Common::AbstractModel
+        # @param Privileged: <p>是否开启特权</p><p>默认值：true</p>
+        # @type Privileged: Boolean
+        # @param Capabilities: <p>Capabilities 指的是可以添加到正在运行的容器中或从中移除的 POSIX capabilities。</p>
+        # @type Capabilities: :class:`Tencentcloud::Ags.v20250920.models.Capabilities`
+
+        attr_accessor :Privileged, :Capabilities
+
+        def initialize(privileged=nil, capabilities=nil)
+          @Privileged = privileged
+          @Capabilities = capabilities
+        end
+
+        def deserialize(params)
+          @Privileged = params['Privileged']
+          unless params['Capabilities'].nil?
+            @Capabilities = Capabilities.new
+            @Capabilities.deserialize(params['Capabilities'])
+          end
+        end
+      end
+
       # 会话信息
       class SessionInfo < TencentCloud::Common::AbstractModel
         # @param SessionId: <p>会话 ID。</p>
@@ -5158,14 +5215,22 @@ module TencentCloud
         # @type MountPath: String
         # @param ReadOnly: <p>存储挂载读写权限配置，默认为false</p>
         # @type ReadOnly: Boolean
+        # @param Volume: <p>Volume的引用</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Volume: :class:`Tencentcloud::Ags.v20250920.models.VolumeRef`
+        # @param VolumeTemplate: <p>VolumeTemplate 的引用以及派生规则</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VolumeTemplate: :class:`Tencentcloud::Ags.v20250920.models.VolumeTemplateRef`
 
-        attr_accessor :Name, :StorageSource, :MountPath, :ReadOnly
+        attr_accessor :Name, :StorageSource, :MountPath, :ReadOnly, :Volume, :VolumeTemplate
 
-        def initialize(name=nil, storagesource=nil, mountpath=nil, readonly=nil)
+        def initialize(name=nil, storagesource=nil, mountpath=nil, readonly=nil, volume=nil, volumetemplate=nil)
           @Name = name
           @StorageSource = storagesource
           @MountPath = mountpath
           @ReadOnly = readonly
+          @Volume = volume
+          @VolumeTemplate = volumetemplate
         end
 
         def deserialize(params)
@@ -5176,6 +5241,14 @@ module TencentCloud
           end
           @MountPath = params['MountPath']
           @ReadOnly = params['ReadOnly']
+          unless params['Volume'].nil?
+            @Volume = VolumeRef.new
+            @Volume.deserialize(params['Volume'])
+          end
+          unless params['VolumeTemplate'].nil?
+            @VolumeTemplate = VolumeTemplateRef.new
+            @VolumeTemplate.deserialize(params['VolumeTemplate'])
+          end
         end
       end
 
@@ -5614,6 +5687,50 @@ module TencentCloud
         def deserialize(params)
           @SubnetIds = params['SubnetIds']
           @SecurityGroupIds = params['SecurityGroupIds']
+        end
+      end
+
+      # 对 Volume 的引用，其中 Name 或 Id 之一必须不为空
+      class VolumeRef < TencentCloud::Common::AbstractModel
+        # @param VolumeName: Volume 名称；服务端在当前认证 AppId 下解析为稳定 VolumeId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VolumeName: String
+        # @param VolumeId: 稳定 Volume ID，格式 vol-xxxxxxxx
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VolumeId: String
+
+        attr_accessor :VolumeName, :VolumeId
+
+        def initialize(volumename=nil, volumeid=nil)
+          @VolumeName = volumename
+          @VolumeId = volumeid
+        end
+
+        def deserialize(params)
+          @VolumeName = params['VolumeName']
+          @VolumeId = params['VolumeId']
+        end
+      end
+
+      # 对 VolumeTemplate 的引用
+      class VolumeTemplateRef < TencentCloud::Common::AbstractModel
+        # @param VolumeTemplateName: <p>VolumeTemplate 名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VolumeTemplateName: String
+        # @param ReuseKey: <p>复用键，可为字面量或 ${metadata.xxx}</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReuseKey: String
+
+        attr_accessor :VolumeTemplateName, :ReuseKey
+
+        def initialize(volumetemplatename=nil, reusekey=nil)
+          @VolumeTemplateName = volumetemplatename
+          @ReuseKey = reusekey
+        end
+
+        def deserialize(params)
+          @VolumeTemplateName = params['VolumeTemplateName']
+          @ReuseKey = params['ReuseKey']
         end
       end
 

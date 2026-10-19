@@ -1926,10 +1926,12 @@ module TencentCloud
         # @type InputVideoSecondCoefficient: Float
         # @param OutputVideoSecondCoefficient: <p>输出视频每秒系数</p>
         # @type OutputVideoSecondCoefficient: Float
+        # @param OutputImageCoefficient: <p>输出图片系数</p>
+        # @type OutputImageCoefficient: Float
 
-        attr_accessor :InputCachedCoefficient, :InputCacheCreationCoefficient, :InputCoefficient, :OutputCoefficient, :InputImageCoefficient, :InputVideoSecondCoefficient, :OutputVideoSecondCoefficient
+        attr_accessor :InputCachedCoefficient, :InputCacheCreationCoefficient, :InputCoefficient, :OutputCoefficient, :InputImageCoefficient, :InputVideoSecondCoefficient, :OutputVideoSecondCoefficient, :OutputImageCoefficient
 
-        def initialize(inputcachedcoefficient=nil, inputcachecreationcoefficient=nil, inputcoefficient=nil, outputcoefficient=nil, inputimagecoefficient=nil, inputvideosecondcoefficient=nil, outputvideosecondcoefficient=nil)
+        def initialize(inputcachedcoefficient=nil, inputcachecreationcoefficient=nil, inputcoefficient=nil, outputcoefficient=nil, inputimagecoefficient=nil, inputvideosecondcoefficient=nil, outputvideosecondcoefficient=nil, outputimagecoefficient=nil)
           @InputCachedCoefficient = inputcachedcoefficient
           @InputCacheCreationCoefficient = inputcachecreationcoefficient
           @InputCoefficient = inputcoefficient
@@ -1937,6 +1939,7 @@ module TencentCloud
           @InputImageCoefficient = inputimagecoefficient
           @InputVideoSecondCoefficient = inputvideosecondcoefficient
           @OutputVideoSecondCoefficient = outputvideosecondcoefficient
+          @OutputImageCoefficient = outputimagecoefficient
         end
 
         def deserialize(params)
@@ -1947,6 +1950,7 @@ module TencentCloud
           @InputImageCoefficient = params['InputImageCoefficient']
           @InputVideoSecondCoefficient = params['InputVideoSecondCoefficient']
           @OutputVideoSecondCoefficient = params['OutputVideoSecondCoefficient']
+          @OutputImageCoefficient = params['OutputImageCoefficient']
         end
       end
 
@@ -2189,8 +2193,8 @@ module TencentCloud
 
         attr_accessor :LogsetName, :Period, :LogsetType
         extend Gem::Deprecate
-        deprecate :Period, :none, 2026, 9
-        deprecate :Period=, :none, 2026, 9
+        deprecate :Period, :none, 2026, 10
+        deprecate :Period=, :none, 2026, 10
 
         def initialize(logsetname=nil, period=nil, logsettype=nil)
           @LogsetName = logsetname
@@ -3031,10 +3035,12 @@ module TencentCloud
         # @type RerankConfig: :class:`Tencentcloud::Clb.v20180317.models.RerankConfig`
         # @param DecisionsConfig: <p>Decisions 调度配置</p>
         # @type DecisionsConfig: :class:`Tencentcloud::Clb.v20180317.models.DecisionsConfig`
+        # @param ImageConfig: <p>Images 生图配置</p>
+        # @type ImageConfig: :class:`Tencentcloud::Clb.v20180317.models.ImageConfig`
 
-        attr_accessor :ModelRouterType, :BudgetId, :CertId, :ClusterInfo, :ModelRouterName, :NetworkType, :Port, :RateLimitConfig, :RouterSetting, :Schema, :SubnetId, :Tags, :VpcId, :ModelRouterBillingConfig, :ClientToken, :EipAddressId, :Bandwidth, :EmbeddingConfig, :VideoConfig, :RerankConfig, :DecisionsConfig
+        attr_accessor :ModelRouterType, :BudgetId, :CertId, :ClusterInfo, :ModelRouterName, :NetworkType, :Port, :RateLimitConfig, :RouterSetting, :Schema, :SubnetId, :Tags, :VpcId, :ModelRouterBillingConfig, :ClientToken, :EipAddressId, :Bandwidth, :EmbeddingConfig, :VideoConfig, :RerankConfig, :DecisionsConfig, :ImageConfig
 
-        def initialize(modelroutertype=nil, budgetid=nil, certid=nil, clusterinfo=nil, modelroutername=nil, networktype=nil, port=nil, ratelimitconfig=nil, routersetting=nil, schema=nil, subnetid=nil, tags=nil, vpcid=nil, modelrouterbillingconfig=nil, clienttoken=nil, eipaddressid=nil, bandwidth=nil, embeddingconfig=nil, videoconfig=nil, rerankconfig=nil, decisionsconfig=nil)
+        def initialize(modelroutertype=nil, budgetid=nil, certid=nil, clusterinfo=nil, modelroutername=nil, networktype=nil, port=nil, ratelimitconfig=nil, routersetting=nil, schema=nil, subnetid=nil, tags=nil, vpcid=nil, modelrouterbillingconfig=nil, clienttoken=nil, eipaddressid=nil, bandwidth=nil, embeddingconfig=nil, videoconfig=nil, rerankconfig=nil, decisionsconfig=nil, imageconfig=nil)
           @ModelRouterType = modelroutertype
           @BudgetId = budgetid
           @CertId = certid
@@ -3056,6 +3062,7 @@ module TencentCloud
           @VideoConfig = videoconfig
           @RerankConfig = rerankconfig
           @DecisionsConfig = decisionsconfig
+          @ImageConfig = imageconfig
         end
 
         def deserialize(params)
@@ -3110,6 +3117,10 @@ module TencentCloud
           unless params['DecisionsConfig'].nil?
             @DecisionsConfig = DecisionsConfig.new
             @DecisionsConfig.deserialize(params['DecisionsConfig'])
+          end
+          unless params['ImageConfig'].nil?
+            @ImageConfig = ImageConfig.new
+            @ImageConfig.deserialize(params['ImageConfig'])
           end
         end
       end
@@ -8175,6 +8186,40 @@ module TencentCloud
         end
       end
 
+      # video配置。
+      class ImageConfig < TencentCloud::Common::AbstractModel
+        # @param RoutingStrategy: <p>模型内路由策略</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RoutingStrategy: String
+        # @param RoutingStrategyArgs: <p>路由参数</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RoutingStrategyArgs: :class:`Tencentcloud::Clb.v20180317.models.RoutingStrategyArgs`
+        # @param NumRetries: <p>同一模型请求重试次数</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NumRetries: Integer
+        # @param WaitSeconds: <p>同步超时时间</p><p>取值范围：[0, 60]</p><p>单位：秒</p>
+        # @type WaitSeconds: Integer
+
+        attr_accessor :RoutingStrategy, :RoutingStrategyArgs, :NumRetries, :WaitSeconds
+
+        def initialize(routingstrategy=nil, routingstrategyargs=nil, numretries=nil, waitseconds=nil)
+          @RoutingStrategy = routingstrategy
+          @RoutingStrategyArgs = routingstrategyargs
+          @NumRetries = numretries
+          @WaitSeconds = waitseconds
+        end
+
+        def deserialize(params)
+          @RoutingStrategy = params['RoutingStrategy']
+          unless params['RoutingStrategyArgs'].nil?
+            @RoutingStrategyArgs = RoutingStrategyArgs.new
+            @RoutingStrategyArgs.deserialize(params['RoutingStrategyArgs'])
+          end
+          @NumRetries = params['NumRetries']
+          @WaitSeconds = params['WaitSeconds']
+        end
+      end
+
       # 创建Key的信息
       class InputKeyInfo < TencentCloud::Common::AbstractModel
         # @param KeyName: <p>Key的名称</p>
@@ -9455,8 +9500,8 @@ module TencentCloud
 
         attr_accessor :LoadBalancerId, :LoadBalancerName, :LoadBalancerType, :Forward, :Domain, :LoadBalancerVips, :Status, :CreateTime, :StatusTime, :ProjectId, :VpcId, :OpenBgp, :Snat, :Isolation, :Log, :SubnetId, :Tags, :SecureGroups, :TargetRegionInfo, :AnycastZone, :AddressIPVersion, :NumericalVpcId, :VipIsp, :MasterZone, :BackupZoneSet, :IsolatedTime, :ExpireTime, :ChargeType, :NetworkAttributes, :PrepaidAttributes, :LogSetId, :LogTopicId, :AddressIPv6, :ExtraInfo, :IsDDos, :ConfigId, :LoadBalancerPassToTarget, :ExclusiveCluster, :IPv6Mode, :SnatPro, :SnatIps, :SlaType, :IsBlock, :IsBlockTime, :LocalBgp, :ClusterTag, :MixIpTarget, :Zones, :NfvInfo, :HealthLogSetId, :HealthLogTopicId, :ClusterIds, :AttributeFlags, :LoadBalancerDomain, :Egress, :Exclusive, :TargetCount, :AssociateEndpoint, :AvailableZoneAffinityInfo
         extend Gem::Deprecate
-        deprecate :Log, :none, 2026, 9
-        deprecate :Log=, :none, 2026, 9
+        deprecate :Log, :none, 2026, 10
+        deprecate :Log=, :none, 2026, 10
 
         def initialize(loadbalancerid=nil, loadbalancername=nil, loadbalancertype=nil, forward=nil, domain=nil, loadbalancervips=nil, status=nil, createtime=nil, statustime=nil, projectid=nil, vpcid=nil, openbgp=nil, snat=nil, isolation=nil, log=nil, subnetid=nil, tags=nil, securegroups=nil, targetregioninfo=nil, anycastzone=nil, addressipversion=nil, numericalvpcid=nil, vipisp=nil, masterzone=nil, backupzoneset=nil, isolatedtime=nil, expiretime=nil, chargetype=nil, networkattributes=nil, prepaidattributes=nil, logsetid=nil, logtopicid=nil, addressipv6=nil, extrainfo=nil, isddos=nil, configid=nil, loadbalancerpasstotarget=nil, exclusivecluster=nil, ipv6mode=nil, snatpro=nil, snatips=nil, slatype=nil, isblock=nil, isblocktime=nil, localbgp=nil, clustertag=nil, mixiptarget=nil, zones=nil, nfvinfo=nil, healthlogsetid=nil, healthlogtopicid=nil, clusterids=nil, attributeflags=nil, loadbalancerdomain=nil, egress=nil, exclusive=nil, targetcount=nil, associateendpoint=nil, availablezoneaffinityinfo=nil)
           @LoadBalancerId = loadbalancerid
@@ -10540,10 +10585,12 @@ module TencentCloud
         # @type RerankConfig: :class:`Tencentcloud::Clb.v20180317.models.RerankConfig`
         # @param DecisionsConfig: <p>决策模型设置</p>
         # @type DecisionsConfig: :class:`Tencentcloud::Clb.v20180317.models.DecisionsConfig`
+        # @param ImageConfig: <p>Images 生图配置</p>
+        # @type ImageConfig: :class:`Tencentcloud::Clb.v20180317.models.ImageConfig`
 
-        attr_accessor :BudgetId, :BudgetName, :ClusterInfo, :CreatedTime, :CreditUsageSet, :Domain, :ModelRouterId, :ModelRouterName, :ModelRouterType, :ModifiedTime, :NetworkType, :RateLimitConfig, :RouterSetting, :SecurityGroups, :SecurityStatus, :ServiceEndPoints, :Status, :SubnetId, :Tags, :TradeStatus, :Vip, :VpcId, :Bandwidth, :EipAddressId, :BillingConfig, :EmbeddingConfig, :LoadBalancerId, :VideoConfig, :RerankConfig, :DecisionsConfig
+        attr_accessor :BudgetId, :BudgetName, :ClusterInfo, :CreatedTime, :CreditUsageSet, :Domain, :ModelRouterId, :ModelRouterName, :ModelRouterType, :ModifiedTime, :NetworkType, :RateLimitConfig, :RouterSetting, :SecurityGroups, :SecurityStatus, :ServiceEndPoints, :Status, :SubnetId, :Tags, :TradeStatus, :Vip, :VpcId, :Bandwidth, :EipAddressId, :BillingConfig, :EmbeddingConfig, :LoadBalancerId, :VideoConfig, :RerankConfig, :DecisionsConfig, :ImageConfig
 
-        def initialize(budgetid=nil, budgetname=nil, clusterinfo=nil, createdtime=nil, creditusageset=nil, domain=nil, modelrouterid=nil, modelroutername=nil, modelroutertype=nil, modifiedtime=nil, networktype=nil, ratelimitconfig=nil, routersetting=nil, securitygroups=nil, securitystatus=nil, serviceendpoints=nil, status=nil, subnetid=nil, tags=nil, tradestatus=nil, vip=nil, vpcid=nil, bandwidth=nil, eipaddressid=nil, billingconfig=nil, embeddingconfig=nil, loadbalancerid=nil, videoconfig=nil, rerankconfig=nil, decisionsconfig=nil)
+        def initialize(budgetid=nil, budgetname=nil, clusterinfo=nil, createdtime=nil, creditusageset=nil, domain=nil, modelrouterid=nil, modelroutername=nil, modelroutertype=nil, modifiedtime=nil, networktype=nil, ratelimitconfig=nil, routersetting=nil, securitygroups=nil, securitystatus=nil, serviceendpoints=nil, status=nil, subnetid=nil, tags=nil, tradestatus=nil, vip=nil, vpcid=nil, bandwidth=nil, eipaddressid=nil, billingconfig=nil, embeddingconfig=nil, loadbalancerid=nil, videoconfig=nil, rerankconfig=nil, decisionsconfig=nil, imageconfig=nil)
           @BudgetId = budgetid
           @BudgetName = budgetname
           @ClusterInfo = clusterinfo
@@ -10574,6 +10621,7 @@ module TencentCloud
           @VideoConfig = videoconfig
           @RerankConfig = rerankconfig
           @DecisionsConfig = decisionsconfig
+          @ImageConfig = imageconfig
         end
 
         def deserialize(params)
@@ -10651,6 +10699,10 @@ module TencentCloud
           unless params['DecisionsConfig'].nil?
             @DecisionsConfig = DecisionsConfig.new
             @DecisionsConfig.deserialize(params['DecisionsConfig'])
+          end
+          unless params['ImageConfig'].nil?
+            @ImageConfig = ImageConfig.new
+            @ImageConfig.deserialize(params['ImageConfig'])
           end
         end
       end
@@ -12059,10 +12111,12 @@ module TencentCloud
         # @type RerankConfig: :class:`Tencentcloud::Clb.v20180317.models.RerankConfig`
         # @param DecisionsConfig: <p>Decisions 调度配置</p>
         # @type DecisionsConfig: :class:`Tencentcloud::Clb.v20180317.models.DecisionsConfig`
+        # @param ImageConfig: <p>Images 生图配置</p>
+        # @type ImageConfig: :class:`Tencentcloud::Clb.v20180317.models.ImageConfig`
 
-        attr_accessor :ModelRouterId, :CertId, :ModelRouterName, :RateLimitConfig, :RouterSetting, :Bandwidth, :Capability, :EmbeddingConfig, :VideoConfig, :RerankConfig, :DecisionsConfig
+        attr_accessor :ModelRouterId, :CertId, :ModelRouterName, :RateLimitConfig, :RouterSetting, :Bandwidth, :Capability, :EmbeddingConfig, :VideoConfig, :RerankConfig, :DecisionsConfig, :ImageConfig
 
-        def initialize(modelrouterid=nil, certid=nil, modelroutername=nil, ratelimitconfig=nil, routersetting=nil, bandwidth=nil, capability=nil, embeddingconfig=nil, videoconfig=nil, rerankconfig=nil, decisionsconfig=nil)
+        def initialize(modelrouterid=nil, certid=nil, modelroutername=nil, ratelimitconfig=nil, routersetting=nil, bandwidth=nil, capability=nil, embeddingconfig=nil, videoconfig=nil, rerankconfig=nil, decisionsconfig=nil, imageconfig=nil)
           @ModelRouterId = modelrouterid
           @CertId = certid
           @ModelRouterName = modelroutername
@@ -12074,6 +12128,7 @@ module TencentCloud
           @VideoConfig = videoconfig
           @RerankConfig = rerankconfig
           @DecisionsConfig = decisionsconfig
+          @ImageConfig = imageconfig
         end
 
         def deserialize(params)
@@ -12105,6 +12160,10 @@ module TencentCloud
           unless params['DecisionsConfig'].nil?
             @DecisionsConfig = DecisionsConfig.new
             @DecisionsConfig.deserialize(params['DecisionsConfig'])
+          end
+          unless params['ImageConfig'].nil?
+            @ImageConfig = ImageConfig.new
+            @ImageConfig.deserialize(params['ImageConfig'])
           end
         end
       end
@@ -13774,10 +13833,10 @@ module TencentCloud
 
         attr_accessor :ListenerId, :Targets, :LocationId, :Domain, :Url, :Weight
         extend Gem::Deprecate
-        deprecate :Domain, :none, 2026, 9
-        deprecate :Domain=, :none, 2026, 9
-        deprecate :Url, :none, 2026, 9
-        deprecate :Url=, :none, 2026, 9
+        deprecate :Domain, :none, 2026, 10
+        deprecate :Domain=, :none, 2026, 10
+        deprecate :Url, :none, 2026, 10
+        deprecate :Url=, :none, 2026, 10
 
         def initialize(listenerid=nil, targets=nil, locationid=nil, domain=nil, url=nil, weight=nil)
           @ListenerId = listenerid
@@ -14304,10 +14363,12 @@ module TencentCloud
         # @type HealthCheckPath: String
         # @param HealthCheckMethod: <p>健康检查方式。</p><p>枚举值：</p><ul><li>Service： 探测服务可用性</li><li>Model： 探测模型可用性</li></ul>
         # @type HealthCheckMethod: String
+        # @param HealthCheckTimeout: <p>健康检查超时时间</p><p>取值范围：[1, 60]</p><p>单位：秒</p>
+        # @type HealthCheckTimeout: Integer
 
-        attr_accessor :HealthCheckEnabled, :HealthCheckInterval, :HealthCheckUnhealthyThreshold, :HealthCheckMaxTokens, :HealthCheckProtocol, :HealthCheckPath, :HealthCheckMethod
+        attr_accessor :HealthCheckEnabled, :HealthCheckInterval, :HealthCheckUnhealthyThreshold, :HealthCheckMaxTokens, :HealthCheckProtocol, :HealthCheckPath, :HealthCheckMethod, :HealthCheckTimeout
 
-        def initialize(healthcheckenabled=nil, healthcheckinterval=nil, healthcheckunhealthythreshold=nil, healthcheckmaxtokens=nil, healthcheckprotocol=nil, healthcheckpath=nil, healthcheckmethod=nil)
+        def initialize(healthcheckenabled=nil, healthcheckinterval=nil, healthcheckunhealthythreshold=nil, healthcheckmaxtokens=nil, healthcheckprotocol=nil, healthcheckpath=nil, healthcheckmethod=nil, healthchecktimeout=nil)
           @HealthCheckEnabled = healthcheckenabled
           @HealthCheckInterval = healthcheckinterval
           @HealthCheckUnhealthyThreshold = healthcheckunhealthythreshold
@@ -14315,6 +14376,7 @@ module TencentCloud
           @HealthCheckProtocol = healthcheckprotocol
           @HealthCheckPath = healthcheckpath
           @HealthCheckMethod = healthcheckmethod
+          @HealthCheckTimeout = healthchecktimeout
         end
 
         def deserialize(params)
@@ -14325,6 +14387,7 @@ module TencentCloud
           @HealthCheckProtocol = params['HealthCheckProtocol']
           @HealthCheckPath = params['HealthCheckPath']
           @HealthCheckMethod = params['HealthCheckMethod']
+          @HealthCheckTimeout = params['HealthCheckTimeout']
         end
       end
 
@@ -14346,10 +14409,12 @@ module TencentCloud
         # @type HealthCheckPath: String
         # @param HealthCheckMethod: <p>健康检查方式。</p>
         # @type HealthCheckMethod: String
+        # @param HealthCheckTimeout: <p>健康检查超时时间</p><p>单位：秒</p><p>默认值：15</p>
+        # @type HealthCheckTimeout: Integer
 
-        attr_accessor :HealthCheckEnabled, :HealthCheckInterval, :HealthCheckUnhealthyThreshold, :HealthCheckMaxTokens, :HealthCheckProtocol, :HealthCheckPath, :HealthCheckMethod
+        attr_accessor :HealthCheckEnabled, :HealthCheckInterval, :HealthCheckUnhealthyThreshold, :HealthCheckMaxTokens, :HealthCheckProtocol, :HealthCheckPath, :HealthCheckMethod, :HealthCheckTimeout
 
-        def initialize(healthcheckenabled=nil, healthcheckinterval=nil, healthcheckunhealthythreshold=nil, healthcheckmaxtokens=nil, healthcheckprotocol=nil, healthcheckpath=nil, healthcheckmethod=nil)
+        def initialize(healthcheckenabled=nil, healthcheckinterval=nil, healthcheckunhealthythreshold=nil, healthcheckmaxtokens=nil, healthcheckprotocol=nil, healthcheckpath=nil, healthcheckmethod=nil, healthchecktimeout=nil)
           @HealthCheckEnabled = healthcheckenabled
           @HealthCheckInterval = healthcheckinterval
           @HealthCheckUnhealthyThreshold = healthcheckunhealthythreshold
@@ -14357,6 +14422,7 @@ module TencentCloud
           @HealthCheckProtocol = healthcheckprotocol
           @HealthCheckPath = healthcheckpath
           @HealthCheckMethod = healthcheckmethod
+          @HealthCheckTimeout = healthchecktimeout
         end
 
         def deserialize(params)
@@ -14367,6 +14433,7 @@ module TencentCloud
           @HealthCheckProtocol = params['HealthCheckProtocol']
           @HealthCheckPath = params['HealthCheckPath']
           @HealthCheckMethod = params['HealthCheckMethod']
+          @HealthCheckTimeout = params['HealthCheckTimeout']
         end
       end
 
@@ -15242,8 +15309,8 @@ module TencentCloud
 
         attr_accessor :IP, :Port, :HealthStatus, :TargetId, :HealthStatusDetail, :HealthStatusDetial, :TargetGroupId, :Weight
         extend Gem::Deprecate
-        deprecate :HealthStatusDetial, :none, 2026, 9
-        deprecate :HealthStatusDetial=, :none, 2026, 9
+        deprecate :HealthStatusDetial, :none, 2026, 10
+        deprecate :HealthStatusDetial=, :none, 2026, 10
 
         def initialize(ip=nil, port=nil, healthstatus=nil, targetid=nil, healthstatusdetail=nil, healthstatusdetial=nil, targetgroupid=nil, weight=nil)
           @IP = ip
