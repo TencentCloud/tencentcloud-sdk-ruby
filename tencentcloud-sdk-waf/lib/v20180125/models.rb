@@ -1177,7 +1177,7 @@ module TencentCloud
         # @type GmEncPrivateKey: String
         # @param GmSSLId: <p>GmCertType为2时，需要填充此参数，表示腾讯云SSL平台托管的证书id</p>
         # @type GmSSLId: String
-        # @param UpstreamPolicy: <p>回源策略，支持负载均衡回源和分流回源两种方式。0：默认值，负载均衡回源；1：分流回源</p>
+        # @param UpstreamPolicy: <p>回源策略。<br>枚举值：<br>0：负载均衡回源（默认值）<br>1：分流回源<br>2：五元组精准回源，每个服务端口通过 UpstreamIps 单独配置回源 IP。仅高级版及以上可用，且仅支持 IP 回源</p>
         # @type UpstreamPolicy: Integer
         # @param UpstreamRules: <p>分流回源时生效，分流回源的规则。</p>
         # @type UpstreamRules: Array
@@ -1349,7 +1349,7 @@ module TencentCloud
         end
       end
 
-      # 后付费实例（Edition=llm-sdk-waf）的基础信息，仅包含 tb_instance_conf 基础字段
+      # 后付费实例详情，结构与 DescribeInstances 的 InstanceInfo 保持一致，全量返回实例字段（含各类套餐包信息），并额外填充 LLMTokenUsage；基础安全实例另返回 DomainCount、ExpertRuleCount、CustomRuleCount 实时统计
       class AfterPayInstanceInfo < TencentCloud::Common::AbstractModel
         # @param AppId: <p>用户appid</p>
         # @type AppId: Integer
@@ -1397,10 +1397,90 @@ module TencentCloud
         # @type LLMPkg: :class:`Tencentcloud::Waf.v20180125.models.LLMPkg`
         # @param LLMTokenUsage: <p>LLM实例当天4个计费模块token消耗量及近7天趋势（仅后付费llm-sdk-waf实例返回）</p>
         # @type LLMTokenUsage: :class:`Tencentcloud::Waf.v20180125.models.LLMTokenUsage`
+        # @param Mode: <p>弹性计费开关。<br>0：关闭<br>1：开启</p>
+        # @type Mode: Integer
+        # @param DomainCount: <p>已配置域名个数。</p><p>按量后付费基础安全实例（Edition为sparta-waf或clb-waf）返回实时去重后的接入域名数，统计范围覆盖SaaS接入域名、云原生防护对象（含默认虚拟域名）与四层REIP接入域名，同一域名多条接入记录只计一次。</p>
+        # @type DomainCount: Integer
+        # @param MainDomainCount: <p>已配置主域名个数。</p><p>按接入域名归属的主域名去重统计；未接入任何域名时为0。</p>
+        # @type MainDomainCount: Integer
+        # @param ExpertRuleCount: <p>实例当前实时开启的专家规则数量。统计口径：接入一个防护对象（域名）即默认计1个专家规则，即等于该实例的实时接入域名数DomainCount；未接入任何对象时为0。</p><p>仅按量后付费基础安全实例（Edition为sparta-waf或clb-waf）返回，其余实例类型固定为0。</p><p>该值为实时快照，与账单接口DescribeWafPostpaidBillDetail返回的小时计量值ExpertUsage可能存在差异。</p>
+        # @type ExpertRuleCount: Integer
+        # @param CustomRuleCount: <p>实例下所有接入域名的实时自定义规则条数之和。统计范围包含自定义策略、规则白名单、IP封禁、自定义CC、紧急CC、地域封禁、防信息泄露、防篡改、IP黑白名单等模块；同一条批量规则命中该实例下N个域名时计N条。</p><p>仅按量后付费基础安全实例（Edition为sparta-waf或clb-waf）返回，其余实例类型固定为0。</p><p>该值为实时快照且不做多实例平分，与账单接口DescribeWafPostpaidBillDetail返回的小时计量值CustomUsage可能存在差异。</p>
+        # @type CustomRuleCount: Integer
+        # @param MaxQPS: <p>实例30天内QPS峰值</p>
+        # @type MaxQPS: Integer
+        # @param QPS: <p>qps扩展包信息</p>
+        # @type QPS: :class:`Tencentcloud::Waf.v20180125.models.QPSPackageNew`
+        # @param DomainPkg: <p>域名扩展包信息</p>
+        # @type DomainPkg: :class:`Tencentcloud::Waf.v20180125.models.DomainPackageNew`
+        # @param FraudPkg: <p>业务安全包</p>
+        # @type FraudPkg: :class:`Tencentcloud::Waf.v20180125.models.FraudPkg`
+        # @param BotPkg: <p>Bot资源包</p>
+        # @type BotPkg: :class:`Tencentcloud::Waf.v20180125.models.BotPkg`
+        # @param BotQPS: <p>bot的qps详情</p>
+        # @type BotQPS: :class:`Tencentcloud::Waf.v20180125.models.BotQPS`
+        # @param MaxBandwidth: <p>带宽峰值，单位为B/s(字节每秒)</p>
+        # @type MaxBandwidth: Integer
+        # @param QpsStandard: <p>购买的qps规格</p>
+        # @type QpsStandard: Integer
+        # @param BandwidthStandard: <p>购买的带宽规格</p>
+        # @type BandwidthStandard: Integer
+        # @param Status: <p>实例状态</p>
+        # @type Status: Integer
+        # @param SandboxQps: <p>实例沙箱qps值</p>
+        # @type SandboxQps: Integer
+        # @param MajorEventsPkg: <p>重保包</p>
+        # @type MajorEventsPkg: :class:`Tencentcloud::Waf.v20180125.models.MajorEventsPkg`
+        # @param HybridPkg: <p>混合云子节点包</p>
+        # @type HybridPkg: :class:`Tencentcloud::Waf.v20180125.models.HybridPkg`
+        # @param ApiPkg: <p>API安全资源包</p>
+        # @type ApiPkg: :class:`Tencentcloud::Waf.v20180125.models.ApiPkg`
+        # @param MiniPkg: <p>小程序安全加速包</p>
+        # @type MiniPkg: :class:`Tencentcloud::Waf.v20180125.models.MiniPkg`
+        # @param MiniQpsStandard: <p>小程序qps规格</p>
+        # @type MiniQpsStandard: Integer
+        # @param MiniMaxQPS: <p>小程序qps峰值</p>
+        # @type MiniMaxQPS: Integer
+        # @param LastQpsExceedTime: <p>最近一次超量时间</p>
+        # @type LastQpsExceedTime: String
+        # @param MiniExtendPkg: <p>小程序安全接入ID数量扩张包</p>
+        # @type MiniExtendPkg: :class:`Tencentcloud::Waf.v20180125.models.MiniExtendPkg`
+        # @param Last3MaxQPS: <p>最近3天最大qps</p>
+        # @type Last3MaxQPS: Integer
+        # @param Last3MaxBandwidth: <p>最近3天最大带宽</p>
+        # @type Last3MaxBandwidth: Integer
+        # @param Last7MaxMiniBandwidth: <p>过去7天小程序流量最大带宽，单位Byte/s，仅开启小程序安全时有值。转换为Mbps请使用 *8/1000/1000（十进制），不要使用MaxBandwidth所用的*8/1024/1024（二进制），否则会有约4.63%的偏差</p>
+        # @type Last7MaxMiniBandwidth: Integer
+        # @param MiniBandwidthStandard: <p>小程序带宽上限，单位Mbps，仅开启小程序安全时有值</p>
+        # @type MiniBandwidthStandard: Integer
+        # @param MajorEventsProPkg: <p>重保增强包</p>
+        # @type MajorEventsProPkg: :class:`Tencentcloud::Waf.v20180125.models.MajorEventsProPkg`
+        # @param NetworkConfig: <p>实例的网络配置</p>
+        # @type NetworkConfig: :class:`Tencentcloud::Waf.v20180125.models.NetworkConfig`
+        # @param RCEPkg: <p>RCE设备安全信息包</p>
+        # @type RCEPkg: :class:`Tencentcloud::Waf.v20180125.models.RCEPkg`
+        # @param ExceedPolicy: <p>超量策略。0：超量沙箱<br>1：超量限流</p>
+        # @type ExceedPolicy: Integer
+        # @param ElasticResourceId: <p>弹性资源Id</p>
+        # @type ElasticResourceId: String
+        # @param LLMMonPkg: <p>预付费大模型安全信息包</p>
+        # @type LLMMonPkg: :class:`Tencentcloud::Waf.v20180125.models.LLMMonPkg`
+        # @param RegionId: <p>地域id</p>
+        # @type RegionId: Integer
+        # @param BotSecurityPkg: <p>BOT安全护航信息</p>
+        # @type BotSecurityPkg: :class:`Tencentcloud::Waf.v20180125.models.BotSecurityPkg`
+        # @param BotMonitorPkg: <p>BOT安全监测资源信息</p>
+        # @type BotMonitorPkg: :class:`Tencentcloud::Waf.v20180125.models.BotMonitorPkg`
+        # @param DedicatedIPPkg: <p>独享ip资源信息</p>
+        # @type DedicatedIPPkg: :class:`Tencentcloud::Waf.v20180125.models.DedicatedIPPkg`
+        # @param DedicatedIPCount: <p>已经配置独享ip的数量</p>
+        # @type DedicatedIPCount: Integer
+        # @param TagInfos: <p>标签结构体</p>
+        # @type TagInfos: Array
 
-        attr_accessor :AppId, :InstanceId, :InstanceName, :ResourceIds, :Edition, :Region, :PayMode, :ValidTime, :BeginTime, :BillingItem, :RenewFlag, :Level, :ModifyTime, :SubDomainLimit, :MainDomainLimit, :ElasticBilling, :AttackLogPost, :APISecurity, :IsAPISecurityTrial, :FreeDelayFlag, :BasicFlag, :LLMPkg, :LLMTokenUsage
+        attr_accessor :AppId, :InstanceId, :InstanceName, :ResourceIds, :Edition, :Region, :PayMode, :ValidTime, :BeginTime, :BillingItem, :RenewFlag, :Level, :ModifyTime, :SubDomainLimit, :MainDomainLimit, :ElasticBilling, :AttackLogPost, :APISecurity, :IsAPISecurityTrial, :FreeDelayFlag, :BasicFlag, :LLMPkg, :LLMTokenUsage, :Mode, :DomainCount, :MainDomainCount, :ExpertRuleCount, :CustomRuleCount, :MaxQPS, :QPS, :DomainPkg, :FraudPkg, :BotPkg, :BotQPS, :MaxBandwidth, :QpsStandard, :BandwidthStandard, :Status, :SandboxQps, :MajorEventsPkg, :HybridPkg, :ApiPkg, :MiniPkg, :MiniQpsStandard, :MiniMaxQPS, :LastQpsExceedTime, :MiniExtendPkg, :Last3MaxQPS, :Last3MaxBandwidth, :Last7MaxMiniBandwidth, :MiniBandwidthStandard, :MajorEventsProPkg, :NetworkConfig, :RCEPkg, :ExceedPolicy, :ElasticResourceId, :LLMMonPkg, :RegionId, :BotSecurityPkg, :BotMonitorPkg, :DedicatedIPPkg, :DedicatedIPCount, :TagInfos
 
-        def initialize(appid=nil, instanceid=nil, instancename=nil, resourceids=nil, edition=nil, region=nil, paymode=nil, validtime=nil, begintime=nil, billingitem=nil, renewflag=nil, level=nil, modifytime=nil, subdomainlimit=nil, maindomainlimit=nil, elasticbilling=nil, attacklogpost=nil, apisecurity=nil, isapisecuritytrial=nil, freedelayflag=nil, basicflag=nil, llmpkg=nil, llmtokenusage=nil)
+        def initialize(appid=nil, instanceid=nil, instancename=nil, resourceids=nil, edition=nil, region=nil, paymode=nil, validtime=nil, begintime=nil, billingitem=nil, renewflag=nil, level=nil, modifytime=nil, subdomainlimit=nil, maindomainlimit=nil, elasticbilling=nil, attacklogpost=nil, apisecurity=nil, isapisecuritytrial=nil, freedelayflag=nil, basicflag=nil, llmpkg=nil, llmtokenusage=nil, mode=nil, domaincount=nil, maindomaincount=nil, expertrulecount=nil, customrulecount=nil, maxqps=nil, qps=nil, domainpkg=nil, fraudpkg=nil, botpkg=nil, botqps=nil, maxbandwidth=nil, qpsstandard=nil, bandwidthstandard=nil, status=nil, sandboxqps=nil, majoreventspkg=nil, hybridpkg=nil, apipkg=nil, minipkg=nil, miniqpsstandard=nil, minimaxqps=nil, lastqpsexceedtime=nil, miniextendpkg=nil, last3maxqps=nil, last3maxbandwidth=nil, last7maxminibandwidth=nil, minibandwidthstandard=nil, majoreventspropkg=nil, networkconfig=nil, rcepkg=nil, exceedpolicy=nil, elasticresourceid=nil, llmmonpkg=nil, regionid=nil, botsecuritypkg=nil, botmonitorpkg=nil, dedicatedippkg=nil, dedicatedipcount=nil, taginfos=nil)
           @AppId = appid
           @InstanceId = instanceid
           @InstanceName = instancename
@@ -1424,6 +1504,46 @@ module TencentCloud
           @BasicFlag = basicflag
           @LLMPkg = llmpkg
           @LLMTokenUsage = llmtokenusage
+          @Mode = mode
+          @DomainCount = domaincount
+          @MainDomainCount = maindomaincount
+          @ExpertRuleCount = expertrulecount
+          @CustomRuleCount = customrulecount
+          @MaxQPS = maxqps
+          @QPS = qps
+          @DomainPkg = domainpkg
+          @FraudPkg = fraudpkg
+          @BotPkg = botpkg
+          @BotQPS = botqps
+          @MaxBandwidth = maxbandwidth
+          @QpsStandard = qpsstandard
+          @BandwidthStandard = bandwidthstandard
+          @Status = status
+          @SandboxQps = sandboxqps
+          @MajorEventsPkg = majoreventspkg
+          @HybridPkg = hybridpkg
+          @ApiPkg = apipkg
+          @MiniPkg = minipkg
+          @MiniQpsStandard = miniqpsstandard
+          @MiniMaxQPS = minimaxqps
+          @LastQpsExceedTime = lastqpsexceedtime
+          @MiniExtendPkg = miniextendpkg
+          @Last3MaxQPS = last3maxqps
+          @Last3MaxBandwidth = last3maxbandwidth
+          @Last7MaxMiniBandwidth = last7maxminibandwidth
+          @MiniBandwidthStandard = minibandwidthstandard
+          @MajorEventsProPkg = majoreventspropkg
+          @NetworkConfig = networkconfig
+          @RCEPkg = rcepkg
+          @ExceedPolicy = exceedpolicy
+          @ElasticResourceId = elasticresourceid
+          @LLMMonPkg = llmmonpkg
+          @RegionId = regionid
+          @BotSecurityPkg = botsecuritypkg
+          @BotMonitorPkg = botmonitorpkg
+          @DedicatedIPPkg = dedicatedippkg
+          @DedicatedIPCount = dedicatedipcount
+          @TagInfos = taginfos
         end
 
         def deserialize(params)
@@ -1455,6 +1575,104 @@ module TencentCloud
           unless params['LLMTokenUsage'].nil?
             @LLMTokenUsage = LLMTokenUsage.new
             @LLMTokenUsage.deserialize(params['LLMTokenUsage'])
+          end
+          @Mode = params['Mode']
+          @DomainCount = params['DomainCount']
+          @MainDomainCount = params['MainDomainCount']
+          @ExpertRuleCount = params['ExpertRuleCount']
+          @CustomRuleCount = params['CustomRuleCount']
+          @MaxQPS = params['MaxQPS']
+          unless params['QPS'].nil?
+            @QPS = QPSPackageNew.new
+            @QPS.deserialize(params['QPS'])
+          end
+          unless params['DomainPkg'].nil?
+            @DomainPkg = DomainPackageNew.new
+            @DomainPkg.deserialize(params['DomainPkg'])
+          end
+          unless params['FraudPkg'].nil?
+            @FraudPkg = FraudPkg.new
+            @FraudPkg.deserialize(params['FraudPkg'])
+          end
+          unless params['BotPkg'].nil?
+            @BotPkg = BotPkg.new
+            @BotPkg.deserialize(params['BotPkg'])
+          end
+          unless params['BotQPS'].nil?
+            @BotQPS = BotQPS.new
+            @BotQPS.deserialize(params['BotQPS'])
+          end
+          @MaxBandwidth = params['MaxBandwidth']
+          @QpsStandard = params['QpsStandard']
+          @BandwidthStandard = params['BandwidthStandard']
+          @Status = params['Status']
+          @SandboxQps = params['SandboxQps']
+          unless params['MajorEventsPkg'].nil?
+            @MajorEventsPkg = MajorEventsPkg.new
+            @MajorEventsPkg.deserialize(params['MajorEventsPkg'])
+          end
+          unless params['HybridPkg'].nil?
+            @HybridPkg = HybridPkg.new
+            @HybridPkg.deserialize(params['HybridPkg'])
+          end
+          unless params['ApiPkg'].nil?
+            @ApiPkg = ApiPkg.new
+            @ApiPkg.deserialize(params['ApiPkg'])
+          end
+          unless params['MiniPkg'].nil?
+            @MiniPkg = MiniPkg.new
+            @MiniPkg.deserialize(params['MiniPkg'])
+          end
+          @MiniQpsStandard = params['MiniQpsStandard']
+          @MiniMaxQPS = params['MiniMaxQPS']
+          @LastQpsExceedTime = params['LastQpsExceedTime']
+          unless params['MiniExtendPkg'].nil?
+            @MiniExtendPkg = MiniExtendPkg.new
+            @MiniExtendPkg.deserialize(params['MiniExtendPkg'])
+          end
+          @Last3MaxQPS = params['Last3MaxQPS']
+          @Last3MaxBandwidth = params['Last3MaxBandwidth']
+          @Last7MaxMiniBandwidth = params['Last7MaxMiniBandwidth']
+          @MiniBandwidthStandard = params['MiniBandwidthStandard']
+          unless params['MajorEventsProPkg'].nil?
+            @MajorEventsProPkg = MajorEventsProPkg.new
+            @MajorEventsProPkg.deserialize(params['MajorEventsProPkg'])
+          end
+          unless params['NetworkConfig'].nil?
+            @NetworkConfig = NetworkConfig.new
+            @NetworkConfig.deserialize(params['NetworkConfig'])
+          end
+          unless params['RCEPkg'].nil?
+            @RCEPkg = RCEPkg.new
+            @RCEPkg.deserialize(params['RCEPkg'])
+          end
+          @ExceedPolicy = params['ExceedPolicy']
+          @ElasticResourceId = params['ElasticResourceId']
+          unless params['LLMMonPkg'].nil?
+            @LLMMonPkg = LLMMonPkg.new
+            @LLMMonPkg.deserialize(params['LLMMonPkg'])
+          end
+          @RegionId = params['RegionId']
+          unless params['BotSecurityPkg'].nil?
+            @BotSecurityPkg = BotSecurityPkg.new
+            @BotSecurityPkg.deserialize(params['BotSecurityPkg'])
+          end
+          unless params['BotMonitorPkg'].nil?
+            @BotMonitorPkg = BotMonitorPkg.new
+            @BotMonitorPkg.deserialize(params['BotMonitorPkg'])
+          end
+          unless params['DedicatedIPPkg'].nil?
+            @DedicatedIPPkg = DedicatedIPPkg.new
+            @DedicatedIPPkg.deserialize(params['DedicatedIPPkg'])
+          end
+          @DedicatedIPCount = params['DedicatedIPCount']
+          unless params['TagInfos'].nil?
+            @TagInfos = []
+            params['TagInfos'].each do |i|
+              taginfo_tmp = TagInfo.new
+              taginfo_tmp.deserialize(i)
+              @TagInfos << taginfo_tmp
+            end
           end
         end
       end
@@ -1821,7 +2039,7 @@ module TencentCloud
       class ApiPkg < TencentCloud::Common::AbstractModel
         # @param ResourceIds: 资源id
         # @type ResourceIds: String
-        # @param Status: 状态
+        # @param Status: 状态，0表示关闭，1表示开启
         # @type Status: Integer
         # @param Region: 地域
         # @type Region: Integer
@@ -1833,7 +2051,7 @@ module TencentCloud
         # @type InquireNum: Integer
         # @param UsedNum: 使用数量
         # @type UsedNum: Integer
-        # @param RenewFlag: 续费标志
+        # @param RenewFlag: 续费标识，0表示手动续费，1表示自动续费，2表示到期不续
         # @type RenewFlag: Integer
         # @param BillingItem: 计费项
         # @type BillingItem: String
@@ -3179,7 +3397,7 @@ module TencentCloud
       class BotMonitorPkg < TencentCloud::Common::AbstractModel
         # @param ResourceIds: 资源id
         # @type ResourceIds: String
-        # @param Status: 状态
+        # @param Status: 状态，0表示关闭，1表示开启
         # @type Status: Integer
         # @param Region: 地域
         # @type Region: Integer
@@ -3191,7 +3409,7 @@ module TencentCloud
         # @type InquireNum: Integer
         # @param UsedNum: 使用数量
         # @type UsedNum: Integer
-        # @param RenewFlag: 续费标志
+        # @param RenewFlag: 续费标识，0表示手动续费，1表示自动续费，2表示到期不续
         # @type RenewFlag: Integer
         # @param BillingItem: 计费项
         # @type BillingItem: String
@@ -3227,7 +3445,7 @@ module TencentCloud
       class BotPkg < TencentCloud::Common::AbstractModel
         # @param ResourceIds: 资源id
         # @type ResourceIds: String
-        # @param Status: 状态
+        # @param Status: 状态，0表示关闭，1表示开启
         # @type Status: Integer
         # @param Region: 地域
         # @type Region: Integer
@@ -3241,7 +3459,7 @@ module TencentCloud
         # @type UsedNum: Integer
         # @param Type: 子产品code
         # @type Type: String
-        # @param RenewFlag: 续费标志
+        # @param RenewFlag: 续费标识，0表示手动续费，1表示自动续费，2表示到期不续
         # @type RenewFlag: Integer
         # @param BotCPWaf: 购买页bot6折
         # @type BotCPWaf: Integer
@@ -3295,7 +3513,7 @@ module TencentCloud
         # @type Region: String
         # @param MaxBotQPS: 使用qps的最大值
         # @type MaxBotQPS: Integer
-        # @param RenewFlag: 续费标志
+        # @param RenewFlag: 续费标识，0表示手动续费，1表示自动续费，2表示到期不续
         # @type RenewFlag: Integer
 
         attr_accessor :ResourceIds, :ValidTime, :Count, :Region, :MaxBotQPS, :RenewFlag
@@ -3618,7 +3836,7 @@ module TencentCloud
       class BotSecurityPkg < TencentCloud::Common::AbstractModel
         # @param ResourceIds: 资源id
         # @type ResourceIds: String
-        # @param Status: 状态
+        # @param Status: 状态，0表示关闭，1表示开启
         # @type Status: Integer
         # @param Region: 地域
         # @type Region: Integer
@@ -3630,7 +3848,7 @@ module TencentCloud
         # @type InquireNum: Integer
         # @param UsedNum: 使用数量
         # @type UsedNum: Integer
-        # @param RenewFlag: 续费标志
+        # @param RenewFlag: 续费标识，0表示手动续费，1表示自动续费，2表示到期不续
         # @type RenewFlag: Integer
         # @param BillingItem: 计费项
         # @type BillingItem: String
@@ -4328,8 +4546,58 @@ module TencentCloud
         # @type PostCKafkaStatus: Integer
         # @param Type: <p>对象类型：CLB:负载均衡器，TSE:云原生网关</p>
         # @type Type: String
-        # @param Region: <p>对象地域</p>
+        # @param Region: <p>对象地域<br>对象地域，地域缩写，例如 gz。与 ApRegion 表达同一含义、格式不同</p>
         # @type Region: String
+        # @param ApRegion: 对象所在地域，腾讯云标准地域格式
+        # 参数格式：形如 ap-guangzhou
+        # 与 Region 表达同一含义、格式不同。对象恒为单地域，数组长度恒为 0 或 1
+        # 出参在可识别时填充，无法识别时为空
+        # 枚举值：
+        # ap-guangzhou：广州
+        # ap-shanghai：上海
+        # ap-beijing：北京
+        # ap-chengdu：成都
+        # ap-chongqing：重庆
+        # ap-hongkong：中国香港
+        # ap-nanjing：南京
+        # ap-tianjin：天津
+        # ap-shenzhen：深圳
+        # ap-qingyuan：清远
+        # ap-guangzhou-open：广州Open
+        # ap-shenzhen-fsi：深圳金融
+        # ap-beijing-fsi：北京金融
+        # ap-shanghai-fsi：上海金融
+        # ap-hangzhou-ec：杭州
+        # ap-fuzhou-ec：福州
+        # ap-jinan-ec：济南
+        # ap-wuhan-ec：武汉
+        # ap-changsha-ec：长沙
+        # ap-hefei-ec：合肥
+        # ap-shenyang-ec：沈阳
+        # ap-xian-ec：西安
+        # ap-xibei-ec：西北
+        # ap-shijiazhuang-ec：石家庄
+        # ap-zhengzhou-ec：郑州
+        # ap-qingyuan-xinan：清远信安
+        # ap-shanghai-adc：上海ADC
+        # ap-shanghai-wxp-ops：上海无线城市运营
+        # ap-singapore：新加坡
+        # ap-seoul：首尔
+        # ap-tokyo：东京
+        # ap-osaka：大阪
+        # ap-mumbai：孟买
+        # ap-bangkok：曼谷
+        # ap-jakarta：雅加达
+        # ap-taipei：台北
+        # ap-johorbahru：柔佛巴鲁
+        # eu-frankfurt：法兰克福
+        # eu-moscow：莫斯科
+        # na-ashburn：弗吉尼亚
+        # na-siliconvalley：硅谷
+        # na-toronto：多伦多
+        # sa-saopaulo：圣保罗
+        # me-saudi-arabia：沙特阿拉伯
+        # @type ApRegion: Array
         # @param Proxy: <p>代理状态: 0:不开启,1:以XFF的第一个IP地址作为客户端IP,2:以remote_addr作为客户端IP,3:从指定的头部字段获取客户端IP，字段通过IpHeaders字段给出</p>
         # @type Proxy: Integer
         # @param IpHeaders: <p>指定获取客户端IP的头部字段列表。IsCdn为3时有效</p>
@@ -4363,9 +4631,9 @@ module TencentCloud
         # @param Note: <p>备注</p>
         # @type Note: String
 
-        attr_accessor :ObjectId, :InstanceId, :InstanceName, :PreciseDomains, :Status, :ClsStatus, :VirtualDomain, :ObjectName, :PublicIp, :PrivateIp, :VpcName, :Vpc, :InstanceLevel, :PostCLSStatus, :PostCKafkaStatus, :Type, :Region, :Proxy, :IpHeaders, :BotStatus, :ApiStatus, :LLMStatus, :ObjectFlowMode, :NumericalVpcId, :ModifyTime, :AddTime, :MemberAppId, :MemberUin, :MemberNickName, :TagInfos, :PreciseDomainDetails, :WafAccessStatus, :Note
+        attr_accessor :ObjectId, :InstanceId, :InstanceName, :PreciseDomains, :Status, :ClsStatus, :VirtualDomain, :ObjectName, :PublicIp, :PrivateIp, :VpcName, :Vpc, :InstanceLevel, :PostCLSStatus, :PostCKafkaStatus, :Type, :Region, :ApRegion, :Proxy, :IpHeaders, :BotStatus, :ApiStatus, :LLMStatus, :ObjectFlowMode, :NumericalVpcId, :ModifyTime, :AddTime, :MemberAppId, :MemberUin, :MemberNickName, :TagInfos, :PreciseDomainDetails, :WafAccessStatus, :Note
 
-        def initialize(objectid=nil, instanceid=nil, instancename=nil, precisedomains=nil, status=nil, clsstatus=nil, virtualdomain=nil, objectname=nil, publicip=nil, privateip=nil, vpcname=nil, vpc=nil, instancelevel=nil, postclsstatus=nil, postckafkastatus=nil, type=nil, region=nil, proxy=nil, ipheaders=nil, botstatus=nil, apistatus=nil, llmstatus=nil, objectflowmode=nil, numericalvpcid=nil, modifytime=nil, addtime=nil, memberappid=nil, memberuin=nil, membernickname=nil, taginfos=nil, precisedomaindetails=nil, wafaccessstatus=nil, note=nil)
+        def initialize(objectid=nil, instanceid=nil, instancename=nil, precisedomains=nil, status=nil, clsstatus=nil, virtualdomain=nil, objectname=nil, publicip=nil, privateip=nil, vpcname=nil, vpc=nil, instancelevel=nil, postclsstatus=nil, postckafkastatus=nil, type=nil, region=nil, apregion=nil, proxy=nil, ipheaders=nil, botstatus=nil, apistatus=nil, llmstatus=nil, objectflowmode=nil, numericalvpcid=nil, modifytime=nil, addtime=nil, memberappid=nil, memberuin=nil, membernickname=nil, taginfos=nil, precisedomaindetails=nil, wafaccessstatus=nil, note=nil)
           @ObjectId = objectid
           @InstanceId = instanceid
           @InstanceName = instancename
@@ -4383,6 +4651,7 @@ module TencentCloud
           @PostCKafkaStatus = postckafkastatus
           @Type = type
           @Region = region
+          @ApRegion = apregion
           @Proxy = proxy
           @IpHeaders = ipheaders
           @BotStatus = botstatus
@@ -4419,6 +4688,7 @@ module TencentCloud
           @PostCKafkaStatus = params['PostCKafkaStatus']
           @Type = params['Type']
           @Region = params['Region']
+          @ApRegion = params['ApRegion']
           @Proxy = params['Proxy']
           @IpHeaders = params['IpHeaders']
           @BotStatus = params['BotStatus']
@@ -7160,7 +7430,7 @@ module TencentCloud
       class DescribeAfterPayInstancesResponse < TencentCloud::Common::AbstractModel
         # @param Total: 总数
         # @type Total: Integer
-        # @param Instances: 后付费实例列表
+        # @param Instances: 后付费实例列表（结构与 DescribeInstances 的 InstanceInfo 一致，全量返回实例字段含各类套餐包信息，额外填充 LLMTokenUsage）
         # @type Instances: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -9587,11 +9857,11 @@ module TencentCloud
 
       # DescribeDomainDetailsClb请求参数结构体
       class DescribeDomainDetailsClbRequest < TencentCloud::Common::AbstractModel
-        # @param Domain: 域名
+        # @param Domain: <p>域名</p>
         # @type Domain: String
-        # @param DomainId: 域名id
+        # @param DomainId: <p>域名id</p>
         # @type DomainId: String
-        # @param InstanceId: 实例id
+        # @param InstanceId: <p>实例id</p>
         # @type InstanceId: String
 
         attr_accessor :Domain, :DomainId, :InstanceId
@@ -9611,7 +9881,7 @@ module TencentCloud
 
       # DescribeDomainDetailsClb返回参数结构体
       class DescribeDomainDetailsClbResponse < TencentCloud::Common::AbstractModel
-        # @param DomainsClbPartInfo: clb域名详情
+        # @param DomainsClbPartInfo: <p>clb域名详情</p>
         # @type DomainsClbPartInfo: :class:`Tencentcloud::Waf.v20180125.models.ClbDomainsInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -10300,7 +10570,7 @@ module TencentCloud
         # @type Limit: Integer
         # @param Filters: 过滤数组
         # @type Filters: Array
-        # @param FreeDelayFlag: 释放延期标识
+        # @param FreeDelayFlag: 释放延期标识，0表示不延期，1表示延期释放
         # @type FreeDelayFlag: Integer
 
         attr_accessor :Offset, :Limit, :Filters, :FreeDelayFlag
@@ -10625,10 +10895,16 @@ module TencentCloud
         # @type IntentContent: :class:`Tencentcloud::Waf.v20180125.models.IntentContent`
         # @param ClientIP: <p>客户端来源IP地址，用于白名单匹配等场景，支持IPv4和IPv6格式</p>
         # @type ClientIP: String
+        # @param History: 多轮历史用户输入，按时间旧到新排列，仅用于提示词注入检测
+        # 入参限制：最多10条，超出保留最新10条；History + Content 拼接后不超过6K字符，超限从最早History开始丢弃
+        # @type History: Array
+        # @param Urls: 待检测的URL列表，用于恶意URL检测
+        # 入参限制：最多50个，单个URL长度不超过2048字符，超出截断
+        # @type Urls: Array
 
-        attr_accessor :ServiceId, :Type, :InstanceId, :Content, :ChatId, :UserId, :TokenUsage, :ImageEncode, :ToolName, :ToolArgs, :SessionId, :IntentContent, :ClientIP
+        attr_accessor :ServiceId, :Type, :InstanceId, :Content, :ChatId, :UserId, :TokenUsage, :ImageEncode, :ToolName, :ToolArgs, :SessionId, :IntentContent, :ClientIP, :History, :Urls
 
-        def initialize(serviceid=nil, type=nil, instanceid=nil, content=nil, chatid=nil, userid=nil, tokenusage=nil, imageencode=nil, toolname=nil, toolargs=nil, sessionid=nil, intentcontent=nil, clientip=nil)
+        def initialize(serviceid=nil, type=nil, instanceid=nil, content=nil, chatid=nil, userid=nil, tokenusage=nil, imageencode=nil, toolname=nil, toolargs=nil, sessionid=nil, intentcontent=nil, clientip=nil, history=nil, urls=nil)
           @ServiceId = serviceid
           @Type = type
           @InstanceId = instanceid
@@ -10642,6 +10918,8 @@ module TencentCloud
           @SessionId = sessionid
           @IntentContent = intentcontent
           @ClientIP = clientip
+          @History = history
+          @Urls = urls
         end
 
         def deserialize(params)
@@ -10661,6 +10939,8 @@ module TencentCloud
             @IntentContent.deserialize(params['IntentContent'])
           end
           @ClientIP = params['ClientIP']
+          @History = params['History']
+          @Urls = params['Urls']
         end
       end
 
@@ -10844,21 +11124,33 @@ module TencentCloud
 
       # DescribeLLMWafDLPRules请求参数结构体
       class DescribeLLMWafDLPRulesRequest < TencentCloud::Common::AbstractModel
-        # @param ServiceId: <p>服务ID</p>
+        # @param ServiceId: <p>SDK 模式传 ServiceId（与 Domain 二选一）</p>
         # @type ServiceId: String
         # @param InstanceId: <p>实例id</p>
         # @type InstanceId: String
+        # @param By: <p>排序字段，当前仅支持 UpdateTime；为空则按规则默认顺序返回</p>
+        # @type By: String
+        # @param Order: <p>排序方向：asc(升序)/desc(降序)，默认 desc</p>
+        # @type Order: String
+        # @param Domain: <p>域名模式传 Domain（与 ServiceId 二选一）</p>
+        # @type Domain: String
 
-        attr_accessor :ServiceId, :InstanceId
+        attr_accessor :ServiceId, :InstanceId, :By, :Order, :Domain
 
-        def initialize(serviceid=nil, instanceid=nil)
+        def initialize(serviceid=nil, instanceid=nil, by=nil, order=nil, domain=nil)
           @ServiceId = serviceid
           @InstanceId = instanceid
+          @By = by
+          @Order = order
+          @Domain = domain
         end
 
         def deserialize(params)
           @ServiceId = params['ServiceId']
           @InstanceId = params['InstanceId']
+          @By = params['By']
+          @Order = params['Order']
+          @Domain = params['Domain']
         end
       end
 
@@ -10891,25 +11183,29 @@ module TencentCloud
 
       # DescribeLLMWafProtectRules请求参数结构体
       class DescribeLLMWafProtectRulesRequest < TencentCloud::Common::AbstractModel
-        # @param ServiceId: <p>服务ID</p>
+        # @param ServiceId: <p>SDK 模式传 ServiceId（与 Domain 二选一）</p>
         # @type ServiceId: String
         # @param InstanceId: <p>实例id</p>
         # @type InstanceId: String
         # @param RuleType: <p>规则类型</p>
         # @type RuleType: String
+        # @param Domain: <p>域名模式传 Domain（与 ServiceId 二选一）</p>
+        # @type Domain: String
 
-        attr_accessor :ServiceId, :InstanceId, :RuleType
+        attr_accessor :ServiceId, :InstanceId, :RuleType, :Domain
 
-        def initialize(serviceid=nil, instanceid=nil, ruletype=nil)
+        def initialize(serviceid=nil, instanceid=nil, ruletype=nil, domain=nil)
           @ServiceId = serviceid
           @InstanceId = instanceid
           @RuleType = ruletype
+          @Domain = domain
         end
 
         def deserialize(params)
           @ServiceId = params['ServiceId']
           @InstanceId = params['InstanceId']
           @RuleType = params['RuleType']
+          @Domain = params['Domain']
         end
       end
 
@@ -13158,7 +13454,7 @@ module TencentCloud
         # @type Cname: String
         # @param Edition: <p>域名所属实例类型。<br>sparta-waf：SaaS型WAF实例<br>clb-waf：负载均衡型WAF实例<br>cdc-clb-waf：CDC环境下负载均衡型WAF实例</p>
         # @type Edition: String
-        # @param Region: <p>地域。<br>&quot;多伦多&quot;: &quot;ca&quot;<br>&quot;广州&quot;: &quot;gz&quot;<br>&quot;成都&quot;: &quot;cd&quot;<br>&quot;福州&quot;: &quot;fzec&quot;<br>&quot;深圳&quot;: &quot;szx&quot;<br>&quot;印度&quot;: &quot;in&quot;<br>&quot;济南&quot;: &quot;jnec&quot;<br>&quot;重庆&quot;: &quot;cq&quot;<br>&quot;天津&quot;: &quot;tsn&quot;<br>&quot;欧洲东北&quot;: &quot;ru&quot;<br>&quot;南京&quot;: &quot;nj&quot;<br>&quot;美国硅谷&quot;: &quot;usw&quot;<br>&quot;泰国&quot;: &quot;th&quot;<br>&quot;广州Open&quot;: &quot;gzopen&quot;<br>&quot;深圳金融&quot;: &quot;szjr&quot;<br>&quot;法兰克福&quot;: &quot;de&quot;<br>&quot;日本&quot;: &quot;jp&quot;<br>&quot;弗吉尼亚&quot;: &quot;use&quot;<br>&quot;北京&quot;: &quot;bj&quot;<br>&quot;中国香港&quot;: &quot;hk&quot;<br>&quot;杭州&quot;: &quot;hzec&quot;<br>&quot;北京金融&quot;: &quot;bjjr&quot;<br>&quot;上海金融&quot;: &quot;shjr&quot;<br>&quot;台北&quot;: &quot;tpe&quot;<br>&quot;首尔&quot;: &quot;kr&quot;<br>&quot;上海&quot;: &quot;sh&quot;<br>&quot;新加坡&quot;: &quot;sg&quot;<br>&quot;清远&quot;: &quot;qy&quot;</p>
+        # @param Region: <p>地域。<br>&quot;多伦多&quot;: &quot;ca&quot;<br>&quot;广州&quot;: &quot;gz&quot;<br>&quot;成都&quot;: &quot;cd&quot;<br>&quot;福州&quot;: &quot;fzec&quot;<br>&quot;深圳&quot;: &quot;szx&quot;<br>&quot;印度&quot;: &quot;in&quot;<br>&quot;济南&quot;: &quot;jnec&quot;<br>&quot;重庆&quot;: &quot;cq&quot;<br>&quot;天津&quot;: &quot;tsn&quot;<br>&quot;欧洲东北&quot;: &quot;ru&quot;<br>&quot;南京&quot;: &quot;nj&quot;<br>&quot;美国硅谷&quot;: &quot;usw&quot;<br>&quot;泰国&quot;: &quot;th&quot;<br>&quot;广州Open&quot;: &quot;gzopen&quot;<br>&quot;深圳金融&quot;: &quot;szjr&quot;<br>&quot;法兰克福&quot;: &quot;de&quot;<br>&quot;日本&quot;: &quot;jp&quot;<br>&quot;弗吉尼亚&quot;: &quot;use&quot;<br>&quot;北京&quot;: &quot;bj&quot;<br>&quot;中国香港&quot;: &quot;hk&quot;<br>&quot;杭州&quot;: &quot;hzec&quot;<br>&quot;北京金融&quot;: &quot;bjjr&quot;<br>&quot;上海金融&quot;: &quot;shjr&quot;<br>&quot;台北&quot;: &quot;tpe&quot;<br>&quot;首尔&quot;: &quot;kr&quot;<br>&quot;上海&quot;: &quot;sh&quot;<br>&quot;新加坡&quot;: &quot;sg&quot;<br>&quot;清远&quot;: &quot;qy&quot;<br>与 ApRegion 表达同一含义、格式不同：本字段为地域缩写，ApRegion 为腾讯云标准 ap-xxx 格式</p>
         # @type Region: String
         # @param InstanceName: <p>实例名</p>
         # @type InstanceName: String
@@ -13184,6 +13480,59 @@ module TencentCloud
         # @type AppId: Integer
         # @param State: <p>SAAS型WAF域名状态：<br>-2：配置下发失败<br>-1：配置下发中<br>0：DNS解析中<br>1：无DNS解析记录，请接入WAF<br>10：DNS解析未知，域名启用了代理<br>11：DNS解析异常，使用A记录接入WAF IP<br>200：检测源站不可达<br>220：源站不支持长连接<br>311：证书过期<br>312：证书即将过期<br>310：证书异常<br>316：备案异常<br>5：WAF回源已变更<br>负载均衡型WAF域名LB监听器状态：<br>0：操作成功<br>4：正在绑定LB<br>6：正在解绑LB<br>7：解绑LB失败<br>8：绑定LB失败<br>10：内部错误</p>
         # @type State: Integer
+        # @param ApRegion: 域名所在地域，腾讯云标准地域格式
+        # 参数格式：形如 ap-guangzhou
+        # 与 Region 表达同一含义、格式不同：Region 为地域缩写，本字段为标准地域名数组。负载均衡型多地域接入时数组可含多个元素
+        # 出参在可识别时填充，无法识别的地域不返回对应元素
+        # 枚举值：
+        # ap-guangzhou：广州
+        # ap-shanghai：上海
+        # ap-beijing：北京
+        # ap-chengdu：成都
+        # ap-chongqing：重庆
+        # ap-hongkong：中国香港
+        # ap-nanjing：南京
+        # ap-tianjin：天津
+        # ap-shenzhen：深圳
+        # ap-qingyuan：清远
+        # ap-guangzhou-open：广州Open
+        # ap-shenzhen-fsi：深圳金融
+        # ap-beijing-fsi：北京金融
+        # ap-shanghai-fsi：上海金融
+        # ap-hangzhou-ec：杭州
+        # ap-fuzhou-ec：福州
+        # ap-jinan-ec：济南
+        # ap-wuhan-ec：武汉
+        # ap-changsha-ec：长沙
+        # ap-hefei-ec：合肥
+        # ap-shenyang-ec：沈阳
+        # ap-xian-ec：西安
+        # ap-xibei-ec：西北
+        # ap-shijiazhuang-ec：石家庄
+        # ap-zhengzhou-ec：郑州
+        # ap-qingyuan-xinan：清远信安
+        # ap-shanghai-adc：上海ADC
+        # ap-shanghai-wxp-ops：上海无线城市运营
+        # ap-singapore：新加坡
+        # ap-seoul：首尔
+        # ap-tokyo：东京
+        # ap-osaka：大阪
+        # ap-mumbai：孟买
+        # ap-bangkok：曼谷
+        # ap-jakarta：雅加达
+        # ap-taipei：台北
+        # ap-johorbahru：柔佛巴鲁
+        # eu-frankfurt：法兰克福
+        # eu-moscow：莫斯科
+        # na-ashburn：弗吉尼亚
+        # na-siliconvalley：硅谷
+        # na-toronto：多伦多
+        # sa-saopaulo：圣保罗
+        # me-saudi-arabia：沙特阿拉伯
+        # @type ApRegion: Array
+        # @param DnssecCname: DNSSEC CNAME 地址。客户开启 DNSSEC CNAME 校验后，将业务域名 CNAME 到该地址即可接入。开关关闭、非 SaaS CNAME 接入或无法映射时为空字符串。
+        # 默认值：""
+        # @type DnssecCname: String
         # @param CreateTime: <p>创建时间</p>
         # @type CreateTime: String
         # @param ModifyTime: <p>编辑时间</p>
@@ -13233,9 +13582,9 @@ module TencentCloud
         # @param LLMStatus: <p>大模型开关</p><p>枚举值：</p><ul><li>0： 大模型开关关闭状态</li><li>1： 大模型开关开启状态</li></ul>
         # @type LLMStatus: Integer
 
-        attr_accessor :Domain, :DomainId, :InstanceId, :Cname, :Edition, :Region, :InstanceName, :ClsStatus, :FlowMode, :Status, :Mode, :Engine, :CCList, :RsList, :Ports, :LoadBalancerSet, :AppId, :State, :CreateTime, :ModifyTime, :Ipv6Status, :BotStatus, :Level, :PostCLSStatus, :PostCKafkaStatus, :CdcClusters, :ApiStatus, :AlbType, :SgState, :SgDetail, :CloudType, :Note, :SrcList, :UpstreamDomainList, :SgID, :AccessStatus, :Labels, :PrivateVipStatus, :IsREIP, :REIPObjectId, :TagInfos, :LLMStatus
+        attr_accessor :Domain, :DomainId, :InstanceId, :Cname, :Edition, :Region, :InstanceName, :ClsStatus, :FlowMode, :Status, :Mode, :Engine, :CCList, :RsList, :Ports, :LoadBalancerSet, :AppId, :State, :ApRegion, :DnssecCname, :CreateTime, :ModifyTime, :Ipv6Status, :BotStatus, :Level, :PostCLSStatus, :PostCKafkaStatus, :CdcClusters, :ApiStatus, :AlbType, :SgState, :SgDetail, :CloudType, :Note, :SrcList, :UpstreamDomainList, :SgID, :AccessStatus, :Labels, :PrivateVipStatus, :IsREIP, :REIPObjectId, :TagInfos, :LLMStatus
 
-        def initialize(domain=nil, domainid=nil, instanceid=nil, cname=nil, edition=nil, region=nil, instancename=nil, clsstatus=nil, flowmode=nil, status=nil, mode=nil, engine=nil, cclist=nil, rslist=nil, ports=nil, loadbalancerset=nil, appid=nil, state=nil, createtime=nil, modifytime=nil, ipv6status=nil, botstatus=nil, level=nil, postclsstatus=nil, postckafkastatus=nil, cdcclusters=nil, apistatus=nil, albtype=nil, sgstate=nil, sgdetail=nil, cloudtype=nil, note=nil, srclist=nil, upstreamdomainlist=nil, sgid=nil, accessstatus=nil, labels=nil, privatevipstatus=nil, isreip=nil, reipobjectid=nil, taginfos=nil, llmstatus=nil)
+        def initialize(domain=nil, domainid=nil, instanceid=nil, cname=nil, edition=nil, region=nil, instancename=nil, clsstatus=nil, flowmode=nil, status=nil, mode=nil, engine=nil, cclist=nil, rslist=nil, ports=nil, loadbalancerset=nil, appid=nil, state=nil, apregion=nil, dnsseccname=nil, createtime=nil, modifytime=nil, ipv6status=nil, botstatus=nil, level=nil, postclsstatus=nil, postckafkastatus=nil, cdcclusters=nil, apistatus=nil, albtype=nil, sgstate=nil, sgdetail=nil, cloudtype=nil, note=nil, srclist=nil, upstreamdomainlist=nil, sgid=nil, accessstatus=nil, labels=nil, privatevipstatus=nil, isreip=nil, reipobjectid=nil, taginfos=nil, llmstatus=nil)
           @Domain = domain
           @DomainId = domainid
           @InstanceId = instanceid
@@ -13254,6 +13603,8 @@ module TencentCloud
           @LoadBalancerSet = loadbalancerset
           @AppId = appid
           @State = state
+          @ApRegion = apregion
+          @DnssecCname = dnsseccname
           @CreateTime = createtime
           @ModifyTime = modifytime
           @Ipv6Status = ipv6status
@@ -13313,6 +13664,8 @@ module TencentCloud
           end
           @AppId = params['AppId']
           @State = params['State']
+          @ApRegion = params['ApRegion']
+          @DnssecCname = params['DnssecCname']
           @CreateTime = params['CreateTime']
           @ModifyTime = params['ModifyTime']
           @Ipv6Status = params['Ipv6Status']
@@ -13479,6 +13832,8 @@ module TencentCloud
         # @type Cls: Integer
         # @param Cname: <p>接入Cname，SaaS型域名使用此Cname进行接入</p>
         # @type Cname: String
+        # @param DnssecCname: <p>DNSSEC CNAME 地址。客户开启 DNSSEC CNAME 校验后，将业务域名 CNAME 到该地址即可接入。开关关闭、非 SaaS CNAME 接入或无法映射时为空字符串。<br>默认值：&quot;&quot;</p>
+        # @type DnssecCname: String
         # @param IsKeepAlive: <p>是否开启长连接。<br>0： 短连接<br>1： 长连接</p>
         # @type IsKeepAlive: Integer
         # @param ActiveCheck: <p>是否开启主动健康检测。<br>0：不开启<br>1：开启</p>
@@ -13548,12 +13903,12 @@ module TencentCloud
         # @param Ipv6Status: <p>ipv6开启状态</p><p>枚举值：</p><ul><li>1： ipv6开关打开</li><li>0： ipv6开关关闭</li></ul>
         # @type Ipv6Status: Integer
 
-        attr_accessor :Domain, :DomainId, :InstanceId, :Edition, :InstanceName, :Cert, :CreateTime, :ModifyTime, :Engine, :HttpsRewrite, :HttpsUpstreamPort, :IsCdn, :IsGray, :IsHttp2, :IsWebsocket, :LoadBalance, :Mode, :PrivateKey, :SSLId, :UpstreamDomain, :UpstreamType, :SrcList, :Ports, :CertType, :UpstreamScheme, :Cls, :Cname, :IsKeepAlive, :ActiveCheck, :TLSVersion, :Ciphers, :CipherTemplate, :ProxyConnectTimeout, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :Weights, :IpHeaders, :XFFReset, :Note, :UpstreamHost, :Level, :ProxyBuffer, :GmType, :GmCertType, :GmCert, :GmPrivateKey, :GmEncCert, :GmEncPrivateKey, :GmSSLId, :Labels, :ProbeStatus, :UpstreamPolicy, :UpstreamRules, :UseCase, :Gzip, :State, :PrivateVipStatus, :TagInfos, :Ipv6Status
+        attr_accessor :Domain, :DomainId, :InstanceId, :Edition, :InstanceName, :Cert, :CreateTime, :ModifyTime, :Engine, :HttpsRewrite, :HttpsUpstreamPort, :IsCdn, :IsGray, :IsHttp2, :IsWebsocket, :LoadBalance, :Mode, :PrivateKey, :SSLId, :UpstreamDomain, :UpstreamType, :SrcList, :Ports, :CertType, :UpstreamScheme, :Cls, :Cname, :DnssecCname, :IsKeepAlive, :ActiveCheck, :TLSVersion, :Ciphers, :CipherTemplate, :ProxyConnectTimeout, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :Weights, :IpHeaders, :XFFReset, :Note, :UpstreamHost, :Level, :ProxyBuffer, :GmType, :GmCertType, :GmCert, :GmPrivateKey, :GmEncCert, :GmEncPrivateKey, :GmSSLId, :Labels, :ProbeStatus, :UpstreamPolicy, :UpstreamRules, :UseCase, :Gzip, :State, :PrivateVipStatus, :TagInfos, :Ipv6Status
         extend Gem::Deprecate
         deprecate :IsGray, :none, 2026, 10
         deprecate :IsGray=, :none, 2026, 10
 
-        def initialize(domain=nil, domainid=nil, instanceid=nil, edition=nil, instancename=nil, cert=nil, createtime=nil, modifytime=nil, engine=nil, httpsrewrite=nil, httpsupstreamport=nil, iscdn=nil, isgray=nil, ishttp2=nil, iswebsocket=nil, loadbalance=nil, mode=nil, privatekey=nil, sslid=nil, upstreamdomain=nil, upstreamtype=nil, srclist=nil, ports=nil, certtype=nil, upstreamscheme=nil, cls=nil, cname=nil, iskeepalive=nil, activecheck=nil, tlsversion=nil, ciphers=nil, ciphertemplate=nil, proxyconnecttimeout=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, weights=nil, ipheaders=nil, xffreset=nil, note=nil, upstreamhost=nil, level=nil, proxybuffer=nil, gmtype=nil, gmcerttype=nil, gmcert=nil, gmprivatekey=nil, gmenccert=nil, gmencprivatekey=nil, gmsslid=nil, labels=nil, probestatus=nil, upstreampolicy=nil, upstreamrules=nil, usecase=nil, gzip=nil, state=nil, privatevipstatus=nil, taginfos=nil, ipv6status=nil)
+        def initialize(domain=nil, domainid=nil, instanceid=nil, edition=nil, instancename=nil, cert=nil, createtime=nil, modifytime=nil, engine=nil, httpsrewrite=nil, httpsupstreamport=nil, iscdn=nil, isgray=nil, ishttp2=nil, iswebsocket=nil, loadbalance=nil, mode=nil, privatekey=nil, sslid=nil, upstreamdomain=nil, upstreamtype=nil, srclist=nil, ports=nil, certtype=nil, upstreamscheme=nil, cls=nil, cname=nil, dnsseccname=nil, iskeepalive=nil, activecheck=nil, tlsversion=nil, ciphers=nil, ciphertemplate=nil, proxyconnecttimeout=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, weights=nil, ipheaders=nil, xffreset=nil, note=nil, upstreamhost=nil, level=nil, proxybuffer=nil, gmtype=nil, gmcerttype=nil, gmcert=nil, gmprivatekey=nil, gmenccert=nil, gmencprivatekey=nil, gmsslid=nil, labels=nil, probestatus=nil, upstreampolicy=nil, upstreamrules=nil, usecase=nil, gzip=nil, state=nil, privatevipstatus=nil, taginfos=nil, ipv6status=nil)
           @Domain = domain
           @DomainId = domainid
           @InstanceId = instanceid
@@ -13581,6 +13936,7 @@ module TencentCloud
           @UpstreamScheme = upstreamscheme
           @Cls = cls
           @Cname = cname
+          @DnssecCname = dnsseccname
           @IsKeepAlive = iskeepalive
           @ActiveCheck = activecheck
           @TLSVersion = tlsversion
@@ -13652,6 +14008,7 @@ module TencentCloud
           @UpstreamScheme = params['UpstreamScheme']
           @Cls = params['Cls']
           @Cname = params['Cname']
+          @DnssecCname = params['DnssecCname']
           @IsKeepAlive = params['IsKeepAlive']
           @ActiveCheck = params['ActiveCheck']
           @TLSVersion = params['TLSVersion']
@@ -14048,14 +14405,23 @@ module TencentCloud
         # @type EnableBot: Integer
         # @param EnableResponse: <p>响应方向body<br>1:开启 0:不开启</p>
         # @type EnableResponse: Integer
+        # @param EnableResponseHeaders: <p>是否投递 response_headers（响应头，完整键值对，原样投递不做过滤/脱敏，超过2KB截断）。1:开启 0/不填:不开启。与 EnableResponse（响应体）完全独立，互不影响。</p>
+        # @type EnableResponseHeaders: Integer
+        # @param EnableResponseLength: <p>是否投递 response_length（响应包长度，单位字节）。1:开启 0/不填:不开启。与 EnableResponse 完全独立，互不影响。</p>
+        # @type EnableResponseLength: Integer
+        # @param EnableResponseStatusLine: <p>是否投递 response_status_line（客户端可见 HTTP 状态行，如 HTTP/1.1 200 OK，超过1KB截断）。1:开启 0/不填:不开启。与 EnableResponse 完全独立，互不影响。拦截/未回源时也会有值，记录的是 WAF 返回给客户端的状态行。</p>
+        # @type EnableResponseStatusLine: Integer
 
-        attr_accessor :EnableHeaders, :EnableBody, :EnableBot, :EnableResponse
+        attr_accessor :EnableHeaders, :EnableBody, :EnableBot, :EnableResponse, :EnableResponseHeaders, :EnableResponseLength, :EnableResponseStatusLine
 
-        def initialize(enableheaders=nil, enablebody=nil, enablebot=nil, enableresponse=nil)
+        def initialize(enableheaders=nil, enablebody=nil, enablebot=nil, enableresponse=nil, enableresponseheaders=nil, enableresponselength=nil, enableresponsestatusline=nil)
           @EnableHeaders = enableheaders
           @EnableBody = enablebody
           @EnableBot = enablebot
           @EnableResponse = enableresponse
+          @EnableResponseHeaders = enableresponseheaders
+          @EnableResponseLength = enableresponselength
+          @EnableResponseStatusLine = enableresponsestatusline
         end
 
         def deserialize(params)
@@ -14063,6 +14429,9 @@ module TencentCloud
           @EnableBody = params['EnableBody']
           @EnableBot = params['EnableBot']
           @EnableResponse = params['EnableResponse']
+          @EnableResponseHeaders = params['EnableResponseHeaders']
+          @EnableResponseLength = params['EnableResponseLength']
+          @EnableResponseStatusLine = params['EnableResponseStatusLine']
         end
       end
 
@@ -14159,7 +14528,7 @@ module TencentCloud
       class FraudPkg < TencentCloud::Common::AbstractModel
         # @param ResourceIds: 资源id
         # @type ResourceIds: String
-        # @param Status: 状态
+        # @param Status: 状态，0表示关闭，1表示开启
         # @type Status: Integer
         # @param Region: 地域
         # @type Region: Integer
@@ -14171,7 +14540,7 @@ module TencentCloud
         # @type InquireNum: Integer
         # @param UsedNum: 使用数量
         # @type UsedNum: Integer
-        # @param RenewFlag: 续费标志
+        # @param RenewFlag: 续费标识，0表示手动续费，1表示自动续费，2表示到期不续
         # @type RenewFlag: Integer
 
         attr_accessor :ResourceIds, :Status, :Region, :BeginTime, :EndTime, :InquireNum, :UsedNum, :RenewFlag
@@ -14942,6 +15311,7 @@ module TencentCloud
         # @param LoadBalancerSet: 绑定的负载均衡器信息列表
         # @type LoadBalancerSet: Array
         # @param Region: 域名绑定的LB的地域，以逗号分割多个地域
+        # 与 ApRegion 表达同一含义、格式不同。本字段为地域缩写，多个地域以英文逗号拼接；入参与 ApRegion 同时传入时以 ApRegion 为准
         # @type Region: String
         # @param Edition: 域名所属实例类型。负载均衡型WAF为"clb-waf"
         # @type Edition: String
@@ -14953,6 +15323,57 @@ module TencentCloud
         # 1：开启
         # 0：关闭
         # @type ClsStatus: Integer
+        # @param ApRegion: 域名绑定的负载均衡所在地域，腾讯云标准地域格式
+        # 参数格式：形如 ap-guangzhou
+        # 与 Region 表达同一含义、格式不同：Region 为地域缩写且多个地域以英文逗号拼接，本字段为标准地域名数组
+        # 入参可选；与 Region 同时传入时以本字段为准；取值不在枚举范围内时返回 UnsupportedRegion
+        # 出参在可识别时填充，无法识别的地域不返回对应元素
+        # 枚举值：
+        # ap-guangzhou：广州
+        # ap-shanghai：上海
+        # ap-beijing：北京
+        # ap-chengdu：成都
+        # ap-chongqing：重庆
+        # ap-hongkong：中国香港
+        # ap-nanjing：南京
+        # ap-tianjin：天津
+        # ap-shenzhen：深圳
+        # ap-qingyuan：清远
+        # ap-guangzhou-open：广州Open
+        # ap-shenzhen-fsi：深圳金融
+        # ap-beijing-fsi：北京金融
+        # ap-shanghai-fsi：上海金融
+        # ap-hangzhou-ec：杭州
+        # ap-fuzhou-ec：福州
+        # ap-jinan-ec：济南
+        # ap-wuhan-ec：武汉
+        # ap-changsha-ec：长沙
+        # ap-hefei-ec：合肥
+        # ap-shenyang-ec：沈阳
+        # ap-xian-ec：西安
+        # ap-xibei-ec：西北
+        # ap-shijiazhuang-ec：石家庄
+        # ap-zhengzhou-ec：郑州
+        # ap-qingyuan-xinan：清远信安
+        # ap-shanghai-adc：上海ADC
+        # ap-shanghai-wxp-ops：上海无线城市运营
+        # ap-singapore：新加坡
+        # ap-seoul：首尔
+        # ap-tokyo：东京
+        # ap-osaka：大阪
+        # ap-mumbai：孟买
+        # ap-bangkok：曼谷
+        # ap-jakarta：雅加达
+        # ap-taipei：台北
+        # ap-johorbahru：柔佛巴鲁
+        # eu-frankfurt：法兰克福
+        # eu-moscow：莫斯科
+        # na-ashburn：弗吉尼亚
+        # na-siliconvalley：硅谷
+        # na-toronto：多伦多
+        # sa-saopaulo：圣保罗
+        # me-saudi-arabia：沙特阿拉伯
+        # @type ApRegion: Array
         # @param Level: 防护等级，可选值100,200,300
         # @type Level: Integer
         # @param CdcClusters: 域名需要下发到的cdc集群列表。仅CDC场景下填充
@@ -14977,9 +15398,9 @@ module TencentCloud
         # @param Note: 域名备注信息
         # @type Note: String
 
-        attr_accessor :Domain, :DomainId, :MainDomain, :Mode, :Status, :State, :Engine, :IsCdn, :LoadBalancerSet, :Region, :Edition, :FlowMode, :ClsStatus, :Level, :CdcClusters, :AlbType, :IpHeaders, :EngineType, :CloudType, :Note
+        attr_accessor :Domain, :DomainId, :MainDomain, :Mode, :Status, :State, :Engine, :IsCdn, :LoadBalancerSet, :Region, :Edition, :FlowMode, :ClsStatus, :ApRegion, :Level, :CdcClusters, :AlbType, :IpHeaders, :EngineType, :CloudType, :Note
 
-        def initialize(domain=nil, domainid=nil, maindomain=nil, mode=nil, status=nil, state=nil, engine=nil, iscdn=nil, loadbalancerset=nil, region=nil, edition=nil, flowmode=nil, clsstatus=nil, level=nil, cdcclusters=nil, albtype=nil, ipheaders=nil, enginetype=nil, cloudtype=nil, note=nil)
+        def initialize(domain=nil, domainid=nil, maindomain=nil, mode=nil, status=nil, state=nil, engine=nil, iscdn=nil, loadbalancerset=nil, region=nil, edition=nil, flowmode=nil, clsstatus=nil, apregion=nil, level=nil, cdcclusters=nil, albtype=nil, ipheaders=nil, enginetype=nil, cloudtype=nil, note=nil)
           @Domain = domain
           @DomainId = domainid
           @MainDomain = maindomain
@@ -14993,6 +15414,7 @@ module TencentCloud
           @Edition = edition
           @FlowMode = flowmode
           @ClsStatus = clsstatus
+          @ApRegion = apregion
           @Level = level
           @CdcClusters = cdcclusters
           @AlbType = albtype
@@ -15023,6 +15445,7 @@ module TencentCloud
           @Edition = params['Edition']
           @FlowMode = params['FlowMode']
           @ClsStatus = params['ClsStatus']
+          @ApRegion = params['ApRegion']
           @Level = params['Level']
           @CdcClusters = params['CdcClusters']
           @AlbType = params['AlbType']
@@ -15065,7 +15488,7 @@ module TencentCloud
       class HybridPkg < TencentCloud::Common::AbstractModel
         # @param ResourceIds: 资源id
         # @type ResourceIds: String
-        # @param Status: 状态
+        # @param Status: 状态，0表示关闭，1表示开启
         # @type Status: Integer
         # @param Region: 地域
         # @type Region: Integer
@@ -15077,12 +15500,14 @@ module TencentCloud
         # @type InquireNum: Integer
         # @param UsedNum: 使用数量
         # @type UsedNum: Integer
-        # @param RenewFlag: 续费标志
+        # @param RenewFlag: 续费标识，0表示手动续费，1表示自动续费，2表示到期不续
         # @type RenewFlag: Integer
+        # @param ElasticNodeNum: 可接入弹性节点数。仅 Edition 为 clb-waf 的实例有混合云接入节点；弹性关闭或不满足版本、已购混合云节点条件时为 0；满足时为 1 + floor(弹性计费 QPS 上限 / 5000)，不含已购买节点数
+        # @type ElasticNodeNum: Integer
 
-        attr_accessor :ResourceIds, :Status, :Region, :BeginTime, :EndTime, :InquireNum, :UsedNum, :RenewFlag
+        attr_accessor :ResourceIds, :Status, :Region, :BeginTime, :EndTime, :InquireNum, :UsedNum, :RenewFlag, :ElasticNodeNum
 
-        def initialize(resourceids=nil, status=nil, region=nil, begintime=nil, endtime=nil, inquirenum=nil, usednum=nil, renewflag=nil)
+        def initialize(resourceids=nil, status=nil, region=nil, begintime=nil, endtime=nil, inquirenum=nil, usednum=nil, renewflag=nil, elasticnodenum=nil)
           @ResourceIds = resourceids
           @Status = status
           @Region = region
@@ -15091,6 +15516,7 @@ module TencentCloud
           @InquireNum = inquirenum
           @UsedNum = usednum
           @RenewFlag = renewflag
+          @ElasticNodeNum = elasticnodenum
         end
 
         def deserialize(params)
@@ -15102,6 +15528,7 @@ module TencentCloud
           @InquireNum = params['InquireNum']
           @UsedNum = params['UsedNum']
           @RenewFlag = params['RenewFlag']
+          @ElasticNodeNum = params['ElasticNodeNum']
         end
       end
 
@@ -15421,7 +15848,7 @@ module TencentCloud
         # @type ResourceIds: String
         # @param Region: <p>实例所属地域</p>
         # @type Region: String
-        # @param PayMode: <p>付费模式</p>
+        # @param PayMode: 付费模式，0表示后付费（按量计费），1表示预付费（包年包月）
         # @type PayMode: Integer
         # @param RenewFlag: <p>自动续费标识。<br>0：关闭<br>1：开启</p>
         # @type RenewFlag: Integer
@@ -15467,9 +15894,9 @@ module TencentCloud
         # @type APISecurity: Integer
         # @param QpsStandard: <p>购买的qps规格</p>
         # @type QpsStandard: Integer
-        # @param BandwidthStandard: <p>购买的带宽规格</p>
+        # @param BandwidthStandard: 购买的带宽规格上限，单位：Mbps
         # @type BandwidthStandard: Integer
-        # @param Status: <p>实例状态</p>
+        # @param Status: 实例状态，0表示正常，1表示正常使用，2表示隔离期，3表示已销毁
         # @type Status: Integer
         # @param SandboxQps: <p>实例沙箱qps值</p>
         # @type SandboxQps: Integer
@@ -15481,7 +15908,7 @@ module TencentCloud
         # @type HybridPkg: :class:`Tencentcloud::Waf.v20180125.models.HybridPkg`
         # @param ApiPkg: <p>API安全资源包</p>
         # @type ApiPkg: :class:`Tencentcloud::Waf.v20180125.models.ApiPkg`
-        # @param MiniPkg: <p>小程序安全加速包</p>
+        # @param MiniPkg: <p>小程序安全防护包</p>
         # @type MiniPkg: :class:`Tencentcloud::Waf.v20180125.models.MiniPkg`
         # @param MiniQpsStandard: <p>小程序qps规格</p>
         # @type MiniQpsStandard: Integer
@@ -15493,12 +15920,16 @@ module TencentCloud
         # @type MiniExtendPkg: :class:`Tencentcloud::Waf.v20180125.models.MiniExtendPkg`
         # @param BillingItem: <p>计费项</p>
         # @type BillingItem: String
-        # @param FreeDelayFlag: <p>实例延期释放标识</p>
+        # @param FreeDelayFlag: 实例延期释放标识，0表示不延期，1表示延期释放
         # @type FreeDelayFlag: Integer
         # @param Last3MaxQPS: <p>最近3天最大qps</p>
         # @type Last3MaxQPS: Integer
         # @param Last3MaxBandwidth: <p>最近3天最大带宽</p>
         # @type Last3MaxBandwidth: Integer
+        # @param Last7MaxMiniBandwidth: <p>过去7天小程序流量最大带宽，单位Byte/s，仅开启小程序安全时有值。转换为Mbps请使用 *8/1000/1000（十进制），不要使用MaxBandwidth所用的*8/1024/1024（二进制），否则会有约4.63%的偏差</p>
+        # @type Last7MaxMiniBandwidth: Integer
+        # @param MiniBandwidthStandard: <p>小程序带宽上限，单位Mbps，仅开启小程序安全时有值</p>
+        # @type MiniBandwidthStandard: Integer
         # @param MajorEventsProPkg: <p>重保增强包</p>
         # @type MajorEventsProPkg: :class:`Tencentcloud::Waf.v20180125.models.MajorEventsProPkg`
         # @param BasicFlag: <p>1是基础2025版本；0不是</p>
@@ -15507,6 +15938,8 @@ module TencentCloud
         # @type NetworkConfig: :class:`Tencentcloud::Waf.v20180125.models.NetworkConfig`
         # @param RCEPkg: <p>RCE设备安全信息包</p>
         # @type RCEPkg: :class:`Tencentcloud::Waf.v20180125.models.RCEPkg`
+        # @param RCEExtendPkg: <p>RCE QPS扩展包</p>
+        # @type RCEExtendPkg: :class:`Tencentcloud::Waf.v20180125.models.RCEExtendPkg`
         # @param ExceedPolicy: <p>超量策略。0：超量沙箱<br>1：超量限流</p>
         # @type ExceedPolicy: Integer
         # @param LLMPkg: <p>大模型安全信息包</p>
@@ -15528,9 +15961,9 @@ module TencentCloud
         # @param TagInfos: <p>标签结构体</p>
         # @type TagInfos: Array
 
-        attr_accessor :InstanceId, :InstanceName, :ResourceIds, :Region, :PayMode, :RenewFlag, :Mode, :Level, :ValidTime, :BeginTime, :DomainCount, :SubDomainLimit, :MainDomainCount, :MainDomainLimit, :MaxQPS, :QPS, :DomainPkg, :AppId, :Edition, :FraudPkg, :BotPkg, :BotQPS, :ElasticBilling, :AttackLogPost, :MaxBandwidth, :APISecurity, :QpsStandard, :BandwidthStandard, :Status, :SandboxQps, :IsAPISecurityTrial, :MajorEventsPkg, :HybridPkg, :ApiPkg, :MiniPkg, :MiniQpsStandard, :MiniMaxQPS, :LastQpsExceedTime, :MiniExtendPkg, :BillingItem, :FreeDelayFlag, :Last3MaxQPS, :Last3MaxBandwidth, :MajorEventsProPkg, :BasicFlag, :NetworkConfig, :RCEPkg, :ExceedPolicy, :LLMPkg, :ElasticResourceId, :LLMMonPkg, :RegionId, :BotSecurityPkg, :BotMonitorPkg, :DedicatedIPPkg, :DedicatedIPCount, :TagInfos
+        attr_accessor :InstanceId, :InstanceName, :ResourceIds, :Region, :PayMode, :RenewFlag, :Mode, :Level, :ValidTime, :BeginTime, :DomainCount, :SubDomainLimit, :MainDomainCount, :MainDomainLimit, :MaxQPS, :QPS, :DomainPkg, :AppId, :Edition, :FraudPkg, :BotPkg, :BotQPS, :ElasticBilling, :AttackLogPost, :MaxBandwidth, :APISecurity, :QpsStandard, :BandwidthStandard, :Status, :SandboxQps, :IsAPISecurityTrial, :MajorEventsPkg, :HybridPkg, :ApiPkg, :MiniPkg, :MiniQpsStandard, :MiniMaxQPS, :LastQpsExceedTime, :MiniExtendPkg, :BillingItem, :FreeDelayFlag, :Last3MaxQPS, :Last3MaxBandwidth, :Last7MaxMiniBandwidth, :MiniBandwidthStandard, :MajorEventsProPkg, :BasicFlag, :NetworkConfig, :RCEPkg, :RCEExtendPkg, :ExceedPolicy, :LLMPkg, :ElasticResourceId, :LLMMonPkg, :RegionId, :BotSecurityPkg, :BotMonitorPkg, :DedicatedIPPkg, :DedicatedIPCount, :TagInfos
 
-        def initialize(instanceid=nil, instancename=nil, resourceids=nil, region=nil, paymode=nil, renewflag=nil, mode=nil, level=nil, validtime=nil, begintime=nil, domaincount=nil, subdomainlimit=nil, maindomaincount=nil, maindomainlimit=nil, maxqps=nil, qps=nil, domainpkg=nil, appid=nil, edition=nil, fraudpkg=nil, botpkg=nil, botqps=nil, elasticbilling=nil, attacklogpost=nil, maxbandwidth=nil, apisecurity=nil, qpsstandard=nil, bandwidthstandard=nil, status=nil, sandboxqps=nil, isapisecuritytrial=nil, majoreventspkg=nil, hybridpkg=nil, apipkg=nil, minipkg=nil, miniqpsstandard=nil, minimaxqps=nil, lastqpsexceedtime=nil, miniextendpkg=nil, billingitem=nil, freedelayflag=nil, last3maxqps=nil, last3maxbandwidth=nil, majoreventspropkg=nil, basicflag=nil, networkconfig=nil, rcepkg=nil, exceedpolicy=nil, llmpkg=nil, elasticresourceid=nil, llmmonpkg=nil, regionid=nil, botsecuritypkg=nil, botmonitorpkg=nil, dedicatedippkg=nil, dedicatedipcount=nil, taginfos=nil)
+        def initialize(instanceid=nil, instancename=nil, resourceids=nil, region=nil, paymode=nil, renewflag=nil, mode=nil, level=nil, validtime=nil, begintime=nil, domaincount=nil, subdomainlimit=nil, maindomaincount=nil, maindomainlimit=nil, maxqps=nil, qps=nil, domainpkg=nil, appid=nil, edition=nil, fraudpkg=nil, botpkg=nil, botqps=nil, elasticbilling=nil, attacklogpost=nil, maxbandwidth=nil, apisecurity=nil, qpsstandard=nil, bandwidthstandard=nil, status=nil, sandboxqps=nil, isapisecuritytrial=nil, majoreventspkg=nil, hybridpkg=nil, apipkg=nil, minipkg=nil, miniqpsstandard=nil, minimaxqps=nil, lastqpsexceedtime=nil, miniextendpkg=nil, billingitem=nil, freedelayflag=nil, last3maxqps=nil, last3maxbandwidth=nil, last7maxminibandwidth=nil, minibandwidthstandard=nil, majoreventspropkg=nil, basicflag=nil, networkconfig=nil, rcepkg=nil, rceextendpkg=nil, exceedpolicy=nil, llmpkg=nil, elasticresourceid=nil, llmmonpkg=nil, regionid=nil, botsecuritypkg=nil, botmonitorpkg=nil, dedicatedippkg=nil, dedicatedipcount=nil, taginfos=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @ResourceIds = resourceids
@@ -15574,10 +16007,13 @@ module TencentCloud
           @FreeDelayFlag = freedelayflag
           @Last3MaxQPS = last3maxqps
           @Last3MaxBandwidth = last3maxbandwidth
+          @Last7MaxMiniBandwidth = last7maxminibandwidth
+          @MiniBandwidthStandard = minibandwidthstandard
           @MajorEventsProPkg = majoreventspropkg
           @BasicFlag = basicflag
           @NetworkConfig = networkconfig
           @RCEPkg = rcepkg
+          @RCEExtendPkg = rceextendpkg
           @ExceedPolicy = exceedpolicy
           @LLMPkg = llmpkg
           @ElasticResourceId = elasticresourceid
@@ -15664,6 +16100,8 @@ module TencentCloud
           @FreeDelayFlag = params['FreeDelayFlag']
           @Last3MaxQPS = params['Last3MaxQPS']
           @Last3MaxBandwidth = params['Last3MaxBandwidth']
+          @Last7MaxMiniBandwidth = params['Last7MaxMiniBandwidth']
+          @MiniBandwidthStandard = params['MiniBandwidthStandard']
           unless params['MajorEventsProPkg'].nil?
             @MajorEventsProPkg = MajorEventsProPkg.new
             @MajorEventsProPkg.deserialize(params['MajorEventsProPkg'])
@@ -15676,6 +16114,10 @@ module TencentCloud
           unless params['RCEPkg'].nil?
             @RCEPkg = RCEPkg.new
             @RCEPkg.deserialize(params['RCEPkg'])
+          end
+          unless params['RCEExtendPkg'].nil?
+            @RCEExtendPkg = RCEExtendPkg.new
+            @RCEExtendPkg.deserialize(params['RCEExtendPkg'])
           end
           @ExceedPolicy = params['ExceedPolicy']
           unless params['LLMPkg'].nil?
@@ -16078,6 +16520,8 @@ module TencentCloud
         # @type Action: String
         # @param Payload: <p>攻击payload</p>
         # @type Payload: String
+        # @param Desensitization: <p>脱敏后的内容。Action为mask时返回；如果未生成脱敏证据，则返回原文。</p>
+        # @type Desensitization: String
         # @param ImageResult: <p>图片检测结果</p>
         # @type ImageResult: Array
         # @param MsgID: <p>要代答的消息id，此消息id用于作为GenerateLLMSecAnswer接口的入参</p>
@@ -16086,10 +16530,12 @@ module TencentCloud
         # @type ToolCallResult: :class:`Tencentcloud::Waf.v20180125.models.ToolCallResult`
         # @param IntentDetectResult: <p>意图检测结果</p>
         # @type IntentDetectResult: :class:`Tencentcloud::Waf.v20180125.models.IntentDetectResult`
+        # @param UrlDetectResult: <p>恶意URL检测结果</p>
+        # @type UrlDetectResult: :class:`Tencentcloud::Waf.v20180125.models.UrlDetectResult`
 
-        attr_accessor :SensitiveResult, :KeyWordsResult, :DataCategoryResult, :PromptInjectionResult, :RuleId, :RuleName, :Action, :Payload, :ImageResult, :MsgID, :ToolCallResult, :IntentDetectResult
+        attr_accessor :SensitiveResult, :KeyWordsResult, :DataCategoryResult, :PromptInjectionResult, :RuleId, :RuleName, :Action, :Payload, :Desensitization, :ImageResult, :MsgID, :ToolCallResult, :IntentDetectResult, :UrlDetectResult
 
-        def initialize(sensitiveresult=nil, keywordsresult=nil, datacategoryresult=nil, promptinjectionresult=nil, ruleid=nil, rulename=nil, action=nil, payload=nil, imageresult=nil, msgid=nil, toolcallresult=nil, intentdetectresult=nil)
+        def initialize(sensitiveresult=nil, keywordsresult=nil, datacategoryresult=nil, promptinjectionresult=nil, ruleid=nil, rulename=nil, action=nil, payload=nil, desensitization=nil, imageresult=nil, msgid=nil, toolcallresult=nil, intentdetectresult=nil, urldetectresult=nil)
           @SensitiveResult = sensitiveresult
           @KeyWordsResult = keywordsresult
           @DataCategoryResult = datacategoryresult
@@ -16098,10 +16544,12 @@ module TencentCloud
           @RuleName = rulename
           @Action = action
           @Payload = payload
+          @Desensitization = desensitization
           @ImageResult = imageresult
           @MsgID = msgid
           @ToolCallResult = toolcallresult
           @IntentDetectResult = intentdetectresult
+          @UrlDetectResult = urldetectresult
         end
 
         def deserialize(params)
@@ -16130,6 +16578,7 @@ module TencentCloud
           @RuleName = params['RuleName']
           @Action = params['Action']
           @Payload = params['Payload']
+          @Desensitization = params['Desensitization']
           unless params['ImageResult'].nil?
             @ImageResult = []
             params['ImageResult'].each do |i|
@@ -16146,6 +16595,10 @@ module TencentCloud
           unless params['IntentDetectResult'].nil?
             @IntentDetectResult = IntentDetectResult.new
             @IntentDetectResult.deserialize(params['IntentDetectResult'])
+          end
+          unless params['UrlDetectResult'].nil?
+            @UrlDetectResult = UrlDetectResult.new
+            @UrlDetectResult.deserialize(params['UrlDetectResult'])
           end
         end
       end
@@ -16218,7 +16671,7 @@ module TencentCloud
       class LLMMonPkg < TencentCloud::Common::AbstractModel
         # @param ResourceIds: 资源id
         # @type ResourceIds: String
-        # @param Status: 状态
+        # @param Status: 状态，0表示关闭，1表示开启
         # @type Status: Integer
         # @param Region: 地域
         # @type Region: Integer
@@ -16306,7 +16759,7 @@ module TencentCloud
       class LLMPkg < TencentCloud::Common::AbstractModel
         # @param ResourceIds: <p>资源id</p>
         # @type ResourceIds: String
-        # @param Status: <p>状态</p>
+        # @param Status: 状态，0表示关闭，1表示开启
         # @type Status: Integer
         # @param Region: <p>地域</p>
         # @type Region: Integer
@@ -16829,38 +17282,40 @@ module TencentCloud
 
       # 负载均衡的监听器
       class LoadBalancer < TencentCloud::Common::AbstractModel
-        # @param LoadBalancerId: 负载均衡LD的ID
+        # @param LoadBalancerId: <p>负载均衡LD的ID</p>
         # @type LoadBalancerId: String
-        # @param LoadBalancerName: 负载均衡LD的名称
+        # @param LoadBalancerName: <p>负载均衡LD的名称</p>
         # @type LoadBalancerName: String
-        # @param ListenerId: 负载均衡监听器的ID
+        # @param ListenerId: <p>负载均衡监听器的ID</p>
         # @type ListenerId: String
-        # @param ListenerName: 负载均衡监听器的名称
+        # @param ListenerName: <p>负载均衡监听器的名称</p>
         # @type ListenerName: String
-        # @param Vport: 负载均衡实例的端口
+        # @param Vport: <p>负载均衡实例的端口</p>
         # @type Vport: Integer
-        # @param Region: 负载均衡LD的地域
+        # @param Region: <p>负载均衡LD的地域<br>与 ApRegion 表达同一含义、格式不同。本字段为地域缩写；入参与 ApRegion 同时传入时以 ApRegion 为准</p>
         # @type Region: String
-        # @param Protocol: 监听器协议，http、https
+        # @param Protocol: <p>监听器协议，http、https</p>
         # @type Protocol: String
-        # @param Zone: 负载均衡监听器所在的zone
+        # @param Zone: <p>负载均衡监听器所在的zone</p>
         # @type Zone: String
-        # @param Vip: 负载均衡实例的IP。域名化CLB VIP可填空。
+        # @param ApRegion: <p>负载均衡实例所在地域，腾讯云标准地域格式<br>参数格式：形如 ap-guangzhou<br>与 Region 表达同一含义、格式不同。监听器恒为单地域，数组长度恒为 0 或 1<br>入参可选；与 Region 同时传入时以本字段为准；取值不在枚举范围内时返回 UnsupportedRegion<br>出参在可识别时填充，无法识别时为空数组<br>枚举值：<br>ap-guangzhou：广州<br>ap-shanghai：上海<br>ap-beijing：北京<br>ap-chengdu：成都<br>ap-chongqing：重庆<br>ap-hongkong：中国香港<br>ap-nanjing：南京<br>ap-tianjin：天津<br>ap-shenzhen：深圳<br>ap-qingyuan：清远<br>ap-guangzhou-open：广州Open<br>ap-shenzhen-fsi：深圳金融<br>ap-beijing-fsi：北京金融<br>ap-shanghai-fsi：上海金融<br>ap-hangzhou-ec：杭州<br>ap-fuzhou-ec：福州<br>ap-jinan-ec：济南<br>ap-wuhan-ec：武汉<br>ap-changsha-ec：长沙<br>ap-hefei-ec：合肥<br>ap-shenyang-ec：沈阳<br>ap-xian-ec：西安<br>ap-xibei-ec：西北<br>ap-shijiazhuang-ec：石家庄<br>ap-zhengzhou-ec：郑州<br>ap-qingyuan-xinan：清远信安<br>ap-shanghai-adc：上海ADC<br>ap-shanghai-wxp-ops：上海无线城市运营<br>ap-singapore：新加坡<br>ap-seoul：首尔<br>ap-tokyo：东京<br>ap-osaka：大阪<br>ap-mumbai：孟买<br>ap-bangkok：曼谷<br>ap-jakarta：雅加达<br>ap-taipei：台北<br>ap-johorbahru：柔佛巴鲁<br>eu-frankfurt：法兰克福<br>eu-moscow：莫斯科<br>na-ashburn：弗吉尼亚<br>na-siliconvalley：硅谷<br>na-toronto：多伦多<br>sa-saopaulo：圣保罗<br>me-saudi-arabia：沙特阿拉伯</p>
+        # @type ApRegion: Array
+        # @param Vip: <p>负载均衡实例的IP。域名化CLB VIP可填空。</p>
         # @type Vip: String
-        # @param NumericalVpcId: 负载均衡的VPCID，公网为-1，内网按实际填写
+        # @param NumericalVpcId: <p>负载均衡的VPCID，公网为-1，内网按实际填写</p>
         # @type NumericalVpcId: Integer
-        # @param LoadBalancerType: 负载均衡的网络类型。OPEN： 公网 INTERNAL ：内网
+        # @param LoadBalancerType: <p>负载均衡的网络类型。OPEN： 公网 INTERNAL ：内网</p>
         # @type LoadBalancerType: String
-        # @param LoadBalancerDomain: 负载均衡的域名
+        # @param LoadBalancerDomain: <p>负载均衡的域名</p>
         # @type LoadBalancerDomain: String
-        # @param MemberAppId: 监听器所属成员id
+        # @param MemberAppId: <p>监听器所属成员id</p>
         # @type MemberAppId: Integer
-        # @param MemberUin: 监听器所属成员的uin
+        # @param MemberUin: <p>监听器所属成员的uin</p>
         # @type MemberUin: String
 
-        attr_accessor :LoadBalancerId, :LoadBalancerName, :ListenerId, :ListenerName, :Vport, :Region, :Protocol, :Zone, :Vip, :NumericalVpcId, :LoadBalancerType, :LoadBalancerDomain, :MemberAppId, :MemberUin
+        attr_accessor :LoadBalancerId, :LoadBalancerName, :ListenerId, :ListenerName, :Vport, :Region, :Protocol, :Zone, :ApRegion, :Vip, :NumericalVpcId, :LoadBalancerType, :LoadBalancerDomain, :MemberAppId, :MemberUin
 
-        def initialize(loadbalancerid=nil, loadbalancername=nil, listenerid=nil, listenername=nil, vport=nil, region=nil, protocol=nil, zone=nil, vip=nil, numericalvpcid=nil, loadbalancertype=nil, loadbalancerdomain=nil, memberappid=nil, memberuin=nil)
+        def initialize(loadbalancerid=nil, loadbalancername=nil, listenerid=nil, listenername=nil, vport=nil, region=nil, protocol=nil, zone=nil, apregion=nil, vip=nil, numericalvpcid=nil, loadbalancertype=nil, loadbalancerdomain=nil, memberappid=nil, memberuin=nil)
           @LoadBalancerId = loadbalancerid
           @LoadBalancerName = loadbalancername
           @ListenerId = listenerid
@@ -16869,6 +17324,7 @@ module TencentCloud
           @Region = region
           @Protocol = protocol
           @Zone = zone
+          @ApRegion = apregion
           @Vip = vip
           @NumericalVpcId = numericalvpcid
           @LoadBalancerType = loadbalancertype
@@ -16886,6 +17342,7 @@ module TencentCloud
           @Region = params['Region']
           @Protocol = params['Protocol']
           @Zone = params['Zone']
+          @ApRegion = params['ApRegion']
           @Vip = params['Vip']
           @NumericalVpcId = params['NumericalVpcId']
           @LoadBalancerType = params['LoadBalancerType']
@@ -16937,6 +17394,7 @@ module TencentCloud
         #     "新加坡": "sg",
         #     "清远": "qy",
         #     "雅加达": "jkt"
+        # 与 ApRegion 表达同一含义、格式不同：本字段为地域缩写，ApRegion 为腾讯云标准 ap-xxx 格式
         # @type Region: String
         # @param Vip: 接入IP
         # @type Vip: String
@@ -16948,6 +17406,56 @@ module TencentCloud
         # @type NumericalVpcId: Integer
         # @param LoadBalancerType: CLB类型
         # @type LoadBalancerType: String
+        # @param ApRegion: 负载均衡实例所在地域，腾讯云标准地域格式
+        # 参数格式：形如 ap-guangzhou
+        # 与 Region 表达同一含义、格式不同。监听器恒为单地域，数组长度恒为 0 或 1
+        # 出参在可识别时填充，无法识别时为空数组
+        # 枚举值：
+        # ap-guangzhou：广州
+        # ap-shanghai：上海
+        # ap-beijing：北京
+        # ap-chengdu：成都
+        # ap-chongqing：重庆
+        # ap-hongkong：中国香港
+        # ap-nanjing：南京
+        # ap-tianjin：天津
+        # ap-shenzhen：深圳
+        # ap-qingyuan：清远
+        # ap-guangzhou-open：广州Open
+        # ap-shenzhen-fsi：深圳金融
+        # ap-beijing-fsi：北京金融
+        # ap-shanghai-fsi：上海金融
+        # ap-hangzhou-ec：杭州
+        # ap-fuzhou-ec：福州
+        # ap-jinan-ec：济南
+        # ap-wuhan-ec：武汉
+        # ap-changsha-ec：长沙
+        # ap-hefei-ec：合肥
+        # ap-shenyang-ec：沈阳
+        # ap-xian-ec：西安
+        # ap-xibei-ec：西北
+        # ap-shijiazhuang-ec：石家庄
+        # ap-zhengzhou-ec：郑州
+        # ap-qingyuan-xinan：清远信安
+        # ap-shanghai-adc：上海ADC
+        # ap-shanghai-wxp-ops：上海无线城市运营
+        # ap-singapore：新加坡
+        # ap-seoul：首尔
+        # ap-tokyo：东京
+        # ap-osaka：大阪
+        # ap-mumbai：孟买
+        # ap-bangkok：曼谷
+        # ap-jakarta：雅加达
+        # ap-taipei：台北
+        # ap-johorbahru：柔佛巴鲁
+        # eu-frankfurt：法兰克福
+        # eu-moscow：莫斯科
+        # na-ashburn：弗吉尼亚
+        # na-siliconvalley：硅谷
+        # na-toronto：多伦多
+        # sa-saopaulo：圣保罗
+        # me-saudi-arabia：沙特阿拉伯
+        # @type ApRegion: Array
         # @param LoadBalancerDomain: 负载均衡器的域名
         # @type LoadBalancerDomain: String
         # @param MemberAppId: 监听器所属appid
@@ -16959,9 +17467,9 @@ module TencentCloud
         # @param MemberNickName: 集团账号昵称
         # @type MemberNickName: String
 
-        attr_accessor :ListenerId, :ListenerName, :LoadBalancerId, :LoadBalancerName, :Protocol, :Region, :Vip, :Vport, :Zone, :NumericalVpcId, :LoadBalancerType, :LoadBalancerDomain, :MemberAppId, :MemberUin, :Appid, :MemberNickName
+        attr_accessor :ListenerId, :ListenerName, :LoadBalancerId, :LoadBalancerName, :Protocol, :Region, :Vip, :Vport, :Zone, :NumericalVpcId, :LoadBalancerType, :ApRegion, :LoadBalancerDomain, :MemberAppId, :MemberUin, :Appid, :MemberNickName
 
-        def initialize(listenerid=nil, listenername=nil, loadbalancerid=nil, loadbalancername=nil, protocol=nil, region=nil, vip=nil, vport=nil, zone=nil, numericalvpcid=nil, loadbalancertype=nil, loadbalancerdomain=nil, memberappid=nil, memberuin=nil, appid=nil, membernickname=nil)
+        def initialize(listenerid=nil, listenername=nil, loadbalancerid=nil, loadbalancername=nil, protocol=nil, region=nil, vip=nil, vport=nil, zone=nil, numericalvpcid=nil, loadbalancertype=nil, apregion=nil, loadbalancerdomain=nil, memberappid=nil, memberuin=nil, appid=nil, membernickname=nil)
           @ListenerId = listenerid
           @ListenerName = listenername
           @LoadBalancerId = loadbalancerid
@@ -16973,6 +17481,7 @@ module TencentCloud
           @Zone = zone
           @NumericalVpcId = numericalvpcid
           @LoadBalancerType = loadbalancertype
+          @ApRegion = apregion
           @LoadBalancerDomain = loadbalancerdomain
           @MemberAppId = memberappid
           @MemberUin = memberuin
@@ -16992,6 +17501,7 @@ module TencentCloud
           @Zone = params['Zone']
           @NumericalVpcId = params['NumericalVpcId']
           @LoadBalancerType = params['LoadBalancerType']
+          @ApRegion = params['ApRegion']
           @LoadBalancerDomain = params['LoadBalancerDomain']
           @MemberAppId = params['MemberAppId']
           @MemberUin = params['MemberUin']
@@ -17127,7 +17637,7 @@ module TencentCloud
       class MajorEventsPkg < TencentCloud::Common::AbstractModel
         # @param ResourceIds: 资源id
         # @type ResourceIds: String
-        # @param Status: 状态
+        # @param Status: 状态，0表示关闭，1表示开启
         # @type Status: Integer
         # @param Region: 地域
         # @type Region: Integer
@@ -17139,7 +17649,7 @@ module TencentCloud
         # @type InquireNum: Integer
         # @param UsedNum: 使用数量
         # @type UsedNum: Integer
-        # @param RenewFlag: 续费标志
+        # @param RenewFlag: 续费标识，0表示手动续费，1表示自动续费，2表示到期不续
         # @type RenewFlag: Integer
         # @param BillingItem: 计费项
         # @type BillingItem: String
@@ -17179,7 +17689,7 @@ module TencentCloud
       class MajorEventsProPkg < TencentCloud::Common::AbstractModel
         # @param ResourceIds: 资源id
         # @type ResourceIds: String
-        # @param Status: 状态
+        # @param Status: 状态，0表示关闭，1表示开启
         # @type Status: Integer
         # @param Region: 地域
         # @type Region: Integer
@@ -17191,7 +17701,7 @@ module TencentCloud
         # @type InquireNum: Integer
         # @param UsedNum: 使用数量
         # @type UsedNum: Integer
-        # @param RenewFlag: 续费标志
+        # @param RenewFlag: 续费标识，0表示手动续费，1表示自动续费，2表示到期不续
         # @type RenewFlag: Integer
         # @param BillingItem: 计费项
         # @type BillingItem: String
@@ -17254,7 +17764,7 @@ module TencentCloud
       class MiniExtendPkg < TencentCloud::Common::AbstractModel
         # @param ResourceIds: 资源id
         # @type ResourceIds: String
-        # @param Status: 状态
+        # @param Status: 状态，0表示关闭，1表示开启
         # @type Status: Integer
         # @param Region: 地域
         # @type Region: Integer
@@ -17264,7 +17774,7 @@ module TencentCloud
         # @type EndTime: String
         # @param Count: 购买数量
         # @type Count: Integer
-        # @param RenewFlag: 续费标志
+        # @param RenewFlag: 续费标识，0表示手动续费，1表示自动续费，2表示到期不续
         # @type RenewFlag: Integer
         # @param BillingItem: 计费项
         # @type BillingItem: String
@@ -17298,7 +17808,7 @@ module TencentCloud
       class MiniPkg < TencentCloud::Common::AbstractModel
         # @param ResourceIds: 资源id
         # @type ResourceIds: String
-        # @param Status: 状态
+        # @param Status: 状态，0表示关闭，1表示开启
         # @type Status: Integer
         # @param Region: 地域
         # @type Region: Integer
@@ -17308,7 +17818,7 @@ module TencentCloud
         # @type EndTime: String
         # @param Count: 购买数量
         # @type Count: Integer
-        # @param RenewFlag: 续费标志
+        # @param RenewFlag: 续费标识，0表示手动续费，1表示自动续费，2表示到期不续
         # @type RenewFlag: Integer
         # @param BillingItem: 计费项
         # @type BillingItem: String
@@ -19624,7 +20134,7 @@ module TencentCloud
         # @type ContentLogicalOp: String
         # @param InstanceId: <p>实例id，必填项</p>
         # @type InstanceId: String
-        # @param ReplyType: <p>代答类型：1-内置可信模型安全代答，2-自定义代答（ActionType=reply时生效</p><p>枚举值：</p><ul><li>1： 内置可信模型安全代答</li><li>2： 自定义代答ActionType=reply时生效</li></ul>
+        # @param ReplyType: <p>代答类型：1-内置可信模型安全代答，2-自定义代答(ActionType=reply)时生效</p><p>枚举值：</p><ul><li>1： 内置可信模型安全代答</li><li>2： 自定义代答(ActionType=reply)时生效</li></ul>
         # @type ReplyType: Integer
         # @param CustomReplyRuleId: <p>自定义回答模板</p>
         # @type CustomReplyRuleId: String
@@ -19636,10 +20146,12 @@ module TencentCloud
         # @type Domains: Array
         # @param AppliedModules: <p>加白生效模块type列表（Category=white时使用），表示该白名单规则命中后对哪些防护模块生效(放行)。取值：2-算力消耗规则，3-自定义防护规则，4-ToolCall防护，5-提示词攻击防护，6-内容合规检测，7-敏感数据检测。</p>
         # @type AppliedModules: Array
+        # @param RiskLevel: <p>严重程度：critical-超高危，high-高危，medium-中危(默认)，low-低危。命中该规则时攻击日志按此展示风险等级；不传或空值按medium处理。</p><p>枚举值：</p><ul><li>critical： 超高危</li><li>high： 高危</li><li>medium： 中危(默认)</li><li>low： 低危</li></ul>
+        # @type RiskLevel: String
 
-        attr_accessor :Name, :Priority, :Status, :CheckType, :RuleItem, :Options, :Domain, :ActionType, :ResponseText, :SessionApplied, :RuleId, :PageId, :ContentLogicalOp, :InstanceId, :ReplyType, :CustomReplyRuleId, :ModalType, :Category, :Domains, :AppliedModules
+        attr_accessor :Name, :Priority, :Status, :CheckType, :RuleItem, :Options, :Domain, :ActionType, :ResponseText, :SessionApplied, :RuleId, :PageId, :ContentLogicalOp, :InstanceId, :ReplyType, :CustomReplyRuleId, :ModalType, :Category, :Domains, :AppliedModules, :RiskLevel
 
-        def initialize(name=nil, priority=nil, status=nil, checktype=nil, ruleitem=nil, options=nil, domain=nil, actiontype=nil, responsetext=nil, sessionapplied=nil, ruleid=nil, pageid=nil, contentlogicalop=nil, instanceid=nil, replytype=nil, customreplyruleid=nil, modaltype=nil, category=nil, domains=nil, appliedmodules=nil)
+        def initialize(name=nil, priority=nil, status=nil, checktype=nil, ruleitem=nil, options=nil, domain=nil, actiontype=nil, responsetext=nil, sessionapplied=nil, ruleid=nil, pageid=nil, contentlogicalop=nil, instanceid=nil, replytype=nil, customreplyruleid=nil, modaltype=nil, category=nil, domains=nil, appliedmodules=nil, risklevel=nil)
           @Name = name
           @Priority = priority
           @Status = status
@@ -19660,6 +20172,7 @@ module TencentCloud
           @Category = category
           @Domains = domains
           @AppliedModules = appliedmodules
+          @RiskLevel = risklevel
         end
 
         def deserialize(params)
@@ -19697,6 +20210,7 @@ module TencentCloud
           @Category = params['Category']
           @Domains = params['Domains']
           @AppliedModules = params['AppliedModules']
+          @RiskLevel = params['RiskLevel']
         end
       end
 
@@ -20703,7 +21217,11 @@ module TencentCloud
         # @type GmEncPrivateKey: String
         # @param GmSSLId: GmCertType为2时，需要填充此参数，表示腾讯云SSL平台托管的证书id
         # @type GmSSLId: String
-        # @param UpstreamPolicy: 回源策略，支持负载均衡回源和分流回源两种方式。0：默认值，负载均衡回源；1：分流回源
+        # @param UpstreamPolicy: 回源策略。
+        # 枚举值：
+        # 0：负载均衡回源（默认值）
+        # 1：分流回源
+        # 2：五元组精准回源，每个服务端口通过 UpstreamIps 单独配置回源 IP。仅高级版及以上可用，且仅支持 IP 回源
         # @type UpstreamPolicy: Integer
         # @param UpstreamRules: 分流回源时生效，分流回源的规则。
         # @type UpstreamRules: Array
@@ -22101,11 +22619,55 @@ module TencentCloud
         end
       end
 
+      # RCE QPS扩展包资源信息。与基础套餐同表，inquire_key为sv_wsm_waf_qps_rce_pack系列。不支持弹性
+      class RCEExtendPkg < TencentCloud::Common::AbstractModel
+        # @param ResourceIds: 资源id
+        # @type ResourceIds: String
+        # @param Status: 状态，0表示关闭，1表示开启
+        # @type Status: Integer
+        # @param Region: 地域
+        # @type Region: Integer
+        # @param BeginTime: 开始时间
+        # @type BeginTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param InquireNum: 扩展包个数，每个包1000 QPS
+        # @type InquireNum: Integer
+        # @param BillingItem: 计费项
+        # @type BillingItem: String
+        # @param RenewFlag: 续费标识，0表示手动续费，1表示自动续费，2表示到期不续
+        # @type RenewFlag: Integer
+
+        attr_accessor :ResourceIds, :Status, :Region, :BeginTime, :EndTime, :InquireNum, :BillingItem, :RenewFlag
+
+        def initialize(resourceids=nil, status=nil, region=nil, begintime=nil, endtime=nil, inquirenum=nil, billingitem=nil, renewflag=nil)
+          @ResourceIds = resourceids
+          @Status = status
+          @Region = region
+          @BeginTime = begintime
+          @EndTime = endtime
+          @InquireNum = inquirenum
+          @BillingItem = billingitem
+          @RenewFlag = renewflag
+        end
+
+        def deserialize(params)
+          @ResourceIds = params['ResourceIds']
+          @Status = params['Status']
+          @Region = params['Region']
+          @BeginTime = params['BeginTime']
+          @EndTime = params['EndTime']
+          @InquireNum = params['InquireNum']
+          @BillingItem = params['BillingItem']
+          @RenewFlag = params['RenewFlag']
+        end
+      end
+
       # 有效REC设备安全包信息
       class RCEPkg < TencentCloud::Common::AbstractModel
         # @param ResourceIds: 资源id
         # @type ResourceIds: String
-        # @param Status: 状态
+        # @param Status: 状态，0表示关闭，1表示开启
         # @type Status: Integer
         # @param Region: 地域
         # @type Region: Integer
@@ -22117,14 +22679,18 @@ module TencentCloud
         # @type InquireNum: Integer
         # @param UsedNum: 使用数量
         # @type UsedNum: Integer
-        # @param RenewFlag: 续费标志
+        # @param RenewFlag: 续费标识，0表示手动续费，1表示自动续费，2表示到期不续
         # @type RenewFlag: Integer
         # @param BillingItem: 计费项
         # @type BillingItem: String
+        # @param ElasticMode: 弹性开关。0表示关闭，1表示开启。没有弹性资源时为0
+        # @type ElasticMode: Integer
+        # @param ElasticBilling: 弹性QPS上限，单位QPS。合法区间为10000到300000。开关关闭时仍保留上次设置的上限
+        # @type ElasticBilling: Integer
 
-        attr_accessor :ResourceIds, :Status, :Region, :BeginTime, :EndTime, :InquireNum, :UsedNum, :RenewFlag, :BillingItem
+        attr_accessor :ResourceIds, :Status, :Region, :BeginTime, :EndTime, :InquireNum, :UsedNum, :RenewFlag, :BillingItem, :ElasticMode, :ElasticBilling
 
-        def initialize(resourceids=nil, status=nil, region=nil, begintime=nil, endtime=nil, inquirenum=nil, usednum=nil, renewflag=nil, billingitem=nil)
+        def initialize(resourceids=nil, status=nil, region=nil, begintime=nil, endtime=nil, inquirenum=nil, usednum=nil, renewflag=nil, billingitem=nil, elasticmode=nil, elasticbilling=nil)
           @ResourceIds = resourceids
           @Status = status
           @Region = region
@@ -22134,6 +22700,8 @@ module TencentCloud
           @UsedNum = usednum
           @RenewFlag = renewflag
           @BillingItem = billingitem
+          @ElasticMode = elasticmode
+          @ElasticBilling = elasticbilling
         end
 
         def deserialize(params)
@@ -22146,6 +22714,8 @@ module TencentCloud
           @UsedNum = params['UsedNum']
           @RenewFlag = params['RenewFlag']
           @BillingItem = params['BillingItem']
+          @ElasticMode = params['ElasticMode']
+          @ElasticBilling = params['ElasticBilling']
         end
       end
 
@@ -22369,10 +22939,12 @@ module TencentCloud
         # @type DesensitizeSample: String
         # @param Direction: <p>检测方向</p><p>取值范围：[0, 3]</p>
         # @type Direction: Integer
+        # @param UpdateTime: <p>规则修改时间（秒级时间戳）：租户对该规则的最近一次修改时间，从未修改则为0</p>
+        # @type UpdateTime: Integer
 
-        attr_accessor :RuleId, :RuleName, :Description, :Severity, :Action, :Status, :DesensitizeSample, :Direction
+        attr_accessor :RuleId, :RuleName, :Description, :Severity, :Action, :Status, :DesensitizeSample, :Direction, :UpdateTime
 
-        def initialize(ruleid=nil, rulename=nil, description=nil, severity=nil, action=nil, status=nil, desensitizesample=nil, direction=nil)
+        def initialize(ruleid=nil, rulename=nil, description=nil, severity=nil, action=nil, status=nil, desensitizesample=nil, direction=nil, updatetime=nil)
           @RuleId = ruleid
           @RuleName = rulename
           @Description = description
@@ -22381,6 +22953,7 @@ module TencentCloud
           @Status = status
           @DesensitizeSample = desensitizesample
           @Direction = direction
+          @UpdateTime = updatetime
         end
 
         def deserialize(params)
@@ -22392,6 +22965,7 @@ module TencentCloud
           @Status = params['Status']
           @DesensitizeSample = params['DesensitizeSample']
           @Direction = params['Direction']
+          @UpdateTime = params['UpdateTime']
         end
       end
 
@@ -22405,14 +22979,17 @@ module TencentCloud
         # @type Value: Array
         # @param Levels: 信息类
         # @type Levels: Array
+        # @param Name: Toolcall工具参数名，支持多层路径(如apiData.operate_op)，仅tool_args信息类型使用
+        # @type Name: String
 
-        attr_accessor :Key, :Op, :Value, :Levels
+        attr_accessor :Key, :Op, :Value, :Levels, :Name
 
-        def initialize(key=nil, op=nil, value=nil, levels=nil)
+        def initialize(key=nil, op=nil, value=nil, levels=nil, name=nil)
           @Key = key
           @Op = op
           @Value = value
           @Levels = levels
+          @Name = name
         end
 
         def deserialize(params)
@@ -22427,6 +23004,7 @@ module TencentCloud
               @Levels << valuelevel_tmp
             end
           end
+          @Name = params['Name']
         end
       end
 
@@ -24807,6 +25385,53 @@ module TencentCloud
           @ContentList = params['ContentList']
           @AddressList = params['AddressList']
           @BalanceType = params['BalanceType']
+        end
+      end
+
+      # 恶意URL检测结果
+      class UrlDetectResult < TencentCloud::Common::AbstractModel
+        # @param HitUrls: <p>命中的恶意URL列表</p>
+        # @type HitUrls: Array
+
+        attr_accessor :HitUrls
+
+        def initialize(hiturls=nil)
+          @HitUrls = hiturls
+        end
+
+        def deserialize(params)
+          unless params['HitUrls'].nil?
+            @HitUrls = []
+            params['HitUrls'].each do |i|
+              urlhitinfo_tmp = UrlHitInfo.new
+              urlhitinfo_tmp.deserialize(i)
+              @HitUrls << urlhitinfo_tmp
+            end
+          end
+        end
+      end
+
+      # 恶意URL命中信息
+      class UrlHitInfo < TencentCloud::Common::AbstractModel
+        # @param Url: <p>命中的URL</p>
+        # @type Url: String
+        # @param RuleId: <p>命中的规则ID</p>
+        # @type RuleId: String
+        # @param RuleName: <p>命中的规则名称</p>
+        # @type RuleName: String
+
+        attr_accessor :Url, :RuleId, :RuleName
+
+        def initialize(url=nil, ruleid=nil, rulename=nil)
+          @Url = url
+          @RuleId = ruleid
+          @RuleName = rulename
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
+          @RuleId = params['RuleId']
+          @RuleName = params['RuleName']
         end
       end
 

@@ -1798,6 +1798,80 @@ module TencentCloud
         end
       end
 
+      # DescribeRuleGroups请求参数结构体
+      class DescribeRuleGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param Product: 产品类型
+        # @type Product: String
+        # @param Filters: 产品类型
+        # @type Filters: Array
+        # @param Order: 排序
+        # @type Order: String
+        # @param By: 排序字段
+        # @type By: String
+        # @param Offset: 起始位置
+        # @type Offset: Integer
+        # @param Limit: 查询数量
+        # @type Limit: Integer
+
+        attr_accessor :Product, :Filters, :Order, :By, :Offset, :Limit
+
+        def initialize(product=nil, filters=nil, order=nil, by=nil, offset=nil, limit=nil)
+          @Product = product
+          @Filters = filters
+          @Order = order
+          @By = by
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @Product = params['Product']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              commonfilter_tmp = CommonFilter.new
+              commonfilter_tmp.deserialize(i)
+              @Filters << commonfilter_tmp
+            end
+          end
+          @Order = params['Order']
+          @By = params['By']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeRuleGroups返回参数结构体
+      class DescribeRuleGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总记录数
+        # @type TotalCount: Integer
+        # @param RuleGroups: 规则组列表
+        # @type RuleGroups: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :RuleGroups, :RequestId
+
+        def initialize(totalcount=nil, rulegroups=nil, requestid=nil)
+          @TotalCount = totalcount
+          @RuleGroups = rulegroups
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['RuleGroups'].nil?
+            @RuleGroups = []
+            params['RuleGroups'].each do |i|
+              rulegroupresp_tmp = RuleGroupResp.new
+              rulegroupresp_tmp.deserialize(i)
+              @RuleGroups << rulegroupresp_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSecurityGroupRule请求参数结构体
       class DescribeSecurityGroupRuleRequest < TencentCloud::Common::AbstractModel
         # @param GroupId: 规则组Id
@@ -3588,6 +3662,81 @@ module TencentCloud
           @DisposalRate = params['DisposalRate']
           @HasRisk = params['HasRisk']
           @RemediationStatus = params['RemediationStatus']
+        end
+      end
+
+      # 规则组详情数据
+      class RuleGroupResp < TencentCloud::Common::AbstractModel
+        # @param AppId: 租户Id
+        # @type AppId: String
+        # @param GroupId: 规则组Id
+        # @type GroupId: String
+        # @param GroupName: 规则组名称
+        # @type GroupName: String
+        # @param RuleCount: 规则数量
+        # @type RuleCount: Integer
+        # @param Product: 产品类型
+        # @type Product: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间
+        # @type UpdateTime: String
+        # @param CreateBy: 创建人SubUin
+        # @type CreateBy: String
+        # @param CreateName: 创建人名称
+        # @type CreateName: String
+        # @param UpdateBy: 更新人SubUin
+        # @type UpdateBy: String
+        # @param UpdateName: 更新人名称
+        # @type UpdateName: String
+        # @param ReceiveAccount: 下发关联账号
+        # @type ReceiveAccount: Array
+        # @param ExecAreas:  所属阶段
+        # @type ExecAreas: Array
+        # @param Direction: 规则方向：1-入站规则，0-出站规则，-1 表示无方向
+        # @type Direction: Integer
+
+        attr_accessor :AppId, :GroupId, :GroupName, :RuleCount, :Product, :CreateTime, :UpdateTime, :CreateBy, :CreateName, :UpdateBy, :UpdateName, :ReceiveAccount, :ExecAreas, :Direction
+
+        def initialize(appid=nil, groupid=nil, groupname=nil, rulecount=nil, product=nil, createtime=nil, updatetime=nil, createby=nil, createname=nil, updateby=nil, updatename=nil, receiveaccount=nil, execareas=nil, direction=nil)
+          @AppId = appid
+          @GroupId = groupid
+          @GroupName = groupname
+          @RuleCount = rulecount
+          @Product = product
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @CreateBy = createby
+          @CreateName = createname
+          @UpdateBy = updateby
+          @UpdateName = updatename
+          @ReceiveAccount = receiveaccount
+          @ExecAreas = execareas
+          @Direction = direction
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @GroupId = params['GroupId']
+          @GroupName = params['GroupName']
+          @RuleCount = params['RuleCount']
+          @Product = params['Product']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @CreateBy = params['CreateBy']
+          @CreateName = params['CreateName']
+          @UpdateBy = params['UpdateBy']
+          @UpdateName = params['UpdateName']
+          unless params['ReceiveAccount'].nil?
+            @ReceiveAccount = []
+            params['ReceiveAccount'].each do |i|
+              receiveaccount_tmp = ReceiveAccount.new
+              receiveaccount_tmp.deserialize(i)
+              @ReceiveAccount << receiveaccount_tmp
+            end
+          end
+          @ExecAreas = params['ExecAreas']
+          @Direction = params['Direction']
         end
       end
 

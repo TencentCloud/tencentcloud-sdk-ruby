@@ -293,6 +293,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除转发服务器，私有化调用path为：capi/LogCenter/DeliveryLog/DeleteDeliveryServer
+
+        # @param request: Request instance for DeleteDeliveryServer.
+        # @type request: :class:`Tencentcloud::ioa::V20220601::DeleteDeliveryServerRequest`
+        # @rtype: :class:`Tencentcloud::ioa::V20220601::DeleteDeliveryServerResponse`
+        def DeleteDeliveryServer(request)
+          body = send_request('DeleteDeliveryServer', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteDeliveryServerResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除转发策略，私有化调用path为：capi/LogCenter/DeliveryLog/DeleteDeliveryStrategy
+
+        # @param request: Request instance for DeleteDeliveryStrategy.
+        # @type request: :class:`Tencentcloud::ioa::V20220601::DeleteDeliveryStrategyRequest`
+        # @rtype: :class:`Tencentcloud::ioa::V20220601::DeleteDeliveryStrategyResponse`
+        def DeleteDeliveryStrategy(request)
+          body = send_request('DeleteDeliveryStrategy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteDeliveryStrategyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除终端自定义分组，私有化调用path为：/capi/Assets/Device/DeleteDeviceVirtualGroup
 
         # @param request: Request instance for DeleteDeviceVirtualGroup.
@@ -581,6 +629,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 转发服务器详情，私有化调用path为：capi/LogCenter/DescribeDeliveryServer
+
+        # @param request: Request instance for DescribeDeliveryServer.
+        # @type request: :class:`Tencentcloud::ioa::V20220601::DescribeDeliveryServerRequest`
+        # @rtype: :class:`Tencentcloud::ioa::V20220601::DescribeDeliveryServerResponse`
+        def DescribeDeliveryServer(request)
+          body = send_request('DescribeDeliveryServer', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDeliveryServerResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 转发策略详情，私有化调用path为：capi/LogCenter/DeliveryLog/DescribeDeliveryStrategy
+
+        # @param request: Request instance for DescribeDeliveryStrategy.
+        # @type request: :class:`Tencentcloud::ioa::V20220601::DescribeDeliveryStrategyRequest`
+        # @rtype: :class:`Tencentcloud::ioa::V20220601::DescribeDeliveryStrategyResponse`
+        def DescribeDeliveryStrategy(request)
+          body = send_request('DescribeDeliveryStrategy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDeliveryStrategyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询设备组子分组详情，私有化调用path为：capi/Assets/Device/DescribeDeviceChildGroups
 
         # @param request: Request instance for DescribeDeviceChildGroups.
@@ -809,6 +905,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeProfileFieldsMenuResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取用于RSA加密的公钥，对敏感数据进行加密传输。
+
+        # @param request: Request instance for DescribePublicEncryptKey.
+        # @type request: :class:`Tencentcloud::ioa::V20220601::DescribePublicEncryptKeyRequest`
+        # @rtype: :class:`Tencentcloud::ioa::V20220601::DescribePublicEncryptKeyResponse`
+        def DescribePublicEncryptKey(request)
+          body = send_request('DescribePublicEncryptKey', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePublicEncryptKeyResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1169,6 +1289,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyCompanyDirectoryConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建或编辑日志转发服务器，私有化调用path为：capi/LogCenter/DeliveryLog/ModifyDeliveryServer
+
+        # @param request: Request instance for ModifyDeliveryServer.
+        # @type request: :class:`Tencentcloud::ioa::V20220601::ModifyDeliveryServerRequest`
+        # @rtype: :class:`Tencentcloud::ioa::V20220601::ModifyDeliveryServerResponse`
+        def ModifyDeliveryServer(request)
+          body = send_request('ModifyDeliveryServer', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDeliveryServerResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建或编辑日志转发策略，私有化调用path为：capi/LogCenter/DeliveryLog/ModifyDeliveryStrategy
+
+        # @param request: Request instance for ModifyDeliveryStrategy.
+        # @type request: :class:`Tencentcloud::ioa::V20220601::ModifyDeliveryStrategyRequest`
+        # @rtype: :class:`Tencentcloud::ioa::V20220601::ModifyDeliveryStrategyResponse`
+        def ModifyDeliveryStrategy(request)
+          body = send_request('ModifyDeliveryStrategy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDeliveryStrategyResponse.new
             model.deserialize(response['Response'])
             model
           else

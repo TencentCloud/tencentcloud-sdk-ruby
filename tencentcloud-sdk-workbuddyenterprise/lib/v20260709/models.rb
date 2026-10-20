@@ -442,7 +442,7 @@ module TencentCloud
         # @type Type: String
         # @param ServiceUrl: 上游服务地址
         # @type ServiceUrl: String
-        # @param AuthModes: 授权方式列表：NONE / ONEID / OAUTH2_IDP
+        # @param AuthModes: 授权方式列表：NONE / ONEID / OAUTH2_IDP / API_KEY
         # @type AuthModes: Array
         # @param LatestVersionNo: 最新版本号
         # @type LatestVersionNo: Integer
@@ -454,10 +454,12 @@ module TencentCloud
         # @type CreatedTime: String
         # @param ModifiedTime: 最后修改时间（ISO8601，UTC）
         # @type ModifiedTime: String
+        # @param VpcConfigId: VPC 网络配置 ID。为空表示该连接器通过公网访问 ServiceUrl。仅绑定 VPC 网络配置时本字段有值。
+        # @type VpcConfigId: String
 
-        attr_accessor :ConnectorId, :ConnectorSlug, :ConnectorKey, :Name, :Description, :AvatarUrl, :Source, :EnterpriseId, :Type, :ServiceUrl, :AuthModes, :LatestVersionNo, :Status, :CreatorId, :CreatedTime, :ModifiedTime
+        attr_accessor :ConnectorId, :ConnectorSlug, :ConnectorKey, :Name, :Description, :AvatarUrl, :Source, :EnterpriseId, :Type, :ServiceUrl, :AuthModes, :LatestVersionNo, :Status, :CreatorId, :CreatedTime, :ModifiedTime, :VpcConfigId
 
-        def initialize(connectorid=nil, connectorslug=nil, connectorkey=nil, name=nil, description=nil, avatarurl=nil, source=nil, enterpriseid=nil, type=nil, serviceurl=nil, authmodes=nil, latestversionno=nil, status=nil, creatorid=nil, createdtime=nil, modifiedtime=nil)
+        def initialize(connectorid=nil, connectorslug=nil, connectorkey=nil, name=nil, description=nil, avatarurl=nil, source=nil, enterpriseid=nil, type=nil, serviceurl=nil, authmodes=nil, latestversionno=nil, status=nil, creatorid=nil, createdtime=nil, modifiedtime=nil, vpcconfigid=nil)
           @ConnectorId = connectorid
           @ConnectorSlug = connectorslug
           @ConnectorKey = connectorkey
@@ -474,6 +476,7 @@ module TencentCloud
           @CreatorId = creatorid
           @CreatedTime = createdtime
           @ModifiedTime = modifiedtime
+          @VpcConfigId = vpcconfigid
         end
 
         def deserialize(params)
@@ -493,6 +496,7 @@ module TencentCloud
           @CreatorId = params['CreatorId']
           @CreatedTime = params['CreatedTime']
           @ModifiedTime = params['ModifiedTime']
+          @VpcConfigId = params['VpcConfigId']
         end
       end
 

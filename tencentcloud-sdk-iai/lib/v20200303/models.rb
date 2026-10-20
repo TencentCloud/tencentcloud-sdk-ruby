@@ -1423,23 +1423,11 @@ module TencentCloud
 
       # DetectLiveFaceAccurate请求参数结构体
       class DetectLiveFaceAccurateRequest < TencentCloud::Common::AbstractModel
-        # @param Image: 图片 base64 数据。
-        # - base64 编码后大小不可超过5M。
-        # - jpg格式长边像素不可超过4000，其他格式图片长边像素不可超2000。
-        # - 图片的宽高比请接近 3:4，手机拍摄比例最佳。
-        # - 人脸尺寸大于100X100像素。
-        # - 图片格式支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
+        # @param Image: <p>图片 base64 数据。</p><ul><li>base64 编码后大小不可超过5M。</li><li>jpg格式长边像素不可超过4000，其他格式图片长边像素不可超2000。 </li><li>图片的宽高比请接近 3:4，手机拍摄比例最佳。</li><li>人脸尺寸大于100X100像素。</li><li>图片格式支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。</li></ul>
         # @type Image: String
-        # @param Url: 图片的 Url 。
-        # - 对应图片 base64 编码后大小不可超过5M。
-        # - jpg格式长边像素不可超过4000，其他格式图片长边像素不可超2000。
-        # - Url、Image必须提供一个，如果都提供，只使用 Url。
-        # - 图片的宽高比请接近 3:4，手机拍摄比例最佳。
-        # - 人脸尺寸大于100X100像素。
-        # - 图片存储于腾讯云的Url可保障更高下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的Url速度和稳定性可能受一定影响。
-        # - 图片格式支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
+        # @param Url: <p>图片的 Url 。</p><ul><li>对应图片 base64 编码后大小不可超过5M。</li><li>jpg格式长边像素不可超过4000，其他格式图片长边像素不可超2000。</li><li>Url、Image必须提供一个，如果都提供，只使用 Url。 </li><li>图片的宽高比请接近 3:4，手机拍摄比例最佳。</li><li>人脸尺寸大于100X100像素。</li><li>图片存储于腾讯云的Url可保障更高下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的Url速度和稳定性可能受一定影响。</li><li>图片格式支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。</li></ul>
         # @type Url: String
-        # @param FaceModelVersion: 人脸识别服务所用的算法模型版本。目前入参支持“3.0“。
+        # @param FaceModelVersion: <p>人脸识别服务所用的算法模型版本。目前入参支持“3.0“。</p>
         # @type FaceModelVersion: String
 
         attr_accessor :Image, :Url, :FaceModelVersion
@@ -1459,12 +1447,9 @@ module TencentCloud
 
       # DetectLiveFaceAccurate返回参数结构体
       class DetectLiveFaceAccurateResponse < TencentCloud::Common::AbstractModel
-        # @param Score: 活体打分。
-        # - 取值范围 [0,100]。
-        # - 根据活体分数对应的阈值区间来判断是否为翻拍。
-        # - 目前阈值可分为[5,10,40,70,90]，其中推荐阈值为40。
+        # @param Score: <p>活体真实度打分。</p><ul><li>取值范围 [0,100]。</li><li>根据活体分数对应的阈值区间来判断是否为翻拍。</li><li>目前阈值可分为[5,10,40,70,90]，其中推荐阈值为40。</li><li>分数值越高越接近真人，翻拍风险越低。</li></ul>
         # @type Score: Float
-        # @param FaceModelVersion: 人脸识别所用的算法模型版本。
+        # @param FaceModelVersion: <p>人脸识别所用的算法模型版本。</p>
         # @type FaceModelVersion: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

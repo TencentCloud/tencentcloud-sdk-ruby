@@ -6888,21 +6888,25 @@ module TencentCloud
 
       # StartCompute请求参数结构体
       class StartComputeRequest < TencentCloud::Common::AbstractModel
-        # @param ResourceId: 计算资源 ID
-        # @type ResourceId: String
         # @param WorkspaceId: 工作空间 ID
         # @type WorkspaceId: String
+        # @param ComputeResourceId: 计算资源 ID，可通过 ListComputes 接口获取（返回字段 Items[].BasicInfo.ResourceId）。替代已废弃的 ResourceId；过渡期 ComputeResourceId 与 ResourceId 至少传一个，同时传时必须一致
+        # @type ComputeResourceId: String
+        # @param ResourceId: [已废弃，请使用 ComputeResourceId] 计算资源 ID，可通过 ListComputes 接口获取（返回字段 Items[].BasicInfo.ResourceId）
+        # @type ResourceId: String
 
-        attr_accessor :ResourceId, :WorkspaceId
+        attr_accessor :WorkspaceId, :ComputeResourceId, :ResourceId
 
-        def initialize(resourceid=nil, workspaceid=nil)
-          @ResourceId = resourceid
+        def initialize(workspaceid=nil, computeresourceid=nil, resourceid=nil)
           @WorkspaceId = workspaceid
+          @ComputeResourceId = computeresourceid
+          @ResourceId = resourceid
         end
 
         def deserialize(params)
-          @ResourceId = params['ResourceId']
           @WorkspaceId = params['WorkspaceId']
+          @ComputeResourceId = params['ComputeResourceId']
+          @ResourceId = params['ResourceId']
         end
       end
 
@@ -6947,21 +6951,25 @@ module TencentCloud
 
       # StopCompute请求参数结构体
       class StopComputeRequest < TencentCloud::Common::AbstractModel
-        # @param ResourceId: 计算资源 ID
-        # @type ResourceId: String
         # @param WorkspaceId: 工作空间 ID
         # @type WorkspaceId: String
+        # @param ComputeResourceId: 计算资源 ID，可通过 ListComputes 接口获取（返回字段 Items[].BasicInfo.ResourceId）。替代已废弃的 ResourceId；过渡期 ComputeResourceId 与 ResourceId 至少传一个，同时传时必须一致
+        # @type ComputeResourceId: String
+        # @param ResourceId: [已废弃，请使用 ComputeResourceId] 计算资源 ID，可通过 ListComputes 接口获取（返回字段 Items[].BasicInfo.ResourceId）
+        # @type ResourceId: String
 
-        attr_accessor :ResourceId, :WorkspaceId
+        attr_accessor :WorkspaceId, :ComputeResourceId, :ResourceId
 
-        def initialize(resourceid=nil, workspaceid=nil)
-          @ResourceId = resourceid
+        def initialize(workspaceid=nil, computeresourceid=nil, resourceid=nil)
           @WorkspaceId = workspaceid
+          @ComputeResourceId = computeresourceid
+          @ResourceId = resourceid
         end
 
         def deserialize(params)
-          @ResourceId = params['ResourceId']
           @WorkspaceId = params['WorkspaceId']
+          @ComputeResourceId = params['ComputeResourceId']
+          @ResourceId = params['ResourceId']
         end
       end
 

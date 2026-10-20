@@ -1343,6 +1343,8 @@ module TencentCloud
         # @type AutoStopping: Boolean
         # @param DirectInternetAccess: <p>是否访问公网</p>
         # @type DirectInternetAccess: Boolean
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
+        # @type TiProjectId: String
         # @param ResourceGroupId: <p>资源组ID(for预付费)</p>
         # @type ResourceGroupId: String
         # @param VpcId: <p>Vpc-Id</p>
@@ -1380,9 +1382,9 @@ module TencentCloud
         # @param Description: <p>描述</p>
         # @type Description: String
 
-        attr_accessor :Name, :ChargeType, :ResourceConf, :LogEnable, :RootAccess, :AutoStopping, :DirectInternetAccess, :ResourceGroupId, :VpcId, :SubnetId, :VolumeSourceType, :VolumeSizeInGB, :VolumeSourceCFS, :LogConfig, :LifecycleScriptId, :DefaultCodeRepoId, :AdditionalCodeRepoIds, :AutomaticStopTime, :Tags, :DataConfigs, :ImageInfo, :ImageType, :SSHConfig, :VolumeSourceGooseFS, :Description
+        attr_accessor :Name, :ChargeType, :ResourceConf, :LogEnable, :RootAccess, :AutoStopping, :DirectInternetAccess, :TiProjectId, :ResourceGroupId, :VpcId, :SubnetId, :VolumeSourceType, :VolumeSizeInGB, :VolumeSourceCFS, :LogConfig, :LifecycleScriptId, :DefaultCodeRepoId, :AdditionalCodeRepoIds, :AutomaticStopTime, :Tags, :DataConfigs, :ImageInfo, :ImageType, :SSHConfig, :VolumeSourceGooseFS, :Description
 
-        def initialize(name=nil, chargetype=nil, resourceconf=nil, logenable=nil, rootaccess=nil, autostopping=nil, directinternetaccess=nil, resourcegroupid=nil, vpcid=nil, subnetid=nil, volumesourcetype=nil, volumesizeingb=nil, volumesourcecfs=nil, logconfig=nil, lifecyclescriptid=nil, defaultcoderepoid=nil, additionalcoderepoids=nil, automaticstoptime=nil, tags=nil, dataconfigs=nil, imageinfo=nil, imagetype=nil, sshconfig=nil, volumesourcegoosefs=nil, description=nil)
+        def initialize(name=nil, chargetype=nil, resourceconf=nil, logenable=nil, rootaccess=nil, autostopping=nil, directinternetaccess=nil, tiprojectid=nil, resourcegroupid=nil, vpcid=nil, subnetid=nil, volumesourcetype=nil, volumesizeingb=nil, volumesourcecfs=nil, logconfig=nil, lifecyclescriptid=nil, defaultcoderepoid=nil, additionalcoderepoids=nil, automaticstoptime=nil, tags=nil, dataconfigs=nil, imageinfo=nil, imagetype=nil, sshconfig=nil, volumesourcegoosefs=nil, description=nil)
           @Name = name
           @ChargeType = chargetype
           @ResourceConf = resourceconf
@@ -1390,6 +1392,7 @@ module TencentCloud
           @RootAccess = rootaccess
           @AutoStopping = autostopping
           @DirectInternetAccess = directinternetaccess
+          @TiProjectId = tiprojectid
           @ResourceGroupId = resourcegroupid
           @VpcId = vpcid
           @SubnetId = subnetid
@@ -1421,6 +1424,7 @@ module TencentCloud
           @RootAccess = params['RootAccess']
           @AutoStopping = params['AutoStopping']
           @DirectInternetAccess = params['DirectInternetAccess']
+          @TiProjectId = params['TiProjectId']
           @ResourceGroupId = params['ResourceGroupId']
           @VpcId = params['VpcId']
           @SubnetId = params['SubnetId']

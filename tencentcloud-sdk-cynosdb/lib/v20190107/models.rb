@@ -2191,6 +2191,38 @@ module TencentCloud
         end
       end
 
+      # CancelTask请求参数结构体
+      class CancelTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务ID</p>
+        # @type TaskId: Integer
+
+        attr_accessor :TaskId
+
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # CancelTask返回参数结构体
+      class CancelTaskResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CheckCreateLibraDBInstance请求参数结构体
       class CheckCreateLibraDBInstanceRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -2598,14 +2630,18 @@ module TencentCloud
         # @type InstanceName: String
         # @param InstanceType: <p>引擎类型</p>
         # @type InstanceType: String
+        # @param Status: <p>实例状态</p><p>枚举值：</p><ul><li>creating： 创建中</li><li>running： 运行中</li><li>isolating： 隔离中</li><li>isolated： 已隔离</li><li>activating： 恢复中</li><li>offlining： 下线中</li><li>offlined： 已下线</li></ul>
+        # @type Status: String
         # @param InstanceStatus: <p>实例状态</p>
         # @type InstanceStatus: String
+        # @param StatusDesc: <p>实例状态中文描述</p>
+        # @type StatusDesc: String
         # @param InstanceStatusDesc: <p>实例状态描述</p>
         # @type InstanceStatusDesc: String
-        # @param InstanceCpu: <p>cpu核数</p>
-        # @type InstanceCpu: Integer
         # @param Cpu: <p>Cpu</p><p>单位：核</p>
         # @type Cpu: Integer
+        # @param InstanceCpu: <p>cpu核数</p>
+        # @type InstanceCpu: Integer
         # @param MinCpu: <p>serverless实例cpu下限</p><p>单位：核</p>
         # @type MinCpu: Float
         # @param MaxCpu: <p>serverless实例cpu上限</p><p>单位：核</p>
@@ -2626,6 +2662,8 @@ module TencentCloud
         # @type MaintainWeekDays: Array
         # @param InstanceTasks: <p>实例任务信息</p>
         # @type InstanceTasks: Array
+        # @param DeviceType: <p>实例机器类型</p><p>枚举值：</p><ul><li>common： 通用型</li><li>exclusive： 独享型</li></ul>
+        # @type DeviceType: String
         # @param InstanceDeviceType: <p>实例机器类型</p><ol><li>common，通用型。</li><li>exclusive，独享型。</li></ol>
         # @type InstanceDeviceType: String
         # @param InstanceStorageType: <p>实例存储类型<br>说明：仅当要查询的资源为 LibraDB 时，此参数才会返回值。</p>
@@ -2646,10 +2684,6 @@ module TencentCloud
         # @type Zone: String
         # @param PhysicalZone: <p>实例所在的物理可用区</p>
         # @type PhysicalZone: String
-        # @param Status: <p>实例状态</p><p>枚举值：</p><ul><li>creating： 创建中</li><li>running： 运行中</li><li>isolating： 隔离中</li><li>isolated： 已隔离</li><li>activating： 恢复中</li><li>offlining： 下线中</li><li>offlined： 已下线</li></ul>
-        # @type Status: String
-        # @param StatusDesc: <p>实例状态中文描述</p>
-        # @type StatusDesc: String
         # @param DbType: <p>数据库类型</p>
         # @type DbType: String
         # @param DbVersion: <p>数据库版本</p>
@@ -2707,17 +2741,23 @@ module TencentCloud
         # @type ResourceTags: Array
         # @param InstanceAbility: <p>当前实例支持的能力</p>
         # @type InstanceAbility: :class:`Tencentcloud::Cynosdb.v20190107.models.InstanceAbility`
-        # @param DeviceType: <p>实例机器类型</p><p>枚举值：</p><ul><li>common： 通用型</li><li>exclusive： 独享型</li></ul>
-        # @type DeviceType: String
         # @param GdnId: <p>全球数据库唯一标识</p>
         # @type GdnId: String
 
-        attr_accessor :Uin, :AppId, :ClusterId, :ClusterName, :InstanceId, :InstanceName, :InstanceType, :InstanceStatus, :InstanceStatusDesc, :InstanceCpu, :Cpu, :MinCpu, :MaxCpu, :Memory, :InstanceMemory, :InstanceStorage, :InstanceRole, :MaintainStartTime, :MaintainDuration, :MaintainWeekDays, :InstanceTasks, :InstanceDeviceType, :InstanceStorageType, :DbMode, :NodeList, :ServerlessStatus, :AIOptimizerStatus, :ProjectId, :Region, :Zone, :PhysicalZone, :Status, :StatusDesc, :DbType, :DbVersion, :Storage, :StorageId, :StoragePayMode, :CreateTime, :UpdateTime, :IsolateTime, :DestroyTime, :DestroyDeadlineText, :PeriodEndTime, :VpcId, :SubnetId, :Vip, :Vport, :NetType, :WanIP, :WanPort, :WanStatus, :WanDomain, :InstanceNetInfo, :PayMode, :ProcessingTask, :RenewFlag, :Tasks, :IsFreeze, :ResourceTags, :InstanceAbility, :DeviceType, :GdnId
+        attr_accessor :Uin, :AppId, :ClusterId, :ClusterName, :InstanceId, :InstanceName, :InstanceType, :Status, :InstanceStatus, :StatusDesc, :InstanceStatusDesc, :Cpu, :InstanceCpu, :MinCpu, :MaxCpu, :Memory, :InstanceMemory, :InstanceStorage, :InstanceRole, :MaintainStartTime, :MaintainDuration, :MaintainWeekDays, :InstanceTasks, :DeviceType, :InstanceDeviceType, :InstanceStorageType, :DbMode, :NodeList, :ServerlessStatus, :AIOptimizerStatus, :ProjectId, :Region, :Zone, :PhysicalZone, :DbType, :DbVersion, :Storage, :StorageId, :StoragePayMode, :CreateTime, :UpdateTime, :IsolateTime, :DestroyTime, :DestroyDeadlineText, :PeriodEndTime, :VpcId, :SubnetId, :Vip, :Vport, :NetType, :WanIP, :WanPort, :WanStatus, :WanDomain, :InstanceNetInfo, :PayMode, :ProcessingTask, :RenewFlag, :Tasks, :IsFreeze, :ResourceTags, :InstanceAbility, :GdnId
         extend Gem::Deprecate
+        deprecate :InstanceStatus, :none, 2026, 10
+        deprecate :InstanceStatus=, :none, 2026, 10
+        deprecate :InstanceStatusDesc, :none, 2026, 10
+        deprecate :InstanceStatusDesc=, :none, 2026, 10
         deprecate :InstanceCpu, :none, 2026, 10
         deprecate :InstanceCpu=, :none, 2026, 10
+        deprecate :InstanceMemory, :none, 2026, 10
+        deprecate :InstanceMemory=, :none, 2026, 10
+        deprecate :InstanceDeviceType, :none, 2026, 10
+        deprecate :InstanceDeviceType=, :none, 2026, 10
 
-        def initialize(uin=nil, appid=nil, clusterid=nil, clustername=nil, instanceid=nil, instancename=nil, instancetype=nil, instancestatus=nil, instancestatusdesc=nil, instancecpu=nil, cpu=nil, mincpu=nil, maxcpu=nil, memory=nil, instancememory=nil, instancestorage=nil, instancerole=nil, maintainstarttime=nil, maintainduration=nil, maintainweekdays=nil, instancetasks=nil, instancedevicetype=nil, instancestoragetype=nil, dbmode=nil, nodelist=nil, serverlessstatus=nil, aioptimizerstatus=nil, projectid=nil, region=nil, zone=nil, physicalzone=nil, status=nil, statusdesc=nil, dbtype=nil, dbversion=nil, storage=nil, storageid=nil, storagepaymode=nil, createtime=nil, updatetime=nil, isolatetime=nil, destroytime=nil, destroydeadlinetext=nil, periodendtime=nil, vpcid=nil, subnetid=nil, vip=nil, vport=nil, nettype=nil, wanip=nil, wanport=nil, wanstatus=nil, wandomain=nil, instancenetinfo=nil, paymode=nil, processingtask=nil, renewflag=nil, tasks=nil, isfreeze=nil, resourcetags=nil, instanceability=nil, devicetype=nil, gdnid=nil)
+        def initialize(uin=nil, appid=nil, clusterid=nil, clustername=nil, instanceid=nil, instancename=nil, instancetype=nil, status=nil, instancestatus=nil, statusdesc=nil, instancestatusdesc=nil, cpu=nil, instancecpu=nil, mincpu=nil, maxcpu=nil, memory=nil, instancememory=nil, instancestorage=nil, instancerole=nil, maintainstarttime=nil, maintainduration=nil, maintainweekdays=nil, instancetasks=nil, devicetype=nil, instancedevicetype=nil, instancestoragetype=nil, dbmode=nil, nodelist=nil, serverlessstatus=nil, aioptimizerstatus=nil, projectid=nil, region=nil, zone=nil, physicalzone=nil, dbtype=nil, dbversion=nil, storage=nil, storageid=nil, storagepaymode=nil, createtime=nil, updatetime=nil, isolatetime=nil, destroytime=nil, destroydeadlinetext=nil, periodendtime=nil, vpcid=nil, subnetid=nil, vip=nil, vport=nil, nettype=nil, wanip=nil, wanport=nil, wanstatus=nil, wandomain=nil, instancenetinfo=nil, paymode=nil, processingtask=nil, renewflag=nil, tasks=nil, isfreeze=nil, resourcetags=nil, instanceability=nil, gdnid=nil)
           @Uin = uin
           @AppId = appid
           @ClusterId = clusterid
@@ -2725,10 +2765,12 @@ module TencentCloud
           @InstanceId = instanceid
           @InstanceName = instancename
           @InstanceType = instancetype
+          @Status = status
           @InstanceStatus = instancestatus
+          @StatusDesc = statusdesc
           @InstanceStatusDesc = instancestatusdesc
-          @InstanceCpu = instancecpu
           @Cpu = cpu
+          @InstanceCpu = instancecpu
           @MinCpu = mincpu
           @MaxCpu = maxcpu
           @Memory = memory
@@ -2739,6 +2781,7 @@ module TencentCloud
           @MaintainDuration = maintainduration
           @MaintainWeekDays = maintainweekdays
           @InstanceTasks = instancetasks
+          @DeviceType = devicetype
           @InstanceDeviceType = instancedevicetype
           @InstanceStorageType = instancestoragetype
           @DbMode = dbmode
@@ -2749,8 +2792,6 @@ module TencentCloud
           @Region = region
           @Zone = zone
           @PhysicalZone = physicalzone
-          @Status = status
-          @StatusDesc = statusdesc
           @DbType = dbtype
           @DbVersion = dbversion
           @Storage = storage
@@ -2779,7 +2820,6 @@ module TencentCloud
           @IsFreeze = isfreeze
           @ResourceTags = resourcetags
           @InstanceAbility = instanceability
-          @DeviceType = devicetype
           @GdnId = gdnid
         end
 
@@ -2791,10 +2831,12 @@ module TencentCloud
           @InstanceId = params['InstanceId']
           @InstanceName = params['InstanceName']
           @InstanceType = params['InstanceType']
+          @Status = params['Status']
           @InstanceStatus = params['InstanceStatus']
+          @StatusDesc = params['StatusDesc']
           @InstanceStatusDesc = params['InstanceStatusDesc']
-          @InstanceCpu = params['InstanceCpu']
           @Cpu = params['Cpu']
+          @InstanceCpu = params['InstanceCpu']
           @MinCpu = params['MinCpu']
           @MaxCpu = params['MaxCpu']
           @Memory = params['Memory']
@@ -2812,6 +2854,7 @@ module TencentCloud
               @InstanceTasks << objecttask_tmp
             end
           end
+          @DeviceType = params['DeviceType']
           @InstanceDeviceType = params['InstanceDeviceType']
           @InstanceStorageType = params['InstanceStorageType']
           @DbMode = params['DbMode']
@@ -2825,8 +2868,6 @@ module TencentCloud
           @Region = params['Region']
           @Zone = params['Zone']
           @PhysicalZone = params['PhysicalZone']
-          @Status = params['Status']
-          @StatusDesc = params['StatusDesc']
           @DbType = params['DbType']
           @DbVersion = params['DbVersion']
           @Storage = params['Storage']
@@ -2879,7 +2920,6 @@ module TencentCloud
             @InstanceAbility = InstanceAbility.new
             @InstanceAbility.deserialize(params['InstanceAbility'])
           end
-          @DeviceType = params['DeviceType']
           @GdnId = params['GdnId']
         end
       end
@@ -11289,6 +11329,49 @@ module TencentCloud
               proxyspec_tmp = ProxySpec.new
               proxyspec_tmp.deserialize(i)
               @ProxySpecs << proxyspec_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeProxyZoneStocks请求参数结构体
+      class DescribeProxyZoneStocksRequest < TencentCloud::Common::AbstractModel
+        # @param Zone: <p>可用区</p>
+        # @type Zone: String
+
+        attr_accessor :Zone
+
+        def initialize(zone=nil)
+          @Zone = zone
+        end
+
+        def deserialize(params)
+          @Zone = params['Zone']
+        end
+      end
+
+      # DescribeProxyZoneStocks返回参数结构体
+      class DescribeProxyZoneStocksResponse < TencentCloud::Common::AbstractModel
+        # @param ProxyZoneStockInfos: <p>数据库代理地域库存列表</p>
+        # @type ProxyZoneStockInfos: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ProxyZoneStockInfos, :RequestId
+
+        def initialize(proxyzonestockinfos=nil, requestid=nil)
+          @ProxyZoneStockInfos = proxyzonestockinfos
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ProxyZoneStockInfos'].nil?
+            @ProxyZoneStockInfos = []
+            params['ProxyZoneStockInfos'].each do |i|
+              proxyzonestockinfo_tmp = ProxyZoneStockInfo.new
+              proxyzonestockinfo_tmp.deserialize(i)
+              @ProxyZoneStockInfos << proxyzonestockinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -19796,6 +19879,34 @@ module TencentCloud
         def deserialize(params)
           @ProxyNodeZone = params['ProxyNodeZone']
           @ProxyNodeCount = params['ProxyNodeCount']
+        end
+      end
+
+      # 数据库代理规格
+      class ProxyZoneStockInfo < TencentCloud::Common::AbstractModel
+        # @param Region: <p>地域</p>
+        # @type Region: String
+        # @param Zone: <p>可用区</p>
+        # @type Zone: String
+        # @param CpuStock: <p>CPU库存</p><p>该字段不作为发货是否有资源的判断标准，资源请参考CheckProxyStockInfos</p>
+        # @type CpuStock: Integer
+        # @param MemStock: <p>内存库存</p><p>该字段不作为发货是否有资源的判断标准，资源请参考CheckProxyStockInfos</p>
+        # @type MemStock: Integer
+
+        attr_accessor :Region, :Zone, :CpuStock, :MemStock
+
+        def initialize(region=nil, zone=nil, cpustock=nil, memstock=nil)
+          @Region = region
+          @Zone = zone
+          @CpuStock = cpustock
+          @MemStock = memstock
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          @Zone = params['Zone']
+          @CpuStock = params['CpuStock']
+          @MemStock = params['MemStock']
         end
       end
 

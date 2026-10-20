@@ -15874,6 +15874,150 @@ module TencentCloud
         end
       end
 
+      # PurchaseImagePackage请求参数结构体
+      class PurchaseImagePackageRequest < TencentCloud::Common::AbstractModel
+        # @param RetentionDays: <p>存储天数</p><p>枚举值：</p><ul><li>3： 存储3天</li><li>7： 存储7天</li><li>15： 存储15天</li><li>30： 存储30天</li></ul>
+        # @type RetentionDays: Integer
+        # @param ProductId: <p>产品 ID</p>
+        # @type ProductId: String
+        # @param DeviceName: <p>设备名</p>
+        # @type DeviceName: String
+        # @param ValidityPeriod: <p>卡有效期类型：monthly_card=月卡（12 个月有效期），annual_card=年卡（24 个月有效期）</p>
+        # @type ValidityPeriod: String
+        # @param ImageCapacity: <p>图片档位：每日可上传的图片张数上限，&quot;300&quot;=300 张/日，&quot;1000&quot;=1000 张/日</p>
+        # @type ImageCapacity: String
+        # @param GoodsNum: <p>同规格资源包个数（默认 1）</p>
+        # @type GoodsNum: Integer
+        # @param ChannelId: <p>通道 ID</p>
+        # @type ChannelId: Integer
+        # @param PackageQueue: <p>套餐生效策略：&quot;&quot;=默认语义，front=插队生效，end=排队末尾</p>
+        # @type PackageQueue: String
+        # @param Override: <p>覆盖当前生效套餐：0=否，1=是</p>
+        # @type Override: Integer
+        # @param OrderId: <p>订单id</p>
+        # @type OrderId: String
+
+        attr_accessor :RetentionDays, :ProductId, :DeviceName, :ValidityPeriod, :ImageCapacity, :GoodsNum, :ChannelId, :PackageQueue, :Override, :OrderId
+
+        def initialize(retentiondays=nil, productid=nil, devicename=nil, validityperiod=nil, imagecapacity=nil, goodsnum=nil, channelid=nil, packagequeue=nil, override=nil, orderid=nil)
+          @RetentionDays = retentiondays
+          @ProductId = productid
+          @DeviceName = devicename
+          @ValidityPeriod = validityperiod
+          @ImageCapacity = imagecapacity
+          @GoodsNum = goodsnum
+          @ChannelId = channelid
+          @PackageQueue = packagequeue
+          @Override = override
+          @OrderId = orderid
+        end
+
+        def deserialize(params)
+          @RetentionDays = params['RetentionDays']
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @ValidityPeriod = params['ValidityPeriod']
+          @ImageCapacity = params['ImageCapacity']
+          @GoodsNum = params['GoodsNum']
+          @ChannelId = params['ChannelId']
+          @PackageQueue = params['PackageQueue']
+          @Override = params['Override']
+          @OrderId = params['OrderId']
+        end
+      end
+
+      # PurchaseImagePackage返回参数结构体
+      class PurchaseImagePackageResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # PurchaseVideoPackage请求参数结构体
+      class PurchaseVideoPackageRequest < TencentCloud::Common::AbstractModel
+        # @param RetentionDays: <p>存储天数（每份录像保留的天数）</p><p>枚举值：</p><ul><li>3： 存储3天</li><li>7： 存储7天</li><li>15： 存储15天</li><li>30： 存储30天</li></ul>
+        # @type RetentionDays: Integer
+        # @param RecordingMode: <p>录制模式：low_power=2 / event=8 / full_time=24，单位：小时/日</p><p>枚举值：</p><ul><li>low_power： 2小时/日</li><li>event： 8小时/日</li><li>full_time： 24小时/日</li></ul>
+        # @type RecordingMode: String
+        # @param Bitrate: <p>码率（视频必填）</p><p>枚举值：</p><ul><li>0.5m： 0.5Mbps</li><li>1m： 1Mbps</li><li>1.5m： 1.5Mbps</li><li>2m： 2Mbps</li></ul>
+        # @type Bitrate: String
+        # @param ProductId: <p>产品 ID</p>
+        # @type ProductId: String
+        # @param DeviceName: <p>设备名</p>
+        # @type DeviceName: String
+        # @param ValidityPeriod: <p>卡有效期类型：monthly_card=月卡（12 个月有效期），annual_card=年卡（24 个月有效期）</p>
+        # @type ValidityPeriod: String
+        # @param GoodsNum: <p>同规格资源包个数（默认 1）</p>
+        # @type GoodsNum: Integer
+        # @param ChannelId: <p>通道 ID（多通道场景必填，否则填 0）</p>
+        # @type ChannelId: Integer
+        # @param StorageRegion: <p>存储地域（可选）</p>
+        # @type StorageRegion: String
+        # @param PackageQueue: <p>套餐生效策略：&quot;&quot;=默认语义，front=插队生效，end=排队末尾</p>
+        # @type PackageQueue: String
+        # @param Override: <p>覆盖当前生效套餐：0=否，1=是</p>
+        # @type Override: Integer
+        # @param OrderId: <p>订单id</p>
+        # @type OrderId: String
+
+        attr_accessor :RetentionDays, :RecordingMode, :Bitrate, :ProductId, :DeviceName, :ValidityPeriod, :GoodsNum, :ChannelId, :StorageRegion, :PackageQueue, :Override, :OrderId
+
+        def initialize(retentiondays=nil, recordingmode=nil, bitrate=nil, productid=nil, devicename=nil, validityperiod=nil, goodsnum=nil, channelid=nil, storageregion=nil, packagequeue=nil, override=nil, orderid=nil)
+          @RetentionDays = retentiondays
+          @RecordingMode = recordingmode
+          @Bitrate = bitrate
+          @ProductId = productid
+          @DeviceName = devicename
+          @ValidityPeriod = validityperiod
+          @GoodsNum = goodsnum
+          @ChannelId = channelid
+          @StorageRegion = storageregion
+          @PackageQueue = packagequeue
+          @Override = override
+          @OrderId = orderid
+        end
+
+        def deserialize(params)
+          @RetentionDays = params['RetentionDays']
+          @RecordingMode = params['RecordingMode']
+          @Bitrate = params['Bitrate']
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @ValidityPeriod = params['ValidityPeriod']
+          @GoodsNum = params['GoodsNum']
+          @ChannelId = params['ChannelId']
+          @StorageRegion = params['StorageRegion']
+          @PackageQueue = params['PackageQueue']
+          @Override = params['Override']
+          @OrderId = params['OrderId']
+        end
+      end
+
+      # PurchaseVideoPackage返回参数结构体
+      class PurchaseVideoPackageResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 已注册通信类型信息
       class RegisteredDeviceNetTypeInfo < TencentCloud::Common::AbstractModel
         # @param NormalDeviceNum: 普通设备数
@@ -17693,6 +17837,118 @@ module TencentCloud
         def deserialize(params)
           @OwnerUserID = params['OwnerUserID']
           @ToUserID = params['ToUserID']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # StartPackageUsageReport请求参数结构体
+      class StartPackageUsageReportRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: <p>产品 ID</p>
+        # @type ProductId: String
+        # @param DeviceName: <p>设备名</p>
+        # @type DeviceName: String
+        # @param ResourceId: <p>预付费 resourceId（ncs- 前缀，必填）</p>
+        # @type ResourceId: String
+        # @param ChannelId: <p>通道 ID（无通道填 0）</p>
+        # @type ChannelId: Integer
+        # @param Operator: <p>操作者</p>
+        # @type Operator: String
+        # @param Remark: <p>备注（可选）</p>
+        # @type Remark: String
+
+        attr_accessor :ProductId, :DeviceName, :ResourceId, :ChannelId, :Operator, :Remark
+
+        def initialize(productid=nil, devicename=nil, resourceid=nil, channelid=nil, operator=nil, remark=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @ResourceId = resourceid
+          @ChannelId = channelid
+          @Operator = operator
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @ResourceId = params['ResourceId']
+          @ChannelId = params['ChannelId']
+          @Operator = params['Operator']
+          @Remark = params['Remark']
+        end
+      end
+
+      # StartPackageUsageReport返回参数结构体
+      class StartPackageUsageReportResponse < TencentCloud::Common::AbstractModel
+        # @param Status: <p>启停后状态（0 停用 / 1 启用）</p>
+        # @type Status: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :RequestId
+
+        def initialize(status=nil, requestid=nil)
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # StopPackageUsageReport请求参数结构体
+      class StopPackageUsageReportRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: <p>产品 ID</p>
+        # @type ProductId: String
+        # @param DeviceName: <p>设备名</p>
+        # @type DeviceName: String
+        # @param MediaType: <p>区分停用的云存类别，必填</p><p>枚举值：</p><ul><li>image： 图片云存</li><li>video： 视频云存</li></ul>
+        # @type MediaType: String
+        # @param ChannelId: <p>通道 ID</p>
+        # @type ChannelId: Integer
+        # @param Operator: <p>操作者</p>
+        # @type Operator: String
+        # @param Remark: <p>备注（可选）</p>
+        # @type Remark: String
+
+        attr_accessor :ProductId, :DeviceName, :MediaType, :ChannelId, :Operator, :Remark
+
+        def initialize(productid=nil, devicename=nil, mediatype=nil, channelid=nil, operator=nil, remark=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @MediaType = mediatype
+          @ChannelId = channelid
+          @Operator = operator
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @MediaType = params['MediaType']
+          @ChannelId = params['ChannelId']
+          @Operator = params['Operator']
+          @Remark = params['Remark']
+        end
+      end
+
+      # StopPackageUsageReport返回参数结构体
+      class StopPackageUsageReportResponse < TencentCloud::Common::AbstractModel
+        # @param Status: <p>启停后状态</p>
+        # @type Status: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :RequestId
+
+        def initialize(status=nil, requestid=nil)
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
           @RequestId = params['RequestId']
         end
       end

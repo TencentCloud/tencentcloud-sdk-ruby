@@ -293,6 +293,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 取消等待执行的任务
+
+        # @param request: Request instance for CancelTask.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::CancelTaskRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::CancelTaskResponse`
+        def CancelTask(request)
+          body = send_request('CancelTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CancelTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（CheckCreateLibraDBInstance）用于校验集群是否可以添加只读分析引擎实例
 
         # @param request: Request instance for CheckCreateLibraDBInstance.
@@ -2895,6 +2919,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeProxySpecsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口(DescribeProxyZoneStocks)查询数据库代理地域库存
+
+        # @param request: Request instance for DescribeProxyZoneStocks.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeProxyZoneStocksRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::DescribeProxyZoneStocksResponse`
+        def DescribeProxyZoneStocks(request)
+          body = send_request('DescribeProxyZoneStocks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeProxyZoneStocksResponse.new
             model.deserialize(response['Response'])
             model
           else

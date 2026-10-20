@@ -253,69 +253,72 @@ module TencentCloud
 
       # 敏捷上云服务信息
       class CloudAttachInfo < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 敏捷上云实例id
+        # @param InstanceId: <p>敏捷上云实例id</p>
         # @type InstanceId: String
-        # @param Name: 敏捷上云名称
+        # @param Name: <p>敏捷上云名称</p>
         # @type Name: String
-        # @param IapId: 合作伙伴的AppId
+        # @param IapId: <p>合作伙伴的AppId</p>
         # @type IapId: String
-        # @param IdcAddress: 需要接入敏捷上云的IDC的地址
+        # @param IdcAddress: <p>需要接入敏捷上云的IDC的地址</p>
         # @type IdcAddress: String
-        # @param IdcType: 需要接入敏捷上云的IDC的互联网服务提供商类型
+        # @param IdcType: <p>需要接入敏捷上云的IDC的互联网服务提供商类型</p>
         # @type IdcType: String
-        # @param Bandwidth: 敏捷上云的带宽，单位为MB
+        # @param Bandwidth: <p>敏捷上云的带宽，单位为MB</p>
         # @type Bandwidth: Integer
-        # @param Telephone: 联系电话
+        # @param Telephone: <p>联系电话</p>
         # @type Telephone: String
-        # @param Status: 敏捷上云的状态
-        # available：就绪状态
-        # applying：申请，待审核状态
-        # pendingpay：代付款状态
-        # building：建设中状态
-        # confirming：待确认状态
-        # isolate: 隔离状态
-        # stoped：终止状态
+        # @param Status: <p>敏捷上云的状态<br>available：就绪状态<br>applying：申请，待审核状态<br>pendingpay：代付款状态<br>building：建设中状态<br>confirming：待确认状态<br>isolate: 隔离状态<br>stoped：终止状态</p>
         # @type Status: String
-        # @param ApplyTime: 敏捷上云申请的时间
+        # @param ApplyTime: <p>敏捷上云申请的时间</p>
         # @type ApplyTime: String
-        # @param ReadyTime: 敏捷上云建设完成的时间
+        # @param ReadyTime: <p>敏捷上云建设完成的时间</p>
         # @type ReadyTime: String
-        # @param ExpireTime: 敏捷上云过期时间
+        # @param ExpireTime: <p>敏捷上云过期时间</p>
         # @type ExpireTime: String
-        # @param Remarks: 备注信息
+        # @param Remarks: <p>备注信息</p>
         # @type Remarks: String
-        # @param RegionStatus: 敏捷上云的地域状态。
-        # same-region：同地域
-        # cross-region：跨地域
+        # @param RegionStatus: <p>敏捷上云的地域状态。<br>same-region：同地域<br>cross-region：跨地域</p>
         # @type RegionStatus: String
-        # @param AppId: 用户的AppId
+        # @param AppId: <p>用户的AppId</p>
         # @type AppId: String
-        # @param Uin: 用户的Uin
+        # @param Uin: <p>用户的Uin</p>
         # @type Uin: String
-        # @param CustomerAuthName: 用户注册名称
+        # @param CustomerAuthName: <p>用户注册名称</p>
         # @type CustomerAuthName: String
-        # @param DirectConnectId: 物理专线实例ID
+        # @param DirectConnectId: <p>物理专线实例ID</p>
         # @type DirectConnectId: String
-        # @param CloudAttachServiceGatewaysSupport: 敏捷上云是否支持创建高速上云专线网关
+        # @param CloudAttachServiceGatewaysSupport: <p>敏捷上云是否支持创建高速上云专线网关</p>
         # @type CloudAttachServiceGatewaysSupport: Boolean
-        # @param BUpdateBandwidth: 敏捷上云服务是否处于升降配中
+        # @param BUpdateBandwidth: <p>敏捷上云服务是否处于升降配中</p>
         # @type BUpdateBandwidth: Boolean
-        # @param ArRegion: 接入地域
+        # @param ArRegion: <p>接入地域</p>
         # @type ArRegion: String
-        # @param IapCode: 运营商代码
+        # @param IapCode: <p>运营商代码</p>
         # @type IapCode: String
-        # @param IdcPointType: IDC侧类型。枚举值：CLOUD-云，ISP-运营商，OTHER-第三方
+        # @param IdcPointType: <p>IDC侧类型。枚举值：CLOUD-云，ISP-运营商，OTHER-第三方</p>
         # @type IdcPointType: String
-        # @param BIapLinkProtected: 运营商链路是否有保护
+        # @param BIapLinkProtected: <p>运营商链路是否有保护</p>
         # @type BIapLinkProtected: Boolean
-        # @param ServiceType: 服务类型：SHARE-共享型，EXCLUSIVE-独占型
+        # @param ServiceType: <p>服务类型：SHARE-共享型，EXCLUSIVE-独占型</p>
         # @type ServiceType: String
-        # @param VlanRange: VLAN范围
+        # @param VlanRange: <p>VLAN范围</p>
         # @type VlanRange: String
+        # @param RepealStatus: <p>裁撤状态</p><p>枚举值：</p><ul><li>APPLYING： 申请裁撤</li><li>EXECUTING： 裁撤执行中</li><li>FAILED： 裁撤失败</li></ul>
+        # @type RepealStatus: String
+        # @param PlanRepealTime: <p>计划裁撤时间</p>
+        # @type PlanRepealTime: String
+        # @param RenewFlag: <p>续费标记</p><p>枚举值：</p><ul><li>MANUAL_RENEW： 手动续费</li><li>AUTO_RENEW： 自动续费</li><li>NO_RENEW： 到期不续</li></ul>
+        # @type RenewFlag: String
+        # @param AccessPointId: <p>接入点ID</p>
+        # @type AccessPointId: String
+        # @param AccessPointName: <p>接入点名称</p>
+        # @type AccessPointName: String
+        # @param BillStairBandwidth: <p>计费阶梯带宽(Mbps)</p>
+        # @type BillStairBandwidth: Integer
 
-        attr_accessor :InstanceId, :Name, :IapId, :IdcAddress, :IdcType, :Bandwidth, :Telephone, :Status, :ApplyTime, :ReadyTime, :ExpireTime, :Remarks, :RegionStatus, :AppId, :Uin, :CustomerAuthName, :DirectConnectId, :CloudAttachServiceGatewaysSupport, :BUpdateBandwidth, :ArRegion, :IapCode, :IdcPointType, :BIapLinkProtected, :ServiceType, :VlanRange
+        attr_accessor :InstanceId, :Name, :IapId, :IdcAddress, :IdcType, :Bandwidth, :Telephone, :Status, :ApplyTime, :ReadyTime, :ExpireTime, :Remarks, :RegionStatus, :AppId, :Uin, :CustomerAuthName, :DirectConnectId, :CloudAttachServiceGatewaysSupport, :BUpdateBandwidth, :ArRegion, :IapCode, :IdcPointType, :BIapLinkProtected, :ServiceType, :VlanRange, :RepealStatus, :PlanRepealTime, :RenewFlag, :AccessPointId, :AccessPointName, :BillStairBandwidth
 
-        def initialize(instanceid=nil, name=nil, iapid=nil, idcaddress=nil, idctype=nil, bandwidth=nil, telephone=nil, status=nil, applytime=nil, readytime=nil, expiretime=nil, remarks=nil, regionstatus=nil, appid=nil, uin=nil, customerauthname=nil, directconnectid=nil, cloudattachservicegatewayssupport=nil, bupdatebandwidth=nil, arregion=nil, iapcode=nil, idcpointtype=nil, biaplinkprotected=nil, servicetype=nil, vlanrange=nil)
+        def initialize(instanceid=nil, name=nil, iapid=nil, idcaddress=nil, idctype=nil, bandwidth=nil, telephone=nil, status=nil, applytime=nil, readytime=nil, expiretime=nil, remarks=nil, regionstatus=nil, appid=nil, uin=nil, customerauthname=nil, directconnectid=nil, cloudattachservicegatewayssupport=nil, bupdatebandwidth=nil, arregion=nil, iapcode=nil, idcpointtype=nil, biaplinkprotected=nil, servicetype=nil, vlanrange=nil, repealstatus=nil, planrepealtime=nil, renewflag=nil, accesspointid=nil, accesspointname=nil, billstairbandwidth=nil)
           @InstanceId = instanceid
           @Name = name
           @IapId = iapid
@@ -341,6 +344,12 @@ module TencentCloud
           @BIapLinkProtected = biaplinkprotected
           @ServiceType = servicetype
           @VlanRange = vlanrange
+          @RepealStatus = repealstatus
+          @PlanRepealTime = planrepealtime
+          @RenewFlag = renewflag
+          @AccessPointId = accesspointid
+          @AccessPointName = accesspointname
+          @BillStairBandwidth = billstairbandwidth
         end
 
         def deserialize(params)
@@ -369,6 +378,12 @@ module TencentCloud
           @BIapLinkProtected = params['BIapLinkProtected']
           @ServiceType = params['ServiceType']
           @VlanRange = params['VlanRange']
+          @RepealStatus = params['RepealStatus']
+          @PlanRepealTime = params['PlanRepealTime']
+          @RenewFlag = params['RenewFlag']
+          @AccessPointId = params['AccessPointId']
+          @AccessPointName = params['AccessPointName']
+          @BillStairBandwidth = params['BillStairBandwidth']
         end
       end
 
@@ -414,10 +429,12 @@ module TencentCloud
         # @type BIapLinkProtected: Boolean
         # @param ServiceType: <p>服务类型，SHARE-共享型，EXCLUSIVE-独占型</p>
         # @type ServiceType: String
+        # @param AccessPointId: <p>接入点ID</p>
+        # @type AccessPointId: String
 
-        attr_accessor :Name, :IdcAddress, :IdcType, :Bandwidth, :Telephone, :Remarks, :ArRegion, :IdcPointType, :BIapLinkProtected, :ServiceType
+        attr_accessor :Name, :IdcAddress, :IdcType, :Bandwidth, :Telephone, :Remarks, :ArRegion, :IdcPointType, :BIapLinkProtected, :ServiceType, :AccessPointId
 
-        def initialize(name=nil, idcaddress=nil, idctype=nil, bandwidth=nil, telephone=nil, remarks=nil, arregion=nil, idcpointtype=nil, biaplinkprotected=nil, servicetype=nil)
+        def initialize(name=nil, idcaddress=nil, idctype=nil, bandwidth=nil, telephone=nil, remarks=nil, arregion=nil, idcpointtype=nil, biaplinkprotected=nil, servicetype=nil, accesspointid=nil)
           @Name = name
           @IdcAddress = idcaddress
           @IdcType = idctype
@@ -428,6 +445,7 @@ module TencentCloud
           @IdcPointType = idcpointtype
           @BIapLinkProtected = biaplinkprotected
           @ServiceType = servicetype
+          @AccessPointId = accesspointid
         end
 
         def deserialize(params)
@@ -441,6 +459,7 @@ module TencentCloud
           @IdcPointType = params['IdcPointType']
           @BIapLinkProtected = params['BIapLinkProtected']
           @ServiceType = params['ServiceType']
+          @AccessPointId = params['AccessPointId']
         end
       end
 

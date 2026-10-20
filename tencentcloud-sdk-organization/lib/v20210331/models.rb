@@ -481,6 +481,30 @@ module TencentCloud
         end
       end
 
+      # 申请的权限配置，包含用户申请权限配置的配置 ID、配置名称、描述信息
+      class ApplyRoleConfiguration < TencentCloud::Common::AbstractModel
+        # @param RoleConfigurationId: <p>权限配置 ID</p>
+        # @type RoleConfigurationId: String
+        # @param RoleConfigurationName: <p>权限配置名称</p>
+        # @type RoleConfigurationName: String
+        # @param Description: <p>说明</p>
+        # @type Description: String
+
+        attr_accessor :RoleConfigurationId, :RoleConfigurationName, :Description
+
+        def initialize(roleconfigurationid=nil, roleconfigurationname=nil, description=nil)
+          @RoleConfigurationId = roleconfigurationid
+          @RoleConfigurationName = roleconfigurationname
+          @Description = description
+        end
+
+        def deserialize(params)
+          @RoleConfigurationId = params['RoleConfigurationId']
+          @RoleConfigurationName = params['RoleConfigurationName']
+          @Description = params['Description']
+        end
+      end
+
       # AttachPolicy请求参数结构体
       class AttachPolicyRequest < TencentCloud::Common::AbstractModel
         # @param TargetId: <p>绑定策略目标ID。成员Uin或部门ID</p>
@@ -1361,6 +1385,53 @@ module TencentCloud
         end
       end
 
+      # CreateRoleConfigurationApplyScope请求参数结构体
+      class CreateRoleConfigurationApplyScopeRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: <p>用户目录</p>
+        # @type ZoneId: String
+        # @param ApplyScopeInfo: <p>申请范围条目</p>
+        # @type ApplyScopeInfo: Array
+
+        attr_accessor :ZoneId, :ApplyScopeInfo
+
+        def initialize(zoneid=nil, applyscopeinfo=nil)
+          @ZoneId = zoneid
+          @ApplyScopeInfo = applyscopeinfo
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          unless params['ApplyScopeInfo'].nil?
+            @ApplyScopeInfo = []
+            params['ApplyScopeInfo'].each do |i|
+              roleassignmentinfo_tmp = RoleAssignmentInfo.new
+              roleassignmentinfo_tmp.deserialize(i)
+              @ApplyScopeInfo << roleassignmentinfo_tmp
+            end
+          end
+        end
+      end
+
+      # CreateRoleConfigurationApplyScope返回参数结构体
+      class CreateRoleConfigurationApplyScopeResponse < TencentCloud::Common::AbstractModel
+        # @param SuccessCount: <p>成功 upsert 的条目数</p>
+        # @type SuccessCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SuccessCount, :RequestId
+
+        def initialize(successcount=nil, requestid=nil)
+          @SuccessCount = successcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SuccessCount = params['SuccessCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateRoleConfiguration请求参数结构体
       class CreateRoleConfigurationRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 空间 ID。
@@ -2003,6 +2074,54 @@ module TencentCloud
             @Task = TaskInfo.new
             @Task.deserialize(params['Task'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteRoleConfigurationApplyScope请求参数结构体
+      class DeleteRoleConfigurationApplyScopeRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: <p>空间ID</p>
+        # @type ZoneId: String
+        # @param RoleConfigurationIds: <p>权限配置 ID 列表</p>
+        # @type RoleConfigurationIds: Array
+        # @param TargetUin: <p>目标账号 UIN</p>
+        # @type TargetUin: Integer
+        # @param PrincipalId: <p>身份 ID</p>
+        # @type PrincipalId: String
+        # @param PrincipalType: <p>身份类型</p><p>枚举值：</p><ul><li>User： 用户</li><li>Group： 用户组</li></ul>
+        # @type PrincipalType: String
+
+        attr_accessor :ZoneId, :RoleConfigurationIds, :TargetUin, :PrincipalId, :PrincipalType
+
+        def initialize(zoneid=nil, roleconfigurationids=nil, targetuin=nil, principalid=nil, principaltype=nil)
+          @ZoneId = zoneid
+          @RoleConfigurationIds = roleconfigurationids
+          @TargetUin = targetuin
+          @PrincipalId = principalid
+          @PrincipalType = principaltype
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @RoleConfigurationIds = params['RoleConfigurationIds']
+          @TargetUin = params['TargetUin']
+          @PrincipalId = params['PrincipalId']
+          @PrincipalType = params['PrincipalType']
+        end
+      end
+
+      # DeleteRoleConfigurationApplyScope返回参数结构体
+      class DeleteRoleConfigurationApplyScopeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -5095,6 +5214,81 @@ module TencentCloud
         end
       end
 
+      # ListPermissionApplyOrders请求参数结构体
+      class ListPermissionApplyOrdersRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: <p>空间 ID</p>
+        # @type ZoneId: String
+        # @param SearchValue: <p>搜索字段</p><p>按用户名 / 用户 ID 搜索</p>
+        # @type SearchValue: String
+        # @param Status: <p>状态值</p><p>枚举值：</p><ul><li>1： 待审核</li><li>2： 已通过 - 同步中</li><li>3： 已通过 - 同步成功</li><li>4： 已通过 - 同步失败</li><li>5： 已拒绝</li></ul>
+        # @type Status: Integer
+        # @param MaxResults: <p>每页条数</p><p>取值范围：[1, 100]</p><p>默认值：10</p>
+        # @type MaxResults: Integer
+        # @param NextToken: <p>翻页游标</p>
+        # @type NextToken: String
+
+        attr_accessor :ZoneId, :SearchValue, :Status, :MaxResults, :NextToken
+
+        def initialize(zoneid=nil, searchvalue=nil, status=nil, maxresults=nil, nexttoken=nil)
+          @ZoneId = zoneid
+          @SearchValue = searchvalue
+          @Status = status
+          @MaxResults = maxresults
+          @NextToken = nexttoken
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @SearchValue = params['SearchValue']
+          @Status = params['Status']
+          @MaxResults = params['MaxResults']
+          @NextToken = params['NextToken']
+        end
+      end
+
+      # ListPermissionApplyOrders返回参数结构体
+      class ListPermissionApplyOrdersResponse < TencentCloud::Common::AbstractModel
+        # @param ApplyOrders: <p>申请单列表</p>
+        # @type ApplyOrders: Array
+        # @param TotalCounts: <p>总数</p>
+        # @type TotalCounts: Integer
+        # @param NextToken: <p>翻页游标</p>
+        # @type NextToken: String
+        # @param IsTruncated: <p>是否还有下一页</p>
+        # @type IsTruncated: Boolean
+        # @param MaxResults: <p>每页条数</p>
+        # @type MaxResults: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ApplyOrders, :TotalCounts, :NextToken, :IsTruncated, :MaxResults, :RequestId
+
+        def initialize(applyorders=nil, totalcounts=nil, nexttoken=nil, istruncated=nil, maxresults=nil, requestid=nil)
+          @ApplyOrders = applyorders
+          @TotalCounts = totalcounts
+          @NextToken = nexttoken
+          @IsTruncated = istruncated
+          @MaxResults = maxresults
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ApplyOrders'].nil?
+            @ApplyOrders = []
+            params['ApplyOrders'].each do |i|
+              permissionapplyorder_tmp = PermissionApplyOrder.new
+              permissionapplyorder_tmp.deserialize(i)
+              @ApplyOrders << permissionapplyorder_tmp
+            end
+          end
+          @TotalCounts = params['TotalCounts']
+          @NextToken = params['NextToken']
+          @IsTruncated = params['IsTruncated']
+          @MaxResults = params['MaxResults']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ListPermissionPoliciesInRoleConfiguration请求参数结构体
       class ListPermissionPoliciesInRoleConfigurationRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 空间 ID
@@ -5455,6 +5649,89 @@ module TencentCloud
               @RoleAssignments << roleassignments_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ListRoleConfigurationApplyScopes请求参数结构体
+      class ListRoleConfigurationApplyScopesRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: <p>空间 ID</p>
+        # @type ZoneId: String
+        # @param PrincipalId: <p>身份 ID</p>
+        # @type PrincipalId: String
+        # @param PrincipalType: <p>身份类型</p><p>枚举值：</p><ul><li>User： 用户</li><li>Group： 用户组</li></ul>
+        # @type PrincipalType: String
+        # @param TargetUin: <p>目标账号 UIN</p>
+        # @type TargetUin: Integer
+        # @param Filter: <p>过滤条件</p>
+        # @type Filter: String
+        # @param MaxResults: <p>每页条数</p><p>取值范围：[1, 100]</p><p>默认值：10</p>
+        # @type MaxResults: Integer
+        # @param NextToken: <p>翻页游标</p>
+        # @type NextToken: String
+
+        attr_accessor :ZoneId, :PrincipalId, :PrincipalType, :TargetUin, :Filter, :MaxResults, :NextToken
+
+        def initialize(zoneid=nil, principalid=nil, principaltype=nil, targetuin=nil, filter=nil, maxresults=nil, nexttoken=nil)
+          @ZoneId = zoneid
+          @PrincipalId = principalid
+          @PrincipalType = principaltype
+          @TargetUin = targetuin
+          @Filter = filter
+          @MaxResults = maxresults
+          @NextToken = nexttoken
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @PrincipalId = params['PrincipalId']
+          @PrincipalType = params['PrincipalType']
+          @TargetUin = params['TargetUin']
+          @Filter = params['Filter']
+          @MaxResults = params['MaxResults']
+          @NextToken = params['NextToken']
+        end
+      end
+
+      # ListRoleConfigurationApplyScopes返回参数结构体
+      class ListRoleConfigurationApplyScopesResponse < TencentCloud::Common::AbstractModel
+        # @param ApplyScopes: <p>申请范围列表</p>
+        # @type ApplyScopes: Array
+        # @param TotalCounts: <p>总数</p>
+        # @type TotalCounts: Integer
+        # @param MaxResults: <p>每页条数</p>
+        # @type MaxResults: Integer
+        # @param NextToken: <p>翻页游标</p>
+        # @type NextToken: String
+        # @param IsTruncated: <p>是否被截断</p>
+        # @type IsTruncated: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ApplyScopes, :TotalCounts, :MaxResults, :NextToken, :IsTruncated, :RequestId
+
+        def initialize(applyscopes=nil, totalcounts=nil, maxresults=nil, nexttoken=nil, istruncated=nil, requestid=nil)
+          @ApplyScopes = applyscopes
+          @TotalCounts = totalcounts
+          @MaxResults = maxresults
+          @NextToken = nexttoken
+          @IsTruncated = istruncated
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ApplyScopes'].nil?
+            @ApplyScopes = []
+            params['ApplyScopes'].each do |i|
+              roleassignments_tmp = RoleAssignments.new
+              roleassignments_tmp.deserialize(i)
+              @ApplyScopes << roleassignments_tmp
+            end
+          end
+          @TotalCounts = params['TotalCounts']
+          @MaxResults = params['MaxResults']
+          @NextToken = params['NextToken']
+          @IsTruncated = params['IsTruncated']
           @RequestId = params['RequestId']
         end
       end
@@ -6950,6 +7227,65 @@ module TencentCloud
               @ManagementScopeNodes << nodemaininfo_tmp
             end
           end
+        end
+      end
+
+      # 权限申请单，描述一张完整的权限申请工单，即谁（UserId/UserName）向哪个成员账号（TargetUin/TargetName）申请了哪些权限配置（RoleConfigurations），以及审批进展如何
+      class PermissionApplyOrder < TencentCloud::Common::AbstractModel
+        # @param ApplyId: <p>申请单 ID</p>
+        # @type ApplyId: String
+        # @param UserId: <p>申请人用户 ID</p>
+        # @type UserId: String
+        # @param UserName: <p>申请人用户名</p>
+        # @type UserName: String
+        # @param TargetUin: <p>目标成员账号 UIN</p>
+        # @type TargetUin: Integer
+        # @param TargetName: <p>目标成员账号名称</p>
+        # @type TargetName: String
+        # @param RoleConfigurations: <p>申请的权限配置</p>
+        # @type RoleConfigurations: Array
+        # @param Status: <p>申请单状态</p><p>枚举值：</p><ul><li>1： 待审核</li><li>2： 已通过 - 同步中</li><li>3： 已通过 - 同步成功</li><li>4： 已通过 - 同步失败</li><li>5： 已拒绝</li></ul>
+        # @type Status: Integer
+        # @param CreateTime: <p>创建时间</p><p>参数格式：YYYY-M-DD hh:mm:ss</p>
+        # @type CreateTime: String
+        # @param AuditOpinion: <p>审批意见</p>
+        # @type AuditOpinion: String
+        # @param AuditTime: <p>审批时间</p><p>参数格式：YYYY-M-DD hh:mm:ss</p><p>未审批为空</p>
+        # @type AuditTime: String
+
+        attr_accessor :ApplyId, :UserId, :UserName, :TargetUin, :TargetName, :RoleConfigurations, :Status, :CreateTime, :AuditOpinion, :AuditTime
+
+        def initialize(applyid=nil, userid=nil, username=nil, targetuin=nil, targetname=nil, roleconfigurations=nil, status=nil, createtime=nil, auditopinion=nil, audittime=nil)
+          @ApplyId = applyid
+          @UserId = userid
+          @UserName = username
+          @TargetUin = targetuin
+          @TargetName = targetname
+          @RoleConfigurations = roleconfigurations
+          @Status = status
+          @CreateTime = createtime
+          @AuditOpinion = auditopinion
+          @AuditTime = audittime
+        end
+
+        def deserialize(params)
+          @ApplyId = params['ApplyId']
+          @UserId = params['UserId']
+          @UserName = params['UserName']
+          @TargetUin = params['TargetUin']
+          @TargetName = params['TargetName']
+          unless params['RoleConfigurations'].nil?
+            @RoleConfigurations = []
+            params['RoleConfigurations'].each do |i|
+              applyroleconfiguration_tmp = ApplyRoleConfiguration.new
+              applyroleconfiguration_tmp.deserialize(i)
+              @RoleConfigurations << applyroleconfiguration_tmp
+            end
+          end
+          @Status = params['Status']
+          @CreateTime = params['CreateTime']
+          @AuditOpinion = params['AuditOpinion']
+          @AuditTime = params['AuditTime']
         end
       end
 

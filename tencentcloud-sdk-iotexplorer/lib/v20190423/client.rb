@@ -5569,6 +5569,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 新购图片云存资源包
+
+        # @param request: Request instance for PurchaseImagePackage.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::PurchaseImagePackageRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::PurchaseImagePackageResponse`
+        def PurchaseImagePackage(request)
+          body = send_request('PurchaseImagePackage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = PurchaseImagePackageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 新购视频云存资源包
+
+        # @param request: Request instance for PurchaseVideoPackage.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::PurchaseVideoPackageRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::PurchaseVideoPackageResponse`
+        def PurchaseVideoPackage(request)
+          body = send_request('PurchaseVideoPackage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = PurchaseVideoPackageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 产品开发完成并测试通过后，通过发布产品将产品设置为发布状态
 
         # @param request: Request instance for ReleaseStudioProduct.
@@ -5901,6 +5949,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ShareDeviceToUserResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 启用套餐用量上报
+
+        # @param request: Request instance for StartPackageUsageReport.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::StartPackageUsageReportRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::StartPackageUsageReportResponse`
+        def StartPackageUsageReport(request)
+          body = send_request('StartPackageUsageReport', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StartPackageUsageReportResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 停用套餐用量上报
+
+        # @param request: Request instance for StopPackageUsageReport.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::StopPackageUsageReportRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::StopPackageUsageReportResponse`
+        def StopPackageUsageReport(request)
+          body = send_request('StopPackageUsageReport', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StopPackageUsageReportResponse.new
             model.deserialize(response['Response'])
             model
           else

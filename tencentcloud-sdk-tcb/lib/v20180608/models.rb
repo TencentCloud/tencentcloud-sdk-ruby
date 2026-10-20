@@ -133,6 +133,26 @@ module TencentCloud
         end
       end
 
+      # 控制模型启用和停止
+      class AIModelStatus < TencentCloud::Common::AbstractModel
+        # @param Model: <p>模型名称</p>
+        # @type Model: String
+        # @param Status: <p>开关状态</p><p>枚举值：</p><ul><li>ENABLE： 打开模型</li><li>DISABLE： 关闭模型</li></ul>
+        # @type Status: String
+
+        attr_accessor :Model, :Status
+
+        def initialize(model=nil, status=nil)
+          @Model = model
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Model = params['Model']
+          @Status = params['Status']
+        end
+      end
+
       # AddProvider请求参数结构体
       class AddProviderRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: 云开发环境 ID，用于唯一标识当前操作所属的云开发环境。
@@ -9229,6 +9249,57 @@ module TencentCloud
           @AppliedAt = params['AppliedAt']
           @Source = params['Source']
           @CreatedBy = params['CreatedBy']
+        end
+      end
+
+      # ModifyAIModelStatus请求参数结构体
+      class ModifyAIModelStatusRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: <p>环境ID</p>
+        # @type EnvId: String
+        # @param GroupName: <p>分组名</p><p>枚举值：</p><ul><li>cloudbase： 生文系列内置模型</li><li>hunyuan-image： 生图系列内置模型</li></ul><p>系统内置分组固定标识</p>
+        # @type GroupName: String
+        # @param Models: <p>模型设置</p><p>空数组表示无操作</p>
+        # @type Models: Array
+
+        attr_accessor :EnvId, :GroupName, :Models
+
+        def initialize(envid=nil, groupname=nil, models=nil)
+          @EnvId = envid
+          @GroupName = groupname
+          @Models = models
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @GroupName = params['GroupName']
+          unless params['Models'].nil?
+            @Models = []
+            params['Models'].each do |i|
+              aimodelstatus_tmp = AIModelStatus.new
+              aimodelstatus_tmp.deserialize(i)
+              @Models << aimodelstatus_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyAIModelStatus返回参数结构体
+      class ModifyAIModelStatusResponse < TencentCloud::Common::AbstractModel
+        # @param Count: <p>影响的分组数</p>
+        # @type Count: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Count, :RequestId
+
+        def initialize(count=nil, requestid=nil)
+          @Count = count
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Count = params['Count']
+          @RequestId = params['RequestId']
         end
       end
 

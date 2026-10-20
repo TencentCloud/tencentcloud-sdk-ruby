@@ -1052,6 +1052,70 @@ module TencentCloud
         end
       end
 
+      # DeleteDeliveryServer请求参数结构体
+      class DeleteDeliveryServerRequest < TencentCloud::Common::AbstractModel
+        # @param ID: <p>服务器id</p>
+        # @type ID: Integer
+
+        attr_accessor :ID
+
+        def initialize(id=nil)
+          @ID = id
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+        end
+      end
+
+      # DeleteDeliveryServer返回参数结构体
+      class DeleteDeliveryServerResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteDeliveryStrategy请求参数结构体
+      class DeleteDeliveryStrategyRequest < TencentCloud::Common::AbstractModel
+        # @param ID: <p>转发策略id</p>
+        # @type ID: Integer
+
+        attr_accessor :ID
+
+        def initialize(id=nil)
+          @ID = id
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+        end
+      end
+
+      # DeleteDeliveryStrategy返回参数结构体
+      class DeleteDeliveryStrategyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteDeviceVirtualGroup请求参数结构体
       class DeleteDeviceVirtualGroupRequest < TencentCloud::Common::AbstractModel
         # @param DomainInstanceId: 管理域实例ID，用于CAM管理域权限分配。若企业未进行管理域的划分，可直接传入根域"1"，此时表示针对当前企业的全部设备和账号进行接口CRUD，具体CRUD的影响范围限制于相应接口的入参。
@@ -1111,6 +1175,178 @@ module TencentCloud
         def deserialize(params)
           @ResourceType = params['ResourceType']
           @ResourceId = params['ResourceId']
+        end
+      end
+
+      # 编辑的数据内容
+      class DeliverServerItem < TencentCloud::Common::AbstractModel
+        # @param ID: <p>服务器id  (创建时忽略)</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ID: Integer
+        # @param Name: <p>服务器名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Type: <p>转发服务器地址类型 4:syslog, 2:kafka, 3:http(只支持32位)</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: Integer
+        # @param Description: <p>服务器描述</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param TargetSyslogAddress: <p>syslog服务器地址</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetSyslogAddress: String
+        # @param TargetSyslogProtocol: <p>syslog协议类型</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetSyslogProtocol: String
+        # @param TargetSyslogPort: <p>syslog协议端口(只支持32位)</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetSyslogPort: Integer
+        # @param SyslogFacility: <p>syslog设备/Facility</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SyslogFacility: String
+        # @param TargetKafkaAddress: <p>Kafka服务器地址</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetKafkaAddress: String
+        # @param TargetKafkaTopic: <p>Kafka主题</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetKafkaTopic: String
+        # @param KafkaVersion: <p>Kafka版本</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KafkaVersion: String
+        # @param KafkaSaslUserName: <p>Kafka sasl用户名</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KafkaSaslUserName: String
+        # @param KafkaSaslPassword: <p>Kafka sasl密码</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KafkaSaslPassword: String
+        # @param TargetHttpUrl: <p>http服务器地址</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetHttpUrl: String
+        # @param TargetHttpTimeout: <p>http服务超时时间(只支持32位)</p><p>单位：毫秒</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetHttpTimeout: Integer
+        # @param ConnectorGroupId: <p>连接器分组ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConnectorGroupId: String
+        # @param ConnectorGroupName: <p>连接器分组名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConnectorGroupName: String
+        # @param KafkaSSLEnable: <p>KAFKA是否启用SSL</p>
+        # @type KafkaSSLEnable: Boolean
+        # @param SSLSkipVerify: <p>跳过证书检查</p>
+        # @type SSLSkipVerify: Boolean
+
+        attr_accessor :ID, :Name, :Type, :Description, :TargetSyslogAddress, :TargetSyslogProtocol, :TargetSyslogPort, :SyslogFacility, :TargetKafkaAddress, :TargetKafkaTopic, :KafkaVersion, :KafkaSaslUserName, :KafkaSaslPassword, :TargetHttpUrl, :TargetHttpTimeout, :ConnectorGroupId, :ConnectorGroupName, :KafkaSSLEnable, :SSLSkipVerify
+
+        def initialize(id=nil, name=nil, type=nil, description=nil, targetsyslogaddress=nil, targetsyslogprotocol=nil, targetsyslogport=nil, syslogfacility=nil, targetkafkaaddress=nil, targetkafkatopic=nil, kafkaversion=nil, kafkasaslusername=nil, kafkasaslpassword=nil, targethttpurl=nil, targethttptimeout=nil, connectorgroupid=nil, connectorgroupname=nil, kafkasslenable=nil, sslskipverify=nil)
+          @ID = id
+          @Name = name
+          @Type = type
+          @Description = description
+          @TargetSyslogAddress = targetsyslogaddress
+          @TargetSyslogProtocol = targetsyslogprotocol
+          @TargetSyslogPort = targetsyslogport
+          @SyslogFacility = syslogfacility
+          @TargetKafkaAddress = targetkafkaaddress
+          @TargetKafkaTopic = targetkafkatopic
+          @KafkaVersion = kafkaversion
+          @KafkaSaslUserName = kafkasaslusername
+          @KafkaSaslPassword = kafkasaslpassword
+          @TargetHttpUrl = targethttpurl
+          @TargetHttpTimeout = targethttptimeout
+          @ConnectorGroupId = connectorgroupid
+          @ConnectorGroupName = connectorgroupname
+          @KafkaSSLEnable = kafkasslenable
+          @SSLSkipVerify = sslskipverify
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @Name = params['Name']
+          @Type = params['Type']
+          @Description = params['Description']
+          @TargetSyslogAddress = params['TargetSyslogAddress']
+          @TargetSyslogProtocol = params['TargetSyslogProtocol']
+          @TargetSyslogPort = params['TargetSyslogPort']
+          @SyslogFacility = params['SyslogFacility']
+          @TargetKafkaAddress = params['TargetKafkaAddress']
+          @TargetKafkaTopic = params['TargetKafkaTopic']
+          @KafkaVersion = params['KafkaVersion']
+          @KafkaSaslUserName = params['KafkaSaslUserName']
+          @KafkaSaslPassword = params['KafkaSaslPassword']
+          @TargetHttpUrl = params['TargetHttpUrl']
+          @TargetHttpTimeout = params['TargetHttpTimeout']
+          @ConnectorGroupId = params['ConnectorGroupId']
+          @ConnectorGroupName = params['ConnectorGroupName']
+          @KafkaSSLEnable = params['KafkaSSLEnable']
+          @SSLSkipVerify = params['SSLSkipVerify']
+        end
+      end
+
+      # 数据
+      class DeliveryStrategyData < TencentCloud::Common::AbstractModel
+        # @param Data: <p>数据</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Ioa.v20220601.models.DeliveryStrategyItem`
+
+        attr_accessor :Data
+
+        def initialize(data=nil)
+          @Data = data
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DeliveryStrategyItem.new
+            @Data.deserialize(params['Data'])
+          end
+        end
+      end
+
+      # 数据
+      class DeliveryStrategyItem < TencentCloud::Common::AbstractModel
+        # @param Name: <p>策略名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Type: <p>转发方式 0:syslog, 2:kafka, 3:http(只支持32位)</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: Integer
+        # @param LogTypes: <p>转发日志类型列表 身份安全:&quot;040201000000&quot;,资源访问日志:&quot;040203000000&quot;,客户端操作日志:&quot;040202000000&quot;,终端安全日志:&quot;040205000000&quot;,终端管控日志:&quot;040206000000&quot;,终端合规日志:&quot;040207000000&quot;,license授权日志:&quot;040212000000&quot;</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogTypes: Array
+        # @param ConfigName: <p>转发配置服务器名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigName: String
+        # @param Description: <p>策略描述</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param ID: <p>转发策略id</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ID: Integer
+        # @param ConfigId: <p>转发服务器id</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigId: Integer
+
+        attr_accessor :Name, :Type, :LogTypes, :ConfigName, :Description, :ID, :ConfigId
+
+        def initialize(name=nil, type=nil, logtypes=nil, configname=nil, description=nil, id=nil, configid=nil)
+          @Name = name
+          @Type = type
+          @LogTypes = logtypes
+          @ConfigName = configname
+          @Description = description
+          @ID = id
+          @ConfigId = configid
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Type = params['Type']
+          @LogTypes = params['LogTypes']
+          @ConfigName = params['ConfigName']
+          @Description = params['Description']
+          @ID = params['ID']
+          @ConfigId = params['ConfigId']
         end
       end
 
@@ -2757,6 +2993,86 @@ module TencentCloud
         end
       end
 
+      # DescribeDeliveryServer请求参数结构体
+      class DescribeDeliveryServerRequest < TencentCloud::Common::AbstractModel
+        # @param ID: <p>服务器id</p>
+        # @type ID: Integer
+
+        attr_accessor :ID
+
+        def initialize(id=nil)
+          @ID = id
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+        end
+      end
+
+      # DescribeDeliveryServer返回参数结构体
+      class DescribeDeliveryServerResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>数据</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Ioa.v20220601.models.DeliverServerItem`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DeliverServerItem.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDeliveryStrategy请求参数结构体
+      class DescribeDeliveryStrategyRequest < TencentCloud::Common::AbstractModel
+        # @param ID: <p>转发策略id</p>
+        # @type ID: Integer
+
+        attr_accessor :ID
+
+        def initialize(id=nil)
+          @ID = id
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+        end
+      end
+
+      # DescribeDeliveryStrategy返回参数结构体
+      class DescribeDeliveryStrategyResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>数据</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Ioa.v20220601.models.DeliveryStrategyData`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DeliveryStrategyData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDeviceChildGroups请求参数结构体
       class DescribeDeviceChildGroupsRequest < TencentCloud::Common::AbstractModel
         # @param DomainInstanceId: 管理域实例ID，用于CAM管理域权限分配。若企业未进行管理域的划分，可直接传入根域"1"，此时表示针对当前企业的全部设备和账号进行接口CRUD，具体CRUD的影响范围限制于相应接口的入参。
@@ -3927,6 +4243,56 @@ module TencentCloud
             @ProfileTips = ProfileTips.new
             @ProfileTips.deserialize(params['ProfileTips'])
           end
+        end
+      end
+
+      # 获取公钥加密的key数据
+      class DescribePublicEncryptKeyData < TencentCloud::Common::AbstractModel
+        # @param PublicEncryptKey: <p>返回公钥，base64编码后返回，使用需要base64解码</p>
+        # @type PublicEncryptKey: String
+
+        attr_accessor :PublicEncryptKey
+
+        def initialize(publicencryptkey=nil)
+          @PublicEncryptKey = publicencryptkey
+        end
+
+        def deserialize(params)
+          @PublicEncryptKey = params['PublicEncryptKey']
+        end
+      end
+
+      # DescribePublicEncryptKey请求参数结构体
+      class DescribePublicEncryptKeyRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribePublicEncryptKey返回参数结构体
+      class DescribePublicEncryptKeyResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 获取公钥加密的key数据
+        # @type Data: :class:`Tencentcloud::Ioa.v20220601.models.DescribePublicEncryptKeyData`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DescribePublicEncryptKeyData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -6178,6 +6544,143 @@ module TencentCloud
         def deserialize(params)
           unless params['Data'].nil?
             @Data = DirectoryConfigResultData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 修改转发服务器返回数据
+      class ModifyDeliveryServerData < TencentCloud::Common::AbstractModel
+        # @param ID: <p>服务器ID</p>
+        # @type ID: Integer
+
+        attr_accessor :ID
+
+        def initialize(id=nil)
+          @ID = id
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+        end
+      end
+
+      # ModifyDeliveryServer请求参数结构体
+      class ModifyDeliveryServerRequest < TencentCloud::Common::AbstractModel
+        # @param Data: <p>编辑的数据内容</p>
+        # @type Data: :class:`Tencentcloud::Ioa.v20220601.models.DeliverServerItem`
+
+        attr_accessor :Data
+
+        def initialize(data=nil)
+          @Data = data
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DeliverServerItem.new
+            @Data.deserialize(params['Data'])
+          end
+        end
+      end
+
+      # ModifyDeliveryServer返回参数结构体
+      class ModifyDeliveryServerResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>转发服务器返回内容</p>
+        # @type Data: :class:`Tencentcloud::Ioa.v20220601.models.ModifyDeliveryServerData`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ModifyDeliveryServerData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 修改转发策略返回数据
+      class ModifyDeliveryStrategyData < TencentCloud::Common::AbstractModel
+        # @param ID: <p>策略ID</p>
+        # @type ID: Integer
+
+        attr_accessor :ID
+
+        def initialize(id=nil)
+          @ID = id
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+        end
+      end
+
+      # ModifyDeliveryStrategy请求参数结构体
+      class ModifyDeliveryStrategyRequest < TencentCloud::Common::AbstractModel
+        # @param Name: <p>策略名称</p>
+        # @type Name: String
+        # @param LogTypes: <p>转发日志类型列表 身份安全:&quot;040201000000&quot;,资源访问日志:&quot;040203000000&quot;,客户端操作日志:&quot;040202000000&quot;,终端安全日志:&quot;040205000000&quot;,终端管控日志:&quot;040206000000&quot;,终端合规日志:&quot;040207000000&quot;,license授权日志:&quot;040212000000&quot;</p>
+        # @type LogTypes: Array
+        # @param Type: <p>转发方式 0:syslog, 2:kafka, 3:http(只支持32位)</p>
+        # @type Type: Integer
+        # @param ConfigId: <p>转发服务器id(只支持32位)</p>
+        # @type ConfigId: Integer
+        # @param Description: <p>转发策略描述</p>
+        # @type Description: String
+        # @param Enabled: <p>是否开启</p>
+        # @type Enabled: Boolean
+        # @param ID: <p>转发策略id 创建时传递 编辑时候无需传递(只支持32位)</p>
+        # @type ID: Integer
+
+        attr_accessor :Name, :LogTypes, :Type, :ConfigId, :Description, :Enabled, :ID
+
+        def initialize(name=nil, logtypes=nil, type=nil, configid=nil, description=nil, enabled=nil, id=nil)
+          @Name = name
+          @LogTypes = logtypes
+          @Type = type
+          @ConfigId = configid
+          @Description = description
+          @Enabled = enabled
+          @ID = id
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @LogTypes = params['LogTypes']
+          @Type = params['Type']
+          @ConfigId = params['ConfigId']
+          @Description = params['Description']
+          @Enabled = params['Enabled']
+          @ID = params['ID']
+        end
+      end
+
+      # ModifyDeliveryStrategy返回参数结构体
+      class ModifyDeliveryStrategyResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>策略返回内容</p>
+        # @type Data: :class:`Tencentcloud::Ioa.v20220601.models.ModifyDeliveryStrategyData`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ModifyDeliveryStrategyData.new
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
