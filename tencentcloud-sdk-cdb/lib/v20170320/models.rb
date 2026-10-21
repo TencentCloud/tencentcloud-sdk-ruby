@@ -14483,28 +14483,34 @@ module TencentCloud
 
       # SwitchDBInstanceMasterSlave请求参数结构体
       class SwitchDBInstanceMasterSlaveRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID。
+        # @param InstanceId: <p>实例 ID。</p>
         # @type InstanceId: String
-        # @param DstSlave: 目标从实例。可选值："first" - 第一备机；"second" - 第二备机。默认值为 "first"，仅多可用区实例支持设置为 "second"。
+        # @param DstSlave: <p>目标从实例。可选值：&quot;first&quot; - 第一备机；&quot;second&quot; - 第二备机；&quot;third&quot; - 第三备机。默认值为 &quot;first&quot;，仅多可用区实例支持设置为 &quot;second&quot;。</p>
         # @type DstSlave: String
-        # @param ForceSwitch: 是否强制切换。默认为 False。注意，若设置强制切换为 True，实例存在丢失数据的风险，请谨慎使用。
+        # @param ForceSwitch: <p>是否强制切换。默认为 False。注意，若设置强制切换为 True，实例存在丢失数据的风险，请谨慎使用。</p>
         # @type ForceSwitch: Boolean
-        # @param WaitSwitch: 是否时间窗内切换。默认为 False，即不在时间窗内切换。注意，如果设置了 ForceSwitch 参数为 True，则该参数不生效。
+        # @param WaitSwitch: <p>是否时间窗内切换。默认为 False，即不在时间窗内切换。注意，如果设置了 ForceSwitch 参数为 True，则该参数不生效。</p>
         # @type WaitSwitch: Boolean
-        # @param DstNodeId: 集群版实例指定节点 ID 发起主从切换。
+        # @param DstNodeId: <p>集群版实例指定节点 ID 发起主从切换。</p>
         # @type DstNodeId: String
+        # @param SyncTimeout: <p>等待主备位点差收敛到阈值以内的最长时间,范围：30s-3600s</p>
+        # @type SyncTimeout: Integer
+        # @param SyncDistance: <p>slave 执行位点和读到位点差值，在最长等待时间内，位点差需小于该值才启动切换</p>
+        # @type SyncDistance: String
 
-        attr_accessor :InstanceId, :DstSlave, :ForceSwitch, :WaitSwitch, :DstNodeId
+        attr_accessor :InstanceId, :DstSlave, :ForceSwitch, :WaitSwitch, :DstNodeId, :SyncTimeout, :SyncDistance
         extend Gem::Deprecate
         deprecate :ForceSwitch, :none, 2026, 10
         deprecate :ForceSwitch=, :none, 2026, 10
 
-        def initialize(instanceid=nil, dstslave=nil, forceswitch=nil, waitswitch=nil, dstnodeid=nil)
+        def initialize(instanceid=nil, dstslave=nil, forceswitch=nil, waitswitch=nil, dstnodeid=nil, synctimeout=nil, syncdistance=nil)
           @InstanceId = instanceid
           @DstSlave = dstslave
           @ForceSwitch = forceswitch
           @WaitSwitch = waitswitch
           @DstNodeId = dstnodeid
+          @SyncTimeout = synctimeout
+          @SyncDistance = syncdistance
         end
 
         def deserialize(params)
@@ -14513,12 +14519,14 @@ module TencentCloud
           @ForceSwitch = params['ForceSwitch']
           @WaitSwitch = params['WaitSwitch']
           @DstNodeId = params['DstNodeId']
+          @SyncTimeout = params['SyncTimeout']
+          @SyncDistance = params['SyncDistance']
         end
       end
 
       # SwitchDBInstanceMasterSlave返回参数结构体
       class SwitchDBInstanceMasterSlaveResponse < TencentCloud::Common::AbstractModel
-        # @param AsyncRequestId: 异步任务 ID。
+        # @param AsyncRequestId: <p>异步任务 ID。</p>
         # @type AsyncRequestId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

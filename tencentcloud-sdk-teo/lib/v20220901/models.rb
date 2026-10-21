@@ -106,6 +106,38 @@ module TencentCloud
         end
       end
 
+      # AWS S3 目的地信息。通过 IAM 角色 + External ID 授权 EdgeOne 将实时日志投递至客户的 AWS S3 桶，无需提供长期访问密钥，详情见 [推送至 AWS S3](https://cloud.tencent.com/document/product/1552/96007)。
+      class AWSS3 < TencentCloud::Common::AbstractModel
+        # @param Endpoint: <p>AWS S3 存储桶对应的服务端点域名，取值可参考 <a href="https://docs.aws.amazon.com/zh_cn/general/latest/gr/rande.html#regional-endpoints">AWS 服务端点</a>。例如：s3.us-west-2.amazonaws.com 。</p>
+        # @type Endpoint: String
+        # @param BucketName: <p>AWS S3 存储桶名称。可在 AWS S3 控制台 Buckets（存储桶）列表中查看对应桶名。<br>长度须为 3–63 个字符，只能包含小写字母、数字、句点（.）和连字符（-），且必须以字母或数字开头和结尾。</p>
+        # @type BucketName: String
+        # @param Path: <p>日志文件在 AWS S3 桶中的存储目录路径，以 <code>/</code> 分隔可创建多级目录，且不能包含 <code>./..</code> 等相对路径段，路径总长度不超过 1024 个字节。<br>当目录路径存在时直接使用该路径，当目录路径不存在时会自动创建。<br>目录名仅允许由字母、数字、 及 <code>!-_.*&#39;()</code> 构成。<br>示例：<code>eo-logs/l7-access-logs</code> 。</p>
+        # @type Path: String
+        # @param RoleARN: <p>授权 EdgeOne 访问 AWS S3 桶的 IAM 角色的 ARN。<br>需先在 AWS 账号中创建一个授予 EdgeOne 写入权限的 IAM 角色（创建方式详情见 <a href="https://cloud.tencent.com/document/product/1552/96007">推送至 AWS S3</a>），创建后可在 AWS IAM 控制台的角色详情页顶部查看并复制该角色的 ARN。<br>例如：<code>arn:aws:iam::123456789012:role/eo-logs</code> 。</p>
+        # @type RoleARN: String
+        # @param CompressType: <p>数据压缩类型，取值有: <ul><li> gzip：gzip压缩。</li></ul>不填表示不启用压缩。</p>
+        # @type CompressType: String
+
+        attr_accessor :Endpoint, :BucketName, :Path, :RoleARN, :CompressType
+
+        def initialize(endpoint=nil, bucketname=nil, path=nil, rolearn=nil, compresstype=nil)
+          @Endpoint = endpoint
+          @BucketName = bucketname
+          @Path = path
+          @RoleARN = rolearn
+          @CompressType = compresstype
+        end
+
+        def deserialize(params)
+          @Endpoint = params['Endpoint']
+          @BucketName = params['BucketName']
+          @Path = params['Path']
+          @RoleARN = params['RoleARN']
+          @CompressType = params['CompressType']
+        end
+      end
+
       # 中国大陆加速优化配置。
       class AccelerateMainland < TencentCloud::Common::AbstractModel
         # @param Switch: 是否开启中国大陆加速优化配置，取值有：
@@ -300,20 +332,17 @@ module TencentCloud
 
       # 访问 URL 重定向 配置参数。
       class AccessURLRedirectParameters < TencentCloud::Common::AbstractModel
-        # @param StatusCode: 状态码，取值为 301、302、303、307、308 之一。
+        # @param StatusCode: <p>状态码，取值为 301、302、303、307、308 之一。</p>
         # @type StatusCode: Integer
-        # @param Protocol: 目标请求协议，取值有：
-        # <li>http：目标请求协议 HTTP；</li>
-        # <li>https：目标请求协议 HTTPS；</li>
-        # <li>follow：跟随请求。</li>
+        # @param Protocol: <p>目标请求协议。</p><p>枚举值：</p><ul><li>http： 目标请求协议为 HTTP。</li><li>https： 目标请求协议为 HTTPS。</li><li>follow： 跟随请求。</li></ul>
         # @type Protocol: String
-        # @param HostName: 目标 HostName 。
+        # @param HostName: <p>目标 HostName。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HostName: :class:`Tencentcloud::Teo.v20220901.models.HostName`
-        # @param URLPath: 目标路径。
+        # @param URLPath: <p>目标路径。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type URLPath: :class:`Tencentcloud::Teo.v20220901.models.URLPath`
-        # @param QueryString: 携带查询参数。
+        # @param QueryString: <p>携带查询参数。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QueryString: :class:`Tencentcloud::Teo.v20220901.models.AccessURLRedirectQueryString`
 
@@ -5732,7 +5761,7 @@ module TencentCloud
         # @type LogType: String
         # @param TaskName: <p>实时日志投递任务的名称，格式为数字、英文、-和_组合，最多 200 个字符。</p>
         # @type TaskName: String
-        # @param TaskType: <p>实时日志投递任务类型，取值有：<ul><li>cls: 推送到腾讯云 CLS；</li><li>custom_endpoint：推送到自定义 HTTP(S) 地址；</li><li>s3：推送到 AWS S3 兼容存储桶地址；</li><li>log_analysis：推送到 EdgeOne 日志分析，仅当 LogType = l7-access-logs 或 web-attack 时支持。</li></ul></p>
+        # @param TaskType: <p>实时日志投递任务类型，取值有：<ul><li>cls: 推送到腾讯云 CLS；</li><li>custom_endpoint：推送到自定义 HTTP(S) 地址；</li><li>s3：推送到 S3 兼容（兼容 SigV4 鉴权算法）的对象存储的地址，当 <code>LogType = web-attack</code> 时不支持该任务类型；</li><li>aws_s3：推送到 AWS S3 存储桶地址，使用 IAM 角色授权，免长期密钥，仅适用于 AWS 原生 S3；</li><li>log_analysis：推送到 EdgeOne 日志分析，仅当 <code>LogType = l7-access-logs</code> 或 <code>web-attack</code> 时支持。</li></ul></p>
         # @type TaskType: String
         # @param EntityList: <p>实时日志投递任务对应的实体列表。取值示例如下：<ul><li>七层域名：domain.example.com</li><li>四层代理实例：sid-2s69eb5wcms7</li><li>边缘函数实例：test-zone-2mxigizoh9l9-1257626257</li></ul></p><p>取值参考：<a href="https://cloud.tencent.com/document/api/1552/103413">DescribeL4Proxy</a></p>
         # @type EntityList: Array
@@ -5740,24 +5769,26 @@ module TencentCloud
         # @type Fields: Array
         # @param CustomFields: <p>投递的自定义字段列表，支持在 HTTP 请求头、响应头、Cookie、请求正文中提取指定内容。<br>自定义字段名称不能重复，仅七层访问日志（LogType= l7-access-logs 或 domain）支持添加自定义字段。<br>允许配置的自定义字段个数有配额限制，如遇配额不足请 [联系我们](https://cloud.tencent.com/online-service?from=sales&amp;source=PRESALE)。</p>
         # @type CustomFields: Array
-        # @param CustomExpressionFields: <p>投递的自定义表达式字段列表，可以通过自定义日志推送字段名称和取值表达式，实现个性化的实时日志内容推送，使用详情见 [自定义日志字段表达式]()。<br>仅七层访问日志（LogType= l7-access-logs 或 domain）支持添加自定义字段。<br>允许配置的自定义字段个数有配额限制，如遇配额不足请 [联系我们](https://cloud.tencent.com/online-service?from=sales&amp;source=PRESALE) 。<br>**注意**：若 CustomExpressionFields 中存在命名 与 Fields 和 CustomFields 中同名的字段，以  CustomExpressionFields 中的取值为准。</p>
+        # @param CustomExpressionFields: <p>投递的自定义表达式字段列表，可以通过自定义日志推送字段名称和取值表达式，实现个性化的实时日志内容推送，使用详情见 [自定义日志字段表达式](https://cloud.tencent.com/document/product/1552/105794)。<br>仅七层访问日志（LogType= l7-access-logs 或 domain）支持添加自定义字段。<br>允许配置的自定义字段个数有配额限制，如遇配额不足请 [联系我们](https://cloud.tencent.com/online-service?from=sales&amp;source=PRESALE) 。<br>**注意**：若 CustomExpressionFields 中存在命名 与 Fields 和 CustomFields 中同名的字段，以  CustomExpressionFields 中的取值为准。</p>
         # @type CustomExpressionFields: Array
         # @param DeliveryConditions: <p>日志投递的过滤条件，不填表示投递全量日志。</p>
         # @type DeliveryConditions: Array
         # @param Sample: <p>采样比例，采用千分制，取值范围为1-1000，例如：填写 605 表示采样比例为 60.5%。不填表示采样比例为 100%。</p>
         # @type Sample: Integer
-        # @param LogFormat: <p>日志投递的输出格式，使用详情见 <a href="https://cloud.tencent.com/document/product/1552/110448">自定义日志输出格式</a>。不填表示为默认格式，默认格式逻辑如下：<ul><li>当 TaskType 取值为 custom_endpoint 时，默认格式为多个 JSON 对象组成的数组，每个 JSON 对象为一条日志；</li><li>当 TaskType 取值为 s3 时，默认格式为 JSON Lines；</li></ul>特别地，当 TaskType 取值为 cls 或 log_analysis 时，LogFormat.FormatType 的值只能为 json，且 LogFormat 中其他参数将被忽略，建议不传 LogFormat。</p>
+        # @param LogFormat: <p>日志投递的输出格式，使用详情见 <a href="https://cloud.tencent.com/document/product/1552/110448">自定义日志输出格式</a>。不填表示为默认格式，默认格式逻辑如下：<ul><li>当 TaskType 取值为 custom_endpoint 时，默认格式为多个 JSON 对象组成的数组，每个 JSON 对象为一条日志；</li><li>当 TaskType 取值为 s3 或 aws_s3 时，默认格式为 JSON Lines；</li></ul>特别地，当 TaskType 取值为 cls 或 log_analysis 时，LogFormat.FormatType 的值只能为 json，且 LogFormat 中其他参数将被忽略，建议不传 LogFormat。</p>
         # @type LogFormat: :class:`Tencentcloud::Teo.v20220901.models.LogFormat`
         # @param CLS: <p>CLS 的配置信息。当 TaskType 取值为 cls 时，该参数必填。</p>
         # @type CLS: :class:`Tencentcloud::Teo.v20220901.models.CLSTopic`
         # @param CustomEndpoint: <p>自定义 HTTP 服务的配置信息。当 TaskType 取值为 custom_endpoint 时，该参数必填。</p>
         # @type CustomEndpoint: :class:`Tencentcloud::Teo.v20220901.models.CustomEndpoint`
-        # @param S3: <p>AWS S3 兼容存储桶的配置信息。当 TaskType 取值为 s3 时，该参数必填。</p>
+        # @param S3: <p>S3 兼容（兼容 SigV4 鉴权算法）的对象存储的配置信息。当 TaskType 取值为 s3 时，该参数必填。</p>
         # @type S3: :class:`Tencentcloud::Teo.v20220901.models.S3`
+        # @param AWSS3: <p>AWS S3 的对象存储的配置信息，使用 IAM 角色授权，免长期密钥，仅适用于 AWS 原生 S3 。当 TaskType 为 aws_s3 时，该参数必填。</p>
+        # @type AWSS3: :class:`Tencentcloud::Teo.v20220901.models.AWSS3`
 
-        attr_accessor :ZoneId, :Area, :LogType, :TaskName, :TaskType, :EntityList, :Fields, :CustomFields, :CustomExpressionFields, :DeliveryConditions, :Sample, :LogFormat, :CLS, :CustomEndpoint, :S3
+        attr_accessor :ZoneId, :Area, :LogType, :TaskName, :TaskType, :EntityList, :Fields, :CustomFields, :CustomExpressionFields, :DeliveryConditions, :Sample, :LogFormat, :CLS, :CustomEndpoint, :S3, :AWSS3
 
-        def initialize(zoneid=nil, area=nil, logtype=nil, taskname=nil, tasktype=nil, entitylist=nil, fields=nil, customfields=nil, customexpressionfields=nil, deliveryconditions=nil, sample=nil, logformat=nil, cls=nil, customendpoint=nil, s3=nil)
+        def initialize(zoneid=nil, area=nil, logtype=nil, taskname=nil, tasktype=nil, entitylist=nil, fields=nil, customfields=nil, customexpressionfields=nil, deliveryconditions=nil, sample=nil, logformat=nil, cls=nil, customendpoint=nil, s3=nil, awss3=nil)
           @ZoneId = zoneid
           @Area = area
           @LogType = logtype
@@ -5773,6 +5804,7 @@ module TencentCloud
           @CLS = cls
           @CustomEndpoint = customendpoint
           @S3 = s3
+          @AWSS3 = awss3
         end
 
         def deserialize(params)
@@ -5823,6 +5855,10 @@ module TencentCloud
           unless params['S3'].nil?
             @S3 = S3.new
             @S3.deserialize(params['S3'])
+          end
+          unless params['AWSS3'].nil?
+            @AWSS3 = AWSS3.new
+            @AWSS3.deserialize(params['AWSS3'])
           end
         end
       end
@@ -18500,8 +18536,8 @@ module TencentCloud
         # @type OriginType: String
         # @param OriginValue: 源站地址：
         # <li>当 OriginType 为 IP_DOMAIN 时，填写 IP 或域名，如 8.8.8.8 或 test.com ；</li>
-        # <li>当 OriginType 为 ORIGIN_GROUP 时，填写源站组 ID，如 og-537y24vf5b41；</li>
-        # <li>当 OriginType 为 LB 时，填写负载均衡实例 ID，如 lb-2qwk30xf7s9g。</li>
+        # <li>当 OriginType 为 ORIGIN_GROUP 时，填写源站组 ID，如 og-537y24vf5b41；如果引用了其它站点的源站组，格式为{源站组 ID}@{ZoneID}。例如：og-testorigin@zone-38moq1z10wwwy；</li>
+        # <li>当 OriginType 为 LB 时，填写负载均衡实例 ID，如 lb-2qwk30xf7s9g；如果引用了其它站点的负载均衡，格式为{负载均衡 ID}@{ZoneID}。例如：lb-2rxpamcyqfzg@zone-38moq1z10wwwy。</li>
         # 注意：L4ProxyRule 在 CreateL4ProxyRules 作为入参使用时，该参数必填；在 ModifyL4ProxyRules 作为入参使用时，该参数选填，不填写时表示不修改。
         # @type OriginValue: Array
         # @param OriginPortRange: 源站端口，支持按照以下形式填写：
@@ -21076,9 +21112,9 @@ module TencentCloud
         # @type EntityList: Array
         # @param Fields: <p>投递的预设字段列表。不填保持原有配置。</p><p>取值参考：DescribeLogFields</p>
         # @type Fields: Array
-        # @param CustomFields: <p>投递的自定义日志字段列表，可以通过自定义日志推送字段名称和取值表达式，实现个性化的实时日志内容推送，详见 <a href="">自定义日志字段表达式</a>。<br>仅七层访问日志（LogType= l7-access-logs 或 domain）支持添加自定义字段，允许配置的自定义字段个数有配额限制，如遇配额不足请 <a href="https://cloud.tencent.com/online-service?from=sales&amp;source=PRESALE">联系我们</a> 。</p>
+        # @param CustomFields: <p>投递的自定义字段列表，支持在 HTTP 请求头、响应头、Cookie、请求正文中提取指定内容。<br>自定义字段名称不能重复，仅七层访问日志（LogType= l7-access-logs 或 domain）支持添加自定义字段。<br>允许配置的自定义字段个数有配额限制，如遇配额不足请 [联系我们](https://cloud.tencent.com/online-service?from=sales&amp;source=PRESALE)。</p>
         # @type CustomFields: Array
-        # @param CustomExpressionFields: <p>投递的自定义表达式字段列表，可以通过自定义日志推送字段名称和取值表达式，实现个性化的实时日志内容推送，使用详情见 [自定义日志字段表达式]()。<br>仅七层访问日志（LogType= l7-access-logs 或 domain）支持添加自定义字段。允许配置的自定义字段个数有配额限制，如遇配额不足请 [联系我们](https://cloud.tencent.com/online-service?from=sales&amp;source=PRESALE) 。<br>**注意**：若 CustomExpressionFields 中存在命名 与 Fields 和 CustomFields 中同名的字段，以  CustomExpressionFields 中的取值为准。</p>
+        # @param CustomExpressionFields: <p>投递的自定义表达式字段列表，可以通过自定义日志推送字段名称和取值表达式，实现个性化的实时日志内容推送，使用详情见 [自定义日志字段表达式](https://cloud.tencent.com/document/product/1552/105794)。<br>仅七层访问日志（LogType= l7-access-logs 或 domain）支持添加自定义字段。<br>允许配置的自定义字段个数有配额限制，如遇配额不足请 [联系我们](https://cloud.tencent.com/online-service?from=sales&amp;source=PRESALE) 。<br>**注意**：若 CustomExpressionFields 中存在命名 与 Fields 和 CustomFields 中同名的字段，以  CustomExpressionFields 中的取值为准。</p>
         # @type CustomExpressionFields: Array
         # @param DeliveryConditions: <p>日志投递的过滤条件。不填表示投递全量日志。</p>
         # @type DeliveryConditions: Array
@@ -21088,12 +21124,14 @@ module TencentCloud
         # @type LogFormat: :class:`Tencentcloud::Teo.v20220901.models.LogFormat`
         # @param CustomEndpoint: <p>自定义 HTTP 服务的配置信息，不填保持原有配置。</p>
         # @type CustomEndpoint: :class:`Tencentcloud::Teo.v20220901.models.CustomEndpoint`
-        # @param S3: <p>AWS S3 兼容存储桶的配置信息，不填保持原有配置。</p>
+        # @param S3: <p>S3 兼容（兼容 SigV4 鉴权算法）的对象存储的配置信息，不填保持原有配置。</p>
         # @type S3: :class:`Tencentcloud::Teo.v20220901.models.S3`
+        # @param AWSS3: <p>AWS S3 对象存储的配置信息，不填保持原有配置。</p>
+        # @type AWSS3: :class:`Tencentcloud::Teo.v20220901.models.AWSS3`
 
-        attr_accessor :ZoneId, :TaskId, :TaskName, :DeliveryStatus, :EntityList, :Fields, :CustomFields, :CustomExpressionFields, :DeliveryConditions, :Sample, :LogFormat, :CustomEndpoint, :S3
+        attr_accessor :ZoneId, :TaskId, :TaskName, :DeliveryStatus, :EntityList, :Fields, :CustomFields, :CustomExpressionFields, :DeliveryConditions, :Sample, :LogFormat, :CustomEndpoint, :S3, :AWSS3
 
-        def initialize(zoneid=nil, taskid=nil, taskname=nil, deliverystatus=nil, entitylist=nil, fields=nil, customfields=nil, customexpressionfields=nil, deliveryconditions=nil, sample=nil, logformat=nil, customendpoint=nil, s3=nil)
+        def initialize(zoneid=nil, taskid=nil, taskname=nil, deliverystatus=nil, entitylist=nil, fields=nil, customfields=nil, customexpressionfields=nil, deliveryconditions=nil, sample=nil, logformat=nil, customendpoint=nil, s3=nil, awss3=nil)
           @ZoneId = zoneid
           @TaskId = taskid
           @TaskName = taskname
@@ -21107,6 +21145,7 @@ module TencentCloud
           @LogFormat = logformat
           @CustomEndpoint = customendpoint
           @S3 = s3
+          @AWSS3 = awss3
         end
 
         def deserialize(params)
@@ -21152,6 +21191,10 @@ module TencentCloud
           unless params['S3'].nil?
             @S3 = S3.new
             @S3.deserialize(params['S3'])
+          end
+          unless params['AWSS3'].nil?
+            @AWSS3 = AWSS3.new
+            @AWSS3.deserialize(params['AWSS3'])
           end
         end
       end
@@ -24301,7 +24344,7 @@ module TencentCloud
         # @type TaskName: String
         # @param DeliveryStatus: <p>实时日志投递任务的状态，取值有： <li>enabled: 已启用；</li> <li>disabled: 已停用；</li><li>deleted: 异常删除状态，请检查目的地腾讯云 CLS 日志集/日志主题是否已被删除。</li></p>
         # @type DeliveryStatus: String
-        # @param TaskType: <p>实时日志投递任务类型，取值有： <ul><li>cls: 推送到腾讯云 CLS；</li> <li>custom_endpoint：推送到自定义 HTTP(S) 地址；</li> <li>s3：推送到 S3 兼容（兼容 SigV4 鉴权算法）的对象存储的地址；</li><li>log_analysis：推送到 EdgeOne 日志分析。</li></ul></p>
+        # @param TaskType: <p>实时日志投递任务类型，取值有： <ul><li>cls: 推送到腾讯云 CLS；</li> <li>custom_endpoint：推送到自定义 HTTP(S) 地址；</li> <li>s3：推送到 S3 兼容（兼容 SigV4 鉴权算法）的对象存储的地址；</li><li>aws_s3：推送到 AWS S3 存储桶地址；</li><li>log_analysis：推送到 EdgeOne 日志分析。</li></ul></p>
         # @type TaskType: String
         # @param EntityList: <p>实时日志投递任务对应的实体（七层域名或者四层代理实例）列表。取值示例如下： <li>七层域名：domain.example.com；</li> <li>四层代理实例：sid-2s69eb5wcms7。</li></p>
         # @type EntityList: Array
@@ -24331,14 +24374,17 @@ module TencentCloud
         # @param S3: <p>S3 兼容（兼容 SigV4 鉴权算法）的对象存储的配置信息。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type S3: :class:`Tencentcloud::Teo.v20220901.models.S3`
+        # @param AWSS3: <p>AWS S3 的对象存储的配置信息，使用 IAM 角色授权，免长期密钥，仅适用于 AWS 原生 S3 。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AWSS3: :class:`Tencentcloud::Teo.v20220901.models.AWSS3`
         # @param CreateTime: <p>创建时间。</p>
         # @type CreateTime: String
         # @param UpdateTime: <p>更新时间。</p>
         # @type UpdateTime: String
 
-        attr_accessor :TaskId, :TaskName, :DeliveryStatus, :TaskType, :EntityList, :LogType, :Area, :Fields, :CustomFields, :CustomExpressionFields, :DeliveryConditions, :Sample, :LogFormat, :CLS, :CustomEndpoint, :S3, :CreateTime, :UpdateTime
+        attr_accessor :TaskId, :TaskName, :DeliveryStatus, :TaskType, :EntityList, :LogType, :Area, :Fields, :CustomFields, :CustomExpressionFields, :DeliveryConditions, :Sample, :LogFormat, :CLS, :CustomEndpoint, :S3, :AWSS3, :CreateTime, :UpdateTime
 
-        def initialize(taskid=nil, taskname=nil, deliverystatus=nil, tasktype=nil, entitylist=nil, logtype=nil, area=nil, fields=nil, customfields=nil, customexpressionfields=nil, deliveryconditions=nil, sample=nil, logformat=nil, cls=nil, customendpoint=nil, s3=nil, createtime=nil, updatetime=nil)
+        def initialize(taskid=nil, taskname=nil, deliverystatus=nil, tasktype=nil, entitylist=nil, logtype=nil, area=nil, fields=nil, customfields=nil, customexpressionfields=nil, deliveryconditions=nil, sample=nil, logformat=nil, cls=nil, customendpoint=nil, s3=nil, awss3=nil, createtime=nil, updatetime=nil)
           @TaskId = taskid
           @TaskName = taskname
           @DeliveryStatus = deliverystatus
@@ -24355,6 +24401,7 @@ module TencentCloud
           @CLS = cls
           @CustomEndpoint = customendpoint
           @S3 = s3
+          @AWSS3 = awss3
           @CreateTime = createtime
           @UpdateTime = updatetime
         end
@@ -24408,6 +24455,10 @@ module TencentCloud
           unless params['S3'].nil?
             @S3 = S3.new
             @S3.deserialize(params['S3'])
+          end
+          unless params['AWSS3'].nil?
+            @AWSS3 = AWSS3.new
+            @AWSS3.deserialize(params['AWSS3'])
           end
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']

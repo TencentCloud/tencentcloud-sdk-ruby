@@ -3094,31 +3094,42 @@ module TencentCloud
 
       # CreateTWeSeeCallback请求参数结构体
       class CreateTWeSeeCallbackRequest < TencentCloud::Common::AbstractModel
-        # @param Type: 回调类型。可选值：\n- `http` HTTP 回调
+        # @param Type: <p>回调类型</p><p>枚举值：</p><ul><li>none： 不回调</li><li>http： HTTP 回调</li><li>ckafka： 投递 CKafka Topic</li></ul>
         # @type Type: String
-        # @param CallbackUrl: 回调 URL。要求 http 或 https 协议，仅支持 80 或 443 端口
+        # @param CallbackUrl: <p>回调 URL。要求 http 或 https 协议，仅支持 80 或 443 端口</p>
         # @type CallbackUrl: String
-        # @param CallbackToken: 回调签名 Token。最大长度 128
+        # @param CallbackToken: <p>回调签名 Token。最大长度 128</p>
         # @type CallbackToken: String
+        # @param CallbackCKafka: <p>回调 CKafka 配置</p>
+        # @type CallbackCKafka: :class:`Tencentcloud::Iotexplorer.v20190423.models.SeeCallbackCKafkaConfig`
+        # @param ProductId: <p>要创建回调目标的产品 ID</p>
+        # @type ProductId: String
 
-        attr_accessor :Type, :CallbackUrl, :CallbackToken
+        attr_accessor :Type, :CallbackUrl, :CallbackToken, :CallbackCKafka, :ProductId
 
-        def initialize(type=nil, callbackurl=nil, callbacktoken=nil)
+        def initialize(type=nil, callbackurl=nil, callbacktoken=nil, callbackckafka=nil, productid=nil)
           @Type = type
           @CallbackUrl = callbackurl
           @CallbackToken = callbacktoken
+          @CallbackCKafka = callbackckafka
+          @ProductId = productid
         end
 
         def deserialize(params)
           @Type = params['Type']
           @CallbackUrl = params['CallbackUrl']
           @CallbackToken = params['CallbackToken']
+          unless params['CallbackCKafka'].nil?
+            @CallbackCKafka = SeeCallbackCKafkaConfig.new
+            @CallbackCKafka.deserialize(params['CallbackCKafka'])
+          end
+          @ProductId = params['ProductId']
         end
       end
 
       # CreateTWeSeeCallback返回参数结构体
       class CreateTWeSeeCallbackResponse < TencentCloud::Common::AbstractModel
-        # @param CallbackId: 回调目标 ID
+        # @param CallbackId: <p>回调目标 ID</p>
         # @type CallbackId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4579,7 +4590,7 @@ module TencentCloud
 
       # DeleteTWeSeeCallback请求参数结构体
       class DeleteTWeSeeCallbackRequest < TencentCloud::Common::AbstractModel
-        # @param CallbackId: 回调目标 ID，格式为 `callback-` + 8 位小写字母数字
+        # @param CallbackId: <p>回调目标 ID</p>
         # @type CallbackId: String
 
         attr_accessor :CallbackId
@@ -14348,29 +14359,36 @@ module TencentCloud
 
       # ModifyTWeSeeCallback请求参数结构体
       class ModifyTWeSeeCallbackRequest < TencentCloud::Common::AbstractModel
-        # @param CallbackId: 回调目标 ID，格式为 `callback-` + 8 位小写字母数字
+        # @param CallbackId: <p>回调目标 ID</p>
         # @type CallbackId: String
-        # @param CallbackUrl: 回调 URL，需要可访问并通过 Echo 校验
-        # @type CallbackUrl: String
-        # @param Type: 回调类型。当前仅支持：`http`
+        # @param Type: <p>回调类型</p><p>枚举值：</p><ul><li>none： 不回调</li><li>http： HTTP 回调</li><li>ckafka： 投递 CKafka Topic</li></ul>
         # @type Type: String
-        # @param CallbackToken: 回调签名 token，最大长度 128
+        # @param CallbackUrl: <p>回调 URL，需要可访问并通过 Echo 校验</p>
+        # @type CallbackUrl: String
+        # @param CallbackToken: <p>回调签名 token，最大长度 128</p>
         # @type CallbackToken: String
+        # @param CallbackCKafka: <p>回调 CKafka 配置</p>
+        # @type CallbackCKafka: :class:`Tencentcloud::Iotexplorer.v20190423.models.SeeCallbackCKafkaConfig`
 
-        attr_accessor :CallbackId, :CallbackUrl, :Type, :CallbackToken
+        attr_accessor :CallbackId, :Type, :CallbackUrl, :CallbackToken, :CallbackCKafka
 
-        def initialize(callbackid=nil, callbackurl=nil, type=nil, callbacktoken=nil)
+        def initialize(callbackid=nil, type=nil, callbackurl=nil, callbacktoken=nil, callbackckafka=nil)
           @CallbackId = callbackid
-          @CallbackUrl = callbackurl
           @Type = type
+          @CallbackUrl = callbackurl
           @CallbackToken = callbacktoken
+          @CallbackCKafka = callbackckafka
         end
 
         def deserialize(params)
           @CallbackId = params['CallbackId']
-          @CallbackUrl = params['CallbackUrl']
           @Type = params['Type']
+          @CallbackUrl = params['CallbackUrl']
           @CallbackToken = params['CallbackToken']
+          unless params['CallbackCKafka'].nil?
+            @CallbackCKafka = SeeCallbackCKafkaConfig.new
+            @CallbackCKafka.deserialize(params['CallbackCKafka'])
+          end
         end
       end
 
@@ -16734,38 +16752,69 @@ module TencentCloud
         end
       end
 
+      # TWeSee CKafka 回调配置
+      class SeeCallbackCKafkaConfig < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>CKafka 实例 ID</p>
+        # @type InstanceId: String
+        # @param Topic: <p>CKafka 实例中的 Topic 名</p>
+        # @type Topic: String
+        # @param Region: <p>CKafka 实例所在的地域</p>
+        # @type Region: String
+
+        attr_accessor :InstanceId, :Topic, :Region
+
+        def initialize(instanceid=nil, topic=nil, region=nil)
+          @InstanceId = instanceid
+          @Topic = topic
+          @Region = region
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Topic = params['Topic']
+          @Region = params['Region']
+        end
+      end
+
       # TWeSee 回调目标信息
       class SeeCallbackInfo < TencentCloud::Common::AbstractModel
-        # @param CallbackId: 回调目标 ID
+        # @param CallbackId: <p>回调目标 ID</p>
         # @type CallbackId: String
-        # @param CallbackToken: 回调签名 token
-        # @type CallbackToken: String
-        # @param CallbackUrl: 回调 URL
-        # @type CallbackUrl: String
-        # @param CreateTime: 创建时间（秒级时间戳）
-        # @type CreateTime: Integer
-        # @param Type: 回调类型
+        # @param Type: <p>回调类型</p><p>枚举值：</p><ul><li>none： 不回调</li><li>http： HTTP 回调</li><li>ckafka： 投递 CKafka Topic</li></ul>
         # @type Type: String
-        # @param UpdateTime: 更新时间（秒级时间戳）
+        # @param CallbackUrl: <p>回调 URL</p>
+        # @type CallbackUrl: String
+        # @param CallbackToken: <p>回调签名 token</p>
+        # @type CallbackToken: String
+        # @param CallbackCKafka: <p>回调 CKafka 配置</p>
+        # @type CallbackCKafka: :class:`Tencentcloud::Iotexplorer.v20190423.models.SeeCallbackCKafkaConfig`
+        # @param CreateTime: <p>创建时间（秒级时间戳）</p>
+        # @type CreateTime: Integer
+        # @param UpdateTime: <p>更新时间（秒级时间戳）</p>
         # @type UpdateTime: Integer
 
-        attr_accessor :CallbackId, :CallbackToken, :CallbackUrl, :CreateTime, :Type, :UpdateTime
+        attr_accessor :CallbackId, :Type, :CallbackUrl, :CallbackToken, :CallbackCKafka, :CreateTime, :UpdateTime
 
-        def initialize(callbackid=nil, callbacktoken=nil, callbackurl=nil, createtime=nil, type=nil, updatetime=nil)
+        def initialize(callbackid=nil, type=nil, callbackurl=nil, callbacktoken=nil, callbackckafka=nil, createtime=nil, updatetime=nil)
           @CallbackId = callbackid
-          @CallbackToken = callbacktoken
-          @CallbackUrl = callbackurl
-          @CreateTime = createtime
           @Type = type
+          @CallbackUrl = callbackurl
+          @CallbackToken = callbacktoken
+          @CallbackCKafka = callbackckafka
+          @CreateTime = createtime
           @UpdateTime = updatetime
         end
 
         def deserialize(params)
           @CallbackId = params['CallbackId']
-          @CallbackToken = params['CallbackToken']
-          @CallbackUrl = params['CallbackUrl']
-          @CreateTime = params['CreateTime']
           @Type = params['Type']
+          @CallbackUrl = params['CallbackUrl']
+          @CallbackToken = params['CallbackToken']
+          unless params['CallbackCKafka'].nil?
+            @CallbackCKafka = SeeCallbackCKafkaConfig.new
+            @CallbackCKafka.deserialize(params['CallbackCKafka'])
+          end
+          @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
         end
       end

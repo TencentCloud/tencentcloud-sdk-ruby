@@ -682,26 +682,28 @@ module TencentCloud
 
       # 设置推拉流鉴权返回数据结构
       class AddStreamAuthData < TencentCloud::Common::AbstractModel
-        # @param Id: 鉴权配置ID（uuid）
+        # @param Id: <p>鉴权配置ID（uuid）</p>
         # @type Id: String
-        # @param PullState: 是否开播放鉴权（1:开启,0:关闭）
+        # @param PullState: <p>是否开播放鉴权（1:开启,0:关闭）</p>
         # @type PullState: Integer
-        # @param PullSecret: 播放密钥（仅支持字母数字，长度0-10位）
+        # @param PullSecret: <p>播放密钥（仅支持字母数字，长度0-10位）</p>
         # @type PullSecret: String
-        # @param PullExpired: 播放过期时间（单位：分钟）
+        # @param PullExpired: <p>播放过期时间（单位：分钟）</p>
         # @type PullExpired: Integer
-        # @param PushState: 是否开启推流鉴权（1:开启,0:关闭）
+        # @param PushState: <p>是否开启推流鉴权（1:开启,0:关闭）</p>
         # @type PushState: Integer
-        # @param PushSecret: 推流密钥（仅支持字母数字，长度0-10位）
+        # @param PushSecret: <p>推流密钥（仅支持字母数字，长度0-10位）</p>
         # @type PushSecret: String
-        # @param PushExpired: 推流过期时间（单位：分钟）
+        # @param PushExpired: <p>推流过期时间（单位：分钟）</p>
         # @type PushExpired: Integer
-        # @param AppId: 用户ID
+        # @param AppId: <p>用户ID</p>
         # @type AppId: Integer
+        # @param ExcludePushDomainIds: <p>不生效推流鉴权的域名 ID 列表</p>
+        # @type ExcludePushDomainIds: Array
 
-        attr_accessor :Id, :PullState, :PullSecret, :PullExpired, :PushState, :PushSecret, :PushExpired, :AppId
+        attr_accessor :Id, :PullState, :PullSecret, :PullExpired, :PushState, :PushSecret, :PushExpired, :AppId, :ExcludePushDomainIds
 
-        def initialize(id=nil, pullstate=nil, pullsecret=nil, pullexpired=nil, pushstate=nil, pushsecret=nil, pushexpired=nil, appid=nil)
+        def initialize(id=nil, pullstate=nil, pullsecret=nil, pullexpired=nil, pushstate=nil, pushsecret=nil, pushexpired=nil, appid=nil, excludepushdomainids=nil)
           @Id = id
           @PullState = pullstate
           @PullSecret = pullsecret
@@ -710,6 +712,7 @@ module TencentCloud
           @PushSecret = pushsecret
           @PushExpired = pushexpired
           @AppId = appid
+          @ExcludePushDomainIds = excludepushdomainids
         end
 
         def deserialize(params)
@@ -721,29 +724,32 @@ module TencentCloud
           @PushSecret = params['PushSecret']
           @PushExpired = params['PushExpired']
           @AppId = params['AppId']
+          @ExcludePushDomainIds = params['ExcludePushDomainIds']
         end
       end
 
       # AddStreamAuth请求参数结构体
       class AddStreamAuthRequest < TencentCloud::Common::AbstractModel
-        # @param Id: 鉴权配置ID（uuid）
+        # @param Id: <p>鉴权配置ID（uuid）</p>
         # @type Id: String
-        # @param PullState: 是否开播放鉴权（1:开启,0:关闭）
+        # @param PullState: <p>是否开播放鉴权（1:开启,0:关闭）</p>
         # @type PullState: Integer
-        # @param PullSecret: 播放密钥（仅支持字母数字，长度0-10位）
+        # @param PullSecret: <p>播放密钥（仅支持字母数字，长度0-10位）</p>
         # @type PullSecret: String
-        # @param PullExpired: 播放过期时间（单位：分钟）
+        # @param PullExpired: <p>播放过期时间（单位：分钟）</p>
         # @type PullExpired: Integer
-        # @param PushState: 是否开启推流鉴权（1:开启,0:关闭）
+        # @param PushState: <p>是否开启推流鉴权（1:开启,0:关闭）</p>
         # @type PushState: Integer
-        # @param PushSecret: 推流密钥（仅支持字母数字，长度0-10位）
+        # @param PushSecret: <p>推流密钥（仅支持字母数字，长度0-10位）</p>
         # @type PushSecret: String
-        # @param PushExpired: 推流过期时间（单位：分钟）
+        # @param PushExpired: <p>推流过期时间（单位：分钟）</p>
         # @type PushExpired: Integer
+        # @param ExcludePushDomainIds: <p>不生效推流鉴权的域名 ID 列表</p>
+        # @type ExcludePushDomainIds: Array
 
-        attr_accessor :Id, :PullState, :PullSecret, :PullExpired, :PushState, :PushSecret, :PushExpired
+        attr_accessor :Id, :PullState, :PullSecret, :PullExpired, :PushState, :PushSecret, :PushExpired, :ExcludePushDomainIds
 
-        def initialize(id=nil, pullstate=nil, pullsecret=nil, pullexpired=nil, pushstate=nil, pushsecret=nil, pushexpired=nil)
+        def initialize(id=nil, pullstate=nil, pullsecret=nil, pullexpired=nil, pushstate=nil, pushsecret=nil, pushexpired=nil, excludepushdomainids=nil)
           @Id = id
           @PullState = pullstate
           @PullSecret = pullsecret
@@ -751,6 +757,7 @@ module TencentCloud
           @PushState = pushstate
           @PushSecret = pushsecret
           @PushExpired = pushexpired
+          @ExcludePushDomainIds = excludepushdomainids
         end
 
         def deserialize(params)
@@ -761,12 +768,13 @@ module TencentCloud
           @PushState = params['PushState']
           @PushSecret = params['PushSecret']
           @PushExpired = params['PushExpired']
+          @ExcludePushDomainIds = params['ExcludePushDomainIds']
         end
       end
 
       # AddStreamAuth返回参数结构体
       class AddStreamAuthResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 设置推拉流鉴权返回数据
+        # @param Data: <p>设置推拉流鉴权返回数据</p>
         # @type Data: :class:`Tencentcloud::Iss.v20230517.models.AddStreamAuthData`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3644,26 +3652,28 @@ module TencentCloud
 
       # 查询推拉流鉴权返回数据结构
       class DescribeStreamAuthData < TencentCloud::Common::AbstractModel
-        # @param Id: 鉴权配置ID（uuid）
+        # @param Id: <p>鉴权配置ID（uuid）</p>
         # @type Id: String
-        # @param PullState: 是否开播放鉴权（1:开启,0:关闭）
+        # @param PullState: <p>是否开播放鉴权（1:开启,0:关闭）</p>
         # @type PullState: Integer
-        # @param PullSecret: 播放密钥（仅支持字母数字，长度0-10位）
+        # @param PullSecret: <p>播放密钥（仅支持字母数字，长度0-10位）</p>
         # @type PullSecret: String
-        # @param PullExpired: 播放过期时间（单位：分钟）
+        # @param PullExpired: <p>播放过期时间（单位：分钟）</p>
         # @type PullExpired: Integer
-        # @param PushState: 是否开启推流鉴权（1:开启,0:关闭）
+        # @param PushState: <p>是否开启推流鉴权（1:开启,0:关闭）</p>
         # @type PushState: Integer
-        # @param PushSecret: 推流密钥（仅支持字母数字，长度0-10位）
+        # @param PushSecret: <p>推流密钥（仅支持字母数字，长度0-10位）</p>
         # @type PushSecret: String
-        # @param PushExpired: 推流过期时间（单位：分钟）
+        # @param PushExpired: <p>推流过期时间（单位：分钟）</p>
         # @type PushExpired: Integer
-        # @param AppId: 用户ID
+        # @param AppId: <p>用户ID</p>
         # @type AppId: Integer
+        # @param ExcludePushDomainIds: <p>不生效推流鉴权的域名 ID 列表</p>
+        # @type ExcludePushDomainIds: Array
 
-        attr_accessor :Id, :PullState, :PullSecret, :PullExpired, :PushState, :PushSecret, :PushExpired, :AppId
+        attr_accessor :Id, :PullState, :PullSecret, :PullExpired, :PushState, :PushSecret, :PushExpired, :AppId, :ExcludePushDomainIds
 
-        def initialize(id=nil, pullstate=nil, pullsecret=nil, pullexpired=nil, pushstate=nil, pushsecret=nil, pushexpired=nil, appid=nil)
+        def initialize(id=nil, pullstate=nil, pullsecret=nil, pullexpired=nil, pushstate=nil, pushsecret=nil, pushexpired=nil, appid=nil, excludepushdomainids=nil)
           @Id = id
           @PullState = pullstate
           @PullSecret = pullsecret
@@ -3672,6 +3682,7 @@ module TencentCloud
           @PushSecret = pushsecret
           @PushExpired = pushexpired
           @AppId = appid
+          @ExcludePushDomainIds = excludepushdomainids
         end
 
         def deserialize(params)
@@ -3683,6 +3694,7 @@ module TencentCloud
           @PushSecret = params['PushSecret']
           @PushExpired = params['PushExpired']
           @AppId = params['AppId']
+          @ExcludePushDomainIds = params['ExcludePushDomainIds']
         end
       end
 

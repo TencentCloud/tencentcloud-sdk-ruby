@@ -130,10 +130,12 @@ module TencentCloud
         # @type PrepaidEnable: Boolean
         # @param PostpaidEnable: <p>该套餐是否支持按量计费</p>
         # @type PostpaidEnable: Boolean
+        # @param SupportedChargeTypes: <p>该算力套餐支持的计费模式列表：POSTPAID_BY_HOUR（按量）、PREPAID（包年包月）、SPOT（竞价）</p>
+        # @type SupportedChargeTypes: Array
 
-        attr_accessor :BundleType, :Count, :GPUCount, :GPUMemory, :GPUPerformance, :CPU, :Memory, :PrepaidEnable, :PostpaidEnable
+        attr_accessor :BundleType, :Count, :GPUCount, :GPUMemory, :GPUPerformance, :CPU, :Memory, :PrepaidEnable, :PostpaidEnable, :SupportedChargeTypes
 
-        def initialize(bundletype=nil, count=nil, gpucount=nil, gpumemory=nil, gpuperformance=nil, cpu=nil, memory=nil, prepaidenable=nil, postpaidenable=nil)
+        def initialize(bundletype=nil, count=nil, gpucount=nil, gpumemory=nil, gpuperformance=nil, cpu=nil, memory=nil, prepaidenable=nil, postpaidenable=nil, supportedchargetypes=nil)
           @BundleType = bundletype
           @Count = count
           @GPUCount = gpucount
@@ -143,6 +145,7 @@ module TencentCloud
           @Memory = memory
           @PrepaidEnable = prepaidenable
           @PostpaidEnable = postpaidenable
+          @SupportedChargeTypes = supportedchargetypes
         end
 
         def deserialize(params)
@@ -155,6 +158,7 @@ module TencentCloud
           @Memory = params['Memory']
           @PrepaidEnable = params['PrepaidEnable']
           @PostpaidEnable = params['PostpaidEnable']
+          @SupportedChargeTypes = params['SupportedChargeTypes']
         end
       end
 
@@ -313,7 +317,7 @@ module TencentCloud
         # @type ServiceName: String
         # @param Replicas: <p>副本数</p>
         # @type Replicas: Integer
-        # @param ServiceChargeType: <p>付费方式，POSTPAID_BY_HOUR按量后付费</p>
+        # @param ServiceChargeType: <p>付费方式：POSTPAID_BY_HOUR 按量后付费，PREPAID_BY_MONTH 包年包月，SPOT 竞价售卖（竞价需先调用 BidSpotInferService 对套餐出价）</p>
         # @type ServiceChargeType: String
         # @param HyperParam: <p>描述了服务的超参数配置</p>
         # @type HyperParam: :class:`Tencentcloud::Hai.v20230812.models.HyperParam`
@@ -2315,7 +2319,7 @@ module TencentCloud
       class ServiceMetaData < TencentCloud::Common::AbstractModel
         # @param ServiceName: 服务名称
         # @type ServiceName: String
-        # @param ServiceChargeType: 收费类型
+        # @param ServiceChargeType: <p>付费方式：POSTPAID_BY_HOUR 按量后付费，PREPAID_BY_MONTH 包年包月，SPOT 竞价售卖（竞价需先调用 BidSpotInferService 对套餐出价）</p>
         # @type ServiceChargeType: String
 
         attr_accessor :ServiceName, :ServiceChargeType

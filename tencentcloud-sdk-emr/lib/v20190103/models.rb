@@ -2106,10 +2106,12 @@ module TencentCloud
         # @type AirflowDagSource: :class:`Tencentcloud::Emr.v20190103.models.AirflowDagSourceInput`
         # @param AirflowGitCredential: <p>airflow源凭证</p>
         # @type AirflowGitCredential: :class:`Tencentcloud::Emr.v20190103.models.AirflowGitCredentialInput`
+        # @param SgIds: <p>多安全组绑定</p>
+        # @type SgIds: Array
 
-        attr_accessor :InstanceName, :ClusterClass, :Software, :PlatFormType, :CosBucket, :EksClusterId, :ProductId, :ClientToken, :VPCSettings, :CloudResources, :SgId, :MetaDBInfo, :Tags, :LoginSettings, :ExternalService, :ZoneId, :DefaultMetaVersion, :NeedCdbAudit, :SgIP, :ContainerExtraConf, :EnableSparkAppMonitorInfo, :ComputeResourceGroupIds, :TerminateProtection, :EnableEmrProxy, :LogStoreID, :AirflowDagSource, :AirflowGitCredential
+        attr_accessor :InstanceName, :ClusterClass, :Software, :PlatFormType, :CosBucket, :EksClusterId, :ProductId, :ClientToken, :VPCSettings, :CloudResources, :SgId, :MetaDBInfo, :Tags, :LoginSettings, :ExternalService, :ZoneId, :DefaultMetaVersion, :NeedCdbAudit, :SgIP, :ContainerExtraConf, :EnableSparkAppMonitorInfo, :ComputeResourceGroupIds, :TerminateProtection, :EnableEmrProxy, :LogStoreID, :AirflowDagSource, :AirflowGitCredential, :SgIds
 
-        def initialize(instancename=nil, clusterclass=nil, software=nil, platformtype=nil, cosbucket=nil, eksclusterid=nil, productid=nil, clienttoken=nil, vpcsettings=nil, cloudresources=nil, sgid=nil, metadbinfo=nil, tags=nil, loginsettings=nil, externalservice=nil, zoneid=nil, defaultmetaversion=nil, needcdbaudit=nil, sgip=nil, containerextraconf=nil, enablesparkappmonitorinfo=nil, computeresourcegroupids=nil, terminateprotection=nil, enableemrproxy=nil, logstoreid=nil, airflowdagsource=nil, airflowgitcredential=nil)
+        def initialize(instancename=nil, clusterclass=nil, software=nil, platformtype=nil, cosbucket=nil, eksclusterid=nil, productid=nil, clienttoken=nil, vpcsettings=nil, cloudresources=nil, sgid=nil, metadbinfo=nil, tags=nil, loginsettings=nil, externalservice=nil, zoneid=nil, defaultmetaversion=nil, needcdbaudit=nil, sgip=nil, containerextraconf=nil, enablesparkappmonitorinfo=nil, computeresourcegroupids=nil, terminateprotection=nil, enableemrproxy=nil, logstoreid=nil, airflowdagsource=nil, airflowgitcredential=nil, sgids=nil)
           @InstanceName = instancename
           @ClusterClass = clusterclass
           @Software = software
@@ -2137,6 +2139,7 @@ module TencentCloud
           @LogStoreID = logstoreid
           @AirflowDagSource = airflowdagsource
           @AirflowGitCredential = airflowgitcredential
+          @SgIds = sgids
         end
 
         def deserialize(params)
@@ -2209,6 +2212,7 @@ module TencentCloud
             @AirflowGitCredential = AirflowGitCredentialInput.new
             @AirflowGitCredential.deserialize(params['AirflowGitCredential'])
           end
+          @SgIds = params['SgIds']
         end
       end
 

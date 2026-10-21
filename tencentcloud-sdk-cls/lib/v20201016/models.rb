@@ -1814,10 +1814,12 @@ module TencentCloud
         # @type CustomKmsInfo: :class:`Tencentcloud::Cls.v20201016.models.CustomKmsInfo`
         # @param TopicId: <p>主题自定义ID，格式为：用户自定义部分-用户APPID。未填写该参数时将自动生成ID。</p><ul><li>用户自定义部分仅支持小写字母、数字和-，且不能以-开头和结尾，长度为3至40字符</li><li>尾部需要使用-拼接用户APPID，APPID可在https://console.cloud.tencent.com/developer页面查询。</li><li>如果指定该字段，需保证全地域唯一</li></ul>
         # @type TopicId: String
+        # @param Extends: <p>主题扩展信息</p>
+        # @type Extends: :class:`Tencentcloud::Cls.v20201016.models.TopicExtendInfo`
 
-        attr_accessor :Encryption, :PartitionCount, :AutoSplit, :MaxSplitPartitions, :StorageType, :Period, :HotPeriod, :BillingMode, :Describes, :IsSourceFrom, :IsWebTracking, :CustomKmsInfo, :TopicId
+        attr_accessor :Encryption, :PartitionCount, :AutoSplit, :MaxSplitPartitions, :StorageType, :Period, :HotPeriod, :BillingMode, :Describes, :IsSourceFrom, :IsWebTracking, :CustomKmsInfo, :TopicId, :Extends
 
-        def initialize(encryption=nil, partitioncount=nil, autosplit=nil, maxsplitpartitions=nil, storagetype=nil, period=nil, hotperiod=nil, billingmode=nil, describes=nil, issourcefrom=nil, iswebtracking=nil, customkmsinfo=nil, topicid=nil)
+        def initialize(encryption=nil, partitioncount=nil, autosplit=nil, maxsplitpartitions=nil, storagetype=nil, period=nil, hotperiod=nil, billingmode=nil, describes=nil, issourcefrom=nil, iswebtracking=nil, customkmsinfo=nil, topicid=nil, extends=nil)
           @Encryption = encryption
           @PartitionCount = partitioncount
           @AutoSplit = autosplit
@@ -1831,6 +1833,7 @@ module TencentCloud
           @IsWebTracking = iswebtracking
           @CustomKmsInfo = customkmsinfo
           @TopicId = topicid
+          @Extends = extends
         end
 
         def deserialize(params)
@@ -1850,6 +1853,10 @@ module TencentCloud
             @CustomKmsInfo.deserialize(params['CustomKmsInfo'])
           end
           @TopicId = params['TopicId']
+          unless params['Extends'].nil?
+            @Extends = TopicExtendInfo.new
+            @Extends.deserialize(params['Extends'])
+          end
         end
       end
 

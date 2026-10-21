@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建账户组
+
+        # @param request: Request instance for CreateAccountGroup.
+        # @type request: :class:`Tencentcloud::fwm::V20250611::CreateAccountGroupRequest`
+        # @rtype: :class:`Tencentcloud::fwm::V20250611::CreateAccountGroupResponse`
+        def CreateAccountGroup(request)
+          body = send_request('CreateAccountGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAccountGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建策略风险分析任务
 
         # @param request: Request instance for CreateAnalyzePolicyTask.
@@ -317,6 +341,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除账户组，账户组下有成员时不可删除
+
+        # @param request: Request instance for DeleteAccountGroup.
+        # @type request: :class:`Tencentcloud::fwm::V20250611::DeleteAccountGroupRequest`
+        # @rtype: :class:`Tencentcloud::fwm::V20250611::DeleteAccountGroupResponse`
+        def DeleteAccountGroup(request)
+          body = send_request('DeleteAccountGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAccountGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 批量删除互联网边界ACL规则。支持一次删除多条规则。
 
         # @param request: Request instance for DeleteEdgeAclRule.
@@ -447,6 +495,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteVpcAclRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取账户组列表，支持分页和关键词搜索
+
+        # @param request: Request instance for DescribeAccountGroups.
+        # @type request: :class:`Tencentcloud::fwm::V20250611::DescribeAccountGroupsRequest`
+        # @rtype: :class:`Tencentcloud::fwm::V20250611::DescribeAccountGroupsResponse`
+        def DescribeAccountGroups(request)
+          body = send_request('DescribeAccountGroups', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAccountGroupsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -893,6 +965,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改账户组名称
+
+        # @param request: Request instance for ModifyAccountGroup.
+        # @type request: :class:`Tencentcloud::fwm::V20250611::ModifyAccountGroupRequest`
+        # @rtype: :class:`Tencentcloud::fwm::V20250611::ModifyAccountGroupResponse`
+        def ModifyAccountGroup(request)
+          body = send_request('ModifyAccountGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAccountGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 设置成员账号的云防火墙纳管状态
+
+        # @param request: Request instance for ModifyCfwManaged.
+        # @type request: :class:`Tencentcloud::fwm::V20250611::ModifyCfwManagedRequest`
+        # @rtype: :class:`Tencentcloud::fwm::V20250611::ModifyCfwManagedResponse`
+        def ModifyCfwManaged(request)
+          body = send_request('ModifyCfwManaged', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyCfwManagedResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 设置集团成员的云防火墙共享角色（sharer/user/none）。共享者全集团唯一；共享者→使用者禁止直接变更，需先将角色改为 none；设为使用者时必须指定共享者 SharerAppId。仅管理员可操作。
+
+        # @param request: Request instance for ModifyCfwShareRole.
+        # @type request: :class:`Tencentcloud::fwm::V20250611::ModifyCfwShareRoleRequest`
+        # @rtype: :class:`Tencentcloud::fwm::V20250611::ModifyCfwShareRoleResponse`
+        def ModifyCfwShareRole(request)
+          body = send_request('ModifyCfwShareRole', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyCfwShareRoleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改互联网边界ACL规则。Rule 参数中必须包含 RuleId 用于指定要修改的规则。
 
         # @param request: Request instance for ModifyEdgeAclRule.
@@ -927,6 +1071,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyEdgeAclRuleSequenceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 设置成员所属账户组，GroupId为空字符串表示移出账户组
+
+        # @param request: Request instance for ModifyMemberGroup.
+        # @type request: :class:`Tencentcloud::fwm::V20250611::ModifyMemberGroupRequest`
+        # @rtype: :class:`Tencentcloud::fwm::V20250611::ModifyMemberGroupResponse`
+        def ModifyMemberGroup(request)
+          body = send_request('ModifyMemberGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyMemberGroupResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -6099,7 +6099,7 @@ module TencentCloud
 
       # DescribeTaskResult请求参数结构体
       class DescribeTaskResultRequest < TencentCloud::Common::AbstractModel
-        # @param EnvId: <p>云开发环境ID</p>
+        # @param EnvId: <p>云开发环境 ID。查询 PGDump 任务时，所有状态均须提供且与任务环境一致，用于验证调用方环境归属。环境隔离或销毁后，仍可在归档保留期内查询历史任务及下载文件。</p>
         # @type EnvId: String
         # @param TaskId: <p>任务ID</p>
         # @type TaskId: String
@@ -6121,19 +6121,19 @@ module TencentCloud
       class DescribeTaskResultResponse < TencentCloud::Common::AbstractModel
         # @param TaskId: <p>任务ID</p>
         # @type TaskId: String
-        # @param TaskType: <p>任务类型</p><p>枚举值：</p><ul><li>PGUserMigration： PG Migrate 任务</li></ul>
+        # @param TaskType: <p>任务类型</p><p>枚举值：</p><ul><li>PGUserMigration： PG Migrate 任务</li><li>PGDump： PG 数据库整库导出任务</li></ul>
         # @type TaskType: String
-        # @param Status: <p>任务状态</p><p>枚举值：</p><ul><li>Failed： 失败</li><li>Succeed： 成功</li><li>Accepted： 已接收</li><li>Running： 运行中</li></ul>
+        # @param Status: <p>任务状态</p><p>枚举值：</p><ul><li>Failed： 失败</li><li>Succeed： 成功</li><li>Accepted： 已接收</li><li>Running： 运行中</li><li>Pending： 已受理，等待工作流启动</li></ul>
         # @type Status: String
-        # @param Phase: <p>当前步骤</p>
+        # @param Phase: <p>任务当前执行步骤。PGDump 任务可能为 Queued（排队）、Preparing（准备）、Dumping（导出）、Validating（校验）、Uploading（上传）、Finalizing（收尾）、Completed（完成）；其他任务的步骤由任务类型决定。</p>
         # @type Phase: String
-        # @param Reason: <p>失败原因</p>
+        # @param Reason: <p>失败原因。PGDump 任务返回稳定业务码：PGDumpPermissionDenied、PGDumpToolVersionMismatch、PGDumpSizeExceeded、PGDumpTimeout、PGDumpProcessFailed、PGDumpUploadFailed、PGDumpSourceChanged；成功时为空。其他任务按原有失败原因返回。</p>
         # @type Reason: String
         # @param CreatedAt: <p>创建时间</p><p>参数格式：2026-05-26T11:26:14+08:00</p>
         # @type CreatedAt: String
         # @param UpdatedAt: <p>最后更新时间</p><p>参数格式：2026-05-26T11:26:14+08:00</p>
         # @type UpdatedAt: String
-        # @param Params: <p>任务参数</p>
+        # @param Params: <p>任务参数键值对列表，Value 均为字符串。PGDump 成功任务包含 file_name（文件名）、file_size_bytes（字节数）、checksum_sha256（SHA256）、source_db_version（源库版本）、dump_tool_version（工具版本）、file_expires_at（RFC3339 过期时间）。文件未过期且对象存在时返回 download_url；URL 过期后可重新查询，勿记录或持久化签名 URL。仅对象确认缺失时返回 file_missing=true；文件过期不返回下载 URL。归档查询或签名临时故障返回系统错误，任务终态不变。</p>
         # @type Params: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
