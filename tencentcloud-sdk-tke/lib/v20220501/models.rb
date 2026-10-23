@@ -2417,10 +2417,14 @@ module TencentCloud
         # @param Tags: <p>原生节点云标签</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
+        # @param IsMigrated: <p>是否是迁移的节点</p><p>默认值：false</p>
+        # @type IsMigrated: Boolean
+        # @param ResourceId: <p>资源 ID</p>
+        # @type ResourceId: String
 
-        attr_accessor :MachineName, :MachineState, :Zone, :InstanceChargeType, :CreatedAt, :LoginStatus, :IsProtectedFromScaleIn, :DisplayName, :CPU, :GPU, :RenewFlag, :PayMode, :Memory, :SystemDisk, :InternetAccessible, :InstanceFamily, :LanIp, :InstanceType, :ExpiredTime, :WanIp, :KeyIds, :GPUParams, :DataDisks, :SecurityGroupIDs, :VpcId, :SubnetId, :OsImage, :MachineType, :InstanceId, :Tags
+        attr_accessor :MachineName, :MachineState, :Zone, :InstanceChargeType, :CreatedAt, :LoginStatus, :IsProtectedFromScaleIn, :DisplayName, :CPU, :GPU, :RenewFlag, :PayMode, :Memory, :SystemDisk, :InternetAccessible, :InstanceFamily, :LanIp, :InstanceType, :ExpiredTime, :WanIp, :KeyIds, :GPUParams, :DataDisks, :SecurityGroupIDs, :VpcId, :SubnetId, :OsImage, :MachineType, :InstanceId, :Tags, :IsMigrated, :ResourceId
 
-        def initialize(machinename=nil, machinestate=nil, zone=nil, instancechargetype=nil, createdat=nil, loginstatus=nil, isprotectedfromscalein=nil, displayname=nil, cpu=nil, gpu=nil, renewflag=nil, paymode=nil, memory=nil, systemdisk=nil, internetaccessible=nil, instancefamily=nil, lanip=nil, instancetype=nil, expiredtime=nil, wanip=nil, keyids=nil, gpuparams=nil, datadisks=nil, securitygroupids=nil, vpcid=nil, subnetid=nil, osimage=nil, machinetype=nil, instanceid=nil, tags=nil)
+        def initialize(machinename=nil, machinestate=nil, zone=nil, instancechargetype=nil, createdat=nil, loginstatus=nil, isprotectedfromscalein=nil, displayname=nil, cpu=nil, gpu=nil, renewflag=nil, paymode=nil, memory=nil, systemdisk=nil, internetaccessible=nil, instancefamily=nil, lanip=nil, instancetype=nil, expiredtime=nil, wanip=nil, keyids=nil, gpuparams=nil, datadisks=nil, securitygroupids=nil, vpcid=nil, subnetid=nil, osimage=nil, machinetype=nil, instanceid=nil, tags=nil, ismigrated=nil, resourceid=nil)
           @MachineName = machinename
           @MachineState = machinestate
           @Zone = zone
@@ -2451,6 +2455,8 @@ module TencentCloud
           @MachineType = machinetype
           @InstanceId = instanceid
           @Tags = tags
+          @IsMigrated = ismigrated
+          @ResourceId = resourceid
         end
 
         def deserialize(params)
@@ -2507,6 +2513,8 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @IsMigrated = params['IsMigrated']
+          @ResourceId = params['ResourceId']
         end
       end
 

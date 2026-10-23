@@ -3166,6 +3166,49 @@ module TencentCloud
         end
       end
 
+      # DescribeSandboxInstances请求参数结构体
+      class DescribeSandboxInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceIds: <p>沙箱实例ID列表，指定要查询的实例。如果为空则查询所有实例。最大支持100个ID</p>
+        # @type InstanceIds: Array
+
+        attr_accessor :InstanceIds
+
+        def initialize(instanceids=nil)
+          @InstanceIds = instanceids
+        end
+
+        def deserialize(params)
+          @InstanceIds = params['InstanceIds']
+        end
+      end
+
+      # DescribeSandboxInstances返回参数结构体
+      class DescribeSandboxInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceSet: <p>沙箱实例列表</p>
+        # @type InstanceSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceSet, :RequestId
+
+        def initialize(instanceset=nil, requestid=nil)
+          @InstanceSet = instanceset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['InstanceSet'].nil?
+            @InstanceSet = []
+            params['InstanceSet'].each do |i|
+              sandboxinstance_tmp = SandboxInstance.new
+              sandboxinstance_tmp.deserialize(i)
+              @InstanceSet << sandboxinstance_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSandboxSnapshotList请求参数结构体
       class DescribeSandboxSnapshotListRequest < TencentCloud::Common::AbstractModel
         # @param SnapshotIds: <p>待查询的沙箱快照 ID 列表</p>
@@ -5692,10 +5735,10 @@ module TencentCloud
 
       # 对 Volume 的引用，其中 Name 或 Id 之一必须不为空
       class VolumeRef < TencentCloud::Common::AbstractModel
-        # @param VolumeName: Volume 名称；服务端在当前认证 AppId 下解析为稳定 VolumeId
+        # @param VolumeName: <p>Volume 名称；服务端在当前认证 AppId 下解析为稳定 VolumeId</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VolumeName: String
-        # @param VolumeId: 稳定 Volume ID，格式 vol-xxxxxxxx
+        # @param VolumeId: <p>稳定 Volume ID，格式 vol-xxxxxxxx</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VolumeId: String
 

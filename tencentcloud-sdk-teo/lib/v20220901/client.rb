@@ -3073,6 +3073,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口用于日志分析统计结果查询。用户在检索语句后追加 SQL 聚合语句（[检索条件] | [SQL语句]），后端执行聚合并返回列式统计结果（列定义 + 数据行）。
+
+        # @param request: Request instance for DescribeLogAnalysisStatistics.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeLogAnalysisStatisticsRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeLogAnalysisStatisticsResponse`
+        def DescribeLogAnalysisStatistics(request)
+          body = send_request('DescribeLogAnalysisStatistics', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLogAnalysisStatisticsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 通过本接口查询多通道安全加速网关详情。如名称、网关 ID、IP、端口、类型等。
 
         # @param request: Request instance for DescribeMultiPathGateway.

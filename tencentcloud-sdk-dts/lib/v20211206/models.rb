@@ -5641,17 +5641,17 @@ module TencentCloud
 
       # ModifyMigrateRateLimit请求参数结构体
       class ModifyMigrateRateLimitRequest < TencentCloud::Common::AbstractModel
-        # @param JobId: 迁移任务 Id，可通过[DescribeMigrationJobs](https://cloud.tencent.com/document/product/571/82084)接口获取。
+        # @param JobId: <p>迁移任务 Id，可通过<a href="https://cloud.tencent.com/document/product/571/82084">DescribeMigrationJobs</a>接口获取。</p>
         # @type JobId: String
-        # @param DumpThread: 迁移任务全量导出线程数、有效值为 1-16
+        # @param DumpThread: <p>迁移任务全量导出线程数、有效值为 1-16</p>
         # @type DumpThread: Integer
-        # @param DumpRps: 迁移全量导出的 Rps 限制、需要大于 0
+        # @param DumpRps: <p>迁移全量导出的 Rps 限制、需要大于 0</p>
         # @type DumpRps: Integer
-        # @param LoadThread: 迁移任务全量导入线程数、有效值为 1-16
+        # @param LoadThread: <p>迁移任务全量导入线程数、有效值为 1-16</p>
         # @type LoadThread: Integer
-        # @param SinkerThread: 迁移任务增量导入线程数、有效值为 1-128
+        # @param SinkerThread: <p>迁移任务增量导入线程数、有效值为 1-128</p>
         # @type SinkerThread: Integer
-        # @param LoadRps: 全量导入Rps限制
+        # @param LoadRps: <p>全量导入Rps限制</p>
         # @type LoadRps: Integer
 
         attr_accessor :JobId, :DumpThread, :DumpRps, :LoadThread, :SinkerThread, :LoadRps

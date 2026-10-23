@@ -928,6 +928,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询沙箱实例
+
+        # @param request: Request instance for DescribeSandboxInstances.
+        # @type request: :class:`Tencentcloud::ags::V20250920::DescribeSandboxInstancesRequest`
+        # @rtype: :class:`Tencentcloud::ags::V20250920::DescribeSandboxInstancesResponse`
+        def DescribeSandboxInstances(request)
+          body = send_request('DescribeSandboxInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSandboxInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询沙箱快照
         # 该接口属于 Runtime Snapshot API ，当前为预览版本（Beta）。接口后续可能发生不兼容变更或被弃用，不保证向后兼容。请关注后续版本及变更说明，并根据需要调整调用代码。
 

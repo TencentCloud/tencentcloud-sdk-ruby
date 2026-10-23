@@ -632,6 +632,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用户创建集成
+
+        # @param request: Request instance for CreateUserKey.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::CreateUserKeyRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::CreateUserKeyResponse`
+        def CreateUserKey(request)
+          body = send_request('CreateUserKey', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateUserKeyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除 AI 模型配置分组，支持批量删除。内置分组无法删除。分组删除后，该分组下的所有模型配置将同步移除，针对该分组模型的请求将会失败，请在删除前确认业务侧已停止对该分组的调用。
 
         # 注意：
@@ -872,6 +896,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteTableResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用户删除集成
+
+        # @param request: Request instance for DeleteUserKey.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::DeleteUserKeyRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::DeleteUserKeyResponse`
+        def DeleteUserKey(request)
+          body = send_request('DeleteUserKey', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteUserKeyResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2257,6 +2305,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用户获取集成详情
+
+        # @param request: Request instance for GetOneUserKey.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::GetOneUserKeyRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::GetOneUserKeyResponse`
+        def GetOneUserKey(request)
+          body = send_request('GetOneUserKey', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetOneUserKeyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询指定云开发环境下的身份认证源列表。返回该环境已配置的所有身份认证源信息，包括第三方登录（OAuth、OIDC、SAML）、微信小程序登录、自定义登录和邮箱登录等。返回结果包含认证源基本信息、关联应用、配置状态及启用情况。若自定义登录或邮箱登录的身份源尚未创建，接口会自动追加一个默认关闭状态的身份源记录。
 
         # @param request: Request instance for GetProviders.
@@ -2267,6 +2339,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = GetProvidersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用户获取集成列表
+
+        # @param request: Request instance for GetUserKeyList.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::GetUserKeyListRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::GetUserKeyListResponse`
+        def GetUserKeyList(request)
+          body = send_request('GetUserKeyList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetUserKeyListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -3147,6 +3243,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpdateTableResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用户更新集成信息
+
+        # @param request: Request instance for UpdateUserKey.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::UpdateUserKeyRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::UpdateUserKeyResponse`
+        def UpdateUserKey(request)
+          body = send_request('UpdateUserKey', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateUserKeyResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -4009,6 +4009,26 @@ module TencentCloud
         end
       end
 
+      # 失败账号信息
+      class FailedAccount < TencentCloud::Common::AbstractModel
+        # @param TargetUin: <p>下发失败的成员账号 UIN</p>
+        # @type TargetUin: Integer
+        # @param TargetName: <p>下发失败的成员账号名</p>
+        # @type TargetName: String
+
+        attr_accessor :TargetUin, :TargetName
+
+        def initialize(targetuin=nil, targetname=nil)
+          @TargetUin = targetuin
+          @TargetName = targetname
+        end
+
+        def deserialize(params)
+          @TargetUin = params['TargetUin']
+          @TargetName = params['TargetName']
+        end
+      end
+
       # GetExternalSAMLIdentityProvider请求参数结构体
       class GetExternalSAMLIdentityProviderRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 空间ID。
@@ -7697,27 +7717,34 @@ module TencentCloud
 
       # CIC权限配置
       class RoleConfiguration < TencentCloud::Common::AbstractModel
-        # @param RoleConfigurationId: 权限配置配置ID。
+        # @param RoleConfigurationId: <p>权限配置配置ID。</p>
         # @type RoleConfigurationId: String
-        # @param RoleConfigurationName: 权限配置配名称。
+        # @param RoleConfigurationName: <p>权限配置配名称。</p>
         # @type RoleConfigurationName: String
-        # @param Description: 权限配置的描述。
+        # @param Description: <p>权限配置的描述。</p>
         # @type Description: String
-        # @param SessionDuration: 会话持续时间。CIC 用户使用访问配置访问成员账号时，会话最多保持的时间。
-        # 单位：秒。
+        # @param SessionDuration: <p>会话持续时间。CIC 用户使用访问配置访问成员账号时，会话最多保持的时间。<br>单位：秒。</p>
         # @type SessionDuration: Integer
-        # @param RelayState: 初始访问页面。CIC 用户使用访问配置访问成员账号时，初始访问的页面地址。
+        # @param RelayState: <p>初始访问页面。CIC 用户使用访问配置访问成员账号时，初始访问的页面地址。</p>
         # @type RelayState: String
-        # @param CreateTime: 权限配置的创建时间。
+        # @param CreateTime: <p>权限配置的创建时间。</p>
         # @type CreateTime: String
-        # @param UpdateTime: 权限配置的更新时间。
+        # @param UpdateTime: <p>权限配置的更新时间。</p>
         # @type UpdateTime: String
-        # @param IsSelected: 如果有入参FilterTargets查询成员账号是否配置过权限，配置了返回true，否则返回false。
+        # @param IsSelected: <p>如果有入参FilterTargets查询成员账号是否配置过权限，配置了返回true，否则返回false。</p>
         # @type IsSelected: Boolean
+        # @param ApplyStatus: <p>会话时长应用状态</p><p>枚举值：</p><ul><li>Success： 全部账号应用成功</li><li>Failed： 存在失败账号</li><li>Applying： 任务在途</li><li>Unknown： 已部署账号超查询上限</li></ul>
+        # @type ApplyStatus: String
+        # @param AppliedSessionDuration: <p>当前已真实下发到 CAM 的会话时长</p><p>取值范围：[900, 43200]</p><p>单位：秒</p>
+        # @type AppliedSessionDuration: Integer
+        # @param SessionDurationUpdateTime: <p>最近一次成功下发时间</p><p>参数格式： YYYY-MM-DD hh:mm:ss</p>
+        # @type SessionDurationUpdateTime: String
+        # @param FailedAccounts: <p>未成功应用的账号明细</p><p>仅 Failed 态返回</p>
+        # @type FailedAccounts: Array
 
-        attr_accessor :RoleConfigurationId, :RoleConfigurationName, :Description, :SessionDuration, :RelayState, :CreateTime, :UpdateTime, :IsSelected
+        attr_accessor :RoleConfigurationId, :RoleConfigurationName, :Description, :SessionDuration, :RelayState, :CreateTime, :UpdateTime, :IsSelected, :ApplyStatus, :AppliedSessionDuration, :SessionDurationUpdateTime, :FailedAccounts
 
-        def initialize(roleconfigurationid=nil, roleconfigurationname=nil, description=nil, sessionduration=nil, relaystate=nil, createtime=nil, updatetime=nil, isselected=nil)
+        def initialize(roleconfigurationid=nil, roleconfigurationname=nil, description=nil, sessionduration=nil, relaystate=nil, createtime=nil, updatetime=nil, isselected=nil, applystatus=nil, appliedsessionduration=nil, sessiondurationupdatetime=nil, failedaccounts=nil)
           @RoleConfigurationId = roleconfigurationid
           @RoleConfigurationName = roleconfigurationname
           @Description = description
@@ -7726,6 +7753,10 @@ module TencentCloud
           @CreateTime = createtime
           @UpdateTime = updatetime
           @IsSelected = isselected
+          @ApplyStatus = applystatus
+          @AppliedSessionDuration = appliedsessionduration
+          @SessionDurationUpdateTime = sessiondurationupdatetime
+          @FailedAccounts = failedaccounts
         end
 
         def deserialize(params)
@@ -7737,6 +7768,17 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
           @IsSelected = params['IsSelected']
+          @ApplyStatus = params['ApplyStatus']
+          @AppliedSessionDuration = params['AppliedSessionDuration']
+          @SessionDurationUpdateTime = params['SessionDurationUpdateTime']
+          unless params['FailedAccounts'].nil?
+            @FailedAccounts = []
+            params['FailedAccounts'].each do |i|
+              failedaccount_tmp = FailedAccount.new
+              failedaccount_tmp.deserialize(i)
+              @FailedAccounts << failedaccount_tmp
+            end
+          end
         end
       end
 
@@ -8862,25 +8904,28 @@ module TencentCloud
 
       # UpdateRoleConfiguration请求参数结构体
       class UpdateRoleConfigurationRequest < TencentCloud::Common::AbstractModel
-        # @param ZoneId: 空间 ID
+        # @param ZoneId: <p>空间 ID</p>
         # @type ZoneId: String
-        # @param RoleConfigurationId: 权限配置 ID
+        # @param RoleConfigurationId: <p>权限配置 ID</p>
         # @type RoleConfigurationId: String
-        # @param NewDescription: 新的权限配置描述。  长度：最大 1024 个字符。
+        # @param NewDescription: <p>新的权限配置描述。  长度：最大 1024 个字符。</p>
         # @type NewDescription: String
-        # @param NewSessionDuration: 新的会话持续时间。  CIC 用户使用权限配置访问集团账号目标账号时，会话最多保持的时间。  单位：秒。  取值范围：900-43200（15 分钟-12 小时）。
+        # @param NewSessionDuration: <p>新的会话持续时间。  CIC 用户使用权限配置访问集团账号目标账号时，会话最多保持的时间。  单位：秒。  取值范围：900-43200（15 分钟-12 小时）。</p>
         # @type NewSessionDuration: Integer
-        # @param NewRelayState: 新的初始访问页面。  CIC 用户使用权限配置访问集团账号目标账号时，初始访问的页面地址。  该页面必须是腾讯云控制台页面。
+        # @param NewRelayState: <p>新的初始访问页面。  CIC 用户使用权限配置访问集团账号目标账号时，初始访问的页面地址。  该页面必须是腾讯云控制台页面。</p>
         # @type NewRelayState: String
+        # @param IsApply: <p>true=保存并应用（立即下发）；false/缺省=仅保存</p>
+        # @type IsApply: Boolean
 
-        attr_accessor :ZoneId, :RoleConfigurationId, :NewDescription, :NewSessionDuration, :NewRelayState
+        attr_accessor :ZoneId, :RoleConfigurationId, :NewDescription, :NewSessionDuration, :NewRelayState, :IsApply
 
-        def initialize(zoneid=nil, roleconfigurationid=nil, newdescription=nil, newsessionduration=nil, newrelaystate=nil)
+        def initialize(zoneid=nil, roleconfigurationid=nil, newdescription=nil, newsessionduration=nil, newrelaystate=nil, isapply=nil)
           @ZoneId = zoneid
           @RoleConfigurationId = roleconfigurationid
           @NewDescription = newdescription
           @NewSessionDuration = newsessionduration
           @NewRelayState = newrelaystate
+          @IsApply = isapply
         end
 
         def deserialize(params)
@@ -8889,12 +8934,13 @@ module TencentCloud
           @NewDescription = params['NewDescription']
           @NewSessionDuration = params['NewSessionDuration']
           @NewRelayState = params['NewRelayState']
+          @IsApply = params['IsApply']
         end
       end
 
       # UpdateRoleConfiguration返回参数结构体
       class UpdateRoleConfigurationResponse < TencentCloud::Common::AbstractModel
-        # @param RoleConfigurationInfo: 权限配置详情
+        # @param RoleConfigurationInfo: <p>权限配置详情</p>
         # @type RoleConfigurationInfo: :class:`Tencentcloud::Organization.v20210331.models.RoleConfiguration`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

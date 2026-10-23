@@ -11456,6 +11456,73 @@ module TencentCloud
         end
       end
 
+      # DescribeLogAnalysisStatistics请求参数结构体
+      class DescribeLogAnalysisStatisticsRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: <p>站点 ID。</p>
+        # @type ZoneId: String
+        # @param Area: <p>数据归属地区，可选值：</p><ul><li>mainland：中国大陆境内；</li><li>overseas：全球（不含中国大陆）。</li></ul>注意：若站点服务区域为“全球可用区”，获取全部数据需要分别查询 mainland 和 overseas 的数据。<p></p>
+        # @type Area: String
+        # @param LogType: <p>日志类型，可选值：</p><ul><li> l7-access-logs：七层访问日志；</li><li>web-attack：托管规则日志。</li></ul>默认为 l7-access-logs 。<p></p>
+        # @type LogType: String
+        # @param StartTime: <p>开始时间，示例值：2020-04-29T00:00:00Z。套餐版本不同，支持的可查询开始时间至今的最大时间跨度不同，详情请见 <a href="https://cloud.tencent.com/document/product/1552/94165#45435466-9103-4ff6-be22-e31717044fb2">套餐选型对比</a>。</p>
+        # @type StartTime: String
+        # @param EndTime: <p>结束时间，示例值：2020-04-30T00:00:00Z。单次查询的开始时间到结束时间跨度最大为 31 天。</p>
+        # @type EndTime: String
+        # @param Query: <p>统计查询语句，由 [<a href="https://cloud.tencent.com/document/product/1552/124662">检索条件</a>] | [<a href="https://cloud.tencent.com/document/product/1552/124662">SQL语句</a>] 构成，管道符 “|” 后的 SQL 段必填；检索条件段可为空（如 | SELECT ...），表示在全量数据上聚合。长度上限 12KB，SQL 默认 Limit 100，最大 Limit 10000 。<br>示例：</p><p>带检索条件： <code>${EdgeCacheStatus} in [&#39;miss&#39;,&#39;other&#39;] | select EdgeCacheStatus as status, count(\*) as cnt group by status limit 2</code></p><p>不带检索条件：<code>| select EdgeCacheStatus as status, count(\*) as cnt group by status</code></p>
+        # @type Query: String
+
+        attr_accessor :ZoneId, :Area, :LogType, :StartTime, :EndTime, :Query
+
+        def initialize(zoneid=nil, area=nil, logtype=nil, starttime=nil, endtime=nil, query=nil)
+          @ZoneId = zoneid
+          @Area = area
+          @LogType = logtype
+          @StartTime = starttime
+          @EndTime = endtime
+          @Query = query
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @Area = params['Area']
+          @LogType = params['LogType']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Query = params['Query']
+        end
+      end
+
+      # DescribeLogAnalysisStatistics返回参数结构体
+      class DescribeLogAnalysisStatisticsResponse < TencentCloud::Common::AbstractModel
+        # @param Columns: <p>日志分析统计结果的列名，对应入参 Query 中 SQL 部分 SELECT 的字段。<br>示例：<br>入参 Query = <code>${EdgeCacheStatus} in [&#39;miss&#39;,&#39;other&#39;] | select EdgeCacheStatus as status, count(*) as cnt group by status limit 2</code><br>出参 Columns  = <code>[&quot;status&quot;,&quot;cnt&quot;]</code></p>
+        # @type Columns: Array
+        # @param Records: <p>日志分析统计结果的数据行，每行值下标与列下标一一对应。<br>示例：<br>Columns = <code>[&quot;status&quot;,&quot;cnt&quot;]</code><br>Records = <code>[[&quot;miss&quot;,&quot;9695&quot;],[&quot;other&quot;,&quot;278&quot;]]</code></p>
+        # @type Records: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Columns, :Records, :RequestId
+
+        def initialize(columns=nil, records=nil, requestid=nil)
+          @Columns = columns
+          @Records = records
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Columns = params['Columns']
+          unless params['Records'].nil?
+            @Records = []
+            params['Records'].each do |i|
+              statisticsrecord_tmp = StatisticsRecord.new
+              statisticsrecord_tmp.deserialize(i)
+              @Records << statisticsrecord_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeMultiPathGatewayLine请求参数结构体
       class DescribeMultiPathGatewayLineRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点 ID。
@@ -26960,6 +27027,22 @@ module TencentCloud
           @Switch = params['Switch']
           @AllowClientIPList = params['AllowClientIPList']
           @Expires = params['Expires']
+        end
+      end
+
+      # 统计结果行。
+      class StatisticsRecord < TencentCloud::Common::AbstractModel
+        # @param Record: <p>列表单行记录。</p>
+        # @type Record: Array
+
+        attr_accessor :Record
+
+        def initialize(record=nil)
+          @Record = record
+        end
+
+        def deserialize(params)
+          @Record = params['Record']
         end
       end
 

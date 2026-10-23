@@ -518,57 +518,45 @@ module TencentCloud
 
       # CreateDirectConnect请求参数结构体
       class CreateDirectConnectRequest < TencentCloud::Common::AbstractModel
-        # @param DirectConnectName: 物理专线的名称。
+        # @param DirectConnectName: <p>物理专线的名称。</p>
         # @type DirectConnectName: String
-        # @param AccessPointId: 物理专线所在的接入点。
-        # 您可以通过调用[DescribeAccessPoints](https://cloud.tencent.com/document/product/216/34827)接口获取接入点ID。
+        # @param AccessPointId: <p>物理专线所在的接入点。<br>您可以通过调用<a href="https://cloud.tencent.com/document/product/216/34827">DescribeAccessPoints</a>接口获取接入点ID。</p>
         # @type AccessPointId: String
-        # @param LineOperator: 提供接入物理专线的运营商。
-        # ChinaTelecom：中国电信；
-        # ChinaMobile：中国移动；
-        # ChinaUnicom：中国联通；
-        #  In-houseWiring：楼内线；
-        # ChinaOther：中国其他；
-        #  InternationalOperator：境外其他。
+        # @param LineOperator: <p>提供接入物理专线的运营商。<br>ChinaTelecom：中国电信；<br>ChinaMobile：中国移动；<br>ChinaUnicom：中国联通；<br> In-houseWiring：楼内线；<br>ChinaOther：中国其他；<br> InternationalOperator：境外其他。</p>
         # @type LineOperator: String
-        # @param PortType: 物理专线接入端口类型，取值：
-        # 100Base-T：百兆电口；
-        # 1000Base-T（默认值）：千兆电口；
-        # 1000Base-LX：千兆单模光口（10千米）；
-        # 10GBase-T：万兆电口；
-        # 10GBase-LR（默认值）：万兆单模光口（10千米）。
+        # @param PortType: <p>物理专线接入端口类型，取值：<br>100Base-T：百兆电口；<br>1000Base-T（默认值）：千兆电口；<br>1000Base-LX：千兆单模光口（10千米）；<br>10GBase-T：万兆电口；<br>10GBase-LR（默认值）：万兆单模光口（10千米）。</p>
         # @type PortType: String
-        # @param CircuitCode: 运营商或者服务商为物理专线提供的电路编码。
+        # @param CircuitCode: <p>运营商或者服务商为物理专线提供的电路编码。</p>
         # @type CircuitCode: String
-        # @param Location: 本地数据中心的地理位置。
+        # @param Location: <p>本地数据中心的地理位置。</p>
         # @type Location: String
-        # @param Bandwidth: 物理专线接入接口带宽，单位为Mbps，默认值为1000，取值范围为 [2, 10240]。
+        # @param Bandwidth: <p>物理专线接入接口带宽，单位为Mbps，默认值为1000，取值范围为 [2, 10240]。</p>
         # @type Bandwidth: Integer
-        # @param RedundantDirectConnectId: 冗余物理专线的ID。
+        # @param RedundantDirectConnectId: <p>冗余物理专线的ID。</p>
         # @type RedundantDirectConnectId: String
-        # @param Vlan: 物理专线调试VLAN。默认开启VLAN，自动分配VLAN。
+        # @param Vlan: <p>物理专线调试VLAN。默认开启VLAN，自动分配VLAN。</p>
         # @type Vlan: Integer
-        # @param TencentAddress: 物理专线调试腾讯侧互联 IP。默认自动分配。
+        # @param TencentAddress: <p>物理专线调试腾讯侧互联 IP。默认自动分配。</p>
         # @type TencentAddress: String
-        # @param CustomerAddress: 物理专线调试用户侧互联 IP。默认自动分配。
+        # @param CustomerAddress: <p>物理专线调试用户侧互联 IP。默认自动分配。</p>
         # @type CustomerAddress: String
-        # @param CustomerName: 物理专线申请者姓名。默认从账户体系获取。
+        # @param CustomerName: <p>物理专线申请者姓名。默认从账户体系获取。</p>
         # @type CustomerName: String
-        # @param CustomerContactMail: 物理专线申请者联系邮箱。默认从账户体系获取。
+        # @param CustomerContactMail: <p>物理专线申请者联系邮箱。默认从账户体系获取。</p>
         # @type CustomerContactMail: String
-        # @param CustomerContactNumber: 物理专线申请者联系号码。默认从账户体系获取。
+        # @param CustomerContactNumber: <p>物理专线申请者联系号码。默认从账户体系获取。</p>
         # @type CustomerContactNumber: String
-        # @param FaultReportContactPerson: 报障联系人。
+        # @param FaultReportContactPerson: <p>报障联系人。</p>
         # @type FaultReportContactPerson: String
-        # @param FaultReportContactNumber: 报障联系电话。
+        # @param FaultReportContactNumber: <p>报障联系电话。</p>
         # @type FaultReportContactNumber: String
-        # @param FaultReportContactEmail: 报障联系邮箱。
+        # @param FaultReportContactEmail: <p>报障联系邮箱。</p>
         # @type FaultReportContactEmail: String
-        # @param SignLaw: 物理专线申请者是否签署了用户使用协议。默认已签署。
+        # @param SignLaw: <p>物理专线申请者是否签署了用户使用协议。默认已签署。</p>
         # @type SignLaw: Boolean
-        # @param Tags: 标签键值对
+        # @param Tags: <p>标签键值对</p>
         # @type Tags: Array
-        # @param IsMacSec: 是否MACsec需求
+        # @param IsMacSec: <p>是否MACsec需求</p>
         # @type IsMacSec: Boolean
 
         attr_accessor :DirectConnectName, :AccessPointId, :LineOperator, :PortType, :CircuitCode, :Location, :Bandwidth, :RedundantDirectConnectId, :Vlan, :TencentAddress, :CustomerAddress, :CustomerName, :CustomerContactMail, :CustomerContactNumber, :FaultReportContactPerson, :FaultReportContactNumber, :FaultReportContactEmail, :SignLaw, :Tags, :IsMacSec
@@ -629,7 +617,7 @@ module TencentCloud
 
       # CreateDirectConnect返回参数结构体
       class CreateDirectConnectResponse < TencentCloud::Common::AbstractModel
-        # @param DirectConnectIdSet: 物理专线的ID。
+        # @param DirectConnectIdSet: <p>物理专线的ID。</p>
         # @type DirectConnectIdSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

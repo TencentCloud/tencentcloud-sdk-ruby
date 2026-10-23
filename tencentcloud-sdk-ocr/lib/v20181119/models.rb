@@ -14726,19 +14726,34 @@ module TencentCloud
         # @type ImageUrl: String
         # @param ImageBase64: <p>图片的 Base64 值。要求图片经Base64编码后不超过 10M。</p>
         # @type ImageBase64: String
+        # @param ReasoningPrompt: <p>推理 Prompt 模板，默认使用 VLM 对图片进行理解推理，同时支持使用 ${变量名} 进行推理。传入该参数即开启推理流程。</p><p>入参限制：长度限制：1–3000 字符</p>
+        # @type ReasoningPrompt: String
+        # @param ReasoningConfig: <p>推理输出配置。当 ReasoningPrompt 传入时建议同步传入，未传入时使用默认配置（OutputMode=enum, EnumValues=[&quot;true&quot;,&quot;false&quot;], EnableImageInput=true）。</p>
+        # @type ReasoningConfig: :class:`Tencentcloud::Ocr.v20181119.models.ReasoningConfig`
+        # @param IgnoreWatermarkCategories: <p>水印提示排除类型，选择出参“水印提示”排除掉的水印类型，不传的话即代表任意水印都会提示。 PhoneCam：手机相机水印  WatermarkCam：水印相机水印</p>
+        # @type IgnoreWatermarkCategories: Array
 
-        attr_accessor :CardType, :ImageUrl, :ImageBase64
+        attr_accessor :CardType, :ImageUrl, :ImageBase64, :ReasoningPrompt, :ReasoningConfig, :IgnoreWatermarkCategories
 
-        def initialize(cardtype=nil, imageurl=nil, imagebase64=nil)
+        def initialize(cardtype=nil, imageurl=nil, imagebase64=nil, reasoningprompt=nil, reasoningconfig=nil, ignorewatermarkcategories=nil)
           @CardType = cardtype
           @ImageUrl = imageurl
           @ImageBase64 = imagebase64
+          @ReasoningPrompt = reasoningprompt
+          @ReasoningConfig = reasoningconfig
+          @IgnoreWatermarkCategories = ignorewatermarkcategories
         end
 
         def deserialize(params)
           @CardType = params['CardType']
           @ImageUrl = params['ImageUrl']
           @ImageBase64 = params['ImageBase64']
+          @ReasoningPrompt = params['ReasoningPrompt']
+          unless params['ReasoningConfig'].nil?
+            @ReasoningConfig = ReasoningConfig.new
+            @ReasoningConfig.deserialize(params['ReasoningConfig'])
+          end
+          @IgnoreWatermarkCategories = params['IgnoreWatermarkCategories']
         end
       end
 
@@ -14772,12 +14787,16 @@ module TencentCloud
         # @type TextWatermark: :class:`Tencentcloud::Ocr.v20181119.models.GeneralCardWarnInfo`
         # @param WatermarkContent: <p>水印内容，当未检测到文字水印时不返回，返回多组水印时以 | 分隔。</p>
         # @type WatermarkContent: String
+        # @param ReasoningResult: <p>VLM 推理结果。仅当请求中传入 ReasoningPrompt 时返回，否则不返回此字段。</p>
+        # @type ReasoningResult: :class:`Tencentcloud::Ocr.v20181119.models.ReasoningResult`
+        # @param IsKeyFieldTamper: <p>是否关键字段被篡改（用于排除卡证背景等非字段区域篡改），目前支持的卡证类型：行驶证、驾驶证。<br>枚举值：<br>是<br>否<br>暂不支持</p>
+        # @type IsKeyFieldTamper: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Tamper, :Synthesis, :Template, :RemakeScreen, :Screenshot, :Blur, :BorderIncomplete, :Copy, :Reflection, :Cover, :Overlap, :Electron, :TextWatermark, :WatermarkContent, :RequestId
+        attr_accessor :Tamper, :Synthesis, :Template, :RemakeScreen, :Screenshot, :Blur, :BorderIncomplete, :Copy, :Reflection, :Cover, :Overlap, :Electron, :TextWatermark, :WatermarkContent, :ReasoningResult, :IsKeyFieldTamper, :RequestId
 
-        def initialize(tamper=nil, synthesis=nil, template=nil, remakescreen=nil, screenshot=nil, blur=nil, borderincomplete=nil, copy=nil, reflection=nil, cover=nil, overlap=nil, electron=nil, textwatermark=nil, watermarkcontent=nil, requestid=nil)
+        def initialize(tamper=nil, synthesis=nil, template=nil, remakescreen=nil, screenshot=nil, blur=nil, borderincomplete=nil, copy=nil, reflection=nil, cover=nil, overlap=nil, electron=nil, textwatermark=nil, watermarkcontent=nil, reasoningresult=nil, iskeyfieldtamper=nil, requestid=nil)
           @Tamper = tamper
           @Synthesis = synthesis
           @Template = template
@@ -14792,6 +14811,8 @@ module TencentCloud
           @Electron = electron
           @TextWatermark = textwatermark
           @WatermarkContent = watermarkcontent
+          @ReasoningResult = reasoningresult
+          @IsKeyFieldTamper = iskeyfieldtamper
           @RequestId = requestid
         end
 
@@ -14849,6 +14870,11 @@ module TencentCloud
             @TextWatermark.deserialize(params['TextWatermark'])
           end
           @WatermarkContent = params['WatermarkContent']
+          unless params['ReasoningResult'].nil?
+            @ReasoningResult = ReasoningResult.new
+            @ReasoningResult.deserialize(params['ReasoningResult'])
+          end
+          @IsKeyFieldTamper = params['IsKeyFieldTamper']
           @RequestId = params['RequestId']
         end
       end

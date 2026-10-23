@@ -12052,15 +12052,30 @@ module TencentCloud
         # @type ApiBase: String
         # @param EndpointPath: <p>非chat输出模态的请求后缀</p>
         # @type EndpointPath: String
+        # @param ModelProvider: <p>所属厂商</p>
+        # @type ModelProvider: String
+        # @param Protocol: <p>协议</p>
+        # @type Protocol: String
+        # @param CMRPrivateNetworkTunnelId: <p>所使用的CMR 私网管道 ID</p>
+        # @type CMRPrivateNetworkTunnelId: String
+        # @param HostHeader: <p>携带的Host Header</p>
+        # @type HostHeader: String
+        # @param VerifySSL: <p>是否需要进行ssl校验</p>
+        # @type VerifySSL: Boolean
 
-        attr_accessor :ServiceProviderId, :ServiceProviderName, :ApiBases, :ApiBase, :EndpointPath
+        attr_accessor :ServiceProviderId, :ServiceProviderName, :ApiBases, :ApiBase, :EndpointPath, :ModelProvider, :Protocol, :CMRPrivateNetworkTunnelId, :HostHeader, :VerifySSL
 
-        def initialize(serviceproviderid=nil, serviceprovidername=nil, apibases=nil, apibase=nil, endpointpath=nil)
+        def initialize(serviceproviderid=nil, serviceprovidername=nil, apibases=nil, apibase=nil, endpointpath=nil, modelprovider=nil, protocol=nil, cmrprivatenetworktunnelid=nil, hostheader=nil, verifyssl=nil)
           @ServiceProviderId = serviceproviderid
           @ServiceProviderName = serviceprovidername
           @ApiBases = apibases
           @ApiBase = apibase
           @EndpointPath = endpointpath
+          @ModelProvider = modelprovider
+          @Protocol = protocol
+          @CMRPrivateNetworkTunnelId = cmrprivatenetworktunnelid
+          @HostHeader = hostheader
+          @VerifySSL = verifyssl
         end
 
         def deserialize(params)
@@ -12076,6 +12091,11 @@ module TencentCloud
           end
           @ApiBase = params['ApiBase']
           @EndpointPath = params['EndpointPath']
+          @ModelProvider = params['ModelProvider']
+          @Protocol = params['Protocol']
+          @CMRPrivateNetworkTunnelId = params['CMRPrivateNetworkTunnelId']
+          @HostHeader = params['HostHeader']
+          @VerifySSL = params['VerifySSL']
         end
       end
 
@@ -12363,19 +12383,27 @@ module TencentCloud
         # @type ModelName: String
         # @param InputModalities: <p>该模型支持的输入多模态能力列表</p><p>枚举值：</p><ul><li>text： 支持文本输入</li><li>image： 支持图像输入</li><li>file： 支持文件输入（当前仅支持pdf）</li></ul>
         # @type InputModalities: Array
+        # @param NewModelName: <p>新的上游模型名称</p>
+        # @type NewModelName: String
+        # @param NewModelAlias: <p>新的对外模型名称</p>
+        # @type NewModelAlias: String
 
-        attr_accessor :ServiceProviderId, :ModelName, :InputModalities
+        attr_accessor :ServiceProviderId, :ModelName, :InputModalities, :NewModelName, :NewModelAlias
 
-        def initialize(serviceproviderid=nil, modelname=nil, inputmodalities=nil)
+        def initialize(serviceproviderid=nil, modelname=nil, inputmodalities=nil, newmodelname=nil, newmodelalias=nil)
           @ServiceProviderId = serviceproviderid
           @ModelName = modelname
           @InputModalities = inputmodalities
+          @NewModelName = newmodelname
+          @NewModelAlias = newmodelalias
         end
 
         def deserialize(params)
           @ServiceProviderId = params['ServiceProviderId']
           @ModelName = params['ModelName']
           @InputModalities = params['InputModalities']
+          @NewModelName = params['NewModelName']
+          @NewModelAlias = params['NewModelAlias']
         end
       end
 
@@ -14865,15 +14893,19 @@ module TencentCloud
       class StickyConfig < TencentCloud::Common::AbstractModel
         # @param Enabled: <p>是否开启粘连路由</p>
         # @type Enabled: Boolean
+        # @param TimeoutSeconds: <p>会话粘性的超时时间（秒），取值范围 1–86400。创建时默认为 1800；修改时若不设置该字段，则保留原有值。</p><p>取值范围：[1, 86400]</p><p>单位：秒</p><p>默认值：1800</p>
+        # @type TimeoutSeconds: Integer
 
-        attr_accessor :Enabled
+        attr_accessor :Enabled, :TimeoutSeconds
 
-        def initialize(enabled=nil)
+        def initialize(enabled=nil, timeoutseconds=nil)
           @Enabled = enabled
+          @TimeoutSeconds = timeoutseconds
         end
 
         def deserialize(params)
           @Enabled = params['Enabled']
+          @TimeoutSeconds = params['TimeoutSeconds']
         end
       end
 

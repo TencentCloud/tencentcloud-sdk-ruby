@@ -8002,7 +8002,7 @@ module TencentCloud
         # @type TotalCoresCount: Integer
         # @param DefendCoresCount: <p>已防护核数</p>
         # @type DefendCoresCount: Integer
-        # @param AuditLogSwitchStatus: <p>审计日志开关<br>(0:关闭 1:开启 2:开启失败 3:关闭失败)</p>
+        # @param AuditLogSwitchStatus: <p>审计日志状态<br>0：已关闭<br>1：已开启<br>2：开启失败（失败原因见 AuditLogFailedInfo）<br>3：关闭失败（失败原因见 AuditLogFailedInfo）<br>4：开启中<br>5：关闭中<br>6：不支持（当前集群类型不支持读取审计状态，如边缘集群）<br>7：未知（集群未接入或接入异常，无法判断审计状态）</p><p>枚举值：</p><ul><li>0： 已关闭</li><li>1： 已开启</li><li>2： 开启失败</li><li>3： 关闭失败</li><li>4： 开启中</li><li>5： 关闭中</li><li>6： 不支持</li><li>7： 未知</li></ul>
         # @type AuditLogSwitchStatus: Integer
         # @param DefendStatus: <p>防护状态<br>已防护: Defended</p>
         # @type DefendStatus: String
@@ -8044,8 +8044,12 @@ module TencentCloud
         # @type RegionNameEn: String
         # @param UnboundUltimateNodeCount: <p>未绑定旗舰版的节点数量</p>
         # @type UnboundUltimateNodeCount: Integer
+        # @param TagItems: <p>资产标签列表</p>
+        # @type TagItems: Array
+        # @param TagModifyInfo: <p>标签修改信息</p>
+        # @type TagModifyInfo: :class:`Tencentcloud::Csip.v20221121.models.AssetTagModifyAssetItem`
 
-        attr_accessor :AppID, :AssetId, :ClusterId, :ClusterName, :ClusterType, :AlarmEventCriticalCount, :AlarmEventHighCount, :AlarmEventMiddleCount, :AlarmEventLowCount, :RiskEventCriticalCount, :RiskEventHighCount, :RiskEventMiddleCount, :RiskEventLowCount, :NodeCount, :OfflineNodeCount, :UninstallNodeCount, :TotalCoresCount, :DefendCoresCount, :AuditLogSwitchStatus, :DefendStatus, :RunStatus, :Region, :Version, :LastAssetSyncTime, :LastRiskCheckTime, :RiskStatus, :Tags, :OwnerName, :FailMessage, :RunSubStatus, :AccessedStatus, :AccessedSubStatus, :ClusterCaMD5, :AssetSyncStatus, :RiskConfigCount, :AccessFailedMessage, :RegionName, :RegionNameEn, :UnboundUltimateNodeCount
+        attr_accessor :AppID, :AssetId, :ClusterId, :ClusterName, :ClusterType, :AlarmEventCriticalCount, :AlarmEventHighCount, :AlarmEventMiddleCount, :AlarmEventLowCount, :RiskEventCriticalCount, :RiskEventHighCount, :RiskEventMiddleCount, :RiskEventLowCount, :NodeCount, :OfflineNodeCount, :UninstallNodeCount, :TotalCoresCount, :DefendCoresCount, :AuditLogSwitchStatus, :DefendStatus, :RunStatus, :Region, :Version, :LastAssetSyncTime, :LastRiskCheckTime, :RiskStatus, :Tags, :OwnerName, :FailMessage, :RunSubStatus, :AccessedStatus, :AccessedSubStatus, :ClusterCaMD5, :AssetSyncStatus, :RiskConfigCount, :AccessFailedMessage, :RegionName, :RegionNameEn, :UnboundUltimateNodeCount, :TagItems, :TagModifyInfo
         extend Gem::Deprecate
         deprecate :AssetId, :none, 2026, 10
         deprecate :AssetId=, :none, 2026, 10
@@ -8072,7 +8076,7 @@ module TencentCloud
         deprecate :AccessFailedMessage, :none, 2026, 10
         deprecate :AccessFailedMessage=, :none, 2026, 10
 
-        def initialize(appid=nil, assetid=nil, clusterid=nil, clustername=nil, clustertype=nil, alarmeventcriticalcount=nil, alarmeventhighcount=nil, alarmeventmiddlecount=nil, alarmeventlowcount=nil, riskeventcriticalcount=nil, riskeventhighcount=nil, riskeventmiddlecount=nil, riskeventlowcount=nil, nodecount=nil, offlinenodecount=nil, uninstallnodecount=nil, totalcorescount=nil, defendcorescount=nil, auditlogswitchstatus=nil, defendstatus=nil, runstatus=nil, region=nil, version=nil, lastassetsynctime=nil, lastriskchecktime=nil, riskstatus=nil, tags=nil, ownername=nil, failmessage=nil, runsubstatus=nil, accessedstatus=nil, accessedsubstatus=nil, clustercamd5=nil, assetsyncstatus=nil, riskconfigcount=nil, accessfailedmessage=nil, regionname=nil, regionnameen=nil, unboundultimatenodecount=nil)
+        def initialize(appid=nil, assetid=nil, clusterid=nil, clustername=nil, clustertype=nil, alarmeventcriticalcount=nil, alarmeventhighcount=nil, alarmeventmiddlecount=nil, alarmeventlowcount=nil, riskeventcriticalcount=nil, riskeventhighcount=nil, riskeventmiddlecount=nil, riskeventlowcount=nil, nodecount=nil, offlinenodecount=nil, uninstallnodecount=nil, totalcorescount=nil, defendcorescount=nil, auditlogswitchstatus=nil, defendstatus=nil, runstatus=nil, region=nil, version=nil, lastassetsynctime=nil, lastriskchecktime=nil, riskstatus=nil, tags=nil, ownername=nil, failmessage=nil, runsubstatus=nil, accessedstatus=nil, accessedsubstatus=nil, clustercamd5=nil, assetsyncstatus=nil, riskconfigcount=nil, accessfailedmessage=nil, regionname=nil, regionnameen=nil, unboundultimatenodecount=nil, tagitems=nil, tagmodifyinfo=nil)
           @AppID = appid
           @AssetId = assetid
           @ClusterId = clusterid
@@ -8112,6 +8116,8 @@ module TencentCloud
           @RegionName = regionname
           @RegionNameEn = regionnameen
           @UnboundUltimateNodeCount = unboundultimatenodecount
+          @TagItems = tagitems
+          @TagModifyInfo = tagmodifyinfo
         end
 
         def deserialize(params)
@@ -8161,6 +8167,18 @@ module TencentCloud
           @RegionName = params['RegionName']
           @RegionNameEn = params['RegionNameEn']
           @UnboundUltimateNodeCount = params['UnboundUltimateNodeCount']
+          unless params['TagItems'].nil?
+            @TagItems = []
+            params['TagItems'].each do |i|
+              minitagitem_tmp = MiniTagItem.new
+              minitagitem_tmp.deserialize(i)
+              @TagItems << minitagitem_tmp
+            end
+          end
+          unless params['TagModifyInfo'].nil?
+            @TagModifyInfo = AssetTagModifyAssetItem.new
+            @TagModifyInfo.deserialize(params['TagModifyInfo'])
+          end
         end
       end
 

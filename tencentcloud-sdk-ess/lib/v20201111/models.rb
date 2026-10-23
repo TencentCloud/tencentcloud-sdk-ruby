@@ -155,7 +155,7 @@ module TencentCloud
 
       # 合同参与者信息。
       class ApproverInfo < TencentCloud::Common::AbstractModel
-        # @param ApproverType: <p>在指定签署方时，可选择企业B端或个人C端等不同的参与者类型，可选类型如下:</p><p><strong>0</strong>：企业</p><p><strong>1</strong>：个人</p><p><strong>3</strong>：企业“授权签”注：<code>类型为3（企业“授权签”）时，此接口会默认完成该签署方的签署。“授权签”仅进行盖章操作，不能“授权签”名。</code></p><p><strong>7</strong>: 个人“授权签”，适用于个人“授权签”场景。注: <code>个人“授权签”场景为白名单功能，使用前请联系对接的客户经理沟通。</code></p>
+        # @param ApproverType: <p>在指定签署方时，可选择企业B端或个人C端等不同的参与者类型，可选类型如下: </p><p><strong>0</strong>：企业</p><p> <strong>1</strong>：个人</p><p> <strong>3</strong>：企业“授权签”注：<code>类型为3（企业“授权签”）时，此接口会默认完成该签署方的签署。“授权签”仅进行盖章操作，不能“授权签”名。</code></p><p> <strong>7</strong>: 个人“授权签”，适用于个人“授权签”场景。注: <code>个人“授权签”场景为白名单功能，使用前请联系对接的客户经理沟通。</code> </p><p><strong>8</strong>：本方企业 PIN 码授权，注：<code>使用前需先完成员工PIN码授权</code> </p><p><strong>9</strong>：他方企业 PIN 码授权，注：<code>使用前需先完成合作方企业PIN码授权</code></p><p> <strong>10</strong>: 个人 PIN 码授权，适用于个人“授权签”场景。注: <code>个人“授权签”场景为白名单功能，使用前请联系对接的客户经理沟通。</code></p>
         # @type ApproverType: Integer
         # @param ApproverName: <p>签署方经办人的姓名。<br>经办人的姓名将用于身份认证和电子签名，请确保填写的姓名为签署方的真实姓名，而非昵称等代名。</p>
         # @type ApproverName: String
@@ -209,10 +209,12 @@ module TencentCloud
         # @type NotSaveContact: Boolean
         # @param ApproverEmail: <p>客户指定的邮箱信息</p>
         # @type ApproverEmail: String
+        # @param PinCode: <h2>PinCode计算规则</h2>  <p>当使用 PIN 码授权签进行身份验证时，需要按以下规则生成 <code>PinCode</code>。</p>  <h3 id="计算公式">计算公式</h3>  <pre><code class="language-text">PinCode = HMAC_SHA256(SHA256(PIN 码)，合同名称) </code></pre>  <p>示例： PinCode = HMAC_SHA256(SHA256("v0ZIwH8lRDLsWRHJWJT7PR05FoXdl4S2")，"给张三的入职合同")</p>  <table> <thead> <tr> <th>参数</th> <th>说明</th> </tr> </thead>  <tbody> <tr> <td><strong>PIN 码</strong></td> <td>企业员工、他方(合作方)企业、个人授权的 PIN 码</td> </tr>  <tr> <td><strong>合同名称</strong></td> <td>签署流程名称，即FlowName，<font color="#FF0000">需去除合同名称前后空格后再进行计算</font></td> </tr>   </tbody> </table>
+        # @type PinCode: String
 
-        attr_accessor :ApproverType, :ApproverName, :ApproverMobile, :OrganizationName, :SignComponents, :ApproverIdCardType, :ApproverIdCardNumber, :NotifyType, :ApproverRole, :ApproverRoleName, :VerifyChannel, :PreReadTime, :UserId, :ApproverSource, :CustomApproverTag, :ApproverOption, :ApproverVerifyTypes, :ApproverSignTypes, :ApproverNeedSignReview, :AddSignComponentsLimits, :SignInstructionContent, :Deadline, :Components, :SignEndpoints, :RegisterInfo, :NotSaveContact, :ApproverEmail
+        attr_accessor :ApproverType, :ApproverName, :ApproverMobile, :OrganizationName, :SignComponents, :ApproverIdCardType, :ApproverIdCardNumber, :NotifyType, :ApproverRole, :ApproverRoleName, :VerifyChannel, :PreReadTime, :UserId, :ApproverSource, :CustomApproverTag, :ApproverOption, :ApproverVerifyTypes, :ApproverSignTypes, :ApproverNeedSignReview, :AddSignComponentsLimits, :SignInstructionContent, :Deadline, :Components, :SignEndpoints, :RegisterInfo, :NotSaveContact, :ApproverEmail, :PinCode
 
-        def initialize(approvertype=nil, approvername=nil, approvermobile=nil, organizationname=nil, signcomponents=nil, approveridcardtype=nil, approveridcardnumber=nil, notifytype=nil, approverrole=nil, approverrolename=nil, verifychannel=nil, prereadtime=nil, userid=nil, approversource=nil, customapprovertag=nil, approveroption=nil, approververifytypes=nil, approversigntypes=nil, approverneedsignreview=nil, addsigncomponentslimits=nil, signinstructioncontent=nil, deadline=nil, components=nil, signendpoints=nil, registerinfo=nil, notsavecontact=nil, approveremail=nil)
+        def initialize(approvertype=nil, approvername=nil, approvermobile=nil, organizationname=nil, signcomponents=nil, approveridcardtype=nil, approveridcardnumber=nil, notifytype=nil, approverrole=nil, approverrolename=nil, verifychannel=nil, prereadtime=nil, userid=nil, approversource=nil, customapprovertag=nil, approveroption=nil, approververifytypes=nil, approversigntypes=nil, approverneedsignreview=nil, addsigncomponentslimits=nil, signinstructioncontent=nil, deadline=nil, components=nil, signendpoints=nil, registerinfo=nil, notsavecontact=nil, approveremail=nil, pincode=nil)
           @ApproverType = approvertype
           @ApproverName = approvername
           @ApproverMobile = approvermobile
@@ -240,6 +242,7 @@ module TencentCloud
           @RegisterInfo = registerinfo
           @NotSaveContact = notsavecontact
           @ApproverEmail = approveremail
+          @PinCode = pincode
         end
 
         def deserialize(params)
@@ -297,6 +300,7 @@ module TencentCloud
           end
           @NotSaveContact = params['NotSaveContact']
           @ApproverEmail = params['ApproverEmail']
+          @PinCode = params['PinCode']
         end
       end
 
@@ -6998,10 +7002,12 @@ module TencentCloud
         # @type Deadline: Integer
         # @param UserData: <p>调用方自定义的个性化字段，该字段的值可以是字符串JSON或其他字符串形式，客户可以根据自身需求自定义数据格式并在需要时进行解析。该字段的信息将以Base64编码的形式传输，支持的最大数据大小为20480长度。</p><p>在合同状态变更的回调信息等场景中，该字段的信息将原封不动地透传给贵方。</p><p>回调的相关说明可参考开发者中心的<a href="https://qian.tencent.com/developers/company/callback_types_v2" target="_blank">回调通知</a>模块。</p>
         # @type UserData: String
+        # @param FlowName: <p>合同名称</p><p>入参限制：如果替换解除协议的签署人中有本企业PIN 码签署人类型，则此字段必填</p>
+        # @type FlowName: String
 
-        attr_accessor :Operator, :NeedRelievedFlowId, :ReliveInfo, :Agent, :ReleasedApprovers, :Deadline, :UserData
+        attr_accessor :Operator, :NeedRelievedFlowId, :ReliveInfo, :Agent, :ReleasedApprovers, :Deadline, :UserData, :FlowName
 
-        def initialize(operator=nil, needrelievedflowid=nil, reliveinfo=nil, agent=nil, releasedapprovers=nil, deadline=nil, userdata=nil)
+        def initialize(operator=nil, needrelievedflowid=nil, reliveinfo=nil, agent=nil, releasedapprovers=nil, deadline=nil, userdata=nil, flowname=nil)
           @Operator = operator
           @NeedRelievedFlowId = needrelievedflowid
           @ReliveInfo = reliveinfo
@@ -7009,6 +7015,7 @@ module TencentCloud
           @ReleasedApprovers = releasedapprovers
           @Deadline = deadline
           @UserData = userdata
+          @FlowName = flowname
         end
 
         def deserialize(params)
@@ -7035,6 +7042,7 @@ module TencentCloud
           end
           @Deadline = params['Deadline']
           @UserData = params['UserData']
+          @FlowName = params['FlowName']
         end
       end
 
@@ -12723,10 +12731,12 @@ module TencentCloud
         # @type FlowId: String
         # @param NotifyType: <p>通知类型：</p><li>当FillApproverType =0，或签场景补充签署人时，指定是否发送或签领取短信</li><li>SMS：开启或签领取短信通知</li><li>NONE：关闭或签领取短信通知</li><li>当NotifyType=NONE时，可调用<a href="https://qian.tencent.com/developers/companyApis/startFlows/CreateSchemeUrl" target="_blank" rel="noopener noreferrer">获取跳转至腾讯电子签小程序的签署链接</a>接口生成签署链接来完成或签领取</li>
         # @type NotifyType: String
+        # @param PinCode: <h2>PinCode计算规则</h2>  <p>当使用 PIN 码授权签进行身份验证时，需要按以下规则生成 <code>PinCode</code>。</p>  <h3 id="计算公式">计算公式</h3>  <pre><code class="language-text">PinCode = HMAC_SHA256(SHA256(PIN 码)，合同名称) </code></pre>  <p>示例： PinCode = HMAC_SHA256(SHA256("v0ZIwH8lRDLsWRHJWJT7PR05FoXdl4S2")，"给张三的入职合同")</p>  <table> <thead> <tr> <th>参数</th> <th>说明</th> </tr> </thead>  <tbody> <tr> <td><strong>PIN 码</strong></td> <td>个人授权的 PIN 码</td> </tr>  <tr> <td><strong>合同名称</strong></td> <td>签署流程名称，即FlowName，<font color="#FF0000">需去除合同名称前后空格后再进行计算</font></td> </tr>   </tbody> </table>
+        # @type PinCode: String
 
-        attr_accessor :RecipientId, :ApproverSource, :CustomUserId, :ApproverName, :ApproverMobile, :OrganizationName, :ApproverIdCardType, :ApproverIdCardNumber, :FlowId, :NotifyType
+        attr_accessor :RecipientId, :ApproverSource, :CustomUserId, :ApproverName, :ApproverMobile, :OrganizationName, :ApproverIdCardType, :ApproverIdCardNumber, :FlowId, :NotifyType, :PinCode
 
-        def initialize(recipientid=nil, approversource=nil, customuserid=nil, approvername=nil, approvermobile=nil, organizationname=nil, approveridcardtype=nil, approveridcardnumber=nil, flowid=nil, notifytype=nil)
+        def initialize(recipientid=nil, approversource=nil, customuserid=nil, approvername=nil, approvermobile=nil, organizationname=nil, approveridcardtype=nil, approveridcardnumber=nil, flowid=nil, notifytype=nil, pincode=nil)
           @RecipientId = recipientid
           @ApproverSource = approversource
           @CustomUserId = customuserid
@@ -12737,6 +12747,7 @@ module TencentCloud
           @ApproverIdCardNumber = approveridcardnumber
           @FlowId = flowid
           @NotifyType = notifytype
+          @PinCode = pincode
         end
 
         def deserialize(params)
@@ -12750,6 +12761,7 @@ module TencentCloud
           @ApproverIdCardNumber = params['ApproverIdCardNumber']
           @FlowId = params['FlowId']
           @NotifyType = params['NotifyType']
+          @PinCode = params['PinCode']
         end
       end
 
@@ -13085,7 +13097,7 @@ module TencentCloud
 
       # 创建流程的签署方信息
       class FlowCreateApprover < TencentCloud::Common::AbstractModel
-        # @param ApproverType: <p>在指定签署方时，可以选择企业B端或个人C端等不同的参与者类型，可选类型如下：<ul><li> <b>0</b> :企业B端。</li><li> <b>1</b> :个人C端。</li><li> <b>3</b> :企业B端静默（自动）签署，无需签署人参与，“授权签”可以参考<a href="https://qian.tencent.com/developers/company/autosign_guide" target="_blank" rel="noopener noreferrer">“授权签”使用说明</a>文档。</li><li> <b>7</b> :个人C端“授权签”，适用于个人“授权签”场景。注: <b>个人“授权签”场景为白名单功能，使用前请联系对接的客户经理沟通。</b> </li></ul></p>
+        # @param ApproverType: <p>在指定签署方时，可选择企业B端或个人C端等不同的参与者类型，可选类型如下: </p><p><strong>0</strong>：企业</p><p> <strong>1</strong>：个人</p><p> <strong>3</strong>：企业“授权签”注：<code>类型为3（企业“授权签”）时，此接口会默认完成该签署方的签署。“授权签”仅进行盖章操作，不能“授权签”名。</code></p><p> <strong>7</strong>: 个人“授权签”，适用于个人“授权签”场景。注: <code>个人“授权签”场景为白名单功能，使用前请联系对接的客户经理沟通。</code> </p><p><strong>8</strong>：本方企业 PIN 码授权，注：<code>使用前需先完成员工PIN码授权</code> </p><p><strong>9</strong>：他方企业 PIN 码授权，注：<code>使用前需先完成合作方企业PIN码授权</code></p><p> <strong>10</strong>: 个人 PIN 码授权，适用于个人“授权签”场景。注: <code>个人“授权签”场景为白名单功能，使用前请联系对接的客户经理沟通。</code></p>
         # @type ApproverType: Integer
         # @param OrganizationName: <p>组织机构名称。请确认该名称与企业营业执照中注册的名称一致。如果名称中包含英文括号()，请使用中文括号（）代替。注: <code>当approverType=0(企业签署方) 或 approverType=3(企业“授权签”)时，必须指定</code></p>
         # @type OrganizationName: String
@@ -13147,13 +13159,15 @@ module TencentCloud
         # @type NotSaveContact: Boolean
         # @param ApproverEmail: <p>客户指定的邮箱信息</p>
         # @type ApproverEmail: String
+        # @param PinCode: <h2>PinCode计算规则</h2>  <p>当使用 PIN 码授权签进行身份验证时，需要按以下规则生成 <code>PinCode</code>。</p>  <h3 id="计算公式">计算公式</h3>  <pre><code class="language-text">PinCode = HMAC_SHA256(SHA256(PIN 码)，合同名称) </code></pre>  <p>示例： PinCode = HMAC_SHA256(SHA256("v0ZIwH8lRDLsWRHJWJT7PR05FoXdl4S2")，"给张三的入职合同")</p>  <table> <thead> <tr> <th>参数</th> <th>说明</th> </tr> </thead>  <tbody> <tr> <td><strong>PIN 码</strong></td> <td>企业员工、他方(合作方)企业、个人授权的 PIN 码</td> </tr>  <tr> <td><strong>合同名称</strong></td> <td>签署流程名称，即FlowName，<font color="#FF0000">需去除合同名称前后空格后再进行计算</font></td> </tr>   </tbody> </table>
+        # @type PinCode: String
 
-        attr_accessor :ApproverType, :OrganizationName, :ApproverName, :ApproverMobile, :ApproverIdCardType, :ApproverIdCardNumber, :RecipientId, :VerifyChannel, :NotifyType, :IsFullText, :PreReadTime, :UserId, :Required, :ApproverSource, :CustomApproverTag, :RegisterInfo, :ApproverOption, :JumpUrl, :SignId, :ApproverNeedSignReview, :SignComponents, :Components, :ComponentLimitType, :ApproverVerifyTypes, :ApproverSignTypes, :SignTypeSelector, :Deadline, :Intention, :SignEndpoints, :NotSaveContact, :ApproverEmail
+        attr_accessor :ApproverType, :OrganizationName, :ApproverName, :ApproverMobile, :ApproverIdCardType, :ApproverIdCardNumber, :RecipientId, :VerifyChannel, :NotifyType, :IsFullText, :PreReadTime, :UserId, :Required, :ApproverSource, :CustomApproverTag, :RegisterInfo, :ApproverOption, :JumpUrl, :SignId, :ApproverNeedSignReview, :SignComponents, :Components, :ComponentLimitType, :ApproverVerifyTypes, :ApproverSignTypes, :SignTypeSelector, :Deadline, :Intention, :SignEndpoints, :NotSaveContact, :ApproverEmail, :PinCode
         extend Gem::Deprecate
         deprecate :JumpUrl, :none, 2026, 10
         deprecate :JumpUrl=, :none, 2026, 10
 
-        def initialize(approvertype=nil, organizationname=nil, approvername=nil, approvermobile=nil, approveridcardtype=nil, approveridcardnumber=nil, recipientid=nil, verifychannel=nil, notifytype=nil, isfulltext=nil, prereadtime=nil, userid=nil, required=nil, approversource=nil, customapprovertag=nil, registerinfo=nil, approveroption=nil, jumpurl=nil, signid=nil, approverneedsignreview=nil, signcomponents=nil, components=nil, componentlimittype=nil, approververifytypes=nil, approversigntypes=nil, signtypeselector=nil, deadline=nil, intention=nil, signendpoints=nil, notsavecontact=nil, approveremail=nil)
+        def initialize(approvertype=nil, organizationname=nil, approvername=nil, approvermobile=nil, approveridcardtype=nil, approveridcardnumber=nil, recipientid=nil, verifychannel=nil, notifytype=nil, isfulltext=nil, prereadtime=nil, userid=nil, required=nil, approversource=nil, customapprovertag=nil, registerinfo=nil, approveroption=nil, jumpurl=nil, signid=nil, approverneedsignreview=nil, signcomponents=nil, components=nil, componentlimittype=nil, approververifytypes=nil, approversigntypes=nil, signtypeselector=nil, deadline=nil, intention=nil, signendpoints=nil, notsavecontact=nil, approveremail=nil, pincode=nil)
           @ApproverType = approvertype
           @OrganizationName = organizationname
           @ApproverName = approvername
@@ -13185,6 +13199,7 @@ module TencentCloud
           @SignEndpoints = signendpoints
           @NotSaveContact = notsavecontact
           @ApproverEmail = approveremail
+          @PinCode = pincode
         end
 
         def deserialize(params)
@@ -13242,6 +13257,7 @@ module TencentCloud
           @SignEndpoints = params['SignEndpoints']
           @NotSaveContact = params['NotSaveContact']
           @ApproverEmail = params['ApproverEmail']
+          @PinCode = params['PinCode']
         end
       end
 
@@ -15488,7 +15504,7 @@ module TencentCloud
         # @type ApproverIdCardType: String
         # @param ApproverIdCardNumber: <p>签署方经办人的证件号码，应符合以下规则</p><ul><li>中国大陆居民身份证号码应为18位字符串，由数字和大写字母X组成（如存在X，请大写）。</li><li>中国港澳居民来往内地通行证号码共11位。第1位为字母，“H”字头签发给中国香港居民，“M”字头签发给中国澳门居民；第2位至第11位为数字。</li><li>中国港澳台居民居住证号码编码规则与中国大陆身份证相同，应为18位字符串。</li></ul>
         # @type ApproverIdCardNumber: String
-        # @param OrganizationName: <p>组织机构名称。<br>请确认该名称与企业营业执照中注册的名称一致。<br>如果名称中包含英文括号()，请使用中文括号（）代替。<br>如果签署方是企业签署方(approverType = 0 或者 approverType = 3)， 则企业名称必填。</p>
+        # @param OrganizationName: <p>组织机构名称。<br>请确认该名称与企业营业执照中注册的名称一致。<br>如果名称中包含英文括号()，请使用中文括号（）代替。<br>如果签署方是企业签署方， 则企业名称必填。</p>
         # @type OrganizationName: String
 
         attr_accessor :ApproverType, :ApproverName, :ApproverMobile, :ApproverIdCardType, :ApproverIdCardNumber, :OrganizationName
@@ -16839,7 +16855,7 @@ module TencentCloud
         # @type Mobile: String
         # @param RelievedApproverReceiptId: <p>要更换的原合同参与人RecipientId编号。(可通过接口<a href="https://qian.tencent.com/developers/companyApis/queryFlows/DescribeFlowInfo/">DescribeFlowInfo</a>查询签署人的RecipientId编号)<br></p>
         # @type RelievedApproverReceiptId: String
-        # @param ApproverType: <p>指定签署人类型，目前仅支持<ul><li> <strong>ORGANIZATION</strong>：企业（默认值）</li><li> <strong>ENTERPRISESERVER</strong>：企业“授权签”</li></ul></p>
+        # @param ApproverType: <p>指定签署人类型，目前仅支持<ul><li> <strong>ORGANIZATION</strong>：企业（默认值）</li><li> <strong>ENTERPRISESERVER</strong>：本方企业“授权签”</li><li> <strong>ORGANIZATION_PIN_CODE_SIGN</strong>：本方企业PIN码签署</li></ul></p>
         # @type ApproverType: String
         # @param ApproverSignComponentType: <p>签署控件类型，支持自定义企业签署方的签署控件类型</p><ul><li> **SIGN_SEAL**：默认为印章控件类型（默认值）</li><li> **SIGN_SIGNATURE**：手写签名控件类型</li></ul>
         # @type ApproverSignComponentType: String
@@ -16849,13 +16865,15 @@ module TencentCloud
         # @type ApproverSignSealId: String
         # @param RelievedApproverRecipientId: <p>要更换的原合同参与人RecipientId编号。(可通过接口<a href="https://qian.tencent.com/developers/companyApis/queryFlows/DescribeFlowInfo/">DescribeFlowInfo</a>查询签署人的RecipientId编号)<br></p>
         # @type RelievedApproverRecipientId: String
+        # @param PinCode: <h2>PinCode计算规则</h2>  <p>当使用 PIN 码授权签进行身份验证时，需要按以下规则生成 <code>PinCode</code>。</p>  <h3 id="计算公式">计算公式</h3>  <pre><code class="language-text">PinCode = HMAC_SHA256(SHA256(PIN 码)，合同名称) </code></pre>  <p>示例： PinCode = HMAC_SHA256(SHA256("v0ZIwH8lRDLsWRHJWJT7PR05FoXdl4S2")，"给张三的入职合同")</p>  <table> <thead> <tr> <th>参数</th> <th>说明</th> </tr> </thead>  <tbody> <tr> <td><strong>PIN 码</strong></td> <td>企业员工、他方(合作方)企业、个人授权的 PIN 码</td> </tr>  <tr> <td><strong>合同名称</strong></td> <td>签署流程名称，即FlowName，<font color="#FF0000">需去除合同名称前后空格后再进行计算</font></td> </tr>   </tbody> </table>
+        # @type PinCode: String
 
-        attr_accessor :Name, :Mobile, :RelievedApproverReceiptId, :ApproverType, :ApproverSignComponentType, :ApproverSignRole, :ApproverSignSealId, :RelievedApproverRecipientId
+        attr_accessor :Name, :Mobile, :RelievedApproverReceiptId, :ApproverType, :ApproverSignComponentType, :ApproverSignRole, :ApproverSignSealId, :RelievedApproverRecipientId, :PinCode
         extend Gem::Deprecate
         deprecate :RelievedApproverReceiptId, :none, 2026, 10
         deprecate :RelievedApproverReceiptId=, :none, 2026, 10
 
-        def initialize(name=nil, mobile=nil, relievedapproverreceiptid=nil, approvertype=nil, approversigncomponenttype=nil, approversignrole=nil, approversignsealid=nil, relievedapproverrecipientid=nil)
+        def initialize(name=nil, mobile=nil, relievedapproverreceiptid=nil, approvertype=nil, approversigncomponenttype=nil, approversignrole=nil, approversignsealid=nil, relievedapproverrecipientid=nil, pincode=nil)
           @Name = name
           @Mobile = mobile
           @RelievedApproverReceiptId = relievedapproverreceiptid
@@ -16864,6 +16882,7 @@ module TencentCloud
           @ApproverSignRole = approversignrole
           @ApproverSignSealId = approversignsealid
           @RelievedApproverRecipientId = relievedapproverrecipientid
+          @PinCode = pincode
         end
 
         def deserialize(params)
@@ -16875,6 +16894,7 @@ module TencentCloud
           @ApproverSignRole = params['ApproverSignRole']
           @ApproverSignSealId = params['ApproverSignSealId']
           @RelievedApproverRecipientId = params['RelievedApproverRecipientId']
+          @PinCode = params['PinCode']
         end
       end
 
