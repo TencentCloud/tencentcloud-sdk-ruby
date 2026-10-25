@@ -8988,14 +8988,17 @@ module TencentCloud
         # @type QuotaType: String
         # @param DisplaySubEnterprise: <p>是否展示集团子企业的明细，默认否</p>
         # @type DisplaySubEnterprise: Boolean
+        # @param Operator: <p>执行本接口操作的员工信息。<br>注: <code>在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。</code></p>
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
 
-        attr_accessor :StartTime, :EndTime, :QuotaType, :DisplaySubEnterprise
+        attr_accessor :StartTime, :EndTime, :QuotaType, :DisplaySubEnterprise, :Operator
 
-        def initialize(starttime=nil, endtime=nil, quotatype=nil, displaysubenterprise=nil)
+        def initialize(starttime=nil, endtime=nil, quotatype=nil, displaysubenterprise=nil, operator=nil)
           @StartTime = starttime
           @EndTime = endtime
           @QuotaType = quotatype
           @DisplaySubEnterprise = displaysubenterprise
+          @Operator = operator
         end
 
         def deserialize(params)
@@ -9003,6 +9006,10 @@ module TencentCloud
           @EndTime = params['EndTime']
           @QuotaType = params['QuotaType']
           @DisplaySubEnterprise = params['DisplaySubEnterprise']
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
         end
       end
 

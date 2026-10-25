@@ -6266,7 +6266,7 @@ module TencentCloud
         # @type Limit: Integer
         # @param VpcId: <p>过滤PrivateCustom类型自建模型。如果传递了此参数，则只返回具有相同VPC Id的模型。</p>
         # @type VpcId: String
-        # @param Filters: <p>过滤器，Name取值：</p><ul><li>ModelName：按照模型名称过滤。</li><li>ServiceProviderId：按照BYOK ID过滤。</li><li>InputModalitiesUnion：按照模态过滤。</li></ul>
+        # @param Filters: <p>过滤器，Name取值：</p><ul><li>ModelName：按照模型名称过滤。</li><li>ServiceProviderId：按照BYOK ID过滤。</li><li>InputModalitiesUnion：按照输入模态过滤。</li><li>Capability：按照输出模态过滤。</li></ul>
         # @type Filters: Array
 
         attr_accessor :Offset, :Limit, :VpcId, :Filters
@@ -8548,15 +8548,19 @@ module TencentCloud
       class IntentRouterDecisionModelConfig < TencentCloud::Common::AbstractModel
         # @param Enabled: <p>是否开启使用决策模型</p>
         # @type Enabled: Boolean
+        # @param ModelName: <p>选定的分类决策模型名，不传递表示随机选用。</p>
+        # @type ModelName: String
 
-        attr_accessor :Enabled
+        attr_accessor :Enabled, :ModelName
 
-        def initialize(enabled=nil)
+        def initialize(enabled=nil, modelname=nil)
           @Enabled = enabled
+          @ModelName = modelname
         end
 
         def deserialize(params)
           @Enabled = params['Enabled']
+          @ModelName = params['ModelName']
         end
       end
 
@@ -10177,7 +10181,7 @@ module TencentCloud
 
       # 模型关联信息
       class ModelAssociation < TencentCloud::Common::AbstractModel
-        # @param InputModalitiesUnion: <p>该模型最大可支持的输入多模态能力列表</p><p>枚举值：</p><ul><li>text： 支持文本输入</li><li>image： 支持图像输入</li><li>file： 支持文件输入（当前仅支持pdf）</li></ul>
+        # @param InputModalitiesUnion: <p>该模型最大可支持的输入多模态能力列表</p><p>枚举值：</p><ul><li>text： 支持文本输入</li><li>image： 支持图像输入</li><li>file： 支持文件输入（当前仅支持pdf）</li><li>video： 支持视频输入</li></ul>
         # @type InputModalitiesUnion: Array
         # @param ModelName: <p>模型名称</p>
         # @type ModelName: String
@@ -10216,7 +10220,7 @@ module TencentCloud
 
       # 模型可用性
       class ModelAvailability < TencentCloud::Common::AbstractModel
-        # @param InputModalities: <p>该模型所有健康BYOK实例下支持的输入多模态能力的并集。模型不健康时返回空列表。</p><p>枚举值：</p><ul><li>text： 支持文本输入</li><li>image： 支持图像输入</li><li>file： 支持文件输入（当前仅支持pdf）</li></ul>
+        # @param InputModalities: <p>该模型所有健康BYOK实例下支持的输入多模态能力的并集。模型不健康时返回空列表。</p><p>枚举值：</p><ul><li>text： 支持文本输入</li><li>image： 支持图像输入</li><li>file： 支持文件输入（当前仅支持pdf）</li><li>video： 支持视频输入</li></ul>
         # @type InputModalities: Array
         # @param Model: <p>模型</p>
         # @type Model: String
@@ -10266,7 +10270,7 @@ module TencentCloud
       class ModelItem < TencentCloud::Common::AbstractModel
         # @param ModelId: <p>模型唯一标识, 用于实际访问</p>
         # @type ModelId: String
-        # @param InputModalities: <p>该模型当前支持的输入多模态能力列表</p><p>枚举值：</p><ul><li>text： 支持文本输入</li><li>image： 支持图像输入</li><li>file： 支持文件输入（当前仅支持pdf）</li></ul><p>默认值：text</p>
+        # @param InputModalities: <p>该模型当前支持的输入多模态能力列表</p><p>枚举值：</p><ul><li>text： 支持文本输入</li><li>image： 支持图像输入</li><li>file： 支持文件输入（当前仅支持pdf）</li><li>video： 支持视频输入</li></ul><p>默认值：text</p>
         # @type InputModalities: Array
         # @param ModelAlias: <p>模型别名, 可以用于实际访问</p>
         # @type ModelAlias: String
@@ -10449,7 +10453,7 @@ module TencentCloud
         # @type ModelName: String
         # @param ServiceProviders: <p>关联的服务商列表</p>
         # @type ServiceProviders: Array
-        # @param InputModalitiesUnion: <p>该模型最大可支持的输入多模态能力列表。</p><p>枚举值：</p><ul><li>text： 支持文本输入</li><li>image： 支持图像输入</li><li>file： 支持文件输入（当前仅支持pdf）</li></ul>
+        # @param InputModalitiesUnion: <p>该模型最大可支持的输入多模态能力列表。</p><p>枚举值：</p><ul><li>text： 支持文本输入</li><li>image： 支持图像输入</li><li>file： 支持文件输入（当前仅支持pdf）</li><li>video： 支持视频输入</li></ul>
         # @type InputModalitiesUnion: Array
 
         attr_accessor :ModelName, :ServiceProviders, :InputModalitiesUnion
@@ -10595,10 +10599,12 @@ module TencentCloud
         # @type DecisionsConfig: :class:`Tencentcloud::Clb.v20180317.models.DecisionsConfig`
         # @param ImageConfig: <p>Images 生图配置</p>
         # @type ImageConfig: :class:`Tencentcloud::Clb.v20180317.models.ImageConfig`
+        # @param RedirectConfig: <p>实例重定向配置</p>
+        # @type RedirectConfig: :class:`Tencentcloud::Clb.v20180317.models.RedirectConfig`
 
-        attr_accessor :BudgetId, :BudgetName, :ClusterInfo, :CreatedTime, :CreditUsageSet, :Domain, :ModelRouterId, :ModelRouterName, :ModelRouterType, :ModifiedTime, :NetworkType, :RateLimitConfig, :RouterSetting, :SecurityGroups, :SecurityStatus, :ServiceEndPoints, :Status, :SubnetId, :Tags, :TradeStatus, :Vip, :VpcId, :Bandwidth, :EipAddressId, :BillingConfig, :EmbeddingConfig, :LoadBalancerId, :VideoConfig, :RerankConfig, :DecisionsConfig, :ImageConfig
+        attr_accessor :BudgetId, :BudgetName, :ClusterInfo, :CreatedTime, :CreditUsageSet, :Domain, :ModelRouterId, :ModelRouterName, :ModelRouterType, :ModifiedTime, :NetworkType, :RateLimitConfig, :RouterSetting, :SecurityGroups, :SecurityStatus, :ServiceEndPoints, :Status, :SubnetId, :Tags, :TradeStatus, :Vip, :VpcId, :Bandwidth, :EipAddressId, :BillingConfig, :EmbeddingConfig, :LoadBalancerId, :VideoConfig, :RerankConfig, :DecisionsConfig, :ImageConfig, :RedirectConfig
 
-        def initialize(budgetid=nil, budgetname=nil, clusterinfo=nil, createdtime=nil, creditusageset=nil, domain=nil, modelrouterid=nil, modelroutername=nil, modelroutertype=nil, modifiedtime=nil, networktype=nil, ratelimitconfig=nil, routersetting=nil, securitygroups=nil, securitystatus=nil, serviceendpoints=nil, status=nil, subnetid=nil, tags=nil, tradestatus=nil, vip=nil, vpcid=nil, bandwidth=nil, eipaddressid=nil, billingconfig=nil, embeddingconfig=nil, loadbalancerid=nil, videoconfig=nil, rerankconfig=nil, decisionsconfig=nil, imageconfig=nil)
+        def initialize(budgetid=nil, budgetname=nil, clusterinfo=nil, createdtime=nil, creditusageset=nil, domain=nil, modelrouterid=nil, modelroutername=nil, modelroutertype=nil, modifiedtime=nil, networktype=nil, ratelimitconfig=nil, routersetting=nil, securitygroups=nil, securitystatus=nil, serviceendpoints=nil, status=nil, subnetid=nil, tags=nil, tradestatus=nil, vip=nil, vpcid=nil, bandwidth=nil, eipaddressid=nil, billingconfig=nil, embeddingconfig=nil, loadbalancerid=nil, videoconfig=nil, rerankconfig=nil, decisionsconfig=nil, imageconfig=nil, redirectconfig=nil)
           @BudgetId = budgetid
           @BudgetName = budgetname
           @ClusterInfo = clusterinfo
@@ -10630,6 +10636,7 @@ module TencentCloud
           @RerankConfig = rerankconfig
           @DecisionsConfig = decisionsconfig
           @ImageConfig = imageconfig
+          @RedirectConfig = redirectconfig
         end
 
         def deserialize(params)
@@ -10711,6 +10718,10 @@ module TencentCloud
           unless params['ImageConfig'].nil?
             @ImageConfig = ImageConfig.new
             @ImageConfig.deserialize(params['ImageConfig'])
+          end
+          unless params['RedirectConfig'].nil?
+            @RedirectConfig = RedirectConfig.new
+            @RedirectConfig.deserialize(params['RedirectConfig'])
           end
         end
       end
@@ -11045,10 +11056,12 @@ module TencentCloud
         # @type EipAddressId: String
         # @param BillingConfig: <p>计费信息</p>
         # @type BillingConfig: :class:`Tencentcloud::Clb.v20180317.models.ModelRouterBillingConfigOutput`
+        # @param RedirectConfig: <p>实例重定向配置</p>
+        # @type RedirectConfig: :class:`Tencentcloud::Clb.v20180317.models.RedirectConfig`
 
-        attr_accessor :BudgetId, :BudgetName, :ClusterInfo, :CreatedTime, :CreditUsageSet, :Domain, :ModelRouterId, :ModelRouterName, :ModelRouterType, :ModifiedTime, :NetworkType, :SecurityStatus, :Status, :Tags, :TradeStatus, :Vip, :VpcId, :Bandwidth, :EipAddressId, :BillingConfig
+        attr_accessor :BudgetId, :BudgetName, :ClusterInfo, :CreatedTime, :CreditUsageSet, :Domain, :ModelRouterId, :ModelRouterName, :ModelRouterType, :ModifiedTime, :NetworkType, :SecurityStatus, :Status, :Tags, :TradeStatus, :Vip, :VpcId, :Bandwidth, :EipAddressId, :BillingConfig, :RedirectConfig
 
-        def initialize(budgetid=nil, budgetname=nil, clusterinfo=nil, createdtime=nil, creditusageset=nil, domain=nil, modelrouterid=nil, modelroutername=nil, modelroutertype=nil, modifiedtime=nil, networktype=nil, securitystatus=nil, status=nil, tags=nil, tradestatus=nil, vip=nil, vpcid=nil, bandwidth=nil, eipaddressid=nil, billingconfig=nil)
+        def initialize(budgetid=nil, budgetname=nil, clusterinfo=nil, createdtime=nil, creditusageset=nil, domain=nil, modelrouterid=nil, modelroutername=nil, modelroutertype=nil, modifiedtime=nil, networktype=nil, securitystatus=nil, status=nil, tags=nil, tradestatus=nil, vip=nil, vpcid=nil, bandwidth=nil, eipaddressid=nil, billingconfig=nil, redirectconfig=nil)
           @BudgetId = budgetid
           @BudgetName = budgetname
           @ClusterInfo = clusterinfo
@@ -11069,6 +11082,7 @@ module TencentCloud
           @Bandwidth = bandwidth
           @EipAddressId = eipaddressid
           @BillingConfig = billingconfig
+          @RedirectConfig = redirectconfig
         end
 
         def deserialize(params)
@@ -11111,6 +11125,10 @@ module TencentCloud
           unless params['BillingConfig'].nil?
             @BillingConfig = ModelRouterBillingConfigOutput.new
             @BillingConfig.deserialize(params['BillingConfig'])
+          end
+          unless params['RedirectConfig'].nil?
+            @RedirectConfig = RedirectConfig.new
+            @RedirectConfig.deserialize(params['RedirectConfig'])
           end
         end
       end
@@ -12141,10 +12159,16 @@ module TencentCloud
         # @type DecisionsConfig: :class:`Tencentcloud::Clb.v20180317.models.DecisionsConfig`
         # @param ImageConfig: <p>Images 生图配置</p>
         # @type ImageConfig: :class:`Tencentcloud::Clb.v20180317.models.ImageConfig`
+        # @param RedirectConfig: <p>实例重定向配置</p>
+        # @type RedirectConfig: :class:`Tencentcloud::Clb.v20180317.models.RedirectConfig`
+        # @param Schema: <p>网络协议</p>
+        # @type Schema: String
+        # @param Port: <p>监听端口</p><p>取值范围：[1, 65535]</p>
+        # @type Port: Integer
 
-        attr_accessor :ModelRouterId, :CertId, :ModelRouterName, :RateLimitConfig, :RouterSetting, :Bandwidth, :Capability, :EmbeddingConfig, :VideoConfig, :RerankConfig, :DecisionsConfig, :ImageConfig
+        attr_accessor :ModelRouterId, :CertId, :ModelRouterName, :RateLimitConfig, :RouterSetting, :Bandwidth, :Capability, :EmbeddingConfig, :VideoConfig, :RerankConfig, :DecisionsConfig, :ImageConfig, :RedirectConfig, :Schema, :Port
 
-        def initialize(modelrouterid=nil, certid=nil, modelroutername=nil, ratelimitconfig=nil, routersetting=nil, bandwidth=nil, capability=nil, embeddingconfig=nil, videoconfig=nil, rerankconfig=nil, decisionsconfig=nil, imageconfig=nil)
+        def initialize(modelrouterid=nil, certid=nil, modelroutername=nil, ratelimitconfig=nil, routersetting=nil, bandwidth=nil, capability=nil, embeddingconfig=nil, videoconfig=nil, rerankconfig=nil, decisionsconfig=nil, imageconfig=nil, redirectconfig=nil, schema=nil, port=nil)
           @ModelRouterId = modelrouterid
           @CertId = certid
           @ModelRouterName = modelroutername
@@ -12157,6 +12181,9 @@ module TencentCloud
           @RerankConfig = rerankconfig
           @DecisionsConfig = decisionsconfig
           @ImageConfig = imageconfig
+          @RedirectConfig = redirectconfig
+          @Schema = schema
+          @Port = port
         end
 
         def deserialize(params)
@@ -12193,6 +12220,12 @@ module TencentCloud
             @ImageConfig = ImageConfig.new
             @ImageConfig.deserialize(params['ImageConfig'])
           end
+          unless params['RedirectConfig'].nil?
+            @RedirectConfig = RedirectConfig.new
+            @RedirectConfig.deserialize(params['RedirectConfig'])
+          end
+          @Schema = params['Schema']
+          @Port = params['Port']
         end
       end
 
@@ -12789,7 +12822,7 @@ module TencentCloud
       class MultiModalityAttachments < TencentCloud::Common::AbstractModel
         # @param Data: <p>base64 url编码的文件内容</p>
         # @type Data: String
-        # @param Type: <p>附件类型</p><p>枚举值：</p><ul><li>image： 图像</li><li>pdf： pdf（文件）</li></ul>
+        # @param Type: <p>附件类型</p><p>枚举值：</p><ul><li>image： 图像</li><li>pdf： pdf（文件）</li><li>video： 视频</li></ul>
         # @type Type: String
 
         attr_accessor :Data, :Type
@@ -13012,6 +13045,26 @@ module TencentCloud
         def deserialize(params)
           @RPM = params['RPM']
           @TPM = params['TPM']
+        end
+      end
+
+      # 重定向配置
+      class RedirectConfig < TencentCloud::Common::AbstractModel
+        # @param StatusCode: <p>重定向状态码</p><p>枚举值：</p><ul><li>301： 永久重定向</li><li>302： 临时重定向</li><li>303： 查看其他位置</li><li>307： 临时重定向（保留请求方法）</li><li>308： 永久重定向（保留请求方法）</li></ul>
+        # @type StatusCode: Integer
+        # @param TargetUrl: <p>目标地址，填写为空表示关闭重定向。不支持路径填写。</p>
+        # @type TargetUrl: String
+
+        attr_accessor :StatusCode, :TargetUrl
+
+        def initialize(statuscode=nil, targeturl=nil)
+          @StatusCode = statuscode
+          @TargetUrl = targeturl
+        end
+
+        def deserialize(params)
+          @StatusCode = params['StatusCode']
+          @TargetUrl = params['TargetUrl']
         end
       end
 
@@ -14273,7 +14326,7 @@ module TencentCloud
       class ServiceProvider < TencentCloud::Common::AbstractModel
         # @param AccessType: <p>BYOK类型</p>
         # @type AccessType: String
-        # @param InputModalities: <p>单个byok实例下该模型可支持的输入多模态能力列表。</p><p>枚举值：</p><ul><li>text： 支持文本输入</li><li>file： 支持文件输入（当前仅支持pdf）</li><li>image： 支持图像输入</li></ul>
+        # @param InputModalities: <p>单个byok实例下该模型可支持的输入多模态能力列表。</p><p>枚举值：</p><ul><li>text： 支持文本输入</li><li>file： 支持文件输入（当前仅支持pdf）</li><li>image： 支持图像输入</li><li>video： 支持视频输入</li></ul>
         # @type InputModalities: Array
         # @param Protocol: <p>模型协议</p>
         # @type Protocol: String
@@ -14498,7 +14551,7 @@ module TencentCloud
         # @type ServiceProviderName: String
         # @param ModelProvider: <p>模型供应商</p>
         # @type ModelProvider: String
-        # @param InputModalities: <p>该byok实例下该模型可支持的输入多模态能力列表。</p><p>枚举值：</p><ul><li>text： 支持文本输入</li><li>file： 支持文件输入（当前仅支持pdf）</li><li>image： 支持图像输入</li></ul>
+        # @param InputModalities: <p>该byok实例下该模型可支持的输入多模态能力列表。</p><p>枚举值：</p><ul><li>text： 支持文本输入</li><li>file： 支持文件输入（当前仅支持pdf）</li><li>image： 支持图像输入</li><li>video： 支持视频输入</li></ul>
         # @type InputModalities: Array
 
         attr_accessor :ServiceProviderId, :ServiceProviderName, :ModelProvider, :InputModalities
@@ -14893,7 +14946,7 @@ module TencentCloud
       class StickyConfig < TencentCloud::Common::AbstractModel
         # @param Enabled: <p>是否开启粘连路由</p>
         # @type Enabled: Boolean
-        # @param TimeoutSeconds: <p>会话粘性的超时时间（秒），取值范围 1–86400。创建时默认为 1800；修改时若不设置该字段，则保留原有值。</p><p>取值范围：[1, 86400]</p><p>单位：秒</p><p>默认值：1800</p>
+        # @param TimeoutSeconds: <p>会话粘性的超时时间（秒），取值范围 180–86400。创建时默认为 1800；修改时若不设置该字段，则保留原有值。</p><p>取值范围：[180, 21600]</p><p>单位：秒</p><p>默认值：1800</p>
         # @type TimeoutSeconds: Integer
 
         attr_accessor :Enabled, :TimeoutSeconds
@@ -15487,7 +15540,7 @@ module TencentCloud
       class TestModelInputModalitiesResponse < TencentCloud::Common::AbstractModel
         # @param Model: <p>探测的模型</p>
         # @type Model: String
-        # @param SupportedModalities: <p>该模型确认支持的输入模态列表</p><p>枚举值：</p><ul><li>text： 支持文本输入</li><li>image： 支持图像输入</li><li>file： 支持文件输入（当前仅支持pdf）</li></ul><p>收到上游大模型对于输入模态的响应即为“确认支持”</p>
+        # @param SupportedModalities: <p>该模型确认支持的输入模态列表</p><p>枚举值：</p><ul><li>text： 支持文本输入</li><li>image： 支持图像输入</li><li>file： 支持文件输入（当前仅支持pdf）</li><li>video： 支持视频输入</li></ul><p>收到上游大模型对于输入模态的响应即为“确认支持”</p>
         # @type SupportedModalities: Array
         # @param ProbeDetails: <p>每个待探测模态的详细请求结果</p>
         # @type ProbeDetails: Array

@@ -321,6 +321,50 @@ module TencentCloud
         end
       end
 
+      # CreateService请求参数结构体
+      class CreateServiceRequest < TencentCloud::Common::AbstractModel
+        # @param PayMode: <p>仅支持 PostPay，区分大小写</p><p>枚举值：</p><ul><li>PostPay： 后付费 按量计费模式</li></ul><p>仅支持 PostPay，区分大小写</p>
+        # @type PayMode: String
+        # @param ClientToken: <p>客户端生成的创建请求标识。同一次逻辑创建发生重试时，须使用相同的值。</p><p>参数格式：1～64 个可见 ASCII 字符（! 至 ~）。</p><p>入参限制：必填；不能含空格、中文或控制字符。建议使用 ssm-&lt;UUID&gt;，不要包含密钥或个人信息。</p><p>默认值：留空，由调用方生成；不要设置固定默认值。</p><p>SSM 将其透传给计费侧，不存储或返回。订单状态不明时先核单，再决定是否用原值重试。</p>
+        # @type ClientToken: String
+
+        attr_accessor :PayMode, :ClientToken
+
+        def initialize(paymode=nil, clienttoken=nil)
+          @PayMode = paymode
+          @ClientToken = clienttoken
+        end
+
+        def deserialize(params)
+          @PayMode = params['PayMode']
+          @ClientToken = params['ClientToken']
+        end
+      end
+
+      # CreateService返回参数结构体
+      class CreateServiceResponse < TencentCloud::Common::AbstractModel
+        # @param ResourceId: <p>义SSM 服务资源 ID，供调用方保存并标识该服务资源。</p><p>参数格式：一期后付费为 ssm_ 加 AppId，如 ssm_1250000000。</p><p>默认值：留空。</p><p>返回时资源可能仍在发货，不代表服务已可用。</p>
+        # @type ResourceId: String
+        # @param OrderId: <p>计费交易订单号，用于核对本次开通订单</p><p>参数格式：留空；不承诺固定长度或纯数字格式。</p><p>默认值：留空。</p><p>来自计费返回的订单号；订单形成不代表发货完成。</p>
+        # @type OrderId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ResourceId, :OrderId, :RequestId
+
+        def initialize(resourceid=nil, orderid=nil, requestid=nil)
+          @ResourceId = resourceid
+          @OrderId = orderid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @OrderId = params['OrderId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteSecret请求参数结构体
       class DeleteSecretRequest < TencentCloud::Common::AbstractModel
         # @param SecretName: <p>指定需要删除的凭据名称。</p>

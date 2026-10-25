@@ -1390,6 +1390,50 @@ module TencentCloud
         end
       end
 
+      # X509证书信息
+      class CertInfo < TencentCloud::Common::AbstractModel
+        # @param CertName: <p>证书名称</p>
+        # @type CertName: String
+        # @param CertSN: <p>证书序列号</p>
+        # @type CertSN: String
+        # @param IssuerName: <p>证书颁发者名称（颁发机构的 CN）</p>
+        # @type IssuerName: String
+        # @param Subject: <p>证书主题，即证书持有者信息</p>
+        # @type Subject: String
+        # @param CreateTime: <p>证书创建时间，Unix 时间戳，</p><p>单位：秒</p>
+        # @type CreateTime: Integer
+        # @param EffectiveTime: <p>证书生效时间，Unix 时间戳，</p><p>单位：秒</p>
+        # @type EffectiveTime: Integer
+        # @param ExpireTime: <p>证书过期时间，Unix 时间戳，</p><p>单位：秒</p>
+        # @type ExpireTime: Integer
+        # @param CertText: <p>证书内容，PEM 格式文本</p>
+        # @type CertText: String
+
+        attr_accessor :CertName, :CertSN, :IssuerName, :Subject, :CreateTime, :EffectiveTime, :ExpireTime, :CertText
+
+        def initialize(certname=nil, certsn=nil, issuername=nil, subject=nil, createtime=nil, effectivetime=nil, expiretime=nil, certtext=nil)
+          @CertName = certname
+          @CertSN = certsn
+          @IssuerName = issuername
+          @Subject = subject
+          @CreateTime = createtime
+          @EffectiveTime = effectivetime
+          @ExpireTime = expiretime
+          @CertText = certtext
+        end
+
+        def deserialize(params)
+          @CertName = params['CertName']
+          @CertSN = params['CertSN']
+          @IssuerName = params['IssuerName']
+          @Subject = params['Subject']
+          @CreateTime = params['CreateTime']
+          @EffectiveTime = params['EffectiveTime']
+          @ExpireTime = params['ExpireTime']
+          @CertText = params['CertText']
+        end
+      end
+
       # ChangeP2PRoute请求参数结构体
       class ChangeP2PRouteRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品ID
@@ -2265,26 +2309,28 @@ module TencentCloud
 
       # CreateDevice请求参数结构体
       class CreateDeviceRequest < TencentCloud::Common::AbstractModel
-        # @param ProductId: 产品ID。
+        # @param ProductId: <p>产品ID。</p>
         # @type ProductId: String
-        # @param DeviceName: 设备名称。命名规则：[a-zA-Z0-9:_-]{1,48}。
+        # @param DeviceName: <p>设备名称。命名规则：[a-zA-Z0-9:_-]{1,48}。</p>
         # @type DeviceName: String
-        # @param DevAddr: LoRaWAN 设备地址
+        # @param DevAddr: <p>LoRaWAN 设备地址</p>
         # @type DevAddr: String
-        # @param AppKey: LoRaWAN 应用密钥
+        # @param AppKey: <p>LoRaWAN 应用密钥</p>
         # @type AppKey: String
-        # @param DevEUI: LoRaWAN 设备唯一标识
+        # @param DevEUI: <p>LoRaWAN 设备唯一标识</p>
         # @type DevEUI: String
-        # @param AppSKey: LoRaWAN 应用会话密钥
+        # @param AppSKey: <p>LoRaWAN 应用会话密钥</p>
         # @type AppSKey: String
-        # @param NwkSKey: LoRaWAN 网络会话密钥
+        # @param NwkSKey: <p>LoRaWAN 网络会话密钥</p>
         # @type NwkSKey: String
-        # @param DefinedPsk: 手动指定设备的PSK密钥
+        # @param DefinedPsk: <p>手动指定设备的PSK密钥</p>
         # @type DefinedPsk: String
+        # @param TlsCrt: <p>设备证书。第三方CA证书认证的产品下必填；腾讯云CA证书产品传入会报错；非证书认证产品传入会被忽略</p>
+        # @type TlsCrt: String
 
-        attr_accessor :ProductId, :DeviceName, :DevAddr, :AppKey, :DevEUI, :AppSKey, :NwkSKey, :DefinedPsk
+        attr_accessor :ProductId, :DeviceName, :DevAddr, :AppKey, :DevEUI, :AppSKey, :NwkSKey, :DefinedPsk, :TlsCrt
 
-        def initialize(productid=nil, devicename=nil, devaddr=nil, appkey=nil, deveui=nil, appskey=nil, nwkskey=nil, definedpsk=nil)
+        def initialize(productid=nil, devicename=nil, devaddr=nil, appkey=nil, deveui=nil, appskey=nil, nwkskey=nil, definedpsk=nil, tlscrt=nil)
           @ProductId = productid
           @DeviceName = devicename
           @DevAddr = devaddr
@@ -2293,6 +2339,7 @@ module TencentCloud
           @AppSKey = appskey
           @NwkSKey = nwkskey
           @DefinedPsk = definedpsk
+          @TlsCrt = tlscrt
         end
 
         def deserialize(params)
@@ -2304,12 +2351,13 @@ module TencentCloud
           @AppSKey = params['AppSKey']
           @NwkSKey = params['NwkSKey']
           @DefinedPsk = params['DefinedPsk']
+          @TlsCrt = params['TlsCrt']
         end
       end
 
       # CreateDevice返回参数结构体
       class CreateDeviceResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 设备参数描述。
+        # @param Data: <p>设备参数描述。</p>
         # @type Data: :class:`Tencentcloud::Iotexplorer.v20190423.models.DeviceData`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2923,6 +2971,46 @@ module TencentCloud
         end
       end
 
+      # CreatePrivateCA请求参数结构体
+      class CreatePrivateCARequest < TencentCloud::Common::AbstractModel
+        # @param CertName: <p>证书名称，长度 1~32 个字符。</p>
+        # @type CertName: String
+        # @param CertText: <p>证书内容，PEM 格式文本，需为 CA 证书。</p>
+        # @type CertText: String
+        # @param VerifyCertText: <p>验证证书内容，PEM 格式文本。须由所上传的 CA 签发，且 CN 为 sha256(&quot;iothub_主账号Uin&quot;) 的小写十六进制值，用于验证您持有 CA 私钥。</p>
+        # @type VerifyCertText: String
+
+        attr_accessor :CertName, :CertText, :VerifyCertText
+
+        def initialize(certname=nil, certtext=nil, verifycerttext=nil)
+          @CertName = certname
+          @CertText = certtext
+          @VerifyCertText = verifycerttext
+        end
+
+        def deserialize(params)
+          @CertName = params['CertName']
+          @CertText = params['CertText']
+          @VerifyCertText = params['VerifyCertText']
+        end
+      end
+
+      # CreatePrivateCA返回参数结构体
+      class CreatePrivateCAResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateProject请求参数结构体
       class CreateProjectRequest < TencentCloud::Common::AbstractModel
         # @param ProjectName: 项目名称
@@ -2972,30 +3060,32 @@ module TencentCloud
 
       # CreateStudioProduct请求参数结构体
       class CreateStudioProductRequest < TencentCloud::Common::AbstractModel
-        # @param ProductName: 产品名称，名称不能和已经存在的产品名称重复。命名规则：[a-zA-Z0-9:_-]{1,32}
+        # @param ProductName: <p>产品名称，名称不能和已经存在的产品名称重复。命名规则：[a-zA-Z0-9:_-]{1,32}</p>
         # @type ProductName: String
-        # @param CategoryId: 产品分组模板ID , ( 自定义模板填写1 , 控制台调用会使用预置的其他ID)
+        # @param CategoryId: <p>产品分组模板ID , ( 自定义模板填写1 , 控制台调用会使用预置的其他ID)</p>
         # @type CategoryId: Integer
-        # @param ProductType: 产品类型 填写 ( 0 普通产品 ， 5 网关产品)
+        # @param ProductType: <p>产品类型 填写 ( 0 普通产品 ， 5 网关产品)</p>
         # @type ProductType: Integer
-        # @param EncryptionType: 加密类型 ，1表示证书认证，2表示密钥认证，21表示TID认证-SE方式，22表示TID认证-软加固方式
+        # @param EncryptionType: <p>设备认证方式 ，1表示证书认证，2表示密钥认证</p><p>枚举值：</p><ul><li>1： 证书认证(X.509证书认证)</li><li>2： 密钥认证</li></ul>
         # @type EncryptionType: String
-        # @param NetType: 连接类型 可以填写 wifi、wifi-ble、cellular、5g、lorawan、ble、ethernet、wifi-ethernet、else、sub_zigbee、sub_ble、sub_433mhz、sub_else、sub_blemesh
+        # @param NetType: <p>连接类型 可以填写 wifi、wifi-ble、cellular、5g、lorawan、ble、ethernet、wifi-ethernet、else、sub_zigbee、sub_ble、sub_433mhz、sub_else、sub_blemesh</p>
         # @type NetType: String
-        # @param DataProtocol: 数据协议 (1 使用物模型 2 为自定义)
+        # @param DataProtocol: <p>数据协议 (1 使用物模型，即使用腾讯云物联网开发平台制定的物模型协议 2 自定义透传，即用户自由定义MQTT协议Payload部分)</p>
         # @type DataProtocol: Integer
-        # @param ProductDesc: 产品描述
+        # @param ProductDesc: <p>产品描述</p>
         # @type ProductDesc: String
-        # @param ProjectId: 产品的项目ID
+        # @param ProjectId: <p>产品所在的项目ID，可从产品管理页的当前URL中获取project_id的值</p>
         # @type ProjectId: String
-        # @param Rate: 平均传输速率
+        # @param Rate: <p>平均传输速率</p>
         # @type Rate: String
-        # @param Period: 期限
+        # @param Period: <p>期限</p>
         # @type Period: String
+        # @param PrivateCAName: <p>第三方CA证书名称。空/不传 = 腾讯云默认CA证书；非空 = 使用该证书（须为当前账号已上传的 CA，不存在会报错）</p>
+        # @type PrivateCAName: String
 
-        attr_accessor :ProductName, :CategoryId, :ProductType, :EncryptionType, :NetType, :DataProtocol, :ProductDesc, :ProjectId, :Rate, :Period
+        attr_accessor :ProductName, :CategoryId, :ProductType, :EncryptionType, :NetType, :DataProtocol, :ProductDesc, :ProjectId, :Rate, :Period, :PrivateCAName
 
-        def initialize(productname=nil, categoryid=nil, producttype=nil, encryptiontype=nil, nettype=nil, dataprotocol=nil, productdesc=nil, projectid=nil, rate=nil, period=nil)
+        def initialize(productname=nil, categoryid=nil, producttype=nil, encryptiontype=nil, nettype=nil, dataprotocol=nil, productdesc=nil, projectid=nil, rate=nil, period=nil, privatecaname=nil)
           @ProductName = productname
           @CategoryId = categoryid
           @ProductType = producttype
@@ -3006,6 +3096,7 @@ module TencentCloud
           @ProjectId = projectid
           @Rate = rate
           @Period = period
+          @PrivateCAName = privatecaname
         end
 
         def deserialize(params)
@@ -3019,12 +3110,13 @@ module TencentCloud
           @ProjectId = params['ProjectId']
           @Rate = params['Rate']
           @Period = params['Period']
+          @PrivateCAName = params['PrivateCAName']
         end
       end
 
       # CreateStudioProduct返回参数结构体
       class CreateStudioProductResponse < TencentCloud::Common::AbstractModel
-        # @param Product: 产品描述
+        # @param Product: <p>产品描述</p>
         # @type Product: :class:`Tencentcloud::Iotexplorer.v20190423.models.ProductEntry`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4510,6 +4602,70 @@ module TencentCloud
 
       # DeletePositionSpace返回参数结构体
       class DeletePositionSpaceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeletePrivateCA请求参数结构体
+      class DeletePrivateCARequest < TencentCloud::Common::AbstractModel
+        # @param CertName: <p>证书名称。</p>
+        # @type CertName: String
+
+        attr_accessor :CertName
+
+        def initialize(certname=nil)
+          @CertName = certname
+        end
+
+        def deserialize(params)
+          @CertName = params['CertName']
+        end
+      end
+
+      # DeletePrivateCA返回参数结构体
+      class DeletePrivateCAResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteProductPrivateCA请求参数结构体
+      class DeleteProductPrivateCARequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: <p>产品ID</p>
+        # @type ProductId: String
+
+        attr_accessor :ProductId
+
+        def initialize(productid=nil)
+          @ProductId = productid
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+        end
+      end
+
+      # DeleteProductPrivateCA返回参数结构体
+      class DeleteProductPrivateCAResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -7897,6 +8053,177 @@ module TencentCloud
             end
           end
           @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePrivateCABindedProducts请求参数结构体
+      class DescribePrivateCABindedProductsRequest < TencentCloud::Common::AbstractModel
+        # @param CertName: <p>证书名称，长度 1~32 个字符。</p>
+        # @type CertName: String
+        # @param Offset: <p>分页偏移量。</p><p>取值范围：[0, 5000000]</p>
+        # @type Offset: Integer
+        # @param Limit: <p>单次返回的数量。</p><p>取值范围：[1, 200]</p>
+        # @type Limit: Integer
+
+        attr_accessor :CertName, :Offset, :Limit
+
+        def initialize(certname=nil, offset=nil, limit=nil)
+          @CertName = certname
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @CertName = params['CertName']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribePrivateCABindedProducts返回参数结构体
+      class DescribePrivateCABindedProductsResponse < TencentCloud::Common::AbstractModel
+        # @param Products: <p>绑定了该 CA 证书的产品列表。</p>
+        # @type Products: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Products, :RequestId
+
+        def initialize(products=nil, requestid=nil)
+          @Products = products
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Products'].nil?
+            @Products = []
+            params['Products'].each do |i|
+              privatecabindproductinfo_tmp = PrivateCABindProductInfo.new
+              privatecabindproductinfo_tmp.deserialize(i)
+              @Products << privatecabindproductinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePrivateCA请求参数结构体
+      class DescribePrivateCARequest < TencentCloud::Common::AbstractModel
+        # @param CertName: <p>证书名称。</p>
+        # @type CertName: String
+
+        attr_accessor :CertName
+
+        def initialize(certname=nil)
+          @CertName = certname
+        end
+
+        def deserialize(params)
+          @CertName = params['CertName']
+        end
+      end
+
+      # DescribePrivateCA返回参数结构体
+      class DescribePrivateCAResponse < TencentCloud::Common::AbstractModel
+        # @param CA: <p>CA 证书信息。</p>
+        # @type CA: :class:`Tencentcloud::Iotexplorer.v20190423.models.CertInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CA, :RequestId
+
+        def initialize(ca=nil, requestid=nil)
+          @CA = ca
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CA'].nil?
+            @CA = CertInfo.new
+            @CA.deserialize(params['CA'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePrivateCAs请求参数结构体
+      class DescribePrivateCAsRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribePrivateCAs返回参数结构体
+      class DescribePrivateCAsResponse < TencentCloud::Common::AbstractModel
+        # @param CAs: <p>产品绑定的 CA 证书信息列表。产品绑定了第三方 CA 时,返回该 CA 的证书信息;产品未绑定第三方 CA 时,返回平台默认 CA;产品未绑定 CA 时为空数组。</p>
+        # @type CAs: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CAs, :RequestId
+
+        def initialize(cas=nil, requestid=nil)
+          @CAs = cas
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CAs'].nil?
+            @CAs = []
+            params['CAs'].each do |i|
+              certinfo_tmp = CertInfo.new
+              certinfo_tmp.deserialize(i)
+              @CAs << certinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeProductCA请求参数结构体
+      class DescribeProductCARequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: <p>产品ID。</p>
+        # @type ProductId: String
+
+        attr_accessor :ProductId
+
+        def initialize(productid=nil)
+          @ProductId = productid
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+        end
+      end
+
+      # DescribeProductCA返回参数结构体
+      class DescribeProductCAResponse < TencentCloud::Common::AbstractModel
+        # @param CAs: <p>产品绑定的 CA 证书信息列表。产品绑定了第三方 CA 时,返回该 CA 的证书信息;产品未绑定第三方 CA 时,返回平台默认 CA;产品未绑定 CA 时为空数组。</p>
+        # @type CAs: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CAs, :RequestId
+
+        def initialize(cas=nil, requestid=nil)
+          @CAs = cas
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CAs'].nil?
+            @CAs = []
+            params['CAs'].each do |i|
+              certinfo_tmp = CertInfo.new
+              certinfo_tmp.deserialize(i)
+              @CAs << certinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -15438,6 +15765,30 @@ module TencentCloud
         end
       end
 
+      # 子产品信息
+      class PrivateCABindProductInfo < TencentCloud::Common::AbstractModel
+        # @param ProductId: <p>产品ID</p>
+        # @type ProductId: String
+        # @param ProductName: <p>产品名</p>
+        # @type ProductName: String
+        # @param CreateTime: <p>产品创建时间</p><p>单位：秒</p>
+        # @type CreateTime: Integer
+
+        attr_accessor :ProductId, :ProductName, :CreateTime
+
+        def initialize(productid=nil, productname=nil, createtime=nil)
+          @ProductId = productid
+          @ProductName = productname
+          @CreateTime = createtime
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @ProductName = params['ProductName']
+          @CreateTime = params['CreateTime']
+        end
+      end
+
       # 产品设备位置信息
       class ProductDevicesPositionItem < TencentCloud::Common::AbstractModel
         # @param Items: 设备位置列表
@@ -15471,55 +15822,76 @@ module TencentCloud
 
       # 产品详情
       class ProductEntry < TencentCloud::Common::AbstractModel
-        # @param ProductId: 产品ID
+        # @param ProductId: <p>产品ID</p>
         # @type ProductId: String
-        # @param ProductName: 产品名称
+        # @param ProductName: <p>产品名称</p>
         # @type ProductName: String
-        # @param CategoryId: 产品分组模板ID
+        # @param CategoryId: <p>产品分组模板ID</p>
         # @type CategoryId: Integer
-        # @param EncryptionType: 加密类型。1表示证书认证，2表示密钥认证，21表示TID认证-SE方式，22表示TID认证-软加固方式
+        # @param EncryptionType: <p>加密类型。1表示证书认证，2表示密钥认证，21表示TID认证-SE方式，22表示TID认证-软加固方式</p>
         # @type EncryptionType: String
-        # @param NetType: 连接类型。如：
-        # wifi、wifi-ble、cellular、5g、lorawan、ble、ethernet、wifi-ethernet、else、sub_zigbee、sub_ble、sub_433mhz、sub_else、sub_blemesh
+        # @param NetType: <p>连接类型。如：<br>wifi、wifi-ble、cellular、5g、lorawan、ble、ethernet、wifi-ethernet、else、sub_zigbee、sub_ble、sub_433mhz、sub_else、sub_blemesh</p>
         # @type NetType: String
-        # @param DataProtocol: 数据协议 (1 使用物模型 2 为自定义类型)
+        # @param DataProtocol: <p>数据协议 (1 使用物模型 2 为自定义类型)</p>
         # @type DataProtocol: Integer
-        # @param ProductDesc: 产品描述
+        # @param ProductDesc: <p>产品描述</p>
         # @type ProductDesc: String
-        # @param DevStatus: 状态 如：all 全部, dev 开发中, audit 审核中 released 已发布
+        # @param DevStatus: <p>状态 如：all 全部, dev 开发中, audit 审核中 released 已发布</p>
         # @type DevStatus: String
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # @type CreateTime: Integer
-        # @param UpdateTime: 更新时间
+        # @param UpdateTime: <p>更新时间</p>
         # @type UpdateTime: Integer
-        # @param Region: 区域
+        # @param Region: <p>区域</p>
         # @type Region: String
-        # @param ProductType: 产品类型。如： 0 普通产品 ， 5 网关产品
+        # @param ProductType: <p>产品类型。如： 0 普通产品 ， 5 网关产品</p>
         # @type ProductType: Integer
-        # @param ProjectId: 项目ID
+        # @param ProjectId: <p>项目ID</p>
         # @type ProjectId: String
-        # @param ModuleId: 产品ModuleId
+        # @param ModuleId: <p>产品ModuleId</p>
         # @type ModuleId: Integer
-        # @param EnableProductScript: 是否使用脚本进行二进制转json功能 可以取值 true / false
+        # @param EnableProductScript: <p>是否使用脚本进行二进制转json功能 可以取值 true / false</p>
         # @type EnableProductScript: String
-        # @param CreateUserId: 创建人 UinId
+        # @param CreateUserId: <p>创建人 UinId</p>
         # @type CreateUserId: Integer
-        # @param CreatorNickName: 创建者昵称
+        # @param CreatorNickName: <p>创建者昵称</p>
         # @type CreatorNickName: String
-        # @param BindStrategy: 绑定策略（1：强踢；2：非强踢；0：表示无意义）
+        # @param BindStrategy: <p>绑定策略（1：强踢；2：非强踢；0：表示无意义）</p>
         # @type BindStrategy: Integer
-        # @param DeviceCount: 设备数量
+        # @param DeviceCount: <p>设备数量</p>
         # @type DeviceCount: Integer
-        # @param Rate: 平均传输速率
+        # @param Rate: <p>平均传输速率</p>
         # @type Rate: String
-        # @param Period: 有效期
+        # @param Period: <p>有效期</p>
         # @type Period: String
-        # @param IsInterconnection: 互联互通标识
+        # @param IsInterconnection: <p>互联互通标识</p>
         # @type IsInterconnection: Integer
+        # @param Uin: <p>UIN</p>
+        # @type Uin: String
+        # @param AppId: <p>AppID</p>
+        # @type AppId: Integer
+        # @param PrivateCAName: <p>绑定的第三方CA名称；空 = 腾讯云CA证书</p>
+        # @type PrivateCAName: String
+        # @param IsPrivateCA: <p>true = 第三方CA</p>
+        # @type IsPrivateCA: Boolean
+        # @param CertName: <p>CA 证书名称</p>
+        # @type CertName: String
+        # @param CertSN: <p>证书序列号</p>
+        # @type CertSN: String
+        # @param IssuerName: <p>颁发者</p>
+        # @type IssuerName: String
+        # @param Subject: <p>证书主题</p>
+        # @type Subject: String
+        # @param EffectiveTime: <p>生效时间（Unix 秒）</p><p>单位：秒</p>
+        # @type EffectiveTime: Integer
+        # @param ExpireTime: <p>过期时间（Unix 秒）</p><p>单位：秒</p>
+        # @type ExpireTime: Integer
+        # @param CertText: <p>CA 证书 PEM 全文</p>
+        # @type CertText: String
 
-        attr_accessor :ProductId, :ProductName, :CategoryId, :EncryptionType, :NetType, :DataProtocol, :ProductDesc, :DevStatus, :CreateTime, :UpdateTime, :Region, :ProductType, :ProjectId, :ModuleId, :EnableProductScript, :CreateUserId, :CreatorNickName, :BindStrategy, :DeviceCount, :Rate, :Period, :IsInterconnection
+        attr_accessor :ProductId, :ProductName, :CategoryId, :EncryptionType, :NetType, :DataProtocol, :ProductDesc, :DevStatus, :CreateTime, :UpdateTime, :Region, :ProductType, :ProjectId, :ModuleId, :EnableProductScript, :CreateUserId, :CreatorNickName, :BindStrategy, :DeviceCount, :Rate, :Period, :IsInterconnection, :Uin, :AppId, :PrivateCAName, :IsPrivateCA, :CertName, :CertSN, :IssuerName, :Subject, :EffectiveTime, :ExpireTime, :CertText
 
-        def initialize(productid=nil, productname=nil, categoryid=nil, encryptiontype=nil, nettype=nil, dataprotocol=nil, productdesc=nil, devstatus=nil, createtime=nil, updatetime=nil, region=nil, producttype=nil, projectid=nil, moduleid=nil, enableproductscript=nil, createuserid=nil, creatornickname=nil, bindstrategy=nil, devicecount=nil, rate=nil, period=nil, isinterconnection=nil)
+        def initialize(productid=nil, productname=nil, categoryid=nil, encryptiontype=nil, nettype=nil, dataprotocol=nil, productdesc=nil, devstatus=nil, createtime=nil, updatetime=nil, region=nil, producttype=nil, projectid=nil, moduleid=nil, enableproductscript=nil, createuserid=nil, creatornickname=nil, bindstrategy=nil, devicecount=nil, rate=nil, period=nil, isinterconnection=nil, uin=nil, appid=nil, privatecaname=nil, isprivateca=nil, certname=nil, certsn=nil, issuername=nil, subject=nil, effectivetime=nil, expiretime=nil, certtext=nil)
           @ProductId = productid
           @ProductName = productname
           @CategoryId = categoryid
@@ -15542,6 +15914,17 @@ module TencentCloud
           @Rate = rate
           @Period = period
           @IsInterconnection = isinterconnection
+          @Uin = uin
+          @AppId = appid
+          @PrivateCAName = privatecaname
+          @IsPrivateCA = isprivateca
+          @CertName = certname
+          @CertSN = certsn
+          @IssuerName = issuername
+          @Subject = subject
+          @EffectiveTime = effectivetime
+          @ExpireTime = expiretime
+          @CertText = certtext
         end
 
         def deserialize(params)
@@ -15567,6 +15950,17 @@ module TencentCloud
           @Rate = params['Rate']
           @Period = params['Period']
           @IsInterconnection = params['IsInterconnection']
+          @Uin = params['Uin']
+          @AppId = params['AppId']
+          @PrivateCAName = params['PrivateCAName']
+          @IsPrivateCA = params['IsPrivateCA']
+          @CertName = params['CertName']
+          @CertSN = params['CertSN']
+          @IssuerName = params['IssuerName']
+          @Subject = params['Subject']
+          @EffectiveTime = params['EffectiveTime']
+          @ExpireTime = params['ExpireTime']
+          @CertText = params['CertText']
         end
       end
 
@@ -19887,6 +20281,82 @@ module TencentCloud
 
       # UpdateOtaTaskStatus返回参数结构体
       class UpdateOtaTaskStatusResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdatePrivateCA请求参数结构体
+      class UpdatePrivateCARequest < TencentCloud::Common::AbstractModel
+        # @param CertName: <p>证书名称。</p>
+        # @type CertName: String
+        # @param CertText: <p>证书内容，PEM 格式文本，需为 CA 证书。</p>
+        # @type CertText: String
+        # @param VerifyCertText: <p>验证证书内容，PEM 格式文本。须由所上传的 CA 签发，且 CN 为 sha256(&quot;iothub_主账号Uin&quot;) 的小写十六进制值，用于验证您持有 CA 私钥。</p>
+        # @type VerifyCertText: String
+
+        attr_accessor :CertName, :CertText, :VerifyCertText
+
+        def initialize(certname=nil, certtext=nil, verifycerttext=nil)
+          @CertName = certname
+          @CertText = certtext
+          @VerifyCertText = verifycerttext
+        end
+
+        def deserialize(params)
+          @CertName = params['CertName']
+          @CertText = params['CertText']
+          @VerifyCertText = params['VerifyCertText']
+        end
+      end
+
+      # UpdatePrivateCA返回参数结构体
+      class UpdatePrivateCAResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateProductPrivateCA请求参数结构体
+      class UpdateProductPrivateCARequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: <p>产品ID。</p>
+        # @type ProductId: String
+        # @param CertName: <p>证书名称，长度 1~32 个字符。</p>
+        # @type CertName: String
+
+        attr_accessor :ProductId, :CertName
+
+        def initialize(productid=nil, certname=nil)
+          @ProductId = productid
+          @CertName = certname
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @CertName = params['CertName']
+        end
+      end
+
+      # UpdateProductPrivateCA返回参数结构体
+      class UpdateProductPrivateCAResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

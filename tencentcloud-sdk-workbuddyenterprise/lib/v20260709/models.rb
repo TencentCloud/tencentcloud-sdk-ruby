@@ -422,44 +422,47 @@ module TencentCloud
 
       # 连接器详情（主表 + 最新版本展开）。
       class ConnectorInfo < TencentCloud::Common::AbstractModel
-        # @param ConnectorId: 连接器 ID
+        # @param ConnectorId: <p>连接器 ID</p>
         # @type ConnectorId: String
-        # @param ConnectorSlug: 连接器短标识（终身不变，跨版本稳定）
+        # @param ConnectorSlug: <p>连接器短标识（终身不变，跨版本稳定）</p>
         # @type ConnectorSlug: String
-        # @param ConnectorKey: 版本级连接器密钥
+        # @param ConnectorKey: <p>版本级连接器密钥</p>
         # @type ConnectorKey: String
-        # @param Name: 连接器名称
+        # @param Name: <p>连接器名称</p>
         # @type Name: String
-        # @param Description: 连接器描述
+        # @param Description: <p>连接器描述</p>
         # @type Description: String
-        # @param AvatarUrl: 头像 URL
+        # @param AvatarUrl: <p>头像 URL</p>
         # @type AvatarUrl: String
-        # @param Source: 连接器来源：ENTERPRISE_AGENT / ASSISTANT
+        # @param Source: <p>连接器来源：ENTERPRISE_AGENT / ASSISTANT</p>
         # @type Source: String
-        # @param EnterpriseId: 归属企业 ID
+        # @param EnterpriseId: <p>归属企业 ID</p>
         # @type EnterpriseId: String
-        # @param Type: 连接器类型：MCP_SERVER / A2A / API_SERVICE
+        # @param Type: <p>连接器类型：MCP_SERVER / A2A / API_SERVICE</p>
         # @type Type: String
-        # @param ServiceUrl: 上游服务地址
+        # @param ServiceUrl: <p>上游服务地址</p>
         # @type ServiceUrl: String
-        # @param AuthModes: 授权方式列表：NONE / ONEID / OAUTH2_IDP / API_KEY
+        # @param AuthModes: <p>授权方式列表：NONE / ONEID / OAUTH2_IDP / API_KEY / DYNAMIC_API_KEY。DYNAMIC_API_KEY 表示按每轮请求提供的动态字段，通过 HeaderMappings 注入出站 HTTP Header。</p>
         # @type AuthModes: Array
-        # @param LatestVersionNo: 最新版本号
+        # @param LatestVersionNo: <p>最新版本号</p>
         # @type LatestVersionNo: Integer
-        # @param Status: 连接器状态：ACTIVE / DISABLED
+        # @param Status: <p>连接器状态：ACTIVE / DISABLED</p>
         # @type Status: String
-        # @param CreatorId: 创建人 ID
+        # @param CreatorId: <p>创建人 ID</p>
         # @type CreatorId: String
-        # @param CreatedTime: 创建时间（ISO8601，UTC）
+        # @param CreatedTime: <p>创建时间（ISO8601，UTC）</p>
         # @type CreatedTime: String
-        # @param ModifiedTime: 最后修改时间（ISO8601，UTC）
+        # @param ModifiedTime: <p>最后修改时间（ISO8601，UTC）</p>
         # @type ModifiedTime: String
-        # @param VpcConfigId: VPC 网络配置 ID。为空表示该连接器通过公网访问 ServiceUrl。仅绑定 VPC 网络配置时本字段有值。
+        # @param VpcConfigId: <p>VPC 网络配置 ID。为空表示该连接器通过公网访问 ServiceUrl。仅绑定 VPC 网络配置时本字段有值。</p>
         # @type VpcConfigId: String
+        # @param DisplayName: <p>展示名：console 老连接器目录（DescribeConsoleConnectorList）下发，取 registry data.display_name，老数据缺失时回落 Name；云上目录无独立展示名，省略不返回。Name 是存储名/选型回写键（含 scope 前缀），不承担展示职责。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DisplayName: String
 
-        attr_accessor :ConnectorId, :ConnectorSlug, :ConnectorKey, :Name, :Description, :AvatarUrl, :Source, :EnterpriseId, :Type, :ServiceUrl, :AuthModes, :LatestVersionNo, :Status, :CreatorId, :CreatedTime, :ModifiedTime, :VpcConfigId
+        attr_accessor :ConnectorId, :ConnectorSlug, :ConnectorKey, :Name, :Description, :AvatarUrl, :Source, :EnterpriseId, :Type, :ServiceUrl, :AuthModes, :LatestVersionNo, :Status, :CreatorId, :CreatedTime, :ModifiedTime, :VpcConfigId, :DisplayName
 
-        def initialize(connectorid=nil, connectorslug=nil, connectorkey=nil, name=nil, description=nil, avatarurl=nil, source=nil, enterpriseid=nil, type=nil, serviceurl=nil, authmodes=nil, latestversionno=nil, status=nil, creatorid=nil, createdtime=nil, modifiedtime=nil, vpcconfigid=nil)
+        def initialize(connectorid=nil, connectorslug=nil, connectorkey=nil, name=nil, description=nil, avatarurl=nil, source=nil, enterpriseid=nil, type=nil, serviceurl=nil, authmodes=nil, latestversionno=nil, status=nil, creatorid=nil, createdtime=nil, modifiedtime=nil, vpcconfigid=nil, displayname=nil)
           @ConnectorId = connectorid
           @ConnectorSlug = connectorslug
           @ConnectorKey = connectorkey
@@ -477,6 +480,7 @@ module TencentCloud
           @CreatedTime = createdtime
           @ModifiedTime = modifiedtime
           @VpcConfigId = vpcconfigid
+          @DisplayName = displayname
         end
 
         def deserialize(params)
@@ -497,6 +501,7 @@ module TencentCloud
           @CreatedTime = params['CreatedTime']
           @ModifiedTime = params['ModifiedTime']
           @VpcConfigId = params['VpcConfigId']
+          @DisplayName = params['DisplayName']
         end
       end
 

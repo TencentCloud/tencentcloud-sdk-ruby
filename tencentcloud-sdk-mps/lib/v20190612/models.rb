@@ -5858,7 +5858,7 @@ module TencentCloud
       class AigcImageExtraParam < TencentCloud::Common::AbstractModel
         # @param AspectRatio: <p>指定所生成视频的宽高比。</p><p>不同模型支持的宽高比:</p><ol><li>Kling 2.1支持：16:9、9:16、1:1、4:3、3:4、3:2、2:3、21:9。</li><li>Kling 3.0支持：16:9、9:16、1:1、4:3、3:4、3:2、2:3、21:9。</li><li>Kling 3.0-Omni支持：16:9、9:16、1:1、4:3、3:4、3:2、2:3、21:9。</li><li>Kling O1支持：16:9、9:16、1:1、4:3、3:4、3:2、2:3、21:9。</li><li>Vidu q2支持：16:9、9:16、1:1、3:4、4:3、21:9、2:3、3:2。</li><li>MJ v7的宽高比需要在 prompt 中进行指定。</li></ol><p>注：具体模型的宽高比参数，可查看相应模型官网获取更完整描述。</p>
         # @type AspectRatio: String
-        # @param Resolution: <p>指定图片输出分辨率。</p><p>支持该参数的模型：<br>支持选择: 720P, 1080P, 2K, 4K。</p>
+        # @param Resolution: <p>指定图片输出分辨率。</p><p>支持该参数的模型：<br>支持选择: 720P, 1080P, 2K, 4K。</p><ol><li>wand-vega-image模型支持的分辨率:1K, 2K, 4K。</li></ol>
         # @type Resolution: String
         # @param LogoAdd: <p>是否添加图标水印。默认不加。1-添加，0-不添加。</p><p>取值范围：[0, 1]</p><p>默认值：0</p>
         # @type LogoAdd: Integer
@@ -9606,9 +9606,9 @@ module TencentCloud
 
       # CreateAigcImageTask请求参数结构体
       class CreateAigcImageTaskRequest < TencentCloud::Common::AbstractModel
-        # @param ModelName: <p>模型名称。当前支持的模型列表：Hunyuan，Qwen，Vidu，Kling。</p>
+        # @param ModelName: <p>模型名称。当前支持的模型列表：Hunyuan，Qwen，Vidu，Kling，wand-vega-image。</p>
         # @type ModelName: String
-        # @param ModelVersion: <p>指定模型特定版本号。默认使用系统当前所支持的模型稳定版本。</p><ol><li>Hunyuan，可选 [3.5-preview、3.0]。</li><li>Vidu，可选 [q2]。</li><li>Kling，可选 [2.1、O1、3.0、3.0-Omni]。</li><li>Qwen，可选 [0925]。</li></ol>
+        # @param ModelVersion: <p>指定模型特定版本号。默认使用系统当前所支持的模型稳定版本。</p><ol><li>Hunyuan，可选 [3.5-preview、3.0]。</li><li>Vidu，可选 [q2]。</li><li>Kling，可选 [2.1、O1、3.0、3.0-Omni]。</li><li>Qwen，可选 [0925]。</li><li>wand-vega-image，可选[1.0-lite, 1.0-flash, 1.0-pro]。</li></ol>
         # @type ModelVersion: String
         # @param SceneType: <p>场景化生图使用，仅部分模型支持。</p><p>枚举值：</p><ul><li>3d_panorama： 全景图。仅Hunyuan支持。</li></ul>
         # @type SceneType: String
@@ -9618,7 +9618,7 @@ module TencentCloud
         # @type NegativePrompt: String
         # @param EnhancePrompt: <p>默认取值为False，模型会严格地遵循指令。<br>如果需要更精细的prompt获得最佳效果，可将此参数设置为True，将自动优化传入的prompt，以提升生成质量。</p>
         # @type EnhancePrompt: Boolean
-        # @param ImageInfos: <p>用于传入参考的资源图片信息，默认支持传入一张图片。</p><p>支持多图输入的模型：</p><ol><li>Kling 2.1，可支持最多 4 张图片输入作为资源图。</li><li>Kling 3.0-Omni，可支持最多 10 张图片输入作为资源图。</li><li>Kling O1，可支持最多 10 张图片输入作为资源图。</li><li>Vidu q2，可支持最多 7 张图片输入作为资源图。</li><li>Hunyuan 3.5-preview 可最多支持5张参数图，3.0 可支持最多 3 张图片输入作为资源图。</li></ol><p>注意：</p><ol><li>推荐图片小于7M，各模型限制不同。</li><li>图片格式支持：jpeg, png, webp。</li></ol>
+        # @param ImageInfos: <p>用于传入参考的资源图片信息，默认支持传入一张图片。</p><p>支持多图输入的模型：</p><ol><li>Kling 2.1，可支持最多 4 张图片输入作为资源图。</li><li>Kling 3.0-Omni，可支持最多 10 张图片输入作为资源图。</li><li>Kling O1，可支持最多 10 张图片输入作为资源图。</li><li>Vidu q2，可支持最多 7 张图片输入作为资源图。</li><li>Hunyuan 3.5-preview 可最多支持5张参数图，3.0 可支持最多 3 张图片输入作为资源图。</li><li>wand-vega-image 最多支持10张，每张大小不超过20M。</li></ol><p>注意：</p><ol><li>推荐图片小于7M，各模型限制不同。</li><li>图片格式支持：jpeg, png, webp。</li></ol>
         # @type ImageInfos: Array
         # @param OutputImageCount: <p>指定图片输出张数。目前默认支持输出 1 张。</p>
         # @type OutputImageCount: Integer

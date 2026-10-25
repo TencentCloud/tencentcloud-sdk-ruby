@@ -1394,10 +1394,8 @@ module TencentCloud
         # @param IpComparisonSymbol: In: 指定的ip可以下载； NotIn: 指定的ip不可以下载
         # @type IpComparisonSymbol: String
         # @param LimitVpcs: 限制下载的vpc设置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LimitVpcs: Array
         # @param LimitIps: 限制下载的ip设置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LimitIps: Array
 
         attr_accessor :LimitType, :VpcComparisonSymbol, :IpComparisonSymbol, :LimitVpcs, :LimitIps
@@ -7514,11 +7512,11 @@ module TencentCloud
 
       # DescribeBackupDownloadUrl请求参数结构体
       class DescribeBackupDownloadUrlRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: <p>集群ID</p>
         # @type ClusterId: String
-        # @param BackupId: 备份ID
+        # @param BackupId: <p>备份ID</p>
         # @type BackupId: Integer
-        # @param DownloadRestriction: 备份下载来源限制条件
+        # @param DownloadRestriction: <p>备份下载来源限制条件</p>
         # @type DownloadRestriction: :class:`Tencentcloud::Cynosdb.v20190107.models.BackupLimitRestriction`
 
         attr_accessor :ClusterId, :BackupId, :DownloadRestriction
@@ -7541,7 +7539,7 @@ module TencentCloud
 
       # DescribeBackupDownloadUrl返回参数结构体
       class DescribeBackupDownloadUrlResponse < TencentCloud::Common::AbstractModel
-        # @param DownloadUrl: 备份下载地址
+        # @param DownloadUrl: <p>备份下载地址</p>
         # @type DownloadUrl: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7972,11 +7970,11 @@ module TencentCloud
 
       # DescribeBinlogDownloadUrl请求参数结构体
       class DescribeBinlogDownloadUrlRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: <p>集群ID</p>
         # @type ClusterId: String
-        # @param BinlogId: Binlog文件ID
+        # @param BinlogId: <p>Binlog文件ID</p>
         # @type BinlogId: Integer
-        # @param DownloadRestriction: 备份下载来源限制条件
+        # @param DownloadRestriction: <p>备份下载来源限制条件</p>
         # @type DownloadRestriction: :class:`Tencentcloud::Cynosdb.v20190107.models.BackupLimitRestriction`
 
         attr_accessor :ClusterId, :BinlogId, :DownloadRestriction
@@ -7999,7 +7997,7 @@ module TencentCloud
 
       # DescribeBinlogDownloadUrl返回参数结构体
       class DescribeBinlogDownloadUrlResponse < TencentCloud::Common::AbstractModel
-        # @param DownloadUrl: 下载地址
+        # @param DownloadUrl: <p>下载地址</p>
         # @type DownloadUrl: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

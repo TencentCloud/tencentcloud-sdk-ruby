@@ -955,6 +955,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建私有CA证书
+
+        # @param request: Request instance for CreatePrivateCA.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::CreatePrivateCARequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::CreatePrivateCAResponse`
+        def CreatePrivateCA(request)
+          body = send_request('CreatePrivateCA', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreatePrivateCAResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 为用户提供新建项目的能力，用于集中管理产品和应用。
 
         # @param request: Request instance for CreateProject.
@@ -1565,6 +1589,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeletePositionSpaceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除私有CA证书
+
+        # @param request: Request instance for DeletePrivateCA.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DeletePrivateCARequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DeletePrivateCAResponse`
+        def DeletePrivateCA(request)
+          body = send_request('DeletePrivateCA', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeletePrivateCAResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除产品绑定的CA证书
+
+        # @param request: Request instance for DeleteProductPrivateCA.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DeleteProductPrivateCARequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DeleteProductPrivateCAResponse`
+        def DeleteProductPrivateCA(request)
+          body = send_request('DeleteProductPrivateCA', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteProductPrivateCAResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -3029,6 +3101,102 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribePositionFenceListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询私有化CA信息
+
+        # @param request: Request instance for DescribePrivateCA.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DescribePrivateCARequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DescribePrivateCAResponse`
+        def DescribePrivateCA(request)
+          body = send_request('DescribePrivateCA', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePrivateCAResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询私有CA绑定的产品列表
+
+        # @param request: Request instance for DescribePrivateCABindedProducts.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DescribePrivateCABindedProductsRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DescribePrivateCABindedProductsResponse`
+        def DescribePrivateCABindedProducts(request)
+          body = send_request('DescribePrivateCABindedProducts', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePrivateCABindedProductsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询私有CA证书列表
+
+        # @param request: Request instance for DescribePrivateCAs.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DescribePrivateCAsRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DescribePrivateCAsResponse`
+        def DescribePrivateCAs(request)
+          body = send_request('DescribePrivateCAs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePrivateCAsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询产品绑定的CA证书
+
+        # @param request: Request instance for DescribeProductCA.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DescribeProductCARequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DescribeProductCAResponse`
+        def DescribeProductCA(request)
+          body = send_request('DescribeProductCA', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeProductCAResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -6261,6 +6429,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpdateOtaTaskStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新私有CA证书
+
+        # @param request: Request instance for UpdatePrivateCA.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::UpdatePrivateCARequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::UpdatePrivateCAResponse`
+        def UpdatePrivateCA(request)
+          body = send_request('UpdatePrivateCA', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdatePrivateCAResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新产品的私有CA
+
+        # @param request: Request instance for UpdateProductPrivateCA.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::UpdateProductPrivateCARequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::UpdateProductPrivateCAResponse`
+        def UpdateProductPrivateCA(request)
+          body = send_request('UpdateProductPrivateCA', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateProductPrivateCAResponse.new
             model.deserialize(response['Response'])
             model
           else

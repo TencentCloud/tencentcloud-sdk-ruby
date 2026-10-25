@@ -2098,10 +2098,12 @@ module TencentCloud
         # @type CreateTime: String
         # @param FinishTime: <p>完成时间，Unix 时间戳（秒），未完成为 0</p>
         # @type FinishTime: String
+        # @param TaskStatusCount: <p>任务下各状态处理项的数量分布，JSON 格式字符串</p>
+        # @type TaskStatusCount: String
 
-        attr_accessor :JobId, :JobType, :AnnotationType, :Status, :IngestStatus, :InputPath, :TotalNumber, :CreateTime, :FinishTime
+        attr_accessor :JobId, :JobType, :AnnotationType, :Status, :IngestStatus, :InputPath, :TotalNumber, :CreateTime, :FinishTime, :TaskStatusCount
 
-        def initialize(jobid=nil, jobtype=nil, annotationtype=nil, status=nil, ingeststatus=nil, inputpath=nil, totalnumber=nil, createtime=nil, finishtime=nil)
+        def initialize(jobid=nil, jobtype=nil, annotationtype=nil, status=nil, ingeststatus=nil, inputpath=nil, totalnumber=nil, createtime=nil, finishtime=nil, taskstatuscount=nil)
           @JobId = jobid
           @JobType = jobtype
           @AnnotationType = annotationtype
@@ -2111,6 +2113,7 @@ module TencentCloud
           @TotalNumber = totalnumber
           @CreateTime = createtime
           @FinishTime = finishtime
+          @TaskStatusCount = taskstatuscount
         end
 
         def deserialize(params)
@@ -2123,6 +2126,7 @@ module TencentCloud
           @TotalNumber = params['TotalNumber']
           @CreateTime = params['CreateTime']
           @FinishTime = params['FinishTime']
+          @TaskStatusCount = params['TaskStatusCount']
         end
       end
 
@@ -2548,15 +2552,23 @@ module TencentCloud
       class ProcessParams < TencentCloud::Common::AbstractModel
         # @param Mode: <p>标注处理模式，预留字段</p>
         # @type Mode: String
+        # @param Edition: <p>标注档位</p>
+        # @type Edition: String
+        # @param ExtraParams: <p>通用扩展参数，json格式字符串</p>
+        # @type ExtraParams: String
 
-        attr_accessor :Mode
+        attr_accessor :Mode, :Edition, :ExtraParams
 
-        def initialize(mode=nil)
+        def initialize(mode=nil, edition=nil, extraparams=nil)
           @Mode = mode
+          @Edition = edition
+          @ExtraParams = extraparams
         end
 
         def deserialize(params)
           @Mode = params['Mode']
+          @Edition = params['Edition']
+          @ExtraParams = params['ExtraParams']
         end
       end
 
@@ -2819,8 +2831,8 @@ module TencentCloud
 
         attr_accessor :DeviceType, :StartTime, :EndTime, :SessionId, :Rate, :Fps, :Lost, :NetworkLatency, :VideoLatency, :CpuUsed, :MemUsed, :TimeOffset, :ProjectId, :DeviceId, :Ver, :SdkMode, :DecodeCost, :RenderConst, :K100, :K150, :NACK, :BitRateEstimate, :Width, :Height, :EncodeCost, :CaptureCost, :RenderCost, :ConfigWidth, :ConfigHeight, :FrameDelta, :MaxFrameDelta, :TotalBitrateEstimate, :Lag100Duration, :Lag150Duration, :MultiMode, :MultiNet, :ControlLatency
         extend Gem::Deprecate
-        deprecate :RenderConst, :none, 2026, 9
-        deprecate :RenderConst=, :none, 2026, 9
+        deprecate :RenderConst, :none, 2026, 10
+        deprecate :RenderConst=, :none, 2026, 10
 
         def initialize(devicetype=nil, starttime=nil, endtime=nil, sessionid=nil, rate=nil, fps=nil, lost=nil, networklatency=nil, videolatency=nil, cpuused=nil, memused=nil, timeoffset=nil, projectid=nil, deviceid=nil, ver=nil, sdkmode=nil, decodecost=nil, renderconst=nil, k100=nil, k150=nil, nack=nil, bitrateestimate=nil, width=nil, height=nil, encodecost=nil, capturecost=nil, rendercost=nil, configwidth=nil, configheight=nil, framedelta=nil, maxframedelta=nil, totalbitrateestimate=nil, lag100duration=nil, lag150duration=nil, multimode=nil, multinet=nil, controllatency=nil)
           @DeviceType = devicetype

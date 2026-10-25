@@ -984,6 +984,249 @@ module TencentCloud
         end
       end
 
+      # 阻塞树节点，表示一个被阻塞会话。若该会话又阻塞了其它会话，则通过children递归表达。
+      class BlockingChainNode < TencentCloud::Common::AbstractModel
+        # @param BlockedSessionId: <p>被阻塞会话 ID（对应 SQL Server sys.dm_exec_sessions.session_id，即 SPID）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockedSessionId: Integer
+        # @param BlockedTransactionId: <p>被阻塞会话事务ID。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockedTransactionId: Integer
+        # @param BlockedWaitTimeMs: <p>被阻塞会话等待时长（毫秒）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockedWaitTimeMs: Integer
+        # @param BlockedLockMode: <p>被阻塞会话正在等待的锁模式（SQL Server原生lock_mode枚举，常见取值：S、U、X、IS、IU、IX、SIU、SIX、UIX、Sch-S、Sch-M）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockedLockMode: String
+        # @param BlockedWaitResource: <p>被阻塞会话等待资源。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockedWaitResource: String
+        # @param BlockedLoginName: <p>被阻塞会话数据库用户。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockedLoginName: String
+        # @param BlockedHostName: <p>被阻塞会话客户端主机。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockedHostName: String
+        # @param BlockedClientApp: <p>被阻塞会话客户端应用名。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockedClientApp: String
+        # @param BlockedStatus: <p>被阻塞会话运行时状态（SQL Server sys.dm_exec_sessions.status 文本），常见取值：running / sleeping / suspended / background。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockedStatus: String
+        # @param BlockedIsolationLevel: <p>被阻塞会话事务隔离级别（SQL Server 原生取值：read uncommitted / read committed / repeatable read / serializable / snapshot）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockedIsolationLevel: String
+        # @param BlockedTransactionName: <p>被阻塞会话当前显式事务名（XEvent transactionname）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockedTransactionName: String
+        # @param BlockedTranCount: <p>被阻塞会话当前显式事务嵌套层数（XEvent trancount）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockedTranCount: Integer
+        # @param BlockedLastTranStarted: <p>被阻塞会话显式事务 BEGIN TRAN 时刻（XEvent lasttranstarted，SQL Server 服务端本地时区的 ISO 8601 字符串，无时区后缀）。多语句事务场景下比 lastbatchstarted 更稳定。咨视值 1900-01-01T00:00:00 表示未知。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockedLastTranStarted: String
+        # @param BlockedInputBuffer: <p>被阻塞会话正在执行的 SQL 原文（对应 DBCC INPUTBUFFER 返回内容，单条最长 16KB，超长截断）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockedInputBuffer: String
+        # @param BlockedSqlTemplate: <p>被阻塞SQL归一化模板。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockedSqlTemplate: String
+        # @param BlockedSqlMd5: <p>被阻塞SQL模板MD5。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockedSqlMd5: String
+        # @param RootCause: <p>根因分类（继承自所属报告的rootCause）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RootCause: String
+        # @param ReportTime: <p>本节点上报事件时间（__time），格式：yyyy-MM-dd HH:mm:ss。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReportTime: String
+        # @param Children: <p>本节点又阻塞的下级会话（可能为空）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Children: Array
+
+        attr_accessor :BlockedSessionId, :BlockedTransactionId, :BlockedWaitTimeMs, :BlockedLockMode, :BlockedWaitResource, :BlockedLoginName, :BlockedHostName, :BlockedClientApp, :BlockedStatus, :BlockedIsolationLevel, :BlockedTransactionName, :BlockedTranCount, :BlockedLastTranStarted, :BlockedInputBuffer, :BlockedSqlTemplate, :BlockedSqlMd5, :RootCause, :ReportTime, :Children
+
+        def initialize(blockedsessionid=nil, blockedtransactionid=nil, blockedwaittimems=nil, blockedlockmode=nil, blockedwaitresource=nil, blockedloginname=nil, blockedhostname=nil, blockedclientapp=nil, blockedstatus=nil, blockedisolationlevel=nil, blockedtransactionname=nil, blockedtrancount=nil, blockedlasttranstarted=nil, blockedinputbuffer=nil, blockedsqltemplate=nil, blockedsqlmd5=nil, rootcause=nil, reporttime=nil, children=nil)
+          @BlockedSessionId = blockedsessionid
+          @BlockedTransactionId = blockedtransactionid
+          @BlockedWaitTimeMs = blockedwaittimems
+          @BlockedLockMode = blockedlockmode
+          @BlockedWaitResource = blockedwaitresource
+          @BlockedLoginName = blockedloginname
+          @BlockedHostName = blockedhostname
+          @BlockedClientApp = blockedclientapp
+          @BlockedStatus = blockedstatus
+          @BlockedIsolationLevel = blockedisolationlevel
+          @BlockedTransactionName = blockedtransactionname
+          @BlockedTranCount = blockedtrancount
+          @BlockedLastTranStarted = blockedlasttranstarted
+          @BlockedInputBuffer = blockedinputbuffer
+          @BlockedSqlTemplate = blockedsqltemplate
+          @BlockedSqlMd5 = blockedsqlmd5
+          @RootCause = rootcause
+          @ReportTime = reporttime
+          @Children = children
+        end
+
+        def deserialize(params)
+          @BlockedSessionId = params['BlockedSessionId']
+          @BlockedTransactionId = params['BlockedTransactionId']
+          @BlockedWaitTimeMs = params['BlockedWaitTimeMs']
+          @BlockedLockMode = params['BlockedLockMode']
+          @BlockedWaitResource = params['BlockedWaitResource']
+          @BlockedLoginName = params['BlockedLoginName']
+          @BlockedHostName = params['BlockedHostName']
+          @BlockedClientApp = params['BlockedClientApp']
+          @BlockedStatus = params['BlockedStatus']
+          @BlockedIsolationLevel = params['BlockedIsolationLevel']
+          @BlockedTransactionName = params['BlockedTransactionName']
+          @BlockedTranCount = params['BlockedTranCount']
+          @BlockedLastTranStarted = params['BlockedLastTranStarted']
+          @BlockedInputBuffer = params['BlockedInputBuffer']
+          @BlockedSqlTemplate = params['BlockedSqlTemplate']
+          @BlockedSqlMd5 = params['BlockedSqlMd5']
+          @RootCause = params['RootCause']
+          @ReportTime = params['ReportTime']
+          unless params['Children'].nil?
+            @Children = []
+            params['Children'].each do |i|
+              blockingchainnode_tmp = BlockingChainNode.new
+              blockingchainnode_tmp.deserialize(i)
+              @Children << blockingchainnode_tmp
+            end
+          end
+        end
+      end
+
+      # 阻塞树，一棵阻塞链的完整视图。一棵树的定义：同一(instanceId, monitorLoop)下，通过blocker/blocked边可达构成的一个连通分量。根节点是入度为0的会话（即从未被任何会话阻塞的头blocker）。一个monitorLoop可能对应多棵独立阻塞树。
+      class BlockingChainTree < TencentCloud::Common::AbstractModel
+        # @param MonitorLoop: <p>监控轮次ID（同一实例内唯一标识一次采集快照，同一快照可包含多棵独立阻塞树）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MonitorLoop: String
+        # @param DatabaseName: <p>阻塞发生所在的数据库名称（整条链路隶属同一 database，放在树级返回一次即可）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatabaseName: String
+        # @param BlockingSessionId: <p>头阻塞会话ID（对应 SQL Server sys.dm_exec_sessions.session_id，即 SPID）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockingSessionId: Integer
+        # @param BlockingTransactionId: <p>头阻塞会话事务ID。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockingTransactionId: Integer
+        # @param BlockingLoginName: <p>头阻塞会话数据库用户。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockingLoginName: String
+        # @param BlockingHostName: <p>头阻塞会话客户端主机。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockingHostName: String
+        # @param BlockingClientApp: <p>头阻塞会话客户端应用名。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockingClientApp: String
+        # @param BlockingStatus: <p>头阻塞会话运行时状态（SQL Server sys.dm_exec_sessions.status 文本），常见取值：running / sleeping / suspended / background。sleeping + BlockingTranCount&gt;0 是 C2_SLEEPING_UNCOMMITTED（休眠会话持未提交事务）的直接证据。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockingStatus: String
+        # @param BlockingIsolationLevel: <p>头阻塞会话事务隔离级别（SQL Server 原生取值：read uncommitted / read committed / repeatable read / serializable / snapshot）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockingIsolationLevel: String
+        # @param BlockingTranCount: <p>头阻塞会话当前显式事务嵌套层数（XEvent trancount）。&gt;0 表示持有显式事务；与 BlockingStatus=sleeping 组合是 C2_SLEEPING_UNCOMMITTED（休眠会话持未提交事务）的直接证据。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockingTranCount: Integer
+        # @param BlockingInputBuffer: <p>头阻塞会话正在执行的 SQL 原文（对应 DBCC INPUTBUFFER 返回内容，单条最长 16KB，超长截断）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockingInputBuffer: String
+        # @param BlockingSqlTemplate: <p>头阻塞SQL归一化模板。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockingSqlTemplate: String
+        # @param BlockingSqlMd5: <p>头阻塞SQL模板MD5。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockingSqlMd5: String
+        # @param BlockingWaitTimeMs: <p>头阻塞会话自身的等待时长（毫秒，来自XML blocking-process/process的waittime属性）。多数场景为0。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockingWaitTimeMs: Integer
+        # @param RootCause: <p>根因分类。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RootCause: String
+        # @param RootCauseDesc: <p>根因分类的可读中文描述（服务端已完成中文化，前端可直接展示；与 RootCause 代号一一对应；未识别或空值统一返回“未识别”）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RootCauseDesc: String
+        # @param StartTime: <p>该链路阻塞事件的起始时间（该树内__time最小值），格式：yyyy-MM-dd HH:mm:ss。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: String
+        # @param EndTime: <p>该链路阻塞事件的结束时间（该树内__time最大值），格式：yyyy-MM-dd HH:mm:ss。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
+        # @param DurationMs: <p>该链路最长等待时长（毫秒），作为链路影响时长。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DurationMs: Integer
+        # @param ChainLength: <p>该链路被阻塞会话数（等价于树节点数-1，即受影响会话数）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChainLength: Integer
+        # @param ChainDepth: <p>树深度（根节点为0，最长路径的深度）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChainDepth: Integer
+        # @param Details: <p>被阻塞节点子树（可能为空，也可能多叉或多层）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Details: Array
+
+        attr_accessor :MonitorLoop, :DatabaseName, :BlockingSessionId, :BlockingTransactionId, :BlockingLoginName, :BlockingHostName, :BlockingClientApp, :BlockingStatus, :BlockingIsolationLevel, :BlockingTranCount, :BlockingInputBuffer, :BlockingSqlTemplate, :BlockingSqlMd5, :BlockingWaitTimeMs, :RootCause, :RootCauseDesc, :StartTime, :EndTime, :DurationMs, :ChainLength, :ChainDepth, :Details
+
+        def initialize(monitorloop=nil, databasename=nil, blockingsessionid=nil, blockingtransactionid=nil, blockingloginname=nil, blockinghostname=nil, blockingclientapp=nil, blockingstatus=nil, blockingisolationlevel=nil, blockingtrancount=nil, blockinginputbuffer=nil, blockingsqltemplate=nil, blockingsqlmd5=nil, blockingwaittimems=nil, rootcause=nil, rootcausedesc=nil, starttime=nil, endtime=nil, durationms=nil, chainlength=nil, chaindepth=nil, details=nil)
+          @MonitorLoop = monitorloop
+          @DatabaseName = databasename
+          @BlockingSessionId = blockingsessionid
+          @BlockingTransactionId = blockingtransactionid
+          @BlockingLoginName = blockingloginname
+          @BlockingHostName = blockinghostname
+          @BlockingClientApp = blockingclientapp
+          @BlockingStatus = blockingstatus
+          @BlockingIsolationLevel = blockingisolationlevel
+          @BlockingTranCount = blockingtrancount
+          @BlockingInputBuffer = blockinginputbuffer
+          @BlockingSqlTemplate = blockingsqltemplate
+          @BlockingSqlMd5 = blockingsqlmd5
+          @BlockingWaitTimeMs = blockingwaittimems
+          @RootCause = rootcause
+          @RootCauseDesc = rootcausedesc
+          @StartTime = starttime
+          @EndTime = endtime
+          @DurationMs = durationms
+          @ChainLength = chainlength
+          @ChainDepth = chaindepth
+          @Details = details
+        end
+
+        def deserialize(params)
+          @MonitorLoop = params['MonitorLoop']
+          @DatabaseName = params['DatabaseName']
+          @BlockingSessionId = params['BlockingSessionId']
+          @BlockingTransactionId = params['BlockingTransactionId']
+          @BlockingLoginName = params['BlockingLoginName']
+          @BlockingHostName = params['BlockingHostName']
+          @BlockingClientApp = params['BlockingClientApp']
+          @BlockingStatus = params['BlockingStatus']
+          @BlockingIsolationLevel = params['BlockingIsolationLevel']
+          @BlockingTranCount = params['BlockingTranCount']
+          @BlockingInputBuffer = params['BlockingInputBuffer']
+          @BlockingSqlTemplate = params['BlockingSqlTemplate']
+          @BlockingSqlMd5 = params['BlockingSqlMd5']
+          @BlockingWaitTimeMs = params['BlockingWaitTimeMs']
+          @RootCause = params['RootCause']
+          @RootCauseDesc = params['RootCauseDesc']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @DurationMs = params['DurationMs']
+          @ChainLength = params['ChainLength']
+          @ChainDepth = params['ChainDepth']
+          unless params['Details'].nil?
+            @Details = []
+            params['Details'].each do |i|
+              blockingchainnode_tmp = BlockingChainNode.new
+              blockingchainnode_tmp.deserialize(i)
+              @Details << blockingchainnode_tmp
+            end
+          end
+        end
+      end
+
       # 阻塞日志扁平明细行：一次blocked_process_report（blocker→blocked边）在某一次monitorLoop内被lock monitor捕获的瞬时数据。
       class BlockingLogItem < TencentCloud::Common::AbstractModel
         # @param ReportTime: <p>本条明细行上报时间（事件时间，__time；时区UTC+8），格式：yyyy-MM-dd HH:mm:ss。</p>
@@ -1193,6 +1436,38 @@ module TencentCloud
           @BlockedSqlTemplate = params['BlockedSqlTemplate']
           @BlockedSqlMd5 = params['BlockedSqlMd5']
           @BlockedProcessXml = params['BlockedProcessXml']
+        end
+      end
+
+      # 阻塞趋势时序点，表示某个粒度 bucket 的阻塞聚合统计。
+      class BlockingTrendPoint < TencentCloud::Common::AbstractModel
+        # @param StartTime: <p>该 bucket 的实际聚合区间左端（含），格式：yyyy-MM-dd HH:mm:ss。聚合区间为前闭后开 [StartTime, EndTime)。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: String
+        # @param EndTime: <p>该 bucket 的实际聚合区间右端（不含），格式：yyyy-MM-dd HH:mm:ss。即 StartTime + GranularityMs。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
+        # @param LockCount: <p>该 bucket 内的阻塞 report 行数（底层 blocked_process_report 事件数），无数据 bucket 返回 0。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LockCount: Integer
+        # @param MonitorLoopCount: <p>该 bucket 内观测到的不同 monitorLoop 数量（lock monitor 扫描快照数），无数据 bucket 返回 0。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MonitorLoopCount: Integer
+
+        attr_accessor :StartTime, :EndTime, :LockCount, :MonitorLoopCount
+
+        def initialize(starttime=nil, endtime=nil, lockcount=nil, monitorloopcount=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @LockCount = lockcount
+          @MonitorLoopCount = monitorloopcount
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @LockCount = params['LockCount']
+          @MonitorLoopCount = params['MonitorLoopCount']
         end
       end
 
@@ -3106,6 +3381,61 @@ module TencentCloud
         end
       end
 
+      # DescribeBlockingLockTree请求参数结构体
+      class DescribeBlockingLockTreeRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例ID。</p>
+        # @type InstanceId: String
+        # @param Product: <p>服务产品类型，固定为sqlserver。</p>
+        # @type Product: String
+        # @param MonitorLoop: <p>lock monitor 扫描轮次 ID（可从 DescribeBlockingTimeRange 返回的 MonitorLoops 列表选择，也可从 DescribeBlockingLogs / DescribeBlockingTrees 返回的 MonitorLoop 字段获取）。与 BlockingTime 二选一，MonitorLoop 优先。</p>
+        # @type MonitorLoop: String
+        # @param BlockingTime: <p>阻塞时间点，格式：yyyy-MM-dd HH:mm:ss。当 MonitorLoop 为空时使用该字段定位：后端会在该时间点±1分钟范围内寻找最接近的 MonitorLoop 并下钻其阻塞树。与 MonitorLoop 二选一。BlockingTime 必须在最近 30 天内，否则返回 InvalidParameterValue。</p>
+        # @type BlockingTime: String
+
+        attr_accessor :InstanceId, :Product, :MonitorLoop, :BlockingTime
+
+        def initialize(instanceid=nil, product=nil, monitorloop=nil, blockingtime=nil)
+          @InstanceId = instanceid
+          @Product = product
+          @MonitorLoop = monitorloop
+          @BlockingTime = blockingtime
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Product = params['Product']
+          @MonitorLoop = params['MonitorLoop']
+          @BlockingTime = params['BlockingTime']
+        end
+      end
+
+      # DescribeBlockingLockTree返回参数结构体
+      class DescribeBlockingLockTreeResponse < TencentCloud::Common::AbstractModel
+        # @param Items: <p>阻塞树列表（同一 MonitorLoop 下可能存在多棵独立阻塞树，按链路影响时长倒序）。若按 BlockingTime 定位时未找到附近 MonitorLoop，返回空列表。</p>
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Items, :RequestId
+
+        def initialize(items=nil, requestid=nil)
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              blockingchaintree_tmp = BlockingChainTree.new
+              blockingchaintree_tmp.deserialize(i)
+              @Items << blockingchaintree_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeBlockingLogs请求参数结构体
       class DescribeBlockingLogsRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: <p>实例ID。</p>
@@ -3239,6 +3569,69 @@ module TencentCloud
               blockinglogitem_tmp = BlockingLogItem.new
               blockinglogitem_tmp.deserialize(i)
               @Items << blockinglogitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBlockingTrend请求参数结构体
+      class DescribeBlockingTrendRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例ID。</p>
+        # @type InstanceId: String
+        # @param Product: <p>服务产品类型，固定为sqlserver。</p>
+        # @type Product: String
+        # @param StartTime: <p>查询起始时间（服务端时区 UTC+8），格式：yyyy-MM-dd HH:mm:ss。必须在最近 30 天内，否则返回 InvalidParameterValue。</p>
+        # @type StartTime: String
+        # @param EndTime: <p>查询结束时间（服务端时区 UTC+8），格式：yyyy-MM-dd HH:mm:ss，需大于 StartTime。单次查询跨度必须 ≤ 7 天（Trend 走 Druid 原生聚合，跨度比明细类接口更宽泛），否则返回 InvalidParameterValue。</p>
+        # @type EndTime: String
+
+        attr_accessor :InstanceId, :Product, :StartTime, :EndTime
+
+        def initialize(instanceid=nil, product=nil, starttime=nil, endtime=nil)
+          @InstanceId = instanceid
+          @Product = product
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Product = params['Product']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # DescribeBlockingTrend返回参数结构体
+      class DescribeBlockingTrendResponse < TencentCloud::Common::AbstractModel
+        # @param Granularity: <p>使用的粒度名称，取值：SECONDS / MINUTES / FIVE_MINUTES / TEN_MINUTES / FIFTEEN_MINUTES / THIRTY_MINUTES / HOUR。时间窗口 ≤ 1 分钟时自动采用 SECONDS（1 秒）粒度。</p>
+        # @type Granularity: String
+        # @param GranularityMs: <p>粒度对应的毫秒值（SECONDS=1000，MINUTES=60000，... HOUR=3600000）。</p>
+        # @type GranularityMs: Integer
+        # @param DataPoints: <p>阻塞趋势时序点列表（按 ReportTime 升序，稠密时序：窗口内每个 bucket 都返回一个点，无数据 bucket 补零）。</p>
+        # @type DataPoints: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Granularity, :GranularityMs, :DataPoints, :RequestId
+
+        def initialize(granularity=nil, granularityms=nil, datapoints=nil, requestid=nil)
+          @Granularity = granularity
+          @GranularityMs = granularityms
+          @DataPoints = datapoints
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Granularity = params['Granularity']
+          @GranularityMs = params['GranularityMs']
+          unless params['DataPoints'].nil?
+            @DataPoints = []
+            params['DataPoints'].each do |i|
+              blockingtrendpoint_tmp = BlockingTrendPoint.new
+              blockingtrendpoint_tmp.deserialize(i)
+              @DataPoints << blockingtrendpoint_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -6550,6 +6943,107 @@ module TencentCloud
         end
       end
 
+      # DescribeTableSpaceDataV2请求参数结构体
+      class DescribeTableSpaceDataV2Request < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例ID。</p>
+        # @type InstanceId: String
+        # @param Product: <p>服务产品类型（用于云 API 平台路由到对应产品后端）。取值：mysql / cynosdb / mariadb / postgres / mongodb / sqlserver 等。</p>
+        # @type Product: String
+        # @param TableSchema: <p>数据库名（PG 系产品的 schema 名；MongoDB 为 database 名；MySQL / CynosDB / SqlServer 为库名）。PostgreSQL / MySQL / CynosDB / SqlServer 必传；MongoDB 可不传（底层使用 optString(&quot;&quot;), 不传时按空库名查询）。</p>
+        # @type TableSchema: String
+        # @param TableName: <p>表名（MongoDB 场景下为 collection 名，如 oplog.rs）。PostgreSQL / MySQL / CynosDB / SqlServer 必传；MongoDB 可不传（底层对该字段为空时直接返回空列表而非报错）。</p>
+        # @type TableName: String
+        # @param TableCatalog: <p>表所在的 Catalog（数据库目录）名。PostgreSQL / TBase 等 PG 系产品必传（例如 postgres），用于唯一定位 (catalog, schema, name) 三元组；MySQL / CynosDB / MongoDB / SqlServer 等非 PG 系产品可不传。</p>
+        # @type TableCatalog: String
+        # @param Date: <p>查询日期，格式：yyyy-MM-dd。MySQL / CynosDB / PostgreSQL / SqlServer 可选（默认当天）；MongoDB 本接口不读取该字段（底层通过 dbbrain.collInfo 直接查询实时集合空间，不区分日期）。</p>
+        # @type Date: String
+        # @param SortBy: <p>排序字段。本接口（单表/单集合明细查询）均为可选：MySQL / CynosDB 可选，默认按 total_length 排序；PostgreSQL 可选，默认按 relation_size 排序；SqlServer 本接口不消费该字段的值；MongoDB 本接口完全不读取该字段。如需在 Top 表/库场景使用排序，请改用 DescribeTopSpaceTablesV2 / DescribeTopSpaceSchemasV2 接口。</p>
+        # @type SortBy: String
+        # @param Limit: <p>返回条数上限，默认 20，最大 100。MySQL / CynosDB / PostgreSQL 本接口会读取该参数控制明细条数；MongoDB 本接口不读取该字段（底层按入参 TableName 精确匹配返回集合明细，不受 Limit 控制）；SqlServer 本接口会校验但不消费其值。</p>
+        # @type Limit: Integer
+        # @param Regex: <p>MongoDB 专用——表名/集合名是否按正则模糊匹配。默认 true。其他产品忽略该字段。</p>
+        # @type Regex: Boolean
+
+        attr_accessor :InstanceId, :Product, :TableSchema, :TableName, :TableCatalog, :Date, :SortBy, :Limit, :Regex
+
+        def initialize(instanceid=nil, product=nil, tableschema=nil, tablename=nil, tablecatalog=nil, date=nil, sortby=nil, limit=nil, regex=nil)
+          @InstanceId = instanceid
+          @Product = product
+          @TableSchema = tableschema
+          @TableName = tablename
+          @TableCatalog = tablecatalog
+          @Date = date
+          @SortBy = sortby
+          @Limit = limit
+          @Regex = regex
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Product = params['Product']
+          @TableSchema = params['TableSchema']
+          @TableName = params['TableName']
+          @TableCatalog = params['TableCatalog']
+          @Date = params['Date']
+          @SortBy = params['SortBy']
+          @Limit = params['Limit']
+          @Regex = params['Regex']
+        end
+      end
+
+      # DescribeTableSpaceDataV2返回参数结构体
+      class DescribeTableSpaceDataV2Response < TencentCloud::Common::AbstractModel
+        # @param MysqlTableSpaceData: <p>MySQL 系列产品表空间数据。当产品为 mysql/cynosdb/tdsql/dcdb/mariadb 时返回。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MysqlTableSpaceData: :class:`Tencentcloud::Dbbrain.v20210527.models.MysqlSpaceObjectItem`
+        # @param PostgresTableSpaceData: <p>PostgreSQL 产品表空间数据。当产品为 postgres 时返回。字段语义与 MySQL 不同：使用 RelationSize / TableSize / IndexSize / TotalRelationSize / TableBloat 等 PG 特有指标。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PostgresTableSpaceData: :class:`Tencentcloud::Dbbrain.v20210527.models.PostgresSpaceObjectItem`
+        # @param MongodbTableSpaceData: <p>MongoDB 产品表空间数据。当产品为 mongodb 时返回。包含集合级明细数组 SpaceSchemas 以及外层采集时间戳 Timestamp（秒级）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MongodbTableSpaceData: :class:`Tencentcloud::Dbbrain.v20210527.models.MongodbSpaceObjectItem`
+        # @param SqlServerTableSpaceData: <p>SQL Server 产品表空间数据。当产品为 sqlserver 时返回。字段结构与 MysqlSpaceObjectItem 同构，无 FragRatio / PhysicalFileSize。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SqlServerTableSpaceData: :class:`Tencentcloud::Dbbrain.v20210527.models.SqlServerSpaceObjectItem`
+        # @param Timestamp: <p>数据采集时间戳（秒）。可能为空（部分产品分支/异常场景下不保证返回），调用方请做空值兼容。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Timestamp: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MysqlTableSpaceData, :PostgresTableSpaceData, :MongodbTableSpaceData, :SqlServerTableSpaceData, :Timestamp, :RequestId
+
+        def initialize(mysqltablespacedata=nil, postgrestablespacedata=nil, mongodbtablespacedata=nil, sqlservertablespacedata=nil, timestamp=nil, requestid=nil)
+          @MysqlTableSpaceData = mysqltablespacedata
+          @PostgresTableSpaceData = postgrestablespacedata
+          @MongodbTableSpaceData = mongodbtablespacedata
+          @SqlServerTableSpaceData = sqlservertablespacedata
+          @Timestamp = timestamp
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['MysqlTableSpaceData'].nil?
+            @MysqlTableSpaceData = MysqlSpaceObjectItem.new
+            @MysqlTableSpaceData.deserialize(params['MysqlTableSpaceData'])
+          end
+          unless params['PostgresTableSpaceData'].nil?
+            @PostgresTableSpaceData = PostgresSpaceObjectItem.new
+            @PostgresTableSpaceData.deserialize(params['PostgresTableSpaceData'])
+          end
+          unless params['MongodbTableSpaceData'].nil?
+            @MongodbTableSpaceData = MongodbSpaceObjectItem.new
+            @MongodbTableSpaceData.deserialize(params['MongodbTableSpaceData'])
+          end
+          unless params['SqlServerTableSpaceData'].nil?
+            @SqlServerTableSpaceData = SqlServerSpaceObjectItem.new
+            @SqlServerTableSpaceData.deserialize(params['SqlServerTableSpaceData'])
+          end
+          @Timestamp = params['Timestamp']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTopSpaceSchemaTimeSeries请求参数结构体
       class DescribeTopSpaceSchemaTimeSeriesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID。
@@ -8234,40 +8728,40 @@ module TencentCloud
 
       # MongoDB 集合级空间使用明细，包含集合的存储、索引、碎片等各维度指标。
       class MongoCollectionDetail < TencentCloud::Common::AbstractModel
-        # @param CollStats: <p>集合命名空间，格式为 db.collection。</p>
+        # @param CollStats: 集合命名空间，格式为 db.collection。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CollStats: String
-        # @param CollectionSize: <p>集合逻辑大小（字节，未压缩）。</p>
+        # @param CollectionSize: 集合逻辑大小（字节，未压缩）。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CollectionSize: Integer
-        # @param DataFree: <p>集合已分配但未使用的空间（字节）。</p>
+        # @param DataFree: 集合已分配但未使用的空间（字节）。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataFree: Integer
-        # @param SpaceRatio: <p>空间利用率（百分比字符串）。</p>
+        # @param SpaceRatio: 空间利用率（百分比字符串）。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SpaceRatio: String
-        # @param FragRatio: <p>碎片率（百分比字符串）。</p>
+        # @param FragRatio: 碎片率（百分比字符串）。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FragRatio: String
-        # @param Size: <p>集合数据大小（字节）。</p>
+        # @param Size: 集合数据大小（字节）。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Size: Integer
-        # @param TotalIndexSize: <p>所有索引占用大小（字节）。</p>
+        # @param TotalIndexSize: 所有索引占用大小（字节）。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalIndexSize: Integer
-        # @param AvgObjSize: <p>平均文档大小（字节）。</p>
+        # @param AvgObjSize: 平均文档大小（字节）。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AvgObjSize: Integer
-        # @param StorageSize: <p>集合实际占用存储大小（字节，压缩后）。</p>
+        # @param StorageSize: 集合实际占用存储大小（字节，压缩后）。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StorageSize: Integer
-        # @param Count: <p>文档数量。</p>
+        # @param Count: 文档数量。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Count: Integer
-        # @param CompressionRatio: <p>压缩率（百分比字符串）。</p>
+        # @param CompressionRatio: 压缩率（百分比字符串）。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CompressionRatio: String
-        # @param FileReuseBytes: <p>可复用文件空间（字节）。</p>
+        # @param FileReuseBytes: 可复用文件空间（字节）。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileReuseBytes: Integer
 
@@ -8450,24 +8944,24 @@ module TencentCloud
         end
       end
 
-      # MongoDB 产品表级（集合级）空间对象项，描述单个集合的空间使用统计信息。
+      # MongoDB 产品集合级空间对象项，包含顶层标识字段与嵌套 Collection 明细。
       class MongoDBTableSpaceItem < TencentCloud::Common::AbstractModel
-        # @param AppId: <p>应用 Id（AppId）。</p>
+        # @param AppId: 应用 Id（AppId）。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: Integer
-        # @param InstanceId: <p>实例 Id。</p>
+        # @param InstanceId: 实例 Id。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
-        # @param Db: <p>数据库名。</p>
+        # @param Db: 数据库名。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Db: String
-        # @param Timestamp: <p>数据采集时间戳（毫秒）。</p>
+        # @param Timestamp: 数据采集时间戳（毫秒）。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Timestamp: Integer
-        # @param SizeOnDisk: <p>磁盘占用大小（字节）。</p>
+        # @param SizeOnDisk: 磁盘占用大小（字节）。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SizeOnDisk: Integer
-        # @param Collection: <p>集合级空间使用明细。</p>
+        # @param Collection: 集合级空间使用明细。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Collection: :class:`Tencentcloud::Dbbrain.v20210527.models.MongoCollectionDetail`
 
@@ -8492,6 +8986,35 @@ module TencentCloud
             @Collection = MongoCollectionDetail.new
             @Collection.deserialize(params['Collection'])
           end
+        end
+      end
+
+      # MongoDB 产品表空间数据对象。对应 V1 底层返回的顶层包装结构，包含集合级空间明细数组 SpaceSchemas 与外层采集时间戳 Timestamp。
+      class MongodbSpaceObjectItem < TencentCloud::Common::AbstractModel
+        # @param SpaceSchemas: <p>集合级空间明细数组。每项含顶层标识字段（AppId/InstanceId/Db/Timestamp/SizeOnDisk）与嵌套 Collection 明细。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SpaceSchemas: Array
+        # @param Timestamp: <p>数据采集时间戳（秒）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Timestamp: Integer
+
+        attr_accessor :SpaceSchemas, :Timestamp
+
+        def initialize(spaceschemas=nil, timestamp=nil)
+          @SpaceSchemas = spaceschemas
+          @Timestamp = timestamp
+        end
+
+        def deserialize(params)
+          unless params['SpaceSchemas'].nil?
+            @SpaceSchemas = []
+            params['SpaceSchemas'].each do |i|
+              mongodbtablespaceitem_tmp = MongoDBTableSpaceItem.new
+              mongodbtablespaceitem_tmp.deserialize(i)
+              @SpaceSchemas << mongodbtablespaceitem_tmp
+            end
+          end
+          @Timestamp = params['Timestamp']
         end
       end
 
@@ -8646,7 +9169,7 @@ module TencentCloud
         end
       end
 
-      # MySQL 系列产品空间对象项。库级查询时不包含 TableName/Engine 字段；表级查询时包含全部字段。
+      # MySQL 系列产品空间对象项（单表明细）。
       class MysqlSpaceObjectItem < TencentCloud::Common::AbstractModel
         # @param TableSchema: <p>数据库名。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -8657,6 +9180,9 @@ module TencentCloud
         # @param Engine: <p>存储引擎（Level=TABLE时返回）。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Engine: String
+        # @param TableStatus: <p>表状态（仅单表查询 DescribeTableSpaceDataV2 返回；取值：-1 表示库表最新一次采集不到或实例超限不拉取，0 正在拉取，1 拉取完成；该字段仅针对实例级别）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableStatus: Integer
         # @param TableRows: <p>行数。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableRows: Integer
@@ -8679,12 +9205,13 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PhysicalFileSize: Float
 
-        attr_accessor :TableSchema, :TableName, :Engine, :TableRows, :TotalLength, :DataLength, :IndexLength, :DataFree, :FragRatio, :PhysicalFileSize
+        attr_accessor :TableSchema, :TableName, :Engine, :TableStatus, :TableRows, :TotalLength, :DataLength, :IndexLength, :DataFree, :FragRatio, :PhysicalFileSize
 
-        def initialize(tableschema=nil, tablename=nil, engine=nil, tablerows=nil, totallength=nil, datalength=nil, indexlength=nil, datafree=nil, fragratio=nil, physicalfilesize=nil)
+        def initialize(tableschema=nil, tablename=nil, engine=nil, tablestatus=nil, tablerows=nil, totallength=nil, datalength=nil, indexlength=nil, datafree=nil, fragratio=nil, physicalfilesize=nil)
           @TableSchema = tableschema
           @TableName = tablename
           @Engine = engine
+          @TableStatus = tablestatus
           @TableRows = tablerows
           @TotalLength = totallength
           @DataLength = datalength
@@ -8698,6 +9225,7 @@ module TencentCloud
           @TableSchema = params['TableSchema']
           @TableName = params['TableName']
           @Engine = params['Engine']
+          @TableStatus = params['TableStatus']
           @TableRows = params['TableRows']
           @TotalLength = params['TotalLength']
           @DataLength = params['DataLength']
@@ -8788,7 +9316,7 @@ module TencentCloud
         end
       end
 
-      # PostgreSQL 产品空间对象项。字段语义与 MySQL 不同：使用 pg_relation_size / pg_total_relation_size 等 PG 特有指标。库级查询时不包含 TableSchema/TableName 字段；表级查询时包含全部字段。
+      # PostgreSQL 产品空间对象项（单表明细）。字段语义与 MySQL 不同：使用 pg_relation_size / pg_total_relation_size 等 PG 特有指标。
       class PostgresSpaceObjectItem < TencentCloud::Common::AbstractModel
         # @param TableCatalog: <p>数据库名（PostgreSQL 顶层 catalog）。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -8799,6 +9327,9 @@ module TencentCloud
         # @param TableName: <p>表名（Level=TABLE 时返回）。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableName: String
+        # @param TableStatus: <p>表状态（仅单表查询 DescribeTableSpaceDataV2 返回；取值：-1 表示库表最新一次采集不到或实例超限不拉取，0 正在拉取，1 拉取完成；该字段仅针对实例级别）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableStatus: Integer
         # @param RelationSize: <p>表本身大小（MB），对应 pg_relation_size。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RelationSize: Float
@@ -8818,12 +9349,13 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableRows: Integer
 
-        attr_accessor :TableCatalog, :TableSchema, :TableName, :RelationSize, :TableSize, :IndexSize, :TotalRelationSize, :TableBloat, :TableRows
+        attr_accessor :TableCatalog, :TableSchema, :TableName, :TableStatus, :RelationSize, :TableSize, :IndexSize, :TotalRelationSize, :TableBloat, :TableRows
 
-        def initialize(tablecatalog=nil, tableschema=nil, tablename=nil, relationsize=nil, tablesize=nil, indexsize=nil, totalrelationsize=nil, tablebloat=nil, tablerows=nil)
+        def initialize(tablecatalog=nil, tableschema=nil, tablename=nil, tablestatus=nil, relationsize=nil, tablesize=nil, indexsize=nil, totalrelationsize=nil, tablebloat=nil, tablerows=nil)
           @TableCatalog = tablecatalog
           @TableSchema = tableschema
           @TableName = tablename
+          @TableStatus = tablestatus
           @RelationSize = relationsize
           @TableSize = tablesize
           @IndexSize = indexsize
@@ -8836,6 +9368,7 @@ module TencentCloud
           @TableCatalog = params['TableCatalog']
           @TableSchema = params['TableSchema']
           @TableName = params['TableName']
+          @TableStatus = params['TableStatus']
           @RelationSize = params['RelationSize']
           @TableSize = params['TableSize']
           @IndexSize = params['IndexSize']
@@ -9861,6 +10394,63 @@ module TencentCloud
           @From = params['From']
           @To = params['To']
           @Ratio = params['Ratio']
+        end
+      end
+
+      # SQL Server 产品空间对象项（单表明细）。字段命名与 MySQL 同构（TableSchema/TableName/Engine/TableRows/TotalLength/DataLength/IndexLength/DataFree，单位 MB），无 FragRatio / PhysicalFileSize。
+      class SqlServerSpaceObjectItem < TencentCloud::Common::AbstractModel
+        # @param TableSchema: <p>数据库名。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableSchema: String
+        # @param TableName: <p>表名（库内限定名 schema.table，如 dbo.users）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableName: String
+        # @param Engine: <p>存储引擎标识，固定为 SqlServer。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Engine: String
+        # @param TableStatus: <p>表状态（仅单表查询 DescribeTableSpaceDataV2 返回；取值：-1 表示库表最新一次采集不到或实例超限不拉取，0 正在拉取，1 拉取完成；该字段仅针对实例级别）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableStatus: Integer
+        # @param TableRows: <p>行数。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableRows: Integer
+        # @param TotalLength: <p>总使用空间（MB）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalLength: Float
+        # @param DataLength: <p>数据空间（MB）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataLength: Float
+        # @param IndexLength: <p>索引空间（MB）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndexLength: Float
+        # @param DataFree: <p>碎片空间（MB），对应保留空洞 reserved-used。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataFree: Float
+
+        attr_accessor :TableSchema, :TableName, :Engine, :TableStatus, :TableRows, :TotalLength, :DataLength, :IndexLength, :DataFree
+
+        def initialize(tableschema=nil, tablename=nil, engine=nil, tablestatus=nil, tablerows=nil, totallength=nil, datalength=nil, indexlength=nil, datafree=nil)
+          @TableSchema = tableschema
+          @TableName = tablename
+          @Engine = engine
+          @TableStatus = tablestatus
+          @TableRows = tablerows
+          @TotalLength = totallength
+          @DataLength = datalength
+          @IndexLength = indexlength
+          @DataFree = datafree
+        end
+
+        def deserialize(params)
+          @TableSchema = params['TableSchema']
+          @TableName = params['TableName']
+          @Engine = params['Engine']
+          @TableStatus = params['TableStatus']
+          @TableRows = params['TableRows']
+          @TotalLength = params['TotalLength']
+          @DataLength = params['DataLength']
+          @IndexLength = params['IndexLength']
+          @DataFree = params['DataFree']
         end
       end
 
