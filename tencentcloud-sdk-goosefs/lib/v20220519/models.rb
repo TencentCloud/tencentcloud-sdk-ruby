@@ -965,6 +965,128 @@ module TencentCloud
         end
       end
 
+      # 数据流通任务属性
+      class DataRepositoryTaskAttribute < TencentCloud::Common::AbstractModel
+        # @param TaskType: <p>数据流通任务类型, FS_TO_COS(文件系统到COS Bucket),或者Bucket到文件系统(COS_TO_FS)</p>
+        # @type TaskType: String
+        # @param Bucket: <p>bucket名</p>
+        # @type Bucket: String
+        # @param TaskPath: <p>bucket路径</p>
+        # @type TaskPath: String
+        # @param TotalCapacity: <p>总的容量(单位Byte)</p>
+        # @type TotalCapacity: Integer
+        # @param FinishedCapacity: <p>已完成的数据量(单位Byte)</p>
+        # @type FinishedCapacity: Integer
+        # @param TaskCreateTime: <p>任务创建时间</p>
+        # @type TaskCreateTime: String
+        # @param TaskStartTime: <p>任务开始执行时间</p>
+        # @type TaskStartTime: String
+        # @param TaskEndTime: <p>任务结束时间</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskEndTime: String
+        # @param TaskStatus: <p>INIT(任务初始化中) RUNNING(任务执行中) SUCCESS(任务已完成) FAIL(任务失败)</p>
+        # @type TaskStatus: String
+        # @param TaskId: <p>任务ID</p>
+        # @type TaskId: String
+        # @param TaskName: <p>任务名</p>
+        # @type TaskName: String
+        # @param TaskFailMsg: <p>任务失败原因</p>
+        # @type TaskFailMsg: String
+        # @param TotalFileNumber: <p>总共的文件个数</p>
+        # @type TotalFileNumber: Integer
+        # @param FinishedFileNumber: <p>已完成的文件个数</p>
+        # @type FinishedFileNumber: Integer
+        # @param TextLocation: <p>列表地址</p>
+        # @type TextLocation: String
+        # @param RepositoryType: <p>执行器类型</p>
+        # @type RepositoryType: String
+        # @param EnableDataFlowSubPath: <p>是否自定义路径</p>
+        # @type EnableDataFlowSubPath: Boolean
+        # @param DataFlowSubPath: <p>自定义路径</p>
+        # @type DataFlowSubPath: String
+        # @param EnableCustomDestPath: <p>是否支持自定义目的路径（沉降表示桶前缀，预热表示本地路径）</p>
+        # @type EnableCustomDestPath: Boolean
+        # @param CustomDestPath: <p>自定义目的路径（沉降表示桶前缀，预热表示本地路径）</p>
+        # @type CustomDestPath: String
+        # @param IsTaskPathAbsolute: <p>任务路径是否表示绝对路径（暂时仅支持沉降使用）</p>
+        # @type IsTaskPathAbsolute: Boolean
+        # @param OutputBucket: <p>任务内容输出桶</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutputBucket: String
+        # @param OutputPrefix: <p>任务内容输出桶前缀</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutputPrefix: String
+        # @param EnableCustomSrcPath: <p>是否支持自定义数据源路径(暂时仅支持清单过滤使用)</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableCustomSrcPath: Boolean
+        # @param CustomSrcPath: <p>自定义数据源路径(暂时仅支持清单过滤使用)</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomSrcPath: String
+
+        attr_accessor :TaskType, :Bucket, :TaskPath, :TotalCapacity, :FinishedCapacity, :TaskCreateTime, :TaskStartTime, :TaskEndTime, :TaskStatus, :TaskId, :TaskName, :TaskFailMsg, :TotalFileNumber, :FinishedFileNumber, :TextLocation, :RepositoryType, :EnableDataFlowSubPath, :DataFlowSubPath, :EnableCustomDestPath, :CustomDestPath, :IsTaskPathAbsolute, :OutputBucket, :OutputPrefix, :EnableCustomSrcPath, :CustomSrcPath
+        extend Gem::Deprecate
+        deprecate :EnableDataFlowSubPath, :none, 2026, 10
+        deprecate :EnableDataFlowSubPath=, :none, 2026, 10
+        deprecate :DataFlowSubPath, :none, 2026, 10
+        deprecate :DataFlowSubPath=, :none, 2026, 10
+
+        def initialize(tasktype=nil, bucket=nil, taskpath=nil, totalcapacity=nil, finishedcapacity=nil, taskcreatetime=nil, taskstarttime=nil, taskendtime=nil, taskstatus=nil, taskid=nil, taskname=nil, taskfailmsg=nil, totalfilenumber=nil, finishedfilenumber=nil, textlocation=nil, repositorytype=nil, enabledataflowsubpath=nil, dataflowsubpath=nil, enablecustomdestpath=nil, customdestpath=nil, istaskpathabsolute=nil, outputbucket=nil, outputprefix=nil, enablecustomsrcpath=nil, customsrcpath=nil)
+          @TaskType = tasktype
+          @Bucket = bucket
+          @TaskPath = taskpath
+          @TotalCapacity = totalcapacity
+          @FinishedCapacity = finishedcapacity
+          @TaskCreateTime = taskcreatetime
+          @TaskStartTime = taskstarttime
+          @TaskEndTime = taskendtime
+          @TaskStatus = taskstatus
+          @TaskId = taskid
+          @TaskName = taskname
+          @TaskFailMsg = taskfailmsg
+          @TotalFileNumber = totalfilenumber
+          @FinishedFileNumber = finishedfilenumber
+          @TextLocation = textlocation
+          @RepositoryType = repositorytype
+          @EnableDataFlowSubPath = enabledataflowsubpath
+          @DataFlowSubPath = dataflowsubpath
+          @EnableCustomDestPath = enablecustomdestpath
+          @CustomDestPath = customdestpath
+          @IsTaskPathAbsolute = istaskpathabsolute
+          @OutputBucket = outputbucket
+          @OutputPrefix = outputprefix
+          @EnableCustomSrcPath = enablecustomsrcpath
+          @CustomSrcPath = customsrcpath
+        end
+
+        def deserialize(params)
+          @TaskType = params['TaskType']
+          @Bucket = params['Bucket']
+          @TaskPath = params['TaskPath']
+          @TotalCapacity = params['TotalCapacity']
+          @FinishedCapacity = params['FinishedCapacity']
+          @TaskCreateTime = params['TaskCreateTime']
+          @TaskStartTime = params['TaskStartTime']
+          @TaskEndTime = params['TaskEndTime']
+          @TaskStatus = params['TaskStatus']
+          @TaskId = params['TaskId']
+          @TaskName = params['TaskName']
+          @TaskFailMsg = params['TaskFailMsg']
+          @TotalFileNumber = params['TotalFileNumber']
+          @FinishedFileNumber = params['FinishedFileNumber']
+          @TextLocation = params['TextLocation']
+          @RepositoryType = params['RepositoryType']
+          @EnableDataFlowSubPath = params['EnableDataFlowSubPath']
+          @DataFlowSubPath = params['DataFlowSubPath']
+          @EnableCustomDestPath = params['EnableCustomDestPath']
+          @CustomDestPath = params['CustomDestPath']
+          @IsTaskPathAbsolute = params['IsTaskPathAbsolute']
+          @OutputBucket = params['OutputBucket']
+          @OutputPrefix = params['OutputPrefix']
+          @EnableCustomSrcPath = params['EnableCustomSrcPath']
+          @CustomSrcPath = params['CustomSrcPath']
+        end
+      end
+
       # DeleteCrossVpcSubnetSupportForClientNode请求参数结构体
       class DeleteCrossVpcSubnetSupportForClientNodeRequest < TencentCloud::Common::AbstractModel
         # @param FileSystemId: 文件系统ID
@@ -1368,6 +1490,61 @@ module TencentCloud
           @Status = params['Status']
           @FinishedFileNumber = params['FinishedFileNumber']
           @FinishedCapacity = params['FinishedCapacity']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDataRepositoryTasks请求参数结构体
+      class DescribeDataRepositoryTasksRequest < TencentCloud::Common::AbstractModel
+        # @param FileSystemId: 文件系统ID
+        # @type FileSystemId: String
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 最大返回数量
+        # @type Limit: Integer
+
+        attr_accessor :FileSystemId, :Offset, :Limit
+
+        def initialize(filesystemid=nil, offset=nil, limit=nil)
+          @FileSystemId = filesystemid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @FileSystemId = params['FileSystemId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeDataRepositoryTasks返回参数结构体
+      class DescribeDataRepositoryTasksResponse < TencentCloud::Common::AbstractModel
+        # @param DataRepositoryTaskList: 数据流通任务列表
+        # @type DataRepositoryTaskList: Array
+        # @param TotalCount: 任务总数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DataRepositoryTaskList, :TotalCount, :RequestId
+
+        def initialize(datarepositorytasklist=nil, totalcount=nil, requestid=nil)
+          @DataRepositoryTaskList = datarepositorytasklist
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DataRepositoryTaskList'].nil?
+            @DataRepositoryTaskList = []
+            params['DataRepositoryTaskList'].each do |i|
+              datarepositorytaskattribute_tmp = DataRepositoryTaskAttribute.new
+              datarepositorytaskattribute_tmp.deserialize(i)
+              @DataRepositoryTaskList << datarepositorytaskattribute_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end

@@ -597,8 +597,8 @@ module TencentCloud
 
         attr_accessor :Domain, :TagSet, :VpcSet, :Remark, :DnsForwardStatus, :Vpcs, :AccountVpcSet, :CnameSpeedupStatus
         extend Gem::Deprecate
-        deprecate :Vpcs, :none, 2026, 7
-        deprecate :Vpcs=, :none, 2026, 7
+        deprecate :Vpcs, :none, 2026, 10
+        deprecate :Vpcs=, :none, 2026, 10
 
         def initialize(domain=nil, tagset=nil, vpcset=nil, remark=nil, dnsforwardstatus=nil, vpcs=nil, accountvpcset=nil, cnamespeedupstatus=nil)
           @Domain = domain
@@ -1273,11 +1273,11 @@ module TencentCloud
 
       # DescribeExtendEndpointList请求参数结构体
       class DescribeExtendEndpointListRequest < TencentCloud::Common::AbstractModel
-        # @param Offset: 分页偏移量，从0开始
+        # @param Offset: <p>分页偏移量，从0开始</p>
         # @type Offset: Integer
-        # @param Limit: 分页限制数目， 最大100，默认20
+        # @param Limit: <p>分页限制数目， 最大100，默认20</p>
         # @type Limit: Integer
-        # @param Filters: 过滤参数，支持EndpointName,EndpointId
+        # @param Filters: <p>过滤参数，支持EndpointName,EndpointId</p>
         # @type Filters: Array
 
         attr_accessor :Offset, :Limit, :Filters
@@ -1304,16 +1304,31 @@ module TencentCloud
 
       # DescribeExtendEndpointList返回参数结构体
       class DescribeExtendEndpointListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>终端节点总数</p>
+        # @type TotalCount: Integer
+        # @param OutboundEndpointSet: <p>终端节点列表</p>
+        # @type OutboundEndpointSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :TotalCount, :OutboundEndpointSet, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(totalcount=nil, outboundendpointset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @OutboundEndpointSet = outboundendpointset
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['OutboundEndpointSet'].nil?
+            @OutboundEndpointSet = []
+            params['OutboundEndpointSet'].each do |i|
+              outboundendpoint_tmp = OutboundEndpoint.new
+              outboundendpoint_tmp.deserialize(i)
+              @OutboundEndpointSet << outboundendpoint_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1885,6 +1900,22 @@ module TencentCloud
         end
       end
 
+      # PrivateDNS出站终端节点转发IP
+      class EndpointService < TencentCloud::Common::AbstractModel
+        # @param SubnetLessIp: <p>子网剩余IP数</p>
+        # @type SubnetLessIp: Integer
+
+        attr_accessor :SubnetLessIp
+
+        def initialize(subnetlessip=nil)
+          @SubnetLessIp = subnetlessip
+        end
+
+        def deserialize(params)
+          @SubnetLessIp = params['SubnetLessIp']
+        end
+      end
+
       # 筛选参数
       class Filter < TencentCloud::Common::AbstractModel
         # @param Name: 参数名
@@ -2394,6 +2425,69 @@ module TencentCloud
           @RecordIds = params['RecordIds']
           @Status = params['Status']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 出站终端节点
+      class OutboundEndpoint < TencentCloud::Common::AbstractModel
+        # @param EndpointId: 出站终端节点ID
+        # @type EndpointId: String
+        # @param EndpointName: 出站终端节点名
+        # @type EndpointName: String
+        # @param Region: 出站终端节点所属地域
+        # @type Region: String
+        # @param Tags: tag标签
+        # @type Tags: Array
+        # @param EndpointServiceSet: 出站终端节点信息
+        # 仅在转发架构为 V2R的情况下返回
+        # @type EndpointServiceSet: Array
+        # @param ForwardLinkArch: 转发链接架构
+        # V2V: privatelink
+        # V2R: jnsgw
+        # @type ForwardLinkArch: String
+        # @param EndPointServiceId: 终端节点服务ID
+        # 仅在转发架构为 V2V的情况下返回
+        # @type EndPointServiceId: String
+        # @param EndPointVipSet: 终端节点VIP列表
+        # 仅在转发架构为 V2V的情况下返回
+        # @type EndPointVipSet: Array
+
+        attr_accessor :EndpointId, :EndpointName, :Region, :Tags, :EndpointServiceSet, :ForwardLinkArch, :EndPointServiceId, :EndPointVipSet
+
+        def initialize(endpointid=nil, endpointname=nil, region=nil, tags=nil, endpointserviceset=nil, forwardlinkarch=nil, endpointserviceid=nil, endpointvipset=nil)
+          @EndpointId = endpointid
+          @EndpointName = endpointname
+          @Region = region
+          @Tags = tags
+          @EndpointServiceSet = endpointserviceset
+          @ForwardLinkArch = forwardlinkarch
+          @EndPointServiceId = endpointserviceid
+          @EndPointVipSet = endpointvipset
+        end
+
+        def deserialize(params)
+          @EndpointId = params['EndpointId']
+          @EndpointName = params['EndpointName']
+          @Region = params['Region']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              taginfo_tmp = TagInfo.new
+              taginfo_tmp.deserialize(i)
+              @Tags << taginfo_tmp
+            end
+          end
+          unless params['EndpointServiceSet'].nil?
+            @EndpointServiceSet = []
+            params['EndpointServiceSet'].each do |i|
+              endpointservice_tmp = EndpointService.new
+              endpointservice_tmp.deserialize(i)
+              @EndpointServiceSet << endpointservice_tmp
+            end
+          end
+          @ForwardLinkArch = params['ForwardLinkArch']
+          @EndPointServiceId = params['EndPointServiceId']
+          @EndPointVipSet = params['EndPointVipSet']
         end
       end
 

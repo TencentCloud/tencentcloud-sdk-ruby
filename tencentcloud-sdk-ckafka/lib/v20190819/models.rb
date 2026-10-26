@@ -1378,10 +1378,14 @@ module TencentCloud
         # @type ObjectKeyPrefix: String
         # @param DirectoryTimeFormat: <p>根据strptime 时间格式化的分区格式</p>
         # @type DirectoryTimeFormat: String
+        # @param Timezone: <p>时间时区, 默认 UTC+08:00</p><p>参数格式：UTC+08:00</p>
+        # @type Timezone: String
+        # @param SourceDataFormat: <p>源数据解析格式</p><p>枚举值：</p><ul><li>JSON： JSON格式</li><li>Debezium： Debezium格式</li></ul>
+        # @type SourceDataFormat: String
 
-        attr_accessor :BucketName, :Region, :ObjectKey, :AggregateBatchSize, :AggregateInterval, :FormatOutputType, :ObjectKeyPrefix, :DirectoryTimeFormat
+        attr_accessor :BucketName, :Region, :ObjectKey, :AggregateBatchSize, :AggregateInterval, :FormatOutputType, :ObjectKeyPrefix, :DirectoryTimeFormat, :Timezone, :SourceDataFormat
 
-        def initialize(bucketname=nil, region=nil, objectkey=nil, aggregatebatchsize=nil, aggregateinterval=nil, formatoutputtype=nil, objectkeyprefix=nil, directorytimeformat=nil)
+        def initialize(bucketname=nil, region=nil, objectkey=nil, aggregatebatchsize=nil, aggregateinterval=nil, formatoutputtype=nil, objectkeyprefix=nil, directorytimeformat=nil, timezone=nil, sourcedataformat=nil)
           @BucketName = bucketname
           @Region = region
           @ObjectKey = objectkey
@@ -1390,6 +1394,8 @@ module TencentCloud
           @FormatOutputType = formatoutputtype
           @ObjectKeyPrefix = objectkeyprefix
           @DirectoryTimeFormat = directorytimeformat
+          @Timezone = timezone
+          @SourceDataFormat = sourcedataformat
         end
 
         def deserialize(params)
@@ -1401,6 +1407,8 @@ module TencentCloud
           @FormatOutputType = params['FormatOutputType']
           @ObjectKeyPrefix = params['ObjectKeyPrefix']
           @DirectoryTimeFormat = params['DirectoryTimeFormat']
+          @Timezone = params['Timezone']
+          @SourceDataFormat = params['SourceDataFormat']
         end
       end
 
@@ -1829,8 +1837,8 @@ module TencentCloud
 
         attr_accessor :TaskName, :TaskType, :SourceResource, :TargetResource, :TransformParam, :PrivateLinkParam, :SchemaId, :TransformsParam, :TaskId, :Tags, :Description
         extend Gem::Deprecate
-        deprecate :PrivateLinkParam, :none, 2026, 9
-        deprecate :PrivateLinkParam=, :none, 2026, 9
+        deprecate :PrivateLinkParam, :none, 2026, 10
+        deprecate :PrivateLinkParam=, :none, 2026, 10
 
         def initialize(taskname=nil, tasktype=nil, sourceresource=nil, targetresource=nil, transformparam=nil, privatelinkparam=nil, schemaid=nil, transformsparam=nil, taskid=nil, tags=nil, description=nil)
           @TaskName = taskname
@@ -2222,8 +2230,8 @@ module TencentCloud
 
         attr_accessor :ReturnCode, :ReturnMessage, :Data, :DeleteRouteTimestamp
         extend Gem::Deprecate
-        deprecate :DeleteRouteTimestamp, :none, 2026, 9
-        deprecate :DeleteRouteTimestamp=, :none, 2026, 9
+        deprecate :DeleteRouteTimestamp, :none, 2026, 10
+        deprecate :DeleteRouteTimestamp=, :none, 2026, 10
 
         def initialize(returncode=nil, returnmessage=nil, data=nil, deleteroutetimestamp=nil)
           @ReturnCode = returncode
@@ -4229,9 +4237,9 @@ module TencentCloud
 
       # 变配类型查询出参
       class DescModifyType < TencentCloud::Common::AbstractModel
-        # @param ModifyType: 变配类型
+        # @param ModifyType: <p>变配类型</p>
         # @type ModifyType: Integer
-        # @param MigrateFlag: 是否迁移标志
+        # @param MigrateFlag: <p>是否迁移标志</p>
         # @type MigrateFlag: Boolean
 
         attr_accessor :ModifyType, :MigrateFlag
@@ -4264,8 +4272,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :ResourceType, :ResourceName, :Offset, :Limit, :SearchWord
         extend Gem::Deprecate
-        deprecate :SearchWord, :none, 2026, 9
-        deprecate :SearchWord=, :none, 2026, 9
+        deprecate :SearchWord, :none, 2026, 10
+        deprecate :SearchWord=, :none, 2026, 10
 
         def initialize(instanceid=nil, resourcetype=nil, resourcename=nil, offset=nil, limit=nil, searchword=nil)
           @InstanceId = instanceid
@@ -5803,8 +5811,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :SearchWord, :Status, :Offset, :Limit, :TagKey, :Filters, :InstanceIds, :InstanceIdList, :TagList
         extend Gem::Deprecate
-        deprecate :InstanceIds, :none, 2026, 9
-        deprecate :InstanceIds=, :none, 2026, 9
+        deprecate :InstanceIds, :none, 2026, 10
+        deprecate :InstanceIds=, :none, 2026, 10
 
         def initialize(instanceid=nil, searchword=nil, status=nil, offset=nil, limit=nil, tagkey=nil, filters=nil, instanceids=nil, instanceidlist=nil, taglist=nil)
           @InstanceId = instanceid
@@ -5889,8 +5897,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :SearchWord, :Status, :Offset, :Limit, :TagKey, :VpcId
         extend Gem::Deprecate
-        deprecate :TagKey, :none, 2026, 9
-        deprecate :TagKey=, :none, 2026, 9
+        deprecate :TagKey, :none, 2026, 10
+        deprecate :TagKey=, :none, 2026, 10
 
         def initialize(instanceid=nil, searchword=nil, status=nil, offset=nil, limit=nil, tagkey=nil, vpcid=nil)
           @InstanceId = instanceid
@@ -9428,33 +9436,35 @@ module TencentCloud
 
       # Kafka连接源参数
       class KafkaConnectParam < TencentCloud::Common::AbstractModel
-        # @param Resource: Kafka连接源的实例资源, 非自建时必填，NetworkType=VPC时传clb实例id
+        # @param Resource: <p>Kafka连接源的实例资源, 非自建时必填，NetworkType=VPC时传clb实例id</p>
         # @type Resource: String
-        # @param SelfBuilt: 是否为自建集群
+        # @param SelfBuilt: <p>是否为自建集群</p>
         # @type SelfBuilt: Boolean
-        # @param IsUpdate: 是否更新到关联的Dip任务
+        # @param IsUpdate: <p>是否更新到关联的Dip任务</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsUpdate: Boolean
-        # @param BrokerAddress: Kafka连接的broker地址, NetworkType=PUBLIC公网时必填
+        # @param BrokerAddress: <p>Kafka连接的broker地址, NetworkType=PUBLIC公网时必填</p>
         # @type BrokerAddress: String
-        # @param Region: CKafka连接源的实例资源地域, 跨地域时必填
+        # @param Region: <p>CKafka连接源的实例资源地域, 跨地域时必填</p>
         # @type Region: String
-        # @param NetworkType: 网络类型：PUBLIC公网；VPC
+        # @param NetworkType: <p>网络类型：PUBLIC公网；VPC</p>
         # @type NetworkType: String
-        # @param UniqVpcId: vpcId，NetworkType=VPC时必传
+        # @param UniqVpcId: <p>vpcId，NetworkType=VPC时必传</p>
         # @type UniqVpcId: String
-        # @param ServiceVip: vip，NetworkType=VPC时必传
+        # @param ServiceVip: <p>vip，NetworkType=VPC时必传</p>
         # @type ServiceVip: String
-        # @param Port: 端口，NetworkType=VPC时必传
+        # @param Port: <p>端口，NetworkType=VPC时必传</p>
         # @type Port: Integer
-        # @param CrossNetResourceUniqueId: 跨云同步下需要客户传递唯一Id标志一组资源
+        # @param CrossNetResourceUniqueId: <p>跨云同步下需要客户传递唯一Id标志一组资源</p>
         # @type CrossNetResourceUniqueId: String
-        # @param CrossNetVpcSubNetId: 跨云子网ID
+        # @param CrossNetVpcSubNetId: <p>跨云子网ID</p>
         # @type CrossNetVpcSubNetId: String
+        # @param OriginalBrokerAddresses: <p>用户输入原始broker接入点地址</p>
+        # @type OriginalBrokerAddresses: String
 
-        attr_accessor :Resource, :SelfBuilt, :IsUpdate, :BrokerAddress, :Region, :NetworkType, :UniqVpcId, :ServiceVip, :Port, :CrossNetResourceUniqueId, :CrossNetVpcSubNetId
+        attr_accessor :Resource, :SelfBuilt, :IsUpdate, :BrokerAddress, :Region, :NetworkType, :UniqVpcId, :ServiceVip, :Port, :CrossNetResourceUniqueId, :CrossNetVpcSubNetId, :OriginalBrokerAddresses
 
-        def initialize(resource=nil, selfbuilt=nil, isupdate=nil, brokeraddress=nil, region=nil, networktype=nil, uniqvpcid=nil, servicevip=nil, port=nil, crossnetresourceuniqueid=nil, crossnetvpcsubnetid=nil)
+        def initialize(resource=nil, selfbuilt=nil, isupdate=nil, brokeraddress=nil, region=nil, networktype=nil, uniqvpcid=nil, servicevip=nil, port=nil, crossnetresourceuniqueid=nil, crossnetvpcsubnetid=nil, originalbrokeraddresses=nil)
           @Resource = resource
           @SelfBuilt = selfbuilt
           @IsUpdate = isupdate
@@ -9466,6 +9476,7 @@ module TencentCloud
           @Port = port
           @CrossNetResourceUniqueId = crossnetresourceuniqueid
           @CrossNetVpcSubNetId = crossnetvpcsubnetid
+          @OriginalBrokerAddresses = originalbrokeraddresses
         end
 
         def deserialize(params)
@@ -9480,6 +9491,7 @@ module TencentCloud
           @Port = params['Port']
           @CrossNetResourceUniqueId = params['CrossNetResourceUniqueId']
           @CrossNetVpcSubNetId = params['CrossNetVpcSubNetId']
+          @OriginalBrokerAddresses = params['OriginalBrokerAddresses']
         end
       end
 
@@ -10290,8 +10302,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :MsgRetentionTime, :InstanceName, :Config, :DynamicRetentionConfig, :RebalanceTime, :PublicNetwork, :DynamicDiskConfig, :MaxMessageByte, :UncleanLeaderElectionEnable, :DeleteProtectionEnable, :RetentionBytes, :AdminSecurity, :TransactionalIdExpirationMs
         extend Gem::Deprecate
-        deprecate :DynamicDiskConfig, :none, 2026, 9
-        deprecate :DynamicDiskConfig=, :none, 2026, 9
+        deprecate :DynamicDiskConfig, :none, 2026, 10
+        deprecate :DynamicDiskConfig=, :none, 2026, 10
 
         def initialize(instanceid=nil, msgretentiontime=nil, instancename=nil, config=nil, dynamicretentionconfig=nil, rebalancetime=nil, publicnetwork=nil, dynamicdiskconfig=nil, maxmessagebyte=nil, uncleanleaderelectionenable=nil, deleteprotectionenable=nil, retentionbytes=nil, adminsecurity=nil, transactionalidexpirationms=nil)
           @InstanceId = instanceid
@@ -13722,8 +13734,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :IsInternalApp, :AppId, :Flag, :ZoneName, :ZoneStatus, :Exflag, :SoldOut, :SalesInfo, :ExtraFlag
         extend Gem::Deprecate
-        deprecate :Exflag, :none, 2026, 9
-        deprecate :Exflag=, :none, 2026, 9
+        deprecate :Exflag, :none, 2026, 10
+        deprecate :Exflag=, :none, 2026, 10
 
         def initialize(zoneid=nil, isinternalapp=nil, appid=nil, flag=nil, zonename=nil, zonestatus=nil, exflag=nil, soldout=nil, salesinfo=nil, extraflag=nil)
           @ZoneId = zoneid

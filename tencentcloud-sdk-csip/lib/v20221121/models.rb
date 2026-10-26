@@ -63854,10 +63854,12 @@ module TencentCloud
         # @type SyncTo: Array
         # @param TagIds: <p>标签ID</p>
         # @type TagIds: Array
+        # @param PreferCloudSource: <p>优先使用腾讯云软件源</p>
+        # @type PreferCloudSource: Boolean
 
-        attr_accessor :Status, :VulCategory, :Level, :Method, :StartTime, :EndTime, :AssetRange, :CycleType, :Timeout, :CycleValue, :MemberId, :AssetList, :AllowSync, :EnableSync, :SyncTo, :TagIds
+        attr_accessor :Status, :VulCategory, :Level, :Method, :StartTime, :EndTime, :AssetRange, :CycleType, :Timeout, :CycleValue, :MemberId, :AssetList, :AllowSync, :EnableSync, :SyncTo, :TagIds, :PreferCloudSource
 
-        def initialize(status=nil, vulcategory=nil, level=nil, method=nil, starttime=nil, endtime=nil, assetrange=nil, cycletype=nil, timeout=nil, cyclevalue=nil, memberid=nil, assetlist=nil, allowsync=nil, enablesync=nil, syncto=nil, tagids=nil)
+        def initialize(status=nil, vulcategory=nil, level=nil, method=nil, starttime=nil, endtime=nil, assetrange=nil, cycletype=nil, timeout=nil, cyclevalue=nil, memberid=nil, assetlist=nil, allowsync=nil, enablesync=nil, syncto=nil, tagids=nil, prefercloudsource=nil)
           @Status = status
           @VulCategory = vulcategory
           @Level = level
@@ -63874,6 +63876,7 @@ module TencentCloud
           @EnableSync = enablesync
           @SyncTo = syncto
           @TagIds = tagids
+          @PreferCloudSource = prefercloudsource
         end
 
         def deserialize(params)
@@ -63893,6 +63896,7 @@ module TencentCloud
           @EnableSync = params['EnableSync']
           @SyncTo = params['SyncTo']
           @TagIds = params['TagIds']
+          @PreferCloudSource = params['PreferCloudSource']
         end
       end
 

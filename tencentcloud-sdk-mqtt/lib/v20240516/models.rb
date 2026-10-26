@@ -2859,22 +2859,25 @@ module TencentCloud
 
       # DescribeMessageByTopic请求参数结构体
       class DescribeMessageByTopicRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
+        # @param InstanceId: <p>腾讯云MQTT实例ID，从 <a href="https://cloud.tencent.com/document/api/1778/111029">DescribeInstanceList</a>接口或控制台获得。</p>
         # @type InstanceId: String
-        # @param Topic: home/room
+        # @param Topic: <p>home/room</p>
         # @type Topic: String
-        # @param StartTime: 开始时间，毫秒级时间戳 。
+        # @param StartTime: <p>开始时间，毫秒级时间戳 。</p>
         # @type StartTime: Integer
-        # @param MaxNumber: 查询消息条数，最大1024，默认100.
+        # @param MaxNumber: <p>查询消息条数，最大1024，默认100.</p>
         # @type MaxNumber: Integer
+        # @param FilterExpression: <p>消息 body 过滤表达式（Base64 编码），jq 1.6 语法</p><p>枚举值：</p><ul><li>LmxldmVsID09ICJFUlJPUiI=： .level == &quot;ERROR&quot; Base64编码后的字符串</li></ul>
+        # @type FilterExpression: String
 
-        attr_accessor :InstanceId, :Topic, :StartTime, :MaxNumber
+        attr_accessor :InstanceId, :Topic, :StartTime, :MaxNumber, :FilterExpression
 
-        def initialize(instanceid=nil, topic=nil, starttime=nil, maxnumber=nil)
+        def initialize(instanceid=nil, topic=nil, starttime=nil, maxnumber=nil, filterexpression=nil)
           @InstanceId = instanceid
           @Topic = topic
           @StartTime = starttime
           @MaxNumber = maxnumber
+          @FilterExpression = filterexpression
         end
 
         def deserialize(params)
@@ -2882,12 +2885,13 @@ module TencentCloud
           @Topic = params['Topic']
           @StartTime = params['StartTime']
           @MaxNumber = params['MaxNumber']
+          @FilterExpression = params['FilterExpression']
         end
       end
 
       # DescribeMessageByTopic返回参数结构体
       class DescribeMessageByTopicResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 消息列表
+        # @param Data: <p>消息列表</p>
         # @type Data: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2914,11 +2918,11 @@ module TencentCloud
 
       # DescribeMessageDetails请求参数结构体
       class DescribeMessageDetailsRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
+        # @param InstanceId: <p>腾讯云MQTT实例ID，从 <a href="https://cloud.tencent.com/document/api/1778/111029">DescribeInstanceList</a>接口或控制台获得。</p>
         # @type InstanceId: String
-        # @param MessageId: 消息ID
+        # @param MessageId: <p>消息ID</p>
         # @type MessageId: String
-        # @param Subscription: 订阅表达式
+        # @param Subscription: <p>订阅表达式</p>
         # @type Subscription: String
 
         attr_accessor :InstanceId, :MessageId, :Subscription
@@ -2938,63 +2942,40 @@ module TencentCloud
 
       # DescribeMessageDetails返回参数结构体
       class DescribeMessageDetailsResponse < TencentCloud::Common::AbstractModel
-        # @param Body: 消息体
+        # @param Body: <p>消息体</p>
         # @type Body: String
-        # @param UserProperties: 用户自定义属性
+        # @param UserProperties: <p>用户自定义属性</p>
         # @type UserProperties: Array
-        # @param StoreTimestamp: 消息存储时间，毫秒级时间戳。
+        # @param StoreTimestamp: <p>消息存储时间，毫秒级时间戳。</p>
         # @type StoreTimestamp: Integer
-        # @param MessageId: 消息ID
+        # @param MessageId: <p>消息ID</p>
         # @type MessageId: String
-        # @param ClientId: 生产者地址
+        # @param ClientId: <p>生产者地址</p>
         # @type ClientId: String
-        # @param Qos: Topic
+        # @param Qos: <p>Topic</p>
         # @type Qos: String
-        # @param OriginTopic: 源topic
+        # @param OriginTopic: <p>源topic</p>
         # @type OriginTopic: String
-        # @param ContentType: 内容类型（MQTT5）
-        # 含义：指示消息载荷的内容类型，使用标准的 MIME 类型格式。这帮助接收方正确解析和处理消息内容。
-        # 示例：
-        # application/json：表示载荷是 JSON 格式的数据。
-        # text/plain：表示载荷是纯文本。
-        # application/octet-stream：表示载荷是二进制数据。
+        # @param ContentType: <p>内容类型（MQTT5）<br>含义：指示消息载荷的内容类型，使用标准的 MIME 类型格式。这帮助接收方正确解析和处理消息内容。<br>示例：<br>application/json：表示载荷是 JSON 格式的数据。<br>text/plain：表示载荷是纯文本。<br>application/octet-stream：表示载荷是二进制数据。</p>
         # @type ContentType: String
-        # @param PayloadFormatIndicator: 载荷格式指示符（MQTT5）
-        # 含义：指示载荷的格式，是一个布尔值。0表示未指定格式（二进制），1表示 UTF-8 编码的字符串。
-        # 示例：
-        # 值为0：当载荷是二进制数据，如图片、音频等。
-        # 值为1：当载荷是 UTF-8 编码的文本，如 JSON 字符串、XML 等。
+        # @param PayloadFormatIndicator: <p>载荷格式指示符（MQTT5）<br>含义：指示载荷的格式，是一个布尔值。0表示未指定格式（二进制），1表示 UTF-8 编码的字符串。<br>示例：<br>值为0：当载荷是二进制数据，如图片、音频等。<br>值为1：当载荷是 UTF-8 编码的文本，如 JSON 字符串、XML 等。</p>
         # @type PayloadFormatIndicator: Integer
-        # @param MessageExpiryInterval: 消息过期间隔（MQTT5）
-        # 含义：指定消息在被丢弃前的有效时间（秒）。如果消息在过期前未能送达，则会被 MQTT 服务器丢弃。
-        # 示例：
-        # 值为60：表示消息在发布后的 60 秒内有效，过期后未送达则被丢弃。
-        # 值为0：表示消息不过期，永久有效（直到被接收或会话结束）。
+        # @param MessageExpiryInterval: <p>消息过期间隔（MQTT5）<br>含义：指定消息在被丢弃前的有效时间（秒）。如果消息在过期前未能送达，则会被 MQTT 服务器丢弃。<br>示例：<br>值为60：表示消息在发布后的 60 秒内有效，过期后未送达则被丢弃。<br>值为0：表示消息不过期，永久有效（直到被接收或会话结束）。</p>
         # @type MessageExpiryInterval: Integer
-        # @param ResponseTopic: 响应主题（MQTT5）
-        # 含义：指定一个主题，用于请求 - 响应模式中的响应消息。发送方可以指定接收方应该将响应发送到哪个主题。
-        # 示例：
-        # 发送方发布请求到主题devices/device1/commands，并设置ResponseTopic为devices/device1/responses。
-        # 接收方处理请求后，将响应发布到devices/device1/responses主题。
+        # @param ResponseTopic: <p>响应主题（MQTT5）<br>含义：指定一个主题，用于请求 - 响应模式中的响应消息。发送方可以指定接收方应该将响应发送到哪个主题。<br>示例：<br>发送方发布请求到主题devices/device1/commands，并设置ResponseTopic为devices/device1/responses。<br>接收方处理请求后，将响应发布到devices/device1/responses主题。</p>
         # @type ResponseTopic: String
-        # @param CorrelationData: 关联数据（MQTT5）
-        # 含义：用于关联请求和响应的标识符，通常是一个字节数组。在请求 - 响应模式中，发送方设置此值，接收方在响应中包含相同的值，以便发送方识别响应对应的请求。
-        # 示例：
-        # 发送方生成一个唯一 ID（如 UUID 的字节数组）作为CorrelationData，附加到请求消息中。
-        # 接收方在响应消息中包含相同的CorrelationData，发送方通过比较此值来匹配响应和请求。
+        # @param CorrelationData: <p>关联数据（MQTT5）<br>含义：用于关联请求和响应的标识符，通常是一个字节数组。在请求 - 响应模式中，发送方设置此值，接收方在响应中包含相同的值，以便发送方识别响应对应的请求。<br>示例：<br>发送方生成一个唯一 ID（如 UUID 的字节数组）作为CorrelationData，附加到请求消息中。<br>接收方在响应消息中包含相同的CorrelationData，发送方通过比较此值来匹配响应和请求。</p>
         # @type CorrelationData: String
-        # @param SubscriptionIdentifier: 订阅标识符（MQTT5）
-        # 含义：为订阅分配的唯一标识符，用于标识客户端的特定订阅。当服务器向客户端发送消息时，可以包含此标识符，帮助客户端识别消息对应的订阅。
-        # 示例：
-        # 客户端订阅主题devices/+/temperature，并设置SubscriptionIdentifier为123。
-        # 当服务器向客户端发送此主题的消息时，会在消息中包含SubscriptionIdentifier: 123，客户端可以根据此值知道消息是通过哪个订阅接收的。
+        # @param SubscriptionIdentifier: <p>订阅标识符（MQTT5）<br>含义：为订阅分配的唯一标识符，用于标识客户端的特定订阅。当服务器向客户端发送消息时，可以包含此标识符，帮助客户端识别消息对应的订阅。<br>示例：<br>客户端订阅主题devices/+/temperature，并设置SubscriptionIdentifier为123。<br>当服务器向客户端发送此主题的消息时，会在消息中包含SubscriptionIdentifier: 123，客户端可以根据此值知道消息是通过哪个订阅接收的。</p>
         # @type SubscriptionIdentifier: String
+        # @param Retain: <p>是否保留消息</p>
+        # @type Retain: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Body, :UserProperties, :StoreTimestamp, :MessageId, :ClientId, :Qos, :OriginTopic, :ContentType, :PayloadFormatIndicator, :MessageExpiryInterval, :ResponseTopic, :CorrelationData, :SubscriptionIdentifier, :RequestId
+        attr_accessor :Body, :UserProperties, :StoreTimestamp, :MessageId, :ClientId, :Qos, :OriginTopic, :ContentType, :PayloadFormatIndicator, :MessageExpiryInterval, :ResponseTopic, :CorrelationData, :SubscriptionIdentifier, :Retain, :RequestId
 
-        def initialize(body=nil, userproperties=nil, storetimestamp=nil, messageid=nil, clientid=nil, qos=nil, origintopic=nil, contenttype=nil, payloadformatindicator=nil, messageexpiryinterval=nil, responsetopic=nil, correlationdata=nil, subscriptionidentifier=nil, requestid=nil)
+        def initialize(body=nil, userproperties=nil, storetimestamp=nil, messageid=nil, clientid=nil, qos=nil, origintopic=nil, contenttype=nil, payloadformatindicator=nil, messageexpiryinterval=nil, responsetopic=nil, correlationdata=nil, subscriptionidentifier=nil, retain=nil, requestid=nil)
           @Body = body
           @UserProperties = userproperties
           @StoreTimestamp = storetimestamp
@@ -3008,6 +2989,7 @@ module TencentCloud
           @ResponseTopic = responsetopic
           @CorrelationData = correlationdata
           @SubscriptionIdentifier = subscriptionidentifier
+          @Retain = retain
           @RequestId = requestid
         end
 
@@ -3032,6 +3014,7 @@ module TencentCloud
           @ResponseTopic = params['ResponseTopic']
           @CorrelationData = params['CorrelationData']
           @SubscriptionIdentifier = params['SubscriptionIdentifier']
+          @Retain = params['Retain']
           @RequestId = params['RequestId']
         end
       end

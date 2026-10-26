@@ -4570,26 +4570,30 @@ module TencentCloud
 
       # ModifyUserPrivilegesV3请求参数结构体
       class ModifyUserPrivilegesV3Request < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 集群id
+        # @param InstanceId: <p>集群id</p>
         # @type InstanceId: String
-        # @param UserName: 用户名
+        # @param UserName: <p>用户名</p>
         # @type UserName: String
-        # @param UserPrivileges: 用户权限
+        # @param UserPrivileges: <p>用户权限</p>
         # @type UserPrivileges: :class:`Tencentcloud::Cdwdoris.v20211228.models.UpdateUserPrivileges`
-        # @param WhiteHost: 用户链接来自的 IP
+        # @param WhiteHost: <p>用户链接来自的 IP</p>
         # @type WhiteHost: String
-        # @param UpdateType: 更新类型，默认0，1为更新绑定计算组，2为更新默认计算组
+        # @param UpdateType: <p>更新类型，默认0，1为更新绑定计算组，2为更新默认计算组，4 为 GrantPrivileges, RevokePrivileges 接口专用批量授权</p><p>枚举值：</p><ul><li>0： 默认</li><li>1： 更新绑定计算组</li><li>2： 更新默认计算组</li><li>4： GrantPrivileges, RevokePrivileges 接口专用批量授权</li></ul>
         # @type UpdateType: Integer
-        # @param UpdateComputeGroups: 需绑定计算组列表
+        # @param UpdateComputeGroups: <p>需绑定计算组列表</p>
         # @type UpdateComputeGroups: Array
-        # @param DefaultComputeGroup: 默认计算组
+        # @param DefaultComputeGroup: <p>默认计算组</p>
         # @type DefaultComputeGroup: String
-        # @param ComputeGroupType: 0: 灵活场景 1: 固定场景
+        # @param ComputeGroupType: <p>0: 灵活场景 1: 固定场景</p>
         # @type ComputeGroupType: Integer
+        # @param GrantPrivileges: <p>本次新增授权的库表，仅 UpdateType=4 时生效</p>
+        # @type GrantPrivileges: :class:`Tencentcloud::Cdwdoris.v20211228.models.UpdateUserPrivileges`
+        # @param RevokePrivileges: <p>本次取消授权的库表，仅 UpdateType=4 时生效</p>
+        # @type RevokePrivileges: :class:`Tencentcloud::Cdwdoris.v20211228.models.UpdateUserPrivileges`
 
-        attr_accessor :InstanceId, :UserName, :UserPrivileges, :WhiteHost, :UpdateType, :UpdateComputeGroups, :DefaultComputeGroup, :ComputeGroupType
+        attr_accessor :InstanceId, :UserName, :UserPrivileges, :WhiteHost, :UpdateType, :UpdateComputeGroups, :DefaultComputeGroup, :ComputeGroupType, :GrantPrivileges, :RevokePrivileges
 
-        def initialize(instanceid=nil, username=nil, userprivileges=nil, whitehost=nil, updatetype=nil, updatecomputegroups=nil, defaultcomputegroup=nil, computegrouptype=nil)
+        def initialize(instanceid=nil, username=nil, userprivileges=nil, whitehost=nil, updatetype=nil, updatecomputegroups=nil, defaultcomputegroup=nil, computegrouptype=nil, grantprivileges=nil, revokeprivileges=nil)
           @InstanceId = instanceid
           @UserName = username
           @UserPrivileges = userprivileges
@@ -4598,6 +4602,8 @@ module TencentCloud
           @UpdateComputeGroups = updatecomputegroups
           @DefaultComputeGroup = defaultcomputegroup
           @ComputeGroupType = computegrouptype
+          @GrantPrivileges = grantprivileges
+          @RevokePrivileges = revokeprivileges
         end
 
         def deserialize(params)
@@ -4612,29 +4618,44 @@ module TencentCloud
           @UpdateComputeGroups = params['UpdateComputeGroups']
           @DefaultComputeGroup = params['DefaultComputeGroup']
           @ComputeGroupType = params['ComputeGroupType']
+          unless params['GrantPrivileges'].nil?
+            @GrantPrivileges = UpdateUserPrivileges.new
+            @GrantPrivileges.deserialize(params['GrantPrivileges'])
+          end
+          unless params['RevokePrivileges'].nil?
+            @RevokePrivileges = UpdateUserPrivileges.new
+            @RevokePrivileges.deserialize(params['RevokePrivileges'])
+          end
         end
       end
 
       # ModifyUserPrivilegesV3返回参数结构体
       class ModifyUserPrivilegesV3Response < TencentCloud::Common::AbstractModel
-        # @param ErrorMsg: 错误信息，为空就是没有错误
+        # @param ErrorMsg: <p>错误信息，为空就是没有错误</p>
         # @type ErrorMsg: String
-        # @param InstanceId: 集群id
+        # @param InstanceId: <p>集群id</p>
         # @type InstanceId: String
+        # @param SkippedItems: <p>因库/表已删除而被跳过的目标；ErrorMsg 为空时不代表失败，前端需弹窗提示</p>
+        # @type SkippedItems: :class:`Tencentcloud::Cdwdoris.v20211228.models.SkippedPrivilegeItem`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ErrorMsg, :InstanceId, :RequestId
+        attr_accessor :ErrorMsg, :InstanceId, :SkippedItems, :RequestId
 
-        def initialize(errormsg=nil, instanceid=nil, requestid=nil)
+        def initialize(errormsg=nil, instanceid=nil, skippeditems=nil, requestid=nil)
           @ErrorMsg = errormsg
           @InstanceId = instanceid
+          @SkippedItems = skippeditems
           @RequestId = requestid
         end
 
         def deserialize(params)
           @ErrorMsg = params['ErrorMsg']
           @InstanceId = params['InstanceId']
+          unless params['SkippedItems'].nil?
+            @SkippedItems = SkippedPrivilegeItem.new
+            @SkippedItems.deserialize(params['SkippedItems'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -5818,6 +5839,34 @@ module TencentCloud
           @TagKey = params['TagKey']
           @TagValue = params['TagValue']
           @AllValue = params['AllValue']
+        end
+      end
+
+      # 增量授权（UpdateType=4）时因库/表已被物理删除而被跳过的目标，后端已自动清理其残留权限，前端需弹窗提示用户
+      class SkippedPrivilegeItem < TencentCloud::Common::AbstractModel
+        # @param CatalogName: <p>数据目录（catalog）名称</p>
+        # @type CatalogName: String
+        # @param Database: <p>库名</p>
+        # @type Database: String
+        # @param Table: <p>表名；库级条目被跳过时该字段为空（Go 定义带 omitempty，为空时响应里整个字段不出现）</p>
+        # @type Table: String
+        # @param Reason: <p>跳过原因，如 table not found, maybe already dropped、database not found, maybe already dropped、existence check failed, granting  skipped this round, please retry</p>
+        # @type Reason: String
+
+        attr_accessor :CatalogName, :Database, :Table, :Reason
+
+        def initialize(catalogname=nil, database=nil, table=nil, reason=nil)
+          @CatalogName = catalogname
+          @Database = database
+          @Table = table
+          @Reason = reason
+        end
+
+        def deserialize(params)
+          @CatalogName = params['CatalogName']
+          @Database = params['Database']
+          @Table = params['Table']
+          @Reason = params['Reason']
         end
       end
 

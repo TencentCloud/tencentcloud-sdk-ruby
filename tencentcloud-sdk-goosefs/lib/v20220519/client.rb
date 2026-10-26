@@ -581,6 +581,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 列出所有的数据流通任务
+
+        # @param request: Request instance for DescribeDataRepositoryTasks.
+        # @type request: :class:`Tencentcloud::goosefs::V20220519::DescribeDataRepositoryTasksRequest`
+        # @rtype: :class:`Tencentcloud::goosefs::V20220519::DescribeDataRepositoryTasksResponse`
+        def DescribeDataRepositoryTasks(request)
+          body = send_request('DescribeDataRepositoryTasks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDataRepositoryTasksResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 罗列文件系统关联的Bucket映射
 
         # @param request: Request instance for DescribeFileSystemBuckets.

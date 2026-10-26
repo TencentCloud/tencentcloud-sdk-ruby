@@ -4489,41 +4489,27 @@ module TencentCloud
 
       # CreateLiveSnapshotTemplate请求参数结构体
       class CreateLiveSnapshotTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param TemplateName: 模板名称。
-        # 长度上限：255字节。
-        # 仅支持中文、英文、数字、_、-。
+        # @param TemplateName: <p>模板名称。<br>长度上限：255字节。<br>仅支持中文、英文、数字、_、-。</p>
         # @type TemplateName: String
-        # @param CosAppId: Cos 应用 ID。
+        # @param CosAppId: <p>Cos 应用 ID。</p>
         # @type CosAppId: Integer
-        # @param CosBucket: Cos Bucket名称。
-        # 注：CosBucket参数值不能包含-[appid] 部分。
+        # @param CosBucket: <p>Cos Bucket名称。<br>注：CosBucket参数值不能包含-[appid] 部分。</p>
         # @type CosBucket: String
-        # @param CosRegion: Cos地区。
+        # @param CosRegion: <p>Cos地区。</p>
         # @type CosRegion: String
-        # @param Description: 描述信息。
-        # 长度上限：1024字节。
-        # 仅支持中文、英文、数字、_、-。
+        # @param Description: <p>描述信息。<br>长度上限：1024字节。<br>仅支持中文、英文、数字、_、-。</p>
         # @type Description: String
-        # @param SnapshotInterval: 截图间隔，单位s，默认10s。
-        # 范围： 2s ~ 300s。
+        # @param SnapshotInterval: <p>截图间隔，单位s，默认10s。<br>范围： 2s ~ 300s。</p>
         # @type SnapshotInterval: Integer
-        # @param Width: 截图宽度。默认：0（原始宽）。
-        # 范围：0-3000 。
+        # @param Width: <p>截图宽度。默认：0（原始宽）。<br>范围：0-3000 。</p>
         # @type Width: Integer
-        # @param Height: 截图高度。默认：0（原始高）。
-        # 范围：0-2000 。
+        # @param Height: <p>截图高度。默认：0（原始高）。<br>范围：0-2000 。</p>
         # @type Height: Integer
-        # @param PornFlag: 是否开启鉴黄，0：不开启，1：开启。默认：0。
+        # @param PornFlag: <p>是否开启鉴黄，0：不开启，1：开启。默认：0。</p>
         # @type PornFlag: Integer
-        # @param CosPrefix: Cos Bucket文件夹前缀。
-        # 如不传，实际按默认值
-        # /{Year}-{Month}-{Day}
-        # 生效
+        # @param CosPrefix: <p>Cos Bucket文件夹前缀。<br>如不传，实际按默认值<br>/{Year}-{Month}-{Day}<br>生效</p>
         # @type CosPrefix: String
-        # @param CosFileName: Cos 文件名称。
-        # 如不传，实际按默认值
-        # {StreamID}-screenshot-{Hour}-{Minute}-{Second}-{Width}x{Height}{Ext}
-        # 生效
+        # @param CosFileName: <p>Cos 文件名称。<br>如不传，实际按默认值<br>{StreamID}-screenshot-{Hour}-{Minute}-{Second}-{Width}x{Height}{Ext}<br>生效</p>
         # @type CosFileName: String
 
         attr_accessor :TemplateName, :CosAppId, :CosBucket, :CosRegion, :Description, :SnapshotInterval, :Width, :Height, :PornFlag, :CosPrefix, :CosFileName
@@ -4559,7 +4545,7 @@ module TencentCloud
 
       # CreateLiveSnapshotTemplate返回参数结构体
       class CreateLiveSnapshotTemplateResponse < TencentCloud::Common::AbstractModel
-        # @param TemplateId: 模板Id。
+        # @param TemplateId: <p>模板Id。</p>
         # @type TemplateId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -16220,38 +16206,29 @@ module TencentCloud
 
       # ModifyLiveSnapshotTemplate请求参数结构体
       class ModifyLiveSnapshotTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param TemplateId: 模板 ID。
+        # @param TemplateId: <p>模板 ID。</p>
         # @type TemplateId: Integer
-        # @param CosAppId: Cos 应用 ID。
-        # **注：此参数现在须必选。**
+        # @param CosAppId: <p>Cos 应用 ID。<br><strong>注：此参数现在须必选。</strong></p>
         # @type CosAppId: Integer
-        # @param CosBucket: Cos Bucket名称。
-        # 注：CosBucket参数值不能包含-[appid] 部分。
-        # **注：此参数现在须必选。**
+        # @param CosBucket: <p>Cos Bucket名称。<br>注：CosBucket参数值不能包含-[appid] 部分。<br><strong>注：此参数现在须必选。</strong></p>
         # @type CosBucket: String
-        # @param CosRegion: Cos 地域。
-        # **注：此参数现在须必选。**
+        # @param CosRegion: <p>Cos 地域。<br><strong>注：此参数现在须必选。</strong></p>
         # @type CosRegion: String
-        # @param TemplateName: 模板名称。
-        # 长度上限：255字节。
+        # @param TemplateName: <p>模板名称。<br>长度上限：255字节。</p>
         # @type TemplateName: String
-        # @param Description: 描述信息。
-        # 长度上限：1024字节。
+        # @param Description: <p>描述信息。<br>长度上限：1024字节。</p>
         # @type Description: String
-        # @param SnapshotInterval: 截图间隔，单位s，默认10s。
-        # 范围： 5s ~ 300s。
+        # @param SnapshotInterval: <p>截图间隔，单位s，默认10s。<br>范围： 5s ~ 300s。</p>
         # @type SnapshotInterval: Integer
-        # @param Width: 截图宽度。默认：0（原始宽）。
+        # @param Width: <p>截图宽度。默认：0（原始宽）。</p>
         # @type Width: Integer
-        # @param Height: 截图高度。默认：0（原始高）。
+        # @param Height: <p>截图高度。默认：0（原始高）。</p>
         # @type Height: Integer
-        # @param PornFlag: 是否开启鉴黄，默认 0 。
-        # 0：不开启。
-        # 1：开启。
+        # @param PornFlag: <p>是否开启鉴黄，默认 0 。<br>0：不开启。<br>1：开启。</p>
         # @type PornFlag: Integer
-        # @param CosPrefix: Cos Bucket文件夹前缀。
+        # @param CosPrefix: <p>Cos Bucket文件夹前缀。</p>
         # @type CosPrefix: String
-        # @param CosFileName: Cos 文件名称。
+        # @param CosFileName: <p>Cos 文件名称。</p>
         # @type CosFileName: String
 
         attr_accessor :TemplateId, :CosAppId, :CosBucket, :CosRegion, :TemplateName, :Description, :SnapshotInterval, :Width, :Height, :PornFlag, :CosPrefix, :CosFileName
@@ -18672,38 +18649,40 @@ module TencentCloud
 
       # 截图模板信息。
       class SnapshotTemplateInfo < TencentCloud::Common::AbstractModel
-        # @param TemplateId: 模板 ID。
+        # @param TemplateId: <p>模板 ID。</p>
         # @type TemplateId: Integer
-        # @param TemplateName: 模板名称。
+        # @param TemplateName: <p>模板名称。</p>
         # @type TemplateName: String
-        # @param SnapshotInterval: 截图时间间隔，5-300秒。
+        # @param SnapshotInterval: <p>截图时间间隔，5-300秒。</p>
         # @type SnapshotInterval: Integer
-        # @param Width: 截图宽度，范围：0-3000。
-        # 0：原始宽度并适配原始比例。
+        # @param Width: <p>截图宽度，范围：0-3000。<br>0：原始宽度并适配原始比例。</p>
         # @type Width: Integer
-        # @param Height: 截图高度，范围：0-2000。
-        # 0：原始高度并适配原始比例。
+        # @param Height: <p>截图高度，范围：0-2000。<br>0：原始高度并适配原始比例。</p>
         # @type Height: Integer
-        # @param PornFlag: 是否开启鉴黄，0：不开启，1：开启。
+        # @param PornFlag: <p>是否开启鉴黄，0：不开启，1：开启。</p>
         # @type PornFlag: Integer
-        # @param CosAppId: Cos 应用 ID。
+        # @param CosAppId: <p>Cos 应用 ID。</p>
         # @type CosAppId: Integer
-        # @param CosBucket: Cos Bucket名称。
+        # @param CosBucket: <p>Cos Bucket名称。</p>
         # @type CosBucket: String
-        # @param CosRegion: Cos 地域。
+        # @param CosRegion: <p>Cos 地域。</p>
         # @type CosRegion: String
-        # @param Description: 模板描述。
+        # @param Description: <p>模板描述。</p>
         # @type Description: String
-        # @param CosPrefix: Cos Bucket文件夹前缀。
+        # @param CosPrefix: <p>Cos Bucket文件夹前缀。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CosPrefix: String
-        # @param CosFileName: Cos 文件名称。
+        # @param CosFileName: <p>Cos 文件名称。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CosFileName: String
+        # @param CosSecretId: <p>第三方存储时账号的SecretId</p>
+        # @type CosSecretId: String
+        # @param CosSecretKey: <p>第三方存储时，账号的SecretKey</p><p>当查询时，该值返回为<code>******</code></p>
+        # @type CosSecretKey: String
 
-        attr_accessor :TemplateId, :TemplateName, :SnapshotInterval, :Width, :Height, :PornFlag, :CosAppId, :CosBucket, :CosRegion, :Description, :CosPrefix, :CosFileName
+        attr_accessor :TemplateId, :TemplateName, :SnapshotInterval, :Width, :Height, :PornFlag, :CosAppId, :CosBucket, :CosRegion, :Description, :CosPrefix, :CosFileName, :CosSecretId, :CosSecretKey
 
-        def initialize(templateid=nil, templatename=nil, snapshotinterval=nil, width=nil, height=nil, pornflag=nil, cosappid=nil, cosbucket=nil, cosregion=nil, description=nil, cosprefix=nil, cosfilename=nil)
+        def initialize(templateid=nil, templatename=nil, snapshotinterval=nil, width=nil, height=nil, pornflag=nil, cosappid=nil, cosbucket=nil, cosregion=nil, description=nil, cosprefix=nil, cosfilename=nil, cossecretid=nil, cossecretkey=nil)
           @TemplateId = templateid
           @TemplateName = templatename
           @SnapshotInterval = snapshotinterval
@@ -18716,6 +18695,8 @@ module TencentCloud
           @Description = description
           @CosPrefix = cosprefix
           @CosFileName = cosfilename
+          @CosSecretId = cossecretid
+          @CosSecretKey = cossecretkey
         end
 
         def deserialize(params)
@@ -18731,6 +18712,8 @@ module TencentCloud
           @Description = params['Description']
           @CosPrefix = params['CosPrefix']
           @CosFileName = params['CosFileName']
+          @CosSecretId = params['CosSecretId']
+          @CosSecretKey = params['CosSecretKey']
         end
       end
 

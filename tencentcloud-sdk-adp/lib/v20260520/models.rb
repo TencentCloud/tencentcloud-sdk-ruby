@@ -4194,10 +4194,12 @@ module TencentCloud
         # @type Method: Integer
         # @param RecommendPromptMode: <p>推荐问生成prompt模式。枚举值: 1:仅结合知识库输出推荐问的prompt</p>
         # @type RecommendPromptMode: Integer
+        # @param EnableNewMessageInterrupt: <p>新消息中断正在进行的消息</p>
+        # @type EnableNewMessageInterrupt: Boolean
 
-        attr_accessor :AiCall, :BackgroundImage, :EnableFallbackReply, :EnableRecommended, :EnableWebSearch, :FallbackReply, :InputBoxConfig, :Method, :RecommendPromptMode
+        attr_accessor :AiCall, :BackgroundImage, :EnableFallbackReply, :EnableRecommended, :EnableWebSearch, :FallbackReply, :InputBoxConfig, :Method, :RecommendPromptMode, :EnableNewMessageInterrupt
 
-        def initialize(aicall=nil, backgroundimage=nil, enablefallbackreply=nil, enablerecommended=nil, enablewebsearch=nil, fallbackreply=nil, inputboxconfig=nil, method=nil, recommendpromptmode=nil)
+        def initialize(aicall=nil, backgroundimage=nil, enablefallbackreply=nil, enablerecommended=nil, enablewebsearch=nil, fallbackreply=nil, inputboxconfig=nil, method=nil, recommendpromptmode=nil, enablenewmessageinterrupt=nil)
           @AiCall = aicall
           @BackgroundImage = backgroundimage
           @EnableFallbackReply = enablefallbackreply
@@ -4207,6 +4209,7 @@ module TencentCloud
           @InputBoxConfig = inputboxconfig
           @Method = method
           @RecommendPromptMode = recommendpromptmode
+          @EnableNewMessageInterrupt = enablenewmessageinterrupt
         end
 
         def deserialize(params)
@@ -4228,6 +4231,7 @@ module TencentCloud
           end
           @Method = params['Method']
           @RecommendPromptMode = params['RecommendPromptMode']
+          @EnableNewMessageInterrupt = params['EnableNewMessageInterrupt']
         end
       end
 
@@ -14849,11 +14853,11 @@ module TencentCloud
 
       # 通用操作结果项
       class OperationResult < TencentCloud::Common::AbstractModel
-        # @param Id: <p>资源 ID</p>
+        # @param Id: 资源 ID
         # @type Id: String
-        # @param Reason: <p>失败原因（succeeded=false 时填充）</p>
+        # @param Reason: 失败原因（succeeded=false 时填充）
         # @type Reason: String
-        # @param Succeeded: <p>是否成功</p>
+        # @param Succeeded: 是否成功
         # @type Succeeded: Boolean
 
         attr_accessor :Id, :Reason, :Succeeded

@@ -153,69 +153,6 @@ module TencentCloud
         end
       end
 
-      # 用户密钥对管理
-      class APIsUserKeyInfo < TencentCloud::Common::AbstractModel
-        # @param Name: <p>用户创建的集成的名称</p>
-        # @type Name: String
-        # @param Description: <p>用户对创建的集成的描述</p>
-        # @type Description: String
-        # @param KeyID: <p>集成ID，用户创建的集成的标识id，前半部分用户填写，后半部分平台按照一定规则生成</p>
-        # @type KeyID: String
-        # @param Ext: <p>额外信息,根据集成类型不同，ext会有不同的子结构</p>
-        # @type Ext: String
-        # @param AuthTypeCode: <p>集成类型Code</p>
-        # @type AuthTypeCode: String
-        # @param Status: <p>状态</p>
-        # @type Status: String
-        # @param BindServiceList: <p>引用该集成的服务列表</p>
-        # @type BindServiceList: :class:`Tencentcloud::Tcb.v20180608.models.BindServiceList`
-        # @param AuthTypeName: <p>AuthTypeName 和AuthType 分别1-1对应</p>
-        # @type AuthTypeName: String
-        # @param TicketID: <p>github、gitlab、gitee、腾讯会议等oauth类型的，需要传这个ticket_id，创建的密钥对跟auth_ticket_token(对于github、gitlab、gitee)、weda_ticket_token(对于腾讯会议)关联起来</p>
-        # @type TicketID: String
-        # @param DemoCodeFunctionName: <p>用户在创建(weixinmp、wxvirtualpay、weixin-store、channels、weixinpaydc)这五种之一时创建的关联的示例代码云函数的函数名</p>
-        # @type DemoCodeFunctionName: String
-        # @param CreateAt: <p>创建时间</p><p>参数格式：2026-05-25T11:18:28+08:00</p>
-        # @type CreateAt: String
-        # @param UpdateAt: <p>更新时间</p><p>参数格式：2026-05-25T11:18:28+08:00</p>
-        # @type UpdateAt: String
-
-        attr_accessor :Name, :Description, :KeyID, :Ext, :AuthTypeCode, :Status, :BindServiceList, :AuthTypeName, :TicketID, :DemoCodeFunctionName, :CreateAt, :UpdateAt
-
-        def initialize(name=nil, description=nil, keyid=nil, ext=nil, authtypecode=nil, status=nil, bindservicelist=nil, authtypename=nil, ticketid=nil, democodefunctionname=nil, createat=nil, updateat=nil)
-          @Name = name
-          @Description = description
-          @KeyID = keyid
-          @Ext = ext
-          @AuthTypeCode = authtypecode
-          @Status = status
-          @BindServiceList = bindservicelist
-          @AuthTypeName = authtypename
-          @TicketID = ticketid
-          @DemoCodeFunctionName = democodefunctionname
-          @CreateAt = createat
-          @UpdateAt = updateat
-        end
-
-        def deserialize(params)
-          @Name = params['Name']
-          @Description = params['Description']
-          @KeyID = params['KeyID']
-          @Ext = params['Ext']
-          @AuthTypeCode = params['AuthTypeCode']
-          @Status = params['Status']
-          unless params['BindServiceList'].nil?
-            @BindServiceList = BindServiceList.new
-            @BindServiceList.deserialize(params['BindServiceList'])
-          end
-          @AuthTypeName = params['AuthTypeName']
-          @TicketID = params['TicketID']
-          @DemoCodeFunctionName = params['DemoCodeFunctionName']
-          @CreateAt = params['CreateAt']
-          @UpdateAt = params['UpdateAt']
-        end
-      end
-
       # AddProvider请求参数结构体
       class AddProviderRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: 云开发环境 ID，用于唯一标识当前操作所属的云开发环境。
@@ -319,49 +256,6 @@ module TencentCloud
         end
       end
 
-      # Agent 云函数代码
-      class AgentRuntimeCode < TencentCloud::Common::AbstractModel
-        # @param CosBucketName: 对象存储桶名称
-        # @type CosBucketName: String
-        # @param CosObjectName: 对象存储中代码包文件路径，以/开头
-        # @type CosObjectName: String
-        # @param ZipFile: 包含函数代码文件及其依赖项的 zip 格式文件，zip包大小上限为 50MB，使用该接口时要求将 zip 文件的内容转成 base64 编码
-        # @type ZipFile: String
-        # @param CosBucketRegion: 对象存储的地域，地域为北京时需要传入ap-beijing,北京一区时需要传递ap-beijing-1，其他的地域不需要传递。
-        # @type CosBucketRegion: String
-        # @param TempCosObjectName: 如果是从TempCos创建的话，需要传入TempCosObjectName
-        # @type TempCosObjectName: String
-        # @param ImageConfig: 镜像部署时配置TCR镜像信息
-        # @type ImageConfig: :class:`Tencentcloud::Tcb.v20180608.models.AgentRuntimeCodeImageConfig`
-        # @param DemoId: 云函数DemoId
-        # @type DemoId: String
-
-        attr_accessor :CosBucketName, :CosObjectName, :ZipFile, :CosBucketRegion, :TempCosObjectName, :ImageConfig, :DemoId
-
-        def initialize(cosbucketname=nil, cosobjectname=nil, zipfile=nil, cosbucketregion=nil, tempcosobjectname=nil, imageconfig=nil, demoid=nil)
-          @CosBucketName = cosbucketname
-          @CosObjectName = cosobjectname
-          @ZipFile = zipfile
-          @CosBucketRegion = cosbucketregion
-          @TempCosObjectName = tempcosobjectname
-          @ImageConfig = imageconfig
-          @DemoId = demoid
-        end
-
-        def deserialize(params)
-          @CosBucketName = params['CosBucketName']
-          @CosObjectName = params['CosObjectName']
-          @ZipFile = params['ZipFile']
-          @CosBucketRegion = params['CosBucketRegion']
-          @TempCosObjectName = params['TempCosObjectName']
-          unless params['ImageConfig'].nil?
-            @ImageConfig = AgentRuntimeCodeImageConfig.new
-            @ImageConfig.deserialize(params['ImageConfig'])
-          end
-          @DemoId = params['DemoId']
-        end
-      end
-
       # Agent 创建云函数镜像配置
       class AgentRuntimeCodeImageConfig < TencentCloud::Common::AbstractModel
         # @param ImageType: 镜像仓库类型，个人版或者企业版：personal/enterprise
@@ -395,108 +289,6 @@ module TencentCloud
           @Command = params['Command']
           @Args = params['Args']
           @ContainerImageAccelerate = params['ContainerImageAccelerate']
-        end
-      end
-
-      # Agent 云函数配置
-      class AgentRuntimeConfig < TencentCloud::Common::AbstractModel
-        # @param Code: 函数代码. 注意：不能同时指定Cos和ZipFile
-        # @type Code: :class:`Tencentcloud::Tcb.v20180608.models.AgentRuntimeCode`
-        # @param Runtime: 函数运行环境，默认Python2.7
-        # 目前支持的运行环境：
-        # - Python2.7
-        # - Python3.6
-        # - Python3.7
-        # - Python3.9
-        # - Python3.10
-        # - Nodejs6.10
-        # - Nodejs8.9
-        # - Nodejs10.15
-        # - Nodejs12.16
-        # - Nodejs14.18
-        # - Nodejs16.13
-        # - Nodejs18.15
-        # - Php5.6
-        # - Php7(7.2版本)
-        # - Php7.4
-        # - Php8.0
-        # - Go1
-        # - Java8
-        # - CustomRuntime
-        # @type Runtime: String
-        # @param MemorySize: 函数运行时内存大小，默认为 128M，可选范围 64、128MB-3072MB，并且以 128MB 为阶梯
-        # @type MemorySize: Integer
-        # @param InstallDependency: 函数是否自动安装依赖
-        # @type InstallDependency: Boolean
-        # @param Timeout: 函数最长执行时间，单位为秒，可选值范围 1-900 秒，默认为 3 秒
-        # @type Timeout: Integer
-        # @param Environment: 函数的环境变量，满足json格式
-        # @type Environment: String
-        # @param SessionConfig: Agent Session 配置
-        # @type SessionConfig: :class:`Tencentcloud::Tcb.v20180608.models.AgentRuntimeSessionConfig`
-
-        attr_accessor :Code, :Runtime, :MemorySize, :InstallDependency, :Timeout, :Environment, :SessionConfig
-
-        def initialize(code=nil, runtime=nil, memorysize=nil, installdependency=nil, timeout=nil, environment=nil, sessionconfig=nil)
-          @Code = code
-          @Runtime = runtime
-          @MemorySize = memorysize
-          @InstallDependency = installdependency
-          @Timeout = timeout
-          @Environment = environment
-          @SessionConfig = sessionconfig
-        end
-
-        def deserialize(params)
-          unless params['Code'].nil?
-            @Code = AgentRuntimeCode.new
-            @Code.deserialize(params['Code'])
-          end
-          @Runtime = params['Runtime']
-          @MemorySize = params['MemorySize']
-          @InstallDependency = params['InstallDependency']
-          @Timeout = params['Timeout']
-          @Environment = params['Environment']
-          unless params['SessionConfig'].nil?
-            @SessionConfig = AgentRuntimeSessionConfig.new
-            @SessionConfig.deserialize(params['SessionConfig'])
-          end
-        end
-      end
-
-      # Agent 运行时 Session 配置
-      class AgentRuntimeSessionConfig < TencentCloud::Common::AbstractModel
-        # @param MaxConcurrency: 单实例并发数最大值。取值范围 [1,100]
-        # @type MaxConcurrency: Integer
-        # @param SessionSource: session 来源，三选一：'HEADER', 'COOKIE', 'QUERY_STRING'
-        # @type SessionSource: String
-        # @param SessionName: session 名称，以字母开头，非首字母可包含数字、字母、下划线、中划线，长度5-40个字符
-        # @type SessionName: String
-        # @param MaximumConcurrencySessionPerInstance: 最大并发会话数
-        # @type MaximumConcurrencySessionPerInstance: Integer
-        # @param MaximumTTLInSeconds: 生命周期
-        # @type MaximumTTLInSeconds: Integer
-        # @param MaximumIdleTimeInSeconds: 空闲时长
-        # @type MaximumIdleTimeInSeconds: Integer
-
-        attr_accessor :MaxConcurrency, :SessionSource, :SessionName, :MaximumConcurrencySessionPerInstance, :MaximumTTLInSeconds, :MaximumIdleTimeInSeconds
-
-        def initialize(maxconcurrency=nil, sessionsource=nil, sessionname=nil, maximumconcurrencysessionperinstance=nil, maximumttlinseconds=nil, maximumidletimeinseconds=nil)
-          @MaxConcurrency = maxconcurrency
-          @SessionSource = sessionsource
-          @SessionName = sessionname
-          @MaximumConcurrencySessionPerInstance = maximumconcurrencysessionperinstance
-          @MaximumTTLInSeconds = maximumttlinseconds
-          @MaximumIdleTimeInSeconds = maximumidletimeinseconds
-        end
-
-        def deserialize(params)
-          @MaxConcurrency = params['MaxConcurrency']
-          @SessionSource = params['SessionSource']
-          @SessionName = params['SessionName']
-          @MaximumConcurrencySessionPerInstance = params['MaximumConcurrencySessionPerInstance']
-          @MaximumTTLInSeconds = params['MaximumTTLInSeconds']
-          @MaximumIdleTimeInSeconds = params['MaximumIdleTimeInSeconds']
         end
       end
 
@@ -801,75 +593,6 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
-        end
-      end
-
-      # ID:服务标识ID，Name:服务名称
-      class BindService < TencentCloud::Common::AbstractModel
-        # @param ID: 服务标识
-        # @type ID: String
-        # @param Name: 服务名称
-        # @type Name: String
-        # @param Scene: 场景，云托管、云函数、aibuilder等
-        # @type Scene: String
-
-        attr_accessor :ID, :Name, :Scene
-
-        def initialize(id=nil, name=nil, scene=nil)
-          @ID = id
-          @Name = name
-          @Scene = scene
-        end
-
-        def deserialize(params)
-          @ID = params['ID']
-          @Name = params['Name']
-          @Scene = params['Scene']
-        end
-      end
-
-      # 密钥对绑定的mcp服务列表和apis服务列表
-      class BindServiceList < TencentCloud::Common::AbstractModel
-        # @param Mcp: 密钥对绑定的mcp服务列表
-        # @type Mcp: Array
-        # @param Apis: 密钥对绑定的apis服务列表
-        # @type Apis: Array
-        # @param Other: 登记哪个资源下的哪个场景使用了密钥对
-        # @type Other: Array
-
-        attr_accessor :Mcp, :Apis, :Other
-
-        def initialize(mcp=nil, apis=nil, other=nil)
-          @Mcp = mcp
-          @Apis = apis
-          @Other = other
-        end
-
-        def deserialize(params)
-          unless params['Mcp'].nil?
-            @Mcp = []
-            params['Mcp'].each do |i|
-              bindservice_tmp = BindService.new
-              bindservice_tmp.deserialize(i)
-              @Mcp << bindservice_tmp
-            end
-          end
-          unless params['Apis'].nil?
-            @Apis = []
-            params['Apis'].each do |i|
-              bindservice_tmp = BindService.new
-              bindservice_tmp.deserialize(i)
-              @Apis << bindservice_tmp
-            end
-          end
-          unless params['Other'].nil?
-            @Other = []
-            params['Other'].each do |i|
-              bindservice_tmp = BindService.new
-              bindservice_tmp.deserialize(i)
-              @Other << bindservice_tmp
-            end
-          end
         end
       end
 
@@ -2754,81 +2477,6 @@ module TencentCloud
         end
       end
 
-      # CreateUserKey请求参数结构体
-      class CreateUserKeyRequest < TencentCloud::Common::AbstractModel
-        # @param EnvId: <p>环境ID</p>
-        # @type EnvId: String
-        # @param Name: <p>用户创建的集成名称，或者密钥名称</p>
-        # @type Name: String
-        # @param KeyID: <p>用户创建的集成ID，集成表示，或者密钥对标识，前半部分用户填写，后半部分平台按照一定规则生成</p>
-        # @type KeyID: String
-        # @param Description: <p>集成描述</p>
-        # @type Description: String
-        # @param AuthTypeCode: <p>集成类型，或者授权类型码，对应GetUserKeyTemplateList接口的AuthTypeCode字段，比如github、gitlab、gitee、meeting、PublicAccountOpenService等</p>
-        # @type AuthTypeCode: String
-        # @param Ext: <p>根据集成类型的不同，ext会有不同的子结构，具体每种授权类型的ext需要填写的信息，可以通过GetUserKeyTemplateList获取</p>
-        # @type Ext: String
-        # @param TicketID: <p>github、gitlab、gitee、腾讯会议等oauth类型的，需要传这个ticket_id，创建的密钥对跟auth_ticket_token(对于github、gitlab、gitee)、weda_ticket_token(对于腾讯会议)关联起来</p>
-        # @type TicketID: String
-        # @param Business: <p>业务类型，integration：从集成中心来的，默认为空，表示是从授权管理中心来的</p>
-        # @type Business: String
-        # @param RuntimeConfig: <p>创建demo代码云函数需要的参数信息</p><p>入参限制：当Business为integration，且AuthTypeCode为(weixinmp、wxvirtualpay、weixin-store、channels、weixinpaydc)之一时必填</p>
-        # @type RuntimeConfig: :class:`Tencentcloud::Tcb.v20180608.models.AgentRuntimeConfig`
-        # @param DemoCodeFunctionName: <p>创建集成时创建关联的示例代码云函数的名称，当Business为integration，且AuthTypeCode为(weixinmp、wxvirtualpay、weixin-store、channels、weixinpaydc)之一时必填</p>
-        # @type DemoCodeFunctionName: String
-
-        attr_accessor :EnvId, :Name, :KeyID, :Description, :AuthTypeCode, :Ext, :TicketID, :Business, :RuntimeConfig, :DemoCodeFunctionName
-
-        def initialize(envid=nil, name=nil, keyid=nil, description=nil, authtypecode=nil, ext=nil, ticketid=nil, business=nil, runtimeconfig=nil, democodefunctionname=nil)
-          @EnvId = envid
-          @Name = name
-          @KeyID = keyid
-          @Description = description
-          @AuthTypeCode = authtypecode
-          @Ext = ext
-          @TicketID = ticketid
-          @Business = business
-          @RuntimeConfig = runtimeconfig
-          @DemoCodeFunctionName = democodefunctionname
-        end
-
-        def deserialize(params)
-          @EnvId = params['EnvId']
-          @Name = params['Name']
-          @KeyID = params['KeyID']
-          @Description = params['Description']
-          @AuthTypeCode = params['AuthTypeCode']
-          @Ext = params['Ext']
-          @TicketID = params['TicketID']
-          @Business = params['Business']
-          unless params['RuntimeConfig'].nil?
-            @RuntimeConfig = AgentRuntimeConfig.new
-            @RuntimeConfig.deserialize(params['RuntimeConfig'])
-          end
-          @DemoCodeFunctionName = params['DemoCodeFunctionName']
-        end
-      end
-
-      # CreateUserKey返回参数结构体
-      class CreateUserKeyResponse < TencentCloud::Common::AbstractModel
-        # @param CreateResult: <p>创建成功记录条数</p>
-        # @type CreateResult: Integer
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :CreateResult, :RequestId
-
-        def initialize(createresult=nil, requestid=nil)
-          @CreateResult = createresult
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @CreateResult = params['CreateResult']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # CreateUser请求参数结构体
       class CreateUserRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: 环境id
@@ -3452,46 +3100,6 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DeleteUserKey请求参数结构体
-      class DeleteUserKeyRequest < TencentCloud::Common::AbstractModel
-        # @param EnvId: 环境ID
-        # @type EnvId: String
-        # @param KeyID: 用户密钥对标识，前半部分用户填写，后半部分平台按照一定规则生成
-        # @type KeyID: String
-
-        attr_accessor :EnvId, :KeyID
-
-        def initialize(envid=nil, keyid=nil)
-          @EnvId = envid
-          @KeyID = keyid
-        end
-
-        def deserialize(params)
-          @EnvId = params['EnvId']
-          @KeyID = params['KeyID']
-        end
-      end
-
-      # DeleteUserKey返回参数结构体
-      class DeleteUserKeyResponse < TencentCloud::Common::AbstractModel
-        # @param DeleteResult: 删除记录条数
-        # @type DeleteResult: Integer
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :DeleteResult, :RequestId
-
-        def initialize(deleteresult=nil, requestid=nil)
-          @DeleteResult = deleteresult
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @DeleteResult = params['DeleteResult']
           @RequestId = params['RequestId']
         end
       end
@@ -7948,57 +7556,6 @@ module TencentCloud
         end
       end
 
-      # GetOneUserKey请求参数结构体
-      class GetOneUserKeyRequest < TencentCloud::Common::AbstractModel
-        # @param EnvId: <p>环境ID</p>
-        # @type EnvId: String
-        # @param KeyID: <p>用户密钥对标识，前半部分用户填写，后半部分平台按照一定规则生成</p>
-        # @type KeyID: String
-        # @param Business: <p>业务场景来源，默认不传，表示来源授权中心，integration表示来源集成中心，当从集成中心请求时必传integration</p>
-        # @type Business: String
-        # @param NeedPwd: <p>是否需要加密字段的值，true：是，false：否，默认不传，不需要</p><p>默认值：false</p><p>当为true时，返回加密字段的值，前端进行按约定解密</p>
-        # @type NeedPwd: Boolean
-
-        attr_accessor :EnvId, :KeyID, :Business, :NeedPwd
-
-        def initialize(envid=nil, keyid=nil, business=nil, needpwd=nil)
-          @EnvId = envid
-          @KeyID = keyid
-          @Business = business
-          @NeedPwd = needpwd
-        end
-
-        def deserialize(params)
-          @EnvId = params['EnvId']
-          @KeyID = params['KeyID']
-          @Business = params['Business']
-          @NeedPwd = params['NeedPwd']
-        end
-      end
-
-      # GetOneUserKey返回参数结构体
-      class GetOneUserKeyResponse < TencentCloud::Common::AbstractModel
-        # @param UserKeyInfo: <p>单个密钥对详情页</p>
-        # @type UserKeyInfo: :class:`Tencentcloud::Tcb.v20180608.models.APIsUserKeyInfo`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :UserKeyInfo, :RequestId
-
-        def initialize(userkeyinfo=nil, requestid=nil)
-          @UserKeyInfo = userkeyinfo
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['UserKeyInfo'].nil?
-            @UserKeyInfo = APIsUserKeyInfo.new
-            @UserKeyInfo.deserialize(params['UserKeyInfo'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # GetProviders请求参数结构体
       class GetProvidersRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: 环境 ID，用于指定需要查询配置第三方身份源的云开发环境。
@@ -8044,73 +7601,6 @@ module TencentCloud
               @Data << provider_tmp
             end
           end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # GetUserKeyList请求参数结构体
-      class GetUserKeyListRequest < TencentCloud::Common::AbstractModel
-        # @param EnvId: <p>环境ID</p>
-        # @type EnvId: String
-        # @param Offset: <p>分页的offset，从0开始</p>
-        # @type Offset: Integer
-        # @param Limit: <p>分页的每页多少条</p>
-        # @type Limit: Integer
-        # @param Name: <p>根据集成名称模糊查询，name</p>
-        # @type Name: String
-        # @param AuthTypeCode: <p>集成类型映射码</p>
-        # @type AuthTypeCode: String
-        # @param Business: <p>业务类型，integration：从集成中心来的，默认为空，表示是从授权管理中心来的</p>
-        # @type Business: String
-
-        attr_accessor :EnvId, :Offset, :Limit, :Name, :AuthTypeCode, :Business
-
-        def initialize(envid=nil, offset=nil, limit=nil, name=nil, authtypecode=nil, business=nil)
-          @EnvId = envid
-          @Offset = offset
-          @Limit = limit
-          @Name = name
-          @AuthTypeCode = authtypecode
-          @Business = business
-        end
-
-        def deserialize(params)
-          @EnvId = params['EnvId']
-          @Offset = params['Offset']
-          @Limit = params['Limit']
-          @Name = params['Name']
-          @AuthTypeCode = params['AuthTypeCode']
-          @Business = params['Business']
-        end
-      end
-
-      # GetUserKeyList返回参数结构体
-      class GetUserKeyListResponse < TencentCloud::Common::AbstractModel
-        # @param UserKeyList: <p>用户密钥对列表</p>
-        # @type UserKeyList: Array
-        # @param TotalCount: <p>数据记录条数</p>
-        # @type TotalCount: Integer
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :UserKeyList, :TotalCount, :RequestId
-
-        def initialize(userkeylist=nil, totalcount=nil, requestid=nil)
-          @UserKeyList = userkeylist
-          @TotalCount = totalcount
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['UserKeyList'].nil?
-            @UserKeyList = []
-            params['UserKeyList'].each do |i|
-              apisuserkeyinfo_tmp = APIsUserKeyInfo.new
-              apisuserkeyinfo_tmp.deserialize(i)
-              @UserKeyList << apisuserkeyinfo_tmp
-            end
-          end
-          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -8589,10 +8079,12 @@ module TencentCloud
         # @type Path: String
         # @param PathRewrite: <p>路径重写规则</p>
         # @type PathRewrite: :class:`Tencentcloud::Tcb.v20180608.models.HTTPServicePathRewrite`
-        # @param UpstreamResourceType: <p>上游服务类型。SCF: 云函数，CBR: 云托管，STATIC_STORE: 静态托管，WEB_SCF: WEB云函数，LH: Lighthouse</p>
+        # @param UpstreamResourceType: <p>上游资源类型</p><p>枚举值：</p><ul><li>SCF： 云函数</li><li>CBR： 云托管</li><li>STATIC_STORE： 静态托管</li><li>WEB_SCF： WEB云函数</li><li>STORAGE： 云存储</li></ul>
         # @type UpstreamResourceType: String
-        # @param UpstreamResourceName: <p>上游服务名</p>
+        # @param UpstreamResourceName: <p>上游资源名</p>
         # @type UpstreamResourceName: String
+        # @param UpstreamResourceVersion: <p>上游资源版本。仅支持云函数，可填具体的版本，$DEFAULT:请求转发到资源，流量比例由资源控制；$LATEST: 请求转发到最新版本；为空默认是$DEFAULT</p>
+        # @type UpstreamResourceVersion: String
         # @param EnableSafeDomain: <p>是否开启安全域名</p>
         # @type EnableSafeDomain: Boolean
         # @param EnableAuth: <p>是否开启身份认证</p>
@@ -8610,13 +8102,14 @@ module TencentCloud
         # @param UpdateTime: <p>路由更新时间，格式  YYYY-MM-DDTHH:mm:ss±HH:mm，时区为 UTC+8</p>
         # @type UpdateTime: String
 
-        attr_accessor :Path, :PathRewrite, :UpstreamResourceType, :UpstreamResourceName, :EnableSafeDomain, :EnableAuth, :EnablePathTransmission, :QPSPolicy, :Enable, :Extension, :CreateTime, :UpdateTime
+        attr_accessor :Path, :PathRewrite, :UpstreamResourceType, :UpstreamResourceName, :UpstreamResourceVersion, :EnableSafeDomain, :EnableAuth, :EnablePathTransmission, :QPSPolicy, :Enable, :Extension, :CreateTime, :UpdateTime
 
-        def initialize(path=nil, pathrewrite=nil, upstreamresourcetype=nil, upstreamresourcename=nil, enablesafedomain=nil, enableauth=nil, enablepathtransmission=nil, qpspolicy=nil, enable=nil, extension=nil, createtime=nil, updatetime=nil)
+        def initialize(path=nil, pathrewrite=nil, upstreamresourcetype=nil, upstreamresourcename=nil, upstreamresourceversion=nil, enablesafedomain=nil, enableauth=nil, enablepathtransmission=nil, qpspolicy=nil, enable=nil, extension=nil, createtime=nil, updatetime=nil)
           @Path = path
           @PathRewrite = pathrewrite
           @UpstreamResourceType = upstreamresourcetype
           @UpstreamResourceName = upstreamresourcename
+          @UpstreamResourceVersion = upstreamresourceversion
           @EnableSafeDomain = enablesafedomain
           @EnableAuth = enableauth
           @EnablePathTransmission = enablepathtransmission
@@ -8635,6 +8128,7 @@ module TencentCloud
           end
           @UpstreamResourceType = params['UpstreamResourceType']
           @UpstreamResourceName = params['UpstreamResourceName']
+          @UpstreamResourceVersion = params['UpstreamResourceVersion']
           @EnableSafeDomain = params['EnableSafeDomain']
           @EnableAuth = params['EnableAuth']
           @EnablePathTransmission = params['EnablePathTransmission']
@@ -8656,10 +8150,12 @@ module TencentCloud
       class HTTPServiceRouteParam < TencentCloud::Common::AbstractModel
         # @param Path: <p>路径</p>
         # @type Path: String
-        # @param UpstreamResourceType: <p>上游服务类型。创建时必填，修改时可选填</p><p>枚举值：</p><ul><li>SCF： 云函数</li><li>CBR： 云托管</li><li>STATIC_STORE： 静态托管</li><li>WEB_SCF： web云函数</li><li>LH： Lighthouse</li><li>STORAGE： 云存储</li></ul>
+        # @param UpstreamResourceType: <p>上游资源类型。创建时必填，修改时可选填</p><p>枚举值：</p><ul><li>SCF： 云函数</li><li>CBR： 云托管</li><li>STATIC_STORE： 静态托管</li><li>WEB_SCF： web云函数</li><li>STORAGE： 云存储</li></ul>
         # @type UpstreamResourceType: String
-        # @param UpstreamResourceName: <p>上游服务名。创建时必填，修改时可选填。HTTPServiceRouteServiceType类型为STATIC_STORE时，可不填，默认staticstore；HTTPServiceRouteServiceType类型为STORAGE时，可不填，默认storage。其他上游类型必须填写准确的服务名</p>
+        # @param UpstreamResourceName: <p>上游资源名。创建时必填，修改时可选填。HTTPServiceRouteServiceType类型为STATIC_STORE时，可不填，默认staticstore；HTTPServiceRouteServiceType类型为STORAGE时，可不填，默认storage。其他上游类型必须填写准确的服务名</p>
         # @type UpstreamResourceName: String
+        # @param UpstreamResourceVersion: <p>上游资源版本。仅支持云函数，可填具体的版本，$DEFAULT:请求转发到资源，流量比例由资源控制；$LATEST: 请求转发到最新版本；为空默认是$DEFAULT</p>
+        # @type UpstreamResourceVersion: String
         # @param PathRewrite: <p>路径重写</p>
         # @type PathRewrite: :class:`Tencentcloud::Tcb.v20180608.models.HTTPServicePathRewrite`
         # @param EnableSafeDomain: <p>是否开启安全域名。默认开启</p>
@@ -8675,12 +8171,13 @@ module TencentCloud
         # @param Extension: <p>扩展字段，内部包含headers处理等</p>
         # @type Extension: :class:`Tencentcloud::Tcb.v20180608.models.HTTPServiceExtension`
 
-        attr_accessor :Path, :UpstreamResourceType, :UpstreamResourceName, :PathRewrite, :EnableSafeDomain, :EnableAuth, :EnablePathTransmission, :QPSPolicy, :Enable, :Extension
+        attr_accessor :Path, :UpstreamResourceType, :UpstreamResourceName, :UpstreamResourceVersion, :PathRewrite, :EnableSafeDomain, :EnableAuth, :EnablePathTransmission, :QPSPolicy, :Enable, :Extension
 
-        def initialize(path=nil, upstreamresourcetype=nil, upstreamresourcename=nil, pathrewrite=nil, enablesafedomain=nil, enableauth=nil, enablepathtransmission=nil, qpspolicy=nil, enable=nil, extension=nil)
+        def initialize(path=nil, upstreamresourcetype=nil, upstreamresourcename=nil, upstreamresourceversion=nil, pathrewrite=nil, enablesafedomain=nil, enableauth=nil, enablepathtransmission=nil, qpspolicy=nil, enable=nil, extension=nil)
           @Path = path
           @UpstreamResourceType = upstreamresourcetype
           @UpstreamResourceName = upstreamresourcename
+          @UpstreamResourceVersion = upstreamresourceversion
           @PathRewrite = pathrewrite
           @EnableSafeDomain = enablesafedomain
           @EnableAuth = enableauth
@@ -8694,6 +8191,7 @@ module TencentCloud
           @Path = params['Path']
           @UpstreamResourceType = params['UpstreamResourceType']
           @UpstreamResourceName = params['UpstreamResourceName']
+          @UpstreamResourceVersion = params['UpstreamResourceVersion']
           unless params['PathRewrite'].nil?
             @PathRewrite = HTTPServicePathRewrite.new
             @PathRewrite.deserialize(params['PathRewrite'])
@@ -13099,77 +12597,6 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # UpdateUserKey请求参数结构体
-      class UpdateUserKeyRequest < TencentCloud::Common::AbstractModel
-        # @param EnvId: <p>环境ID</p>
-        # @type EnvId: String
-        # @param Name: <p>用户密钥名称</p>
-        # @type Name: String
-        # @param KeyID: <p>用户密钥对标识，前半部分用户填写，后半部分平台按照一定规则生成</p>
-        # @type KeyID: String
-        # @param Description: <p>密钥对描述</p>
-        # @type Description: String
-        # @param AuthTypeCode: <p>授权类型code</p>
-        # @type AuthTypeCode: String
-        # @param Ext: <p>根据授权类型的不同，ext会有不同的子结构</p>
-        # @type Ext: String
-        # @param Business: <p>业务类型，integration：从集成中心来的，默认为空，表示是从授权管理中心来的</p>
-        # @type Business: String
-        # @param RuntimeConfig: <p>创建集成时创建对应的示例代码云函数需要的参数</p>
-        # @type RuntimeConfig: :class:`Tencentcloud::Tcb.v20180608.models.AgentRuntimeConfig`
-        # @param DemoCodeFunctionName: <p>创建集成时创建对应的示例代码云函数需要的函数名</p>
-        # @type DemoCodeFunctionName: String
-
-        attr_accessor :EnvId, :Name, :KeyID, :Description, :AuthTypeCode, :Ext, :Business, :RuntimeConfig, :DemoCodeFunctionName
-
-        def initialize(envid=nil, name=nil, keyid=nil, description=nil, authtypecode=nil, ext=nil, business=nil, runtimeconfig=nil, democodefunctionname=nil)
-          @EnvId = envid
-          @Name = name
-          @KeyID = keyid
-          @Description = description
-          @AuthTypeCode = authtypecode
-          @Ext = ext
-          @Business = business
-          @RuntimeConfig = runtimeconfig
-          @DemoCodeFunctionName = democodefunctionname
-        end
-
-        def deserialize(params)
-          @EnvId = params['EnvId']
-          @Name = params['Name']
-          @KeyID = params['KeyID']
-          @Description = params['Description']
-          @AuthTypeCode = params['AuthTypeCode']
-          @Ext = params['Ext']
-          @Business = params['Business']
-          unless params['RuntimeConfig'].nil?
-            @RuntimeConfig = AgentRuntimeConfig.new
-            @RuntimeConfig.deserialize(params['RuntimeConfig'])
-          end
-          @DemoCodeFunctionName = params['DemoCodeFunctionName']
-        end
-      end
-
-      # UpdateUserKey返回参数结构体
-      class UpdateUserKeyResponse < TencentCloud::Common::AbstractModel
-        # @param UpdateResult: <p>更新记录条数</p>
-        # @type UpdateResult: Integer
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :UpdateResult, :RequestId
-
-        def initialize(updateresult=nil, requestid=nil)
-          @UpdateResult = updateresult
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @UpdateResult = params['UpdateResult']
           @RequestId = params['RequestId']
         end
       end

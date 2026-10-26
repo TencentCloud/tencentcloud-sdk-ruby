@@ -815,10 +815,12 @@ module TencentCloud
         # @type DisasterRecoverGroupId: String
         # @param LatestRunningTaskType: <p>节点最新进行中的任务类型</p><p>枚举值：</p><ul><li>add-nodes-to-cluster： 添加节点到集群</li><li>remove-nodes-from-cluster： 从集群中移除节点</li><li>modify-nodes-attributes： 修改节点属性</li><li>modify-nodes-drg： 修改节点置放群组</li></ul>
         # @type LatestRunningTaskType: String
+        # @param BusinessType: <p>节点所属的业务类型</p><p>枚举值：</p><ul><li>sqlserver： 腾讯云 SQL Server 数据库实例 Custom 形态的节点</li></ul>
+        # @type BusinessType: String
 
-        attr_accessor :NodeId, :NodeName, :SSHEndpoint, :LanIP, :ClusterId, :Zone, :NodeType, :CPU, :Memory, :SystemDisk, :DataDisks, :OsName, :ImageId, :VpcId, :SubnetId, :Status, :ChargeType, :ExpireTime, :CreatedTime, :IsolatedTime, :Tags, :AutoRenew, :SwitchId, :RackId, :HostIp, :NetworkMode, :EniIP, :SecurityGroupIds, :DisasterRecoverGroupId, :LatestRunningTaskType
+        attr_accessor :NodeId, :NodeName, :SSHEndpoint, :LanIP, :ClusterId, :Zone, :NodeType, :CPU, :Memory, :SystemDisk, :DataDisks, :OsName, :ImageId, :VpcId, :SubnetId, :Status, :ChargeType, :ExpireTime, :CreatedTime, :IsolatedTime, :Tags, :AutoRenew, :SwitchId, :RackId, :HostIp, :NetworkMode, :EniIP, :SecurityGroupIds, :DisasterRecoverGroupId, :LatestRunningTaskType, :BusinessType
 
-        def initialize(nodeid=nil, nodename=nil, sshendpoint=nil, lanip=nil, clusterid=nil, zone=nil, nodetype=nil, cpu=nil, memory=nil, systemdisk=nil, datadisks=nil, osname=nil, imageid=nil, vpcid=nil, subnetid=nil, status=nil, chargetype=nil, expiretime=nil, createdtime=nil, isolatedtime=nil, tags=nil, autorenew=nil, switchid=nil, rackid=nil, hostip=nil, networkmode=nil, eniip=nil, securitygroupids=nil, disasterrecovergroupid=nil, latestrunningtasktype=nil)
+        def initialize(nodeid=nil, nodename=nil, sshendpoint=nil, lanip=nil, clusterid=nil, zone=nil, nodetype=nil, cpu=nil, memory=nil, systemdisk=nil, datadisks=nil, osname=nil, imageid=nil, vpcid=nil, subnetid=nil, status=nil, chargetype=nil, expiretime=nil, createdtime=nil, isolatedtime=nil, tags=nil, autorenew=nil, switchid=nil, rackid=nil, hostip=nil, networkmode=nil, eniip=nil, securitygroupids=nil, disasterrecovergroupid=nil, latestrunningtasktype=nil, businesstype=nil)
           @NodeId = nodeid
           @NodeName = nodename
           @SSHEndpoint = sshendpoint
@@ -849,6 +851,7 @@ module TencentCloud
           @SecurityGroupIds = securitygroupids
           @DisasterRecoverGroupId = disasterrecovergroupid
           @LatestRunningTaskType = latestrunningtasktype
+          @BusinessType = businesstype
         end
 
         def deserialize(params)
@@ -899,6 +902,7 @@ module TencentCloud
           @SecurityGroupIds = params['SecurityGroupIds']
           @DisasterRecoverGroupId = params['DisasterRecoverGroupId']
           @LatestRunningTaskType = params['LatestRunningTaskType']
+          @BusinessType = params['BusinessType']
         end
       end
 
@@ -1054,19 +1058,35 @@ module TencentCloud
         # @type DiskSize: Integer
         # @param DiskName: <p>磁盘名称</p><p>DataDisk 作为输入参数时，DiskName 无效。</p>
         # @type DiskName: String
+        # @param Encrypt: <p>数据盘是否加密</p><p>枚举值：</p><ul><li>false： 不加密</li><li>true： 加密</li></ul>
+        # @type Encrypt: Boolean
+        # @param DiskId: <p>磁盘ID</p><p>入参限制：该参数目前仅用于 DescribeDBCustomNodes 等查询类接口的返回参数，不可用于 CreateDBCustomNodes 等写接口的入参。</p>
+        # @type DiskId: String
+        # @param SnapshotId: <p>数据盘快照ID</p><p>入参限制：选择的数据盘快照大小需小于数据盘大小</p>
+        # @type SnapshotId: String
+        # @param ClientDiskKey: <p>自定义的数据盘标识（如 data / log / backup）</p>
+        # @type ClientDiskKey: String
 
-        attr_accessor :DiskType, :DiskSize, :DiskName
+        attr_accessor :DiskType, :DiskSize, :DiskName, :Encrypt, :DiskId, :SnapshotId, :ClientDiskKey
 
-        def initialize(disktype=nil, disksize=nil, diskname=nil)
+        def initialize(disktype=nil, disksize=nil, diskname=nil, encrypt=nil, diskid=nil, snapshotid=nil, clientdiskkey=nil)
           @DiskType = disktype
           @DiskSize = disksize
           @DiskName = diskname
+          @Encrypt = encrypt
+          @DiskId = diskid
+          @SnapshotId = snapshotid
+          @ClientDiskKey = clientdiskkey
         end
 
         def deserialize(params)
           @DiskType = params['DiskType']
           @DiskSize = params['DiskSize']
           @DiskName = params['DiskName']
+          @Encrypt = params['Encrypt']
+          @DiskId = params['DiskId']
+          @SnapshotId = params['SnapshotId']
+          @ClientDiskKey = params['ClientDiskKey']
         end
       end
 
@@ -2003,18 +2023,29 @@ module TencentCloud
       class DescribeDBCustomTaskStatusResponse < TencentCloud::Common::AbstractModel
         # @param Status: <p>任务 ID</p><p>枚举值：</p><ul><li>Running： 运行中</li><li>Succeeded： 成功</li><li>Failed： 失败</li></ul>
         # @type Status: String
+        # @param ResourceStatusSet: <p>任务所操作的每个资源的执行结果</p>
+        # @type ResourceStatusSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Status, :RequestId
+        attr_accessor :Status, :ResourceStatusSet, :RequestId
 
-        def initialize(status=nil, requestid=nil)
+        def initialize(status=nil, resourcestatusset=nil, requestid=nil)
           @Status = status
+          @ResourceStatusSet = resourcestatusset
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Status = params['Status']
+          unless params['ResourceStatusSet'].nil?
+            @ResourceStatusSet = []
+            params['ResourceStatusSet'].each do |i|
+              taskresourcestatus_tmp = TaskResourceStatus.new
+              taskresourcestatus_tmp.deserialize(i)
+              @ResourceStatusSet << taskresourcestatus_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -3950,17 +3981,21 @@ module TencentCloud
         # @type DiskType: String
         # @param DiskSize: <p>磁盘大小</p><p>单位：GiB</p>
         # @type DiskSize: Integer
+        # @param DiskId: <p>磁盘ID</p>
+        # @type DiskId: String
 
-        attr_accessor :DiskType, :DiskSize
+        attr_accessor :DiskType, :DiskSize, :DiskId
 
-        def initialize(disktype=nil, disksize=nil)
+        def initialize(disktype=nil, disksize=nil, diskid=nil)
           @DiskType = disktype
           @DiskSize = disksize
+          @DiskId = diskid
         end
 
         def deserialize(params)
           @DiskType = params['DiskType']
           @DiskSize = params['DiskSize']
+          @DiskId = params['DiskId']
         end
       end
 
@@ -4005,6 +4040,26 @@ module TencentCloud
           @Key = params['Key']
           @Effect = params['Effect']
           @Value = params['Value']
+        end
+      end
+
+      # DB Custom 资源任务状态信息。
+      class TaskResourceStatus < TencentCloud::Common::AbstractModel
+        # @param ResourceId: <p>资源ID。如节点ID dbcn-tnjzxz3n</p>
+        # @type ResourceId: String
+        # @param Status: <p>任务状态</p><p>枚举值：</p><ul><li>Running： 运行中</li><li>Succeeded： 成功</li><li>Failed： 失败</li></ul>
+        # @type Status: String
+
+        attr_accessor :ResourceId, :Status
+
+        def initialize(resourceid=nil, status=nil)
+          @ResourceId = resourceid
+          @Status = status
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @Status = params['Status']
         end
       end
 

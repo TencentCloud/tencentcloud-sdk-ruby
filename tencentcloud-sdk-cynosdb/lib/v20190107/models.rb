@@ -326,18 +326,32 @@ module TencentCloud
       class AddClusterSlaveZoneResponse < TencentCloud::Common::AbstractModel
         # @param FlowId: <p>异步FlowId</p>
         # @type FlowId: Integer
+        # @param BigDealIds: <p>订单ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BigDealIds: Array
+        # @param DealNames: <p>订单名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DealNames: Array
+        # @param TranId: <p>交易ID</p>
+        # @type TranId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :FlowId, :RequestId
+        attr_accessor :FlowId, :BigDealIds, :DealNames, :TranId, :RequestId
 
-        def initialize(flowid=nil, requestid=nil)
+        def initialize(flowid=nil, bigdealids=nil, dealnames=nil, tranid=nil, requestid=nil)
           @FlowId = flowid
+          @BigDealIds = bigdealids
+          @DealNames = dealnames
+          @TranId = tranid
           @RequestId = requestid
         end
 
         def deserialize(params)
           @FlowId = params['FlowId']
+          @BigDealIds = params['BigDealIds']
+          @DealNames = params['DealNames']
+          @TranId = params['TranId']
           @RequestId = params['RequestId']
         end
       end
@@ -13573,13 +13587,13 @@ module TencentCloud
 
       # InquirePriceMultiSpec请求参数结构体
       class InquirePriceMultiSpecRequest < TencentCloud::Common::AbstractModel
-        # @param Zone: 可用区,每个地域提供最佳实践
+        # @param Zone: <p>可用区,每个地域提供最佳实践</p>
         # @type Zone: String
-        # @param InstancePayMode: 实例购买类型，可选值为：PREPAID, POSTPAID, SERVERLESS
+        # @param InstancePayMode: <p>实例购买类型，可选值为：PREPAID, POSTPAID, SERVERLESS</p>
         # @type InstancePayMode: String
-        # @param StoragePayMode: 存储购买类型，可选值为：PREPAID, POSTPAID
+        # @param StoragePayMode: <p>存储购买类型，可选值为：PREPAID, POSTPAID</p>
         # @type StoragePayMode: String
-        # @param GoodsSpecs: 商品规格
+        # @param GoodsSpecs: <p>商品规格</p>
         # @type GoodsSpecs: Array
 
         attr_accessor :Zone, :InstancePayMode, :StoragePayMode, :GoodsSpecs
@@ -13608,7 +13622,7 @@ module TencentCloud
 
       # InquirePriceMultiSpec返回参数结构体
       class InquirePriceMultiSpecResponse < TencentCloud::Common::AbstractModel
-        # @param GoodsPrice: 商品价格
+        # @param GoodsPrice: <p>商品价格</p>
         # @type GoodsPrice: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -22873,17 +22887,17 @@ module TencentCloud
 
       # TransferClusterZone请求参数结构体
       class TransferClusterZoneRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 源集群Id
+        # @param ClusterId: <p>源集群Id</p>
         # @type ClusterId: String
-        # @param DstZone: 目标可用区
+        # @param DstZone: <p>目标可用区</p>
         # @type DstZone: String
-        # @param MaxLag: 跨可用区迁移主从数据延迟校验阈值，单位毫秒(ms)
+        # @param MaxLag: <p>跨可用区迁移主从数据延迟校验阈值，单位毫秒(ms)</p>
         # @type MaxLag: Integer
-        # @param TransferType: Immediate:立即执行，InMaintain:时间窗口执行
+        # @param TransferType: <p>Immediate:立即执行，InMaintain:时间窗口执行</p>
         # @type TransferType: String
-        # @param DstSlaveZone: 多可用区备区
+        # @param DstSlaveZone: <p>多可用区备区</p>
         # @type DstSlaveZone: String
-        # @param ProxyZones: proxy迁移的目标可用区信息
+        # @param ProxyZones: <p>proxy迁移的目标可用区信息</p>
         # @type ProxyZones: Array
 
         attr_accessor :ClusterId, :DstZone, :MaxLag, :TransferType, :DstSlaveZone, :ProxyZones
@@ -22916,7 +22930,7 @@ module TencentCloud
 
       # TransferClusterZone返回参数结构体
       class TransferClusterZoneResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 异步任务id
+        # @param TaskId: <p>异步任务id</p>
         # @type TaskId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

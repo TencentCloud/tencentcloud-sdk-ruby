@@ -1901,7 +1901,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询 LLM 模型 API 列表。
+        # 查询指定网关实例下的所有 LLM 模型 API 列表。支持按名称关键词模糊搜索、按过滤器筛选，以及分页查询。用于绑定场景时，可通过 ConsumerGroupId 和 UseToBind 参数筛选可绑定的模型 API。
 
         # @param request: Request instance for DescribeCloudNativeAPIGatewayLLMModelAPIs.
         # @type request: :class:`Tencentcloud::tse::V20201207::DescribeCloudNativeAPIGatewayLLMModelAPIsRequest`

@@ -287,8 +287,8 @@ module TencentCloud
 
         attr_accessor :AndroidAppId, :Name, :AndroidAppVersion, :PackageName, :PackageVersion, :PackageLabel, :VersionName
         extend Gem::Deprecate
-        deprecate :PackageVersion, :none, 2026, 9
-        deprecate :PackageVersion=, :none, 2026, 9
+        deprecate :PackageVersion, :none, 2026, 10
+        deprecate :PackageVersion=, :none, 2026, 10
 
         def initialize(androidappid=nil, name=nil, androidappversion=nil, packagename=nil, packageversion=nil, packagelabel=nil, versionname=nil)
           @AndroidAppId = androidappid
@@ -2178,8 +2178,8 @@ module TencentCloud
 
         attr_accessor :Total, :Labels, :AndroidInstanceLabels, :RequestId
         extend Gem::Deprecate
-        deprecate :Labels, :none, 2026, 9
-        deprecate :Labels=, :none, 2026, 9
+        deprecate :Labels, :none, 2026, 10
+        deprecate :Labels=, :none, 2026, 10
 
         def initialize(total=nil, labels=nil, androidinstancelabels=nil, requestid=nil)
           @Total = total
