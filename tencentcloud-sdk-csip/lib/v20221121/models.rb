@@ -46370,12 +46370,14 @@ module TencentCloud
         # @type AdminInfo: :class:`Tencentcloud::Csip.v20221121.models.AccountBriefInfo`
         # @param TagIds: <p>标签id</p>
         # @type TagIds: Array
+        # @param PreferCloudSource: <p>优先使用腾讯云软件源</p>
+        # @type PreferCloudSource: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Status, :VulCategory, :Level, :Method, :CycleType, :StartTime, :EndTime, :AssetRange, :AssetList, :CycleValue, :Timeout, :AllowSync, :EnableSync, :AdminInfo, :TagIds, :RequestId
+        attr_accessor :Status, :VulCategory, :Level, :Method, :CycleType, :StartTime, :EndTime, :AssetRange, :AssetList, :CycleValue, :Timeout, :AllowSync, :EnableSync, :AdminInfo, :TagIds, :PreferCloudSource, :RequestId
 
-        def initialize(status=nil, vulcategory=nil, level=nil, method=nil, cycletype=nil, starttime=nil, endtime=nil, assetrange=nil, assetlist=nil, cyclevalue=nil, timeout=nil, allowsync=nil, enablesync=nil, admininfo=nil, tagids=nil, requestid=nil)
+        def initialize(status=nil, vulcategory=nil, level=nil, method=nil, cycletype=nil, starttime=nil, endtime=nil, assetrange=nil, assetlist=nil, cyclevalue=nil, timeout=nil, allowsync=nil, enablesync=nil, admininfo=nil, tagids=nil, prefercloudsource=nil, requestid=nil)
           @Status = status
           @VulCategory = vulcategory
           @Level = level
@@ -46391,6 +46393,7 @@ module TencentCloud
           @EnableSync = enablesync
           @AdminInfo = admininfo
           @TagIds = tagids
+          @PreferCloudSource = prefercloudsource
           @RequestId = requestid
         end
 
@@ -46413,6 +46416,7 @@ module TencentCloud
             @AdminInfo.deserialize(params['AdminInfo'])
           end
           @TagIds = params['TagIds']
+          @PreferCloudSource = params['PreferCloudSource']
           @RequestId = params['RequestId']
         end
       end

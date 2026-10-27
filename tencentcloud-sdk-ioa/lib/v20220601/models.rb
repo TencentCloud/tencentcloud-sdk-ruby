@@ -487,26 +487,46 @@ module TencentCloud
 
       # CreateBusinessResource请求参数结构体
       class CreateBusinessResourceRequest < TencentCloud::Common::AbstractModel
-        # @param AreaId: 业务资源所在的模块id，没有资源模块先创建资源模块(只支持32位)
+        # @param AreaId: <p>业务资源所在的模块id，没有资源模块先创建资源模块(只支持32位)</p>
         # @type AreaId: Integer
-        # @param Protocol: 业务资源协议类型, 1:UDP, 2:TCP, 3:所有协议(只支持32位)
+        # @param Protocol: <p>业务资源协议类型, 1:UDP, 2:TCP, 3:所有协议(只支持32位)</p>
         # @type Protocol: Integer
-        # @param ServiceName: 业务资源名称，同一个资源模块下面不可重复
+        # @param ServiceName: <p>业务资源名称，同一个资源模块下面不可重复</p>
         # @type ServiceName: String
-        # @param ServiceType: 业务资源类型:ip,domain,ip_section，对应ip、域名、ip段
+        # @param ServiceType: <p>业务资源类型:ip,domain,ip_section，对应ip、域名、ip段</p>
         # @type ServiceType: String
-        # @param ServicePort: 业务资源端口 all,1-65535
+        # @param ServicePort: <p>业务资源端口 all,1-65535</p>
         # @type ServicePort: String
-        # @param Levels: 业务资源优先级 1-65535(只支持32位)
+        # @param Levels: <p>业务资源优先级 1-65535(只支持32位)</p>
         # @type Levels: Integer
-        # @param ServiceAddress: 业务资源地址(ip、域名、ip段)
+        # @param ServiceAddress: <p>业务资源地址(ip、域名、ip段)</p>
         # @type ServiceAddress: String
-        # @param DirectConn: 是否走代理,该参数不传，默认为0, 2：内外网直连，1：内网直连， 0：不启用代理配置(只支持32位)
+        # @param DirectConn: <p>是否走代理,该参数不传，默认为0, 2：内外网直连，1：内网直连， 0：不启用代理配置(只支持32位)</p>
         # @type DirectConn: Integer
+        # @param ConnectivityCheckSwitch: <p>连通性检查开关，0-关闭 1-开启，默认1(只支持32位)</p>
+        # @type ConnectivityCheckSwitch: Integer
+        # @param ConnectivityCheckInterval: <p>连通性检查测试间隔数值，最小为1，默认1(只支持32位)</p>
+        # @type ConnectivityCheckInterval: Integer
+        # @param ConnectivityCheckIntervalUnit: <p>连通性检查测试间隔单位 minutes/hours/days，默认hours</p>
+        # @type ConnectivityCheckIntervalUnit: String
+        # @param ServiceNetwork: <p>资源网络类型：1-内网资源 2-外网资源，默认1</p>
+        # @type ServiceNetwork: Integer
+        # @param WireGuardTunnel: <p>是否启用L3网络：1-不启用 2-启用，默认1</p>
+        # @type WireGuardTunnel: Integer
+        # @param Description: <p>资源描述</p>
+        # @type Description: String
+        # @param URLAuditState: <p>URL审计开关：0-关闭 1-开启，默认0</p><p>枚举值：</p><ul><li>0： 关闭</li><li>1： 开启</li></ul>
+        # @type URLAuditState: Integer
+        # @param URLAuditId: <p>URL审计证书ID列表，多个用分号分隔</p>
+        # @type URLAuditId: String
+        # @param URLPath: <p>URL审计路径，多个用分号分隔</p>
+        # @type URLPath: String
+        # @param SSLCertId: <p>证书Id</p>
+        # @type SSLCertId: String
 
-        attr_accessor :AreaId, :Protocol, :ServiceName, :ServiceType, :ServicePort, :Levels, :ServiceAddress, :DirectConn
+        attr_accessor :AreaId, :Protocol, :ServiceName, :ServiceType, :ServicePort, :Levels, :ServiceAddress, :DirectConn, :ConnectivityCheckSwitch, :ConnectivityCheckInterval, :ConnectivityCheckIntervalUnit, :ServiceNetwork, :WireGuardTunnel, :Description, :URLAuditState, :URLAuditId, :URLPath, :SSLCertId
 
-        def initialize(areaid=nil, protocol=nil, servicename=nil, servicetype=nil, serviceport=nil, levels=nil, serviceaddress=nil, directconn=nil)
+        def initialize(areaid=nil, protocol=nil, servicename=nil, servicetype=nil, serviceport=nil, levels=nil, serviceaddress=nil, directconn=nil, connectivitycheckswitch=nil, connectivitycheckinterval=nil, connectivitycheckintervalunit=nil, servicenetwork=nil, wireguardtunnel=nil, description=nil, urlauditstate=nil, urlauditid=nil, urlpath=nil, sslcertid=nil)
           @AreaId = areaid
           @Protocol = protocol
           @ServiceName = servicename
@@ -515,6 +535,16 @@ module TencentCloud
           @Levels = levels
           @ServiceAddress = serviceaddress
           @DirectConn = directconn
+          @ConnectivityCheckSwitch = connectivitycheckswitch
+          @ConnectivityCheckInterval = connectivitycheckinterval
+          @ConnectivityCheckIntervalUnit = connectivitycheckintervalunit
+          @ServiceNetwork = servicenetwork
+          @WireGuardTunnel = wireguardtunnel
+          @Description = description
+          @URLAuditState = urlauditstate
+          @URLAuditId = urlauditid
+          @URLPath = urlpath
+          @SSLCertId = sslcertid
         end
 
         def deserialize(params)
@@ -526,12 +556,22 @@ module TencentCloud
           @Levels = params['Levels']
           @ServiceAddress = params['ServiceAddress']
           @DirectConn = params['DirectConn']
+          @ConnectivityCheckSwitch = params['ConnectivityCheckSwitch']
+          @ConnectivityCheckInterval = params['ConnectivityCheckInterval']
+          @ConnectivityCheckIntervalUnit = params['ConnectivityCheckIntervalUnit']
+          @ServiceNetwork = params['ServiceNetwork']
+          @WireGuardTunnel = params['WireGuardTunnel']
+          @Description = params['Description']
+          @URLAuditState = params['URLAuditState']
+          @URLAuditId = params['URLAuditId']
+          @URLPath = params['URLPath']
+          @SSLCertId = params['SSLCertId']
         end
       end
 
       # CreateBusinessResource返回参数结构体
       class CreateBusinessResourceResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 创建业务资源响应的数据
+        # @param Data: <p>创建业务资源响应的数据</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Ioa.v20220601.models.CreateBusinessResourceData`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -2427,21 +2467,25 @@ module TencentCloud
 
       # 业务资源分页返回对象
       class DescribeBusinessResourcePageRsp < TencentCloud::Common::AbstractModel
-        # @param Items: 业务资源列表数据对象集合
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Items: Array
         # @param Page: 分页公共对象
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Page: :class:`Tencentcloud::Ioa.v20220601.models.Paging`
+        # @param Items: 业务资源列表数据对象集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
 
-        attr_accessor :Items, :Page
+        attr_accessor :Page, :Items
 
-        def initialize(items=nil, page=nil)
-          @Items = items
+        def initialize(page=nil, items=nil)
           @Page = page
+          @Items = items
         end
 
         def deserialize(params)
+          unless params['Page'].nil?
+            @Page = Paging.new
+            @Page.deserialize(params['Page'])
+          end
           unless params['Items'].nil?
             @Items = []
             params['Items'].each do |i|
@@ -2450,59 +2494,51 @@ module TencentCloud
               @Items << describebusinessresourcedata_tmp
             end
           end
-          unless params['Page'].nil?
-            @Page = Paging.new
-            @Page.deserialize(params['Page'])
-          end
         end
       end
 
       # DescribeBusinessResources请求参数结构体
       class DescribeBusinessResourcesRequest < TencentCloud::Common::AbstractModel
-        # @param AreaId: 资源模块Id
-        # @type AreaId: Integer
-        # @param ServiceName: 搜索的业务资源名称
-        # @type ServiceName: String
-        # @param StartTime: 获取业务资源列表的开始时间，时间格式：2006-01-02
-        # @type StartTime: String
-        # @param Keywords: 搜索关键字
-        # @type Keywords: String
-        # @param EndTime: 获取业务资源列表的结束时间，时间格式：2006-01-02
-        # @type EndTime: String
-        # @param Condition: 滤条件、分页参数。分页内容不传，默认获取第1页，10条数据
-        # 排序条件
-        # <li>CreateTime - string - 是否必填：否 - 排序支持：是 - 按业务资源创建时间排序。</li>
-        # <li>Levels - int - 是否必填：否 - 排序支持：是 - 按业务资源优先级排序。</li>
-        # <li>ReachableState - int - 是否必填：否 - 排序支持：是 - 按业务资源连通性排序(私有化版本不支持)。</li>
+        # @param Condition: <p>滤条件、分页参数。分页内容不传，默认获取第1页，10条数据<br>排序条件</p><li>CreateTime - string - 是否必填：否 - 排序支持：是 - 按业务资源创建时间排序。</li><li>Levels - int - 是否必填：否 - 排序支持：是 - 按业务资源优先级排序。</li><li>ReachableState - int - 是否必填：否 - 排序支持：是 - 按业务资源连通性排序(私有化版本不支持)。</li>
         # @type Condition: :class:`Tencentcloud::Ioa.v20220601.models.Condition`
-        # @param AccessType: 资源类型
+        # @param AreaId: <p>资源模块Id</p>
+        # @type AreaId: Integer
+        # @param ServiceName: <p>服务名称</p>
+        # @type ServiceName: String
+        # @param Keywords: <p>搜索关键字</p>
+        # @type Keywords: String
+        # @param StartTime: <p>获取业务资源列表的开始时间，时间格式：2006-01-02</p>
+        # @type StartTime: String
+        # @param EndTime: <p>获取业务资源列表的结束时间，时间格式：2006-01-02</p>
+        # @type EndTime: String
+        # @param AccessType: <p>资源类型</p>
         # @type AccessType: String
-        # @param FrontAddr: web资源前端地址
+        # @param FrontAddr: <p>web资源前端地址</p>
         # @type FrontAddr: String
 
-        attr_accessor :AreaId, :ServiceName, :StartTime, :Keywords, :EndTime, :Condition, :AccessType, :FrontAddr
+        attr_accessor :Condition, :AreaId, :ServiceName, :Keywords, :StartTime, :EndTime, :AccessType, :FrontAddr
 
-        def initialize(areaid=nil, servicename=nil, starttime=nil, keywords=nil, endtime=nil, condition=nil, accesstype=nil, frontaddr=nil)
+        def initialize(condition=nil, areaid=nil, servicename=nil, keywords=nil, starttime=nil, endtime=nil, accesstype=nil, frontaddr=nil)
+          @Condition = condition
           @AreaId = areaid
           @ServiceName = servicename
-          @StartTime = starttime
           @Keywords = keywords
+          @StartTime = starttime
           @EndTime = endtime
-          @Condition = condition
           @AccessType = accesstype
           @FrontAddr = frontaddr
         end
 
         def deserialize(params)
-          @AreaId = params['AreaId']
-          @ServiceName = params['ServiceName']
-          @StartTime = params['StartTime']
-          @Keywords = params['Keywords']
-          @EndTime = params['EndTime']
           unless params['Condition'].nil?
             @Condition = Condition.new
             @Condition.deserialize(params['Condition'])
           end
+          @AreaId = params['AreaId']
+          @ServiceName = params['ServiceName']
+          @Keywords = params['Keywords']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
           @AccessType = params['AccessType']
           @FrontAddr = params['FrontAddr']
         end
@@ -2510,7 +2546,7 @@ module TencentCloud
 
       # DescribeBusinessResources返回参数结构体
       class DescribeBusinessResourcesResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 业务资源分页返回对象
+        # @param Data: <p>业务资源分页返回对象</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Ioa.v20220601.models.DescribeBusinessResourcePageRsp`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -6402,28 +6438,46 @@ module TencentCloud
 
       # ModifyBusinessResource请求参数结构体
       class ModifyBusinessResourceRequest < TencentCloud::Common::AbstractModel
-        # @param AreaId: 业务资源所在的模块id，没有资源模块先创建资源模块(只支持32位)
+        # @param AreaId: <p>业务资源所在的模块id，没有资源模块先创建资源模块(只支持32位)</p>
         # @type AreaId: Integer
-        # @param Protocol: 业务资源协议类型,3：所有,2：UDP，1：TCP(只支持32位)
+        # @param Protocol: <p>业务资源协议类型,3：所有,2：UDP，1：TCP(只支持32位)</p>
         # @type Protocol: Integer
-        # @param ServiceName: 业务资源名称，同一个资源模块下面不可重复
+        # @param ServiceName: <p>业务资源名称，同一个资源模块下面不可重复</p>
         # @type ServiceName: String
-        # @param Levels: 业务资源优先级 1-65535(只支持32位)
+        # @param Levels: <p>业务资源优先级 1-65535(只支持32位)</p>
         # @type Levels: Integer
-        # @param ServiceType: 业务资源类型:ip,domain,ip_section，对应ip、域名、ip段
+        # @param ServiceType: <p>业务资源类型:ip,domain,ip_section，对应ip、域名、ip段</p>
         # @type ServiceType: String
-        # @param ServicePort: 业务资源端口 all,1-65535
+        # @param ServicePort: <p>业务资源端口 all,1-65535</p>
         # @type ServicePort: String
-        # @param ServiceId: 修改业务资源的id(只支持32位)
+        # @param ServiceId: <p>修改业务资源的id(只支持32位)</p>
         # @type ServiceId: Integer
-        # @param ServiceAddress: 业务资源地址(ip、域名、ip段)
+        # @param ServiceAddress: <p>业务资源地址(ip、域名、ip段)</p>
         # @type ServiceAddress: String
-        # @param DirectConn: 是否走代理,该参数不传，默认为0, 2：内外网直连，1：内网直连， 0：不启用代理配置(只支持32位)
+        # @param DirectConn: <p>是否走代理,该参数不传，默认为0, 2：内外网直连，1：内网直连， 0：不启用代理配置(只支持32位)</p>
         # @type DirectConn: Integer
+        # @param ConnectivityCheckSwitch: <p>连通性检查开关，0-关闭 1-开启，默认1(只支持32位)</p>
+        # @type ConnectivityCheckSwitch: Integer
+        # @param ConnectivityCheckInterval: <p>连通性检查测试间隔数值，最小为1，默认1(只支持32位)</p>
+        # @type ConnectivityCheckInterval: Integer
+        # @param ConnectivityCheckIntervalUnit: <p>连通性检查测试间隔单位 minutes/hours/days，默认hours</p>
+        # @type ConnectivityCheckIntervalUnit: String
+        # @param ServiceNetwork: <p>资源网络类型：1-内网资源 2-外网资源，默认1</p>
+        # @type ServiceNetwork: Integer
+        # @param WireGuardTunnel: <p>是否启用L3网络：1-不启用 2-启用，默认1</p>
+        # @type WireGuardTunnel: Integer
+        # @param Description: <p>资源描述</p>
+        # @type Description: String
+        # @param URLAuditState: <p>URL审计开关：0-关闭 1-开启，默认0</p>
+        # @type URLAuditState: Integer
+        # @param URLAuditId: <p>URL审计证书ID列表，多个用分号分隔</p>
+        # @type URLAuditId: String
+        # @param URLPath: <p>URL审计路径，多个用分号分隔</p>
+        # @type URLPath: String
 
-        attr_accessor :AreaId, :Protocol, :ServiceName, :Levels, :ServiceType, :ServicePort, :ServiceId, :ServiceAddress, :DirectConn
+        attr_accessor :AreaId, :Protocol, :ServiceName, :Levels, :ServiceType, :ServicePort, :ServiceId, :ServiceAddress, :DirectConn, :ConnectivityCheckSwitch, :ConnectivityCheckInterval, :ConnectivityCheckIntervalUnit, :ServiceNetwork, :WireGuardTunnel, :Description, :URLAuditState, :URLAuditId, :URLPath
 
-        def initialize(areaid=nil, protocol=nil, servicename=nil, levels=nil, servicetype=nil, serviceport=nil, serviceid=nil, serviceaddress=nil, directconn=nil)
+        def initialize(areaid=nil, protocol=nil, servicename=nil, levels=nil, servicetype=nil, serviceport=nil, serviceid=nil, serviceaddress=nil, directconn=nil, connectivitycheckswitch=nil, connectivitycheckinterval=nil, connectivitycheckintervalunit=nil, servicenetwork=nil, wireguardtunnel=nil, description=nil, urlauditstate=nil, urlauditid=nil, urlpath=nil)
           @AreaId = areaid
           @Protocol = protocol
           @ServiceName = servicename
@@ -6433,6 +6487,15 @@ module TencentCloud
           @ServiceId = serviceid
           @ServiceAddress = serviceaddress
           @DirectConn = directconn
+          @ConnectivityCheckSwitch = connectivitycheckswitch
+          @ConnectivityCheckInterval = connectivitycheckinterval
+          @ConnectivityCheckIntervalUnit = connectivitycheckintervalunit
+          @ServiceNetwork = servicenetwork
+          @WireGuardTunnel = wireguardtunnel
+          @Description = description
+          @URLAuditState = urlauditstate
+          @URLAuditId = urlauditid
+          @URLPath = urlpath
         end
 
         def deserialize(params)
@@ -6445,6 +6508,15 @@ module TencentCloud
           @ServiceId = params['ServiceId']
           @ServiceAddress = params['ServiceAddress']
           @DirectConn = params['DirectConn']
+          @ConnectivityCheckSwitch = params['ConnectivityCheckSwitch']
+          @ConnectivityCheckInterval = params['ConnectivityCheckInterval']
+          @ConnectivityCheckIntervalUnit = params['ConnectivityCheckIntervalUnit']
+          @ServiceNetwork = params['ServiceNetwork']
+          @WireGuardTunnel = params['WireGuardTunnel']
+          @Description = params['Description']
+          @URLAuditState = params['URLAuditState']
+          @URLAuditId = params['URLAuditId']
+          @URLPath = params['URLPath']
         end
       end
 

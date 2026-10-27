@@ -157,6 +157,42 @@ module TencentCloud
         end
       end
 
+      # CreateCheck请求参数结构体
+      class CreateCheckRequest < TencentCloud::Common::AbstractModel
+        # @param VulId: <p>漏洞情报ID</p>
+        # @type VulId: String
+        # @param CustomerId: <p>企业ID</p>
+        # @type CustomerId: Integer
+
+        attr_accessor :VulId, :CustomerId
+
+        def initialize(vulid=nil, customerid=nil)
+          @VulId = vulid
+          @CustomerId = customerid
+        end
+
+        def deserialize(params)
+          @VulId = params['VulId']
+          @CustomerId = params['CustomerId']
+        end
+      end
+
+      # CreateCheck返回参数结构体
+      class CreateCheckResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateCustomer请求参数结构体
       class CreateCustomerRequest < TencentCloud::Common::AbstractModel
         # @param Name: <p>企业名称</p>
@@ -687,6 +723,42 @@ module TencentCloud
 
         def deserialize(params)
           @Id = params['Id']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateScan请求参数结构体
+      class CreateScanRequest < TencentCloud::Common::AbstractModel
+        # @param VulId: <p>漏洞情报ID</p>
+        # @type VulId: String
+        # @param CustomerId: <p>企业ID</p>
+        # @type CustomerId: Integer
+
+        attr_accessor :VulId, :CustomerId
+
+        def initialize(vulid=nil, customerid=nil)
+          @VulId = vulid
+          @CustomerId = customerid
+        end
+
+        def deserialize(params)
+          @VulId = params['VulId']
+          @CustomerId = params['CustomerId']
+        end
+      end
+
+      # CreateScan返回参数结构体
+      class CreateScanResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -1882,6 +1954,61 @@ module TencentCloud
         end
       end
 
+      # DescribeBannerAssetData请求参数结构体
+      class DescribeBannerAssetDataRequest < TencentCloud::Common::AbstractModel
+        # @param VulId: <p>漏洞情报ID</p>
+        # @type VulId: String
+        # @param Offset: 分页偏移
+        # @type Offset: Integer
+        # @param Limit: 分页大小
+        # @type Limit: Integer
+
+        attr_accessor :VulId, :Offset, :Limit
+
+        def initialize(vulid=nil, offset=nil, limit=nil)
+          @VulId = vulid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @VulId = params['VulId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeBannerAssetData返回参数结构体
+      class DescribeBannerAssetDataResponse < TencentCloud::Common::AbstractModel
+        # @param List: <p>数组</p>
+        # @type List: Array
+        # @param Total: <p>总数</p>
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :List, :Total, :RequestId
+
+        def initialize(list=nil, total=nil, requestid=nil)
+          @List = list
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              intelligenceresult_tmp = IntelligenceResult.new
+              intelligenceresult_tmp.deserialize(i)
+              @List << intelligenceresult_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeConfigs请求参数结构体
       class DescribeConfigsRequest < TencentCloud::Common::AbstractModel
         # @param CustomerIdList: 企业ID列表，可多选
@@ -3004,6 +3131,53 @@ module TencentCloud
         end
       end
 
+      # DescribeIntelligences请求参数结构体
+      class DescribeIntelligencesRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 查询数组
+        # @type Filters: Array
+        # @param Limit: 分页大小
+        # @type Limit: Integer
+        # @param Offset: 分页偏移
+        # @type Offset: Integer
+
+        attr_accessor :Filters, :Limit, :Offset
+
+        def initialize(filters=nil, limit=nil, offset=nil)
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeIntelligences返回参数结构体
+      class DescribeIntelligencesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeJobRecordDetails请求参数结构体
       class DescribeJobRecordDetailsRequest < TencentCloud::Common::AbstractModel
         # @param Module: <p>数据类型，包括：enterprise(企业架构)，domain(主域名)，sub_domain(子域名)，asset(主机资产)，port(端口服务)，http(网站资产)，vul(漏洞信息)，app(APP)，wechat_applet(微信小程序)，wechat_official_account(微信公众号)，github(Github泄露)，manage(后台识别)，config(目录爆破)，dark_web(暗网泄露)，net_disk(文库网盘泄露)，social_engineering(员工信息)，supply_chain(供应链信息)，weak_password(弱口令)，sensitive_info(敏感信息泄露)，suspicious_asset(影子资产)</p>
@@ -3657,6 +3831,61 @@ module TencentCloud
               @List << displaynetdisk_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePocAssetData请求参数结构体
+      class DescribePocAssetDataRequest < TencentCloud::Common::AbstractModel
+        # @param VulId: <p>漏洞情报ID</p>
+        # @type VulId: String
+        # @param Limit: 分页大小
+        # @type Limit: Integer
+        # @param Offset: 分页偏移
+        # @type Offset: Integer
+
+        attr_accessor :VulId, :Limit, :Offset
+
+        def initialize(vulid=nil, limit=nil, offset=nil)
+          @VulId = vulid
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @VulId = params['VulId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribePocAssetData返回参数结构体
+      class DescribePocAssetDataResponse < TencentCloud::Common::AbstractModel
+        # @param List: <p>数组</p>
+        # @type List: Array
+        # @param Total: <p>总数</p>
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :List, :Total, :RequestId
+
+        def initialize(list=nil, total=nil, requestid=nil)
+          @List = list
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              intelligenceresult_tmp = IntelligenceResult.new
+              intelligenceresult_tmp.deserialize(i)
+              @List << intelligenceresult_tmp
+            end
+          end
+          @Total = params['Total']
           @RequestId = params['RequestId']
         end
       end
@@ -6561,6 +6790,46 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 漏洞情报扫描结果
+      class IntelligenceResult < TencentCloud::Common::AbstractModel
+        # @param CustomerId: <p>客户ID</p>
+        # @type CustomerId: Integer
+        # @param CustomerName: <p>客户名称</p>
+        # @type CustomerName: String
+        # @param Title: <p>标题</p>
+        # @type Title: String
+        # @param Banner: <p>指纹</p>
+        # @type Banner: String
+        # @param ScreenshotUrl: <p>截图预览</p>
+        # @type ScreenshotUrl: String
+        # @param IsAffected: <p>是否受影响</p>
+        # @type IsAffected: Boolean
+        # @param Url: <p>网址</p>
+        # @type Url: String
+
+        attr_accessor :CustomerId, :CustomerName, :Title, :Banner, :ScreenshotUrl, :IsAffected, :Url
+
+        def initialize(customerid=nil, customername=nil, title=nil, banner=nil, screenshoturl=nil, isaffected=nil, url=nil)
+          @CustomerId = customerid
+          @CustomerName = customername
+          @Title = title
+          @Banner = banner
+          @ScreenshotUrl = screenshoturl
+          @IsAffected = isaffected
+          @Url = url
+        end
+
+        def deserialize(params)
+          @CustomerId = params['CustomerId']
+          @CustomerName = params['CustomerName']
+          @Title = params['Title']
+          @Banner = params['Banner']
+          @ScreenshotUrl = params['ScreenshotUrl']
+          @IsAffected = params['IsAffected']
+          @Url = params['Url']
         end
       end
 

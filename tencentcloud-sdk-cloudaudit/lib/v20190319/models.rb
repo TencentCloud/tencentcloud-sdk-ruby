@@ -1313,10 +1313,12 @@ module TencentCloud
         # @type StorageAppId: String
         # @param Compress: <p>是否压缩。<br>1:压缩  2:不压缩</p>
         # @type Compress: Integer
+        # @param CkafkaRoute: <p>CKAFKA路由信息</p>
+        # @type CkafkaRoute: String
 
-        attr_accessor :StorageType, :StorageRegion, :StorageName, :StoragePrefix, :StorageAccountId, :StorageAppId, :Compress
+        attr_accessor :StorageType, :StorageRegion, :StorageName, :StoragePrefix, :StorageAccountId, :StorageAppId, :Compress, :CkafkaRoute
 
-        def initialize(storagetype=nil, storageregion=nil, storagename=nil, storageprefix=nil, storageaccountid=nil, storageappid=nil, compress=nil)
+        def initialize(storagetype=nil, storageregion=nil, storagename=nil, storageprefix=nil, storageaccountid=nil, storageappid=nil, compress=nil, ckafkaroute=nil)
           @StorageType = storagetype
           @StorageRegion = storageregion
           @StorageName = storagename
@@ -1324,6 +1326,7 @@ module TencentCloud
           @StorageAccountId = storageaccountid
           @StorageAppId = storageappid
           @Compress = compress
+          @CkafkaRoute = ckafkaroute
         end
 
         def deserialize(params)
@@ -1334,6 +1337,7 @@ module TencentCloud
           @StorageAccountId = params['StorageAccountId']
           @StorageAppId = params['StorageAppId']
           @Compress = params['Compress']
+          @CkafkaRoute = params['CkafkaRoute']
         end
       end
 

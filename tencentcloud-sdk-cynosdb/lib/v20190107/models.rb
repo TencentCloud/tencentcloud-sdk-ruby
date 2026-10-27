@@ -2235,6 +2235,46 @@ module TencentCloud
         end
       end
 
+      # 证书详情
+      class CertDetail < TencentCloud::Common::AbstractModel
+        # @param CertId: <p>证书ID</p>
+        # @type CertId: String
+        # @param Alias: <p>证书备注名</p>
+        # @type Alias: String
+        # @param Domain: <p>证书绑定的主域名</p>
+        # @type Domain: String
+        # @param Source: <p>证书来源</p>
+        # @type Source: String
+        # @param EndTime: <p>有效期结束（秒级时间戳）</p><p>单位：秒</p>
+        # @type EndTime: Integer
+        # @param RemainDays: <p>证书到期剩余天数</p>
+        # @type RemainDays: Integer
+        # @param CertStatus: <p>证书状态，1为已通过</p>
+        # @type CertStatus: Integer
+
+        attr_accessor :CertId, :Alias, :Domain, :Source, :EndTime, :RemainDays, :CertStatus
+
+        def initialize(certid=nil, _alias=nil, domain=nil, source=nil, endtime=nil, remaindays=nil, certstatus=nil)
+          @CertId = certid
+          @Alias = _alias
+          @Domain = domain
+          @Source = source
+          @EndTime = endtime
+          @RemainDays = remaindays
+          @CertStatus = certstatus
+        end
+
+        def deserialize(params)
+          @CertId = params['CertId']
+          @Alias = params['Alias']
+          @Domain = params['Domain']
+          @Source = params['Source']
+          @EndTime = params['EndTime']
+          @RemainDays = params['RemainDays']
+          @CertStatus = params['CertStatus']
+        end
+      end
+
       # CheckCreateLibraDBInstance请求参数结构体
       class CheckCreateLibraDBInstanceRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -11955,9 +11995,9 @@ module TencentCloud
 
       # DescribeSSLStatus请求参数结构体
       class DescribeSSLStatusRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: <p>集群ID</p>
         # @type ClusterId: String
-        # @param InstanceId: 实例ID
+        # @param InstanceId: <p>实例ID</p>
         # @type InstanceId: String
 
         attr_accessor :ClusterId, :InstanceId
@@ -11975,24 +12015,35 @@ module TencentCloud
 
       # DescribeSSLStatus返回参数结构体
       class DescribeSSLStatusResponse < TencentCloud::Common::AbstractModel
-        # @param IsOpenSSL: yes-开启，no-关闭
+        # @param IsOpenSSL: <p>yes-开启，no-关闭</p>
         # @type IsOpenSSL: String
-        # @param DownloadUrl: 证书下载地址
+        # @param DownloadUrl: <p>证书下载地址</p>
         # @type DownloadUrl: String
+        # @param CertType: <p>证书类型</p><p>枚举值：</p><ul><li>platform： 云端证书</li><li>custom： 自定义证书</li></ul>
+        # @type CertType: String
+        # @param CertDetail: <p>自定义证书详情，仅 CertType=custom 时有值。</p>
+        # @type CertDetail: :class:`Tencentcloud::Cynosdb.v20190107.models.CertDetail`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :IsOpenSSL, :DownloadUrl, :RequestId
+        attr_accessor :IsOpenSSL, :DownloadUrl, :CertType, :CertDetail, :RequestId
 
-        def initialize(isopenssl=nil, downloadurl=nil, requestid=nil)
+        def initialize(isopenssl=nil, downloadurl=nil, certtype=nil, certdetail=nil, requestid=nil)
           @IsOpenSSL = isopenssl
           @DownloadUrl = downloadurl
+          @CertType = certtype
+          @CertDetail = certdetail
           @RequestId = requestid
         end
 
         def deserialize(params)
           @IsOpenSSL = params['IsOpenSSL']
           @DownloadUrl = params['DownloadUrl']
+          @CertType = params['CertType']
+          unless params['CertDetail'].nil?
+            @CertDetail = CertDetail.new
+            @CertDetail.deserialize(params['CertDetail'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -18730,29 +18781,37 @@ module TencentCloud
 
       # OpenSSL请求参数结构体
       class OpenSSLRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: <p>集群ID</p>
         # @type ClusterId: String
-        # @param InstanceId: 实例ID
+        # @param InstanceId: <p>实例ID</p>
         # @type InstanceId: String
+        # @param CertType: <p>证书类型</p><p>枚举值：</p><ul><li>platform： 云端证书</li><li>custom： 自定义证书</li></ul><p>默认值：platform</p>
+        # @type CertType: String
+        # @param CertId: <p>证书ID，CertType=custom 时必传</p>
+        # @type CertId: String
 
-        attr_accessor :ClusterId, :InstanceId
+        attr_accessor :ClusterId, :InstanceId, :CertType, :CertId
 
-        def initialize(clusterid=nil, instanceid=nil)
+        def initialize(clusterid=nil, instanceid=nil, certtype=nil, certid=nil)
           @ClusterId = clusterid
           @InstanceId = instanceid
+          @CertType = certtype
+          @CertId = certid
         end
 
         def deserialize(params)
           @ClusterId = params['ClusterId']
           @InstanceId = params['InstanceId']
+          @CertType = params['CertType']
+          @CertId = params['CertId']
         end
       end
 
       # OpenSSL返回参数结构体
       class OpenSSLResponse < TencentCloud::Common::AbstractModel
-        # @param FlowId: 任务流ID
+        # @param FlowId: <p>任务流ID</p>
         # @type FlowId: Integer
-        # @param TaskId: 任务id
+        # @param TaskId: <p>任务id</p>
         # @type TaskId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

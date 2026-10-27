@@ -156,9 +156,9 @@ module TencentCloud
           unless params['AcceleratorAreas'].nil?
             @AcceleratorAreas = []
             params['AcceleratorAreas'].each do |i|
-              acceleratorareas_tmp = AcceleratorAreas.new
-              acceleratorareas_tmp.deserialize(i)
-              @AcceleratorAreas << acceleratorareas_tmp
+              createacceleratorareasinfo_tmp = CreateAcceleratorAreasInfo.new
+              createacceleratorareasinfo_tmp.deserialize(i)
+              @AcceleratorAreas << createacceleratorareasinfo_tmp
             end
           end
         end
@@ -181,6 +181,34 @@ module TencentCloud
         def deserialize(params)
           @TaskId = params['TaskId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 创建加速地域信息
+      class CreateAcceleratorAreasInfo < TencentCloud::Common::AbstractModel
+        # @param AccelerateRegion: <p>加速地域</p>
+        # @type AccelerateRegion: String
+        # @param Bandwidth: <p>带宽</p><p>单位：Mbps</p>
+        # @type Bandwidth: Integer
+        # @param IspType: <p>公网质量类型</p><p>枚举值：</p><ul><li>BGP： BGP</li><li>QUALITY_BGP： 精品BGP</li><li>STATIC_IP： 三网</li></ul><p>默认值：BGP</p>
+        # @type IspType: String
+        # @param IpVersion: <p>IP 地址协议</p><p>枚举值：</p><ul><li>IPv4： IPv4</li></ul><p>默认值：IPv4</p>
+        # @type IpVersion: String
+
+        attr_accessor :AccelerateRegion, :Bandwidth, :IspType, :IpVersion
+
+        def initialize(accelerateregion=nil, bandwidth=nil, isptype=nil, ipversion=nil)
+          @AccelerateRegion = accelerateregion
+          @Bandwidth = bandwidth
+          @IspType = isptype
+          @IpVersion = ipversion
+        end
+
+        def deserialize(params)
+          @AccelerateRegion = params['AccelerateRegion']
+          @Bandwidth = params['Bandwidth']
+          @IspType = params['IspType']
+          @IpVersion = params['IpVersion']
         end
       end
 
@@ -1461,7 +1489,7 @@ module TencentCloud
         # @type ListenerId: String
         # @param Offset: <p>偏移量，默认为0。</p>
         # @type Offset: Integer
-        # @param Limit: <p>返回数量，默认为20，最大值为100。</p>
+        # @param Limit: <p>返回数量，默认为20，最大值为200。</p>
         # @type Limit: Integer
         # @param Filters: <p>过滤条件。<li>forwarding-policy-id - String -（过滤条件）策略ID。</li></p>
         # @type Filters: Array
@@ -1533,7 +1561,7 @@ module TencentCloud
         # @type ForwardingPolicyId: String
         # @param Offset: <p>偏移量，默认为0。</p>
         # @type Offset: Integer
-        # @param Limit: <p>返回数量，默认为20，最大值为100。</p>
+        # @param Limit: <p>返回数量，默认为20，最大值为200。</p>
         # @type Limit: Integer
         # @param Filters: <p>过滤条件。<li>forwarding-rule-id - String -（过滤条件）规则ID。</li></p>
         # @type Filters: Array
@@ -1605,7 +1633,7 @@ module TencentCloud
         # @type Filters: Array
         # @param Offset: <p>偏移量，默认为0。</p>
         # @type Offset: Integer
-        # @param Limit: <p>返回数量。</p><p>取值范围：[0, 200]</p>
+        # @param Limit: <p>返回数量。</p><p>取值范围：[1, 200]</p>
         # @type Limit: Integer
 
         attr_accessor :GlobalAcceleratorId, :Filters, :Offset, :Limit
@@ -2722,6 +2750,34 @@ module TencentCloud
         end
       end
 
+      # 修改加速地域信息
+      class ModifyAccelerateAreasInfo < TencentCloud::Common::AbstractModel
+        # @param AccelerateRegion: <p>加速地域</p>
+        # @type AccelerateRegion: String
+        # @param Bandwidth: <p>带宽</p><p>单位：Mbps</p>
+        # @type Bandwidth: Integer
+        # @param IspType: <p>公网质量类型</p><p>枚举值：</p><ul><li>BGP： BGP</li><li>QUALITY_BGP： 精品BGP</li><li>STATIC_IP： 三网</li></ul>
+        # @type IspType: String
+        # @param IpVersion: <p>IP 地址协议</p><p>枚举值：</p><ul><li>IPv4： IPv4</li></ul>
+        # @type IpVersion: String
+
+        attr_accessor :AccelerateRegion, :Bandwidth, :IspType, :IpVersion
+
+        def initialize(accelerateregion=nil, bandwidth=nil, isptype=nil, ipversion=nil)
+          @AccelerateRegion = accelerateregion
+          @Bandwidth = bandwidth
+          @IspType = isptype
+          @IpVersion = ipversion
+        end
+
+        def deserialize(params)
+          @AccelerateRegion = params['AccelerateRegion']
+          @Bandwidth = params['Bandwidth']
+          @IspType = params['IspType']
+          @IpVersion = params['IpVersion']
+        end
+      end
+
       # ModifyAccelerateAreas请求参数结构体
       class ModifyAccelerateAreasRequest < TencentCloud::Common::AbstractModel
         # @param GlobalAcceleratorId: <p>全球加速实例ID。</p>
@@ -2741,9 +2797,9 @@ module TencentCloud
           unless params['AcceleratorAreas'].nil?
             @AcceleratorAreas = []
             params['AcceleratorAreas'].each do |i|
-              acceleratorareas_tmp = AcceleratorAreas.new
-              acceleratorareas_tmp.deserialize(i)
-              @AcceleratorAreas << acceleratorareas_tmp
+              modifyaccelerateareasinfo_tmp = ModifyAccelerateAreasInfo.new
+              modifyaccelerateareasinfo_tmp.deserialize(i)
+              @AcceleratorAreas << modifyaccelerateareasinfo_tmp
             end
           end
         end

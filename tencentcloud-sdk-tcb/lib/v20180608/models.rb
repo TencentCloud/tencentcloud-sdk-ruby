@@ -707,6 +707,22 @@ module TencentCloud
         end
       end
 
+      # 构建运行配置
+      class BuildRunner < TencentCloud::Common::AbstractModel
+        # @param Cpus: <p>构建服务所需 CPU 规格</p>
+        # @type Cpus: Integer
+
+        attr_accessor :Cpus
+
+        def initialize(cpus=nil)
+          @Cpus = cpus
+        end
+
+        def deserialize(params)
+          @Cpus = params['Cpus']
+        end
+      end
+
       # 构建密钥
       class BuildSecret < TencentCloud::Common::AbstractModel
         # @param Name: <p>标准化为 DNS Label 风格；构建时注入为 $SECRET_&lt;NAME&gt;（同时也提供原大写形式 $SECRET_&lt;NAME_UPPERCASE&gt;）</p>
@@ -1614,7 +1630,7 @@ module TencentCloud
         # @type EnvId: String
         # @param ServiceName: <p>服务名</p>
         # @type ServiceName: String
-        # @param DeployType: <p>部署类型</p>
+        # @param DeployType: <p>部署类型</p><p>枚举值：</p><ul><li>statis-hosting： 静态托管应用</li><li>custom： 自定义流水线</li></ul>
         # @type DeployType: String
         # @param BuildType: <p>构建类型</p>
         # @type BuildType: String
@@ -1648,10 +1664,12 @@ module TencentCloud
         # @type PreDeployCommand: String
         # @param PostDeployCommand: <p>后置执行命令</p>
         # @type PostDeployCommand: String
+        # @param Runner: <p>流水线运行配置</p>
+        # @type Runner: :class:`Tencentcloud::Tcb.v20180608.models.BuildRunner`
 
-        attr_accessor :EnvId, :ServiceName, :DeployType, :BuildType, :StaticConfig, :Source, :Commands, :Env, :CustomSteps, :Secrets, :NodeJsVersion, :Trigger, :ServiceList, :WorkingDir, :Routes, :PromoteType, :ClientToken, :PreDeployCommand, :PostDeployCommand
+        attr_accessor :EnvId, :ServiceName, :DeployType, :BuildType, :StaticConfig, :Source, :Commands, :Env, :CustomSteps, :Secrets, :NodeJsVersion, :Trigger, :ServiceList, :WorkingDir, :Routes, :PromoteType, :ClientToken, :PreDeployCommand, :PostDeployCommand, :Runner
 
-        def initialize(envid=nil, servicename=nil, deploytype=nil, buildtype=nil, staticconfig=nil, source=nil, commands=nil, env=nil, customsteps=nil, secrets=nil, nodejsversion=nil, trigger=nil, servicelist=nil, workingdir=nil, routes=nil, promotetype=nil, clienttoken=nil, predeploycommand=nil, postdeploycommand=nil)
+        def initialize(envid=nil, servicename=nil, deploytype=nil, buildtype=nil, staticconfig=nil, source=nil, commands=nil, env=nil, customsteps=nil, secrets=nil, nodejsversion=nil, trigger=nil, servicelist=nil, workingdir=nil, routes=nil, promotetype=nil, clienttoken=nil, predeploycommand=nil, postdeploycommand=nil, runner=nil)
           @EnvId = envid
           @ServiceName = servicename
           @DeployType = deploytype
@@ -1671,6 +1689,7 @@ module TencentCloud
           @ClientToken = clienttoken
           @PreDeployCommand = predeploycommand
           @PostDeployCommand = postdeploycommand
+          @Runner = runner
         end
 
         def deserialize(params)
@@ -1740,6 +1759,10 @@ module TencentCloud
           @ClientToken = params['ClientToken']
           @PreDeployCommand = params['PreDeployCommand']
           @PostDeployCommand = params['PostDeployCommand']
+          unless params['Runner'].nil?
+            @Runner = BuildRunner.new
+            @Runner.deserialize(params['Runner'])
+          end
         end
       end
 

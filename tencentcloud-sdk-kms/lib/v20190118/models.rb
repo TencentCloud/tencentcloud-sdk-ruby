@@ -428,6 +428,76 @@ module TencentCloud
         end
       end
 
+      # CreateKmsInstance请求参数结构体
+      class CreateKmsInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceChargeType: <p>实例付费类型(PREPAID)</p>
+        # @type InstanceChargeType: String
+        # @param ProductVersion: <p>版本类型</p><p>枚举值：</p><ul><li>professional： 专业版</li></ul>
+        # @type ProductVersion: String
+        # @param InstanceChargePrepaid: <p>预付费实例信息</p>
+        # @type InstanceChargePrepaid: :class:`Tencentcloud::Kms.v20190118.models.InstanceChargePrepaid`
+        # @param ClientToken: <p>可重入客户端ID</p>
+        # @type ClientToken: String
+        # @param Tags: <p>实例标签</p>
+        # @type Tags: Array
+
+        attr_accessor :InstanceChargeType, :ProductVersion, :InstanceChargePrepaid, :ClientToken, :Tags
+
+        def initialize(instancechargetype=nil, productversion=nil, instancechargeprepaid=nil, clienttoken=nil, tags=nil)
+          @InstanceChargeType = instancechargetype
+          @ProductVersion = productversion
+          @InstanceChargePrepaid = instancechargeprepaid
+          @ClientToken = clienttoken
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @InstanceChargeType = params['InstanceChargeType']
+          @ProductVersion = params['ProductVersion']
+          unless params['InstanceChargePrepaid'].nil?
+            @InstanceChargePrepaid = InstanceChargePrepaid.new
+            @InstanceChargePrepaid.deserialize(params['InstanceChargePrepaid'])
+          end
+          @ClientToken = params['ClientToken']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+        end
+      end
+
+      # CreateKmsInstance返回参数结构体
+      class CreateKmsInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例ID</p>
+        # @type InstanceId: String
+        # @param DealName: <p>计费订单号</p>
+        # @type DealName: String
+        # @param BillId: <p>计费冻结流水号</p>
+        # @type BillId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceId, :DealName, :BillId, :RequestId
+
+        def initialize(instanceid=nil, dealname=nil, billid=nil, requestid=nil)
+          @InstanceId = instanceid
+          @DealName = dealname
+          @BillId = billid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @DealName = params['DealName']
+          @BillId = params['BillId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateWhiteBoxKey请求参数结构体
       class CreateWhiteBoxKeyRequest < TencentCloud::Common::AbstractModel
         # @param Alias: 作为密钥更容易辨识，更容易被人看懂的别名， 不可为空，1-60个字母数字 - _ 的组合，首字符必须为字母或者数字。Alias不可重复。
@@ -2499,6 +2569,26 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 预付费计费信息
+      class InstanceChargePrepaid < TencentCloud::Common::AbstractModel
+        # @param Period: <p>按月购买时长（1～100）月</p>
+        # @type Period: Integer
+        # @param RenewFlag: <p>续费标记（0:用户未设置，1:自动续费 2:不自动续费）</p>
+        # @type RenewFlag: Integer
+
+        attr_accessor :Period, :RenewFlag
+
+        def initialize(period=nil, renewflag=nil)
+          @Period = period
+          @RenewFlag = renewflag
+        end
+
+        def deserialize(params)
+          @Period = params['Period']
+          @RenewFlag = params['RenewFlag']
         end
       end
 

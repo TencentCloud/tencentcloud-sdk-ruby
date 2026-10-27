@@ -339,6 +339,18 @@ module TencentCloud
         # @param SupportsImages: 是否支持视觉（图片输入）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SupportsImages: Boolean
+        # @param SupportsThinking: 模型是否支持思考。仅用于展示；能否配置思考强度以 ThinkingLevels 和 CanDisableThinking 为准
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SupportsThinking: Boolean
+        # @param ThinkingLevels: 可选的思考强度，取值：MINIMAL、LOW、MEDIUM、HIGH、XHIGH、MAX，数组顺序即展示顺序。不包含「关闭」，空数组表示不支持调整强度。在 Agent 版本 Manifest 中配置 thinking.level 时使用对应的小写值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ThinkingLevels: Array
+        # @param DefaultThinkingLevel: 模型默认的思考强度，取值同 ThinkingLevels；空字符串表示未声明。Agent 版本 Manifest 未配置 thinking 时按模型默认档位运行
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefaultThinkingLevel: String
+        # @param CanDisableThinking: 是否支持关闭思考。为 true 时，可在 Agent 版本 Manifest 中配置 thinking.level 为 disabled
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CanDisableThinking: Boolean
         # @param DescriptionZh: 模型中文描述
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DescriptionZh: String
@@ -361,9 +373,9 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AgentCount: Integer
 
-        attr_accessor :ModelId, :Name, :Vendor, :MaxOutputTokens, :MaxInputTokens, :SupportsToolCall, :SupportsImages, :DescriptionZh, :DescriptionEn, :Tags, :Clients, :ServiceEndpoint, :Status, :AgentCount
+        attr_accessor :ModelId, :Name, :Vendor, :MaxOutputTokens, :MaxInputTokens, :SupportsToolCall, :SupportsImages, :SupportsThinking, :ThinkingLevels, :DefaultThinkingLevel, :CanDisableThinking, :DescriptionZh, :DescriptionEn, :Tags, :Clients, :ServiceEndpoint, :Status, :AgentCount
 
-        def initialize(modelid=nil, name=nil, vendor=nil, maxoutputtokens=nil, maxinputtokens=nil, supportstoolcall=nil, supportsimages=nil, descriptionzh=nil, descriptionen=nil, tags=nil, clients=nil, serviceendpoint=nil, status=nil, agentcount=nil)
+        def initialize(modelid=nil, name=nil, vendor=nil, maxoutputtokens=nil, maxinputtokens=nil, supportstoolcall=nil, supportsimages=nil, supportsthinking=nil, thinkinglevels=nil, defaultthinkinglevel=nil, candisablethinking=nil, descriptionzh=nil, descriptionen=nil, tags=nil, clients=nil, serviceendpoint=nil, status=nil, agentcount=nil)
           @ModelId = modelid
           @Name = name
           @Vendor = vendor
@@ -371,6 +383,10 @@ module TencentCloud
           @MaxInputTokens = maxinputtokens
           @SupportsToolCall = supportstoolcall
           @SupportsImages = supportsimages
+          @SupportsThinking = supportsthinking
+          @ThinkingLevels = thinkinglevels
+          @DefaultThinkingLevel = defaultthinkinglevel
+          @CanDisableThinking = candisablethinking
           @DescriptionZh = descriptionzh
           @DescriptionEn = descriptionen
           @Tags = tags
@@ -388,6 +404,10 @@ module TencentCloud
           @MaxInputTokens = params['MaxInputTokens']
           @SupportsToolCall = params['SupportsToolCall']
           @SupportsImages = params['SupportsImages']
+          @SupportsThinking = params['SupportsThinking']
+          @ThinkingLevels = params['ThinkingLevels']
+          @DefaultThinkingLevel = params['DefaultThinkingLevel']
+          @CanDisableThinking = params['CanDisableThinking']
           @DescriptionZh = params['DescriptionZh']
           @DescriptionEn = params['DescriptionEn']
           @Tags = params['Tags']
@@ -1508,7 +1528,7 @@ module TencentCloud
       class DescribeExpertListRequest < TencentCloud::Common::AbstractModel
         # @param Source: <p>专家来源，必填：BUILTIN（内置）/ CUSTOM（自建）</p>
         # @type Source: String
-        # @param Filters: <p>标准过滤条件：ExpertId（精确，多值 OR，携带即按 ID 批量查询，忽略分页）/ Keyword（模糊）</p>
+        # @param Filters: <p>标准过滤条件：ExpertId（精确，多值 OR，携带即按 ID 批量查询，忽略分页）/ Keyword（模糊）/ PublishStatus（DRAFT、PUBLISHED、ALL，仅 CUSTOM）/ ExpertType（AGENT 普通专家、TEAM 专家团）。ExpertType 只允许一个过滤条件且 Values 必须仅含一个值，不传则不增加形态过滤；可与 ExpertId 组合取交集，分页总数 TotalCount 为过滤后的匹配数。专家选择列表建议传 {&quot;Name&quot;:&quot;ExpertType&quot;,&quot;Values&quot;:[&quot;AGENT&quot;]}。CAPI 的 CUSTOM 目录仅有普通专家，按 TEAM 过滤返回空集。</p>
         # @type Filters: Array
         # @param Offset: <p>偏移量，从 0 开始，默认 0（按 ID 批量查询时忽略）</p>
         # @type Offset: Integer
@@ -1548,15 +1568,18 @@ module TencentCloud
         # @param Counts: <p>全局计数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Counts: :class:`Tencentcloud::Workbuddyenterprise.v20260709.models.ExpertCounts`
+        # @param MaxBindings: <p>Agent 可绑定的专家数量上限，当前默认值为 5。</p>
+        # @type MaxBindings: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TotalCount, :ExpertSet, :Counts, :RequestId
+        attr_accessor :TotalCount, :ExpertSet, :Counts, :MaxBindings, :RequestId
 
-        def initialize(totalcount=nil, expertset=nil, counts=nil, requestid=nil)
+        def initialize(totalcount=nil, expertset=nil, counts=nil, maxbindings=nil, requestid=nil)
           @TotalCount = totalcount
           @ExpertSet = expertset
           @Counts = counts
+          @MaxBindings = maxbindings
           @RequestId = requestid
         end
 
@@ -1574,6 +1597,7 @@ module TencentCloud
             @Counts = ExpertCounts.new
             @Counts.deserialize(params['Counts'])
           end
+          @MaxBindings = params['MaxBindings']
           @RequestId = params['RequestId']
         end
       end
@@ -1749,15 +1773,18 @@ module TencentCloud
         # @type Limit: Integer
         # @param Filters: <p>过滤条件数组，多个 Filter 之间为 AND 关系，同一 Filter 内多个 Values 为 OR 关系</p>
         # @type Filters: Array
+        # @param SubAgentId: 
+        # @type SubAgentId: String
 
-        attr_accessor :SessionId, :AgentId, :Offset, :Limit, :Filters
+        attr_accessor :SessionId, :AgentId, :Offset, :Limit, :Filters, :SubAgentId
 
-        def initialize(sessionid=nil, agentid=nil, offset=nil, limit=nil, filters=nil)
+        def initialize(sessionid=nil, agentid=nil, offset=nil, limit=nil, filters=nil, subagentid=nil)
           @SessionId = sessionid
           @AgentId = agentid
           @Offset = offset
           @Limit = limit
           @Filters = filters
+          @SubAgentId = subagentid
         end
 
         def deserialize(params)
@@ -1773,6 +1800,7 @@ module TencentCloud
               @Filters << filter_tmp
             end
           end
+          @SubAgentId = params['SubAgentId']
         end
       end
 
@@ -2023,13 +2051,16 @@ module TencentCloud
         # @param A2AVersion: 外部 agent card 声明的版本号
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type A2AVersion: String
+        # @param LatestVersionName: 子 Agent 的最新版本名，返回版本存储名（default / test-N / prod-N），非 V1/V2 展示名。取值规则：有正式版本（prod）时取最新 prod，否则取最新 test，再否则取 default。仅企业 Agent 来源返回（其 A2AVersion 恒为 default）；其他来源或查询失败时不返回。注意：不代表 A2A 调用时实际执行的版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LatestVersionName: String
         # @param A2ASkillSet: A2A card skills 集合
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type A2ASkillSet: Array
 
-        attr_accessor :A2AAgentId, :Name, :Description, :Endpoint, :BindingId, :Bound, :IconUrl, :A2AVersion, :A2ASkillSet
+        attr_accessor :A2AAgentId, :Name, :Description, :Endpoint, :BindingId, :Bound, :IconUrl, :A2AVersion, :LatestVersionName, :A2ASkillSet
 
-        def initialize(a2aagentid=nil, name=nil, description=nil, endpoint=nil, bindingid=nil, bound=nil, iconurl=nil, a2aversion=nil, a2askillset=nil)
+        def initialize(a2aagentid=nil, name=nil, description=nil, endpoint=nil, bindingid=nil, bound=nil, iconurl=nil, a2aversion=nil, latestversionname=nil, a2askillset=nil)
           @A2AAgentId = a2aagentid
           @Name = name
           @Description = description
@@ -2038,6 +2069,7 @@ module TencentCloud
           @Bound = bound
           @IconUrl = iconurl
           @A2AVersion = a2aversion
+          @LatestVersionName = latestversionname
           @A2ASkillSet = a2askillset
         end
 
@@ -2050,6 +2082,7 @@ module TencentCloud
           @Bound = params['Bound']
           @IconUrl = params['IconUrl']
           @A2AVersion = params['A2AVersion']
+          @LatestVersionName = params['LatestVersionName']
           unless params['A2ASkillSet'].nil?
             @A2ASkillSet = []
             params['A2ASkillSet'].each do |i|
@@ -2182,10 +2215,22 @@ module TencentCloud
         # @param StartedAt: <p>调用开始时间（RFC3339 格式）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartedAt: String
+        # @param ExpertId: 本次调用对应的业务专家 ID。
+        # @type ExpertId: String
+        # @param ExpertName: 本次调用对应的专家名称。
+        # @type ExpertName: String
+        # @param ExpertVersion: 执行时解析到的专家资源版本。
+        # @type ExpertVersion: String
+        # @param SubAgentId: CBC 子代理执行实例 ID，可用于查询该次专家调用的消息事件。
+        # @type SubAgentId: String
+        # @param SubAgentName: CBC 子代理定义名称。
+        # @type SubAgentName: String
+        # @param ParentToolCallId: 父会话中触发本次子代理执行的工具调用 ID。
+        # @type ParentToolCallId: String
 
-        attr_accessor :ToolCallId, :ToolName, :Status, :Input, :Output, :EndedAt, :DurationMs, :StartedAt
+        attr_accessor :ToolCallId, :ToolName, :Status, :Input, :Output, :EndedAt, :DurationMs, :StartedAt, :ExpertId, :ExpertName, :ExpertVersion, :SubAgentId, :SubAgentName, :ParentToolCallId
 
-        def initialize(toolcallid=nil, toolname=nil, status=nil, input=nil, output=nil, endedat=nil, durationms=nil, startedat=nil)
+        def initialize(toolcallid=nil, toolname=nil, status=nil, input=nil, output=nil, endedat=nil, durationms=nil, startedat=nil, expertid=nil, expertname=nil, expertversion=nil, subagentid=nil, subagentname=nil, parenttoolcallid=nil)
           @ToolCallId = toolcallid
           @ToolName = toolname
           @Status = status
@@ -2194,6 +2239,12 @@ module TencentCloud
           @EndedAt = endedat
           @DurationMs = durationms
           @StartedAt = startedat
+          @ExpertId = expertid
+          @ExpertName = expertname
+          @ExpertVersion = expertversion
+          @SubAgentId = subagentid
+          @SubAgentName = subagentname
+          @ParentToolCallId = parenttoolcallid
         end
 
         def deserialize(params)
@@ -2205,6 +2256,12 @@ module TencentCloud
           @EndedAt = params['EndedAt']
           @DurationMs = params['DurationMs']
           @StartedAt = params['StartedAt']
+          @ExpertId = params['ExpertId']
+          @ExpertName = params['ExpertName']
+          @ExpertVersion = params['ExpertVersion']
+          @SubAgentId = params['SubAgentId']
+          @SubAgentName = params['SubAgentName']
+          @ParentToolCallId = params['ParentToolCallId']
         end
       end
 

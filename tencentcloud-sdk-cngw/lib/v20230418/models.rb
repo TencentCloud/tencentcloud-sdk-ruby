@@ -6380,19 +6380,22 @@ module TencentCloud
         # @type StartTime: Integer
         # @param EndTime: <p>查询结束时间戳</p><p>单位：秒</p>
         # @type EndTime: Integer
-        # @param Filters: <p>查询过滤条件，Name取值为ConsumerId或ConsumerGroupId</p>
+        # @param Dimension: <p>聚合维度。枚举值：</p><ul><li>SecretKey：密钥</li><li>Model：模型</li><li>ModelAPI：模型 API</li><li>ModelService：模型服务</li><li>Consumer：消费者</li><li>ConsumerGroup：消费者组（组织节点）</li></ul><p>网关版本不低于 3.9.8 时，ConsumerGroup 表示消费者组（组织节点），按请求发生时的组织归属查询，包含节点自身及全部下属，仅支持 CLS。更早版本的 ConsumerGroup 保留原消费者组查询。OrganizationNode 已移除，传入返回 InvalidParameterValue。</p><p>可选，未传时按消费者与模型服务二维聚合。</p>
+        # @type Dimension: String
+        # @param Filters: <p>传入 Dimension 时支持：SecretKeyId、SecretKeyName、ModelName、ModelAPIId、ModelAPIName、ModelServiceId、ModelServiceName、ConsumerId、ConsumerName、ConsumerGroupId、ConsumerGroupName。</p><p>网关版本不低于 3.9.8 时，所有支持的 Dimension（包括可选 Dimension 未传）均支持 ConsumerGroupId、ConsumerGroupName，按请求发生时的消费者组及全部下属归属筛选历史日志，仅支持 CLS；不按当前组成员重算历史。ConsumerGroupId 必须为 UUID，允许显式查询已删除节点历史；ConsumerGroupName 从 Kong CP 当前目录按名称子串解析，包含同步、自定义、禁用及保留中的软删节点。同名节点保留各自身份。OrganizationNodeId / OrganizationNodeName 已移除，旧名称返回 InvalidParameterValue。</p><p>最多 10 项，Name 不重复；新版组筛选的每项 Values 为 1～50 个非空字符串，同项多个值为 OR。名称无匹配返回空结果。</p><p>未传 Dimension 时支持 ConsumerId、ConsumerName、ConsumerGroupId、ConsumerGroupName、ModelServiceId、ModelServiceName；新版组筛选同样走历史归属。更早版本保留原筛选及当前成员算法。</p><p>Dimension=ConsumerGroup 时，组 ID 与名称对候选节点求交，名称展开数量不限 50 个；请求 Values 仍最多 50 个。其他维度按历史日志条件 AND，同一请求只计一次，名称展开每项最多 50 个节点，超过返回 InvalidParameterValue。</p><p>未传 Dimension 时也按日志条件 AND，名称展开每项最多 50 个节点。</p>
         # @type Filters: Array
         # @param Limit: <p>分页条件，每页条数</p>
         # @type Limit: Integer
         # @param Offset: <p>分页条件，分页偏移量</p>
         # @type Offset: Integer
 
-        attr_accessor :GatewayId, :StartTime, :EndTime, :Filters, :Limit, :Offset
+        attr_accessor :GatewayId, :StartTime, :EndTime, :Dimension, :Filters, :Limit, :Offset
 
-        def initialize(gatewayid=nil, starttime=nil, endtime=nil, filters=nil, limit=nil, offset=nil)
+        def initialize(gatewayid=nil, starttime=nil, endtime=nil, dimension=nil, filters=nil, limit=nil, offset=nil)
           @GatewayId = gatewayid
           @StartTime = starttime
           @EndTime = endtime
+          @Dimension = dimension
           @Filters = filters
           @Limit = limit
           @Offset = offset
@@ -6402,6 +6405,7 @@ module TencentCloud
           @GatewayId = params['GatewayId']
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
+          @Dimension = params['Dimension']
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
@@ -6446,15 +6450,18 @@ module TencentCloud
         # @type StartTime: Integer
         # @param EndTime: <p>查询结束时间戳</p><p>单位：秒</p>
         # @type EndTime: Integer
-        # @param Filters: <p>查询过滤条件</p>
+        # @param Dimension: <p>聚合维度。枚举值：</p><ul><li>SecretKey：密钥</li><li>Model：模型</li><li>ModelAPI：模型 API</li><li>ModelService：模型服务</li><li>Consumer：消费者</li><li>ConsumerGroup：消费者组（组织节点）</li></ul><p>网关版本不低于 3.9.8 时，ConsumerGroup 表示消费者组（组织节点），按请求发生时的组织归属查询，包含节点自身及全部下属，仅支持 CLS。更早版本的 ConsumerGroup 保留原消费者组查询。OrganizationNode 已移除，传入返回 InvalidParameterValue。</p><p>可选，未传时保留原汇总及 TopConsumers；传入时 TopConsumers 为 []。</p>
+        # @type Dimension: String
+        # @param Filters: <p>传入 Dimension 时支持：SecretKeyId、SecretKeyName、ModelName、ModelAPIId、ModelAPIName、ModelServiceId、ModelServiceName、ConsumerId、ConsumerName、ConsumerGroupId、ConsumerGroupName。</p><p>网关版本不低于 3.9.8 时，所有支持的 Dimension（包括可选 Dimension 未传）均支持 ConsumerGroupId、ConsumerGroupName，按请求发生时的消费者组及全部下属归属筛选历史日志，仅支持 CLS；不按当前组成员重算历史。ConsumerGroupId 必须为 UUID，允许显式查询已删除节点历史；ConsumerGroupName 从 Kong CP 当前目录按名称子串解析，包含同步、自定义、禁用及保留中的软删节点。同名节点保留各自身份。OrganizationNodeId / OrganizationNodeName 已移除，旧名称返回 InvalidParameterValue。</p><p>最多 10 项，Name 不重复；新版组筛选的每项 Values 为 1～50 个非空字符串，同项多个值为 OR。名称无匹配返回空结果。</p><p>未传 Dimension 时支持 ConsumerId、ConsumerGroupId、ConsumerGroupName；更早版本该模式仍仅支持 ConsumerId、ConsumerGroupId。更早版本组筛选保留当前成员算法。</p><p>组 ID 与组名称分别生成历史日志条件并做 AND；日志同时属于不同组时仍可匹配，不能预先对节点 ID 求交。同一请求只计一次。每个名称筛选最多展开 50 个节点，超过返回 InvalidParameterValue。</p>
         # @type Filters: Array
 
-        attr_accessor :GatewayId, :StartTime, :EndTime, :Filters
+        attr_accessor :GatewayId, :StartTime, :EndTime, :Dimension, :Filters
 
-        def initialize(gatewayid=nil, starttime=nil, endtime=nil, filters=nil)
+        def initialize(gatewayid=nil, starttime=nil, endtime=nil, dimension=nil, filters=nil)
           @GatewayId = gatewayid
           @StartTime = starttime
           @EndTime = endtime
+          @Dimension = dimension
           @Filters = filters
         end
 
@@ -6462,6 +6469,7 @@ module TencentCloud
           @GatewayId = params['GatewayId']
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
+          @Dimension = params['Dimension']
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
@@ -8106,10 +8114,12 @@ module TencentCloud
         # @type LoadBalanceConfig: :class:`Tencentcloud::Cngw.v20230418.models.AIGWLoadBalanceConfig`
         # @param SmartBalance: <p>智能负载均衡配置</p>
         # @type SmartBalance: :class:`Tencentcloud::Cngw.v20230418.models.AIGWSmartBalanceConfig`
+        # @param LengthLimitConfig: <p>内容长度限制配置</p>
+        # @type LengthLimitConfig: :class:`Tencentcloud::Cngw.v20230418.models.AIGWLengthLimitConfig`
 
-        attr_accessor :GatewayId, :ModelServiceId, :Name, :DefaultModel, :ModelSelector, :EnableModelFallback, :ModelFallbackRule, :EnableModelParamCheck, :ModelParamCheckRule, :Description, :UpstreamURL, :ConnectTimeout, :WriteTimeout, :ReadTimeout, :Retries, :UpstreamUrlMode, :SNI, :QuotaLimit, :Tags, :ModelRewriteRules, :ExternalInstanceId, :ExtParams, :KeyRotationEnabled, :KeyRotationPeriodDays, :SourceId, :Namespace, :ServiceName, :Protocol, :CustomProviderName, :LoadBalanceConfig, :SmartBalance
+        attr_accessor :GatewayId, :ModelServiceId, :Name, :DefaultModel, :ModelSelector, :EnableModelFallback, :ModelFallbackRule, :EnableModelParamCheck, :ModelParamCheckRule, :Description, :UpstreamURL, :ConnectTimeout, :WriteTimeout, :ReadTimeout, :Retries, :UpstreamUrlMode, :SNI, :QuotaLimit, :Tags, :ModelRewriteRules, :ExternalInstanceId, :ExtParams, :KeyRotationEnabled, :KeyRotationPeriodDays, :SourceId, :Namespace, :ServiceName, :Protocol, :CustomProviderName, :LoadBalanceConfig, :SmartBalance, :LengthLimitConfig
 
-        def initialize(gatewayid=nil, modelserviceid=nil, name=nil, defaultmodel=nil, modelselector=nil, enablemodelfallback=nil, modelfallbackrule=nil, enablemodelparamcheck=nil, modelparamcheckrule=nil, description=nil, upstreamurl=nil, connecttimeout=nil, writetimeout=nil, readtimeout=nil, retries=nil, upstreamurlmode=nil, sni=nil, quotalimit=nil, tags=nil, modelrewriterules=nil, externalinstanceid=nil, extparams=nil, keyrotationenabled=nil, keyrotationperioddays=nil, sourceid=nil, namespace=nil, servicename=nil, protocol=nil, customprovidername=nil, loadbalanceconfig=nil, smartbalance=nil)
+        def initialize(gatewayid=nil, modelserviceid=nil, name=nil, defaultmodel=nil, modelselector=nil, enablemodelfallback=nil, modelfallbackrule=nil, enablemodelparamcheck=nil, modelparamcheckrule=nil, description=nil, upstreamurl=nil, connecttimeout=nil, writetimeout=nil, readtimeout=nil, retries=nil, upstreamurlmode=nil, sni=nil, quotalimit=nil, tags=nil, modelrewriterules=nil, externalinstanceid=nil, extparams=nil, keyrotationenabled=nil, keyrotationperioddays=nil, sourceid=nil, namespace=nil, servicename=nil, protocol=nil, customprovidername=nil, loadbalanceconfig=nil, smartbalance=nil, lengthlimitconfig=nil)
           @GatewayId = gatewayid
           @ModelServiceId = modelserviceid
           @Name = name
@@ -8141,6 +8151,7 @@ module TencentCloud
           @CustomProviderName = customprovidername
           @LoadBalanceConfig = loadbalanceconfig
           @SmartBalance = smartbalance
+          @LengthLimitConfig = lengthlimitconfig
         end
 
         def deserialize(params)
@@ -8203,6 +8214,10 @@ module TencentCloud
           unless params['SmartBalance'].nil?
             @SmartBalance = AIGWSmartBalanceConfig.new
             @SmartBalance.deserialize(params['SmartBalance'])
+          end
+          unless params['LengthLimitConfig'].nil?
+            @LengthLimitConfig = AIGWLengthLimitConfig.new
+            @LengthLimitConfig.deserialize(params['LengthLimitConfig'])
           end
         end
       end

@@ -7174,6 +7174,94 @@ module TencentCloud
         end
       end
 
+      # DescribeTopSpaceSchemasV2请求参数结构体
+      class DescribeTopSpaceSchemasV2Request < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例ID。</p>
+        # @type InstanceId: String
+        # @param Product: <p>服务产品类型，支持值包括：mysql（云数据库 MySQL）、cynosdb（TDSQL-C MySQL 版）、mongodb（云数据库 MongoDB）、postgres（云数据库 PostgreSQL）、dcdb（TDSQL MySQL 版）、tdsql（TDSQL）、mariadb（云数据库 MariaDB）。</p>
+        # @type Product: String
+        # @param Date: <p>查询日期，格式：yyyy-MM-dd。默认当天。</p>
+        # @type Date: String
+        # @param SortBy: <p>排序字段。MySQL/PG/TDSQL 系列支持：DataLength/IndexLength/TotalLength/DataFree/FragRatio/TableRows，默认 DataLength。MongoDB 支持：StorageSize/Size/AvgObjSize/Count/TotalIndexSize/DataFree，默认 StorageSize。</p>
+        # @type SortBy: String
+        # @param Limit: <p>返回数量，默认20，最大100。</p>
+        # @type Limit: Integer
+
+        attr_accessor :InstanceId, :Product, :Date, :SortBy, :Limit
+
+        def initialize(instanceid=nil, product=nil, date=nil, sortby=nil, limit=nil)
+          @InstanceId = instanceid
+          @Product = product
+          @Date = date
+          @SortBy = sortby
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Product = params['Product']
+          @Date = params['Date']
+          @SortBy = params['SortBy']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeTopSpaceSchemasV2返回参数结构体
+      class DescribeTopSpaceSchemasV2Response < TencentCloud::Common::AbstractModel
+        # @param MysqlObjects: <p>MySQL/PG/TDSQL 系列产品库级空间对象列表。当产品为 mysql/cynosdb/tdsql/dcdb/mariadb/postgres 时返回。库级返回项中不包含 TableName/Engine 字段。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MysqlObjects: Array
+        # @param PostgresObjects: <p>PostgreSQL 产品库级空间对象列表。当产品为 postgres 时返回。字段语义与 MySQL 不同：使用 RelationSize / TableSize / IndexSize / TotalRelationSize / TableBloat 等 PG 特有指标。库级返回项中不包含 TableSchema/TableName 字段。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PostgresObjects: Array
+        # @param MongodbObjects: <p>MongoDB 产品库级空间对象列表。当产品为 mongodb 时返回。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MongodbObjects: Array
+        # @param Timestamp: <p>数据采集时间戳（秒）。</p>
+        # @type Timestamp: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MysqlObjects, :PostgresObjects, :MongodbObjects, :Timestamp, :RequestId
+
+        def initialize(mysqlobjects=nil, postgresobjects=nil, mongodbobjects=nil, timestamp=nil, requestid=nil)
+          @MysqlObjects = mysqlobjects
+          @PostgresObjects = postgresobjects
+          @MongodbObjects = mongodbobjects
+          @Timestamp = timestamp
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['MysqlObjects'].nil?
+            @MysqlObjects = []
+            params['MysqlObjects'].each do |i|
+              mysqlspaceobjectitem_tmp = MysqlSpaceObjectItem.new
+              mysqlspaceobjectitem_tmp.deserialize(i)
+              @MysqlObjects << mysqlspaceobjectitem_tmp
+            end
+          end
+          unless params['PostgresObjects'].nil?
+            @PostgresObjects = []
+            params['PostgresObjects'].each do |i|
+              postgresspaceobjectitem_tmp = PostgresSpaceObjectItem.new
+              postgresspaceobjectitem_tmp.deserialize(i)
+              @PostgresObjects << postgresspaceobjectitem_tmp
+            end
+          end
+          unless params['MongodbObjects'].nil?
+            @MongodbObjects = []
+            params['MongodbObjects'].each do |i|
+              mongodbschemaspaceitem_tmp = MongoDBSchemaSpaceItem.new
+              mongodbschemaspaceitem_tmp.deserialize(i)
+              @MongodbObjects << mongodbschemaspaceitem_tmp
+            end
+          end
+          @Timestamp = params['Timestamp']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTopSpaceTableTimeSeries请求参数结构体
       class DescribeTopSpaceTableTimeSeriesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID 。
@@ -8941,6 +9029,78 @@ module TencentCloud
               @Data << mongodbprocessitem_tmp
             end
           end
+        end
+      end
+
+      # MongoDB 产品库级空间对象项，描述单个数据库的空间使用统计信息。
+      class MongoDBSchemaSpaceItem < TencentCloud::Common::AbstractModel
+        # @param Db: <p>数据库名。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Db: String
+        # @param Timestamp: <p>数据采集时间戳（毫秒）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Timestamp: Integer
+        # @param SizeOnDisk: <p>磁盘占用大小（字节）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SizeOnDisk: Integer
+        # @param Size: <p>库级数据大小（字节）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Size: Integer
+        # @param AvgObjSize: <p>库级平均文档大小（字节）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AvgObjSize: Integer
+        # @param Count: <p>库级文档数量。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Count: Integer
+        # @param StorageSize: <p>库级存储大小（字节）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StorageSize: Integer
+        # @param TotalIndexSize: <p>库级索引总大小（字节）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalIndexSize: Integer
+        # @param DataFree: <p>库级已分配未使用空间（字节）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataFree: Integer
+        # @param FragRatio: <p>库级碎片率（百分比字符串）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FragRatio: String
+        # @param FileReuseBytes: <p>库级可复用文件空间（字节）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileReuseBytes: Integer
+        # @param DatabaseRatio: <p>库空间占比（百分比字符串）。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatabaseRatio: String
+
+        attr_accessor :Db, :Timestamp, :SizeOnDisk, :Size, :AvgObjSize, :Count, :StorageSize, :TotalIndexSize, :DataFree, :FragRatio, :FileReuseBytes, :DatabaseRatio
+
+        def initialize(db=nil, timestamp=nil, sizeondisk=nil, size=nil, avgobjsize=nil, count=nil, storagesize=nil, totalindexsize=nil, datafree=nil, fragratio=nil, filereusebytes=nil, databaseratio=nil)
+          @Db = db
+          @Timestamp = timestamp
+          @SizeOnDisk = sizeondisk
+          @Size = size
+          @AvgObjSize = avgobjsize
+          @Count = count
+          @StorageSize = storagesize
+          @TotalIndexSize = totalindexsize
+          @DataFree = datafree
+          @FragRatio = fragratio
+          @FileReuseBytes = filereusebytes
+          @DatabaseRatio = databaseratio
+        end
+
+        def deserialize(params)
+          @Db = params['Db']
+          @Timestamp = params['Timestamp']
+          @SizeOnDisk = params['SizeOnDisk']
+          @Size = params['Size']
+          @AvgObjSize = params['AvgObjSize']
+          @Count = params['Count']
+          @StorageSize = params['StorageSize']
+          @TotalIndexSize = params['TotalIndexSize']
+          @DataFree = params['DataFree']
+          @FragRatio = params['FragRatio']
+          @FileReuseBytes = params['FileReuseBytes']
+          @DatabaseRatio = params['DatabaseRatio']
         end
       end
 

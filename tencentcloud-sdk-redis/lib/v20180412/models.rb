@@ -3536,100 +3536,59 @@ module TencentCloud
 
       # DescribeInstances请求参数结构体
       class DescribeInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 每页输出实例的数量，参数默认值20，最大值为1000。
+        # @param Limit: <p>每页输出实例的数量，参数默认值20，最大值为1000。</p>
         # @type Limit: Integer
-        # @param Offset: 分页偏移量，取Limit整数倍。计算公式：offset=limit*(页码-1)。
+        # @param Offset: <p>分页偏移量，取Limit整数倍。计算公式：offset=limit*(页码-1)。</p>
         # @type Offset: Integer
-        # @param InstanceId: 指定实例 ID。例如：crs-xjhsdj****。请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
-
+        # @param InstanceId: <p>指定实例 ID。例如：crs-xjhsdj****。请登录<a href="https://console.cloud.tencent.com/redis">Redis控制台</a>在实例列表复制实例 ID。</p>
         # @type InstanceId: String
-        # @param OrderBy: 实例列表排序依据，枚举值如下所示：
-        # - projectId：依据项目ID排序。
-        # - createtime：依据实例创建时间排序。
-        # - instancename：依据实例名称排序。
-        # - type：依据实例类型排序。
-        # - curDeadline：依据实例到期时间排序。
+        # @param OrderBy: <p>实例列表排序依据，枚举值如下所示：</p><ul><li>projectId：依据项目ID排序。</li><li>createtime：依据实例创建时间排序。</li><li>instancename：依据实例名称排序。</li><li>type：依据实例类型排序。</li><li>curDeadline：依据实例到期时间排序。</li></ul>
         # @type OrderBy: String
-        # @param OrderType: 实例排序方式，默认为倒序排序。
-        # - 1：倒序。
-        # - 0：顺序。
+        # @param OrderType: <p>实例排序方式，默认为倒序排序。</p><ul><li>1：倒序。</li><li>0：顺序。</li></ul>
         # @type OrderType: Integer
-        # @param VpcIds: 私有网络 ID 数组。如果不配置该参数或设置数组为空则默认选择基础网络。例如47525。该参数暂时保留，可忽略。请根据 UniqVpcIds 参数格式设置私有网络ID数组。
+        # @param VpcIds: <p>私有网络 ID 数组。如果不配置该参数或设置数组为空则默认选择基础网络。例如47525。该参数暂时保留，可忽略。请根据 UniqVpcIds 参数格式设置私有网络ID数组。</p>
         # @type VpcIds: Array
-        # @param SubnetIds: 私有网络所属子网 ID 数组，例如：56854。该参数暂时保留，可忽略。请根据 UniqSubnetIds 参数格式设置私有网络子网 ID 数组。
+        # @param SubnetIds: <p>私有网络所属子网 ID 数组，例如：56854。该参数暂时保留，可忽略。请根据 UniqSubnetIds 参数格式设置私有网络子网 ID 数组。</p>
         # @type SubnetIds: Array
-        # @param SearchKey: 设置模糊查询关键字段，仅实例名称支持模糊查询。
+        # @param SearchKey: <p>设置模糊查询关键字段，仅实例名称支持模糊查询。</p>
         # @type SearchKey: String
-        # @param ProjectIds: 项目 ID 组成的数组。
+        # @param ProjectIds: <p>项目 ID 组成的数组。</p>
         # @type ProjectIds: Array
-        # @param InstanceName: 实例名称。
+        # @param InstanceName: <p>实例名称。</p>
         # @type InstanceName: String
-        # @param UniqVpcIds: 私有网络 ID 数组。如果不配置该参数或者设置数组为空则默认选择基础网络，如：vpc-sad23jfdfk。
+        # @param UniqVpcIds: <p>私有网络 ID 数组。如果不配置该参数或者设置数组为空则默认选择基础网络，如：vpc-sad23jfdfk。</p>
         # @type UniqVpcIds: Array
-        # @param UniqSubnetIds: 私有网络所属子网 ID 数组，如：subnet-fdj24n34j2。
+        # @param UniqSubnetIds: <p>私有网络所属子网 ID 数组，如：subnet-fdj24n34j2。</p>
         # @type UniqSubnetIds: Array
-        # @param RegionIds: 地域 ID 数组，该参数已经弃用，可通过公共参数Region查询对应地域。
+        # @param RegionIds: <p>地域 ID 数组，该参数已经弃用，可通过公共参数Region查询对应地域。</p>
         # @type RegionIds: Array
-        # @param Status: 实例状态。
-        # - 0：待初始化。
-        # - 1：流程中。
-        # - 2：运行中。
-        # - -2：已隔离。
-        # - -3：待删除。
+        # @param Status: <p>实例状态。</p><ul><li>0：待初始化。</li><li>1：流程中。</li><li>2：运行中。</li><li>-2：已隔离。</li><li>-3：待删除。</li></ul>
         # @type Status: Array
-        # @param TypeVersion: 实例架构版本。
-        # - 1：单机版。
-        # - 2：主从版。
-        # - 3：集群版。
+        # @param TypeVersion: <p>实例架构版本。</p><ul><li>1：单机版。</li><li>2：主从版。</li><li>3：集群版。</li></ul>
         # @type TypeVersion: Integer
-        # @param EngineName: 存储引擎信息。可设置为Redis-2.8、Redis-4.0、Redis-5.0、Redis-6.0 或者 CKV。
+        # @param EngineName: <p>存储引擎信息。可设置为Redis-2.8、Redis-4.0、Redis-5.0、Redis-6.0 或者 CKV。</p>
         # @type EngineName: String
-        # @param AutoRenew: 续费模式。
-        # - 0：手动续费。
-        # - 1：自动续费。
-        # - 2：到期不再续费。
+        # @param AutoRenew: <p>续费模式。</p><ul><li>0：手动续费。</li><li>1：自动续费。</li><li>2：到期不再续费。</li></ul>
         # @type AutoRenew: Array
-        # @param BillingMode: 计费模式。
-        # - postpaid：按量计费。
-        # - prepaid：包年包月。
+        # @param BillingMode: <p>计费模式。</p><ul><li>postpaid：按量计费。</li><li>prepaid：包年包月。</li></ul>
         # @type BillingMode: String
-        # @param Type: 实例类型。
-        # - 2：Redis 2.8 内存版（标准架构）。
-        # - 3：CKV 3.2 内存版（标准架构）。
-        # - 4：CKV 3.2 内存版（集群架构）。
-        # - 5：Redis 2.8 内存版（单机）。
-        # - 6：Redis 4.0 内存版（标准架构）。
-        # - 7：Redis 4.0 内存版（集群架构）。
-        # - 8：Redis 5.0 内存版（标准架构）。
-        # - 9：Redis 5.0 内存版（集群架构）。
-        # - 15：Redis 6.2 内存版（标准架构）。
-        # - 16：Redis 6.2 内存版（集群架构）。
-        # - 17：Redis 7.0 内存版（标准架构）。
-        # - 18：Redis 7.0 内存版（集群架构）。
-        # - 200:Memcached 1.6 内存版（集群架构）。
+        # @param Type: <p>实例类型。</p><ul><li>2：Redis 2.8 内存版（标准架构）。</li><li>3：CKV 3.2 内存版（标准架构）。</li><li>4：CKV 3.2 内存版（集群架构）。</li><li>5：Redis 2.8 内存版（单机）。</li><li>6：Redis 4.0 内存版（标准架构）。</li><li>7：Redis 4.0 内存版（集群架构）。</li><li>8：Redis 5.0 内存版（标准架构）。</li><li>9：Redis 5.0 内存版（集群架构）。</li><li>15：Redis 6.2 内存版（标准架构）。</li><li>16：Redis 6.2 内存版（集群架构）。</li><li>17：Redis 7.0 内存版（标准架构）。</li><li>18：Redis 7.0 内存版（集群架构）。</li><li>200:Memcached 1.6 内存版（集群架构）。</li></ul>
         # @type Type: Integer
-        # @param SearchKeys: 该参数为数组类型，支持配置实例名称、实例 ID、IP地址，其中实例名称为模糊匹配，实例 ID 和 IP 地址精确匹配。
-
-        # - 数组中每一个元素取并集进行匹配查询。
-        # - **InstanceId** 与 **SearchKeys** 同时配置，则取二者交集进行匹配查询。
+        # @param SearchKeys: <p>该参数为数组类型，支持配置实例名称、实例 ID、IP地址，其中实例名称为模糊匹配，实例 ID 和 IP 地址精确匹配。</p><ul><li>数组中每一个元素取并集进行匹配查询。</li><li><strong>InstanceId</strong> 与 <strong>SearchKeys</strong> 同时配置，则取二者交集进行匹配查询。</li></ul>
         # @type SearchKeys: Array
-        # @param TypeList: 内部参数，用户可忽略。
+        # @param TypeList: <p>内部参数，用户可忽略。</p>
         # @type TypeList: Array
-        # @param MonitorVersion: 内部参数，用户可忽略。
+        # @param MonitorVersion: <p>内部参数，用户可忽略。</p>
         # @type MonitorVersion: String
-        # @param InstanceTags: 根据标签的 Key 和 Value 筛选资源。该参数不配置或者数组设置为空值，则不根据标签进行过滤。
+        # @param InstanceTags: <p>根据标签的 Key 和 Value 筛选资源。该参数不配置或者数组设置为空值，则不根据标签进行过滤。</p>
         # @type InstanceTags: Array
-        # @param TagKeys: 根据标签的 Key 筛选资源，该参数不配置或者数组设置为空值，则不根据标签Key进行过滤。
+        # @param TagKeys: <p>根据标签的 Key 筛选资源，该参数不配置或者数组设置为空值，则不根据标签Key进行过滤。</p>
         # @type TagKeys: Array
-        # @param ProductVersions: 实例的产品版本。如果该参数不配置或者数组设置为空值，则默认不依据此参数过滤实例。
-        # - local：本地盘版。
-        # - cdc：独享集群版。
+        # @param ProductVersions: <p>实例的部署类型。如果该参数不配置或者数组设置为空值，则默认不依据此参数过滤实例。</p><p>枚举值：</p><ul><li>local： 通用 I 型。</li><li>localv2： 通用 II 型。</li><li>cdc： 独享集群型。</li></ul>
         # @type ProductVersions: Array
-        # @param InstanceIds: 批量查询指定的实例 ID，返回结果已 Limit 限制为主。
+        # @param InstanceIds: <p>批量查询指定的实例 ID，返回结果已 Limit 限制为主。</p>
         # @type InstanceIds: Array
-        # @param AzMode: 可用区模式。
-        # - singleaz：单可用区。
-        # - multiaz：多可用区。
+        # @param AzMode: <p>可用区模式。</p><ul><li>singleaz：单可用区。</li><li>multiaz：多可用区。</li></ul>
         # @type AzMode: String
 
         attr_accessor :Limit, :Offset, :InstanceId, :OrderBy, :OrderType, :VpcIds, :SubnetIds, :SearchKey, :ProjectIds, :InstanceName, :UniqVpcIds, :UniqSubnetIds, :RegionIds, :Status, :TypeVersion, :EngineName, :AutoRenew, :BillingMode, :Type, :SearchKeys, :TypeList, :MonitorVersion, :InstanceTags, :TagKeys, :ProductVersions, :InstanceIds, :AzMode
@@ -3704,9 +3663,9 @@ module TencentCloud
 
       # DescribeInstances返回参数结构体
       class DescribeInstancesResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 实例总数量。
+        # @param TotalCount: <p>实例总数量。</p>
         # @type TotalCount: Integer
-        # @param InstanceSet: 实例详细信息列表。
+        # @param InstanceSet: <p>实例详细信息列表。</p>
         # @type InstanceSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6211,7 +6170,7 @@ module TencentCloud
         # @type Size: Float
         # @param SizeUsed: <p>该字段已废弃。请使用腾讯云可观测平台API 接口 <a href="https://cloud.tencent.com/document/product/248/31014">GetMonitorData</a> 获取实例已使用的内存容量。</p>
         # @type SizeUsed: Float
-        # @param Type: <p>实例类型。</p><p>枚举值：</p><ul><li>2： Redis 2.8 内存版（标准架构）。</li><li>3： CKV 3.2 内存版（标准架构）。</li><li>4： CKV 3.2 内存版（集群架构）。</li><li>5： Redis 2.8 内存版（单机）。</li><li>6： Redis 4.0 内存版（标准架构）。</li><li>7： Redis 4.0 内存版（集群架构）。</li><li>8： Redis 5.0 内存版（标准架构）。</li><li>9： Redis 5.0 内存版（集群架构）。</li><li>15： Redis 6.2 内存版（标准架构）。</li><li>16： Redis 6.2 内存版（集群架构）。</li><li>17： Redis 7.0 内存版（标准架构）。</li><li>18： Redis 7.0 内存版（集群架构）。</li><li>19： Valkey 8.0 内存版（标准架构）。</li><li>20： Valkey 8.0 内存版（集群架构）。</li><li>21： Valkey 8.0 内存版（标准架构）。</li><li>22： Valkey 8.0 内存版（集群架构）。</li><li>200： Memcached 1.6 内存版（集群架构）。</li></ul>
+        # @param Type: <p>实例类型。</p><p>枚举值：</p><ul><li>2： Redis 2.8 内存版（标准架构）。</li><li>3： CKV 3.2 内存版（标准架构）。</li><li>4： CKV 3.2 内存版（集群架构）。</li><li>5： Redis 2.8 内存版（单机）。</li><li>6： Redis 4.0 内存版（标准架构）。</li><li>7： Redis 4.0 内存版（集群架构）。</li><li>8： Redis 5.0 内存版（标准架构）。</li><li>9： Redis 5.0 内存版（集群架构）。</li><li>15： Redis 6.2 内存版（标准架构）。</li><li>16： Redis 6.2 内存版（集群架构）。</li><li>17： Redis 7.0 内存版（标准架构）。</li><li>18： Redis 7.0 内存版（集群架构）。</li><li>19： Valkey 8.0 内存版（标准架构）。</li><li>20： Valkey 8.0 内存版（集群架构）。</li><li>21： Valkey 9.0 内存版（标准架构）。</li><li>22： Valkey 9.0 内存版（集群架构）。</li><li>200： Memcached 1.6 内存版（集群架构）。</li></ul>
         # @type Type: Integer
         # @param AutoRenewFlag: <p>实例是否设置自动续费标识。<ul><li>1：设置自动续费。</li><li>0：未设置自动续费。</li></ul></p>
         # @type AutoRenewFlag: Integer
@@ -6291,7 +6250,7 @@ module TencentCloud
         # @type RedisClusterId: String
         # @param DedicatedClusterId: <p>CDC 集群ID。</p>
         # @type DedicatedClusterId: String
-        # @param ProductVersion: <p>产品版本。<ul><li>local：本地盘。</li><li>cloud：云盘版。</li><li>cdc：CDC 集群版本。</li></ul></p>
+        # @param ProductVersion: <p>实例的部署类型。</p><p>枚举值：</p><ul><li>local： 通用 I 型。</li><li>localv2： 通用 II 型。</li><li>cdc： 独享集群型。</li></ul>
         # @type ProductVersion: String
         # @param CurrentProxyVersion: <p>实例当前Proxy版本。</p>
         # @type CurrentProxyVersion: String

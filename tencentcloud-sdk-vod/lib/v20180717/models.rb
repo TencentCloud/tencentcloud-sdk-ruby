@@ -11310,19 +11310,27 @@ module TencentCloud
         # @type Name: String
         # @param Description: <p>知识库描述。长度限制：最多256个字符。</p>
         # @type Description: String
+        # @param IndexType: <p>知识库的索引类型</p><p>枚举值：</p><ul><li>Semantic： 语义索引</li><li>DNA： DNA 索引</li></ul><p>默认值：Semantic</p>
+        # @type IndexType: String
+        # @param MediaType: <p>允许入库的媒体类型</p><p>枚举值：</p><ul><li>Video： 视频</li><li>Image： 图片</li></ul><p>默认值：Video</p>
+        # @type MediaType: String
 
-        attr_accessor :SubAppId, :Name, :Description
+        attr_accessor :SubAppId, :Name, :Description, :IndexType, :MediaType
 
-        def initialize(subappid=nil, name=nil, description=nil)
+        def initialize(subappid=nil, name=nil, description=nil, indextype=nil, mediatype=nil)
           @SubAppId = subappid
           @Name = name
           @Description = description
+          @IndexType = indextype
+          @MediaType = mediatype
         end
 
         def deserialize(params)
           @SubAppId = params['SubAppId']
           @Name = params['Name']
           @Description = params['Description']
+          @IndexType = params['IndexType']
+          @MediaType = params['MediaType']
         end
       end
 
@@ -11362,10 +11370,12 @@ module TencentCloud
         # @type Asr: :class:`Tencentcloud::Vod.v20180717.models.LLMComprehendAsr`
         # @param FaceRecognition: <p>人脸识别配置</p>
         # @type FaceRecognition: :class:`Tencentcloud::Vod.v20180717.models.LLMComprehendFaceRecognition`
+        # @param DNA: <p>DNA解析配置</p>
+        # @type DNA: :class:`Tencentcloud::Vod.v20180717.models.LLMComprehendDNA`
 
-        attr_accessor :Level, :SubAppId, :Name, :Comment, :Summary, :Asr, :FaceRecognition
+        attr_accessor :Level, :SubAppId, :Name, :Comment, :Summary, :Asr, :FaceRecognition, :DNA
 
-        def initialize(level=nil, subappid=nil, name=nil, comment=nil, summary=nil, asr=nil, facerecognition=nil)
+        def initialize(level=nil, subappid=nil, name=nil, comment=nil, summary=nil, asr=nil, facerecognition=nil, dna=nil)
           @Level = level
           @SubAppId = subappid
           @Name = name
@@ -11373,6 +11383,7 @@ module TencentCloud
           @Summary = summary
           @Asr = asr
           @FaceRecognition = facerecognition
+          @DNA = dna
         end
 
         def deserialize(params)
@@ -11391,6 +11402,10 @@ module TencentCloud
           unless params['FaceRecognition'].nil?
             @FaceRecognition = LLMComprehendFaceRecognition.new
             @FaceRecognition.deserialize(params['FaceRecognition'])
+          end
+          unless params['DNA'].nil?
+            @DNA = LLMComprehendDNA.new
+            @DNA.deserialize(params['DNA'])
           end
         end
       end
@@ -12891,6 +12906,94 @@ module TencentCloud
         def deserialize(params)
           @VoiceId = params['VoiceId']
           @VoiceInfo = params['VoiceInfo']
+        end
+      end
+
+      # DNA查重估计任务信息。
+      class DNATask < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务 ID。</p>
+        # @type TaskId: String
+        # @param Status: <p>任务状态。</p><p>枚举值：</p><ul><li>WAITING： 等待中</li><li>PROCESSING： 处理中</li><li>FINISH： 已完成</li></ul>
+        # @type Status: String
+        # @param ErrCode: <p>错误码，0 表示成功，其他值表示失败：</p><p>40000：输入参数不合法，请检查输入参数；<br>60000：源文件错误（如视频数据损坏），请确认源文件是否正常；<br>70000：内部服务错误，建议重试。</p>
+        # @type ErrCode: Integer
+        # @param ErrCodeExt: <p>错误码，空字符串表示成功，其他值表示失败，取值请参考 <a href="https://cloud.tencent.com/document/product/266/50368#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81">视频处理类错误码</a> 列表。</p>
+        # @type ErrCodeExt: String
+        # @param Message: <p>错误信息。</p>
+        # @type Message: String
+        # @param FileId: <p>被检测的媒资 FileId。</p>
+        # @type FileId: String
+        # @param Output: <p>查重命中列表。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Output: Array
+
+        attr_accessor :TaskId, :Status, :ErrCode, :ErrCodeExt, :Message, :FileId, :Output
+
+        def initialize(taskid=nil, status=nil, errcode=nil, errcodeext=nil, message=nil, fileid=nil, output=nil)
+          @TaskId = taskid
+          @Status = status
+          @ErrCode = errcode
+          @ErrCodeExt = errcodeext
+          @Message = message
+          @FileId = fileid
+          @Output = output
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Status = params['Status']
+          @ErrCode = params['ErrCode']
+          @ErrCodeExt = params['ErrCodeExt']
+          @Message = params['Message']
+          @FileId = params['FileId']
+          unless params['Output'].nil?
+            @Output = []
+            params['Output'].each do |i|
+              dnataskoutput_tmp = DNATaskOutput.new
+              dnataskoutput_tmp.deserialize(i)
+              @Output << dnataskoutput_tmp
+            end
+          end
+        end
+      end
+
+      # DNA查重任务输出。
+      class DNATaskOutput < TencentCloud::Common::AbstractModel
+        # @param RefFileId: <p>命中的参考媒资 FileId。</p>
+        # @type RefFileId: String
+        # @param QueryStartSec: <p>查询媒资命中片段起始时间。</p><p>单位：秒</p>
+        # @type QueryStartSec: Float
+        # @param QueryEndSec: <p>查询媒资命中片段结束时间。</p><p>单位：秒</p>
+        # @type QueryEndSec: Float
+        # @param RefStartSec: <p>参考媒资对应片段起始时间。</p><p>单位：秒</p>
+        # @type RefStartSec: Float
+        # @param RefEndSec: <p>参考媒资对应片段结束时间。</p><p>单位：秒</p>
+        # @type RefEndSec: Float
+        # @param Confidence: <p>匹配置信度。</p><p>取值范围：[0, 1]</p>
+        # @type Confidence: Float
+        # @param SpeedRatio: <p>变速比（1.0 表示原速，非 1 表示加速或者减速）。</p>
+        # @type SpeedRatio: Float
+
+        attr_accessor :RefFileId, :QueryStartSec, :QueryEndSec, :RefStartSec, :RefEndSec, :Confidence, :SpeedRatio
+
+        def initialize(reffileid=nil, querystartsec=nil, queryendsec=nil, refstartsec=nil, refendsec=nil, confidence=nil, speedratio=nil)
+          @RefFileId = reffileid
+          @QueryStartSec = querystartsec
+          @QueryEndSec = queryendsec
+          @RefStartSec = refstartsec
+          @RefEndSec = refendsec
+          @Confidence = confidence
+          @SpeedRatio = speedratio
+        end
+
+        def deserialize(params)
+          @RefFileId = params['RefFileId']
+          @QueryStartSec = params['QueryStartSec']
+          @QueryEndSec = params['QueryEndSec']
+          @RefStartSec = params['RefStartSec']
+          @RefEndSec = params['RefEndSec']
+          @Confidence = params['Confidence']
+          @SpeedRatio = params['SpeedRatio']
         end
       end
 
@@ -18178,12 +18281,16 @@ module TencentCloud
         # @type VideoDubbingAsyncTask: :class:`Tencentcloud::Vod.v20180717.models.VideoDubbingAsyncTask`
         # @param VideoDepthEstimationTask: <p>视频深度估算任务，仅当 TaskType 为VideoDepthEstimation，该字段有值。</p>
         # @type VideoDepthEstimationTask: :class:`Tencentcloud::Vod.v20180717.models.VideoDepthEstimationTask`
+        # @param DNATask: <p>DNA查重任务，仅当TaskType为CreateDnaTask，该字段有值。</p>
+        # @type DNATask: :class:`Tencentcloud::Vod.v20180717.models.DNATask`
+        # @param SearchMediaBySemanticsAsync: <p>异步按语义搜索媒体任务，仅当TaskType为SearchMediaBySemanticsAsync，该字段有值。</p>
+        # @type SearchMediaBySemanticsAsync: :class:`Tencentcloud::Vod.v20180717.models.SearchMediaBySemanticsAsync`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskType, :Status, :CreateTime, :BeginProcessTime, :FinishTime, :ProcedureTask, :EditMediaTask, :WechatPublishTask, :ComposeMediaTask, :SplitMediaTask, :WechatMiniProgramPublishTask, :PullUploadTask, :TranscodeTask, :ConcatTask, :ClipTask, :CreateImageSpriteTask, :SnapshotByTimeOffsetTask, :RemoveWatermarkTask, :RebuildMediaTask, :ExtractTraceWatermarkTask, :ExtractCopyRightWatermarkTask, :ReviewAudioVideoTask, :ReduceMediaBitrateTask, :DescribeFileAttributesTask, :QualityInspectTask, :QualityEnhanceTask, :ComplexAdaptiveDynamicStreamingTask, :ProcessMediaByMPSTask, :AigcImageTask, :AigcVideoTask, :ImportMediaKnowledge, :SceneAigcImageTask, :SceneAigcVideoTask, :ProcessImageAsyncTask, :ExtractBlindWatermarkTask, :CreateAigcAdvancedCustomElementTask, :CreateAigcCustomVoiceTask, :CreateAigcSubjectTask, :AigcVideoRedrawTask, :AigcAudioTask, :CreateAigcAudioCloneTask, :DescribeAigcFaceInfoAsyncTask, :AigcHunyuan3DTask, :DesignVoiceAsyncTask, :CloneVoiceAsyncTask, :TextToSpeechAsyncTask, :VideoDubbingAsyncTask, :VideoDepthEstimationTask, :RequestId
+        attr_accessor :TaskType, :Status, :CreateTime, :BeginProcessTime, :FinishTime, :ProcedureTask, :EditMediaTask, :WechatPublishTask, :ComposeMediaTask, :SplitMediaTask, :WechatMiniProgramPublishTask, :PullUploadTask, :TranscodeTask, :ConcatTask, :ClipTask, :CreateImageSpriteTask, :SnapshotByTimeOffsetTask, :RemoveWatermarkTask, :RebuildMediaTask, :ExtractTraceWatermarkTask, :ExtractCopyRightWatermarkTask, :ReviewAudioVideoTask, :ReduceMediaBitrateTask, :DescribeFileAttributesTask, :QualityInspectTask, :QualityEnhanceTask, :ComplexAdaptiveDynamicStreamingTask, :ProcessMediaByMPSTask, :AigcImageTask, :AigcVideoTask, :ImportMediaKnowledge, :SceneAigcImageTask, :SceneAigcVideoTask, :ProcessImageAsyncTask, :ExtractBlindWatermarkTask, :CreateAigcAdvancedCustomElementTask, :CreateAigcCustomVoiceTask, :CreateAigcSubjectTask, :AigcVideoRedrawTask, :AigcAudioTask, :CreateAigcAudioCloneTask, :DescribeAigcFaceInfoAsyncTask, :AigcHunyuan3DTask, :DesignVoiceAsyncTask, :CloneVoiceAsyncTask, :TextToSpeechAsyncTask, :VideoDubbingAsyncTask, :VideoDepthEstimationTask, :DNATask, :SearchMediaBySemanticsAsync, :RequestId
 
-        def initialize(tasktype=nil, status=nil, createtime=nil, beginprocesstime=nil, finishtime=nil, proceduretask=nil, editmediatask=nil, wechatpublishtask=nil, composemediatask=nil, splitmediatask=nil, wechatminiprogrampublishtask=nil, pulluploadtask=nil, transcodetask=nil, concattask=nil, cliptask=nil, createimagespritetask=nil, snapshotbytimeoffsettask=nil, removewatermarktask=nil, rebuildmediatask=nil, extracttracewatermarktask=nil, extractcopyrightwatermarktask=nil, reviewaudiovideotask=nil, reducemediabitratetask=nil, describefileattributestask=nil, qualityinspecttask=nil, qualityenhancetask=nil, complexadaptivedynamicstreamingtask=nil, processmediabympstask=nil, aigcimagetask=nil, aigcvideotask=nil, importmediaknowledge=nil, sceneaigcimagetask=nil, sceneaigcvideotask=nil, processimageasynctask=nil, extractblindwatermarktask=nil, createaigcadvancedcustomelementtask=nil, createaigccustomvoicetask=nil, createaigcsubjecttask=nil, aigcvideoredrawtask=nil, aigcaudiotask=nil, createaigcaudioclonetask=nil, describeaigcfaceinfoasynctask=nil, aigchunyuan3dtask=nil, designvoiceasynctask=nil, clonevoiceasynctask=nil, texttospeechasynctask=nil, videodubbingasynctask=nil, videodepthestimationtask=nil, requestid=nil)
+        def initialize(tasktype=nil, status=nil, createtime=nil, beginprocesstime=nil, finishtime=nil, proceduretask=nil, editmediatask=nil, wechatpublishtask=nil, composemediatask=nil, splitmediatask=nil, wechatminiprogrampublishtask=nil, pulluploadtask=nil, transcodetask=nil, concattask=nil, cliptask=nil, createimagespritetask=nil, snapshotbytimeoffsettask=nil, removewatermarktask=nil, rebuildmediatask=nil, extracttracewatermarktask=nil, extractcopyrightwatermarktask=nil, reviewaudiovideotask=nil, reducemediabitratetask=nil, describefileattributestask=nil, qualityinspecttask=nil, qualityenhancetask=nil, complexadaptivedynamicstreamingtask=nil, processmediabympstask=nil, aigcimagetask=nil, aigcvideotask=nil, importmediaknowledge=nil, sceneaigcimagetask=nil, sceneaigcvideotask=nil, processimageasynctask=nil, extractblindwatermarktask=nil, createaigcadvancedcustomelementtask=nil, createaigccustomvoicetask=nil, createaigcsubjecttask=nil, aigcvideoredrawtask=nil, aigcaudiotask=nil, createaigcaudioclonetask=nil, describeaigcfaceinfoasynctask=nil, aigchunyuan3dtask=nil, designvoiceasynctask=nil, clonevoiceasynctask=nil, texttospeechasynctask=nil, videodubbingasynctask=nil, videodepthestimationtask=nil, dnatask=nil, searchmediabysemanticsasync=nil, requestid=nil)
           @TaskType = tasktype
           @Status = status
           @CreateTime = createtime
@@ -18232,6 +18339,8 @@ module TencentCloud
           @TextToSpeechAsyncTask = texttospeechasynctask
           @VideoDubbingAsyncTask = videodubbingasynctask
           @VideoDepthEstimationTask = videodepthestimationtask
+          @DNATask = dnatask
+          @SearchMediaBySemanticsAsync = searchmediabysemanticsasync
           @RequestId = requestid
         end
 
@@ -18412,6 +18521,14 @@ module TencentCloud
           unless params['VideoDepthEstimationTask'].nil?
             @VideoDepthEstimationTask = VideoDepthEstimationTask.new
             @VideoDepthEstimationTask.deserialize(params['VideoDepthEstimationTask'])
+          end
+          unless params['DNATask'].nil?
+            @DNATask = DNATask.new
+            @DNATask.deserialize(params['DNATask'])
+          end
+          unless params['SearchMediaBySemanticsAsync'].nil?
+            @SearchMediaBySemanticsAsync = SearchMediaBySemanticsAsync.new
+            @SearchMediaBySemanticsAsync.deserialize(params['SearchMediaBySemanticsAsync'])
           end
           @RequestId = params['RequestId']
         end
@@ -22732,17 +22849,23 @@ module TencentCloud
         # @type Name: String
         # @param Description: <p>知识库描述。</p>
         # @type Description: String
+        # @param IndexType: <p>知识库的索引类型</p><p>枚举值：</p><ul><li>Semantic： 语义索引</li><li>DNA： DNA 索引</li></ul>
+        # @type IndexType: String
+        # @param MediaType: <p>允许入库的媒体类型</p><p>枚举值：</p><ul><li>Video： 视频</li><li>Image： 图片</li></ul>
+        # @type MediaType: String
         # @param Status: <p>知识库状态。</p><p>枚举值：</p><ul><li>creating： 创建中</li><li>active： 正常</li><li>deleting： 删除中</li></ul>
         # @type Status: String
         # @param CreateTime: <p>知识库创建时间。</p>
         # @type CreateTime: String
 
-        attr_accessor :KnowledgeBaseId, :Name, :Description, :Status, :CreateTime
+        attr_accessor :KnowledgeBaseId, :Name, :Description, :IndexType, :MediaType, :Status, :CreateTime
 
-        def initialize(knowledgebaseid=nil, name=nil, description=nil, status=nil, createtime=nil)
+        def initialize(knowledgebaseid=nil, name=nil, description=nil, indextype=nil, mediatype=nil, status=nil, createtime=nil)
           @KnowledgeBaseId = knowledgebaseid
           @Name = name
           @Description = description
+          @IndexType = indextype
+          @MediaType = mediatype
           @Status = status
           @CreateTime = createtime
         end
@@ -22751,6 +22874,8 @@ module TencentCloud
           @KnowledgeBaseId = params['KnowledgeBaseId']
           @Name = params['Name']
           @Description = params['Description']
+          @IndexType = params['IndexType']
+          @MediaType = params['MediaType']
           @Status = params['Status']
           @CreateTime = params['CreateTime']
         end
@@ -22817,6 +22942,22 @@ module TencentCloud
         # @param Switch: 文本转录任务开关，可选值：
         # - ON：开启文本转录任务；
         # - OFF：关闭文本转录任务。
+        # @type Switch: String
+
+        attr_accessor :Switch
+
+        def initialize(switch=nil)
+          @Switch = switch
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+        end
+      end
+
+      # 大模型解析DNA解析配置
+      class LLMComprehendDNA < TencentCloud::Common::AbstractModel
+        # @param Switch: <p>DNA解析任务开关</p><p>枚举值：</p><ul><li>ON： 开启DNA解析任务</li><li>OFF： 关闭DNA解析任务</li></ul><p>默认值：OFF</p>
         # @type Switch: String
 
         attr_accessor :Switch
@@ -22956,14 +23097,16 @@ module TencentCloud
         # @type Asr: :class:`Tencentcloud::Vod.v20180717.models.LLMComprehendAsr`
         # @param FaceRecognition: <p>人脸识别解析配置</p>
         # @type FaceRecognition: :class:`Tencentcloud::Vod.v20180717.models.LLMComprehendFaceRecognition`
+        # @param DNA: <p>DNA解析配置</p>
+        # @type DNA: :class:`Tencentcloud::Vod.v20180717.models.LLMComprehendDNA`
         # @param CreateTime: <p>模板创建时间，使用 <a href="https://cloud.tencent.com/document/product/266/11732#I">ISO 日期格式</a>。</p>
         # @type CreateTime: String
         # @param UpdateTime: <p>模板最后修改时间，使用 <a href="https://cloud.tencent.com/document/product/266/11732#I">ISO 日期格式</a>。</p>
         # @type UpdateTime: String
 
-        attr_accessor :Definition, :Name, :Comment, :Type, :Level, :Summary, :Asr, :FaceRecognition, :CreateTime, :UpdateTime
+        attr_accessor :Definition, :Name, :Comment, :Type, :Level, :Summary, :Asr, :FaceRecognition, :DNA, :CreateTime, :UpdateTime
 
-        def initialize(definition=nil, name=nil, comment=nil, type=nil, level=nil, summary=nil, asr=nil, facerecognition=nil, createtime=nil, updatetime=nil)
+        def initialize(definition=nil, name=nil, comment=nil, type=nil, level=nil, summary=nil, asr=nil, facerecognition=nil, dna=nil, createtime=nil, updatetime=nil)
           @Definition = definition
           @Name = name
           @Comment = comment
@@ -22972,6 +23115,7 @@ module TencentCloud
           @Summary = summary
           @Asr = asr
           @FaceRecognition = facerecognition
+          @DNA = dna
           @CreateTime = createtime
           @UpdateTime = updatetime
         end
@@ -22993,6 +23137,10 @@ module TencentCloud
           unless params['FaceRecognition'].nil?
             @FaceRecognition = LLMComprehendFaceRecognition.new
             @FaceRecognition.deserialize(params['FaceRecognition'])
+          end
+          unless params['DNA'].nil?
+            @DNA = LLMComprehendDNA.new
+            @DNA.deserialize(params['DNA'])
           end
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
@@ -28297,10 +28445,12 @@ module TencentCloud
         # @type Asr: :class:`Tencentcloud::Vod.v20180717.models.LLMComprehendAsrForUpdate`
         # @param FaceRecognition: <p>人脸识别配置</p>
         # @type FaceRecognition: :class:`Tencentcloud::Vod.v20180717.models.LLMComprehendFaceRecognitionForUpdate`
+        # @param DNA: <p>DNA解析配置</p>
+        # @type DNA: :class:`Tencentcloud::Vod.v20180717.models.LLMComprehendDNA`
 
-        attr_accessor :Definition, :SubAppId, :Name, :Comment, :Model, :Summary, :Asr, :FaceRecognition
+        attr_accessor :Definition, :SubAppId, :Name, :Comment, :Model, :Summary, :Asr, :FaceRecognition, :DNA
 
-        def initialize(definition=nil, subappid=nil, name=nil, comment=nil, model=nil, summary=nil, asr=nil, facerecognition=nil)
+        def initialize(definition=nil, subappid=nil, name=nil, comment=nil, model=nil, summary=nil, asr=nil, facerecognition=nil, dna=nil)
           @Definition = definition
           @SubAppId = subappid
           @Name = name
@@ -28309,6 +28459,7 @@ module TencentCloud
           @Summary = summary
           @Asr = asr
           @FaceRecognition = facerecognition
+          @DNA = dna
         end
 
         def deserialize(params)
@@ -28328,6 +28479,10 @@ module TencentCloud
           unless params['FaceRecognition'].nil?
             @FaceRecognition = LLMComprehendFaceRecognitionForUpdate.new
             @FaceRecognition.deserialize(params['FaceRecognition'])
+          end
+          unless params['DNA'].nil?
+            @DNA = LLMComprehendDNA.new
+            @DNA.deserialize(params['DNA'])
           end
         end
       end
@@ -36197,13 +36352,65 @@ module TencentCloud
         end
       end
 
+      # 异步按语义搜索媒体任务信息
+      class SearchMediaBySemanticsAsync < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务ID。</p>
+        # @type TaskId: String
+        # @param Status: <p>任务状态，取值：<li>PROCESSING：处理中；</li><li>FINISH：已完成。</li></p>
+        # @type Status: String
+        # @param ErrCode: <p>错误码。源异常时返回非0错误码，返回0时请使用各个具体任务的 ErrCode。</p>
+        # @type ErrCode: Integer
+        # @param ErrCodeExt: <p>扩展错误码。</p>
+        # @type ErrCodeExt: String
+        # @param Message: <p>错误信息。</p>
+        # @type Message: String
+        # @param QueryText: <p>本次查询文本（图片查询时为空）。</p>
+        # @type QueryText: String
+        # @param SearchResults: <p>召回列表。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SearchResults: Array
+
+        attr_accessor :TaskId, :Status, :ErrCode, :ErrCodeExt, :Message, :QueryText, :SearchResults
+
+        def initialize(taskid=nil, status=nil, errcode=nil, errcodeext=nil, message=nil, querytext=nil, searchresults=nil)
+          @TaskId = taskid
+          @Status = status
+          @ErrCode = errcode
+          @ErrCodeExt = errcodeext
+          @Message = message
+          @QueryText = querytext
+          @SearchResults = searchresults
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Status = params['Status']
+          @ErrCode = params['ErrCode']
+          @ErrCodeExt = params['ErrCodeExt']
+          @Message = params['Message']
+          @QueryText = params['QueryText']
+          unless params['SearchResults'].nil?
+            @SearchResults = []
+            params['SearchResults'].each do |i|
+              semanticssearchresult_tmp = SemanticsSearchResult.new
+              semanticssearchresult_tmp.deserialize(i)
+              @SearchResults << semanticssearchresult_tmp
+            end
+          end
+        end
+      end
+
       # SearchMediaBySemantics请求参数结构体
       class SearchMediaBySemanticsRequest < TencentCloud::Common::AbstractModel
         # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b></p>
         # @type SubAppId: Integer
-        # @param Text: <p>需要进行搜索的内容</p>
+        # @param Text: <p>需要进行搜索的文本内容。</p><p>入参限制：与 <code>FileId</code>、<code>Url</code> <strong>三选一且互斥</strong>。</p>
         # @type Text: String
-        # @param KnowledgeBaseId: <p>知识库ID，留空时将使用默认知识库</p>
+        # @param FileId: <p>需要进行搜索的图片FileId。</p><p>入参限制：必须是<strong>图片</strong>类型媒资，且与 <code>Text</code>、<code>Url</code> <strong>三选一且互斥</strong>。</p>
+        # @type FileId: String
+        # @param Url: <p>需要进行搜索的图片Url。 </p><p>入参限制：必须是<strong>图片</strong>Url，且与 <code>Text</code>、<code>FileId</code> <strong>三选一且互斥</strong>。</p>
+        # @type Url: String
+        # @param KnowledgeBaseId: <p>知识库ID，留空时将使用默认知识库。<br>当输入为图片时，必须选择MediaType=Image的知识库。</p>
         # @type KnowledgeBaseId: String
         # @param Limit: <p>返回的记录条数，默认值：20。</p><p>取值范围：[1, 100]</p>
         # @type Limit: Integer
@@ -36216,11 +36423,13 @@ module TencentCloud
         # @param TaskTypes: <p>搜索的任务类型，可选值有： </p><ul><li>AiAnalysis.DescriptionTask </li><li>SmartSubtitle.AsrFullTextTask</li></ul>
         # @type TaskTypes: Array
 
-        attr_accessor :SubAppId, :Text, :KnowledgeBaseId, :Limit, :Categories, :Tags, :Persons, :TaskTypes
+        attr_accessor :SubAppId, :Text, :FileId, :Url, :KnowledgeBaseId, :Limit, :Categories, :Tags, :Persons, :TaskTypes
 
-        def initialize(subappid=nil, text=nil, knowledgebaseid=nil, limit=nil, categories=nil, tags=nil, persons=nil, tasktypes=nil)
+        def initialize(subappid=nil, text=nil, fileid=nil, url=nil, knowledgebaseid=nil, limit=nil, categories=nil, tags=nil, persons=nil, tasktypes=nil)
           @SubAppId = subappid
           @Text = text
+          @FileId = fileid
+          @Url = url
           @KnowledgeBaseId = knowledgebaseid
           @Limit = limit
           @Categories = categories
@@ -36232,6 +36441,8 @@ module TencentCloud
         def deserialize(params)
           @SubAppId = params['SubAppId']
           @Text = params['Text']
+          @FileId = params['FileId']
+          @Url = params['Url']
           @KnowledgeBaseId = params['KnowledgeBaseId']
           @Limit = params['Limit']
           @Categories = params['Categories']

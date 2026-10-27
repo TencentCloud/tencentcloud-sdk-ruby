@@ -5844,6 +5844,7 @@ module TencentCloud
         end
 
         # 使用自然语言对媒体进行语义搜索。
+        # 仅支持文搜视频、文搜图、图搜图，图搜视频请使用SearchMediaBySemanticsAsync.
 
         # @param request: Request instance for SearchMediaBySemantics.
         # @type request: :class:`Tencentcloud::vod::V20180717::SearchMediaBySemanticsRequest`

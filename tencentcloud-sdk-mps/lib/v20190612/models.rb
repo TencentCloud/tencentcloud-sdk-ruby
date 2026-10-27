@@ -38738,7 +38738,7 @@ module TencentCloud
 
       # Aigc 转绘、替换等任务参数
       class VideoRedrawTaskInfo < TencentCloud::Common::AbstractModel
-        # @param Style: <p>转绘视频风格，如动漫、赛博朋克、水墨等</p>
+        # @param Style: <p>转绘视频风格，如动漫、赛博朋克、水墨等</p><p>默认值：动漫风</p>
         # @type Style: String
 
         attr_accessor :Style

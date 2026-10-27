@@ -14745,13 +14745,13 @@ module TencentCloud
 
       # GetAttackHistogram请求参数结构体
       class GetAttackHistogramRequest < TencentCloud::Common::AbstractModel
-        # @param Domain: 查询的域名，所有域名使用all
+        # @param Domain: <p>查询的域名，所有域名使用all</p>
         # @type Domain: String
-        # @param StartTime: 查询起始时间
+        # @param StartTime: <p>查询起始时间</p>
         # @type StartTime: String
-        # @param EndTime: 查询结束时间
+        # @param EndTime: <p>查询结束时间</p>
         # @type EndTime: String
-        # @param QueryString: Lucene语法
+        # @param QueryString: <p>Lucene语法</p>
         # @type QueryString: String
 
         attr_accessor :Domain, :StartTime, :EndTime, :QueryString
@@ -14773,11 +14773,11 @@ module TencentCloud
 
       # GetAttackHistogram返回参数结构体
       class GetAttackHistogramResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 统计详情
+        # @param Data: <p>统计详情</p>
         # @type Data: Array
-        # @param Period: 时间段大小
+        # @param Period: <p>时间段大小</p><p>单位：秒</p>
         # @type Period: Integer
-        # @param TotalCount: 统计的条目数
+        # @param TotalCount: <p>统计的条目数</p>
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

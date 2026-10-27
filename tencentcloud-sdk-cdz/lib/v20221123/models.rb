@@ -122,15 +122,15 @@ module TencentCloud
 
       # DescribeCloudDedicatedZoneHosts请求参数结构体
       class DescribeCloudDedicatedZoneHostsRequest < TencentCloud::Common::AbstractModel
-        # @param CloudDedicatedZoneID: 专属可用区ID
+        # @param CloudDedicatedZoneID: <p>专属可用区ID</p>
         # @type CloudDedicatedZoneID: String
-        # @param HostUuids: 一个或多个Host面的CVM实例信息。最大支持查询100台Host。
+        # @param HostUuids: <p>一个或多个Host面的CVM实例信息。最大支持查询100台Host。</p>
         # @type HostUuids: Array
-        # @param InstanceIds: 查询一个实例或者多个实例所在的Host上面的CVM实例信息。最大支持查询100台实例。
+        # @param InstanceIds: <p>查询一个实例或者多个实例所在的Host上面的CVM实例信息。最大支持查询100台实例。</p>
         # @type InstanceIds: Array
-        # @param Offset: 偏移量，默认为0。关于Offset的更进一步介绍请参考 API 简介中的相关小节。该参数仅与CloudDedicatedZoneID有关，传递了HostUuids和InstanceIds则会失效。
+        # @param Offset: <p>偏移量，默认为0。关于Offset的更进一步介绍请参考 API 简介中的相关小节。该参数仅与CloudDedicatedZoneID有关，传递了HostUuids和InstanceIds则会失效。</p>
         # @type Offset: Integer
-        # @param Limit: 返回数量，默认为20，最大值为100。关于Limit的更进一步介绍请参考 API 简介中的相关小节。该参数仅与CloudDedicatedZoneID有关，传递了HostUuids和InstanceIds则会失效。
+        # @param Limit: <p>返回数量，默认为20，最大值为100。关于Limit的更进一步介绍请参考 API 简介中的相关小节。该参数仅与CloudDedicatedZoneID有关，传递了HostUuids和InstanceIds则会失效。</p>
         # @type Limit: Integer
 
         attr_accessor :CloudDedicatedZoneID, :HostUuids, :InstanceIds, :Offset, :Limit
@@ -154,15 +154,18 @@ module TencentCloud
 
       # DescribeCloudDedicatedZoneHosts返回参数结构体
       class DescribeCloudDedicatedZoneHostsResponse < TencentCloud::Common::AbstractModel
-        # @param CloudDedicatedZoneHostsInfoSet: 返回Host和Host上部署的实例信息之间的关系
+        # @param CloudDedicatedZoneHostsInfoSet: <p>返回Host和Host上部署的实例信息之间的关系</p>
         # @type CloudDedicatedZoneHostsInfoSet: Array
+        # @param TotalCount: <p>母机总数</p>
+        # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :CloudDedicatedZoneHostsInfoSet, :RequestId
+        attr_accessor :CloudDedicatedZoneHostsInfoSet, :TotalCount, :RequestId
 
-        def initialize(clouddedicatedzonehostsinfoset=nil, requestid=nil)
+        def initialize(clouddedicatedzonehostsinfoset=nil, totalcount=nil, requestid=nil)
           @CloudDedicatedZoneHostsInfoSet = clouddedicatedzonehostsinfoset
+          @TotalCount = totalcount
           @RequestId = requestid
         end
 
@@ -175,6 +178,7 @@ module TencentCloud
               @CloudDedicatedZoneHostsInfoSet << clouddedicatedzonehostsinfo_tmp
             end
           end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
