@@ -3133,22 +3133,29 @@ module TencentCloud
 
       # DescribeIntelligences请求参数结构体
       class DescribeIntelligencesRequest < TencentCloud::Common::AbstractModel
+        # @param CustomerId: <p>企业ID</p>
+        # @type CustomerId: Integer
         # @param Filters: 查询数组
         # @type Filters: Array
         # @param Limit: 分页大小
         # @type Limit: Integer
         # @param Offset: 分页偏移
         # @type Offset: Integer
+        # @param IsActual: <p>是否筛选有效情报</p>
+        # @type IsActual: Boolean
 
-        attr_accessor :Filters, :Limit, :Offset
+        attr_accessor :CustomerId, :Filters, :Limit, :Offset, :IsActual
 
-        def initialize(filters=nil, limit=nil, offset=nil)
+        def initialize(customerid=nil, filters=nil, limit=nil, offset=nil, isactual=nil)
+          @CustomerId = customerid
           @Filters = filters
           @Limit = limit
           @Offset = offset
+          @IsActual = isactual
         end
 
         def deserialize(params)
+          @CustomerId = params['CustomerId']
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
@@ -3159,21 +3166,37 @@ module TencentCloud
           end
           @Limit = params['Limit']
           @Offset = params['Offset']
+          @IsActual = params['IsActual']
         end
       end
 
       # DescribeIntelligences返回参数结构体
       class DescribeIntelligencesResponse < TencentCloud::Common::AbstractModel
+        # @param Total: <p>总数</p>
+        # @type Total: Integer
+        # @param List: <p>数组</p>
+        # @type List: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Total, :List, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(total=nil, list=nil, requestid=nil)
+          @Total = total
+          @List = list
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @Total = params['Total']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              intelligencedesc_tmp = IntelligenceDesc.new
+              intelligencedesc_tmp.deserialize(i)
+              @List << intelligencedesc_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -6702,8 +6725,10 @@ module TencentCloud
       # 支持按照各字段过滤
       class Filter < TencentCloud::Common::AbstractModel
         # @param Name: 要搜索的字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Values: 目标值列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Values: Array
 
         attr_accessor :Name, :Values
@@ -6790,6 +6815,74 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 漏洞情报详情
+      class IntelligenceDesc < TencentCloud::Common::AbstractModel
+        # @param VulId: <p>情报ID</p>
+        # @type VulId: String
+        # @param VulName: <p>情报名称</p>
+        # @type VulName: String
+        # @param VulOverview: <p>情报概述</p>
+        # @type VulOverview: String
+        # @param InsertTime: <p>录入时间</p>
+        # @type InsertTime: String
+        # @param RiskLevel: <p>漏洞风险等级 1：低风险，2：中风险，3：高风险</p>
+        # @type RiskLevel: Integer
+        # @param Tags: <p>标签</p>
+        # @type Tags: String
+        # @param VulComponents: <p>关联组件</p>
+        # @type VulComponents: String
+        # @param BannerCount: <p>相关指纹数量</p>
+        # @type BannerCount: Integer
+        # @param VulAssetCount: <p>漏洞资产数量</p>
+        # @type VulAssetCount: Integer
+        # @param LastTaskStatus: <p>最新任务状态:todo/doing/done，如果为空表示没有任务</p>
+        # @type LastTaskStatus: String
+        # @param LastTaskInstanceId: <p>任务id</p>
+        # @type LastTaskInstanceId: String
+        # @param XscanBannerPluginId: <p>xscan指纹插件id</p>
+        # @type XscanBannerPluginId: String
+        # @param XscanPocPluginId: <p>xscan poc插件id</p>
+        # @type XscanPocPluginId: String
+        # @param LastScanTime: <p>上一次扫描时间</p>
+        # @type LastScanTime: String
+
+        attr_accessor :VulId, :VulName, :VulOverview, :InsertTime, :RiskLevel, :Tags, :VulComponents, :BannerCount, :VulAssetCount, :LastTaskStatus, :LastTaskInstanceId, :XscanBannerPluginId, :XscanPocPluginId, :LastScanTime
+
+        def initialize(vulid=nil, vulname=nil, vuloverview=nil, inserttime=nil, risklevel=nil, tags=nil, vulcomponents=nil, bannercount=nil, vulassetcount=nil, lasttaskstatus=nil, lasttaskinstanceid=nil, xscanbannerpluginid=nil, xscanpocpluginid=nil, lastscantime=nil)
+          @VulId = vulid
+          @VulName = vulname
+          @VulOverview = vuloverview
+          @InsertTime = inserttime
+          @RiskLevel = risklevel
+          @Tags = tags
+          @VulComponents = vulcomponents
+          @BannerCount = bannercount
+          @VulAssetCount = vulassetcount
+          @LastTaskStatus = lasttaskstatus
+          @LastTaskInstanceId = lasttaskinstanceid
+          @XscanBannerPluginId = xscanbannerpluginid
+          @XscanPocPluginId = xscanpocpluginid
+          @LastScanTime = lastscantime
+        end
+
+        def deserialize(params)
+          @VulId = params['VulId']
+          @VulName = params['VulName']
+          @VulOverview = params['VulOverview']
+          @InsertTime = params['InsertTime']
+          @RiskLevel = params['RiskLevel']
+          @Tags = params['Tags']
+          @VulComponents = params['VulComponents']
+          @BannerCount = params['BannerCount']
+          @VulAssetCount = params['VulAssetCount']
+          @LastTaskStatus = params['LastTaskStatus']
+          @LastTaskInstanceId = params['LastTaskInstanceId']
+          @XscanBannerPluginId = params['XscanBannerPluginId']
+          @XscanPocPluginId = params['XscanPocPluginId']
+          @LastScanTime = params['LastScanTime']
         end
       end
 

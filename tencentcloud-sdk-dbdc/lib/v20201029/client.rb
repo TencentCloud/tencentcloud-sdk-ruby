@@ -965,6 +965,31 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口（ModifyDBCustomNodeType）用于修改 DB Custom 节点配置。
+        # 修改节点配置过程中会重启节点。
+
+        # @param request: Request instance for ModifyDBCustomNodeType.
+        # @type request: :class:`Tencentcloud::dbdc::V20201029::ModifyDBCustomNodeTypeRequest`
+        # @rtype: :class:`Tencentcloud::dbdc::V20201029::ModifyDBCustomNodeTypeResponse`
+        def ModifyDBCustomNodeType(request)
+          body = send_request('ModifyDBCustomNodeType', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDBCustomNodeTypeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口（ModifyDBCustomNodesDisasterRecoverGroup）用于修改 DB Custom 节点的置放群组。
 
         # @param request: Request instance for ModifyDBCustomNodesDisasterRecoverGroup.
@@ -1013,6 +1038,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口（RebootDBCustomNodes）用于重启 DB Custom 节点。
+
+        # @param request: Request instance for RebootDBCustomNodes.
+        # @type request: :class:`Tencentcloud::dbdc::V20201029::RebootDBCustomNodesRequest`
+        # @rtype: :class:`Tencentcloud::dbdc::V20201029::RebootDBCustomNodesResponse`
+        def RebootDBCustomNodes(request)
+          body = send_request('RebootDBCustomNodes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RebootDBCustomNodesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口（RemoveNodesFromDBCustomCluster）用于从 DB Custom 集群移出节点。
 
         # @param request: Request instance for RemoveNodesFromDBCustomCluster.
@@ -1047,6 +1096,102 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = RenewDBCustomNodeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口（ResetDBCustomNode）用于重装 DB Custom 节点的操作系统。
+
+        # @param request: Request instance for ResetDBCustomNode.
+        # @type request: :class:`Tencentcloud::dbdc::V20201029::ResetDBCustomNodeRequest`
+        # @rtype: :class:`Tencentcloud::dbdc::V20201029::ResetDBCustomNodeResponse`
+        def ResetDBCustomNode(request)
+          body = send_request('ResetDBCustomNode', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ResetDBCustomNodeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口（ResizeDBCustomNodeDisk）用于调整 DB Custom 节点磁盘容量。
+
+        # @param request: Request instance for ResizeDBCustomNodeDisk.
+        # @type request: :class:`Tencentcloud::dbdc::V20201029::ResizeDBCustomNodeDiskRequest`
+        # @rtype: :class:`Tencentcloud::dbdc::V20201029::ResizeDBCustomNodeDiskResponse`
+        def ResizeDBCustomNodeDisk(request)
+          body = send_request('ResizeDBCustomNodeDisk', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ResizeDBCustomNodeDiskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口（StartDBCustomNodes）用于开机 DB Custom 节点。
+
+        # @param request: Request instance for StartDBCustomNodes.
+        # @type request: :class:`Tencentcloud::dbdc::V20201029::StartDBCustomNodesRequest`
+        # @rtype: :class:`Tencentcloud::dbdc::V20201029::StartDBCustomNodesResponse`
+        def StartDBCustomNodes(request)
+          body = send_request('StartDBCustomNodes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StartDBCustomNodesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口（StopDBCustomNodes）用于关机 DB Custom 节点。
+
+        # @param request: Request instance for StopDBCustomNodes.
+        # @type request: :class:`Tencentcloud::dbdc::V20201029::StopDBCustomNodesRequest`
+        # @rtype: :class:`Tencentcloud::dbdc::V20201029::StopDBCustomNodesResponse`
+        def StopDBCustomNodes(request)
+          body = send_request('StopDBCustomNodes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StopDBCustomNodesResponse.new
             model.deserialize(response['Response'])
             model
           else

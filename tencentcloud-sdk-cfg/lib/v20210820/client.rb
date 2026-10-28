@@ -173,6 +173,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询探针列表，换为OTeam探针版本
+
+        # @param request: Request instance for DescribeInstanceAgentList.
+        # @type request: :class:`Tencentcloud::cfg::V20210820::DescribeInstanceAgentListRequest`
+        # @rtype: :class:`Tencentcloud::cfg::V20210820::DescribeInstanceAgentListResponse`
+        def DescribeInstanceAgentList(request)
+          body = send_request('DescribeInstanceAgentList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInstanceAgentListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询对象类型列表
 
         # @param request: Request instance for DescribeObjectTypeList.
@@ -389,6 +413,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 安装探针接口
+
+        # @param request: Request instance for InstallAgentOpenApi.
+        # @type request: :class:`Tencentcloud::cfg::V20210820::InstallAgentOpenApiRequest`
+        # @rtype: :class:`Tencentcloud::cfg::V20210820::InstallAgentOpenApiResponse`
+        def InstallAgentOpenApi(request)
+          body = send_request('InstallAgentOpenApi', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = InstallAgentOpenApiResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改任务运行状态
 
         # @param request: Request instance for ModifyTaskRunStatus.
@@ -423,6 +471,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = TriggerPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 卸载探针
+
+        # @param request: Request instance for UninstallAgentOpenApi.
+        # @type request: :class:`Tencentcloud::cfg::V20210820::UninstallAgentOpenApiRequest`
+        # @rtype: :class:`Tencentcloud::cfg::V20210820::UninstallAgentOpenApiResponse`
+        def UninstallAgentOpenApi(request)
+          body = send_request('UninstallAgentOpenApi', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UninstallAgentOpenApiResponse.new
             model.deserialize(response['Response'])
             model
           else

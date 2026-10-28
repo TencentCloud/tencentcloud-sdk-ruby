@@ -1758,6 +1758,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # <p>批量移除工作空间用户（单次最多10个；单个 UIN 失败不影响其他 UIN 移除，成败以 SuccessUins/FailItems 为准）</p>
+
+        # @param request: Request instance for RemoveWorkspaceUsers.
+        # @type request: :class:`Tencentcloud::databuddy::V20260715::RemoveWorkspaceUsersRequest`
+        # @rtype: :class:`Tencentcloud::databuddy::V20260715::RemoveWorkspaceUsersResponse`
+        def RemoveWorkspaceUsers(request)
+          body = send_request('RemoveWorkspaceUsers', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RemoveWorkspaceUsersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 重跑工作流
 
         # @param request: Request instance for RerunWorkflowRun.
@@ -2351,6 +2375,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改工作空间用户组标签
+
+        # @param request: Request instance for UpdateWorkspaceGroupsTags.
+        # @type request: :class:`Tencentcloud::databuddy::V20260715::UpdateWorkspaceGroupsTagsRequest`
+        # @rtype: :class:`Tencentcloud::databuddy::V20260715::UpdateWorkspaceGroupsTagsResponse`
+        def UpdateWorkspaceGroupsTags(request)
+          body = send_request('UpdateWorkspaceGroupsTags', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateWorkspaceGroupsTagsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 更新工作空间角色
 
         # @param request: Request instance for UpdateWorkspaceRole.
@@ -2385,6 +2433,35 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpdateWorkspaceUsersRolesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改工作空间用户标签
+        # 本接口为整体覆盖式修改：每次调用以请求中的 Tags 为准，替换指定用户的全部直绑标签，而非增量追加。
+        # 1、传入 Tags（含 TagId/TagValueId）：替换为该批标签
+        # 2、不传 Tags 或传入空数组（"Tags": []）：将清除 UserUins 中所有用户的全部直绑标签，且操作不可逆，请谨慎调用
+        # 3、多个用户将共享同一批 Tags；仅修改单个用户时，UserUins 请只传该用户
+        # 4、仅清除用户直绑（Source=1）的标签，用户从用户组继承的标签（Source=2）不受影响
+
+        # @param request: Request instance for UpdateWorkspaceUsersTags.
+        # @type request: :class:`Tencentcloud::databuddy::V20260715::UpdateWorkspaceUsersTagsRequest`
+        # @rtype: :class:`Tencentcloud::databuddy::V20260715::UpdateWorkspaceUsersTagsResponse`
+        def UpdateWorkspaceUsersTags(request)
+          body = send_request('UpdateWorkspaceUsersTags', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateWorkspaceUsersTagsResponse.new
             model.deserialize(response['Response'])
             model
           else

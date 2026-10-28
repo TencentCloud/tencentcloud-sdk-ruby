@@ -155,7 +155,7 @@ module TencentCloud
 
       # 合同参与者信息。
       class ApproverInfo < TencentCloud::Common::AbstractModel
-        # @param ApproverType: <p>在指定签署方时，可选择企业B端或个人C端等不同的参与者类型，可选类型如下: </p><p><strong>0</strong>：企业</p><p> <strong>1</strong>：个人</p><p> <strong>3</strong>：企业“授权签”注：<code>类型为3（企业“授权签”）时，此接口会默认完成该签署方的签署。“授权签”仅进行盖章操作，不能“授权签”名。</code></p><p> <strong>7</strong>: 个人“授权签”，适用于个人“授权签”场景。注: <code>个人“授权签”场景为白名单功能，使用前请联系对接的客户经理沟通。</code> </p><p><strong>8</strong>：本方企业 PIN 码授权，注：<code>使用前需先完成员工PIN码授权</code> </p><p><strong>9</strong>：他方企业 PIN 码授权，注：<code>使用前需先完成合作方企业PIN码授权</code></p><p> <strong>10</strong>: 个人 PIN 码授权，适用于个人“授权签”场景。注: <code>个人“授权签”场景为白名单功能，使用前请联系对接的客户经理沟通。</code></p>
+        # @param ApproverType: <p>在指定签署方时，可选择企业B端或个人C端等不同的参与者类型，可选类型如下: </p><p><strong>0</strong>：企业</p><p> <strong>1</strong>：个人</p><p> <strong>3</strong>：企业“授权签”注：<code>类型为3（企业“授权签”）时，此接口会默认完成该签署方的签署。“授权签”仅进行盖章操作，不能“授权签”名。</code>  <font color="red">后续会下掉此种类型，请迁移到8或9</font></p><p> <strong>7</strong>: 个人“授权签”，适用于个人“授权签”场景。注: <code>个人“授权签”场景为白名单功能，使用前请联系对接的客户经理沟通。</code> <font color="red">后续会下掉此种类型，请迁移到10</font></p><p><strong>8</strong>：本方企业 PIN 码授权，注：<code>使用前需先完成员工PIN码授权</code> </p><p><strong>9</strong>：他方企业 PIN 码授权，注：<code>使用前需先完成合作方企业PIN码授权</code></p><p> <strong>10</strong>: 个人 PIN 码授权，适用于个人“授权签”场景。注: <code>个人“授权签”场景为白名单功能，使用前请联系对接的客户经理沟通。</code></p>
         # @type ApproverType: Integer
         # @param ApproverName: <p>签署方经办人的姓名。<br>经办人的姓名将用于身份认证和电子签名，请确保填写的姓名为签署方的真实姓名，而非昵称等代名。</p>
         # @type ApproverName: String
@@ -9261,18 +9261,19 @@ module TencentCloud
 
       # DescribeContractDiffTaskWebUrl请求参数结构体
       class DescribeContractDiffTaskWebUrlRequest < TencentCloud::Common::AbstractModel
-        # @param Operator: 执行本接口操作的员工信息。使用此接口时，必须填写userId。
-
-        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @param Operator: <p>执行本接口操作的员工信息。使用此接口时，必须填写userId。</p><p>注: <code>在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。</code></p>
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param TaskId: 合同对比任务ID，该参数通过调用接口<a href="https://qian.tencent.com/developers/companyApis/embedPages/CreateContractDiffTaskWebUrl" target="_blank">创建合同对比web页面</a>获取。
+        # @param TaskId: <p>合同对比任务ID，该参数通过调用接口<a href="https://qian.tencent.com/developers/companyApis/embedPages/CreateContractDiffTaskWebUrl" target="_blank">创建合同对比web页面</a>获取。</p>
         # @type TaskId: String
+        # @param FormatConfigs: <p>过滤项列表，获取合同对比结果根据此过滤项列表进行过滤展示。<br>注：</p><ul><li>参数不传，默认根据该用户的过滤项配置进行展示。</li><li>参数传空数组，不过滤合同对比结果。</li><li>参数传过滤项列表，根据过滤项列表对合同对比结果进行过滤展示。</li></ul>
+        # @type FormatConfigs: :class:`Tencentcloud::Ess.v20201111.models.FormatConfigs`
 
-        attr_accessor :Operator, :TaskId
+        attr_accessor :Operator, :TaskId, :FormatConfigs
 
-        def initialize(operator=nil, taskid=nil)
+        def initialize(operator=nil, taskid=nil, formatconfigs=nil)
           @Operator = operator
           @TaskId = taskid
+          @FormatConfigs = formatconfigs
         end
 
         def deserialize(params)
@@ -9281,13 +9282,16 @@ module TencentCloud
             @Operator.deserialize(params['Operator'])
           end
           @TaskId = params['TaskId']
+          unless params['FormatConfigs'].nil?
+            @FormatConfigs = FormatConfigs.new
+            @FormatConfigs.deserialize(params['FormatConfigs'])
+          end
         end
       end
 
       # DescribeContractDiffTaskWebUrl返回参数结构体
       class DescribeContractDiffTaskWebUrlResponse < TencentCloud::Common::AbstractModel
-        # @param WebUrl: 合同对比嵌入式web页面链接，有效期：5分钟
-        # 链接仅能使用一次
+        # @param WebUrl: <p>合同对比嵌入式web页面链接，有效期：5分钟<br>链接仅能使用一次</p>
         # @type WebUrl: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -14210,6 +14214,22 @@ module TencentCloud
           @ComponentValue = params['ComponentValue']
           @ComponentId = params['ComponentId']
           @ComponentName = params['ComponentName']
+        end
+      end
+
+      # 合同对比查询结果过滤项配置列表
+      class FormatConfigs < TencentCloud::Common::AbstractModel
+        # @param Values: <p>合同对比结果过滤项</p><p>枚举值：</p><ul><li>1： 标点符号</li><li>2： 页眉页脚（包含页码）</li><li>3： 目录</li><li>4： 印章</li><li>5： 序号</li><li>6： 水印</li><li>7： 下划线</li></ul>
+        # @type Values: Array
+
+        attr_accessor :Values
+
+        def initialize(values=nil)
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Values = params['Values']
         end
       end
 

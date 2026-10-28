@@ -891,6 +891,58 @@ module TencentCloud
         end
       end
 
+      # CreateUserQuota请求参数结构体
+      class CreateUserQuotaRequest < TencentCloud::Common::AbstractModel
+        # @param FileSystemId: 文件系统id
+        # @type FileSystemId: String
+        # @param QuotaType: 配额类型，UID或GID
+        # @type QuotaType: String
+        # @param QuotaObjectName: 配额对象名称，对应UID或者GID的值
+        # @type QuotaObjectName: String
+        # @param QuotaSizeLimit: 容量配额（需带单位G）
+        # @type QuotaSizeLimit: String
+        # @param QuotaFilesLimit: 文件数配额
+        # @type QuotaFilesLimit: String
+
+        attr_accessor :FileSystemId, :QuotaType, :QuotaObjectName, :QuotaSizeLimit, :QuotaFilesLimit
+
+        def initialize(filesystemid=nil, quotatype=nil, quotaobjectname=nil, quotasizelimit=nil, quotafileslimit=nil)
+          @FileSystemId = filesystemid
+          @QuotaType = quotatype
+          @QuotaObjectName = quotaobjectname
+          @QuotaSizeLimit = quotasizelimit
+          @QuotaFilesLimit = quotafileslimit
+        end
+
+        def deserialize(params)
+          @FileSystemId = params['FileSystemId']
+          @QuotaType = params['QuotaType']
+          @QuotaObjectName = params['QuotaObjectName']
+          @QuotaSizeLimit = params['QuotaSizeLimit']
+          @QuotaFilesLimit = params['QuotaFilesLimit']
+        end
+      end
+
+      # CreateUserQuota返回参数结构体
+      class CreateUserQuotaResponse < TencentCloud::Common::AbstractModel
+        # @param QuotaId: 配额id
+        # @type QuotaId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :QuotaId, :RequestId
+
+        def initialize(quotaid=nil, requestid=nil)
+          @QuotaId = quotaid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @QuotaId = params['QuotaId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # goosefsx客户端集群信息
       class CustomerClusterAttr < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群id
@@ -1252,6 +1304,42 @@ module TencentCloud
 
       # DeletePolicyRule返回参数结构体
       class DeletePolicyRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteUserQuota请求参数结构体
+      class DeleteUserQuotaRequest < TencentCloud::Common::AbstractModel
+        # @param FileSystemId: 文件系统id
+        # @type FileSystemId: String
+        # @param QuotaId: 配额id
+        # @type QuotaId: String
+
+        attr_accessor :FileSystemId, :QuotaId
+
+        def initialize(filesystemid=nil, quotaid=nil)
+          @FileSystemId = filesystemid
+          @QuotaId = quotaid
+        end
+
+        def deserialize(params)
+          @FileSystemId = params['FileSystemId']
+          @QuotaId = params['QuotaId']
+        end
+      end
+
+      # DeleteUserQuota返回参数结构体
+      class DeleteUserQuotaResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -1887,6 +1975,61 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeUserQuota请求参数结构体
+      class DescribeUserQuotaRequest < TencentCloud::Common::AbstractModel
+        # @param FileSystemId: <p>文件系统id</p>
+        # @type FileSystemId: String
+        # @param QuotaIds: <p>QuotaId列表</p>
+        # @type QuotaIds: Array
+        # @param QuotaType: <p>配额类型</p>
+        # @type QuotaType: String
+        # @param QuotaObjectNames: <p>配额对象名称列表</p>
+        # @type QuotaObjectNames: Array
+
+        attr_accessor :FileSystemId, :QuotaIds, :QuotaType, :QuotaObjectNames
+
+        def initialize(filesystemid=nil, quotaids=nil, quotatype=nil, quotaobjectnames=nil)
+          @FileSystemId = filesystemid
+          @QuotaIds = quotaids
+          @QuotaType = quotatype
+          @QuotaObjectNames = quotaobjectnames
+        end
+
+        def deserialize(params)
+          @FileSystemId = params['FileSystemId']
+          @QuotaIds = params['QuotaIds']
+          @QuotaType = params['QuotaType']
+          @QuotaObjectNames = params['QuotaObjectNames']
+        end
+      end
+
+      # DescribeUserQuota返回参数结构体
+      class DescribeUserQuotaResponse < TencentCloud::Common::AbstractModel
+        # @param QuotaList: <p>配额信息列表</p>
+        # @type QuotaList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :QuotaList, :RequestId
+
+        def initialize(quotalist=nil, requestid=nil)
+          @QuotaList = quotalist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['QuotaList'].nil?
+            @QuotaList = []
+            params['QuotaList'].each do |i|
+              userquotainfo_tmp = UserQuotaInfo.new
+              userquotainfo_tmp.deserialize(i)
+              @QuotaList << userquotainfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -3327,6 +3470,110 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateUserQuota请求参数结构体
+      class UpdateUserQuotaRequest < TencentCloud::Common::AbstractModel
+        # @param FileSystemId: 文件系统id
+        # @type FileSystemId: String
+        # @param QuotaId: 配额id
+        # @type QuotaId: String
+        # @param QuotaSizeLimit: 容量配额限定值
+        # @type QuotaSizeLimit: String
+        # @param QuotaFilesLimit: 文件数配额限定值
+        # @type QuotaFilesLimit: String
+
+        attr_accessor :FileSystemId, :QuotaId, :QuotaSizeLimit, :QuotaFilesLimit
+
+        def initialize(filesystemid=nil, quotaid=nil, quotasizelimit=nil, quotafileslimit=nil)
+          @FileSystemId = filesystemid
+          @QuotaId = quotaid
+          @QuotaSizeLimit = quotasizelimit
+          @QuotaFilesLimit = quotafileslimit
+        end
+
+        def deserialize(params)
+          @FileSystemId = params['FileSystemId']
+          @QuotaId = params['QuotaId']
+          @QuotaSizeLimit = params['QuotaSizeLimit']
+          @QuotaFilesLimit = params['QuotaFilesLimit']
+        end
+      end
+
+      # UpdateUserQuota返回参数结构体
+      class UpdateUserQuotaResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 用户配额信息
+      class UserQuotaInfo < TencentCloud::Common::AbstractModel
+        # @param QuotaId: 配额id
+        # @type QuotaId: String
+        # @param QuotaType: 配额类型
+        # @type QuotaType: String
+        # @param QuotaObjectName: 配额对象名称，对应UID/GID的值
+        # @type QuotaObjectName: String
+        # @param QuotaSizeLimit: 容量配额限定值
+        # @type QuotaSizeLimit: String
+        # @param QuotaSizeUsed: 已使用容量配额
+        # @type QuotaSizeUsed: String
+        # @param QuotaSizeUsedPercent: 容量配额使用占比
+        # @type QuotaSizeUsedPercent: String
+        # @param QuotaFilesLimit: 文件数配额限定值
+        # @type QuotaFilesLimit: String
+        # @param QuotaFilesUsed: 已使用文件数配额
+        # @type QuotaFilesUsed: String
+        # @param QuotaFilesUsedPercent: 文件数配额使用占比
+        # @type QuotaFilesUsedPercent: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param ModifyTime: 修改时间
+        # @type ModifyTime: String
+        # @param Status: 配额状态：creating 配置中 active 已生效 modify 修改中
+        # @type Status: String
+
+        attr_accessor :QuotaId, :QuotaType, :QuotaObjectName, :QuotaSizeLimit, :QuotaSizeUsed, :QuotaSizeUsedPercent, :QuotaFilesLimit, :QuotaFilesUsed, :QuotaFilesUsedPercent, :CreateTime, :ModifyTime, :Status
+
+        def initialize(quotaid=nil, quotatype=nil, quotaobjectname=nil, quotasizelimit=nil, quotasizeused=nil, quotasizeusedpercent=nil, quotafileslimit=nil, quotafilesused=nil, quotafilesusedpercent=nil, createtime=nil, modifytime=nil, status=nil)
+          @QuotaId = quotaid
+          @QuotaType = quotatype
+          @QuotaObjectName = quotaobjectname
+          @QuotaSizeLimit = quotasizelimit
+          @QuotaSizeUsed = quotasizeused
+          @QuotaSizeUsedPercent = quotasizeusedpercent
+          @QuotaFilesLimit = quotafileslimit
+          @QuotaFilesUsed = quotafilesused
+          @QuotaFilesUsedPercent = quotafilesusedpercent
+          @CreateTime = createtime
+          @ModifyTime = modifytime
+          @Status = status
+        end
+
+        def deserialize(params)
+          @QuotaId = params['QuotaId']
+          @QuotaType = params['QuotaType']
+          @QuotaObjectName = params['QuotaObjectName']
+          @QuotaSizeLimit = params['QuotaSizeLimit']
+          @QuotaSizeUsed = params['QuotaSizeUsed']
+          @QuotaSizeUsedPercent = params['QuotaSizeUsedPercent']
+          @QuotaFilesLimit = params['QuotaFilesLimit']
+          @QuotaFilesUsed = params['QuotaFilesUsed']
+          @QuotaFilesUsedPercent = params['QuotaFilesUsedPercent']
+          @CreateTime = params['CreateTime']
+          @ModifyTime = params['ModifyTime']
+          @Status = params['Status']
         end
       end
 

@@ -8968,6 +8968,80 @@ module TencentCloud
         end
       end
 
+      # RemoveWorkspaceUsers请求参数结构体
+      class RemoveWorkspaceUsersRequest < TencentCloud::Common::AbstractModel
+        # @param UserUins: <p>必填，待移除的用户 UIN 列表，用户 UIN 可通过 ListWorkspaceUsers 接口获取，单次最多10个</p>
+        # @type UserUins: Array
+        # @param WorkspaceId: <p>工作空间ID</p>
+        # @type WorkspaceId: String
+
+        attr_accessor :UserUins, :WorkspaceId
+
+        def initialize(useruins=nil, workspaceid=nil)
+          @UserUins = useruins
+          @WorkspaceId = workspaceid
+        end
+
+        def deserialize(params)
+          @UserUins = params['UserUins']
+          @WorkspaceId = params['WorkspaceId']
+        end
+      end
+
+      # RemoveWorkspaceUsers返回参数结构体
+      class RemoveWorkspaceUsersResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>批量移除工作空间用户结果</p>
+        # @type Data: :class:`Tencentcloud::Databuddy.v20260715.models.RemoveWorkspaceUsersRsp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = RemoveWorkspaceUsersRsp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 批量移除工作空间用户响应
+      class RemoveWorkspaceUsersRsp < TencentCloud::Common::AbstractModel
+        # @param Status: <p>请求已完成处理；即使部分失败也为 true，逐个结果以 SuccessUins/FailItems 为准</p>
+        # @type Status: Boolean
+        # @param SuccessUins: <p>移除成功的用户 UIN 列表</p>
+        # @type SuccessUins: Array
+        # @param FailItems: <p>失败项列表（Item 为用户 UIN，FailReason 为失败原因）</p>
+        # @type FailItems: Array
+
+        attr_accessor :Status, :SuccessUins, :FailItems
+
+        def initialize(status=nil, successuins=nil, failitems=nil)
+          @Status = status
+          @SuccessUins = successuins
+          @FailItems = failitems
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @SuccessUins = params['SuccessUins']
+          unless params['FailItems'].nil?
+            @FailItems = []
+            params['FailItems'].each do |i|
+              commonfailitem_tmp = CommonFailItem.new
+              commonfailitem_tmp.deserialize(i)
+              @FailItems << commonfailitem_tmp
+            end
+          end
+        end
+      end
+
       # RerunWorkflowRun请求参数结构体
       class RerunWorkflowRunRequest < TencentCloud::Common::AbstractModel
         # @param WorkspaceId: <p>工作空间ID，可通过 ListWorkspaces 获取。必填</p>
@@ -11755,6 +11829,76 @@ module TencentCloud
         end
       end
 
+      # UpdateWorkspaceGroupsTags请求参数结构体
+      class UpdateWorkspaceGroupsTagsRequest < TencentCloud::Common::AbstractModel
+        # @param GroupIds: <p>必填，用户组ID列表，单次最多100个；可通过 ListWorkspaceGroups 接口获取</p>
+        # @type GroupIds: Array
+        # @param WorkspaceId: <p>必填，工作空间ID</p>
+        # @type WorkspaceId: String
+        # @param Tags: <p>标签列表，覆盖写用户组的标签；传即覆盖更新，不传或为空则清除全部标签</p>
+        # @type Tags: Array
+
+        attr_accessor :GroupIds, :WorkspaceId, :Tags
+
+        def initialize(groupids=nil, workspaceid=nil, tags=nil)
+          @GroupIds = groupids
+          @WorkspaceId = workspaceid
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @GroupIds = params['GroupIds']
+          @WorkspaceId = params['WorkspaceId']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              usertaginfo_tmp = UserTagInfo.new
+              usertaginfo_tmp.deserialize(i)
+              @Tags << usertaginfo_tmp
+            end
+          end
+        end
+      end
+
+      # UpdateWorkspaceGroupsTags返回参数结构体
+      class UpdateWorkspaceGroupsTagsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>修改工作空间用户组标签响应</p>
+        # @type Data: :class:`Tencentcloud::Databuddy.v20260715.models.UpdateWorkspaceGroupsTagsRsp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = UpdateWorkspaceGroupsTagsRsp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 修改工作空间用户组标签响应
+      class UpdateWorkspaceGroupsTagsRsp < TencentCloud::Common::AbstractModel
+        # @param Status: 操作是否成功
+        # @type Status: Boolean
+
+        attr_accessor :Status
+
+        def initialize(status=nil)
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+        end
+      end
+
       # UpdateWorkspace请求参数结构体
       class UpdateWorkspaceRequest < TencentCloud::Common::AbstractModel
         # @param WorkspaceId: <p>工作空间ID</p>
@@ -11935,6 +12079,76 @@ module TencentCloud
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateWorkspaceUsersTags请求参数结构体
+      class UpdateWorkspaceUsersTagsRequest < TencentCloud::Common::AbstractModel
+        # @param UserUins: <p>必填，用户UIN列表，单次最多100个</p>
+        # @type UserUins: Array
+        # @param WorkspaceId: <p>必填，工作空间ID</p>
+        # @type WorkspaceId: String
+        # @param Tags: <p>待更新的标签集合（标签维度及标签值通过 ID 指定），覆盖更新语义：传入后将被覆盖为目标用户的全部直绑标签，不传或传空数组则清空目标用户的所有直绑标签。每个元素中 TagId 必填，Values[].TagValueId 必填；传入的 TagValue、Source、GroupNames 服务端不读取，无需传入。标签维度与标签值可先通过 CreateTags / CreateTagValues 创建，再通过 ListTags 获取 ID（TagId 取 Items[].TagId，TagValueId 取 Items[].TagValues[].TagValueId）。</p>
+        # @type Tags: Array
+
+        attr_accessor :UserUins, :WorkspaceId, :Tags
+
+        def initialize(useruins=nil, workspaceid=nil, tags=nil)
+          @UserUins = useruins
+          @WorkspaceId = workspaceid
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @UserUins = params['UserUins']
+          @WorkspaceId = params['WorkspaceId']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              usertaginfo_tmp = UserTagInfo.new
+              usertaginfo_tmp.deserialize(i)
+              @Tags << usertaginfo_tmp
+            end
+          end
+        end
+      end
+
+      # UpdateWorkspaceUsersTags返回参数结构体
+      class UpdateWorkspaceUsersTagsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>修改工作空间用户标签响应</p>
+        # @type Data: :class:`Tencentcloud::Databuddy.v20260715.models.UpdateWorkspaceUsersTagsRsp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = UpdateWorkspaceUsersTagsRsp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 修改工作空间用户标签响应
+      class UpdateWorkspaceUsersTagsRsp < TencentCloud::Common::AbstractModel
+        # @param Status: 操作是否成功
+        # @type Status: Boolean
+
+        attr_accessor :Status
+
+        def initialize(status=nil)
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
         end
       end
 

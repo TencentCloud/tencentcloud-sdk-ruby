@@ -17706,22 +17706,28 @@ module TencentCloud
 
       # 空间信息
       class Space < TencentCloud::Common::AbstractModel
-        # @param SpaceId: 空间id
+        # @param SpaceId: <p>空间id</p>
         # @type SpaceId: String
-        # @param Name: 空间名称
+        # @param Name: <p>空间名称</p>
         # @type Name: String
-        # @param Description: 空间描述
+        # @param Description: <p>空间描述</p>
         # @type Description: String
-        # @param PermissionIdList: 空间权限
+        # @param PermissionIdList: <p>空间权限</p>
         # @type PermissionIdList: Array
+        # @param CreateTime: <p>创建时间</p><p>参数格式：秒时间戳</p>
+        # @type CreateTime: String
+        # @param UpdateTime: <p>更新时间</p><p>参数格式：秒时间戳</p>
+        # @type UpdateTime: String
 
-        attr_accessor :SpaceId, :Name, :Description, :PermissionIdList
+        attr_accessor :SpaceId, :Name, :Description, :PermissionIdList, :CreateTime, :UpdateTime
 
-        def initialize(spaceid=nil, name=nil, description=nil, permissionidlist=nil)
+        def initialize(spaceid=nil, name=nil, description=nil, permissionidlist=nil, createtime=nil, updatetime=nil)
           @SpaceId = spaceid
           @Name = name
           @Description = description
           @PermissionIdList = permissionidlist
+          @CreateTime = createtime
+          @UpdateTime = updatetime
         end
 
         def deserialize(params)
@@ -17729,6 +17735,8 @@ module TencentCloud
           @Name = params['Name']
           @Description = params['Description']
           @PermissionIdList = params['PermissionIdList']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
         end
       end
 

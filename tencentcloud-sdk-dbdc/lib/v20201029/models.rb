@@ -3657,6 +3657,47 @@ module TencentCloud
         end
       end
 
+      # ModifyDBCustomNodeType请求参数结构体
+      class ModifyDBCustomNodeTypeRequest < TencentCloud::Common::AbstractModel
+        # @param NodeId: <p>节点ID</p>
+        # @type NodeId: String
+        # @param NodeType: <p>节点机型</p>
+        # @type NodeType: String
+
+        attr_accessor :NodeId, :NodeType
+
+        def initialize(nodeid=nil, nodetype=nil)
+          @NodeId = nodeid
+          @NodeType = nodetype
+        end
+
+        def deserialize(params)
+          @NodeId = params['NodeId']
+          @NodeType = params['NodeType']
+        end
+      end
+
+      # ModifyDBCustomNodeType返回参数结构体
+      class ModifyDBCustomNodeTypeResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>修改节点配置的任务ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyDBCustomNodesDisasterRecoverGroup请求参数结构体
       class ModifyDBCustomNodesDisasterRecoverGroupRequest < TencentCloud::Common::AbstractModel
         # @param NodeIds: <p>节点ID</p><p>入参限制：单次数量上限为100</p>
@@ -3782,6 +3823,47 @@ module TencentCloud
         end
       end
 
+      # RebootDBCustomNodes请求参数结构体
+      class RebootDBCustomNodesRequest < TencentCloud::Common::AbstractModel
+        # @param NodeIds: <p>节点 ID 列表</p><p>入参限制：最多支持 100 个</p>
+        # @type NodeIds: Array
+        # @param StopType: <p>关机类型</p><p>枚举值：</p><ul><li>SOFT： 软关机</li><li>HARD： 硬关机</li><li>SOFT_FIRST： 优先软关机，失败再执行硬关机</li></ul><p>默认值：SOFT</p>
+        # @type StopType: String
+
+        attr_accessor :NodeIds, :StopType
+
+        def initialize(nodeids=nil, stoptype=nil)
+          @NodeIds = nodeids
+          @StopType = stoptype
+        end
+
+        def deserialize(params)
+          @NodeIds = params['NodeIds']
+          @StopType = params['StopType']
+        end
+      end
+
+      # RebootDBCustomNodes返回参数结构体
+      class RebootDBCustomNodesResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 地域信息。
       class RegionInfo < TencentCloud::Common::AbstractModel
         # @param Region: <p>地域</p>
@@ -3901,6 +3983,103 @@ module TencentCloud
         end
       end
 
+      # ResetDBCustomNode请求参数结构体
+      class ResetDBCustomNodeRequest < TencentCloud::Common::AbstractModel
+        # @param NodeId: <p>节点ID</p><p>参数格式：dbcn-hq98qjym</p>
+        # @type NodeId: String
+        # @param LoginSettings: <p>实例登录设置。通过该参数可以设置实例的登录方式密码、密钥或保持镜像的原始登录设置。</p><p>入参限制：若选择密钥方式，KeyIds 仅支持单个 ID。三种方式必须且仅可以设置其中一种。</p>
+        # @type LoginSettings: :class:`Tencentcloud::Dbdc.v20201029.models.LoginSettings`
+        # @param ImageId: <p>重设的操作系统镜像ID</p><p>取值参考：可通过&quot;DescribeDBCustomImages&quot;接口获取支持的镜像。</p>
+        # @type ImageId: String
+        # @param HostName: <p>重装系统时，可以指定修改节点的主机名。</p><p>入参限制：- 点号（.）和短横线（-）不能作为 HostName 的首尾字符，不能连续使用。</p><ul><li>Windows ：主机名字符长度为[2, 15]，允许字母（不限制大小写）、数字和短横线（-）组成，不支持点号（.），不能全是数字。</li><li>Linux：主机名字符长度为[2, 60]，允许支持多个点号，点之间为一段，每段允许字母（不限制大小写）、数字和短横线（-）组成。</li></ul><p>注意：节点在没有加入到集群之前才支持修改主机 HostName。</p>
+        # @type HostName: String
+
+        attr_accessor :NodeId, :LoginSettings, :ImageId, :HostName
+
+        def initialize(nodeid=nil, loginsettings=nil, imageid=nil, hostname=nil)
+          @NodeId = nodeid
+          @LoginSettings = loginsettings
+          @ImageId = imageid
+          @HostName = hostname
+        end
+
+        def deserialize(params)
+          @NodeId = params['NodeId']
+          unless params['LoginSettings'].nil?
+            @LoginSettings = LoginSettings.new
+            @LoginSettings.deserialize(params['LoginSettings'])
+          end
+          @ImageId = params['ImageId']
+          @HostName = params['HostName']
+        end
+      end
+
+      # ResetDBCustomNode返回参数结构体
+      class ResetDBCustomNodeResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ResizeDBCustomNodeDisk请求参数结构体
+      class ResizeDBCustomNodeDiskRequest < TencentCloud::Common::AbstractModel
+        # @param NodeId: <p>节点ID</p>
+        # @type NodeId: String
+        # @param DiskId: <p>节点磁盘ID</p>
+        # @type DiskId: String
+        # @param DiskSize: <p>调整后的磁盘容量大小</p><p>单位：GB</p><p>必须大于当前硬盘大小。系统盘小于2048，数据盘小于32000</p>
+        # @type DiskSize: Integer
+
+        attr_accessor :NodeId, :DiskId, :DiskSize
+
+        def initialize(nodeid=nil, diskid=nil, disksize=nil)
+          @NodeId = nodeid
+          @DiskId = diskid
+          @DiskSize = disksize
+        end
+
+        def deserialize(params)
+          @NodeId = params['NodeId']
+          @DiskId = params['DiskId']
+          @DiskSize = params['DiskSize']
+        end
+      end
+
+      # ResizeDBCustomNodeDisk返回参数结构体
+      class ResizeDBCustomNodeDiskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>调整节点磁盘容量的任务ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 标签对象，包含tagKey & tagValue
       class ResourceTag < TencentCloud::Common::AbstractModel
         # @param TagKey: 标签键
@@ -3972,6 +4151,84 @@ module TencentCloud
           end
           @SecurityGroupName = params['SecurityGroupName']
           @SecurityGroupRemark = params['SecurityGroupRemark']
+        end
+      end
+
+      # StartDBCustomNodes请求参数结构体
+      class StartDBCustomNodesRequest < TencentCloud::Common::AbstractModel
+        # @param NodeIds: <p>节点 ID 列表</p><p>入参限制：最多支持 100 个</p>
+        # @type NodeIds: Array
+
+        attr_accessor :NodeIds
+
+        def initialize(nodeids=nil)
+          @NodeIds = nodeids
+        end
+
+        def deserialize(params)
+          @NodeIds = params['NodeIds']
+        end
+      end
+
+      # StartDBCustomNodes返回参数结构体
+      class StartDBCustomNodesResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # StopDBCustomNodes请求参数结构体
+      class StopDBCustomNodesRequest < TencentCloud::Common::AbstractModel
+        # @param NodeIds: <p>节点 ID 列表</p><p>入参限制：最多支持 100 个</p>
+        # @type NodeIds: Array
+        # @param StopType: <p>关机类型</p><p>枚举值：</p><ul><li>SOFT： 软关机</li><li>HARD： 硬关机</li><li>SOFT_FIRST： 优先软关机，失败再执行硬关机</li></ul><p>默认值：SOFT</p>
+        # @type StopType: String
+
+        attr_accessor :NodeIds, :StopType
+
+        def initialize(nodeids=nil, stoptype=nil)
+          @NodeIds = nodeids
+          @StopType = stoptype
+        end
+
+        def deserialize(params)
+          @NodeIds = params['NodeIds']
+          @StopType = params['StopType']
+        end
+      end
+
+      # StopDBCustomNodes返回参数结构体
+      class StopDBCustomNodesResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
         end
       end
 

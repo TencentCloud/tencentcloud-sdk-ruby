@@ -3295,7 +3295,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 返回数量，默认为20，最大值为100
         # @type Limit: Integer
-        # @param Filters: 过滤条件
+        # @param Filters: 过滤条件。支持 access-policy-id 按关联的访问策略 ID 反向查询；其他过滤条件沿用沙箱工具列表接口约定。
         # @type Filters: Array
 
         attr_accessor :ToolIds, :Offset, :Limit, :Filters

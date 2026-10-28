@@ -248,6 +248,26 @@ module TencentCloud
         end
       end
 
+      # 筛选符合条件的Agent
+      class AgentFilter < TencentCloud::Common::AbstractModel
+        # @param Name: 查询key
+        # @type Name: String
+        # @param Value: 查询value
+        # @type Value: Array
+
+        attr_accessor :Name, :Value
+
+        def initialize(name=nil, value=nil)
+          @Name = name
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
+        end
+      end
+
       # 应用性能监控产品中应用信息
       class ApmServiceInfo < TencentCloud::Common::AbstractModel
         # @param InstanceId: 业务ID
@@ -636,6 +656,76 @@ module TencentCloud
             end
           end
           @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeInstanceAgentList请求参数结构体
+      class DescribeInstanceAgentListRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceType: <p>1:CVM<br>2.TKE</p>
+        # @type InstanceType: Integer
+        # @param Filters: <p>筛选条件</p>
+        # @type Filters: Array
+        # @param Page: <p>页数</p>
+        # @type Page: Integer
+        # @param PageSize: <p>每页大小</p>
+        # @type PageSize: Integer
+        # @param AgentScene: <p>查询探针场景</p>
+        # @type AgentScene: Integer
+
+        attr_accessor :InstanceType, :Filters, :Page, :PageSize, :AgentScene
+
+        def initialize(instancetype=nil, filters=nil, page=nil, pagesize=nil, agentscene=nil)
+          @InstanceType = instancetype
+          @Filters = filters
+          @Page = page
+          @PageSize = pagesize
+          @AgentScene = agentscene
+        end
+
+        def deserialize(params)
+          @InstanceType = params['InstanceType']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              agentfilter_tmp = AgentFilter.new
+              agentfilter_tmp.deserialize(i)
+              @Filters << agentfilter_tmp
+            end
+          end
+          @Page = params['Page']
+          @PageSize = params['PageSize']
+          @AgentScene = params['AgentScene']
+        end
+      end
+
+      # DescribeInstanceAgentList返回参数结构体
+      class DescribeInstanceAgentListResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceAgent: <p>返回InstnaceAgent详情</p>
+        # @type InstanceAgent: Array
+        # @param TotalCount: <p>总条目数</p>
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceAgent, :TotalCount, :RequestId
+
+        def initialize(instanceagent=nil, totalcount=nil, requestid=nil)
+          @InstanceAgent = instanceagent
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['InstanceAgent'].nil?
+            @InstanceAgent = []
+            params['InstanceAgent'].each do |i|
+              instanceagent_tmp = InstanceAgent.new
+              instanceagent_tmp.deserialize(i)
+              @InstanceAgent << instanceagent_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -1190,6 +1280,93 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # InstallAgentOpenApi请求参数结构体
+      class InstallAgentOpenApiRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceType: <p>1:CVM<br>2:TKE</p>
+        # @type InstanceType: Integer
+        # @param InstanceIds: <p>安装探针实例列表</p>
+        # @type InstanceIds: Array
+
+        attr_accessor :InstanceType, :InstanceIds
+
+        def initialize(instancetype=nil, instanceids=nil)
+          @InstanceType = instancetype
+          @InstanceIds = instanceids
+        end
+
+        def deserialize(params)
+          @InstanceType = params['InstanceType']
+          @InstanceIds = params['InstanceIds']
+        end
+      end
+
+      # InstallAgentOpenApi返回参数结构体
+      class InstallAgentOpenApiResponse < TencentCloud::Common::AbstractModel
+        # @param Message: <p>状态异常提示用户</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Message, :RequestId
+
+        def initialize(message=nil, requestid=nil)
+          @Message = message
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Message = params['Message']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 添加探针的参数
+      class InstanceAgent < TencentCloud::Common::AbstractModel
+        # @param InstanceAgentItem: 添加InstanceAgent的参数名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceAgentItem: Array
+
+        attr_accessor :InstanceAgentItem
+
+        def initialize(instanceagentitem=nil)
+          @InstanceAgentItem = instanceagentitem
+        end
+
+        def deserialize(params)
+          unless params['InstanceAgentItem'].nil?
+            @InstanceAgentItem = []
+            params['InstanceAgentItem'].each do |i|
+              instanceagentitem_tmp = InstanceAgentItem.new
+              instanceagentitem_tmp.deserialize(i)
+              @InstanceAgentItem << instanceagentitem_tmp
+            end
+          end
+        end
+      end
+
+      # 添加探针入参
+      class InstanceAgentItem < TencentCloud::Common::AbstractModel
+        # @param Name: <p>添加参数Key的名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Value: <p>添加参数的Value</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+
+        attr_accessor :Name, :Value
+
+        def initialize(name=nil, value=nil)
+          @Name = name
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
         end
       end
 
@@ -2085,8 +2262,8 @@ module TencentCloud
 
         attr_accessor :TaskGroupInstanceId, :TaskGroupInstanceObjectId, :TaskGroupInstanceStatus, :TaskGroupInstanceCreateTime, :TaskGroupInstanceUpdateTime, :TaskGroupInstanceStatusType, :TaskGroupInstanceStartTime, :TaskGroupInstanceEndTime, :TaskGroupInstanceExecuteLog, :TaskGroupInstanceIsRedo, :TaskGroupInstanceExecuteTime
         extend Gem::Deprecate
-        deprecate :TaskGroupInstanceExecuteLog, :none, 2026, 5
-        deprecate :TaskGroupInstanceExecuteLog=, :none, 2026, 5
+        deprecate :TaskGroupInstanceExecuteLog, :none, 2026, 10
+        deprecate :TaskGroupInstanceExecuteLog=, :none, 2026, 10
 
         def initialize(taskgroupinstanceid=nil, taskgroupinstanceobjectid=nil, taskgroupinstancestatus=nil, taskgroupinstancecreatetime=nil, taskgroupinstanceupdatetime=nil, taskgroupinstancestatustype=nil, taskgroupinstancestarttime=nil, taskgroupinstanceendtime=nil, taskgroupinstanceexecutelog=nil, taskgroupinstanceisredo=nil, taskgroupinstanceexecutetime=nil)
           @TaskGroupInstanceId = taskgroupinstanceid
@@ -2798,6 +2975,47 @@ module TencentCloud
         def deserialize(params)
           @TaskId = params['TaskId']
           @Success = params['Success']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UninstallAgentOpenApi请求参数结构体
+      class UninstallAgentOpenApiRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceType: <p>1: CVM<br>2: TKE</p>
+        # @type InstanceType: Integer
+        # @param InstanceIds: <p>需要卸载的instance_id</p>
+        # @type InstanceIds: Array
+
+        attr_accessor :InstanceType, :InstanceIds
+
+        def initialize(instancetype=nil, instanceids=nil)
+          @InstanceType = instancetype
+          @InstanceIds = instanceids
+        end
+
+        def deserialize(params)
+          @InstanceType = params['InstanceType']
+          @InstanceIds = params['InstanceIds']
+        end
+      end
+
+      # UninstallAgentOpenApi返回参数结构体
+      class UninstallAgentOpenApiResponse < TencentCloud::Common::AbstractModel
+        # @param Message: <p>提示用户状态不正确无法安装字段</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Message, :RequestId
+
+        def initialize(message=nil, requestid=nil)
+          @Message = message
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Message = params['Message']
           @RequestId = params['RequestId']
         end
       end

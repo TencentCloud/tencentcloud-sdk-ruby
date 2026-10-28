@@ -341,6 +341,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建用户配额
+
+        # @param request: Request instance for CreateUserQuota.
+        # @type request: :class:`Tencentcloud::goosefs::V20220519::CreateUserQuotaRequest`
+        # @rtype: :class:`Tencentcloud::goosefs::V20220519::CreateUserQuotaResponse`
+        def CreateUserQuota(request)
+          body = send_request('CreateUserQuota', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateUserQuotaResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 为客户端节点删除跨vpc子网访问能力
 
         # @param request: Request instance for DeleteCrossVpcSubnetSupportForClientNode.
@@ -447,6 +471,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeletePolicyRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除用户配额
+
+        # @param request: Request instance for DeleteUserQuota.
+        # @type request: :class:`Tencentcloud::goosefs::V20220519::DeleteUserQuotaRequest`
+        # @rtype: :class:`Tencentcloud::goosefs::V20220519::DeleteUserQuotaResponse`
+        def DeleteUserQuota(request)
+          body = send_request('DeleteUserQuota', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteUserQuotaResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -759,6 +807,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribePolicyRuleExecuteRecordResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询用户配额
+
+        # @param request: Request instance for DescribeUserQuota.
+        # @type request: :class:`Tencentcloud::goosefs::V20220519::DescribeUserQuotaRequest`
+        # @rtype: :class:`Tencentcloud::goosefs::V20220519::DescribeUserQuotaResponse`
+        def DescribeUserQuota(request)
+          body = send_request('DescribeUserQuota', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeUserQuotaResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1095,6 +1167,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpdateLoadTaskPriorityResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改用户配额
+
+        # @param request: Request instance for UpdateUserQuota.
+        # @type request: :class:`Tencentcloud::goosefs::V20220519::UpdateUserQuotaRequest`
+        # @rtype: :class:`Tencentcloud::goosefs::V20220519::UpdateUserQuotaResponse`
+        def UpdateUserQuota(request)
+          body = send_request('UpdateUserQuota', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateUserQuotaResponse.new
             model.deserialize(response['Response'])
             model
           else
