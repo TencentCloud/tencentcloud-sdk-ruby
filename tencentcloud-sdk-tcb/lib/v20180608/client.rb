@@ -2209,6 +2209,31 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 当前环境下开启 Postgresql 数据库文档插件能力，开启后会在指定  EnvId 的 PostgreSQL 实例下自动生成  pgdoc schema 以提供文档能力，不会额外产生费用，可以云开发控制或云 API 开启使用。
+        # 当前支持地域已环境开通时所在地域为准。
+
+        # @param request: Request instance for EnablePGDocumentExt.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::EnablePGDocumentExtRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::EnablePGDocumentExtResponse`
+        def EnablePGDocumentExt(request)
+          body = send_request('EnablePGDocumentExt', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = EnablePGDocumentExtResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 在Postgres数据库上执行SQL
 
         # @param request: Request instance for ExecutePGSql.

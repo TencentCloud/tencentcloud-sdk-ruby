@@ -6631,6 +6631,42 @@ module TencentCloud
         end
       end
 
+      # EnablePGDocumentExt请求参数结构体
+      class EnablePGDocumentExtRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: <p>环境 id，租户级标识信息，开通环境时产生，全局唯一</p><p>参数格式：用户自定义小写英文命名 + 随机雪花字符</p>
+        # @type EnvId: String
+
+        attr_accessor :EnvId
+
+        def initialize(envid=nil)
+          @EnvId = envid
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+        end
+      end
+
+      # EnablePGDocumentExt返回参数结构体
+      class EnablePGDocumentExtResponse < TencentCloud::Common::AbstractModel
+        # @param Enabled: <p>是否开启成功标记</p><p>枚举值：</p><ul><li>true： 开启成功</li><li>false： 开启失败</li></ul>
+        # @type Enabled: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Enabled, :RequestId
+
+        def initialize(enabled=nil, requestid=nil)
+          @Enabled = enabled
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Enabled = params['Enabled']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 环境计费信息
       class EnvBillingInfoItem < TencentCloud::Common::AbstractModel
         # @param EnvId: <p>环境ID</p>

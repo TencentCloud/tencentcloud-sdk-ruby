@@ -70,7 +70,7 @@ module TencentCloud
         # @type ModelRouterId: String
         # @param SourceModel: <p>源模型名（重写规则的 key）。</p><p>长度 1-255 字符；支持特殊值 <code>default</code> 表示兜底规则（命中所有未显式列出的源模型）。</p><p>不允许使用 <code>IntentRouter/</code> 前缀（大小写不敏感），即 IntentRouter 不能作为 source。</p>
         # @type SourceModel: String
-        # @param TargetModel: <p>目标模型名（重写规则的 value）。</p><p>长度 1-255 字符；必须是已关联到该模型路由实例的模型（含 IntentRouter/* 也需先通过 AssociateModels 关联）。</p><p>不允许使用 <code>default</code>；不允许与 SourceModel 相同（大小写不敏感）。</p>
+        # @param TargetModel: <p>目标模型名（重写规则的 value）。</p><p>长度 1-255 字符；必须是已关联到该模型路由实例的模型（含 IntentRouter/* 也需先通过 AssociateModels 关联）。</p><p>不允许使用 <code>default</code>；不允许与 SourceModel 相同（大小写不敏感）。</p><p>特殊值 __reject__：仅 SourceModel=default 时可用，表示未指定模型的请求（未传、为空或 ModelRouter/auto）不走 L1 路由，直接拒绝（HTTP 400）。</p>
         # @type TargetModel: String
 
         attr_accessor :ModelRouterId, :SourceModel, :TargetModel
