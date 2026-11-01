@@ -5506,6 +5506,50 @@ module TencentCloud
         end
       end
 
+      # CreateSSEToken请求参数结构体
+      class CreateSSETokenRequest < TencentCloud::Common::AbstractModel
+        # @param LoginUin: <p>主用户Uin</p>
+        # @type LoginUin: String
+        # @param LoginSubAccountUin: <p>子用户Uin</p>
+        # @type LoginSubAccountUin: String
+        # @param AppId: <p>应用ID</p>
+        # @type AppId: String
+
+        attr_accessor :LoginUin, :LoginSubAccountUin, :AppId
+
+        def initialize(loginuin=nil, loginsubaccountuin=nil, appid=nil)
+          @LoginUin = loginuin
+          @LoginSubAccountUin = loginsubaccountuin
+          @AppId = appid
+        end
+
+        def deserialize(params)
+          @LoginUin = params['LoginUin']
+          @LoginSubAccountUin = params['LoginSubAccountUin']
+          @AppId = params['AppId']
+        end
+      end
+
+      # CreateSSEToken返回参数结构体
+      class CreateSSETokenResponse < TencentCloud::Common::AbstractModel
+        # @param Token: <p>SSE 鉴权 Token</p>
+        # @type Token: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Token, :RequestId
+
+        def initialize(token=nil, requestid=nil)
+          @Token = token
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Token = params['Token']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateSimilarQuestion请求参数结构体
       class CreateSimilarQuestionRequest < TencentCloud::Common::AbstractModel
         # @param KbId: <p>所属知识库 ID</p>

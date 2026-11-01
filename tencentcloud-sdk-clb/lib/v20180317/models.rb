@@ -2014,17 +2014,21 @@ module TencentCloud
         # @type InputTokensAbove: Integer
         # @param Resolution: <p>video 仅 480p／720p／768p／1024p／1080p／2k／4k，统一小写；只校验全局枚举，不校验模型支持子集；列表内不重复</p>
         # @type Resolution: String
+        # @param HasInputVideo: <p>是否有视频输入</p>
+        # @type HasInputVideo: Boolean
 
-        attr_accessor :InputTokensAbove, :Resolution
+        attr_accessor :InputTokensAbove, :Resolution, :HasInputVideo
 
-        def initialize(inputtokensabove=nil, resolution=nil)
+        def initialize(inputtokensabove=nil, resolution=nil, hasinputvideo=nil)
           @InputTokensAbove = inputtokensabove
           @Resolution = resolution
+          @HasInputVideo = hasinputvideo
         end
 
         def deserialize(params)
           @InputTokensAbove = params['InputTokensAbove']
           @Resolution = params['Resolution']
+          @HasInputVideo = params['HasInputVideo']
         end
       end
 
@@ -2193,8 +2197,8 @@ module TencentCloud
 
         attr_accessor :LogsetName, :Period, :LogsetType
         extend Gem::Deprecate
-        deprecate :Period, :none, 2026, 10
-        deprecate :Period=, :none, 2026, 10
+        deprecate :Period, :none, 2026, 11
+        deprecate :Period=, :none, 2026, 11
 
         def initialize(logsetname=nil, period=nil, logsettype=nil)
           @LogsetName = logsetname
@@ -9512,8 +9516,8 @@ module TencentCloud
 
         attr_accessor :LoadBalancerId, :LoadBalancerName, :LoadBalancerType, :Forward, :Domain, :LoadBalancerVips, :Status, :CreateTime, :StatusTime, :ProjectId, :VpcId, :OpenBgp, :Snat, :Isolation, :Log, :SubnetId, :Tags, :SecureGroups, :TargetRegionInfo, :AnycastZone, :AddressIPVersion, :NumericalVpcId, :VipIsp, :MasterZone, :BackupZoneSet, :IsolatedTime, :ExpireTime, :ChargeType, :NetworkAttributes, :PrepaidAttributes, :LogSetId, :LogTopicId, :AddressIPv6, :ExtraInfo, :IsDDos, :ConfigId, :LoadBalancerPassToTarget, :ExclusiveCluster, :IPv6Mode, :SnatPro, :SnatIps, :SlaType, :IsBlock, :IsBlockTime, :LocalBgp, :ClusterTag, :MixIpTarget, :Zones, :NfvInfo, :HealthLogSetId, :HealthLogTopicId, :ClusterIds, :AttributeFlags, :LoadBalancerDomain, :Egress, :Exclusive, :TargetCount, :AssociateEndpoint, :AvailableZoneAffinityInfo
         extend Gem::Deprecate
-        deprecate :Log, :none, 2026, 10
-        deprecate :Log=, :none, 2026, 10
+        deprecate :Log, :none, 2026, 11
+        deprecate :Log=, :none, 2026, 11
 
         def initialize(loadbalancerid=nil, loadbalancername=nil, loadbalancertype=nil, forward=nil, domain=nil, loadbalancervips=nil, status=nil, createtime=nil, statustime=nil, projectid=nil, vpcid=nil, openbgp=nil, snat=nil, isolation=nil, log=nil, subnetid=nil, tags=nil, securegroups=nil, targetregioninfo=nil, anycastzone=nil, addressipversion=nil, numericalvpcid=nil, vipisp=nil, masterzone=nil, backupzoneset=nil, isolatedtime=nil, expiretime=nil, chargetype=nil, networkattributes=nil, prepaidattributes=nil, logsetid=nil, logtopicid=nil, addressipv6=nil, extrainfo=nil, isddos=nil, configid=nil, loadbalancerpasstotarget=nil, exclusivecluster=nil, ipv6mode=nil, snatpro=nil, snatips=nil, slatype=nil, isblock=nil, isblocktime=nil, localbgp=nil, clustertag=nil, mixiptarget=nil, zones=nil, nfvinfo=nil, healthlogsetid=nil, healthlogtopicid=nil, clusterids=nil, attributeflags=nil, loadbalancerdomain=nil, egress=nil, exclusive=nil, targetcount=nil, associateendpoint=nil, availablezoneaffinityinfo=nil)
           @LoadBalancerId = loadbalancerid
@@ -12414,21 +12418,24 @@ module TencentCloud
         # @type ServiceProviderId: String
         # @param ModelName: <p>待修改的模型的名称（原始模型名称）</p>
         # @type ModelName: String
-        # @param InputModalities: <p>该模型支持的输入多模态能力列表</p><p>枚举值：</p><ul><li>text： 支持文本输入</li><li>image： 支持图像输入</li><li>file： 支持文件输入（当前仅支持pdf）</li></ul>
+        # @param InputModalities: <p>该模型支持的输入多模态能力列表</p><p>枚举值：</p><ul><li>text： 支持文本输入</li><li>image： 支持图像输入</li><li>file： 支持文件输入（当前仅支持pdf）</li><li>video： 支持视频输入</li></ul>
         # @type InputModalities: Array
         # @param NewModelName: <p>新的上游模型名称</p>
         # @type NewModelName: String
         # @param NewModelAlias: <p>新的对外模型名称</p>
         # @type NewModelAlias: String
+        # @param UpstreamRollout: <p>上游模型灰度操作，支持 Set、Promote、Rollback。</p><p>入参限制：未传时沿用普通属性编辑；显式 null、空对象及未知字段拒绝。与显式传入的 NewModelName、NewModelAlias、InputModalities 互斥，包括 null 和空别名。</p><p>Set 必须提供候选 ModelName 和 1～99 的整数 Weight，可调整同一候选的比例；相同配置在资源可编辑时成功且不重复下发。Promote、Rollback 仅传 Operation，分别全量切换到候选或恢复主模型并结束灰度。外层 ModelName 定位当前主模型；响应仍为 RequestId，任务通过 DescribeAsyncJobs 查询。</p>
+        # @type UpstreamRollout: :class:`Tencentcloud::Clb.v20180317.models.UpstreamRolloutOperation`
 
-        attr_accessor :ServiceProviderId, :ModelName, :InputModalities, :NewModelName, :NewModelAlias
+        attr_accessor :ServiceProviderId, :ModelName, :InputModalities, :NewModelName, :NewModelAlias, :UpstreamRollout
 
-        def initialize(serviceproviderid=nil, modelname=nil, inputmodalities=nil, newmodelname=nil, newmodelalias=nil)
+        def initialize(serviceproviderid=nil, modelname=nil, inputmodalities=nil, newmodelname=nil, newmodelalias=nil, upstreamrollout=nil)
           @ServiceProviderId = serviceproviderid
           @ModelName = modelname
           @InputModalities = inputmodalities
           @NewModelName = newmodelname
           @NewModelAlias = newmodelalias
+          @UpstreamRollout = upstreamrollout
         end
 
         def deserialize(params)
@@ -12437,6 +12444,10 @@ module TencentCloud
           @InputModalities = params['InputModalities']
           @NewModelName = params['NewModelName']
           @NewModelAlias = params['NewModelAlias']
+          unless params['UpstreamRollout'].nil?
+            @UpstreamRollout = UpstreamRolloutOperation.new
+            @UpstreamRollout.deserialize(params['UpstreamRollout'])
+          end
         end
       end
 
@@ -13922,10 +13933,10 @@ module TencentCloud
 
         attr_accessor :ListenerId, :Targets, :LocationId, :Domain, :Url, :Weight
         extend Gem::Deprecate
-        deprecate :Domain, :none, 2026, 10
-        deprecate :Domain=, :none, 2026, 10
-        deprecate :Url, :none, 2026, 10
-        deprecate :Url=, :none, 2026, 10
+        deprecate :Domain, :none, 2026, 11
+        deprecate :Domain=, :none, 2026, 11
+        deprecate :Url, :none, 2026, 11
+        deprecate :Url=, :none, 2026, 11
 
         def initialize(listenerid=nil, targets=nil, locationid=nil, domain=nil, url=nil, weight=nil)
           @ListenerId = listenerid
@@ -15402,8 +15413,8 @@ module TencentCloud
 
         attr_accessor :IP, :Port, :HealthStatus, :TargetId, :HealthStatusDetail, :HealthStatusDetial, :TargetGroupId, :Weight
         extend Gem::Deprecate
-        deprecate :HealthStatusDetial, :none, 2026, 10
-        deprecate :HealthStatusDetial=, :none, 2026, 10
+        deprecate :HealthStatusDetial, :none, 2026, 11
+        deprecate :HealthStatusDetial=, :none, 2026, 11
 
         def initialize(ip=nil, port=nil, healthstatus=nil, targetid=nil, healthstatusdetail=nil, healthstatusdetial=nil, targetgroupid=nil, weight=nil)
           @IP = ip
@@ -15718,6 +15729,30 @@ module TencentCloud
               @SpecAvailabilitySet << specavailability_tmp
             end
           end
+        end
+      end
+
+      # BYOK 上游模型灰度操作。Set 开启灰度或调整同一候选比例，Promote 全量切换，Rollback 结束灰度并恢复主模型。
+      class UpstreamRolloutOperation < TencentCloud::Common::AbstractModel
+        # @param Operation: <p>上游模型灰度操作类型。Set：开始灰度或调整同一候选的比例；Promote：全量切换到候选模型并结束灰度；Rollback：保留当前主模型并结束灰度。</p><p>入参限制：仅支持 Set、Promote、Rollback，区分大小写。Promote 和 Rollback 仅允许在灰度中使用，且禁止携带 ModelName、Weight。</p>
+        # @type Operation: String
+        # @param ModelName: <p>候选上游模型的原始名称，保留名称中的斜杠。</p><p>入参限制：Operation 为 Set 时必填，非空且最长 128 个字符；不能与当前主模型相同，不能占用同一 BYOK 的其他主模型或有效灰度候选名称。Promote、Rollback 禁止传入。</p>
+        # @type ModelName: String
+        # @param Weight: <p>候选上游模型的灰度流量比例。</p><p>取值范围：[1, 99]</p><p>单位：%</p><p>Set 时必填，无默认值，必须为整数；拒绝 0、100、小数、布尔值及字符串。Promote、Rollback 禁止传入。比例只影响需要重新选择上游的请求，已有有效 Sticky 绑定不迁移，实际流量占比不保证等于配置比例。</p>
+        # @type Weight: Integer
+
+        attr_accessor :Operation, :ModelName, :Weight
+
+        def initialize(operation=nil, modelname=nil, weight=nil)
+          @Operation = operation
+          @ModelName = modelname
+          @Weight = weight
+        end
+
+        def deserialize(params)
+          @Operation = params['Operation']
+          @ModelName = params['ModelName']
+          @Weight = params['Weight']
         end
       end
 

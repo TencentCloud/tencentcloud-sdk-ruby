@@ -1421,8 +1421,8 @@ module TencentCloud
 
         attr_accessor :Name, :Description, :TraceDuration, :Tags, :SpanDailyCounters, :PayMode, :Free
         extend Gem::Deprecate
-        deprecate :SpanDailyCounters, :none, 2026, 10
-        deprecate :SpanDailyCounters=, :none, 2026, 10
+        deprecate :SpanDailyCounters, :none, 2026, 11
+        deprecate :SpanDailyCounters=, :none, 2026, 11
 
         def initialize(name=nil, description=nil, traceduration=nil, tags=nil, spandailycounters=nil, paymode=nil, free=nil)
           @Name = name
@@ -1713,8 +1713,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :AgentType, :NetworkMode, :LanguageEnvironment, :ReportMethod
         extend Gem::Deprecate
-        deprecate :ReportMethod, :none, 2026, 10
-        deprecate :ReportMethod=, :none, 2026, 10
+        deprecate :ReportMethod, :none, 2026, 11
+        deprecate :ReportMethod=, :none, 2026, 11
 
         def initialize(instanceid=nil, agenttype=nil, networkmode=nil, languageenvironment=nil, reportmethod=nil)
           @InstanceId = instanceid
@@ -3151,10 +3151,12 @@ module TencentCloud
         # @type FilterViewTagKeyList: Array
         # @param EnableResourceLink: <p>是否开启云资源关联</p>
         # @type EnableResourceLink: Boolean
+        # @param FilterTagKeys: <p>字符串数组，tagstag里面的key</p>
+        # @type FilterTagKeys: Array
 
-        attr_accessor :InstanceId, :Filters, :StartTime, :EndTime, :IsFold, :EntrySpanSelected, :FocusSpanId, :FilterViewTagKeyList, :EnableResourceLink
+        attr_accessor :InstanceId, :Filters, :StartTime, :EndTime, :IsFold, :EntrySpanSelected, :FocusSpanId, :FilterViewTagKeyList, :EnableResourceLink, :FilterTagKeys
 
-        def initialize(instanceid=nil, filters=nil, starttime=nil, endtime=nil, isfold=nil, entryspanselected=nil, focusspanid=nil, filterviewtagkeylist=nil, enableresourcelink=nil)
+        def initialize(instanceid=nil, filters=nil, starttime=nil, endtime=nil, isfold=nil, entryspanselected=nil, focusspanid=nil, filterviewtagkeylist=nil, enableresourcelink=nil, filtertagkeys=nil)
           @InstanceId = instanceid
           @Filters = filters
           @StartTime = starttime
@@ -3164,6 +3166,7 @@ module TencentCloud
           @FocusSpanId = focusspanid
           @FilterViewTagKeyList = filterviewtagkeylist
           @EnableResourceLink = enableresourcelink
+          @FilterTagKeys = filtertagkeys
         end
 
         def deserialize(params)
@@ -3183,6 +3186,7 @@ module TencentCloud
           @FocusSpanId = params['FocusSpanId']
           @FilterViewTagKeyList = params['FilterViewTagKeyList']
           @EnableResourceLink = params['EnableResourceLink']
+          @FilterTagKeys = params['FilterTagKeys']
         end
       end
 

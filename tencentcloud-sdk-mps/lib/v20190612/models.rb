@@ -3591,8 +3591,8 @@ module TencentCloud
 
         attr_accessor :SegmentSet, :SubtitlePath, :OutputStorage
         extend Gem::Deprecate
-        deprecate :OutputStorage, :none, 2026, 10
-        deprecate :OutputStorage=, :none, 2026, 10
+        deprecate :OutputStorage, :none, 2026, 11
+        deprecate :OutputStorage=, :none, 2026, 11
 
         def initialize(segmentset=nil, subtitlepath=nil, outputstorage=nil)
           @SegmentSet = segmentset
@@ -7615,14 +7615,17 @@ module TencentCloud
         # @type Resolution: String
         # @param ModelTier: <p>模式。flagship（高级版，默认）、standard（标准版）、depthcrafter(深度提取)</p>
         # @type ModelTier: String
+        # @param DepthWithAudio: <p>深度估计结果是否含音频， 默认不含</p>
+        # @type DepthWithAudio: Boolean
 
-        attr_accessor :Duration, :AspectRatio, :Resolution, :ModelTier
+        attr_accessor :Duration, :AspectRatio, :Resolution, :ModelTier, :DepthWithAudio
 
-        def initialize(duration=nil, aspectratio=nil, resolution=nil, modeltier=nil)
+        def initialize(duration=nil, aspectratio=nil, resolution=nil, modeltier=nil, depthwithaudio=nil)
           @Duration = duration
           @AspectRatio = aspectratio
           @Resolution = resolution
           @ModelTier = modeltier
+          @DepthWithAudio = depthwithaudio
         end
 
         def deserialize(params)
@@ -7630,6 +7633,7 @@ module TencentCloud
           @AspectRatio = params['AspectRatio']
           @Resolution = params['Resolution']
           @ModelTier = params['ModelTier']
+          @DepthWithAudio = params['DepthWithAudio']
         end
       end
 
@@ -7718,14 +7722,17 @@ module TencentCloud
         # @type Ethnicity: String
         # @param BodyType: <p>体型。slim / standard / athletic / chubby</p>
         # @type BodyType: String
+        # @param Images: <p>人物图片</p>
+        # @type Images: Array
 
-        attr_accessor :Gender, :Age, :Ethnicity, :BodyType
+        attr_accessor :Gender, :Age, :Ethnicity, :BodyType, :Images
 
-        def initialize(gender=nil, age=nil, ethnicity=nil, bodytype=nil)
+        def initialize(gender=nil, age=nil, ethnicity=nil, bodytype=nil, images=nil)
           @Gender = gender
           @Age = age
           @Ethnicity = ethnicity
           @BodyType = bodytype
+          @Images = images
         end
 
         def deserialize(params)
@@ -7733,6 +7740,7 @@ module TencentCloud
           @Age = params['Age']
           @Ethnicity = params['Ethnicity']
           @BodyType = params['BodyType']
+          @Images = params['Images']
         end
       end
 
@@ -7760,10 +7768,32 @@ module TencentCloud
         end
       end
 
+      # 动作级补充素材：服饰套装 / 背景
+      class CloneViralReference < TencentCloud::Common::AbstractModel
+        # @param Outfits: <p>服饰套装参考图，多套按视频中的分段换装</p>
+        # @type Outfits: Array
+        # @param Backgrounds: <p>背景/场景参考图</p>
+        # @type Backgrounds: Array
+
+        attr_accessor :Outfits, :Backgrounds
+
+        def initialize(outfits=nil, backgrounds=nil)
+          @Outfits = outfits
+          @Backgrounds = backgrounds
+        end
+
+        def deserialize(params)
+          @Outfits = params['Outfits']
+          @Backgrounds = params['Backgrounds']
+        end
+      end
+
       # CloneViral请求参数结构体
       class CloneViralRequest < TencentCloud::Common::AbstractModel
         # @param VideoUrl: <p>爆款视频Url</p>
         # @type VideoUrl: String
+        # @param Mode: <p>处理类型</p><p>枚举值：</p><ul><li>script ： 脚本级爆款复刻</li><li>motion： 动作级爆款复刻</li><li>depth： 深度估计</li></ul>
+        # @type Mode: String
         # @param Product: <p>产品信息。除深度提取外，其他模式必填</p>
         # @type Product: :class:`Tencentcloud::Mps.v20190612.models.CloneViralProduct`
         # @param AIGCParam: <p>AIGC生视频相关参数</p>
@@ -7774,20 +7804,25 @@ module TencentCloud
         # @type Persona: :class:`Tencentcloud::Mps.v20190612.models.CloneViralPersona`
         # @param Output: <p>输出相关参数</p>
         # @type Output: :class:`Tencentcloud::Mps.v20190612.models.CloneViralOutputOption`
+        # @param Reference: <p>其他参考素材（如背景、服装）</p>
+        # @type Reference: :class:`Tencentcloud::Mps.v20190612.models.CloneViralReference`
 
-        attr_accessor :VideoUrl, :Product, :AIGCParam, :ContentParam, :Persona, :Output
+        attr_accessor :VideoUrl, :Mode, :Product, :AIGCParam, :ContentParam, :Persona, :Output, :Reference
 
-        def initialize(videourl=nil, product=nil, aigcparam=nil, contentparam=nil, persona=nil, output=nil)
+        def initialize(videourl=nil, mode=nil, product=nil, aigcparam=nil, contentparam=nil, persona=nil, output=nil, reference=nil)
           @VideoUrl = videourl
+          @Mode = mode
           @Product = product
           @AIGCParam = aigcparam
           @ContentParam = contentparam
           @Persona = persona
           @Output = output
+          @Reference = reference
         end
 
         def deserialize(params)
           @VideoUrl = params['VideoUrl']
+          @Mode = params['Mode']
           unless params['Product'].nil?
             @Product = CloneViralProduct.new
             @Product.deserialize(params['Product'])
@@ -7807,6 +7842,10 @@ module TencentCloud
           unless params['Output'].nil?
             @Output = CloneViralOutputOption.new
             @Output.deserialize(params['Output'])
+          end
+          unless params['Reference'].nil?
+            @Reference = CloneViralReference.new
+            @Reference.deserialize(params['Reference'])
           end
         end
       end
@@ -10719,8 +10758,8 @@ module TencentCloud
 
         attr_accessor :OutputName, :Description, :Protocol, :OutputRegion, :OutputType, :OutputKind, :SRTSettings, :RTMPSettings, :RTPSettings, :AllowIpList, :MaxConcurrent, :SecurityGroupIds, :Zones, :RISTSettings, :PidSelector, :StreamSelector
         extend Gem::Deprecate
-        deprecate :PidSelector, :none, 2026, 10
-        deprecate :PidSelector=, :none, 2026, 10
+        deprecate :PidSelector, :none, 2026, 11
+        deprecate :PidSelector=, :none, 2026, 11
 
         def initialize(outputname=nil, description=nil, protocol=nil, outputregion=nil, outputtype=nil, outputkind=nil, srtsettings=nil, rtmpsettings=nil, rtpsettings=nil, allowiplist=nil, maxconcurrent=nil, securitygroupids=nil, zones=nil, ristsettings=nil, pidselector=nil, streamselector=nil)
           @OutputName = outputname
@@ -16093,8 +16132,8 @@ module TencentCloud
 
         attr_accessor :OutputId, :OutputName, :OutputType, :OutputKind, :Description, :Protocol, :OutputAddressList, :OutputRegion, :SRTSettings, :RTPSettings, :RTMPSettings, :RTMPPullSettings, :AllowIpList, :RTSPPullSettings, :HLSPullSettings, :MaxConcurrent, :SecurityGroupIds, :Zones, :RISTSettings, :PidSelector, :StreamUrls, :StreamSelector, :State
         extend Gem::Deprecate
-        deprecate :PidSelector, :none, 2026, 10
-        deprecate :PidSelector=, :none, 2026, 10
+        deprecate :PidSelector, :none, 2026, 11
+        deprecate :PidSelector=, :none, 2026, 11
 
         def initialize(outputid=nil, outputname=nil, outputtype=nil, outputkind=nil, description=nil, protocol=nil, outputaddresslist=nil, outputregion=nil, srtsettings=nil, rtpsettings=nil, rtmpsettings=nil, rtmppullsettings=nil, allowiplist=nil, rtsppullsettings=nil, hlspullsettings=nil, maxconcurrent=nil, securitygroupids=nil, zones=nil, ristsettings=nil, pidselector=nil, streamurls=nil, streamselector=nil, state=nil)
           @OutputId = outputid
@@ -20989,8 +21028,8 @@ module TencentCloud
 
         attr_accessor :TaskType, :EvaluationTypeSet, :EvaluationRangeType, :ContrastInfoSet, :ContrastMediaSet, :ContrastTemplateSet, :StartTime, :EndTime, :StartFrameIndex, :EndFrameIndex, :ResolutionAlignmentMode, :BitrateSet, :VCRFSet
         extend Gem::Deprecate
-        deprecate :ContrastInfoSet, :none, 2026, 10
-        deprecate :ContrastInfoSet=, :none, 2026, 10
+        deprecate :ContrastInfoSet, :none, 2026, 11
+        deprecate :ContrastInfoSet=, :none, 2026, 11
 
         def initialize(tasktype=nil, evaluationtypeset=nil, evaluationrangetype=nil, contrastinfoset=nil, contrastmediaset=nil, contrasttemplateset=nil, starttime=nil, endtime=nil, startframeindex=nil, endframeindex=nil, resolutionalignmentmode=nil, bitrateset=nil, vcrfset=nil)
           @TaskType = tasktype
@@ -24107,10 +24146,10 @@ module TencentCloud
 
         attr_accessor :QualityControlResults, :DiagnoseResults, :QualityControlResultSet, :DiagnoseResultSet
         extend Gem::Deprecate
-        deprecate :QualityControlResults, :none, 2026, 10
-        deprecate :QualityControlResults=, :none, 2026, 10
-        deprecate :DiagnoseResults, :none, 2026, 10
-        deprecate :DiagnoseResults=, :none, 2026, 10
+        deprecate :QualityControlResults, :none, 2026, 11
+        deprecate :QualityControlResults=, :none, 2026, 11
+        deprecate :DiagnoseResults, :none, 2026, 11
+        deprecate :DiagnoseResults=, :none, 2026, 11
 
         def initialize(qualitycontrolresults=nil, diagnoseresults=nil, qualitycontrolresultset=nil, diagnoseresultset=nil)
           @QualityControlResults = qualitycontrolresults
@@ -27436,8 +27475,8 @@ module TencentCloud
 
         attr_accessor :OutputId, :OutputName, :Description, :Protocol, :OutputKind, :SRTSettings, :RTPSettings, :RTMPSettings, :AllowIpList, :MaxConcurrent, :SecurityGroupIds, :Zones, :RISTSettings, :OutputType, :PidSelector, :StreamSelector
         extend Gem::Deprecate
-        deprecate :PidSelector, :none, 2026, 10
-        deprecate :PidSelector=, :none, 2026, 10
+        deprecate :PidSelector, :none, 2026, 11
+        deprecate :PidSelector=, :none, 2026, 11
 
         def initialize(outputid=nil, outputname=nil, description=nil, protocol=nil, outputkind=nil, srtsettings=nil, rtpsettings=nil, rtmpsettings=nil, allowiplist=nil, maxconcurrent=nil, securitygroupids=nil, zones=nil, ristsettings=nil, outputtype=nil, pidselector=nil, streamselector=nil)
           @OutputId = outputid
