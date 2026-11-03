@@ -1420,10 +1420,10 @@ module TencentCloud
 
         attr_accessor :Id, :ClusterId, :Ftitle, :ClusterName, :RegionId, :ZoneId, :AppId, :Uin, :ProjectId, :VpcId, :SubnetId, :Status, :AddTime, :RunTime, :Config, :MasterIp, :EmrVersion, :ChargeType, :TradeVersion, :ResourceOrderId, :IsTradeCluster, :AlarmInfo, :IsWoodpeckerCluster, :MetaDb, :Tags, :HiveMetaDb, :ServiceClass, :AliasInfo, :ProductId, :Zone, :SceneName, :SceneServiceClass, :SceneEmrVersion, :DisplayName, :VpcName, :SubnetName, :ClusterExternalServiceInfo, :UniqVpcId, :UniqSubnetId, :TopologyInfoList, :IsMultiZoneCluster, :IsCvmReplace, :ClusterTitle, :ConfigDetail, :BindFileSystemNum, :ClusterRelationInfoList, :RedisId, :IsIOHungSelfRecovery, :MetaDBGroupInfo
         extend Gem::Deprecate
-        deprecate :Ftitle, :none, 2026, 10
-        deprecate :Ftitle=, :none, 2026, 10
-        deprecate :Config, :none, 2026, 10
-        deprecate :Config=, :none, 2026, 10
+        deprecate :Ftitle, :none, 2026, 11
+        deprecate :Ftitle=, :none, 2026, 11
+        deprecate :Config, :none, 2026, 11
+        deprecate :Config=, :none, 2026, 11
 
         def initialize(id=nil, clusterid=nil, ftitle=nil, clustername=nil, regionid=nil, zoneid=nil, appid=nil, uin=nil, projectid=nil, vpcid=nil, subnetid=nil, status=nil, addtime=nil, runtime=nil, config=nil, masterip=nil, emrversion=nil, chargetype=nil, tradeversion=nil, resourceorderid=nil, istradecluster=nil, alarminfo=nil, iswoodpeckercluster=nil, metadb=nil, tags=nil, hivemetadb=nil, serviceclass=nil, aliasinfo=nil, productid=nil, zone=nil, scenename=nil, sceneserviceclass=nil, sceneemrversion=nil, displayname=nil, vpcname=nil, subnetname=nil, clusterexternalserviceinfo=nil, uniqvpcid=nil, uniqsubnetid=nil, topologyinfolist=nil, ismultizonecluster=nil, iscvmreplace=nil, clustertitle=nil, configdetail=nil, bindfilesystemnum=nil, clusterrelationinfolist=nil, redisid=nil, isiohungselfrecovery=nil, metadbgroupinfo=nil)
           @Id = id
@@ -5353,25 +5353,26 @@ module TencentCloud
 
       # DescribeInstancesList请求参数结构体
       class DescribeInstancesListRequest < TencentCloud::Common::AbstractModel
-        # @param DisplayStrategy: 集群筛选策略。取值范围：<li>clusterList：表示查询除了已销毁集群之外的集群列表。</li><li>monitorManage：表示查询除了已销毁、创建中以及创建失败的集群之外的集群列表。</li><li>cloudHardwareManage/componentManage：目前这两个取值为预留取值，暂时和monitorManage表示同样的含义。</li>
+        # @param DisplayStrategy: <p>集群筛选策略。取值范围：<li>clusterList：表示查询除了已销毁集群之外的集群列表。</li><li>monitorManage：表示查询除了已销毁、创建中以及创建失败的集群之外的集群列表。</li><li>cloudHardwareManage/componentManage：目前这两个取值为预留取值，暂时和monitorManage表示同样的含义。</li></p>
         # @type DisplayStrategy: String
-        # @param Offset: 页编号，默认值为0，表示第一页。
+        # @param Offset: <p>页编号，默认值为0，表示第一页。</p>
         # @type Offset: Integer
-        # @param Limit: 每页返回数量，默认值为100，最大值为100。
-        # 如果limit和offset都为0，则查询全部记录；
+        # @param Limit: <p>每页返回数量，默认值为100，最大值为100。<br>如果limit和offset都为0，则查询全部记录；</p>
         # @type Limit: Integer
-        # @param OrderField: 排序字段。取值范围：<li>clusterId：表示按照实例ID排序。</li><li>addTime：表示按照实例创建时间排序。</li><li>status：表示按照实例的状态码排序。</li>
+        # @param OrderField: <p>排序字段。取值范围：<li>clusterId：表示按照实例ID排序。</li><li>addTime：表示按照实例创建时间排序。</li><li>status：表示按照实例的状态码排序。</li></p>
         # @type OrderField: String
-        # @param Asc: 按照OrderField升序或者降序进行排序。取值范围：<li>0：表示升序。</li><li>1：表示降序。</li>默认值为0。
+        # @param Asc: <p>按照OrderField升序或者降序进行排序。取值范围：<li>0：表示升序。</li><li>1：表示降序。</li>默认值为0。</p>
         # @type Asc: Integer
-        # @param Filters: 自定义查询过滤器。示例：<li>根据ClusterId过滤实例：[{"Name":"ClusterId","Values":["emr-xxxxxxxx"]}]</li><li>根据clusterName过滤实例：[{"Name": "ClusterName","Values": ["cluster_name"]}]</li><li>根据ClusterStatus过滤实例：[{"Name": "ClusterStatus","Values": ["2"]}]</li>
+        # @param Filters: <p>自定义查询过滤器。示例：<li>根据ClusterId过滤实例：[{&quot;Name&quot;:&quot;ClusterId&quot;,&quot;Values&quot;:[&quot;emr-xxxxxxxx&quot;]}]</li><li>根据clusterName过滤实例：[{&quot;Name&quot;: &quot;ClusterName&quot;,&quot;Values&quot;: [&quot;cluster_name&quot;]}]</li><li>根据ClusterStatus过滤实例：[{&quot;Name&quot;: &quot;ClusterStatus&quot;,&quot;Values&quot;: [&quot;2&quot;]}]</li></p>
         # @type Filters: Array
-        # @param ClusterType: 默认0为普通集群，2为tke集群
+        # @param ClusterType: <p>默认0为普通集群，2为tke集群</p>
         # @type ClusterType: Integer
+        # @param NeedMcpPasswordInfo: <p>是否返回需要密码信息</p>
+        # @type NeedMcpPasswordInfo: Boolean
 
-        attr_accessor :DisplayStrategy, :Offset, :Limit, :OrderField, :Asc, :Filters, :ClusterType
+        attr_accessor :DisplayStrategy, :Offset, :Limit, :OrderField, :Asc, :Filters, :ClusterType, :NeedMcpPasswordInfo
 
-        def initialize(displaystrategy=nil, offset=nil, limit=nil, orderfield=nil, asc=nil, filters=nil, clustertype=nil)
+        def initialize(displaystrategy=nil, offset=nil, limit=nil, orderfield=nil, asc=nil, filters=nil, clustertype=nil, needmcppasswordinfo=nil)
           @DisplayStrategy = displaystrategy
           @Offset = offset
           @Limit = limit
@@ -5379,6 +5380,7 @@ module TencentCloud
           @Asc = asc
           @Filters = filters
           @ClusterType = clustertype
+          @NeedMcpPasswordInfo = needmcppasswordinfo
         end
 
         def deserialize(params)
@@ -5396,14 +5398,15 @@ module TencentCloud
             end
           end
           @ClusterType = params['ClusterType']
+          @NeedMcpPasswordInfo = params['NeedMcpPasswordInfo']
         end
       end
 
       # DescribeInstancesList返回参数结构体
       class DescribeInstancesListResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCnt: 符合条件的实例总数。
+        # @param TotalCnt: <p>符合条件的实例总数。</p>
         # @type TotalCnt: Integer
-        # @param InstancesList: 集群实例列表
+        # @param InstancesList: <p>集群实例列表</p>
         # @type InstancesList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7858,76 +7861,82 @@ module TencentCloud
 
       # 集群列表返回示例
       class EmrListInstance < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: <p>集群ID</p>
         # @type ClusterId: String
-        # @param StatusDesc: 常见状态描述：集群生产中,集群运行中,集群创建中,集群已关闭,集群已删除
+        # @param StatusDesc: <p>常见状态描述：集群生产中,集群运行中,集群创建中,集群已关闭,集群已删除</p>
         # @type StatusDesc: String
-        # @param ClusterName: 集群名字
+        # @param ClusterName: <p>集群名字</p>
         # @type ClusterName: String
-        # @param ZoneId: 集群地域
+        # @param ZoneId: <p>集群地域</p>
         # @type ZoneId: Integer
-        # @param AppId: 用户APPID
+        # @param AppId: <p>用户APPID</p>
         # @type AppId: Integer
-        # @param AddTime: 创建时间
+        # @param AddTime: <p>创建时间</p>
         # @type AddTime: String
-        # @param RunTime: 运行时间
+        # @param RunTime: <p>运行时间</p>
         # @type RunTime: String
-        # @param MasterIp: 集群IP
+        # @param MasterIp: <p>集群IP</p>
         # @type MasterIp: String
-        # @param EmrVersion: 集群版本
+        # @param EmrVersion: <p>集群版本</p>
         # @type EmrVersion: String
-        # @param ChargeType: 集群计费类型
+        # @param ChargeType: <p>集群计费类型</p>
         # @type ChargeType: Integer
-        # @param Id: emr ID
+        # @param Id: <p>emr ID</p>
         # @type Id: Integer
-        # @param ProductId: 产品ID
+        # @param ProductId: <p>产品ID</p>
         # @type ProductId: Integer
-        # @param ProjectId: 项目ID
+        # @param ProjectId: <p>项目ID</p>
         # @type ProjectId: Integer
-        # @param RegionId: 区域
+        # @param RegionId: <p>区域</p>
         # @type RegionId: Integer
-        # @param SubnetId: 子网ID
+        # @param SubnetId: <p>子网ID</p>
         # @type SubnetId: Integer
-        # @param VpcId: 网络ID
+        # @param VpcId: <p>网络ID</p>
         # @type VpcId: Integer
-        # @param Zone: 地区
+        # @param Zone: <p>地区</p>
         # @type Zone: String
-        # @param Status: 状态码, 取值为-2(集群已删除), -1(集群已关闭), 0(集群生产中), 2(集群运行中), 3(集群创建中)
+        # @param Status: <p>状态码, 取值为-2(集群已删除), -1(集群已关闭), 0(集群生产中), 2(集群运行中), 3(集群创建中)</p>
         # @type Status: Integer
-        # @param Tags: 实例标签
+        # @param Tags: <p>实例标签</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
-        # @param AlarmInfo: 告警信息
+        # @param AlarmInfo: <p>告警信息</p>
         # @type AlarmInfo: String
-        # @param IsWoodpeckerCluster: 是否是woodpecker集群
+        # @param IsWoodpeckerCluster: <p>是否是woodpecker集群</p>
         # @type IsWoodpeckerCluster: Integer
-        # @param VpcName: Vpc中文
+        # @param VpcName: <p>Vpc中文</p>
         # @type VpcName: String
-        # @param SubnetName: 子网中文
+        # @param SubnetName: <p>子网中文</p>
         # @type SubnetName: String
-        # @param UniqVpcId: 字符串VpcId
+        # @param UniqVpcId: <p>字符串VpcId</p>
         # @type UniqVpcId: String
-        # @param UniqSubnetId: 字符串子网
+        # @param UniqSubnetId: <p>字符串子网</p>
         # @type UniqSubnetId: String
-        # @param ClusterClass: 集群类型
+        # @param ClusterClass: <p>集群类型</p>
         # @type ClusterClass: String
-        # @param IsMultiZoneCluster: 是否为跨AZ集群
+        # @param IsMultiZoneCluster: <p>是否为跨AZ集群</p>
         # @type IsMultiZoneCluster: Boolean
-        # @param IsHandsCluster: 是否手戳集群
+        # @param IsHandsCluster: <p>是否手戳集群</p>
         # @type IsHandsCluster: Boolean
-        # @param OutSideSoftInfo: 体外客户端组件信息
+        # @param OutSideSoftInfo: <p>体外客户端组件信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutSideSoftInfo: Array
-        # @param IsSupportOutsideCluster: 当前集群的应用场景是否支持体外客户端
+        # @param IsSupportOutsideCluster: <p>当前集群的应用场景是否支持体外客户端</p>
         # @type IsSupportOutsideCluster: Boolean
-        # @param IsDedicatedCluster: 是否专有集群场景集群
+        # @param IsDedicatedCluster: <p>是否专有集群场景集群</p>
         # @type IsDedicatedCluster: Boolean
-        # @param IsSupportClone: 集群支持克隆
+        # @param IsSupportClone: <p>集群支持克隆</p>
         # @type IsSupportClone: Boolean
+        # @param Soft: <p>集群包含的组件</p>
+        # @type Soft: Array
+        # @param IsTerminateProtection: <p>是否开启了实例保护</p>
+        # @type IsTerminateProtection: Boolean
+        # @param McpPasswordInfo: <p>mcp密码信息</p>
+        # @type McpPasswordInfo: :class:`Tencentcloud::Emr.v20190103.models.McpPasswordInfo`
 
-        attr_accessor :ClusterId, :StatusDesc, :ClusterName, :ZoneId, :AppId, :AddTime, :RunTime, :MasterIp, :EmrVersion, :ChargeType, :Id, :ProductId, :ProjectId, :RegionId, :SubnetId, :VpcId, :Zone, :Status, :Tags, :AlarmInfo, :IsWoodpeckerCluster, :VpcName, :SubnetName, :UniqVpcId, :UniqSubnetId, :ClusterClass, :IsMultiZoneCluster, :IsHandsCluster, :OutSideSoftInfo, :IsSupportOutsideCluster, :IsDedicatedCluster, :IsSupportClone
+        attr_accessor :ClusterId, :StatusDesc, :ClusterName, :ZoneId, :AppId, :AddTime, :RunTime, :MasterIp, :EmrVersion, :ChargeType, :Id, :ProductId, :ProjectId, :RegionId, :SubnetId, :VpcId, :Zone, :Status, :Tags, :AlarmInfo, :IsWoodpeckerCluster, :VpcName, :SubnetName, :UniqVpcId, :UniqSubnetId, :ClusterClass, :IsMultiZoneCluster, :IsHandsCluster, :OutSideSoftInfo, :IsSupportOutsideCluster, :IsDedicatedCluster, :IsSupportClone, :Soft, :IsTerminateProtection, :McpPasswordInfo
 
-        def initialize(clusterid=nil, statusdesc=nil, clustername=nil, zoneid=nil, appid=nil, addtime=nil, runtime=nil, masterip=nil, emrversion=nil, chargetype=nil, id=nil, productid=nil, projectid=nil, regionid=nil, subnetid=nil, vpcid=nil, zone=nil, status=nil, tags=nil, alarminfo=nil, iswoodpeckercluster=nil, vpcname=nil, subnetname=nil, uniqvpcid=nil, uniqsubnetid=nil, clusterclass=nil, ismultizonecluster=nil, ishandscluster=nil, outsidesoftinfo=nil, issupportoutsidecluster=nil, isdedicatedcluster=nil, issupportclone=nil)
+        def initialize(clusterid=nil, statusdesc=nil, clustername=nil, zoneid=nil, appid=nil, addtime=nil, runtime=nil, masterip=nil, emrversion=nil, chargetype=nil, id=nil, productid=nil, projectid=nil, regionid=nil, subnetid=nil, vpcid=nil, zone=nil, status=nil, tags=nil, alarminfo=nil, iswoodpeckercluster=nil, vpcname=nil, subnetname=nil, uniqvpcid=nil, uniqsubnetid=nil, clusterclass=nil, ismultizonecluster=nil, ishandscluster=nil, outsidesoftinfo=nil, issupportoutsidecluster=nil, isdedicatedcluster=nil, issupportclone=nil, soft=nil, isterminateprotection=nil, mcppasswordinfo=nil)
           @ClusterId = clusterid
           @StatusDesc = statusdesc
           @ClusterName = clustername
@@ -7960,6 +7969,9 @@ module TencentCloud
           @IsSupportOutsideCluster = issupportoutsidecluster
           @IsDedicatedCluster = isdedicatedcluster
           @IsSupportClone = issupportclone
+          @Soft = soft
+          @IsTerminateProtection = isterminateprotection
+          @McpPasswordInfo = mcppasswordinfo
         end
 
         def deserialize(params)
@@ -8009,6 +8021,12 @@ module TencentCloud
           @IsSupportOutsideCluster = params['IsSupportOutsideCluster']
           @IsDedicatedCluster = params['IsDedicatedCluster']
           @IsSupportClone = params['IsSupportClone']
+          @Soft = params['Soft']
+          @IsTerminateProtection = params['IsTerminateProtection']
+          unless params['McpPasswordInfo'].nil?
+            @McpPasswordInfo = McpPasswordInfo.new
+            @McpPasswordInfo.deserialize(params['McpPasswordInfo'])
+          end
         end
       end
 
@@ -10550,6 +10568,26 @@ module TencentCloud
         def deserialize(params)
           @Password = params['Password']
           @PublicKeyId = params['PublicKeyId']
+        end
+      end
+
+      # mcp是否需要密码
+      class McpPasswordInfo < TencentCloud::Common::AbstractModel
+        # @param HivePasswordRequired: <p>hive是否需要密码</p>
+        # @type HivePasswordRequired: Boolean
+        # @param TrinoPasswordRequired: <p>trino是否需要密码</p>
+        # @type TrinoPasswordRequired: Boolean
+
+        attr_accessor :HivePasswordRequired, :TrinoPasswordRequired
+
+        def initialize(hivepasswordrequired=nil, trinopasswordrequired=nil)
+          @HivePasswordRequired = hivepasswordrequired
+          @TrinoPasswordRequired = trinopasswordrequired
+        end
+
+        def deserialize(params)
+          @HivePasswordRequired = params['HivePasswordRequired']
+          @TrinoPasswordRequired = params['TrinoPasswordRequired']
         end
       end
 
@@ -16129,12 +16167,12 @@ module TencentCloud
 
         attr_accessor :DetectAlert, :DetetcFunctionKey, :DetetcFunctionValue, :DetetcTime, :DetectFunctionKey, :DetectFunctionValue, :DetectTime
         extend Gem::Deprecate
-        deprecate :DetetcFunctionKey, :none, 2026, 10
-        deprecate :DetetcFunctionKey=, :none, 2026, 10
-        deprecate :DetetcFunctionValue, :none, 2026, 10
-        deprecate :DetetcFunctionValue=, :none, 2026, 10
-        deprecate :DetetcTime, :none, 2026, 10
-        deprecate :DetetcTime=, :none, 2026, 10
+        deprecate :DetetcFunctionKey, :none, 2026, 11
+        deprecate :DetetcFunctionKey=, :none, 2026, 11
+        deprecate :DetetcFunctionValue, :none, 2026, 11
+        deprecate :DetetcFunctionValue=, :none, 2026, 11
+        deprecate :DetetcTime, :none, 2026, 11
+        deprecate :DetetcTime=, :none, 2026, 11
 
         def initialize(detectalert=nil, detetcfunctionkey=nil, detetcfunctionvalue=nil, detetctime=nil, detectfunctionkey=nil, detectfunctionvalue=nil, detecttime=nil)
           @DetectAlert = detectalert

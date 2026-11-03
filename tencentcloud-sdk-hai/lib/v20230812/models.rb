@@ -2100,6 +2100,54 @@ module TencentCloud
         end
       end
 
+      # 角色状态信息
+      class RoleStatusInfo < TencentCloud::Common::AbstractModel
+        # @param RoleName: 
+        # @type RoleName: String
+        # @param WorkloadType: 
+        # @type WorkloadType: String
+        # @param WorkloadName: 
+        # @type WorkloadName: String
+        # @param RunningReplicas: 
+        # @type RunningReplicas: Integer
+        # @param TargetReplicas: 
+        # @type TargetReplicas: Integer
+        # @param ContainerCount: 
+        # @type ContainerCount: Integer
+        # @param State: 
+        # @type State: String
+        # @param LastObservedTime: 
+        # @type LastObservedTime: String
+        # @param Role: 
+        # @type Role: String
+
+        attr_accessor :RoleName, :WorkloadType, :WorkloadName, :RunningReplicas, :TargetReplicas, :ContainerCount, :State, :LastObservedTime, :Role
+
+        def initialize(rolename=nil, workloadtype=nil, workloadname=nil, runningreplicas=nil, targetreplicas=nil, containercount=nil, state=nil, lastobservedtime=nil, role=nil)
+          @RoleName = rolename
+          @WorkloadType = workloadtype
+          @WorkloadName = workloadname
+          @RunningReplicas = runningreplicas
+          @TargetReplicas = targetreplicas
+          @ContainerCount = containercount
+          @State = state
+          @LastObservedTime = lastobservedtime
+          @Role = role
+        end
+
+        def deserialize(params)
+          @RoleName = params['RoleName']
+          @WorkloadType = params['WorkloadType']
+          @WorkloadName = params['WorkloadName']
+          @RunningReplicas = params['RunningReplicas']
+          @TargetReplicas = params['TargetReplicas']
+          @ContainerCount = params['ContainerCount']
+          @State = params['State']
+          @LastObservedTime = params['LastObservedTime']
+          @Role = params['Role']
+        end
+      end
+
       # RunInstances请求参数结构体
       class RunInstancesRequest < TencentCloud::Common::AbstractModel
         # @param ApplicationId: 应用ID通过调用接口[DescribeApplications](https://cloud.tencent.com/document/api/1721/101609)获取。
@@ -2229,6 +2277,8 @@ module TencentCloud
         # @type DeploymentConfigs: Array
         # @param HyperParam: <p>服务超参数配置</p>
         # @type HyperParam: :class:`Tencentcloud::Hai.v20230812.models.HyperParam`
+        # @param RoleStatuses: <p>角色状态</p>
+        # @type RoleStatuses: Array
         # @param SecurityType: <p>安全类型</p>
         # @type SecurityType: String
         # @param RoleComputeSet: <p>角色算力配置列表</p>
@@ -2246,9 +2296,9 @@ module TencentCloud
         # @param IsCustomDeploy: <p>是否自定义部署：1是 0否</p>
         # @type IsCustomDeploy: Integer
 
-        attr_accessor :ServiceId, :ServiceName, :ServiceState, :RunningReplicas, :TotalReplicas, :CreateTime, :ComputeSet, :ModelName, :DeploymentConfigs, :HyperParam, :SecurityType, :RoleComputeSet, :TargetReplicas, :ChargeType, :ExpireTime, :RenewFlag, :RestrictState, :IsCustomDeploy
+        attr_accessor :ServiceId, :ServiceName, :ServiceState, :RunningReplicas, :TotalReplicas, :CreateTime, :ComputeSet, :ModelName, :DeploymentConfigs, :HyperParam, :RoleStatuses, :SecurityType, :RoleComputeSet, :TargetReplicas, :ChargeType, :ExpireTime, :RenewFlag, :RestrictState, :IsCustomDeploy
 
-        def initialize(serviceid=nil, servicename=nil, servicestate=nil, runningreplicas=nil, totalreplicas=nil, createtime=nil, computeset=nil, modelname=nil, deploymentconfigs=nil, hyperparam=nil, securitytype=nil, rolecomputeset=nil, targetreplicas=nil, chargetype=nil, expiretime=nil, renewflag=nil, restrictstate=nil, iscustomdeploy=nil)
+        def initialize(serviceid=nil, servicename=nil, servicestate=nil, runningreplicas=nil, totalreplicas=nil, createtime=nil, computeset=nil, modelname=nil, deploymentconfigs=nil, hyperparam=nil, rolestatuses=nil, securitytype=nil, rolecomputeset=nil, targetreplicas=nil, chargetype=nil, expiretime=nil, renewflag=nil, restrictstate=nil, iscustomdeploy=nil)
           @ServiceId = serviceid
           @ServiceName = servicename
           @ServiceState = servicestate
@@ -2259,6 +2309,7 @@ module TencentCloud
           @ModelName = modelname
           @DeploymentConfigs = deploymentconfigs
           @HyperParam = hyperparam
+          @RoleStatuses = rolestatuses
           @SecurityType = securitytype
           @RoleComputeSet = rolecomputeset
           @TargetReplicas = targetreplicas
@@ -2296,6 +2347,14 @@ module TencentCloud
           unless params['HyperParam'].nil?
             @HyperParam = HyperParam.new
             @HyperParam.deserialize(params['HyperParam'])
+          end
+          unless params['RoleStatuses'].nil?
+            @RoleStatuses = []
+            params['RoleStatuses'].each do |i|
+              rolestatusinfo_tmp = RoleStatusInfo.new
+              rolestatusinfo_tmp.deserialize(i)
+              @RoleStatuses << rolestatusinfo_tmp
+            end
           end
           @SecurityType = params['SecurityType']
           unless params['RoleComputeSet'].nil?

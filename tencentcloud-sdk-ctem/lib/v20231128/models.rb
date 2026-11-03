@@ -765,26 +765,28 @@ module TencentCloud
 
       # CreateSeeds请求参数结构体
       class CreateSeedsRequest < TencentCloud::Common::AbstractModel
-        # @param CustomerId: 企业ID
+        # @param CustomerId: <p>企业ID</p>
         # @type CustomerId: Integer
-        # @param Ips: ip种子数组
+        # @param Ips: <p>ip种子数组</p>
         # @type Ips: Array
-        # @param Icons: icon种子数组
+        # @param Icons: <p>icon种子数组</p>
         # @type Icons: Array
-        # @param Domains: 主域名种子数组
+        # @param Domains: <p>主域名种子数组</p>
         # @type Domains: Array
-        # @param Titles: title种子数组
+        # @param Titles: <p>title种子数组</p>
         # @type Titles: Array
-        # @param SubDomains: 子域名种子数组
+        # @param SubDomains: <p>子域名种子数组</p>
         # @type SubDomains: Array
-        # @param Keywords: 关键词种子数组
+        # @param Keywords: <p>关键词种子数组</p>
         # @type Keywords: Array
-        # @param ParentCompanies: 母公司种子数组
+        # @param ParentCompanies: <p>母公司种子数组</p>
         # @type ParentCompanies: Array
+        # @param KeywordPurposes: <p>关键词用途：leakage_code代码泄露/leakage_data其他泄露/wechat_applet微信小程序/wechat_official_account微信公众号，不填=全部用途</p>
+        # @type KeywordPurposes: Array
 
-        attr_accessor :CustomerId, :Ips, :Icons, :Domains, :Titles, :SubDomains, :Keywords, :ParentCompanies
+        attr_accessor :CustomerId, :Ips, :Icons, :Domains, :Titles, :SubDomains, :Keywords, :ParentCompanies, :KeywordPurposes
 
-        def initialize(customerid=nil, ips=nil, icons=nil, domains=nil, titles=nil, subdomains=nil, keywords=nil, parentcompanies=nil)
+        def initialize(customerid=nil, ips=nil, icons=nil, domains=nil, titles=nil, subdomains=nil, keywords=nil, parentcompanies=nil, keywordpurposes=nil)
           @CustomerId = customerid
           @Ips = ips
           @Icons = icons
@@ -793,6 +795,7 @@ module TencentCloud
           @SubDomains = subdomains
           @Keywords = keywords
           @ParentCompanies = parentcompanies
+          @KeywordPurposes = keywordpurposes
         end
 
         def deserialize(params)
@@ -804,6 +807,7 @@ module TencentCloud
           @SubDomains = params['SubDomains']
           @Keywords = params['Keywords']
           @ParentCompanies = params['ParentCompanies']
+          @KeywordPurposes = params['KeywordPurposes']
         end
       end
 
@@ -6102,27 +6106,29 @@ module TencentCloud
 
       # 种子详情
       class DisplaySeed < TencentCloud::Common::AbstractModel
-        # @param Id: 主键ID
+        # @param Id: <p>主键ID</p>
         # @type Id: Integer
-        # @param CustomerId: 企业ID
+        # @param CustomerId: <p>企业ID</p>
         # @type CustomerId: Integer
-        # @param Category: 分类，包括：domain(主域名)、icon(图标)、ip(IP)、
-        # keyword(关键词)、parent_company(母公司)、sub_domain(子域名)、title(标题)
+        # @param Category: <p>分类，包括：domain(主域名)、icon(图标)、ip(IP)、<br>keyword(关键词)、parent_company(母公司)、sub_domain(子域名)、title(标题)</p>
         # @type Category: String
-        # @param Value: 值
+        # @param Value: <p>值</p>
         # @type Value: String
-        # @param Md5: md5值
+        # @param Md5: <p>md5值</p>
         # @type Md5: String
-        # @param Source: 来源
+        # @param Source: <p>来源</p>
         # @type Source: String
-        # @param CreateAt: 创建时间
+        # @param CreateAt: <p>创建时间</p>
         # @type CreateAt: String
-        # @param IsValid: 是否可信
+        # @param IsValid: <p>是否可信</p>
         # @type IsValid: Boolean
+        # @param Purposes: <p>关键词用途，可多选：leakage_code代码泄露/leakage_data其他泄露/wechat_applet微信小程序/wechat_official_account微信公众号；不填=全部用途</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Purposes: Array
 
-        attr_accessor :Id, :CustomerId, :Category, :Value, :Md5, :Source, :CreateAt, :IsValid
+        attr_accessor :Id, :CustomerId, :Category, :Value, :Md5, :Source, :CreateAt, :IsValid, :Purposes
 
-        def initialize(id=nil, customerid=nil, category=nil, value=nil, md5=nil, source=nil, createat=nil, isvalid=nil)
+        def initialize(id=nil, customerid=nil, category=nil, value=nil, md5=nil, source=nil, createat=nil, isvalid=nil, purposes=nil)
           @Id = id
           @CustomerId = customerid
           @Category = category
@@ -6131,6 +6137,7 @@ module TencentCloud
           @Source = source
           @CreateAt = createat
           @IsValid = isvalid
+          @Purposes = purposes
         end
 
         def deserialize(params)
@@ -6142,6 +6149,7 @@ module TencentCloud
           @Source = params['Source']
           @CreateAt = params['CreateAt']
           @IsValid = params['IsValid']
+          @Purposes = params['Purposes']
         end
       end
 

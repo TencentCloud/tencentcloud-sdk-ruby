@@ -295,8 +295,8 @@ module TencentCloud
 
         attr_accessor :ModelName, :TextUrl, :ModelType, :TagInfos
         extend Gem::Deprecate
-        deprecate :TagInfos, :none, 2026, 10
-        deprecate :TagInfos=, :none, 2026, 10
+        deprecate :TagInfos, :none, 2026, 11
+        deprecate :TagInfos=, :none, 2026, 11
 
         def initialize(modelname=nil, texturl=nil, modeltype=nil, taginfos=nil)
           @ModelName = modelname
@@ -383,13 +383,13 @@ module TencentCloud
         # @type KeyWordLibIdList: Array
         # @param ReplaceTextId: <p>替换词汇表id,  适用于热词和自学习场景也无法解决的极端case词组,  会对识别结果强制替换。具体可参考<a href="https://console.cloud.tencent.com/asr/replaceword">配置控制台</a>;强制替换功能可能会影响正常识别结果，请谨慎使用</p><p>注意：</p><ol><li>本功能配置完成后，预计在10分钟后生效</li></ol>
         # @type ReplaceTextId: String
-        # @param SpeakerRoles: <p>开启角色分离能力配合SpeakerDiarization: 3 使用。</p><p>ASR增值服务，<br>使用方式一：<strong>仅可传入一个声纹信息</strong>进行角色认证，仅支持16k_zh_en_2.0和16k_zh_en引擎。需传入SpeakerRoleInfo数据组，确定说话人的角色信息，涉及RoleAudioUrl和RoleName两个参数。 RoleAudioUrl：需要认证角色的声纹音频地址，建议30s内的纯净人声，最长不能超过45s。 RoleName：需要认证角色的名称，若匹配成功，会替换话者分离中的SpeakerID。<br>使用方式二：<strong>可传入一组声纹信息</strong>进行角色认证，仅支持16k_zh_en_meeting引擎。需传入SpeakerRoleInfo数据组，确定说话人的角色信息，涉及VoicePrintId和SpeakerNick两个参数。 VoicePrintId：需要认证角色的声纹ID（需提前进行<a href="https://cloud.tencent.com/document/product/1093/94483">说话人注册</a>），建议30s的纯净人声，最长不能超过45s，有效人声不得低于1s。 SpeakerNick：需要认证角色的名称，会替换话者分离中的SpeakerID，如不传则复用说话人注册时的名称。</p><p> 示例： &quot;{"EngineModelType":"16k_zh_en","ChannelNum":1,"ResTextFormat":1,"SourceType":0,"Url":"需要进行ASR识别的音频链接","SpeakerDiarization":3,"SpeakerRoles":[{"RoleAudioUrl":"需要认证角色的声纹音频地址","RoleName":"需要认证角色的名称"}]}&quot;</p>
+        # @param SpeakerRoles: <p>开启角色分离能力配合SpeakerDiarization: 3 使用。</p><p>ASR增值服务，<br>使用方式一：<strong>仅可传入一个声纹信息</strong>进行角色认证，仅支持16k_zh_en_2.0和16k_zh_en引擎。需传入SpeakerRoleInfo数据组，确定说话人的角色信息，涉及RoleAudioUrl和RoleName两个参数。 RoleAudioUrl：需要认证角色的声纹音频地址，建议30s内的纯净人声，最长不能超过45s。 RoleName：需要认证角色的名称，若匹配成功，会替换话者分离中的SpeakerID。<br>使用方式二：<strong>可传入一组声纹信息</strong>进行角色认证，仅支持16k_zh_en_meeting引擎。需传入SpeakerRoleInfo数据组，确定说话人的角色信息，涉及VoicePrintId和SpeakerNick两个参数。 VoicePrintId：需要认证角色的声纹ID（需提前进行<a href="https://cloud.tencent.com/document/product/1093/94483">说话人注册</a>），建议30s的纯净人声，最长不能超过45s，有效人声不得低于1s。 SpeakerNick：需要认证角色的名称，会替换话者分离中的SpeakerID，如不传则复用说话人注册时的名称。<br><strong>注意：声纹注册后5分钟生效</strong></p><p> 示例： &quot;{"EngineModelType":"16k_zh_en","ChannelNum":1,"ResTextFormat":1,"SourceType":0,"Url":"需要进行ASR识别的音频链接","SpeakerDiarization":3,"SpeakerRoles":[{"RoleAudioUrl":"需要认证角色的声纹音频地址","RoleName":"需要认证角色的名称"}]}&quot;</p>
         # @type SpeakerRoles: Array
 
         attr_accessor :EngineModelType, :ChannelNum, :ResTextFormat, :SourceType, :Data, :DataLen, :Url, :CallbackUrl, :SpeakerDiarization, :SpeakerNumber, :HotwordId, :ReinforceHotword, :CustomizationId, :EmotionRecognition, :EmotionalEnergy, :ConvertNumMode, :FilterDirty, :FilterPunc, :FilterModal, :SentenceMaxLength, :Extra, :HotwordList, :KeyWordLibIdList, :ReplaceTextId, :SpeakerRoles
         extend Gem::Deprecate
-        deprecate :ReinforceHotword, :none, 2026, 10
-        deprecate :ReinforceHotword=, :none, 2026, 10
+        deprecate :ReinforceHotword, :none, 2026, 11
+        deprecate :ReinforceHotword=, :none, 2026, 11
 
         def initialize(enginemodeltype=nil, channelnum=nil, restextformat=nil, sourcetype=nil, data=nil, datalen=nil, url=nil, callbackurl=nil, speakerdiarization=nil, speakernumber=nil, hotwordid=nil, reinforcehotword=nil, customizationid=nil, emotionrecognition=nil, emotionalenergy=nil, convertnummode=nil, filterdirty=nil, filterpunc=nil, filtermodal=nil, sentencemaxlength=nil, extra=nil, hotwordlist=nil, keywordlibidlist=nil, replacetextid=nil, speakerroles=nil)
           @EngineModelType = enginemodeltype
@@ -786,8 +786,8 @@ module TencentCloud
 
         attr_accessor :TagInfos, :Offset, :Limit
         extend Gem::Deprecate
-        deprecate :TagInfos, :none, 2026, 10
-        deprecate :TagInfos=, :none, 2026, 10
+        deprecate :TagInfos, :none, 2026, 11
+        deprecate :TagInfos=, :none, 2026, 11
 
         def initialize(taginfos=nil, offset=nil, limit=nil)
           @TagInfos = taginfos
@@ -911,8 +911,8 @@ module TencentCloud
 
         attr_accessor :TagInfos, :Limit, :Offset
         extend Gem::Deprecate
-        deprecate :TagInfos, :none, 2026, 10
-        deprecate :TagInfos=, :none, 2026, 10
+        deprecate :TagInfos, :none, 2026, 11
+        deprecate :TagInfos=, :none, 2026, 11
 
         def initialize(taginfos=nil, limit=nil, offset=nil)
           @TagInfos = taginfos
@@ -1236,8 +1236,8 @@ module TencentCloud
 
         attr_accessor :ModelName, :DictName, :ModelId, :ModelType, :ServiceType, :ModelState, :AtUpdated, :TagInfos
         extend Gem::Deprecate
-        deprecate :TagInfos, :none, 2026, 10
-        deprecate :TagInfos=, :none, 2026, 10
+        deprecate :TagInfos, :none, 2026, 11
+        deprecate :TagInfos=, :none, 2026, 11
 
         def initialize(modelname=nil, dictname=nil, modelid=nil, modeltype=nil, servicetype=nil, modelstate=nil, atupdated=nil, taginfos=nil)
           @ModelName = modelname
@@ -1526,14 +1526,14 @@ module TencentCloud
 
         attr_accessor :EngSerViceType, :SourceType, :VoiceFormat, :ProjectId, :SubServiceType, :Url, :UsrAudioKey, :Data, :DataLen, :WordInfo, :FilterDirty, :FilterModal, :FilterPunc, :ConvertNumMode, :HotwordId, :CustomizationId, :ReinforceHotword, :HotwordList, :InputSampleRate, :ReplaceTextId
         extend Gem::Deprecate
-        deprecate :ProjectId, :none, 2026, 10
-        deprecate :ProjectId=, :none, 2026, 10
-        deprecate :SubServiceType, :none, 2026, 10
-        deprecate :SubServiceType=, :none, 2026, 10
-        deprecate :UsrAudioKey, :none, 2026, 10
-        deprecate :UsrAudioKey=, :none, 2026, 10
-        deprecate :ReinforceHotword, :none, 2026, 10
-        deprecate :ReinforceHotword=, :none, 2026, 10
+        deprecate :ProjectId, :none, 2026, 11
+        deprecate :ProjectId=, :none, 2026, 11
+        deprecate :SubServiceType, :none, 2026, 11
+        deprecate :SubServiceType=, :none, 2026, 11
+        deprecate :UsrAudioKey, :none, 2026, 11
+        deprecate :UsrAudioKey=, :none, 2026, 11
+        deprecate :ReinforceHotword, :none, 2026, 11
+        deprecate :ReinforceHotword=, :none, 2026, 11
 
         def initialize(engservicetype=nil, sourcetype=nil, voiceformat=nil, projectid=nil, subservicetype=nil, url=nil, usraudiokey=nil, data=nil, datalen=nil, wordinfo=nil, filterdirty=nil, filtermodal=nil, filterpunc=nil, convertnummode=nil, hotwordid=nil, customizationid=nil, reinforcehotword=nil, hotwordlist=nil, inputsamplerate=nil, replacetextid=nil)
           @EngSerViceType = engservicetype

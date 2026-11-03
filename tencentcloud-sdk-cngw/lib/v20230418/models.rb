@@ -4468,6 +4468,145 @@ module TencentCloud
         end
       end
 
+      # CreateAIGWCustomGuardrailPolicy请求参数结构体
+      class CreateAIGWCustomGuardrailPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: <p>网关实例 ID</p>
+        # @type GatewayId: String
+        # @param Name: <p>策略名称，同一网关内唯一，长度 1～64</p>
+        # @type Name: String
+        # @param ServiceConfig: <p>审核服务配置</p>
+        # @type ServiceConfig: :class:`Tencentcloud::Cngw.v20230418.models.CustomGuardrailServiceConfigInput`
+        # @param DecisionConfig: <p>审核响应判定配置</p>
+        # @type DecisionConfig: :class:`Tencentcloud::Cngw.v20230418.models.CustomGuardrailDecisionConfigInput`
+        # @param Scope: <p>资源绑定范围，global 或 resource。修改时传入的是新的完整范围，不是增量追加。</p>
+        # @type Scope: :class:`Tencentcloud::Cngw.v20230418.models.CustomGuardrailScopeInput`
+        # @param AuthConfig: <p>必填，必须显式选择鉴权类型；无鉴权填写 {"AuthType":"none"}。</p>
+        # @type AuthConfig: :class:`Tencentcloud::Cngw.v20230418.models.CustomGuardrailAuthConfigInput`
+        # @param BehaviorConfig: <p>必填，Direction、HandleAction、TimeoutMs、FailureMode 四项均须显式填写。</p>
+        # @type BehaviorConfig: :class:`Tencentcloud::Cngw.v20230418.models.CustomGuardrailBehaviorConfigInput`
+        # @param Description: <p>策略描述，最长 200</p>
+        # @type Description: String
+        # @param Enabled: <p>是否启用策略，默认 true</p>
+        # @type Enabled: Boolean
+        # @param FilterConfig: <p>过滤与采样配置</p>
+        # @type FilterConfig: :class:`Tencentcloud::Cngw.v20230418.models.CustomGuardrailFilterConfigInput`
+
+        attr_accessor :GatewayId, :Name, :ServiceConfig, :DecisionConfig, :Scope, :AuthConfig, :BehaviorConfig, :Description, :Enabled, :FilterConfig
+
+        def initialize(gatewayid=nil, name=nil, serviceconfig=nil, decisionconfig=nil, scope=nil, authconfig=nil, behaviorconfig=nil, description=nil, enabled=nil, filterconfig=nil)
+          @GatewayId = gatewayid
+          @Name = name
+          @ServiceConfig = serviceconfig
+          @DecisionConfig = decisionconfig
+          @Scope = scope
+          @AuthConfig = authconfig
+          @BehaviorConfig = behaviorconfig
+          @Description = description
+          @Enabled = enabled
+          @FilterConfig = filterconfig
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @Name = params['Name']
+          unless params['ServiceConfig'].nil?
+            @ServiceConfig = CustomGuardrailServiceConfigInput.new
+            @ServiceConfig.deserialize(params['ServiceConfig'])
+          end
+          unless params['DecisionConfig'].nil?
+            @DecisionConfig = CustomGuardrailDecisionConfigInput.new
+            @DecisionConfig.deserialize(params['DecisionConfig'])
+          end
+          unless params['Scope'].nil?
+            @Scope = CustomGuardrailScopeInput.new
+            @Scope.deserialize(params['Scope'])
+          end
+          unless params['AuthConfig'].nil?
+            @AuthConfig = CustomGuardrailAuthConfigInput.new
+            @AuthConfig.deserialize(params['AuthConfig'])
+          end
+          unless params['BehaviorConfig'].nil?
+            @BehaviorConfig = CustomGuardrailBehaviorConfigInput.new
+            @BehaviorConfig.deserialize(params['BehaviorConfig'])
+          end
+          @Description = params['Description']
+          @Enabled = params['Enabled']
+          unless params['FilterConfig'].nil?
+            @FilterConfig = CustomGuardrailFilterConfigInput.new
+            @FilterConfig.deserialize(params['FilterConfig'])
+          end
+        end
+      end
+
+      # CreateAIGWCustomGuardrailPolicy返回参数结构体
+      class CreateAIGWCustomGuardrailPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param Result: <p>接口业务结果，位于完整云 API 响应 Response.Result。存在 Success 时仍须单独判断；Response.RequestId 是本次云 API 请求标识。</p>
+        # @type Result: :class:`Tencentcloud::Cngw.v20230418.models.CreateAIGWCustomGuardrailPolicyResult`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = CreateAIGWCustomGuardrailPolicyResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 创建自定义安全护栏策略结果
+      class CreateAIGWCustomGuardrailPolicyResult < TencentCloud::Common::AbstractModel
+        # @param Success: <p>本次配置同步是否全部成功。即使云 API 未返回 Response.Error，仍须检查此值、SyncStatus 和 FailedResources。</p>
+        # @type Success: Boolean
+        # @param PolicyId: <p>新建策略 ID</p>
+        # @type PolicyId: String
+        # @param AddedResources: <p>本次同步成功的业务资源引用；Modify 返回的不是严格的新增差集。</p>
+        # @type AddedResources: Array
+        # @param FailedResources: <p>失败资源及原因；非空表示配置同步仍需处理，不要因 HTTP 200 判定全部成功。</p>
+        # @type FailedResources: Array
+        # @param SyncStatus: <p>同步状态：pending 待同步，synced 已完成本次配置同步，partial 部分失败，failed 失败。需结合 FailedResources/SyncError；synced 不等于已完成所有数据面实例的业务端到端验证。</p>
+        # @type SyncStatus: String
+
+        attr_accessor :Success, :PolicyId, :AddedResources, :FailedResources, :SyncStatus
+
+        def initialize(success=nil, policyid=nil, addedresources=nil, failedresources=nil, syncstatus=nil)
+          @Success = success
+          @PolicyId = policyid
+          @AddedResources = addedresources
+          @FailedResources = failedresources
+          @SyncStatus = syncstatus
+        end
+
+        def deserialize(params)
+          @Success = params['Success']
+          @PolicyId = params['PolicyId']
+          unless params['AddedResources'].nil?
+            @AddedResources = []
+            params['AddedResources'].each do |i|
+              customguardrailresourceref_tmp = CustomGuardrailResourceRef.new
+              customguardrailresourceref_tmp.deserialize(i)
+              @AddedResources << customguardrailresourceref_tmp
+            end
+          end
+          unless params['FailedResources'].nil?
+            @FailedResources = []
+            params['FailedResources'].each do |i|
+              customguardrailsyncfailure_tmp = CustomGuardrailSyncFailure.new
+              customguardrailsyncfailure_tmp.deserialize(i)
+              @FailedResources << customguardrailsyncfailure_tmp
+            end
+          end
+          @SyncStatus = params['SyncStatus']
+        end
+      end
+
       # CreateCloudNativeAPIGatewayAIServiceSource请求参数结构体
       class CreateCloudNativeAPIGatewayAIServiceSourceRequest < TencentCloud::Common::AbstractModel
         # @param GatewayId: <p>实例 ID</p>
@@ -5395,6 +5534,1217 @@ module TencentCloud
         end
       end
 
+      # CreateOrModifyCloudNativeAPIGatewayIPRestriction请求参数结构体
+      class CreateOrModifyCloudNativeAPIGatewayIPRestrictionRequest < TencentCloud::Common::AbstractModel
+        # @param AddressList: cidr｜ip
+        # @type AddressList: Array
+        # @param Enabled: 是否启用插件
+        # @type Enabled: Boolean
+        # @param GatewayId: 网关ID
+        # @type GatewayId: String
+        # @param RestrictionType: 访问控制类型：whiteList｜blackList
+        # @type RestrictionType: String
+        # @param SourceId: 路由或服务的id
+        # @type SourceId: String
+        # @param SourceType: 访问控制插件绑定的资源类型：route|service
+        # @type SourceType: String
+
+        attr_accessor :AddressList, :Enabled, :GatewayId, :RestrictionType, :SourceId, :SourceType
+
+        def initialize(addresslist=nil, enabled=nil, gatewayid=nil, restrictiontype=nil, sourceid=nil, sourcetype=nil)
+          @AddressList = addresslist
+          @Enabled = enabled
+          @GatewayId = gatewayid
+          @RestrictionType = restrictiontype
+          @SourceId = sourceid
+          @SourceType = sourcetype
+        end
+
+        def deserialize(params)
+          @AddressList = params['AddressList']
+          @Enabled = params['Enabled']
+          @GatewayId = params['GatewayId']
+          @RestrictionType = params['RestrictionType']
+          @SourceId = params['SourceId']
+          @SourceType = params['SourceType']
+        end
+      end
+
+      # CreateOrModifyCloudNativeAPIGatewayIPRestriction返回参数结构体
+      class CreateOrModifyCloudNativeAPIGatewayIPRestrictionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 自定义安全护栏鉴权配置；不返回 API Key 明文
+      class CustomGuardrailAuthConfig < TencentCloud::Common::AbstractModel
+        # @param AuthType: <p>网关访问审核引擎的鉴权方式：none 无鉴权（创建默认值）；api_key 在指定 HTTP Header 中发送凭据。与客户端访问 AI 网关时使用的鉴权相互独立。none 模式不应携带 HeaderName 或 ApiKey。</p>
+        # @type AuthType: String
+        # @param HeaderName: <p>api_key 模式的鉴权 Header 名，例如 X-Audit-Key 或 Authorization。需为有效 Header 名；不能使用 Content-Type、Accept 或 x-cngw-audit- 前缀的保留名称。不建议使用 Host、Content-Length 等会影响 HTTP 协议语义的头。</p>
+        # @type HeaderName: String
+        # @param HasApiKey: <p>只读：是否已保存审核引擎鉴权密钥。不会返回密钥本身；修改时无需回传此字段。</p>
+        # @type HasApiKey: Boolean
+
+        attr_accessor :AuthType, :HeaderName, :HasApiKey
+
+        def initialize(authtype=nil, headername=nil, hasapikey=nil)
+          @AuthType = authtype
+          @HeaderName = headername
+          @HasApiKey = hasapikey
+        end
+
+        def deserialize(params)
+          @AuthType = params['AuthType']
+          @HeaderName = params['HeaderName']
+          @HasApiKey = params['HasApiKey']
+        end
+      end
+
+      # 自定义安全护栏审核服务鉴权配置
+      class CustomGuardrailAuthConfigInput < TencentCloud::Common::AbstractModel
+        # @param AuthType: <p>审核引擎鉴权方式，必须显式选择 none（无鉴权）或 api_key（Header 密钥）；无鉴权也必须填写 none，不再自动补齐。api_key 时 HeaderName 和 ApiKey 必填；与客户端访问网关的鉴权独立。</p>
+        # @type AuthType: String
+        # @param HeaderName: <p>AuthType=api_key 时必填的有效 HTTP Header 名，例如 X-Audit-Key 或 Authorization；禁止协议保留头。AuthType=none 时不得填写。</p>
+        # @type HeaderName: String
+        # @param ApiKey: <p>AuthType=api_key 时必填，作为 Header 完整值原样发送；如需 Bearer，调用方自行填写前缀。修改时省略可沿用已保存密钥；不能用 HasApiKey 代替真实密钥。</p>
+        # @type ApiKey: String
+
+        attr_accessor :AuthType, :HeaderName, :ApiKey
+
+        def initialize(authtype=nil, headername=nil, apikey=nil)
+          @AuthType = authtype
+          @HeaderName = headername
+          @ApiKey = apikey
+        end
+
+        def deserialize(params)
+          @AuthType = params['AuthType']
+          @HeaderName = params['HeaderName']
+          @ApiKey = params['ApiKey']
+        end
+      end
+
+      # 局部更新配置。只更新显式提供字段；未传字段保留。条件必填按合并后的完整策略校验，不会要求每次重传全部配置。
+      class CustomGuardrailAuthConfigPatch < TencentCloud::Common::AbstractModel
+        # @param AuthType: <p>局部更新：省略本字段保留原值；显式填写须满足枚举及条件必填约束。审核引擎鉴权方式，必须显式选择 none（无鉴权）或 api_key（Header 密钥）；无鉴权也必须填写 none，不再自动补齐。api_key 时 HeaderName 和 ApiKey 必填；与客户端访问网关的鉴权独立。</p>
+        # @type AuthType: String
+        # @param HeaderName: <p>局部更新：省略本字段保留原值；显式填写须满足枚举及条件必填约束。AuthType=api_key 时必填的有效 HTTP Header 名，例如 X-Audit-Key 或 Authorization；禁止协议保留头。AuthType=none 时不得填写。</p>
+        # @type HeaderName: String
+        # @param ApiKey: <p>局部更新：省略本字段保留原值；显式填写须满足枚举及条件必填约束。AuthType=api_key 时必填，作为 Header 完整值原样发送；如需 Bearer，调用方自行填写前缀。修改时省略可沿用已保存密钥；不能用 HasApiKey 代替真实密钥。</p>
+        # @type ApiKey: String
+        # @param ClearApiKey: <p>true 表示清除已保存密钥，不能与 ApiKey 同时传入。仅传 ClearApiKey=true 时同时切换为 none 并清空鉴权 Header；也可通过 AuthType=none 清除既有密钥。</p><p>修改时省略本字段保留原值。</p>
+        # @type ClearApiKey: Boolean
+
+        attr_accessor :AuthType, :HeaderName, :ApiKey, :ClearApiKey
+
+        def initialize(authtype=nil, headername=nil, apikey=nil, clearapikey=nil)
+          @AuthType = authtype
+          @HeaderName = headername
+          @ApiKey = apikey
+          @ClearApiKey = clearapikey
+        end
+
+        def deserialize(params)
+          @AuthType = params['AuthType']
+          @HeaderName = params['HeaderName']
+          @ApiKey = params['ApiKey']
+          @ClearApiKey = params['ClearApiKey']
+        end
+      end
+
+      # 自定义安全护栏处理行为配置
+      class CustomGuardrailBehaviorConfig < TencentCloud::Common::AbstractModel
+        # @param Direction: <p>审核方向：input 只审核业务请求，output 只审核业务响应，both 两者均审核；创建默认 input。送审包及审核日志使用 request/response 表示方向，不使用 input/output。</p>
+        # @type Direction: String
+        # @param HandleAction: <p>命中后的处理：block 执行阻断或符合条件的输出替换；observe 仅观察记录命中，不执行命中阻断或替换。创建默认 block。审核调用异常另由 FailureMode 处理，不应把 observe 当作所有故障无条件放行。</p>
+        # @type HandleAction: String
+        # @param TimeoutMs: <p>审核调用超时，单位毫秒，范围 50～5000，创建默认 500。不是整个模型生成/SSE 连接的总时长限制；流式多批次分别发生审核 HTTP 调用。应按引擎网络及处理耗时设置，示例中的 5000 是显式测试值，不是默认值。</p>
+        # @type TimeoutMs: Integer
+        # @param FailureMode: <p>审核失败时的策略：open 尝试失败放行（创建默认值，有内容未审核即放行风险）；closed 失败关闭。此项处理网络、超时、响应契约等异常，不改变正常 block 判定。open 不能绕过所有 Relay 安全/生命周期错误，也不保证已派发业务请求可安全重放。</p>
+        # @type FailureMode: String
+
+        attr_accessor :Direction, :HandleAction, :TimeoutMs, :FailureMode
+
+        def initialize(direction=nil, handleaction=nil, timeoutms=nil, failuremode=nil)
+          @Direction = direction
+          @HandleAction = handleaction
+          @TimeoutMs = timeoutms
+          @FailureMode = failuremode
+        end
+
+        def deserialize(params)
+          @Direction = params['Direction']
+          @HandleAction = params['HandleAction']
+          @TimeoutMs = params['TimeoutMs']
+          @FailureMode = params['FailureMode']
+        end
+      end
+
+      # 自定义安全护栏处理行为配置
+      class CustomGuardrailBehaviorConfigInput < TencentCloud::Common::AbstractModel
+        # @param Direction: <p>必填，仅允许 input（仅输入）或 both（输入加输出），与控制台一致；不允许 output、空值或省略。送审包方向使用 request/response。</p>
+        # @type Direction: String
+        # @param HandleAction: <p>必填，observe 只观察记录，block 执行命中阻断或符合条件的输出替换。不再自动补默认值。审核异常另由 FailureMode 处理。</p>
+        # @type HandleAction: String
+        # @param TimeoutMs: <p>必填整数，50～5000 毫秒，0 无效且不再代表默认值。控制台初始显示 500，但 API 调用方仍须传入。这是每次审核 HTTP 调用的超时，不是整个模型生成或 SSE 连接时长。</p>
+        # @type TimeoutMs: Integer
+        # @param FailureMode: <p>必填，open 为异常时尝试放行（存在未审核内容放行风险），closed 为异常时拦截；不得省略或为空。不改变正常命中结论，open 不能绕过所有 Relay 安全或生命周期错误。</p>
+        # @type FailureMode: String
+
+        attr_accessor :Direction, :HandleAction, :TimeoutMs, :FailureMode
+
+        def initialize(direction=nil, handleaction=nil, timeoutms=nil, failuremode=nil)
+          @Direction = direction
+          @HandleAction = handleaction
+          @TimeoutMs = timeoutms
+          @FailureMode = failuremode
+        end
+
+        def deserialize(params)
+          @Direction = params['Direction']
+          @HandleAction = params['HandleAction']
+          @TimeoutMs = params['TimeoutMs']
+          @FailureMode = params['FailureMode']
+        end
+      end
+
+      # 局部更新配置。只更新显式提供字段；未传字段保留。条件必填按合并后的完整策略校验，不会要求每次重传全部配置。
+      class CustomGuardrailBehaviorConfigPatch < TencentCloud::Common::AbstractModel
+        # @param Direction: <p>局部更新：省略本字段保留原值；显式填写须满足枚举及条件必填约束。必填，仅允许 input（仅输入）或 both（输入加输出），与控制台一致；不允许 output、空值或省略。送审包方向使用 request/response。</p>
+        # @type Direction: String
+        # @param HandleAction: <p>局部更新：省略本字段保留原值；显式填写须满足枚举及条件必填约束。必填，observe 只观察记录，block 执行命中阻断或符合条件的输出替换。不再自动补默认值。审核异常另由 FailureMode 处理。</p>
+        # @type HandleAction: String
+        # @param TimeoutMs: <p>局部更新：省略本字段保留原值；显式填写须满足枚举及条件必填约束。必填整数，50～5000 毫秒，0 无效且不再代表默认值。控制台初始显示 500，但 API 调用方仍须传入。这是每次审核 HTTP 调用的超时，不是整个模型生成或 SSE 连接时长。</p>
+        # @type TimeoutMs: Integer
+        # @param FailureMode: <p>局部更新：省略本字段保留原值；显式填写须满足枚举及条件必填约束。必填，open 为异常时尝试放行（存在未审核内容放行风险），closed 为异常时拦截；不得省略或为空。不改变正常命中结论，open 不能绕过所有 Relay 安全或生命周期错误。</p>
+        # @type FailureMode: String
+
+        attr_accessor :Direction, :HandleAction, :TimeoutMs, :FailureMode
+
+        def initialize(direction=nil, handleaction=nil, timeoutms=nil, failuremode=nil)
+          @Direction = direction
+          @HandleAction = handleaction
+          @TimeoutMs = timeoutms
+          @FailureMode = failuremode
+        end
+
+        def deserialize(params)
+          @Direction = params['Direction']
+          @HandleAction = params['HandleAction']
+          @TimeoutMs = params['TimeoutMs']
+          @FailureMode = params['FailureMode']
+        end
+      end
+
+      # 可绑定自定义安全护栏的业务资源
+      class CustomGuardrailBindableResource < TencentCloud::Common::AbstractModel
+        # @param ResourceType: <p>业务资源类型</p>
+        # @type ResourceType: String
+        # @param ResourceId: <p>业务资源 ID</p>
+        # @type ResourceId: String
+        # @param ResourceName: <p>业务资源名称</p>
+        # @type ResourceName: String
+        # @param Path: <p>业务资源访问路径</p>
+        # @type Path: String
+        # @param Protocol: <p>数据面解析协议</p>
+        # @type Protocol: String
+        # @param RouteIds: <p>该业务资源对应的全部 Kong Route ID，仅用于关联/排查；创建 Scope.Resources 时仍填业务 ResourceId。</p>
+        # @type RouteIds: Array
+        # @param Occupied: <p>对应任一 Route 是否被其他自定义护栏策略占用；查询时传 PolicyId 可排除自身占用。</p>
+        # @type Occupied: Boolean
+        # @param OccupiedBy: <p>占用策略的可读名称及 ID，格式为 策略名称 (策略ID)，多个以逗号分隔；名称不可用时回退 ID，不应按此展示字段解析策略主键。</p>
+        # @type OccupiedBy: String
+        # @param Supported: <p>资源当前是否可解析为受支持的绑定目标；与 Occupied 独立，选择时同时检查 Supported=true 且 Occupied=false。</p>
+        # @type Supported: Boolean
+        # @param UnsupportedReason: <p>不支持绑定的原因</p>
+        # @type UnsupportedReason: String
+
+        attr_accessor :ResourceType, :ResourceId, :ResourceName, :Path, :Protocol, :RouteIds, :Occupied, :OccupiedBy, :Supported, :UnsupportedReason
+
+        def initialize(resourcetype=nil, resourceid=nil, resourcename=nil, path=nil, protocol=nil, routeids=nil, occupied=nil, occupiedby=nil, supported=nil, unsupportedreason=nil)
+          @ResourceType = resourcetype
+          @ResourceId = resourceid
+          @ResourceName = resourcename
+          @Path = path
+          @Protocol = protocol
+          @RouteIds = routeids
+          @Occupied = occupied
+          @OccupiedBy = occupiedby
+          @Supported = supported
+          @UnsupportedReason = unsupportedreason
+        end
+
+        def deserialize(params)
+          @ResourceType = params['ResourceType']
+          @ResourceId = params['ResourceId']
+          @ResourceName = params['ResourceName']
+          @Path = params['Path']
+          @Protocol = params['Protocol']
+          @RouteIds = params['RouteIds']
+          @Occupied = params['Occupied']
+          @OccupiedBy = params['OccupiedBy']
+          @Supported = params['Supported']
+          @UnsupportedReason = params['UnsupportedReason']
+        end
+      end
+
+      # 自定义安全护栏能力限制
+      class CustomGuardrailCapabilityLimits < TencentCloud::Common::AbstractModel
+        # @param MaxHeaderAllowList: <p>Header 白名单最大条数。</p>
+        # @type MaxHeaderAllowList: Integer
+        # @param MaxKeywordsPerDirection: <p>单方向关键词最大条数。</p>
+        # @type MaxKeywordsPerDirection: Integer
+        # @param InlineBodyBytes: <p>直接内联送审的 Body 上限，单位字节。</p>
+        # @type InlineBodyBytes: Integer
+        # @param MaxAcceptedBodyBytes: <p>可接受的请求 Body 上限，单位字节。</p>
+        # @type MaxAcceptedBodyBytes: Integer
+        # @param TransferChunkBytes: <p>超大请求 Body 默认分片大小，单位字节。</p>
+        # @type TransferChunkBytes: Integer
+        # @param MaxTransferChunkBytes: <p>超大请求 Body 最大分片大小，单位字节。</p>
+        # @type MaxTransferChunkBytes: Integer
+        # @param TransferTargetMaxChunks: <p>分片传输目标最大分片数。</p>
+        # @type TransferTargetMaxChunks: Integer
+        # @param MaxResponseBodyBytes: <p>普通响应审核最大 Body 大小，单位字节。</p>
+        # @type MaxResponseBodyBytes: Integer
+        # @param MaxStreamEventBytes: <p>单个流式事件最大字节数，单位字节。</p>
+        # @type MaxStreamEventBytes: Integer
+        # @param StreamRelayMaxConcurrentRequests: <p>单数据面实例 Stream Relay 默认并发槽位。</p>
+        # @type StreamRelayMaxConcurrentRequests: Integer
+        # @param MinTimeoutMs: <p>审核超时最小值，单位毫秒。</p>
+        # @type MinTimeoutMs: Integer
+        # @param MaxTimeoutMs: <p>审核超时最大值，单位毫秒。</p>
+        # @type MaxTimeoutMs: Integer
+        # @param DefaultTimeoutMs: <p>审核超时默认值，单位毫秒。</p>
+        # @type DefaultTimeoutMs: Integer
+
+        attr_accessor :MaxHeaderAllowList, :MaxKeywordsPerDirection, :InlineBodyBytes, :MaxAcceptedBodyBytes, :TransferChunkBytes, :MaxTransferChunkBytes, :TransferTargetMaxChunks, :MaxResponseBodyBytes, :MaxStreamEventBytes, :StreamRelayMaxConcurrentRequests, :MinTimeoutMs, :MaxTimeoutMs, :DefaultTimeoutMs
+
+        def initialize(maxheaderallowlist=nil, maxkeywordsperdirection=nil, inlinebodybytes=nil, maxacceptedbodybytes=nil, transferchunkbytes=nil, maxtransferchunkbytes=nil, transfertargetmaxchunks=nil, maxresponsebodybytes=nil, maxstreameventbytes=nil, streamrelaymaxconcurrentrequests=nil, mintimeoutms=nil, maxtimeoutms=nil, defaulttimeoutms=nil)
+          @MaxHeaderAllowList = maxheaderallowlist
+          @MaxKeywordsPerDirection = maxkeywordsperdirection
+          @InlineBodyBytes = inlinebodybytes
+          @MaxAcceptedBodyBytes = maxacceptedbodybytes
+          @TransferChunkBytes = transferchunkbytes
+          @MaxTransferChunkBytes = maxtransferchunkbytes
+          @TransferTargetMaxChunks = transfertargetmaxchunks
+          @MaxResponseBodyBytes = maxresponsebodybytes
+          @MaxStreamEventBytes = maxstreameventbytes
+          @StreamRelayMaxConcurrentRequests = streamrelaymaxconcurrentrequests
+          @MinTimeoutMs = mintimeoutms
+          @MaxTimeoutMs = maxtimeoutms
+          @DefaultTimeoutMs = defaulttimeoutms
+        end
+
+        def deserialize(params)
+          @MaxHeaderAllowList = params['MaxHeaderAllowList']
+          @MaxKeywordsPerDirection = params['MaxKeywordsPerDirection']
+          @InlineBodyBytes = params['InlineBodyBytes']
+          @MaxAcceptedBodyBytes = params['MaxAcceptedBodyBytes']
+          @TransferChunkBytes = params['TransferChunkBytes']
+          @MaxTransferChunkBytes = params['MaxTransferChunkBytes']
+          @TransferTargetMaxChunks = params['TransferTargetMaxChunks']
+          @MaxResponseBodyBytes = params['MaxResponseBodyBytes']
+          @MaxStreamEventBytes = params['MaxStreamEventBytes']
+          @StreamRelayMaxConcurrentRequests = params['StreamRelayMaxConcurrentRequests']
+          @MinTimeoutMs = params['MinTimeoutMs']
+          @MaxTimeoutMs = params['MaxTimeoutMs']
+          @DefaultTimeoutMs = params['DefaultTimeoutMs']
+        end
+      end
+
+      # 自定义安全护栏审核响应判定配置
+      class CustomGuardrailDecisionConfig < TencentCloud::Common::AbstractModel
+        # @param ContractMode: <p>已保存的判定模式。新配置仅支持 field_mapping；存量策略可能返回 standard_v2，查询、删除或停用不要求迁移，修改判定配置或重新启用前必须迁移。</p>
+        # @type ContractMode: String
+        # @param BlockMessageMode: <p>必须显式填写 default 或 response。default 使用 BlockMessage；response 使用 FieldMapping.MessageFieldPath 读取提示，值缺失或不合法时回退默认文案。default 时 BlockMessage 必填，response 时 MessageFieldPath 必填。</p>
+        # @type BlockMessageMode: String
+        # @param BlockMessage: <p>本策略默认/兜底拦截提示，最长 512 个字符。未配置或为空时使用系统按请求语言选择的默认提示；不是替换后的业务响应 Body。</p>
+        # @type BlockMessage: String
+        # @param RewriteEnabled: <p>是否允许输出内容替换，省略为 false。开启且配置 RewriteFieldPath 后，输出审核响应只要存在该字段就优先 replace，不要求 HitFieldPath/HitValue 命中，也不要求引擎 decision=replace；替换字段不存在才按命中规则处理。输入永不替换；observe 只记录、不阻断或替换。非法替换正文是审核异常。流式仅替换当前未发送批次，不可撤回已发送内容。</p>
+        # @type RewriteEnabled: Boolean
+        # @param FieldMapping: <p>自定义模式必填的响应字段映射。HitFieldPath 和 HitValue 必填。输出启用替换且替换字段存在时优先 replace；否则要求命中字段存在且为有效同类型标量，值相等时 block，不相等时 allow。缺失或非法命中字段属于无效审核响应，不能等同于安全放行。</p>
+        # @type FieldMapping: :class:`Tencentcloud::Cngw.v20230418.models.CustomGuardrailFieldMapping`
+
+        attr_accessor :ContractMode, :BlockMessageMode, :BlockMessage, :RewriteEnabled, :FieldMapping
+
+        def initialize(contractmode=nil, blockmessagemode=nil, blockmessage=nil, rewriteenabled=nil, fieldmapping=nil)
+          @ContractMode = contractmode
+          @BlockMessageMode = blockmessagemode
+          @BlockMessage = blockmessage
+          @RewriteEnabled = rewriteenabled
+          @FieldMapping = fieldmapping
+        end
+
+        def deserialize(params)
+          @ContractMode = params['ContractMode']
+          @BlockMessageMode = params['BlockMessageMode']
+          @BlockMessage = params['BlockMessage']
+          @RewriteEnabled = params['RewriteEnabled']
+          unless params['FieldMapping'].nil?
+            @FieldMapping = CustomGuardrailFieldMapping.new
+            @FieldMapping.deserialize(params['FieldMapping'])
+          end
+        end
+      end
+
+      # 自定义安全护栏审核响应判定配置
+      class CustomGuardrailDecisionConfigInput < TencentCloud::Common::AbstractModel
+        # @param ContractMode: <p>仅支持 field_mapping（自定义字段映射），必须显式填写；不允许 standard_v2、空字符串或 null。只决定如何解析审核响应，网关送审请求仍使用统一 Schema 2.0 封装。</p>
+        # @type ContractMode: String
+        # @param BlockMessageMode: <p>必须显式填写 default 或 response。default 使用 BlockMessage；response 使用 FieldMapping.MessageFieldPath 读取提示，值缺失或不合法时回退默认文案。default 时 BlockMessage 必填，response 时 MessageFieldPath 必填。</p>
+        # @type BlockMessageMode: String
+        # @param FieldMapping: <p>自定义模式必填的响应字段映射。HitFieldPath 和 HitValue 必填。输出启用替换且替换字段存在时优先 replace；否则要求命中字段存在且为有效同类型标量，值相等时 block，不相等时 allow。缺失或非法命中字段属于无效审核响应，不能等同于安全放行。</p>
+        # @type FieldMapping: :class:`Tencentcloud::Cngw.v20230418.models.CustomGuardrailFieldMappingInput`
+        # @param BlockMessage: <p>默认/兜底拦截提示，长度 1～512 字符，不是替换 Body。BlockMessageMode=default 时必填且不能为空白；创建/草稿测试使用 response 模式时可省略，后端补充系统兜底提示。修改时省略保留原值，显式空值不用于清空文案。</p>
+        # @type BlockMessage: String
+        # @param RewriteEnabled: <p>是否允许输出内容替换，省略为 false。开启且配置 RewriteFieldPath 后，输出审核响应只要存在该字段就优先 replace，不要求 HitFieldPath/HitValue 命中，也不要求引擎 decision=replace；替换字段不存在才按命中规则处理。输入永不替换；observe 只记录、不阻断或替换。非法替换正文是审核异常。流式仅替换当前未发送批次，不可撤回已发送内容。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RewriteEnabled: Boolean
+
+        attr_accessor :ContractMode, :BlockMessageMode, :FieldMapping, :BlockMessage, :RewriteEnabled
+
+        def initialize(contractmode=nil, blockmessagemode=nil, fieldmapping=nil, blockmessage=nil, rewriteenabled=nil)
+          @ContractMode = contractmode
+          @BlockMessageMode = blockmessagemode
+          @FieldMapping = fieldmapping
+          @BlockMessage = blockmessage
+          @RewriteEnabled = rewriteenabled
+        end
+
+        def deserialize(params)
+          @ContractMode = params['ContractMode']
+          @BlockMessageMode = params['BlockMessageMode']
+          unless params['FieldMapping'].nil?
+            @FieldMapping = CustomGuardrailFieldMappingInput.new
+            @FieldMapping.deserialize(params['FieldMapping'])
+          end
+          @BlockMessage = params['BlockMessage']
+          @RewriteEnabled = params['RewriteEnabled']
+        end
+      end
+
+      # 局部更新配置。只更新显式提供字段；未传字段保留。条件必填按合并后的完整策略校验，不会要求每次重传全部配置。
+      class CustomGuardrailDecisionConfigPatch < TencentCloud::Common::AbstractModel
+        # @param ContractMode: <p>局部更新：省略本字段保留原值；显式填写须满足枚举及条件必填约束。仅支持 field_mapping（自定义字段映射），必须显式填写；不允许 standard_v2、空字符串或 null。只决定如何解析审核响应，网关送审请求仍使用统一 Schema 2.0 封装。</p>
+        # @type ContractMode: String
+        # @param BlockMessageMode: <p>局部更新：省略本字段保留原值；显式填写须满足枚举及条件必填约束。必须显式填写 default 或 response。default 使用 BlockMessage；response 使用 FieldMapping.MessageFieldPath 读取提示，值缺失或不合法时回退默认文案。default 时 BlockMessage 必填，response 时 MessageFieldPath 必填。</p>
+        # @type BlockMessageMode: String
+        # @param BlockMessage: <p>局部更新：省略本字段保留原值；显式填写须满足枚举及条件必填约束。默认/兜底拦截提示，长度 1～512 字符，不是替换 Body。BlockMessageMode=default 时必填且不能为空白；创建/草稿测试使用 response 模式时可省略，后端补充系统兜底提示。修改时省略保留原值，显式空值不用于清空文案。</p>
+        # @type BlockMessage: String
+        # @param RewriteEnabled: <p>局部更新：省略本字段保留原值；显式填写须满足枚举及条件必填约束。是否允许输出内容替换，省略为 false。开启且配置 RewriteFieldPath 后，输出审核响应只要存在该字段就优先 replace，不要求 HitFieldPath/HitValue 命中，也不要求引擎 decision=replace；替换字段不存在才按命中规则处理。输入永不替换；observe 只记录、不阻断或替换。非法替换正文是审核异常。流式仅替换当前未发送批次，不可撤回已发送内容。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RewriteEnabled: Boolean
+        # @param FieldMapping: <p>局部更新：省略本字段保留原值；显式填写须满足枚举及条件必填约束。自定义模式必填的响应字段映射。HitFieldPath 和 HitValue 必填。输出启用替换且替换字段存在时优先 replace；否则要求命中字段存在且为有效同类型标量，值相等时 block，不相等时 allow。缺失或非法命中字段属于无效审核响应，不能等同于安全放行。</p>
+        # @type FieldMapping: :class:`Tencentcloud::Cngw.v20230418.models.CustomGuardrailFieldMappingPatch`
+
+        attr_accessor :ContractMode, :BlockMessageMode, :BlockMessage, :RewriteEnabled, :FieldMapping
+
+        def initialize(contractmode=nil, blockmessagemode=nil, blockmessage=nil, rewriteenabled=nil, fieldmapping=nil)
+          @ContractMode = contractmode
+          @BlockMessageMode = blockmessagemode
+          @BlockMessage = blockmessage
+          @RewriteEnabled = rewriteenabled
+          @FieldMapping = fieldmapping
+        end
+
+        def deserialize(params)
+          @ContractMode = params['ContractMode']
+          @BlockMessageMode = params['BlockMessageMode']
+          @BlockMessage = params['BlockMessage']
+          @RewriteEnabled = params['RewriteEnabled']
+          unless params['FieldMapping'].nil?
+            @FieldMapping = CustomGuardrailFieldMappingPatch.new
+            @FieldMapping.deserialize(params['FieldMapping'])
+          end
+        end
+      end
+
+      # 自定义审核响应字段映射
+      class CustomGuardrailFieldMapping < TencentCloud::Common::AbstractModel
+        # @param HitFieldPath: <p>必填。命中字段的点分隔对象路径，例如 decision 或 result.blocked；不支持数组下标、JSONPath 或通配符。</p>
+        # @type HitFieldPath: String
+        # @param HitValue: <p>必填，API 类型为 string。可填写 JSON 字符串、数字或布尔标量文本，也接受 block 等非空普通文本并规范化为 JSON 字符串。示例：block 或 "block" 匹配字符串，true 匹配布尔值，0 匹配数字。null、对象、数组和空白文本不支持；类型不同不视为普通未命中。</p>
+        # @type HitValue: String
+        # @param MessageFieldPath: <p>BlockMessageMode=response 时必填，例如 message 或 result.message；读取结果应为 1～512 字符的字符串，否则使用兜底文案。</p>
+        # @type MessageFieldPath: String
+        # @param RewriteFieldPath: <p>RewriteEnabled=true 时必填，例如 content.body；仅输出审核读取。字段存在即优先 replace，与命中值是否相等无关。JSON 替换值应是完整业务 JSON；SSE 必须是以空行结束的完整事件文本，替换当前未发送的 event_batch，不是整个流或某个 TCP chunk。输入不替换。</p>
+        # @type RewriteFieldPath: String
+
+        attr_accessor :HitFieldPath, :HitValue, :MessageFieldPath, :RewriteFieldPath
+
+        def initialize(hitfieldpath=nil, hitvalue=nil, messagefieldpath=nil, rewritefieldpath=nil)
+          @HitFieldPath = hitfieldpath
+          @HitValue = hitvalue
+          @MessageFieldPath = messagefieldpath
+          @RewriteFieldPath = rewritefieldpath
+        end
+
+        def deserialize(params)
+          @HitFieldPath = params['HitFieldPath']
+          @HitValue = params['HitValue']
+          @MessageFieldPath = params['MessageFieldPath']
+          @RewriteFieldPath = params['RewriteFieldPath']
+        end
+      end
+
+      # 自定义审核响应字段映射
+      class CustomGuardrailFieldMappingInput < TencentCloud::Common::AbstractModel
+        # @param HitFieldPath: <p>必填。命中字段的点分隔对象路径，例如 decision 或 result.blocked；不支持数组下标、JSONPath 或通配符。</p>
+        # @type HitFieldPath: String
+        # @param HitValue: <p>必填，API 类型为 string。可填写 JSON 字符串、数字或布尔标量文本，也接受 block 等非空普通文本并规范化为 JSON 字符串。示例：block 或 "block" 匹配字符串，true 匹配布尔值，0 匹配数字。null、对象、数组和空白文本不支持；类型不同不视为普通未命中。</p>
+        # @type HitValue: String
+        # @param MessageFieldPath: <p>BlockMessageMode=response 时必填，例如 message 或 result.message；读取结果应为 1～512 字符的字符串，否则使用兜底文案。</p>
+        # @type MessageFieldPath: String
+        # @param RewriteFieldPath: <p>RewriteEnabled=true 时必填，例如 content.body；仅输出审核读取。字段存在即优先 replace，与命中值是否相等无关。JSON 替换值应是完整业务 JSON；SSE 必须是以空行结束的完整事件文本，替换当前未发送的 event_batch，不是整个流或某个 TCP chunk。输入不替换。</p>
+        # @type RewriteFieldPath: String
+
+        attr_accessor :HitFieldPath, :HitValue, :MessageFieldPath, :RewriteFieldPath
+
+        def initialize(hitfieldpath=nil, hitvalue=nil, messagefieldpath=nil, rewritefieldpath=nil)
+          @HitFieldPath = hitfieldpath
+          @HitValue = hitvalue
+          @MessageFieldPath = messagefieldpath
+          @RewriteFieldPath = rewritefieldpath
+        end
+
+        def deserialize(params)
+          @HitFieldPath = params['HitFieldPath']
+          @HitValue = params['HitValue']
+          @MessageFieldPath = params['MessageFieldPath']
+          @RewriteFieldPath = params['RewriteFieldPath']
+        end
+      end
+
+      # 局部更新配置。只更新显式提供字段；未传字段保留。条件必填按合并后的完整策略校验，不会要求每次重传全部配置。
+      class CustomGuardrailFieldMappingPatch < TencentCloud::Common::AbstractModel
+        # @param HitFieldPath: <p>局部更新：省略本字段保留原值；显式填写须满足枚举及条件必填约束。必填。命中字段的点分隔对象路径，例如 decision 或 result.blocked；不支持数组下标、JSONPath 或通配符。</p>
+        # @type HitFieldPath: String
+        # @param HitValue: <p>局部更新：省略本字段保留原值；显式填写须满足枚举及条件必填约束。必填，API 类型为 string。可填写 JSON 字符串、数字或布尔标量文本，也接受 block 等非空普通文本并规范化为 JSON 字符串。示例：block 或 "block" 匹配字符串，true 匹配布尔值，0 匹配数字。null、对象、数组和空白文本不支持；类型不同不视为普通未命中。</p>
+        # @type HitValue: String
+        # @param MessageFieldPath: <p>局部更新：省略本字段保留原值；显式填写须满足枚举及条件必填约束。BlockMessageMode=response 时必填，例如 message 或 result.message；读取结果应为 1～512 字符的字符串，否则使用兜底文案。</p>
+        # @type MessageFieldPath: String
+        # @param RewriteFieldPath: <p>局部更新：省略本字段保留原值；显式填写须满足枚举及条件必填约束。RewriteEnabled=true 时必填，例如 content.body；仅输出审核读取。字段存在即优先 replace，与命中值是否相等无关。JSON 替换值应是完整业务 JSON；SSE 必须是以空行结束的完整事件文本，替换当前未发送的 event_batch，不是整个流或某个 TCP chunk。输入不替换。</p>
+        # @type RewriteFieldPath: String
+
+        attr_accessor :HitFieldPath, :HitValue, :MessageFieldPath, :RewriteFieldPath
+
+        def initialize(hitfieldpath=nil, hitvalue=nil, messagefieldpath=nil, rewritefieldpath=nil)
+          @HitFieldPath = hitfieldpath
+          @HitValue = hitvalue
+          @MessageFieldPath = messagefieldpath
+          @RewriteFieldPath = rewritefieldpath
+        end
+
+        def deserialize(params)
+          @HitFieldPath = params['HitFieldPath']
+          @HitValue = params['HitValue']
+          @MessageFieldPath = params['MessageFieldPath']
+          @RewriteFieldPath = params['RewriteFieldPath']
+        end
+      end
+
+      # 自定义安全护栏过滤与采样配置
+      class CustomGuardrailFilterConfig < TencentCloud::Common::AbstractModel
+        # @param RequestStreamMode: <p>请求方向的流式筛选：all 全部（创建默认）、streaming 流式、non_streaming 非流式。依据请求的流式意图/协议识别；无法可靠判别时保守保留送审资格，不应依赖该字段实现强隔离。</p>
+        # @type RequestStreamMode: String
+        # @param ResponseStreamMode: <p>响应方向的流式筛选：all 全部（创建默认）、streaming 仅流式、non_streaming 仅非流式。开启输出审核并选择 streaming 可用于 SSE 响应审核。此字段不设置窗口大小或分片步长。</p>
+        # @type ResponseStreamMode: String
+        # @param RequestKeywords: <p>请求送审触发关键词；最多 64 项，每项非空且最长 128 字符。默认 [] 不按关键词过滤；非空时按 KeywordMatchMode 满足条件才送审，不是本地违禁词阻断列表。</p>
+        # @type RequestKeywords: Array
+        # @param ResponseKeywords: <p>响应送审触发关键词；最多 64 项，每项非空且最长 128 字符。默认 [] 不按关键词过滤。流式审核按增量审核单元执行筛选，不代表等待完整响应后统一判断。</p>
+        # @type ResponseKeywords: Array
+        # @param KeywordMatchMode: <p>关键词匹配方式：any 任一关键词命中（创建默认）；all 所有关键词命中。按文本字面子串匹配，不是正则表达式。</p>
+        # @type KeywordMatchMode: String
+        # @param KeywordCaseSensitive: <p>关键词匹配是否区分大小写，创建默认 false。</p>
+        # @type KeywordCaseSensitive: Boolean
+        # @param SamplingEnabled: <p>是否启用送审采样，创建默认 false（不按采样率跳过）。采样与方向、流式、关键词过滤叠加；开启低比例采样会使未抽中的内容不送审。</p>
+        # @type SamplingEnabled: Boolean
+        # @param RequestSamplingRate: <p>请求送审采样比例，范围 0～1，创建默认 1；SamplingEnabled=true 时使用。0 不抽取，1 全量，0.1 表示 10%，不是填写整数 10。</p>
+        # @type RequestSamplingRate: Float
+        # @param ResponseSamplingRate: <p>响应送审采样比例，范围 0～1，创建默认 1；SamplingEnabled=true 时使用。同一请求响应流保持一致的采样选择，不是对每个 SSE 网络 chunk 独立抽样。</p>
+        # @type ResponseSamplingRate: Float
+
+        attr_accessor :RequestStreamMode, :ResponseStreamMode, :RequestKeywords, :ResponseKeywords, :KeywordMatchMode, :KeywordCaseSensitive, :SamplingEnabled, :RequestSamplingRate, :ResponseSamplingRate
+
+        def initialize(requeststreammode=nil, responsestreammode=nil, requestkeywords=nil, responsekeywords=nil, keywordmatchmode=nil, keywordcasesensitive=nil, samplingenabled=nil, requestsamplingrate=nil, responsesamplingrate=nil)
+          @RequestStreamMode = requeststreammode
+          @ResponseStreamMode = responsestreammode
+          @RequestKeywords = requestkeywords
+          @ResponseKeywords = responsekeywords
+          @KeywordMatchMode = keywordmatchmode
+          @KeywordCaseSensitive = keywordcasesensitive
+          @SamplingEnabled = samplingenabled
+          @RequestSamplingRate = requestsamplingrate
+          @ResponseSamplingRate = responsesamplingrate
+        end
+
+        def deserialize(params)
+          @RequestStreamMode = params['RequestStreamMode']
+          @ResponseStreamMode = params['ResponseStreamMode']
+          @RequestKeywords = params['RequestKeywords']
+          @ResponseKeywords = params['ResponseKeywords']
+          @KeywordMatchMode = params['KeywordMatchMode']
+          @KeywordCaseSensitive = params['KeywordCaseSensitive']
+          @SamplingEnabled = params['SamplingEnabled']
+          @RequestSamplingRate = params['RequestSamplingRate']
+          @ResponseSamplingRate = params['ResponseSamplingRate']
+        end
+      end
+
+      # 自定义安全护栏过滤与采样配置
+      class CustomGuardrailFilterConfigInput < TencentCloud::Common::AbstractModel
+        # @param RequestStreamMode: <p>请求方向的流式筛选：all 全部（创建默认）、streaming 流式、non_streaming 非流式。依据请求的流式意图/协议识别；无法可靠判别时保守保留送审资格，不应依赖该字段实现强隔离。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RequestStreamMode: String
+        # @param ResponseStreamMode: <p>响应方向的流式筛选：all 全部（创建默认）、streaming 仅流式、non_streaming 仅非流式。开启输出审核并选择 streaming 可用于 SSE 响应审核。此字段不设置窗口大小或分片步长。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResponseStreamMode: String
+        # @param RequestKeywords: <p>请求送审触发关键词；最多 64 项，每项非空且最长 128 字符。默认 [] 不按关键词过滤；非空时按 KeywordMatchMode 满足条件才送审，不是本地违禁词阻断列表。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RequestKeywords: Array
+        # @param ResponseKeywords: <p>响应送审触发关键词；最多 64 项，每项非空且最长 128 字符。默认 [] 不按关键词过滤。流式审核按增量审核单元执行筛选，不代表等待完整响应后统一判断。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResponseKeywords: Array
+        # @param KeywordMatchMode: <p>关键词匹配方式：any 任一关键词命中（创建默认）；all 所有关键词命中。按文本字面子串匹配，不是正则表达式。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KeywordMatchMode: String
+        # @param KeywordCaseSensitive: <p>关键词匹配是否区分大小写，创建默认 false。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KeywordCaseSensitive: Boolean
+        # @param SamplingEnabled: <p>是否启用送审采样，创建默认 false（不按采样率跳过）。采样与方向、流式、关键词过滤叠加；开启低比例采样会使未抽中的内容不送审。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SamplingEnabled: Boolean
+        # @param RequestSamplingRate: <p>请求送审采样比例，范围 0～1，创建默认 1；SamplingEnabled=true 时使用。0 不抽取，1 全量，0.1 表示 10%，不是填写整数 10。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RequestSamplingRate: Float
+        # @param ResponseSamplingRate: <p>响应送审采样比例，范围 0～1，创建默认 1；SamplingEnabled=true 时使用。同一请求响应流保持一致的采样选择，不是对每个 SSE 网络 chunk 独立抽样。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResponseSamplingRate: Float
+
+        attr_accessor :RequestStreamMode, :ResponseStreamMode, :RequestKeywords, :ResponseKeywords, :KeywordMatchMode, :KeywordCaseSensitive, :SamplingEnabled, :RequestSamplingRate, :ResponseSamplingRate
+
+        def initialize(requeststreammode=nil, responsestreammode=nil, requestkeywords=nil, responsekeywords=nil, keywordmatchmode=nil, keywordcasesensitive=nil, samplingenabled=nil, requestsamplingrate=nil, responsesamplingrate=nil)
+          @RequestStreamMode = requeststreammode
+          @ResponseStreamMode = responsestreammode
+          @RequestKeywords = requestkeywords
+          @ResponseKeywords = responsekeywords
+          @KeywordMatchMode = keywordmatchmode
+          @KeywordCaseSensitive = keywordcasesensitive
+          @SamplingEnabled = samplingenabled
+          @RequestSamplingRate = requestsamplingrate
+          @ResponseSamplingRate = responsesamplingrate
+        end
+
+        def deserialize(params)
+          @RequestStreamMode = params['RequestStreamMode']
+          @ResponseStreamMode = params['ResponseStreamMode']
+          @RequestKeywords = params['RequestKeywords']
+          @ResponseKeywords = params['ResponseKeywords']
+          @KeywordMatchMode = params['KeywordMatchMode']
+          @KeywordCaseSensitive = params['KeywordCaseSensitive']
+          @SamplingEnabled = params['SamplingEnabled']
+          @RequestSamplingRate = params['RequestSamplingRate']
+          @ResponseSamplingRate = params['ResponseSamplingRate']
+        end
+      end
+
+      # 自定义安全护栏过滤与采样局部更新配置。仅更新显式传入的字段；省略字段保留原值，文中默认值指创建时默认值，不表示修改时重置。
+      class CustomGuardrailFilterConfigPatch < TencentCloud::Common::AbstractModel
+        # @param RequestStreamMode: <p>请求方向的流式筛选：all 全部（创建默认）、streaming 流式、non_streaming 非流式。依据请求的流式意图/协议识别；无法可靠判别时保守保留送审资格，不应依赖该字段实现强隔离。</p><p>修改时省略本字段保留原值。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RequestStreamMode: String
+        # @param ResponseStreamMode: <p>响应方向的流式筛选：all 全部（创建默认）、streaming 仅流式、non_streaming 仅非流式。开启输出审核并选择 streaming 可用于 SSE 响应审核。此字段不设置窗口大小或分片步长。</p><p>修改时省略本字段保留原值。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResponseStreamMode: String
+        # @param RequestKeywords: <p>请求送审触发关键词；最多 64 项，每项非空且最长 128 字符。默认 [] 不按关键词过滤；非空时按 KeywordMatchMode 满足条件才送审，不是本地违禁词阻断列表。</p><p>修改时省略本字段保留原值。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RequestKeywords: Array
+        # @param ResponseKeywords: <p>响应送审触发关键词；最多 64 项，每项非空且最长 128 字符。默认 [] 不按关键词过滤。流式审核按增量审核单元执行筛选，不代表等待完整响应后统一判断。</p><p>修改时省略本字段保留原值。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResponseKeywords: Array
+        # @param KeywordMatchMode: <p>关键词匹配方式：any 任一关键词命中（创建默认）；all 所有关键词命中。按文本字面子串匹配，不是正则表达式。</p><p>修改时省略本字段保留原值。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KeywordMatchMode: String
+        # @param KeywordCaseSensitive: <p>关键词匹配是否区分大小写，创建默认 false。</p><p>修改时省略本字段保留原值。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KeywordCaseSensitive: Boolean
+        # @param SamplingEnabled: <p>是否启用送审采样，创建默认 false（不按采样率跳过）。采样与方向、流式、关键词过滤叠加；开启低比例采样会使未抽中的内容不送审。</p><p>修改时省略本字段保留原值。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SamplingEnabled: Boolean
+        # @param RequestSamplingRate: <p>请求送审采样比例，范围 0～1，创建默认 1；SamplingEnabled=true 时使用。0 不抽取，1 全量，0.1 表示 10%，不是填写整数 10。</p><p>修改时省略本字段保留原值。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RequestSamplingRate: Float
+        # @param ResponseSamplingRate: <p>响应送审采样比例，范围 0～1，创建默认 1；SamplingEnabled=true 时使用。同一请求响应流保持一致的采样选择，不是对每个 SSE 网络 chunk 独立抽样。</p><p>修改时省略本字段保留原值。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResponseSamplingRate: Float
+
+        attr_accessor :RequestStreamMode, :ResponseStreamMode, :RequestKeywords, :ResponseKeywords, :KeywordMatchMode, :KeywordCaseSensitive, :SamplingEnabled, :RequestSamplingRate, :ResponseSamplingRate
+
+        def initialize(requeststreammode=nil, responsestreammode=nil, requestkeywords=nil, responsekeywords=nil, keywordmatchmode=nil, keywordcasesensitive=nil, samplingenabled=nil, requestsamplingrate=nil, responsesamplingrate=nil)
+          @RequestStreamMode = requeststreammode
+          @ResponseStreamMode = responsestreammode
+          @RequestKeywords = requestkeywords
+          @ResponseKeywords = responsekeywords
+          @KeywordMatchMode = keywordmatchmode
+          @KeywordCaseSensitive = keywordcasesensitive
+          @SamplingEnabled = samplingenabled
+          @RequestSamplingRate = requestsamplingrate
+          @ResponseSamplingRate = responsesamplingrate
+        end
+
+        def deserialize(params)
+          @RequestStreamMode = params['RequestStreamMode']
+          @ResponseStreamMode = params['ResponseStreamMode']
+          @RequestKeywords = params['RequestKeywords']
+          @ResponseKeywords = params['ResponseKeywords']
+          @KeywordMatchMode = params['KeywordMatchMode']
+          @KeywordCaseSensitive = params['KeywordCaseSensitive']
+          @SamplingEnabled = params['SamplingEnabled']
+          @RequestSamplingRate = params['RequestSamplingRate']
+          @ResponseSamplingRate = params['ResponseSamplingRate']
+        end
+      end
+
+      # 自定义安全护栏审核记录
+      class CustomGuardrailHit < TencentCloud::Common::AbstractModel
+        # @param RequestId: <p>业务网关请求 ID；不是本次云 API 响应的 RequestId。流式同一业务请求可产生多条审核记录。</p>
+        # @type RequestId: String
+        # @param Timestamp: <p>审核记录 Unix 毫秒级时间戳；注意查询入参 StartTime/EndTime 为秒级。</p>
+        # @type Timestamp: Integer
+        # @param GatewayId: <p>网关实例 ID</p>
+        # @type GatewayId: String
+        # @param PolicyId: <p>策略 ID</p>
+        # @type PolicyId: String
+        # @param PolicyName: <p>策略名称</p>
+        # @type PolicyName: String
+        # @param ResourceType: <p>业务资源类型</p>
+        # @type ResourceType: String
+        # @param ResourceId: <p>业务资源 ID</p>
+        # @type ResourceId: String
+        # @param RouteId: <p>Kong Route ID</p>
+        # @type RouteId: String
+        # @param Protocol: <p>业务协议</p>
+        # @type Protocol: String
+        # @param Direction: <p>审核方向：request 或 response</p>
+        # @type Direction: String
+        # @param Streaming: <p>是否为流式审核</p>
+        # @type Streaming: Boolean
+        # @param Final: <p>该审核单元是否标记为最终单元；不是是否命中/是否连接正常结束的判断依据。</p>
+        # @type Final: Boolean
+        # @param Decision: <p>归一化后的审核判定，可能为 allow、block、replace、error；不是原始自定义字段的任意值。观察模式仍可记录命中判定。</p>
+        # @type Decision: String
+        # @param ConfiguredAction: <p>策略配置动作</p>
+        # @type ConfiguredAction: String
+        # @param EffectiveAction: <p>该审核记录的策略处理结果，如 allow、block、replace、error。需与 Decision、ConfiguredAction、ErrorCode 联合分析；记录不等于客户端已成功收到全部响应。</p>
+        # @type EffectiveAction: String
+        # @param Rewritten: <p>内容是否被改写</p>
+        # @type Rewritten: Boolean
+        # @param Blocked: <p>请求或响应是否被拦截</p>
+        # @type Blocked: Boolean
+        # @param Downgraded: <p>本审核记录是否因失败放行发生降级；为 true 时不能认为内容已经审核通过。</p>
+        # @type Downgraded: Boolean
+        # @param ProviderStatusCode: <p>审核服务 HTTP 状态码</p>
+        # @type ProviderStatusCode: Integer
+        # @param LatencyMs: <p>该审核调用耗时，单位毫秒，可含小数；不是完整模型请求时长或客户端首字延迟。</p>
+        # @type LatencyMs: Float
+        # @param ErrorCode: <p>稳定错误码</p>
+        # @type ErrorCode: String
+        # @param Reason: <p>审核原因或错误摘要</p>
+        # @type Reason: String
+
+        attr_accessor :RequestId, :Timestamp, :GatewayId, :PolicyId, :PolicyName, :ResourceType, :ResourceId, :RouteId, :Protocol, :Direction, :Streaming, :Final, :Decision, :ConfiguredAction, :EffectiveAction, :Rewritten, :Blocked, :Downgraded, :ProviderStatusCode, :LatencyMs, :ErrorCode, :Reason
+
+        def initialize(requestid=nil, timestamp=nil, gatewayid=nil, policyid=nil, policyname=nil, resourcetype=nil, resourceid=nil, routeid=nil, protocol=nil, direction=nil, streaming=nil, final=nil, decision=nil, configuredaction=nil, effectiveaction=nil, rewritten=nil, blocked=nil, downgraded=nil, providerstatuscode=nil, latencyms=nil, errorcode=nil, reason=nil)
+          @RequestId = requestid
+          @Timestamp = timestamp
+          @GatewayId = gatewayid
+          @PolicyId = policyid
+          @PolicyName = policyname
+          @ResourceType = resourcetype
+          @ResourceId = resourceid
+          @RouteId = routeid
+          @Protocol = protocol
+          @Direction = direction
+          @Streaming = streaming
+          @Final = final
+          @Decision = decision
+          @ConfiguredAction = configuredaction
+          @EffectiveAction = effectiveaction
+          @Rewritten = rewritten
+          @Blocked = blocked
+          @Downgraded = downgraded
+          @ProviderStatusCode = providerstatuscode
+          @LatencyMs = latencyms
+          @ErrorCode = errorcode
+          @Reason = reason
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+          @Timestamp = params['Timestamp']
+          @GatewayId = params['GatewayId']
+          @PolicyId = params['PolicyId']
+          @PolicyName = params['PolicyName']
+          @ResourceType = params['ResourceType']
+          @ResourceId = params['ResourceId']
+          @RouteId = params['RouteId']
+          @Protocol = params['Protocol']
+          @Direction = params['Direction']
+          @Streaming = params['Streaming']
+          @Final = params['Final']
+          @Decision = params['Decision']
+          @ConfiguredAction = params['ConfiguredAction']
+          @EffectiveAction = params['EffectiveAction']
+          @Rewritten = params['Rewritten']
+          @Blocked = params['Blocked']
+          @Downgraded = params['Downgraded']
+          @ProviderStatusCode = params['ProviderStatusCode']
+          @LatencyMs = params['LatencyMs']
+          @ErrorCode = params['ErrorCode']
+          @Reason = params['Reason']
+        end
+      end
+
+      # 自定义安全护栏审核记录过滤条件
+      class CustomGuardrailHitFilter < TencentCloud::Common::AbstractModel
+        # @param Name: <p>支持 PolicyId、Direction、Decision、EffectiveAction、ResourceType、ResourceId、Protocol、RouteId、RequestId、ErrorCode。Direction 使用 request/response；Protocol 应使用实际审核日志中的协议名，如 mcp-streamable-http。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Values: <p>每个过滤项仅支持一个非空字符串值，不支持同一项多值 OR；不同过滤项之间为 AND。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Values: Array
+
+        attr_accessor :Name, :Values
+
+        def initialize(name=nil, values=nil)
+          @Name = name
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Values = params['Values']
+        end
+      end
+
+      # 自定义安全护栏策略
+      class CustomGuardrailPolicy < TencentCloud::Common::AbstractModel
+        # @param PolicyId: <p>策略 ID</p>
+        # @type PolicyId: String
+        # @param Name: <p>策略名称</p>
+        # @type Name: String
+        # @param Description: <p>策略描述</p>
+        # @type Description: String
+        # @param Enabled: <p>策略期望启用状态；实际生效还需检查 EffectiveEnabled 和 SyncStatus。</p>
+        # @type Enabled: Boolean
+        # @param EffectiveEnabled: <p>当前控制面计算值：Enabled=true 且 SyncStatus=synced 时为 true。不代表一次真实业务请求已通过审核，也不替代 DP 同步/链路验证。</p>
+        # @type EffectiveEnabled: Boolean
+        # @param ServiceConfig: <p>审核服务配置</p>
+        # @type ServiceConfig: :class:`Tencentcloud::Cngw.v20230418.models.CustomGuardrailServiceConfig`
+        # @param AuthConfig: <p>审核引擎鉴权的脱敏视图，仅返回鉴权类型、Header 名和密钥存在状态，不返回 ApiKey。</p>
+        # @type AuthConfig: :class:`Tencentcloud::Cngw.v20230418.models.CustomGuardrailAuthConfig`
+        # @param DecisionConfig: <p>审核响应判定配置</p>
+        # @type DecisionConfig: :class:`Tencentcloud::Cngw.v20230418.models.CustomGuardrailDecisionConfig`
+        # @param BehaviorConfig: <p>处理行为配置</p>
+        # @type BehaviorConfig: :class:`Tencentcloud::Cngw.v20230418.models.CustomGuardrailBehaviorConfig`
+        # @param FilterConfig: <p>过滤与采样配置</p>
+        # @type FilterConfig: :class:`Tencentcloud::Cngw.v20230418.models.CustomGuardrailFilterConfig`
+        # @param Scope: <p>生效范围</p>
+        # @type Scope: :class:`Tencentcloud::Cngw.v20230418.models.CustomGuardrailScope`
+        # @param Bindings: <p>业务资源到 Kong Route 的绑定及插件投影信息，一个业务资源可能对应多个 Route。</p>
+        # @type Bindings: Array
+        # @param SyncStatus: <p>同步状态：pending 待同步，synced 已完成本次配置同步，partial 部分失败，failed 失败。需结合 FailedResources/SyncError；synced 不等于已完成所有数据面实例的业务端到端验证。</p>
+        # @type SyncStatus: String
+        # @param SyncError: <p>配置同步错误摘要，无错误时可能省略。</p>
+        # @type SyncError: String
+        # @param CreateTime: <p>创建时间</p>
+        # @type CreateTime: String
+        # @param ModificationTime: <p>最后修改时间</p>
+        # @type ModificationTime: String
+
+        attr_accessor :PolicyId, :Name, :Description, :Enabled, :EffectiveEnabled, :ServiceConfig, :AuthConfig, :DecisionConfig, :BehaviorConfig, :FilterConfig, :Scope, :Bindings, :SyncStatus, :SyncError, :CreateTime, :ModificationTime
+
+        def initialize(policyid=nil, name=nil, description=nil, enabled=nil, effectiveenabled=nil, serviceconfig=nil, authconfig=nil, decisionconfig=nil, behaviorconfig=nil, filterconfig=nil, scope=nil, bindings=nil, syncstatus=nil, syncerror=nil, createtime=nil, modificationtime=nil)
+          @PolicyId = policyid
+          @Name = name
+          @Description = description
+          @Enabled = enabled
+          @EffectiveEnabled = effectiveenabled
+          @ServiceConfig = serviceconfig
+          @AuthConfig = authconfig
+          @DecisionConfig = decisionconfig
+          @BehaviorConfig = behaviorconfig
+          @FilterConfig = filterconfig
+          @Scope = scope
+          @Bindings = bindings
+          @SyncStatus = syncstatus
+          @SyncError = syncerror
+          @CreateTime = createtime
+          @ModificationTime = modificationtime
+        end
+
+        def deserialize(params)
+          @PolicyId = params['PolicyId']
+          @Name = params['Name']
+          @Description = params['Description']
+          @Enabled = params['Enabled']
+          @EffectiveEnabled = params['EffectiveEnabled']
+          unless params['ServiceConfig'].nil?
+            @ServiceConfig = CustomGuardrailServiceConfig.new
+            @ServiceConfig.deserialize(params['ServiceConfig'])
+          end
+          unless params['AuthConfig'].nil?
+            @AuthConfig = CustomGuardrailAuthConfig.new
+            @AuthConfig.deserialize(params['AuthConfig'])
+          end
+          unless params['DecisionConfig'].nil?
+            @DecisionConfig = CustomGuardrailDecisionConfig.new
+            @DecisionConfig.deserialize(params['DecisionConfig'])
+          end
+          unless params['BehaviorConfig'].nil?
+            @BehaviorConfig = CustomGuardrailBehaviorConfig.new
+            @BehaviorConfig.deserialize(params['BehaviorConfig'])
+          end
+          unless params['FilterConfig'].nil?
+            @FilterConfig = CustomGuardrailFilterConfig.new
+            @FilterConfig.deserialize(params['FilterConfig'])
+          end
+          unless params['Scope'].nil?
+            @Scope = CustomGuardrailScope.new
+            @Scope.deserialize(params['Scope'])
+          end
+          unless params['Bindings'].nil?
+            @Bindings = []
+            params['Bindings'].each do |i|
+              customguardrailpolicybinding_tmp = CustomGuardrailPolicyBinding.new
+              customguardrailpolicybinding_tmp.deserialize(i)
+              @Bindings << customguardrailpolicybinding_tmp
+            end
+          end
+          @SyncStatus = params['SyncStatus']
+          @SyncError = params['SyncError']
+          @CreateTime = params['CreateTime']
+          @ModificationTime = params['ModificationTime']
+        end
+      end
+
+      # 自定义安全护栏到 Kong Route 的运行态投影
+      class CustomGuardrailPolicyBinding < TencentCloud::Common::AbstractModel
+        # @param ResourceType: <p>业务资源类型</p>
+        # @type ResourceType: String
+        # @param ResourceId: <p>业务资源 ID</p>
+        # @type ResourceId: String
+        # @param ResourceName: <p>业务资源名称</p>
+        # @type ResourceName: String
+        # @param Path: <p>资源访问路径</p>
+        # @type Path: String
+        # @param Protocol: <p>数据面解析协议</p>
+        # @type Protocol: String
+        # @param RouteId: <p>底层 Kong Route ID</p>
+        # @type RouteId: String
+        # @param PluginId: <p>绑定 Route 上的 cngw-ai-custom-guardrail 插件实例 ID；未投影、禁用或同步失败时可能不存在。</p>
+        # @type PluginId: String
+        # @param SyncStatus: <p>同步状态：pending 待同步，synced 已完成本次配置同步，partial 部分失败，failed 失败。需结合 FailedResources/SyncError；synced 不等于已完成所有数据面实例的业务端到端验证。</p>
+        # @type SyncStatus: String
+        # @param SyncError: <p>最近一次同步错误摘要</p>
+        # @type SyncError: String
+
+        attr_accessor :ResourceType, :ResourceId, :ResourceName, :Path, :Protocol, :RouteId, :PluginId, :SyncStatus, :SyncError
+
+        def initialize(resourcetype=nil, resourceid=nil, resourcename=nil, path=nil, protocol=nil, routeid=nil, pluginid=nil, syncstatus=nil, syncerror=nil)
+          @ResourceType = resourcetype
+          @ResourceId = resourceid
+          @ResourceName = resourcename
+          @Path = path
+          @Protocol = protocol
+          @RouteId = routeid
+          @PluginId = pluginid
+          @SyncStatus = syncstatus
+          @SyncError = syncerror
+        end
+
+        def deserialize(params)
+          @ResourceType = params['ResourceType']
+          @ResourceId = params['ResourceId']
+          @ResourceName = params['ResourceName']
+          @Path = params['Path']
+          @Protocol = params['Protocol']
+          @RouteId = params['RouteId']
+          @PluginId = params['PluginId']
+          @SyncStatus = params['SyncStatus']
+          @SyncError = params['SyncError']
+        end
+      end
+
+      # 自定义安全护栏策略列表过滤条件
+      class CustomGuardrailPolicyFilter < TencentCloud::Common::AbstractModel
+        # @param Name: <p>过滤字段：Enabled、Direction、HandleAction、BindType、SyncStatus；名称区分大小写。Direction 使用 input/output/both。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Values: <p>至少一个字符串值；同一过滤项内多个值为 OR，不同过滤项之间为 AND。例如 Enabled 的值为字符串 "true"，不是布尔值。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Values: Array
+
+        attr_accessor :Name, :Values
+
+        def initialize(name=nil, values=nil)
+          @Name = name
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Values = params['Values']
+        end
+      end
+
+      # 自定义安全护栏业务资源引用
+      class CustomGuardrailResourceRef < TencentCloud::Common::AbstractModel
+        # @param ResourceType: <p>被审核的业务资源类型：model_api 模型 API；mcp_server MCP Server（当前支持 Streamable HTTP）；agent_api Agent API（当前支持 A2A）。</p>
+        # @type ResourceType: String
+        # @param ResourceId: <p>上述类型的管控业务资源 ID，可从 DescribeAIGWCustomGuardrailBindableResources 获取；不是审核引擎 ServiceId，也不是 Kong RouteId。请原样使用接口返回 ID。</p>
+        # @type ResourceId: String
+
+        attr_accessor :ResourceType, :ResourceId
+
+        def initialize(resourcetype=nil, resourceid=nil)
+          @ResourceType = resourcetype
+          @ResourceId = resourceid
+        end
+
+        def deserialize(params)
+          @ResourceType = params['ResourceType']
+          @ResourceId = params['ResourceId']
+        end
+      end
+
+      # 自定义安全护栏业务资源引用
+      class CustomGuardrailResourceRefInput < TencentCloud::Common::AbstractModel
+        # @param ResourceType: <p>被审核的业务资源类型：model_api 模型 API；mcp_server MCP Server（当前支持 Streamable HTTP）；agent_api Agent API（当前支持 A2A）。</p>
+        # @type ResourceType: String
+        # @param ResourceId: <p>上述类型的管控业务资源 ID，可从 DescribeAIGWCustomGuardrailBindableResources 获取；不是审核引擎 ServiceId，也不是 Kong RouteId。请原样使用接口返回 ID。</p>
+        # @type ResourceId: String
+
+        attr_accessor :ResourceType, :ResourceId
+
+        def initialize(resourcetype=nil, resourceid=nil)
+          @ResourceType = resourcetype
+          @ResourceId = resourceid
+        end
+
+        def deserialize(params)
+          @ResourceType = params['ResourceType']
+          @ResourceId = params['ResourceId']
+        end
+      end
+
+      # 自定义安全护栏生效范围
+      class CustomGuardrailScope < TencentCloud::Common::AbstractModel
+        # @param BindType: <p>绑定方式：resource 显式指定业务资源；global 覆盖网关中当前支持的业务资源，由平台关联到其 Kong Route，并随受支持的资源变更协调绑定。不是创建一个独立的 Kong global 插件。相同 Route 不能同时被多个自定义护栏策略占用。</p>
+        # @type BindType: String
+        # @param Resources: <p>BindType=resource 时必填，1～200 个资源，ResourceType/ResourceId 组合不得重复；global 时不应填写资源或传 []。Modify 传入 Scope 时替换整个范围，不是增量追加。暂不纳入 Dify/Custom Agent 和 Legacy SSE MCP。</p>
+        # @type Resources: Array
+
+        attr_accessor :BindType, :Resources
+
+        def initialize(bindtype=nil, resources=nil)
+          @BindType = bindtype
+          @Resources = resources
+        end
+
+        def deserialize(params)
+          @BindType = params['BindType']
+          unless params['Resources'].nil?
+            @Resources = []
+            params['Resources'].each do |i|
+              customguardrailresourceref_tmp = CustomGuardrailResourceRef.new
+              customguardrailresourceref_tmp.deserialize(i)
+              @Resources << customguardrailresourceref_tmp
+            end
+          end
+        end
+      end
+
+      # 自定义安全护栏生效范围
+      class CustomGuardrailScopeInput < TencentCloud::Common::AbstractModel
+        # @param BindType: <p>绑定方式：resource 显式指定业务资源；global 覆盖网关中当前支持的业务资源，由平台关联到其 Kong Route，并随受支持的资源变更协调绑定。不是创建一个独立的 Kong global 插件。相同 Route 不能同时被多个自定义护栏策略占用。</p>
+        # @type BindType: String
+        # @param Resources: <p>BindType=resource 时必填，1～200 个资源，ResourceType/ResourceId 组合不得重复；global 时不应填写资源或传 []。Modify 传入 Scope 时替换整个范围，不是增量追加。暂不纳入 Dify/Custom Agent 和 Legacy SSE MCP。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Resources: Array
+
+        attr_accessor :BindType, :Resources
+
+        def initialize(bindtype=nil, resources=nil)
+          @BindType = bindtype
+          @Resources = resources
+        end
+
+        def deserialize(params)
+          @BindType = params['BindType']
+          unless params['Resources'].nil?
+            @Resources = []
+            params['Resources'].each do |i|
+              customguardrailresourcerefinput_tmp = CustomGuardrailResourceRefInput.new
+              customguardrailresourcerefinput_tmp.deserialize(i)
+              @Resources << customguardrailresourcerefinput_tmp
+            end
+          end
+        end
+      end
+
+      # 自定义安全护栏审核服务配置
+      class CustomGuardrailServiceConfig < TencentCloud::Common::AbstractModel
+        # @param AddressMode: <p>审核服务地址来源：manual 手动填写完整 URL，service 引用本网关服务管理中的 Kong Service。二者互斥；创建时按接口要求显式传入。</p>
+        # @type AddressMode: String
+        # @param ServiceId: <p>AddressMode=service 时必填。填写审核引擎对应的 Kong Service ID，不是被审核的模型 API、MCP Server 或 Agent API ID。按该服务的 protocol、host、port、path 拼出审核 URL；直接请求该 URL，不是经过该服务的网关 Route，也不会自动继承其 Route 插件或业务鉴权。manual 模式不得填写。</p>
+        # @type ServiceId: String
+        # @param Endpoint: <p>AddressMode=manual 时必填，审核引擎接受 POST 的 HTTP/HTTPS 完整 URL，例如 https://audit.example.com/v2/audit；路径以实际引擎为准，不会自动补 /v2/audit。service 模式不得填写。请填写 URL 原文，不要粘贴 Markdown 链接。</p>
+        # @type Endpoint: String
+        # @param SSLVerify: <p>是否校验审核引擎 HTTPS 证书，创建默认 true；仅影响审核 HTTP 调用，不是客户端访问网关的 TLS 设置。</p>
+        # @type SSLVerify: Boolean
+        # @param QueryPassthroughEnabled: <p>是否把原业务请求的完整 Query 字符串写入送审包，创建默认 false。开启可能把 Query 中的凭据或个人信息传给审核服务，须确认接收方可信；不是审核服务 URL 自身的 Query 开关。</p>
+        # @type QueryPassthroughEnabled: Boolean
+        # @param HeaderAllowList: <p>允许额外写入送审包的原始 HTTP Header 名称，最多 64 项，每项最长 128 字节；名称不区分大小写，默认 []。内置保留 content-type、accept、mcp-protocol-version、a2a-version；Authorization、Cookie、API Key、MCP 会话标识和内部 Relay 等受限头不会因加入本列表而放行。审核服务自身的鉴权请使用 AuthConfig。</p>
+        # @type HeaderAllowList: Array
+
+        attr_accessor :AddressMode, :ServiceId, :Endpoint, :SSLVerify, :QueryPassthroughEnabled, :HeaderAllowList
+
+        def initialize(addressmode=nil, serviceid=nil, endpoint=nil, sslverify=nil, querypassthroughenabled=nil, headerallowlist=nil)
+          @AddressMode = addressmode
+          @ServiceId = serviceid
+          @Endpoint = endpoint
+          @SSLVerify = sslverify
+          @QueryPassthroughEnabled = querypassthroughenabled
+          @HeaderAllowList = headerallowlist
+        end
+
+        def deserialize(params)
+          @AddressMode = params['AddressMode']
+          @ServiceId = params['ServiceId']
+          @Endpoint = params['Endpoint']
+          @SSLVerify = params['SSLVerify']
+          @QueryPassthroughEnabled = params['QueryPassthroughEnabled']
+          @HeaderAllowList = params['HeaderAllowList']
+        end
+      end
+
+      # 自定义安全护栏审核服务配置
+      class CustomGuardrailServiceConfigInput < TencentCloud::Common::AbstractModel
+        # @param AddressMode: <p>审核服务地址来源，必须显式选择 service（已有服务）或 manual（手动 URL）；不得省略、为空或 null。service 时 ServiceId 必填，manual 时 Endpoint 必填，两种地址互斥。</p>
+        # @type AddressMode: String
+        # @param ServiceId: <p>AddressMode=service 时必填。填写审核引擎对应的 Kong Service ID，不是被审核的模型 API、MCP Server 或 Agent API ID。按该服务的 protocol、host、port、path 拼出审核 URL；直接请求该 URL，不是经过该服务的网关 Route，也不会自动继承其 Route 插件或业务鉴权。manual 模式不得填写。</p>
+        # @type ServiceId: String
+        # @param Endpoint: <p>AddressMode=manual 时必填，审核引擎接受 POST 的 HTTP/HTTPS 完整 URL，例如 https://audit.example.com/v2/audit；路径以实际引擎为准，不会自动补 /v2/audit。service 模式不得填写。请填写 URL 原文，不要粘贴 Markdown 链接。</p>
+        # @type Endpoint: String
+        # @param SSLVerify: <p>是否校验审核引擎 HTTPS 证书，创建默认 true；仅影响审核 HTTP 调用，不是客户端访问网关的 TLS 设置。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SSLVerify: Boolean
+        # @param QueryPassthroughEnabled: <p>是否把原业务请求的完整 Query 字符串写入送审包，创建默认 false。开启可能把 Query 中的凭据或个人信息传给审核服务，须确认接收方可信；不是审核服务 URL 自身的 Query 开关。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QueryPassthroughEnabled: Boolean
+        # @param HeaderAllowList: <p>允许额外写入送审包的原始 HTTP Header 名称，最多 64 项，每项最长 128 字节；名称不区分大小写，默认 []。内置保留 content-type、accept、mcp-protocol-version、a2a-version；Authorization、Cookie、API Key、MCP 会话标识和内部 Relay 等受限头不会因加入本列表而放行。审核服务自身的鉴权请使用 AuthConfig。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HeaderAllowList: Array
+
+        attr_accessor :AddressMode, :ServiceId, :Endpoint, :SSLVerify, :QueryPassthroughEnabled, :HeaderAllowList
+
+        def initialize(addressmode=nil, serviceid=nil, endpoint=nil, sslverify=nil, querypassthroughenabled=nil, headerallowlist=nil)
+          @AddressMode = addressmode
+          @ServiceId = serviceid
+          @Endpoint = endpoint
+          @SSLVerify = sslverify
+          @QueryPassthroughEnabled = querypassthroughenabled
+          @HeaderAllowList = headerallowlist
+        end
+
+        def deserialize(params)
+          @AddressMode = params['AddressMode']
+          @ServiceId = params['ServiceId']
+          @Endpoint = params['Endpoint']
+          @SSLVerify = params['SSLVerify']
+          @QueryPassthroughEnabled = params['QueryPassthroughEnabled']
+          @HeaderAllowList = params['HeaderAllowList']
+        end
+      end
+
+      # 局部更新配置。只更新显式提供字段；未传字段保留。条件必填按合并后的完整策略校验，不会要求每次重传全部配置。
+      class CustomGuardrailServiceConfigPatch < TencentCloud::Common::AbstractModel
+        # @param AddressMode: <p>局部更新：省略本字段保留原值；显式填写须满足枚举及条件必填约束。审核服务地址来源，必须显式选择 service（已有服务）或 manual（手动 URL）；不得省略、为空或 null。service 时 ServiceId 必填，manual 时 Endpoint 必填，两种地址互斥。</p>
+        # @type AddressMode: String
+        # @param ServiceId: <p>AddressMode=service 时必填。填写审核引擎对应的 Kong Service ID，不是被审核的模型 API、MCP Server 或 Agent API ID。按该服务的 protocol、host、port、path 拼出审核 URL；直接请求该 URL，不是经过该服务的网关 Route，也不会自动继承其 Route 插件或业务鉴权。manual 模式不得填写。</p><p>修改时省略本字段保留原值。</p>
+        # @type ServiceId: String
+        # @param Endpoint: <p>AddressMode=manual 时必填，审核引擎接受 POST 的 HTTP/HTTPS 完整 URL，例如 https://audit.example.com/v2/audit；路径以实际引擎为准，不会自动补 /v2/audit。service 模式不得填写。请填写 URL 原文，不要粘贴 Markdown 链接。</p><p>修改时省略本字段保留原值。</p>
+        # @type Endpoint: String
+        # @param SSLVerify: <p>是否校验审核引擎 HTTPS 证书，创建默认 true；仅影响审核 HTTP 调用，不是客户端访问网关的 TLS 设置。</p><p>修改时省略本字段保留原值。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SSLVerify: Boolean
+        # @param QueryPassthroughEnabled: <p>是否把原业务请求的完整 Query 字符串写入送审包，创建默认 false。开启可能把 Query 中的凭据或个人信息传给审核服务，须确认接收方可信；不是审核服务 URL 自身的 Query 开关。</p><p>修改时省略本字段保留原值。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QueryPassthroughEnabled: Boolean
+        # @param HeaderAllowList: <p>允许额外写入送审包的原始 HTTP Header 名称，最多 64 项，每项最长 128 字节；名称不区分大小写，默认 []。内置保留 content-type、accept、mcp-protocol-version、a2a-version；Authorization、Cookie、API Key、MCP 会话标识和内部 Relay 等受限头不会因加入本列表而放行。审核服务自身的鉴权请使用 AuthConfig。</p><p>修改时省略本字段保留原值。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HeaderAllowList: Array
+
+        attr_accessor :AddressMode, :ServiceId, :Endpoint, :SSLVerify, :QueryPassthroughEnabled, :HeaderAllowList
+
+        def initialize(addressmode=nil, serviceid=nil, endpoint=nil, sslverify=nil, querypassthroughenabled=nil, headerallowlist=nil)
+          @AddressMode = addressmode
+          @ServiceId = serviceid
+          @Endpoint = endpoint
+          @SSLVerify = sslverify
+          @QueryPassthroughEnabled = querypassthroughenabled
+          @HeaderAllowList = headerallowlist
+        end
+
+        def deserialize(params)
+          @AddressMode = params['AddressMode']
+          @ServiceId = params['ServiceId']
+          @Endpoint = params['Endpoint']
+          @SSLVerify = params['SSLVerify']
+          @QueryPassthroughEnabled = params['QueryPassthroughEnabled']
+          @HeaderAllowList = params['HeaderAllowList']
+        end
+      end
+
+      # 自定义安全护栏资源同步失败信息
+      class CustomGuardrailSyncFailure < TencentCloud::Common::AbstractModel
+        # @param ResourceType: <p>资源类型；策略级错误时为 policy</p>
+        # @type ResourceType: String
+        # @param ResourceId: <p>资源 ID</p>
+        # @type ResourceId: String
+        # @param RouteId: <p>底层 Kong Route ID</p>
+        # @type RouteId: String
+        # @param Error: <p>错误摘要</p>
+        # @type Error: String
+
+        attr_accessor :ResourceType, :ResourceId, :RouteId, :Error
+
+        def initialize(resourcetype=nil, resourceid=nil, routeid=nil, error=nil)
+          @ResourceType = resourcetype
+          @ResourceId = resourceid
+          @RouteId = routeid
+          @Error = error
+        end
+
+        def deserialize(params)
+          @ResourceType = params['ResourceType']
+          @ResourceId = params['ResourceId']
+          @RouteId = params['RouteId']
+          @Error = params['Error']
+        end
+      end
+
       # 默认kong路由，目前只在 LLM 模型 API相 关接口使用
       class DefaultKongRoute < TencentCloud::Common::AbstractModel
         # @param Name: <p>服务名字</p>
@@ -5420,6 +6770,76 @@ module TencentCloud
           @ID = params['ID']
           @Methods = params['Methods']
           @Paths = params['Paths']
+        end
+      end
+
+      # DeleteAIGWCustomGuardrailPolicy请求参数结构体
+      class DeleteAIGWCustomGuardrailPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: <p>网关实例 ID</p>
+        # @type GatewayId: String
+        # @param PolicyId: <p>策略 ID</p>
+        # @type PolicyId: String
+
+        attr_accessor :GatewayId, :PolicyId
+
+        def initialize(gatewayid=nil, policyid=nil)
+          @GatewayId = gatewayid
+          @PolicyId = policyid
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @PolicyId = params['PolicyId']
+        end
+      end
+
+      # DeleteAIGWCustomGuardrailPolicy返回参数结构体
+      class DeleteAIGWCustomGuardrailPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param Result: <p>接口业务结果，位于完整云 API 响应 Response.Result。存在 Success 时仍须单独判断；Response.RequestId 是本次云 API 请求标识。</p>
+        # @type Result: :class:`Tencentcloud::Cngw.v20230418.models.DeleteAIGWCustomGuardrailPolicyResult`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = DeleteAIGWCustomGuardrailPolicyResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 删除自定义安全护栏策略结果
+      class DeleteAIGWCustomGuardrailPolicyResult < TencentCloud::Common::AbstractModel
+        # @param Success: <p>是否完成插件投影清理并删除策略。false 时策略保留供重试，应检查 FailedResources。</p>
+        # @type Success: Boolean
+        # @param FailedResources: <p>投影清理失败的业务资源</p>
+        # @type FailedResources: Array
+
+        attr_accessor :Success, :FailedResources
+
+        def initialize(success=nil, failedresources=nil)
+          @Success = success
+          @FailedResources = failedresources
+        end
+
+        def deserialize(params)
+          @Success = params['Success']
+          unless params['FailedResources'].nil?
+            @FailedResources = []
+            params['FailedResources'].each do |i|
+              customguardrailsyncfailure_tmp = CustomGuardrailSyncFailure.new
+              customguardrailsyncfailure_tmp.deserialize(i)
+              @FailedResources << customguardrailsyncfailure_tmp
+            end
+          end
         end
       end
 
@@ -5529,6 +6949,46 @@ module TencentCloud
 
       # DeleteCloudNativeAPIGatewayConsumer返回参数结构体
       class DeleteCloudNativeAPIGatewayConsumerResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteCloudNativeAPIGatewayIPRestriction请求参数结构体
+      class DeleteCloudNativeAPIGatewayIPRestrictionRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关ID
+        # @type GatewayId: String
+        # @param SourceId: 路由或服务的id
+        # @type SourceId: String
+        # @param SourceType: 访问控制插件绑定的资源类型：route|service
+        # @type SourceType: String
+
+        attr_accessor :GatewayId, :SourceId, :SourceType
+
+        def initialize(gatewayid=nil, sourceid=nil, sourcetype=nil)
+          @GatewayId = gatewayid
+          @SourceId = sourceid
+          @SourceType = sourcetype
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @SourceId = params['SourceId']
+          @SourceType = params['SourceType']
+        end
+      end
+
+      # DeleteCloudNativeAPIGatewayIPRestriction返回参数结构体
+      class DeleteCloudNativeAPIGatewayIPRestrictionResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -5820,6 +7280,512 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAIGWCustomGuardrailBindableResources请求参数结构体
+      class DescribeAIGWCustomGuardrailBindableResourcesRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: <p>网关实例 ID</p>
+        # @type GatewayId: String
+        # @param ResourceType: <p>资源类型：model_api、mcp_server 或 agent_api</p>
+        # @type ResourceType: String
+        # @param PolicyId: <p>当前策略 ID；用于排除自身占用</p>
+        # @type PolicyId: String
+        # @param Keyword: <p>按资源名称或路径模糊搜索</p>
+        # @type Keyword: String
+        # @param Offset: <p>分页偏移量，最小 0</p>
+        # @type Offset: Integer
+        # @param Limit: <p>单页数量，范围 1～100，默认 20</p>
+        # @type Limit: Integer
+
+        attr_accessor :GatewayId, :ResourceType, :PolicyId, :Keyword, :Offset, :Limit
+
+        def initialize(gatewayid=nil, resourcetype=nil, policyid=nil, keyword=nil, offset=nil, limit=nil)
+          @GatewayId = gatewayid
+          @ResourceType = resourcetype
+          @PolicyId = policyid
+          @Keyword = keyword
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @ResourceType = params['ResourceType']
+          @PolicyId = params['PolicyId']
+          @Keyword = params['Keyword']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeAIGWCustomGuardrailBindableResources返回参数结构体
+      class DescribeAIGWCustomGuardrailBindableResourcesResponse < TencentCloud::Common::AbstractModel
+        # @param Result: <p>接口业务结果，位于完整云 API 响应 Response.Result。存在 Success 时仍须单独判断；Response.RequestId 是本次云 API 请求标识。</p>
+        # @type Result: :class:`Tencentcloud::Cngw.v20230418.models.DescribeAIGWCustomGuardrailBindableResourcesResult`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = DescribeAIGWCustomGuardrailBindableResourcesResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 查询自定义安全护栏可绑定资源结果
+      class DescribeAIGWCustomGuardrailBindableResourcesResult < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>符合条件的资源总数</p>
+        # @type TotalCount: Integer
+        # @param DataList: <p>可绑定资源列表</p>
+        # @type DataList: Array
+
+        attr_accessor :TotalCount, :DataList
+
+        def initialize(totalcount=nil, datalist=nil)
+          @TotalCount = totalcount
+          @DataList = datalist
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['DataList'].nil?
+            @DataList = []
+            params['DataList'].each do |i|
+              customguardrailbindableresource_tmp = CustomGuardrailBindableResource.new
+              customguardrailbindableresource_tmp.deserialize(i)
+              @DataList << customguardrailbindableresource_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeAIGWCustomGuardrailCapabilities请求参数结构体
+      class DescribeAIGWCustomGuardrailCapabilitiesRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: <p>网关实例 ID</p>
+        # @type GatewayId: String
+
+        attr_accessor :GatewayId
+
+        def initialize(gatewayid=nil)
+          @GatewayId = gatewayid
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+        end
+      end
+
+      # DescribeAIGWCustomGuardrailCapabilities返回参数结构体
+      class DescribeAIGWCustomGuardrailCapabilitiesResponse < TencentCloud::Common::AbstractModel
+        # @param Result: <p>接口业务结果，位于完整云 API 响应 Response.Result。存在 Success 时仍须单独判断；Response.RequestId 是本次云 API 请求标识。</p>
+        # @type Result: :class:`Tencentcloud::Cngw.v20230418.models.DescribeAIGWCustomGuardrailCapabilitiesResult`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = DescribeAIGWCustomGuardrailCapabilitiesResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 查询自定义安全护栏能力结果
+      class DescribeAIGWCustomGuardrailCapabilitiesResult < TencentCloud::Common::AbstractModel
+        # @param MinGatewayVersion: <p>支持该能力的最低网关版本，当前为 3.9.6</p>
+        # @type MinGatewayVersion: String
+        # @param SupportedResourceTypes: <p>支持绑定的业务资源类型</p>
+        # @type SupportedResourceTypes: Array
+        # @param SupportedProtocols: <p>当前控制面允许绑定的协议分类，以返回值为准；不表示每种协议变体均可用。目前不开放 Dify、Custom Agent、Legacy SSE MCP。</p>
+        # @type SupportedProtocols: Array
+        # @param SupportedDirections: <p>当前允许配置的审核方向，仅 input（仅输入）和 both（输入加输出）。</p>
+        # @type SupportedDirections: Array
+        # @param SupportsStreaming: <p>是否支持流式请求与响应审核</p>
+        # @type SupportsStreaming: Boolean
+        # @param SupportsFieldMapping: <p>是否支持自定义审核响应字段映射</p>
+        # @type SupportsFieldMapping: Boolean
+        # @param DefaultBlockMessage: <p>系统默认拦截提示</p>
+        # @type DefaultBlockMessage: String
+        # @param MaxBlockMessageLength: <p>拦截提示最大字符数</p>
+        # @type MaxBlockMessageLength: Integer
+        # @param Limits: <p>控制面公布的能力限制/默认值，不是当前请求可修改的配置对象，也不是逐个 DP 实时读取值。窗口大小、并发审核数等未作为策略 API 入参开放。</p>
+        # @type Limits: :class:`Tencentcloud::Cngw.v20230418.models.CustomGuardrailCapabilityLimits`
+
+        attr_accessor :MinGatewayVersion, :SupportedResourceTypes, :SupportedProtocols, :SupportedDirections, :SupportsStreaming, :SupportsFieldMapping, :DefaultBlockMessage, :MaxBlockMessageLength, :Limits
+
+        def initialize(mingatewayversion=nil, supportedresourcetypes=nil, supportedprotocols=nil, supporteddirections=nil, supportsstreaming=nil, supportsfieldmapping=nil, defaultblockmessage=nil, maxblockmessagelength=nil, limits=nil)
+          @MinGatewayVersion = mingatewayversion
+          @SupportedResourceTypes = supportedresourcetypes
+          @SupportedProtocols = supportedprotocols
+          @SupportedDirections = supporteddirections
+          @SupportsStreaming = supportsstreaming
+          @SupportsFieldMapping = supportsfieldmapping
+          @DefaultBlockMessage = defaultblockmessage
+          @MaxBlockMessageLength = maxblockmessagelength
+          @Limits = limits
+        end
+
+        def deserialize(params)
+          @MinGatewayVersion = params['MinGatewayVersion']
+          @SupportedResourceTypes = params['SupportedResourceTypes']
+          @SupportedProtocols = params['SupportedProtocols']
+          @SupportedDirections = params['SupportedDirections']
+          @SupportsStreaming = params['SupportsStreaming']
+          @SupportsFieldMapping = params['SupportsFieldMapping']
+          @DefaultBlockMessage = params['DefaultBlockMessage']
+          @MaxBlockMessageLength = params['MaxBlockMessageLength']
+          unless params['Limits'].nil?
+            @Limits = CustomGuardrailCapabilityLimits.new
+            @Limits.deserialize(params['Limits'])
+          end
+        end
+      end
+
+      # DescribeAIGWCustomGuardrailHits请求参数结构体
+      class DescribeAIGWCustomGuardrailHitsRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: <p>网关实例 ID</p>
+        # @type GatewayId: String
+        # @param StartTime: <p>查询起始时间，Unix 秒级时间戳</p>
+        # @type StartTime: Integer
+        # @param EndTime: <p>查询结束时间，Unix 秒级时间戳</p>
+        # @type EndTime: Integer
+        # @param Offset: <p>分页偏移量，最小 0</p>
+        # @type Offset: Integer
+        # @param Limit: <p>单页数量，范围 1～100，默认 20</p>
+        # @type Limit: Integer
+        # @param Filters: <p>审核记录过滤条件</p>
+        # @type Filters: Array
+
+        attr_accessor :GatewayId, :StartTime, :EndTime, :Offset, :Limit, :Filters
+
+        def initialize(gatewayid=nil, starttime=nil, endtime=nil, offset=nil, limit=nil, filters=nil)
+          @GatewayId = gatewayid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              customguardrailhitfilter_tmp = CustomGuardrailHitFilter.new
+              customguardrailhitfilter_tmp.deserialize(i)
+              @Filters << customguardrailhitfilter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeAIGWCustomGuardrailHits返回参数结构体
+      class DescribeAIGWCustomGuardrailHitsResponse < TencentCloud::Common::AbstractModel
+        # @param Result: <p>接口业务结果，位于完整云 API 响应 Response.Result。存在 Success 时仍须单独判断；Response.RequestId 是本次云 API 请求标识。</p>
+        # @type Result: :class:`Tencentcloud::Cngw.v20230418.models.DescribeAIGWCustomGuardrailHitsResult`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = DescribeAIGWCustomGuardrailHitsResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 查询自定义安全护栏命中记录结果
+      class DescribeAIGWCustomGuardrailHitsResult < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>时间范围和过滤条件内匹配的审核日志总数，分页前统计；不再限定为最多 1000 条。日志异常条目可能无法解析为 Hits。</p>
+        # @type TotalCount: Integer
+        # @param Hits: <p>当前页审核记录，按时间倒序；同一业务请求的多次送审会产生多条记录，不能直接把条数当业务请求数。</p>
+        # @type Hits: Array
+        # @param Truncated: <p>兼容字段，当前分页查询返回 false；用 Offset、Limit、TotalCount 翻页。1000 条限制只适用于导出接口。</p>
+        # @type Truncated: Boolean
+
+        attr_accessor :TotalCount, :Hits, :Truncated
+
+        def initialize(totalcount=nil, hits=nil, truncated=nil)
+          @TotalCount = totalcount
+          @Hits = hits
+          @Truncated = truncated
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Hits'].nil?
+            @Hits = []
+            params['Hits'].each do |i|
+              customguardrailhit_tmp = CustomGuardrailHit.new
+              customguardrailhit_tmp.deserialize(i)
+              @Hits << customguardrailhit_tmp
+            end
+          end
+          @Truncated = params['Truncated']
+        end
+      end
+
+      # DescribeAIGWCustomGuardrailPolicyList请求参数结构体
+      class DescribeAIGWCustomGuardrailPolicyListRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: <p>网关实例 ID</p>
+        # @type GatewayId: String
+        # @param Limit: <p>单页数量，范围 1～100</p>
+        # @type Limit: Integer
+        # @param Keyword: <p>按策略名称或描述模糊搜索</p>
+        # @type Keyword: String
+        # @param Filters: <p>策略过滤条件</p>
+        # @type Filters: Array
+        # @param Offset: <p>分页偏移量，最小 0</p>
+        # @type Offset: Integer
+
+        attr_accessor :GatewayId, :Limit, :Keyword, :Filters, :Offset
+
+        def initialize(gatewayid=nil, limit=nil, keyword=nil, filters=nil, offset=nil)
+          @GatewayId = gatewayid
+          @Limit = limit
+          @Keyword = keyword
+          @Filters = filters
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @Limit = params['Limit']
+          @Keyword = params['Keyword']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              customguardrailpolicyfilter_tmp = CustomGuardrailPolicyFilter.new
+              customguardrailpolicyfilter_tmp.deserialize(i)
+              @Filters << customguardrailpolicyfilter_tmp
+            end
+          end
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeAIGWCustomGuardrailPolicyList返回参数结构体
+      class DescribeAIGWCustomGuardrailPolicyListResponse < TencentCloud::Common::AbstractModel
+        # @param Result: <p>接口业务结果，位于完整云 API 响应 Response.Result。存在 Success 时仍须单独判断；Response.RequestId 是本次云 API 请求标识。</p>
+        # @type Result: :class:`Tencentcloud::Cngw.v20230418.models.DescribeAIGWCustomGuardrailPolicyListResult`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = DescribeAIGWCustomGuardrailPolicyListResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 查询自定义安全护栏策略列表结果
+      class DescribeAIGWCustomGuardrailPolicyListResult < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>符合条件的策略总数</p>
+        # @type TotalCount: Integer
+        # @param DataList: <p>策略列表</p>
+        # @type DataList: Array
+
+        attr_accessor :TotalCount, :DataList
+
+        def initialize(totalcount=nil, datalist=nil)
+          @TotalCount = totalcount
+          @DataList = datalist
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['DataList'].nil?
+            @DataList = []
+            params['DataList'].each do |i|
+              customguardrailpolicy_tmp = CustomGuardrailPolicy.new
+              customguardrailpolicy_tmp.deserialize(i)
+              @DataList << customguardrailpolicy_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeAIGWCustomGuardrailPolicy请求参数结构体
+      class DescribeAIGWCustomGuardrailPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: <p>网关实例 ID</p>
+        # @type GatewayId: String
+        # @param PolicyId: <p>策略 ID</p>
+        # @type PolicyId: String
+
+        attr_accessor :GatewayId, :PolicyId
+
+        def initialize(gatewayid=nil, policyid=nil)
+          @GatewayId = gatewayid
+          @PolicyId = policyid
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @PolicyId = params['PolicyId']
+        end
+      end
+
+      # DescribeAIGWCustomGuardrailPolicy返回参数结构体
+      class DescribeAIGWCustomGuardrailPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param Result: <p>接口业务结果，位于完整云 API 响应 Response.Result。存在 Success 时仍须单独判断；Response.RequestId 是本次云 API 请求标识。</p>
+        # @type Result: :class:`Tencentcloud::Cngw.v20230418.models.DescribeAIGWCustomGuardrailPolicyResult`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = DescribeAIGWCustomGuardrailPolicyResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 查询自定义安全护栏策略详情结果
+      class DescribeAIGWCustomGuardrailPolicyResult < TencentCloud::Common::AbstractModel
+        # @param PolicyId: <p>策略 ID</p>
+        # @type PolicyId: String
+        # @param Name: <p>策略名称</p>
+        # @type Name: String
+        # @param Description: <p>策略描述</p>
+        # @type Description: String
+        # @param Enabled: <p>策略期望启用状态；实际生效还需检查 EffectiveEnabled 和 SyncStatus。</p>
+        # @type Enabled: Boolean
+        # @param EffectiveEnabled: <p>当前控制面计算值：Enabled=true 且 SyncStatus=synced 时为 true。不代表一次真实业务请求已通过审核，也不替代 DP 同步/链路验证。</p>
+        # @type EffectiveEnabled: Boolean
+        # @param ServiceConfig: <p>审核服务配置</p>
+        # @type ServiceConfig: :class:`Tencentcloud::Cngw.v20230418.models.CustomGuardrailServiceConfig`
+        # @param AuthConfig: <p>审核引擎鉴权的脱敏视图，仅返回鉴权类型、Header 名和密钥存在状态，不返回 ApiKey。</p>
+        # @type AuthConfig: :class:`Tencentcloud::Cngw.v20230418.models.CustomGuardrailAuthConfig`
+        # @param DecisionConfig: <p>审核响应判定配置</p>
+        # @type DecisionConfig: :class:`Tencentcloud::Cngw.v20230418.models.CustomGuardrailDecisionConfig`
+        # @param BehaviorConfig: <p>处理行为配置</p>
+        # @type BehaviorConfig: :class:`Tencentcloud::Cngw.v20230418.models.CustomGuardrailBehaviorConfig`
+        # @param FilterConfig: <p>过滤与采样配置</p>
+        # @type FilterConfig: :class:`Tencentcloud::Cngw.v20230418.models.CustomGuardrailFilterConfig`
+        # @param Scope: <p>生效范围</p>
+        # @type Scope: :class:`Tencentcloud::Cngw.v20230418.models.CustomGuardrailScope`
+        # @param Bindings: <p>业务资源到 Kong Route 的绑定及插件投影信息，一个业务资源可能对应多个 Route。</p>
+        # @type Bindings: Array
+        # @param SyncStatus: <p>同步状态：pending 待同步，synced 已完成本次配置同步，partial 部分失败，failed 失败。需结合 FailedResources/SyncError；synced 不等于已完成所有数据面实例的业务端到端验证。</p>
+        # @type SyncStatus: String
+        # @param SyncError: <p>配置同步错误摘要，无错误时可能省略。</p>
+        # @type SyncError: String
+        # @param CreateTime: <p>创建时间</p>
+        # @type CreateTime: String
+        # @param ModificationTime: <p>最后修改时间</p>
+        # @type ModificationTime: String
+
+        attr_accessor :PolicyId, :Name, :Description, :Enabled, :EffectiveEnabled, :ServiceConfig, :AuthConfig, :DecisionConfig, :BehaviorConfig, :FilterConfig, :Scope, :Bindings, :SyncStatus, :SyncError, :CreateTime, :ModificationTime
+
+        def initialize(policyid=nil, name=nil, description=nil, enabled=nil, effectiveenabled=nil, serviceconfig=nil, authconfig=nil, decisionconfig=nil, behaviorconfig=nil, filterconfig=nil, scope=nil, bindings=nil, syncstatus=nil, syncerror=nil, createtime=nil, modificationtime=nil)
+          @PolicyId = policyid
+          @Name = name
+          @Description = description
+          @Enabled = enabled
+          @EffectiveEnabled = effectiveenabled
+          @ServiceConfig = serviceconfig
+          @AuthConfig = authconfig
+          @DecisionConfig = decisionconfig
+          @BehaviorConfig = behaviorconfig
+          @FilterConfig = filterconfig
+          @Scope = scope
+          @Bindings = bindings
+          @SyncStatus = syncstatus
+          @SyncError = syncerror
+          @CreateTime = createtime
+          @ModificationTime = modificationtime
+        end
+
+        def deserialize(params)
+          @PolicyId = params['PolicyId']
+          @Name = params['Name']
+          @Description = params['Description']
+          @Enabled = params['Enabled']
+          @EffectiveEnabled = params['EffectiveEnabled']
+          unless params['ServiceConfig'].nil?
+            @ServiceConfig = CustomGuardrailServiceConfig.new
+            @ServiceConfig.deserialize(params['ServiceConfig'])
+          end
+          unless params['AuthConfig'].nil?
+            @AuthConfig = CustomGuardrailAuthConfig.new
+            @AuthConfig.deserialize(params['AuthConfig'])
+          end
+          unless params['DecisionConfig'].nil?
+            @DecisionConfig = CustomGuardrailDecisionConfig.new
+            @DecisionConfig.deserialize(params['DecisionConfig'])
+          end
+          unless params['BehaviorConfig'].nil?
+            @BehaviorConfig = CustomGuardrailBehaviorConfig.new
+            @BehaviorConfig.deserialize(params['BehaviorConfig'])
+          end
+          unless params['FilterConfig'].nil?
+            @FilterConfig = CustomGuardrailFilterConfig.new
+            @FilterConfig.deserialize(params['FilterConfig'])
+          end
+          unless params['Scope'].nil?
+            @Scope = CustomGuardrailScope.new
+            @Scope.deserialize(params['Scope'])
+          end
+          unless params['Bindings'].nil?
+            @Bindings = []
+            params['Bindings'].each do |i|
+              customguardrailpolicybinding_tmp = CustomGuardrailPolicyBinding.new
+              customguardrailpolicybinding_tmp.deserialize(i)
+              @Bindings << customguardrailpolicybinding_tmp
+            end
+          end
+          @SyncStatus = params['SyncStatus']
+          @SyncError = params['SyncError']
+          @CreateTime = params['CreateTime']
+          @ModificationTime = params['ModificationTime']
         end
       end
 
@@ -6132,6 +8098,54 @@ module TencentCloud
         def deserialize(params)
           unless params['Result'].nil?
             @Result = CNAPIGwConsumer.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCloudNativeAPIGatewayIPRestriction请求参数结构体
+      class DescribeCloudNativeAPIGatewayIPRestrictionRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关ID
+        # @type GatewayId: String
+        # @param SourceId: 路由或服务的id
+        # @type SourceId: String
+        # @param SourceType: 访问控制插件绑定的资源类型：route|service
+        # @type SourceType: String
+
+        attr_accessor :GatewayId, :SourceId, :SourceType
+
+        def initialize(gatewayid=nil, sourceid=nil, sourcetype=nil)
+          @GatewayId = gatewayid
+          @SourceId = sourceid
+          @SourceType = sourcetype
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @SourceId = params['SourceId']
+          @SourceType = params['SourceType']
+        end
+      end
+
+      # DescribeCloudNativeAPIGatewayIPRestriction返回参数结构体
+      class DescribeCloudNativeAPIGatewayIPRestrictionResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 出参
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cngw.v20230418.models.DescribeKongIpRestrictionResult`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = DescribeKongIpRestrictionResult.new
             @Result.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
@@ -7248,6 +9262,133 @@ module TencentCloud
         end
       end
 
+      # 查询云原生网关访问控制配置出参
+      class DescribeKongIpRestrictionResult < TencentCloud::Common::AbstractModel
+        # @param AddressList: cidr｜ip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AddressList: Array
+        # @param Enabled: 是否启用插件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Enabled: Boolean
+        # @param RestrictionType: 访问控制类型：whiteList｜blackList
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RestrictionType: String
+        # @param SourceId: 路由或服务的id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceId: String
+        # @param SourceType: 访问控制插件绑定的资源类型：route | service
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceType: String
+
+        attr_accessor :AddressList, :Enabled, :RestrictionType, :SourceId, :SourceType
+
+        def initialize(addresslist=nil, enabled=nil, restrictiontype=nil, sourceid=nil, sourcetype=nil)
+          @AddressList = addresslist
+          @Enabled = enabled
+          @RestrictionType = restrictiontype
+          @SourceId = sourceid
+          @SourceType = sourcetype
+        end
+
+        def deserialize(params)
+          @AddressList = params['AddressList']
+          @Enabled = params['Enabled']
+          @RestrictionType = params['RestrictionType']
+          @SourceId = params['SourceId']
+          @SourceType = params['SourceType']
+        end
+      end
+
+      # ExportAIGWCustomGuardrailHits请求参数结构体
+      class ExportAIGWCustomGuardrailHitsRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: <p>网关实例 ID</p>
+        # @type GatewayId: String
+        # @param StartTime: <p>导出起始时间，Unix 秒级时间戳</p>
+        # @type StartTime: Integer
+        # @param EndTime: <p>导出结束时间，Unix 秒级时间戳</p>
+        # @type EndTime: Integer
+        # @param Filters: <p>审核记录过滤条件</p>
+        # @type Filters: Array
+        # @param Format: <p>导出格式：csv 或 json；默认 csv</p>
+        # @type Format: String
+
+        attr_accessor :GatewayId, :StartTime, :EndTime, :Filters, :Format
+
+        def initialize(gatewayid=nil, starttime=nil, endtime=nil, filters=nil, format=nil)
+          @GatewayId = gatewayid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Filters = filters
+          @Format = format
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              customguardrailhitfilter_tmp = CustomGuardrailHitFilter.new
+              customguardrailhitfilter_tmp.deserialize(i)
+              @Filters << customguardrailhitfilter_tmp
+            end
+          end
+          @Format = params['Format']
+        end
+      end
+
+      # ExportAIGWCustomGuardrailHits返回参数结构体
+      class ExportAIGWCustomGuardrailHitsResponse < TencentCloud::Common::AbstractModel
+        # @param Result: <p>接口业务结果，位于完整云 API 响应 Response.Result。存在 Success 时仍须单独判断；Response.RequestId 是本次云 API 请求标识。</p>
+        # @type Result: :class:`Tencentcloud::Cngw.v20230418.models.ExportAIGWCustomGuardrailHitsResult`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = ExportAIGWCustomGuardrailHitsResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 导出自定义安全护栏命中记录结果
+      class ExportAIGWCustomGuardrailHitsResult < TencentCloud::Common::AbstractModel
+        # @param Format: <p>实际导出格式</p>
+        # @type Format: String
+        # @param RowCount: <p>实际编码进导出内容的审核记录数，最多 1000。</p>
+        # @type RowCount: Integer
+        # @param Truncated: <p>是否达到单次最多 1000 条的导出截断条件；true 时可能还有更多记录，可缩小时间范围后分别导出。</p>
+        # @type Truncated: Boolean
+        # @param Content: <p>CSV/JSON 文件内容的 Base64 编码字符串，需 Base64 解码后保存，不是下载 URL。</p>
+        # @type Content: String
+
+        attr_accessor :Format, :RowCount, :Truncated, :Content
+
+        def initialize(format=nil, rowcount=nil, truncated=nil, content=nil)
+          @Format = format
+          @RowCount = rowcount
+          @Truncated = truncated
+          @Content = content
+        end
+
+        def deserialize(params)
+          @Format = params['Format']
+          @RowCount = params['RowCount']
+          @Truncated = params['Truncated']
+          @Content = params['Content']
+        end
+      end
+
       # 查询过滤通用对象
       class Filter < TencentCloud::Common::AbstractModel
         # @param Name: 过滤参数名
@@ -7357,8 +9498,8 @@ module TencentCloud
 
         attr_accessor :ID, :Name, :Methods, :Paths, :Hosts, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :CreatedTime, :ForceHttps, :ServiceName, :ServiceID, :DestinationPorts, :Headers, :RequestBuffering, :ResponseBuffering, :RegexPriority, :QueryStringParameters, :RouteSource
         extend Gem::Deprecate
-        deprecate :ForceHttps, :none, 2026, 10
-        deprecate :ForceHttps=, :none, 2026, 10
+        deprecate :ForceHttps, :none, 2026, 11
+        deprecate :ForceHttps=, :none, 2026, 11
 
         def initialize(id=nil, name=nil, methods=nil, paths=nil, hosts=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, createdtime=nil, forcehttps=nil, servicename=nil, serviceid=nil, destinationports=nil, headers=nil, requestbuffering=nil, responsebuffering=nil, regexpriority=nil, querystringparameters=nil, routesource=nil)
           @ID = id
@@ -7765,6 +9906,156 @@ module TencentCloud
         def deserialize(params)
           @Key = params['Key']
           @Value = params['Value']
+        end
+      end
+
+      # ModifyAIGWCustomGuardrailPolicy请求参数结构体
+      class ModifyAIGWCustomGuardrailPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: <p>网关实例 ID</p>
+        # @type GatewayId: String
+        # @param PolicyId: <p>策略 ID</p>
+        # @type PolicyId: String
+        # @param Name: <p>策略名称，长度 1～64</p>
+        # @type Name: String
+        # @param Description: <p>策略描述，最长 200；传空字符串可清空</p>
+        # @type Description: String
+        # @param Enabled: <p>是否启用策略</p>
+        # @type Enabled: Boolean
+        # @param ServiceConfig: <p>审核服务局部更新配置</p>
+        # @type ServiceConfig: :class:`Tencentcloud::Cngw.v20230418.models.CustomGuardrailServiceConfigPatch`
+        # @param AuthConfig: <p>审核服务鉴权局部更新配置</p>
+        # @type AuthConfig: :class:`Tencentcloud::Cngw.v20230418.models.CustomGuardrailAuthConfigPatch`
+        # @param DecisionConfig: <p>审核响应判定局部更新配置</p>
+        # @type DecisionConfig: :class:`Tencentcloud::Cngw.v20230418.models.CustomGuardrailDecisionConfigPatch`
+        # @param BehaviorConfig: <p>处理行为局部更新配置</p>
+        # @type BehaviorConfig: :class:`Tencentcloud::Cngw.v20230418.models.CustomGuardrailBehaviorConfigPatch`
+        # @param FilterConfig: <p>过滤与采样局部更新配置</p>
+        # @type FilterConfig: :class:`Tencentcloud::Cngw.v20230418.models.CustomGuardrailFilterConfigPatch`
+        # @param Scope: <p>资源绑定范围，global 或 resource。修改时传入的是新的完整范围，不是增量追加。</p>
+        # @type Scope: :class:`Tencentcloud::Cngw.v20230418.models.CustomGuardrailScopeInput`
+
+        attr_accessor :GatewayId, :PolicyId, :Name, :Description, :Enabled, :ServiceConfig, :AuthConfig, :DecisionConfig, :BehaviorConfig, :FilterConfig, :Scope
+
+        def initialize(gatewayid=nil, policyid=nil, name=nil, description=nil, enabled=nil, serviceconfig=nil, authconfig=nil, decisionconfig=nil, behaviorconfig=nil, filterconfig=nil, scope=nil)
+          @GatewayId = gatewayid
+          @PolicyId = policyid
+          @Name = name
+          @Description = description
+          @Enabled = enabled
+          @ServiceConfig = serviceconfig
+          @AuthConfig = authconfig
+          @DecisionConfig = decisionconfig
+          @BehaviorConfig = behaviorconfig
+          @FilterConfig = filterconfig
+          @Scope = scope
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @PolicyId = params['PolicyId']
+          @Name = params['Name']
+          @Description = params['Description']
+          @Enabled = params['Enabled']
+          unless params['ServiceConfig'].nil?
+            @ServiceConfig = CustomGuardrailServiceConfigPatch.new
+            @ServiceConfig.deserialize(params['ServiceConfig'])
+          end
+          unless params['AuthConfig'].nil?
+            @AuthConfig = CustomGuardrailAuthConfigPatch.new
+            @AuthConfig.deserialize(params['AuthConfig'])
+          end
+          unless params['DecisionConfig'].nil?
+            @DecisionConfig = CustomGuardrailDecisionConfigPatch.new
+            @DecisionConfig.deserialize(params['DecisionConfig'])
+          end
+          unless params['BehaviorConfig'].nil?
+            @BehaviorConfig = CustomGuardrailBehaviorConfigPatch.new
+            @BehaviorConfig.deserialize(params['BehaviorConfig'])
+          end
+          unless params['FilterConfig'].nil?
+            @FilterConfig = CustomGuardrailFilterConfigPatch.new
+            @FilterConfig.deserialize(params['FilterConfig'])
+          end
+          unless params['Scope'].nil?
+            @Scope = CustomGuardrailScopeInput.new
+            @Scope.deserialize(params['Scope'])
+          end
+        end
+      end
+
+      # ModifyAIGWCustomGuardrailPolicy返回参数结构体
+      class ModifyAIGWCustomGuardrailPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param Result: <p>接口业务结果，位于完整云 API 响应 Response.Result。存在 Success 时仍须单独判断；Response.RequestId 是本次云 API 请求标识。</p>
+        # @type Result: :class:`Tencentcloud::Cngw.v20230418.models.ModifyAIGWCustomGuardrailPolicyResult`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = ModifyAIGWCustomGuardrailPolicyResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 修改自定义安全护栏策略结果
+      class ModifyAIGWCustomGuardrailPolicyResult < TencentCloud::Common::AbstractModel
+        # @param Success: <p>本次配置同步是否全部成功。即使云 API 未返回 Response.Error，仍须检查此值、SyncStatus 和 FailedResources。</p>
+        # @type Success: Boolean
+        # @param Policy: <p>变更后的策略</p>
+        # @type Policy: :class:`Tencentcloud::Cngw.v20230418.models.CustomGuardrailPolicy`
+        # @param AddedResources: <p>本次同步成功的业务资源引用；Modify 返回的不是严格的新增差集。</p>
+        # @type AddedResources: Array
+        # @param RemovedCount: <p>与修改前相比移除的 Route 绑定数量；一个业务资源可有多条 Route，因此不等于业务资源数量。</p>
+        # @type RemovedCount: Integer
+        # @param FailedResources: <p>失败资源及原因；非空表示配置同步仍需处理，不要因 HTTP 200 判定全部成功。</p>
+        # @type FailedResources: Array
+        # @param SyncStatus: <p>同步状态：pending 待同步，synced 已完成本次配置同步，partial 部分失败，failed 失败。需结合 FailedResources/SyncError；synced 不等于已完成所有数据面实例的业务端到端验证。</p>
+        # @type SyncStatus: String
+
+        attr_accessor :Success, :Policy, :AddedResources, :RemovedCount, :FailedResources, :SyncStatus
+
+        def initialize(success=nil, policy=nil, addedresources=nil, removedcount=nil, failedresources=nil, syncstatus=nil)
+          @Success = success
+          @Policy = policy
+          @AddedResources = addedresources
+          @RemovedCount = removedcount
+          @FailedResources = failedresources
+          @SyncStatus = syncstatus
+        end
+
+        def deserialize(params)
+          @Success = params['Success']
+          unless params['Policy'].nil?
+            @Policy = CustomGuardrailPolicy.new
+            @Policy.deserialize(params['Policy'])
+          end
+          unless params['AddedResources'].nil?
+            @AddedResources = []
+            params['AddedResources'].each do |i|
+              customguardrailresourceref_tmp = CustomGuardrailResourceRef.new
+              customguardrailresourceref_tmp.deserialize(i)
+              @AddedResources << customguardrailresourceref_tmp
+            end
+          end
+          @RemovedCount = params['RemovedCount']
+          unless params['FailedResources'].nil?
+            @FailedResources = []
+            params['FailedResources'].each do |i|
+              customguardrailsyncfailure_tmp = CustomGuardrailSyncFailure.new
+              customguardrailsyncfailure_tmp.deserialize(i)
+              @FailedResources << customguardrailsyncfailure_tmp
+            end
+          end
+          @SyncStatus = params['SyncStatus']
         end
       end
 

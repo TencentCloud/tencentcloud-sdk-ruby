@@ -492,13 +492,13 @@ module TencentCloud
 
       # 通用筛选条件
       class CommonFilter < TencentCloud::Common::AbstractModel
-        # @param Name: 筛选字段名
+        # @param Name: <p>筛选字段名。支持：SecurityGroupId、FwGroupId、IP（IP地址模糊搜索）、InstanceName（实例名称模糊搜索）、VpcId（VPC ID精确搜索）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
-        # @param Values: 筛选值列表
+        # @param Values: <p>筛选值列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Values: Array
-        # @param OperatorType: 操作类型：1=精确匹配，7=in，9=模糊匹配
+        # @param OperatorType: <p>操作类型。1=等于，7=in，9=模糊匹配</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OperatorType: Integer
 
@@ -1571,15 +1571,15 @@ module TencentCloud
 
       # DescribeOrganMembers请求参数结构体
       class DescribeOrganMembersRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: 搜索过滤条件列表，支持按成员 ID、账号名称、身份、纳管状态等字段筛选
+        # @param Filters: <p>搜索过滤条件列表，支持按成员 ID、账号名称、身份、纳管状态等字段筛选</p>
         # @type Filters: Array
-        # @param Limit: 分页大小，默认 20
+        # @param Limit: <p>分页大小，默认 20</p>
         # @type Limit: Integer
-        # @param Offset: 分页偏移量，默认 0
+        # @param Offset: <p>分页偏移量，默认 0</p>
         # @type Offset: Integer
-        # @param By: 排序字段，如 MemberCreateTime
+        # @param By: <p>排序字段，如 MemberCreateTime</p>
         # @type By: String
-        # @param Order: 排序方式：asc 升序，desc 降序
+        # @param Order: <p>排序方式：asc 升序，desc 降序</p>
         # @type Order: String
 
         attr_accessor :Filters, :Limit, :Offset, :By, :Order
@@ -1610,9 +1610,9 @@ module TencentCloud
 
       # DescribeOrganMembers返回参数结构体
       class DescribeOrganMembersResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 集团成员总数
+        # @param TotalCount: <p>集团成员总数</p>
         # @type TotalCount: Integer
-        # @param Members: 集团成员列表
+        # @param Members: <p>集团成员列表</p>
         # @type Members: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2166,15 +2166,15 @@ module TencentCloud
 
       # DescribeStrategies请求参数结构体
       class DescribeStrategiesRequest < TencentCloud::Common::AbstractModel
-        # @param Product: 产品类型
+        # @param Product: <p>产品类型</p>
         # @type Product: String
-        # @param ExecArea: 执行区域：pre是前区，post 是后区
+        # @param ExecArea: <p>执行区域：pre是前区，post 是后区</p>
         # @type ExecArea: String
-        # @param Filters: 筛选条件
+        # @param Filters: <p>筛选条件</p>
         # @type Filters: Array
-        # @param Limit: 条数限制
+        # @param Limit: <p>条数限制</p>
         # @type Limit: Integer
-        # @param Offset: 偏移量
+        # @param Offset: <p>偏移量</p>
         # @type Offset: Integer
 
         attr_accessor :Product, :ExecArea, :Filters, :Limit, :Offset
@@ -2205,9 +2205,9 @@ module TencentCloud
 
       # DescribeStrategies返回参数结构体
       class DescribeStrategiesResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 总数
+        # @param TotalCount: <p>总数</p>
         # @type TotalCount: Integer
-        # @param Strategies: 策略列表
+        # @param Strategies: <p>策略列表</p>
         # @type Strategies: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2361,7 +2361,7 @@ module TencentCloud
 
       # DescribeStrategy请求参数结构体
       class DescribeStrategyRequest < TencentCloud::Common::AbstractModel
-        # @param StrategyId: 策略Id
+        # @param StrategyId: <p>策略Id</p>
         # @type StrategyId: String
 
         attr_accessor :StrategyId
@@ -2377,7 +2377,7 @@ module TencentCloud
 
       # DescribeStrategy返回参数结构体
       class DescribeStrategyResponse < TencentCloud::Common::AbstractModel
-        # @param Strategy: 策略详情
+        # @param Strategy: <p>策略详情</p>
         # @type Strategy: :class:`Tencentcloud::Fwm.v20250611.models.StrategyResp`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3656,6 +3656,9 @@ module TencentCloud
         # @param CfwSharerAppId: <p>云防火墙共享者 AppId，成员角色为使用者时有值</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CfwSharerAppId: String
+        # @param CfwSharerMemberId: <p>共享者MemberId</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CfwSharerMemberId: String
         # @param CfwInstanceId: <p>云防火墙计费实例 ID，非空表示已购买云防火墙</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CfwInstanceId: String
@@ -3675,10 +3678,12 @@ module TencentCloud
         # @type SgManaged: Integer
         # @param IsCfwPostPay: <p>是否是后付费云防版本</p><p>枚举值：</p><ul><li>1： 后付费</li><li>0： 非后付费</li><li>-1： 未知</li></ul>
         # @type IsCfwPostPay: Integer
+        # @param SgFreeClaimed: <p>企业安全组免费额度领取态：0-未领用，1-已领用（永久领取态）</p>
+        # @type SgFreeClaimed: Integer
 
-        attr_accessor :MemberId, :AppId, :Uin, :Nickname, :SubAccountCount, :NodeName, :Role, :RoleDisplay, :AccountGroup, :CfwManaged, :CfwShareRole, :CfwShareRoleDisplay, :CfwSharerAppId, :CfwInstanceId, :PolicyAnalysisEnabled, :MemberCreateTime, :JoinType, :CfwPayStatus, :CfwCapable, :SgManaged, :IsCfwPostPay
+        attr_accessor :MemberId, :AppId, :Uin, :Nickname, :SubAccountCount, :NodeName, :Role, :RoleDisplay, :AccountGroup, :CfwManaged, :CfwShareRole, :CfwShareRoleDisplay, :CfwSharerAppId, :CfwSharerMemberId, :CfwInstanceId, :PolicyAnalysisEnabled, :MemberCreateTime, :JoinType, :CfwPayStatus, :CfwCapable, :SgManaged, :IsCfwPostPay, :SgFreeClaimed
 
-        def initialize(memberid=nil, appid=nil, uin=nil, nickname=nil, subaccountcount=nil, nodename=nil, role=nil, roledisplay=nil, accountgroup=nil, cfwmanaged=nil, cfwsharerole=nil, cfwshareroledisplay=nil, cfwsharerappid=nil, cfwinstanceid=nil, policyanalysisenabled=nil, membercreatetime=nil, jointype=nil, cfwpaystatus=nil, cfwcapable=nil, sgmanaged=nil, iscfwpostpay=nil)
+        def initialize(memberid=nil, appid=nil, uin=nil, nickname=nil, subaccountcount=nil, nodename=nil, role=nil, roledisplay=nil, accountgroup=nil, cfwmanaged=nil, cfwsharerole=nil, cfwshareroledisplay=nil, cfwsharerappid=nil, cfwsharermemberid=nil, cfwinstanceid=nil, policyanalysisenabled=nil, membercreatetime=nil, jointype=nil, cfwpaystatus=nil, cfwcapable=nil, sgmanaged=nil, iscfwpostpay=nil, sgfreeclaimed=nil)
           @MemberId = memberid
           @AppId = appid
           @Uin = uin
@@ -3692,6 +3697,7 @@ module TencentCloud
           @CfwShareRole = cfwsharerole
           @CfwShareRoleDisplay = cfwshareroledisplay
           @CfwSharerAppId = cfwsharerappid
+          @CfwSharerMemberId = cfwsharermemberid
           @CfwInstanceId = cfwinstanceid
           @PolicyAnalysisEnabled = policyanalysisenabled
           @MemberCreateTime = membercreatetime
@@ -3700,6 +3706,7 @@ module TencentCloud
           @CfwCapable = cfwcapable
           @SgManaged = sgmanaged
           @IsCfwPostPay = iscfwpostpay
+          @SgFreeClaimed = sgfreeclaimed
         end
 
         def deserialize(params)
@@ -3719,6 +3726,7 @@ module TencentCloud
           @CfwShareRole = params['CfwShareRole']
           @CfwShareRoleDisplay = params['CfwShareRoleDisplay']
           @CfwSharerAppId = params['CfwSharerAppId']
+          @CfwSharerMemberId = params['CfwSharerMemberId']
           @CfwInstanceId = params['CfwInstanceId']
           @PolicyAnalysisEnabled = params['PolicyAnalysisEnabled']
           @MemberCreateTime = params['MemberCreateTime']
@@ -3727,6 +3735,7 @@ module TencentCloud
           @CfwCapable = params['CfwCapable']
           @SgManaged = params['SgManaged']
           @IsCfwPostPay = params['IsCfwPostPay']
+          @SgFreeClaimed = params['SgFreeClaimed']
         end
       end
 
@@ -4521,44 +4530,47 @@ module TencentCloud
 
       # 查询策略时策略列表参数
       class StrategyResp < TencentCloud::Common::AbstractModel
-        # @param StrategyId: 策略Id
+        # @param StrategyId: <p>策略Id</p>
         # @type StrategyId: String
-        # @param GroupId: 规则组Id
+        # @param GroupId: <p>规则组Id</p>
         # @type GroupId: String
-        # @param GroupName: 规则组名称
+        # @param Product: <p>产品类型</p>
+        # @type Product: String
+        # @param GroupName: <p>规则组名称</p>
         # @type GroupName: String
-        # @param RuleCount: 规则数
+        # @param RuleCount: <p>规则数</p>
         # @type RuleCount: Integer
-        # @param RuleStatus: 策略状态
+        # @param RuleStatus: <p>策略状态</p>
         # @type RuleStatus: Integer
-        # @param ReceiveAccount: 下发账号
+        # @param ReceiveAccount: <p>下发账号</p>
         # @type ReceiveAccount: Array
-        # @param Sequence: 优先级
+        # @param Sequence: <p>优先级</p>
         # @type Sequence: Integer
-        # @param ErrMsg: 下发失败原因
+        # @param ErrMsg: <p>下发失败原因</p>
         # @type ErrMsg: String
-        # @param ErrorType: 下发失败原因类型
+        # @param ErrorType: <p>下发失败原因类型</p>
         # @type ErrorType: String
-        # @param UpdateTime: 更新时间
+        # @param UpdateTime: <p>更新时间</p>
         # @type UpdateTime: String
-        # @param CreateBy: 创建人
+        # @param CreateBy: <p>创建人</p>
         # @type CreateBy: String
-        # @param UpdateBy: 更新人
+        # @param UpdateBy: <p>更新人</p>
         # @type UpdateBy: String
-        # @param ExecArea: 执行区域
+        # @param ExecArea: <p>执行区域</p>
         # @type ExecArea: String
-        # @param CreateName: 创建人名称
+        # @param CreateName: <p>创建人名称</p>
         # @type CreateName: String
-        # @param UpdateName: 更新人名称
+        # @param UpdateName: <p>更新人名称</p>
         # @type UpdateName: String
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # @type CreateTime: String
 
-        attr_accessor :StrategyId, :GroupId, :GroupName, :RuleCount, :RuleStatus, :ReceiveAccount, :Sequence, :ErrMsg, :ErrorType, :UpdateTime, :CreateBy, :UpdateBy, :ExecArea, :CreateName, :UpdateName, :CreateTime
+        attr_accessor :StrategyId, :GroupId, :Product, :GroupName, :RuleCount, :RuleStatus, :ReceiveAccount, :Sequence, :ErrMsg, :ErrorType, :UpdateTime, :CreateBy, :UpdateBy, :ExecArea, :CreateName, :UpdateName, :CreateTime
 
-        def initialize(strategyid=nil, groupid=nil, groupname=nil, rulecount=nil, rulestatus=nil, receiveaccount=nil, sequence=nil, errmsg=nil, errortype=nil, updatetime=nil, createby=nil, updateby=nil, execarea=nil, createname=nil, updatename=nil, createtime=nil)
+        def initialize(strategyid=nil, groupid=nil, product=nil, groupname=nil, rulecount=nil, rulestatus=nil, receiveaccount=nil, sequence=nil, errmsg=nil, errortype=nil, updatetime=nil, createby=nil, updateby=nil, execarea=nil, createname=nil, updatename=nil, createtime=nil)
           @StrategyId = strategyid
           @GroupId = groupid
+          @Product = product
           @GroupName = groupname
           @RuleCount = rulecount
           @RuleStatus = rulestatus
@@ -4578,6 +4590,7 @@ module TencentCloud
         def deserialize(params)
           @StrategyId = params['StrategyId']
           @GroupId = params['GroupId']
+          @Product = params['Product']
           @GroupName = params['GroupName']
           @RuleCount = params['RuleCount']
           @RuleStatus = params['RuleStatus']

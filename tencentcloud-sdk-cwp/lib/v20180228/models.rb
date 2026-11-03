@@ -4527,8 +4527,8 @@ module TencentCloud
 
         attr_accessor :Id, :Uuid, :Name, :Level, :Rule, :Decription, :Operator, :IsGlobal, :Status, :CreateTime, :ModifyTime, :Hostip, :Uuids, :White, :DealOldEvents, :Description
         extend Gem::Deprecate
-        deprecate :Decription, :none, 2026, 10
-        deprecate :Decription=, :none, 2026, 10
+        deprecate :Decription, :none, 2026, 11
+        deprecate :Decription=, :none, 2026, 11
 
         def initialize(id=nil, uuid=nil, name=nil, level=nil, rule=nil, decription=nil, operator=nil, isglobal=nil, status=nil, createtime=nil, modifytime=nil, hostip=nil, uuids=nil, white=nil, dealoldevents=nil, description=nil)
           @Id = id
@@ -17442,16 +17442,16 @@ module TencentCloud
 
         attr_accessor :MachineCnt, :TencentCloudMachineCnt, :AliCloudMachineCnt, :BaiduCloudMachineCnt, :IDCMachineCnt, :OtherCloudMachineCnt, :ProtectMachineCnt, :BaseMachineCnt, :SpecialtyMachineCnt, :FlagshipMachineCnt, :RiskMachineCnt, :CompareYesterdayRiskMachineCnt, :CompareYesterdayNotProtectMachineCnt, :CompareYesterdayDeadlineMachineCnt, :DeadlineMachineCnt, :NotProtectMachineCnt, :LHGeneralDiscountCnt, :CompareYesterdayMachineCnt, :MachineDestroyAfterOfflineHours, :CloudFrom, :RequestId
         extend Gem::Deprecate
-        deprecate :TencentCloudMachineCnt, :none, 2026, 10
-        deprecate :TencentCloudMachineCnt=, :none, 2026, 10
-        deprecate :AliCloudMachineCnt, :none, 2026, 10
-        deprecate :AliCloudMachineCnt=, :none, 2026, 10
-        deprecate :BaiduCloudMachineCnt, :none, 2026, 10
-        deprecate :BaiduCloudMachineCnt=, :none, 2026, 10
-        deprecate :IDCMachineCnt, :none, 2026, 10
-        deprecate :IDCMachineCnt=, :none, 2026, 10
-        deprecate :OtherCloudMachineCnt, :none, 2026, 10
-        deprecate :OtherCloudMachineCnt=, :none, 2026, 10
+        deprecate :TencentCloudMachineCnt, :none, 2026, 11
+        deprecate :TencentCloudMachineCnt=, :none, 2026, 11
+        deprecate :AliCloudMachineCnt, :none, 2026, 11
+        deprecate :AliCloudMachineCnt=, :none, 2026, 11
+        deprecate :BaiduCloudMachineCnt, :none, 2026, 11
+        deprecate :BaiduCloudMachineCnt=, :none, 2026, 11
+        deprecate :IDCMachineCnt, :none, 2026, 11
+        deprecate :IDCMachineCnt=, :none, 2026, 11
+        deprecate :OtherCloudMachineCnt, :none, 2026, 11
+        deprecate :OtherCloudMachineCnt=, :none, 2026, 11
 
         def initialize(machinecnt=nil, tencentcloudmachinecnt=nil, alicloudmachinecnt=nil, baiducloudmachinecnt=nil, idcmachinecnt=nil, othercloudmachinecnt=nil, protectmachinecnt=nil, basemachinecnt=nil, specialtymachinecnt=nil, flagshipmachinecnt=nil, riskmachinecnt=nil, compareyesterdayriskmachinecnt=nil, compareyesterdaynotprotectmachinecnt=nil, compareyesterdaydeadlinemachinecnt=nil, deadlinemachinecnt=nil, notprotectmachinecnt=nil, lhgeneraldiscountcnt=nil, compareyesterdaymachinecnt=nil, machinedestroyafterofflinehours=nil, cloudfrom=nil, requestid=nil)
           @MachineCnt = machinecnt
@@ -18590,7 +18590,7 @@ module TencentCloud
         # @type EnableInspiredEngine: Integer
         # @param EnableMemShellScan: <p>是否开启恶意进程查杀[0:未开启,1:开启]</p>
         # @type EnableMemShellScan: Integer
-        # @param ProtectMode: <p>防护模式 0 标准 1 重保</p>
+        # @param ProtectMode: <p>防护模式 0 标准 1 重保 2自定义隔离</p>
         # @type ProtectMode: Integer
         # @param ProtectFileScope: <p>查杀范围 0 脚本类之外的恶意文件，1全部恶意文件</p>
         # @type ProtectFileScope: Integer
@@ -18600,12 +18600,16 @@ module TencentCloud
         # @type QuaraUuids: Array
         # @param QuaraScope: <p>用户选择的隔离范围，0：默认全隔离 1：用户自选</p>
         # @type QuaraScope: Integer
+        # @param QuaraTypes: <p>自定义隔离模式已保存的告警类型Code列表</p>
+        # @type QuaraTypes: Array
+        # @param QuaraTypeDict: <p>告警类型字典（灰度规则下发，供前端渲染勾选项）</p>
+        # @type QuaraTypeDict: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :CheckPattern, :CustomPaths, :StartTime, :EndTime, :IsGlobal, :QuuidList, :MonitoringPattern, :MonitorCustomPaths, :Cycle, :EnableScan, :Id, :RealTimeMonitoring, :AutoIsolation, :ClickTimeout, :KillProcess, :EngineType, :EnableInspiredEngine, :EnableMemShellScan, :ProtectMode, :ProtectFileScope, :DoClean, :QuaraUuids, :QuaraScope, :RequestId
+        attr_accessor :CheckPattern, :CustomPaths, :StartTime, :EndTime, :IsGlobal, :QuuidList, :MonitoringPattern, :MonitorCustomPaths, :Cycle, :EnableScan, :Id, :RealTimeMonitoring, :AutoIsolation, :ClickTimeout, :KillProcess, :EngineType, :EnableInspiredEngine, :EnableMemShellScan, :ProtectMode, :ProtectFileScope, :DoClean, :QuaraUuids, :QuaraScope, :QuaraTypes, :QuaraTypeDict, :RequestId
 
-        def initialize(checkpattern=nil, custompaths=nil, starttime=nil, endtime=nil, isglobal=nil, quuidlist=nil, monitoringpattern=nil, monitorcustompaths=nil, cycle=nil, enablescan=nil, id=nil, realtimemonitoring=nil, autoisolation=nil, clicktimeout=nil, killprocess=nil, enginetype=nil, enableinspiredengine=nil, enablememshellscan=nil, protectmode=nil, protectfilescope=nil, doclean=nil, quarauuids=nil, quarascope=nil, requestid=nil)
+        def initialize(checkpattern=nil, custompaths=nil, starttime=nil, endtime=nil, isglobal=nil, quuidlist=nil, monitoringpattern=nil, monitorcustompaths=nil, cycle=nil, enablescan=nil, id=nil, realtimemonitoring=nil, autoisolation=nil, clicktimeout=nil, killprocess=nil, enginetype=nil, enableinspiredengine=nil, enablememshellscan=nil, protectmode=nil, protectfilescope=nil, doclean=nil, quarauuids=nil, quarascope=nil, quaratypes=nil, quaratypedict=nil, requestid=nil)
           @CheckPattern = checkpattern
           @CustomPaths = custompaths
           @StartTime = starttime
@@ -18629,6 +18633,8 @@ module TencentCloud
           @DoClean = doclean
           @QuaraUuids = quarauuids
           @QuaraScope = quarascope
+          @QuaraTypes = quaratypes
+          @QuaraTypeDict = quaratypedict
           @RequestId = requestid
         end
 
@@ -18656,6 +18662,15 @@ module TencentCloud
           @DoClean = params['DoClean']
           @QuaraUuids = params['QuaraUuids']
           @QuaraScope = params['QuaraScope']
+          @QuaraTypes = params['QuaraTypes']
+          unless params['QuaraTypeDict'].nil?
+            @QuaraTypeDict = []
+            params['QuaraTypeDict'].each do |i|
+              quaratypedictitem_tmp = QuaraTypeDictItem.new
+              quaratypedictitem_tmp.deserialize(i)
+              @QuaraTypeDict << quaratypedictitem_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -28962,10 +28977,10 @@ module TencentCloud
 
         attr_accessor :Filters, :Fileds, :Fields, :Where
         extend Gem::Deprecate
-        deprecate :Fileds, :none, 2026, 10
-        deprecate :Fileds=, :none, 2026, 10
-        deprecate :Fields, :none, 2026, 10
-        deprecate :Fields=, :none, 2026, 10
+        deprecate :Fileds, :none, 2026, 11
+        deprecate :Fileds=, :none, 2026, 11
+        deprecate :Fields, :none, 2026, 11
+        deprecate :Fields=, :none, 2026, 11
 
         def initialize(filters=nil, fileds=nil, fields=nil, where=nil)
           @Filters = filters
@@ -35341,7 +35356,7 @@ module TencentCloud
         # @type EnableInspiredEngine: Integer
         # @param EnableMemShellScan: <p>是否开启恶意进程查杀[0:未开启,1:开启]</p>
         # @type EnableMemShellScan: Integer
-        # @param ProtectMode: <p>防护模式 0 标准 1重保</p>
+        # @param ProtectMode: <p>防护模式 0 标准 1重保 2自定义隔离</p>
         # @type ProtectMode: Integer
         # @param ProtectFileScope: <p>查杀范围 0 脚本类之外的恶意文件，1全部恶意文件</p>
         # @type ProtectFileScope: Integer
@@ -35351,10 +35366,12 @@ module TencentCloud
         # @type QuaraScope: Integer
         # @param ProductType: <p>产品类型 0-主机安全(默认) 1-安全中心</p>
         # @type ProductType: Integer
+        # @param QuaraTypes: <p>自定义隔离模式的告警类型Code列表（ProtectMode=2时必填，Code取自Describe返回的QuaraTypeDict）</p>
+        # @type QuaraTypes: Array
 
-        attr_accessor :CheckPattern, :StartTime, :EndTime, :IsGlobal, :EnableScan, :MonitoringPattern, :Cycle, :RealTimeMonitoring, :CustomPaths, :MonitorCustomPaths, :QuuidList, :AutoIsolation, :KillProcess, :DoClean, :EngineType, :EnableInspiredEngine, :EnableMemShellScan, :ProtectMode, :ProtectFileScope, :QuaraUuids, :QuaraScope, :ProductType
+        attr_accessor :CheckPattern, :StartTime, :EndTime, :IsGlobal, :EnableScan, :MonitoringPattern, :Cycle, :RealTimeMonitoring, :CustomPaths, :MonitorCustomPaths, :QuuidList, :AutoIsolation, :KillProcess, :DoClean, :EngineType, :EnableInspiredEngine, :EnableMemShellScan, :ProtectMode, :ProtectFileScope, :QuaraUuids, :QuaraScope, :ProductType, :QuaraTypes
 
-        def initialize(checkpattern=nil, starttime=nil, endtime=nil, isglobal=nil, enablescan=nil, monitoringpattern=nil, cycle=nil, realtimemonitoring=nil, custompaths=nil, monitorcustompaths=nil, quuidlist=nil, autoisolation=nil, killprocess=nil, doclean=nil, enginetype=nil, enableinspiredengine=nil, enablememshellscan=nil, protectmode=nil, protectfilescope=nil, quarauuids=nil, quarascope=nil, producttype=nil)
+        def initialize(checkpattern=nil, starttime=nil, endtime=nil, isglobal=nil, enablescan=nil, monitoringpattern=nil, cycle=nil, realtimemonitoring=nil, custompaths=nil, monitorcustompaths=nil, quuidlist=nil, autoisolation=nil, killprocess=nil, doclean=nil, enginetype=nil, enableinspiredengine=nil, enablememshellscan=nil, protectmode=nil, protectfilescope=nil, quarauuids=nil, quarascope=nil, producttype=nil, quaratypes=nil)
           @CheckPattern = checkpattern
           @StartTime = starttime
           @EndTime = endtime
@@ -35377,6 +35394,7 @@ module TencentCloud
           @QuaraUuids = quarauuids
           @QuaraScope = quarascope
           @ProductType = producttype
+          @QuaraTypes = quaratypes
         end
 
         def deserialize(params)
@@ -35402,6 +35420,7 @@ module TencentCloud
           @QuaraUuids = params['QuaraUuids']
           @QuaraScope = params['QuaraScope']
           @ProductType = params['ProductType']
+          @QuaraTypes = params['QuaraTypes']
         end
       end
 
@@ -37914,6 +37933,34 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @Num = params['Num']
+        end
+      end
+
+      # 自定义隔离模式的告警类型字典条目（灰度规则系统下发）
+      class QuaraTypeDictItem < TencentCloud::Common::AbstractModel
+        # @param Code: <p>告警类型标识，与 QuaraTypes 取值一致</p>
+        # @type Code: String
+        # @param Name: <p>展示类型名</p>
+        # @type Name: String
+        # @param Recommend: <p>是否推荐隔离</p>
+        # @type Recommend: Boolean
+        # @param Desc: <p>描述和建议</p>
+        # @type Desc: String
+
+        attr_accessor :Code, :Name, :Recommend, :Desc
+
+        def initialize(code=nil, name=nil, recommend=nil, desc=nil)
+          @Code = code
+          @Name = name
+          @Recommend = recommend
+          @Desc = desc
+        end
+
+        def deserialize(params)
+          @Code = params['Code']
+          @Name = params['Name']
+          @Recommend = params['Recommend']
+          @Desc = params['Desc']
         end
       end
 

@@ -778,17 +778,21 @@ module TencentCloud
 
       # DeleteDirectConnect请求参数结构体
       class DeleteDirectConnectRequest < TencentCloud::Common::AbstractModel
-        # @param DirectConnectId: 物理专线的ID。
+        # @param DirectConnectId: <p>物理专线的ID。</p>
         # @type DirectConnectId: String
+        # @param PlannedRepealDate: <p>预计裁撤时间</p>
+        # @type PlannedRepealDate: String
 
-        attr_accessor :DirectConnectId
+        attr_accessor :DirectConnectId, :PlannedRepealDate
 
-        def initialize(directconnectid=nil)
+        def initialize(directconnectid=nil, plannedrepealdate=nil)
           @DirectConnectId = directconnectid
+          @PlannedRepealDate = plannedrepealdate
         end
 
         def deserialize(params)
           @DirectConnectId = params['DirectConnectId']
+          @PlannedRepealDate = params['PlannedRepealDate']
         end
       end
 

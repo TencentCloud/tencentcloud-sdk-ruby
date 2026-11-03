@@ -149,6 +149,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建自动化任务。AgentConfig 由上游传入，managed-agent 仅做协议透传。
+
+        # @param request: Request instance for CreateScheduledTask.
+        # @type request: :class:`Tencentcloud::workbuddyenterprise::V20260709::CreateScheduledTaskRequest`
+        # @rtype: :class:`Tencentcloud::workbuddyenterprise::V20260709::CreateScheduledTaskResponse`
+        def CreateScheduledTask(request)
+          body = send_request('CreateScheduledTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateScheduledTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除指定的 Agent 及其所有版本。删除后不可恢复。
 
         # @param request: Request instance for DeleteAgent.
@@ -159,6 +183,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteAgentResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除指定的自动化任务。删除后不可恢复。
+
+        # @param request: Request instance for DeleteScheduledTask.
+        # @type request: :class:`Tencentcloud::workbuddyenterprise::V20260709::DeleteScheduledTaskRequest`
+        # @rtype: :class:`Tencentcloud::workbuddyenterprise::V20260709::DeleteScheduledTaskResponse`
+        def DeleteScheduledTask(request)
+          body = send_request('DeleteScheduledTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteScheduledTaskResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -461,6 +509,102 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询单个自动化任务的详细信息。
+
+        # @param request: Request instance for DescribeScheduledTask.
+        # @type request: :class:`Tencentcloud::workbuddyenterprise::V20260709::DescribeScheduledTaskRequest`
+        # @rtype: :class:`Tencentcloud::workbuddyenterprise::V20260709::DescribeScheduledTaskResponse`
+        def DescribeScheduledTask(request)
+          body = send_request('DescribeScheduledTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeScheduledTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 分页查询自动化任务列表，支持按任务名称、状态、Agent 过滤。
+
+        # @param request: Request instance for DescribeScheduledTaskList.
+        # @type request: :class:`Tencentcloud::workbuddyenterprise::V20260709::DescribeScheduledTaskListRequest`
+        # @rtype: :class:`Tencentcloud::workbuddyenterprise::V20260709::DescribeScheduledTaskListResponse`
+        def DescribeScheduledTaskList(request)
+          body = send_request('DescribeScheduledTaskList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeScheduledTaskListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询单条自动化任务执行日志的详细信息。
+
+        # @param request: Request instance for DescribeScheduledTaskLog.
+        # @type request: :class:`Tencentcloud::workbuddyenterprise::V20260709::DescribeScheduledTaskLogRequest`
+        # @rtype: :class:`Tencentcloud::workbuddyenterprise::V20260709::DescribeScheduledTaskLogResponse`
+        def DescribeScheduledTaskLog(request)
+          body = send_request('DescribeScheduledTaskLog', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeScheduledTaskLogResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 分页查询自动化任务执行日志列表，支持状态和时间范围过滤，可选返回聚合统计。
+
+        # @param request: Request instance for DescribeScheduledTaskLogList.
+        # @type request: :class:`Tencentcloud::workbuddyenterprise::V20260709::DescribeScheduledTaskLogListRequest`
+        # @rtype: :class:`Tencentcloud::workbuddyenterprise::V20260709::DescribeScheduledTaskLogListResponse`
+        def DescribeScheduledTaskLogList(request)
+          body = send_request('DescribeScheduledTaskLogList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeScheduledTaskLogListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 分页查询 Skill 列表，支持关键词、分类、发布状态过滤。
 
         # @param request: Request instance for DescribeSkillList.
@@ -615,6 +759,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyAgentVersionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 部分更新自动化任务配置（Patch 语义：仅传递需要更新的字段），支持启停状态切换。
+
+        # @param request: Request instance for ModifyScheduledTask.
+        # @type request: :class:`Tencentcloud::workbuddyenterprise::V20260709::ModifyScheduledTaskRequest`
+        # @rtype: :class:`Tencentcloud::workbuddyenterprise::V20260709::ModifyScheduledTaskResponse`
+        def ModifyScheduledTask(request)
+          body = send_request('ModifyScheduledTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyScheduledTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 手动触发一次自动化任务执行，返回执行日志 ID。
+
+        # @param request: Request instance for TriggerScheduledTask.
+        # @type request: :class:`Tencentcloud::workbuddyenterprise::V20260709::TriggerScheduledTaskRequest`
+        # @rtype: :class:`Tencentcloud::workbuddyenterprise::V20260709::TriggerScheduledTaskResponse`
+        def TriggerScheduledTask(request)
+          body = send_request('TriggerScheduledTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = TriggerScheduledTaskResponse.new
             model.deserialize(response['Response'])
             model
           else

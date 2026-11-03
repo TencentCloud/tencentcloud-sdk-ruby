@@ -2471,10 +2471,14 @@ module TencentCloud
         # @type OwnerUin: String
         # @param AffectedImageCount: <p>影响镜像数</p>
         # @type AffectedImageCount: Integer
+        # @param AffectedRegistryImageCount: <p>影响仓库镜像数</p>
+        # @type AffectedRegistryImageCount: Integer
+        # @param AffectedCICDImageCount: <p>影响CICD镜像数</p>
+        # @type AffectedCICDImageCount: Integer
 
-        attr_accessor :Name, :Version, :Type, :FirstFoundTime, :LatestFoundTime, :Id, :OwnerAccountName, :OwnerAppId, :OwnerUin, :AffectedImageCount
+        attr_accessor :Name, :Version, :Type, :FirstFoundTime, :LatestFoundTime, :Id, :OwnerAccountName, :OwnerAppId, :OwnerUin, :AffectedImageCount, :AffectedRegistryImageCount, :AffectedCICDImageCount
 
-        def initialize(name=nil, version=nil, type=nil, firstfoundtime=nil, latestfoundtime=nil, id=nil, owneraccountname=nil, ownerappid=nil, owneruin=nil, affectedimagecount=nil)
+        def initialize(name=nil, version=nil, type=nil, firstfoundtime=nil, latestfoundtime=nil, id=nil, owneraccountname=nil, ownerappid=nil, owneruin=nil, affectedimagecount=nil, affectedregistryimagecount=nil, affectedcicdimagecount=nil)
           @Name = name
           @Version = version
           @Type = type
@@ -2485,6 +2489,8 @@ module TencentCloud
           @OwnerAppId = ownerappid
           @OwnerUin = owneruin
           @AffectedImageCount = affectedimagecount
+          @AffectedRegistryImageCount = affectedregistryimagecount
+          @AffectedCICDImageCount = affectedcicdimagecount
         end
 
         def deserialize(params)
@@ -2498,6 +2504,8 @@ module TencentCloud
           @OwnerAppId = params['OwnerAppId']
           @OwnerUin = params['OwnerUin']
           @AffectedImageCount = params['AffectedImageCount']
+          @AffectedRegistryImageCount = params['AffectedRegistryImageCount']
+          @AffectedCICDImageCount = params['AffectedCICDImageCount']
         end
       end
 
@@ -7861,16 +7869,16 @@ module TencentCloud
 
         attr_accessor :AppID, :AssetId, :ContainerId, :ContainerName, :RunStatus, :NodeId, :NodeType, :PodUid, :PodName, :ImageId, :ImageName, :IsolateStatus, :RiskEventCriticalCount, :RiskEventHighCount, :RiskEventMiddleCount, :RiskEventLowCount, :CreateTime, :AlarmCount
         extend Gem::Deprecate
-        deprecate :AssetId, :none, 2026, 10
-        deprecate :AssetId=, :none, 2026, 10
-        deprecate :RiskEventCriticalCount, :none, 2026, 10
-        deprecate :RiskEventCriticalCount=, :none, 2026, 10
-        deprecate :RiskEventHighCount, :none, 2026, 10
-        deprecate :RiskEventHighCount=, :none, 2026, 10
-        deprecate :RiskEventMiddleCount, :none, 2026, 10
-        deprecate :RiskEventMiddleCount=, :none, 2026, 10
-        deprecate :RiskEventLowCount, :none, 2026, 10
-        deprecate :RiskEventLowCount=, :none, 2026, 10
+        deprecate :AssetId, :none, 2026, 11
+        deprecate :AssetId=, :none, 2026, 11
+        deprecate :RiskEventCriticalCount, :none, 2026, 11
+        deprecate :RiskEventCriticalCount=, :none, 2026, 11
+        deprecate :RiskEventHighCount, :none, 2026, 11
+        deprecate :RiskEventHighCount=, :none, 2026, 11
+        deprecate :RiskEventMiddleCount, :none, 2026, 11
+        deprecate :RiskEventMiddleCount=, :none, 2026, 11
+        deprecate :RiskEventLowCount, :none, 2026, 11
+        deprecate :RiskEventLowCount=, :none, 2026, 11
 
         def initialize(appid=nil, assetid=nil, containerid=nil, containername=nil, runstatus=nil, nodeid=nil, nodetype=nil, poduid=nil, podname=nil, imageid=nil, imagename=nil, isolatestatus=nil, riskeventcriticalcount=nil, riskeventhighcount=nil, riskeventmiddlecount=nil, riskeventlowcount=nil, createtime=nil, alarmcount=nil)
           @AppID = appid
@@ -8048,35 +8056,39 @@ module TencentCloud
         # @type TagItems: Array
         # @param TagModifyInfo: <p>标签修改信息</p>
         # @type TagModifyInfo: :class:`Tencentcloud::Csip.v20221121.models.AssetTagModifyAssetItem`
+        # @param NormalNodeCount: <p>集群普通节点数</p>
+        # @type NormalNodeCount: Integer
+        # @param AuditLogFailedInfo: <p>审计日志开关失败信息，只在 AuditLogSwitchStatus 为 2（开启失败）或 3（关闭失败）时非空。</p>
+        # @type AuditLogFailedInfo: String
 
-        attr_accessor :AppID, :AssetId, :ClusterId, :ClusterName, :ClusterType, :AlarmEventCriticalCount, :AlarmEventHighCount, :AlarmEventMiddleCount, :AlarmEventLowCount, :RiskEventCriticalCount, :RiskEventHighCount, :RiskEventMiddleCount, :RiskEventLowCount, :NodeCount, :OfflineNodeCount, :UninstallNodeCount, :TotalCoresCount, :DefendCoresCount, :AuditLogSwitchStatus, :DefendStatus, :RunStatus, :Region, :Version, :LastAssetSyncTime, :LastRiskCheckTime, :RiskStatus, :Tags, :OwnerName, :FailMessage, :RunSubStatus, :AccessedStatus, :AccessedSubStatus, :ClusterCaMD5, :AssetSyncStatus, :RiskConfigCount, :AccessFailedMessage, :RegionName, :RegionNameEn, :UnboundUltimateNodeCount, :TagItems, :TagModifyInfo
+        attr_accessor :AppID, :AssetId, :ClusterId, :ClusterName, :ClusterType, :AlarmEventCriticalCount, :AlarmEventHighCount, :AlarmEventMiddleCount, :AlarmEventLowCount, :RiskEventCriticalCount, :RiskEventHighCount, :RiskEventMiddleCount, :RiskEventLowCount, :NodeCount, :OfflineNodeCount, :UninstallNodeCount, :TotalCoresCount, :DefendCoresCount, :AuditLogSwitchStatus, :DefendStatus, :RunStatus, :Region, :Version, :LastAssetSyncTime, :LastRiskCheckTime, :RiskStatus, :Tags, :OwnerName, :FailMessage, :RunSubStatus, :AccessedStatus, :AccessedSubStatus, :ClusterCaMD5, :AssetSyncStatus, :RiskConfigCount, :AccessFailedMessage, :RegionName, :RegionNameEn, :UnboundUltimateNodeCount, :TagItems, :TagModifyInfo, :NormalNodeCount, :AuditLogFailedInfo
         extend Gem::Deprecate
-        deprecate :AssetId, :none, 2026, 10
-        deprecate :AssetId=, :none, 2026, 10
-        deprecate :AlarmEventCriticalCount, :none, 2026, 10
-        deprecate :AlarmEventCriticalCount=, :none, 2026, 10
-        deprecate :AlarmEventHighCount, :none, 2026, 10
-        deprecate :AlarmEventHighCount=, :none, 2026, 10
-        deprecate :AlarmEventMiddleCount, :none, 2026, 10
-        deprecate :AlarmEventMiddleCount=, :none, 2026, 10
-        deprecate :AlarmEventLowCount, :none, 2026, 10
-        deprecate :AlarmEventLowCount=, :none, 2026, 10
-        deprecate :RiskEventCriticalCount, :none, 2026, 10
-        deprecate :RiskEventCriticalCount=, :none, 2026, 10
-        deprecate :RiskEventHighCount, :none, 2026, 10
-        deprecate :RiskEventHighCount=, :none, 2026, 10
-        deprecate :RiskEventMiddleCount, :none, 2026, 10
-        deprecate :RiskEventMiddleCount=, :none, 2026, 10
-        deprecate :RiskEventLowCount, :none, 2026, 10
-        deprecate :RiskEventLowCount=, :none, 2026, 10
-        deprecate :DefendCoresCount, :none, 2026, 10
-        deprecate :DefendCoresCount=, :none, 2026, 10
-        deprecate :RiskConfigCount, :none, 2026, 10
-        deprecate :RiskConfigCount=, :none, 2026, 10
-        deprecate :AccessFailedMessage, :none, 2026, 10
-        deprecate :AccessFailedMessage=, :none, 2026, 10
+        deprecate :AssetId, :none, 2026, 11
+        deprecate :AssetId=, :none, 2026, 11
+        deprecate :AlarmEventCriticalCount, :none, 2026, 11
+        deprecate :AlarmEventCriticalCount=, :none, 2026, 11
+        deprecate :AlarmEventHighCount, :none, 2026, 11
+        deprecate :AlarmEventHighCount=, :none, 2026, 11
+        deprecate :AlarmEventMiddleCount, :none, 2026, 11
+        deprecate :AlarmEventMiddleCount=, :none, 2026, 11
+        deprecate :AlarmEventLowCount, :none, 2026, 11
+        deprecate :AlarmEventLowCount=, :none, 2026, 11
+        deprecate :RiskEventCriticalCount, :none, 2026, 11
+        deprecate :RiskEventCriticalCount=, :none, 2026, 11
+        deprecate :RiskEventHighCount, :none, 2026, 11
+        deprecate :RiskEventHighCount=, :none, 2026, 11
+        deprecate :RiskEventMiddleCount, :none, 2026, 11
+        deprecate :RiskEventMiddleCount=, :none, 2026, 11
+        deprecate :RiskEventLowCount, :none, 2026, 11
+        deprecate :RiskEventLowCount=, :none, 2026, 11
+        deprecate :DefendCoresCount, :none, 2026, 11
+        deprecate :DefendCoresCount=, :none, 2026, 11
+        deprecate :RiskConfigCount, :none, 2026, 11
+        deprecate :RiskConfigCount=, :none, 2026, 11
+        deprecate :AccessFailedMessage, :none, 2026, 11
+        deprecate :AccessFailedMessage=, :none, 2026, 11
 
-        def initialize(appid=nil, assetid=nil, clusterid=nil, clustername=nil, clustertype=nil, alarmeventcriticalcount=nil, alarmeventhighcount=nil, alarmeventmiddlecount=nil, alarmeventlowcount=nil, riskeventcriticalcount=nil, riskeventhighcount=nil, riskeventmiddlecount=nil, riskeventlowcount=nil, nodecount=nil, offlinenodecount=nil, uninstallnodecount=nil, totalcorescount=nil, defendcorescount=nil, auditlogswitchstatus=nil, defendstatus=nil, runstatus=nil, region=nil, version=nil, lastassetsynctime=nil, lastriskchecktime=nil, riskstatus=nil, tags=nil, ownername=nil, failmessage=nil, runsubstatus=nil, accessedstatus=nil, accessedsubstatus=nil, clustercamd5=nil, assetsyncstatus=nil, riskconfigcount=nil, accessfailedmessage=nil, regionname=nil, regionnameen=nil, unboundultimatenodecount=nil, tagitems=nil, tagmodifyinfo=nil)
+        def initialize(appid=nil, assetid=nil, clusterid=nil, clustername=nil, clustertype=nil, alarmeventcriticalcount=nil, alarmeventhighcount=nil, alarmeventmiddlecount=nil, alarmeventlowcount=nil, riskeventcriticalcount=nil, riskeventhighcount=nil, riskeventmiddlecount=nil, riskeventlowcount=nil, nodecount=nil, offlinenodecount=nil, uninstallnodecount=nil, totalcorescount=nil, defendcorescount=nil, auditlogswitchstatus=nil, defendstatus=nil, runstatus=nil, region=nil, version=nil, lastassetsynctime=nil, lastriskchecktime=nil, riskstatus=nil, tags=nil, ownername=nil, failmessage=nil, runsubstatus=nil, accessedstatus=nil, accessedsubstatus=nil, clustercamd5=nil, assetsyncstatus=nil, riskconfigcount=nil, accessfailedmessage=nil, regionname=nil, regionnameen=nil, unboundultimatenodecount=nil, tagitems=nil, tagmodifyinfo=nil, normalnodecount=nil, auditlogfailedinfo=nil)
           @AppID = appid
           @AssetId = assetid
           @ClusterId = clusterid
@@ -8118,6 +8130,8 @@ module TencentCloud
           @UnboundUltimateNodeCount = unboundultimatenodecount
           @TagItems = tagitems
           @TagModifyInfo = tagmodifyinfo
+          @NormalNodeCount = normalnodecount
+          @AuditLogFailedInfo = auditlogfailedinfo
         end
 
         def deserialize(params)
@@ -8179,6 +8193,8 @@ module TencentCloud
             @TagModifyInfo = AssetTagModifyAssetItem.new
             @TagModifyInfo.deserialize(params['TagModifyInfo'])
           end
+          @NormalNodeCount = params['NormalNodeCount']
+          @AuditLogFailedInfo = params['AuditLogFailedInfo']
         end
       end
 
@@ -8199,8 +8215,8 @@ module TencentCloud
 
         attr_accessor :AppID, :Name, :Label, :CreateTime, :AssetId, :UniqueID
         extend Gem::Deprecate
-        deprecate :AssetId, :none, 2026, 10
-        deprecate :AssetId=, :none, 2026, 10
+        deprecate :AssetId, :none, 2026, 11
+        deprecate :AssetId=, :none, 2026, 11
 
         def initialize(appid=nil, name=nil, label=nil, createtime=nil, assetid=nil, uniqueid=nil)
           @AppID = appid
@@ -8261,8 +8277,8 @@ module TencentCloud
 
         attr_accessor :AssetId, :AppID, :NodeId, :NodeName, :PublicIP, :InternalIP, :NodeType, :CoresCount, :Tags, :RunStatus, :IsNew, :UniqueID, :ClientStatus, :InstanceId
         extend Gem::Deprecate
-        deprecate :AssetId, :none, 2026, 10
-        deprecate :AssetId=, :none, 2026, 10
+        deprecate :AssetId, :none, 2026, 11
+        deprecate :AssetId=, :none, 2026, 11
 
         def initialize(assetid=nil, appid=nil, nodeid=nil, nodename=nil, publicip=nil, internalip=nil, nodetype=nil, corescount=nil, tags=nil, runstatus=nil, isnew=nil, uniqueid=nil, clientstatus=nil, instanceid=nil)
           @AssetId = assetid
@@ -8354,26 +8370,26 @@ module TencentCloud
 
         attr_accessor :AssetId, :AppID, :PodUid, :PodName, :PodIPs, :RunStatus, :DefendCoresCount, :NodeId, :NodeType, :WorkloadName, :WorkloadType, :Namespace, :CreateTime, :UniqueID, :RiskEventCriticalCount, :RiskEventHighCount, :RiskEventMiddleCount, :RiskEventLowCount, :AlarmEventCriticalCount, :AlarmEventHighCount, :AlarmEventMiddleCount, :AlarmEventLowCount, :ContainerList, :AlarmCount, :CoresCount
         extend Gem::Deprecate
-        deprecate :AssetId, :none, 2026, 10
-        deprecate :AssetId=, :none, 2026, 10
-        deprecate :DefendCoresCount, :none, 2026, 10
-        deprecate :DefendCoresCount=, :none, 2026, 10
-        deprecate :RiskEventCriticalCount, :none, 2026, 10
-        deprecate :RiskEventCriticalCount=, :none, 2026, 10
-        deprecate :RiskEventHighCount, :none, 2026, 10
-        deprecate :RiskEventHighCount=, :none, 2026, 10
-        deprecate :RiskEventMiddleCount, :none, 2026, 10
-        deprecate :RiskEventMiddleCount=, :none, 2026, 10
-        deprecate :RiskEventLowCount, :none, 2026, 10
-        deprecate :RiskEventLowCount=, :none, 2026, 10
-        deprecate :AlarmEventCriticalCount, :none, 2026, 10
-        deprecate :AlarmEventCriticalCount=, :none, 2026, 10
-        deprecate :AlarmEventHighCount, :none, 2026, 10
-        deprecate :AlarmEventHighCount=, :none, 2026, 10
-        deprecate :AlarmEventMiddleCount, :none, 2026, 10
-        deprecate :AlarmEventMiddleCount=, :none, 2026, 10
-        deprecate :AlarmEventLowCount, :none, 2026, 10
-        deprecate :AlarmEventLowCount=, :none, 2026, 10
+        deprecate :AssetId, :none, 2026, 11
+        deprecate :AssetId=, :none, 2026, 11
+        deprecate :DefendCoresCount, :none, 2026, 11
+        deprecate :DefendCoresCount=, :none, 2026, 11
+        deprecate :RiskEventCriticalCount, :none, 2026, 11
+        deprecate :RiskEventCriticalCount=, :none, 2026, 11
+        deprecate :RiskEventHighCount, :none, 2026, 11
+        deprecate :RiskEventHighCount=, :none, 2026, 11
+        deprecate :RiskEventMiddleCount, :none, 2026, 11
+        deprecate :RiskEventMiddleCount=, :none, 2026, 11
+        deprecate :RiskEventLowCount, :none, 2026, 11
+        deprecate :RiskEventLowCount=, :none, 2026, 11
+        deprecate :AlarmEventCriticalCount, :none, 2026, 11
+        deprecate :AlarmEventCriticalCount=, :none, 2026, 11
+        deprecate :AlarmEventHighCount, :none, 2026, 11
+        deprecate :AlarmEventHighCount=, :none, 2026, 11
+        deprecate :AlarmEventMiddleCount, :none, 2026, 11
+        deprecate :AlarmEventMiddleCount=, :none, 2026, 11
+        deprecate :AlarmEventLowCount, :none, 2026, 11
+        deprecate :AlarmEventLowCount=, :none, 2026, 11
 
         def initialize(assetid=nil, appid=nil, poduid=nil, podname=nil, podips=nil, runstatus=nil, defendcorescount=nil, nodeid=nil, nodetype=nil, workloadname=nil, workloadtype=nil, namespace=nil, createtime=nil, uniqueid=nil, riskeventcriticalcount=nil, riskeventhighcount=nil, riskeventmiddlecount=nil, riskeventlowcount=nil, alarmeventcriticalcount=nil, alarmeventhighcount=nil, alarmeventmiddlecount=nil, alarmeventlowcount=nil, containerlist=nil, alarmcount=nil, corescount=nil)
           @AssetId = assetid
@@ -8466,8 +8482,8 @@ module TencentCloud
 
         attr_accessor :AppID, :AssetId, :Name, :SelectorLabel, :Namespace, :CreateTime, :ServiceUniqueID, :ServiceType, :ClusterIP, :ExternalIP, :Ports
         extend Gem::Deprecate
-        deprecate :AssetId, :none, 2026, 10
-        deprecate :AssetId=, :none, 2026, 10
+        deprecate :AssetId, :none, 2026, 11
+        deprecate :AssetId=, :none, 2026, 11
 
         def initialize(appid=nil, assetid=nil, name=nil, selectorlabel=nil, namespace=nil, createtime=nil, serviceuniqueid=nil, servicetype=nil, clusterip=nil, externalip=nil, ports=nil)
           @AppID = appid
@@ -8902,6 +8918,22 @@ module TencentCloud
           @ExePath = params['ExePath']
           @ConfigPath = params['ConfigPath']
           @ProcessCnt = params['ProcessCnt']
+        end
+      end
+
+      # 容器安全模块自动扩容配置
+      class ContainerAutoScaleConfig < TencentCloud::Common::AbstractModel
+        # @param Switch: <p>容器自动扩容开关</p><p>枚举值：</p><ul><li>OFF： 关</li><li>ON： 开</li></ul>
+        # @type Switch: String
+
+        attr_accessor :Switch
+
+        def initialize(switch=nil)
+          @Switch = switch
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
         end
       end
 
@@ -10127,8 +10159,8 @@ module TencentCloud
 
         attr_accessor :CategoryId, :CategoryName, :RuleSet
         extend Gem::Deprecate
-        deprecate :RuleSet, :none, 2026, 10
-        deprecate :RuleSet=, :none, 2026, 10
+        deprecate :RuleSet, :none, 2026, 11
+        deprecate :RuleSet=, :none, 2026, 11
 
         def initialize(categoryid=nil, categoryname=nil, ruleset=nil)
           @CategoryId = categoryid
@@ -11931,8 +11963,8 @@ module TencentCloud
 
         attr_accessor :MemberId, :ClusterAssetIds, :ClusterCaMD5List
         extend Gem::Deprecate
-        deprecate :ClusterAssetIds, :none, 2026, 10
-        deprecate :ClusterAssetIds=, :none, 2026, 10
+        deprecate :ClusterAssetIds, :none, 2026, 11
+        deprecate :ClusterAssetIds=, :none, 2026, 11
 
         def initialize(memberid=nil, clusterassetids=nil, clustercamd5list=nil)
           @MemberId = memberid
@@ -17249,8 +17281,8 @@ module TencentCloud
 
         attr_accessor :MemberId, :OperatedMemberId, :ClusterAssetIds, :ClusterCaMD5List
         extend Gem::Deprecate
-        deprecate :ClusterAssetIds, :none, 2026, 10
-        deprecate :ClusterAssetIds=, :none, 2026, 10
+        deprecate :ClusterAssetIds, :none, 2026, 11
+        deprecate :ClusterAssetIds=, :none, 2026, 11
 
         def initialize(memberid=nil, operatedmemberid=nil, clusterassetids=nil, clustercamd5list=nil)
           @MemberId = memberid
@@ -19393,10 +19425,10 @@ module TencentCloud
 
         attr_accessor :AILinkEnable, :RuleScopeDeep, :RuleScopeBalanced, :RuleScopePrecise, :Scope, :Quuids, :ExcludeQuuids, :AutoInclude, :TagIDs, :TCSSScope, :ClusterIDs, :ExcludeClusterIDs, :InstanceIds, :ExcludeInstanceIds, :RequestId
         extend Gem::Deprecate
-        deprecate :Quuids, :none, 2026, 10
-        deprecate :Quuids=, :none, 2026, 10
-        deprecate :ExcludeQuuids, :none, 2026, 10
-        deprecate :ExcludeQuuids=, :none, 2026, 10
+        deprecate :Quuids, :none, 2026, 11
+        deprecate :Quuids=, :none, 2026, 11
+        deprecate :ExcludeQuuids, :none, 2026, 11
+        deprecate :ExcludeQuuids=, :none, 2026, 11
 
         def initialize(ailinkenable=nil, rulescopedeep=nil, rulescopebalanced=nil, rulescopeprecise=nil, scope=nil, quuids=nil, excludequuids=nil, autoinclude=nil, tagids=nil, tcssscope=nil, clusterids=nil, excludeclusterids=nil, instanceids=nil, excludeinstanceids=nil, requestid=nil)
           @AILinkEnable = ailinkenable
@@ -21843,7 +21875,7 @@ module TencentCloud
         # @type CategoryID: Integer
         # @param MemberId: <p>集团账号的成员id</p>
         # @type MemberId: Array
-        # @param Filters: <p>通用过滤条件。支持的 Name：ResultStatus（结果状态 PASS/NOT_PASS/CHECKING/CHECK_FAILED/NOT_INVOLVED）、Name（检测项名称，模糊搜索）、RiskLevel（风险等级 CRITICAL/HIGH/MEDIUM/LOW）、PolicyName（所属基线/策略名称，模糊搜索）。</p>
+        # @param Filters: <p>通用过滤条件。支持的 Name：<br>ResultStatus（结果状态 PASS/NOT_PASS/CHECKING/CHECK_FAILED/NOT_INVOLVED）<br>Name（检测项名称，模糊搜索）<br>RiskLevel（风险等级 CRITICAL/HIGH/MEDIUM/LOW）<br>ClusterCaMD5（集群CaMD5，精准搜索）<br>ClusterId（集群Id，精准搜索）</p>
         # @type Filters: Array
         # @param Limit: <p>分页查询每页数量，最大值 100；超过时服务端将自动回退为默认值 10。</p>
         # @type Limit: Integer
@@ -22173,7 +22205,7 @@ module TencentCloud
         # @type CategoryID: Integer
         # @param MemberId: <p>集团账号的成员id</p>
         # @type MemberId: Array
-        # @param Filters: <p>通用过滤条件。支持的 Name：ResultStatus（通过状态，Values: PASS/NOT_PASS）、AssetName（资产名称/ID，模糊搜索）、IP（IP地址，模糊搜索）、Tag（资产标签，模糊搜索）。</p>
+        # @param Filters: <p>通用过滤条件。支持的 Name：<br>ResultStatus（通过状态，Values: PASS/NOT_PASS）<br>AssetName（资产名称/ID，模糊搜索）<br>IP（IP地址，模糊搜索）<br>Tag（资产标签，模糊搜索）<br>ClusterCaMD5 (集群ca-md5,精确匹配)<br>ClusterId (集群Id,精确匹配)</p>
         # @type Filters: Array
         # @param Limit: <p>分页查询每页数量，最大值 100；超过时服务端将自动回退为默认值 10。</p>
         # @type Limit: Integer
@@ -25723,14 +25755,14 @@ module TencentCloud
 
         attr_accessor :AppID, :ContainerId, :Cmd, :CreateTime, :RunStatus, :IsolateStatus, :RiskEventCriticalCount, :RiskEventHighCount, :RiskEventMiddleCount, :RiskEventLowCount, :ImageName, :ImageId, :ImageSize, :ImageCreateTime, :NodeName, :NodeInternalIP, :NodeRunStatus, :Mounts, :NetworkName, :NetworkMode, :NetworkId, :EndpointId, :Gateway, :IPv4, :IPv6, :MAC, :ContainerName, :NodeInstanceId, :NodeType, :NodeUniqueID, :ClusterCaMD5, :EnableLinkImage, :RequestId
         extend Gem::Deprecate
-        deprecate :RiskEventCriticalCount, :none, 2026, 10
-        deprecate :RiskEventCriticalCount=, :none, 2026, 10
-        deprecate :RiskEventHighCount, :none, 2026, 10
-        deprecate :RiskEventHighCount=, :none, 2026, 10
-        deprecate :RiskEventMiddleCount, :none, 2026, 10
-        deprecate :RiskEventMiddleCount=, :none, 2026, 10
-        deprecate :RiskEventLowCount, :none, 2026, 10
-        deprecate :RiskEventLowCount=, :none, 2026, 10
+        deprecate :RiskEventCriticalCount, :none, 2026, 11
+        deprecate :RiskEventCriticalCount=, :none, 2026, 11
+        deprecate :RiskEventHighCount, :none, 2026, 11
+        deprecate :RiskEventHighCount=, :none, 2026, 11
+        deprecate :RiskEventMiddleCount, :none, 2026, 11
+        deprecate :RiskEventMiddleCount=, :none, 2026, 11
+        deprecate :RiskEventLowCount, :none, 2026, 11
+        deprecate :RiskEventLowCount=, :none, 2026, 11
 
         def initialize(appid=nil, containerid=nil, cmd=nil, createtime=nil, runstatus=nil, isolatestatus=nil, riskeventcriticalcount=nil, riskeventhighcount=nil, riskeventmiddlecount=nil, riskeventlowcount=nil, imagename=nil, imageid=nil, imagesize=nil, imagecreatetime=nil, nodename=nil, nodeinternalip=nil, noderunstatus=nil, mounts=nil, networkname=nil, networkmode=nil, networkid=nil, endpointid=nil, gateway=nil, ipv4=nil, ipv6=nil, mac=nil, containername=nil, nodeinstanceid=nil, nodetype=nil, nodeuniqueid=nil, clustercamd5=nil, enablelinkimage=nil, requestid=nil)
           @AppID = appid
@@ -25825,8 +25857,8 @@ module TencentCloud
 
         attr_accessor :ClusterAssetId, :MemberId, :Filter, :ClusterCaMD5
         extend Gem::Deprecate
-        deprecate :ClusterAssetId, :none, 2026, 10
-        deprecate :ClusterAssetId=, :none, 2026, 10
+        deprecate :ClusterAssetId, :none, 2026, 11
+        deprecate :ClusterAssetId=, :none, 2026, 11
 
         def initialize(clusterassetid=nil, memberid=nil, filter=nil, clustercamd5=nil)
           @ClusterAssetId = clusterassetid
@@ -26041,8 +26073,8 @@ module TencentCloud
 
         attr_accessor :ClusterAssetId, :MemberId, :ClusterCaMD5
         extend Gem::Deprecate
-        deprecate :ClusterAssetId, :none, 2026, 10
-        deprecate :ClusterAssetId=, :none, 2026, 10
+        deprecate :ClusterAssetId, :none, 2026, 11
+        deprecate :ClusterAssetId=, :none, 2026, 11
 
         def initialize(clusterassetid=nil, memberid=nil, clustercamd5=nil)
           @ClusterAssetId = clusterassetid
@@ -26216,8 +26248,8 @@ module TencentCloud
 
         attr_accessor :ClusterAssetId, :Filter, :MemberId, :ClusterCaMD5
         extend Gem::Deprecate
-        deprecate :ClusterAssetId, :none, 2026, 10
-        deprecate :ClusterAssetId=, :none, 2026, 10
+        deprecate :ClusterAssetId, :none, 2026, 11
+        deprecate :ClusterAssetId=, :none, 2026, 11
 
         def initialize(clusterassetid=nil, filter=nil, memberid=nil, clustercamd5=nil)
           @ClusterAssetId = clusterassetid
@@ -26281,8 +26313,8 @@ module TencentCloud
 
         attr_accessor :ClusterAssetId, :MemberId, :Filter, :ClusterCaMD5
         extend Gem::Deprecate
-        deprecate :ClusterAssetId, :none, 2026, 10
-        deprecate :ClusterAssetId=, :none, 2026, 10
+        deprecate :ClusterAssetId, :none, 2026, 11
+        deprecate :ClusterAssetId=, :none, 2026, 11
 
         def initialize(clusterassetid=nil, memberid=nil, filter=nil, clustercamd5=nil)
           @ClusterAssetId = clusterassetid
@@ -26624,8 +26656,8 @@ module TencentCloud
 
         attr_accessor :ClusterAssetId, :MemberId, :Filter, :ClusterCaMD5
         extend Gem::Deprecate
-        deprecate :ClusterAssetId, :none, 2026, 10
-        deprecate :ClusterAssetId=, :none, 2026, 10
+        deprecate :ClusterAssetId, :none, 2026, 11
+        deprecate :ClusterAssetId=, :none, 2026, 11
 
         def initialize(clusterassetid=nil, memberid=nil, filter=nil, clustercamd5=nil)
           @ClusterAssetId = clusterassetid
@@ -26695,8 +26727,8 @@ module TencentCloud
 
         attr_accessor :ClusterAssetId, :MemberId, :Filter, :ClusterCaMD5, :PodUniqueID
         extend Gem::Deprecate
-        deprecate :ClusterAssetId, :none, 2026, 10
-        deprecate :ClusterAssetId=, :none, 2026, 10
+        deprecate :ClusterAssetId, :none, 2026, 11
+        deprecate :ClusterAssetId=, :none, 2026, 11
 
         def initialize(clusterassetid=nil, memberid=nil, filter=nil, clustercamd5=nil, poduniqueid=nil)
           @ClusterAssetId = clusterassetid
@@ -26829,45 +26861,47 @@ module TencentCloud
         # @type HighRiskClusterCount: Integer
         # @param UnboundUltimateNodeCount: <p>未绑定旗舰版节点数量</p>
         # @type UnboundUltimateNodeCount: Integer
+        # @param NormalNodeCount: <p>普通节点总数</p>
+        # @type NormalNodeCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TotalClusterCount, :AlarmClusterCount, :RiskClusterCount, :TotalNodeCount, :TotalCoreCount, :AlarmEventCount, :CriticalAlarmEventCount, :HighAlarmEventCount, :MiddleAlarmEventCount, :LowAlarmEventCount, :RiskEventCount, :CriticalRiskEventCount, :HighRiskEventCount, :MiddleRiskEventCount, :LowRiskEventCount, :UsedCoreQuota, :PurchasedCoreQuota, :ElasticCoreQuota, :UnprotectedCoreCount, :ProtectedCoreCount, :UnprotectedClusterCount, :ProtectedClusterCount, :TkeClusterCount, :SelfBuiltClusterCount, :CriticalAlarmClusterCount, :HighAlarmClusterCount, :CriticalRiskClusterCount, :HighRiskClusterCount, :UnboundUltimateNodeCount, :RequestId
+        attr_accessor :TotalClusterCount, :AlarmClusterCount, :RiskClusterCount, :TotalNodeCount, :TotalCoreCount, :AlarmEventCount, :CriticalAlarmEventCount, :HighAlarmEventCount, :MiddleAlarmEventCount, :LowAlarmEventCount, :RiskEventCount, :CriticalRiskEventCount, :HighRiskEventCount, :MiddleRiskEventCount, :LowRiskEventCount, :UsedCoreQuota, :PurchasedCoreQuota, :ElasticCoreQuota, :UnprotectedCoreCount, :ProtectedCoreCount, :UnprotectedClusterCount, :ProtectedClusterCount, :TkeClusterCount, :SelfBuiltClusterCount, :CriticalAlarmClusterCount, :HighAlarmClusterCount, :CriticalRiskClusterCount, :HighRiskClusterCount, :UnboundUltimateNodeCount, :NormalNodeCount, :RequestId
         extend Gem::Deprecate
-        deprecate :AlarmClusterCount, :none, 2026, 10
-        deprecate :AlarmClusterCount=, :none, 2026, 10
-        deprecate :RiskClusterCount, :none, 2026, 10
-        deprecate :RiskClusterCount=, :none, 2026, 10
-        deprecate :AlarmEventCount, :none, 2026, 10
-        deprecate :AlarmEventCount=, :none, 2026, 10
-        deprecate :CriticalAlarmEventCount, :none, 2026, 10
-        deprecate :CriticalAlarmEventCount=, :none, 2026, 10
-        deprecate :HighAlarmEventCount, :none, 2026, 10
-        deprecate :HighAlarmEventCount=, :none, 2026, 10
-        deprecate :MiddleAlarmEventCount, :none, 2026, 10
-        deprecate :MiddleAlarmEventCount=, :none, 2026, 10
-        deprecate :LowAlarmEventCount, :none, 2026, 10
-        deprecate :LowAlarmEventCount=, :none, 2026, 10
-        deprecate :RiskEventCount, :none, 2026, 10
-        deprecate :RiskEventCount=, :none, 2026, 10
-        deprecate :CriticalRiskEventCount, :none, 2026, 10
-        deprecate :CriticalRiskEventCount=, :none, 2026, 10
-        deprecate :HighRiskEventCount, :none, 2026, 10
-        deprecate :HighRiskEventCount=, :none, 2026, 10
-        deprecate :MiddleRiskEventCount, :none, 2026, 10
-        deprecate :MiddleRiskEventCount=, :none, 2026, 10
-        deprecate :LowRiskEventCount, :none, 2026, 10
-        deprecate :LowRiskEventCount=, :none, 2026, 10
-        deprecate :CriticalAlarmClusterCount, :none, 2026, 10
-        deprecate :CriticalAlarmClusterCount=, :none, 2026, 10
-        deprecate :HighAlarmClusterCount, :none, 2026, 10
-        deprecate :HighAlarmClusterCount=, :none, 2026, 10
-        deprecate :CriticalRiskClusterCount, :none, 2026, 10
-        deprecate :CriticalRiskClusterCount=, :none, 2026, 10
-        deprecate :HighRiskClusterCount, :none, 2026, 10
-        deprecate :HighRiskClusterCount=, :none, 2026, 10
+        deprecate :AlarmClusterCount, :none, 2026, 11
+        deprecate :AlarmClusterCount=, :none, 2026, 11
+        deprecate :RiskClusterCount, :none, 2026, 11
+        deprecate :RiskClusterCount=, :none, 2026, 11
+        deprecate :AlarmEventCount, :none, 2026, 11
+        deprecate :AlarmEventCount=, :none, 2026, 11
+        deprecate :CriticalAlarmEventCount, :none, 2026, 11
+        deprecate :CriticalAlarmEventCount=, :none, 2026, 11
+        deprecate :HighAlarmEventCount, :none, 2026, 11
+        deprecate :HighAlarmEventCount=, :none, 2026, 11
+        deprecate :MiddleAlarmEventCount, :none, 2026, 11
+        deprecate :MiddleAlarmEventCount=, :none, 2026, 11
+        deprecate :LowAlarmEventCount, :none, 2026, 11
+        deprecate :LowAlarmEventCount=, :none, 2026, 11
+        deprecate :RiskEventCount, :none, 2026, 11
+        deprecate :RiskEventCount=, :none, 2026, 11
+        deprecate :CriticalRiskEventCount, :none, 2026, 11
+        deprecate :CriticalRiskEventCount=, :none, 2026, 11
+        deprecate :HighRiskEventCount, :none, 2026, 11
+        deprecate :HighRiskEventCount=, :none, 2026, 11
+        deprecate :MiddleRiskEventCount, :none, 2026, 11
+        deprecate :MiddleRiskEventCount=, :none, 2026, 11
+        deprecate :LowRiskEventCount, :none, 2026, 11
+        deprecate :LowRiskEventCount=, :none, 2026, 11
+        deprecate :CriticalAlarmClusterCount, :none, 2026, 11
+        deprecate :CriticalAlarmClusterCount=, :none, 2026, 11
+        deprecate :HighAlarmClusterCount, :none, 2026, 11
+        deprecate :HighAlarmClusterCount=, :none, 2026, 11
+        deprecate :CriticalRiskClusterCount, :none, 2026, 11
+        deprecate :CriticalRiskClusterCount=, :none, 2026, 11
+        deprecate :HighRiskClusterCount, :none, 2026, 11
+        deprecate :HighRiskClusterCount=, :none, 2026, 11
 
-        def initialize(totalclustercount=nil, alarmclustercount=nil, riskclustercount=nil, totalnodecount=nil, totalcorecount=nil, alarmeventcount=nil, criticalalarmeventcount=nil, highalarmeventcount=nil, middlealarmeventcount=nil, lowalarmeventcount=nil, riskeventcount=nil, criticalriskeventcount=nil, highriskeventcount=nil, middleriskeventcount=nil, lowriskeventcount=nil, usedcorequota=nil, purchasedcorequota=nil, elasticcorequota=nil, unprotectedcorecount=nil, protectedcorecount=nil, unprotectedclustercount=nil, protectedclustercount=nil, tkeclustercount=nil, selfbuiltclustercount=nil, criticalalarmclustercount=nil, highalarmclustercount=nil, criticalriskclustercount=nil, highriskclustercount=nil, unboundultimatenodecount=nil, requestid=nil)
+        def initialize(totalclustercount=nil, alarmclustercount=nil, riskclustercount=nil, totalnodecount=nil, totalcorecount=nil, alarmeventcount=nil, criticalalarmeventcount=nil, highalarmeventcount=nil, middlealarmeventcount=nil, lowalarmeventcount=nil, riskeventcount=nil, criticalriskeventcount=nil, highriskeventcount=nil, middleriskeventcount=nil, lowriskeventcount=nil, usedcorequota=nil, purchasedcorequota=nil, elasticcorequota=nil, unprotectedcorecount=nil, protectedcorecount=nil, unprotectedclustercount=nil, protectedclustercount=nil, tkeclustercount=nil, selfbuiltclustercount=nil, criticalalarmclustercount=nil, highalarmclustercount=nil, criticalriskclustercount=nil, highriskclustercount=nil, unboundultimatenodecount=nil, normalnodecount=nil, requestid=nil)
           @TotalClusterCount = totalclustercount
           @AlarmClusterCount = alarmclustercount
           @RiskClusterCount = riskclustercount
@@ -26897,6 +26931,7 @@ module TencentCloud
           @CriticalRiskClusterCount = criticalriskclustercount
           @HighRiskClusterCount = highriskclustercount
           @UnboundUltimateNodeCount = unboundultimatenodecount
+          @NormalNodeCount = normalnodecount
           @RequestId = requestid
         end
 
@@ -26930,6 +26965,7 @@ module TencentCloud
           @CriticalRiskClusterCount = params['CriticalRiskClusterCount']
           @HighRiskClusterCount = params['HighRiskClusterCount']
           @UnboundUltimateNodeCount = params['UnboundUltimateNodeCount']
+          @NormalNodeCount = params['NormalNodeCount']
           @RequestId = params['RequestId']
         end
       end
@@ -28377,8 +28413,8 @@ module TencentCloud
 
         attr_accessor :Total, :Data, :DataSet, :RequestId
         extend Gem::Deprecate
-        deprecate :Data, :none, 2026, 10
-        deprecate :Data=, :none, 2026, 10
+        deprecate :Data, :none, 2026, 11
+        deprecate :Data=, :none, 2026, 11
 
         def initialize(total=nil, data=nil, dataset=nil, requestid=nil)
           @Total = total
@@ -36217,12 +36253,24 @@ module TencentCloud
         # @type RemainingQuota: Integer
         # @param TrialQuota: <p>试用配额</p>
         # @type TrialQuota: Integer
+        # @param RiskImageCnt: <p>有风险的镜像数</p>
+        # @type RiskImageCnt: Integer
+        # @param CICDImageCnt: <p>CICD镜像数</p>
+        # @type CICDImageCnt: Integer
+        # @param CICDImageScannedCnt: <p>CICD已扫描镜数</p>
+        # @type CICDImageScannedCnt: Integer
+        # @param RiskCICDImageCnt: <p>有风险的CICD镜像数</p>
+        # @type RiskCICDImageCnt: Integer
+        # @param SecretFileCnt: <p>敏感文件数</p>
+        # @type SecretFileCnt: Integer
+        # @param BuildRiskCnt: <p>构建风险数</p>
+        # @type BuildRiskCnt: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ImageCnt, :ImageScannedCnt, :ComponentCnt, :VulCnt, :VirusCnt, :SensitiveCnt, :TimedScanTaskConfigCnt, :TotalQuota, :UsedQuota, :RemainingQuota, :TrialQuota, :RequestId
+        attr_accessor :ImageCnt, :ImageScannedCnt, :ComponentCnt, :VulCnt, :VirusCnt, :SensitiveCnt, :TimedScanTaskConfigCnt, :TotalQuota, :UsedQuota, :RemainingQuota, :TrialQuota, :RiskImageCnt, :CICDImageCnt, :CICDImageScannedCnt, :RiskCICDImageCnt, :SecretFileCnt, :BuildRiskCnt, :RequestId
 
-        def initialize(imagecnt=nil, imagescannedcnt=nil, componentcnt=nil, vulcnt=nil, viruscnt=nil, sensitivecnt=nil, timedscantaskconfigcnt=nil, totalquota=nil, usedquota=nil, remainingquota=nil, trialquota=nil, requestid=nil)
+        def initialize(imagecnt=nil, imagescannedcnt=nil, componentcnt=nil, vulcnt=nil, viruscnt=nil, sensitivecnt=nil, timedscantaskconfigcnt=nil, totalquota=nil, usedquota=nil, remainingquota=nil, trialquota=nil, riskimagecnt=nil, cicdimagecnt=nil, cicdimagescannedcnt=nil, riskcicdimagecnt=nil, secretfilecnt=nil, buildriskcnt=nil, requestid=nil)
           @ImageCnt = imagecnt
           @ImageScannedCnt = imagescannedcnt
           @ComponentCnt = componentcnt
@@ -36234,6 +36282,12 @@ module TencentCloud
           @UsedQuota = usedquota
           @RemainingQuota = remainingquota
           @TrialQuota = trialquota
+          @RiskImageCnt = riskimagecnt
+          @CICDImageCnt = cicdimagecnt
+          @CICDImageScannedCnt = cicdimagescannedcnt
+          @RiskCICDImageCnt = riskcicdimagecnt
+          @SecretFileCnt = secretfilecnt
+          @BuildRiskCnt = buildriskcnt
           @RequestId = requestid
         end
 
@@ -36249,6 +36303,12 @@ module TencentCloud
           @UsedQuota = params['UsedQuota']
           @RemainingQuota = params['RemainingQuota']
           @TrialQuota = params['TrialQuota']
+          @RiskImageCnt = params['RiskImageCnt']
+          @CICDImageCnt = params['CICDImageCnt']
+          @CICDImageScannedCnt = params['CICDImageScannedCnt']
+          @RiskCICDImageCnt = params['RiskCICDImageCnt']
+          @SecretFileCnt = params['SecretFileCnt']
+          @BuildRiskCnt = params['BuildRiskCnt']
           @RequestId = params['RequestId']
         end
       end
@@ -38199,7 +38259,7 @@ module TencentCloud
         # @type KillProcess: Integer
         # @param DoClean: <p>执行清理开关 0未开启 1开启</p>
         # @type DoClean: Integer
-        # @param ProtectMode: <p>防护模式 0 标准 1 重保</p>
+        # @param ProtectMode: <p>防护模式 0 标准 1 重保  2-自定义隔离</p>
         # @type ProtectMode: Integer
         # @param ProtectFileScope: <p>查杀范围 0 脚本类之外的恶意文件，1全部恶意文件</p>
         # @type ProtectFileScope: Integer
@@ -38217,12 +38277,16 @@ module TencentCloud
         # @type QuaraExcludeClusterIDsWithAppId: Array
         # @param Timeout: <p>超时时长（秒）</p>
         # @type Timeout: Integer
+        # @param QuaraTypes: <p>自定义隔离模式已保存的告警类型Code列表</p>
+        # @type QuaraTypes: Array
+        # @param QuaraTypeDict: <p>告警类型字典（灰度规则下发，供前端渲染勾选项）</p>
+        # @type QuaraTypeDict: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :EnableScan, :Cycle, :StartTime, :EndTime, :ScanType, :CustomPaths, :AssetSelectionType, :TagIds, :InstanceIDsWithAppId, :ExcludeInstanceIDsWithAppId, :ClusterIDsWithAppId, :ExcludeClusterIDsWithAppId, :RealTimeMonitoring, :MonitoringPattern, :MonitorCustomPaths, :EngineType, :EnableInspiredEngine, :EnableMemShellScan, :AutoIsolation, :KillProcess, :DoClean, :ProtectMode, :ProtectFileScope, :QuaraAssetSelectionType, :QuaraTagIds, :QuaraInstanceIDsWithAppId, :QuaraExcludeInstanceIDsWithAppId, :QuaraClusterIDsWithAppId, :QuaraExcludeClusterIDsWithAppId, :Timeout, :RequestId
+        attr_accessor :EnableScan, :Cycle, :StartTime, :EndTime, :ScanType, :CustomPaths, :AssetSelectionType, :TagIds, :InstanceIDsWithAppId, :ExcludeInstanceIDsWithAppId, :ClusterIDsWithAppId, :ExcludeClusterIDsWithAppId, :RealTimeMonitoring, :MonitoringPattern, :MonitorCustomPaths, :EngineType, :EnableInspiredEngine, :EnableMemShellScan, :AutoIsolation, :KillProcess, :DoClean, :ProtectMode, :ProtectFileScope, :QuaraAssetSelectionType, :QuaraTagIds, :QuaraInstanceIDsWithAppId, :QuaraExcludeInstanceIDsWithAppId, :QuaraClusterIDsWithAppId, :QuaraExcludeClusterIDsWithAppId, :Timeout, :QuaraTypes, :QuaraTypeDict, :RequestId
 
-        def initialize(enablescan=nil, cycle=nil, starttime=nil, endtime=nil, scantype=nil, custompaths=nil, assetselectiontype=nil, tagids=nil, instanceidswithappid=nil, excludeinstanceidswithappid=nil, clusteridswithappid=nil, excludeclusteridswithappid=nil, realtimemonitoring=nil, monitoringpattern=nil, monitorcustompaths=nil, enginetype=nil, enableinspiredengine=nil, enablememshellscan=nil, autoisolation=nil, killprocess=nil, doclean=nil, protectmode=nil, protectfilescope=nil, quaraassetselectiontype=nil, quaratagids=nil, quarainstanceidswithappid=nil, quaraexcludeinstanceidswithappid=nil, quaraclusteridswithappid=nil, quaraexcludeclusteridswithappid=nil, timeout=nil, requestid=nil)
+        def initialize(enablescan=nil, cycle=nil, starttime=nil, endtime=nil, scantype=nil, custompaths=nil, assetselectiontype=nil, tagids=nil, instanceidswithappid=nil, excludeinstanceidswithappid=nil, clusteridswithappid=nil, excludeclusteridswithappid=nil, realtimemonitoring=nil, monitoringpattern=nil, monitorcustompaths=nil, enginetype=nil, enableinspiredengine=nil, enablememshellscan=nil, autoisolation=nil, killprocess=nil, doclean=nil, protectmode=nil, protectfilescope=nil, quaraassetselectiontype=nil, quaratagids=nil, quarainstanceidswithappid=nil, quaraexcludeinstanceidswithappid=nil, quaraclusteridswithappid=nil, quaraexcludeclusteridswithappid=nil, timeout=nil, quaratypes=nil, quaratypedict=nil, requestid=nil)
           @EnableScan = enablescan
           @Cycle = cycle
           @StartTime = starttime
@@ -38253,6 +38317,8 @@ module TencentCloud
           @QuaraClusterIDsWithAppId = quaraclusteridswithappid
           @QuaraExcludeClusterIDsWithAppId = quaraexcludeclusteridswithappid
           @Timeout = timeout
+          @QuaraTypes = quaratypes
+          @QuaraTypeDict = quaratypedict
           @RequestId = requestid
         end
 
@@ -38343,6 +38409,15 @@ module TencentCloud
             end
           end
           @Timeout = params['Timeout']
+          @QuaraTypes = params['QuaraTypes']
+          unless params['QuaraTypeDict'].nil?
+            @QuaraTypeDict = []
+            params['QuaraTypeDict'].each do |i|
+              quaratypedictitem_tmp = QuaraTypeDictItem.new
+              quaratypedictitem_tmp.deserialize(i)
+              @QuaraTypeDict << quaratypedictitem_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -49972,12 +50047,12 @@ module TencentCloud
 
         attr_accessor :UnprocessedRisk, :ConfigurationRisk, :BaselineDeviation, :LeakDetection, :SQLBehaviorAnomaly, :PermissionAnomaly, :LoginBehaviorAnomaly, :AttackSurfaceRisk, :AccountSensitiveOperation, :UnprocessedAlarm, :NumOfNewAlarmEvent, :NumOfNewConfigRisk, :AccountRisk, :ConfigRisk
         extend Gem::Deprecate
-        deprecate :ConfigurationRisk, :none, 2026, 10
-        deprecate :ConfigurationRisk=, :none, 2026, 10
-        deprecate :BaselineDeviation, :none, 2026, 10
-        deprecate :BaselineDeviation=, :none, 2026, 10
-        deprecate :LeakDetection, :none, 2026, 10
-        deprecate :LeakDetection=, :none, 2026, 10
+        deprecate :ConfigurationRisk, :none, 2026, 11
+        deprecate :ConfigurationRisk=, :none, 2026, 11
+        deprecate :BaselineDeviation, :none, 2026, 11
+        deprecate :BaselineDeviation=, :none, 2026, 11
+        deprecate :LeakDetection, :none, 2026, 11
+        deprecate :LeakDetection=, :none, 2026, 11
 
         def initialize(unprocessedrisk=nil, configurationrisk=nil, baselinedeviation=nil, leakdetection=nil, sqlbehavioranomaly=nil, permissionanomaly=nil, loginbehavioranomaly=nil, attacksurfacerisk=nil, accountsensitiveoperation=nil, unprocessedalarm=nil, numofnewalarmevent=nil, numofnewconfigrisk=nil, accountrisk=nil, configrisk=nil)
           @UnprocessedRisk = unprocessedrisk
@@ -50172,12 +50247,12 @@ module TencentCloud
 
         attr_accessor :Date, :UncontrolledAccount, :ConfigurationRisk, :BaselineRisk, :LeakDetectionRisk, :SQLBehaviorAnomaly, :PermissionAnomaly, :LoginBehaviorAnomaly, :AttackSurfaceRisk, :AccountSensitiveOperation
         extend Gem::Deprecate
-        deprecate :ConfigurationRisk, :none, 2026, 10
-        deprecate :ConfigurationRisk=, :none, 2026, 10
-        deprecate :BaselineRisk, :none, 2026, 10
-        deprecate :BaselineRisk=, :none, 2026, 10
-        deprecate :LeakDetectionRisk, :none, 2026, 10
-        deprecate :LeakDetectionRisk=, :none, 2026, 10
+        deprecate :ConfigurationRisk, :none, 2026, 11
+        deprecate :ConfigurationRisk=, :none, 2026, 11
+        deprecate :BaselineRisk, :none, 2026, 11
+        deprecate :BaselineRisk=, :none, 2026, 11
+        deprecate :LeakDetectionRisk, :none, 2026, 11
+        deprecate :LeakDetectionRisk=, :none, 2026, 11
 
         def initialize(date=nil, uncontrolledaccount=nil, configurationrisk=nil, baselinerisk=nil, leakdetectionrisk=nil, sqlbehavioranomaly=nil, permissionanomaly=nil, loginbehavioranomaly=nil, attacksurfacerisk=nil, accountsensitiveoperation=nil)
           @Date = date
@@ -50655,7 +50730,7 @@ module TencentCloud
         # @type Name: String
         # @param Description: <p>策略描述</p>
         # @type Description: String
-        # @param ContentType: <p>内容类型 / Content Type: md5-文件MD5/File MD5, cmdline-命令行/Command Line, dns-DNS, ip_inbound-入站IP/Inbound IP, ip_outbound-出站IP/Outbound IP, custom_file-自定义文件/Custom File, process_network-进程网络/Process Network</p>
+        # @param ContentType: <p>内容类型 / Content Type: md5-文件MD5/File MD5, cmdline-命令行/Command Line, dns-DNS, ip_inbound-入站IP/Inbound IP, ip_outbound-出站IP/Outbound IP, custom_file-自定义文件/Custom File, process_network-进程网络/Process Network, k8s_api-K8s API/K8s API</p><p>枚举值：</p><ul><li>md5-文件MD5： File MD5</li></ul>
         # @type ContentType: String
         # @param Action: <p>执行动作 / Action: 0-告警/Alert, 1-放行/Allow, 2-告警并拦截/Alert and Block</p>
         # @type Action: Integer
@@ -50723,10 +50798,12 @@ module TencentCloud
         # @type TagItems: Array
         # @param FileOperationRules: <p>文件操作规则，ContentType=file_operation 时填充（文件路径正则 AND 动作多选或）</p>
         # @type FileOperationRules: :class:`Tencentcloud::Csip.v20221121.models.RuleContentFileOperation`
+        # @param K8sApiRule: <p>K8s API 规则，ContentType=k8s_api 的自定义规则填充</p>
+        # @type K8sApiRule: :class:`Tencentcloud::Csip.v20221121.models.RuleContentK8sAPI`
 
-        attr_accessor :RuleID, :RuleType, :Name, :Description, :ContentType, :Action, :Level, :DetectMode, :DetectType, :AttackStage, :CWPScope, :QUUIDS, :Status, :CreateTime, :ModifyTime, :SupportBlock, :Md5List, :FileName, :FileDirectory, :Domains, :OutboundIP, :InboundIP, :CmdLineRules, :TCSSScope, :ImageIDs, :ImageNamesRegex, :Confidence, :ExcludeQUUIDS, :ExcludeImageIDs, :ProcessNetworkRules, :AppID, :InstanceIDs, :ExcludeInstanceIDs, :ClusterIDs, :ExcludeClusterIDs, :ConditionMatches, :TagItems, :FileOperationRules
+        attr_accessor :RuleID, :RuleType, :Name, :Description, :ContentType, :Action, :Level, :DetectMode, :DetectType, :AttackStage, :CWPScope, :QUUIDS, :Status, :CreateTime, :ModifyTime, :SupportBlock, :Md5List, :FileName, :FileDirectory, :Domains, :OutboundIP, :InboundIP, :CmdLineRules, :TCSSScope, :ImageIDs, :ImageNamesRegex, :Confidence, :ExcludeQUUIDS, :ExcludeImageIDs, :ProcessNetworkRules, :AppID, :InstanceIDs, :ExcludeInstanceIDs, :ClusterIDs, :ExcludeClusterIDs, :ConditionMatches, :TagItems, :FileOperationRules, :K8sApiRule
 
-        def initialize(ruleid=nil, ruletype=nil, name=nil, description=nil, contenttype=nil, action=nil, level=nil, detectmode=nil, detecttype=nil, attackstage=nil, cwpscope=nil, quuids=nil, status=nil, createtime=nil, modifytime=nil, supportblock=nil, md5list=nil, filename=nil, filedirectory=nil, domains=nil, outboundip=nil, inboundip=nil, cmdlinerules=nil, tcssscope=nil, imageids=nil, imagenamesregex=nil, confidence=nil, excludequuids=nil, excludeimageids=nil, processnetworkrules=nil, appid=nil, instanceids=nil, excludeinstanceids=nil, clusterids=nil, excludeclusterids=nil, conditionmatches=nil, tagitems=nil, fileoperationrules=nil)
+        def initialize(ruleid=nil, ruletype=nil, name=nil, description=nil, contenttype=nil, action=nil, level=nil, detectmode=nil, detecttype=nil, attackstage=nil, cwpscope=nil, quuids=nil, status=nil, createtime=nil, modifytime=nil, supportblock=nil, md5list=nil, filename=nil, filedirectory=nil, domains=nil, outboundip=nil, inboundip=nil, cmdlinerules=nil, tcssscope=nil, imageids=nil, imagenamesregex=nil, confidence=nil, excludequuids=nil, excludeimageids=nil, processnetworkrules=nil, appid=nil, instanceids=nil, excludeinstanceids=nil, clusterids=nil, excludeclusterids=nil, conditionmatches=nil, tagitems=nil, fileoperationrules=nil, k8sapirule=nil)
           @RuleID = ruleid
           @RuleType = ruletype
           @Name = name
@@ -50765,6 +50842,7 @@ module TencentCloud
           @ConditionMatches = conditionmatches
           @TagItems = tagitems
           @FileOperationRules = fileoperationrules
+          @K8sApiRule = k8sapirule
         end
 
         def deserialize(params)
@@ -50828,6 +50906,10 @@ module TencentCloud
           unless params['FileOperationRules'].nil?
             @FileOperationRules = RuleContentFileOperation.new
             @FileOperationRules.deserialize(params['FileOperationRules'])
+          end
+          unless params['K8sApiRule'].nil?
+            @K8sApiRule = RuleContentK8sAPI.new
+            @K8sApiRule.deserialize(params['K8sApiRule'])
           end
         end
       end
@@ -51191,7 +51273,7 @@ module TencentCloud
         # @type AppId: Integer
         # @param AlertId: <p>告警唯一标识</p>
         # @type AlertId: String
-        # @param AlertCategory: <p>告警大类（英文枚举：VIRUS_TROJAN/ABNORMAL_LOGIN/HOST_BEHAVIOR/NETWORK_BEHAVIOR/LINK_ENGINE）</p>
+        # @param AlertCategory: <p>告警大类（英文枚举：VIRUS_TROJAN/ABNORMAL_LOGIN/HOST_BEHAVIOR/NETWORK_BEHAVIOR/LINK_ENGINE/K8S_API）</p>
         # @type AlertCategory: String
         # @param AlertSubType: <p>告警子类型（英文枚举：MALWARE_FILE/MALWARE_PROCESS/RISK_LOGIN/BRUTE_FORCE/DNS/BASH/PRIV_ESCALATION/REVERSE_SHELL/NET_ATTACK/VUL_DEFENCE/MEMORY_SHELL_INJECT/MEMORY_SHELL_SCAN/MULTI_BEHAVIOR_ATTACK）</p>
         # @type AlertSubType: String
@@ -51221,7 +51303,7 @@ module TencentCloud
         # @type ImageId: String
         # @param ContainerId: <p>容器ID（保留字段，恒为空串）</p>
         # @type ContainerId: String
-        # @param ClusterId: <p>集群ID（保留字段，恒为空串）</p>
+        # @param ClusterId: <p>集群ID。容器告警和 K8s API 异常请求告警有值</p>
         # @type ClusterId: String
         # @param FirstDetectTime: <p>首次发现时间</p>
         # @type FirstDetectTime: String
@@ -51229,7 +51311,7 @@ module TencentCloud
         # @type LatestDetectTime: String
         # @param RuleName: <p>规则名称（规则富化）</p>
         # @type RuleName: String
-        # @param ContentType: <p>内容类型: md5/cmdline/dns/ip_inbound/ip_outbound/custom_file/process_network</p>
+        # @param ContentType: <p>内容类型: md5/cmdline/dns/ip_inbound/ip_outbound/custom_file/process_network/k8s_api</p><p>枚举值：</p><ul><li>k8s_api： k8s api告警类型</li></ul>
         # @type ContentType: String
         # @param InstanceName: <p>实例名（资产富化）</p>
         # @type InstanceName: String
@@ -52777,29 +52859,29 @@ module TencentCloud
 
       # 主机安全模块自动扩容配置
       class HostAutoScaleConfig < TencentCloud::Common::AbstractModel
-        # @param Switch: 主机自动扩容开关
-        # 枚举值：
-        # ON：开启
-        # OFF：关闭
-        # 补充说明：不传则不修改；映射底层自动加购开关 auto_repurchase_switch
+        # @param Switch: <p>主机自动扩容开关<br>枚举值：<br>ON：开启<br>OFF：关闭<br>补充说明：不传则不修改；映射底层自动加购开关 auto_repurchase_switch</p>
         # @type Switch: String
-        # @param ProtectType: 扩容版本
-        # 枚举值：
-        # PRO：专业版
-        # ULTIMATE：旗舰版
-        # 补充说明：不传则不修改
+        # @param ProtectType: <p>扩容版本<br>枚举值：<br>PRO：专业版<br>ULTIMATE：旗舰版<br>补充说明：不传则不修改</p>
         # @type ProtectType: String
+        # @param AssetRange: <p>扩容资产范围</p><p>枚举值：</p><ul><li>ALL： 全部资产</li><li>BY_TAG： 按标签扩容</li></ul>
+        # @type AssetRange: String
+        # @param TagIds: <p>标签ID列表</p>
+        # @type TagIds: Array
 
-        attr_accessor :Switch, :ProtectType
+        attr_accessor :Switch, :ProtectType, :AssetRange, :TagIds
 
-        def initialize(switch=nil, protecttype=nil)
+        def initialize(switch=nil, protecttype=nil, assetrange=nil, tagids=nil)
           @Switch = switch
           @ProtectType = protecttype
+          @AssetRange = assetrange
+          @TagIds = tagids
         end
 
         def deserialize(params)
           @Switch = params['Switch']
           @ProtectType = params['ProtectType']
+          @AssetRange = params['AssetRange']
+          @TagIds = params['TagIds']
         end
       end
 
@@ -53294,10 +53376,14 @@ module TencentCloud
         # @type Status: Integer
         # @param FailType: <p>扫描失败类型(0:无失败, 1:检测超时, 2:文件格式解析失败, 3:检测失败)</p>
         # @type FailType: Integer
+        # @param FailReason: <p>扫描失败原因</p>
+        # @type FailReason: String
+        # @param FailSolution: <p>扫描失败解决方案</p>
+        # @type FailSolution: String
 
-        attr_accessor :Id, :AppId, :FileId, :FileName, :CICDName, :FilePath, :FileType, :RiskTotalCnt, :RiskLevelCnt, :ScanTime, :Status, :FailType
+        attr_accessor :Id, :AppId, :FileId, :FileName, :CICDName, :FilePath, :FileType, :RiskTotalCnt, :RiskLevelCnt, :ScanTime, :Status, :FailType, :FailReason, :FailSolution
 
-        def initialize(id=nil, appid=nil, fileid=nil, filename=nil, cicdname=nil, filepath=nil, filetype=nil, risktotalcnt=nil, risklevelcnt=nil, scantime=nil, status=nil, failtype=nil)
+        def initialize(id=nil, appid=nil, fileid=nil, filename=nil, cicdname=nil, filepath=nil, filetype=nil, risktotalcnt=nil, risklevelcnt=nil, scantime=nil, status=nil, failtype=nil, failreason=nil, failsolution=nil)
           @Id = id
           @AppId = appid
           @FileId = fileid
@@ -53310,6 +53396,8 @@ module TencentCloud
           @ScanTime = scantime
           @Status = status
           @FailType = failtype
+          @FailReason = failreason
+          @FailSolution = failsolution
         end
 
         def deserialize(params)
@@ -53332,6 +53420,8 @@ module TencentCloud
           @ScanTime = params['ScanTime']
           @Status = params['Status']
           @FailType = params['FailType']
+          @FailReason = params['FailReason']
+          @FailSolution = params['FailSolution']
         end
       end
 
@@ -53439,10 +53529,14 @@ module TencentCloud
         # @type HighLevelSensitiveCnt: Integer
         # @param CriticalLevelSensitiveCnt: <p>严重敏感信息数</p>
         # @type CriticalLevelSensitiveCnt: Integer
+        # @param SecretFileCnt: <p>敏感文件数</p>
+        # @type SecretFileCnt: Integer
+        # @param BuildRiskCnt: <p>构建风险数</p>
+        # @type BuildRiskCnt: Integer
 
-        attr_accessor :ImageDigest, :ImageRepoAddress, :RegistryType, :ImageName, :ImageTag, :LatestScanTime, :ScanStatus, :VulCnt, :VirusCnt, :SensitiveCnt, :InstanceId, :InstanceName, :Namespace, :IsAuthorized, :ImageSize, :ImageId, :RegistryRegion, :ImageCreateTime, :Id, :OwnerAccountName, :OwnerUin, :OwnerAppId, :LowLevelVulCnt, :MediumLevelVulCnt, :HighLevelVulCnt, :CriticalLevelVulCnt, :LowLevelVirusCnt, :MediumLevelVirusCnt, :HighLevelVirusCnt, :CriticalLevelVirusCnt, :EmergencyVulCnt, :LowLevelSensitiveCnt, :MediumLevelSensitiveCnt, :HighLevelSensitiveCnt, :CriticalLevelSensitiveCnt
+        attr_accessor :ImageDigest, :ImageRepoAddress, :RegistryType, :ImageName, :ImageTag, :LatestScanTime, :ScanStatus, :VulCnt, :VirusCnt, :SensitiveCnt, :InstanceId, :InstanceName, :Namespace, :IsAuthorized, :ImageSize, :ImageId, :RegistryRegion, :ImageCreateTime, :Id, :OwnerAccountName, :OwnerUin, :OwnerAppId, :LowLevelVulCnt, :MediumLevelVulCnt, :HighLevelVulCnt, :CriticalLevelVulCnt, :LowLevelVirusCnt, :MediumLevelVirusCnt, :HighLevelVirusCnt, :CriticalLevelVirusCnt, :EmergencyVulCnt, :LowLevelSensitiveCnt, :MediumLevelSensitiveCnt, :HighLevelSensitiveCnt, :CriticalLevelSensitiveCnt, :SecretFileCnt, :BuildRiskCnt
 
-        def initialize(imagedigest=nil, imagerepoaddress=nil, registrytype=nil, imagename=nil, imagetag=nil, latestscantime=nil, scanstatus=nil, vulcnt=nil, viruscnt=nil, sensitivecnt=nil, instanceid=nil, instancename=nil, namespace=nil, isauthorized=nil, imagesize=nil, imageid=nil, registryregion=nil, imagecreatetime=nil, id=nil, owneraccountname=nil, owneruin=nil, ownerappid=nil, lowlevelvulcnt=nil, mediumlevelvulcnt=nil, highlevelvulcnt=nil, criticallevelvulcnt=nil, lowlevelviruscnt=nil, mediumlevelviruscnt=nil, highlevelviruscnt=nil, criticallevelviruscnt=nil, emergencyvulcnt=nil, lowlevelsensitivecnt=nil, mediumlevelsensitivecnt=nil, highlevelsensitivecnt=nil, criticallevelsensitivecnt=nil)
+        def initialize(imagedigest=nil, imagerepoaddress=nil, registrytype=nil, imagename=nil, imagetag=nil, latestscantime=nil, scanstatus=nil, vulcnt=nil, viruscnt=nil, sensitivecnt=nil, instanceid=nil, instancename=nil, namespace=nil, isauthorized=nil, imagesize=nil, imageid=nil, registryregion=nil, imagecreatetime=nil, id=nil, owneraccountname=nil, owneruin=nil, ownerappid=nil, lowlevelvulcnt=nil, mediumlevelvulcnt=nil, highlevelvulcnt=nil, criticallevelvulcnt=nil, lowlevelviruscnt=nil, mediumlevelviruscnt=nil, highlevelviruscnt=nil, criticallevelviruscnt=nil, emergencyvulcnt=nil, lowlevelsensitivecnt=nil, mediumlevelsensitivecnt=nil, highlevelsensitivecnt=nil, criticallevelsensitivecnt=nil, secretfilecnt=nil, buildriskcnt=nil)
           @ImageDigest = imagedigest
           @ImageRepoAddress = imagerepoaddress
           @RegistryType = registrytype
@@ -53478,6 +53572,8 @@ module TencentCloud
           @MediumLevelSensitiveCnt = mediumlevelsensitivecnt
           @HighLevelSensitiveCnt = highlevelsensitivecnt
           @CriticalLevelSensitiveCnt = criticallevelsensitivecnt
+          @SecretFileCnt = secretfilecnt
+          @BuildRiskCnt = buildriskcnt
         end
 
         def deserialize(params)
@@ -53516,6 +53612,8 @@ module TencentCloud
           @MediumLevelSensitiveCnt = params['MediumLevelSensitiveCnt']
           @HighLevelSensitiveCnt = params['HighLevelSensitiveCnt']
           @CriticalLevelSensitiveCnt = params['CriticalLevelSensitiveCnt']
+          @SecretFileCnt = params['SecretFileCnt']
+          @BuildRiskCnt = params['BuildRiskCnt']
         end
       end
 
@@ -53605,10 +53703,28 @@ module TencentCloud
         # @type RegionInfo: :class:`Tencentcloud::Csip.v20221121.models.RegionInfo`
         # @param ScanTaskId: <p>最近扫描任务Id</p>
         # @type ScanTaskId: Integer
+        # @param CICDName: <p>CICD名</p>
+        # @type CICDName: String
+        # @param CICDId: <p>CICD Id</p>
+        # @type CICDId: Integer
+        # @param IsCICD: <p>是否是CICD镜像</p>
+        # @type IsCICD: Integer
+        # @param SecretFileCnt: <p>敏感文件数</p>
+        # @type SecretFileCnt: Integer
+        # @param BuildRiskCnt: <p>构建风险数</p>
+        # @type BuildRiskCnt: Integer
+        # @param HighLevelSecretFileCnt: <p>高危敏感文件数</p>
+        # @type HighLevelSecretFileCnt: Integer
+        # @param CriticalLevelSecretFileCnt: <p>严重敏感文件数</p>
+        # @type CriticalLevelSecretFileCnt: Integer
+        # @param HighLevelBuildRiskCnt: <p>高危构建风险数</p>
+        # @type HighLevelBuildRiskCnt: Integer
+        # @param CriticalLevelBuildRiskCnt: <p>严重构建风险数</p>
+        # @type CriticalLevelBuildRiskCnt: Integer
 
-        attr_accessor :ImageRepoAddress, :ImageDigest, :RegistryType, :ImageName, :ImageTag, :ImageSize, :LatestScanTime, :ScanStatus, :VulCnt, :VirusCnt, :SensitiveCnt, :OsName, :InstanceId, :InstanceName, :Namespace, :IsAuthorized, :RegistryRegion, :Id, :ImageId, :ImageCreateTime, :IsLatestImage, :LowLevelVulCnt, :MediumLevelVulCnt, :HighLevelVulCnt, :CriticalLevelVulCnt, :OwnerAccountName, :OwnerAppId, :OwnerUin, :LowLevelVirusCnt, :MediumLevelVirusCnt, :HighLevelVirusCnt, :CriticalLevelVirusCnt, :EmergencyVulCnt, :LowLevelSensitiveCnt, :MediumLevelSensitiveCnt, :HighLevelSensitiveCnt, :CriticalLevelSensitiveCnt, :RiskCnt, :ScanFailReason, :ScanSolution, :RegionInfo, :ScanTaskId
+        attr_accessor :ImageRepoAddress, :ImageDigest, :RegistryType, :ImageName, :ImageTag, :ImageSize, :LatestScanTime, :ScanStatus, :VulCnt, :VirusCnt, :SensitiveCnt, :OsName, :InstanceId, :InstanceName, :Namespace, :IsAuthorized, :RegistryRegion, :Id, :ImageId, :ImageCreateTime, :IsLatestImage, :LowLevelVulCnt, :MediumLevelVulCnt, :HighLevelVulCnt, :CriticalLevelVulCnt, :OwnerAccountName, :OwnerAppId, :OwnerUin, :LowLevelVirusCnt, :MediumLevelVirusCnt, :HighLevelVirusCnt, :CriticalLevelVirusCnt, :EmergencyVulCnt, :LowLevelSensitiveCnt, :MediumLevelSensitiveCnt, :HighLevelSensitiveCnt, :CriticalLevelSensitiveCnt, :RiskCnt, :ScanFailReason, :ScanSolution, :RegionInfo, :ScanTaskId, :CICDName, :CICDId, :IsCICD, :SecretFileCnt, :BuildRiskCnt, :HighLevelSecretFileCnt, :CriticalLevelSecretFileCnt, :HighLevelBuildRiskCnt, :CriticalLevelBuildRiskCnt
 
-        def initialize(imagerepoaddress=nil, imagedigest=nil, registrytype=nil, imagename=nil, imagetag=nil, imagesize=nil, latestscantime=nil, scanstatus=nil, vulcnt=nil, viruscnt=nil, sensitivecnt=nil, osname=nil, instanceid=nil, instancename=nil, namespace=nil, isauthorized=nil, registryregion=nil, id=nil, imageid=nil, imagecreatetime=nil, islatestimage=nil, lowlevelvulcnt=nil, mediumlevelvulcnt=nil, highlevelvulcnt=nil, criticallevelvulcnt=nil, owneraccountname=nil, ownerappid=nil, owneruin=nil, lowlevelviruscnt=nil, mediumlevelviruscnt=nil, highlevelviruscnt=nil, criticallevelviruscnt=nil, emergencyvulcnt=nil, lowlevelsensitivecnt=nil, mediumlevelsensitivecnt=nil, highlevelsensitivecnt=nil, criticallevelsensitivecnt=nil, riskcnt=nil, scanfailreason=nil, scansolution=nil, regioninfo=nil, scantaskid=nil)
+        def initialize(imagerepoaddress=nil, imagedigest=nil, registrytype=nil, imagename=nil, imagetag=nil, imagesize=nil, latestscantime=nil, scanstatus=nil, vulcnt=nil, viruscnt=nil, sensitivecnt=nil, osname=nil, instanceid=nil, instancename=nil, namespace=nil, isauthorized=nil, registryregion=nil, id=nil, imageid=nil, imagecreatetime=nil, islatestimage=nil, lowlevelvulcnt=nil, mediumlevelvulcnt=nil, highlevelvulcnt=nil, criticallevelvulcnt=nil, owneraccountname=nil, ownerappid=nil, owneruin=nil, lowlevelviruscnt=nil, mediumlevelviruscnt=nil, highlevelviruscnt=nil, criticallevelviruscnt=nil, emergencyvulcnt=nil, lowlevelsensitivecnt=nil, mediumlevelsensitivecnt=nil, highlevelsensitivecnt=nil, criticallevelsensitivecnt=nil, riskcnt=nil, scanfailreason=nil, scansolution=nil, regioninfo=nil, scantaskid=nil, cicdname=nil, cicdid=nil, iscicd=nil, secretfilecnt=nil, buildriskcnt=nil, highlevelsecretfilecnt=nil, criticallevelsecretfilecnt=nil, highlevelbuildriskcnt=nil, criticallevelbuildriskcnt=nil)
           @ImageRepoAddress = imagerepoaddress
           @ImageDigest = imagedigest
           @RegistryType = registrytype
@@ -53651,6 +53767,15 @@ module TencentCloud
           @ScanSolution = scansolution
           @RegionInfo = regioninfo
           @ScanTaskId = scantaskid
+          @CICDName = cicdname
+          @CICDId = cicdid
+          @IsCICD = iscicd
+          @SecretFileCnt = secretfilecnt
+          @BuildRiskCnt = buildriskcnt
+          @HighLevelSecretFileCnt = highlevelsecretfilecnt
+          @CriticalLevelSecretFileCnt = criticallevelsecretfilecnt
+          @HighLevelBuildRiskCnt = highlevelbuildriskcnt
+          @CriticalLevelBuildRiskCnt = criticallevelbuildriskcnt
         end
 
         def deserialize(params)
@@ -53699,6 +53824,15 @@ module TencentCloud
             @RegionInfo.deserialize(params['RegionInfo'])
           end
           @ScanTaskId = params['ScanTaskId']
+          @CICDName = params['CICDName']
+          @CICDId = params['CICDId']
+          @IsCICD = params['IsCICD']
+          @SecretFileCnt = params['SecretFileCnt']
+          @BuildRiskCnt = params['BuildRiskCnt']
+          @HighLevelSecretFileCnt = params['HighLevelSecretFileCnt']
+          @CriticalLevelSecretFileCnt = params['CriticalLevelSecretFileCnt']
+          @HighLevelBuildRiskCnt = params['HighLevelBuildRiskCnt']
+          @CriticalLevelBuildRiskCnt = params['CriticalLevelBuildRiskCnt']
         end
       end
 
@@ -53950,10 +54084,14 @@ module TencentCloud
         # @type SensitiveCnt: Integer
         # @param LayerCreateTime: <p>镜像层创建时间</p><p>参数格式：YYYY-MM-DD hh:mm:ss</p>
         # @type LayerCreateTime: String
+        # @param SecretFileCnt: <p>敏感文件数</p>
+        # @type SecretFileCnt: Integer
+        # @param BuildRiskCnt: <p>构建风险数</p>
+        # @type BuildRiskCnt: Integer
 
-        attr_accessor :LayerIndex, :LayerId, :LayerCmd, :Size, :CriticalLevelVulCnt, :HighLevelVulCnt, :MediumLevelVulCnt, :LowLevelVulCnt, :VirusCnt, :SensitiveCnt, :LayerCreateTime
+        attr_accessor :LayerIndex, :LayerId, :LayerCmd, :Size, :CriticalLevelVulCnt, :HighLevelVulCnt, :MediumLevelVulCnt, :LowLevelVulCnt, :VirusCnt, :SensitiveCnt, :LayerCreateTime, :SecretFileCnt, :BuildRiskCnt
 
-        def initialize(layerindex=nil, layerid=nil, layercmd=nil, size=nil, criticallevelvulcnt=nil, highlevelvulcnt=nil, mediumlevelvulcnt=nil, lowlevelvulcnt=nil, viruscnt=nil, sensitivecnt=nil, layercreatetime=nil)
+        def initialize(layerindex=nil, layerid=nil, layercmd=nil, size=nil, criticallevelvulcnt=nil, highlevelvulcnt=nil, mediumlevelvulcnt=nil, lowlevelvulcnt=nil, viruscnt=nil, sensitivecnt=nil, layercreatetime=nil, secretfilecnt=nil, buildriskcnt=nil)
           @LayerIndex = layerindex
           @LayerId = layerid
           @LayerCmd = layercmd
@@ -53965,6 +54103,8 @@ module TencentCloud
           @VirusCnt = viruscnt
           @SensitiveCnt = sensitivecnt
           @LayerCreateTime = layercreatetime
+          @SecretFileCnt = secretfilecnt
+          @BuildRiskCnt = buildriskcnt
         end
 
         def deserialize(params)
@@ -53979,6 +54119,8 @@ module TencentCloud
           @VirusCnt = params['VirusCnt']
           @SensitiveCnt = params['SensitiveCnt']
           @LayerCreateTime = params['LayerCreateTime']
+          @SecretFileCnt = params['SecretFileCnt']
+          @BuildRiskCnt = params['BuildRiskCnt']
         end
       end
 
@@ -54660,10 +54802,14 @@ module TencentCloud
         # @type LatestFoundTime: String
         # @param LayerIndex: <p>镜像层序号</p>
         # @type LayerIndex: Integer
+        # @param AffectedRegistryImageCount: <p>影响仓库镜像数</p>
+        # @type AffectedRegistryImageCount: Integer
+        # @param AffectedCICDImageCount: <p>影响CICD镜像数</p>
+        # @type AffectedCICDImageCount: Integer
 
-        attr_accessor :Behavior, :Type, :Level, :Describe, :InstructionContent, :ImageId, :OwnerAccountName, :OwnerUin, :OwnerAppId, :AffectImageCount, :LayerId, :Id, :FirstFoundTime, :LatestFoundTime, :LayerIndex
+        attr_accessor :Behavior, :Type, :Level, :Describe, :InstructionContent, :ImageId, :OwnerAccountName, :OwnerUin, :OwnerAppId, :AffectImageCount, :LayerId, :Id, :FirstFoundTime, :LatestFoundTime, :LayerIndex, :AffectedRegistryImageCount, :AffectedCICDImageCount
 
-        def initialize(behavior=nil, type=nil, level=nil, describe=nil, instructioncontent=nil, imageid=nil, owneraccountname=nil, owneruin=nil, ownerappid=nil, affectimagecount=nil, layerid=nil, id=nil, firstfoundtime=nil, latestfoundtime=nil, layerindex=nil)
+        def initialize(behavior=nil, type=nil, level=nil, describe=nil, instructioncontent=nil, imageid=nil, owneraccountname=nil, owneruin=nil, ownerappid=nil, affectimagecount=nil, layerid=nil, id=nil, firstfoundtime=nil, latestfoundtime=nil, layerindex=nil, affectedregistryimagecount=nil, affectedcicdimagecount=nil)
           @Behavior = behavior
           @Type = type
           @Level = level
@@ -54679,6 +54825,8 @@ module TencentCloud
           @FirstFoundTime = firstfoundtime
           @LatestFoundTime = latestfoundtime
           @LayerIndex = layerindex
+          @AffectedRegistryImageCount = affectedregistryimagecount
+          @AffectedCICDImageCount = affectedcicdimagecount
         end
 
         def deserialize(params)
@@ -54697,6 +54845,8 @@ module TencentCloud
           @FirstFoundTime = params['FirstFoundTime']
           @LatestFoundTime = params['LatestFoundTime']
           @LayerIndex = params['LayerIndex']
+          @AffectedRegistryImageCount = params['AffectedRegistryImageCount']
+          @AffectedCICDImageCount = params['AffectedCICDImageCount']
         end
       end
 
@@ -54802,10 +54952,16 @@ module TencentCloud
         # @type Description: String
         # @param VirusType: <p>木马类型</p>
         # @type VirusType: String
+        # @param AffectedImageCount: <p>影响镜像数</p>
+        # @type AffectedImageCount: Integer
+        # @param AffectedRegistryImageCount: <p>影响仓库镜像数</p>
+        # @type AffectedRegistryImageCount: Integer
+        # @param AffectedCICDImageCount: <p>影响CICD镜像数</p>
+        # @type AffectedCICDImageCount: Integer
 
-        attr_accessor :Path, :RiskLevel, :Category, :VirusName, :Tags, :FileType, :FileName, :FileMd5, :FileSize, :FirstDetectedTime, :LatestDetectedTime, :ImageId, :OwnerAccountName, :OwnerUin, :OwnerAppId, :CheckPlatform, :AffectImageCount, :LayerId, :Id, :Suggestion, :Description, :VirusType
+        attr_accessor :Path, :RiskLevel, :Category, :VirusName, :Tags, :FileType, :FileName, :FileMd5, :FileSize, :FirstDetectedTime, :LatestDetectedTime, :ImageId, :OwnerAccountName, :OwnerUin, :OwnerAppId, :CheckPlatform, :AffectImageCount, :LayerId, :Id, :Suggestion, :Description, :VirusType, :AffectedImageCount, :AffectedRegistryImageCount, :AffectedCICDImageCount
 
-        def initialize(path=nil, risklevel=nil, category=nil, virusname=nil, tags=nil, filetype=nil, filename=nil, filemd5=nil, filesize=nil, firstdetectedtime=nil, latestdetectedtime=nil, imageid=nil, owneraccountname=nil, owneruin=nil, ownerappid=nil, checkplatform=nil, affectimagecount=nil, layerid=nil, id=nil, suggestion=nil, description=nil, virustype=nil)
+        def initialize(path=nil, risklevel=nil, category=nil, virusname=nil, tags=nil, filetype=nil, filename=nil, filemd5=nil, filesize=nil, firstdetectedtime=nil, latestdetectedtime=nil, imageid=nil, owneraccountname=nil, owneruin=nil, ownerappid=nil, checkplatform=nil, affectimagecount=nil, layerid=nil, id=nil, suggestion=nil, description=nil, virustype=nil, affectedimagecount=nil, affectedregistryimagecount=nil, affectedcicdimagecount=nil)
           @Path = path
           @RiskLevel = risklevel
           @Category = category
@@ -54828,6 +54984,9 @@ module TencentCloud
           @Suggestion = suggestion
           @Description = description
           @VirusType = virustype
+          @AffectedImageCount = affectedimagecount
+          @AffectedRegistryImageCount = affectedregistryimagecount
+          @AffectedCICDImageCount = affectedcicdimagecount
         end
 
         def deserialize(params)
@@ -54853,6 +55012,9 @@ module TencentCloud
           @Suggestion = params['Suggestion']
           @Description = params['Description']
           @VirusType = params['VirusType']
+          @AffectedImageCount = params['AffectedImageCount']
+          @AffectedRegistryImageCount = params['AffectedRegistryImageCount']
+          @AffectedCICDImageCount = params['AffectedCICDImageCount']
         end
       end
 
@@ -54878,10 +55040,12 @@ module TencentCloud
         # @type UpdateTime: String
         # @param Name: <p>木马白名单名</p>
         # @type Name: String
+        # @param Md5: <p>白名单Md5</p>
+        # @type Md5: String
 
-        attr_accessor :RuleId, :OwnerAccountName, :OwnerUin, :OwnerAppId, :Scope, :ImageIds, :Remark, :Status, :UpdateTime, :Name
+        attr_accessor :RuleId, :OwnerAccountName, :OwnerUin, :OwnerAppId, :Scope, :ImageIds, :Remark, :Status, :UpdateTime, :Name, :Md5
 
-        def initialize(ruleid=nil, owneraccountname=nil, owneruin=nil, ownerappid=nil, scope=nil, imageids=nil, remark=nil, status=nil, updatetime=nil, name=nil)
+        def initialize(ruleid=nil, owneraccountname=nil, owneruin=nil, ownerappid=nil, scope=nil, imageids=nil, remark=nil, status=nil, updatetime=nil, name=nil, md5=nil)
           @RuleId = ruleid
           @OwnerAccountName = owneraccountname
           @OwnerUin = owneruin
@@ -54892,6 +55056,7 @@ module TencentCloud
           @Status = status
           @UpdateTime = updatetime
           @Name = name
+          @Md5 = md5
         end
 
         def deserialize(params)
@@ -54905,6 +55070,7 @@ module TencentCloud
           @Status = params['Status']
           @UpdateTime = params['UpdateTime']
           @Name = params['Name']
+          @Md5 = params['Md5']
         end
       end
 
@@ -55128,10 +55294,14 @@ module TencentCloud
         # @type VulInfo: :class:`Tencentcloud::Csip.v20221121.models.ImageVulBaseInfo`
         # @param ID: <p>记录id</p>
         # @type ID: Integer
+        # @param AffectedRegistryImageCount: <p>影响仓库镜像数</p>
+        # @type AffectedRegistryImageCount: Integer
+        # @param AffectedCICDImageCount: <p>影响CICD镜像数</p>
+        # @type AffectedCICDImageCount: Integer
 
-        attr_accessor :OwnerAccountName, :OwnerUin, :OwnerAppId, :FirstFoundTime, :LatestFoundTime, :AffectImageCount, :VulInfo, :ID
+        attr_accessor :OwnerAccountName, :OwnerUin, :OwnerAppId, :FirstFoundTime, :LatestFoundTime, :AffectImageCount, :VulInfo, :ID, :AffectedRegistryImageCount, :AffectedCICDImageCount
 
-        def initialize(owneraccountname=nil, owneruin=nil, ownerappid=nil, firstfoundtime=nil, latestfoundtime=nil, affectimagecount=nil, vulinfo=nil, id=nil)
+        def initialize(owneraccountname=nil, owneruin=nil, ownerappid=nil, firstfoundtime=nil, latestfoundtime=nil, affectimagecount=nil, vulinfo=nil, id=nil, affectedregistryimagecount=nil, affectedcicdimagecount=nil)
           @OwnerAccountName = owneraccountname
           @OwnerUin = owneruin
           @OwnerAppId = ownerappid
@@ -55140,6 +55310,8 @@ module TencentCloud
           @AffectImageCount = affectimagecount
           @VulInfo = vulinfo
           @ID = id
+          @AffectedRegistryImageCount = affectedregistryimagecount
+          @AffectedCICDImageCount = affectedcicdimagecount
         end
 
         def deserialize(params)
@@ -55154,6 +55326,8 @@ module TencentCloud
             @VulInfo.deserialize(params['VulInfo'])
           end
           @ID = params['ID']
+          @AffectedRegistryImageCount = params['AffectedRegistryImageCount']
+          @AffectedCICDImageCount = params['AffectedCICDImageCount']
         end
       end
 
@@ -57405,10 +57579,10 @@ module TencentCloud
 
         attr_accessor :AILinkEnable, :MemberId, :RuleScopeDeep, :RuleScopeBalanced, :RuleScopePrecise, :Scope, :Quuids, :ExcludeQuuids, :AutoInclude, :TagIDs, :TCSSScope, :ClusterIDs, :ExcludeClusterIDs, :InstanceIds, :ExcludeInstanceIds
         extend Gem::Deprecate
-        deprecate :Quuids, :none, 2026, 10
-        deprecate :Quuids=, :none, 2026, 10
-        deprecate :ExcludeQuuids, :none, 2026, 10
-        deprecate :ExcludeQuuids=, :none, 2026, 10
+        deprecate :Quuids, :none, 2026, 11
+        deprecate :Quuids=, :none, 2026, 11
+        deprecate :ExcludeQuuids, :none, 2026, 11
+        deprecate :ExcludeQuuids=, :none, 2026, 11
 
         def initialize(ailinkenable=nil, memberid=nil, rulescopedeep=nil, rulescopebalanced=nil, rulescopeprecise=nil, scope=nil, quuids=nil, excludequuids=nil, autoinclude=nil, tagids=nil, tcssscope=nil, clusterids=nil, excludeclusterids=nil, instanceids=nil, excludeinstanceids=nil)
           @AILinkEnable = ailinkenable
@@ -58585,8 +58759,8 @@ module TencentCloud
 
         attr_accessor :DefendStatus, :UnbindHostLicense, :ClusterAssetIds, :OperatedMemberId, :MemberId, :ClusterCaMD5List
         extend Gem::Deprecate
-        deprecate :ClusterAssetIds, :none, 2026, 10
-        deprecate :ClusterAssetIds=, :none, 2026, 10
+        deprecate :ClusterAssetIds, :none, 2026, 11
+        deprecate :ClusterAssetIds=, :none, 2026, 11
 
         def initialize(defendstatus=nil, unbindhostlicense=nil, clusterassetids=nil, operatedmemberid=nil, memberid=nil, clustercamd5list=nil)
           @DefendStatus = defendstatus
@@ -60355,7 +60529,7 @@ module TencentCloud
         # @type MemberId: Array
         # @param Name: <p>策略名称</p>
         # @type Name: String
-        # @param ContentType: <p>内容类型 / Content Type: md5-文件MD5/File MD5, cmdline-命令行/Command Line, dns-DNS, ip_inbound-入站IP/Inbound IP, ip_outbound-出站IP/Outbound IP, custom_file-自定义文件/Custom File, process_network-进程网络/Process Network</p>
+        # @param ContentType: <p>内容类型 / Content Type: md5-文件MD5/File MD5, cmdline-命令行/Command Line, dns-DNS, ip_inbound-入站IP/Inbound IP, ip_outbound-出站IP/Outbound IP, custom_file-自定义文件/Custom File, process_network-进程网络/Process Network,k8s_api-K8s API/K8s API</p><p>枚举值：</p><ul><li>md5-文件MD5： File MD5</li></ul>
         # @type ContentType: String
         # @param Level: <p>告警等级 / Alert Level: 1-高危/High, 2-中危/Medium, 3-低危/Low, 4-提示/Reminder</p>
         # @type Level: Integer
@@ -60407,10 +60581,12 @@ module TencentCloud
         # @type ConditionMatches: Array
         # @param FileOperationRules: <p>文件操作规则，ContentType=file_operation 时填充（文件路径正则 AND 动作多选或）</p>
         # @type FileOperationRules: :class:`Tencentcloud::Csip.v20221121.models.RuleContentFileOperation`
+        # @param K8sApiRule: <p>ContentType=k8s_api 时传入的 K8s API 规则，各非空字段的值需要 Base64 编码，k8s_api 规则只按集群生效</p>
+        # @type K8sApiRule: :class:`Tencentcloud::Csip.v20221121.models.RuleContentK8sAPI`
 
-        attr_accessor :RuleType, :AlertAction, :CWPScope, :TCSSScope, :Status, :MemberId, :Name, :ContentType, :Level, :DetectMode, :AttackStage, :RuleID, :Description, :DealOldEvents, :Md5List, :FileName, :FileDirectory, :CmdLineRules, :Domains, :OutboundIP, :InboundIP, :ImageIDs, :ProcessNetworkRules, :TargetAppIDs, :Target, :InstanceIDsWithAppId, :ExcludeInstanceIDsWithAppId, :TagIDs, :ClusterIDsWithAppId, :ExcludeClusterIDsWithAppId, :ImageIDsWithAppId, :ConditionMatches, :FileOperationRules
+        attr_accessor :RuleType, :AlertAction, :CWPScope, :TCSSScope, :Status, :MemberId, :Name, :ContentType, :Level, :DetectMode, :AttackStage, :RuleID, :Description, :DealOldEvents, :Md5List, :FileName, :FileDirectory, :CmdLineRules, :Domains, :OutboundIP, :InboundIP, :ImageIDs, :ProcessNetworkRules, :TargetAppIDs, :Target, :InstanceIDsWithAppId, :ExcludeInstanceIDsWithAppId, :TagIDs, :ClusterIDsWithAppId, :ExcludeClusterIDsWithAppId, :ImageIDsWithAppId, :ConditionMatches, :FileOperationRules, :K8sApiRule
 
-        def initialize(ruletype=nil, alertaction=nil, cwpscope=nil, tcssscope=nil, status=nil, memberid=nil, name=nil, contenttype=nil, level=nil, detectmode=nil, attackstage=nil, ruleid=nil, description=nil, dealoldevents=nil, md5list=nil, filename=nil, filedirectory=nil, cmdlinerules=nil, domains=nil, outboundip=nil, inboundip=nil, imageids=nil, processnetworkrules=nil, targetappids=nil, target=nil, instanceidswithappid=nil, excludeinstanceidswithappid=nil, tagids=nil, clusteridswithappid=nil, excludeclusteridswithappid=nil, imageidswithappid=nil, conditionmatches=nil, fileoperationrules=nil)
+        def initialize(ruletype=nil, alertaction=nil, cwpscope=nil, tcssscope=nil, status=nil, memberid=nil, name=nil, contenttype=nil, level=nil, detectmode=nil, attackstage=nil, ruleid=nil, description=nil, dealoldevents=nil, md5list=nil, filename=nil, filedirectory=nil, cmdlinerules=nil, domains=nil, outboundip=nil, inboundip=nil, imageids=nil, processnetworkrules=nil, targetappids=nil, target=nil, instanceidswithappid=nil, excludeinstanceidswithappid=nil, tagids=nil, clusteridswithappid=nil, excludeclusteridswithappid=nil, imageidswithappid=nil, conditionmatches=nil, fileoperationrules=nil, k8sapirule=nil)
           @RuleType = ruletype
           @AlertAction = alertaction
           @CWPScope = cwpscope
@@ -60444,6 +60620,7 @@ module TencentCloud
           @ImageIDsWithAppId = imageidswithappid
           @ConditionMatches = conditionmatches
           @FileOperationRules = fileoperationrules
+          @K8sApiRule = k8sapirule
         end
 
         def deserialize(params)
@@ -60533,6 +60710,10 @@ module TencentCloud
           unless params['FileOperationRules'].nil?
             @FileOperationRules = RuleContentFileOperation.new
             @FileOperationRules.deserialize(params['FileOperationRules'])
+          end
+          unless params['K8sApiRule'].nil?
+            @K8sApiRule = RuleContentK8sAPI.new
+            @K8sApiRule.deserialize(params['K8sApiRule'])
           end
         end
       end
@@ -61780,7 +61961,7 @@ module TencentCloud
         # @type KillProcess: Integer
         # @param DoClean: <p>1 清理, 0 不清理本操作会修复被篡改的系统命令，计划任务等系统文件，操作中请确保yum/apt 可用</p>
         # @type DoClean: Integer
-        # @param ProtectMode: <p>防护模式 0 标准 1重保</p>
+        # @param ProtectMode: <p>防护模式 0 标准 1重保  2-自定义隔离</p>
         # @type ProtectMode: Integer
         # @param ProtectFileScope: <p>查杀范围 0 脚本类之外的恶意文件，1全部恶意文件</p>
         # @type ProtectFileScope: Integer
@@ -61798,10 +61979,12 @@ module TencentCloud
         # @type QuaraExcludeClusterIDsWithAppId: Array
         # @param Timeout: <p>超时时长（秒）</p>
         # @type Timeout: Integer
+        # @param QuaraTypes: <p>自定义隔离模式的告警类型Code列表（ProtectMode=2时必填，Code取自Describe返回的QuaraTypeDict）</p>
+        # @type QuaraTypes: Array
 
-        attr_accessor :Cycle, :StartTime, :EndTime, :MemberId, :EnableScan, :ScanType, :CustomPaths, :AssetSelectionType, :TagIds, :InstanceIDsWithAppId, :ExcludeInstanceIDsWithAppId, :ClusterIDsWithAppId, :ExcludeClusterIDsWithAppId, :RealTimeMonitoring, :MonitoringPattern, :MonitorCustomPaths, :EngineType, :EnableInspiredEngine, :EnableMemShellScan, :AutoIsolation, :KillProcess, :DoClean, :ProtectMode, :ProtectFileScope, :QuaraAssetSelectionType, :QuaraTagIds, :QuaraInstanceIDsWithAppId, :QuaraExcludeInstanceIDsWithAppId, :QuaraClusterIDsWithAppId, :QuaraExcludeClusterIDsWithAppId, :Timeout
+        attr_accessor :Cycle, :StartTime, :EndTime, :MemberId, :EnableScan, :ScanType, :CustomPaths, :AssetSelectionType, :TagIds, :InstanceIDsWithAppId, :ExcludeInstanceIDsWithAppId, :ClusterIDsWithAppId, :ExcludeClusterIDsWithAppId, :RealTimeMonitoring, :MonitoringPattern, :MonitorCustomPaths, :EngineType, :EnableInspiredEngine, :EnableMemShellScan, :AutoIsolation, :KillProcess, :DoClean, :ProtectMode, :ProtectFileScope, :QuaraAssetSelectionType, :QuaraTagIds, :QuaraInstanceIDsWithAppId, :QuaraExcludeInstanceIDsWithAppId, :QuaraClusterIDsWithAppId, :QuaraExcludeClusterIDsWithAppId, :Timeout, :QuaraTypes
 
-        def initialize(cycle=nil, starttime=nil, endtime=nil, memberid=nil, enablescan=nil, scantype=nil, custompaths=nil, assetselectiontype=nil, tagids=nil, instanceidswithappid=nil, excludeinstanceidswithappid=nil, clusteridswithappid=nil, excludeclusteridswithappid=nil, realtimemonitoring=nil, monitoringpattern=nil, monitorcustompaths=nil, enginetype=nil, enableinspiredengine=nil, enablememshellscan=nil, autoisolation=nil, killprocess=nil, doclean=nil, protectmode=nil, protectfilescope=nil, quaraassetselectiontype=nil, quaratagids=nil, quarainstanceidswithappid=nil, quaraexcludeinstanceidswithappid=nil, quaraclusteridswithappid=nil, quaraexcludeclusteridswithappid=nil, timeout=nil)
+        def initialize(cycle=nil, starttime=nil, endtime=nil, memberid=nil, enablescan=nil, scantype=nil, custompaths=nil, assetselectiontype=nil, tagids=nil, instanceidswithappid=nil, excludeinstanceidswithappid=nil, clusteridswithappid=nil, excludeclusteridswithappid=nil, realtimemonitoring=nil, monitoringpattern=nil, monitorcustompaths=nil, enginetype=nil, enableinspiredengine=nil, enablememshellscan=nil, autoisolation=nil, killprocess=nil, doclean=nil, protectmode=nil, protectfilescope=nil, quaraassetselectiontype=nil, quaratagids=nil, quarainstanceidswithappid=nil, quaraexcludeinstanceidswithappid=nil, quaraclusteridswithappid=nil, quaraexcludeclusteridswithappid=nil, timeout=nil, quaratypes=nil)
           @Cycle = cycle
           @StartTime = starttime
           @EndTime = endtime
@@ -61833,6 +62016,7 @@ module TencentCloud
           @QuaraClusterIDsWithAppId = quaraclusteridswithappid
           @QuaraExcludeClusterIDsWithAppId = quaraexcludeclusteridswithappid
           @Timeout = timeout
+          @QuaraTypes = quaratypes
         end
 
         def deserialize(params)
@@ -61923,6 +62107,7 @@ module TencentCloud
             end
           end
           @Timeout = params['Timeout']
+          @QuaraTypes = params['QuaraTypes']
         end
       end
 
@@ -62421,20 +62606,26 @@ module TencentCloud
 
       # ModifyPayConfig请求参数结构体
       class ModifyPayConfigRequest < TencentCloud::Common::AbstractModel
-        # @param HostConfig: 主机安全模块自动扩容配置
-        # 补充说明：不传则不修改主机配置；本期至少需传本模块。后续可扩展 ContainerConfig / AIAgentConfig 命名模块字段
+        # @param HostConfig: <p>主机安全模块自动扩容配置<br>补充说明：不传则不修改主机配置；本期至少需传本模块。后续可扩展 ContainerConfig / AIAgentConfig 命名模块字段</p>
         # @type HostConfig: :class:`Tencentcloud::Csip.v20221121.models.HostAutoScaleConfig`
+        # @param ContainerConfig: <p>容器安全模块自动扩容配置，不传则不修改</p>
+        # @type ContainerConfig: :class:`Tencentcloud::Csip.v20221121.models.ContainerAutoScaleConfig`
 
-        attr_accessor :HostConfig
+        attr_accessor :HostConfig, :ContainerConfig
 
-        def initialize(hostconfig=nil)
+        def initialize(hostconfig=nil, containerconfig=nil)
           @HostConfig = hostconfig
+          @ContainerConfig = containerconfig
         end
 
         def deserialize(params)
           unless params['HostConfig'].nil?
             @HostConfig = HostAutoScaleConfig.new
             @HostConfig.deserialize(params['HostConfig'])
+          end
+          unless params['ContainerConfig'].nil?
+            @ContainerConfig = ContainerAutoScaleConfig.new
+            @ContainerConfig.deserialize(params['ContainerConfig'])
           end
         end
       end
@@ -65589,6 +65780,34 @@ module TencentCloud
         end
       end
 
+      # 自定义隔离模式的告警类型字典条目（灰度规则系统下发）
+      class QuaraTypeDictItem < TencentCloud::Common::AbstractModel
+        # @param Code: <p>告警类型标识，与 QuaraTypes 取值一致</p>
+        # @type Code: String
+        # @param Name: <p>展示类型名</p>
+        # @type Name: String
+        # @param Recommend: <p>是否推荐隔离</p>
+        # @type Recommend: Boolean
+        # @param Desc: <p>描述和建议</p>
+        # @type Desc: String
+
+        attr_accessor :Code, :Name, :Recommend, :Desc
+
+        def initialize(code=nil, name=nil, recommend=nil, desc=nil)
+          @Code = code
+          @Name = name
+          @Recommend = recommend
+          @Desc = desc
+        end
+
+        def deserialize(params)
+          @Code = params['Code']
+          @Name = params['Name']
+          @Recommend = params['Recommend']
+          @Desc = params['Desc']
+        end
+      end
+
       # 重保授权包列表对象
       class RaspLicenseList < TencentCloud::Common::AbstractModel
         # @param QUUID: <p>机器唯一ID</p>
@@ -66658,6 +66877,62 @@ module TencentCloud
           end
           @FilePath = params['FilePath']
           @FileActions = params['FileActions']
+        end
+      end
+
+      # EDR K8s API 异常请求规则内容。
+      class RuleContentK8sAPI < TencentCloud::Common::AbstractModel
+        # @param RequestURI: <p>请求资源</p>
+        # @type RequestURI: String
+        # @param Verb: <p>操作类型</p>
+        # @type Verb: String
+        # @param RequestUser: <p>发起请求用户</p>
+        # @type RequestUser: String
+        # @param UserAgent: <p>用户代理</p>
+        # @type UserAgent: String
+        # @param SourceIPS: <p>来源 IP</p>
+        # @type SourceIPS: String
+        # @param ResponseStatusCode: <p>响应状态码</p>
+        # @type ResponseStatusCode: String
+        # @param RequestObject: <p>请求数据</p>
+        # @type RequestObject: String
+        # @param ResponseObject: <p>响应数据</p>
+        # @type ResponseObject: String
+        # @param MountHostDir: <p>挂载宿主机目录</p>
+        # @type MountHostDir: String
+        # @param PodNameIP: <p>Pod 名称或 IP</p>
+        # @type PodNameIP: String
+        # @param AuditID: <p>审计日志 ID</p>
+        # @type AuditID: String
+
+        attr_accessor :RequestURI, :Verb, :RequestUser, :UserAgent, :SourceIPS, :ResponseStatusCode, :RequestObject, :ResponseObject, :MountHostDir, :PodNameIP, :AuditID
+
+        def initialize(requesturi=nil, verb=nil, requestuser=nil, useragent=nil, sourceips=nil, responsestatuscode=nil, requestobject=nil, responseobject=nil, mounthostdir=nil, podnameip=nil, auditid=nil)
+          @RequestURI = requesturi
+          @Verb = verb
+          @RequestUser = requestuser
+          @UserAgent = useragent
+          @SourceIPS = sourceips
+          @ResponseStatusCode = responsestatuscode
+          @RequestObject = requestobject
+          @ResponseObject = responseobject
+          @MountHostDir = mounthostdir
+          @PodNameIP = podnameip
+          @AuditID = auditid
+        end
+
+        def deserialize(params)
+          @RequestURI = params['RequestURI']
+          @Verb = params['Verb']
+          @RequestUser = params['RequestUser']
+          @UserAgent = params['UserAgent']
+          @SourceIPS = params['SourceIPS']
+          @ResponseStatusCode = params['ResponseStatusCode']
+          @RequestObject = params['RequestObject']
+          @ResponseObject = params['ResponseObject']
+          @MountHostDir = params['MountHostDir']
+          @PodNameIP = params['PodNameIP']
+          @AuditID = params['AuditID']
         end
       end
 

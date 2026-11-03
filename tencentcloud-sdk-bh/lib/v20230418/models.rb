@@ -74,10 +74,10 @@ module TencentCloud
 
         attr_accessor :Account, :LoginAccount, :LoginPassword, :DeviceId, :InstanceId, :Password, :PrivateKey, :PrivateKeyPassword, :Exe, :Drivers, :Width, :Height, :IntranetAccess, :AutoManageAccessCredential
         extend Gem::Deprecate
-        deprecate :LoginAccount, :none, 2026, 10
-        deprecate :LoginAccount=, :none, 2026, 10
-        deprecate :LoginPassword, :none, 2026, 10
-        deprecate :LoginPassword=, :none, 2026, 10
+        deprecate :LoginAccount, :none, 2026, 11
+        deprecate :LoginAccount=, :none, 2026, 11
+        deprecate :LoginPassword, :none, 2026, 11
+        deprecate :LoginPassword=, :none, 2026, 11
 
         def initialize(account=nil, loginaccount=nil, loginpassword=nil, deviceid=nil, instanceid=nil, password=nil, privatekey=nil, privatekeypassword=nil, exe=nil, drivers=nil, width=nil, height=nil, intranetaccess=nil, automanageaccesscredential=nil)
           @Account = account
@@ -961,56 +961,62 @@ module TencentCloud
 
       # 修改密码任务信息
       class ChangePwdTaskInfo < TencentCloud::Common::AbstractModel
-        # @param Id: id
+        # @param Id: <p>id</p>
         # @type Id: Integer
-        # @param OperationId: 任务id
+        # @param OperationId: <p>任务id</p>
         # @type OperationId: String
-        # @param TaskName: 任务名
+        # @param TaskName: <p>任务名</p>
         # @type TaskName: String
-        # @param Department: 所属部门信息
+        # @param Department: <p>所属部门信息</p>
         # @type Department: :class:`Tencentcloud::Bh.v20230418.models.Department`
-        # @param ChangeMethod: 改密方式。1：使用执行账号。2：修改自身密码
+        # @param ChangeMethod: <p>改密方式。1：使用执行账号。2：修改自身密码</p>
         # @type ChangeMethod: Integer
-        # @param RunAccount: 执行账号
+        # @param RunAccount: <p>执行账号</p>
         # @type RunAccount: String
-        # @param AuthGenerationStrategy: 密码生成策略
+        # @param AuthGenerationStrategy: <p>密码生成策略</p>
         # @type AuthGenerationStrategy: Integer
-        # @param PasswordLength: 密码长度
+        # @param PasswordLength: <p>密码长度</p>
         # @type PasswordLength: Integer
-        # @param SmallLetter: 包含小写字母
+        # @param SmallLetter: <p>包含小写字母</p>
         # @type SmallLetter: Integer
-        # @param BigLetter: 包含大写字母
+        # @param BigLetter: <p>包含大写字母</p>
         # @type BigLetter: Integer
-        # @param Digit: 包含数字
+        # @param Digit: <p>包含数字</p>
         # @type Digit: Integer
-        # @param Symbol: 包含的特殊字符，入参base64
+        # @param Symbol: <p>包含的特殊字符，入参base64</p>
         # @type Symbol: String
-        # @param CompleteNotify: 改密完成通知。0-通知，1-不通知
+        # @param CompleteNotify: <p>改密完成通知。0-通知，1-不通知</p>
         # @type CompleteNotify: Integer
-        # @param NotifyEmails: 通知人邮箱
+        # @param NotifyEmails: <p>通知人邮箱</p>
         # @type NotifyEmails: Array
-        # @param FilePassword: 加密附件密码
+        # @param FilePassword: <p>加密附件密码</p>
         # @type FilePassword: String
-        # @param AccountSet: 需要改密的账户
+        # @param AccountSet: <p>需要改密的账户</p>
         # @type AccountSet: Array
-        # @param DeviceSet: 需要改密的主机
+        # @param DeviceSet: <p>需要改密的主机</p>
         # @type DeviceSet: Array
-        # @param Type: 任务类型：4手动，5自动
+        # @param Type: <p>任务类型：4手动，5自动</p>
         # @type Type: Integer
-        # @param Period: 周期
+        # @param Period: <p>周期</p>
         # @type Period: Integer
-        # @param FirstTime: 首次执行时间
+        # @param FirstTime: <p>首次执行时间</p>
         # @type FirstTime: String
-        # @param NextTime: 下次执行时间
+        # @param NextTime: <p>下次执行时间</p>
         # @type NextTime: String
-        # @param LastTime: 上次执行时间
+        # @param LastTime: <p>上次执行时间</p>
         # @type LastTime: String
-        # @param Status: 改密任务状态，0-待执行，1-执行完成，2-执行失败，3-执行中，4-执行超时
+        # @param Status: <p>改密任务状态，0-待执行，1-执行完成，2-执行失败，3-执行中，4-执行超时</p>
         # @type Status: Integer
+        # @param Category: <p>改密任务类别</p><p>枚举值：</p><ul><li>0： Linux 类型改密任务</li><li>1： Windows 类型改密任务</li></ul><p>默认值：0</p>
+        # @type Category: Integer
+        # @param Protocol: <p>改密任务协议类型</p><p>枚举值：</p><ul><li>0： 未定义，Linux 改密任务类型默认值</li><li>1： Windows OpenSSH 协议</li></ul><p>默认值：0</p>
+        # @type Protocol: Integer
+        # @param Port: <p>改密协议端口号. Linux 改密协议类型端口号值为0</p><p>默认值：0</p>
+        # @type Port: Integer
 
-        attr_accessor :Id, :OperationId, :TaskName, :Department, :ChangeMethod, :RunAccount, :AuthGenerationStrategy, :PasswordLength, :SmallLetter, :BigLetter, :Digit, :Symbol, :CompleteNotify, :NotifyEmails, :FilePassword, :AccountSet, :DeviceSet, :Type, :Period, :FirstTime, :NextTime, :LastTime, :Status
+        attr_accessor :Id, :OperationId, :TaskName, :Department, :ChangeMethod, :RunAccount, :AuthGenerationStrategy, :PasswordLength, :SmallLetter, :BigLetter, :Digit, :Symbol, :CompleteNotify, :NotifyEmails, :FilePassword, :AccountSet, :DeviceSet, :Type, :Period, :FirstTime, :NextTime, :LastTime, :Status, :Category, :Protocol, :Port
 
-        def initialize(id=nil, operationid=nil, taskname=nil, department=nil, changemethod=nil, runaccount=nil, authgenerationstrategy=nil, passwordlength=nil, smallletter=nil, bigletter=nil, digit=nil, symbol=nil, completenotify=nil, notifyemails=nil, filepassword=nil, accountset=nil, deviceset=nil, type=nil, period=nil, firsttime=nil, nexttime=nil, lasttime=nil, status=nil)
+        def initialize(id=nil, operationid=nil, taskname=nil, department=nil, changemethod=nil, runaccount=nil, authgenerationstrategy=nil, passwordlength=nil, smallletter=nil, bigletter=nil, digit=nil, symbol=nil, completenotify=nil, notifyemails=nil, filepassword=nil, accountset=nil, deviceset=nil, type=nil, period=nil, firsttime=nil, nexttime=nil, lasttime=nil, status=nil, category=nil, protocol=nil, port=nil)
           @Id = id
           @OperationId = operationid
           @TaskName = taskname
@@ -1034,6 +1040,9 @@ module TencentCloud
           @NextTime = nexttime
           @LastTime = lasttime
           @Status = status
+          @Category = category
+          @Protocol = protocol
+          @Port = port
         end
 
         def deserialize(params)
@@ -1070,6 +1079,9 @@ module TencentCloud
           @NextTime = params['NextTime']
           @LastTime = params['LastTime']
           @Status = params['Status']
+          @Category = params['Category']
+          @Protocol = params['Protocol']
+          @Port = params['Port']
         end
       end
 
@@ -1501,49 +1513,54 @@ module TencentCloud
 
       # CreateChangePwdTask请求参数结构体
       class CreateChangePwdTaskRequest < TencentCloud::Common::AbstractModel
-        # @param TaskName: 任务名
+        # @param TaskName: <p>任务名</p>
         # @type TaskName: String
-        # @param DeviceIdSet: 资产id数组
+        # @param DeviceIdSet: <p>资产id数组</p>
         # @type DeviceIdSet: Array
-        # @param AccountSet: 修改的账户数组
+        # @param AccountSet: <p>修改的账户数组</p>
         # @type AccountSet: Array
-        # @param ChangeMethod: 改密方式。1：使用执行账号修改密码；2：修改自身密码
+        # @param ChangeMethod: <p>改密方式。1：使用执行账号修改密码；2：修改自身密码</p>
         # @type ChangeMethod: Integer
-        # @param AuthGenerationStrategy: 认证生成方式。 1:自动生成相同密码 2:自动生成不同密码 3:手动指定相同密码
+        # @param AuthGenerationStrategy: <p>认证生成方式。 1:自动生成相同密码 2:自动生成不同密码 3:手动指定相同密码</p>
         # @type AuthGenerationStrategy: Integer
-        # @param RunAccount: 执行账号
+        # @param RunAccount: <p>执行账号</p>
         # @type RunAccount: String
-        # @param Password: 手动指定密码时必传
+        # @param Password: <p>手动指定密码时必传</p>
         # @type Password: String
-        # @param PasswordLength: 密码限制长度，长度大于 12 位
+        # @param PasswordLength: <p>密码限制长度，长度大于 12 位</p>
         # @type PasswordLength: Integer
-        # @param SmallLetter: 密码包含小写字母。0：否，1：是
+        # @param SmallLetter: <p>密码包含小写字母。0：否，1：是</p>
         # @type SmallLetter: Integer
-        # @param BigLetter: 密码包含大写字母。0：否，1：是
+        # @param BigLetter: <p>密码包含大写字母。0：否，1：是</p>
         # @type BigLetter: Integer
-        # @param Digit: 密码包含数字。0：否，1：是
+        # @param Digit: <p>密码包含数字。0：否，1：是</p>
         # @type Digit: Integer
-        # @param Symbol: 密码包含的特殊字符（base64编码），包含：^[-_#();%~!+=]*$
+        # @param Symbol: <p>密码包含的特殊字符（base64编码），包含：^[-_#();%~!+=]*$</p>
         # @type Symbol: String
-        # @param CompleteNotify: 改密完成通知。0：不通知
-        #   1：通知
+        # @param CompleteNotify: <p>改密完成通知。0：不通知<br>  1：通知</p>
         # @type CompleteNotify: Integer
-        # @param NotifyEmails: 通知邮箱
+        # @param NotifyEmails: <p>通知邮箱</p>
         # @type NotifyEmails: Array
-        # @param FilePassword: 加密压缩文件密码
+        # @param FilePassword: <p>加密压缩文件密码</p>
         # @type FilePassword: String
-        # @param DepartmentId: 所属部门id。“1.2.3”
+        # @param DepartmentId: <p>所属部门id。“1.2.3”</p>
         # @type DepartmentId: String
-        # @param Type: 任务类型  4-手工执行  5-周期自动执行
+        # @param Type: <p>任务类型  4-手工执行  5-周期自动执行</p>
         # @type Type: Integer
-        # @param Period: 执行周期，单位天（大于等于 1，小于等于 365）
+        # @param Period: <p>执行周期，单位天（大于等于 1，小于等于 365）</p>
         # @type Period: Integer
-        # @param FirstTime: 周期任务首次执行时间
+        # @param FirstTime: <p>周期任务首次执行时间</p>
         # @type FirstTime: String
+        # @param Category: <p>改密任务类别</p><p>枚举值：</p><ul><li>0： Linux 类型改密任务</li><li>1： Windows 类型改密任务</li></ul><p>默认值：0</p>
+        # @type Category: Integer
+        # @param Protocol: <p>改密任务协议类型</p><p>枚举值：</p><ul><li>0： 未定义，Linux改密任务类型默认值</li><li>1： Windows OpenSSH 协议</li></ul><p>默认值：0</p>
+        # @type Protocol: Integer
+        # @param Port: <p>改密协议端口号. Linux 改密类型协议端口号需设置为0</p><p>取值范围：[0, 65535]</p><p>默认值：0</p>
+        # @type Port: Integer
 
-        attr_accessor :TaskName, :DeviceIdSet, :AccountSet, :ChangeMethod, :AuthGenerationStrategy, :RunAccount, :Password, :PasswordLength, :SmallLetter, :BigLetter, :Digit, :Symbol, :CompleteNotify, :NotifyEmails, :FilePassword, :DepartmentId, :Type, :Period, :FirstTime
+        attr_accessor :TaskName, :DeviceIdSet, :AccountSet, :ChangeMethod, :AuthGenerationStrategy, :RunAccount, :Password, :PasswordLength, :SmallLetter, :BigLetter, :Digit, :Symbol, :CompleteNotify, :NotifyEmails, :FilePassword, :DepartmentId, :Type, :Period, :FirstTime, :Category, :Protocol, :Port
 
-        def initialize(taskname=nil, deviceidset=nil, accountset=nil, changemethod=nil, authgenerationstrategy=nil, runaccount=nil, password=nil, passwordlength=nil, smallletter=nil, bigletter=nil, digit=nil, symbol=nil, completenotify=nil, notifyemails=nil, filepassword=nil, departmentid=nil, type=nil, period=nil, firsttime=nil)
+        def initialize(taskname=nil, deviceidset=nil, accountset=nil, changemethod=nil, authgenerationstrategy=nil, runaccount=nil, password=nil, passwordlength=nil, smallletter=nil, bigletter=nil, digit=nil, symbol=nil, completenotify=nil, notifyemails=nil, filepassword=nil, departmentid=nil, type=nil, period=nil, firsttime=nil, category=nil, protocol=nil, port=nil)
           @TaskName = taskname
           @DeviceIdSet = deviceidset
           @AccountSet = accountset
@@ -1563,6 +1580,9 @@ module TencentCloud
           @Type = type
           @Period = period
           @FirstTime = firsttime
+          @Category = category
+          @Protocol = protocol
+          @Port = port
         end
 
         def deserialize(params)
@@ -1585,12 +1605,15 @@ module TencentCloud
           @Type = params['Type']
           @Period = params['Period']
           @FirstTime = params['FirstTime']
+          @Category = params['Category']
+          @Protocol = params['Protocol']
+          @Port = params['Port']
         end
       end
 
       # CreateChangePwdTask返回参数结构体
       class CreateChangePwdTaskResponse < TencentCloud::Common::AbstractModel
-        # @param OperationId: 任务id
+        # @param OperationId: <p>任务id</p>
         # @type OperationId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5059,8 +5082,8 @@ module TencentCloud
 
         attr_accessor :ResourceId, :VpcId, :VpcName, :VpcRegion, :VpcCidrBlock, :SubnetId, :DomainName, :IntranetSubnets
         extend Gem::Deprecate
-        deprecate :SubnetId, :none, 2026, 10
-        deprecate :SubnetId=, :none, 2026, 10
+        deprecate :SubnetId, :none, 2026, 11
+        deprecate :SubnetId=, :none, 2026, 11
 
         def initialize(resourceid=nil, vpcid=nil, vpcname=nil, vpcregion=nil, vpccidrblock=nil, subnetid=nil, domainname=nil, intranetsubnets=nil)
           @ResourceId = resourceid
@@ -5864,52 +5887,58 @@ module TencentCloud
 
       # ModifyChangePwdTask请求参数结构体
       class ModifyChangePwdTaskRequest < TencentCloud::Common::AbstractModel
-        # @param OperationId: 改密任务id
+        # @param OperationId: <p>改密任务id</p>
         # @type OperationId: String
-        # @param DeviceIdSet: 改密资产id列表
+        # @param DeviceIdSet: <p>改密资产id列表</p>
         # @type DeviceIdSet: Array
-        # @param AccountSet: 改密资产的账号列表
+        # @param AccountSet: <p>改密资产的账号列表</p>
         # @type AccountSet: Array
-        # @param ModifyType: 修改类型：1：修改任务信息  2：关联任务资产账号
+        # @param ModifyType: <p>修改类型：1：修改任务信息  2：关联任务资产账号</p>
         # @type ModifyType: Integer
-        # @param ChangeMethod: 改密方式。1：使用执行账号修改密码；2：修改自身密码
+        # @param ChangeMethod: <p>改密方式。1：使用执行账号修改密码；2：修改自身密码</p>
         # @type ChangeMethod: Integer
-        # @param AuthGenerationStrategy: 密码生成方式。 1:自动生成相同密码 2:自动生成不同密码 3:手动指定相同密码
+        # @param AuthGenerationStrategy: <p>密码生成方式。 1:自动生成相同密码 2:自动生成不同密码 3:手动指定相同密码</p>
         # @type AuthGenerationStrategy: Integer
-        # @param TaskName: 任务名称
+        # @param TaskName: <p>任务名称</p>
         # @type TaskName: String
-        # @param DepartmentId: 所属部门ID，"1,2,3"
+        # @param DepartmentId: <p>所属部门ID，&quot;1,2,3&quot;</p>
         # @type DepartmentId: String
-        # @param RunAccount: 任务的执行账号
+        # @param RunAccount: <p>任务的执行账号</p>
         # @type RunAccount: String
-        # @param Password: 密码，手动指定密码时必传。
+        # @param Password: <p>密码，手动指定密码时必传。</p>
         # @type Password: String
-        # @param PasswordLength: 密码限制长度，自动生成密码必传。
+        # @param PasswordLength: <p>密码限制长度，自动生成密码必传。</p>
         # @type PasswordLength: Integer
-        # @param SmallLetter: 密码包含小写字母，0：否，1：是。
+        # @param SmallLetter: <p>密码包含小写字母，0：否，1：是。</p>
         # @type SmallLetter: Integer
-        # @param BigLetter: 密码包含大写字母，0：否，1：是。
+        # @param BigLetter: <p>密码包含大写字母，0：否，1：是。</p>
         # @type BigLetter: Integer
-        # @param Digit: 密码包含数字，0：否，1：是。
+        # @param Digit: <p>密码包含数字，0：否，1：是。</p>
         # @type Digit: Integer
-        # @param Symbol: 密码包含的特殊字符（base64编码），包含：^[-_#();%~!+=]*$
+        # @param Symbol: <p>密码包含的特殊字符（base64编码），包含：^[-_#();%~!+=]*$</p>
         # @type Symbol: String
-        # @param CompleteNotify: 改密完成通知。0：不通知 1：通知
+        # @param CompleteNotify: <p>改密完成通知。0：不通知 1：通知</p>
         # @type CompleteNotify: Integer
-        # @param NotifyEmails: 通知邮箱
+        # @param NotifyEmails: <p>通知邮箱</p>
         # @type NotifyEmails: Array
-        # @param FilePassword: 加密压缩文件密码
+        # @param FilePassword: <p>加密压缩文件密码</p>
         # @type FilePassword: String
-        # @param Type: 任务类型， 4：手工执行  5：周期自动执行
+        # @param Type: <p>任务类型， 4：手工执行  5：周期自动执行</p>
         # @type Type: Integer
-        # @param Period: 周期任务周期，单位天（大于等于 1，小于等于 365）
+        # @param Period: <p>周期任务周期，单位天（大于等于 1，小于等于 365）</p>
         # @type Period: Integer
-        # @param FirstTime: 周期任务首次执行时间
+        # @param FirstTime: <p>周期任务首次执行时间</p>
         # @type FirstTime: String
+        # @param Category: <p>改密任务类别</p><p>枚举值：</p><ul><li>0： Linux 类型改密任务</li><li>1： Windows 类型改密任务</li></ul><p>默认值：0</p>
+        # @type Category: Integer
+        # @param Protocol: <p>改密任务协议类型</p><p>枚举值：</p><ul><li>0： 未定义，Linux 改密任务类型默认值</li><li>1： Windows OpenSSH 协议</li></ul><p>默认值：0</p>
+        # @type Protocol: Integer
+        # @param Port: <p>改密协议端口号，Linux 改密类型协议端口号需设置为0</p><p>取值范围：[0, 65535]</p><p>默认值：0</p>
+        # @type Port: Integer
 
-        attr_accessor :OperationId, :DeviceIdSet, :AccountSet, :ModifyType, :ChangeMethod, :AuthGenerationStrategy, :TaskName, :DepartmentId, :RunAccount, :Password, :PasswordLength, :SmallLetter, :BigLetter, :Digit, :Symbol, :CompleteNotify, :NotifyEmails, :FilePassword, :Type, :Period, :FirstTime
+        attr_accessor :OperationId, :DeviceIdSet, :AccountSet, :ModifyType, :ChangeMethod, :AuthGenerationStrategy, :TaskName, :DepartmentId, :RunAccount, :Password, :PasswordLength, :SmallLetter, :BigLetter, :Digit, :Symbol, :CompleteNotify, :NotifyEmails, :FilePassword, :Type, :Period, :FirstTime, :Category, :Protocol, :Port
 
-        def initialize(operationid=nil, deviceidset=nil, accountset=nil, modifytype=nil, changemethod=nil, authgenerationstrategy=nil, taskname=nil, departmentid=nil, runaccount=nil, password=nil, passwordlength=nil, smallletter=nil, bigletter=nil, digit=nil, symbol=nil, completenotify=nil, notifyemails=nil, filepassword=nil, type=nil, period=nil, firsttime=nil)
+        def initialize(operationid=nil, deviceidset=nil, accountset=nil, modifytype=nil, changemethod=nil, authgenerationstrategy=nil, taskname=nil, departmentid=nil, runaccount=nil, password=nil, passwordlength=nil, smallletter=nil, bigletter=nil, digit=nil, symbol=nil, completenotify=nil, notifyemails=nil, filepassword=nil, type=nil, period=nil, firsttime=nil, category=nil, protocol=nil, port=nil)
           @OperationId = operationid
           @DeviceIdSet = deviceidset
           @AccountSet = accountset
@@ -5931,6 +5960,9 @@ module TencentCloud
           @Type = type
           @Period = period
           @FirstTime = firsttime
+          @Category = category
+          @Protocol = protocol
+          @Port = port
         end
 
         def deserialize(params)
@@ -5955,6 +5987,9 @@ module TencentCloud
           @Type = params['Type']
           @Period = params['Period']
           @FirstTime = params['FirstTime']
+          @Category = params['Category']
+          @Protocol = params['Protocol']
+          @Port = params['Port']
         end
       end
 
@@ -6404,8 +6439,8 @@ module TencentCloud
 
         attr_accessor :ResourceId, :Status, :ResourceEdition, :ResourceNode, :AutoRenewFlag, :PackageBandwidth, :PackageNode, :LogDelivery
         extend Gem::Deprecate
-        deprecate :Status, :none, 2026, 10
-        deprecate :Status=, :none, 2026, 10
+        deprecate :Status, :none, 2026, 11
+        deprecate :Status=, :none, 2026, 11
 
         def initialize(resourceid=nil, status=nil, resourceedition=nil, resourcenode=nil, autorenewflag=nil, packagebandwidth=nil, packagenode=nil, logdelivery=nil)
           @ResourceId = resourceid
@@ -7115,8 +7150,8 @@ module TencentCloud
 
         attr_accessor :ResourceId, :ApCode, :SvArgs, :VpcId, :Nodes, :RenewFlag, :ExpireTime, :Status, :ResourceName, :Pid, :CreateTime, :ProductCode, :SubProductCode, :Zone, :Expired, :Deployed, :VpcName, :VpcCidrBlock, :SubnetId, :SubnetName, :CidrBlock, :PublicIpSet, :PrivateIpSet, :ModuleSet, :UsedNodes, :ExtendPoints, :PackageBandwidth, :PackageNode, :LogDeliveryArgs, :ClbSet, :DomainCount, :UsedDomainCount, :EnabledDomainCount, :Trial, :LogDelivery, :CdcClusterId, :DeployModel, :IntranetAccess, :IntranetPrivateIpSet, :IntranetVpcId, :IntranetSubnetId, :IntranetSubnetIdSet, :IntranetVpcCidr, :DomainName, :ShareClb, :OpenClbId, :LbVipIsp, :TUICmdPort, :TUIDirectPort, :WebAccess, :ClientAccess, :ExternalAccess, :IOAResource, :PackageIOAUserCount, :PackageIOABandwidth, :IOAResourceId, :ResourceEdition, :TimeUnit, :TimeSpan, :PayMode, :BillingRegion, :BillingZone, :DeployCvmCount, :ResourceZoneSet, :OrgAccountQuota
         extend Gem::Deprecate
-        deprecate :IntranetSubnetId, :none, 2026, 10
-        deprecate :IntranetSubnetId=, :none, 2026, 10
+        deprecate :IntranetSubnetId, :none, 2026, 11
+        deprecate :IntranetSubnetId=, :none, 2026, 11
 
         def initialize(resourceid=nil, apcode=nil, svargs=nil, vpcid=nil, nodes=nil, renewflag=nil, expiretime=nil, status=nil, resourcename=nil, pid=nil, createtime=nil, productcode=nil, subproductcode=nil, zone=nil, expired=nil, deployed=nil, vpcname=nil, vpccidrblock=nil, subnetid=nil, subnetname=nil, cidrblock=nil, publicipset=nil, privateipset=nil, moduleset=nil, usednodes=nil, extendpoints=nil, packagebandwidth=nil, packagenode=nil, logdeliveryargs=nil, clbset=nil, domaincount=nil, useddomaincount=nil, enableddomaincount=nil, trial=nil, logdelivery=nil, cdcclusterid=nil, deploymodel=nil, intranetaccess=nil, intranetprivateipset=nil, intranetvpcid=nil, intranetsubnetid=nil, intranetsubnetidset=nil, intranetvpccidr=nil, domainname=nil, shareclb=nil, openclbid=nil, lbvipisp=nil, tuicmdport=nil, tuidirectport=nil, webaccess=nil, clientaccess=nil, externalaccess=nil, ioaresource=nil, packageioausercount=nil, packageioabandwidth=nil, ioaresourceid=nil, resourceedition=nil, timeunit=nil, timespan=nil, paymode=nil, billingregion=nil, billingzone=nil, deploycvmcount=nil, resourcezoneset=nil, orgaccountquota=nil)
           @ResourceId = resourceid
@@ -8729,8 +8764,8 @@ module TencentCloud
 
         attr_accessor :Id, :InstanceId, :Name, :ApCode, :PublicIp, :PrivateIp, :Status, :Reason, :ExitCode, :StartTime, :EndTime, :StdOut, :StdErr, :DeviceName, :Account
         extend Gem::Deprecate
-        deprecate :Name, :none, 2026, 10
-        deprecate :Name=, :none, 2026, 10
+        deprecate :Name, :none, 2026, 11
+        deprecate :Name=, :none, 2026, 11
 
         def initialize(id=nil, instanceid=nil, name=nil, apcode=nil, publicip=nil, privateip=nil, status=nil, reason=nil, exitcode=nil, starttime=nil, endtime=nil, stdout=nil, stderr=nil, devicename=nil, account=nil)
           @Id = id
@@ -8855,28 +8890,30 @@ module TencentCloud
 
       # 运维父任务执行结果
       class TaskResult < TencentCloud::Common::AbstractModel
-        # @param Id: 运维任务结果日志ID
+        # @param Id: <p>运维任务结果日志ID</p>
         # @type Id: String
-        # @param OperationId: 运维任务ID
+        # @param OperationId: <p>运维任务ID</p>
         # @type OperationId: String
-        # @param Name: 运维任务名称
+        # @param Name: <p>运维任务名称</p>
         # @type Name: String
-        # @param FromIp: 执行任务来源IP
+        # @param FromIp: <p>执行任务来源IP</p>
         # @type FromIp: String
-        # @param UserName: 运维任务所属用户
+        # @param UserName: <p>运维任务所属用户</p>
         # @type UserName: String
-        # @param RealName: 运维任务所属用户的姓名
+        # @param RealName: <p>运维任务所属用户的姓名</p>
         # @type RealName: String
-        # @param Status: 运维任务执行状态 1 - 执行中，2 - 成功，3 - 失败，4 - 部分失败
+        # @param Status: <p>运维任务执行状态 1 - 执行中，2 - 成功，3 - 失败，4 - 部分失败</p>
         # @type Status: Integer
-        # @param StartTime: 运维任务开始时间
+        # @param StartTime: <p>运维任务开始时间</p>
         # @type StartTime: String
-        # @param EndTime: 运维任务结束时间
+        # @param EndTime: <p>运维任务结束时间</p>
         # @type EndTime: String
+        # @param Category: <p>任务类别</p><p>枚举值：</p><ul><li>0： Linux 类型任务（默认类型）</li><li>1： Windows 类型任务</li></ul><p>默认值：0</p>
+        # @type Category: Integer
 
-        attr_accessor :Id, :OperationId, :Name, :FromIp, :UserName, :RealName, :Status, :StartTime, :EndTime
+        attr_accessor :Id, :OperationId, :Name, :FromIp, :UserName, :RealName, :Status, :StartTime, :EndTime, :Category
 
-        def initialize(id=nil, operationid=nil, name=nil, fromip=nil, username=nil, realname=nil, status=nil, starttime=nil, endtime=nil)
+        def initialize(id=nil, operationid=nil, name=nil, fromip=nil, username=nil, realname=nil, status=nil, starttime=nil, endtime=nil, category=nil)
           @Id = id
           @OperationId = operationid
           @Name = name
@@ -8886,6 +8923,7 @@ module TencentCloud
           @Status = status
           @StartTime = starttime
           @EndTime = endtime
+          @Category = category
         end
 
         def deserialize(params)
@@ -8898,6 +8936,7 @@ module TencentCloud
           @Status = params['Status']
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
+          @Category = params['Category']
         end
       end
 

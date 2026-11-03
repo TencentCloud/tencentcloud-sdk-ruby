@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 批量删除CSR
+
+        # @param request: Request instance for BatchDeleteCSR.
+        # @type request: :class:`Tencentcloud::ssl::V20191205::BatchDeleteCSRRequest`
+        # @rtype: :class:`Tencentcloud::ssl::V20191205::BatchDeleteCSRResponse`
+        def BatchDeleteCSR(request)
+          body = send_request('BatchDeleteCSR', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BatchDeleteCSRResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 取消证书审核
 
         # @param request: Request instance for CancelAuditCertificate.
@@ -255,6 +279,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CompleteCertificateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建CSR
+
+        # @param request: Request instance for CreateCSR.
+        # @type request: :class:`Tencentcloud::ssl::V20191205::CreateCSRRequest`
+        # @rtype: :class:`Tencentcloud::ssl::V20191205::CreateCSRResponse`
+        def CreateCSR(request)
+          body = send_request('CreateCSR', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCSRResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -478,6 +526,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeployCertificateRecordRollbackResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询CSR详情
+
+        # @param request: Request instance for DescribeCSR.
+        # @type request: :class:`Tencentcloud::ssl::V20191205::DescribeCSRRequest`
+        # @rtype: :class:`Tencentcloud::ssl::V20191205::DescribeCSRResponse`
+        def DescribeCSR(request)
+          body = send_request('DescribeCSR', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCSRResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询CSR列表
+
+        # @param request: Request instance for DescribeCSRSet.
+        # @type request: :class:`Tencentcloud::ssl::V20191205::DescribeCSRSetRequest`
+        # @rtype: :class:`Tencentcloud::ssl::V20191205::DescribeCSRSetResponse`
+        def DescribeCSRSet(request)
+          body = send_request('DescribeCSRSet', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCSRSetResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1222,6 +1318,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DownloadCertificateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改CSR信息
+
+        # @param request: Request instance for ModifyCSR.
+        # @type request: :class:`Tencentcloud::ssl::V20191205::ModifyCSRRequest`
+        # @rtype: :class:`Tencentcloud::ssl::V20191205::ModifyCSRResponse`
+        def ModifyCSR(request)
+          body = send_request('ModifyCSR', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyCSRResponse.new
             model.deserialize(response['Response'])
             model
           else

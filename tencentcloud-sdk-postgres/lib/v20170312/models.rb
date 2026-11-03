@@ -1790,8 +1790,8 @@ module TencentCloud
 
         attr_accessor :Zone, :MasterDBInstanceId, :SpecCode, :Storage, :InstanceCount, :Period, :VpcId, :SubnetId, :InstanceChargeType, :AutoVoucher, :VoucherIds, :AutoRenewFlag, :ProjectId, :ActivityId, :ReadOnlyGroupId, :TagList, :SecurityGroupIds, :NeedSupportIpv6, :Name, :DBVersion, :DedicatedClusterId, :DeletionProtection, :Tags
         extend Gem::Deprecate
-        deprecate :DBVersion, :none, 2026, 10
-        deprecate :DBVersion=, :none, 2026, 10
+        deprecate :DBVersion, :none, 2026, 11
+        deprecate :DBVersion=, :none, 2026, 11
 
         def initialize(zone=nil, masterdbinstanceid=nil, speccode=nil, storage=nil, instancecount=nil, period=nil, vpcid=nil, subnetid=nil, instancechargetype=nil, autovoucher=nil, voucherids=nil, autorenewflag=nil, projectid=nil, activityid=nil, readonlygroupid=nil, taglist=nil, securitygroupids=nil, needsupportipv6=nil, name=nil, dbversion=nil, dedicatedclusterid=nil, deletionprotection=nil, tags=nil)
           @Zone = zone
@@ -2300,21 +2300,21 @@ module TencentCloud
 
       # 描述实例的网络连接信息。
       class DBInstanceNetInfo < TencentCloud::Common::AbstractModel
-        # @param Address: DNS域名
+        # @param Address: <p>DNS域名</p>
         # @type Address: String
-        # @param Ip: IP地址
+        # @param Ip: <p>IP地址</p>
         # @type Ip: String
-        # @param Port: 连接Port地址
+        # @param Port: <p>连接Port地址</p>
         # @type Port: Integer
-        # @param NetType: 网络类型，1、inner（基础网络内网地址）；2、private（私有网络内网地址）；3、public（基础网络或私有网络的外网地址）；
+        # @param NetType: <p>网络类型，1、inner（基础网络内网地址）；2、private（私有网络内网地址）；3、public（基础网络或私有网络的外网地址）；</p>
         # @type NetType: String
-        # @param Status: 网络连接状态，1、initing（未开通）；2、opened（已开通）；3、closed（已关闭）；4、opening（开通中）；5、closing（关闭中）；
+        # @param Status: <p>网络连接状态，1、initing（未开通）；2、opened（已开通）；3、closed（已关闭）；4、opening（开通中）；5、closing（关闭中）；</p>
         # @type Status: String
-        # @param VpcId: 私有网络ID
+        # @param VpcId: <p>私有网络ID</p>
         # @type VpcId: String
-        # @param SubnetId: 子网ID
+        # @param SubnetId: <p>子网ID</p>
         # @type SubnetId: String
-        # @param ProtocolType: 连接数据库的协议类型，当前支持：postgresql、mssql（MSSQL兼容语法）
+        # @param ProtocolType: <p>连接数据库的协议类型，当前支持：postgresql、mssql（MSSQL兼容语法）</p>
         # @type ProtocolType: String
 
         attr_accessor :Address, :Ip, :Port, :NetType, :Status, :VpcId, :SubnetId, :ProtocolType
@@ -6266,22 +6266,21 @@ module TencentCloud
 
       # InquiryPriceUpgradeDBInstance请求参数结构体
       class InquiryPriceUpgradeDBInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param Storage: 实例的磁盘大小，单位GB
+        # @param Storage: <p>实例的磁盘大小，单位GB</p>
         # @type Storage: Integer
-        # @param Memory: 实例的内存大小，单位GB
+        # @param Memory: <p>实例的内存大小，单位GB</p>
         # @type Memory: Integer
-        # @param DBInstanceId: 实例ID，形如postgres-hez4fh0v。可通过[DescribeDBInstances](https://cloud.tencent.com/document/api/409/16773)接口获取
+        # @param DBInstanceId: <p>实例ID，形如postgres-hez4fh0v。可通过<a href="https://cloud.tencent.com/document/api/409/16773">DescribeDBInstances</a>接口获取</p>
         # @type DBInstanceId: String
-        # @param InstanceChargeType: 实例计费类型。
+        # @param InstanceChargeType: <p>实例计费类型。</p>
         # @type InstanceChargeType: String
-        # @param Cpu: 实例的Cpu大小，单位Core。
-        # 不传入此参数时，默认根据Memory确定的售卖规格所对应的Cpu进行设置。如Memory为2，支持的售卖规格有1核2GiB，则不传入Cpu时，Cpu默认为1。
+        # @param Cpu: <p>实例的Cpu大小，单位Core。<br>不传入此参数时，默认根据Memory确定的售卖规格所对应的Cpu进行设置。如Memory为2，支持的售卖规格有1核2GiB，则不传入Cpu时，Cpu默认为1。</p>
         # @type Cpu: Integer
 
         attr_accessor :Storage, :Memory, :DBInstanceId, :InstanceChargeType, :Cpu
         extend Gem::Deprecate
-        deprecate :InstanceChargeType, :none, 2026, 10
-        deprecate :InstanceChargeType=, :none, 2026, 10
+        deprecate :InstanceChargeType, :none, 2026, 11
+        deprecate :InstanceChargeType=, :none, 2026, 11
 
         def initialize(storage=nil, memory=nil, dbinstanceid=nil, instancechargetype=nil, cpu=nil)
           @Storage = storage
@@ -6302,11 +6301,11 @@ module TencentCloud
 
       # InquiryPriceUpgradeDBInstance返回参数结构体
       class InquiryPriceUpgradeDBInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param OriginalPrice: 刊例价费用
+        # @param OriginalPrice: <p>刊例价费用</p>
         # @type OriginalPrice: Integer
-        # @param Price: 折后实际付款金额
+        # @param Price: <p>折后实际付款金额</p>
         # @type Price: Integer
-        # @param Currency: 币种。例如，CNY：人民币。
+        # @param Currency: <p>币种。例如，CNY：人民币。</p>
         # @type Currency: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

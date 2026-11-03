@@ -948,6 +948,34 @@ module TencentCloud
         end
       end
 
+      # COS 文件事件订阅配置（Location 与 COS 桶事件投递 CKafka 的联动）
+      class CosEventSubscription < TencentCloud::Common::AbstractModel
+        # @param InstanceId: CKafka 实例 ID，例如 ckafka-xxxxxxxx（订阅时必填）
+        # @type InstanceId: String
+        # @param TopicName: CKafka 主题名称（订阅时必填）
+        # @type TopicName: String
+        # @param RoleArn: 服务角色名称，例如 COSNotifyRole（订阅时必填；服务端按当前租户拼接完整 ARN）
+        # @type RoleArn: String
+        # @param Region: COS 存储桶所在地域，例如 ap-guangzhou（订阅时必填；过渡方案，后续可能改为服务端自动解析并移除）
+        # @type Region: String
+
+        attr_accessor :InstanceId, :TopicName, :RoleArn, :Region
+
+        def initialize(instanceid=nil, topicname=nil, rolearn=nil, region=nil)
+          @InstanceId = instanceid
+          @TopicName = topicname
+          @RoleArn = rolearn
+          @Region = region
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @TopicName = params['TopicName']
+          @RoleArn = params['RoleArn']
+          @Region = params['Region']
+        end
+      end
+
       # CreateCatalog请求参数结构体
       class CreateCatalogRequest < TencentCloud::Common::AbstractModel
         # @param Name: <p>catalog名称</p>
@@ -1249,12 +1277,20 @@ module TencentCloud
 
       # CreateLocation请求参数结构体
       class CreateLocationRequest < TencentCloud::Common::AbstractModel
+        # @param FileEventSubscription: COS 文件事件订阅配置，可选；不设置时不订阅（仅 COS 类型 Location 生效）。设置时先订阅 COS 桶事件投递到 CKafka 再创建 Location，创建失败自动回滚退订
+        # @type FileEventSubscription: :class:`Tencentcloud::Databuddy.v20260715.models.CosEventSubscription`
 
+        attr_accessor :FileEventSubscription
 
-        def initialize()
+        def initialize(fileeventsubscription=nil)
+          @FileEventSubscription = fileeventsubscription
         end
 
         def deserialize(params)
+          unless params['FileEventSubscription'].nil?
+            @FileEventSubscription = CosEventSubscription.new
+            @FileEventSubscription.deserialize(params['FileEventSubscription'])
+          end
         end
       end
 
@@ -3931,17 +3967,24 @@ module TencentCloud
       class GetLocationRsp < TencentCloud::Common::AbstractModel
         # @param Location: 存储位置详情
         # @type Location: :class:`Tencentcloud::Databuddy.v20260715.models.LocationInfo`
+        # @param FileEventSubscription: COS 文件事件订阅明细（未订阅时为空）
+        # @type FileEventSubscription: :class:`Tencentcloud::Databuddy.v20260715.models.CosEventSubscription`
 
-        attr_accessor :Location
+        attr_accessor :Location, :FileEventSubscription
 
-        def initialize(location=nil)
+        def initialize(location=nil, fileeventsubscription=nil)
           @Location = location
+          @FileEventSubscription = fileeventsubscription
         end
 
         def deserialize(params)
           unless params['Location'].nil?
             @Location = LocationInfo.new
             @Location.deserialize(params['Location'])
+          end
+          unless params['FileEventSubscription'].nil?
+            @FileEventSubscription = CosEventSubscription.new
+            @FileEventSubscription.deserialize(params['FileEventSubscription'])
           end
         end
       end
@@ -6427,6 +6470,32 @@ module TencentCloud
         end
       end
 
+      # 列表条目：存储位置与其 COS 文件事件订阅平铺（前端无需二次取值/匹配）
+      class ListLocationItem < TencentCloud::Common::AbstractModel
+        # @param Location: 存储位置详情
+        # @type Location: :class:`Tencentcloud::Databuddy.v20260715.models.LocationInfo`
+        # @param FileEventSubscription: COS 文件事件订阅明细（未订阅时为空，非空即已订阅）
+        # @type FileEventSubscription: :class:`Tencentcloud::Databuddy.v20260715.models.CosEventSubscription`
+
+        attr_accessor :Location, :FileEventSubscription
+
+        def initialize(location=nil, fileeventsubscription=nil)
+          @Location = location
+          @FileEventSubscription = fileeventsubscription
+        end
+
+        def deserialize(params)
+          unless params['Location'].nil?
+            @Location = LocationInfo.new
+            @Location.deserialize(params['Location'])
+          end
+          unless params['FileEventSubscription'].nil?
+            @FileEventSubscription = CosEventSubscription.new
+            @FileEventSubscription.deserialize(params['FileEventSubscription'])
+          end
+        end
+      end
+
       # ListLocations请求参数结构体
       class ListLocationsRequest < TencentCloud::Common::AbstractModel
         # @param WorkspaceId: <p>调用时所在workspace唯一id，必填</p>
@@ -6435,7 +6504,7 @@ module TencentCloud
         # @type LocationNamePattern: String
         # @param SnapshotBased: <p>是否基于快照分页</p>
         # @type SnapshotBased: Boolean
-        # @param SnapshotId: <p>快照ID</p>
+        # @param SnapshotId: <p>快照ID，首次查询时不传，后续传入上一次 ListLocations 响应返回的 SnapshotId</p>
         # @type SnapshotId: String
         # @param PageNumber: <p>页码，从1开始，可选，默认1</p>
         # @type PageNumber: Integer
@@ -6488,19 +6557,22 @@ module TencentCloud
 
       # 分页查询存储位置列表响应
       class ListLocationsRsp < TencentCloud::Common::AbstractModel
-        # @param Locations: 存储位置详情列表
+        # @param Locations: 存储位置详情列表（Deprecated: 请使用 Items，平铺含订阅状态；前端切换完成后移除）
         # @type Locations: Array
         # @param TotalCount: 结果总条数
         # @type TotalCount: Integer
         # @param SnapshotId: 快照ID
         # @type SnapshotId: String
+        # @param Items: 存储位置 + 订阅平铺列表（与 Locations 同序同长，前端优先使用本字段）；订阅状态判断：FileEventSubscription 非空即已开启
+        # @type Items: Array
 
-        attr_accessor :Locations, :TotalCount, :SnapshotId
+        attr_accessor :Locations, :TotalCount, :SnapshotId, :Items
 
-        def initialize(locations=nil, totalcount=nil, snapshotid=nil)
+        def initialize(locations=nil, totalcount=nil, snapshotid=nil, items=nil)
           @Locations = locations
           @TotalCount = totalcount
           @SnapshotId = snapshotid
+          @Items = items
         end
 
         def deserialize(params)
@@ -6514,6 +6586,14 @@ module TencentCloud
           end
           @TotalCount = params['TotalCount']
           @SnapshotId = params['SnapshotId']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              listlocationitem_tmp = ListLocationItem.new
+              listlocationitem_tmp.deserialize(i)
+              @Items << listlocationitem_tmp
+            end
+          end
         end
       end
 
@@ -8255,7 +8335,7 @@ module TencentCloud
 
       # 更新location的操作单元，通过 UpdateType 指定操作类型
       class LocationUpdate < TencentCloud::Common::AbstractModel
-        # @param UpdateType: 更新类型，取值：modify_location_name、modify_location_comment、modify_location_properties
+        # @param UpdateType: 更新类型，取值：modify_location_name、modify_location_comment、modify_location_properties、modify_file_event_subscription（操作COS文件事件订阅，WeData侧联动不透传TCLake；配合请求顶层FileEventSubscription字段：有值=开启/编辑订阅，未设置=关闭订阅）
         # @type UpdateType: String
         # @param NewComment: 新的备注，可选，UpdateType 为 modify_location_comment 时使用
         # @type NewComment: String
@@ -10435,8 +10515,8 @@ module TencentCloud
 
         attr_accessor :TaskTypeName, :Notebook, :TaskTypePropertyList, :RuntimePropertyList
         extend Gem::Deprecate
-        deprecate :Notebook, :none, 2026, 10
-        deprecate :Notebook=, :none, 2026, 10
+        deprecate :Notebook, :none, 2026, 11
+        deprecate :Notebook=, :none, 2026, 11
 
         def initialize(tasktypename=nil, notebook=nil, tasktypepropertylist=nil, runtimepropertylist=nil)
           @TaskTypeName = tasktypename
@@ -10487,14 +10567,14 @@ module TencentCloud
 
         attr_accessor :Source, :DisplayPath, :NotebookPath, :NotebookAbsolutePath
         extend Gem::Deprecate
-        deprecate :Source, :none, 2026, 10
-        deprecate :Source=, :none, 2026, 10
-        deprecate :DisplayPath, :none, 2026, 10
-        deprecate :DisplayPath=, :none, 2026, 10
-        deprecate :NotebookPath, :none, 2026, 10
-        deprecate :NotebookPath=, :none, 2026, 10
-        deprecate :NotebookAbsolutePath, :none, 2026, 10
-        deprecate :NotebookAbsolutePath=, :none, 2026, 10
+        deprecate :Source, :none, 2026, 11
+        deprecate :Source=, :none, 2026, 11
+        deprecate :DisplayPath, :none, 2026, 11
+        deprecate :DisplayPath=, :none, 2026, 11
+        deprecate :NotebookPath, :none, 2026, 11
+        deprecate :NotebookPath=, :none, 2026, 11
+        deprecate :NotebookAbsolutePath, :none, 2026, 11
+        deprecate :NotebookAbsolutePath=, :none, 2026, 11
 
         def initialize(source=nil, displaypath=nil, notebookpath=nil, notebookabsolutepath=nil)
           @Source = source
@@ -11060,17 +11140,20 @@ module TencentCloud
       class UpdateLocationRequest < TencentCloud::Common::AbstractModel
         # @param LocationName: 存储位置名，必填
         # @type LocationName: String
-        # @param Updates: 更新location的操作列表，必填
+        # @param Updates: 更新location的操作列表，必填。通过 UpdateType 指定操作类型，支持的 UpdateType：modify_location_name（修改名称）、modify_location_comment（修改描述）、modify_location_properties（修改属性）、modify_file_event_subscription（操作COS文件事件订阅开关）
         # @type Updates: Array
         # @param WorkspaceId: 调用时所在workspace唯一id，必填
         # @type WorkspaceId: String
+        # @param FileEventSubscription: COS 文件事件订阅配置，可选；不设置时不改动现有订阅（仅 COS 类型 Location 生效）。设置时：先按新配置重新订阅（同桶覆盖写，幂等），再修改 Location 元数据。与 Updates 中的 modify_file_event_subscription 配合表达开关操作：Updates 含该类型且本字段有值=开启/编辑订阅；Updates 含该类型且本字段未设置=关闭订阅；Updates 不含该类型时维持默认语义（不设置不动、设置覆盖）
+        # @type FileEventSubscription: :class:`Tencentcloud::Databuddy.v20260715.models.CosEventSubscription`
 
-        attr_accessor :LocationName, :Updates, :WorkspaceId
+        attr_accessor :LocationName, :Updates, :WorkspaceId, :FileEventSubscription
 
-        def initialize(locationname=nil, updates=nil, workspaceid=nil)
+        def initialize(locationname=nil, updates=nil, workspaceid=nil, fileeventsubscription=nil)
           @LocationName = locationname
           @Updates = updates
           @WorkspaceId = workspaceid
+          @FileEventSubscription = fileeventsubscription
         end
 
         def deserialize(params)
@@ -11084,6 +11167,10 @@ module TencentCloud
             end
           end
           @WorkspaceId = params['WorkspaceId']
+          unless params['FileEventSubscription'].nil?
+            @FileEventSubscription = CosEventSubscription.new
+            @FileEventSubscription.deserialize(params['FileEventSubscription'])
+          end
         end
       end
 
@@ -11114,17 +11201,24 @@ module TencentCloud
       class UpdateLocationRsp < TencentCloud::Common::AbstractModel
         # @param Location: 修改后的存储位置详情
         # @type Location: :class:`Tencentcloud::Databuddy.v20260715.models.LocationInfo`
+        # @param FileEventSubscription: COS 文件事件订阅明细（未订阅时为空）
+        # @type FileEventSubscription: :class:`Tencentcloud::Databuddy.v20260715.models.CosEventSubscription`
 
-        attr_accessor :Location
+        attr_accessor :Location, :FileEventSubscription
 
-        def initialize(location=nil)
+        def initialize(location=nil, fileeventsubscription=nil)
           @Location = location
+          @FileEventSubscription = fileeventsubscription
         end
 
         def deserialize(params)
           unless params['Location'].nil?
             @Location = LocationInfo.new
             @Location.deserialize(params['Location'])
+          end
+          unless params['FileEventSubscription'].nil?
+            @FileEventSubscription = CosEventSubscription.new
+            @FileEventSubscription.deserialize(params['FileEventSubscription'])
           end
         end
       end
@@ -12566,8 +12660,8 @@ module TencentCloud
 
         attr_accessor :WorkflowName, :WorkflowId, :RunUserUin, :Description, :OwnerUserName, :CreateUserUin
         extend Gem::Deprecate
-        deprecate :CreateUserUin, :none, 2026, 10
-        deprecate :CreateUserUin=, :none, 2026, 10
+        deprecate :CreateUserUin, :none, 2026, 11
+        deprecate :CreateUserUin=, :none, 2026, 11
 
         def initialize(workflowname=nil, workflowid=nil, runuseruin=nil, description=nil, ownerusername=nil, createuseruin=nil)
           @WorkflowName = workflowname

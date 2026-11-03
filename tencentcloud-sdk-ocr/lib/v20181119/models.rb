@@ -4043,8 +4043,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Angel, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2026, 10
-        deprecate :Angel=, :none, 2026, 10
+        deprecate :Angel, :none, 2026, 11
+        deprecate :Angel=, :none, 2026, 11
 
         def initialize(textdetections=nil, angel=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
@@ -4150,8 +4150,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Language, :Angel, :PdfPageSize, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2026, 10
-        deprecate :Angel=, :none, 2026, 10
+        deprecate :Angel, :none, 2026, 11
+        deprecate :Angel=, :none, 2026, 11
 
         def initialize(textdetections=nil, language=nil, angel=nil, pdfpagesize=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
@@ -4247,8 +4247,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Angel, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2026, 10
-        deprecate :Angel=, :none, 2026, 10
+        deprecate :Angel, :none, 2026, 11
+        deprecate :Angel=, :none, 2026, 11
 
         def initialize(textdetections=nil, angel=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
@@ -4394,8 +4394,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Angel, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2026, 10
-        deprecate :Angel=, :none, 2026, 10
+        deprecate :Angel, :none, 2026, 11
+        deprecate :Angel=, :none, 2026, 11
 
         def initialize(textdetections=nil, angel=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
@@ -4596,8 +4596,8 @@ module TencentCloud
 
         attr_accessor :ReturnHeadImage, :DetectFake, :ImageBase64, :ImageUrl
         extend Gem::Deprecate
-        deprecate :DetectFake, :none, 2026, 10
-        deprecate :DetectFake=, :none, 2026, 10
+        deprecate :DetectFake, :none, 2026, 11
+        deprecate :DetectFake=, :none, 2026, 11
 
         def initialize(returnheadimage=nil, detectfake=nil, imagebase64=nil, imageurl=nil)
           @ReturnHeadImage = returnheadimage
@@ -4656,10 +4656,10 @@ module TencentCloud
 
         attr_accessor :CnName, :EnName, :TelexCode, :Sex, :Birthday, :Permanent, :IdNum, :Symbol, :FirstIssueDate, :CurrentIssueDate, :FakeDetectResult, :HeadImage, :SmallHeadImage, :WarningCode, :WarnCardInfos, :WindowEmbeddedText, :RequestId
         extend Gem::Deprecate
-        deprecate :FakeDetectResult, :none, 2026, 10
-        deprecate :FakeDetectResult=, :none, 2026, 10
-        deprecate :WarningCode, :none, 2026, 10
-        deprecate :WarningCode=, :none, 2026, 10
+        deprecate :FakeDetectResult, :none, 2026, 11
+        deprecate :FakeDetectResult=, :none, 2026, 11
+        deprecate :WarningCode, :none, 2026, 11
+        deprecate :WarningCode=, :none, 2026, 11
 
         def initialize(cnname=nil, enname=nil, telexcode=nil, sex=nil, birthday=nil, permanent=nil, idnum=nil, symbol=nil, firstissuedate=nil, currentissuedate=nil, fakedetectresult=nil, headimage=nil, smallheadimage=nil, warningcode=nil, warncardinfos=nil, windowembeddedtext=nil, requestid=nil)
           @CnName = cnname
@@ -5006,8 +5006,8 @@ module TencentCloud
 
         attr_accessor :ImageBase64, :ImageUrl, :CardSide, :Config, :EnableRecognitionRectify, :EnableReflectDetail, :EnableDateVerify, :CardWarnType
         extend Gem::Deprecate
-        deprecate :EnableDateVerify, :none, 2026, 10
-        deprecate :EnableDateVerify=, :none, 2026, 10
+        deprecate :EnableDateVerify, :none, 2026, 11
+        deprecate :EnableDateVerify=, :none, 2026, 11
 
         def initialize(imagebase64=nil, imageurl=nil, cardside=nil, config=nil, enablerecognitionrectify=nil, enablereflectdetail=nil, enabledateverify=nil, cardwarntype=nil)
           @ImageBase64 = imagebase64
@@ -5809,10 +5809,10 @@ module TencentCloud
 
         attr_accessor :ID, :Name, :Address, :Sex, :Warn, :Image, :AdvancedInfo, :Type, :Birthday, :MyKadNumber, :WarnCardInfos, :RequestId
         extend Gem::Deprecate
-        deprecate :Warn, :none, 2026, 10
-        deprecate :Warn=, :none, 2026, 10
-        deprecate :AdvancedInfo, :none, 2026, 10
-        deprecate :AdvancedInfo=, :none, 2026, 10
+        deprecate :Warn, :none, 2026, 11
+        deprecate :Warn=, :none, 2026, 11
+        deprecate :AdvancedInfo, :none, 2026, 11
+        deprecate :AdvancedInfo=, :none, 2026, 11
 
         def initialize(id=nil, name=nil, address=nil, sex=nil, warn=nil, image=nil, advancedinfo=nil, type=nil, birthday=nil, mykadnumber=nil, warncardinfos=nil, requestid=nil)
           @ID = id
@@ -5914,10 +5914,10 @@ module TencentCloud
 
         attr_accessor :ID, :Name, :DateOfBirth, :Sex, :DateOfExpiration, :IssuingCountry, :Nationality, :Warn, :Image, :AdvancedInfo, :CodeSet, :CodeCrc, :Surname, :GivenName, :Type, :PassportRecognizeInfos, :WarnCardInfos, :CardCount, :RequestId
         extend Gem::Deprecate
-        deprecate :Warn, :none, 2026, 10
-        deprecate :Warn=, :none, 2026, 10
-        deprecate :AdvancedInfo, :none, 2026, 10
-        deprecate :AdvancedInfo=, :none, 2026, 10
+        deprecate :Warn, :none, 2026, 11
+        deprecate :Warn=, :none, 2026, 11
+        deprecate :AdvancedInfo, :none, 2026, 11
+        deprecate :AdvancedInfo=, :none, 2026, 11
 
         def initialize(id=nil, name=nil, dateofbirth=nil, sex=nil, dateofexpiration=nil, issuingcountry=nil, nationality=nil, warn=nil, image=nil, advancedinfo=nil, codeset=nil, codecrc=nil, surname=nil, givenname=nil, type=nil, passportrecognizeinfos=nil, warncardinfos=nil, cardcount=nil, requestid=nil)
           @ID = id
@@ -9257,8 +9257,8 @@ module TencentCloud
 
         attr_accessor :ID, :ThaiName, :EnFirstName, :EnLastName, :IssueDate, :ExpirationDate, :EnIssueDate, :EnExpirationDate, :Birthday, :EnBirthday, :Religion, :SerialNumber, :Address, :LaserID, :PortraitImage, :WarnCardInfos, :AdvancedInfo, :CardCount, :ThaiFirstName, :ThaiLastName, :RequestId
         extend Gem::Deprecate
-        deprecate :AdvancedInfo, :none, 2026, 10
-        deprecate :AdvancedInfo=, :none, 2026, 10
+        deprecate :AdvancedInfo, :none, 2026, 11
+        deprecate :AdvancedInfo=, :none, 2026, 11
 
         def initialize(id=nil, thainame=nil, enfirstname=nil, enlastname=nil, issuedate=nil, expirationdate=nil, enissuedate=nil, enexpirationdate=nil, birthday=nil, enbirthday=nil, religion=nil, serialnumber=nil, address=nil, laserid=nil, portraitimage=nil, warncardinfos=nil, advancedinfo=nil, cardcount=nil, thaifirstname=nil, thailastname=nil, requestid=nil)
           @ID = id
@@ -10924,8 +10924,8 @@ module TencentCloud
 
         attr_accessor :ImageBase64, :ImageUrl, :PdfPageNumber, :ItemNames, :EnableCoord, :FileStartPageNumber, :FileEndPageNumber, :ModelConfig
         extend Gem::Deprecate
-        deprecate :PdfPageNumber, :none, 2026, 10
-        deprecate :PdfPageNumber=, :none, 2026, 10
+        deprecate :PdfPageNumber, :none, 2026, 11
+        deprecate :PdfPageNumber=, :none, 2026, 11
 
         def initialize(imagebase64=nil, imageurl=nil, pdfpagenumber=nil, itemnames=nil, enablecoord=nil, filestartpagenumber=nil, fileendpagenumber=nil, modelconfig=nil)
           @ImageBase64 = imagebase64
@@ -11027,11 +11027,11 @@ module TencentCloud
 
       # SubmitMultimodalDocParseJob请求参数结构体
       class SubmitMultimodalDocParseJobRequest < TencentCloud::Common::AbstractModel
-        # @param FileType: <p>支持解析的文件类型。取值：</p><ul><li>1：PDF 文档</li><li>2：Word 文档（.doc/.docx）</li><li>3：PPT 演示文稿（.ppt/.pptx）</li><li>4：Excel 表格（.xls/.xlsx）</li><li>5：Markdown 文档（.md）</li><li>6：纯文本文件（.txt）</li><li>7：图片文件（.png/.jpg/.jpeg 等）</li><li>8：WPS 文档<br>支持的文件大小：PDF/WORD/PPT 支持 150M 且 300 页。</li></ul>
+        # @param FileType: <p>支持解析的文件类型。取值：</p><ul><li>1：PDF 文档</li><li>2：Word 文档（.doc/.docx）</li><li>3：PPT 演示文稿（.ppt/.pptx）</li><li>4：Excel 表格（.xls/.xlsx）</li><li>5：Markdown 文档（.md）</li><li>6：纯文本文件（.txt）</li><li>7：图片文件（.png/.jpg/.jpeg 等）</li><li>8：WPS 文档<br>支持的文件大小：PDF/WORD/PPT 支持 500M 且 300 页。</li></ul>
         # @type FileType: Integer
-        # @param FileUrl: <p>文件的 Url 地址，支持 FileType 参数对应的文件格式及大小。文件下载时间不超过 3 秒。文件存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议文件存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。</p>
+        # @param FileUrl: <p>文件的 Url 地址，支持 FileType 参数对应的文件格式及大小。文件下载时间不超过 30 秒。文件存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议文件存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。</p>
         # @type FileUrl: String
-        # @param FileBase64: <p>文件的 Base64 值。支持 FileType 参数对应的文件格式，支持的文件大小不超过 8M。文件下载时间不超过 3 秒。<br>文件的 FileUrl、FileBase64 必须提供一个，如果都提供，只使用 FileUrl。</p>
+        # @param FileBase64: <p>文件的 Base64 值。支持 FileType 参数对应的文件格式，支持的文件大小不超过 8M。文件下载时间不超过 30 秒。<br>文件的 FileUrl、FileBase64 必须提供一个，如果都提供，只使用 FileUrl。</p>
         # @type FileBase64: String
         # @param ResultType: <p>输出格式。<br>1：json格式<br>2：markdown格式<br>3：xml格式<br>9：json+markdown+xml格式</p>
         # @type ResultType: Integer
@@ -11101,7 +11101,7 @@ module TencentCloud
         # @type BoolSingleQuestion: Boolean
         # @param EnableDeepThink: <p>默认false 表示关闭深度思考  true 表示打开深度思考，更深层次推理分析，速度更慢</p>
         # @type EnableDeepThink: Boolean
-        # @param QuestionConfigMap: <p>题目信息输出配置，当key对应为true表示开启配置开关。<br>当key为KnowledgePoints value为true 表示输出每道题结构信息中输出知识点内容；<br>当key为TrueAnswer value为true 表示输出每道题的正确答案 ；<br>当key为StepCorrection value为true表示启用步骤级批改；<br>当key为DisableAnswerAnalysis value为true表示不输出答案解析；<br>当key为OutputSubQuestionsAndCoords value为true表示输出子题干和插图坐标；<br>当key为UseCoordAssist value为true表示使用精调坐标辅助模型，false表示默认模型坐标（性能更优）；</p>
+        # @param QuestionConfigMap: <p>题目信息输出配置，当key对应为true表示开启配置开关。<br>当key为TrueAnswer value为true 表示输出每道题的正确答案 ；<br>当key为StepCorrection value为true表示启用步骤级批改；<br>当key为DisableAnswerAnalysis value为true表示不输出答案解析；<br>当key为OutputSubQuestionsAndCoords value为true表示输出子题干和插图坐标；</p>
         # @type QuestionConfigMap: String
         # @param ReferenceAnswer: <p>【废弃字段】</p>
         # @type ReferenceAnswer: String
@@ -11113,15 +11113,15 @@ module TencentCloud
         # @type AssistMarkType: Integer
         # @param AnswerAssistMap: <p>单题辅助批改文本内容列表，当AssistMarkType为1时生效，用于提供题目相关的辅助文本信息。</p><ol><li>当key为ReferenceAnswer，value可以输入单题的辅助答案文本。</li><li>当key为QuestionAuxStem，value可以输入单题的辅助题干。</li></ol>
         # @type AnswerAssistMap: String
-        # @param EnableImageCrop: <p>是否开启切边、弯曲矫正、方向矫正，开启则批改之前先做图片前处理，图片url地址返回在查询接口的QuestionInfo-&gt; ReturnImageUr中l,默认为false不开启</p>
+        # @param EnableImageCrop: <p>是否开启切边、弯曲矫正、方向矫正，开启则批改之前先做图片前处理，图片url地址返回在查询接口的QuestionInfo-&gt; ReturnImageUrl中,默认为false不开启</p>
         # @type EnableImageCrop: Boolean
 
         attr_accessor :ImageBase64, :ImageUrl, :PdfPageNumber, :BoolSingleQuestion, :EnableDeepThink, :QuestionConfigMap, :ReferenceAnswer, :ImageBase64List, :ImageUrlList, :AssistMarkType, :AnswerAssistMap, :EnableImageCrop
         extend Gem::Deprecate
-        deprecate :BoolSingleQuestion, :none, 2026, 10
-        deprecate :BoolSingleQuestion=, :none, 2026, 10
-        deprecate :EnableDeepThink, :none, 2026, 10
-        deprecate :EnableDeepThink=, :none, 2026, 10
+        deprecate :BoolSingleQuestion, :none, 2026, 11
+        deprecate :BoolSingleQuestion=, :none, 2026, 11
+        deprecate :EnableDeepThink, :none, 2026, 11
+        deprecate :EnableDeepThink=, :none, 2026, 11
 
         def initialize(imagebase64=nil, imageurl=nil, pdfpagenumber=nil, boolsinglequestion=nil, enabledeepthink=nil, questionconfigmap=nil, referenceanswer=nil, imagebase64list=nil, imageurllist=nil, assistmarktype=nil, answerassistmap=nil, enableimagecrop=nil)
           @ImageBase64 = imagebase64
@@ -11199,7 +11199,7 @@ module TencentCloud
         # @type ImageUrlList: Array
         # @param ImageBase64List: <p>批量base64图片入口。要求图片经Base64编码后不超过10M，分辨率建议600*800以上，支持PNG、JPG、JPEG、BMP、PDF格式。图片下载时间不超过 3 秒。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。</p><p>入参限制：要求pdf只能有一个url或base64</p>
         # @type ImageBase64List: Array
-        # @param ModelType: <p>选择切题模型</p><p>枚举值：</p><ul><li>youtu_crop： 轻量化切题模型，运算速度更快，适合常规切题</li><li>youtu_crop_pro： 属于切题精调大模型，针对双栏、跨栏等复杂版式识别精度大幅提升，但推理耗时更长</li></ul><p>默认值：youtu_crop</p>
+        # @param ModelType: <p>选择切题模型</p><p>枚举值：</p><ul><li>youtu_crop： 轻量化切题模型，运算速度更快，适合常规切题</li></ul><p>默认值：youtu_crop</p>
         # @type ModelType: String
         # @param EnableImageCrop: <p>是否开启切边、弯曲矫正、方向矫正，开启则批改之前先做图片前处理，图片url地址返回在查询接口的QuestionInfo-&gt; ReturnImageUr中l,默认为false不开启</p>
         # @type EnableImageCrop: Boolean

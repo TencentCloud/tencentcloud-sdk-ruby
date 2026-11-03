@@ -113,6 +113,28 @@ module TencentCloud
         end
       end
 
+      # 任务关联的 Agent 配置
+      class AgentConfig < TencentCloud::Common::AbstractModel
+        # @param Prompt: <p>执行 Prompt（必填）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Prompt: String
+        # @param AgentId: <p>Agent 唯一标识（引用 CreateAgent 创建的 Managed Agent，必填）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AgentId: String
+
+        attr_accessor :Prompt, :AgentId
+
+        def initialize(prompt=nil, agentid=nil)
+          @Prompt = prompt
+          @AgentId = agentid
+        end
+
+        def deserialize(params)
+          @Prompt = params['Prompt']
+          @AgentId = params['AgentId']
+        end
+      end
+
       # Agent 列表项（原 AgentSummary；Agent 级纯字段，不再内嵌版本信息）
       class AgentItem < TencentCloud::Common::AbstractModel
         # @param AgentId: Agent 业务 ID（全局唯一，数字字符串形态）
@@ -893,6 +915,92 @@ module TencentCloud
         end
       end
 
+      # CreateScheduledTask请求参数结构体
+      class CreateScheduledTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskName: <p>任务名称</p>
+        # @type TaskName: String
+        # @param AgentConfig: <p>任务关联的 Agent 配置</p>
+        # @type AgentConfig: :class:`Tencentcloud::Workbuddyenterprise.v20260709.models.AgentConfig`
+        # @param CronExpr: <p>Cron 表达式</p>
+        # @type CronExpr: String
+        # @param Description: <p>任务描述</p>
+        # @type Description: String
+        # @param FrequencyType: <p>调度类型：CRON（按 Cron 周期执行，默认）或 ONCE（单次执行）</p>
+        # @type FrequencyType: String
+        # @param EffectiveStart: <p>生效日期开始时间（YYYY-MM-DD 格式），可选，不传时不限制开始时间</p>
+        # @type EffectiveStart: String
+        # @param EffectiveEnd: <p>生效日期结束时间（YYYY-MM-DD 格式），可选，不传时不限制结束时间</p>
+        # @type EffectiveEnd: String
+        # @param DeliveryTargetSet: <p>投递目标集合（BOT_CHANNEL / WEBHOOK 可并存）</p>
+        # @type DeliveryTargetSet: Array
+
+        attr_accessor :TaskName, :AgentConfig, :CronExpr, :Description, :FrequencyType, :EffectiveStart, :EffectiveEnd, :DeliveryTargetSet
+
+        def initialize(taskname=nil, agentconfig=nil, cronexpr=nil, description=nil, frequencytype=nil, effectivestart=nil, effectiveend=nil, deliverytargetset=nil)
+          @TaskName = taskname
+          @AgentConfig = agentconfig
+          @CronExpr = cronexpr
+          @Description = description
+          @FrequencyType = frequencytype
+          @EffectiveStart = effectivestart
+          @EffectiveEnd = effectiveend
+          @DeliveryTargetSet = deliverytargetset
+        end
+
+        def deserialize(params)
+          @TaskName = params['TaskName']
+          unless params['AgentConfig'].nil?
+            @AgentConfig = AgentConfig.new
+            @AgentConfig.deserialize(params['AgentConfig'])
+          end
+          @CronExpr = params['CronExpr']
+          @Description = params['Description']
+          @FrequencyType = params['FrequencyType']
+          @EffectiveStart = params['EffectiveStart']
+          @EffectiveEnd = params['EffectiveEnd']
+          unless params['DeliveryTargetSet'].nil?
+            @DeliveryTargetSet = []
+            params['DeliveryTargetSet'].each do |i|
+              deliverytarget_tmp = DeliveryTarget.new
+              deliverytarget_tmp.deserialize(i)
+              @DeliveryTargetSet << deliverytarget_tmp
+            end
+          end
+        end
+      end
+
+      # CreateScheduledTask返回参数结构体
+      class CreateScheduledTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务 ID</p>
+        # @type TaskId: String
+        # @param TaskKey: <p>任务唯一标识</p>
+        # @type TaskKey: String
+        # @param Status: <p>任务状态：ACTIVE（启用）/ PAUSED（暂停）/ DISABLED（停用）</p>
+        # @type Status: String
+        # @param NextRunTime: <p>下次执行时间</p>
+        # @type NextRunTime: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :TaskKey, :Status, :NextRunTime, :RequestId
+
+        def initialize(taskid=nil, taskkey=nil, status=nil, nextruntime=nil, requestid=nil)
+          @TaskId = taskid
+          @TaskKey = taskkey
+          @Status = status
+          @NextRunTime = nextruntime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @TaskKey = params['TaskKey']
+          @Status = params['Status']
+          @NextRunTime = params['NextRunTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteAgent请求参数结构体
       class DeleteAgentRequest < TencentCloud::Common::AbstractModel
         # @param AgentId: <p>Agent 业务 ID</p>
@@ -922,6 +1030,68 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteScheduledTask请求参数结构体
+      class DeleteScheduledTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务 ID</p>
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DeleteScheduledTask返回参数结构体
+      class DeleteScheduledTaskResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 投递目标
+      class DeliveryTarget < TencentCloud::Common::AbstractModel
+        # @param Type: <p>投递类型：BOT_CHANNEL（IM 渠道投递）或 WEBHOOK（自定义回调）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Enabled: <p>是否启用此投递目标</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Enabled: Boolean
+        # @param Options: <p>投递配置，按 Type 不同</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Options: :class:`Tencentcloud::Workbuddyenterprise.v20260709.models.TargetOptions`
+
+        attr_accessor :Type, :Enabled, :Options
+
+        def initialize(type=nil, enabled=nil, options=nil)
+          @Type = type
+          @Enabled = enabled
+          @Options = options
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Enabled = params['Enabled']
+          unless params['Options'].nil?
+            @Options = TargetOptions.new
+            @Options.deserialize(params['Options'])
+          end
         end
       end
 
@@ -1835,6 +2005,359 @@ module TencentCloud
         end
       end
 
+      # DescribeScheduledTaskList请求参数结构体
+      class DescribeScheduledTaskListRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: <p>偏移量，从 0 开始</p>
+        # @type Offset: Integer
+        # @param Limit: <p>返回数量，缺省为 20，最大 100</p>
+        # @type Limit: Integer
+        # @param Filters: <p>过滤条件数组，多个 Filter 之间为 AND 关系，同一 Filter 内多个 Values 为 OR 关系。支持的 Filter.Name：TaskName（模糊）、Status（精确 0/1）、AgentId（精确）</p>
+        # @type Filters: Array
+
+        attr_accessor :Offset, :Limit, :Filters
+
+        def initialize(offset=nil, limit=nil, filters=nil)
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeScheduledTaskList返回参数结构体
+      class DescribeScheduledTaskListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>总数</p>
+        # @type TotalCount: Integer
+        # @param ScheduledTaskSet: <p>任务列表（分页后）</p>
+        # @type ScheduledTaskSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :ScheduledTaskSet, :RequestId
+
+        def initialize(totalcount=nil, scheduledtaskset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @ScheduledTaskSet = scheduledtaskset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['ScheduledTaskSet'].nil?
+            @ScheduledTaskSet = []
+            params['ScheduledTaskSet'].each do |i|
+              scheduledtasksummary_tmp = ScheduledTaskSummary.new
+              scheduledtasksummary_tmp.deserialize(i)
+              @ScheduledTaskSet << scheduledtasksummary_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeScheduledTaskLogList请求参数结构体
+      class DescribeScheduledTaskLogListRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务 ID</p>
+        # @type TaskId: String
+        # @param Offset: <p>偏移量，从 0 开始</p>
+        # @type Offset: Integer
+        # @param Limit: <p>返回数量，缺省为 20，最大 100</p>
+        # @type Limit: Integer
+        # @param WithStats: <p>是否返回聚合统计（Stats）</p>
+        # @type WithStats: Boolean
+        # @param Filters: <p>过滤条件数组，多个 Filter 之间为 AND 关系，同一 Filter 内多个 Values 为 OR 关系</p>
+        # @type Filters: Array
+
+        attr_accessor :TaskId, :Offset, :Limit, :WithStats, :Filters
+
+        def initialize(taskid=nil, offset=nil, limit=nil, withstats=nil, filters=nil)
+          @TaskId = taskid
+          @Offset = offset
+          @Limit = limit
+          @WithStats = withstats
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @WithStats = params['WithStats']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeScheduledTaskLogList返回参数结构体
+      class DescribeScheduledTaskLogListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>总数</p>
+        # @type TotalCount: Integer
+        # @param ScheduledTaskLogSet: <p>执行日志列表（分页后）</p>
+        # @type ScheduledTaskLogSet: Array
+        # @param Stats: <p>聚合统计（WithStats=true 时返回）</p>
+        # @type Stats: :class:`Tencentcloud::Workbuddyenterprise.v20260709.models.ScheduledTaskLogStats`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :ScheduledTaskLogSet, :Stats, :RequestId
+
+        def initialize(totalcount=nil, scheduledtasklogset=nil, stats=nil, requestid=nil)
+          @TotalCount = totalcount
+          @ScheduledTaskLogSet = scheduledtasklogset
+          @Stats = stats
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['ScheduledTaskLogSet'].nil?
+            @ScheduledTaskLogSet = []
+            params['ScheduledTaskLogSet'].each do |i|
+              scheduledtasklogsummary_tmp = ScheduledTaskLogSummary.new
+              scheduledtasklogsummary_tmp.deserialize(i)
+              @ScheduledTaskLogSet << scheduledtasklogsummary_tmp
+            end
+          end
+          unless params['Stats'].nil?
+            @Stats = ScheduledTaskLogStats.new
+            @Stats.deserialize(params['Stats'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeScheduledTaskLog请求参数结构体
+      class DescribeScheduledTaskLogRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务 ID</p>
+        # @type TaskId: String
+        # @param LogId: <p>执行日志 ID</p>
+        # @type LogId: String
+
+        attr_accessor :TaskId, :LogId
+
+        def initialize(taskid=nil, logid=nil)
+          @TaskId = taskid
+          @LogId = logid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @LogId = params['LogId']
+        end
+      end
+
+      # DescribeScheduledTaskLog返回参数结构体
+      class DescribeScheduledTaskLogResponse < TencentCloud::Common::AbstractModel
+        # @param LogId: <p>执行日志 ID</p>
+        # @type LogId: String
+        # @param TaskId: <p>任务 ID</p>
+        # @type TaskId: String
+        # @param TaskKey: <p>任务唯一标识</p>
+        # @type TaskKey: String
+        # @param SessionId: <p>关联会话 ID</p>
+        # @type SessionId: String
+        # @param TriggerType: <p>触发类型：MANUAL（手动）/ CRON（定时）</p>
+        # @type TriggerType: String
+        # @param Status: <p>执行状态</p>
+        # @type Status: String
+        # @param Prompt: <p>本次执行 Prompt</p>
+        # @type Prompt: String
+        # @param Result: <p>执行输出内容（完整结果；列表接口 DescribeScheduledTaskLogList 仅返回前 50 字符预览）</p>
+        # @type Result: String
+        # @param StartTime: <p>开始时间</p>
+        # @type StartTime: String
+        # @param EndTime: <p>结束时间</p>
+        # @type EndTime: String
+        # @param DurationMs: <p>执行时长（毫秒）</p>
+        # @type DurationMs: Integer
+        # @param DeliveryStatus: <p>投递状态</p>
+        # @type DeliveryStatus: String
+        # @param DeliveryError: <p>投递错误信息</p>
+        # @type DeliveryError: String
+        # @param CreatedTime: <p>创建时间</p>
+        # @type CreatedTime: String
+        # @param ErrorMessage: <p>失败原因</p>
+        # @type ErrorMessage: String
+        # @param SessionName: <p>会话名称（AgentOS 侧生成的 AI 标题 / 用户改名）；缺失时为空，调用方可兜底展示 SessionId 后缀</p>
+        # @type SessionName: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LogId, :TaskId, :TaskKey, :SessionId, :TriggerType, :Status, :Prompt, :Result, :StartTime, :EndTime, :DurationMs, :DeliveryStatus, :DeliveryError, :CreatedTime, :ErrorMessage, :SessionName, :RequestId
+
+        def initialize(logid=nil, taskid=nil, taskkey=nil, sessionid=nil, triggertype=nil, status=nil, prompt=nil, result=nil, starttime=nil, endtime=nil, durationms=nil, deliverystatus=nil, deliveryerror=nil, createdtime=nil, errormessage=nil, sessionname=nil, requestid=nil)
+          @LogId = logid
+          @TaskId = taskid
+          @TaskKey = taskkey
+          @SessionId = sessionid
+          @TriggerType = triggertype
+          @Status = status
+          @Prompt = prompt
+          @Result = result
+          @StartTime = starttime
+          @EndTime = endtime
+          @DurationMs = durationms
+          @DeliveryStatus = deliverystatus
+          @DeliveryError = deliveryerror
+          @CreatedTime = createdtime
+          @ErrorMessage = errormessage
+          @SessionName = sessionname
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @LogId = params['LogId']
+          @TaskId = params['TaskId']
+          @TaskKey = params['TaskKey']
+          @SessionId = params['SessionId']
+          @TriggerType = params['TriggerType']
+          @Status = params['Status']
+          @Prompt = params['Prompt']
+          @Result = params['Result']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @DurationMs = params['DurationMs']
+          @DeliveryStatus = params['DeliveryStatus']
+          @DeliveryError = params['DeliveryError']
+          @CreatedTime = params['CreatedTime']
+          @ErrorMessage = params['ErrorMessage']
+          @SessionName = params['SessionName']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeScheduledTask请求参数结构体
+      class DescribeScheduledTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务 ID</p>
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeScheduledTask返回参数结构体
+      class DescribeScheduledTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务 ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: String
+        # @param TaskKey: <p>任务唯一标识</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskKey: String
+        # @param TaskName: <p>任务名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskName: String
+        # @param Description: <p>任务描述</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param AgentId: <p>关联 Agent ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AgentId: String
+        # @param CronExpr: <p>Cron 表达式</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CronExpr: String
+        # @param Status: <p>任务状态：ACTIVE（启用）/ PAUSED（暂停）/ DISABLED（停用）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param LastRunTime: <p>最近执行时间</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastRunTime: String
+        # @param NextRunTime: <p>下次执行时间</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NextRunTime: String
+        # @param CreatedTime: <p>创建时间</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatedTime: String
+        # @param ModifiedTime: <p>更新时间</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifiedTime: String
+        # @param AgentConfig: <p>任务 Agent 配置（Prompt/Model/AgentId）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AgentConfig: :class:`Tencentcloud::Workbuddyenterprise.v20260709.models.AgentConfig`
+        # @param EffectiveStart: <p>生效日期开始时间（YYYY-MM-DD 格式），不传时不限制开始时间</p>
+        # @type EffectiveStart: String
+        # @param EffectiveEnd: <p>生效日期结束时间（YYYY-MM-DD 格式），不传时不限制结束时间</p>
+        # @type EffectiveEnd: String
+        # @param DeliveryTargetSet: <p>投递目标集合（BOT_CHANNEL / WEBHOOK 可并存）</p>
+        # @type DeliveryTargetSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :TaskKey, :TaskName, :Description, :AgentId, :CronExpr, :Status, :LastRunTime, :NextRunTime, :CreatedTime, :ModifiedTime, :AgentConfig, :EffectiveStart, :EffectiveEnd, :DeliveryTargetSet, :RequestId
+
+        def initialize(taskid=nil, taskkey=nil, taskname=nil, description=nil, agentid=nil, cronexpr=nil, status=nil, lastruntime=nil, nextruntime=nil, createdtime=nil, modifiedtime=nil, agentconfig=nil, effectivestart=nil, effectiveend=nil, deliverytargetset=nil, requestid=nil)
+          @TaskId = taskid
+          @TaskKey = taskkey
+          @TaskName = taskname
+          @Description = description
+          @AgentId = agentid
+          @CronExpr = cronexpr
+          @Status = status
+          @LastRunTime = lastruntime
+          @NextRunTime = nextruntime
+          @CreatedTime = createdtime
+          @ModifiedTime = modifiedtime
+          @AgentConfig = agentconfig
+          @EffectiveStart = effectivestart
+          @EffectiveEnd = effectiveend
+          @DeliveryTargetSet = deliverytargetset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @TaskKey = params['TaskKey']
+          @TaskName = params['TaskName']
+          @Description = params['Description']
+          @AgentId = params['AgentId']
+          @CronExpr = params['CronExpr']
+          @Status = params['Status']
+          @LastRunTime = params['LastRunTime']
+          @NextRunTime = params['NextRunTime']
+          @CreatedTime = params['CreatedTime']
+          @ModifiedTime = params['ModifiedTime']
+          unless params['AgentConfig'].nil?
+            @AgentConfig = AgentConfig.new
+            @AgentConfig.deserialize(params['AgentConfig'])
+          end
+          @EffectiveStart = params['EffectiveStart']
+          @EffectiveEnd = params['EffectiveEnd']
+          unless params['DeliveryTargetSet'].nil?
+            @DeliveryTargetSet = []
+            params['DeliveryTargetSet'].each do |i|
+              deliverytarget_tmp = DeliveryTarget.new
+              deliverytarget_tmp.deserialize(i)
+              @DeliveryTargetSet << deliverytarget_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSkillList请求参数结构体
       class DescribeSkillListRequest < TencentCloud::Common::AbstractModel
         # @param Source: 技能来源，必填：BUILTIN（内置）/ CUSTOM（自建）/ AUTHORIZED（企业授权）。数据通路判别，非筛选条件
@@ -2118,6 +2641,28 @@ module TencentCloud
           @Name = params['Name']
           @Values = params['Values']
           @ExactMatch = params['ExactMatch']
+        end
+      end
+
+      # 自定义请求头键值对
+      class Header < TencentCloud::Common::AbstractModel
+        # @param Key: <p>请求头名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param Value: <p>请求头值</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
         end
       end
 
@@ -2700,6 +3245,80 @@ module TencentCloud
         end
       end
 
+      # ModifyScheduledTask请求参数结构体
+      class ModifyScheduledTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务 ID</p>
+        # @type TaskId: String
+        # @param TaskName: <p>任务名称</p>
+        # @type TaskName: String
+        # @param Description: <p>任务描述</p>
+        # @type Description: String
+        # @param AgentConfig: <p>任务关联的 Agent 配置</p>
+        # @type AgentConfig: :class:`Tencentcloud::Workbuddyenterprise.v20260709.models.AgentConfig`
+        # @param CronExpr: <p>Cron 表达式</p>
+        # @type CronExpr: String
+        # @param Status: <p>任务状态：ACTIVE（启用）/ PAUSED（暂停）/ DISABLED（停用）</p>
+        # @type Status: String
+        # @param EffectiveStart: <p>生效日期开始时间（YYYY-MM-DD 格式），传空串清除，不传保持原值</p>
+        # @type EffectiveStart: String
+        # @param EffectiveEnd: <p>生效日期结束时间（YYYY-MM-DD 格式），传空串清除，不传保持原值</p>
+        # @type EffectiveEnd: String
+        # @param DeliveryTargetSet: <p>投递目标集合（部分更新时整体替换）</p>
+        # @type DeliveryTargetSet: Array
+
+        attr_accessor :TaskId, :TaskName, :Description, :AgentConfig, :CronExpr, :Status, :EffectiveStart, :EffectiveEnd, :DeliveryTargetSet
+
+        def initialize(taskid=nil, taskname=nil, description=nil, agentconfig=nil, cronexpr=nil, status=nil, effectivestart=nil, effectiveend=nil, deliverytargetset=nil)
+          @TaskId = taskid
+          @TaskName = taskname
+          @Description = description
+          @AgentConfig = agentconfig
+          @CronExpr = cronexpr
+          @Status = status
+          @EffectiveStart = effectivestart
+          @EffectiveEnd = effectiveend
+          @DeliveryTargetSet = deliverytargetset
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @TaskName = params['TaskName']
+          @Description = params['Description']
+          unless params['AgentConfig'].nil?
+            @AgentConfig = AgentConfig.new
+            @AgentConfig.deserialize(params['AgentConfig'])
+          end
+          @CronExpr = params['CronExpr']
+          @Status = params['Status']
+          @EffectiveStart = params['EffectiveStart']
+          @EffectiveEnd = params['EffectiveEnd']
+          unless params['DeliveryTargetSet'].nil?
+            @DeliveryTargetSet = []
+            params['DeliveryTargetSet'].each do |i|
+              deliverytarget_tmp = DeliveryTarget.new
+              deliverytarget_tmp.deserialize(i)
+              @DeliveryTargetSet << deliverytarget_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyScheduledTask返回参数结构体
+      class ModifyScheduledTaskResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 路由项
       class RoutingItem < TencentCloud::Common::AbstractModel
         # @param VersionId: 版本 ID
@@ -2719,6 +3338,175 @@ module TencentCloud
         def deserialize(params)
           @VersionId = params['VersionId']
           @Weight = params['Weight']
+        end
+      end
+
+      # 定时任务执行聚合统计
+      class ScheduledTaskLogStats < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>总执行次数</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param SuccessCount: <p>成功次数</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SuccessCount: Integer
+        # @param FailedCount: <p>失败次数</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailedCount: Integer
+        # @param AvgDurationMs: <p>平均执行时长（毫秒）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AvgDurationMs: Integer
+
+        attr_accessor :TotalCount, :SuccessCount, :FailedCount, :AvgDurationMs
+
+        def initialize(totalcount=nil, successcount=nil, failedcount=nil, avgdurationms=nil)
+          @TotalCount = totalcount
+          @SuccessCount = successcount
+          @FailedCount = failedcount
+          @AvgDurationMs = avgdurationms
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @SuccessCount = params['SuccessCount']
+          @FailedCount = params['FailedCount']
+          @AvgDurationMs = params['AvgDurationMs']
+        end
+      end
+
+      # 定时任务执行日志列表项
+      class ScheduledTaskLogSummary < TencentCloud::Common::AbstractModel
+        # @param LogId: <p>执行日志 ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogId: String
+        # @param TaskKey: <p>任务唯一标识</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskKey: String
+        # @param TriggerType: <p>触发类型：MANUAL（手动）/ CRON（定时）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TriggerType: String
+        # @param Status: <p>执行状态</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param StartTime: <p>开始时间</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: String
+        # @param EndTime: <p>结束时间</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
+        # @param DurationMs: <p>执行时长（毫秒）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DurationMs: Integer
+        # @param DeliveryStatus: <p>投递状态</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeliveryStatus: String
+        # @param SessionId: <p>关联会话 ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SessionId: String
+        # @param ErrorMessage: <p>失败原因</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMessage: String
+        # @param SessionName: <p>会话名称（AgentOS 侧生成的 AI 标题 / 用户改名）；缺失时为空，调用方可兜底展示 SessionId 后缀</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SessionName: String
+        # @param Result: <p>执行结果预览（前 50 字符），仅用于列表页展示；完整结果请调用 DescribeScheduledTaskLog</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: String
+
+        attr_accessor :LogId, :TaskKey, :TriggerType, :Status, :StartTime, :EndTime, :DurationMs, :DeliveryStatus, :SessionId, :ErrorMessage, :SessionName, :Result
+
+        def initialize(logid=nil, taskkey=nil, triggertype=nil, status=nil, starttime=nil, endtime=nil, durationms=nil, deliverystatus=nil, sessionid=nil, errormessage=nil, sessionname=nil, result=nil)
+          @LogId = logid
+          @TaskKey = taskkey
+          @TriggerType = triggertype
+          @Status = status
+          @StartTime = starttime
+          @EndTime = endtime
+          @DurationMs = durationms
+          @DeliveryStatus = deliverystatus
+          @SessionId = sessionid
+          @ErrorMessage = errormessage
+          @SessionName = sessionname
+          @Result = result
+        end
+
+        def deserialize(params)
+          @LogId = params['LogId']
+          @TaskKey = params['TaskKey']
+          @TriggerType = params['TriggerType']
+          @Status = params['Status']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @DurationMs = params['DurationMs']
+          @DeliveryStatus = params['DeliveryStatus']
+          @SessionId = params['SessionId']
+          @ErrorMessage = params['ErrorMessage']
+          @SessionName = params['SessionName']
+          @Result = params['Result']
+        end
+      end
+
+      # 定时任务列表项
+      class ScheduledTaskSummary < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务 ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: String
+        # @param TaskKey: <p>任务唯一标识</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskKey: String
+        # @param TaskName: <p>任务名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskName: String
+        # @param AgentId: <p>关联 Agent ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AgentId: String
+        # @param CronExpr: <p>Cron 表达式</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CronExpr: String
+        # @param Status: <p>任务状态：ACTIVE（启用）/ PAUSED（暂停）/ DISABLED（停用）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param LastRunTime: <p>最近执行时间</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastRunTime: String
+        # @param NextRunTime: <p>下次执行时间</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NextRunTime: String
+        # @param CreatedTime: <p>创建时间</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatedTime: String
+        # @param AgentConfig: <p>任务 Agent 配置（Prompt/Model/AgentId）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AgentConfig: :class:`Tencentcloud::Workbuddyenterprise.v20260709.models.AgentConfig`
+
+        attr_accessor :TaskId, :TaskKey, :TaskName, :AgentId, :CronExpr, :Status, :LastRunTime, :NextRunTime, :CreatedTime, :AgentConfig
+
+        def initialize(taskid=nil, taskkey=nil, taskname=nil, agentid=nil, cronexpr=nil, status=nil, lastruntime=nil, nextruntime=nil, createdtime=nil, agentconfig=nil)
+          @TaskId = taskid
+          @TaskKey = taskkey
+          @TaskName = taskname
+          @AgentId = agentid
+          @CronExpr = cronexpr
+          @Status = status
+          @LastRunTime = lastruntime
+          @NextRunTime = nextruntime
+          @CreatedTime = createdtime
+          @AgentConfig = agentconfig
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @TaskKey = params['TaskKey']
+          @TaskName = params['TaskName']
+          @AgentId = params['AgentId']
+          @CronExpr = params['CronExpr']
+          @Status = params['Status']
+          @LastRunTime = params['LastRunTime']
+          @NextRunTime = params['NextRunTime']
+          @CreatedTime = params['CreatedTime']
+          unless params['AgentConfig'].nil?
+            @AgentConfig = AgentConfig.new
+            @AgentConfig.deserialize(params['AgentConfig'])
+          end
         end
       end
 
@@ -2873,6 +3661,55 @@ module TencentCloud
         end
       end
 
+      # 投递目标配置，按 Type 选用不同字段组
+      class TargetOptions < TencentCloud::Common::AbstractModel
+        # @param ChannelType: <p>渠道类型（BOT_CHANNEL 必填）：FEISHU / DINGTALK / QQ / WECOM_NEW / WECOM_AIBOT / WECHAT_KF</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChannelType: String
+        # @param ChannelId: <p>渠道标识（BOT_CHANNEL 必填）：飞书 appId / 钉钉 appKey / QQ appId / 企微 corpId:agentId</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChannelId: String
+        # @param Url: <p>回调 URL（WEBHOOK 必填）：仅允许 http/https，禁止内网地址（SSRF 防护）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Url: String
+        # @param Headers: <p>自定义请求头列表，与默认 Content-Type: application/json 合并</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Headers: Array
+        # @param Secret: <p>HMAC-SHA256 签名密钥（WEBHOOK 可选）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Secret: String
+        # @param RecipientIdSet: <p>接收目标 ID 集合（群 ID / 用户 ID / 频道 ID），BOT_CHANNEL 模式必填，至少一个</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecipientIdSet: Array
+
+        attr_accessor :ChannelType, :ChannelId, :Url, :Headers, :Secret, :RecipientIdSet
+
+        def initialize(channeltype=nil, channelid=nil, url=nil, headers=nil, secret=nil, recipientidset=nil)
+          @ChannelType = channeltype
+          @ChannelId = channelid
+          @Url = url
+          @Headers = headers
+          @Secret = secret
+          @RecipientIdSet = recipientidset
+        end
+
+        def deserialize(params)
+          @ChannelType = params['ChannelType']
+          @ChannelId = params['ChannelId']
+          @Url = params['Url']
+          unless params['Headers'].nil?
+            @Headers = []
+            params['Headers'].each do |i|
+              header_tmp = Header.new
+              header_tmp.deserialize(i)
+              @Headers << header_tmp
+            end
+          end
+          @Secret = params['Secret']
+          @RecipientIdSet = params['RecipientIdSet']
+        end
+      end
+
       # Token用量
       class TokenUsage < TencentCloud::Common::AbstractModel
         # @param InputTokens: <p>输入Token</p>
@@ -2902,6 +3739,46 @@ module TencentCloud
           @OutputTokens = params['OutputTokens']
           @TotalTokens = params['TotalTokens']
           @Scope = params['Scope']
+        end
+      end
+
+      # TriggerScheduledTask请求参数结构体
+      class TriggerScheduledTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务 ID</p>
+        # @type TaskId: String
+        # @param OverridePrompt: <p>覆盖 Prompt，为空则使用任务原 Prompt</p>
+        # @type OverridePrompt: String
+
+        attr_accessor :TaskId, :OverridePrompt
+
+        def initialize(taskid=nil, overrideprompt=nil)
+          @TaskId = taskid
+          @OverridePrompt = overrideprompt
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @OverridePrompt = params['OverridePrompt']
+        end
+      end
+
+      # TriggerScheduledTask返回参数结构体
+      class TriggerScheduledTaskResponse < TencentCloud::Common::AbstractModel
+        # @param LogId: <p>本次触发产生的执行日志 ID</p>
+        # @type LogId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LogId, :RequestId
+
+        def initialize(logid=nil, requestid=nil)
+          @LogId = logid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @LogId = params['LogId']
+          @RequestId = params['RequestId']
         end
       end
 
